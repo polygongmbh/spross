@@ -159,6 +159,33 @@ auto-advance beats these share with it, are `design.md`'s.
   itself the request to hear one (`read-aloud.md`), so no run of it can open on a card with
   nothing to answer.
 
+## Listening
+
+- **Listening is not a Sprosse.** A Sprosse is a SKILL with a ladder to climb, which is the
+  only thing that earns a chip on that row; listening asks nothing, grades nothing and has no
+  rung to reach, so a fourth chip would say it is a peer of counting and spelling when it is
+  a different kind of thing entirely. It gets its own quiet card on Heute, under the day's
+  round: the round is what the box asks of the learner, and this is what the learner can do
+  when answering is not on the table — a walk, a commute, a sink full of dishes.
+- **It keeps the drill contract even so**: it books no review, writes no schedule and moves
+  no streak, so a run costs the box nothing and can be closed at any moment. It has no end
+  screen for the drills' reason — a run the learner ends when they like has nothing to
+  celebrate — and no way of ending by itself: it laps for as long as it is left playing.
+- **What it draws from is the box, weighted by what is not sticking** — how often a word has
+  been forgotten and how hard FSRS finds it — and never by what is due, since a schedule is
+  about when to ASK and nothing is being asked. Suspended words are in the pool: the leech
+  rule takes a word out of the rotation after two lapses, which makes the worst-stuck words
+  exactly the ones a due-driven surface would never reach — but they draw at the floor, so
+  they turn up without taking the hour over. Unseen words fill a thin pool out, in seed
+  order, and hearing one does NOT introduce it: introduction is the first ANSWER, and this
+  surface has none. The rule and its numbers are `../kern/README.md` §6.
+- **It plays with the screen locked.** That is the point of it — the mode is for the hours
+  the phone is in a pocket, and one that stopped at the lock screen would be a mode for
+  staring at a phone that is already speaking. Both platforms put the current word on the
+  lock screen and take play/pause/next from it and from a headphone button, driving the same
+  reducer the on-screen buttons drive; how it is spoken, and what it does to whatever else
+  was playing, is `read-aloud.md`.
+
 ## Android companion
 
 `android/` renders THIS contract with Compose — same engine facades, and since the turn

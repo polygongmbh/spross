@@ -23,10 +23,18 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   no public URL opens that pane, and the one that exists lands on the app's own settings page,
   which is not where the setting is. The voice table is dropped on every foreground, so a
   download made in Settings is picked up on return and the pointer goes with it.
-- **Only the headword is ever spoken.** Article, ♀ badge, plural line and alternates are
-  grammar decoration: gender is taught by the article color, and the recordings say bare
-  words — speaking the article in the synthesized branch alone would make a word's
-  pronunciation depend on which branch happened to answer.
+- **The target language is spoken with its article; the learner's own language is not.**
+  An article is not decoration on the side being learned — it is the half of the noun a
+  learner most often has wrong, and a word only ever heard bare is a word never heard right.
+  So the voice says "das Brot", and kern decides whether there is an article to say
+  (`shownArticle`), which keeps it off a rotated synonym that may carry another gender.
+  The learner's own side takes none: the meaning is there to identify the word, and its
+  grammar is not what is being taught.
+  This does mean a word sounds fuller from the voice than from a bundled recording, which
+  says the bare word it was recorded as — that is the recording falling short of the rule,
+  not the voice overreaching, and it is the accepted cost of teaching the article at all.
+  ♀ badge, plural line and alternates stay unspoken: those are decoration, and gender is
+  taught by the article color besides.
 - **Audio may never give the answer away**: whether a card's target may be heard is the
   engine's cue, the audio twin of the emoji cue — a recognition prompt carries the target
   from frame one and speaks at once, a produce card owes that very form and waits for the
@@ -47,8 +55,25 @@ mutes interact. The engine's half — whether a form may be heard at all — is
 | produce revealed — Aufdecken, wrong, other word | yes, after the chime | the bare target word |
 | trainer drill prompt — a numeral, a clock face | no | there is nothing to say yet: the reading IS the answer |
 | trainer drill reading revealed or corrected | yes, after the chime | the reading itself, generated, so usually the voice |
+| listening mode — the meaning, between the two sayings of the word | yes, unattended | the meaning in the learner's own language: the ONE autoplay that speaks the known side, because a word said into silence teaches nothing and there is no answer being owed |
 | a drill answer owed in the learner's OWN language — a reversed atlas run | no | nothing: every autoplay above says a form in the language being LEARNED, and the speaker beside the reveal still says this one on request |
 
+- **Listening mode is a run made entirely of sound, and it is the only one that plays
+  unattended.** A turn says the target word, the meaning, then the target again: the second
+  saying is where the word and its meaning meet, and it is what makes the mode worth an hour
+  with the phone in a pocket. The gap before the meaning is the only beat that varies — a
+  word the learner already holds gets room to remember it first, an unseen word has nothing
+  to recall and its meaning follows quickly. Every beat is kern's number
+  (`../kern/README.md` §6), so the two phones cannot drift on the pacing.
+  It carries no mute button, for the letter drill's reason: entering a surface whose only
+  content is a sound is itself the request to hear one, so neither mute reaches it and the
+  run plays under `.playback`.
+  It also takes the audio OVER rather than mixing into it — no `.mixWithOthers`, spoken-audio
+  mode, and the session is released on stop so whatever was playing resumes. A mode meant to
+  be listened to that lands on top of a podcast is a mode nobody hears; that is the one place
+  the app interrupts, and it interrupts as a player, not as a notification.
+  A word only enters a run if BOTH its sides can be said on this device — a word spoken into
+  silence where the meaning should be teaches nothing.
 - **Tapping a word says it again — past both mutes.** A tap is a request, so it outranks
   the app's own switch (mute has to stay usable as the accessibility affordance) and the
   phone's silent switch alike: that one sound plays under `.playback`, which the hardware

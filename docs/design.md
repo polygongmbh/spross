@@ -235,7 +235,11 @@ a clone inherits its sibling's gaps, never the rules.
 
 - **Heute** is the only root screen:
   the day's line, session card (streak flame + the round's counts, or done state),
-  trainer hub, then the 14-day strip and the forest.
+  the listening card, trainer hub, then the 14-day strip and the forest.
+  The listening card sits under the round and above the trainers because that is its
+  standing: not what the box asks of the learner, and not a skill to climb, but the way in
+  that needs no hands — up whenever this device can actually say both sides of enough words
+  (`surfaces.md` § Listening).
   The line over the card carries the LANGUAGE being learned, in words that fit the hour
   (`../kern/README.md` §6, `dayPart`/`partVariant`) — the screen's own name spent the
   largest type on the page on what the learner already knew, and the language is the one
