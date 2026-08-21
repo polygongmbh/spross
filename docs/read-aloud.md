@@ -62,7 +62,7 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   unattended.** A turn says the target word, the meaning, then the target again: the second
   saying is where the word and its meaning meet, and it is what makes the mode worth an hour
   with the phone in a pocket. The gap before the meaning is the only beat that varies — a
-  word the learner already holds gets 1.5 s to reach for it before the meaning arrives, an
+  word the learner already holds gets 1.2 s to reach for it before the meaning arrives, an
   unseen word has nothing to recall and its meaning follows in 0.6 s, and the echo and the
   breath between turns are those same two lengths. Every beat is kern's number
   (`../kern/docs/turns.md`), so the two phones cannot drift on the pacing.

@@ -3,7 +3,7 @@
 ## Unreleased
 
 - **The listening run keeps a quicker step, and its bedtime is yours to set.** A word you
-  already hold gets 1.5 seconds to reach for its meaning before the answer, and everything
+  already hold gets 1.2 seconds to reach for its meaning before the answer, and everything
   else between the words is tighter, so the playlist moves the way a walk does. The sleep
   timer no longer offers just 15, 30 or 60 minutes — each tap adds five from off, so any
   length is yours, and a long press on the timer turns it back off.

@@ -11,12 +11,12 @@ import net.spross.kern.model.Card
  *
  * The one beat of a listening turn that carries any teaching: a word already answered once
  * can be recalled, and a meaning that lands before the learner has reached for it turns the
- * run into background noise. 1.5 s sits at the low end of the wait-time band teaching
- * materials reach for after a question (Rowe 1974; Stahl 1994) — comfortably past the second
- * a held word takes to retrieve, still quick enough that the playlist moves. Kern owns the
- * number so the two phones cannot drift.
+ * run into background noise. 1.2 s sits inside the wait-time band teaching materials reach
+ * for after a question (Rowe 1974; Stahl 1994) — just past the second a held word takes to
+ * retrieve, still quick enough that the playlist moves. Kern owns the number so the two
+ * phones cannot drift.
  */
-const val RECALL_GAP_HELD_MS: Long = 1_500
+const val RECALL_GAP_HELD_MS: Long = 1_200
 
 /**
  * The same beat for a word the learner has never answered.
