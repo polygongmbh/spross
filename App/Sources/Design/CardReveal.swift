@@ -39,17 +39,20 @@ struct DLCardReveal<Content: View>: View {
 
 // MARK: - DLCardEmoji
 //
-// The picture on a card, and it always sits BESIDE the words, never above
-// them: vertical space is the scarce axis (card + input + button + keyboard
-// share one screen), and a fixed side slot means a reveal can fade one in
-// without moving a thing. One definition, so the review card and the drill
-// cards cannot drift into two ideas of what a card's picture looks like.
+// The picture on a card. WHERE it sits is the card's own call, worked out from
+// what the surface is (`VocabCardView.Arrangement`) rather than passed in as a
+// size; the slot only knows how big it is. Either way it is a fixed size held
+// for the card's whole life, so a reveal can fade a picture in without moving a
+// thing. One definition, so the review card and the drill cards cannot drift
+// into two ideas of what a card's picture looks like.
 
 struct DLCardEmoji: View {
     enum Size {
-        /// A session or drill card, where the keyboard shares the screen.
+        /// A card that shares the screen — the picture rides beside the words,
+        /// so it takes as little of their width as it can.
         case compact
-        /// The full-height review card (previews, big type).
+        /// A card that owns the screen — the picture stands above the words at
+        /// full size, with nothing to make room for.
         case hero
 
         var diameter: CGFloat { self == .compact ? 52 : 96 }

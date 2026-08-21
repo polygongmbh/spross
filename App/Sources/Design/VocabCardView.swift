@@ -74,47 +74,83 @@ struct VocabCardView: View {
     /// Optional literal gloss ("wörtlich: …"), shown only post-reveal.
     let note: String?
     var revealed: Bool = false
-    /// Session style: tighter card so card + input + button + keyboard
-    /// all fit on screen without scrolling. Previews keep the big card.
-    var compact: Bool = false
+    /// WHERE the picture sits — stated as the situation that decides it, never
+    /// as a size. It was a size flag once, and the run that had to pick picked
+    /// wrong: listening drew the big picture, the words kept a column too narrow
+    /// for their font, and a six-letter word hyphenated ("mchele" as "mc-hele").
+    enum Arrangement {
+        /// The card SHARES the screen — a review or drill card standing above an
+        /// input, a button and a keyboard. Vertical space is the scarce axis, so
+        /// the picture stays small and sits BESIDE the words.
+        case beside
+        /// The card OWNS the screen — a run whose only content is the card
+        /// (listening: nothing to type, nothing to press, no keyboard). Height is
+        /// abundant and width is what the words are short of, so the picture
+        /// stands ABOVE them and the words get the card's full width.
+        case above
+    }
+
+    /// What the surface is; the card works its own layout out from that.
+    var arrangement: Arrangement = .beside
 
     /// The picture (`DLCardEmoji`) belongs to the CARD rather than the prompt
     /// line, so it stays centered against prompt and reveal together instead of
-    /// riding up as the card grows.
+    /// riding up as the card grows. Its slot is held for the card's whole life
+    /// in either arrangement, so a reveal moves nothing.
     var body: some View {
-        HStack(spacing: DL.Space.m) {
-            if hasEmoji {
-                DLCardEmoji(emoji ?? "", size: emojiSize, cue: emojiCue, revealed: revealed)
-            }
-            VStack(spacing: compact ? DL.Space.s : DL.Space.l) {
-                sideBlock(prompt, emphasized: false)
-                if revealed {
-                    revealSection
-                        .transition(.opacity.combined(with: .move(edge: .top)))
-                }
-            }
+        arranged
+            .padding(shared ? DL.Space.l : DL.Space.xl)
             .frame(maxWidth: .infinity)
-            if hasEmoji {
-                DLCardEmoji.balance(emojiSize)
-            }
-        }
-        .padding(compact ? DL.Space.l : DL.Space.xl)
-        .frame(maxWidth: .infinity)
-        // why: a session card holds one height whether the prompt is a word, a
-        // word under an area label, or the replay glyph of a by-ear question;
-        // previews stay content-driven.
-        .frame(minHeight: compact ? DL.Reserve.reviewCard : nil)
-        .dlCardSurface()
-        .animation(.easeOut(duration: 0.25), value: revealed)
+            // why: a shared-screen card holds one height whether the prompt is a
+            // word, a word under an area label, or the replay glyph of a by-ear
+            // question; a card that owns the screen is free to grow into it.
+            .frame(minHeight: shared ? DL.Reserve.reviewCard : nil)
+            .dlCardSurface()
+            .animation(.easeOut(duration: 0.25), value: revealed)
     }
 
     // MARK: Pieces
+
+    @ViewBuilder
+    private var arranged: some View {
+        switch arrangement {
+        case .beside:
+            HStack(spacing: DL.Space.m) {
+                if hasEmoji { picture }
+                words
+                if hasEmoji { DLCardEmoji.balance(emojiSize) }
+            }
+        case .above:
+            VStack(spacing: DL.Space.l) {
+                if hasEmoji { picture }
+                words
+            }
+        }
+    }
+
+    private var picture: some View {
+        DLCardEmoji(emoji ?? "", size: emojiSize, cue: emojiCue, revealed: revealed)
+    }
+
+    private var words: some View {
+        VStack(spacing: shared ? DL.Space.s : DL.Space.l) {
+            sideBlock(prompt, emphasized: false)
+            if revealed {
+                revealSection
+                    .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+        }
+        .frame(maxWidth: .infinity)
+    }
 
     private var hasEmoji: Bool {
         !(emoji ?? "").isEmpty
     }
 
-    private var emojiSize: DLCardEmoji.Size { compact ? .compact : .hero }
+    /// The screen belongs to more than this card — the tighter of the two.
+    private var shared: Bool { arrangement == .beside }
+
+    private var emojiSize: DLCardEmoji.Size { shared ? .compact : .hero }
 
     @ViewBuilder
     private var revealSection: some View {
@@ -200,11 +236,11 @@ struct VocabCardView: View {
     /// because the card flipped role.
     private func headlineText(_ side: Side, emphasized: Bool) -> Text {
         let word = Text(side.text)
-            .font(compact ? DL.Fonts.title : DL.Fonts.hero)
+            .font(shared ? DL.Fonts.title : DL.Fonts.hero)
             .foregroundStyle(emphasized ? Color.dlAccent : Color.dlTextPrimary)
         guard let article = side.article else { return word }
         return Text(verbatim: "\(article.text) ")
-            .font(compact ? DL.Fonts.title : DL.Fonts.hero)
+            .font(shared ? DL.Fonts.title : DL.Fonts.hero)
             .foregroundStyle(DL.genderColor(article.gender))
             + word
     }
@@ -282,7 +318,7 @@ struct ArticleBadge: View {
 
 // MARK: - Previews
 
-#Preview("Recognize · prompt") {
+#Preview("Shared screen · prompt") {
     VocabCardView(
         emoji: "🧊",
         prompt: .init(text: "friji"),
@@ -296,7 +332,7 @@ struct ArticleBadge: View {
     .background(Color.dlBackground)
 }
 
-#Preview("Recognize · revealed") {
+#Preview("Shared screen · revealed") {
     VocabCardView(
         emoji: "🍳",
         emojiCue: emojiCue(givesAnswerAway: true),
@@ -311,7 +347,7 @@ struct ArticleBadge: View {
     .background(Color.dlBackground)
 }
 
-#Preview("Compact · with vs. without emoji") {
+#Preview("Shared screen · with vs. without emoji") {
     VStack(spacing: DL.Space.l) {
         // Not-yet-sticking word: emoji as light support.
         VocabCardView(
@@ -321,7 +357,7 @@ struct ArticleBadge: View {
             answer: .init(text: "kijiko"),
             note: nil,
             revealed: false,
-            compact: true
+            arrangement: .beside
         )
         // Sticking word (or a verb/phrase): no circle, word-focused.
         VocabCardView(
@@ -330,7 +366,7 @@ struct ArticleBadge: View {
             answer: .init(text: "kukimbia"),
             note: nil,
             revealed: false,
-            compact: true
+            arrangement: .beside
         )
     }
     .padding(DL.Space.xl)
@@ -338,14 +374,25 @@ struct ArticleBadge: View {
     .background(Color.dlBackground)
 }
 
-#Preview("Produce · revealed · dark") {
-    VocabCardView(
-        emoji: "🔪",
-        prompt: .init(text: "Messer"),
-        answer: .init(text: "kisu", alternates: "auch: chombo"),
-        note: nil,
-        revealed: true
-    )
+#Preview("Owns the screen · before and after the meaning") {
+    VStack(spacing: DL.Space.l) {
+        VocabCardView(
+            emoji: "🍚",
+            prompt: .init(text: "mchele"),
+            answer: .init(text: "Reis"),
+            note: nil,
+            revealed: false,
+            arrangement: .above
+        )
+        VocabCardView(
+            emoji: "🔪",
+            prompt: .init(text: "kisu", alternates: "auch: chombo"),
+            answer: .init(text: "Messer"),
+            note: nil,
+            revealed: true,
+            arrangement: .above
+        )
+    }
     .padding(DL.Space.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background(Color.dlBackground)

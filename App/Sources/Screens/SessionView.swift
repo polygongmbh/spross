@@ -162,7 +162,9 @@ struct SessionView: View, LanguageNaming {
                         answer: answerSide(card, role: role),
                         note: card.target.note ?? card.source.note,
                         revealed: cardRevealed,
-                        compact: true
+                        // why: the input, the button and the keyboard share this
+                        // screen with the card — the picture goes beside the words.
+                        arrangement: .beside
                     )
                     .id(card.id)
                     .transition(reduceMotion ? .opacity : .dlCardFlip)

@@ -64,7 +64,10 @@ struct ListeningView: View {
                                         language: model.targetLanguage),
                           answer: .init(text: turn.sourceForm),
                           note: nil,
-                          revealed: driver.revealed)
+                          revealed: driver.revealed,
+                          // why: nothing is typed, pressed or scrolled here, so the card
+                          // has the screen to itself — picture above, words the full width.
+                          arrangement: .above)
         }
     }
 
