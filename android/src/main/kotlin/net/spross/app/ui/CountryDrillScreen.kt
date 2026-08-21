@@ -75,6 +75,7 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
         LaunchedEffect(Unit) { model.finishDrill(Screen.Countries, null, "") }
         return
     }
+    val state = flow.state
     val store = model.werkstatt.store
     val stamp = model.box?.joinStamp
     // One key per PAIR, the same one the page reads its best rung back from.
@@ -117,18 +118,18 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
     // Never on a REVERSED run: the side answered there is the learner's own language, and
     // every autoplay `read-aloud.md` describes says a target-language form. The speaker
     // beside the reveal still says it on request — a tap outranks the rule.
-    var spoken by remember(flow.index) { mutableStateOf(false) }
-    LaunchedEffect(flow.index, flow.showsAnswer) {
-        if (reverse || !flow.showsAnswer || spoken) return@LaunchedEffect
+    var spoken by remember(state.index) { mutableStateOf(false) }
+    LaunchedEffect(state.index, state.showsAnswer) {
+        if (reverse || !state.showsAnswer || spoken) return@LaunchedEffect
         spoken = true
         delay(CHIME_CLEARANCE_MS)
-        model.speakDrillAnswer(flow.task.display, flow.answerLanguage)
+        model.speakDrillAnswer(state.task.display, state.answerLanguage)
     }
 
     // The field takes the keyboard back with every question — an amber hold gives it up so
     // the button it waits for is not covered, and the next prompt is typed into.
     val inputFocus = remember { FocusRequester() }
-    LaunchedEffect(flow.index) {
+    LaunchedEffect(state.index) {
         if (model.pronouncer.readsScreenAloud) return@LaunchedEffect
         // why: a requester answers only once its node has been placed; one frame is what
         // that takes, and a request fired inside the same composition lands on nothing.
@@ -140,15 +141,15 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
         modifier = Modifier.fillMaxSize().padding(DlSpace.l),
         verticalArrangement = Arrangement.spacedBy(DlSpace.m),
     ) {
-        DrillTopBar(model, flow.outcomes, flow.cleanCount, flow.done, leave)
+        DrillTopBar(model, state.outcomes, state.cleanCount, state.done, leave)
         Column(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(DlSpace.m),
         ) {
             DrillStreakLine(
-                rung = chrome.level.format(flow.level),
-                streak = flow.streak,
-                bestStreak = flow.bestStreak,
+                rung = chrome.level.format(state.level),
+                streak = state.streak,
+                bestStreak = state.bestStreak,
                 chrome = chrome,
                 announcesRecord = true,
             )
@@ -161,24 +162,25 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
 
 @Composable
 private fun Prompt(model: AppModel, flow: CountryDrillFlow, chrome: Chrome) {
-    val task = flow.task
+    val state = flow.state
+    val task = state.task
     CountryPromptCard(
         ask = chrome.countryAsk(task.kind),
         emoji = task.promptEmoji,
         emojiIsGiveaway = task.emojiIsGiveaway,
         text = task.promptText,
         // A flag is written in no language, so it is tagged with none.
-        language = if (task.promptText == null) null else flow.promptLanguage,
+        language = if (task.promptText == null) null else state.promptLanguage,
         // why: a clean answer flips in about a second — opening the card for a beat there
         // would read as a correction the learner did not earn.
-        reveal = if (!flow.showsAnswer) {
+        reveal = if (!state.showsAnswer) {
             null
         } else {
             CountryReveal(
                 word = task.display,
                 note = task.gloss,
-                language = flow.answerLanguage,
-                pronounce = model.speakFormOnTap(task.display, flow.answerLanguage),
+                language = state.answerLanguage,
+                pronounce = model.speakFormOnTap(task.display, state.answerLanguage),
             )
         },
         chrome = chrome,
@@ -198,17 +200,18 @@ private fun Controls(
     inputFocus: FocusRequester,
     onFinish: () -> Unit,
 ) {
+    val state = flow.state
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
         DrillAnswerField(
             value = flow.input,
             onValueChange = flow::type,
-            placeholder = chrome.answerPlaceholder.format(model.languageName(flow.answerLanguage)),
-            feedback = flow.feedback,
+            placeholder = chrome.answerPlaceholder.format(model.languageName(state.answerLanguage)),
+            feedback = state.feedback,
             chrome = chrome,
             focus = inputFocus,
             onDone = { flow.enter() },
         )
-        when (val feedback = flow.feedback) {
+        when (val feedback = state.feedback) {
             // ONE primary action: an empty field reveals, a typed one checks.
             TurnFeedback.Neutral -> Button(
                 onClick = { flow.primary() },
@@ -227,19 +230,20 @@ private fun Controls(
         }
         // The way out, where it is wanted: under the button that goes on, on the second
         // miss in a row.
-        if (flow.offersFinish) DrillStopOffer(chrome, onFinish)
+        if (state.offersFinish) DrillStopOffer(chrome, onFinish)
     }
 }
 
 /** A slip: the box spells the name out, and the tap that ends the pause books it amber. */
 @Composable
 private fun AlmostLine(model: AppModel, flow: CountryDrillFlow, form: String, chrome: Chrome) {
+    val state = flow.state
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
         AlmostCorrection(
             chrome.almostTypo,
             form,
             chrome,
-            model.speakFormOnTap(form, flow.answerLanguage),
+            model.speakFormOnTap(form, state.answerLanguage),
         )
         ConfirmButton(chrome) { flow.confirm() }
     }

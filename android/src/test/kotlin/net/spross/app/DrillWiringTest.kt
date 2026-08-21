@@ -18,6 +18,8 @@ import net.spross.kern.catalog.NationalityName
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
+import net.spross.kern.trainer.CountryDrillRun
+import net.spross.kern.trainer.CountryDrillRunConfig
 import net.spross.kern.trainer.DrillVariant
 import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.LetterDrillRun
@@ -235,11 +237,16 @@ class DrillWiringTest {
 
     private fun countries(platform: Platform, reverse: Boolean = false, seed: Int = 5) =
         CountryDrillFlow(
-            content = atlas,
-            reverse = reverse,
-            fast = false,
-            // A run with no language info grades plainly — enough to drive the wiring.
-            normalizer = null,
+            start = CountryDrillRun.open(
+                CountryDrillRunConfig(
+                    content = atlas,
+                    reverse = reverse,
+                    fast = false,
+                    // A run with no language info grades plainly — enough to drive the wiring.
+                    normalizer = null,
+                ),
+                Random(seed),
+            ),
             rng = Random(seed),
             onTone = { platform.tones += it },
             onReleaseFocus = { platform.focusReleases += 1 },
@@ -255,8 +262,8 @@ class DrillWiringTest {
     fun finishingTheNameArmsTheLiveBeatWithoutACheckTap() {
         val platform = Platform()
         val flow = countries(platform)
-        flow.type(flow.task.display)
-        assertEquals(TurnFeedback.Correct, flow.feedback)
+        flow.type(flow.state.task.display)
+        assertEquals(TurnFeedback.Correct, flow.state.feedback)
         assertEquals(listOf(ToneKind.Correct), platform.tones)
         assertEquals(AdvanceTier.Live, flow.armedBeat)
     }
@@ -265,9 +272,9 @@ class DrillWiringTest {
     @Test
     fun backingOutOfAFinishedNameDropsTheBeat() {
         val flow = countries(Platform())
-        flow.type(flow.task.display)
-        flow.type(flow.task.display + "x")
-        assertEquals(TurnFeedback.Neutral, flow.feedback)
+        flow.type(flow.state.task.display)
+        flow.type(flow.state.task.display + "x")
+        assertEquals(TurnFeedback.Neutral, flow.state.feedback)
         assertNull(flow.armedBeat)
     }
 
@@ -276,11 +283,11 @@ class DrillWiringTest {
     fun theWayOutIsOfferedOnTheSecondMissInARow() {
         val flow = countries(Platform())
         flow.primary()
-        assertEquals(TurnFeedback.Revealed, flow.feedback)
-        assertTrue(!flow.offersFinish, "one miss is not yet a run worth leaving")
+        assertEquals(TurnFeedback.Revealed, flow.state.feedback)
+        assertTrue(!flow.state.offersFinish, "one miss is not yet a run worth leaving")
         flow.confirm()
         flow.primary()
-        assertTrue(flow.offersFinish)
+        assertTrue(flow.state.offersFinish)
     }
 
     @Test
@@ -289,12 +296,12 @@ class DrillWiringTest {
         assertNull(untouched.summary)
 
         val flow = countries(Platform())
-        flow.type(flow.task.display)
+        flow.type(flow.state.task.display)
         val closed = flow.close(standingRecord = 0)
         val summary = assertNotNull(closed.summary)
         // The pending clean answer books on the way out, exactly as the tap would.
         assertEquals(1, summary.done)
         assertTrue(summary.newRecord, "a first streak beats a standing record of none")
-        assertEquals(flow.bestLevel, closed.bestLevel)
+        assertEquals(flow.state.bestLevel, closed.bestLevel)
     }
 }
