@@ -1,7 +1,7 @@
 package net.spross.kern.trainer
 
 import net.spross.kern.session.AdvanceTier
-import net.spross.kern.session.AnswerTone
+import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.ToneKind
 
 // What the two ENDLESS drills — the slot run and the letter run — put around whatever they
@@ -44,9 +44,9 @@ sealed class DrillEffect {
 data class DrillTally(val clean: Int, val judged: Int) {
 
     companion object {
-        fun of(outcomes: List<AnswerTone>): DrillTally = DrillTally(
-            clean = outcomes.count { it == AnswerTone.Right },
-            judged = outcomes.count { it != AnswerTone.Tough },
+        fun of(outcomes: List<AnswerOutcome>): DrillTally = DrillTally(
+            clean = outcomes.count { it == AnswerOutcome.Right },
+            judged = outcomes.count { it != AnswerOutcome.Almost },
         )
     }
 }

@@ -18,7 +18,7 @@ import net.spross.kern.model.LanguageInfo
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
-import net.spross.kern.session.AnswerTone
+import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -259,7 +259,7 @@ class CountryDrillRunTest {
         assertEquals(listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal)), revealed.effects)
 
         val booked = revealed.state.reduce(CountryDrillIntent.ConfirmPending).state
-        assertEquals(listOf(AnswerTone.Wrong), booked.outcomes)
+        assertEquals(listOf(AnswerOutcome.Wrong), booked.outcomes)
         assertEquals(0, booked.streak)
     }
 
@@ -309,7 +309,7 @@ class CountryDrillRunTest {
         val run = open().answered("Ujerumami")
         assertEquals(1, run.level)
         assertEquals(0, run.winsAtLevel)
-        assertEquals(listOf(AnswerTone.Tough), run.outcomes)
+        assertEquals(listOf(AnswerOutcome.Almost), run.outcomes)
         assertEquals(1, run.streak, "a slip is still an answer the learner got")
     }
 
@@ -377,7 +377,7 @@ class CountryDrillRunTest {
 
         val held = open().reduce(CountryDrillIntent.Submit("Ujerumami")).state
         val closedHeld = CountryDrillRun.close(held, standingRecord = 0)
-        assertEquals(listOf(AnswerTone.Tough), closedHeld.state.outcomes)
+        assertEquals(listOf(AnswerOutcome.Almost), closedHeld.state.outcomes)
 
         val revealed = open().reduce(CountryDrillIntent.Reveal).state
         assertNull(

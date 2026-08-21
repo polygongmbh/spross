@@ -12,7 +12,7 @@ import net.spross.kern.model.LanguageInfo
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
-import net.spross.kern.session.AnswerTone
+import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -177,7 +177,7 @@ class LetterDrillRunTest {
         assertTrue(state.showsAnswer)
 
         state = reduce(state, LetterDrillIntent.ConfirmPending, rng).state
-        assertEquals(listOf(AnswerTone.Wrong), state.outcomes)
+        assertEquals(listOf(AnswerOutcome.Wrong), state.outcomes)
         assertEquals(0, state.streak)
         assertEquals(1, state.missRun)
         assertEquals(4, state.level, "a miss steps the rung back down")
@@ -266,7 +266,7 @@ class LetterDrillRunTest {
             assertTrue(held.answerAccepted)
             assertTrue(held.showsAnswer, "a slip and a heard-instead both leave a spelling worth seeing")
             val booked = reduce(held, LetterDrillIntent.ConfirmPending, rng).state
-            assertEquals(listOf(AnswerTone.Tough), booked.outcomes)
+            assertEquals(listOf(AnswerOutcome.Almost), booked.outcomes)
             assertEquals(6, booked.level)
             assertEquals(1, booked.streak)
             assertEquals(0, booked.missRun)
@@ -328,7 +328,7 @@ class LetterDrillRunTest {
         assertTrue(DrillEffect.Silence in untouched.effects)
 
         val amber = LetterDrillRun.close(state.copy(feedback = TurnFeedback.Almost("м", AlmostReason.Heard)))
-        assertEquals(listOf(AnswerTone.Tough), amber.state.outcomes)
+        assertEquals(listOf(AnswerOutcome.Almost), amber.state.outcomes)
         assertEquals(1, amber.summary?.done)
         assertEquals(false, amber.summary?.newRecord, "the letter drill keeps no record store")
         assertEquals(6, amber.state.level, "closing may not upgrade an amber answer")
@@ -341,7 +341,7 @@ class LetterDrillRunTest {
     @Test
     fun theCounterLeavesAmberOutOfBothHalves() {
         val state = LetterDrillRun.openAt(config(report(consolidated = 0)), 1, Random(37)).copy(
-            outcomes = listOf(AnswerTone.Right, AnswerTone.Tough, AnswerTone.Wrong),
+            outcomes = listOf(AnswerOutcome.Right, AnswerOutcome.Almost, AnswerOutcome.Wrong),
             done = 3,
             bestStreak = 5,
         )

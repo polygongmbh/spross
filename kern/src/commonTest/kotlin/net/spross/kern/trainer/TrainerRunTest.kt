@@ -11,7 +11,7 @@ import net.spross.kern.model.LanguageInfo
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
-import net.spross.kern.session.AnswerTone
+import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -147,7 +147,7 @@ class TrainerRunTest {
         state = answerRight(state, rng)
         assertEquals(1, state.currentLevel)
         assertEquals(1, state.winsAtLevel[DrillVariant.Numbers])
-        assertEquals(listOf(AnswerTone.Right), state.outcomes)
+        assertEquals(listOf(AnswerOutcome.Right), state.outcomes)
         assertEquals(1, state.streak)
 
         state = answerRight(state, rng)
@@ -158,7 +158,7 @@ class TrainerRunTest {
         assertEquals(1, state.currentLevel)
         assertEquals(0, state.streak)
         assertEquals(1, state.missRun)
-        assertEquals(AnswerTone.Wrong, state.outcomes.last())
+        assertEquals(AnswerOutcome.Wrong, state.outcomes.last())
     }
 
     /**
@@ -176,7 +176,7 @@ class TrainerRunTest {
         val submitted = reduce(state, TrainerIntent.Submit(state.currentTask.accepted.first()), rng)
         assertEquals(TurnFeedback.Correct, submitted.state.feedback)
         val booked = reduce(submitted.state, TrainerIntent.ConfirmPending, rng).state
-        assertEquals(listOf(AnswerTone.Tough), booked.outcomes)
+        assertEquals(listOf(AnswerOutcome.Almost), booked.outcomes)
         assertEquals(1, booked.currentLevel)
         assertEquals(0, booked.winsAtLevel[DrillVariant.Numbers])
         assertEquals(1, booked.streak, "amber extends the streak")
@@ -194,7 +194,7 @@ class TrainerRunTest {
         state = reduce(state, TrainerIntent.LookUp, rng).state
         state = reduce(state, TrainerIntent.InputChanged(state.currentTask.accepted.first()), rng).state
         state = reduce(state, TrainerIntent.AdvanceElapsed, rng).state
-        assertEquals(listOf(AnswerTone.Tough), state.outcomes)
+        assertEquals(listOf(AnswerOutcome.Almost), state.outcomes)
     }
 
     /** A slip pauses instead of moving on, and the tap that ends the pause books it amber. */
@@ -206,7 +206,7 @@ class TrainerRunTest {
         assertTrue(held.answerAccepted)
         assertFalse(held.showsAnswer, "the correction box already spells it out")
         val booked = reduce(held, TrainerIntent.ConfirmPending, rng).state
-        assertEquals(listOf(AnswerTone.Tough), booked.outcomes)
+        assertEquals(listOf(AnswerOutcome.Almost), booked.outcomes)
         assertEquals(1, booked.currentLevel)
     }
 
@@ -221,7 +221,7 @@ class TrainerRunTest {
         // The beat never arms on a reveal, so nothing may ride it.
         assertEquals(revealed.state, reduce(revealed.state, TrainerIntent.AdvanceElapsed, rng).state)
         val booked = reduce(revealed.state, TrainerIntent.ConfirmPending, rng).state
-        assertEquals(listOf(AnswerTone.Wrong), booked.outcomes)
+        assertEquals(listOf(AnswerOutcome.Wrong), booked.outcomes)
     }
 
     // MARK: - The place-value hint

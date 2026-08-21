@@ -16,8 +16,8 @@ sealed class SessionStep {
     data object Completed : SessionStep()
 }
 
-/** How an answer reads back: the grouping is the rule, the color each tone wears is the platform's. */
-enum class AnswerTone { Right, Tough, Wrong }
+/** What one answer turned out to be: [Right] clean and correct, [Almost] accepted with a caveat, [Wrong] a miss. */
+enum class AnswerOutcome { Right, Almost, Wrong }
 
 /** What the learner (or the app's lifecycle) does to a run. */
 sealed class SessionIntent {
@@ -104,7 +104,7 @@ data class SessionRunState(
 
     val remaining: Int get() = queue.size
 
-    val segments: List<AnswerTone> get() = ratings.map(::tone)
+    val segments: List<AnswerOutcome> get() = ratings.map(::outcome)
 }
 
 /**
@@ -344,8 +344,8 @@ object SessionRun {
         stats.streak >= 2 && stats.streak == stats.longestStreak
 }
 
-private fun tone(rating: Rating): AnswerTone = when (rating) {
-    Rating.Again -> AnswerTone.Wrong
-    Rating.Hard -> AnswerTone.Tough
-    Rating.Good, Rating.Easy -> AnswerTone.Right
+private fun outcome(rating: Rating): AnswerOutcome = when (rating) {
+    Rating.Again -> AnswerOutcome.Wrong
+    Rating.Hard -> AnswerOutcome.Almost
+    Rating.Good, Rating.Easy -> AnswerOutcome.Right
 }

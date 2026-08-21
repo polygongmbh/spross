@@ -7,7 +7,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.session.AlmostReason
-import net.spross.kern.session.AnswerTone
+import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.TurnFeedback
 
 /**
@@ -36,7 +36,7 @@ class TrainerCloseTest {
             0,
             emptyMap(),
         )
-        assertEquals(listOf(AnswerTone.Tough), amber.state.outcomes)
+        assertEquals(listOf(AnswerOutcome.Almost), amber.state.outcomes)
         assertEquals(1, amber.summary?.done)
         assertEquals(1, amber.state.currentLevel, "amber moves the rung neither way")
 
@@ -46,7 +46,7 @@ class TrainerCloseTest {
             0,
             emptyMap(),
         )
-        assertEquals(listOf(AnswerTone.Tough), hinted.state.outcomes)
+        assertEquals(listOf(AnswerOutcome.Almost), hinted.state.outcomes)
 
         // A revealed answer nobody confirmed is not accepted, so closing books nothing.
         val revealed = TrainerRun.close(state.copy(feedback = TurnFeedback.Revealed), 0, emptyMap())
@@ -93,7 +93,7 @@ class TrainerCloseTest {
     @Test
     fun theCounterLeavesAmberOutOfBothHalves() {
         val state = TrainerRun.open(numbers(), Random(59)).copy(
-            outcomes = listOf(AnswerTone.Right, AnswerTone.Tough, AnswerTone.Wrong),
+            outcomes = listOf(AnswerOutcome.Right, AnswerOutcome.Almost, AnswerOutcome.Wrong),
             done = 3,
         )
         assertEquals(DrillTally(clean = 1, judged = 2), state.tally)

@@ -3,7 +3,7 @@ package net.spross.kern.trainer
 import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
-import net.spross.kern.session.AnswerTone
+import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.TurnFeedback
 
 /**
@@ -102,7 +102,7 @@ data class CountryDrillRunState(
      * miss shows means this is the second in a row.
      */
     val missRun: Int,
-    val outcomes: List<AnswerTone>,
+    val outcomes: List<AnswerOutcome>,
     val feedback: TurnFeedback,
     val finished: Boolean,
 ) {

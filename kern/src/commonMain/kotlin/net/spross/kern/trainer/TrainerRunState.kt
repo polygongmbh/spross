@@ -1,6 +1,6 @@
 package net.spross.kern.trainer
 
-import net.spross.kern.session.AnswerTone
+import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.TurnFeedback
 
 /** What the learner does to a slot run. */
@@ -83,7 +83,7 @@ data class TrainerRunState(
      * shows means this is the second in a row.
      */
     val missRun: Int,
-    val outcomes: List<AnswerTone>,
+    val outcomes: List<AnswerOutcome>,
     /** Digit counts already introduced with a place-value hint; each length is hinted once. */
     val seenDigitCounts: Set<Int>,
     /** The learner looked the numbers up while owing this answer: it books amber. */
@@ -155,6 +155,6 @@ data class TrainerRunState(
         }
 
     /** What a correct answer earns: amber where the reference was read while the answer was owed. */
-    internal val cleanTone: AnswerTone
-        get() = if (hintUsed) AnswerTone.Tough else AnswerTone.Right
+    internal val cleanOutcome: AnswerOutcome
+        get() = if (hintUsed) AnswerOutcome.Almost else AnswerOutcome.Right
 }

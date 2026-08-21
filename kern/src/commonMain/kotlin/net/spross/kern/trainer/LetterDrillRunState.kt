@@ -1,7 +1,7 @@
 package net.spross.kern.trainer
 
 import net.spross.kern.model.Card
-import net.spross.kern.session.AnswerTone
+import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.TurnFeedback
 
@@ -82,7 +82,7 @@ data class LetterDrillRunState(
     val bestStreak: Int,
     /** Misses in a row already booked — 1 while a miss shows means this is the second. */
     val missRun: Int,
-    val outcomes: List<AnswerTone>,
+    val outcomes: List<AnswerOutcome>,
     /** The tile the learner picked, so the grid can mark both it and the answer. */
     val chosen: String?,
     val feedback: TurnFeedback,

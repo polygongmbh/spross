@@ -4,7 +4,7 @@ import kotlin.random.Random
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
-import net.spross.kern.session.AnswerTone
+import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -103,8 +103,8 @@ object TrainerRun {
     ): TrainerClose {
         val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
         val pending = when (state.feedback) {
-            TurnFeedback.Correct -> advanced(state, correct = true, tone = state.cleanTone)
-            is TurnFeedback.Almost -> advanced(state, correct = true, tone = AnswerTone.Tough)
+            TurnFeedback.Correct -> advanced(state, correct = true, outcome = state.cleanOutcome)
+            is TurnFeedback.Almost -> advanced(state, correct = true, outcome = AnswerOutcome.Almost)
             else -> state
         }
         val ended = pending.copy(feedback = TurnFeedback.Neutral, hintUsed = false, finished = true)
@@ -207,17 +207,17 @@ object TrainerRun {
 
     private fun confirm(state: TrainerRunState, rng: Random): TrainerReduction = when (state.feedback) {
         TurnFeedback.Neutral -> unchanged(state)
-        TurnFeedback.Correct -> booked(state, correct = true, tone = state.cleanTone, rng = rng)
-        is TurnFeedback.Almost -> booked(state, correct = true, tone = AnswerTone.Tough, rng = rng)
+        TurnFeedback.Correct -> booked(state, correct = true, outcome = state.cleanOutcome, rng = rng)
+        is TurnFeedback.Almost -> booked(state, correct = true, outcome = AnswerOutcome.Almost, rng = rng)
         // why: no "Wusste ich" in a drill — the tasks are generated, so self-reporting after
         // seeing the answer proves nothing; revealed simply counts as a miss.
-        TurnFeedback.Revealed -> booked(state, correct = false, tone = AnswerTone.Wrong, rng = rng)
+        TurnFeedback.Revealed -> booked(state, correct = false, outcome = AnswerOutcome.Wrong, rng = rng)
     }
 
     /** The beat only ever arms on a clean answer, so nothing else may ride it. */
     private fun elapsed(state: TrainerRunState, rng: Random): TrainerReduction =
         if (state.feedback == TurnFeedback.Correct) {
-            booked(state, correct = true, tone = state.cleanTone, rng = rng)
+            booked(state, correct = true, outcome = state.cleanOutcome, rng = rng)
         } else {
             unchanged(state)
         }
@@ -228,10 +228,10 @@ object TrainerRun {
     private fun booked(
         state: TrainerRunState,
         correct: Boolean,
-        tone: AnswerTone,
+        outcome: AnswerOutcome,
         rng: Random,
     ): TrainerReduction {
-        val next = advanced(state, correct, tone)
+        val next = advanced(state, correct, outcome)
         return TrainerReduction(
             next.copy(
                 current = state.mode.draw(next.levels, state.currentTask.prompt, rng),
@@ -249,13 +249,13 @@ object TrainerRun {
      * The booking itself: the ramp for the variant that asked, the streak, the tallies. The other
      * variants of a mixed run stand exactly where they were.
      */
-    private fun advanced(state: TrainerRunState, correct: Boolean, tone: AnswerTone): TrainerRunState {
+    private fun advanced(state: TrainerRunState, correct: Boolean, outcome: AnswerOutcome): TrainerRunState {
         val variant = state.currentVariant
         val step = DrillRamp.step(
             level = state.currentLevel,
             winsAtLevel = state.winsAtLevel[variant] ?: 0,
             correct = correct,
-            clean = tone != AnswerTone.Tough,
+            clean = outcome != AnswerOutcome.Almost,
             maxLevel = state.mode.maxLevel(variant),
             winsRequired = state.mode.winsToAdvance,
         )
@@ -270,7 +270,7 @@ object TrainerRun {
             streak = streak,
             bestStreak = maxOf(state.bestStreak, streak),
             missRun = if (correct) 0 else state.missRun + 1,
-            outcomes = state.outcomes + tone,
+            outcomes = state.outcomes + outcome,
             done = state.done + 1,
         )
     }

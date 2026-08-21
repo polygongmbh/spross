@@ -322,7 +322,7 @@ class SessionRunTests {
         run = answer(run, Rating.Again, now)
         run = answer(run, Rating.Hard, now)
         run = answer(run, Rating.Easy, now)
-        assertEquals(listOf(AnswerTone.Wrong, AnswerTone.Tough, AnswerTone.Right), run.segments)
+        assertEquals(listOf(AnswerOutcome.Wrong, AnswerOutcome.Almost, AnswerOutcome.Right), run.segments)
         assertEquals(4, run.position)
         assertEquals(22, run.remaining)
     }

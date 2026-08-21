@@ -3,7 +3,7 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.AlmostReason
-import net.spross.kern.session.AnswerTone
+import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -248,15 +248,15 @@ object CountryDrillRun {
             streak = streak,
             bestStreak = maxOf(state.bestStreak, streak),
             missRun = if (correct) 0 else state.missRun + 1,
-            outcomes = state.outcomes + tone(correct, clean),
+            outcomes = state.outcomes + outcome(correct, clean),
             done = state.done + 1,
         )
     }
 
-    private fun tone(correct: Boolean, clean: Boolean): AnswerTone = when {
-        !correct -> AnswerTone.Wrong
-        clean -> AnswerTone.Right
-        else -> AnswerTone.Tough
+    private fun outcome(correct: Boolean, clean: Boolean): AnswerOutcome = when {
+        !correct -> AnswerOutcome.Wrong
+        clean -> AnswerOutcome.Right
+        else -> AnswerOutcome.Almost
     }
 
     private fun unchanged(state: CountryDrillRunState) = CountryDrillReduction(state, emptyList())
