@@ -34,7 +34,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - **Commit as you go, unasked**: unrelated uncommitted work in the tree is never a reason to hold yours back.
 - **Every commit green**: tests + app build clean at each commit, not just at session end.
   Green means YOUR commit's content — with other work in flight, scope the gate to what you touched.
-  Also stay with tests appropriate to your change - a docs or copy change needs no full rebuild, a minor algorithm adjustment no emulator run.
+  Name the failure a gate could catch in this diff and skip it where you cannot —
+  docs and copy need no rebuild, a string's value no screenshot, a minor algorithm change no emulator.
   Read another party's red as theirs, not as a blocker, only take time to test your changes in isolation if they have major chance of breakage.
 - **On red, attribute before escalating**: `git status`/`diff` the failing file first — if it's not
   one you touched, that's someone else's break. Don't rerun the same broad gate or reach for a
@@ -42,13 +43,16 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   `jvmTest` when kern main is untouched) and fall back to reading your own diff when no gate isolates it.
   A red in a file nobody edited is the shared Kotlin cache; `../CLAUDE.md` carries that remedy.
 - **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `test:`, `docs:`, `build:`) with scopes
+- A user-facing change lands on iOS and Android in the same sweep, never deferred to a parity pass.
 - Keep `README.md` / `docs/` in step with behavior changes in the same series.
 - `CHANGELOG.md` is curated, grouped by version, written in ENGLISH; what earns an entry
   and how it is worded: `docs/distribution.md`.
   New entries always land under the top `## Unreleased` heading. At bump time, rename `## Unreleased` to `## <version> — <date>` and open a fresh empty `## Unreleased` above it.
   Its head carries every heading you need — read that, never the whole file.
 - Other parties may change files or commit while you work, do not mind unless their edits conflict with yours.
-  Stage only your changes for commits ideally using pathspecs and check before touching history.
+  Commit with `git commit --only -F - -- <paths>`: `git add` + `git commit` carries every other
+  staged path too, and `--only` silently skips untracked ones — `git add` those first, confirm
+  with `git show --stat`, and check before touching history.
   A file you share with in-flight work gets only your hunks staged, never theirs carried along.
 
 ## Code standards
