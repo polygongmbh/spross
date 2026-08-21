@@ -64,7 +64,7 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   with the phone in a pocket. The gap before the meaning is the only beat that varies — a
   word the learner already holds gets room to remember it first, an unseen word has nothing
   to recall and its meaning follows quickly. Every beat is kern's number
-  (`../kern/README.md` §6), so the two phones cannot drift on the pacing.
+  (`../kern/docs/turns.md`), so the two phones cannot drift on the pacing.
   It carries no mute button, for the letter drill's reason: entering a surface whose only
   content is a sound is itself the request to hear one, so neither mute reaches it and the
   run plays under `.playback`.

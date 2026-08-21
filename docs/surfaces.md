@@ -178,7 +178,7 @@ auto-advance beats these share with it, are `design.md`'s.
   exactly the ones a due-driven surface would never reach — but they draw at the floor, so
   they turn up without taking the hour over. Unseen words fill a thin pool out, in seed
   order, and hearing one does NOT introduce it: introduction is the first ANSWER, and this
-  surface has none. The rule and its numbers are `../kern/README.md` §6.
+  surface has none. The rule and its numbers are `../kern/docs/turns.md`.
 - **It plays with the screen locked.** That is the point of it — the mode is for the hours
   the phone is in a pocket, and one that stopped at the lock screen would be a mode for
   staring at a phone that is already speaking. Both platforms put the current word on the
