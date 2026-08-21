@@ -105,7 +105,7 @@ fun LetterDrillScreen(model: AppModel) {
         modifier = Modifier.fillMaxSize().padding(DlSpace.l),
         verticalArrangement = Arrangement.spacedBy(DlSpace.m),
     ) {
-        DrillTopBar(model, state.outcomes, state.cleanCount, state.done, leave)
+        DrillTopBar(model, state.outcomes, state.tally, leave)
         DrillStreakLine(null, state.streak, state.bestStreak, chrome)
         val task = state.task
         if (task != null) Run(model, flow, task, chrome, leave)

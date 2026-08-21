@@ -78,7 +78,7 @@ struct TrainerSessionView: View, LanguageNaming {
     var feedback: AnswerInputView.Feedback { .init(run.feedback) }
 
     var body: some View {
-        SessionScaffold.endless(answered: Int(run.done),
+        SessionScaffold.endless(tally: run.tally,
                                 outcomes: run.outcomes.map { SessionOutcome($0) },
                                 // why: the run says its answers out loud
                                 // now, so it owes the learner a way to

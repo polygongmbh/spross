@@ -109,5 +109,6 @@ data class LetterDrillRunState(
     /** The way out, under the button that goes on, on the second miss in a row. */
     val offersFinish: Boolean get() = missRun >= 1 && feedback == TurnFeedback.Revealed
 
-    val cleanCount: Int get() = outcomes.count { it != AnswerTone.Wrong }
+    /** What the run's counter reads — [DrillTally] says which answers each half counts. */
+    val tally: DrillTally get() = DrillTally.of(outcomes)
 }

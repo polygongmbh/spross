@@ -113,7 +113,9 @@ Engine contract: `../README.md`.
   nothing new is minted where kern already names a rule.
   `StreakTier` names the summary ladder (≥10 / ≥5 / ≥2 / else);
   which glyph a tier wears is chrome.
-  The clean counter is `cleanCount` over `done` — the "2/3" string is rendering.
+  `DrillTally` names the counter for all three drills at once — clean wins over the answers
+  judged either way, with amber in neither half for `DrillRamp.step`'s reason;
+  the "2/3" string is rendering.
 - **Storage contract**: the streak record under `trainer.record.<key>`,
   per-variant rung progress under `trainer.level.<key>`
   (`TrainerMode.RECORD_PREFIX` / `PROGRESS_PREFIX`, keys byte-identical across the two stores).

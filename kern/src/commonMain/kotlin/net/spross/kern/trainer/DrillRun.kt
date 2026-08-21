@@ -1,6 +1,7 @@
 package net.spross.kern.trainer
 
 import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AnswerTone
 import net.spross.kern.session.ToneKind
 
 // What the two ENDLESS drills — the slot run and the letter run — put around whatever they
@@ -32,6 +33,22 @@ sealed class DrillEffect {
      * onto the next one.
      */
     data object Silence : DrillEffect()
+}
+
+/**
+ * The counter an endless run carries: clean wins over the answers that were judged either way.
+ *
+ * Amber is in NEITHER half, for the reason the ramp already gives ([DrillRamp.step]) — the
+ * counter and the rung read the same answer, so what moves no rung may move no count.
+ */
+data class DrillTally(val clean: Int, val judged: Int) {
+
+    companion object {
+        fun of(outcomes: List<AnswerTone>): DrillTally = DrillTally(
+            clean = outcomes.count { it == AnswerTone.Right },
+            judged = outcomes.count { it != AnswerTone.Tough },
+        )
+    }
 }
 
 /**

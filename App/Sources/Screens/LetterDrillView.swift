@@ -83,7 +83,7 @@ struct LetterDrillView: View, LanguageNaming {
     var body: some View {
         Group {
             if current != nil {
-                SessionScaffold.endless(answered: Int(run.done),
+                SessionScaffold.endless(tally: run.tally,
                                         outcomes: run.outcomes.map { SessionOutcome($0) },
                                         onClose: { closeRun() }) {
                     drillContent

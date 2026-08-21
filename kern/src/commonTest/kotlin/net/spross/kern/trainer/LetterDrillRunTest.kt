@@ -337,14 +337,15 @@ class LetterDrillRunTest {
         assertNull(LetterDrillRun.close(state.copy(feedback = TurnFeedback.Revealed)).summary)
     }
 
+    /** Amber is in neither half of the counter, the way it moves neither way on the ramp. */
     @Test
-    fun theCounterCountsAnswersThatWereNotMisses() {
+    fun theCounterLeavesAmberOutOfBothHalves() {
         val state = LetterDrillRun.openAt(config(report(consolidated = 0)), 1, Random(37)).copy(
             outcomes = listOf(AnswerTone.Right, AnswerTone.Tough, AnswerTone.Wrong),
             done = 3,
             bestStreak = 5,
         )
-        assertEquals(2, state.cleanCount)
+        assertEquals(DrillTally(clean = 1, judged = 2), state.tally)
         assertEquals(StreakTier.Cheer, LetterDrillRun.close(state).summary!!.tier)
     }
 }

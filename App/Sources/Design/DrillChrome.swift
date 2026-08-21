@@ -1,3 +1,4 @@
+import SprossKern
 import SwiftUI
 
 // MARK: - Drill chrome
@@ -9,17 +10,18 @@ import SwiftUI
 extension SessionScaffold {
     /// The chrome of an ENDLESS run, which has no total to count toward.
     /// Position and total move together, so the bar fills as the run grows
-    /// instead of breaking past a fixed end, and the counter reads
-    /// "clean/answered" rather than "position/total".
-    static func endless(answered: Int,
+    /// instead of breaking past a fixed end, and the counter is the run's own
+    /// `DrillTally` rather than "position/total" — which answers each half of
+    /// it counts is kern's rule, and the slash is all this adds.
+    static func endless(tally: DrillTally,
                         outcomes: [SessionOutcome],
                         showsMuteButton: Bool = false,
                         onClose: @escaping () -> Void,
                         @ViewBuilder content: () -> Content) -> SessionScaffold {
-        SessionScaffold(position: answered + 1,
-                        total: answered + 1,
+        SessionScaffold(position: outcomes.count + 1,
+                        total: outcomes.count + 1,
                         outcomes: outcomes,
-                        counter: "\(outcomes.filter { $0 != .wrong }.count)/\(answered)",
+                        counter: "\(tally.clean)/\(tally.judged)",
                         showsMuteButton: showsMuteButton,
                         onClose: onClose,
                         content: content)

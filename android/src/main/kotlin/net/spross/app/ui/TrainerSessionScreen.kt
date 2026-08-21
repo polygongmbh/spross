@@ -130,7 +130,7 @@ fun TrainerSessionScreen(model: AppModel, mode: TrainerMode) {
         modifier = Modifier.fillMaxSize().padding(DlSpace.l),
         verticalArrangement = Arrangement.spacedBy(DlSpace.m),
     ) {
-        DrillTopBar(model, state.outcomes, state.cleanCount, state.done, leave)
+        DrillTopBar(model, state.outcomes, state.tally, leave)
         Column(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(DlSpace.m),

@@ -132,8 +132,8 @@ data class TrainerRunState(
      */
     val offersFinish: Boolean get() = missRun >= 1 && feedback == TurnFeedback.Revealed
 
-    /** Answers that were not misses — the numerator of the endless run's clean/answered counter. */
-    val cleanCount: Int get() = outcomes.count { it != AnswerTone.Wrong }
+    /** What the run's counter reads — [DrillTally] says which answers each half counts. */
+    val tally: DrillTally get() = DrillTally.of(outcomes)
 
     /**
      * Digit count of the numeric prompt on screen, null outside a forward numbers task: a

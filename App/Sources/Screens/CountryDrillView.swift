@@ -103,7 +103,7 @@ struct CountryDrillView: View, LanguageNaming {
     var namingCatalog: Catalog? { model.catalog }
 
     var body: some View {
-        SessionScaffold.endless(answered: Int(run.done),
+        SessionScaffold.endless(tally: run.tally,
                                 outcomes: run.outcomes.map { SessionOutcome($0) },
                                 // why: the run says its answers out loud, so it
                                 // owes the learner a way to silence them here.

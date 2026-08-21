@@ -89,14 +89,15 @@ class TrainerCloseTest {
 
     // MARK: - What the page behind the run reads
 
+    /** Amber is in neither half of the counter, the way it moves neither way on the ramp. */
     @Test
-    fun theCounterCountsAnswersThatWereNotMisses() {
+    fun theCounterLeavesAmberOutOfBothHalves() {
         val state = TrainerRun.open(numbers(), Random(59)).copy(
             outcomes = listOf(AnswerTone.Right, AnswerTone.Tough, AnswerTone.Wrong),
             done = 3,
         )
-        assertEquals(2, state.cleanCount)
-        assertEquals(3, state.done)
+        assertEquals(DrillTally(clean = 1, judged = 2), state.tally)
+        assertEquals(3, state.done, "every answer is still booked")
     }
 
     @Test

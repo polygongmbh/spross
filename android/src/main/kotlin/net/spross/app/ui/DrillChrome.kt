@@ -32,6 +32,7 @@ import net.spross.app.Chrome
 import net.spross.app.countLine
 import net.spross.kern.session.AnswerTone
 import net.spross.kern.trainer.DrillRunSummary
+import net.spross.kern.trainer.DrillTally
 import net.spross.kern.trainer.StreakTier
 
 /**
@@ -49,14 +50,13 @@ import net.spross.kern.trainer.StreakTier
  *
  * The bar's filled and empty stretches move together — one empty slot for the question on
  * screen — so it fills as the run grows instead of breaking past a fixed end, and the
- * counter reads clean/answered rather than position/total.
+ * counter is the run's own tally rather than position/total.
  */
 @Composable
 fun DrillTopBar(
     model: AppModel,
     outcomes: List<AnswerTone>,
-    cleanCount: Int,
-    answered: Int,
+    tally: DrillTally,
     onClose: () -> Unit,
 ) {
     val chrome = model.chrome
@@ -68,7 +68,7 @@ fun DrillTopBar(
         DrillCloseButton(chrome, onClose)
         SegmentsBar(outcomes, remaining = 1, modifier = Modifier.weight(1f))
         Text(
-            "$cleanCount/$answered",
+            "${tally.clean}/${tally.judged}",
             style = MaterialTheme.typography.bodySmall,
             color = Dl.colors.textSecondary,
         )

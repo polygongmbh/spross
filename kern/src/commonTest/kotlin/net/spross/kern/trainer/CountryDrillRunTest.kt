@@ -314,17 +314,17 @@ class CountryDrillRunTest {
     }
 
     /**
-     * Amber counts toward the clean/answered counter, exactly as it does in both sibling
-     * drills — a run that spelled a name with one slip did not get it wrong.
+     * Amber drops out of the counter's BOTH halves, exactly as it moves no rung — a slip is
+     * neither a win to bank nor a miss to punish, and the counter beside the rung says so too.
      */
     @Test
-    fun theCleanCounterCountsEverythingThatWasNotAMiss() {
+    fun theCounterLeavesAmberOutOfBothHalves() {
         var run = open()
         run = run.answered("Ujerumani")
         run = run.answered("Ujerumami")
         run = run.missed()
-        assertEquals(3, run.done)
-        assertEquals(2, run.cleanCount)
+        assertEquals(3, run.done, "every answer is still booked")
+        assertEquals(DrillTally(clean = 1, judged = 2), run.tally)
     }
 
     /** A miss drops the rung, and the rung the run REACHED is what it keeps. */
