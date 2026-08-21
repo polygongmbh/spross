@@ -36,7 +36,7 @@ class ListeningTimerTests {
     /** Every length ends in the same place: the ramp is a fraction of the run, never a rate. */
     @Test
     fun everyBedtimeEndsAtTheSameLevel() {
-        for (minutes in LISTENING_TIMER_CHOICES_MIN.filter { it > 0 }) {
+        for (minutes in listOf(LISTENING_TIMER_STEP_MIN, 15, 45, 120)) {
             val total = minutes * 60_000L
             assertEquals(0.0, listeningGainDb(total, total))
             assertEquals(LISTENING_FADE_FLOOR_DB / 2, listeningGainDb(total / 2, total), 1e-9)
@@ -68,11 +68,10 @@ class ListeningTimerTests {
         assertEquals(LISTENING_FADE_FLOOR_DB, listeningGainDb(-hour, totalMs = hour))
     }
 
-    /** Off leads the list: a run laps for as long as it is left alone unless asked otherwise. */
+    /** Off is where a run starts and the only place the timer may be reset to. */
     @Test
-    fun theChoicesLeadWithOff() {
-        assertEquals(0, LISTENING_TIMER_CHOICES_MIN.first())
-        assertTrue(LISTENING_TIMER_CHOICES_MIN.drop(1).all { it > 0 })
+    fun theTimerStepsInFiveMinuteIncrements() {
+        assertEquals(5, LISTENING_TIMER_STEP_MIN)
     }
 
     /** The bedtime has arrived at zero, and one rule decides it rather than two apps. */

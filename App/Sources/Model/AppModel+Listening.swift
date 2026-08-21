@@ -24,9 +24,11 @@ final class ListeningDriver {
     /// How long a beat may wait for a completion that never comes. Both audio
     /// branches CAN return silently — a file that will not open, a voice that
     /// went missing between the pool and the word — and a locked phone that
-    /// went quiet has no way to say so. Longer than any word, shorter than a
-    /// learner's patience.
-    private static let watchdog: Duration = .seconds(20)
+    /// went quiet has no way to say so. Kern owns the number
+    /// (`LISTENING_WATCHDOG_MS`) so the two phones cannot wait different
+    /// lengths; it is insurance, never timing — the longest reading the catalog
+    /// holds stays well under it.
+    private static let watchdog: Duration = .milliseconds(LISTENING_WATCHDOG_MS)
 
     private(set) var state: ListeningRunState
     /// The sleep timer, whole (`ListeningBedtime`) — the chip reads it, the run

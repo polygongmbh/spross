@@ -9,7 +9,8 @@ import androidx.compose.runtime.setValue
 import kotlin.random.Random
 import net.spross.app.AppModel
 import net.spross.app.audio.Pronouncer
-import net.spross.kern.listen.LISTENING_TIMER_CHOICES_MIN
+import net.spross.kern.listen.LISTENING_TIMER_STEP_MIN
+import net.spross.kern.listen.LISTENING_WATCHDOG_MS
 import net.spross.kern.listen.ListeningCandidate
 import net.spross.kern.listen.ListeningEffect
 import net.spross.kern.listen.ListeningIntent
@@ -148,14 +149,21 @@ class ListeningDriver(
     }
 
     /**
-     * Walks kern's bedtimes. One cycling chip rather than a picker: the ask is "let it run
-     * while I fall asleep", which nobody answers to the minute.
+     * Adds kern's five minutes to the bedtime. Every tap only ever ADDS — the minutes never
+     * come down by tapping, and the chip's long press is the one way back to off.
      */
     fun cycleTimer() {
-        val choices = LISTENING_TIMER_CHOICES_MIN
-        val next = choices[(choices.indexOf(timerMinutes).coerceAtLeast(0) + 1) % choices.size]
-        timerMinutes = next
-        deadline = if (next == 0) null else System.currentTimeMillis() + next * 60_000L
+        timerMinutes += LISTENING_TIMER_STEP_MIN
+        deadline = System.currentTimeMillis() + timerMinutes * 60_000L
+    }
+
+    /**
+     * Long-press: the bedtime is cleared and the run laps again from where it is — the one
+     * gesture that reaches zero, which the tap never can.
+     */
+    fun turnOffTimer() {
+        timerMinutes = 0
+        deadline = null
     }
 
     /** How long the bedtime has left, or null where none was set. */
@@ -268,7 +276,8 @@ class ListeningDriver(
         )
         // why: insurance, not timing — a word whose end is never reported would leave the
         // chain standing still, and a run that has gone quiet is worse than one that hurries.
-        handler.postDelayed({ finish() }, WORD_CEILING_MS)
+        // Kern owns the ceiling so the two phones cannot wait different lengths.
+        handler.postDelayed({ finish() }, LISTENING_WATCHDOG_MS)
     }
 
     /**
@@ -280,9 +289,4 @@ class ListeningDriver(
         remainingMs()?.let { listeningGainDb(it, timerMinutes * 60_000L) } ?: 0.0
 
     private fun expired(): Boolean = remainingMs()?.let { listeningExpired(it) } == true
-
-    private companion object {
-        /** Longer than any word or phrase the catalog holds, and shorter than a lost run. */
-        const val WORD_CEILING_MS = 15_000L
-    }
 }

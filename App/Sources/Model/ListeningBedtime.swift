@@ -3,8 +3,8 @@ import SprossKern
 
 /// The listening run's sleep timer, and the only clock in the whole mode.
 ///
-/// Kern owns every judgment about it — which lengths may be picked
-/// (`LISTENING_TIMER_CHOICES_MIN`), how the last two minutes ramp down
+/// Kern owns every judgment about it — how much each tap adds
+/// (`LISTENING_TIMER_STEP_MIN`), how the whole run ramps down
 /// (`listeningGainDb`) and where the run is over (`listeningExpired`) — and
 /// reads no clock itself, so what is left to this side is holding a deadline
 /// and handing kern the milliseconds.
@@ -35,16 +35,21 @@ final class ListeningBedtime {
     /// fade stays exact without a stored millisecond anything can observe.
     var remainingMs: Int64? { deadline.map { Self.millis(until: $0) } }
 
-    /// [delta] steps along kern's list, wrapping at both ends — one cycling
-    /// capsule rather than a picker, because "let it run while I fall asleep"
-    /// is not an ask anybody answers to the minute. Backwards is VoiceOver's
-    /// swipe down, the same list walked the other way.
+    /// One tap adds kern's five minutes; a swipe down takes five back, clamped
+    /// at OFF — a bedtime that went negative would read as a run lapsing. Every
+    /// tap only ever ADDS, so the long press is the one way back to zero.
     func step(_ delta: Int) {
-        let choices = LISTENING_TIMER_CHOICES_MIN.map { Int(truncating: $0) }
-        guard !choices.isEmpty else { return }
-        let here = choices.firstIndex(of: minutes) ?? 0
-        minutes = choices[((here + delta) % choices.count + choices.count) % choices.count]
+        minutes = max(0, minutes + delta * Int(LISTENING_TIMER_STEP_MIN))
         deadline = minutes > 0 ? Date().addingTimeInterval(TimeInterval(minutes * 60)) : nil
+        startTicking()
+    }
+
+    /// Long-press: the bedtime is cleared and the run laps again from where it
+    /// is — the one gesture that must reach zero in a single move rather than
+    /// walking the minutes down, which the chip cannot do.
+    func turnOff() {
+        minutes = 0
+        deadline = nil
         startTicking()
     }
 

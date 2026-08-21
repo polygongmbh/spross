@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
 
-    <!-- The gaps between the beats: a turn is silent for two and a half seconds at a time,
+    <!-- The gaps between the beats: a turn is silent for up to a second and a half at a time,
          and a phone that dozed in one of them would wake to a playlist stopped mid-word.
          Held only while a run is going, and with a ceiling on it. -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />

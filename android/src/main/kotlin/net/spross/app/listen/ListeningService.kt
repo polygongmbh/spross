@@ -30,9 +30,9 @@ import net.spross.app.SprossActivity
  * It plays nothing itself. Every control here goes through [ListeningBridge] to the same
  * reducer the on-screen buttons drive, so the shade and the screen cannot disagree.
  *
- * The wake lock is the gap between the beats: an active run is silent for two and a half
- * seconds at a time, and a phone that dozed in one of those gaps would wake up to a playlist
- * that had stopped halfway through a word.
+ * The wake lock is the gap between the beats: an active run is silent for up to a second
+ * and a half at a time, and a phone that dozed in one of those gaps would wake up to a
+ * playlist that had stopped halfway through a word.
  */
 class ListeningService : Service() {
 
@@ -260,7 +260,8 @@ class ListeningService : Service() {
         /**
          * A ceiling on the wake lock rather than a lock held forever: a run that somehow
          * outlived its own teardown would otherwise hold the CPU up until the battery went.
-         * Well past the longest bedtime kern offers, so it never cuts a run short.
+         * Far beyond any bedtime a learner would set by tapping five minutes at a time, so
+         * it never cuts a real run short.
          */
         private const val WAKE_CEILING_MS = 4L * 60 * 60 * 1000
 

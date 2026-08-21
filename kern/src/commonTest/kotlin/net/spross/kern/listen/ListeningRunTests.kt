@@ -125,8 +125,12 @@ class ListeningRunTests {
         assertEquals("das Brot", turn.sourceForm)
         assertEquals("das", turn.spokenArticle)
         assertEquals(RECALL_GAP_HELD_MS, turn.recallGapMs)
+        // The echo and the breath between turns reuse the two recall gaps rather than
+        // minting beats of their own — a turn is one varying pause plus the two it follows.
         assertEquals(ECHO_GAP_MS, turn.echoGapMs)
         assertEquals(TURN_GAP_MS, turn.turnGapMs)
+        assertEquals(RECALL_GAP_FRESH_MS, ECHO_GAP_MS)
+        assertEquals(RECALL_GAP_HELD_MS, TURN_GAP_MS)
     }
 
     /**

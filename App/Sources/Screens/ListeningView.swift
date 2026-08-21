@@ -131,11 +131,12 @@ struct ListeningView: View {
 
     // MARK: - The sleep timer
 
-    /// The bedtime, as one labeled capsule in the corner: off, then kern's
-    /// lengths, then off again. Set, it counts what is LEFT rather than what was
-    /// picked — the number a learner reaches for at midnight is how much longer
-    /// this goes on — and it counts in MINUTES: a ticking clock is a clock you
-    /// watch, which is the opposite of what a sleep timer is for.
+    /// The bedtime, as one labeled capsule in the corner: each tap adds five
+    /// minutes, and a long press turns it back off. Set, it counts what is LEFT
+    /// rather than what was picked — the number a learner reaches for at
+    /// midnight is how much longer this goes on — and it counts in MINUTES: a
+    /// ticking clock is a clock you watch, which is the opposite of what a
+    /// sleep timer is for.
     private var timerCapsule: some View {
         Button { driver.bedtime.step(1) } label: {
             HStack(spacing: DL.Space.xs) {
@@ -150,6 +151,9 @@ struct ListeningView: View {
             .background(Capsule().fill(Color.dlSurfaceTint))
         }
         .buttonStyle(TrainerChipButtonStyle())
+        // why: a hold is the one gesture that brings the bedtime down — every
+        // tap only ever adds five minutes, so the only way to zero is a hold.
+        .onLongPressGesture(minimumDuration: 0.5) { driver.bedtime.turnOff() }
         // why: the LENGTH is a state of the timer, so the label stays put and
         // the reading moves — the opposite of the transport above, whose
         // buttons name what the tap will do.

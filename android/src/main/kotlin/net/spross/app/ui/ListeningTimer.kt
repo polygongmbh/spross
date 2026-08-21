@@ -1,7 +1,7 @@
 package net.spross.app.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
@@ -30,7 +30,8 @@ import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 
 /**
- * The bedtime, as one chip that walks kern's list of them.
+ * The bedtime, as one chip: every tap adds kern's five minutes, and a long press turns it
+ * back off — there is no other way the minutes come down.
  *
  * It shows what is LEFT rather than what was picked: a run started an hour ago and a run
  * started a minute ago are the same pick and completely different answers to "is this going
@@ -75,7 +76,13 @@ fun SleepTimerChip(model: AppModel) {
                 contentDescription = chrome.listenTimer
                 stateDescription = left ?: chrome.stateOff
             }
-            .clickable(role = Role.Button) { run.cycleTimer() }
+            // why: a tap adds five minutes and a hold turns the timer straight back off —
+            // the only gesture that ever brings the minutes down.
+            .combinedClickable(
+                role = Role.Button,
+                onClick = { run.cycleTimer() },
+                onLongClick = { run.turnOffTimer() },
+            )
             .heightIn(min = 48.dp)
             .padding(horizontal = DlSpace.l),
         verticalAlignment = Alignment.CenterVertically,
@@ -93,8 +100,8 @@ fun SleepTimerChip(model: AppModel) {
 
 /**
  * Whole minutes left, rounded UP: a chip reading zero while the run is still talking says the
- * timer is broken. Minutes are never capped at an hour, because the longest bedtime kern
- * offers is exactly one.
+ * timer is broken. Minutes are never capped — every tap adds another five, and the long press
+ * is the only way they come back down.
  */
 internal fun sleepTimerMinutes(ms: Long): Int =
     ((ms.coerceAtLeast(0) + 59_999) / 60_000).toInt()

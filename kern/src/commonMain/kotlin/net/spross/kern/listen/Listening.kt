@@ -11,9 +11,12 @@ import net.spross.kern.model.Card
  *
  * The one beat of a listening turn that carries any teaching: a word already answered once
  * can be recalled, and a meaning that lands before the learner has reached for it turns the
- * run into background noise. Kern owns the number so the two phones cannot drift.
+ * run into background noise. 1.5 s sits at the low end of the wait-time band teaching
+ * materials reach for after a question (Rowe 1974; Stahl 1994) — comfortably past the second
+ * a held word takes to retrieve, still quick enough that the playlist moves. Kern owns the
+ * number so the two phones cannot drift.
  */
-const val RECALL_GAP_HELD_MS: Long = 2_500
+const val RECALL_GAP_HELD_MS: Long = 1_500
 
 /**
  * The same beat for a word the learner has never answered.
@@ -22,23 +25,44 @@ const val RECALL_GAP_HELD_MS: Long = 2_500
  * long enough that the two languages do not run together, short enough that a first meeting
  * does not feel like a test the learner is failing.
  */
-const val RECALL_GAP_FRESH_MS: Long = 900
-
-/** Between the meaning and the target word said again — the echo that closes a turn. */
-const val ECHO_GAP_MS: Long = 1_200
-
-/** Between one turn's last word and the next turn's first. */
-const val TURN_GAP_MS: Long = 2_500
+const val RECALL_GAP_FRESH_MS: Long = 600
 
 /**
- * The sleep-timer lengths a run may be given, in minutes; 0 is OFF and stays the default,
- * where the playlist laps for as long as it is left alone.
+ * Between the meaning and the target word said again — the echo that closes a turn.
  *
- * One cycling chip on each phone walks this list. Kern owns it so the two phones offer the
- * same bedtimes, and so the shape stays a short list of round numbers rather than a picker:
- * the ask is "let it run while I fall asleep", which nobody answers to the minute.
+ * The echo reuses the FRESH gap rather than minting a beat of its own, so the two pauses of a
+ * turn are the two recall gaps the learner's own history already chose.
  */
-val LISTENING_TIMER_CHOICES_MIN: List<Int> = listOf(0, 15, 30, 60)
+const val ECHO_GAP_MS: Long = RECALL_GAP_FRESH_MS
+
+/**
+ * Between one turn's last word and the next turn's first.
+ *
+ * The breath between turns reuses the HELD gap, so a playlist keeps one short and one long
+ * beat and nothing invents a third.
+ */
+const val TURN_GAP_MS: Long = RECALL_GAP_HELD_MS
+
+/**
+ * How long a beat may wait for a word that never reports its finish.
+ *
+ * Both audio branches CAN return silently — a file that will not open, a voice that went
+ * missing between the pool and the word — and a run that stalls on that silence is worse
+ * than one that hurries. The longest reading the catalog holds stays well under this, so it
+ * is insurance, never timing. Kern owns it so the two phones cannot decide differently how
+ * long they wait.
+ */
+const val LISTENING_WATCHDOG_MS: Long = 5_000
+
+/**
+ * The sleep-timer step: every tap on the bedtime chip adds this many minutes, starting
+ * from 0 (OFF, the default, where the playlist laps for as long as it is left alone) —
+ * so a bedtime can be had at any multiple of five, and a long press jumps straight back
+ * to OFF. Kern owns the number so the two phones step the same way, and so the shape
+ * stays one chip rather than a picker: the ask is "let it run while I fall asleep", and
+ * a tap is the whole gesture that answer needs.
+ */
+const val LISTENING_TIMER_STEP_MIN: Int = 5
 
 /**
  * The picture cue every listening card wears.
