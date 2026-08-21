@@ -4,11 +4,7 @@ import SwiftUI
 // MARK: - VocabCardView
 //
 // The hero review card. The prompt is COMPACT (no space reserved for the
-// answer); the reveal expands the card, animated. Nothing already on the card
-// moves SIDEWAYS or flips — the picture's slot is held for the card's whole
-// life so the words never shift along the axis it could shove them.
-// The content stays vertically centered as the card grows, so the prompt does
-// rise as the answer arrives below it. That is the centering, working.
+// answer); the reveal expands the card, animated.
 //
 // Language-symmetric: the card renders a PROMPT side and an ANSWER side —
 // which language plays which role is the caller's business (alternating
@@ -99,7 +95,8 @@ struct VocabCardView: View {
     /// The picture (`DLCardEmoji`) belongs to the CARD rather than the prompt
     /// line, so it stays centered against prompt and reveal together instead of
     /// riding up as the card grows. Its slot is held for the card's whole life
-    /// in either arrangement, so a reveal never shifts the words sideways.
+    /// in either arrangement, so a withheld picture fades into a space that was
+    /// already there.
     var body: some View {
         arranged
             .padding(shared ? DL.Space.l : DL.Space.xl)
