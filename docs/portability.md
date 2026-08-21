@@ -64,7 +64,7 @@ plus input and focus; the rest stands.
 into Android-free testable classes (`SessionFlow`, `LetterDrillFlow`, `CardDisplay`, `LanguagePicker`).
 Composables are pure functions of that state.
 
-kern is a stateless pure-function library — and `BoxEngine.answer(state, id, rating, now, tz) -> Outcome`
+kern is a stateless pure-function library — and `BoxEngine.answer(state, id, rating, now, tz) -> BoxState`
 is already a reducer signature with no runner around it.
 `Presentation.kt:128` records the precedent: a rule moved into kern precisely because both apps had re-derived it.
 

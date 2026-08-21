@@ -286,9 +286,9 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   cards that join the current profile; the unlock check and `answer()` history reads
   operate on raw schedules by id. Non-joining schedules and enqueued entries are kept
   **inert** (never pruned; both revive on switch-back).
-- `answer(cardId, rating, nowMillis, tzId)` on a non-joining or unknown id is a defined
-  no-op (`AnswerStatus.StaleCard`) the UI skips past. `SessionPlan` carries a
-  `joinStamp` (source, target, catalog fingerprint); the app recomposes when stale.
+- `answer(cardId, rating, nowMillis, tzId)` on an unknown id leaves the state
+  untouched. `SessionPlan` carries a `joinStamp` (source, target, catalog
+  fingerprint); the app recomposes when stale.
 - **"Which words does the learner already hold" is an engine question**, answered once by
   `BoxEngine.consolidatedCardIds` — restated over `box.cards` on two platforms it would
   drift, and drift silently, since a drill that practices a word too early only feels

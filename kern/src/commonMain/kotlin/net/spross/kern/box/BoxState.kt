@@ -39,20 +39,4 @@ data class BoxState(
     val ownWords: List<OwnWord> = emptyList(),
 )
 
-enum class AnswerStatus {
-    /** The answer was recorded as an FSRS review (or an introduction). */
-    Applied,
-    /** Unknown or non-joining card id — a defined no-op the UI skips past. */
-    StaleCard,
-    /**
-     * Introduction refused: the card is not introducible under the current state
-     * (locked phrase) — defensive re-check; plans outlive phase changes.
-     */
-    DroppedIneligible,
-}
 
-/** Result of [BoxEngine.answer]: the (possibly unchanged) state plus what happened. */
-data class AnswerResult(
-    val state: BoxState,
-    val status: AnswerStatus,
-)

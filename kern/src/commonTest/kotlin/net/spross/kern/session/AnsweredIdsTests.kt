@@ -31,16 +31,15 @@ class AnsweredIdsTests {
     }
 
     @Test
-    fun aStaleAnswerAppendsToNeitherList() {
-        // The join dropped the card under the run: the answer is not applied, so
-        // nothing is recorded and the two lists stay index-aligned.
+    fun anUnknownCardStillRecordsTheAnswer() {
+        // The join dropped the card under the run: the box is untouched, but the
+        // answer is booked regardless and the two lists stay index-aligned.
         var run = started(Box.state((1..3).map { Box.word(it) }))
         run = run.copy(box = BoxEngine.rejoin(run.box, emptyList(), run.box.joinStamp))
-        val before = run.answeredIds.size
 
         run = answered(run)
 
-        assertEquals(before, run.answeredIds.size)
+        assertEquals(1, run.answeredIds.size)
         assertEquals(run.ratings.size, run.answeredIds.size)
     }
 

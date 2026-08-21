@@ -10,7 +10,7 @@ import kotlin.time.Duration.Companion.seconds
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Rating
 
-/** Answering: FSRS-6 scheduling, drain feed, leeches, stale cards, budget drops. */
+/** Answering: FSRS-6 scheduling, drain feed, leeches, unknown ids, budget drops. */
 class BoxAnswerTests {
     private val now = Box.day1
 
@@ -203,28 +203,9 @@ class BoxAnswerTests {
     }
 
     @Test
-    fun unknownAndMalformedIdsAreStaleNoops() {
+    fun unknownIdLeavesTheStateUntouched() {
         val state = Box.state(listOf(Box.word(1)))
-        val staleIds = listOf(
-            "nope",          // unknown card
-            "w01|produce",   // v1-era unit key — no such card
-            "",              // empty
-        )
-        for (id in staleIds) {
-            val outcome = BoxEngine.answer(state, id, Rating.Good, now, Box.TZ)
-            assertEquals(AnswerStatus.StaleCard, outcome.status, "id: $id")
-            assertEquals(state, outcome.state, "id: $id")
-        }
-    }
-
-    @Test
-    fun lockedPhraseIntroductionRefusedAtAnswerTime() {
-        val state = Box.state(
-            listOf(Box.word(1), Box.word(2), Box.phrase("p1", components = listOf("w01", "w02"))),
-        )
-        val blocked = BoxEngine.answer(state, "p1", Rating.Good, now, Box.TZ)
-        assertEquals(AnswerStatus.DroppedIneligible, blocked.status)
-        assertEquals(state, blocked.state)
+        assertEquals(state, BoxEngine.answer(state, "nope", Rating.Good, now, Box.TZ))
     }
 
     @Test

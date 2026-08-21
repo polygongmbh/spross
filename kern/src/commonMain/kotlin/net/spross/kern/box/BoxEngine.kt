@@ -118,11 +118,9 @@ object BoxEngine {
 
     /**
      * Apply one answer to a card. Introduction = the card's first answer: creates its
-     * schedule, counts it introduced, and dequeues it. Introductions re-check
-     * eligibility at answer time ([AnswerStatus.DroppedIneligible]) — plans
-     * outlive phase changes. Any
-     * Again past introduction counts a lapse; 2 lapses auto-suspend the card (leech). Non-joining
-     * or unknown ids are a defined no-op ([AnswerStatus.StaleCard]).
+     * schedule, counts it introduced, and dequeues it. Any Again past introduction
+     * counts a lapse; 2 lapses auto-suspend the card (leech). An unknown id leaves
+     * the state untouched.
      */
     fun answer(
         state: BoxState,
@@ -130,7 +128,7 @@ object BoxEngine {
         rating: Rating,
         nowEpochMillis: Long,
         tzId: String,
-    ): AnswerResult = Answering.answer(state, cardId, rating, nowEpochMillis, tzId)
+    ): BoxState = Answering.answer(state, cardId, rating, nowEpochMillis, tzId)
 
     /**
      * Fold the session into `dailyStats` and prune `newIntroduced` to the trailing

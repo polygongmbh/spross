@@ -40,33 +40,26 @@ internal object Answering {
         rating: Rating,
         nowEpochMillis: Long,
         tzId: String,
-    ): AnswerResult {
-        val card = state.cards[cardId] ?: return AnswerResult(state, AnswerStatus.StaleCard)
+    ): BoxState {
+        val card = state.cards[cardId] ?: return state
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
         val scheduler = FsrsScheduler(state.config.fsrsParameters())
         val existing = state.scheduling[cardId]
         return if (existing?.memory != null) {
             val wasConsolidated = Statistics.isConsolidated(state, existing)
             val next = reviewed(existing, rating, scheduler, now)
-            AnswerResult(
-                state.copy(
-                    scheduling = state.scheduling + (cardId to next),
-                    consolidatedCrossed = state.consolidatedCrossed.bookIf(
-                        !wasConsolidated && Statistics.isConsolidated(state, next),
-                        dayKey(nowEpochMillis, tzId),
-                    ),
+            state.copy(
+                scheduling = state.scheduling + (cardId to next),
+                consolidatedCrossed = state.consolidatedCrossed.bookIf(
+                    !wasConsolidated && Statistics.isConsolidated(state, next),
+                    dayKey(nowEpochMillis, tzId),
                 ),
-                AnswerStatus.Applied,
             )
         } else {
             introduce(state, card, existing, rating, scheduler, now, nowEpochMillis, tzId)
         }
     }
 
-    // why: eligibility is re-checked at answer time (plans outlive phase changes
-    // and may straddle midnight) — composition-only enforcement would let a
-    // stale plan introduce a still-locked phrase. There is no budget re-check:
-    // intake is bounded per composed round, not per card answered.
     private fun introduce(
         state: BoxState,
         card: Card,
@@ -76,15 +69,12 @@ internal object Answering {
         now: Instant,
         nowEpochMillis: Long,
         tzId: String,
-    ): AnswerResult {
-        if (!Growth.isIntroducible(state, card)) {
-            return AnswerResult(state, AnswerStatus.DroppedIneligible)
-        }
+    ): BoxState {
         val outcome = scheduler.review(SchedulerState(), 0.0, rating)
         val base = existing ?: CardScheduling(cardId = card.id, addedAt = now)
         val sched = applied(base, outcome, rating, now, elapsedDays = 0.0)
         val day = dayKey(nowEpochMillis, tzId)
-        val next = state.copy(
+        return state.copy(
             scheduling = state.scheduling + (card.id to sched),
             newIntroduced = state.newIntroduced + (day to (state.newIntroduced[day] ?: 0) + 1),
             // A word known on sight (Easy) consolidates the moment it arrives —
@@ -92,7 +82,6 @@ internal object Answering {
             consolidatedCrossed = state.consolidatedCrossed.bookIf(Statistics.isConsolidated(state, sched), day),
             enqueued = state.enqueued.filter { it != card.id },
         )
-        return AnswerResult(next, AnswerStatus.Applied)
     }
 
     /** One more on [day] when [happened], else the map untouched. */

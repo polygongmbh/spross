@@ -88,7 +88,7 @@ extension AppModel {
     }
 
     /// The box's join moved under a running session (source switch, catalog
-    /// update) → kern recomposes against the live join; stale ids would no-op.
+    /// update) → kern recomposes against the live join.
     func recomposeSessionIfStale() {
         reduce(SessionIntent.RecomposeIfStale.shared)
     }

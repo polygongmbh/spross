@@ -2,7 +2,6 @@ package net.spross.kern.session
 
 import kotlin.math.max
 import kotlin.math.min
-import net.spross.kern.box.AnswerStatus
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
@@ -187,23 +186,14 @@ object SessionRun {
     private fun answer(state: SessionRunState, rating: Rating, nowEpochMillis: Long, tzId: String): SessionReduction {
         val cardId = state.currentCardId ?: return unchanged(state)
         val wasConsolidated = BoxEngine.isConsolidated(state.box, cardId)
-        val outcome = BoxEngine.answer(state.box, cardId, rating, nowEpochMillis, tzId)
-        val applied = outcome.status == AnswerStatus.Applied
-        val next = if (applied) {
-            tallied(
-                state.copy(box = outcome.state, ratings = state.ratings + rating,
-                           answeredIds = state.answeredIds + cardId, answered = state.answered + 1),
-                firstAnswer = outcome.state.scheduling[cardId]?.reviewCount == 1,
-                wasConsolidated = wasConsolidated,
-                isConsolidated = BoxEngine.isConsolidated(outcome.state, cardId),
-            )
-        } else {
-            // Stale or dropped answers leave the run silently — shrink the total so the
-            // progress counter stays honest, but never past what the run has already
-            // answered: the ratings are the progress bar's segments, and a run claiming
-            // fewer cards than it booked draws more of them than it says it holds.
-            state.copy(box = outcome.state, total = maxOf(1, state.answered, state.total - 1))
-        }
+        val box = BoxEngine.answer(state.box, cardId, rating, nowEpochMillis, tzId)
+        val next = tallied(
+            state.copy(box = box, ratings = state.ratings + rating,
+                       answeredIds = state.answeredIds + cardId, answered = state.answered + 1),
+            firstAnswer = box.scheduling[cardId]?.reviewCount == 1,
+            wasConsolidated = wasConsolidated,
+            isConsolidated = BoxEngine.isConsolidated(box, cardId),
+        )
         return advance(next.copy(queue = next.queue.drop(1)), listOf(SessionEffect.Persist(false)), nowEpochMillis, tzId)
     }
 
@@ -272,7 +262,7 @@ object SessionRun {
 
     /**
      * The box's join moved under a running session (source switch, catalog update)
-     * → recompose against the live join; stale ids would no-op.
+     * → recompose against the live join.
      */
     private fun recompose(state: SessionRunState, nowEpochMillis: Long, tzId: String): SessionReduction {
         val stamp = state.joinStamp

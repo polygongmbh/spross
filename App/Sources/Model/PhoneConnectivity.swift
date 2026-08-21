@@ -120,15 +120,12 @@ extension AppModel {
 
         var appliedCount: Int32 = 0
         for event in fresh {
-            // why: stale ids (profile/catalog drift) are a defined engine
-            // no-op — the event is still marked seen so it never re-queues.
             if let rating = Rating(value: event.rating) {
-                let outcome = BoxEngine.shared.answer(state: state, cardId: event.cardId,
-                                                      rating: rating,
-                                                      nowEpochMillis: event.date.epochMillis,
-                                                      tzId: currentTzId())
-                state = outcome.state
-                if outcome.status == .applied { appliedCount += 1 }
+                state = BoxEngine.shared.answer(state: state, cardId: event.cardId,
+                                                rating: rating,
+                                                nowEpochMillis: event.date.epochMillis,
+                                                tzId: currentTzId())
+                appliedCount += 1
             }
             applied.append(event.id.uuidString)
             appliedSet.insert(event.id.uuidString)

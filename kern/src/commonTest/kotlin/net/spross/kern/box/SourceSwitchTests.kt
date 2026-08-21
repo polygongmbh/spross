@@ -51,16 +51,9 @@ class SourceSwitchTests {
     }
 
     @Test
-    fun answerOnNonJoiningIdIsStaleNoop() {
+    fun answerOnNonJoiningIdLeavesStateUntouched() {
         val en = BoxEngine.rejoin(studied(), enJoin, enStamp)
-        val outcome = BoxEngine.answer(en, "w02", Rating.Good, now, Box.TZ)
-        assertEquals(AnswerStatus.StaleCard, outcome.status)
-        assertEquals(en, outcome.state)
-
-        // Back under the de join the very same id applies again.
-        val back = BoxEngine.rejoin(en, deJoin, Box.stamp)
-        val applied = BoxEngine.answer(back, "w02", Rating.Good, now, Box.TZ)
-        assertEquals(AnswerStatus.Applied, applied.status)
+        assertEquals(en, BoxEngine.answer(en, "w02", Rating.Good, now, Box.TZ))
     }
 
     @Test

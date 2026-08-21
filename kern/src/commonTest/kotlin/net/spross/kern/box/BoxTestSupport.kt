@@ -92,14 +92,9 @@ internal object Box {
     fun inject(state: BoxState, entry: CardScheduling): BoxState =
         state.copy(scheduling = state.scheduling + (entry.cardId to entry))
 
-    /** Answer asserting the outcome applied. */
-    fun answered(state: BoxState, cardId: String, rating: Rating, nowMillis: Long): BoxState {
-        val outcome = BoxEngine.answer(state, cardId, rating, nowMillis, TZ)
-        check(outcome.status == AnswerStatus.Applied) {
-            "expected Applied for $cardId, got ${outcome.status}"
-        }
-        return outcome.state
-    }
+    /** Answer, returning the resulting state. */
+    fun answered(state: BoxState, cardId: String, rating: Rating, nowMillis: Long): BoxState =
+        BoxEngine.answer(state, cardId, rating, nowMillis, TZ)
 
     /** Growth candidates under composer-computed budgets (the session composer's diet). */
     fun candidates(

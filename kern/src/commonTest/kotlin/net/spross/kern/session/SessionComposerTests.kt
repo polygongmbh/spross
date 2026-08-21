@@ -397,7 +397,7 @@ class SessionComposerTests {
 
         var answered = state
         for (cardId in short.queue) {
-            answered = BoxEngine.answer(answered, cardId, Rating.Good, now, Box.TZ).state
+            answered = BoxEngine.answer(answered, cardId, Rating.Good, now, Box.TZ)
         }
         answered = BoxEngine.endSession(answered, short.cardCount, now, Box.TZ)
         assertTrue(SessionComposer.composeSession(answered, now, Box.TZ).isEmpty)

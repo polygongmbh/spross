@@ -86,48 +86,17 @@ class SessionRunTests {
         assertTrue(SessionOffers.canPracticeMore(run.box, now, Box.TZ))
     }
 
-    /** A card that leaves the box under the run shrinks the promise instead of stalling it. */
+    /** A card that leaves the box under the run still advances the queue — no stall, no shrink. */
     @Test
-    fun aDroppedAnswerShrinksTheTotal() {
+    fun anUnknownCardUnderTheRunStillAdvances() {
         val run = started(backloggedState(), now)
         val cardId = assertNotNull(run.currentCardId)
         val pruned = SessionRun.withBox(run, run.box.copy(cards = run.box.cards - cardId))
         val after = answer(pruned, Rating.Good, now)
-        assertEquals(24, after.total)
-        assertEquals(0, after.answered)
-        assertTrue(after.ratings.isEmpty())
+        assertEquals(25, after.total)
+        assertEquals(1, after.answered)
+        assertEquals(1, after.ratings.size)
         assertTrue(after.currentCardId != null && after.currentCardId != cardId)
-    }
-
-    /**
-     * …but never past the answers already booked. The ratings ARE the progress bar's
-     * parts, so a total under them is a run drawing more of itself than it says it
-     * holds — a counter reading "20/20" beside twenty-one segments. The promise, the
-     * answers and what is left stay one arithmetic through every drop.
-     */
-    @Test
-    fun aDropNeverLeavesMoreAnswersThanTheRunClaimsToHold() {
-        var run = started(backloggedState(), now)
-        repeat(10) { run = answer(run, Rating.Good, now) }
-        // Five cards still ahead leave the box under the run, then the last one does.
-        val ahead = run.queue.take(5).toSet()
-        run = SessionRun.withBox(run, run.box.copy(cards = run.box.cards - ahead))
-
-        while (run.currentCardId != null) {
-            if (run.queue.size == 1) {
-                run = SessionRun.withBox(run, run.box.copy(cards = run.box.cards - run.queue.first()))
-            }
-            run = answer(run, Rating.Good, now)
-            assertTrue(
-                run.segments.size <= run.total,
-                "${run.segments.size} segments in a run of ${run.total}",
-            )
-            assertEquals(run.total, run.answered + run.remaining)
-            assertTrue(run.position <= run.total)
-        }
-        // 25 composed, 6 gone: the promise pays for the answers and nothing more.
-        assertEquals(19, run.answered)
-        assertEquals(19, run.total)
     }
 
     /**
