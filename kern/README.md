@@ -192,6 +192,15 @@ No config flag, no user-facing direction anywhere.
   one card's produce turns. Grading narrows to the form that played (`session.spokenOnly`,
   shared with the letter drill's dictation); a synonym of the same card is amber, never
   wrong, since the reveal itself teaches those forms.
+- **The target is spoken with its article; the source is not.**
+  `spokenTargetForm(article, shownForm, targetText)` (beside `utterance`, which answers the
+  same question — what string does the synthesizer get) prefixes the article `shownArticle`
+  allows, so a rotated synonym that may carry another gender is spoken bare rather than
+  mislabeled. It applies on the SYNTHESIZED branch only: a bundled recording says what was
+  recorded, and re-cutting one is an edit to bytes kern never edits. The two branches then
+  sound different, which is the accepted cost — the recording is the branch falling short.
+  Reverses `docs/read-aloud.md`'s "only the headword is ever spoken" (user ruling 2026-08-21),
+  everywhere a target word is synthesized and not only in listening (§6).
 - **Emoji cue**: `emojiCue(role, consolidated)` answers WHEN the picture appears,
   never whether it appears at all and never where (that is the renderer's, and it is fixed).
   **Upfront** iff role == Produce ∧ the word has not landed (§5) — the one prompt it can

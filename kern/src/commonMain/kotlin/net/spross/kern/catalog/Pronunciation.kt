@@ -2,6 +2,7 @@ package net.spross.kern.catalog
 
 import net.spross.kern.model.Language
 import net.spross.kern.model.nfcNormalized
+import net.spross.kern.model.shownArticle
 
 /**
  * Characters a written form may carry at its edges but no one ever says —
@@ -43,6 +44,32 @@ fun speechKey(form: String): String {
  * Never a normalization — what is spoken stays the form the learner sees.
  */
 fun utterance(form: String): String = form.trim().removePrefix("-").trim()
+
+/**
+ * What a synthesizer is handed for a TARGET form: [utterance]'s form with the card's article
+ * in front of it, or the form alone.
+ *
+ * Target-language speech gains its article; source-language speech does not. An article is
+ * grammar the learner has to hear — in German it is half of what knowing a noun means, and a
+ * word met a hundred times as a bare stem is a word learned wrong. This reverses
+ * `docs/read-aloud.md`'s "only the headword is ever spoken", and it applies wherever a target
+ * word is synthesized, not only in listening mode.
+ *
+ * It lives beside [utterance] because it is the same question — what string does the
+ * synthesizer get — and answering it in two places would let a prefixed form skip the stem
+ * trim. It is deliberately NOT applied to a bundled recording: a recording says what was
+ * recorded, and re-cutting one to add an article is an edit to bytes kern never edits. That
+ * the two branches then sound different is the accepted cost; the recording is the branch
+ * falling short, not the voice overreaching.
+ *
+ * [shownArticle] is what decides there is one to say: a rotated synonym may carry another
+ * gender, so it gets none rather than a wrong one.
+ */
+fun spokenTargetForm(article: String?, shownForm: String, targetText: String): String {
+    val spoken = utterance(shownForm)
+    val prefix = shownArticle(article, shownForm, targetText)?.trim()?.takeIf { it.isNotEmpty() }
+    return if (prefix == null) spoken else "$prefix $spoken"
+}
 
 /**
  * How a bundled recording is PLAYED — the measured half of the manifest, beside the
