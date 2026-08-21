@@ -62,26 +62,42 @@ struct HeuteView: View {
     /// the learner, and not a skill with a ladder to climb, but the way in that
     /// needs no hands — up whenever this device can say both sides of enough
     /// words (`docs/design.md`, `docs/surfaces.md` § Listening).
+    ///
+    /// ONE row, not a card with a button on it: a title slot heading a set of
+    /// one says the mode's name twice, and the whole row is a wider target than
+    /// the button ever was.
     @ViewBuilder
     private var listeningCard: some View {
         if listening?.available == true {
-            VStack(alignment: .leading, spacing: DL.Space.l) {
-                Text("listen.title")
-                    .font(DL.Fonts.title)
-                    .foregroundStyle(Color.dlTextPrimary)
-                Text("listen.subtitle")
-                    .font(DL.Fonts.subheadline)
-                    .foregroundStyle(Color.dlTextSecondary)
-                Button("listen.start") { listeningPresented = true }
-                    .buttonStyle(DLSoftButtonStyle())
+            Button { listeningPresented = true } label: {
+                HStack(alignment: .top, spacing: DL.Space.m) {
+                    Text(verbatim: "🎧")
+                        .font(DL.Fonts.headline)
+                        .accessibilityHidden(true)
+                    VStack(alignment: .leading, spacing: DL.Space.xs) {
+                        Text("listen.title")
+                            .font(DL.Fonts.headline)
+                            .foregroundStyle(Color.dlTextPrimary)
+                        Text("listen.subtitle")
+                            .font(DL.Fonts.caption)
+                            .foregroundStyle(Color.dlTextSecondary)
+                            .multilineTextAlignment(.leading)
+                    }
+                    Spacer(minLength: 0)
+                    Image(systemName: "chevron.right")
+                        .font(.caption)
+                        .foregroundStyle(Color.dlTextSecondary)
+                        .accessibilityHidden(true)
+                }
+                .padding(DL.Space.l)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(
+                    RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
+                        .fill(Color.dlSurface)
+                )
+                .dlCardShadow()
             }
-            .padding(DL.Space.xl)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(
-                RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                    .fill(Color.dlSurface)
-            )
-            .dlCardShadow()
+            .buttonStyle(.plain)
         }
     }
 
