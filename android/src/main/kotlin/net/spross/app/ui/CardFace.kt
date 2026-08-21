@@ -113,10 +113,19 @@ fun Modifier.panel(shape: Shape = MaterialTheme.shapes.medium): Modifier = this
 @Composable
 fun VocabCard(
     emoji: String?,
-    emojiShown: Boolean,
+    /**
+     * Kern's rule for this card ([EmojiCue]), not a boolean a caller worked out: whether the
+     * picture would GIVE THE ANSWER AWAY is the engine's answer, and a component taking the
+     * resolved flag instead let every caller re-derive it — and one of them get it wrong.
+     * Null keeps the slot and never fills it.
+     */
+    cue: EmojiCue?,
+    /** [EmojiCue.OnReveal]'s other half: whether the card has given its answer. */
+    revealed: Boolean,
     modifier: Modifier = Modifier,
     content: @Composable ColumnScope.() -> Unit,
 ) {
+    val emojiShown = emojiShowing(cue, revealed)
     val hasEmoji = !emoji.isNullOrEmpty()
     // why: sized in sp, so the disc grows with the reader's text size along with the
     // glyph in it — a fixed disc would crop the picture at the larger settings.

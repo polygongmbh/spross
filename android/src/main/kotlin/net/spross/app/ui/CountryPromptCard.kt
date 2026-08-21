@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import net.spross.app.Chrome
+import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.Language
 
 /**
@@ -52,7 +53,8 @@ fun CountryPromptCard(
     // flag with no name beside it is not that picture: it IS the question (below).
     VocabCard(
         emoji = if (text == null) null else emoji,
-        emojiShown = !emojiIsGiveaway || revealed,
+        cue = if (emojiIsGiveaway) EmojiCue.OnReveal else EmojiCue.Upfront,
+        revealed = revealed,
         modifier = Modifier.heightIn(min = DlReserve.drillCard),
     ) {
         Text(

@@ -48,6 +48,7 @@ import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.app.listen.ListeningBeat
 import net.spross.kern.listen.ListeningTurn
+import net.spross.kern.model.EmojiCue
 
 /**
  * The listening run: a playlist over the learner's own words, made entirely of sound.
@@ -142,7 +143,10 @@ private fun ListeningCard(model: AppModel, turn: ListeningTurn, beat: ListeningB
     // that second saying of the target is where the two meet, and a meaning gone by then
     // would leave it meeting nothing.
     val meaningOut = beat == ListeningBeat.Meaning || beat == ListeningBeat.Echo
-    VocabCard(card?.emoji, emojiShown = meaningOut) {
+    // why: the picture is a cue withheld while an answer is OWED, and listening owes
+    // none — held back on the meaning it vanished and returned on every word, which
+    // reads as a flicker rather than as a reveal.
+    VocabCard(card?.emoji, cue = EmojiCue.Upfront, revealed = false) {
         Headword(
             localizedTarget(
                 target?.let { Dl.colors.articleColoredText(it) } ?: AnnotatedString(turn.targetForm),

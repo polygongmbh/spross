@@ -228,7 +228,8 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
 
     VocabCard(
         emoji = card.emoji,
-        emojiShown = emojiShowing(ui.emojiCue, revealed),
+        cue = ui.emojiCue,
+        revealed = revealed,
     ) {
         SpokenWord(model.pronounceAction(promptForm), chrome) {
             Headword(

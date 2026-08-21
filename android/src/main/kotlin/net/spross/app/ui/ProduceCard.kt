@@ -51,7 +51,8 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
 
     VocabCard(
         emoji = card.emoji,
-        emojiShown = emojiShowing(ui.emojiCue, revealed),
+        cue = ui.emojiCue,
+        revealed = revealed,
     ) {
         if (heard) ReplayPrompt(model, ui) else PromptWord(model, ui)
         // The card is what OPENS onto the answer — inline, growing downward, above the
