@@ -2,68 +2,86 @@ package net.spross.kern.listen
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 
-/** What a listening draw is willing to say twice, and what it holds to the floor. */
+/** What a listening draw is willing to say twice — one ladder in stability. */
 class ListeningWeightTests {
 
     private fun candidate(
-        difficulty: Double,
-        lapses: Int,
+        stability: Double,
         suspended: Boolean,
         scheduled: Boolean,
     ): ListeningCandidate = ListeningCandidate(
         card = Box.word(1),
-        difficulty = difficulty,
-        lapses = lapses,
+        stability = stability,
         suspended = suspended,
         scheduled = scheduled,
     )
 
     /**
-     * RULE: a clean, easy, held word still weighs 1.
-     * WHY: the floor is what makes this a playlist and not a filter — a word the learner has
-     * mastered is not excluded from an hour of exposure, only out-drawn by shakier ones.
+     * RULE: a settled word keeps the draw floor.
+     * WHY: the floor is what makes this a playlist and not a filter — a word that has landed
+     * is not excluded from an hour of exposure, only pushed to the end of the draw by the
+     * ones that have not.
      */
     @Test
-    fun everyWordKeepsTheDrawFloor() {
-        assertEquals(1, listeningWeight(candidate(3.0, 0, suspended = false, scheduled = true)))
+    fun aSettledWordKeepsTheDrawFloor() {
+        assertEquals(1, listeningWeight(candidate(30.0, suspended = false, scheduled = true)))
     }
 
     /**
-     * RULE: lapses and above-midpoint difficulty add to the floor, each capped.
-     * WHY: the hour is for the words that are not sticking — but a single leech that could
-     * outweigh a dozen clean words would take the whole hour over.
+     * RULE: higher stability means lower priority, one point per step of the ladder.
+     * WHY: the whole draw is one figure — a just-learned word leads, and every two days of
+     * stability drops it a rung, so the not-quite-settled sit in the middle and the
+     * consolidated ones are pushed to the end.
      */
     @Test
-    fun lapsesAndDifficultyAddUpToTheirCaps() {
-        assertEquals(3, listeningWeight(candidate(3.0, 2, suspended = false, scheduled = true)))
-        assertEquals(3, listeningWeight(candidate(9.0, 0, suspended = false, scheduled = true)))
-        // Both maxed: 1 + LAPSE_CAP 3 + DIFFICULTY_CAP 2, whatever the raw figures say.
-        assertEquals(6, listeningWeight(candidate(10.0, 99, suspended = false, scheduled = true)))
+    fun higherStabilityMeansLowerPriority() {
+        assertEquals(5, listeningWeight(candidate(0.0, suspended = false, scheduled = true)))
+        assertEquals(4, listeningWeight(candidate(2.0, suspended = false, scheduled = true)))
+        assertEquals(3, listeningWeight(candidate(4.0, suspended = false, scheduled = true)))
+        assertEquals(2, listeningWeight(candidate(6.0, suspended = false, scheduled = true)))
+        // The floor, however settled: ten days or a hundred are the same rung.
+        assertEquals(1, listeningWeight(candidate(8.0, suspended = false, scheduled = true)))
+        assertEquals(1, listeningWeight(candidate(40.0, suspended = false, scheduled = true)))
     }
 
     /**
-     * RULE: a suspended word keeps the bare floor however bad its figures are.
-     * WHY: the leech rule suspends at two lapses, so a suspended card's lapses and difficulty
-     * are exactly the ones that would win every draw — but the box has already decided that
-     * word is being pushed outward. It stays worth hearing; it is not what the hour is for.
+     * RULE: a suspended word keeps the bare floor however low its stability.
+     * WHY: the leech rule suspends at two lapses, so a suspended card is exactly the sort the
+     * ladder would otherwise put at the top — but the box has already decided that word is
+     * being pushed outward. It stays worth hearing; it is not what the hour is for.
      */
     @Test
     fun aSuspendedWordEarnsNoBoost() {
-        assertEquals(1, listeningWeight(candidate(10.0, 5, suspended = true, scheduled = true)))
+        assertEquals(1, listeningWeight(candidate(0.0, suspended = true, scheduled = true)))
     }
 
     /**
-     * RULE: an unscheduled word keeps the bare floor.
-     * WHY: it has no history to weigh, and its 0.0 difficulty is an absence rather than a
-     * measurement — read as a figure it would say "very easy" about a word never once met.
-     * With the whole catalog in the pool it still reaches the ear, by sheer number rather
-     * than by a boost.
+     * RULE: an unscheduled word takes the fixed new weight, not the floor.
+     * WHY: it has no stability to ladder on — there is no history to read — so its value is
+     * set, a focus tier on its own: a first hearing is the mode's cheapest breadth, and new
+     * words are met alongside the ones that are not sticking.
      */
     @Test
-    fun anUnseenWordKeepsTheFloor() {
-        assertEquals(1, listeningWeight(candidate(0.0, 0, suspended = false, scheduled = false)))
+    fun anUnseenWordTakesTheNewWeight() {
+        assertEquals(LISTENING_NEW_WEIGHT, listeningWeight(candidate(0.0, suspended = false, scheduled = false)))
+    }
+
+    /**
+     * RULE: new and just-learned words lead, settling words rotate in the middle, and
+     * consolidated ones are pushed to the end.
+     * WHY: that is the hour's whole shape — the words that have not landed are what listening
+     * is for, and the ones that have are background.
+     */
+    @Test
+    fun unsettledAndNewLeadOverConsolidated() {
+        val fresh = listeningWeight(candidate(0.0, suspended = false, scheduled = true))
+        val new = listeningWeight(candidate(0.0, suspended = false, scheduled = false))
+        val settling = listeningWeight(candidate(4.0, suspended = false, scheduled = true))
+        val consolidated = listeningWeight(candidate(20.0, suspended = false, scheduled = true))
+        assertTrue(fresh >= new && new >= settling && settling > consolidated)
     }
 
     /**
@@ -75,10 +93,10 @@ class ListeningWeightTests {
      */
     @Test
     fun theRecallGapIsLongForAHeldWordAndShortForAnUnseenOne() {
-        assertEquals(RECALL_GAP_HELD_MS, recallGap(candidate(5.0, 0, suspended = false, scheduled = true)))
-        assertEquals(RECALL_GAP_FRESH_MS, recallGap(candidate(0.0, 0, suspended = false, scheduled = false)))
+        assertEquals(RECALL_GAP_HELD_MS, recallGap(candidate(5.0, suspended = false, scheduled = true)))
+        assertEquals(RECALL_GAP_FRESH_MS, recallGap(candidate(0.0, suspended = false, scheduled = false)))
         // Suspended is still a word the learner has answered — the gap follows the history,
         // not the box's decision about it.
-        assertEquals(RECALL_GAP_HELD_MS, recallGap(candidate(9.0, 3, suspended = true, scheduled = true)))
+        assertEquals(RECALL_GAP_HELD_MS, recallGap(candidate(9.0, suspended = true, scheduled = true)))
     }
 }

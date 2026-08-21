@@ -21,7 +21,7 @@ import net.spross.kern.model.Realization
 class ListeningRunTests {
 
     private fun candidates(n: Int): List<ListeningCandidate> = (1..n).map {
-        ListeningCandidate(Box.word(it), difficulty = 5.0, lapses = 0, suspended = false, scheduled = true)
+        ListeningCandidate(Box.word(it), stability = 5.0, suspended = false, scheduled = true)
     }
 
     private fun run(pool: List<ListeningCandidate>, rng: Random): ListeningRunState =
@@ -116,7 +116,7 @@ class ListeningRunTests {
     fun aTurnCarriesEveryBeatAndBothForms() {
         val bread = ListeningCandidate(
             card = gendered("bread", source = "das Brot", target = "mkate", article = "das"),
-            difficulty = 5.0, lapses = 0, suspended = false, scheduled = true,
+            stability = 5.0, suspended = false, scheduled = true,
         )
         val turn = assertNotNull(run(listOf(bread), Random(1)).turn)
 

@@ -77,15 +77,14 @@ object ListeningPool {
             val scheduling = box.scheduling[card.id] ?: return@mapNotNull null
             ListeningCandidate(
                 card = card,
-                difficulty = scheduling.memory?.difficulty ?: 0.0,
-                lapses = scheduling.lapses,
+                stability = scheduling.memory?.stability ?: 0.0,
                 suspended = scheduling.suspended,
                 scheduled = true,
             )
         }
         val unseen = sayable
             .filter { box.scheduling[it.id] == null && Growth.isIntroducible(box, it) }
-            .map { ListeningCandidate(it, difficulty = 0.0, lapses = 0, suspended = false, scheduled = false) }
+            .map { ListeningCandidate(it, stability = 0.0, suspended = false, scheduled = false) }
         return Report(candidates = scheduled + unseen)
     }
 

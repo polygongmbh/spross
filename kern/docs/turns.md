@@ -77,12 +77,15 @@ Engine contract: `../README.md`.
   `Growth.isIntroducible`: a phrase whose components have not landed is not ready to be heard
   either. Hearing one does not introduce it: introduction is the first answer, and listening
   answers nothing.
-  `listeningWeight` is `dictationWeight` minus its spelling term — a floor of 1 no word ever
-  loses, plus capped lapses and above-midpoint difficulty. A **suspended or unscheduled**
-  card keeps the bare floor: the box has already decided the leech is being pushed outward,
-  and an unscheduled card's 0.0 difficulty is an absence, not a measurement — with the whole
-  catalog on the draw, new words reach the ear by sheer number rather than by a boost. The
-  hour leans on what is not sticking; everything else is mixed in.
+  `listeningWeight` is one ladder in STABILITY — the higher a word's stability, the lower
+  its place on the draw. A word at zero stability (just learned, or just lapsed back down)
+  leads; every `LISTENING_STABILITY_STEP_DAYS` costs a point, so the not-quite-settled
+  rotate in the middle and the consolidated ones are pushed to the bare floor — still worth
+  hearing, never what the hour is about. A **suspended** card keeps that floor however low
+  its figure: the box has already decided the leech is being pushed outward. An
+  **unscheduled** card takes the fixed `LISTENING_NEW_WEIGHT` — it has no stability to read,
+  and a first hearing is the mode's cheapest breadth; with the whole catalog on the draw,
+  new words reach the ear by number as well as by weight.
   `ListeningRun` is the pure machine (`Start`/`Advance`/`Skip`/`Repeat`/`TogglePause`/`Close`,
   one injected `Random`), and it holds **no `BoxState` at all** — that is what makes "listening
   books nothing" structural rather than promised. Its `ListeningEffect` says `Play`/`Stop`

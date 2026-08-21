@@ -173,15 +173,17 @@ auto-advance beats these share with it, are `design.md`'s.
   no streak, so a run costs the box nothing and can be closed at any moment. It has no end
   screen for the drills' reason — a run the learner ends when they like has nothing to
   celebrate — and no way of ending by itself: it laps for as long as it is left playing.
-- **What it draws from is the box, weighted by what is not sticking** — how often a word has
-  been forgotten and how hard FSRS finds it — and never by what is due, since a schedule is
-  about when to ASK and nothing is being asked. Suspended words are in the pool: the leech
-  rule takes a word out of the rotation after two lapses, which makes the worst-stuck words
-  exactly the ones a due-driven surface would never reach — but they draw at the floor, so
-  they turn up without taking the hour over. The pool is your WHOLE sayable vocabulary, new
-  words included, so when you hold few words the run streams the new ones — hearing a word
-  you have never answered, target-meaning-target, is the mode's cheapest breadth — and a word
-  just heard stays away for a while, so a run never laps the same handful. Hearing one does
+- **What it draws from is the box, weighted by how settled a word is** — stability is the
+  whole ladder: just-learned and just-lapsed words lead, the not-quite-settled rotate in the
+  middle, and consolidated ones are pushed to the end — and never by what is due, since a
+  schedule is about when to ASK and nothing is being asked. Suspended words are in the pool:
+  the leech rule takes a word out of the rotation after two lapses, which makes the
+  worst-stuck words exactly the ones a due-driven surface would never reach — but they draw
+  at the floor, so they turn up without taking the hour over. The pool is your WHOLE sayable
+  vocabulary, new words included, so when you hold few words the run streams the new ones —
+  hearing a word you have never answered, target-meaning-target, is the mode's cheapest
+  breadth — and a word just heard stays away for a while, so a run never laps the same
+  handful. Hearing one does
   NOT introduce it: introduction is the first ANSWER, and this
   surface has none. The rule and its numbers are `../kern/docs/turns.md`.
 - **It plays with the screen locked.** That is the point of it — the mode is for the hours

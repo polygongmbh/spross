@@ -66,7 +66,8 @@ class ListeningPoolTests {
         val leech = spoken(state).candidates.single { it.card.id == "w03" }
 
         assertTrue(leech.suspended)
-        assertEquals(2, leech.lapses)
+        // The pool reads the schedule's stability, the one figure the draw ladders on.
+        assertEquals(10.0, leech.stability)
     }
 
     /**

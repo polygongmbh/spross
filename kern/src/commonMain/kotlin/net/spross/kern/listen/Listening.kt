@@ -118,54 +118,57 @@ fun listeningGainDb(msRemaining: Long, totalMs: Long): Double {
  */
 fun listeningExpired(msRemaining: Long): Boolean = msRemaining <= 0
 
-/** Ceilings on what makes a word worth hearing twice — see [listeningWeight]. */
-private const val LAPSE_CAP = 3
-private const val DIFFICULTY_CAP = 2
-
-/** FSRS difficulty runs 1–10; below its middle a word is not what the hour is for. */
-private const val DIFFICULTY_MIDPOINT = 5.0
-private const val DIFFICULTY_PER_STEP = 2.0
-
 /**
- * A word the playlist may say, plus the four things about it the draw and the beats weigh
- * that a [Card] cannot carry.
+ * A word the playlist may say, plus the two things about it the draw weighs that a [Card]
+ * cannot carry.
  *
- * [difficulty] is FSRS's own 1–10 and [lapses] the times this learner has forgotten the word,
- * both read from `CardScheduling` and never re-derived. [suspended] and [scheduled] are the
- * two facts that decide whether those figures may be believed at all: an unscheduled card has
- * no history, and a suspended one's history has already been acted on (see [listeningWeight]).
+ * [stability] is FSRS's own figure in days, read from `CardScheduling` and never re-derived —
+ * the whole draw ladder is a function of it. [suspended] and [scheduled] are the two facts
+ * that decide whether that figure may be believed at all: an unscheduled card has no history,
+ * and a suspended one's history has already been acted on (see [listeningWeight]).
  */
 data class ListeningCandidate(
     val card: Card,
-    val difficulty: Double,
-    val lapses: Int,
+    /** FSRS stability in days — the whole draw ladder reads off this one figure. */
+    val stability: Double,
     val suspended: Boolean,
     /** Whether the card carries a schedule — i.e. whether the learner has ever answered it. */
     val scheduled: Boolean,
 )
 
 /**
- * How much of the listening draw a candidate is worth. One is the floor every word keeps —
- * nothing is ever excluded from a playlist, only out-drawn — and two things add to it: the
- * LAPSES, and FSRS's DIFFICULTY above the midpoint. Both are capped, so a single leech cannot
- * take the hour over.
+ * What a never-answered word is worth on the draw, set rather than read — it has no stability
+ * to ladder on. A focus tier: a first hearing is the mode's cheapest breadth, and new words
+ * are met alongside the ones that are not sticking.
+ */
+const val LISTENING_NEW_WEIGHT: Int = 4
+
+/** The top of the stability ladder — a word at about zero stability (just learned, just lapsed). */
+const val LISTENING_MAX_STABILITY_WEIGHT: Int = 5
+
+/** Days of stability a weight point costs — the step of the ladder. */
+const val LISTENING_STABILITY_STEP_DAYS: Double = 2.0
+
+/**
+ * How much of the listening draw a candidate is worth, as one ladder in STABILITY — the
+ * higher a word's stability, the lower its place on the draw.
  *
- * A SUSPENDED or UNSCHEDULED word keeps the bare floor and earns no boost. The leech rule
- * suspends at two lapses, so a suspended card's figures are exactly the ones that would win
- * every draw — but the box has already decided that word is being pushed outward, and an hour
- * spent on the handful of words the learner gave up on is not what listening is for. It is
- * still worth hearing; it is just not what the hour is about. An unscheduled word has no
- * history to weigh at all — its 0.0 difficulty is an absence, not a measurement — and with
- * the whole catalog in the pool it reaches the ear by sheer number rather than by a boost.
+ * A word at zero stability (just learned, or just lapsed back down) is the whole point of
+ * the hour and leads; every [LISTENING_STABILITY_STEP_DAYS] of stability costs a point, so
+ * the not-quite-settled rotate in the middle and the consolidated ones are pushed to the
+ * end — at the bare floor, still worth hearing, never what the hour is about.
+ *
+ * An UNSCHEDULED word has no stability to read, so it takes the fixed [LISTENING_NEW_WEIGHT]
+ * instead: a first hearing is the mode's cheapest breadth, and a new word is a focus tier on
+ * its own. A SUSPENDED word keeps the bare floor whatever its figure — the box has already
+ * decided that leech is being pushed outward, and an hour spent on it is not what listening
+ * is for.
  */
 fun listeningWeight(candidate: ListeningCandidate): Int {
-    if (candidate.suspended || !candidate.scheduled) return 1
-    val forgotten = minOf(LAPSE_CAP, maxOf(0, candidate.lapses))
-    val hard = minOf(
-        DIFFICULTY_CAP,
-        ((candidate.difficulty - DIFFICULTY_MIDPOINT) / DIFFICULTY_PER_STEP).toInt().coerceAtLeast(0),
-    )
-    return 1 + forgotten + hard
+    if (candidate.suspended) return 1
+    if (!candidate.scheduled) return LISTENING_NEW_WEIGHT
+    return (LISTENING_MAX_STABILITY_WEIGHT - (candidate.stability / LISTENING_STABILITY_STEP_DAYS).toInt())
+        .coerceIn(1, LISTENING_MAX_STABILITY_WEIGHT)
 }
 
 /**
