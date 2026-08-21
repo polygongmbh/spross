@@ -50,9 +50,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   New entries always land under the top `## Unreleased` heading. At bump time, rename `## Unreleased` to `## <version> — <date>` and open a fresh empty `## Unreleased` above it.
   Its head carries every heading you need — read that, never the whole file.
 - Other parties may change files or commit while you work, do not mind unless their edits conflict with yours.
-  Commit with `git commit --only -F - -- <paths>`: `git add` + `git commit` carries every other
-  staged path too, and `--only` silently skips untracked ones — `git add` those first, confirm
-  with `git show --stat`, and check before touching history.
+  Commit with `git commit --only -- <paths>`: `git add` + `git commit` carries every other staged
+  path, `--only` skips untracked ones (`git add` those first), and check before touching history.
   A file you share with in-flight work gets only your hunks staged, never theirs carried along.
 
 ## Code standards
