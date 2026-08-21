@@ -226,7 +226,7 @@ No config flag, no user-facing direction anywhere.
 
 One schedule per card ⇒ one review touches one card:
 
-| Quantity | Default (all in cards) |
+| Quantity | Default |
 |---|---|
 | `sessionCap` | 25 |
 | `growthReserve` | ≤ 5 |
@@ -234,6 +234,10 @@ One schedule per card ⇒ one review touches one card:
 | `SessionComposer.NEW_CARDS_PER_ROUND` (first sights one round may offer — §6) | 7 |
 | `SessionComposer.SHORT_ROUND_CARDS` (the short round — §6) | 7 |
 | `TodayReport.MIN_ANSWERS_FOR_RECALL` / `RECALL_STRAIN_MARGIN` (§6) | 10 / 0.2 |
+| `LISTENING_POOL_FLOOR` (scheduled words before listening stops topping up — §6) | 12 |
+| `RECENCY_WINDOW` (words a listening run holds out of its next draw — §6) | 8 |
+| `RECALL_GAP_HELD_MS` / `RECALL_GAP_FRESH_MS` (target → meaning, held / unseen — §6) | 2500 / 900 ms |
+| `ECHO_GAP_MS` / `TURN_GAP_MS` (meaning → echo, echo → next turn — §6) | 1200 / 2500 ms |
 
 Every user-facing count (due ring, "x neu", active, widget) and `DayStats` field is in
 cards; `DayStats.reviews` = answer events.
@@ -611,6 +615,37 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   keeps that order total.
   The query never writes — drills are stateless and book no reviews (transcription is not
   recall), so nothing here touches FSRS.
+- **Listening is a playlist over the learner's own words** (`net.spross.kern.listen`).
+  Each turn says the target word, waits, says its meaning in the SOURCE language, then says
+  the target again — so it reaches the hours a language is actually available in, the walk and
+  the washing-up, where every other way in asks for a typed answer or a tap.
+  `ListeningPool.report(catalog, box, source, target, hasTargetVoice, hasSourceVoice)` is the
+  one gate, shaped like `LetterDrillAvailability.report` and disciplined the same way: the only
+  platform facts are the two `hasVoice` booleans, one per side, and kern caches nothing.
+  **Both halves must be sayable** — a turn that plays a word and then silence teaches nothing,
+  so the shared `catalog.audible` predicate is applied to the target form AND the source form.
+  **Suspended cards stay in the pool.** The leech rule auto-suspends at two lapses (§5), so the
+  words that stick worst are exactly the ones `Inventory.active` drops; suspension takes a word
+  out of the box's queue and never said stop meeting the word.
+  Unseen words top a thin pool up to `LISTENING_POOL_FLOOR`, in seed order and through
+  `Growth.isIntroducible` — the `SessionComposer.fillOut` move, so a learner three words in
+  does not hear those three words for the whole walk. Hearing one does not introduce it:
+  introduction is the first answer, and listening answers nothing.
+  `listeningWeight` is `dictationWeight` minus its spelling term — a floor of 1 no word ever
+  loses, plus capped lapses and above-midpoint difficulty. A **suspended or unscheduled** card
+  keeps the bare floor: the box has already decided the leech is being pushed outward, and an
+  unscheduled card's 0.0 difficulty is an absence, not a measurement.
+  `ListeningRun` is the pure machine (`Start`/`Advance`/`Skip`/`Repeat`/`TogglePause`/`Close`,
+  one injected `Random`), and it holds **no `BoxState` at all** — that is what makes "listening
+  books nothing" structural rather than promised. Its `ListeningEffect` says `Play`/`Stop`
+  because `Repeat` leaves the state identical and must still make the sound fire.
+  Repetition over time is a **recency ring**: the last `RECENCY_WINDOW` card ids are held out
+  of the draw, at most `pool − 1` of them, so a pool smaller than the window laps instead of
+  running dry and no word is ever said twice in a row.
+  `ListeningTurn` carries both forms, the article, and all three beats
+  (`RECALL_GAP_HELD_MS`/`RECALL_GAP_FRESH_MS`, `ECHO_GAP_MS`, `TURN_GAP_MS`), so neither
+  platform decides any of it — the recall gap is the one beat that varies, long for a word the
+  learner has answered before and short for one with nothing yet to recall.
 - **Exposure**: one entry per card by construction; display surfaces always
   render the TARGET realization.
 - **AnswerNormalizer contract** (produce only — recognition is button self-grade;

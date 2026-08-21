@@ -6,6 +6,7 @@ import net.spross.kern.catalog.Alphabet
 import net.spross.kern.catalog.AlphabetEntry
 import net.spross.kern.catalog.AlphabetKind
 import net.spross.kern.catalog.Catalog
+import net.spross.kern.catalog.audible
 import net.spross.kern.model.Language
 
 /**
@@ -182,12 +183,4 @@ object LetterDrillAvailability {
         }
         return words().isNotEmpty()
     }
-
-    /** Whether a form can be heard at all: a recording that speaks THIS very form, or a voice. */
-    private fun audible(
-        form: String,
-        language: Language,
-        catalog: Catalog,
-        hasVoice: Boolean,
-    ): Boolean = catalog.pronunciation(language, form).recordingPath != null || hasVoice
 }
