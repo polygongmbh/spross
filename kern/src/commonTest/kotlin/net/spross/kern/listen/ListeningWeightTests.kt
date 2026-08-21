@@ -2,6 +2,7 @@ package net.spross.kern.listen
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 
 /** What a listening draw is willing to say twice, and what it holds to the floor. */
@@ -55,13 +56,28 @@ class ListeningWeightTests {
     }
 
     /**
-     * RULE: an unscheduled word keeps the bare floor too.
+     * RULE: an unscheduled word earns the fresh weight, not the floor.
      * WHY: it has no history to weigh, and its 0.0 difficulty is an absence rather than a
-     * measurement — read as a figure it would say "very easy" about a word never once met.
+     * measurement — so its value is set, high enough to be met before the familiar words are
+     * repeated: a new word said target-meaning-target is the mode's cheapest breadth.
      */
     @Test
-    fun anUnseenWordEarnsNoBoost() {
-        assertEquals(1, listeningWeight(candidate(0.0, 0, suspended = false, scheduled = false)))
+    fun anUnseenWordEarnsTheFreshWeight() {
+        assertEquals(LISTENING_FRESH_WEIGHT, listeningWeight(candidate(0.0, 0, suspended = false, scheduled = false)))
+    }
+
+    /**
+     * RULE: the draw leans on what is not sticking, then on new words, then on familiar ones.
+     * WHY: the hour is for the words that are not landing — and for the ones not met yet,
+     * which the familiar clean ones have long since had.
+     */
+    @Test
+    fun freshSitsBetweenCleanAndStruggling() {
+        val clean = listeningWeight(candidate(3.0, 0, suspended = false, scheduled = true))
+        val fresh = listeningWeight(candidate(0.0, 0, suspended = false, scheduled = false))
+        val leech = listeningWeight(candidate(10.0, 99, suspended = false, scheduled = true))
+        assertTrue(fresh > clean, "a new word must outdraw a familiar one: $fresh vs $clean")
+        assertTrue(fresh < leech, "a new word must stay under a leech: $fresh vs $leech")
     }
 
     /**

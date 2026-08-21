@@ -53,12 +53,13 @@ object ListeningPool {
      * Suspension pushes a word out of the box's own queue; it was never a statement that the
      * learner should stop meeting the word.
      *
-     * Unseen words top the pool up, in seed order, only while the scheduled pool sits under
-     * [LISTENING_POOL_FLOOR] — the "fill a thin round out" move `SessionComposer.fillOut`
-     * makes, and what answers the ask for new words once what is in learning runs dry.
-     * `Growth.isIntroducible` decides which may come: a phrase whose components have not
-     * landed is not ready to be heard either. Hearing one does NOT introduce it — introduction
-     * is the first answer, and listening answers nothing.
+     * Unseen words always get a seat, in seed order: a settled pool carries
+     * [LISTENING_POOL_FRESH] of them, and a thin one is filled out to [LISTENING_POOL_FLOOR]
+     * — the "fill a short round out" move `SessionComposer.fillOut` makes. So new words are
+     * met by ear from early on, which is the mode's cheapest breadth. `Growth.isIntroducible`
+     * decides which may come: a phrase whose components have not landed is not ready to be
+     * heard either. Hearing one does NOT introduce it — introduction is the first answer,
+     * and listening answers nothing.
      */
     fun report(
         catalog: Catalog,
@@ -82,16 +83,12 @@ object ListeningPool {
                 scheduled = true,
             )
         }
-        val shortfall = LISTENING_POOL_FLOOR - scheduled.size
-        val unseen = if (shortfall <= 0) {
-            emptyList()
-        } else {
-            sayable
-                .filter { box.scheduling[it.id] == null && Growth.isIntroducible(box, it) }
-                .take(shortfall)
-                .map { ListeningCandidate(it, difficulty = 0.0, lapses = 0, suspended = false, scheduled = false) }
-        }
-        return Report(candidates = scheduled + unseen)
+        val freshCount = maxOf(LISTENING_POOL_FRESH, LISTENING_POOL_FLOOR - scheduled.size)
+        val fresh = sayable
+            .filter { box.scheduling[it.id] == null && Growth.isIntroducible(box, it) }
+            .take(freshCount)
+            .map { ListeningCandidate(it, difficulty = 0.0, lapses = 0, suspended = false, scheduled = false) }
+        return Report(candidates = scheduled + fresh)
     }
 
     /** Both halves of the turn heard, or the card is not a candidate. */

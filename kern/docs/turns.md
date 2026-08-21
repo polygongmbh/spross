@@ -70,14 +70,17 @@ Engine contract: `../README.md`.
   **Suspended cards stay in the pool.** The leech rule auto-suspends at two lapses (`../README.md` §5), so the
   words that stick worst are exactly the ones `Inventory.active` drops; suspension takes a word
   out of the box's queue and never said stop meeting the word.
-  Unseen words top a thin pool up to `LISTENING_POOL_FLOOR`, in seed order and through
-  `Growth.isIntroducible` — the `SessionComposer.fillOut` move, so a learner three words in
+  Unseen words always get a seat, in seed order and through `Growth.isIntroducible`: a
+  settled pool carries `LISTENING_POOL_FRESH` of them, and a thin one is filled out to
+  `LISTENING_POOL_FLOOR` — the `SessionComposer.fillOut` move, so a learner three words in
   does not hear those three words for the whole walk. Hearing one does not introduce it:
   introduction is the first answer, and listening answers nothing.
   `listeningWeight` is `dictationWeight` minus its spelling term — a floor of 1 no word ever
-  loses, plus capped lapses and above-midpoint difficulty. A **suspended or unscheduled** card
-  keeps the bare floor: the box has already decided the leech is being pushed outward, and an
-  unscheduled card's 0.0 difficulty is an absence, not a measurement.
+  loses, plus capped lapses and above-midpoint difficulty. A **suspended** card keeps the
+  bare floor: the box has already decided the leech is being pushed outward. An **unscheduled**
+  card takes the flat `LISTENING_FRESH_WEIGHT` instead — its 0.0 difficulty is an absence,
+  not a measurement — so a new word outdraws the familiar ones and stays under the leeches:
+  the hour leans on what is not sticking, then on what has not been met.
   `ListeningRun` is the pure machine (`Start`/`Advance`/`Skip`/`Repeat`/`TogglePause`/`Close`,
   one injected `Random`), and it holds **no `BoxState` at all** — that is what makes "listening
   books nothing" structural rather than promised. Its `ListeningEffect` says `Play`/`Stop`

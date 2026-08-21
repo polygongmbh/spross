@@ -178,8 +178,10 @@ auto-advance beats these share with it, are `design.md`'s.
   about when to ASK and nothing is being asked. Suspended words are in the pool: the leech
   rule takes a word out of the rotation after two lapses, which makes the worst-stuck words
   exactly the ones a due-driven surface would never reach — but they draw at the floor, so
-  they turn up without taking the hour over. Unseen words fill a thin pool out, in seed
-  order, and hearing one does NOT introduce it: introduction is the first ANSWER, and this
+  they turn up without taking the hour over. New words carry a flat boost instead — hearing a
+  word you have never answered, target-meaning-target, is the mode's cheapest breadth — and a
+  settled pool keeps a few of them in it, while a thin one is filled out. Hearing one does
+  NOT introduce it: introduction is the first ANSWER, and this
   surface has none. The rule and its numbers are `../kern/docs/turns.md`.
 - **It plays with the screen locked.** That is the point of it — the mode is for the hours
   the phone is in a pocket, and one that stopped at the lock screen would be a mode for

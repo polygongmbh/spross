@@ -112,17 +112,24 @@ class ListeningPoolTests {
     }
 
     /**
-     * RULE: a pool already at the floor takes no unseen words.
-     * WHY: the top-up answers a box with nothing to play, not an appetite for new words —
-     * listening is exposure to what the learner is working on, and an endless drip of unseen
-     * vocabulary would drown it.
+     * RULE: a settled pool still meets a few unseen words.
+     * WHY: without a quota a learner with plenty scheduled would never hear anything new —
+     * listening is exposure, and a new word said target-meaning-target is where that is
+     * cheapest. The fresh presence is small, so the scheduled words still own the hour.
      */
     @Test
-    fun aFullPoolTakesNoUnseenWords() {
+    fun aSettledPoolStillMeetsFreshWords() {
         val report = spoken(box(total = 40, scheduled = LISTENING_POOL_FLOOR + 5))
+        val scheduled = LISTENING_POOL_FLOOR + 5
 
-        assertEquals(LISTENING_POOL_FLOOR + 5, report.candidates.size)
-        assertTrue(report.candidates.all { it.scheduled })
+        assertEquals(scheduled + LISTENING_POOL_FRESH, report.candidates.size)
+        assertEquals(scheduled, report.candidates.count { it.scheduled })
+        assertEquals(LISTENING_POOL_FRESH, report.candidates.count { !it.scheduled })
+        // Seed order: the scheduled words first, then the fresh ones straight after.
+        assertEquals(
+            (1..(scheduled + LISTENING_POOL_FRESH)).map { "w" + it.toString().padStart(2, '0') },
+            ids(report),
+        )
     }
 
     /**

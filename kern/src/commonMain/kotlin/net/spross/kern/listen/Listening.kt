@@ -119,16 +119,35 @@ fun listeningGainDb(msRemaining: Long, totalMs: Long): Double {
 fun listeningExpired(msRemaining: Long): Boolean = msRemaining <= 0
 
 /**
- * Below this many scheduled words the pool is topped up with unseen ones (`ListeningPool`).
+ * The size a THIN pool is filled out to with unseen words (`ListeningPool`); a settled pool
+ * carries [LISTENING_POOL_FRESH] of them regardless of how full it is.
  *
  * It sits above [RECENCY_WINDOW] on purpose: a pool the size of the window has nothing left
- * to draw from once the window is full and has to lap, so a topped-up pool must clear it.
+ * to draw from once the window is full and has to lap, so a filled-out pool must clear it.
  */
 const val LISTENING_POOL_FLOOR: Int = 12
+
+/**
+ * How many unseen words a settled pool carries alongside the scheduled ones, in seed order
+ * and through `Growth.isIntroducible` — the minimum fresh presence of any pool.
+ *
+ * Hearing a new word is the mode's cheapest breadth: it says the word, its meaning, then the
+ * word again, so a first meeting lands a spoken pair, not a spelling. Without a quota a pool
+ * of settled words would never meet anything new — the fill-out above only fires while the
+ * scheduled pool is thin.
+ */
+const val LISTENING_POOL_FRESH: Int = 4
 
 /** Ceilings on what makes a word worth hearing twice — see [listeningWeight]. */
 private const val LAPSE_CAP = 3
 private const val DIFFICULTY_CAP = 2
+
+/**
+ * What a never-answered word is worth on the draw, set rather than read — it has no history
+ * to weigh. High enough to outdraw the familiar clean words, low enough to sit under the
+ * leeches, so an hour still leans on what is not sticking.
+ */
+const val LISTENING_FRESH_WEIGHT: Int = 2
 
 /** FSRS difficulty runs 1–10; below its middle a word is not what the hour is for. */
 private const val DIFFICULTY_MIDPOINT = 5.0
@@ -158,15 +177,20 @@ data class ListeningCandidate(
  * LAPSES, and FSRS's DIFFICULTY above the midpoint. Both are capped, so a single leech cannot
  * take the hour over.
  *
- * A SUSPENDED or UNSCHEDULED word keeps the bare floor and earns no boost. The leech rule
- * suspends at two lapses, so a suspended card's figures are exactly the ones that would win
- * every draw — but the box has already decided that word is being pushed outward, and an hour
- * spent on the handful of words the learner gave up on is not what listening is for. It is
- * still worth hearing; it is just not what the hour is about. An unscheduled word has no
- * history to weigh at all, and 0.0 difficulty would otherwise read as "very easy".
+ * A SUSPENDED word keeps the bare floor and earns no boost. The leech rule suspends at two
+ * lapses, so a suspended card's figures are exactly the ones that would win every draw — but
+ * the box has already decided that word is being pushed outward, and an hour spent on the
+ * handful of words the learner gave up on is not what listening is for. It is still worth
+ * hearing; it is just not what the hour is about.
+ *
+ * An UNSCHEDULED word has no history to weigh — its 0.0 difficulty is an absence, not a
+ * measurement — so it takes the flat [LISTENING_FRESH_WEIGHT] instead of the floor: a new
+ * word is exposure the mode exists for, and it should be met before the familiar ones are
+ * repeated.
  */
 fun listeningWeight(candidate: ListeningCandidate): Int {
-    if (candidate.suspended || !candidate.scheduled) return 1
+    if (candidate.suspended) return 1
+    if (!candidate.scheduled) return LISTENING_FRESH_WEIGHT
     val forgotten = minOf(LAPSE_CAP, maxOf(0, candidate.lapses))
     val hard = minOf(
         DIFFICULTY_CAP,
