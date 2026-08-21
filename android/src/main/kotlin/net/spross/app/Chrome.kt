@@ -344,6 +344,10 @@ class Chrome(
     val listenResume: String,
     val listenSkip: String,
     val listenRepeat: String,
+    /** The bedtime control, off — and its screen-reader label in both states. */
+    val listenTimer: String,
+    /** The bedtime control while it runs; minutes, never m:ss — a ticking clock is watched. */
+    val listenMinutesLeft: String,   // %d
 
     // ── The box is still empty ──────────────────────────────────────────────────
     val emptyBoxTitle: String,

@@ -214,6 +214,8 @@ MAPPING = {
     'listenSkip': 'listen.skip',
     'listenStart': 'listen.start',
     'listenSubtitle': 'listen.subtitle',
+    'listenMinutesLeft': ('listen.minutesLeft %lld', 'other'),
+    'listenTimer': 'listen.timer',
     'listenTitle': 'listen.title',
     'sessionShortRound': 'heute.session.shortRound',
     'sessionStart': 'heute.session.start',

@@ -3175,6 +3175,46 @@
         }
       }
     },
+    "listen.minutesLeft %lld" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Min."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Min."
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld min"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld min"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "listen.pause" : {
       "localizations" : {
         "de" : {
@@ -3260,13 +3300,29 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Wörter, die noch wackeln — freihändig"
+            "value" : "Festigt wacklige Wörter zuerst — auf Wunsch im Hintergrund und mit Einschlaf-Timer"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The words that still wobble — hands free"
+            "value" : "Reinforces shaky words first — optionally in the background and with a sleep timer"
+          }
+        }
+      }
+    },
+    "listen.timer" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timer"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timer"
           }
         }
       }
@@ -3276,13 +3332,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hören"
+            "value" : "Wörter hören"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Listen"
+            "value" : "Hear your words"
           }
         }
       }
