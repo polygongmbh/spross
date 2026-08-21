@@ -10,15 +10,7 @@ struct BoxSettingsSection: View {
 
     @State private var confirmingReset = false
     @State private var creditsPresented = false
-    /// What is typed, spaces and all — the store is what trims, so a space before a
-    /// second name does not vanish under the finger that typed it.
-    @State private var nameDraft: String
     @Environment(\.locale) private var locale
-
-    init(model: AppModel) {
-        self.model = model
-        _nameDraft = State(initialValue: model.learnerName ?? "")
-    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
@@ -29,7 +21,7 @@ struct BoxSettingsSection: View {
             VStack(alignment: .leading, spacing: DL.Space.l) {
                 profileRow
                 Divider().overlay(Color.dlSeparator)
-                nameRow
+                LearnerNameRow(model: model)
                 Divider().overlay(Color.dlSeparator)
                 audioRow
                 Divider().overlay(Color.dlSeparator)
@@ -156,22 +148,6 @@ struct BoxSettingsSection: View {
             .accessibilityLabel(Text(title))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-    }
-
-    /// What the greeting calls the learner. Free text, and empty is an answer of its
-    /// own: clearing the field takes the name away again, and the greeting has its own
-    /// wording for a learner it cannot name.
-    private var nameRow: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
-            Text("settings.name.title")
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlTextPrimary)
-            DLNameField(placeholder: "settings.name.placeholder", text: $nameDraft)
-                .onChange(of: nameDraft) { _, typed in model.setLearnerName(typed) }
-            Text("settings.name.hint")
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
-        }
     }
 
     /// The same switch the session's top bar carries, and the place the
