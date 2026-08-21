@@ -35,9 +35,21 @@ screenshot evidence that no audio path was taken. The verdict chimes are NOT
 covered — deliberately, on both platforms — but they only fire on an answer, so
 a plain `--shot` run is silent either way.
 
-DEBUG launch-arg hooks (read in `AppModel.start()`):
-`-uitest-source de -uitest-target sw` (skip onboarding with that profile),
-`-uitest-screen box` (push Box screen), `-uitest-autostart 1`.
+## Drive with idb; reach for a flag only where it cannot
+
+idb drives a finger. Anything a thumb could do — typing, tapping, scrolling — goes
+through idb, against an element read out of `describe-all`. The `-uitest-*` flags are
+for the two things no finger reaches:
+
+- **seeding state** the UI cannot author — `-uitest-source de -uitest-target sw`
+  (skip onboarding with that profile), `-uitest-streak N`, `-uitest-level N`,
+  `-uitest-misses N`, `-uitest-record 1`, and the Watch's `-uitest-snapshot`;
+- **instrumentation** — `-uitest-sound 1` and `-uitest-pronounce <form>` print WHICH
+  branch played, which no screenshot shows.
+
+`-uitest-screen box`, `-uitest-autostart 1`, `-uitest-reveal 1`, `-uitest-close 1` and
+the rest are navigation: idb reaches them all, and the flag only saves taps. Prefer the
+flag on a long path (Box settings is ~20 flick-swipes), idb on a short one.
 
 Screenshots: `xcrun simctl io booted screenshot /tmp/x.png` (1206x2622 px = 402x874 pt on iPhone 17 Pro; divide px by 3 for tap points).
 
@@ -65,9 +77,10 @@ guessed off a screenshot, and asserts on a value (`Aussprache vorlesen` = `an`/`
 instead of on pixels. A tap costs ~0.2 s, `ui text` ~0.2 s.
 
 `ui text` is how a typed answer gets in — the sim takes no host keystrokes without an
-Accessibility grant. It also beats `-uitest-input`, which prefills BEFORE the prompt
-is known: read the prompt out of `describe-all`, then type the answer that fits it.
-That is what makes an unseeded drill RNG a non-problem for typed answers.
+Accessibility grant. Read the prompt out of `describe-all`, then type the answer that
+fits it: that ordering is why an unseeded drill RNG is no problem for a typed answer,
+and why the old `-uitest-input`/`-uitest-submit` pair, which had to prefill before the
+prompt was known, is gone.
 
 Gotcha: fb-idb breaks on python 3.14 (`asyncio.get_event_loop`) — use python@3.13.
 

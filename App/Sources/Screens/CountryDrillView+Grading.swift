@@ -127,8 +127,6 @@ extension CountryDrillView {
 
     func uitestStart() {
         let defaults = UserDefaults.standard
-        if let prefill = UITestAnswer.prefill { input = prefill }
-        UITestAnswer.submitAfterBeat { submit() }
         // `-uitest-streak N`: a run mid-streak, which a screenshot run has no
         // thumb to reach.
         let preset = defaults.integer(forKey: "uitest-streak")

@@ -438,12 +438,6 @@ One line per item, with a file or context pointer, filed under the section it be
   Narrower than it was: `idb ui text` types AFTER the prompt has been read back out of
   `idb ui describe-all`, so AIMING an answer needs no seed. What is still unreachable is
   pinning WHICH task gets drawn — a screenshot of one particular verdict or rung.
-- `-uitest-input`/`-uitest-submit` are now the only `-uitest-*` pair idb replaces outright
-  (`App/Sources/Model/UITestAnswer.swift`, read by three screens): `ui text` types the answer
-  the prompt actually asked for, which the prefill cannot. Everything else either SEEDS state
-  no tapping reaches (a language pair, a preset streak or rung, a trainer variant, the watch
-  fixture) or saves enough taps to keep paying for itself. Decide that one pair, then update
-  `README.md` § run-sim.
 - Read-aloud is stored differently on the two phones: iOS keeps the three-state `readAloud`
   (`App/Sources/Audio/AudioSession.swift`), Android is still on the boolean iOS calls its
   LEGACY key, `pronunciationMuted` (`android/.../audio/Pronouncer.kt`). So Android has no

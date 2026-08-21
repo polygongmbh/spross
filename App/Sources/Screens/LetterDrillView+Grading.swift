@@ -122,8 +122,6 @@ extension LetterDrillView {
 
     func uitestStart() {
         let defaults = UserDefaults.standard
-        if let prefill = UITestAnswer.prefill { input = prefill }
-        if current != nil { UITestAnswer.submitAfterBeat { submit() } }
         // `-uitest-streak N`, the slot drill's figure under the slot drill's
         // name: a run mid-streak, which a screenshot run has no thumb to reach.
         let preset = defaults.integer(forKey: "uitest-streak")

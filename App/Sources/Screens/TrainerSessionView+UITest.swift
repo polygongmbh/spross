@@ -12,7 +12,6 @@ import SprossKern
 /// a thumb could do goes through an intent, exactly as a finger would.
 extension TrainerSessionView {
 
-    /// The shared answer hooks (`UITestAnswer`), plus:
     /// `-uitest-level N` starts the run's FIRST variant at that rung (numbers:
     /// digit count), the only way to photograph a long prompt without playing up to it;
     /// `-uitest-streak N` presets a running streak;
@@ -32,8 +31,6 @@ extension TrainerSessionView {
             run = run.seeded(current: mode.draw(levels: levels, avoiding: nil, rng: drillRandom),
                              levels: levels)
         }
-        if let prefill = UITestAnswer.prefill { input = prefill }
-        UITestAnswer.submitAfterBeat { submit() }
         let preset = defaults.integer(forKey: "uitest-streak")
         if preset > 0 {
             run = run.seeded(done: Int32(preset + 6), streak: Int32(preset),

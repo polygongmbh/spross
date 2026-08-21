@@ -103,7 +103,6 @@ struct SessionView: View, LanguageNaming {
         }
         #if DEBUG
         // UI-test hooks: `-uitest-reveal 1` shows the first card revealed,
-        // the shared answer hooks (`UITestAnswer`),
         // `-uitest-sound 1` plays each feedback sound with a console probe,
         // `-uitest-pronounce <form>` says one form and prints which branch said it.
         .onAppear {
@@ -114,8 +113,6 @@ struct SessionView: View, LanguageNaming {
                 // not be the one that earns Easy.
                 dispatch(TurnIntent.Reveal.shared, at: ensureTurn()?.promptShownAtMillis)
             }
-            if let prefill = UITestAnswer.prefill { input = prefill }
-            UITestAnswer.submitAfterBeat { dispatch(TurnIntent.Submit(text: input)) }
             if defaults.bool(forKey: "uitest-sound") {
                 DLSound.uitestProbe()
             }
