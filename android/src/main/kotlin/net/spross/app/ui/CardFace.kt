@@ -50,7 +50,7 @@ import net.spross.kern.model.Realization
 
 /**
  * The card face and what a card is made of: the surface every prompt wears, the picture's
- * fixed slot beside the words, and the reveal a card grows downward.
+ * fixed slot beside the words, and the reveal.
  *
  * `docs/surfaces.md` § Trainers & the letter drill: a drill card is a review card — same
  * face, same reveal — so both ride [CardFace] and neither may cut its own.
@@ -134,10 +134,18 @@ enum class CardArrangement {
  * A review card: the picture in a slot the CARD places, the words in the middle.
  *
  * Which slot is [CardArrangement]'s, worked out from what the surface is. Either way it is
- * held for the card's whole life and only its contents fade in, which is what lets a reveal
- * grow the card downward without moving a line that was already there.
+ * held for the card's whole life and only its contents fade in, so a picture withheld until
+ * the reveal fades into a space that was already there.
  *
  * A word with no picture drops the slot entirely and centers on itself.
+ *
+ * The card is read in two registers, and they are two different slots here. [content] is the
+ * HEADWORD BLOCK — the one or two words the card is about — and it rides in the picture's
+ * row, mirrored on the trailing edge so it stays centered in the card. [closingLines] and
+ * [note] are the long lines, and they stand under that row across the card's full width.
+ * They are STRINGS rather than a second lambda on purpose: the narrow column is barely wider
+ * than a headword, and the one way to guarantee a plural line or a literal gloss never lands
+ * in it is to give a caller no way to compose one there.
  */
 @Composable
 fun VocabCard(
@@ -154,6 +162,17 @@ fun VocabCard(
     modifier: Modifier = Modifier,
     /** What the surface is; the card works its own layout out from that. */
     arrangement: CardArrangement = CardArrangement.Beside,
+    /**
+     * Grammar and the other forms the ANSWER carries — the plural, the "auch:" family.
+     * They say something ABOUT the answer rather than being it, so they close the card
+     * instead of crowding the column the headwords stand in.
+     */
+    closingLines: List<String> = emptyList(),
+    /**
+     * The literal gloss, the card's last line. A note handed to a nested [CardReveal]
+     * instead would land in the narrow column — this is where it belongs.
+     */
+    note: String? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     val emojiShown = emojiShowing(cue, revealed)
@@ -174,18 +193,26 @@ fun VocabCard(
         // are never clipped mid-reveal — the card simply gets taller under them.
         val grow = Modifier.fillMaxWidth().animateContentSize()
         when (arrangement) {
-            CardArrangement.Beside -> Row(
+            CardArrangement.Beside -> Column(
                 modifier = grow,
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+                verticalArrangement = Arrangement.spacedBy(DlSpace.s),
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                if (hasEmoji) EmojiSlot(emoji.orEmpty(), emojiShown, slot, glyph)
-                // why: nothing mirrors the picture on the trailing edge. A spacer there
-                // keeps the words centered in the CARD rather than in what is left of it,
-                // and it costs them twice the picture's width on the axis a phone has
-                // least of — which is the width that breaks a single headword into a
-                // hyphen. Slightly right of center beats hyphenated.
-                CardWords(Modifier.weight(1f), DlSpace.xs, content)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+                ) {
+                    if (hasEmoji) EmojiSlot(emoji.orEmpty(), emojiShown, slot, glyph)
+                    CardWords(Modifier.weight(1f), DlSpace.xs, content)
+                    // why: the picture's mirror on the trailing edge, so the headwords are
+                    // centered in the CARD rather than in what is left of it — the picture
+                    // then lands roughly parallel to the reveal's divider instead of
+                    // floating above the whole stack. The width this costs is given back
+                    // below, where the long lines take the card whole.
+                    if (hasEmoji) Spacer(Modifier.width(slot))
+                }
+                ClosingLines(closingLines, note)
             }
 
             CardArrangement.Above -> Column(
@@ -195,12 +222,13 @@ fun VocabCard(
             ) {
                 if (hasEmoji) EmojiSlot(emoji.orEmpty(), emojiShown, slot, glyph)
                 CardWords(Modifier.fillMaxWidth(), DlSpace.l, content)
+                ClosingLines(closingLines, note)
             }
         }
     }
 }
 
-/** Everything on a card that is not the picture, as one centered column. */
+/** The headword block, as one centered column — what a picture may stand beside. */
 @Composable
 private fun CardWords(
     modifier: Modifier,
@@ -212,6 +240,24 @@ private fun CardWords(
     horizontalAlignment = Alignment.CenterHorizontally,
     content = content,
 )
+
+/**
+ * What the card says ABOUT its answer rather than as the answer: the grammar, the other
+ * forms, the literal gloss. These are the long lines and they stand beside nothing, so
+ * they take the card's full width.
+ */
+@Composable
+private fun ClosingLines(lines: List<String>, note: String?) {
+    if (lines.isEmpty() && note == null) return
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(DlSpace.xs),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        lines.forEach { CardLine(it) }
+        note?.let { PauseLine(it) }
+    }
+}
 
 /**
  * Whether the picture is on the card YET.
@@ -295,19 +341,6 @@ fun SpokenWord(
 }
 
 /**
- * Target-side reveal: the word in the accent, its article in its own tint, the plural
- * line and the synonym family under it.
- *
- * The accent is the REVEAL's, not the target language's — a card is styled by role, so
- * the same word is neutral ink where it stands as the prompt. Grammar renders here and
- * nowhere else, because it is the target side's alone. The note is the CARD's last line
- * ([CardReveal]), which is why it is not drawn here.
- *
- * [alsoShown] names forms of this word standing ELSEWHERE on the screen — a rotated
- * recognition prompt, say. The citation form is always one of them, since this very
- * composable draws it.
- */
-/**
  * THE headword of a card — the one word the whole card is about, on either side of it.
  *
  * It steps down to fit rather than breaking a word in half. The line bound is what makes
@@ -346,30 +379,46 @@ fun Headword(
 fun Headword(text: String, modifier: Modifier = Modifier, color: Color = Color.Unspecified) =
     Headword(AnnotatedString(text), modifier, color)
 
+/**
+ * Target-side reveal: the word in the accent, its article in its own tint.
+ *
+ * The accent is the REVEAL's, not the target language's — a card is styled by role, so
+ * the same word is neutral ink where it stands as the prompt. This is a headword and
+ * nothing else: the grammar and the family it carries are [targetLines], handed to the
+ * card so they close it at full width instead of wrapping in the picture's row.
+ */
 @Composable
 fun TargetReveal(
     target: Realization,
     chrome: Chrome,
     modifier: Modifier = Modifier,
     pronounce: (() -> Unit)? = null,
-    alsoShown: List<String> = emptyList(),
 ) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(DlSpace.xs),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        SpokenWord(pronounce, chrome) {
-            Headword(
-                localizedTarget(Dl.colors.articleColoredText(target), target.lang),
-                color = Dl.colors.accent,
-                modifier = Modifier.weight(1f, fill = false),
-            )
-        }
-        CardDisplay.pluralLine(target, chrome)?.let { CardLine(it) }
-        CardDisplay.alsoLine(target, chrome, alsoShown + target.text)?.let { CardLine(it) }
+    SpokenWord(pronounce, chrome, modifier) {
+        Headword(
+            localizedTarget(Dl.colors.articleColoredText(target), target.lang),
+            color = Dl.colors.accent,
+            modifier = Modifier.weight(1f, fill = false),
+        )
     }
 }
+
+/**
+ * The small print a target word owes its reveal: the plural, then the synonym family.
+ * Grammar renders here and nowhere else, because it is the target side's alone.
+ *
+ * [alsoShown] names forms of this word standing ELSEWHERE on the screen — a rotated
+ * recognition prompt, say. The citation form is always one of them, since the reveal
+ * draws it.
+ */
+fun targetLines(
+    target: Realization,
+    chrome: Chrome,
+    alsoShown: List<String> = emptyList(),
+): List<String> = listOfNotNull(
+    CardDisplay.pluralLine(target, chrome),
+    CardDisplay.alsoLine(target, chrome, alsoShown + target.text),
+)
 
 /**
  * What a card GROWS when the answer comes out: a short rule, the answer, and the note

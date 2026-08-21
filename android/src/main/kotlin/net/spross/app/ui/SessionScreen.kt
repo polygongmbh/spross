@@ -230,6 +230,16 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         emoji = card.emoji,
         cue = ui.emojiCue,
         revealed = revealed,
+        // The prompt is still standing above the reveal — whatever form it rotated in
+        // is on screen and is no longer an alternative.
+        closingLines = if (revealed) {
+            listOfNotNull(CardDisplay.alsoLine(card.target, chrome, promptForm))
+        } else {
+            emptyList()
+        },
+        // The note is the card's last line whichever side authored it — a literal
+        // gloss belongs to the concept, not to one of its two faces.
+        note = if (revealed) card.target.note ?: card.source.note else null,
     ) {
         SpokenWord(model.pronounceAction(promptForm), chrome) {
             Headword(
@@ -248,9 +258,7 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
             CardDisplay.pluralLine(card.target, chrome)?.let { CardLine(it) }
         }
         if (revealed) {
-            // The note is the card's last line whichever side authored it — a literal
-            // gloss belongs to the concept, not to one of its two faces.
-            CardReveal(note = card.target.note ?: card.source.note) {
+            CardReveal {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
@@ -262,9 +270,6 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
                     )
                     if (card.promptFeminineMarker) FeminineBadge()
                 }
-                // The prompt is still standing above the reveal — whatever form it
-                // rotated in is on screen and is no longer an alternative.
-                CardDisplay.alsoLine(card.target, chrome, promptForm)?.let { CardLine(it) }
             }
         }
     }

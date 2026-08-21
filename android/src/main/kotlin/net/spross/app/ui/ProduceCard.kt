@@ -53,18 +53,16 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         emoji = card.emoji,
         cue = ui.emojiCue,
         revealed = revealed,
+        closingLines = if (revealed) targetLines(card.target, chrome) else emptyList(),
+        // The note is the card's last line whichever side authored it — a literal
+        // gloss belongs to the concept, not to one of its two faces.
+        note = if (revealed) card.target.note ?: card.source.note else null,
     ) {
         if (heard) ReplayPrompt(model, ui) else PromptWord(model, ui)
         // The card is what OPENS onto the answer — inline, growing downward, above the
         // field the learner is still typing in. A near miss never reaches here: its
         // correction stands at the field, beside the attempt it is correcting.
-        if (revealed) {
-            // The note is the card's last line whichever side authored it — a literal
-            // gloss belongs to the concept, not to one of its two faces.
-            CardReveal(note = card.target.note ?: card.source.note) {
-                ProduceReveal(model, ui)
-            }
-        }
+        if (revealed) CardReveal { ProduceReveal(model, ui) }
     }
 
     val step = flow.copyStep
@@ -209,8 +207,9 @@ private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
 
 /**
  * What a produce card shows once it has stopped asking: the meaning it withheld, and the
- * word with its whole family. The picture is the card's own slot, which was standing
- * empty and only now fades in — nothing here moves it.
+ * word itself. Its grammar and family close the card (`targetLines`, above). The picture
+ * is the card's own slot, which was standing empty and only now fades in — nothing here
+ * moves it.
  */
 @Composable
 private fun ProduceReveal(model: AppModel, ui: SessionUi) {

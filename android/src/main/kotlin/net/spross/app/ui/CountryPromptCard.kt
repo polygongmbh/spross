@@ -56,6 +56,7 @@ fun CountryPromptCard(
         cue = emojiCue(givesAnswerAway = emojiIsGiveaway),
         revealed = revealed,
         modifier = Modifier.heightIn(min = DlReserve.drillCard),
+        note = reveal?.note,
     ) {
         Text(
             ask,
@@ -76,7 +77,7 @@ fun CountryPromptCard(
             Text(emoji, fontSize = DlPrompt.glyph, textAlign = TextAlign.Center)
         }
         reveal?.let {
-            CardReveal(note = it.note) {
+            CardReveal {
                 SpokenWord(it.pronounce, chrome) {
                     Text(
                         localizedTarget(it.word, it.language),
