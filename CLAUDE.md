@@ -43,7 +43,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   A red in a file nobody edited is the shared Kotlin cache; `../CLAUDE.md` carries that remedy.
 - **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `test:`, `docs:`, `build:`) with scopes
 - Keep `README.md` / `docs/` in step with behavior changes in the same series.
-- `CHANGELOG.md` is curated: user-observable deltas only, grouped by version, written in ENGLISH.
+- `CHANGELOG.md` is curated, grouped by version, written in ENGLISH; what earns an entry
+  and how it is worded: `docs/distribution.md`.
   New entries always land under the top `## Unreleased` heading. At bump time, rename `## Unreleased` to `## <version> — <date>` and open a fresh empty `## Unreleased` above it.
   Its head carries every heading you need — read that, never the whole file.
 - Other parties may change files or commit while you work, do not mind unless their edits conflict with yours.

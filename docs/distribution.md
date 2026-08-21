@@ -25,6 +25,28 @@ under that heading.
 Android's `versionCode` is derived from the name — `4.1.2` → `40102` —
 so it rises on its own as long as minor and patch stay under 100.
 
+## What earns a changelog entry
+
+`CHANGELOG.md` is what moved for the LEARNER, curated —
+never a commit log, and "user-observable" is a lower bar than the one that holds.
+
+- The delta has to be in what the app DOES, not in how it looks or reads.
+  Cut in one pass: a picker row gaining its native name, onboarding switching to the user's
+  language, a full English localization, error messages becoming localized.
+  What stays is content, scheduling and capability —
+  new areas, phrases unlocking differently, progress surviving a card-id change.
+  A change that only alters language, wording, layout or naming is carried by its commit message.
+- One entry per sweep, not one per finding.
+  Three bullets from a single Swahili literalness pass were collapsed back into one:
+  the learner experienced one change — answers that map onto their prompt — not three.
+  Before adding a second bullet from the same work, ask whether the learner would call it a
+  second change; if not, fold it in — one headline, the sharpest example or two, and stop.
+- No raw counts. "the catalog grew from 358 to 506 concepts" was cut in favor of the
+  qualitative claim under it: a count measures the catalog rather than the learner's
+  experience, and it goes stale the moment the next commit lands,
+  leaving the bullet either lying or waiting to be re-tallied.
+  Write what widened and for whom.
+
 ## Secrets
 
 Set once, in Settings › Secrets and variables › Actions.
