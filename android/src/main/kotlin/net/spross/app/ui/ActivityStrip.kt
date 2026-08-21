@@ -89,7 +89,7 @@ fun ActivityStrip(
             ) {
                 Text(
                     chrome.last14Days,
-                    style = MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.weight(1f),
                 )
                 if (streakDays > 0) {

@@ -58,36 +58,36 @@ struct HeuteView: View {
     /// needs no hands — up whenever this device can say both sides of enough
     /// words (`docs/design.md`, `docs/surfaces.md` § Listening).
     ///
-    /// ONE row, not a card with a button on it: a title slot heading a set of
-    /// one says the mode's name twice, and the whole row is a wider target than
-    /// the button ever was.
+    /// A full card like the trainer hub beside it: the emoji leads, the title
+    /// names the mode once, and the subtitle carries the two facts the name
+    /// cannot — the whole card is the tap target.
     @ViewBuilder
     private var listeningCard: some View {
         if listening?.available == true {
             Button { listeningPresented = true } label: {
                 HStack(alignment: .top, spacing: DL.Space.m) {
                     Text(verbatim: "🎧")
-                        .font(DL.Fonts.headline)
+                        .font(.title2)
                         .accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: DL.Space.xs) {
                         Text("listen.title")
-                            .font(DL.Fonts.headline)
+                            .font(DL.Fonts.title)
                             .foregroundStyle(Color.dlTextPrimary)
                         Text("listen.subtitle")
-                            .font(DL.Fonts.caption)
+                            .font(DL.Fonts.subheadline)
                             .foregroundStyle(Color.dlTextSecondary)
                             .multilineTextAlignment(.leading)
                     }
                     Spacer(minLength: 0)
                     Image(systemName: "chevron.right")
-                        .font(.caption)
+                        .font(.title3)
                         .foregroundStyle(Color.dlTextSecondary)
                         .accessibilityHidden(true)
                 }
-                .padding(DL.Space.l)
+                .padding(DL.Space.xl)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(
-                    RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
+                    RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
                         .fill(Color.dlSurface)
                 )
                 .dlCardShadow()

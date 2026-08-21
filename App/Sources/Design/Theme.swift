@@ -79,7 +79,6 @@ enum DL {
         static let subheadline = Font.system(.subheadline, design: .rounded)
         static let caption = Font.system(.caption, design: .rounded, weight: .medium)
         static let badge = Font.system(.footnote, design: .rounded, weight: .bold)
-        static let statValue = Font.system(.title, design: .rounded, weight: .bold)
 
         /// The QUESTION itself, set as large as its card can hold.
         ///

@@ -37,7 +37,7 @@ struct ActivityStripView: View {
         VStack(alignment: .leading, spacing: DL.Space.m) {
             HStack(spacing: DL.Space.s) {
                 Text("progress.last14Days")
-                    .font(DL.Fonts.headline)
+                    .font(DL.Fonts.title)
                     .foregroundStyle(Color.dlTextPrimary)
                 Spacer(minLength: DL.Space.s)
                 if streakDays > 0 {

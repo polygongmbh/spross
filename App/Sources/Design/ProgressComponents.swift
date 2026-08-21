@@ -59,7 +59,7 @@ struct StreakFlameView: View {
                 .font(.title2)
                 .accessibilityHidden(true)
             Text(days.formatted())
-                .font(DL.Fonts.statValue)
+                .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
             // why: the number carries the big type, so the unit stands alone —
             // and a string that does not name its count cannot be plural-varied

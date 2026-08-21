@@ -172,10 +172,10 @@ private fun WerkstattCard(model: AppModel) {
             modifier = Modifier.fillMaxWidth().padding(DlSpace.l),
             verticalArrangement = Arrangement.spacedBy(DlSpace.m),
         ) {
-            Text(chrome.trainingTitle, style = MaterialTheme.typography.titleMedium)
+            Text(chrome.trainingTitle, style = MaterialTheme.typography.titleLarge)
             Text(
                 chrome.trainingSubtitle,
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {

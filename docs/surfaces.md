@@ -164,12 +164,10 @@ auto-advance beats these share with it, are `design.md`'s.
 - **Listening is not a Sprosse.** A Sprosse is a SKILL with a ladder to climb, which is the
   only thing that earns a chip on that row; listening asks nothing, grades nothing and has no
   rung to reach, so a fourth chip would say it is a peer of counting and spelling when it is
-  a different kind of thing entirely. It gets ONE ROW on Heute, under the day's round: the
+  a different kind of thing entirely. It gets ONE CARD on Heute, under the day's round: the
   round is what the box asks of the learner, and this is what the learner can do when
   answering is not on the table — a walk, a commute, a sink full of dishes.
-  A row rather than a card because a card wants a title, and a title over a single
-  destination can only say the mode's name — which the thing you tap then says again. So the
-  row's own line names it once, and its second line carries the two facts the name cannot:
+  Its title names the mode once, and its second line carries the two facts the name cannot:
   which words it leans on, and that it needs no hands.
 - **It keeps the drill contract even so**: it books no review, writes no schedule and moves
   no streak, so a run costs the box nothing and can be closed at any moment. It has no end

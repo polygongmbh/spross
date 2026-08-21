@@ -78,7 +78,7 @@ private fun DayMark(emoji: String?, streak: Int, health: StreakHealth, chrome: C
         } else {
             Text(emoji, style = MaterialTheme.typography.titleLarge)
         }
-        Text("$streak", style = MaterialTheme.typography.headlineSmall)
+        Text("$streak", style = MaterialTheme.typography.titleLarge)
         Text(
             unit,
             style = MaterialTheme.typography.bodyMedium,
@@ -104,7 +104,7 @@ fun SessionCard(model: AppModel, standing: HeuteStanding, streak: Int, health: S
         DayMark(if (streak > 0) null else "✨", streak, health, chrome)
         Text(
             headlineText(chrome, offer.headline),
-            style = MaterialTheme.typography.headlineSmall,
+            style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
         )
         Text(
@@ -155,7 +155,7 @@ fun DoneCard(model: AppModel, standing: HeuteStanding, streak: Int, health: Stre
         DayMark(if (worked) "🎉" else "🌱", streak, health, chrome)
         Text(
             if (worked) chrome.doneToday else chrome.caughtUpTitle,
-            style = MaterialTheme.typography.headlineSmall,
+            style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
         )
         todayTally(chrome, standing.today)?.let {
@@ -194,9 +194,9 @@ fun DoneCard(model: AppModel, standing: HeuteStanding, streak: Int, health: Stre
  * Sprosse and gets no chip on that row: a Sprosse is a skill with a ladder to climb, and
  * listening asks nothing, grades nothing and has no rung to reach (`docs/surfaces.md`).
  *
- * ONE ROW, and the row is the tap. A title over a button that says the same thing is the
- * mode's name twice — a heading needs something under it to head, and a set of one is not
- * that. What the offer is worth is the subtitle's to say; the chevron says it opens.
+ * ONE CARD, and the whole card is the tap. The emoji leads, the title names the mode once,
+ * and the subtitle carries the two facts the name cannot — which words it leans on, and that
+ * it needs no hands. The chevron says it opens.
  */
 @Composable
 fun ListenCard(model: AppModel) {
@@ -206,27 +206,27 @@ fun ListenCard(model: AppModel) {
         modifier = Modifier
             .fillMaxWidth()
             .pressSpring()
-            .panel()
-            .clip(MaterialTheme.shapes.medium)
+            .panel(MaterialTheme.shapes.large)
+            .clip(MaterialTheme.shapes.large)
             .semantics(mergeDescendants = true) { }
             .clickable(role = Role.Button) { model.startListening() }
-            .padding(DlSpace.l),
-        verticalAlignment = Alignment.CenterVertically,
+            .padding(DlSpace.xl),
+        verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
     ) {
         Text(
             "🎧",
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.clearAndSetSemantics { },
         )
         Column(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(DlSpace.xs),
         ) {
-            Text(chrome.listenTitle, style = MaterialTheme.typography.titleMedium)
+            Text(chrome.listenTitle, style = MaterialTheme.typography.titleLarge)
             Text(
                 chrome.listenSubtitle,
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
@@ -247,7 +247,7 @@ fun StateCard(
 ) {
     DayCard {
         Text(emoji, style = MaterialTheme.typography.displaySmall)
-        Text(title, style = MaterialTheme.typography.headlineSmall, textAlign = TextAlign.Center)
+        Text(title, style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center)
         Text(
             message,
             style = MaterialTheme.typography.bodyLarge,
