@@ -157,3 +157,18 @@ App Group / file container paths; `Bundle`/assets resolution behind kern's `Cata
 accessibility flag reads (VoiceOver, Switch Control) — though the *policy* they gate is portable;
 `UserDefaults`/`SharedPreferences` (the keys and defaults are shared contract and are listed above);
 the theme's spacing, type ramp and hex pairs; localized string tables.
+
+### The tokens are not shared; their agreement is
+
+Four surfaces keep hand-written copies of the palette,
+because none of them links the app's design tokens —
+the watch app, the phone widget, the complication, and the Android app.
+`PaletteParityTest` (`:kern` jvmTest) reads all five files as text
+and holds every copied value to `App/Sources/Design/Theme.swift`, which is the truth.
+A copy keeps only the tokens it uses, so the check runs copy-first:
+every token a file declares must name a canonical token and carry its hex —
+and the Android cut, being a full re-cut rather than a few borrowed hues,
+owes both columns whole.
+Like the real-catalog lints it is content-coupled,
+and Gradle does not track those Swift/Kotlin sources as test inputs:
+after a palette-only edit, run with `--rerun-tasks`.
