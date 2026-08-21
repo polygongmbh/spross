@@ -280,9 +280,11 @@ a clone inherits its sibling's gaps, never the rules.
   while it is being read is a glitch, one that never moves stops being read.
   Those two carry no section title: the strip heads itself and the forest is captioned,
   so one above them says the word a third time.
-  The card's flame is graded, not decorative — the 🔥 emoji at full strength, paled,
-  or drained to gray by what today still owes the run
+  The card's flame is graded, not decorative — the 🔥 emoji at full strength,
+  half-cooled while today still owes the run, or drained to gray once a miss would end it
   (`../kern/docs/reports.md`, `BoxStatistics.streakHealth`).
+  The half-cooled mark is drained of some of its color, not faded: a washed-out flame
+  reads as disabled, while one losing its heat asks to be re-lit.
   The card is up exactly while that work is still owed, so the mark carries the warning
   without spending a word on it — and the strip's badge and the widget's flame
   read off the same grade, so no two surfaces say different things about one day.

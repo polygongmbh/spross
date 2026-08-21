@@ -18,38 +18,45 @@ import net.spross.kern.box.StreakHealth
  * so no two of them can say different things about one day.
  *
  * 🔥 is multi-color artwork, so the grade is worn as light and COLOR rather than as a second
- * shape: full strength where the day is answered, pale where a miss would only spend the
- * run's one bridge, and drained to gray where it would end the run — a flame gone cold,
- * which is the loud one. The rule itself is [StreakHealth]; this only dresses it.
+ * shape: full strength where the day is answered, half-cooled where a miss would only spend
+ * the run's one bridge — a flame asking for renewal without being faded out — and drained to
+ * gray where it would end the run, a flame gone cold, which is the loud one. The rule itself
+ * is [StreakHealth]; this only dresses it.
  */
 @Composable
 fun StreakFlame(health: StreakHealth, style: TextStyle, modifier: Modifier = Modifier) {
     val alpha = when (health) {
         StreakHealth.Earned -> 1f
-        StreakHealth.Bridgeable -> 0.55f
+        StreakHealth.Bridgeable -> 0.9f
         StreakHealth.Ending -> 0.9f
         StreakHealth.None -> 0.4f
     }
-    val cold = health == StreakHealth.Ending || health == StreakHealth.None
+    val saturation = when (health) {
+        StreakHealth.Earned -> 1f
+        StreakHealth.Bridgeable -> 0.5f
+        StreakHealth.Ending, StreakHealth.None -> 0f
+    }
     Text(
         "🔥",
         style = style,
-        modifier = modifier.alpha(alpha).then(if (cold) Modifier.desaturated() else Modifier),
+        modifier = modifier.alpha(alpha)
+            .then(if (saturation < 1f) Modifier.withSaturation(saturation) else Modifier),
     )
 }
 
-/** Saturation 0 — a color emoji takes no tint, so the color has to be taken out of it. */
-private val COLD_PAINT = Paint().apply {
-    colorFilter = ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0f) })
+/** A color emoji takes no tint, so the color has to be taken out of it instead. */
+private fun saturatedPaint(amount: Float) = Paint().apply {
+    colorFilter = ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(amount) })
 }
 
 /**
  * Compose has no grayscale modifier for text: the content is drawn into a layer of its own
  * and that layer's paint drains the color on the way out.
  */
-private fun Modifier.desaturated(): Modifier = drawWithContent {
+private fun Modifier.withSaturation(amount: Float): Modifier = drawWithContent {
+    val paint = saturatedPaint(amount)
     drawIntoCanvas { canvas ->
-        canvas.saveLayer(Rect(0f, 0f, size.width, size.height), COLD_PAINT)
+        canvas.saveLayer(Rect(0f, 0f, size.width, size.height), paint)
         drawContent()
         canvas.restore()
     }

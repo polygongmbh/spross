@@ -21,23 +21,25 @@ enum FlameState {
     /// No run to protect.
     case unlit
 
-    /// Full strength where the day is answered, pale where it is merely owed, and
-    /// faint where there is no run behind the mark at all.
+    /// Full strength where the day is answered, only a whisper of fade where it is
+    /// still owed, and faint where there is no run behind the mark at all.
     var opacity: Double {
         switch self {
         case .lit: return 1
-        case .dwindling: return 0.55
+        case .dwindling: return 0.9
         case .atRisk: return 0.9
         case .unlit: return 0.4
         }
     }
 
     /// How much color is drained out of the emoji: none while the run is whole,
-    /// all of it once a missed today would end it — a flame gone cold, which is
-    /// louder than any amount of fading.
+    /// half of it while today still owes the run — a flame cooling, which asks for
+    /// renewal without being faded out — and all of it once a missed today would
+    /// end the run, a flame gone cold, which is louder than any amount of fading.
     var grayscale: Double {
         switch self {
-        case .lit, .dwindling: return 0
+        case .lit: return 0
+        case .dwindling: return 0.5
         case .atRisk, .unlit: return 1
         }
     }

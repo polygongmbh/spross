@@ -148,7 +148,8 @@ struct WordWidgetView: View {
         case .lit:
             Label("\(entry.streak)", systemImage: "flame.fill").foregroundStyle(.orange)
         case .dwindling:
-            Label("\(entry.streak)", systemImage: "flame.fill").foregroundStyle(.orange.opacity(0.5))
+            Label("\(entry.streak)", systemImage: "flame.fill").foregroundStyle(.orange)
+                .grayscale(0.5).opacity(0.9)
         case .atRisk:
             Label("\(entry.streak)", systemImage: "flame").foregroundStyle(.orange)
         case .unlit:

@@ -69,8 +69,8 @@ struct ActivityStripView: View {
     }
 
     private var streakBadge: some View {
-        // The count keeps the accent whatever the flame is doing: the pale or cold
-        // MARK is the warning, and paling the number only costs contrast.
+        // The count keeps the accent whatever the flame is doing: the cooled or cold
+        // MARK is the warning, and fading the number only costs contrast.
         // Two views rather than one concatenated Text: grayscale is a View modifier,
         // and the emoji is the only half that wears it.
         HStack(spacing: DL.Space.xs) {
