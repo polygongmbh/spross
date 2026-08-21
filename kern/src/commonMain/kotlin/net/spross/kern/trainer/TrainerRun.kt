@@ -1,9 +1,6 @@
 package net.spross.kern.trainer
 
 import kotlin.random.Random
-import net.spross.kern.model.Card
-import net.spross.kern.model.CardKind
-import net.spross.kern.model.Realization
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
@@ -68,19 +65,15 @@ object TrainerRun {
      * for another concept's word to come out of. A null [normalizer] (a preview with no language
      * info) falls back to a plain case- and punctuation-insensitive comparison.
      */
-    fun grade(input: String, task: TrainerTask, normalizer: AnswerNormalizer?): Match {
-        val trimmed = input.trim()
-        if (trimmed.isEmpty()) return Match.Wrong
-        if (normalizer == null) {
-            val typed = plainForm(trimmed)
-            return if (task.accepted.any { plainForm(it) == typed }) Match.Exact else Match.Wrong
-        }
-        return when (val match = normalizer.evaluate(trimmed, gradingCard(task))) {
-            Match.Exact -> Match.Exact
-            is Match.Typo -> match
-            is Match.OtherWord, Match.Wrong -> Match.Wrong
-        }
-    }
+    fun grade(input: String, task: TrainerTask, normalizer: AnswerNormalizer?): Match =
+        gradeDrillAnswer(
+            input = input,
+            accepted = task.accepted,
+            display = task.display,
+            language = task.language,
+            cardId = "drill",
+            normalizer = normalizer,
+        )
 
     /**
      * Is the learner mid-way through a longer accepted answer? A clock reading is accepted with
@@ -90,9 +83,9 @@ object TrainerRun {
      * confirms on its own; anything shorter that another reading continues waits for a check.
      */
     fun stillGrowing(input: String, task: TrainerTask): Boolean {
-        val typed = plainForm(input.trim())
-        if (typed.isEmpty() || typed == plainForm(task.display)) return false
-        return task.accepted.any { plainForm(it).startsWith("$typed ") }
+        val typed = plainAnswerForm(input.trim())
+        if (typed.isEmpty() || typed == plainAnswerForm(task.display)) return false
+        return task.accepted.any { plainAnswerForm(it).startsWith("$typed ") }
     }
 
     /**
@@ -283,38 +276,4 @@ object TrainerRun {
     }
 
     private fun unchanged(state: TrainerRunState) = TrainerReduction(state, emptyList())
-
-    /**
-     * The accepted variants wrapped as one synthetic card. The non-verb kind keeps the
-     * verb-prefix option off and an empty `baseAccepted` skips the feminine demotion —
-     * strictness itself comes from how the normalizer was built.
-     */
-    private fun gradingCard(task: TrainerTask): Card {
-        val side = Realization(
-            lang = task.language,
-            text = task.accepted.firstOrNull() ?: task.display,
-            synonyms = task.accepted.drop(1),
-        )
-        return Card(
-            id = "drill",
-            kind = CardKind.Noun,
-            area = "drill",
-            emoji = null,
-            seedIndex = 0,
-            components = emptyList(),
-            feminineOf = null,
-            baseAccepted = emptyList(),
-            source = side,
-            target = side,
-            promptFeminineMarker = false,
-        )
-    }
-
-    /** Comparison shape for the two rules that grade without a catalog behind them. */
-    private fun plainForm(raw: String): String = raw.lowercase()
-        .map { if (it.isLetterOrDigit()) it else ' ' }
-        .joinToString("")
-        .split(' ')
-        .filter { it.isNotEmpty() }
-        .joinToString(" ")
 }
