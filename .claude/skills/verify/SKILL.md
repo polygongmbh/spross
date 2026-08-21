@@ -21,6 +21,20 @@ xcrun simctl launch booted net.spross.app            # clean install ⇒ onboard
 xcrun simctl uninstall booted net.spross.app         # reset to clean state
 ```
 
+## Keep it quiet
+
+`scripts/run-sim.sh --mute` (and `--shot`, which implies it) launches with
+`-readAloud off`; `scripts/run-emu.sh` does the same through `--es readAloud off`.
+Autoplay is silenced for that launch only — nothing is stored, so the in-app
+toggle turns sound back on for whoever picks the device up, and a hand-launched
+app opens with the setting the learner last chose.
+
+Drive a session muted unless the change under test IS the audio: a produce card
+that would have asked by ear falls back to its source prompt, which is the
+screenshot evidence that no audio path was taken. The verdict chimes are NOT
+covered — deliberately, on both platforms — but they only fire on an answer, so
+a plain `--shot` run is silent either way.
+
 DEBUG launch-arg hooks (read in `AppModel.start()`):
 `-uitest-source de -uitest-target sw` (skip onboarding with that profile),
 `-uitest-screen box` (push Box screen), `-uitest-autostart 1`.
@@ -41,10 +55,19 @@ export IDB_COMPANION=localhost:<port>
 $IDB ui tap <x> <y>                                   # logical points
 $IDB ui text 'hallo'                                  # types into the focused field
 $IDB ui swipe 200 750 200 150 --duration 0.05         # flick-scroll
+$IDB ui describe-all                                  # the whole accessibility tree
+$IDB ui describe-point <x> <y>                        # one element under a point
 ```
 
+`describe-all` is the one to reach for first: it returns every element as JSON with
+its label, value and frame, so a run taps what it can NAME rather than a coordinate
+guessed off a screenshot, and asserts on a value (`Aussprache vorlesen` = `an`/`aus`)
+instead of on pixels. A tap costs ~0.2 s, `ui text` ~0.2 s.
+
 `ui text` is how a typed answer gets in — the sim takes no host keystrokes without an
-Accessibility grant, and the app's `-uitest-input` hook fires only once per launch.
+Accessibility grant. It also beats `-uitest-input`, which prefills BEFORE the prompt
+is known: read the prompt out of `describe-all`, then type the answer that fits it.
+That is what makes an unseeded drill RNG a non-problem for typed answers.
 
 Gotcha: fb-idb breaks on python 3.14 (`asyncio.get_event_loop`) — use python@3.13.
 
