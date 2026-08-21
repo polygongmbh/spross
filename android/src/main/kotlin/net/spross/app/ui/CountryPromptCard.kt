@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.Chrome
 import net.spross.kern.model.Language
@@ -55,7 +54,7 @@ fun CountryPromptCard(
     VocabCard(
         emoji = if (text == null) null else emoji,
         emojiShown = !emojiIsGiveaway || revealed,
-        modifier = Modifier.heightIn(min = DRILL_CARD),
+        modifier = Modifier.heightIn(min = DlReserve.drillCard),
     ) {
         Text(
             ask,
@@ -104,9 +103,3 @@ data class CountryReveal(
     /** Null where this device can neither play nor say the form; the speaker is then absent. */
     val pronounce: (() -> Unit)?,
 )
-
-/**
- * The height the drill cards hold. The sibling runs' own, so a learner moving between them
- * meets one layout and the field below never jumps.
- */
-private val DRILL_CARD = 140.dp

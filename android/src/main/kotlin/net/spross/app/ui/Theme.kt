@@ -328,6 +328,31 @@ private val SprossTypography: Typography by lazy {
     }
 }
 
+/**
+ * Reserved heights, the same roles and the same numbers `DL.Reserve` names.
+ *
+ * A session prompt card reserves the height of its own tallest ROUTINE state, so nothing
+ * below it moves as optional content comes and goes — vertical space is the scarce axis
+ * (card, field, button and keyboard share one screen), and a button that slides under the
+ * keyboard costs more than a card with air in it. The reveal is exempt: it grows the card
+ * downward and reserves nothing.
+ */
+object DlReserve {
+    /**
+     * Drill prompt, shared by both drill faces: one big line of digits plus the
+     * place-value pill (141.3 dp measured on the iOS cut), and the listening card's
+     * caption plus replay glyph plus its once-per-run silent-switch line. A gap word
+     * ("Ge l＿") is the exception that grows the card.
+     */
+    val drillCard = 144.dp
+
+    /**
+     * The floor a review card holds: one height whether the prompt is a word, a word under
+     * an area label, or the replay glyph of a question asked by ear.
+     */
+    val reviewCard = 120.dp
+}
+
 /** Spacing, the same six steps and the same numbers the canonical table names. */
 object DlSpace {
     val xs = 4.dp

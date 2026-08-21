@@ -46,7 +46,7 @@ fun TrainerPromptCard(model: AppModel, flow: TrainerFlow, chrome: Chrome) {
     val state = flow.state
     val task = state.currentTask
     val wordy = task.promptDisplay.any { it.isLetter() }
-    CardFace(Modifier.heightIn(min = 140.dp)) {
+    CardFace(Modifier.heightIn(min = DlReserve.drillCard)) {
         Text(
             task.promptDisplay,
             style = MaterialTheme.typography.headlineLarge.copy(

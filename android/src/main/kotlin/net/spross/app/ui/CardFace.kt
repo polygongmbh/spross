@@ -121,7 +121,7 @@ fun VocabCard(
     // why: sized in sp, so the disc grows with the reader's text size along with the
     // glyph in it — a fixed disc would crop the picture at the larger settings.
     val slot = with(LocalDensity.current) { EMOJI_SLOT.toDp() }
-    CardFace(modifier.heightIn(min = REVIEW_CARD)) {
+    CardFace(modifier.heightIn(min = DlReserve.reviewCard)) {
         Row(
             // why: the growth is animated INSIDE the face, so the edge and the shadow
             // are never clipped mid-reveal — the card simply gets taller under them.
@@ -356,12 +356,6 @@ fun CardCue(text: String, modifier: Modifier = Modifier) {
 /** The picture's disc and the glyph in it, both in sp so they scale together. */
 private val EMOJI_SLOT = 52.sp
 private val EMOJI_GLYPH = 28.sp
-
-/**
- * The floor a review card holds: one height whether the prompt is a word, a word under
- * an area label, or the replay glyph of a question asked by ear.
- */
-private val REVIEW_CARD = 120.dp
 
 /**
  * Where a shrinking headword stops. iOS bottoms out at 0.85 of a 22 pt headword; this
