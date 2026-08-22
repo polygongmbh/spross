@@ -7,6 +7,9 @@ and whose they are `../../docs/audio-licensing.md`.
 
 Bundled pronunciation recordings, one folder per language, **generated** by
 `app/scripts/audio-catalog.py --packs <workspace>` — edit packs, not this directory.
+`--articles` rebuilds only the `articles` section of what already ships, which is how an
+article pack lands without re-deriving three sections from a workspace whose word mp3s a
+renamed slug has already outlived.
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are
 unversioned research input; what is committed here is the shipped bytes and the
 license record that has to travel with them. Both apps bundle the whole tree as it
@@ -24,7 +27,12 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
     "ж": { "file": "letters/u0436.mp3", "license": "CC BY-SA 4.0",
            "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
            "author": "Tabrus", "source": "Жж – ukrainian.ogg", "sha256": "77b0…",
-           "gain": 20.0, "lead": 1069 } } }
+           "gain": 20.0, "lead": 1069 } },
+  "articles": {
+    "address": { "file": "articles/address.mp3", "matches": "die Adresse",
+                 "license": "CC BY-SA 4.0", "licenseUrl": "…", "author": "Natschoba",
+                 "source": "LL-Q188 (deu)-Natschoba-die Adresse.wav", "sha256": "a15c…",
+                 "gain": 8.0, "gainPhone": 3.9, "lead": 240 } } }
 ```
 
 - `language` must equal the folder name, and a folder for a language `languages.json`
@@ -32,8 +40,18 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
 - `words` is keyed by concept slug, `letters` (optional, uk only today) by lowercase
   glyph. Every field is required except `licenseUrl`, which is absent exactly for
   public-domain files, having no deed to link, `gain`/`lead`, absent where they
-  would be zero, and `gainPhone` — present on every word entry (0.0 when no
+  would be zero, and `gainPhone` — present on every word and article entry (0.0 when no
   correction) but absent on letters and texts.
+- `articles` (optional, de and it today) is keyed by slug like `words` and holds
+  recordings that speak the card's ARTICLE and then the word — `die Adresse`, files
+  under `articles/<slug>.mp3`. Its `matches` is that whole spoken form, which is the
+  string `spokenTargetForm` builds for the target side, so it is the only key such an
+  entry can be reached by. It is an ADDITION, never a replacement: the bare `words`
+  entry keeps shipping and is what the source side reads, where the article is not what
+  is being taught, and lint fails an article entry whose slug has no bare twin.
+  An article entry must speak its realization's own `grammar.gender` in front of its
+  canonical `text` — a synonym rotates the article away on screen, so a recording of
+  one could never play.
 - `matches` — the surface form the recording actually SPEAKS, and the lookup key:
   playback is keyed by what stands on the card, never by the slug the file was fetched
   for, so a rotated synonym nobody recorded falls through to the app's own voice
@@ -44,7 +62,7 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   alphabet file.
 - `source` — the original Commons filename; the credits screen links `File:<source>`,
   which is what keeps attribution checkable rather than merely present.
-- Word files are `<slug>.mp3`; letter files are `letters/u<codepoint>….mp3`, one
+- Word files are `<slug>.mp3`, article files `articles/<slug>.mp3`; letter files are `letters/u<codepoint>….mp3`, one
   `u` + four lowercase hex digits PER CODEPOINT, never glyph-named — `й`/`ї` decompose
   under NFD on APFS and a Unicode filename has to survive git, Gradle sync and AAPT
   unchanged. A sequence rather than one codepoint because a named row may be a digraph

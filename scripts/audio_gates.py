@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Which pack rows may ship, and who gets credited — the five gates of `audio-catalog.py`.
+"""Which pack rows may ship, and who gets credited — the gates of `audio-catalog.py`.
 
-A pack row ships only once it survives all five, each decision printed by the caller:
+A pack row ships only once it survives all of them, each decision printed by the caller:
   · the catalog knows the slug AND the language realizes it — packs go stale as
     content moves, and a manifest entry for a word nobody studies is dead weight;
   · the recording SPEAKS a form the card can show: `speechKey(matched_word)` has to
@@ -9,6 +9,9 @@ A pack row ships only once it survives all five, each decision printed by the ca
     stands on the card. This is what drops the sw `ku-` verbs, whose recordings say
     the bare stem — playing "wasilisha" for "kuwasilisha" would teach the wrong word,
     while punctuation ("Hujambo!") and the citation dash ("-zuri") fold away and stay;
+  · an ARTICLE row speaks its realization's own article in front of the canonical word,
+    the one string a card showing that article ever asks for — a row saying a different
+    article would teach the gender wrong, which is what these recordings exist to fix;
   · a Lingua Libre filename ENDS in the word its row claims — that grammar puts the
     speaker and the word in one dash-joined string, so a compound like `Earl-Grey-Tee`
     can be read as a recording of "Tee" by anything that guesses the boundary. Two such
@@ -76,6 +79,46 @@ def speech_key(form):
 def digest_of(path):
     with open(path, 'rb') as f:
         return hashlib.sha256(f.read()).hexdigest()
+
+
+def spoken_target_form(article, text):
+    """Port of kern's `spokenTargetForm` for a card showing its canonical word.
+
+    An ELIDED article writes onto its noun — `l'acqua`, never "l' acqua" — because the
+    apostrophe is the join, and because that is the string the recording is titled with.
+    """
+    article = (article or '').strip()
+    if not article:
+        return text.strip()
+    if article[-1] in APOSTROPHES:
+        return article + text.strip()
+    return '%s %s' % (article, text.strip())
+
+
+def keep_article_forms(rows, lang, targets, drops):
+    """The ARTICLE gate: a row may ship only if it speaks its realization's own article.
+
+    An article recording is reachable by exactly one string — the article `shownArticle`
+    allows in front of the canonical text — so a row saying anything else ships bytes no
+    card can play. A row saying a DIFFERENT article is worse than unreachable: it is the
+    gender taught wrong, which is the one thing these recordings exist to get right, so it
+    is dropped rather than re-labeled.
+    """
+    kept = []
+    for row in rows:
+        target = targets.get(lang, {}).get(row['slug'])
+        if not target:
+            drops.append(('unrealized', row['slug'], 'no gendered realization in %s' % lang))
+            continue
+        article, text = target
+        wanted = speech_key(spoken_target_form(article, text))
+        if speech_key(row['matched_word']) != wanted:
+            drops.append(('not-the-article', row['slug'],
+                          'recording says "%s", the card shows "%s"' % (row['matched_word'],
+                                                                       spoken_target_form(article, text))))
+        else:
+            kept.append(row)
+    return kept
 
 
 def keep_reachable(rows, lang, slugs, forms, drops):

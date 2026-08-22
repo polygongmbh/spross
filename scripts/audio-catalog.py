@@ -27,8 +27,8 @@ import shutil
 import sys
 
 import audio_measure
-from audio_gates import (attribute, digest_of, keep_named_by_its_file, keep_reachable,
-                         keep_unambiguous)
+from audio_gates import (attribute, digest_of, keep_article_forms, keep_named_by_its_file,
+                         keep_reachable, keep_unambiguous)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'catalog')
@@ -121,10 +121,15 @@ def read_rows(path):
 
 
 def load_catalog():
-    """(every slug the catalog knows, {lang: {slug: [surface forms]}})."""
+    """(every slug, {lang: {slug: [surface forms]}}, {lang: {slug: (article, text)}}).
+
+    The third is what an ARTICLE recording is measured against — only gendered
+    realizations appear in it, because only they show an article to say.
+    """
     areas = [area['area'] for group in read_json(CATALOG, 'areas.json') for area in group['areas']]
     slugs = set()
     forms = {}
+    targets = {}
     for area in areas:
         slugs |= {concept['slug'] for concept in read_json(CATALOG, area, 'concepts.json')}
         for name in sorted(os.listdir(os.path.join(CATALOG, area))):
@@ -136,7 +141,10 @@ def load_catalog():
                 # `text` and its rotating synonyms — plus the variants grading accepts.
                 forms.setdefault(lang, {})[slug] = \
                     [word['text']] + word.get('synonyms', []) + word.get('variants', [])
-    return slugs, forms
+                article = word.get('grammar', {}).get('gender')
+                if article:
+                    targets.setdefault(lang, {})[slug] = (article, word['text'])
+    return slugs, forms, targets
 
 
 def license_url(license, where):
@@ -256,6 +264,39 @@ def convert_words(lang, pack, out_dir, slugs, forms):
     return words
 
 
+def convert_articles(lang, pack, out_dir, targets, words):
+    """Every shipping `articles` entry: recordings that say the article, then the word.
+
+    A second file for a word the pack already has bare, never a replacement — the source
+    side of a pair reads the learner's own language, where the article is not what is
+    being taught and only the bare recording may answer. A row whose slug ships no bare
+    recording is therefore dropped rather than shipped alone.
+    """
+    drops = []
+    mp3_dir = os.path.join(pack, 'mp3')
+    rows = read_rows(os.path.join(pack, 'manifest.tsv'))
+    spoken = keep_named_by_its_file(keep_article_forms(rows, lang, targets, drops), drops)
+    kept = []
+    for row in attribute(keep_unambiguous(spoken, mp3_dir, drops), drops):
+        if row['slug'] in words:
+            kept.append(row)
+        else:
+            drops.append(('no-bare-twin', row['slug'], 'the bare recording it stands beside is not shipping'))
+    analyzed = copy_and_analyze([(row['slug'], os.path.join(mp3_dir, row['slug'] + '.mp3'),
+                                  os.path.join(out_dir, 'articles', row['slug'] + '.mp3'))
+                                 for row in kept], phone=True)
+    articles = {}
+    for row in kept:
+        digest, index = analyzed[row['slug']]
+        articles[row['slug']] = entry('articles/' + row['slug'] + '.mp3', row['license'],
+                                      row['author'], row['file'], digest, index,
+                                      matches=row['matched_word'])
+    for reason, slug, detail in sorted(drops):
+        print('  drop %-15s %-22s %s' % (reason, slug, detail))
+    print('  articles: %d rows → %d spoken with their article' % (len(rows), len(articles)))
+    return articles
+
+
 def letter_file(glyph):
     """`letters/u<cp>…mp3` — one `u<cp>` per codepoint, because glyph names decompose on APFS.
 
@@ -316,7 +357,7 @@ def reindex(lang):
     out_dir = os.path.join(CATALOG, 'audio', lang)
     manifest = read_json(out_dir, 'manifest.json')
     entries = {(section, key): item
-               for section in ('words', 'letters', 'texts') if section in manifest
+               for section in ('words', 'letters', 'texts', 'articles') if section in manifest
                for key, item in manifest[section].items()}
     measured = audio_measure.measure_all(
         FFMPEG, sorted({os.path.join(out_dir, item['file']) for item in entries.values()}))
@@ -329,7 +370,7 @@ def reindex(lang):
         loudness, speaker, leading, peak, floor = measured[path]
         if loudness is None or peak is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % path)
-        phone = section == 'words'
+        phone = section in ('words', 'articles')
         if phone and speaker is None:
             sys.exit('%s: nothing above the speaker lens — it cannot be indexed by it' % path)
         index = playback_index(loudness, speaker, leading, peak, floor, phone)
@@ -342,8 +383,8 @@ def reindex(lang):
         if phone and speaker is not None and index.get('gainPhone', 0) < round(
                 ANALYSIS['speaker_lufs'] - speaker, 1) - 0.05:
             limited += 1
-    write_manifest(lang, out_dir, manifest.get('words', {}),
-                   manifest.get('letters', {}), manifest.get('texts', {}))
+    write_manifest(lang, out_dir, manifest.get('words', {}), manifest.get('letters', {}),
+                   manifest.get('texts', {}), manifest.get('articles', {}))
     moved.sort()
     print('  %s: %d entries, %d re-gained (median %+.1f dB, widest %+.1f), %d held by the '
           'peak ceiling' % (lang, len(entries), len(moved),
@@ -351,12 +392,40 @@ def reindex(lang):
                             max(moved, key=abs) if moved else 0, limited))
 
 
-def write_manifest(lang, out_dir, words, letters, texts):
+def convert_articles_only(packs, languages):
+    """Add (or rebuild) the `articles` section of languages that already ship a manifest.
+
+    why a second entry point: a word pack is research input that goes stale as content
+    moves — slugs get renamed and its mp3s are long gone — while what ships is right here
+    and pinned by its digests. Re-running the whole convert to gain one section would
+    re-derive the other three from a workspace that can no longer produce them; this
+    reads the manifest, replaces one section, and leaves the rest byte-identical.
+    """
+    _, _, targets = load_catalog()
+    found = sorted(name[len('pack-'):-len('-articles')] for name in os.listdir(packs)
+                   if name.startswith('pack-') and name.endswith('-articles')
+                   and os.path.isdir(os.path.join(packs, name)))
+    for lang in languages or found:
+        pack = os.path.join(packs, 'pack-%s-articles' % lang)
+        if not os.path.isdir(pack):
+            sys.exit('%s: no pack-%s-articles' % (packs, lang))
+        out_dir = os.path.join(CATALOG, 'audio', lang)
+        manifest = read_json(out_dir, 'manifest.json')
+        print('pack-%s-articles' % lang)
+        shutil.rmtree(os.path.join(out_dir, 'articles'), ignore_errors=True)
+        articles = convert_articles(lang, pack, out_dir, targets, manifest['words'])
+        write_manifest(lang, out_dir, manifest['words'], manifest.get('letters', {}),
+                       manifest.get('texts', {}), articles)
+
+
+def write_manifest(lang, out_dir, words, letters, texts, articles):
     manifest = {'language': lang, 'words': words}
     if letters:
         manifest['letters'] = letters
     if texts:
         manifest['texts'] = texts
+    if articles:
+        manifest['articles'] = articles
     with open(os.path.join(out_dir, 'manifest.json'), 'w', encoding='utf-8') as f:
         json.dump(manifest, f, ensure_ascii=False, indent=2, sort_keys=True)
         f.write('\n')
@@ -368,6 +437,9 @@ def main():
     parser.add_argument('--lang', action='append', help='convert only this language (repeatable)')
     parser.add_argument('--reindex', action='store_true',
                         help='re-measure catalog/audio/<lang>/ in place; no packs needed')
+    parser.add_argument('--articles', action='store_true',
+                        help='convert only pack-<lang>-articles into the shipped manifest, '
+                             'leaving every other section byte-identical')
     args = parser.parse_args()
     if not args.packs and not args.reindex:
         parser.error('--packs is required unless --reindex re-measures what already ships')
@@ -380,6 +452,9 @@ def main():
         print('warning: measuring with %s; ANALYSIS was taken on %s — expect drifted decimals'
               % (detected, ANALYSIS['ffmpeg']))
 
+    if args.articles:
+        return convert_articles_only(args.packs, args.lang)
+
     if args.reindex:
         shipped = sorted(name for name in os.listdir(os.path.join(CATALOG, 'audio'))
                          if os.path.isdir(os.path.join(CATALOG, 'audio', name)))
@@ -388,15 +463,25 @@ def main():
             reindex(lang)
         return
 
-    slugs, forms = load_catalog()
+    slugs, forms, targets = load_catalog()
     languages = sorted(name[len('pack-'):] for name in os.listdir(args.packs)
-                       if name.startswith('pack-') and not name.endswith(('-letters', '-texts'))
+                       if name.startswith('pack-')
+                       and not name.endswith(('-letters', '-texts', '-articles'))
                        and os.path.isdir(os.path.join(args.packs, name)))
     for lang in args.lang or languages:
         pack = os.path.join(args.packs, 'pack-%s' % lang)
         if not os.path.isdir(pack):
             sys.exit('%s: no pack-%s' % (args.packs, lang))
         print('pack-%s' % lang)
+        # why: the convert REPLACES what ships, so a pack that cannot produce its bytes has
+        # to say so before the old ones are gone. A workspace goes stale as content moves
+        # (a renamed slug leaves a row whose mp3 was never fetched), and a crash halfway
+        # through the rebuild used to take the shipped pack with it.
+        missing = [row['slug'] for row in read_rows(os.path.join(pack, 'manifest.tsv'))
+                   if not os.path.isfile(os.path.join(pack, 'mp3', row['slug'] + '.mp3'))]
+        if missing:
+            sys.exit('pack-%s: %d rows have no mp3 (%s) — re-fetch the pack; nothing was touched'
+                     % (lang, len(missing), ', '.join(sorted(missing)[:5])))
         out_dir = os.path.join(CATALOG, 'audio', lang)
         shutil.rmtree(out_dir, ignore_errors=True)
         os.makedirs(out_dir)
@@ -405,7 +490,10 @@ def main():
         letters = convert_letters(letters_pack, out_dir) if os.path.isdir(letters_pack) else {}
         texts_pack = os.path.join(args.packs, 'pack-%s-texts' % lang)
         texts = convert_texts(texts_pack, out_dir) if os.path.isdir(texts_pack) else {}
-        write_manifest(lang, out_dir, words, letters, texts)
+        articles_pack = os.path.join(args.packs, 'pack-%s-articles' % lang)
+        articles = (convert_articles(lang, articles_pack, out_dir, targets, words)
+                    if os.path.isdir(articles_pack) else {})
+        write_manifest(lang, out_dir, words, letters, texts, articles)
 
 
 if __name__ == '__main__':
