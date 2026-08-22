@@ -176,15 +176,28 @@ a clone inherits its sibling's gaps, never the rules.
 - A wrong answer that IS another word of the catalog **names that word** instead of
   forgiving it, so two words a learner needs told apart can never grade each other correct.
 - **A word you have consolidated is sometimes asked by ear alone**: the prompt is the
-  replay glyph and nothing else, and what is typed is what was heard. The card is still a
-  produce card and still books its review — only the prompt side moved. It withholds the
-  meaning, so the reveal owes it back, and it waits for the landed bar the emoji reads from
-  the other side: taking a word's only cue away
-  while it is still landing is not support. A synonym typed here is amber, never wrong —
-  the reveal itself teaches those forms, it simply was not the one that played. Where the
-  word cannot be heard right now — no recording and no voice, reading aloud off, a screen
-  reader running — the card falls back to its source prompt rather than blocking, because
-  unlike the letter drill review has another way to ask the same question.
+  replay glyph and nothing else, and what is typed is what the word MEANS, in your own
+  language — hearing a word and writing it back down is transcription, and translating it
+  is what the box is for. The field's placeholder names that language, as it always names
+  the one an answer is owed in. The card is still a produce card and still books its
+  review — only the side it asks from moved. It withholds the meaning, so the reveal owes
+  it back, and it waits for the landed bar the emoji reads from the other side: taking a
+  word's only cue away while it is still landing is not support.
+  Where the word cannot be heard right now — no recording and no voice, reading aloud off,
+  the device turned down or muted, a screen reader running — the card falls back to its
+  source prompt rather than blocking, because unlike the letter drill review has another
+  way to ask the same question.
+- **"Can't listen right now?" stands under the primary action of every card asked by ear**,
+  and puts the word on the card as text for the rest of that turn. A learner in a meeting
+  or on a silent phone cannot hear the one thing the card consists of, and the alternative
+  to reading it is answering blind. The question is otherwise unchanged — same answer, same
+  language, same rating; only the channel it arrives through moves, and the next card asked
+  by ear asks by ear again. The same word appears the moment the answer is out, whether it
+  was asked for or not: the spelling is what the reveal owes, and it stands with its
+  article, its plural line and the speaker that says it, above the meaning the card opens
+  onto. iOS cannot read the ring/silent switch — there is no API — so on a phone silenced
+  that way this button is the whole remedy, which is why it is on screen from frame one
+  rather than offered after a silence.
 - **A produce miss keeps the field open for a retry, not a self-grade tap.** 
   The reveal trims the field back to the words already right, 
   so the learner finishes the word against the answer standing on the card.
