@@ -4,7 +4,7 @@ The record for the ship/legal questions the bundled audio raises:
 what is in the app, whose it is, what each license asks for, and where the app answers it.
 Successor to `docs/pronunciation-plan.md`, deleted once the feature shipped.
 
-The engine rule is `../kern/docs/audio.md`, the file format `../catalog/README.md` § Audio,
+The engine rule is `../kern/docs/audio.md`, the file format `../catalog/docs/audio.md`,
 and the per-file truth is the per-language manifests themselves — this doc states the posture,
 not the schema.
 The pack research (how each source was found, what was rejected, the coverage gaps)

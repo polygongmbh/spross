@@ -67,7 +67,7 @@ Engine contract: `../README.md`.
   (glyph filenames decompose under NFD on APFS), every file ships and is referenced exactly once,
   each sha256 re-hashed against the committed bytes — Commons transcodes ship untouched,
   because re-encoding is an adaptation under BY-SA — and no author is a placeholder.
-- The manifest's own schema (fields, naming rules, provenance) is `catalog/README.md`'s:
+- The manifest's own schema (fields, naming rules, provenance) is `catalog/docs/audio.md`'s:
   this section owns the engine rule, not the file format.
 - **Playback trusts the index only so far** (`catalog/Playback.kt`).
   `Playback.GAIN_LIMIT_DB = 20.0` is the converter's own clamp and now the single home of the number:

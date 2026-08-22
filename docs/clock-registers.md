@@ -178,7 +178,7 @@ Esperanto is the one clock whose readings compose into a PREPOSITIONAL frame.
 `la tria` is a bare nominative noun phrase carrying its own article and no copula,
 and `je` does not contract, so `je la tria`, `je tagmezo` and `je kvarono antaŭ la kvara`
 all read as written — where Italian's `alle`/`all'` and Ukrainian's `о` + locative cannot
-(`../catalog/README.md` § "Language constraints").
+(`../catalog/docs/drills.md` § "Language constraints").
 The hour is an ordinal with `horo` elided, and both spellings of it grade;
 the countdown is `kvarono antaŭ la kvara`, with `la kvara minus kvarono` accepted and never shown —
 it is a calque, and one register of it (the quarter) is as far as it is attested,
