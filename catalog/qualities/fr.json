@@ -72,7 +72,6 @@
    "variants": ["Le jour est long."],
    "notes": { "de": "jour ist der Tag als Datum, journée der Tag in seiner Dauer: la journée est longue." }
   },
-  "that-is-too-heavy": { "text": "C'est trop lourd." },
-  "the-water-is-clean": { "text": "L'eau est propre." }
+  "that-is-too-heavy": { "text": "C'est trop lourd." }
  }
 }

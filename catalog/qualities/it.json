@@ -57,7 +57,6 @@
   },
   "a-lot-of-water": { "text": "molta acqua" },
   "the-day-is-long": { "text": "Il giorno è lungo.", "variants": ["La giornata è lunga."] },
-  "that-is-too-heavy": { "text": "Questo è troppo pesante.", "variants": ["È troppo pesante."] },
-  "the-water-is-clean": { "text": "L'acqua è pulita." }
+  "that-is-too-heavy": { "text": "Questo è troppo pesante.", "variants": ["È troppo pesante."] }
  }
 }

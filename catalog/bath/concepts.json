@@ -50,6 +50,5 @@
   "emoji": "🪥",
   "components": ["brush-teeth"]
  },
- { "slug": "wash-your-hands", "kind": "phrase", "emoji": "🧼", "components": [] },
- { "slug": "the-water-is-cold", "kind": "phrase", "emoji": "🥶", "components": [] }
+ { "slug": "wash-your-hands", "kind": "phrase", "emoji": "🧼", "components": [] }
 ]

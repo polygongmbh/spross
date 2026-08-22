@@ -25,7 +25,6 @@
   "sharp": { "text": "гострий", "variants": ["гостро"] },
   "a-lot-of-water": { "text": "багато води" },
   "the-day-is-long": { "text": "День довгий." },
-  "that-is-too-heavy": { "text": "Це занадто важке." },
-  "the-water-is-clean": { "text": "Вода чиста." }
+  "that-is-too-heavy": { "text": "Це занадто важке." }
  }
 }

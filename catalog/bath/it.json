@@ -77,7 +77,6 @@
    "text": "Non dimenticare di lavarti i denti!",
    "variants": ["Non dimenticarti di lavarti i denti!"]
   },
-  "wash-your-hands": { "text": "Lavati le mani." },
-  "the-water-is-cold": { "text": "L'acqua è fredda!" }
+  "wash-your-hands": { "text": "Lavati le mani." }
  }
 }

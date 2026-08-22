@@ -70,12 +70,6 @@
    "text": "¡No te olvides de lavarte los dientes!",
    "variants": ["¡No olvides lavarte los dientes!", "¡No te olvides de cepillarte los dientes!"]
   },
-  "wash-your-hands": { "text": "Lávate las manos." },
-  "the-water-is-cold": {
-   "text": "¡El agua está fría!",
-   "notes": {
-    "de": "agua ist feminin, im Singular aber mit el (betontes a-): el agua está fría, Plural las aguas"
-   }
-  }
+  "wash-your-hands": { "text": "Lávate las manos." }
  }
 }
