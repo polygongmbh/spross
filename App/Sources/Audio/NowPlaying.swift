@@ -114,17 +114,22 @@ final class NowPlaying {
             MPNowPlayingInfoPropertyPlaybackRate: paused ? 0.0 : 1.0,
         ]
         if let artwork { info[MPMediaItemPropertyArtwork] = artwork }
+        // why: SET either way, never omitted. The system builds its idea of the
+        // item up ACROSS updates rather than replacing it, so a key left out
+        // keeps its last value — a run that laps and is then given a bedtime
+        // would stay a live stream, and a live stream draws its scrubber with
+        // dashes where the times go however good a duration it is handed.
+        info[MPNowPlayingInfoPropertyIsLiveStream] = bedtime == nil
         if let bedtime {
             // why: a bedtime is the one thing this run has a LENGTH of, so it is
             // the one thing worth a progress bar — how much of it has played and
             // how much is left, without opening the app to read the chip.
             info[MPMediaItemPropertyPlaybackDuration] = bedtime.total
             info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = bedtime.elapsed
-        } else {
-            // why: a playlist that laps for as long as it is left alone has no
-            // duration and no position — a scrubber over it would be a lie.
-            info[MPNowPlayingInfoPropertyIsLiveStream] = true
         }
+        // A playlist that laps for as long as it is left alone has no duration
+        // and no position, and a scrubber over it would be a lie — so with no
+        // bedtime neither key is there to draw one from.
         center.nowPlayingInfo = info
         center.playbackState = paused ? .paused : .playing
     }
@@ -149,16 +154,19 @@ final class NowPlaying {
     /// The app icon, which is the only artwork a run over the learner's OWN
     /// words could have — there is no cover for a playlist the box composed.
     ///
-    /// The asset catalog answers first and answers at full size; the bundle's
-    /// rendered icon files are the fallback, and they are named in `Info.plist`
-    /// rather than guessed at.
+    /// It is its OWN image set rather than the app icon read back out of the
+    /// bundle. `UIImage(named: "AppIcon")` answers with the RENDERED home-screen
+    /// icon — 120 px — and a lock screen asking for 768 gets that blown up: the
+    /// card was legibly soft. `NowPlayingArtwork` is the same artwork at a size
+    /// worth handing over. The rendered icons stay as the fallback, named out of
+    /// `Info.plist` rather than guessed at.
     private static func appIcon() -> UIImage? {
-        if let icon = UIImage(named: "AppIcon") { return icon }
+        if let icon = UIImage(named: "NowPlayingArtwork") { return icon }
         guard let icons = Bundle.main.infoDictionary?["CFBundleIcons"] as? [String: Any],
               let primary = icons["CFBundlePrimaryIcon"] as? [String: Any],
               let files = primary["CFBundleIconFiles"] as? [String],
               let last = files.last
-        else { return nil }
+        else { return UIImage(named: "AppIcon") }
         return UIImage(named: last)
     }
 }
