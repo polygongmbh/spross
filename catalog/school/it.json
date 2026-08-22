@@ -37,10 +37,11 @@
   },
   "exam": { "text": "esame", "variants": ["l'esame", "prova"], "grammar": { "gender": "l'" } },
   "break": {
-   "text": "pausa",
-   "grammar": { "gender": "la" },
+   "text": "intervallo",
+   "variants": ["l'intervallo", "ricreazione", "pausa"],
+   "grammar": { "gender": "l'" },
    "notes": {
-    "de": "Die Pause zwischen den Schulstunden heißt l'intervallo, in der Grundschule la ricreazione."
+    "de": "l'intervallo ist die Schulpause, in der Grundschule la ricreazione; die allgemeine Pause heißt la pausa."
    }
   },
   "pass-exam": {
@@ -51,12 +52,18 @@
   "to-practice": { "text": "esercitarsi", "variants": ["fare esercizi", "fare pratica"] },
   "raise-hand": { "text": "alzare la mano" },
   "pupil": {
-   "text": "studente",
-   "synonyms": ["alunno"],
-   "grammar": { "gender": "lo" },
-   "notes": { "de": "l'alunno geht zur Schule, lo studente auch zur Universität." }
+   "text": "alunno",
+   "synonyms": ["studente"],
+   "grammar": { "gender": "l'" },
+   "notes": { "de": "l'alunno geht zur Schule, lo studente auch zur Universität." },
+   "variants": ["l'alunno"]
   },
-  "pupil-f": { "text": "studentessa", "synonyms": ["alunna"], "grammar": { "gender": "la" } },
+  "pupil-f": {
+   "text": "alunna",
+   "synonyms": ["studentessa"],
+   "grammar": { "gender": "l'" },
+   "variants": ["l'alunna"]
+  },
   "course": { "text": "corso", "grammar": { "gender": "il" } },
   "lesson": {
    "text": "lezione",

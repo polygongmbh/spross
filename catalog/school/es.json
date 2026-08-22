@@ -40,10 +40,10 @@
   },
   "exam": { "text": "examen", "variants": ["prueba"], "grammar": { "gender": "el" } },
   "break": {
-   "text": "descanso",
-   "synonyms": ["pausa"],
+   "text": "recreo",
+   "variants": ["descanso", "pausa"],
    "grammar": { "gender": "el" },
-   "notes": { "de": "Die Pause zwischen den Schulstunden heißt el recreo." }
+   "notes": { "de": "el recreo ist die Schulpause; die allgemeine Pause heißt el descanso." }
   },
   "pass-exam": {
    "text": "aprobar el examen",

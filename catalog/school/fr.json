@@ -46,9 +46,10 @@
    "notes": { "de": "Die Klassenarbeit heißt le contrôle; l'examen ist die große Prüfung." }
   },
   "break": {
-   "text": "pause",
+   "text": "récréation",
+   "variants": ["la récréation", "récré", "pause"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "Die Pause zwischen den Schulstunden heißt la récréation, ugs. la récré." }
+   "notes": { "de": "la récréation ist die Schulpause, ugs. la récré; die allgemeine Pause heißt la pause." }
   },
   "pass-exam": {
    "text": "réussir l'examen",
