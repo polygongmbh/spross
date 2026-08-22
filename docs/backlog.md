@@ -23,6 +23,10 @@ One line per item, with a file or context pointer, filed under the section it be
   one falls to TTS (silent on sw-iOS, which has no voice). What Commons never had is
   listed per pack in `data/reference/audio/pack-*/missing.txt`; gap-filling (commissioning
   or a paid voice) is a content project, scoped in that folder's README.
+- The de `passport` recording says "Pass", which is now a `variants` entry rather than the
+  card's `text` (`Reisepass`), so the card falls to TTS: playback keys on the displayed form.
+  Same shape for any word whose canonical form is sharpened after its recording was fetched —
+  the fix is a fresh Commons fetch (`De-Reisepass.ogg`), not a rollback of the word.
 - Voice consistency varies by pack: sw and uk are a single speaker throughout, de is
   mostly one (Jeuwre) with a Lingua Libre remainder, while es is a crowd of Lingua Libre
   speakers in twenty credit groups, none with a stated country or variety
