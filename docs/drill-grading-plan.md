@@ -1,8 +1,9 @@
-# Strict drill grading — implementation plan
+# Drill typo collisions — implementation plan
 
-A plan, not a spec: delete it once the last commit below has landed,
+A plan, not a spec: delete it once Part 1's last commit has landed,
 and move what outlives it into `../kern/docs/grading.md` (the rule)
-and `number-forms.md` (whatever a pack owes the core index).
+and `number-forms.md` (what a pack owes the confusable set).
+Part 2 is an assessment, not a commitment — it ships as its own series or not at all.
 
 ## The hole
 
@@ -16,7 +17,7 @@ drill answer as ONE synthetic card, and says so in its own KDoc:
 Two callers, so this is every free-text drill: `TrainerRun.grade` (numbers, years, clock,
 fraction, forms, phrase sentences) and `CountryDrillRun.grade`.
 
-The cost is paid as three allowlists, all verified in the source:
+The cost is paid as three allowlists, all counted in the source:
 
 | Allowlist | Entries | Pinned pair counts |
 |---|---|---|
@@ -24,334 +25,373 @@ The cost is paid as three allowlists, all verified in the source:
 | `TrainerFormsTypoBridgeGuardTests.FORM_BRIDGES` | those 11 + 12 more = 23 | forms: de 0, en 6, es 231, it 2, sw **882**, fr 103, uk 30, eo 976 — **2230 total** |
 | `ClockCollisionSweepTests.KNOWN_BRIDGES` | 11 word pairs | clock: es 1, sw 1, fr 1, uk 5, eo 3; de/en/it 0 |
 
-The brief's "882 more in the forms answer space" is the SWAHILI figure alone; the forms guard
-pins 2230 pairs in total. Everything else in the brief's counts checks out.
+Two corrections to the brief: "882 more in the forms answer space" is the SWAHILI figure
+alone — the forms guard pins 2230 pairs in total; and the "can never be authored" sentence
+Part 2 has to renegotiate lives in `catalog/docs/drills.md:49`, not in `catalog/README.md`.
+Everything else in the brief checks out.
 
 A learner typing *setenta* when the drill asked for *sesenta* is graded **Hard**, not Wrong —
 in the drill whose whole job is keeping numbers apart.
 
-## What the owner ruled, and what it costs the design
+---
 
-> sesenta for setenta is actually wrong, but if it is "ciento setenta y ocho" instead of
-> "ciento sesenta y ocho" I would say that is okay to count as a typo
+# Part 1 — the collision fix
 
-So the target is NOT "no reading is ever accepted for another".
-It is a boundary, and the plan's real job is to state where it falls.
+## The rule
 
-### The rule
+> for typos its not whether its one word or not, its about simplicity - having a limited set
+> of collisions to track, making the code not overly complicated but just catching it where
+> it is easy to catch
 
-**A drill answer grades strictly when its expected reading is ONE word in comparison form;
-otherwise it keeps today's per-word budget untouched.**
-On the strict path an input the drill's own answer space owns exactly, and this task does not,
-is that value — not a slip of this one.
+So there is no predicate. There is a **list**, and one place that consults it:
 
-The principle, said once so a new language can be judged against it:
-*the strict path applies exactly where the differing word IS the whole answer.*
-In a longer reading the other words still pin the magnitude and the structure,
-so the answer shows the learner built the number correctly and slipped once —
-which is the definition of the typo the drills already forgive everywhere else.
+**A drill answer that the typo budget accepted is refused when the whole typed answer and the
+whole expected reading are a listed confusable pair.** Everything else grades exactly as
+today — the same normalizer, the same per-word budget, the same verdicts.
 
-Both of the owner's data points fall out of it: `sesenta` is one word, `ciento setenta y ocho`
-is four. The residue it leaves is intended, not overlooked — eo `dek ses`/`dek sep` (16/17),
-fr `cent six`/`cent dix` (106/110), es `ciento sesenta`/`ciento setenta` (160/170),
-sw `kumi na nne`/`kumi na nane` (14/18) all keep the slip, because in each the leading
-word already fixed the decade and only the unit moved.
+That is the whole mechanism:
 
-### The two predicates that were tested against the real readings, and rejected
+```kotlin
+return when (val match = normalizer.evaluate(trimmed, card)) {
+    Match.Exact -> Match.Exact
+    is Match.Typo -> if (confusable(normalizer, trimmed, accepted, language)) Match.Wrong else match
+    is Match.OtherWord, Match.Wrong -> Match.Wrong
+}
+```
 
-| Predicate | What it changes | Why not |
-|---|---|---|
-| **≤ 2 words** | also refuses eo 16/17, fr 106/110, es 160/170 | no principle separates two words from three, and it contradicts the owner's `ciento setenta y ocho` ruling only by one word — a line that has to be argued value by value is not a rule |
-| **≤ 2 *content* words** (joiners `y`/`na`/`und`/`e` not counted) | additionally refuses sw 14/18, keeps es 168 lenient | needs a per-language joiner list that exists nowhere today; deriving it ("a word that is not itself a number's reading") misfires on es `ciento`, which is not the reading of 100 (`cien`) |
+where `confusable` is `accepted.any { setOf(normalizer.normalize(trimmed), normalizer.normalize(it)) in DrillConfusables.pairs(language) }`.
+Ten lines inside `gradeDrillAnswer`, which both callers already share.
+`AnswerNormalizer`, `CatalogAnswerGrader` and every run signature stay untouched.
 
-Both stay in this file rather than in a commit: if the owner wants 16↔17 refused,
-"≤ 2 words" is a one-constant change and the sweep re-pins itself.
+Three properties fall out rather than being designed in:
 
-### ⚠ Ruling wanted: which form the word count is measured on
+- **Compound bridges stay fine, by construction.** `ciento sesenta y ocho` is not equal to
+  `ciento setenta y ocho` as a listed pair, so it never fires — the owner's ruling holds
+  without a word count, a letter share, or a leading-word rule.
+- **The welded-form question dissolves.** The pairs are stored in the normalizer's own
+  comparison shape, which is the only shape the grader ever sees; `soixantedix` and `девять`
+  are already written that way in `KNOWN_BRIDGES` today. No hyphen ruling is needed.
+- **Phrase answers and reversed answers are untouched.** A sentence is never equal to a
+  listed pair member, and a reversed answer is digits (already exact-only via `wordBudget`).
 
-fr `soixante-dix` is one word only because the comparison pipeline DELETES the hyphen
-(`AnswerNormalizer`: joiners `-'’` are dropped, other punctuation becomes a space);
-eo `sesdek`, `sepcent` and it `centotto` are genuinely one word.
+`Match.Exact` still wins: the check runs only on the `Match.Typo` arm, so any spelling the
+task itself accepts has already returned. That is also what keeps the clock's twelve-hour
+cycle and its several registers per prompt safe, since two prompts sharing a reading resolve
+as Exact before the check is reached.
 
-- **Comparison form** (recommended): fr 66↔70 and 86↔90 become Wrong.
-  It is the only form the grader ever sees, so a raw-orthography word count would be a
-  second notion of "word" living nowhere else in the pipeline, and it makes
-  orthographically welded French behave like genuinely welded Italian and Esperanto.
-- **Raw reading**: fr 66↔70 and 86↔90 stay typos, and the fr counts below move by 2 instead of 3.
+## The set: invert `KNOWN_BRIDGES` rather than write a new one
 
-## The mechanism — and it touches no shared grading file
+`TypoBridgeSweep.KNOWN_BRIDGES` is ALREADY the small enumerated set this rule needs — it is
+just labeled as defects to tolerate. The move is to change what it means, not what it holds:
 
-The strict path routes through **`CatalogAnswerGrader.grade(input, card)` directly**,
-over a bounded sibling card set. That class, `AnswerNormalizer` and `gradeDrillAnswer`
-are all left exactly as they are: `gradeDrillAnswer` keeps its
-`is Match.OtherWord -> Match.Wrong` flattening and keeps serving every multi-word reading.
-The strict path simply does not route through the lenient one.
+- it moves from `commonTest` to `commonMain` as `DrillConfusables`, keyed by language;
+- production consults it on the WHOLE answer (strict);
+- the sweeps keep consulting it per differing WORD (lenient inside a compound), which is
+  exactly what `isKnownBridge` does today.
 
-Nothing is minted. `CatalogAnswerGrader`'s own KDoc is already this plan's sentence:
+One artifact, two readings of it, and a diff measured in tens of lines.
 
-> A form the catalog already accepts elsewhere is that word, never a slip of this one …
-> the check never widens what counts as wrong — it re-labels a miss, and withdraws typo
-> credit where the catalog can prove the word is taken.
+Every one of the 11 entries is a pair of COMPLETE readings of two values, which is why the
+whole-answer check reaches all of them. The forms list adds 12 more, of which 9 are likewise
+complete readings; the remaining 3 (`{ninths, ninth}`, `{septièmes, septième}`,
+`{девятих, десятих}`) are fragments that only ever appear inside a longer reading and simply
+never fire. So the strict set is **20 literal pairs**, and the same 23 entries keep serving
+the compound classification.
 
-Three consequences worth naming:
+⚠ **The French welded pair is now a plain yes/no, not a design question.** Entries 6 and 7
+(`soixante-six`/`soixante-dix`, `quatre-vingt-six`/`quatre-vingt-dix`) are one word only
+because the pipeline deletes the hyphen. Under a predicate that would have been a rule to
+argue; under a list it is one decision: keep them in the strict set or drop them. Keeping
+them (recommended — 66 and 70 are different numbers, and the shared `soixante` is a prefix
+rather than a word the learner got right) puts fr cardinals at 27; dropping them puts it at
+29 and leaves entries 6 and 7 in the list for compound classification only.
 
-- **No `probeWords`, no `alsoSkipping`.** The dates plan needs them because a date is
-  ASSEMBLED and its assembled space (7 × 12 × 31) is an inventory, not a card set.
-  A one-word answer has nothing to assemble: the whole-string probe the grader already
-  makes IS the word probe. See [Reconciliation](#reconciliation-with-the-dates-plan).
-- **Phrase tasks are untouched.** A phrase answer is a sentence and never one word,
-  so the assembled-answer problem does not arise here at all.
-- **Reversed tasks are untouched.** A reversed answer is digits, and a word carrying a
-  digit already grades exact-only (`AnswerNormalizer.wordBudget`). The strict path skips
-  any expected form containing a digit rather than relying on that twice.
+⚠ **Esperanto is the one language whose confusables are a rule rather than a list.** Its
+endings weld onto every numeral, so `ses`/`sep` returns inside every ordinal, `-ono` and
+`-foje` built on 6 or 7 — `sesa`/`sepa`, `sesdeka`/`sepdeka` and so on, all of them complete
+one-word readings. `TrainerFormsTypoBridgeGuardTests.sixSevenTwins` already derives that
+family in six lines, and its own KDoc gives the reason ("the derivation IS the finding:
+forty literals would bury it"). Recommendation: move that derivation to `DrillConfusables`
+beside the literals. If it is left out, eo `sesa` for `sepa` stays a typo while fr `sixième`
+for `dixième` is refused, which is an inconsistency a learner of both would meet.
 
-### The sibling set, per drill
+### The country drill's four pairs
 
-Derived from the packs, never authored — `catalog/docs/drills.md:49` already rules that
-"the table is derived from the trainer's own readings and can never be authored",
-and an authored core would put a second copy of every numeral beside the generator that
-grades it. What IS borrowed from the overview is the *shape*: the bands of
-`REFERENCE_VALUES` in `NumberReference.kt` (base 0–15, tens, irregulars 16–30,
-compounds, hundreds, places) are exactly the rows the owner pointed at.
+Nothing audits the country drill today, and it has genuine one-edit collisions between
+DIFFERENT countries — measured over `catalog/countries/*.json` with the comparison pipeline's
+shape: eo `Ĉinio`/`Ĉilio` (China/Chile), sw `Uswisi`/`Uswidi` and `Waswisi`/`Waswidi`
+(Switzerland/Sweden), uk `данці`/`ганці` (Danes/Ghanaians). All four are whole answers, so
+they are four more literal entries in the same list and cost nothing beyond the sweep that
+finds them authoritatively.
 
-| Drill | Index | Size per language |
-|---|---|---|
-| Numbers / Years | every value in 0–100 ∪ {101, 200…900, 1000, 2000, 5000, 10⁶, 2·10⁶, 10⁹} **whose reading is one word**, with its full drill accepted set (`Trainer.drillNumber`, so sw's `na`-less spelling and the de/it/eo variant twins are owned) | es ~30, sw ~30, de/it/eo ~110 |
-| Forms | ordinals over `FormLimits.ordinalRange`, multiplicatives 1–100, the reduced fraction pool — the only forms whose readings can be one word; negative, decimal and percent always carry a marker word | ≤ 250 |
-| Country | `CountryDrillContent.countries` / `.languages`, **scoped to the task's own kind** | ~130 |
-| Clock | none — no authored language reads a time as one word (verified de/en/es/it/sw/fr/uk/eo) | — |
+They must NOT be joined by the country↔nationality pairs the same measurement turns up
+(de `Spanien`/`Spanier` and eleven more, it `Russia`/`russi` and eleven more): those are two
+different questions the ladder asks at two different rungs, never one accepted set, and
+listing them would turn a dozen German near-misses into misses for no gain. The forms guard
+already states that principle — a confusion only counts where "a learner can meet both in one
+run graded against one accepted set".
 
-The index is *defined by the predicate that selects the strict path*: a value belongs to it
-exactly when its reading is one word. For a welding language that is most of 0–999;
-for Spanish it stops around 100 on its own, because `ciento uno` is two words.
+## What was considered instead
 
-**Same-kind scoping is load-bearing**, and it is the forms guard's own argument
-("two prompts can only be confused if a learner can meet both in one run graded against one
-accepted set"): cardinals and forms keep separate indexes, so de `achte` typed for `acht`
-stays a typo; country names and people's names keep separate indexes, so de `Spanier`
-typed for `Spanien` stays a typo instead of becoming a miss on twelve German pairs.
-
-### Where it is built, and what it costs per turn
-
-`TrainerRun.grade` is called on **every keystroke** (`typed()` runs the live approve through
-it), so the index must never be built inside it. One object built once when the run opens
-and passed in exactly as the normalizer is today:
-
-- `TrainerRun.reduce(state, intent, normalizer, rng)` → `reduce(state, intent, grader, rng)`,
-  where `DrillGrader` is a kern class holding the drill normalizer plus a lazily built
-  `CatalogAnswerGrader` per (kind, language). Same for `TrainerRun.grade`.
-- `CountryDrillRunConfig.normalizer` → `.grader`, built by a kern factory from the content
-  the config already carries. Platforms call the factory; they mint nothing (`LayerBoundaryTest`).
-- Lazy per kind, so a Numbers-only run never pays for the forms index; memoized per
-  (kind, language) in the grader, so a resumed run pays once.
-
-Cost at run open: ≤ ~110 cardinal readings + ≤ 250 form readings, each through
-`normalize`. Sub-millisecond either way, and off the keystroke path entirely.
+| Alternative | Verdict |
+|---|---|
+| **Grade through `CatalogAnswerGrader` over a per-drill card index** (the earlier draft of this plan, and the dates plan's shape) | Rejected. It works, and it costs a `DrillGrader` object, a lazily built owner index per (kind, language), a signature change on `TrainerRun.reduce`/`grade` and `CountryDrillRunConfig`, a keystroke-path hazard (`typed()` grades on every character), and an asymmetry where a value outside the index protects only its twin. It buys reach nobody asked for above the enumerated band. |
+| **Consult the list per differing WORD** (the sweep's own `isKnownBridge`) | Rejected: it refuses `ciento setenta y ocho`, which the owner explicitly called a fine typo. |
+| **A word-count / letter-share / leading-word predicate** | Withdrawn by the owner. It also forced the hyphen ruling, which no longer exists. |
+| **Author the pairs in the catalog** | Deferred to Part 2, where the words themselves would be authored. Part 1 must not wait for it. |
 
 ## The bridges table
 
-Every pair is one of the 11 `KNOWN_BRIDGES` entries; "killed" means the strict path returns
-`Match.OtherWord` where today it returns `Match.Typo`. Direction matters — the probe looks up
-the string the learner TYPED, so a member outside the index only protects the other member.
+"Killed" = the pair no longer grades `Typo`; the check is symmetric, so both directions go at
+once. Every value below is the bare reading of the value named.
 
-| # | Lang | Pair (value ↔ value) | Both members one word? | In the index? | Killed |
-|---|---|---|---|---|---|
-| 1 | sw | `nne` 4 ↔ `nane` 8 | yes | both | both ways |
-| 2 | uk | `дев'ять` 9 ↔ `десять` 10 | yes | both | both ways |
-| 3 | en | `eight` 8 ↔ `eighty` 80 | yes | both | both ways |
-| 4 | es | `sesenta` 60 ↔ `setenta` 70 | yes | both | both ways |
-| 5 | fr | `six` 6 ↔ `dix` 10 | yes | both | both ways |
-| 6 | fr | `soixante-six` 66 ↔ `soixante-dix` 70 | only after hyphen deletion ⚠ | both | both ways, **iff the comparison-form ruling** |
-| 7 | fr | `quatre-vingt-six` 86 ↔ `quatre-vingt-dix` 90 | only after hyphen deletion ⚠ | both | both ways, same ruling |
-| 8 | it | `ventotto` 28 ↔ `centotto` 108 | yes | 28 only | **one way only** — see below |
-| 9 | eo | `ses` 6 ↔ `sep` 7 | yes | both | both ways |
-| 10 | eo | `sesdek` 60 ↔ `sepdek` 70 | yes | both | both ways |
-| 11 | eo | `sescent` 600 ↔ `sepcent` 700 | yes | both (round hundreds band) | both ways |
+| # | Lang | Pair | Killed |
+|---|---|---|---|
+| 1 | sw | `nne` 4 ↔ `nane` 8 | yes |
+| 2 | uk | `дев'ять` 9 ↔ `десять` 10 | yes |
+| 3 | en | `eight` 8 ↔ `eighty` 80 | yes |
+| 4 | es | `sesenta` 60 ↔ `setenta` 70 | yes |
+| 5 | fr | `six` 6 ↔ `dix` 10 | yes |
+| 6 | fr | `soixante-six` 66 ↔ `soixante-dix` 70 | yes |
+| 7 | fr | `quatre-vingt-six` 86 ↔ `quatre-vingt-dix` 90 | yes |
+| 8 | it | `ventotto` 28 ↔ `centotto` 108 | yes |
+| 9 | eo | `ses` 6 ↔ `sep` 7 | yes |
+| 10 | eo | `sesdek` 60 ↔ `sepdek` 70 | yes |
+| 11 | eo | `sescent` 600 ↔ `sepcent` 700 | yes |
 
-**Bottom line: 10 of the 11 die in both directions; the Italian pair dies in one.**
-Nothing else survives that the owner has not said should survive.
+**Bottom line: all 11 die, in both directions, with no index and no new grading path.**
+Nine more die in the forms space: uk `дев'ятий`/`десятий`, `дев'ята`/`десята`,
+`дев'яте`/`десяте`; es `un décimo` 1/10 ↔ `undécimo` 11th; fr `sixième`/`dixième`,
+`soixante-sixième`/`soixante-dixième`, `quatre-vingt-sixième`/`quatre-vingt-dixième`;
+it `ventesimo`/`centesimo` and `ventesima`/`centesima`.
 
-**The one that survives, and what to do about it.** `centotto` (108) is not a round hundred,
-so a 28 prompt answered `centotto` still grades Typo. The fix is one constant: widen the
-cardinal band from 0–100 to 0–999. The predicate filters it anyway, so for Spanish, English,
-French, Swahili and Ukrainian the index barely grows, while Italian, German and Esperanto —
-the languages that weld, and therefore the only ones with three-digit one-word readings —
-gain the ~900 entries where their own bridges live. **Recommended**, at a cost of one
-`(0..999)` in place of `(0..100)` and a few hundred more strings at run open.
-`ItalianNumbers` already reasons this way about content:
+**What survives, deliberately**: every derived compound — es's 99 `ciento sesenta y ocho`
+shapes, en's 9 `one hundred eighty`, sw's 9 `kumi na nane`, fr's 27 `cent dix`, and the whole
+Swahili forms family of 882 behind `hasi`, `asilimia` and `mara`. They stop being audited
+defects and become documented behavior in the same commit.
 
-> The elided "centuno" is the one recorded spelling this pack leaves out. It sits a single
-> substitution from "ventuno", so a drill accepting it would take 21 for 101.
+**The clock is untouched.** Every one of its 11 gated pairs sits inside a multi-word reading —
+no authored language reads a time as a single word (checked across all eight) — so
+`cuarto`/`cuatro` stays a typo. That is the least comfortable corner of the owner's rule,
+since one word of five carries the whole minute there, and it is worth saying out loud now
+rather than discovering later.
 
-**Multi-word derivations are NOT killed, by design**: es's 99 compound pairs
-(`ciento sesenta y ocho`), en's 9 (`one hundred eighty`), sw's 9 (`kumi na nane`),
-fr's 27 (`cent dix`), and every forms compound behind `hasi`, `asilimia`, `mara`, `menos`
-and `мінус`. They stop being audited defects and become documented behavior.
+## The reveal
 
-**Two allowlists are untouched.** The clock's 11 gated pairs all sit inside multi-word
-readings, so `ClockCollisionSweepTests` keeps every one of them — `cuarto`/`cuatro` included,
-where one word of five carries the whole minute. That is the least comfortable corner of the
-owner's rule and it is worth saying out loud rather than discovering later.
+**No work, and the earlier recommendation is withdrawn.** This mechanism returns `Match.Wrong`,
+never `Match.OtherWord`, so `TurnFeedback` gains no arm, no run state gains a field, and none
+of the 14 platform files that match on `TurnFeedback` are touched. The reveal already shows
+the right answer and the learner's own text is still in the field.
 
-**A drill nobody swept gains real protection.** The country drill has genuine one-edit
-collisions between DIFFERENT countries, measured over the atlas with the normalizer's own
-comparison shape: eo `Ĉinio`/`Ĉilio` (China/Chile), sw `Uswisi`/`Uswidi` and
-`Waswisi`/`Waswidi` (Switzerland/Sweden), uk `данці`/`ганці` (Danes/Ghanaians).
-All four are single-word and all four die.
-
-## Does the reveal name what was typed
-
-Yes, and on the strict path it comes free: `CatalogAnswerGrader.grade` returns
-`Match.OtherWord(word, meanings)` unflattened, because that path never calls
-`gradeDrillAnswer`. `TrainerRun.submit` and `CountryDrillRun.submit` fold it into
-`TurnFeedback.Revealed` today via their `else ->` arms, which books it as a miss —
-correct, and the information is simply dropped.
-
-**Recommendation: keep the verdict, but do NOT add a `TurnFeedback` arm.**
-`TurnFeedback` is matched in 14 platform files (`KernBridge.swift`, `SessionView+Produce`,
-`TrainerSessionView+Drill`, `AnswerInputView`, `CountryDrillView`, `LetterDrillView+Stages`,
-`TurnFlow.kt`, `SessionTurn.kt`, `DrillField.kt`, `TrainerPrompt.kt`, `ProduceCard.kt`,
-`CountryDrillScreen.kt`, …), and a new sealed arm churns every exhaustive `when`/`switch`
-for one line of copy. `AlmostReason` is the wrong home too: an `Almost` books
-`AnswerOutcome.Almost`, i.e. correct, which this is not.
-
-Cheapest correct shape: an additive nullable field on `TrainerRunState` and
-`CountryDrillRunState` — `wroteInstead: MistakenWord?` (`word`, `meanings`) — set beside
-`TurnFeedback.Revealed` and cleared in the same transaction as the next prompt, exactly as
-`hintUsed` is. Platforms read it only where the reveal card is drawn: two Swift files,
-two Kotlin files, one string per platform. `producedRating()` already returns null for
-`OtherWord`, so nothing in FSRS or the ramp changes.
-Honest copy: the word probe names the WORD's owner, so the string is
-*„nane" heißt 8*, never *"you wrote 8"* — at a compound the two are not the same claim.
+If naming the other value is ever wanted ("*setenta* is 70"), the list is where it would go —
+a third element per entry — and it stays a pure additive change.
 
 ## What happens to the sweeps
 
-None of the four is deleted; all four change what they assert.
+All four survive; three change what they assert, and the fourth is new.
 
-**`TypoBridgeSweep.run`** gains the real grading path. For each ordered pair it asks whether
-the EXPECTED reading is one word: if so it asserts the verdict under the strict grader is
-`Wrong` or `OtherWord` and reports nothing; if not it classifies against the allowlist as
-today. Because direction now decides the verdict, the sweep must grade **both** orderings of
-each pair instead of only `i` as input to `j`.
+**`TypoBridgeSweep.run`** reads its pairs from `DrillConfusables` instead of owning them, and
+gains one assertion: for every pair it still finds, the two readings must not BE a listed pair
+whole — i.e. no bare confusable survives. The KDoc inverts with it: `KNOWN_BRIDGES` stops
+being "AUDITED EXCEPTIONS the sweep found and gates explicitly" and becomes *the word pairs a
+LONGER reading is allowed to bridge on, one slip inside a compound whose other words already
+fixed the magnitude.* Since the verdict is now direction-independent, nothing about the
+sweep's ordering has to change.
 
-`KNOWN_BRIDGES` survives with its KDoc rewritten: it stops being "AUDITED EXCEPTIONS the
-sweep found and gates explicitly" and becomes *the word pairs a LONGER reading is allowed to
-bridge on, one slip inside a compound whose other words already fixed the magnitude*.
-Entries 1–5 and 9–11 stay, because their compounds still bridge; the entries are still what
-`isKnownBridge` matches per differing word.
+Pinned counts — **recompute at implementation rather than trusting this table**, since only
+the source can settle which recorded pairs are bare:
 
-Pinned counts, to be recomputed at implementation rather than trusted from here —
-the direction of each recorded pair decides two of them:
-
-| Test | Today | After (comparison-form ruling) |
+| Test | Today | After |
 |---|---|---|
-| `ukrainianCardinals0To99…` | 1 | **0** — the only pair is the bare one; the assertion becomes `emptyList()` |
-| `italianCardinals0To999…` | 1 | **0** — same, once 0–999 is indexed; **1** if the band stops at 100 |
+| `germanCardinals0To999…` | 0 | 0 |
+| `ukrainianCardinals0To99…` | 1 | **0** — assertion becomes `assertEquals(emptyList(), …)` |
+| `italianCardinals0To999…` | 1 | **0** — same |
 | `englishCardinals0To999…` | 10 | 9 |
 | `spanishCardinals0To999…` | 100 | 99 |
 | `swahiliCardinals0To99…` | 10 | 9 |
-| `frenchCardinals0To999…` | 30 | 27 (29 under the raw-reading ruling) |
-| `germanCardinals0To999…` | 0 | 0 |
-| `esperantoCardinals0To999…` | unpinned | loses `ses`/`sep`, `sesdek`/`sepdek`, `sescent`/`sepcent`; **pin the count while you are there** |
-| `italianForms…` | 2 | **0** — both are bare ordinals |
+| `frenchCardinals0To999…` | 30 | 27 |
+| `esperantoCardinals0To999…` | unpinned | −3 (6/7, 60/70, 600/700); **pin the count while you are there** |
+| `italianForms…` | 2 | **0** |
 | `frenchForms…` | 103 | 100 |
-| `spanishForms…` | 231 | 230 in the `undécimo` → `un décimo` direction only ⚠ |
-| `ukrainianForms…` | 30 | minus the bare ordinal pairs (`дев'ятий`/`десятий` and its cases) |
-| `esperantoForms…` | 976 | minus every bare `-a` ordinal pair |
-| `englishForms…` / `swahiliForms…` / `germanForms…` | 6 / 882 / 0 | unchanged — every entry is multi-word |
+| `spanishForms…` | 231 | 230 |
+| `ukrainianForms…` | 30 | 27 |
+| `esperantoForms…` | 976 | unchanged, or minus the whole-reading ordinals if the derived family lands |
+| `englishForms…` / `swahiliForms…` / `germanForms…` | 6 / 882 / 0 | unchanged |
 
-⚠ The Spanish `un décimo` (1/10) ↔ `undécimo` (11th) pair is the one place the rule is
-asymmetric on its face: the ordinal is one word and the fraction is two, so typing the
-fraction for the ordinal is refused and the reverse is not. That is the rule working
-(the fraction's `un` did not carry the whole answer), but it is worth a comment in the test.
-
-**`ClockCollisionSweepTests`** keeps all 11 gated pairs and gains one assertion:
-that no authored clock reading is a single word. That is what makes the clock's exemption
-a checked fact instead of a claim, and it fails the day a pack welds one.
+**`ClockCollisionSweepTests`** keeps all 11 gated pairs and gains one assertion: that no
+authored clock reading is a single word. That turns the clock's exemption from a claim into a
+checked fact, and fails the day a pack welds one.
 
 **New `CountryCollisionSweepTests`** (jvmTest, real catalog, added to `corpusSweeps` in
-`kern/build.gradle.kts`): every single-word country name, people's name and language name in
-every pair, graded against every other of the SAME kind under the strict grader, asserting
-`Wrong` or `OtherWord`. Its allowlist starts and stays empty — the four collisions above are
-the reason it exists, and an entry appearing in it is a report, not a waiver.
+`kern/build.gradle.kts`): every country name against every other, every people's name against
+every other, every language name against every other — same kind only — asserting the drill
+verdict is `Wrong`. Its allowlist is empty; the four pairs above are what it exists to hold,
+and the Python approximation that found them is not authoritative.
 
-**A gap this plan does not close, for `backlog.md`**: year readings are swept by nothing at
-all today, and de/it/eo read a year as one word. The strict path reaches them only if the
-year band joins the index; it is out of scope here and should be a one-liner in the backlog.
+**A gap for `docs/backlog.md`**: year readings are swept by nothing at all today, and de/it/eo
+read a year as one word. Out of scope here; one line in the backlog.
 
 ## Commits, smallest first, each green on its own
 
-The strict path touches no file the vocab reviews share, so the gate does not have to
-re-cover `CatalogAnswerGraderTests`/`AnswerNormalizerTests`. The sweeps still gate on
-`./gradlew :kern:jvmTest -Psweeps`, and `--rerun-tasks` wherever `catalog/` is read
-(Gradle does not track it as a test input).
+No shared grading file is edited, so the fast gate stays narrow; the sweeps still need
+`-Psweeps`, and `--rerun-tasks` wherever `catalog/` is read.
 
-**C1 — the rule, written down.** A section in `../kern/docs/grading.md` naming the strict
-path, the one-word predicate, the comparison-form ruling and the same-kind scoping.
-`number-forms.md` gains a one-line pointer. No gate.
+**C1 — `DrillConfusables` in `commonMain`.** The 11 + 9 literal pairs keyed by language, the
+eo derivation, and the sweeps reading from it instead of owning the lists. Pure move; every
+count above still holds at this commit. Gate: `:kern:jvmTest -Psweeps`.
 
-**C2 — `DrillGrader` and the number core.** The kern class, the lazy per-(kind, language)
-`CatalogAnswerGrader`, the core enumeration filtered by the predicate, and the strict entry
-point beside `gradeDrillAnswer` in `DrillGrading.kt` (additive — the existing function is not
-edited). `DrillGraderTests` on a fixture: predicate, index membership, `Exact` beating
-`OtherWord`, a digit-bearing expected form skipping the strict path.
-Gate: `:kern:jvmTest --tests '*DrillGrader*'`.
-
-**C3 — route the trainer.** `TrainerRun.grade`/`reduce` take the grader; the strict path is
-chosen per task. `TrainerRunTests` gains the four cases: bare `setenta`→`sesenta` refused,
-`ciento sesenta y ocho` still Typo, a real slip (`setnta`) still Typo, a phrase answer
+**C2 — the check.** Ten lines in `gradeDrillAnswer`, plus `DrillGradingTests`: bare
+`setenta`→`sesenta` refused, `ciento sesenta y ocho` still Typo, a real slip (`setnta`) still
+Typo, an exact alternative spelling still Exact, a phrase answer unchanged, a reversed answer
 unchanged. Gate: `:kern:jvmTest`.
 
-**C4 — route the country drill.** `CountryDrillRunConfig.grader`, same-kind index from the
-content the config already holds. Gate: `:kern:jvmTest --tests '*Country*'`.
-
-**C5 — the sweeps.** All of the table above, plus the new country sweep and the clock's
-single-word assertion. The commit that proves the other four.
+**C3 — the sweeps inverted.** The new bare-pair assertion and every re-pinned count.
 Gate: `:kern:jvmTest -Psweeps --rerun-tasks`.
 
-**C6 — the reveal.** `wroteInstead` on both run states, both platforms' reveal chrome, the
-String Catalog entries, `scripts/strings.py --fix`.
-Gate: `:android:testDebugUnitTest`, the app build, `scripts/run-sim.sh --shot` and
-`scripts/run-emu.sh --shot` — a user-facing change lands on both platforms in one sweep.
+**C4 — the country drill.** The new sweep, then the four pairs it reports.
+Gate: `:kern:jvmTest -Psweeps --rerun-tasks`.
 
-**C7 — `CHANGELOG.md`** under `## Unreleased`, and this file deleted.
+**C5 — docs.** A short section in `../kern/docs/grading.md` naming the rule and where the list
+lives, a pointer from `number-forms.md`, `CHANGELOG.md` under `## Unreleased`,
+and this file deleted (Part 2 moving to `backlog.md` if it is not taken).
+
+No platform work in any of them, and no app build gate: nothing user-visible changes shape,
+only which of two existing verdicts a handful of answers earn.
 
 ## Risks
 
-1. **The keystroke path.** `TrainerRun.typed` grades on every character. Building or even
-   re-wrapping the index inside `grade` turns a 110-entry `normalize` loop into a
-   per-keystroke cost. The grader is constructed at run open and passed in; a test that
-   counts index builds across a typed run is cheap insurance.
-2. **`Match.Exact` must keep winning.** The strict path passes the drawn task's OWN accepted
-   list as the prompted card (`task.accepted`, not the index's copy), so every alternative
-   spelling the drill accepts returns `Exact` before `otherWord` ever runs — including the
-   clock's several registers per prompt and the twelve-hour cycle, where two prompts
-   legitimately share a reading. Verified in `CatalogAnswerGrader.grade`; pin it with a test
-   rather than re-deriving it.
-3. **Learner-visible changes that are not obviously improvements.** A fat finger on a
-   three-letter Esperanto numeral (`ses` → `sep`) now costs the rung where it used to cost
-   nothing — which IS the point, but it lands hardest on the shortest words at the lowest
-   rungs. The asymmetry of #8 is visible too: `centotto` typed for 28 is forgiven while
-   `ventotto` typed for 108 is not, until the band is widened. And `Spanier` for `Spanien`
-   would have become a miss on a dozen German pairs had the index not been scoped per task
-   kind — if that scoping is ever dropped, this is what comes back.
-4. **The predicate can move under the plan's feet.** A pack that welds a reading, or a new
-   language, silently moves answers between the two paths. The sweeps pin the multi-word
-   bridge lists exactly, so a move fails the gate — but only if the counts above are
-   re-pinned as literals rather than as `assertTrue { all { … } }`.
+1. **The list rots the other way now.** Today a vanished pair fails the sweep because the
+   allowlist must be exhausted. After the inversion a listed pair that stops colliding still
+   fails (the sweep keeps returning what it found), but a listed pair that never WAS a whole
+   reading — a fragment like `{ninths, ninth}` — sits in the strict set doing nothing forever.
+   Cheap guard: a test asserting every strict entry is a complete reading of some value in its
+   language's answer space, which also catches a typo in a hand-written pair.
+2. **A learner's fat finger now costs the rung.** eo `ses` → `sep` is one keystroke, and at
+   rung 1 the shortest words are exactly where this bites hardest. That IS the point, but it
+   is the one behavior change a learner will notice, and there is no reveal copy softening it
+   (see above). Worth a look on the simulator even though no gate demands it.
+3. **The set is language-keyed for a reason.** Unkeyed, `{six, dix}` would fire on an English
+   prompt where `dix` is not a word — harmless in effect, wrong in reasoning, and a trap for
+   whoever adds the next language. One map lookup buys the reasoning back.
+
+---
+
+# Part 2 — the authored numbers lexicon (assess, then stage separately)
+
+> for a catalog numbers list, the idea would be that the trainer uses that rather than coding
+> everything itself in code
+
+**Recommendation: do not bundle this with Part 1.** Part 1 needs nothing from it, and this is
+a structural change to how packs are constructed. What follows is the assessment the decision
+needs.
+
+## Where the lexicon/grammar line actually falls, per pack
+
+Read out of the eight packs rather than assumed. Every one of them has a small word table and
+a body of composition rules, and the tables are the same shape everywhere — ones, teens, tens,
+sometimes hundreds, plus scale words:
+
+| Pack | Lexicon | Grammar that cannot be data |
+|---|---|---|
+| eo | 9 unit words, and nothing else | tens/hundreds weld, thousands stay apart, a hyphen before every ending, the x-system twin |
+| sw | ones 9, tens 9, `sifuri`, `mia`, `elfu`, `milioni`, `bilioni` — ~23 | `na` joining, `mia moja`/`moja` for a bare multiplier, the `na`-less accepted twin |
+| de | ones 9, teens 10, tens 8 — 27 | reversed `…und…`, the `ein` apocope, `einhundert`, welding, `eine Million`/`Millionen` |
+| it | ones, teens, tens — ~29 | total welding, vowel elision before `uno`/`otto`, `cento` elision, the acute on `-tré`, the `e` before a scale tail, the `centootto` twin |
+| en | ones, teens, tens | `hundred`, `and`, hyphenation |
+| fr | units 0–16 (17), decades 20–60 (5), two scale nouns | vigesimal 70/80/90, `et` at 21…71, **three varieties** (`septante`/`huitante`/`nonante`), three spellings of every reading, feminine `une`, the year's `mil` and hundred-style |
+| es | ones, teens, **twenties as their own list**, tens, hundreds — ~50 | `y` above 30, `cien`/`ciento`, and a three-way agreement (masculine / apocopated / feminine) that reaches `uno` AND `-cientos` |
+| uk | onesMasc, onesFem, teens, tens, hundreds — ~48 | Slavic three-way count agreement (`agree`), `тисяча`/`тисячі`/`тисяч`, gendered ones, `FEMININE_ONES` derived from the table |
+
+Two things stop the split from being clean, and they are the same two in every language that
+has them:
+
+- **Some tables are inflection, not vocabulary.** uk `onesFem`, es `twenties`/`hundreds` in
+  three agreements, fr `feminine` — a JSON list would have to carry agreement columns or the
+  pack keeps deriving them. Deriving is right: `UkrainianNumbers` already derives
+  `FEMININE_ONES` from its own table precisely so "the pair cannot drift from the table that
+  produces it".
+- **Scale words are agreement-bearing nouns**, not one word each: de `eine Million`/`Millionen`,
+  uk `тисяча`/`тисячі`/`тисяч`, fr `million`/`milliard` pluralizing. The catalog can author the
+  citation form; every other form stays the pack's.
+
+So the honest line is: **the catalog owns the WORDS; the pack owns every form derived from
+them and all composition.** That is roughly 9–50 authored strings per language against
+composition rules that stay in Kotlin in all eight.
+
+## What it buys
+
+- A contributor re-spelling a numeral, adding a regional variant, or fixing a wrong word edits
+  JSON instead of Kotlin — real, and the most common kind of content fix.
+- The confusable list of Part 1 could sit beside the words it names, which is where it wants to
+  live long-term; the two ideas converge on one artifact.
+- The overview's rows and the drill's answers would visibly share one source.
+
+What it does **not** buy, and this should be said before it is sold as such: a NEW language
+still needs a pack, because every language's composition is Kotlin. Authoring words alone
+unlocks nothing until a composer can be described as data too, which the fr/uk/es rows above
+say it cannot.
+
+## What it costs
+
+- A schema and a hand-parser (`catalog/numbers/<lang>.json`, on `CountryAtlasParser`'s
+  conventions), plus lint: exact list lengths, no blanks, no duplicates, no leading/trailing
+  space.
+- **The structural cost, which is the real one**: the packs are module-level `object`s in a
+  `linkedMapOf` registry (`trainerPacks`), reachable from `Trainer.pack(language)` with no
+  catalog in hand. Reading authored content means the registry becomes a function of a loaded
+  catalog, and that reaches `Trainer`, `TrainerMode`, `NumberReference`, `PhraseSlots`, every
+  clock and forms pack that calls its own numbers object, and every sweep. Eight migrations
+  plus a threading change is not a diff to hide inside a typo fix.
+
+## The spec conflict, head on
+
+`catalog/docs/drills.md:49` — not `catalog/README.md` — states:
+
+> the table is derived from the trainer's own readings and can never be authored
+
+What that was buying is drift protection: the overview cannot print a reading the drill would
+not accept, because both come from the same Kotlin literal.
+
+**The rule after the change, which keeps the protection by construction:** *the words are
+authored; the readings never are.* The pack composes FROM the authored lexemes, and the
+overview keeps printing `pack.number(n)` — so the table and the drill still read the same
+words through the same composer, and drift remains impossible rather than merely tested.
+What the change does introduce is that a wrong authored word is now shippable without a
+compile error, so two guards replace the compile:
+
+- a **golden-vector test** pinning composed readings for a fixed value set per language
+  against the pre-migration ones — which is exactly the bar the Invariants block already sets
+  for a migration ("migrations need only behavioral (golden-vector) parity");
+- the catalog lint above, so a missing or duplicated word fails the load rather than the drill.
+
+## Staging
+
+1. Part 1 lands complete and alone.
+2. If Part 2 is taken, its own first commit is the golden-vector test over today's packs —
+   written before anything moves, since it is the only thing that can prove the migration.
+3. Then one language at a time, easiest split first: **eo** (9 words), **sw** (~23),
+   **de**/**it**/**en**, and **fr**/**es**/**uk** last, where the agreement tables decide how
+   much can be data at all.
+4. The confusable list moves into the same files once they exist, and `DrillConfusables`
+   becomes a reader instead of a literal.
+
+If Part 2 is not taken, this section becomes a `docs/backlog.md` one-liner with a pointer to
+the per-language table above.
+
+---
 
 ## Reconciliation with the dates plan
 
-`dates-drill-plan.md` and this plan use the same mechanism — `CatalogAnswerGrader` over a
-bounded card set the drill builds itself — and differ only in what they need on top of it:
+`dates-drill-plan.md` proposes `CatalogAnswerGrader` over a calendar card set, plus a
+`probeWords` flag and an `alsoSkipping` parameter. **Nothing here conflicts with it, and
+nothing here depends on it.** The two answer different questions: the dates drill grades
+ASSEMBLED answers whose components must be checked inside the string, while these drills need
+a listed pair of whole answers refused. A third mechanism is not being invented — this is
+strictly less than the grader, not sideways to it.
 
-- The dates drill grades ASSEMBLED answers (`Montag, der dritte Juli`), so it needs the probe
-  to reach inside the string. This plan's drills grade single words on the strict path and
-  leave assembled answers to the lenient one, so they need nothing added.
-- If the `probeWords` / `alsoSkipping` extension does land for dates, note one finding from
-  here before it does: **a skip-set keyed by drawn card cannot express the `cuarto`/`cuatro`
-  shape**, where the confusable word also appears legitimately elsewhere in the same answer.
-  A POSITIONAL diff — probe only the input words that differ from the expected reading at
-  the same position — expresses it, needs no extra parameter (the grader already holds the
-  card and thus its accepted forms), and solves the dates plan's own `kumi na nne` example
-  as a side effect. Worth raising there rather than deciding here.
+One finding worth carrying over there before that extension lands: **a skip-set keyed by drawn
+card cannot express the `cuarto`/`cuatro` shape**, where the confusable word also appears
+legitimately elsewhere in the same answer. A POSITIONAL diff — probe only the input words that
+differ from the expected reading at the same position — expresses it, needs no extra parameter
+(the grader already holds the card and its accepted forms), and solves the dates plan's own
+`kumi na nne` example as a side effect.
