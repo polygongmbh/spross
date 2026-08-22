@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **A review pass over the vocabulary, and a handful of words now name what they mean.**
+  German asks for a `Reisepass` rather than a bare `Pass`, the English office is the
+  government one you take a number in, the Italian school break is `l'intervallo` and its
+  pupil an `alunno`, and a Swahili notice of termination now comes from the employer, the
+  way it does in every other language. Swahili gained the office words it was missing —
+  registering, renewing, copying — and Ukrainian a word for wife. Three sentences that only
+  repeated another one word apart are gone.
+
 - **A word is now levelled for the speaker it comes out of, so Swahili no longer sounds
   louder than the rest.** Its voice is higher and brighter, and a phone speaker radiates
   that while swallowing the low end the other languages lean on — so back to back, it came
