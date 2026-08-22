@@ -39,7 +39,7 @@
   "tax": { "text": "kodi", "grammar": { "plural": "=" } },
   "work-permit": { "text": "kibali cha kazi", "grammar": { "plural": "vibali vya kazi" } },
   "training": { "text": "mafunzo ya kazi", "grammar": { "plural": "only" } },
-  "notice": { "text": "notisi ya kuacha kazi", "grammar": { "plural": "notisi za kuacha kazi" } },
+  "notice": { "text": "notisi ya kuachishwa kazi", "grammar": { "plural": "notisi za kuachishwa kazi" } },
   "worker": { "text": "mfanyakazi", "grammar": { "plural": "wafanyakazi" } },
   "employer": { "text": "mwajiri", "grammar": { "plural": "waajiri" } },
   "customer": { "text": "mteja", "grammar": { "plural": "wateja" } },
