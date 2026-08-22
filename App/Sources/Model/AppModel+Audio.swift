@@ -35,14 +35,20 @@ extension AppModel {
 
     /// Whether a produce card asks by MEANING or by ear — Kern's rule again,
     /// with the one fact it cannot have: whether this device, right now, can
-    /// say the word at all. Three ways it cannot, and each falls back to the
+    /// say the word at all. Four ways it cannot, and each falls back to the
     /// source prompt rather than putting up a card with nothing in it: no
-    /// recording and no voice, reading aloud switched off, and VoiceOver, which
-    /// suppresses every autoplay so nothing may speak over the screen reader.
+    /// recording and no voice, reading aloud switched off, the volume all the
+    /// way down, and VoiceOver, which suppresses every autoplay so nothing may
+    /// speak over the screen reader.
+    ///
+    /// The ring/silent switch is the one mute this cannot ask about — no API
+    /// reads it (`AudioSession`) — so a card dealt through it carries its own
+    /// way out instead.
     func producePrompt(for card: Card) -> ProducePrompt {
         guard let pronunciation = formPronunciation(card.target.text, lang: card.target.lang)
         else { return .source }
         let audible = !Pronouncer.shared.muted
+            && !AudioSession.silenced
             && !UIAccessibility.isVoiceOverRunning
             && Pronouncer.shared.canPronounce(pronunciation,
                                               recordingURL: audioURL(pronunciation.recordingPath))

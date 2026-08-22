@@ -82,12 +82,16 @@ extension SessionView {
     private func beginTurn() {
         guard let card = model.currentCard,
               let normalizer = model.answerNormalizer,
+              // A card asked by ear is typed in the SOURCE language, so kern grades
+              // it under that language's rules (`kern/docs/presentation.md`).
+              let meanings = model.meaningNormalizer,
               let grader = model.produceGrader else {
             machine = nil
             turn = nil
             return
         }
-        let machine = TurnMachine(grader: grader, normalizer: normalizer)
+        let machine = TurnMachine(grader: grader, normalizer: normalizer,
+                                  meaningNormalizer: meanings)
         let role = model.presentationRole(for: card.id)
         let prompt = model.producePrompt(for: card)
         self.machine = machine
@@ -144,7 +148,23 @@ extension SessionView {
 
     /// That form where a SLIP owed it. The correction box is the only place a
     /// typo's proper spelling stands, which is why the reveal speaks it.
+    ///
+    /// Never on a card asked by ear: the form it owes back is then a SOURCE word,
+    /// and the target voice would read a German word in Swahili.
     var typoCorrection: String? {
-        almostHold.flatMap { $0.reason == .typo ? $0.form : nil }
+        guard !answerIsMeaning else { return nil }
+        return almostHold.flatMap { $0.reason == .typo ? $0.form : nil }
     }
+
+    /// Whether this turn is typed in the language the learner already HAS — kern's
+    /// answer side, read rather than re-derived. The field's placeholder, the
+    /// correction's speaker and the reveal's word all turn on it.
+    var answerIsMeaning: Bool {
+        guard let turn else { return false }
+        return turn.answerLang != turn.card.target.lang
+    }
+
+    /// The card was asked by ear and the learner could not listen: the word
+    /// stands on it as text for the rest of the turn.
+    var promptInText: Bool { turn?.promptInText ?? false }
 }
