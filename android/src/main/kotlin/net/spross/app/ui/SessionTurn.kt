@@ -305,8 +305,15 @@ fun View.cueTone(kind: ToneKind, sounds: CueSounds) {
     )
 }
 
-/** The target language as the learner's chrome names it — what a field asks for by name. */
+/** The target language as the learner's chrome names it — what the write-out asks for. */
 fun AppModel.targetName(ui: SessionUi): String {
     val lang = ui.card?.target?.lang ?: return ""
-    return catalog?.languages?.get(lang)?.name ?: lang
+    return languageName(lang)
 }
+
+/**
+ * The language the ANSWER field asks for, named. Kern's `TurnState.answerLang` decides
+ * which side that is — the meaning on a card asked by ear, the target everywhere else —
+ * and the placeholder is the one place the learner is told.
+ */
+fun AppModel.answerName(flow: TurnFlow): String = languageName(flow.state.answerLang)

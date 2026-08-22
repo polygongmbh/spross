@@ -25,6 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
+import net.spross.app.CardDisplay
 import net.spross.app.SessionUi
 import net.spross.app.TurnFlow
 import net.spross.app.audio.Pronouncer
@@ -58,7 +59,13 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         // gloss belongs to the concept, not to one of its two faces.
         note = if (revealed) card.target.note ?: card.source.note else null,
     ) {
-        if (heard) ReplayPrompt(model, ui) else PromptWord(model, ui)
+        when {
+            // The word could not be listened to, so it stands as text — a target word on a
+            // prompt, rendered as one, and still tappable to hear.
+            heard && flow.promptInText -> WrittenPrompt(model, ui)
+            heard -> ReplayPrompt(model, ui)
+            else -> PromptWord(model, ui)
+        }
         // The card is what OPENS onto the answer — inline, growing downward, above the
         // field the learner is still typing in. A near miss never reaches here: its
         // correction stands at the field, beside the attempt it is correcting.
@@ -75,7 +82,9 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         AnswerField(
             value = flow.input,
             onValueChange = flow::type,
-            placeholder = chrome.answerPlaceholder.format(model.targetName(ui)),
+            // The card asked by ear owes the MEANING, so the field names the source
+            // language — kern's `answerLang`, never this screen's reading of the prompt.
+            placeholder = chrome.answerPlaceholder.format(model.answerName(flow)),
             feedback = flow.fieldFeedback,
             chrome = chrome,
             onDone = { flow.enter() },
@@ -98,8 +107,16 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         // own text with the field's own checkmark, and the card is on its way out. Under
         // a screen reader no beat ever armed, so the tap that replaces it is all there is.
         TurnFeedback.Correct -> if (flow.awaitsConfirm) ConfirmButton(chrome) { flow.confirm() }
-        is TurnFeedback.Almost -> AlmostHold(model, flow, feedback)
+        is TurnFeedback.Almost -> AlmostHold(model, flow, feedback, heard)
         TurnFeedback.Revealed -> MissedAnswer(model, ui, flow)
+    }
+    // why: this card's whole content is a sound, and a learner who cannot listen to it
+    // would otherwise answer blind. Under the primary action, because it is the way out
+    // and not the way through — and only while the card is still asking.
+    if (heard && !flow.promptInText && flow.feedback == TurnFeedback.Neutral && !flow.selfGrading) {
+        TextButton(onClick = { flow.showPromptText() }, modifier = Modifier.fillMaxWidth()) {
+            Text(chrome.cantListen, style = MaterialTheme.typography.bodyMedium)
+        }
     }
 }
 
@@ -155,20 +172,44 @@ private fun ReplayPrompt(model: AppModel, ui: SessionUi) {
 }
 
 /**
+ * The word the learner could not listen to, standing as text: a target word on a prompt,
+ * with the speaker that says it, so the card still teaches the sound it was asking from.
+ * The meaning stays withheld — only the channel the question arrives through moved.
+ */
+@Composable
+private fun WrittenPrompt(model: AppModel, ui: SessionUi) {
+    val card = ui.card ?: return
+    val chrome = model.chrome
+    SpokenWord(model.pronounceAction(card.target.text), chrome) {
+        Headword(
+            localizedTarget(Dl.colors.articleColoredText(card.target), card.target.lang),
+            modifier = Modifier.weight(1f, fill = false),
+        )
+    }
+    CardDisplay.pluralLine(card.target, chrome)?.let { CardLine(it) }
+}
+
+/**
  * An accepted answer that was not clean pauses on what it owes back — a slip's proper
  * spelling, or the form that actually played where the card accepts the one written.
  * The box IS the correction, so it carries the word and the speaker that says it; the card
  * itself stays closed, and nothing is on screen twice.
+ *
+ * No speaker where the card was asked by ear: the correction is then a SOURCE word, and
+ * the target voice would say a German word in Swahili.
  */
 @Composable
-private fun AlmostHold(model: AppModel, flow: TurnFlow, hold: TurnFeedback.Almost) {
+private fun AlmostHold(model: AppModel, flow: TurnFlow, hold: TurnFeedback.Almost, heard: Boolean) {
     val chrome = model.chrome
     val caption = when (hold.reason) {
         AlmostReason.Typo -> chrome.almostTypo
         AlmostReason.Heard -> chrome.almostHeard
     }
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
-        AlmostCorrection(caption, hold.correctForm, chrome, model.pronounceAction(hold.correctForm))
+        AlmostCorrection(
+            caption, hold.correctForm, chrome,
+            pronounce = if (heard) null else model.pronounceAction(hold.correctForm),
+        )
         ConfirmButton(chrome) { flow.confirm() }
     }
 }

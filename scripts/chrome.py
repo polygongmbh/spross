@@ -76,6 +76,7 @@ MAPPING = {
     'boxSubtitle': 'box.cardsInProgress %@ %@',
     'boxTitle': 'box.title',
     'cancel': 'common.cancel',
+    'cantListen': 'session.hear.cantListen',
     'caughtUpTitle': 'heute.caughtUp.title',
     'check': 'common.check',
     'chooseSubtitle': 'onboarding.languages.subtitle',

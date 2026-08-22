@@ -277,6 +277,7 @@ internal object ChromeEn : Chrome {
     override val copyPrompt = "Write it once in %s …"
     override val copyMismatch = "Not quite — the word is right above."
     override val skipStep = "Skip"
+    override val cantListen = "Can't listen right now?"
     override val caughtUpTitle = "Nothing's due right now"
     override val dayReviews = "%d reviews"
     override val dayReviewsOne = "%d review"

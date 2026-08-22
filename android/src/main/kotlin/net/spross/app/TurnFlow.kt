@@ -112,6 +112,11 @@ class TurnFlow(
             return hold?.takeIf { it.reason == AlmostReason.Typo }?.correctForm ?: state.card.target.text
         }
 
+    /** The word was heard and could not be: it goes on screen for the rest of this turn. */
+    val promptInText: Boolean get() = state.promptInText
+
+    fun showPromptText() = dispatch(TurnIntent.ShowPromptText)
+
     /** A live keystroke in the answer field. */
     fun type(text: String) {
         input = text
@@ -225,7 +230,10 @@ fun AppModel.newTurn(
     val role = ui.role ?: return null
     val grader = produceGrader ?: return null
     val words = normalizer ?: return null
-    val machine = TurnMachine(grader, words)
+    // The card asked by ear is typed in the SOURCE language, so kern grades it with that
+    // language's own rules rather than the target's (`kern/docs/presentation.md`).
+    val meanings = meaningNormalizer ?: return null
+    val machine = TurnMachine(grader, words, meanings)
     return TurnFlow(
         machine = machine,
         start = machine.begin(

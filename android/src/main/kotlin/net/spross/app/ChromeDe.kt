@@ -280,6 +280,7 @@ internal object ChromeDe : Chrome {
     override val copyPrompt = "Einmal auf %s abschreiben …"
     override val copyMismatch = "Noch nicht ganz — das Wort steht oben."
     override val skipStep = "Überspringen"
+    override val cantListen = "Kannst du gerade nicht hören?"
     override val caughtUpTitle = "Gerade ist nichts dran"
     override val dayReviews = "%d Wiederholungen"
     override val dayReviewsOne = "%d Wiederholung"

@@ -33,6 +33,7 @@ import net.spross.kern.session.TurnMachine
 class TurnWiringTest {
 
     private val sw = LanguageInfo(code = "sw", name = "Kiswahili", englishName = "Swahili", flag = "🇹🇿")
+    private val de = LanguageInfo(code = "de", name = "Deutsch", englishName = "German", flag = "🇩🇪")
 
     private fun card(id: String, source: String, target: String, synonyms: List<String> = emptyList()) = Card(
         id = id,
@@ -68,7 +69,12 @@ class TurnWiringTest {
         platform: Platform = Platform(),
     ): Pair<TurnFlow, Platform> {
         val normalizer = AnswerNormalizer(sw)
-        val machine = TurnMachine(CatalogAnswerGrader(normalizer, listOf(knife, language, car)), normalizer)
+        val machine = TurnMachine(
+            CatalogAnswerGrader(normalizer, listOf(knife, language, car)),
+            normalizer,
+            // A card asked by ear is typed in the SOURCE language, and graded under its rules.
+            AnswerNormalizer(de),
+        )
         val start = machine.begin(
             card = card,
             role = role,
@@ -202,15 +208,30 @@ class TurnWiringTest {
     /** An amber hold hands the keyboard back: it would cover the button it waits for. */
     @Test
     fun aHoldThatWaitsForATapGivesTheKeyboardBack() {
+        // Asked by ear, so the answer is the MEANING — and the slip is graded in German.
         val (flow, platform) = turn(car, prompt = ProducePrompt.Sound)
-        flow.type("motokaa")
+        flow.type("Ato")
         flow.primary()
 
-        assertEquals(TurnFeedback.Almost("gari", AlmostReason.Heard), flow.feedback)
+        assertEquals(TurnFeedback.Almost("Auto", AlmostReason.Typo), flow.feedback)
         assertEquals(1, platform.focusReleases)
         assertNull(flow.beat)
         flow.confirm()
         assertEquals(listOf(Rating.Hard), platform.booked)
+    }
+
+    /** "Can't listen right now?": the word goes on screen, and the answer is unchanged. */
+    @Test
+    fun theWordGoesOnScreenWhereTheLearnerCannotListen() {
+        val (flow, platform) = turn(car, prompt = ProducePrompt.Sound)
+        assertFalse(flow.promptInText)
+        flow.showPromptText()
+
+        assertTrue(flow.promptInText)
+        flow.type("Auto")
+        assertEquals(TurnFeedback.Correct, flow.feedback)
+        flow.advanceElapsed()
+        assertEquals(listOf(Rating.Good), platform.booked)
     }
 
     /**
