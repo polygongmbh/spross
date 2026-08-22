@@ -3,11 +3,11 @@ import SprossKern
 
 /// The listening run's sleep timer, and the only clock in the whole mode.
 ///
-/// Kern owns every judgment about it — how much each tap adds
-/// (`LISTENING_TIMER_STEP_MIN`), how the whole run ramps down
-/// (`listeningGainDb`) and where the run is over (`listeningExpired`) — and
-/// reads no clock itself, so what is left to this side is holding a deadline
-/// and handing kern the milliseconds.
+/// Kern owns every judgment about it — what a tap on the chip leaves standing
+/// (`listeningTimerStepMs`), how the whole run ramps down (`listeningGainDb`)
+/// and where the run is over (`listeningExpired`) — and reads no clock itself,
+/// so what is left to this side is holding a deadline and handing kern the
+/// milliseconds.
 ///
 /// It does not stop dead: a hard cut is a change loud enough to wake someone,
 /// which is the exact opposite of what a bedtime is for.
@@ -15,9 +15,6 @@ import SprossKern
 @Observable
 final class ListeningBedtime {
 
-    /// The picked length in minutes; 0 is OFF and the default, where the
-    /// playlist laps for as long as it is left alone.
-    private(set) var minutes = 0
     /// Whole minutes left, rounded UP so a bedtime never reads zero while words
     /// are still playing; nil while none is set. The ONLY thing the capsule
     /// watches — it moves once a minute, so nothing on screen redraws in
@@ -28,19 +25,27 @@ final class ListeningBedtime {
     var onExpire: (() -> Void)?
 
     private var deadline: Date?
+    /// The stretch the CURRENT bedtime runs over — what kern's ramp spans, and
+    /// what every tap resets: a bedtime extended at midnight is a new stretch,
+    /// not the old one with a longer tail, so the fade starts over from full.
+    private var totalMs: Int64 = 0
     private var ticker: Task<Void, Never>?
+
+    /// Whether a bedtime is set at all — off, the playlist laps for as long as
+    /// it is left alone.
+    var isSet: Bool { deadline != nil }
 
     /// What is left, nil while no bedtime is set — what kern is handed, read
     /// off the deadline at the moment it is asked rather than stored, so the
     /// fade stays exact without a stored millisecond anything can observe.
     var remainingMs: Int64? { deadline.map { Self.millis(until: $0) } }
 
-    /// One tap adds kern's five minutes; a swipe down takes five back, clamped
-    /// at OFF — a bedtime that went negative would read as a run lapsing. Every
-    /// tap only ever ADDS, so the long press is the one way back to zero.
+    /// One tap adds kern's step to WHAT IS LEFT; a swipe down takes the same
+    /// off it, and past the end there is only OFF. Kern does the arithmetic
+    /// (`listeningTimerStepMs`) — all this holds is the moment it lands on.
     func step(_ delta: Int) {
-        minutes = max(0, minutes + delta * Int(LISTENING_TIMER_STEP_MIN))
-        deadline = minutes > 0 ? Date().addingTimeInterval(TimeInterval(minutes * 60)) : nil
+        totalMs = listeningTimerStepMs(msRemaining: remainingMs ?? 0, steps: Int32(delta))
+        deadline = totalMs > 0 ? Date().addingTimeInterval(TimeInterval(totalMs) / 1000) : nil
         startTicking()
     }
 
@@ -48,7 +53,7 @@ final class ListeningBedtime {
     /// is — the one gesture that must reach zero in a single move rather than
     /// walking the minutes down, which the chip cannot do.
     func turnOff() {
-        minutes = 0
+        totalMs = 0
         deadline = nil
         startTicking()
     }
@@ -59,7 +64,16 @@ final class ListeningBedtime {
     /// the rate of an hour and both end in the same place.
     var fadeDb: Double {
         guard let remainingMs else { return 0 }
-        return listeningGainDb(msRemaining: remainingMs, totalMs: Int64(minutes) * 60_000)
+        return listeningGainDb(msRemaining: remainingMs, totalMs: totalMs)
+    }
+
+    /// How far into the current stretch the run is, and how long that stretch
+    /// runs — the pair a lock screen draws a progress bar from. nil while no
+    /// bedtime is set: a playlist that laps has nothing to be a fraction of.
+    var progress: (elapsed: TimeInterval, total: TimeInterval)? {
+        guard let remainingMs, totalMs > 0 else { return nil }
+        let total = TimeInterval(totalMs) / 1000
+        return (total - TimeInterval(remainingMs) / 1000, total)
     }
 
     /// Whether the bedtime has arrived. Kern owns where the line is; what to do

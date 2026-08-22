@@ -132,11 +132,11 @@ struct ListeningView: View {
     // MARK: - The sleep timer
 
     /// The bedtime, as one labeled capsule in the corner: each tap adds five
-    /// minutes, and a long press turns it back off. Set, it counts what is LEFT
-    /// rather than what was picked — the number a learner reaches for at
-    /// midnight is how much longer this goes on — and it counts in MINUTES: a
-    /// ticking clock is a clock you watch, which is the opposite of what a
-    /// sleep timer is for.
+    /// minutes to what is LEFT, and a long press turns it back off. It counts
+    /// what is left rather than what was picked — the number a learner reaches
+    /// for at midnight is how much longer this goes on — and it counts in
+    /// MINUTES: a ticking clock is a clock you watch, which is the opposite of
+    /// what a sleep timer is for.
     private var timerCapsule: some View {
         Button { driver.bedtime.step(1) } label: {
             HStack(spacing: DL.Space.xs) {
@@ -145,7 +145,7 @@ struct ListeningView: View {
                 timerText
             }
             .font(DL.Fonts.caption)
-            .foregroundStyle(driver.bedtime.minutes > 0 ? Color.dlAccent : Color.dlTextSecondary)
+            .foregroundStyle(driver.bedtime.isSet ? Color.dlAccent : Color.dlTextSecondary)
             .padding(.horizontal, DL.Space.m)
             .padding(.vertical, DL.Space.s)
             .background(Capsule().fill(Color.dlSurfaceTint))

@@ -9,7 +9,6 @@ import androidx.compose.runtime.setValue
 import kotlin.random.Random
 import net.spross.app.AppModel
 import net.spross.app.audio.Pronouncer
-import net.spross.kern.listen.LISTENING_TIMER_STEP_MIN
 import net.spross.kern.listen.LISTENING_WATCHDOG_MS
 import net.spross.kern.listen.ListeningCandidate
 import net.spross.kern.listen.ListeningEffect
@@ -20,6 +19,7 @@ import net.spross.kern.listen.ListeningRunState
 import net.spross.kern.listen.ListeningTurn
 import net.spross.kern.listen.listeningExpired
 import net.spross.kern.listen.listeningGainDb
+import net.spross.kern.listen.listeningTimerStepMs
 
 /** Which of a turn's three sayings is in the air. The meaning arrives with its reading. */
 enum class ListeningBeat { Target, Meaning, Echo }
@@ -54,8 +54,12 @@ class ListeningDriver(
     var beat by mutableStateOf<ListeningBeat?>(null)
         private set
 
-    /** The bedtime the chip stands at, in minutes; 0 is off, which is where a run starts. */
-    var timerMinutes by mutableStateOf(0)
+    /**
+     * The stretch the bedtime standing runs over, in milliseconds; 0 is off, which is where a
+     * run starts. Every tap resets it — a bedtime extended at midnight is a new stretch, not
+     * the old one with a longer tail, so kern's ramp starts over from full.
+     */
+    var timerTotalMs by mutableStateOf(0L)
         private set
 
     /** When the bedtime falls, or null while the run laps for as long as it is left alone. */
@@ -96,7 +100,7 @@ class ListeningDriver(
     /** Opens the playlist. A pool with nothing in it never opens a run at all. */
     fun start(candidates: List<ListeningCandidate>) {
         if (active || candidates.isEmpty()) return
-        timerMinutes = 0
+        timerTotalMs = 0
         deadline = null
         pausedByFocus = false
         focus.take()
@@ -140,7 +144,7 @@ class ListeningDriver(
         state = null
         beat = null
         deadline = null
-        timerMinutes = 0
+        timerTotalMs = 0
         pausedByFocus = false
         focus.release()
         ListeningBridge.controls = null
@@ -149,12 +153,14 @@ class ListeningDriver(
     }
 
     /**
-     * Adds kern's five minutes to the bedtime. Every tap only ever ADDS — the minutes never
-     * come down by tapping, and the chip's long press is the one way back to off.
+     * Adds kern's five minutes to WHAT IS LEFT of the bedtime — never to what was picked, so a
+     * run four minutes into a five-minute bedtime gets six more and not ten
+     * (`listeningTimerStepMs`). Every tap only ever ADDS: the minutes never come down by
+     * tapping, and the chip's long press is the one way back to off.
      */
     fun cycleTimer() {
-        timerMinutes += LISTENING_TIMER_STEP_MIN
-        deadline = System.currentTimeMillis() + timerMinutes * 60_000L
+        timerTotalMs = listeningTimerStepMs(remainingMs() ?: 0L, 1)
+        deadline = System.currentTimeMillis() + timerTotalMs
     }
 
     /**
@@ -162,7 +168,7 @@ class ListeningDriver(
      * gesture that reaches zero, which the tap never can.
      */
     fun turnOffTimer() {
-        timerMinutes = 0
+        timerTotalMs = 0
         deadline = null
     }
 
@@ -286,7 +292,7 @@ class ListeningDriver(
      * fraction of the bedtime and every length ends in the same place.
      */
     private fun fadeDb(): Double =
-        remainingMs()?.let { listeningGainDb(it, timerMinutes * 60_000L) } ?: 0.0
+        remainingMs()?.let { listeningGainDb(it, timerTotalMs) } ?: 0.0
 
     private fun expired(): Boolean = remainingMs()?.let { listeningExpired(it) } == true
 }
