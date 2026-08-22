@@ -1,0 +1,41 @@
+{
+ "title": "Saluti e cortesia",
+ "subtitle": "Quello che si dice quando ci si incontra.",
+ "words": {
+  "hello": { "text": "Ciao!", "variants": ["Salve!"] },
+  "good-day": {
+   "text": "Buongiorno!",
+   "variants": ["Buon giorno!"],
+   "notes": { "de": "bis zum frühen Nachmittag · danach Buonasera!" }
+  },
+  "good-evening": { "text": "Buonasera!", "variants": ["Buona sera!"] },
+  "good-night": {
+   "text": "Buonanotte!",
+   "variants": ["Buona notte!"],
+   "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Buonasera!“" }
+  },
+  "goodbye": { "text": "Arrivederci!" },
+  "bye": {
+   "text": "A presto!",
+   "variants": ["Ciao!", "A dopo!"],
+   "notes": { "de": "unter Freunden sagt man zum Abschied auch einfach Ciao!" }
+  },
+  "welcome": { "text": "Benvenuto!", "variants": ["Benvenuta!", "Benvenuti!", "Benvenute!"] },
+  "may-i-come-in": {
+   "text": "Posso entrare?",
+   "variants": ["Si può entrare?", "Permesso?"],
+   "notes": { "de": "an der Tür genügt „Permesso?“ · die Antwort ist „Avanti!“ oder „Prego!“" }
+  },
+  "how-are-you": { "text": "Come sta?", "variants": ["Come stai?", "Come va?"] },
+  "all-good": { "text": "Tutto bene." },
+  "thank-you": { "text": "Grazie mille!", "variants": ["Grazie!", "Molte grazie!"] },
+  "please": {
+   "text": "Per favore!",
+   "variants": ["Per piacere!"],
+   "notes": { "de": "nur die Bitte — als Antwort auf „grazie“ sagt man Prego." }
+  },
+  "excuse-me": { "text": "Scusi!", "variants": ["Scusa!", "Mi scusi!"] },
+  "pardon": { "text": "Come dice?", "variants": ["Come dici?", "Come?", "Prego?"] },
+  "sorry-to-hear-that": { "text": "Mi dispiace!", "variants": ["Mi dispiace molto!", "Che peccato!"] }
+ }
+}

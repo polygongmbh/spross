@@ -2,15 +2,6 @@
  "title": "Palabras de enlace",
  "subtitle": "Las que unen una frase con la siguiente.",
  "words": {
-  "higher": { "text": "más alto" },
-  "lower": { "text": "más bajo" },
-  "more": { "text": "más" },
-  "less": { "text": "menos" },
-  "always": { "text": "siempre" },
-  "never": { "text": "nunca" },
-  "maybe": { "text": "quizás", "variants": ["tal vez"] },
-  "sometimes": { "text": "a veces" },
-  "often": { "text": "a menudo" },
   "but": { "text": "pero" },
   "also": { "text": "también" },
   "and": { "text": "y", "variants": ["e"], "notes": { "de": "vor i- und hi- wird y zu e: madre e hija." } },
@@ -24,9 +15,6 @@
   "without": { "text": "sin" },
   "again": { "text": "otra vez", "variants": ["de nuevo"] },
   "still": { "text": "todavía", "variants": ["aún"] },
-  "more-or-less": { "text": "más o menos" },
-  "i-am-always-there": { "text": "Siempre estoy ahí." },
-  "hang-it-higher": { "text": "Cuélguelo más alto.", "variants": ["Cuélgalo más alto."] },
   "if-you-want": { "text": "Si quiere.", "variants": ["Si quieres."] }
  }
 }

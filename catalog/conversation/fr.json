@@ -1,0 +1,42 @@
+{
+ "title": "Rester dans la conversation",
+ "subtitle": "Redemander, comprendre, continuer.",
+ "words": {
+  "hear": { "text": "entendre", "notes": { "de": "entendre = wahrnehmen · écouter = bewusst zuhören." } },
+  "understand": { "text": "comprendre" },
+  "speak": {
+   "text": "parler",
+   "notes": { "de": "Nur ein bisschen: je ne parle qu'un peu — ne … que umklammert das Verb." }
+  },
+  "repeat-word": { "text": "répéter le mot" },
+  "loud": {
+   "text": "fort",
+   "variants": ["forte"],
+   "notes": { "de": "Lautstärke: parle plus fort · fort heißt auch stark." }
+  },
+  "ask": {
+   "text": "demander",
+   "notes": {
+    "de": "demander heißt fragen und um etwas bitten: demander l'addition · eine Frage stellen ist poser une question."
+   }
+  },
+  "question": { "text": "question", "grammar": { "gender": "la" } },
+  "answer": { "text": "réponse", "grammar": { "gender": "la" } },
+  "reply": { "text": "répondre", "notes": { "de": "mit à: répondre à la question, répondre à quelqu'un." } },
+  "can-you-repeat-that": {
+   "text": "Pouvez-vous le répéter ?",
+   "variants": ["Pouvez-vous répéter ?", "Peux-tu le répéter ?", "Tu peux le répéter ?", "Tu peux répéter ?"]
+  },
+  "slower": { "text": "Plus lentement !", "variants": ["Moins vite !"] },
+  "i-cant-hear-you": { "text": "Je ne vous entends pas.", "variants": ["Je ne t'entends pas."] },
+  "louder": { "text": "Plus fort !" },
+  "do-you-speak-english": {
+   "text": "Parlez-vous anglais ?",
+   "variants": ["Vous parlez anglais ?", "Parles-tu anglais ?", "Tu parles anglais ?"]
+  },
+  "you-can-do-it": {
+   "text": "Tu vas sûrement y arriver !",
+   "variants": ["Tu vas y arriver !", "Tu y arriveras !", "Tu peux le faire !"]
+  }
+ }
+}

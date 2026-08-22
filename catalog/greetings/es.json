@@ -1,0 +1,33 @@
+{
+ "title": "Saludos y cortesía",
+ "subtitle": "Lo que se dice al encontrarse.",
+ "words": {
+  "hello": { "text": "¡Hola!" },
+  "good-day": {
+   "text": "¡Buenos días!",
+   "variants": ["¡Buen día!"],
+   "notes": {
+    "de": "bis zum Mittagessen · danach ¡Buenas tardes!, nach Einbruch der Dunkelheit ¡Buenas noches!"
+   }
+  },
+  "good-evening": { "text": "¡Buenas tardes!" },
+  "good-night": {
+   "text": "¡Buenas noches!",
+   "notes": { "de": "nach Einbruch der Dunkelheit auch die Begrüßung, nicht nur der Abschied" }
+  },
+  "goodbye": { "text": "¡Adiós!" },
+  "bye": { "text": "¡Hasta luego!", "variants": ["¡Chao!"] },
+  "welcome": { "text": "¡Bienvenido!", "variants": ["¡Bienvenida!", "¡Bienvenidos!", "¡Bienvenidas!"] },
+  "may-i-come-in": { "text": "¿Se puede?", "variants": ["¿Se puede pasar?", "¿Puedo pasar?"] },
+  "how-are-you": { "text": "¿Cómo está usted?", "variants": ["¿Cómo está?", "¿Cómo estás?", "¿Qué tal?"] },
+  "all-good": { "text": "Todo bien." },
+  "thank-you": { "text": "¡Muchas gracias!", "variants": ["¡Gracias!"] },
+  "please": {
+   "text": "¡Por favor!",
+   "notes": { "de": "nur die Bitte — als Antwort auf „gracias“ sagt man De nada." }
+  },
+  "excuse-me": { "text": "¡Perdón!", "variants": ["¡Perdone!", "¡Perdona!", "¡Disculpe!", "¡Disculpa!"] },
+  "pardon": { "text": "¿Cómo dice?", "variants": ["¿Cómo dices?", "¿Cómo?"] },
+  "sorry-to-hear-that": { "text": "¡Cuánto lo siento!", "variants": ["Lo siento mucho.", "¡Qué pena!"] }
+ }
+}

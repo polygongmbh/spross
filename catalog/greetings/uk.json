@@ -1,0 +1,26 @@
+{
+ "title": "Вітання та ввічливість",
+ "subtitle": "Те, що кажуть при зустрічі.",
+ "words": {
+  "hello": { "text": "Привіт!", "notes": { "de": "nur informell unter Bekannten" } },
+  "good-day": { "text": "Добрий день!", "notes": { "de": "förmlich — im Amt oder beim Arzt" } },
+  "good-morning": { "text": "Доброго ранку!", "variants": ["Добрий ранок!"] },
+  "good-evening": { "text": "Добрий вечір!", "variants": ["Доброго вечора!"] },
+  "good-night": {
+   "text": "На добраніч!",
+   "variants": ["Добраніч!"],
+   "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Добрий вечір!“" }
+  },
+  "goodbye": { "text": "До побачення!" },
+  "bye": { "text": "Бувай!" },
+  "welcome": { "text": "Ласкаво просимо!" },
+  "may-i-come-in": { "text": "Можна увійти?" },
+  "how-are-you": { "text": "Як у вас справи?" },
+  "all-good": { "text": "Все гаразд." },
+  "thank-you": { "text": "Дуже дякую!" },
+  "please": { "text": "Будь ласка!" },
+  "excuse-me": { "text": "Вибачте!" },
+  "pardon": { "text": "Перепрошую?" },
+  "sorry-to-hear-that": { "text": "Співчуваю!" }
+ }
+}

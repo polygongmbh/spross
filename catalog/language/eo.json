@@ -1,19 +1,7 @@
 {
  "title": "Lerni la lingvon",
- "subtitle": "Demandi, kompreni, resti en la konversacio.",
+ "subtitle": "Vortoj, frazoj kaj ilia signifo.",
  "words": {
-  "hear": { "text": "aŭdi", "notes": { "de": "aŭdi = wahrnehmen · aŭskulti = bewusst zuhören." } },
-  "understand": { "text": "kompreni" },
-  "speak": { "text": "paroli" },
-  "repeat-word": { "text": "ripeti la vorton" },
-  "loud": { "text": "laŭta", "variants": ["laŭte"] },
-  "ask": {
-   "text": "demandi",
-   "notes": { "de": "demandi = eine Frage stellen · um etwas bitten ist peti." }
-  },
-  "question": { "text": "demando" },
-  "answer": { "text": "respondo" },
-  "reply": { "text": "respondi" },
   "meaning": { "text": "signifo" },
   "to-pronounce": { "text": "elparoli", "synonyms": ["prononci"] },
   "translate": { "text": "traduki" },
@@ -24,14 +12,8 @@
   "word": { "text": "vorto" },
   "language": { "text": "lingvo" },
   "mother-tongue": { "text": "gepatra lingvo", "variants": ["denaska lingvo"] },
-  "can-you-repeat-that": { "text": "Ĉu vi povas ripeti tion?" },
-  "slower": { "text": "Pli malrapide!" },
-  "i-cant-hear-you": { "text": "Mi ne povas aŭdi vin.", "variants": ["Mi ne aŭdas vin."] },
-  "louder": { "text": "Pli laŭte!" },
-  "do-you-speak-english": { "text": "Ĉu vi parolas la anglan?", "variants": ["Ĉu vi parolas angle?"] },
   "what-does-this-word-mean": { "text": "Kion signifas ĉi tiu vorto?" },
   "how-do-you-say-this": { "text": "Kiel oni diras tion {language-in}?" },
-  "im-learning-your-language": { "text": "Mi lernas {language-learn}." },
-  "you-can-do-it": { "text": "Vi certe sukcesos!" }
+  "im-learning-your-language": { "text": "Mi lernas {language-learn}." }
  }
 }

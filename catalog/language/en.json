@@ -1,16 +1,7 @@
 {
  "title": "Learning the language",
- "subtitle": "Asking, understanding, staying in the conversation.",
+ "subtitle": "Words, sentences and what they mean.",
  "words": {
-  "hear": { "text": "to hear" },
-  "understand": { "text": "to understand" },
-  "speak": { "text": "to speak" },
-  "repeat-word": { "text": "to repeat the word" },
-  "loud": { "text": "loud" },
-  "ask": { "text": "to ask" },
-  "question": { "text": "question" },
-  "answer": { "text": "answer" },
-  "reply": { "text": "to reply" },
   "meaning": { "text": "meaning" },
   "to-pronounce": { "text": "to pronounce" },
   "translate": { "text": "to translate" },
@@ -21,14 +12,8 @@
   "word": { "text": "word" },
   "language": { "text": "language" },
   "mother-tongue": { "text": "mother tongue", "variants": ["native language"] },
-  "can-you-repeat-that": { "text": "Can you repeat that?" },
-  "slower": { "text": "Slower!" },
-  "i-cant-hear-you": { "text": "I can't hear you." },
-  "louder": { "text": "Louder!" },
-  "do-you-speak-english": { "text": "Do you speak English?" },
   "what-does-this-word-mean": { "text": "What does this word mean?" },
   "how-do-you-say-this": { "text": "How do you say this {language-in}?" },
-  "im-learning-your-language": { "text": "I'm learning {language}." },
-  "you-can-do-it": { "text": "You can definitely do it!" }
+  "im-learning-your-language": { "text": "I'm learning {language}." }
  }
 }

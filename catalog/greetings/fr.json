@@ -1,0 +1,27 @@
+{
+ "title": "Salutations et politesse",
+ "subtitle": "Ce qu'on se dit quand on se rencontre.",
+ "words": {
+  "hello": {
+   "text": "Salut !",
+   "notes": { "de": "nur informell unter Bekannten · im Laden und im Amt sagt man Bonjour !" }
+  },
+  "good-day": { "text": "Bonjour !", "notes": { "de": "gilt den ganzen Tag · ab dem frühen Abend Bonsoir !" } },
+  "good-evening": { "text": "Bonsoir !" },
+  "good-night": {
+   "text": "Bonne nuit !",
+   "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Bonsoir !“" }
+  },
+  "goodbye": { "text": "Au revoir !" },
+  "bye": { "text": "À bientôt !", "variants": ["À plus !", "Ciao !"] },
+  "welcome": { "text": "Bienvenue !" },
+  "may-i-come-in": { "text": "Puis-je entrer ?", "variants": ["Je peux entrer ?"] },
+  "how-are-you": { "text": "Comment allez-vous ?", "variants": ["Comment vas-tu ?", "Ça va ?"] },
+  "all-good": { "text": "Tout va bien." },
+  "thank-you": { "text": "Merci beaucoup !", "variants": ["Merci !"] },
+  "please": { "text": "S'il vous plaît !", "variants": ["S'il te plaît !"] },
+  "excuse-me": { "text": "Excusez-moi !", "variants": ["Excuse-moi !", "Pardon !"] },
+  "pardon": { "text": "Pardon ?", "variants": ["Comment ?"] },
+  "sorry-to-hear-that": { "text": "Je suis désolé !", "variants": ["Je suis désolée !", "Désolé !"] }
+ }
+}

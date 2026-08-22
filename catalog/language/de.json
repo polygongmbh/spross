@@ -1,16 +1,7 @@
 {
  "title": "Sprache lernen",
- "subtitle": "Nachfragen, verstehen, im Gespräch bleiben.",
+ "subtitle": "Wörter, Sätze und was sie bedeuten.",
  "words": {
-  "hear": { "text": "hören" },
-  "understand": { "text": "verstehen" },
-  "speak": { "text": "sprechen" },
-  "repeat-word": { "text": "das Wort wiederholen" },
-  "loud": { "text": "laut" },
-  "ask": { "text": "fragen" },
-  "question": { "text": "Frage", "grammar": { "gender": "die", "plural": "-n" } },
-  "answer": { "text": "Antwort", "grammar": { "gender": "die", "plural": "-en" } },
-  "reply": { "text": "antworten" },
   "meaning": { "text": "Bedeutung", "grammar": { "gender": "die", "plural": "-en" } },
   "to-pronounce": { "text": "aussprechen" },
   "translate": { "text": "übersetzen" },
@@ -21,14 +12,8 @@
   "word": { "text": "Wort", "grammar": { "gender": "das", "plural": "Wörter" } },
   "language": { "text": "Sprache", "grammar": { "gender": "die", "plural": "-n" } },
   "mother-tongue": { "text": "Muttersprache", "grammar": { "gender": "die", "plural": "-n" } },
-  "can-you-repeat-that": { "text": "Können Sie das wiederholen?", "variants": ["Kannst du das wiederholen?"] },
-  "slower": { "text": "Langsamer!" },
-  "i-cant-hear-you": { "text": "Ich kann Sie nicht hören.", "variants": ["Ich kann dich nicht hören."] },
-  "louder": { "text": "Lauter!" },
-  "do-you-speak-english": { "text": "Sprechen Sie Englisch?", "variants": ["Sprichst du Englisch?"] },
   "what-does-this-word-mean": { "text": "Was bedeutet dieses Wort?" },
   "how-do-you-say-this": { "text": "Wie sagt man das {language-in}?" },
-  "im-learning-your-language": { "text": "Ich lerne {language}." },
-  "you-can-do-it": { "text": "Du schaffst das bestimmt!" }
+  "im-learning-your-language": { "text": "Ich lerne {language}." }
  }
 }

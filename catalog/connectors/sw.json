@@ -2,15 +2,6 @@
  "title": "Maneno ya kuunganisha",
  "subtitle": "Maneno yanayoshikamanisha sentensi.",
  "words": {
-  "higher": { "text": "juu zaidi" },
-  "lower": { "text": "chini zaidi" },
-  "more": { "text": "zaidi" },
-  "less": { "text": "pungufu" },
-  "always": { "text": "daima" },
-  "never": { "text": "kamwe" },
-  "maybe": { "text": "labda" },
-  "sometimes": { "text": "wakati mwingine" },
-  "often": { "text": "mara nyingi" },
   "but": { "text": "lakini" },
   "also": { "text": "pia" },
   "and": { "text": "na", "notes": { "de": "na heißt auch „mit“: chai na maziwa · njoo na mimi." } },
@@ -31,9 +22,6 @@
    "text": "bado",
    "notes": { "de": "allein als Antwort heißt bado „noch nicht“: Umemaliza? — Bado." }
   },
-  "more-or-less": { "text": "zaidi au pungufu" },
-  "i-am-always-there": { "text": "Niko pale daima." },
-  "hang-it-higher": { "text": "Itundike juu zaidi." },
   "if-you-want": { "text": "Kama unataka." }
  }
 }

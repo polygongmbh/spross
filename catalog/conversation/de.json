@@ -1,0 +1,21 @@
+{
+ "title": "Im Gespräch bleiben",
+ "subtitle": "Nachfragen, verstehen, weitermachen.",
+ "words": {
+  "hear": { "text": "hören" },
+  "understand": { "text": "verstehen" },
+  "speak": { "text": "sprechen" },
+  "repeat-word": { "text": "das Wort wiederholen" },
+  "loud": { "text": "laut" },
+  "ask": { "text": "fragen" },
+  "question": { "text": "Frage", "grammar": { "gender": "die", "plural": "-n" } },
+  "answer": { "text": "Antwort", "grammar": { "gender": "die", "plural": "-en" } },
+  "reply": { "text": "antworten" },
+  "can-you-repeat-that": { "text": "Können Sie das wiederholen?", "variants": ["Kannst du das wiederholen?"] },
+  "slower": { "text": "Langsamer!" },
+  "i-cant-hear-you": { "text": "Ich kann Sie nicht hören.", "variants": ["Ich kann dich nicht hören."] },
+  "louder": { "text": "Lauter!" },
+  "do-you-speak-english": { "text": "Sprechen Sie Englisch?", "variants": ["Sprichst du Englisch?"] },
+  "you-can-do-it": { "text": "Du schaffst das bestimmt!" }
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "title": "Degré et fréquence",
+ "subtitle": "Combien, jusqu'où, à quelle fréquence.",
+ "words": {
+  "higher": { "text": "plus haut" },
+  "lower": { "text": "plus bas" },
+  "more": { "text": "plus" },
+  "less": { "text": "moins" },
+  "always": { "text": "toujours" },
+  "never": { "text": "jamais", "notes": { "de": "im Satz steht ne vor dem Verb: Je ne fume jamais." } },
+  "maybe": { "text": "peut-être" },
+  "sometimes": { "text": "parfois", "variants": ["quelquefois"] },
+  "often": { "text": "souvent" },
+  "more-or-less": { "text": "plus ou moins" },
+  "i-am-always-there": { "text": "Je suis toujours là." },
+  "hang-it-higher": { "text": "Accroche-le plus haut." }
+ }
+}

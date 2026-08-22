@@ -1,0 +1,18 @@
+{
+ "title": "Grado e frequenza",
+ "subtitle": "Quanto, fin dove, quante volte.",
+ "words": {
+  "higher": { "text": "più alto" },
+  "lower": { "text": "più basso" },
+  "more": { "text": "più" },
+  "less": { "text": "meno" },
+  "always": { "text": "sempre" },
+  "never": { "text": "mai", "notes": { "de": "im Satz steht non davor: Non bevo mai caffè." } },
+  "maybe": { "text": "forse" },
+  "sometimes": { "text": "a volte", "variants": ["qualche volta", "talvolta"] },
+  "often": { "text": "spesso" },
+  "more-or-less": { "text": "più o meno" },
+  "i-am-always-there": { "text": "Ci sono sempre." },
+  "hang-it-higher": { "text": "Appendilo più in alto.", "variants": ["Appendilo più alto."] }
+ }
+}

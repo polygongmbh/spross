@@ -1,0 +1,36 @@
+{
+ "title": "Salutoj kaj ĝentilaĵoj",
+ "subtitle": "Kion oni diras ĉe renkontiĝo.",
+ "words": {
+  "hello": { "text": "Saluton!" },
+  "good-day": {
+   "text": "Bonan tagon!",
+   "notes": {
+    "de": "gilt den ganzen Tag · morgens Bonan matenon!, abends Bonan vesperon!, zur Nacht Bonan nokton!"
+   }
+  },
+  "good-morning": { "text": "Bonan matenon!" },
+  "good-evening": { "text": "Bonan vesperon!" },
+  "good-night": {
+   "text": "Bonan nokton!",
+   "notes": {
+    "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Bonan vesperon!“"
+   }
+  },
+  "goodbye": { "text": "Ĝis revido!" },
+  "bye": { "text": "Ĝis!" },
+  "welcome": { "text": "Bonvenon!" },
+  "may-i-come-in": { "text": "Ĉu mi rajtas eniri?", "variants": ["Ĉu mi povas eniri?"] },
+  "how-are-you": { "text": "Kiel vi fartas?" },
+  "all-good": { "text": "Ĉio en ordo.", "variants": ["Ĉio bonas.", "Ĉio bone."] },
+  "thank-you": { "text": "Multan dankon!", "variants": ["Dankon!", "Koran dankon!"] },
+  "please": {
+   "text": "Bonvolu!",
+   "variants": ["Mi petas!"],
+   "notes": { "de": "steht vor dem Verb: Bonvolu ripeti. · die Antwort auf „Dankon“ ist „Ne dankinde“." }
+  },
+  "excuse-me": { "text": "Pardonu!", "variants": ["Pardonon!", "Pardonu min!"] },
+  "pardon": { "text": "Kion vi diris?", "variants": ["Pardonon?"] },
+  "sorry-to-hear-that": { "text": "Mi bedaŭras!", "variants": ["Mi tre bedaŭras!", "Kiel bedaŭrinde!"] }
+ }
+}

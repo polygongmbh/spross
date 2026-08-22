@@ -1,16 +1,7 @@
 {
  "title": "Вивчення мови",
- "subtitle": "Запитати, зрозуміти, залишитися в розмові.",
+ "subtitle": "Слова, речення і те, що вони означають.",
  "words": {
-  "hear": { "text": "чути" },
-  "understand": { "text": "розуміти" },
-  "speak": { "text": "говорити" },
-  "repeat-word": { "text": "повторювати слово" },
-  "loud": { "text": "гучний", "variants": ["голосний", "гучно", "голосно"] },
-  "ask": { "text": "питати" },
-  "question": { "text": "запитання", "grammar": { "plural": "=" } },
-  "answer": { "text": "відповідь" },
-  "reply": { "text": "відповідати" },
   "meaning": { "text": "значення", "grammar": { "plural": "=" } },
   "to-pronounce": { "text": "вимовляти" },
   "translate": { "text": "перекладати" },
@@ -21,14 +12,8 @@
   "word": { "text": "слово" },
   "language": { "text": "мова" },
   "mother-tongue": { "text": "рідна мова", "grammar": { "plural": "рідні мови" } },
-  "can-you-repeat-that": { "text": "Чи можете ви це повторити?", "variants": ["Можеш це повторити?"] },
-  "slower": { "text": "Повільніше!" },
-  "i-cant-hear-you": { "text": "Я вас не чую.", "variants": ["Я тебе не чую."] },
-  "louder": { "text": "Голосніше!", "variants": ["Гучніше!"] },
-  "do-you-speak-english": { "text": "Ви розмовляєте англійською?" },
   "what-does-this-word-mean": { "text": "Що означає це слово?" },
   "how-do-you-say-this": { "text": "Як це сказати {language-in}?" },
-  "im-learning-your-language": { "text": "Я вчу {language-learn}." },
-  "you-can-do-it": { "text": "Ти точно впораєшся!" }
+  "im-learning-your-language": { "text": "Я вчу {language-learn}." }
  }
 }

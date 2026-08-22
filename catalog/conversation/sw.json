@@ -1,0 +1,25 @@
+{
+ "title": "Kuendelea na mazungumzo",
+ "subtitle": "Kuuliza tena, kuelewa, kusonga mbele.",
+ "words": {
+  "hear": { "text": "kusikia" },
+  "understand": { "text": "kuelewa" },
+  "speak": { "text": "kuzungumza" },
+  "repeat-word": { "text": "kurudia neno" },
+  "loud": {
+   "text": "kwa sauti kubwa",
+   "variants": ["kwa sauti ya juu"],
+   "notes": { "de": "kein Adjektiv, sondern adverbial: Sema kwa sauti kubwa." }
+  },
+  "ask": { "text": "kuuliza" },
+  "question": { "text": "swali", "grammar": { "plural": "maswali" } },
+  "answer": { "text": "jibu", "grammar": { "plural": "majibu" } },
+  "reply": { "text": "kujibu" },
+  "can-you-repeat-that": { "text": "Unaweza kurudia?" },
+  "slower": { "text": "Polepole zaidi!" },
+  "i-cant-hear-you": { "text": "Sikusikii.", "variants": ["Siwezi kukusikia."] },
+  "louder": { "text": "Kwa sauti zaidi!", "variants": ["Kwa sauti kubwa zaidi!"] },
+  "do-you-speak-english": { "text": "Unazungumza Kiingereza?" },
+  "you-can-do-it": { "text": "Hakika utaweza!" }
+ }
+}

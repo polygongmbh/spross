@@ -1,0 +1,28 @@
+{
+ "title": "Restare nella conversazione",
+ "subtitle": "Richiedere, capire, andare avanti.",
+ "words": {
+  "hear": { "text": "sentire", "notes": { "de": "sentire = wahrnehmen · ascoltare = bewusst zuhören." } },
+  "understand": { "text": "capire", "synonyms": ["comprendere"] },
+  "speak": { "text": "parlare" },
+  "repeat-word": { "text": "ripetere la parola" },
+  "loud": {
+   "text": "forte",
+   "variants": ["alto"],
+   "notes": { "de": "Lautstärke: parla più forte · forte heißt auch stark." }
+  },
+  "ask": { "text": "chiedere", "variants": ["domandare"] },
+  "question": { "text": "domanda", "grammar": { "gender": "la" } },
+  "answer": { "text": "risposta", "grammar": { "gender": "la" } },
+  "reply": { "text": "rispondere" },
+  "can-you-repeat-that": {
+   "text": "Può ripeterlo?",
+   "variants": ["Può ripetere?", "Potrebbe ripeterlo?", "Puoi ripeterlo?"]
+  },
+  "slower": { "text": "Più lentamente!", "variants": ["Più piano!", "Più adagio!"] },
+  "i-cant-hear-you": { "text": "Non La sento.", "variants": ["Non ti sento.", "Non riesco a sentirla."] },
+  "louder": { "text": "Più forte!", "variants": ["Più alto!"] },
+  "do-you-speak-english": { "text": "Parla inglese?", "variants": ["Parlate inglese?", "Parli inglese?"] },
+  "you-can-do-it": { "text": "Ce la farai di sicuro!", "variants": ["Ce la puoi fare!"] }
+ }
+}

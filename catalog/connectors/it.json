@@ -2,15 +2,6 @@
  "title": "Parole di collegamento",
  "subtitle": "Quelle che uniscono una frase alla successiva.",
  "words": {
-  "higher": { "text": "più alto" },
-  "lower": { "text": "più basso" },
-  "more": { "text": "più" },
-  "less": { "text": "meno" },
-  "always": { "text": "sempre" },
-  "never": { "text": "mai", "notes": { "de": "im Satz steht non davor: Non bevo mai caffè." } },
-  "maybe": { "text": "forse" },
-  "sometimes": { "text": "a volte", "variants": ["qualche volta", "talvolta"] },
-  "often": { "text": "spesso" },
   "but": { "text": "ma", "variants": ["però"] },
   "also": { "text": "anche" },
   "and": {
@@ -32,9 +23,6 @@
   "without": { "text": "senza" },
   "again": { "text": "di nuovo", "variants": ["un'altra volta", "ancora"] },
   "still": { "text": "ancora" },
-  "more-or-less": { "text": "più o meno" },
-  "i-am-always-there": { "text": "Ci sono sempre." },
-  "hang-it-higher": { "text": "Appendilo più in alto.", "variants": ["Appendilo più alto."] },
   "if-you-want": { "text": "Se vuole.", "variants": ["Se vuoi."] }
  }
 }

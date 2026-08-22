@@ -2,15 +2,6 @@
  "title": "Verbindungswörter",
  "subtitle": "Wörter, die einen Satz zusammenhalten.",
  "words": {
-  "higher": { "text": "höher" },
-  "lower": { "text": "niedriger" },
-  "more": { "text": "mehr" },
-  "less": { "text": "weniger" },
-  "always": { "text": "immer" },
-  "never": { "text": "nie" },
-  "maybe": { "text": "vielleicht" },
-  "sometimes": { "text": "manchmal" },
-  "often": { "text": "oft" },
   "but": { "text": "aber" },
   "also": { "text": "auch" },
   "and": { "text": "und" },
@@ -24,9 +15,6 @@
   "without": { "text": "ohne" },
   "again": { "text": "wieder" },
   "still": { "text": "noch" },
-  "more-or-less": { "text": "mehr oder weniger" },
-  "i-am-always-there": { "text": "Ich bin immer da." },
-  "hang-it-higher": { "text": "Häng es höher." },
   "if-you-want": { "text": "Wenn Sie wollen.", "variants": ["Wenn du willst."] }
  }
 }

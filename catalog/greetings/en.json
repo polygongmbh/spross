@@ -1,0 +1,26 @@
+{
+ "title": "Greetings and courtesies",
+ "subtitle": "What you say when you meet someone.",
+ "words": {
+  "hello": { "text": "Hello!" },
+  "good-day": { "text": "Good day!" },
+  "good-morning": { "text": "Good morning!" },
+  "good-evening": { "text": "Good evening!" },
+  "good-night": {
+   "text": "Good night!",
+   "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Good evening!“" }
+  },
+  "goodbye": { "text": "Goodbye!" },
+  "bye": { "text": "Bye!" },
+  "welcome": { "text": "Welcome!" },
+  "greetings-elder": { "text": "Greetings!" },
+  "may-i-come-in": { "text": "May I come in?" },
+  "how-are-you": { "text": "How are you?" },
+  "all-good": { "text": "All good." },
+  "thank-you": { "text": "Thank you very much!" },
+  "please": { "text": "Please!" },
+  "excuse-me": { "text": "Excuse me!" },
+  "pardon": { "text": "Pardon?" },
+  "sorry-to-hear-that": { "text": "Sorry to hear that." }
+ }
+}

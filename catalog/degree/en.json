@@ -1,0 +1,18 @@
+{
+ "title": "Degree and frequency",
+ "subtitle": "How much, how far, how often.",
+ "words": {
+  "higher": { "text": "higher" },
+  "lower": { "text": "lower" },
+  "more": { "text": "more" },
+  "less": { "text": "less" },
+  "always": { "text": "always" },
+  "never": { "text": "never" },
+  "maybe": { "text": "maybe" },
+  "sometimes": { "text": "sometimes" },
+  "often": { "text": "often" },
+  "more-or-less": { "text": "more or less" },
+  "i-am-always-there": { "text": "I am always there." },
+  "hang-it-higher": { "text": "Hang it higher." }
+ }
+}

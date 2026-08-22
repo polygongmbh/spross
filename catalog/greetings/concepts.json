@@ -1,0 +1,19 @@
+[
+ { "slug": "hello", "kind": "phrase", "emoji": "👋", "components": [] },
+ { "slug": "good-day", "kind": "phrase", "emoji": "☀️", "components": [] },
+ { "slug": "good-morning", "kind": "phrase", "emoji": "🌅", "components": [] },
+ { "slug": "good-evening", "kind": "phrase", "emoji": "🌆", "components": [] },
+ { "slug": "good-night", "kind": "phrase", "emoji": "🌙", "components": [] },
+ { "slug": "goodbye", "kind": "phrase", "emoji": "👋", "components": [] },
+ { "slug": "bye", "kind": "phrase", "emoji": "👋", "components": [] },
+ { "slug": "welcome", "kind": "phrase", "emoji": "🤗", "components": [] },
+ { "slug": "greetings-elder", "kind": "phrase", "emoji": "🧓", "components": [] },
+ { "slug": "may-i-come-in", "kind": "phrase", "emoji": "🚪", "components": [] },
+ { "slug": "how-are-you", "kind": "phrase", "emoji": "😊", "components": [] },
+ { "slug": "all-good", "kind": "phrase", "emoji": "👌", "components": [] },
+ { "slug": "thank-you", "kind": "phrase", "emoji": "🙏", "components": [] },
+ { "slug": "please", "kind": "phrase", "components": [] },
+ { "slug": "excuse-me", "kind": "phrase", "emoji": "🙇", "components": [] },
+ { "slug": "pardon", "kind": "phrase", "emoji": "👂", "components": [] },
+ { "slug": "sorry-to-hear-that", "kind": "phrase", "emoji": "🫂", "components": [] }
+]

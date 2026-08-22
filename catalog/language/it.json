@@ -1,20 +1,7 @@
 {
  "title": "Imparare la lingua",
- "subtitle": "Chiedere, capire, restare nella conversazione.",
+ "subtitle": "Parole, frasi e il loro significato.",
  "words": {
-  "hear": { "text": "sentire", "notes": { "de": "sentire = wahrnehmen · ascoltare = bewusst zuhören." } },
-  "understand": { "text": "capire", "synonyms": ["comprendere"] },
-  "speak": { "text": "parlare" },
-  "repeat-word": { "text": "ripetere la parola" },
-  "loud": {
-   "text": "forte",
-   "variants": ["alto"],
-   "notes": { "de": "Lautstärke: parla più forte · forte heißt auch stark." }
-  },
-  "ask": { "text": "chiedere", "variants": ["domandare"] },
-  "question": { "text": "domanda", "grammar": { "gender": "la" } },
-  "answer": { "text": "risposta", "grammar": { "gender": "la" } },
-  "reply": { "text": "rispondere" },
   "meaning": { "text": "significato", "grammar": { "gender": "il" } },
   "to-pronounce": { "text": "pronunciare" },
   "translate": { "text": "tradurre" },
@@ -29,20 +16,11 @@
    "notes": { "de": "lingua ist die Sprache und die Zunge im Mund." }
   },
   "mother-tongue": { "text": "lingua madre", "grammar": { "gender": "la" } },
-  "can-you-repeat-that": {
-   "text": "Può ripeterlo?",
-   "variants": ["Può ripetere?", "Potrebbe ripeterlo?", "Puoi ripeterlo?"]
-  },
-  "slower": { "text": "Più lentamente!", "variants": ["Più piano!", "Più adagio!"] },
-  "i-cant-hear-you": { "text": "Non La sento.", "variants": ["Non ti sento.", "Non riesco a sentirla."] },
-  "louder": { "text": "Più forte!", "variants": ["Più alto!"] },
-  "do-you-speak-english": { "text": "Parla inglese?", "variants": ["Parlate inglese?", "Parli inglese?"] },
   "what-does-this-word-mean": {
    "text": "Che cosa significa questa parola?",
    "variants": ["Cosa significa questa parola?", "Che cosa vuol dire questa parola?"]
   },
   "how-do-you-say-this": { "text": "Come si dice questo {language-in}?", "variants": ["Come si dice {language-in}?"] },
-  "im-learning-your-language": { "text": "Imparo {language-learn}.", "variants": ["Sto imparando {language-learn}."] },
-  "you-can-do-it": { "text": "Ce la farai di sicuro!", "variants": ["Ce la puoi fare!"] }
+  "im-learning-your-language": { "text": "Imparo {language-learn}.", "variants": ["Sto imparando {language-learn}."] }
  }
 }

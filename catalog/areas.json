@@ -17,9 +17,12 @@
    { "area": "qualities", "emoji": "📏" },
    { "area": "colors", "emoji": "🎨" },
    { "area": "time", "emoji": "🕒" },
-   { "area": "language", "emoji": "🗣️" },
+   { "area": "conversation", "emoji": "💬" },
    { "area": "connectors", "emoji": "🔗" },
-   { "area": "questions", "emoji": "❓" }
+   { "area": "degree", "emoji": "📊" },
+   { "area": "questions", "emoji": "❓" },
+   { "area": "language", "emoji": "🗣️" },
+   { "area": "greetings", "emoji": "🤝" }
   ]
  },
  {

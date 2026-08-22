@@ -2,18 +2,6 @@
  "title": "Ligvortoj",
  "subtitle": "Vortoj, kiuj kunligas la frazon.",
  "words": {
-  "higher": { "text": "pli alte", "variants": ["pli alta"] },
-  "lower": { "text": "pli malalte", "variants": ["pli malalta"] },
-  "more": {
-   "text": "pli",
-   "notes": { "de": "pli vergleicht: pli granda · vor einem Substantiv steht pli da: pli da tempo." }
-  },
-  "less": { "text": "malpli" },
-  "always": { "text": "ĉiam" },
-  "never": { "text": "neniam", "notes": { "de": "verneint allein — kein zweites ne: Mi neniam iras." } },
-  "maybe": { "text": "eble" },
-  "sometimes": { "text": "kelkfoje", "variants": ["iafoje"] },
-  "often": { "text": "ofte" },
   "but": { "text": "sed" },
   "also": {
    "text": "ankaŭ",
@@ -38,12 +26,6 @@
   "without": { "text": "sen" },
   "again": { "text": "denove", "variants": ["refoje", "ree"] },
   "still": { "text": "ankoraŭ", "notes": { "de": "ankoraŭ (noch) und ankaŭ (auch) nicht verwechseln." } },
-  "more-or-less": { "text": "pli-malpli", "variants": ["pli aŭ malpli", "pli malpli"] },
-  "i-am-always-there": { "text": "Mi ĉiam estas tie." },
-  "hang-it-higher": {
-   "text": "Pendigu ĝin pli alte.",
-   "notes": { "de": "pendi hängt selbst · etwas aufhängen ist pendigi." }
-  },
   "if-you-want": { "text": "Se vi volas." }
  }
 }

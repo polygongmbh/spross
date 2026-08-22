@@ -1,0 +1,18 @@
+{
+ "title": "Maß und Häufigkeit",
+ "subtitle": "Wie viel, wie weit, wie oft.",
+ "words": {
+  "higher": { "text": "höher" },
+  "lower": { "text": "niedriger" },
+  "more": { "text": "mehr" },
+  "less": { "text": "weniger" },
+  "always": { "text": "immer" },
+  "never": { "text": "nie" },
+  "maybe": { "text": "vielleicht" },
+  "sometimes": { "text": "manchmal" },
+  "often": { "text": "oft" },
+  "more-or-less": { "text": "mehr oder weniger" },
+  "i-am-always-there": { "text": "Ich bin immer da." },
+  "hang-it-higher": { "text": "Häng es höher." }
+ }
+}

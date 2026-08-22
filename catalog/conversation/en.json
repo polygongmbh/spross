@@ -1,0 +1,21 @@
+{
+ "title": "Staying in the conversation",
+ "subtitle": "Ask again, understand, keep going.",
+ "words": {
+  "hear": { "text": "to hear" },
+  "understand": { "text": "to understand" },
+  "speak": { "text": "to speak" },
+  "repeat-word": { "text": "to repeat the word" },
+  "loud": { "text": "loud" },
+  "ask": { "text": "to ask" },
+  "question": { "text": "question" },
+  "answer": { "text": "answer" },
+  "reply": { "text": "to reply" },
+  "can-you-repeat-that": { "text": "Can you repeat that?" },
+  "slower": { "text": "Slower!" },
+  "i-cant-hear-you": { "text": "I can't hear you." },
+  "louder": { "text": "Louder!" },
+  "do-you-speak-english": { "text": "Do you speak English?" },
+  "you-can-do-it": { "text": "You can definitely do it!" }
+ }
+}

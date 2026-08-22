@@ -1,0 +1,48 @@
+{
+ "title": "Salamu na adabu",
+ "subtitle": "Unachosema mnapokutana.",
+ "words": {
+  "hello": { "text": "Hujambo!", "notes": { "de": "Antwort: „Sijambo!“" } },
+  "good-day": {
+   "text": "Habari!",
+   "notes": { "de": "habari = Neuigkeit — die Allzweck-Begrüßung; Antwort: „Nzuri!“" }
+  },
+  "good-morning": { "text": "Habari za asubuhi!" },
+  "good-evening": { "text": "Habari za jioni!" },
+  "good-night": {
+   "text": "Usiku mwema!",
+   "notes": {
+    "de": "Wunsch zum Abschied und vor dem Schlafen — wer spät ankommt, grüßt mit „Habari za usiku!“"
+   }
+  },
+  "goodbye": { "text": "Kwaheri!" },
+  "welcome": {
+   "text": "Karibu!",
+   "variants": ["Karibuni!"],
+   "notes": { "de": "Auch die Antwort auf „Hodi?“ und die Einladung „Komm herein!“ · an mehrere: Karibuni!" }
+  },
+  "greetings-elder": {
+   "text": "Shikamoo!",
+   "notes": {
+    "de": "Respektgruß an Ältere; die Antwort ist immer „Marahaba!“ · unter Gleichaltrigen bleibt es bei „Hujambo!“"
+   }
+  },
+  "may-i-come-in": {
+   "text": "Hodi!",
+   "notes": { "de": "Ruft man an der Tür, statt zu klopfen; die Antwort ist „Karibu!“" }
+  },
+  "how-are-you": { "text": "Habari yako?" },
+  "all-good": { "text": "Hakuna shida." },
+  "thank-you": { "text": "Asante sana!" },
+  "please": { "text": "Tafadhali!" },
+  "excuse-me": { "text": "Samahani!" },
+  "pardon": { "text": "Umesemaje?" },
+  "sorry-to-hear-that": {
+   "text": "Pole!",
+   "variants": ["Pole sana!", "Poleni!"],
+   "notes": {
+    "de": "Mitgefühl bei jedem Missgeschick, auch beim Stolpern oder nach der Arbeit — nie eine Entschuldigung für eigene Schuld · an mehrere: Poleni!"
+   }
+  }
+ }
+}

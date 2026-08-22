@@ -2,15 +2,6 @@
  "title": "Connecting words",
  "subtitle": "The words that hold a sentence together.",
  "words": {
-  "higher": { "text": "higher" },
-  "lower": { "text": "lower" },
-  "more": { "text": "more" },
-  "less": { "text": "less" },
-  "always": { "text": "always" },
-  "never": { "text": "never" },
-  "maybe": { "text": "maybe" },
-  "sometimes": { "text": "sometimes" },
-  "often": { "text": "often" },
   "but": { "text": "but" },
   "also": { "text": "also" },
   "and": { "text": "and" },
@@ -24,9 +15,6 @@
   "without": { "text": "without" },
   "again": { "text": "again" },
   "still": { "text": "still" },
-  "more-or-less": { "text": "more or less" },
-  "i-am-always-there": { "text": "I am always there." },
-  "hang-it-higher": { "text": "Hang it higher." },
   "if-you-want": { "text": "If you want." }
  }
 }
