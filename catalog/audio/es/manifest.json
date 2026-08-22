@@ -69,6 +69,7 @@
   "texts": {
     "guitarra": {
       "author": "Rodrigo5260",
+      "cap": 1.5,
       "file": "texts/guitarra.mp3",
       "gain": 5.5,
       "lead": 202,
@@ -326,6 +327,7 @@
     },
     "arrange": {
       "author": "Wikipedian-walker",
+      "cap": 1.2,
       "file": "arrange.mp3",
       "gain": 6.6,
       "gainPhone": 2.2,
@@ -456,6 +458,7 @@
     },
     "bank": {
       "author": "GlyphEnjoyer",
+      "cap": 2.0,
       "file": "bank.mp3",
       "gain": 7.9,
       "gainPhone": 3.5,
@@ -547,6 +550,7 @@
     },
     "belt": {
       "author": "Eavqwiki",
+      "capPhone": 0.8,
       "file": "belt.mp3",
       "gain": 8.1,
       "gainPhone": 11.7,
@@ -637,6 +641,7 @@
     },
     "blue": {
       "author": "Rodrigo5260",
+      "cap": 2.3,
       "file": "blue.mp3",
       "gain": 5.2,
       "gainPhone": 1.8,
@@ -675,6 +680,7 @@
     },
     "book": {
       "author": "Eavqwiki",
+      "capPhone": 0.8,
       "file": "book.mp3",
       "gain": 3.3,
       "gainPhone": 7.9,
@@ -740,6 +746,7 @@
     },
     "break": {
       "author": "AdrianAbdulBaha",
+      "cap": 0.5,
       "file": "break.mp3",
       "gain": 5.0,
       "gainPhone": 0.1,
@@ -831,6 +838,7 @@
     },
     "bucket": {
       "author": "Marreromarco",
+      "capPhone": 0.8,
       "file": "bucket.mp3",
       "gain": 1.1,
       "gainPhone": 9.7,
@@ -1192,6 +1200,7 @@
     },
     "classroom": {
       "author": "Marreromarco",
+      "capPhone": 0.5,
       "file": "classroom.mp3",
       "gain": 0.6,
       "gainPhone": 6.6,
@@ -1474,6 +1483,7 @@
     },
     "cup": {
       "author": "Rodrigo5260",
+      "cap": 1.7,
       "file": "cup.mp3",
       "gain": 5.2,
       "gainPhone": -0.5,
@@ -1500,6 +1510,7 @@
     },
     "customer": {
       "author": "Marreromarco",
+      "capPhone": 2.4,
       "file": "customer.mp3",
       "gain": 1.8,
       "gainPhone": 8.4,
@@ -1836,6 +1847,7 @@
     },
     "driver": {
       "author": "AdrianAbdulBaha",
+      "capPhone": 0.1,
       "file": "driver.mp3",
       "gain": 10.5,
       "gainPhone": 13.2,
@@ -2067,6 +2079,7 @@
     },
     "fast": {
       "author": "Rodrigo5260",
+      "cap": 1.3,
       "file": "fast.mp3",
       "gain": 5.1,
       "gainPhone": 2.9,
@@ -2093,6 +2106,7 @@
     },
     "faucet": {
       "author": "Millars",
+      "capPhone": 1.2,
       "file": "faucet.mp3",
       "gain": 0.1,
       "gainPhone": 4.6,
@@ -2171,6 +2185,7 @@
     },
     "flour": {
       "author": "Millars",
+      "capPhone": 2.7,
       "file": "flour.mp3",
       "gain": 6.7,
       "gainPhone": 10.5,
@@ -2312,6 +2327,7 @@
     },
     "fruit": {
       "author": "Sinaloa",
+      "capPhone": 0.6,
       "file": "fruit.mp3",
       "gain": 9.8,
       "gainPhone": 14.6,
@@ -2468,6 +2484,7 @@
     },
     "grandfather": {
       "author": "AdrianAbdulBaha",
+      "cap": 0.3,
       "file": "grandfather.mp3",
       "gain": 6.1,
       "gainPhone": 2.9,
@@ -2481,6 +2498,7 @@
     },
     "grandmother": {
       "author": "AdrianAbdulBaha",
+      "cap": 0.1,
       "file": "grandmother.mp3",
       "gain": 5.8,
       "gainPhone": 1.3,
@@ -2597,6 +2615,7 @@
     },
     "hat": {
       "author": "Marreromarco",
+      "capPhone": 0.9,
       "file": "hat.mp3",
       "gain": -0.1,
       "gainPhone": 5.3,
@@ -2700,6 +2719,7 @@
     },
     "hello": {
       "author": "CaroEspinoza",
+      "capPhone": 1.6,
       "file": "hello.mp3",
       "gain": 3.5,
       "gainPhone": 8.4,
@@ -2726,6 +2746,7 @@
     },
     "here": {
       "author": "GlyphEnjoyer",
+      "cap": 6.2,
       "file": "here.mp3",
       "gain": 2.1,
       "gainPhone": -0.7,
@@ -2752,6 +2773,7 @@
     },
     "hospital": {
       "author": "Rubýñ",
+      "cap": 1.5,
       "file": "hospital.mp3",
       "gain": 6.9,
       "gainPhone": 6.7,
@@ -2765,6 +2787,7 @@
     },
     "hotel": {
       "author": "Eavqwiki",
+      "capPhone": 1.2,
       "file": "hotel.mp3",
       "gain": 0.1,
       "gainPhone": 4.5,
@@ -2791,6 +2814,7 @@
     },
     "house": {
       "author": "GlyphEnjoyer",
+      "cap": 0.2,
       "file": "house.mp3",
       "gain": 2.1,
       "gainPhone": -5.4,
@@ -2830,6 +2854,7 @@
     },
     "hurt": {
       "author": "Marreromarco",
+      "capPhone": 0.4,
       "file": "hurt.mp3",
       "gain": 2.3,
       "gainPhone": 9.5,
@@ -3243,6 +3268,7 @@
     },
     "long": {
       "author": "GlyphEnjoyer",
+      "cap": 0.5,
       "file": "long.mp3",
       "gain": 3.3,
       "gainPhone": -2.7,
@@ -3256,6 +3282,7 @@
     },
     "loud": {
       "author": "GlyphEnjoyer",
+      "cap": 5.6,
       "file": "loud.mp3",
       "gain": 2.5,
       "gainPhone": 0.4,
@@ -3515,6 +3542,7 @@
     },
     "motorbike": {
       "author": "Marreromarco",
+      "capPhone": 2.0,
       "file": "motorbike.mp3",
       "gain": 1.5,
       "gainPhone": 7.6,
@@ -3566,6 +3594,7 @@
     },
     "movie": {
       "author": "Eavqwiki",
+      "capPhone": 3.4,
       "file": "movie.mp3",
       "gain": 0.5,
       "gainPhone": 4.3,
@@ -3809,6 +3838,7 @@
     },
     "oil": {
       "author": "Millars",
+      "capPhone": 0.1,
       "file": "oil.mp3",
       "gain": 5.5,
       "gainPhone": 9.0,
@@ -3834,6 +3864,7 @@
     },
     "or": {
       "author": "Rodrigo5260",
+      "capPhone": 0.7,
       "file": "or.mp3",
       "gain": -1.0,
       "gainPhone": 3.4,
@@ -3873,6 +3904,7 @@
     },
     "page": {
       "author": "AdrianAbdulBaha",
+      "cap": 0.9,
       "file": "page.mp3",
       "gain": 4.6,
       "gainPhone": -0.1,
@@ -4055,6 +4087,7 @@
     },
     "phone": {
       "author": "Marreromarco",
+      "capPhone": 1.2,
       "file": "phone.mp3",
       "gain": -0.2,
       "gainPhone": 6.4,
@@ -4107,6 +4140,7 @@
     },
     "plan": {
       "author": "GlyphEnjoyer",
+      "cap": 0.5,
       "file": "plan.mp3",
       "gain": 4.5,
       "gainPhone": -2.2,
@@ -4146,6 +4180,7 @@
     },
     "plate": {
       "author": "Rodrigo5260",
+      "cap": 0.2,
       "file": "plate.mp3",
       "gain": 2.1,
       "gainPhone": -3.9,
@@ -4247,6 +4282,7 @@
     },
     "print": {
       "author": "Marreromarco",
+      "capPhone": 1.7,
       "file": "print.mp3",
       "gain": 1.4,
       "gainPhone": 8.5,
@@ -4312,6 +4348,7 @@
     },
     "pupil-f": {
       "author": "Marreromarco",
+      "capPhone": 0.3,
       "file": "pupil-f.mp3",
       "gain": -4.9,
       "gainPhone": 4.0,
@@ -4661,6 +4698,7 @@
     },
     "sea": {
       "author": "GlyphEnjoyer",
+      "cap": 0.6,
       "file": "sea.mp3",
       "gain": 4.4,
       "gainPhone": -2.1,
@@ -4751,6 +4789,7 @@
     },
     "shift": {
       "author": "Marreromarco",
+      "capPhone": 2.3,
       "file": "shift.mp3",
       "gain": -0.3,
       "gainPhone": 7.6,
@@ -4790,6 +4829,7 @@
     },
     "shoe": {
       "author": "Rodrigo5260",
+      "cap": 2.9,
       "file": "shoe.mp3",
       "gain": 6.7,
       "gainPhone": 1.8,
@@ -5075,6 +5115,7 @@
     },
     "soft": {
       "author": "AdrianAbdulBaha",
+      "cap": 0.4,
       "file": "soft.mp3",
       "gain": 6.4,
       "gainPhone": 0.9,
@@ -5127,6 +5168,7 @@
     },
     "speak": {
       "author": "GlyphEnjoyer",
+      "cap": 0.9,
       "file": "speak.mp3",
       "gain": 5.6,
       "gainPhone": 0.9,
@@ -5371,6 +5413,7 @@
     },
     "take-shower": {
       "author": "Wikipedian-walker",
+      "cap": 1.4,
       "file": "take-shower.mp3",
       "gain": 5.5,
       "gainPhone": -0.7,
@@ -5436,6 +5479,7 @@
     },
     "tea": {
       "author": "Eavqwiki",
+      "capPhone": 1.6,
       "file": "tea.mp3",
       "gain": 7.8,
       "gainPhone": 12.0,
@@ -5694,6 +5738,7 @@
     },
     "to-try": {
       "author": "AdrianAbdulBaha",
+      "cap": 0.4,
       "file": "to-try.mp3",
       "gain": 5.8,
       "gainPhone": -0.2,
@@ -5732,6 +5777,7 @@
     },
     "toilet": {
       "author": "Marreromarco",
+      "capPhone": 0.4,
       "file": "toilet.mp3",
       "gain": -1.0,
       "gainPhone": 7.9,
@@ -5951,6 +5997,7 @@
     },
     "urgent": {
       "author": "Marreromarco",
+      "capPhone": 0.2,
       "file": "urgent.mp3",
       "gain": 3.4,
       "gainPhone": 11.0,
@@ -6003,6 +6050,7 @@
     },
     "village": {
       "author": "GlyphEnjoyer",
+      "cap": 0.1,
       "file": "village.mp3",
       "gain": 7.4,
       "gainPhone": 5.5,
@@ -6195,6 +6243,7 @@
     },
     "which": {
       "author": "Marreromarco",
+      "capPhone": 1.1,
       "file": "which.mp3",
       "gain": 2.1,
       "gainPhone": 7.7,

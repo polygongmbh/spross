@@ -159,6 +159,10 @@ Engine contract: `../README.md`.
   already turned 12 dB down (sw, on the phone plane) than for one playing as recorded, and the
   ramp read as singling that pack out. A word whose index is already under the floor takes no
   ramp at all — the ramp may deepen an attenuation, never undo one.
+  The same call hands back the recording's `cap`: the converter holds a boost to the headroom
+  the file's own peak leaves, and the ramp attenuates ahead of that boost and opens exactly
+  that headroom again, so as much of the deficit as the ramp has taken off comes back and no
+  more. Levels that used to drift APART by pack over a bedtime now converge.
   The remaining milliseconds are the APP's to track and hand in, like every other clock read — the run state holds no deadline, so kern still reads no clock.
 
 ## Trainer & drill runs   (package `net.spross.kern.trainer`)

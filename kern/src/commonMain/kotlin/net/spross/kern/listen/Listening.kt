@@ -135,9 +135,10 @@ fun listeningGainDb(msRemaining: Long, totalMs: Long): Double {
 }
 
 /**
- * The decibels a player ends up holding for a recording measured at [gainDb], with [fadeDb]
- * of [listeningGainDb]'s ramp over it: the index and the ramp added, and the sum held at
- * [LISTENING_FADE_FLOOR_DB].
+ * The decibels a player ends up holding for a recording measured at [gainDb] whose peak
+ * ceiling held [capDb] back, with [fadeDb] of [listeningGainDb]'s ramp over it: the index and
+ * the ramp added, the sum held at [LISTENING_FADE_FLOOR_DB], and as much of the cap handed
+ * back as the ramp has taken off.
  *
  * The floor is on the SUM because that is the number a listener hears. The packs do not
  * share a loudness and the index is what corrects them, so the same ramp lands on a word
@@ -150,15 +151,25 @@ fun listeningGainDb(msRemaining: Long, totalMs: Long): Double {
  *
  * A word whose index already sits under the floor is left where it is: the index is a
  * correction of the shipped bytes and the ramp may decline to deepen it, never undo it.
- * Outside a run [fadeDb] is 0 and this is the clamped index and nothing else — the same
- * number a synthesized utterance takes, whose index is 0 and whose total is the ramp itself.
+ *
+ * The CAP is the other half of the same drift. The converter holds a boost to the headroom
+ * its own file has, so a quiet word with sharp peaks ships under the loudness target rather
+ * than distorting — 5-25% of every pack but sw, which is loud and is never capped. That
+ * ceiling is only true at full volume: the ramp attenuates ahead of the boost and opens the
+ * headroom again, so exactly as much of the deficit as the ramp has taken off may be handed
+ * back, and no more — the output peak is where it always was. Outside a run the ramp is 0,
+ * nothing is handed back, and this is the clamped index and nothing else — the same number a
+ * synthesized utterance takes, whose index and cap are 0 and whose total is the ramp itself.
  */
-fun fadedGainDb(gainDb: Double, fadeDb: Double): Double {
+fun fadedGainDb(gainDb: Double, capDb: Double, fadeDb: Double): Double {
     val index = Playback.gainDb(gainDb)
     // why: how much ramp is left before the sum reaches the floor — never positive, so a word
     // already under it takes none at all rather than being lifted back up to it.
     val room = minOf(0.0, LISTENING_FADE_FLOOR_DB - index)
-    return index + maxOf(fadeDb, room)
+    val fade = maxOf(fadeDb, room)
+    // why: the headroom the ramp actually opened, never the ramp it was asked for — a word
+    // the floor held back never attenuated that far and has no ceiling to spend.
+    return index + fade + minOf(maxOf(0.0, capDb), -fade)
 }
 
 

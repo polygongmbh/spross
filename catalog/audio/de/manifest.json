@@ -2,6 +2,7 @@
   "articles": {
     "address": {
       "author": "Natschoba",
+      "cap": 1.7,
       "file": "articles/address.mp3",
       "gain": 8.0,
       "gainPhone": 3.9,
@@ -249,6 +250,7 @@
     },
     "book": {
       "author": "Natschoba",
+      "cap": 0.7,
       "file": "articles/book.mp3",
       "gain": 11.6,
       "gainPhone": 9.5,
@@ -401,6 +403,8 @@
     },
     "car": {
       "author": "Natschoba",
+      "cap": 3.1,
+      "capPhone": 0.3,
       "file": "articles/car.mp3",
       "gain": 4.8,
       "gainPhone": 4.8,
@@ -624,6 +628,7 @@
     },
     "cup": {
       "author": "Natschoba",
+      "cap": 1.4,
       "file": "articles/cup.mp3",
       "gain": 7.0,
       "gainPhone": 3.7,
@@ -942,6 +947,7 @@
     },
     "foot": {
       "author": "Natschoba",
+      "capPhone": 0.9,
       "file": "articles/foot.mp3",
       "gain": 3.7,
       "gainPhone": 7.7,
@@ -1177,6 +1183,7 @@
     },
     "hotel": {
       "author": "Natschoba",
+      "cap": 0.3,
       "file": "articles/hotel.mp3",
       "gain": 6.7,
       "gainPhone": 5.2,
@@ -1274,6 +1281,7 @@
     },
     "illness": {
       "author": "Natschoba",
+      "cap": 1.6,
       "file": "articles/illness.mp3",
       "gain": 6.9,
       "gainPhone": 2.0,
@@ -1507,6 +1515,7 @@
     },
     "mailbox": {
       "author": "Natschoba",
+      "cap": 0.7,
       "file": "articles/mailbox.mp3",
       "gain": 12.3,
       "gainPhone": 9.9,
@@ -1740,6 +1749,7 @@
     },
     "music": {
       "author": "Natschoba",
+      "capPhone": 0.2,
       "file": "articles/music.mp3",
       "gain": 0.9,
       "gainPhone": 7.3,
@@ -1865,6 +1875,7 @@
     },
     "page": {
       "author": "Natschoba",
+      "cap": 1.5,
       "file": "articles/page.mp3",
       "gain": 6.2,
       "gainPhone": 3.2,
@@ -1948,6 +1959,7 @@
     },
     "passport": {
       "author": "Natschoba",
+      "cap": 2.1,
       "file": "articles/passport.mp3",
       "gain": 6.5,
       "gainPhone": 3.5,
@@ -1974,6 +1986,7 @@
     },
     "pharmacy": {
       "author": "Natschoba",
+      "cap": 4.0,
       "file": "articles/pharmacy.mp3",
       "gain": 7.1,
       "gainPhone": 6.0,
@@ -2056,6 +2069,7 @@
     },
     "plant": {
       "author": "Natschoba",
+      "cap": 0.1,
       "file": "articles/plant.mp3",
       "gain": 10.2,
       "gainPhone": 5.0,
@@ -2470,6 +2484,7 @@
     },
     "soup": {
       "author": "Natschoba",
+      "capPhone": 0.2,
       "file": "articles/soup.mp3",
       "gain": 4.9,
       "gainPhone": 8.3,
@@ -2595,6 +2610,7 @@
     },
     "taxi": {
       "author": "Natschoba",
+      "cap": 0.1,
       "file": "articles/taxi.mp3",
       "gain": 5.8,
       "gainPhone": 5.6,
@@ -3324,6 +3340,7 @@
     },
     "apartment": {
       "author": "Kampy",
+      "capPhone": 0.3,
       "file": "apartment.mp3",
       "gain": -1.6,
       "gainPhone": 2.5,
@@ -3336,6 +3353,8 @@
     },
     "apple": {
       "author": "Kampy",
+      "cap": 1.0,
+      "capPhone": 0.6,
       "file": "apple.mp3",
       "gain": 4.9,
       "gainPhone": 4.9,
@@ -3465,6 +3484,7 @@
     },
     "aunt": {
       "author": "Kampy",
+      "cap": 0.9,
       "file": "aunt.mp3",
       "gain": 6.2,
       "gainPhone": 5.0,
@@ -3490,6 +3510,7 @@
     },
     "back": {
       "author": "Wikimedia Commons user Jakob.scholbach",
+      "cap": 0.3,
       "file": "back.mp3",
       "gain": 12.7,
       "gainPhone": 9.7,
@@ -3697,6 +3718,7 @@
     },
     "bicycle": {
       "author": "Kampy",
+      "cap": 2.1,
       "file": "bicycle.mp3",
       "gain": 3.7,
       "gainPhone": 2.5,
@@ -3722,6 +3744,7 @@
     },
     "bird": {
       "author": "T.Voekler",
+      "capPhone": 2.8,
       "file": "bird.mp3",
       "gain": 4.6,
       "gainPhone": 9.0,
@@ -3735,6 +3758,7 @@
     },
     "birth-certificate": {
       "author": "Jeuwre",
+      "capPhone": 0.7,
       "file": "birth-certificate.mp3",
       "gain": -1.3,
       "gainPhone": 2.1,
@@ -3774,6 +3798,7 @@
     },
     "blood": {
       "author": "Kampy",
+      "capPhone": 1.9,
       "file": "blood.mp3",
       "gain": 6.6,
       "gainPhone": 9.9,
@@ -3813,6 +3838,7 @@
     },
     "bone": {
       "author": "Kampy",
+      "capPhone": 1.3,
       "file": "bone.mp3",
       "gain": 7.2,
       "gainPhone": 7.4,
@@ -3826,6 +3852,7 @@
     },
     "book": {
       "author": "Jeuwre",
+      "capPhone": 4.8,
       "file": "book.mp3",
       "gain": -4.0,
       "gainPhone": 2.0,
@@ -3889,6 +3916,7 @@
     },
     "bread": {
       "author": "Kampy",
+      "capPhone": 3.7,
       "file": "bread.mp3",
       "gain": 2.7,
       "gainPhone": 5.9,
@@ -3941,6 +3969,7 @@
     },
     "bridge": {
       "author": "Jeuwre",
+      "capPhone": 2.2,
       "file": "bridge.mp3",
       "gain": 1.0,
       "gainPhone": 1.9,
@@ -4057,6 +4086,7 @@
     },
     "butter": {
       "author": "Jeuwre",
+      "capPhone": 3.0,
       "file": "butter.mp3",
       "gain": -0.4,
       "gainPhone": 1.9,
@@ -4148,6 +4178,7 @@
     },
     "cancel": {
       "author": "Jeuwre",
+      "cap": 1.1,
       "file": "cancel.mp3",
       "gain": 2.3,
       "gainPhone": 0.4,
@@ -4329,6 +4360,7 @@
     },
     "child": {
       "author": "joni",
+      "cap": 0.3,
       "file": "child.mp3",
       "gain": 8.9,
       "gainPhone": 5.1,
@@ -4443,6 +4475,8 @@
     },
     "cloud": {
       "author": "Kampy",
+      "cap": 0.1,
+      "capPhone": 1.6,
       "file": "cloud.mp3",
       "gain": 5.1,
       "gainPhone": 5.1,
@@ -4545,6 +4579,8 @@
     },
     "come": {
       "author": "User:Tosca",
+      "cap": 0.3,
+      "capPhone": 1.0,
       "file": "come.mp3",
       "gain": 12.5,
       "gainPhone": 12.5,
@@ -4623,6 +4659,7 @@
     },
     "copy": {
       "author": "Wikimedia Commons user Jakob.scholbach",
+      "capPhone": 0.7,
       "file": "copy.mp3",
       "gain": 3.4,
       "gainPhone": 7.8,
@@ -4738,6 +4775,7 @@
     },
     "customer": {
       "author": "Kampy",
+      "capPhone": 1.9,
       "file": "customer.mp3",
       "gain": -4.1,
       "gainPhone": 1.6,
@@ -4802,6 +4840,7 @@
     },
     "day": {
       "author": "Kampy",
+      "cap": 2.6,
       "file": "day.mp3",
       "gain": 7.6,
       "gainPhone": 6.8,
@@ -5021,6 +5060,7 @@
     },
     "dog": {
       "author": "Kampy",
+      "capPhone": 2.7,
       "file": "dog.mp3",
       "gain": 1.7,
       "gainPhone": 4.1,
@@ -5112,6 +5152,7 @@
     },
     "ear": {
       "author": "Kampy",
+      "capPhone": 0.5,
       "file": "ear.mp3",
       "gain": 4.2,
       "gainPhone": 8.4,
@@ -5176,6 +5217,7 @@
     },
     "egg": {
       "author": "User:Tosca",
+      "cap": 1.7,
       "file": "egg.mp3",
       "gain": 10.6,
       "gainPhone": 6.3,
@@ -5267,6 +5309,7 @@
     },
     "exam": {
       "author": "Jeuwre",
+      "capPhone": 2.0,
       "file": "exam.mp3",
       "gain": -1.3,
       "gainPhone": 2.0,
@@ -5512,6 +5555,7 @@
     },
     "flower": {
       "author": "T.Voekler",
+      "capPhone": 1.3,
       "file": "flower.mp3",
       "gain": 3.8,
       "gainPhone": 8.7,
@@ -5614,6 +5658,7 @@
     },
     "friend": {
       "author": "Jeuwre",
+      "capPhone": 1.7,
       "file": "friend.mp3",
       "gain": -2.0,
       "gainPhone": 1.8,
@@ -5795,6 +5840,7 @@
     },
     "grade": {
       "author": "Jeuwre",
+      "capPhone": 3.6,
       "file": "grade.mp3",
       "gain": -2.9,
       "gainPhone": 1.8,
@@ -5808,6 +5854,7 @@
     },
     "grandfather": {
       "author": "Dinock90",
+      "capPhone": 0.3,
       "file": "grandfather.mp3",
       "gain": 17.1,
       "gainPhone": 19.7,
@@ -5821,6 +5868,7 @@
     },
     "grandmother": {
       "author": "Dinock90",
+      "capPhone": 4.0,
       "file": "grandmother.mp3",
       "gain": 8.4,
       "gainPhone": 13.4,
@@ -5899,6 +5947,7 @@
     },
     "hairdryer": {
       "author": "Jeuwre",
+      "capPhone": 2.4,
       "file": "hairdryer.mp3",
       "gain": -2.9,
       "gainPhone": 1.9,
@@ -5925,6 +5974,8 @@
     },
     "hand": {
       "author": "Kampy",
+      "cap": 4.2,
+      "capPhone": 1.7,
       "file": "hand.mp3",
       "gain": 3.5,
       "gainPhone": 3.5,
@@ -5963,6 +6014,7 @@
     },
     "have": {
       "author": "Jeuwre",
+      "capPhone": 0.6,
       "file": "have.mp3",
       "gain": -0.2,
       "gainPhone": 2.1,
@@ -6028,6 +6080,7 @@
     },
     "healthy": {
       "author": "Jeuwre",
+      "capPhone": 0.6,
       "file": "healthy.mp3",
       "gain": 0.8,
       "gainPhone": 6.2,
@@ -6155,6 +6208,7 @@
     },
     "hospital": {
       "author": "Kampy",
+      "cap": 3.6,
       "file": "hospital.mp3",
       "gain": 9.6,
       "gainPhone": 8.2,
@@ -6375,6 +6429,7 @@
     },
     "jacket": {
       "author": "Kampy",
+      "cap": 2.8,
       "file": "jacket.mp3",
       "gain": 6.0,
       "gainPhone": 4.6,
@@ -6544,6 +6599,8 @@
     },
     "laptop": {
       "author": "User:Tosca",
+      "cap": 0.7,
+      "capPhone": 1.2,
       "file": "laptop.mp3",
       "gain": 8.5,
       "gainPhone": 8.5,
@@ -6569,6 +6626,7 @@
     },
     "laugh": {
       "author": "Jeuwre",
+      "cap": 1.5,
       "file": "laugh.mp3",
       "gain": 1.9,
       "gainPhone": 0.5,
@@ -6928,6 +6986,7 @@
     },
     "meaning": {
       "author": "Jeuwre",
+      "capPhone": 1.0,
       "file": "meaning.mp3",
       "gain": -2.1,
       "gainPhone": 1.9,
@@ -7030,6 +7089,7 @@
     },
     "moon": {
       "author": "Jeuwre",
+      "capPhone": 1.9,
       "file": "moon.mp3",
       "gain": -1.9,
       "gainPhone": 4.4,
@@ -7146,6 +7206,7 @@
     },
     "mouth": {
       "author": "Jeuwre",
+      "capPhone": 0.1,
       "file": "mouth.mp3",
       "gain": -4.5,
       "gainPhone": 1.9,
@@ -7261,6 +7322,7 @@
     },
     "never": {
       "author": "Jeuwre",
+      "capPhone": 5.6,
       "file": "never.mp3",
       "gain": -2.6,
       "gainPhone": 2.1,
@@ -7365,6 +7427,7 @@
     },
     "notice": {
       "author": "Jeuwre",
+      "capPhone": 1.2,
       "file": "notice.mp3",
       "gain": -2.7,
       "gainPhone": 2.3,
@@ -7560,6 +7623,7 @@
     },
     "oven": {
       "author": "Jeuwre",
+      "cap": 0.1,
       "file": "oven.mp3",
       "gain": 1.1,
       "gainPhone": -0.5,
@@ -7625,6 +7689,7 @@
     },
     "pants": {
       "author": "Jeuwre",
+      "capPhone": 0.7,
       "file": "pants.mp3",
       "gain": -2.3,
       "gainPhone": 1.8,
@@ -7765,6 +7830,7 @@
     },
     "pharmacy": {
       "author": "Jeuwre",
+      "capPhone": 1.4,
       "file": "pharmacy.mp3",
       "gain": 1.5,
       "gainPhone": 1.9,
@@ -7998,6 +8064,7 @@
     },
     "print": {
       "author": "Wikimedia Commons user Jakob.scholbach",
+      "capPhone": 2.6,
       "file": "print.mp3",
       "gain": 9.0,
       "gainPhone": 9.9,
@@ -8024,6 +8091,7 @@
     },
     "profession": {
       "author": "Jeuwre",
+      "capPhone": 0.4,
       "file": "profession.mp3",
       "gain": -4.0,
       "gainPhone": 2.0,
@@ -8114,6 +8182,7 @@
     },
     "quit": {
       "author": "Wikimedia Commons user Jakob.scholbach",
+      "capPhone": 0.7,
       "file": "quit.mp3",
       "gain": 4.9,
       "gainPhone": 10.8,
@@ -8203,6 +8272,7 @@
     },
     "red": {
       "author": "Bleibein",
+      "capPhone": 2.8,
       "file": "red.mp3",
       "gain": -1.1,
       "gainPhone": 4.3,
@@ -8254,6 +8324,7 @@
     },
     "remote": {
       "author": "Jeuwre",
+      "capPhone": 0.9,
       "file": "remote.mp3",
       "gain": -1.9,
       "gainPhone": 2.2,
@@ -8549,6 +8620,8 @@
     },
     "shirt": {
       "author": "Kampy",
+      "cap": 0.6,
+      "capPhone": 3.1,
       "file": "shirt.mp3",
       "gain": 2.0,
       "gainPhone": 2.0,
@@ -8740,6 +8813,7 @@
     },
     "sleep": {
       "author": "Kampy",
+      "cap": 0.5,
       "file": "sleep.mp3",
       "gain": 8.9,
       "gainPhone": 6.4,
@@ -8895,6 +8969,7 @@
     },
     "sometimes": {
       "author": "Jeuwre",
+      "capPhone": 0.9,
       "file": "sometimes.mp3",
       "gain": -0.1,
       "gainPhone": 2.1,
@@ -9037,6 +9112,7 @@
     },
     "stir": {
       "author": "Jeuwre",
+      "capPhone": 0.6,
       "file": "stir.mp3",
       "gain": -4.7,
       "gainPhone": 2.2,
@@ -9126,6 +9202,7 @@
     },
     "submit": {
       "author": "Kampy",
+      "cap": 2.4,
       "file": "submit.mp3",
       "gain": -0.9,
       "gainPhone": -3.1,
@@ -9164,6 +9241,7 @@
     },
     "sweater": {
       "author": "Kampy",
+      "capPhone": 2.0,
       "file": "sweater.mp3",
       "gain": 5.0,
       "gainPhone": 8.4,
@@ -9254,6 +9332,7 @@
     },
     "taxi": {
       "author": "Jeuwre",
+      "cap": 0.6,
       "file": "taxi.mp3",
       "gain": 2.1,
       "gainPhone": -2.6,
@@ -9383,6 +9462,7 @@
     },
     "tidy-up": {
       "author": "Jeuwre",
+      "capPhone": 0.3,
       "file": "tidy-up.mp3",
       "gain": -2.1,
       "gainPhone": 2.1,
@@ -9422,6 +9502,7 @@
     },
     "tired": {
       "author": "Kampy",
+      "capPhone": 2.2,
       "file": "tired.mp3",
       "gain": 4.3,
       "gainPhone": 10.4,
@@ -9525,6 +9606,7 @@
     },
     "to-work": {
       "author": "Kampy",
+      "cap": 1.9,
       "file": "to-work.mp3",
       "gain": 5.8,
       "gainPhone": 3.8,
@@ -9771,6 +9853,7 @@
     },
     "tree": {
       "author": "Jeuwre",
+      "capPhone": 0.8,
       "file": "tree.mp3",
       "gain": -1.8,
       "gainPhone": 1.9,
@@ -9797,6 +9880,7 @@
     },
     "tv": {
       "author": "Kampy",
+      "cap": 1.6,
       "file": "tv.mp3",
       "gain": 4.4,
       "gainPhone": 1.7,
@@ -9849,6 +9933,7 @@
     },
     "uncle": {
       "author": "Kampy",
+      "capPhone": 0.5,
       "file": "uncle.mp3",
       "gain": 9.1,
       "gainPhone": 10.1,
@@ -9900,6 +9985,7 @@
     },
     "unlock": {
       "author": "Kampy",
+      "cap": 3.7,
       "file": "unlock.mp3",
       "gain": -1.0,
       "gainPhone": -1.0,
@@ -9950,6 +10036,7 @@
     },
     "vaccination": {
       "author": "Jeuwre",
+      "capPhone": 0.8,
       "file": "vaccination.mp3",
       "gain": -2.2,
       "gainPhone": 2.3,
@@ -10130,6 +10217,7 @@
     },
     "way": {
       "author": "Jeuwre",
+      "capPhone": 0.3,
       "file": "way.mp3",
       "gain": 0.4,
       "gainPhone": 2.2,
@@ -10169,6 +10257,8 @@
     },
     "week": {
       "author": "Kampy",
+      "cap": 0.7,
+      "capPhone": 1.4,
       "file": "week.mp3",
       "gain": 5.9,
       "gainPhone": 5.9,
@@ -10221,6 +10311,7 @@
     },
     "where": {
       "author": "Dinock90",
+      "capPhone": 2.4,
       "file": "where.mp3",
       "gain": 12.4,
       "gainPhone": 17.6,
@@ -10273,6 +10364,7 @@
     },
     "why": {
       "author": "Jeuwre",
+      "capPhone": 0.3,
       "file": "why.mp3",
       "gain": -2.7,
       "gainPhone": 2.0,
@@ -10338,6 +10430,7 @@
     },
     "woman": {
       "author": "joni",
+      "capPhone": 0.7,
       "file": "woman.mp3",
       "gain": 4.6,
       "gainPhone": 5.4,
@@ -10415,6 +10508,7 @@
     },
     "wound": {
       "author": "Jeuwre",
+      "capPhone": 0.4,
       "file": "wound.mp3",
       "gain": -4.2,
       "gainPhone": 1.9,
@@ -10467,6 +10561,7 @@
     },
     "yellow": {
       "author": "Kampy",
+      "cap": 0.4,
       "file": "yellow.mp3",
       "gain": 7.2,
       "gainPhone": 3.5,

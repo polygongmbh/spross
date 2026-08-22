@@ -77,6 +77,8 @@ extension AppModel {
                              recordingPath: recording?.path,
                              gain: recording?.gain ?? 0,
                              gainPhone: recording?.gainPhone,
+                             cap: recording?.cap ?? 0,
+                             capPhone: recording?.capPhone,
                              leadMs: recording?.leadMs ?? 0)
     }
 
@@ -102,6 +104,8 @@ extension AppModel {
                       recordingPath: nil,
                       gain: 0,
                       gainPhone: nil,
+                      cap: 0,
+                      capPhone: nil,
                       leadMs: 0)
     }
 

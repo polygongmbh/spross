@@ -102,6 +102,16 @@ interface AudioIndex {
      */
     val gainPhone: Double?
 
+    /**
+     * What the converter's peak ceiling held back from [gain], and [gainPhone]'s own — 0
+     * where the loudness number stood as measured, and [capPhone] null exactly where
+     * [gainPhone] is. A player under a fade may hand back as much of the plane's own cap as
+     * the fade has already taken off (`fadedGainDb`); at full volume it is headroom that
+     * does not exist and nothing reads it.
+     */
+    val cap: Double
+    val capPhone: Double?
+
     /** Dead air at the head of the file, in ms — start here and the recording speaks at once. */
     val leadMs: Long
 }
@@ -120,6 +130,8 @@ data class Pronunciation( // data class: Swift sees value equality
     val recordingPath: String?,
     override val gain: Double = 0.0,
     override val gainPhone: Double? = null,
+    override val cap: Double = 0.0,
+    override val capPhone: Double? = null,
     override val leadMs: Long = 0,
 ) : AudioIndex
 
@@ -133,6 +145,8 @@ data class LetterRecording(
     val path: String,
     override val gain: Double,
     override val gainPhone: Double? = null,
+    override val cap: Double = 0.0,
+    override val capPhone: Double? = null,
     override val leadMs: Long,
 ) : AudioIndex
 

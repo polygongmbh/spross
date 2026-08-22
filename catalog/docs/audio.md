@@ -39,9 +39,9 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   does not declare is never read — adding one is dropping a directory in, nothing else.
 - `words` is keyed by concept slug, `letters` (optional, uk only today) by lowercase
   glyph. Every field is required except `licenseUrl`, which is absent exactly for
-  public-domain files, having no deed to link, `gain`/`lead`, absent where they
-  would be zero, and `gainPhone` — present on every word and article entry (0.0 when no
-  correction) but absent on letters and texts.
+  public-domain files, having no deed to link, `gain`/`cap`/`capPhone`/`lead`, absent
+  where they would be zero, and `gainPhone` — present on every word and article entry
+  (0.0 when no correction) but absent on letters and texts.
 - `articles` (optional, de and it today) is keyed by slug like `words` and holds
   recordings that speak an ARTICLE and then the word — `die Adresse`, files under
   `articles/<slug>.mp3`. `matches` is the whole spoken form, `word` the bare form inside
@@ -83,6 +83,13 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   dead air to start past. The files stay unmodified and only the player corrects them,
   picking the plane by its output route. What was measured, against which target,
   is `../../scripts/audio-catalog.py`'s `ANALYSIS`.
+- `cap` (dB) and `capPhone` are what the peak ceiling held back from each plane's gain:
+  a boost is capped at the headroom the file's own peak leaves, so a quiet word with sharp
+  peaks ships under the loudness target rather than clipping. That ceiling is only true at
+  full volume — a listening run's bedtime ramp attenuates ahead of the boost and opens the
+  headroom again — so a player under a fade hands back as much of the deficit as the ramp
+  has taken off, and no more (`fadedGainDb`). It binds 5-25% of every pack but sw, which
+  is the loud one and is capped almost nowhere.
 - `snr` (dB) is a third measurement of the same bytes — peak minus noise floor, how far
   the word stands above the hiss under it — but nothing plays it. It is carried so lint
   can see the SHAPE of a pack and refuse a rebuild that quietly reintroduces noise an

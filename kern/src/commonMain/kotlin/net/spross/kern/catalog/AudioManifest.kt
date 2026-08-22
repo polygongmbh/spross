@@ -37,6 +37,15 @@ internal data class AudioRecording(
      */
     val gain: Double,
     val gainPhone: Double?,
+    /**
+     * What the converter's peak ceiling held back from [gain] — 0 where the loudness number
+     * stood as measured. The cap is only true at FULL VOLUME, so a player that has already
+     * attenuated may hand as much of this back as it has taken off (`fadedGainDb`); nothing
+     * outside a fade ever reads it. [capPhone] is [gainPhone]'s own, and null in the same
+     * places [gainPhone] is.
+     */
+    val cap: Double,
+    val capPhone: Double?,
     val leadMs: Long,
     /**
      * Peak minus noise floor in dB — how far the word stands above the hiss under it.
@@ -166,7 +175,7 @@ internal class AudioManifest(
 internal object AudioManifestParser {
     private val WORD_KEYS =
         setOf("file", "matches", "license", "licenseUrl", "author", "source", "sha256",
-              "gain", "gainPhone", "lead", "snr")
+              "gain", "cap", "gainPhone", "capPhone", "lead", "snr")
     private val LETTER_KEYS = WORD_KEYS - "matches"
     private val ARTICLE_KEYS = WORD_KEYS + "word"
 
@@ -216,6 +225,8 @@ internal object AudioManifestParser {
                 sha256 = entry.requireNonBlank(path, context, "sha256"),
                 gain = entry.gain(path, context, "gain"),
                 gainPhone = entry.optionalGain(path, context, "gainPhone"),
+                cap = entry.optionalCap(path, context, "cap") ?: 0.0,
+                capPhone = entry.optionalCap(path, context, "capPhone"),
                 leadMs = entry.leadMs(path, context),
                 snr = entry.optionalDouble(path, context, "snr") ?: 0.0,
             )
@@ -243,6 +254,20 @@ internal object AudioManifestParser {
             parseError(path, "$context: $key $gain dB is outside ±$limit")
         }
         return gain
+    }
+
+    /**
+     * Absent means the ceiling held nothing back. A deficit is the distance between two
+     * gains and never a gain itself, so it is bounded by the pair rather than by
+     * [Playback.GAIN_LIMIT_DB] alone — and it can only ever be positive: a cap that lifted
+     * a recording would be the ceiling handing out headroom no file has.
+     */
+    private fun JsonObject.optionalCap(path: String, context: String, key: String): Double? {
+        val cap = optionalDouble(path, context, key) ?: return null
+        if (cap < 0.0 || cap > 2 * Playback.GAIN_LIMIT_DB) {
+            parseError(path, "$context: $key $cap dB is outside 0..${2 * Playback.GAIN_LIMIT_DB}")
+        }
+        return cap
     }
 
     /** Absent means the recording starts speaking at once. */

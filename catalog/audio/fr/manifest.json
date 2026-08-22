@@ -121,6 +121,7 @@
     },
     "airport": {
       "author": "Vion Nicolas",
+      "capPhone": 0.5,
       "file": "airport.mp3",
       "gain": -3.4,
       "gainPhone": 3.7,
@@ -363,6 +364,7 @@
     },
     "aunt": {
       "author": "Vion Nicolas",
+      "capPhone": 0.3,
       "file": "aunt.mp3",
       "gain": -2.3,
       "gainPhone": 3.7,
@@ -389,6 +391,7 @@
     },
     "back": {
       "author": "Vion Nicolas",
+      "capPhone": 2.2,
       "file": "back.mp3",
       "gain": -2.6,
       "gainPhone": 3.7,
@@ -402,6 +405,7 @@
     },
     "bad": {
       "author": "Vion Nicolas",
+      "capPhone": 3.7,
       "file": "bad.mp3",
       "gain": 1.0,
       "gainPhone": 4.5,
@@ -452,6 +456,7 @@
     },
     "bank": {
       "author": "Vion Nicolas",
+      "capPhone": 2.7,
       "file": "bank.mp3",
       "gain": 0.1,
       "gainPhone": 3.9,
@@ -786,6 +791,7 @@
     },
     "bridge": {
       "author": "Vion Nicolas",
+      "capPhone": 2.0,
       "file": "bridge.mp3",
       "gain": -0.5,
       "gainPhone": 3.8,
@@ -890,6 +896,7 @@
     },
     "butter": {
       "author": "Vion Nicolas",
+      "capPhone": 1.9,
       "file": "butter.mp3",
       "gain": -1.1,
       "gainPhone": 3.8,
@@ -1019,6 +1026,7 @@
     },
     "case-worker-f": {
       "author": "WikiLucas00",
+      "capPhone": 1.8,
       "file": "case-worker-f.mp3",
       "gain": 2.4,
       "gainPhone": 6.4,
@@ -1134,6 +1142,7 @@
     },
     "chicken": {
       "author": "Vion Nicolas",
+      "cap": 15.6,
       "file": "chicken.mp3",
       "gain": 4.4,
       "gainPhone": -1.7,
@@ -1146,6 +1155,7 @@
     },
     "child": {
       "author": "Vion Nicolas",
+      "capPhone": 0.7,
       "file": "child.mp3",
       "gain": 0.4,
       "gainPhone": 3.5,
@@ -1315,6 +1325,7 @@
     },
     "come": {
       "author": "Vion Nicolas",
+      "capPhone": 1.2,
       "file": "come.mp3",
       "gain": -3.2,
       "gainPhone": 3.9,
@@ -1328,6 +1339,7 @@
     },
     "company": {
       "author": "Sartus85",
+      "capPhone": 1.5,
       "file": "company.mp3",
       "gain": 9.4,
       "gainPhone": 9.8,
@@ -1367,6 +1379,7 @@
     },
     "contract": {
       "author": "Vion Nicolas",
+      "capPhone": 0.4,
       "file": "contract.mp3",
       "gain": 1.0,
       "gainPhone": 3.1,
@@ -1392,6 +1405,7 @@
     },
     "copy": {
       "author": "Vion Nicolas",
+      "capPhone": 1.5,
       "file": "copy.mp3",
       "gain": 1.0,
       "gainPhone": 3.8,
@@ -1599,6 +1613,7 @@
     },
     "dentist": {
       "author": "Vion Nicolas",
+      "capPhone": 0.2,
       "file": "dentist.mp3",
       "gain": -1.9,
       "gainPhone": 3.8,
@@ -1728,6 +1743,7 @@
     },
     "doctor-f": {
       "author": "Jérémy-Günther-Heinz Jähnick",
+      "capPhone": 0.5,
       "file": "doctor-f.mp3",
       "gain": 5.1,
       "gainPhone": 10.6,
@@ -1857,6 +1873,7 @@
     },
     "early": {
       "author": "Vion Nicolas",
+      "capPhone": 2.5,
       "file": "early.mp3",
       "gain": -2.7,
       "gainPhone": 4.3,
@@ -2025,6 +2042,7 @@
     },
     "extend": {
       "author": "Vion Nicolas",
+      "capPhone": 1.5,
       "file": "extend.mp3",
       "gain": -2.5,
       "gainPhone": 3.9,
@@ -2115,6 +2133,7 @@
     },
     "faucet": {
       "author": "Vion Nicolas",
+      "capPhone": 1.6,
       "file": "faucet.mp3",
       "gain": -1.2,
       "gainPhone": 3.8,
@@ -2154,6 +2173,7 @@
     },
     "fill-in": {
       "author": "Vion Nicolas",
+      "capPhone": 2.0,
       "file": "fill-in.mp3",
       "gain": 2.7,
       "gainPhone": 4.7,
@@ -2244,6 +2264,7 @@
     },
     "food": {
       "author": "Vion Nicolas",
+      "capPhone": 2.0,
       "file": "food.mp3",
       "gain": -1.9,
       "gainPhone": 4.0,
@@ -2424,6 +2445,7 @@
     },
     "give": {
       "author": "Vion Nicolas",
+      "capPhone": 1.8,
       "file": "give.mp3",
       "gain": -1.7,
       "gainPhone": 3.8,
@@ -2463,6 +2485,7 @@
     },
     "good": {
       "author": "Vion Nicolas",
+      "capPhone": 4.2,
       "file": "good.mp3",
       "gain": -1.0,
       "gainPhone": 4.0,
@@ -2476,6 +2499,7 @@
     },
     "grade": {
       "author": "Vion Nicolas",
+      "capPhone": 0.6,
       "file": "grade.mp3",
       "gain": -4.1,
       "gainPhone": 4.3,
@@ -2552,6 +2576,7 @@
     },
     "guest": {
       "author": "Sartus85",
+      "cap": 0.5,
       "file": "guest.mp3",
       "gain": 7.0,
       "gainPhone": 6.2,
@@ -2629,6 +2654,7 @@
     },
     "hat": {
       "author": "Vion Nicolas",
+      "capPhone": 2.9,
       "file": "hat.mp3",
       "gainPhone": 3.9,
       "lead": 231,
@@ -2705,6 +2731,7 @@
     },
     "hear": {
       "author": "Vion Nicolas",
+      "capPhone": 1.0,
       "file": "hear.mp3",
       "gain": -1.7,
       "gainPhone": 2.5,
@@ -2731,6 +2758,7 @@
     },
     "heavy": {
       "author": "Vion Nicolas",
+      "capPhone": 2.7,
       "file": "heavy.mp3",
       "gain": -2.6,
       "gainPhone": 3.9,
@@ -2795,6 +2823,7 @@
     },
     "hospital": {
       "author": "Vion Nicolas",
+      "capPhone": 0.6,
       "file": "hospital.mp3",
       "gain": 1.0,
       "gainPhone": 3.6,
@@ -2834,6 +2863,7 @@
     },
     "house": {
       "author": "Helenou66",
+      "capPhone": 0.6,
       "file": "house.mp3",
       "gain": -1.5,
       "gainPhone": 5.2,
@@ -2847,6 +2877,7 @@
     },
     "how": {
       "author": "Vion Nicolas",
+      "capPhone": 1.7,
       "file": "how.mp3",
       "gain": -2.1,
       "gainPhone": 3.8,
@@ -2860,6 +2891,7 @@
     },
     "how-many": {
       "author": "Vion Nicolas",
+      "capPhone": 2.2,
       "file": "how-many.mp3",
       "gain": -1.3,
       "gainPhone": 3.8,
@@ -2924,6 +2956,7 @@
     },
     "important": {
       "author": "Vion Nicolas",
+      "capPhone": 4.2,
       "file": "important.mp3",
       "gain": 1.2,
       "gainPhone": 2.3,
@@ -3015,6 +3048,7 @@
     },
     "key": {
       "author": "Vion Nicolas",
+      "capPhone": 0.5,
       "file": "key.mp3",
       "gain": 0.9,
       "gainPhone": 3.2,
@@ -3092,6 +3126,7 @@
     },
     "lamp": {
       "author": "Vion Nicolas",
+      "capPhone": 1.6,
       "file": "lamp.mp3",
       "gain": 2.1,
       "gainPhone": 4.0,
@@ -3105,6 +3140,7 @@
     },
     "language": {
       "author": "Vion Nicolas",
+      "capPhone": 0.2,
       "file": "language.mp3",
       "gain": -1.3,
       "gainPhone": 4.0,
@@ -3326,6 +3362,7 @@
     },
     "long": {
       "author": "Vion Nicolas",
+      "capPhone": 1.7,
       "file": "long.mp3",
       "gain": -1.7,
       "gainPhone": 4.0,
@@ -3596,6 +3633,7 @@
     },
     "motorbike": {
       "author": "Vion Nicolas",
+      "capPhone": 1.5,
       "file": "motorbike.mp3",
       "gain": -3.2,
       "gainPhone": 3.6,
@@ -3661,6 +3699,7 @@
     },
     "much": {
       "author": "Vion Nicolas",
+      "capPhone": 4.7,
       "file": "much.mp3",
       "gain": 0.5,
       "gainPhone": 3.9,
@@ -3687,6 +3726,7 @@
     },
     "name": {
       "author": "Vion Nicolas",
+      "capPhone": 0.1,
       "file": "name.mp3",
       "gain": -3.2,
       "gainPhone": 4.8,
@@ -3700,6 +3740,7 @@
     },
     "neck": {
       "author": "Vion Nicolas",
+      "capPhone": 3.0,
       "file": "neck.mp3",
       "gain": -2.6,
       "gainPhone": 3.7,
@@ -3752,6 +3793,7 @@
     },
     "new": {
       "author": "Vion Nicolas",
+      "capPhone": 4.5,
       "file": "new.mp3",
       "gain": -2.6,
       "gainPhone": 3.0,
@@ -3791,6 +3833,7 @@
     },
     "no": {
       "author": "Vion Nicolas",
+      "capPhone": 0.9,
       "file": "no.mp3",
       "gain": -3.7,
       "gainPhone": 4.1,
@@ -3804,6 +3847,7 @@
     },
     "noon": {
       "author": "Vion Nicolas",
+      "capPhone": 1.7,
       "file": "noon.mp3",
       "gain": -2.1,
       "gainPhone": 3.7,
@@ -3972,6 +4016,7 @@
     },
     "or": {
       "author": "Vion Nicolas",
+      "capPhone": 2.5,
       "file": "or.mp3",
       "gain": -5.2,
       "gainPhone": 3.1,
@@ -4268,6 +4313,7 @@
     },
     "plant": {
       "author": "Vion Nicolas",
+      "capPhone": 3.3,
       "file": "plant.mp3",
       "gain": -2.4,
       "gainPhone": 4.0,
@@ -4293,6 +4339,7 @@
     },
     "play": {
       "author": "Vion Nicolas",
+      "capPhone": 3.5,
       "file": "play.mp3",
       "gain": -0.5,
       "gainPhone": 2.3,
@@ -4332,6 +4379,7 @@
     },
     "postpone": {
       "author": "Vion Nicolas",
+      "capPhone": 2.3,
       "file": "postpone.mp3",
       "gain": 1.8,
       "gainPhone": 3.9,
@@ -4423,6 +4471,7 @@
     },
     "punctual": {
       "author": "Vion Nicolas",
+      "capPhone": 3.4,
       "file": "punctual.mp3",
       "gain": 0.7,
       "gainPhone": 3.9,
@@ -4475,6 +4524,7 @@
     },
     "quiet": {
       "author": "Vion Nicolas",
+      "capPhone": 0.1,
       "file": "quiet.mp3",
       "gain": -0.8,
       "gainPhone": 4.0,
@@ -4527,6 +4577,7 @@
     },
     "read": {
       "author": "Vion Nicolas",
+      "capPhone": 0.5,
       "file": "read.mp3",
       "gain": -2.1,
       "gainPhone": 4.0,
@@ -4579,6 +4630,7 @@
     },
     "red": {
       "author": "Vion Nicolas",
+      "capPhone": 1.0,
       "file": "red.mp3",
       "gain": -1.9,
       "gainPhone": 4.0,
@@ -4950,6 +5002,7 @@
     },
     "short": {
       "author": "Vion Nicolas",
+      "capPhone": 2.0,
       "file": "short.mp3",
       "gain": -4.0,
       "gainPhone": 3.9,
@@ -5067,6 +5120,7 @@
     },
     "skin": {
       "author": "Vion Nicolas",
+      "capPhone": 0.8,
       "file": "skin.mp3",
       "gain": -1.5,
       "gainPhone": 3.9,
@@ -5105,6 +5159,7 @@
     },
     "slow": {
       "author": "Vion Nicolas",
+      "capPhone": 0.9,
       "file": "slow.mp3",
       "gain": -2.0,
       "gainPhone": 3.8,
@@ -5131,6 +5186,7 @@
     },
     "snore": {
       "author": "Vion Nicolas",
+      "capPhone": 3.4,
       "file": "snore.mp3",
       "gain": 1.6,
       "gainPhone": 2.8,
@@ -5208,6 +5264,7 @@
     },
     "soft": {
       "author": "Vion Nicolas",
+      "capPhone": 0.6,
       "file": "soft.mp3",
       "gain": -3.6,
       "gainPhone": 4.1,
@@ -5286,6 +5343,7 @@
     },
     "sponge": {
       "author": "Vion Nicolas",
+      "capPhone": 0.1,
       "file": "sponge.mp3",
       "gain": -3.6,
       "gainPhone": 4.0,
@@ -5376,6 +5434,7 @@
     },
     "stomach": {
       "author": "Vion Nicolas",
+      "capPhone": 2.1,
       "file": "stomach.mp3",
       "gain": -1.6,
       "gainPhone": 3.8,
@@ -5544,6 +5603,7 @@
     },
     "taste": {
       "author": "Vion Nicolas",
+      "capPhone": 2.9,
       "file": "taste.mp3",
       "gain": 0.6,
       "gainPhone": 4.0,
@@ -5557,6 +5617,7 @@
     },
     "tax": {
       "author": "Vion Nicolas",
+      "capPhone": 1.2,
       "file": "tax.mp3",
       "gain": -0.7,
       "gainPhone": 2.4,
@@ -5777,6 +5838,7 @@
     },
     "to-count": {
       "author": "Vion Nicolas",
+      "capPhone": 3.0,
       "file": "to-count.mp3",
       "gain": -0.4,
       "gainPhone": 3.9,
@@ -5933,6 +5995,7 @@
     },
     "tooth": {
       "author": "Vion Nicolas",
+      "capPhone": 0.2,
       "file": "tooth.mp3",
       "gain": -2.1,
       "gainPhone": 3.9,
@@ -5972,6 +6035,7 @@
     },
     "traffic-light": {
       "author": "Vion Nicolas",
+      "capPhone": 0.5,
       "file": "traffic-light.mp3",
       "gain": -0.1,
       "gainPhone": 3.8,
@@ -5985,6 +6049,7 @@
     },
     "train": {
       "author": "Vion Nicolas",
+      "capPhone": 0.7,
       "file": "train.mp3",
       "gain": -0.9,
       "gainPhone": 3.9,
@@ -6128,6 +6193,7 @@
     },
     "understand": {
       "author": "Vion Nicolas",
+      "capPhone": 3.6,
       "file": "understand.mp3",
       "gain": 0.2,
       "gainPhone": 3.8,
@@ -6322,6 +6388,7 @@
     },
     "water": {
       "author": "Vion Nicolas",
+      "capPhone": 0.7,
       "file": "water.mp3",
       "gain": -1.1,
       "gainPhone": 4.4,
@@ -6412,6 +6479,7 @@
     },
     "where": {
       "author": "Vion Nicolas",
+      "capPhone": 4.1,
       "file": "where.mp3",
       "gain": -1.1,
       "gainPhone": 3.8,
@@ -6463,6 +6531,7 @@
     },
     "why": {
       "author": "Poslovitch",
+      "capPhone": 4.3,
       "file": "why.mp3",
       "gain": 3.2,
       "gainPhone": 6.1,
@@ -6578,6 +6647,7 @@
     },
     "wound": {
       "author": "Vion Nicolas",
+      "cap": 0.3,
       "file": "wound.mp3",
       "gain": 4.3,
       "gainPhone": 2.5,
@@ -6630,6 +6700,7 @@
     },
     "yellow": {
       "author": "Vion Nicolas",
+      "capPhone": 0.1,
       "file": "yellow.mp3",
       "gain": -0.8,
       "gainPhone": 4.0,
@@ -6643,6 +6714,7 @@
     },
     "yes": {
       "author": "Vion Nicolas",
+      "capPhone": 1.0,
       "file": "yes.mp3",
       "gain": -2.3,
       "gainPhone": 3.7,

@@ -73,6 +73,14 @@ FFMPEG = os.environ.get('FFMPEG', 'ffmpeg')
 # decimal it ships at so rounding can never spend the margin. The cap only ever lowers; the
 # files it binds land under the loudness target instead of distorting: user ruling
 # 2026-08-01, quiet is the lesser loss.
+#
+# What the cap held back ships beside the gain as `cap`/`capPhone`, because the cap is only
+# true at FULL VOLUME. A listening run's bedtime ramp attenuates before the boost is applied
+# and opens exactly that much headroom again, so a player under a fade can hand the deficit
+# back — as much of it as the ramp has already taken off — and the word lands on the loudness
+# target after all (`fadedGainDb`). It binds 5-25% of every pack but sw, which is the loud
+# one and is never capped at all, so without this the fade made a run's levels DRIFT APART
+# by pack rather than merely fall.
 ANALYSIS = {
     'scheme': 'boost',
     'target_lufs': -18.0,
@@ -203,12 +211,20 @@ def playback_index(loudness, speaker, leading, peak, floor, phone):
     index = {}
     if gain:
         index['gain'] = gain
+    # What the ceiling held back, for a player that has attenuated its way to the headroom
+    # again (see [ANALYSIS]). Absent means the loudness number stood as measured.
+    cap = round(full - gain, 1)
+    if cap:
+        index['cap'] = cap
     if phone:
         wanted = round(min(GAIN_LIMIT_DB, max(-GAIN_LIMIT_DB, ANALYSIS['speaker_lufs'] - speaker)), 1)
         # why: always written for words, 0.0 included — the player needs to tell "the phone
         # plane is zero" apart from "no phone plane was measured" (letters/texts), where the
         # full-range gain stands.
         index['gainPhone'] = min(wanted, headroom)
+        cap_phone = round(wanted - index['gainPhone'], 1)
+        if cap_phone:
+            index['capPhone'] = cap_phone
     lead = max(0, round(leading * 1000) - LEAD_KEEP_MS)
     if lead:
         index['lead'] = lead
@@ -373,7 +389,7 @@ def reindex(lang):
             sys.exit('%s: nothing above the speaker lens — it cannot be indexed by it' % path)
         index = playback_index(loudness, speaker, leading, peak, floor, phone)
         was = item.get('gain', 0)
-        for field in ('gain', 'gainPhone', 'lead', 'snr'):
+        for field in ('gain', 'cap', 'gainPhone', 'capPhone', 'lead', 'snr'):
             item.pop(field, None)
         item.update(index)
         if index.get('gain', 0) != was:

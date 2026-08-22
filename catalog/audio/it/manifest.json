@@ -114,6 +114,7 @@
     },
     "chicken": {
       "author": "Marta Carbone, Association Shtooka",
+      "capPhone": 1.2,
       "file": "articles/chicken.mp3",
       "gain": -2.0,
       "gainPhone": 2.8,
@@ -618,6 +619,7 @@
     },
     "sugar": {
       "author": "Marta Carbone, Association Shtooka",
+      "capPhone": 0.6,
       "file": "articles/sugar.mp3",
       "gain": 1.3,
       "gainPhone": 3.4,
@@ -902,6 +904,7 @@
   "words": {
     "address": {
       "author": "LangPao",
+      "capPhone": 1.0,
       "file": "address.mp3",
       "gain": 6.5,
       "gainPhone": 10.6,
@@ -927,6 +930,7 @@
     },
     "afternoon": {
       "author": "LangPao",
+      "capPhone": 1.2,
       "file": "afternoon.mp3",
       "gain": 4.5,
       "gainPhone": 7.3,
@@ -1042,6 +1046,8 @@
     },
     "apartment": {
       "author": "Ciampix",
+      "cap": 0.6,
+      "capPhone": 0.2,
       "file": "apartment.mp3",
       "gain": 8.7,
       "gainPhone": 8.7,
@@ -1169,6 +1175,7 @@
     },
     "bad": {
       "author": "LangPao",
+      "capPhone": 1.0,
       "file": "bad.mp3",
       "gain": 4.6,
       "gainPhone": 5.8,
@@ -1324,6 +1331,7 @@
     },
     "blood": {
       "author": "LangPao",
+      "cap": 1.6,
       "file": "blood.mp3",
       "gain": 3.7,
       "gainPhone": 0.8,
@@ -1415,6 +1423,7 @@
     },
     "breakfast": {
       "author": "LangPao",
+      "capPhone": 1.1,
       "file": "breakfast.mp3",
       "gain": 3.2,
       "gainPhone": 4.0,
@@ -1440,6 +1449,8 @@
     },
     "bridge": {
       "author": "Ciampix",
+      "cap": 0.5,
+      "capPhone": 5.5,
       "file": "bridge.mp3",
       "gain": 9.9,
       "gainPhone": 9.9,
@@ -1490,6 +1501,7 @@
     },
     "bucket": {
       "author": "LangPao",
+      "cap": 0.4,
       "file": "bucket.mp3",
       "gain": 6.7,
       "gainPhone": -1.1,
@@ -1617,6 +1629,7 @@
     },
     "can": {
       "author": "LangPao",
+      "capPhone": 0.9,
       "file": "can.mp3",
       "gain": 7.4,
       "gainPhone": 8.9,
@@ -1642,6 +1655,7 @@
     },
     "car": {
       "author": "LangPao",
+      "cap": 1.2,
       "file": "car.mp3",
       "gain": 6.3,
       "gainPhone": 1.6,
@@ -1655,6 +1669,8 @@
     },
     "carpet": {
       "author": "LangPao",
+      "cap": 2.4,
+      "capPhone": 0.7,
       "file": "carpet.mp3",
       "gain": 4.4,
       "gainPhone": 4.4,
@@ -1746,6 +1762,7 @@
     },
     "chest": {
       "author": "Crunchy Cloaky Crackdown",
+      "cap": 0.1,
       "file": "chest.mp3",
       "gain": 7.3,
       "gainPhone": 7.3,
@@ -1759,6 +1776,7 @@
     },
     "chicken": {
       "author": "Crunchy Cloaky Crackdown",
+      "capPhone": 3.5,
       "file": "chicken.mp3",
       "gain": 4.9,
       "gainPhone": 7.0,
@@ -1862,6 +1880,8 @@
     },
     "coat": {
       "author": "LangPao",
+      "cap": 0.4,
+      "capPhone": 0.2,
       "file": "coat.mp3",
       "gain": 3.7,
       "gainPhone": 3.7,
@@ -1887,6 +1907,7 @@
     },
     "cold": {
       "author": "LangPao",
+      "cap": 2.3,
       "file": "cold.mp3",
       "gain": 5.6,
       "gainPhone": 0.7,
@@ -1912,6 +1933,7 @@
     },
     "color": {
       "author": "LangPao",
+      "capPhone": 1.5,
       "file": "color.mp3",
       "gain": 4.1,
       "gainPhone": 6.0,
@@ -1937,6 +1959,7 @@
     },
     "contract": {
       "author": "LangPao",
+      "cap": 0.2,
       "file": "contract.mp3",
       "gain": 4.0,
       "gainPhone": 2.7,
@@ -1950,6 +1973,7 @@
     },
     "cook": {
       "author": "LangPao",
+      "capPhone": 0.5,
       "file": "cook.mp3",
       "gain": 3.3,
       "gainPhone": 4.0,
@@ -2028,6 +2052,8 @@
     },
     "cup": {
       "author": "Crunchy Cloaky Crackdown",
+      "cap": 3.7,
+      "capPhone": 2.5,
       "file": "cup.mp3",
       "gain": 6.5,
       "gainPhone": 6.5,
@@ -2041,6 +2067,7 @@
     },
     "curtain": {
       "author": "Crunchy Cloaky Crackdown",
+      "capPhone": 0.4,
       "file": "curtain.mp3",
       "gain": 6.7,
       "gainPhone": 8.4,
@@ -2067,6 +2094,7 @@
     },
     "cut": {
       "author": "LangPao",
+      "cap": 0.1,
       "file": "cut.mp3",
       "gain": 6.0,
       "gainPhone": 2.1,
@@ -2158,6 +2186,7 @@
     },
     "depart": {
       "author": "LangPao",
+      "cap": 0.7,
       "file": "depart.mp3",
       "gain": 3.7,
       "gainPhone": 1.0,
@@ -2401,6 +2430,7 @@
     },
     "egg": {
       "author": "LangPao",
+      "capPhone": 0.1,
       "file": "egg.mp3",
       "gainPhone": 4.6,
       "lead": 206,
@@ -2451,6 +2481,7 @@
     },
     "exam": {
       "author": "Crunchy Cloaky Crackdown",
+      "cap": 1.3,
       "file": "exam.mp3",
       "gain": 7.5,
       "gainPhone": 3.5,
@@ -2490,6 +2521,7 @@
     },
     "exercise-book": {
       "author": "LangPao",
+      "cap": 2.3,
       "file": "exercise-book.mp3",
       "gain": 4.9,
       "gainPhone": 1.0,
@@ -2503,6 +2535,8 @@
     },
     "eye": {
       "author": "Ciampix",
+      "cap": 0.8,
+      "capPhone": 1.9,
       "file": "eye.mp3",
       "gain": 10.1,
       "gainPhone": 10.1,
@@ -2555,6 +2589,7 @@
     },
     "father": {
       "author": "LangPao",
+      "cap": 0.1,
       "file": "father.mp3",
       "gain": 2.3,
       "gainPhone": -2.9,
@@ -2581,6 +2616,7 @@
     },
     "fee": {
       "author": "LangPao",
+      "cap": 0.5,
       "file": "fee.mp3",
       "gain": 3.9,
       "gainPhone": 0.6,
@@ -2620,6 +2656,7 @@
     },
     "finger": {
       "author": "Ciampix",
+      "capPhone": 1.1,
       "file": "finger.mp3",
       "gain": 9.4,
       "gainPhone": 11.6,
@@ -2711,6 +2748,8 @@
     },
     "fork": {
       "author": "LangPao",
+      "cap": 1.3,
+      "capPhone": 0.4,
       "file": "fork.mp3",
       "gain": 4.7,
       "gainPhone": 4.7,
@@ -2723,6 +2762,8 @@
     },
     "fridge": {
       "author": "Icedlake",
+      "cap": 4.6,
+      "capPhone": 2.9,
       "file": "fridge.mp3",
       "gain": -2.0,
       "gainPhone": -2.0,
@@ -2849,6 +2890,7 @@
     },
     "glove": {
       "author": "Crunchy Cloaky Crackdown",
+      "capPhone": 0.7,
       "file": "glove.mp3",
       "gain": 6.2,
       "gainPhone": 6.3,
@@ -2874,6 +2916,7 @@
     },
     "good": {
       "author": "LangPao",
+      "capPhone": 0.8,
       "file": "good.mp3",
       "gain": 1.1,
       "gainPhone": 4.3,
@@ -2924,6 +2967,8 @@
     },
     "grandmother": {
       "author": "LangPao",
+      "cap": 0.4,
+      "capPhone": 3.5,
       "file": "grandmother.mp3",
       "gain": 6.6,
       "gainPhone": 6.6,
@@ -2974,6 +3019,8 @@
     },
     "guest": {
       "author": "DiplomaticBadger",
+      "cap": 0.5,
+      "capPhone": 2.0,
       "file": "guest.mp3",
       "gain": 8.3,
       "gainPhone": 8.3,
@@ -3163,6 +3210,7 @@
     },
     "hire": {
       "author": "LangPao",
+      "cap": 0.6,
       "file": "hire.mp3",
       "gain": 3.5,
       "gainPhone": 3.1,
@@ -3292,6 +3340,7 @@
     },
     "important": {
       "author": "LangPao",
+      "cap": 1.0,
       "file": "important.mp3",
       "gain": 10.1,
       "gainPhone": 7.6,
@@ -3331,6 +3380,7 @@
     },
     "jacket": {
       "author": "LangPao",
+      "cap": 1.4,
       "file": "jacket.mp3",
       "gain": 5.7,
       "gainPhone": 4.4,
@@ -3357,6 +3407,7 @@
     },
     "jog": {
       "author": "Ciampix",
+      "capPhone": 1.7,
       "file": "jog.mp3",
       "gain": 6.9,
       "gainPhone": 8.0,
@@ -3511,6 +3562,7 @@
     },
     "laugh": {
       "author": "LangPao",
+      "cap": 0.3,
       "file": "laugh.mp3",
       "gain": 7.7,
       "gainPhone": 5.3,
@@ -3524,6 +3576,7 @@
     },
     "law": {
       "author": "LangPao",
+      "capPhone": 0.7,
       "file": "law.mp3",
       "gain": 5.8,
       "gainPhone": 6.9,
@@ -3678,6 +3731,7 @@
     },
     "long": {
       "author": "LangPao",
+      "capPhone": 2.1,
       "file": "long.mp3",
       "gain": 6.2,
       "gainPhone": 9.1,
@@ -3791,6 +3845,7 @@
     },
     "meat": {
       "author": "LangPao",
+      "cap": 0.1,
       "file": "meat.mp3",
       "gain": 3.5,
       "gainPhone": -2.9,
@@ -3816,6 +3871,7 @@
     },
     "milk": {
       "author": "Accurimbono",
+      "cap": 2.4,
       "file": "milk.mp3",
       "gain": 4.9,
       "gainPhone": 4.0,
@@ -3828,6 +3884,7 @@
     },
     "minute": {
       "author": "LangPao",
+      "capPhone": 0.4,
       "file": "minute.mp3",
       "gain": 5.8,
       "gainPhone": 9.9,
@@ -3905,6 +3962,8 @@
     },
     "morning": {
       "author": "LangPao",
+      "cap": 0.6,
+      "capPhone": 0.1,
       "file": "morning.mp3",
       "gain": 5.1,
       "gainPhone": 5.1,
@@ -3930,6 +3989,7 @@
     },
     "mother": {
       "author": "LangPao",
+      "cap": 0.4,
       "file": "mother.mp3",
       "gain": 6.7,
       "gainPhone": 2.3,
@@ -3942,6 +4002,7 @@
     },
     "motorbike": {
       "author": "LangPao",
+      "capPhone": 1.9,
       "file": "motorbike.mp3",
       "gain": 3.0,
       "gainPhone": 3.8,
@@ -3981,6 +4042,8 @@
     },
     "mouth": {
       "author": "Ciampix",
+      "cap": 1.4,
+      "capPhone": 4.3,
       "file": "mouth.mp3",
       "gain": 8.3,
       "gainPhone": 8.3,
@@ -3994,6 +4057,7 @@
     },
     "movie": {
       "author": "Crunchy Cloaky Crackdown",
+      "capPhone": 0.9,
       "file": "movie.mp3",
       "gain": 5.0,
       "gainPhone": 9.4,
@@ -4134,6 +4198,7 @@
     },
     "no": {
       "author": "LangPao",
+      "capPhone": 0.1,
       "file": "no.mp3",
       "gain": 5.4,
       "gainPhone": 6.8,
@@ -4158,6 +4223,7 @@
     },
     "nose": {
       "author": "LangPao",
+      "cap": 0.3,
       "file": "nose.mp3",
       "gain": 6.6,
       "gainPhone": 4.1,
@@ -4249,6 +4315,7 @@
     },
     "or": {
       "author": "XANA000",
+      "capPhone": 1.6,
       "file": "or.mp3",
       "gain": -0.5,
       "gainPhone": 6.9,
@@ -4288,6 +4355,7 @@
     },
     "page": {
       "author": "LangPao",
+      "cap": 2.2,
       "file": "page.mp3",
       "gain": 5.6,
       "gainPhone": 3.5,
@@ -4327,6 +4395,7 @@
     },
     "pan": {
       "author": "LangPao",
+      "cap": 2.4,
       "file": "pan.mp3",
       "gain": 7.7,
       "gainPhone": 4.2,
@@ -4353,6 +4422,7 @@
     },
     "paper": {
       "author": "Crunchy Cloaky Crackdown",
+      "cap": 1.8,
       "file": "paper.mp3",
       "gain": 8.3,
       "gainPhone": 6.3,
@@ -4366,6 +4436,7 @@
     },
     "park": {
       "author": "LangPao",
+      "cap": 2.0,
       "file": "park.mp3",
       "gain": 3.5,
       "gainPhone": -0.7,
@@ -4379,6 +4450,7 @@
     },
     "passenger": {
       "author": "LangPao",
+      "cap": 0.6,
       "file": "passenger.mp3",
       "gain": 3.6,
       "gainPhone": 2.8,
@@ -4441,6 +4513,7 @@
     },
     "person": {
       "author": "LangPao",
+      "cap": 2.0,
       "file": "person.mp3",
       "gain": 4.5,
       "gainPhone": 3.2,
@@ -4542,6 +4615,8 @@
     },
     "plate": {
       "author": "LangPao",
+      "cap": 0.5,
+      "capPhone": 2.4,
       "file": "plate.mp3",
       "gain": 6.9,
       "gainPhone": 6.9,
@@ -4567,6 +4642,7 @@
     },
     "police": {
       "author": "LangPao",
+      "capPhone": 0.2,
       "file": "police.mp3",
       "gain": 3.1,
       "gainPhone": 4.2,
@@ -4643,6 +4719,7 @@
     },
     "profession": {
       "author": "DiplomaticBadger",
+      "cap": 0.5,
       "file": "profession.mp3",
       "gain": 7.2,
       "gainPhone": 6.8,
@@ -4747,6 +4824,7 @@
     },
     "ready": {
       "author": "XANA000",
+      "capPhone": 2.0,
       "file": "ready.mp3",
       "gain": 2.0,
       "gainPhone": 7.9,
@@ -4861,6 +4939,7 @@
     },
     "room": {
       "author": "Crunchy Cloaky Crackdown",
+      "cap": 1.0,
       "file": "room.mp3",
       "gain": 6.3,
       "gainPhone": 5.9,
@@ -4874,6 +4953,7 @@
     },
     "salary": {
       "author": "LangPao",
+      "capPhone": 0.9,
       "file": "salary.mp3",
       "gain": 2.8,
       "gainPhone": 3.1,
@@ -4989,6 +5069,7 @@
     },
     "sentence": {
       "author": "LangPao",
+      "cap": 0.9,
       "file": "sentence.mp3",
       "gain": 7.2,
       "gainPhone": 2.4,
@@ -5041,6 +5122,7 @@
     },
     "shoe": {
       "author": "LangPao",
+      "cap": 0.4,
       "file": "shoe.mp3",
       "gain": 4.5,
       "gainPhone": 0.4,
@@ -5054,6 +5136,7 @@
     },
     "short": {
       "author": "LangPao",
+      "capPhone": 2.7,
       "file": "short.mp3",
       "gain": 2.5,
       "gainPhone": 4.7,
@@ -5118,6 +5201,7 @@
     },
     "signature": {
       "author": "Crunchy Cloaky Crackdown",
+      "capPhone": 0.2,
       "file": "signature.mp3",
       "gain": 7.2,
       "gainPhone": 12.8,
@@ -5208,6 +5292,7 @@
     },
     "small": {
       "author": "LangPao",
+      "capPhone": 0.8,
       "file": "small.mp3",
       "gain": 8.6,
       "gainPhone": 8.8,
@@ -5258,6 +5343,7 @@
     },
     "sofa": {
       "author": "Icedlake",
+      "cap": 5.8,
       "file": "sofa.mp3",
       "gain": -2.3,
       "gainPhone": -2.6,
@@ -5270,6 +5356,7 @@
     },
     "son": {
       "author": "LangPao",
+      "capPhone": 0.7,
       "file": "son.mp3",
       "gain": 5.6,
       "gainPhone": 8.8,
@@ -5321,6 +5408,7 @@
     },
     "spoon": {
       "author": "Crunchy Cloaky Crackdown",
+      "capPhone": 3.0,
       "file": "spoon.mp3",
       "gain": 7.8,
       "gainPhone": 8.5,
@@ -5438,6 +5526,7 @@
     },
     "study": {
       "author": "LangPao",
+      "capPhone": 0.6,
       "file": "study.mp3",
       "gain": 4.3,
       "gainPhone": 7.6,
@@ -5489,6 +5578,7 @@
     },
     "t-shirt": {
       "author": "LangPao",
+      "cap": 1.3,
       "file": "t-shirt.mp3",
       "gain": 6.2,
       "gainPhone": 4.5,
@@ -5501,6 +5591,7 @@
     },
     "take": {
       "author": "LangPao",
+      "cap": 0.9,
       "file": "take.mp3",
       "gain": 6.8,
       "gainPhone": 6.5,
@@ -5527,6 +5618,8 @@
     },
     "taste": {
       "author": "LangPao",
+      "cap": 3.4,
+      "capPhone": 0.9,
       "file": "taste.mp3",
       "gain": 2.4,
       "gainPhone": 2.4,
@@ -5539,6 +5632,7 @@
     },
     "tax": {
       "author": "DiplomaticBadger",
+      "capPhone": 1.9,
       "file": "tax.mp3",
       "gain": 8.9,
       "gainPhone": 9.6,
@@ -5552,6 +5646,7 @@
     },
     "taxi": {
       "author": "LangPao",
+      "cap": 1.0,
       "file": "taxi.mp3",
       "gain": 4.2,
       "gainPhone": 1.7,
@@ -5578,6 +5673,7 @@
     },
     "teacher": {
       "author": "Crunchy Cloaky Crackdown",
+      "cap": 0.8,
       "file": "teacher.mp3",
       "gain": 6.1,
       "gainPhone": 3.7,
@@ -5643,6 +5739,7 @@
     },
     "thirst": {
       "author": "Crunchy Cloaky Crackdown",
+      "capPhone": 0.3,
       "file": "thirst.mp3",
       "gain": 10.4,
       "gainPhone": 11.7,
@@ -5682,6 +5779,7 @@
     },
     "ticket": {
       "author": "LangPao",
+      "capPhone": 2.2,
       "file": "ticket.mp3",
       "gain": 6.6,
       "gainPhone": 9.7,
@@ -5949,6 +6047,7 @@
     },
     "truck": {
       "author": "Crunchy Cloaky Crackdown",
+      "cap": 0.5,
       "file": "truck.mp3",
       "gain": 5.4,
       "gainPhone": 0.2,
@@ -6001,6 +6100,7 @@
     },
     "understand": {
       "author": "LangPao",
+      "capPhone": 1.1,
       "file": "understand.mp3",
       "gain": 6.7,
       "gainPhone": 6.8,
@@ -6102,6 +6202,7 @@
     },
     "wall": {
       "author": "LangPao",
+      "cap": 0.2,
       "file": "wall.mp3",
       "gain": 3.6,
       "gainPhone": -1.8,
@@ -6140,6 +6241,7 @@
     },
     "washing-machine": {
       "author": "LangPao",
+      "cap": 0.3,
       "file": "washing-machine.mp3",
       "gain": 3.8,
       "gainPhone": 3.0,
@@ -6295,6 +6397,7 @@
     },
     "wife": {
       "author": "LangPao",
+      "capPhone": 3.8,
       "file": "wife.mp3",
       "gain": 4.4,
       "gainPhone": 6.6,
@@ -6321,6 +6424,7 @@
     },
     "window": {
       "author": "LangPao",
+      "capPhone": 0.2,
       "file": "window.mp3",
       "gain": 5.8,
       "gainPhone": 6.3,

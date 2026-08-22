@@ -18,12 +18,17 @@ import net.spross.kern.listen.LISTENING_FADE_FLOOR_DB
  */
 class PlaybackIndexTest {
 
-    private fun assertVolume(expected: Double, gainDb: Double, fadeDb: Double = 0.0) =
+    private fun assertVolume(
+        expected: Double,
+        gainDb: Double,
+        fadeDb: Double = 0.0,
+        capDb: Double = 0.0,
+    ) = playbackVolume(gainDb, capDb, fadeDb).let { played ->
         assertTrue(
-            abs(playbackVolume(gainDb, fadeDb) - expected) < 1e-4,
-            "$gainDb dB under $fadeDb played at ${playbackVolume(gainDb, fadeDb)}," +
-                " expected $expected",
+            abs(played - expected) < 1e-4,
+            "$gainDb dB capped by $capDb under $fadeDb played at $played, expected $expected",
         )
+    }
 
     @Test
     fun theSchemeSplitsTheIndexInTwoAndNeverAppliesBothHalves() {
@@ -82,5 +87,27 @@ class PlaybackIndexTest {
     fun aRampShortOfTheFloorIsTheWholeRamp() {
         assertVolume(0.5, 0.0, -6.0206)
         assertVolume(0.25, -6.0206, -6.0206)
+    }
+
+    /**
+     * The ramp hands a capped word back the headroom it just opened, and never more than it
+     * opened — the ceiling the converter measured still holds at every point of the run.
+     */
+    @Test
+    fun theRampGivesBackWhatTheCeilingHeldAndNoMore() {
+        // 6 dB of ramp on a word held 3 dB back: the deficit is gone and 3 dB of ramp is left.
+        assertVolume(0.7063, 0.0, -6.0206, capDb = 3.0)
+        // 6 dB of ramp on a word held 9 dB back: only the 6 dB it opened comes back.
+        assertVolume(1.0, 0.0, -6.0206, capDb = 9.0)
+        // A word the boost lifts spends its cap on the volume; the enhancer is unmoved.
+        assertVolume(0.3548, 7.6, -15.0, capDb = 6.0)
+        assertEquals(760, playbackBoostMillibels(7.6))
+    }
+
+    /** At full volume there is no headroom to spend, so a cap changes nothing at all. */
+    @Test
+    fun aCapIsInertOutsideAFade() {
+        assertVolume(1.0, 0.0, capDb = 12.0)
+        assertVolume(0.2754, -11.2, capDb = 12.0)
     }
 }

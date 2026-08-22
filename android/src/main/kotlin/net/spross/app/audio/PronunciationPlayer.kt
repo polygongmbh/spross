@@ -84,6 +84,7 @@ class PronunciationPlayer {
     fun play(
         afd: AssetFileDescriptor,
         gainDb: Double,
+        capDb: Double,
         leadMs: Long,
         fadeDb: Double = 0.0,
         onFinish: (() -> Unit)? = null,
@@ -93,7 +94,7 @@ class PronunciationPlayer {
         pending = onFinish?.let { current to it }
         handler.post {
             clear()
-            load(current, afd, gainDb, leadMs, fadeDb)
+            load(current, afd, gainDb, capDb, leadMs, fadeDb)
         }
     }
 
@@ -136,6 +137,7 @@ class PronunciationPlayer {
         current: Int,
         afd: AssetFileDescriptor,
         gainDb: Double,
+        capDb: Double,
         leadMs: Long,
         fadeDb: Double,
     ) {
@@ -169,7 +171,7 @@ class PronunciationPlayer {
             afd.use { player.setDataSource(it) }
             // The attenuating half of the index rides the player and the boosting half
             // its session; the scheme leaves only one of the two ever doing anything.
-            playbackVolume(gainDb, fadeDb).let { player.setVolume(it, it) }
+            playbackVolume(gainDb, capDb, fadeDb).let { player.setVolume(it, it) }
             boost(player, playbackBoostMillibels(gainDb))
             player.prepareAsync()
         } catch (_: IOException) {

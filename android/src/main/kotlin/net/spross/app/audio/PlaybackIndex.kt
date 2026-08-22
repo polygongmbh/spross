@@ -25,16 +25,19 @@ import net.spross.kern.listen.fadedGainDb
 private const val MILLIBELS_PER_DB = 100
 
 /**
- * The volume a recording measured at [gainDb] plays at under [fadeDb] of kern's bedtime ramp:
- * everything of kern's [fadedGainDb] total that the enhancer below is not already carrying.
+ * The volume a recording measured at [gainDb], capped by [capDb], plays at under [fadeDb] of
+ * kern's bedtime ramp: everything of kern's [fadedGainDb] total that the enhancer below is
+ * not already carrying.
  *
  * The split is what makes the subtraction necessary. Kern's total is one number, and the two
  * halves have to add back up to it — so the boost takes the index where it lifts, and the
- * volume takes the rest, which is the ramp plus whatever attenuating the index asked for.
+ * volume takes the rest: the ramp, whatever attenuating the index asked for, and whatever of
+ * the cap the ramp handed back. The rest can only ever be an attenuation, which is all
+ * `setVolume` can give.
  */
-fun playbackVolume(gainDb: Double, fadeDb: Double = 0.0): Float {
+fun playbackVolume(gainDb: Double, capDb: Double = 0.0, fadeDb: Double = 0.0): Float {
     val boosted = maxOf(0.0, Playback.gainDb(gainDb))
-    return 10.0.pow((fadedGainDb(gainDb, fadeDb) - boosted) / 20).toFloat()
+    return 10.0.pow((fadedGainDb(gainDb, capDb, fadeDb) - boosted) / 20).toFloat()
 }
 
 /** The same ramp with no recording under it — what a synthesized utterance is attenuated by. */

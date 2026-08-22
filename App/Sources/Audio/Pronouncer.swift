@@ -153,7 +153,8 @@ final class Pronouncer {
             // of bytes that stay the untouched transcode — playback is the one
             // place they are ever applied, and never the file.
             playingKey = key
-            player.play(url: recordingURL, gainDb: gain(for: pronunciation),
+            let index = index(for: pronunciation)
+            player.play(url: recordingURL, gainDb: index.gain, capDb: index.cap,
                         leadMs: pronunciation.leadMs, fadeDb: fadeDb) { [weak self] in
                 self?.clearPlaying(key)
                 onFinish?()
@@ -190,14 +191,15 @@ final class Pronouncer {
                                 targetText: pronunciation.form)
     }
 
-    /// The recording's gain for the current output route — `gainPhone` on the
+    /// The recording's index for the current output route — `gainPhone` on the
     /// built-in speaker, the full-range `gain` elsewhere, and `gain` wherever no
-    /// phone plane was measured (letters, texts).
-    private func gain(for pronunciation: Pronunciation) -> Double {
+    /// phone plane was measured (letters, texts). The cap belongs to the plane its
+    /// gain does, so the two are picked together and never crossed.
+    private func index(for pronunciation: Pronunciation) -> (gain: Double, cap: Double) {
         if AudioSession.plane() == .phone, let phone = pronunciation.gainPhone {
-            return phone.doubleValue
+            return (phone.doubleValue, pronunciation.capPhone?.doubleValue ?? 0)
         }
-        return pronunciation.gain
+        return (pronunciation.gain, pronunciation.cap)
     }
 
     /// Decibels as the linear factor `AVSpeechUtterance.volume` wants — the
@@ -241,8 +243,8 @@ final class Pronouncer {
         stop()
         if let recordingURL {
             let path = pronunciation.recordingPath ?? recordingURL.lastPathComponent
-            player.play(url: recordingURL,
-                        gainDb: gain(for: pronunciation), leadMs: pronunciation.leadMs) {
+            player.play(url: recordingURL, gainDb: index(for: pronunciation).gain,
+                        leadMs: pronunciation.leadMs) {
                 print("Pronounce probe: recording \(path) played to completion")
             }
             return

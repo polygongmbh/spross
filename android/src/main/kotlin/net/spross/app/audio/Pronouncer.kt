@@ -187,7 +187,8 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
      * (`docs/read-aloud.md`).
      *
      * [fadeDb] is kern's listening ramp (`listeningGainDb`), 0 everywhere else. It rides the
-     * volume on top of a recording's own index, never instead of it.
+     * volume on top of a recording's own index, never instead of it — kern adds the two and
+     * holds the sum at its floor (`fadedGainDb`).
      *
      * [onFinish] fires ONCE on the main thread when the word has been said — including the
      * cases where nothing sounds at all, so a run armed off it can never wedge on a silent
@@ -225,8 +226,9 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         val path = pronunciation.recordingPath
         // why: the player still holds the last clip prepared, so a second ask for the
         // same word answers without a second decode — the reason it keeps it.
+        val (indexDb, capDb) = index(pronunciation)
         if (path != null && path == loaded &&
-            player.replay(playbackVolume(gain(pronunciation), fadeDb), onFinish)
+            player.replay(playbackVolume(indexDb, capDb, fadeDb), onFinish)
         ) {
             return
         }
@@ -238,7 +240,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
             // why: the loudness and the dead air are the catalog's MEASUREMENTS of bytes
             // that stay the untouched transcode — playback is the one place they are ever
             // applied, and never the file.
-            player.play(recording, gain(pronunciation), pronunciation.leadMs, fadeDb, onFinish)
+            player.play(recording, indexDb, capDb, pronunciation.leadMs, fadeDb, onFinish)
             loaded = path
             return
         }
@@ -268,12 +270,18 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
      * measured (letters, texts). Reads the route once per fire, so a headphone change
      * between words is picked up by the next one.
      */
-    private fun gain(pronunciation: Pronunciation): Double {
+    private fun gain(pronunciation: Pronunciation): Double = index(pronunciation).first
+
+    /** The picked plane's gain and the cap ITS ceiling held back — the two always travel together. */
+    private fun index(pronunciation: Pronunciation): Pair<Double, Double> {
         val devices = audioManager?.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
             ?.map { it.type }?.toSet() ?: emptySet()
         val phone = pronunciation.gainPhone
-        return if (playbackPlane(devices) == PlaybackPlane.PHONE && phone != null) phone
-        else pronunciation.gain
+        return if (playbackPlane(devices) == PlaybackPlane.PHONE && phone != null) {
+            phone to (pronunciation.capPhone ?: 0.0)
+        } else {
+            pronunciation.gain to pronunciation.cap
+        }
     }
 
     // why: the "catalog/" prefix mirrors AssetCatalogSource — kern hands out

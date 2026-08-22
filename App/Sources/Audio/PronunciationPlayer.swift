@@ -58,6 +58,9 @@ final class PronunciationPlayer {
     private struct Request {
         let url: URL
         let gainDb: Double
+        /// What the converter's peak ceiling held back from `gainDb` — spent only under a
+        /// fade, which is the one thing that opens the headroom again (`fadedGainDb`).
+        let capDb: Double
         let leadMs: Int64
         /// The listening run's bedtime ramp, applied OVER the analysis index —
         /// see `play(url:gainDb:leadMs:fadeDb:onFinish:)`.
@@ -92,10 +95,11 @@ final class PronunciationPlayer {
     /// its own floor (`fadedGainDb`) — the clamp bounds how far a MEASUREMENT
     /// may be trusted and the floor is a level kern chose. 0 everywhere outside
     /// a listening run.
-    func play(url: URL, gainDb: Double = 0, leadMs: Int64 = 0, fadeDb: Double = 0,
-              onFinish: (@MainActor () -> Void)? = nil) {
+    func play(url: URL, gainDb: Double = 0, capDb: Double = 0, leadMs: Int64 = 0,
+              fadeDb: Double = 0, onFinish: (@MainActor () -> Void)? = nil) {
         rearms = 0
-        play(Request(url: url, gainDb: gainDb, leadMs: leadMs, fadeDb: fadeDb, onFinish: onFinish))
+        play(Request(url: url, gainDb: gainDb, capDb: capDb, leadMs: leadMs, fadeDb: fadeDb,
+                     onFinish: onFinish))
     }
 
     private func play(_ request: Request) {
@@ -110,7 +114,8 @@ final class PronunciationPlayer {
         let headMs = Playback.shared.headMs(leadMs: request.leadMs,
                                             durationMs: Int64(Double(file.length) / rate * 1000))
         let head = AVAudioFramePosition(Double(headMs) / 1000 * rate)
-        equalizer.globalGain = Float(fadedGainDb(gainDb: request.gainDb, fadeDb: request.fadeDb))
+        equalizer.globalGain = Float(fadedGainDb(gainDb: request.gainDb, capDb: request.capDb,
+                                                 fadeDb: request.fadeDb))
         self.onFinish = onFinish
         let current = playback
         node.scheduleSegment(file, startingFrame: head,

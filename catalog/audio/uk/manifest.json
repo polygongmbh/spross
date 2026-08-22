@@ -13,6 +13,7 @@
     },
     "а": {
       "author": "Tabrus",
+      "cap": 0.8,
       "file": "letters/u0430.mp3",
       "gain": 5.5,
       "lead": 1285,
@@ -63,6 +64,7 @@
     },
     "е": {
       "author": "Tabrus",
+      "cap": 1.4,
       "file": "letters/u0435.mp3",
       "gain": 13.3,
       "lead": 1071,
@@ -398,6 +400,7 @@
     },
     "alarm-clock": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.2,
       "file": "alarm-clock.mp3",
       "gain": -1.1,
       "gainPhone": 2.9,
@@ -463,6 +466,7 @@
     },
     "answer": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.9,
       "file": "answer.mp3",
       "gain": -2.5,
       "gainPhone": 3.0,
@@ -476,6 +480,7 @@
     },
     "apartment": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.2,
       "file": "apartment.mp3",
       "gain": 2.3,
       "gainPhone": 2.7,
@@ -540,6 +545,7 @@
     },
     "arrive": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.7,
       "file": "arrive.mp3",
       "gain": 0.8,
       "gainPhone": 3.1,
@@ -579,6 +585,7 @@
     },
     "baby": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
+      "capPhone": 1.5,
       "file": "baby.mp3",
       "gain": -3.7,
       "gainPhone": 3.0,
@@ -782,6 +789,7 @@
     },
     "big": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.1,
       "file": "big.mp3",
       "gain": -0.9,
       "gainPhone": 2.9,
@@ -821,6 +829,7 @@
     },
     "blanket": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.4,
       "file": "blanket.mp3",
       "gain": -1.6,
       "gainPhone": 2.6,
@@ -833,6 +842,7 @@
     },
     "blood": {
       "author": "Женя Музика, Nicolas Vion",
+      "capPhone": 0.2,
       "file": "blood.mp3",
       "gain": -2.7,
       "gainPhone": 2.7,
@@ -959,6 +969,7 @@
     },
     "breathe": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.8,
       "file": "breathe.mp3",
       "gain": 0.8,
       "gainPhone": 3.1,
@@ -1010,6 +1021,7 @@
     },
     "bucket": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.2,
       "file": "bucket.mp3",
       "gain": -1.9,
       "gainPhone": 2.9,
@@ -1022,6 +1034,7 @@
     },
     "building": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.2,
       "file": "building.mp3",
       "gain": -4.4,
       "gainPhone": 2.8,
@@ -1035,6 +1048,7 @@
     },
     "bus": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.5,
       "file": "bus.mp3",
       "gain": 2.8,
       "gainPhone": 3.0,
@@ -1136,6 +1150,7 @@
     },
     "can": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.5,
       "file": "can.mp3",
       "gain": -1.6,
       "gainPhone": 3.2,
@@ -1174,6 +1189,7 @@
     },
     "carpet": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.5,
       "file": "carpet.mp3",
       "gain": -1.9,
       "gainPhone": 2.9,
@@ -1225,6 +1241,7 @@
     },
     "certificate": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.0,
       "file": "certificate.mp3",
       "gain": -2.1,
       "gainPhone": 3.0,
@@ -1276,6 +1293,7 @@
     },
     "chest": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.2,
       "file": "chest.mp3",
       "gain": -3.7,
       "gainPhone": 2.9,
@@ -1289,6 +1307,7 @@
     },
     "chicken": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.8,
       "file": "chicken.mp3",
       "gain": -2.7,
       "gainPhone": 2.8,
@@ -1302,6 +1321,7 @@
     },
     "child": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.5,
       "file": "child.mp3",
       "gain": -0.7,
       "gainPhone": 2.8,
@@ -1431,6 +1451,7 @@
     },
     "coat": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.7,
       "file": "coat.mp3",
       "gain": 0.8,
       "gainPhone": 3.3,
@@ -1470,6 +1491,7 @@
     },
     "color": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.4,
       "file": "color.mp3",
       "gain": -4.2,
       "gainPhone": 2.7,
@@ -1483,6 +1505,7 @@
     },
     "come": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.9,
       "file": "come.mp3",
       "gain": 0.9,
       "gainPhone": 2.9,
@@ -1535,6 +1558,7 @@
     },
     "contract": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.2,
       "file": "contract.mp3",
       "gain": -3.2,
       "gainPhone": 2.7,
@@ -1561,6 +1585,7 @@
     },
     "copy": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.2,
       "file": "copy.mp3",
       "gain": -1.0,
       "gainPhone": 3.0,
@@ -1574,6 +1599,7 @@
     },
     "correct": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.8,
       "file": "correct.mp3",
       "gain": -1.3,
       "gainPhone": 2.7,
@@ -1613,6 +1639,7 @@
     },
     "course-book": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.2,
       "file": "course-book.mp3",
       "gain": 0.3,
       "gainPhone": 2.9,
@@ -1715,6 +1742,7 @@
     },
     "date": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.5,
       "file": "date.mp3",
       "gain": 0.2,
       "gainPhone": 2.9,
@@ -1767,6 +1795,7 @@
     },
     "delete": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.9,
       "file": "delete.mp3",
       "gain": -0.5,
       "gainPhone": 3.0,
@@ -1844,6 +1873,7 @@
     },
     "dirty": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.5,
       "file": "dirty.mp3",
       "gain": -4.3,
       "gainPhone": 2.9,
@@ -1933,6 +1963,7 @@
     },
     "driver": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.7,
       "file": "driver.mp3",
       "gain": -0.7,
       "gainPhone": 2.7,
@@ -1946,6 +1977,7 @@
     },
     "ear": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.6,
       "file": "ear.mp3",
       "gain": -3.8,
       "gainPhone": 2.9,
@@ -2099,6 +2131,7 @@
     },
     "extend": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.7,
       "file": "extend.mp3",
       "gain": -2.8,
       "gainPhone": 2.8,
@@ -2112,6 +2145,7 @@
     },
     "eye": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.6,
       "file": "eye.mp3",
       "gain": -1.7,
       "gainPhone": 3.1,
@@ -2227,6 +2261,7 @@
     },
     "fill-in": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.6,
       "file": "fill-in.mp3",
       "gain": 1.3,
       "gainPhone": 3.0,
@@ -2290,6 +2325,7 @@
     },
     "flower": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.1,
       "file": "flower.mp3",
       "gain": -2.0,
       "gainPhone": 2.9,
@@ -2355,6 +2391,7 @@
     },
     "fork": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.4,
       "file": "fork.mp3",
       "gainPhone": 2.9,
       "license": "CC BY 3.0 us",
@@ -2379,6 +2416,7 @@
     },
     "fridge": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.2,
       "file": "fridge.mp3",
       "gain": -2.6,
       "gainPhone": 3.0,
@@ -2392,6 +2430,7 @@
     },
     "friend": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.1,
       "file": "friend.mp3",
       "gain": -3.1,
       "gainPhone": 2.9,
@@ -2404,6 +2443,7 @@
     },
     "friend-f": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.6,
       "file": "friend-f.mp3",
       "gain": -1.6,
       "gainPhone": 2.8,
@@ -2468,6 +2508,7 @@
     },
     "get-dressed": {
       "author": "Женя Музика, Nicolas Vion",
+      "capPhone": 0.6,
       "file": "get-dressed.mp3",
       "gain": -0.4,
       "gainPhone": 2.9,
@@ -2480,6 +2521,7 @@
     },
     "get-off": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.9,
       "file": "get-off.mp3",
       "gain": -0.1,
       "gainPhone": 2.8,
@@ -2556,6 +2598,7 @@
     },
     "go": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.0,
       "file": "go.mp3",
       "gain": -2.3,
       "gainPhone": 2.8,
@@ -2581,6 +2624,7 @@
     },
     "good": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.3,
       "file": "good.mp3",
       "gain": -3.3,
       "gainPhone": 3.0,
@@ -2685,6 +2729,7 @@
     },
     "hallway": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.5,
       "file": "hallway.mp3",
       "gain": -0.8,
       "gainPhone": 3.8,
@@ -2760,6 +2805,7 @@
     },
     "health": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
+      "capPhone": 4.1,
       "file": "health.mp3",
       "gain": 1.1,
       "gainPhone": 2.8,
@@ -2772,6 +2818,7 @@
     },
     "healthy": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.0,
       "file": "healthy.mp3",
       "gain": -1.4,
       "gainPhone": 2.8,
@@ -2824,6 +2871,7 @@
     },
     "hello": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.9,
       "file": "hello.mp3",
       "gain": -0.6,
       "gainPhone": 2.8,
@@ -2837,6 +2885,7 @@
     },
     "help": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 5.1,
       "file": "help.mp3",
       "gain": -1.0,
       "gainPhone": 3.0,
@@ -2850,6 +2899,7 @@
     },
     "here": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 3.0,
       "file": "here.mp3",
       "gain": -2.2,
       "gainPhone": 2.9,
@@ -2875,6 +2925,7 @@
     },
     "hospital": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.3,
       "file": "hospital.mp3",
       "gain": -2.5,
       "gainPhone": 2.8,
@@ -2888,6 +2939,7 @@
     },
     "hotel": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.2,
       "file": "hotel.mp3",
       "gain": -1.2,
       "gainPhone": 3.1,
@@ -2900,6 +2952,7 @@
     },
     "hour": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.7,
       "file": "hour.mp3",
       "gain": -1.2,
       "gainPhone": 2.7,
@@ -2913,6 +2966,7 @@
     },
     "house": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.1,
       "file": "house.mp3",
       "gain": -3.6,
       "gainPhone": 3.1,
@@ -2952,6 +3006,7 @@
     },
     "hunger": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.8,
       "file": "hunger.mp3",
       "gain": -3.1,
       "gainPhone": 2.8,
@@ -2965,6 +3020,7 @@
     },
     "hurt": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.2,
       "file": "hurt.mp3",
       "gain": -2.3,
       "gainPhone": 2.8,
@@ -3027,6 +3083,7 @@
     },
     "internet": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.4,
       "file": "internet.mp3",
       "gain": -2.7,
       "gainPhone": 3.0,
@@ -3040,6 +3097,7 @@
     },
     "jacket": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.3,
       "file": "jacket.mp3",
       "gain": -1.6,
       "gainPhone": 2.7,
@@ -3053,6 +3111,7 @@
     },
     "jog": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.5,
       "file": "jog.mp3",
       "gain": -3.0,
       "gainPhone": 3.3,
@@ -3066,6 +3125,7 @@
     },
     "journey": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.6,
       "file": "journey.mp3",
       "gain": -1.2,
       "gainPhone": 3.0,
@@ -3104,6 +3164,7 @@
     },
     "knee": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.4,
       "file": "knee.mp3",
       "gain": -2.7,
       "gainPhone": 2.9,
@@ -3206,6 +3267,7 @@
     },
     "laundry": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.1,
       "file": "laundry.mp3",
       "gain": -2.4,
       "gainPhone": 3.0,
@@ -3245,6 +3307,7 @@
     },
     "left": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.7,
       "file": "left.mp3",
       "gain": -2.2,
       "gainPhone": 2.9,
@@ -3270,6 +3333,7 @@
     },
     "lesson": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.4,
       "file": "lesson.mp3",
       "gain": -4.0,
       "gainPhone": 3.1,
@@ -3295,6 +3359,7 @@
     },
     "library": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.6,
       "file": "library.mp3",
       "gain": -2.1,
       "gainPhone": 2.9,
@@ -3320,6 +3385,7 @@
     },
     "lightweight": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.3,
       "file": "lightweight.mp3",
       "gain": -0.3,
       "gainPhone": 3.0,
@@ -3333,6 +3399,7 @@
     },
     "like": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 4.4,
       "file": "like.mp3",
       "gain": -0.6,
       "gainPhone": 3.0,
@@ -3384,6 +3451,7 @@
     },
     "long": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.8,
       "file": "long.mp3",
       "gain": -2.6,
       "gainPhone": 2.9,
@@ -3434,6 +3502,7 @@
     },
     "make": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.0,
       "file": "make.mp3",
       "gain": -1.1,
       "gainPhone": 2.9,
@@ -3523,6 +3592,7 @@
     },
     "medicine": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.5,
       "file": "medicine.mp3",
       "gain": -3.9,
       "gainPhone": 2.9,
@@ -3535,6 +3605,7 @@
     },
     "milk": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.7,
       "file": "milk.mp3",
       "gain": -1.8,
       "gainPhone": 3.0,
@@ -3548,6 +3619,7 @@
     },
     "minute": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.0,
       "file": "minute.mp3",
       "gain": -1.7,
       "gainPhone": 3.0,
@@ -3765,6 +3837,7 @@
     },
     "need": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.3,
       "file": "need.mp3",
       "gain": -0.1,
       "gainPhone": 2.8,
@@ -3803,6 +3876,7 @@
     },
     "never": {
       "author": "Женя Музика, Nicolas Vion",
+      "capPhone": 1.2,
       "file": "never.mp3",
       "gain": -1.7,
       "gainPhone": 3.0,
@@ -3815,6 +3889,7 @@
     },
     "new": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.0,
       "file": "new.mp3",
       "gain": -2.3,
       "gainPhone": 2.9,
@@ -3841,6 +3916,7 @@
     },
     "night": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.1,
       "file": "night.mp3",
       "gain": -6.0,
       "gainPhone": 2.7,
@@ -3893,6 +3969,7 @@
     },
     "notebook": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.7,
       "file": "notebook.mp3",
       "gain": -2.7,
       "gainPhone": 2.9,
@@ -3982,6 +4059,7 @@
     },
     "oil": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.2,
       "file": "oil.mp3",
       "gain": -2.3,
       "gainPhone": 2.9,
@@ -4109,6 +4187,7 @@
     },
     "paper": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.1,
       "file": "paper.mp3",
       "gain": 3.5,
       "gainPhone": 3.8,
@@ -4122,6 +4201,7 @@
     },
     "parents": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.6,
       "file": "parents.mp3",
       "gain": 1.1,
       "gainPhone": 2.7,
@@ -4186,6 +4266,7 @@
     },
     "pay": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.2,
       "file": "pay.mp3",
       "gain": 1.4,
       "gainPhone": 3.0,
@@ -4211,6 +4292,7 @@
     },
     "person": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.6,
       "file": "person.mp3",
       "gain": -2.6,
       "gainPhone": 2.8,
@@ -4236,6 +4318,7 @@
     },
     "phone": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.4,
       "file": "phone.mp3",
       "gain": -0.4,
       "gainPhone": 3.2,
@@ -4262,6 +4345,7 @@
     },
     "pill": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.4,
       "file": "pill.mp3",
       "gain": 2.0,
       "gainPhone": 2.6,
@@ -4275,6 +4359,7 @@
     },
     "pillow": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.2,
       "file": "pillow.mp3",
       "gain": 2.4,
       "gainPhone": 2.9,
@@ -4301,6 +4386,7 @@
     },
     "plane": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.0,
       "file": "plane.mp3",
       "gain": -1.4,
       "gainPhone": 3.2,
@@ -4392,6 +4478,7 @@
     },
     "potato": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.5,
       "file": "potato.mp3",
       "gain": 3.0,
       "gainPhone": 3.1,
@@ -4532,6 +4619,7 @@
     },
     "ready": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.7,
       "file": "ready.mp3",
       "gain": -3.1,
       "gainPhone": 2.8,
@@ -4558,6 +4646,7 @@
     },
     "recover": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.3,
       "file": "recover.mp3",
       "gain": -0.6,
       "gainPhone": 2.8,
@@ -4596,6 +4685,7 @@
     },
     "reject": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.9,
       "file": "reject.mp3",
       "gain": -1.5,
       "gainPhone": 2.9,
@@ -4621,6 +4711,7 @@
     },
     "remote": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 4.3,
       "file": "remote.mp3",
       "gain": -3.4,
       "gainPhone": 2.9,
@@ -4634,6 +4725,7 @@
     },
     "reply": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.6,
       "file": "reply.mp3",
       "gain": 0.4,
       "gainPhone": 3.0,
@@ -4951,6 +5043,7 @@
     },
     "short": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.1,
       "file": "short.mp3",
       "gain": -1.9,
       "gainPhone": 2.9,
@@ -5104,6 +5197,7 @@
     },
     "slow": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.7,
       "file": "slow.mp3",
       "gain": -1.3,
       "gainPhone": 3.0,
@@ -5155,6 +5249,7 @@
     },
     "soap": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
+      "capPhone": 2.6,
       "file": "soap.mp3",
       "gain": -3.6,
       "gainPhone": 3.0,
@@ -5219,6 +5314,7 @@
     },
     "sometimes": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.7,
       "file": "sometimes.mp3",
       "gain": -3.4,
       "gainPhone": 2.9,
@@ -5270,6 +5366,7 @@
     },
     "speak": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.7,
       "file": "speak.mp3",
       "gain": -2.6,
       "gainPhone": 3.0,
@@ -5283,6 +5380,7 @@
     },
     "sponge": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 4.2,
       "file": "sponge.mp3",
       "gain": -0.6,
       "gainPhone": 3.0,
@@ -5398,6 +5496,7 @@
     },
     "stove": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.3,
       "file": "stove.mp3",
       "gain": 0.6,
       "gainPhone": 2.9,
@@ -5512,6 +5611,7 @@
     },
     "talk": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.3,
       "file": "talk.mp3",
       "gain": -1.2,
       "gainPhone": 2.7,
@@ -5537,6 +5637,7 @@
     },
     "tax": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.7,
       "file": "tax.mp3",
       "gain": 1.5,
       "gainPhone": 3.1,
@@ -5639,6 +5740,7 @@
     },
     "think": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.1,
       "file": "think.mp3",
       "gain": -3.1,
       "gainPhone": 2.9,
@@ -5678,6 +5780,7 @@
     },
     "throat": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.5,
       "file": "throat.mp3",
       "gain": -4.0,
       "gainPhone": 2.7,
@@ -5690,6 +5793,7 @@
     },
     "ticket": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.7,
       "file": "ticket.mp3",
       "gain": -0.6,
       "gainPhone": 3.1,
@@ -5741,6 +5845,7 @@
     },
     "tired": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
+      "capPhone": 2.9,
       "file": "tired.mp3",
       "gain": -0.2,
       "gainPhone": 3.0,
@@ -5805,6 +5910,7 @@
     },
     "to-pronounce": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.9,
       "file": "to-pronounce.mp3",
       "gain": -1.6,
       "gainPhone": 2.9,
@@ -5960,6 +6066,7 @@
     },
     "train": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.3,
       "file": "train.mp3",
       "gain": -3.0,
       "gainPhone": 2.7,
@@ -6011,6 +6118,7 @@
     },
     "travel": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.1,
       "file": "travel.mp3",
       "gain": -1.0,
       "gainPhone": 3.0,
@@ -6124,6 +6232,7 @@
     },
     "until": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.6,
       "file": "until.mp3",
       "gain": -2.7,
       "gainPhone": 2.6,
@@ -6136,6 +6245,7 @@
     },
     "urgent": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.6,
       "file": "urgent.mp3",
       "gain": -2.8,
       "gainPhone": 2.9,
@@ -6149,6 +6259,8 @@
     },
     "vacation": {
       "author": "Галя Раптова, Nicolas Vion",
+      "cap": 0.5,
+      "capPhone": 0.3,
       "file": "vacation.mp3",
       "gain": 3.1,
       "gainPhone": 3.1,
@@ -6277,6 +6389,7 @@
     },
     "way": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.6,
       "file": "way.mp3",
       "gain": -1.8,
       "gainPhone": 2.9,
@@ -6303,6 +6416,7 @@
     },
     "weather": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.8,
       "file": "weather.mp3",
       "gain": -3.3,
       "gainPhone": 2.7,
@@ -6340,6 +6454,7 @@
     },
     "when": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.9,
       "file": "when.mp3",
       "gain": -4.0,
       "gainPhone": 2.7,
@@ -6365,6 +6480,7 @@
     },
     "which": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.2,
       "file": "which.mp3",
       "gain": 0.6,
       "gainPhone": 3.0,
@@ -6378,6 +6494,7 @@
     },
     "white": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.8,
       "file": "white.mp3",
       "gain": -3.7,
       "gainPhone": 2.7,
@@ -6391,6 +6508,7 @@
     },
     "who": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.8,
       "file": "who.mp3",
       "gain": -3.4,
       "gainPhone": 2.9,
@@ -6430,6 +6548,7 @@
     },
     "window": {
       "author": "Женя Музика, Nicolas Vion",
+      "capPhone": 1.0,
       "file": "window.mp3",
       "gain": -2.8,
       "gainPhone": 2.7,
@@ -6481,6 +6600,7 @@
     },
     "work": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 4.1,
       "file": "work.mp3",
       "gain": -0.1,
       "gainPhone": 2.8,
@@ -6494,6 +6614,7 @@
     },
     "worker": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.6,
       "file": "worker.mp3",
       "gain": -0.7,
       "gainPhone": 3.0,
@@ -6545,6 +6666,7 @@
     },
     "year": {
       "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.0,
       "file": "year.mp3",
       "gain": -2.2,
       "gainPhone": 2.9,

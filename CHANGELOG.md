@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- **The sleep timer no longer fades some languages out before others.** The ramp was taking
+  its decibels off each recording's own level, so a pack the app already plays quieter —
+  Swahili, on the phone's own speaker, sits about 12 dB under the rest — reached the point of
+  being inaudible while the same word in German was still perfectly clear. The ramp now takes
+  every word down to the SAME quiet, however loud it started, so the end of a bedtime is one
+  even hush rather than half a playlist that has already gone. Words that ship a little under
+  their mark, because lifting them would have distorted them, are also handed that back as the
+  run gets quieter and there is room for it again: the levels through a bedtime now settle
+  together instead of drifting apart.
+
 - **The course now starts where a conversation does.** The first cards are the greetings —
   hello, good day, thank you, please, excuse me, how are you — instead of arriving a hundred and
   sixty cards in, which is where they had ended up; a beginner met `to know`, `to need`, `to thank`

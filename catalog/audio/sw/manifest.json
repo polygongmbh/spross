@@ -2658,6 +2658,7 @@
     },
     "i-love-you": {
       "author": "Goethe-Institut Cameroon",
+      "capPhone": 6.1,
       "file": "i-love-you.mp3",
       "gain": -2.6,
       "gainPhone": -0.2,
