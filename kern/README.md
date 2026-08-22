@@ -307,12 +307,17 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   target word, its meaning in the source language, then the target again, so a language
   reaches the hours that ask for no typing and no tap.
   **Both halves must be sayable**, or a turn plays a word and then silence.
+  **The playlist is dealt, not drawn**: one priority per word — the shakiest lead, then the
+  words the learner packed, then the rest of the unseen ones in catalog order, so a language
+  with an empty box plays from its very first word — and the run walks that order and laps
+  it, so the same box gives the same run.
   **Suspended cards stay in the pool**: the leech rule pushes a word out of the box's queue
-  (§5) and never said stop meeting the word.
+  (§5) and never said stop meeting the word, so a leech pays a toll on its own rung instead
+  of being sent to the back.
   Hearing a word does not introduce it — introduction is the first answer, and listening
   answers nothing; `ListeningRun` holds no `BoxState` at all, which is what makes that
-  structural rather than promised. The pool, the beats and the bedtime fade are
-  `docs/turns.md`.
+  structural rather than promised. The pool, the ladder, the deal, the beats and the bedtime
+  fade are `docs/turns.md`.
 - **Leniency is safe only to the extent the catalog can disprove it.** The typo budget
   forgives a slip, and `CatalogAnswerGrader` withdraws that credit wherever the typed form
   is really another concept's word — so a wider budget buys forgiveness for genuine slips

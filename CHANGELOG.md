@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **Listening now plays a playlist instead of shuffling.** The words you packed are heard
+  before the other new ones, a language you have only just started plays from its very first
+  word rather than from anywhere in the catalog, and the words that stick worst are no longer
+  pushed to the back of the run — they come in behind the shakiest ones instead of last. The
+  run still leans on what is least settled, and still asks nothing of you.
+
 - **German and Italian nouns are now heard with their article.** Two hundred and seventy-five
   recordings say "die Adresse" and "l'acqua" rather than the bare word — the half of a noun
   a learner most often has wrong, said by a voice instead of only tinted on the card. It

@@ -72,28 +72,67 @@ Engine contract: `../README.md`.
   words that stick worst are exactly the ones `Inventory.active` drops; suspension takes a word
   out of the box's queue and never said stop meeting the word.
   **The pool is the whole sayable join, not a composed subset** — every joined card that
-  both halves of a turn can say, scheduled and unseen alike, both in seed order. So a learner
-  a few words in hears a STREAM of new words rather than lapping the handful they hold, and a
-  learner with a full vocabulary hears their own words in it. Unseen words enter through
+  both halves of a turn can say, scheduled and unseen alike. So a learner a few words in hears
+  a STREAM of new words rather than lapping the handful they hold, and a learner with a full
+  vocabulary hears their own words in it. Unseen words enter through
   `Growth.isIntroducible`: a phrase whose components have not landed is not ready to be heard
   either. Hearing one does not introduce it: introduction is the first answer, and listening
   answers nothing.
-  `listeningWeight` is one ladder in STABILITY — the higher a word's stability, the lower
-  its place on the draw. A word at zero stability (just learned, or just lapsed back down)
-  leads; every `LISTENING_STABILITY_STEP_DAYS` costs a point, so the not-quite-settled
-  rotate in the middle and the consolidated ones are pushed to the bare floor — still worth
-  hearing, never what the hour is about. A **suspended** card keeps that floor however low
-  its figure: the box has already decided the leech is being pushed outward. An
-  **unscheduled** card takes the fixed `LISTENING_NEW_WEIGHT` — it has no stability to read,
-  and a first hearing is the mode's cheapest breadth; with the whole catalog on the draw,
-  new words reach the ear by number as well as by weight.
-  `ListeningRun` is the pure machine (`Start`/`Advance`/`Skip`/`Repeat`/`TogglePause`/`Close`,
-  one injected `Random`), and it holds **no `BoxState` at all** — that is what makes "listening
-  books nothing" structural rather than promised. Its `ListeningEffect` says `Play`/`Stop`
+  `listeningPriority` is one ladder in STABILITY, and the pool is DEALT down it rather than
+  drawn from it — higher means earlier, and the same box gives the same run.
+  A scheduled word starts at `LISTENING_MAX_STABILITY_PRIORITY` (6) and loses a rung per
+  `LISTENING_STABILITY_STEP_DAYS` (2.0) of stability, clamped to 1..6: just learned or just
+  lapsed leads, the not-quite-settled rotate in the middle, and the consolidated ones sit at
+  the floor — still worth hearing, never what the hour is about.
+  A **packed** card (`BoxState.enqueued`) takes `LISTENING_QUEUED_PRIORITY` (5) and every
+  other **unscheduled** one `LISTENING_NEW_PRIORITY` (4): neither has a stability to read, so
+  those figures are deal-rates rather than measurements — packing is the learner saying
+  *these words next*, and a first hearing is the mode's cheapest breadth.
+  A **suspended** card keeps its stability's rung and pays `LISTENING_SUSPENDED_PENALTY` (2)
+  down to the floor of 1, rather than being sent to the floor outright: the leech rule takes a
+  word out of the box's rotation, and this is the surface that can still reach it, so a shaky
+  leech lands at rung 3 or 4 — it comes in, it does not lead.
+  The ladder that falls out: 6 is stability 0–2 d; 5 is 2–4 d and the packed words; 4 is
+  4–6 d and every other unseen word; 3 is 6–8 d and a leech at 2–4 d; 2 is 8–10 d and a leech
+  at 4–6 d; 1 is 10 d and up.
+  **Nothing on that ladder reads a due date.** A word the box wants back is a word whose
+  stability is low, so it rises on the rungs it already has; a due term would make listening a
+  second scheduler, need a clock the run does not take, and pin the same word first every
+  run — which listening cannot resolve, since it books nothing.
+  **The pool is dealt across the run, not sorted by rung.** A plain sort would empty rung 6,
+  then rung 5, then spend the rest of the run inside a rung-4 block of every unseen word in
+  the catalog, and rungs 3, 2 and 1 would never be reached in a session at all. So the pool is
+  split into **lanes** — `(kind, priority)`, kind being scheduled / new / packed — and each
+  lane is dealt evenly across the whole run: the n-th candidate of a lane whose priority is p
+  is placed at `(n + 0.5) / p`, and everything sorts by that placement. A lane of priority 6
+  advances six times faster than one of priority 1, so the mix is the old weighted draw's
+  proportions made deterministic — every lane reaches the ear, the high ones simply reach it
+  more often. Lanes rather than shared rungs, because the two unscheduled kinds' figures are
+  rates and not measurements: three hundred unseen words must not crowd out twenty
+  mid-stability ones that happened to score the same.
+  **Within a lane the order depends on what the lane is.** New and packed words run in strict
+  catalog order (`seedIndex`, then id — `Inventory.seedOrder`'s own tiebreak): an empty box is
+  ONE lane, so a learner new to a language hears the catalog from its very first word, which
+  is what the order exists for. Packed words lead the rest of the unseen ones and are out
+  within the first handful of turns, in catalog order among themselves rather than in pack
+  order — `Growth.newCandidates` honors the queue's own order because it spends a budget
+  against it, and a run has no budget to spend. Scheduled words are hashed by card id
+  (`fnv1a64`, the hash `Inventory.dueOrder` already uses), so seed neighbors — often related
+  concepts, and a word half-learned from its neighbor is what that hash exists to prevent —
+  are not heard in the same sequence every run. No clock re-seeds it per day and none is
+  needed: every review moves a word between lanes. The whole deal is `listeningOrder`, pure and
+  private in its lane key, and it is what `ListeningPool.report` returns — nothing but the
+  ordered list crosses the ObjC boundary.
+  `ListeningRun` is the pure machine (`Start`/`Advance`/`Skip`/`Repeat`/`TogglePause`/`Close`),
+  and it holds **no `BoxState` at all** — that is what makes "listening books nothing"
+  structural rather than promised. Its `ListeningEffect` says `Play`/`Stop`
   because `Repeat` leaves the state identical and must still make the sound fire.
-  Repetition comes only after a LONG interval — a **recency ring**: the last `RECENCY_WINDOW`
-  card ids are held out of the draw, at most `pool − 1` of them, so a pool smaller than the
-  window laps instead of running dry and no word is ever said twice in a row.
+  It **walks the order it was handed and laps**: the state carries the ids played since the
+  last lap, the next turn is the first candidate not among them, and when none are left the
+  lap clears and the walk restarts at the head. So no word repeats before the whole pool has
+  lapped, a pool smaller than the run laps cleanly instead of running dry, a one-word pool
+  keeps saying its word, and a long run rotates the shaky and packed ones back through rather
+  than being a front-loaded ten minutes followed by fifty of settled words.
   `ListeningTurn` carries both forms, the article, and all three beats
   (`RECALL_GAP_HELD_MS` 1200 / `RECALL_GAP_FRESH_MS` 600, with `ECHO_GAP_MS` the fresh gap and
   `TURN_GAP_MS` the held one), so neither platform decides any of it — the recall gap is the
