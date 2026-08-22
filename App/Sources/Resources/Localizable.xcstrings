@@ -545,6 +545,22 @@
         }
       }
     },
+    "box.noAudio" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Ton für dieses Wort"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No audio for this word"
+          }
+        }
+      }
+    },
     "box.ownWords" : {
       "localizations" : {
         "de" : {
@@ -911,6 +927,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Paused"
+          }
+        }
+      }
+    },
+    "box.tapToHear" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wörter sprechen beim Antippen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Words speak when tapped"
           }
         }
       }

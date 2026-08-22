@@ -25,6 +25,13 @@
   now?" under its answer button: it puts the word on the card as text and leaves the
   question exactly as it was, so a card can never be one you are unable to answer.
 
+- **The box now says which words it cannot say.** A word with neither a
+  recording nor a device voice behind it shows a small crossed-out speaker
+  beside its name, so a silent tap reads as expected rather than as nothing
+  happening. A hint at the top of the box — "Words speak when tapped" —
+  discloses the tap itself, the same disclosure the number and country
+  reference tables already carry.
+
 ## 5.3.0 — 2026-08-22
 
 - **A review pass over the vocabulary, and a handful of words now name what they mean.**

@@ -138,6 +138,8 @@ internal object ChromeDe : Chrome {
     override val overviewPractice = "Üben"
     override val overviewStart = "Los"
     override val tapToHear = "Jede Zeile spricht beim Antippen"
+    override val boxTapToHear = "Wörter sprechen beim Antippen"
+    override val boxNoAudio = "Kein Ton für dieses Wort"
     override val numbersReference = "Wie diese Sprache zählt"
     override val numbersNotes = "Darauf kommt es an"
     override val numberSections = mapOf(

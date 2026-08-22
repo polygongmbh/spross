@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -98,11 +99,28 @@ fun BoxCardRow(model: AppModel, card: Card, pack: (() -> Unit)? = null) {
         )
         Column(Modifier.weight(1f)) {
             // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
-            Text(
-                localizedTarget(Dl.colors.articleColoredText(card.target), card.target.lang),
-                style = MaterialTheme.typography.bodyLarge,
-                maxLines = 1,
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),
+            ) {
+                Text(
+                    localizedTarget(Dl.colors.articleColoredText(card.target), card.target.lang),
+                    style = MaterialTheme.typography.bodyLarge,
+                    maxLines = 1,
+                    modifier = Modifier.weight(1f, fill = false),
+                )
+                // why: `pronounce` is nil for exactly the words neither a recording nor the
+                // device's own voice can say — the one state where the row's tap-to-speak
+                // does nothing, so it is the one that needs to say so.
+                if (pronounce == null) {
+                    Icon(
+                        SprossIcons.SpeakerOff,
+                        contentDescription = chrome.boxNoAudio,
+                        tint = Dl.colors.textSecondary,
+                        modifier = Modifier.size(SPEAKER_GLYPH),
+                    )
+                }
+            }
             Text(
                 card.source.text,
                 style = MaterialTheme.typography.bodySmall,

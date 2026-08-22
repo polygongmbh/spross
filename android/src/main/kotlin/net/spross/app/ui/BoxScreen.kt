@@ -144,6 +144,12 @@ private fun BoxBrowserScreen(
         return
     }
 
+    // The hint is only honest where something can actually be heard — a box whose language
+    // has neither a recording nor a device voice for a single word must not promise a tap
+    // that would do nothing everywhere. Remembered: it answers once per box, not per frame.
+    val anyWordCanBeHeard = remember(catalog, box.cards) {
+        box.cards.values.any { model.boxPronounceAction(it.target) != null }
+    }
     Column(Modifier.fillMaxSize().padding(horizontal = DlSpace.xl)) {
         BoxTopBar(chrome, onSearch = { searching = true }, onClose = model::closeBox)
         Text(
@@ -151,6 +157,12 @@ private fun BoxBrowserScreen(
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
+        // why: same disclosure as the number and country reference tables — said once for
+        // the page rather than as a glyph competing with every row. Withheld where not one
+        // word can be heard, so the box never promises a tap that would do nothing.
+        if (anyWordCanBeHeard) {
+            TapToHearHint(chrome, chrome.boxTapToHear)
+        }
         LazyColumn(
             state = listState,
             modifier = Modifier.fillMaxSize(),

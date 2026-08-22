@@ -157,6 +157,10 @@ interface Chrome {
     val overviewPractice: String  // the heading the picks stand under
     val overviewStart: String     // the button both pages open a run with
     val tapToHear: String         // the gesture a reference page discloses once, under its heading
+    /** The box names its rows "words", not a table's rows, so it discloses the tap in its own words. */
+    val boxTapToHear: String
+    /** Beside a word neither a recording nor the device's voice can say — the tap that does nothing. */
+    val boxNoAudio: String
     val numbersReference: String
     val numbersNotes: String
     /**

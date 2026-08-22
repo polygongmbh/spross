@@ -242,6 +242,8 @@ MAPPING = {
     'streakSpoken': 'a11y.streakInARow %@',
     'suspended': 'box.suspended',
     'tapToHear': 'reference.tapToHear',
+    'boxTapToHear': 'box.tapToHear',
+    'boxNoAudio': 'box.noAudio',
     'tomorrowFresh': 'heute.done.tomorrowFresh',
     'tomorrowPacked': 'heute.done.packed',
     'trainingSubtitle': 'trainer.subtitle',

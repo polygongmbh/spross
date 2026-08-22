@@ -188,15 +188,19 @@ struct NumberReferenceTable: View {
 /// What tells a reference page's reader that the rows sound: on a page of
 /// reading matter the content is the control, so the gesture is disclosed once
 /// for the whole page instead of by a glyph on every row. Drawn by the numbers
-/// table and the atlas, and only where the device can say the language.
+/// table, the atlas and the box, and only where the device can say the language.
 ///
 /// Silent to VoiceOver: every row already offers hearing it as an action, and a
 /// line that exists to be seen is noise when it is read out.
 struct ReferenceTapHint: View {
+    /// Defaults to the reference tables' own wording; the box names its rows
+    /// "words" rather than a table's, so it passes its own key.
+    var textKey: LocalizedStringKey = "reference.tapToHear"
+
     var body: some View {
         HStack(spacing: DL.Space.s) {
             Image(systemName: "speaker.wave.2.fill")
-            Text("reference.tapToHear")
+            Text(textKey)
         }
         .font(DL.Fonts.caption)
         .foregroundStyle(Color.dlTextSecondary)

@@ -218,9 +218,12 @@ internal val SPEAKER_GLYPH = 18.dp
  * so the CONTENT is the target and no row carries a speaker of its own — this line says so.
  * The numbers table and the atlas draw the same one (iOS `ReferenceTapHint`),
  * and only where the device can actually answer.
+ *
+ * [text] defaults to the reference pages' own wording; the box names its rows "words"
+ * rather than a table's, so it passes its own.
  */
 @Composable
-fun TapToHearHint(chrome: Chrome) {
+fun TapToHearHint(chrome: Chrome, text: String = chrome.tapToHear) {
     Row(
         // Every row below offers hearing as its own named action, so spoken this line is
         // the same thing said a second time.
@@ -235,7 +238,7 @@ fun TapToHearHint(chrome: Chrome) {
             modifier = Modifier.size(SPEAKER_GLYPH),
         )
         Text(
-            chrome.tapToHear,
+            text,
             style = MaterialTheme.typography.bodySmall,
             color = Dl.colors.textSecondary,
         )

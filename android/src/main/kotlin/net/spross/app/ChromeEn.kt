@@ -137,6 +137,8 @@ internal object ChromeEn : Chrome {
     override val overviewPractice = "Practice"
     override val overviewStart = "Start"
     override val tapToHear = "Every row speaks when tapped"
+    override val boxTapToHear = "Words speak when tapped"
+    override val boxNoAudio = "No audio for this word"
     override val numbersReference = "How this language counts"
     override val numbersNotes = "What to watch out for"
     override val numberSections = mapOf(
