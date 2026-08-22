@@ -188,10 +188,16 @@ auto-advance beats these share with it, are `design.md`'s.
   surface has none. The rule and its numbers are `../kern/docs/turns.md`.
 - **It plays with the screen locked.** That is the point of it — the mode is for the hours
   the phone is in a pocket, and one that stopped at the lock screen would be a mode for
-  staring at a phone that is already speaking. Both platforms put the current word on the
-  lock screen and take play/pause/next from it and from a headphone button, driving the same
-  reducer the on-screen buttons drive; how it is spoken, and what it does to whatever else
-  was playing, is `read-aloud.md`.
+  staring at a phone that is already speaking. Both platforms put the run on the lock screen
+  and take play/pause/next from it and from a headphone button, driving the same reducer the
+  on-screen buttons drive; how it is spoken, and what it does to whatever else was playing,
+  is `read-aloud.md`.
+  What that card SAYS is the run, not the turn: the app icon, the app and mode as the title
+  and the pair of languages under it, with the word in the air on the third line. The
+  headline is the half that holds still — a card renamed every few seconds cannot be read
+  from a pocket or a dashboard, and every player the two systems know treats a changed title
+  as a changed track. A bedtime, and only a bedtime, gives the card a progress bar: it is the
+  one thing a run that otherwise laps forever has a length of.
 
 ## Android companion
 

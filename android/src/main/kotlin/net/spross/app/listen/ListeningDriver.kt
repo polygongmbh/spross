@@ -9,6 +9,7 @@ import androidx.compose.runtime.setValue
 import kotlin.random.Random
 import net.spross.app.AppModel
 import net.spross.app.audio.Pronouncer
+import net.spross.app.ui.languageName
 import net.spross.kern.listen.LISTENING_WATCHDOG_MS
 import net.spross.kern.listen.ListeningCandidate
 import net.spross.kern.listen.ListeningEffect
@@ -160,6 +161,9 @@ class ListeningDriver(
     fun cycleTimer() {
         timerTotalMs = listeningTimerStepMs(remainingMs() ?: 0L, 1)
         deadline = System.currentTimeMillis() + timerTotalMs
+        // why: the lock screen's progress bar is the same clock the chip is, so it is
+        // redrawn on the tap rather than waiting out the word in the air.
+        publish()
     }
 
     /**
@@ -169,6 +173,7 @@ class ListeningDriver(
     fun turnOffTimer() {
         timerTotalMs = 0
         deadline = null
+        publish()
     }
 
     /** How long the bedtime has left, or null where none was set. */
@@ -209,12 +214,15 @@ class ListeningDriver(
             null
         } else {
             ListeningNowPlaying(
-                title = chrome.listenTitle,
+                title = "$SPROSS_BRAND · ${chrome.listenTitle}",
+                languages = languages(),
                 // The article is part of the word here as it is in the voice: the lock
                 // screen shows what is being said, not a citation form beside it.
                 target = turn.spokenArticle?.let { "$it ${turn.targetForm}" } ?: turn.targetForm,
-                meaning = turn.sourceForm,
                 paused = run.paused,
+                bedtime = remainingMs()?.let {
+                    ListeningBedtimeProgress(timerTotalMs - it.coerceAtLeast(0L), timerTotalMs)
+                },
                 pauseLabel = chrome.listenPause,
                 resumeLabel = chrome.listenResume,
                 skipLabel = chrome.listenSkip,
@@ -222,6 +230,12 @@ class ListeningDriver(
                 closeLabel = chrome.close,
             )
         }
+    }
+
+    /** The pair the box joins, known first — the order the mode says them in. */
+    private fun languages(): String {
+        val stamp = model.box?.joinStamp ?: return ""
+        return "${model.languageName(stamp.source)} – ${model.languageName(stamp.target)}"
     }
 
     /** One saying, and the gap that follows it once the word has actually ended. */

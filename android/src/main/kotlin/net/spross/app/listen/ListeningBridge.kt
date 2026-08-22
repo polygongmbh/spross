@@ -44,8 +44,16 @@ interface ListeningControls {
     fun close()
 }
 
+/** The app's own name, which needs no translating — it is the name on the launcher too. */
+const val SPROSS_BRAND = "Spross"
+
 /**
- * One turn as the lock screen shows it: the word, its meaning, and the words for the buttons.
+ * The run as the lock screen shows it: what the run IS, and the word in the air inside it.
+ *
+ * The headline is the part that HOLDS STILL — the app, the mode and the pair of languages —
+ * because a card that renamed itself every few seconds is a card nobody can read from a
+ * pocket, and every player the system knows treats a changed title as a changed track. The
+ * word goes on the line beneath, where a track inside a run belongs.
  *
  * The labels travel WITH the state rather than being looked up in the service, because chrome
  * is keyed to the language the learner already knows and only the model holds that. A service
@@ -53,15 +61,26 @@ interface ListeningControls {
  * beside it said everything in the profile's.
  */
 data class ListeningNowPlaying(
-    /** The mode's own name — the notification channel and the shade's small print. */
+    /** "Spross · Wörter hören" — the run's own name, and the notification channel's. */
     val title: String,
+    /** "Deutsch – Kiswahili", known first: the pair, in the order the mode says them. */
+    val languages: String,
     /** The target word with its article, exactly as the voice says it. */
     val target: String,
-    val meaning: String,
     val paused: Boolean,
+    /** The bedtime as a length played and a length to go, or null where none is set. */
+    val bedtime: ListeningBedtimeProgress?,
     val pauseLabel: String,
     val resumeLabel: String,
     val skipLabel: String,
     val repeatLabel: String,
     val closeLabel: String,
 )
+
+/**
+ * How far into its bedtime a run is — the pair a lock screen draws a progress bar from.
+ *
+ * A run without a bedtime has none: a playlist that laps for as long as it is left alone has
+ * nothing to be a fraction of, and a bar over it would be a lie.
+ */
+data class ListeningBedtimeProgress(val elapsedMs: Long, val totalMs: Long)

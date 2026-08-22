@@ -15,8 +15,9 @@
   your whole vocabulary — when you hold few words it streams the new ones, and the words you
   know well fade into the background — and a word just heard stays away for a while, so a run
   never laps the same handful. The sleep timer no
-  longer offers just 15, 30 or 60 minutes — each tap adds five from off, so any length is
-  yours, and a long press on the timer turns it back off.
+  longer offers just 15, 30 or 60 minutes — each tap adds five minutes to whatever is still
+  left, so any length is yours, and a long press on the timer turns it back off. Set one and
+  the lock screen shows how much of it has played and how much is to go.
 
 ## 5.2.0 — 2026-08-21
 

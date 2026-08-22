@@ -162,11 +162,11 @@ struct ListeningView: View {
         // and a long press behind it only completes once the finger LEAVES the
         // button's bounds — so the one gesture that reaches zero did nothing at
         // all unless you slid off the chip while holding it.
-        .onTapGesture { driver.bedtime.step(1) }
+        .onTapGesture { driver.stepBedtime(1) }
         // why: a hold is the one gesture that brings the bedtime down — every
         // tap only ever adds five minutes, so the only way to zero is a hold.
         .onLongPressGesture(minimumDuration: 0.5) {
-            driver.bedtime.turnOff()
+            driver.turnOffBedtime()
         } onPressingChanged: { pressing in
             timerHeld = pressing
         }
@@ -179,13 +179,13 @@ struct ListeningView: View {
         .accessibilityValue(timerValue)
         // A view is not a Button, so its activation is spelled out: what a
         // VoiceOver double tap does is the same five minutes a tap does.
-        .accessibilityAction { driver.bedtime.step(1) }
+        .accessibilityAction { driver.stepBedtime(1) }
         // The picker sighted users get by cycling: up and down walk kern's
         // lengths, and each one is read out as it is reached.
         .accessibilityAdjustableAction { direction in
             switch direction {
-            case .increment: driver.bedtime.step(1)
-            case .decrement: driver.bedtime.step(-1)
+            case .increment: driver.stepBedtime(1)
+            case .decrement: driver.stepBedtime(-1)
             @unknown default: break
             }
         }

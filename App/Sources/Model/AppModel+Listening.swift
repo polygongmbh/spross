@@ -30,6 +30,10 @@ final class ListeningDriver {
     /// holds stays well under it.
     private static let watchdog: Duration = .milliseconds(LISTENING_WATCHDOG_MS)
 
+    /// The app's own name, which needs no translating — it is the name on the
+    /// home screen in every language.
+    private static let brand = "Spross"
+
     private(set) var state: ListeningRunState
     /// The sleep timer, whole (`ListeningBedtime`) — the chip reads it, the run
     /// only asks it how loud to play and when to stop.
@@ -60,7 +64,7 @@ final class ListeningDriver {
     /// Takes the audio over, hangs the lock-screen controls, and starts.
     func open() {
         AudioSession.useListening()
-        NowPlaying.shared.take(commands: .init(
+        NowPlaying.shared.take(run: nowPlayingRun, commands: .init(
             toggle: { [weak self] in self?.dispatch(ListeningIntent.TogglePause.shared) },
             next: { [weak self] in self?.dispatch(ListeningIntent.Skip.shared) },
             again: { [weak self] in self?.dispatch(ListeningIntent.Repeat.shared) }
@@ -119,6 +123,33 @@ final class ListeningDriver {
     func skip() { dispatch(ListeningIntent.Skip.shared) }
     func again() { dispatch(ListeningIntent.Repeat.shared) }
 
+    /// A bedtime was set, extended or cleared: the lock screen's progress bar
+    /// is the same clock the chip is, so it is redrawn on the tap rather than
+    /// waiting out the turn in the air.
+    func stepBedtime(_ delta: Int) {
+        bedtime.step(delta)
+        publish()
+    }
+
+    func turnOffBedtime() {
+        bedtime.turnOff()
+        publish()
+    }
+
+    /// What the run is CALLED, for the whole of it: the app and the mode over
+    /// the pair of languages the box joins, in the language the learner already
+    /// knows — the same language every other piece of chrome is in.
+    private var nowPlayingRun: NowPlaying.Run {
+        let locale = model.knownLocale
+        let mode = DLChrome.string("listen.title", locale: locale)
+        let known = LanguageNames.display(model.sourceLanguage, locale: locale, catalog: model.catalog)
+        let learning = model.targetLanguage.map {
+            LanguageNames.display($0, locale: locale, catalog: model.catalog)
+        }
+        return .init(title: "\(Self.brand) · \(mode)",
+                     languages: learning.map { "\(known) – \($0)" } ?? known)
+    }
+
     /// The bedtime arrived: the run is over and the screen leaves with it.
     private func expire() {
         close()
@@ -133,11 +164,19 @@ final class ListeningDriver {
         // why: the EFFECTS, never a diff of the turn — Repeat leaves the state
         // identical and its only observable is the Play it asks for.
         for effect in reduction.effects { apply(effect) }
-        NowPlaying.shared.show(turn: state.turn, paused: state.paused)
+        publish()
         // An empty pool opens on silence rather than on a card with nothing to
         // say; the Heute card gates on the same report, so this is a closed
         // door and not a screen.
         if state.active, state.turn == nil { closed = true }
+    }
+
+    /// The card, as it stands right now. Every turn redraws it — which is also
+    /// what keeps the bedtime's progress bar honest without a clock of its own:
+    /// the system runs the bar on from wherever it was last told, and it is
+    /// told again a few seconds later.
+    private func publish() {
+        NowPlaying.shared.show(turn: state.turn, paused: state.paused, bedtime: bedtime.progress)
     }
 
     private func apply(_ effect: ListeningEffect) {

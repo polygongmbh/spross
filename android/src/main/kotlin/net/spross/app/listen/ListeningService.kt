@@ -8,12 +8,15 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ServiceInfo
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.media.MediaMetadata
 import android.media.session.MediaSession
 import android.media.session.PlaybackState
 import android.os.Build
 import android.os.IBinder
 import android.os.PowerManager
+import androidx.core.graphics.createBitmap
 import net.spross.app.R
 import net.spross.app.SprossActivity
 
@@ -37,11 +40,12 @@ import net.spross.app.SprossActivity
 class ListeningService : Service() {
 
     private var session: MediaSession? = null
+    private var icon: Bitmap? = null
     private var wakeLock: PowerManager.WakeLock? = null
     private var foreground = false
 
-    /** The mode's name in the learner's language, kept for the channel a null state leaves. */
-    private var title = BRAND
+    /** The run's name in the learner's language, kept for the channel a null state leaves. */
+    private var title = SPROSS_BRAND
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -103,6 +107,7 @@ class ListeningService : Service() {
         session?.isActive = false
         session?.release()
         session = null
+        icon = null
         super.onDestroy()
     }
 
@@ -155,11 +160,17 @@ class ListeningService : Service() {
         val session = session ?: return
         session.setMetadata(
             MediaMetadata.Builder()
-                // The word is the title and its meaning the artist: that is the pair every
-                // lock screen already knows how to lay out, largest line first.
-                .putString(MediaMetadata.METADATA_KEY_TITLE, now?.target.orEmpty())
-                .putString(MediaMetadata.METADATA_KEY_ARTIST, now?.meaning.orEmpty())
-                .putString(MediaMetadata.METADATA_KEY_ALBUM, now?.title ?: title)
+                // The RUN is the title and its languages the artist: that is the pair every
+                // lock screen lays out largest line first, and it is the pair that holds
+                // still. The word in the air is the track inside it.
+                .putString(MediaMetadata.METADATA_KEY_TITLE, now?.title ?: title)
+                .putString(MediaMetadata.METADATA_KEY_ARTIST, now?.languages.orEmpty())
+                .putString(MediaMetadata.METADATA_KEY_ALBUM, now?.target.orEmpty())
+                .putBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART, artwork())
+                // why: a bedtime is the one thing this run has a LENGTH of, so it is the one
+                // thing worth a bar; -1 is how a session says it has no duration at all,
+                // which is the truth of a playlist that laps until it is stopped.
+                .putLong(MediaMetadata.METADATA_KEY_DURATION, now?.bedtime?.totalMs ?: -1L)
                 .build(),
         )
         session.setPlaybackState(
@@ -175,21 +186,40 @@ class ListeningService : Service() {
                         now.paused -> PlaybackState.STATE_PAUSED
                         else -> PlaybackState.STATE_PLAYING
                     },
-                    // why: a playlist of spoken words has no playhead to scrub — the run
-                    // holds beats, not a position, so none is claimed.
-                    PlaybackState.PLAYBACK_POSITION_UNKNOWN,
+                    // why: the playhead is the BEDTIME's, never the playlist's — a run
+                    // holds beats and no position, so without one none is claimed. The
+                    // system runs the bar on from here, and every turn tells it again.
+                    now?.bedtime?.elapsedMs ?: PlaybackState.PLAYBACK_POSITION_UNKNOWN,
                     1f,
                 )
                 .build(),
         )
     }
 
+    /**
+     * The launcher icon, as the square the lock screen and the shade put beside the words —
+     * the only artwork a run over the learner's OWN words could have, since there is no cover
+     * for a playlist the box composed. Rasterized once: the card is redrawn on every word.
+     */
+    private fun artwork(): Bitmap? {
+        icon?.let { return it }
+        val drawable = getDrawable(R.mipmap.ic_launcher) ?: return null
+        val size = resources.getDimensionPixelSize(android.R.dimen.notification_large_icon_width)
+            .coerceAtLeast(ART_SIZE_PX)
+        val bitmap = createBitmap(size, size)
+        drawable.setBounds(0, 0, size, size)
+        drawable.draw(Canvas(bitmap))
+        icon = bitmap
+        return bitmap
+    }
+
     private fun notification(now: ListeningNowPlaying?): Notification {
         val builder = Notification.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification_sprout)
-            .setContentTitle(now?.target ?: title)
-            .setContentText(now?.meaning.orEmpty())
-            .setSubText(now?.title ?: title)
+            .setLargeIcon(artwork())
+            .setContentTitle(now?.title ?: title)
+            .setContentText(now?.languages.orEmpty())
+            .setSubText(now?.target.orEmpty())
             .setContentIntent(openApp())
             .setDeleteIntent(command(ACTION_CLOSE))
             .setVisibility(Notification.VISIBILITY_PUBLIC)
@@ -249,8 +279,9 @@ class ListeningService : Service() {
         private const val CHANNEL_ID = "listening"
         private const val NOTIFICATION_ID = 1
 
-        /** The brand name, which needs no translating — the manifest labels the widget so too. */
-        private const val BRAND = "Spross"
+        /** A floor under the platform's own large-icon size, so the lock screen's bigger
+         *  artwork slot never gets a stretched thumbnail. */
+        private const val ART_SIZE_PX = 512
 
         private const val ACTION_TOGGLE = "net.spross.app.listen.TOGGLE"
         private const val ACTION_SKIP = "net.spross.app.listen.SKIP"
