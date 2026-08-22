@@ -1,8 +1,8 @@
 {
- "title": "The public office",
+ "title": "The government office",
  "subtitle": "Step by step through the paperwork.",
  "words": {
-  "office": { "text": "public office" },
+  "office": { "text": "government office" },
   "form": { "text": "form" },
   "application": { "text": "application" },
   "id-card": { "text": "ID card", "variants": ["identity card"] },
