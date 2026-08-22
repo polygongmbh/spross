@@ -19,7 +19,7 @@
   "want": { "text": "voli" },
   "find": { "text": "trovi" },
   "search": { "text": "serĉi" },
-  "get": {
+  "receive": {
    "text": "ricevi",
    "notes": { "de": "ricevi = bekommen, geschickt bekommen · akiri = sich etwas beschaffen." }
   },

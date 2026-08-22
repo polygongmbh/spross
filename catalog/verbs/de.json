@@ -16,7 +16,7 @@
   "want": { "text": "wollen", "variants": ["möchten"] },
   "find": { "text": "finden" },
   "search": { "text": "suchen" },
-  "get": { "text": "bekommen" },
+  "receive": { "text": "bekommen" },
   "look": { "text": "schauen" },
   "open": { "text": "öffnen" },
   "close": { "text": "schließen" },

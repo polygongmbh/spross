@@ -35,7 +35,7 @@
   "want": { "text": "volere", "notes": { "de": "höflicher im Konditional: vorrei = ich hätte gern." } },
   "find": { "text": "trovare" },
   "search": { "text": "cercare", "notes": { "de": "cercare steht ohne Präposition: cerco un albergo." } },
-  "get": { "text": "ricevere", "synonyms": ["ottenere"] },
+  "receive": { "text": "ricevere", "synonyms": ["ottenere"] },
   "look": { "text": "guardare", "notes": { "de": "guardare = bewusst anschauen: guardare la TV." } },
   "open": { "text": "aprire" },
   "close": { "text": "chiudere" },

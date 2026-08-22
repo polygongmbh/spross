@@ -13,7 +13,7 @@
  { "slug": "want", "kind": "verb", "emoji": "🙋" },
  { "slug": "find", "kind": "verb", "emoji": "🎯" },
  { "slug": "search", "kind": "verb", "emoji": "🔍" },
- { "slug": "get", "kind": "verb", "emoji": "📦" },
+ { "slug": "receive", "kind": "verb", "emoji": "📦" },
  { "slug": "look", "kind": "verb", "emoji": "🧐" },
  { "slug": "open", "kind": "verb", "emoji": "📂" },
  { "slug": "close", "kind": "verb", "emoji": "📁" },

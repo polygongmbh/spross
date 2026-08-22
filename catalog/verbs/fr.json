@@ -28,7 +28,7 @@
   },
   "find": { "text": "trouver" },
   "search": { "text": "chercher", "notes": { "de": "chercher steht ohne Präposition: je cherche un hôtel." } },
-  "get": { "text": "recevoir", "synonyms": ["obtenir"] },
+  "receive": { "text": "recevoir", "synonyms": ["obtenir"] },
   "look": { "text": "regarder", "notes": { "de": "regarder = bewusst hinschauen: regarder la télé." } },
   "open": { "text": "ouvrir" },
   "close": { "text": "fermer" },

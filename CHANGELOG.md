@@ -3,7 +3,7 @@
 ## Unreleased
 
 - **Ten more of the verbs a day actually runs on.** Wanting, finding, searching, getting,
-  looking, opening, closing, stopping, standing and sending join the core verbs, and one
+  looking, receiving, opening, closing, stopping, standing and sending join the core verbs, and one
   quality — whether a thing is to be had at all — joins the everyday adjectives. Swahili
   gave up the two hallway cards that were only *close* and *open* wearing a key, so those
   words now stand where they belong and their recordings speak for the right card; `kuacha`

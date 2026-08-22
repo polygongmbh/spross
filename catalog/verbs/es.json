@@ -31,7 +31,7 @@
   "want": { "text": "querer", "notes": { "de": "querer heißt wollen und lieben: Te quiero." } },
   "find": { "text": "encontrar" },
   "search": { "text": "buscar", "notes": { "de": "buscar steht ohne Präposition: busco un hotel." } },
-  "get": { "text": "recibir", "synonyms": ["conseguir"] },
+  "receive": { "text": "recibir", "synonyms": ["conseguir"] },
   "look": { "text": "mirar", "notes": { "de": "mirar = den Blick auf etwas richten: mira aquí." } },
   "open": { "text": "abrir" },
   "close": { "text": "cerrar" },

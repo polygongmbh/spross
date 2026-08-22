@@ -16,7 +16,7 @@
   "want": { "text": "to want" },
   "find": { "text": "to find" },
   "search": { "text": "to search", "synonyms": ["to look for"] },
-  "get": { "text": "to get" },
+  "receive": { "text": "to receive", "variants": ["to get"] },
   "look": { "text": "to look" },
   "open": { "text": "to open" },
   "close": { "text": "to close" },

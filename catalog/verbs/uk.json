@@ -19,7 +19,7 @@
   "want": { "text": "хотіти" },
   "find": { "text": "знаходити" },
   "search": { "text": "шукати" },
-  "get": { "text": "отримувати" },
+  "receive": { "text": "отримувати" },
   "look": { "text": "дивитися", "notes": { "de": "дивитися = hinschauen, zusehen: дивитися телевізор." } },
   "open": { "text": "відкривати" },
   "close": { "text": "закривати" },
