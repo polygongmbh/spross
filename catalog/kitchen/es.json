@@ -40,7 +40,7 @@
   "reheat": { "text": "calentar", "synonyms": ["recalentar"] },
   "stir": { "text": "remover", "variants": ["revolver"] },
   "take-out-trash": { "text": "sacar la basura" },
-  "careful": { "text": "cuidado", "variants": ["ojo"] },
+  "caution": { "text": "cuidado", "variants": ["ojo"] },
   "cup": { "text": "taza", "grammar": { "gender": "la" } },
   "bowl": { "text": "cuenco", "variants": ["bol", "tazón"], "grammar": { "gender": "el" } },
   "basket": { "text": "cesta", "variants": ["cesto", "canasta"], "grammar": { "gender": "la" } },

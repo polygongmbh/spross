@@ -21,7 +21,7 @@
   "reheat": { "text": "aufwärmen" },
   "stir": { "text": "umrühren" },
   "take-out-trash": { "text": "Müll rausbringen" },
-  "careful": { "text": "Vorsicht" },
+  "caution": { "text": "Vorsicht" },
   "cup": { "text": "Tasse", "grammar": { "gender": "die", "plural": "-n" } },
   "bowl": { "text": "Schüssel", "grammar": { "gender": "die", "plural": "-n" } },
   "basket": { "text": "Korb", "grammar": { "gender": "der", "plural": "Körbe" } },

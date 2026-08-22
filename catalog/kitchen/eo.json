@@ -32,7 +32,7 @@
   "reheat": { "text": "revarmigi" },
   "stir": { "text": "kirli" },
   "take-out-trash": { "text": "elporti la rubon", "variants": ["elporti la rubaĵon"] },
-  "careful": { "text": "atentu", "variants": ["gardu vin"] },
+  "caution": { "text": "atentu", "variants": ["gardu vin"] },
   "cup": { "text": "taso" },
   "bowl": { "text": "bovlo" },
   "basket": { "text": "korbo" },

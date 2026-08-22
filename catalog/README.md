@@ -108,7 +108,7 @@ which is how `basics` opens on `Hallo!` rather than on a noun:
 ```json
 [ { "slug": "fridge",  "kind": "noun", "emoji": "🧊" },
   { "slug": "cook",    "kind": "verb", "emoji": "🧑‍🍳" },
-  { "slug": "careful", "kind": "adjective", "emoji": "⚠️" },
+  { "slug": "caution", "kind": "adjective", "emoji": "⚠️" },
   { "slug": "teacher-f", "kind": "noun", "emoji": "👩‍🏫", "feminineOf": "teacher" },
   { "slug": "the-fridge-is-empty", "kind": "phrase", "emoji": "🧊",
     "components": ["fridge"] } ]

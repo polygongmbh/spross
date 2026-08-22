@@ -21,7 +21,7 @@
   "reheat": { "text": "to reheat" },
   "stir": { "text": "to stir" },
   "take-out-trash": { "text": "to take out the trash" },
-  "careful": { "text": "careful" },
+  "caution": { "text": "caution", "variants": ["careful"] },
   "cup": { "text": "cup" },
   "bowl": { "text": "bowl" },
   "basket": { "text": "basket" },

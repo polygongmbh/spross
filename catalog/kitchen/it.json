@@ -44,7 +44,7 @@
    "text": "portare fuori la spazzatura",
    "variants": ["portare fuori l'immondizia", "buttare la spazzatura"]
   },
-  "careful": { "text": "attenzione" },
+  "caution": { "text": "attenzione" },
   "cup": { "text": "tazza", "grammar": { "gender": "la" } },
   "bowl": { "text": "ciotola", "variants": ["scodella"], "grammar": { "gender": "la" } },
   "basket": { "text": "cesto", "variants": ["cesta"], "grammar": { "gender": "il" } },

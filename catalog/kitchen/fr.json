@@ -50,7 +50,7 @@
    "variants": ["sortir les poubelles", "descendre la poubelle"],
    "notes": { "de": "Man bringt die Tonne raus, nicht den Müll: sortir la poubelle." }
   },
-  "careful": { "text": "attention" },
+  "caution": { "text": "attention" },
   "cup": { "text": "tasse", "grammar": { "gender": "la" } },
   "bowl": { "text": "bol", "grammar": { "gender": "le" } },
   "basket": { "text": "panier", "variants": ["corbeille"], "grammar": { "gender": "le" } },

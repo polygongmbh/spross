@@ -1172,19 +1172,6 @@
       "snr": 39.1,
       "source": "Uk-машина.ogg"
     },
-    "careful": {
-      "author": "Галя Раптова, Nicolas Vion",
-      "file": "careful.mp3",
-      "gain": -1.0,
-      "gainPhone": 0.7,
-      "lead": 216,
-      "license": "CC BY 3.0 us",
-      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/us/",
-      "matches": "обережно",
-      "sha256": "953add143ca9a82bcc6ecbf4693372060cf9a2bb37661eaade5508b5f4251c92",
-      "snr": 42.9,
-      "source": "Uk-обережно.ogg"
-    },
     "carpet": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "carpet.mp3",
@@ -1222,6 +1209,19 @@
       "sha256": "98a5c1ca973a9057e8466e5a1531e055d01560a204ac3589f11926ea68d56f6a",
       "snr": 42.8,
       "source": "Uk-кіт.ogg"
+    },
+    "caution": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "caution.mp3",
+      "gain": -1.0,
+      "gainPhone": 0.7,
+      "lead": 216,
+      "license": "CC BY 3.0 us",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+      "matches": "обережно",
+      "sha256": "953add143ca9a82bcc6ecbf4693372060cf9a2bb37661eaade5508b5f4251c92",
+      "snr": 42.9,
+      "source": "Uk-обережно.ogg"
     },
     "certificate": {
       "author": "Галя Раптова, Nicolas Vion",

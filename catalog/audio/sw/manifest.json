@@ -816,19 +816,6 @@
       "snr": 48.9,
       "source": "Sw-ke-gari.flac"
     },
-    "careful": {
-      "author": "Waithera Were",
-      "file": "careful.mp3",
-      "gain": -6.0,
-      "gainPhone": -12.9,
-      "lead": 41,
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "matches": "angalia",
-      "sha256": "7c114a07771332afa5736be82ebce408ba50e2f4d99b4747214192af6b1cbec1",
-      "snr": 57.1,
-      "source": "Sw-ke-angalia.flac"
-    },
     "carpet": {
       "author": "Waithera Were",
       "file": "carpet.mp3",
@@ -867,6 +854,19 @@
       "sha256": "e01a768f06973ecf92f071cd2b153b9c9dde89e6959a2217a85d799f24450838",
       "snr": 55.8,
       "source": "Sw-ke-paka.flac"
+    },
+    "caution": {
+      "author": "Waithera Were",
+      "file": "caution.mp3",
+      "gain": -6.0,
+      "gainPhone": -12.9,
+      "lead": 41,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "angalia",
+      "sha256": "7c114a07771332afa5736be82ebce408ba50e2f4d99b4747214192af6b1cbec1",
+      "snr": 57.1,
+      "source": "Sw-ke-angalia.flac"
     },
     "certificate": {
       "author": "Waithera Were",

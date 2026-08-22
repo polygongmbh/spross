@@ -21,7 +21,7 @@
   "reheat": { "text": "kupasha moto" },
   "stir": { "text": "kukoroga" },
   "take-out-trash": { "text": "kutupa taka" },
-  "careful": {
+  "caution": {
    "text": "tahadhari",
    "variants": ["angalia"],
    "notes": {

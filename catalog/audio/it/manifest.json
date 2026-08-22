@@ -913,19 +913,6 @@
       "snr": 102.2,
       "source": "LL-Q652 (ita)-LangPao-macchina.wav"
     },
-    "careful": {
-      "author": "XANA000",
-      "file": "careful.mp3",
-      "gain": 4.8,
-      "gainPhone": 6.5,
-      "lead": 190,
-      "license": "CC0",
-      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "matches": "attenzione",
-      "sha256": "1cc360d47a785b9c31fab2f53fe385099a3d728bf45aa1ae5d081976406127f4",
-      "snr": 78.2,
-      "source": "LL-Q652 (ita)-XANA000-attenzione.wav"
-    },
     "carpet": {
       "author": "LangPao",
       "file": "carpet.mp3",
@@ -964,6 +951,19 @@
       "sha256": "8f3d6b2b3c81c330f89e19add89235536bbcba5c1bbae3237e015fa704bef37d",
       "snr": 58.0,
       "source": "LL-Q652 (ita)-XANA000-gatto.wav"
+    },
+    "caution": {
+      "author": "XANA000",
+      "file": "caution.mp3",
+      "gain": 4.8,
+      "gainPhone": 6.5,
+      "lead": 190,
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "matches": "attenzione",
+      "sha256": "1cc360d47a785b9c31fab2f53fe385099a3d728bf45aa1ae5d081976406127f4",
+      "snr": 78.2,
+      "source": "LL-Q652 (ita)-XANA000-attenzione.wav"
     },
     "certificate": {
       "author": "LangPao",

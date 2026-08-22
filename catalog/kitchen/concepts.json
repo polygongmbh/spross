@@ -18,7 +18,7 @@
  { "slug": "reheat", "kind": "verb", "emoji": "♨️" },
  { "slug": "stir", "kind": "verb", "emoji": "🌀" },
  { "slug": "take-out-trash", "kind": "verb", "emoji": "🗑️" },
- { "slug": "careful", "kind": "adjective", "emoji": "⚠️" },
+ { "slug": "caution", "kind": "adjective", "emoji": "⚠️" },
  { "slug": "cup", "kind": "noun", "emoji": "🍵" },
  { "slug": "bowl", "kind": "noun", "emoji": "🥣" },
  { "slug": "basket", "kind": "noun", "emoji": "🧺" },
@@ -27,7 +27,7 @@
   "slug": "the-knife-is-sharp",
   "kind": "phrase",
   "emoji": "🔪",
-  "components": ["knife", "careful"]
+  "components": ["knife", "caution"]
  },
  { "slug": "this-is-very-tasty", "kind": "phrase", "emoji": "😋", "components": [] },
  { "slug": "are-you-cooking-rice-today", "kind": "phrase", "emoji": "🍚", "components": ["cook"] },
@@ -46,5 +46,5 @@
  { "slug": "the-fridge-is-empty", "kind": "phrase", "emoji": "🧊", "components": ["fridge"] },
  { "slug": "can-you-set-the-table", "kind": "phrase", "emoji": "🍽️", "components": [] },
  { "slug": "the-water-is-boiling-hot", "kind": "phrase", "emoji": "🔥", "components": ["cook"] },
- { "slug": "careful-very-hot", "kind": "phrase", "emoji": "🥵", "components": ["careful"] }
+ { "slug": "careful-very-hot", "kind": "phrase", "emoji": "🥵", "components": ["caution"] }
 ]
