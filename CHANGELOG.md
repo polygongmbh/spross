@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.3.0 — 2026-08-22
+
 - **A review pass over the vocabulary, and a handful of words now name what they mean.**
   German asks for a `Reisepass` rather than a bare `Pass`, the English office is the
   government one you take a number in, the Italian school break is `l'intervallo` and its
