@@ -133,13 +133,14 @@ fun listeningGainDb(msRemaining: Long, totalMs: Long): Double {
 
 
 /**
- * A word the playlist may say, plus the two things about it the priority reads that a [Card]
+ * A word the playlist may say, plus the facts about it the priority reads that a [Card]
  * cannot carry.
  *
  * [stability] is FSRS's own figure in days, read from `CardScheduling` and never re-derived —
  * the whole priority ladder is a function of it. [suspended] and [scheduled] are the two facts
  * that decide whether that figure may be believed at all: an unscheduled card has no history,
  * and a suspended one's history has already been acted on (see [listeningPriority]).
+ * [queued] is the learner's own say, which no schedule carries.
  */
 data class ListeningCandidate(
     val card: Card,
@@ -148,6 +149,12 @@ data class ListeningCandidate(
     val suspended: Boolean,
     /** Whether the card carries a schedule — i.e. whether the learner has ever answered it. */
     val scheduled: Boolean,
+    /**
+     * Whether the learner PACKED this word (`BoxState.enqueued`) — *these words next*, said
+     * before the box got to them. Only ever true of an unscheduled word: packing is answered
+     * by introduction, which dequeues.
+     */
+    val queued: Boolean,
 )
 
 /**
@@ -157,11 +164,29 @@ data class ListeningCandidate(
  */
 const val LISTENING_NEW_PRIORITY: Int = 4
 
+/**
+ * Where a PACKED word stands — one rung above the rest of the unseen ones.
+ *
+ * Packing is the learner saying *these words next*, and every other surface honors it
+ * (`Growth.newCandidates` leads with it, the widget gives it its first tier). One rung is the
+ * whole of the ask: it puts the packed words inside the opening turns without letting them
+ * lead a word that is actively falling out, which is what the hour is for.
+ */
+const val LISTENING_QUEUED_PRIORITY: Int = 5
+
 /** The top of the stability ladder — a word at about zero stability (just learned, just lapsed). */
-const val LISTENING_MAX_STABILITY_PRIORITY: Int = 5
+const val LISTENING_MAX_STABILITY_PRIORITY: Int = 6
 
 /** Days of stability a priority point costs — the step of the ladder. */
 const val LISTENING_STABILITY_STEP_DAYS: Double = 2.0
+
+/**
+ * What being suspended costs a word on the ladder — a toll, not a floor.
+ *
+ * Two rungs: enough that a leech does not lead the hour, small enough that a shaky one still
+ * comes in early. See [listeningPriority] for why a leech is not sent to the back at all.
+ */
+const val LISTENING_SUSPENDED_PENALTY: Int = 2
 
 /**
  * Where a candidate stands on the listening draw, as one ladder in STABILITY — the higher a
@@ -172,17 +197,22 @@ const val LISTENING_STABILITY_STEP_DAYS: Double = 2.0
  * the not-quite-settled rotate in the middle and the consolidated ones are pushed to the
  * end — at the bare floor, still worth hearing, never what the hour is about.
  *
- * An UNSCHEDULED word has no stability to read, so it takes the fixed [LISTENING_NEW_PRIORITY]
- * instead: a first hearing is the mode's cheapest breadth, and a new word is a focus tier on
- * its own. A SUSPENDED word keeps the bare floor whatever its figure — the box has already
- * decided that leech is being pushed outward, and an hour spent on it is not what listening
- * is for.
+ * An UNSCHEDULED word has no stability to read, so its rung is set: [LISTENING_NEW_PRIORITY],
+ * or [LISTENING_QUEUED_PRIORITY] where the learner packed it.
+ *
+ * A SUSPENDED word keeps the rung its stability earned, less [LISTENING_SUSPENDED_PENALTY].
+ * A hard floor would contradict `ListeningPool`, which puts leeches in the pool precisely
+ * because they are what an hour of listening is FOR: the leech rule takes a word out of the
+ * box's rotation, and this is the surface that can still reach it. So a shaky leech lands at
+ * rung 3 or 4 — it comes in, it does not lead.
  */
 fun listeningPriority(candidate: ListeningCandidate): Int {
-    if (candidate.suspended) return 1
-    if (!candidate.scheduled) return LISTENING_NEW_PRIORITY
-    return (LISTENING_MAX_STABILITY_PRIORITY - (candidate.stability / LISTENING_STABILITY_STEP_DAYS).toInt())
-        .coerceIn(1, LISTENING_MAX_STABILITY_PRIORITY)
+    if (!candidate.scheduled) {
+        return if (candidate.queued) LISTENING_QUEUED_PRIORITY else LISTENING_NEW_PRIORITY
+    }
+    val rung = LISTENING_MAX_STABILITY_PRIORITY - (candidate.stability / LISTENING_STABILITY_STEP_DAYS).toInt()
+    val tolled = if (candidate.suspended) rung - LISTENING_SUSPENDED_PENALTY else rung
+    return tolled.coerceIn(1, LISTENING_MAX_STABILITY_PRIORITY)
 }
 
 /**

@@ -12,11 +12,13 @@ class ListeningPriorityTests {
         stability: Double,
         suspended: Boolean,
         scheduled: Boolean,
+        queued: Boolean = false,
     ): ListeningCandidate = ListeningCandidate(
         card = Box.word(1),
         stability = stability,
         suspended = suspended,
         scheduled = scheduled,
+        queued = queued,
     )
 
     /**
@@ -38,24 +40,42 @@ class ListeningPriorityTests {
      */
     @Test
     fun higherStabilityMeansLowerPriority() {
-        assertEquals(5, listeningPriority(candidate(0.0, suspended = false, scheduled = true)))
-        assertEquals(4, listeningPriority(candidate(2.0, suspended = false, scheduled = true)))
-        assertEquals(3, listeningPriority(candidate(4.0, suspended = false, scheduled = true)))
-        assertEquals(2, listeningPriority(candidate(6.0, suspended = false, scheduled = true)))
+        assertEquals(6, listeningPriority(candidate(0.0, suspended = false, scheduled = true)))
+        assertEquals(5, listeningPriority(candidate(2.0, suspended = false, scheduled = true)))
+        assertEquals(4, listeningPriority(candidate(4.0, suspended = false, scheduled = true)))
+        assertEquals(3, listeningPriority(candidate(6.0, suspended = false, scheduled = true)))
+        assertEquals(2, listeningPriority(candidate(8.0, suspended = false, scheduled = true)))
         // The floor, however settled: ten days or a hundred are the same rung.
-        assertEquals(1, listeningPriority(candidate(8.0, suspended = false, scheduled = true)))
+        assertEquals(1, listeningPriority(candidate(10.0, suspended = false, scheduled = true)))
         assertEquals(1, listeningPriority(candidate(40.0, suspended = false, scheduled = true)))
     }
 
     /**
-     * RULE: a suspended word keeps the bare floor however low its stability.
-     * WHY: the leech rule suspends at two lapses, so a suspended card is exactly the sort the
-     * ladder would otherwise put at the top — but the box has already decided that word is
-     * being pushed outward. It stays worth hearing; it is not what the hour is for.
+     * RULE: a suspended word keeps its stability's rung less the toll — it is NOT sent to the
+     * floor, and a shaky leech still comes in early.
+     * WHY: the pool holds leeches precisely because they are what an hour of listening is for;
+     * the leech rule takes a word out of the box's rotation and this is the surface that can
+     * still reach it. Two rungs are enough that it does not lead the hour.
      */
     @Test
-    fun aSuspendedWordEarnsNoBoost() {
-        assertEquals(1, listeningPriority(candidate(0.0, suspended = true, scheduled = true)))
+    fun aSuspendedWordPaysATollRatherThanTakingTheFloor() {
+        val shaky = listeningPriority(candidate(0.0, suspended = true, scheduled = true))
+        assertEquals(LISTENING_MAX_STABILITY_PRIORITY - LISTENING_SUSPENDED_PENALTY, shaky)
+        assertTrue(shaky > 1, "a shaky leech is not at the floor")
+        assertEquals(3, listeningPriority(candidate(2.0, suspended = true, scheduled = true)))
+        // Nothing leads a suspended word past a word of the same stability that is not one.
+        assertTrue(shaky < listeningPriority(candidate(0.0, suspended = false, scheduled = true)))
+    }
+
+    /**
+     * RULE: a settled leech still bottoms out at the floor.
+     * WHY: the toll is on top of the stability ladder, not instead of it — a word that both
+     * sat well and was suspended has no claim on the hour, and the floor keeps it audible
+     * without making it a subject.
+     */
+    @Test
+    fun aSettledLeechStillBottomsOut() {
+        assertEquals(1, listeningPriority(candidate(30.0, suspended = true, scheduled = true)))
     }
 
     /**
@@ -66,7 +86,26 @@ class ListeningPriorityTests {
      */
     @Test
     fun anUnseenWordTakesTheNewPriority() {
-        assertEquals(LISTENING_NEW_PRIORITY, listeningPriority(candidate(0.0, suspended = false, scheduled = false)))
+        assertEquals(
+            LISTENING_NEW_PRIORITY,
+            listeningPriority(candidate(0.0, suspended = false, scheduled = false)),
+        )
+    }
+
+    /**
+     * RULE: a packed word outranks a plain unseen one, and is outranked by a very shaky one.
+     * WHY: packing is the learner saying *these words next*, which every other surface honors,
+     * so the ear must honor it too — but one rung is the whole of the ask. A word that is
+     * actively falling out of the box still leads, because that is what the hour is for.
+     */
+    @Test
+    fun aPackedWordLeadsTheOtherUnseenOnesAndTrailsAShakyOne() {
+        val packed = listeningPriority(candidate(0.0, suspended = false, scheduled = false, queued = true))
+        val unseen = listeningPriority(candidate(0.0, suspended = false, scheduled = false))
+        val shaky = listeningPriority(candidate(0.0, suspended = false, scheduled = true))
+
+        assertEquals(LISTENING_QUEUED_PRIORITY, packed)
+        assertTrue(shaky > packed && packed > unseen)
     }
 
     /**

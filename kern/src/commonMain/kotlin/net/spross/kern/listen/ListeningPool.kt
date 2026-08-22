@@ -80,11 +80,18 @@ object ListeningPool {
                 stability = scheduling.memory?.stability ?: 0.0,
                 suspended = scheduling.suspended,
                 scheduled = true,
+                // Introduction dequeues (`Answer.kt`), so a scheduled card is never packed.
+                queued = false,
             )
         }
+        val packed = Growth.enqueuedEligible(box).toSet()
         val unseen = sayable
             .filter { box.scheduling[it.id] == null && Growth.isIntroducible(box, it) }
-            .map { ListeningCandidate(it, stability = 0.0, suspended = false, scheduled = false) }
+            .map {
+                ListeningCandidate(
+                    it, stability = 0.0, suspended = false, scheduled = false, queued = it.id in packed,
+                )
+            }
         return Report(candidates = scheduled + unseen)
     }
 
