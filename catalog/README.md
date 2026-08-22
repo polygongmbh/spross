@@ -680,6 +680,17 @@ words; `take-the-prescription-to-the-pharmacy` reached nine and was cut.
 so the second phrase only bought a warm feeling.
 Redundancy is the usual symptom: when two entries serve one situation,
 keep the one whose words go furthest elsewhere.
+Two phrases running one frame with a single word swapped
+(`Häng es höher.` / `Häng es niedriger.`, `Das Wasser ist kalt.` / `… ist sauber.`)
+are one card, not two.
+
+**A phrase has to teach more than its words.** A sentence that is only its own
+vocabulary in a row is already known the moment those words are, so it buys nothing:
+`Tee oder Kaffee?` was cut on this test. What earns the slot is the small extra the words
+alone do not give — an agreement (es `mucha agua`, feminine against `el agua`), the form a
+construction forces (uk `чи` in a choice question, not `або`), an idiomatic turn, or one
+small function word carried in on the side. Where that extra is a remark rather than a
+construction, it belongs in the WORD's `notes` and the phrase still goes.
 
 **A realization mirrors the concept, not the translator's instinct.**
 Every word in one language's text should have a visible counterpart in the others' —
