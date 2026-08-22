@@ -40,6 +40,18 @@ class CatalogArticleAudioTest {
     }
 
     /**
+     * A rotated synonym cannot reach the canonical word's article recording, and does not
+     * depend on the caller to withhold the article for that: the key IS the article plus
+     * the form on the card, so "der Ober" finds nothing where the file says "der Kellner".
+     * `shownArticle` already keeps a card's article off a synonym that may carry another
+     * gender; this is the second lock, on the side that owns the bytes.
+     */
+    @Test
+    fun anArticleNeverReachesAFormTheRecordingDoesNotSpeak() {
+        assertNull(path("Ober", "der"))
+    }
+
+    /**
      * Coverage is partial by construction — one speaker recorded 221 of the German nouns,
      * not all of them — so a card with an article and no article recording still plays,
      * bare, rather than falling silent onto the synthesizer.
