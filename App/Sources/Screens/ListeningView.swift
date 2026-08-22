@@ -19,6 +19,9 @@ struct ListeningView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.locale) private var locale
     @State private var driver: ListeningDriver
+    /// Whether the bedtime chip is under a finger — its own press feedback,
+    /// which it owes to not being a Button (see `timerCapsule`).
+    @State private var timerHeld = false
 
     init(model: AppModel) {
         self.model = model
@@ -138,27 +141,45 @@ struct ListeningView: View {
     /// MINUTES: a ticking clock is a clock you watch, which is the opposite of
     /// what a sleep timer is for.
     private var timerCapsule: some View {
-        Button { driver.bedtime.step(1) } label: {
-            HStack(spacing: DL.Space.xs) {
-                Image(systemName: "moon.zzz")
-                    .accessibilityHidden(true)
-                timerText
-            }
-            .font(DL.Fonts.caption)
-            .foregroundStyle(driver.bedtime.isSet ? Color.dlAccent : Color.dlTextSecondary)
-            .padding(.horizontal, DL.Space.m)
-            .padding(.vertical, DL.Space.s)
-            .background(Capsule().fill(Color.dlSurfaceTint))
+        HStack(spacing: DL.Space.xs) {
+            Image(systemName: "moon.zzz")
+                .accessibilityHidden(true)
+            timerText
         }
-        .buttonStyle(TrainerChipButtonStyle())
+        .font(DL.Fonts.caption)
+        .foregroundStyle(driver.bedtime.isSet ? Color.dlAccent : Color.dlTextSecondary)
+        .padding(.horizontal, DL.Space.m)
+        .padding(.vertical, DL.Space.s)
+        .background(Capsule().fill(Color.dlSurfaceTint))
+        // The press `TrainerChipButtonStyle` would give it, by hand — see below
+        // for why this chip is not a Button.
+        .opacity(timerHeld ? 0.7 : 1)
+        .scaleEffect(timerHeld ? 0.96 : 1)
+        .animation(.spring(response: 0.25, dampingFraction: 0.7), value: timerHeld)
+        .contentShape(Capsule())
+        // why: the tap and the hold sit on the SAME view rather than a hold laid
+        // over a Button. A Button claims the touch for its own press tracking,
+        // and a long press behind it only completes once the finger LEAVES the
+        // button's bounds — so the one gesture that reaches zero did nothing at
+        // all unless you slid off the chip while holding it.
+        .onTapGesture { driver.bedtime.step(1) }
         // why: a hold is the one gesture that brings the bedtime down — every
         // tap only ever adds five minutes, so the only way to zero is a hold.
-        .onLongPressGesture(minimumDuration: 0.5) { driver.bedtime.turnOff() }
+        .onLongPressGesture(minimumDuration: 0.5) {
+            driver.bedtime.turnOff()
+        } onPressingChanged: { pressing in
+            timerHeld = pressing
+        }
         // why: the LENGTH is a state of the timer, so the label stays put and
         // the reading moves — the opposite of the transport above, whose
         // buttons name what the tap will do.
+        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(.isButton)
         .accessibilityLabel(Text("listen.timer"))
         .accessibilityValue(timerValue)
+        // A view is not a Button, so its activation is spelled out: what a
+        // VoiceOver double tap does is the same five minutes a tap does.
+        .accessibilityAction { driver.bedtime.step(1) }
         // The picker sighted users get by cycling: up and down walk kern's
         // lengths, and each one is read out as it is reached.
         .accessibilityAdjustableAction { direction in
