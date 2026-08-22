@@ -12,17 +12,32 @@
    "uk": "Перші кроки"
   },
   "areas": [
+   { "area": "greetings", "emoji": "🤝" },
    { "area": "basics", "emoji": "👋" },
+   { "area": "conversation", "emoji": "💬" },
+   { "area": "questions", "emoji": "❓" },
+   { "area": "language", "emoji": "🗣️" }
+  ]
+ },
+ {
+  "group": "compose",
+  "titles": {
+   "en": "Building blocks",
+   "de": "Bausteine",
+   "eo": "Konstrueroj",
+   "es": "Piezas básicas",
+   "fr": "Briques de base",
+   "it": "Mattoni di base",
+   "sw": "Vipande vya msingi",
+   "uk": "Будівельні блоки"
+  },
+  "areas": [
    { "area": "verbs", "emoji": "🏃" },
    { "area": "qualities", "emoji": "📏" },
-   { "area": "colors", "emoji": "🎨" },
-   { "area": "time", "emoji": "🕒" },
-   { "area": "conversation", "emoji": "💬" },
-   { "area": "connectors", "emoji": "🔗" },
    { "area": "degree", "emoji": "📊" },
-   { "area": "questions", "emoji": "❓" },
-   { "area": "language", "emoji": "🗣️" },
-   { "area": "greetings", "emoji": "🤝" }
+   { "area": "connectors", "emoji": "🔗" },
+   { "area": "time", "emoji": "🕒" },
+   { "area": "colors", "emoji": "🎨" }
   ]
  },
  {

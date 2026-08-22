@@ -104,7 +104,7 @@ is a runtime/user-preference concern; the content only supplies the default.
 **`<area>/concepts.json`** — ordered, language-neutral. Order across all kinds IS seed/introduction order.
 A phrase with `components` follows its area's words, so the building blocks land first;
 a component-free phrase is a building block itself (a greeting, `ja`, `bitte`) and may stand anywhere,
-which is how `basics` opens on `Hallo!` rather than on a noun:
+which is how `greetings` opens the whole course on `Hallo!` and `basics` on `Ja.`:
 ```json
 [ { "slug": "fridge",  "kind": "noun", "emoji": "🧊" },
   { "slug": "cook",    "kind": "verb", "emoji": "🧑‍🍳" },

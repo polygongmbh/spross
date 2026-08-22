@@ -12,6 +12,18 @@ which covers the same moment with more useful words, so the second phrase only b
 Redundancy is the usual symptom: when two entries serve one situation, keep the one whose words go furthest elsewhere.
 Multiple phrases with a single word swapped should keep one, preferring teaching something small like gender agreement in any language.
 
+**A card that has not earned its slot moves back; it is deleted only on request.**
+Position is the usual complaint and deletion is rarely the fix:
+`danken` was slated out of `basics` for arriving too early,
+which would have discarded seven sourced, measured, licensed recordings
+to solve a problem `scripts/catalog-move.py` solves for free.
+Content and audio are keyed by slug, so a move to a later shelf — or a reorder
+to the tail of the area's own word block — preserves every realization and every recording.
+Renaming has the same tooth: `careful` to `caution` orphaned that recording in six packs at once,
+because a pack row names the slug and nothing warns when the slug moves out from under it.
+Deletion stays available and is sometimes right; it is the user's call to make,
+and worth pricing in recordings when it is proposed.
+
 **A phrase has to teach more than its words.** 
 A sentence that is only its own vocabulary in a row is already known the moment those words are, so it buys nothing:
 `Tee oder Kaffee?` was cut on this test. 
@@ -72,6 +84,16 @@ growing past roughly forty asks to be cut along the seam a learner would name
 (the doctor's visit out of health, the clock out of the everyday words, the colors out
 before they ever land there). The cut is cheap: the slug is the card id and carries no
 area, so nobody's schedule notices.
+
+**A front-group slot is earned by what a learner can use on the first day**, never by
+how basic the topic sounds. Introduction walks a flat seed order, so group order in
+`areas.json` IS card order — a shelf placed eleventh is not "early material", it is two
+hundred cards in. The `start`/`compose` seam states the test: a fixed formula you exchange
+with a person belongs in `start`, a word you compose your own sentences from belongs in
+`compose`. `greetings` was once split out of `basics` and filed last on the reasoning that
+a greeting is what a learner picks up by being greeted; the effect was that `Hallo!` and
+`Vielen Dank!` arrived after `auswendig lernen`. Judge a shelf by where its cards actually
+land, not by where its name suggests they do.
 
 **No area may be the leftover bin.** An area whose name states no test for belonging will
 refill, because every word that fits nowhere fits there — which is exactly what happened
