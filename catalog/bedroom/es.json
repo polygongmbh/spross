@@ -16,12 +16,7 @@
   },
   "pajamas": { "text": "pijama", "variants": ["piyama"], "grammar": { "gender": "el" } },
   "sock": { "text": "calcetín", "variants": ["media"], "grammar": { "gender": "el" } },
-  "pants": {
-   "text": "pantalón",
-   "variants": ["pantalones"],
-   "grammar": { "gender": "el" },
-   "notes": { "de": "im Alltag meist im Plural: los pantalones" }
-  },
+  "pants": { "text": "pantalones", "variants": ["pantalón"], "grammar": { "gender": "los" } },
   "t-shirt": { "text": "camiseta", "variants": ["playera", "remera"], "grammar": { "gender": "la" } },
   "sleep": { "text": "dormir" },
   "wake-up": { "text": "despertarse" },

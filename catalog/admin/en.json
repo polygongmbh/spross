@@ -8,7 +8,7 @@
   "id-card": { "text": "ID card", "variants": ["identity card"] },
   "residence-permit": { "text": "residence permit" },
   "signature": { "text": "signature" },
-  "ticket-number": { "text": "number ticket", "synonyms": ["queue number"] },
+  "ticket-number": { "text": "queue number", "variants": ["number ticket"] },
   "case-worker": { "text": "case worker" },
   "registration": { "text": "registration" },
   "documents": { "text": "documents", "grammar": { "plural": "only" } },
