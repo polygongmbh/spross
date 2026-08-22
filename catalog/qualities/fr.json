@@ -66,6 +66,7 @@
    "variants": ["tranchante", "aiguisée"],
    "notes": { "de": "nur für Klingen; scharf im Geschmack ist épicé." }
   },
+  "available": { "text": "disponible" },
   "a-lot-of-water": { "text": "beaucoup d'eau" }
  }
 }

@@ -16,6 +16,20 @@
   "can": { "text": "могти" },
   "think": { "text": "думати" },
   "wait": { "text": "чекати" },
+  "want": { "text": "хотіти" },
+  "find": { "text": "знаходити" },
+  "search": { "text": "шукати" },
+  "get": { "text": "отримувати" },
+  "look": { "text": "дивитися", "notes": { "de": "дивитися = hinschauen, zusehen: дивитися телевізор." } },
+  "open": { "text": "відкривати" },
+  "close": { "text": "закривати" },
+  "stop": {
+   "text": "припиняти",
+   "synonyms": ["переставати"],
+   "notes": { "de": "припиняти steht vor dem Substantiv, переставати vor dem Infinitiv: перестань курити." }
+  },
+  "stand": { "text": "стояти" },
+  "send": { "text": "надсилати", "variants": ["посилати", "відправляти"] },
   "do-you-have-water": { "text": "У вас є вода?", "variants": ["У тебе є вода?"] },
   "where-are-you-from": { "text": "Звідки ви?" }
  }

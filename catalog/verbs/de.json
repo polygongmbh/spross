@@ -13,6 +13,16 @@
   "can": { "text": "können" },
   "think": { "text": "denken" },
   "wait": { "text": "warten" },
+  "want": { "text": "wollen", "variants": ["möchten"] },
+  "find": { "text": "finden" },
+  "search": { "text": "suchen" },
+  "get": { "text": "bekommen" },
+  "look": { "text": "schauen" },
+  "open": { "text": "öffnen" },
+  "close": { "text": "schließen" },
+  "stop": { "text": "aufhören" },
+  "stand": { "text": "stehen" },
+  "send": { "text": "schicken" },
   "do-you-have-water": { "text": "Haben Sie Wasser?", "variants": ["Hast du Wasser?"] },
   "where-are-you-from": { "text": "Woher kommen Sie?", "variants": ["Woher kommst du?"] }
  }

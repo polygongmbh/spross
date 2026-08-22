@@ -55,6 +55,7 @@
    "variants": ["affilata"],
    "notes": { "de": "nur für Klingen; scharf im Geschmack ist piccante." }
   },
+  "available": { "text": "disponibile" },
   "a-lot-of-water": { "text": "molta acqua" }
  }
 }

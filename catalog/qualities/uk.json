@@ -23,6 +23,7 @@
   "easy": { "text": "простий", "variants": ["просто", "легкий", "легко"] },
   "clean-adj": { "text": "чистий", "variants": ["чисто"] },
   "sharp": { "text": "гострий", "variants": ["гостро"] },
+  "available": { "text": "доступний", "synonyms": ["наявний"] },
   "a-lot-of-water": { "text": "багато води" }
  }
 }

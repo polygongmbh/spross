@@ -65,6 +65,13 @@
    "variants": ["kali", "mkali", "wakali", "kikali", "vikali", "makali", "mikali"],
    "notes": { "de": "gilt auch für Menschen (streng) und Essen (scharf): mwalimu mkali, pilipili kali." }
   },
+  "available": {
+   "text": "kupatikana",
+   "variants": ["patikana"],
+   "notes": {
+    "de": "Swahili sagt es als Verb: inapatikana = es ist zu haben · haipatikani = das gibt es nicht."
+   }
+  },
   "a-lot-of-water": { "text": "maji mengi" }
  }
 }

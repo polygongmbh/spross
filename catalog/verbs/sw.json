@@ -25,6 +25,36 @@
   },
   "think": { "text": "kufikiri", "notes": { "de": "über etwas nachdenken: kufikiria jambo." } },
   "wait": { "text": "kusubiri" },
+  "want": {
+   "text": "kutaka",
+   "notes": { "de": "Präsens: nataka, unataka, anataka · verneint: sitaki = ich will nicht." }
+  },
+  "search": {
+   "text": "kutafuta",
+   "notes": { "de": "kutafuta = suchen und besorgen: natafuta kazi = ich suche Arbeit." }
+  },
+  "get": {
+   "text": "kupata",
+   "notes": { "de": "kupata deckt bekommen und finden ab: nimeipata = ich hab es gefunden." }
+  },
+  "look": { "text": "kutazama", "notes": { "de": "kutazama = anschauen, zusehen: kutazama televisheni." } },
+  "open": { "text": "kufungua" },
+  "close": {
+   "text": "kufunga",
+   "notes": { "de": "kufunga heißt auch zubinden und abschließen: kufunga mlango." }
+  },
+  "stop": {
+   "text": "kuacha",
+   "notes": { "de": "kuacha = aufhören (mit etwas) und verlassen · mit Objekt: kuacha kazi = kündigen." }
+  },
+  "stand": {
+   "text": "kusimama",
+   "notes": { "de": "kusimama heißt stehen, aufstehen und stehen bleiben: Simama! = Halt!" }
+  },
+  "send": {
+   "text": "kupeleka",
+   "notes": { "de": "kupeleka = hinbringen, hinschicken: kupeleka barua posta." }
+  },
   "do-you-have-water": { "text": "Una maji?" },
   "where-are-you-from": { "text": "Unatoka wapi?" }
  }

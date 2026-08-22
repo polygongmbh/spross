@@ -28,6 +28,23 @@
    "notes": { "de": "pensar en algo = an etwas denken · pensar que = glauben, dass." }
   },
   "wait": { "text": "esperar", "notes": { "de": "esperar heißt auch hoffen und erwarten." } },
+  "want": { "text": "querer", "notes": { "de": "querer heißt wollen und lieben: Te quiero." } },
+  "find": { "text": "encontrar" },
+  "search": { "text": "buscar", "notes": { "de": "buscar steht ohne Präposition: busco un hotel." } },
+  "get": { "text": "recibir", "synonyms": ["conseguir"] },
+  "look": { "text": "mirar", "notes": { "de": "mirar = den Blick auf etwas richten: mira aquí." } },
+  "open": { "text": "abrir" },
+  "close": { "text": "cerrar" },
+  "stop": {
+   "text": "dejar de",
+   "variants": ["parar de"],
+   "notes": { "de": "dejar de steht vor dem Infinitiv: dejar de fumar = aufhören zu rauchen." }
+  },
+  "stand": {
+   "text": "estar de pie",
+   "notes": { "de": "Spanisch hat kein eigenes Verb dafür · ponerse de pie = sich hinstellen." }
+  },
+  "send": { "text": "enviar", "synonyms": ["mandar"] },
   "do-you-have-water": { "text": "¿Tiene agua?", "variants": ["¿Tiene usted agua?", "¿Tienes agua?"] },
   "where-are-you-from": {
    "text": "¿De dónde es usted?",

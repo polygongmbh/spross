@@ -32,6 +32,27 @@
    "notes": { "de": "pensare a qualcosa = an etwas denken · pensare che = glauben, dass." }
   },
   "wait": { "text": "aspettare", "notes": { "de": "aspettare heißt auch erwarten; hoffen ist sperare." } },
+  "want": { "text": "volere", "notes": { "de": "höflicher im Konditional: vorrei = ich hätte gern." } },
+  "find": { "text": "trovare" },
+  "search": { "text": "cercare", "notes": { "de": "cercare steht ohne Präposition: cerco un albergo." } },
+  "get": { "text": "ricevere", "synonyms": ["ottenere"] },
+  "look": { "text": "guardare", "notes": { "de": "guardare = bewusst anschauen: guardare la TV." } },
+  "open": { "text": "aprire" },
+  "close": { "text": "chiudere" },
+  "stop": {
+   "text": "smettere",
+   "variants": ["smettere di"],
+   "notes": { "de": "smettere di + Infinitiv: smettere di fumare · anhalten ist fermarsi." }
+  },
+  "stand": {
+   "text": "stare in piedi",
+   "notes": { "de": "Italienisch hat kein eigenes Verb dafür · alzarsi in piedi = sich hinstellen." }
+  },
+  "send": {
+   "text": "inviare",
+   "variants": ["mandare", "spedire"],
+   "notes": { "de": "inviare und mandare gelten beide · spedire ist das Verschicken per Post." }
+  },
   "do-you-have-water": { "text": "Ha acqua?", "variants": ["Ha dell'acqua?", "Avete acqua?", "Hai acqua?"] },
   "where-are-you-from": {
    "text": "Di dov'è?",

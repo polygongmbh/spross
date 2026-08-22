@@ -50,6 +50,7 @@
    "variants": ["afilada"],
    "notes": { "de": "nur für Klingen; scharf im Geschmack ist picante." }
   },
+  "available": { "text": "disponible" },
   "a-lot-of-water": { "text": "mucha agua", "notes": { "de": "trotz el agua feminin: mucha agua." } }
  }
 }

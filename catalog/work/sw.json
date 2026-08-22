@@ -19,10 +19,6 @@
   "apply": { "text": "kuomba kazi" },
   "introduce-oneself": { "text": "kujitambulisha" },
   "start": { "text": "kuanza" },
-  "leave": {
-   "text": "kuacha",
-   "notes": { "de": "kuacha = verlassen · auch aufhören (mit etwas) · kuacha kazi = kündigen" }
-  },
   "quit": { "text": "kuacha kazi" },
   "hire": { "text": "kuajiri" },
   "to-help": { "text": "kusaidia" },

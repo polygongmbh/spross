@@ -35,6 +35,10 @@
   "easy": { "text": "facila" },
   "clean-adj": { "text": "pura" },
   "sharp": { "text": "akra" },
+  "available": {
+   "text": "havebla",
+   "notes": { "de": "havebla = zu haben · disponebla = verfügbar, zur Verfügung stehend." }
+  },
   "a-lot-of-water": { "text": "multe da akvo" }
  }
 }

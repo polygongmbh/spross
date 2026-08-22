@@ -16,6 +16,22 @@
    "notes": { "de": "pensi pri io = an etwas denken · pensi ke = glauben, dass." }
   },
   "wait": { "text": "atendi" },
+  "want": { "text": "voli" },
+  "find": { "text": "trovi" },
+  "search": { "text": "serĉi" },
+  "get": {
+   "text": "ricevi",
+   "notes": { "de": "ricevi = bekommen, geschickt bekommen · akiri = sich etwas beschaffen." }
+  },
+  "look": { "text": "rigardi", "notes": { "de": "rigardi = bewusst hinschauen: rigardi televidon." } },
+  "open": { "text": "malfermi" },
+  "close": { "text": "fermi" },
+  "stop": {
+   "text": "ĉesi",
+   "notes": { "de": "ĉesi steht vor dem Infinitiv: ĉesi fumi = aufhören zu rauchen." }
+  },
+  "stand": { "text": "stari", "notes": { "de": "stari = stehen · stariĝi = sich hinstellen." } },
+  "send": { "text": "sendi" },
   "do-you-have-water": { "text": "Ĉu vi havas akvon?" },
   "where-are-you-from": { "text": "De kie vi venas?" }
  }

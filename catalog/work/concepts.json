@@ -15,7 +15,6 @@
  { "slug": "introduce-oneself", "kind": "verb", "emoji": "🙋" },
  { "slug": "earn", "kind": "verb", "emoji": "💰" },
  { "slug": "start", "kind": "verb", "emoji": "▶️" },
- { "slug": "leave", "kind": "verb", "emoji": "🚪" },
  { "slug": "quit", "kind": "verb", "emoji": "📃" },
  { "slug": "hire", "kind": "verb", "emoji": "🧑‍💼" },
  { "slug": "to-help", "kind": "verb", "emoji": "🤲" },
@@ -32,6 +31,7 @@
  { "slug": "worker", "kind": "noun" },
  { "slug": "employer", "kind": "noun" },
  { "slug": "customer", "kind": "noun", "emoji": "🛍️" },
+ { "slug": "leave", "kind": "verb", "emoji": "🚪" },
  {
   "slug": "tomorrow-i-have-a-job-interview",
   "kind": "phrase",

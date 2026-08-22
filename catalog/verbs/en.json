@@ -13,6 +13,16 @@
   "can": { "text": "can", "variants": ["to be able to"] },
   "think": { "text": "to think" },
   "wait": { "text": "to wait" },
+  "want": { "text": "to want" },
+  "find": { "text": "to find" },
+  "search": { "text": "to search", "synonyms": ["to look for"] },
+  "get": { "text": "to get" },
+  "look": { "text": "to look" },
+  "open": { "text": "to open" },
+  "close": { "text": "to close" },
+  "stop": { "text": "to stop" },
+  "stand": { "text": "to stand" },
+  "send": { "text": "to send" },
   "do-you-have-water": { "text": "Do you have water?" },
   "where-are-you-from": { "text": "Where are you from?" }
  }

@@ -10,6 +10,16 @@
  { "slug": "can", "kind": "verb", "emoji": "💪" },
  { "slug": "think", "kind": "verb", "emoji": "🤔" },
  { "slug": "wait", "kind": "verb", "emoji": "⏳" },
+ { "slug": "want", "kind": "verb", "emoji": "🙋" },
+ { "slug": "find", "kind": "verb", "emoji": "🎯" },
+ { "slug": "search", "kind": "verb", "emoji": "🔍" },
+ { "slug": "get", "kind": "verb", "emoji": "📦" },
+ { "slug": "look", "kind": "verb", "emoji": "🧐" },
+ { "slug": "open", "kind": "verb", "emoji": "📂" },
+ { "slug": "close", "kind": "verb", "emoji": "📁" },
+ { "slug": "stop", "kind": "verb", "emoji": "⏹️" },
+ { "slug": "stand", "kind": "verb", "emoji": "🧍" },
+ { "slug": "send", "kind": "verb", "emoji": "📤" },
  { "slug": "do-you-have-water", "kind": "phrase", "emoji": "💧", "components": ["have"] },
  { "slug": "where-are-you-from", "kind": "phrase", "emoji": "🌍", "components": ["come"] }
 ]
