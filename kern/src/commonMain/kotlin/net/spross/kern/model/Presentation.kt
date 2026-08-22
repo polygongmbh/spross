@@ -37,16 +37,22 @@ enum class ProducePrompt {
     /** The known-language word. */
     Source,
 
-    /** The target word SPOKEN, and nothing on screen: the learner writes what they hear. */
+    /**
+     * The target word SPOKEN, and nothing on screen: the learner writes what it MEANS,
+     * in the source language. Writing back the word that played would prove the ear
+     * worked and nothing else — translating it is what the box is for.
+     */
     Sound,
 }
 
 /**
- * When a produce review asks by ear instead of by meaning.
+ * When a produce review asks by ear instead of by sight.
  *
  * Not a third [PresentationRole]: the role function is a bit-exact v1 contract, and a word
- * asked from its sound is still being produced — only the prompt side moves, so one FSRS
- * schedule still sees one kind of answer.
+ * asked from its sound is still being produced — only the side the card asks FROM moves, so
+ * one FSRS schedule still sees one kind of answer. The answer moves with it: the meaning is
+ * what is owed back, because a word heard and written down again has been transcribed, not
+ * understood.
  *
  * Two gates and a rotation. [consolidated]
  * ([net.spross.kern.model.BoxConfig.consolidatedStability]) is the same bar

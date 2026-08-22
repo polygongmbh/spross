@@ -13,6 +13,13 @@ import net.spross.kern.model.Rating
  * and `nowEpochMillis` from the caller. Grading needs catalog context, so [grader] and
  * [normalizer] are constructed in; the reduction itself stays pure.
  *
+ * TWO answer languages reach it, because a card asked by ear asks what the word MEANS:
+ * [grader]/[normalizer] grade the target word with the whole join in view, and
+ * [meaningNormalizer] — the SOURCE language's own, articles and all — grades the meaning.
+ * The meaning side deliberately has no catalog-wide grader: naming the other concept a
+ * learner's word belongs to teaches a word in the language being LEARNED, and the source
+ * side is the one they already have.
+ *
  * What stays with the platform: the text field and its keyboard, focus order, animation,
  * sound PLAYBACK and haptics, and reading the accessibility flags. The RULES those serve —
  * which rating each branch earns, how long an accepted answer stands, that an explicit
@@ -21,6 +28,7 @@ import net.spross.kern.model.Rating
 class TurnMachine(
     private val grader: CatalogAnswerGrader,
     private val normalizer: AnswerNormalizer,
+    private val meaningNormalizer: AnswerNormalizer,
 ) {
 
     private val writeOut = TurnWriteOut(normalizer)
@@ -47,6 +55,7 @@ class TurnMachine(
         otherWord = null,
         retryApproved = false,
         copyStep = null,
+        promptInText = false,
         promptShownAtMillis = nowEpochMillis,
         recallMs = 0,
     )
@@ -62,6 +71,7 @@ class TurnMachine(
             TurnIntent.ConfirmPending -> confirmPending(state)
             TurnIntent.AdvanceElapsed -> advanceElapsed(state)
             TurnIntent.GiveUp -> giveUp(state)
+            TurnIntent.ShowPromptText -> showPromptText(state)
             is TurnIntent.CopySubmit, TurnIntent.SkipCopy -> unchanged(state)
         }
     }
@@ -142,16 +152,9 @@ class TurnMachine(
         ) {
             return unchanged(state)
         }
-        val graded = grader.grade(trimmed, gradingCard(state))
+        val graded = grade(state, trimmed)
         return when {
-            // why: the form that PLAYED wins over the heard rule below — a card listing its own
-            // spoken text among its forms was still answered exactly, not merely nearby.
             graded == Match.Exact -> accepted(state)
-            // why: only where the card was asked by ear. The narrowed answer set grades a
-            // synonym Wrong, yet the reveal teaches those very forms — it simply was not what
-            // played, which is Hard, never a miss. A literal Hard on purpose: no Match decided it.
-            state.prompt == ProducePrompt.Sound && alsoAccepts(state.card, trimmed) ->
-                holding(state, state.card.target.text, AlmostReason.Heard, Rating.Hard)
             graded is Match.Typo -> holding(state, graded.corrected, AlmostReason.Typo, graded.producedRating())
             graded is Match.OtherWord -> missed(state, text, graded)
             else -> missed(state, text, null)
@@ -185,7 +188,7 @@ class TurnMachine(
      * retype picks up where the slip started instead of from scratch. Nothing kept clears it.
      */
     private fun primed(state: TurnState, text: String): String {
-        val count = normalizer.matchingPrefixWordCount(text, state.card.target.text)
+        val count = answerNormalizer(state).matchingPrefixWordCount(text, state.answerText)
         val kept = text.trim().split(WHITESPACE_RUN).filter { it.isNotEmpty() }
             .take(count)
             .joinToString(" ")
@@ -195,15 +198,36 @@ class TurnMachine(
     private fun isExact(state: TurnState, text: String): Boolean {
         val trimmed = text.trim()
         if (trimmed.isEmpty()) return false
-        return grader.grade(trimmed, gradingCard(state)) == Match.Exact
+        return grade(state, trimmed) == Match.Exact
     }
 
     /**
-     * What the answer is graded AGAINST: a card asked by ear accepts only the form that played
-     * ([spokenOnly]), because crediting a synonym would credit a word never heard.
+     * The verdict [text] earns, in the language THIS turn asks its answer in.
+     *
+     * A card asked by ear owes the MEANING ([meaningSide]) — writing back the word that
+     * played proves the ear worked and nothing else — so it is graded by the source
+     * language's normalizer, whose articles and typo budget are the ones the learner is
+     * writing under. Every other turn owes the target word, with the whole join in view.
      */
-    private fun gradingCard(state: TurnState): Card =
-        if (state.prompt == ProducePrompt.Sound) spokenOnly(state.card, state.card.target.text) else state.card
+    private fun grade(state: TurnState, text: String): Match =
+        if (state.prompt == ProducePrompt.Sound) {
+            meaningNormalizer.evaluate(text, meaningSide(state.card))
+        } else {
+            grader.grade(text, state.card)
+        }
+
+    private fun answerNormalizer(state: TurnState): AnswerNormalizer =
+        if (state.prompt == ProducePrompt.Sound) meaningNormalizer else normalizer
+
+    /**
+     * The word goes on screen because the learner cannot listen: same question, same answer,
+     * same rating — only the channel it arrives through moves, so nothing here touches the
+     * grade. Idempotent, and inert on a card that was never asked by ear.
+     */
+    private fun showPromptText(state: TurnState): TurnReduction {
+        if (state.prompt != ProducePrompt.Sound || state.promptInText) return unchanged(state)
+        return TurnReduction(state.copy(promptInText = true), emptyList())
+    }
 
     // MARK: - Reveal and self-grade
 

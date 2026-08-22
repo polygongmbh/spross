@@ -50,11 +50,12 @@ Engine contract: `../README.md`.
     because that field already was the one write-out the word gets.
   - **The recall span** is prompt-shown until the learner asks to see the answer, closed once;
     a typed answer never closes it, because it never reaches self-grading.
-  - **Asked by ear**, the answer grades against `spokenOnly`,
-    but a form the card itself lists (`alsoAccepts`, compared by `speechKey`)
-    is almost rather than wrong — the reveal teaches those forms, it simply was not what played.
-    Being exactly what played wins over that:
-    a card that also lists its own spoken form was still answered exactly.
+  - **Asked by ear**, the answer is the MEANING (`meaningSide`, graded by the source
+    language's own normalizer) — a word heard and written back down has been transcribed,
+    not understood. `presentation.md` owns that rule; what the turn adds is that the
+    answer side reaches every caller through `TurnState.answerText`/`answerLang`,
+    and that `ShowPromptText` puts the word on screen for a learner who cannot listen
+    without changing anything the answer is worth.
 
 ## Listening
 

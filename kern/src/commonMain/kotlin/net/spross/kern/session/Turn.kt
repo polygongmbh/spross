@@ -91,7 +91,7 @@ data class TurnState(
     /** The card under review: what is graded, and what a write-out copies. */
     val card: Card,
     val role: PresentationRole,
-    /** [ProducePrompt.Sound] narrows grading to the form that played and opens the heard rule. */
+    /** [ProducePrompt.Sound] moves the answer to the SOURCE side: the card asks what it means. */
     val prompt: ProducePrompt,
     /** The form the prompt stands on — the rotated target form on recognize. */
     val promptForm: String,
@@ -110,6 +110,13 @@ data class TurnState(
     val retryApproved: Boolean,
     /** Non-null ⇒ the write-out owns the turn. */
     val copyStep: CopyStep?,
+    /**
+     * The sound prompt has been PUT IN WRITING: the word the learner could not listen to
+     * stands as text instead, and nothing else about the turn moves — same answer, same
+     * language, same rating. An escape hatch for a moment when listening is impossible,
+     * never a mode: it lasts this turn, and the next card asked by ear asks by ear again.
+     */
+    val promptInText: Boolean,
     val promptShownAtMillis: Long,
     /** The recall attempt in ms; 0 means unmeasured and never earns Easy. */
     val recallMs: Long,
@@ -123,11 +130,31 @@ data class TurnState(
         get() = feedback == TurnFeedback.Revealed || revealed
 
     /**
-     * What had to be READ before recall could start — the prompted form on recognize,
-     * the source word on a produce card that was revealed.
+     * What had to be READ before recall could start — the prompted form on recognize and
+     * on a card asked by ear (the target word, heard or written), the source word on the
+     * produce card that was revealed.
      */
     val promptChars: Int
-        get() = if (role == PresentationRole.Recognize) promptForm.length else card.source.text.length
+        get() = if (role == PresentationRole.Recognize || prompt == ProducePrompt.Sound) {
+            promptForm.length
+        } else {
+            card.source.text.length
+        }
+
+    /**
+     * The language the ANSWER is written in — the source on a card asked by ear, which asks
+     * what the word means, the target everywhere else. The one place a field's placeholder,
+     * a screen reader tag and a keyboard hint read it from.
+     */
+    val answerLang: String
+        get() = if (prompt == ProducePrompt.Sound) card.source.lang else card.target.lang
+
+    /**
+     * The form the turn owes back: the meaning on a card asked by ear, the target word
+     * everywhere else. What a miss reveals and a retype is measured against.
+     */
+    val answerText: String
+        get() = if (prompt == ProducePrompt.Sound) card.source.text else card.target.text
 }
 
 /** What the learner does to a turn. */
@@ -164,6 +191,9 @@ sealed class TurnIntent {
 
     /** Leave the write-out; the rating is already decided, so skipping costs nothing. */
     data object SkipCopy : TurnIntent()
+
+    /** "Can't listen right now?" — put the sound prompt's word on screen as text. */
+    data object ShowPromptText : TurnIntent()
 }
 
 /** The verdict a cue sounds for. What it sounds like, and whether it buzzes too, is the platform's. */

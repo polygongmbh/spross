@@ -13,17 +13,34 @@ Engine contract: `../README.md` §3.
   Reveal always shows the full family; the source-side reveal may show source synonyms
   informatively ("Amt / Verwaltung").
 - **Sound-prompted production**: `producePrompt(cardId, reviewCount, consolidated, audible)`
-  answers whether a produce turn asks by MEANING or by ear. Not a third role — the role
+  answers whether a produce turn asks by sight or by ear. Not a third role — the role
   function is fixed and a word asked from its sound is still produced,
-  so only the prompt side moves and one schedule still sees one kind of answer.
+  so only the side the card asks FROM moves and one schedule still sees one kind of answer.
   `Sound` needs the STRICTER consolidated bar (`../README.md` §5), because this WITHDRAWS the meaning
   rather than adding support, plus the app's word that the form can be heard right now
-  (no recording and no voice, reading aloud off, or a screen reader — each falls back to
-  `Source` rather than putting up an empty card). Alternation divides the count by two like
-  the synonym rotation: roles alternate per review, so `reviewCount % 2` is CONSTANT across
-  one card's produce turns. Grading narrows to the form that played (`session.spokenOnly`,
-  shared with the letter drill's dictation); a synonym of the same card is almost, never
-  wrong, since the reveal itself teaches those forms.
+  (no recording and no voice, reading aloud off, the device silenced, or a screen reader —
+  each falls back to `Source` rather than putting up an empty card). Alternation divides the
+  count by two like the synonym rotation: roles alternate per review, so `reviewCount % 2`
+  is CONSTANT across one card's produce turns.
+- **A card asked by ear is answered with the MEANING** — the source-language word, graded
+  against `session.meaningSide` (the same card with its two sides swapped, so the whole
+  grading pipeline is reused) by the SOURCE language's own `AnswerNormalizer`, articles and
+  typo budget included. Hearing a word and writing it back down proves the ear worked and
+  nothing else; translating it is what the box is for. So the meaning side's synonyms are
+  simply the answer, and the word that played is a miss like any other — the reveal then
+  teaches both, which is where the spelling still lands. No catalog-wide grader on this
+  side: naming the other concept a typed word belongs to teaches a word in the language
+  being LEARNED, and the source language is the one the learner already has.
+  `TurnState.answerText`/`answerLang` are where a field's placeholder and a screen reader
+  tag read the answer side off, so no platform re-derives it.
+  (`spokenOnly` stays: the letter drill's dictation rung still transcribes, and there the
+  glyphs ARE the lesson.)
+- **"Can't listen right now?"** — `TurnIntent.ShowPromptText` puts the played word on the
+  card as text (`TurnState.promptInText`), and nothing else about the turn moves: same
+  question, same answer, same rating. A learner in a quiet room may not be able to hear the
+  one thing the card consists of, and the alternative to reading it is answering blind.
+  Not a mode and not a setting — it lasts the turn, and the next card asked by ear asks by
+  ear again, because the device's own audibility is what decides that (`../README.md` §3).
 - **The target is spoken with its article; the source is not.**
   `spokenTargetForm(article, shownForm, targetText)` (beside `utterance`, which answers the
   same question — what string does the synthesizer get) prefixes the article `shownArticle`
