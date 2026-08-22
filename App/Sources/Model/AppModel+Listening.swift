@@ -65,9 +65,9 @@ final class ListeningDriver {
     func open() {
         AudioSession.useListening()
         NowPlaying.shared.take(run: nowPlayingRun, commands: .init(
-            toggle: { [weak self] in self?.dispatch(ListeningIntent.TogglePause.shared) },
-            next: { [weak self] in self?.dispatch(ListeningIntent.Skip.shared) },
-            again: { [weak self] in self?.dispatch(ListeningIntent.Repeat.shared) }
+            toggle: { [weak self] in self?.togglePause() },
+            next: { [weak self] in self?.skip() },
+            again: { [weak self] in self?.again() }
         ))
         watchInterruptions()
         dispatch(ListeningIntent.Start.shared)
@@ -119,7 +119,13 @@ final class ListeningDriver {
         AudioSession.endListening()
     }
 
-    func togglePause() { dispatch(ListeningIntent.TogglePause.shared) }
+    /// A pause takes the beat chain down with it, so an already-arrived bedtime
+    /// would never reach the seam that ends it: while a run is paused, the
+    /// pause IS the seam.
+    func togglePause() {
+        dispatch(ListeningIntent.TogglePause.shared)
+        if state.paused, bedtime.expired { expire() }
+    }
     func skip() { dispatch(ListeningIntent.Skip.shared) }
     func again() { dispatch(ListeningIntent.Repeat.shared) }
 

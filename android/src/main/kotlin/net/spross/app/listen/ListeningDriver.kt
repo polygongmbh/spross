@@ -124,6 +124,9 @@ class ListeningDriver(
         // The learner's own pause outranks the platform's: lifting it is theirs to do.
         pausedByFocus = false
         dispatch(ListeningIntent.TogglePause)
+        // why: a pause takes the beat chain down with it, so an already-arrived bedtime would
+        // never reach the seam that ends the run — while it is paused, the pause IS the seam.
+        if (paused && expired()) model.closeListening()
     }
 
     override fun skip() = dispatch(ListeningIntent.Skip)
