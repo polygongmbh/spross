@@ -30,9 +30,12 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   (`shownArticle`), which keeps it off a rotated synonym that may carry another gender.
   The learner's own side takes none: the meaning is there to identify the word, and its
   grammar is not what is being taught.
-  This does mean a word sounds fuller from the voice than from a bundled recording, which
-  says the bare word it was recorded as — that is the recording falling short of the rule,
-  not the voice overreaching, and it is the accepted cost of teaching the article at all.
+  Where a pack recorded the article too, the recording says it as well: German and Italian
+  carry an `articles{}` section, found by the very string the voice is handed, so those cards
+  sound the same on either branch. It is partial — one speaker reached 218 of the German
+  nouns and 52 of the Italian — and a word outside it still plays bare, which is the
+  recording falling short of the rule rather than the voice overreaching, and the accepted
+  cost of teaching the article at all.
   ♀ badge, plural line and alternates stay unspoken: those are decoration, and gender is
   taught by the article color besides.
 - **Audio may never give the answer away**: whether a card's target may be heard is the
@@ -134,10 +137,11 @@ mutes interact. The engine's half — whether a form may be heard at all — is
 - **The audio setting in the Box names the voice too, in one three-way row: No audio,
   Recordings, Speech.** "No audio" is the switch off, and it silences autoplay whatever
   the phone says. "Recordings" — the default — plays the bundled recording where the form
-  has one and falls to the system voice for the rest. "Speech" prefers the system voice
-  wherever one exists, for one consistent sound and the article always said aloud
-  (`shownArticle`); the recording answers only where the language has no voice at all,
-  Swahili on iOS among them.
+  has one and falls to the system voice for the rest — including the article recording
+  where the pack has one for that word. "Speech" prefers the system voice wherever one
+  exists, for one consistent sound and the article said aloud on EVERY word rather than
+  on the ones a speaker got to (`shownArticle`); the recording answers only where the
+  language has no voice at all, Swahili on iOS among them.
   The session's top-bar button is that same setting reduced to the mute: it turns the
   picked voice on or off, and never changes which one it is. Choosing a voice by hand also
   lifts autoplay past a silenced phone, exactly as the switch does — the picker and the

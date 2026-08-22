@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **German and Italian nouns are now heard with their article.** Two hundred and seventy
+  recordings say "die Adresse" and "l'acqua" rather than the bare word — the half of a noun
+  a learner most often has wrong, said by a voice instead of only tinted on the card. It
+  reaches 218 of the German nouns and 52 of the Italian, which is every one anybody has
+  recorded that way; the rest still play bare, and the meaning in your own language still
+  does, because its grammar is not what you are learning.
+
 - **Ten more of the verbs a day actually runs on.** Wanting, finding, searching, getting,
   looking, receiving, opening, closing, stopping, standing and sending join the core verbs, and one
   quality — whether a thing is to be had at all — joins the everyday adjectives. Swahili

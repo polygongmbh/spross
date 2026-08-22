@@ -12,14 +12,15 @@ lives outside the repo in `data/reference/audio/README.md`.
 
 ## 1. What ships, and under what
 
-3597 mp3 files, ~71 MB, all of them Wikimedia Commons transcodes:
-**2094 CC BY-SA · 988 CC BY · 515 CC0**.
+3876 mp3 files, ~80 MB, all of them Wikimedia Commons transcodes:
+**2322 CC BY-SA · 1040 CC BY · 514 CC0**.
 
 | Pack | Files | Source | Licenses | Speakers | Obligation |
 |---|---|---|---|---|---|
 | `audio/de/` | 570 words | Commons `De-*.ogg` | BY-SA 4.0 371 · BY-SA 3.0 199 | 8 credit groups, Jeuwre 356 | credit + share-alike, whole pack |
 | `audio/de/letters/` | 8 letters | Commons `De-<letter>.ogg` | BY-SA 4.0 6 · BY-SA 3.0 2 | Jeuwre 6, T.Voekler 2 | credit + share-alike |
 | `audio/de/texts/` | 2 words | Commons `De-*.ogg` | BY-SA 4.0 1 · BY-SA 3.0 1 | Jeuwre 1, joni 1 | credit + share-alike |
+| `audio/de/articles/` | 218 words **with their article** | Lingua Libre, via Commons | BY-SA 4.0, whole set | Natschoba, all 218 | credit + share-alike |
 | `audio/es/` | 488 words | Lingua Libre, via Commons | BY-SA 4.0 363 · CC0 88 · BY 4.0 37 | 15 credit groups (AdrianAbdulBaha 195, Marreromarco 88) | credit all but the 88 CC0; share-alike on 363 |
 | `audio/es/letters/` | 6 letters | Lingua Libre, via Commons | CC0 2 · BY 4.0 2 · BY-SA 4.0 2 | 4 groups | credit all but the CC0 |
 | `audio/es/texts/` | 4 words | Lingua Libre, via Commons | CC0 2 · BY 4.0 1 · BY-SA 4.0 1 | 4 groups | credit all but the CC0 |
@@ -30,12 +31,22 @@ lives outside the repo in `data/reference/audio/README.md`.
 | `audio/it/` | 437 words | Lingua Libre + Wiktionary `It-*.ogg`, via Commons | BY-SA 4.0 234 · CC0 184 · BY 3.0 us 10 · BY 4.0 5 · BY-SA 3.0 3 · BY-SA 2.0 1 | 14 credit groups (LangPao 232, XANA000 105) | credit all but the 184 CC0; share-alike on 238 |
 | `audio/it/letters/` | 10 letters | Lingua Libre, via Commons | CC0 | XANA000 | none — a dedication |
 | `audio/it/texts/` | 4 words | Commons | CC0 3 · BY-SA 4.0 1 | 4 groups | credit the one BY-SA |
+| `audio/it/articles/` | 52 words **with their article** | Commons `It-<article> <word>.ogg` (Shtooka) | BY 3.0 us, whole set | Marta Carbone / Association Shtooka, all 52 | attribution only |
 | `audio/fr/` | 511 words | Commons `Fr-*.ogg` (Shtooka Paris) + Lingua Libre | **BY 2.0 fr 442 — attribution only** · CC0 45 · BY-SA 4.0 22 · BY-SA 3.0 2 | 15 credit groups (Vion Nicolas 442, Poslovitch 36) | credit all but the 45 CC0; share-alike on the 24-word tail only |
 | `audio/fr/letters/` | 5 letters | Lingua Libre, via Commons | BY-SA 4.0 | Sartus85 | credit + share-alike |
 | `audio/fr/texts/` | 2 words | Lingua Libre, via Commons | BY-SA 4.0 1 · CC0 1 | 2 groups | credit the BY-SA |
 | `audio/eo/` | 529 words | Lingua Libre + the Commons Esperanto phrasebook | BY-SA 4.0 349 · CC0 180 | 12 credit groups (Lepticed7 341, Poslovitch 100) | credit all but the 180 CC0; share-alike on 349 |
 | `audio/eo/letters/` | 28 letters | Lingua Libre word recordings | BY-SA 4.0 | Lepticed7 | credit + share-alike |
 | `audio/eo/texts/` | 2 words | Lingua Libre, via Commons | BY-SA 4.0 | Lepticed7, NMaia | credit + share-alike |
+
+The `articles/` sets are the one place a word ships TWICE, and deliberately: the bare file
+is what the learner's own language is read with, the article one what the target is heard as
+(`../catalog/docs/audio.md`). Both carry their own author and license row, so the credits
+screen names Natschoba beside the German pack's eight groups and Marta Carbone beside the
+Italian's fourteen — a second voice on 218 and 52 cards, not a replacement of the first.
+Nothing else on Commons could have been used: article-form recordings exist for German
+(one speaker) and Italian (one set), and for Spanish and French they do not exist at all —
+the research and its counts are `data/reference/audio/README.md`'s.
 
 Share-alike reaches the **audio files only**.
 CC carries no GPL-style linking clause,
