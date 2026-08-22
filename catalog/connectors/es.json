@@ -27,7 +27,6 @@
   "more-or-less": { "text": "más o menos" },
   "i-am-always-there": { "text": "Siempre estoy ahí." },
   "hang-it-higher": { "text": "Cuélguelo más alto.", "variants": ["Cuélgalo más alto."] },
-  "if-you-want": { "text": "Si quiere.", "variants": ["Si quieres."] },
-  "tea-or-coffee": { "text": "¿Té o café?" }
+  "if-you-want": { "text": "Si quiere.", "variants": ["Si quieres."] }
  }
 }

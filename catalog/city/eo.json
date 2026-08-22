@@ -50,7 +50,6 @@
    "text": "Tio estas tro multekosta.",
    "variants": ["Tio estas tro kara.", "Tio tro multekostas."]
   },
-  "i-have-no-money": { "text": "Mi ne havas monon." },
-  "a-lot-of-money": { "text": "multe da mono" }
+  "i-have-no-money": { "text": "Mi ne havas monon." }
  }
 }

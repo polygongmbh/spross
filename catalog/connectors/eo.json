@@ -44,7 +44,6 @@
    "text": "Pendigu ĝin pli alte.",
    "notes": { "de": "pendi hängt selbst · etwas aufhängen ist pendigi." }
   },
-  "if-you-want": { "text": "Se vi volas." },
-  "tea-or-coffee": { "text": "Teo aŭ kafo?", "variants": ["Ĉu teon aŭ kafon?"] }
+  "if-you-want": { "text": "Se vi volas." }
  }
 }

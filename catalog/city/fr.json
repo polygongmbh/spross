@@ -52,7 +52,6 @@
    "variants": ["Ça coûte combien ?", "Combien est-ce que ça coûte ?", "Combien cela coûte-t-il ?"]
   },
   "that-is-too-expensive": { "text": "C'est trop cher." },
-  "i-have-no-money": { "text": "Je n'ai pas d'argent." },
-  "a-lot-of-money": { "text": "beaucoup d'argent" }
+  "i-have-no-money": { "text": "Je n'ai pas d'argent." }
  }
 }

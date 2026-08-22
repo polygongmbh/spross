@@ -34,6 +34,5 @@
  { "slug": "i-live-in-this-neighborhood", "kind": "phrase", "components": ["neighborhood"] },
  { "slug": "how-much-does-this-cost", "kind": "phrase", "emoji": "💶", "components": [] },
  { "slug": "that-is-too-expensive", "kind": "phrase", "emoji": "💸", "components": [] },
- { "slug": "i-have-no-money", "kind": "phrase", "emoji": "🪙", "components": ["money"] },
- { "slug": "a-lot-of-money", "kind": "phrase", "emoji": "🤑", "components": ["money"] }
+ { "slug": "i-have-no-money", "kind": "phrase", "emoji": "🪙", "components": ["money"] }
 ]

@@ -14,7 +14,7 @@
   "but": { "text": "але" },
   "also": { "text": "також" },
   "and": { "text": "і", "variants": ["та", "й"] },
-  "or": { "text": "або" },
+  "or": { "text": "або", "notes": { "de": "in der Auswahlfrage steht чи, nicht або: Чай чи кава?" } },
   "if": { "text": "якщо" },
   "because": { "text": "тому що", "variants": ["бо"] },
   "so-that": { "text": "щоб" },
@@ -27,11 +27,6 @@
   "more-or-less": { "text": "більш-менш" },
   "i-am-always-there": { "text": "Я завжди там." },
   "hang-it-higher": { "text": "Повісь це вище." },
-  "if-you-want": { "text": "Якщо хочете.", "variants": ["Якщо хочеш."] },
-  "tea-or-coffee": {
-   "text": "Чай чи кава?",
-   "variants": ["Чай або кава?"],
-   "notes": { "de": "in der Auswahlfrage steht чи, nicht або." }
-  }
+  "if-you-want": { "text": "Якщо хочете.", "variants": ["Якщо хочеш."] }
  }
 }

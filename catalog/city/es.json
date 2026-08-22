@@ -44,7 +44,6 @@
    "text": "Eso es demasiado caro.",
    "variants": ["Es demasiado caro.", "Esto es demasiado caro."]
   },
-  "i-have-no-money": { "text": "No tengo dinero." },
-  "a-lot-of-money": { "text": "mucho dinero" }
+  "i-have-no-money": { "text": "No tengo dinero." }
  }
 }

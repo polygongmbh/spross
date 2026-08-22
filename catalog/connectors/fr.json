@@ -30,7 +30,6 @@
   "more-or-less": { "text": "plus ou moins" },
   "i-am-always-there": { "text": "Je suis toujours là." },
   "hang-it-higher": { "text": "Accroche-le plus haut." },
-  "if-you-want": { "text": "Si vous voulez.", "variants": ["Si tu veux."] },
-  "tea-or-coffee": { "text": "Thé ou café ?" }
+  "if-you-want": { "text": "Si vous voulez.", "variants": ["Si tu veux."] }
  }
 }

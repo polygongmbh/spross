@@ -32,7 +32,6 @@
   "i-live-in-this-neighborhood": { "text": "I live in this neighborhood.", "variants": ["I live in this neighbourhood."] },
   "how-much-does-this-cost": { "text": "How much does this cost?" },
   "that-is-too-expensive": { "text": "That is too expensive." },
-  "i-have-no-money": { "text": "I have no money." },
-  "a-lot-of-money": { "text": "a lot of money" }
+  "i-have-no-money": { "text": "I have no money." }
  }
 }
