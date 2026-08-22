@@ -167,4 +167,13 @@ extension SessionView {
     /// The card was asked by ear and the learner could not listen: the word
     /// stands on it as text for the rest of the turn.
     var promptInText: Bool { turn?.promptInText ?? false }
+
+    /// Whether the card on screen is asked by ear — the TURN's own fact, never a
+    /// re-reading of the device: audibility can change under a card (a volume
+    /// key, headphones out), and a face that flipped mid-turn would show the
+    /// source word while kern still grades the meaning. The model answers only
+    /// before the turn exists, which is the one moment it cannot have changed.
+    func askedByEar(_ card: Card) -> Bool {
+        (turn?.prompt ?? model.producePrompt(for: card)) == .sound
+    }
 }

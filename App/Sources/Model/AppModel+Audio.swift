@@ -28,9 +28,12 @@ extension AppModel {
     /// WHEN this card's target form may be said out loud — Kern's rule,
     /// consumed rather than re-derived: both apps switch on this one cue
     /// instead of each testing the role in its own way.
-    func pronunciationCue(for card: Card) -> PronunciationCue {
-        SprossKern.pronunciationCue(role: presentationRole(for: card.id),
-                                    prompt: producePrompt(for: card))
+    ///
+    /// `prompt` is handed IN rather than resolved here: a turn already on screen
+    /// keeps the prompt it began with, and the cue must answer for that one and
+    /// not for what the device would decide a second time.
+    func pronunciationCue(for card: Card, prompt: ProducePrompt) -> PronunciationCue {
+        SprossKern.pronunciationCue(role: presentationRole(for: card.id), prompt: prompt)
     }
 
     /// Whether a produce card asks by MEANING or by ear — Kern's rule again,

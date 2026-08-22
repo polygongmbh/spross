@@ -46,7 +46,10 @@ import net.spross.kern.session.TurnFeedback
 fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     val card = ui.card ?: return
     val chrome = model.chrome
-    val heard = ui.producePrompt == ProducePrompt.Sound
+    // The TURN's own fact, never a re-reading of the device: audibility can change under a
+    // card — a volume key, headphones out — and a card face that flipped mid-turn would
+    // show the source word while kern still grades the meaning.
+    val heard = flow.state.prompt == ProducePrompt.Sound
     val revealed = flow.answerRevealed
     // The word takes the replay glyph's place once there is nothing left to withhold:
     // the learner said they cannot listen, or the answer is out and the spelling is
@@ -76,7 +79,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         // The card is what OPENS onto the answer — inline, growing downward, above the
         // field the learner is still typing in. A near miss never reaches here: its
         // correction stands at the field, beside the attempt it is correcting.
-        if (revealed) CardReveal { ProduceReveal(model, ui) }
+        if (revealed) CardReveal { ProduceReveal(model, ui, heard) }
     }
 
     val step = flow.copyStep
@@ -261,13 +264,13 @@ private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
  * moves it.
  */
 @Composable
-private fun ProduceReveal(model: AppModel, ui: SessionUi) {
+private fun ProduceReveal(model: AppModel, ui: SessionUi, heard: Boolean) {
     val card = ui.card ?: return
     val chrome = model.chrome
     // why: a card asked by ear owes the MEANING back, so its reveal is shaped like the
     // recognition one — the answer where the answer goes, and the word that played
     // standing above it in writing, which is what a retype finishes against.
-    if (ui.producePrompt == ProducePrompt.Sound) {
+    if (heard) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(DlSpace.s),

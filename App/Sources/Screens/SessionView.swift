@@ -192,7 +192,7 @@ struct SessionView: View, LanguageNaming {
             // withhold: the learner said they cannot listen, or the answer is
             // out and the spelling is what the reveal owes. It then renders as
             // any other target word does — article, plural, and the speaker.
-            if model.producePrompt(for: card) == .sound {
+            if askedByEar(card) {
                 let written = promptInText || cardRevealed
                 return .init(text: card.target.text,
                              article: written
@@ -241,7 +241,7 @@ struct SessionView: View, LanguageNaming {
             // goes, and the word that played standing above it in writing
             // (`promptSide`), which is where a retype has something to finish
             // against rather than a prompt to copy.
-            if model.producePrompt(for: card) == .sound {
+            if askedByEar(card) {
                 return .init(text: meaning,
                              alternates: alternates,
                              femMarker: card.promptFeminineMarker)
