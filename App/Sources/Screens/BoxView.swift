@@ -176,7 +176,7 @@ struct BoxView: View {
     private var anyWordCanBeHeard: Bool {
         guard let target = model.targetLanguage else { return false }
         return Pronouncer.shared.canSpeak(language: target)
-            || (model.box?.cards.contains { card in
+            || (model.box?.cards.values.contains { card in
                 model.pronounceAction(for: card.target.text, lang: card.target.lang) != nil
             } ?? false)
     }
