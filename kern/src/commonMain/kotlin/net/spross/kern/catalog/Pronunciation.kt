@@ -55,12 +55,17 @@ fun utterance(form: String): String = form.trim().removePrefix("-").trim()
  * `docs/read-aloud.md`'s "only the headword is ever spoken", and it applies wherever a target
  * word is synthesized, not only in listening mode.
  *
- * It lives beside [utterance] because it is the same question — what string does the
- * synthesizer get — and answering it in two places would let a prefixed form skip the stem
- * trim. It is deliberately NOT applied to a bundled recording: a recording says what was
- * recorded, and re-cutting one to add an article is an edit to bytes kern never edits. That
- * the two branches then sound different is the accepted cost; the recording is the branch
- * falling short, not the voice overreaching.
+ * It lives beside [utterance] because it is the same question — what string is this word
+ * SAID as — and answering it in two places would let a prefixed form skip the stem trim.
+ * The synthesizer is handed it, and a bundled ARTICLE recording is looked up by it
+ * ([AudioManifest.recording]): a file that speaks "der Ausweis" answers exactly the card
+ * this builds that string for. It is never applied to the bytes of a recording — re-cutting
+ * one to add an article is an edit kern does not make — so a word with no article recording
+ * still plays bare, and only that word sounds shorter than the voice would say it.
+ *
+ * An ELIDED article writes onto its noun: "l'acqua", never "l' acqua". The apostrophe is the
+ * join, a space beside it spells a word nobody writes, and the recording is titled
+ * `It-l'acqua.ogg` — one sound, so one key.
  *
  * [shownArticle] is what decides there is one to say: a rotated synonym may carry another
  * gender, so it gets none rather than a wrong one.
@@ -68,7 +73,11 @@ fun utterance(form: String): String = form.trim().removePrefix("-").trim()
 fun spokenTargetForm(article: String?, shownForm: String, targetText: String): String {
     val spoken = utterance(shownForm)
     val prefix = shownArticle(article, shownForm, targetText)?.trim()?.takeIf { it.isNotEmpty() }
-    return if (prefix == null) spoken else "$prefix $spoken"
+    return when {
+        prefix == null -> spoken
+        prefix.last() in APOSTROPHES -> "$prefix$spoken"
+        else -> "$prefix $spoken"
+    }
 }
 
 /**

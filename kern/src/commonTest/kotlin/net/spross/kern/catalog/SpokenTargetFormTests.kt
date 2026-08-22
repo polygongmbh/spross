@@ -50,4 +50,18 @@ class SpokenTargetFormTests {
         assertEquals("zuri", spokenTargetForm(null, "-zuri", "-zuri"))
         assertEquals("die zuri", spokenTargetForm("die", "-zuri", "-zuri"))
     }
+
+    /**
+     * RULE: an elided article writes onto its noun, with no space between.
+     * WHY: the apostrophe IS the join — "l' acqua" is a spelling nobody writes, and this
+     * string is also what an article recording is looked up by, where Commons spells the
+     * title `It-l'acqua.ogg`. One sound, so one key, whichever branch says it.
+     */
+    @Test
+    fun anElidedArticleWritesOntoItsNoun() {
+        assertEquals("l'acqua", spokenTargetForm("l'", "acqua", "acqua"))
+        assertEquals("l'università", spokenTargetForm("l'", "università", "università"))
+        // The curly apostrophe a catalog may pick up joins exactly as the typewriter one does.
+        assertEquals("l’olio", spokenTargetForm("l’", "olio", "olio"))
+    }
 }
