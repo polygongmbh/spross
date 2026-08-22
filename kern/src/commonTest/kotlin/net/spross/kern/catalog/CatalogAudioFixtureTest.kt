@@ -261,6 +261,8 @@ class CatalogAudioFixtureTest {
                 "de|Bert|CC BY-SA 4.0",
                 "de|Bert|CC BY 3.0 us",
                 "de|Anna|CC BY 3.0 us",
+                // the article recordings are a speaker of their own, credited as one
+                "de|Nina|CC BY-SA 4.0",
                 "sw|Juma|CC BY-SA 4.0",
                 "uk|Ivan|Public domain",
                 "uk|Halyna|CC BY 3.0 us",

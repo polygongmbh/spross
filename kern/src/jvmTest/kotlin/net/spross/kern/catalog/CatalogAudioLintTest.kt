@@ -36,6 +36,7 @@ class CatalogAudioLintTest {
             for ((slug, recording) in manifest.words) action(lang, slug, recording)
             for ((glyph, recording) in manifest.letters) action(lang, glyph, recording)
             for ((form, recording) in manifest.texts) action(lang, form, recording)
+            for ((slug, recording) in manifest.articles) action(lang, "$slug (article)", recording)
         }
     }
 
@@ -211,7 +212,8 @@ class CatalogAudioLintTest {
     fun everyAudioFileShipsAndIsReferencedExactlyOnce() {
         val referenced = mutableListOf<String>()
         for ((lang, manifest) in catalog.audio) {
-            for (recording in manifest.words.values + manifest.letters.values + manifest.texts.values) {
+            for (recording in manifest.words.values + manifest.letters.values +
+                manifest.texts.values + manifest.articles.values) {
                 val relative = "$lang/${recording.file}"
                 assertTrue(File(audioRoot, relative).isFile, "audio/$relative: missing on disk")
                 referenced += relative
@@ -293,7 +295,8 @@ class CatalogAudioLintTest {
     @Test
     fun noPackLosesItsRecordingQuality() {
         for ((lang, manifest) in catalog.audio) {
-            val measured = (manifest.words.values + manifest.letters.values + manifest.texts.values)
+            val measured = (manifest.words.values + manifest.letters.values +
+                manifest.texts.values + manifest.articles.values)
                 .map { it.snr }.filter { it != 0.0 }
             assertTrue(measured.size > 10, "audio/$lang: only ${measured.size} entries carry an snr")
             val median = measured.sorted()[measured.size / 2]
@@ -346,7 +349,8 @@ class CatalogAudioLintTest {
     @Test
     fun audioFilesMatchTheirManifestHashes() {
         for ((lang, manifest) in catalog.audio) {
-            for (entry in manifest.words.entries + manifest.letters.entries + manifest.texts.entries) {
+            for (entry in manifest.words.entries + manifest.letters.entries +
+                manifest.texts.entries + manifest.articles.entries) {
                 val file = File(audioRoot, "$lang/${entry.value.file}")
                 if (!file.isFile) continue // reported by everyAudioFileShipsAndIsReferencedExactlyOnce
                 val digest = MessageDigest.getInstance("SHA-256").digest(file.readBytes())

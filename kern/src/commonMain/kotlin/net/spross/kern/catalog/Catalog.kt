@@ -314,10 +314,16 @@ class Catalog internal constructor(
      * rotated synonym is spoken as itself. A bundled recording is returned only when it
      * speaks that form ([speechKey]); everything else falls to the app's synthesizer,
      * which is handed [Pronunciation.utterance]. Paths only: kern never reads audio bytes.
+     *
+     * [article] is the article the card shows in front of the word — `shownArticle`'s answer
+     * on the TARGET side, null everywhere else, which is the same fact the synthesized branch
+     * already asks for. Given one, a recording that speaks the article too is preferred; the
+     * bare recording answers where the pack has none, and on the source side, whose grammar
+     * is not what is being taught, it is the only one that can.
      */
-    fun pronunciation(lang: Language, visibleForm: String): Pronunciation {
+    fun pronunciation(lang: Language, visibleForm: String, article: String? = null): Pronunciation {
         val manifest = audio[lang]
-        val recording = manifest?.recording(visibleForm)
+        val recording = manifest?.recording(visibleForm, article)
         return Pronunciation(
             form = visibleForm,
             utterance = utterance(visibleForm),

@@ -10,10 +10,15 @@ Engine contract: `../README.md`.
   or the produce prompt IS the sound; `OnReveal` for a produce card that asks for that very form.
   Both apps CONSUME the cue; neither re-derives `role == Recognize` for audio.
   Which transitions actually fire, and how autoplay sits beside the auto-advance timers, is `../docs/design.md`'s.
-- **What is spoken is the bare headword** — the form the card teaches, never its rendering.
-  The inline article, the ♀ badge, the plural line and the area cue are grammar decoration and never reach a synthesizer;
-  gender is taught by the article-color device, not by audio.
-  The recordings speak bare headwords, so this is the only rule that holds for the recorded and the synthesized branch alike.
+- **What is spoken is the headword, and on the TARGET side its article with it** —
+  never the rest of the rendering: the ♀ badge, the plural line and the area cue are grammar decoration
+  and reach neither a synthesizer nor a lookup.
+  `spokenTargetForm(article, shownForm, targetText)` builds that string once, for both branches:
+  the synthesizer is handed it, and an `articles{}` recording is FOUND by it,
+  so "die Adresse" plays where one was recorded and the bare file plays where none was.
+  The source side takes no article — its grammar is not what is being taught —
+  and `shownArticle` withholds one from any form the card rotated in, which is what keeps
+  a synonym's own gender from being mislabeled by the canonical word's.
 - **Two normalizations, both normative** (`catalog/Pronunciation.kt`):
   `speechKey(form)` — trim whitespace, strip ONE leading `-` (the Swahili adjective stem citation `-zuri`),
   strip leading/trailing sentence punctuation and quote marks — `¡`/`¿` among them, because Spanish writes them and no one says them —, NFC, lowercase,
@@ -25,6 +30,12 @@ Engine contract: `../README.md`.
 - **Lookup is keyed by the MATCHED SPOKEN FORM, never by the slug.**
   `audio/<lang>/manifest.json` records, per slug, the form the recording actually speaks (`matches`).
   `AudioManifest` builds two indices — the exact NFC form, then the `speechKey` — and exact wins.
+  The manifest's `articles{}` section indexes separately, by the speech key of the whole spoken
+  form ("die Adresse"), and `Catalog.pronunciation(lang, form, article)` reaches it only when
+  the caller passes the article the card shows; without one, only the bare index answers.
+  So a pack that says the article can never say it over a card that does not — the source
+  side of a pair among them — and a word with no article recording still plays its bare one
+  rather than falling silent.
   A rotated synonym nobody recorded simply misses, and the app speaks it live:
   a card never plays a word it does not show.
 - **Collision rule.** Entries sharing a `speechKey` whose bytes are IDENTICAL are one recording fetched under two slugs, and resolve.

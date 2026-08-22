@@ -63,9 +63,22 @@ internal class AudioManifest(
      * word it does not say.
      */
     val texts: Map<String, AudioRecording>,
+    /**
+     * slug → a recording that speaks the card's ARTICLE and then the word, in manifest order.
+     * Its `matches` is that whole spoken form ("der Ausweis"), so it is keyed by the very
+     * string [spokenTargetForm] builds and can never answer a card that shows no article —
+     * the source side of a pair among them, where an article is not what is being taught.
+     *
+     * A separate section rather than a second `words` entry because both files ship: the
+     * bare one is what the LEARNER'S language is read with, the article one what the target
+     * is heard as, and one slug legitimately has both.
+     */
+    val articles: Map<String, AudioRecording>,
 ) {
     private val byExactForm: Map<String, AudioRecording?> = index { nfcNormalized(it) }
     private val bySpeechKey: Map<String, AudioRecording?> = index { speechKey(it) }
+    private val articlesBySpeechKey: Map<String, AudioRecording?> =
+        index(articles.values) { speechKey(it) }
     private val byGlyph: Map<String, AudioRecording> =
         letters.entries.associate { (glyph, recording) -> nfcNormalized(glyph) to recording }
 
@@ -74,6 +87,23 @@ internal class AudioManifest(
         val exact = nfcNormalized(visibleForm)
         if (exact in byExactForm) return byExactForm[exact]
         return bySpeechKey[speechKey(visibleForm)]
+    }
+
+    /**
+     * The recording for [visibleForm] on the TARGET side, where [article] is the article the
+     * card shows in front of it (null on the source side, and on anything a card rotated in).
+     *
+     * An article recording is preferred where one speaks that pair, because the article is
+     * half of what knowing the noun means; where none does, the bare recording still answers
+     * and the word is simply heard without it — never a bare recording dressed up as one, and
+     * never an article said over a card not showing it.
+     */
+    fun recording(visibleForm: String, article: String?): AudioRecording? {
+        if (!article.isNullOrBlank()) {
+            val spoken = spokenTargetForm(article, visibleForm, visibleForm)
+            articlesBySpeechKey[speechKey(spoken)]?.let { return it }
+        }
+        return recording(visibleForm)
     }
 
     /** The letter's recording, NFC-folded so a decomposed glyph still resolves. */
@@ -89,11 +119,15 @@ internal class AudioManifest(
     fun creditRows(): List<Pair<String, AudioRecording>> =
         words.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
             letters.map { (glyph, recording) -> glyph to recording } +
-            texts.values.mapNotNull { recording -> recording.matches?.let { it to recording } }
+            texts.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
+            articles.values.mapNotNull { recording -> recording.matches?.let { it to recording } }
 
     /** Spoken-form key → recording, or → null where entries disagree about non-identical bytes. */
-    private fun index(key: (String) -> String): Map<String, AudioRecording?> =
-        (words.values + texts.values)
+    private fun index(
+        recordings: Collection<AudioRecording> = words.values + texts.values,
+        key: (String) -> String,
+    ): Map<String, AudioRecording?> =
+        recordings
             .mapNotNull { recording -> recording.matches?.let { key(it) to recording } }
             .groupBy({ (formKey, _) -> formKey }, { (_, recording) -> recording })
             .mapValues { (_, group) ->
@@ -114,7 +148,7 @@ internal object AudioManifestParser {
 
     fun parse(path: String, text: String, expectedLanguage: Language): AudioManifest {
         val root = parseJson(path, text).obj(path, "root")
-        root.rejectUnknownKeys(path, "root", setOf("language", "words", "letters", "texts"))
+        root.rejectUnknownKeys(path, "root", setOf("language", "words", "letters", "texts", "articles"))
         val language = root.requireString(path, "root", "language")
         if (language != expectedLanguage) {
             parseError(path, "declares language \"$language\", expected \"$expectedLanguage\"")
@@ -124,6 +158,7 @@ internal object AudioManifestParser {
             words = section(path, root, "words", WORD_KEYS),
             letters = section(path, root, "letters", LETTER_KEYS),
             texts = section(path, root, "texts", WORD_KEYS),
+            articles = section(path, root, "articles", WORD_KEYS),
         )
     }
 
