@@ -6,7 +6,6 @@ import android.os.Looper
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import kotlin.random.Random
 import net.spross.app.AppModel
 import net.spross.app.audio.Pronouncer
 import net.spross.app.ui.languageName
@@ -71,7 +70,6 @@ class ListeningDriver(
     val paused: Boolean get() = state?.paused == true
 
     private val handler = Handler(Looper.getMainLooper())
-    private val rng = Random.Default
 
     /** Which beat is the newest — everything armed under an older token is dead. */
     private var generation = 0
@@ -105,7 +103,7 @@ class ListeningDriver(
         pausedByFocus = false
         focus.take()
         ListeningBridge.controls = this
-        apply(ListeningRun.reduce(ListeningRun.idle(candidates), ListeningIntent.Start, rng))
+        apply(ListeningRun.reduce(ListeningRun.idle(candidates), ListeningIntent.Start))
         // why: the state is published by the reduction above, so the service's very first
         // notification already carries the word rather than an empty shell of one.
         ListeningService.start(app)
@@ -181,7 +179,7 @@ class ListeningDriver(
 
     private fun dispatch(intent: ListeningIntent) {
         val current = state ?: return
-        apply(ListeningRun.reduce(current, intent, rng))
+        apply(ListeningRun.reduce(current, intent))
     }
 
     private fun apply(reduction: ListeningReduction) {

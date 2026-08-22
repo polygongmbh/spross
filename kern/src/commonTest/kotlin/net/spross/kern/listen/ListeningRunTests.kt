@@ -1,6 +1,5 @@
 package net.spross.kern.listen
 
-import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -17,58 +16,55 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.Realization
 
-/** The playlist itself: what it draws next, what it replays, and what it never touches. */
+/** The playlist itself: what it plays next, what it replays, and what it never touches. */
 class ListeningRunTests {
 
     private fun candidates(n: Int): List<ListeningCandidate> = (1..n).map {
         ListeningCandidate(Box.word(it), stability = 5.0, suspended = false, scheduled = true, queued = false)
     }
 
-    private fun run(pool: List<ListeningCandidate>, rng: Random): ListeningRunState =
-        ListeningRun.reduce(ListeningRun.idle(pool), ListeningIntent.Start, rng).state
+    private fun run(pool: List<ListeningCandidate>): ListeningRunState =
+        ListeningRun.reduce(ListeningRun.idle(pool), ListeningIntent.Start).state
 
     /** The ids of [turns] consecutive turns, the opening one first. */
-    private fun heard(pool: List<ListeningCandidate>, turns: Int, seed: Int): List<String> {
-        val rng = Random(seed)
-        var state = run(pool, rng)
+    private fun heard(pool: List<ListeningCandidate>, turns: Int): List<String> {
+        var state = run(pool)
         val ids = mutableListOf<String>()
         repeat(turns) {
             ids += assertNotNull(state.turn).cardId
-            state = ListeningRun.reduce(state, ListeningIntent.Advance, rng).state
+            state = ListeningRun.reduce(state, ListeningIntent.Advance).state
         }
         return ids
     }
 
     /**
-     * RULE: a word just heard stays out of the draw for [RECENCY_WINDOW] turns.
-     * WHY: weighting says what is worth hearing, the ring says what is worth hearing AGAIN
-     * YET. Without it a leech-heavy pool says the same words for an hour, which is the one
-     * way a playlist can be worse than silence.
+     * RULE: no word comes back before the WHOLE pool has lapped.
+     * WHY: what the old 24-card recency ring bought, kept and made stronger. Without it a
+     * short pool says the same words all evening, which is the one way a playlist can be
+     * worse than silence — and a lap is a promise a ring of a fixed size could not make.
      */
     @Test
-    fun theRecencyRingNeverRepeatsInsideItsWindow() {
-        val ids = heard(candidates(40), turns = 200, seed = 7)
+    fun noWordComesBackBeforeThePoolHasLapped() {
+        val pool = candidates(40)
+        val ids = heard(pool, turns = 200)
 
         for (index in ids.indices) {
-            val window = ids.subList(maxOf(0, index - RECENCY_WINDOW), index)
-            assertFalse(ids[index] in window, "${ids[index]} repeated inside the window at $index")
+            val lap = ids.subList(maxOf(0, index - (pool.size - 1)), index)
+            assertFalse(ids[index] in lap, "${ids[index]} repeated inside the lap at $index")
         }
     }
 
     /**
-     * RULE: a pool smaller than the window laps instead of running dry.
-     * WHY: the ring is a preference, never a gate — a learner with three sayable words still
-     * gets a run, it just rotates. What it must never do is hand back two of the same word in
-     * a row, so the hold shrinks to `pool − 1` rather than emptying the draw.
+     * RULE: a lapped pool starts over at its head, in the same order.
+     * WHY: the walk is a playlist, not a shuffle — a learner with three sayable words still
+     * gets a run, it simply rotates, and what it must never do is hand back two of the same
+     * word in a row.
      */
     @Test
-    fun aPoolSmallerThanTheWindowLapsCleanly() {
-        val ids = heard(candidates(3), turns = 60, seed = 3)
+    fun aLappedPoolRestartsAtTheHead() {
+        val ids = heard(candidates(3), turns = 9)
 
-        assertEquals(setOf("w01", "w02", "w03"), ids.toSet())
-        for (index in 1 until ids.size) {
-            assertFalse(ids[index] == ids[index - 1], "the same word twice in a row at $index")
-        }
+        assertEquals(List(3) { listOf("w01", "w02", "w03") }.flatten(), ids)
     }
 
     /**
@@ -78,7 +74,23 @@ class ListeningRunTests {
      */
     @Test
     fun aSingleWordPoolKeepsSayingIt() {
-        assertEquals(List(5) { "w01" }, heard(candidates(1), turns = 5, seed = 1))
+        assertEquals(List(5) { "w01" }, heard(candidates(1), turns = 5))
+    }
+
+    /**
+     * RULE: a run plays the pool in the order it was handed, turn for turn.
+     * WHY: the ordering decision lives in `listeningOrder` and nowhere else. A run that
+     * re-sorted or re-rolled would be a second opinion about the playlist, and the run would
+     * stop being reproducible from the box alone.
+     */
+    @Test
+    fun aRunPlaysThePoolInTheOrderItWasHanded() {
+        // Deliberately NOT catalog order: the walk must not quietly repair it.
+        val pool = listOf(7, 2, 9, 1).map {
+            ListeningCandidate(Box.word(it), stability = 5.0, suspended = false, scheduled = true, queued = false)
+        }
+
+        assertEquals(listOf("w07", "w02", "w09", "w01"), heard(pool, turns = 4))
     }
 
     /**
@@ -93,10 +105,9 @@ class ListeningRunTests {
         val before = box(total = 20, scheduled = 8)
         val catalog: Catalog = Catalog.load(MapCatalogSource(Fixture.files + AudioFixture.files))
         val pool = ListeningPool.report(catalog, before, "de", "sw", true, true)
-        val rng = Random(11)
 
-        var state = run(pool.candidates, rng)
-        repeat(100) { state = ListeningRun.reduce(state, ListeningIntent.Advance, rng).state }
+        var state = run(pool.candidates)
+        repeat(100) { state = ListeningRun.reduce(state, ListeningIntent.Advance).state }
 
         assertEquals(101, state.played)
         assertEquals(before, box(total = 20, scheduled = 8))
@@ -118,7 +129,7 @@ class ListeningRunTests {
             card = gendered("bread", source = "das Brot", target = "mkate", article = "das"),
             stability = 5.0, suspended = false, scheduled = true, queued = false,
         )
-        val turn = assertNotNull(run(listOf(bread), Random(1)).turn)
+        val turn = assertNotNull(run(listOf(bread)).turn)
 
         assertEquals("bread", turn.cardId)
         assertEquals("mkate", turn.targetForm)
@@ -140,7 +151,7 @@ class ListeningRunTests {
      */
     @Test
     fun aCardWithoutAGenderSpeaksNoArticle() {
-        assertNull(assertNotNull(run(candidates(1), Random(1)).turn).spokenArticle)
+        assertNull(assertNotNull(run(candidates(1)).turn).spokenArticle)
     }
 
     /**
@@ -151,10 +162,9 @@ class ListeningRunTests {
      */
     @Test
     fun repeatReplaysTheSameTurnWithoutDrawing() {
-        val rng = Random(5)
-        val started = run(candidates(20), rng)
+        val started = run(candidates(20))
 
-        val again = ListeningRun.reduce(started, ListeningIntent.Repeat, rng)
+        val again = ListeningRun.reduce(started, ListeningIntent.Repeat)
 
         assertEquals(started.turn, again.state.turn)
         assertEquals(started.played, again.state.played)
@@ -168,14 +178,13 @@ class ListeningRunTests {
      */
     @Test
     fun pausingStopsTheSoundAndResumingReplaysTheTurn() {
-        val rng = Random(5)
-        val started = run(candidates(20), rng)
+        val started = run(candidates(20))
 
-        val paused = ListeningRun.reduce(started, ListeningIntent.TogglePause, rng)
+        val paused = ListeningRun.reduce(started, ListeningIntent.TogglePause)
         assertTrue(paused.state.paused)
         assertEquals(listOf(ListeningEffect.Stop), paused.effects)
 
-        val resumed = ListeningRun.reduce(paused.state, ListeningIntent.TogglePause, rng)
+        val resumed = ListeningRun.reduce(paused.state, ListeningIntent.TogglePause)
         assertFalse(resumed.state.paused)
         assertEquals(listOf(ListeningEffect.Play(assertNotNull(started.turn))), resumed.effects)
         assertEquals(started.played, resumed.state.played)
@@ -189,10 +198,9 @@ class ListeningRunTests {
      */
     @Test
     fun advanceIsANoOpWhilePaused() {
-        val rng = Random(5)
-        val paused = ListeningRun.reduce(run(candidates(20), rng), ListeningIntent.TogglePause, rng).state
+        val paused = ListeningRun.reduce(run(candidates(20)), ListeningIntent.TogglePause).state
 
-        val stayed = ListeningRun.reduce(paused, ListeningIntent.Advance, rng)
+        val stayed = ListeningRun.reduce(paused, ListeningIntent.Advance)
 
         assertEquals(paused, stayed.state)
         assertEquals(emptyList(), stayed.effects)
@@ -205,10 +213,9 @@ class ListeningRunTests {
      */
     @Test
     fun skipDrawsTheNextWordAndLiftsAPause() {
-        val rng = Random(5)
-        val paused = ListeningRun.reduce(run(candidates(20), rng), ListeningIntent.TogglePause, rng).state
+        val paused = ListeningRun.reduce(run(candidates(20)), ListeningIntent.TogglePause).state
 
-        val skipped = ListeningRun.reduce(paused, ListeningIntent.Skip, rng)
+        val skipped = ListeningRun.reduce(paused, ListeningIntent.Skip)
 
         assertFalse(skipped.state.paused)
         assertEquals(paused.played + 1, skipped.state.played)
@@ -222,10 +229,9 @@ class ListeningRunTests {
      */
     @Test
     fun closingStopsTheSound() {
-        val rng = Random(5)
-        val started = run(candidates(20), rng)
+        val started = run(candidates(20))
 
-        val closed = ListeningRun.reduce(started, ListeningIntent.Close, rng)
+        val closed = ListeningRun.reduce(started, ListeningIntent.Close)
 
         assertFalse(closed.state.active)
         assertEquals(started.turn, closed.state.turn)
@@ -240,7 +246,7 @@ class ListeningRunTests {
      */
     @Test
     fun anEmptyPoolOpensOnSilence() {
-        val opened = ListeningRun.reduce(ListeningRun.idle(emptyList()), ListeningIntent.Start, Random(1))
+        val opened = ListeningRun.reduce(ListeningRun.idle(emptyList()), ListeningIntent.Start)
 
         assertNull(opened.state.turn)
         assertEquals(listOf(ListeningEffect.Stop), opened.effects)

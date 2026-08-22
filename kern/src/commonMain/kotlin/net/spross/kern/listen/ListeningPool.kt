@@ -30,8 +30,8 @@ object ListeningPool {
      * per-turn rebuild would re-audit every candidate's audio for a single draw.
      */
     data class Report(
-        /** What may be played — the whole sayable join: scheduled words in seed order first,
-         *  then the unseen ones, also in seed order. */
+        /** The playlist itself — the whole sayable join in the order a run will walk it,
+         *  dealt by `listeningOrder`. */
         val candidates: List<ListeningCandidate>,
     ) {
         /**
@@ -58,8 +58,11 @@ object ListeningPool {
      * rather than lapping the handful they hold — the mode's cheapest breadth. They enter
      * through `Growth.isIntroducible`: a phrase whose components have not landed is not ready
      * to be heard either. Hearing one does NOT introduce it — introduction is the first
-     * answer, and listening answers nothing. With the whole catalog on the draw, the weights
-     * do the steering: what is not sticking leads, and everything else is mixed in.
+     * answer, and listening answers nothing. With the whole catalog in the pool, the deal does
+     * the steering: what is not sticking leads, and everything else is mixed in.
+     *
+     * What comes back is the PLAY ORDER, not merely a stable one — `listeningOrder` deals the
+     * lanes into the sequence a run walks, so an empty box opens on the catalog's first word.
      */
     fun report(
         catalog: Catalog,
@@ -69,8 +72,6 @@ object ListeningPool {
         hasTargetVoice: Boolean,
         hasSourceVoice: Boolean,
     ): Report {
-        // why: seed order, not the schedule sort — a pool the draw reorders anyway only needs
-        // an order that is STABLE, which seedIndex is.
         val joined = Inventory.joinedCards(box)
         val sayable = joined.filter { sayable(it, catalog, source, target, hasTargetVoice, hasSourceVoice) }
         val scheduled = sayable.mapNotNull { card ->
@@ -92,7 +93,7 @@ object ListeningPool {
                     it, stability = 0.0, suspended = false, scheduled = false, queued = it.id in packed,
                 )
             }
-        return Report(candidates = scheduled + unseen)
+        return Report(candidates = listeningOrder(scheduled + unseen))
     }
 
     /** Both halves of the turn heard, or the card is not a candidate. */

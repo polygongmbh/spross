@@ -157,7 +157,7 @@ final class ListeningDriver {
 
     private func dispatch(_ intent: ListeningIntent) {
         let was = (paused: state.paused, active: state.active)
-        let reduction = ListeningRun.shared.reduce(state: state, intent: intent, rng: drillRandom)
+        let reduction = ListeningRun.shared.reduce(state: state, intent: intent)
         state = reduction.state
         // why: the EFFECTS, never a diff of the turn — Repeat leaves the state
         // identical and its only observable is the Play it asks for.

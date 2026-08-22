@@ -3,8 +3,8 @@ package net.spross.kern.listen
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.emojiCue
 
-import kotlin.random.Random
 import net.spross.kern.model.Card
+import net.spross.kern.model.fnv1a64
 
 /**
  * How long a word the learner already HOLDS is left alone before its meaning arrives.
@@ -226,16 +226,70 @@ fun recallGap(candidate: ListeningCandidate): Long =
     if (candidate.scheduled) RECALL_GAP_HELD_MS else RECALL_GAP_FRESH_MS
 
 /**
- * Cumulative draw over [weights]; identical to a uniform pick where they all match.
- * The shape the letter drill's dictation draw uses, and for the same reason: a weighted
- * pool must stay a pool, never a filter.
+ * What a candidate is dealt ALONGSIDE — its [priority] plus what KIND of word it is.
+ *
+ * The three kinds do not share a lane even at the same number, because only the scheduled
+ * one's number is a measurement. New and packed words carry no stability, so their rung is a
+ * rate the app chose; sharing rung 4 would let three hundred unseen words crowd out the
+ * twenty mid-stability ones that happened to score the same.
  */
-internal fun <T> weighted(pool: List<T>, weights: List<Int>, rng: Random): T {
-    val total = weights.sum()
-    var roll = rng.nextInt(total)
-    for ((index, weight) in weights.withIndex()) {
-        roll -= weight
-        if (roll < 0) return pool[index]
-    }
-    return pool.last()
-}
+private data class ListeningLane(val scheduled: Boolean, val queued: Boolean, val priority: Int)
+
+private fun laneOf(candidate: ListeningCandidate): ListeningLane = ListeningLane(
+    scheduled = candidate.scheduled,
+    queued = !candidate.scheduled && candidate.queued,
+    priority = listeningPriority(candidate),
+)
+
+/** `Inventory.seedOrder`'s own tiebreak, reused — the catalog's curriculum, in order. */
+private val catalogOrder: Comparator<ListeningCandidate> =
+    compareBy({ it.card.seedIndex }, { it.card.id })
+
+/** The hash `Inventory.dueOrder` already de-correlates the box with, for the same reason. */
+private val hashedOrder: Comparator<ListeningCandidate> =
+    compareBy({ fnv1a64(it.card.id) }, { it.card.id })
+
+private class Dealt(val candidate: ListeningCandidate, val at: Double, val priority: Int)
+
+private val dealOrder: Comparator<Dealt> = compareBy(
+    { it.at },
+    { -it.priority },
+    { it.candidate.card.seedIndex },
+    { it.candidate.card.id },
+)
+
+/**
+ * The playlist: every candidate in the order it will be heard, dealt rather than drawn.
+ *
+ * Each lane is spread evenly over the whole run — the *n*-th candidate of a lane of priority
+ * *p* is placed at `(n + 0.5) / p`, and everything is sorted by that placement. A lane of
+ * priority 6 therefore advances six times faster than one of priority 1, which reproduces the
+ * old weighted draw's proportions without a die: every lane reaches the ear, the high ones
+ * simply reach it more often, and a long run rotates the shaky and packed words back through
+ * as it laps.
+ *
+ * A plain sort by priority is what this exists instead of. It would empty rung 6, then rung 5,
+ * then spend the whole run inside a rung-4 block of every unseen word in the catalog — rungs
+ * 3, 2 and 1 would never be reached in a session at all.
+ *
+ * WITHIN a lane the order depends on what the lane is. New and packed words play in strict
+ * catalog order, which is the beginner case whole: an empty box is one lane, and it plays the
+ * catalog from its very first word. Scheduled words are hashed by card id instead, because a
+ * fixed catalog order would let seed neighbors — often related concepts — be heard in the same
+ * sequence every run, and a word half-learned from its neighbor is what `Inventory.dueOrder`
+ * fights. No clock re-seeds it per day and none is needed: every review moves a word between
+ * lanes, so the sequence changes as the box does.
+ *
+ * Total and deterministic on both platforms: placement, then priority descending, then seed
+ * index, then id.
+ */
+fun listeningOrder(candidates: List<ListeningCandidate>): List<ListeningCandidate> =
+    candidates.groupBy(::laneOf)
+        .flatMap { (lane, members) ->
+            val within = if (lane.scheduled) hashedOrder else catalogOrder
+            members.sortedWith(within).mapIndexed { n, candidate ->
+                Dealt(candidate, (n + 0.5) / lane.priority, lane.priority)
+            }
+        }
+        .sortedWith(dealOrder)
+        .map { it.candidate }

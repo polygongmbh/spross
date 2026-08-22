@@ -1,18 +1,6 @@
 package net.spross.kern.listen
 
-import kotlin.random.Random
 import net.spross.kern.model.shownArticle
-
-/**
- * How many of the most recent words are held out of the draw — the LONG interval before a
- * word may be heard again.
- *
- * Weighting decides what is worth hearing; this decides what is worth hearing AGAIN YET.
- * Without it a leech-heavy pool says the same words all evening, which is the one way a
- * playlist can be worse than silence. It caps at `pool − 1`, so a pool smaller than the
- * window laps instead of running dry, and no word is ever said twice in a row.
- */
-const val RECENCY_WINDOW: Int = 24
 
 /**
  * One turn, whole: every string and every beat the apps need, so neither platform decides any
@@ -75,20 +63,20 @@ sealed class ListeningEffect {
 data class ListeningReduction(val state: ListeningRunState, val effects: List<ListeningEffect>)
 
 /**
- * A listening run, whole and immutable — the pool it draws from, the turn on air, and the
- * words too recently heard to draw again.
+ * A listening run, whole and immutable — the playlist it walks, the turn on air, and how far
+ * into the lap it has got.
  *
  * There is no box here at all: a run answers nothing, so nothing is booked, and the state
  * carries no [net.spross.kern.box.BoxState] to make that structurally true rather than a
  * promise.
  */
 data class ListeningRunState(
-    /** Everything that may be played, from `ListeningPool.report`. */
+    /** The playlist in play order, from `ListeningPool.report`. */
     val candidates: List<ListeningCandidate>,
     /** The turn on air; null before [ListeningIntent.Start] and on an empty pool. */
     val turn: ListeningTurn?,
-    /** Card ids of the last turns, oldest first, capped at [RECENCY_WINDOW]. */
-    val recent: List<String>,
+    /** Card ids played SINCE THE LAST LAP, oldest first — uncapped, since the pool bounds it. */
+    val heard: List<String>,
     val paused: Boolean,
     /** A run exists from [ListeningIntent.Start] until [ListeningIntent.Close]. */
     val active: Boolean,
@@ -102,16 +90,17 @@ data class ListeningRunState(
  * The listening run as pure state plus one reducer — the machine both apps would otherwise
  * re-derive, differently.
  *
- * No clock: a run has no due dates and books no reviews, so the only thing it needs from
- * outside is the [Random] its draws come from — injected like every other generator in kern,
- * so a seeded run is reproducible end to end and identical on both platforms.
+ * It needs nothing from outside at all — no clock, because a run has no due dates and books
+ * no reviews, and no generator, because the pool arrives already dealt into its play order
+ * (`listeningOrder`) and the run only walks it. The same box therefore gives the same run, on
+ * both platforms.
  * No default arguments: they do not cross the ObjC boundary, so every entry point is explicit.
  */
 object ListeningRun {
 
     /** No run yet: a closed shell around the pool. */
     fun idle(candidates: List<ListeningCandidate>): ListeningRunState = ListeningRunState(
-        candidates = candidates, turn = null, recent = emptyList(),
+        candidates = candidates, turn = null, heard = emptyList(),
         paused = false, active = false, played = 0,
     )
 
@@ -119,38 +108,38 @@ object ListeningRun {
     fun withCandidates(state: ListeningRunState, candidates: List<ListeningCandidate>): ListeningRunState =
         state.copy(candidates = candidates)
 
-    fun reduce(state: ListeningRunState, intent: ListeningIntent, rng: Random): ListeningReduction =
+    fun reduce(state: ListeningRunState, intent: ListeningIntent): ListeningReduction =
         when (intent) {
-            ListeningIntent.Start -> start(state, rng)
-            ListeningIntent.Advance -> advance(state, rng)
-            ListeningIntent.Skip -> skip(state, rng)
+            ListeningIntent.Start -> start(state)
+            ListeningIntent.Advance -> advance(state)
+            ListeningIntent.Skip -> skip(state)
             ListeningIntent.Repeat -> repeat(state)
             ListeningIntent.TogglePause -> togglePause(state)
             ListeningIntent.Close -> close(state)
         }
 
     /** Open on the first turn; an empty pool opens on silence rather than failing. */
-    private fun start(state: ListeningRunState, rng: Random): ListeningReduction {
+    private fun start(state: ListeningRunState): ListeningReduction {
         val opened = idle(state.candidates).copy(active = true)
-        return played(draw(opened, rng))
+        return played(draw(opened))
     }
 
     /**
      * The turn ended by itself. A no-op while paused: the beat chain is stopped, and a stray
      * completion arriving from the audio the pause interrupted must not walk the playlist on.
      */
-    private fun advance(state: ListeningRunState, rng: Random): ListeningReduction {
+    private fun advance(state: ListeningRunState): ListeningReduction {
         if (!state.active || state.paused) return unchanged(state)
-        return played(draw(state, rng))
+        return played(draw(state))
     }
 
     /**
      * "Next", asked for — so it also lifts a pause: reaching for the next word is a request to
      * hear it, and a skip that left the run silent would read as a broken button.
      */
-    private fun skip(state: ListeningRunState, rng: Random): ListeningReduction {
+    private fun skip(state: ListeningRunState): ListeningReduction {
         if (!state.active) return unchanged(state)
-        return played(draw(state.copy(paused = false), rng))
+        return played(draw(state.copy(paused = false)))
     }
 
     /** "Again" — the same turn, replayed; it lifts a pause for the same reason a skip does. */
@@ -177,21 +166,23 @@ object ListeningRun {
         ListeningReduction(state.copy(active = false, paused = false), listOf(ListeningEffect.Stop))
 
     /**
-     * Draw the next turn: the recency ring first, then the weighted draw inside what it leaves.
+     * Walk to the next turn: the first word of the playlist not yet [ListeningRunState.heard],
+     * and where none is left the lap starts over at the head.
      *
-     * The ring holds out at most `pool − 1` words, so a pool smaller than [RECENCY_WINDOW]
-     * laps cleanly instead of emptying the draw — it simply rotates through what it has, and a
-     * one-word pool repeats that word, which is all it can do.
+     * This is what the old 24-card recency ring bought, kept and made stronger — no word comes
+     * back before the WHOLE pool has lapped, rather than merely before two dozen others have.
+     * A pool shorter than a run laps cleanly instead of running dry, and a one-word pool keeps
+     * saying its word, which is all it can do.
      */
-    private fun draw(state: ListeningRunState, rng: Random): ListeningRunState {
+    private fun draw(state: ListeningRunState): ListeningRunState {
         val pool = state.candidates
         if (pool.isEmpty()) return state.copy(turn = null)
-        val held = state.recent.takeLast(minOf(RECENCY_WINDOW, pool.size - 1)).toSet()
-        val eligible = pool.filter { it.card.id !in held }
-        val picked = weighted(eligible, eligible.map(::listeningPriority), rng)
+        val heard = state.heard.toSet()
+        val next = pool.firstOrNull { it.card.id !in heard }
+        val picked = next ?: pool.first()
         return state.copy(
             turn = turnFor(picked),
-            recent = (state.recent + picked.card.id).takeLast(RECENCY_WINDOW),
+            heard = (if (next == null) emptyList() else state.heard) + picked.card.id,
             played = state.played + 1,
         )
     }
