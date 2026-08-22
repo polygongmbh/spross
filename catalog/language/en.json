@@ -3,15 +3,10 @@
  "subtitle": "Words, sentences and what they mean.",
  "words": {
   "meaning": { "text": "meaning" },
-  "to-pronounce": { "text": "to pronounce" },
   "translate": { "text": "to translate" },
-  "read-aloud": { "text": "to read aloud" },
-  "learn-by-heart": { "text": "to learn by heart" },
-  "dictionary": { "text": "dictionary", "grammar": { "plural": "dictionaries" } },
   "sentence": { "text": "sentence" },
   "word": { "text": "word" },
   "language": { "text": "language" },
-  "mother-tongue": { "text": "mother tongue", "variants": ["native language"] },
   "what-does-this-word-mean": { "text": "What does this word mean?" },
   "how-do-you-say-this": { "text": "How do you say this {language-in}?" },
   "im-learning-your-language": { "text": "I'm learning {language}." }

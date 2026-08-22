@@ -8,8 +8,6 @@
   "say": { "text": "sagen" },
   "know": { "text": "wissen" },
   "need": { "text": "brauchen" },
-  "thank": { "text": "danken" },
-  "together": { "text": "zusammen" },
   "yes": { "text": "Ja." },
   "no": { "text": "Nein." },
   "whats-your-name": { "text": "Wie heißen Sie?", "variants": ["Wie heißt du?"] },

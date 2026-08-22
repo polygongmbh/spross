@@ -7,8 +7,6 @@
  { "slug": "say", "kind": "verb", "emoji": "🗨️" },
  { "slug": "know", "kind": "verb", "emoji": "🧠" },
  { "slug": "need", "kind": "verb" },
- { "slug": "thank", "kind": "verb", "emoji": "🙏" },
- { "slug": "together", "kind": "adjective", "emoji": "👫" },
  { "slug": "whats-your-name", "kind": "phrase", "components": ["be-called"] },
  { "slug": "my-name-is", "kind": "phrase", "components": ["be-called"] },
  { "slug": "i-dont-know", "kind": "phrase", "emoji": "🤷", "components": ["know"] },

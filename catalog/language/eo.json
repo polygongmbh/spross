@@ -3,15 +3,10 @@
  "subtitle": "Vortoj, frazoj kaj ilia signifo.",
  "words": {
   "meaning": { "text": "signifo" },
-  "to-pronounce": { "text": "elparoli", "synonyms": ["prononci"] },
   "translate": { "text": "traduki" },
-  "read-aloud": { "text": "laŭte legi", "variants": ["legi laŭte", "laŭtlegi"] },
-  "learn-by-heart": { "text": "parkere lerni", "variants": ["lerni parkere", "parkerigi"] },
-  "dictionary": { "text": "vortaro" },
   "sentence": { "text": "frazo" },
   "word": { "text": "vorto" },
   "language": { "text": "lingvo" },
-  "mother-tongue": { "text": "gepatra lingvo", "variants": ["denaska lingvo"] },
   "what-does-this-word-mean": { "text": "Kion signifas ĉi tiu vorto?" },
   "how-do-you-say-this": { "text": "Kiel oni diras tion {language-in}?" },
   "im-learning-your-language": { "text": "Mi lernas {language-learn}." }

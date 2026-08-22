@@ -8,8 +8,6 @@
   "say": { "text": "казати" },
   "know": { "text": "знати" },
   "need": { "text": "потребувати" },
-  "thank": { "text": "дякувати" },
-  "together": { "text": "разом" },
   "yes": { "text": "Так." },
   "no": { "text": "Ні." },
   "whats-your-name": { "text": "Як вас звуть?" },

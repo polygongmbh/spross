@@ -8,8 +8,6 @@
   "say": { "text": "to say" },
   "know": { "text": "to know" },
   "need": { "text": "to need" },
-  "thank": { "text": "to thank" },
-  "together": { "text": "together" },
   "yes": { "text": "Yes." },
   "no": { "text": "No." },
   "whats-your-name": { "text": "What is your name?" },

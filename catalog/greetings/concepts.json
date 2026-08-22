@@ -15,5 +15,6 @@
  { "slug": "please", "kind": "phrase", "components": [] },
  { "slug": "excuse-me", "kind": "phrase", "emoji": "🙇", "components": [] },
  { "slug": "pardon", "kind": "phrase", "emoji": "👂", "components": [] },
- { "slug": "sorry-to-hear-that", "kind": "phrase", "emoji": "🫂", "components": [] }
+ { "slug": "sorry-to-hear-that", "kind": "phrase", "emoji": "🫂", "components": [] },
+ { "slug": "thank", "kind": "verb", "emoji": "🙏" }
 ]

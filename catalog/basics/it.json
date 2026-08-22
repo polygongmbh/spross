@@ -12,8 +12,6 @@
    "variants": ["avere bisogno"],
    "notes": { "de": "Es gibt kein einzelnes Verb: das Gebrauchte steht nach di — Ho bisogno di aiuto." }
   },
-  "thank": { "text": "ringraziare" },
-  "together": { "text": "insieme" },
   "yes": { "text": "Sì." },
   "no": { "text": "No." },
   "whats-your-name": { "text": "Come si chiama?", "variants": ["Come ti chiami?"] },

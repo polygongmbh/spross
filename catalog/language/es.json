@@ -3,11 +3,7 @@
  "subtitle": "Palabras, frases y lo que significan.",
  "words": {
   "meaning": { "text": "significado", "grammar": { "gender": "el" } },
-  "to-pronounce": { "text": "pronunciar" },
   "translate": { "text": "traducir" },
-  "read-aloud": { "text": "leer en voz alta" },
-  "learn-by-heart": { "text": "aprender de memoria", "synonyms": ["memorizar"] },
-  "dictionary": { "text": "diccionario", "grammar": { "gender": "el" } },
   "sentence": { "text": "frase", "synonyms": ["oración"], "grammar": { "gender": "la" } },
   "word": { "text": "palabra", "grammar": { "gender": "la" } },
   "language": {
@@ -18,7 +14,6 @@
     "de": "idioma = die einzelne Sprache (el alemán, el español) · lengua bedeutet dasselbe, heißt aber auch Zunge."
    }
   },
-  "mother-tongue": { "text": "lengua materna", "grammar": { "gender": "la" } },
   "what-does-this-word-mean": { "text": "¿Qué significa esta palabra?", "variants": ["¿Qué quiere decir esta palabra?"] },
   "how-do-you-say-this": { "text": "¿Cómo se dice esto {language-in}?", "variants": ["¿Cómo se dice eso {language-in}?"] },
   "im-learning-your-language": { "text": "Estoy aprendiendo {language}.", "variants": ["Aprendo {language}."] }

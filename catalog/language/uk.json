@@ -3,15 +3,10 @@
  "subtitle": "Слова, речення і те, що вони означають.",
  "words": {
   "meaning": { "text": "значення", "grammar": { "plural": "=" } },
-  "to-pronounce": { "text": "вимовляти" },
   "translate": { "text": "перекладати" },
-  "read-aloud": { "text": "читати вголос" },
-  "learn-by-heart": { "text": "вчити напам'ять" },
-  "dictionary": { "text": "словник" },
   "sentence": { "text": "речення", "grammar": { "plural": "=" } },
   "word": { "text": "слово" },
   "language": { "text": "мова" },
-  "mother-tongue": { "text": "рідна мова", "grammar": { "plural": "рідні мови" } },
   "what-does-this-word-mean": { "text": "Що означає це слово?" },
   "how-do-you-say-this": { "text": "Як це сказати {language-in}?" },
   "im-learning-your-language": { "text": "Я вчу {language-learn}." }

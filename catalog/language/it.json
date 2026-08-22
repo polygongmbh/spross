@@ -3,11 +3,7 @@
  "subtitle": "Parole, frasi e il loro significato.",
  "words": {
   "meaning": { "text": "significato", "grammar": { "gender": "il" } },
-  "to-pronounce": { "text": "pronunciare" },
   "translate": { "text": "tradurre" },
-  "read-aloud": { "text": "leggere ad alta voce" },
-  "learn-by-heart": { "text": "imparare a memoria", "synonyms": ["memorizzare"] },
-  "dictionary": { "text": "dizionario", "grammar": { "gender": "il", "plural": "dizionari" } },
   "sentence": { "text": "frase", "grammar": { "gender": "la" } },
   "word": { "text": "parola", "grammar": { "gender": "la" } },
   "language": {
@@ -15,7 +11,6 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "lingua ist die Sprache und die Zunge im Mund." }
   },
-  "mother-tongue": { "text": "lingua madre", "grammar": { "gender": "la" } },
   "what-does-this-word-mean": {
    "text": "Che cosa significa questa parola?",
    "variants": ["Cosa significa questa parola?", "Che cosa vuol dire questa parola?"]

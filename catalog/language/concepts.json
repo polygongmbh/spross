@@ -1,14 +1,9 @@
 [
  { "slug": "meaning", "kind": "noun" },
- { "slug": "to-pronounce", "kind": "verb", "emoji": "🗣️" },
  { "slug": "translate", "kind": "verb", "emoji": "🔤" },
- { "slug": "read-aloud", "kind": "verb", "emoji": "📢" },
- { "slug": "learn-by-heart", "kind": "verb", "emoji": "🧠" },
- { "slug": "dictionary", "kind": "noun", "emoji": "📖" },
  { "slug": "sentence", "kind": "noun", "emoji": "📝" },
  { "slug": "word", "kind": "noun", "emoji": "💬" },
  { "slug": "language", "kind": "noun", "emoji": "🗣️" },
- { "slug": "mother-tongue", "kind": "noun" },
  { "slug": "what-does-this-word-mean", "kind": "phrase", "emoji": "📖", "components": [] },
  { "slug": "how-do-you-say-this", "kind": "phrase", "emoji": "🗣️", "components": [] },
  { "slug": "im-learning-your-language", "kind": "phrase", "emoji": "📚", "components": [] }

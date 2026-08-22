@@ -54,6 +54,10 @@
    "notes": { "de": "kalkuli heißt zählen und rechnen; erzählen heißt rakonti." }
   },
   "to-try": { "text": "provi", "variants": ["klopodi", "peni"] },
+  "learn-by-heart": { "text": "parkere lerni", "variants": ["lerni parkere", "parkerigi"] },
+  "read-aloud": { "text": "laŭte legi", "variants": ["legi laŭte", "laŭtlegi"] },
+  "dictionary": { "text": "vortaro" },
+  "to-pronounce": { "text": "elparoli", "synonyms": ["prononci"] },
   "do-the-homework": { "text": "Mi faras la hejmtaskojn.", "variants": ["Mi faras la hejmtaskon."] },
   "look-at-the-class-schedule": { "text": "Rigardu la horaron." },
   "the-break-is-over": { "text": "La paŭzo finiĝis.", "variants": ["La paŭzo estas finita."] },

@@ -3,11 +3,7 @@
  "subtitle": "Les mots, les phrases et leur sens.",
  "words": {
   "meaning": { "text": "sens", "grammar": { "gender": "le", "plural": "=" } },
-  "to-pronounce": { "text": "prononcer" },
   "translate": { "text": "traduire" },
-  "read-aloud": { "text": "lire à voix haute", "variants": ["lire à haute voix"] },
-  "learn-by-heart": { "text": "apprendre par cœur", "synonyms": ["mémoriser"], "variants": ["apprendre par coeur"] },
-  "dictionary": { "text": "dictionnaire", "grammar": { "gender": "le" } },
   "sentence": { "text": "phrase", "grammar": { "gender": "la" } },
   "word": { "text": "mot", "grammar": { "gender": "le" } },
   "language": {
@@ -15,7 +11,6 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "langue ist auch die Zunge im Mund." }
   },
-  "mother-tongue": { "text": "langue maternelle", "grammar": { "gender": "la" } },
   "what-does-this-word-mean": {
    "text": "Que veut dire ce mot ?",
    "variants": ["Que signifie ce mot ?", "Qu'est-ce que ce mot veut dire ?"]

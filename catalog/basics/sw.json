@@ -8,8 +8,6 @@
   "say": { "text": "kusema" },
   "know": { "text": "kujua" },
   "need": { "text": "kuhitaji" },
-  "thank": { "text": "kushukuru" },
-  "together": { "text": "pamoja" },
   "yes": { "text": "Ndiyo." },
   "no": { "text": "Hapana." },
   "whats-your-name": { "text": "Unaitwaje?", "variants": ["Unaitwa nani?"] },

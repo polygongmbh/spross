@@ -8,8 +8,6 @@
   "say": { "text": "dire" },
   "know": { "text": "savoir", "notes": { "de": "wissen = savoir · kennen (Personen, Orte) = connaître." } },
   "need": { "text": "avoir besoin de" },
-  "thank": { "text": "remercier" },
-  "together": { "text": "ensemble" },
   "yes": { "text": "Oui.", "notes": { "de": "auf eine verneinte Frage antwortet man Si statt Oui." } },
   "no": { "text": "Non." },
   "whats-your-name": {

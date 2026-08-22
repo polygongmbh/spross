@@ -2,6 +2,7 @@
  "title": "Salamu na adabu",
  "subtitle": "Unachosema mnapokutana.",
  "words": {
+  "thank": { "text": "kushukuru" },
   "hello": { "text": "Hujambo!", "notes": { "de": "Antwort: „Sijambo!“" } },
   "good-day": {
    "text": "Habari!",

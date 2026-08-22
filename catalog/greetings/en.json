@@ -2,6 +2,7 @@
  "title": "Greetings and courtesies",
  "subtitle": "What you say when you meet someone.",
  "words": {
+  "thank": { "text": "to thank" },
   "hello": { "text": "Hello!" },
   "good-day": { "text": "Good day!" },
   "good-morning": { "text": "Good morning!" },

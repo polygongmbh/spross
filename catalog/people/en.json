@@ -25,6 +25,8 @@
   "wife": { "text": "wife", "grammar": { "plural": "wives" } },
   "uncle": { "text": "uncle" },
   "aunt": { "text": "aunt" },
+  "together": { "text": "together" },
+  "mother-tongue": { "text": "mother tongue", "variants": ["native language"] },
   "this-is-my-mother": { "text": "This is my mother." },
   "where-is-your-father": { "text": "Where is your father?" },
   "i-have-two-children": { "text": "I have two children." },

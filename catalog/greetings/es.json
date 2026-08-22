@@ -2,6 +2,7 @@
  "title": "Saludos y cortesía",
  "subtitle": "Lo que se dice al encontrarse.",
  "words": {
+  "thank": { "text": "agradecer", "synonyms": ["dar las gracias"] },
   "hello": { "text": "¡Hola!" },
   "good-day": {
    "text": "¡Buenos días!",

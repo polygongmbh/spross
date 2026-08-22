@@ -2,6 +2,7 @@
  "title": "Grüße und Höflichkeit",
  "subtitle": "Was man sagt, wenn man sich begegnet.",
  "words": {
+  "thank": { "text": "danken" },
   "hello": { "text": "Hallo!" },
   "good-day": { "text": "Guten Tag!" },
   "good-morning": { "text": "Guten Morgen!" },

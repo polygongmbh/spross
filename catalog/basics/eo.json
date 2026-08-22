@@ -11,8 +11,6 @@
   "say": { "text": "diri" },
   "know": { "text": "scii", "notes": { "de": "wissen = scii · kennen (Personen, Orte) = koni." } },
   "need": { "text": "bezoni" },
-  "thank": { "text": "danki" },
-  "together": { "text": "kune" },
   "yes": { "text": "Jes." },
   "no": { "text": "Ne." },
   "whats-your-name": {

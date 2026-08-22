@@ -2,6 +2,7 @@
  "title": "Salutoj kaj ĝentilaĵoj",
  "subtitle": "Kion oni diras ĉe renkontiĝo.",
  "words": {
+  "thank": { "text": "danki" },
   "hello": { "text": "Saluton!" },
   "good-day": {
    "text": "Bonan tagon!",
