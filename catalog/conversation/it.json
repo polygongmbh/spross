@@ -15,6 +15,11 @@
   "question": { "text": "domanda", "grammar": { "gender": "la" } },
   "answer": { "text": "risposta", "grammar": { "gender": "la" } },
   "reply": { "text": "rispondere" },
+  "i-dont-understand": {
+   "text": "Non capisco.",
+   "synonyms": ["Non comprendo."],
+   "variants": ["Non La capisco.", "Non ti capisco."]
+  },
   "can-you-repeat-that": {
    "text": "Può ripeterlo?",
    "variants": ["Può ripetere?", "Potrebbe ripeterlo?", "Puoi ripeterlo?"]

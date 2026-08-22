@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+- **The course now starts where a conversation does.** The first cards are the greetings —
+  hello, good day, thank you, please, excuse me, how are you — instead of arriving a hundred and
+  sixty cards in, which is where they had ended up; a beginner met `to know`, `to need`, `to thank`
+  and `together` before ever meeting `hello`. Asking someone's name and giving your own now
+  arrive within the first ten words of the second shelf rather than trailing it. The
+  everyday words a sentence is built from — the verbs, the colors, the clock, the
+  comparisons — move into a shelf group of their own behind the things you say to a person,
+  and the study-desk words (learning by heart, reading aloud, the dictionary) move back to
+  where school is taught.
+
+- **The box can now say it does not understand.** `I don't understand` was missing from
+  every language, though `I don't know` was there — it now sits at the head of the
+  conversation shelf, in all eight, and unlocks as soon as the verb behind it settles.
+
 - **Listening now plays a playlist instead of shuffling.** The words you packed are heard
   before the other new ones, a language you have only just started plays from its very first
   word rather than from anywhere in the catalog, and the words that stick worst are no longer

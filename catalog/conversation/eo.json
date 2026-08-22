@@ -14,6 +14,7 @@
   "question": { "text": "demando" },
   "answer": { "text": "respondo" },
   "reply": { "text": "respondi" },
+  "i-dont-understand": { "text": "Mi ne komprenas.", "variants": ["Mi ne komprenas vin."] },
   "can-you-repeat-that": { "text": "Ĉu vi povas ripeti tion?" },
   "slower": { "text": "Pli malrapide!" },
   "i-cant-hear-you": { "text": "Mi ne povas aŭdi vin.", "variants": ["Mi ne aŭdas vin."] },

@@ -8,6 +8,7 @@
  { "slug": "question", "kind": "noun", "emoji": "❓" },
  { "slug": "answer", "kind": "noun", "emoji": "✅" },
  { "slug": "reply", "kind": "verb", "emoji": "↩️" },
+ { "slug": "i-dont-understand", "kind": "phrase", "emoji": "😕", "components": ["understand"] },
  { "slug": "can-you-repeat-that", "kind": "phrase", "emoji": "🔁", "components": ["repeat-word"] },
  { "slug": "slower", "kind": "phrase", "emoji": "🐌", "components": [] },
  { "slug": "i-cant-hear-you", "kind": "phrase", "emoji": "👂", "components": ["hear"] },

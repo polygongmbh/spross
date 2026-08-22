@@ -16,6 +16,11 @@
   "question": { "text": "pregunta", "grammar": { "gender": "la" } },
   "answer": { "text": "respuesta", "grammar": { "gender": "la" } },
   "reply": { "text": "responder", "synonyms": ["contestar"] },
+  "i-dont-understand": {
+   "text": "No entiendo.",
+   "synonyms": ["No comprendo."],
+   "variants": ["No le entiendo.", "No te entiendo."]
+  },
   "can-you-repeat-that": {
    "text": "¿Puede repetirlo?",
    "variants": ["¿Puede usted repetirlo?", "¿Puedes repetirlo?", "¿Me lo puede repetir?", "¿Puede repetir?"]

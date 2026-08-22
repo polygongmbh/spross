@@ -11,6 +11,10 @@
   "question": { "text": "Frage", "grammar": { "gender": "die", "plural": "-n" } },
   "answer": { "text": "Antwort", "grammar": { "gender": "die", "plural": "-en" } },
   "reply": { "text": "antworten" },
+  "i-dont-understand": {
+   "text": "Ich verstehe nicht.",
+   "variants": ["Ich verstehe Sie nicht.", "Ich verstehe dich nicht."]
+  },
   "can-you-repeat-that": { "text": "Können Sie das wiederholen?", "variants": ["Kannst du das wiederholen?"] },
   "slower": { "text": "Langsamer!" },
   "i-cant-hear-you": { "text": "Ich kann Sie nicht hören.", "variants": ["Ich kann dich nicht hören."] },

@@ -23,6 +23,10 @@
   "question": { "text": "question", "grammar": { "gender": "la" } },
   "answer": { "text": "réponse", "grammar": { "gender": "la" } },
   "reply": { "text": "répondre", "notes": { "de": "mit à: répondre à la question, répondre à quelqu'un." } },
+  "i-dont-understand": {
+   "text": "Je ne comprends pas.",
+   "variants": ["Je ne vous comprends pas.", "Je ne te comprends pas."]
+  },
   "can-you-repeat-that": {
    "text": "Pouvez-vous le répéter ?",
    "variants": ["Pouvez-vous répéter ?", "Peux-tu le répéter ?", "Tu peux le répéter ?", "Tu peux répéter ?"]

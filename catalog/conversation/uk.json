@@ -11,6 +11,7 @@
   "question": { "text": "запитання", "grammar": { "plural": "=" } },
   "answer": { "text": "відповідь" },
   "reply": { "text": "відповідати" },
+  "i-dont-understand": { "text": "Я не розумію.", "variants": ["Я вас не розумію.", "Я тебе не розумію."] },
   "can-you-repeat-that": { "text": "Чи можете ви це повторити?", "variants": ["Можеш це повторити?"] },
   "slower": { "text": "Повільніше!" },
   "i-cant-hear-you": { "text": "Я вас не чую.", "variants": ["Я тебе не чую."] },

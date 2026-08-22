@@ -15,6 +15,7 @@
   "question": { "text": "swali", "grammar": { "plural": "maswali" } },
   "answer": { "text": "jibu", "grammar": { "plural": "majibu" } },
   "reply": { "text": "kujibu" },
+  "i-dont-understand": { "text": "Sielewi.", "variants": ["Sikuelewi."] },
   "can-you-repeat-that": { "text": "Unaweza kurudia?" },
   "slower": { "text": "Polepole zaidi!" },
   "i-cant-hear-you": { "text": "Sikusikii.", "variants": ["Siwezi kukusikia."] },
