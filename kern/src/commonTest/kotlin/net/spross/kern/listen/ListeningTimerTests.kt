@@ -74,6 +74,36 @@ class ListeningTimerTests {
         assertEquals(5, LISTENING_TIMER_STEP_MIN)
     }
 
+    /**
+     * A tap adds to what is LEFT, so the run gets exactly the five more minutes it was asked
+     * for however long it has already been going — the reading a learner reaching for the chip
+     * at midnight means.
+     */
+    @Test
+    fun aTapAddsItsMinutesToWhatIsLeft() {
+        val step = LISTENING_TIMER_STEP_MIN * 60_000L
+        assertEquals(step, listeningTimerStepMs(0, 1))
+        assertEquals(2 * step, listeningTimerStepMs(step, 1))
+        // A minute left of a five-minute bedtime: six more, never ten.
+        assertEquals(step + 60_000L, listeningTimerStepMs(60_000L, 1))
+    }
+
+    /** The picker walks back down the ladder it walked up, and past the end there is only OFF. */
+    @Test
+    fun aStepDownComesOffWhatIsLeftAndStopsAtOff() {
+        val step = LISTENING_TIMER_STEP_MIN * 60_000L
+        assertEquals(step, listeningTimerStepMs(2 * step, -1))
+        assertEquals(0L, listeningTimerStepMs(step, -1))
+        assertEquals(0L, listeningTimerStepMs(60_000L, -1))
+        assertEquals(0L, listeningTimerStepMs(0, -1))
+    }
+
+    /** A clock that overshot its deadline still steps from OFF, never from a negative bedtime. */
+    @Test
+    fun anOvershotDeadlineStepsFromOff() {
+        assertEquals(LISTENING_TIMER_STEP_MIN * 60_000L, listeningTimerStepMs(-hour, 1))
+    }
+
     /** The bedtime has arrived at zero, and one rule decides it rather than two apps. */
     @Test
     fun theBedtimeArrivesAtZero() {

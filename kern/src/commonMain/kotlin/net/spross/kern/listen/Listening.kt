@@ -65,6 +65,25 @@ const val LISTENING_WATCHDOG_MS: Long = 5_000
 const val LISTENING_TIMER_STEP_MIN: Int = 5
 
 /**
+ * What a tap on the bedtime chip leaves standing, in milliseconds: kern's step added to what
+ * is LEFT of the timer, never to what was picked.
+ *
+ * The difference is the whole gesture. A chip that re-anchored on the pick would give a run
+ * five minutes in and tapped again its original five plus five — ten minutes from the tap,
+ * not the five more the tap asked for — and the longer the run had gone the further the two
+ * readings drift apart. What a learner reaching for it at midnight means is "keep going a bit
+ * longer than you were about to", and that is arithmetic on the REMAINDER.
+ *
+ * [steps] is signed, so the accessible picker walks back down the same ladder it walked up,
+ * and a step past the end lands on 0 — OFF, where the playlist laps for as long as it is
+ * left alone. Kern owns it so a bedtime cannot mean two things on two phones.
+ */
+fun listeningTimerStepMs(msRemaining: Long, steps: Int): Long {
+    val step = steps * LISTENING_TIMER_STEP_MIN * 60_000L
+    return maxOf(0L, maxOf(0L, msRemaining) + step)
+}
+
+/**
  * The picture cue every listening card wears.
  *
  * A picture is held back while an answer is OWED — it would give it away — and listening owes
