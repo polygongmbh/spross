@@ -17,6 +17,7 @@
     "de": "„afisa“ allein heißt nur „Beamter“ — erst „mhusika“ macht daraus den zuständigen Bearbeiter."
    }
   },
+  "registration": { "text": "usajili", "grammar": { "plural": "=" } },
   "documents": { "text": "nyaraka", "grammar": { "plural": "only" } },
   "fill-in": { "text": "kujaza" },
   "sign": { "text": "kutia sahihi" },
@@ -24,7 +25,9 @@
   "submit": { "text": "kukabidhi" },
   "hand-in": { "text": "kuwasilisha" },
   "pick-up": { "text": "kuchukua kitambulisho" },
+  "extend": { "text": "kuhuisha" },
   "bring": { "text": "kuleta" },
+  "copy": { "text": "kunakili" },
   "passport": { "text": "pasipoti", "grammar": { "plural": "=" } },
   "address": { "text": "anwani", "grammar": { "plural": "=" } },
   "certificate": { "text": "cheti", "grammar": { "plural": "vyeti" } },
