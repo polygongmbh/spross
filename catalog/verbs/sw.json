@@ -29,13 +29,21 @@
    "text": "kutaka",
    "notes": { "de": "Präsens: nataka, unataka, anataka · verneint: sitaki = ich will nicht." }
   },
+  "find": {
+   "text": "kupata",
+   "notes": {
+    "de": "kupata = finden und bekommen: nimeipata = ich hab es gefunden, nilipata kazi = ich hab Arbeit bekommen."
+   }
+  },
   "search": {
    "text": "kutafuta",
    "notes": { "de": "kutafuta = suchen und besorgen: natafuta kazi = ich suche Arbeit." }
   },
   "get": {
-   "text": "kupata",
-   "notes": { "de": "kupata deckt bekommen und finden ab: nimeipata = ich hab es gefunden." }
+   "text": "kupokea",
+   "notes": {
+    "de": "kupokea = entgegennehmen: kupokea barua, kupokea simu. Für „ich habe Arbeit bekommen“ sagt man nilipata kazi."
+   }
   },
   "look": { "text": "kutazama", "notes": { "de": "kutazama = anschauen, zusehen: kutazama televisheni." } },
   "open": { "text": "kufungua" },
