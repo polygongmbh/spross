@@ -362,7 +362,7 @@ the same way a clock reading's accepted set is built.
 Gate: `:kern:jvmTest --tests '*DateDrill*'`.
 
 **C5 — the run machine.**
-`DateDrillRunConfig(content, reverse, fast, normalizer)`, `DateDrillIntent`, `DateDrillReduction`,
+`DateDrillRunConfig(content, reverse, fast, grader)`, `DateDrillIntent`, `DateDrillReduction`,
 `DateDrillClose`, `DateDrillRunState`, `DateDrillRun` (`open`/`openAt`/`reduce`/`grade`/`close`) —
 `CountryDrillRun`'s shape, reusing `DrillRamp`, `DrillTally`, `DrillEffect` and `DrillRunSummary`.
 One injected `Random` per run. Books no review, writes no schedule, persists only the best rung
@@ -370,8 +370,13 @@ under its own storage key, byte-identical across the two stores.
 `DateDrillRunTest`: intents, grading, effects, ramp, close/summary/best-rung.
 Gate: `:kern:jvmTest --tests '*DateDrillRun*'`.
 
-**C6 — the collision mechanism** (see below), plus `CatalogDatesLintTest` on the real catalog.
-Gate: `:kern:jvmTest`.
+**C6 — the collision path.** The `alsoSkipping` parameter and the `probeWords` flag on
+`CatalogAnswerGrader` (both defaulted to today's behavior, so no existing caller moves),
+the calendar card set built once per run, `DateDrillRun` keeping the `Match.OtherWord` verdict
+instead of flattening it, both sweeps, and `CatalogDatesLintTest` on the real catalog.
+The first commit here whose diff touches a shared grading file, so it is also the one to
+read `CatalogAnswerGraderTests` and `AnswerNormalizerTests` for regressions rather than to trust the defaults.
+Gate: `:kern:jvmTest` and `:kern:jvmTest -Psweeps`.
 
 **C7 — the remaining six languages' content.** `eo es fr it sw uk`, one commit or six.
 Content-only; `--rerun-tasks` because Gradle does not track `app/catalog/` as a test input.
@@ -424,58 +429,163 @@ forgives one flat slip per word, and forgives none on a word carrying a digit
 | sw | Jumatatu / Jumatano · Juni / Julai | 2 |
 | uk | березень / вересень · червень / серпень (and their `dateForm`s) | 2 |
 
-The three at distance 1 would be graded **correct for each other** by the shipping drill normalizer.
+The four at distance 1 would be graded **correct for each other** by the single-card drill path.
+The pairs at distance 2 are safe under a per-word cap of 1 and stay safe only while that cap holds,
+so the sweeps below cover them too rather than trusting the arithmetic.
 A drill that accepts *Juni* for *Juli* is worse than no drill:
 it certifies the single confusion German speakers famously say *Juno* and *Julei* to avoid.
 
-### The mechanism
+### The mechanism: the grader the engine already has
 
-**Derive, never author.** `AnswerNormalizer` gains one constructor parameter —
-a set of normalized words that forgive no typos — implemented as one clause beside the rule
-that already exists for digits:
+**The dates drill grades through `CatalogAnswerGrader` over a per-language calendar card set,
+not through the single-card `gradeDrillAnswer` path.**
+
+Nothing new is minted. `CatalogAnswerGrader` exists for exactly this problem, one layer up:
+
+> [AnswerNormalizer] sees one card, so a word that is really ANOTHER concept's answer
+> can land inside this card's typo budget — sw `kufunga` (schließen) is one edit from
+> `kufungua` (öffnen) and graded as a forgiven slip.
+> A form the catalog already accepts elsewhere is that word, never a slip of this one.
+
+Substitute *Juni* and *Juli* for `kufunga` and `kufungua` and the sentence is unchanged.
+The reason drills do not get this today is a choice, not a limitation,
+and `DrillGrading.kt`'s own KDoc says which choice:
+
+> A drill has no catalog behind it: the accepted forms are wrapped as one synthetic card,
+> so [Match.OtherWord] can never arise and there is no other concept's word for a slip to be
+> mistaken for.
+
+The premise is false for this drill. The dates drill *does* have a catalog behind it,
+and it is a closed set of nineteen names per language.
+So it declines the single-card wrapping: `drillGradingCard` is called once per calendar name
+— twelve months and seven weekdays — and the resulting list is handed to
+`CatalogAnswerGrader(normalizer, calendarCards)`.
+Each card's `target` carries that language's name plus its `synonyms`, `variants`
+and its `dateForm` (so Ukrainian `липня` is owned by July as surely as `липень` is),
+and its `source` carries the prompt language's name,
+which is what makes `Match.OtherWord.meanings` able to say *July*.
+
+### Where the reuse reaches, and where it stops
+
+Verified against `CatalogAnswerGrader.grade`, `AnswerNormalizer.evaluate` and
+`AnswerNormalizer.articlePeeledRemainder` rather than assumed:
+
+**Rungs 1–2 — it works exactly as the owner expects.**
+The prompted card is June; the learner types `Juli`;
+`normalizer.evaluate` returns `Typo` (one edit, inside the per-word cap);
+that is not `Match.Exact`, so `otherWord` runs, the owner index resolves `juli` to the July card,
+July's id is not in `skipped` (which holds only the prompted card and its `feminineOf`),
+and the verdict is `Match.OtherWord("Juli", ["July"])`.
+The `Match.Exact`-wins rule does not get in the way:
+it fires only when the prompted card itself accepts the input exactly,
+which is the correct answer and must win.
+
+**Rungs 4–6 — it does not reach, and this has to be said plainly.**
+`CatalogAnswerGrader` probes the WHOLE input string against the owner index,
+plus one article-peeled remainder — and that remainder is
+`null` for every drill, because `articlePeeledRemainder` returns null
+the moment `maxTyposPerWord` is set.
+So on an assembled answer there is exactly one probe, and it is the whole sentence.
+`Montag, der dritte Juli` is not an owned form of anything,
+`otherWord` returns null, the `Typo` verdict stands,
+and *Juli* is accepted for *Juni* inside a date exactly as before.
+Registering full dates as cards instead would mean 7 × 12 × 31 synthetic cards per language,
+which is not a fix but an inventory.
+
+### The one extension, and it is the same rule
+
+The grader already probes something besides the whole string, for a reason worth quoting:
+
+> otherwise a slip behind a fumbled article bridges one concept's word to another unchallenged
+
+That is our sentence with *article* swapped for *pattern*.
+So the extension is to generalize the probe the grader already makes, in the class that owns
+the owner index, rather than to re-implement the lookup in the drill:
 
 ```kotlin
-private fun wordBudget(word: String, cap: Int): Int =
-    if (word.any { it.isDigit() } || word in unforgiving) 0 else cap
+fun grade(input: String, card: Card, alsoSkipping: Set<String> = emptySet()): Match
 ```
+plus a `probeWords: Boolean = false` constructor flag that adds the input's individual words
+to the forms `otherWord` looks up. Both default to today's behavior,
+so no existing caller changes and the vocab-review produce path is untouched —
+which it must be: probing every word of a phrase card catalog-wide would
+flag `leer` inside *Der Kühlschrank ist leer* as somebody else's word.
 
-The rule states itself: **a calendar name is a digit.**
-It names one member of a closed, numbered set whose members sit one edit apart,
-so it forgives no slip for exactly the reason `21` and `29` do not.
+`alsoSkipping` is not optional decoration; without it the extension is wrong.
+`skipped` today holds the prompted card and its `feminineOf` — the words this card
+legitimately owns. On an assembly rung the prompted card is the synthetic *date*,
+so the month and weekday it drew are not in that set,
+and a date carrying an unrelated slip (`Montag, der ditte Juni`) would resolve
+its own correct `Juni` as another word.
+The drill therefore passes the ids of the calendar names its own task drew,
+and the rule reads: **any calendar name in the answer that is not the one this task drew
+is that word, not a slip of this one.**
+The invariant behind it is exact — a date carries one month and one weekday,
+and they are the drawn ones — so nothing correct can trip it.
 
-The set is **computed by kern from the content**, never authored:
-every reading of a language's calendar that sits within one edit of another distinct reading
-in the same calendar. `Juni` and `Juli` are in it; `Mittwoch` is not,
-so an ordinary slip on an unconfusable name still costs nothing.
-Adding a language, or a synonym to a language, recomputes it —
-there is no allowlist to rot and no ruling to forget.
+### What it costs at the reveal
 
-Rejected alternatives, briefly:
-`maxTyposPerWord = 0` across the whole date (harsh, and it punishes the pattern's function words
-for the names' problem);
-routing the drill through `CatalogAnswerGrader`'s `OtherWord` demotion
-(`DrillGrading` deliberately wraps the accepted forms as ONE synthetic card so `OtherWord`
-can never arise, and reopening that would give every drill a catalog-wide grading path
-it does not want).
+`gradeDrillAnswer` maps `is Match.OtherWord, Match.Wrong -> Match.Wrong` today,
+which throws away the only thing the new verdict knows.
+`Match.OtherWord` carries `word` and `meanings` precisely so a reveal can say
+**"you wrote Juli — July"** instead of a bare red,
+and on the single confusion this drill exists to fix that is the difference between
+a correction and a punishment. The dates drill should keep the verdict rather than flatten it:
+`DateDrillRun` surfaces it through the existing `AlmostReason`/`TurnFeedback` vocabulary
+(nothing new is minted — `surfaces.md`'s rule), and it books as a miss either way.
+⚠ Whether the ramp treats it as a plain miss or as its own tier is a design ruling, not a
+correctness one; the plan assumes a plain miss.
+
+### Rejected: an "unforgiving word" budget
+
+An earlier draft of this plan proposed a new `AnswerNormalizer` parameter —
+a derived set of confusable words whose per-word typo budget is zero,
+argued on the digit precedent ("a calendar name is a digit").
+It is rejected: it duplicates a mechanism the engine already has,
+in a lower layer than the one that owns the knowledge.
+It would also carry its own derivation — "every reading within one edit of another" —
+which is a second thing to keep correct as languages and synonyms are added,
+where the owner index is simply rebuilt from the content it already reads.
+Correctness was never the objection; having two answers to one question is.
+
+### Does the digit rule still matter here
+
+It stands untouched, and it does no work in this drill.
+`wordBudget` zeroes the budget for a word carrying a digit, and no dates answer carries one:
+the day of month is answered as a word (`dritte`, `tres`, `третього`),
+and digits are deliberately not accepted for it — the reading is the skill.
+
+What covers rung 3 is a proof that already exists.
+The day-of-month readings are the packs' own ordinals and cardinals over 1–31,
+inside the 1–100 reach `TrainerFormsTypoBridgeGuardTests` and the cardinal sweep
+already grade every pair of, so that rung inherits its safety rather than needing new.
+The two exceptions are the date-specific first-day readings —
+French `premier` and Italian `primo`, which the forms space never draws —
+and they enter the new sweep below.
 
 ### The sweeps
+
+Neither sweep exists to prove an allowlist complete.
+Both prove one thing: **no calendar reading is ever accepted for another under the real grader** —
+not the normalizer in isolation, but `CatalogAnswerGrader` over the calendar card set,
+configured exactly as the run configures it.
 
 **`DateCollisionSweepTests`** (jvmTest, real catalog, `-Psweeps`-gated by name in
 `kern/build.gradle.kts`'s `corpusSweeps` list) — the clock sweep's shape, over the dates answer space:
 every weekday, every month, every day 1–31, and every date the ladder can draw
 (7 × 12 × 31, plus a sampled year band for rung 6) in every language with a `dates/` file.
-The invariant: no reading grades non-`Wrong` for a *different* value.
-Findings are declared per language and asserted equal, so a vanished pair fails too —
-`assertEquals(gated, found.toList())`, the anti-rot the clock sweep already uses.
+For each drawn value it grades every *other* value's reading and asserts the verdict is
+`Wrong` or `OtherWord`, never `Exact` and never `Typo`.
+Running it on the assembled rungs is the point, not a bonus:
+that is where the whole-string probe stops reaching and the word probe has to carry it.
 
 **`DatesTypoBridgeGuardTests`** (commonTest, `-Psweeps`-gated) — `TypoBridgeSweep.run`
-over `TypoBridgeSweep.Prompt` per calendar value, scoped to the dates answer space only.
-Scoping is the point, for the reason `TrainerFormsTypoBridgeGuardTests` gives:
-a run grades one task against one accepted set, so sweeping date readings against plain cardinals
-would fail on `dritte` ↔ `drei` for a confusion no run can produce.
-Its allowlist should be **empty** — with the unforgiving-word rule in place,
-every pair in the table above is held apart by construction rather than by a waiver.
-An entry appearing in it is the signal that the derivation missed a case.
+over the same space, scoped to it, for the reason `TrainerFormsTypoBridgeGuardTests` gives:
+a run grades one task against one accepted set, so sweeping date readings against plain
+cardinals would fail on `dritte` ↔ `drei` for a confusion no run can produce.
+Its allowlist should be empty. An entry appearing in it is not a waiver to be granted
+but a report that the owner index missed a form — most likely a `dateForm` or a synonym
+that never made it onto a synthetic card.
 
 **`CatalogDatesLintTest`** (jvmTest, real catalog) — declared-language files only,
 seven weekdays and twelve months in order, every pattern's markers matching its kind,
