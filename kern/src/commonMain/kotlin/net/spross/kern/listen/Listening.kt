@@ -131,11 +131,6 @@ fun listeningGainDb(msRemaining: Long, totalMs: Long): Double {
     return (LISTENING_FADE_FLOOR_DB * spent + 0.0).coerceIn(LISTENING_FADE_FLOOR_DB, 0.0)
 }
 
-/**
- * Whether the bedtime has arrived. Trivial, and here rather than in two apps because
- * `<= 0` and `< 0` are the same rule until one platform picks the other one.
- */
-fun listeningExpired(msRemaining: Long): Boolean = msRemaining <= 0
 
 /**
  * A word the playlist may say, plus the two things about it the draw weighs that a [Card]

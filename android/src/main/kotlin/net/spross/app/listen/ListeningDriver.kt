@@ -17,7 +17,6 @@ import net.spross.kern.listen.ListeningReduction
 import net.spross.kern.listen.ListeningRun
 import net.spross.kern.listen.ListeningRunState
 import net.spross.kern.listen.ListeningTurn
-import net.spross.kern.listen.listeningExpired
 import net.spross.kern.listen.listeningGainDb
 import net.spross.kern.listen.listeningTimerStepMs
 
@@ -294,5 +293,6 @@ class ListeningDriver(
     private fun fadeDb(): Double =
         remainingMs()?.let { listeningGainDb(it, timerTotalMs) } ?: 0.0
 
-    private fun expired(): Boolean = remainingMs()?.let { listeningExpired(it) } == true
+    /** The bedtime has arrived: a deadline in the past. A run with none set never arrives. */
+    private fun expired(): Boolean = remainingMs()?.let { it <= 0 } == true
 }

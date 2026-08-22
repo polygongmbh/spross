@@ -103,12 +103,4 @@ class ListeningTimerTests {
     fun anOvershotDeadlineStepsFromOff() {
         assertEquals(LISTENING_TIMER_STEP_MIN * 60_000L, listeningTimerStepMs(-hour, 1))
     }
-
-    /** The bedtime has arrived at zero, and one rule decides it rather than two apps. */
-    @Test
-    fun theBedtimeArrivesAtZero() {
-        assertTrue(listeningExpired(0))
-        assertTrue(listeningExpired(-1))
-        assertTrue(!listeningExpired(1))
-    }
 }

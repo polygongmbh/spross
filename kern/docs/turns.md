@@ -102,13 +102,14 @@ Engine contract: `../README.md`.
   reports a finish is walked past after `LISTENING_WATCHDOG_MS`, so a run cannot stall on a
   silent engine.
   A run can be given a **bedtime**: every tap on the one chip adds `LISTENING_TIMER_STEP_MIN`
-  minutes from 0 (= off, the default), and a long press jumps straight back to off — and
+  minutes to what is LEFT of it (`listeningTimerStepMs(msRemaining, steps)`) from 0
+  (= off, the default), and a long press jumps straight back to off — and
   `listeningGainDb(msRemaining, totalMs)` fades the WHOLE run down to
   `LISTENING_FADE_FLOOR_DB` rather than cutting — a hard stop is a change loud enough to
   wake the listener, which is the opposite of what a bedtime is for.
   The gain is applied ON TOP of a recording's `Playback.gainDb`, and clamped to its own floor
   rather than `GAIN_LIMIT_DB`, which bounds how far a MEASUREMENT may be trusted and not a
-  level kern chose. `listeningExpired(msRemaining)` is where the run is over.
+  level kern chose.
   The remaining milliseconds are the APP's to track and hand in, like every other clock read — the run state holds no deadline, so kern still reads no clock.
 
 ## Trainer & drill runs   (package `net.spross.kern.trainer`)

@@ -4,10 +4,9 @@ import SprossKern
 /// The listening run's sleep timer, and the only clock in the whole mode.
 ///
 /// Kern owns every judgment about it — what a tap on the chip leaves standing
-/// (`listeningTimerStepMs`), how the whole run ramps down (`listeningGainDb`)
-/// and where the run is over (`listeningExpired`) — and reads no clock itself,
-/// so what is left to this side is holding a deadline and handing kern the
-/// milliseconds.
+/// (`listeningTimerStepMs`) and how the whole run ramps down
+/// (`listeningGainDb`) — and reads no clock itself, so what is left to this
+/// side is holding a deadline and handing kern the milliseconds.
 ///
 /// It does not stop dead: a hard cut is a change loud enough to wake someone,
 /// which is the exact opposite of what a bedtime is for.
@@ -76,12 +75,10 @@ final class ListeningBedtime {
         return (total - TimeInterval(remainingMs) / 1000, total)
     }
 
-    /// Whether the bedtime has arrived. Kern owns where the line is; what to do
-    /// about it is the run's.
-    var expired: Bool {
-        guard let remainingMs else { return false }
-        return listeningExpired(msRemaining: remainingMs)
-    }
+    /// Whether the bedtime has arrived — a deadline in the past, and nothing
+    /// more; a run with none set never arrives anywhere. What to DO about it is
+    /// the run's.
+    var expired: Bool { remainingMs.map { $0 <= 0 } ?? false }
 
     func stop() {
         ticker?.cancel()
