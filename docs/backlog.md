@@ -15,7 +15,8 @@ One line per item, with a file or context pointer, filed under the section it be
   so that judgment call is the one thing a reader cannot recover
   and the one a native speaker should confirm or correct
   (method: `../../docs/sprachposter-learnings.md`).
-  sw and uk idiom coverage is open future work:
+  uk carries three of the nine (сьоме небо, як з відра, тримати кулаки);
+  the rest of uk and all of sw is open future work:
   it needs a native speaker to find real equivalents from scratch,
   not a translation pass over the existing set.
 - Pronunciation coverage is uneven across LANGUAGES and absent for phrases — the packs
