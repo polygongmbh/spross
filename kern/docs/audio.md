@@ -30,12 +30,14 @@ Engine contract: `../README.md`.
 - **Lookup is keyed by the MATCHED SPOKEN FORM, never by the slug.**
   `audio/<lang>/manifest.json` records, per slug, the form the recording actually speaks (`matches`).
   `AudioManifest` builds two indices — the exact NFC form, then the `speechKey` — and exact wins.
-  The manifest's `articles{}` section indexes separately, by the speech key of the whole spoken
-  form ("die Adresse"), and `Catalog.pronunciation(lang, form, article)` reaches it only when
-  the caller passes the article the card shows; without one, only the bare index answers.
-  So a pack that says the article can never say it over a card that does not — the source
-  side of a pair among them — and a word with no article recording still plays its bare one
-  rather than falling silent.
+  The manifest's `articles{}` section indexes TWICE, by the speech key of the whole spoken form
+  ("die Adresse") and by the bare `word` inside it ("Adresse"), and `Catalog.pronunciation(lang,
+  form, article)` tries them in that order around the bare index: the article form where the card
+  shows one, then an exact bare recording, then the article file as a recording of its own word.
+  So a word with no article recording still plays bare, one with only an article recording still
+  plays, and neither route can reach a file that says a different word —
+  which is what keeps the canonical article off a rotated synonym, where 33 of the catalog's 90
+  synonyms would disagree with it (`data/reference/audio/README.md`).
   A rotated synonym nobody recorded simply misses, and the app speaks it live:
   a card never plays a word it does not show.
 - **Collision rule.** Entries sharing a `speechKey` whose bytes are IDENTICAL are one recording fetched under two slugs, and resolve.

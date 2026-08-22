@@ -10,7 +10,22 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "die Adresse",
       "sha256": "a15ca518f664ae1c195fc7e213271ed461e0389d36acd4238d04fd22a70302ff",
-      "source": "LL-Q188 (deu)-Natschoba-die Adresse.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Adresse.wav",
+      "word": "Adresse"
+    },
+    "afternoon": {
+      "author": "Natschoba",
+      "file": "articles/afternoon.mp3",
+      "gain": 3.9,
+      "gainPhone": 2.4,
+      "lead": 239,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "der Nachmittag",
+      "sha256": "8c80b9348983db855dc6a4a4c5aea50eef3064c61fc16c5700165670f15be7b3",
+      "snr": 59.8,
+      "source": "LL-Q188 (deu)-Natschoba-der Nachmittag.wav",
+      "word": "Nachmittag"
     },
     "airport": {
       "author": "Natschoba",
@@ -23,7 +38,8 @@
       "matches": "der Flughafen",
       "sha256": "d65531c88ae28e6eb6c53b46e59cfc2cd5d3155d4f287e7b95fcbbe1849f8ee8",
       "snr": 57.8,
-      "source": "LL-Q188 (deu)-Natschoba-der Flughafen.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Flughafen.wav",
+      "word": "Flughafen"
     },
     "alarm-clock": {
       "author": "Natschoba",
@@ -36,7 +52,8 @@
       "matches": "der Wecker",
       "sha256": "b7aa1c0044e6b5759a04682bca957b70fa907a013dd9818ad7705ed0d2fd8c31",
       "snr": 65.2,
-      "source": "LL-Q188 (deu)-Natschoba-der Wecker.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Wecker.wav",
+      "word": "Wecker"
     },
     "animal": {
       "author": "Natschoba",
@@ -49,7 +66,8 @@
       "matches": "das Tier",
       "sha256": "909fccb7f126e8a8d9f675b390dcee848f519c0da2fe5d6cdbd7aa69b9907d70",
       "snr": 61.3,
-      "source": "LL-Q188 (deu)-Natschoba-das Tier.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Tier.wav",
+      "word": "Tier"
     },
     "answer": {
       "author": "Natschoba",
@@ -62,7 +80,8 @@
       "matches": "die Antwort",
       "sha256": "13ee516259fdfda08c3965bd57f8f37febed0ea306b0ffb2adaadebe7e0d5dc9",
       "snr": 52.2,
-      "source": "LL-Q188 (deu)-Natschoba-die Antwort.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Antwort.wav",
+      "word": "Antwort"
     },
     "apartment": {
       "author": "Natschoba",
@@ -75,7 +94,8 @@
       "matches": "die Wohnung",
       "sha256": "155fba5f94ddd2dc2b7baa0e75eb8107df3db066b2a87730a186db16e079abc3",
       "snr": 54.0,
-      "source": "LL-Q188 (deu)-Natschoba-die Wohnung.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Wohnung.wav",
+      "word": "Wohnung"
     },
     "apple": {
       "author": "Natschoba",
@@ -88,7 +108,8 @@
       "matches": "der Apfel",
       "sha256": "bd20a23b47b997dfe4434e0cb6a87f757814f112e6eba86193f7c440afcedbf3",
       "snr": 64.7,
-      "source": "LL-Q188 (deu)-Natschoba-der Apfel.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Apfel.wav",
+      "word": "Apfel"
     },
     "appointment": {
       "author": "Natschoba",
@@ -101,7 +122,8 @@
       "matches": "der Termin",
       "sha256": "a146f0f4d51a9132db1113c964bd176cdd0768285d2325f1bde20f910dbc1c0b",
       "snr": 60.4,
-      "source": "LL-Q188 (deu)-Natschoba-der Termin.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Termin.wav",
+      "word": "Termin"
     },
     "arm": {
       "author": "Natschoba",
@@ -114,7 +136,8 @@
       "matches": "der Arm",
       "sha256": "20c1ffa9153560c1838ada907836c1df89c77c25fd5369ad332a711486a9035a",
       "snr": 70.9,
-      "source": "LL-Q188 (deu)-Natschoba-der Arm.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Arm.wav",
+      "word": "Arm"
     },
     "aunt": {
       "author": "Natschoba",
@@ -127,7 +150,8 @@
       "matches": "die Tante",
       "sha256": "3e46ef666bd8ddae94ad5415e73d95a2125484fa6b7f8390bd868bd444086f08",
       "snr": 65.8,
-      "source": "LL-Q188 (deu)-Natschoba-die Tante.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Tante.wav",
+      "word": "Tante"
     },
     "back": {
       "author": "Natschoba",
@@ -139,7 +163,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "der Rücken",
       "sha256": "0cb1183dccf51b6f2d70780229589f7c42b6063bd3580911c65b1ce16079f424",
-      "source": "LL-Q188 (deu)-Natschoba-der Rücken.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Rücken.wav",
+      "word": "Rücken"
     },
     "bathtub": {
       "author": "Natschoba",
@@ -152,7 +177,8 @@
       "matches": "die Badewanne",
       "sha256": "38c2e7a8d5cab2024152be6aa12441465fde99a89bfaabe34f02edf04c80bd55",
       "snr": 101.7,
-      "source": "LL-Q188 (deu)-Natschoba-die Badewanne.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Badewanne.wav",
+      "word": "Badewanne"
     },
     "beach": {
       "author": "Natschoba",
@@ -164,7 +190,8 @@
       "matches": "der Strand",
       "sha256": "6d98705fe7859e034487b6e1987945bba92dde932111dca403aa773fccaee09a",
       "snr": 60.7,
-      "source": "LL-Q188 (deu)-Natschoba-der Strand.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Strand.wav",
+      "word": "Strand"
     },
     "bed": {
       "author": "Natschoba",
@@ -177,7 +204,8 @@
       "matches": "das Bett",
       "sha256": "67e70b5672b0ba4588836ce34d4522270e4f70df07701f888c4d475fba905ab8",
       "snr": 65.4,
-      "source": "LL-Q188 (deu)-Natschoba-das Bett.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Bett.wav",
+      "word": "Bett"
     },
     "bicycle": {
       "author": "Natschoba",
@@ -189,7 +217,8 @@
       "matches": "das Fahrrad",
       "sha256": "9361e70307b76699707dd930ca66beac9a994131a900607eef4be49a197bad3a",
       "snr": 64.9,
-      "source": "LL-Q188 (deu)-Natschoba-das Fahrrad.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Fahrrad.wav",
+      "word": "Fahrrad"
     },
     "bird": {
       "author": "Natschoba",
@@ -202,7 +231,8 @@
       "matches": "der Vogel",
       "sha256": "4e5231827e3e5038913e75323ffd49420d63ec69f1961ef28fc83275f3c3a298",
       "snr": 61.5,
-      "source": "LL-Q188 (deu)-Natschoba-der Vogel.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Vogel.wav",
+      "word": "Vogel"
     },
     "bone": {
       "author": "Natschoba",
@@ -214,7 +244,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "der Knochen",
       "sha256": "4aeb3f7c843d71c9d81f2c101340f7aefb48aecf92e8e541718c9d7786704403",
-      "source": "LL-Q188 (deu)-Natschoba-der Knochen.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Knochen.wav",
+      "word": "Knochen"
     },
     "book": {
       "author": "Natschoba",
@@ -227,7 +258,8 @@
       "matches": "das Buch",
       "sha256": "7898e71194f0edc560f8b5f5863409fcccca79e78987eb0aa7d342f0e498f0e2",
       "snr": 77.3,
-      "source": "LL-Q188 (deu)-Natschoba-das Buch.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Buch.wav",
+      "word": "Buch"
     },
     "boss": {
       "author": "Natschoba",
@@ -240,7 +272,8 @@
       "matches": "der Chef",
       "sha256": "8a5c190678825915d612b743fc40464ddf6f971886bad44673d2436d17618125",
       "snr": 58.8,
-      "source": "LL-Q188 (deu)-Natschoba-der Chef.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Chef.wav",
+      "word": "Chef"
     },
     "boy": {
       "author": "Natschoba",
@@ -252,7 +285,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "der Junge",
       "sha256": "b01d903d57b75584eef9080337f5a84f3c51eb828e3ecb9316831fa89753350a",
-      "source": "LL-Q188 (deu)-Natschoba-der Junge.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Junge.wav",
+      "word": "Junge"
     },
     "bread": {
       "author": "Natschoba",
@@ -265,7 +299,8 @@
       "matches": "das Brot",
       "sha256": "c0c9a41a9a96532d6810a3c43bfa9be3cda67956316074ed6561719352d6f36f",
       "snr": 61.8,
-      "source": "LL-Q188 (deu)-Natschoba-das Brot.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Brot.wav",
+      "word": "Brot"
     },
     "break": {
       "author": "Natschoba",
@@ -278,7 +313,8 @@
       "matches": "die Pause",
       "sha256": "ef9dd563588cd1d30c109f93a5c298616f56a255ef3c312ce282b778f2a6dfde",
       "snr": 65.5,
-      "source": "LL-Q188 (deu)-Natschoba-die Pause.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Pause.wav",
+      "word": "Pause"
     },
     "breakfast": {
       "author": "Natschoba",
@@ -290,7 +326,8 @@
       "matches": "das Frühstück",
       "sha256": "9ce0607faa32de8ed7530a41cc1bfd33de1678ab4219b67b6ba21f8f0e60a17e",
       "snr": 66.6,
-      "source": "LL-Q188 (deu)-Natschoba-das Frühstück.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Frühstück.wav",
+      "word": "Frühstück"
     },
     "bridge": {
       "author": "Natschoba",
@@ -303,7 +340,8 @@
       "matches": "die Brücke",
       "sha256": "42aebf4105afeef6c44b6e72085edb5422a4d6694adbfd285e1dc5d79b2609ea",
       "snr": 66.7,
-      "source": "LL-Q188 (deu)-Natschoba-die Brücke.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Brücke.wav",
+      "word": "Brücke"
     },
     "brother": {
       "author": "Natschoba",
@@ -316,7 +354,8 @@
       "matches": "der Bruder",
       "sha256": "b02d49f12e673258fcb18a5896005f26f6abc90025674b6fb4ceb1cdf61ed799",
       "snr": 63.2,
-      "source": "LL-Q188 (deu)-Natschoba-der Bruder.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Bruder.wav",
+      "word": "Bruder"
     },
     "bus-stop": {
       "author": "Natschoba",
@@ -329,7 +368,8 @@
       "matches": "die Haltestelle",
       "sha256": "60cf144c4e1248701ebc76e0cd8adf65f54c7e479b9759c62bcadfaf339790b7",
       "snr": 68.1,
-      "source": "LL-Q188 (deu)-Natschoba-die Haltestelle.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Haltestelle.wav",
+      "word": "Haltestelle"
     },
     "butter": {
       "author": "Natschoba",
@@ -342,7 +382,8 @@
       "matches": "die Butter",
       "sha256": "0e4e8c5eb9f093e04ff853312676caaf0f90180467364123bf6b89486435bcf1",
       "snr": 53.5,
-      "source": "LL-Q188 (deu)-Natschoba-die Butter.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Butter.wav",
+      "word": "Butter"
     },
     "calendar": {
       "author": "Natschoba",
@@ -355,7 +396,8 @@
       "matches": "der Kalender",
       "sha256": "021165e39cba7e7082c8fdb59651fd52a8ad0ba4567ca11c0f2d4ab86b792621",
       "snr": 59.0,
-      "source": "LL-Q188 (deu)-Natschoba-der Kalender.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Kalender.wav",
+      "word": "Kalender"
     },
     "car": {
       "author": "Natschoba",
@@ -368,7 +410,8 @@
       "matches": "das Auto",
       "sha256": "0f57fb7c0076ffd23f2ec17fe941d78fbcc7218e3bb5fd1c8e56f740fc8f56ad",
       "snr": 66.0,
-      "source": "LL-Q188 (deu)-Natschoba-das Auto.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Auto.wav",
+      "word": "Auto"
     },
     "cat": {
       "author": "Natschoba",
@@ -381,7 +424,8 @@
       "matches": "die Katze",
       "sha256": "68ddccd4bc65482ad77fa741579df64c6d6252017137d67d28e89210990c474e",
       "snr": 64.0,
-      "source": "LL-Q188 (deu)-Natschoba-die Katze.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Katze.wav",
+      "word": "Katze"
     },
     "chair": {
       "author": "Natschoba",
@@ -394,7 +438,8 @@
       "matches": "der Stuhl",
       "sha256": "206bdf99ff98aa0890ef865dd11ca1f6446392b167bb594b9dcbb9d6ebd2b0f5",
       "snr": 57.4,
-      "source": "LL-Q188 (deu)-Natschoba-der Stuhl.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Stuhl.wav",
+      "word": "Stuhl"
     },
     "cheese": {
       "author": "Natschoba",
@@ -407,7 +452,8 @@
       "matches": "der Käse",
       "sha256": "a684ff7a5b4c3f139931f6d01d29451beea903e68dc9d0daba2723530965cb7d",
       "snr": 66.9,
-      "source": "LL-Q188 (deu)-Natschoba-der Käse.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Käse.wav",
+      "word": "Käse"
     },
     "chest": {
       "author": "Natschoba",
@@ -420,7 +466,8 @@
       "matches": "die Brust",
       "sha256": "c37afa858dc69befae0a10b9816755eb58936d58ac75706d8e9f56a76c97633e",
       "snr": 80.0,
-      "source": "LL-Q188 (deu)-Natschoba-die Brust.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Brust.wav",
+      "word": "Brust"
     },
     "child": {
       "author": "Natschoba",
@@ -433,7 +480,8 @@
       "matches": "das Kind",
       "sha256": "0238c396f416dbd016b069e5a16869bd6bd3c7c1573c8d71bd5b505599f43ce6",
       "snr": 65.6,
-      "source": "LL-Q188 (deu)-Natschoba-das Kind.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Kind.wav",
+      "word": "Kind"
     },
     "church": {
       "author": "Natschoba",
@@ -446,7 +494,8 @@
       "matches": "die Kirche",
       "sha256": "f752db1fd246d66e48cfd64abc08be4db4b9ed74001077c950ca1302c20ef568",
       "snr": 64.9,
-      "source": "LL-Q188 (deu)-Natschoba-die Kirche.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Kirche.wav",
+      "word": "Kirche"
     },
     "cinema": {
       "author": "Natschoba",
@@ -459,7 +508,8 @@
       "matches": "das Kino",
       "sha256": "2d17ef4db943c66087ecb010120f3bfe41401cdf2dbded4d0025f114b4522982",
       "snr": 57.9,
-      "source": "LL-Q188 (deu)-Natschoba-das Kino.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Kino.wav",
+      "word": "Kino"
     },
     "city": {
       "author": "Natschoba",
@@ -472,7 +522,8 @@
       "matches": "die Stadt",
       "sha256": "36768250bc0c86c070eaa69e9b9b09a2610fcc69e1bedabc9cfab04880999a1e",
       "snr": 63.3,
-      "source": "LL-Q188 (deu)-Natschoba-die Stadt.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Stadt.wav",
+      "word": "Stadt"
     },
     "cloud": {
       "author": "Natschoba",
@@ -485,7 +536,8 @@
       "matches": "die Wolke",
       "sha256": "23ce1ec12ea7af13ad66130d2aad4677936666c08e3e324e3ea21fd8d6b79464",
       "snr": 78.8,
-      "source": "LL-Q188 (deu)-Natschoba-die Wolke.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Wolke.wav",
+      "word": "Wolke"
     },
     "coat": {
       "author": "Natschoba",
@@ -498,7 +550,8 @@
       "matches": "der Mantel",
       "sha256": "d760b9407a31c09dd06897ae6778ec2ec74caa6ea19a341638d5f673044f6861",
       "snr": 63.1,
-      "source": "LL-Q188 (deu)-Natschoba-der Mantel.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Mantel.wav",
+      "word": "Mantel"
     },
     "coffee": {
       "author": "Natschoba",
@@ -511,7 +564,8 @@
       "matches": "der Kaffee",
       "sha256": "dc048e8b659cff3490fb439cc2ed5563e659567d6ea04b6d1224d9bee33aee86",
       "snr": 74.2,
-      "source": "LL-Q188 (deu)-Natschoba-der Kaffee.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Kaffee.wav",
+      "word": "Kaffee"
     },
     "colleague": {
       "author": "Natschoba",
@@ -523,7 +577,8 @@
       "matches": "der Kollege",
       "sha256": "1c0f875e8618dfcf0ee41e7f17f97590975d4628c1cfe367b6e41cc2d826de79",
       "snr": 62.6,
-      "source": "LL-Q188 (deu)-Natschoba-der Kollege.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Kollege.wav",
+      "word": "Kollege"
     },
     "colleague-f": {
       "author": "Natschoba",
@@ -536,7 +591,8 @@
       "matches": "die Kollegin",
       "sha256": "8d6009c1a985dd1c6f7c3fb6ec59a042b95017f58b0ee82a85d25a05e86d477d",
       "snr": 62.4,
-      "source": "LL-Q188 (deu)-Natschoba-die Kollegin.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Kollegin.wav",
+      "word": "Kollegin"
     },
     "color": {
       "author": "Natschoba",
@@ -549,7 +605,8 @@
       "matches": "die Farbe",
       "sha256": "14457c604453fc071ded004600bd5466551bc1e037fc2e49312a50bf97998a07",
       "snr": 64.6,
-      "source": "LL-Q188 (deu)-Natschoba-die Farbe.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Farbe.wav",
+      "word": "Farbe"
     },
     "company": {
       "author": "Natschoba",
@@ -562,7 +619,8 @@
       "matches": "die Firma",
       "sha256": "4db83b55de3a22c6e8f9fdeda9d67400086f0848c3a646a19de9716ebed7b214",
       "snr": 66.6,
-      "source": "LL-Q188 (deu)-Natschoba-die Firma.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Firma.wav",
+      "word": "Firma"
     },
     "cup": {
       "author": "Natschoba",
@@ -574,7 +632,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "die Tasse",
       "sha256": "66264a4f76028caa47e1086fd1988aba887448815ff6e6d9b39f88d2fc56698d",
-      "source": "LL-Q188 (deu)-Natschoba-die Tasse.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Tasse.wav",
+      "word": "Tasse"
     },
     "curtain": {
       "author": "Natschoba",
@@ -587,7 +646,8 @@
       "matches": "der Vorhang",
       "sha256": "d58a908f5944bbd7ccb7108c4ebdedfc4615641690853bf1b3ad9d2965a3391b",
       "snr": 167.9,
-      "source": "LL-Q188 (deu)-Natschoba-der Vorhang.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Vorhang.wav",
+      "word": "Vorhang"
     },
     "customer": {
       "author": "Natschoba",
@@ -600,7 +660,8 @@
       "matches": "der Kunde",
       "sha256": "27865b3267837ea675af6e5edc5ce3377c3c4afbee5ebd1326dc99dadad386d5",
       "snr": 62.2,
-      "source": "LL-Q188 (deu)-Natschoba-der Kunde.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Kunde.wav",
+      "word": "Kunde"
     },
     "daughter": {
       "author": "Natschoba",
@@ -613,7 +674,8 @@
       "matches": "die Tochter",
       "sha256": "2674e0a13a108cac561075f08ab7ac12b78ddfb3f729a1ee9fc6b7dd61ce9ca5",
       "snr": 65.7,
-      "source": "LL-Q188 (deu)-Natschoba-die Tochter.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Tochter.wav",
+      "word": "Tochter"
     },
     "day": {
       "author": "Natschoba",
@@ -626,7 +688,8 @@
       "matches": "der Tag",
       "sha256": "c762a3280ec46d8bb332cc5a499b65872a671484b08d3af007ea0a88575709c4",
       "snr": 70.9,
-      "source": "LL-Q188 (deu)-Natschoba-der Tag.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Tag.wav",
+      "word": "Tag"
     },
     "dentist": {
       "author": "Natschoba",
@@ -639,7 +702,8 @@
       "matches": "der Zahnarzt",
       "sha256": "9d4e24b72cea298b360ea8eab48cb3486356a36eac3e675e04cfa060cd6bb69b",
       "snr": 62.1,
-      "source": "LL-Q188 (deu)-Natschoba-der Zahnarzt.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Zahnarzt.wav",
+      "word": "Zahnarzt"
     },
     "dinner": {
       "author": "Natschoba",
@@ -652,7 +716,8 @@
       "matches": "das Abendessen",
       "sha256": "6d841622f3ccfa15f20f9c5e1624b96e6eb296175fcfb0e2bf9e7b08e9654084",
       "snr": 64.0,
-      "source": "LL-Q188 (deu)-Natschoba-das Abendessen.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Abendessen.wav",
+      "word": "Abendessen"
     },
     "doctor": {
       "author": "Natschoba",
@@ -664,7 +729,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "der Arzt",
       "sha256": "1a8fc5059342882560dae7361e393026ebb83e85cec12bfcb8a34e58dc94d37e",
-      "source": "LL-Q188 (deu)-Natschoba-der Arzt.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Arzt.wav",
+      "word": "Arzt"
     },
     "dog": {
       "author": "Natschoba",
@@ -676,7 +742,8 @@
       "matches": "der Hund",
       "sha256": "4ced8dac856975ee05e164ad7226511cb0ba1f899bcaab9c797f91cac5428314",
       "snr": 64.6,
-      "source": "LL-Q188 (deu)-Natschoba-der Hund.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Hund.wav",
+      "word": "Hund"
     },
     "door": {
       "author": "Natschoba",
@@ -689,7 +756,8 @@
       "matches": "die Tür",
       "sha256": "e765e668b69026570ca7866f5ad2410f4802006edf8bf5dd602e5d31ede2233d",
       "snr": 54.4,
-      "source": "LL-Q188 (deu)-Natschoba-die Tür.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Tür.wav",
+      "word": "Tür"
     },
     "dress": {
       "author": "Natschoba",
@@ -702,7 +770,8 @@
       "matches": "das Kleid",
       "sha256": "46b9f3aad84e192de5fe920acb3ae8b81d82fff776edbd491d3ec102b2e157ba",
       "snr": 64.7,
-      "source": "LL-Q188 (deu)-Natschoba-das Kleid.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Kleid.wav",
+      "word": "Kleid"
     },
     "ear": {
       "author": "Natschoba",
@@ -715,7 +784,8 @@
       "matches": "das Ohr",
       "sha256": "68b035a35dfd813ce5613688d998e6807a5153568f03b6e3397cce64f0d4f564",
       "snr": 65.5,
-      "source": "LL-Q188 (deu)-Natschoba-das Ohr.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Ohr.wav",
+      "word": "Ohr"
     },
     "egg": {
       "author": "Natschoba",
@@ -728,7 +798,8 @@
       "matches": "das Ei",
       "sha256": "a7a0b4c23847d392e393ba744eb7ac5a4541ea19fb3a63ac5c2c30b504c55cd5",
       "snr": 76.9,
-      "source": "LL-Q188 (deu)-Natschoba-das Ei.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Ei.wav",
+      "word": "Ei"
     },
     "evening": {
       "author": "Natschoba",
@@ -741,7 +812,8 @@
       "matches": "der Abend",
       "sha256": "eb7683a44b42eed4d96c77f7b443b2c56d3e5613929309f3b6861bd29626693e",
       "snr": 72.5,
-      "source": "LL-Q188 (deu)-Natschoba-der Abend.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Abend.wav",
+      "word": "Abend"
     },
     "eye": {
       "author": "Natschoba",
@@ -754,7 +826,8 @@
       "matches": "das Auge",
       "sha256": "d426ea3bac7a3dfd4444945e32284ac93a4ea012275b61a0d4f4e3a0a5ec4eae",
       "snr": 54.1,
-      "source": "LL-Q188 (deu)-Natschoba-das Auge.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Auge.wav",
+      "word": "Auge"
     },
     "face": {
       "author": "Natschoba",
@@ -767,7 +840,8 @@
       "matches": "das Gesicht",
       "sha256": "39dcc578b2bbd8a60e024adcd3bc3098d5bc236f83b940feb071b2ccca5990f2",
       "snr": 48.7,
-      "source": "LL-Q188 (deu)-Natschoba-das Gesicht.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Gesicht.wav",
+      "word": "Gesicht"
     },
     "family": {
       "author": "Natschoba",
@@ -780,7 +854,8 @@
       "matches": "die Familie",
       "sha256": "ec89ec104fc4e13790837a65481516737a7f5f6687dfb15f275385174de6ad0c",
       "snr": 58.9,
-      "source": "LL-Q188 (deu)-Natschoba-die Familie.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Familie.wav",
+      "word": "Familie"
     },
     "father": {
       "author": "Natschoba",
@@ -793,7 +868,8 @@
       "matches": "der Vater",
       "sha256": "3b219cd9bb56747052b20b7d729e821e443a533ce3dc9ceb2bb9ced5f734f7a6",
       "snr": 60.7,
-      "source": "LL-Q188 (deu)-Natschoba-der Vater.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Vater.wav",
+      "word": "Vater"
     },
     "finger": {
       "author": "Natschoba",
@@ -805,7 +881,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "der Finger",
       "sha256": "5d3024cee0a7cfa1bc15b5d0752656cc9a7575015ec5fb0f9285e8d974cf0277",
-      "source": "LL-Q188 (deu)-Natschoba-der Finger.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Finger.wav",
+      "word": "Finger"
     },
     "fish": {
       "author": "Natschoba",
@@ -818,7 +895,8 @@
       "matches": "der Fisch",
       "sha256": "1512cd1d9dc5494ebb97a871dfd6446fe50b77ec4c22fbd40191705055cebbd5",
       "snr": 61.0,
-      "source": "LL-Q188 (deu)-Natschoba-der Fisch.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Fisch.wav",
+      "word": "Fisch"
     },
     "flour": {
       "author": "Natschoba",
@@ -831,7 +909,8 @@
       "matches": "das Mehl",
       "sha256": "7aa8267356744514b10d07ffaac7bc4d577a3970d05717ffec9dc51fe15936e8",
       "snr": 65.6,
-      "source": "LL-Q188 (deu)-Natschoba-das Mehl.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Mehl.wav",
+      "word": "Mehl"
     },
     "flower": {
       "author": "Natschoba",
@@ -844,7 +923,8 @@
       "matches": "die Blume",
       "sha256": "8e8567180a05ded5fb3f6c6a3a34000194cc810ef17da11544cf81692c14b9eb",
       "snr": 61.7,
-      "source": "LL-Q188 (deu)-Natschoba-die Blume.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Blume.wav",
+      "word": "Blume"
     },
     "food": {
       "author": "Natschoba",
@@ -857,7 +937,8 @@
       "matches": "das Essen",
       "sha256": "dbe8ffcdcf54164f2c2f06580b2fe0c6fc9c3dc7d4e3e5534aa6908690299c10",
       "snr": 62.0,
-      "source": "LL-Q188 (deu)-Natschoba-das Essen.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Essen.wav",
+      "word": "Essen"
     },
     "foot": {
       "author": "Natschoba",
@@ -870,7 +951,8 @@
       "matches": "der Fuß",
       "sha256": "ffbdfc52419aa6a8edc8cfa34b095d53f31929c03ee8be5693c1d4b3029227a4",
       "snr": 64.5,
-      "source": "LL-Q188 (deu)-Natschoba-der Fuß.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Fuß.wav",
+      "word": "Fuß"
     },
     "forest": {
       "author": "Natschoba",
@@ -883,7 +965,8 @@
       "matches": "der Wald",
       "sha256": "ef0de4df8425b4ba0ae5ff1f80c8dc661049eb282e2a9e46ffe2ad944d3c4044",
       "snr": 64.3,
-      "source": "LL-Q188 (deu)-Natschoba-der Wald.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Wald.wav",
+      "word": "Wald"
     },
     "fork": {
       "author": "Natschoba",
@@ -896,7 +979,8 @@
       "matches": "die Gabel",
       "sha256": "8c4d01bf3d3cdd29ef74ac9131e0138e87394b28f7e254065fd889bae0605c4e",
       "snr": 60.7,
-      "source": "LL-Q188 (deu)-Natschoba-die Gabel.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Gabel.wav",
+      "word": "Gabel"
     },
     "fridge": {
       "author": "Natschoba",
@@ -909,7 +993,8 @@
       "matches": "der Kühlschrank",
       "sha256": "153584f6228a37fbfc317f5a40b835c7927ef69be726786390c50b576b87119d",
       "snr": 59.1,
-      "source": "LL-Q188 (deu)-Natschoba-der Kühlschrank.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Kühlschrank.wav",
+      "word": "Kühlschrank"
     },
     "friend": {
       "author": "Natschoba",
@@ -922,7 +1007,8 @@
       "matches": "der Freund",
       "sha256": "03661257c1e75a527fe7db6fe104de5b40f8544d7772e2a78dde9fd25de02c6c",
       "snr": 68.0,
-      "source": "LL-Q188 (deu)-Natschoba-der Freund.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Freund.wav",
+      "word": "Freund"
     },
     "friend-f": {
       "author": "Natschoba",
@@ -935,7 +1021,8 @@
       "matches": "die Freundin",
       "sha256": "f249cdf90ec6fc5f31d40b4942e1c293e6982e914eecede4f3915de71cf3db28",
       "snr": 66.1,
-      "source": "LL-Q188 (deu)-Natschoba-die Freundin.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Freundin.wav",
+      "word": "Freundin"
     },
     "fruit": {
       "author": "Natschoba",
@@ -948,7 +1035,8 @@
       "matches": "das Obst",
       "sha256": "c045e690e2650bea953b42d1a1a72110789f5266c5d0f554bd167bbe28914a9c",
       "snr": 63.2,
-      "source": "LL-Q188 (deu)-Natschoba-das Obst.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Obst.wav",
+      "word": "Obst"
     },
     "game": {
       "author": "Natschoba",
@@ -961,7 +1049,8 @@
       "matches": "das Spiel",
       "sha256": "76e4089bb74bbd7472775a8ac889b528ede17ea2666c159b02a270b8fe00f91f",
       "snr": 62.9,
-      "source": "LL-Q188 (deu)-Natschoba-das Spiel.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Spiel.wav",
+      "word": "Spiel"
     },
     "girl": {
       "author": "Natschoba",
@@ -974,7 +1063,21 @@
       "matches": "das Mädchen",
       "sha256": "885a2981a9c27e9ccae4b89830a91346466fcc7efbfba731d81de8346c7690c9",
       "snr": 58.0,
-      "source": "LL-Q188 (deu)-Natschoba-das Mädchen.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Mädchen.wav",
+      "word": "Mädchen"
+    },
+    "grandfather": {
+      "author": "Natschoba",
+      "file": "articles/grandfather.mp3",
+      "gain": 3.1,
+      "gainPhone": -3.0,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "der Großvater",
+      "sha256": "67162b64b60c47f23eef5c55cdfb8bef4c3a2c4c0148a6f3864736d0cd8a8cb0",
+      "snr": 64.1,
+      "source": "LL-Q188 (deu)-Natschoba-der Großvater.wav",
+      "word": "Großvater"
     },
     "guest": {
       "author": "Natschoba",
@@ -987,7 +1090,8 @@
       "matches": "der Gast",
       "sha256": "9fd34f55ec0d49f6bf4ca09a6128db91c77ad898c3b3927ac8619afd07be561b",
       "snr": 69.1,
-      "source": "LL-Q188 (deu)-Natschoba-der Gast.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Gast.wav",
+      "word": "Gast"
     },
     "hair": {
       "author": "Natschoba",
@@ -1000,7 +1104,8 @@
       "matches": "das Haar",
       "sha256": "e9c4a40bdbe12a288418575757fe2f24f05c604251db5b472f44e873c912a173",
       "snr": 62.7,
-      "source": "LL-Q188 (deu)-Natschoba-das Haar.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Haar.wav",
+      "word": "Haar"
     },
     "hand": {
       "author": "Natschoba",
@@ -1013,7 +1118,8 @@
       "matches": "die Hand",
       "sha256": "e2e32de05654f20931cffd8c2721f9630d90c80a019e22a5b58fa20fce647d53",
       "snr": 56.7,
-      "source": "LL-Q188 (deu)-Natschoba-die Hand.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Hand.wav",
+      "word": "Hand"
     },
     "head": {
       "author": "Natschoba",
@@ -1026,7 +1132,8 @@
       "matches": "der Kopf",
       "sha256": "549c28bb9fca534ca42759a4f085016543ff177b6de3b66be150f956969c1e48",
       "snr": 57.2,
-      "source": "LL-Q188 (deu)-Natschoba-der Kopf.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Kopf.wav",
+      "word": "Kopf"
     },
     "health": {
       "author": "Natschoba",
@@ -1038,7 +1145,8 @@
       "matches": "die Gesundheit",
       "sha256": "fe74155509fd365b9198bb0748179641172754e9e3a74178dda4bd0ff515b5a8",
       "snr": 58.7,
-      "source": "LL-Q188 (deu)-Natschoba-die Gesundheit.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Gesundheit.wav",
+      "word": "Gesundheit"
     },
     "heart": {
       "author": "Natschoba",
@@ -1051,7 +1159,8 @@
       "matches": "das Herz",
       "sha256": "50d41d2e3e49332cd085d71dd51f4ddfe1f35a256022eb9b592612281648e3a6",
       "snr": 56.5,
-      "source": "LL-Q188 (deu)-Natschoba-das Herz.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Herz.wav",
+      "word": "Herz"
     },
     "help": {
       "author": "Natschoba",
@@ -1063,7 +1172,8 @@
       "matches": "die Hilfe",
       "sha256": "af1206bb730dee65a74e49d1590e7e34a02897a7b85154f4e3a4646f2c1709ed",
       "snr": 72.9,
-      "source": "LL-Q188 (deu)-Natschoba-die Hilfe.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Hilfe.wav",
+      "word": "Hilfe"
     },
     "hotel": {
       "author": "Natschoba",
@@ -1076,7 +1186,8 @@
       "matches": "das Hotel",
       "sha256": "8e921adf1cf8fe1f38fcb2a844310c2fe3ea77f341cb9094f5b514303c9d4a75",
       "snr": 73.3,
-      "source": "LL-Q188 (deu)-Natschoba-das Hotel.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Hotel.wav",
+      "word": "Hotel"
     },
     "hour": {
       "author": "Natschoba",
@@ -1089,7 +1200,8 @@
       "matches": "die Stunde",
       "sha256": "0a2e0f89eeba8ab94c92aa25f35872d1809ae4834f73f799c77e76bf35a3614d",
       "snr": 55.2,
-      "source": "LL-Q188 (deu)-Natschoba-die Stunde.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Stunde.wav",
+      "word": "Stunde"
     },
     "house": {
       "author": "Natschoba",
@@ -1102,7 +1214,8 @@
       "matches": "das Haus",
       "sha256": "a222c4e8989ace6b3374830225f9e9bd0a61fb5ffa4bd143dea1e55765915995",
       "snr": 64.3,
-      "source": "LL-Q188 (deu)-Natschoba-das Haus.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Haus.wav",
+      "word": "Haus"
     },
     "human": {
       "author": "Natschoba",
@@ -1115,7 +1228,8 @@
       "matches": "der Mensch",
       "sha256": "d2d30a9b98bc3123fa2600dc638175e9ae56434b36b88385202374e9f22f8d59",
       "snr": 63.7,
-      "source": "LL-Q188 (deu)-Natschoba-der Mensch.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Mensch.wav",
+      "word": "Mensch"
     },
     "hunger": {
       "author": "Natschoba",
@@ -1128,7 +1242,8 @@
       "matches": "der Hunger",
       "sha256": "80844f9e88a7cdea7a203889acf5d249d41fa0b11c55e165548bd3a32bc3be4f",
       "snr": 64.2,
-      "source": "LL-Q188 (deu)-Natschoba-der Hunger.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Hunger.wav",
+      "word": "Hunger"
     },
     "husband": {
       "author": "Natschoba",
@@ -1141,7 +1256,8 @@
       "matches": "der Ehemann",
       "sha256": "1d3c0ff07b317d9ad5c55f012c6c1214b8bb9358e425ce5729f7291dd5cd81a9",
       "snr": 65.2,
-      "source": "LL-Q188 (deu)-Natschoba-der Ehemann.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Ehemann.wav",
+      "word": "Ehemann"
     },
     "id-card": {
       "author": "Natschoba",
@@ -1153,7 +1269,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "der Ausweis",
       "sha256": "fb7595049856a6efc305ba39a6edd031f3e1dac04749d167ebfc33fa50033b9b",
-      "source": "LL-Q188 (deu)-Natschoba-der Ausweis.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Ausweis.wav",
+      "word": "Ausweis"
     },
     "illness": {
       "author": "Natschoba",
@@ -1165,7 +1282,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "die Krankheit",
       "sha256": "50b77745d4b88928f282e9e0b6405498ca32880a064b5ca70f4cfae5bff4dec9",
-      "source": "LL-Q188 (deu)-Natschoba-die Krankheit.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Krankheit.wav",
+      "word": "Krankheit"
     },
     "internet": {
       "author": "Natschoba",
@@ -1177,7 +1295,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "das Internet",
       "sha256": "04bcf698d3fd10822f6f30f7e79e9f8812f95fd126385305ab497ce160965dbc",
-      "source": "LL-Q188 (deu)-Natschoba-das Internet.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Internet.wav",
+      "word": "Internet"
     },
     "interview": {
       "author": "Natschoba",
@@ -1190,7 +1309,8 @@
       "matches": "das Vorstellungsgespräch",
       "sha256": "d0c36acaf7c16d038bcfa12c6665a4e85dd67d42ba6807a5e87b16de89f0610b",
       "snr": 64.7,
-      "source": "LL-Q188 (deu)-Natschoba-das Vorstellungsgespräch.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Vorstellungsgespräch.wav",
+      "word": "Vorstellungsgespräch"
     },
     "job-application": {
       "author": "Natschoba",
@@ -1203,7 +1323,8 @@
       "matches": "die Bewerbung",
       "sha256": "dc596930c10fabdcaf2d1a2fb42950bab4292bf75167bdf3d6ce8c2c8c41e23a",
       "snr": 62.9,
-      "source": "LL-Q188 (deu)-Natschoba-die Bewerbung.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Bewerbung.wav",
+      "word": "Bewerbung"
     },
     "journey": {
       "author": "Natschoba",
@@ -1216,7 +1337,8 @@
       "matches": "die Reise",
       "sha256": "83e915aeba1b93b6560118a43b95a4a853eca07abd366b95a86e4e7f70386a3c",
       "snr": 63.3,
-      "source": "LL-Q188 (deu)-Natschoba-die Reise.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Reise.wav",
+      "word": "Reise"
     },
     "juice": {
       "author": "Natschoba",
@@ -1229,7 +1351,8 @@
       "matches": "der Saft",
       "sha256": "1dac4dadca0c93424a28852d7b845a310d57eb6b011b9f4bbe07e1eac51483c3",
       "snr": 63.9,
-      "source": "LL-Q188 (deu)-Natschoba-der Saft.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Saft.wav",
+      "word": "Saft"
     },
     "knee": {
       "author": "Natschoba",
@@ -1241,7 +1364,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "das Knie",
       "sha256": "9c7c0c55c1effc4019a8ab000277e6668325c2983afa32e2df0cddc9269ee273",
-      "source": "LL-Q188 (deu)-Natschoba-das Knie.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Knie.wav",
+      "word": "Knie"
     },
     "knife": {
       "author": "Natschoba",
@@ -1254,7 +1378,8 @@
       "matches": "das Messer",
       "sha256": "552614361745bd0013689ef5f9fa525e3650e08fbe9e8fc2d26acb27fa10b4da",
       "snr": 66.8,
-      "source": "LL-Q188 (deu)-Natschoba-das Messer.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Messer.wav",
+      "word": "Messer"
     },
     "lamp": {
       "author": "Natschoba",
@@ -1267,7 +1392,8 @@
       "matches": "die Lampe",
       "sha256": "c51563cf101d362d4dd2d579ba69379c64668da8fd52b422ca85315e66948547",
       "snr": 58.7,
-      "source": "LL-Q188 (deu)-Natschoba-die Lampe.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Lampe.wav",
+      "word": "Lampe"
     },
     "language": {
       "author": "Natschoba",
@@ -1280,7 +1406,8 @@
       "matches": "die Sprache",
       "sha256": "579c74b1f77531720a478abfb7f774334095091ffd50de3c06eac43766a89246",
       "snr": 65.0,
-      "source": "LL-Q188 (deu)-Natschoba-die Sprache.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Sprache.wav",
+      "word": "Sprache"
     },
     "law": {
       "author": "Natschoba",
@@ -1293,7 +1420,8 @@
       "matches": "das Gesetz",
       "sha256": "09f2c1fde3a8360560c219308e7254feabd1ba3e755772bdc3bde956effb6ce6",
       "snr": 64.5,
-      "source": "LL-Q188 (deu)-Natschoba-das Gesetz.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Gesetz.wav",
+      "word": "Gesetz"
     },
     "leg": {
       "author": "Natschoba",
@@ -1306,7 +1434,8 @@
       "matches": "das Bein",
       "sha256": "7d0fa6ae38728724951fb87d776eb582d4bbe5370388890b56ac9eb93349ea6c",
       "snr": 62.1,
-      "source": "LL-Q188 (deu)-Natschoba-das Bein.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Bein.wav",
+      "word": "Bein"
     },
     "lesson": {
       "author": "Natschoba",
@@ -1319,7 +1448,8 @@
       "matches": "der Unterricht",
       "sha256": "117965e31a930bfee5ee3a70e1fae72fb1bf0dad959addd0c2117266f37ccbb8",
       "snr": 86.5,
-      "source": "LL-Q188 (deu)-Natschoba-der Unterricht.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Unterricht.wav",
+      "word": "Unterricht"
     },
     "letter": {
       "author": "Natschoba",
@@ -1332,7 +1462,8 @@
       "matches": "der Brief",
       "sha256": "df545ef886a42c283fafb567ecc5a3555a54838d43ed3f546ecc0734b78436c7",
       "snr": 65.0,
-      "source": "LL-Q188 (deu)-Natschoba-der Brief.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Brief.wav",
+      "word": "Brief"
     },
     "light": {
       "author": "Natschoba",
@@ -1345,7 +1476,8 @@
       "matches": "das Licht",
       "sha256": "7cdfdafaf8362f64382b02d0ee2e59e9fea14a56d6882f057887c71c3138a13b",
       "snr": 61.6,
-      "source": "LL-Q188 (deu)-Natschoba-das Licht.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Licht.wav",
+      "word": "Licht"
     },
     "lip": {
       "author": "Natschoba",
@@ -1357,7 +1489,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "die Lippe",
       "sha256": "e0c461eb3a3a36a7c6b88804e7502d8b7df0556bc241f564096a16883f947b73",
-      "source": "LL-Q188 (deu)-Natschoba-die Lippe.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Lippe.wav",
+      "word": "Lippe"
     },
     "luggage": {
       "author": "Natschoba",
@@ -1369,7 +1502,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "das Gepäck",
       "sha256": "c2e4112730e0317c0aed6ef2ec8a204faa5dfcb6859a8fc5c1bbe5517af41cb1",
-      "source": "LL-Q188 (deu)-Natschoba-das Gepäck.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Gepäck.wav",
+      "word": "Gepäck"
     },
     "mailbox": {
       "author": "Natschoba",
@@ -1381,7 +1515,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "der Briefkasten",
       "sha256": "0288798e99582254dec17816a00082e776d41f2ce9034a5d71b51db427acbae9",
-      "source": "LL-Q188 (deu)-Natschoba-der Briefkasten.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Briefkasten.wav",
+      "word": "Briefkasten"
     },
     "man": {
       "author": "Natschoba",
@@ -1394,7 +1529,8 @@
       "matches": "der Mann",
       "sha256": "54a122c0735121a0ad9c60cfaea538a3ec2fd85732123fe1c4d6c6132e20bb4a",
       "snr": 66.0,
-      "source": "LL-Q188 (deu)-Natschoba-der Mann.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Mann.wav",
+      "word": "Mann"
     },
     "market": {
       "author": "Natschoba",
@@ -1407,7 +1543,8 @@
       "matches": "der Markt",
       "sha256": "9ac1ea521627875fc2235a393f20ef2fcc6f30d8df5a033e43f1f764980205ac",
       "snr": 69.1,
-      "source": "LL-Q188 (deu)-Natschoba-der Markt.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Markt.wav",
+      "word": "Markt"
     },
     "meat": {
       "author": "Natschoba",
@@ -1420,7 +1557,8 @@
       "matches": "das Fleisch",
       "sha256": "26387360bef552048657e2f6b10582603de0ce6faec389d8d3f05432a9661a3e",
       "snr": 61.8,
-      "source": "LL-Q188 (deu)-Natschoba-das Fleisch.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Fleisch.wav",
+      "word": "Fleisch"
     },
     "milk": {
       "author": "Natschoba",
@@ -1433,7 +1571,8 @@
       "matches": "die Milch",
       "sha256": "e9135de5c454565b4bdd9e7be84003145c0706aa375ee436d9bfa77a10373eb7",
       "snr": 60.9,
-      "source": "LL-Q188 (deu)-Natschoba-die Milch.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Milch.wav",
+      "word": "Milch"
     },
     "minute": {
       "author": "Natschoba",
@@ -1446,7 +1585,8 @@
       "matches": "die Minute",
       "sha256": "cb4b2a72326a5e00a18998d547fcedb90d765573d6b0104465913d4440cd3a03",
       "snr": 55.7,
-      "source": "LL-Q188 (deu)-Natschoba-die Minute.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Minute.wav",
+      "word": "Minute"
     },
     "mirror": {
       "author": "Natschoba",
@@ -1459,7 +1599,8 @@
       "matches": "der Spiegel",
       "sha256": "1d259760ff68f1f8a6633163b61713cadd8fd211374de557fb544dec55d8fa50",
       "snr": 59.6,
-      "source": "LL-Q188 (deu)-Natschoba-der Spiegel.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Spiegel.wav",
+      "word": "Spiegel"
     },
     "money": {
       "author": "Natschoba",
@@ -1472,7 +1613,8 @@
       "matches": "das Geld",
       "sha256": "417d26a483434eecbf929a7293e39d4108a36ebef032481545220c5826850abf",
       "snr": 63.9,
-      "source": "LL-Q188 (deu)-Natschoba-das Geld.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Geld.wav",
+      "word": "Geld"
     },
     "month": {
       "author": "Natschoba",
@@ -1484,7 +1626,8 @@
       "matches": "der Monat",
       "sha256": "15cc945202b0aff9202c81142ecdbe15644b8452f6d577589835ec41c75fdafa",
       "snr": 57.1,
-      "source": "LL-Q188 (deu)-Natschoba-der Monat.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Monat.wav",
+      "word": "Monat"
     },
     "moon": {
       "author": "Natschoba",
@@ -1496,7 +1639,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "der Mond",
       "sha256": "60130a590f9ccd2978d0c8d0391c9f96a86ba8e7c59b049bc5c70a809a9352aa",
-      "source": "LL-Q188 (deu)-Natschoba-der Mond.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Mond.wav",
+      "word": "Mond"
     },
     "mother": {
       "author": "Natschoba",
@@ -1509,7 +1653,8 @@
       "matches": "die Mutter",
       "sha256": "7a564f8aa2a45740c7983adec6e57b80fd7b33e4c5ce2cedd684a97f02b97443",
       "snr": 61.1,
-      "source": "LL-Q188 (deu)-Natschoba-die Mutter.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Mutter.wav",
+      "word": "Mutter"
     },
     "mother-tongue": {
       "author": "Natschoba",
@@ -1521,7 +1666,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "die Muttersprache",
       "sha256": "1ad999e77348966184db91e111b5eb7c0b1fa6c566e2bbb27e57fabd947d2adc",
-      "source": "LL-Q188 (deu)-Natschoba-die Muttersprache.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Muttersprache.wav",
+      "word": "Muttersprache"
     },
     "motorbike": {
       "author": "Natschoba",
@@ -1533,7 +1679,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "das Motorrad",
       "sha256": "c3c683ca665243694a376428a685b83c66cdf522fe782c57f45a5761b04a9586",
-      "source": "LL-Q188 (deu)-Natschoba-das Motorrad.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Motorrad.wav",
+      "word": "Motorrad"
     },
     "mountain": {
       "author": "Natschoba",
@@ -1546,7 +1693,8 @@
       "matches": "der Berg",
       "sha256": "95aac28fa9e1a95f75e64e487d9bf78fde62c70e9d285f86943c257ad2375d9c",
       "snr": 69.7,
-      "source": "LL-Q188 (deu)-Natschoba-der Berg.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Berg.wav",
+      "word": "Berg"
     },
     "mouse": {
       "author": "Natschoba",
@@ -1559,7 +1707,8 @@
       "matches": "die Maus",
       "sha256": "f9a04dc5fac9f182b61b8cdb6b72bc6bed17b67a9a6eca708ee3591870f3e820",
       "snr": 56.8,
-      "source": "LL-Q188 (deu)-Natschoba-die Maus.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Maus.wav",
+      "word": "Maus"
     },
     "mouth": {
       "author": "Natschoba",
@@ -1572,7 +1721,8 @@
       "matches": "der Mund",
       "sha256": "e17f9c5bdcd0a147faf73ff6fb6dfd301a8d8d7280f8bd0684dffeb2b16bcd86",
       "snr": 57.6,
-      "source": "LL-Q188 (deu)-Natschoba-der Mund.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Mund.wav",
+      "word": "Mund"
     },
     "movie": {
       "author": "Natschoba",
@@ -1585,7 +1735,8 @@
       "matches": "der Film",
       "sha256": "5e40d4998a3cc33beb71de89c718bcd4f50a6a13a80bac18a119a8ad085b5244",
       "snr": 61.1,
-      "source": "LL-Q188 (deu)-Natschoba-der Film.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Film.wav",
+      "word": "Film"
     },
     "music": {
       "author": "Natschoba",
@@ -1598,7 +1749,8 @@
       "matches": "die Musik",
       "sha256": "fe2f6ea11ec786a40fab86775b1c6dd67682e33577606b9074170fa334c0d90f",
       "snr": 61.6,
-      "source": "LL-Q188 (deu)-Natschoba-die Musik.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Musik.wav",
+      "word": "Musik"
     },
     "name": {
       "author": "Natschoba",
@@ -1610,7 +1762,8 @@
       "matches": "der Name",
       "sha256": "551094dd641fde51fea3842be4c297477050ce1f73b252cd3c20930124022d56",
       "snr": 70.1,
-      "source": "LL-Q188 (deu)-Natschoba-der Name.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Name.wav",
+      "word": "Name"
     },
     "neighbor": {
       "author": "Natschoba",
@@ -1623,7 +1776,8 @@
       "matches": "der Nachbar",
       "sha256": "0acd4e7836e9d1cd4aaa7a1eec2f0cd01ca00f05bbd61e3d3b2a3131d2eb19ec",
       "snr": 61.4,
-      "source": "LL-Q188 (deu)-Natschoba-der Nachbar.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Nachbar.wav",
+      "word": "Nachbar"
     },
     "neighborhood": {
       "author": "Natschoba",
@@ -1636,7 +1790,8 @@
       "matches": "das Viertel",
       "sha256": "18264702daa91defe568b2ff93980a4a7c177e67a238d0dd8520fc9ef488098f",
       "snr": 59.8,
-      "source": "LL-Q188 (deu)-Natschoba-das Viertel.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Viertel.wav",
+      "word": "Viertel"
     },
     "newspaper": {
       "author": "Natschoba",
@@ -1649,7 +1804,8 @@
       "matches": "die Zeitung",
       "sha256": "a5518e3e82211ecc7e64be6ce6eb47785a6da662e908e68ea4abf304a7388771",
       "snr": 60.7,
-      "source": "LL-Q188 (deu)-Natschoba-die Zeitung.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Zeitung.wav",
+      "word": "Zeitung"
     },
     "night": {
       "author": "Natschoba",
@@ -1662,7 +1818,8 @@
       "matches": "die Nacht",
       "sha256": "a99975ae928a58a74fa1bcfc1fc1e757cf80bd231119792c61f5acd156541c0e",
       "snr": 60.6,
-      "source": "LL-Q188 (deu)-Natschoba-die Nacht.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Nacht.wav",
+      "word": "Nacht"
     },
     "nose": {
       "author": "Natschoba",
@@ -1675,7 +1832,8 @@
       "matches": "die Nase",
       "sha256": "39c3edf0ccf297b24ee1e5842f9bfe0ff3c56b5ca4a9f28af7e3aaa3de1585d5",
       "snr": 60.3,
-      "source": "LL-Q188 (deu)-Natschoba-die Nase.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Nase.wav",
+      "word": "Nase"
     },
     "oil": {
       "author": "Natschoba",
@@ -1688,7 +1846,8 @@
       "matches": "das Öl",
       "sha256": "5fade5aac8173f738baa71761f4e6e1f27d3f91f84a1eaef0a4a7e9870e792f1",
       "snr": 58.7,
-      "source": "LL-Q188 (deu)-Natschoba-das Öl.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Öl.wav",
+      "word": "Öl"
     },
     "onion": {
       "author": "Natschoba",
@@ -1701,7 +1860,8 @@
       "matches": "die Zwiebel",
       "sha256": "2c5df00efa2faddf99f5f67de1b4d6dab64d7890abe9c7597859c8df076a492e",
       "snr": 63.3,
-      "source": "LL-Q188 (deu)-Natschoba-die Zwiebel.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Zwiebel.wav",
+      "word": "Zwiebel"
     },
     "page": {
       "author": "Natschoba",
@@ -1713,7 +1873,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "die Seite",
       "sha256": "6a13ad6a7d09ddbcb9c7d3a84105e48990f12a3266e9456ee764c31b987eed6d",
-      "source": "LL-Q188 (deu)-Natschoba-die Seite.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Seite.wav",
+      "word": "Seite"
     },
     "pain": {
       "author": "Natschoba",
@@ -1726,7 +1887,8 @@
       "matches": "der Schmerz",
       "sha256": "da52a5cd6ee2239a2455b8dd808abbb8b13def67b4a0591bc127058acdafe7bf",
       "snr": 45.1,
-      "source": "LL-Q188 (deu)-Natschoba-der Schmerz.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Schmerz.wav",
+      "word": "Schmerz"
     },
     "pan": {
       "author": "Natschoba",
@@ -1739,7 +1901,8 @@
       "matches": "die Pfanne",
       "sha256": "4b2a37f597d7452457920b5ca8ed0349a6ec2ca24f53b21337a47d2630274cc8",
       "snr": 59.5,
-      "source": "LL-Q188 (deu)-Natschoba-die Pfanne.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Pfanne.wav",
+      "word": "Pfanne"
     },
     "pants": {
       "author": "Natschoba",
@@ -1752,7 +1915,8 @@
       "matches": "die Hose",
       "sha256": "bde7416d18d978ff23d1a603c54839cf2ef8be55a14b84f0762c0be601bc26bd",
       "snr": 74.9,
-      "source": "LL-Q188 (deu)-Natschoba-die Hose.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Hose.wav",
+      "word": "Hose"
     },
     "paper": {
       "author": "Natschoba",
@@ -1765,7 +1929,8 @@
       "matches": "das Papier",
       "sha256": "8ebe0e1d36462d2405593c22981963e124495cbfd3f4a4bf73ea031d3ac94c0a",
       "snr": 58.9,
-      "source": "LL-Q188 (deu)-Natschoba-das Papier.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Papier.wav",
+      "word": "Papier"
     },
     "parents": {
       "author": "Natschoba",
@@ -1778,7 +1943,8 @@
       "matches": "die Eltern",
       "sha256": "1a461f5348c53c85020bd2d21dba6ec286113e4b22a0f78a8e5fbe04846fc89b",
       "snr": 65.0,
-      "source": "LL-Q188 (deu)-Natschoba-die Eltern.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Eltern.wav",
+      "word": "Eltern"
     },
     "passport": {
       "author": "Natschoba",
@@ -1790,7 +1956,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "der Reisepass",
       "sha256": "efccc8268f9317a0bd45ec5f2edc71a6cf1c904a3b0b4359aac533adb9aa3b56",
-      "source": "LL-Q188 (deu)-Natschoba-der Reisepass.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Reisepass.wav",
+      "word": "Reisepass"
     },
     "person": {
       "author": "Natschoba",
@@ -1802,7 +1969,8 @@
       "matches": "die Person",
       "sha256": "d6113583842383d4eeff849a4782c68dcef0f5c6fee2877374d6efccab2a2fd1",
       "snr": 72.5,
-      "source": "LL-Q188 (deu)-Natschoba-die Person.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Person.wav",
+      "word": "Person"
     },
     "pharmacy": {
       "author": "Natschoba",
@@ -1814,7 +1982,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "die Apotheke",
       "sha256": "a079e1540c57a00089df73d2936239c2ca9d4ca918c17ebe5c0b42d38a74b114",
-      "source": "LL-Q188 (deu)-Natschoba-die Apotheke.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Apotheke.wav",
+      "word": "Apotheke"
     },
     "phone": {
       "author": "Natschoba",
@@ -1827,7 +1996,8 @@
       "matches": "das Handy",
       "sha256": "36bb65637951044caebfb9a756d392cb71bf111b061eb77d2ea70b0c7a3f2a03",
       "snr": 61.5,
-      "source": "LL-Q188 (deu)-Natschoba-das Handy.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Handy.wav",
+      "word": "Handy"
     },
     "picture": {
       "author": "Natschoba",
@@ -1840,7 +2010,8 @@
       "matches": "das Bild",
       "sha256": "91134372aa3eb5e6b24134209dce9973157917f52534b780649d16f187864435",
       "snr": 82.0,
-      "source": "LL-Q188 (deu)-Natschoba-das Bild.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Bild.wav",
+      "word": "Bild"
     },
     "pillow": {
       "author": "Natschoba",
@@ -1852,7 +2023,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "das Kissen",
       "sha256": "ede6ebdd2f8853338a7735a483eb0cb8a240e17879e76df1465351619b762f20",
-      "source": "LL-Q188 (deu)-Natschoba-das Kissen.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Kissen.wav",
+      "word": "Kissen"
     },
     "plan": {
       "author": "Natschoba",
@@ -1865,7 +2037,8 @@
       "matches": "der Plan",
       "sha256": "573055d2b3faa6a4a37d09aa8609543b194e1c98f7a5ac7c3af8a03f7f7aa86d",
       "snr": 48.8,
-      "source": "LL-Q188 (deu)-Natschoba-der Plan.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Plan.wav",
+      "word": "Plan"
     },
     "plane": {
       "author": "Natschoba",
@@ -1878,7 +2051,8 @@
       "matches": "das Flugzeug",
       "sha256": "4f1d1524fdfd78054a1dfea178f6a8530ddf5c4b87ceaf315baba14ab1bcb4fd",
       "snr": 64.3,
-      "source": "LL-Q188 (deu)-Natschoba-das Flugzeug.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Flugzeug.wav",
+      "word": "Flugzeug"
     },
     "plant": {
       "author": "Natschoba",
@@ -1890,7 +2064,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "die Pflanze",
       "sha256": "27097fa575c9d815eb5bb890faf4cba808632fd16d5324de603ffa36ca376ea1",
-      "source": "LL-Q188 (deu)-Natschoba-die Pflanze.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Pflanze.wav",
+      "word": "Pflanze"
     },
     "plate": {
       "author": "Natschoba",
@@ -1903,7 +2078,8 @@
       "matches": "der Teller",
       "sha256": "69d05476eff557a7c19a03245b8b617ccd42959bfda933bfafa55bf8b972ea93",
       "snr": 60.2,
-      "source": "LL-Q188 (deu)-Natschoba-der Teller.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Teller.wav",
+      "word": "Teller"
     },
     "police": {
       "author": "Natschoba",
@@ -1916,7 +2092,8 @@
       "matches": "die Polizei",
       "sha256": "61f0bc526d5495bbf01152f2b4b404dbaeca0b9849d6dea8889f1e6bfcf543e3",
       "snr": 64.1,
-      "source": "LL-Q188 (deu)-Natschoba-die Polizei.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Polizei.wav",
+      "word": "Polizei"
     },
     "pot": {
       "author": "Natschoba",
@@ -1929,7 +2106,8 @@
       "matches": "der Topf",
       "sha256": "06ae4c0ddbb18964b40ea0bfc63a52c06ca243d7ab181d8c79097a68ce028f10",
       "snr": 61.7,
-      "source": "LL-Q188 (deu)-Natschoba-der Topf.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Topf.wav",
+      "word": "Topf"
     },
     "potato": {
       "author": "Natschoba",
@@ -1942,7 +2120,8 @@
       "matches": "die Kartoffel",
       "sha256": "fc3ec880cb275ce9a71216951447518966b279dbc40c4a391c4c76aefb8971a9",
       "snr": 63.0,
-      "source": "LL-Q188 (deu)-Natschoba-die Kartoffel.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Kartoffel.wav",
+      "word": "Kartoffel"
     },
     "prescription": {
       "author": "Natschoba",
@@ -1955,7 +2134,8 @@
       "matches": "das Rezept",
       "sha256": "9084863374b595f9dcc886d4f091543994f77935b9929bc4bfdee7d71e02c252",
       "snr": 60.9,
-      "source": "LL-Q188 (deu)-Natschoba-das Rezept.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Rezept.wav",
+      "word": "Rezept"
     },
     "profession": {
       "author": "Natschoba",
@@ -1967,7 +2147,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "der Beruf",
       "sha256": "f99d3ea45368fbe907fde1ed0bcd68be714aaebb6eca5ac144baf16b0cbc3b50",
-      "source": "LL-Q188 (deu)-Natschoba-der Beruf.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Beruf.wav",
+      "word": "Beruf"
     },
     "pupil": {
       "author": "Natschoba",
@@ -1980,7 +2161,8 @@
       "matches": "der Schüler",
       "sha256": "e34f1162fde9636c928bcb8ea31d2c650d297a1588d8b5db32fe171e90c26f39",
       "snr": 59.3,
-      "source": "LL-Q188 (deu)-Natschoba-der Schüler.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Schüler.wav",
+      "word": "Schüler"
     },
     "question": {
       "author": "Natschoba",
@@ -1993,7 +2175,8 @@
       "matches": "die Frage",
       "sha256": "a1e4b02b7b5867cd3c610eec0dd69eea19cb63011cd9faf261a5e91fd4a3c080",
       "snr": 66.1,
-      "source": "LL-Q188 (deu)-Natschoba-die Frage.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Frage.wav",
+      "word": "Frage"
     },
     "rain": {
       "author": "Natschoba",
@@ -2006,7 +2189,8 @@
       "matches": "der Regen",
       "sha256": "aeead2da01419fd7e04d5337a09adcbb9931c2f1376433d5b15c81dc2b3ff3a7",
       "snr": 73.7,
-      "source": "LL-Q188 (deu)-Natschoba-der Regen.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Regen.wav",
+      "word": "Regen"
     },
     "restaurant": {
       "author": "Natschoba",
@@ -2019,7 +2203,8 @@
       "matches": "das Restaurant",
       "sha256": "63c21480d6abfbf5fba4a033c89cca3915f8dbe717904c060d8e3e134adaec9b",
       "snr": 59.4,
-      "source": "LL-Q188 (deu)-Natschoba-das Restaurant.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Restaurant.wav",
+      "word": "Restaurant"
     },
     "rice": {
       "author": "Natschoba",
@@ -2032,7 +2217,8 @@
       "matches": "der Reis",
       "sha256": "820b2cb3b1efe02fd1ed75fcd51e29f4b823239e8e7fbcd3ce649e8efb606eed",
       "snr": 62.0,
-      "source": "LL-Q188 (deu)-Natschoba-der Reis.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Reis.wav",
+      "word": "Reis"
     },
     "river": {
       "author": "Natschoba",
@@ -2045,7 +2231,8 @@
       "matches": "der Fluss",
       "sha256": "b4f39ea28b12ba91360d4dd40dee54fd2a388c3e5852c7b6f2d9f3df1303cd84",
       "snr": 58.4,
-      "source": "LL-Q188 (deu)-Natschoba-der Fluss.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Fluss.wav",
+      "word": "Fluss"
     },
     "room": {
       "author": "Natschoba",
@@ -2057,7 +2244,8 @@
       "matches": "das Zimmer",
       "sha256": "b6013c004c2f3daa27eea718d03a301f7fad884533996072250266b0ea5f6534",
       "snr": 74.5,
-      "source": "LL-Q188 (deu)-Natschoba-das Zimmer.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Zimmer.wav",
+      "word": "Zimmer"
     },
     "salt": {
       "author": "Natschoba",
@@ -2070,7 +2258,8 @@
       "matches": "das Salz",
       "sha256": "85435374c8588b435820da03f2d69491bb03aec52e1d3e545c5b765a7758f3b9",
       "snr": 68.0,
-      "source": "LL-Q188 (deu)-Natschoba-das Salz.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Salz.wav",
+      "word": "Salz"
     },
     "sauce": {
       "author": "Natschoba",
@@ -2083,7 +2272,8 @@
       "matches": "die Soße",
       "sha256": "bef171c8912cb5a7da9097e6d980e5ef291a9c8752013a9763238bc73a824840",
       "snr": 64.0,
-      "source": "LL-Q188 (deu)-Natschoba-die Soße.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Soße.wav",
+      "word": "Soße"
     },
     "school": {
       "author": "Natschoba",
@@ -2096,7 +2286,8 @@
       "matches": "die Schule",
       "sha256": "5638a06b3287f9c882ef689b3675c43dd42ecdbce25dcd8a46c101d1c6099709",
       "snr": 64.8,
-      "source": "LL-Q188 (deu)-Natschoba-die Schule.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Schule.wav",
+      "word": "Schule"
     },
     "sea": {
       "author": "Natschoba",
@@ -2109,7 +2300,21 @@
       "matches": "das Meer",
       "sha256": "f0b1d9cb396d4784d2ced7c2248fe576aeb3d31fefbc8ff165d97eae54c482df",
       "snr": 59.3,
-      "source": "LL-Q188 (deu)-Natschoba-das Meer.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Meer.wav",
+      "word": "Meer"
+    },
+    "sentence": {
+      "author": "Natschoba",
+      "file": "articles/sentence.mp3",
+      "gain": 8.4,
+      "gainPhone": 4.1,
+      "lead": 238,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "matches": "der Satz",
+      "sha256": "433fdee3bc23eb46f0dff2b8719686394ce253e346086da0107c2309c675104d",
+      "source": "LL-Q188 (deu)-Natschoba-der Satz.wav",
+      "word": "Satz"
     },
     "ship": {
       "author": "Natschoba",
@@ -2122,7 +2327,8 @@
       "matches": "das Schiff",
       "sha256": "eee583641bcbb95a8ce6af02c035cf038ddf5a68d53aa6bbf8aa2fa5b2a64efa",
       "snr": 58.3,
-      "source": "LL-Q188 (deu)-Natschoba-das Schiff.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Schiff.wav",
+      "word": "Schiff"
     },
     "shirt": {
       "author": "Natschoba",
@@ -2134,7 +2340,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "das Hemd",
       "sha256": "42667a467ea28795627a94ff121316e6dee765f8480606be962a715bc2b72642",
-      "source": "LL-Q188 (deu)-Natschoba-das Hemd.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Hemd.wav",
+      "word": "Hemd"
     },
     "shoe": {
       "author": "Natschoba",
@@ -2147,7 +2354,8 @@
       "matches": "der Schuh",
       "sha256": "21e872771538407fe6139a48a8c583fb0f31a9d9bd947852a77361263ba1037a",
       "snr": 59.5,
-      "source": "LL-Q188 (deu)-Natschoba-der Schuh.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Schuh.wav",
+      "word": "Schuh"
     },
     "shoulder": {
       "author": "Natschoba",
@@ -2159,7 +2367,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "die Schulter",
       "sha256": "eb4565e76b8440d002d50248785e439c4d47db45ffc68cc6789bbdec50f3fad6",
-      "source": "LL-Q188 (deu)-Natschoba-die Schulter.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Schulter.wav",
+      "word": "Schulter"
     },
     "shower": {
       "author": "Natschoba",
@@ -2172,7 +2381,8 @@
       "matches": "die Dusche",
       "sha256": "4fcff8e6e26a64efb4c3c22047a99f6f275ab90d7ae2686f550f19afb10ef45a",
       "snr": 77.5,
-      "source": "LL-Q188 (deu)-Natschoba-die Dusche.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Dusche.wav",
+      "word": "Dusche"
     },
     "signature": {
       "author": "Natschoba",
@@ -2185,7 +2395,8 @@
       "matches": "die Unterschrift",
       "sha256": "e87c1aed26a0543a007cebbfe80d547c321ab0c258903a815339c1d30f04c3fd",
       "snr": 75.0,
-      "source": "LL-Q188 (deu)-Natschoba-die Unterschrift.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Unterschrift.wav",
+      "word": "Unterschrift"
     },
     "sister": {
       "author": "Natschoba",
@@ -2198,7 +2409,8 @@
       "matches": "die Schwester",
       "sha256": "b7fc38fbaa2bce503bdd9c649f66728ac49d522a9836e179abc67c1b891a9736",
       "snr": 58.5,
-      "source": "LL-Q188 (deu)-Natschoba-die Schwester.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Schwester.wav",
+      "word": "Schwester"
     },
     "sky": {
       "author": "Natschoba",
@@ -2211,7 +2423,8 @@
       "matches": "der Himmel",
       "sha256": "ad9f43f4fbb21fead718a91cf36968109d75d96fdaa4a1b80a47d923f131e969",
       "snr": 74.4,
-      "source": "LL-Q188 (deu)-Natschoba-der Himmel.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Himmel.wav",
+      "word": "Himmel"
     },
     "snow": {
       "author": "Natschoba",
@@ -2224,7 +2437,8 @@
       "matches": "der Schnee",
       "sha256": "b2d49b0f392fc8910ca1b74de212eb78d681a26629d5757cdfb89bf5dee13f1c",
       "snr": 67.3,
-      "source": "LL-Q188 (deu)-Natschoba-der Schnee.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Schnee.wav",
+      "word": "Schnee"
     },
     "sock": {
       "author": "Natschoba",
@@ -2237,7 +2451,8 @@
       "matches": "die Socke",
       "sha256": "76e45429a397cb44d9efe8ff6a5c646a54dd18050273271d2755f177e474cb32",
       "snr": 64.9,
-      "source": "LL-Q188 (deu)-Natschoba-die Socke.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Socke.wav",
+      "word": "Socke"
     },
     "son": {
       "author": "Natschoba",
@@ -2250,7 +2465,8 @@
       "matches": "der Sohn",
       "sha256": "d4a8ea72b01b7d56bfb76ea6fa57711678b7f153443e6fc47de383356666ddaf",
       "snr": 59.3,
-      "source": "LL-Q188 (deu)-Natschoba-der Sohn.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Sohn.wav",
+      "word": "Sohn"
     },
     "soup": {
       "author": "Natschoba",
@@ -2263,7 +2479,8 @@
       "matches": "die Suppe",
       "sha256": "12e977cee8d2f4da270d04ae77e5ca5f8a4e18bd6171c5f385db1ffa69b3b520",
       "snr": 59.8,
-      "source": "LL-Q188 (deu)-Natschoba-die Suppe.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Suppe.wav",
+      "word": "Suppe"
     },
     "spoon": {
       "author": "Natschoba",
@@ -2276,7 +2493,8 @@
       "matches": "der Löffel",
       "sha256": "0a028d939df338b11ba30e37649fbf0423694c667dec3482745f70714db9f6d8",
       "snr": 65.1,
-      "source": "LL-Q188 (deu)-Natschoba-der Löffel.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Löffel.wav",
+      "word": "Löffel"
     },
     "stairs": {
       "author": "Natschoba",
@@ -2289,7 +2507,8 @@
       "matches": "die Treppe",
       "sha256": "816d6acd8bd56e7be5ad11776cffc57ea6a5cab03f9dd09b986eff730e428a84",
       "snr": 77.1,
-      "source": "LL-Q188 (deu)-Natschoba-die Treppe.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Treppe.wav",
+      "word": "Treppe"
     },
     "star": {
       "author": "Natschoba",
@@ -2302,7 +2521,8 @@
       "matches": "der Stern",
       "sha256": "ad1dfd44333dd8e5b1614c443e47222a88f54c3e00c3e8609666383f6581ec71",
       "snr": 65.7,
-      "source": "LL-Q188 (deu)-Natschoba-der Stern.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Stern.wav",
+      "word": "Stern"
     },
     "stomach": {
       "author": "Natschoba",
@@ -2315,7 +2535,8 @@
       "matches": "der Bauch",
       "sha256": "0bcf0a459b237152abc28747c88dd36afd37eb3463c1f919e80b1a571117534b",
       "snr": 67.0,
-      "source": "LL-Q188 (deu)-Natschoba-der Bauch.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Bauch.wav",
+      "word": "Bauch"
     },
     "store": {
       "author": "Natschoba",
@@ -2328,7 +2549,8 @@
       "matches": "der Laden",
       "sha256": "629994b4b525d8a8c86e61b03e1f8068d13b7e552bdd3de92aeccfdeaacdcaae",
       "snr": 81.4,
-      "source": "LL-Q188 (deu)-Natschoba-der Laden.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Laden.wav",
+      "word": "Laden"
     },
     "street": {
       "author": "Natschoba",
@@ -2340,7 +2562,8 @@
       "matches": "die Straße",
       "sha256": "fa9fbf206a7e93f1b58835515c64e11f9586ce3afda2e92daafaa8abc048350e",
       "snr": 63.2,
-      "source": "LL-Q188 (deu)-Natschoba-die Straße.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Straße.wav",
+      "word": "Straße"
     },
     "sugar": {
       "author": "Natschoba",
@@ -2353,7 +2576,8 @@
       "matches": "der Zucker",
       "sha256": "f53449869d25f85e0aef0b62bbd5b5357b2c27af7f63961ab8b6c17b445e45eb",
       "snr": 49.2,
-      "source": "LL-Q188 (deu)-Natschoba-der Zucker.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Zucker.wav",
+      "word": "Zucker"
     },
     "sun": {
       "author": "Natschoba",
@@ -2366,7 +2590,8 @@
       "matches": "die Sonne",
       "sha256": "d608f55a5dbfe4fff6a4f798e3f45bee76d509b9bac7d2503c74f43a19d36457",
       "snr": 57.0,
-      "source": "LL-Q188 (deu)-Natschoba-die Sonne.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Sonne.wav",
+      "word": "Sonne"
     },
     "taxi": {
       "author": "Natschoba",
@@ -2379,7 +2604,8 @@
       "matches": "das Taxi",
       "sha256": "213f8d1be3aae86968b20b48ec318dc47b3bc186a5b5021e23ca1cd211a135b6",
       "snr": 63.3,
-      "source": "LL-Q188 (deu)-Natschoba-das Taxi.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Taxi.wav",
+      "word": "Taxi"
     },
     "tea": {
       "author": "Natschoba",
@@ -2392,7 +2618,8 @@
       "matches": "der Tee",
       "sha256": "d97b94ded24c87fa3dad69e2f5777c926cadb48b1b2b385061dec82fbc10fcaa",
       "snr": 70.5,
-      "source": "LL-Q188 (deu)-Natschoba-der Tee.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Tee.wav",
+      "word": "Tee"
     },
     "thirst": {
       "author": "Natschoba",
@@ -2405,7 +2632,8 @@
       "matches": "der Durst",
       "sha256": "5b0cb92c23574369221af8b24b6e1aa06dadb2fde8c0eb509a610882ba7bb78d",
       "snr": 59.0,
-      "source": "LL-Q188 (deu)-Natschoba-der Durst.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Durst.wav",
+      "word": "Durst"
     },
     "throat": {
       "author": "Natschoba",
@@ -2418,7 +2646,8 @@
       "matches": "der Hals",
       "sha256": "fa060d669d6424bb2e806c5c384d7dc9a5b352cef8c3afb97a380785ffa8ffd7",
       "snr": 48.2,
-      "source": "LL-Q188 (deu)-Natschoba-der Hals.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Hals.wav",
+      "word": "Hals"
     },
     "time": {
       "author": "Natschoba",
@@ -2431,7 +2660,8 @@
       "matches": "die Zeit",
       "sha256": "5d3be42cd3b0ebaebe9e9419b06437cf5d1a21e6e2c8c9e0c3ef4e4d07e5bb9b",
       "snr": 63.3,
-      "source": "LL-Q188 (deu)-Natschoba-die Zeit.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Zeit.wav",
+      "word": "Zeit"
     },
     "toilet": {
       "author": "Natschoba",
@@ -2444,7 +2674,8 @@
       "matches": "die Toilette",
       "sha256": "5adc159c04e3798a65a9809e085af2b685d91b939f836b0b97fc3072d8e0775e",
       "snr": 72.4,
-      "source": "LL-Q188 (deu)-Natschoba-die Toilette.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Toilette.wav",
+      "word": "Toilette"
     },
     "tomato": {
       "author": "Natschoba",
@@ -2457,7 +2688,8 @@
       "matches": "die Tomate",
       "sha256": "d7be45e2fa3a4e60663ea83b0c4276206f44b9f671d764744e277c6cbb5ec4c4",
       "snr": 69.4,
-      "source": "LL-Q188 (deu)-Natschoba-die Tomate.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Tomate.wav",
+      "word": "Tomate"
     },
     "tooth": {
       "author": "Natschoba",
@@ -2470,7 +2702,8 @@
       "matches": "der Zahn",
       "sha256": "9304b350a838bfc0726c5dc3d7c1649b0f2637ebccbf4142e625de975190c3a1",
       "snr": 80.7,
-      "source": "LL-Q188 (deu)-Natschoba-der Zahn.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Zahn.wav",
+      "word": "Zahn"
     },
     "toothbrush": {
       "author": "Natschoba",
@@ -2482,7 +2715,8 @@
       "matches": "die Zahnbürste",
       "sha256": "58d615d3e16857e50435fada6978293f740041f684fc8c0ae0bf5337afaf18b7",
       "snr": 80.8,
-      "source": "LL-Q188 (deu)-Natschoba-die Zahnbürste.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Zahnbürste.wav",
+      "word": "Zahnbürste"
     },
     "traffic-light": {
       "author": "Natschoba",
@@ -2495,7 +2729,8 @@
       "matches": "die Ampel",
       "sha256": "ff6bd98382c01ee6055ae6d24213d1431c400dd687f6e40538740f8a42c5e872",
       "snr": 66.3,
-      "source": "LL-Q188 (deu)-Natschoba-die Ampel.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Ampel.wav",
+      "word": "Ampel"
     },
     "train": {
       "author": "Natschoba",
@@ -2508,7 +2743,8 @@
       "matches": "der Zug",
       "sha256": "b3bdbeeea1aa201195afae560b27fe21bb73cc96b3a9c036a1bb2855e99ae314",
       "snr": 60.4,
-      "source": "LL-Q188 (deu)-Natschoba-der Zug.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Zug.wav",
+      "word": "Zug"
     },
     "train-station": {
       "author": "Natschoba",
@@ -2521,7 +2757,8 @@
       "matches": "der Bahnhof",
       "sha256": "29cdfffb939600f47d6027a5156f4a0ce359c64af4049b44052ffcd0ab40fb7e",
       "snr": 64.3,
-      "source": "LL-Q188 (deu)-Natschoba-der Bahnhof.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Bahnhof.wav",
+      "word": "Bahnhof"
     },
     "tree": {
       "author": "Natschoba",
@@ -2534,7 +2771,8 @@
       "matches": "der Baum",
       "sha256": "20d635cf38ad9d211814aec59811446ba1167a1f81ede6ad7463cf100c13622b",
       "snr": 90.7,
-      "source": "LL-Q188 (deu)-Natschoba-der Baum.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Baum.wav",
+      "word": "Baum"
     },
     "truck": {
       "author": "Natschoba",
@@ -2547,7 +2785,8 @@
       "matches": "der Lastwagen",
       "sha256": "6aa59a1d9a7dc5369a13a2c5f836c90a4a401fb335ebc1baaa977a01f0b36d2f",
       "snr": 65.8,
-      "source": "LL-Q188 (deu)-Natschoba-der Lastwagen.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Lastwagen.wav",
+      "word": "Lastwagen"
     },
     "umbrella": {
       "author": "Natschoba",
@@ -2560,7 +2799,8 @@
       "matches": "der Regenschirm",
       "sha256": "7d1a38e42c991a1babde9f00a5ed2f0b24e0efa43ed304d6afa814b4dc6935ad",
       "snr": 62.9,
-      "source": "LL-Q188 (deu)-Natschoba-der Regenschirm.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Regenschirm.wav",
+      "word": "Regenschirm"
     },
     "uncle": {
       "author": "Natschoba",
@@ -2573,7 +2813,8 @@
       "matches": "der Onkel",
       "sha256": "e6b4e1a46b8f0f776b02f731d389c5a72ab3b8c28326baf5ae2f0162f42eb425",
       "snr": 71.6,
-      "source": "LL-Q188 (deu)-Natschoba-der Onkel.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Onkel.wav",
+      "word": "Onkel"
     },
     "university": {
       "author": "Natschoba",
@@ -2586,7 +2827,8 @@
       "matches": "die Universität",
       "sha256": "3fe940eb47e9f479c96c98f40dd53aca5db6f4318a308082b1ca386d5b49e6e5",
       "snr": 60.1,
-      "source": "LL-Q188 (deu)-Natschoba-die Universität.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Universität.wav",
+      "word": "Universität"
     },
     "vacation": {
       "author": "Natschoba",
@@ -2599,7 +2841,8 @@
       "matches": "der Urlaub",
       "sha256": "67bc8d9584f0d7682542c2c06f71c18ef18a4af9502fa08647331f204de6e7b8",
       "snr": 62.9,
-      "source": "LL-Q188 (deu)-Natschoba-der Urlaub.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Urlaub.wav",
+      "word": "Urlaub"
     },
     "vegetable": {
       "author": "Natschoba",
@@ -2612,7 +2855,8 @@
       "matches": "das Gemüse",
       "sha256": "7e02bae41a5daf37cba746af1e425e694466cf9c38c11f5202c3ecd8cfb0097c",
       "snr": 61.2,
-      "source": "LL-Q188 (deu)-Natschoba-das Gemüse.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Gemüse.wav",
+      "word": "Gemüse"
     },
     "village": {
       "author": "Natschoba",
@@ -2624,7 +2868,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "matches": "das Dorf",
       "sha256": "01e929a89b70074a1141a9e13d33fd07248b5ffc87a4c27fb49211391b6152ab",
-      "source": "LL-Q188 (deu)-Natschoba-das Dorf.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Dorf.wav",
+      "word": "Dorf"
     },
     "wall": {
       "author": "Natschoba",
@@ -2637,7 +2882,8 @@
       "matches": "die Wand",
       "sha256": "1dfee61c94462d0b31c562cfa790780132bba66590b9f06ab34af78327125f2f",
       "snr": 50.8,
-      "source": "LL-Q188 (deu)-Natschoba-die Wand.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Wand.wav",
+      "word": "Wand"
     },
     "water": {
       "author": "Natschoba",
@@ -2650,7 +2896,8 @@
       "matches": "das Wasser",
       "sha256": "ff195655b6af6ae8ff92d207b9fe8d65303ed5eb033ac16cfaec6f2c828ea96f",
       "snr": 70.9,
-      "source": "LL-Q188 (deu)-Natschoba-das Wasser.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Wasser.wav",
+      "word": "Wasser"
     },
     "way": {
       "author": "Natschoba",
@@ -2663,7 +2910,8 @@
       "matches": "der Weg",
       "sha256": "5670e9d299d3c0d48790c392da66ed1457efe5d9c61b099c468c2594eded9dbc",
       "snr": 63.8,
-      "source": "LL-Q188 (deu)-Natschoba-der Weg.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Weg.wav",
+      "word": "Weg"
     },
     "weather": {
       "author": "Natschoba",
@@ -2676,7 +2924,8 @@
       "matches": "das Wetter",
       "sha256": "587d438f26901e064523c94e5d13a78c16e5dc692a807054eaa3da29d9111704",
       "snr": 74.4,
-      "source": "LL-Q188 (deu)-Natschoba-das Wetter.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Wetter.wav",
+      "word": "Wetter"
     },
     "week": {
       "author": "Natschoba",
@@ -2688,7 +2937,8 @@
       "matches": "die Woche",
       "sha256": "0aa6eb77430ad13c98cb4829c981692b9c5e50bc20968d07788d1992416de820",
       "snr": 61.5,
-      "source": "LL-Q188 (deu)-Natschoba-die Woche.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Woche.wav",
+      "word": "Woche"
     },
     "wife": {
       "author": "Natschoba",
@@ -2701,7 +2951,8 @@
       "matches": "die Ehefrau",
       "sha256": "159cd8c28b9ae01ed13cebdb01239519ae26af50c9f638baa7d8c0a9919ab860",
       "snr": 78.0,
-      "source": "LL-Q188 (deu)-Natschoba-die Ehefrau.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Ehefrau.wav",
+      "word": "Ehefrau"
     },
     "wind": {
       "author": "Natschoba",
@@ -2714,7 +2965,8 @@
       "matches": "der Wind",
       "sha256": "dbe2ac5679e5f7e1e5f4c17e697a7031ddf371ee09250111815e9f664099566b",
       "snr": 163.7,
-      "source": "LL-Q188 (deu)-Natschoba-der Wind.wav"
+      "source": "LL-Q188 (deu)-Natschoba-der Wind.wav",
+      "word": "Wind"
     },
     "window": {
       "author": "Natschoba",
@@ -2727,7 +2979,8 @@
       "matches": "das Fenster",
       "sha256": "e9549ccb72fa990857fcdfc1aa0052e3af37fd76aa48bbe2b68604a7e0bf94a4",
       "snr": 62.1,
-      "source": "LL-Q188 (deu)-Natschoba-das Fenster.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Fenster.wav",
+      "word": "Fenster"
     },
     "woman": {
       "author": "Natschoba",
@@ -2739,7 +2992,8 @@
       "matches": "die Frau",
       "sha256": "cb93e48b625e36b2fefaad5f050639f492fe2019c2d12c9eab304b05cb67e557",
       "snr": 70.0,
-      "source": "LL-Q188 (deu)-Natschoba-die Frau.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Frau.wav",
+      "word": "Frau"
     },
     "word": {
       "author": "Natschoba",
@@ -2752,7 +3006,8 @@
       "matches": "das Wort",
       "sha256": "403820581ca59fe2ec254b1cf77725360b02dc2d559afe8a5b726a413a4f60b5",
       "snr": 59.5,
-      "source": "LL-Q188 (deu)-Natschoba-das Wort.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Wort.wav",
+      "word": "Wort"
     },
     "work": {
       "author": "Natschoba",
@@ -2765,7 +3020,8 @@
       "matches": "die Arbeit",
       "sha256": "367bb917901331d9756256079231fb395b945f104dc776304cb657ff7e94e130",
       "snr": 59.1,
-      "source": "LL-Q188 (deu)-Natschoba-die Arbeit.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Arbeit.wav",
+      "word": "Arbeit"
     },
     "wound": {
       "author": "Natschoba",
@@ -2778,7 +3034,8 @@
       "matches": "die Wunde",
       "sha256": "e1980dce802cf78027e06e84a102e70f939da9cad827d03087c87c98caeaf13e",
       "snr": 76.7,
-      "source": "LL-Q188 (deu)-Natschoba-die Wunde.wav"
+      "source": "LL-Q188 (deu)-Natschoba-die Wunde.wav",
+      "word": "Wunde"
     },
     "year": {
       "author": "Natschoba",
@@ -2791,7 +3048,8 @@
       "matches": "das Jahr",
       "sha256": "31788cab592ff8e697fa9cc12a889219c50a183dbf251c890bd4d025b5012b8d",
       "snr": 59.3,
-      "source": "LL-Q188 (deu)-Natschoba-das Jahr.wav"
+      "source": "LL-Q188 (deu)-Natschoba-das Jahr.wav",
+      "word": "Jahr"
     }
   },
   "language": "de",

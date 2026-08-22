@@ -153,12 +153,14 @@ def license_url(license, where):
     return LICENSE_URLS[license]
 
 
-def entry(file, license, author, source, digest, index, matches=None):
+def entry(file, license, author, source, digest, index, matches=None, word=None):
     """One manifest value; `licenseUrl` is absent exactly where there is no deed."""
     record = {'file': file, 'license': license, 'author': author,
               'source': source, 'sha256': digest, **index}
     if matches is not None:
         record['matches'] = matches
+    if word is not None:
+        record['word'] = word
     url = license_url(license, source)
     if url:
         record['licenseUrl'] = url
@@ -264,24 +266,20 @@ def convert_words(lang, pack, out_dir, slugs, forms):
     return words
 
 
-def convert_articles(lang, pack, out_dir, targets, words):
+def convert_articles(lang, pack, out_dir, targets, forms):
     """Every shipping `articles` entry: recordings that say the article, then the word.
 
-    A second file for a word the pack already has bare, never a replacement — the source
-    side of a pair reads the learner's own language, where the article is not what is
-    being taught and only the bare recording may answer. A row whose slug ships no bare
-    recording is therefore dropped rather than shipped alone.
+    An addition beside the bare files rather than a replacement of them — the source side
+    of a pair reads the learner's own language, where the article is not what is being
+    taught. But it does not DEPEND on a bare twin: an entry records the word inside what it
+    says, so where the pack has only the article recording, that file answers both the card
+    asking with the article and the card asking without it.
     """
     drops = []
     mp3_dir = os.path.join(pack, 'mp3')
     rows = read_rows(os.path.join(pack, 'manifest.tsv'))
-    spoken = keep_named_by_its_file(keep_article_forms(rows, lang, targets, drops), drops)
-    kept = []
-    for row in attribute(keep_unambiguous(spoken, mp3_dir, drops), drops):
-        if row['slug'] in words:
-            kept.append(row)
-        else:
-            drops.append(('no-bare-twin', row['slug'], 'the bare recording it stands beside is not shipping'))
+    spoken = keep_named_by_its_file(keep_article_forms(rows, lang, targets, forms, drops), drops)
+    kept = attribute(keep_unambiguous(spoken, mp3_dir, drops), drops)
     analyzed = copy_and_analyze([(row['slug'], os.path.join(mp3_dir, row['slug'] + '.mp3'),
                                   os.path.join(out_dir, 'articles', row['slug'] + '.mp3'))
                                  for row in kept], phone=True)
@@ -290,7 +288,7 @@ def convert_articles(lang, pack, out_dir, targets, words):
         digest, index = analyzed[row['slug']]
         articles[row['slug']] = entry('articles/' + row['slug'] + '.mp3', row['license'],
                                       row['author'], row['file'], digest, index,
-                                      matches=row['matched_word'])
+                                      matches=row['matched_word'], word=row['word'])
     for reason, slug, detail in sorted(drops):
         print('  drop %-15s %-22s %s' % (reason, slug, detail))
     print('  articles: %d rows → %d spoken with their article' % (len(rows), len(articles)))
@@ -401,7 +399,7 @@ def convert_articles_only(packs, languages):
     re-derive the other three from a workspace that can no longer produce them; this
     reads the manifest, replaces one section, and leaves the rest byte-identical.
     """
-    _, _, targets = load_catalog()
+    _, forms, targets = load_catalog()
     found = sorted(name[len('pack-'):-len('-articles')] for name in os.listdir(packs)
                    if name.startswith('pack-') and name.endswith('-articles')
                    and os.path.isdir(os.path.join(packs, name)))
@@ -413,7 +411,7 @@ def convert_articles_only(packs, languages):
         manifest = read_json(out_dir, 'manifest.json')
         print('pack-%s-articles' % lang)
         shutil.rmtree(os.path.join(out_dir, 'articles'), ignore_errors=True)
-        articles = convert_articles(lang, pack, out_dir, targets, manifest['words'])
+        articles = convert_articles(lang, pack, out_dir, targets, forms)
         write_manifest(lang, out_dir, manifest['words'], manifest.get('letters', {}),
                        manifest.get('texts', {}), articles)
 
@@ -491,7 +489,7 @@ def main():
         texts_pack = os.path.join(args.packs, 'pack-%s-texts' % lang)
         texts = convert_texts(texts_pack, out_dir) if os.path.isdir(texts_pack) else {}
         articles_pack = os.path.join(args.packs, 'pack-%s-articles' % lang)
-        articles = (convert_articles(lang, articles_pack, out_dir, targets, words)
+        articles = (convert_articles(lang, articles_pack, out_dir, targets, forms)
                     if os.path.isdir(articles_pack) else {})
         write_manifest(lang, out_dir, words, letters, texts, articles)
 

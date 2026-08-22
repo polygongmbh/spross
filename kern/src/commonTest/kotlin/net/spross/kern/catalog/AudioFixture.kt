@@ -11,9 +11,11 @@ package net.spross.kern.catalog
  * letters, which is what it exists for), an attenuation on a loud word (`sw` door), and
  * absent altogether, which has to read back as 0/0.
  *
- * de `waiter` carries BOTH a bare recording and an article one, which is the shape the
- * shipped German pack has: one word, two files, and which plays decided by whether the
- * card shows an article at all.
+ * de `waiter` carries BOTH a bare recording and an article one, which is the shape most of
+ * the shipped German pack has: one word, two files, and which plays decided by whether the
+ * card shows an article. de `mouse` is the other shape — an article recording and no bare
+ * twin, which still answers a card asking for the bare word. de `waiter-f` stays recorded
+ * neither way, so "nothing to play at all" keeps its coverage.
  */
 internal object AudioFixture {
     private const val BY_SA = "https://creativecommons.org/licenses/by-sa/4.0/"
@@ -38,10 +40,14 @@ internal object AudioFixture {
                 "waiter": { "file": "waiter.mp3", "matches": "kellner", "license": "CC BY 3.0 us",
                             "licenseUrl": "$BY", "author": "Anna", "source": "De-Kellner.ogg", "sha256": "d6" } },
               "articles": {
-                "waiter": { "file": "articles/waiter.mp3", "matches": "der Kellner",
+                "waiter": { "file": "articles/waiter.mp3", "matches": "der Kellner", "word": "Kellner",
                             "license": "CC BY-SA 4.0", "licenseUrl": "$BY_SA", "author": "Nina",
                             "source": "LL-Q188 (deu)-Nina-der Kellner.wav", "sha256": "d7",
-                            "gain": 4.2, "gainPhone": 2.1, "lead": 210, "snr": 61.0 } } }
+                            "gain": 4.2, "gainPhone": 2.1, "lead": 210, "snr": 61.0 },
+                "mouse":  { "file": "articles/mouse.mp3", "matches": "die Maus", "word": "Maus",
+                            "license": "CC BY-SA 4.0", "licenseUrl": "$BY_SA", "author": "Nina",
+                            "source": "LL-Q188 (deu)-Nina-die Maus.wav", "sha256": "d8",
+                            "gain": 3.9, "gainPhone": 1.8, "snr": 60.2 } } }
         """.trimIndent(),
         // mouse/waiter are ONE recording fetched under two slugs (the sw slow/slower
         // shape): identical bytes, so the shared speech key still resolves.

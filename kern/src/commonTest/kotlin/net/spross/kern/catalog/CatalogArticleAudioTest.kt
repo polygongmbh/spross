@@ -62,6 +62,19 @@ class CatalogArticleAudioTest {
         assertNull(path("Kellnerin", "die")) // nothing recorded either way
     }
 
+    /**
+     * The other direction, and the reason an article entry carries the bare word inside it:
+     * a file that says "die Maus" is still a recording OF "Maus", so it answers a
+     * card that asks without an article rather than leaving one silent. That is the LAST
+     * thing tried — `Kellner` has both files, and the bare one wins a bare ask.
+     */
+    @Test
+    fun anArticleRecordingAnswersABareAskWhenNothingElseDoes() {
+        assertEquals("audio/de/articles/mouse.mp3", path("Maus"))
+        assertEquals("audio/de/articles/mouse.mp3", path("Maus", "die"))
+        assertEquals("audio/de/waiter.mp3", path("Kellner"))
+    }
+
     /** The article file's measurements are its own, and travel with the path that names it. */
     @Test
     fun theArticleRecordingCarriesItsOwnIndex() {
@@ -83,6 +96,7 @@ class CatalogArticleAudioTest {
     @Test
     fun theArticleRecordingIsCredited() {
         val credited = catalog.audioCredits().flatMap { credit -> credit.files.map { credit.author to it.label } }
-        assertEquals(listOf("Nina" to "der Kellner"), credited.filter { it.first == "Nina" })
+        assertEquals(listOf("Nina" to "der Kellner", "Nina" to "die Maus"),
+                     credited.filter { it.first == "Nina" })
     }
 }

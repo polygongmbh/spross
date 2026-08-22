@@ -2,10 +2,10 @@
 
 ## Unreleased
 
-- **German and Italian nouns are now heard with their article.** Two hundred and seventy
+- **German and Italian nouns are now heard with their article.** Two hundred and seventy-five
   recordings say "die Adresse" and "l'acqua" rather than the bare word — the half of a noun
   a learner most often has wrong, said by a voice instead of only tinted on the card. It
-  reaches 218 of the German nouns and 52 of the Italian, which is every one anybody has
+  reaches 221 of the German nouns and 54 of the Italian, which is every one anybody has
   recorded that way; the rest still play bare, and the meaning in your own language still
   does, because its grammar is not what you are learning.
 

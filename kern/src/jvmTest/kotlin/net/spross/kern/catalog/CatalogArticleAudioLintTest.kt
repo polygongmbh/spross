@@ -21,24 +21,34 @@ class CatalogArticleAudioLintTest {
         catalog.areas.firstNotNullOfOrNull { it.realizations[lang]?.get(slug) }
 
     /**
-     * An article entry speaks its realization's OWN article in front of its canonical text,
-     * and nothing else. That string is the only key it can ever be reached by
-     * (`spokenTargetForm`, from the article `shownArticle` allows), so an entry saying
-     * anything else is bytes no card can play — and one saying a DIFFERENT article would be
-     * a gender taught wrong, which is the whole thing the recordings exist to get right.
+     * An article entry says its realization's OWN article in front of a form that
+     * realization actually carries, and its `word` names which one.
+     *
+     * The article is pinned because a recording is the only thing that can teach a gender
+     * aloud, and a wrong one teaches it wrong — 33 of the catalog's 90 rotatable synonyms
+     * disagree with their canonical word's gender, so this is not a hypothetical. The WORD
+     * is free to be a synonym or a variant: a file saying "der Großvater" is a good
+     * recording of "Großvater", and which card may hear it is the lookup's question, not
+     * the pack's.
      */
     @Test
-    fun everyArticleEntrySpeaksItsRealizationsArticleAndText() {
+    fun everyArticleEntrySaysItsArticleInFrontOfAFormItHas() {
         for ((lang, manifest) in catalog.audio) {
             for ((slug, recording) in manifest.articles) {
                 val raw = realization(lang, slug)
                 assertTrue(raw != null, "audio/$lang: \"$slug (article)\" is not realized in $lang")
                 val article = raw.grammar["gender"]
                 assertTrue(!article.isNullOrBlank(), "audio/$lang/$slug: no article authored to speak")
+                val word = checkNotNull(recording.word) { "audio/$lang/$slug (article): no word recorded" }
+                val forms = (listOf(raw.text) + raw.synonyms + raw.variants).map { speechKey(it) }
+                assertTrue(
+                    speechKey(word) in forms,
+                    "audio/$lang/$slug (article): \"$word\" is none of $forms",
+                )
                 assertEquals(
-                    speechKey(spokenTargetForm(article, raw.text, raw.text)),
+                    speechKey(spokenTargetForm(article, word, word)),
                     speechKey(checkNotNull(recording.matches)),
-                    "audio/$lang/$slug (article): \"${recording.matches}\" is not \"$article ${raw.text}\"",
+                    "audio/$lang/$slug (article): \"${recording.matches}\" is not \"$article $word\"",
                 )
             }
         }
@@ -71,16 +81,17 @@ class CatalogArticleAudioLintTest {
     }
 
     /**
-     * An article recording never displaces the bare one: the source side of a pair reads
-     * the learner's own language, where the article is not what is being taught, and the
-     * bare file is the only one that may answer there. Shipping an article entry whose slug
-     * has no bare recording would silence that side to make the target side fuller.
+     * The word index's half of the collision rule: one file answers a bare lookup for the
+     * word inside it, so two article entries speaking one word have the same no-right-answer
+     * problem the spoken forms do, and the runtime would return neither.
      */
     @Test
-    fun everyArticleEntryKeepsItsBareRecordingBesideIt() {
+    fun noTwoArticleEntriesClaimOneBareWord() {
         for ((lang, manifest) in catalog.audio) {
-            for (slug in manifest.articles.keys) {
-                assertTrue(slug in manifest.words, "audio/$lang/$slug: an article recording and no bare one")
+            val byWord = manifest.articles.entries.groupBy { speechKey(checkNotNull(it.value.word)) }
+            for ((word, group) in byWord) {
+                val digests = group.mapTo(mutableSetOf()) { it.value.sha256 }
+                assertEquals(1, digests.size, "audio/$lang: \"$word\" is claimed by ${group.map { it.key }}")
             }
         }
     }

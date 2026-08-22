@@ -11,6 +11,16 @@ internal data class AudioRecording(
     val file: String,
     /** The exact surface form the recording speaks; null for letters (they speak a name). */
     val matches: String?,
+    /**
+     * For an `articles{}` entry, the BARE form inside what it speaks — "Ausweis" out of
+     * "der Ausweis"; null everywhere else, where [matches] is already bare.
+     *
+     * Carried rather than derived: stripping a leading article is a guess about where the
+     * word starts, and an elided one ("l'acqua") has no space to cut at. It is what lets
+     * one file answer both the card that asks with its article and the card that asks
+     * without one.
+     */
+    val word: String?,
     val license: String,
     val licenseUrl: String?,
     val author: String,
@@ -64,14 +74,18 @@ internal class AudioManifest(
      */
     val texts: Map<String, AudioRecording>,
     /**
-     * slug → a recording that speaks the card's ARTICLE and then the word, in manifest order.
-     * Its `matches` is that whole spoken form ("der Ausweis"), so it is keyed by the very
-     * string [spokenTargetForm] builds and can never answer a card that shows no article —
-     * the source side of a pair among them, where an article is not what is being taught.
+     * slug → a recording that speaks an ARTICLE and then the word, in manifest order.
      *
-     * A separate section rather than a second `words` entry because both files ship: the
-     * bare one is what the LEARNER'S language is read with, the article one what the target
-     * is heard as, and one slug legitimately has both.
+     * It is indexed twice: by the whole spoken form ([AudioRecording.matches], "der
+     * Ausweis") which is the string [spokenTargetForm] builds for a card showing that
+     * article, and by the bare word inside it ([AudioRecording.word], "Ausweis") so the
+     * same file still answers a card that asks without one rather than leaving it silent.
+     * The bare-word route is the LAST thing tried, so a recording of exactly what the card
+     * shows always wins where the pack has one.
+     *
+     * A section of its own rather than a second `words` entry because both files ship for
+     * one slug: the bare recording stays what the source side reads, where the article is
+     * not what is being taught.
      */
     val articles: Map<String, AudioRecording>,
 ) {
@@ -79,6 +93,13 @@ internal class AudioManifest(
     private val bySpeechKey: Map<String, AudioRecording?> = index { speechKey(it) }
     private val articlesBySpeechKey: Map<String, AudioRecording?> =
         index(articles.values) { speechKey(it) }
+    private val articlesByWord: Map<String, AudioRecording?> =
+        articles.values
+            .mapNotNull { recording -> recording.word?.let { speechKey(it) to recording } }
+            .groupBy({ (key, _) -> key }, { (_, recording) -> recording })
+            .mapValues { (_, group) ->
+                if (group.mapTo(mutableSetOf()) { it.sha256 }.size == 1) group.first() else null
+            }
     private val byGlyph: Map<String, AudioRecording> =
         letters.entries.associate { (glyph, recording) -> nfcNormalized(glyph) to recording }
 
@@ -103,7 +124,12 @@ internal class AudioManifest(
             val spoken = spokenTargetForm(article, visibleForm, visibleForm)
             articlesBySpeechKey[speechKey(spoken)]?.let { return it }
         }
-        return recording(visibleForm)
+        recording(visibleForm)?.let { return it }
+        // Whatever is available: a file that says "der Ausweis" is still a recording OF
+        // "Ausweis", so it answers a card asking for the bare word rather than leaving one
+        // silent — last, because a recording of exactly what the card shows is the better
+        // answer wherever the pack has one.
+        return articlesByWord[speechKey(visibleForm)]
     }
 
     /** The letter's recording, NFC-folded so a decomposed glyph still resolves. */
@@ -142,6 +168,7 @@ internal object AudioManifestParser {
         setOf("file", "matches", "license", "licenseUrl", "author", "source", "sha256",
               "gain", "gainPhone", "lead", "snr")
     private val LETTER_KEYS = WORD_KEYS - "matches"
+    private val ARTICLE_KEYS = WORD_KEYS + "word"
 
     /** Five seconds of dead air is not a lead-in, it is the wrong recording. */
     private const val LEAD_LIMIT_MS = 5_000L
@@ -158,11 +185,15 @@ internal object AudioManifestParser {
             words = section(path, root, "words", WORD_KEYS),
             letters = section(path, root, "letters", LETTER_KEYS),
             texts = section(path, root, "texts", WORD_KEYS),
-            articles = section(path, root, "articles", WORD_KEYS),
+            articles = section(path, root, "articles", ARTICLE_KEYS),
         )
     }
 
-    /** Parses one keyed section; `matches` is required exactly where the key set allows it. */
+    /**
+     * Parses one keyed section; `matches` and `word` are each required exactly where the
+     * key set allows them — the letters speak a name rather than a form, and only an
+     * article entry carries the bare word inside what it says.
+     */
     private fun section(
         path: String,
         root: JsonObject,
@@ -177,6 +208,7 @@ internal object AudioManifestParser {
             id to AudioRecording(
                 file = entry.requireNonBlank(path, context, "file"),
                 matches = if ("matches" in known) entry.requireNonBlank(path, context, "matches") else null,
+                word = if ("word" in known) entry.requireNonBlank(path, context, "word") else null,
                 license = entry.requireNonBlank(path, context, "license"),
                 licenseUrl = entry.optionalString(path, context, "licenseUrl"),
                 author = entry.requireNonBlank(path, context, "author"),

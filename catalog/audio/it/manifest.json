@@ -11,7 +11,8 @@
       "matches": "l'indirizzo",
       "sha256": "c0180bc2b317c4b2d4a2fcc58aaf5050463de5212b3b9f30ecf3acc1623e1c1f",
       "snr": 44.7,
-      "source": "It-l'indirizzo.ogg"
+      "source": "It-l'indirizzo.ogg",
+      "word": "indirizzo"
     },
     "bag": {
       "author": "Marta Carbone, Association Shtooka",
@@ -24,7 +25,8 @@
       "matches": "la borsa",
       "sha256": "461bc5320cccf03929015ea555964d9d29ba450f1f7475c44a50c72230c00805",
       "snr": 45.7,
-      "source": "It-la borsa.ogg"
+      "source": "It-la borsa.ogg",
+      "word": "borsa"
     },
     "beach": {
       "author": "Marta Carbone, Association Shtooka",
@@ -37,7 +39,8 @@
       "matches": "la spiaggia",
       "sha256": "57a0c26e53cf1fe015b568d99e8d8c9d7a8a6b5c50bbe53da36b4eba13e18b8d",
       "snr": 44.8,
-      "source": "It-la spiaggia.ogg"
+      "source": "It-la spiaggia.ogg",
+      "word": "spiaggia"
     },
     "blood": {
       "author": "Marta Carbone, Association Shtooka",
@@ -50,7 +53,8 @@
       "matches": "il sangue",
       "sha256": "9cf81c79136003ee78bd59345e9847e830e123ae3144de963ec68c87ad0f32a5",
       "snr": 44.6,
-      "source": "It-il sangue.ogg"
+      "source": "It-il sangue.ogg",
+      "word": "sangue"
     },
     "bread": {
       "author": "Marta Carbone, Association Shtooka",
@@ -63,7 +67,8 @@
       "matches": "il pane",
       "sha256": "c9e252eb40a1a243efe4f89e64ce4b3a861a92bcd574417dd4f03cd595ab4bf9",
       "snr": 41.9,
-      "source": "It-il pane.ogg"
+      "source": "It-il pane.ogg",
+      "word": "pane"
     },
     "breakfast": {
       "author": "Marta Carbone, Association Shtooka",
@@ -76,7 +81,8 @@
       "matches": "la colazione",
       "sha256": "ce5c93d42a7a7eef89d2533ec3856756a027229be46c9529d111f30fc92155fe",
       "snr": 42.1,
-      "source": "It-la colazione.ogg"
+      "source": "It-la colazione.ogg",
+      "word": "colazione"
     },
     "butter": {
       "author": "Marta Carbone, Association Shtooka",
@@ -89,7 +95,8 @@
       "matches": "il burro",
       "sha256": "7e278673ccfd1be8ad01550aaf5f3743268c1077c555ebcc5b7bf8d66fc04300",
       "snr": 41.5,
-      "source": "It-il burro.ogg"
+      "source": "It-il burro.ogg",
+      "word": "burro"
     },
     "cheese": {
       "author": "Marta Carbone, Association Shtooka",
@@ -102,7 +109,8 @@
       "matches": "il formaggio",
       "sha256": "c8b14fbedbe5aa399836922a9d004d73eda8ffff5dfb3c1d6db401813755a149",
       "snr": 42.7,
-      "source": "It-il formaggio.ogg"
+      "source": "It-il formaggio.ogg",
+      "word": "formaggio"
     },
     "chicken": {
       "author": "Marta Carbone, Association Shtooka",
@@ -114,7 +122,8 @@
       "matches": "il pollo",
       "sha256": "b288d54b78b627ef4aa59232dcd9b4f1f7510b97755adf23931cd9624eb8f358",
       "snr": 47.8,
-      "source": "It-il pollo.ogg"
+      "source": "It-il pollo.ogg",
+      "word": "pollo"
     },
     "cinema": {
       "author": "Marta Carbone, Association Shtooka",
@@ -126,7 +135,22 @@
       "matches": "il cinema",
       "sha256": "732da32e5be93b5b3d22f1c4a825af290419ce58a6684d79b19e94597d1212ff",
       "snr": 42.4,
-      "source": "It-il cinema.ogg"
+      "source": "It-il cinema.ogg",
+      "word": "cinema"
+    },
+    "clothes": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/clothes.mp3",
+      "gain": -1.4,
+      "gainPhone": -5.7,
+      "lead": 239,
+      "license": "CC BY 3.0 us",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+      "matches": "i vestiti",
+      "sha256": "858cc1b5e46125b0bd0875923247d220edb0c9eb6a3624250f3cb9a7240a3d6f",
+      "snr": 43.9,
+      "source": "It-i vestiti.ogg",
+      "word": "vestiti"
     },
     "coffee": {
       "author": "Marta Carbone, Association Shtooka",
@@ -139,7 +163,8 @@
       "matches": "il caffè",
       "sha256": "e064080701896d214b05098463bbb00db4de5405d363b30ab6772be34befaa24",
       "snr": 44.6,
-      "source": "It-il caffè.ogg"
+      "source": "It-il caffè.ogg",
+      "word": "caffè"
     },
     "dinner": {
       "author": "Marta Carbone, Association Shtooka",
@@ -151,7 +176,8 @@
       "matches": "la cena",
       "sha256": "94009f9ad44be5cbc2fbb11b05a61356133c8b6f6c66c10265a7ad3843efb8af",
       "snr": 46.9,
-      "source": "It-la cena.ogg"
+      "source": "It-la cena.ogg",
+      "word": "cena"
     },
     "father": {
       "author": "Marta Carbone, Association Shtooka",
@@ -164,7 +190,8 @@
       "matches": "il padre",
       "sha256": "3245d28c26ac4e55d8ca77f72f68e381e8e1a4c70b5129ccfb6295ce6671e942",
       "snr": 44.0,
-      "source": "It-il padre.ogg"
+      "source": "It-il padre.ogg",
+      "word": "padre"
     },
     "fish": {
       "author": "Marta Carbone, Association Shtooka",
@@ -177,7 +204,8 @@
       "matches": "il pesce",
       "sha256": "7740409778c5d8b473b7c8f20d9c20e4c09684668872d29fc413313f724566b6",
       "snr": 48.3,
-      "source": "It-il pesce.ogg"
+      "source": "It-il pesce.ogg",
+      "word": "pesce"
     },
     "food": {
       "author": "Marta Carbone, Association Shtooka",
@@ -190,7 +218,8 @@
       "matches": "il cibo",
       "sha256": "5fd34b309fa0ed41ac3b8ce2c5b7f32f47c78b29d5df539a4a59b8ad5a1172e1",
       "snr": 45.6,
-      "source": "It-il cibo.ogg"
+      "source": "It-il cibo.ogg",
+      "word": "cibo"
     },
     "hair": {
       "author": "Marta Carbone, Association Shtooka",
@@ -203,7 +232,8 @@
       "matches": "i capelli",
       "sha256": "9efc3f4f84283e4559262cc8898ad0d01bdf29fa34cc8fba87b2b29217bd1b65",
       "snr": 46.4,
-      "source": "It-i capelli.ogg"
+      "source": "It-i capelli.ogg",
+      "word": "capelli"
     },
     "head": {
       "author": "Marta Carbone, Association Shtooka",
@@ -215,7 +245,8 @@
       "matches": "la testa",
       "sha256": "bab468fc3e39c1346bb47d3b9e7ce1be0023a134f04b164232d464509cd5d101",
       "snr": 46.1,
-      "source": "It-la testa.ogg"
+      "source": "It-la testa.ogg",
+      "word": "testa"
     },
     "heart": {
       "author": "Marta Carbone, Association Shtooka",
@@ -227,7 +258,8 @@
       "matches": "il cuore",
       "sha256": "3b804635f77d848661b709d3256ac3139b444a523634ec3040362b6fa803d8f7",
       "snr": 45.4,
-      "source": "It-il cuore.ogg"
+      "source": "It-il cuore.ogg",
+      "word": "cuore"
     },
     "husband": {
       "author": "Marta Carbone, Association Shtooka",
@@ -240,7 +272,8 @@
       "matches": "il marito",
       "sha256": "9c82e938eb6bcf7d2b33d23a8ca88c99eab20f385dca4a64b918b6fdec4b90f2",
       "snr": 48.0,
-      "source": "It-il marito.ogg"
+      "source": "It-il marito.ogg",
+      "word": "marito"
     },
     "language": {
       "author": "Marta Carbone, Association Shtooka",
@@ -253,7 +286,8 @@
       "matches": "la lingua",
       "sha256": "82645eca1c11e24d6f568e0bb9f2c27fdbbb15788a9ae5174e2305077f23b352",
       "snr": 45.6,
-      "source": "It-la lingua.ogg"
+      "source": "It-la lingua.ogg",
+      "word": "lingua"
     },
     "light": {
       "author": "Marta Carbone, Association Shtooka",
@@ -266,7 +300,8 @@
       "matches": "la luce",
       "sha256": "63833a3c6bb4e414b9c9095f779b91bc40e52f2b121a742b3efe79f34c5f49d4",
       "snr": 48.1,
-      "source": "It-la luce.ogg"
+      "source": "It-la luce.ogg",
+      "word": "luce"
     },
     "market": {
       "author": "Marta Carbone, Association Shtooka",
@@ -279,7 +314,8 @@
       "matches": "il mercato",
       "sha256": "1ee583ad97657e9dc6489f59d302a64fcebeac007724168f4e948fd9b0c349a4",
       "snr": 41.9,
-      "source": "It-il mercato.ogg"
+      "source": "It-il mercato.ogg",
+      "word": "mercato"
     },
     "meat": {
       "author": "Marta Carbone, Association Shtooka",
@@ -291,7 +327,8 @@
       "matches": "la carne",
       "sha256": "5d87a54aae7abdf5fbf698ac657fdb272db9053bf7c65629ef2330bcf5fb7308",
       "snr": 46.9,
-      "source": "It-la carne.ogg"
+      "source": "It-la carne.ogg",
+      "word": "carne"
     },
     "milk": {
       "author": "Marta Carbone, Association Shtooka",
@@ -304,7 +341,8 @@
       "matches": "il latte",
       "sha256": "eb005f5082f3890e914d88fb72e8d2bb5d3a6dc3e8bdc1837c431e8c0758328f",
       "snr": 44.6,
-      "source": "It-il latte.ogg"
+      "source": "It-il latte.ogg",
+      "word": "latte"
     },
     "money": {
       "author": "Marta Carbone, Association Shtooka",
@@ -317,7 +355,8 @@
       "matches": "i soldi",
       "sha256": "da32b2c58f5039a902c6d2eef23ac2953030022c1ddcb0c3ffc8256e4326c70b",
       "snr": 47.9,
-      "source": "It-i soldi.ogg"
+      "source": "It-i soldi.ogg",
+      "word": "soldi"
     },
     "mother": {
       "author": "Marta Carbone, Association Shtooka",
@@ -330,7 +369,8 @@
       "matches": "la madre",
       "sha256": "fb3e5026bb72fba79e94e4ffca59ecc82d916dac7e0e033485a80421485265f0",
       "snr": 45.0,
-      "source": "It-la madre.ogg"
+      "source": "It-la madre.ogg",
+      "word": "madre"
     },
     "mountain": {
       "author": "Marta Carbone, Association Shtooka",
@@ -342,7 +382,8 @@
       "matches": "la montagna",
       "sha256": "e0d5fec4aba8f27fd042b2a9931a5aa9233c3d2439df5c10256c5b0e06d03049",
       "snr": 44.6,
-      "source": "It-la montagna.ogg"
+      "source": "It-la montagna.ogg",
+      "word": "montagna"
     },
     "mouth": {
       "author": "Marta Carbone, Association Shtooka",
@@ -355,7 +396,8 @@
       "matches": "la bocca",
       "sha256": "4b34c9f43cee4975fd56db4d9e06c05139fafe524094c2a51ea413955e25a054",
       "snr": 48.1,
-      "source": "It-la bocca.ogg"
+      "source": "It-la bocca.ogg",
+      "word": "bocca"
     },
     "music": {
       "author": "Marta Carbone, Association Shtooka",
@@ -368,7 +410,8 @@
       "matches": "la musica",
       "sha256": "b10ec12b4614e8c1b6cc25e79ed68f0c7f58599379c4d88cbb6f9f00530eddbf",
       "snr": 51.2,
-      "source": "It-la musica.ogg"
+      "source": "It-la musica.ogg",
+      "word": "musica"
     },
     "nose": {
       "author": "Marta Carbone, Association Shtooka",
@@ -380,7 +423,8 @@
       "matches": "il naso",
       "sha256": "246b76bc4f4d7d016b535e627c87536347452ed57499e5652872731dfe44f013",
       "snr": 41.7,
-      "source": "It-il naso.ogg"
+      "source": "It-il naso.ogg",
+      "word": "naso"
     },
     "oil": {
       "author": "Marta Carbone, Association Shtooka",
@@ -393,7 +437,8 @@
       "matches": "l'olio",
       "sha256": "9fbbe836a8f0a036865a2a8c554a8e638425ec724b0902ffe44e7da7e9741d46",
       "snr": 42.8,
-      "source": "It-l'olio.ogg"
+      "source": "It-l'olio.ogg",
+      "word": "olio"
     },
     "paper": {
       "author": "Marta Carbone, Association Shtooka",
@@ -406,7 +451,22 @@
       "matches": "la carta",
       "sha256": "3f3d8f618d78775e4c1d190386a559c88fe9232c1f7e104803b1a6abdfd3b452",
       "snr": 45.8,
-      "source": "It-la carta.ogg"
+      "source": "It-la carta.ogg",
+      "word": "carta"
+    },
+    "parents": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/parents.mp3",
+      "gain": -3.0,
+      "gainPhone": -2.2,
+      "lead": 195,
+      "license": "CC BY 3.0 us",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+      "matches": "i genitori",
+      "sha256": "728948b27d1335fb5f91d879e012179c73f67d705baa5918c6506f6b9d0342c9",
+      "snr": 45.8,
+      "source": "It-i genitori.ogg",
+      "word": "genitori"
     },
     "police": {
       "author": "Marta Carbone, Association Shtooka",
@@ -419,7 +479,8 @@
       "matches": "la polizia",
       "sha256": "78ca51295c2d3d82a3b99cc55ba224c11f7d7e0bc6567c02c49797c912230969",
       "snr": 47.4,
-      "source": "It-la polizia.ogg"
+      "source": "It-la polizia.ogg",
+      "word": "polizia"
     },
     "potato": {
       "author": "Marta Carbone, Association Shtooka",
@@ -431,7 +492,8 @@
       "matches": "la patata",
       "sha256": "a0ce600042c0b76c2a3d5956e5681223fc397a2cd5428f64348cba57a06269ca",
       "snr": 51.0,
-      "source": "It-la patata.ogg"
+      "source": "It-la patata.ogg",
+      "word": "patata"
     },
     "rain": {
       "author": "Marta Carbone, Association Shtooka",
@@ -444,7 +506,8 @@
       "matches": "la pioggia",
       "sha256": "ea43429c563eb23e6bc6145d25faeee71f8e4e69be32ffee2ea5779cc0b35bc2",
       "snr": 44.3,
-      "source": "It-la pioggia.ogg"
+      "source": "It-la pioggia.ogg",
+      "word": "pioggia"
     },
     "rice": {
       "author": "Marta Carbone, Association Shtooka",
@@ -456,7 +519,8 @@
       "matches": "il riso",
       "sha256": "71afea2b438900bf56a0764aa19eebaec42d22c5ed784fa7bd426a4f6d2242b0",
       "snr": 46.1,
-      "source": "It-il riso.ogg"
+      "source": "It-il riso.ogg",
+      "word": "riso"
     },
     "salt": {
       "author": "Marta Carbone, Association Shtooka",
@@ -469,7 +533,8 @@
       "matches": "il sale",
       "sha256": "bd8e10bce1e9122735aa14bae2953d4d612387732f8d1e6d07738552b59b61b1",
       "snr": 41.8,
-      "source": "It-il sale.ogg"
+      "source": "It-il sale.ogg",
+      "word": "sale"
     },
     "sea": {
       "author": "Marta Carbone, Association Shtooka",
@@ -481,7 +546,8 @@
       "matches": "il mare",
       "sha256": "9dc99d58e19ce069d95486420f3511f9d4f0cb128a28078662fc2a304581f2da",
       "snr": 55.1,
-      "source": "It-il mare.ogg"
+      "source": "It-il mare.ogg",
+      "word": "mare"
     },
     "skin": {
       "author": "Marta Carbone, Association Shtooka",
@@ -493,7 +559,8 @@
       "matches": "la pelle",
       "sha256": "d87f2145b0690ce87104348617395203798ee13b463a2133169d54f420b4fddf",
       "snr": 44.4,
-      "source": "It-la pelle.ogg"
+      "source": "It-la pelle.ogg",
+      "word": "pelle"
     },
     "sky": {
       "author": "Marta Carbone, Association Shtooka",
@@ -505,7 +572,8 @@
       "matches": "il cielo",
       "sha256": "20e8a7cf3e2513fb1c4ac54583326e60c9b9a41d21c8aa80c76804ff9486ac9d",
       "snr": 46.0,
-      "source": "It-il cielo.ogg"
+      "source": "It-il cielo.ogg",
+      "word": "cielo"
     },
     "snow": {
       "author": "Marta Carbone, Association Shtooka",
@@ -518,7 +586,8 @@
       "matches": "la neve",
       "sha256": "4effdad8e6f590e819cee55c80cae62336f5710290e55f414681438b85a2b367",
       "snr": 48.9,
-      "source": "It-la neve.ogg"
+      "source": "It-la neve.ogg",
+      "word": "neve"
     },
     "soap": {
       "author": "Marta Carbone, Association Shtooka",
@@ -530,7 +599,8 @@
       "matches": "il sapone",
       "sha256": "ce61c362714a2f0f420ba1677a948b6f8198149cccb7dbe32204770d17b347bf",
       "snr": 44.0,
-      "source": "It-il sapone.ogg"
+      "source": "It-il sapone.ogg",
+      "word": "sapone"
     },
     "soup": {
       "author": "Marta Carbone, Association Shtooka",
@@ -543,7 +613,8 @@
       "matches": "la zuppa",
       "sha256": "5d0ce9cc7bafe5fd7dc0a5ee346c762e2b0d84742378a67100b6bca5aa649cf0",
       "snr": 45.8,
-      "source": "It-la zuppa.ogg"
+      "source": "It-la zuppa.ogg",
+      "word": "zuppa"
     },
     "sugar": {
       "author": "Marta Carbone, Association Shtooka",
@@ -556,7 +627,8 @@
       "matches": "lo zucchero",
       "sha256": "d9ccf87278ef1f359b113f0dda9f9e1f24b84f909363ea18acf44fe267030e14",
       "snr": 47.6,
-      "source": "It-lo zucchero.ogg"
+      "source": "It-lo zucchero.ogg",
+      "word": "zucchero"
     },
     "sun": {
       "author": "Marta Carbone, Association Shtooka",
@@ -568,7 +640,8 @@
       "matches": "il sole",
       "sha256": "afac4e67ceec9bb3b9f2412074d16a3c81d5c3b904ca9154cce34d0f1c865414",
       "snr": 41.8,
-      "source": "It-il sole.ogg"
+      "source": "It-il sole.ogg",
+      "word": "sole"
     },
     "tea": {
       "author": "Marta Carbone, Association Shtooka",
@@ -581,7 +654,8 @@
       "matches": "il tè",
       "sha256": "a28776ab8d30338bb101598a4059f5a7a9e50b847fed0d0604d313b69f7ab3f2",
       "snr": 44.8,
-      "source": "It-il tè.ogg"
+      "source": "It-il tè.ogg",
+      "word": "tè"
     },
     "university": {
       "author": "Marta Carbone, Association Shtooka",
@@ -594,7 +668,8 @@
       "matches": "l'università",
       "sha256": "1b584cadcc07e93004a0ab5b45d9f4f6f26df076bd9e172e121dd7949c07f712",
       "snr": 45.6,
-      "source": "It-l'università.ogg"
+      "source": "It-l'università.ogg",
+      "word": "università"
     },
     "vegetable": {
       "author": "Marta Carbone, Association Shtooka",
@@ -606,7 +681,8 @@
       "matches": "la verdura",
       "sha256": "a6699214c1afe21645906e7a8afe2b3b7c4f83aeb249b908b300ff7a457bb91e",
       "snr": 48.9,
-      "source": "It-la verdura.ogg"
+      "source": "It-la verdura.ogg",
+      "word": "verdura"
     },
     "water": {
       "author": "Marta Carbone, Association Shtooka",
@@ -619,7 +695,8 @@
       "matches": "l'acqua",
       "sha256": "52e3a12802a84fe70c46fd6a309bf3f00873ce7bddfb3accb69c5c06ec7fa2c0",
       "snr": 41.2,
-      "source": "It-l'acqua.ogg"
+      "source": "It-l'acqua.ogg",
+      "word": "acqua"
     },
     "wife": {
       "author": "Marta Carbone, Association Shtooka",
@@ -632,7 +709,8 @@
       "matches": "la moglie",
       "sha256": "be81994cc17b8dffb2dbf5f7d70c65a28ba885ebe2cd0fc584ca2ae71e983f13",
       "snr": 45.0,
-      "source": "It-la moglie.ogg"
+      "source": "It-la moglie.ogg",
+      "word": "moglie"
     },
     "wind": {
       "author": "Marta Carbone, Association Shtooka",
@@ -644,7 +722,8 @@
       "matches": "il vento",
       "sha256": "a5c65736916dc92a4bbd8a0eed7835af4784dd837104c34cfcfbfaad37ff4252",
       "snr": 45.7,
-      "source": "It-il vento.ogg"
+      "source": "It-il vento.ogg",
+      "word": "vento"
     },
     "work": {
       "author": "Marta Carbone, Association Shtooka",
@@ -656,7 +735,8 @@
       "matches": "il lavoro",
       "sha256": "3761d906760504b5c40b876b1a44b023863297239c25dfb44bb267b74f837da1",
       "snr": 45.9,
-      "source": "It-il lavoro.ogg"
+      "source": "It-il lavoro.ogg",
+      "word": "lavoro"
     }
   },
   "language": "it",

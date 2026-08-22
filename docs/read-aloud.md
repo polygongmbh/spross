@@ -32,8 +32,8 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   grammar is not what is being taught.
   Where a pack recorded the article too, the recording says it as well: German and Italian
   carry an `articles{}` section, found by the very string the voice is handed, so those cards
-  sound the same on either branch. It is partial — one speaker reached 218 of the German
-  nouns and 52 of the Italian — and a word outside it still plays bare, which is the
+  sound the same on either branch. It is partial — one speaker reached 221 of the German
+  nouns and 54 of the Italian — and a word outside it still plays bare, which is the
   recording falling short of the rule rather than the voice overreaching, and the accepted
   cost of teaching the article at all.
   ♀ badge, plural line and alternates stay unspoken: those are decoration, and gender is

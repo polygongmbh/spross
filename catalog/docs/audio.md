@@ -29,7 +29,7 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
            "author": "Tabrus", "source": "Жж – ukrainian.ogg", "sha256": "77b0…",
            "gain": 20.0, "lead": 1069 } },
   "articles": {
-    "address": { "file": "articles/address.mp3", "matches": "die Adresse",
+    "address": { "file": "articles/address.mp3", "matches": "die Adresse", "word": "Adresse",
                  "license": "CC BY-SA 4.0", "licenseUrl": "…", "author": "Natschoba",
                  "source": "LL-Q188 (deu)-Natschoba-die Adresse.wav", "sha256": "a15c…",
                  "gain": 8.0, "gainPhone": 3.9, "lead": 240 } } }
@@ -43,15 +43,20 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   would be zero, and `gainPhone` — present on every word and article entry (0.0 when no
   correction) but absent on letters and texts.
 - `articles` (optional, de and it today) is keyed by slug like `words` and holds
-  recordings that speak the card's ARTICLE and then the word — `die Adresse`, files
-  under `articles/<slug>.mp3`. Its `matches` is that whole spoken form, which is the
-  string `spokenTargetForm` builds for the target side, so it is the only key such an
-  entry can be reached by. It is an ADDITION, never a replacement: the bare `words`
-  entry keeps shipping and is what the source side reads, where the article is not what
-  is being taught, and lint fails an article entry whose slug has no bare twin.
-  An article entry must speak its realization's own `grammar.gender` in front of its
-  canonical `text` — a synonym rotates the article away on screen, so a recording of
-  one could never play.
+  recordings that speak an ARTICLE and then the word — `die Adresse`, files under
+  `articles/<slug>.mp3`. `matches` is the whole spoken form, `word` the bare form inside
+  it, and the entry is indexed by BOTH: the spoken form answers a card asking with its
+  article (the string `spokenTargetForm` builds), the bare word answers one asking
+  without, last, so a recording of exactly what the card shows always wins.
+  `word` is carried rather than derived — cutting a leading article off is a guess, and
+  an elided one (`l'acqua`) has no space to cut at.
+  The article must be the realization's own `grammar.gender`, because a recording is the
+  only thing that teaches a gender aloud and a wrong one teaches it wrong; the `word` may
+  be any form the realization carries, so a file saying "der Großvater" ships as a
+  recording of the variant it actually says.
+  Usually an addition beside a bare `words` entry — the source side reads the learner's
+  own language, where the article is not what is being taught — but not dependent on one:
+  five words ship the article recording alone and it answers both asks.
 - `matches` — the surface form the recording actually SPEAKS, and the lookup key:
   playback is keyed by what stands on the card, never by the slug the file was fetched
   for, so a rotated synonym nobody recorded falls through to the app's own voice

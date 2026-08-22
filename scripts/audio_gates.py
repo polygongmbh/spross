@@ -95,14 +95,20 @@ def spoken_target_form(article, text):
     return '%s %s' % (article, text.strip())
 
 
-def keep_article_forms(rows, lang, targets, drops):
-    """The ARTICLE gate: a row may ship only if it speaks its realization's own article.
+def keep_article_forms(rows, lang, targets, forms, drops):
+    """The ARTICLE gate: the row says the realization's own article in front of one of its
+    forms — and the row records WHICH form, so one file can answer either way it is asked.
 
-    An article recording is reachable by exactly one string — the article `shownArticle`
-    allows in front of the canonical text — so a row saying anything else ships bytes no
-    card can play. A row saying a DIFFERENT article is worse than unreachable: it is the
-    gender taught wrong, which is the one thing these recordings exist to get right, so it
-    is dropped rather than re-labeled.
+    The article has to be the authored one because a recording is the only thing on the card
+    that can teach a gender, and a wrong one teaches it wrong. The WORD it stands in front of
+    may be any form the realization carries, not only the canonical text: a recording of
+    "der Großvater" is a perfectly good recording of "Großvater", and dropping it for not
+    being "der Opa" throws away a file the card could still use.
+
+    What a card asks with is a separate question, answered at lookup: the article form is
+    preferred, the bare word answers too. That is why 33 of the catalog's 90 rotatable
+    synonyms disagreeing in gender costs nothing here — a recording only ever answers the
+    form it actually speaks.
     """
     kept = []
     for row in rows:
@@ -111,13 +117,15 @@ def keep_article_forms(rows, lang, targets, drops):
             drops.append(('unrealized', row['slug'], 'no gendered realization in %s' % lang))
             continue
         article, text = target
-        wanted = speech_key(spoken_target_form(article, text))
-        if speech_key(row['matched_word']) != wanted:
+        said = speech_key(row['matched_word'])
+        spoken = next((form for form in forms.get(lang, {}).get(row['slug'], [])
+                       if speech_key(spoken_target_form(article, form)) == said), None)
+        if spoken is None:
             drops.append(('not-the-article', row['slug'],
-                          'recording says "%s", the card shows "%s"' % (row['matched_word'],
-                                                                       spoken_target_form(article, text))))
+                          'recording says "%s", not "%s" in front of any form it has'
+                          % (row['matched_word'], article)))
         else:
-            kept.append(row)
+            kept.append(dict(row, word=spoken))
     return kept
 
 
