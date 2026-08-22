@@ -151,9 +151,14 @@ Engine contract: `../README.md`.
   moment it falls: the turn in the air finishes, at the floor it has already reached.
   A PAUSED run has no seam coming and is left parked — the learner stopped it themselves,
   and a bedtime is there to end a run nobody is attending, not one somebody just touched.
-  The gain is applied ON TOP of a recording's `Playback.gainDb`, and clamped to its own floor
-  rather than `GAIN_LIMIT_DB`, which bounds how far a MEASUREMENT may be trusted and not a
-  level kern chose.
+  The ramp is applied ON TOP of a recording's `Playback.gainDb` and the SUM is what
+  `LISTENING_FADE_FLOOR_DB` holds (`fadedGainDb(gainDb, fadeDb)`) — its own floor rather than
+  `GAIN_LIMIT_DB`, which bounds how far a MEASUREMENT may be trusted and not a level kern chose.
+  The floor is on the sum because that is the number a listener hears: the packs share no
+  loudness, so one uniform ramp reaches the room's noise floor far sooner for a word the index
+  already turned 12 dB down (sw, on the phone plane) than for one playing as recorded, and the
+  ramp read as singling that pack out. A word whose index is already under the floor takes no
+  ramp at all — the ramp may deepen an attenuation, never undo one.
   The remaining milliseconds are the APP's to track and hand in, like every other clock read — the run state holds no deadline, so kern still reads no clock.
 
 ## Trainer & drill runs   (package `net.spross.kern.trainer`)

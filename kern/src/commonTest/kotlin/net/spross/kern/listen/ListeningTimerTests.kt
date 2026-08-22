@@ -103,4 +103,57 @@ class ListeningTimerTests {
     fun anOvershotDeadlineStepsFromOff() {
         assertEquals(LISTENING_TIMER_STEP_MIN * 60_000L, listeningTimerStepMs(-hour, 1))
     }
+
+    /** Outside a run there is no ramp, and the total is the clamped index and nothing else. */
+    @Test
+    fun noRampLeavesTheIndexAlone() {
+        assertEquals(0.0, fadedGainDb(0.0, 0.0))
+        assertEquals(-11.8, fadedGainDb(-11.8, 0.0), 1e-9)
+        assertEquals(7.6, fadedGainDb(7.6, 0.0), 1e-9)
+        // Past what a measurement may claim, the index is still held to its own bound.
+        assertEquals(-20.0, fadedGainDb(-45.0, 0.0), 1e-9)
+    }
+
+    /** A word playing at the level it was measured to takes the whole ramp. */
+    @Test
+    fun anUncorrectedWordTakesTheWholeRamp() {
+        assertEquals(LISTENING_FADE_FLOOR_DB, fadedGainDb(0.0, LISTENING_FADE_FLOOR_DB), 1e-9)
+        assertEquals(-9.5, fadedGainDb(0.0, -9.5), 1e-9)
+        // A boosted word takes it too — it ends the ramp that far above the floor.
+        assertEquals(1.0, fadedGainDb(20.0, LISTENING_FADE_FLOOR_DB), 1e-9)
+    }
+
+    /**
+     * The floor is on the SUM: an sw word already 12 dB down and a de word playing as recorded
+     * end the bedtime at the same level, rather than 12 dB apart with one of them inaudible.
+     */
+    @Test
+    fun theRampStopsEveryWordAtTheSameFloor() {
+        val sw = fadedGainDb(-11.8, LISTENING_FADE_FLOOR_DB)
+        val de = fadedGainDb(-0.6, LISTENING_FADE_FLOOR_DB)
+        assertEquals(LISTENING_FADE_FLOOR_DB, sw, 1e-9)
+        assertEquals(LISTENING_FADE_FLOOR_DB, de, 1e-9)
+    }
+
+    /** An index already under the floor is left where it is — the ramp may deepen, never undo. */
+    @Test
+    fun anIndexUnderTheFloorTakesNoRamp() {
+        assertEquals(-19.7, fadedGainDb(-19.7, LISTENING_FADE_FLOOR_DB), 1e-9)
+        assertEquals(-19.7, fadedGainDb(-19.7, -5.0), 1e-9)
+    }
+
+    /** Every step of a real ramp only ever moves a word down, and never past the floor. */
+    @Test
+    fun theRampNeverRisesAndNeverPassesTheFloor() {
+        for (index in listOf(-19.7, -11.8, -0.6, 0.0, 7.6, 20.0)) {
+            var previous = fadedGainDb(index, 0.0)
+            for (step in 1..40) {
+                val total = fadedGainDb(index, listeningGainDb(hour - step * (hour / 40), hour))
+                assertTrue(total <= previous + 1e-9, "$index rose at step $step")
+                assertTrue(total >= minOf(index, LISTENING_FADE_FLOOR_DB) - 1e-9,
+                           "$index passed the floor at step $step")
+                previous = total
+            }
+        }
+    }
 }

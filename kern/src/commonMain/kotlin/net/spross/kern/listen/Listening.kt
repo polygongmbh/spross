@@ -3,6 +3,7 @@ package net.spross.kern.listen
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.emojiCue
 
+import net.spross.kern.catalog.Playback
 import net.spross.kern.model.Card
 import net.spross.kern.model.fnv1a64
 
@@ -99,6 +100,8 @@ val LISTENING_EMOJI_CUE: EmojiCue = emojiCue(givesAnswerAway = false)
  * Roughly a third of the loudness it started at: quiet enough to fall asleep under, loud
  * enough that a learner still awake can follow it. Deeper than this and the run spends its
  * last minutes saying words nobody can hear, which is not a gentler ending, only a longer one.
+ *
+ * A floor on the TOTAL a player is left holding, not on the ramp alone — see [fadedGainDb].
  */
 const val LISTENING_FADE_FLOOR_DB: Double = -19.0
 
@@ -129,6 +132,33 @@ fun listeningGainDb(msRemaining: Long, totalMs: Long): Double {
     val spent = 1.0 - (maxOf(0L, msRemaining).toDouble() / totalMs).coerceIn(0.0, 1.0)
     // why: `floor * 0.0` is -0.0, which prints and compares as a surprise; + 0.0 normalizes it.
     return (LISTENING_FADE_FLOOR_DB * spent + 0.0).coerceIn(LISTENING_FADE_FLOOR_DB, 0.0)
+}
+
+/**
+ * The decibels a player ends up holding for a recording measured at [gainDb], with [fadeDb]
+ * of [listeningGainDb]'s ramp over it: the index and the ramp added, and the sum held at
+ * [LISTENING_FADE_FLOOR_DB].
+ *
+ * The floor is on the SUM because that is the number a listener hears. The packs do not
+ * share a loudness and the index is what corrects them, so the same ramp lands on a word
+ * already 15 dB down and on one playing as it was recorded — and the first crosses the room's
+ * own noise floor long before the second. sw, whose phone-plane index is a pack-wide -12 dB,
+ * is the one that vanishes: the ramp was reducing every word equally and only sounded like it
+ * was singling that pack out (`kern/docs/audio.md`). Floored on the sum, the ramp takes each
+ * word as far as the floor and no further, and a run's last minutes are equally quiet rather
+ * than equally attenuated.
+ *
+ * A word whose index already sits under the floor is left where it is: the index is a
+ * correction of the shipped bytes and the ramp may decline to deepen it, never undo it.
+ * Outside a run [fadeDb] is 0 and this is the clamped index and nothing else — the same
+ * number a synthesized utterance takes, whose index is 0 and whose total is the ramp itself.
+ */
+fun fadedGainDb(gainDb: Double, fadeDb: Double): Double {
+    val index = Playback.gainDb(gainDb)
+    // why: how much ramp is left before the sum reaches the floor — never positive, so a word
+    // already under it takes none at all rather than being lifted back up to it.
+    val room = minOf(0.0, LISTENING_FADE_FLOOR_DB - index)
+    return index + maxOf(fadeDb, room)
 }
 
 

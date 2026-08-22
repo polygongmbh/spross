@@ -3,6 +3,7 @@ package net.spross.app.audio
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import net.spross.kern.catalog.Playback
+import net.spross.kern.listen.fadedGainDb
 
 /**
  * The catalog's ANALYSIS INDEX in the units an Android player takes: a linear volume and a
@@ -24,18 +25,16 @@ import net.spross.kern.catalog.Playback
 private const val MILLIBELS_PER_DB = 100
 
 /**
- * The volume a recording measured at [gainDb] plays at, [fadeDb] decibels under whatever
- * that comes to: the decibel definition where the index is to be turned down, and 1.0 where
- * the enhancer will lift it instead.
+ * The volume a recording measured at [gainDb] plays at under [fadeDb] of kern's bedtime ramp:
+ * everything of kern's [fadedGainDb] total that the enhancer below is not already carrying.
  *
- * The two are separate numbers on purpose. The index is a MEASUREMENT of the shipped bytes
- * and is held to kern's own bound; the fade is a level kern chose (`listeningGainDb`), rides
- * the volume because it only ever attenuates, and is held to its own floor there. Clamping
- * the pair together would hold a 40 dB bedtime ramp to the 20 dB a measurement may claim.
+ * The split is what makes the subtraction necessary. Kern's total is one number, and the two
+ * halves have to add back up to it — so the boost takes the index where it lifts, and the
+ * volume takes the rest, which is the ramp plus whatever attenuating the index asked for.
  */
 fun playbackVolume(gainDb: Double, fadeDb: Double = 0.0): Float {
-    val correction = if (gainDb >= 0) 0.0 else Playback.gainDb(gainDb)
-    return 10.0.pow((correction + fadeDb) / 20).toFloat()
+    val boosted = maxOf(0.0, Playback.gainDb(gainDb))
+    return 10.0.pow((fadedGainDb(gainDb, fadeDb) - boosted) / 20).toFloat()
 }
 
 /** The same ramp with no recording under it — what a synthesized utterance is attenuated by. */

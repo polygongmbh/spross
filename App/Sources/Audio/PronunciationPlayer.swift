@@ -88,9 +88,10 @@ final class PronunciationPlayer {
     /// an error surface.
     ///
     /// `fadeDb` is the one level that is NOT a measurement: kern's bedtime ramp
-    /// (`listeningGainDb`), added after the index has been clamped, because the
-    /// clamp bounds how far a MEASUREMENT may be trusted and not a level kern
-    /// chose. 0 everywhere outside a listening run.
+    /// (`listeningGainDb`), which kern adds to the clamped index and holds at
+    /// its own floor (`fadedGainDb`) — the clamp bounds how far a MEASUREMENT
+    /// may be trusted and the floor is a level kern chose. 0 everywhere outside
+    /// a listening run.
     func play(url: URL, gainDb: Double = 0, leadMs: Int64 = 0, fadeDb: Double = 0,
               onFinish: (@MainActor () -> Void)? = nil) {
         rearms = 0
@@ -109,7 +110,7 @@ final class PronunciationPlayer {
         let headMs = Playback.shared.headMs(leadMs: request.leadMs,
                                             durationMs: Int64(Double(file.length) / rate * 1000))
         let head = AVAudioFramePosition(Double(headMs) / 1000 * rate)
-        equalizer.globalGain = Float(Playback.shared.gainDb(measured: request.gainDb) + request.fadeDb)
+        equalizer.globalGain = Float(fadedGainDb(gainDb: request.gainDb, fadeDb: request.fadeDb))
         self.onFinish = onFinish
         let current = playback
         node.scheduleSegment(file, startingFrame: head,
