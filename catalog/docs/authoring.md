@@ -54,6 +54,16 @@ is what tells them apart (`kuacha` verlassen vs `kuacha kazi` kündigen,
 disambiguator, it is carried by the merged language alone, and the homonym rule above
 governs it.
 
+**Pick the word a speaker says, never the word that sits furthest from another card.**
+Two realizations one edit apart are safe by construction:
+a typed form that is exactly some card's answer grades `Match.OtherWord`
+instead of earning typo credit (`../../kern/README.md` § catalog-wide produce grading),
+which is why sw `kupata` has always stood beside `kukata`
+and de `sehen` beside `stehen`.
+The bar that does bind is a display-identical prompt inside ONE area,
+where the area label would be the same cue on both — and lint holds that,
+so it is never a distance anyone has to measure while authoring.
+
 ## Which area a concept lives in
 
 **An area holds a few dozen cards.** It is a shelf a learner can hold in their head and
