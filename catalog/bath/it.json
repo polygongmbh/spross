@@ -13,7 +13,8 @@
   },
   "toilet": {
    "text": "gabinetto",
-   "variants": ["water", "WC", "tazza"],
+   "synonyms": ["water"],
+   "variants": ["WC", "tazza"],
    "grammar": { "gender": "il" },
    "notes": {
     "de": "il gabinetto ist die Toilette selbst; im Alltag sagt man meist il water, italienisch ausgesprochen vater. Nach der Toilette fragt man mit Dov'è il bagno?",
