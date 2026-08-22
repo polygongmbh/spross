@@ -55,8 +55,8 @@ final class ListeningDriver {
         self.model = model
         state = ListeningRun.shared.idle(candidates: ListeningAvailability(model: model).candidates)
         // why: the bedtime is a clock, not a decision — when it arrives the run
-        // is simply over, wherever the beat chain had got to.
-        bedtime.onExpire = { [weak self] in self?.expire() }
+        // is over at the next seam the beat chain reaches.
+        bedtime.onExpire = { [weak self] in self?.bedtimeArrived() }
     }
 
     // MARK: - The run
@@ -150,7 +150,15 @@ final class ListeningDriver {
                      languages: learning.map { "\(known) – \($0)" } ?? known)
     }
 
-    /// The bedtime arrived: the run is over and the screen leaves with it.
+    /// The bedtime arrived. A run with words in the air is left to reach the end
+    /// of its turn — `walk` ends it at that seam — so this is only the case with
+    /// no seam coming: a paused run, or a run already between turns.
+    private func bedtimeArrived() {
+        guard state.paused || !state.active else { return }
+        expire()
+    }
+
+    /// The run is over and the screen leaves with it.
     private func expire() {
         close()
         closed = true
@@ -224,10 +232,21 @@ final class ListeningDriver {
     }
 
     /// Says one beat, waits kern's gap on its completion, and walks on; past the
-    /// last beat the turn is over and the reducer draws the next one.
+    /// last beat the turn is over and the reducer draws the next one — unless
+    /// the bedtime arrived while it was being said, and this seam is where the
+    /// run ends.
     private func walk(_ beats: [Beat], from index: Int, generation gen: Int) {
-        guard gen == generation, !bedtime.expired else { return }
+        guard gen == generation else { return }
         guard index < beats.count else {
+            // why: the SEAM, never the deadline itself — a word cut off mid-air
+            // is exactly the change loud enough to wake someone that the ramp
+            // spends the whole bedtime avoiding. The turn is the mode's unit and
+            // it is already down at the floor by now, so the few seconds it runs
+            // over are the quietest of the run.
+            if bedtime.expired {
+                expire()
+                return
+            }
             dispatch(ListeningIntent.Advance.shared)
             return
         }

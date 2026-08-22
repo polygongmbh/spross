@@ -107,6 +107,8 @@ Engine contract: `../README.md`.
   `listeningGainDb(msRemaining, totalMs)` fades the WHOLE run down to
   `LISTENING_FADE_FLOOR_DB` rather than cutting — a hard stop is a change loud enough to
   wake the listener, which is the opposite of what a bedtime is for.
+  For the same reason the deadline ends the run at the SEAM BETWEEN TURNS rather than at the
+  moment it falls: the turn in the air finishes, at the floor it has already reached.
   The gain is applied ON TOP of a recording's `Playback.gainDb`, and clamped to its own floor
   rather than `GAIN_LIMIT_DB`, which bounds how far a MEASUREMENT may be trusted and not a
   level kern chose.

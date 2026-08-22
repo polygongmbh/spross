@@ -240,10 +240,6 @@ class ListeningDriver(
 
     /** One saying, and the gap that follows it once the word has actually ended. */
     private fun sound(turn: ListeningTurn, at: ListeningBeat) {
-        if (expired()) {
-            model.closeListening()
-            return
-        }
         beat = at
         val token = ++generation
         val gap = when (at) {
@@ -257,7 +253,13 @@ class ListeningDriver(
                 when (at) {
                     ListeningBeat.Target -> sound(turn, ListeningBeat.Meaning)
                     ListeningBeat.Meaning -> sound(turn, ListeningBeat.Echo)
-                    ListeningBeat.Echo -> dispatch(ListeningIntent.Advance)
+                    // why: the bedtime ends the run at the SEAM between turns, never at the
+                    // deadline itself — a word cut off mid-air is exactly the change loud
+                    // enough to wake someone that the ramp spends the whole bedtime avoiding.
+                    // The turn is already down at the floor by now, so the few seconds it
+                    // runs over are the quietest of the run.
+                    ListeningBeat.Echo ->
+                        if (expired()) model.closeListening() else dispatch(ListeningIntent.Advance)
                 }
             }, gap)
         }
@@ -307,6 +309,10 @@ class ListeningDriver(
     private fun fadeDb(): Double =
         remainingMs()?.let { listeningGainDb(it, timerTotalMs) } ?: 0.0
 
-    /** The bedtime has arrived: a deadline in the past. A run with none set never arrives. */
+    /**
+     * The bedtime has arrived: a deadline in the past. A run with none set never arrives.
+     * Asked at the seam between turns and nowhere else, so what it ends is a turn that
+     * finished rather than a word halfway out.
+     */
     private fun expired(): Boolean = remainingMs()?.let { it <= 0 } == true
 }
