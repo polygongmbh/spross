@@ -21,7 +21,6 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
@@ -49,20 +48,28 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     val chrome = model.chrome
     val heard = ui.producePrompt == ProducePrompt.Sound
     val revealed = flow.answerRevealed
+    // The word takes the replay glyph's place once there is nothing left to withhold:
+    // the learner said they cannot listen, or the answer is out and the spelling is
+    // what the reveal owes.
+    val written = heard && (flow.promptInText || revealed)
 
     VocabCard(
         emoji = card.emoji,
         cue = ui.emojiCue,
         revealed = revealed,
-        closingLines = if (revealed) targetLines(card.target, chrome) else emptyList(),
+        closingLines = when {
+            !revealed -> emptyList()
+            // The word stands in the prompt slot with its plural under it (`WrittenPrompt`),
+            // exactly as a recognition prompt does, so only the family closes the card.
+            heard -> listOfNotNull(CardDisplay.alsoLine(card.target, chrome, listOf(card.target.text)))
+            else -> targetLines(card.target, chrome)
+        },
         // The note is the card's last line whichever side authored it — a literal
         // gloss belongs to the concept, not to one of its two faces.
         note = if (revealed) card.target.note ?: card.source.note else null,
     ) {
         when {
-            // The word could not be listened to, so it stands as text — a target word on a
-            // prompt, rendered as one, and still tappable to hear.
-            heard && flow.promptInText -> WrittenPrompt(model, ui)
+            written -> WrittenPrompt(model, ui)
             heard -> ReplayPrompt(model, ui)
             else -> PromptWord(model, ui)
         }
@@ -172,9 +179,10 @@ private fun ReplayPrompt(model: AppModel, ui: SessionUi) {
 }
 
 /**
- * The word the learner could not listen to, standing as text: a target word on a prompt,
- * with the speaker that says it, so the card still teaches the sound it was asking from.
- * The meaning stays withheld — only the channel the question arrives through moved.
+ * The word that played, standing as text: a target word on a prompt, rendered as one, with
+ * the speaker that says it — so the card still teaches the sound it was asking from.
+ * While the question stands the meaning stays withheld; only the channel it arrives
+ * through moved.
  */
 @Composable
 private fun WrittenPrompt(model: AppModel, ui: SessionUi) {
@@ -256,14 +264,22 @@ private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
 private fun ProduceReveal(model: AppModel, ui: SessionUi) {
     val card = ui.card ?: return
     val chrome = model.chrome
-    // why: a sound-prompted card never said what the word MEANS, so the reveal owes
-    // it back — otherwise a miss teaches nothing but spelling.
+    // why: a card asked by ear owes the MEANING back, so its reveal is shaped like the
+    // recognition one — the answer where the answer goes, and the word that played
+    // standing above it in writing, which is what a retype finishes against.
     if (ui.producePrompt == ProducePrompt.Sound) {
-        Text(
-            (listOf(card.source.text) + card.source.synonyms).joinToString(" / "),
-            style = MaterialTheme.typography.titleMedium,
-            textAlign = TextAlign.Center,
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+        ) {
+            Headword(
+                (listOf(card.source.text) + card.source.synonyms).joinToString(" / "),
+                color = Dl.colors.accent,
+                modifier = Modifier.weight(1f, fill = false),
+            )
+            if (card.promptFeminineMarker) FeminineBadge()
+        }
+        return
     }
     TargetReveal(
         card.target, chrome,
