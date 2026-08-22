@@ -45,6 +45,9 @@ final class NowPlaying {
 
     static let shared = NowPlaying()
 
+    /// What the system recognizes the run BY, across every refresh of the card.
+    private static let identity = "net.spross.app.listening"
+
     private var commands: Commands?
     private var run: Run?
     private var paused = false
@@ -112,6 +115,12 @@ final class NowPlaying {
             MPMediaItemPropertyArtist: run.languages,
             MPMediaItemPropertyAlbumTitle: word,
             MPNowPlayingInfoPropertyPlaybackRate: paused ? 0.0 : 1.0,
+            MPNowPlayingInfoPropertyMediaType: MPNowPlayingInfoMediaType.audio.rawValue,
+            // why: one IDENTITY for the whole run. Without it the system reads
+            // every refresh as a new item and invalidates its queue — the word
+            // on the album line moves each turn, so a card with nothing stable
+            // to be recognized by is a new track three times a minute.
+            MPNowPlayingInfoPropertyExternalContentIdentifier: Self.identity,
         ]
         if let artwork { info[MPMediaItemPropertyArtwork] = artwork }
         // why: SET either way, never omitted. The system builds its idea of the
