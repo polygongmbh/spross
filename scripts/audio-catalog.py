@@ -54,17 +54,16 @@ FFMPEG = os.environ.get('FFMPEG', 'ffmpeg')
 #   gain      full-range plane (headphones, Bluetooth, car, USB) — flat LUFS against
 #             `target_lufs`, the word packs' own median (-18.0, re-derived 2026-08-15).
 #   gainPhone the phone-speaker plane — the same loudness through SPEAKER_LENS against
-#             `speaker_lufs`, the packs' own lensed median (-25.1, re-derived 2026-08-21
-#             when the lens stopped being sw-only, then sharpened to a real phone's rolloff
-#             once the route split made the gentle compromise unnecessary).
+#             `speaker_lufs`, the packs' own lensed median (-26.9, re-derived 2026-08-21:
+#             sw-only at -22.6, then all packs through a real phone's gradual roll-off).
 #
 # The rule was ≤ 6 dB → attenuate everything down to the quietest class; past that the
 # whole app would whisper, so the scheme is BOOST against the pack median: letters take
 # up to +20 dB and the players need a boost path. (Letters also open with a median 1077 ms
-# of dead air, against 173 ms for words.) The lens is a real phone's rolloff now — 500 Hz at
-# 24 dB/oct, see audio_measure.SPEAKER_LENS — and it is safe to be: the route split means a
-# phone-plane lift is never heard on headphones, so each plane keeps its own number rather
-# than one compromise between them.
+# of dead air, against 173 ms for words.) The lens is a real phone's gradual roll-off now —
+# −20 dB below 450 Hz, −8 dB at 800 Hz, flat past 1.2 kHz, see audio_measure.SPEAKER_LENS —
+# and it is safe to be: the route split means a phone-plane lift is never heard on
+# headphones, so each plane keeps its own number rather than one compromise between them.
 #
 # A boost is also a CLIPPING risk, so the loudness number never decides a gain alone: the
 # player adds it to samples that already peak where they peak, and past full scale iOS's EQ
@@ -77,7 +76,7 @@ FFMPEG = os.environ.get('FFMPEG', 'ffmpeg')
 ANALYSIS = {
     'scheme': 'boost',
     'target_lufs': -18.0,
-    'speaker_lufs': -25.1,
+    'speaker_lufs': -26.9,
     # 9.0.1 reproduces 8.1.2's decimals exactly: a --reindex under it re-gained nothing.
     'ffmpeg': 'ffmpeg version 9.0.1',
 }

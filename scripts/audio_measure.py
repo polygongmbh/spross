@@ -27,13 +27,22 @@ WORKERS = 10
 # on nasals and back vowels: 0.1 dB apart flat, and 16 apart through this. Which is the
 # whole of what "the words are not balanced" turned out to be.
 #
-# 500 Hz at 24 dB/oct is a phone speaker, not a compromise: a real iPhone gives up around
-# 500 Hz and rolls off steeply, so the lens rolls off steeply too. That only became possible
-# once the phone plane split from the full-range one (audio-catalog.py's TWO PLANES) — the
-# route split means this filter is never heard on headphones, so nothing here has to be
-# forgiven elsewhere. A bassy word still plays the level a phone radiates of it, and a
-# bright one the level a phone radiates of it; the player corrects each to the same number.
-SPEAKER_LENS = 'highpass=f=500:poles=2,highpass=f=500:poles=2'
+# The curve is a phone's roll-off, gradual rather than a hard high-pass — a real speaker
+# loses low end across the low-mids, not at one frequency: −20 dB below 450 Hz, −8 dB at
+# 800 Hz, flat past 1.2 kHz. A hard high-pass at 500 Hz still treated 800 Hz as full
+# output, and the word that lived there (a low, bassy voice like Jeuwre's) came back dull
+# and under-levelled. This only became possible once the phone plane split from the
+# full-range one (audio-catalog.py's TWO PLANES): the route split means the lens is never
+# heard on headphones, so nothing here has to be forgiven elsewhere.
+#
+# firequalizer is an FIR with `gain_entry` anchor points and linear interpolation between
+# them; the anchors are the curve, so a future phone with a different response is a one-line
+# change. The gains are dB at 0 dB reference, so the flat region above 1.2 kHz passes
+# unchanged and the whole thing is a measurement weight, never an edit to the bytes.
+SPEAKER_LENS = (
+    r'firequalizer=gain_entry=entry(450\,-20)\;entry(800\,-8)\;entry(1200\,0)'
+    r':gain=gain_interpolate(f)'
+)
 
 INTEGRATED = re.compile(r'^\s+I:\s+(-?[\d.]+|-inf) LUFS', re.M)
 SILENCE_START = re.compile(r'silence_start:\s*(-?[\d.]+)')
