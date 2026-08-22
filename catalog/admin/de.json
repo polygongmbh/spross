@@ -22,7 +22,11 @@
   "extend": { "text": "verlängern" },
   "bring": { "text": "mitbringen" },
   "copy": { "text": "kopieren" },
-  "passport": { "text": "Pass", "grammar": { "gender": "der", "plural": "Pässe" } },
+  "passport": {
+   "text": "Reisepass",
+   "variants": ["Pass"],
+   "grammar": { "gender": "der", "plural": "Reisepässe" }
+  },
   "address": { "text": "Adresse", "grammar": { "gender": "die", "plural": "-n" } },
   "certificate": { "text": "Bescheinigung", "grammar": { "gender": "die", "plural": "-en" } },
   "birth-certificate": { "text": "Geburtsurkunde", "grammar": { "gender": "die", "plural": "-n" } },
