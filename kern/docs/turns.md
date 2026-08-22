@@ -109,6 +109,8 @@ Engine contract: `../README.md`.
   wake the listener, which is the opposite of what a bedtime is for.
   For the same reason the deadline ends the run at the SEAM BETWEEN TURNS rather than at the
   moment it falls: the turn in the air finishes, at the floor it has already reached.
+  A PAUSED run has no seam coming and is left parked — the learner stopped it themselves,
+  and a bedtime is there to end a run nobody is attending, not one somebody just touched.
   The gain is applied ON TOP of a recording's `Playback.gainDb`, and clamped to its own floor
   rather than `GAIN_LIMIT_DB`, which bounds how far a MEASUREMENT may be trusted and not a
   level kern chose.

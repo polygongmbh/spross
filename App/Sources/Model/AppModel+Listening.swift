@@ -54,9 +54,6 @@ final class ListeningDriver {
     init(model: AppModel) {
         self.model = model
         state = ListeningRun.shared.idle(candidates: ListeningAvailability(model: model).candidates)
-        // why: the bedtime is a clock, not a decision — when it arrives the run
-        // is over at the next seam the beat chain reaches.
-        bedtime.onExpire = { [weak self] in self?.bedtimeArrived() }
     }
 
     // MARK: - The run
@@ -119,13 +116,7 @@ final class ListeningDriver {
         AudioSession.endListening()
     }
 
-    /// A pause takes the beat chain down with it, so an already-arrived bedtime
-    /// would never reach the seam that ends it: while a run is paused, the
-    /// pause IS the seam.
-    func togglePause() {
-        dispatch(ListeningIntent.TogglePause.shared)
-        if state.paused, bedtime.expired { expire() }
-    }
+    func togglePause() { dispatch(ListeningIntent.TogglePause.shared) }
     func skip() { dispatch(ListeningIntent.Skip.shared) }
     func again() { dispatch(ListeningIntent.Repeat.shared) }
 
@@ -154,14 +145,6 @@ final class ListeningDriver {
         }
         return .init(title: "\(Self.brand) · \(mode)",
                      languages: learning.map { "\(known) – \($0)" } ?? known)
-    }
-
-    /// The bedtime arrived. A run with words in the air is left to reach the end
-    /// of its turn — `walk` ends it at that seam — so this is only the case with
-    /// no seam coming: a paused run, or a run already between turns.
-    private func bedtimeArrived() {
-        guard state.paused || !state.active else { return }
-        expire()
     }
 
     /// The run is over and the screen leaves with it.
@@ -253,6 +236,7 @@ final class ListeningDriver {
                 expire()
                 return
             }
+
             dispatch(ListeningIntent.Advance.shared)
             return
         }

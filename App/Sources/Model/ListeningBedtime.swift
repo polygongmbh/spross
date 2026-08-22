@@ -20,8 +20,6 @@ final class ListeningBedtime {
     /// between (a ticking clock is a clock you watch, which is the opposite of
     /// what a sleep timer is for).
     private(set) var minutesLeft: Int?
-    /// Run on the main actor the moment the bedtime arrives.
-    var onExpire: (() -> Void)?
 
     private var deadline: Date?
     /// The stretch the CURRENT bedtime runs over — what kern's ramp spans, and
@@ -99,9 +97,11 @@ final class ListeningBedtime {
         ticker = Task { @MainActor [weak self] in
             while !Task.isCancelled, let self {
                 minutesLeft = Self.minutes(until: deadline)
+                // why: the bedtime does not END anything — the run reads it at the
+                // seam between two turns and stops itself there. All this clock
+                // owes past the deadline is to stop counting.
                 if expired {
                     stop()
-                    onExpire?()
                     return
                 }
                 try? await Task.sleep(for: .milliseconds(Self.msUntilTheMinuteTurns(deadline)))
