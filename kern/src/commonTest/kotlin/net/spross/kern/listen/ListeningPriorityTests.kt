@@ -5,8 +5,8 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 
-/** What a listening draw is willing to say twice — one ladder in stability. */
-class ListeningWeightTests {
+/** Where a word stands on the listening draw — one ladder in stability. */
+class ListeningPriorityTests {
 
     private fun candidate(
         stability: Double,
@@ -27,7 +27,7 @@ class ListeningWeightTests {
      */
     @Test
     fun aSettledWordKeepsTheDrawFloor() {
-        assertEquals(1, listeningWeight(candidate(30.0, suspended = false, scheduled = true)))
+        assertEquals(1, listeningPriority(candidate(30.0, suspended = false, scheduled = true)))
     }
 
     /**
@@ -38,13 +38,13 @@ class ListeningWeightTests {
      */
     @Test
     fun higherStabilityMeansLowerPriority() {
-        assertEquals(5, listeningWeight(candidate(0.0, suspended = false, scheduled = true)))
-        assertEquals(4, listeningWeight(candidate(2.0, suspended = false, scheduled = true)))
-        assertEquals(3, listeningWeight(candidate(4.0, suspended = false, scheduled = true)))
-        assertEquals(2, listeningWeight(candidate(6.0, suspended = false, scheduled = true)))
+        assertEquals(5, listeningPriority(candidate(0.0, suspended = false, scheduled = true)))
+        assertEquals(4, listeningPriority(candidate(2.0, suspended = false, scheduled = true)))
+        assertEquals(3, listeningPriority(candidate(4.0, suspended = false, scheduled = true)))
+        assertEquals(2, listeningPriority(candidate(6.0, suspended = false, scheduled = true)))
         // The floor, however settled: ten days or a hundred are the same rung.
-        assertEquals(1, listeningWeight(candidate(8.0, suspended = false, scheduled = true)))
-        assertEquals(1, listeningWeight(candidate(40.0, suspended = false, scheduled = true)))
+        assertEquals(1, listeningPriority(candidate(8.0, suspended = false, scheduled = true)))
+        assertEquals(1, listeningPriority(candidate(40.0, suspended = false, scheduled = true)))
     }
 
     /**
@@ -55,18 +55,18 @@ class ListeningWeightTests {
      */
     @Test
     fun aSuspendedWordEarnsNoBoost() {
-        assertEquals(1, listeningWeight(candidate(0.0, suspended = true, scheduled = true)))
+        assertEquals(1, listeningPriority(candidate(0.0, suspended = true, scheduled = true)))
     }
 
     /**
-     * RULE: an unscheduled word takes the fixed new weight, not the floor.
+     * RULE: an unscheduled word takes the fixed new priority, not the floor.
      * WHY: it has no stability to ladder on — there is no history to read — so its value is
      * set, a focus tier on its own: a first hearing is the mode's cheapest breadth, and new
      * words are met alongside the ones that are not sticking.
      */
     @Test
-    fun anUnseenWordTakesTheNewWeight() {
-        assertEquals(LISTENING_NEW_WEIGHT, listeningWeight(candidate(0.0, suspended = false, scheduled = false)))
+    fun anUnseenWordTakesTheNewPriority() {
+        assertEquals(LISTENING_NEW_PRIORITY, listeningPriority(candidate(0.0, suspended = false, scheduled = false)))
     }
 
     /**
@@ -77,10 +77,10 @@ class ListeningWeightTests {
      */
     @Test
     fun unsettledAndNewLeadOverConsolidated() {
-        val fresh = listeningWeight(candidate(0.0, suspended = false, scheduled = true))
-        val new = listeningWeight(candidate(0.0, suspended = false, scheduled = false))
-        val settling = listeningWeight(candidate(4.0, suspended = false, scheduled = true))
-        val consolidated = listeningWeight(candidate(20.0, suspended = false, scheduled = true))
+        val fresh = listeningPriority(candidate(0.0, suspended = false, scheduled = true))
+        val new = listeningPriority(candidate(0.0, suspended = false, scheduled = false))
+        val settling = listeningPriority(candidate(4.0, suspended = false, scheduled = true))
+        val consolidated = listeningPriority(candidate(20.0, suspended = false, scheduled = true))
         assertTrue(fresh >= new && new >= settling && settling > consolidated)
     }
 

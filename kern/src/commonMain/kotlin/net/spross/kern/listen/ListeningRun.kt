@@ -188,7 +188,7 @@ object ListeningRun {
         if (pool.isEmpty()) return state.copy(turn = null)
         val held = state.recent.takeLast(minOf(RECENCY_WINDOW, pool.size - 1)).toSet()
         val eligible = pool.filter { it.card.id !in held }
-        val picked = weighted(eligible, eligible.map(::listeningWeight), rng)
+        val picked = weighted(eligible, eligible.map(::listeningPriority), rng)
         return state.copy(
             turn = turnFor(picked),
             recent = (state.recent + picked.card.id).takeLast(RECENCY_WINDOW),

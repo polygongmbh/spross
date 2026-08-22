@@ -133,17 +133,17 @@ fun listeningGainDb(msRemaining: Long, totalMs: Long): Double {
 
 
 /**
- * A word the playlist may say, plus the two things about it the draw weighs that a [Card]
+ * A word the playlist may say, plus the two things about it the priority reads that a [Card]
  * cannot carry.
  *
  * [stability] is FSRS's own figure in days, read from `CardScheduling` and never re-derived —
- * the whole draw ladder is a function of it. [suspended] and [scheduled] are the two facts
+ * the whole priority ladder is a function of it. [suspended] and [scheduled] are the two facts
  * that decide whether that figure may be believed at all: an unscheduled card has no history,
- * and a suspended one's history has already been acted on (see [listeningWeight]).
+ * and a suspended one's history has already been acted on (see [listeningPriority]).
  */
 data class ListeningCandidate(
     val card: Card,
-    /** FSRS stability in days — the whole draw ladder reads off this one figure. */
+    /** FSRS stability in days — the whole priority ladder reads off this one figure. */
     val stability: Double,
     val suspended: Boolean,
     /** Whether the card carries a schedule — i.e. whether the learner has ever answered it. */
@@ -151,38 +151,38 @@ data class ListeningCandidate(
 )
 
 /**
- * What a never-answered word is worth on the draw, set rather than read — it has no stability
- * to ladder on. A focus tier: a first hearing is the mode's cheapest breadth, and new words
- * are met alongside the ones that are not sticking.
+ * Where a never-answered word stands, set rather than read — it has no stability to ladder
+ * on. A focus tier: a first hearing is the mode's cheapest breadth, and new words are met
+ * alongside the ones that are not sticking.
  */
-const val LISTENING_NEW_WEIGHT: Int = 4
+const val LISTENING_NEW_PRIORITY: Int = 4
 
 /** The top of the stability ladder — a word at about zero stability (just learned, just lapsed). */
-const val LISTENING_MAX_STABILITY_WEIGHT: Int = 5
+const val LISTENING_MAX_STABILITY_PRIORITY: Int = 5
 
-/** Days of stability a weight point costs — the step of the ladder. */
+/** Days of stability a priority point costs — the step of the ladder. */
 const val LISTENING_STABILITY_STEP_DAYS: Double = 2.0
 
 /**
- * How much of the listening draw a candidate is worth, as one ladder in STABILITY — the
- * higher a word's stability, the lower its place on the draw.
+ * Where a candidate stands on the listening draw, as one ladder in STABILITY — the higher a
+ * word's stability, the lower its place. Higher priority means heard earlier and oftener.
  *
  * A word at zero stability (just learned, or just lapsed back down) is the whole point of
  * the hour and leads; every [LISTENING_STABILITY_STEP_DAYS] of stability costs a point, so
  * the not-quite-settled rotate in the middle and the consolidated ones are pushed to the
  * end — at the bare floor, still worth hearing, never what the hour is about.
  *
- * An UNSCHEDULED word has no stability to read, so it takes the fixed [LISTENING_NEW_WEIGHT]
+ * An UNSCHEDULED word has no stability to read, so it takes the fixed [LISTENING_NEW_PRIORITY]
  * instead: a first hearing is the mode's cheapest breadth, and a new word is a focus tier on
  * its own. A SUSPENDED word keeps the bare floor whatever its figure — the box has already
  * decided that leech is being pushed outward, and an hour spent on it is not what listening
  * is for.
  */
-fun listeningWeight(candidate: ListeningCandidate): Int {
+fun listeningPriority(candidate: ListeningCandidate): Int {
     if (candidate.suspended) return 1
-    if (!candidate.scheduled) return LISTENING_NEW_WEIGHT
-    return (LISTENING_MAX_STABILITY_WEIGHT - (candidate.stability / LISTENING_STABILITY_STEP_DAYS).toInt())
-        .coerceIn(1, LISTENING_MAX_STABILITY_WEIGHT)
+    if (!candidate.scheduled) return LISTENING_NEW_PRIORITY
+    return (LISTENING_MAX_STABILITY_PRIORITY - (candidate.stability / LISTENING_STABILITY_STEP_DAYS).toInt())
+        .coerceIn(1, LISTENING_MAX_STABILITY_PRIORITY)
 }
 
 /**
