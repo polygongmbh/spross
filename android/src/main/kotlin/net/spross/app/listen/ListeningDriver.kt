@@ -188,6 +188,7 @@ class ListeningDriver(
         // why: every intent kills the chain in flight — a gap armed off the word that was
         // just cut must not walk the playlist on behind the learner.
         generation++
+        val was = state?.let { it.paused to it.active }
         state = reduction.state
         for (effect in reduction.effects) {
             when (effect) {
@@ -198,7 +199,11 @@ class ListeningDriver(
                 }
             }
         }
-        publish()
+        // why: the card carries nothing that moves with a turn, so a turn is not a reason to
+        // push one — only a run that started, stopped or changed its mind about playing is.
+        // Asked HERE rather than at each caller so no route in can forget: a headphone
+        // button, a focus loss and the on-screen button all arrive through this one door.
+        if (was != (paused to active)) publish()
     }
 
     /**
@@ -216,9 +221,6 @@ class ListeningDriver(
             ListeningNowPlaying(
                 title = "$SPROSS_BRAND · ${chrome.listenTitle}",
                 languages = languages(),
-                // The article is part of the word here as it is in the voice: the lock
-                // screen shows what is being said, not a citation form beside it.
-                target = turn.spokenArticle?.let { "$it ${turn.targetForm}" } ?: turn.targetForm,
                 paused = run.paused,
                 bedtime = remainingMs()?.let {
                     ListeningBedtimeProgress(timerTotalMs - it.coerceAtLeast(0L), timerTotalMs)

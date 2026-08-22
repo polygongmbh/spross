@@ -156,24 +156,31 @@ final class ListeningDriver {
     // MARK: - Kern
 
     private func dispatch(_ intent: ListeningIntent) {
+        let was = (paused: state.paused, active: state.active)
         let reduction = ListeningRun.shared.reduce(state: state, intent: intent, rng: drillRandom)
         state = reduction.state
         // why: the EFFECTS, never a diff of the turn — Repeat leaves the state
         // identical and its only observable is the Play it asks for.
         for effect in reduction.effects { apply(effect) }
-        publish()
+        // why: the card carries nothing that moves with a turn, so a turn is not
+        // a reason to push one — only a run that started, stopped or changed its
+        // mind about playing is. Asked HERE rather than at each caller so no
+        // route in can forget: a headphone button, an interruption and the
+        // on-screen button all arrive through this one door.
+        if state.paused != was.paused || state.active != was.active { publish() }
         // An empty pool opens on silence rather than on a card with nothing to
         // say; the Heute card gates on the same report, so this is a closed
         // door and not a screen.
         if state.active, state.turn == nil { closed = true }
     }
 
-    /// The card, as it stands right now. Every turn redraws it — which is also
-    /// what keeps the bedtime's progress bar honest without a clock of its own:
-    /// the system runs the bar on from wherever it was last told, and it is
-    /// told again a few seconds later.
+    /// The card, as it stands right now. The bedtime's bar needs no clock of its
+    /// own between pushes: the system runs it on from the elapsed time and the
+    /// rate it was last handed, and every push that follows corrects it.
     private func publish() {
-        NowPlaying.shared.show(turn: state.turn, paused: state.paused, bedtime: bedtime.progress)
+        NowPlaying.shared.show(running: state.turn != nil,
+                               paused: state.paused,
+                               bedtime: bedtime.progress)
     }
 
     private func apply(_ effect: ListeningEffect) {

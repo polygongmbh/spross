@@ -48,12 +48,12 @@ interface ListeningControls {
 const val SPROSS_BRAND = "Spross"
 
 /**
- * The run as the lock screen shows it: what the run IS, and the word in the air inside it.
+ * The run as the lock screen shows it — the RUN, and nothing that moves with a turn.
  *
- * The headline is the part that HOLDS STILL — the app, the mode and the pair of languages —
- * because a card that renamed itself every few seconds is a card nobody can read from a
- * pocket, and every player the system knows treats a changed title as a changed track. The
- * word goes on the line beneath, where a track inside a run belongs.
+ * That is what lets the card be pushed when the run changes rather than three times a
+ * minute: the artwork crosses to the system whole on every push, and a mode built for the
+ * hours a phone spends in a pocket cannot pay that per word. The word is the one thing that
+ * would move, and a word left standing from two turns ago is worse than no word at all.
  *
  * The labels travel WITH the state rather than being looked up in the service, because chrome
  * is keyed to the language the learner already knows and only the model holds that. A service
@@ -65,8 +65,6 @@ data class ListeningNowPlaying(
     val title: String,
     /** "Deutsch – Kiswahili", known first: the pair, in the order the mode says them. */
     val languages: String,
-    /** The target word with its article, exactly as the voice says it. */
-    val target: String,
     val paused: Boolean,
     /** The bedtime as a length played and a length to go, or null where none is set. */
     val bedtime: ListeningBedtimeProgress?,

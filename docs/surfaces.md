@@ -192,12 +192,13 @@ auto-advance beats these share with it, are `design.md`'s.
   and take play/pause/next from it and from a headphone button, driving the same reducer the
   on-screen buttons drive; how it is spoken, and what it does to whatever else was playing,
   is `read-aloud.md`.
-  What that card SAYS is the run, not the turn: the app icon, the app and mode as the title
-  and the pair of languages under it, with the word in the air on the third line. The
-  headline is the half that holds still — a card renamed every few seconds cannot be read
-  from a pocket or a dashboard, and every player the two systems know treats a changed title
-  as a changed track. A bedtime, and only a bedtime, gives the card a progress bar: it is the
-  one thing a run that otherwise laps forever has a length of.
+  What that card SAYS is the run and never the turn: the app icon, the app and mode as the
+  title, the pair of languages under it, and nothing that moves word to word. That is what
+  lets it be PUSHED when the run changes — opened, paused, resumed, given a bedtime, closed —
+  rather than three times a minute: the artwork crosses to the system whole on every push,
+  and a mode built for the hours a phone spends in a pocket cannot pay that per word. A
+  bedtime, and only a bedtime, gives the card a progress bar: it is the one thing a run that
+  otherwise laps forever has a length of, and the system runs the bar on between pushes.
 
 ## Android companion
 

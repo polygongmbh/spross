@@ -96,30 +96,34 @@ final class NowPlaying {
         }
     }
 
-    /// The card: the run's own name and its languages, the app icon beside
-    /// them, and the word in the air on the album line — the TARGET word, with
-    /// the article the voice says, so what is read and what is heard cannot
-    /// disagree. A nil turn clears the card entirely rather than leaving the
-    /// last word standing over silence.
-    func show(turn: ListeningTurn?, paused: Bool, bedtime: Bedtime?) {
+    /// The card: the run's own name and its languages, and the app icon beside
+    /// them. Nothing on it moves with a TURN — so it is pushed when the run
+    /// changes and not three times a minute, and the artwork, which crosses to
+    /// the system whole on every push, crosses a handful of times a run rather
+    /// than seven hundred times an hour in a pocket.
+    ///
+    /// Which is also why the word is not here. It is the one thing that would
+    /// move per turn, iOS renders no album line on a phone, and a word left
+    /// standing from two turns ago is worse than no word at all.
+    ///
+    /// `running` false clears the card entirely rather than leaving it up over
+    /// silence.
+    func show(running: Bool, paused: Bool, bedtime: Bedtime?) {
         self.paused = paused
         let center = MPNowPlayingInfoCenter.default()
-        guard let turn, let run else {
+        guard running, let run else {
             center.nowPlayingInfo = nil
             center.playbackState = .stopped
             return
         }
-        let word = turn.spokenArticle.map { "\($0) \(turn.targetForm)" } ?? turn.targetForm
         var info: [String: Any] = [
             MPMediaItemPropertyTitle: run.title,
             MPMediaItemPropertyArtist: run.languages,
-            MPMediaItemPropertyAlbumTitle: word,
             MPNowPlayingInfoPropertyPlaybackRate: paused ? 0.0 : 1.0,
             MPNowPlayingInfoPropertyMediaType: MPNowPlayingInfoMediaType.audio.rawValue,
-            // why: one IDENTITY for the whole run. Without it the system reads
-            // every refresh as a new item and invalidates its queue — the word
-            // on the album line moves each turn, so a card with nothing stable
-            // to be recognized by is a new track three times a minute.
+            // why: one IDENTITY for the whole run, so the pushes that DO happen
+            // — a pause, a bedtime — land on the item already standing instead
+            // of replacing it and throwing away the position it was keeping.
             MPNowPlayingInfoPropertyExternalContentIdentifier: Self.identity,
         ]
         if let artwork { info[MPMediaItemPropertyArtwork] = artwork }

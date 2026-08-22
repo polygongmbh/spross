@@ -162,10 +162,9 @@ class ListeningService : Service() {
             MediaMetadata.Builder()
                 // The RUN is the title and its languages the artist: that is the pair every
                 // lock screen lays out largest line first, and it is the pair that holds
-                // still. The word in the air is the track inside it.
+                // still for the whole run.
                 .putString(MediaMetadata.METADATA_KEY_TITLE, now?.title ?: title)
                 .putString(MediaMetadata.METADATA_KEY_ARTIST, now?.languages.orEmpty())
-                .putString(MediaMetadata.METADATA_KEY_ALBUM, now?.target.orEmpty())
                 .putBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART, artwork())
                 // why: a bedtime is the one thing this run has a LENGTH of, so it is the one
                 // thing worth a bar; -1 is how a session says it has no duration at all,
@@ -219,12 +218,11 @@ class ListeningService : Service() {
             .setLargeIcon(artwork())
             .setContentTitle(now?.title ?: title)
             .setContentText(now?.languages.orEmpty())
-            .setSubText(now?.target.orEmpty())
             .setContentIntent(openApp())
             .setDeleteIntent(command(ACTION_CLOSE))
             .setVisibility(Notification.VISIBILITY_PUBLIC)
-            // why: the word changes every few seconds — an alert per turn would be a phone
-            // buzzing its way through a walk.
+            // why: a pause and a bedtime both redraw this — an alert per redraw would be a
+            // phone buzzing its way through a walk.
             .setOnlyAlertOnce(true)
             .setShowWhen(false)
         if (now != null) {
