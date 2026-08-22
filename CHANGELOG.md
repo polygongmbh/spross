@@ -8,8 +8,10 @@
   pupil an `alunno`, and a Swahili notice of termination now comes from the employer, the
   way it does in every other language. Swahili gained the office words it was missing —
   registering, renewing, copying — Ukrainian a word for wife, and Ukrainian idioms three of
-  the nine. Phrases that only rearranged words you already hold — `Tee oder Kaffee?`,
-  `viel Geld`, two of the three sentences about water — are gone.
+  the nine. And the phrase cards were held to a sharper test — a sentence has to teach
+  something its own words do not, an agreement, a case, a turn of phrase — so the three
+  dozen that only rearranged words you already hold are gone, and what is left is shorter
+  and carries more.
 
 - **A word is now levelled for the speaker it comes out of, so Swahili no longer sounds
   louder than the rest.** Its voice is higher and brighter, and a phone speaker radiates
