@@ -7,6 +7,7 @@ Successor to `docs/pronunciation-plan.md`, deleted once the feature shipped.
 The engine rule is `../kern/docs/audio.md`, the file format `../catalog/docs/audio.md`,
 and the per-file truth is the per-language manifests themselves — this doc states the posture,
 not the schema.
+Why the bundled recordings are mp3, and what a different codec would cost, is `audio-format.md`.
 The pack research (how each source was found, what was rejected, the coverage gaps)
 lives outside the repo in `data/reference/audio/README.md`.
 
