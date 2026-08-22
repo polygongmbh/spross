@@ -43,20 +43,33 @@
  {
   "group": "human",
   "titles": {
-   "en": "People & health",
-   "de": "Mensch & Gesundheit",
-   "eo": "Homoj kaj sano",
-   "es": "Personas y salud",
-   "fr": "Personnes et santé",
-   "it": "Persone e salute",
-   "sw": "Mtu na afya",
-   "uk": "Людина і здоров'я"
+   "en": "People & the body",
+   "de": "Mensch & Körper",
+   "eo": "Homoj kaj korpo",
+   "es": "Personas y cuerpo",
+   "fr": "Les gens et le corps",
+   "it": "Persone e corpo",
+   "sw": "Watu na mwili",
+   "uk": "Люди і тіло"
+  },
+  "areas": [{ "area": "people", "emoji": "👪" }, { "area": "body", "emoji": "🧍" }]
+ },
+ {
+  "group": "around",
+  "titles": {
+   "en": "Out and about",
+   "de": "Draußen",
+   "eo": "Survoje",
+   "es": "Fuera de casa",
+   "fr": "En vadrouille",
+   "it": "In giro",
+   "sw": "Nje na safarini",
+   "uk": "Надворі та в дорозі"
   },
   "areas": [
-   { "area": "people", "emoji": "👪" },
-   { "area": "body", "emoji": "🧍" },
-   { "area": "health", "emoji": "🩺" },
-   { "area": "doctor", "emoji": "🧑‍⚕️" }
+   { "area": "transport", "emoji": "🚌" },
+   { "area": "city", "emoji": "🏙️" },
+   { "area": "nature", "emoji": "🌳" }
   ]
  },
  {
@@ -82,22 +95,18 @@
   ]
  },
  {
-  "group": "around",
+  "group": "care",
   "titles": {
-   "en": "Out and about",
-   "de": "Draußen",
-   "eo": "Survoje",
-   "es": "Fuera de casa",
-   "fr": "En vadrouille",
-   "it": "In giro",
-   "sw": "Nje na safarini",
-   "uk": "Надворі та в дорозі"
+   "en": "Illness & treatment",
+   "de": "Krankheit & Behandlung",
+   "eo": "Malsano kaj kuracado",
+   "es": "Enfermedad y tratamiento",
+   "fr": "Maladie et soins",
+   "it": "Malattia e cure",
+   "sw": "Ugonjwa na matibabu",
+   "uk": "Хвороба та лікування"
   },
-  "areas": [
-   { "area": "transport", "emoji": "🚌" },
-   { "area": "city", "emoji": "🏙️" },
-   { "area": "nature", "emoji": "🌳" }
-  ]
+  "areas": [{ "area": "health", "emoji": "🩺" }, { "area": "doctor", "emoji": "🧑‍⚕️" }]
  },
  {
   "group": "official",
