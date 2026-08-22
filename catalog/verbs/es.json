@@ -45,6 +45,10 @@
    "notes": { "de": "Spanisch hat kein eigenes Verb dafür · ponerse de pie = sich hinstellen." }
   },
   "send": { "text": "enviar", "synonyms": ["mandar"] },
+  "deliver": {
+   "text": "repartir",
+   "notes": { "de": "repartir = ausliefern, zustellen · entregar heißt abgeben und gehört aufs Amt." }
+  },
   "do-you-have-water": { "text": "¿Tiene agua?", "variants": ["¿Tiene usted agua?", "¿Tienes agua?"] },
   "where-are-you-from": {
    "text": "¿De dónde es usted?",

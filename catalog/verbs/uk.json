@@ -30,6 +30,7 @@
   },
   "stand": { "text": "стояти" },
   "send": { "text": "надсилати", "variants": ["посилати", "відправляти"] },
+  "deliver": { "text": "доставляти" },
   "do-you-have-water": { "text": "У вас є вода?", "variants": ["У тебе є вода?"] },
   "where-are-you-from": { "text": "Звідки ви?" }
  }

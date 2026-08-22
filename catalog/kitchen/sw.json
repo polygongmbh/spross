@@ -21,7 +21,13 @@
   "reheat": { "text": "kupasha moto" },
   "stir": { "text": "kukoroga" },
   "take-out-trash": { "text": "kutupa taka" },
-  "careful": { "text": "angalia" },
+  "careful": {
+   "text": "tahadhari",
+   "variants": ["angalia"],
+   "notes": {
+    "de": "Tahadhari! ist die Warnung wie „Vorsicht!“ · angalia heißt hinsehen und wird gesprochen auch so gebraucht."
+   }
+  },
   "cup": { "text": "kikombe", "grammar": { "plural": "vikombe" } },
   "bowl": { "text": "bakuli", "grammar": { "plural": "mabakuli" } },
   "basket": { "text": "kikapu", "grammar": { "plural": "vikapu" } },
@@ -37,6 +43,6 @@
   "the-fridge-is-empty": { "text": "Friji iko tupu." },
   "can-you-set-the-table": { "text": "Unaweza kuandaa meza?" },
   "the-water-is-boiling-hot": { "text": "Maji yanachemka." },
-  "careful-very-hot": { "text": "Angalia, moto sana!", "variants": ["Angalia, ni moto sana!"] }
+  "careful-very-hot": { "text": "Tahadhari, moto sana!", "variants": ["Angalia, moto sana!"] }
  }
 }

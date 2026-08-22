@@ -20,6 +20,7 @@
  { "slug": "stop", "kind": "verb", "emoji": "⏹️" },
  { "slug": "stand", "kind": "verb", "emoji": "🧍" },
  { "slug": "send", "kind": "verb", "emoji": "📤" },
+ { "slug": "deliver", "kind": "verb", "emoji": "🚚" },
  { "slug": "do-you-have-water", "kind": "phrase", "emoji": "💧", "components": ["have"] },
  { "slug": "where-are-you-from", "kind": "phrase", "emoji": "🌍", "components": ["come"] }
 ]

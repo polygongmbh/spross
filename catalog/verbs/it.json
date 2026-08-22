@@ -53,6 +53,10 @@
    "variants": ["mandare", "spedire"],
    "notes": { "de": "inviare und mandare gelten beide · spedire ist das Verschicken per Post." }
   },
+  "deliver": {
+   "text": "recapitare",
+   "notes": { "de": "recapitare = zustellen, ausliefern · consegnare heißt abgeben und gehört aufs Amt." }
+  },
   "do-you-have-water": { "text": "Ha acqua?", "variants": ["Ha dell'acqua?", "Avete acqua?", "Hai acqua?"] },
   "where-are-you-from": {
    "text": "Di dov'è?",

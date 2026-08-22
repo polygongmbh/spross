@@ -42,6 +42,7 @@
    "notes": { "de": "Französisch hat kein eigenes Verb dafür · se mettre debout = sich hinstellen." }
   },
   "send": { "text": "envoyer" },
+  "deliver": { "text": "livrer" },
   "do-you-have-water": {
    "text": "Avez-vous de l'eau ?",
    "variants": ["Vous avez de l'eau ?", "As-tu de l'eau ?", "Tu as de l'eau ?"],

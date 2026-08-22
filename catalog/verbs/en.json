@@ -23,6 +23,7 @@
   "stop": { "text": "to stop" },
   "stand": { "text": "to stand" },
   "send": { "text": "to send" },
+  "deliver": { "text": "to deliver" },
   "do-you-have-water": { "text": "Do you have water?" },
   "where-are-you-from": { "text": "Where are you from?" }
  }

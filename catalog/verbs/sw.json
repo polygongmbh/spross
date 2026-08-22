@@ -45,7 +45,10 @@
     "de": "kupokea = entgegennehmen: kupokea barua, kupokea simu. Für „ich habe Arbeit bekommen“ sagt man nilipata kazi."
    }
   },
-  "look": { "text": "kutazama", "notes": { "de": "kutazama = anschauen, zusehen: kutazama televisheni." } },
+  "look": {
+   "text": "kuangalia",
+   "notes": { "de": "kuangalia = hinsehen, anschauen · kutazama ist eher zuschauen: kutazama televisheni." }
+  },
   "open": { "text": "kufungua" },
   "close": {
    "text": "kufunga",
@@ -60,9 +63,10 @@
    "notes": { "de": "kusimama heißt stehen, aufstehen und stehen bleiben: Simama! = Halt!" }
   },
   "send": {
-   "text": "kupeleka",
-   "notes": { "de": "kupeleka = hinbringen, hinschicken: kupeleka barua posta." }
+   "text": "kutuma",
+   "notes": { "de": "kutuma = schicken (Nachricht, Geld) · kupeleka ist hinbringen, liefern." }
   },
+  "deliver": { "text": "kupeleka" },
   "do-you-have-water": { "text": "Una maji?" },
   "where-are-you-from": { "text": "Unatoka wapi?" }
  }

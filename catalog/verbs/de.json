@@ -23,6 +23,7 @@
   "stop": { "text": "aufhören" },
   "stand": { "text": "stehen" },
   "send": { "text": "schicken" },
+  "deliver": { "text": "liefern" },
   "do-you-have-water": { "text": "Haben Sie Wasser?", "variants": ["Hast du Wasser?"] },
   "where-are-you-from": { "text": "Woher kommen Sie?", "variants": ["Woher kommst du?"] }
  }

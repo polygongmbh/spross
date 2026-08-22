@@ -32,6 +32,7 @@
   },
   "stand": { "text": "stari", "notes": { "de": "stari = stehen · stariĝi = sich hinstellen." } },
   "send": { "text": "sendi" },
+  "deliver": { "text": "liveri" },
   "do-you-have-water": { "text": "Ĉu vi havas akvon?" },
   "where-are-you-from": { "text": "De kie vi venas?" }
  }
