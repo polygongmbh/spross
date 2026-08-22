@@ -20,9 +20,7 @@
   "list": { "text": "список" },
   "to-finish": { "text": "закінчувати" },
   "i-would-like-to-arrange-an-appointment": { "text": "Я хочу записатися на прийом." },
-  "i-have-to-cancel-the-appointment": { "text": "Я мушу скасувати запис на прийом." },
   "the-deadline-is-tomorrow": { "text": "Строк закінчується завтра." },
-  "what-are-the-opening-hours": { "text": "Які години роботи?" },
   "can-we-postpone-the-appointment": { "text": "Чи можемо перенести запис на прийом?" },
   "i-have-an-appointment-at-ten": { "text": "У мене запис на десяту годину." }
  }

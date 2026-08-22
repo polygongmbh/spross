@@ -80,7 +80,6 @@
   "to-count": { "text": "contar", "notes": { "de": "contar heißt auch erzählen: cuéntame = erzähl mir." } },
   "to-try": { "text": "intentar", "variants": ["probar"] },
   "do-the-homework": { "text": "Hago los deberes." },
-  "the-exam-is-tomorrow": { "text": "El examen es mañana." },
   "look-at-the-class-schedule": { "text": "Mira el horario.", "variants": ["Mire el horario."] },
   "the-break-is-over": { "text": "El descanso ha terminado." },
   "ask-the-teacher": { "text": "Pregunta al profesor.", "variants": ["Pregunte al profesor."] },

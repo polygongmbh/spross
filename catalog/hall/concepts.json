@@ -38,14 +38,11 @@
  { "slug": "hurry-were-late", "kind": "phrase", "emoji": "🏃", "components": [] },
  { "slug": "see-you-later", "kind": "phrase", "emoji": "👋", "components": [] },
  { "slug": "welcome-home", "kind": "phrase", "emoji": "🏡", "components": [] },
- { "slug": "the-doorbell-suddenly-rang", "kind": "phrase", "emoji": "🔔", "components": ["ring"] },
  { "slug": "dont-forget-your-jacket", "kind": "phrase", "emoji": "🧥", "components": ["jacket"] },
  {
   "slug": "put-on-the-jacket",
   "kind": "phrase",
   "emoji": "🧥",
   "components": ["get-dressed", "jacket"]
- },
- { "slug": "i-live-here", "kind": "phrase", "emoji": "📍", "components": ["live"] },
- { "slug": "the-house-is-big", "kind": "phrase", "emoji": "🏠", "components": ["house"] }
+ }
 ]

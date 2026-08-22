@@ -32,11 +32,9 @@
   "quiet": { "text": "kimya" },
   "furniture": { "text": "samani", "grammar": { "plural": "=" } },
   "game": { "text": "mchezo", "grammar": { "plural": "michezo" } },
-  "turn-on-the-tv": { "text": "Washa televisheni." },
   "come-sit-with-me": { "text": "Njoo, kaa karibu nami!" },
   "shall-we-watch-a-movie": { "text": "Tutazame filamu?" },
   "lets-hang-the-picture": { "text": "Tutundike picha!" },
-  "the-curtains-hang-over-the-window": { "text": "Mapazia yananing'inia mbele ya dirisha." },
-  "open-the-window-fresh-air": { "text": "Fungua dirisha." }
+  "the-curtains-hang-over-the-window": { "text": "Mapazia yananing'inia mbele ya dirisha." }
  }
 }

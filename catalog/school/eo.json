@@ -55,7 +55,6 @@
   },
   "to-try": { "text": "provi", "variants": ["klopodi", "peni"] },
   "do-the-homework": { "text": "Mi faras la hejmtaskojn.", "variants": ["Mi faras la hejmtaskon."] },
-  "the-exam-is-tomorrow": { "text": "Morgaŭ estas la ekzameno.", "variants": ["La ekzameno estas morgaŭ."] },
   "look-at-the-class-schedule": { "text": "Rigardu la horaron." },
   "the-break-is-over": { "text": "La paŭzo finiĝis.", "variants": ["La paŭzo estas finita."] },
   "ask-the-teacher": { "text": "Demandu la instruiston.", "variants": ["Demandu al la instruisto."] },

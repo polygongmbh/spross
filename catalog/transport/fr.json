@@ -51,8 +51,6 @@
    "variants": ["Le train part quand ?", "À quelle heure part le train ?"]
   },
   "have-a-good-journey": { "text": "Bon voyage !" },
-  "where-is-the-airport": { "text": "Où est l'aéroport ?" },
-  "how-much-is-the-fare": { "text": "Quel est le tarif ?", "variants": ["Combien coûte le billet ?"] },
-  "i-get-off-here": { "text": "Je descends ici." }
+  "how-much-is-the-fare": { "text": "Quel est le tarif ?", "variants": ["Combien coûte le billet ?"] }
  }
 }

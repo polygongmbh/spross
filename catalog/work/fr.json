@@ -118,7 +118,6 @@
   "employer": { "text": "employeur", "variants": ["l'employeur"], "grammar": { "gender": "l'" } },
   "customer": { "text": "client", "grammar": { "gender": "le" } },
   "tomorrow-i-have-a-job-interview": { "text": "Demain, je me présente à l'entreprise." },
-  "my-shift-starts-at-six": { "text": "Mon service commence à six heures.", "variants": ["Mon poste commence à six heures."] },
   "ill-send-the-doctors-note-right-away": {
    "text": "Je vous envoie l'arrêt de travail tout de suite.",
    "variants": [
@@ -151,7 +150,6 @@
   "read-the-contract": {
    "text": "Lisez bien le contrat !",
    "variants": ["Lis bien le contrat !", "Lisez attentivement le contrat !"]
-  },
-  "whats-the-salary": { "text": "Quel est le salaire ?", "variants": ["Le salaire est de combien ?"] }
+  }
  }
 }

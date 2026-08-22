@@ -46,21 +46,12 @@
   "hows-the-weather-today": { "text": "Quel temps fait-il aujourd'hui ?", "variants": ["Il fait quel temps aujourd'hui ?"] },
   "its-raining": { "text": "Il pleut." },
   "the-sun-is-shining": { "text": "Le soleil brille !", "variants": ["Il y a du soleil !"] },
-  "shall-we-take-a-walk": {
-   "text": "On va se promener ?",
-   "variants": ["Et si on allait se promener ?", "On se promène ?"]
-  },
-  "take-an-umbrella": {
-   "text": "Prends un parapluie !",
-   "variants": ["Emporte un parapluie !", "Prends un parapluie avec toi !"]
-  },
   "what-a-beautiful-day": { "text": "Quelle belle journée !", "variants": ["Quelle journée magnifique !"] },
   "lets-go-to-the-beach": { "text": "Allons à la plage !", "variants": ["On va à la plage !"] },
   "we-are-going-to-the-mountains": {
    "text": "Nous allons à la montagne.",
    "variants": ["On va à la montagne.", "Nous allons en montagne."]
   },
-  "look-a-bird": { "text": "Regarde, un oiseau !" },
-  "the-cat-is-sleeping": { "text": "Le chat dort." }
+  "look-a-bird": { "text": "Regarde, un oiseau !" }
  }
 }

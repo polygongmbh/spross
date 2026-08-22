@@ -75,10 +75,7 @@
   "hurry-were-late": { "text": "Rapidu, ni malfruas!", "variants": ["Rapidu, ni jam malfruas!"] },
   "see-you-later": { "text": "Ĝis poste!", "variants": ["Ĝis baldaŭ!"] },
   "welcome-home": { "text": "Bonvenon hejmen!" },
-  "the-doorbell-suddenly-rang": { "text": "La pordosonorilo subite sonoris.", "variants": ["Subite sonoris la pordosonorilo."] },
   "dont-forget-your-jacket": { "text": "Ne forgesu vian jakon!" },
-  "put-on-the-jacket": { "text": "surmeti la jakon" },
-  "i-live-here": { "text": "Mi loĝas ĉi tie.", "variants": ["Mi loĝas tie ĉi."] },
-  "the-house-is-big": { "text": "La domo estas granda." }
+  "put-on-the-jacket": { "text": "surmeti la jakon" }
  }
 }

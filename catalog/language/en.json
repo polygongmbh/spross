@@ -21,18 +21,14 @@
   "word": { "text": "word" },
   "language": { "text": "language" },
   "mother-tongue": { "text": "mother tongue", "variants": ["native language"] },
-  "i-dont-understand": { "text": "I don't understand." },
-  "i-understand": { "text": "I understand." },
   "can-you-repeat-that": { "text": "Can you repeat that?" },
   "slower": { "text": "Slower!" },
   "i-cant-hear-you": { "text": "I can't hear you." },
   "louder": { "text": "Louder!" },
   "do-you-speak-english": { "text": "Do you speak English?" },
-  "i-speak-a-little": { "text": "I only speak a little {language}." },
   "what-does-this-word-mean": { "text": "What does this word mean?" },
   "how-do-you-say-this": { "text": "How do you say this {language-in}?" },
   "im-learning-your-language": { "text": "I'm learning {language}." },
-  "i-have-a-question": { "text": "I have a question." },
   "you-can-do-it": { "text": "You can definitely do it!" }
  }
 }

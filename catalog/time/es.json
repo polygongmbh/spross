@@ -30,7 +30,6 @@
   },
   "night": { "text": "noche", "grammar": { "gender": "la" } },
   "i-have-no-time": { "text": "No tengo tiempo." },
-  "a-new-day": { "text": "un nuevo día", "variants": ["un día nuevo"] },
   "two-in-the-afternoon": { "text": "las dos de la tarde" },
   "nine-am-sharp": { "text": "a las nueve de la mañana en punto" }
  }

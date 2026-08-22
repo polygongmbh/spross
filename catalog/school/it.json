@@ -95,7 +95,6 @@
   "to-count": { "text": "contare" },
   "to-try": { "text": "provare", "variants": ["tentare"] },
   "do-the-homework": { "text": "Faccio i compiti." },
-  "the-exam-is-tomorrow": { "text": "L'esame è domani." },
   "look-at-the-class-schedule": { "text": "Guarda l'orario.", "variants": ["Guardi l'orario.", "Guarda l'orario delle lezioni."] },
   "the-break-is-over": { "text": "La pausa è finita." },
   "ask-the-teacher": {

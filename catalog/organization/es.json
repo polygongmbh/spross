@@ -30,14 +30,9 @@
    "text": "Quiero concertar una cita.",
    "variants": ["Quisiera concertar una cita.", "Quiero pedir cita."]
   },
-  "i-have-to-cancel-the-appointment": { "text": "Tengo que cancelar la cita.", "variants": ["Tengo que anular la cita."] },
   "the-deadline-is-tomorrow": {
    "text": "El plazo termina mañana.",
    "variants": ["El plazo acaba mañana.", "La fecha límite es mañana."]
-  },
-  "what-are-the-opening-hours": {
-   "text": "¿Cuál es el horario de apertura?",
-   "variants": ["¿Cuál es el horario?", "¿Qué horario tienen?"]
   },
   "can-we-postpone-the-appointment": {
    "text": "¿Podemos aplazar la cita?",

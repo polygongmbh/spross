@@ -26,9 +26,6 @@
  { "slug": "this-is-my-mother", "kind": "phrase", "emoji": "👩", "components": ["mother"] },
  { "slug": "where-is-your-father", "kind": "phrase", "emoji": "👨", "components": ["father"] },
  { "slug": "i-have-two-children", "kind": "phrase", "emoji": "🧒", "components": ["child"] },
- { "slug": "my-family-is-big", "kind": "phrase", "emoji": "👪", "components": ["family"] },
- { "slug": "i-have-a-brother", "kind": "phrase", "components": ["brother"] },
- { "slug": "my-parents-live-here", "kind": "phrase", "emoji": "👫", "components": ["parents"] },
  {
   "slug": "how-is-your-grandmother",
   "kind": "phrase",

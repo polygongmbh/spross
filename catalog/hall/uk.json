@@ -49,11 +49,8 @@
   "hurry-were-late": { "text": "Поквапся, ми запізнюємось!" },
   "see-you-later": { "text": "До зустрічі!" },
   "welcome-home": { "text": "З поверненням!" },
-  "the-doorbell-suddenly-rang": { "text": "Раптом задзвонив дзвінок." },
   "dont-forget-your-jacket": { "text": "Не забудь куртку!" },
   "put-on-the-jacket": { "text": "одягати куртку" },
-  "take-off-your-shoes": { "text": "Зніми своє взуття.", "variants": ["Роззуйся."] },
-  "i-live-here": { "text": "Я живу тут." },
-  "the-house-is-big": { "text": "Будинок великий." }
+  "take-off-your-shoes": { "text": "Зніми своє взуття.", "variants": ["Роззуйся."] }
  }
 }

@@ -34,8 +34,6 @@
   "good-morning-my-love": { "text": "Доброго ранку, моє сонечко!" },
   "im-tired": { "text": "Я втомився.", "variants": ["Я втомилася."] },
   "did-you-set-the-alarm": { "text": "Ти завів будильник?", "variants": ["Ти завела будильник?"] },
-  "five-more-minutes": { "text": "Ще п'ять хвилин…" },
-  "turn-off-the-light": { "text": "Вимкни світло." },
   "i-love-you": { "text": "Я тебе кохаю." }
  }
 }

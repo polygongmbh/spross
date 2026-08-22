@@ -47,10 +47,7 @@
   "im-hungry": { "text": "Mi malsatas.", "variants": ["Mi estas malsata."] },
   "whats-for-dinner": { "text": "Kio estas por vespermanĝo?", "variants": ["Kio estas por la vespermanĝo?"] },
   "i-dont-eat-meat": { "text": "Mi ne manĝas viandon." },
-  "bread-with-butter": { "text": "pano kun butero" },
-  "fruit-and-vegetables": { "text": "fruktoj kaj legomoj" },
   "i-eat-rice-with-sauce": { "text": "Mi manĝas rizon kun saŭco." },
-  "without-salt-please": { "text": "Sen salo, mi petas." },
   "the-food-is-ready": { "text": "La manĝaĵo estas preta!", "variants": ["La manĝo estas preta!"] }
  }
 }

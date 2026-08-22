@@ -30,8 +30,6 @@
   "the-bus-is-coming-soon": { "text": "Der Bus kommt gleich." },
   "when-does-the-train-leave": { "text": "Wann fährt der Zug ab?" },
   "have-a-good-journey": { "text": "Gute Reise!" },
-  "where-is-the-airport": { "text": "Wo ist der Flughafen?" },
-  "how-much-is-the-fare": { "text": "Wie hoch ist der Fahrpreis?", "variants": ["Was kostet die Fahrt?"] },
-  "i-get-off-here": { "text": "Ich steige hier aus." }
+  "how-much-is-the-fare": { "text": "Wie hoch ist der Fahrpreis?", "variants": ["Was kostet die Fahrt?"] }
  }
 }

@@ -73,7 +73,6 @@
    "notes": { "de": "meist im Plural: i mobili; un mobile ist ein einzelnes Möbelstück." }
   },
   "game": { "text": "gioco", "grammar": { "gender": "il", "plural": "giochi" } },
-  "turn-on-the-tv": { "text": "Accendi la televisione.", "variants": ["Accendi la tv.", "Accendi il televisore."] },
   "come-sit-with-me": {
    "text": "Vieni, siediti con me!",
    "variants": ["Vieni, siediti accanto a me!", "Vieni, siediti vicino a me!"]
@@ -83,7 +82,6 @@
   "the-curtains-hang-over-the-window": {
    "text": "Le tende sono appese davanti alla finestra.",
    "variants": ["Le tende pendono davanti alla finestra.", "Le tende sono davanti alla finestra."]
-  },
-  "open-the-window-fresh-air": { "text": "Apri la finestra." }
+  }
  }
 }

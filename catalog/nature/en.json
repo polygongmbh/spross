@@ -35,12 +35,9 @@
   "hows-the-weather-today": { "text": "How's the weather today?" },
   "its-raining": { "text": "It's raining." },
   "the-sun-is-shining": { "text": "The sun is shining!" },
-  "shall-we-take-a-walk": { "text": "Shall we go for a walk?" },
-  "take-an-umbrella": { "text": "Take an umbrella!", "variants": ["Take an umbrella with you!"] },
   "what-a-beautiful-day": { "text": "What a beautiful day!" },
   "lets-go-to-the-beach": { "text": "Let's go to the beach!" },
   "we-are-going-to-the-mountains": { "text": "We're going to the mountains." },
-  "look-a-bird": { "text": "Look, a bird!" },
-  "the-cat-is-sleeping": { "text": "The cat is sleeping." }
+  "look-a-bird": { "text": "Look, a bird!" }
  }
 }

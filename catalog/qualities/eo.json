@@ -35,8 +35,6 @@
   "easy": { "text": "facila" },
   "clean-adj": { "text": "pura" },
   "sharp": { "text": "akra" },
-  "a-lot-of-water": { "text": "multe da akvo" },
-  "the-day-is-long": { "text": "La tago estas longa." },
-  "that-is-too-heavy": { "text": "Tio estas tro peza." }
+  "a-lot-of-water": { "text": "multe da akvo" }
  }
 }

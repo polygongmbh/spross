@@ -67,13 +67,7 @@
    "text": "Je ne mange pas de viande.",
    "notes": { "de": "Nach der Verneinung wird aus du/de la ein blankes de: pas de viande." }
   },
-  "bread-with-butter": {
-   "text": "du pain avec du beurre",
-   "notes": { "de": "Der Teilungsartikel muss stehen: du pain, du beurre." }
-  },
-  "fruit-and-vegetables": { "text": "fruits et légumes", "variants": ["des fruits et des légumes"] },
   "i-eat-rice-with-sauce": { "text": "Je mange du riz avec de la sauce." },
-  "without-salt-please": { "text": "Sans sel, s'il vous plaît.", "variants": ["Sans sel, s'il te plaît."] },
   "the-food-is-ready": {
    "text": "Le repas est prêt !",
    "variants": ["C'est prêt !", "À table !"],

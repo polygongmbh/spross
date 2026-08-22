@@ -44,11 +44,8 @@
   "hurry-were-late": { "text": "Beeil dich, wir sind spät dran!" },
   "see-you-later": { "text": "Bis später!" },
   "welcome-home": { "text": "Willkommen zu Hause!" },
-  "the-doorbell-suddenly-rang": { "text": "Die Klingel hat plötzlich geläutet.", "variants": ["Es hat plötzlich geklingelt."] },
   "dont-forget-your-jacket": { "text": "Vergiss deine Jacke nicht!" },
   "put-on-the-jacket": { "text": "die Jacke anziehen" },
-  "take-off-your-shoes": { "text": "Zieh deine Schuhe aus." },
-  "i-live-here": { "text": "Ich wohne hier." },
-  "the-house-is-big": { "text": "Das Haus ist groß." }
+  "take-off-your-shoes": { "text": "Zieh deine Schuhe aus." }
  }
 }

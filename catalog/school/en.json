@@ -26,7 +26,6 @@
   "to-count": { "text": "to count" },
   "to-try": { "text": "to try" },
   "do-the-homework": { "text": "I'm doing my homework." },
-  "the-exam-is-tomorrow": { "text": "The exam is tomorrow." },
   "look-at-the-class-schedule": { "text": "Look at the class schedule.", "variants": ["Look at the timetable."] },
   "the-break-is-over": { "text": "The break is over." },
   "ask-the-teacher": { "text": "Ask the teacher." },

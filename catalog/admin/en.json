@@ -38,7 +38,6 @@
   "where-do-i-sign": { "text": "Where do I sign?" },
   "i-want-to-extend-my-residence-permit": { "text": "I would like to extend the residence permit." },
   "fill-out-the-form": { "text": "Fill out the form." },
-  "take-a-number": { "text": "Take a number!", "variants": ["Take a queue number!"] },
   "i-need-an-interpreter-for-the-application": { "text": "I need an interpreter for the application." },
   "did-you-bring-all-the-documents": { "text": "Did you bring all the documents?" },
   "the-decision-comes-by-mail": { "text": "The decision comes by mail." },

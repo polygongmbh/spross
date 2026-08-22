@@ -38,9 +38,7 @@
    "variants": ["Pole! Upone haraka!"],
    "notes": { "de": "pole = Mitgefühls-Wort ohne direktes deutsches Gegenstück" }
   },
-  "i-dont-feel-well": { "text": "Sijisikii vizuri." },
   "the-wound-hurts": { "text": "Jeraha linauma." },
-  "i-cant-breathe-well": { "text": "Siwezi kupumua vizuri." },
   "i-have-to-rest": { "text": "Lazima nipumzike.", "variants": ["Ninahitaji kupumzika."] }
  }
 }

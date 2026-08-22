@@ -57,13 +57,10 @@
    "variants": ["Che cosa c'è per cena?", "Cosa si mangia stasera?"]
   },
   "i-dont-eat-meat": { "text": "Non mangio carne.", "variants": ["Non mangio la carne."] },
-  "bread-with-butter": { "text": "pane con burro", "variants": ["pane con il burro", "pane e burro"] },
-  "fruit-and-vegetables": { "text": "frutta e verdura", "variants": ["frutta e verdure"] },
   "i-eat-rice-with-sauce": {
    "text": "Mangio il riso con la salsa.",
    "variants": ["Mangio riso con la salsa.", "Mangio il riso con il sugo."]
   },
-  "without-salt-please": { "text": "Senza sale, per favore." },
   "the-food-is-ready": {
    "text": "È pronto!",
    "variants": ["Il cibo è pronto!", "È pronto in tavola!", "A tavola!"],

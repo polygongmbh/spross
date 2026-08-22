@@ -133,10 +133,6 @@
    "variants": ["Je veux renouveler mon titre de séjour.", "Je voudrais renouveler ma carte de séjour."]
   },
   "fill-out-the-form": { "text": "Remplissez le formulaire.", "variants": ["Remplis le formulaire."] },
-  "take-a-number": {
-   "text": "Prenez un numéro d'attente !",
-   "variants": ["Prends un numéro d'attente !", "Prenez un ticket !"]
-  },
   "i-need-an-interpreter-for-the-application": { "text": "J'ai besoin d'un interprète pour la demande." },
   "did-you-bring-all-the-documents": {
    "text": "Avez-vous apporté tous les documents ?",

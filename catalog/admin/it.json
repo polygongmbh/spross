@@ -128,10 +128,6 @@
    "variants": ["Voglio rinnovare il permesso di soggiorno."]
   },
   "fill-out-the-form": { "text": "Compili il modulo.", "variants": ["Compila il modulo.", "Riempia il modulo."] },
-  "take-a-number": {
-   "text": "Prenda un numero di attesa!",
-   "variants": ["Prendi un numero di attesa!", "Prenda il numero!"]
-  },
   "i-need-an-interpreter-for-the-application": {
    "text": "Ho bisogno di un interprete per la richiesta.",
    "variants": ["Mi serve un interprete per la richiesta.", "Ho bisogno di un interprete per la domanda."]

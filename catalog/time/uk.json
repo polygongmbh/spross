@@ -25,7 +25,6 @@
   "evening": { "text": "вечір", "grammar": { "plural": "вечори" } },
   "night": { "text": "ніч", "grammar": { "plural": "ночі" } },
   "i-have-no-time": { "text": "У мене немає часу." },
-  "a-new-day": { "text": "новий день" },
   "two-in-the-afternoon": { "text": "друга дня" },
   "nine-am-sharp": {
    "text": "рівно о дев'ятій ранку",

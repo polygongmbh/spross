@@ -26,7 +26,6 @@
   "evening": { "text": "vespero" },
   "night": { "text": "nokto" },
   "i-have-no-time": { "text": "Mi ne havas tempon." },
-  "a-new-day": { "text": "nova tago" },
   "two-in-the-afternoon": {
    "text": "la dua posttagmeze",
    "variants": ["la dua horo posttagmeze"],

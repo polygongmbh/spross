@@ -38,19 +38,11 @@
  { "slug": "im-hungry", "kind": "phrase", "emoji": "🤤", "components": ["hunger"] },
  { "slug": "whats-for-dinner", "kind": "phrase", "emoji": "🍽️", "components": ["dinner"] },
  { "slug": "i-dont-eat-meat", "kind": "phrase", "emoji": "🥩", "components": ["meat"] },
- { "slug": "bread-with-butter", "kind": "phrase", "emoji": "🍞", "components": ["bread", "butter"] },
- {
-  "slug": "fruit-and-vegetables",
-  "kind": "phrase",
-  "emoji": "🥕",
-  "components": ["fruit", "vegetable"]
- },
  {
   "slug": "i-eat-rice-with-sauce",
   "kind": "phrase",
   "emoji": "🍚",
   "components": ["cooked-rice", "sauce"]
  },
- { "slug": "without-salt-please", "kind": "phrase", "emoji": "🧂", "components": ["salt"] },
  { "slug": "the-food-is-ready", "kind": "phrase", "emoji": "🍲", "components": ["eat"] }
 ]

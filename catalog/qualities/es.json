@@ -50,8 +50,6 @@
    "variants": ["afilada"],
    "notes": { "de": "nur für Klingen; scharf im Geschmack ist picante." }
   },
-  "a-lot-of-water": { "text": "mucha agua", "notes": { "de": "trotz el agua feminin: mucha agua." } },
-  "the-day-is-long": { "text": "El día es largo." },
-  "that-is-too-heavy": { "text": "Eso es demasiado pesado." }
+  "a-lot-of-water": { "text": "mucha agua", "notes": { "de": "trotz el agua feminin: mucha agua." } }
  }
 }

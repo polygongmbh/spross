@@ -41,10 +41,7 @@
   "im-hungry": { "text": "Ich habe Hunger." },
   "whats-for-dinner": { "text": "Was gibt es zum Abendessen?", "variants": ["Was gibt's zum Abendessen?"] },
   "i-dont-eat-meat": { "text": "Ich esse kein Fleisch." },
-  "bread-with-butter": { "text": "Brot mit Butter" },
-  "fruit-and-vegetables": { "text": "Obst und Gemüse" },
   "i-eat-rice-with-sauce": { "text": "Ich esse Reis mit Soße." },
-  "without-salt-please": { "text": "Ohne Salz, bitte." },
   "the-food-is-ready": { "text": "Das Essen ist fertig!" }
  }
 }

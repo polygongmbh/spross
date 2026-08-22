@@ -47,7 +47,9 @@
   "ring": {
    "text": "suonare",
    "variants": ["suonare il campanello"],
-   "notes": { "de": "suonare gilt für beides: il campanello suona, und man selbst suona il campanello." }
+   "notes": {
+    "de": "suonare gilt für beides: il campanello suona, und man selbst suona il campanello; im Perfekt mit avere und ohne Subjekt: Ha suonato."
+   }
   },
   "take-off-shoes": { "text": "togliersi le scarpe", "variants": ["levarsi le scarpe"] },
   "set-off": { "text": "uscire di casa" },
@@ -111,16 +113,10 @@
   "hurry-were-late": { "text": "Sbrigati, siamo in ritardo!", "variants": ["Fai presto, siamo in ritardo!"] },
   "see-you-later": { "text": "A dopo!", "variants": ["Ci vediamo dopo!", "A più tardi!"] },
   "welcome-home": { "text": "Benvenuto a casa!", "variants": ["Benvenuta a casa!"] },
-  "the-doorbell-suddenly-rang": {
-   "text": "Il campanello ha suonato all'improvviso.",
-   "variants": ["All'improvviso ha suonato il campanello.", "Il campanello è suonato all'improvviso."]
-  },
   "dont-forget-your-jacket": {
    "text": "Non dimenticare la giacca!",
    "variants": ["Non dimenticarti la giacca!", "Non dimenticare la tua giacca!"]
   },
-  "put-on-the-jacket": { "text": "mettersi la giacca" },
-  "i-live-here": { "text": "Abito qui.", "variants": ["Vivo qui."] },
-  "the-house-is-big": { "text": "La casa è grande." }
+  "put-on-the-jacket": { "text": "mettersi la giacca" }
  }
 }

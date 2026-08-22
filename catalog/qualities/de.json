@@ -19,8 +19,6 @@
   "easy": { "text": "einfach" },
   "clean-adj": { "text": "sauber" },
   "sharp": { "text": "scharf" },
-  "a-lot-of-water": { "text": "viel Wasser" },
-  "the-day-is-long": { "text": "Der Tag ist lang." },
-  "that-is-too-heavy": { "text": "Das ist zu schwer." }
+  "a-lot-of-water": { "text": "viel Wasser" }
  }
 }

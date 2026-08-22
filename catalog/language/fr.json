@@ -4,7 +4,10 @@
  "words": {
   "hear": { "text": "entendre", "notes": { "de": "entendre = wahrnehmen · écouter = bewusst zuhören." } },
   "understand": { "text": "comprendre" },
-  "speak": { "text": "parler" },
+  "speak": {
+   "text": "parler",
+   "notes": { "de": "Nur ein bisschen: je ne parle qu'un peu — ne … que umklammert das Verb." }
+  },
   "repeat-word": { "text": "répéter le mot" },
   "loud": {
    "text": "fort",
@@ -34,8 +37,6 @@
    "notes": { "de": "langue ist auch die Zunge im Mund." }
   },
   "mother-tongue": { "text": "langue maternelle", "grammar": { "gender": "la" } },
-  "i-dont-understand": { "text": "Je ne comprends pas.", "variants": ["Je comprends pas."] },
-  "i-understand": { "text": "Je comprends." },
   "can-you-repeat-that": {
    "text": "Pouvez-vous le répéter ?",
    "variants": ["Pouvez-vous répéter ?", "Peux-tu le répéter ?", "Tu peux le répéter ?", "Tu peux répéter ?"]
@@ -47,10 +48,6 @@
    "text": "Parlez-vous anglais ?",
    "variants": ["Vous parlez anglais ?", "Parles-tu anglais ?", "Tu parles anglais ?"]
   },
-  "i-speak-a-little": {
-   "text": "Je parle seulement un peu {language}.",
-   "variants": ["Je ne parle qu'un peu {language}.", "Je parle juste un peu {language}."]
-  },
   "what-does-this-word-mean": {
    "text": "Que veut dire ce mot ?",
    "variants": ["Que signifie ce mot ?", "Qu'est-ce que ce mot veut dire ?"]
@@ -60,7 +57,6 @@
    "text": "J'apprends {language-learn}.",
    "variants": ["Je suis en train d'apprendre {language-learn}."]
   },
-  "i-have-a-question": { "text": "J'ai une question." },
   "you-can-do-it": {
    "text": "Tu vas sûrement y arriver !",
    "variants": ["Tu vas y arriver !", "Tu y arriveras !", "Tu peux le faire !"]

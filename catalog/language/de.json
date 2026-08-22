@@ -21,18 +21,14 @@
   "word": { "text": "Wort", "grammar": { "gender": "das", "plural": "Wörter" } },
   "language": { "text": "Sprache", "grammar": { "gender": "die", "plural": "-n" } },
   "mother-tongue": { "text": "Muttersprache", "grammar": { "gender": "die", "plural": "-n" } },
-  "i-dont-understand": { "text": "Ich verstehe nicht." },
-  "i-understand": { "text": "Ich verstehe." },
   "can-you-repeat-that": { "text": "Können Sie das wiederholen?", "variants": ["Kannst du das wiederholen?"] },
   "slower": { "text": "Langsamer!" },
   "i-cant-hear-you": { "text": "Ich kann Sie nicht hören.", "variants": ["Ich kann dich nicht hören."] },
   "louder": { "text": "Lauter!" },
   "do-you-speak-english": { "text": "Sprechen Sie Englisch?", "variants": ["Sprichst du Englisch?"] },
-  "i-speak-a-little": { "text": "Ich spreche nur ein bisschen {language}." },
   "what-does-this-word-mean": { "text": "Was bedeutet dieses Wort?" },
   "how-do-you-say-this": { "text": "Wie sagt man das {language-in}?" },
   "im-learning-your-language": { "text": "Ich lerne {language}." },
-  "i-have-a-question": { "text": "Ich habe eine Frage." },
   "you-can-do-it": { "text": "Du schaffst das bestimmt!" }
  }
 }

@@ -41,15 +41,16 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "das kleine Pflaster ist il cerotto." }
   },
-  "breathe": { "text": "respirare" },
+  "breathe": {
+   "text": "respirare",
+   "notes": { "de": "Nicht können heißt hier non riuscire a respirare, nicht non potere." }
+  },
   "recover": { "text": "guarire", "variants": ["rimettersi"] },
   "allergy": { "text": "allergia", "variants": ["l'allergia", "un'allergia"], "grammar": { "gender": "l'" } },
   "my-throat-hurts-a-lot": { "text": "Mi fa molto male la gola." },
   "ive-had-a-fever-since-yesterday": { "text": "Ho la febbre da ieri." },
   "get-well-soon": { "text": "Guarisci presto!", "variants": ["Guarisca presto!", "Rimettiti presto!"] },
-  "i-dont-feel-well": { "text": "Non mi sento bene." },
   "the-wound-hurts": { "text": "La ferita fa male.", "variants": ["Mi fa male la ferita."] },
-  "i-cant-breathe-well": { "text": "Non riesco a respirare bene.", "variants": ["Non posso respirare bene."] },
   "i-have-to-rest": { "text": "Devo riposare.", "variants": ["Devo riposarmi."] }
  }
 }

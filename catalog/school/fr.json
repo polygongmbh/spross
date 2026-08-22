@@ -98,7 +98,6 @@
   "to-count": { "text": "compter" },
   "to-try": { "text": "essayer", "variants": ["tenter"] },
   "do-the-homework": { "text": "Je fais mes devoirs." },
-  "the-exam-is-tomorrow": { "text": "L'examen est demain.", "variants": ["L'examen a lieu demain."] },
   "look-at-the-class-schedule": { "text": "Regarde l'emploi du temps.", "variants": ["Regardez l'emploi du temps."] },
   "the-break-is-over": { "text": "La pause est finie.", "variants": ["La pause est terminée."] },
   "ask-the-teacher": { "text": "Demande au professeur.", "variants": ["Demandez au professeur.", "Demande au prof."] },

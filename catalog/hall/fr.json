@@ -90,13 +90,7 @@
   },
   "see-you-later": { "text": "À plus tard !", "variants": ["À tout à l'heure !", "À plus !"] },
   "welcome-home": { "text": "Bienvenue à la maison !" },
-  "the-doorbell-suddenly-rang": {
-   "text": "La sonnette a sonné tout à coup.",
-   "variants": ["La sonnette a soudain sonné.", "Ça a sonné tout à coup."]
-  },
   "dont-forget-your-jacket": { "text": "N'oublie pas ta veste !" },
-  "put-on-the-jacket": { "text": "mettre la veste", "variants": ["mettre sa veste", "enfiler la veste"] },
-  "i-live-here": { "text": "J'habite ici." },
-  "the-house-is-big": { "text": "La maison est grande." }
+  "put-on-the-jacket": { "text": "mettre la veste", "variants": ["mettre sa veste", "enfiler la veste"] }
  }
 }

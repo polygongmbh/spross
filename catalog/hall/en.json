@@ -40,11 +40,8 @@
   "hurry-were-late": { "text": "Hurry up, we're late!" },
   "see-you-later": { "text": "See you later!" },
   "welcome-home": { "text": "Welcome home!" },
-  "the-doorbell-suddenly-rang": { "text": "The doorbell suddenly rang." },
   "dont-forget-your-jacket": { "text": "Don't forget your jacket!" },
   "put-on-the-jacket": { "text": "to put on the jacket" },
-  "take-off-your-shoes": { "text": "Take off your shoes." },
-  "i-live-here": { "text": "I live here." },
-  "the-house-is-big": { "text": "The house is big." }
+  "take-off-your-shoes": { "text": "Take off your shoes." }
  }
 }

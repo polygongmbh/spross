@@ -55,8 +55,6 @@
    "variants": ["affilata"],
    "notes": { "de": "nur für Klingen; scharf im Geschmack ist piccante." }
   },
-  "a-lot-of-water": { "text": "molta acqua" },
-  "the-day-is-long": { "text": "Il giorno è lungo.", "variants": ["La giornata è lunga."] },
-  "that-is-too-heavy": { "text": "Questo è troppo pesante.", "variants": ["È troppo pesante."] }
+  "a-lot-of-water": { "text": "molta acqua" }
  }
 }

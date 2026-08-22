@@ -35,12 +35,7 @@
    "text": "Vorrei fissare un appuntamento.",
    "variants": ["Vorrei prendere un appuntamento.", "Voglio fissare un appuntamento."]
   },
-  "i-have-to-cancel-the-appointment": { "text": "Devo annullare l'appuntamento.", "variants": ["Devo disdire l'appuntamento."] },
   "the-deadline-is-tomorrow": { "text": "La scadenza è domani.", "variants": ["Il termine scade domani."] },
-  "what-are-the-opening-hours": {
-   "text": "Qual è l'orario di apertura?",
-   "variants": ["Quali sono gli orari di apertura?", "Qual è l'orario?"]
-  },
   "can-we-postpone-the-appointment": {
    "text": "Possiamo rimandare l'appuntamento?",
    "variants": ["Possiamo spostare l'appuntamento?", "Possiamo rinviare l'appuntamento?"]

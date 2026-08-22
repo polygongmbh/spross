@@ -38,8 +38,6 @@
   "the-bus-is-coming-soon": { "text": "Basi linakuja sasa hivi." },
   "when-does-the-train-leave": { "text": "Treni inaondoka lini?" },
   "have-a-good-journey": { "text": "Safari njema!" },
-  "where-is-the-airport": { "text": "Uwanja wa ndege uko wapi?" },
-  "how-much-is-the-fare": { "text": "Nauli ni ngapi?" },
-  "i-get-off-here": { "text": "Nashuka hapa." }
+  "how-much-is-the-fare": { "text": "Nauli ni ngapi?" }
  }
 }

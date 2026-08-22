@@ -57,8 +57,6 @@
    "text": "Tu as mis le réveil ?",
    "variants": ["As-tu mis le réveil ?", "Tu as réglé le réveil ?"]
   },
-  "five-more-minutes": { "text": "Encore cinq minutes…" },
-  "turn-off-the-light": { "text": "Éteins la lumière." },
   "i-love-you": { "text": "Je t'aime." }
  }
 }

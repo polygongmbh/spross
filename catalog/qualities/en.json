@@ -25,8 +25,6 @@
   "easy": { "text": "easy" },
   "clean-adj": { "text": "clean" },
   "sharp": { "text": "sharp" },
-  "a-lot-of-water": { "text": "a lot of water" },
-  "the-day-is-long": { "text": "The day is long." },
-  "that-is-too-heavy": { "text": "That is too heavy." }
+  "a-lot-of-water": { "text": "a lot of water" }
  }
 }

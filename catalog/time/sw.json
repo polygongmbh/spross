@@ -37,7 +37,6 @@
   "evening": { "text": "jioni", "grammar": { "plural": "=" } },
   "night": { "text": "usiku", "grammar": { "plural": "=" } },
   "i-have-no-time": { "text": "Sina muda." },
-  "a-new-day": { "text": "siku mpya", "grammar": { "plural": "=" } },
   "two-in-the-afternoon": {
    "text": "saa nane mchana",
    "notes": { "de": "Die Saa-Zählung liegt sechs Stunden versetzt: 14 Uhr ist die achte Stunde des Tages." }

@@ -34,7 +34,6 @@
   "employer": { "text": "employer" },
   "customer": { "text": "customer" },
   "tomorrow-i-have-a-job-interview": { "text": "Tomorrow I will introduce myself at the company." },
-  "my-shift-starts-at-six": { "text": "My shift starts at six." },
   "ill-send-the-doctors-note-right-away": {
    "text": "I'll send you the doctor's note right away.",
    "variants": ["I'll send you the sick note right away."]
@@ -42,7 +41,6 @@
   "have-a-nice-evening-off": { "text": "Have a nice evening off!" },
   "can-you-help-me-briefly": { "text": "Can you help me briefly?" },
   "i-want-vacation-next-week": { "text": "I would like to take vacation next week." },
-  "read-the-contract": { "text": "Read the contract!" },
-  "whats-the-salary": { "text": "What's the salary?" }
+  "read-the-contract": { "text": "Read the contract!" }
  }
 }

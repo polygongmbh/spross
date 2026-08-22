@@ -30,8 +30,6 @@
   "the-bus-is-coming-soon": { "text": "Автобус зараз приїде." },
   "when-does-the-train-leave": { "text": "Коли вирушає поїзд?" },
   "have-a-good-journey": { "text": "Гарної подорожі!", "variants": ["Щасливої дороги!"] },
-  "where-is-the-airport": { "text": "Де аеропорт?" },
-  "how-much-is-the-fare": { "text": "Скільки коштує проїзд?" },
-  "i-get-off-here": { "text": "Я виходжу тут." }
+  "how-much-is-the-fare": { "text": "Скільки коштує проїзд?" }
  }
 }

@@ -112,7 +112,6 @@
    "text": "Mañana me presento en la empresa.",
    "variants": ["Mañana me presento en la compañía."]
   },
-  "my-shift-starts-at-six": { "text": "Mi turno empieza a las seis." },
   "ill-send-the-doctors-note-right-away": {
    "text": "Le envío la baja enseguida.",
    "variants": ["Te envío la baja enseguida.", "Le mando la baja enseguida."]
@@ -139,7 +138,6 @@
   "read-the-contract": {
    "text": "Lea bien el contrato.",
    "variants": ["Lee bien el contrato.", "Lea el contrato con atención."]
-  },
-  "whats-the-salary": { "text": "¿Cuál es el sueldo?", "variants": ["¿Cuánto es el sueldo?", "¿Cuál es el salario?"] }
+  }
  }
 }

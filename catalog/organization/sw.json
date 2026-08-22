@@ -23,9 +23,7 @@
   "list": { "text": "orodha", "grammar": { "plural": "=" } },
   "to-finish": { "text": "kumaliza" },
   "i-would-like-to-arrange-an-appointment": { "text": "Ningependa kupanga miadi." },
-  "i-have-to-cancel-the-appointment": { "text": "Lazima nighairi miadi." },
   "the-deadline-is-tomorrow": { "text": "Tarehe ya mwisho ni kesho." },
-  "what-are-the-opening-hours": { "text": "Saa za kufungua ni zipi?", "variants": ["Mnafungua saa ngapi?"] },
   "can-we-postpone-the-appointment": { "text": "Tunaweza kuahirisha miadi?" },
   "i-have-an-appointment-at-ten": {
    "text": "Nina miadi saa nne asubuhi.",

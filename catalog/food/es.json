@@ -50,10 +50,7 @@
   "im-hungry": { "text": "Tengo hambre." },
   "whats-for-dinner": { "text": "¿Qué hay para cenar?" },
   "i-dont-eat-meat": { "text": "No como carne." },
-  "bread-with-butter": { "text": "pan con mantequilla" },
-  "fruit-and-vegetables": { "text": "fruta y verdura" },
   "i-eat-rice-with-sauce": { "text": "Como arroz con salsa." },
-  "without-salt-please": { "text": "Sin sal, por favor." },
   "the-food-is-ready": { "text": "¡La comida está lista!" }
  }
 }

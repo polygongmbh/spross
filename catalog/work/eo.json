@@ -51,10 +51,6 @@
    "text": "Morgaŭ mi prezentos min ĉe la firmao.",
    "variants": ["Morgaŭ mi prezentos min ĉe la entrepreno."]
   },
-  "my-shift-starts-at-six": {
-   "text": "Mia deĵoro komenciĝas je la sesa horo.",
-   "variants": ["Mia deĵoro komenciĝas je la sesa."]
-  },
   "ill-send-the-doctors-note-right-away": {
    "text": "Mi tuj sendos al vi la malsanateston.",
    "variants": [
@@ -82,10 +78,6 @@
   "read-the-contract": {
    "text": "Tralegu la kontrakton!",
    "variants": ["Legu atente la kontrakton!", "Legu la kontrakton!"]
-  },
-  "whats-the-salary": {
-   "text": "Kiom alta estas la salajro?",
-   "variants": ["Kiom altas la salajro?", "Kia estas la salajro?"]
   }
  }
 }

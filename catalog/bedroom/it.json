@@ -51,8 +51,6 @@
   },
   "im-tired": { "text": "Sono stanco.", "variants": ["Sono stanca."] },
   "did-you-set-the-alarm": { "text": "Hai messo la sveglia?", "variants": ["Hai puntato la sveglia?"] },
-  "five-more-minutes": { "text": "Ancora cinque minuti…" },
-  "turn-off-the-light": { "text": "Spegni la luce." },
   "i-love-you": {
    "text": "Ti amo.",
    "notes": {

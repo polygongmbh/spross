@@ -33,11 +33,9 @@
   "quiet": { "text": "leise" },
   "furniture": { "text": "Möbel", "grammar": { "gender": "die", "plural": "only" } },
   "game": { "text": "Spiel", "grammar": { "gender": "das", "plural": "-e" } },
-  "turn-on-the-tv": { "text": "Mach den Fernseher an." },
   "come-sit-with-me": { "text": "Komm, setz dich zu mir!" },
   "shall-we-watch-a-movie": { "text": "Wollen wir einen Film schauen?" },
   "lets-hang-the-picture": { "text": "Lass uns das Bild aufhängen!" },
-  "the-curtains-hang-over-the-window": { "text": "Die Vorhänge hängen vor dem Fenster." },
-  "open-the-window-fresh-air": { "text": "Mach das Fenster auf." }
+  "the-curtains-hang-over-the-window": { "text": "Die Vorhänge hängen vor dem Fenster." }
  }
 }

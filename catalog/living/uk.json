@@ -33,11 +33,9 @@
   "quiet": { "text": "тихий" },
   "furniture": { "text": "меблі", "grammar": { "plural": "only" } },
   "game": { "text": "гра", "grammar": { "plural": "ігри" } },
-  "turn-on-the-tv": { "text": "Увімкни телевізор." },
   "come-sit-with-me": { "text": "Ходи сюди, сідай поруч зі мною!" },
   "shall-we-watch-a-movie": { "text": "Може, подивимося фільм?" },
   "lets-hang-the-picture": { "text": "Повісимо картину!" },
-  "the-curtains-hang-over-the-window": { "text": "Штори висять перед вікном." },
-  "open-the-window-fresh-air": { "text": "Відчини вікно." }
+  "the-curtains-hang-over-the-window": { "text": "Штори висять перед вікном." }
  }
 }

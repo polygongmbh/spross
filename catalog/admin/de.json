@@ -8,7 +8,11 @@
   "id-card": { "text": "Ausweis", "grammar": { "gender": "der", "plural": "-e" } },
   "residence-permit": { "text": "Aufenthaltstitel", "grammar": { "gender": "der", "plural": "=" } },
   "signature": { "text": "Unterschrift", "grammar": { "gender": "die", "plural": "-en" } },
-  "ticket-number": { "text": "Wartenummer", "grammar": { "gender": "die", "plural": "-n" } },
+  "ticket-number": {
+   "text": "Wartenummer",
+   "grammar": { "gender": "die", "plural": "-n" },
+   "notes": { "en": "You DRAW a number here — ziehen, never nehmen." }
+  },
   "case-worker": { "text": "Sachbearbeiter", "grammar": { "gender": "der", "plural": "=" } },
   "case-worker-f": { "text": "Sachbearbeiterin", "grammar": { "gender": "die", "plural": "-nen" } },
   "registration": { "text": "Anmeldung", "grammar": { "gender": "die", "plural": "-en" } },
@@ -43,7 +47,6 @@
   "where-do-i-sign": { "text": "Wo muss ich unterschreiben?" },
   "i-want-to-extend-my-residence-permit": { "text": "Ich möchte den Aufenthaltstitel verlängern." },
   "fill-out-the-form": { "text": "Füllen Sie das Formular aus.", "variants": ["Fülle das Formular aus."] },
-  "take-a-number": { "text": "Ziehen Sie eine Wartenummer!", "variants": ["Zieh eine Wartenummer!"] },
   "i-need-an-interpreter-for-the-application": { "text": "Ich brauche für den Antrag einen Dolmetscher." },
   "did-you-bring-all-the-documents": {
    "text": "Haben Sie alle Unterlagen mitgebracht?",

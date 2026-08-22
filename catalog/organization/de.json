@@ -20,9 +20,7 @@
   "list": { "text": "Liste", "grammar": { "gender": "die", "plural": "-n" } },
   "to-finish": { "text": "beenden" },
   "i-would-like-to-arrange-an-appointment": { "text": "Ich möchte einen Termin vereinbaren." },
-  "i-have-to-cancel-the-appointment": { "text": "Ich muss den Termin absagen." },
   "the-deadline-is-tomorrow": { "text": "Die Frist ist morgen." },
-  "what-are-the-opening-hours": { "text": "Wie sind die Öffnungszeiten?" },
   "can-we-postpone-the-appointment": { "text": "Können wir den Termin verschieben?" },
   "i-have-an-appointment-at-ten": { "text": "Ich habe um zehn Uhr einen Termin." }
  }

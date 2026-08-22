@@ -31,7 +31,5 @@
  { "slug": "good-morning-my-love", "kind": "phrase", "emoji": "💕", "components": [] },
  { "slug": "im-tired", "kind": "phrase", "emoji": "🥱", "components": [] },
  { "slug": "did-you-set-the-alarm", "kind": "phrase", "emoji": "⏰", "components": ["alarm-clock"] },
- { "slug": "five-more-minutes", "kind": "phrase", "emoji": "⏱️", "components": [] },
- { "slug": "turn-off-the-light", "kind": "phrase", "emoji": "💡", "components": [] },
  { "slug": "i-love-you", "kind": "phrase", "emoji": "❤️", "components": [] }
 ]

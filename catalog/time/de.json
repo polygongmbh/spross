@@ -26,7 +26,6 @@
   "evening": { "text": "Abend", "grammar": { "gender": "der", "plural": "-e" } },
   "night": { "text": "Nacht", "grammar": { "gender": "die", "plural": "Nächte" } },
   "i-have-no-time": { "text": "Ich habe keine Zeit." },
-  "a-new-day": { "text": "ein neuer Tag" },
   "two-in-the-afternoon": { "text": "zwei Uhr nachmittags" },
   "nine-am-sharp": { "text": "punkt neun Uhr morgens" }
  }

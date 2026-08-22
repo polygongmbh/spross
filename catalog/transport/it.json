@@ -59,11 +59,9 @@
   },
   "when-does-the-train-leave": { "text": "Quando parte il treno?", "variants": ["A che ora parte il treno?"] },
   "have-a-good-journey": { "text": "Buon viaggio!" },
-  "where-is-the-airport": { "text": "Dov'è l'aeroporto?" },
   "how-much-is-the-fare": {
    "text": "Qual è la tariffa?",
    "variants": ["Quanto costa la corsa?", "Quanto costa il biglietto?"]
-  },
-  "i-get-off-here": { "text": "Scendo qui." }
+  }
  }
 }

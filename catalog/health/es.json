@@ -57,9 +57,7 @@
   "my-throat-hurts-a-lot": { "text": "Me duele mucho la garganta." },
   "ive-had-a-fever-since-yesterday": { "text": "Tengo fiebre desde ayer." },
   "get-well-soon": { "text": "¡Que te mejores!", "variants": ["¡Que se mejore!", "¡Mejórate pronto!"] },
-  "i-dont-feel-well": { "text": "No me siento bien." },
   "the-wound-hurts": { "text": "Me duele la herida." },
-  "i-cant-breathe-well": { "text": "No puedo respirar bien." },
   "i-have-to-rest": { "text": "Tengo que descansar." }
  }
 }

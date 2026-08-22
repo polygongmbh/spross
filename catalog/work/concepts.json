@@ -39,12 +39,6 @@
   "components": ["introduce-oneself", "company"]
  },
  {
-  "slug": "my-shift-starts-at-six",
-  "kind": "phrase",
-  "emoji": "🕕",
-  "components": ["shift", "start"]
- },
- {
   "slug": "ill-send-the-doctors-note-right-away",
   "kind": "phrase",
   "emoji": "📄",
@@ -58,6 +52,5 @@
   "emoji": "🏖️",
   "components": ["vacation"]
  },
- { "slug": "read-the-contract", "kind": "phrase", "emoji": "📋", "components": ["contract"] },
- { "slug": "whats-the-salary", "kind": "phrase", "emoji": "💶", "components": ["salary"] }
+ { "slug": "read-the-contract", "kind": "phrase", "emoji": "📋", "components": ["contract"] }
 ]

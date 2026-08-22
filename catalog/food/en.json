@@ -40,10 +40,7 @@
   "im-hungry": { "text": "I'm hungry." },
   "whats-for-dinner": { "text": "What's for dinner?" },
   "i-dont-eat-meat": { "text": "I don't eat meat." },
-  "bread-with-butter": { "text": "bread with butter" },
-  "fruit-and-vegetables": { "text": "fruit and vegetables" },
   "i-eat-rice-with-sauce": { "text": "I eat rice with sauce." },
-  "without-salt-please": { "text": "Without salt, please." },
   "the-food-is-ready": { "text": "The food is ready!" }
  }
 }

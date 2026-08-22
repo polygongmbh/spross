@@ -46,11 +46,9 @@
    "variants": ["Kiam ekveturas la trajno?", "Kiam la vagonaro ekveturas?"]
   },
   "have-a-good-journey": { "text": "Bonan vojaĝon!" },
-  "where-is-the-airport": { "text": "Kie estas la flughaveno?" },
   "how-much-is-the-fare": {
    "text": "Kiom kostas la veturo?",
    "variants": ["Kiom alta estas la veturprezo?", "Kiom kostas la bileto?"]
-  },
-  "i-get-off-here": { "text": "Mi eliras ĉi tie.", "variants": ["Ĉi tie mi eliras.", "Mi elbusiĝas ĉi tie."] }
+  }
  }
 }

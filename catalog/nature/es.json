@@ -44,15 +44,12 @@
    "variants": ["¡El sol brilla!", "El sol está brillando."],
    "notes": { "de": "Wetter wird mit hacer ausgedrückt: hace sol, hace calor, hace frío." }
   },
-  "shall-we-take-a-walk": { "text": "¿Vamos a pasear?", "variants": ["¿Damos un paseo?", "¿Vamos a dar un paseo?"] },
-  "take-an-umbrella": { "text": "¡Coge un paraguas!", "variants": ["¡Llévate un paraguas!", "¡Toma un paraguas!"] },
   "what-a-beautiful-day": { "text": "¡Qué día tan bonito!", "variants": ["¡Qué día más bonito!", "¡Qué día tan hermoso!"] },
   "lets-go-to-the-beach": { "text": "¡Vamos a la playa!", "variants": ["¡Vámonos a la playa!"] },
   "we-are-going-to-the-mountains": {
    "text": "Vamos a la montaña.",
    "variants": ["Nos vamos a la montaña.", "Vamos a las montañas."]
   },
-  "look-a-bird": { "text": "¡Mira, un pájaro!" },
-  "the-cat-is-sleeping": { "text": "El gato está durmiendo.", "variants": ["El gato duerme."] }
+  "look-a-bird": { "text": "¡Mira, un pájaro!" }
  }
 }

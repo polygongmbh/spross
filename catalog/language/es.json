@@ -33,8 +33,6 @@
    }
   },
   "mother-tongue": { "text": "lengua materna", "grammar": { "gender": "la" } },
-  "i-dont-understand": { "text": "No entiendo.", "variants": ["No lo entiendo.", "No comprendo."] },
-  "i-understand": { "text": "Entiendo.", "variants": ["Lo entiendo.", "Comprendo."] },
   "can-you-repeat-that": {
    "text": "¿Puede repetirlo?",
    "variants": ["¿Puede usted repetirlo?", "¿Puedes repetirlo?", "¿Me lo puede repetir?", "¿Puede repetir?"]
@@ -43,11 +41,9 @@
   "i-cant-hear-you": { "text": "No le oigo.", "variants": ["No te oigo.", "No lo oigo.", "No la oigo."] },
   "louder": { "text": "¡Más fuerte!", "variants": ["¡Más alto!"] },
   "do-you-speak-english": { "text": "¿Habla usted inglés?", "variants": ["¿Habla inglés?", "¿Hablas inglés?"] },
-  "i-speak-a-little": { "text": "Solo hablo un poco de {language}.", "variants": ["Hablo solo un poco de {language}."] },
   "what-does-this-word-mean": { "text": "¿Qué significa esta palabra?", "variants": ["¿Qué quiere decir esta palabra?"] },
   "how-do-you-say-this": { "text": "¿Cómo se dice esto {language-in}?", "variants": ["¿Cómo se dice eso {language-in}?"] },
   "im-learning-your-language": { "text": "Estoy aprendiendo {language}.", "variants": ["Aprendo {language}."] },
-  "i-have-a-question": { "text": "Tengo una pregunta." },
   "you-can-do-it": { "text": "¡Seguro que lo consigues!", "variants": ["¡Tú puedes!", "¡Seguro que lo logras!"] }
  }
 }

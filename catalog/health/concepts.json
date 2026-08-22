@@ -28,8 +28,6 @@
   "components": ["fever"]
  },
  { "slug": "get-well-soon", "kind": "phrase", "emoji": "💐", "components": [] },
- { "slug": "i-dont-feel-well", "kind": "phrase", "emoji": "🤒", "components": ["feel"] },
  { "slug": "the-wound-hurts", "kind": "phrase", "emoji": "🩸", "components": ["wound", "hurt"] },
- { "slug": "i-cant-breathe-well", "kind": "phrase", "emoji": "🫁", "components": ["breathe"] },
  { "slug": "i-have-to-rest", "kind": "phrase", "emoji": "🛌", "components": ["rest"] }
 ]

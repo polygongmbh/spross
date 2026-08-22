@@ -36,7 +36,6 @@
   "employer": { "text": "Arbeitgeber", "grammar": { "gender": "der", "plural": "=" } },
   "customer": { "text": "Kunde", "grammar": { "gender": "der", "plural": "-n" } },
   "tomorrow-i-have-a-job-interview": { "text": "Morgen stelle ich mich bei der Firma vor." },
-  "my-shift-starts-at-six": { "text": "Meine Schicht fängt um sechs Uhr an." },
   "ill-send-the-doctors-note-right-away": {
    "text": "Ich schicke Ihnen die Krankmeldung sofort.",
    "variants": ["Ich schicke dir die Krankmeldung sofort."]
@@ -44,7 +43,6 @@
   "have-a-nice-evening-off": { "text": "Schönen Feierabend!" },
   "can-you-help-me-briefly": { "text": "Können Sie mir kurz helfen?", "variants": ["Kannst du mir kurz helfen?"] },
   "i-want-vacation-next-week": { "text": "Ich möchte nächste Woche Urlaub nehmen." },
-  "read-the-contract": { "text": "Lesen Sie den Vertrag durch!", "variants": ["Lies den Vertrag genau durch!"] },
-  "whats-the-salary": { "text": "Wie hoch ist das Gehalt?" }
+  "read-the-contract": { "text": "Lesen Sie den Vertrag durch!", "variants": ["Lies den Vertrag genau durch!"] }
  }
 }

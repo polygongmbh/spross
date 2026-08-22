@@ -30,8 +30,6 @@
   "the-bus-is-coming-soon": { "text": "The bus is coming soon." },
   "when-does-the-train-leave": { "text": "When does the train leave?" },
   "have-a-good-journey": { "text": "Have a good journey!", "variants": ["Have a good trip!"] },
-  "where-is-the-airport": { "text": "Where is the airport?" },
-  "how-much-is-the-fare": { "text": "How much is the fare?" },
-  "i-get-off-here": { "text": "I'm getting off here." }
+  "how-much-is-the-fare": { "text": "How much is the fare?" }
  }
 }

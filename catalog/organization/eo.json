@@ -44,12 +44,7 @@
    "text": "Mi ŝatus aranĝi rendevuon.",
    "variants": ["Mi volus aranĝi rendevuon.", "Mi ŝatus fiksi rendevuon."]
   },
-  "i-have-to-cancel-the-appointment": { "text": "Mi devas nuligi la rendevuon." },
   "the-deadline-is-tomorrow": { "text": "La limdato estas morgaŭ.", "variants": ["La templimo estas morgaŭ."] },
-  "what-are-the-opening-hours": {
-   "text": "Kiuj estas la malfermohoroj?",
-   "variants": ["Kiuj estas la malfermaj horoj?", "Kia estas la malfermtempo?"]
-  },
   "can-we-postpone-the-appointment": { "text": "Ĉu ni povas prokrasti la rendevuon?" },
   "i-have-an-appointment-at-ten": { "text": "Mi havas rendevuon je la deka.", "variants": ["Mi havas rendevuon je la deka horo."] }
  }

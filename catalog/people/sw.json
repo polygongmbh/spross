@@ -52,9 +52,6 @@
   "this-is-my-mother": { "text": "Huyu ni mama yangu." },
   "where-is-your-father": { "text": "Baba yako yuko wapi?" },
   "i-have-two-children": { "text": "Nina watoto wawili." },
-  "my-family-is-big": { "text": "Familia yangu ni kubwa." },
-  "i-have-a-brother": { "text": "Nina kaka." },
-  "my-parents-live-here": { "text": "Wazazi wangu wanaishi hapa." },
   "how-is-your-grandmother": { "text": "Nyanya yako hajambo?" },
   "a-good-friend": { "text": "rafiki mzuri", "grammar": { "plural": "marafiki wazuri" } },
   "my-girlfriend": {

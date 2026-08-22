@@ -38,7 +38,6 @@
   "evening": { "text": "soir", "grammar": { "gender": "le" } },
   "night": { "text": "nuit", "grammar": { "gender": "la" } },
   "i-have-no-time": { "text": "Je n'ai pas le temps." },
-  "a-new-day": { "text": "un nouveau jour", "variants": ["une nouvelle journée"] },
   "two-in-the-afternoon": { "text": "deux heures de l'après-midi" },
   "nine-am-sharp": {
    "text": "neuf heures du matin pile",

@@ -64,17 +64,12 @@
    "notes": { "de": "meist im Plural: los muebles; el mueble ist ein einzelnes Möbelstück." }
   },
   "game": { "text": "juego", "grammar": { "gender": "el" } },
-  "turn-on-the-tv": {
-   "text": "Enciende la televisión.",
-   "variants": ["Enciende la tele.", "Pon la tele.", "Pon la televisión."]
-  },
   "come-sit-with-me": { "text": "¡Ven, siéntate conmigo!", "variants": ["¡Ven, siéntate a mi lado!"] },
   "shall-we-watch-a-movie": { "text": "¿Vemos una película?", "variants": ["¿Vemos una peli?", "¿Quieres ver una película?"] },
   "lets-hang-the-picture": { "text": "¡Vamos a colgar el cuadro!", "variants": ["¡Colguemos el cuadro!"] },
   "the-curtains-hang-over-the-window": {
    "text": "Las cortinas cuelgan delante de la ventana.",
    "variants": ["Las cortinas están delante de la ventana."]
-  },
-  "open-the-window-fresh-air": { "text": "Abre la ventana." }
+  }
  }
 }

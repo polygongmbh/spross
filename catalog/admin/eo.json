@@ -48,7 +48,6 @@
    "variants": ["Mi volas plilongigi la loĝpermeson.", "Mi ŝatus renovigi la loĝpermeson."]
   },
   "fill-out-the-form": { "text": "Plenigu la formularon.", "variants": ["Plenskribu la formularon."] },
-  "take-a-number": { "text": "Prenu vicnumeron!", "variants": ["Tiru vicnumeron!", "Prenu numeron!"] },
   "i-need-an-interpreter-for-the-application": {
    "text": "Mi bezonas interpretiston por la peto.",
    "variants": ["Mi bezonas interpretiston por la petskribo."]

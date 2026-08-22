@@ -28,7 +28,6 @@
   "to-count": { "text": "zählen" },
   "to-try": { "text": "versuchen" },
   "do-the-homework": { "text": "Ich mache die Hausaufgaben." },
-  "the-exam-is-tomorrow": { "text": "Morgen ist die Prüfung." },
   "look-at-the-class-schedule": { "text": "Schau auf den Stundenplan.", "variants": ["Schauen Sie auf den Stundenplan."] },
   "the-break-is-over": { "text": "Die Pause ist vorbei." },
   "ask-the-teacher": { "text": "Frag den Lehrer.", "variants": ["Fragen Sie den Lehrer."] },

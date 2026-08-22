@@ -8,7 +8,7 @@
   "tea": { "text": "чай" },
   "egg": { "text": "яйце" },
   "cheese": { "text": "сир" },
-  "salt": { "text": "сіль" },
+  "salt": { "text": "сіль", "notes": { "de": "без regiert den Genitiv: без солі." } },
   "sugar": { "text": "цукор" },
   "rice": { "text": "рис" },
   "hunger": { "text": "голод" },
@@ -40,10 +40,7 @@
   "im-hungry": { "text": "Я голодний.", "variants": ["Я голодна."] },
   "whats-for-dinner": { "text": "Що на вечерю?" },
   "i-dont-eat-meat": { "text": "Я не їм м'яса." },
-  "bread-with-butter": { "text": "хліб з маслом" },
-  "fruit-and-vegetables": { "text": "фрукти й овочі", "variants": ["фрукти і овочі"] },
   "i-eat-rice-with-sauce": { "text": "Я їм рис із соусом." },
-  "without-salt-please": { "text": "Без солі, будь ласка." },
   "the-food-is-ready": { "text": "Їжа готова!" }
  }
 }

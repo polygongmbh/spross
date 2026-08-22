@@ -22,19 +22,7 @@
   "emoji": "📅",
   "components": ["appointment"]
  },
- {
-  "slug": "i-have-to-cancel-the-appointment",
-  "kind": "phrase",
-  "emoji": "❌",
-  "components": ["appointment", "cancel"]
- },
  { "slug": "the-deadline-is-tomorrow", "kind": "phrase", "emoji": "⏳", "components": ["deadline"] },
- {
-  "slug": "what-are-the-opening-hours",
-  "kind": "phrase",
-  "emoji": "🕐",
-  "components": ["opening-hours"]
- },
  {
   "slug": "can-we-postpone-the-appointment",
   "kind": "phrase",

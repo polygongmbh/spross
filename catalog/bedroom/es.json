@@ -47,8 +47,6 @@
   "good-morning-my-love": { "text": "¡Buenos días, mi amor!", "variants": ["¡Buenos días, cariño!"] },
   "im-tired": { "text": "Estoy cansado.", "variants": ["Estoy cansada."] },
   "did-you-set-the-alarm": { "text": "¿Has puesto el despertador?", "variants": ["¿Pusiste el despertador?"] },
-  "five-more-minutes": { "text": "Cinco minutos más…" },
-  "turn-off-the-light": { "text": "Apaga la luz." },
   "i-love-you": {
    "text": "Te quiero.",
    "variants": ["Te amo."],

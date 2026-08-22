@@ -32,8 +32,6 @@
  { "slug": "hows-the-weather-today", "kind": "phrase", "emoji": "🌤️", "components": ["weather"] },
  { "slug": "its-raining", "kind": "phrase", "emoji": "🌧️", "components": [] },
  { "slug": "the-sun-is-shining", "kind": "phrase", "emoji": "☀️", "components": ["sun"] },
- { "slug": "shall-we-take-a-walk", "kind": "phrase", "emoji": "👣", "components": ["go-for-walk"] },
- { "slug": "take-an-umbrella", "kind": "phrase", "emoji": "☂️", "components": [] },
  { "slug": "what-a-beautiful-day", "kind": "phrase", "emoji": "🌈", "components": [] },
  { "slug": "lets-go-to-the-beach", "kind": "phrase", "emoji": "🏖️", "components": ["beach"] },
  {
@@ -42,6 +40,5 @@
   "emoji": "⛰️",
   "components": ["mountain"]
  },
- { "slug": "look-a-bird", "kind": "phrase", "emoji": "🐦", "components": ["bird"] },
- { "slug": "the-cat-is-sleeping", "kind": "phrase", "emoji": "🐈", "components": ["cat"] }
+ { "slug": "look-a-bird", "kind": "phrase", "emoji": "🐦", "components": ["bird"] }
 ]

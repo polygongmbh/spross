@@ -32,7 +32,5 @@
   "components": ["train", "depart"]
  },
  { "slug": "have-a-good-journey", "kind": "phrase", "emoji": "🗺️", "components": ["journey"] },
- { "slug": "where-is-the-airport", "kind": "phrase", "emoji": "🛫", "components": ["airport"] },
- { "slug": "how-much-is-the-fare", "kind": "phrase", "components": ["fare"] },
- { "slug": "i-get-off-here", "kind": "phrase", "components": ["get-off"] }
+ { "slug": "how-much-is-the-fare", "kind": "phrase", "components": ["fare"] }
 ]

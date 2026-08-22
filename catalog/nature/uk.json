@@ -34,12 +34,9 @@
   "hows-the-weather-today": { "text": "Яка сьогодні погода?" },
   "its-raining": { "text": "Йде дощ." },
   "the-sun-is-shining": { "text": "Світить сонце!" },
-  "shall-we-take-a-walk": { "text": "Може, підемо гуляти?" },
-  "take-an-umbrella": { "text": "Візьми парасольку!" },
   "what-a-beautiful-day": { "text": "Який гарний день!" },
   "lets-go-to-the-beach": { "text": "Ходімо на пляж!" },
   "we-are-going-to-the-mountains": { "text": "Ми їдемо в гори." },
-  "look-a-bird": { "text": "Дивись, пташка!", "variants": ["Дивись, птах!"] },
-  "the-cat-is-sleeping": { "text": "Кіт спить." }
+  "look-a-bird": { "text": "Дивись, пташка!", "variants": ["Дивись, птах!"] }
  }
 }

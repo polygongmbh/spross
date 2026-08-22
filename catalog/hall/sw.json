@@ -39,11 +39,8 @@
   "hurry-were-late": { "text": "Fanya haraka, tumechelewa!" },
   "see-you-later": { "text": "Tutaonana baadaye!" },
   "welcome-home": { "text": "Karibu nyumbani!" },
-  "the-doorbell-suddenly-rang": { "text": "Kengele imelia ghafla." },
   "dont-forget-your-jacket": { "text": "Usisahau jaketi lako!" },
   "put-on-the-jacket": { "text": "kuvaa jaketi" },
-  "take-off-your-shoes": { "text": "Vua viatu vyako." },
-  "i-live-here": { "text": "Ninaishi hapa." },
-  "the-house-is-big": { "text": "Nyumba ni kubwa." }
+  "take-off-your-shoes": { "text": "Vua viatu vyako." }
  }
 }

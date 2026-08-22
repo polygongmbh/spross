@@ -29,8 +29,6 @@
    "notes": { "de": "lingua ist die Sprache und die Zunge im Mund." }
   },
   "mother-tongue": { "text": "lingua madre", "grammar": { "gender": "la" } },
-  "i-dont-understand": { "text": "Non capisco.", "variants": ["Non ho capito.", "Non comprendo."] },
-  "i-understand": { "text": "Capisco.", "variants": ["Ho capito.", "Comprendo."] },
   "can-you-repeat-that": {
    "text": "Può ripeterlo?",
    "variants": ["Può ripetere?", "Potrebbe ripeterlo?", "Puoi ripeterlo?"]
@@ -39,14 +37,12 @@
   "i-cant-hear-you": { "text": "Non La sento.", "variants": ["Non ti sento.", "Non riesco a sentirla."] },
   "louder": { "text": "Più forte!", "variants": ["Più alto!"] },
   "do-you-speak-english": { "text": "Parla inglese?", "variants": ["Parlate inglese?", "Parli inglese?"] },
-  "i-speak-a-little": { "text": "Parlo solo un po' di {language}.", "variants": ["Parlo un po' di {language}."] },
   "what-does-this-word-mean": {
    "text": "Che cosa significa questa parola?",
    "variants": ["Cosa significa questa parola?", "Che cosa vuol dire questa parola?"]
   },
   "how-do-you-say-this": { "text": "Come si dice questo {language-in}?", "variants": ["Come si dice {language-in}?"] },
   "im-learning-your-language": { "text": "Imparo {language-learn}.", "variants": ["Sto imparando {language-learn}."] },
-  "i-have-a-question": { "text": "Ho una domanda." },
   "you-can-do-it": { "text": "Ce la farai di sicuro!", "variants": ["Ce la puoi fare!"] }
  }
 }

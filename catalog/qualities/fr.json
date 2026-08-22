@@ -66,12 +66,6 @@
    "variants": ["tranchante", "aiguisée"],
    "notes": { "de": "nur für Klingen; scharf im Geschmack ist épicé." }
   },
-  "a-lot-of-water": { "text": "beaucoup d'eau" },
-  "the-day-is-long": {
-   "text": "La journée est longue.",
-   "variants": ["Le jour est long."],
-   "notes": { "de": "jour ist der Tag als Datum, journée der Tag in seiner Dauer: la journée est longue." }
-  },
-  "that-is-too-heavy": { "text": "C'est trop lourd." }
+  "a-lot-of-water": { "text": "beaucoup d'eau" }
  }
 }

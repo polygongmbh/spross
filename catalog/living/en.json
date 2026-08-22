@@ -33,11 +33,9 @@
   "quiet": { "text": "quiet" },
   "furniture": { "text": "furniture" },
   "game": { "text": "game" },
-  "turn-on-the-tv": { "text": "Turn on the television.", "variants": ["Turn on the TV."] },
   "come-sit-with-me": { "text": "Come, sit with me!" },
   "shall-we-watch-a-movie": { "text": "Shall we watch a movie?" },
   "lets-hang-the-picture": { "text": "Let's hang the picture!" },
-  "the-curtains-hang-over-the-window": { "text": "The curtains hang in front of the window." },
-  "open-the-window-fresh-air": { "text": "Open the window." }
+  "the-curtains-hang-over-the-window": { "text": "The curtains hang in front of the window." }
  }
 }

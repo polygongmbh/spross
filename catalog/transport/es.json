@@ -52,15 +52,17 @@
   "passenger": { "text": "pasajero", "grammar": { "gender": "el" } },
   "luggage": { "text": "equipaje", "grammar": { "gender": "el" } },
   "fare": { "text": "tarifa", "grammar": { "gender": "la" } },
-  "get-off": { "text": "bajarse", "variants": ["bajar"] },
+  "get-off": {
+   "text": "bajarse",
+   "variants": ["bajar"],
+   "notes": { "de": "bajarse ist reflexiv: me bajo aquí." }
+  },
   "the-bus-is-coming-soon": {
    "text": "El autobús llega enseguida.",
    "variants": ["El autobús viene enseguida.", "Ahora viene el autobús."]
   },
   "when-does-the-train-leave": { "text": "¿Cuándo sale el tren?", "variants": ["¿A qué hora sale el tren?"] },
   "have-a-good-journey": { "text": "¡Buen viaje!" },
-  "where-is-the-airport": { "text": "¿Dónde está el aeropuerto?" },
-  "how-much-is-the-fare": { "text": "¿Cuál es la tarifa?", "variants": ["¿Cuánto cuesta el pasaje?"] },
-  "i-get-off-here": { "text": "Me bajo aquí." }
+  "how-much-is-the-fare": { "text": "¿Cuál es la tarifa?", "variants": ["¿Cuánto cuesta el pasaje?"] }
  }
 }

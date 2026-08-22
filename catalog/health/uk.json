@@ -14,7 +14,10 @@
   "to-cough": { "text": "кашляти" },
   "rest": { "text": "відпочивати" },
   "sick": { "text": "хворий" },
-  "feel": { "text": "почуватися" },
+  "feel": {
+   "text": "почуватися",
+   "notes": { "de": "Unpersönlich mit Dativ: Мені погано — mir ist schlecht." }
+  },
   "health": { "text": "здоров'я" },
   "illness": { "text": "хвороба" },
   "healthy": { "text": "здоровий" },
@@ -30,9 +33,7 @@
   "my-throat-hurts-a-lot": { "text": "У мене дуже болить горло." },
   "ive-had-a-fever-since-yesterday": { "text": "У мене з учора температура." },
   "get-well-soon": { "text": "Швидкого одужання!" },
-  "i-dont-feel-well": { "text": "Я почуваюся недобре.", "variants": ["Мені погано."] },
   "the-wound-hurts": { "text": "Рана болить." },
-  "i-cant-breathe-well": { "text": "Я не можу добре дихати." },
   "i-have-to-rest": { "text": "Мені треба відпочити." }
  }
 }

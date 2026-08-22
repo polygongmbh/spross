@@ -43,15 +43,12 @@
    "notes": { "de": "Wetterverben stehen ohne Subjekt: Pluvas. Neĝas. Ventas." }
   },
   "the-sun-is-shining": { "text": "La suno brilas!" },
-  "shall-we-take-a-walk": { "text": "Ĉu ni promenu?", "variants": ["Ĉu ni iru promeni?", "Ĉu ni faru promenon?"] },
-  "take-an-umbrella": { "text": "Prenu ombrelon!", "variants": ["Kunprenu ombrelon!"] },
   "what-a-beautiful-day": { "text": "Kia bela tago!" },
   "lets-go-to-the-beach": { "text": "Ni iru al la plaĝo!" },
   "we-are-going-to-the-mountains": {
    "text": "Ni veturas en la montaron.",
    "variants": ["Ni veturas al la montoj.", "Ni iras en la montaron."]
   },
-  "look-a-bird": { "text": "Rigardu, birdo!", "variants": ["Jen birdo!", "Rigardu, jen birdo!"] },
-  "the-cat-is-sleeping": { "text": "La kato dormas." }
+  "look-a-bird": { "text": "Rigardu, birdo!", "variants": ["Jen birdo!", "Rigardu, jen birdo!"] }
  }
 }

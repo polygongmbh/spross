@@ -44,10 +44,6 @@
   "employer": { "text": "mwajiri", "grammar": { "plural": "waajiri" } },
   "customer": { "text": "mteja", "grammar": { "plural": "wateja" } },
   "tomorrow-i-have-a-job-interview": { "text": "Kesho nitajitambulisha kwenye kampuni." },
-  "my-shift-starts-at-six": {
-   "text": "Zamu yangu inaanza saa kumi na mbili.",
-   "notes": { "de": "6 Uhr morgens = saa 12 (saa kumi na mbili) — Sonnenaufgang, Start der Swahili-Stunde!" }
-  },
   "ill-send-the-doctors-note-right-away": { "text": "Nitakutumia cheti cha daktari mara moja." },
   "have-a-nice-evening-off": {
    "text": "Pumzika vizuri baada ya kazi!",
@@ -57,7 +53,6 @@
   },
   "can-you-help-me-briefly": { "text": "Unaweza kunisaidia kidogo?" },
   "i-want-vacation-next-week": { "text": "Ningependa kuchukua likizo wiki ijayo." },
-  "read-the-contract": { "text": "Soma mkataba!" },
-  "whats-the-salary": { "text": "Mshahara ni kiasi gani?" }
+  "read-the-contract": { "text": "Soma mkataba!" }
  }
 }

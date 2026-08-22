@@ -49,14 +49,12 @@
    "notes": { "de": "meblo ist ein einzelnes Möbelstück, die Möbel sind la mebloj." }
   },
   "game": { "text": "ludo" },
-  "turn-on-the-tv": { "text": "Ŝaltu la televidilon.", "variants": ["Enŝaltu la televidilon."] },
   "come-sit-with-me": { "text": "Venu, sidiĝu apud mi!", "variants": ["Venu, sidiĝu ĉe mi!"] },
   "shall-we-watch-a-movie": {
    "text": "Ĉu ni spektu filmon?",
    "variants": ["Ĉu ni rigardu filmon?", "Ĉu ni volas spekti filmon?"]
   },
   "lets-hang-the-picture": { "text": "Ni pendigu la bildon!", "variants": ["Ni alpendigu la bildon!"] },
-  "the-curtains-hang-over-the-window": { "text": "La kurtenoj pendas antaŭ la fenestro." },
-  "open-the-window-fresh-air": { "text": "Malfermu la fenestron." }
+  "the-curtains-hang-over-the-window": { "text": "La kurtenoj pendas antaŭ la fenestro." }
  }
 }

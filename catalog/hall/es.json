@@ -92,13 +92,7 @@
   },
   "see-you-later": { "text": "¡Nos vemos luego!", "variants": ["¡Hasta luego!", "¡Hasta después!", "¡Nos vemos!"] },
   "welcome-home": { "text": "¡Bienvenido a casa!", "variants": ["¡Bienvenida a casa!"] },
-  "the-doorbell-suddenly-rang": {
-   "text": "El timbre sonó de repente.",
-   "variants": ["El timbre ha sonado de repente.", "De repente sonó el timbre."]
-  },
   "dont-forget-your-jacket": { "text": "¡No olvides tu chaqueta!", "variants": ["¡No te olvides de la chaqueta!"] },
-  "put-on-the-jacket": { "text": "ponerse la chaqueta" },
-  "i-live-here": { "text": "Vivo aquí." },
-  "the-house-is-big": { "text": "La casa es grande." }
+  "put-on-the-jacket": { "text": "ponerse la chaqueta" }
  }
 }

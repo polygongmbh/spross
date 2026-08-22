@@ -78,7 +78,6 @@
    "notes": { "de": "meist im Plural: les meubles; un meuble ist ein einzelnes Möbelstück." }
   },
   "game": { "text": "jeu", "grammar": { "gender": "le", "plural": "-x" } },
-  "turn-on-the-tv": { "text": "Allume la télévision.", "variants": ["Allume la télé.", "Mets la télé."] },
   "come-sit-with-me": {
    "text": "Viens, assieds-toi à côté de moi !",
    "variants": ["Viens t'asseoir à côté de moi !", "Viens, assieds-toi près de moi !"]
@@ -91,7 +90,6 @@
   "the-curtains-hang-over-the-window": {
    "text": "Les rideaux pendent devant la fenêtre.",
    "variants": ["Les rideaux sont devant la fenêtre."]
-  },
-  "open-the-window-fresh-air": { "text": "Ouvre la fenêtre." }
+  }
  }
 }

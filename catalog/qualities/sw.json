@@ -65,8 +65,6 @@
    "variants": ["kali", "mkali", "wakali", "kikali", "vikali", "makali", "mikali"],
    "notes": { "de": "gilt auch für Menschen (streng) und Essen (scharf): mwalimu mkali, pilipili kali." }
   },
-  "a-lot-of-water": { "text": "maji mengi" },
-  "the-day-is-long": { "text": "Siku ni ndefu." },
-  "that-is-too-heavy": { "text": "Hii ni nzito mno." }
+  "a-lot-of-water": { "text": "maji mengi" }
  }
 }

@@ -41,7 +41,6 @@
   "components": ["residence-permit", "extend"]
  },
  { "slug": "fill-out-the-form", "kind": "phrase", "emoji": "📋", "components": ["fill-in", "form"] },
- { "slug": "take-a-number", "kind": "phrase", "emoji": "🎫", "components": ["ticket-number"] },
  {
   "slug": "i-need-an-interpreter-for-the-application",
   "kind": "phrase",

@@ -45,14 +45,9 @@
     "Je voudrais fixer un rendez-vous."
    ]
   },
-  "i-have-to-cancel-the-appointment": { "text": "Je dois annuler le rendez-vous.", "variants": ["Je dois annuler mon rendez-vous."] },
   "the-deadline-is-tomorrow": {
    "text": "Le délai expire demain.",
    "variants": ["La date limite est demain.", "Le délai est demain."]
-  },
-  "what-are-the-opening-hours": {
-   "text": "Quelles sont les heures d'ouverture ?",
-   "variants": ["Quels sont les horaires d'ouverture ?", "Quels sont vos horaires ?"]
   },
   "can-we-postpone-the-appointment": {
    "text": "Pouvons-nous reporter le rendez-vous ?",

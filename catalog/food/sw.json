@@ -45,10 +45,7 @@
   "im-hungry": { "text": "Nina njaa." },
   "whats-for-dinner": { "text": "Chakula cha jioni ni nini?" },
   "i-dont-eat-meat": { "text": "Sili nyama." },
-  "bread-with-butter": { "text": "mkate na siagi" },
-  "fruit-and-vegetables": { "text": "matunda na mboga" },
   "i-eat-rice-with-sauce": { "text": "Ninakula wali na mchuzi." },
-  "without-salt-please": { "text": "Bila chumvi, tafadhali." },
   "the-food-is-ready": { "text": "Chakula kiko tayari!" }
  }
 }

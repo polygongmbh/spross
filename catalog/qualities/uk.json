@@ -23,8 +23,6 @@
   "easy": { "text": "простий", "variants": ["просто", "легкий", "легко"] },
   "clean-adj": { "text": "чистий", "variants": ["чисто"] },
   "sharp": { "text": "гострий", "variants": ["гостро"] },
-  "a-lot-of-water": { "text": "багато води" },
-  "the-day-is-long": { "text": "День довгий." },
-  "that-is-too-heavy": { "text": "Це занадто важке." }
+  "a-lot-of-water": { "text": "багато води" }
  }
 }

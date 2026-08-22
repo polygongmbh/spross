@@ -24,18 +24,14 @@
   "word": { "text": "vorto" },
   "language": { "text": "lingvo" },
   "mother-tongue": { "text": "gepatra lingvo", "variants": ["denaska lingvo"] },
-  "i-dont-understand": { "text": "Mi ne komprenas." },
-  "i-understand": { "text": "Mi komprenas." },
   "can-you-repeat-that": { "text": "Ĉu vi povas ripeti tion?" },
   "slower": { "text": "Pli malrapide!" },
   "i-cant-hear-you": { "text": "Mi ne povas aŭdi vin.", "variants": ["Mi ne aŭdas vin."] },
   "louder": { "text": "Pli laŭte!" },
   "do-you-speak-english": { "text": "Ĉu vi parolas la anglan?", "variants": ["Ĉu vi parolas angle?"] },
-  "i-speak-a-little": { "text": "Mi parolas nur iomete {language-speak}." },
   "what-does-this-word-mean": { "text": "Kion signifas ĉi tiu vorto?" },
   "how-do-you-say-this": { "text": "Kiel oni diras tion {language-in}?" },
   "im-learning-your-language": { "text": "Mi lernas {language-learn}." },
-  "i-have-a-question": { "text": "Mi havas demandon." },
   "you-can-do-it": { "text": "Vi certe sukcesos!" }
  }
 }

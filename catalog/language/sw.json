@@ -25,18 +25,14 @@
   "word": { "text": "neno", "grammar": { "plural": "maneno" } },
   "language": { "text": "lugha", "grammar": { "plural": "=" } },
   "mother-tongue": { "text": "lugha ya mama", "grammar": { "plural": "lugha za mama" } },
-  "i-dont-understand": { "text": "Sielewi." },
-  "i-understand": { "text": "Naelewa." },
   "can-you-repeat-that": { "text": "Unaweza kurudia?" },
   "slower": { "text": "Polepole zaidi!" },
   "i-cant-hear-you": { "text": "Sikusikii.", "variants": ["Siwezi kukusikia."] },
   "louder": { "text": "Kwa sauti zaidi!", "variants": ["Kwa sauti kubwa zaidi!"] },
   "do-you-speak-english": { "text": "Unazungumza Kiingereza?" },
-  "i-speak-a-little": { "text": "Ninazungumza {language} kidogo tu." },
   "what-does-this-word-mean": { "text": "Neno hili lina maana gani?" },
   "how-do-you-say-this": { "text": "Hii inasemwaje {language-in}?" },
   "im-learning-your-language": { "text": "Ninajifunza {language}." },
-  "i-have-a-question": { "text": "Nina swali." },
   "you-can-do-it": { "text": "Hakika utaweza!" }
  }
 }

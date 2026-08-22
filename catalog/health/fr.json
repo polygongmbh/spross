@@ -56,9 +56,7 @@
   "my-throat-hurts-a-lot": { "text": "J'ai très mal à la gorge.", "variants": ["Ma gorge me fait très mal."] },
   "ive-had-a-fever-since-yesterday": { "text": "J'ai de la fièvre depuis hier." },
   "get-well-soon": { "text": "Bon rétablissement !", "variants": ["Remets-toi vite !"] },
-  "i-dont-feel-well": { "text": "Je ne me sens pas bien." },
   "the-wound-hurts": { "text": "La blessure fait mal.", "variants": ["Ma blessure me fait mal."] },
-  "i-cant-breathe-well": { "text": "Je ne peux pas bien respirer.", "variants": ["Je n'arrive pas à bien respirer."] },
   "i-have-to-rest": { "text": "Je dois me reposer." }
  }
 }
