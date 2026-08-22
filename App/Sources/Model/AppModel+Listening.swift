@@ -262,7 +262,8 @@ final class ListeningDriver {
             guard let self, gen == self.generation else { return }
             next()
         }
-        guard let pronunciation = model.formPronunciation(beat.form, lang: beat.lang) else {
+        guard let pronunciation = model.formPronunciation(beat.form, lang: beat.lang,
+                                                          article: beat.article) else {
             once.fire()
             return
         }

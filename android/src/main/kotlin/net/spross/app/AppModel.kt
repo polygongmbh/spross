@@ -43,6 +43,7 @@ import net.spross.kern.model.presentationRole
 import net.spross.kern.model.producePrompt
 import net.spross.kern.model.pronunciationCue
 import net.spross.kern.model.recognitionPromptForm
+import net.spross.kern.model.shownArticle
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.CatalogAnswerGrader
@@ -701,6 +702,13 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                     ?.pronunciation(
                         card.target.lang,
                         if (prompt == ProducePrompt.Sound) card.target.text else promptForm,
+                        // why: the prompted form's own article — `shownArticle` withholds it
+                        // from a rotated synonym, so only the canonical form hears one.
+                        shownArticle(
+                            CardDisplay.article(card.target),
+                            if (prompt == ProducePrompt.Sound) card.target.text else promptForm,
+                            card.target.text,
+                        ),
                     ),
                 segments = active.segments,
                 remaining = active.remaining,

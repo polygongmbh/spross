@@ -73,7 +73,9 @@ private fun AppModel.spokenArticle(form: String): String? {
 
 private fun AppModel.pronunciationOf(form: String): Pronunciation? {
     val lang = sessionUi?.card?.target?.lang ?: return null
-    return catalog?.pronunciation(lang, form)
+    // why: the card's own article, so a word the pack recorded WITH one is heard with it —
+    // the same ruling that is handed to the voice a line later, asked once here.
+    return catalog?.pronunciation(lang, form, spokenArticle(form))
 }
 
 private fun AppModel.awaitsReveal(): Boolean {

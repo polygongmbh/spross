@@ -285,7 +285,10 @@ class ListeningDriver(
                 onDone()
             }
         }
-        val pronunciation = lang?.let { model.catalog?.pronunciation(it, form) }
+        // why: the article rides into the LOOKUP as well as into the voice — the target
+        // beat may have a recording that speaks it, the meaning beat never does.
+        val article = if (meaning) null else turn.spokenArticle
+        val pronunciation = lang?.let { model.catalog?.pronunciation(it, form, article) }
         if (pronunciation == null) {
             finish()
             return
@@ -293,7 +296,7 @@ class ListeningDriver(
         model.pronouncer.pronounce(
             pronunciation,
             Pronouncer.Trigger.LISTENING,
-            if (meaning) null else turn.spokenArticle,
+            article,
             fadeDb(),
             finish,
         )

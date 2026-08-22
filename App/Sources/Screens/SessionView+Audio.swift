@@ -126,7 +126,10 @@ extension SessionView {
 
     private func pronunciation(of form: String) -> Pronunciation? {
         guard let target = model.targetLanguage, let catalog = model.catalog else { return nil }
-        return catalog.pronunciation(lang: target, visibleForm: form)
+        // The card's own article, so a word the pack recorded with one is heard
+        // with it — the same ruling the live voice is handed just below.
+        return catalog.pronunciation(lang: target, visibleForm: form,
+                                     article: spokenArticle(of: form))
     }
 
     #if DEBUG

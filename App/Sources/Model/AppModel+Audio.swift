@@ -82,8 +82,12 @@ extension AppModel {
 
     /// A visible target form, through the same matched-form lookup the review
     /// cards use — a recording only ever plays over the word it actually says.
-    func formPronunciation(_ form: String, lang: String) -> Pronunciation? {
-        catalog?.pronunciation(lang: lang, visibleForm: form)
+    ///
+    /// `article` is what the card shows in front of the word, and picks the
+    /// recording that says it too where the pack has one; nil is the source
+    /// side and everything a card rotated in, which stay bare.
+    func formPronunciation(_ form: String, lang: String, article: String? = nil) -> Pronunciation? {
+        catalog?.pronunciation(lang: lang, visibleForm: form, article: article)
     }
 
     /// A form with NO recording looked up at all: the live voice reads what
@@ -114,7 +118,8 @@ extension AppModel {
     /// canonical target — a drill reading, an alphabet example, a country name.
     func pronounceAction(for form: String, lang: String,
                          article: String? = nil) -> (() -> Void)? {
-        guard let pronunciation = catalog?.pronunciation(lang: lang, visibleForm: form) else { return nil }
+        guard let pronunciation = catalog?.pronunciation(lang: lang, visibleForm: form,
+                                                         article: article) else { return nil }
         let recordingURL = audioURL(pronunciation.recordingPath)
         guard Pronouncer.shared.canPronounce(pronunciation, recordingURL: recordingURL) else { return nil }
         // why: a tap is a request, not autoplay — it speaks even while reading
@@ -127,8 +132,13 @@ extension AppModel {
 
     /// Whether `form` in `lang` is the word sounding right now — drives an
     /// audio icon's pulse.
+    ///
+    /// No article asked for: the playing key is language and visible form
+    /// (`Pronouncer.key`), the same string whichever recording the article
+    /// picked, so one here would fetch a path nobody compares.
     func isPronouncing(_ form: String, lang: String) -> Bool {
-        guard let pronunciation = catalog?.pronunciation(lang: lang, visibleForm: form) else { return false }
+        guard let pronunciation = catalog?.pronunciation(lang: lang, visibleForm: form,
+                                                         article: nil) else { return false }
         return Pronouncer.shared.playingKey == Pronouncer.key(for: pronunciation)
     }
 
@@ -142,7 +152,8 @@ extension AppModel {
     /// catalogued word, and stays silent only where the language has no voice
     /// and no recording either.
     func pronounceAloud(_ form: String, lang: String, article: String? = nil) {
-        guard let pronunciation = catalog?.pronunciation(lang: lang, visibleForm: form) else { return }
+        guard let pronunciation = catalog?.pronunciation(lang: lang, visibleForm: form,
+                                                         article: article) else { return }
         Pronouncer.shared.pronounce(pronunciation,
                                     recordingURL: audioURL(pronunciation.recordingPath),
                                     trigger: .auto, article: article)
