@@ -5,6 +5,20 @@ and which one a rule lands in decides whether it holds.
 `CLAUDE.md` is the index every session pays for, `docs/` is read when its topic comes up,
 and a check runs whether or not anybody read anything.
 
+## A rule belongs in the repo, not in an agent's memory
+
+An assistant may also have a private memory store — local files under its own tool directory,
+outside the repo. It is the weakest home there is, and never the only one a rule gets.
+It travels with one machine and one tool, so a teammate, a CI run, a fresh clone and a
+different assistant all see a repo where the rule simply does not exist. It is not reviewed,
+not diffed, and not versioned alongside the code it constrains, so it drifts silently and
+nothing fails when it goes stale.
+
+So when something is worth remembering about this project, write it into the repo —
+the owning `docs/` page, or a gate if it is checkable — and let the memory file hold at most
+a pointer to it. What genuinely belongs there is the operator's own preferences, which are
+not facts about the code and have no home here.
+
 ## A checkable rule earns a check, not another sentence
 
 The repo ran the A/B without meaning to.
