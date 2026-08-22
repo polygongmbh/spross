@@ -28,21 +28,30 @@ extension AppModel {
     /// WHEN this card's target form may be said out loud — Kern's rule,
     /// consumed rather than re-derived: both apps switch on this one cue
     /// instead of each testing the role in its own way.
-    func pronunciationCue(for card: Card) -> PronunciationCue {
-        SprossKern.pronunciationCue(role: presentationRole(for: card.id),
-                                    prompt: producePrompt(for: card))
+    ///
+    /// `prompt` is handed IN rather than resolved here: a turn already on screen
+    /// keeps the prompt it began with, and the cue must answer for that one and
+    /// not for what the device would decide a second time.
+    func pronunciationCue(for card: Card, prompt: ProducePrompt) -> PronunciationCue {
+        SprossKern.pronunciationCue(role: presentationRole(for: card.id), prompt: prompt)
     }
 
     /// Whether a produce card asks by MEANING or by ear — Kern's rule again,
     /// with the one fact it cannot have: whether this device, right now, can
-    /// say the word at all. Three ways it cannot, and each falls back to the
+    /// say the word at all. Four ways it cannot, and each falls back to the
     /// source prompt rather than putting up a card with nothing in it: no
-    /// recording and no voice, reading aloud switched off, and VoiceOver, which
-    /// suppresses every autoplay so nothing may speak over the screen reader.
+    /// recording and no voice, reading aloud switched off, the volume all the
+    /// way down, and VoiceOver, which suppresses every autoplay so nothing may
+    /// speak over the screen reader.
+    ///
+    /// The ring/silent switch is the one mute this cannot ask about — no API
+    /// reads it (`AudioSession`) — so a card dealt through it carries its own
+    /// way out instead.
     func producePrompt(for card: Card) -> ProducePrompt {
         guard let pronunciation = formPronunciation(card.target.text, lang: card.target.lang)
         else { return .source }
         let audible = !Pronouncer.shared.muted
+            && !AudioSession.silenced
             && !UIAccessibility.isVoiceOverRunning
             && Pronouncer.shared.canPronounce(pronunciation,
                                               recordingURL: audioURL(pronunciation.recordingPath))

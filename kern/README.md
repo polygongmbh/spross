@@ -119,8 +119,13 @@ No config flag, no user-facing direction anywhere.
     offset keeps the box from flipping in sync.
 - **Synonym rotation** on recognition prompts, and **sound-prompted production**
   (`producePrompt`): asking a word by ear WITHDRAWS the meaning rather than adding support,
-  so it needs the stricter consolidated bar (§5) — it is not a third role, only the prompt
-  side moving, so one schedule still sees one kind of answer.
+  so it needs the stricter consolidated bar (§5) — it is not a third role, only the side the
+  card asks FROM moving, so one schedule still sees one kind of answer. The ANSWER moves
+  with it: what is typed is the meaning, in the source language, because a word heard and
+  written back down has been transcribed rather than understood. It is the one turn typed in
+  the language the learner already has, and it stands on the same reasoning the recognition
+  rule does — a self-graded reveal would not tell whether the word was understood at all,
+  which is the whole of what a sound prompt asks.
 - **The target is spoken with its article; the source is not** (user ruling 2026-08-21),
   everywhere a target word is synthesized — which reverses `../docs/read-aloud.md`'s
   "only the headword is ever spoken".

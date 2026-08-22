@@ -187,12 +187,24 @@ struct SessionView: View, LanguageNaming {
             // why: a consolidated word is sometimes asked by ear alone — the
             // meaning is withheld ON PURPOSE, so no cue rides along with it
             // either; what stands is the replay glyph and nothing else.
-            if model.producePrompt(for: card) == .sound {
+            //
+            // The word takes the glyph's place once there is nothing left to
+            // withhold: the learner said they cannot listen, or the answer is
+            // out and the spelling is what the reveal owes. It then renders as
+            // any other target word does — article, plural, and the speaker.
+            if askedByEar(card) {
+                let written = promptInText || cardRevealed
                 return .init(text: card.target.text,
+                             article: written
+                                 ? CardDisplay.articleLabel(of: card.target, shown: card.target.text)
+                                 : nil,
+                             plural: written
+                                 ? CardDisplay.plural(of: card.target, locale: locale)
+                                 : nil,
                              language: model.targetLanguage,
                              pronounce: pronounceAction(for: card.target.text),
                              isPlaying: isPronouncing(card.target.text),
-                             listening: true)
+                             listening: !written)
             }
             return .init(text: card.source.text,
                          // why: the area title IS the disambiguating cue, in the source
@@ -220,21 +232,25 @@ struct SessionView: View, LanguageNaming {
     private func answerSide(_ card: Card, role: PresentationRole) -> VocabCardView.Side {
         switch role {
         case .produce:
-            // why: a sound-prompted card never said what the word MEANS, so the
-            // reveal owes it — otherwise a miss teaches nothing but spelling.
             let meaning = ([card.source.text] + card.source.synonyms).joined(separator: " / ")
             let alternates = CardDisplay.alternates(of: card.target,
                                                     shown: card.target.text,
                                                     locale: locale)
-            let heard = model.producePrompt(for: card) == .sound
-            let below: String? = heard
-                ? [meaning, alternates].compactMap { $0 }.joined(separator: " · ")
-                : alternates
+            // why: a card asked by ear owes the MEANING back, so its reveal is
+            // shaped like the recognition one — the answer where the answer
+            // goes, and the word that played standing above it in writing
+            // (`promptSide`), which is where a retype has something to finish
+            // against rather than a prompt to copy.
+            if askedByEar(card) {
+                return .init(text: meaning,
+                             alternates: alternates,
+                             femMarker: card.promptFeminineMarker)
+            }
             return .init(text: card.target.text,
                          article: CardDisplay.articleLabel(of: card.target,
                                                            shown: card.target.text),
                          plural: CardDisplay.plural(of: card.target, locale: locale),
-                         alternates: below,
+                         alternates: alternates,
                          language: model.targetLanguage,
                          pronounce: pronounceAction(for: card.target.text),
                          isPlaying: isPronouncing(card.target.text))

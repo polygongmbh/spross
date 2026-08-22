@@ -447,3 +447,8 @@ One line per item, with a file or context pointer, filed under the section it be
   (`App/Sources/Audio/AudioSession.swift`), Android is still on the boolean iOS calls its
   LEGACY key, `pronunciationMuted` (`android/.../audio/Pronouncer.kt`). So Android has no
   `followsPhone` middle state, and the two cannot be reasoned about as one setting.
+- The letter drill's dictation rung is dealt on a device silenced by its own volume, where
+  the review card asked by ear is not any more (`LetterDrillAvailability.report` takes only
+  `hasVoice`, `docs/read-aloud.md`). Its question plays under `.playback`, so the phone's
+  switch is deliberately overruled there — but a volume slider at zero silences that too,
+  and the rung has no "can't listen right now?" of its own to fall back on.

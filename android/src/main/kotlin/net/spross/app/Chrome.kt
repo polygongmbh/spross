@@ -307,6 +307,8 @@ interface Chrome {
      * a step you cannot leave is a trap, and neither leaving costs the schedule anything.
      */
     val skipStep: String
+    /** The way out of a card asked by ear: the word goes on screen instead of in the air. */
+    val cantListen: String
 
     // ── The day's standing (Heute) ──────────────────────────────────────────────
     /** Nothing due, and nothing done yet — never [doneToday], which the day must earn. */

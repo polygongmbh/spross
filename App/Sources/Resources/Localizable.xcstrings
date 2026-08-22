@@ -4431,6 +4431,22 @@
         }
       }
     },
+    "session.hear.cantListen" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kannst du gerade nicht hören?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can't listen right now?"
+          }
+        }
+      }
+    },
     "session.otherWord %@ %@" : {
       "localizations" : {
         "de" : {

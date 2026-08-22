@@ -18,16 +18,18 @@ extension SessionView {
     /// frame one. A produce card plays nothing here — its word is the thing
     /// being asked for; `produceAudioTrigger` below arms the reveal instead.
     func autoplayPrompt(_ card: Card) {
-        switch model.pronunciationCue(for: card) {
+        // why: the TURN's own prompt (`askedByEar`) — the cue and the card face
+        // must never disagree about what this card is asking, and the device's
+        // audibility can change under it.
+        let heard = askedByEar(card)
+        switch model.pronunciationCue(for: card, prompt: heard ? .sound : .source) {
         case .upfront:
             // why: the PROMPTED form, never the canonical one — a rotated
             // synonym has to be heard as the word that is actually on screen.
             // A sound-prompted produce has nothing on screen at all, so what
             // plays is the very form it grades against.
             guard claimAutoplay(card.id) else { return }
-            let form = model.producePrompt(for: card) == .sound
-                ? card.target.text
-                : model.promptForm(for: card)
+            let form = heard ? card.target.text : model.promptForm(for: card)
             speak(form, trigger: .auto)
         case .onReveal:
             break

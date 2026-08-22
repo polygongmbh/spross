@@ -10,6 +10,21 @@
   is taught as its own word, which makes `kuacha kazi` a sentence you can now assemble
   rather than memorize.
 
+- **A word asked by ear now asks what it means.** The card that plays a word you have
+  settled and shows nothing used to want that word typed back — which proves your ear
+  worked and little else. It now wants the meaning, in your own language, so the review is
+  the translation you would actually have to make: hear `gari`, write `Auto`. The field
+  says which language it is owed in, as it always has, and once the answer is out the word
+  itself stands on the card with its article and the speaker that says it, so the spelling
+  is still taught where it was heard.
+
+- **A phone that has been told to be quiet is never dealt one.** A card whose only content
+  is a sound now asks first whether it can be heard at all — the volume down, the media
+  stream muted — and asks in the ordinary way instead. And because an iPhone's ring/silent
+  switch cannot be read by any app, every card asked by ear carries "Can't listen right
+  now?" under its answer button: it puts the word on the card as text and leaves the
+  question exactly as it was, so a card can never be one you are unable to answer.
+
 ## 5.3.0 — 2026-08-22
 
 - **A review pass over the vocabulary, and a handful of words now name what they mean.**

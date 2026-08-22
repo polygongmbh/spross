@@ -17,8 +17,8 @@ extension SessionView {
                         // why: a miss keeps typing — the retype IS the
                         // answer, so the field must not lock on reveal.
                         locked: false,
-                        correctionVoice: .init(pronounce: { pronounceAction(for: $0) },
-                                               isPlaying: { isPronouncing($0) })) {
+                        correctionVoice: .init(pronounce: { correctionSpeaker($0) },
+                                               isPlaying: { correctionIsPlaying($0) })) {
             submitFromField()
         }
         // why: writing the word out is the answer — the same rule the write-out
@@ -70,23 +70,39 @@ extension SessionView {
                 RatingButtonsView(onGrade: { dispatch(TurnIntent.SelfGrade(verdict: $0.verdict)) },
                                   caption: gradeCaption)
             case .neutral:
-                // ONE primary action: empty input reveals, typed input checks.
-                // kern's Submit is inert on blank text, so which of the two a
-                // press is stays the platform's to decide.
-                Button {
-                    if input.isBlankAnswer {
-                        dispatch(TurnIntent.Reveal.shared)
-                    } else {
-                        dispatch(TurnIntent.Submit(text: input))
+                VStack(spacing: DL.Space.m) {
+                    // ONE primary action: empty input reveals, typed input checks.
+                    // kern's Submit is inert on blank text, so which of the two a
+                    // press is stays the platform's to decide.
+                    Button {
+                        if input.isBlankAnswer {
+                            dispatch(TurnIntent.Reveal.shared)
+                        } else {
+                            dispatch(TurnIntent.Submit(text: input))
+                        }
+                    } label: {
+                        Text(input.isBlankAnswer ? "session.reveal" : "common.check")
+                            .frame(maxWidth: .infinity)
+                            .contentTransition(.opacity)
                     }
-                } label: {
-                    Text(input.isBlankAnswer ? "session.reveal" : "common.check")
-                        .frame(maxWidth: .infinity)
-                        .contentTransition(.opacity)
+                    .buttonStyle(DLPrimaryButtonStyle())
+                    .keyboardShortcut(.defaultAction)
+                    .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
+                    // why: this card's whole content is a sound, and a learner who
+                    // cannot listen to it would otherwise answer blind. Under the
+                    // primary action: it is the way out, not the way through.
+                    if offersPromptText {
+                        Button("session.hear.cantListen") {
+                            // why: the word in the air belongs to a question that is
+                            // about to stand in writing — nothing may keep playing over
+                            // the answer to "I can't listen".
+                            Pronouncer.shared.stop()
+                            dispatch(TurnIntent.ShowPromptText.shared)
+                        }
+                        .font(DL.Fonts.caption)
+                        .foregroundStyle(Color.dlTextSecondary)
+                    }
                 }
-                .buttonStyle(DLPrimaryButtonStyle())
-                .keyboardShortcut(.defaultAction)
-                .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
             case .almost:
                 // A typo or a heard-instead pauses here — the box above spells
                 // the owed form out and says it; this waits for the tap that
@@ -153,7 +169,28 @@ extension SessionView {
         }
     }
 
+    /// The language the field asks for, named. Kern's answer side decides which
+    /// one that is — the meaning on a card asked by ear, the target everywhere
+    /// else — and this placeholder is the one place the learner is told.
     private var inputPlaceholder: String {
-        model.targetLanguage.map { answerPlaceholder($0) } ?? ""
+        guard let lang = turn?.answerLang ?? model.targetLanguage else { return "" }
+        return answerPlaceholder(lang)
+    }
+
+    /// The speaker beside a correction — none where the card was asked by ear:
+    /// what it owes back is then a SOURCE word, and the target voice would read
+    /// a German word in Swahili.
+    private func correctionSpeaker(_ form: String) -> (() -> Void)? {
+        answerIsMeaning ? nil : pronounceAction(for: form)
+    }
+
+    private func correctionIsPlaying(_ form: String) -> Bool {
+        answerIsMeaning ? false : isPronouncing(form)
+    }
+
+    /// The way out of a card asked by ear, offered while it is still asking.
+    private var offersPromptText: Bool {
+        guard let turn else { return false }
+        return turn.prompt == .sound && !turn.promptInText
     }
 }

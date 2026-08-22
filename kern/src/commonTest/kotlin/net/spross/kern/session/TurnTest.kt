@@ -190,22 +190,8 @@ class TurnTest {
     }
 
     @Test
-    fun aSynonymOfWhatPlayedIsAlmostNeverWrong() {
-        val heard = TurnFixture.step(byEar(), TurnIntent.Submit("motokaa"))
-        assertEquals(TurnFeedback.Almost("gari", AlmostReason.Heard), heard.state.feedback)
-        assertEquals(Rating.Hard, heard.state.pendingRating)
-        assertEquals(listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ReleaseFocus), heard.effects)
-        assertEquals(
-            listOf(TurnEffect.Answer(Rating.Hard)),
-            TurnFixture.step(heard.state, TurnIntent.ConfirmPending).effects,
-        )
-    }
-
-    @Test
-    fun theFormThatPlayedIsExactEvenWhereTheCardAlsoListsIt() {
-        // "Gari" is one of the card's own variants, so the heard rule would have matched too —
-        // being exactly what played wins.
-        val exact = TurnFixture.step(byEar(), TurnIntent.Submit("gari"))
+    fun aCardAskedByEarIsAnsweredWithTheMeaning() {
+        val exact = TurnFixture.step(byEar(), TurnIntent.Submit("Auto"))
         assertEquals(TurnFeedback.Correct, exact.state.feedback)
         assertEquals(
             listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceTier.Explicit)),
@@ -214,10 +200,54 @@ class TurnTest {
     }
 
     @Test
-    fun aWordThatNeverPlayedStillRevealsAndPrimes() {
-        val taken = TurnFixture.step(byEar(), TurnIntent.Submit("kisu"))
+    fun aSourceSynonymAnswersACardAskedByEar() {
+        // The meaning side's own synonyms are meanings, not near misses: nothing to forgive.
+        assertEquals(TurnFeedback.Correct, TurnFixture.state(byEar(), TurnIntent.Submit("Wagen")).feedback)
+    }
+
+    @Test
+    fun aSlipInTheMeaningIsATypoInTheSourceLanguage() {
+        val held = TurnFixture.step(byEar(), TurnIntent.Submit("Ato"))
+        assertEquals(TurnFeedback.Almost("Auto", AlmostReason.Typo), held.state.feedback)
+        assertEquals(Rating.Hard, held.state.pendingRating)
+    }
+
+    @Test
+    fun writingBackTheWordThatPlayedIsNotTheAnswer() {
+        // Transcription proves the ear worked and nothing else — the card asked what it means.
+        val missed = TurnFixture.step(byEar(), TurnIntent.Submit("gari"))
+        assertEquals(TurnFeedback.Revealed, missed.state.feedback)
+    }
+
+    @Test
+    fun aCardAskedByEarOwesTheMeaningInTheSourceLanguage() {
+        val turn = byEar()
+        assertEquals("Auto", turn.answerText)
+        assertEquals("de", turn.answerLang)
+    }
+
+    @Test
+    fun theWordGoesOnScreenWhereTheLearnerCannotListen() {
+        val written = TurnFixture.step(byEar(), TurnIntent.ShowPromptText)
+        assertTrue(written.state.promptInText)
+        // Nothing else moves: same question, same answer, so nothing is asked of the platform.
+        assertEquals(emptyList(), written.effects)
+        assertEquals(TurnFeedback.Correct, TurnFixture.state(written.state, TurnIntent.Submit("Auto")).feedback)
+    }
+
+    @Test
+    fun onlyACardAskedByEarHasAWordToPutInWriting() {
+        val seen = TurnFixture.produce(TurnFixture.car)
+        assertEquals(seen, TurnFixture.state(seen, TurnIntent.ShowPromptText))
+    }
+
+    @Test
+    fun aWrongMeaningRevealsAndPrimesAndNamesNoOtherWord() {
+        // The meaning side has no catalog-wide grader: another concept's word in the language
+        // the learner already HAS is nothing to teach them, so it misses like any other word.
+        val taken = TurnFixture.step(byEar(), TurnIntent.Submit("Messer"))
         assertEquals(TurnFeedback.Revealed, taken.state.feedback)
-        assertEquals(Match.OtherWord("kisu", listOf("Messer")), taken.state.otherWord)
+        assertNull(taken.state.otherWord)
         assertEquals(listOf(TurnEffect.Tone(ToneKind.Wrong), TurnEffect.PrimeField("")), taken.effects)
 
         val nowhere = TurnFixture.step(byEar(), TurnIntent.Submit("zzznope"))

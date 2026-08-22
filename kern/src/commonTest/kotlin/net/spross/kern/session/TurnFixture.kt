@@ -18,6 +18,9 @@ internal object TurnFixture {
     private val catalog = Fixture.catalog()
     val normalizer = AnswerNormalizer(catalog.languages.getValue("sw"))
 
+    /** The SOURCE language's normalizer — what a card asked by ear grades its meaning with. */
+    val meaningNormalizer = AnswerNormalizer(catalog.languages.getValue("de"))
+
     fun card(
         id: String,
         source: String,
@@ -26,10 +29,11 @@ internal object TurnFixture {
         seedIndex: Int = 0,
         synonyms: List<String> = emptyList(),
         variants: List<String> = emptyList(),
+        sourceSynonyms: List<String> = emptyList(),
     ): Card = Card(
         id = id, kind = kind, area = "test", emoji = null, seedIndex = seedIndex,
         components = emptyList(), feminineOf = null,
-        source = Realization(lang = "de", text = source),
+        source = Realization(lang = "de", text = source, synonyms = sourceSynonyms),
         target = Realization(lang = "sw", text = target, synonyms = synonyms, variants = variants),
         promptFeminineMarker = false,
     )
@@ -42,15 +46,20 @@ internal object TurnFixture {
     val close = card("close", "schließen", "kufunga", CardKind.Verb, seedIndex = 2)
     val language = card("language", "Sprache", "lugha", CardKind.Noun, seedIndex = 3)
 
-    /** The variant repeats the spoken form: a card that also lists the word it plays. */
+    /**
+     * The variant repeats the spoken form: a card that also lists the word it plays.
+     * Its SOURCE side carries a synonym too, which is what a card asked by ear grades against.
+     */
     val car = card(
         "car", "Auto", "gari", CardKind.Noun, seedIndex = 4,
         synonyms = listOf("motokaa"), variants = listOf("Gari"),
+        sourceSynonyms = listOf("Wagen"),
     )
 
     private val machine = TurnMachine(
         CatalogAnswerGrader(normalizer, listOf(knife, open, close, language, car)),
         normalizer,
+        meaningNormalizer,
     )
 
     fun produce(

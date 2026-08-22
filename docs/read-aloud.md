@@ -122,6 +122,15 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   per target language, and not in the box, where the product calibration would reset it.
   The silent switch's position cannot be read back (no API), so it is followed by deferring
   to it, never by mirroring it.
+- **A card whose only content is a sound is not dealt onto a phone that cannot play it.**
+  The review card asked by ear (`../kern/docs/presentation.md`) asks the app whether the
+  word can be heard RIGHT NOW, and a device silenced by its own volume answers no — iOS
+  reads `outputVolume`, Android the media stream's volume and mute. Android's RINGER mode
+  is deliberately not read: silencing notifications there leaves media playing and never
+  asked for a silent lesson. What neither can ask about is iOS's ring/silent switch, so a
+  card dealt through it carries the way out on screen instead ("can't listen right now?",
+  `design.md`) — which is also the answer for headphones that were unplugged between one
+  card and the next, since the question is asked once as the card goes up.
 - **The audio setting in the Box names the voice too, in one three-way row: No audio,
   Recordings, Speech.** "No audio" is the switch off, and it silences autoplay whatever
   the phone says. "Recordings" — the default — plays the bundled recording where the form

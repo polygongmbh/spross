@@ -251,6 +251,14 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         private set
 
     /**
+     * The SOURCE language's grading, for the one turn typed in it: a card asked by ear
+     * owes what the word MEANS, and the articles and typo budget it is measured under
+     * are that language's own (`kern/docs/presentation.md`).
+     */
+    var meaningNormalizer: AnswerNormalizer? = null
+        private set
+
+    /**
      * `dailyStats` from every OTHER target-language box on disk — the box's streak
      * is one commitment across every language the learner studies, not one per
      * language ([net.spross.kern.box.mergeDailyStats]). Reloaded whenever [activate]
@@ -506,6 +514,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         // this on every composition, and a sweep per frame is one no start-up should pay.
         atlas = cat.countryDrillContent(source, target)
         normalizer = AnswerNormalizer(cat.languages.getValue(target))
+        meaningNormalizer = AnswerNormalizer(cat.languages.getValue(source))
         persist(state)
         otherLanguagesDailyStats = withContext(Dispatchers.IO) { loadOtherLanguagesDailyStats(cat, target) }
         refreshStats()
@@ -634,13 +643,14 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     /**
      * Whether the card's own form can be heard RIGHT NOW — the one fact kern's
-     * [producePrompt] cannot have. Three ways it cannot, and each keeps the source
+     * [producePrompt] cannot have. Four ways it cannot, and each keeps the source
      * prompt rather than putting up a card with nothing in it: no recording and no
-     * voice, reading aloud switched off, and TalkBack, which suppresses every autoplay
-     * so nothing may speak over the screen reader.
+     * voice, reading aloud switched off, a device turned down or muted by its own
+     * volume, and TalkBack, which suppresses every autoplay so nothing may speak over
+     * the screen reader.
      */
     private fun audible(card: Card): Boolean {
-        if (pronouncer.muted || pronouncer.readsScreenAloud) return false
+        if (pronouncer.muted || pronouncer.readsScreenAloud || pronouncer.deviceSilenced) return false
         val pronunciation = catalog?.pronunciation(card.target.lang, card.target.text) ?: return false
         return pronouncer.canPronounce(pronunciation)
     }

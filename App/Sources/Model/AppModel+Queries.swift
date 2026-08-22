@@ -100,6 +100,14 @@ extension AppModel {
         return AnswerNormalizer(answerLanguage: info)
     }
 
+    /// The SOURCE language's grading, for the one turn typed in it: a card asked
+    /// by ear owes what the word MEANS, and the articles and typo budget it is
+    /// measured under are that language's own (`kern/docs/presentation.md`).
+    var meaningNormalizer: AnswerNormalizer? {
+        guard let info = languageInfo(sourceLanguage) else { return nil }
+        return AnswerNormalizer(answerLanguage: info)
+    }
+
     /// The same grading with the whole join in view: a form the catalog owns
     /// elsewhere is that word, never a typo of this card's answer (`kern/docs/grading.md`).
     /// Built per grading pass — one pass over the join's accepted forms, and

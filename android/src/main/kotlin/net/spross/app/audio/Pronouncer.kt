@@ -123,6 +123,24 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         }
 
     /**
+     * Whether the DEVICE itself would swallow a word right now — the media stream muted
+     * outright, or turned all the way down. A card whose only content is a sound must not
+     * be dealt onto a phone that has been told to be quiet, so this is the third mute the
+     * sound prompt asks about, beside [muted] and the screen reader.
+     *
+     * The RINGER mode is deliberately not read: silencing the ringer leaves media playing
+     * on Android, and a learner who silenced their notifications did not ask for a silent
+     * lesson. Read per question rather than watched — a volume key is pressed between
+     * cards, and the card already asked has its own way out.
+     */
+    val deviceSilenced: Boolean
+        get() {
+            val manager = audioManager ?: return false
+            return manager.isStreamMute(AudioManager.STREAM_MUSIC) ||
+                manager.getStreamVolume(AudioManager.STREAM_MUSIC) == 0
+        }
+
+    /**
      * Silences autoplay for THIS launch, storing nothing — the mirror of iOS's
      * `-readAloud off` launch argument, which lands in the argument domain and leaves the
      * stored preference where it was. A script-driven run (`scripts/run-emu.sh --mute`)

@@ -43,3 +43,22 @@ fun alsoAccepts(card: Card, input: String): Boolean {
     val typed = speechKey(input)
     return (card.target.synonyms + card.target.variants).any { speechKey(it) == typed }
 }
+
+/**
+ * The card a MEANING answer is graded against: the same card with its two sides SWAPPED,
+ * so the source realization is what the answer is measured against.
+ *
+ * A word asked by ear asks what it MEANS, not how it is spelled — hearing «gari» and
+ * writing «gari» back proves only that the ear worked. So the answer set is the source
+ * side's `text ∪ synonyms ∪ variants`, which [AnswerNormalizer] already reads off
+ * `target`, and the whole grading pipeline is reused rather than re-cut for one prompt.
+ *
+ * The id, `kind` and `feminineOf` survive, as they do in [spokenOnly] and for the same
+ * reasons. `baseAccepted` goes: it holds the base concept's TARGET forms, which on this
+ * side of the card are not what is being asked for.
+ */
+fun meaningSide(card: Card): Card = card.copy(
+    baseAccepted = emptyList(),
+    source = card.target,
+    target = card.source,
+)
