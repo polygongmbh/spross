@@ -1,0 +1,27 @@
+{
+ "title": "Mgahawani",
+ "subtitle": "Ambapo unahudumiwa.",
+ "words": {
+  "menu": { "text": "menyu", "grammar": { "plural": "=" } },
+  "waiter": { "text": "mhudumu", "grammar": { "plural": "wahudumu" } },
+  "table": { "text": "meza", "grammar": { "plural": "=" } },
+  "order": { "text": "kuagiza" },
+  "bill": { "text": "bili", "grammar": { "plural": "=" }, "variants": ["hesabu"] },
+  "tip": { "text": "bakshishi", "grammar": { "plural": "=" } },
+  "reserve": { "text": "kuweka nafasi" },
+  "glass": { "text": "glasi", "grammar": { "plural": "=" } },
+  "cutlery": { "text": "vyombo vya kulia", "grammar": { "plural": "=" } },
+  "napkin": { "text": "kitambaa cha mezani", "grammar": { "plural": "vitambaa vya mezani" } },
+  "vegetarian": {
+   "text": "bila nyama",
+   "notes": { "de": "Kiswahili hat kein eigenes Wort für vegetarisch — man sagt ohne Fleisch." }
+  },
+  "dessert": { "text": "kitindamlo", "grammar": { "plural": "vitindamlo" } },
+  "beverage": { "text": "kinywaji", "grammar": { "plural": "vinywaji" } },
+  "restaurant": { "text": "mkahawa", "grammar": { "plural": "mikahawa" } },
+  "a-table-for-two": { "text": "Meza ya watu wawili, tafadhali." },
+  "id-like-to-order": { "text": "Ningependa kuagiza." },
+  "is-this-vegetarian": { "text": "Hii ni bila nyama?" },
+  "the-bill-please": { "text": "Bili, tafadhali." }
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "title": "En el restaurante",
+ "subtitle": "Donde a uno lo atienden.",
+ "words": {
+  "menu": {
+   "text": "menú",
+   "variants": ["carta"],
+   "grammar": { "gender": "el" },
+   "notes": { "de": "la carta ist die Speisekarte, el menú oft das Tagesmenü — carta ist auch der Brief." }
+  },
+  "waiter": { "text": "camarero", "grammar": { "gender": "el" } },
+  "waiter-f": { "text": "camarera", "grammar": { "gender": "la" } },
+  "table": { "text": "mesa", "grammar": { "gender": "la" } },
+  "order": { "text": "pedir", "notes": { "de": "Stammwechsel e → i: pido, pide." } },
+  "bill": { "text": "cuenta", "grammar": { "gender": "la" } },
+  "tip": { "text": "propina", "grammar": { "gender": "la" } },
+  "reserve": { "text": "reservar" },
+  "glass": {
+   "text": "vaso",
+   "grammar": { "gender": "el" },
+   "notes": { "de": "el vaso ist das Trinkglas, la copa das Stielglas." }
+  },
+  "cutlery": { "text": "cubiertos", "grammar": { "gender": "los", "plural": "only" } },
+  "napkin": { "text": "servilleta", "grammar": { "gender": "la" } },
+  "vegetarian": { "text": "vegetariano" },
+  "dessert": { "text": "postre", "grammar": { "gender": "el" } },
+  "beverage": { "text": "bebida", "grammar": { "gender": "la" } },
+  "restaurant": { "text": "restaurante", "grammar": { "gender": "el" } },
+  "a-table-for-two": { "text": "Una mesa para dos, por favor." },
+  "id-like-to-order": { "text": "Quería pedir.", "variants": ["Quisiera pedir."] },
+  "is-this-vegetarian": { "text": "¿Esto es vegetariano?" },
+  "the-bill-please": { "text": "La cuenta, por favor." }
+ }
+}

@@ -23,7 +23,6 @@
    "variants": ["l'ufficio postale"],
    "grammar": { "gender": "la" }
   },
-  "restaurant": { "text": "ristorante", "grammar": { "gender": "il" } },
   "hotel": {
    "text": "albergo",
    "synonyms": ["hotel"],

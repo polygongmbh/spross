@@ -1,0 +1,34 @@
+{
+ "title": "Au restaurant",
+ "subtitle": "Où l'on vous sert.",
+ "words": {
+  "menu": {
+   "text": "carte",
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la carte ist die Speisekarte, le menu das feste Gedeck." }
+  },
+  "waiter": { "text": "serveur", "grammar": { "gender": "le" } },
+  "waiter-f": { "text": "serveuse", "grammar": { "gender": "la" } },
+  "table": { "text": "table", "grammar": { "gender": "la" } },
+  "order": { "text": "commander" },
+  "bill": { "text": "addition", "variants": ["l'addition"], "grammar": { "gender": "l'" } },
+  "tip": { "text": "pourboire", "grammar": { "gender": "le" } },
+  "reserve": { "text": "réserver" },
+  "glass": { "text": "verre", "grammar": { "gender": "le" } },
+  "cutlery": { "text": "couverts", "grammar": { "gender": "les", "plural": "only" } },
+  "napkin": {
+   "text": "serviette de table",
+   "variants": ["serviette"],
+   "grammar": { "gender": "la" },
+   "notes": { "de": "une serviette allein ist auch das Handtuch." }
+  },
+  "vegetarian": { "text": "végétarien" },
+  "dessert": { "text": "dessert", "grammar": { "gender": "le" } },
+  "beverage": { "text": "boisson", "grammar": { "gender": "la" } },
+  "restaurant": { "text": "restaurant", "grammar": { "gender": "le" } },
+  "a-table-for-two": { "text": "Une table pour deux, s'il vous plaît." },
+  "id-like-to-order": { "text": "Je voudrais commander." },
+  "is-this-vegetarian": { "text": "C'est végétarien ?" },
+  "the-bill-please": { "text": "L'addition, s'il vous plaît." }
+ }
+}

@@ -15,7 +15,6 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "la poste ist die Post als Einrichtung; ein einzelnes Amt ist le bureau de poste." }
   },
-  "restaurant": { "text": "restaurant", "grammar": { "gender": "le" } },
   "hotel": { "text": "hôtel", "variants": ["l'hôtel"], "grammar": { "gender": "l'" } },
   "church": { "text": "église", "variants": ["l'église"], "grammar": { "gender": "l'" } },
   "mosque": { "text": "mosquée", "grammar": { "gender": "la" } },

@@ -1,0 +1,25 @@
+{
+ "title": "У ресторані",
+ "subtitle": "Де вас обслуговують.",
+ "words": {
+  "menu": { "text": "меню", "grammar": { "plural": "=" } },
+  "waiter": { "text": "офіціант" },
+  "waiter-f": { "text": "офіціантка" },
+  "table": { "text": "стіл", "grammar": { "plural": "столи" } },
+  "order": { "text": "замовляти", "variants": ["замовити"] },
+  "bill": { "text": "рахунок", "grammar": { "plural": "рахунки" } },
+  "tip": { "text": "чайові", "grammar": { "plural": "only" } },
+  "reserve": { "text": "бронювати", "variants": ["забронювати"] },
+  "glass": { "text": "склянка" },
+  "cutlery": { "text": "столові прибори", "grammar": { "plural": "only" } },
+  "napkin": { "text": "серветка" },
+  "vegetarian": { "text": "вегетаріанський" },
+  "dessert": { "text": "десерт" },
+  "beverage": { "text": "напій", "grammar": { "plural": "напої" } },
+  "restaurant": { "text": "ресторан" },
+  "a-table-for-two": { "text": "Столик на двох, будь ласка." },
+  "id-like-to-order": { "text": "Я хотів би замовити.", "variants": ["Я хотіла б замовити."] },
+  "is-this-vegetarian": { "text": "Це вегетаріанське?" },
+  "the-bill-please": { "text": "Рахунок, будь ласка." }
+ }
+}

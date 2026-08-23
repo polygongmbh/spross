@@ -1,0 +1,25 @@
+{
+ "title": "Im Restaurant",
+ "subtitle": "Wo man bedient wird.",
+ "words": {
+  "menu": { "text": "Speisekarte", "grammar": { "gender": "die", "plural": "-n" } },
+  "waiter": { "text": "Kellner", "grammar": { "gender": "der", "plural": "=" } },
+  "waiter-f": { "text": "Kellnerin", "grammar": { "gender": "die", "plural": "-nen" } },
+  "table": { "text": "Tisch", "grammar": { "gender": "der", "plural": "-e" } },
+  "order": { "text": "bestellen" },
+  "bill": { "text": "Rechnung", "grammar": { "gender": "die", "plural": "-en" } },
+  "tip": { "text": "Trinkgeld", "grammar": { "gender": "das", "plural": "-er" } },
+  "reserve": { "text": "reservieren" },
+  "glass": { "text": "Glas", "grammar": { "gender": "das", "plural": "Gläser" } },
+  "cutlery": { "text": "Besteck", "grammar": { "gender": "das", "plural": "-e" } },
+  "napkin": { "text": "Serviette", "grammar": { "gender": "die", "plural": "-n" } },
+  "vegetarian": { "text": "vegetarisch" },
+  "dessert": { "text": "Nachtisch", "synonyms": ["Dessert"], "grammar": { "gender": "der", "plural": "-e" } },
+  "beverage": { "text": "Getränk", "grammar": { "gender": "das", "plural": "-e" } },
+  "restaurant": { "text": "Restaurant", "grammar": { "gender": "das", "plural": "-s" } },
+  "a-table-for-two": { "text": "Einen Tisch für zwei, bitte." },
+  "id-like-to-order": { "text": "Ich möchte bestellen." },
+  "is-this-vegetarian": { "text": "Ist das vegetarisch?" },
+  "the-bill-please": { "text": "Die Rechnung, bitte." }
+ }
+}

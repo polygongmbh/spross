@@ -10,7 +10,6 @@
   "building": { "text": "edificio", "grammar": { "gender": "el" } },
   "bank": { "text": "banco", "grammar": { "gender": "el" } },
   "post-office": { "text": "oficina de correos", "variants": ["correos"], "grammar": { "gender": "la" } },
-  "restaurant": { "text": "restaurante", "grammar": { "gender": "el" } },
   "hotel": { "text": "hotel", "grammar": { "gender": "el" } },
   "church": { "text": "iglesia", "grammar": { "gender": "la" } },
   "mosque": { "text": "mezquita", "grammar": { "gender": "la" } },

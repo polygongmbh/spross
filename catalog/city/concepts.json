@@ -1,7 +1,6 @@
 [
  { "slug": "city", "kind": "noun", "emoji": "🏙️" },
  { "slug": "street", "kind": "noun", "emoji": "🛣️" },
- { "slug": "restaurant", "kind": "noun", "emoji": "🍽️" },
  { "slug": "bank", "kind": "noun", "emoji": "🏦" },
  { "slug": "park", "kind": "noun", "emoji": "🏞️" },
  { "slug": "hotel", "kind": "noun", "emoji": "🏨" },

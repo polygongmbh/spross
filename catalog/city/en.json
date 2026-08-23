@@ -10,7 +10,6 @@
   "building": { "text": "building" },
   "bank": { "text": "bank" },
   "post-office": { "text": "post office" },
-  "restaurant": { "text": "restaurant" },
   "hotel": { "text": "hotel" },
   "church": { "text": "church", "grammar": { "plural": "churches" } },
   "mosque": { "text": "mosque" },

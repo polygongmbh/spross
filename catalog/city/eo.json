@@ -10,7 +10,6 @@
   "building": { "text": "konstruaĵo" },
   "bank": { "text": "banko" },
   "post-office": { "text": "poŝtoficejo", "variants": ["poŝtejo", "poŝto"] },
-  "restaurant": { "text": "restoracio" },
   "hotel": { "text": "hotelo" },
   "church": { "text": "preĝejo" },
   "mosque": { "text": "moskeo" },

@@ -1,0 +1,24 @@
+{
+ "title": "At the restaurant",
+ "subtitle": "Where somebody serves you.",
+ "words": {
+  "menu": { "text": "menu" },
+  "waiter": { "text": "waiter" },
+  "table": { "text": "table" },
+  "order": { "text": "to order" },
+  "bill": { "text": "bill", "synonyms": ["check"] },
+  "tip": { "text": "tip" },
+  "reserve": { "text": "to reserve", "synonyms": ["to book"] },
+  "glass": { "text": "glass", "grammar": { "plural": "glasses" } },
+  "cutlery": { "text": "cutlery", "synonyms": ["silverware"] },
+  "napkin": { "text": "napkin" },
+  "vegetarian": { "text": "vegetarian" },
+  "dessert": { "text": "dessert" },
+  "beverage": { "text": "drink", "synonyms": ["beverage"] },
+  "restaurant": { "text": "restaurant" },
+  "a-table-for-two": { "text": "A table for two, please." },
+  "id-like-to-order": { "text": "I'd like to order." },
+  "is-this-vegetarian": { "text": "Is this vegetarian?" },
+  "the-bill-please": { "text": "The bill, please." }
+ }
+}

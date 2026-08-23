@@ -10,7 +10,6 @@
   "building": { "text": "Gebäude", "grammar": { "gender": "das", "plural": "=" } },
   "bank": { "text": "Bank", "grammar": { "gender": "die", "plural": "-en" } },
   "post-office": { "text": "Post", "grammar": { "gender": "die" } },
-  "restaurant": { "text": "Restaurant", "grammar": { "gender": "das", "plural": "-s" } },
   "hotel": { "text": "Hotel", "grammar": { "gender": "das", "plural": "-s" } },
   "church": { "text": "Kirche", "grammar": { "gender": "die", "plural": "-n" } },
   "mosque": { "text": "Moschee", "grammar": { "gender": "die", "plural": "-n" } },

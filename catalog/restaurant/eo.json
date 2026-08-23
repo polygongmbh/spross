@@ -1,0 +1,25 @@
+{
+ "title": "En la restoracio",
+ "subtitle": "Kie oni servas vin.",
+ "words": {
+  "menu": { "text": "menuo" },
+  "waiter": { "text": "kelnero" },
+  "waiter-f": { "text": "kelnerino" },
+  "table": { "text": "tablo" },
+  "order": { "text": "mendi" },
+  "bill": { "text": "kalkulo", "variants": ["fakturo"] },
+  "tip": { "text": "trinkmono" },
+  "reserve": { "text": "rezervi" },
+  "glass": { "text": "glaso" },
+  "cutlery": { "text": "manĝilaro" },
+  "napkin": { "text": "buŝtuko" },
+  "vegetarian": { "text": "vegetara" },
+  "dessert": { "text": "deserto" },
+  "beverage": { "text": "trinkaĵo" },
+  "restaurant": { "text": "restoracio" },
+  "a-table-for-two": { "text": "Tablon por du, mi petas." },
+  "id-like-to-order": { "text": "Mi ŝatus mendi." },
+  "is-this-vegetarian": { "text": "Ĉu tio estas vegetara?" },
+  "the-bill-please": { "text": "La kalkulon, mi petas." }
+ }
+}

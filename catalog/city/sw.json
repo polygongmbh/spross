@@ -14,7 +14,6 @@
   "building": { "text": "jengo", "grammar": { "plural": "majengo" } },
   "bank": { "text": "benki", "grammar": { "plural": "=" } },
   "post-office": { "text": "posta", "grammar": { "plural": "=" } },
-  "restaurant": { "text": "mkahawa", "grammar": { "plural": "mikahawa" } },
   "hotel": {
    "text": "hoteli",
    "grammar": { "plural": "=" },
