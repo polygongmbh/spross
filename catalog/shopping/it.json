@@ -1,0 +1,30 @@
+{
+ "title": "Al negozio",
+ "subtitle": "Dove il prezzo è già sull'etichetta.",
+ "words": {
+  "supermarket": { "text": "supermercato", "grammar": { "gender": "il" } },
+  "mall": { "text": "centro commerciale", "grammar": { "gender": "il" } },
+  "checkout": { "text": "cassa", "grammar": { "gender": "la" } },
+  "shop-assistant": { "text": "commesso", "grammar": { "gender": "il" } },
+  "shop-assistant-f": { "text": "commessa", "grammar": { "gender": "la" } },
+  "shopping-cart": { "text": "carrello", "grammar": { "gender": "il" } },
+  "shopping-bag": { "text": "borsa della spesa", "grammar": { "gender": "la" } },
+  "offer": { "text": "offerta", "grammar": { "gender": "l'" }, "variants": ["l'offerta"] },
+  "shopping-list": { "text": "lista della spesa", "grammar": { "gender": "la" } },
+  "size": {
+   "text": "taglia",
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la taglia ist die Kleidergröße, il numero die Schuhgröße." }
+  },
+  "shop": {
+   "text": "fare la spesa",
+   "synonyms": ["fare spese"],
+   "variants": ["fare shopping"],
+   "notes": { "de": "fare la spesa ist der Lebensmitteleinkauf, fare spese der Bummel durch die Läden." }
+  },
+  "store": { "text": "negozio", "grammar": { "gender": "il", "plural": "negozi" } },
+  "the-store-is-still-open": { "text": "Il negozio è ancora aperto." },
+  "do-you-have-this-in-my-size": { "text": "Ce l'ha nella mia taglia?", "variants": ["Ce l'hai nella mia taglia?"] },
+  "where-is-the-checkout": { "text": "Dov'è la cassa?" }
+ }
+}

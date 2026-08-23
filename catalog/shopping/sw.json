@@ -1,0 +1,20 @@
+{
+ "title": "Dukani",
+ "subtitle": "Ambapo bei ipo tayari kwenye lebo.",
+ "words": {
+  "supermarket": { "text": "supamaketi", "grammar": { "plural": "=" }, "variants": ["duka kubwa"] },
+  "mall": { "text": "kituo cha manunuzi", "grammar": { "plural": "vituo vya manunuzi" } },
+  "checkout": { "text": "kaunta ya malipo", "grammar": { "plural": "kaunta za malipo" } },
+  "shop-assistant": { "text": "muuzaji", "grammar": { "plural": "wauzaji" } },
+  "shopping-cart": { "text": "toroli", "grammar": { "plural": "=" } },
+  "shopping-bag": { "text": "mfuko wa ununuzi", "grammar": { "plural": "mifuko ya ununuzi" } },
+  "offer": { "text": "ofa", "grammar": { "plural": "=" } },
+  "shopping-list": { "text": "orodha ya ununuzi", "grammar": { "plural": "=" } },
+  "size": { "text": "saizi", "grammar": { "plural": "=" } },
+  "shop": { "text": "kwenda madukani" },
+  "store": { "text": "duka", "grammar": { "plural": "maduka" } },
+  "the-store-is-still-open": { "text": "Duka bado liko wazi." },
+  "do-you-have-this-in-my-size": { "text": "Una hii kwa saizi yangu?" },
+  "where-is-the-checkout": { "text": "Kaunta ya malipo iko wapi?" }
+ }
+}

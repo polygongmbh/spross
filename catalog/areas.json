@@ -85,7 +85,7 @@
    "sw": "Ununuzi na kula nje",
    "uk": "Покупки та їжа поза домом"
   },
-  "areas": [{ "area": "money", "emoji": "💶" }]
+  "areas": [{ "area": "money", "emoji": "💶" }, { "area": "shopping", "emoji": "🛒" }]
  },
  {
   "group": "home",

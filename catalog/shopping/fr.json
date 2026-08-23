@@ -1,0 +1,33 @@
+{
+ "title": "Au magasin",
+ "subtitle": "Où le prix est déjà sur l'étiquette.",
+ "words": {
+  "supermarket": { "text": "supermarché", "grammar": { "gender": "le" } },
+  "mall": { "text": "centre commercial", "grammar": { "gender": "le" } },
+  "checkout": { "text": "caisse", "grammar": { "gender": "la" } },
+  "shop-assistant": { "text": "vendeur", "grammar": { "gender": "le" } },
+  "shop-assistant-f": { "text": "vendeuse", "grammar": { "gender": "la" } },
+  "shopping-cart": { "text": "chariot", "grammar": { "gender": "le" } },
+  "shopping-bag": { "text": "sac de courses", "grammar": { "gender": "le" } },
+  "offer": { "text": "promotion", "variants": ["promo"], "grammar": { "gender": "la" } },
+  "shopping-list": { "text": "liste de courses", "grammar": { "gender": "la" } },
+  "size": {
+   "text": "taille",
+   "grammar": { "gender": "la" },
+   "notes": {
+    "de": "la taille ist die Größe und zugleich die Taille am Körper; die Schuhgröße heißt la pointure."
+   }
+  },
+  "shop": {
+   "text": "faire les courses",
+   "synonyms": ["faire les magasins"],
+   "notes": {
+    "de": "faire les courses ist der Lebensmitteleinkauf, faire les magasins der Bummel durch die Läden."
+   }
+  },
+  "store": { "text": "magasin", "variants": ["boutique"], "grammar": { "gender": "le" } },
+  "the-store-is-still-open": { "text": "Le magasin est encore ouvert." },
+  "do-you-have-this-in-my-size": { "text": "Vous l'avez à ma taille ?", "variants": ["Est-ce que vous l'avez à ma taille ?"] },
+  "where-is-the-checkout": { "text": "Où est la caisse ?" }
+ }
+}

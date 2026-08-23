@@ -10,16 +10,10 @@
    }
   },
   "park": { "text": "parko" },
-  "shop": {
-   "text": "butikumi",
-   "variants": ["fari aĉetojn"],
-   "notes": { "de": "butikumi heißt von Laden zu Laden gehen · eine einzelne Sache kauft man mit aĉeti." }
-  },
   "city": { "text": "urbo" },
   "village": { "text": "vilaĝo" },
   "neighborhood": { "text": "kvartalo" },
   "building": { "text": "konstruaĵo" },
-  "store": { "text": "vendejo", "synonyms": ["butiko"] },
   "bank": { "text": "banko" },
   "post-office": { "text": "poŝtoficejo", "variants": ["poŝtejo", "poŝto"] },
   "restaurant": { "text": "restoracio" },
@@ -34,10 +28,6 @@
   "is-there-a-bank-here": {
    "text": "Ĉu estas banko ĉi tie?",
    "variants": ["Ĉu ĉi tie estas banko?", "Ĉu troviĝas banko ĉi tie?"]
-  },
-  "the-store-is-still-open": {
-   "text": "La vendejo ankoraŭ estas malfermita.",
-   "variants": ["La vendejo estas ankoraŭ malfermita.", "La butiko ankoraŭ estas malfermita."]
   },
   "im-looking-for-a-hotel": { "text": "Mi serĉas hotelon." },
   "lets-meet-at-the-market": { "text": "Ni renkontiĝu ĉe la bazaro.", "variants": ["Ni renkontiĝu en la bazaro."] },

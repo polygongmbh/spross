@@ -1,0 +1,21 @@
+{
+ "title": "У магазині",
+ "subtitle": "Де ціна вже стоїть на етикетці.",
+ "words": {
+  "supermarket": { "text": "супермаркет" },
+  "mall": { "text": "торговий центр", "grammar": { "plural": "торгові центри" } },
+  "checkout": { "text": "каса" },
+  "shop-assistant": { "text": "продавець", "grammar": { "plural": "продавці" } },
+  "shop-assistant-f": { "text": "продавчиня", "variants": ["продавщиця"] },
+  "shopping-cart": { "text": "візок", "grammar": { "plural": "візки" } },
+  "shopping-bag": { "text": "сумка для покупок" },
+  "offer": { "text": "акція", "variants": ["знижка"] },
+  "shopping-list": { "text": "список покупок" },
+  "size": { "text": "розмір" },
+  "shop": { "text": "ходити за покупками" },
+  "store": { "text": "магазин" },
+  "the-store-is-still-open": { "text": "Магазин ще відчинений." },
+  "do-you-have-this-in-my-size": { "text": "У вас є це мого розміру?" },
+  "where-is-the-checkout": { "text": "Де каса?" }
+ }
+}

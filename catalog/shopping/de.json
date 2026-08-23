@@ -1,0 +1,25 @@
+{
+ "title": "Im Laden",
+ "subtitle": "Wo der Preis schon am Regal steht.",
+ "words": {
+  "supermarket": { "text": "Supermarkt", "grammar": { "gender": "der", "plural": "Supermärkte" } },
+  "mall": { "text": "Einkaufszentrum", "grammar": { "gender": "das", "plural": "Einkaufszentren" } },
+  "checkout": { "text": "Kasse", "grammar": { "gender": "die", "plural": "-n" } },
+  "shop-assistant": { "text": "Verkäufer", "grammar": { "gender": "der", "plural": "=" } },
+  "shop-assistant-f": { "text": "Verkäuferin", "grammar": { "gender": "die", "plural": "-nen" } },
+  "shopping-cart": { "text": "Einkaufswagen", "grammar": { "gender": "der", "plural": "=" } },
+  "shopping-bag": { "text": "Einkaufstasche", "grammar": { "gender": "die", "plural": "-n" } },
+  "offer": {
+   "text": "Angebot",
+   "grammar": { "gender": "das", "plural": "-e" },
+   "notes": { "de": "im Angebot heißt reduziert." }
+  },
+  "shopping-list": { "text": "Einkaufsliste", "grammar": { "gender": "die", "plural": "-n" } },
+  "size": { "text": "Größe", "grammar": { "gender": "die", "plural": "-n" } },
+  "shop": { "text": "einkaufen" },
+  "store": { "text": "Laden", "variants": ["Geschäft"], "grammar": { "gender": "der", "plural": "Läden" } },
+  "the-store-is-still-open": { "text": "Der Laden ist noch offen." },
+  "do-you-have-this-in-my-size": { "text": "Haben Sie das in meiner Größe?" },
+  "where-is-the-checkout": { "text": "Wo ist die Kasse?" }
+ }
+}

@@ -1,0 +1,17 @@
+[
+ { "slug": "supermarket", "kind": "noun", "emoji": "🏪" },
+ { "slug": "mall", "kind": "noun", "emoji": "🏬" },
+ { "slug": "checkout", "kind": "noun", "emoji": "🧾" },
+ { "slug": "shop-assistant", "kind": "noun", "emoji": "🧑‍💼" },
+ { "slug": "shop-assistant-f", "kind": "noun", "emoji": "👩‍💼", "feminineOf": "shop-assistant" },
+ { "slug": "shopping-cart", "kind": "noun", "emoji": "🛒" },
+ { "slug": "shopping-bag", "kind": "noun", "emoji": "👜" },
+ { "slug": "offer", "kind": "noun" },
+ { "slug": "shopping-list", "kind": "noun", "emoji": "📝" },
+ { "slug": "size", "kind": "noun" },
+ { "slug": "shop", "kind": "verb", "emoji": "🛍️" },
+ { "slug": "store", "kind": "noun", "emoji": "🏪" },
+ { "slug": "the-store-is-still-open", "kind": "phrase", "emoji": "🏪", "components": ["store"] },
+ { "slug": "do-you-have-this-in-my-size", "kind": "phrase", "components": ["size"] },
+ { "slug": "where-is-the-checkout", "kind": "phrase", "emoji": "🧾", "components": ["checkout"] }
+]

@@ -5,7 +5,6 @@
   "street": { "text": "barabara", "grammar": { "plural": "=" } },
   "market": { "text": "soko", "grammar": { "plural": "masoko" } },
   "park": { "text": "bustani", "grammar": { "plural": "=" } },
-  "shop": { "text": "kwenda madukani" },
   "city": {
    "text": "mji",
    "grammar": { "plural": "miji" },
@@ -14,7 +13,6 @@
   "village": { "text": "kijiji", "grammar": { "plural": "vijiji" } },
   "neighborhood": { "text": "mtaa", "grammar": { "plural": "mitaa" } },
   "building": { "text": "jengo", "grammar": { "plural": "majengo" } },
-  "store": { "text": "duka", "grammar": { "plural": "maduka" } },
   "bank": { "text": "benki", "grammar": { "plural": "=" } },
   "post-office": { "text": "posta", "grammar": { "plural": "=" } },
   "restaurant": { "text": "mkahawa", "grammar": { "plural": "mikahawa" } },
@@ -31,7 +29,6 @@
   "bridge": { "text": "daraja", "grammar": { "plural": "madaraja" } },
   "where-is-the-post-office": { "text": "Posta iko wapi?" },
   "is-there-a-bank-here": { "text": "Kuna benki hapa?" },
-  "the-store-is-still-open": { "text": "Duka bado liko wazi." },
   "im-looking-for-a-hotel": { "text": "Natafuta hoteli." },
   "lets-meet-at-the-market": { "text": "Tukutane sokoni." },
   "i-live-in-this-neighborhood": { "text": "Ninaishi katika mtaa huu." }

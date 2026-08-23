@@ -5,12 +5,6 @@
   "street": { "text": "strada", "grammar": { "gender": "la" } },
   "market": { "text": "mercato", "grammar": { "gender": "il" } },
   "park": { "text": "parco", "grammar": { "gender": "il", "plural": "parchi" } },
-  "shop": {
-   "text": "fare la spesa",
-   "synonyms": ["fare spese"],
-   "variants": ["fare shopping"],
-   "notes": { "de": "fare la spesa ist der Lebensmitteleinkauf, fare spese der Bummel durch die Läden." }
-  },
   "city": { "text": "città", "grammar": { "gender": "la", "plural": "=" } },
   "village": {
    "text": "paese",
@@ -23,7 +17,6 @@
    "variants": ["l'edificio"],
    "grammar": { "gender": "l'", "plural": "edifici" }
   },
-  "store": { "text": "negozio", "grammar": { "gender": "il", "plural": "negozi" } },
   "bank": { "text": "banca", "grammar": { "gender": "la", "plural": "banche" } },
   "post-office": {
    "text": "posta",
@@ -46,7 +39,6 @@
   "bridge": { "text": "ponte", "grammar": { "gender": "il" } },
   "where-is-the-post-office": { "text": "Dov'è la posta?", "variants": ["Dov'è l'ufficio postale?"] },
   "is-there-a-bank-here": { "text": "C'è una banca qui?", "variants": ["C'è una banca qui vicino?", "Qui c'è una banca?"] },
-  "the-store-is-still-open": { "text": "Il negozio è ancora aperto." },
   "im-looking-for-a-hotel": { "text": "Cerco un albergo.", "variants": ["Sto cercando un albergo.", "Cerco un hotel."] },
   "lets-meet-at-the-market": { "text": "Ci vediamo al mercato.", "variants": ["Incontriamoci al mercato."] },
   "i-live-in-this-neighborhood": { "text": "Abito in questo quartiere.", "variants": ["Vivo in questo quartiere."] }

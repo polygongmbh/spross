@@ -1,0 +1,31 @@
+{
+ "title": "En la tienda",
+ "subtitle": "Donde el precio ya está en la etiqueta.",
+ "words": {
+  "supermarket": { "text": "supermercado", "grammar": { "gender": "el" } },
+  "mall": { "text": "centro comercial", "grammar": { "gender": "el" } },
+  "checkout": { "text": "caja", "grammar": { "gender": "la" } },
+  "shop-assistant": { "text": "dependiente", "synonyms": ["vendedor"], "grammar": { "gender": "el" } },
+  "shop-assistant-f": { "text": "dependienta", "synonyms": ["vendedora"], "grammar": { "gender": "la" } },
+  "shopping-cart": { "text": "carrito", "grammar": { "gender": "el" } },
+  "shopping-bag": { "text": "bolsa de la compra", "grammar": { "gender": "la" } },
+  "offer": { "text": "oferta", "grammar": { "gender": "la" } },
+  "shopping-list": { "text": "lista de la compra", "grammar": { "gender": "la" } },
+  "size": {
+   "text": "talla",
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la talla ist die Kleidergröße, el número die Schuhgröße." }
+  },
+  "shop": {
+   "text": "hacer la compra",
+   "synonyms": ["ir de compras"],
+   "notes": {
+    "de": "hacer la compra ist der Lebensmitteleinkauf, ir de compras eher der Bummel durch die Läden."
+   }
+  },
+  "store": { "text": "tienda", "grammar": { "gender": "la" } },
+  "the-store-is-still-open": { "text": "La tienda todavía está abierta." },
+  "do-you-have-this-in-my-size": { "text": "¿Lo tiene en mi talla?", "variants": ["¿Lo tienes en mi talla?"] },
+  "where-is-the-checkout": { "text": "¿Dónde está la caja?" }
+ }
+}

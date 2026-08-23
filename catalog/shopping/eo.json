@@ -1,0 +1,28 @@
+{
+ "title": "En la butiko",
+ "subtitle": "Kie la prezo jam staras sur la etikedo.",
+ "words": {
+  "supermarket": { "text": "superbazaro" },
+  "mall": { "text": "aĉetcentro", "variants": ["komerca centro"] },
+  "checkout": { "text": "kaso" },
+  "shop-assistant": { "text": "vendisto" },
+  "shop-assistant-f": { "text": "vendistino" },
+  "shopping-cart": { "text": "aĉetĉaro" },
+  "shopping-bag": { "text": "aĉetsako" },
+  "offer": { "text": "oferto" },
+  "shopping-list": { "text": "aĉetlisto" },
+  "size": { "text": "grandeco" },
+  "shop": {
+   "text": "butikumi",
+   "variants": ["fari aĉetojn"],
+   "notes": { "de": "butikumi heißt von Laden zu Laden gehen · eine einzelne Sache kauft man mit aĉeti." }
+  },
+  "store": { "text": "vendejo", "synonyms": ["butiko"] },
+  "the-store-is-still-open": {
+   "text": "La vendejo ankoraŭ estas malfermita.",
+   "variants": ["La vendejo estas ankoraŭ malfermita.", "La butiko ankoraŭ estas malfermita."]
+  },
+  "do-you-have-this-in-my-size": { "text": "Ĉu vi havas tion en mia grandeco?" },
+  "where-is-the-checkout": { "text": "Kie estas la kaso?" }
+ }
+}

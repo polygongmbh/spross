@@ -1,0 +1,20 @@
+{
+ "title": "The shop",
+ "subtitle": "Where the price is already on the label.",
+ "words": {
+  "supermarket": { "text": "supermarket" },
+  "mall": { "text": "shopping mall", "variants": ["mall", "shopping centre"] },
+  "checkout": { "text": "checkout", "variants": ["till"] },
+  "shop-assistant": { "text": "shop assistant", "synonyms": ["sales clerk"] },
+  "shopping-cart": { "text": "shopping cart", "variants": ["trolley"] },
+  "shopping-bag": { "text": "shopping bag" },
+  "offer": { "text": "special offer", "variants": ["offer", "deal"] },
+  "shopping-list": { "text": "shopping list" },
+  "size": { "text": "size" },
+  "shop": { "text": "to go shopping" },
+  "store": { "text": "store", "synonyms": ["shop"] },
+  "the-store-is-still-open": { "text": "The store is still open.", "variants": ["The shop is still open."] },
+  "do-you-have-this-in-my-size": { "text": "Do you have this in my size?" },
+  "where-is-the-checkout": { "text": "Where is the checkout?" }
+ }
+}
