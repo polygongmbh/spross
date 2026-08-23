@@ -3,12 +3,14 @@
 Issues discovered mid-session that fall outside the current scope:
 append them here instead of scattering notes across other docs;
 prune an item when it is fixed.
-One line per item, with a file or context pointer, filed under the section it belongs to.
+One item per bullet, with a file or context pointer, filed under the section it belongs to —
+as short as that allows, longer only to carry evidence or reasoning a fixer would otherwise have to redo.
 
 ## Content & catalog
 
-- Phrase→component auto-linking gaps: ~half of phrases carry no `components`
-  (naive matcher — `catalog/README.md` § concepts.json).
+- Phrase→component linking gaps: 55/192 phrases (29%) carry no `components` —
+  these are hand-authored, not auto-linked (`catalog/README.md` § concepts.json),
+  so the gap is unfinished authoring, not a matcher to fix.
 - Each idiom pairing in `catalog/areas/idioms/` (9 concepts) was chosen for genuine
   meaning-equivalence across the languages that carry it, not just checked by a translator —
   the candidates it beat are gone from the finished JSON,
@@ -24,10 +26,6 @@ One line per item, with a file or context pointer, filed under the section it be
   one falls to TTS (silent on sw-iOS, which has no voice). What Commons never had is
   listed per pack in `data/reference/audio/pack-*/missing.txt`; gap-filling (commissioning
   or a paid voice) is a content project, scoped in that folder's README.
-- The de `passport` recording says "Pass", which is now a `variants` entry rather than the
-  card's `text` (`Reisepass`), so the card falls to TTS: playback keys on the displayed form.
-  Same shape for any word whose canonical form is sharpened after its recording was fetched —
-  the fix is a fresh Commons fetch (`De-Reisepass.ogg`), not a rollback of the word.
 - Voice consistency varies by pack: sw and uk are a single speaker throughout, de is
   mostly one (Jeuwre) with a Lingua Libre remainder, while es is a crowd of Lingua Libre
   speakers in twenty credit groups, none with a stated country or variety
@@ -41,9 +39,7 @@ One line per item, with a file or context pointer, filed under the section it be
   12 for uk — the name «йот» vs the older «ий», the в allophony and о raising wording,
   the ч/щ anchors, ґудзик as an `exampleText` —
   and 11 for de: s→/z/ and -ig as the variety anchor, the English respellings, the ẞ policy,
-  the Vau/We/Jot/Zett/Eszett strings against the de-DE voice,
-  plus the three umlaut names MINTED here, A-Umlaut / O-Umlaut / U-Umlaut,
-  which no source prescribed.
+  the Vau/We/Jot/Zett/Eszett strings against the de-DE voice.
   Each is written up with its evidence in
   `data/orchestration/audio-langs-2026-07/alphabet-drafts/*-notes.md`.
 - The es catalog (528 realizations in `catalog/*/es.json`) carries a review queue its build
@@ -58,9 +54,7 @@ One line per item, with a file or context pointer, filed under the section it be
   ships without `gender` (deliberate), C3 cross-gender synonyms sit under the wrong
   article tint (15 pairs; 5 more lexemes were demoted to variants over it), C6 `variants`
   doubles as a demotion bucket for genuine second lexemes, C7 whether Tatoeba-verbatim
-  strings are banned, C8 cross-area accept-set overlaps. Already ruled and shipped:
-  C1 (`los`/`las` on the three pluralia tantum), C4 (area titles as authored),
-  C5 (a leading `¿`/`¡` folds away in grading and in the audio lookup).
+  strings are banned, C8 cross-area accept-set overlaps.
 - 15 open questions on the Spanish alphabet (`catalog/alphabet/es.json`), several of them
   pedagogical calls: whether the ll/y merger may be taught as flatly
   as it is (yeísmo is standard, but ʎ survives in rural Castile), which jota a Spanish voice
@@ -80,8 +74,7 @@ One line per item, with a file or context pointer, filed under the section it be
     soft-sign entry and Lingua Libre has nothing for the phrase; only the two halves exist
     separately (`Uk-м'який.ogg`, `Uk-знак.ogg`), and splicing them would be an adaptation
     under BY-SA as well as a recording of something nobody said. So `ь` is spoken by the
-    device voice where one is installed and is silent where none is. (Its sibling
-    «апостроф» is closed — Tohaomg's Lingua Libre file.)
+    device voice where one is installed and is silent where none is.
   - es `elle`, `ye`, `erre doble`, `hache`, `eñe`, `uve`. Verified absent by enumerating
     the whole 19k-file `Category:Lingua Libre pronunciation-spa` AND by probing the
     `Es-<name>.ogg/.wav/.flac` convention in every casing. Six clips from one Spanish
@@ -113,16 +106,17 @@ One line per item, with a file or context pointer, filed under the section it be
   Swahili stems is canonical, and which Ukrainian feminines exist at all. Every one of them
   is listed, with its evidence, in the bodies of the two `feat(catalog): the atlas
   reaches …` commits — that is the pointer, and nothing restates it.
-- Sentence-frame notes are authored for German readers only (`notes` in `catalog/drills/*.json`),
-  so every other explanation language drills the frames with no gloss at all —
-  the counted-noun agreement rules uk needs explained most of all.
-  The vocab side is the same gap: `notes` on a word is keyed by the reader's language
-  with no fallback (`../kern/docs/catalog.md`), and only `de` is ever authored,
+- Sentence-frame notes now carry `en` alongside `de` for it/fr/eo (2026-08-15) and uk
+  (2026-08-02) drills (`notes` in `catalog/drills/*.json`), but sw is still de-only, so an
+  English reader drilling Swahili's frames meets no gloss at all.
+  The vocab side improved the same way for de-target words in `catalog/areas/*/de.json`
+  (both `de` and `en` keys now), but `notes` on a word is still keyed by the reader's
+  language with no fallback (`../kern/docs/catalog.md`), and sw vocab is still de-only,
   so an English reader learning Swahili meets no note on any card.
-- Swahili noun-class concord is taught by note rather than by exposure: 19 stem
+- Swahili noun-class concord is taught by note rather than by exposure: 20 stem
   entries (`text` opening with `-`) across `catalog/areas/colors`, `qualities`, `health`
-  and `questions` carry the same rule in three different wordings (`qualities` `good`,
-  `colors` `white`, `questions` `how-many`) while ten of them carry nothing at all.
+  and `questions` carry the same rule in different wordings (`qualities` `good`,
+  `questions` `how-many`) while nine of them carry nothing at all.
   The examples buried in those notes are doing a phrase's job — a learner who produces
   `Shati jeupe.` meets the concord the way the box teaches everything else, and `colors`
   already has exactly one such card (`a-white-car`). Turning them into phrases is a
@@ -162,10 +156,6 @@ One line per item, with a file or context pointer, filed under the section it be
   the afternoon. Spanish still meets the morning as `de la mañana` in `time/nine-am-sharp`.
   es `evening` keeps `noche` as a variant beside `night`'s `noche`: a variant is graded and
   never prompted, so the two stay tellable apart where it counts.
-
-- No shipped join sets `promptAmbiguous` today (offline sweep over de→sw, en→de, en→sw,
-  de→uk, de→es found zero duplicate produce prompts), so the area-cue path on both
-  platforms is dormant and untestable against real content until a merge arrives.
 
 ## Engine & scheduling
 
@@ -281,12 +271,11 @@ One line per item, with a file or context pointer, filed under the section it be
   is the public spelling; `DrillVariant.storageTag`/`.slotKind` stay `internal` in kern over it.
 - `TrainerRecords.swift` hard-codes `"trainer.record."`; `TrainerMode.companion.RECORD_PREFIX`
   now exists.
-- `AppModel+Queries.swift` `consolidatedCards()` has no caller left and its doc comment
-  points at deleted Swift filters — prune.
+- `AppModel+Queries.swift` `consolidatedCards()` has no caller left — prune.
 - `TrainerSessionView+Grading.swift` and `LetterDrillView+Grading.swift` now hold the run
   DRIVERS (dispatch/effects/close), not grading — rename to `+Run.swift` in a pass that
   regenerates the Xcode project.
-- `android/.../AppModel.kt` sits at 544 lines (guide ~300); extracting the Werkstatt doors
+- `android/.../AppModel.kt` sits at 803 lines (guide ~300); extracting the Werkstatt doors
   needs widening `screen`'s private setter.
 - Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
   fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).
@@ -313,22 +302,14 @@ One line per item, with a file or context pointer, filed under the section it be
   that arms them is wired per copy. One component owning the branch and the
   `onChange(of: input)` beside it would make a fourth drill's auto-confirm structural
   rather than remembered.
-- Drill prompt cards size their word in fixed points (`CountryPromptCard`,
-  `HearPromptCard`, `TrainerPromptCard`), where review cards use the scaling `DL.Fonts`
-  styles — Dynamic Type does not reach a drill prompt.
 - At accessibility XXXL a card with a long note grows past the bottom of the screen and
   takes the rating row with it, and nothing scrolls — that card cannot be graded at all.
   The card's own growth is unbounded by design (`Theme.swift` reserves a minimum, never
   a maximum); it is the row below that has nowhere left to stand.
-- The atlas run books a record but never sounds the cheer that goes with the confetti
-  (`CountryDrillView.finish()`; `TrainerSessionView.closeRun()` does).
-- Neither prompt nor reveal on `CountryPromptCard` and `HearPromptCard` is tagged with the
-  language VoiceOver should read it in, the way `VocabCardView.spokenLabel` is — and that
-  reading is the only pronunciation a screen-reader session ever gets.
 - The atlas is the first drill whose PROMPT is a word rather than a numeral or a played
-  sound: it can be heard neither by tap nor by autoplay, and its revealed answer does not
-  autoplay the way a slot drill's reading does — `read-aloud.md`'s table has no row for a
-  spoken-word drill prompt, so the rule is owed before the code (`CountryDrillView+Content.swift`).
+  sound: it can be heard neither by tap nor by autoplay — `read-aloud.md`'s table has no
+  row for a spoken-word drill prompt, so the rule is owed before the code
+  (`CountryDrillView+Content.swift`).
 
 - The watch quiz tells correctness to the EYE only — tile tint, red wash and the rating
   emoji are all visual, and the emoji is `accessibilityHidden` because VoiceOver reading
@@ -342,14 +323,14 @@ One line per item, with a file or context pointer, filed under the section it be
   (`BoxCardRow.swift:43` vs `android/.../ui/BoxRows.kt`) — same palette, one design
   call on where the tint belongs; unify once decided.
 
-- The session headword breaks mid-word at narrow widths ("die Sprach/e" at 320dp):
-  the mirrored 52dp emoji slot plus the speaker glyph leave ~98dp for a 28sp headline
-  (`android/.../ui/CardFace.kt`, `ProduceCard.kt`). Every fix is a design call —
-  autosize clips long compounds, un-mirroring de-centers, a smaller slot changes the
-  emoji spec — so it wants an owner ruling, not a patch.
 - `AppModel.activate()` silently bootstraps a fresh box when decode fails
-  (`android/.../AppModel.kt:328-342`), so a corrupt or mis-pathed box reads as empty
+  (`android/.../AppModel.kt:496-509`), so a corrupt or mis-pathed box reads as empty
   with no trace — surface the failure (log + error card) before real devices.
+- No automated visual-parity check between iOS and Android for shared, parity-bearing UI
+  (cards, layout tokens): a card/layout drift bug recurred across multiple sessions because
+  nothing verified the two platforms side by side before a change was called done. A
+  Compose `@Preview`/snapshot-testing setup, or an equivalent iOS-side mechanism, would
+  make that check structural rather than remembered.
 
 ## Localization
 
@@ -365,13 +346,14 @@ One line per item, with a file or context pointer, filed under the section it be
 - The web numbers drill never gained it/fr/eo: `web/site.js` mirrors
   `catalog/languages.json` by hand (its `LANGS` rows) and still offers the five older
   languages only (`docs/website.md` § Drill scope).
-- Android back doors land on Heute even when opened from the box: `closeAbout()`,
-  `cancelOnboarding()` and `activate()` all end at `Screen.Heute` (`android/.../AppModel.kt`).
+- Android back doors land on Heute even when opened from the box: `closeAbout()` and
+  `activate()` (reached via a box-settings language change) both end at `Screen.Heute`
+  (`android/.../AppModel.kt`).
 - Android Heute's failure card and the `error*`/`growth*` chrome are wired but unreachable:
   AppModel has no load-failure state yet and the round summary does not render growth.
-- Dead after the wave-3 Android sweep, prune in one pass: Chrome `easy`/`again`/`summaryLine`/
-  `typoNote`/`practice`/`emptyState`/`dueLabel`/`consolidatedLabel`/`freshLabel`, and
-  `AppModel.sessionAvailable`/`canPracticeExtra` (unread since `HeuteStanding`).
+- Dead after the wave-3 Android sweep, prune in one pass: Chrome `practice`/`typoNote`/
+  `consolidatedLabel`/`freshLabel`, and `AppModel.canPracticeExtra` (unread since
+  `HeuteStanding`).
 - Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs, `docs/portability.md` § Moves)
   deferred per user 2026-08-08.
 - Audio ships un-thinned: `catalog/audio/` is 76 MB (8–14 MB per language) and
@@ -422,10 +404,6 @@ One line per item, with a file or context pointer, filed under the section it be
 - `TrainerStore`'s read/write plumbing is untested (needs `SharedPreferences`, no Robolectric
   in the module; the key rules are kern's and tested there) — one emulator check that a rung
   survives an app restart (`android/.../TrainerStore.kt`).
-- Resolved 2026-08-01 — the analysis index has its PEAK term: every `gain` is capped at the
-  file's own measured headroom less 1 dB (`scripts/audio-catalog.py` [ANALYSIS]), so nothing
-  reaches full scale and the iOS-clips / `LoudnessEnhancer`-compresses split has nothing
-  left to act on; 70 entries sit under the loudness target to buy it.
 - The iPhone install link is an `itms-services://` URL in the release notes, which GitHub
   renders as code rather than a tappable link. A one-page `web/install.html` taking `?v=`
   and building the link would make it a button once spross.net is live
