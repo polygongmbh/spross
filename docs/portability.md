@@ -142,7 +142,6 @@ A copy keeps only the tokens it uses, so the check runs copy-first:
 every token a file declares must name a canonical token and carry its hex —
 and the Android cut, being a full re-cut rather than a few borrowed hues,
 owes both columns whole.
-Like the real-catalog lints it is content-coupled,
-and Gradle does not track those Swift/Kotlin sources as test inputs:
-after a palette-only edit, run with `--rerun-tasks`
-(same Gradle behavior as `app/catalog/` content edits, `../../CLAUDE.md`).
+Like the real-catalog lints it is content-coupled, and `kern/build.gradle.kts` names
+`App/Sources/Design` among `:kern:jvmTest`'s declared inputs (`../../CLAUDE.md`), so a
+palette-only edit re-runs the check on its own — no `--rerun-tasks` needed.
