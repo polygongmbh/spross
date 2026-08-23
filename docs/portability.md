@@ -17,33 +17,6 @@ The native layers should own aesthetics and device facts only:
 layout, animation, focus, haptics, audio engines, widget timelines, accessibility flags, string tables.
 Everything below is currently Swift but is a *rule*, and Android has to re-derive it or copy it.
 
-## The evidence: drift was not hypothetical
-
-All four below are closed — kept here because they are the argument for finishing the list,
-not a status board. Each was a rule left platform-side and written a second time.
-
-`android/` re-implements the app layer (~3.5k LOC main, ~750 test):
-
-1. **Extra round composes differently.**
-   `AppModel+Session.swift:36-51` calls `composeExtraSession` directly;
-   its `why:` records that trying `composeEndless` first was a bug — endless is rarely empty,
-   so the mixing round almost never composed and the extra round came back all first sights.
-   `android/SessionFlow.kt:14-23` still tries `composeEndless` first, in a docstring claiming it mirrors iOS.
-2. **Session summaries count different things.**
-   iOS buckets new / crossed-into-consolidated / review (`AppModel+Session.swift:110-125`),
-   with a `why:` rejecting the phase edge as the signal.
-   Android counts `phase == New` and `rating != Again` (`SessionFlow.kt:60-74`) — the rejected heuristic.
-3. **Android loses the day's fold.** iOS folds a partial session on background (`AppModel.swift:289` → `+Session.swift:218`);
-   `SprossActivity.kt` has no `onPause` path, so an evicted Android app drops streak-bearing reviews.
-4. **Android crashes on an uncovered device locale.**
-   `android/AppModel.kt:133` calls `Catalog.availableTargets(device)`, which does `require(source in languages)`
-   (`Catalog.kt:154`). iOS intersects with `catalog.languages.keys` first (`AppModel.swift:102-105`).
-   A French or Italian device throws at launch.
-
-Every one was a rule that existed twice.
-Android's own `SessionFlowTest` *asserted* three of them, the extra-round ordering by name —
-a test suite pinning the drift as intended behavior is what a second implementation buys you.
-
 ## Pattern: there is none on iOS; Android already picked MVVM
 
 As audited, before the first moves landed —
@@ -171,4 +144,5 @@ and the Android cut, being a full re-cut rather than a few borrowed hues,
 owes both columns whole.
 Like the real-catalog lints it is content-coupled,
 and Gradle does not track those Swift/Kotlin sources as test inputs:
-after a palette-only edit, run with `--rerun-tasks`.
+after a palette-only edit, run with `--rerun-tasks`
+(same Gradle behavior as `app/catalog/` content edits, `../../CLAUDE.md`).
