@@ -1,4 +1,4 @@
-# Audio (`catalog/audio/`)
+# Audio
 
 The bundled recordings: file format, naming and provenance fields.
 What the engine does with them is `../../kern/docs/audio.md`,
@@ -112,14 +112,12 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   can see the SHAPE of a pack and refuse a rebuild that quietly reintroduces noise an
   earlier sweep removed. A floor per file would be dishonest: some words have nothing
   cleaner on Commons, so the rule is on the median and the size of the bad tail.
-- No `README.md` inside `audio/` — the Android sync only excludes one at the catalog
-  root, so a nested one would ship in the APK. Audio schema docs live here.
 
 **Replacing bytes a learner hears** — a speaker consolidation, a re-fetch, a fresh pack —
 earns an independent measurement pass before it ships,
 run by a separate agent from the raw files with its own script,
 never trusting the numbers the generating tool printed,
-plus a folder staged under `../../data/` whose filename order alternates current -> proposed
+plus a folder staged under `../../../data/` whose filename order alternates current -> proposed
 (speaker and license in the name, an INDEX naming the word) so the pairs simply play through.
 A tool's own guard only measures what it was built to measure:
 the consolidation guarded on noise floor, which is blind to bandwidth,

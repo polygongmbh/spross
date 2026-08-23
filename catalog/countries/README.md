@@ -1,4 +1,4 @@
-# Country atlas (`catalog/countries/`)
+# Country atlas
 
 The atlas drill's own content, and the one catalog file that never joins a card.
 

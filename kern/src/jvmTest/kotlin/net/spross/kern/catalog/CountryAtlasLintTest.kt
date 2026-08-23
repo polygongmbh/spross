@@ -29,10 +29,11 @@ class CountryAtlasLintTest {
     /** File presence is the registry: a stray file would sit unread until someone wondered. */
     @Test
     fun everyCountryFileBelongsToADeclaredLanguageAndLoads() {
-        val files = File(RealCatalog.root, "countries").listFiles().orEmpty().map { it.name }
+        // The folder's README.md is its documentation, not content — only .json is the registry.
+        val files = File(RealCatalog.root, "countries").listFiles().orEmpty()
+            .map { it.name }.filter { it.endsWith(".json") }
         assertTrue(files.isNotEmpty(), "no country files under catalog/countries/")
         for (name in files.filter { it != "atlas.json" }) {
-            assertTrue(name.endsWith(".json"), "countries/$name: not a .json file")
             val lang = name.removeSuffix(".json")
             assertTrue(lang in catalog.languages, "countries/$name: undeclared language")
             assertNotNull(catalog.countryNames[lang], "countries/$name: declared but never loaded")

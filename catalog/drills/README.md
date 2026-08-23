@@ -1,4 +1,4 @@
-# Drill frames (`catalog/drills/`)
+# Drill frames
 
 The sentence frames the generated number, year and clock drills fill.
 What the engine generates into them is `../../kern/docs/catalog.md`.
@@ -116,7 +116,7 @@ and editing one never restamps a learner's box.
   `à` never contracts with an hour word and the reading is bare,
   so `Le train part à {slot}.` composes for every draw.
   Its copula rides along as an accepted reading and is dropped where a frame does not say it
-  (`docs/clock-registers.md` § French's bare reading).
+  (`../../docs/clock-registers.md` § French's bare reading).
 - Swahili needs "tangu mwaka …" for a year: a bare cardinal after `tangu` does not read as one.
 - Esperanto reads the clock as a bare nominative noun phrase (`la tria`) and `je` does not contract,
   so it is the one language whose clock frames may carry the preposition

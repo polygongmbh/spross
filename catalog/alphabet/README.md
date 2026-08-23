@@ -1,4 +1,4 @@
-# Alphabet (`catalog/alphabet/`)
+# Alphabet
 
 The per-language letter sheets the reference screen renders and the letter drill samples from.
 

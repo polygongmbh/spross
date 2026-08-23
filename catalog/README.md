@@ -31,6 +31,7 @@ catalog/
   areas.json            # ordered GROUPS → ordered areas: the default progression
   languages.json        # per-language metadata (display name, verb citation prefix)
   areas/                # the card areas, one folder each — everything else here is a registry
+    README.md           # what earns a slot, how a realization is worded, which area it lives in
     <area>/             # greetings, kitchen, …
       concepts.json     # ordered [{slug, kind, emoji?}] — order IS introduction order
       de.json           # { title, words: { slug: realization } }
@@ -38,16 +39,21 @@ catalog/
       sw.json
       uk.json
   language-names/       # what each language calls the languages, inflected
+    README.md
     <lang>.json         # { languageNames: { code: { name, in, speak?, learn? } } }
   alphabet/             # the letter sheets the reference screen renders
-    <lang>.json         # { sections, entries } — `docs/alphabet.md`
+    README.md
+    <lang>.json         # { sections, entries }
   countries/            # the atlas drill's content
+    README.md
     atlas.json          # language-neutral manifest: languages + countries, with tiers
-    <lang>.json         # { slug: { text, nationality } } — `docs/countries.md`
+    <lang>.json         # { slug: { text, nationality } }
   drills/               # sentence frames for the generated number/year/clock drills
+    README.md
     frames.json         # ordered [{slug, slot}] — language-neutral frame concepts
     <lang>.json         # { frames: { slug: realization } }
   audio/                # GENERATED pronunciation recordings, one folder per language
+    README.md           # the manifest schema and the provenance every recording carries
     <lang>/
       manifest.json     # { language, words: { slug: … }, letters?: { glyph: … } }
       <slug>.mp3
@@ -271,11 +277,5 @@ Realization fields — only `text` is required:
 
 ## The rest of the format
 
-This file owns the concept model and the area files. Everything else has its own page:
-
-- `docs/authoring.md` — what earns a slot, how a realization is worded, which area it lives in
-- `docs/audio.md` — `catalog/audio/`: the recording manifests and their provenance
-- `docs/alphabet.md` — `catalog/alphabet/`: the letter sheets
-- `docs/drills.md` — `catalog/drills/`: the sentence frames the generated drills fill
-- `docs/language-names.md` — `catalog/language-names/`: what each language calls the languages
-- `docs/countries.md` — `catalog/countries/`: the atlas drill's content
+This file owns the concept model and the area files.
+Every other folder above is documented by the `README.md` standing in it.

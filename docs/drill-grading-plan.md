@@ -27,7 +27,7 @@ The cost is paid as three allowlists, all counted in the source:
 
 Two corrections to the brief: "882 more in the forms answer space" is the SWAHILI figure
 alone — the forms guard pins 2230 pairs in total; and the "can never be authored" sentence
-Part 2 has to renegotiate lives in `catalog/docs/drills.md:49`, not in `catalog/README.md`.
+Part 2 has to renegotiate lives in `catalog/drills/README.md:49`, not in `catalog/README.md`.
 Everything else in the brief checks out.
 
 A learner typing *setenta* when the drill asked for *sesenta* is graded **Hard**, not Wrong —
@@ -345,7 +345,7 @@ say it cannot.
 
 ## The spec conflict, head on
 
-`catalog/docs/drills.md:49` — not `catalog/README.md` — states:
+`catalog/drills/README.md:49` — not `catalog/README.md` — states:
 
 > the table is derived from the trainer's own readings and can never be authored
 

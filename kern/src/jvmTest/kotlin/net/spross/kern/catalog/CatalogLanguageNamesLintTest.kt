@@ -29,10 +29,11 @@ class CatalogLanguageNamesLintTest {
      */
     @Test
     fun everyTableFileBelongsToADeclaredLanguageAndLoads() {
-        val files = File(RealCatalog.root, "language-names").listFiles().orEmpty().map { it.name }
+        // The folder's README.md is its documentation, not a table — only .json is the registry.
+        val files = File(RealCatalog.root, "language-names").listFiles().orEmpty()
+            .map { it.name }.filter { it.endsWith(".json") }
         assertTrue(files.isNotEmpty(), "no language-name tables under catalog/language-names/")
         for (name in files) {
-            assertTrue(name.endsWith(".json"), "language-names/$name: not a .json file")
             val lang = name.removeSuffix(".json")
             assertTrue(lang in catalog.languages, "language-names/$name: undeclared language")
             assertNotNull(catalog.languageNames[lang], "language-names/$name: declared but never loaded")

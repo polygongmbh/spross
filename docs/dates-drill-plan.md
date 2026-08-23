@@ -2,7 +2,7 @@
 
 A plan, not a spec: delete it once the last commit below has landed,
 and move what outlives it into `date-readings.md` (the per-language rules),
-`catalog/docs/dates.md` (the format) and `surfaces.md` (the screen).
+`catalog/dates/README.md` (the format) and `surfaces.md` (the screen).
 
 ## The hole
 
@@ -40,7 +40,7 @@ which is the whole reason it needs both a catalog lint and a collision sweep.
 
 ### Why not a new frame slot kind
 
-`catalog/docs/drills.md` states there is deliberately no `forms` slot,
+`catalog/drills/README.md` states there is deliberately no `forms` slot,
 and the argument it gives is not about number forms:
 
 > a frame is grammatically bound to the family it carries —
@@ -57,7 +57,7 @@ That passage is not an obstacle to argue around here; it predicts this case corr
 
 Two further reasons close it:
 
-- **The slot value is generated in the language being typed** (`catalog/docs/drills.md`),
+- **The slot value is generated in the language being typed** (`catalog/drills/README.md`),
   and a frame drill exists only where the answer language has a trainer pack.
   Weekday and month names are lexical content that must be authored per language.
   Feeding a frame slot from the catalog would invert the layering —
@@ -244,7 +244,7 @@ an ordinal genitive year, which the pack does not produce and which is not
 a date rule but a whole second numeral family.
 So Ukrainian carries no rung 6, exactly as
 "Ukrainian year frames would need ordinal and case forms the trainer does not produce"
-already took that gap for the frames (`catalog/docs/drills.md`),
+already took that gap for the frames (`catalog/drills/README.md`),
 and exactly as French carries no counted-noun frame.
 An honest missing rung costs a learner nothing but the rung.
 
@@ -254,10 +254,10 @@ for the reason `number-forms.md` § Ukrainian gives.
 ## Catalog schema
 
 New top-level folder, a sibling of `alphabet/`, `countries/` and `drills/`,
-and a new section in `catalog/docs/dates.md` linked from `catalog/README.md`'s
-"The rest of the format" list. Written in that file's voice:
+carrying its own `catalog/dates/README.md` and listed in `catalog/README.md`'s
+Layout tree. Written in the other folder READMEs' voice:
 
-> ## The calendar (`catalog/dates/`)
+> # The calendar
 >
 > The names of the days and the months, and how this language writes a whole date.
 > What the engine composes out of them is `../../kern/docs/catalog.md`.
@@ -398,7 +398,7 @@ and is never deferred to a parity pass. `DrillAvailability.datesOffered`, the `S
 Gate: `:android:testDebugUnitTest`; `scripts/run-emu.sh --shot`.
 
 **C10 — docs and changelog.**
-`catalog/docs/dates.md` written, `catalog/README.md`'s pointer list extended,
+`catalog/dates/README.md` written, `catalog/README.md`'s Layout tree extended,
 `surfaces.md` gains the Datum entry, `kern/docs/catalog.md` gains the `catalog/dates/` bullet,
 `CHANGELOG.md` under `## Unreleased`.
 

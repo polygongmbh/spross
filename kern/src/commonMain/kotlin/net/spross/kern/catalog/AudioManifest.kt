@@ -23,7 +23,7 @@ internal data class AudioRecording(
     /**
      * RESOLVED, never as authored: a manifest carries a license per AUTHOR and its deed
      * per license, and an entry names one only where it departs from its own author's
-     * (`catalog/docs/audio.md`). [licenseUrl] is null exactly where the license has no
+     * (`catalog/audio/README.md`). [licenseUrl] is null exactly where the license has no
      * deed to link — a public-domain file.
      */
     val license: String,

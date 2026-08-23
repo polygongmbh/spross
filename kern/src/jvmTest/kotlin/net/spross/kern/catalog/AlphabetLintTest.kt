@@ -28,10 +28,11 @@ class AlphabetLintTest {
      */
     @Test
     fun everyAlphabetFileBelongsToADeclaredLanguageAndLoads() {
-        val files = File(RealCatalog.root, "alphabet").listFiles().orEmpty().map { it.name }
+        // The folder's README.md is its documentation, not a sheet — only .json is the registry.
+        val files = File(RealCatalog.root, "alphabet").listFiles().orEmpty()
+            .map { it.name }.filter { it.endsWith(".json") }
         assertTrue(files.isNotEmpty(), "no alphabet files — the drill series shipped uk and de")
         for (name in files) {
-            assertTrue(name.endsWith(".json"), "alphabet/$name: not a .json file")
             val lang = name.removeSuffix(".json")
             assertTrue(lang in catalog.languages, "alphabet/$name: undeclared language")
             assertNotNull(catalog.alphabet(lang), "alphabet/$name: declared but never loaded")

@@ -92,7 +92,7 @@ Engine contract: `../README.md`.
   sampling takes an injected `Random` and an
   app-computed promptable set (device voices are an app fact).
   A gap row draws its word from a POOL (`Catalog.alphabetExamples`, rules in
-  `catalog/docs/alphabet.md`), the app narrowing it to what the device can say and
+  `catalog/alphabet/README.md`), the app narrowing it to what the device can say and
   flagging what the box already holds; kern favours the known words while at least three
   stand, and spends no randomness where a row offers one word.
   Dictation weighs its draw (`dictationWeight`): a floor of one that shuts nothing out,

@@ -98,7 +98,7 @@ Engine contract: `../README.md`.
   the two rules only a frame can break — text and variants agree on carrying one, and a
   marked frame joins every pair its realizations otherwise allow.
 - `catalog/drills/` — the sentence frames, a top-level sibling outside `areas.json`
-  (format owned by `catalog/docs/drills.md`). A frame is a concept + per-language realizations,
+  (format owned by `catalog/drills/README.md`). A frame is a concept + per-language realizations,
   joined at runtime like a card, but it is not a card: no area, no `seedIndex`, outside the
   phrase-unlock gate. **Frames are read through the RAW `CatalogSource`, not the
   fingerprinting wrapper** — the same exemption the audio manifest has, and for the same

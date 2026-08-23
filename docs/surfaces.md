@@ -148,7 +148,7 @@ auto-advance beats these share with it, are `design.md`'s.
   The drill asks everything by ear: letter
   NAME or gap word — and a gap word is drawn from the whole catalog wherever the glyph
   says its own sound, words the learner already holds first, so a rung stops meaning one
-  memorized blank (`catalog/docs/alphabet.md` owns which rows may draw). Tiles first
+  memorized blank (`catalog/alphabet/README.md` owns which rows may draw). Tiles first
   among strangers, then among look- and sound-alikes, then
   typed, and — once enough words are consolidated — dictation of the learner's own
   consolidated words, which never touches their schedule and leans toward the ones worth

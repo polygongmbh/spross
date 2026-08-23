@@ -5,7 +5,7 @@ and what switching it would actually buy — measured 2026-08-22.
 
 Whose the recordings are and what each license obliges is `audio-licensing.md`;
 this doc states the format decision, not the legal posture.
-The engine rule is `../kern/docs/audio.md`, the manifest schema `../catalog/docs/audio.md`.
+The engine rule is `../kern/docs/audio.md`, the manifest schema `../catalog/audio/README.md`.
 
 ## What ships
 

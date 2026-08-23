@@ -84,7 +84,7 @@ Engine contract: `../README.md`.
   each sha256 re-hashed against the committed bytes — Commons transcodes ship untouched,
   because re-encoding is an adaptation under BY-SA —
   every `authors` and `licenses` row is used by some recording, and no author is a placeholder.
-- The manifest's own schema (fields, naming rules, provenance) is `catalog/docs/audio.md`'s:
+- The manifest's own schema (fields, naming rules, provenance) is `catalog/audio/README.md`'s:
   this section owns the engine rule, not the file format.
 - **Playback trusts the index only so far** (`catalog/Playback.kt`).
   `Playback.GAIN_LIMIT_DB = 20.0` is the converter's own clamp and now the single home of the number:

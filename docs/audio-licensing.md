@@ -4,7 +4,7 @@ The record for the ship/legal questions the bundled audio raises:
 what is in the app, whose it is, what each license asks for, and where the app answers it.
 Successor to `docs/pronunciation-plan.md`, deleted once the feature shipped.
 
-The engine rule is `../kern/docs/audio.md`, the file format `../catalog/docs/audio.md`,
+The engine rule is `../kern/docs/audio.md`, the file format `../catalog/audio/README.md`,
 and the per-file truth is the per-language manifests themselves — this doc states the posture,
 not the schema.
 Why the bundled recordings are mp3, and what a different codec would cost, is `audio-format.md`.
@@ -42,7 +42,7 @@ lives outside the repo in `data/reference/audio/README.md`.
 
 The `articles/` sets are where a word may ship TWICE, and deliberately: the bare file is
 what the learner's own language is read with, the article one what the target is heard as
-(`../catalog/docs/audio.md`). Five words ship only the article recording, which then answers
+(`../catalog/audio/README.md`). Five words ship only the article recording, which then answers
 both ways it is asked rather than leaving the word silent. Both carry their own author and license row, so the credits
 screen names Natschoba beside the German pack's eight groups and Marta Carbone beside the
 Italian's fourteen — a second voice on 221 and 54 cards, not a replacement of the first.
@@ -74,7 +74,7 @@ exactly (edge punctuation folded, nothing fuzzy) against the Commons phrasebook.
   original Commons filename as `source`, and the `sha256` of the shipped bytes; its license
   and that license's deed come from the manifest's own `authors` and `licenses` maps, which
   is where a voice's terms are authored once instead of on each of its hundreds of files
-  (`../catalog/docs/audio.md`). Factored, not thinned: every recording still resolves to a
+  (`../catalog/audio/README.md`). Factored, not thinned: every recording still resolves to a
   named speaker and a linked license, and the parser refuses a manifest whose maps do not
   cover what it credits. The unversioned pack workspace is research input; `catalog/audio/`
   is the record that ships.
