@@ -66,6 +66,14 @@ is what tells them apart (`kuacha` verlassen vs `kuacha kazi` kündigen,
 disambiguator, it is carried by the merged language alone, and the homonym rule above
 governs it.
 
+That exception is the narrow case, not the first move. Before reaching for it, ask whether
+the SOURCE concept is under-specified too — usually it is, and then the object belongs in
+all eight languages by the rule above. `quit` alone does not say whether a job, a game or
+smoking is being quit, so `quit your job` is not a workaround for Swahili's `kuacha kazi`;
+it is the card finally saying what it means, and it mirrors, which the one-sided version
+never does. Keep the merged language's private object only where the source really is
+unambiguous on its own and the others would sound wrong carrying one.
+
 **Pick the word a speaker says, never the word that sits furthest from another card.**
 Two realizations one edit apart are safe by construction:
 a typed form that is exactly some card's answer grades `Match.OtherWord`
