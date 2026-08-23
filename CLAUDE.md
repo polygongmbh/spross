@@ -44,7 +44,9 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   `jvmTest` when kern main is untouched) and fall back to reading your own diff when no gate isolates it.
   A red in a file nobody edited is the shared Kotlin cache; `../CLAUDE.md` carries that remedy.
 - **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `test:`, `docs:`, `build:`) with scopes
-- A user-facing change lands on iOS and Android in the same sweep, never deferred to a parity pass.
+- A user-facing change lands on iOS and Android in the same sweep, never deferred to a parity pass;
+  a change to shared/parity-bearing UI (cards, layout tokens) closes with both checked side by side,
+  not just implemented on both — a small copy or cosmetic tweak does not need this.
 - Keep `README.md` / `docs/` in step with behavior changes in the same series.
 - `CHANGELOG.md` is curated, grouped by version, written in ENGLISH; what earns an entry
   and how it is worded: `docs/distribution.md`.
@@ -64,7 +66,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   content (a British spelling is a `variant`, a British word a `synonym`; `catalog/README.md`).
 - ALWAYS use **Semantic linebreaks** for text - in docs, markdown files, documentation comments: one sentence/clause per line.
 - Tests: behavior over implementation detail; extract pure logic so it's testable without the framework.
-- A rule that can be checked gets the check too (`scripts/hooks/pre-commit`), never the sentence alone.
+- A rule that can be checked gets the check too, never the sentence alone.
 - Engine APIs name the rule, never the rendering: no screen positions in kern types.
 
 ## Working with subagents & tools
@@ -107,5 +109,6 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Whose the bundled recordings are and what their licenses oblige — the ship/legal record —
   is `docs/audio-licensing.md`; no other doc restates a license term.
 - Write plans into docs/ and delete them once shipped, even if you did not write the plan
-- Whenever you are corrected or do extensive research, find or create an appropriate docs/ file to note insights
+- Whenever you are corrected or do extensive research, tighten or replace the line that should
+  have caught it before adding a new one; a new docs/ file only when no existing doc owns the topic
 - Do not document a removal or absence of something beyond the commits message unless it is likely to be accidentally reintroduced
