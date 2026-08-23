@@ -102,14 +102,8 @@ growing past roughly forty asks to be cut along the seam a learner would name
 before they ever land there). The cut is cheap: the slug is the card id and carries no
 area, so nobody's schedule notices.
 
-**A card that has not earned its slot moves back — it does not get deleted.** Position is
-the usual complaint and deletion is rarely the fix: the slug is the card id and carries no
-area, so `scripts/catalog-move.py` relocates a concept and every language's realization for
-free, while a deletion throws away whatever was sourced against that slug. `danken` was
-slated out of `basics` for arriving too early, which would have discarded seven sourced,
-measured, licensed recordings to solve a problem a one-line move solves. Renaming carries
-the same tooth: a pack row names the slug, and nothing warns when the slug moves out from
-under it — `careful` to `caution` orphaned that recording in six packs at once.
+**A card that has not earned its slot moves back — it does not get deleted** (page top;
+`scripts/catalog-move.py` carries the move for free, area included).
 
 **A front-group slot is earned by what a learner can use on the first day**, never by
 how basic the topic sounds. Introduction walks a flat seed order, so group order in
