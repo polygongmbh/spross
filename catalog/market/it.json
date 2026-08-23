@@ -3,7 +3,7 @@
  "subtitle": "Dove il prezzo si tratta ancora.",
  "words": {
   "stall": { "text": "bancarella", "grammar": { "gender": "la" } },
-  "trader": { "text": "venditore", "grammar": { "gender": "il" } },
+  "trader": { "text": "venditore", "grammar": { "gender": "il" }, "synonyms": ["commerciante"] },
   "trader-f": { "text": "venditrice", "grammar": { "gender": "la" } },
   "scales": { "text": "bilancia", "grammar": { "gender": "la" } },
   "weigh": { "text": "pesare" },

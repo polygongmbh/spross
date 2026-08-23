@@ -8,11 +8,7 @@
    "notes": { "de": "kugeuka ist sich wenden; ein Objekt wenden heißt kugeuza." }
   },
   "corner": { "text": "kona", "grammar": { "plural": "=" } },
-  "crossing": {
-   "text": "makutano",
-   "grammar": { "plural": "=" },
-   "notes": { "de": "makutano steht schon in der Mehrzahlform und bleibt so." }
-  },
+  "crossing": { "text": "njia panda", "variants": ["makutano"], "grammar": { "plural": "=" } },
   "cross": { "text": "kuvuka" },
   "direction": { "text": "mwelekeo", "grammar": { "plural": "mielekeo" } },
   "city-map": { "text": "ramani", "grammar": { "plural": "=" }, "variants": ["ramani ya mji"] },

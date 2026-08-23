@@ -5,7 +5,7 @@
   "supermarket": { "text": "supamaketi", "grammar": { "plural": "=" }, "variants": ["duka kubwa"] },
   "mall": { "text": "kituo cha manunuzi", "grammar": { "plural": "vituo vya manunuzi" } },
   "checkout": { "text": "kaunta ya malipo", "grammar": { "plural": "kaunta za malipo" } },
-  "shop-assistant": { "text": "muuzaji", "grammar": { "plural": "wauzaji" } },
+  "shop-assistant": { "text": "muuzaji", "grammar": { "plural": "wauzaji" }, "variants": ["mwuzaji"] },
   "shopping-cart": { "text": "toroli", "grammar": { "plural": "=" } },
   "shopping-bag": { "text": "mfuko wa ununuzi", "grammar": { "plural": "mifuko ya ununuzi" } },
   "offer": { "text": "ofa", "grammar": { "plural": "=" } },

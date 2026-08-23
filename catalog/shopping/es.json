@@ -7,7 +7,7 @@
   "checkout": { "text": "caja", "grammar": { "gender": "la" } },
   "shop-assistant": { "text": "dependiente", "synonyms": ["vendedor"], "grammar": { "gender": "el" } },
   "shop-assistant-f": { "text": "dependienta", "synonyms": ["vendedora"], "grammar": { "gender": "la" } },
-  "shopping-cart": { "text": "carrito", "grammar": { "gender": "el" } },
+  "shopping-cart": { "text": "carrito", "grammar": { "gender": "el" }, "variants": ["carrito de la compra"] },
   "shopping-bag": { "text": "bolsa de la compra", "grammar": { "gender": "la" } },
   "offer": { "text": "oferta", "grammar": { "gender": "la" } },
   "shopping-list": { "text": "lista de la compra", "grammar": { "gender": "la" } },

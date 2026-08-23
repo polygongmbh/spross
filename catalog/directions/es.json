@@ -19,7 +19,7 @@
    "notes": { "de": "la esquina ist die Straßenecke von außen; die Zimmerecke ist el rincón." }
   },
   "crossing": { "text": "cruce", "grammar": { "gender": "el" } },
-  "cross": { "text": "cruzar" },
+  "cross": { "text": "cruzar", "synonyms": ["atravesar"] },
   "direction": {
    "text": "dirección",
    "grammar": { "gender": "la", "plural": "direcciones" },

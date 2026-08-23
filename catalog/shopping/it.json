@@ -7,7 +7,7 @@
   "checkout": { "text": "cassa", "grammar": { "gender": "la" } },
   "shop-assistant": { "text": "commesso", "grammar": { "gender": "il" } },
   "shop-assistant-f": { "text": "commessa", "grammar": { "gender": "la" } },
-  "shopping-cart": { "text": "carrello", "grammar": { "gender": "il" } },
+  "shopping-cart": { "text": "carrello", "grammar": { "gender": "il" }, "variants": ["carrello della spesa"] },
   "shopping-bag": { "text": "borsa della spesa", "grammar": { "gender": "la" } },
   "offer": { "text": "offerta", "grammar": { "gender": "l'" }, "variants": ["l'offerta"] },
   "shopping-list": { "text": "lista della spesa", "grammar": { "gender": "la" } },

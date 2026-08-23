@@ -14,7 +14,7 @@
   "cutlery": { "text": "posate", "grammar": { "gender": "le", "plural": "only" } },
   "napkin": { "text": "tovagliolo", "grammar": { "gender": "il" } },
   "vegetarian": { "text": "vegetariano" },
-  "dessert": { "text": "dolce", "grammar": { "gender": "il" } },
+  "dessert": { "text": "dolce", "grammar": { "gender": "il" }, "variants": ["dessert"] },
   "beverage": { "text": "bevanda", "grammar": { "gender": "la" } },
   "restaurant": { "text": "ristorante", "grammar": { "gender": "il" } },
   "a-table-for-two": { "text": "Un tavolo per due, per favore." },

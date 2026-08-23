@@ -14,7 +14,8 @@
   "cash": {
    "text": "espèces",
    "grammar": { "gender": "les", "plural": "only" },
-   "notes": { "de": "nur im Plural: payer en espèces." }
+   "notes": { "de": "nur im Plural: payer en espèces." },
+   "synonyms": ["liquide"]
   },
   "bank-card": { "text": "carte bancaire", "variants": ["carte", "carte bleue"], "grammar": { "gender": "la" } },
   "coin": {

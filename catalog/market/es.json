@@ -8,7 +8,7 @@
    "grammar": { "gender": "el" },
    "notes": { "de": "epicen: el comerciante und la comerciante, nur der Artikel wechselt." }
   },
-  "scales": { "text": "báscula", "grammar": { "gender": "la" } },
+  "scales": { "text": "báscula", "grammar": { "gender": "la" }, "synonyms": ["balanza"] },
   "weigh": { "text": "pesar" },
   "kilo": { "text": "kilo", "grammar": { "gender": "el" } },
   "gram": { "text": "gramo", "grammar": { "gender": "el" } },
