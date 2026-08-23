@@ -15,6 +15,8 @@ import kotlin.test.assertTrue
 class CatalogAudioFixtureTest {
     private val catalog = AudioFixture.catalog()
 
+    private val BY = "https://creativecommons.org/licenses/by/3.0/us/"
+
     private fun recording(lang: String, form: String): String? =
         catalog.pronunciation(lang, form).recordingPath
 
@@ -42,6 +44,8 @@ class CatalogAudioFixtureTest {
         val word = catalog.audio.getValue("uk").words.getValue("mouse")
         assertEquals("mouse.mp3", word.file)
         assertEquals("миша", word.matches)
+        // Neither of these is on the entry: the license comes from the author's row, the
+        // deed from the license's.
         assertEquals("CC BY 3.0 us", word.license)
         assertEquals("https://creativecommons.org/licenses/by/3.0/us/", word.licenseUrl)
         assertEquals("Halyna", word.author)
@@ -52,8 +56,46 @@ class CatalogAudioFixtureTest {
         assertEquals("letters/u0436.mp3", letter.file)
         assertNull(letter.matches)
         assertEquals("Tabrus", letter.author)
-        // Public-domain files have no deed to link.
+        // Public-domain files have no deed to link — `licenses` maps the name to null.
         assertNull(catalog.audio.getValue("uk").words.getValue("door").licenseUrl)
+    }
+
+    /**
+     * The escape hatch the factoring leaves open: a speaker who published ONE file under
+     * another license names it on the entry, and only that entry moves. Four of the 3881
+     * shipped recordings are that case, and without it they would be miscredited.
+     */
+    @Test
+    fun anEntryMayDepartFromItsAuthorsUsualLicense() {
+        val de = catalog.audio.getValue("de").words
+        assertEquals("CC BY-SA 4.0", de.getValue("cook").license) // Anna's usual, unwritten
+        assertEquals("CC BY 3.0 us", de.getValue("waiter").license) // hers, overridden
+        assertEquals("https://creativecommons.org/licenses/by/3.0/us/", de.getValue("waiter").licenseUrl)
+    }
+
+    @Test
+    fun anEntryWhoseCreditTheRootMapsDoNotCarryIsAParseError() {
+        val cases = mapOf(
+            // an author nobody licensed: the credit map no longer describes its contents
+            """"author": "Ghost"""" to "Ghost",
+            // a license with no deed row: the credits screen links what it names
+            """"author": "Halyna", "license": "CC BY 9.9"""" to "CC BY 9.9",
+        )
+        for ((authored, expected) in cases) {
+            val error = assertFailsWith<CatalogFormatException>("$authored was accepted") {
+                AudioFixture.catalogWith(
+                    "audio/uk/manifest.json",
+                    """
+                    { "language": "uk",
+                      "authors": { "Halyna": "CC BY 3.0 us" },
+                      "licenses": { "CC BY 3.0 us": "$BY" },
+                      "words": { "mouse": { "file": "mouse.mp3", "matches": "миша", $authored,
+                                            "source": "s.ogg", "sha256": "u2" } } }
+                    """.trimIndent(),
+                )
+            }
+            assertTrue(expected in error.message.orEmpty(), error.message.orEmpty())
+        }
     }
 
     // -- the analysis index ------------------------------------------------------------
@@ -126,7 +168,8 @@ class CatalogAudioFixtureTest {
     private fun letterManifest(index: String): String =
         """
         { "language": "uk",
-          "letters": { "ж": { "file": "letters/u0436.mp3", "license": "Public domain",
+          "authors": { "Tabrus": "Public domain" }, "licenses": { "Public domain": null },
+          "letters": { "ж": { "file": "letters/u0436.mp3",
                               "author": "Tabrus", "source": "s.ogg", "sha256": "u3", $index } } }
         """.trimIndent()
 
@@ -137,7 +180,8 @@ class CatalogAudioFixtureTest {
                 "audio/uk/manifest.json",
                 """
                 { "language": "uk",
-                  "words": { "mouse": { "file": "mouse.mp3", "matches": "миша", "license": "Public domain",
+                  "authors": { "Halyna": "Public domain" }, "licenses": { "Public domain": null },
+                  "words": { "mouse": { "file": "mouse.mp3", "matches": "миша",
                                         "author": "Halyna", "source": "s.ogg", "sha256": "u2", "voice": "alto" } } }
                 """.trimIndent(),
             )
@@ -164,7 +208,8 @@ class CatalogAudioFixtureTest {
                 "audio/uk/manifest.json",
                 """
                 { "language": "uk",
-                  "letters": { "ж": { "file": "letters/u0436.mp3", "matches": "же", "license": "Public domain",
+                  "authors": { "Tabrus": "Public domain" }, "licenses": { "Public domain": null },
+                  "letters": { "ж": { "file": "letters/u0436.mp3", "matches": "же",
                                       "author": "Tabrus", "source": "s.ogg", "sha256": "u3" } } }
                 """.trimIndent(),
             )

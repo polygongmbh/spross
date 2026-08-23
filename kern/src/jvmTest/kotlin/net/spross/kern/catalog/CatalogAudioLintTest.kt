@@ -1,5 +1,7 @@
 package net.spross.kern.catalog
 
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.jsonObject
 import java.io.File
 import java.security.MessageDigest
 import kotlin.test.Test
@@ -164,6 +166,41 @@ class CatalogAudioLintTest {
                 // it does not say.
                 assertEquals(form, recording.matches, "audio/$lang text \"$form\": key is not what it speaks")
             }
+        }
+    }
+
+    /**
+     * The root credit maps describe the pack and nothing else.
+     *
+     * A manifest carries a license per AUTHOR and a deed per LICENSE rather than both per
+     * file, so those two maps are the only place a credit is authored — and a row nobody
+     * records under is a speaker or a license the pack no longer has. Harmless to render
+     * (the credits screen walks the recordings), and exactly how the maps drift out of
+     * step with the mp3s they are supposed to describe. The parser holds the other
+     * direction: an entry whose author or license has no row cannot load at all.
+     */
+    @Test
+    fun everyCreditRowIsUsedByARecording() {
+        for (lang in catalog.audio.keys) {
+            val root = Json.parseToJsonElement(File(audioRoot, "$lang/manifest.json").readText()).jsonObject
+            val used = mutableSetOf<String>()
+            val licensed = mutableSetOf<String>()
+            forEachEntry { entryLang, _, recording ->
+                if (entryLang == lang) {
+                    used += recording.author
+                    licensed += recording.license
+                }
+            }
+            assertEquals(
+                used.sorted(),
+                root.getValue("authors").jsonObject.keys.sorted(),
+                "audio/$lang: \"authors\" credits somebody the pack does not record",
+            )
+            assertEquals(
+                licensed.sorted(),
+                root.getValue("licenses").jsonObject.keys.sorted(),
+                "audio/$lang: \"licenses\" deeds a license the pack does not use",
+            )
         }
     }
 

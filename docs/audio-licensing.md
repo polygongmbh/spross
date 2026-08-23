@@ -70,9 +70,14 @@ exactly (edge punctuation folded, nothing fuzzy) against the Commons phrasebook.
 
 ## 2. How the obligations are discharged
 
-- **Provenance is versioned per file.** Every manifest entry carries `license`, `licenseUrl`,
-  `author`, the original Commons filename as `source`, and the `sha256` of the shipped bytes.
-  The unversioned pack workspace is research input; `catalog/audio/` is the record that ships.
+- **Provenance is versioned per file.** Every manifest entry carries its `author`, the
+  original Commons filename as `source`, and the `sha256` of the shipped bytes; its license
+  and that license's deed come from the manifest's own `authors` and `licenses` maps, which
+  is where a voice's terms are authored once instead of on each of its hundreds of files
+  (`../catalog/docs/audio.md`). Factored, not thinned: every recording still resolves to a
+  named speaker and a linked license, and the parser refuses a manifest whose maps do not
+  cover what it credits. The unversioned pack workspace is research input; `catalog/audio/`
+  is the record that ships.
 - **Credits derive from the shipped manifests**, never from a hand-kept list:
   `Catalog.audioCredits()` groups per (language, author, license) with per-file rows,
   rendered by `App/Sources/Screens/CreditsView.swift` (sheet off Box settings)

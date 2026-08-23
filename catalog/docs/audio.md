@@ -17,31 +17,48 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
 
 ```json
 { "language": "uk",
+  "authors": { "Галя Раптова, Nicolas Vion": "CC BY 3.0 us", "Tabrus": "CC BY-SA 4.0" },
+  "licenses": { "CC BY 3.0 us": "https://creativecommons.org/licenses/by/3.0/us/",
+                "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
+                "CC BY 2.0 fr": "https://creativecommons.org/licenses/by/2.0/fr/" },
   "words": {
     "office": { "file": "office.mp3", "matches": "установа",
-                "license": "CC BY 3.0 us",
-                "licenseUrl": "https://creativecommons.org/licenses/by/3.0/us/",
                 "author": "Галя Раптова, Nicolas Vion",
-                "source": "Uk-установа.ogg", "sha256": "1c44…" } },
+                "source": "Uk-установа.ogg", "sha256": "ca9d…" },
+    "prescription": { "file": "prescription.mp3", "matches": "рецепт",
+                      "license": "CC BY 2.0 fr",
+                      "author": "Галя Раптова, Nicolas Vion",
+                      "source": "Uk-рецепт.ogg", "sha256": "91d9…" } },
   "letters": {
-    "ж": { "file": "letters/u0436.mp3", "license": "CC BY-SA 4.0",
-           "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "ж": { "file": "letters/u0436.mp3",
            "author": "Tabrus", "source": "Жж – ukrainian.ogg", "sha256": "77b0…",
            "gain": 20.0, "lead": 1069 } },
   "articles": {
     "address": { "file": "articles/address.mp3", "matches": "die Adresse", "word": "Adresse",
-                 "license": "CC BY-SA 4.0", "licenseUrl": "…", "author": "Natschoba",
+                 "author": "Natschoba",
                  "source": "LL-Q188 (deu)-Natschoba-die Adresse.wav", "sha256": "a15c…",
                  "gain": 8.0, "gainPhone": 3.9, "lead": 240 } } }
 ```
 
 - `language` must equal the folder name, and a folder for a language `languages.json`
   does not declare is never read — adding one is dropping a directory in, nothing else.
+- `authors` maps every credited speaker to the license they record under, `licenses`
+  every license the pack uses to its deed URL — `null` for `Public domain`, the one
+  license with nothing to point a reader at. Provenance is authored ONCE per speaker
+  rather than once per file: a license is effectively a property of the voice, and across
+  all 3881 shipped recordings four depart from their own author's. Those four carry a
+  `license` of their own, which is the only place an entry names one; the deed is never
+  written on an entry at all, being derivable from the license. There is deliberately no
+  default AUTHOR, though one voice covers 476 of the 477 Swahili files — a missing key
+  would then read as a credit to whoever recorded the most, and a misattribution by
+  omission is the one thing a BY notice may not do.
+  Every row of both maps has to be used by some recording (lint), so they describe the
+  pack rather than accumulating its history.
 - `words` is keyed by concept slug, `letters` (optional, uk only today) by lowercase
-  glyph. Every field is required except `licenseUrl`, which is absent exactly for
-  public-domain files, having no deed to link, `gain`/`cap`/`capPhone`/`lead`, absent
-  where they would be zero, and `gainPhone` — present on every word and article entry
-  (0.0 when no correction) but absent on letters and texts.
+  glyph. Every field is required except `license`, present only on the entries that
+  depart from their author's, `gain`/`cap`/`capPhone`/`lead`, absent where they would be
+  zero, and `gainPhone` — present on every word and article entry (0.0 when no
+  correction) but absent on letters and texts.
 - `articles` (optional, de and it today) is keyed by slug like `words` and holds
   recordings that speak an ARTICLE and then the word — `die Adresse`, files under
   `articles/<slug>.mp3`. `matches` is the whole spoken form, `word` the bare form inside
@@ -114,5 +131,6 @@ measurement can bracket plausibility, but it cannot confirm which word was spoke
 
 Lint (`CatalogAudioLintTest`) holds the rest: every entry names a slug its language
 realizes and a form some card can show, no two entries claim one spoken form with
-different bytes, every file ships and is referenced exactly once, and no author is a
-placeholder like "Own work" — BY and BY-SA both require naming somebody.
+different bytes, every file ships and is referenced exactly once, every `authors` and
+`licenses` row is used, and no author is a placeholder like "Own work" — BY and BY-SA
+both require naming somebody.

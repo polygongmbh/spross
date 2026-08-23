@@ -123,6 +123,26 @@ def read_json(*parts):
         return json.load(f)
 
 
+SECTIONS = ('words', 'letters', 'texts', 'articles')
+
+
+def read_manifest(out_dir):
+    """A shipped manifest with every entry's `license` written back into it.
+
+    The inverse of what [write_manifest] factors out, so the two entry points that rebuild
+    ONE section of what already ships (`--reindex`, `--articles`) hand `write_manifest`
+    the same inline shape a fresh convert does, and the root maps are re-derived rather
+    than carried along stale.
+    """
+    manifest = read_json(out_dir, 'manifest.json')
+    authors = manifest.get('authors', {})
+    for name in SECTIONS:
+        for item in manifest.get(name, {}).values():
+            if 'license' not in item:
+                item['license'] = authors[item['author']]
+    return manifest
+
+
 def read_rows(path):
     with open(path, encoding='utf-8', newline='') as f:
         return list(csv.DictReader(f, delimiter='\t'))
@@ -162,16 +182,13 @@ def license_url(license, where):
 
 
 def entry(file, license, author, source, digest, index, matches=None, word=None):
-    """One manifest value; `licenseUrl` is absent exactly where there is no deed."""
+    """One manifest value, licensed inline; `write_manifest` factors that out again."""
     record = {'file': file, 'license': license, 'author': author,
               'source': source, 'sha256': digest, **index}
     if matches is not None:
         record['matches'] = matches
     if word is not None:
         record['word'] = word
-    url = license_url(license, source)
-    if url:
-        record['licenseUrl'] = url
     return record
 
 
@@ -369,9 +386,9 @@ def reindex(lang):
     never quietly re-describe changed bytes — which is also the whole claim the credits make.
     """
     out_dir = os.path.join(CATALOG, 'audio', lang)
-    manifest = read_json(out_dir, 'manifest.json')
+    manifest = read_manifest(out_dir)
     entries = {(section, key): item
-               for section in ('words', 'letters', 'texts', 'articles') if section in manifest
+               for section in SECTIONS if section in manifest
                for key, item in manifest[section].items()}
     measured = audio_measure.measure_all(
         FFMPEG, sorted({os.path.join(out_dir, item['file']) for item in entries.values()}))
@@ -424,7 +441,7 @@ def convert_articles_only(packs, languages):
         if not os.path.isdir(pack):
             sys.exit('%s: no pack-%s-articles' % (packs, lang))
         out_dir = os.path.join(CATALOG, 'audio', lang)
-        manifest = read_json(out_dir, 'manifest.json')
+        manifest = read_manifest(out_dir)
         print('pack-%s-articles' % lang)
         shutil.rmtree(os.path.join(out_dir, 'articles'), ignore_errors=True)
         articles = convert_articles(lang, pack, out_dir, targets, forms)
@@ -432,14 +449,50 @@ def convert_articles_only(packs, languages):
                        manifest.get('texts', {}), articles)
 
 
+def credit_index(sections, where):
+    """`(authors, licenses)`: who records under what, and what each license deeds to.
+
+    A license is effectively a property of the SPEAKER — across every shipped pack only
+    four entries out of 3881 depart from their own author's usual one — so it is carried
+    once per author instead of once per file, and the deed URL once per license instead
+    of once per file again. An author's default is the license covering the most of their
+    files, ties broken by the alphabetically first license string, so a rebuild of
+    unchanged packs picks the same one twice.
+    """
+    per_author = {}
+    for section in sections:
+        for item in section.values():
+            per_author.setdefault(item['author'], {})
+            counts = per_author[item['author']]
+            counts[item['license']] = counts.get(item['license'], 0) + 1
+    authors = {author: min(sorted(counts), key=lambda name: (-counts[name], name))
+               for author, counts in sorted(per_author.items())}
+    used = sorted({license for counts in per_author.values() for license in counts})
+    return authors, {license: license_url(license, where) for license in used}
+
+
+def attributed(item, authors):
+    """One entry with what the root maps now say for it removed.
+
+    `licenseUrl` goes unconditionally — it is derivable from the license and nothing
+    outside `LICENSE_URLS` ever decided it — while `license` survives exactly where the
+    entry departs from its author's default, which is the escape hatch a speaker who
+    published one file differently needs.
+    """
+    dropped = {'licenseUrl'}
+    if item['license'] == authors[item['author']]:
+        dropped.add('license')
+    return {key: value for key, value in item.items() if key not in dropped}
+
+
 def write_manifest(lang, out_dir, words, letters, texts, articles):
-    manifest = {'language': lang, 'words': words}
-    if letters:
-        manifest['letters'] = letters
-    if texts:
-        manifest['texts'] = texts
-    if articles:
-        manifest['articles'] = articles
+    sections = [section for section in (words, letters, texts, articles) if section]
+    authors, licenses = credit_index(sections, 'audio/%s/manifest.json' % lang)
+    manifest = {'language': lang, 'authors': authors, 'licenses': licenses,
+                'words': {key: attributed(item, authors) for key, item in words.items()}}
+    for name, section in (('letters', letters), ('texts', texts), ('articles', articles)):
+        if section:
+            manifest[name] = {key: attributed(item, authors) for key, item in section.items()}
     with open(os.path.join(out_dir, 'manifest.json'), 'w', encoding='utf-8') as f:
         json.dump(manifest, f, ensure_ascii=False, indent=2, sort_keys=True)
         f.write('\n')

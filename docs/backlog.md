@@ -452,3 +452,6 @@ One line per item, with a file or context pointer, filed under the section it be
   `hasVoice`, `docs/read-aloud.md`). Its question plays under `.playback`, so the phone's
   switch is deliberately overruled there — but a volume slider at zero silences that too,
   and the rung has no "can't listen right now?" of its own to fall back on.
+- `CatalogAudioLintTest` (399 lines) and `CatalogAudioFixtureTest` (340) are both past the
+  ~300-line budget and split cleanly: provenance/attribution rules apart from the playback
+  index and the naming rules, lookup apart from parse in the fixture half.

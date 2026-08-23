@@ -1,6 +1,5 @@
 package net.spross.kern.catalog
 
-import kotlinx.serialization.json.JsonObject
 import net.spross.kern.model.Language
 import net.spross.kern.model.nfcNormalized
 
@@ -21,6 +20,12 @@ internal data class AudioRecording(
      * without one.
      */
     val word: String?,
+    /**
+     * RESOLVED, never as authored: a manifest carries a license per AUTHOR and its deed
+     * per license, and an entry names one only where it departs from its own author's
+     * (`catalog/docs/audio.md`). [licenseUrl] is null exactly where the license has no
+     * deed to link — a public-domain file.
+     */
     val license: String,
     val licenseUrl: String?,
     val author: String,
@@ -170,112 +175,4 @@ internal class AudioManifest(
                 // either file speaks the right word; differing bytes have no right answer.
                 if (group.mapTo(mutableSetOf()) { it.sha256 }.size == 1) group.first() else null
             }
-}
-
-internal object AudioManifestParser {
-    private val WORD_KEYS =
-        setOf("file", "matches", "license", "licenseUrl", "author", "source", "sha256",
-              "gain", "cap", "gainPhone", "capPhone", "lead", "snr")
-    private val LETTER_KEYS = WORD_KEYS - "matches"
-    private val ARTICLE_KEYS = WORD_KEYS + "word"
-
-    /** Five seconds of dead air is not a lead-in, it is the wrong recording. */
-    private const val LEAD_LIMIT_MS = 5_000L
-
-    fun parse(path: String, text: String, expectedLanguage: Language): AudioManifest {
-        val root = parseJson(path, text).obj(path, "root")
-        root.rejectUnknownKeys(path, "root", setOf("language", "words", "letters", "texts", "articles"))
-        val language = root.requireString(path, "root", "language")
-        if (language != expectedLanguage) {
-            parseError(path, "declares language \"$language\", expected \"$expectedLanguage\"")
-        }
-        return AudioManifest(
-            language = language,
-            words = section(path, root, "words", WORD_KEYS),
-            letters = section(path, root, "letters", LETTER_KEYS),
-            texts = section(path, root, "texts", WORD_KEYS),
-            articles = section(path, root, "articles", ARTICLE_KEYS),
-        )
-    }
-
-    /**
-     * Parses one keyed section; `matches` and `word` are each required exactly where the
-     * key set allows them — the letters speak a name rather than a form, and only an
-     * article entry carries the bare word inside what it says.
-     */
-    private fun section(
-        path: String,
-        root: JsonObject,
-        key: String,
-        known: Set<String>,
-    ): Map<String, AudioRecording> {
-        val section = root[key]?.obj(path, key) ?: return emptyMap()
-        return section.entries.associate { (id, element) ->
-            val context = "$key.$id"
-            val entry = element.obj(path, context)
-            entry.rejectUnknownKeys(path, context, known)
-            id to AudioRecording(
-                file = entry.requireNonBlank(path, context, "file"),
-                matches = if ("matches" in known) entry.requireNonBlank(path, context, "matches") else null,
-                word = if ("word" in known) entry.requireNonBlank(path, context, "word") else null,
-                license = entry.requireNonBlank(path, context, "license"),
-                licenseUrl = entry.optionalString(path, context, "licenseUrl"),
-                author = entry.requireNonBlank(path, context, "author"),
-                source = entry.requireNonBlank(path, context, "source"),
-                sha256 = entry.requireNonBlank(path, context, "sha256"),
-                gain = entry.gain(path, context, "gain"),
-                gainPhone = entry.optionalGain(path, context, "gainPhone"),
-                cap = entry.optionalCap(path, context, "cap") ?: 0.0,
-                capPhone = entry.optionalCap(path, context, "capPhone"),
-                leadMs = entry.leadMs(path, context),
-                snr = entry.optionalDouble(path, context, "snr") ?: 0.0,
-            )
-        }
-    }
-
-    private fun JsonObject.requireNonBlank(path: String, context: String, key: String): String =
-        requireString(path, context, key).also {
-            if (it.isBlank()) parseError(path, "$context: blank \"$key\"")
-        }
-
-    /**
-     * Absent means the recording already sits at the analysis target.
-     * The bound is playback's own ([Playback.GAIN_LIMIT_DB]): rejecting here and clamping
-     * there are one rule about what a measurement may claim.
-     */
-    private fun JsonObject.gain(path: String, context: String, key: String): Double =
-        optionalGain(path, context, key) ?: 0.0
-
-    /** [gain]'s optional twin — `gainPhone` is absent exactly where no phone plane was measured. */
-    private fun JsonObject.optionalGain(path: String, context: String, key: String): Double? {
-        val gain = optionalDouble(path, context, key) ?: return null
-        val limit = Playback.GAIN_LIMIT_DB
-        if (gain !in -limit..limit) {
-            parseError(path, "$context: $key $gain dB is outside ±$limit")
-        }
-        return gain
-    }
-
-    /**
-     * Absent means the ceiling held nothing back. A deficit is the distance between two
-     * gains and never a gain itself, so it is bounded by the pair rather than by
-     * [Playback.GAIN_LIMIT_DB] alone — and it can only ever be positive: a cap that lifted
-     * a recording would be the ceiling handing out headroom no file has.
-     */
-    private fun JsonObject.optionalCap(path: String, context: String, key: String): Double? {
-        val cap = optionalDouble(path, context, key) ?: return null
-        if (cap < 0.0 || cap > 2 * Playback.GAIN_LIMIT_DB) {
-            parseError(path, "$context: $key $cap dB is outside 0..${2 * Playback.GAIN_LIMIT_DB}")
-        }
-        return cap
-    }
-
-    /** Absent means the recording starts speaking at once. */
-    private fun JsonObject.leadMs(path: String, context: String): Long {
-        val lead = optionalLong(path, context, "lead") ?: return 0
-        if (lead !in 0..LEAD_LIMIT_MS) {
-            parseError(path, "$context: lead $lead ms is outside 0..$LEAD_LIMIT_MS")
-        }
-        return lead
-    }
 }

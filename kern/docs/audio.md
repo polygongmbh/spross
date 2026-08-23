@@ -73,7 +73,7 @@ Engine contract: `../README.md`.
   `Catalog.letterRecording(lang, glyph) -> LetterRecording(path, gain, gainPhone?, leadMs)` for the letter drill,
   and `Catalog.letterRecordingPath` for the callers that only ask whether a letter can be played at all
   (the recording speaks the letter's NAME — the name string itself is the alphabet file's, and the manifest's
-  `letters` section is the only home of letter audio and its license data);
+  `letters` section is the only home of letter audio and its attribution);
   `Catalog.audioCredits() -> [AudioCredit]`, grouped per (language, author, license) with per-file rows.
   BY and BY-SA cannot share one notice, so the groups ARE the credit rows,
   and they derive from the shipped manifests, so the screen can never credit what is not bundled.
@@ -82,7 +82,8 @@ Engine contract: `../README.md`.
   no ambiguous speech key, slug-named word files and codepoint-named letter files
   (glyph filenames decompose under NFD on APFS), every file ships and is referenced exactly once,
   each sha256 re-hashed against the committed bytes — Commons transcodes ship untouched,
-  because re-encoding is an adaptation under BY-SA — and no author is a placeholder.
+  because re-encoding is an adaptation under BY-SA —
+  every `authors` and `licenses` row is used by some recording, and no author is a placeholder.
 - The manifest's own schema (fields, naming rules, provenance) is `catalog/docs/audio.md`'s:
   this section owns the engine rule, not the file format.
 - **Playback trusts the index only so far** (`catalog/Playback.kt`).
