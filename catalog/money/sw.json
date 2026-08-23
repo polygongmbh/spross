@@ -1,0 +1,25 @@
+{
+ "title": "Pesa na bei",
+ "subtitle": "Kitu kinagharimu kiasi gani na unalipaje.",
+ "words": {
+  "price": { "text": "bei", "grammar": { "plural": "=" } },
+  "cost": { "text": "kugharimu" },
+  "expensive": {
+   "text": "ghali",
+   "notes": { "de": "zu teuer ist ghali mno — ghali sana heißt nur sehr teuer." }
+  },
+  "cheap": { "text": "rahisi", "notes": { "de": "rahisi heißt billig und zugleich einfach." } },
+  "sell": { "text": "kuuza" },
+  "cash": { "text": "pesa taslimu", "grammar": { "plural": "=" } },
+  "bank-card": { "text": "kadi ya benki", "grammar": { "plural": "kadi za benki" } },
+  "coin": { "text": "sarafu", "grammar": { "plural": "=" } },
+  "change-money": { "text": "chenji", "grammar": { "plural": "=" } },
+  "money": { "text": "pesa" },
+  "buy": { "text": "kununua" },
+  "pay": { "text": "kulipa" },
+  "how-much-does-this-cost": { "text": "Hii ni bei gani?" },
+  "that-is-too-expensive": { "text": "Hii ni ghali mno.", "variants": ["Hii ni ghali sana."] },
+  "i-have-no-money": { "text": "Sina pesa." },
+  "can-i-pay-by-card": { "text": "Naweza kulipa kwa kadi?" }
+ }
+}

@@ -32,9 +32,6 @@
   "police": { "text": "police", "grammar": { "gender": "la" } },
   "cinema": { "text": "cinéma", "variants": ["ciné"], "grammar": { "gender": "le" } },
   "bridge": { "text": "pont", "grammar": { "gender": "le" } },
-  "money": { "text": "argent", "variants": ["l'argent"], "grammar": { "gender": "l'" } },
-  "buy": { "text": "acheter" },
-  "pay": { "text": "payer" },
   "where-is-the-post-office": { "text": "Où est la poste ?" },
   "is-there-a-bank-here": {
    "text": "Il y a une banque ici ?",
@@ -46,12 +43,6 @@
    "text": "On se retrouve au marché.",
    "variants": ["Retrouvons-nous au marché.", "On se voit au marché."]
   },
-  "i-live-in-this-neighborhood": { "text": "J'habite dans ce quartier." },
-  "how-much-does-this-cost": {
-   "text": "Combien ça coûte ?",
-   "variants": ["Ça coûte combien ?", "Combien est-ce que ça coûte ?", "Combien cela coûte-t-il ?"]
-  },
-  "that-is-too-expensive": { "text": "C'est trop cher." },
-  "i-have-no-money": { "text": "Je n'ai pas d'argent." }
+  "i-live-in-this-neighborhood": { "text": "J'habite dans ce quartier." }
  }
 }

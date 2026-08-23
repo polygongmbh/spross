@@ -21,17 +21,11 @@
   "police": { "text": "Polizei", "grammar": { "gender": "die" } },
   "cinema": { "text": "Kino", "grammar": { "gender": "das", "plural": "-s" } },
   "bridge": { "text": "Brücke", "grammar": { "gender": "die", "plural": "-n" } },
-  "money": { "text": "Geld", "grammar": { "gender": "das" } },
-  "buy": { "text": "kaufen" },
-  "pay": { "text": "bezahlen" },
   "where-is-the-post-office": { "text": "Wo ist die Post?" },
   "is-there-a-bank-here": { "text": "Gibt es hier eine Bank?" },
   "the-store-is-still-open": { "text": "Der Laden ist noch offen." },
   "im-looking-for-a-hotel": { "text": "Ich suche ein Hotel." },
   "lets-meet-at-the-market": { "text": "Treffen wir uns am Markt." },
-  "i-live-in-this-neighborhood": { "text": "Ich wohne in diesem Viertel." },
-  "how-much-does-this-cost": { "text": "Wie viel kostet das?" },
-  "that-is-too-expensive": { "text": "Das ist zu teuer." },
-  "i-have-no-money": { "text": "Ich habe kein Geld." }
+  "i-live-in-this-neighborhood": { "text": "Ich wohne in diesem Viertel." }
  }
 }

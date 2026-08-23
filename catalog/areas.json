@@ -74,6 +74,20 @@
   ]
  },
  {
+  "group": "errands",
+  "titles": {
+   "en": "Shopping & eating out",
+   "de": "Einkaufen & Essen gehen",
+   "eo": "Aĉetado kaj manĝado ekstere",
+   "es": "Compras y comidas fuera",
+   "fr": "Courses et repas dehors",
+   "it": "Spese e pasti fuori",
+   "sw": "Ununuzi na kula nje",
+   "uk": "Покупки та їжа поза домом"
+  },
+  "areas": [{ "area": "money", "emoji": "💶" }]
+ },
+ {
   "group": "home",
   "titles": {
    "en": "At home",

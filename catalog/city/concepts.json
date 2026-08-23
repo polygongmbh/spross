@@ -1,9 +1,6 @@
 [
  { "slug": "city", "kind": "noun", "emoji": "🏙️" },
  { "slug": "street", "kind": "noun", "emoji": "🛣️" },
- { "slug": "money", "kind": "noun", "emoji": "💰" },
- { "slug": "buy", "kind": "verb", "emoji": "🛒" },
- { "slug": "pay", "kind": "verb", "emoji": "💳" },
  { "slug": "shop", "kind": "verb", "emoji": "🛍️" },
  { "slug": "store", "kind": "noun", "emoji": "🏪" },
  { "slug": "market", "kind": "noun", "emoji": "🛒" },
@@ -31,8 +28,5 @@
  { "slug": "the-store-is-still-open", "kind": "phrase", "emoji": "🏪", "components": ["store"] },
  { "slug": "im-looking-for-a-hotel", "kind": "phrase", "emoji": "🏨", "components": ["hotel"] },
  { "slug": "lets-meet-at-the-market", "kind": "phrase", "emoji": "🛒", "components": ["market"] },
- { "slug": "i-live-in-this-neighborhood", "kind": "phrase", "components": ["neighborhood"] },
- { "slug": "how-much-does-this-cost", "kind": "phrase", "emoji": "💶", "components": [] },
- { "slug": "that-is-too-expensive", "kind": "phrase", "emoji": "💸", "components": [] },
- { "slug": "i-have-no-money", "kind": "phrase", "emoji": "🪙", "components": ["money"] }
+ { "slug": "i-live-in-this-neighborhood", "kind": "phrase", "components": ["neighborhood"] }
 ]

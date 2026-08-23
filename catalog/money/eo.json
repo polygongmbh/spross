@@ -1,0 +1,28 @@
+{
+ "title": "Mono kaj prezoj",
+ "subtitle": "Kiom io kostas kaj kiel oni pagas.",
+ "words": {
+  "price": { "text": "prezo" },
+  "cost": { "text": "kosti" },
+  "expensive": {
+   "text": "multekosta",
+   "notes": { "de": "wörtlich vielkostend — Esperanto baut teuer aus kosti." }
+  },
+  "cheap": { "text": "malmultekosta", "variants": ["malkara"] },
+  "sell": { "text": "vendi" },
+  "cash": { "text": "kontanta mono", "variants": ["kontantmono"] },
+  "bank-card": { "text": "banka karto", "variants": ["pagokarto"] },
+  "coin": { "text": "monero" },
+  "change-money": { "text": "restmono", "variants": ["redonmono"] },
+  "money": { "text": "mono" },
+  "buy": { "text": "aĉeti" },
+  "pay": { "text": "pagi" },
+  "how-much-does-this-cost": { "text": "Kiom kostas tio?", "variants": ["Kiom tio kostas?", "Kiom kostas ĉi tio?"] },
+  "that-is-too-expensive": {
+   "text": "Tio estas tro multekosta.",
+   "variants": ["Tio estas tro kara.", "Tio tro multekostas."]
+  },
+  "i-have-no-money": { "text": "Mi ne havas monon." },
+  "can-i-pay-by-card": { "text": "Ĉu mi povas pagi per karto?" }
+ }
+}

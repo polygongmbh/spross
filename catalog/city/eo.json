@@ -30,9 +30,6 @@
   "police": { "text": "polico" },
   "cinema": { "text": "kinejo", "variants": ["kino"] },
   "bridge": { "text": "ponto" },
-  "money": { "text": "mono" },
-  "buy": { "text": "aĉeti" },
-  "pay": { "text": "pagi" },
   "where-is-the-post-office": { "text": "Kie estas la poŝtoficejo?", "variants": ["Kie estas la poŝtejo?"] },
   "is-there-a-bank-here": {
    "text": "Ĉu estas banko ĉi tie?",
@@ -44,12 +41,6 @@
   },
   "im-looking-for-a-hotel": { "text": "Mi serĉas hotelon." },
   "lets-meet-at-the-market": { "text": "Ni renkontiĝu ĉe la bazaro.", "variants": ["Ni renkontiĝu en la bazaro."] },
-  "i-live-in-this-neighborhood": { "text": "Mi loĝas en ĉi tiu kvartalo.", "variants": ["Mi loĝas en tiu ĉi kvartalo."] },
-  "how-much-does-this-cost": { "text": "Kiom kostas tio?", "variants": ["Kiom tio kostas?", "Kiom kostas ĉi tio?"] },
-  "that-is-too-expensive": {
-   "text": "Tio estas tro multekosta.",
-   "variants": ["Tio estas tro kara.", "Tio tro multekostas."]
-  },
-  "i-have-no-money": { "text": "Mi ne havas monon." }
+  "i-live-in-this-neighborhood": { "text": "Mi loĝas en ĉi tiu kvartalo.", "variants": ["Mi loĝas en tiu ĉi kvartalo."] }
  }
 }

@@ -1,0 +1,26 @@
+{
+ "title": "Гроші і ціни",
+ "subtitle": "Скільки щось коштує і як за це платять.",
+ "words": {
+  "price": { "text": "ціна", "grammar": { "plural": "ціни" } },
+  "cost": { "text": "коштувати" },
+  "expensive": { "text": "дорогий" },
+  "cheap": { "text": "дешевий" },
+  "sell": { "text": "продавати", "variants": ["продати"] },
+  "cash": { "text": "готівка", "notes": { "de": "bar zahlen heißt платити готівкою." } },
+  "bank-card": {
+   "text": "банківська картка",
+   "variants": ["картка"],
+   "grammar": { "plural": "банківські картки" }
+  },
+  "coin": { "text": "монета" },
+  "change-money": { "text": "решта", "notes": { "de": "решта ist das Wechselgeld und sonst der Rest." } },
+  "money": { "text": "гроші", "grammar": { "plural": "only" } },
+  "buy": { "text": "купувати" },
+  "pay": { "text": "платити" },
+  "how-much-does-this-cost": { "text": "Скільки це коштує?" },
+  "that-is-too-expensive": { "text": "Це занадто дорого." },
+  "i-have-no-money": { "text": "У мене немає грошей." },
+  "can-i-pay-by-card": { "text": "Чи можу я заплатити карткою?", "variants": ["Можна карткою?"] }
+ }
+}

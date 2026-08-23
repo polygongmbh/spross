@@ -27,23 +27,11 @@
   "police": { "text": "policía", "grammar": { "gender": "la" } },
   "cinema": { "text": "cine", "grammar": { "gender": "el" } },
   "bridge": { "text": "puente", "grammar": { "gender": "el" } },
-  "money": { "text": "dinero", "variants": ["plata"], "grammar": { "gender": "el" } },
-  "buy": { "text": "comprar" },
-  "pay": { "text": "pagar" },
   "where-is-the-post-office": { "text": "¿Dónde está la oficina de correos?", "variants": ["¿Dónde está correos?"] },
   "is-there-a-bank-here": { "text": "¿Hay un banco por aquí?" },
   "the-store-is-still-open": { "text": "La tienda todavía está abierta." },
   "im-looking-for-a-hotel": { "text": "Busco un hotel." },
   "lets-meet-at-the-market": { "text": "Quedamos en el mercado.", "variants": ["Nos vemos en el mercado."] },
-  "i-live-in-this-neighborhood": { "text": "Vivo en este barrio." },
-  "how-much-does-this-cost": {
-   "text": "¿Cuánto cuesta esto?",
-   "variants": ["¿Cuánto cuesta?", "¿Cuánto vale esto?", "¿Cuánto vale?"]
-  },
-  "that-is-too-expensive": {
-   "text": "Eso es demasiado caro.",
-   "variants": ["Es demasiado caro.", "Esto es demasiado caro."]
-  },
-  "i-have-no-money": { "text": "No tengo dinero." }
+  "i-live-in-this-neighborhood": { "text": "Vivo en este barrio." }
  }
 }

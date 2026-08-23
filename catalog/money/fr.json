@@ -1,0 +1,44 @@
+{
+ "title": "L'argent et les prix",
+ "subtitle": "Ce que coûte une chose et comment on la règle.",
+ "words": {
+  "price": { "text": "prix", "grammar": { "gender": "le", "plural": "=" } },
+  "cost": { "text": "coûter" },
+  "expensive": { "text": "cher" },
+  "cheap": {
+   "text": "bon marché",
+   "variants": ["pas cher"],
+   "notes": { "de": "bon marché bleibt unverändert: une robe bon marché." }
+  },
+  "sell": { "text": "vendre" },
+  "cash": {
+   "text": "espèces",
+   "grammar": { "gender": "les", "plural": "only" },
+   "notes": { "de": "nur im Plural: payer en espèces." }
+  },
+  "bank-card": { "text": "carte bancaire", "variants": ["carte", "carte bleue"], "grammar": { "gender": "la" } },
+  "coin": {
+   "text": "pièce de monnaie",
+   "variants": ["pièce"],
+   "grammar": { "gender": "la" },
+   "notes": {
+    "de": "une pièce allein ist auch das Zimmer — beim Geld sagt man pièce de monnaie, sobald es missverständlich wäre."
+   }
+  },
+  "change-money": {
+   "text": "monnaie",
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la monnaie ist das Wechselgeld — die Währung heißt la devise." }
+  },
+  "money": { "text": "argent", "variants": ["l'argent"], "grammar": { "gender": "l'" } },
+  "buy": { "text": "acheter" },
+  "pay": { "text": "payer" },
+  "how-much-does-this-cost": {
+   "text": "Combien ça coûte ?",
+   "variants": ["Ça coûte combien ?", "Combien est-ce que ça coûte ?", "Combien cela coûte-t-il ?"]
+  },
+  "that-is-too-expensive": { "text": "C'est trop cher." },
+  "i-have-no-money": { "text": "Je n'ai pas d'argent." },
+  "can-i-pay-by-card": { "text": "Est-ce que je peux payer par carte ?", "variants": ["Je peux payer par carte ?"] }
+ }
+}

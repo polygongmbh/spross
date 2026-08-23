@@ -1,0 +1,34 @@
+{
+ "title": "Geld und Preise",
+ "subtitle": "Was etwas kostet und wie man es bezahlt.",
+ "words": {
+  "price": { "text": "Preis", "grammar": { "gender": "der", "plural": "-e" } },
+  "cost": { "text": "kosten" },
+  "expensive": { "text": "teuer" },
+  "cheap": {
+   "text": "billig",
+   "synonyms": ["günstig"],
+   "notes": { "de": "günstig lobt den Preis, billig kann abwertend klingen." }
+  },
+  "sell": { "text": "verkaufen" },
+  "cash": { "text": "Bargeld", "grammar": { "gender": "das" } },
+  "bank-card": {
+   "text": "Bankkarte",
+   "variants": ["Karte", "EC-Karte"],
+   "grammar": { "gender": "die", "plural": "-n" }
+  },
+  "coin": { "text": "Münze", "grammar": { "gender": "die", "plural": "-n" } },
+  "change-money": {
+   "text": "Wechselgeld",
+   "grammar": { "gender": "das" },
+   "notes": { "de": "das Wechselgeld bekommt man zurück; das Kleingeld hat man schon dabei." }
+  },
+  "money": { "text": "Geld", "grammar": { "gender": "das" } },
+  "buy": { "text": "kaufen" },
+  "pay": { "text": "bezahlen" },
+  "how-much-does-this-cost": { "text": "Wie viel kostet das?" },
+  "that-is-too-expensive": { "text": "Das ist zu teuer." },
+  "i-have-no-money": { "text": "Ich habe kein Geld." },
+  "can-i-pay-by-card": { "text": "Kann ich mit Karte zahlen?", "variants": ["Kann ich mit Karte bezahlen?"] }
+ }
+}

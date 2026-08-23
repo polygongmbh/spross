@@ -455,6 +455,12 @@ class CatalogLintTest {
                 // not one word covering two German ones. Same treatment either way.
                 // Re-pathed 2026-08-04: `outside` split into transport/city/nature and
                 // `river` landed in `nature` — the same pair, renamed, not a new one.
+                // Reviewed 2026-08-23: `rahisi` is cheap AND easy — de/en/eo/es/fr/it/uk all
+                // split the pair (billig/einfach, barato/fácil, economico/facile). `nafuu`
+                // is the relief of a better price rather than a low one, so repicking would
+                // teach the wrong word; money/cheap carries the de note naming the second
+                // sense, the ndege treatment.
+                "sw rahisi: money/cheap, qualities/easy",
                 "sw mto: bedroom/pillow, nature/river",
                 // Reviewed 2026-08-04: sw `mwezi` is moon and month, exactly as uk `місяць`
                 // is — so the moon is authored without uk, which keeps this to one language

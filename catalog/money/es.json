@@ -1,0 +1,41 @@
+{
+ "title": "Dinero y precios",
+ "subtitle": "Lo que cuesta algo y cómo se paga.",
+ "words": {
+  "price": { "text": "precio", "grammar": { "gender": "el" } },
+  "cost": { "text": "costar", "notes": { "de": "Stammwechsel o → ue: cuesta, cuestan." } },
+  "expensive": { "text": "caro" },
+  "cheap": { "text": "barato" },
+  "sell": { "text": "vender" },
+  "cash": {
+   "text": "efectivo",
+   "grammar": { "gender": "el" },
+   "notes": { "de": "bar zahlen heißt pagar en efectivo." }
+  },
+  "bank-card": {
+   "text": "tarjeta",
+   "variants": ["tarjeta bancaria", "tarjeta de crédito"],
+   "grammar": { "gender": "la" }
+  },
+  "coin": { "text": "moneda", "grammar": { "gender": "la" } },
+  "change-money": {
+   "text": "cambio",
+   "variants": ["vuelto", "vuelta"],
+   "grammar": { "gender": "el" },
+   "notes": { "de": "In Spanien el cambio, in weiten Teilen Lateinamerikas el vuelto." }
+  },
+  "money": { "text": "dinero", "variants": ["plata"], "grammar": { "gender": "el" } },
+  "buy": { "text": "comprar" },
+  "pay": { "text": "pagar" },
+  "how-much-does-this-cost": {
+   "text": "¿Cuánto cuesta esto?",
+   "variants": ["¿Cuánto cuesta?", "¿Cuánto vale esto?", "¿Cuánto vale?"]
+  },
+  "that-is-too-expensive": {
+   "text": "Eso es demasiado caro.",
+   "variants": ["Es demasiado caro.", "Esto es demasiado caro."]
+  },
+  "i-have-no-money": { "text": "No tengo dinero." },
+  "can-i-pay-by-card": { "text": "¿Puedo pagar con tarjeta?" }
+ }
+}
