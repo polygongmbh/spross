@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.4.0 — 2026-08-23
+
 - **The box can ask the way, buy something and order a meal.** Five new shelves where the
   catalog had almost nothing: finding the way (straight on, turning at the corner, the
   crossing, the exit, and saying you are lost), money and prices, the shop with its till
