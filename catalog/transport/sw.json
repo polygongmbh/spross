@@ -11,7 +11,6 @@
   "taxi": { "text": "teksi", "grammar": { "plural": "=" } },
   "train-station": { "text": "stesheni ya treni", "grammar": { "plural": "stesheni za treni" } },
   "ticket": { "text": "tiketi", "grammar": { "plural": "=" } },
-  "way": { "text": "njia", "grammar": { "plural": "=" } },
   "ride-bike": { "text": "kuendesha baiskeli" },
   "take-bus": { "text": "kupanda basi" },
   "depart": { "text": "kuondoka" },

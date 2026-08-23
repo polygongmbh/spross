@@ -21,11 +21,6 @@
   "taxi": { "text": "taxi", "variants": ["tassì"], "grammar": { "gender": "il", "plural": "=" } },
   "train-station": { "text": "stazione", "variants": ["stazione ferroviaria"], "grammar": { "gender": "la" } },
   "ticket": { "text": "biglietto", "grammar": { "gender": "il" } },
-  "way": {
-   "text": "cammino",
-   "grammar": { "gender": "il" },
-   "notes": { "de": "il cammino ist der Weg, den man geht; nach dem Weg fragt man mit la strada." }
-  },
   "ride-bike": { "text": "andare in bicicletta", "variants": ["andare in bici", "pedalare"] },
   "take-bus": { "text": "prendere l'autobus", "variants": ["prendere il bus"] },
   "depart": {

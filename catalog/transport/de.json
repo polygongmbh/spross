@@ -11,7 +11,6 @@
   "taxi": { "text": "Taxi", "grammar": { "gender": "das", "plural": "-s" } },
   "train-station": { "text": "Bahnhof", "grammar": { "gender": "der", "plural": "Bahnhöfe" } },
   "ticket": { "text": "Fahrkarte", "grammar": { "gender": "die", "plural": "-n" } },
-  "way": { "text": "Weg", "grammar": { "gender": "der", "plural": "-e" } },
   "ride-bike": { "text": "Rad fahren" },
   "take-bus": { "text": "den Bus nehmen" },
   "depart": { "text": "abfahren" },

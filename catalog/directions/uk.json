@@ -1,0 +1,30 @@
+{
+ "title": "Знайти дорогу",
+ "subtitle": "Відповідь на питання «як дійти?».",
+ "words": {
+  "straight-ahead": { "text": "прямо" },
+  "turn": { "text": "повертати", "variants": ["повернути"] },
+  "corner": {
+   "text": "ріг",
+   "grammar": { "plural": "роги" },
+   "notes": { "de": "ріг ist die Straßenecke (на розі) und zugleich das Horn." }
+  },
+  "crossing": { "text": "перехрестя", "grammar": { "plural": "=" } },
+  "cross": { "text": "переходити", "variants": ["перейти"] },
+  "direction": { "text": "напрямок", "grammar": { "plural": "напрямки" } },
+  "city-map": { "text": "план міста", "variants": ["мапа", "карта"] },
+  "entrance": { "text": "вхід", "grammar": { "plural": "входи" } },
+  "exit": { "text": "вихід", "grammar": { "plural": "виходи" } },
+  "follow": {
+   "text": "іти за",
+   "variants": ["йти за", "слідувати"],
+   "notes": { "de": "іти за steht mit dem Instrumental: іти за мною." }
+  },
+  "way": { "text": "дорога" },
+  "go-straight-ahead": { "text": "Ідіть прямо.", "variants": ["Іди прямо."] },
+  "turn-left-at-the-corner": { "text": "Поверніть ліворуч на розі.", "variants": ["Поверни ліворуч на розі."] },
+  "where-is-the-exit": { "text": "Де вихід?" },
+  "how-do-i-get-to-the-station": { "text": "Як дійти до вокзалу?", "variants": ["Як мені дістатися до вокзалу?"] },
+  "im-lost": { "text": "Я заблукав.", "variants": ["Я заблукала."] }
+ }
+}

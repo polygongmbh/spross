@@ -2,7 +2,6 @@
  { "slug": "bus", "kind": "noun", "emoji": "🚌" },
  { "slug": "car", "kind": "noun", "emoji": "🚗" },
  { "slug": "train", "kind": "noun", "emoji": "🚆" },
- { "slug": "way", "kind": "noun", "emoji": "🚶" },
  { "slug": "ticket", "kind": "noun", "emoji": "🎟️" },
  { "slug": "travel", "kind": "verb", "emoji": "🌍" },
  { "slug": "journey", "kind": "noun", "emoji": "🗺️" },

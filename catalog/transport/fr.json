@@ -20,7 +20,6 @@
    "grammar": { "gender": "le" },
    "notes": { "de": "le billet gilt für Zug und Flugzeug, le ticket für Bus und Metro." }
   },
-  "way": { "text": "chemin", "grammar": { "gender": "le" } },
   "ride-bike": { "text": "faire du vélo", "variants": ["aller à vélo", "rouler à vélo"] },
   "take-bus": { "text": "prendre le bus" },
   "depart": {

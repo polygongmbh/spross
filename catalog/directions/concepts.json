@@ -1,0 +1,23 @@
+[
+ { "slug": "straight-ahead", "kind": "adjective", "emoji": "⬆️" },
+ { "slug": "turn", "kind": "verb", "emoji": "↩️" },
+ { "slug": "corner", "kind": "noun" },
+ { "slug": "crossing", "kind": "noun" },
+ { "slug": "cross", "kind": "verb" },
+ { "slug": "direction", "kind": "noun", "emoji": "🧭" },
+ { "slug": "city-map", "kind": "noun", "emoji": "🗺️" },
+ { "slug": "entrance", "kind": "noun" },
+ { "slug": "exit", "kind": "noun" },
+ { "slug": "follow", "kind": "verb" },
+ { "slug": "way", "kind": "noun", "emoji": "🚶" },
+ { "slug": "go-straight-ahead", "kind": "phrase", "emoji": "⬆️", "components": ["straight-ahead"] },
+ {
+  "slug": "turn-left-at-the-corner",
+  "kind": "phrase",
+  "emoji": "↩️",
+  "components": ["turn", "corner"]
+ },
+ { "slug": "where-is-the-exit", "kind": "phrase", "components": ["exit"] },
+ { "slug": "how-do-i-get-to-the-station", "kind": "phrase", "emoji": "🚉", "components": [] },
+ { "slug": "im-lost", "kind": "phrase", "components": [] }
+]

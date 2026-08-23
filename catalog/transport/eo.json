@@ -11,7 +11,6 @@
   "taxi": { "text": "taksio" },
   "train-station": { "text": "stacidomo", "variants": ["stacio", "trajnstacio"] },
   "ticket": { "text": "bileto" },
-  "way": { "text": "vojo" },
   "ride-bike": { "text": "bicikli", "variants": ["veturi per biciklo"] },
   "take-bus": { "text": "preni la aŭtobuson", "variants": ["preni la buson", "veturi per aŭtobuso"] },
   "depart": {

@@ -1,0 +1,22 @@
+{
+ "title": "Den Weg finden",
+ "subtitle": "Die Antwort auf die Frage „wie komme ich hin?“.",
+ "words": {
+  "straight-ahead": { "text": "geradeaus" },
+  "turn": { "text": "abbiegen", "notes": { "de": "trennbar, ab steht hinten: Biegen Sie links ab." } },
+  "corner": { "text": "Ecke", "grammar": { "gender": "die", "plural": "-n" } },
+  "crossing": { "text": "Kreuzung", "grammar": { "gender": "die", "plural": "-en" } },
+  "cross": { "text": "überqueren" },
+  "direction": { "text": "Richtung", "grammar": { "gender": "die", "plural": "-en" } },
+  "city-map": { "text": "Stadtplan", "grammar": { "gender": "der", "plural": "Stadtpläne" } },
+  "entrance": { "text": "Eingang", "grammar": { "gender": "der", "plural": "Eingänge" } },
+  "exit": { "text": "Ausgang", "grammar": { "gender": "der", "plural": "Ausgänge" } },
+  "follow": { "text": "folgen", "notes": { "de": "folgen steht mit Dativ: Folgen Sie mir." } },
+  "way": { "text": "Weg", "grammar": { "gender": "der", "plural": "-e" } },
+  "go-straight-ahead": { "text": "Gehen Sie geradeaus.", "variants": ["Geh geradeaus."] },
+  "turn-left-at-the-corner": { "text": "Biegen Sie an der Ecke links ab.", "variants": ["Bieg an der Ecke links ab."] },
+  "where-is-the-exit": { "text": "Wo ist der Ausgang?" },
+  "how-do-i-get-to-the-station": { "text": "Wie komme ich zum Bahnhof?" },
+  "im-lost": { "text": "Ich habe mich verlaufen." }
+ }
+}

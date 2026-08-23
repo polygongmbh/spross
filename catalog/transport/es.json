@@ -22,7 +22,6 @@
     "de": "In Spanien el billete (auch der Geldschein); in Lateinamerika el boleto oder el pasaje."
    }
   },
-  "way": { "text": "camino", "grammar": { "gender": "el" } },
   "ride-bike": {
    "text": "montar en bicicleta",
    "variants": ["montar en bici", "ir en bici", "andar en bicicleta"]

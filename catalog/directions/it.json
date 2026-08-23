@@ -1,0 +1,31 @@
+{
+ "title": "Trovare la strada",
+ "subtitle": "La risposta alla domanda «come ci arrivo?».",
+ "words": {
+  "straight-ahead": { "text": "dritto", "variants": ["diritto", "sempre dritto"] },
+  "turn": { "text": "girare", "synonyms": ["svoltare"] },
+  "corner": { "text": "angolo", "variants": ["l'angolo"], "grammar": { "gender": "l'" } },
+  "crossing": { "text": "incrocio", "variants": ["l'incrocio"], "grammar": { "gender": "l'" } },
+  "cross": { "text": "attraversare" },
+  "direction": { "text": "direzione", "grammar": { "gender": "la" } },
+  "city-map": { "text": "pianta della città", "variants": ["pianta", "mappa"], "grammar": { "gender": "la" } },
+  "entrance": {
+   "text": "entrata",
+   "variants": ["l'entrata"],
+   "grammar": { "gender": "l'" },
+   "notes": { "de": "entrata ist der Weg hinein; l'ingresso ist der Eingangsbereich, also eher der Flur." }
+  },
+  "exit": { "text": "uscita", "variants": ["l'uscita"], "grammar": { "gender": "l'" } },
+  "follow": { "text": "seguire" },
+  "way": {
+   "text": "cammino",
+   "grammar": { "gender": "il" },
+   "notes": { "de": "il cammino ist der Weg, den man geht; nach dem Weg fragt man mit la strada." }
+  },
+  "go-straight-ahead": { "text": "Vada dritto.", "variants": ["Vai dritto.", "Prosegua dritto."] },
+  "turn-left-at-the-corner": { "text": "Giri a sinistra all'angolo.", "variants": ["Gira a sinistra all'angolo."] },
+  "where-is-the-exit": { "text": "Dov'è l'uscita?" },
+  "how-do-i-get-to-the-station": { "text": "Come arrivo alla stazione?" },
+  "im-lost": { "text": "Mi sono perso.", "variants": ["Mi sono persa."] }
+ }
+}

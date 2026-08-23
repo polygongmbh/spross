@@ -1,0 +1,32 @@
+{
+ "title": "Trouver son chemin",
+ "subtitle": "La réponse à la question « comment y aller ? ».",
+ "words": {
+  "straight-ahead": {
+   "text": "tout droit",
+   "notes": { "de": "tout droit heißt geradeaus, à droite rechts — der Unterschied hängt an einem Wort." }
+  },
+  "turn": { "text": "tourner" },
+  "corner": { "text": "coin", "grammar": { "gender": "le" } },
+  "crossing": { "text": "carrefour", "variants": ["croisement"], "grammar": { "gender": "le" } },
+  "cross": { "text": "traverser" },
+  "direction": { "text": "direction", "grammar": { "gender": "la" } },
+  "city-map": { "text": "plan de la ville", "variants": ["plan"], "grammar": { "gender": "le" } },
+  "entrance": {
+   "text": "entrée",
+   "variants": ["l'entrée"],
+   "grammar": { "gender": "l'" },
+   "notes": {
+    "de": "l'entrée ist der Eingang und zugleich der Flur, in den man tritt — und auf der Karte die Vorspeise."
+   }
+  },
+  "exit": { "text": "sortie", "grammar": { "gender": "la" } },
+  "follow": { "text": "suivre" },
+  "way": { "text": "chemin", "grammar": { "gender": "le" } },
+  "go-straight-ahead": { "text": "Allez tout droit.", "variants": ["Va tout droit."] },
+  "turn-left-at-the-corner": { "text": "Tournez à gauche au coin.", "variants": ["Tourne à gauche au coin."] },
+  "where-is-the-exit": { "text": "Où est la sortie ?" },
+  "how-do-i-get-to-the-station": { "text": "Comment aller à la gare ?", "variants": ["Comment je vais à la gare ?"] },
+  "im-lost": { "text": "Je me suis perdu.", "variants": ["Je me suis perdue.", "Je suis perdu."] }
+ }
+}

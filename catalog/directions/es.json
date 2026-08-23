@@ -1,0 +1,49 @@
+{
+ "title": "Encontrar el camino",
+ "subtitle": "La respuesta a la pregunta «¿cómo llego?».",
+ "words": {
+  "straight-ahead": {
+   "text": "todo recto",
+   "variants": ["recto", "derecho", "todo derecho"],
+   "notes": { "de": "In Spanien todo recto, in Lateinamerika (todo) derecho." }
+  },
+  "turn": {
+   "text": "girar",
+   "synonyms": ["doblar"],
+   "variants": ["torcer"],
+   "notes": { "de": "girar gilt überall; in Lateinamerika sagt man meist doblar: doble a la derecha." }
+  },
+  "corner": {
+   "text": "esquina",
+   "grammar": { "gender": "la" },
+   "notes": { "de": "la esquina ist die Straßenecke von außen; die Zimmerecke ist el rincón." }
+  },
+  "crossing": { "text": "cruce", "grammar": { "gender": "el" } },
+  "cross": { "text": "cruzar" },
+  "direction": {
+   "text": "dirección",
+   "grammar": { "gender": "la", "plural": "direcciones" },
+   "notes": {
+    "de": "la dirección ist die Richtung und zugleich die Anschrift; el sentido meint die Fahrtrichtung."
+   }
+  },
+  "city-map": {
+   "text": "plano",
+   "variants": ["plano de la ciudad", "mapa"],
+   "grammar": { "gender": "el" },
+   "notes": { "de": "el plano ist der Stadtplan, el mapa die Landkarte — mapa ist trotz -a maskulin." }
+  },
+  "entrance": { "text": "entrada", "grammar": { "gender": "la" } },
+  "exit": { "text": "salida", "grammar": { "gender": "la" } },
+  "follow": { "text": "seguir", "notes": { "de": "Stammwechsel e → i: sigo, sigues, sigue." } },
+  "way": { "text": "camino", "grammar": { "gender": "el" } },
+  "go-straight-ahead": { "text": "Siga todo recto.", "variants": ["Sigue todo recto.", "Vaya todo recto."] },
+  "turn-left-at-the-corner": {
+   "text": "Gire a la izquierda en la esquina.",
+   "variants": ["Doble a la izquierda en la esquina.", "Gira a la izquierda en la esquina."]
+  },
+  "where-is-the-exit": { "text": "¿Dónde está la salida?" },
+  "how-do-i-get-to-the-station": { "text": "¿Cómo llego a la estación?" },
+  "im-lost": { "text": "Me he perdido.", "variants": ["Estoy perdido.", "Estoy perdida."] }
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "title": "Kutafuta njia",
+ "subtitle": "Jibu la swali „nifikaje?“.",
+ "words": {
+  "straight-ahead": { "text": "moja kwa moja" },
+  "turn": {
+   "text": "kugeuka",
+   "notes": { "de": "kugeuka ist sich wenden; ein Objekt wenden heißt kugeuza." }
+  },
+  "corner": { "text": "kona", "grammar": { "plural": "=" } },
+  "crossing": {
+   "text": "makutano",
+   "grammar": { "plural": "=" },
+   "notes": { "de": "makutano steht schon in der Mehrzahlform und bleibt so." }
+  },
+  "cross": { "text": "kuvuka" },
+  "direction": { "text": "mwelekeo", "grammar": { "plural": "mielekeo" } },
+  "city-map": { "text": "ramani", "grammar": { "plural": "=" }, "variants": ["ramani ya mji"] },
+  "entrance": {
+   "text": "mlango wa kuingia",
+   "grammar": { "plural": "milango ya kuingia" },
+   "variants": ["kiingilio"]
+  },
+  "exit": { "text": "njia ya kutoka", "grammar": { "plural": "=" }, "variants": ["mlango wa kutoka"] },
+  "follow": { "text": "kufuata" },
+  "way": { "text": "njia", "grammar": { "plural": "=" } },
+  "go-straight-ahead": { "text": "Nenda moja kwa moja." },
+  "turn-left-at-the-corner": { "text": "Geuka kushoto kwenye kona." },
+  "where-is-the-exit": { "text": "Njia ya kutoka iko wapi?" },
+  "how-do-i-get-to-the-station": { "text": "Nifikaje kituo cha treni?", "variants": ["Naendaje kituo cha treni?"] },
+  "im-lost": { "text": "Nimepotea." }
+ }
+}

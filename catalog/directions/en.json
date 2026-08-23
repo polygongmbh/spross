@@ -1,0 +1,22 @@
+{
+ "title": "Finding the way",
+ "subtitle": "The answer to the question “how do I get there?”.",
+ "words": {
+  "straight-ahead": { "text": "straight ahead" },
+  "turn": { "text": "to turn" },
+  "corner": { "text": "corner" },
+  "crossing": { "text": "intersection", "synonyms": ["crossroads"], "variants": ["junction"] },
+  "cross": { "text": "to cross" },
+  "direction": { "text": "direction" },
+  "city-map": { "text": "city map", "variants": ["street map"] },
+  "entrance": { "text": "entrance" },
+  "exit": { "text": "exit" },
+  "follow": { "text": "to follow" },
+  "way": { "text": "way" },
+  "go-straight-ahead": { "text": "Go straight ahead." },
+  "turn-left-at-the-corner": { "text": "Turn left at the corner." },
+  "where-is-the-exit": { "text": "Where is the exit?" },
+  "how-do-i-get-to-the-station": { "text": "How do I get to the station?" },
+  "im-lost": { "text": "I'm lost." }
+ }
+}

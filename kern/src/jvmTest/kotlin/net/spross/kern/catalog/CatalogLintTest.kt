@@ -402,6 +402,13 @@ class CatalogLintTest {
                 "en cold: health/cold, qualities/cold-adj",
                 // Reviewed 2026-07-31: `el tiempo` is both Zeit and Wetter. de/en/sw/uk
                 // all split it; `clima` is das Klima in Spain, so there is no alternative.
+                // Reviewed 2026-08-23: `la dirección` is the direction AND the postal
+                // address — de/en/eo/fr/it/sw/uk all split the pair (Richtung/Anschrift,
+                // direkto/adreso, direction/adresse, direzione/indirizzo). `el sentido`
+                // names only the direction of travel and `el rumbo` a heading, so there is
+                // no honest alternative; directions/direction carries the de note naming
+                // the second sense, the ndege treatment.
+                "es dirección: admin/address, directions/direction",
                 "es tiempo: nature/weather, time/time",
                 // Reviewed 2026-08-15: `le tableau` is the picture on the wall AND the
                 // classroom board — genuine French polysemy, one word both areas need
@@ -409,6 +416,13 @@ class CatalogLintTest {
                 // frame; the living/picture card carries a de note naming the second
                 // sense, the ndege treatment. Every other language splits the pair,
                 // so it stays one-language.
+                // Reviewed 2026-08-23: `l'entrée` is the way into a building AND the
+                // hallway you step into (and the starter on a menu) — de and en split it
+                // (Eingang/Flur, entrance/hallway) and Italian does too, once
+                // directions/entrance is `entrata` against hall/hallway `ingresso`, so this
+                // stays one-language. `le hall` is a lobby and `le vestibule` is dated, so
+                // repicking would teach the wrong register; the card carries the de note.
+                "fr entrée: directions/entrance, hall/hallway",
                 "fr tableau: living/picture, school/board",
                 // Reviewed 2026-08-15: `le temps` is Zeit and Wetter alike — the same
                 // Romance merge `es tiempo` and `it tempo` pin here; `la météo` names

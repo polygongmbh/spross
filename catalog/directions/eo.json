@@ -1,0 +1,32 @@
+{
+ "title": "Trovi la vojon",
+ "subtitle": "La respondo al la demando „kiel mi atingas?“.",
+ "words": {
+  "straight-ahead": {
+   "text": "rekten",
+   "variants": ["rekte"],
+   "notes": { "de": "rekten mit -n sagt wohin, rekte sagt wie: Iru rekten." }
+  },
+  "turn": {
+   "text": "turni",
+   "variants": ["turniĝi", "turni sin"],
+   "notes": {
+    "de": "turni ist transitiv; für sich selbst turniĝi oder turni sin · im Befehl reicht Turnu maldekstren."
+   }
+  },
+  "corner": { "text": "angulo" },
+  "crossing": { "text": "vojkruciĝo", "variants": ["kruciĝo", "stratkruciĝo"] },
+  "cross": { "text": "transiri" },
+  "direction": { "text": "direkto" },
+  "city-map": { "text": "urboplano", "variants": ["urba mapo"] },
+  "entrance": { "text": "enirejo" },
+  "exit": { "text": "elirejo" },
+  "follow": { "text": "sekvi" },
+  "way": { "text": "vojo" },
+  "go-straight-ahead": { "text": "Iru rekten." },
+  "turn-left-at-the-corner": { "text": "Turnu maldekstren ĉe la angulo." },
+  "where-is-the-exit": { "text": "Kie estas la elirejo?" },
+  "how-do-i-get-to-the-station": { "text": "Kiel mi atingas la stacidomon?" },
+  "im-lost": { "text": "Mi perdiĝis." }
+ }
+}

@@ -67,6 +67,7 @@
    "uk": "Надворі та в дорозі"
   },
   "areas": [
+   { "area": "directions", "emoji": "↗️" },
    { "area": "transport", "emoji": "🚌" },
    { "area": "city", "emoji": "🏙️" },
    { "area": "nature", "emoji": "🌳" }
