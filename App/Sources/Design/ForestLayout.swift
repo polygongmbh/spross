@@ -170,17 +170,16 @@ enum ForestLayout {
 
     /// Lays the trees out in rows across `width`, in the order given.
     ///
-    /// Rows, not a grid: every two trees share one of two baselines half a row
-    /// apart, which is what lets two areas stand together and compare. Every
-    /// row is laid from the very left edge, every second row opens HALF a cell
-    /// further on, and within a row every second tree stands half a row up —
-    /// so the rows nest into each other diagonally, a tree always framed by
-    /// trees above and below it as well as beside it, and the forest reads as
-    /// growing together rather than as stacked rows. That lattice is the only
-    /// thing held rigid: a tree claims room in proportion to its own size, a
-    /// row stands only as tall as its tallest, and each tree sits a little off
-    /// its slot's center. Equal cells in equal columns read as planting rather
-    /// than as growth.
+    /// Rows, not a grid: every tree in a row stands on ONE baseline, which is
+    /// what lets two areas be compared at a glance. Every row is laid from the
+    /// very left edge, every second row opens HALF a cell further on, and rows
+    /// stand half a row apart — so the trees interleave diagonally, a tree
+    /// growing up through the gap between two of the row above and two of the
+    /// row below, and the forest reads as one growing mass rather than as
+    /// drawers in a wall. That lattice is the only thing held rigid: a tree
+    /// claims room in proportion to its own size, a row stands only as tall
+    /// as its tallest, and each tree sits a little off its slot's center.
+    /// Equal cells in equal columns read as planting rather than as growth.
     static func marks(_ trees: [AreaTree], width: CGFloat) -> [TreeMark] {
         guard width > 0, !trees.isEmpty else { return [] }
         let room = trees.map { max(minCellWidth * 0.62, treeHeight($0) * 1.28 + 12) }
@@ -238,7 +237,11 @@ enum ForestLayout {
         for (rank, row) in rows.enumerated() {
             let tallest = row.map { treeHeight(trees[$0]) }.max() ?? minHeight
             let band = max(rowHeight, tallest + 10)
-            let pitch = band + labelHeight + rowGap
+            // why: rows stand HALF a row apart — the same half-step the old
+            // diagonal tiling used, but as whole rows: a row's trees grow up
+            // through the gaps of the rows around them instead of starting
+            // under a shelf of air, and the forest reads as one growing mass.
+            let pitch = (band + labelHeight + rowGap) / 2
 
             // why: half of the row's OWN first cell, and the same for every
             // row — so the half steps against the row above it are all the
@@ -248,14 +251,9 @@ enum ForestLayout {
             // replaced read as a wave.
             let lead: CGFloat = rank.isMultiple(of: 2) ? 0 : (room[row[0]] + gap) / 2
             var x = lead
-            for (seat, index) in row.enumerated() {
+            for index in row {
                 let drift = CGFloat(noise(trees[index].id, 31) - 0.5) * min(gap, 10)
-                // why: every second tree stands half a row up, and which half
-                // row opens flips with the row — the two half rows of one row
-                // nest into each other and into the row below, like a lattice
-                // growing together rather than drawers in a wall.
-                let dropped = (seat + rank).isMultiple(of: 2)
-                let stand = base + band + (dropped ? 0 : pitch * 0.5)
+                let stand = base + band
                 let cell = CGRect(x: x + drift, y: stand - band,
                                   width: room[index], height: band + labelHeight)
                 marks.append(TreeMark(tree: trees[index],
