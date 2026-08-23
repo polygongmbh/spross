@@ -9,7 +9,11 @@
   "shop-assistant-f": { "text": "продавчиня", "variants": ["продавщиця"] },
   "shopping-cart": { "text": "візок", "grammar": { "plural": "візки" } },
   "shopping-bag": { "text": "сумка для покупок" },
-  "offer": { "text": "акція", "variants": ["знижка"] },
+  "offer": {
+   "text": "знижка",
+   "variants": ["акція"],
+   "notes": { "de": "знижка ist der Preisnachlass; акція heißt im Handel die Aktion, sonst die Aktie." }
+  },
   "shopping-list": { "text": "список покупок" },
   "size": { "text": "розмір" },
   "shop": { "text": "ходити за покупками" },
