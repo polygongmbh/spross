@@ -139,12 +139,12 @@ def load_catalog():
     forms = {}
     targets = {}
     for area in areas:
-        slugs |= {concept['slug'] for concept in read_json(CATALOG, area, 'concepts.json')}
-        for name in sorted(os.listdir(os.path.join(CATALOG, area))):
+        slugs |= {concept['slug'] for concept in read_json(CATALOG, 'areas', area, 'concepts.json')}
+        for name in sorted(os.listdir(os.path.join(CATALOG, 'areas', area))):
             lang, extension = os.path.splitext(name)
             if extension != '.json' or lang == 'concepts':
                 continue
-            for slug, word in read_json(CATALOG, area, name).get('words', {}).items():
+            for slug, word in read_json(CATALOG, 'areas', area, name).get('words', {}).items():
                 # why: reachability is measured against everything a card may SHOW —
                 # `text` and its rotating synonyms — plus the variants grading accepts.
                 forms.setdefault(lang, {})[slug] = \

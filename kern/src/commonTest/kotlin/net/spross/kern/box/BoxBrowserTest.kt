@@ -41,10 +41,10 @@ class BoxBrowserTest {
                      "sw": { "name": "Kiswahili", "englishName": "Swahili", "flag": "🇹🇿" }
                     }
                 """.trimIndent(),
-                "kitchen/concepts.json" to "[]",
-                "bath/concepts.json" to "[]",
-                "office/concepts.json" to "[]",
-                "forest/concepts.json" to "[]",
+                "areas/kitchen/concepts.json" to "[]",
+                "areas/bath/concepts.json" to "[]",
+                "areas/office/concepts.json" to "[]",
+                "areas/forest/concepts.json" to "[]",
             ),
         ),
     )

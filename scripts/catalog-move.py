@@ -35,6 +35,8 @@ import unicodedata
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'catalog')
+# why: the card areas live one level down, beside the registries rather than among them.
+AREAS = os.path.join(CATALOG, 'areas')
 
 
 def _load(name, filename):
@@ -97,16 +99,16 @@ class Area:
 
     def __init__(self, name, langs, titles=None):
         self.name = name
-        self.new = not os.path.isdir(os.path.join(CATALOG, name))
+        self.new = not os.path.isdir(os.path.join(AREAS, name))
         self.touched = False
         if self.new:
             self.concepts = []
             self.files = {lang: {'title': (titles or {}).get(lang, 'TODO %s' % name), 'words': {}}
                           for lang in langs}
             return
-        self.concepts = json.loads(read_text(CATALOG, name, 'concepts.json'))
-        self.files = {lang: json.loads(read_text(CATALOG, name, '%s.json' % lang))
-                      for lang in langs if os.path.isfile(os.path.join(CATALOG, name, '%s.json' % lang))}
+        self.concepts = json.loads(read_text(AREAS, name, 'concepts.json'))
+        self.files = {lang: json.loads(read_text(AREAS, name, '%s.json' % lang))
+                      for lang in langs if os.path.isfile(os.path.join(AREAS, name, '%s.json' % lang))}
 
     def kinds(self):
         return {c['slug']: c['kind'] for c in self.concepts}
@@ -145,9 +147,9 @@ class Area:
 
     def serialized(self):
         """{relative path: text} for every file this area owns."""
-        out = {os.path.join(self.name, 'concepts.json'): dumps(self.concepts)}
+        out = {os.path.join('areas', self.name, 'concepts.json'): dumps(self.concepts)}
         for lang, file in self.files.items():
-            out[os.path.join(self.name, '%s.json' % lang)] = dumps(file)
+            out[os.path.join('areas', self.name, '%s.json' % lang)] = dumps(file)
         return out
 
 
@@ -200,7 +202,7 @@ def declare_area(name, manifest, langs, group, emoji, titles):
     (`CatalogLintTest.everyAreaFolderIsRegisteredInTheManifest`), so the row is written
     with the files, never after.
     """
-    if os.path.isdir(os.path.join(CATALOG, name)):
+    if os.path.isdir(os.path.join(AREAS, name)):
         refuse('--create %s: the folder already exists' % name)
     row = next((g for g in manifest if g['group'] == group), None)
     if row is None:

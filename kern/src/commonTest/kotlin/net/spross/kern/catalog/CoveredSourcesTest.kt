@@ -84,12 +84,12 @@ class CoveredSourcesTest {
             val files = mutableMapOf(
                 "areas.json" to """[{ "group": "g", "titles": {}, "areas": [{ "area": "core", "emoji": "📦" }] }]""",
                 "languages.json" to languages,
-                "core/concepts.json" to (0 until CONCEPTS).joinToString(",", "[", "]") {
+                "areas/core/concepts.json" to (0 until CONCEPTS).joinToString(",", "[", "]") {
                     """{ "slug": "w$it", "kind": "noun" }"""
                 },
             )
             for ((code, count) in realized.associateWith { CONCEPTS } + partial) {
-                files["core/$code.json"] = (0 until count).joinToString(
+                files["areas/core/$code.json"] = (0 until count).joinToString(
                     separator = ",",
                     prefix = """{ "title": "Core", "words": {""",
                     postfix = "} }",

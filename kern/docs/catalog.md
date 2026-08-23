@@ -12,7 +12,7 @@ Engine contract: `../README.md`.
   `AreaGroup.areas: [String]` is unchanged — the ordered names every consumer flat-maps;
   the emoji rides alongside in `AreaGroup.areaEmojis: [String: String]` and is read via
   `Catalog.areaEmoji(area) -> String?`, the language-neutral sibling of `areaTitle`.
-- `<area>/<lang>.json`: an optional `subtitle` beside `title`, read via
+- `areas/<area>/<lang>.json`: an optional `subtitle` beside `title`, read via
   `Catalog.areaSubtitle(area, lang) -> String?` — the same shape as `areaTitle`, so a
   reader gets it in their own language or not at all. `title` therefore stays a plain
   NAME: it is also the produce prompt's disambiguating cue, which no consumer trims.

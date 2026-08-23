@@ -30,14 +30,20 @@ and potential future crowdsourced per-language contribution.
 catalog/
   areas.json            # ordered GROUPS → ordered areas: the default progression
   languages.json        # per-language metadata (display name, verb citation prefix)
+  areas/                # the card areas, one folder each — everything else here is a registry
+    <area>/             # greetings, kitchen, …
+      concepts.json     # ordered [{slug, kind, emoji?}] — order IS introduction order
+      de.json           # { title, words: { slug: realization } }
+      en.json
+      sw.json
+      uk.json
   language-names/       # what each language calls the languages, inflected
     <lang>.json         # { languageNames: { code: { name, in, speak?, learn? } } }
-  <area>/               # one folder per area (basics, kitchen, …)
-    concepts.json       # ordered [{slug, kind, emoji?}] — order IS introduction order
-    de.json             # { title, words: { slug: realization } }
-    en.json
-    sw.json
-    uk.json
+  alphabet/             # the letter sheets the reference screen renders
+    <lang>.json         # { sections, entries } — `docs/alphabet.md`
+  countries/            # the atlas drill's content
+    atlas.json          # language-neutral manifest: languages + countries, with tiers
+    <lang>.json         # { slug: { text, nationality } } — `docs/countries.md`
   drills/               # sentence frames for the generated number/year/clock drills
     frames.json         # ordered [{slug, slot}] — language-neutral frame concepts
     <lang>.json         # { frames: { slug: realization } }
@@ -53,7 +59,7 @@ an entry that fits on one line stays on one line (`{ "slug": "seventh-heaven", "
 so an area file reads as the word list it is and a reordering diff shows the new order rather than a reflow.
 `../scripts/catalog-format.py --fix` applies that layout and `--check` holds it;
 the rules it follows are in its own header, and it owns every catalog file except the generated `audio/` manifests.
-Adding or reviewing a language means per-area editing in `<area>/<lang>.json`.
+Adding or reviewing a language means per-area editing in `areas/<area>/<lang>.json`.
 
 ## Schemas
 
@@ -101,7 +107,7 @@ is a runtime/user-preference concern; the content only supplies the default.
   `-ти` suffix). Harmless to over-list: every verb is stored in infinitive form, so
   stripping a listed prefix only ever yields the same stem.
 
-**`<area>/concepts.json`** — ordered, language-neutral. Order across all kinds IS seed/introduction order.
+**`areas/<area>/concepts.json`** — ordered, language-neutral. Order across all kinds IS seed/introduction order.
 A phrase with `components` follows its area's words, so the building blocks land first;
 a component-free phrase is a building block itself (a greeting, `ja`, `bitte`) and may stand anywhere,
 which is how `greetings` opens the whole course on `Hallo!` and `basics` on `Ja.`:
@@ -160,7 +166,7 @@ The price is that **renaming a slug is a breaking act**:
 it orphans the schedule and the word returns as new,
 so rename deliberately, never just to polish a lemma.
 
-**`<area>/<lang>.json`** — title + realizations keyed by slug:
+**`areas/<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json
 { "title": "Die Küche", "subtitle": "Hier duftet es nach Abendessen.",
   "words": {

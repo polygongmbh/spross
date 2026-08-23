@@ -24,7 +24,7 @@ class GreetingTests {
                       "fr": { "name": "Français", "englishName": "French", "flag": "🇫🇷" },
                       "sw": { "name": "Kiswahili", "englishName": "Swahili", "flag": "🇹🇿" } }
                 """.trimIndent(),
-                "alpha/concepts.json" to """
+                "areas/alpha/concepts.json" to """
                     [ { "slug": "ready-to-learn", "kind": "phrase", "components": [] },
                       { "slug": "one-more-word", "kind": "phrase", "components": [] },
                       { "slug": "good-morning", "kind": "phrase", "components": [] },
@@ -32,7 +32,7 @@ class GreetingTests {
                       { "slug": "good-evening", "kind": "phrase", "components": [] },
                       { "slug": "good-night", "kind": "phrase", "components": [] } ]
                 """.trimIndent(),
-                "alpha/de.json" to """
+                "areas/alpha/de.json" to """
                     { "title": "Alpha",
                       "words": { "ready-to-learn": { "text": "Bereit zu lernen?" },
                                  "one-more-word": { "text": "Noch ein Wort?" },
@@ -41,13 +41,13 @@ class GreetingTests {
                                  "good-evening": { "text": "Guten Abend!" },
                                  "good-night": { "text": "Gute Nacht!" } } }
                 """.trimIndent(),
-                "alpha/sw.json" to """
+                "areas/alpha/sw.json" to """
                     { "title": "Alpha",
                       "words": { "good-morning": { "text": "Habari za asubuhi!" },
                                  "one-more-word": { "text": "Neno moja zaidi?" } } }
                 """.trimIndent(),
                 // French leaves the morning unauthored: "Bonjour !" already is it.
-                "alpha/fr.json" to """
+                "areas/alpha/fr.json" to """
                     { "title": "Alpha",
                       "words": { "good-day": { "text": "Bonjour !" } } }
                 """.trimIndent(),

@@ -15,6 +15,7 @@ import kotlin.test.assertTrue
  */
 class CatalogLintTest {
     private val catalog get() = RealCatalog.catalog
+    private val areasRoot get() = File(RealCatalog.root, "areas")
     private val slugPattern = Regex("^[a-z0-9]+(-[a-z0-9]+)*$")
 
     /** The one word each language adds to soften a request — see [alternatesDoNotAddOrDropPolitenessParticles]. */
@@ -53,12 +54,27 @@ class CatalogLintTest {
      */
     @Test
     fun everyAreaFolderIsRegisteredInTheManifest() {
-        val onDisk = RealCatalog.root.listFiles().orEmpty()
+        val onDisk = areasRoot.listFiles().orEmpty()
             .filter { it.isDirectory && File(it, "concepts.json").isFile }
             .map { it.name }
             .toSortedSet()
-        assertTrue(onDisk.isNotEmpty(), "no area folders found under ${RealCatalog.root}")
+        assertTrue(onDisk.isNotEmpty(), "no area folders found under $areasRoot")
         assertEquals(onDisk, catalog.areaNames.toSortedSet())
+    }
+
+    /**
+     * The other half of the layout rule: `areas/` holds the card areas and nothing else
+     * does, so a `concepts.json` anywhere but there is an area the loader will never read
+     * (`catalog/README.md`). Everything outside is a registry with its own reader.
+     */
+    @Test
+    fun noConceptsFileLivesOutsideAreas() {
+        val stray = RealCatalog.root.walkTopDown()
+            .onEnter { it.name != "audio" }
+            .filter { it.name == "concepts.json" && it.parentFile.parentFile != areasRoot }
+            .map { it.relativeTo(RealCatalog.root).path }
+            .toSortedSet()
+        assertEquals(emptySet(), stray, "concepts.json outside catalog/areas/")
     }
 
     @Test

@@ -9,7 +9,7 @@ One line per item, with a file or context pointer, filed under the section it be
 
 - Phrase→component auto-linking gaps: ~half of phrases carry no `components`
   (naive matcher — `catalog/README.md` § concepts.json).
-- Each idiom pairing in `catalog/idioms/` (9 concepts) was chosen for genuine
+- Each idiom pairing in `catalog/areas/idioms/` (9 concepts) was chosen for genuine
   meaning-equivalence across the languages that carry it, not just checked by a translator —
   the candidates it beat are gone from the finished JSON,
   so that judgment call is the one thing a reader cannot recover
@@ -120,7 +120,7 @@ One line per item, with a file or context pointer, filed under the section it be
   with no fallback (`../kern/docs/catalog.md`), and only `de` is ever authored,
   so an English reader learning Swahili meets no note on any card.
 - Swahili noun-class concord is taught by note rather than by exposure: 19 stem
-  entries (`text` opening with `-`) across `catalog/colors`, `qualities`, `health`
+  entries (`text` opening with `-`) across `catalog/areas/colors`, `qualities`, `health`
   and `questions` carry the same rule in three different wordings (`qualities` `good`,
   `colors` `white`, `questions` `how-many`) while ten of them carry nothing at all.
   The examples buried in those notes are doing a phrase's job — a learner who produces

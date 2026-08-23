@@ -178,7 +178,7 @@ class CatalogFixtureTest {
     @Test
     fun misspelledAreaHeadingKeyIsRejected() {
         val broken = Fixture.files + mapOf(
-            "gamma/sw.json" to """{ "title": "Gamma", "subtitel": "…", "words": {} }""",
+            "areas/gamma/sw.json" to """{ "title": "Gamma", "subtitel": "…", "words": {} }""",
         )
         val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
         assertTrue("subtitel" in error.message.orEmpty(), "message: ${error.message}")
@@ -314,7 +314,7 @@ class CatalogFixtureTest {
 
     private fun loadWithGammaDeText(text: String): CatalogFormatException {
         val broken = Fixture.files + mapOf(
-            "gamma/de.json" to Fixture.files.getValue("gamma/de.json")
+            "areas/gamma/de.json" to Fixture.files.getValue("areas/gamma/de.json")
                 .replace("Ich lerne {language}.", text),
         )
         return assertFailsWith { Catalog.load(MapCatalogSource(broken)) }
@@ -465,7 +465,7 @@ class CatalogFixtureTest {
     fun fingerprintIsDeterministicAndContentSensitive() {
         assertEquals(Fixture.catalog().fingerprint, catalog.fingerprint)
         val mutated = Fixture.files.toMutableMap()
-        mutated["gamma/sw.json"] = mutated.getValue("gamma/sw.json").replace("mlango", "mlango2")
+        mutated["areas/gamma/sw.json"] = mutated.getValue("areas/gamma/sw.json").replace("mlango", "mlango2")
         val other = Catalog.load(MapCatalogSource(mutated))
         assertTrue(other.fingerprint != catalog.fingerprint)
     }

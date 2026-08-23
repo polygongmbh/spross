@@ -116,7 +116,7 @@ internal object Fixture {
              "uk": { "name": "Українська", "englishName": "Ukrainian", "flag": "🇺🇦" }
             }
         """.trimIndent(),
-        "alpha/concepts.json" to """
+        "areas/alpha/concepts.json" to """
             [
              { "slug": "waiter", "kind": "noun", "emoji": "🧑‍🍳" },
              { "slug": "waiter-f", "kind": "noun", "emoji": "👩‍🍳", "feminineOf": "waiter" },
@@ -127,7 +127,7 @@ internal object Fixture {
              { "slug": "the-mouse-sprints", "kind": "phrase", "components": ["mouse", "cook"] }
             ]
         """.trimIndent(),
-        "alpha/de.json" to """
+        "areas/alpha/de.json" to """
             { "title": "Alpha",
               "words": {
                 "waiter": { "text": "Kellner", "grammar": { "gender": "der", "plural": "=" } },
@@ -138,7 +138,7 @@ internal object Fixture {
                 "the-mouse-runs": { "text": "Sehen Sie die Maus?", "variants": ["Siehst du die Maus?"] },
                 "the-mouse-sprints": { "text": "Die Maus sprintet los." } } }
         """.trimIndent(),
-        "alpha/en.json" to """
+        "areas/alpha/en.json" to """
             { "title": "Alpha",
               "words": {
                 "waiter": { "text": "waiter" },
@@ -148,7 +148,7 @@ internal object Fixture {
                 "the-mouse-runs": { "text": "Do you see the mouse?" },
                 "the-mouse-sprints": { "text": "The mouse sprints off." } } }
         """.trimIndent(),
-        "alpha/sw.json" to """
+        "areas/alpha/sw.json" to """
             { "title": "Alpha",
               "words": {
                 "waiter": { "text": "mhudumu" },
@@ -157,7 +157,7 @@ internal object Fixture {
                 "hello": { "text": "Habari!" },
                 "the-mouse-runs": { "text": "Unaona panya?" } } }
         """.trimIndent(),
-        "alpha/uk.json" to """
+        "areas/alpha/uk.json" to """
             { "title": "Альфа",
               "words": {
                 "waiter": { "text": "офіціант" },
@@ -165,32 +165,32 @@ internal object Fixture {
                 "mouse": { "text": "миша", "synonyms": ["мишеня"], "variants": ["мишка"] },
                 "the-mouse-sprints": { "text": "Миша спринтує.", "notes": { "de": "Nur im Fixture." } } } }
         """.trimIndent(),
-        "beta/concepts.json" to """
+        "areas/beta/concepts.json" to """
             [
              { "slug": "royal", "kind": "noun" },
              { "slug": "royal-f", "kind": "noun", "feminineOf": "royal" },
              { "slug": "greet", "kind": "verb" }
             ]
         """.trimIndent(),
-        "beta/de.json" to """
+        "areas/beta/de.json" to """
             { "title": "Beta",
               "words": {
                 "royal": { "text": "Fürst", "grammar": { "gender": "der", "plural": "-en" } },
                 "royal-f": { "text": "Fürstin", "grammar": { "gender": "die", "plural": "-nen" } },
                 "greet": { "text": "grüßen" } } }
         """.trimIndent(),
-        "beta/uk.json" to """
+        "areas/beta/uk.json" to """
             { "title": "Бета",
               "words": {
                 "royal-f": { "text": "княгиня" } } }
         """.trimIndent(),
-        "gamma/concepts.json" to """
+        "areas/gamma/concepts.json" to """
             [ { "slug": "door", "kind": "noun", "emoji": "🚪" },
               { "slug": "im-learning", "kind": "phrase", "components": [] },
               { "slug": "i-speak-a-little", "kind": "phrase", "components": [] },
               { "slug": "how-do-you-say-this", "kind": "phrase", "components": [] } ]
         """.trimIndent(),
-        "gamma/de.json" to """
+        "areas/gamma/de.json" to """
             { "title": "Gamma", "subtitle": "Alles dreht sich.",
               "words": {
                 "door": { "text": "T${du}r", "synonyms": ["die  T${du}re"],
@@ -201,11 +201,11 @@ internal object Fixture {
         """.trimIndent(),
         // why: en authors realizations but NO language-names/en.json — every pair with en as a
         // side must drop the marked concepts, which is the coverage-drop case.
-        "gamma/en.json" to """
+        "areas/gamma/en.json" to """
             { "title": "Gamma",
               "words": { "im-learning": { "text": "I'm learning {language}." } } }
         """.trimIndent(),
-        "gamma/sw.json" to """
+        "areas/gamma/sw.json" to """
             { "title": "Gamma", "subtitle": "Kila kitu kinazunguka.",
               "words": {
                 "door": { "text": "mlango" },
@@ -213,7 +213,7 @@ internal object Fixture {
                 "i-speak-a-little": { "text": "Ninazungumza {language} kidogo." },
                 "how-do-you-say-this": { "text": "Hii inasemwaje {language-in}?" } } }
         """.trimIndent(),
-        "gamma/uk.json" to """
+        "areas/gamma/uk.json" to """
             { "title": "Гамма", "subtitle": "Усе обертається.",
               "words": {
                 "door": { "text": "двері", "grammar": { "plural": "only" } },

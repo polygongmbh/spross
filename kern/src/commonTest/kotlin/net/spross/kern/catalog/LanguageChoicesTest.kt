@@ -170,17 +170,17 @@ class LanguageChoicesTest {
                              "uk": { "name": "Українська", "englishName": "Ukrainian", "flag": "🇺🇦" }
                             }
                         """.trimIndent(),
-                        "core/concepts.json" to concepts.joinToString(",", "[", "]"),
-                        "core/en.json" to words(
+                        "areas/core/concepts.json" to concepts.joinToString(",", "[", "]"),
+                        "areas/core/en.json" to words(
                             "en",
                             (0 until SHARED).map { "a$it" } + (0 until SHARED).map { "c$it" },
                         ),
-                        "core/de.json" to words(
+                        "areas/core/de.json" to words(
                             "de",
                             (0 until SHARED).map { "a$it" } + (0 until FEMININES).map { "af$it" },
                         ),
-                        "core/sw.json" to words("sw", (0 until SHARED).map { "a$it" }),
-                        "core/uk.json" to words("uk", (0 until SHARED).map { "cf$it" }),
+                        "areas/core/sw.json" to words("sw", (0 until SHARED).map { "a$it" }),
+                        "areas/core/uk.json" to words("uk", (0 until SHARED).map { "cf$it" }),
                     ),
                 ),
             )

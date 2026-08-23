@@ -43,7 +43,7 @@ a greeting formula, `Feierabend`, the Swahili clock — a `notes` entry carries 
 
 **Idioms are the exception.** The word-mirroring rule above is what makes an ordinary
 phrase learnable: the words visibly correspond, so a learner works out which did what.
-An idiom (`kind: "idiom"`, `catalog/idioms/`) is figurative by definition, so that
+An idiom (`kind: "idiom"`, `catalog/areas/idioms/`) is figurative by definition, so that
 correspondence would be dishonest to fake — "es gießt wie aus Eimern" (lit. "it's
 pouring as if from buckets") and "it's raining cats and dogs" describe the same event
 with unrelated imagery, and forcing a calque onto either side would just teach the

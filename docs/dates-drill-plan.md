@@ -7,7 +7,7 @@ and move what outlives it into `date-readings.md` (the per-language rules),
 ## The hole
 
 Weekday names and month names exist nowhere in the product.
-Not as concepts (`catalog/time/concepts.json` has day, week, month, year, hour, minute
+Not as concepts (`catalog/areas/time/concepts.json` has day, week, month, year, hour, minute
 and the parts of the day, and no Monday and no March),
 not as realizations, not as drill content.
 The only catalog hits for `montag|januar|monday|january|jumatatu|январ|понеділок|січень`
@@ -624,12 +624,12 @@ and eventually a recording. Nineteen new cards landing in every learner's box
 in the same release that ships an untried drill is two changes wearing one commit.
 
 If it is taken, the shape is small and additive:
-the concepts go to the **end** of `catalog/time/concepts.json` — the area is already titled
+the concepts go to the **end** of `catalog/areas/time/concepts.json` — the area is already titled
 *Zeit und Datum* and already owns day, week, month and year, so no new area is needed,
 and appending never disturbs anyone's introduction order.
 `catalog/dates/` then gains a language-neutral `calendar.json`
 mapping the two ordered positions to those slugs (`countries/atlas.json`'s role, four lines),
-the names move out of `dates/<lang>.json` into `time/<lang>.json`,
+the names move out of `dates/<lang>.json` into `areas/time/<lang>.json`,
 the drill reads them through the card join instead,
 and lint requires every `calendar.json` slug to resolve as a concept.
 `dates/<lang>.json` keeps `abbr`, `dateForm`, `numeric` and `patterns` —

@@ -477,7 +477,7 @@ class Catalog internal constructor(
             val languages = CatalogParser.parseLanguages("languages.json", tracked.require("languages.json"))
             var seedIndex = 0
             val areas = groups.flatMap { it.areas }.map { name ->
-                val conceptsPath = "$name/concepts.json"
+                val conceptsPath = "areas/$name/concepts.json"
                 val concepts = CatalogParser.parseConcepts(
                     area = name,
                     path = conceptsPath,
@@ -490,7 +490,7 @@ class Catalog internal constructor(
                 val subtitles = mutableMapOf<Language, String>()
                 val realizations = mutableMapOf<Language, Map<String, RawRealization>>()
                 for (lang in languages.keys) {
-                    val path = "$name/$lang.json"
+                    val path = "areas/$name/$lang.json"
                     val text = tracked.read(path) ?: continue
                     val raw = CatalogParser.parseAreaLanguageFile(path, text, slugs)
                     titles[lang] = raw.title
