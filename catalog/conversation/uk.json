@@ -11,12 +11,19 @@
   "question": { "text": "запитання", "grammar": { "plural": "=" } },
   "answer": { "text": "відповідь" },
   "reply": { "text": "відповідати" },
+  "help": { "text": "допомога" },
+  "need": { "text": "потребувати" },
+  "know": { "text": "знати" },
+  "say": { "text": "казати" },
   "i-dont-understand": { "text": "Я не розумію.", "variants": ["Я вас не розумію.", "Я тебе не розумію."] },
   "can-you-repeat-that": { "text": "Чи можете ви це повторити?", "variants": ["Можеш це повторити?"] },
   "slower": { "text": "Повільніше!" },
   "i-cant-hear-you": { "text": "Я вас не чую.", "variants": ["Я тебе не чую."] },
   "louder": { "text": "Голосніше!", "variants": ["Гучніше!"] },
   "do-you-speak-english": { "text": "Ви розмовляєте англійською?" },
-  "you-can-do-it": { "text": "Ти точно впораєшся!" }
+  "you-can-do-it": { "text": "Ти точно впораєшся!" },
+  "i-need-help": { "text": "Мені потрібна допомога." },
+  "i-dont-know": { "text": "Я не знаю." },
+  "what-is-this-called": { "text": "Як це називається?" }
  }
 }

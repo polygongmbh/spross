@@ -3,6 +3,8 @@
  "subtitle": "What you say when you meet someone.",
  "words": {
   "thank": { "text": "to thank" },
+  "name": { "text": "name" },
+  "be-called": { "text": "to be called" },
   "hello": { "text": "Hello!" },
   "good-day": { "text": "Good day!" },
   "good-morning": { "text": "Good morning!" },
@@ -22,6 +24,10 @@
   "please": { "text": "Please!" },
   "excuse-me": { "text": "Excuse me!" },
   "pardon": { "text": "Pardon?" },
-  "sorry-to-hear-that": { "text": "Sorry to hear that." }
+  "sorry-to-hear-that": { "text": "Sorry to hear that." },
+  "whats-your-name": { "text": "What is your name?" },
+  "my-name-is": { "text": "My name is …" },
+  "yes": { "text": "Yes." },
+  "no": { "text": "No." }
  }
 }

@@ -7,5 +7,7 @@
  { "slug": "mother-tongue", "kind": "noun" },
  { "slug": "what-does-this-word-mean", "kind": "phrase", "emoji": "📖", "components": [] },
  { "slug": "how-do-you-say-this", "kind": "phrase", "emoji": "🗣️", "components": [] },
- { "slug": "im-learning-your-language", "kind": "phrase", "emoji": "📚", "components": [] }
+ { "slug": "im-learning-your-language", "kind": "phrase", "emoji": "📚", "components": [] },
+ { "slug": "ready-to-learn", "kind": "phrase", "emoji": "✨", "components": [] },
+ { "slug": "one-more-word", "kind": "phrase", "emoji": "➕", "components": [] }
 ]

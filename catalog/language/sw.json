@@ -10,6 +10,11 @@
   "mother-tongue": { "text": "lugha ya mama", "grammar": { "plural": "lugha za mama" } },
   "what-does-this-word-mean": { "text": "Neno hili lina maana gani?" },
   "how-do-you-say-this": { "text": "Hii inasemwaje {language-in}?" },
-  "im-learning-your-language": { "text": "Ninajifunza {language}." }
+  "im-learning-your-language": { "text": "Ninajifunza {language}." },
+  "ready-to-learn": {
+   "text": "Tayari kujifunza?",
+   "notes": { "de": "kujifunza = lernen · tayari heißt auch „schon“, je nach Satz" }
+  },
+  "one-more-word": { "text": "Neno moja zaidi?" }
  }
 }

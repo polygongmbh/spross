@@ -3,6 +3,8 @@
  "subtitle": "Quello che si dice quando ci si incontra.",
  "words": {
   "thank": { "text": "ringraziare" },
+  "name": { "text": "nome", "grammar": { "gender": "il" } },
+  "be-called": { "text": "chiamarsi" },
   "hello": { "text": "Ciao!", "variants": ["Salve!"] },
   "good-day": {
    "text": "Buongiorno!",
@@ -37,6 +39,10 @@
   },
   "excuse-me": { "text": "Scusi!", "variants": ["Scusa!", "Mi scusi!"] },
   "pardon": { "text": "Come dice?", "variants": ["Come dici?", "Come?", "Prego?"] },
-  "sorry-to-hear-that": { "text": "Mi dispiace!", "variants": ["Mi dispiace molto!", "Che peccato!"] }
+  "sorry-to-hear-that": { "text": "Mi dispiace!", "variants": ["Mi dispiace molto!", "Che peccato!"] },
+  "whats-your-name": { "text": "Come si chiama?", "variants": ["Come ti chiami?"] },
+  "my-name-is": { "text": "Mi chiamo …" },
+  "yes": { "text": "Sì." },
+  "no": { "text": "No." }
  }
 }

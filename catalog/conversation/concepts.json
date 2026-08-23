@@ -8,11 +8,18 @@
  { "slug": "question", "kind": "noun", "emoji": "❓" },
  { "slug": "answer", "kind": "noun", "emoji": "✅" },
  { "slug": "reply", "kind": "verb", "emoji": "↩️" },
+ { "slug": "help", "kind": "noun", "emoji": "🤲" },
+ { "slug": "need", "kind": "verb" },
+ { "slug": "know", "kind": "verb", "emoji": "🧠" },
+ { "slug": "say", "kind": "verb", "emoji": "🗨️" },
  { "slug": "i-dont-understand", "kind": "phrase", "emoji": "😕", "components": ["understand"] },
  { "slug": "can-you-repeat-that", "kind": "phrase", "emoji": "🔁", "components": ["repeat-word"] },
  { "slug": "slower", "kind": "phrase", "emoji": "🐌", "components": [] },
  { "slug": "i-cant-hear-you", "kind": "phrase", "emoji": "👂", "components": ["hear"] },
  { "slug": "louder", "kind": "phrase", "emoji": "🔊", "components": ["loud"] },
  { "slug": "do-you-speak-english", "kind": "phrase", "emoji": "🇬🇧", "components": ["speak"] },
- { "slug": "you-can-do-it", "kind": "phrase", "emoji": "💪", "components": [] }
+ { "slug": "you-can-do-it", "kind": "phrase", "emoji": "💪", "components": [] },
+ { "slug": "i-need-help", "kind": "phrase", "emoji": "🆘", "components": ["need", "help"] },
+ { "slug": "i-dont-know", "kind": "phrase", "emoji": "🤷", "components": ["know"] },
+ { "slug": "what-is-this-called", "kind": "phrase", "emoji": "❓", "components": [] }
 ]

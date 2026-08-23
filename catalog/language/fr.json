@@ -20,6 +20,8 @@
   "im-learning-your-language": {
    "text": "J'apprends {language-learn}.",
    "variants": ["Je suis en train d'apprendre {language-learn}."]
-  }
+  },
+  "ready-to-learn": { "text": "Prêt à apprendre ?", "variants": ["Prête à apprendre ?"] },
+  "one-more-word": { "text": "Encore un mot ?" }
  }
 }

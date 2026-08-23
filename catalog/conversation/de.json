@@ -11,6 +11,10 @@
   "question": { "text": "Frage", "grammar": { "gender": "die", "plural": "-n" } },
   "answer": { "text": "Antwort", "grammar": { "gender": "die", "plural": "-en" } },
   "reply": { "text": "antworten" },
+  "help": { "text": "Hilfe", "grammar": { "gender": "die", "plural": "-n" } },
+  "need": { "text": "brauchen" },
+  "know": { "text": "wissen" },
+  "say": { "text": "sagen" },
   "i-dont-understand": {
    "text": "Ich verstehe nicht.",
    "variants": ["Ich verstehe Sie nicht.", "Ich verstehe dich nicht."]
@@ -20,6 +24,9 @@
   "i-cant-hear-you": { "text": "Ich kann Sie nicht hören.", "variants": ["Ich kann dich nicht hören."] },
   "louder": { "text": "Lauter!" },
   "do-you-speak-english": { "text": "Sprechen Sie Englisch?", "variants": ["Sprichst du Englisch?"] },
-  "you-can-do-it": { "text": "Du schaffst das bestimmt!" }
+  "you-can-do-it": { "text": "Du schaffst das bestimmt!" },
+  "i-need-help": { "text": "Ich brauche Hilfe." },
+  "i-dont-know": { "text": "Ich weiß nicht." },
+  "what-is-this-called": { "text": "Wie nennt man das?" }
  }
 }

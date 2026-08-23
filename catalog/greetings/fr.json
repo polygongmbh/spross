@@ -3,6 +3,8 @@
  "subtitle": "Ce qu'on se dit quand on se rencontre.",
  "words": {
   "thank": { "text": "remercier" },
+  "name": { "text": "nom", "grammar": { "gender": "le" } },
+  "be-called": { "text": "s'appeler" },
   "hello": {
    "text": "Salut !",
    "notes": { "de": "nur informell unter Bekannten · im Laden und im Amt sagt man Bonjour !" }
@@ -23,6 +25,13 @@
   "please": { "text": "S'il vous plaît !", "variants": ["S'il te plaît !"] },
   "excuse-me": { "text": "Excusez-moi !", "variants": ["Excuse-moi !", "Pardon !"] },
   "pardon": { "text": "Pardon ?", "variants": ["Comment ?"] },
-  "sorry-to-hear-that": { "text": "Je suis désolé !", "variants": ["Je suis désolée !", "Désolé !"] }
+  "sorry-to-hear-that": { "text": "Je suis désolé !", "variants": ["Je suis désolée !", "Désolé !"] },
+  "whats-your-name": {
+   "text": "Comment vous appelez-vous ?",
+   "variants": ["Comment tu t'appelles ?", "Comment t'appelles-tu ?"]
+  },
+  "my-name-is": { "text": "Je m'appelle …" },
+  "yes": { "text": "Oui.", "notes": { "de": "auf eine verneinte Frage antwortet man Si statt Oui." } },
+  "no": { "text": "Non." }
  }
 }

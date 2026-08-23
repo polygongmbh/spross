@@ -3,6 +3,8 @@
  "subtitle": "Те, що кажуть при зустрічі.",
  "words": {
   "thank": { "text": "дякувати" },
+  "name": { "text": "ім'я", "grammar": { "plural": "імена" } },
+  "be-called": { "text": "називатися" },
   "hello": { "text": "Привіт!", "notes": { "de": "nur informell unter Bekannten" } },
   "good-day": { "text": "Добрий день!", "notes": { "de": "förmlich — im Amt oder beim Arzt" } },
   "good-morning": { "text": "Доброго ранку!", "variants": ["Добрий ранок!"] },
@@ -22,6 +24,10 @@
   "please": { "text": "Будь ласка!" },
   "excuse-me": { "text": "Вибачте!" },
   "pardon": { "text": "Перепрошую?" },
-  "sorry-to-hear-that": { "text": "Співчуваю!" }
+  "sorry-to-hear-that": { "text": "Співчуваю!" },
+  "whats-your-name": { "text": "Як вас звуть?" },
+  "my-name-is": { "text": "Мене звуть …" },
+  "yes": { "text": "Так." },
+  "no": { "text": "Ні." }
  }
 }

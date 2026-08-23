@@ -15,6 +15,14 @@
   "question": { "text": "domanda", "grammar": { "gender": "la" } },
   "answer": { "text": "risposta", "grammar": { "gender": "la" } },
   "reply": { "text": "rispondere" },
+  "help": { "text": "aiuto", "variants": ["l'aiuto"], "grammar": { "gender": "l'" } },
+  "need": {
+   "text": "avere bisogno di",
+   "variants": ["avere bisogno"],
+   "notes": { "de": "Es gibt kein einzelnes Verb: das Gebrauchte steht nach di — Ho bisogno di aiuto." }
+  },
+  "know": { "text": "sapere", "notes": { "de": "wissen = sapere · Personen und Orte kennen = conoscere." } },
+  "say": { "text": "dire" },
   "i-dont-understand": {
    "text": "Non capisco.",
    "synonyms": ["Non comprendo."],
@@ -28,6 +36,9 @@
   "i-cant-hear-you": { "text": "Non La sento.", "variants": ["Non ti sento.", "Non riesco a sentirla."] },
   "louder": { "text": "Più forte!", "variants": ["Più alto!"] },
   "do-you-speak-english": { "text": "Parla inglese?", "variants": ["Parlate inglese?", "Parli inglese?"] },
-  "you-can-do-it": { "text": "Ce la farai di sicuro!", "variants": ["Ce la puoi fare!"] }
+  "you-can-do-it": { "text": "Ce la farai di sicuro!", "variants": ["Ce la puoi fare!"] },
+  "i-need-help": { "text": "Ho bisogno di aiuto." },
+  "i-dont-know": { "text": "Non lo so.", "variants": ["Non so."] },
+  "what-is-this-called": { "text": "Come si chiama questo?" }
  }
 }

@@ -3,6 +3,8 @@
  "subtitle": "Unachosema mnapokutana.",
  "words": {
   "thank": { "text": "kushukuru" },
+  "name": { "text": "jina", "grammar": { "plural": "majina" } },
+  "be-called": { "text": "kuitwa" },
   "hello": { "text": "Hujambo!", "notes": { "de": "Antwort: „Sijambo!“" } },
   "good-day": {
    "text": "Habari!",
@@ -44,6 +46,10 @@
    "notes": {
     "de": "Mitgefühl bei jedem Missgeschick, auch beim Stolpern oder nach der Arbeit — nie eine Entschuldigung für eigene Schuld · an mehrere: Poleni!"
    }
-  }
+  },
+  "whats-your-name": { "text": "Unaitwaje?", "variants": ["Unaitwa nani?"] },
+  "my-name-is": { "text": "Naitwa …" },
+  "yes": { "text": "Ndiyo." },
+  "no": { "text": "Hapana." }
  }
 }

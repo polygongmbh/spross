@@ -3,6 +3,8 @@
  "subtitle": "Lo que se dice al encontrarse.",
  "words": {
   "thank": { "text": "agradecer", "synonyms": ["dar las gracias"] },
+  "name": { "text": "nombre", "grammar": { "gender": "el" } },
+  "be-called": { "text": "llamarse" },
   "hello": { "text": "¡Hola!" },
   "good-day": {
    "text": "¡Buenos días!",
@@ -29,6 +31,10 @@
   },
   "excuse-me": { "text": "¡Perdón!", "variants": ["¡Perdone!", "¡Perdona!", "¡Disculpe!", "¡Disculpa!"] },
   "pardon": { "text": "¿Cómo dice?", "variants": ["¿Cómo dices?", "¿Cómo?"] },
-  "sorry-to-hear-that": { "text": "¡Cuánto lo siento!", "variants": ["Lo siento mucho.", "¡Qué pena!"] }
+  "sorry-to-hear-that": { "text": "¡Cuánto lo siento!", "variants": ["Lo siento mucho.", "¡Qué pena!"] },
+  "whats-your-name": { "text": "¿Cómo se llama usted?", "variants": ["¿Cómo se llama?", "¿Cómo te llamas?"] },
+  "my-name-is": { "text": "Me llamo …" },
+  "yes": { "text": "Sí." },
+  "no": { "text": "No." }
  }
 }

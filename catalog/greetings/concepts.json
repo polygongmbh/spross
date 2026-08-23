@@ -16,5 +16,11 @@
  { "slug": "excuse-me", "kind": "phrase", "emoji": "🙇", "components": [] },
  { "slug": "pardon", "kind": "phrase", "emoji": "👂", "components": [] },
  { "slug": "sorry-to-hear-that", "kind": "phrase", "emoji": "🫂", "components": [] },
- { "slug": "thank", "kind": "verb", "emoji": "🙏" }
+ { "slug": "yes", "kind": "phrase", "emoji": "✅", "components": [] },
+ { "slug": "no", "kind": "phrase", "emoji": "❌", "components": [] },
+ { "slug": "name", "kind": "noun", "emoji": "🏷️" },
+ { "slug": "be-called", "kind": "verb", "emoji": "📛" },
+ { "slug": "thank", "kind": "verb", "emoji": "🙏" },
+ { "slug": "whats-your-name", "kind": "phrase", "components": ["be-called"] },
+ { "slug": "my-name-is", "kind": "phrase", "components": ["be-called"] }
 ]

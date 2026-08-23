@@ -14,12 +14,19 @@
   "question": { "text": "demando" },
   "answer": { "text": "respondo" },
   "reply": { "text": "respondi" },
+  "help": { "text": "helpo" },
+  "need": { "text": "bezoni" },
+  "know": { "text": "scii", "notes": { "de": "wissen = scii · kennen (Personen, Orte) = koni." } },
+  "say": { "text": "diri" },
   "i-dont-understand": { "text": "Mi ne komprenas.", "variants": ["Mi ne komprenas vin."] },
   "can-you-repeat-that": { "text": "Ĉu vi povas ripeti tion?" },
   "slower": { "text": "Pli malrapide!" },
   "i-cant-hear-you": { "text": "Mi ne povas aŭdi vin.", "variants": ["Mi ne aŭdas vin."] },
   "louder": { "text": "Pli laŭte!" },
   "do-you-speak-english": { "text": "Ĉu vi parolas la anglan?", "variants": ["Ĉu vi parolas angle?"] },
-  "you-can-do-it": { "text": "Vi certe sukcesos!" }
+  "you-can-do-it": { "text": "Vi certe sukcesos!" },
+  "i-need-help": { "text": "Mi bezonas helpon." },
+  "i-dont-know": { "text": "Mi ne scias." },
+  "what-is-this-called": { "text": "Kiel oni nomas tion?", "variants": ["Kiel tio nomiĝas?"] }
  }
 }

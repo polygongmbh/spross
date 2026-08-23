@@ -3,6 +3,11 @@
  "subtitle": "Kion oni diras ĉe renkontiĝo.",
  "words": {
   "thank": { "text": "danki" },
+  "name": { "text": "nomo" },
+  "be-called": {
+   "text": "nomiĝi",
+   "notes": { "de": "nomi heißt jemanden benennen · sich selbst so nennen ist nomiĝi: Mi nomiĝas Anna." }
+  },
   "hello": { "text": "Saluton!" },
   "good-day": {
    "text": "Bonan tagon!",
@@ -32,6 +37,14 @@
   },
   "excuse-me": { "text": "Pardonu!", "variants": ["Pardonon!", "Pardonu min!"] },
   "pardon": { "text": "Kion vi diris?", "variants": ["Pardonon?"] },
-  "sorry-to-hear-that": { "text": "Mi bedaŭras!", "variants": ["Mi tre bedaŭras!", "Kiel bedaŭrinde!"] }
+  "sorry-to-hear-that": { "text": "Mi bedaŭras!", "variants": ["Mi tre bedaŭras!", "Kiel bedaŭrinde!"] },
+  "whats-your-name": {
+   "text": "Kiel vi nomiĝas?",
+   "variants": ["Kio estas via nomo?"],
+   "notes": { "de": "vi ist die einzige Anrede — Esperanto unterscheidet kein du/Sie." }
+  },
+  "my-name-is": { "text": "Mi nomiĝas …" },
+  "yes": { "text": "Jes." },
+  "no": { "text": "Ne." }
  }
 }

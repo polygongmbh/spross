@@ -17,6 +17,8 @@
    "variants": ["Cosa significa questa parola?", "Che cosa vuol dire questa parola?"]
   },
   "how-do-you-say-this": { "text": "Come si dice questo {language-in}?", "variants": ["Come si dice {language-in}?"] },
-  "im-learning-your-language": { "text": "Imparo {language-learn}.", "variants": ["Sto imparando {language-learn}."] }
+  "im-learning-your-language": { "text": "Imparo {language-learn}.", "variants": ["Sto imparando {language-learn}."] },
+  "ready-to-learn": { "text": "Pronto a imparare?", "variants": ["Pronta a imparare?"] },
+  "one-more-word": { "text": "Ancora una parola?", "variants": ["Un'altra parola?"] }
  }
 }

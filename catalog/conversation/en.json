@@ -11,12 +11,19 @@
   "question": { "text": "question" },
   "answer": { "text": "answer" },
   "reply": { "text": "to reply" },
+  "help": { "text": "help" },
+  "need": { "text": "to need" },
+  "know": { "text": "to know" },
+  "say": { "text": "to say" },
   "i-dont-understand": { "text": "I don't understand." },
   "can-you-repeat-that": { "text": "Can you repeat that?" },
   "slower": { "text": "Slower!" },
   "i-cant-hear-you": { "text": "I can't hear you." },
   "louder": { "text": "Louder!" },
   "do-you-speak-english": { "text": "Do you speak English?" },
-  "you-can-do-it": { "text": "You can definitely do it!" }
+  "you-can-do-it": { "text": "You can definitely do it!" },
+  "i-need-help": { "text": "I need help." },
+  "i-dont-know": { "text": "I don't know." },
+  "what-is-this-called": { "text": "What is this called?" }
  }
 }

@@ -15,12 +15,19 @@
   "question": { "text": "swali", "grammar": { "plural": "maswali" } },
   "answer": { "text": "jibu", "grammar": { "plural": "majibu" } },
   "reply": { "text": "kujibu" },
+  "help": { "text": "msaada", "grammar": { "plural": "misaada" } },
+  "need": { "text": "kuhitaji" },
+  "know": { "text": "kujua" },
+  "say": { "text": "kusema" },
   "i-dont-understand": { "text": "Sielewi.", "variants": ["Sikuelewi."] },
   "can-you-repeat-that": { "text": "Unaweza kurudia?" },
   "slower": { "text": "Polepole zaidi!" },
   "i-cant-hear-you": { "text": "Sikusikii.", "variants": ["Siwezi kukusikia."] },
   "louder": { "text": "Kwa sauti zaidi!", "variants": ["Kwa sauti kubwa zaidi!"] },
   "do-you-speak-english": { "text": "Unazungumza Kiingereza?" },
-  "you-can-do-it": { "text": "Hakika utaweza!" }
+  "you-can-do-it": { "text": "Hakika utaweza!" },
+  "i-need-help": { "text": "Nahitaji msaada." },
+  "i-dont-know": { "text": "Sijui." },
+  "what-is-this-called": { "text": "Hii inaitwaje?" }
  }
 }

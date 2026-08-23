@@ -13,7 +13,6 @@
   },
   "areas": [
    { "area": "greetings", "emoji": "🤝" },
-   { "area": "basics", "emoji": "👋" },
    { "area": "conversation", "emoji": "💬" },
    { "area": "questions", "emoji": "❓" },
    { "area": "language", "emoji": "🗣️" }

@@ -16,6 +16,10 @@
   "question": { "text": "pregunta", "grammar": { "gender": "la" } },
   "answer": { "text": "respuesta", "grammar": { "gender": "la" } },
   "reply": { "text": "responder", "synonyms": ["contestar"] },
+  "help": { "text": "ayuda", "grammar": { "gender": "la" } },
+  "need": { "text": "necesitar" },
+  "know": { "text": "saber", "notes": { "de": "wissen = saber · kennen (Personen, Orte) = conocer." } },
+  "say": { "text": "decir" },
   "i-dont-understand": {
    "text": "No entiendo.",
    "synonyms": ["No comprendo."],
@@ -29,6 +33,9 @@
   "i-cant-hear-you": { "text": "No le oigo.", "variants": ["No te oigo.", "No lo oigo.", "No la oigo."] },
   "louder": { "text": "¡Más fuerte!", "variants": ["¡Más alto!"] },
   "do-you-speak-english": { "text": "¿Habla usted inglés?", "variants": ["¿Habla inglés?", "¿Hablas inglés?"] },
-  "you-can-do-it": { "text": "¡Seguro que lo consigues!", "variants": ["¡Tú puedes!", "¡Seguro que lo logras!"] }
+  "you-can-do-it": { "text": "¡Seguro que lo consigues!", "variants": ["¡Tú puedes!", "¡Seguro que lo logras!"] },
+  "i-need-help": { "text": "Necesito ayuda." },
+  "i-dont-know": { "text": "No lo sé.", "variants": ["No sé."] },
+  "what-is-this-called": { "text": "¿Cómo se llama esto?" }
  }
 }

@@ -3,6 +3,8 @@
  "subtitle": "Was man sagt, wenn man sich begegnet.",
  "words": {
   "thank": { "text": "danken" },
+  "name": { "text": "Name", "grammar": { "gender": "der", "plural": "-n" } },
+  "be-called": { "text": "heißen" },
   "hello": { "text": "Hallo!" },
   "good-day": { "text": "Guten Tag!" },
   "good-morning": { "text": "Guten Morgen!" },
@@ -19,6 +21,10 @@
   "please": { "text": "Bitte!" },
   "excuse-me": { "text": "Entschuldigung!" },
   "pardon": { "text": "Wie bitte?" },
-  "sorry-to-hear-that": { "text": "Das tut mir leid!" }
+  "sorry-to-hear-that": { "text": "Das tut mir leid!" },
+  "whats-your-name": { "text": "Wie heißen Sie?", "variants": ["Wie heißt du?"] },
+  "my-name-is": { "text": "Ich heiße …" },
+  "yes": { "text": "Ja." },
+  "no": { "text": "Nein." }
  }
 }

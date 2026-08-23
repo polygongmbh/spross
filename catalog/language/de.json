@@ -10,6 +10,8 @@
   "mother-tongue": { "text": "Muttersprache", "grammar": { "gender": "die", "plural": "-n" } },
   "what-does-this-word-mean": { "text": "Was bedeutet dieses Wort?" },
   "how-do-you-say-this": { "text": "Wie sagt man das {language-in}?" },
-  "im-learning-your-language": { "text": "Ich lerne {language}." }
+  "im-learning-your-language": { "text": "Ich lerne {language}." },
+  "ready-to-learn": { "text": "Bereit zu lernen?" },
+  "one-more-word": { "text": "Noch ein Wort?" }
  }
 }
