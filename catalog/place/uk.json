@@ -26,6 +26,11 @@
   "under-the-bed": { "text": "під ліжком" },
   "in-the-city": { "text": "у місті" },
   "between-us": { "text": "між нами" },
-  "is-it-far": { "text": "Це далеко?" }
+  "is-it-far": { "text": "Це далеко?" },
+  "at-school": { "text": "у школі" },
+  "go-to-school": {
+   "text": "йти до школи",
+   "notes": { "de": "wohin mit до und Genitiv: до школи · wo mit у und Lokativ: у школі." }
+  }
  }
 }

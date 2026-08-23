@@ -43,11 +43,9 @@
    "notes": { "de": "Vorsicht: la firma ist die Unterschrift; „die Firma“ heißt l'azienda oder la ditta." }
   },
   "apply": {
-   "text": "candidarsi",
-   "variants": ["fare domanda", "presentare la candidatura"],
-   "notes": {
-    "de": "candidarsi a un posto = sich auf eine Stelle bewerben; fare domanda passt auch für Anträge."
-   }
+   "text": "candidarsi a un posto",
+   "variants": ["candidarsi", "fare domanda", "presentare la candidatura"],
+   "notes": { "de": "candidarsi steht mit a: candidarsi a un posto · fare domanda passt auch für Anträge." }
   },
   "introduce-oneself": { "text": "presentarsi" },
   "earn": {
@@ -64,8 +62,8 @@
    }
   },
   "quit": {
-   "text": "licenziarsi",
-   "variants": ["dare le dimissioni", "lasciare il lavoro"],
+   "text": "lasciare il lavoro",
+   "variants": ["licenziarsi", "dare le dimissioni"],
    "notes": { "de": "licenziarsi heißt selbst kündigen; licenziare qualcuno ist jemanden entlassen." }
   },
   "hire": { "text": "assumere" },

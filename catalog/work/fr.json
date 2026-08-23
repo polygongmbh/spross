@@ -43,9 +43,9 @@
   },
   "company": { "text": "entreprise", "variants": ["l'entreprise", "boîte"], "grammar": { "gender": "l'" } },
   "apply": {
-   "text": "postuler",
-   "variants": ["poser sa candidature"],
-   "notes": { "de": "postuler steht mit à: postuler à un poste = sich auf eine Stelle bewerben." }
+   "text": "postuler à un poste",
+   "variants": ["postuler", "poser sa candidature"],
+   "notes": { "de": "postuler steht immer mit à: postuler à un poste, postuler à une offre." }
   },
   "introduce-oneself": { "text": "se présenter" },
   "earn": {
@@ -55,9 +55,11 @@
   "start": { "text": "commencer", "variants": ["débuter"] },
   "leave": {
    "text": "quitter",
-   "notes": { "de": "quitter braucht immer ein Objekt: quitter le travail, quitter la maison." }
+   "notes": {
+    "de": "quitter braucht immer ein Objekt: quitter la maison, quitter la ville · quitter son emploi heißt kündigen."
+   }
   },
-  "quit": { "text": "démissionner", "variants": ["quitter son emploi"] },
+  "quit": { "text": "quitter son emploi", "variants": ["démissionner"] },
   "hire": { "text": "embaucher", "variants": ["recruter"] },
   "to-help": { "text": "aider" },
   "work-overtime": { "text": "faire des heures supplémentaires", "variants": ["faire des heures sup"] },

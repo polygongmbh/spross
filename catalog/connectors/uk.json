@@ -17,6 +17,7 @@
   "still": { "text": "ще", "variants": ["досі"] },
   "not": { "text": "не" },
   "only": { "text": "тільки", "variants": ["лише"] },
+  "together": { "text": "разом" },
   "if-you-want": { "text": "Якщо хочете.", "variants": ["Якщо хочеш."] }
  }
 }

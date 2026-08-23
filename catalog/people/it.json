@@ -46,8 +46,6 @@
   "wife": { "text": "moglie", "grammar": { "gender": "la", "plural": "mogli" } },
   "uncle": { "text": "zio", "grammar": { "gender": "lo", "plural": "zii" } },
   "aunt": { "text": "zia", "grammar": { "gender": "la" } },
-  "together": { "text": "insieme" },
-  "mother-tongue": { "text": "lingua madre", "grammar": { "gender": "la" } },
   "this-is-my-mother": { "text": "Questa è mia madre." },
   "where-is-your-father": { "text": "Dov'è tuo padre?", "variants": ["Dov'è Suo padre?"] },
   "i-have-two-children": { "text": "Ho due figli.", "variants": ["Ho due bambini."] },

@@ -21,7 +21,6 @@
   "write": { "text": "kuandika" },
   "call": { "text": "kupiga simu" },
   "delete": { "text": "kufuta" },
-  "study": { "text": "kujifunza" },
   "phone": { "text": "simu", "grammar": { "plural": "=" } },
   "email": { "text": "barua pepe", "grammar": { "plural": "=" } },
   "paper": { "text": "karatasi", "grammar": { "plural": "=" } },

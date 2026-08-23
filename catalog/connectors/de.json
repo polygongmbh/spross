@@ -17,6 +17,7 @@
   "still": { "text": "noch" },
   "not": { "text": "nicht" },
   "only": { "text": "nur" },
+  "together": { "text": "zusammen" },
   "if-you-want": { "text": "Wenn Sie wollen.", "variants": ["Wenn du willst."] }
  }
 }

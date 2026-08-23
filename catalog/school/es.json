@@ -83,6 +83,10 @@
   "read-aloud": { "text": "leer en voz alta" },
   "dictionary": { "text": "diccionario", "grammar": { "gender": "el" } },
   "to-pronounce": { "text": "pronunciar" },
+  "study": {
+   "text": "estudiar",
+   "notes": { "de": "Für eine Prüfung oder einen Kurs lernen = estudiar; etwas Neues erlernen = aprender." }
+  },
   "do-the-homework": { "text": "Hago los deberes." },
   "look-at-the-class-schedule": { "text": "Mira el horario.", "variants": ["Mire el horario."] },
   "the-break-is-over": { "text": "El descanso ha terminado." },

@@ -55,7 +55,6 @@
   "faucet": { "text": "robinet", "grammar": { "gender": "le" } },
   "trash-can": { "text": "poubelle", "grammar": { "gender": "la" } },
   "bucket": { "text": "seau", "grammar": { "gender": "le", "plural": "-x" } },
-  "dirty": { "text": "sale" },
   "im-taking-a-quick-shower": {
    "text": "Je vais vite me doucher.",
    "variants": ["Je vais me doucher rapidement.", "Je vais prendre une douche rapide."]

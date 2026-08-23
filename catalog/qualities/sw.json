@@ -75,11 +75,17 @@
   "other": {
    "text": "-ingine",
    "variants": ["nyingine", "mwingine", "wengine", "kingine", "vingine", "mengine", "mingine"],
-   "notes": { "de": "die Vorsilbe richtet sich nach der Nomenklasse: mtu mwingine, kitu kingine." }
+   "notes": {
+    "de": "die Vorsilbe richtet sich nach der Nomenklasse: mtu mwingine, kitu kingine · dasselbe Wort heißt noch ein anderer: chai nyingine."
+   }
   },
   "hot": {
    "text": "moto",
    "notes": { "de": "unveränderlich · dasselbe Wort heißt auch Feuer: Kuna moto." }
+  },
+  "cold-adj": {
+   "text": "baridi",
+   "notes": { "de": "unveränderlich · dasselbe Wort heißt auch die Kälte: Kuna baridi." }
   },
   "empty": { "text": "tupu", "notes": { "de": "unveränderlich: chumba tupu, friji tupu." } },
   "full": {
@@ -87,6 +93,7 @@
    "variants": ["imejaa", "limejaa", "umejaa"],
    "notes": { "de": "Swahili sagt es als Verb: basi limejaa = der Bus ist voll." }
   },
+  "dirty": { "text": "chafu" },
   "a-lot-of-water": { "text": "maji mengi" }
  }
 }

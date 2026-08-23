@@ -7,6 +7,7 @@
   "sentence": { "text": "sentence" },
   "word": { "text": "word" },
   "language": { "text": "language" },
+  "mother-tongue": { "text": "mother tongue", "variants": ["native language"] },
   "what-does-this-word-mean": { "text": "What does this word mean?" },
   "how-do-you-say-this": { "text": "How do you say this {language-in}?" },
   "im-learning-your-language": { "text": "I'm learning {language}." }

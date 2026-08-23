@@ -31,8 +31,6 @@
   "wife": { "text": "дружина" },
   "uncle": { "text": "дядько" },
   "aunt": { "text": "тітка" },
-  "together": { "text": "разом" },
-  "mother-tongue": { "text": "рідна мова", "grammar": { "plural": "рідні мови" } },
   "this-is-my-mother": { "text": "Це моя мама." },
   "where-is-your-father": { "text": "Де твій тато?", "variants": ["Де ваш тато?"] },
   "i-have-two-children": { "text": "У мене двоє дітей." },

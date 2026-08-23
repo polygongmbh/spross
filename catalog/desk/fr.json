@@ -49,11 +49,6 @@
   "write": { "text": "écrire" },
   "call": { "text": "appeler", "variants": ["téléphoner", "passer un coup de fil"] },
   "delete": { "text": "supprimer", "synonyms": ["effacer"] },
-  "study": {
-   "text": "étudier",
-   "variants": ["réviser"],
-   "notes": { "de": "Für eine Prüfung lernen = réviser oder étudier; etwas Neues lernen = apprendre." }
-  },
   "phone": {
    "text": "téléphone",
    "variants": ["portable", "téléphone portable", "mobile"],

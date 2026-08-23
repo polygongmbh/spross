@@ -35,11 +35,6 @@
    "notes": { "de": "Mit al: mi telefonas al la kuracisto = ich rufe den Arzt an." }
   },
   "delete": { "text": "forigi", "variants": ["forviŝi", "viŝi"] },
-  "study": {
-   "text": "studi",
-   "variants": ["lerni"],
-   "notes": { "de": "Für Kurs oder Prüfung lernen = studi; etwas Neues erlernen = lerni." }
-  },
   "phone": {
    "text": "poŝtelefono",
    "variants": ["telefono"],

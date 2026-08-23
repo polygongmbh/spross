@@ -69,8 +69,16 @@
   "available": { "text": "disponible" },
   "other": { "text": "autre", "variants": ["autres"] },
   "hot": { "text": "chaud", "variants": ["chaude"] },
+  "cold-adj": {
+   "text": "froid",
+   "variants": ["froide"],
+   "notes": {
+    "de": "mit avoir beim Menschen: j'ai froid = mir ist kalt · mit être bei Sachen: le café est froid."
+   }
+  },
   "empty": { "text": "vide" },
   "full": { "text": "plein", "variants": ["pleine"] },
+  "dirty": { "text": "sale" },
   "a-lot-of-water": { "text": "beaucoup d'eau" }
  }
 }

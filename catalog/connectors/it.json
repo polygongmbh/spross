@@ -25,6 +25,7 @@
   "still": { "text": "ancora" },
   "not": { "text": "non", "notes": { "de": "non steht vor dem Verb: non parlo italiano." } },
   "only": { "text": "solo", "variants": ["soltanto", "solamente"] },
+  "together": { "text": "insieme" },
   "if-you-want": { "text": "Se vuole.", "variants": ["Se vuoi."] }
  }
 }

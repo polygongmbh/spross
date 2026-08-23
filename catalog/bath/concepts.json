@@ -3,7 +3,6 @@
  { "slug": "shower", "kind": "noun", "emoji": "🚿" },
  { "slug": "take-shower", "kind": "verb", "emoji": "🚿" },
  { "slug": "clean", "kind": "verb", "emoji": "✨" },
- { "slug": "dirty", "kind": "adjective" },
  { "slug": "sink", "kind": "noun", "emoji": "💧" },
  { "slug": "soap", "kind": "noun", "emoji": "🧼" },
  { "slug": "towel", "kind": "noun", "emoji": "🧖" },

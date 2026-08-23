@@ -22,6 +22,13 @@
   "under-the-bed": { "text": "under the bed" },
   "in-the-city": { "text": "in the city" },
   "between-us": { "text": "between us" },
-  "is-it-far": { "text": "Is it far?" }
+  "is-it-far": { "text": "Is it far?" },
+  "at-school": {
+   "text": "at school",
+   "notes": {
+    "de": "ohne Artikel, wenn der Unterricht gemeint ist: at school · das Gebäude ist at the school."
+   }
+  },
+  "go-to-school": { "text": "to go to school" }
  }
 }

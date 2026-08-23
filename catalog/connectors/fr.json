@@ -25,6 +25,7 @@
    }
   },
   "only": { "text": "seulement", "notes": { "de": "im Satz oft ne … que: Je n'ai que dix euros." } },
+  "together": { "text": "ensemble" },
   "if-you-want": { "text": "Si vous voulez.", "variants": ["Si tu veux."] }
  }
 }

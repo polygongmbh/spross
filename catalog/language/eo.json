@@ -7,6 +7,7 @@
   "sentence": { "text": "frazo" },
   "word": { "text": "vorto" },
   "language": { "text": "lingvo" },
+  "mother-tongue": { "text": "gepatra lingvo", "variants": ["denaska lingvo"] },
   "what-does-this-word-mean": { "text": "Kion signifas ĉi tiu vorto?" },
   "how-do-you-say-this": { "text": "Kiel oni diras tion {language-in}?" },
   "im-learning-your-language": { "text": "Mi lernas {language-learn}." }

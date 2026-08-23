@@ -17,6 +17,7 @@
   "still": { "text": "still" },
   "not": { "text": "not" },
   "only": { "text": "only", "variants": ["just"] },
+  "together": { "text": "together" },
   "if-you-want": { "text": "If you want." }
  }
 }

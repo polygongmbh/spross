@@ -35,8 +35,6 @@
   "wife": { "text": "edzino" },
   "uncle": { "text": "onklo" },
   "aunt": { "text": "onklino" },
-  "together": { "text": "kune" },
-  "mother-tongue": { "text": "gepatra lingvo", "variants": ["denaska lingvo"] },
   "this-is-my-mother": {
    "text": "Tiu estas mia patrino.",
    "variants": ["Ĉi tiu estas mia patrino.", "Tiu ĉi estas mia patrino.", "Tio estas mia patrino."]

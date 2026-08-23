@@ -98,6 +98,10 @@
   "read-aloud": { "text": "leggere ad alta voce" },
   "dictionary": { "text": "dizionario", "grammar": { "gender": "il", "plural": "dizionari" } },
   "to-pronounce": { "text": "pronunciare" },
+  "study": {
+   "text": "studiare",
+   "notes": { "de": "Für eine Prüfung oder einen Kurs lernen = studiare; etwas Neues erlernen = imparare." }
+  },
   "do-the-homework": { "text": "Faccio i compiti." },
   "look-at-the-class-schedule": { "text": "Guarda l'orario.", "variants": ["Guardi l'orario.", "Guarda l'orario delle lezioni."] },
   "the-break-is-over": { "text": "La pausa è finita." },

@@ -30,7 +30,6 @@
   "faucet": { "text": "bomba la maji", "grammar": { "plural": "mabomba ya maji" } },
   "trash-can": { "text": "pipa la taka", "grammar": { "plural": "mapipa ya taka" } },
   "bucket": { "text": "ndoo", "grammar": { "plural": "=" } },
-  "dirty": { "text": "chafu" },
   "im-taking-a-quick-shower": { "text": "Naenda kuoga kidogo." },
   "the-bathroom-is-occupied": { "text": "Bafu inatumika!" },
   "the-laundry-is-done": { "text": "Nguo ziko tayari." },

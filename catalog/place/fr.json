@@ -33,6 +33,13 @@
   "under-the-bed": { "text": "sous le lit" },
   "in-the-city": { "text": "dans la ville" },
   "between-us": { "text": "entre nous" },
-  "is-it-far": { "text": "C'est loin ?" }
+  "is-it-far": { "text": "C'est loin ?" },
+  "at-school": { "text": "à l'école" },
+  "go-to-school": {
+   "text": "aller à l'école",
+   "notes": {
+    "de": "à steht für wo und wohin: je suis à l'école, je vais à l'école — das Verb entscheidet."
+   }
+  }
  }
 }

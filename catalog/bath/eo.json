@@ -53,7 +53,6 @@
   "faucet": { "text": "krano", "variants": ["akvokrano"] },
   "trash-can": { "text": "rubujo", "variants": ["rubkorbo"] },
   "bucket": { "text": "sitelo" },
-  "dirty": { "text": "malpura" },
   "im-taking-a-quick-shower": { "text": "Mi iras rapide duŝi min.", "variants": ["Mi rapide duŝas min.", "Mi iras duŝi min."] },
   "the-bathroom-is-occupied": { "text": "La banĉambro estas okupata!", "variants": ["La necesejo estas okupata!"] },
   "the-laundry-is-done": { "text": "La tolaĵo estas preta.", "variants": ["La tolaĵo pretas."] },

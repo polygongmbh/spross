@@ -58,8 +58,16 @@
   "available": { "text": "disponibile" },
   "other": { "text": "altro", "variants": ["altra", "altri", "altre"] },
   "hot": { "text": "caldo", "variants": ["calda"] },
+  "cold-adj": {
+   "text": "freddo",
+   "variants": ["fredda"],
+   "notes": {
+    "de": "mit avere beim Menschen: ho freddo = mir ist kalt · mit essere bei Sachen: il caffè è freddo."
+   }
+  },
   "empty": { "text": "vuoto", "variants": ["vuota"] },
   "full": { "text": "pieno", "variants": ["piena"] },
+  "dirty": { "text": "sporco", "variants": ["sporca"] },
   "a-lot-of-water": { "text": "molta acqua" }
  }
 }

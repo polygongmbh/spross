@@ -22,8 +22,10 @@
   "available": { "text": "verfügbar" },
   "other": { "text": "andere", "variants": ["anderer", "anderes"] },
   "hot": { "text": "heiß" },
+  "cold-adj": { "text": "kalt" },
   "empty": { "text": "leer" },
   "full": { "text": "voll" },
+  "dirty": { "text": "schmutzig" },
   "a-lot-of-water": { "text": "viel Wasser" }
  }
 }

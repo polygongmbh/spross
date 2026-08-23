@@ -7,6 +7,7 @@
   "sentence": { "text": "Satz", "grammar": { "gender": "der", "plural": "Sätze" } },
   "word": { "text": "Wort", "grammar": { "gender": "das", "plural": "Wörter" } },
   "language": { "text": "Sprache", "grammar": { "gender": "die", "plural": "-n" } },
+  "mother-tongue": { "text": "Muttersprache", "grammar": { "gender": "die", "plural": "-n" } },
   "what-does-this-word-mean": { "text": "Was bedeutet dieses Wort?" },
   "how-do-you-say-this": { "text": "Wie sagt man das {language-in}?" },
   "im-learning-your-language": { "text": "Ich lerne {language}." }

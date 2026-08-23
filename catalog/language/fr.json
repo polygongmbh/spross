@@ -11,6 +11,7 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "langue ist auch die Zunge im Mund." }
   },
+  "mother-tongue": { "text": "langue maternelle", "grammar": { "gender": "la" } },
   "what-does-this-word-mean": {
    "text": "Que veut dire ce mot ?",
    "variants": ["Que signifie ce mot ?", "Qu'est-ce que ce mot veut dire ?"]

@@ -53,8 +53,16 @@
   "available": { "text": "disponible" },
   "other": { "text": "otro", "variants": ["otra", "otros", "otras"] },
   "hot": { "text": "caliente" },
+  "cold-adj": {
+   "text": "frío",
+   "variants": ["fría"],
+   "notes": {
+    "de": "mit tener beim Menschen: tengo frío = mir ist kalt · mit estar bei Sachen: el café está frío."
+   }
+  },
   "empty": { "text": "vacío", "variants": ["vacía"] },
   "full": { "text": "lleno", "variants": ["llena"] },
+  "dirty": { "text": "sucio", "variants": ["sucia"] },
   "a-lot-of-water": { "text": "mucha agua", "notes": { "de": "trotz el agua feminin: mucha agua." } }
  }
 }

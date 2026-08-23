@@ -29,6 +29,7 @@
   "read-aloud": { "text": "kusoma kwa sauti" },
   "dictionary": { "text": "kamusi", "grammar": { "plural": "=" } },
   "to-pronounce": { "text": "kutamka" },
+  "study": { "text": "kujifunza" },
   "do-the-homework": { "text": "Ninafanya kazi ya nyumbani." },
   "look-at-the-class-schedule": { "text": "Angalia ratiba." },
   "the-break-is-over": { "text": "Pumziko limeisha." },

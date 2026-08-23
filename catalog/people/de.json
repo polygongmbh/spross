@@ -26,8 +26,6 @@
   "wife": { "text": "Ehefrau", "grammar": { "gender": "die", "plural": "-en" } },
   "uncle": { "text": "Onkel", "grammar": { "gender": "der", "plural": "=" } },
   "aunt": { "text": "Tante", "grammar": { "gender": "die", "plural": "-n" } },
-  "together": { "text": "zusammen" },
-  "mother-tongue": { "text": "Muttersprache", "grammar": { "gender": "die", "plural": "-n" } },
   "this-is-my-mother": { "text": "Das ist meine Mutter." },
   "where-is-your-father": { "text": "Wo ist dein Vater?", "variants": ["Wo ist Ihr Vater?"] },
   "i-have-two-children": { "text": "Ich habe zwei Kinder." },

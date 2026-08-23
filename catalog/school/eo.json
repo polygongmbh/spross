@@ -58,6 +58,11 @@
   "read-aloud": { "text": "laŭte legi", "variants": ["legi laŭte", "laŭtlegi"] },
   "dictionary": { "text": "vortaro" },
   "to-pronounce": { "text": "elparoli", "synonyms": ["prononci"] },
+  "study": {
+   "text": "studi",
+   "variants": ["lerni"],
+   "notes": { "de": "Für Kurs oder Prüfung lernen = studi; etwas Neues erlernen = lerni." }
+  },
   "do-the-homework": { "text": "Mi faras la hejmtaskojn.", "variants": ["Mi faras la hejmtaskon."] },
   "look-at-the-class-schedule": { "text": "Rigardu la horaron." },
   "the-break-is-over": { "text": "La paŭzo finiĝis.", "variants": ["La paŭzo estas finita."] },

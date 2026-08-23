@@ -32,6 +32,13 @@
   "under-the-bed": { "text": "chini ya kitanda" },
   "in-the-city": { "text": "katika mji" },
   "between-us": { "text": "kati yetu" },
-  "is-it-far": { "text": "Ni mbali?" }
+  "is-it-far": { "text": "Ni mbali?" },
+  "at-school": {
+   "text": "shuleni",
+   "notes": {
+    "de": "-ni macht aus dem Nomen den Ort: shule → shuleni · dieselbe Form steht für wo und wohin."
+   }
+  },
+  "go-to-school": { "text": "kwenda shuleni" }
  }
 }

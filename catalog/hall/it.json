@@ -70,11 +70,11 @@
   "shoe": { "text": "scarpa", "grammar": { "gender": "la" } },
   "apartment": { "text": "appartamento", "variants": ["l'appartamento"], "grammar": { "gender": "l'" } },
   "neighbor": {
-   "text": "vicino",
-   "variants": ["vicina", "vicino di casa"],
+   "text": "vicino di casa",
+   "variants": ["vicino", "vicina", "vicina di casa"],
    "grammar": { "gender": "il" },
    "notes": {
-    "de": "il vicino ist der Nachbar; weil vicino auch nah heißt, sagt man oft il vicino di casa."
+    "de": "il vicino di casa ist der Nachbar; vicino allein heißt auch nah, darum sagt man meist di casa."
    }
   },
   "guest": {

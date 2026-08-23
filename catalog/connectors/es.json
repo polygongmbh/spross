@@ -20,6 +20,11 @@
    "notes": { "de": "no steht vor dem Verb: no hablo español · dasselbe Wort heißt auch nein." }
   },
   "only": { "text": "solo", "variants": ["sólo", "solamente"] },
+  "together": {
+   "text": "juntos",
+   "variants": ["juntas"],
+   "notes": { "de": "richtet sich nach der Gruppe: juntos (Männer oder gemischt) · juntas (nur Frauen)." }
+  },
   "if-you-want": { "text": "Si quiere.", "variants": ["Si quieres."] }
  }
 }

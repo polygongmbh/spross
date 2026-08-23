@@ -22,7 +22,6 @@
   "write": { "text": "schreiben" },
   "call": { "text": "anrufen" },
   "delete": { "text": "löschen" },
-  "study": { "text": "lernen" },
   "phone": { "text": "Handy", "grammar": { "gender": "das", "plural": "-s" } },
   "email": { "text": "E-Mail", "grammar": { "gender": "die", "plural": "-s" } },
   "paper": { "text": "Papier", "grammar": { "gender": "das", "plural": "-e" } },

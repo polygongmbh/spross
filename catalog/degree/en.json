@@ -15,8 +15,14 @@
   "too": { "text": "too" },
   "enough": { "text": "enough" },
   "all": { "text": "all" },
-  "some": { "text": "some" },
-  "every": { "text": "every" },
+  "some": {
+   "text": "some",
+   "notes": { "de": "in Fragen und Verneinungen steht any statt some: Do you have any water?" }
+  },
+  "every": {
+   "text": "every",
+   "notes": { "de": "every und each heißen beide jeder; each betont den einzelnen: each of us." }
+  },
   "more-or-less": { "text": "more or less" },
   "i-am-always-there": { "text": "I am always there." },
   "hang-it-higher": { "text": "Hang it higher." },

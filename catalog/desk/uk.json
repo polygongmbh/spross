@@ -22,7 +22,6 @@
   "write": { "text": "писати" },
   "call": { "text": "телефонувати" },
   "delete": { "text": "видаляти" },
-  "study": { "text": "вчитися" },
   "phone": { "text": "телефон" },
   "email": { "text": "імейл", "synonyms": ["електронна пошта"] },
   "paper": { "text": "папір", "grammar": { "plural": "папери" } },

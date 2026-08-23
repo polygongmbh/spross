@@ -44,10 +44,6 @@
   "write": { "text": "escribir" },
   "call": { "text": "llamar", "variants": ["llamar por teléfono", "telefonear"] },
   "delete": { "text": "borrar", "synonyms": ["eliminar"] },
-  "study": {
-   "text": "estudiar",
-   "notes": { "de": "Für eine Prüfung oder einen Kurs lernen = estudiar; etwas Neues erlernen = aprender." }
-  },
   "phone": {
    "text": "móvil",
    "variants": ["teléfono móvil", "celular", "teléfono celular"],

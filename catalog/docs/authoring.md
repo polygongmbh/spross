@@ -61,18 +61,20 @@ German ones (`kupanda` = besteigen/einsteigen/pflanzen), and then the object is
 authored across the board — `Blumen pflanzen` / `to plant flowers` / `kupanda maua` /
 `садити квіти`, never `pflanzen` answered by `kupanda mimea`. The exception is a
 **merge**, where the target really has one word for two source concepts and the object
-is what tells them apart (`kuacha` verlassen vs `kuacha kazi` kündigen,
-`kuomba` beantragen vs `kuomba kazi` sich bewerben): there the object is a
-disambiguator, it is carried by the merged language alone, and the homonym rule above
-governs it.
+is what tells them apart: there the object is a disambiguator, it is carried by the
+merged language alone, and the homonym rule above governs it.
 
 That exception is the narrow case, not the first move. Before reaching for it, ask whether
 the SOURCE concept is under-specified too — usually it is, and then the object belongs in
 all eight languages by the rule above. `quit` alone does not say whether a job, a game or
-smoking is being quit, so `quit your job` is not a workaround for Swahili's `kuacha kazi`;
-it is the card finally saying what it means, and it mirrors, which the one-sided version
-never does. Keep the merged language's private object only where the source really is
-unambiguous on its own and the others would sound wrong carrying one.
+smoking is being quit, and `apply` does not say what is applied, so neither `kuacha kazi`
+nor `kuomba kazi` is a Swahili workaround any more: both cards carry the object in all
+eight (`den Job kündigen` / `to quit your job`, `sich um den Job bewerben` /
+`to apply for a job`). That is the card finally saying what it means, and it mirrors,
+which the one-sided version never did. Keep the merged language's private object only
+where the source really is unambiguous on its own and the others would sound wrong
+carrying one — and price the length in: a side over
+`WidgetSnapshotBuilder.MAX_TEXT_CHARS` still teaches, but stops reaching the widget.
 
 **Check an authoring pass against the lint, not against a script you wrote for it.**
 `CatalogLintTest` owns the collision rules and is the only home they have:

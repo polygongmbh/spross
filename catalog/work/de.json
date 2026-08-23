@@ -14,12 +14,15 @@
   "shift": { "text": "Schicht", "grammar": { "gender": "die", "plural": "-en" } },
   "vacation": { "text": "Urlaub", "grammar": { "gender": "der", "plural": "-e" } },
   "company": { "text": "Firma", "grammar": { "gender": "die", "plural": "Firmen" } },
-  "apply": { "text": "sich bewerben" },
+  "apply": {
+   "text": "sich um den Job bewerben",
+   "variants": ["sich bewerben", "sich um eine Stelle bewerben"]
+  },
   "introduce-oneself": { "text": "sich vorstellen" },
   "earn": { "text": "verdienen" },
   "start": { "text": "anfangen" },
   "leave": { "text": "verlassen" },
-  "quit": { "text": "kündigen" },
+  "quit": { "text": "den Job kündigen", "variants": ["kündigen", "die Stelle kündigen"] },
   "hire": { "text": "einstellen" },
   "to-help": { "text": "helfen" },
   "work-overtime": { "text": "Überstunden machen" },

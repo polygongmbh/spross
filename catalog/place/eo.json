@@ -34,6 +34,11 @@
   "under-the-bed": { "text": "sub la lito" },
   "in-the-city": { "text": "en la urbo" },
   "between-us": { "text": "inter ni" },
-  "is-it-far": { "text": "Ĉu ĝi malproksimas?", "variants": ["Ĉu estas malproksime?"] }
+  "is-it-far": { "text": "Ĉu ĝi malproksimas?", "variants": ["Ĉu estas malproksime?"] },
+  "at-school": { "text": "en la lernejo" },
+  "go-to-school": {
+   "text": "iri al la lernejo",
+   "notes": { "de": "al zeigt die Richtung: iri al la lernejo · der Ort steht mit en: en la lernejo." }
+  }
  }
 }

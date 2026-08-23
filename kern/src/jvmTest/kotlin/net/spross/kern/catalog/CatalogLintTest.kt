@@ -392,6 +392,14 @@ class CatalogLintTest {
             .toSortedSet()
         assertEquals(
             sortedSetOf(
+                // Reviewed 2026-08-23: `cold` is the illness AND the adjective — English has
+                // one word where de/eo/es/fr/it/sw/uk all split it (Erkältung/kalt,
+                // malvarmumo/malvarma, resfriado/frío, rhume/froid, raffreddore/freddo,
+                // mafua/baridi, застуда/холодний). qualities/cold-adj exists because `hot`
+                // needs its polar partner, and health/cold is the illness a learner asks the
+                // doctor about; the adjective carries the de note naming the second sense,
+                // the ndege treatment.
+                "en cold: health/cold, qualities/cold-adj",
                 // Reviewed 2026-07-31: `el tiempo` is both Zeit and Wetter. de/en/sw/uk
                 // all split it; `clima` is das Klima in Spain, so there is no alternative.
                 "es tiempo: nature/weather, time/time",
@@ -428,12 +436,6 @@ class CatalogLintTest {
                 // pair is allowlisted in [noConceptPairCollidesInTwoLanguages] as the
                 // reviewed family-wide merge.
                 "it tempo: nature/weather, time/time",
-                // Reviewed 2026-08-23: `vicino` is the neighbor AND near — genuine Italian
-                // polysemy that de/en/eo/es/fr/sw/uk all split (Nachbar/nah, vecino/cerca,
-                // voisin/près, jirani/karibu). Repicking place/near as `accanto` would teach
-                // "next to", and hall/neighbor already carries the de note naming the merge
-                // and the everyday disambiguator `il vicino di casa`.
-                "it vicino: hall/neighbor, place/near",
                 // Reviewed 2026-07-25: the textbook homonym, and the only entry here that
                 // is NOT a merge — sw `mto` is two unrelated senses (river, pillow),
                 // not one word covering two German ones. Same treatment either way.

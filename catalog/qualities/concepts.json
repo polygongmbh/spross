@@ -8,6 +8,7 @@
  { "slug": "new", "kind": "adjective", "emoji": "🆕" },
  { "slug": "old", "kind": "adjective" },
  { "slug": "hot", "kind": "adjective", "emoji": "🥵" },
+ { "slug": "cold-adj", "kind": "adjective", "emoji": "🥶" },
  { "slug": "long", "kind": "adjective" },
  { "slug": "short", "kind": "adjective" },
  { "slug": "fast", "kind": "adjective", "emoji": "⚡" },
@@ -21,5 +22,6 @@
  { "slug": "clean-adj", "kind": "adjective" },
  { "slug": "sharp", "kind": "adjective" },
  { "slug": "available", "kind": "adjective" },
+ { "slug": "dirty", "kind": "adjective" },
  { "slug": "a-lot-of-water", "kind": "phrase", "emoji": "💦", "components": ["much"] }
 ]

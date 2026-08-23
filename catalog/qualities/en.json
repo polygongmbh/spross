@@ -26,10 +26,15 @@
   "clean-adj": { "text": "clean" },
   "sharp": { "text": "sharp" },
   "available": { "text": "available" },
-  "other": { "text": "other" },
+  "other": {
+   "text": "other",
+   "notes": { "de": "another ist an + other und heißt noch ein anderer: another tea." }
+  },
   "hot": { "text": "hot" },
+  "cold-adj": { "text": "cold", "notes": { "de": "cold heißt auch die Erkältung: I have a cold." } },
   "empty": { "text": "empty" },
   "full": { "text": "full" },
+  "dirty": { "text": "dirty" },
   "a-lot-of-water": { "text": "a lot of water" }
  }
 }

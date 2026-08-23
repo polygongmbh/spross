@@ -64,7 +64,6 @@
    "notes": { "de": "la pattumiera ist der Mülleimer; der kleine Papierkorb im Bad heißt il cestino." }
   },
   "bucket": { "text": "secchio", "grammar": { "gender": "il", "plural": "secchi" } },
-  "dirty": { "text": "sporco", "variants": ["sporca"] },
   "im-taking-a-quick-shower": {
    "text": "Vado a farmi una doccia veloce.",
    "variants": ["Mi faccio una doccia veloce.", "Vado a fare una doccia veloce."]

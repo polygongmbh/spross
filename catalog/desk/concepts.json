@@ -1,7 +1,6 @@
 [
  { "slug": "to-work", "kind": "verb", "emoji": "💼" },
  { "slug": "write", "kind": "verb", "emoji": "✍️" },
- { "slug": "study", "kind": "verb", "emoji": "📚" },
  { "slug": "call", "kind": "verb", "emoji": "📞" },
  { "slug": "phone", "kind": "noun", "emoji": "📱" },
  { "slug": "important", "kind": "adjective", "emoji": "❗" },

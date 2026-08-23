@@ -39,6 +39,11 @@
   "under-the-bed": { "text": "sotto il letto" },
   "in-the-city": { "text": "in città" },
   "between-us": { "text": "tra noi" },
-  "is-it-far": { "text": "È lontano?" }
+  "is-it-far": { "text": "È lontano?" },
+  "at-school": { "text": "a scuola" },
+  "go-to-school": {
+   "text": "andare a scuola",
+   "notes": { "de": "a steht für wo und wohin: sono a scuola, vado a scuola — das Verb entscheidet." }
+  }
  }
 }

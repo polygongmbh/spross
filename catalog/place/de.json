@@ -22,6 +22,8 @@
   "under-the-bed": { "text": "unter dem Bett" },
   "in-the-city": { "text": "in der Stadt" },
   "between-us": { "text": "zwischen uns" },
-  "is-it-far": { "text": "Ist es weit?" }
+  "is-it-far": { "text": "Ist es weit?" },
+  "at-school": { "text": "in der Schule" },
+  "go-to-school": { "text": "in die Schule gehen" }
  }
 }

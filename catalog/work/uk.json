@@ -12,15 +12,12 @@
   "shift": { "text": "зміна" },
   "vacation": { "text": "відпустка" },
   "company": { "text": "фірма", "variants": ["компанія"] },
-  "apply": {
-   "text": "подаватися",
-   "notes": { "de": "mit «на»: подаватися на роботу = sich um eine Stelle bewerben" }
-  },
+  "apply": { "text": "подаватися на роботу", "variants": ["подаватися", "податися на роботу"] },
   "introduce-oneself": { "text": "представлятися" },
   "earn": { "text": "заробляти" },
   "start": { "text": "починати" },
   "leave": { "text": "залишати" },
-  "quit": { "text": "звільнятися" },
+  "quit": { "text": "звільнятися з роботи", "variants": ["звільнятися"] },
   "hire": { "text": "наймати на роботу" },
   "to-help": { "text": "допомагати" },
   "work-overtime": { "text": "працювати понаднормово" },

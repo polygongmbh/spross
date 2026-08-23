@@ -31,7 +31,6 @@
   "faucet": { "text": "Wasserhahn", "grammar": { "gender": "der", "plural": "Wasserhähne" } },
   "trash-can": { "text": "Mülleimer", "grammar": { "gender": "der", "plural": "=" } },
   "bucket": { "text": "Eimer", "grammar": { "gender": "der", "plural": "=" } },
-  "dirty": { "text": "schmutzig" },
   "im-taking-a-quick-shower": { "text": "Ich gehe kurz duschen." },
   "the-bathroom-is-occupied": { "text": "Das Bad ist besetzt!" },
   "the-laundry-is-done": { "text": "Die Wäsche ist fertig." },

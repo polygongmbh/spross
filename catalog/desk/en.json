@@ -22,7 +22,6 @@
   "write": { "text": "to write" },
   "call": { "text": "to call" },
   "delete": { "text": "to delete" },
-  "study": { "text": "to study" },
   "phone": { "text": "phone" },
   "email": { "text": "email" },
   "paper": { "text": "paper" },

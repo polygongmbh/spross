@@ -41,8 +41,10 @@
   },
   "other": { "text": "alia" },
   "hot": { "text": "varmega", "notes": { "de": "varma ist warm, varmega heiß." } },
+  "cold-adj": { "text": "malvarma", "variants": ["malvarme"] },
   "empty": { "text": "malplena" },
   "full": { "text": "plena" },
+  "dirty": { "text": "malpura" },
   "a-lot-of-water": { "text": "multe da akvo" }
  }
 }

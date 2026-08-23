@@ -11,6 +11,7 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "lingua ist die Sprache und die Zunge im Mund." }
   },
+  "mother-tongue": { "text": "lingua madre", "grammar": { "gender": "la" } },
   "what-does-this-word-mean": {
    "text": "Che cosa significa questa parola?",
    "variants": ["Cosa significa questa parola?", "Che cosa vuol dire questa parola?"]

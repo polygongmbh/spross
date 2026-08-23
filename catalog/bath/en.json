@@ -31,7 +31,6 @@
   "faucet": { "text": "faucet", "synonyms": ["tap"] },
   "trash-can": { "text": "trash can", "synonyms": ["bin"] },
   "bucket": { "text": "bucket" },
-  "dirty": { "text": "dirty" },
   "im-taking-a-quick-shower": { "text": "I'm going for a quick shower." },
   "the-bathroom-is-occupied": { "text": "The bathroom is occupied!" },
   "the-laundry-is-done": { "text": "The laundry is done." },

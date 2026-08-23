@@ -41,10 +41,6 @@
   "write": { "text": "scrivere" },
   "call": { "text": "chiamare", "variants": ["telefonare", "chiamare al telefono"] },
   "delete": { "text": "cancellare", "synonyms": ["eliminare"] },
-  "study": {
-   "text": "studiare",
-   "notes": { "de": "Für eine Prüfung oder einen Kurs lernen = studiare; etwas Neues erlernen = imparare." }
-  },
   "phone": {
    "text": "cellulare",
    "variants": ["telefonino", "telefono cellulare", "telefono"],

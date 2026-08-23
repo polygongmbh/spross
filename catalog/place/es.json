@@ -26,6 +26,11 @@
   "under-the-bed": { "text": "debajo de la cama" },
   "in-the-city": { "text": "en la ciudad" },
   "between-us": { "text": "entre nosotros" },
-  "is-it-far": { "text": "¿Está lejos?" }
+  "is-it-far": { "text": "¿Está lejos?" },
+  "at-school": { "text": "en la escuela" },
+  "go-to-school": {
+   "text": "ir a la escuela",
+   "notes": { "de": "a zeigt die Richtung, en den Ort: voy a la escuela · estoy en la escuela." }
+  }
  }
 }

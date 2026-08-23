@@ -19,5 +19,7 @@
  { "slug": "under-the-bed", "kind": "phrase", "components": ["under"] },
  { "slug": "in-the-city", "kind": "phrase", "components": ["in"] },
  { "slug": "between-us", "kind": "phrase", "components": ["between"] },
- { "slug": "is-it-far", "kind": "phrase", "components": ["far"] }
+ { "slug": "is-it-far", "kind": "phrase", "components": ["far"] },
+ { "slug": "at-school", "kind": "phrase", "emoji": "🏫", "components": ["in"] },
+ { "slug": "go-to-school", "kind": "phrase", "emoji": "🏫", "components": ["in"] }
 ]
