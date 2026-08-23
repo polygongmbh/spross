@@ -171,51 +171,83 @@ enum ForestLayout {
     /// Lays the trees out in rows across `width`, in the order given.
     ///
     /// Rows, not a grid: every tree in a row stands on ONE baseline, which is
-    /// what lets two areas be compared at a glance, and that is the only thing
-    /// held rigid. Everything else gives — a tree claims room in proportion to
-    /// its own size, a row is only as tall as its tallest, the slack left over
-    /// is spread between them, and each stands a little off its slot's center.
+    /// what lets two areas be compared at a glance. Every row is laid from the
+    /// very left edge, and every second row opens HALF a cell further on — so
+    /// alternating rows interleave, and a tree sits between two of the rows
+    /// above and two below it. That lattice is the only thing held rigid:
+    /// a tree claims room in proportion to its own size, a row stands only as
+    /// tall as its tallest, and each tree sits a little off its slot's center.
     /// Equal cells in equal columns read as planting rather than as growth.
     static func marks(_ trees: [AreaTree], width: CGFloat) -> [TreeMark] {
         guard width > 0, !trees.isEmpty else { return [] }
         let room = trees.map { max(minCellWidth * 0.62, treeHeight($0) * 1.28 + 12) }
 
-        var rows: [[Int]] = []
+        // One pass: the rows the rooms alone bound. Its tightest row sets the
+        // gap every row shares below.
+        var bound: [[Int]] = []
         var row: [Int] = []
         var used: CGFloat = 0
         for index in trees.indices {
             if !row.isEmpty, used + room[index] > width {
-                rows.append(row)
+                bound.append(row)
                 row = []
                 used = 0
             }
             row.append(index)
             used += room[index]
         }
+        if !row.isEmpty { bound.append(row) }
+
+        // ONE gap for the whole forest, taken from the row that can give the
+        // least — so that row fills the width and every row walks the same
+        // lattice with it. A gap recomputed per row would give each row its
+        // own columns, and a half-cell start would stop falling halfway.
+        let gap: CGFloat = bound
+            .map { row in
+                let taken = row.reduce(CGFloat(0)) { $0 + room[$1] }
+                return max(0, width - taken) / CGFloat(row.count + 1)
+            }
+            .min() ?? 0
+
+        // Re-bind with the lattice's spacing and the half-cell lead in
+        // account — a row opening a cell on fits one tree less in it.
+        var rows: [[Int]] = []
+        row = []
+        used = 0
+        var rank = 0
+        for index in trees.indices {
+            if !row.isEmpty, used + gap + room[index] > width {
+                rows.append(row)
+                row = []
+                used = 0
+                rank += 1
+            }
+            if row.isEmpty, rank.isMultiple(of: 2) == false {
+                used = (room[index] + gap) / 2
+            }
+            row.append(index)
+            used += gap + room[index]
+        }
         if !row.isEmpty { rows.append(row) }
 
         var marks: [TreeMark] = []
         var base: CGFloat = 0
         for (rank, row) in rows.enumerated() {
-            let taken = row.reduce(CGFloat(0)) { $0 + room[$1] }
-            // Slack goes between the trees AND to the margins, so a short row
-            // spreads out rather than crowding against the left edge.
-            let gap = max(0, width - taken) / CGFloat(row.count + 1)
             let tallest = row.map { treeHeight(trees[$0]) }.max() ?? minHeight
             let band = max(rowHeight, tallest + 10)
             let pitch = band + labelHeight + rowGap
 
-            var x = gap
-            for (seat, index) in row.enumerated() {
+            // why: half of the row's OWN first cell, and the same for every
+            // row — so the half steps against the row above it are all the
+            // same, and the lattice drifts only where a tree's width differs.
+            // Fixed rather than random: an even lattice broken only by the
+            // widths and the drift reads as an orchard, where the wave it
+            // replaced read as a wave.
+            let lead: CGFloat = rank.isMultiple(of: 2) ? 0 : (room[row[0]] + gap) / 2
+            var x = lead
+            for index in row {
                 let drift = CGFloat(noise(trees[index].id, 31) - 0.5) * min(gap, 10)
-                // why: every second tree drops half a row, and which half a row
-                // starts on flips with the row — so the forest tiles diagonally
-                // and a tree always has neighbors above and below it as well as
-                // beside it. Fixed rather than random: an even lattice broken
-                // only by the widths and the drift reads as an orchard, where
-                // the wave it replaces read as a wave.
-                let dropped = (seat + rank).isMultiple(of: 2)
-                let stand = base + band + (dropped ? 0 : pitch * 0.5)
+                let stand = base + band
                 let cell = CGRect(x: x + drift, y: stand - band,
                                   width: room[index], height: band + labelHeight)
                 marks.append(TreeMark(tree: trees[index],
