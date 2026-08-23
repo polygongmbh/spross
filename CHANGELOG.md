@@ -2,6 +2,24 @@
 
 ## Unreleased
 
+- **The box can ask the way, buy something and order a meal.** Five new shelves where the
+  catalog had almost nothing: finding the way (straight on, turning at the corner, the
+  crossing, the exit, and saying you are lost), money and prices, the shop with its till
+  and its labels, the market with its stall and its scales and a price you can argue
+  with, and the restaurant with its menu, its waiter and its bill. Asking `Where is the
+  post office?` used to be possible while understanding the answer was not; buying
+  anything was three words; the restaurant was one.
+
+- **Two sentences you can now take apart.** `How much does this cost?` and `That is too
+  expensive.` were taught whole, because `to cost` and `expensive` existed nowhere as
+  words. They do now, and both sentences unlock from them the way every other phrase in
+  the box does.
+
+- **The first shelf is gone, and its words went where they belong.** `First words` was a
+  drawer rather than a shelf — it said nothing about what got in. Saying your name joined
+  the greetings, asking for help and admitting you are lost joined staying in the
+  conversation, and the two nudges about learning joined the language shelf.
+
 - **The sleep timer no longer fades some languages out before others.** The ramp was taking
   its decibels off each recording's own level, so a pack the app already plays quieter —
   Swahili, on the phone's own speaker, sits about 12 dB under the rest — reached the point of
