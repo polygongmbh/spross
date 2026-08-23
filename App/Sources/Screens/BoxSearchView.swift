@@ -49,9 +49,11 @@ struct BoxSearchView: View {
         .tint(.dlAccent)
         // why: searching in the body would re-run on every unrelated redraw —
         // packing a word redraws its row, and the whole box does not need
-        // re-scanning for it.
+        // re-scanning for it. A blank field asked nothing, so it gets the hint
+        // back rather than an empty answer to an empty question.
         .onChange(of: query) { _, typed in
-            results = model.searchBox(typed)
+            results = typed.trimmingCharacters(in: .whitespaces).isEmpty
+                ? nil : model.searchBox(typed)
         }
         // why: the reveal waits for the form to be gone — two sheets closing at
         // once leaves the box scrolling behind one of them.
