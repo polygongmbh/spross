@@ -1,0 +1,25 @@
+{
+ "title": "En el mercado",
+ "subtitle": "Donde el precio todavía se discute.",
+ "words": {
+  "stall": { "text": "puesto", "grammar": { "gender": "el" } },
+  "trader": {
+   "text": "comerciante",
+   "grammar": { "gender": "el" },
+   "notes": { "de": "epicen: el comerciante und la comerciante, nur der Artikel wechselt." }
+  },
+  "scales": { "text": "báscula", "grammar": { "gender": "la" } },
+  "weigh": { "text": "pesar" },
+  "kilo": { "text": "kilo", "grammar": { "gender": "el" } },
+  "gram": { "text": "gramo", "grammar": { "gender": "el" } },
+  "liter": { "text": "litro", "grammar": { "gender": "el" } },
+  "fresh": { "text": "fresco" },
+  "ripe": { "text": "maduro" },
+  "haggle": { "text": "regatear" },
+  "market": { "text": "mercado", "grammar": { "gender": "el" } },
+  "lets-meet-at-the-market": { "text": "Quedamos en el mercado.", "variants": ["Nos vemos en el mercado."] },
+  "a-kilo-of-tomatoes": { "text": "Un kilo de tomates, por favor." },
+  "what-does-a-kilo-cost": { "text": "¿Cuánto cuesta el kilo?" },
+  "can-you-come-down-a-bit": { "text": "¿Me lo deja un poco más barato?" }
+ }
+}

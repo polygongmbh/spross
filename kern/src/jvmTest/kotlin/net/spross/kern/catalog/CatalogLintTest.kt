@@ -423,6 +423,12 @@ class CatalogLintTest {
                 // stays one-language. `le hall` is a lobby and `le vestibule` is dated, so
                 // repicking would teach the wrong register; the card carries the de note.
                 "fr entrée: directions/entrance, hall/hallway",
+                // Reviewed 2026-08-23: `frais` is fresh AND, in the plural, the fees —
+                // de/en/eo/es/it/sw/uk all split the pair (frisch/Gebühr, fresco/tasa,
+                // fresco/spesa). There is no second word for fresh in French, and `les
+                // frais` is what an office actually charges, so both stay; market/fresh
+                // carries the de note naming the second sense, the ndege treatment.
+                "fr frais: admin/fee, market/fresh",
                 "fr tableau: living/picture, school/board",
                 // Reviewed 2026-08-15: `le temps` is Zeit and Wetter alike — the same
                 // Romance merge `es tiempo` and `it tempo` pin here; `la météo` names

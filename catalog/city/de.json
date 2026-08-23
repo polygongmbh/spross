@@ -3,7 +3,6 @@
  "subtitle": "Immer etwas los.",
  "words": {
   "street": { "text": "Straße", "grammar": { "gender": "die", "plural": "-n" } },
-  "market": { "text": "Markt", "grammar": { "gender": "der", "plural": "Märkte" } },
   "park": { "text": "Park", "grammar": { "gender": "der", "plural": "-s" } },
   "city": { "text": "Stadt", "grammar": { "gender": "die", "plural": "Städte" } },
   "village": { "text": "Dorf", "grammar": { "gender": "das", "plural": "Dörfer" } },
@@ -22,7 +21,6 @@
   "where-is-the-post-office": { "text": "Wo ist die Post?" },
   "is-there-a-bank-here": { "text": "Gibt es hier eine Bank?" },
   "im-looking-for-a-hotel": { "text": "Ich suche ein Hotel." },
-  "lets-meet-at-the-market": { "text": "Treffen wir uns am Markt." },
   "i-live-in-this-neighborhood": { "text": "Ich wohne in diesem Viertel." }
  }
 }

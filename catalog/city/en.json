@@ -3,7 +3,6 @@
  "subtitle": "Always something going on.",
  "words": {
   "street": { "text": "street" },
-  "market": { "text": "market" },
   "park": { "text": "park" },
   "city": { "text": "city", "grammar": { "plural": "cities" } },
   "village": { "text": "village" },
@@ -22,7 +21,6 @@
   "where-is-the-post-office": { "text": "Where is the post office?" },
   "is-there-a-bank-here": { "text": "Is there a bank here?" },
   "im-looking-for-a-hotel": { "text": "I'm looking for a hotel." },
-  "lets-meet-at-the-market": { "text": "Let's meet at the market." },
   "i-live-in-this-neighborhood": { "text": "I live in this neighborhood.", "variants": ["I live in this neighbourhood."] }
  }
 }

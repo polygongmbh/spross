@@ -3,7 +3,6 @@
  "subtitle": "Тут завжди рух.",
  "words": {
   "street": { "text": "вулиця" },
-  "market": { "text": "ринок", "grammar": { "plural": "ринки" } },
   "park": { "text": "парк" },
   "city": { "text": "місто" },
   "village": { "text": "село", "grammar": { "plural": "села" } },
@@ -22,7 +21,6 @@
   "where-is-the-post-office": { "text": "Де пошта?" },
   "is-there-a-bank-here": { "text": "Тут є банк?" },
   "im-looking-for-a-hotel": { "text": "Я шукаю готель." },
-  "lets-meet-at-the-market": { "text": "Зустріньмося на ринку.", "variants": ["Зустрінемось на ринку."] },
   "i-live-in-this-neighborhood": { "text": "Я живу в цьому районі." }
  }
 }

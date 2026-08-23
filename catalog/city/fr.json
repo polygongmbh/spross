@@ -3,7 +3,6 @@
  "subtitle": "Il y a toujours de l'animation.",
  "words": {
   "street": { "text": "rue", "grammar": { "gender": "la" } },
-  "market": { "text": "marché", "grammar": { "gender": "le" } },
   "park": { "text": "parc", "grammar": { "gender": "le" } },
   "city": { "text": "ville", "grammar": { "gender": "la" } },
   "village": { "text": "village", "grammar": { "gender": "le" } },
@@ -30,10 +29,6 @@
    "variants": ["Est-ce qu'il y a une banque ici ?", "Y a-t-il une banque ici ?", "Il y a une banque par ici ?"]
   },
   "im-looking-for-a-hotel": { "text": "Je cherche un hôtel." },
-  "lets-meet-at-the-market": {
-   "text": "On se retrouve au marché.",
-   "variants": ["Retrouvons-nous au marché.", "On se voit au marché."]
-  },
   "i-live-in-this-neighborhood": { "text": "J'habite dans ce quartier." }
  }
 }

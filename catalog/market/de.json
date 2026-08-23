@@ -1,0 +1,22 @@
+{
+ "title": "Auf dem Markt",
+ "subtitle": "Wo der Preis noch verhandelt wird.",
+ "words": {
+  "stall": { "text": "Stand", "grammar": { "gender": "der", "plural": "Stände" } },
+  "trader": { "text": "Händler", "grammar": { "gender": "der", "plural": "=" } },
+  "trader-f": { "text": "Händlerin", "grammar": { "gender": "die", "plural": "-nen" } },
+  "scales": { "text": "Waage", "grammar": { "gender": "die", "plural": "-n" } },
+  "weigh": { "text": "wiegen" },
+  "kilo": { "text": "Kilo", "grammar": { "gender": "das", "plural": "=" } },
+  "gram": { "text": "Gramm", "grammar": { "gender": "das", "plural": "=" } },
+  "liter": { "text": "Liter", "grammar": { "gender": "der", "plural": "=" } },
+  "fresh": { "text": "frisch" },
+  "ripe": { "text": "reif" },
+  "haggle": { "text": "handeln", "notes": { "de": "handeln heißt hier feilschen — und sonst auch tun." } },
+  "market": { "text": "Markt", "grammar": { "gender": "der", "plural": "Märkte" } },
+  "lets-meet-at-the-market": { "text": "Treffen wir uns am Markt." },
+  "a-kilo-of-tomatoes": { "text": "Ein Kilo Tomaten, bitte." },
+  "what-does-a-kilo-cost": { "text": "Was kostet ein Kilo?" },
+  "can-you-come-down-a-bit": { "text": "Geht da noch was am Preis?", "variants": ["Geht der Preis noch runter?"] }
+ }
+}

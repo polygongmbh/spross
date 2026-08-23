@@ -1,0 +1,25 @@
+{
+ "title": "Sokoni",
+ "subtitle": "Ambapo bei bado inajadiliwa.",
+ "words": {
+  "stall": { "text": "kibanda", "grammar": { "plural": "vibanda" } },
+  "trader": { "text": "mfanyabiashara", "grammar": { "plural": "wafanyabiashara" } },
+  "scales": { "text": "mizani", "grammar": { "plural": "=" } },
+  "weigh": { "text": "kupima" },
+  "kilo": { "text": "kilo", "grammar": { "plural": "=" } },
+  "gram": { "text": "gramu", "grammar": { "plural": "=" } },
+  "liter": { "text": "lita", "grammar": { "plural": "=" } },
+  "fresh": {
+   "text": "-bichi",
+   "variants": ["mbichi", "kibichi", "vibichi", "mabichi"],
+   "notes": { "de": "-bichi ist frisch und roh zugleich: nyanya mbichi · safi heißt sauber." }
+  },
+  "ripe": { "text": "-bivu", "variants": ["mbivu", "kibivu", "vibivu", "mabivu"] },
+  "haggle": { "text": "kupatana bei" },
+  "market": { "text": "soko", "grammar": { "plural": "masoko" } },
+  "lets-meet-at-the-market": { "text": "Tukutane sokoni." },
+  "a-kilo-of-tomatoes": { "text": "Kilo moja ya nyanya, tafadhali." },
+  "what-does-a-kilo-cost": { "text": "Kilo moja ni bei gani?" },
+  "can-you-come-down-a-bit": { "text": "Unaweza kupunguza kidogo?" }
+ }
+}

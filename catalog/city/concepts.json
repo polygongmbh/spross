@@ -1,7 +1,6 @@
 [
  { "slug": "city", "kind": "noun", "emoji": "🏙️" },
  { "slug": "street", "kind": "noun", "emoji": "🛣️" },
- { "slug": "market", "kind": "noun", "emoji": "🛒" },
  { "slug": "restaurant", "kind": "noun", "emoji": "🍽️" },
  { "slug": "bank", "kind": "noun", "emoji": "🏦" },
  { "slug": "park", "kind": "noun", "emoji": "🏞️" },
@@ -24,6 +23,5 @@
  },
  { "slug": "is-there-a-bank-here", "kind": "phrase", "emoji": "🏦", "components": ["bank"] },
  { "slug": "im-looking-for-a-hotel", "kind": "phrase", "emoji": "🏨", "components": ["hotel"] },
- { "slug": "lets-meet-at-the-market", "kind": "phrase", "emoji": "🛒", "components": ["market"] },
  { "slug": "i-live-in-this-neighborhood", "kind": "phrase", "components": ["neighborhood"] }
 ]

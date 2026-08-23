@@ -3,7 +3,6 @@
  "subtitle": "Siempre hay movimiento.",
  "words": {
   "street": { "text": "calle", "grammar": { "gender": "la" } },
-  "market": { "text": "mercado", "grammar": { "gender": "el" } },
   "park": { "text": "parque", "grammar": { "gender": "el" } },
   "city": { "text": "ciudad", "grammar": { "gender": "la" } },
   "village": { "text": "pueblo", "grammar": { "gender": "el" } },
@@ -22,7 +21,6 @@
   "where-is-the-post-office": { "text": "¿Dónde está la oficina de correos?", "variants": ["¿Dónde está correos?"] },
   "is-there-a-bank-here": { "text": "¿Hay un banco por aquí?" },
   "im-looking-for-a-hotel": { "text": "Busco un hotel." },
-  "lets-meet-at-the-market": { "text": "Quedamos en el mercado.", "variants": ["Nos vemos en el mercado."] },
   "i-live-in-this-neighborhood": { "text": "Vivo en este barrio." }
  }
 }

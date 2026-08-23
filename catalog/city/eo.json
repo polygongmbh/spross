@@ -3,12 +3,6 @@
  "subtitle": "Ĉi tie ĉiam io moviĝas.",
  "words": {
   "street": { "text": "strato" },
-  "market": {
-   "text": "bazaro",
-   "notes": {
-    "de": "bazaro ist der Marktplatz zum Einkaufen · merkato ist der Markt als Wirtschaftsbegriff."
-   }
-  },
   "park": { "text": "parko" },
   "city": { "text": "urbo" },
   "village": { "text": "vilaĝo" },
@@ -30,7 +24,6 @@
    "variants": ["Ĉu ĉi tie estas banko?", "Ĉu troviĝas banko ĉi tie?"]
   },
   "im-looking-for-a-hotel": { "text": "Mi serĉas hotelon." },
-  "lets-meet-at-the-market": { "text": "Ni renkontiĝu ĉe la bazaro.", "variants": ["Ni renkontiĝu en la bazaro."] },
   "i-live-in-this-neighborhood": { "text": "Mi loĝas en ĉi tiu kvartalo.", "variants": ["Mi loĝas en tiu ĉi kvartalo."] }
  }
 }

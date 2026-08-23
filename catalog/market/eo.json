@@ -1,0 +1,27 @@
+{
+ "title": "Sur la bazaro",
+ "subtitle": "Kie la prezo ankoraŭ diskuteblas.",
+ "words": {
+  "stall": { "text": "budo" },
+  "trader": { "text": "komercisto" },
+  "trader-f": { "text": "komercistino" },
+  "scales": { "text": "pesilo" },
+  "weigh": { "text": "pesi" },
+  "kilo": { "text": "kilogramo", "variants": ["kilo"] },
+  "gram": { "text": "gramo" },
+  "liter": { "text": "litro" },
+  "fresh": { "text": "freŝa" },
+  "ripe": { "text": "matura" },
+  "haggle": { "text": "marĉandi" },
+  "market": {
+   "text": "bazaro",
+   "notes": {
+    "de": "bazaro ist der Marktplatz zum Einkaufen · merkato ist der Markt als Wirtschaftsbegriff."
+   }
+  },
+  "lets-meet-at-the-market": { "text": "Ni renkontiĝu ĉe la bazaro.", "variants": ["Ni renkontiĝu en la bazaro."] },
+  "a-kilo-of-tomatoes": { "text": "Kilogramon da tomatoj, mi petas." },
+  "what-does-a-kilo-cost": { "text": "Kiom kostas kilogramo?" },
+  "can-you-come-down-a-bit": { "text": "Ĉu vi povas iom malaltigi la prezon?" }
+ }
+}

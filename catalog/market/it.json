@@ -1,0 +1,22 @@
+{
+ "title": "Al mercato",
+ "subtitle": "Dove il prezzo si tratta ancora.",
+ "words": {
+  "stall": { "text": "bancarella", "grammar": { "gender": "la" } },
+  "trader": { "text": "venditore", "grammar": { "gender": "il" } },
+  "trader-f": { "text": "venditrice", "grammar": { "gender": "la" } },
+  "scales": { "text": "bilancia", "grammar": { "gender": "la" } },
+  "weigh": { "text": "pesare" },
+  "kilo": { "text": "chilo", "grammar": { "gender": "il" } },
+  "gram": { "text": "grammo", "grammar": { "gender": "il" } },
+  "liter": { "text": "litro", "grammar": { "gender": "il" } },
+  "fresh": { "text": "fresco" },
+  "ripe": { "text": "maturo" },
+  "haggle": { "text": "contrattare", "synonyms": ["mercanteggiare"] },
+  "market": { "text": "mercato", "grammar": { "gender": "il" } },
+  "lets-meet-at-the-market": { "text": "Ci vediamo al mercato.", "variants": ["Incontriamoci al mercato."] },
+  "a-kilo-of-tomatoes": { "text": "Un chilo di pomodori, per favore." },
+  "what-does-a-kilo-cost": { "text": "Quanto costa un chilo?" },
+  "can-you-come-down-a-bit": { "text": "Può farmi un prezzo migliore?" }
+ }
+}

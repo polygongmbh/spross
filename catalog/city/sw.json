@@ -3,7 +3,6 @@
  "subtitle": "Kuna shughuli kila wakati.",
  "words": {
   "street": { "text": "barabara", "grammar": { "plural": "=" } },
-  "market": { "text": "soko", "grammar": { "plural": "masoko" } },
   "park": { "text": "bustani", "grammar": { "plural": "=" } },
   "city": {
    "text": "mji",
@@ -30,7 +29,6 @@
   "where-is-the-post-office": { "text": "Posta iko wapi?" },
   "is-there-a-bank-here": { "text": "Kuna benki hapa?" },
   "im-looking-for-a-hotel": { "text": "Natafuta hoteli." },
-  "lets-meet-at-the-market": { "text": "Tukutane sokoni." },
   "i-live-in-this-neighborhood": { "text": "Ninaishi katika mtaa huu." }
  }
 }

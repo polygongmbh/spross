@@ -1,0 +1,22 @@
+{
+ "title": "На ринку",
+ "subtitle": "Де ціна ще обговорюється.",
+ "words": {
+  "stall": { "text": "прилавок", "variants": ["ятка"], "grammar": { "plural": "прилавки" } },
+  "trader": { "text": "торговець", "grammar": { "plural": "торговці" } },
+  "trader-f": { "text": "торговка", "variants": ["торгівка"] },
+  "scales": { "text": "ваги", "grammar": { "plural": "only" } },
+  "weigh": { "text": "важити" },
+  "kilo": { "text": "кілограм", "variants": ["кіло"] },
+  "gram": { "text": "грам" },
+  "liter": { "text": "літр" },
+  "fresh": { "text": "свіжий" },
+  "ripe": { "text": "стиглий" },
+  "haggle": { "text": "торгуватися" },
+  "market": { "text": "ринок", "grammar": { "plural": "ринки" } },
+  "lets-meet-at-the-market": { "text": "Зустріньмося на ринку.", "variants": ["Зустрінемось на ринку."] },
+  "a-kilo-of-tomatoes": { "text": "Кілограм помідорів, будь ласка." },
+  "what-does-a-kilo-cost": { "text": "Скільки коштує кілограм?" },
+  "can-you-come-down-a-bit": { "text": "Можете трохи поступитися?" }
+ }
+}

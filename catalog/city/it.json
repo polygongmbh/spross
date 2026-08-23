@@ -3,7 +3,6 @@
  "subtitle": "C'è sempre movimento.",
  "words": {
   "street": { "text": "strada", "grammar": { "gender": "la" } },
-  "market": { "text": "mercato", "grammar": { "gender": "il" } },
   "park": { "text": "parco", "grammar": { "gender": "il", "plural": "parchi" } },
   "city": { "text": "città", "grammar": { "gender": "la", "plural": "=" } },
   "village": {
@@ -40,7 +39,6 @@
   "where-is-the-post-office": { "text": "Dov'è la posta?", "variants": ["Dov'è l'ufficio postale?"] },
   "is-there-a-bank-here": { "text": "C'è una banca qui?", "variants": ["C'è una banca qui vicino?", "Qui c'è una banca?"] },
   "im-looking-for-a-hotel": { "text": "Cerco un albergo.", "variants": ["Sto cercando un albergo.", "Cerco un hotel."] },
-  "lets-meet-at-the-market": { "text": "Ci vediamo al mercato.", "variants": ["Incontriamoci al mercato."] },
   "i-live-in-this-neighborhood": { "text": "Abito in questo quartiere.", "variants": ["Vivo in questo quartiere."] }
  }
 }
