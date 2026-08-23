@@ -22,7 +22,7 @@ no `atlas.json`, no drill; a language without `countries/<lang>.json` has no atl
 - `languages` on a country resolve into the manifest's own list, in authored order (most widely spoken first);
   the relation is many-to-many, and a country reusing an already-authored language is a cheap row.
 - Language codes are ISO 639-1 and reach far past the five the app teaches from —
-  every one of them needs an entry in **every** `catalog/languages/<lang>.json` (see above),
+  every one of them needs an entry in **every** `catalog/language-names/<lang>.json` (see above),
   because that table, not this one, is where language names live.
 
 `countries/<lang>.json` is keyed by the manifest's slugs:

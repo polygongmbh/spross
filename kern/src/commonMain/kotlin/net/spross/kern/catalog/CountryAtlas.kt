@@ -8,7 +8,7 @@ import net.spross.kern.model.Language
  * Two halves, exactly as the alphabet has: [CountryAtlas] is the language-neutral manifest
  * (`atlas.json` — which countries exist, which languages they carry, how far out each
  * sits), and `countries/<lang>.json` says what one language CALLS them ([CountryName]).
- * Language names are never repeated here; they come from `catalog/languages/`
+ * Language names are never repeated here; they come from `catalog/language-names/`
  * ([LanguageName]), so a country and the language it speaks are always named the same way.
  *
  * Tiers are authored 2–4 and say how far from home a row sits. Tier 1 is never authored:

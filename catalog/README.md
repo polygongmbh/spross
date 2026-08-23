@@ -30,7 +30,7 @@ and potential future crowdsourced per-language contribution.
 catalog/
   areas.json            # ordered GROUPS → ordered areas: the default progression
   languages.json        # per-language metadata (display name, verb citation prefix)
-  languages/            # what each language calls the languages, inflected
+  language-names/       # what each language calls the languages, inflected
     <lang>.json         # { languageNames: { code: { name, in, speak?, learn? } } }
   <area>/               # one folder per area (basics, kitchen, …)
     concepts.json       # ordered [{slug, kind, emoji?}] — order IS introduction order
@@ -271,5 +271,5 @@ This file owns the concept model and the area files. Everything else has its own
 - `docs/audio.md` — `catalog/audio/`: the recording manifests and their provenance
 - `docs/alphabet.md` — `catalog/alphabet/`: the letter sheets
 - `docs/drills.md` — `catalog/drills/`: the sentence frames the generated drills fill
-- `docs/languages.md` — `catalog/languages/`: what each language calls the languages
+- `docs/language-names.md` — `catalog/language-names/`: what each language calls the languages
 - `docs/countries.md` — `catalog/countries/`: the atlas drill's content

@@ -7,7 +7,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
- * Permanent lint over the REAL `catalog/languages/`, beside [CatalogLintTest] the way
+ * Permanent lint over the REAL `catalog/language-names/`, beside [CatalogLintTest] the way
  * [CatalogFrameLintTest] and [AlphabetLintTest] sit beside it. Parse-shape rules (unknown
  * keys, undeclared codes, blank fields) hard-fail the load and need no test of their own;
  * what only content can break is TOTALITY — a pair whose table lacks the other language
@@ -23,19 +23,19 @@ class CatalogLanguageNamesLintTest {
     }
 
     /**
-     * File presence is the registry and the loader reads `languages/<lang>.json` for
+     * File presence is the registry and the loader reads `language-names/<lang>.json` for
      * DECLARED languages only — a stray file would otherwise sit unread until someone
      * wonders why the phrases dropped out of that pair.
      */
     @Test
     fun everyTableFileBelongsToADeclaredLanguageAndLoads() {
-        val files = File(RealCatalog.root, "languages").listFiles().orEmpty().map { it.name }
-        assertTrue(files.isNotEmpty(), "no language-name tables under catalog/languages/")
+        val files = File(RealCatalog.root, "language-names").listFiles().orEmpty().map { it.name }
+        assertTrue(files.isNotEmpty(), "no language-name tables under catalog/language-names/")
         for (name in files) {
-            assertTrue(name.endsWith(".json"), "languages/$name: not a .json file")
+            assertTrue(name.endsWith(".json"), "language-names/$name: not a .json file")
             val lang = name.removeSuffix(".json")
-            assertTrue(lang in catalog.languages, "languages/$name: undeclared language")
-            assertNotNull(catalog.languageNames[lang], "languages/$name: declared but never loaded")
+            assertTrue(lang in catalog.languages, "language-names/$name: undeclared language")
+            assertNotNull(catalog.languageNames[lang], "language-names/$name: declared but never loaded")
         }
     }
 
@@ -52,11 +52,11 @@ class CatalogLanguageNamesLintTest {
         val declared = catalog.languages.keys
         for (reader in declared) {
             val table = catalog.languageNames[reader]
-            assertNotNull(table, "languages/$reader.json: missing")
+            assertNotNull(table, "language-names/$reader.json: missing")
             assertEquals(
                 emptySet(),
                 declared - table.keys,
-                "languages/$reader.json: incomplete table",
+                "language-names/$reader.json: incomplete table",
             )
         }
     }
@@ -75,7 +75,7 @@ class CatalogLanguageNamesLintTest {
             assertEquals(
                 emptySet(),
                 atlas - table.keys,
-                "languages/$reader.json: atlas languages unnamed",
+                "language-names/$reader.json: atlas languages unnamed",
             )
         }
     }
@@ -84,7 +84,7 @@ class CatalogLanguageNamesLintTest {
     @Test
     fun everyFormIsTrimmedAndNonBlank() {
         forEachName { reader, named, name ->
-            val where = "languages/$reader.json $named"
+            val where = "language-names/$reader.json $named"
             val forms = listOfNotNull(name.name, name.inForm, name.speak, name.learn) + name.variants
             for (form in forms) {
                 assertTrue(form.isNotBlank() && form.trim() == form, "$where: untrimmed \"$form\"")
@@ -99,7 +99,7 @@ class CatalogLanguageNamesLintTest {
     @Test
     fun everyEntryCarriesTheInForm() {
         forEachName { reader, named, name ->
-            assertTrue(name.inForm.isNotBlank(), "languages/$reader.json $named: no \"in\" form")
+            assertTrue(name.inForm.isNotBlank(), "language-names/$reader.json $named: no \"in\" form")
         }
     }
 
@@ -108,7 +108,7 @@ class CatalogLanguageNamesLintTest {
         forEachName { reader, named, name ->
             assertTrue(
                 name.notes.keys.all { it in catalog.languages },
-                "languages/$reader.json $named: unknown note key ${name.notes.keys}",
+                "language-names/$reader.json $named: unknown note key ${name.notes.keys}",
             )
         }
     }

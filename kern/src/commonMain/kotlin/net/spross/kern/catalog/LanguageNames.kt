@@ -4,7 +4,7 @@ import net.spross.kern.model.Language
 
 /**
  * What one language calls another, in the grammatical forms a sentence needs.
- * Authored in `catalog/languages/<lang>.json`, keyed by the language being NAMED.
+ * Authored in `catalog/language-names/<lang>.json`, keyed by the language being NAMED.
  *
  * The fields name grammatical roles, never renderings: [inForm] is the "in X" adverbial
  * WITH whatever adposition the language uses (de "auf Deutsch", sw "kwa Kijerumani",

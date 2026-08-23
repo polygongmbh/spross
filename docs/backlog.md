@@ -107,7 +107,7 @@ One line per item, with a file or context pointer, filed under the section it be
   English: the German pivot prose for de is already parked in the drafts' notes, while
   sw needs authoring from scratch (sw `j` is /ɟ/, so the en "y in yes" anchor is wrong).
 - The country atlas ships exonyms and nationalities a native has never read
-  (`catalog/countries/*.json`, `catalog/languages/*.json`). Swahili was authored from
+  (`catalog/countries/*.json`, `catalog/language-names/*.json`). Swahili was authored from
   sw.wikipedia and sw.wiktionary and Ukrainian from uk.wikipedia, uk.wiktionary and SUM-11
   with corpus checks, but a residue of judgment calls stayed open: which of two attested
   Swahili stems is canonical, and which Ukrainian feminines exist at all. Every one of them

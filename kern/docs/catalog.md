@@ -56,7 +56,7 @@ Engine contract: `../README.md`.
   letters, exactly-one-gap on gap rows, letters-manifest glyph collision).
   `letters{}.matches == name` is WAIVED — the audio manifest schema rejects the field, so
   the name↔recording check is a manual listening pass (backlog).
-- `catalog/languages/<lang>.json` → `LanguageName` (`CatalogParser.parseLanguageNames`), read
+- `catalog/language-names/<lang>.json` → `LanguageName` (`CatalogParser.parseLanguageNames`), read
   via `Catalog.languageName(reader, named) -> LanguageName?`. The registry is file presence,
   as it is for an alphabet, and the reads are **TRACKED** — a name lands inside joined card
   texts, so editing one restamps a running box exactly as a realization does (the audio and
@@ -71,7 +71,7 @@ Engine contract: `../README.md`.
   languages spoken there, tier 2..4) and `<lang>.json` the realizations beside it. Read
   through the **RAW** source, not the fingerprinting wrapper — the atlas joins no card, so
   editing it must not restamp a running box (the frames' exemption, for the frames' reason).
-  Language names are not repeated here; they come from `catalog/languages/`, which is why a
+  Language names are not repeated here; they come from `catalog/language-names/`, which is why a
   manifest code no table names is a contradiction lint reports rather than a blank the drill
   renders. Tier 1 is in no file — it is derived per profile from the pair being learned.
   `Catalog.countryDrillContent(source, target)` joins a pair in manifest order and is null

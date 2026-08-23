@@ -300,7 +300,7 @@ class CatalogLintTest {
         }
         for ((reader, table) in catalog.languageNames) {
             for ((named, name) in table) {
-                val where = "languages/$reader.json $named"
+                val where = "language-names/$reader.json $named"
                 for (form in listOf(name.name, name.inForm) + name.variants) unmarked(where, form)
             }
         }

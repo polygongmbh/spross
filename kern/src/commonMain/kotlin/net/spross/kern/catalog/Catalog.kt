@@ -32,7 +32,7 @@ class Catalog internal constructor(
     internal val frameRealizations: Map<Language, Map<String, RawFrame>>,
     /** lang → reader → the prose [numberNotes] serves; same file, same registry rule. */
     internal val drillNotes: Map<Language, Map<Language, List<String>>>,
-    /** reader → named language → its inflected names, from `languages/<reader>.json`. */
+    /** reader → named language → its inflected names, from `language-names/<reader>.json`. */
     internal val languageNames: Map<Language, Map<Language, LanguageName>>,
     /** `countries/atlas.json`, or null without the folder — the atlas drill's registry. */
     internal val countryAtlas: CountryAtlas?,
@@ -515,7 +515,7 @@ class Catalog internal constructor(
             // The table names every ATLAS language too, far beyond the app's own five.
             val nameable = languages.keys + atlas?.languages?.map { it.code }.orEmpty()
             val languageNames = languages.keys.mapNotNull { lang ->
-                val path = "languages/$lang.json"
+                val path = "language-names/$lang.json"
                 tracked.read(path)?.let { lang to CatalogParser.parseLanguageNames(path, it, nameable) }
             }.toMap()
             // why: read through the RAW source, never the fingerprinting wrapper — audio

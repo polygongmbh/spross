@@ -55,7 +55,7 @@ class CountryAtlasLintTest {
     }
 
     /**
-     * The atlas keeps no language names of its own — they come from `catalog/languages/`,
+     * The atlas keeps no language names of its own — they come from `catalog/language-names/`,
      * so a manifest code no table names is a language the drill can never ask about.
      */
     @Test
@@ -64,7 +64,7 @@ class CountryAtlasLintTest {
             for (reader in catalog.languages.keys) {
                 assertNotNull(
                     catalog.languageName(reader, row.code),
-                    "languages/$reader.json: no name for atlas language \"${row.code}\"",
+                    "language-names/$reader.json: no name for atlas language \"${row.code}\"",
                 )
             }
         }

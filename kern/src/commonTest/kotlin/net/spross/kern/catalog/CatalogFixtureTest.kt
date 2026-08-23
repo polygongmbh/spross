@@ -220,7 +220,7 @@ class CatalogFixtureTest {
     @Test
     fun languageNameEditsRestampTheFingerprint() {
         val edited = Fixture.files + mapOf(
-            "languages/de.json" to Fixture.names.getValue("languages/de.json")
+            "language-names/de.json" to Fixture.names.getValue("language-names/de.json")
                 .replace("Suaheli", "Swahili"),
         )
         assertTrue(Catalog.load(MapCatalogSource(edited)).fingerprint != catalog.fingerprint)
@@ -229,7 +229,7 @@ class CatalogFixtureTest {
     @Test
     fun anUndeclaredNamedLanguageFailsTheParse() {
         val broken = Fixture.files + mapOf(
-            "languages/sw.json" to Fixture.names.getValue("languages/sw.json")
+            "language-names/sw.json" to Fixture.names.getValue("language-names/sw.json")
                 .replace("\"uk\":", "\"xx\":"),
         )
         val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
@@ -239,7 +239,7 @@ class CatalogFixtureTest {
     @Test
     fun aLanguageNameWithoutAnInFormFailsTheParse() {
         val broken = Fixture.files + mapOf(
-            "languages/de.json" to Fixture.names.getValue("languages/de.json")
+            "language-names/de.json" to Fixture.names.getValue("language-names/de.json")
                 .replace("\"in\": \"auf Suaheli\", ", ""),
         )
         val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }

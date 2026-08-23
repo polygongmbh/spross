@@ -70,7 +70,7 @@ internal object Fixture {
      * sw entry omits `speak` (the fallback to `name`).
      */
     val names: Map<String, String> = mapOf(
-        "languages/de.json" to """
+        "language-names/de.json" to """
             { "languageNames": {
                 "de": { "name": "Deutsch", "in": "auf Deutsch" },
                 "en": { "name": "Englisch", "in": "auf Englisch" },
@@ -78,14 +78,14 @@ internal object Fixture {
                 "sw": { "name": "Suaheli", "in": "auf Suaheli", "variants": ["Kisuaheli"] },
                 "uk": { "name": "Ukrainisch", "in": "auf Ukrainisch" } } }
         """.trimIndent(),
-        "languages/sw.json" to """
+        "language-names/sw.json" to """
             { "languageNames": {
                 "de": { "name": "Kijerumani", "in": "kwa Kijerumani" },
                 "en": { "name": "Kiingereza", "in": "kwa Kiingereza" },
                 "sw": { "name": "Kiswahili", "in": "kwa Kiswahili" },
                 "uk": { "name": "Kiukreni", "in": "kwa Kiukreni" } } }
         """.trimIndent(),
-        "languages/uk.json" to """
+        "language-names/uk.json" to """
             { "languageNames": {
                 "de": { "name": "німецька", "in": "німецькою",
                         "speak": "німецькою", "learn": "німецьку" },
@@ -199,7 +199,7 @@ internal object Fixture {
                 "i-speak-a-little": { "text": "Ich spreche ein bisschen {language}." },
                 "how-do-you-say-this": { "text": "Wie sagt man das {language-in}?" } } }
         """.trimIndent(),
-        // why: en authors realizations but NO languages/en.json — every pair with en as a
+        // why: en authors realizations but NO language-names/en.json — every pair with en as a
         // side must drop the marked concepts, which is the coverage-drop case.
         "gamma/en.json" to """
             { "title": "Gamma",

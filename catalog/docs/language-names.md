@@ -1,14 +1,13 @@
-# Language names (`catalog/languages/`)
+# Language names (`catalog/language-names/`)
 
 What each language calls the languages, in the forms a sentence needs.
 
 What each language calls the languages, in the forms a sentence needs.
 One file per **naming** language, keyed by the language being **named** —
-`languages/de.json` says how German names Swahili, `languages/sw.json` how Swahili does.
+`language-names/de.json` says how German names Swahili, `language-names/sw.json` how Swahili does.
 Every declared language names every declared language, itself included.
 
-Not to be confused with `languages.json` beside it, which is per-language app metadata
-(the picker's self-name, the flag, the articles). This directory is content the learner reads.
+Per-language app metadata — the picker's self-name, the flag, the articles — is `languages.json`.
 
 ```json
 { "languageNames": {
