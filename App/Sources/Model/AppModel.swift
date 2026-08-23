@@ -201,6 +201,14 @@ final class AppModel {
         }
     }
 
+    /// Re-open the onboarding sheet on demand (Box settings' "restart tutorial"
+    /// row) — the pair and the box itself are untouched, only the story pages
+    /// show again. `OnboardingView` reads the still-active pair to skip the
+    /// language pick this time (`RootView`).
+    func restartOnboarding() {
+        phase = .onboarding
+    }
+
     /// Load the target's box from disk (re-joined for the profile), or
     /// bootstrap it fresh from the catalog join.
     func activate(source: String, target: String) async {

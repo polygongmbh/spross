@@ -4895,6 +4895,38 @@
         }
       }
     },
+    "settings.restartTutorial.button" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutorial neu starten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restart tutorial"
+          }
+        }
+      }
+    },
+    "settings.restartTutorial.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeigt die Einführung erneut — deine Sprachen und dein Fortschritt bleiben erhalten."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shows the introduction again — your languages and progress stay."
+          }
+        }
+      }
+    },
     "settings.source.title" : {
       "localizations" : {
         "de" : {

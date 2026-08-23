@@ -19,8 +19,10 @@ import SprossKern
 /// (`OnboardingView+Story.swift`). Only the last one commits — the two before it
 /// merely turn the page — so the box is joined once, behind something worth reading,
 /// and the pair stays reachable through the way back the story pages carry.
-/// This view is the FIRST-RUN path alone (`RootView` binds it to `phase == .onboarding`);
-/// a later language change is the box's own settings, and takes none of the pages.
+/// This view opens on `phase == .onboarding` (`RootView`), either the first run
+/// or a deliberate restart (Box settings' "restart tutorial" row,
+/// `AppModel.restartOnboarding`); a later language change alone is the box's
+/// own settings, and takes none of the pages.
 struct OnboardingView: View {
     let model: AppModel
 
@@ -38,12 +40,20 @@ struct OnboardingView: View {
     /// The head of the shared scroll, so a page turn opens on the new page's first line.
     private let topAnchor = "onboarding.top"
 
-    init(model: AppModel) {
+    /// `skipLanguagePick` starts past the pair's own page — a restart of an
+    /// already-made pair (`RootView`) has nothing left for it to ask there.
+    init(model: AppModel, skipLanguagePick: Bool = false) {
         self.model = model
-        let source = model.defaultSource
-        _source = State(initialValue: source)
-        _target = State(initialValue: model.catalog?
-            .availableTargets(source: source).first?.code)
+        if skipLanguagePick, let target = model.targetLanguage {
+            _source = State(initialValue: model.sourceLanguage)
+            _target = State(initialValue: target)
+            _page = State(initialValue: .why)
+        } else {
+            let source = model.defaultSource
+            _source = State(initialValue: source)
+            _target = State(initialValue: model.catalog?
+                .availableTargets(source: source).first?.code)
+        }
     }
 
     private var sources: [String] {

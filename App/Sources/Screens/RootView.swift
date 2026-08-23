@@ -25,8 +25,10 @@ struct RootView: View {
         .environment(\.locale, model.knownLocale)
         .sheet(isPresented: onboardingPresented) {
             // why: onboarding sets its own locale from the language being
-            // picked, so it re-renders as the user changes the pick.
-            OnboardingView(model: model)
+            // picked, so it re-renders as the user changes the pick. A box
+            // already on disk means this is a restart, not the first run —
+            // the pair is already made, so the story pages open directly.
+            OnboardingView(model: model, skipLanguagePick: model.targetLanguage != nil)
                 .interactiveDismissDisabled()
         }
         .fullScreenCover(isPresented: $model.sessionPresented) {

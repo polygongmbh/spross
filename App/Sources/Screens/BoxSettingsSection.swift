@@ -25,6 +25,8 @@ struct BoxSettingsSection: View {
                 Divider().overlay(Color.dlSeparator)
                 audioRow
                 Divider().overlay(Color.dlSeparator)
+                restartTutorialRow
+                Divider().overlay(Color.dlSeparator)
                 resetRow
             }
             .padding(DL.Space.l)
@@ -229,6 +231,22 @@ struct BoxSettingsSection: View {
                 }
             }
         )
+    }
+
+    /// Shows the onboarding pages again, the pair already made — nothing here
+    /// touches progress (`resetRow` is the destructive row).
+    private var restartTutorialRow: some View {
+        VStack(alignment: .leading, spacing: DL.Space.s) {
+            Button {
+                model.restartOnboarding()
+            } label: {
+                Text("settings.restartTutorial.button")
+                    .font(DL.Fonts.headline)
+            }
+            Text("settings.restartTutorial.hint")
+                .font(DL.Fonts.caption)
+                .foregroundStyle(Color.dlTextSecondary)
+        }
     }
 
     /// Fresh start with the CURRENT catalog content.
