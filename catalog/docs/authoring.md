@@ -74,6 +74,13 @@ it is the card finally saying what it means, and it mirrors, which the one-sided
 never does. Keep the merged language's private object only where the source really is
 unambiguous on its own and the others would sound wrong carrying one.
 
+**Check an authoring pass against the lint, not against a script you wrote for it.**
+`CatalogLintTest` owns the collision rules and is the only home they have:
+`./gradlew :kern:jvmTest --tests '*CatalogLintTest*'` is seconds of typing and the
+authority, where a hand-rolled sweep is a second implementation nothing keeps honest.
+The full gate stays `./gradlew :kern:jvmTest -Psweeps` after a content edit;
+this is the narrow one to run while still authoring.
+
 **Pick the word a speaker says, never the word that sits furthest from another card.**
 Two realizations one edit apart are safe by construction:
 a typed form that is exactly some card's answer grades `Match.OtherWord`

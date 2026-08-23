@@ -44,14 +44,6 @@ if printf '%s\n' "$STAGED" | grep -E '^catalog/' | grep -qv '^catalog/audio/'; t
     echo "       Run 'python3 scripts/catalog-format.py --fix', then stage it again." >&2
     exit 1
   fi
-  # Two concepts prompting one form is the rule an authoring pass trips most and hears
-  # about last: CatalogLintTest owns it, but it needs a JVM and a minute, so nine
-  # consecutive authoring agents hand-rolled their own sweep instead of running it.
-  # This is the same three rules, reading the same allowlists out of the Kotlin.
-  if ! python3 scripts/catalog_lint.py --check; then
-    echo "       CatalogLintTest is the authority; this catches it before the gate does." >&2
-    exit 1
-  fi
 fi
 
 # The card faces are one composition on two phones, and nothing but a screenshot of both
