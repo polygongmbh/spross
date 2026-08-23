@@ -8,7 +8,14 @@
  { "slug": "maybe", "kind": "adjective", "emoji": "🤷" },
  { "slug": "sometimes", "kind": "adjective" },
  { "slug": "often", "kind": "adjective" },
+ { "slug": "very", "kind": "adjective" },
+ { "slug": "too", "kind": "adjective" },
+ { "slug": "enough", "kind": "adjective" },
+ { "slug": "all", "kind": "adjective" },
+ { "slug": "some", "kind": "adjective" },
+ { "slug": "every", "kind": "adjective" },
  { "slug": "more-or-less", "kind": "phrase", "emoji": "⚖️", "components": ["more", "less"] },
  { "slug": "i-am-always-there", "kind": "phrase", "emoji": "🙋", "components": ["always"] },
- { "slug": "hang-it-higher", "kind": "phrase", "emoji": "⬆️", "components": ["higher"] }
+ { "slug": "hang-it-higher", "kind": "phrase", "emoji": "⬆️", "components": ["higher"] },
+ { "slug": "is-that-enough", "kind": "phrase", "components": ["enough"] }
 ]

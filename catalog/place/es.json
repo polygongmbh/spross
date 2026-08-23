@@ -1,0 +1,31 @@
+{
+ "title": "Lugar y dirección",
+ "subtitle": "La respuesta a la pregunta «¿dónde?».",
+ "words": {
+  "here": { "text": "aquí", "variants": ["acá"] },
+  "there": { "text": "ahí" },
+  "left": { "text": "a la izquierda", "variants": ["izquierda"] },
+  "right": { "text": "a la derecha", "variants": ["derecha"] },
+  "up": { "text": "arriba" },
+  "down": { "text": "abajo" },
+  "inside": { "text": "dentro", "variants": ["adentro"] },
+  "outdoors": { "text": "fuera", "variants": ["afuera"] },
+  "in": { "text": "en", "notes": { "de": "en deckt in und auf ab: en la caja, en la mesa." } },
+  "on": {
+   "text": "sobre",
+   "variants": ["encima de"],
+   "notes": { "de": "im Alltag steht meist en: el libro está en la mesa · sobre betont obendrauf." }
+  },
+  "under": { "text": "debajo de", "variants": ["bajo"] },
+  "behind": { "text": "detrás de" },
+  "between": { "text": "entre" },
+  "near": { "text": "cerca" },
+  "far": { "text": "lejos" },
+  "place": { "text": "lugar", "synonyms": ["sitio"], "grammar": { "gender": "el" } },
+  "on-the-table": { "text": "sobre la mesa" },
+  "under-the-bed": { "text": "debajo de la cama" },
+  "in-the-city": { "text": "en la ciudad" },
+  "between-us": { "text": "entre nosotros" },
+  "is-it-far": { "text": "¿Está lejos?" }
+ }
+}

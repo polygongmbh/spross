@@ -32,7 +32,6 @@
   "letter": { "text": "лист" },
   "knock-on-door": { "text": "стукати у двері" },
   "enter": { "text": "заходити" },
-  "inside": { "text": "всередині" },
   "house": {
    "text": "будинок",
    "synonyms": ["дім"],

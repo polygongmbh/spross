@@ -15,6 +15,8 @@
   "without": { "text": "ohne" },
   "again": { "text": "wieder" },
   "still": { "text": "noch" },
+  "not": { "text": "nicht" },
+  "only": { "text": "nur" },
   "if-you-want": { "text": "Wenn Sie wollen.", "variants": ["Wenn du willst."] }
  }
 }

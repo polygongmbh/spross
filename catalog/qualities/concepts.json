@@ -17,5 +17,9 @@
  { "slug": "clean-adj", "kind": "adjective" },
  { "slug": "sharp", "kind": "adjective" },
  { "slug": "available", "kind": "adjective" },
+ { "slug": "other", "kind": "adjective" },
+ { "slug": "hot", "kind": "adjective", "emoji": "🥵" },
+ { "slug": "empty", "kind": "adjective", "emoji": "🪫" },
+ { "slug": "full", "kind": "adjective", "emoji": "🔋" },
  { "slug": "a-lot-of-water", "kind": "phrase", "emoji": "💦", "components": ["much"] }
 ]

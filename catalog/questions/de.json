@@ -5,8 +5,6 @@
   "where": { "text": "wo" },
   "who": { "text": "wer" },
   "what": { "text": "was" },
-  "here": { "text": "hier" },
-  "there": { "text": "dort" },
   "this": { "text": "das hier" },
   "that": { "text": "das dort", "variants": ["das da"] },
   "when": { "text": "wann" },

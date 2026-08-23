@@ -15,6 +15,11 @@
   "without": { "text": "sin" },
   "again": { "text": "otra vez", "variants": ["de nuevo"] },
   "still": { "text": "todavía", "variants": ["aún"] },
+  "not": {
+   "text": "no",
+   "notes": { "de": "no steht vor dem Verb: no hablo español · dasselbe Wort heißt auch nein." }
+  },
+  "only": { "text": "solo", "variants": ["sólo", "solamente"] },
   "if-you-want": { "text": "Si quiere.", "variants": ["Si quieres."] }
  }
 }

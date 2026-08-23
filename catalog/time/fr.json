@@ -37,11 +37,14 @@
   "morning": { "text": "matin", "grammar": { "gender": "le" } },
   "evening": { "text": "soir", "grammar": { "gender": "le" } },
   "night": { "text": "nuit", "grammar": { "gender": "la" } },
+  "first": { "text": "premier", "variants": ["première"] },
+  "next": { "text": "prochain", "variants": ["prochaine", "suivant"] },
   "i-have-no-time": { "text": "Je n'ai pas le temps." },
   "two-in-the-afternoon": { "text": "deux heures de l'après-midi" },
   "nine-am-sharp": {
    "text": "neuf heures du matin pile",
    "variants": ["neuf heures pile du matin", "neuf heures précises du matin"]
-  }
+  },
+  "next-week": { "text": "la semaine prochaine" }
  }
 }

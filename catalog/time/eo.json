@@ -25,6 +25,8 @@
   "morning": { "text": "mateno" },
   "evening": { "text": "vespero" },
   "night": { "text": "nokto" },
+  "first": { "text": "unua" },
+  "next": { "text": "sekva", "variants": ["venonta"] },
   "i-have-no-time": { "text": "Mi ne havas tempon." },
   "two-in-the-afternoon": {
    "text": "la dua posttagmeze",
@@ -34,6 +36,7 @@
   "nine-am-sharp": {
    "text": "precize je la naŭa matene",
    "variants": ["ĝuste je la naŭa matene", "je la naŭa matene precize"]
-  }
+  },
+  "next-week": { "text": "la sekva semajno", "variants": ["venontan semajnon"] }
  }
 }

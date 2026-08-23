@@ -72,6 +72,21 @@
     "de": "Swahili sagt es als Verb: inapatikana = es ist zu haben · haipatikani = das gibt es nicht."
    }
   },
+  "other": {
+   "text": "-ingine",
+   "variants": ["nyingine", "mwingine", "wengine", "kingine", "vingine", "mengine", "mingine"],
+   "notes": { "de": "die Vorsilbe richtet sich nach der Nomenklasse: mtu mwingine, kitu kingine." }
+  },
+  "hot": {
+   "text": "moto",
+   "notes": { "de": "unveränderlich · dasselbe Wort heißt auch Feuer: Kuna moto." }
+  },
+  "empty": { "text": "tupu", "notes": { "de": "unveränderlich: chumba tupu, friji tupu." } },
+  "full": {
+   "text": "kujaa",
+   "variants": ["imejaa", "limejaa", "umejaa"],
+   "notes": { "de": "Swahili sagt es als Verb: basi limejaa = der Bus ist voll." }
+  },
   "a-lot-of-water": { "text": "maji mengi" }
  }
 }

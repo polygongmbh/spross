@@ -33,11 +33,14 @@
   "morning": { "text": "mattina", "variants": ["mattino"], "grammar": { "gender": "la" } },
   "evening": { "text": "sera", "grammar": { "gender": "la" } },
   "night": { "text": "notte", "grammar": { "gender": "la" } },
+  "first": { "text": "primo", "variants": ["prima"] },
+  "next": { "text": "prossimo", "variants": ["prossima", "seguente"] },
   "i-have-no-time": { "text": "Non ho tempo." },
   "two-in-the-afternoon": { "text": "le due del pomeriggio" },
   "nine-am-sharp": {
    "text": "alle nove in punto del mattino",
    "variants": ["alle nove del mattino in punto", "alle nove in punto di mattina"]
-  }
+  },
+  "next-week": { "text": "prossima settimana", "variants": ["la prossima settimana"] }
  }
 }

@@ -24,6 +24,10 @@
   "clean-adj": { "text": "чистий", "variants": ["чисто"] },
   "sharp": { "text": "гострий", "variants": ["гостро"] },
   "available": { "text": "доступний", "synonyms": ["наявний"] },
+  "other": { "text": "інший", "variants": ["інша", "інше", "інші"] },
+  "hot": { "text": "гарячий", "variants": ["гаряча", "гаряче"] },
+  "empty": { "text": "порожній", "variants": ["порожня", "порожньо"] },
+  "full": { "text": "повний", "variants": ["повна", "повно"] },
   "a-lot-of-water": { "text": "багато води" }
  }
 }

@@ -60,7 +60,6 @@
    "variants": ["enveni"],
    "notes": { "de": "Wer jemanden hereinbittet, sagt Eniru! oder höflicher Bonvolu eniri!" }
   },
-  "inside": { "text": "interne", "variants": ["ene"] },
   "house": { "text": "domo" },
   "live": {
    "text": "loĝi",

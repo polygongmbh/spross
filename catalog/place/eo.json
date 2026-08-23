@@ -1,0 +1,39 @@
+{
+ "title": "Loko kaj direkto",
+ "subtitle": "La respondo al la demando „kie?“.",
+ "words": {
+  "here": {
+   "text": "ĉi tie",
+   "variants": ["tie ĉi"],
+   "notes": {
+    "de": "ĉi rückt heran: tie → ĉi tie, tio → ĉi tio · die Stellung ĉi tie oder tie ĉi ist frei."
+   }
+  },
+  "there": { "text": "tie" },
+  "left": {
+   "text": "maldekstre",
+   "variants": ["maldekstren"],
+   "notes": {
+    "de": "maldekstre sagt wo, maldekstren wohin — das -n zeigt die Richtung an: Turnu maldekstren."
+   }
+  },
+  "right": { "text": "dekstre", "variants": ["dekstren"] },
+  "up": { "text": "supre" },
+  "down": { "text": "sube", "variants": ["malsupre"] },
+  "inside": { "text": "interne", "variants": ["ene"] },
+  "outdoors": { "text": "ekstere", "variants": ["eksterdome"] },
+  "in": { "text": "en" },
+  "on": { "text": "sur" },
+  "under": { "text": "sub" },
+  "behind": { "text": "malantaŭ" },
+  "between": { "text": "inter" },
+  "near": { "text": "proksime", "variants": ["proksima"] },
+  "far": { "text": "malproksime", "variants": ["fore", "malproksima"] },
+  "place": { "text": "loko" },
+  "on-the-table": { "text": "sur la tablo" },
+  "under-the-bed": { "text": "sub la lito" },
+  "in-the-city": { "text": "en la urbo" },
+  "between-us": { "text": "inter ni" },
+  "is-it-far": { "text": "Ĉu ĝi malproksimas?", "variants": ["Ĉu estas malproksime?"] }
+ }
+}

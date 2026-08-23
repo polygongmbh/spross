@@ -51,6 +51,10 @@
    "notes": { "de": "nur für Klingen; scharf im Geschmack ist picante." }
   },
   "available": { "text": "disponible" },
+  "other": { "text": "otro", "variants": ["otra", "otros", "otras"] },
+  "hot": { "text": "caliente" },
+  "empty": { "text": "vacío", "variants": ["vacía"] },
+  "full": { "text": "lleno", "variants": ["llena"] },
   "a-lot-of-water": { "text": "mucha agua", "notes": { "de": "trotz el agua feminin: mucha agua." } }
  }
 }

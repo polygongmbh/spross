@@ -11,8 +11,15 @@
   "maybe": { "text": "peut-être" },
   "sometimes": { "text": "parfois", "variants": ["quelquefois"] },
   "often": { "text": "souvent" },
+  "very": { "text": "très" },
+  "too": { "text": "trop" },
+  "enough": { "text": "assez" },
+  "all": { "text": "tous", "variants": ["toutes", "tout"] },
+  "some": { "text": "quelques" },
+  "every": { "text": "chaque" },
   "more-or-less": { "text": "plus ou moins" },
   "i-am-always-there": { "text": "Je suis toujours là." },
-  "hang-it-higher": { "text": "Accroche-le plus haut." }
+  "hang-it-higher": { "text": "Accroche-le plus haut." },
+  "is-that-enough": { "text": "C'est assez ?" }
  }
 }

@@ -10,15 +10,6 @@
   "snow": { "text": "neĝo" },
   "wind": { "text": "vento" },
   "river": { "text": "rivero" },
-  "outdoors": { "text": "ekstere", "variants": ["eksterdome"] },
-  "left": {
-   "text": "maldekstre",
-   "variants": ["maldekstren"],
-   "notes": {
-    "de": "maldekstre sagt wo, maldekstren wohin — das -n zeigt die Richtung an: Turnu maldekstren."
-   }
-  },
-  "right": { "text": "dekstre", "variants": ["dekstren"] },
   "go-for-walk": { "text": "promeni", "variants": ["fari promenon"] },
   "sunbathe": { "text": "sunbani sin", "variants": ["sin sunbani", "sunumi sin"] },
   "plant-flowers": { "text": "planti florojn" },

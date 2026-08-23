@@ -56,6 +56,10 @@
    "notes": { "de": "nur für Klingen; scharf im Geschmack ist piccante." }
   },
   "available": { "text": "disponibile" },
+  "other": { "text": "altro", "variants": ["altra", "altri", "altre"] },
+  "hot": { "text": "caldo", "variants": ["calda"] },
+  "empty": { "text": "vuoto", "variants": ["vuota"] },
+  "full": { "text": "pieno", "variants": ["piena"] },
   "a-lot-of-water": { "text": "molta acqua" }
  }
 }

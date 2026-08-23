@@ -100,7 +100,6 @@
    "text": "entrare",
    "notes": { "de": "Wer jemanden hereinbittet, sagt Entra! (du) oder Prego, si accomodi! (Sie)." }
   },
-  "inside": { "text": "dentro", "variants": ["all'interno"] },
   "house": { "text": "casa", "grammar": { "gender": "la" } },
   "live": {
    "text": "abitare",

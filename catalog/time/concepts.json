@@ -18,6 +18,8 @@
  { "slug": "morning", "kind": "noun", "emoji": "🌅" },
  { "slug": "evening", "kind": "noun", "emoji": "🌆" },
  { "slug": "night", "kind": "noun", "emoji": "🌙" },
+ { "slug": "first", "kind": "adjective" },
+ { "slug": "next", "kind": "adjective" },
  { "slug": "i-have-no-time", "kind": "phrase", "emoji": "⏰", "components": ["time"] },
  {
   "slug": "two-in-the-afternoon",
@@ -25,5 +27,6 @@
   "emoji": "🕑",
   "components": ["hour", "afternoon"]
  },
- { "slug": "nine-am-sharp", "kind": "phrase", "emoji": "🕘", "components": ["hour", "morning"] }
+ { "slug": "nine-am-sharp", "kind": "phrase", "emoji": "🕘", "components": ["hour", "morning"] },
+ { "slug": "next-week", "kind": "phrase", "emoji": "🗓️", "components": ["next", "week"] }
 ]

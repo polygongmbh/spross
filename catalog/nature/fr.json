@@ -21,9 +21,6 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "la rivière ist der Fluss allgemein; ein Fluss, der ins Meer mündet, heißt le fleuve." }
   },
-  "outdoors": { "text": "dehors", "variants": ["à l'extérieur"] },
-  "left": { "text": "à gauche", "variants": ["gauche"] },
-  "right": { "text": "à droite", "variants": ["droite"] },
   "go-for-walk": { "text": "se promener", "synonyms": ["faire une promenade"], "variants": ["se balader"] },
   "jog": { "text": "faire du jogging", "variants": ["aller courir"] },
   "sunbathe": { "text": "prendre le soleil", "variants": ["bronzer", "se faire bronzer"] },

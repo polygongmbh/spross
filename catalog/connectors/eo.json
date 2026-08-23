@@ -26,6 +26,11 @@
   "without": { "text": "sen" },
   "again": { "text": "denove", "variants": ["refoje", "ree"] },
   "still": { "text": "ankoraŭ", "notes": { "de": "ankoraŭ (noch) und ankaŭ (auch) nicht verwechseln." } },
+  "not": {
+   "text": "ne",
+   "notes": { "de": "ne steht direkt vor dem verneinten Wort: Mi ne venas · allein heißt Ne auch nein." }
+  },
+  "only": { "text": "nur" },
   "if-you-want": { "text": "Se vi volas." }
  }
 }

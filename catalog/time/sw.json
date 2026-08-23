@@ -36,6 +36,16 @@
   "morning": { "text": "asubuhi", "grammar": { "plural": "=" } },
   "evening": { "text": "jioni", "grammar": { "plural": "=" } },
   "night": { "text": "usiku", "grammar": { "plural": "=" } },
+  "first": {
+   "text": "kwanza",
+   "variants": ["wa kwanza", "ya kwanza", "cha kwanza"],
+   "notes": { "de": "als Ordnungszahl mit -a: mtu wa kwanza, siku ya kwanza · allein heißt kwanza zuerst." }
+  },
+  "next": {
+   "text": "-jayo",
+   "variants": ["ijayo", "ujao", "yajayo", "zijazo", "kijacho"],
+   "notes": { "de": "die Vorsilbe richtet sich nach der Nomenklasse: wiki ijayo, mwezi ujao." }
+  },
   "i-have-no-time": { "text": "Sina muda." },
   "two-in-the-afternoon": {
    "text": "saa nane mchana",
@@ -46,6 +56,7 @@
    "notes": {
     "de": "Die Saa-Zählung liegt sechs Stunden versetzt: 9 Uhr morgens ist die dritte Stunde des Tages."
    }
-  }
+  },
+  "next-week": { "text": "wiki ijayo" }
  }
 }

@@ -1,0 +1,38 @@
+{
+ "title": "Lieu et direction",
+ "subtitle": "La réponse à la question « où ? ».",
+ "words": {
+  "here": { "text": "ici" },
+  "there": { "text": "là", "variants": ["là-bas"] },
+  "left": { "text": "à gauche", "variants": ["gauche"] },
+  "right": { "text": "à droite", "variants": ["droite"] },
+  "up": { "text": "en haut" },
+  "down": { "text": "en bas" },
+  "inside": {
+   "text": "dedans",
+   "variants": ["à l'intérieur"],
+   "notes": {
+    "de": "dedans steht für sich (Il est dedans); vor einem Nomen sagt man dans oder à l'intérieur de."
+   }
+  },
+  "outdoors": { "text": "dehors", "variants": ["à l'extérieur"] },
+  "in": { "text": "dans" },
+  "on": { "text": "sur" },
+  "under": { "text": "sous" },
+  "behind": { "text": "derrière" },
+  "between": { "text": "entre" },
+  "near": { "text": "près" },
+  "far": { "text": "loin" },
+  "place": {
+   "text": "endroit",
+   "variants": ["l'endroit"],
+   "synonyms": ["lieu"],
+   "grammar": { "gender": "l'" }
+  },
+  "on-the-table": { "text": "sur la table" },
+  "under-the-bed": { "text": "sous le lit" },
+  "in-the-city": { "text": "dans la ville" },
+  "between-us": { "text": "entre nous" },
+  "is-it-far": { "text": "C'est loin ?" }
+ }
+}

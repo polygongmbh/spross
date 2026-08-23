@@ -22,6 +22,16 @@
    "text": "bado",
    "notes": { "de": "allein als Antwort heißt bado „noch nicht“: Umemaliza? — Bado." }
   },
+  "not": {
+   "text": "si",
+   "notes": {
+    "de": "si verneint Nomen und Adjektive: Hii si chai · Verben verneint eine Vorsilbe: sijui, hataki."
+   }
+  },
+  "only": {
+   "text": "tu",
+   "notes": { "de": "tu steht hinter dem Wort, das es einschränkt: mmoja tu, leo tu." }
+  },
   "if-you-want": { "text": "Kama unataka." }
  }
 }

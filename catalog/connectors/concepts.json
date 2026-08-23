@@ -12,5 +12,7 @@
  { "slug": "without", "kind": "adjective" },
  { "slug": "again", "kind": "adjective" },
  { "slug": "still", "kind": "adjective" },
+ { "slug": "not", "kind": "adjective" },
+ { "slug": "only", "kind": "adjective" },
  { "slug": "if-you-want", "kind": "phrase", "components": ["if"] }
 ]

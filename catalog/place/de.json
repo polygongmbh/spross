@@ -1,0 +1,27 @@
+{
+ "title": "Ort und Richtung",
+ "subtitle": "Die Antwort auf die Frage „wo?“.",
+ "words": {
+  "here": { "text": "hier" },
+  "there": { "text": "dort" },
+  "left": { "text": "links" },
+  "right": { "text": "rechts" },
+  "up": { "text": "oben" },
+  "down": { "text": "unten" },
+  "inside": { "text": "drinnen" },
+  "outdoors": { "text": "draußen" },
+  "in": { "text": "in" },
+  "on": { "text": "auf" },
+  "under": { "text": "unter" },
+  "behind": { "text": "hinter" },
+  "between": { "text": "zwischen" },
+  "near": { "text": "nah", "variants": ["nahe", "in der Nähe"] },
+  "far": { "text": "weit" },
+  "place": { "text": "Ort", "grammar": { "gender": "der", "plural": "-e" } },
+  "on-the-table": { "text": "auf dem Tisch" },
+  "under-the-bed": { "text": "unter dem Bett" },
+  "in-the-city": { "text": "in der Stadt" },
+  "between-us": { "text": "zwischen uns" },
+  "is-it-far": { "text": "Ist es weit?" }
+ }
+}

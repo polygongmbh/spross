@@ -29,8 +29,11 @@
    }
   },
   "night": { "text": "noche", "grammar": { "gender": "la" } },
+  "first": { "text": "primero", "variants": ["primera", "primer"] },
+  "next": { "text": "próximo", "variants": ["próxima", "siguiente"] },
   "i-have-no-time": { "text": "No tengo tiempo." },
   "two-in-the-afternoon": { "text": "las dos de la tarde" },
-  "nine-am-sharp": { "text": "a las nueve de la mañana en punto" }
+  "nine-am-sharp": { "text": "a las nueve de la mañana en punto" },
+  "next-week": { "text": "la próxima semana" }
  }
 }

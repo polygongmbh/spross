@@ -36,7 +36,6 @@
   "letter": { "text": "Brief", "grammar": { "gender": "der", "plural": "-e" } },
   "knock-on-door": { "text": "an die Tür klopfen" },
   "enter": { "text": "hereinkommen", "variants": ["reinkommen"] },
-  "inside": { "text": "drinnen" },
   "house": { "text": "Haus", "grammar": { "gender": "das", "plural": "Häuser" } },
   "live": { "text": "wohnen" },
   "do-you-have-the-keys": { "text": "Hast du die Schlüssel?" },

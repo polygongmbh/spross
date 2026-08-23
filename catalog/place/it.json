@@ -1,0 +1,44 @@
+{
+ "title": "Luogo e direzione",
+ "subtitle": "La risposta alla domanda «dove?».",
+ "words": {
+  "here": { "text": "qui", "variants": ["qua"] },
+  "there": { "text": "lì", "variants": ["là"] },
+  "left": { "text": "a sinistra", "variants": ["sinistra"] },
+  "right": { "text": "a destra", "variants": ["destra"] },
+  "up": {
+   "text": "in alto",
+   "notes": { "de": "su heißt hinauf und ist die Bewegung: Vieni su! · der Ort ist in alto." }
+  },
+  "down": { "text": "in basso", "variants": ["giù"] },
+  "inside": { "text": "dentro", "variants": ["all'interno"] },
+  "outdoors": { "text": "fuori", "variants": ["all'aperto"] },
+  "in": { "text": "in" },
+  "on": {
+   "text": "sopra",
+   "variants": ["su"],
+   "notes": { "de": "su verschmilzt mit dem Artikel: sul tavolo." }
+  },
+  "under": { "text": "sotto" },
+  "behind": { "text": "dietro" },
+  "between": {
+   "text": "tra",
+   "variants": ["fra"],
+   "notes": {
+    "de": "tra und fra sind gleichbedeutend; man wählt nach dem Klang: fra tre giorni, tra fratelli."
+   }
+  },
+  "near": {
+   "text": "vicino",
+   "variants": ["vicina"],
+   "notes": { "de": "il vicino ist auch der Nachbar · als Präposition vicino a: vicino alla porta." }
+  },
+  "far": { "text": "lontano", "variants": ["lontana"] },
+  "place": { "text": "posto", "synonyms": ["luogo"], "grammar": { "gender": "il" } },
+  "on-the-table": { "text": "sopra il tavolo", "variants": ["sul tavolo"] },
+  "under-the-bed": { "text": "sotto il letto" },
+  "in-the-city": { "text": "in città" },
+  "between-us": { "text": "tra noi" },
+  "is-it-far": { "text": "È lontano?" }
+ }
+}

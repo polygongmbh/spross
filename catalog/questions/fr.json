@@ -9,8 +9,6 @@
    "synonyms": ["que"],
    "notes": { "de": "quoi steht allein oder nach einer Präposition · vor dem Verb steht que: Que fais-tu ?" }
   },
-  "here": { "text": "ici" },
-  "there": { "text": "là", "variants": ["là-bas"] },
   "this": { "text": "ceci" },
   "that": { "text": "cela", "variants": ["ça"] },
   "when": { "text": "quand" },

@@ -14,11 +14,22 @@
   "maybe": { "text": "eble" },
   "sometimes": { "text": "kelkfoje", "variants": ["iafoje"] },
   "often": { "text": "ofte" },
+  "very": { "text": "tre" },
+  "too": { "text": "tro" },
+  "enough": { "text": "sufiĉe" },
+  "all": {
+   "text": "ĉiuj",
+   "variants": ["ĉio"],
+   "notes": { "de": "ĉiuj sind alle Personen oder Dinge, ĉio ist alles." }
+  },
+  "some": { "text": "kelkaj" },
+  "every": { "text": "ĉiu" },
   "more-or-less": { "text": "pli-malpli", "variants": ["pli aŭ malpli", "pli malpli"] },
   "i-am-always-there": { "text": "Mi ĉiam estas tie." },
   "hang-it-higher": {
    "text": "Pendigu ĝin pli alte.",
    "notes": { "de": "pendi hängt selbst · etwas aufhängen ist pendigi." }
-  }
+  },
+  "is-that-enough": { "text": "Ĉu tio sufiĉas?" }
  }
 }

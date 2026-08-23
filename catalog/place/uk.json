@@ -1,0 +1,31 @@
+{
+ "title": "Місце і напрямок",
+ "subtitle": "Відповідь на питання «де?».",
+ "words": {
+  "here": { "text": "тут" },
+  "there": { "text": "там" },
+  "left": { "text": "ліворуч" },
+  "right": { "text": "праворуч" },
+  "up": { "text": "вгорі", "variants": ["нагорі", "вгору"] },
+  "down": { "text": "внизу", "variants": ["вниз"] },
+  "inside": { "text": "всередині" },
+  "outdoors": { "text": "надворі" },
+  "in": {
+   "text": "в",
+   "variants": ["у"],
+   "notes": { "de": "в und у wechseln nach dem Klang: у школі, в Одесі." }
+  },
+  "on": { "text": "на" },
+  "under": { "text": "під" },
+  "behind": { "text": "за", "variants": ["позаду"] },
+  "between": { "text": "між" },
+  "near": { "text": "близько", "variants": ["поруч"] },
+  "far": { "text": "далеко" },
+  "place": { "text": "місце", "grammar": { "plural": "місця" } },
+  "on-the-table": { "text": "на столі" },
+  "under-the-bed": { "text": "під ліжком" },
+  "in-the-city": { "text": "у місті" },
+  "between-us": { "text": "між нами" },
+  "is-it-far": { "text": "Це далеко?" }
+ }
+}

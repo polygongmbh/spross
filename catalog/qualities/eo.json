@@ -39,6 +39,10 @@
    "text": "havebla",
    "notes": { "de": "havebla = zu haben · disponebla = verfügbar, zur Verfügung stehend." }
   },
+  "other": { "text": "alia" },
+  "hot": { "text": "varmega", "notes": { "de": "varma ist warm, varmega heiß." } },
+  "empty": { "text": "malplena" },
+  "full": { "text": "plena" },
   "a-lot-of-water": { "text": "multe da akvo" }
  }
 }

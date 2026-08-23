@@ -32,6 +32,7 @@
    "uk": "Будівельні блоки"
   },
   "areas": [
+   { "area": "place", "emoji": "📍" },
    { "area": "verbs", "emoji": "🏃" },
    { "area": "qualities", "emoji": "📏" },
    { "area": "degree", "emoji": "📊" },

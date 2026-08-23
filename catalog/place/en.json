@@ -1,0 +1,27 @@
+{
+ "title": "Place and direction",
+ "subtitle": "The answer to the question “where?”.",
+ "words": {
+  "here": { "text": "here" },
+  "there": { "text": "there" },
+  "left": { "text": "left" },
+  "right": { "text": "right" },
+  "up": { "text": "up" },
+  "down": { "text": "down" },
+  "inside": { "text": "inside" },
+  "outdoors": { "text": "outside" },
+  "in": { "text": "in" },
+  "on": { "text": "on" },
+  "under": { "text": "under" },
+  "behind": { "text": "behind" },
+  "between": { "text": "between" },
+  "near": { "text": "near", "variants": ["nearby"] },
+  "far": { "text": "far" },
+  "place": { "text": "place" },
+  "on-the-table": { "text": "on the table" },
+  "under-the-bed": { "text": "under the bed" },
+  "in-the-city": { "text": "in the city" },
+  "between-us": { "text": "between us" },
+  "is-it-far": { "text": "Is it far?" }
+ }
+}

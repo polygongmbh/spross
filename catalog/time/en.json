@@ -21,8 +21,11 @@
   "morning": { "text": "morning" },
   "evening": { "text": "evening" },
   "night": { "text": "night" },
+  "first": { "text": "first" },
+  "next": { "text": "next" },
   "i-have-no-time": { "text": "I have no time." },
   "two-in-the-afternoon": { "text": "two in the afternoon" },
-  "nine-am-sharp": { "text": "nine a.m. sharp" }
+  "nine-am-sharp": { "text": "nine a.m. sharp" },
+  "next-week": { "text": "next week" }
  }
 }

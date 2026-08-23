@@ -80,7 +80,6 @@
    "text": "entrar",
    "notes": { "de": "Wer jemanden hereinbittet, sagt ¡Pasa! (du) beziehungsweise ¡Pase! (Sie)." }
   },
-  "inside": { "text": "dentro", "variants": ["adentro"] },
   "house": { "text": "casa", "grammar": { "gender": "la" } },
   "live": { "text": "vivir", "notes": { "de": "vivir = wohnen und leben." } },
   "do-you-have-the-keys": { "text": "¿Tienes las llaves?", "variants": ["¿Llevas las llaves?"] },

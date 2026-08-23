@@ -69,13 +69,6 @@
    "text": "entrer",
    "notes": { "de": "Wer jemanden hereinbittet, sagt Entre ! (du) beziehungsweise Entrez ! (Sie)." }
   },
-  "inside": {
-   "text": "dedans",
-   "variants": ["à l'intérieur"],
-   "notes": {
-    "de": "dedans steht für sich (Il est dedans); vor einem Nomen sagt man dans oder à l'intérieur de."
-   }
-  },
   "house": { "text": "maison", "grammar": { "gender": "la" } },
   "live": {
    "text": "habiter",

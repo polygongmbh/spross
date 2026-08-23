@@ -8,14 +8,6 @@
    "notes": { "de": "kiu heißt auch „welcher“ — Esperanto trennt beides nicht: Kiu libro? — Welches Buch?" }
   },
   "what": { "text": "kio" },
-  "here": {
-   "text": "ĉi tie",
-   "variants": ["tie ĉi"],
-   "notes": {
-    "de": "ĉi rückt heran: tie → ĉi tie, tio → ĉi tio · die Stellung ĉi tie oder tie ĉi ist frei."
-   }
-  },
-  "there": { "text": "tie" },
   "this": { "text": "ĉi tio", "variants": ["tio ĉi"] },
   "that": { "text": "tio" },
   "when": { "text": "kiam" },

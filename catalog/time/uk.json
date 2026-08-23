@@ -24,6 +24,8 @@
   "morning": { "text": "ранок", "grammar": { "plural": "ранки" } },
   "evening": { "text": "вечір", "grammar": { "plural": "вечори" } },
   "night": { "text": "ніч", "grammar": { "plural": "ночі" } },
+  "first": { "text": "перший", "variants": ["перша", "перше"] },
+  "next": { "text": "наступний", "variants": ["наступна", "наступне"] },
   "i-have-no-time": { "text": "У мене немає часу." },
   "two-in-the-afternoon": { "text": "друга дня" },
   "nine-am-sharp": {
@@ -31,6 +33,7 @@
    "notes": {
     "de": "«о» + Lokativ sagt, WANN etwas passiert; die bloße Uhrzeit steht im Nominativ (дев'ята ранку)."
    }
-  }
+  },
+  "next-week": { "text": "наступного тижня" }
  }
 }

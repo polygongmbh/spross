@@ -67,6 +67,10 @@
    "notes": { "de": "nur für Klingen; scharf im Geschmack ist épicé." }
   },
   "available": { "text": "disponible" },
+  "other": { "text": "autre", "variants": ["autres"] },
+  "hot": { "text": "chaud", "variants": ["chaude"] },
+  "empty": { "text": "vide" },
+  "full": { "text": "plein", "variants": ["pleine"] },
   "a-lot-of-water": { "text": "beaucoup d'eau" }
  }
 }

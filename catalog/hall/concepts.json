@@ -27,7 +27,6 @@
  { "slug": "letter", "kind": "noun", "emoji": "📨" },
  { "slug": "knock-on-door", "kind": "verb", "emoji": "🚪" },
  { "slug": "enter", "kind": "verb", "emoji": "➡️" },
- { "slug": "inside", "kind": "adjective", "emoji": "🏠" },
  { "slug": "house", "kind": "noun", "emoji": "🏡" },
  { "slug": "live", "kind": "verb", "emoji": "🏘️" },
  { "slug": "lock", "kind": "verb", "emoji": "🔒" },

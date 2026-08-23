@@ -1,0 +1,37 @@
+{
+ "title": "Mahali na mwelekeo",
+ "subtitle": "Jibu la swali „wapi?“.",
+ "words": {
+  "here": { "text": "hapa" },
+  "there": { "text": "pale" },
+  "left": { "text": "kushoto" },
+  "right": { "text": "kulia" },
+  "up": { "text": "juu" },
+  "down": { "text": "chini" },
+  "inside": { "text": "ndani" },
+  "outdoors": { "text": "nje" },
+  "in": {
+   "text": "katika",
+   "notes": {
+    "de": "im Alltag hängt man stattdessen -ni an: nyumbani, mezani · katika steht vor Namen und Demonstrativa: katika mji huu."
+   }
+  },
+  "on": { "text": "juu ya", "notes": { "de": "juu (oben) plus ya ergibt die Präposition: juu ya meza." } },
+  "under": { "text": "chini ya" },
+  "behind": { "text": "nyuma ya" },
+  "between": { "text": "kati ya" },
+  "near": {
+   "text": "karibu",
+   "notes": {
+    "de": "karibu heißt beim Empfang auch willkommen · als Präposition karibu na: karibu na nyumba."
+   }
+  },
+  "far": { "text": "mbali" },
+  "place": { "text": "mahali", "grammar": { "plural": "=" } },
+  "on-the-table": { "text": "juu ya meza" },
+  "under-the-bed": { "text": "chini ya kitanda" },
+  "in-the-city": { "text": "katika mji" },
+  "between-us": { "text": "kati yetu" },
+  "is-it-far": { "text": "Ni mbali?" }
+ }
+}

@@ -130,9 +130,12 @@ and a phrase gating on it travels with it —
 `components` is an unlock gate, not a claim about the sentence's words,
 so a phrase whose second component would stay behind simply drops it
 (`old-people` keeps `person`, lets go of `old`, and unlocks a little earlier).
-Orientation words (`left`, `right`) sit in `nature` for want of a better scene:
-they belong to no room and to no errand,
-and an area of two words would earn nothing.
+Orientation words (`left`, `right`) once sat in `nature` for want of a better scene,
+on the reasoning that an area of two words would earn nothing.
+The answer was never a scene but a shelf of sentence machinery:
+`place` asks „does it answer *where?*", which admits the orientation words,
+the deictics (`here`, `there`), the in/out pair and the spatial prepositions alike —
+a couple of dozen cards, and a test that can say no to a room or an errand.
 
 Moving one is mechanical and cheap — the slug is the card id and carries no area,
 so nobody's schedule notices — and `../../scripts/catalog-move.py` is what does it:

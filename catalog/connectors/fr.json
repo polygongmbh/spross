@@ -18,6 +18,13 @@
    "text": "encore",
    "notes": { "de": "zeitliches noch: Il est encore là · dafür geht auch toujours." }
   },
+  "not": {
+   "text": "pas",
+   "notes": {
+    "de": "im Satz umklammert ne … pas das Verb: Je ne fume pas · gesprochen fällt das ne oft weg."
+   }
+  },
+  "only": { "text": "seulement", "notes": { "de": "im Satz oft ne … que: Je n'ai que dix euros." } },
   "if-you-want": { "text": "Si vous voulez.", "variants": ["Si tu veux."] }
  }
 }

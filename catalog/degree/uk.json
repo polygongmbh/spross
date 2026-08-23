@@ -11,8 +11,15 @@
   "maybe": { "text": "можливо", "variants": ["може"] },
   "sometimes": { "text": "іноді" },
   "often": { "text": "часто" },
+  "very": { "text": "дуже" },
+  "too": { "text": "занадто" },
+  "enough": { "text": "достатньо" },
+  "all": { "text": "всі", "variants": ["усі"] },
+  "some": { "text": "деякі", "variants": ["кілька"] },
+  "every": { "text": "кожен", "variants": ["кожна", "кожне"] },
   "more-or-less": { "text": "більш-менш" },
   "i-am-always-there": { "text": "Я завжди там." },
-  "hang-it-higher": { "text": "Повісь це вище." }
+  "hang-it-higher": { "text": "Повісь це вище." },
+  "is-that-enough": { "text": "Цього достатньо?" }
  }
 }

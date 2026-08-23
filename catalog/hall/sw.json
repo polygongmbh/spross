@@ -29,7 +29,6 @@
   "letter": { "text": "barua", "grammar": { "plural": "=" } },
   "knock-on-door": { "text": "kugonga mlango" },
   "enter": { "text": "kuingia" },
-  "inside": { "text": "ndani" },
   "house": { "text": "nyumba", "grammar": { "plural": "=" } },
   "live": { "text": "kuishi" },
   "do-you-have-the-keys": { "text": "Unazo funguo?" },

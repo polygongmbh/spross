@@ -11,8 +11,36 @@
   "maybe": { "text": "labda" },
   "sometimes": { "text": "wakati mwingine" },
   "often": { "text": "mara nyingi" },
+  "very": { "text": "sana", "notes": { "de": "sana steht hinter dem Wort: nzuri sana, asante sana." } },
+  "too": {
+   "text": "mno",
+   "notes": { "de": "mno steht hinter dem Wort: ghali mno · sana hieße sehr, nicht zu." }
+  },
+  "enough": {
+   "text": "ya kutosha",
+   "variants": ["cha kutosha", "vya kutosha", "wa kutosha", "za kutosha"],
+   "notes": {
+    "de": "die Vorsilbe richtet sich nach der Nomenklasse: maji ya kutosha, chakula cha kutosha · Es reicht. heißt Inatosha."
+   }
+  },
+  "all": {
+   "text": "-ote",
+   "variants": ["wote", "yote", "zote", "chote", "vyote", "lote", "pote"],
+   "notes": { "de": "die Vorsilbe richtet sich nach der Nomenklasse: watu wote, maji yote, vitu vyote." }
+  },
+  "some": {
+   "text": "baadhi ya",
+   "notes": {
+    "de": "baadhi ya steht vor dem Nomen: baadhi ya watu · nach Zahlwortart sagt man kadhaa: siku kadhaa."
+   }
+  },
+  "every": {
+   "text": "kila",
+   "notes": { "de": "kila steht vor dem Nomen und bleibt unverändert: kila siku, kila mtu." }
+  },
   "more-or-less": { "text": "zaidi au pungufu" },
   "i-am-always-there": { "text": "Niko pale daima." },
-  "hang-it-higher": { "text": "Itundike juu zaidi." }
+  "hang-it-higher": { "text": "Itundike juu zaidi." },
+  "is-that-enough": { "text": "Inatosha?" }
  }
 }

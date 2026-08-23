@@ -11,8 +11,18 @@
   "maybe": { "text": "forse" },
   "sometimes": { "text": "a volte", "variants": ["qualche volta", "talvolta"] },
   "often": { "text": "spesso" },
+  "very": {
+   "text": "molto",
+   "notes": { "de": "vor Adjektiv und Verb unveränderlich: molto bene · als Menge heißt molto viel." }
+  },
+  "too": { "text": "troppo" },
+  "enough": { "text": "abbastanza" },
+  "all": { "text": "tutti", "variants": ["tutte", "tutto"] },
+  "some": { "text": "alcuni", "variants": ["alcune", "qualche"] },
+  "every": { "text": "ogni" },
   "more-or-less": { "text": "più o meno" },
   "i-am-always-there": { "text": "Ci sono sempre." },
-  "hang-it-higher": { "text": "Appendilo più in alto.", "variants": ["Appendilo più alto."] }
+  "hang-it-higher": { "text": "Appendilo più in alto.", "variants": ["Appendilo più alto."] },
+  "is-that-enough": { "text": "È abbastanza?" }
  }
 }

@@ -5,8 +5,6 @@
   "where": { "text": "dove" },
   "who": { "text": "chi" },
   "what": { "text": "che cosa", "variants": ["cosa", "che"] },
-  "here": { "text": "qui", "variants": ["qua"] },
-  "there": { "text": "lì", "variants": ["là"] },
   "this": { "text": "questo", "variants": ["questa"] },
   "that": { "text": "quello", "variants": ["quella"] },
   "when": { "text": "quando" },

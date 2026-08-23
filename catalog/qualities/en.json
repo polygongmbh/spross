@@ -26,6 +26,10 @@
   "clean-adj": { "text": "clean" },
   "sharp": { "text": "sharp" },
   "available": { "text": "available" },
+  "other": { "text": "other" },
+  "hot": { "text": "hot" },
+  "empty": { "text": "empty" },
+  "full": { "text": "full" },
   "a-lot-of-water": { "text": "a lot of water" }
  }
 }

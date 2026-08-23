@@ -408,6 +408,14 @@ class CatalogLintTest {
                 // alternative. The concept pair is allowlisted in
                 // [noConceptPairCollidesInTwoLanguages] as the reviewed family-wide merge.
                 "fr temps: nature/weather, time/time",
+                // Reviewed 2026-08-23: `molto` is both viel and sehr — Italian has one word
+                // where de/en/eo/es/fr/sw/uk all split the quantity from the intensifier
+                // (viel/sehr, mucho/muy, beaucoup/très, -ingi/sana). `assai` is the only
+                // alternative for sehr and is literary, so repicking would teach a register
+                // nobody speaks. degree/very and qualities/much stay two concepts because
+                // every other language needs them to be; qualities/much's own it note
+                // already names the second sense.
+                "it molto: degree/very, qualities/much",
                 // Reviewed 2026-08-15: `perché` is warum and weil in one word — the
                 // interrogative and the causal conjunction genuinely merge in Italian
                 // (Perché non vieni? — Perché piove.). Every other language splits them,
@@ -420,6 +428,12 @@ class CatalogLintTest {
                 // pair is allowlisted in [noConceptPairCollidesInTwoLanguages] as the
                 // reviewed family-wide merge.
                 "it tempo: nature/weather, time/time",
+                // Reviewed 2026-08-23: `vicino` is the neighbor AND near — genuine Italian
+                // polysemy that de/en/eo/es/fr/sw/uk all split (Nachbar/nah, vecino/cerca,
+                // voisin/près, jirani/karibu). Repicking place/near as `accanto` would teach
+                // "next to", and hall/neighbor already carries the de note naming the merge
+                // and the everyday disambiguator `il vicino di casa`.
+                "it vicino: hall/neighbor, place/near",
                 // Reviewed 2026-07-25: the textbook homonym, and the only entry here that
                 // is NOT a merge — sw `mto` is two unrelated senses (river, pillow),
                 // not one word covering two German ones. Same treatment either way.
