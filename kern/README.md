@@ -127,8 +127,7 @@ No config flag, no user-facing direction anywhere.
   rule does — a self-graded reveal would not tell whether the word was understood at all,
   which is the whole of what a sound prompt asks.
 - **The target is spoken with its article; the source is not** (user ruling 2026-08-21),
-  everywhere a target word is synthesized — which reverses `../docs/read-aloud.md`'s
-  "only the headword is ever spoken".
+  everywhere a target word is synthesized.
 - **Emoji cue**: `emojiCue(role, consolidated)` answers WHEN the picture appears, never
   whether it appears at all and never where. **Upfront** iff role == Produce ∧ the word has
   not landed (§5) — the one prompt it can support recall on without giving the answer away;
