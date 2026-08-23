@@ -117,7 +117,7 @@ abstract class SyncAssetsTask : DefaultTask() {
     @TaskAction
     fun run() {
         fs.sync {
-            from(sourceDir) { exclude("README.md") }
+            from(sourceDir) { exclude("**/README.md") }
             into(outputDir.dir(subdir.get()))
         }
     }
