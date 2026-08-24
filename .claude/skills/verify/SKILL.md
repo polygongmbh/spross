@@ -9,13 +9,13 @@ Build (also the commit gate):
 
 ```sh
 xcodebuild -project Spross.xcodeproj -scheme Spross \
-  -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build
+  -destination 'platform=iOS Simulator,name=iPhone 17' build
 ```
 
 Install + launch (app binary lands in DerivedData `Build/Products/Debug-iphonesimulator/Spross.app`):
 
 ```sh
-xcrun simctl boot "iPhone 17 Pro"; open -a Simulator
+xcrun simctl boot "iPhone 17"; open -a Simulator
 xcrun simctl install booted <path>/Spross.app
 xcrun simctl launch booted net.spross.app            # clean install ⇒ onboarding
 xcrun simctl uninstall booted net.spross.app         # reset to clean state
@@ -51,7 +51,7 @@ for the two things no finger reaches:
 the rest are navigation: idb reaches them all, and the flag only saves taps. Prefer the
 flag on a long path (Box settings is ~20 flick-swipes), idb on a short one.
 
-Screenshots: `xcrun simctl io booted screenshot /tmp/x.png` (1206x2622 px = 402x874 pt on iPhone 17 Pro; divide px by 3 for tap points).
+Screenshots: `xcrun simctl io booted screenshot /tmp/x.png` (1206x2622 px = 402x874 pt on iPhone 17; divide px by 3 for tap points).
 
 ## Taps/swipes — use idb, NOT cliclick/osascript
 

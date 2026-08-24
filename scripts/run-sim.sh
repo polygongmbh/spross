@@ -1,6 +1,6 @@
 #!/bin/sh
 # Build, install and launch Spross on an iOS Simulator.
-#   scripts/run-sim.sh                        — build + (re)launch on iPhone 17 Pro
+#   scripts/run-sim.sh                        — build + (re)launch on iPhone 17
 #   scripts/run-sim.sh --no-build             — reinstall the last build, skip xcodebuild
 #   scripts/run-sim.sh --device 'iPhone 16'   — pick another simulator by name
 #   scripts/run-sim.sh --clean                — uninstall first (⇒ onboarding runs)
@@ -19,7 +19,7 @@
 set -eu
 cd "$(dirname "$0")/.."
 
-DEVICE='iPhone 17 Pro'
+DEVICE='iPhone 17'
 BUNDLE_ID=net.spross.app
 BUILD=1
 CLEAN=0

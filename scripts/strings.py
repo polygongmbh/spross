@@ -43,7 +43,7 @@ Pass --built to also diff the catalog against the keys the compiler actually
 emitted, which is the check that catches REAL drift. Needs a build first:
 
     xcodebuild -project Spross.xcodeproj -scheme Spross \\
-      -destination 'platform=iOS Simulator,name=iPhone 17 Pro' \\
+      -destination 'platform=iOS Simulator,name=iPhone 17' \\
       build SWIFT_EMIT_LOC_STRINGS=YES
 """
 import glob

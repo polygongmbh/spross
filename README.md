@@ -76,7 +76,7 @@ internal TestFlight testers get the same build minutes after the tag, without re
 brew install xcodegen        # once
 scripts/bootstrap.sh         # fresh clone: JDK check, first SprossKern framework, xcodegen
 xcodebuild -project Spross.xcodeproj -scheme Spross \
-  -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build
+  -destination 'platform=iOS Simulator,name=iPhone 17' build
 ```
 
 Tests (the fast gate): `./gradlew :kern:jvmTest`
@@ -84,7 +84,7 @@ Tests (the fast gate): `./gradlew :kern:jvmTest`
 ## Run it
 
 ```sh
-scripts/run-sim.sh                        # build, install, launch on iPhone 17 Pro
+scripts/run-sim.sh                        # build, install, launch on iPhone 17
 scripts/run-sim.sh --no-build             # reinstall the last build
 scripts/run-sim.sh --clean                # uninstall first, so onboarding runs
 scripts/run-sim.sh --device 'iPhone 16'   # another simulator, by name
