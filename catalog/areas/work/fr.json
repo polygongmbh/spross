@@ -149,7 +149,7 @@
     "Je voudrais prendre des congés la semaine prochaine."
    ]
   },
-  "read-the-contract": {
+  "read-the-contract-carefully": {
    "text": "Lisez bien le contrat !",
    "variants": ["Lis bien le contrat !", "Lisez attentivement le contrat !"]
   }

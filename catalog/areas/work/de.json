@@ -46,6 +46,6 @@
   "have-a-nice-evening-off": { "text": "Schönen Feierabend!" },
   "can-you-help-me-briefly": { "text": "Können Sie mir kurz helfen?", "variants": ["Kannst du mir kurz helfen?"] },
   "i-want-vacation-next-week": { "text": "Ich möchte nächste Woche Urlaub nehmen." },
-  "read-the-contract": { "text": "Lesen Sie den Vertrag durch!", "variants": ["Lies den Vertrag genau durch!"] }
+  "read-the-contract-carefully": { "text": "Lesen Sie den Vertrag durch!", "variants": ["Lies den Vertrag genau durch!"] }
  }
 }

@@ -52,5 +52,10 @@
   "emoji": "🏖️",
   "components": ["vacation"]
  },
- { "slug": "read-the-contract", "kind": "phrase", "emoji": "📋", "components": ["contract"] }
+ {
+  "slug": "read-the-contract-carefully",
+  "kind": "phrase",
+  "emoji": "📋",
+  "components": ["contract"]
+ }
 ]

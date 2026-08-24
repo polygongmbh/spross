@@ -75,7 +75,7 @@
    "text": "Mi ŝatus preni feriojn la venontan semajnon.",
    "variants": ["Mi volas preni feriojn la venontan semajnon.", "Mi ŝatus preni ferion la venontan semajnon."]
   },
-  "read-the-contract": {
+  "read-the-contract-carefully": {
    "text": "Tralegu la kontrakton!",
    "variants": ["Legu atente la kontrakton!", "Legu la kontrakton!"]
   }

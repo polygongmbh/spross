@@ -30,11 +30,17 @@
   "belt": { "text": "mkanda", "grammar": { "plural": "mikanda" } },
   "make-bed": { "text": "kutandika kitanda" },
   "soft": { "text": "laini" },
-  "good-night-sleep-well": { "text": "Usiku mwema, lala salama!" },
+  "good-night-sleep-well": {
+   "text": "Lala salama!",
+   "variants": ["Usiku mwema, lala salama!"],
+   "notes": {
+    "de": "wörtl. „schlaf friedlich“ — Usiku mwema ist im Kiswahili eine Feststellung („die Nacht ist gut“), keine Grußfloskel; man wünscht beim Schlafengehen einfach Lala salama!"
+   }
+  },
   "good-morning-my-love": {
    "text": "Habari za asubuhi, mpenzi wangu!",
    "notes": {
-    "de": "Kiswahili hat keine „guten Morgen“-Konstruktion mit Adjektiv — Habari za asubuhi ist die feste Morgengrußformel, wörtlich „Neuigkeiten des Morgens?“"
+    "de": "wörtl. „Neuigkeiten des Morgens?“ — Kiswahili hat keine „guten Morgen“-Konstruktion mit Adjektiv; Habari za asubuhi ist die feste Morgengrußformel."
    }
   },
   "im-tired": { "text": "Nimechoka." },
