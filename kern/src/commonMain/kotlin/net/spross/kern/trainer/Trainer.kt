@@ -78,6 +78,16 @@ object Trainer {
         return numberTask(n, language, accepted)
     }
 
+    /**
+     * [drillNumber] for a counted noun whose class the Swahili numeral agrees with
+     * ([SwahiliConcord]). Safe at any [n]: a reading with nothing to concord — an Arabic
+     * loan, a round ten, anything past the sourced ceiling — comes back as the plain one.
+     */
+    internal fun concordedNumber(n: Long, nounClass: SwahiliConcord.NounClass, language: Language): TrainerTask {
+        require(language == "sw") { "noun-class concord is Swahili's; \"$language\" has none" }
+        return numberTask(n, language, SwahiliConcord.acceptedVariants(n, nounClass))
+    }
+
     /** The only place a cardinal prompt is built, so grouping cannot be forgotten on one path. */
     private fun numberTask(n: Long, language: Language, accepted: List<String>): TrainerTask {
         val prompt = n.toString()

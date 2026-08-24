@@ -31,7 +31,9 @@ object PhraseSlots {
         // silently become a year, which an `else` arm would have made it.
         val slot = when (template.slotKind) {
             // why: drill accepted set — sw speakers routinely drop the "na" connectors
-            TrainerKind.Numbers -> Trainer.drillNumber(value, template.target)
+            TrainerKind.Numbers -> template.swahiliNounClass
+                ?.let { Trainer.concordedNumber(value, it, template.target) }
+                ?: Trainer.drillNumber(value, template.target)
             TrainerKind.Years -> Trainer.year(value, template.target)
             TrainerKind.Clock, TrainerKind.Forms, TrainerKind.Fraction ->
                 throw IllegalArgumentException("no phrase slot generator for ${template.slotKind}")

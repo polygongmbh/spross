@@ -51,12 +51,24 @@ data class PhraseTemplate(
      * train exactly that agreement (language-review finding).
      */
     val masculineNumeral: Boolean = false,
+    /**
+     * Swahili templates counting a noun whose class the numeral agrees with: the Bantu
+     * cardinals render with that class's concord prefix ([SwahiliConcord]).
+     * Null everywhere else — including the Swahili N-class frames already shipping
+     * (*sahani*, *funguo*), whose numerals are the bare ones [SwahiliNumbers] spells.
+     */
+    val swahiliNounClass: SwahiliConcord.NounClass? = null,
 ) {
     init {
         // Forms readings are not sentence slots: a fraction or ordinal needs the frame to
         // decline around it, and no agreement device runs that way (docs/backlog.md).
         // Failing here means catalog build time, not the draw that would have thrown.
         require(slotKind != TrainerKind.Forms) { "$id: frames cannot carry a ${TrainerKind.Forms} slot" }
+        // Noun-class concord is Swahili's and needs a numeral to carry it — a frame that
+        // claims it anywhere else would silently render the plain reading instead.
+        require(swahiliNounClass == null || (slotKind == TrainerKind.Numbers && target == "sw")) {
+            "$id: swahiliNounClass needs a Swahili ${TrainerKind.Numbers} slot, not $target/$slotKind"
+        }
     }
 
     /** Effective masculine-numeral rule — implied for all [countForms] templates. */
