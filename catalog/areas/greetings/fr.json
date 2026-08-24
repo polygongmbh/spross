@@ -16,7 +16,7 @@
    "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Bonsoir !“" }
   },
   "goodbye": { "text": "Au revoir !" },
-  "bye": { "text": "Ciao !", "variants": ["À plus !"] },
+  "bye": { "text": "Ciao !" },
   "welcome": { "text": "Bienvenue !" },
   "may-i-come-in": { "text": "Puis-je entrer ?", "variants": ["Je peux entrer ?"] },
   "how-are-you": { "text": "Comment allez-vous ?", "variants": ["Comment vas-tu ?", "Ça va ?"] },
