@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **An accent you cannot type no longer costs you the card.** A missing or wrong accent is
+  free inside the typo budget now, so French's short accented words — `où`, `à`, `été`, the
+  ones short enough that it used to be exact or nothing — come back as a slip with the
+  spelling shown rather than as a miss. German's `ae`/`oe`/`ue` is a full spelling of the
+  umlaut rather than an approximation of it, so `Kueche` on a `Küche` card is simply right.
+  Searching the box learned the same asymmetry: `kuche` finds `Küche` and `strasse` finds
+  `Straße`, while typing the umlaut still asks for exactly that spelling.
+
 ## 5.4.0 — 2026-08-23
 
 - **The box can ask the way, buy something and order a meal.** Five new shelves where the

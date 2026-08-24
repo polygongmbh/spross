@@ -48,11 +48,37 @@ class BoxSearchTests {
     }
 
     @Test
-    fun aDiacriticIsNeverFoldedAway() {
-        // The umlaut is part of the word being learned — erasing it in search would
-        // teach that it does not matter.
+    fun aBaseLetterQueryReachesTheAccentedSpelling() {
         val box = state(card("fridge", "Kühlschrank", "friji"))
-        assertTrue(BoxSearch.search(box, areas, "Kuhlschrank").cards.isEmpty())
+        assertEquals(listOf("fridge"), BoxSearch.search(box, areas, "Kuhlschrank").cards.map { it.id })
+        assertEquals(listOf("fridge"), BoxSearch.search(box, areas, "uhlsch").cards.map { it.id })
+        assertEquals(listOf("kitchen"), BoxSearch.search(box, areas, "Kuche").areas.map { it.area })
+    }
+
+    @Test
+    fun anAccentedQueryOnlyReachesTheAccentedSpelling() {
+        val box = state(
+            card("cake", "Kuchen", "keki", seedIndex = 1),
+            card("table", "Küchentisch", "meza ya jikoni", seedIndex = 2),
+        )
+        assertEquals(listOf("table"), BoxSearch.search(box, areas, "Küche").cards.map { it.id })
+    }
+
+    @Test
+    fun anSsQueryReachesTheSharpS() {
+        val box = state(card("street", "Straße", "barabara"))
+        assertEquals(listOf("street"), BoxSearch.search(box, areas, "Strasse").cards.map { it.id })
+        assertEquals(listOf("street"), BoxSearch.search(box, areas, "rasse").cards.map { it.id })
+    }
+
+    @Test
+    fun aSharpSQueryOnlyReachesTheSharpS() {
+        val box = state(
+            card("masses", "Massen", "umati", seedIndex = 1),
+            card("street", "Straße", "barabara", seedIndex = 2),
+        )
+        assertTrue(BoxSearch.search(box, areas, "Maße").cards.isEmpty())
+        assertEquals(listOf("street"), BoxSearch.search(box, areas, "Straße").cards.map { it.id })
     }
 
     @Test
