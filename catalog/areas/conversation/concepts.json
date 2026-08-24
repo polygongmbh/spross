@@ -19,7 +19,7 @@
  { "slug": "louder", "kind": "phrase", "emoji": "🔊", "components": ["loud"] },
  { "slug": "do-you-speak-english", "kind": "phrase", "emoji": "🇬🇧", "components": ["speak"] },
  { "slug": "you-can-do-it", "kind": "phrase", "emoji": "💪", "components": [] },
- { "slug": "i-need-help", "kind": "phrase", "emoji": "🆘", "components": ["need", "help"] },
+ { "slug": "i-need-help", "kind": "phrase", "components": ["need", "help"] },
  { "slug": "i-dont-know", "kind": "phrase", "emoji": "🤷", "components": ["know"] },
  { "slug": "what-is-this-called", "kind": "phrase", "emoji": "❓", "components": [] }
 ]
