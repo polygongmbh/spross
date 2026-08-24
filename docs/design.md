@@ -74,7 +74,9 @@ Strict dependency direction: App → SprossKern, never the reverse.
 - One list is open at a time; the other stands folded on its pick and opens at a tap,
   and picking a source hands the screen to the target. Onboarding opens with the known
   side folded — the device language is a good guess already — so the picker is one
-  screen with one open question, no scrolling.
+  screen with one open question, no scrolling. An open list past 4 options scrolls
+  on its own, capped, instead of pushing the page's own scroll past the button —
+  the catalog already reaches 8 languages a side.
 - The chooser is the FIRST-LAUNCH screen — it is what a device with no profile yet opens on.
   Afterwards the pair is changed on the box's own two pickers, beside everything else the box
   is configured by, so there is one place to change it and the chooser never reopens.

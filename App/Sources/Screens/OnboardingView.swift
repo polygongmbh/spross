@@ -177,6 +177,17 @@ struct OnboardingView: View {
 
     // MARK: - One side of the pair
 
+    /// Rows an open list shows before it scrolls on its own. The catalog already
+    /// reaches 8 languages a side — more than a standard phone has room for beside
+    /// the hero, the other question, the name field and the button — so a list at
+    /// full length would make the whole PAGE scroll to reach them (`docs/design.md`
+    /// "no scrolling" is a claim about the page, not about a list this long).
+    private let maxOpenRows = 4
+    /// Row pitch (row + inter-row spacing) at the default text size, measured off
+    /// a running build — close enough to size the cap; Dynamic Type past that still
+    /// falls back to the page's own scroll.
+    private let openRowPitch: CGFloat = 55
+
     /// The question, and either the languages to choose from or the chosen one as
     /// the row that opens them again.
     private func picker(question: LocalizedStringKey,
@@ -190,11 +201,7 @@ struct OnboardingView: View {
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
             if open {
-                ForEach(options, id: \.self) { candidate in
-                    DLSelectionRow(title: Text(verbatim: languageName(candidate)),
-                                   mark: .one,
-                                   selected: selected == candidate) { onPick(candidate) }
-                }
+                optionRows(options: options, selected: selected, onPick: onPick)
             } else if let selected {
                 DLSelectionRow(title: Text(verbatim: languageName(selected)),
                                mark: .fold,
@@ -202,6 +209,25 @@ struct OnboardingView: View {
                     withAnimation(.easeInOut(duration: 0.2)) { onOpen() }
                 }
             }
+        }
+    }
+
+    @ViewBuilder
+    private func optionRows(options: [String],
+                            selected: String?,
+                            onPick: @escaping (String) -> Void) -> some View {
+        let rows = ForEach(options, id: \.self) { candidate in
+            DLSelectionRow(title: Text(verbatim: languageName(candidate)),
+                           mark: .one,
+                           selected: selected == candidate) { onPick(candidate) }
+        }
+        if options.count > maxOpenRows {
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: DL.Space.s) { rows }
+            }
+            .frame(maxHeight: CGFloat(maxOpenRows) * openRowPitch)
+        } else {
+            rows
         }
     }
 
