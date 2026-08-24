@@ -20,6 +20,7 @@
   "thank-you": { "text": "Vielen Dank!", "variants": ["Danke schön!"] },
   "please": { "text": "Bitte!" },
   "excuse-me": { "text": "Entschuldigung!" },
+  "no-problem": { "text": "Kein Problem!" },
   "pardon": { "text": "Wie bitte?" },
   "sorry-to-hear-that": { "text": "Das tut mir leid!" },
   "whats-your-name": { "text": "Wie heißen Sie?", "variants": ["Wie heißt du?"] },

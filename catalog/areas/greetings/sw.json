@@ -35,10 +35,11 @@
    "notes": { "de": "Ruft man an der Tür, statt zu klopfen; die Antwort ist „Karibu!“" }
   },
   "how-are-you": { "text": "Habari yako?" },
-  "all-good": { "text": "Hakuna shida." },
+  "all-good": { "text": "Yote ni sawa.", "variants": ["Yote sawa."] },
   "thank-you": { "text": "Asante sana!" },
   "please": { "text": "Tafadhali!" },
   "excuse-me": { "text": "Samahani!" },
+  "no-problem": { "text": "Hakuna matata!", "synonyms": ["Hakuna shida!"] },
   "pardon": { "text": "Umesemaje?" },
   "sorry-to-hear-that": {
    "text": "Pole!",

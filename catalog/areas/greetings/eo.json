@@ -36,6 +36,7 @@
    "notes": { "de": "steht vor dem Verb: Bonvolu ripeti. · die Antwort auf „Dankon“ ist „Ne dankinde“." }
   },
   "excuse-me": { "text": "Pardonu!", "variants": ["Pardonon!", "Pardonu min!"] },
+  "no-problem": { "text": "Neniu problemo!" },
   "pardon": { "text": "Kion vi diris?", "variants": ["Pardonon?"] },
   "sorry-to-hear-that": { "text": "Mi bedaŭras!", "variants": ["Mi tre bedaŭras!", "Kiel bedaŭrinde!"] },
   "whats-your-name": {

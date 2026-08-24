@@ -38,6 +38,7 @@
    "notes": { "de": "nur die Bitte — als Antwort auf „grazie“ sagt man Prego." }
   },
   "excuse-me": { "text": "Scusi!", "variants": ["Scusa!", "Mi scusi!"] },
+  "no-problem": { "text": "Nessun problema!" },
   "pardon": { "text": "Come dice?", "variants": ["Come dici?", "Come?", "Prego?"] },
   "sorry-to-hear-that": { "text": "Mi dispiace!", "variants": ["Mi dispiace molto!", "Che peccato!"] },
   "whats-your-name": { "text": "Come si chiama?", "variants": ["Come ti chiami?"] },

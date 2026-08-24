@@ -30,6 +30,7 @@
    "notes": { "de": "nur die Bitte — als Antwort auf „gracias“ sagt man De nada." }
   },
   "excuse-me": { "text": "¡Perdón!", "variants": ["¡Perdone!", "¡Perdona!", "¡Disculpe!", "¡Disculpa!"] },
+  "no-problem": { "text": "¡No hay problema!" },
   "pardon": { "text": "¿Cómo dice?", "variants": ["¿Cómo dices?", "¿Cómo?"] },
   "sorry-to-hear-that": { "text": "¡Cuánto lo siento!", "variants": ["Lo siento mucho.", "¡Qué pena!"] },
   "whats-your-name": { "text": "¿Cómo se llama usted?", "variants": ["¿Cómo se llama?", "¿Cómo te llamas?"] },

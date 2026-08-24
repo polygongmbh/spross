@@ -24,6 +24,7 @@
   "thank-you": { "text": "Merci beaucoup !", "variants": ["Merci !"] },
   "please": { "text": "S'il vous plaît !", "variants": ["S'il te plaît !"] },
   "excuse-me": { "text": "Excusez-moi !", "variants": ["Excuse-moi !", "Pardon !"] },
+  "no-problem": { "text": "Pas de problème !" },
   "pardon": { "text": "Pardon ?", "variants": ["Comment ?"] },
   "sorry-to-hear-that": { "text": "Je suis désolé !", "variants": ["Je suis désolée !", "Désolé !"] },
   "whats-your-name": {
