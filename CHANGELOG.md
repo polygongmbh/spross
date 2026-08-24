@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.5.0 — 2026-08-24
+
 - **Swahili numbers now agree with what you are counting.** Two sentence drills the
   language could not carry before — `Nina madaftari …`, `Tuna viti …` — because the numeral
   itself changes shape with the noun's class: the same two is `viti viwili` beside chairs
@@ -15,6 +17,19 @@
   umlaut rather than an approximation of it, so `Kueche` on a `Küche` card is simply right.
   Searching the box learned the same asymmetry: `kuche` finds `Küche` and `strasse` finds
   `Straße`, while typing the umlaut still asks for exactly that spelling.
+
+- **Phrases now say the same thing in every language.** A sweep for silent mismatches — a
+  card whose text in one language is built out of different words than its siblings, with
+  nothing saying why — turned up nine: Swahili's `all good` was really `no problem`,
+  Ukrainian's `welcome home` shared no word with either half, and haggling at the market had
+  drifted onto three unrelated paraphrases. They mirror each other now, `No problem!` got the
+  card it deserved, and where a language genuinely cannot mirror the rest — Swahili has no
+  word for `vegetarian`, English none for `Feierabend` — the card says so instead of inventing
+  a phrase nobody says.
+
+- **The tutorial can be opened again.** Box settings has a restart-tutorial row beside reset:
+  it reopens the story pages without touching a single card, and skips straight past the
+  language pick, since that choice is already made.
 
 ## 5.4.0 — 2026-08-23
 
