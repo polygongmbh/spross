@@ -9,7 +9,8 @@ Leniency is safe to the extent the catalog can disprove it — that rule is the 
 - **AnswerNormalizer contract** (produce only — recognition is button self-grade;
   catalog-fixture tested with "Kwaheri!", "to cook", "Der Kühlschrank ist leer.",
   "Мене звуть …"):
-  normalize both sides (lowercase, ß→ss, delete joiners `-'’`, punctuation → space incl.
+  normalize both sides (lowercase, ß→ss, the answer language's `diacriticDigraphs`,
+  delete joiners `-'’`, punctuation → space incl.
   `…—`, collapse whitespace) → ONE leading listed article of the answer language optional
   on both sides → iff `kind == verb`: any listed `optionalVerbPrefixes` entry (normalized
   the same way, space-preserving — en `"to "`) optional on both sides → Damerau-Levenshtein
@@ -27,6 +28,26 @@ Leniency is safe to the extent the catalog can disprove it — that rule is the 
   which time it is ("fünf vor halb sieben" is not a misspelling of "halb sieben").
   **Typo budget**: one slip per six letters (spaces excluded), floor 1,
   and zero below four letters.
+  **Diacritics** are two rules, deliberately not one.
+  A language's `diacriticDigraphs` (`languages.json`; German's `ä`→`ae`, `ö`→`oe`, `ü`→`ue`,
+  nobody else's) fold in the normalizer beside `ß`→`ss`, for the same reason:
+  the digraph is a full, established ASCII spelling of the letter, not a simplification,
+  so "Kueche" grades Exact on a "Küche" card
+  — and the fold lengthens the word before the budget measures it,
+  so "für" ("fuer", four letters) forgives the slip three letters forgave none of.
+  DROPPING a diacritic is the other rule and never reaches the normalizer:
+  a substitution between two spellings of the same base vowel
+  (`áàâäãå`→`a` and the other four rows, `model/Diacritics.kt`) simply costs 0
+  inside the Damerau-Levenshtein distance.
+  So the comparison strings keep their accents, the exact test still needs a literal match,
+  and fr "ou" for "où" comes back Typo — Hard plus the correction, never Exact —
+  which is what keeps the catalog-wide collision check below running on it.
+  Free of the budget, it reaches the short accented words the floor hit hardest (`où`, `à`, `là`).
+  Only typing-convenience accents are listed:
+  `ç` and `ñ` (es `ano`/`año` is a real minimal pair),
+  Esperanto `ĉ ĝ ĥ ĵ ŝ ŭ` (separate letters of that alphabet)
+  and Ukrainian `й`/`ї` (distinct Cyrillic letters that merely NFD-decompose with a mark)
+  stay full price.
   Article leniency is constructor-opt-out for drill grading:
   `AnswerNormalizer(language, articleLeniency = false)` keeps the article in `normalize`
   and only matches a form whose leading article equals the typed one —

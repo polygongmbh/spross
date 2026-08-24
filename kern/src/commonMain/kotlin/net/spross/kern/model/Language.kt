@@ -20,4 +20,11 @@ data class LanguageInfo(
     val optionalVerbPrefixes: List<String> = emptyList(),
     /** The language's articles; ONE leading listed article is optional when grading. */
     val articles: List<String> = emptyList(),
+    /**
+     * Established lossless ASCII spellings of single letters (de `ä`→`ae`, `ö`→`oe`, `ü`→`ue`),
+     * keyed by the lowercase single-character letter. Grading folds them on both sides like
+     * `ß`→`ss`, so the digraph spelling is exact rather than a slip — a language that lists
+     * none (every one but German today) folds nothing.
+     */
+    val diacriticDigraphs: Map<String, String> = emptyMap(),
 )

@@ -7,6 +7,7 @@ import kotlin.test.assertTrue
 import net.spross.kern.catalog.Fixture
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.Rating
 import net.spross.kern.model.Realization
 
@@ -20,6 +21,31 @@ class AnswerNormalizerTests {
     private val en = AnswerNormalizer(catalog.languages.getValue("en"))
     private val sw = AnswerNormalizer(catalog.languages.getValue("sw"))
     private val uk = AnswerNormalizer(catalog.languages.getValue("uk"))
+
+    /**
+     * German carrying the digraphs the shipping `languages.json` lists. The fixture's own
+     * entry omits them deliberately: folding `ü`→`ue` lengthens a word before the budget
+     * measures it, which would rewrite the arithmetic [typoToleranceScalesWithLength]
+     * spells out rather than leave it saying what it means to say.
+     */
+    private val deDigraphs = AnswerNormalizer(
+        catalog.languages.getValue("de")
+            .copy(diacriticDigraphs = mapOf("ä" to "ae", "ö" to "oe", "ü" to "ue")),
+    )
+
+    /** Accent-rich languages the fixture catalog never joins; only their grading is at stake. */
+    private val fr = AnswerNormalizer(
+        LanguageInfo(
+            code = "fr", name = "Français", englishName = "French", flag = "🇫🇷",
+            articles = listOf("le", "la", "les", "l'", "un", "une"),
+        ),
+    )
+    private val es = AnswerNormalizer(
+        LanguageInfo(
+            code = "es", name = "Español", englishName = "Spanish", flag = "🇪🇸",
+            articles = listOf("el", "la", "los", "las", "un", "una"),
+        ),
+    )
 
     private val deToSw = catalog.join("de", "sw")
     private val deToEn = catalog.join("de", "en")
@@ -139,6 +165,76 @@ class AnswerNormalizerTests {
         assertEquals(Match.Exact, de.evaluate("heissen", card("de", "heißen", kind = CardKind.Verb)))
         assertEquals(Match.Exact, de.evaluate("heißen", card("de", "heissen", kind = CardKind.Verb)))
         assertEquals(Match.Exact, de.evaluate("weiss", card("de", "weiß")))
+    }
+
+    /**
+     * German's ae/oe/ue digraphs are a full ASCII spelling of the letter rather than a
+     * simplification of it, so they fold in the normalizer exactly as ß→ss does — no typo
+     * credit spent, and the umlaut spelling accepted just as readily the other way round.
+     */
+    @Test
+    fun germanUmlautDigraphsFoldLikeEsszett() {
+        val kueche = card("de", "Küche", grammar = mapOf("gender" to "die"))
+        assertEquals(Match.Exact, deDigraphs.evaluate("Kueche", kueche))
+        assertEquals(Match.Exact, deDigraphs.evaluate("Küche", kueche))
+        assertEquals(Match.Exact, deDigraphs.evaluate("Küche", card("de", "Kueche")))
+        assertEquals("kueche", deDigraphs.normalize("Küche"))
+        // Only the letters the answer language lists fold; every other accent survives
+        // normalization, which is what keeps a dropped accent out of the exact test.
+        assertEquals("café", deDigraphs.normalize("Café"))
+        // A language listing none folds nothing: the digraph is then merely a slip.
+        assertEquals(Match.Typo("Küche"), de.evaluate("Kueche", kueche))
+    }
+
+    /**
+     * The fold also LENGTHENS a short word before the typo budget measures it: "für"
+     * becomes "fuer", four letters, the shortest length that forgives anything.
+     */
+    @Test
+    fun theDigraphFoldLengthensShortWordsIntoTheTypoBudget() {
+        val fuer = card("de", "für")
+        assertEquals(Match.Typo("für"), deDigraphs.evaluate("fuur", fuer))
+        assertEquals(Match.Wrong, de.evaluate("fuur", fuer)) // three letters: exact-only
+        assertEquals(Match.Wrong, deDigraphs.evaluate("fuun", fuer)) // 2 edits > budget 1
+    }
+
+    /**
+     * A dropped or wrong accent costs nothing in the distance, so French's short accented
+     * words — the ones the four-letter floor hit hardest — come back as slips instead of
+     * failures. They stay slips: the comparison strings keep their accents, so the exact
+     * test never matches and CatalogAnswerGrader's collision check still runs on them.
+     */
+    @Test
+    fun aDroppedAccentIsATypoEvenBelowTheLengthFloor() {
+        assertEquals(Match.Typo("où"), fr.evaluate("ou", card("fr", "où")))
+        assertEquals(Match.Typo("à"), fr.evaluate("a", card("fr", "à")))
+        assertEquals(Match.Typo("été"), fr.evaluate("ete", card("fr", "été")))
+        // Both directions, and a wrong accent as cheaply as a missing one.
+        assertEquals(Match.Typo("ou"), fr.evaluate("où", card("fr", "ou")))
+        assertEquals(Match.Typo("été"), fr.evaluate("èté", card("fr", "été")))
+        // The accented spelling is still the only Exact one.
+        assertEquals(Match.Exact, fr.evaluate("où", card("fr", "où")))
+        // A real edit next to the accent costs its slip as it always did.
+        assertEquals(Match.Wrong, fr.evaluate("on", card("fr", "où")))
+    }
+
+    /**
+     * Only typing-convenience accents are free. `ç`, `ñ`, Esperanto's own `ĉĝĥĵŝŭ` and
+     * Ukrainian `й`/`ї` mark a different letter, so each costs a full edit — es
+     * "ano"/"año" is a real minimal pair, not a spelling slip.
+     */
+    @Test
+    fun lettersThatOnlyLookLikeAccentsStayFullPrice() {
+        assertEquals(1, AnswerNormalizer.damerauLevenshtein("facon", "façon"))
+        assertEquals(1, AnswerNormalizer.damerauLevenshtein("ano", "año"))
+        assertEquals(1, AnswerNormalizer.damerauLevenshtein("cu", "ĉu"))
+        assertEquals(1, AnswerNormalizer.damerauLevenshtein("іжак", "їжак"))
+        assertEquals(0, AnswerNormalizer.damerauLevenshtein("ou", "où"))
+        // Below the floor that one edit is the whole difference between a slip and a miss.
+        assertEquals(Match.Wrong, es.evaluate("ano", card("es", "año")))
+        // Above it the edit is forgiven, but it is spent: a second slip misses.
+        assertEquals(Match.Typo("façon"), fr.evaluate("facon", card("fr", "façon")))
+        assertEquals(Match.Wrong, fr.evaluate("facom", card("fr", "façon")))
     }
 
     @Test

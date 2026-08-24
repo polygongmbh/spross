@@ -3,7 +3,8 @@
   "name": "Deutsch",
   "englishName": "German",
   "flag": "🇩🇪",
-  "articles": ["der", "die", "das", "ein", "eine"]
+  "articles": ["der", "die", "das", "ein", "eine"],
+  "diacriticDigraphs": { "ä": "ae", "ö": "oe", "ü": "ue" }
  },
  "en": {
   "name": "English",

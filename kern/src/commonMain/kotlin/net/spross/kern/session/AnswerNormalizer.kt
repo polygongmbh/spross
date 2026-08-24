@@ -1,9 +1,11 @@
 package net.spross.kern.session
 
+import net.spross.kern.model.ACCENTED_VOWEL_BASE
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.Rating
+import net.spross.kern.model.baseVowel
 import net.spross.kern.model.nfcNormalized
 
 /** Grading verdict for a typed produce answer. */
@@ -51,7 +53,8 @@ sealed interface Match {
  * profile's target) from `languages.json` — recognize units are self-graded and
  * never pass through here.
  *
- * Pipeline (`kern/docs/grading.md`, both sides symmetric): NFC, lowercase, ß→ss, delete the
+ * Pipeline (`kern/docs/grading.md`, both sides symmetric): NFC, lowercase, ß→ss, the answer
+ * language's digraph spellings (de ä→ae, ö→oe, ü→ue), delete the
  * joiners `-'’`, other punctuation → space (incl. `…—`), collapse whitespace →
  * ONE leading listed article of the answer language is optional → iff the card is
  * a verb, any listed citation prefix (en `"to "`, sw `ku`/`kw`) is optional →
@@ -90,6 +93,10 @@ class AnswerNormalizer(
 
     constructor(answerLanguage: LanguageInfo, articleLeniency: Boolean) :
         this(answerLanguage, articleLeniency, maxTyposPerWord = null)
+
+    /** Declared before [articleForms]: [cleaned] reads it, and that field is built through [cleaned]. */
+    private val digraphFolds: List<Pair<String, String>> = answerLanguage.diacriticDigraphs
+        .map { (letter, digraph) -> letter.lowercase() to digraph.lowercase() }
 
     private val articles: Set<String> = answerLanguage.articles.map { it.lowercase() }.toSet()
 
@@ -345,12 +352,22 @@ class AnswerNormalizer(
 
     /**
      * The one character pass everything shares, so tokenization can never disagree:
-     * NFC, lowercase, ß→ss (2 edits — too far for short words' typo budget), joiners
+     * NFC, lowercase, ß→ss (2 edits — too far for short words' typo budget), the answer
+     * language's [LanguageInfo.diacriticDigraphs] (de ä→ae, ö→oe, ü→ue), joiners
      * `-'’` deleted outright ("E-Mail"/"Email", "geht's"/"gehts"), every other
      * non-alphanumeric — punctuation incl. `…—`, and whitespace — becomes a space.
+     *
+     * The digraph fold runs on both sides like ß→ss does, and for the same reason: it is
+     * a full, established ASCII spelling of the letter rather than a slip, so "Kueche"
+     * grades [Match.Exact] on a "Küche" card. Folding also LENGTHENS a short word before
+     * [allowedTypos] measures it — "für" becomes "fuer" and forgives the slip three
+     * letters could not. Dropping a diacritic outright is the other rule and stays out of
+     * here on purpose: it is free inside [damerauLevenshtein] only, so it can never reach
+     * the exact test and bypass [CatalogAnswerGrader]'s collision check.
      */
     private fun cleaned(raw: String): String {
-        val lowered = nfcNormalized(raw).lowercase().replace("ß", "ss")
+        var lowered = nfcNormalized(raw).lowercase().replace("ß", "ss")
+        for ((letter, digraph) in digraphFolds) lowered = lowered.replace(letter, digraph)
         val out = StringBuilder(lowered.length)
         for (ch in lowered) {
             when {
@@ -391,6 +408,11 @@ class AnswerNormalizer(
          * because [CatalogAnswerGrader] withdraws the credit again wherever the
          * typed form is really another concept's word (RealCatalogGradingTest
          * sweeps the shipping catalog for exactly that).
+         *
+         * A dropped diacritic never needs this budget at all: [damerauLevenshtein]
+         * charges nothing for it, so fr "ou" for "où" is a typo even at the floor
+         * where the budget is zero — which is the whole point, short accented words
+         * being where the floor bit hardest.
          */
         private fun allowedTypos(letters: Int): Int =
             if (letters < MIN_TYPO_LENGTH) 0 else maxOf(1, letters / TYPO_LETTERS_PER_SLIP)
@@ -402,7 +424,13 @@ class AnswerNormalizer(
 
         /**
          * Optimal-string-alignment Damerau-Levenshtein: insert, delete, substitute,
-         * and adjacent transposition each cost 1.
+         * and adjacent transposition each cost 1 — except a substitution between two
+         * spellings of the same base vowel ([ACCENTED_VOWEL_BASE]), which is free, so a
+         * dropped or wrong diacritic costs nothing however short the word. Only the
+         * listed typing-convenience accents are free; `ç`, `ñ`, Esperanto `ĉĝĥĵŝŭ` and
+         * Ukrainian `й`/`ї` are distinct letters and stay full price (es "ano"/"año").
+         * The comparison strings keep their accents, so this reaches the typo path only
+         * — a diacritic miss grades [Match.Typo], never [Match.Exact].
          */
         fun damerauLevenshtein(a: String, b: String): Int {
             if (a.isEmpty()) return b.length
@@ -412,7 +440,8 @@ class AnswerNormalizer(
             for (j in 0..b.length) d[0][j] = j
             for (i in 1..a.length) {
                 for (j in 1..b.length) {
-                    val cost = if (a[i - 1] == b[j - 1]) 0 else 1
+                    val same = a[i - 1] == b[j - 1] || baseVowel(a[i - 1]) == baseVowel(b[j - 1])
+                    val cost = if (same) 0 else 1
                     d[i][j] = minOf(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + cost)
                     if (i > 1 && j > 1 && a[i - 1] == b[j - 2] && a[i - 2] == b[j - 1]) {
                         d[i][j] = minOf(d[i][j], d[i - 2][j - 2] + 1)

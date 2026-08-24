@@ -68,7 +68,11 @@ internal object CatalogParser {
         val root = parseJson(path, text).obj(path, "root")
         return root.entries.associate { (code, el) ->
             val o = el.obj(path, code)
-            o.rejectUnknownKeys(path, code, setOf("name", "englishName", "flag", "optionalVerbPrefixes", "articles"))
+            o.rejectUnknownKeys(
+                path,
+                code,
+                setOf("name", "englishName", "flag", "optionalVerbPrefixes", "articles", "diacriticDigraphs"),
+            )
             val name = o.requireString(path, code, "name")
             if (name.isBlank()) parseError(path, "$code: blank name")
             val englishName = o.requireString(path, code, "englishName")
@@ -87,6 +91,7 @@ internal object CatalogParser {
                 flag = flag,
                 optionalVerbPrefixes = o.stringList(path, code, "optionalVerbPrefixes"),
                 articles = o.stringList(path, code, "articles"),
+                diacriticDigraphs = o.stringMap(path, code, "diacriticDigraphs"),
             )
         }
     }
