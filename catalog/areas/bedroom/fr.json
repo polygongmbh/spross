@@ -44,7 +44,7 @@
    "variants": ["douce"],
    "notes": { "de": "doux ist weich und sanft beim Anfassen; eine weiche Matratze ist un matelas moelleux." }
   },
-  "good-night-sleep-well": { "text": "Bonne nuit, dors bien !" },
+  "sleep-well": { "text": "Dors bien !" },
   "good-morning-my-love": {
    "text": "Bonjour, mon amour !",
    "variants": ["Bonjour, mon cœur !", "Bonjour, chéri !"],

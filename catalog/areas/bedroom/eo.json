@@ -51,7 +51,7 @@
    "text": "mola",
    "notes": { "de": "mola = weich, auch für Haut und Stoff; glatt (eben, ohne Rauheit) heißt glata." }
   },
-  "good-night-sleep-well": { "text": "Bonan nokton, dormu bone!" },
+  "sleep-well": { "text": "Dormu bone!" },
   "good-morning-my-love": {
    "text": "Bonan matenon, mia amo!",
    "variants": ["Bonan matenon, karulo!", "Bonan matenon, karulino!", "Bonan matenon, mia kara!"]

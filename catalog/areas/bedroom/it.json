@@ -44,7 +44,7 @@
   "belt": { "text": "cintura", "grammar": { "gender": "la" } },
   "make-bed": { "text": "fare il letto" },
   "soft": { "text": "morbido", "variants": ["morbida", "soffice"] },
-  "good-night-sleep-well": { "text": "Buonanotte, dormi bene!", "variants": ["Buona notte, dormi bene!"] },
+  "sleep-well": { "text": "Dormi bene!" },
   "good-morning-my-love": {
    "text": "Buongiorno, amore mio!",
    "variants": ["Buongiorno, tesoro mio!", "Buon giorno, amore mio!"]

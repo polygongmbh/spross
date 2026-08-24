@@ -27,7 +27,7 @@
  { "slug": "yawn", "kind": "verb", "emoji": "🥱" },
  { "slug": "snore", "kind": "verb", "emoji": "😪" },
  { "slug": "nightstand", "kind": "noun", "emoji": "🕯️" },
- { "slug": "good-night-sleep-well", "kind": "phrase", "emoji": "🌙", "components": ["sleep"] },
+ { "slug": "sleep-well", "kind": "phrase", "emoji": "🌙", "components": ["sleep"] },
  { "slug": "good-morning-my-love", "kind": "phrase", "emoji": "💕", "components": [] },
  { "slug": "im-tired", "kind": "phrase", "emoji": "🥱", "components": [] },
  { "slug": "did-you-set-the-alarm", "kind": "phrase", "emoji": "⏰", "components": ["alarm-clock"] },

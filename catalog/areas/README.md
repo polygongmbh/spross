@@ -7,7 +7,7 @@ The file format they are written into is `../README.md`.
 **Every slot has to buy fluency.** 
 A concept is worth a card when knowing it lets the learner say more; charm is not a qualification.
 
-`sweet-dreams` was cut on this test — the bedroom already teaches `good-night-sleep-well`,
+`sweet-dreams` was cut on this test — the bedroom already teaches `sleep-well`,
 which covers the same moment with more useful words, so the second phrase only bought a warm feeling.
 Redundancy is the usual symptom: when two entries serve one situation, keep the one whose words go furthest elsewhere.
 Multiple phrases with a single word swapped should keep one, preferring teaching something small like gender agreement in any language.
