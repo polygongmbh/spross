@@ -44,16 +44,21 @@ exists to remove.
 > of collisions to track, making the code not overly complicated but just catching it where
 > it is easy to catch
 
-The limited set to track is a set of **values**, not of confusable word pairs:
+The limited set to track is a set of **values**, not of confusable word pairs. A drill answer
+the typo budget accepted is refused when it names a different value, checked by two probes
+against one per-language index of readings:
 
-**A drill answer the typo budget accepted is refused when a word it differs from the expected
-reading in — at the same position — is itself a complete reading of a DIFFERENT value in that
-language's number index.** Everything else grades exactly as today: the same normalizer, the
-same per-word budget, the same verdicts.
+1. **The whole answer.** If the normalized answer is a complete reading of another value, it
+   is that value, not a slip of this one. (This is what `CatalogAnswerGrader.otherWord`
+   already does for catalog cards.)
+2. **Each differing word, positionally.** Otherwise, walk the positions where the answer and
+   the expected reading differ; if a word typed there is itself a complete reading of a
+   different value, refuse.
 
-The check runs only on the `Match.Typo` arm, so any spelling the task itself accepts has
-already returned `Match.Exact`. That is what keeps the clock's twelve-hour cycle safe —
-two prompts sharing a reading resolve as Exact before the check is reached.
+Everything else grades exactly as today: the same normalizer, the same per-word budget, the
+same verdicts. The check runs only on the `Match.Typo` arm, so any spelling the task itself
+accepts has already returned `Match.Exact` — which is what keeps the clock's twelve-hour cycle
+safe, since two prompts sharing a reading resolve as Exact before the check is reached.
 
 ```kotlin
 return when (val match = normalizer.evaluate(trimmed, card)) {
@@ -63,60 +68,60 @@ return when (val match = normalizer.evaluate(trimmed, card)) {
 }
 ```
 
-where `otherNumber` splits both sides on `AnswerNormalizer.normalize` — the one true
-comparison shape, NOT `TypoBridgeSweep.comparisonShape`, which skips NFC and punctuation
-collapsing and only agrees with it by accident on today's twenty literals — walks the
-positions where the two differ, and returns `Match.OtherWord` naming the value it found.
+Both probes compare on `AnswerNormalizer.normalize` — the one true comparison shape, NOT
+`TypoBridgeSweep.comparisonShape`, which skips NFC and punctuation collapsing and agrees with
+it only by accident on today's twenty literals.
 
-## The artifact: a list of values, and no list of pairs
+**The whole-answer probe is not an optimization; it is load-bearing.** es `un décimo` (1/10)
+and `undécimo` (11th) differ by a space, so the two sides have different word counts and no
+positional diff can ever see them. It also does most of the work on compounds: `ciento setenta
+y ocho` IS a complete reading of 178, so it is refused before any word is examined.
 
-`TrainerLanguagePack.drillNumber(n)` already returns exactly the spellings a drill accepts for
-a value, in every one of the eight languages. So the index is built, not authored, and the one
-static thing this plan adds is a language-INDEPENDENT list of the values worth indexing:
+## The artifact: an index built from the packs, and nothing authored
 
-```
-0..20, the tens 30..90, 100, 1000        — the reference band
-28, 66, 86, 108, 600, 700                — the values whose readings collide
-```
+Every reading the index holds already exists as a function of the packs:
 
-Thirty-six integers, shared by all eight languages, against which every one of the eleven
-cardinal bridges resolves. No confusable pair is authored anywhere in the grading path, and
-nothing has to be kept in step with a pack: a re-spelled numeral changes the index the moment
-the pack changes, because the index IS the pack's own output.
+- `TrainerLanguagePack.drillNumber(n)` — the spellings a cardinal drill accepts;
+- `TrainerLanguagePack.formReading(value)` — the same for a `NumberValue`;
+- `FormLimits` — which forms a pack reads, its fraction denominators, its ordinal range.
 
-The six outliers are the honest part of the design. They are not reference numbers; they are
-there because `ventotto`/`centotto` (28/108), the French `soixante-six`/`soixante-dix` pair
-and eo `sescent`/`sepcent` collide, and a bounded index only refuses what it can name. Their
-membership is not a judgement call — the sweep computes it (below), and a missing value fails
-as a named collision, telling you which integer to add. If the list ever grows past roughly
-fifty, index the drill's whole drawable range instead and delete the distinction; at thirty-six
-the bounded band is worth keeping, because it also bounds the nudge to numbers a learner
-would recognize.
+And the enumeration of everything drawable already exists too: `drawableValues(limits)` in
+`TrainerFormsTypoBridgeGuardTests`. It moves to `commonMain`, where the index and the sweep
+both read it — one description of the answer space, not two.
+
+So there is **no static list to author and nothing to keep in step with a pack**: the index is
+the pack's own output, and a re-spelled numeral changes it the moment the pack changes. The
+earlier draft's thirty-six reference values and its six hand-picked outliers are both gone;
+the index covers the range the drill actually draws.
+
+Only two form kinds need indexing beyond the cardinals. Negative, decimal, percent and
+multiplicative are an INVARIANT wrapper word around an unmodified cardinal (`hasi $n`,
+`menos $n`, `$n percent`), so they mint no vocabulary and the cardinal index already answers
+for them. Ordinal and Fraction mint their own word stock, and both enumerate cheaply —
+fractions over `2..12` with `gcd(n, d) == 1`, which is a few dozen values.
+
+**Build it lazily and cache it per language.** The check runs only on the `Match.Typo` arm, so
+nothing needs an index until the first near-miss of a run; C1 measures the build and bounds
+the cardinal range to the digit counts a run has drawn if it is not cheap enough.
 
 Three properties fall out rather than being designed in:
 
 - **The confusable pairs stop existing as data.** `cuarto`/`cuatro`, the eo six/seven family
-  the forms guard derives in six lines, es `un décimo`/`undécimo` — all of them are "the word
-  you typed is a reading of another value", never an entry.
-- **Compounds are covered without a compound rule.** `ciento setenta y ocho` differs from
-  `ciento sesenta y ocho` in one position, and `setenta` is 70, so it is refused — as is
-  sw `kumi na nane`, fr `cent dix` and eo `sesdek kvin`.
+  the forms guard derives in six lines, `un décimo`/`undécimo` — all of them are "what you
+  typed is a reading of another value", never an entry.
+- **Compounds need no compound rule.** They are readings, so the whole-answer probe has them;
+  where a wrapper hides the difference (`hasi nne` ↔ `hasi nane`) the positional probe does.
 - **The welded-form question dissolves.** The index is keyed in the normalizer's comparison
-  shape, which is the only shape the grader ever sees, so `soixantedix` and `девять` are one
-  word there and no hyphen ruling is needed.
+  shape, the only shape the grader ever sees, so `soixantedix` and `девять` are one word there
+  and no hyphen ruling is needed.
 
-⚠ **The check fires on the word TYPED, never on the word missed** — which makes it asymmetric
-wherever only one side of a difference is a number, and that asymmetry is forced. Refusing
-because the EXPECTED word is indexed would refuse `setnta` for `sesenta` too, since a number
-word is indexed and its fumble is not: every typo on every numeral would become Wrong, which
-is the one behavior the drill has to keep. So the rule needs positive evidence that the
-learner wrote a different value, and only the typed side can carry it.
-
-Consequence, at the clock: typing `cuatro` where `cuarto` belonged is refused and named
-(4 is indexed), while `cuarto` for `cuatro` stays a typo (the index holds no such reading, so
-there is nothing to name). All eleven cardinal pairs have both members indexed and are
-unaffected. An ordinal index would not make the rule symmetric — it would widen the evidence,
-so `cuarto` resolves to 4th and the same rule fires unchanged.
+⚠ **The check fires on what was TYPED, never on what was missed**, and that is forced.
+Refusing because the EXPECTED reading is indexed would refuse `setnta` for `sesenta` too — a
+number word is indexed and its fumble is not — so every typo on every numeral would become
+Wrong, which is the one behavior the drill has to keep. The rule needs positive evidence that
+the learner wrote a different value, and only the typed side can carry it. Where a differing
+word is in no index at all (`media`, `y`, a clock's part-of-day), nothing fires and the slip
+stays a typo, which is the right answer: there is no other value to name.
 
 ## The nudge
 
@@ -129,7 +134,8 @@ and `Chrome.otherWordNote` on Android. No new copy in either place.
 `Realization` for both sides, and `CatalogAnswerGrader` reads `word` off the target and
 `meanings` off the source — so an index built that way would say *"setenta means setenta"*.
 Built with `source.text = "70"` and `target.text` = the reading, it says *"setenta means 70"*,
-which is the whole point of the nudge.
+which is the whole point of the nudge. An ordinal or a fraction names itself the same way
+("11.", "1/10").
 
 This is where the platform work is, and the earlier draft's "no platform work" claim does not
 survive it: `TrainerRunState` carries `feedback: TurnFeedback` but no `otherWord`, so the
@@ -161,56 +167,83 @@ established and a preview with no language info keeps falling back to `plainVerd
 
 | Alternative | Verdict |
 |---|---|
-| **A hand-written confusable pair list**, consulted on the whole answer | Rejected. It is the smallest diff, but it leaves ~24 pairs to author and keep from rotting, refuses nothing inside a compound, and gives the learner no nudge. |
-| **The same list consulted per differing WORD** (the sweep's own `isKnownBridge`) | Superseded. Its BEHAVIOR is what this plan adopts — the owner accepted that `ciento setenta y ocho` is refused — but resolving the differing word against an index instead of a pair list drops the data and adds the nudge. |
+| **A hand-written confusable pair list**, consulted on the whole answer | Rejected. Smallest diff, but ~24 pairs to author and keep from rotting, nothing refused inside a compound, and no nudge. |
+| **The same list consulted per differing WORD** (the sweep's own `isKnownBridge`) | Superseded. Its BEHAVIOR is what this plan adopts — the owner accepted that `ciento setenta y ocho` is refused — but resolving against an index instead of a pair list drops the data and adds the nudge. |
+| **A bounded band of ~36 reference values** | Withdrawn after measurement. It cannot hold eo's ordinal residue (below), it needs six hand-picked outlier values, and it gives up the whole-answer probe's reach over compounds for nothing. |
 | **A word-count / letter-share / leading-word predicate** | Withdrawn by the owner. |
-| **Indexing the drill's whole drawable range** rather than a reference band | Held in reserve. Simpler, no outlier values, but it nudges on any compound and the band is currently small enough not to need it. |
 | **Author the numbers in the catalog** | Part 2, and this plan does NOT need it: the index reads the packs. The earlier claim that the two ideas "converge on one artifact" is withdrawn — with no pair list left, there is nothing for the catalog to adopt. |
+
+## What the forms space actually costs — measured, not assumed
+
+An earlier draft deferred the whole forms space on the assumption that its 2230 pinned
+collisions were untouchable without a forms index. That was wrong by roughly twenty times.
+The generators were ported and every pinned count reproduced exactly before splitting them:
+
+| Lang | Pinned today | Refused by the CARDINAL index alone | Needs an ordinal/fraction index |
+|---|---|---|---|
+| sw | 882 | 882 | 0 |
+| es | 231 | 230 | 1 |
+| eo | 976 | 949 | 27 |
+| fr | 103 | 96 | 7 |
+| uk | 30 | 25 | 5 |
+| en | 6 | 5 | 1 |
+| it | 2 | 0 | **2** |
+| **total** | **2230** | **2187** | **43** |
+
+Swahili is 100% because its forms never touch the numeral — `nne`/`nane` appears bare under
+every wrapper. Italian is the mirror image and the reason the forms index is not optional:
+both of its collisions are ordinal-only (`ventesimo`/`centesimo`), so it gains NOTHING from
+the cardinal index. The rest of the residue is uk's ordinal and fraction genders/cases,
+en `ninths`/`ninth`, fr's `-ième` twins, and es `un décimo`/`undécimo` — the one pair that
+needs the whole-answer probe rather than any index scope.
+
+Esperanto's 27 are the reason the reference band was abandoned. Its ordinal welds the entire
+cardinal into one token before `-a`, and the pipeline deletes the hyphen, so every one of them
+is a WHOLE-string collision spread across 6, 16, 26 … 96 and the whole 60s and 70s. Indexing
+the drawn range holds them; a band never could.
 
 ## What happens to the sweeps
 
-This is where the pinned counts go.
+This is where the pinned counts go, and the allowlists with them.
 
 Every pair the sweeps classify as an audited bridge is one the normalizer accepts AND whose
 differing words are all listed twins — which under the new rule is exactly a pair production
-now refuses. So the allowlists and the counts both stop being the assertion, and each sweep
-asserts one thing instead:
+now refuses. So each sweep asserts one thing instead:
 
 > for every colliding pair found, `gradeDrillAnswer` returns a miss.
 
 That is strictly stronger than today, because it exercises the production grader rather than
-a proxy normalizer, and there is nothing to re-pin: es 231, sw 882, eo 976 and the eleven other
-numbers are deleted, not recomputed. A collision whose differing word is not in the index fails
-the sweep by name, which is what makes the value list self-correcting.
+a proxy normalizer, and there is nothing to re-pin: es 231, sw 882, eo 976 and the eleven
+other numbers are deleted, not recomputed. **All three allowlists go** —
+`TypoBridgeSweep.KNOWN_BRIDGES`, `FORM_BRIDGES` and the clock's own list, whose one
+genuinely-clock entry `cuarto`/`cuatro` the ordinal index now answers for.
 
-One assertion replaces the rot guard the exhausted allowlist used to give: **every value in the
-index is reachable as a reading in the language's answer space**, so a stale integer cannot sit
-there doing nothing.
+One assertion replaces the rot guard the exhausted allowlists used to give: **the sweep's
+enumeration and the index's are the same `drawableValues`**, so a reading the drill can draw
+is indexed by construction and there is no list left to go stale.
 
-`ClockCollisionSweepTests` loses its own list entirely — `cuarto`/`cuatro` is caught by the
-cardinal index — and keeps its two unrelated assertions (the twelve-hour closure and the
-peeled-leading-word guard). `TrainerFormsTypoBridgeGuardTests.FORM_BRIDGES` is the one
-allowlist that SURVIVES, as sweep data only: the forms space has no index in this plan, so its
-collisions stay tolerated and stay pinned until an ordinal index exists. Say so in its KDoc
-rather than leaving it looking like an oversight.
+`ClockCollisionSweepTests` keeps its two unrelated assertions (the twelve-hour closure and the
+peeled-leading-word guard).
 
 **A gap for `docs/backlog.md`**: year readings are swept by nothing at all today, and de/it/eo
 read a year as one word.
 
 ## Commits, smallest first, each green on its own
 
-**C1 — the index.** The value list, the per-language build over `drillNumber(n)` with digits on
-the source side, and its cache. No caller yet. Gate: `:kern:jvmTest`.
+**C1 — the index.** `drawableValues` moved to `commonMain`; the per-language index over
+cardinals, ordinals and fractions with digits on the source side; lazy build and cache, with
+the build measured. No caller yet. Gate: `:kern:jvmTest`.
 
-**C2 — the check.** `otherNumber` in `DrillGrading.kt`, the index threaded through
-`TrainerRun.reduce`/`grade`, and a new `DrillGradingTests` (none exists today): bare
-`setenta`→`sesenta` refused and named, `ciento setenta y ocho` refused, a real slip (`setnta`)
-still Typo, an exact alternative spelling still Exact, a phrase answer unchanged, a reversed
-answer unchanged. Gate: `:kern:jvmTest`.
+**C2 — the check.** `otherNumber` in `DrillGrading.kt` (whole-answer probe, then positional),
+the index threaded through `TrainerRun.reduce`/`grade`, and a new `DrillGradingTests` (none
+exists today): bare `setenta`→`sesenta` refused and named, `ciento setenta y ocho` refused,
+`un décimo`→`undécimo` refused, `hasi nane`→`hasi nne` refused, a real slip (`setnta`) still
+Typo, an exact alternative spelling still Exact, a phrase answer unchanged, a reversed answer
+unchanged. Gate: `:kern:jvmTest`.
 
-**C3 — the sweeps.** All four rewritten to assert the production verdict; every pinned count and
-two of the three allowlists deleted; the index-reachability assertion added. This is the commit
-that proves the value list complete, so any outlier the sweep names is added HERE.
+**C3 — the sweeps.** All four rewritten to assert the production verdict; every pinned count
+and all three allowlists deleted. This is the commit that proves the index complete: anything
+the sweep still finds unrefused is a gap in the enumeration, not an entry to add.
 Gate: `:kern:jvmTest -Psweeps --rerun-tasks`.
 
 **C4 — the country drill.** The catalog-backed index, kind-scoped, plus the new
@@ -230,16 +263,19 @@ app build, and both screens seen side by side.
    eo `ses` → `sep` is one keystroke, `kumi na nne` → `kumi na nane` one letter in the last
    word. That IS the ruling, and the nudge is what softens it — which is why C5 is not
    optional. Worth a look on the simulator even though no gate demands it.
-2. **The asymmetric corner.** `cuarto` for `cuatro` is forgiven while `cuatro` for `cuarto` is
-   refused. The reason is sound and stated above — the check needs evidence on the typed side,
-   or every fumbled numeral becomes Wrong — but it will look arbitrary to anyone reading the
-   grader without it, so `otherNumber` owes it a KDoc line rather than this file alone.
+2. **The check keys on the typed side.** Sound, and stated above, but it will look arbitrary
+   to anyone reading the grader without the reason, so `otherNumber` owes it a KDoc line
+   rather than this file alone.
 3. **The index is language-keyed for a reason.** Unkeyed, `dix` would resolve to 10 on an
    English prompt where it is not a word — harmless in effect, wrong in reasoning, and a trap
    for whoever adds the next language.
-4. **The forms space is left as it is**, with 2230 tolerated collisions still pinned. That is a
-   deliberate deferral, not an oversight, and the one place this plan does not reduce the
-   maintenance burden.
+4. **The index is now the thing that can be incomplete.** The old failure was a rotted
+   allowlist; the new one is an answer space the enumeration does not reach — a form a pack
+   reads that `drawableValues` does not offer. Sharing one enumeration between the sweep and
+   the index is what contains it, and it is the invariant `number-forms.md` should carry.
+5. **Build cost is unmeasured.** Indexing the drawn range is thousands of `drillNumber` calls
+   per language. Lazy and cached it should never be felt, but C1 measures rather than assumes,
+   and the fallback (bound to the digit counts a run has drawn) is cheap.
 
 ---
 
