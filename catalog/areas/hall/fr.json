@@ -81,7 +81,7 @@
    "text": "Dépêche-toi, on est en retard !",
    "variants": ["Dépêche-toi, nous sommes en retard !"]
   },
-  "see-you-later": { "text": "À plus tard !", "variants": ["À tout à l'heure !", "À plus !"] },
+  "see-you-later": { "text": "À plus tard !", "variants": ["À tout à l'heure !", "À plus !", "À bientôt !"] },
   "welcome-home": { "text": "Bienvenue à la maison !" },
   "dont-forget-your-jacket": { "text": "N'oublie pas ta veste !" },
   "put-on-the-jacket": { "text": "mettre la veste", "variants": ["mettre sa veste", "enfiler la veste"] }
