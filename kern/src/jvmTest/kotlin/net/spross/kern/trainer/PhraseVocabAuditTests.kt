@@ -123,6 +123,8 @@ class PhraseVocabAuditTests {
             "tunakula" to "kula",     // tu-na-kula „wir essen“
             "rudia" to "kurudia",     // Imperativ „wiederhole“
             "andika" to "kuandika",   // Imperativ „schreib“
+            // Klassenplurale, im Katalog als grammar.plural geführt (living/desk)
+            "viti" to "kiti", "madaftari" to "daftari",
         ),
         // --- Ukrainian ------------------------------------------------------------
         "uk" to mapOf(

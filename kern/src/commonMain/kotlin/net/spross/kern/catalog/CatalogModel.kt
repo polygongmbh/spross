@@ -3,6 +3,7 @@ package net.spross.kern.catalog
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.Language
 import net.spross.kern.trainer.PhraseTemplate
+import net.spross.kern.trainer.SwahiliConcord
 import net.spross.kern.trainer.TrainerKind
 
 /** One ordered group from `areas.json`. */
@@ -94,6 +95,8 @@ internal data class RawFrame(
     val count: PhraseTemplate.CountForms?,
     /** This realization counts a masculine/indeclinable noun: одна/дві are wrong. */
     val masculineNumeral: Boolean,
+    /** The counted noun's Bantu class, so the numeral agrees with it; Swahili only. */
+    val swahiliNounClass: SwahiliConcord.NounClass?,
     /** Keyed by explanation language; selected by the profile's source at join time. */
     val notes: Map<Language, String>,
 )

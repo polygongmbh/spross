@@ -5,6 +5,7 @@ import net.spross.kern.model.CardKind
 import net.spross.kern.model.Language
 import net.spross.kern.model.LanguageInfo
 import net.spross.kern.trainer.PhraseTemplate
+import net.spross.kern.trainer.SwahiliConcord
 import net.spross.kern.trainer.TrainerKind
 
 /** Wraps a [CatalogSource], folding every read into an FNV-1a 64 fingerprint. */
@@ -266,7 +267,10 @@ internal object CatalogParser {
     }
 
     private fun parseFrame(path: String, slug: String, slot: TrainerKind, o: JsonObject): RawFrame {
-        o.rejectUnknownKeys(path, slug, setOf("text", "variants", "count", "masculineNumeral", "notes"))
+        o.rejectUnknownKeys(
+            path, slug,
+            setOf("text", "variants", "count", "masculineNumeral", "swahiliNounClass", "notes"),
+        )
         val text = o.requireString(path, slug, "text")
         val variants = o.stringList(path, slug, "variants")
         val count = o["count"]?.let { el ->
@@ -278,6 +282,13 @@ internal object CatalogParser {
                 few = co.requireString(path, "$slug.count", "few"),
                 many = co.requireString(path, "$slug.count", "many"),
             )
+        }
+        val nounClass = o.optionalString(path, slug, "swahiliNounClass")?.let { raw ->
+            if (slot != TrainerKind.Numbers) {
+                parseError(path, "$slug: swahiliNounClass on a ${slot.name.lowercase()} frame")
+            }
+            SwahiliConcord.NounClass.entries.firstOrNull { it.name == raw }
+                ?: parseError(path, "$slug: unknown swahiliNounClass \"$raw\"")
         }
         for (frame in listOf(text) + variants) {
             if (frame.isBlank()) parseError(path, "$slug: blank frame")
@@ -294,6 +305,7 @@ internal object CatalogParser {
             variants = variants,
             count = count,
             masculineNumeral = o.optionalBoolean(path, slug, "masculineNumeral") ?: false,
+            swahiliNounClass = nounClass,
             notes = o.stringMap(path, slug, "notes"),
         )
     }

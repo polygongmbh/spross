@@ -2,6 +2,7 @@ package net.spross.kern.catalog
 
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.trainer.SwahiliConcord
 import net.spross.kern.trainer.TrainerKind
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -325,7 +326,10 @@ class CatalogFixtureTest {
     @Test
     fun framesJoinSymmetricallyInBothDirections() {
         val forward = catalog.phraseTemplates("de", "sw")
-        assertEquals(listOf("bus-arrives-at", "i-have-n-keys", "im-learning-since"), forward.map { it.id })
+        assertEquals(
+            listOf("bus-arrives-at", "i-have-n-keys", "we-have-n-chairs", "im-learning-since"),
+            forward.map { it.id },
+        )
         assertEquals("Der Bus kommt um {slot} Uhr.", forward[0].sourceTemplate)
         assertEquals("Basi linakuja {slot}.", forward[0].targetTemplate)
         val reverse = catalog.phraseTemplates("sw", "de").first { it.id == "bus-arrives-at" }
@@ -356,6 +360,29 @@ class CatalogFixtureTest {
         assertFalse(swapped.masculineNumeral)
         assertNull(swapped.note)
         assertEquals(listOf("Ich habe {slot} Schluessel."), swapped.acceptedFrames)
+    }
+
+    /** The counted noun's class is the Swahili realization's, so it rides the answer side too. */
+    @Test
+    fun swahiliNounClassRoundTripsFromTheAnswerRealization() {
+        val forward = catalog.phraseTemplates("de", "sw").first { it.id == "we-have-n-chairs" }
+        assertEquals(SwahiliConcord.NounClass.KI_VI, forward.swahiliNounClass)
+        // Swapped, Swahili is the prompt and German the typed answer: German has no noun
+        // classes, so the field drops rather than following the frame.
+        val swapped = catalog.phraseTemplates("sw", "de").first { it.id == "we-have-n-chairs" }
+        assertNull(swapped.swahiliNounClass)
+        // The N-class frames shipping beside it carry no class at all (SwahiliConcord).
+        assertNull(catalog.phraseTemplates("de", "sw").first { it.id == "i-have-n-keys" }.swahiliNounClass)
+    }
+
+    /** A class the concord table does not carry would render plain — fail the build instead. */
+    @Test
+    fun anUnknownSwahiliNounClassFailsTheParse() {
+        val broken = Fixture.files + mapOf(
+            "phrases/sw.json" to Fixture.files.getValue("phrases/sw.json").replace("KI_VI", "M_MI"),
+        )
+        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
+        assertTrue("unknown swahiliNounClass" in error.message.orEmpty(), "message: ${error.message}")
     }
 
     /** Only the ANSWER side needs generated number words — a pack-less language still prompts. */

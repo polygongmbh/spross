@@ -177,8 +177,9 @@ class Catalog internal constructor(
 
     /**
      * The frames' half of [join]: one [PhraseTemplate] per frame realized in BOTH languages,
-     * directional like a [Card]. `masculineNumeral`/`notes` ride along from the ANSWER
-     * realization; `count` rides from BOTH, because agreement belongs to whichever language
+     * directional like a [Card]. `masculineNumeral`/`swahiliNounClass`/`notes` ride along
+     * from the ANSWER realization;
+     * `count` rides from BOTH, because agreement belongs to whichever language
      * authored it and the prompt renders its own frame. Empty unless [Trainer.supports] the
      * target — sampling generates the answer side's number words, so a target without a pack
      * only ever supplies prompts.
@@ -213,6 +214,7 @@ class Catalog internal constructor(
                 countForms = answer.count,
                 sourceCountForms = prompt.count,
                 masculineNumeral = answer.masculineNumeral,
+                swahiliNounClass = answer.swahiliNounClass,
             )
         }
     }

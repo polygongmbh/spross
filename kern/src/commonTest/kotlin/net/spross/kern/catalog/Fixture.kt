@@ -26,6 +26,7 @@ internal object Fixture {
         "phrases/frames.json" to """
             [ { "slug": "bus-arrives-at", "slot": "clock" },
               { "slug": "i-have-n-keys", "slot": "numbers" },
+              { "slug": "we-have-n-chairs", "slot": "numbers" },
               { "slug": "learning-since-year", "slot": "years" },
               { "slug": "im-learning-since", "slot": "years" } ]
         """.trimIndent(),
@@ -34,6 +35,7 @@ internal object Fixture {
                 "bus-arrives-at": { "text": "Der Bus kommt um {slot} Uhr." },
                 "i-have-n-keys": { "text": "Ich habe {slot} Schl\u00fcssel.",
                                    "variants": ["Ich habe {slot} Schluessel."] },
+                "we-have-n-chairs": { "text": "Wir haben {slot} St\u00fchle." },
                 "learning-since-year": { "text": "Ich lerne seit {slot}." },
                 "im-learning-since": { "text": "Ich lerne seit {slot} {language}." } } }
         """.trimIndent(),
@@ -50,6 +52,7 @@ internal object Fixture {
               "frames": {
                 "bus-arrives-at": { "text": "Basi linakuja {slot}." },
                 "i-have-n-keys": { "text": "Nina funguo {slot}." },
+                "we-have-n-chairs": { "text": "Tuna viti {slot}.", "swahiliNounClass": "KI_VI" },
                 "im-learning-since": { "text": "Ninajifunza {language} tangu mwaka {slot}." } } }
         """.trimIndent(),
         "phrases/uk.json" to """

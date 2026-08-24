@@ -4,12 +4,14 @@
    "Verschiedene Stellen verbindet na (und): ishirini na tano.",
    "Erst das Stufenwort, dann die Anzahl: mia mbili (200), elfu tatu (3000).",
    "6, 7 und 9 sind aus dem Arabischen entlehnt: sita, saba, tisa — die Nachbarn sind Bantu.",
+   "Die Bantu-Zahlen 1–5 und 8 richten sich nach der Klasse des gezählten Worts: viti viwili, aber sahani mbili. Nur die letzte Stelle bekommt das Präfix.",
    "Auch die Zehner ab 20 sind entlehnt und folgen keinem Muster: ishirini, thelathini, arobaini."
   ],
   "en": [
    "Parts join with na (and): ishirini na tano.",
    "The scale word comes first, the count after: mia mbili (200), elfu tatu (3000).",
    "6, 7 and 9 are Arabic loans: sita, saba, tisa — their neighbors are Bantu.",
+   "The Bantu numerals 1–5 and 8 agree with the counted noun's class: viti viwili, but sahani mbili. Only the last digit takes the prefix.",
    "The tens from 20 up are borrowed too and follow no pattern: ishirini, thelathini, arobaini."
   ]
  },
@@ -21,6 +23,20 @@
   "meeting-is-at": { "text": "Mkutano ni {slot}." },
   "it-is-now": { "text": "Sasa ni {slot}.", "variants": ["Ni {slot} sasa."] },
   "we-have-n-plates": { "text": "Tuna sahani {slot}." },
+  "i-have-n-notebooks": {
+   "text": "Nina madaftari {slot}.",
+   "swahiliNounClass": "JI_MA",
+   "notes": {
+    "de": "madaftari ist der Plural von daftari und steht in der JI-MA-Klasse — die Zahlwörter tragen ma- (madaftari mawili, madaftari matatu)."
+   }
+  },
+  "we-have-n-chairs": {
+   "text": "Tuna viti {slot}.",
+   "swahiliNounClass": "KI_VI",
+   "notes": {
+    "de": "viti ist der Plural von kiti und steht in der KI-VI-Klasse — die Zahlwörter tragen vi- (viti viwili, viti vitatu), während dieselbe Zahl in der N-Klasse sahani mbili ergibt."
+   }
+  },
   "i-have-n-keys": {
    "text": "Nina funguo {slot}.",
    "notes": {
