@@ -133,7 +133,6 @@ MAPPING = {
     'keepPracticing': 'session.finished.keepPracticing',
     'last14Days': 'progress.last14Days',
     'learnerNameHint': 'settings.name.hint',
-    'learnerNameOptional': 'onboarding.name.hint',
     'learnerNamePlaceholder': 'settings.name.placeholder',
     'learnerNameQuestion': 'onboarding.name.question',
     'learnerNameTitle': 'settings.name.title',

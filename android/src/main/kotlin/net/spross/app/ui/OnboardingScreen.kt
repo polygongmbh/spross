@@ -180,8 +180,7 @@ fun OnboardingScreen(model: AppModel) {
 /**
  * The one question the first page does not need answered: what to call the learner.
  *
- * It gates nothing — the way on is the pair alone — and the line under it says so, because
- * a field beside two required questions otherwise reads as a third. The greeting has a
+ * It gates nothing — the way on is the pair alone. The greeting has a
  * wording for a learner it cannot name, so an empty field costs nothing at all.
  */
 @Composable
@@ -199,11 +198,6 @@ private fun NameSection(chrome: Chrome, name: String, onName: (String) -> Unit) 
                 imeAction = ImeAction.Done,
             ),
             modifier = Modifier.fillMaxWidth(),
-        )
-        Text(
-            chrome.learnerNameOptional,
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
 }

@@ -3572,13 +3572,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein Wort, das du nicht wusstest, schreibst du einmal ab. Taucht es wieder auf, tippst du es aus dem Gedächtnis."
+            "value" : "Ein Wort, das du nicht wusstest, darfst du einmal abschreiben, damit es besser hängen bleibt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A word you didn't know gets written once. When it turns up again, you type it from memory."
+            "value" : "When you don't know a word, you can write it out once to solidify your memory."
           }
         }
       }
@@ -3588,29 +3588,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zuerst deine Sprachen."
+            "value" : "Was möchtest du lernen?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "First, your languages."
-          }
-        }
-      }
-    },
-    "onboarding.name.hint" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nur für die Begrüßung — lass es leer oder trag den Namen später in deiner Box nach."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Just for the greeting — leave it empty, or add a name later in your box."
+            "value" : "What are you here for?"
           }
         }
       }
@@ -3620,13 +3604,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wie soll Spross dich nennen?"
+            "value" : "Wie soll Spross dich ansprechen?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "What should Spross call you?"
+            "value" : "How should Spross greet you?"
           }
         }
       }

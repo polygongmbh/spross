@@ -39,12 +39,10 @@ internal object ChromeEn : Chrome {
     override val consolidatedLabel = "consolidated"
     override val freshLabel = "fresh"
     override val chooseTitle = "Welcome to Spross!"
-    override val chooseSubtitle = "First, your languages."
+    override val chooseSubtitle = "What are you here for?"
     override val iSpeak = "I speak"
     override val iLearn = "I'm learning"
-    override val learnerNameQuestion = "What should Spross call you?"
-    override val learnerNameOptional = "Just for the greeting — leave it empty, or add a " +
-        "name later in your box."
+    override val learnerNameQuestion = "How should Spross greet you?"
     override val letsGo = "Let's go!"
     override val back = "Back"
     override val whyTitle = "What Spross is for"
@@ -63,8 +61,8 @@ internal object ChromeEn : Chrome {
         "ring a bell?"
     override val firstRoundGrade = "Then you reveal and say how well you knew it. Honest " +
         "beats generous: your answer decides when you see the word again."
-    override val firstRoundWrite = "A word you didn't know gets written once. When it turns " +
-        "up again, you type it from memory."
+    override val firstRoundWrite = "When you don't know a word, you can write it out once to " +
+        "solidify your memory."
     override val check = "Check"
     override val reveal = "Reveal"
     override val next = "Next"

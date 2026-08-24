@@ -158,9 +158,8 @@ struct OnboardingView: View {
 
     // MARK: - What to call you
 
-    /// The one question this page does not need answered: it gates nothing, and the line
-    /// under the field says so — a field standing beside two required questions otherwise
-    /// reads as a third. The greeting has a wording for a learner it cannot name.
+    /// The one question this page does not need answered: it gates nothing.
+    /// The greeting has a wording for a learner it cannot name.
     ///
     /// It opens empty. `UIDevice.current.name` returns the MODEL ("iPhone") on iOS 16 and
     /// later for any app without the user-assigned-device-name entitlement, which is a
@@ -173,9 +172,6 @@ struct OnboardingView: View {
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlTextPrimary)
             DLNameField(placeholder: "settings.name.placeholder", text: $name)
-            Text("onboarding.name.hint")
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
         }
     }
 

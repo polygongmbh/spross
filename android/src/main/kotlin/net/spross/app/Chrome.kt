@@ -60,9 +60,8 @@ interface Chrome {
     val chooseSubtitle: String    // what the first page asks for, under the welcome
     val iSpeak: String
     val iLearn: String
-    /** The third question of the first page, and the line that makes leaving it empty fine. */
+    /** The third question of the first page. */
     val learnerNameQuestion: String
-    val learnerNameOptional: String
     val letsGo: String
     /** The way back out of a page, wherever a flow has one behind it. */
     val back: String

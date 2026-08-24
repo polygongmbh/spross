@@ -37,12 +37,10 @@ internal object ChromeDe : Chrome {
     override val consolidatedLabel = "gefestigt"
     override val freshLabel = "frisch"
     override val chooseTitle = "Willkommen bei Spross!"
-    override val chooseSubtitle = "Zuerst deine Sprachen."
+    override val chooseSubtitle = "Was möchtest du lernen?"
     override val iSpeak = "Ich spreche"
     override val iLearn = "Ich lerne"
-    override val learnerNameQuestion = "Wie soll Spross dich nennen?"
-    override val learnerNameOptional = "Nur für die Begrüßung — lass es leer oder trag den " +
-        "Namen später in deiner Box nach."
+    override val learnerNameQuestion = "Wie soll Spross dich ansprechen?"
     override val letsGo = "Los geht's!"
     override val back = "Zurück"
     override val whyTitle = "Wofür Spross da ist"
@@ -62,8 +60,8 @@ internal object ChromeDe : Chrome {
     override val firstRoundGrade = "Dann deckst du auf und sagst, wie gut du es wusstest. " +
         "Ehrlich schlägt großzügig: Deine Antwort entscheidet, wann du das Wort " +
         "wiedersiehst."
-    override val firstRoundWrite = "Ein Wort, das du nicht wusstest, schreibst du einmal ab. " +
-        "Taucht es wieder auf, tippst du es aus dem Gedächtnis."
+    override val firstRoundWrite = "Ein Wort, das du nicht wusstest, darfst du einmal " +
+        "abschreiben, damit es besser hängen bleibt."
     override val check = "Prüfen"
     override val reveal = "Aufdecken"
     override val next = "Weiter"
