@@ -97,13 +97,13 @@ Engine contract: `../README.md`.
   built, so `{slot}`/`{count}` filling never meets a marker, and `CatalogFrameLintTest` adds
   the two rules only a frame can break — text and variants agree on carrying one, and a
   marked frame joins every pair its realizations otherwise allow.
-- `catalog/drills/` — the sentence frames, a top-level sibling outside `areas.json`
-  (format owned by `catalog/drills/README.md`). A frame is a concept + per-language realizations,
+- `catalog/phrases/` — the sentence frames, a top-level sibling outside `areas.json`
+  (format owned by `catalog/phrases/README.md`). A frame is a concept + per-language realizations,
   joined at runtime like a card, but it is not a card: no area, no `seedIndex`, outside the
   phrase-unlock gate. **Frames are read through the RAW `CatalogSource`, not the
   fingerprinting wrapper** — the same exemption the audio manifest has, and for the same
   reason: a frame edit can never change the card join, so it must not restamp and recompose
-  a running box. An absent `drills/` folder is legal. Lint: **`CatalogFrameLintTest`**
+  a running box. An absent `phrases/` folder is legal. Lint: **`CatalogFrameLintTest`**
   (slug shape/uniqueness/disjointness from concepts, one `{slot}` per text and per variant,
   `{count}` ⟺ `count` and only on a `numbers` frame, note keys are declared languages);
   vocab grounding of every answer side in **`PhraseVocabAuditTests`**.

@@ -64,7 +64,7 @@ internal data class RawRealization(
 )
 
 /**
- * A sentence frame as authored in `drills/frames.json` — language-neutral, exactly like
+ * A sentence frame as authored in `phrases/frames.json` — language-neutral, exactly like
  * [CatalogConcept]: a slug plus the [slot] kind its single `{slot}` takes. Frames are not
  * scheduled cards, so they carry no area, no kind and no seedIndex.
  */
@@ -74,7 +74,7 @@ internal data class CatalogFrame(
 )
 
 /**
- * One `drills/<lang>.json` as authored: what this language does with numbers, and the
+ * One `phrases/<lang>.json` as authored: what this language does with numbers, and the
  * frames it renders. The notes describe the LANGUAGE, not any one frame, which is why
  * they sit beside [frames] rather than inside one.
  */
@@ -84,7 +84,7 @@ internal data class RawDrills(
     val frames: Map<String, RawFrame>,
 )
 
-/** One frame rendered in one language, as authored in `drills/<lang>.json`. */
+/** One frame rendered in one language, as authored in `phrases/<lang>.json`. */
 internal data class RawFrame(
     /** Carries exactly one `{slot}`, and `{count}` iff [count] is authored. */
     val text: String,

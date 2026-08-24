@@ -26,9 +26,9 @@ class Catalog internal constructor(
     internal val audio: Map<Language, AudioManifest>,
     /** Keyed by language, only where `alphabet/<lang>.json` exists — the drill's registry. */
     internal val alphabets: Map<Language, Alphabet>,
-    /** Sentence frames from `drills/frames.json`, in manifest order; empty without the folder. */
+    /** Sentence frames from `phrases/frames.json`, in manifest order; empty without the folder. */
     internal val frames: List<CatalogFrame>,
-    /** lang → frame slug → realization; only languages whose `drills/<lang>.json` exists. */
+    /** lang → frame slug → realization; only languages whose `phrases/<lang>.json` exists. */
     internal val frameRealizations: Map<Language, Map<String, RawFrame>>,
     /** lang → reader → the prose [numberNotes] serves; same file, same registry rule. */
     internal val drillNotes: Map<Language, Map<Language, List<String>>>,
@@ -219,7 +219,7 @@ class Catalog internal constructor(
 
     /**
      * What trips a learner up in [language]'s numbers — authored prose from
-     * `drills/<lang>.json`, keyed by explanation language exactly as a realization's notes
+     * `phrases/<lang>.json`, keyed by explanation language exactly as a realization's notes
      * are, and selected here by whoever is READING.
      *
      * Unlike a realization note it does fall back to [FALLBACK_SOURCE]: a note hangs off a
@@ -534,11 +534,11 @@ class Catalog internal constructor(
             // why: read through the RAW source, like audio — a frame is never part of the
             // card join, so editing one must not restamp and recompose every running box.
             val conceptSlugs = areas.flatMap { area -> area.concepts.map { it.slug } }.toSet()
-            val frames = source.read("drills/frames.json")
-                ?.let { CatalogParser.parseFrames("drills/frames.json", it, conceptSlugs) }.orEmpty()
+            val frames = source.read("phrases/frames.json")
+                ?.let { CatalogParser.parseFrames("phrases/frames.json", it, conceptSlugs) }.orEmpty()
             val slots = frames.associate { it.slug to it.slot }
             val drills = languages.keys.mapNotNull { lang ->
-                val path = "drills/$lang.json"
+                val path = "phrases/$lang.json"
                 source.read(path)?.let { lang to CatalogParser.parseFrameLanguageFile(path, it, slots) }
             }.toMap()
             return Catalog(

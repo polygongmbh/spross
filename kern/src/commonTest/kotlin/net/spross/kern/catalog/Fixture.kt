@@ -17,19 +17,19 @@ internal object Fixture {
 
     /**
      * Frame files, kept apart so a test can drop them wholesale and exercise the
-     * absent-`drills/` case. `learning-since-year` is German-only (never joins), and `pt`
+     * absent-`phrases/` case. `learning-since-year` is German-only (never joins), and `pt`
      * is realized although no trainer pack covers it (the availability gate).
      * `numberNotes` covers all three reader cases: sw authors both readers, uk English
      * only (the fallback), de and pt none at all.
      */
     val drills: Map<String, String> = mapOf(
-        "drills/frames.json" to """
+        "phrases/frames.json" to """
             [ { "slug": "bus-arrives-at", "slot": "clock" },
               { "slug": "i-have-n-keys", "slot": "numbers" },
               { "slug": "learning-since-year", "slot": "years" },
               { "slug": "im-learning-since", "slot": "years" } ]
         """.trimIndent(),
-        "drills/de.json" to """
+        "phrases/de.json" to """
             { "frames": {
                 "bus-arrives-at": { "text": "Der Bus kommt um {slot} Uhr." },
                 "i-have-n-keys": { "text": "Ich habe {slot} Schl\u00fcssel.",
@@ -39,11 +39,11 @@ internal object Fixture {
         """.trimIndent(),
         // why: pt realizes the marked frame but authors no name table, so every pair drops
         // it and keeps the rest — the frame half of the coverage drop.
-        "drills/pt.json" to """
+        "phrases/pt.json" to """
             { "frames": { "bus-arrives-at": { "text": "O autocarro chega às {slot}." },
                           "im-learning-since": { "text": "Aprendo {language} desde {slot}." } } }
         """.trimIndent(),
-        "drills/sw.json" to """
+        "phrases/sw.json" to """
             { "numberNotes": {
                 "de": ["Sechs, sieben und neun sind entlehnt."],
                 "en": ["Six, seven and nine are loans."] },
@@ -52,7 +52,7 @@ internal object Fixture {
                 "i-have-n-keys": { "text": "Nina funguo {slot}." },
                 "im-learning-since": { "text": "Ninajifunza {language} tangu mwaka {slot}." } } }
         """.trimIndent(),
-        "drills/uk.json" to """
+        "phrases/uk.json" to """
             { "numberNotes": { "en": ["The numeral sets the form."] },
               "frames": {
                 "bus-arrives-at": { "text": "\u0410\u0432\u0442\u043e\u0431\u0443\u0441 {slot}." },

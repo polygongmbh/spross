@@ -7,7 +7,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 /**
- * Permanent lint over the REAL `catalog/drills/`, beside [CatalogLintTest] the way
+ * Permanent lint over the REAL `catalog/phrases/`, beside [CatalogLintTest] the way
  * [CatalogAudioLintTest] and [AlphabetLintTest] sit beside it. The parser enforces the same
  * rules on load; pinning them here is what makes a regression in either one loud.
  */
@@ -26,7 +26,7 @@ class CatalogFrameLintTest {
 
     @Test
     fun framesParseAndEveryOneIsRealizedSomewhere() {
-        assertTrue(catalog.frames.isNotEmpty(), "no frames in drills/frames.json")
+        assertTrue(catalog.frames.isNotEmpty(), "no frames in phrases/frames.json")
         val realized = catalog.frameRealizations.values.flatMap { it.keys }.toSet()
         for (frame in catalog.frames) {
             assertTrue(frame.slug in realized, "${frame.slug}: declared but realized in no language")
@@ -47,7 +47,7 @@ class CatalogFrameLintTest {
             assertTrue(slug !in conceptSlugs, "frame slug \"$slug\" also names a concept")
         }
         forEachFrame { lang, slug, _ ->
-            assertTrue(slug in slots, "drills/$lang.json: realization for unknown frame \"$slug\"")
+            assertTrue(slug in slots, "phrases/$lang.json: realization for unknown frame \"$slug\"")
         }
     }
 
@@ -56,11 +56,11 @@ class CatalogFrameLintTest {
     fun everyFrameAndVariantCarriesExactlyOneSlot() {
         forEachFrame { lang, slug, frame ->
             for (text in listOf(frame.text) + frame.variants) {
-                val where = "drills/$lang.json $slug"
+                val where = "phrases/$lang.json $slug"
                 assertTrue(text.isNotBlank() && text.trim() == text, "$where: untrimmed \"$text\"")
                 assertEquals(1, occurrences(text, "{slot}"), "$where: \"$text\" slot count")
             }
-            assertTrue(frame.text !in frame.variants, "drills/$lang.json $slug: variant equals text")
+            assertTrue(frame.text !in frame.variants, "phrases/$lang.json $slug: variant equals text")
         }
     }
 
@@ -71,7 +71,7 @@ class CatalogFrameLintTest {
     @Test
     fun countMarkerAndFormsImplyEachOtherOnNumbersFramesOnly() {
         forEachFrame { lang, slug, frame ->
-            val where = "drills/$lang.json $slug"
+            val where = "phrases/$lang.json $slug"
             val expected = if (frame.count == null) 0 else 1
             for (text in listOf(frame.text) + frame.variants) {
                 assertEquals(expected, occurrences(text, "{count}"), "$where: \"$text\" count marker")
@@ -92,7 +92,7 @@ class CatalogFrameLintTest {
     fun numberNotesAreReaderKeyedProseAndEveryDrillableLanguageAuthorsEnglish() {
         for ((lang, byReader) in catalog.drillNotes) {
             for ((reader, lines) in byReader) {
-                val where = "drills/$lang.json numberNotes.$reader"
+                val where = "phrases/$lang.json numberNotes.$reader"
                 assertTrue(reader in catalog.languages, "$where: unknown reader")
                 assertTrue(lines.isNotEmpty(), "$where: no lines")
                 for (line in lines) {
@@ -103,7 +103,7 @@ class CatalogFrameLintTest {
         for (lang in catalog.languages.keys.filter { Trainer.supports(it) }) {
             assertTrue(
                 catalog.numberNotes(lang, Catalog.FALLBACK_SOURCE).isNotEmpty(),
-                "drills/$lang.json: no English number notes, so every reader's overview is empty",
+                "phrases/$lang.json: no English number notes, so every reader's overview is empty",
             )
         }
     }
@@ -117,7 +117,7 @@ class CatalogFrameLintTest {
     @Test
     fun textAndVariantsAgreeOnCarryingALanguageMarker() {
         forEachFrame { lang, slug, frame ->
-            val where = "drills/$lang.json $slug"
+            val where = "phrases/$lang.json $slug"
             val marked = LanguageNames.hasLanguageMarker(frame.text)
             for (variant in frame.variants) {
                 assertEquals(
@@ -155,7 +155,7 @@ class CatalogFrameLintTest {
         forEachFrame { lang, slug, frame ->
             assertTrue(
                 frame.notes.keys.all { it in catalog.languages },
-                "drills/$lang.json $slug: unknown note key ${frame.notes.keys}",
+                "phrases/$lang.json $slug: unknown note key ${frame.notes.keys}",
             )
         }
     }

@@ -13,7 +13,7 @@ not as realizations, not as drill content.
 The only catalog hits for `montag|januar|monday|january|jumatatu|январ|понеділок|січень`
 are Italian and French `montagna`/`montagne`.
 
-`catalog/drills/frames.json` carries 18 frames over four slot kinds —
+`catalog/phrases/frames.json` carries 18 frames over four slot kinds —
 `clock` ×7, `numbers` ×7, `years` ×3, `fraction` ×1 —
 so the clock drill can already say *the train departs at 14:30*
 while the learner has no way to say which day it departs.
@@ -40,7 +40,7 @@ which is the whole reason it needs both a catalog lint and a collision sweep.
 
 ### Why not a new frame slot kind
 
-`catalog/drills/README.md` states there is deliberately no `forms` slot,
+`catalog/phrases/README.md` states there is deliberately no `forms` slot,
 and the argument it gives is not about number forms:
 
 > a frame is grammatically bound to the family it carries —
@@ -57,7 +57,7 @@ That passage is not an obstacle to argue around here; it predicts this case corr
 
 Two further reasons close it:
 
-- **The slot value is generated in the language being typed** (`catalog/drills/README.md`),
+- **The slot value is generated in the language being typed** (`catalog/phrases/README.md`),
   and a frame drill exists only where the answer language has a trainer pack.
   Weekday and month names are lexical content that must be authored per language.
   Feeding a frame slot from the catalog would invert the layering —
@@ -244,7 +244,7 @@ an ordinal genitive year, which the pack does not produce and which is not
 a date rule but a whole second numeral family.
 So Ukrainian carries no rung 6, exactly as
 "Ukrainian year frames would need ordinal and case forms the trainer does not produce"
-already took that gap for the frames (`catalog/drills/README.md`),
+already took that gap for the frames (`catalog/phrases/README.md`),
 and exactly as French carries no counted-noun frame.
 An honest missing rung costs a learner nothing but the rung.
 
@@ -253,7 +253,7 @@ for the reason `number-forms.md` § Ukrainian gives.
 
 ## Catalog schema
 
-New top-level folder, a sibling of `alphabet/`, `countries/` and `drills/`,
+New top-level folder, a sibling of `alphabet/`, `countries/` and `phrases/`,
 carrying its own `catalog/dates/README.md` and listed in `catalog/README.md`'s
 Layout tree. Written in the other folder READMEs' voice:
 

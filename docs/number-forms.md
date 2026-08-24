@@ -141,7 +141,7 @@ so nothing runs out at a denominator or a hundredth rank the way it does in de, 
   It rides behind every form word, so `minus naux` and `nauxa` grade like the bare cardinal does.
 - `miliono` and `miliardo` are NOUNS: `unu miliono`, `du milionoj`,
   and before what they count they take `da` (*unu miliono da homoj*) —
-  which is what keeps a counted-noun frame away from the numbers slot (`../catalog/drills/README.md`).
+  which is what keeps a counted-noun frame away from the numbers slot (`../catalog/phrases/README.md`).
   `cent` and `mil` are numerals and take no `unu`.
 - `nul` is the numeral and `nulo` the noun; a bare 0 is written both ways, so both grade.
 - **What the app names as the word each form adds is an AFFIX here** — `-ono` for the fraction,

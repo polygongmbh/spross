@@ -388,7 +388,7 @@ class CatalogFixtureTest {
     @Test
     fun aMalformedMarkerInAFrameFailsTheParse() {
         val broken = Fixture.files + mapOf(
-            "drills/sw.json" to Fixture.drills.getValue("drills/sw.json")
+            "phrases/sw.json" to Fixture.drills.getValue("phrases/sw.json")
                 .replace("{language} tangu", "{language-of} tangu"),
         )
         val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
@@ -420,7 +420,7 @@ class CatalogFixtureTest {
     @Test
     fun blankNumberNoteFailsTheParse() {
         val broken = Fixture.files + mapOf(
-            "drills/uk.json" to Fixture.drills.getValue("drills/uk.json")
+            "phrases/uk.json" to Fixture.drills.getValue("phrases/uk.json")
                 .replace("The numeral sets the form.", " "),
         )
         val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
@@ -430,10 +430,10 @@ class CatalogFixtureTest {
     @Test
     fun malformedFrameFileNamesThePath() {
         val broken = Fixture.files + mapOf(
-            "drills/uk.json" to """{ "frames": { "no-such-frame": { "text": "{slot}." } } }""",
+            "phrases/uk.json" to """{ "frames": { "no-such-frame": { "text": "{slot}." } } }""",
         )
         val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
-        assertTrue("drills/uk.json" in error.message.orEmpty(), "message: ${error.message}")
+        assertTrue("phrases/uk.json" in error.message.orEmpty(), "message: ${error.message}")
     }
 
     /**
@@ -445,7 +445,7 @@ class CatalogFixtureTest {
     @Test
     fun formsIsNotAFrameSlotKind() {
         val broken = Fixture.files + mapOf(
-            "drills/frames.json" to Fixture.drills.getValue("drills/frames.json")
+            "phrases/frames.json" to Fixture.drills.getValue("phrases/frames.json")
                 .replace("\"slot\": \"clock\"", "\"slot\": \"forms\""),
         )
         val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
@@ -456,7 +456,7 @@ class CatalogFixtureTest {
     @Test
     fun frameEditsLeaveTheFingerprintAlone() {
         val edited = Fixture.files + mapOf(
-            "drills/sw.json" to Fixture.drills.getValue("drills/sw.json").replace("Basi", "Gari"),
+            "phrases/sw.json" to Fixture.drills.getValue("phrases/sw.json").replace("Basi", "Gari"),
         )
         assertEquals(catalog.fingerprint, Catalog.load(MapCatalogSource(edited)).fingerprint)
     }

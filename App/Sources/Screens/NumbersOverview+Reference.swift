@@ -30,7 +30,7 @@ extension NumbersOverview {
     // MARK: - What to watch out for
 
     /// Two to four authored lines per language, straight from the catalog
-    /// (`drills/<lang>.json`), picked for the reader — kern falls back to
+    /// (`phrases/<lang>.json`), picked for the reader — kern falls back to
     /// English where their own language carries no wording.
     @ViewBuilder
     var notesSection: some View {

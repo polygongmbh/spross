@@ -7,16 +7,16 @@ Sentence frames for the procedural drills:
 a curated sentence whose single `{slot}` the engine fills with a generated
 number, year or clock time.
 A frame is a **concept** exactly as a word is — `frames.json` names it and the slot kind
-it takes, and each `drills/<lang>.json` renders it in that language.
+it takes, and each `phrases/<lang>.json` renders it in that language.
 Nothing pair-shaped is stored: `de→uk` and `en→uk` read the same Ukrainian file.
 
-**`drills/frames.json`** — the ordered frame manifest:
+**`phrases/frames.json`** — the ordered frame manifest:
 ```json
 [ { "slug": "train-departs-at",   "slot": "clock"   },
   { "slug": "i-have-n-notebooks", "slot": "numbers" } ]
 ```
 
-**`drills/<lang>.json`** — the frames this language renders, keyed by slug (`de.json`):
+**`phrases/<lang>.json`** — the frames this language renders, keyed by slug (`de.json`):
 ```json
 { "frames": {
     "train-departs-at": { "text": "Der Zug fährt um {slot} Uhr ab." },
@@ -73,7 +73,7 @@ so lint requires English of every language the trainer can generate.
 - A frame drill exists only where the **answer** language has a trainer pack:
   the slot value is generated in the language being typed,
   so a language without one can still supply prompts but never answers.
-- **An absent `drills/` folder is legal** — no frames, no sentence drill.
+- **An absent `phrases/` folder is legal** — no frames, no sentence drill.
 - Frame slugs share the concept namespace and must not collide with one:
   a slug names either a card or a frame, never both.
 

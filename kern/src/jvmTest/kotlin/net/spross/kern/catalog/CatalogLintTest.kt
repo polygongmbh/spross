@@ -306,7 +306,7 @@ class CatalogLintTest {
         }
         for ((lang, frames) in catalog.frameRealizations) {
             for ((slug, frame) in frames) {
-                val where = "drills/$lang.json $slug"
+                val where = "phrases/$lang.json $slug"
                 for (form in listOf(frame.text) + frame.variants) {
                     assertTrue(LanguageNames.markerError(form) == null, "$where: ${LanguageNames.markerError(form)}")
                 }

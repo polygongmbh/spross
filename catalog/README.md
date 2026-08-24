@@ -48,7 +48,7 @@ catalog/
     README.md
     atlas.json          # language-neutral manifest: languages + countries, with tiers
     <lang>.json         # { slug: { text, nationality } }
-  drills/               # sentence frames for the generated number/year/clock drills
+  phrases/              # sentence frames for the generated number/year/clock drills
     README.md
     frames.json         # ordered [{slug, slot}] — language-neutral frame concepts
     <lang>.json         # { frames: { slug: realization } }

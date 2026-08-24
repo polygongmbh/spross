@@ -107,7 +107,7 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   is listed, with its evidence, in the bodies of the two `feat(catalog): the atlas
   reaches …` commits — that is the pointer, and nothing restates it.
 - Sentence-frame notes now carry `en` alongside `de` for it/fr/eo (2026-08-15) and uk
-  (2026-08-02) drills (`notes` in `catalog/drills/*.json`), but sw is still de-only, so an
+  (2026-08-02) drills (`notes` in `catalog/phrases/*.json`), but sw is still de-only, so an
   English reader drilling Swahili's frames meets no gloss at all.
   The vocab side improved the same way for de-target words in `catalog/areas/*/de.json`
   (both `de` and `en` keys now), but `notes` on a word is still keyed by the reader's
@@ -124,7 +124,7 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   plus a realization in all eight language files.
 - Swahili number frames can only ever count N-class nouns: the agreement lands on the
   NUMERAL, not on the noun, and `count` inflects the noun — so `i-have-n-notebooks`
-  and `we-have-n-chairs` are dropped from `catalog/drills/sw.json` rather than coined wrong.
+  and `we-have-n-chairs` are dropped from `catalog/phrases/sw.json` rather than coined wrong.
   A numeral-side agreement field is what it would take to author them.
 - Ordinal phrase frames ("Ich bin auf dem vierten Platz") wait on that same field in every
   language: the frame must decline the NUMERAL, and the only agreement device runs the other

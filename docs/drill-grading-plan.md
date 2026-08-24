@@ -310,7 +310,7 @@ say it cannot.
 
 ## The spec conflict, head on
 
-`catalog/drills/README.md:49` — not `catalog/README.md` — states:
+`catalog/phrases/README.md:49` — not `catalog/README.md` — states:
 
 > the table is derived from the trainer's own readings and can never be authored
 
