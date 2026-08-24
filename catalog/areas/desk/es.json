@@ -86,11 +86,6 @@
   },
   "coffee-break": { "text": "¿Pausa para el café?", "variants": ["¿Nos tomamos un café?", "¿Un café?"] },
   "i-have-a-lot-to-do": { "text": "Tengo mucho que hacer." },
-  "end-of-workday": {
-   "text": "¡Se acabó por hoy!",
-   "variants": ["¡Por hoy hemos terminado!", "¡Basta por hoy!"],
-   "notes": { "de": "Für „Feierabend“ gibt es kein eigenes Wort — man sagt: „Für heute ist Schluss!“" }
-  },
   "send-me-the-email": {
    "text": "Mándame el correo.",
    "variants": ["Envíame el correo.", "Mándame el correo electrónico.", "Mándame el email."]

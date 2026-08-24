@@ -41,12 +41,6 @@
   "customer": { "text": "mteja", "grammar": { "plural": "wateja" } },
   "tomorrow-i-have-a-job-interview": { "text": "Kesho nitajitambulisha kwenye kampuni." },
   "ill-send-the-doctors-note-right-away": { "text": "Nitakutumia cheti cha daktari mara moja." },
-  "have-a-nice-evening-off": {
-   "text": "Pumzika vizuri baada ya kazi!",
-   "notes": {
-    "de": "„Feierabend“ gibt es auf Swahili nicht — man wünscht: „Ruh dich nach der Arbeit gut aus!“"
-   }
-  },
   "can-you-help-me-briefly": { "text": "Unaweza kunisaidia kidogo?" },
   "i-want-vacation-next-week": { "text": "Ningependa kuchukua likizo wiki ijayo." },
   "read-the-contract-carefully": { "text": "Soma mkataba vizuri!" }

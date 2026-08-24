@@ -37,12 +37,6 @@
   "the-internet-is-gone": { "text": "Intaneti imekatika." },
   "coffee-break": { "text": "Pumziko la kahawa?" },
   "i-have-a-lot-to-do": { "text": "Nina mengi ya kufanya." },
-  "end-of-workday": {
-   "text": "Kazi imeisha kwa leo!",
-   "notes": {
-    "de": "„Feierabend“ gibt es auf Swahili nicht — man sagt: „Die Arbeit ist für heute zu Ende!“"
-   }
-  },
   "send-me-the-email": { "text": "Nitumie barua pepe." }
  }
 }

@@ -14,6 +14,7 @@
   "printer": { "text": "Drucker", "grammar": { "gender": "der", "plural": "=" } },
   "socket": { "text": "Steckdose", "grammar": { "gender": "die", "plural": "-n" } },
   "office-chair": { "text": "Bürostuhl", "grammar": { "gender": "der", "plural": "Bürostühle" } },
+  "feierabend": { "text": "Feierabend", "grammar": { "gender": "der" } },
   "to-work": { "text": "arbeiten" },
   "type": { "text": "tippen" },
   "print": { "text": "drucken" },
@@ -38,7 +39,6 @@
   "the-internet-is-gone": { "text": "Das Internet ist weg.", "variants": ["Das WLAN ist weg."] },
   "coffee-break": { "text": "Kaffeepause?" },
   "i-have-a-lot-to-do": { "text": "Ich habe viel zu tun." },
-  "end-of-workday": { "text": "Feierabend!" },
   "send-me-the-email": { "text": "Schick mir die E-Mail." }
  }
 }

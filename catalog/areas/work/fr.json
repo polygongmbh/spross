@@ -127,13 +127,6 @@
     "Je vous envoie l'arrêt maladie tout de suite."
    ]
   },
-  "have-a-nice-evening-off": {
-   "text": "Bonne fin de journée !",
-   "variants": ["Bonne soirée !"],
-   "notes": {
-    "de": "Für „Feierabend“ gibt es kein französisches Wort. Beim Verlassen der Arbeit sagt man Bonne fin de journée !"
-   }
-  },
   "can-you-help-me-briefly": {
    "text": "Pouvez-vous m'aider un instant ?",
    "variants": [

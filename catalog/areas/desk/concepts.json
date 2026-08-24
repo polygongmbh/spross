@@ -29,6 +29,7 @@
  { "slug": "printer", "kind": "noun", "emoji": "🖨️" },
  { "slug": "headphones", "kind": "noun", "emoji": "🎧" },
  { "slug": "office-chair", "kind": "noun", "emoji": "💺" },
+ { "slug": "feierabend", "kind": "noun", "emoji": "🎉" },
  { "slug": "im-in-a-meeting", "kind": "phrase", "emoji": "👥", "components": [] },
  { "slug": "dont-disturb-me", "kind": "phrase", "emoji": "🤫", "components": [] },
  {
@@ -40,6 +41,5 @@
  { "slug": "the-internet-is-gone", "kind": "phrase", "emoji": "📵", "components": [] },
  { "slug": "coffee-break", "kind": "phrase", "emoji": "☕", "components": [] },
  { "slug": "i-have-a-lot-to-do", "kind": "phrase", "emoji": "📋", "components": [] },
- { "slug": "end-of-workday", "kind": "phrase", "emoji": "🎉", "components": [] },
  { "slug": "send-me-the-email", "kind": "phrase", "emoji": "📧", "components": [] }
 ]

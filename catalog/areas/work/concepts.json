@@ -44,7 +44,6 @@
   "emoji": "📄",
   "components": []
  },
- { "slug": "have-a-nice-evening-off", "kind": "phrase", "emoji": "🌆", "components": [] },
  { "slug": "can-you-help-me-briefly", "kind": "phrase", "components": ["to-help"] },
  {
   "slug": "i-want-vacation-next-week",

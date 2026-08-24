@@ -38,12 +38,6 @@
   "the-internet-is-gone": { "text": "The internet is gone.", "variants": ["The wifi is gone."] },
   "coffee-break": { "text": "Coffee break?" },
   "i-have-a-lot-to-do": { "text": "I have a lot to do." },
-  "end-of-workday": {
-   "text": "Time to call it a day!",
-   "notes": {
-    "de": "Für „Feierabend“ gibt es im Englischen kein eigenes Wort — man sagt: „Time to call it a day!“"
-   }
-  },
   "send-me-the-email": { "text": "Send me the email." }
  }
 }

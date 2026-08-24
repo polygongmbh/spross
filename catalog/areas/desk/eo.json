@@ -68,11 +68,6 @@
   },
   "coffee-break": { "text": "Kafopaŭzo?", "variants": ["Ĉu kafopaŭzo?"] },
   "i-have-a-lot-to-do": { "text": "Mi havas multon por fari.", "variants": ["Mi havas multe da laboro."] },
-  "end-of-workday": {
-   "text": "Sufiĉe por hodiaŭ!",
-   "variants": ["Finite por hodiaŭ!", "La labortago finiĝis!"],
-   "notes": { "de": "Für „Feierabend“ gibt es kein eigenes Wort — man sagt: „Für heute ist Schluss!“" }
-  },
   "send-me-the-email": { "text": "Sendu al mi la retpoŝton.", "variants": ["Sendu al mi la retmesaĝon."] }
  }
 }

@@ -38,7 +38,6 @@
    "text": "I'll send you the doctor's note right away.",
    "variants": ["I'll send you the sick note right away."]
   },
-  "have-a-nice-evening-off": { "text": "Have a nice evening off!" },
   "can-you-help-me-briefly": { "text": "Can you help me briefly?" },
   "i-want-vacation-next-week": { "text": "I would like to take vacation next week." },
   "read-the-contract-carefully": { "text": "Read the contract carefully!" }

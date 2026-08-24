@@ -139,13 +139,6 @@
    "text": "Le mando subito il certificato medico.",
    "variants": ["Ti mando subito il certificato medico.", "Le invio subito il certificato medico."]
   },
-  "have-a-nice-evening-off": {
-   "text": "Buona serata!",
-   "variants": ["Buon riposo!"],
-   "notes": {
-    "de": "Für „Feierabend“ gibt es kein italienisches Wort. Beim Abschied nach der Arbeit sagt man Buona serata!"
-   }
-  },
   "can-you-help-me-briefly": {
    "text": "Può aiutarmi un momento?",
    "variants": ["Puoi aiutarmi un momento?", "Mi può aiutare un momento?"]

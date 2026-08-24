@@ -116,13 +116,6 @@
    "text": "Le envío la baja enseguida.",
    "variants": ["Te envío la baja enseguida.", "Le mando la baja enseguida."]
   },
-  "have-a-nice-evening-off": {
-   "text": "¡Que descanses!",
-   "variants": ["¡Que descanse!", "¡Descansa!"],
-   "notes": {
-    "de": "Für „Feierabend“ gibt es kein spanisches Wort. Zum Abschied nach der Arbeit wünscht man ¡Que descanses! („Ruh dich aus!“)."
-   }
-  },
   "can-you-help-me-briefly": {
    "text": "¿Puede ayudarme un momento?",
    "variants": ["¿Puedes ayudarme un momento?", "¿Me puede ayudar un momento?"]

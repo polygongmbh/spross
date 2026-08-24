@@ -4501,17 +4501,6 @@
       "snr": 86.3,
       "source": "De-Arbeitgeber.ogg"
     },
-    "end-of-workday": {
-      "author": "Jeuwre",
-      "file": "end-of-workday.mp3",
-      "gain": -1.8,
-      "gainPhone": -6.2,
-      "lead": 406,
-      "matches": "feierabend",
-      "sha256": "b3dcce96d9f9ca4de8e14e06a80d03a245c7d161aa2c841b11b2327306e021a8",
-      "snr": 85.9,
-      "source": "De-Feierabend.ogg"
-    },
     "enter": {
       "author": "Jeuwre",
       "file": "enter.mp3",
@@ -4675,6 +4664,17 @@
       "sha256": "372a8e61438e1095c93043e27056d8ffa402c7ce36898f658526710a8d3cda10",
       "snr": 86.7,
       "source": "De-gebühr.ogg"
+    },
+    "feierabend": {
+      "author": "Jeuwre",
+      "file": "feierabend.mp3",
+      "gain": -1.8,
+      "gainPhone": -6.2,
+      "lead": 406,
+      "matches": "feierabend",
+      "sha256": "b3dcce96d9f9ca4de8e14e06a80d03a245c7d161aa2c841b11b2327306e021a8",
+      "snr": 85.9,
+      "source": "De-Feierabend.ogg"
     },
     "fever": {
       "author": "Jeuwre",

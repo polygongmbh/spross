@@ -88,11 +88,6 @@
   "the-internet-is-gone": { "text": "Non c'è internet.", "variants": ["Internet non funziona.", "Non c'è il wifi."] },
   "coffee-break": { "text": "Pausa caffè?", "variants": ["Andiamo a prendere un caffè?"] },
   "i-have-a-lot-to-do": { "text": "Ho molto da fare." },
-  "end-of-workday": {
-   "text": "Per oggi ho finito!",
-   "variants": ["Basta per oggi!", "Per oggi è finita!"],
-   "notes": { "de": "Für „Feierabend“ gibt es kein eigenes Wort — man sagt: Per oggi ho finito!" }
-  },
   "send-me-the-email": { "text": "Mandami l'e-mail.", "variants": ["Inviami l'e-mail.", "Mandami la mail."] }
  }
 }
