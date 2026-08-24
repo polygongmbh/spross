@@ -128,7 +128,8 @@ struct TrainerSessionView: View, LanguageNaming {
         note: nil,
         countForms: nil,
         sourceCountForms: nil,
-        masculineNumeral: false
+        masculineNumeral: false,
+        swahiliNounClass: nil
     )
     TrainerSessionView(mode: .phrases(source: "de", target: "uk", templates: [template]))
 }
