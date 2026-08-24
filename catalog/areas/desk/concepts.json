@@ -41,5 +41,6 @@
  { "slug": "the-internet-is-gone", "kind": "phrase", "emoji": "📵", "components": [] },
  { "slug": "coffee-break", "kind": "phrase", "emoji": "☕", "components": [] },
  { "slug": "i-have-a-lot-to-do", "kind": "phrase", "emoji": "📋", "components": [] },
+ { "slug": "we-knock-off-at-5", "kind": "phrase", "emoji": "🕔", "components": ["feierabend"] },
  { "slug": "send-me-the-email", "kind": "phrase", "emoji": "📧", "components": [] }
 ]

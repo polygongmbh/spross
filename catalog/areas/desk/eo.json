@@ -68,6 +68,7 @@
   },
   "coffee-break": { "text": "Kafopaŭzo?", "variants": ["Ĉu kafopaŭzo?"] },
   "i-have-a-lot-to-do": { "text": "Mi havas multon por fari.", "variants": ["Mi havas multe da laboro."] },
+  "we-knock-off-at-5": { "text": "Hodiaŭ ni finas la laboron je la 5-a." },
   "send-me-the-email": { "text": "Sendu al mi la retpoŝton.", "variants": ["Sendu al mi la retmesaĝon."] }
  }
 }

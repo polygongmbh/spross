@@ -39,6 +39,7 @@
   "the-internet-is-gone": { "text": "Das Internet ist weg.", "variants": ["Das WLAN ist weg."] },
   "coffee-break": { "text": "Kaffeepause?" },
   "i-have-a-lot-to-do": { "text": "Ich habe viel zu tun." },
+  "we-knock-off-at-5": { "text": "Wir machen heute um 5 Feierabend." },
   "send-me-the-email": { "text": "Schick mir die E-Mail." }
  }
 }

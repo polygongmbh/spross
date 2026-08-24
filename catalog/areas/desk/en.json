@@ -38,6 +38,7 @@
   "the-internet-is-gone": { "text": "The internet is gone.", "variants": ["The wifi is gone."] },
   "coffee-break": { "text": "Coffee break?" },
   "i-have-a-lot-to-do": { "text": "I have a lot to do." },
+  "we-knock-off-at-5": { "text": "We knock off at 5 today." },
   "send-me-the-email": { "text": "Send me the email." }
  }
 }

@@ -86,6 +86,7 @@
   },
   "coffee-break": { "text": "¿Pausa para el café?", "variants": ["¿Nos tomamos un café?", "¿Un café?"] },
   "i-have-a-lot-to-do": { "text": "Tengo mucho que hacer." },
+  "we-knock-off-at-5": { "text": "Hoy salimos del trabajo a las cinco." },
   "send-me-the-email": {
    "text": "Mándame el correo.",
    "variants": ["Envíame el correo.", "Mándame el correo electrónico.", "Mándame el email."]
