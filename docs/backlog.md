@@ -122,14 +122,16 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   already has exactly one such card (`a-white-car`). Turning them into phrases is a
   content project: each wants a `concepts.json` entry with emoji and `components`
   plus a realization in all eight language files.
-- Swahili number frames can only ever count N-class nouns: the agreement lands on the
-  NUMERAL, not on the noun, and `count` inflects the noun — so `i-have-n-notebooks`
-  and `we-have-n-chairs` are dropped from `catalog/phrases/sw.json` rather than coined wrong.
-  A numeral-side agreement field is what it would take to author them.
-- Ordinal phrase frames ("Ich bin auf dem vierten Platz") wait on that same field in every
-  language: the frame must decline the NUMERAL, and the only agreement device runs the other
-  way (`PhraseTemplate.CountForms` inflects the noun from the numeral). Ordinals are drilled
-  bare meanwhile (`docs/number-forms.md`), and Swahili cannot drill them at all.
+- Ordinal phrase frames ("Ich bin auf dem vierten Platz") wait on a numeral-side agreement
+  field in every language: the frame must decline the NUMERAL, and the general agreement
+  device runs the other way (`PhraseTemplate.CountForms` inflects the noun from the numeral).
+  Swahili's `swahiliNounClass` does not reach them — it prefixes a cardinal stem, where an
+  ordinal's `-a` concord belongs to the frame. Ordinals are drilled bare meanwhile
+  (`docs/number-forms.md`), and Swahili cannot drill them at all.
+- Swahili noun class is a frame-only fact: `swahiliNounClass` names it per phrase frame, while
+  the nouns themselves carry no class the way de/fr/es nouns carry `grammar.gender`. A catalog
+  `"grammar": { "class": "KI_VI" }` on `catalog/areas/*/sw.json` would let an author state it
+  once and any surface read it — the frames, the card itself, a future concord drill.
 - sw `repeat-the-year`/`write-the-year` render byte-identical to `repeat-please`/`write-please`
   — a bare cardinal with no head noun, so nothing tells the learner which frame was asked.
   uk re-cut its pair to name «дату»; sw still needs a heading word a speaker would actually use.

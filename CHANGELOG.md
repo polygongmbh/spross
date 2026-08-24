@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **Swahili numbers now agree with what you are counting.** Two sentence drills the
+  language could not carry before — `Nina madaftari …`, `Tuna viti …` — because the numeral
+  itself changes shape with the noun's class: the same two is `viti viwili` beside chairs
+  and `sahani mbili` beside plates. Until now Swahili could only count the nouns whose
+  numerals never move; the contrast is drilled and explained now rather than avoided.
+
 - **An accent you cannot type no longer costs you the card.** A missing or wrong accent is
   free inside the typo budget now, so French's short accented words — `où`, `à`, `été`, the
   ones short enough that it used to be exact or nothing — come back as a slip with the

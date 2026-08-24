@@ -86,6 +86,9 @@ Realization fields — `text` is required, everything else is per-language:
 - `masculineNumeral` — this frame counts a masculine or indeclinable noun,
   so the feminine numerals (uk одна/дві) must NOT be accepted:
   the frame exists to train exactly that agreement.
+- `swahiliNounClass` — Swahili only (`KI_VI`/`JI_MA`), `numbers` frames:
+  the counted noun's Bantu class, so the numeral takes its concord prefix
+  (*viti viwili*, `../../docs/number-forms.md`). Absent for N-class nouns, which need none.
 - `notes` — keyed by explanation language, exactly as a realization's `notes`.
 
 Frames sit outside `areas.json` on purpose:
@@ -106,6 +109,9 @@ and editing one never restamps a learner's box.
   ("Adesso …", "La sveglia dice che …") — the reading brings its own copula.
 - Ukrainian year frames would need ordinal and case forms the trainer does not produce,
   so they use dictation framing, where the bare cardinal reading is natural.
+- A Swahili counted noun stands in its **plural** and names that plural's class:
+  the numeral agrees with the noun beside it, and a class is only unambiguous there
+  (*daftari* is contested in the singular, *madaftari* is plainly JI-MA).
 - Ukrainian counted nouns must be **masculine**,
   so the trainer's canonical masculine numeral stays grammatical.
 - French counted nouns would need the same, and its plural -s besides

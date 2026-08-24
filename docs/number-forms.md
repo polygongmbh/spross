@@ -349,6 +349,26 @@ grades behind `hasi`/`asilimia`/`mara` exactly as it does in the plain drill.
 Decimal digits are read through `cardinal` so a zero comes out `sifuri`
 rather than the empty string the digit table holds.
 
+**Cardinals 1–8 concord by noun class.**
+1, 2, 3, 4, 5 and 8 are Bantu stems that behave like adjectives
+and take the counted noun's class prefix; 6, 7 and 9 are Arabic loans and never agree.
+`SwahiliConcord` carries the two classes a shipped frame counts —
+KI-VI (`ki-`/`vi-`: *kiti kimoja*, *viti viwili*)
+and JI-MA (bare/`ma-`: *jicho moja*, *macho mawili*).
+The N-class needs no entry: its own concord is what `SwahiliNumbers` already spells,
+which is why *sahani mbili* has been right all along —
+`mbili` is not a citation form but N-class's output,
+the nasal prefix mutating the bare stem `-wili`,
+so every other class builds from `-wili` and never from `mbili`.
+That is the contrast the frames teach: *viti viwili* against *sahani mbili*.
+**Only the trailing ones-word agrees**, whatever the magnitude:
+*vitabu mia moja na kimoja* (101) takes the SINGULAR prefix because its final digit is 1,
+while a numeral multiplying *mia*/*elfu* stays bare — it agrees with those, not with the noun.
+Readings past 9999 are left unconcorded on purpose; the sources part ways there.
+A frame opts in with `swahiliNounClass` (`catalog/phrases/README.md`);
+the fuller noun-class table and the source excerpts live outside the repo
+in `../../data/reference/grammar-sw.md`.
+
 **Ordinals are excluded, structurally.**
 A Swahili ordinal is `-a kwanza`,
 and that leading dash is a required associative concord slot the counted noun fills —
@@ -356,8 +376,10 @@ and that leading dash is a required associative concord slot the counted noun fi
 A bare `20.` supplies no noun, so any prefix would be an invention shown to the learner as fact;
 that every published source cites ordinals with the slot still empty
 is the lexicographers saying the same thing.
-Ordinals arrive with a noun-bearing frame or not at all —
-the same missing primitive `backlog.md` already names, a numeral-side agreement field.
+Ordinals arrive with a noun-bearing frame or not at all.
+The cardinals' `swahiliNounClass` does not reach them —
+it prefixes a numeral stem, where an ordinal needs the frame itself to carry the concord —
+so the ordinal frame stays open in `backlog.md`.
 
 **Denominators stop at 4.**
 `nusu`, `theluthi` and `robo` are the everyday words;
@@ -376,6 +398,11 @@ so neither reads a negative *value*.
 Sources: Almasi et al., *Swahili Grammar for Introductory and Intermediate Levels* (UPA 2014),
 [ch. 19](https://hist.hse.ru/data/2019/06/14/1486230008/19.%20More%20About%20Swahili%20Numbers.pdf)
 — ordinal concord, fractions, the reversed percentage word order, `nukta`/`pointi`
+· [ch. 18](https://hist.hse.ru/data/2019/06/14/1486229742/18.%20Numbers.pdf)
+— the class prefixes (Table 18.1, p. 188), the bare-stem rule
+and the single-digit-column rule (p. 187);
+corroborated for the compound shapes by *Swahili Lehrbuch*
+(Partnerschaft Tansania München, p. 13) and Wiktionary's declension tables
 · [TIE Std 5 *Hisabati*](https://fliphtml5.com/rwbnv/iymz/Std_5_Hisabati/149/)
 (`0.01` = *sifuri nukta sifuri moja*, and the dot as the mark)
 · [TIE Std 4 *Hisabati*](https://fliphtml5.com/rwbnv/zbwv/Std_4_Hisabati/)
