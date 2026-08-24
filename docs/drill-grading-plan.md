@@ -80,9 +80,9 @@ static thing this plan adds is a language-INDEPENDENT list of the values worth i
 ```
 
 Thirty-six integers, shared by all eight languages, against which every one of the eleven
-cardinal bridges resolves. There is no `DrillConfusables`, no word pairs in `commonMain`, and
-nothing to keep in step with a pack: a re-spelled numeral changes the index the moment the
-pack changes, because the index IS the pack's own output.
+cardinal bridges resolves. No confusable pair is authored anywhere in the grading path, and
+nothing has to be kept in step with a pack: a re-spelled numeral changes the index the moment
+the pack changes, because the index IS the pack's own output.
 
 The six outliers are the honest part of the design. They are not reference numbers; they are
 there because `ventotto`/`centotto` (28/108), the French `soixante-six`/`soixante-dix` pair
@@ -105,11 +105,18 @@ Three properties fall out rather than being designed in:
   shape, which is the only shape the grader ever sees, so `soixantedix` and `девять` are one
   word there and no hyphen ruling is needed.
 
-⚠ **The check is asymmetric where only one side is a number**, and this is new. Typing
-`cuatro` where `cuarto` belonged is refused (4 is in the index); typing `cuarto` where
-`cuatro` belonged is still a typo, because `cuarto` is an ordinal and no ordinal index exists.
-All eleven cardinal pairs have both members in the index and stay symmetric. Fixing the
-remainder means a second index over ordinals — deliberately out of scope here.
+⚠ **The check fires on the word TYPED, never on the word missed** — which makes it asymmetric
+wherever only one side of a difference is a number, and that asymmetry is forced. Refusing
+because the EXPECTED word is indexed would refuse `setnta` for `sesenta` too, since a number
+word is indexed and its fumble is not: every typo on every numeral would become Wrong, which
+is the one behavior the drill has to keep. So the rule needs positive evidence that the
+learner wrote a different value, and only the typed side can carry it.
+
+Consequence, at the clock: typing `cuatro` where `cuarto` belonged is refused and named
+(4 is indexed), while `cuarto` for `cuatro` stays a typo (the index holds no such reading, so
+there is nothing to name). All eleven cardinal pairs have both members indexed and are
+unaffected. An ordinal index would not make the rule symmetric — it would widen the evidence,
+so `cuarto` resolves to 4th and the same rule fires unchanged.
 
 ## The nudge
 
@@ -223,9 +230,10 @@ app build, and both screens seen side by side.
    eo `ses` → `sep` is one keystroke, `kumi na nne` → `kumi na nane` one letter in the last
    word. That IS the ruling, and the nudge is what softens it — which is why C5 is not
    optional. Worth a look on the simulator even though no gate demands it.
-2. **The asymmetric corner.** Until an ordinal index exists, `cuarto` for `cuatro` is forgiven
-   while `cuatro` for `cuarto` is refused. Defensible (only one of them is a number) but it
-   will look arbitrary to anyone reading the grader without this paragraph.
+2. **The asymmetric corner.** `cuarto` for `cuatro` is forgiven while `cuatro` for `cuarto` is
+   refused. The reason is sound and stated above — the check needs evidence on the typed side,
+   or every fumbled numeral becomes Wrong — but it will look arbitrary to anyone reading the
+   grader without it, so `otherNumber` owes it a KDoc line rather than this file alone.
 3. **The index is language-keyed for a reason.** Unkeyed, `dix` would resolve to 10 on an
    English prompt where it is not a word — harmless in effect, wrong in reasoning, and a trap
    for whoever adds the next language.
