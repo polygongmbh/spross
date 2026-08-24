@@ -35,6 +35,6 @@
   "lets-meet-at-the-market": { "text": "Treffen wir uns am Markt." },
   "a-kilo-of-tomatoes": { "text": "Ein Kilo Tomaten, bitte." },
   "what-does-a-kilo-cost": { "text": "Was kostet ein Kilo?" },
-  "can-you-come-down-a-bit": { "text": "Geht da noch was am Preis?", "variants": ["Geht der Preis noch runter?"] }
+  "can-you-come-down-a-bit": { "text": "Geht der Preis noch runter?", "variants": ["Geht da noch was am Preis?"] }
  }
 }

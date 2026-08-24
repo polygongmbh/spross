@@ -21,7 +21,10 @@
   "restaurant": { "text": "mkahawa", "grammar": { "plural": "mikahawa" } },
   "a-table-for-two": { "text": "Meza ya watu wawili, tafadhali." },
   "id-like-to-order": { "text": "Ningependa kuagiza." },
-  "is-this-vegetarian": { "text": "Hii ni bila nyama?" },
+  "is-this-vegetarian": {
+   "text": "Hii ni bila nyama?",
+   "notes": { "de": "Kiswahili hat kein eigenes Wort für vegetarisch — man fragt: ist das ohne Fleisch?" }
+  },
   "the-bill-please": { "text": "Bili, tafadhali." }
  }
 }

@@ -47,7 +47,7 @@
   "ill-be-right-back": { "text": "Я скоро повернуся!" },
   "hurry-were-late": { "text": "Поквапся, ми запізнюємось!" },
   "see-you-later": { "text": "До зустрічі!" },
-  "welcome-home": { "text": "З поверненням!" },
+  "welcome-home": { "text": "Ласкаво просимо додому!", "synonyms": ["З поверненням!"] },
   "dont-forget-your-jacket": { "text": "Не забудь куртку!" },
   "put-on-the-jacket": { "text": "одягати куртку" },
   "take-off-your-shoes": { "text": "Зніми своє взуття.", "variants": ["Роззуйся."] }

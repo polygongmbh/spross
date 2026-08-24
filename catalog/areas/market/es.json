@@ -20,6 +20,6 @@
   "lets-meet-at-the-market": { "text": "Quedamos en el mercado.", "variants": ["Nos vemos en el mercado."] },
   "a-kilo-of-tomatoes": { "text": "Un kilo de tomates, por favor." },
   "what-does-a-kilo-cost": { "text": "¿Cuánto cuesta el kilo?" },
-  "can-you-come-down-a-bit": { "text": "¿Me lo deja un poco más barato?" }
+  "can-you-come-down-a-bit": { "text": "¿Puede bajar un poco el precio?", "variants": ["¿Me lo deja un poco más barato?"] }
  }
 }

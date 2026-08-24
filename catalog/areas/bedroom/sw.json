@@ -31,7 +31,12 @@
   "make-bed": { "text": "kutandika kitanda" },
   "soft": { "text": "laini" },
   "good-night-sleep-well": { "text": "Usiku mwema, lala salama!" },
-  "good-morning-my-love": { "text": "Habari za asubuhi, mpenzi wangu!" },
+  "good-morning-my-love": {
+   "text": "Habari za asubuhi, mpenzi wangu!",
+   "notes": {
+    "de": "Kiswahili hat keine „guten Morgen“-Konstruktion mit Adjektiv — Habari za asubuhi ist die feste Morgengrußformel, wörtlich „Neuigkeiten des Morgens?“"
+   }
+  },
   "im-tired": { "text": "Nimechoka." },
   "did-you-set-the-alarm": { "text": "Umeweka saa ya kengele?" },
   "i-love-you": { "text": "Nakupenda." }

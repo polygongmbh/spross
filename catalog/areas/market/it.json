@@ -17,6 +17,6 @@
   "lets-meet-at-the-market": { "text": "Ci vediamo al mercato.", "variants": ["Incontriamoci al mercato."] },
   "a-kilo-of-tomatoes": { "text": "Un chilo di pomodori, per favore." },
   "what-does-a-kilo-cost": { "text": "Quanto costa un chilo?" },
-  "can-you-come-down-a-bit": { "text": "Può farmi un prezzo migliore?" }
+  "can-you-come-down-a-bit": { "text": "Può abbassare un po' il prezzo?", "variants": ["Può farmi un prezzo migliore?"] }
  }
 }
