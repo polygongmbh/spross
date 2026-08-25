@@ -46,6 +46,8 @@
    "notes": { "de": "Nicht können heißt hier non riuscire a respirare, nicht non potere." }
   },
   "recover": { "text": "guarire", "variants": ["rimettersi"] },
+  "death": { "text": "morte", "grammar": { "gender": "la" } },
+  "to-die": { "text": "morire" },
   "allergy": { "text": "allergia", "variants": ["l'allergia", "un'allergia"], "grammar": { "gender": "l'" } },
   "my-throat-hurts-a-lot": { "text": "Mi fa molto male la gola." },
   "ive-had-a-fever-since-yesterday": { "text": "Ho la febbre da ieri." },

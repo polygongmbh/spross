@@ -30,6 +30,8 @@
   "bandage": { "text": "bendeji", "variants": ["bandeji"], "grammar": { "plural": "=" } },
   "breathe": { "text": "kupumua" },
   "recover": { "text": "kupona" },
+  "death": { "text": "kifo", "grammar": { "plural": "vifo" } },
+  "to-die": { "text": "kufa" },
   "allergy": { "text": "mzio", "grammar": { "plural": "mizio" } },
   "my-throat-hurts-a-lot": { "text": "Koo linaniuma sana." },
   "ive-had-a-fever-since-yesterday": { "text": "Nina homa tangu jana." },

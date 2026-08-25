@@ -43,6 +43,8 @@
   "bandage": { "text": "bandaĝo" },
   "breathe": { "text": "spiri" },
   "recover": { "text": "resaniĝi", "variants": ["saniĝi"] },
+  "death": { "text": "morto" },
+  "to-die": { "text": "morti" },
   "allergy": { "text": "alergio" },
   "my-throat-hurts-a-lot": { "text": "Mia gorĝo tre doloras.", "variants": ["Tre doloras al mi la gorĝo."] },
   "ive-had-a-fever-since-yesterday": { "text": "Mi havas febron ekde hieraŭ.", "variants": ["Mi havas febron de hieraŭ."] },

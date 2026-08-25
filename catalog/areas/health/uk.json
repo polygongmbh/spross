@@ -29,6 +29,8 @@
   "bandage": { "text": "бинт" },
   "breathe": { "text": "дихати" },
   "recover": { "text": "одужувати", "variants": ["одужати"] },
+  "death": { "text": "смерть" },
+  "to-die": { "text": "помирати", "variants": ["померти"] },
   "allergy": { "text": "алергія" },
   "my-throat-hurts-a-lot": { "text": "У мене дуже болить горло." },
   "ive-had-a-fever-since-yesterday": { "text": "У мене з учора температура." },

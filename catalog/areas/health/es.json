@@ -53,6 +53,8 @@
   },
   "breathe": { "text": "respirar" },
   "recover": { "text": "recuperarse", "variants": ["reponerse"] },
+  "death": { "text": "muerte", "grammar": { "gender": "la" } },
+  "to-die": { "text": "morir" },
   "allergy": { "text": "alergia", "grammar": { "gender": "la" } },
   "my-throat-hurts-a-lot": { "text": "Me duele mucho la garganta." },
   "ive-had-a-fever-since-yesterday": { "text": "Tengo fiebre desde ayer." },

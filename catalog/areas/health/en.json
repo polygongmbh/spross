@@ -22,6 +22,8 @@
   "bandage": { "text": "bandage" },
   "breathe": { "text": "to breathe" },
   "recover": { "text": "to recover", "variants": ["to get better"] },
+  "death": { "text": "death" },
+  "to-die": { "text": "to die" },
   "allergy": { "text": "allergy", "grammar": { "plural": "allergies" } },
   "my-throat-hurts-a-lot": { "text": "My throat hurts a lot." },
   "ive-had-a-fever-since-yesterday": { "text": "I've had a fever since yesterday." },
