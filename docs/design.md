@@ -362,9 +362,21 @@ a clone inherits its sibling's gaps, never the rules.
   leaf in shape before color, and the standing figures are spelled out beneath.
   Nothing in it moves: a box grows over weeks, and motion would claim a change the
   picture is not showing.
-- **Box** (📦 from Heute): browse the catalog by area, pack words in, revive suspended
-  ones; settings live here — profile, reset. A tree in the forest opens it already
-  unfolded at that area, exactly as a search hit does.
+- **Box** (📦 from Heute): browse the catalog by area, pack words in, unpack a word
+  before a round has met it, revive suspended ones; settings live here — profile,
+  reset. A tree in the forest opens it already unfolded at that area, exactly as a
+  search hit does.
+  - **Packing and unpacking are one tray icon read in two directions** — an arrow
+    into the tray to pack, out of it to take a still-unmet word back out — never a
+    bare "+", which named an action with no picture of what it added TO.
+    Unpacking is a direct tap, no confirmation: nothing has been studied yet, so it
+    costs the learner nothing (the same directness as waking a suspended word).
+  - **The ladder reads as two words and two colors, nowhere a third**: consolidated
+    is green, and everything short of that bar — learning, relearning, a fresh
+    Review card — is amber and says "Learning". The progress bar, the word counts
+    beside it, and every phase badge draw off the same consolidated read
+    (`kern/README.md` §5), so a shelf's own tally and the badge on one of its
+    rows can never disagree.
   - **Search** (🔍 in the bar) reaches a word without knowing its shelf. The two result
     kinds offer what they ARE: an area unfolds itself back on the Box screen and scrolls
     into reach, a word can be heard and packed on its own — a learner who went looking for

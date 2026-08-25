@@ -12,8 +12,10 @@ import SprossKern
 ///
 /// `pack` is the row's one variation. Where a word can be packed on its own —
 /// a search hit, which the learner went looking for by name — the "new" badge
-/// gives its place to that offer, and a packed word answers with a check. In the
-/// area list no such offer is made: the area's own control packs the shelf.
+/// gives its place to that offer. In the area list no such offer is made: the
+/// area's own control packs the shelf. A word already queued answers with its
+/// own tray icon wherever the row stands, tapping it back out again — no
+/// parameter needed, since taking one word back out is never a shelf action.
 struct BoxCardRow: View {
     let model: AppModel
     let card: Card
@@ -104,17 +106,21 @@ struct BoxCardRow: View {
         case .packOffered:
             if let pack {
                 Button(action: pack) {
-                    Image(systemName: "plus")
+                    Image(systemName: "tray.and.arrow.down.fill")
                 }
                 .buttonStyle(DLIconButtonStyle())
                 .accessibilityLabel("box.packWord")
             }
         case .packed:
-            Image(systemName: "checkmark.circle.fill")
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlSuccess)
-                .frame(width: 40, height: 40)
-                .accessibilityLabel("box.packedWord")
+            // Direct tap, no confirmation: nothing has been studied yet, so taking a
+            // queued word back out costs it nothing (mirrors "box.wake"'s own direct tap).
+            Button {
+                model.dequeue(cardID: card.id)
+            } label: {
+                Image(systemName: "tray.and.arrow.up.fill")
+            }
+            .buttonStyle(DLIconButtonStyle(color: .dlSuccess))
+            .accessibilityLabel("box.unpackWord")
         case .plain:
             EmptyView()
         case .standing(let standing):

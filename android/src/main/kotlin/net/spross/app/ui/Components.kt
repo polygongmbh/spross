@@ -109,27 +109,21 @@ fun FeminineBadge(modifier: Modifier = Modifier) {
 /**
  * Where one card stands on the ladder.
  *
- * The mark follows [consolidated] — kern's stricter bar — and NEVER the phase: a card
- * reaches Review well below it, so a seal keyed to the phase would mark words the shelf
- * above leaves out of its consolidated count, and the row would disagree with the shelf
- * on sight. A card with nothing behind it gets no badge at all; that absence is what
- * says "new" (kern `CardRowState.Plain`), so this is never asked about one.
+ * The mark AND the color follow [consolidated] — kern's stricter bar — and NEVER the
+ * phase: a card reaches Review well below it, so a seal (or a green badge) keyed to the
+ * phase would mark words the shelf above leaves out of its consolidated count, and the
+ * row would disagree with the shelf on sight. Learning, relearning and a fresh Review
+ * card all read the same word and the same amber — the ladder has one rung the badge
+ * calls out, not four. A card with nothing behind it gets no badge at all; that absence
+ * is what says "new" (kern `CardRowState.Plain`), so this is never asked about one.
  */
 @Composable
 fun PhaseBadge(phase: CardPhase, consolidated: Boolean, chrome: Chrome) {
     val palette = Dl.colors
-    val color = when (phase) {
-        CardPhase.Learning -> palette.der
-        CardPhase.Review -> palette.success
-        CardPhase.Relearning -> palette.amber
-        CardPhase.New -> palette.textSecondary
-    }
-    val word = when (phase) {
-        CardPhase.Learning -> chrome.phaseLearning
-        CardPhase.Review -> chrome.phaseReview
-        CardPhase.Relearning -> chrome.phaseRelearning
-        CardPhase.New -> chrome.newLabel
-    }
+    val color = if (phase == CardPhase.New) palette.textSecondary
+        else if (consolidated) palette.success else palette.amber
+    val word = if (phase == CardPhase.New) chrome.newLabel
+        else if (consolidated) chrome.phaseConsolidated else chrome.phaseLearning
     Pill("${if (consolidated) SEAL else LEAF} $word", color)
 }
 

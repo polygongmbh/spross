@@ -31,7 +31,11 @@ sealed class CardRowState {
     /** Unscheduled, and the row stands where single words can be packed — the offer holds. */
     data object PackOffered : CardRowState()
 
-    /** Already packed: a pack context answers a second look with a confirmation, not a second offer. */
+    /**
+     * Already packed, waiting for a round to bring it in — shown wherever the row stands,
+     * pack context or area shelf alike, and the one thing left to offer is taking it back
+     * out ([BoxEngine.dequeue]).
+     */
     data object Packed : CardRowState()
 
     /**
@@ -146,7 +150,9 @@ object BoxBrowser {
      * [packOffered] says the row stands in a context that packs a SINGLE word —
      * a search hit, which the learner went looking for by name.
      * An area listing offers no such thing (the shelf's own control packs there),
-     * so an unexposed card there states nothing at all.
+     * so an unqueued card there states nothing at all — but a card ALREADY queued states
+     * so wherever it is listed, packed by the shelf or by name, since taking it back out
+     * ([BoxEngine.dequeue]) is offered everywhere it shows.
      *
      * Read off the growth ladder ([GrowthStage]) and [Statistics.isConsolidated],
      * never off the raw phase: those two are where "which bars has this card cleared"
@@ -156,16 +162,16 @@ object BoxBrowser {
     fun cardRowState(state: BoxState, cardId: String, packOffered: Boolean): CardRowState {
         if (state.cards[cardId] == null) return CardRowState.Plain
         val sched = state.scheduling[cardId] ?: return when {
-            !packOffered -> CardRowState.Plain
             cardId in state.enqueued -> CardRowState.Packed
+            !packOffered -> CardRowState.Plain
             else -> CardRowState.PackOffered
         }
         return when (stageOf(state, sched)) {
             GrowthStage.Suspended -> CardRowState.Sleeping
             GrowthStage.Learning -> CardRowState.Standing(CardPhase.Learning, false)
             GrowthStage.Relearning -> CardRowState.Standing(CardPhase.Relearning, false)
-            // The Review rungs — Fresh, Settled, Consolidated, Matured — differ only in
-            // which bars they have cleared, and the seal follows the consolidated one.
+            // The Review rungs — Fresh, Consolidated, Matured — differ only in which bars
+            // they have cleared, and the seal follows the consolidated one.
             else -> CardRowState.Standing(CardPhase.Review, Statistics.isConsolidated(state, sched))
         }
     }

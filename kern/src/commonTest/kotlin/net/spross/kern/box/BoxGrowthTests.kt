@@ -129,4 +129,30 @@ class BoxGrowthTests {
         state = BoxEngine.enqueue(state, listOf("w01", "zzz", "w02", "w02"))
         assertEquals(listOf("w02"), state.enqueued)
     }
+
+    @Test
+    fun dequeueTakesAPackedWordBackOut() {
+        var state = Box.state((1..3).map { Box.word(it) })
+        state = BoxEngine.enqueue(state, listOf("w01", "w02"))
+
+        state = BoxEngine.dequeue(state, "w01")
+        assertEquals(listOf("w02"), state.enqueued)
+
+        // Unknown to the queue, or already scheduled: both a no-op.
+        assertEquals(state, BoxEngine.dequeue(state, "w03"))
+        state = Box.answered(state, "w02", Rating.Good, now)
+        assertEquals(state, BoxEngine.dequeue(state, "w02"))
+    }
+
+    @Test
+    fun dequeueingAPhraseLeavesItsPulledInComponentsQueued() {
+        var state = Box.state(
+            (1..2).map { Box.word(it) } + Box.phrase("p1", components = listOf("w01", "w02")),
+        )
+        state = BoxEngine.enqueue(state, listOf("p1"))
+        assertEquals(listOf("w01", "w02", "p1"), state.enqueued)
+
+        state = BoxEngine.dequeue(state, "p1")
+        assertEquals(listOf("w01", "w02"), state.enqueued)
+    }
 }

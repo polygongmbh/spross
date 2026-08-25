@@ -47,7 +47,7 @@ struct ForestSection: View {
     private var caption: some View {
         Text.joined(
             Text("progress.consolidatedCount \((model.stats?.consolidatedCards ?? 0).formatted())"),
-            Text("progress.freshCount \((model.stats?.learningCards ?? 0).formatted())")
+            Text("progress.learningCount \((model.stats?.learningCards ?? 0).formatted())")
         )
         .font(DL.Fonts.caption)
         .foregroundStyle(Color.dlTextSecondary)
@@ -62,7 +62,7 @@ struct ForestSection: View {
         return Text.joined(
             Text(tree.title),
             Text("progress.consolidatedCount \((stats?.consolidated ?? 0).formatted())"),
-            Text("progress.freshCount \((stats?.learning ?? 0).formatted())")
+            Text("progress.learningCount \((stats?.learning ?? 0).formatted())")
         )
     }
 }

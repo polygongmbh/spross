@@ -188,15 +188,21 @@ struct AreaChip: View {
         .accessibilityElement(children: .combine)
     }
 
-    /// Consolidated, fresh, and — only when it says something — locked phrases,
+    /// Consolidated, learning, and — only when it says something — locked phrases,
     /// as one row of icon-led caption labels instead of two disjoint rows.
     /// Three German words rarely fit this card's width at full size, so they
     /// shrink together instead of wrapping mid-word or truncating to "gefes…".
+    ///
+    /// Colored the same as the bar underneath them: green only for consolidated,
+    /// amber for everything still short of it — a count that agreed with the bar
+    /// in NUMBER but not in color used to read as two different tallies.
     private var counts: some View {
         HStack(spacing: DL.Space.m) {
             Label("progress.consolidatedCount \(progress.consolidated.formatted())",
                   systemImage: "checkmark.seal.fill")
-            Label("progress.freshCount \(progress.learning.formatted())", systemImage: "leaf.fill")
+                .foregroundStyle(Color.dlSuccess)
+            Label("progress.learningCount \(progress.learning.formatted())", systemImage: "leaf.fill")
+                .foregroundStyle(Color.dlAmber)
             if lockedPhrases > 0 {
                 // why: the padlock carries "locked", so the text only has to
                 // name what is locked — three full labels do not fit the card.
@@ -214,27 +220,20 @@ struct AreaChip: View {
 
 // MARK: PhaseBadge
 
+/// Where one card stands on the ladder.
+///
+/// The word AND the color follow [consolidated] — kern's stricter bar — and NEVER the
+/// phase: a card reaches Review well below it, so a badge keyed to the phase would mark
+/// (or color green) words the shelf above leaves out of its consolidated count, and the
+/// row would disagree with the shelf on sight. Learning, relearning and a fresh Review
+/// card all read the same word and the same amber — the ladder has one rung this badge
+/// calls out, not four.
 struct PhaseBadge: View {
+    /// Kept for the exhaustive mapping callers build from `CardPhase` — see
+    /// `BoxCardRow.badgePhase`. Only [Phase.new] still changes what is drawn on its own;
+    /// every other case reads off [consolidated] instead.
     enum Phase: CaseIterable {
         case new, learning, review, relearning
-
-        var label: LocalizedStringKey {
-            switch self {
-            case .new: return "phase.new"
-            case .learning: return "phase.learning"
-            case .review: return "phase.review"
-            case .relearning: return "phase.relearning"
-            }
-        }
-
-        var color: Color {
-            switch self {
-            case .new: return .dlTextSecondary
-            case .learning: return .dlDer
-            case .review: return .dlSuccess
-            case .relearning: return .dlAmber
-            }
-        }
     }
 
     let phase: Phase
@@ -243,6 +242,16 @@ struct PhaseBadge: View {
     /// (kern `CardRowState.Standing` states why).
     var consolidated: Bool = false
 
+    private var label: LocalizedStringKey {
+        if phase == .new { return "phase.new" }
+        return consolidated ? "phase.consolidated" : "phase.learning"
+    }
+
+    private var color: Color {
+        if phase == .new { return .dlTextSecondary }
+        return consolidated ? .dlSuccess : .dlAmber
+    }
+
     /// The area row's own two icons, so a badge and that row agree on sight.
     private var icon: String {
         if phase == .new { return "circle.dashed" }
@@ -250,16 +259,16 @@ struct PhaseBadge: View {
     }
 
     var body: some View {
-        Label(phase.label, systemImage: icon)
+        Label(label, systemImage: icon)
             .font(DL.Fonts.caption)
-            .foregroundStyle(phase.color)
+            .foregroundStyle(color)
             // why: a one-word badge in a crowded row gets compressed until it
             // wraps ("Ne/u"); it keeps its width and the word beside it gives.
             .lineLimit(1)
             .fixedSize(horizontal: true, vertical: false)
             .padding(.horizontal, DL.Space.m)
             .padding(.vertical, DL.Space.xs + 1)
-            .background(phase.color.opacity(0.14), in: Capsule())
+            .background(color.opacity(0.14), in: Capsule())
     }
 }
 

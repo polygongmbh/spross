@@ -70,6 +70,20 @@ object SprossIcons {
         moveTo(5f, 12f); lineTo(19f, 12f)
     }
 
+    /** Pack a word into the box: a tray, and the word dropping into it. */
+    val PackIn = stroked("PackIn") {
+        moveTo(5f, 14f); lineTo(5f, 19f); lineTo(19f, 19f); lineTo(19f, 14f)
+        moveTo(12f, 4f); lineTo(12f, 14f)
+        moveTo(8f, 10f); lineTo(12f, 14f); lineTo(16f, 10f)
+    }
+
+    /** Take a word back out — [PackIn] run in reverse. */
+    val PackOut = stroked("PackOut") {
+        moveTo(5f, 14f); lineTo(5f, 19f); lineTo(19f, 19f); lineTo(19f, 14f)
+        moveTo(12f, 14f); lineTo(12f, 4f)
+        moveTo(8f, 8f); lineTo(12f, 4f); lineTo(16f, 8f)
+    }
+
     /** What the answer owes back: the turn from what was written down to the form beside it. */
     val CornerDownRight = stroked("CornerDownRight") {
         moveTo(6f, 5f); lineTo(6f, 15f); lineTo(18f, 15f)

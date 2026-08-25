@@ -176,17 +176,22 @@ class BoxBrowserTest {
         assertEquals(CardRowState.Sleeping, BoxBrowser.cardRowState(state, "w01", packOffered = true))
     }
 
-    /** Packing a single word is offered where the learner named it; a shelf packs its own. */
+    /**
+     * Packing a single word is offered only where the learner named it; a shelf packs its
+     * own. A word already queued states so, and offers to be taken back out, everywhere —
+     * an area listing included.
+     */
     @Test
-    fun theOfferToPackExistsOnlyWhereSingleWordsArePacked() {
+    fun theOfferToPackIsPerWordOnlyWhereWordsArePackedOneAtATime() {
         var state = Box.state(listOf(Box.word(1), Box.word(2)))
         state = BoxEngine.enqueue(state, listOf("w02"))
 
         assertEquals(CardRowState.PackOffered, BoxBrowser.cardRowState(state, "w01", packOffered = true))
         assertEquals(CardRowState.Packed, BoxBrowser.cardRowState(state, "w02", packOffered = true))
-        // No offer, no confirmation: an unexposed card states nothing, and new is that silence.
+        // No per-word offer, and new is silence: an unqueued card states nothing.
         assertEquals(CardRowState.Plain, BoxBrowser.cardRowState(state, "w01", packOffered = false))
-        assertEquals(CardRowState.Plain, BoxBrowser.cardRowState(state, "w02", packOffered = false))
+        // But a queued one still says so, and still offers to be unpacked.
+        assertEquals(CardRowState.Packed, BoxBrowser.cardRowState(state, "w02", packOffered = false))
     }
 
     @Test

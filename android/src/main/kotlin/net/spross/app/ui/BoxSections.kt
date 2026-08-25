@@ -134,7 +134,7 @@ internal fun PackControl(chrome: Chrome, count: Int, onPack: () -> Unit) {
             onClick = onPack,
             modifier = Modifier.semantics { contentDescription = chrome.packArea.format(count) },
         ) {
-            Icon(SprossIcons.Plus, contentDescription = null)
+            Icon(SprossIcons.PackIn, contentDescription = null)
         }
     } else {
         Text(
