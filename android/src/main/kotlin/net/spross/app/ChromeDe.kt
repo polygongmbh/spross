@@ -251,6 +251,7 @@ internal object ChromeDe : Chrome {
     override val stateExpanded = "ausgeklappt"
     override val stateCollapsed = "eingeklappt"
     override val phaseLearning = "Lernend"
+    override val phaseSettled = "Gesetzt"
     override val phaseConsolidated = "Gefestigt"
     override val search = "Suchen"
     override val searchPlaceholder = "Wort oder Bereich"

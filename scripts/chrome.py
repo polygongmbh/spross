@@ -178,6 +178,7 @@ MAPPING = {
     'queuedWord': 'box.queuedWord',
     'phaseConsolidated': 'phase.consolidated',
     'phaseLearning': 'phase.learning',
+    'phaseSettled': 'phase.settled',
     'pluralEquals': 'grammar.plural.equals',
     'pluralForm': 'grammar.plural %@',
     'pluralOnly': 'grammar.plural.only',

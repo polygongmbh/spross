@@ -3903,6 +3903,22 @@
         }
       }
     },
+    "phase.settled" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesetzt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settled"
+          }
+        }
+      }
+    },
     "preview.skip" : {
       "localizations" : {
         "de" : {

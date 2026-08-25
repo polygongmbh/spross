@@ -248,6 +248,7 @@ internal object ChromeEn : Chrome {
     override val stateExpanded = "expanded"
     override val stateCollapsed = "collapsed"
     override val phaseLearning = "Learning"
+    override val phaseSettled = "Settled"
     override val phaseConsolidated = "Consolidated"
     override val search = "Search"
     override val searchPlaceholder = "Word or area"

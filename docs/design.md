@@ -371,12 +371,12 @@ a clone inherits its sibling's gaps, never the rules.
     it added TO. **The area is the unit for both**, same as the forest's own
     picture — a word packed or unpacked on its own is only ever the one a search
     reached by name, never a shelf listing.
-  - **The ladder reads as two words and two colors, nowhere a third**: consolidated
-    is green, and everything short of that bar — learning, relearning, a fresh
-    Review card — is amber and says "Learning". The progress bar, the word counts
-    beside it, and every phase badge draw off the same consolidated read
-    (`kern/README.md` §5), so a shelf's own tally and the badge on one of its
-    rows can never disagree.
+  - **A row distinguishes one more rung than the shelf's own tally does**: a card
+    in Review short of the consolidated bar reads as neither consolidated nor
+    still-learning, so it is never mistaken for either — but the shelf's own tally,
+    bar and counts stay the two-way consolidated/learning split
+    (`kern/README.md` §5), since only the shelf's own green may promise a word
+    has landed.
   - **Search** (🔍 in the bar) reaches a word without knowing its shelf. The two result
     kinds offer what they ARE: an area unfolds itself back on the Box screen and scrolls
     into reach, a word can be heard and packed on its own — a learner who went looking for

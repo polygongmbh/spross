@@ -222,16 +222,15 @@ struct AreaChip: View {
 
 /// Where one card stands on the ladder.
 ///
-/// The word AND the color follow [consolidated] — kern's stricter bar — and NEVER the
-/// phase: a card reaches Review well below it, so a badge keyed to the phase would mark
-/// (or color green) words the shelf above leaves out of its consolidated count, and the
-/// row would disagree with the shelf on sight. Learning, relearning and a fresh Review
-/// card all read the same word and the same amber — the ladder has one rung this badge
-/// calls out, not four.
+/// [consolidated] — kern's stricter bar — decides green, exactly as the shelf's own tally
+/// does, so a row's green never claims a word the shelf above does not also count: Review
+/// alone gets there well before it, which is why a fresh Review card reads its OWN color
+/// (teal, "Settled") rather than borrowing green. Learning and relearning read the third,
+/// amber — still walking the learning steps, no bar cleared yet.
 struct PhaseBadge: View {
     /// Kept for the exhaustive mapping callers build from `CardPhase` — see
     /// `BoxCardRow.badgePhase`. Only [Phase.new] still changes what is drawn on its own;
-    /// every other case reads off [consolidated] instead.
+    /// every other case reads off [consolidated] and [Phase.review] together.
     enum Phase: CaseIterable {
         case new, learning, review, relearning
     }
@@ -244,18 +243,21 @@ struct PhaseBadge: View {
 
     private var label: LocalizedStringKey {
         if phase == .new { return "phase.new" }
-        return consolidated ? "phase.consolidated" : "phase.learning"
+        if consolidated { return "phase.consolidated" }
+        return phase == .review ? "phase.settled" : "phase.learning"
     }
 
     private var color: Color {
         if phase == .new { return .dlTextSecondary }
-        return consolidated ? .dlSuccess : .dlAmber
+        if consolidated { return .dlSuccess }
+        return phase == .review ? .dlTeal : .dlAmber
     }
 
-    /// The area row's own two icons, so a badge and that row agree on sight.
+    /// The area row's own icon at the consolidated end; Settled and Learning get one each.
     private var icon: String {
         if phase == .new { return "circle.dashed" }
-        return consolidated ? "checkmark.seal.fill" : "leaf.fill"
+        if consolidated { return "checkmark.seal.fill" }
+        return phase == .review ? "checkmark.circle.fill" : "leaf.fill"
     }
 
     var body: some View {

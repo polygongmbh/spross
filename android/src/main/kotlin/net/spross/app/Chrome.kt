@@ -276,11 +276,13 @@ interface Chrome {
     /** A fold's state, never its label — the heading stays the heading whichever way it points. */
     val stateExpanded: String
     val stateCollapsed: String
-    // A card with nothing behind it has NO phase word: new is the absence of a badge. The
-    // ladder itself reads only two words past that — [phaseLearning] for every rung short of
-    // the consolidated bar, [phaseConsolidated] once a card has cleared it — so the badge
-    // never says more than the shelf's own count does.
+    // A card with nothing behind it has NO phase word: new is the absence of a badge. Past
+    // that, a row reads one of three: [phaseLearning] while still walking the learning
+    // steps, [phaseSettled] once in Review but short of the consolidated bar, and
+    // [phaseConsolidated] once a card has cleared it — the shelf's own count stays the
+    // two-way consolidated/learning split it has always been (`AreaStatistics.learning`).
     val phaseLearning: String
+    val phaseSettled: String
     val phaseConsolidated: String
 
     // ── Box search ──────────────────────────────────────────────────────────────

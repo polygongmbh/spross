@@ -109,22 +109,32 @@ fun FeminineBadge(modifier: Modifier = Modifier) {
 /**
  * Where one card stands on the ladder.
  *
- * The mark AND the color follow [consolidated] — kern's stricter bar — and NEVER the
- * phase: a card reaches Review well below it, so a seal (or a green badge) keyed to the
- * phase would mark words the shelf above leaves out of its consolidated count, and the
- * row would disagree with the shelf on sight. Learning, relearning and a fresh Review
- * card all read the same word and the same amber — the ladder has one rung the badge
- * calls out, not four. A card with nothing behind it gets no badge at all; that absence
- * is what says "new" (kern `CardRowState.Plain`), so this is never asked about one.
+ * [consolidated] — kern's stricter bar — decides the seal, exactly as the shelf's own
+ * tally does, so a row's seal never claims a word the shelf above does not also count:
+ * Review alone gets there well before it, which is why a fresh Review card reads its OWN
+ * mark (teal, "Settled") rather than borrowing the seal. Learning and relearning read
+ * the third, amber — still walking the learning steps, no bar cleared yet. A card with
+ * nothing behind it gets no badge at all; that absence is what says "new" (kern
+ * `CardRowState.Plain`), so this is never asked about one.
  */
 @Composable
 fun PhaseBadge(phase: CardPhase, consolidated: Boolean, chrome: Chrome) {
     val palette = Dl.colors
-    val color = if (phase == CardPhase.New) palette.textSecondary
-        else if (consolidated) palette.success else palette.amber
-    val word = if (phase == CardPhase.New) chrome.newLabel
-        else if (consolidated) chrome.phaseConsolidated else chrome.phaseLearning
-    Pill("${if (consolidated) SEAL else LEAF} $word", color)
+    val settled = phase == CardPhase.Review && !consolidated
+    val color = when {
+        phase == CardPhase.New -> palette.textSecondary
+        consolidated -> palette.success
+        settled -> palette.teal
+        else -> palette.amber
+    }
+    val word = when {
+        phase == CardPhase.New -> chrome.newLabel
+        consolidated -> chrome.phaseConsolidated
+        settled -> chrome.phaseSettled
+        else -> chrome.phaseLearning
+    }
+    val glyph = if (consolidated) SEAL else if (settled) SETTLED else LEAF
+    Pill("$glyph $word", color)
 }
 
 /** The consolidated mark; the same glyph the area's own count row leads with. */
@@ -132,6 +142,9 @@ const val SEAL = "✔"
 
 /** …and the one for a word still on its way in. */
 const val LEAF = "🌱"
+
+/** …and the one for a word in Review, short of the consolidated bar. */
+const val SETTLED = "🌿"
 
 /** Phrases waiting on their components — the only count that is not about a schedule. */
 const val LOCK = "🔒"
