@@ -46,6 +46,9 @@
    "notes": { "de": "Nicht können heißt hier non riuscire a respirare, nicht non potere." }
   },
   "recover": { "text": "guarire", "variants": ["rimettersi"] },
+  "life": { "text": "vita", "grammar": { "gender": "la" } },
+  "to-be-alive": { "text": "vivere" },
+  "alive": { "text": "vivo", "variants": ["viva"] },
   "death": { "text": "morte", "grammar": { "gender": "la" } },
   "to-die": { "text": "morire" },
   "allergy": { "text": "allergia", "variants": ["l'allergia", "un'allergia"], "grammar": { "gender": "l'" } },

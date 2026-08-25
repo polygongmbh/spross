@@ -52,6 +52,9 @@
    "variants": ["se remettre"],
    "notes": { "de": "guérir steht auch ohne Objekt für gesund werden: je guéris vite." }
   },
+  "life": { "text": "vie", "grammar": { "gender": "la" } },
+  "to-be-alive": { "text": "vivre" },
+  "alive": { "text": "vivant", "variants": ["vivante"] },
   "death": { "text": "mort", "grammar": { "gender": "la" } },
   "to-die": { "text": "mourir" },
   "allergy": { "text": "allergie", "variants": ["l'allergie"], "grammar": { "gender": "l'" } },
