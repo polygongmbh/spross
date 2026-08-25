@@ -62,6 +62,11 @@
   },
   "her-boyfriend": { "text": "mpenzi wake" },
   "old-people": { "text": "watu wazee" },
-  "many-friends": { "text": "marafiki wengi" }
+  "many-friends": {
+   "text": "marafiki wengi",
+   "notes": {
+    "de": "wengi trotz ma-: rafiki ist ein Mensch, Übereinstimmung folgt watu (wa-), nicht der ma-Form."
+   }
+  }
  }
 }
