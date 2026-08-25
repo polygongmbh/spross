@@ -41,6 +41,11 @@
   "write": { "text": "scrivere" },
   "call": { "text": "chiamare", "variants": ["telefonare", "chiamare al telefono"] },
   "delete": { "text": "cancellare", "synonyms": ["eliminare"] },
+  "repair": {
+   "text": "riparare",
+   "synonyms": ["aggiustare"],
+   "notes": { "de": "Im Alltag sagt man aggiustare; riparare klingt nach Werkstatt." }
+  },
   "phone": {
    "text": "cellulare",
    "variants": ["telefonino", "telefono cellulare", "telefono"],
@@ -79,6 +84,11 @@
    "variants": ["pronta", "finito"],
    "notes": { "de": "sono pronto = ich bin fertig (bereit); ho finito = ich bin fertig (damit)." }
   },
+  "broken": {
+   "text": "rotto",
+   "variants": ["rotta", "guasto"],
+   "notes": { "de": "Mit essere: il telefono è rotto. Ein Gerät, das nur nicht mehr geht, ist guasto." }
+  },
   "im-in-a-meeting": { "text": "Sono in riunione.", "variants": ["Sono in una riunione."] },
   "dont-disturb-me": { "text": "Non disturbarmi!", "variants": ["Non disturbare!"] },
   "the-laptop-wont-charge-anymore": {
@@ -86,6 +96,7 @@
    "variants": ["Il portatile non carica più.", "Il computer portatile non si carica più."]
   },
   "the-internet-is-gone": { "text": "Non c'è internet.", "variants": ["Internet non funziona.", "Non c'è il wifi."] },
+  "it-works": { "text": "Funziona.", "variants": ["Ora funziona.", "Funziona di nuovo."] },
   "coffee-break": { "text": "Pausa caffè?", "variants": ["Andiamo a prendere un caffè?"] },
   "i-have-a-lot-to-do": { "text": "Ho molto da fare." },
   "we-knock-off-at-5": { "text": "Oggi stacchiamo alle 5." },

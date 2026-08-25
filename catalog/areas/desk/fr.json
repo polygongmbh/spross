@@ -49,6 +49,7 @@
   "write": { "text": "écrire" },
   "call": { "text": "appeler", "variants": ["téléphoner", "passer un coup de fil"] },
   "delete": { "text": "supprimer", "synonyms": ["effacer"] },
+  "repair": { "text": "réparer", "variants": ["dépanner"] },
   "phone": {
    "text": "téléphone",
    "variants": ["portable", "téléphone portable", "mobile"],
@@ -88,6 +89,11 @@
    "variants": ["prête", "fini", "finie", "terminé", "terminée"],
    "notes": { "de": "prêt heißt „bereit“: je suis prêt. Fertig im Sinne von beendet ist fini oder terminé." }
   },
+  "broken": {
+   "text": "cassé",
+   "variants": ["cassée", "en panne", "abîmé"],
+   "notes": { "de": "cassé heißt zerbrochen; ein Gerät, das nicht mehr geht, ist en panne." }
+  },
   "im-in-a-meeting": { "text": "Je suis en réunion." },
   "dont-disturb-me": { "text": "Ne me dérange pas !", "variants": ["Ne pas déranger !"] },
   "the-laptop-wont-charge-anymore": {
@@ -98,6 +104,7 @@
    "text": "Il n'y a plus d'internet.",
    "variants": ["Il n'y a plus internet.", "Internet ne marche plus.", "Il n'y a plus de wifi."]
   },
+  "it-works": { "text": "Ça marche.", "variants": ["Ça fonctionne.", "Ça remarche."] },
   "coffee-break": { "text": "Pause café ?", "variants": ["Une pause café ?", "On prend un café ?"] },
   "i-have-a-lot-to-do": { "text": "J'ai beaucoup à faire.", "variants": ["J'ai beaucoup de choses à faire."] },
   "we-knock-off-at-5": { "text": "Aujourd'hui, on débauche à 5h." },

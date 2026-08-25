@@ -35,6 +35,7 @@
    "notes": { "de": "Mit al: mi telefonas al la kuracisto = ich rufe den Arzt an." }
   },
   "delete": { "text": "forigi", "variants": ["forviŝi", "viŝi"] },
+  "repair": { "text": "ripari" },
   "phone": {
    "text": "poŝtelefono",
    "variants": ["telefono"],
@@ -56,6 +57,11 @@
   "calendar": { "text": "kalendaro" },
   "important": { "text": "grava" },
   "ready": { "text": "preta", "variants": ["finita"] },
+  "broken": {
+   "text": "difektita",
+   "variants": ["rompita", "difekta"],
+   "notes": { "de": "difektita ist defekt, funktioniert nicht mehr; rompita ist zerbrochen, in Stücken." }
+  },
   "im-in-a-meeting": { "text": "Mi estas en kunsido.", "variants": ["Mi estas en renkontiĝo."] },
   "dont-disturb-me": { "text": "Ne ĝenu min!", "variants": ["Ne ĝeni!"] },
   "the-laptop-wont-charge-anymore": {
@@ -66,6 +72,7 @@
    "text": "La interreto malaperis.",
    "variants": ["Ne estas interreto.", "La sendrata reto malaperis."]
   },
+  "it-works": { "text": "Ĝi funkcias.", "variants": ["Ĝi denove funkcias.", "Funkcias."] },
   "coffee-break": { "text": "Kafopaŭzo?", "variants": ["Ĉu kafopaŭzo?"] },
   "i-have-a-lot-to-do": { "text": "Mi havas multon por fari.", "variants": ["Mi havas multe da laboro."] },
   "we-knock-off-at-5": { "text": "Hodiaŭ ni finas la laboron je la 5-a." },

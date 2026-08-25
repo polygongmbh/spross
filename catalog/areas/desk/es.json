@@ -44,6 +44,11 @@
   "write": { "text": "escribir" },
   "call": { "text": "llamar", "variants": ["llamar por teléfono", "telefonear"] },
   "delete": { "text": "borrar", "synonyms": ["eliminar"] },
+  "repair": {
+   "text": "reparar",
+   "synonyms": ["arreglar"],
+   "notes": { "de": "Im Alltag sagt man arreglar; reparar klingt nach Werkstatt." }
+  },
   "phone": {
    "text": "móvil",
    "variants": ["teléfono móvil", "celular", "teléfono celular"],
@@ -74,6 +79,11 @@
    "variants": ["terminado", "acabado"],
    "notes": { "de": "Mit estar: ya estoy listo = ich bin fertig. ser listo heißt dagegen „schlau sein“." }
   },
+  "broken": {
+   "text": "roto",
+   "variants": ["rota", "estropeado", "averiado"],
+   "notes": { "de": "Mit estar: el móvil está roto. Ein Gerät, das nur nicht mehr geht, ist estropeado." }
+  },
   "im-in-a-meeting": { "text": "Estoy en una reunión." },
   "dont-disturb-me": { "text": "¡No me molestes!", "variants": ["¡No molestar!"] },
   "the-laptop-wont-charge-anymore": {
@@ -84,6 +94,7 @@
    "text": "No hay internet.",
    "variants": ["Se ha cortado internet.", "Se ha ido internet.", "No hay wifi."]
   },
+  "it-works": { "text": "Funciona.", "variants": ["Ya funciona.", "Sí funciona."] },
   "coffee-break": { "text": "¿Pausa para el café?", "variants": ["¿Nos tomamos un café?", "¿Un café?"] },
   "i-have-a-lot-to-do": { "text": "Tengo mucho que hacer." },
   "we-knock-off-at-5": { "text": "Hoy salimos del trabajo a las cinco." },

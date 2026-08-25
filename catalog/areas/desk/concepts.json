@@ -29,6 +29,8 @@
  { "slug": "printer", "kind": "noun", "emoji": "🖨️" },
  { "slug": "headphones", "kind": "noun", "emoji": "🎧" },
  { "slug": "office-chair", "kind": "noun", "emoji": "💺" },
+ { "slug": "broken", "kind": "adjective" },
+ { "slug": "repair", "kind": "verb", "emoji": "🔧" },
  { "slug": "feierabend", "kind": "noun", "emoji": "🎉" },
  { "slug": "im-in-a-meeting", "kind": "phrase", "emoji": "👥", "components": [] },
  { "slug": "dont-disturb-me", "kind": "phrase", "emoji": "🤫", "components": [] },
@@ -39,6 +41,7 @@
   "components": ["laptop"]
  },
  { "slug": "the-internet-is-gone", "kind": "phrase", "emoji": "📵", "components": [] },
+ { "slug": "it-works", "kind": "phrase", "emoji": "✅", "components": [] },
  { "slug": "coffee-break", "kind": "phrase", "emoji": "☕", "components": [] },
  { "slug": "i-have-a-lot-to-do", "kind": "phrase", "emoji": "📋", "components": [] },
  { "slug": "we-knock-off-at-5", "kind": "phrase", "emoji": "🕔", "components": ["feierabend"] },
