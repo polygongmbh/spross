@@ -55,25 +55,6 @@
   "areas": [{ "area": "people", "emoji": "👪" }, { "area": "body", "emoji": "🧍" }]
  },
  {
-  "group": "around",
-  "titles": {
-   "en": "Out and about",
-   "de": "Draußen",
-   "eo": "Survoje",
-   "es": "Fuera de casa",
-   "fr": "En vadrouille",
-   "it": "In giro",
-   "sw": "Nje na safarini",
-   "uk": "Надворі та в дорозі"
-  },
-  "areas": [
-   { "area": "directions", "emoji": "↗️" },
-   { "area": "transport", "emoji": "🚌" },
-   { "area": "city", "emoji": "🏙️" },
-   { "area": "nature", "emoji": "🌳" }
-  ]
- },
- {
   "group": "errands",
   "titles": {
    "en": "Shopping & eating out",
@@ -90,6 +71,25 @@
    { "area": "shopping", "emoji": "🛒" },
    { "area": "market", "emoji": "🧺" },
    { "area": "restaurant", "emoji": "🍽️" }
+  ]
+ },
+ {
+  "group": "around",
+  "titles": {
+   "en": "Out and about",
+   "de": "Draußen",
+   "eo": "Survoje",
+   "es": "Fuera de casa",
+   "fr": "En vadrouille",
+   "it": "In giro",
+   "sw": "Nje na safarini",
+   "uk": "Надворі та в дорозі"
+  },
+  "areas": [
+   { "area": "directions", "emoji": "↗️" },
+   { "area": "transport", "emoji": "🚌" },
+   { "area": "city", "emoji": "🏙️" },
+   { "area": "nature", "emoji": "🌳" }
   ]
  },
  {
@@ -141,9 +141,9 @@
    "uk": "Установи та робота"
   },
   "areas": [
+   { "area": "organization", "emoji": "🗒️" },
    { "area": "school", "emoji": "🎒" },
    { "area": "work", "emoji": "💼" },
-   { "area": "organization", "emoji": "🗒️" },
    { "area": "admin", "emoji": "🗂️" }
   ]
  },
