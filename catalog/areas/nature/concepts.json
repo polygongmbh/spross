@@ -26,6 +26,10 @@
  { "slug": "plant-flowers", "kind": "verb", "emoji": "🌷" },
  { "slug": "grill-meat", "kind": "verb", "emoji": "🍖" },
  { "slug": "sunbathe", "kind": "verb", "emoji": "🌞" },
+ { "slug": "storm", "kind": "noun", "emoji": "⛈️" },
+ { "slug": "thunder", "kind": "noun" },
+ { "slug": "lightning", "kind": "noun", "emoji": "🌩️" },
+ { "slug": "humid", "kind": "adjective" },
  { "slug": "hows-the-weather-today", "kind": "phrase", "emoji": "🌤️", "components": ["weather"] },
  { "slug": "its-raining", "kind": "phrase", "emoji": "🌧️", "components": [] },
  { "slug": "the-rain-has-stopped", "kind": "phrase", "emoji": "🌦️", "components": ["rain"] },
@@ -38,5 +42,6 @@
   "emoji": "⛰️",
   "components": ["mountain"]
  },
- { "slug": "look-a-bird", "kind": "phrase", "emoji": "🐦", "components": ["bird"] }
+ { "slug": "look-a-bird", "kind": "phrase", "emoji": "🐦", "components": ["bird"] },
+ { "slug": "the-sun-has-come-out", "kind": "phrase", "emoji": "⛅", "components": ["sun"] }
 ]

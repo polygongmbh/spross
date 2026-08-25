@@ -29,6 +29,10 @@
   "stone": { "text": "stone" },
   "moon": { "text": "moon" },
   "star": { "text": "star" },
+  "storm": { "text": "storm" },
+  "thunder": { "text": "thunder" },
+  "lightning": { "text": "lightning" },
+  "humid": { "text": "humid" },
   "hows-the-weather-today": { "text": "How's the weather today?" },
   "its-raining": { "text": "It's raining." },
   "the-rain-has-stopped": { "text": "The rain has stopped.", "variants": ["It's stopped raining.", "It stopped raining."] },
@@ -36,6 +40,7 @@
   "what-a-beautiful-day": { "text": "What a beautiful day!" },
   "lets-go-to-the-beach": { "text": "Let's go to the beach!" },
   "we-are-going-to-the-mountains": { "text": "We're going to the mountains." },
-  "look-a-bird": { "text": "Look, a bird!" }
+  "look-a-bird": { "text": "Look, a bird!" },
+  "the-sun-has-come-out": { "text": "The sun has come out.", "variants": ["The sun came out.", "The sun's come out."] }
  }
 }

@@ -34,6 +34,10 @@
   "stone": { "text": "pietra", "variants": ["sasso"], "grammar": { "gender": "la" } },
   "moon": { "text": "luna", "grammar": { "gender": "la" } },
   "star": { "text": "stella", "grammar": { "gender": "la" } },
+  "storm": { "text": "tempesta", "grammar": { "gender": "la" } },
+  "thunder": { "text": "tuono", "grammar": { "gender": "il" } },
+  "lightning": { "text": "fulmine", "variants": ["lampo"], "grammar": { "gender": "il" } },
+  "humid": { "text": "umido", "variants": ["umida"] },
   "hows-the-weather-today": { "text": "Che tempo fa oggi?", "variants": ["Com'è il tempo oggi?"] },
   "its-raining": { "text": "Piove.", "variants": ["Sta piovendo."] },
   "the-rain-has-stopped": { "text": "Ha smesso di piovere.", "variants": ["Non piove più.", "La pioggia è finita."] },
@@ -45,6 +49,7 @@
   "what-a-beautiful-day": { "text": "Che bella giornata!", "variants": ["Che bel giorno!"] },
   "lets-go-to-the-beach": { "text": "Andiamo in spiaggia!", "variants": ["Andiamo alla spiaggia!", "Andiamo al mare!"] },
   "we-are-going-to-the-mountains": { "text": "Andiamo in montagna.", "variants": ["Andiamo sulle montagne."] },
-  "look-a-bird": { "text": "Guarda, un uccello!", "variants": ["Guarda, c'è un uccello!"] }
+  "look-a-bird": { "text": "Guarda, un uccello!", "variants": ["Guarda, c'è un uccello!"] },
+  "the-sun-has-come-out": { "text": "È uscito il sole.", "variants": ["Il sole è uscito."] }
  }
 }

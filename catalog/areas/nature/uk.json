@@ -28,6 +28,10 @@
   "forest": { "text": "ліс" },
   "stone": { "text": "камінь", "grammar": { "plural": "камені" } },
   "star": { "text": "зірка" },
+  "storm": { "text": "буря" },
+  "thunder": { "text": "грім", "grammar": { "plural": "громи" } },
+  "lightning": { "text": "блискавка" },
+  "humid": { "text": "вологий", "variants": ["волога", "вологе"] },
   "hows-the-weather-today": { "text": "Яка сьогодні погода?" },
   "its-raining": { "text": "Йде дощ." },
   "the-rain-has-stopped": { "text": "Дощ припинився.", "variants": ["Дощ перестав.", "Дощ закінчився."] },
@@ -35,6 +39,7 @@
   "what-a-beautiful-day": { "text": "Який гарний день!" },
   "lets-go-to-the-beach": { "text": "Ходімо на пляж!" },
   "we-are-going-to-the-mountains": { "text": "Ми їдемо в гори." },
-  "look-a-bird": { "text": "Дивись, пташка!", "variants": ["Дивись, птах!"] }
+  "look-a-bird": { "text": "Дивись, пташка!", "variants": ["Дивись, птах!"] },
+  "the-sun-has-come-out": { "text": "Сонце вийшло.", "variants": ["Сонце визирнуло.", "Виглянуло сонце."] }
  }
 }

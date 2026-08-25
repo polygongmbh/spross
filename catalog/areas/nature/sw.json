@@ -29,6 +29,21 @@
   "stone": { "text": "jiwe", "grammar": { "plural": "mawe" } },
   "moon": { "text": "mwezi", "grammar": { "plural": "miezi" } },
   "star": { "text": "nyota", "grammar": { "plural": "=" } },
+  "storm": { "text": "dhoruba", "grammar": { "plural": "=" } },
+  "thunder": {
+   "text": "radi",
+   "grammar": { "plural": "=" },
+   "notes": { "de": "radi ist der Donnerschlag und steht oft auch für den Blitz und das ganze Gewitter." }
+  },
+  "lightning": {
+   "text": "umeme",
+   "notes": { "de": "umeme heißt im Alltag auch der Strom: Umeme umekatika. — Der Strom ist weg." }
+  },
+  "humid": {
+   "text": "unyevunyevu",
+   "variants": ["unyevu"],
+   "notes": { "de": "unveränderlich · dasselbe Wort heißt auch die Feuchtigkeit: Kuna unyevunyevu." }
+  },
   "hows-the-weather-today": { "text": "Hali ya hewa ikoje leo?" },
   "its-raining": {
    "text": "Mvua inanyesha.",
@@ -45,6 +60,7 @@
   "what-a-beautiful-day": { "text": "Siku nzuri kama nini!" },
   "lets-go-to-the-beach": { "text": "Twende ufukweni!", "variants": ["Twende pwani!"] },
   "we-are-going-to-the-mountains": { "text": "Tunaenda milimani." },
-  "look-a-bird": { "text": "Angalia, ndege!", "variants": ["Tazama, ndege!"] }
+  "look-a-bird": { "text": "Angalia, ndege!", "variants": ["Tazama, ndege!"] },
+  "the-sun-has-come-out": { "text": "Jua limetoka." }
  }
 }

@@ -34,6 +34,10 @@
   "stone": { "text": "piedra", "grammar": { "gender": "la" } },
   "moon": { "text": "luna", "grammar": { "gender": "la" } },
   "star": { "text": "estrella", "grammar": { "gender": "la" } },
+  "storm": { "text": "tormenta", "variants": ["tempestad"], "grammar": { "gender": "la" } },
+  "thunder": { "text": "trueno", "grammar": { "gender": "el" } },
+  "lightning": { "text": "relámpago", "variants": ["rayo"], "grammar": { "gender": "el" } },
+  "humid": { "text": "húmedo", "variants": ["húmeda"] },
   "hows-the-weather-today": { "text": "¿Qué tiempo hace hoy?", "variants": ["¿Cómo está el tiempo hoy?"] },
   "its-raining": { "text": "Está lloviendo.", "variants": ["Llueve."] },
   "the-rain-has-stopped": {
@@ -51,6 +55,7 @@
    "text": "Vamos a la montaña.",
    "variants": ["Nos vamos a la montaña.", "Vamos a las montañas."]
   },
-  "look-a-bird": { "text": "¡Mira, un pájaro!" }
+  "look-a-bird": { "text": "¡Mira, un pájaro!" },
+  "the-sun-has-come-out": { "text": "Ha salido el sol.", "variants": ["El sol ha salido.", "Salió el sol."] }
  }
 }
