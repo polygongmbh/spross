@@ -108,6 +108,18 @@ object BoxEngine {
         return state.copy(enqueued = queued)
     }
 
+    /**
+     * Take a packed word back out of the queue before a round has brought it in — the
+     * reverse of [enqueue]. A card a round already introduced has left the queue on its
+     * own (`Answering.answer`), so this is a no-op then, and a no-op for any id the queue
+     * never held. Unpacking a phrase leaves its auto-prepended component words queued —
+     * they are separate cards the learner may still want.
+     */
+    fun dequeue(state: BoxState, cardId: String): BoxState {
+        if (cardId !in state.enqueued) return state
+        return state.copy(enqueued = state.enqueued.filterNot { it == cardId })
+    }
+
     /** Suspend or revive ONE card; no-op when the id has no schedule. */
     fun setSuspended(state: BoxState, cardId: String, suspended: Boolean): BoxState {
         val sched = state.scheduling[cardId] ?: return state
