@@ -68,6 +68,13 @@
   "empty": { "text": "vuoto", "variants": ["vuota"] },
   "full": { "text": "pieno", "variants": ["piena"] },
   "dirty": { "text": "sporco", "variants": ["sporca"] },
+  "different": { "text": "diverso", "synonyms": ["differente"], "variants": ["diversa", "diversi", "diverse"] },
+  "difference": { "text": "differenza", "grammar": { "gender": "la" } },
+  "same": {
+   "text": "stesso",
+   "variants": ["stessa", "stessi", "stesse"],
+   "notes": { "de": "meist mit Artikel: lo stesso giorno · io stesso heißt ich selbst." }
+  },
   "a-lot-of-water": { "text": "molta acqua" }
  }
 }

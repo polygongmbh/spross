@@ -35,6 +35,9 @@
   "empty": { "text": "empty" },
   "full": { "text": "full" },
   "dirty": { "text": "dirty" },
+  "different": { "text": "different" },
+  "difference": { "text": "difference" },
+  "same": { "text": "same" },
   "a-lot-of-water": { "text": "a lot of water" }
  }
 }

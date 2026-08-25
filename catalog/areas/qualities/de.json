@@ -26,6 +26,9 @@
   "empty": { "text": "leer" },
   "full": { "text": "voll" },
   "dirty": { "text": "schmutzig" },
+  "different": { "text": "anders", "synonyms": ["verschieden"], "variants": ["unterschiedlich"] },
+  "difference": { "text": "Unterschied", "grammar": { "gender": "der", "plural": "Unterschiede" } },
+  "same": { "text": "gleich", "notes": { "de": "gleich heißt auch sofort: Ich komme gleich." } },
   "a-lot-of-water": { "text": "viel Wasser" }
  }
 }

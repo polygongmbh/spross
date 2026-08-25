@@ -79,6 +79,13 @@
   "empty": { "text": "vide" },
   "full": { "text": "plein", "variants": ["pleine"] },
   "dirty": { "text": "sale" },
+  "different": { "text": "différent", "variants": ["différente", "différents"] },
+  "difference": { "text": "différence", "grammar": { "gender": "la" } },
+  "same": {
+   "text": "même",
+   "variants": ["mêmes"],
+   "notes": { "de": "steht vor dem Substantiv: le même jour · nach dem Pronomen heißt es selbst: moi-même." }
+  },
   "a-lot-of-water": { "text": "beaucoup d'eau" }
  }
 }

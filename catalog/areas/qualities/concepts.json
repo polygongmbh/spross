@@ -23,5 +23,8 @@
  { "slug": "sharp", "kind": "adjective" },
  { "slug": "available", "kind": "adjective" },
  { "slug": "dirty", "kind": "adjective" },
+ { "slug": "different", "kind": "adjective" },
+ { "slug": "difference", "kind": "noun" },
+ { "slug": "same", "kind": "adjective" },
  { "slug": "a-lot-of-water", "kind": "phrase", "emoji": "💦", "components": ["much"] }
 ]

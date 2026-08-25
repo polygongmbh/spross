@@ -94,6 +94,13 @@
    "notes": { "de": "Swahili sagt es als Verb: basi limejaa = der Bus ist voll." }
   },
   "dirty": { "text": "chafu" },
+  "different": {
+   "text": "tofauti",
+   "notes": {
+    "de": "unveränderlich: watu tofauti · dasselbe Wort heißt auch der Unterschied: Kuna tofauti gani?"
+   }
+  },
+  "same": { "text": "sawa", "notes": { "de": "unveränderlich · heißt auch in Ordnung: Sawa!" } },
   "a-lot-of-water": { "text": "maji mengi" }
  }
 }

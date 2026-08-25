@@ -45,6 +45,9 @@
   "empty": { "text": "malplena" },
   "full": { "text": "plena" },
   "dirty": { "text": "malpura" },
+  "different": { "text": "malsama", "variants": ["malsamaj"] },
+  "difference": { "text": "diferenco" },
+  "same": { "text": "sama", "variants": ["samaj"] },
   "a-lot-of-water": { "text": "multe da akvo" }
  }
 }

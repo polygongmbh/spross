@@ -63,6 +63,17 @@
   "empty": { "text": "vacío", "variants": ["vacía"] },
   "full": { "text": "lleno", "variants": ["llena"] },
   "dirty": { "text": "sucio", "variants": ["sucia"] },
+  "different": {
+   "text": "diferente",
+   "synonyms": ["distinto"],
+   "variants": ["diferentes", "distinta", "distintos"]
+  },
+  "difference": { "text": "diferencia", "grammar": { "gender": "la" } },
+  "same": {
+   "text": "mismo",
+   "variants": ["misma", "mismos", "mismas"],
+   "notes": { "de": "meist mit Artikel: el mismo día · lo mismo heißt dasselbe." }
+  },
   "a-lot-of-water": { "text": "mucha agua", "notes": { "de": "trotz el agua feminin: mucha agua." } }
  }
 }
