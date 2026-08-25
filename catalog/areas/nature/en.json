@@ -31,6 +31,7 @@
   "star": { "text": "star" },
   "hows-the-weather-today": { "text": "How's the weather today?" },
   "its-raining": { "text": "It's raining." },
+  "the-rain-has-stopped": { "text": "The rain has stopped.", "variants": ["It's stopped raining.", "It stopped raining."] },
   "the-sun-is-shining": { "text": "The sun is shining!" },
   "what-a-beautiful-day": { "text": "What a beautiful day!" },
   "lets-go-to-the-beach": { "text": "Let's go to the beach!" },

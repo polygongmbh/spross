@@ -36,6 +36,7 @@
   "star": { "text": "stella", "grammar": { "gender": "la" } },
   "hows-the-weather-today": { "text": "Che tempo fa oggi?", "variants": ["Com'è il tempo oggi?"] },
   "its-raining": { "text": "Piove.", "variants": ["Sta piovendo."] },
+  "the-rain-has-stopped": { "text": "Ha smesso di piovere.", "variants": ["Non piove più.", "La pioggia è finita."] },
   "the-sun-is-shining": {
    "text": "C'è il sole!",
    "variants": ["Il sole splende!", "Splende il sole!"],

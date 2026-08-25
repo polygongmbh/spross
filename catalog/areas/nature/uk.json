@@ -30,6 +30,7 @@
   "star": { "text": "зірка" },
   "hows-the-weather-today": { "text": "Яка сьогодні погода?" },
   "its-raining": { "text": "Йде дощ." },
+  "the-rain-has-stopped": { "text": "Дощ припинився.", "variants": ["Дощ перестав.", "Дощ закінчився."] },
   "the-sun-is-shining": { "text": "Світить сонце!" },
   "what-a-beautiful-day": { "text": "Який гарний день!" },
   "lets-go-to-the-beach": { "text": "Ходімо на пляж!" },

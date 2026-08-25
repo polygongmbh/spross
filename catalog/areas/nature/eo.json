@@ -33,6 +33,7 @@
    "text": "Pluvas.",
    "notes": { "de": "Wetterverben stehen ohne Subjekt: Pluvas. Neĝas. Ventas." }
   },
+  "the-rain-has-stopped": { "text": "La pluvo ĉesis.", "variants": ["Ne plu pluvas.", "Ĉesis pluvi."] },
   "the-sun-is-shining": { "text": "La suno brilas!" },
   "what-a-beautiful-day": { "text": "Kia bela tago!" },
   "lets-go-to-the-beach": { "text": "Ni iru al la plaĝo!" },

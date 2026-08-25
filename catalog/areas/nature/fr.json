@@ -42,6 +42,7 @@
   "star": { "text": "étoile", "variants": ["l'étoile"], "grammar": { "gender": "l'" } },
   "hows-the-weather-today": { "text": "Quel temps fait-il aujourd'hui ?", "variants": ["Il fait quel temps aujourd'hui ?"] },
   "its-raining": { "text": "Il pleut." },
+  "the-rain-has-stopped": { "text": "Il ne pleut plus.", "variants": ["La pluie s'est arrêtée.", "La pluie a cessé."] },
   "the-sun-is-shining": { "text": "Le soleil brille !", "variants": ["Il y a du soleil !"] },
   "what-a-beautiful-day": { "text": "Quelle belle journée !", "variants": ["Quelle journée magnifique !"] },
   "lets-go-to-the-beach": { "text": "Allons à la plage !", "variants": ["On va à la plage !"] },

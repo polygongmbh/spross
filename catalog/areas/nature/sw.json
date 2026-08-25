@@ -36,6 +36,11 @@
     "de": "wörtl. „der Regen regnet“ — Kiswahili verlangt bei Wetterverben ein explizites Subjekt."
    }
   },
+  "the-rain-has-stopped": {
+   "text": "Mvua imeisha.",
+   "variants": ["Mvua imekwisha."],
+   "notes": { "de": "kuisha heißt „zu Ende gehen“: Regen hört im Kiswahili nicht auf, er ist zu Ende." }
+  },
   "the-sun-is-shining": { "text": "Jua linang'aa!" },
   "what-a-beautiful-day": { "text": "Siku nzuri kama nini!" },
   "lets-go-to-the-beach": { "text": "Twende ufukweni!", "variants": ["Twende pwani!"] },

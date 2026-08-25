@@ -31,6 +31,7 @@
   "star": { "text": "Stern", "grammar": { "gender": "der", "plural": "-e" } },
   "hows-the-weather-today": { "text": "Wie ist das Wetter heute?" },
   "its-raining": { "text": "Es regnet." },
+  "the-rain-has-stopped": { "text": "Der Regen hat aufgehört.", "variants": ["Es regnet nicht mehr."] },
   "the-sun-is-shining": { "text": "Die Sonne scheint!" },
   "what-a-beautiful-day": { "text": "Was für ein schöner Tag!" },
   "lets-go-to-the-beach": { "text": "Gehen wir an den Strand!", "variants": ["Lass uns an den Strand gehen!"] },
