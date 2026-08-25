@@ -177,21 +177,41 @@ class BoxBrowserTest {
     }
 
     /**
-     * Packing a single word is offered only where the learner named it; a shelf packs its
-     * own. A word already queued states so, and offers to be taken back out, everywhere —
-     * an area listing included.
+     * A row packs or unpacks itself, alone, only in a search result — where the learner
+     * reached this one card by typing its name rather than browsing a shelf
+     * ([packOffered] true). A shelf listing packs and unpacks its own queue in a batch
+     * instead. A word already queued always states so, but
+     * [CardRowState.Packed.removalOffered] follows [packOffered] the same way
+     * [CardRowState.PackOffered] does.
      */
     @Test
-    fun theOfferToPackIsPerWordOnlyWhereWordsArePackedOneAtATime() {
+    fun theOfferToPackAndUnpackIsPerWordOnlyWhereWordsArePackedOneAtATime() {
         var state = Box.state(listOf(Box.word(1), Box.word(2)))
         state = BoxEngine.enqueue(state, listOf("w02"))
 
         assertEquals(CardRowState.PackOffered, BoxBrowser.cardRowState(state, "w01", packOffered = true))
-        assertEquals(CardRowState.Packed, BoxBrowser.cardRowState(state, "w02", packOffered = true))
+        assertEquals(
+            CardRowState.Packed(removalOffered = true),
+            BoxBrowser.cardRowState(state, "w02", packOffered = true),
+        )
         // No per-word offer, and new is silence: an unqueued card states nothing.
         assertEquals(CardRowState.Plain, BoxBrowser.cardRowState(state, "w01", packOffered = false))
-        // But a queued one still says so, and still offers to be unpacked.
-        assertEquals(CardRowState.Packed, BoxBrowser.cardRowState(state, "w02", packOffered = false))
+        // A queued one still says so, but the area listing's shelf packs and unpacks
+        // in a batch — the row itself offers nothing.
+        assertEquals(
+            CardRowState.Packed(removalOffered = false),
+            BoxBrowser.cardRowState(state, "w02", packOffered = false),
+        )
+    }
+
+    @Test
+    fun dequeueableCardsAreTheAreasQueuedCards() {
+        var state = Box.state((1..3).map { Box.word(it, area = "kitchen") } + Box.word(4, area = "office"))
+        state = BoxEngine.enqueue(state, listOf("w01", "w03", "w04"))
+
+        assertEquals(listOf("w01", "w03"), BoxBrowser.dequeueableCardIds(state, "kitchen"))
+        assertEquals(2, BoxBrowser.dequeueableCount(state, "kitchen"))
+        assertEquals(listOf("w04"), BoxBrowser.dequeueableCardIds(state, "office"))
     }
 
     @Test

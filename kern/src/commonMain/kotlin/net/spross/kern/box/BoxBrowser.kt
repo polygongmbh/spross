@@ -32,11 +32,13 @@ sealed class CardRowState {
     data object PackOffered : CardRowState()
 
     /**
-     * Already packed, waiting for a round to bring it in — shown wherever the row stands,
-     * pack context or area shelf alike, and the one thing left to offer is taking it back
-     * out ([BoxEngine.dequeue]).
+     * Already packed, waiting for a round to bring it in — shown wherever the row stands.
+     * [removalOffered] mirrors [PackOffered]'s own gate: a word packed by name
+     * ([BoxEngine.dequeue]) is taken back out by name the same way; an area listing takes
+     * whole batches out through its own control ([BoxEngine.dequeueArea]) instead,
+     * mirroring how it takes them in.
      */
-    data object Packed : CardRowState()
+    data class Packed(val removalOffered: Boolean) : CardRowState()
 
     /**
      * Nothing to state: a card with no exposure behind it, outside any pack context.
@@ -145,14 +147,27 @@ object BoxBrowser {
     fun enqueueableCount(state: BoxState, area: String): Int = enqueueableCardIds(state, area).size
 
     /**
+     * The area's cards a [BoxEngine.dequeueArea] would take back out, in seed order:
+     * queued, and belonging to this area — [BoxEngine.dequeueArea]'s own guard asked
+     * in advance, same as [enqueueableCardIds] is for [BoxEngine.enqueue].
+     */
+    fun dequeueableCardIds(state: BoxState, area: String): List<String> {
+        val inArea = cardsInArea(state, area).mapTo(mutableSetOf()) { it.id }
+        return state.enqueued.filter { it in inArea }
+    }
+
+    /** What taking this shelf's queue back out would remove — the size of [dequeueableCardIds]. */
+    fun dequeueableCount(state: BoxState, area: String): Int = dequeueableCardIds(state, area).size
+
+    /**
      * What this card's row has to state, and nothing about how it is drawn.
      *
-     * [packOffered] says the row stands in a context that packs a SINGLE word —
-     * a search hit, which the learner went looking for by name.
-     * An area listing offers no such thing (the shelf's own control packs there),
-     * so an unqueued card there states nothing at all — but a card ALREADY queued states
-     * so wherever it is listed, packed by the shelf or by name, since taking it back out
-     * ([BoxEngine.dequeue]) is offered everywhere it shows.
+     * [packOffered] says the row stands in a context that packs (and unpacks) a SINGLE
+     * word — a search hit, which the learner went looking for by name — and gates
+     * [CardRowState.Packed.removalOffered] the same way. An area listing packs and
+     * unpacks through the shelf's own control instead
+     * ([enqueueableCardIds]/[dequeueableCardIds]), so an unqueued card there states
+     * nothing at all.
      *
      * Read off the growth ladder ([GrowthStage]) and [Statistics.isConsolidated],
      * never off the raw phase: those two are where "which bars has this card cleared"
@@ -162,7 +177,7 @@ object BoxBrowser {
     fun cardRowState(state: BoxState, cardId: String, packOffered: Boolean): CardRowState {
         if (state.cards[cardId] == null) return CardRowState.Plain
         val sched = state.scheduling[cardId] ?: return when {
-            cardId in state.enqueued -> CardRowState.Packed
+            cardId in state.enqueued -> CardRowState.Packed(removalOffered = packOffered)
             !packOffered -> CardRowState.Plain
             else -> CardRowState.PackOffered
         }

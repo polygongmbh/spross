@@ -120,6 +120,18 @@ object BoxEngine {
         return state.copy(enqueued = state.enqueued.filterNot { it == cardId })
     }
 
+    /**
+     * Take a whole area's queued words back out at once — the reverse of packing a shelf,
+     * and [dequeue] applied to every card [BoxBrowser.dequeueableCardIds] lists for it.
+     * A card belonging to another area that rode in as a phrase's component is untouched,
+     * same as a single [dequeue] leaves it: it is a separate word the learner may still want.
+     */
+    fun dequeueArea(state: BoxState, area: String): BoxState {
+        val leaving = state.enqueued.filterTo(mutableSetOf()) { state.cards[it]?.area == area }
+        if (leaving.isEmpty()) return state
+        return state.copy(enqueued = state.enqueued.filterNot { it in leaving })
+    }
+
     /** Suspend or revive ONE card; no-op when the id has no schedule. */
     fun setSuspended(state: BoxState, cardId: String, suspended: Boolean): BoxState {
         val sched = state.scheduling[cardId] ?: return state

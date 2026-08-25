@@ -248,9 +248,14 @@ private struct BoxAreaSection: View {
     /// The count moved from the button's face into its label: an icon-only
     /// control keeps the header one line tall, and the bar already shows
     /// how much of the area is still untouched.
+    ///
+    /// Once packing is done, a shelf still holding words queued for a round offers to
+    /// take the whole batch back out (`AppModel.dequeueArea`) — the area is the unit
+    /// this control acts on, same as packing itself.
     @ViewBuilder
     private var packControl: some View {
         let count = model.enqueueableCount(area: area)
+        let queued = model.dequeueableCount(area: area)
         if count > 0 {
             Button {
                 model.enqueueArea(area)
@@ -259,6 +264,14 @@ private struct BoxAreaSection: View {
             }
             .buttonStyle(DLIconButtonStyle())
             .accessibilityLabel(Text("box.enqueue \(count.formatted())"))
+        } else if queued > 0 {
+            Button {
+                model.dequeueArea(area)
+            } label: {
+                Image(systemName: "tray.and.arrow.up.fill")
+            }
+            .buttonStyle(DLIconButtonStyle(color: .dlSuccess))
+            .accessibilityLabel(Text("box.dequeue \(queued.formatted())"))
         } else {
             Image(systemName: "checkmark.circle.fill")
                 .font(DL.Fonts.headline)

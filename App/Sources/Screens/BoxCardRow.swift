@@ -12,10 +12,11 @@ import SprossKern
 ///
 /// `pack` is the row's one variation. Where a word can be packed on its own —
 /// a search hit, which the learner went looking for by name — the "new" badge
-/// gives its place to that offer. In the area list no such offer is made: the
-/// area's own control packs the shelf. A word already queued answers with its
-/// own tray icon wherever the row stands, tapping it back out again — no
-/// parameter needed, since taking one word back out is never a shelf action.
+/// gives its place to that offer, and a word already queued there answers
+/// with a tappable tray icon of its own, taking it back out the same way it
+/// went in. In the area list the shelf's own control does both instead
+/// (`BoxAreaSection.packControl`): a queued row states so with the same tray
+/// icon, plain rather than tappable.
 struct BoxCardRow: View {
     let model: AppModel
     let card: Card
@@ -111,16 +112,22 @@ struct BoxCardRow: View {
                 .buttonStyle(DLIconButtonStyle())
                 .accessibilityLabel("box.packWord")
             }
-        case .packed:
-            // Direct tap, no confirmation: nothing has been studied yet, so taking a
-            // queued word back out costs it nothing (mirrors "box.wake"'s own direct tap).
-            Button {
-                model.dequeue(cardID: card.id)
-            } label: {
+        case .packed(let packed):
+            if packed.removalOffered {
+                // Direct tap, no confirmation: nothing has been studied yet, so taking a
+                // queued word back out costs it nothing (mirrors "box.wake"'s own direct tap).
+                Button {
+                    model.dequeue(cardID: card.id)
+                } label: {
+                    Image(systemName: "tray.and.arrow.up.fill")
+                }
+                .buttonStyle(DLIconButtonStyle(color: .dlSuccess))
+                .accessibilityLabel("box.unpackWord")
+            } else {
                 Image(systemName: "tray.and.arrow.up.fill")
+                    .foregroundStyle(Color.dlSuccess)
+                    .accessibilityLabel("box.queuedWord")
             }
-            .buttonStyle(DLIconButtonStyle(color: .dlSuccess))
-            .accessibilityLabel("box.unpackWord")
         case .plain:
             EmptyView()
         case .standing(let standing):

@@ -84,6 +84,7 @@ internal fun AreaSection(
     val chrome = model.chrome
     val box = model.box ?: return
     val packable = BoxBrowser.enqueueableCardIds(box, area)
+    val queued = BoxBrowser.dequeueableCardIds(box, area)
 
     Column(
         modifier = Modifier.fillMaxWidth().panel(),
@@ -104,9 +105,9 @@ internal fun AreaSection(
                                 if (expanded) chrome.stateExpanded else chrome.stateCollapsed
                         },
                 )
-                PackControl(chrome, packable.size) {
-                    model.updateBox { BoxEngine.enqueue(it, packable) }
-                }
+                PackControl(chrome, packable.size, queued.size,
+                    onPack = { model.updateBox { BoxEngine.enqueue(it, packable) } },
+                    onUnpack = { model.updateBox { BoxEngine.dequeueArea(it, area) } })
             }
             if (expanded) {
                 Column(
@@ -126,15 +127,31 @@ internal fun AreaSection(
  * What packing this shelf would add, as a control: a plus while there is anything left to
  * take in, a settled check once there is not. The count rides in the spoken label rather
  * than on the button's face, which keeps the heading one line tall.
+ *
+ * Once nothing is left to pack, a shelf holding words still queued for a round offers to
+ * take them back out AS A BATCH ([onUnpack]) — the area is the unit this control acts on.
  */
 @Composable
-internal fun PackControl(chrome: Chrome, count: Int, onPack: () -> Unit) {
+internal fun PackControl(
+    chrome: Chrome,
+    count: Int,
+    queuedCount: Int,
+    onPack: () -> Unit,
+    onUnpack: () -> Unit,
+) {
     if (count > 0) {
         TextButton(
             onClick = onPack,
             modifier = Modifier.semantics { contentDescription = chrome.packArea.format(count) },
         ) {
             Icon(SprossIcons.PackIn, contentDescription = null)
+        }
+    } else if (queuedCount > 0) {
+        TextButton(
+            onClick = onUnpack,
+            modifier = Modifier.semantics { contentDescription = chrome.dequeueArea.format(queuedCount) },
+        ) {
+            Icon(SprossIcons.PackOut, contentDescription = null, tint = Dl.colors.success)
         }
     } else {
         Text(

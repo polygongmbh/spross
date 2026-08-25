@@ -133,11 +133,17 @@ extension AppModel {
         mutate { $0 = BoxEngine.shared.setSuspended(state: $0, cardId: cardID, suspended: suspended) }
     }
 
-    /// Take a packed word back out of the queue — the opposite of `enqueueArea`/
-    /// `enqueueCard`. A no-op once a round has already brought the card in
-    /// (`BoxEngine.dequeue`).
+    /// Take a packed word back out of the queue by name — the opposite of `enqueueCard`,
+    /// offered only where a single word was packed by name (`BoxCardRow.pack`). A no-op
+    /// once a round has already brought the card in (`BoxEngine.dequeue`).
     func dequeue(cardID: String) {
         mutate { $0 = BoxEngine.shared.dequeue(state: $0, cardId: cardID) }
+    }
+
+    /// Take a whole shelf's queue back out at once — the opposite of `enqueueArea`,
+    /// offered by the shelf's own control once packing has emptied (`BoxEngine.dequeueArea`).
+    func dequeueArea(_ area: String) {
+        mutate { $0 = BoxEngine.shared.dequeueArea(state: $0, area: area) }
     }
 
     /// Destructive fresh start: every schedule and tally goes, the join, the
@@ -227,6 +233,12 @@ extension AppModel {
     func enqueueableCount(area: String) -> Int {
         guard let box else { return 0 }
         return Int(BoxBrowser.shared.enqueueableCount(state: box, area: area))
+    }
+
+    /// What `dequeueArea` would take back out of this shelf.
+    func dequeueableCount(area: String) -> Int {
+        guard let box else { return 0 }
+        return Int(BoxBrowser.shared.dequeueableCount(state: box, area: area))
     }
 
     /// What one listed card's row has to state about itself. `packOffered` is

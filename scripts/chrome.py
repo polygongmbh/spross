@@ -174,6 +174,8 @@ MAPPING = {
     'packDone': 'box.enqueueDone',
     'packWord': 'box.packWord',
     'unpackWord': 'box.unpackWord',
+    'dequeueArea': 'box.dequeue %@',
+    'queuedWord': 'box.queuedWord',
     'phaseConsolidated': 'phase.consolidated',
     'phaseLearning': 'phase.learning',
     'pluralEquals': 'grammar.plural.equals',

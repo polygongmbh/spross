@@ -254,6 +254,10 @@ interface Chrome {
     val packWord: String          // the single-word offer a search hit carries
     /** The queued mark's own control: tapping it takes the word back out. */
     val unpackWord: String
+    /** A shelf's own control, taking its whole queue back out. %d = what it would remove. */
+    val dequeueArea: String
+    /** A queued row's mark where no per-word control is offered — the shelf's own does it. */
+    val queuedWord: String
     val suspended: String         // the sleeping mark's name
     val wake: String
     /**

@@ -4,8 +4,9 @@
 
 - **A packed word can be taken back out of the box.** Packing used to be one-way: once a
   word joined the queue there was no way back short of waiting for a round to meet it.
-  Its own tray icon in the box now unpacks it with a single tap, no confirmation asked —
-  nothing has been studied yet, so nothing is lost.
+  A search hit's own tray icon unpacks it by name, one tap, no confirmation asked —
+  nothing has been studied yet, so nothing is lost. Browsing a shelf unpacks the whole
+  queue it packed at once instead, the same control that packed it in the first place.
 
 ## 5.5.0 — 2026-08-24
 

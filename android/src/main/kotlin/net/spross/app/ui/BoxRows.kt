@@ -171,11 +171,22 @@ private fun CardStanding(
 
         // Direct tap, no confirmation: nothing has been studied yet, so taking a queued
         // word back out costs it nothing (mirrors CardRowState.Sleeping's own "Wake" tap).
-        CardRowState.Packed -> TextButton(
-            onClick = { model.updateBox { BoxEngine.dequeue(it, card.id) } },
-            modifier = Modifier.semantics { contentDescription = chrome.unpackWord },
-        ) {
-            Icon(SprossIcons.PackOut, contentDescription = null, tint = Dl.colors.success)
+        // Offered per word only where packOffered gates it — an area listing takes its
+        // whole queue out through the shelf's own control (PackControl) instead.
+        is CardRowState.Packed -> if (standing.removalOffered) {
+            TextButton(
+                onClick = { model.updateBox { BoxEngine.dequeue(it, card.id) } },
+                modifier = Modifier.semantics { contentDescription = chrome.unpackWord },
+            ) {
+                Icon(SprossIcons.PackOut, contentDescription = null, tint = Dl.colors.success)
+            }
+        } else {
+            Icon(
+                SprossIcons.PackOut,
+                contentDescription = chrome.queuedWord,
+                tint = Dl.colors.success,
+                modifier = Modifier.padding(DlSpace.m),
+            )
         }
 
         CardRowState.Plain -> Unit

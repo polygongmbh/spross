@@ -155,4 +155,19 @@ class BoxGrowthTests {
         state = BoxEngine.dequeue(state, "p1")
         assertEquals(listOf("w01", "w02"), state.enqueued)
     }
+
+    @Test
+    fun dequeueAreaTakesOutOnlyThatAreasQueuedCards() {
+        var state = Box.state(
+            (1..3).map { Box.word(it, area = "kitchen") } + Box.word(4, area = "office"),
+        )
+        state = BoxEngine.enqueue(state, listOf("w01", "w03", "w04"))
+
+        state = BoxEngine.dequeueArea(state, "kitchen")
+        assertEquals(listOf("w04"), state.enqueued)
+
+        // Nothing left there, or an area that was never queued: both a no-op.
+        assertEquals(state, BoxEngine.dequeueArea(state, "kitchen"))
+        assertEquals(state, BoxEngine.dequeueArea(state, "bath"))
+    }
 }
