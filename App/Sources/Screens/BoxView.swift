@@ -255,7 +255,7 @@ private struct BoxAreaSection: View {
             Button {
                 model.enqueueArea(area)
             } label: {
-                Image(systemName: "plus")
+                Image(systemName: "tray.and.arrow.down.fill")
             }
             .buttonStyle(DLIconButtonStyle())
             .accessibilityLabel(Text("box.enqueue \(count.formatted())"))

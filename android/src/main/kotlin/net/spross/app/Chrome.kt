@@ -252,11 +252,17 @@ interface Chrome {
     val packArea: String          // %d = what packing this shelf would add
     val packDone: String
     val packWord: String          // the single-word offer a search hit carries
-    val packedWord: String
+    /** The queued mark's own control: tapping it takes the word back out. */
+    val unpackWord: String
     val suspended: String         // the sleeping mark's name
     val wake: String
-    /** An area's fresh half, beside the leaf — the consolidated half reads [dayConsolidated]. */
-    val progressFresh: String     // %d
+    /**
+     * An area's row of counts: the consolidated half beside the seal, the learning half
+     * beside the leaf. [dayConsolidated] is the SEPARATE wording for the day's own tally on
+     * Heute — a different screen's sentence, not this one read twice.
+     */
+    val progressConsolidated: String // %d
+    val progressLearning: String  // %d
     val phrasesLocked: String     // %d = phrases still waiting on their components
     /**
      * The same count spelled out for a screen reader.
@@ -266,10 +272,12 @@ interface Chrome {
     /** A fold's state, never its label — the heading stays the heading whichever way it points. */
     val stateExpanded: String
     val stateCollapsed: String
-    // A card with nothing behind it has NO phase word: new is the absence of a badge.
+    // A card with nothing behind it has NO phase word: new is the absence of a badge. The
+    // ladder itself reads only two words past that — [phaseLearning] for every rung short of
+    // the consolidated bar, [phaseConsolidated] once a card has cleared it — so the badge
+    // never says more than the shelf's own count does.
     val phaseLearning: String
-    val phaseReview: String
-    val phaseRelearning: String
+    val phaseConsolidated: String
 
     // ── Box search ──────────────────────────────────────────────────────────────
     val search: String

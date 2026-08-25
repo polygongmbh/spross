@@ -133,6 +133,13 @@ extension AppModel {
         mutate { $0 = BoxEngine.shared.setSuspended(state: $0, cardId: cardID, suspended: suspended) }
     }
 
+    /// Take a packed word back out of the queue — the opposite of `enqueueArea`/
+    /// `enqueueCard`. A no-op once a round has already brought the card in
+    /// (`BoxEngine.dequeue`).
+    func dequeue(cardID: String) {
+        mutate { $0 = BoxEngine.shared.dequeue(state: $0, cardId: cardID) }
+    }
+
     /// Destructive fresh start: every schedule and tally goes, the join, the
     /// user's config (budget) and their own words stay — which of those a reset
     /// keeps is the engine's ruling, not this layer's (`kern/docs/grading.md`).

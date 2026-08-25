@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -50,7 +51,8 @@ import net.spross.kern.model.shownArticle
  * [pack] is the row's one variation, and it is offered ONLY where a single word can be
  * packed — a search hit, which the learner went looking for by name. In an area listing no
  * such offer is made (the shelf's own control packs there), which is why the offer is a
- * parameter rather than something the row works out.
+ * parameter rather than something the row works out. Taking a word back OUT of the queue
+ * needs no such parameter: [BoxEngine.dequeue] is offered wherever a queued row is drawn.
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -163,18 +165,18 @@ private fun CardStanding(
                 onClick = it,
                 modifier = Modifier.semantics { contentDescription = chrome.packWord },
             ) {
-                Icon(SprossIcons.Plus, contentDescription = null)
+                Icon(SprossIcons.PackIn, contentDescription = null)
             }
         }
 
-        CardRowState.Packed -> Text(
-            SEAL,
-            color = Dl.colors.success,
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier
-                .sizeIn(minHeight = 48.dp)
-                .semantics { contentDescription = chrome.packedWord },
-        )
+        // Direct tap, no confirmation: nothing has been studied yet, so taking a queued
+        // word back out costs it nothing (mirrors CardRowState.Sleeping's own "Wake" tap).
+        CardRowState.Packed -> TextButton(
+            onClick = { model.updateBox { BoxEngine.dequeue(it, card.id) } },
+            modifier = Modifier.semantics { contentDescription = chrome.unpackWord },
+        ) {
+            Icon(SprossIcons.PackOut, contentDescription = null, tint = Dl.colors.success)
+        }
 
         CardRowState.Plain -> Unit
 
@@ -203,8 +205,8 @@ fun AreaChip(
     val locked = stats?.phrasesLocked ?: 0
     val spoken = buildList {
         add(name)
-        add(chrome.dayConsolidated.format(consolidated))
-        add(chrome.progressFresh.format(learning))
+        add(chrome.progressConsolidated.format(consolidated))
+        add(chrome.progressLearning.format(learning))
         if (locked > 0) add(chrome.phrasesLockedSpoken.format(locked))
     }.joinToString(", ")
 
@@ -228,8 +230,10 @@ fun AreaChip(
             )
         }
         Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
-            CountLabel("$SEAL ${chrome.dayConsolidated.format(consolidated)}")
-            CountLabel("$LEAF ${chrome.progressFresh.format(learning)}")
+            // Colored to match the bar beneath them: green only for consolidated,
+            // amber for everything still on its way there.
+            CountLabel("$SEAL ${chrome.progressConsolidated.format(consolidated)}", Dl.colors.success)
+            CountLabel("$LEAF ${chrome.progressLearning.format(learning)}", Dl.colors.amber)
             // why: the padlock carries the "locked", so the text only names what is
             // locked — and it appears only when it says something.
             if (locked > 0) CountLabel("$LOCK ${chrome.phrasesLocked.format(locked)}")
@@ -239,11 +243,11 @@ fun AreaChip(
 }
 
 @Composable
-private fun CountLabel(text: String) {
+private fun CountLabel(text: String, color: Color = MaterialTheme.colorScheme.onSurfaceVariant) {
     Text(
         text,
         style = MaterialTheme.typography.bodySmall,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        color = color,
         maxLines = 1,
     )
 }

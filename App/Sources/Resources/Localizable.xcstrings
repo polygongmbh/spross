@@ -689,22 +689,6 @@
         }
       }
     },
-    "box.packedWord" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eingepackt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Packed"
-          }
-        }
-      }
-    },
     "box.phrasesLocked %lld" : {
       "comment" : "Spoken form; the row itself shows box.phrasesLockedShort beside a padlock.",
       "localizations" : {
@@ -959,6 +943,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The box"
+          }
+        }
+      }
+    },
+    "box.unpackWord" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Wort auspacken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unpack this word"
           }
         }
       }
@@ -3823,12 +3823,28 @@
         }
       }
     },
+    "phase.consolidated" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gefestigt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consolidated"
+          }
+        }
+      }
+    },
     "phase.learning" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lernt"
+            "value" : "Lernend"
           }
         },
         "en" : {
@@ -3851,38 +3867,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "New"
-          }
-        }
-      }
-    },
-    "phase.relearning" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wackelt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shaky"
-          }
-        }
-      }
-    },
-    "phase.review" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sitzt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Solid"
           }
         }
       }
@@ -3935,22 +3919,6 @@
         }
       }
     },
-    "progress.freshCount %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ frisch"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ fresh"
-          }
-        }
-      }
-    },
     "progress.last14Days" : {
       "localizations" : {
         "de" : {
@@ -3963,6 +3931,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Last 14 days"
+          }
+        }
+      }
+    },
+    "progress.learningCount %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ lernend"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ learning"
           }
         }
       }
