@@ -49,6 +49,8 @@
     "de": "shangazi ist die Schwester des Vaters; die Schwester der Mutter heißt mama mdogo oder mama mkubwa."
    }
   },
+  "to-be-born": { "text": "kuzaliwa" },
+  "birthday": { "text": "siku ya kuzaliwa", "grammar": { "plural": "siku za kuzaliwa" } },
   "this-is-my-mother": { "text": "Huyu ni mama yangu." },
   "where-is-your-father": { "text": "Baba yako yuko wapi?" },
   "i-have-two-children": { "text": "Nina watoto wawili." },

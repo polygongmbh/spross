@@ -34,6 +34,8 @@
   "wife": { "text": "esposa", "grammar": { "gender": "la" } },
   "uncle": { "text": "tío", "grammar": { "gender": "el" } },
   "aunt": { "text": "tía", "grammar": { "gender": "la" } },
+  "to-be-born": { "text": "nacer" },
+  "birthday": { "text": "cumpleaños", "grammar": { "gender": "el", "plural": "=" } },
   "this-is-my-mother": { "text": "Esta es mi madre." },
   "where-is-your-father": { "text": "¿Dónde está tu padre?", "variants": ["¿Dónde está su padre?"] },
   "i-have-two-children": { "text": "Tengo dos hijos.", "variants": ["Tengo dos niños."] },

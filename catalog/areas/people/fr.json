@@ -61,6 +61,8 @@
   },
   "uncle": { "text": "oncle", "variants": ["l'oncle"], "grammar": { "gender": "l'" } },
   "aunt": { "text": "tante", "grammar": { "gender": "la" } },
+  "to-be-born": { "text": "naître" },
+  "birthday": { "text": "anniversaire", "variants": ["l'anniversaire"], "grammar": { "gender": "l'" } },
   "this-is-my-mother": { "text": "C'est ma mère." },
   "where-is-your-father": { "text": "Où est ton père ?", "variants": ["Où est votre père ?"] },
   "i-have-two-children": { "text": "J'ai deux enfants." },
