@@ -49,6 +49,8 @@
   "lightweight": { "text": "leggero", "variants": ["leggera"] },
   "difficult": { "text": "difficile" },
   "easy": { "text": "facile" },
+  "problem": { "text": "problema", "grammar": { "gender": "il", "plural": "problemi" } },
+  "to-solve": { "text": "risolvere" },
   "clean-adj": { "text": "pulito", "variants": ["pulita"] },
   "sharp": {
    "text": "affilato",
@@ -75,6 +77,10 @@
    "variants": ["stessa", "stessi", "stesse"],
    "notes": { "de": "meist mit Artikel: lo stesso giorno · io stesso heißt ich selbst." }
   },
+  "similar": { "text": "simile", "variants": ["simili"] },
+  "opposite": { "text": "opposto", "synonyms": ["contrario"], "variants": ["opposta", "contraria"] },
+  "equal": { "text": "uguale", "variants": ["uguali"] },
+  "to-compare": { "text": "confrontare", "synonyms": ["paragonare"] },
   "a-lot-of-water": { "text": "molta acqua" }
  }
 }

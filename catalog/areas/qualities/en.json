@@ -23,6 +23,8 @@
   },
   "difficult": { "text": "difficult", "synonyms": ["hard"] },
   "easy": { "text": "easy" },
+  "problem": { "text": "problem" },
+  "to-solve": { "text": "to solve" },
   "clean-adj": { "text": "clean" },
   "sharp": { "text": "sharp" },
   "available": { "text": "available" },
@@ -38,6 +40,10 @@
   "different": { "text": "different" },
   "difference": { "text": "difference" },
   "same": { "text": "same" },
+  "similar": { "text": "similar" },
+  "opposite": { "text": "opposite" },
+  "equal": { "text": "equal" },
+  "to-compare": { "text": "to compare" },
   "a-lot-of-water": { "text": "a lot of water" }
  }
 }

@@ -56,6 +56,8 @@
   },
   "difficult": { "text": "difficile" },
   "easy": { "text": "facile" },
+  "problem": { "text": "problème", "grammar": { "gender": "le" } },
+  "to-solve": { "text": "résoudre" },
   "clean-adj": {
    "text": "propre",
    "notes": { "de": "nach dem Substantiv sauber, davor eigen: ma propre chambre." }
@@ -86,6 +88,10 @@
    "variants": ["mêmes"],
    "notes": { "de": "steht vor dem Substantiv: le même jour · nach dem Pronomen heißt es selbst: moi-même." }
   },
+  "similar": { "text": "similaire", "variants": ["similaires"] },
+  "opposite": { "text": "opposé", "synonyms": ["contraire"], "variants": ["opposée"] },
+  "equal": { "text": "égal", "variants": ["égale", "égaux"] },
+  "to-compare": { "text": "comparer" },
   "a-lot-of-water": { "text": "beaucoup d'eau" }
  }
 }

@@ -15,6 +15,8 @@
  { "slug": "slow", "kind": "adjective", "emoji": "🐌" },
  { "slug": "easy", "kind": "adjective" },
  { "slug": "difficult", "kind": "adjective" },
+ { "slug": "problem", "kind": "noun" },
+ { "slug": "to-solve", "kind": "verb" },
  { "slug": "full", "kind": "adjective", "emoji": "🔋" },
  { "slug": "empty", "kind": "adjective", "emoji": "🪫" },
  { "slug": "heavy", "kind": "adjective" },
@@ -26,5 +28,9 @@
  { "slug": "different", "kind": "adjective" },
  { "slug": "difference", "kind": "noun" },
  { "slug": "same", "kind": "adjective" },
+ { "slug": "similar", "kind": "adjective" },
+ { "slug": "opposite", "kind": "adjective" },
+ { "slug": "equal", "kind": "adjective" },
+ { "slug": "to-compare", "kind": "verb" },
  { "slug": "a-lot-of-water", "kind": "phrase", "emoji": "💦", "components": ["much"] }
 ]

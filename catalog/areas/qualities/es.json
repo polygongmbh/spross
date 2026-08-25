@@ -44,6 +44,8 @@
   "lightweight": { "text": "ligero", "variants": ["ligera"] },
   "difficult": { "text": "difícil" },
   "easy": { "text": "fácil" },
+  "problem": { "text": "problema", "grammar": { "gender": "el" } },
+  "to-solve": { "text": "resolver", "synonyms": ["solucionar"] },
   "clean-adj": { "text": "limpio", "variants": ["limpia"] },
   "sharp": {
    "text": "afilado",
@@ -74,6 +76,10 @@
    "variants": ["misma", "mismos", "mismas"],
    "notes": { "de": "meist mit Artikel: el mismo día · lo mismo heißt dasselbe." }
   },
+  "similar": { "text": "parecido", "synonyms": ["similar"], "variants": ["parecida"] },
+  "opposite": { "text": "opuesto", "synonyms": ["contrario"], "variants": ["opuesta", "contraria"] },
+  "equal": { "text": "igual", "variants": ["iguales"] },
+  "to-compare": { "text": "comparar" },
   "a-lot-of-water": { "text": "mucha agua", "notes": { "de": "trotz el agua feminin: mucha agua." } }
  }
 }

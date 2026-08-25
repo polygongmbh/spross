@@ -33,6 +33,8 @@
   "lightweight": { "text": "malpeza", "notes": { "de": "nur das Gewicht; einfach ist facila." } },
   "difficult": { "text": "malfacila" },
   "easy": { "text": "facila" },
+  "problem": { "text": "problemo" },
+  "to-solve": { "text": "solvi" },
   "clean-adj": { "text": "pura" },
   "sharp": { "text": "akra" },
   "available": {
@@ -48,6 +50,10 @@
   "different": { "text": "malsama", "variants": ["malsamaj"] },
   "difference": { "text": "diferenco" },
   "same": { "text": "sama", "variants": ["samaj"] },
+  "similar": { "text": "simila", "variants": ["similaj"] },
+  "opposite": { "text": "kontraŭa", "variants": ["kontraŭaj"] },
+  "equal": { "text": "egala", "variants": ["egalaj"] },
+  "to-compare": { "text": "kompari" },
   "a-lot-of-water": { "text": "multe da akvo" }
  }
 }

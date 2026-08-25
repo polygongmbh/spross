@@ -21,6 +21,8 @@
    "notes": { "de": "wie im Deutschen deckt важкий auch schwierig ab." }
   },
   "easy": { "text": "простий", "variants": ["просто", "легкий", "легко"] },
+  "problem": { "text": "проблема" },
+  "to-solve": { "text": "вирішувати", "synonyms": ["розв'язувати"], "variants": ["вирішити"] },
   "clean-adj": { "text": "чистий", "variants": ["чисто"] },
   "sharp": { "text": "гострий", "variants": ["гостро"] },
   "available": { "text": "доступний", "synonyms": ["наявний"] },
@@ -33,6 +35,10 @@
   "different": { "text": "різний", "variants": ["різна", "різне", "різні"] },
   "difference": { "text": "різниця" },
   "same": { "text": "однаковий", "variants": ["однакова", "однакове", "однакові"] },
+  "similar": { "text": "схожий", "synonyms": ["подібний"], "variants": ["схожа", "схоже", "схожі"] },
+  "opposite": { "text": "протилежний", "variants": ["протилежна", "протилежне", "протилежні"] },
+  "equal": { "text": "рівний", "variants": ["рівна", "рівне", "рівні"] },
+  "to-compare": { "text": "порівнювати", "variants": ["порівняти"] },
   "a-lot-of-water": { "text": "багато води" }
  }
 }

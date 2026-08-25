@@ -17,6 +17,8 @@
   "lightweight": { "text": "leicht", "notes": { "de": "leicht heißt auch einfach: eine leichte Frage." } },
   "difficult": { "text": "schwierig" },
   "easy": { "text": "einfach" },
+  "problem": { "text": "Problem", "grammar": { "gender": "das", "plural": "Probleme" } },
+  "to-solve": { "text": "lösen" },
   "clean-adj": { "text": "sauber" },
   "sharp": { "text": "scharf" },
   "available": { "text": "verfügbar" },
@@ -29,6 +31,10 @@
   "different": { "text": "anders", "synonyms": ["verschieden"], "variants": ["unterschiedlich"] },
   "difference": { "text": "Unterschied", "grammar": { "gender": "der", "plural": "Unterschiede" } },
   "same": { "text": "gleich", "notes": { "de": "gleich heißt auch sofort: Ich komme gleich." } },
+  "similar": { "text": "ähnlich" },
+  "opposite": { "text": "entgegengesetzt", "variants": ["gegenteilig"] },
+  "equal": { "text": "gleichwertig", "notes": { "de": "gleich viel wert: zwei gleichwertige Angebote." } },
+  "to-compare": { "text": "vergleichen" },
   "a-lot-of-water": { "text": "viel Wasser" }
  }
 }

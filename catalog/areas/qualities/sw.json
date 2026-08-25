@@ -59,6 +59,11 @@
    "notes": { "de": "heißt auch hart: mkate mgumu." }
   },
   "easy": { "text": "rahisi", "notes": { "de": "unveränderlich · heißt auch billig: nguo rahisi." } },
+  "problem": { "text": "tatizo", "grammar": { "plural": "matatizo" }, "synonyms": ["shida"] },
+  "to-solve": {
+   "text": "kutatua",
+   "notes": { "de": "für Probleme und Streit: kutatua tatizo = ein Problem lösen." }
+  },
   "clean-adj": { "text": "safi", "notes": { "de": "unveränderlich · als Ausruf auch prima: Safi!" } },
   "sharp": {
    "text": "-kali",
@@ -101,6 +106,19 @@
    }
   },
   "same": { "text": "sawa", "notes": { "de": "unveränderlich · heißt auch in Ordnung: Sawa!" } },
+  "similar": {
+   "text": "kufanana",
+   "notes": { "de": "Swahili sagt es als Verb: vitabu hivi vinafanana = diese Bücher sind ähnlich." }
+  },
+  "opposite": {
+   "text": "kinyume",
+   "notes": { "de": "eigentlich ein Substantiv: kinyume cha hilo = das Gegenteil davon." }
+  },
+  "equal": {
+   "text": "sawasawa",
+   "notes": { "de": "unveränderlich · zu gleichen Teilen: kugawanya sawasawa = gleichmäßig aufteilen." }
+  },
+  "to-compare": { "text": "kulinganisha" },
   "a-lot-of-water": { "text": "maji mengi" }
  }
 }
