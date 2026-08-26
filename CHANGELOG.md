@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.5.1 — 2026-08-26
+
 - **The Heute headline no longer reads like a litter of piglets was born.** The German
   "Frischlinge liegen bereit" (a `Frischling` is a young wild boar) is now seed-themed —
   "Zeit zum Säen!" / "Ein paar Samen zum Aussäen" — matching the app's own growth-stage
@@ -16,6 +18,15 @@
   A search hit's own tray icon unpacks it by name, one tap, no confirmation asked —
   nothing has been studied yet, so nothing is lost. Browsing a shelf unpacks the whole
   queue it packed at once instead, the same control that packed it in the first place.
+
+- **The box learned the weather, how to compare two things, and being born.** New words
+  across five shelves: a storm with its thunder and lightning, the humid air before it and
+  the sun coming out after — and the rain stopping; `similar`, `opposite`, `equal`,
+  `different` and `to compare` for saying how two things stand to each other, plus a
+  `problem` and `to solve` it; being born, a birthday, a life and being alive, beside the
+  death that arrived with them; and at the desk, something `broken`, `to repair` it and the
+  relief of `it works`. Knocking off at five is a sentence now, and errands come before the
+  outdoors in the order the box hands them to you.
 
 ## 5.5.0 — 2026-08-24
 
