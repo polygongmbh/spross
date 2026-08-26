@@ -277,11 +277,13 @@ interface Chrome {
     val stateExpanded: String
     val stateCollapsed: String
     // A card with nothing behind it has NO phase word: new is the absence of a badge. Past
-    // that, a row reads one of three: [phaseLearning] while still walking the learning
-    // steps, [phaseSettled] once in Review but short of the consolidated bar, and
+    // that, a row reads one of four: [phaseLearning] while walking the learning steps,
+    // [phaseRelearning] the same rung after a lapse (same color/icon, its own word),
+    // [phaseSettled] once in Review but short of the consolidated bar, and
     // [phaseConsolidated] once a card has cleared it — the shelf's own count stays the
     // two-way consolidated/learning split it has always been (`AreaStatistics.learning`).
     val phaseLearning: String
+    val phaseRelearning: String
     val phaseSettled: String
     val phaseConsolidated: String
 

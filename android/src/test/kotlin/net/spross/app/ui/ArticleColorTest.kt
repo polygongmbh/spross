@@ -49,8 +49,8 @@ class ArticleColorTest {
 
     /**
      * Each gender reaches for its own token, in whichever scheme it is asked.
-     * The hexes those tokens carry belong to `App/Sources/Design/Theme.swift` and are
-     * held to it by kern's `PaletteParityTest`; what is this test's is the mapping.
+     * The hexes those tokens carry are kern's `Palette`'s, held there by
+     * [ThemePaletteTest]; what is this test's is the mapping.
      */
     @Test
     fun eachGenderReachesForItsOwnTokenInBothSchemes() {

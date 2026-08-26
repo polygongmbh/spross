@@ -365,18 +365,11 @@ a clone inherits its sibling's gaps, never the rules.
 - **Box** (📦 from Heute): browse the catalog by area, pack words in and take a
   shelf's queue back out before a round has met it, revive suspended ones;
   settings live here — profile, reset. A tree in the forest opens it already
-  unfolded at that area, exactly as a search hit does.
-  - **Packing and unpacking are one tray icon read in two directions**, direct tap
-    no confirmation, never a bare "+" that named an action with no picture of what
-    it added TO. **The area is the unit for both**, same as the forest's own
-    picture — a word packed or unpacked on its own is only ever the one a search
-    reached by name, never a shelf listing.
-  - **A row distinguishes one more rung than the shelf's own tally does**: a card
-    in Review short of the consolidated bar reads as neither consolidated nor
-    still-learning, so it is never mistaken for either — but the shelf's own tally,
-    bar and counts stay the two-way consolidated/learning split
-    (`kern/README.md` §5), since only the shelf's own green may promise a word
-    has landed.
+  unfolded at that area, exactly as a search hit does. **The area is the unit for
+  packing and unpacking alike**, same as the forest's own picture — a word acted
+  on by itself is only ever the one a search reached by name, never a shelf
+  listing (the mechanics and the row/shelf color agreement this rests on are
+  kern's own contract, `kern/README.md` §6).
   - **Search** (🔍 in the bar) reaches a word without knowing its shelf. The two result
     kinds offer what they ARE: an area unfolds itself back on the Box screen and scrolls
     into reach, a word can be heard and packed on its own — a learner who went looking for

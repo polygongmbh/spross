@@ -26,18 +26,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.unit.sp
 import net.spross.app.R
+import net.spross.kern.design.Palette
+import net.spross.kern.design.Swatch
 import net.spross.kern.model.Gender
 import net.spross.kern.model.articleGender
 
 // Spross design tokens, Android cut.
 //
-// `App/Sources/Design/Theme.swift` is the canonical table; every hex below is copied
-// from it value for value, and kern's `PaletteParityTest` fails the fast gate when the
-// two drift. Only the RULES live in kern — the hex pairs, the spacing and the type ramp
-// stay native on each platform (`docs/portability.md` § Stays native).
+// kern's `Palette` is the canonical table and every hex below is READ from it — this cut
+// declares only the Compose `Color` type around those values, never a value of its own.
+// The spacing and the type ramp stay native on each platform
+// (`docs/portability.md` § Stays native).
 //
 // Every pairing clears WCAG AA — 4.5:1 for text, 3:1 for controls — in BOTH schemes, and
-// it does so because the values are copied rather than re-picked. Two rules keep it that way:
+// it does so because the values are read rather than re-picked. Two rules keep it that way:
 //
 // 1. Accents are cut at INK strength, not fill strength: the light values read as text on
 //    the paper AND on their own 14 % wash, which is the tightest constraint.
@@ -98,44 +100,57 @@ class DlColors(
     fun wash(color: Color): Color = color.copy(alpha = 0.14f).compositeOver(surface)
 }
 
+/** A canonical hex (0xRRGGBB, no alpha) as the opaque Compose color it names. */
+private fun Int.opaque(): Color = Color(0xFF000000L or toLong())
+
+/**
+ * A kern [Swatch] in the scheme currently on screen.
+ *
+ * Reads the system setting [SprossTheme] itself reads, so a color resolved here and one
+ * taken from [Dl.colors] can never land in different columns of the same table.
+ */
+@Composable
+@ReadOnlyComposable
+fun Swatch.tint(): Color = if (isSystemInDarkTheme()) dark.opaque() else light.opaque()
+
 /** The light column of the canonical table. */
 val DlLight = DlColors(
-    background = Color(0xFFF2F1EA),
-    surface = Color(0xFFFBFBF6),
-    surfaceTint = Color(0xFFE5E8DE),
-    separator = Color(0xFFD3D6CA),
-    borderStrong = Color(0xFF868D7C),
-    textPrimary = Color(0xFF1E2620),
-    textSecondary = Color(0xFF4F584E),
-    onColor = Color(0xFFFBFBF6),
-    accent = Color(0xFFA23B0B),
-    teal = Color(0xFF0D566E),
-    success = Color(0xFF256232),
-    amber = Color(0xFF87510A),
-    wrong = Color(0xFF99322E),
-    der = Color(0xFF134E85),
-    die = Color(0xFF9A2050),
-    das = Color(0xFF18602C),
+    background = Palette.background.light.opaque(),
+    surface = Palette.surface.light.opaque(),
+    surfaceTint = Palette.surfaceTint.light.opaque(),
+    separator = Palette.separator.light.opaque(),
+    borderStrong = Palette.borderStrong.light.opaque(),
+    textPrimary = Palette.textPrimary.light.opaque(),
+    textSecondary = Palette.textSecondary.light.opaque(),
+    onColor = Palette.onColor.light.opaque(),
+    accent = Palette.accent.light.opaque(),
+    teal = Palette.teal.light.opaque(),
+    success = Palette.success.light.opaque(),
+    amber = Palette.amber.light.opaque(),
+    wrong = Palette.wrong.light.opaque(),
+    der = Palette.der.light.opaque(),
+    die = Palette.die.light.opaque(),
+    das = Palette.das.light.opaque(),
 )
 
 /** The dark column of the canonical table. */
 val DlDark = DlColors(
-    background = Color(0xFF121714),
-    surface = Color(0xFF1C231E),
-    surfaceTint = Color(0xFF27302A),
-    separator = Color(0xFF3A443D),
-    borderStrong = Color(0xFF707C72),
-    textPrimary = Color(0xFFE9F0EA),
-    textSecondary = Color(0xFFADBBAF),
-    onColor = Color(0xFF121714),
-    accent = Color(0xFFFF9A6B),
-    teal = Color(0xFF6FCFE8),
-    success = Color(0xFF8AE39B),
-    amber = Color(0xFFF2C078),
-    wrong = Color(0xFFF08D86),
-    der = Color(0xFF90CBFF),
-    die = Color(0xFFFF9EC0),
-    das = Color(0xFF6FDC85),
+    background = Palette.background.dark.opaque(),
+    surface = Palette.surface.dark.opaque(),
+    surfaceTint = Palette.surfaceTint.dark.opaque(),
+    separator = Palette.separator.dark.opaque(),
+    borderStrong = Palette.borderStrong.dark.opaque(),
+    textPrimary = Palette.textPrimary.dark.opaque(),
+    textSecondary = Palette.textSecondary.dark.opaque(),
+    onColor = Palette.onColor.dark.opaque(),
+    accent = Palette.accent.dark.opaque(),
+    teal = Palette.teal.dark.opaque(),
+    success = Palette.success.dark.opaque(),
+    amber = Palette.amber.dark.opaque(),
+    wrong = Palette.wrong.dark.opaque(),
+    der = Palette.der.dark.opaque(),
+    die = Palette.die.dark.opaque(),
+    das = Palette.das.dark.opaque(),
 )
 
 // The M3 roles the tokens answer for. There is no container TIER in the canonical

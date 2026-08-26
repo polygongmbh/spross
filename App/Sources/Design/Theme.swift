@@ -1,12 +1,13 @@
 import SwiftUI
 import UIKit
+import SprossKern
 
 // MARK: - DuoLernen design tokens
 //
 // Warm, playful, card-centric — poster-derived, re-grounded on the growing-box
 // theme: stone-and-moss paper, clay headline, ocean and forest as the
-// secondaries. Zero dependencies, no asset catalog: every color adapts to
-// light/dark through dynamic UIColor providers.
+// secondaries. No asset catalog: every color adapts to light/dark through a
+// dynamic UIColor provider, over the hex pairs kern's `Palette` owns.
 //
 // Every pairing below clears WCAG AA — 4.5:1 for text, 3:1 for controls —
 // in BOTH schemes. Two rules keep it that way:
@@ -161,34 +162,42 @@ extension Color {
         })
     }
 
+    /// One entry of the box's own color table, as the SwiftUI color it paints.
+    /// The hex pairs are kern's (`design/Palette.kt`) — the app links it, so it
+    /// reads the values rather than keeping a second copy that can drift; the
+    /// `Color` type and the light/dark provider below it stay native.
+    init(_ swatch: Swatch) {
+        self.init(light: UInt32(bitPattern: swatch.light), dark: UInt32(bitPattern: swatch.dark))
+    }
+
     // Surfaces — stone paper with a moss cast, never plain white/gray.
-    static let dlBackground = Color(light: 0xF2F1EA, dark: 0x121714)
-    static let dlSurface = Color(light: 0xFBFBF6, dark: 0x1C231E)
-    static let dlSurfaceTint = Color(light: 0xE5E8DE, dark: 0x27302A)
+    static let dlBackground = Color(Palette.shared.background)
+    static let dlSurface = Color(Palette.shared.surface)
+    static let dlSurfaceTint = Color(Palette.shared.surfaceTint)
     /// Decorative hairline — card edges, the reveal divider, the ring groove.
     /// Deliberately below 3:1: the card's fill and shadow carry its boundary.
-    static let dlSeparator = Color(light: 0xD3D6CA, dark: 0x3A443D)
+    static let dlSeparator = Color(Palette.shared.separator)
     /// A line that must be SEEN — the answer field's edge is a control
     /// boundary, so it owes 3:1 where the decorative hairline does not.
-    static let dlBorderStrong = Color(light: 0x868D7C, dark: 0x707C72)
+    static let dlBorderStrong = Color(Palette.shared.borderStrong)
 
     // Text — deep forest ink instead of pure black/gray.
-    static let dlTextPrimary = Color(light: 0x1E2620, dark: 0xE9F0EA)
-    static let dlTextSecondary = Color(light: 0x4F584E, dark: 0xADBBAF)
+    static let dlTextPrimary = Color(Palette.shared.textPrimary)
+    static let dlTextSecondary = Color(Palette.shared.textSecondary)
     /// Text/glyphs drawn ON a saturated accent fill (buttons, article pills).
-    static let dlOnColor = Color(light: 0xFBFBF6, dark: 0x121714)
+    static let dlOnColor = Color(Palette.shared.onColor)
 
     // Accents — ink strength (see the header note).
-    static let dlAccent = Color(light: 0xA23B0B, dark: 0xFF9A6B)   // clay
-    static let dlTeal = Color(light: 0x0D566E, dark: 0x6FCFE8)     // ocean
-    static let dlSuccess = Color(light: 0x256232, dark: 0x8AE39B)  // forest
-    static let dlAmber = Color(light: 0x87510A, dark: 0xF2C078)    // ochre — a near miss, or an answer shown
-    static let dlWrong = Color(light: 0x99322E, dark: 0xF08D86)   // brick — a miss
+    static let dlAccent = Color(Palette.shared.accent)    // clay
+    static let dlTeal = Color(Palette.shared.teal)        // ocean
+    static let dlSuccess = Color(Palette.shared.success)  // forest
+    static let dlAmber = Color(Palette.shared.amber)      // ochre — a near miss, or an answer shown
+    static let dlWrong = Color(Palette.shared.wrong)      // brick — a miss
 
     // Article colors (poster palette).
-    static let dlDer = Color(light: 0x134E85, dark: 0x90CBFF)
-    static let dlDie = Color(light: 0x9A2050, dark: 0xFF9EC0)
-    static let dlDas = Color(light: 0x18602C, dark: 0x6FDC85)
+    static let dlDer = Color(Palette.shared.der)
+    static let dlDie = Color(Palette.shared.die)
+    static let dlDas = Color(Palette.shared.das)
 }
 
 // MARK: - Shared modifiers & button styles

@@ -50,9 +50,7 @@ struct BoxCardRow: View {
             VStack(alignment: .leading, spacing: 2) {
                 // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
                 HStack(spacing: DL.Space.xs) {
-                    Text(CardDisplay.citation(of: card.target))
-                        .font(DL.Fonts.body)
-                        .foregroundStyle(Color.dlTextPrimary)
+                    citation
                         .lineLimit(1)
                     // why: `pronounce` is nil for exactly the words neither a
                     // recording nor the device's own voice can say — the one
@@ -82,6 +80,24 @@ struct BoxCardRow: View {
                 .fill(Color.dlSurfaceTint)
         )
         .pronounceOnTap(pronounce)
+    }
+
+    /// The citation form, with its article in the gender's own color — the same
+    /// mark the card face wears (`VocabCardView.headlineText`) and the same one
+    /// the Android rows already draw, so a word does not lose its gender just
+    /// because it is being listed instead of asked. Where the box hands over no
+    /// article — a genderless target, or a rotated synonym the card's article
+    /// would mislabel — the line is simply the word, uncolored.
+    private var citation: Text {
+        let word = Text(card.target.text)
+            .font(DL.Fonts.body)
+            .foregroundStyle(Color.dlTextPrimary)
+        guard let article = CardDisplay.articleLabel(of: card.target, shown: card.target.text)
+        else { return word }
+        return Text(verbatim: "\(article.text) ")
+            .font(DL.Fonts.body)
+            .foregroundStyle(DL.genderColor(article.gender))
+            + word
     }
 
     /// The row's right edge, drawn. WHICH of the five things a row has to state
@@ -137,7 +153,8 @@ struct BoxCardRow: View {
             EmptyView()
         case .standing(let standing):
             PhaseBadge(phase: Self.badgePhase(standing.phase),
-                       consolidated: standing.consolidated)
+                       consolidated: standing.consolidated,
+                       growth: Color(standing.swatch))
         }
     }
 

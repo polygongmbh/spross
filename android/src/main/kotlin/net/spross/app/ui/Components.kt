@@ -39,6 +39,8 @@ import androidx.compose.ui.unit.dp
 import net.spross.app.CardDisplay
 import net.spross.app.Chrome
 import net.spross.kern.box.AreaStatistics
+import net.spross.kern.box.CardRowState
+import net.spross.kern.box.swatch
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Language
 import net.spross.kern.model.Realization
@@ -107,34 +109,31 @@ fun FeminineBadge(modifier: Modifier = Modifier) {
 }
 
 /**
- * Where one card stands on the ladder.
+ * Where one card stands on the growth ladder: fresh → growing → grown.
  *
- * [consolidated] — kern's stricter bar — decides the seal, exactly as the shelf's own
- * tally does, so a row's seal never claims a word the shelf above does not also count:
- * Review alone gets there well before it, which is why a fresh Review card reads its OWN
- * mark (teal, "Settled") rather than borrowing the seal. Learning and relearning read
- * the third, amber — still walking the learning steps, no bar cleared yet. A card with
- * nothing behind it gets no badge at all; that absence is what says "new" (kern
- * `CardRowState.Plain`), so this is never asked about one.
+ * Four rungs, three colors. [CardRowState.Standing.consolidated] — kern's stricter bar —
+ * decides the top one, exactly as the shelf's own tally does, so a row's seal never claims
+ * a word the shelf above does not also count: Review alone gets there well before it,
+ * which is why a Review card short of the bar reads its own "growing" mark instead of
+ * borrowing the seal. Learning and relearning share one amber rung and one glyph — a lapse
+ * puts a card back where it was, so only the WORD says which of the two it is.
+ *
+ * The color comes from [swatch] rather than being picked here, so this badge and the
+ * shelf's own [AreaProgressBar] can never disagree about the same rung. A card with
+ * nothing behind it gets no badge at all; that absence is what says "new"
+ * (kern `CardRowState.Plain`), so this is never asked about one.
  */
 @Composable
-fun PhaseBadge(phase: CardPhase, consolidated: Boolean, chrome: Chrome) {
-    val palette = Dl.colors
-    val settled = phase == CardPhase.Review && !consolidated
-    val color = when {
-        phase == CardPhase.New -> palette.textSecondary
-        consolidated -> palette.success
-        settled -> palette.teal
-        else -> palette.amber
-    }
+fun PhaseBadge(standing: CardRowState.Standing, chrome: Chrome) {
+    val settled = standing.phase == CardPhase.Review && !standing.consolidated
     val word = when {
-        phase == CardPhase.New -> chrome.newLabel
-        consolidated -> chrome.phaseConsolidated
+        standing.consolidated -> chrome.phaseConsolidated
         settled -> chrome.phaseSettled
+        standing.phase == CardPhase.Relearning -> chrome.phaseRelearning
         else -> chrome.phaseLearning
     }
-    val glyph = if (consolidated) SEAL else if (settled) SETTLED else LEAF
-    Pill("$glyph $word", color)
+    val glyph = if (standing.consolidated) SEAL else if (settled) SETTLED else LEAF
+    Pill("$glyph $word", standing.swatch.tint())
 }
 
 /** The consolidated mark; the same glyph the area's own count row leads with. */
@@ -150,9 +149,14 @@ const val SETTLED = "🌿"
 const val LOCK = "🔒"
 
 /**
- * An area's cards as three stretches: consolidated, still learning, never introduced —
+ * An area's cards as four stretches: grown, growing, still fresh, never introduced —
  * measured against the area's FULL card count, so the untouched rest of a shelf stays
  * visible instead of a bar that always reads as full.
+ *
+ * The three colored ones are the rungs [PhaseBadge] draws, in the same colors, so the
+ * shelf and its own rows tell one story. [AreaStatistics.learning] still counts everything
+ * short of the bar — the settling cards among them included — so the amber stretch is what
+ * is left after they are taken out.
  *
  * The split and the denominator are the box's rulings ([AreaStatistics]); empty stretches
  * are dropped, and an area with nothing in any of them draws one neutral rule rather than
@@ -167,8 +171,9 @@ fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
         horizontalArrangement = Arrangement.spacedBy(2.dp),
     ) {
         val stretches = listOf(
-            stats.consolidated to palette.success,
-            stats.learning to palette.amber,
+            stats.consolidated to palette.teal,
+            stats.settling to palette.success,
+            (stats.learning - stats.settling) to palette.amber,
             stats.notIntroduced to palette.separator,
         ).filter { it.first > 0 }
         if (stretches.isEmpty()) {

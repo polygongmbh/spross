@@ -188,7 +188,7 @@ private fun CardStanding(
 
         CardRowState.Plain -> Unit
 
-        is CardRowState.Standing -> PhaseBadge(standing.phase, standing.consolidated, chrome)
+        is CardRowState.Standing -> PhaseBadge(standing, chrome)
     }
 }
 
@@ -238,9 +238,10 @@ fun AreaChip(
             )
         }
         Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
-            // Colored to match the bar beneath them: green only for consolidated,
-            // amber for everything still on its way there.
-            CountLabel("$SEAL ${chrome.progressConsolidated.format(consolidated)}", Dl.colors.success)
+            // Two counts where the bar beneath draws three rungs: there is room here for
+            // the split that matters (cleared the bar, or not yet), and the bar carries
+            // the finer one.
+            CountLabel("$SEAL ${chrome.progressConsolidated.format(consolidated)}", Dl.colors.teal)
             CountLabel("$LEAF ${chrome.progressLearning.format(learning)}", Dl.colors.amber)
             // why: the padlock carries the "locked", so the text only names what is
             // locked — and it appears only when it says something.
@@ -266,6 +267,7 @@ private val EMPTY_AREA = AreaStatistics(
     total = 0,
     active = 0,
     consolidated = 0,
+    settling = 0,
     phrasesLocked = 0,
     phrasesUnlocked = 0,
 )

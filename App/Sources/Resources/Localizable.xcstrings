@@ -3860,13 +3860,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gefestigt"
+            "value" : "Steht"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Consolidated"
+            "value" : "Grown"
           }
         }
       }
@@ -3876,13 +3876,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lernend"
+            "value" : "Frisch"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Learning"
+            "value" : "Fresh"
           }
         }
       }
@@ -3903,18 +3903,34 @@
         }
       }
     },
-    "phase.settled" : {
+    "phase.relearning" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gesetzt"
+            "value" : "Wackelt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Settled"
+            "value" : "Shaky"
+          }
+        }
+      }
+    },
+    "phase.settled" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wächst"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Growing"
           }
         }
       }

@@ -77,12 +77,14 @@ extension AreaStatistics {
     var consolidatedCards: Int { Int(consolidated) }
     var lockedPhrases: Int { Int(phrasesLocked) }
 
-    /// The area's three buckets and what they are measured against, as the
-    /// design system reads them — which card falls in which bucket, and how a
-    /// stale total is clamped, are the engine's rulings (`box/Statistics.kt`).
+    /// The area's buckets and what they are measured against, as the design
+    /// system reads them — which card falls in which bucket, and how a stale
+    /// total is clamped, are the engine's rulings (`box/Statistics.kt`).
+    /// `settling` sits INSIDE `learning` there and is carried over the same way.
     var progress: AreaProgress {
         AreaProgress(consolidated: Int(consolidated), learning: Int(learning),
-                     notIntroduced: Int(notIntroduced), progressTotal: Int(progressTotal))
+                     settling: Int(settling), notIntroduced: Int(notIntroduced),
+                     progressTotal: Int(progressTotal))
     }
 }
 

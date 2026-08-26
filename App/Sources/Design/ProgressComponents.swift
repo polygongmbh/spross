@@ -100,21 +100,26 @@ private struct AreaBarSegment: Identifiable {
     let color: Color
 }
 
-/// An area's cards split into the three stretches the bar draws, with what they
-/// are measured against. The split and the denominator are the box's rulings
+/// An area's cards split into the stretches the bar draws, with what they are
+/// measured against. The split and the denominator are the box's rulings
 /// (`AreaStatistics`); the screen hands them over so Design stays kern-free.
 struct AreaProgress {
     /// Cards past the consolidated bar ("gefestigt") — not merely in Review.
     let consolidated: Int
-    /// Cards still in learning/relearning ("frisch").
+    /// Everything active short of that bar — [settling] included, since the counts
+    /// row draws the coarse two-way split this number is cut for.
     let learning: Int
+    /// The part of [learning] that has reached Review without clearing the bar.
+    /// Only the BAR separates it out; the counts beside the bar do not.
+    let settling: Int
     /// Cards the area holds that have never been introduced.
     let notIntroduced: Int
     /// The bar's denominator — never below the introduced count.
     let progressTotal: Int
 
     /// What an area with no statistics yet draws: a bar with nothing on it.
-    static let empty = AreaProgress(consolidated: 0, learning: 0, notIntroduced: 0, progressTotal: 1)
+    static let empty = AreaProgress(consolidated: 0, learning: 0, settling: 0,
+                                    notIntroduced: 0, progressTotal: 1)
 }
 
 /// Per-area chip: emoji + name + consolidated/learning counts over a bar that
@@ -135,10 +140,15 @@ struct AreaChip: View {
     /// shows up here, and only when it says something (never at zero).
     let lockedPhrases: Int
 
-    /// Consolidated → learning → not yet introduced.
+    /// The ladder laid flat, grown end first: grown → growing → fresh → not yet
+    /// introduced, in the same three colors a row's own badge wears, so the shelf
+    /// and the rows under it never tell two stories. The fresh stretch subtracts
+    /// the settling cards the box counts inside `learning` — the two-way number
+    /// the counts row is cut for, which the bar splits one level finer.
     private var segments: [AreaBarSegment] {
-        [(progress.consolidated, Color.dlSuccess),
-         (progress.learning, Color.dlAmber),
+        [(progress.consolidated, Color.dlTeal),
+         (progress.settling, Color.dlSuccess),
+         (progress.learning - progress.settling, Color.dlAmber),
          (progress.notIntroduced, Color.dlSeparator)]
             .enumerated()
             .filter { $0.element.0 > 0 }
@@ -193,14 +203,14 @@ struct AreaChip: View {
     /// Three German words rarely fit this card's width at full size, so they
     /// shrink together instead of wrapping mid-word or truncating to "gefes…".
     ///
-    /// Colored the same as the bar underneath them: green only for consolidated,
-    /// amber for everything still short of it — a count that agreed with the bar
-    /// in NUMBER but not in color used to read as two different tallies.
+    /// Two counts, not the bar's three: three German words do not fit this width,
+    /// so the text keeps the coarse split — cleared the bar, or still short of it —
+    /// and the bar alone draws the rung between them.
     private var counts: some View {
         HStack(spacing: DL.Space.m) {
             Label("progress.consolidatedCount \(progress.consolidated.formatted())",
                   systemImage: "checkmark.seal.fill")
-                .foregroundStyle(Color.dlSuccess)
+                .foregroundStyle(Color.dlTeal)
             Label("progress.learningCount \(progress.learning.formatted())", systemImage: "leaf.fill")
                 .foregroundStyle(Color.dlAmber)
             if lockedPhrases > 0 {
@@ -220,17 +230,25 @@ struct AreaChip: View {
 
 // MARK: PhaseBadge
 
-/// Where one card stands on the ladder.
+/// Where one card stands on the ladder, as one word in the rung's own color.
 ///
-/// [consolidated] — kern's stricter bar — decides green, exactly as the shelf's own tally
-/// does, so a row's green never claims a word the shelf above does not also count: Review
-/// alone gets there well before it, which is why a fresh Review card reads its OWN color
-/// (teal, "Settled") rather than borrowing green. Learning and relearning read the third,
-/// amber — still walking the learning steps, no bar cleared yet.
+/// Four rungs, growing: a card just planted is fresh, one that lapsed back to the
+/// learning steps is shaky, one in Review is growing, and one past [consolidated] —
+/// kern's stricter bar, the same one the shelf's tally counts against — has grown.
+/// Fresh and shaky share amber and a glyph deliberately: both are still walking the
+/// learning steps, and only the WORD says which way the card got there. Growing and
+/// grown are the pair that must never blur, because a row that read "grown" before the
+/// shelf counted it claimed a word the shelf above it did not — so the bar it cleared
+/// is handed over beside the phase rather than read out of it (kern
+/// `CardRowState.Standing` states why).
+///
+/// The rung's [growth] color is handed in, never re-derived here: kern resolves it
+/// once (`CardRowState.Standing.swatch`) so a row's badge and the shelf's own bar,
+/// which reads the same three tokens, cannot paint one rung two ways.
 struct PhaseBadge: View {
     /// Kept for the exhaustive mapping callers build from `CardPhase` — see
-    /// `BoxCardRow.badgePhase`. Only [Phase.new] still changes what is drawn on its own;
-    /// every other case reads off [consolidated] and [Phase.review] together.
+    /// `BoxCardRow.badgePhase`. It picks the WORD and the glyph; the color arrives
+    /// with [growth] instead.
     enum Phase: CaseIterable {
         case new, learning, review, relearning
     }
@@ -240,20 +258,24 @@ struct PhaseBadge: View {
     /// has cleared, handed over beside the phase rather than read out of it
     /// (kern `CardRowState.Standing` states why).
     var consolidated: Bool = false
+    /// The rung's color as the box resolved it. Absent where there is no rung to
+    /// color — a card with nothing behind it, which kern's ladder does not cover.
+    var growth: Color?
 
     private var label: LocalizedStringKey {
         if phase == .new { return "phase.new" }
         if consolidated { return "phase.consolidated" }
-        return phase == .review ? "phase.settled" : "phase.learning"
+        switch phase {
+        case .review: return "phase.settled"
+        case .relearning: return "phase.relearning"
+        case .learning, .new: return "phase.learning"
+        }
     }
 
-    private var color: Color {
-        if phase == .new { return .dlTextSecondary }
-        if consolidated { return .dlSuccess }
-        return phase == .review ? .dlTeal : .dlAmber
-    }
+    private var color: Color { growth ?? .dlTextSecondary }
 
-    /// The area row's own icon at the consolidated end; Settled and Learning get one each.
+    /// The area row's own icon at the consolidated end; Growing gets one, and the two
+    /// amber rungs share the leaf their shared color already pairs them by.
     private var icon: String {
         if phase == .new { return "circle.dashed" }
         if consolidated { return "checkmark.seal.fill" }
@@ -288,6 +310,19 @@ private extension View {
     }
 }
 
+/// Every rung a badge can wear, in climbing order, with the colors kern hands the
+/// real row (`CardRowState.Standing.swatch`) written out — a preview has no box to
+/// ask, and seeing the four words side by side is the point of it.
+private var ladder: some View {
+    HStack(spacing: DL.Space.s) {
+        PhaseBadge(phase: .new)
+        PhaseBadge(phase: .learning, growth: .dlAmber)
+        PhaseBadge(phase: .relearning, growth: .dlAmber)
+        PhaseBadge(phase: .review, growth: .dlSuccess)
+        PhaseBadge(phase: .review, consolidated: true, growth: .dlTeal)
+    }
+}
+
 #Preview("Progress pieces") {
     ScrollView {
         VStack(alignment: .leading, spacing: DL.Space.xl) {
@@ -297,22 +332,22 @@ private extension View {
             StreakFlameView(days: 12, emoji: "🎉")
             AreaChip(emoji: "🍳", name: "Küche",
                      subtitle: "Hier duftet es nach Abendessen.",
-                     progress: .init(consolidated: 18, learning: 6, notIntroduced: 0, progressTotal: 24),
+                     progress: .init(consolidated: 18, learning: 6, settling: 4,
+                                     notIntroduced: 0, progressTotal: 24),
                      lockedPhrases: 0)
                 .previewCard()
             AreaChip(emoji: "🛁", name: "Bad",
-                     progress: .init(consolidated: 4, learning: 9, notIntroduced: 28, progressTotal: 41),
+                     progress: .init(consolidated: 4, learning: 9, settling: 3,
+                                     notIntroduced: 28, progressTotal: 41),
                      lockedPhrases: 3)
                 .previewCard()
             AreaChip(emoji: "🧰", name: "Werkstatt",
-                     progress: .init(consolidated: 0, learning: 0, notIntroduced: 17, progressTotal: 17),
+                     progress: .init(consolidated: 0, learning: 0, settling: 0,
+                                     notIntroduced: 17, progressTotal: 17),
                      lockedPhrases: 0)
                 .previewCard()
-            HStack(spacing: DL.Space.s) {
-                ForEach(PhaseBadge.Phase.allCases, id: \.self) { PhaseBadge(phase: $0) }
-            }
-            // The same Review card once it has passed the consolidated bar.
-            PhaseBadge(phase: .review, consolidated: true)
+            // The whole ladder, in the order a card climbs it.
+            ladder
         }
         .padding(DL.Space.xl)
     }
@@ -324,12 +359,11 @@ private extension View {
         StreakFlameView(days: 3)
         StreakFlameView(days: 3, flame: .atRisk)
         AreaChip(emoji: "🍳", name: "Küche",
-                 progress: .init(consolidated: 18, learning: 6, notIntroduced: 28, progressTotal: 52),
+                 progress: .init(consolidated: 18, learning: 6, settling: 2,
+                                 notIntroduced: 28, progressTotal: 52),
                  lockedPhrases: 2)
             .previewCard()
-        HStack(spacing: DL.Space.s) {
-            ForEach(PhaseBadge.Phase.allCases, id: \.self) { PhaseBadge(phase: $0) }
-        }
+        ladder
     }
     .padding(DL.Space.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
