@@ -792,13 +792,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eingepackt"
+            "value" : "Gesät"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Packed"
+            "value" : "Sown"
           }
         }
       }
