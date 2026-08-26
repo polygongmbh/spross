@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 5.5.2 — 2026-08-26
+
+- **A night owl at nightfall, whoever you happen to be learning.** The Heute greeting was
+  reading its hours off the language being taught, and Swahili's `usiku` starts at 19:00 —
+  so a Swahili learner was greeted as a night owl at seven in the evening. The chrome around
+  the day runs on a fixed local schedule now; the target-language line keeps the taught
+  language's own boundaries, because there they are the thing being taught.
+
+- **`zahlen` pays as well as `bezahlen` does.** German's short form is accepted on the card.
+
 ## 5.5.1 — 2026-08-26
 
 - **The Heute headline no longer reads like a litter of piglets was born.** The German
