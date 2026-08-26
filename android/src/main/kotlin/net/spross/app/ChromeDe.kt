@@ -286,10 +286,11 @@ internal object ChromeDe : Chrome {
     override val skipStep = "Überspringen"
     override val cantListen = "Kannst du gerade nicht hören?"
     override val caughtUpTitle = "Gerade ist nichts dran"
-    override val dayReviews = "%d Wiederholungen"
-    override val dayReviewsOne = "%d Wiederholung"
-    override val dayNewCards = "%d Frischlinge"
-    override val dayNewCardsOne = "%d Frischling"
+    override val dayReviews = "%d Checks"
+    override val dayReviewsOne = "%d Check"
+    override val dayNewCards = "%d Neue"
+    override val dayNewCardsOne = "%d Neues"
+    override val dayNewWordsOnly = "%s neue Wörter"
     override val dayConsolidated = "%s gefestigt"
     override val dayAhead = "%d Auffrischer"
     override val dayAheadOne = "%d Auffrischer"
@@ -308,8 +309,8 @@ internal object ChromeDe : Chrome {
     )
     override val headlineFreshSet = listOf(
         "Lust auf neue Wörter?",
-        "Frischlinge liegen bereit",
-        "Ein paar Frischlinge zum Kennenlernen",
+        "Zeit zum Säen!",
+        "Ein paar Samen zum Aussäen",
     )
     override val sessionSomeCards = "Ein paar Karten für dich."
     override val sessionHeldBack = "%d weitere Karten warten noch auf dich."
@@ -330,9 +331,10 @@ internal object ChromeDe : Chrome {
     override val errorContentUnavailable = "Die Inhalte konnten nicht geladen werden. (%s)"
     override val errorUnknownProfile = "Unbekanntes Sprachprofil (%s → %s)."
     override val errorResetFailed = "Zurücksetzen fehlgeschlagen. (%s)"
-    override val roundNew = "%s neu"
+    override val roundNew = "%s gesät"
+    override val roundNewOnly = "%s neue Wörter"
     override val roundConsolidated = "%s gefestigt"
-    override val roundReviewed = "%s wiederholt"
+    override val roundReviewed = "%s gecheckt"
     override val roundAllDone = "Alles erledigt"
     override val restHint = "Heute sitzt wenig — ein Kopf, der müde ist, behält nichts mehr. " +
         "Morgen geht's leichter."

@@ -336,6 +336,13 @@ interface Chrome {
     val dayReviewsOne: String     // the count-of-one line, verbatim
     val dayNewCards: String       // %d
     val dayNewCardsOne: String
+    /**
+     * Fresh cards spelled out with their noun, for the one shape [dayNewCards] cannot
+     * cover on its own: the round names nothing else, so a bare count needs the word
+     * it is counting ("neue Wörter") rather than a nominalized adjective standing alone.
+     * No count-of-one form — a round with only fresh cards and only one is not a real shape.
+     */
+    val dayNewWordsOnly: String    // %d
     val dayConsolidated: String   // %d — "gefestigt" needs no declining
     /**
      * Pull-aheads carrying the round on their own — the freshening-up.
@@ -388,6 +395,8 @@ interface Chrome {
 
     // ── Round completion ────────────────────────────────────────────────────────
     val roundNew: String          // %d
+    /** [roundNew] spelled out with its noun, for a round that named nothing else. */
+    val roundNewOnly: String      // %d
     val roundConsolidated: String // %d
     val roundReviewed: String     // %d
     val roundAllDone: String      // the round had nothing nameable in it

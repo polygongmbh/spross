@@ -38,7 +38,8 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
     } else {
         parts.joinToString(" · ") {
             when (it.kind) {
-                TallyPartKind.Introduced -> chrome.roundNew.format(it.count)
+                TallyPartKind.Introduced ->
+                    if (parts.size == 1) chrome.roundNewOnly.format(it.count) else chrome.roundNew.format(it.count)
                 TallyPartKind.Consolidated -> chrome.roundConsolidated.format(it.count)
                 TallyPartKind.Reviews -> chrome.roundReviewed.format(it.count)
             }

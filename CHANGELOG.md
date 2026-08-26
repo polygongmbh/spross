@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **The Heute headline no longer reads like a litter of piglets was born.** The German
+  "Frischlinge liegen bereit" (a `Frischling` is a young wild boar) is now seed-themed —
+  "Zeit zum Säen!" / "Ein paar Samen zum Aussäen" — matching the app's own growth-stage
+  copy. The day's compact stat line drops the same word too: new cards are "Neue" and
+  due reviews are "Checks" instead of the clinical "Wiederholungen"; a round with only
+  fresh cards spells out "X neue Wörter" instead of a bare count. The round-completion
+  screen picks up matching past participles, "gesät" and "gecheckt", in place of "neu"
+  and "wiederholt".
+
 - **A packed word can be taken back out of the box.** Packing used to be one-way: once a
   word joined the queue there was no way back short of waiting for a round to meet it.
   A search hit's own tray icon unpacks it by name, one tap, no confirmation asked —

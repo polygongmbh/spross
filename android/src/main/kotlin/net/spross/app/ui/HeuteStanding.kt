@@ -89,17 +89,23 @@ fun headlineText(chrome: Chrome, headline: SessionHeadline): String {
 }
 
 /**
- * What the round holds, spelled out — "15 Wiederholungen · 2 Frischlinge".
+ * What the round holds, spelled out — "15 Checks · 2 Neue".
  * Which counts it names and in which order is the offer's own rule
  * ([SessionOffer.summaryParts]); a round that names nothing says so in one plain phrase
  * rather than printing zeros.
  */
 fun offerSummary(chrome: Chrome, offer: SessionOffer): String {
-    val parts = offer.summaryParts().map { part ->
+    val allParts = offer.summaryParts()
+    val parts = allParts.map { part ->
         when (part.kind) {
             OfferPartKind.Reviews -> countLine(chrome.dayReviewsOne, chrome.dayReviews, part.count)
             OfferPartKind.Ahead -> countLine(chrome.dayAheadOne, chrome.dayAhead, part.count)
-            OfferPartKind.Fresh -> countLine(chrome.dayNewCardsOne, chrome.dayNewCards, part.count)
+            OfferPartKind.Fresh ->
+                if (allParts.size == 1) {
+                    chrome.dayNewWordsOnly.format(part.count)
+                } else {
+                    countLine(chrome.dayNewCardsOne, chrome.dayNewCards, part.count)
+                }
         }
     }
     return if (parts.isEmpty()) chrome.sessionSomeCards else parts.joinToString(PART_JOIN)

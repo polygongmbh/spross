@@ -48,17 +48,17 @@ struct SessionCompletionView: View {
     /// and in which order, is the box's (`completionTallyParts`); the words are
     /// ours. Built as `Text` so each part localizes via the environment locale.
     private var summaryText: Text {
-        completionTallyParts(introduced: Int32(newCount),
-                             consolidated: Int32(graduatedCount),
-                             reviews: Int32(reviewCount))
-            .map(Self.partText)
-            .joined() ?? Text("session.summary.allDone")
+        let parts = completionTallyParts(introduced: Int32(newCount),
+                                         consolidated: Int32(graduatedCount),
+                                         reviews: Int32(reviewCount))
+        return parts.map { Self.partText($0, alone: parts.count == 1) }.joined() ?? Text("session.summary.allDone")
     }
 
-    private static func partText(_ part: TallyPart) -> Text {
+    private static func partText(_ part: TallyPart, alone: Bool) -> Text {
         let count = Int(part.count).formatted()
         switch part.kind {
-        case .introduced: return Text("session.summary.new \(count)")
+        case .introduced:
+            return alone ? Text("session.summary.newOnly \(count)") : Text("session.summary.new \(count)")
         case .consolidated: return Text("session.summary.consolidated \(count)")
         case .reviews: return Text("session.summary.reviewed \(count)")
         }

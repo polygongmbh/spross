@@ -49,14 +49,21 @@ class HeuteStandingTest {
     fun pullAheadsCountIntoTheRepetitionsRatherThanStandingAsTheirOwnPile() {
         val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 12, dueHeldBack = 0, ahead = 3, fresh = 2, shortRound = 0)
 
-        assertEquals("15 Wiederholungen · 2 Frischlinge", offerSummary(chrome, offer))
+        assertEquals("15 Checks · 2 Neue", offerSummary(chrome, offer))
     }
 
     @Test
     fun aCountOfOneDeclinesItsNoun() {
         val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 1, dueHeldBack = 0, ahead = 0, fresh = 1, shortRound = 0)
 
-        assertEquals("1 Wiederholung · 1 Frischling", offerSummary(chrome, offer))
+        assertEquals("1 Check · 1 Neues", offerSummary(chrome, offer))
+    }
+
+    @Test
+    fun freshWordsSpellOutTheirNounWhenTheyCarryTheRoundAlone() {
+        val offer = SessionOffer(SessionOfferKind.FreshSet, reviews = 0, dueHeldBack = 0, ahead = 0, fresh = 5, shortRound = 0)
+
+        assertEquals("5 neue Wörter", offerSummary(chrome, offer))
     }
 
     @Test
@@ -101,10 +108,10 @@ class HeuteStandingTest {
     @Test
     fun theCrossingsReadLastOnAWorkedDay() {
         assertEquals(
-            "24 Wiederholungen · 3 Frischlinge · 2 gefestigt",
+            "24 Checks · 3 Neue · 2 gefestigt",
             todayTally(chrome, report(reviews = 24, introduced = 3, consolidated = 2)),
         )
-        assertEquals("8 Wiederholungen", todayTally(chrome, report(reviews = 8)))
+        assertEquals("8 Checks", todayTally(chrome, report(reviews = 8)))
     }
 
     @Test

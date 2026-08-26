@@ -2356,13 +2356,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Frischlinge liegen bereit"
+            "value" : "Zeit zum Säen!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Newbies on the table"
+            "value" : "Time to sow seeds!"
           }
         }
       }
@@ -2372,13 +2372,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein paar Frischlinge zum Kennenlernen"
+            "value" : "Ein paar Samen zum Aussäen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A few newbies to get to know"
+            "value" : "A few seeds to sow"
           }
         }
       }
@@ -2431,13 +2431,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld Frischling"
+                  "value" : "%lld Neues"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld Frischlinge"
+                  "value" : "%lld Neue"
                 }
               }
             }
@@ -2463,6 +2463,22 @@
         }
       }
     },
+    "heute.session.newWordsOnly %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ neue Wörter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ new words"
+          }
+        }
+      }
+    },
     "heute.session.reviews %lld" : {
       "localizations" : {
         "de" : {
@@ -2471,13 +2487,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld Wiederholung"
+                  "value" : "%lld Check"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld Wiederholungen"
+                  "value" : "%lld Checks"
                 }
               }
             }
@@ -4596,7 +4612,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ neu"
+            "value" : "%@ gesät"
           }
         },
         "en" : {
@@ -4607,12 +4623,28 @@
         }
       }
     },
+    "session.summary.newOnly %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ neue Wörter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ new words"
+          }
+        }
+      }
+    },
     "session.summary.reviewed %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ wiederholt"
+            "value" : "%@ gecheckt"
           }
         },
         "en" : {

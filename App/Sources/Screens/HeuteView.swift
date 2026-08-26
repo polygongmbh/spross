@@ -212,22 +212,26 @@ struct HeuteView: View {
         }
     }
 
-    /// "12 Wiederholungen · 5 neue Wörter" — which counts the round names and in
+    /// "12 Checks · 5 Neue" — which counts the round names and in
     /// which order is the offer's own rule (`SessionOffer.summaryParts`); the words are ours.
     /// Built as `Text` (not a joined String) so each part localizes
     /// via the environment locale with catalog plural handling.
     private func sessionSummary(_ offer: SessionOffer) -> Text {
-        offer.summaryParts().map(offerPartText).joined() ?? Text("heute.session.someCards")
+        let parts = offer.summaryParts()
+        return parts.map { offerPartText($0, alone: parts.count == 1) }.joined() ?? Text("heute.session.someCards")
     }
 
-    private func offerPartText(_ part: OfferPart) -> Text {
+    private func offerPartText(_ part: OfferPart, alone: Bool) -> Text {
         // why: the count crosses into Int here — the engine counts in Int32, and
         // a plural key only varies on a count the String Catalog recognises.
         let count = Int(part.count)
         switch part.kind {
         case .reviews: return Text("heute.session.reviews \(count)")
         case .ahead: return Text("heute.session.ahead \(count)")
-        case .fresh: return Text("heute.session.newCards \(count)")
+        case .fresh:
+            return alone
+                ? Text("heute.session.newWordsOnly \(count.formatted())")
+                : Text("heute.session.newCards \(count)")
         }
     }
 
@@ -299,7 +303,7 @@ struct HeuteView: View {
         }
     }
 
-    /// "24 Wiederholungen · 3 Frischlinge · 2 gefestigt" — the day's gain, not just
+    /// "24 Checks · 3 Neue · 2 gefestigt" — the day's gain, not just
     /// that it happened. Which counts the day names and in which order is the day's
     /// own report (`TodayReport.tallyParts`); the words are ours.
     private func todayTally(_ report: TodayReport) -> Text {
