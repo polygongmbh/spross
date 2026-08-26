@@ -129,19 +129,17 @@ WidgetKit timelines and WatchConnectivity transport (the *event shape* is portab
 App Group / file container paths; `Bundle`/assets resolution behind kern's `CatalogSource` port;
 accessibility flag reads (VoiceOver, Switch Control) — though the *policy* they gate is portable;
 `UserDefaults`/`SharedPreferences` (the keys and defaults are shared contract and are listed above);
-the theme's spacing, type ramp and hex pairs; localized string tables.
+the theme's spacing and type ramp; localized string tables.
 
-### The tokens are not shared; their agreement is
+### The palette moved into kern; the Watch/widgets still copy it
 
-Four surfaces keep hand-written copies of the palette,
-because none of them links the app's design tokens —
-the watch app, the phone widget, the complication, and the Android app.
-`PaletteParityTest` (`:kern` jvmTest) reads all five files as text
-and holds every copied value to `App/Sources/Design/Theme.swift`, which is the truth.
-A copy keeps only the tokens it uses, so the check runs copy-first:
-every token a file declares must name a canonical token and carry its hex —
-and the Android cut, being a full re-cut rather than a few borrowed hues,
-owes both columns whole.
-Like the real-catalog lints it is content-coupled, and `kern/build.gradle.kts` names
-`App/Sources/Design` among `:kern:jvmTest`'s declared inputs (`../../CLAUDE.md`), so a
-palette-only edit re-runs the check on its own — no `--rerun-tasks` needed.
+`net.spross.kern.design.Palette` is the app's one color table now — the iOS app and
+Android both link kern and read every hex pair from it directly, so neither can drift
+from the other by construction. The Watch app and both widget extensions do NOT link
+kern (a color table is no reason to pull a Kotlin/Native framework into a standalone
+target) and keep hand-written copies as before; `PaletteParityTest` (`:kern` jvmTest)
+reads those three files as text and holds every value they carry to `Palette` itself. A
+copy keeps only the tokens it uses, so the check runs copy-first: every token a file
+declares must name a canonical token and carry its hex. `kern/build.gradle.kts` names
+`Watch/Sources`, `Widgets/Sources` and `WatchWidgets/Sources` among `:kern:jvmTest`'s
+declared inputs, so a hand-copy edit re-runs the check on its own.

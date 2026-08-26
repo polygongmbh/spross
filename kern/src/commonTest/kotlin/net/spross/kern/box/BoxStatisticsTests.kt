@@ -255,7 +255,10 @@ class BoxStatisticsTests {
         assertEquals(1, kitchen.phrasesLocked) // p-locked: w02 not stable yet
         assertEquals(1, kitchen.phrasesUnlocked) // p-free has no components
         assertEquals(
-            AreaStatistics("market", total = 1, active = 0, consolidated = 0, phrasesLocked = 0, phrasesUnlocked = 0),
+            AreaStatistics(
+                "market", total = 1, active = 0, consolidated = 0, settling = 0,
+                phrasesLocked = 0, phrasesUnlocked = 0,
+            ),
             stats.areas[1],
         )
     }

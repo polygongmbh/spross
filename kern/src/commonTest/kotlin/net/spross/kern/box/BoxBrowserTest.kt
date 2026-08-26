@@ -6,6 +6,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.MapCatalogSource
+import net.spross.kern.design.Palette
 import net.spross.kern.model.CardPhase
 
 /**
@@ -241,6 +242,21 @@ class BoxBrowserTest {
         assertEquals(CardRowState.Standing(CardPhase.Review, true), row("w03"))
         assertEquals(CardRowState.Standing(CardPhase.Review, true), row("w04"))
         assertEquals(CardRowState.Standing(CardPhase.Relearning, false), row("w05"))
+    }
+
+    /**
+     * The rung's color, so a row's badge and the shelf's bar read the same table:
+     * both halves of the amber rung, the green one under the bar, teal above it.
+     */
+    @Test
+    fun theRungsColorFollowsTheBarAndTheTwoAmberPhasesShareIt() {
+        fun swatchOf(phase: CardPhase, consolidated: Boolean) =
+            CardRowState.Standing(phase, consolidated).swatch
+
+        assertEquals(Palette.amber, swatchOf(CardPhase.Learning, false))
+        assertEquals(Palette.amber, swatchOf(CardPhase.Relearning, false))
+        assertEquals(Palette.success, swatchOf(CardPhase.Review, false))
+        assertEquals(Palette.teal, swatchOf(CardPhase.Review, true))
     }
 
     /** A schedule outlives a source switch; the card it belongs to may not join. */

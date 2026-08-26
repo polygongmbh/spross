@@ -274,6 +274,16 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   a card reaches Review well below `consolidatedStability`, so a second derivation is a
   second answer waiting to disagree. The read models a surface draws the box from —
   the day's report, the rungs, the browsable box, the greeting clock — are `docs/reports.md`.
+  **The color a rung wears is the same fact, extended to drawing**: `CardRowState.Standing.swatch`
+  resolves it once, off `net.spross.kern.design.Palette`, so a row's own badge and the shelf's
+  own progress bar read the identical color for the identical rung on both platforms — neither
+  a platform's badge logic nor its bar logic re-derives which color a rung gets.
+  **Packing and unpacking act on the area, never a single word, except where a search
+  reached that word by name**: `BoxEngine.enqueue`/`dequeueArea` are the shelf's own controls,
+  batching the whole queue; `dequeue` alone (a single card id) exists for the one context that
+  names a word rather than browsing a shelf for it. A surface must not offer a per-word pack
+  or unpack control anywhere else — `CardRowState.Packed.removalOffered` and `PackOffered`
+  both gate on the same `packOffered` context flag so this can't drift per platform either.
 - **A composed session never refills** (user ruling 2026-07-29): the plan IS the run.
   Cards falling due while the learner sits there — a learning step maturing, most often —
   used to be drained straight in, so the count they were counting down to moved away from

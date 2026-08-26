@@ -32,11 +32,40 @@ class StatisticsBucketsTests {
         assertEquals(kitchen.total, kitchen.consolidated + kitchen.learning + kitchen.notIntroduced)
     }
 
+    /**
+     * Settling is its own count off [GrowthStage.Fresh], never the leftover of another:
+     * a matured card is consolidated too, so deriving one bucket from the other would
+     * put w04 in both.
+     */
+    @Test
+    fun settlingIsTheReviewCardsStillShortOfTheBar() {
+        var state = Box.state((1..4).map { Box.word(it, area = "kitchen") })
+        val future = Box.plusDays(now, 5.0)
+        // Consolidated (≥ 6.0), still short of matured.
+        state = Box.inject(state, Box.sched("w01", stability = 7.0, dueMillis = future, lastReviewMillis = now))
+        // In Review, under the bar — the settling bucket itself.
+        state = Box.inject(state, Box.sched("w02", stability = 3.0, dueMillis = future, lastReviewMillis = now))
+        // Still walking the steps: neither consolidated nor settling.
+        state = Box.inject(
+            state,
+            Box.sched("w03", phase = CardPhase.Learning, stability = 1.0, dueMillis = future, lastReviewMillis = now),
+        )
+        // Matured: consolidated, and pointedly NOT settling.
+        state = Box.inject(state, Box.sched("w04", stability = 99.0, dueMillis = future, lastReviewMillis = now))
+
+        val kitchen = BoxEngine.statistics(state, now, Box.TZ).areas.single()
+        assertEquals(4, kitchen.active)
+        assertEquals(2, kitchen.consolidated) // w01 and the matured w04
+        assertEquals(1, kitchen.settling) // w02 alone
+        assertEquals(2, kitchen.learning) // unchanged formula: active - consolidated, so w02 + w03
+        assertEquals(kitchen.active, kitchen.consolidated + kitchen.learning)
+    }
+
     @Test
     fun aStaleTotalCannotOverflowTheBuckets() {
         // The join shrank under a statistics value still holding the old schedules.
         val area = AreaStatistics(
-            name = "kitchen", total = 1, active = 5, consolidated = 3,
+            name = "kitchen", total = 1, active = 5, consolidated = 3, settling = 0,
             phrasesLocked = 0, phrasesUnlocked = 0,
         )
         assertEquals(2, area.learning)
@@ -47,7 +76,7 @@ class StatisticsBucketsTests {
     @Test
     fun anAreaWithNothingInItStillHasADenominator() {
         val area = AreaStatistics(
-            name = "empty", total = 0, active = 0, consolidated = 0,
+            name = "empty", total = 0, active = 0, consolidated = 0, settling = 0,
             phrasesLocked = 0, phrasesUnlocked = 0,
         )
         assertEquals(0, area.learning)

@@ -7,33 +7,31 @@ import kotlin.test.assertTrue
 import kotlin.test.fail
 
 /**
- * Five surfaces draw Spross and only one of them can be the palette.
+ * Five surfaces draw Spross and only one of them can be the palette: [Palette] is it.
  *
- * The design tokens stay native on each platform — the spacing, the type ramp and the
- * hex pairs are the one part of the app kern deliberately does NOT own
- * (`docs/portability.md` § Stays native). What kern can own is the AGREEMENT: the watch,
- * the two widget extensions and the Android app each keep a hand-written copy of the
- * table because none of those targets links the app's design tokens, and a copy is a
- * thing that drifts. This test reads all five files as text and holds every copied value
- * to `App/Sources/Design/Theme.swift`.
+ * The iOS app and Android link kern, so they read the hex values from [Palette] itself and
+ * cannot disagree with it. The watch app and the two widget extensions do NOT link kern —
+ * a color table is no reason to pull a Kotlin/Native framework into a tiny standalone
+ * target — so each keeps a hand-written copy, and a copy is a thing that drifts. This test
+ * reads those three files as text and holds every value they carry to [Palette].
  *
  * A copy keeps only the tokens it uses — the phone widget needs a handful of hues and
  * nothing else — so the check runs the other way round: every token a file DECLARES must
- * name a canonical token and carry its hex. The Android cut is the exception, being a full
- * re-cut of both columns rather than a handful of borrowed hues.
+ * name a canonical token and carry its hex.
  *
  * The watch APP is the one copy that is a single column: it renders on black and says so.
  * Both widget copies declare PAIRS and are held to both columns, even the complication
  * that only ever wears the dark half — a half-checked table is where the other half drifts.
  *
- * Gradle does not track these Swift and Kotlin sources as test inputs (the same caveat
- * the real-catalog lints carry): after a palette-only edit, run with `--rerun-tasks`.
+ * Gradle does not track these Swift sources as test inputs the way it tracks the classpath
+ * (`kern/build.gradle.kts` names the trees so it can): after a palette-only edit that
+ * somehow escapes them, run with `--rerun-tasks`.
  */
 class PaletteParityTest {
 
     /**
-     * The canonical table itself, so a rename breaks here rather than silently emptying
-     * every comparison below.
+     * The canonical table itself, so a token renamed or added in [Palette] breaks here
+     * rather than silently emptying — or silently skipping — a comparison below.
      */
     @Test
     fun theCanonicalTableNamesTheSixteenTokensEveryCopyIsHeldTo() {
@@ -47,19 +45,6 @@ class PaletteParityTest {
             canon.keys,
             "$CANON: the token table changed shape — every copy below reads it by name",
         )
-    }
-
-    /** The Android cut is a full re-cut: both columns, all sixteen, nothing invented. */
-    @Test
-    fun theAndroidTableCarriesBothColumnsWhole() {
-        for ((table, column) in listOf("DlLight" to LIGHT, "DlDark" to DARK)) {
-            val tokens = composeTable(table)
-            assertEquals(
-                canon.keys, tokens.keys,
-                "$ANDROID: `$table` is not the canonical table token for token",
-            )
-            assertColumn("$ANDROID `$table`", tokens, column)
-        }
     }
 
     /** watchOS renders on black, so the watch app copies the dark column and only it. */
@@ -88,34 +73,29 @@ class PaletteParityTest {
     private fun assertColumn(
         where: String,
         tokens: Map<String, String>,
-        column: (Pair<String, String>) -> String,
+        column: (Swatch) -> Int,
     ) {
         assertTrue(
             tokens.isNotEmpty(),
             "$where: no palette tokens found — the copy this check reads has been reshaped",
         )
         for ((name, hex) in tokens) {
-            val pair = canon[name] ?: fail("$where: `$name` names no token in $CANON")
+            val swatch = canon[name] ?: fail("$where: `$name` names no token in $CANON")
             assertEquals(
-                column(pair), hex,
+                hex(column(swatch)), hex,
                 "$where: `$name` drifted from $CANON",
             )
         }
     }
 }
 
-private const val CANON = "App/Sources/Design/Theme.swift"
-private const val ANDROID = "android/src/main/kotlin/net/spross/app/ui/Theme.kt"
+private const val CANON = "kern/src/commonMain/kotlin/net/spross/kern/design/Palette.kt"
 private const val WATCH = "Watch/Sources/WatchTheme.swift"
 private const val WIDGET = "Widgets/Sources/WordWidgetView.swift"
 private const val WATCH_WIDGET = "WatchWidgets/Sources/WatchWordWidgetView.swift"
 
-private val LIGHT: (Pair<String, String>) -> String = { it.first }
-private val DARK: (Pair<String, String>) -> String = { it.second }
-
-/** `static let dlAccent = Color(light: 0xA23B0B, dark: 0xFF9A6B)` — the truth. */
-private val CANON_TOKEN =
-    Regex("""static let dl(\w+) = Color\(light: 0x([0-9A-Fa-f]{6}), dark: 0x([0-9A-Fa-f]{6})\)""")
+private val LIGHT: (Swatch) -> Int = { it.light }
+private val DARK: (Swatch) -> Int = { it.dark }
 
 /** `static let wlDer = Color(watchHex: 0x90CBFF)` — a single-column Swift copy. */
 private val COPY_TOKEN =
@@ -127,14 +107,17 @@ private val COPY_PAIR =
         """static let [a-z]{2}(\w+) = Color\(\w+: 0x([0-9A-Fa-f]{6}), \w+: 0x([0-9A-Fa-f]{6})\)"""
     )
 
-/** `der = Color(0xFF134E85)` — the shape the Compose table declares. */
-private val COMPOSE_TOKEN = Regex("""(\w+) = Color\(0xFF([0-9A-Fa-f]{6})\)""")
+private fun hex(value: Int): String = "%06X".format(value)
 
-/** Token name → light hex to dark hex. */
-private val canon: Map<String, Pair<String, String>> by lazy {
-    CANON_TOKEN.findAll(read(CANON)).associate {
-        it.groupValues[1].lowercase() to (it.groupValues[2].uppercase() to it.groupValues[3].uppercase())
-    }
+/**
+ * Token name → its pair, read off [Palette]'s own properties rather than any text:
+ * every `Swatch`-valued getter the object declares, so a token added there is checked
+ * (or, until it is named above, caught by the shape test) instead of quietly skipped.
+ */
+private val canon: Map<String, Swatch> by lazy {
+    Palette::class.java.declaredMethods
+        .filter { it.returnType == Swatch::class.java && it.parameterCount == 0 }
+        .associate { it.name.removePrefix("get").lowercase() to it.invoke(Palette) as Swatch }
 }
 
 private fun swiftCopy(path: String): Map<String, String> =
@@ -146,16 +129,6 @@ private fun swiftPairs(path: String): Map<String, Pair<String, String>> =
     COPY_PAIR.findAll(read(path)).associate {
         it.groupValues[1].lowercase() to (it.groupValues[2].uppercase() to it.groupValues[3].uppercase())
     }
-
-private fun composeTable(name: String): Map<String, String> {
-    val source = read(ANDROID)
-    val start = source.indexOf("val $name = DlColors(")
-    if (start < 0) fail("$ANDROID: no `val $name = DlColors(` table to read")
-    val end = source.indexOf("\n)", start)
-    if (end < 0) fail("$ANDROID: `$name` is never closed")
-    return COMPOSE_TOKEN.findAll(source.substring(start, end))
-        .associate { it.groupValues[1].lowercase() to it.groupValues[2].uppercase() }
-}
 
 /** The repo root, found by walking up the way the real-catalog tests find `catalog/`. */
 private val repoRoot: File by lazy {

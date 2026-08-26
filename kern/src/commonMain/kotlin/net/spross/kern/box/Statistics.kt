@@ -46,6 +46,8 @@ data class AreaStatistics(
     val active: Int,
     /** Cards in the area that have consolidated (see [Statistics.isConsolidated]). */
     val consolidated: Int,
+    /** Active cards in Review, short of the consolidated bar — kern's [GrowthStage.Fresh]. */
+    val settling: Int = 0,
     /** Component phrases still waiting for their components to stabilize. */
     val phrasesLocked: Int,
     /** Phrases already introduced, component-free, or with all components stable. */
@@ -300,19 +302,28 @@ internal object Statistics {
             .map { (area, cards) ->
                 var active = 0
                 var consolidated = 0
+                var settling = 0
                 var locked = 0
                 var unlocked = 0
                 for (card in cards) {
                     if (card.id in activeCards) active += 1
                     val sched = state.scheduling[card.id]
                     if (sched != null && !sched.suspended && isConsolidated(state, sched)) consolidated += 1
+                    // Counted on its own bar, never off `consolidated`: that one also carries
+                    // the matured cards, so the two buckets read different rungs.
+                    if (sched != null && !sched.suspended && stageOf(state, sched) == GrowthStage.Fresh) {
+                        settling += 1
+                    }
                     if (card.kind == CardKind.Phrase) {
                         val open = sched != null || card.components.isEmpty() ||
                             Growth.isPhraseUnlocked(state, card)
                         if (open) unlocked += 1 else locked += 1
                     }
                 }
-                AreaStatistics(area, cards.size, active, consolidated, locked, unlocked)
+                AreaStatistics(
+                    name = area, total = cards.size, active = active, consolidated = consolidated,
+                    settling = settling, phrasesLocked = locked, phrasesUnlocked = unlocked,
+                )
             }
     }
 }
