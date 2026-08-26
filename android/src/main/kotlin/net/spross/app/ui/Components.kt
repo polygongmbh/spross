@@ -25,6 +25,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
@@ -116,7 +117,8 @@ fun FeminineBadge(modifier: Modifier = Modifier) {
  * a word the shelf above does not also count: Review alone gets there well before it,
  * which is why a Review card short of the bar reads its own "growing" mark instead of
  * borrowing the seal. Learning and relearning share one amber rung and one glyph — a lapse
- * puts a card back where it was, so only the WORD says which of the two it is.
+ * puts a card back where it was, so only the WORD says which of the two it is. Grown is
+ * the one rung that carries no word at all — the seal alone already says "done".
  *
  * The color comes from [swatch] rather than being picked here, so this badge and the
  * shelf's own [AreaProgressBar] can never disagree about the same rung. A card with
@@ -126,14 +128,23 @@ fun FeminineBadge(modifier: Modifier = Modifier) {
 @Composable
 fun PhaseBadge(standing: CardRowState.Standing, chrome: Chrome) {
     val settled = standing.phase == CardPhase.Review && !standing.consolidated
-    val word = when {
-        standing.consolidated -> chrome.phaseConsolidated
-        settled -> chrome.phaseSettled
-        standing.phase == CardPhase.Relearning -> chrome.phaseRelearning
-        else -> chrome.phaseLearning
+    val color = standing.swatch.tint()
+    if (standing.consolidated) {
+        // Grown needs no word: a seal already reads as "done" on its own, where
+        // Fresh/Shaky/Growing would be ambiguous glyphs without one.
+        Pill(
+            SEAL, color,
+            modifier = Modifier.semantics { contentDescription = chrome.phaseConsolidated },
+        )
+    } else {
+        val word = when {
+            settled -> chrome.phaseSettled
+            standing.phase == CardPhase.Relearning -> chrome.phaseRelearning
+            else -> chrome.phaseLearning
+        }
+        val glyph = if (settled) SETTLED else LEAF
+        Pill("$glyph $word", color)
     }
-    val glyph = if (standing.consolidated) SEAL else if (settled) SETTLED else LEAF
-    Pill("$glyph $word", standing.swatch.tint())
 }
 
 /** The consolidated mark; the same glyph the area's own count row leads with. */
@@ -171,7 +182,7 @@ fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
         horizontalArrangement = Arrangement.spacedBy(2.dp),
     ) {
         val stretches = listOf(
-            stats.consolidated to palette.teal,
+            stats.consolidated to palette.grown,
             stats.settling to palette.success,
             (stats.learning - stats.settling) to palette.amber,
             stats.notIntroduced to palette.separator,

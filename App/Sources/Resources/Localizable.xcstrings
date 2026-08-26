@@ -4020,13 +4020,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ lernend"
+            "value" : "%@ wachsen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ learning"
+            "value" : "%@ growing"
           }
         }
       }

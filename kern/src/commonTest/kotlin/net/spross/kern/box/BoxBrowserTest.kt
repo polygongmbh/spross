@@ -256,7 +256,7 @@ class BoxBrowserTest {
         assertEquals(Palette.amber, swatchOf(CardPhase.Learning, false))
         assertEquals(Palette.amber, swatchOf(CardPhase.Relearning, false))
         assertEquals(Palette.success, swatchOf(CardPhase.Review, false))
-        assertEquals(Palette.teal, swatchOf(CardPhase.Review, true))
+        assertEquals(Palette.grown, swatchOf(CardPhase.Review, true))
     }
 
     /** A schedule outlives a source switch; the card it belongs to may not join. */

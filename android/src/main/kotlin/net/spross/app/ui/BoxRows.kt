@@ -182,8 +182,9 @@ private fun CardStanding(
             }
         } else {
             // A pill, not an icon: a bare tray glyph reads as a control here too, and
-            // this one has none — the shelf's own takes the whole queue out.
-            Pill(chrome.queuedWord, Dl.colors.success)
+            // this one has none — the shelf's own takes the whole queue out. Clay, not
+            // green: green is the growth ladder's, and a queued word is not on it yet.
+            Pill(chrome.queuedWord, Dl.colors.accent)
         }
 
         CardRowState.Plain -> Unit
@@ -241,7 +242,7 @@ fun AreaChip(
             // Two counts where the bar beneath draws three rungs: there is room here for
             // the split that matters (cleared the bar, or not yet), and the bar carries
             // the finer one.
-            CountLabel("$SEAL ${chrome.progressConsolidated.format(consolidated)}", Dl.colors.teal)
+            CountLabel("$SEAL ${chrome.progressConsolidated.format(consolidated)}", Dl.colors.grown)
             CountLabel("$LEAF ${chrome.progressLearning.format(learning)}", Dl.colors.amber)
             // why: the padlock carries the "locked", so the text only names what is
             // locked — and it appears only when it says something.

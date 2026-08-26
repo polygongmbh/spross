@@ -142,12 +142,14 @@ struct BoxCardRow: View {
             } else {
                 // A pill, not an icon: a bare tray glyph reads as a control here too,
                 // and this one has none — the shelf's own takes the whole queue out.
+                // Clay, not green: green is the growth ladder's, and a queued word
+                // is not on it yet.
                 Text("box.queuedWord")
                     .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlSuccess)
+                    .foregroundStyle(Color.dlAccent)
                     .padding(.horizontal, DL.Space.m)
                     .padding(.vertical, DL.Space.xs + 1)
-                    .background(Color.dlSuccess.opacity(0.14), in: Capsule())
+                    .background(Color.dlAccent.opacity(0.14), in: Capsule())
             }
         case .plain:
             EmptyView()

@@ -41,6 +41,13 @@ object Palette {
     val amber = Swatch(0x87510A, 0xF2C078) // ochre — a near miss, or an answer shown
     val wrong = Swatch(0x99322E, 0xF08D86) // brick — a miss
 
+    /**
+     * The consolidated/"grown" rung's own color — NOT [teal]. [teal] sits only ~15°
+     * from [der] on the hue wheel (both read as blue at a badge's size); this one is
+     * pulled toward green until it reads unmistakably as jade rather than another blue.
+     */
+    val grown = Swatch(0x0F766E, 0x5EEAD4)
+
     // Gendered articles.
     val der = Swatch(0x134E85, 0x90CBFF)
     val die = Swatch(0x9A2050, 0xFF9EC0)

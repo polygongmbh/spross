@@ -242,7 +242,7 @@ internal object ChromeEn : Chrome {
     override val suspended = "Paused"
     override val wake = "Wake"
     override val progressConsolidated = "%s consolidated"
-    override val progressLearning = "%s learning"
+    override val progressLearning = "%s growing"
     override val phrasesLocked = "%d sentences"
     override val phrasesLockedSpoken = "%d sentences locked"
     override val stateExpanded = "expanded"

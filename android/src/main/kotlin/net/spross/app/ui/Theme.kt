@@ -82,6 +82,12 @@ class DlColors(
     /** Ochre: the reveal, the tough answer, the word still being learnt — never red. */
     val amber: Color,
     /**
+     * Jade — the consolidated/"grown" rung's own color. Not [teal]: that one sits too
+     * close to [der] on the hue wheel to read as anything but another blue at a badge's
+     * size, so this one is its own token, pulled toward green instead.
+     */
+    val grown: Color,
+    /**
      * Muted brick. The aggregate progress bar and the learner's own "unknown" verdict
      * wear it; a card telling someone they were wrong never does.
      */
@@ -127,6 +133,7 @@ val DlLight = DlColors(
     teal = Palette.teal.light.opaque(),
     success = Palette.success.light.opaque(),
     amber = Palette.amber.light.opaque(),
+    grown = Palette.grown.light.opaque(),
     wrong = Palette.wrong.light.opaque(),
     der = Palette.der.light.opaque(),
     die = Palette.die.light.opaque(),
@@ -147,6 +154,7 @@ val DlDark = DlColors(
     teal = Palette.teal.dark.opaque(),
     success = Palette.success.dark.opaque(),
     amber = Palette.amber.dark.opaque(),
+    grown = Palette.grown.dark.opaque(),
     wrong = Palette.wrong.dark.opaque(),
     der = Palette.der.dark.opaque(),
     die = Palette.die.dark.opaque(),

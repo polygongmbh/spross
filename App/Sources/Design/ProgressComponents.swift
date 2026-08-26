@@ -146,7 +146,7 @@ struct AreaChip: View {
     /// the settling cards the box counts inside `learning` — the two-way number
     /// the counts row is cut for, which the bar splits one level finer.
     private var segments: [AreaBarSegment] {
-        [(progress.consolidated, Color.dlTeal),
+        [(progress.consolidated, Color.dlGrown),
          (progress.settling, Color.dlSuccess),
          (progress.learning - progress.settling, Color.dlAmber),
          (progress.notIntroduced, Color.dlSeparator)]
@@ -210,7 +210,7 @@ struct AreaChip: View {
         HStack(spacing: DL.Space.m) {
             Label("progress.consolidatedCount \(progress.consolidated.formatted())",
                   systemImage: "checkmark.seal.fill")
-                .foregroundStyle(Color.dlTeal)
+                .foregroundStyle(Color.dlGrown)
             Label("progress.learningCount \(progress.learning.formatted())", systemImage: "leaf.fill")
                 .foregroundStyle(Color.dlAmber)
             if lockedPhrases > 0 {
@@ -283,16 +283,26 @@ struct PhaseBadge: View {
     }
 
     var body: some View {
-        Label(label, systemImage: icon)
-            .font(DL.Fonts.caption)
-            .foregroundStyle(color)
-            // why: a one-word badge in a crowded row gets compressed until it
-            // wraps ("Ne/u"); it keeps its width and the word beside it gives.
-            .lineLimit(1)
-            .fixedSize(horizontal: true, vertical: false)
-            .padding(.horizontal, DL.Space.m)
-            .padding(.vertical, DL.Space.xs + 1)
-            .background(color.opacity(0.14), in: Capsule())
+        Group {
+            // Grown is the one rung that needs no word: a seal already reads as
+            // "done" on its own, where Fresh/Shaky/Growing would be ambiguous
+            // glyphs without one.
+            if consolidated {
+                Image(systemName: icon)
+                    .accessibilityLabel(Text(label))
+            } else {
+                Label(label, systemImage: icon)
+                    // why: a one-word badge in a crowded row gets compressed until
+                    // it wraps ("Ne/u"); it keeps its width and the word beside it gives.
+                    .lineLimit(1)
+                    .fixedSize(horizontal: true, vertical: false)
+            }
+        }
+        .font(DL.Fonts.caption)
+        .foregroundStyle(color)
+        .padding(.horizontal, DL.Space.m)
+        .padding(.vertical, DL.Space.xs + 1)
+        .background(color.opacity(0.14), in: Capsule())
     }
 }
 
@@ -319,7 +329,7 @@ private var ladder: some View {
         PhaseBadge(phase: .learning, growth: .dlAmber)
         PhaseBadge(phase: .relearning, growth: .dlAmber)
         PhaseBadge(phase: .review, growth: .dlSuccess)
-        PhaseBadge(phase: .review, consolidated: true, growth: .dlTeal)
+        PhaseBadge(phase: .review, consolidated: true, growth: .dlGrown)
     }
 }
 

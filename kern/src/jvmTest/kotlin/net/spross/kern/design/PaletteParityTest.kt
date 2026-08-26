@@ -34,12 +34,12 @@ class PaletteParityTest {
      * rather than silently emptying — or silently skipping — a comparison below.
      */
     @Test
-    fun theCanonicalTableNamesTheSixteenTokensEveryCopyIsHeldTo() {
+    fun theCanonicalTableNamesTheSeventeenTokensEveryCopyIsHeldTo() {
         assertEquals(
             setOf(
                 "background", "surface", "surfacetint", "separator", "borderstrong",
                 "textprimary", "textsecondary", "oncolor",
-                "accent", "teal", "success", "amber", "wrong",
+                "accent", "teal", "success", "amber", "wrong", "grown",
                 "der", "die", "das",
             ),
             canon.keys,
