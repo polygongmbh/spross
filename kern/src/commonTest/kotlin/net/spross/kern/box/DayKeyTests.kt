@@ -125,12 +125,23 @@ class DayKeyTests {
         assertEquals(DayPart.Morning, at(12, "fr"))
         // A language the drills do not cover reads on English's hours.
         assertEquals(DayPart.Day, at(14, "zz"))
-        // The phrasing holds inside a part and is picked afresh in the next one.
-        val variant = { h: Int ->
-            partVariant(local("Europe/Berlin", 2026, 7, 1, h, 0), "Europe/Berlin", "de", 2)
+        // The phrasing holds inside a part and is picked afresh in the next one: same hour,
+        // different minute, doesn't reroll between renders.
+        val variant = { h: Int, min: Int ->
+            partVariant(local("Europe/Berlin", 2026, 7, 1, h, min), "Europe/Berlin", "de", 2)
         }
-        assertEquals(variant(11), variant(17))
-        assertTrue((0..23).all { variant(it) in 0..1 })
+        assertEquals(variant(10, 0), variant(10, 45))
+        assertTrue((0..23).all { variant(it, 0) in 0..1 })
+    }
+
+    @Test
+    fun chromePartIgnoresTheTaughtLanguagesOwnHours() {
+        val now = local("Europe/Berlin", 2026, 7, 1, 19, 30)
+        // Half seven: usiku already in Swahili, but chrome's own "night owl" schedule
+        // isn't there yet — chrome keeps the same hours no matter which language is
+        // spoken or learned.
+        assertEquals(DayPart.Night, dayPart(now, "Europe/Berlin", "sw"))
+        assertEquals(DayPart.Evening, chromePart(now, "Europe/Berlin"))
     }
 
     @Test

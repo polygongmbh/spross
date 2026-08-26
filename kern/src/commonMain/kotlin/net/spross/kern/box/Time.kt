@@ -55,18 +55,41 @@ fun dayPart(nowEpochMillis: Long, tzId: String, language: Language?): DayPart =
     )
 
 /**
+ * Which stretch of the day it is for CHROME copy — a fixed, language-neutral schedule,
+ * never a taught language's own clock words ([dayPart]). The line calling the learner a
+ * night owl is authored in their known language, but it is still just chrome, and chrome
+ * keeps the same hours regardless of which language that is: the boundary a Swahili
+ * speaker's own clock draws at 7pm ([net.spross.kern.trainer.SwahiliClock]) is right for
+ * teaching `usiku`, not for deciding when the app calls someone a night owl.
+ */
+fun chromePart(nowEpochMillis: Long, tzId: String): DayPart {
+    val hour = Instant.fromEpochMilliseconds(nowEpochMillis).toLocalDateTime(TimeZone.of(tzId)).hour
+    return when (hour) {
+        in 5..10 -> DayPart.Morning
+        in 11..16 -> DayPart.Day
+        in 17..21 -> DayPart.Evening
+        else -> DayPart.Night
+    }
+}
+
+/**
  * Which of [count] phrasings a line that renames itself takes right now.
  *
- * Holds through one [dayPart] of one local day, and has moved on by the next time the app
- * is opened: a line re-rolling between renders reads as a glitch, and one that never moves
- * stops being read at all.
+ * Holds through one pairing of [chromePart] and [dayPart] of one local day, and has moved
+ * on by the next time the app is opened: a line re-rolling between renders reads as a
+ * glitch, and one that never moves stops being read at all. Both feed the key because the
+ * line mixes chrome's fixed schedule with the target language's own, and either can
+ * change part on its own.
  *
- * FNV-1a over the day and the part, never a runtime hash — Swift seeds `hashValue` per
+ * FNV-1a over the day and the parts, never a runtime hash — Swift seeds `hashValue` per
  * process and Kotlin's `hashCode` is no contract either, so the same hour would read
  * differently after a relaunch, or differently on the two phones.
  */
-fun partVariant(nowEpochMillis: Long, tzId: String, language: Language?, count: Int): Int {
-    var hash = fnv1a64("${dayKey(nowEpochMillis, tzId)}:${dayPart(nowEpochMillis, tzId, language)}")
+fun partVariant(nowEpochMillis: Long, tzId: String, targetLanguage: Language?, count: Int): Int {
+    val key = "${dayKey(nowEpochMillis, tzId)}:" +
+        "${chromePart(nowEpochMillis, tzId)}:" +
+        dayPart(nowEpochMillis, tzId, targetLanguage)
+    var hash = fnv1a64(key)
     // why: FNV leaves its low bits barely mixed, and the modulo reads exactly those.
     hash = hash xor (hash shr 33)
     return (hash % count.toULong()).toInt()

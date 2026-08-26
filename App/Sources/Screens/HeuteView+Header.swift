@@ -43,32 +43,36 @@ extension HeuteView {
     /// what the header is for.
     ///
     /// Which stretch of the day it is and which of the candidates this one takes are kern's
-    /// (`dayPart`, `partVariant`); the words are the catalog's and the chrome's. Falls back
-    /// to the screen's own name while no profile names a language.
+    /// (`dayPart`, `chromePart`, `partVariant`); the words are the catalog's and the
+    /// chrome's. Falls back to the screen's own name while no profile names a language.
     var greeting: Text {
         guard let language = targetLanguageName else { return Text("heute.title") }
         let now = Date().epochMillis, tz = currentTzId()
-        // The language's own hours: four in the afternoon is still Tag in German and
-        // already jioni in Swahili (kern's `dayPart`).
         let target = model.targetLanguage
-        let part = dayPart(nowEpochMillis: now, tzId: tz, language: target)
-        let lines = greetingLines(part, language: language, target: target)
+        // The target's own hours for its own lines: four in the afternoon is still Tag in
+        // German and already jioni in Swahili. The chrome half keeps a fixed schedule
+        // instead — a "night owl" reads as one at the same local hour no matter which
+        // language the learner's own is (kern's `chromePart`).
+        let targetPart = dayPart(nowEpochMillis: now, tzId: tz, language: target)
+        let chromePartNow = chromePart(nowEpochMillis: now, tzId: tz)
+        let lines = greetingLines(targetPart: targetPart, chromePart: chromePartNow,
+                                  language: language, target: target)
         let pick = partVariant(nowEpochMillis: now, tzId: tz,
-                               language: target, count: Int32(lines.count))
+                               targetLanguage: target, count: Int32(lines.count))
         return lines[Int(pick)]
     }
 
     /// Everything the app could say right now, the language's own lines first — they both
     /// greet and teach, and they are the only ones that can address the learner: by name, or
     /// by the word the hour lends when no name is known.
-    private func greetingLines(_ part: DayPart, language: String, target: String?) -> [Text] {
+    private func greetingLines(targetPart: DayPart, chromePart: DayPart, language: String, target: String?) -> [Text] {
         var lines: [Text] = []
         if let target {
-            let spoken = model.catalog?.spokenLines(lang: target, part: part,
-                                                    name: model.learnerName ?? addressee(part))
+            let spoken = model.catalog?.spokenLines(lang: target, part: targetPart,
+                                                    name: model.learnerName ?? addressee(chromePart))
             lines += (spoken ?? []).map { Text(verbatim: $0) }
         }
-        switch part {
+        switch chromePart {
         case .morning:
             lines += [Text("heute.greeting.morning.0 \(language)"),
                       Text("heute.greeting.morning.1 \(language)"),
