@@ -243,7 +243,7 @@ fun AreaChip(
             // the split that matters (cleared the bar, or not yet), and the bar carries
             // the finer one.
             CountLabel("$SEAL ${chrome.progressConsolidated.format(consolidated)}", Dl.colors.grown)
-            CountLabel("$LEAF ${chrome.progressLearning.format(learning)}", Dl.colors.amber)
+            CountLabel("$LEAF ${chrome.progressLearning.format(learning)}", Dl.colors.success)
             // why: the padlock carries the "locked", so the text only names what is
             // locked — and it appears only when it says something.
             if (locked > 0) CountLabel("$LOCK ${chrome.phrasesLocked.format(locked)}")

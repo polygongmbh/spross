@@ -212,7 +212,7 @@ struct AreaChip: View {
                   systemImage: "checkmark.seal.fill")
                 .foregroundStyle(Color.dlGrown)
             Label("progress.learningCount \(progress.learning.formatted())", systemImage: "leaf.fill")
-                .foregroundStyle(Color.dlAmber)
+                .foregroundStyle(Color.dlSuccess)
             if lockedPhrases > 0 {
                 // why: the padlock carries "locked", so the text only has to
                 // name what is locked — three full labels do not fit the card.
