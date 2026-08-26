@@ -241,7 +241,7 @@ internal object ChromeDe : Chrome {
     override val packWord = "Dieses Wort einpacken"
     override val unpackWord = "Dieses Wort auspacken"
     override val dequeueArea = "Aus der Box nehmen (%s)"
-    override val queuedWord = "Bereits eingepackt"
+    override val queuedWord = "Eingepackt"
     override val suspended = "Pausiert"
     override val wake = "Wecken"
     override val progressConsolidated = "%s gefestigt"

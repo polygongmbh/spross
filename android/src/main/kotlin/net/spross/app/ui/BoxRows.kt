@@ -181,12 +181,9 @@ private fun CardStanding(
                 Icon(SprossIcons.PackOut, contentDescription = null, tint = Dl.colors.success)
             }
         } else {
-            Icon(
-                SprossIcons.PackOut,
-                contentDescription = chrome.queuedWord,
-                tint = Dl.colors.success,
-                modifier = Modifier.padding(DlSpace.m),
-            )
+            // A pill, not an icon: a bare tray glyph reads as a control here too, and
+            // this one has none — the shelf's own takes the whole queue out.
+            Pill(chrome.queuedWord, Dl.colors.success)
         }
 
         CardRowState.Plain -> Unit
