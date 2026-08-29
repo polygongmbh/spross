@@ -3,13 +3,15 @@ package net.spross.app
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.Feedback
 import net.spross.kern.box.OwnWord
+import net.spross.kern.box.OwnWords
 import net.spross.kern.box.ReportedIssue
+import net.spross.kern.model.Card
 
 /**
- * Telling whoever maintains the catalog what is wrong with it, and what is missing from it.
+ * What the learner does to ONE word of their box, and what they send back about the catalog.
  *
- * The rules — what a report holds, what counts as new since the last one, how the text
- * reads — are kern's ([ReportedIssue], [Feedback]);
+ * The rules — what a report holds, what an edit keeps, what counts as new since the last
+ * copy, how the text reads — are kern's ([BoxEngine], [ReportedIssue], [Feedback]);
  * this layer carries the clock, the clipboard and the mail app.
  */
 
@@ -29,15 +31,58 @@ fun AppModel.dismissReportedIssue(cardId: String) {
     updateBox { BoxEngine.dismissReportedIssue(it, cardId) }
 }
 
+/** Drop one word's progress: back to new, card and report kept ([BoxEngine.forget]). */
+fun AppModel.forgetCard(cardId: String) {
+    updateBox { BoxEngine.forget(it, cardId) }
+}
+
+/** Take a word the learner wrote back out — the app's only deletion. */
+fun AppModel.removeOwnWord(wordId: String) {
+    updateBox { BoxEngine.removeOwnWord(it, wordId) }
+}
+
+/**
+ * Store a word the learner just wrote, or rewrite the one they had opened.
+ *
+ * [rewriting] is what tells the two apart, and it is the whole of the difference:
+ * [BoxEngine.updateOwnWord] keeps the id, and with it the schedule and the queue slot,
+ * where taking it in afresh would mint a new word and leave the progress behind.
+ */
+fun AppModel.saveOwnWord(word: OwnWord, rewriting: Boolean) {
+    updateBox {
+        if (rewriting) BoxEngine.updateOwnWord(it, word) else BoxEngine.addOwnWord(it, word, now())
+    }
+}
+
+/** Every word the learner wrote, oldest first — studiable ones and suggestions alike. */
+val AppModel.ownWords: List<OwnWord> get() = box?.ownWords.orEmpty()
+
+/** The ids already in use, so a newly written word cannot collide with one ([OwnWords.mint]). */
+val AppModel.ownWordIds: Set<String> get() = ownWords.mapTo(mutableSetOf()) { it.id }
+
 /**
  * Words the learner wrote down with only one half, oldest first. They join nothing and are
- * never scheduled ([net.spross.kern.box.OwnWords.cards]), so no card row can list them —
- * the feedback section is the only place they are visible.
+ * never scheduled ([OwnWords.cards]), so they carry no card row of their own.
  */
 val AppModel.suggestions: List<OwnWord>
     get() {
         val stamp = box?.joinStamp ?: return emptyList()
-        return box?.ownWords.orEmpty().filter { it.isSuggestion(stamp.source, stamp.target) }
+        return ownWords.filter { it.isSuggestion(stamp.source, stamp.target) }
+    }
+
+/**
+ * The CATALOG cards a problem stands against, oldest report first.
+ *
+ * Own words are left out on purpose: a reported own word is already listed above wearing
+ * its flag, and listing it twice in one section reads as two different problems.
+ */
+val AppModel.reportedCatalogCards: List<Card>
+    get() {
+        val state = box ?: return emptyList()
+        return state.reportedIssues.values
+            .sortedBy { it.reportedAt }
+            .filterNot { OwnWords.owns(it.cardId) }
+            .mapNotNull { state.cards[it.cardId] }
     }
 
 /** The half a suggestion does carry, whichever of the two languages it is in. */

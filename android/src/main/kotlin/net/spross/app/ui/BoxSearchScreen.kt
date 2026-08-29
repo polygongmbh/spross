@@ -58,18 +58,18 @@ fun BoxSearchScreen(
     val chrome = model.chrome
     val box = model.box ?: return
     var query by remember { mutableStateOf("") }
-    var writing by remember { mutableStateOf(false) }
+    var writing by remember { mutableStateOf<OwnWordDraft?>(null) }
     BackHandler { onClose() }
 
-    if (writing) {
+    writing?.let { draft ->
         OwnWordForm(
             model = model,
-            query = query,
-            // why: the box lands on the shelf the new word joined — the learner wrote it
-            // to use it, not to file it. A suggestion joined none, so there is no shelf to
-            // land on and the search simply comes back.
-            onAdded = { joined -> writing = false; if (joined) onReveal(OwnWords.AREA) },
-            onCancel = { writing = false },
+            initial = draft,
+            // why: the box lands on the section the new word joined — the learner wrote it
+            // to use it, not to file it. A suggestion joins no card, but it is listed in the
+            // same section, so the landing is the same one.
+            onDone = { writing = null; onReveal(OwnWords.AREA) },
+            onCancel = { writing = null },
         )
         return
     }
@@ -125,7 +125,10 @@ fun BoxSearchScreen(
                     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.l)) {
                         SearchNote(chrome.searchNothing.format(query))
                         Button(
-                            onClick = { writing = true },
+                            // why: the KNOWN side is prefilled — someone typing into a
+                            // search box is far more often naming what they want to be
+                            // able to SAY than a form they already met in the wild.
+                            onClick = { writing = OwnWordDraft(known = query) },
                             modifier = Modifier.pressSpring(),
                             shape = MaterialTheme.shapes.small,
                         ) { Text(chrome.searchWriteOwn.format(query)) }
@@ -151,9 +154,14 @@ fun BoxSearchScreen(
                         item { Heading(chrome.searchWords) }
                         for (card in results.cards) {
                             item(key = "card:${card.id}") {
-                                BoxCardRow(model, card, pack = {
-                                    model.updateBox { BoxEngine.enqueue(it, listOf(card.id)) }
-                                })
+                                BoxCardRow(
+                                    model,
+                                    card,
+                                    pack = {
+                                        model.updateBox { BoxEngine.enqueue(it, listOf(card.id)) }
+                                    },
+                                    onWriteOwn = { writing = it },
+                                )
                             }
                         }
                     }

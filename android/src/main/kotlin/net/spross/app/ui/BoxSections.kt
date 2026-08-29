@@ -81,6 +81,8 @@ internal fun AreaSection(
     stats: AreaStatistics?,
     expanded: Boolean,
     onToggle: () -> Unit,
+    /** Handed on to every row's menu: writing an own word from one of these. */
+    onWriteOwn: (OwnWordDraft) -> Unit,
 ) {
     val chrome = model.chrome
     val box = model.box ?: return
@@ -116,7 +118,7 @@ internal fun AreaSection(
                     verticalArrangement = Arrangement.spacedBy(DlSpace.s),
                 ) {
                     BoxBrowser.cardsInArea(box, area).forEach { card ->
-                        BoxCardRow(model, card)
+                        BoxCardRow(model, card, onWriteOwn = onWriteOwn)
                     }
                 }
             }

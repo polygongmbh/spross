@@ -8,6 +8,7 @@ import kotlin.test.assertTrue
 import net.spross.app.Chrome
 import net.spross.kern.box.OwnWords
 import net.spross.kern.catalog.LanguageChoices
+import net.spross.kern.model.LanguageInfo
 
 /**
  * What the box browser ADDS around kern's rules: how a shelf names itself to this reader,
@@ -102,6 +103,57 @@ class BoxLogicTest {
         val word = OwnWordDraft(known = "Haus", learning = "nyumba").word("de", "sw", taken)
 
         assertEquals("${OwnWords.ID_PREFIX}nyumba-2", word?.id)
+    }
+
+    @Test
+    fun anEditKeepsTheWordsIdAndKindRatherThanMintingNewOnes() {
+        val stored = OwnWords.write(
+            id = "${OwnWords.ID_PREFIX}nyumba",
+            kind = OwnWords.DEFAULT_KIND,
+            emoji = "🏠",
+            texts = mapOf("de" to "Haus", "sw" to "nyumba"),
+        )
+        val draft = OwnWordDraft.of(stored, source = "de", target = "sw")
+
+        assertEquals("Haus", draft.known)
+        assertEquals("nyumba", draft.learning)
+        assertEquals("🏠", draft.emoji)
+
+        // The typo fixed on the learnt side would mint a different id for a new word; an
+        // edit keeps this one, and with it the schedule and the queue slot.
+        val fixed = draft.copy(learning = "nyumbani").word("de", "sw", setOf(stored.id))
+        assertEquals(stored.id, fixed?.id)
+        assertEquals(mapOf("de" to "Haus", "sw" to "nyumbani"), fixed?.texts)
+        assertEquals(stored.kind, fixed?.kind)
+    }
+
+    @Test
+    fun swappingExchangesTheTwoSidesAndLeavesTheRestAlone() {
+        val draft = OwnWordDraft(known = "nyumba", learning = "Haus", emoji = "🏠").swapped()
+
+        assertEquals("Haus", draft.known)
+        assertEquals("nyumba", draft.learning)
+        assertEquals("🏠", draft.emoji)
+    }
+
+    @Test
+    fun thePictureIsCappedAtWhatKernAllowsAndCountsClustersNotChars() {
+        assertEquals("", cappedPicture(""))
+        assertEquals("🏠", cappedPicture("🏠"))
+        assertEquals("🏠🍎", cappedPicture("🏠🍎"))
+        // A third picture is dropped whole rather than cut through the middle of a glyph.
+        assertEquals("🏠🍎", cappedPicture("🏠🍎🐾"))
+        assertEquals(OwnWords.MAX_EMOJI, cappedPicture("abcdef").length)
+    }
+
+    @Test
+    fun aLanguageLabelWearsItsFlagAndTheNameItCallsItselfBy() {
+        val german = LanguageInfo(code = "de", name = "Deutsch", englishName = "German", flag = "🇩🇪")
+
+        assertEquals("🇩🇪 Deutsch", flaggedLanguage(german, "de"))
+        // A language the catalog does not carry falls back to its code — a visible content
+        // bug rather than a blank label over a field.
+        assertEquals("xx", flaggedLanguage(null, "xx"))
     }
 
     @Test

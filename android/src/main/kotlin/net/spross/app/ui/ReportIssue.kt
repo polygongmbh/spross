@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -42,9 +41,10 @@ import net.spross.kern.model.Card
  */
 
 /**
- * The menu a word grows on a long press: the report entry (or the way back out of one
- * already filed), and whatever the surface adds to it — [extra] is handed the way to close
- * the menu, since every entry closes it before it acts.
+ * The menu a word grows on a long press: the report entry — filing one, or reopening and
+ * withdrawing one already filed — and whatever the surface puts around it. [before] and
+ * [after] are both handed the way to close the menu, since every entry closes it before it
+ * acts; a surface that has something irreversible to offer puts it in [after], last.
  *
  * [learnerInput] is what stood in the answer field when the menu opened. It is taken THEN
  * rather than read here: the field empties as the turn advances, and the answer the catalog
@@ -57,23 +57,22 @@ internal fun CardMenu(
     expanded: Boolean,
     learnerInput: String,
     onDismiss: () -> Unit,
-    extra: @Composable (close: () -> Unit) -> Unit = {},
+    before: @Composable (close: () -> Unit) -> Unit = {},
+    after: @Composable (close: () -> Unit) -> Unit = {},
 ) {
     val chrome = model.chrome
     var reporting by remember(card.id) { mutableStateOf(false) }
     DropdownMenu(expanded = expanded, onDismissRequest = onDismiss) {
+        before(onDismiss)
         if (model.reportedIssue(card.id) == null) {
-            DropdownMenuItem(
-                text = { Text(chrome.reportAction) },
-                onClick = { onDismiss(); reporting = true },
-            )
+            MenuAction(chrome.reportAction) { onDismiss(); reporting = true }
         } else {
-            DropdownMenuItem(
-                text = { Text(chrome.reportDismiss) },
-                onClick = { onDismiss(); model.dismissReportedIssue(card.id) },
-            )
+            // Reopening beats refiling: the comment is what the maintainer reads, and a
+            // learner with more to say should not have to withdraw the report to say it.
+            MenuAction(chrome.reportEdit) { onDismiss(); reporting = true }
+            MenuAction(chrome.reportDismiss) { onDismiss(); model.dismissReportedIssue(card.id) }
         }
-        extra(onDismiss)
+        after(onDismiss)
     }
     if (reporting) {
         ReportIssueDialog(model, card, learnerInput) { reporting = false }
@@ -114,15 +113,19 @@ fun ReportableCard(
         ),
     ) {
         content()
-        CardMenu(model, card, open, captured, onDismiss = { open = false }) { close ->
-            DropdownMenuItem(
-                text = { Text(chrome.sleep) },
-                onClick = {
+        CardMenu(
+            model = model,
+            card = card,
+            expanded = open,
+            learnerInput = captured,
+            onDismiss = { open = false },
+            after = { close ->
+                MenuAction(chrome.sleep) {
                     close()
                     model.updateBox { BoxEngine.setSuspended(it, card.id, true) }
-                },
-            )
-        }
+                }
+            },
+        )
     }
 }
 
@@ -130,6 +133,9 @@ fun ReportableCard(
  * The report itself: the word it is about, a comment that is optional and says so, and what
  * they typed — shown rather than offered, because a learner who has to tick a box to attach
  * their answer will not.
+ *
+ * Opened over a report already filed it carries that comment, so rewriting it is an edit
+ * rather than a retype.
  */
 @Composable
 private fun ReportIssueDialog(
@@ -139,7 +145,7 @@ private fun ReportIssueDialog(
     onDismiss: () -> Unit,
 ) {
     val chrome = model.chrome
-    var comment by remember { mutableStateOf("") }
+    var comment by remember { mutableStateOf(model.reportedIssue(card.id)?.comment.orEmpty()) }
     val focus = remember { FocusRequester() }
     LaunchedEffect(Unit) { focus.requestFocus() }
 
@@ -183,7 +189,12 @@ private fun ReportIssueDialog(
         },
         confirmButton = {
             TextButton(onClick = {
-                model.reportIssue(card.id, comment, learnerInput)
+                // why: an edit is filed from a row, where nothing was being answered — the
+                // answer the first report rode in with must not be dropped for that.
+                val typed = learnerInput.ifBlank {
+                    model.reportedIssue(card.id)?.learnerInput.orEmpty()
+                }
+                model.reportIssue(card.id, comment, typed)
                 onDismiss()
             }) { Text(chrome.reportSend) }
         },

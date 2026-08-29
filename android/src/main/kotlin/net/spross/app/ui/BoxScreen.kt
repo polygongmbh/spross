@@ -64,7 +64,7 @@ fun BoxScreen(model: AppModel, openAt: String? = null) {
 private sealed interface BoxItem {
     data class Group(val section: AreaGroupSection) : BoxItem
     data class Area(val area: String) : BoxItem
-    data object Feedback : BoxItem
+    data object OwnContent : BoxItem
     data object Settings : BoxItem
 }
 
@@ -104,18 +104,22 @@ private fun BoxBrowserScreen(
     var openAreas by remember { mutableStateOf(setOfNotNull(openAt)) }
     var scrollTo by remember { mutableStateOf(openAt) }
     var searching by remember { mutableStateOf(false) }
+    // The own-word form, on whatever draft opened it: blank from the section's add button,
+    // a copy of a card or a word being rewritten from a row's menu.
+    var writing by remember { mutableStateOf<OwnWordDraft?>(null) }
     val listState = rememberLazyListState()
 
-    val items = remember(sections, openGroups, areaNames) {
+    val items = remember(sections, openGroups) {
         buildList {
             sections.forEach { section ->
                 add(BoxItem.Group(section))
                 if (section.id in openGroups) section.areas.forEach { add(BoxItem.Area(it)) }
             }
-            // why: no manifest group owns the learner's own words, and none should — they
-            // stand on their own, after everything the catalog brought.
-            if (OwnWords.AREA in areaNames) add(BoxItem.Area(OwnWords.AREA))
-            add(BoxItem.Feedback)
+            // why: the learner's own words get no shelf of their own — they are packed the
+            // moment they are written, so a shelf's controls and progress bar would say
+            // nothing over them. They stand in the section below instead, after everything
+            // the catalog brought. Kern still lists the area; only the box stops drawing it.
+            add(BoxItem.OwnContent)
             add(BoxItem.Settings)
         }
     }
@@ -128,10 +132,30 @@ private fun BoxBrowserScreen(
 
     LaunchedEffect(scrollTo, items) {
         val target = scrollTo ?: return@LaunchedEffect
-        val index = items.indexOfFirst { it is BoxItem.Area && it.area == target }
+        // The own words are the one "area" with no shelf: a reveal aimed at them lands on
+        // the section that lists them instead.
+        val index = items.indexOfFirst { item ->
+            if (target == OwnWords.AREA) {
+                item is BoxItem.OwnContent
+            } else {
+                item is BoxItem.Area && item.area == target
+            }
+        }
         // why: revealing is two moves — unfold, then bring the shelf up to the thumb.
         if (index >= 0) listState.animateScrollToItem(index)
         scrollTo = null
+    }
+
+    writing?.let { draft ->
+        OwnWordForm(
+            model = model,
+            initial = draft,
+            // why: the box comes back on the section the word landed in — written, rewritten
+            // or still half-written, that is the one place it can now be found.
+            onDone = { writing = null; reveal(OwnWords.AREA) },
+            onCancel = { writing = null },
+        )
+        return
     }
 
     if (searching) {
@@ -200,9 +224,10 @@ private fun BoxBrowserScreen(
                                 openAreas + item.area
                             }
                         },
+                        onWriteOwn = { writing = it },
                     )
 
-                    BoxItem.Feedback -> BoxFeedbackSection(model)
+                    BoxItem.OwnContent -> BoxOwnSection(model, onWriteOwn = { writing = it })
 
                     BoxItem.Settings -> BoxSettingsSection(model, catalog, box)
                 }
@@ -214,7 +239,7 @@ private fun BoxBrowserScreen(
 private fun itemKey(item: BoxItem): String = when (item) {
     is BoxItem.Group -> "group:${item.section.id}"
     is BoxItem.Area -> "area:${item.area}"
-    BoxItem.Feedback -> "feedback"
+    BoxItem.OwnContent -> "own"
     BoxItem.Settings -> "settings"
 }
 

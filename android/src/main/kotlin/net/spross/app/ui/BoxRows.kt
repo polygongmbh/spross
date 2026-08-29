@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -33,6 +32,7 @@ import net.spross.app.AppModel
 import net.spross.app.CardDisplay
 import net.spross.app.Chrome
 import net.spross.app.audio.Pronouncer
+import net.spross.app.removeOwnWord
 import net.spross.app.reportedIssue
 import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxEngine
@@ -50,18 +50,25 @@ import net.spross.kern.model.shownArticle
  * The row itself is the audio control — no speaker icon competing with the wake and pack
  * controls for width; a plain tap anywhere on it speaks the target, whether or not reading
  * aloud is switched on (a tap is a request, never an autoplay). A long press opens the
- * word's own menu — what is wrong with it, and for a word the learner wrote, taking it back
- * out — and a reported word wears its flag beside whatever standing it already had.
+ * word's own menu ([BoxRowMenu]) — everything a learner might want to do to this one word —
+ * and a reported word wears its flag beside whatever standing it already had.
  *
  * [pack] is the row's one variation, and it is offered ONLY where a single word can be
  * packed — a search hit, which the learner went looking for by name. In an area listing no
  * such offer is made (the shelf's own control packs there), which is why the offer is a
  * parameter rather than something the row works out. Taking a word back OUT of the queue
  * needs no such parameter: [BoxEngine.dequeue] is offered wherever a queued row is drawn.
+ * The menu offers both regardless: a menu opened by name is the learner naming this word.
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun BoxCardRow(model: AppModel, card: Card, pack: (() -> Unit)? = null) {
+fun BoxCardRow(
+    model: AppModel,
+    card: Card,
+    pack: (() -> Unit)? = null,
+    /** Opens the own-word form — on a copy of this card, or on the word itself. */
+    onWriteOwn: ((OwnWordDraft) -> Unit)? = null,
+) {
     val chrome = model.chrome
     val state = model.box ?: return
     val standing = BoxBrowser.cardRowState(state, card.id, packOffered = pack != null)
@@ -69,7 +76,7 @@ fun BoxCardRow(model: AppModel, card: Card, pack: (() -> Unit)? = null) {
     // why: only a word the learner wrote is theirs to delete — a catalog word can be put
     // to sleep, never removed, so it grows no such gesture at all.
     val remove: (() -> Unit)? = when {
-        OwnWords.owns(card.id) -> ({ model.updateBox { BoxEngine.removeOwnWord(it, card.id) } })
+        OwnWords.owns(card.id) -> ({ model.removeOwnWord(card.id) })
         else -> null
     }
     var menuOpen by remember(card.id) { mutableStateOf(false) }
@@ -143,15 +150,13 @@ fun BoxCardRow(model: AppModel, card: Card, pack: (() -> Unit)? = null) {
             Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.reported })
         }
         CardStanding(model, card, standing, pack, chrome)
-        // Nothing was being answered here, so the report carries no typed answer.
-        CardMenu(model, card, menuOpen, learnerInput = "", onDismiss = { menuOpen = false }) { close ->
-            remove?.let {
-                DropdownMenuItem(
-                    text = { Text(chrome.ownWordRemove) },
-                    onClick = { close(); it() },
-                )
-            }
-        }
+        BoxRowMenu(
+            model = model,
+            card = card,
+            expanded = menuOpen,
+            onDismiss = { menuOpen = false },
+            onWriteOwn = onWriteOwn,
+        )
     }
 }
 

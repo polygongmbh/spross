@@ -8,11 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -26,45 +24,52 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardCapitalization
 import net.spross.app.AppModel
+import net.spross.app.ownWordIds
+import net.spross.app.saveOwnWord
 import net.spross.kern.box.BoxEngine
 
 /**
- * Writing down a word the catalog has none of. Reached only from a search that found
- * nothing — the moment the learner has already proved the box cannot answer them.
+ * Writing down a word the catalog has none of — or rewriting one already written.
  *
- * Both sides are asked for, because a word is only studiable as a pair. The KNOWN side
- * arrives prefilled from [query]: someone typing into a search box is far more often
- * naming what they want to be able to SAY than a form they already met in the wild — and
- * so the cursor belongs on the half that is actually missing.
- *
- * One side alone is still taken, as a SUGGESTION: the learner noticed a gap and only has
- * the half they came with. It is never scheduled — there is nothing to ask them yet — and
- * waits in the feedback section to be sent on to the catalog ([BoxFeedbackSection]).
+ * Both sides are asked for, because a word is only studiable as a pair, and each field says
+ * which language it wants with that language's flag in front of its own name for itself.
+ * One side alone is still taken, as a SUGGESTION: the learner noticed a gap and only has the
+ * half they came with. It is never scheduled — there is nothing to ask them yet — and waits
+ * in the own-content section to be sent on to the catalog ([BoxOwnSection]).
  *
  * What happens to the word is kern's: [BoxEngine.addOwnWord] mints its id from the learnt
- * side, stores it under the pair's two languages, and PACKS it — the learner named this
- * word themselves, so waiting for growth to walk to it would be absurd.
+ * side, stores it under the pair's two languages, and PACKS it — the learner named this word
+ * themselves, so waiting for growth to walk to it would be absurd. An EDIT
+ * ([BoxEngine.updateOwnWord]) mints nothing: the id stays, and with it the schedule and the
+ * queue slot, so fixing a typo never costs the progress made on the word.
+ *
+ * [initial] is what the form opens on — blank, a query, a card copied over, or a word
+ * being rewritten — and [OwnWordDraft.editing] is what tells the last of those from the rest.
  */
 @Composable
 fun OwnWordForm(
     model: AppModel,
-    query: String,
-    /** Called once the word is in the box; true where it joined a card rather than waiting. */
-    onAdded: (joined: Boolean) -> Unit,
+    initial: OwnWordDraft,
+    /** Called once the word is in the box, studiable or still waiting for its other half. */
+    onDone: () -> Unit,
     onCancel: () -> Unit,
 ) {
     val chrome = model.chrome
     val catalog = model.catalog ?: return
     val stamp = model.box?.joinStamp ?: return
-    var draft by remember { mutableStateOf(OwnWordDraft(known = query)) }
+    var draft by remember { mutableStateOf(initial) }
     val learningFocus = remember { FocusRequester() }
+    val rewriting = draft.editing != null
     BackHandler { onCancel() }
 
-    LaunchedEffect(Unit) { learningFocus.requestFocus() }
+    // why: the cursor belongs on the half that is actually missing — a form opened from a
+    // failed search already carries the known side. A rewrite asks for no focus at all: the
+    // learner came to change one of the two fields and has not said which.
+    LaunchedEffect(Unit) { if (!rewriting) learningFocus.requestFocus() }
 
-    fun languageName(code: String): String = catalog.languages[code]?.name ?: code
+    fun label(code: String): String =
+        chrome.ownWordInLanguage.format(flaggedLanguage(catalog.languages[code], code))
 
     Column(
         modifier = Modifier
@@ -75,30 +80,36 @@ fun OwnWordForm(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
-                chrome.ownWordTitle,
+                if (rewriting) chrome.ownWordEdit else chrome.ownWordTitle,
                 style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier.weight(1f),
             )
             TextButton(onClick = onCancel) { Text(chrome.cancel) }
         }
         WordField(
-            label = chrome.ownWordInLanguage.format(languageName(stamp.source)),
+            label = label(stamp.source),
             value = draft.known,
             onValueChange = { draft = draft.copy(known = it) },
             imeAction = ImeAction.Next,
         )
+        // Between the two fields, where what it does is visible: for the learner who filled
+        // them in the wrong way round, which is a retype of both otherwise.
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+            TextButton(onClick = { draft = draft.swapped() }) {
+                Text("⇅ ${chrome.ownWordSwap}", style = MaterialTheme.typography.bodySmall)
+            }
+        }
         WordField(
-            label = chrome.ownWordInLanguage.format(languageName(stamp.target)),
+            label = label(stamp.target),
             value = draft.learning,
             onValueChange = { draft = draft.copy(learning = it) },
             imeAction = ImeAction.Next,
             modifier = Modifier.focusRequester(learningFocus),
         )
-        WordField(
+        PictureField(
             label = chrome.ownWordPicture,
             value = draft.emoji,
-            onValueChange = { draft = draft.copy(emoji = it) },
-            imeAction = ImeAction.Done,
+            onValueChange = { draft = draft.withPicture(it) },
         )
         Text(
             if (draft.isPair) chrome.ownWordsExplainer else chrome.ownWordSuggestion,
@@ -107,54 +118,17 @@ fun OwnWordForm(
         )
         Button(
             onClick = {
-                model.updateBox { state ->
-                    val word = draft.word(
-                        source = stamp.source,
-                        target = stamp.target,
-                        taken = state.ownWords.mapTo(mutableSetOf()) { it.id },
-                    ) ?: return@updateBox state
-                    BoxEngine.addOwnWord(state, word, model.now())
-                }
-                onAdded(draft.isPair)
+                val word = draft.word(
+                    source = stamp.source,
+                    target = stamp.target,
+                    taken = model.ownWordIds,
+                ) ?: return@Button
+                model.saveOwnWord(word, rewriting = rewriting)
+                onDone()
             },
             enabled = draft.hasAnything,
             modifier = Modifier.fillMaxWidth().pressSpring(),
             shape = MaterialTheme.shapes.small,
-        ) { Text(chrome.ownWordAdd) }
-    }
-}
-
-/**
- * One labeled field.
- *
- * why: no autocapitalization and no autocorrect — a word is not a sentence, and the
- * automatic capital puts one on a Swahili noun, which is simply the wrong spelling of the
- * word being stored. Whoever writes German capitalizes it themselves.
- */
-@Composable
-private fun WordField(
-    label: String,
-    value: String,
-    onValueChange: (String) -> Unit,
-    imeAction: ImeAction,
-    modifier: Modifier = Modifier,
-) {
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
-        Text(
-            label,
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        OutlinedTextField(
-            value = value,
-            onValueChange = onValueChange,
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                capitalization = KeyboardCapitalization.None,
-                autoCorrectEnabled = false,
-                imeAction = imeAction,
-            ),
-            modifier = modifier.fillMaxWidth(),
-        )
+        ) { Text(if (rewriting) chrome.ownWordSave else chrome.ownWordAdd) }
     }
 }
