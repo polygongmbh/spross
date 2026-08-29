@@ -726,13 +726,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eigene Wörter stehen in ihrem eigenen Bereich. Ein wachsender Katalog rührt sie nicht an."
+            "value" : "Eigene Wörter gehören dir allein. Ein wachsender Katalog rührt sie nicht an."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your own words stand in an area of their own. A growing catalog never touches them."
+            "value" : "Your own words are yours alone. A growing catalog never touches them."
           }
         }
       }

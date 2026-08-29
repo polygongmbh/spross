@@ -234,8 +234,8 @@ internal object ChromeDe : Chrome {
     override val boxNav = "Box"
     override val boxSubtitle = "%s von %s Karten in Arbeit"
     override val ownWordsTitle = "Eigene Wörter"
-    override val ownWordsExplainer = "Eigene Wörter stehen in ihrem eigenen Bereich. Ein " +
-        "wachsender Katalog rührt sie nicht an."
+    override val ownWordsExplainer = "Eigene Wörter gehören dir allein. Ein wachsender " +
+        "Katalog rührt sie nicht an."
     override val packArea = "Pack in die Box (%s)"
     override val packDone = "Alles eingepackt"
     override val packWord = "Dieses Wort einpacken"

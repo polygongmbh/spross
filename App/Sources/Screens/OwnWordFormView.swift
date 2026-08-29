@@ -148,16 +148,13 @@ struct OwnWordFormView: View {
     }
 
     private var picture: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
-            quickPicks
-            field("box.ownWords.picture", text: $emoji, field: .emoji)
-                // why: the field takes anything a keyboard can send, so the cap is
-                // enforced on what lands in it rather than on what may be typed.
-                .onChange(of: emoji) { _, typed in
-                    let capped = String(typed.prefix(Int(OwnWords.shared.MAX_EMOJI)))
-                    if capped != typed { emoji = capped }
-                }
-        }
+        field("box.ownWords.picture", text: $emoji, field: .emoji) { quickPicks }
+            // why: the field takes anything a keyboard can send, so the cap is
+            // enforced on what lands in it rather than on what may be typed.
+            .onChange(of: emoji) { _, typed in
+                let capped = String(typed.prefix(Int(OwnWords.shared.MAX_EMOJI)))
+                if capped != typed { emoji = capped }
+            }
     }
 
     /// The commonest pictures, one tap away — the emoji keyboard is a long trip for
@@ -188,12 +185,19 @@ struct OwnWordFormView: View {
         .scrollIndicators(.hidden)
     }
 
-    private func field(_ label: LocalizedStringKey, text: Binding<String>,
-                       field: Field) -> some View {
+    private func field<Between: View>(
+        _ label: LocalizedStringKey,
+        text: Binding<String>,
+        field: Field,
+        // why: the picture's taps belong UNDER its own label — offered above it they
+        // read as one more thing about the language field before them.
+        @ViewBuilder between: () -> Between = { EmptyView() },
+    ) -> some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
             Text(label)
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
+            between()
             TextField(text: text) { EmptyView() }
                 .font(DL.Fonts.body)
                 .foregroundStyle(Color.dlTextPrimary)

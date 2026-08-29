@@ -231,8 +231,8 @@ internal object ChromeEn : Chrome {
     override val boxNav = "Box"
     override val boxSubtitle = "%1\$s of %2\$s cards in progress"
     override val ownWordsTitle = "Your own words"
-    override val ownWordsExplainer = "Your own words stand in an area of their own. A " +
-        "growing catalog never touches them."
+    override val ownWordsExplainer = "Your own words are yours alone. A growing catalog " +
+        "never touches them."
     override val packArea = "Add to box (%s)"
     override val packDone = "All packed"
     override val packWord = "Pack this word"
