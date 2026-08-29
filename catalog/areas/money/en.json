@@ -20,6 +20,7 @@
   "how-much-does-this-cost": { "text": "How much does this cost?" },
   "that-is-too-expensive": { "text": "That is too expensive." },
   "i-have-no-money": { "text": "I have no money." },
-  "can-i-pay-by-card": { "text": "Can I pay by card?" }
+  "can-i-pay-by-card": { "text": "Can I pay by card?" },
+  "ive-already-paid": { "text": "I've already paid." }
  }
 }

@@ -17,5 +17,6 @@
  { "slug": "how-much-does-this-cost", "kind": "phrase", "emoji": "💶", "components": ["cost"] },
  { "slug": "that-is-too-expensive", "kind": "phrase", "emoji": "💸", "components": ["expensive"] },
  { "slug": "i-have-no-money", "kind": "phrase", "emoji": "🪙", "components": ["money"] },
- { "slug": "can-i-pay-by-card", "kind": "phrase", "emoji": "💳", "components": ["bank-card", "pay"] }
+ { "slug": "can-i-pay-by-card", "kind": "phrase", "emoji": "💳", "components": ["bank-card", "pay"] },
+ { "slug": "ive-already-paid", "kind": "phrase", "components": ["pay"] }
 ]

@@ -43,6 +43,7 @@
   },
   "that-is-too-expensive": { "text": "C'est trop cher." },
   "i-have-no-money": { "text": "Je n'ai pas d'argent." },
-  "can-i-pay-by-card": { "text": "Est-ce que je peux payer par carte ?", "variants": ["Je peux payer par carte ?"] }
+  "can-i-pay-by-card": { "text": "Est-ce que je peux payer par carte ?", "variants": ["Je peux payer par carte ?"] },
+  "ive-already-paid": { "text": "J'ai déjà payé." }
  }
 }

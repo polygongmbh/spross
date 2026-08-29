@@ -32,6 +32,7 @@
   "how-much-does-this-cost": { "text": "Wie viel kostet das?" },
   "that-is-too-expensive": { "text": "Das ist zu teuer." },
   "i-have-no-money": { "text": "Ich habe kein Geld." },
-  "can-i-pay-by-card": { "text": "Kann ich mit Karte zahlen?", "variants": ["Kann ich mit Karte bezahlen?"] }
+  "can-i-pay-by-card": { "text": "Kann ich mit Karte zahlen?", "variants": ["Kann ich mit Karte bezahlen?"] },
+  "ive-already-paid": { "text": "Ich habe schon bezahlt." }
  }
 }

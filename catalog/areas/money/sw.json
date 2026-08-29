@@ -23,6 +23,7 @@
   "how-much-does-this-cost": { "text": "Hii ni bei gani?" },
   "that-is-too-expensive": { "text": "Hii ni ghali mno.", "variants": ["Hii ni ghali sana."] },
   "i-have-no-money": { "text": "Sina pesa." },
-  "can-i-pay-by-card": { "text": "Naweza kulipa kwa kadi?" }
+  "can-i-pay-by-card": { "text": "Naweza kulipa kwa kadi?" },
+  "ive-already-paid": { "text": "Nimeshalipa." }
  }
 }
