@@ -64,6 +64,7 @@ fun BoxScreen(model: AppModel, openAt: String? = null) {
 private sealed interface BoxItem {
     data class Group(val section: AreaGroupSection) : BoxItem
     data class Area(val area: String) : BoxItem
+    data object Feedback : BoxItem
     data object Settings : BoxItem
 }
 
@@ -114,6 +115,7 @@ private fun BoxBrowserScreen(
             // why: no manifest group owns the learner's own words, and none should — they
             // stand on their own, after everything the catalog brought.
             if (OwnWords.AREA in areaNames) add(BoxItem.Area(OwnWords.AREA))
+            add(BoxItem.Feedback)
             add(BoxItem.Settings)
         }
     }
@@ -200,6 +202,8 @@ private fun BoxBrowserScreen(
                         },
                     )
 
+                    BoxItem.Feedback -> BoxFeedbackSection(model)
+
                     BoxItem.Settings -> BoxSettingsSection(model, catalog, box)
                 }
             }
@@ -210,6 +214,7 @@ private fun BoxBrowserScreen(
 private fun itemKey(item: BoxItem): String = when (item) {
     is BoxItem.Group -> "group:${item.section.id}"
     is BoxItem.Area -> "area:${item.area}"
+    BoxItem.Feedback -> "feedback"
     BoxItem.Settings -> "settings"
 }
 

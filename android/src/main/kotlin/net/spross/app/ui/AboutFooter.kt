@@ -149,10 +149,16 @@ private fun Context.openObtainium(): Boolean =
  * A mailto: through ACTION_SENDTO, so only mail apps answer it. The build rides in the
  * subject — a report is actionable once it names the version it came from — and a device
  * with no mail client stays put instead of crashing.
+ *
+ * [body] is what the catalog feedback fills in ([BoxFeedbackSection]); the footer's own
+ * door opens an empty mail, since the learner is the one with something to say there.
  */
-private fun Context.openFeedbackMail(subject: String) {
-    val uri = Uri.parse("mailto:${Legal.CONTACT_ADDRESS}?subject=${Uri.encode(subject)}")
-    runCatching { startActivity(Intent(Intent.ACTION_SENDTO, uri)) }
+internal fun Context.openFeedbackMail(subject: String, body: String? = null) {
+    val query = "subject=${Uri.encode(subject)}" +
+        (body?.let { "&body=${Uri.encode(it)}" } ?: "")
+    runCatching {
+        startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:${Legal.CONTACT_ADDRESS}?$query")))
+    }
 }
 
 /**
