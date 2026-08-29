@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.6.0 — 2026-08-29
+
 - **Say what is wrong with a word, without leaving the round.** Press and hold a card once
   its answer is out: you can report a problem with it — a wrong translation, or your answer
   being a synonym the catalog ought to accept — and what you typed goes along with the
