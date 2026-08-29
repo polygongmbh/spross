@@ -10,9 +10,14 @@ extension AppModel {
     /// The one area own words live in; not a catalog folder name.
     var ownArea: String { OwnWords.shared.AREA }
 
-    /// Whether any word the learner wrote joins this profile — what puts the
-    /// area on the Box screen at all.
-    var hasOwnWords: Bool { areaNames.contains(ownArea) }
+    /// Every word the learner wrote, in the order they wrote them — the ones that
+    /// joined a card and the suggestions still waiting for their other half alike.
+    var ownWords: [OwnWord] { box?.ownWords ?? [] }
+
+    /// One of them by id, or nil for a catalog word.
+    func ownWord(_ cardID: String) -> OwnWord? {
+        box?.ownWords.first { $0.id == cardID }
+    }
 
     func isOwnWord(_ cardID: String) -> Bool { OwnWords.shared.owns(cardId: cardID) }
 
@@ -31,13 +36,11 @@ extension AppModel {
         // written only in the known language has nothing else to be named after.
         let id = OwnWords.shared.mint(text: learningText.isEmpty ? knownText : learningText,
                                       taken: Set(box.ownWords.map(\.id)))
-        var texts: [String: String] = [:]
-        if !knownText.isEmpty { texts[box.joinStamp.source] = knownText }
-        if !learningText.isEmpty { texts[box.joinStamp.target] = learningText }
         let word = OwnWords.shared.write(id: id,
                                         kind: OwnWords.shared.DEFAULT_KIND,
-                                        emoji: emoji.trimmed.isEmpty ? nil : emoji.trimmed,
-                                        texts: texts)
+                                        emoji: picture(emoji),
+                                        texts: texts(known: knownText, learning: learningText,
+                                                     onto: [:]))
         mutate {
             $0 = BoxEngine.shared.addOwnWord(state: $0, word: word,
                                              nowEpochMillis: Date().epochMillis)
@@ -45,10 +48,43 @@ extension AppModel {
         return id
     }
 
+    /// Rewrite one the learner already wrote, keeping its id — and with the id its
+    /// schedule, its queue slot and anything filed against it (`BoxEngine.updateOwnWord`).
+    /// Both sides blank would be a word that says nothing, so it is refused rather
+    /// than stored empty; deleting is `removeOwnWord`.
+    func updateOwnWord(_ word: OwnWord, known: String, learning: String, emoji: String) {
+        let knownText = known.trimmed
+        let learningText = learning.trimmed
+        guard !knownText.isEmpty || !learningText.isEmpty else { return }
+        let rewritten = OwnWords.shared.write(id: word.id, kind: word.kind,
+                                              emoji: picture(emoji),
+                                              texts: texts(known: knownText,
+                                                           learning: learningText,
+                                                           onto: word.texts))
+        mutate { $0 = BoxEngine.shared.updateOwnWord(state: $0, word: rewritten) }
+    }
+
     /// Take one back out, with its schedule and its place in the queue. Reaches
     /// own words only — Kern refuses the rest.
     func removeOwnWord(_ cardID: String) {
         mutate { $0 = BoxEngine.shared.removeOwnWord(state: $0, wordId: cardID) }
+    }
+
+    /// The two sides written onto whatever the word already carried. Editing under one
+    /// profile must not throw away a half written under another: `texts` is keyed by
+    /// language exactly as the catalog keys a concept, and a language this pair cannot
+    /// see is still a language the word joins (`OwnWord`).
+    private func texts(known: String, learning: String,
+                       onto stored: [String: String]) -> [String: String] {
+        guard let box else { return stored }
+        var texts = stored
+        texts[box.joinStamp.source] = known.isEmpty ? nil : known
+        texts[box.joinStamp.target] = learning.isEmpty ? nil : learning
+        return texts
+    }
+
+    private func picture(_ emoji: String) -> String? {
+        emoji.trimmed.isEmpty ? nil : emoji.trimmed
     }
 }
 

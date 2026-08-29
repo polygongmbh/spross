@@ -1,10 +1,11 @@
 import SwiftUI
 import SprossKern
 
-/// Browse the box: areas with their stats, per-area "Pack in die Box",
-/// card lists with phase badges, and the settings block. The magnifier in the
-/// bar opens the same box by typing (`BoxSearchView`), which hands an area back
-/// here to be revealed.
+/// Browse the box: areas with their stats, per-area "Pack in die Box", card lists
+/// with phase badges, then what the learner wrote themselves
+/// (`BoxOwnContentSection`) and the settings block. The magnifier in the bar opens
+/// the same box by typing (`BoxSearchView`), which hands an area back here to be
+/// revealed.
 struct BoxView: View {
     let model: AppModel
     /// The area to open on, when the box was reached by naming one — a tree in
@@ -51,15 +52,11 @@ struct BoxView: View {
                             }
                         }
                     }
-                    // why: no manifest group owns the learner's own words, and none
-                    // should — they stand on their own, after everything the catalog
-                    // brought.
-                    if model.hasOwnWords {
-                        BoxAreaSection(model: model, area: model.ownArea,
-                                       expanded: fold(of: model.ownArea))
-                            .id(model.ownArea)
-                    }
-                    BoxFeedbackSection(model: model)
+                    // why: no manifest group owns what the learner wrote, and none
+                    // should — it stands on its own, after everything the catalog
+                    // brought, and unlike a shelf it is always there.
+                    BoxOwnContentSection(model: model)
+                        .id(model.ownArea)
                     BoxSettingsSection(model: model)
                 }
                 .padding(DL.Space.xl)
@@ -108,13 +105,16 @@ struct BoxView: View {
     }
 
     /// A search hit names the area it lives in: the group unfolds, the area
-    /// unfolds, and the box scrolls it into reach. The own-words area sits in no
-    /// group, so there is simply nothing to unfold above it.
+    /// unfolds, and the box scrolls it into reach. Own words have no shelf to
+    /// unfold — they list in the own-content section, which stands open always,
+    /// so naming their area is only ever a scroll.
     private func reveal(area: String) {
-        let group = model.areaGroupSections.first { $0.areas.contains(area) }
-        withAnimation(.easeInOut(duration: 0.2)) {
-            if let group { expandedGroups.insert(group.id) }
-            expandedAreas.insert(area)
+        if area != model.ownArea {
+            let group = model.areaGroupSections.first { $0.areas.contains(area) }
+            withAnimation(.easeInOut(duration: 0.2)) {
+                if let group { expandedGroups.insert(group.id) }
+                expandedAreas.insert(area)
+            }
         }
         scrollTarget = area
     }

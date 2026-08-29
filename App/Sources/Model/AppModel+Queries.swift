@@ -133,6 +133,12 @@ extension AppModel {
         mutate { $0 = BoxEngine.shared.setSuspended(state: $0, cardId: cardID, suspended: suspended) }
     }
 
+    /// Drop ONE card's schedule, keeping the card and anything filed against it —
+    /// the single-word answer to a reset (`BoxEngine.forget`).
+    func forget(cardID: String) {
+        mutate { $0 = BoxEngine.shared.forget(state: $0, cardId: cardID) }
+    }
+
     /// Take a packed word back out of the queue by name — the opposite of `enqueueCard`,
     /// offered only where a single word was packed by name (`BoxCardRow.pack`). A no-op
     /// once a round has already brought the card in (`BoxEngine.dequeue`).
@@ -223,6 +229,10 @@ extension AppModel {
     func areaStats(_ name: String) -> AreaStatistics? {
         stats?.areas.first { $0.name == name }
     }
+
+    /// One card by id, or nil where this profile's join holds none — a suggestion's
+    /// id, or a word written in a pair this box does not teach.
+    func card(_ cardID: String) -> Card? { box?.cards[cardID] }
 
     func cards(inArea area: String) -> [Card] {
         guard let box else { return [] }

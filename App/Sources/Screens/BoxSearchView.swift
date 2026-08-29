@@ -58,10 +58,12 @@ struct BoxSearchView: View {
         // why: the reveal waits for the form to be gone — two sheets closing at
         // once leaves the box scrolling behind one of them.
         .sheet(isPresented: $writingOwnWord, onDismiss: sendToTheNewWord) {
-            OwnWordFormView(model: model, query: query) { _ in wrote = true }
+            OwnWordFormView(model: model, seed: .query(query)) { _ in wrote = true }
         }
     }
 
+    /// The written word lists in the Box's own-content section, so that is where the
+    /// box is sent — named by the own area, which is the one name both screens share.
     private func sendToTheNewWord() {
         guard wrote else { return }
         reveal(model.ownArea)

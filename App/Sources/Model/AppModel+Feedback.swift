@@ -29,15 +29,20 @@ extension AppModel {
         mutate { $0 = BoxEngine.shared.dismissReportedIssue(state: $0, cardId: cardID) }
     }
 
-    /// Words the learner wrote down with only one half, newest last. They join
-    /// nothing and are never scheduled (`OwnWords.cards`), so no card row can list
-    /// them — this is the only place they are visible.
-    var suggestions: [OwnWord] {
-        guard let box, let target = targetLanguage else { return [] }
-        return box.ownWords.filter { $0.isSuggestion(source: sourceLanguage, target: target) }
+    /// Problems filed against CATALOG cards, newest first — what the Box lists back
+    /// for review. Own words are left out on purpose: a reported one already stands
+    /// in the list above wearing its flag, and naming it twice in one section reads
+    /// as two different problems.
+    var catalogReports: [ReportedIssue] {
+        guard let box else { return [] }
+        return box.reportedIssues.values
+            .filter { !OwnWords.shared.owns(cardId: $0.cardId) }
+            .sorted { $0.reportedAt.toEpochMilliseconds() > $1.reportedAt.toEpochMilliseconds() }
     }
 
-    /// The half a suggestion does carry, whichever language it is in.
+    /// The half a suggestion does carry, whichever language it is in. A suggestion
+    /// joins nothing and is never scheduled (`OwnWords.cards`), so the box holds no
+    /// card to read it off.
     func suggestionText(_ word: OwnWord) -> String {
         word.texts[targetLanguage ?? ""] ?? word.texts[sourceLanguage] ?? ""
     }

@@ -11,11 +11,17 @@ import SprossKern
 ///
 /// Filing changes nothing about the schedule. Putting the word to sleep is the
 /// menu's OTHER entry, deliberately not a switch in here.
+///
+/// Reopened on a report already on file it arrives carrying what was written, and
+/// sending replaces it — one report per card, never a second one beside the first.
 struct ReportIssueSheet: View {
     let model: AppModel
     let card: Card
     /// What the learner had typed when they opened this; empty on recognition.
     let learnerInput: String
+    /// The comment already on file, when the sheet was opened to EDIT a report
+    /// rather than file one. Empty otherwise.
+    var filed: String = ""
 
     @Environment(\.dismiss) private var dismiss
     @State private var comment = ""
@@ -49,7 +55,10 @@ struct ReportIssueSheet: View {
             }
         }
         .tint(.dlAccent)
-        .onAppear { focused = true }
+        .onAppear {
+            comment = filed
+            focused = true
+        }
     }
 
     /// The word as it stood, so the report names what it is about without the

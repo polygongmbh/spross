@@ -1,51 +1,73 @@
 import SwiftUI
 import SprossKern
 
-/// Writing down a word the catalog has none of. Reached only from a search that
-/// found nothing — the moment the learner has already proved the box cannot
-/// answer them.
+/// Writing down a word the catalog has none of, or rewriting one already written.
 ///
-/// Both sides are asked for, because a word is only studiable as a pair. The
-/// known side arrives prefilled from the query: someone typing into a search box
-/// is far more often naming what they want to be able to SAY than a form they
-/// already met in the wild.
+/// Both sides are asked for, because a word is only studiable as a pair. Where the
+/// form was reached from a search that found nothing, the known side arrives
+/// prefilled from the query: someone typing into a search box is far more often
+/// naming what they want to be able to SAY than a form they already met in the wild.
 ///
 /// One side alone is still taken, as a SUGGESTION: the learner noticed a gap and
 /// only has the half they came with. It is never scheduled — there is nothing to
-/// ask them yet — and waits in the feedback section to be sent on to the catalog
-/// (`BoxFeedbackSection`, `OwnWord`).
+/// ask them yet — and waits in the Box's own-content section to be sent on to the
+/// catalog (`BoxOwnContentSection`, `OwnWord`).
+///
+/// Editing keeps the word's id, and with it its schedule and its place in the
+/// queue (`BoxEngine.updateOwnWord`): a typo fixed must not cost the progress made
+/// on the word.
 struct OwnWordFormView: View {
     let model: AppModel
-    /// What the search could not find; the known-language field starts from it.
-    let query: String
-    /// Called with the new card's id once the word is in the box.
-    let added: (String) -> Void
+    /// What the form opens on.
+    let seed: Seed
+    /// Called with the card's id once a NEW word is in the box.
+    var added: (String) -> Void = { _ in }
+
+    /// The three ways in. Writing from scratch carries at most a failed query; a
+    /// catalog word hands over both of its sides; an own word is rewritten in place.
+    enum Seed {
+        case query(String)
+        case card(Card)
+        case editing(OwnWord)
+    }
 
     @Environment(\.dismiss) private var dismiss
 
     @State private var known: String
-    @State private var learning = ""
-    @State private var emoji = ""
+    @State private var learning: String
+    @State private var emoji: String
     @FocusState private var focus: Field?
 
     private enum Field { case known, learning, emoji }
 
-    init(model: AppModel, query: String, added: @escaping (String) -> Void) {
+    init(model: AppModel, seed: Seed, added: @escaping (String) -> Void = { _ in }) {
         self.model = model
-        self.query = query
+        self.seed = seed
         self.added = added
-        _known = State(initialValue: query)
+        switch seed {
+        case .query(let query):
+            _known = State(initialValue: query)
+            _learning = State(initialValue: "")
+            _emoji = State(initialValue: "")
+        case .card(let card):
+            _known = State(initialValue: card.source.text)
+            _learning = State(initialValue: card.target.text)
+            _emoji = State(initialValue: card.emoji ?? "")
+        case .editing(let word):
+            _known = State(initialValue: word.texts[model.sourceLanguage] ?? "")
+            _learning = State(initialValue: word.texts[model.targetLanguage ?? ""] ?? "")
+            _emoji = State(initialValue: word.emoji ?? "")
+        }
     }
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: DL.Space.xl) {
-                    field("box.ownWords.inLanguage \(languageName(model.sourceLanguage))",
-                          text: $known, field: .known)
-                    field("box.ownWords.inLanguage \(languageName(model.targetLanguage ?? ""))",
-                          text: $learning, field: .learning)
-                    field("box.ownWords.picture", text: $emoji, field: .emoji)
+                    field(label(model.sourceLanguage), text: $known, field: .known)
+                    swapButton
+                    field(label(model.targetLanguage ?? ""), text: $learning, field: .learning)
+                    picture
                     Text(isPair ? "box.ownWords.explainer" : "box.ownWords.explainer.suggestion")
                         .font(DL.Fonts.caption)
                         .foregroundStyle(Color.dlTextSecondary)
@@ -53,22 +75,27 @@ struct OwnWordFormView: View {
                 .padding(DL.Space.xl)
             }
             .background(Color.dlBackground.ignoresSafeArea())
-            .navigationTitle("box.ownWords.title")
+            .navigationTitle(isEditing ? "box.ownWords.edit" : "box.ownWords.title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("common.cancel") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("box.ownWords.add") { save() }
+                    Button(isEditing ? "box.ownWords.save" : "box.ownWords.add") { save() }
                         .disabled(!hasAnything)
                 }
             }
         }
         .tint(.dlAccent)
-        // why: the known side is already filled in, so the cursor belongs on the
-        // half that is actually missing.
-        .onAppear { focus = .learning }
+        // why: the cursor belongs on the half that is missing — the learned side
+        // where the known one arrived prefilled, and the first field otherwise.
+        .onAppear { focus = written(known) && !written(learning) ? .learning : .known }
+    }
+
+    private var isEditing: Bool {
+        if case .editing = seed { return true }
+        return false
     }
 
     /// Both sides written: a studiable word rather than a suggestion.
@@ -82,6 +109,11 @@ struct OwnWordFormView: View {
     }
 
     private func save() {
+        if case .editing(let word) = seed {
+            model.updateOwnWord(word, known: known, learning: learning, emoji: emoji)
+            dismiss()
+            return
+        }
         guard let id = model.addOwnWord(known: known, learning: learning, emoji: emoji)
         else { return }
         // why: a suggestion joins no card, so there is nothing on a shelf to reveal —
@@ -90,8 +122,66 @@ struct OwnWordFormView: View {
         dismiss()
     }
 
-    private func languageName(_ code: String) -> String {
-        LanguageNames.display(code, locale: model.knownLocale, catalog: model.catalog)
+    /// The language's flag in front of the name — the same pair of marks the profile
+    /// pickers wear, so the two fields are told apart at a glance rather than read.
+    private func label(_ code: String) -> LocalizedStringKey {
+        let name = LanguageNames.display(code, locale: model.knownLocale, catalog: model.catalog)
+        let flag = model.languageInfo(code)?.flag
+        return "box.ownWords.inLanguage \(flag.map { "\($0) \(name)" } ?? name)"
+    }
+
+    /// For the learner who filled the two fields in the wrong way round — the one
+    /// mistake this form cannot catch itself, since either order is a real word.
+    private var swapButton: some View {
+        Button {
+            swap(&known, &learning)
+        } label: {
+            Label("box.ownWords.swap", systemImage: "arrow.up.arrow.down")
+                .font(DL.Fonts.caption)
+                .foregroundStyle(Color.dlAccent)
+        }
+        .frame(maxWidth: .infinity, alignment: .center)
+    }
+
+    private var picture: some View {
+        VStack(alignment: .leading, spacing: DL.Space.s) {
+            quickPicks
+            field("box.ownWords.picture", text: $emoji, field: .emoji)
+                // why: the field takes anything a keyboard can send, so the cap is
+                // enforced on what lands in it rather than on what may be typed.
+                .onChange(of: emoji) { _, typed in
+                    let capped = String(typed.prefix(Int(OwnWords.shared.MAX_EMOJI)))
+                    if capped != typed { emoji = capped }
+                }
+        }
+    }
+
+    /// The commonest pictures, one tap away — the emoji keyboard is a long trip for
+    /// what is an optional decoration on most words. Which they are is Kern's
+    /// (`OwnWords.QUICK_EMOJI`), so both phones offer the same set.
+    private var quickPicks: some View {
+        ScrollView(.horizontal) {
+            HStack(spacing: DL.Space.s) {
+                ForEach(OwnWords.shared.QUICK_EMOJI, id: \.self) { pick in
+                    Button {
+                        emoji = pick
+                    } label: {
+                        Text(verbatim: pick)
+                            .font(.title3)
+                            .frame(width: 40, height: 40)
+                            .background(
+                                Circle().fill(emoji == pick
+                                              ? Color.dlAccent.opacity(0.18)
+                                              : Color.dlSurface)
+                            )
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(Text(verbatim: pick))
+                }
+            }
+            .padding(.vertical, 2)
+        }
+        .scrollIndicators(.hidden)
     }
 
     private func field(_ label: LocalizedStringKey, text: Binding<String>,
