@@ -69,6 +69,11 @@ class CountryDrillRunConfig(
     /** The language an answer is owed in — the learned one, or the learner's own reversed. */
     val answerLanguage: Language get() = CountryDrill.answerLanguage(content, reverse)
 
+    /** The atlas turned around for the refusal check — null exactly where [normalizer] is. */
+    internal val nameIndex: CountryNameIndex? by lazy {
+        normalizer?.let { CountryNameIndex(content, reverse, it) }
+    }
+
     /** The language the prompt is written in — the other side of the same pair. */
     val promptLanguage: Language get() = CountryDrill.promptLanguage(content, reverse)
 }

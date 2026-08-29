@@ -68,21 +68,26 @@ object CountryDrillRun {
      * word, one slip per word, no article forgiven — the atlas authors "die Schweiz" and the
      * bare form beside it, so leniency would accept an article the learner never wrote.
      *
-     * Never [Match.OtherWord]: the accepted set is wrapped as one synthetic card, so there
-     * is no catalog for a neighboring country's name to come out of.
+     * [Match.OtherWord] where the forgiven slip is really ANOTHER entry's name in the same
+     * kind ([CountryNameIndex]): `Ĉilio` for `Ĉinio` is Chile, not a typo of China, and the
+     * refusal carries which.
      */
     fun grade(
         input: String,
         task: CountryDrillTask,
         config: CountryDrillRunConfig,
-    ): Match = gradeDrillAnswer(
-        input = input,
-        accepted = task.accepted,
-        display = task.display,
-        language = config.answerLanguage,
-        cardId = "atlas",
-        normalizer = config.normalizer,
-    )
+    ): Match {
+        val match = gradeDrillAnswer(
+            input = input,
+            accepted = task.accepted,
+            display = task.display,
+            language = config.answerLanguage,
+            cardId = "atlas",
+            normalizer = config.normalizer,
+        )
+        if (match !is Match.Typo) return match
+        return config.nameIndex?.otherName(task.kind, input) ?: match
+    }
 
     /**
      * Leaving, from the corner or from "Fertig". A pending accepted answer books first,
