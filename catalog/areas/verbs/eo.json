@@ -15,7 +15,7 @@
    "text": "pensi",
    "notes": { "de": "pensi pri io = an etwas denken · pensi ke = glauben, dass." }
   },
-  "imagine": { "text": "imagi" },
+  "to-imagine": { "text": "imagi" },
   "wait": { "text": "atendi" },
   "want": { "text": "voli" },
   "find": { "text": "trovi" },
@@ -34,6 +34,12 @@
   "stand": { "text": "stari", "notes": { "de": "stari = stehen · stariĝi = sich hinstellen." } },
   "send": { "text": "sendi" },
   "deliver": { "text": "liveri" },
+  "to-use": { "text": "uzi" },
+  "to-come-back": { "text": "reveni" },
+  "to-lose": { "text": "perdi" },
+  "to-break": { "text": "rompi" },
+  "to-push": { "text": "puŝi" },
+  "to-pull": { "text": "tiri" },
   "do-you-have-water": { "text": "Ĉu vi havas akvon?" },
   "where-are-you-from": { "text": "De kie vi venas?" }
  }

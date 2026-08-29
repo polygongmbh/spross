@@ -21,7 +21,7 @@
    "text": "penser",
    "notes": { "de": "penser à quelque chose = an etwas denken · penser que = glauben, dass." }
   },
-  "imagine": { "text": "imaginer" },
+  "to-imagine": { "text": "imaginer" },
   "wait": { "text": "attendre", "notes": { "de": "attendre steht ohne Präposition: j'attends le bus." } },
   "want": {
    "text": "vouloir",
@@ -44,6 +44,12 @@
   },
   "send": { "text": "envoyer" },
   "deliver": { "text": "livrer" },
+  "to-use": { "text": "utiliser" },
+  "to-come-back": { "text": "revenir" },
+  "to-lose": { "text": "perdre" },
+  "to-break": { "text": "casser" },
+  "to-push": { "text": "pousser" },
+  "to-pull": { "text": "tirer" },
   "do-you-have-water": {
    "text": "Avez-vous de l'eau ?",
    "variants": ["Vous avez de l'eau ?", "As-tu de l'eau ?", "Tu as de l'eau ?"],

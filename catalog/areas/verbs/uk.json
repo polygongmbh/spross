@@ -15,7 +15,7 @@
   },
   "can": { "text": "могти" },
   "think": { "text": "думати" },
-  "imagine": { "text": "уявляти" },
+  "to-imagine": { "text": "уявляти" },
   "wait": { "text": "чекати" },
   "want": { "text": "хотіти" },
   "find": { "text": "знаходити" },
@@ -32,6 +32,12 @@
   "stand": { "text": "стояти" },
   "send": { "text": "надсилати", "variants": ["посилати", "відправляти"] },
   "deliver": { "text": "доставляти" },
+  "to-use": { "text": "використовувати" },
+  "to-come-back": { "text": "повертатися" },
+  "to-lose": { "text": "губити" },
+  "to-break": { "text": "ламати" },
+  "to-push": { "text": "штовхати" },
+  "to-pull": { "text": "тягнути" },
   "do-you-have-water": { "text": "У вас є вода?", "variants": ["У тебе є вода?"] },
   "where-are-you-from": { "text": "Звідки ви?" }
  }

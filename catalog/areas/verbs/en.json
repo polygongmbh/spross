@@ -12,7 +12,7 @@
   "like": { "text": "to like" },
   "can": { "text": "can", "variants": ["to be able to"] },
   "think": { "text": "to think" },
-  "imagine": { "text": "to imagine" },
+  "to-imagine": { "text": "to imagine" },
   "wait": { "text": "to wait" },
   "want": { "text": "to want" },
   "find": { "text": "to find" },
@@ -25,6 +25,12 @@
   "stand": { "text": "to stand" },
   "send": { "text": "to send" },
   "deliver": { "text": "to deliver" },
+  "to-use": { "text": "to use" },
+  "to-come-back": { "text": "to come back" },
+  "to-lose": { "text": "to lose" },
+  "to-break": { "text": "to break" },
+  "to-push": { "text": "to push" },
+  "to-pull": { "text": "to pull" },
   "do-you-have-water": { "text": "Do you have water?" },
   "where-are-you-from": { "text": "Where are you from?" }
  }

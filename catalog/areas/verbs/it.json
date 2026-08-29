@@ -31,7 +31,7 @@
    "text": "pensare",
    "notes": { "de": "pensare a qualcosa = an etwas denken · pensare che = glauben, dass." }
   },
-  "imagine": { "text": "immaginare" },
+  "to-imagine": { "text": "immaginare" },
   "wait": { "text": "aspettare", "notes": { "de": "aspettare heißt auch erwarten; hoffen ist sperare." } },
   "want": { "text": "volere", "notes": { "de": "höflicher im Konditional: vorrei = ich hätte gern." } },
   "find": { "text": "trovare" },
@@ -58,6 +58,12 @@
    "text": "recapitare",
    "notes": { "de": "recapitare = zustellen, ausliefern · consegnare heißt abgeben und gehört aufs Amt." }
   },
+  "to-use": { "text": "usare" },
+  "to-come-back": { "text": "tornare" },
+  "to-lose": { "text": "perdere" },
+  "to-break": { "text": "rompere" },
+  "to-push": { "text": "spingere" },
+  "to-pull": { "text": "tirare" },
   "do-you-have-water": { "text": "Ha acqua?", "variants": ["Ha dell'acqua?", "Avete acqua?", "Hai acqua?"] },
   "where-are-you-from": {
    "text": "Di dov'è?",

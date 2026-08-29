@@ -27,7 +27,7 @@
    "text": "pensar",
    "notes": { "de": "pensar en algo = an etwas denken · pensar que = glauben, dass." }
   },
-  "imagine": { "text": "imaginar" },
+  "to-imagine": { "text": "imaginar" },
   "wait": { "text": "esperar", "notes": { "de": "esperar heißt auch hoffen und erwarten." } },
   "want": { "text": "querer", "notes": { "de": "querer heißt wollen und lieben: Te quiero." } },
   "find": { "text": "encontrar" },
@@ -50,6 +50,12 @@
    "text": "repartir",
    "notes": { "de": "repartir = ausliefern, zustellen · entregar heißt abgeben und gehört aufs Amt." }
   },
+  "to-use": { "text": "usar" },
+  "to-come-back": { "text": "volver" },
+  "to-lose": { "text": "perder" },
+  "to-break": { "text": "romper" },
+  "to-push": { "text": "empujar" },
+  "to-pull": { "text": "tirar" },
   "do-you-have-water": { "text": "¿Tiene agua?", "variants": ["¿Tiene usted agua?", "¿Tienes agua?"] },
   "where-are-you-from": {
    "text": "¿De dónde es usted?",

@@ -24,7 +24,7 @@
    "notes": { "de": "Präsens: naweza, unaweza, anaweza · verneint: siwezi = ich kann nicht." }
   },
   "think": { "text": "kufikiri", "notes": { "de": "über etwas nachdenken: kufikiria jambo." } },
-  "imagine": { "text": "kuwazia" },
+  "to-imagine": { "text": "kuwazia" },
   "wait": { "text": "kusubiri" },
   "want": {
    "text": "kutaka",
@@ -68,6 +68,12 @@
    "notes": { "de": "kutuma = schicken (Nachricht, Geld) · kupeleka ist hinbringen, liefern." }
   },
   "deliver": { "text": "kupeleka" },
+  "to-use": { "text": "kutumia" },
+  "to-come-back": { "text": "kurudi" },
+  "to-lose": { "text": "kupoteza" },
+  "to-break": { "text": "kuvunja" },
+  "to-push": { "text": "kusukuma" },
+  "to-pull": { "text": "kuvuta" },
   "do-you-have-water": { "text": "Una maji?" },
   "where-are-you-from": { "text": "Unatoka wapi?" }
  }
