@@ -38,10 +38,11 @@ internal sealed interface NumberIdentity {
  * **Language-keyed on purpose.** Unkeyed, `dix` would resolve to 10 on an English prompt where
  * it is not a word — harmless in effect, wrong in reasoning, and a trap for the next language.
  *
- * **Only the forms that MINT vocabulary are indexed.** Negative, decimal, percent and
- * multiplicative are an invariant wrapper word around an unmodified cardinal (`menos $n`,
- * `$n percent`), so the cardinal entries already answer for them; ordinals and fractions have
- * word stock of their own.
+ * **Every drawable reading is indexed, every form kind included.** Most non-ordinal forms
+ * are an invariant wrapper word around an unmodified cardinal (`menos $n`, `$n percent`),
+ * which the cardinal entries alone would answer for — but not all: Esperanto welds its
+ * multiplicative (`sesfoje`), and the whole-answer probe wants the compound reading itself.
+ * One rule beats a per-kind argument.
  *
  * Built on first lookup, because the check it serves runs only on a near-miss: a run that
  * never mistypes a numeral never pays for the index at all. The build is 15–70 ms per
@@ -72,7 +73,6 @@ internal class NumberReadingIndex(
         }
         for (n in cardinals) put(NumberIdentity.Cardinal(n), pack.drillNumber(n))
         for (value in NumberFormsAnswerSpace.drawableValues(pack.formLimits)) {
-            if (value.form !in MINTING_FORMS) continue
             val identity = NumberIdentity.Form(value, renderForm(value, pack.decimalMark, grouped = false))
             put(identity, pack.formReading(value))
         }
@@ -89,9 +89,6 @@ internal class NumberReadingIndex(
          * simply names no indexed value, and grades exactly as it does today.
          */
         val DRAWN_CARDINALS: LongRange = 0L..9_999L
-
-        /** The forms with word stock of their own; the rest wrap a cardinal unchanged. */
-        private val MINTING_FORMS = setOf(NumberForm.Ordinal, NumberForm.Fraction)
 
         private var cached: NumberReadingIndex? = null
 
