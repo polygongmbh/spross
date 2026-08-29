@@ -138,7 +138,7 @@ fun cappedPicture(text: String): String {
  * the screen not in a language the learner is in.
  */
 fun flaggedLanguage(info: LanguageInfo?, code: Language): String =
-    info?.let { "${it.flag} ${it.name}" } ?: code
+    info?.let { "${it.flag} ${LanguageChoices.name(code, it)}" } ?: code
 
 /**
  * The pair a picker tap lands on, or null when it lands on the pair already in force.

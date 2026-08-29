@@ -2,28 +2,18 @@ import Foundation
 import SwiftUI
 import SprossKern
 
-/// Language display names for chrome: localized exonym when a chrome string
-/// exists (de/en catalogs), else the language's own name from languages.json.
+/// Language display names for chrome. WHICH name is Kern's ruling
+/// (`LanguageChoices.name`) — this only hands it the catalog entry, so the two
+/// phones cannot start calling the same language two different things.
 enum LanguageNames {
-    private static let chromeKeys: [String: String] = [
-        "de": "lang.de",
-        "en": "lang.en",
-        "es": "lang.es",
-        "sw": "lang.sw",
-        "uk": "lang.uk",
-    ]
-
     static func display(_ code: String, locale: Locale, catalog: Catalog?) -> String {
-        if let key = chromeKeys[code] {
-            return DLChrome.string(key, locale: locale)
-        }
-        return catalog?.languages[code]?.name ?? code.uppercased()
+        LanguageChoices.shared.name(code: code, info: catalog?.languages[code])
     }
 
-    /// Sentence chrome outside pickers ("Alle Lernfortschritte für …"):
-    /// the language's own name from languages.json.
+    /// Kept as its own name for the sentence chrome that reads better spelling out
+    /// what it means; it resolves to the same one word.
     static func native(_ code: String, catalog: Catalog?) -> String {
-        catalog?.languages[code]?.name ?? code.uppercased()
+        display(code, locale: .current, catalog: catalog)
     }
 
     /// Language PICKER rows ("🇺🇦 Українська · Ukrainian") and the collapsed
@@ -76,17 +66,7 @@ extension Card {
     /// for row rhythm in lists — the card face shows the seed emoji or nothing.
     var displayEmoji: String {
         if let emoji, !emoji.isEmpty { return emoji }
-        switch kind {
-        case .noun: return "🧩"
-        case .verb: return "⚡"
-        case .adjective: return "✨"
-        case .phrase: return "💬"
-        // Card.emoji is never nil for idioms (Catalog.kt applies the fixed
-        // IDIOM_EMOJI at join time), so this branch is defensive/unreachable —
-        // still required for switch exhaustiveness. Keep in sync with kern's
-        // IDIOM_EMOJI (Card.kt).
-        case .idiom: return "🎭"
-        }
+        return CardKt.kindEmoji(kind: kind)
     }
 }
 

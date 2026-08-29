@@ -38,6 +38,7 @@ import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.CardRowState
 import net.spross.kern.box.OwnWords
+import net.spross.kern.model.kindEmoji
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.model.Card
 import net.spross.kern.model.Realization
@@ -109,7 +110,7 @@ fun BoxCardRow(
     ) {
         // why: the picture repeats the word beside it — spoken, it is noise.
         Text(
-            card.emoji ?: LEAF,
+            card.emoji ?: kindEmoji(card.kind),
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.clearAndSetSemantics {},
         )

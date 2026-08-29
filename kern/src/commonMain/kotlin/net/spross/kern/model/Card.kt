@@ -17,6 +17,24 @@ enum class CardKind { Noun, Verb, Adjective, Phrase, Idiom }
  */
 const val IDIOM_EMOJI = "🎭"
 
+/**
+ * The glyph a kind wears where a card carries no picture of its own — verbs and
+ * phrases never get a seed emoji, so in a list of them every row would otherwise
+ * start with the same blank.
+ *
+ * Kern's rather than each app's, and for once not because a rule lives here: it is
+ * a MAP, and a map two platforms each keep is a map that ends up disagreeing. It
+ * already had: one phone fell back to the kind's glyph and the other to a sprout,
+ * so the same word wore two different pictures.
+ */
+fun kindEmoji(kind: CardKind): String = when (kind) {
+    CardKind.Noun -> "🧩"
+    CardKind.Verb -> "⚡"
+    CardKind.Adjective -> "✨"
+    CardKind.Phrase -> "💬"
+    CardKind.Idiom -> IDIOM_EMOJI
+}
+
 /** One concept rendered in one language, as joined for a concrete (source, target) profile. */
 data class Realization(
     val lang: Language,

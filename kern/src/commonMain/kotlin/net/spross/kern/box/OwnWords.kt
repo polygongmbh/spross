@@ -5,6 +5,7 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.Language
 import net.spross.kern.model.Realization
+import net.spross.kern.model.kindEmoji
 import net.spross.kern.model.nfcNormalized
 
 /**
@@ -69,15 +70,15 @@ object OwnWords {
     const val SEED_BASE: Int = 1_000_000
 
     /**
-     * The pictures offered by a tap when writing a word, so the commonest choice
-     * costs no trip to the emoji keyboard. Owned here for the same reason [EMOJI] is:
-     * a set each app carried itself is a set that ends up differing between them.
+     * The pictures offered by a tap when writing a word: the KIND glyphs the box
+     * already draws (`kindEmoji`), never a grab-bag of things.
      *
-     * Deliberately broad rather than clever — a thing, a person, a place, a doing
-     * word, a feeling — since the word being written could be anything at all.
+     * A learner writing a word has no picture in mind for it — what they do know is
+     * what kind of word it is, and those five glyphs are the vocabulary the rest of
+     * the app has already taught them to read. Anything else would be decoration
+     * chosen by whoever wrote the list.
      */
-    val QUICK_EMOJI: List<String> =
-        listOf("📦", "🧑", "🏠", "🍎", "🐾", "🚶", "💬", "❤️", "⏰", "🌍")
+    val QUICK_EMOJI: List<String> = CardKind.entries.map(::kindEmoji)
 
     /**
      * The most pictures a word may carry. Two, not one: a flag pairs with a thing,

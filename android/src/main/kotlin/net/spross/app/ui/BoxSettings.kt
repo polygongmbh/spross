@@ -65,7 +65,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
     val targets = remember(catalog, selection) {
         LanguageChoices.targetChoices(catalog, selection)
     }
-    val targetName = catalog.languages[box.joinStamp.target]?.name ?: box.joinStamp.target
+    val targetName = LanguageChoices.name(box.joinStamp.target, catalog.languages[box.joinStamp.target])
 
     fun apply(next: LanguageChoices.Selection) {
         // why: a tap on the row already in force must not rebuild the box — re-joining is

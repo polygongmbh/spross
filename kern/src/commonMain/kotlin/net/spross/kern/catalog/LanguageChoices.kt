@@ -58,6 +58,20 @@ object LanguageChoices {
         if (code == selection.source) swapped(selection) else Selection(selection.source, code)
 
     /**
+     * How a language is NAMED wherever chrome says it in a sentence or a label:
+     * its own name for itself, from `languages.json` ("Deutsch", "Kiswahili").
+     *
+     * ONE choice, made here, because the alternative already went wrong: each phone
+     * resolved the name its own way, and the same language read "Suaheli" on one and
+     * "Kiswahili" on the other. The endonym is the one the catalog actually carries
+     * for every language it knows — a localized exonym exists only for the handful
+     * someone wrote chrome for — and in an app about languages, calling one what its
+     * speakers call it is the better default anyway.
+     * An unknown code reads as itself, uppercased.
+     */
+    fun name(code: Language, info: LanguageInfo?): String = info?.name ?: code.uppercase()
+
+    /**
      * A picker ROW: "🇺🇦 Українська · Ukrainian" — the flag, the language's own name, and the English exonym.
      *
      * Both names, because a flag beside a script the reader cannot read is easy to mistake
