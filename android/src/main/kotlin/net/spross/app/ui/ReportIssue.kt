@@ -122,7 +122,10 @@ fun ReportableCard(
             after = { close ->
                 MenuAction(chrome.sleep) {
                     close()
-                    model.updateBox { BoxEngine.setSuspended(it, card.id, true) }
+                    // why: the round moves on with it — being made to rate a word one
+                    // has just said should never be asked again is the exact busywork
+                    // this removes.
+                    model.suspendCurrentCard()
                 }
             },
         )

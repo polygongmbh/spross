@@ -244,7 +244,7 @@ internal object ChromeDe : Chrome {
     override val queuedWord = "Gesät"
     override val suspended = "Pausiert"
     override val wake = "Wecken"
-    override val sleep = "Schlafen legen"
+    override val sleep = "Nicht mehr abfragen"
     override val cardActions = "Was mit diesem Wort geht"
     override val cardForget = "Fortschritt zurücksetzen"
     override val cardOwnFrom = "Eigenes Wort daraus"

@@ -65,12 +65,12 @@ internal fun BoxRowMenu(
 
                 is CardRowState.Standing -> MenuAction(chrome.sleep) {
                     close()
-                    model.updateBox { BoxEngine.setSuspended(it, card.id, true) }
+                    model.updateBox { BoxEngine.setSuspended(it, card.id, true, model.now()) }
                 }
 
                 CardRowState.Sleeping -> MenuAction(chrome.wake) {
                     close()
-                    model.updateBox { BoxEngine.setSuspended(it, card.id, false) }
+                    model.updateBox { BoxEngine.setSuspended(it, card.id, false, model.now()) }
                 }
 
                 CardRowState.Plain -> Unit

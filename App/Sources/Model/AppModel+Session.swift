@@ -81,6 +81,13 @@ extension AppModel {
         reduce(SessionIntent.Answer(rating: rating))
     }
 
+    /// Take the card on screen out of the round: suspend it and step past it with no
+    /// rating at all. Never a grade — the learner is saying it should not be ASKED,
+    /// not that they failed it (`SessionIntent.SuspendCurrent`).
+    func suspendCurrentCard() {
+        reduce(SessionIntent.SuspendCurrent.shared)
+    }
+
     /// "Weiter üben": switch the finished session into endless mode and pull the
     /// first refill batch. Staying on the summary is kern's answer to a dry refill.
     func continueEndless() {

@@ -241,7 +241,7 @@ internal object ChromeEn : Chrome {
     override val queuedWord = "Sown"
     override val suspended = "Paused"
     override val wake = "Wake"
-    override val sleep = "Put to sleep"
+    override val sleep = "Stop asking this"
     override val cardActions = "What you can do with this word"
     override val cardForget = "Reset progress"
     override val cardOwnFrom = "Make your own word"

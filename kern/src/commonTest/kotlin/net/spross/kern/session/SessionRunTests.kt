@@ -307,4 +307,59 @@ class SessionRunTests {
         assertFalse(SessionRun.streakIsRecord(stats(3, 5)))
         assertTrue(SessionRun.streakIsRecord(stats(3, 3)))
     }
+
+    // Taking a word out of the round instead of answering it
+
+    private fun suspended(run: SessionRunState, nowMillis: Long): SessionRunState =
+        SessionRun.reduce(run, SessionIntent.SuspendCurrent, nowMillis, Box.TZ).state
+
+    @Test
+    fun suspendingTheCurrentCardMovesToTheNextWithoutAnsweringIt() {
+        val run = started(backloggedState(), now)
+        val dropped = assertNotNull(run.currentCardId)
+
+        val next = suspended(run, now)
+
+        assertTrue(next.box.scheduling.getValue(dropped).suspended)
+        assertEquals(0, next.answered)
+        assertTrue(next.ratings.isEmpty())
+        assertTrue(next.answeredIds.isEmpty())
+        assertEquals(0, next.newCards + next.graduated + next.reviews)
+        assertEquals(dropped, run.currentCardId)
+        assertTrue(next.currentCardId != dropped)
+    }
+
+    @Test
+    fun aSuspendedCardIsNoLongerOwedByTheRound() {
+        // why: the count on screen is a promise — a word taken out was never owed.
+        val run = started(backloggedState(), now)
+        assertEquals(run.total - 1, suspended(run, now).total)
+    }
+
+    @Test
+    fun suspendingNeverBooksAReviewTheLearnerDidNotGive() {
+        val run = started(backloggedState(), now)
+        val dropped = assertNotNull(run.currentCardId)
+        val before = run.box.scheduling[dropped]
+
+        val next = suspended(run, now).box.scheduling.getValue(dropped)
+
+        assertEquals(before?.reviewCount, next.reviewCount)
+        assertEquals(before?.due, next.due)
+    }
+
+    @Test
+    fun suspendingTheLastCardFinishesTheRound() {
+        var run = started(backloggedState(), now)
+        while (run.queue.size > 1) run = answer(run, Rating.Good, now)
+        val done = suspended(run, now)
+        assertTrue(done.finished)
+        assertEquals(SessionStep.Completed, done.step)
+    }
+
+    @Test
+    fun suspendingWithNoCardUpChangesNothing() {
+        val idle = SessionRun.idle(backloggedState())
+        assertEquals(idle, suspended(idle, now))
+    }
 }

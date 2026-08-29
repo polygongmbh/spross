@@ -1096,13 +1096,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schlafen legen"
+            "value" : "Nicht mehr abfragen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Put to sleep"
+            "value" : "Stop asking this"
           }
         }
       }

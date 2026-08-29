@@ -130,7 +130,10 @@ extension AppModel {
     }
 
     func setSuspended(cardID: String, suspended: Bool) {
-        mutate { $0 = BoxEngine.shared.setSuspended(state: $0, cardId: cardID, suspended: suspended) }
+        mutate {
+            $0 = BoxEngine.shared.setSuspended(state: $0, cardId: cardID, suspended: suspended,
+                                               nowEpochMillis: Date().epochMillis)
+        }
     }
 
     /// Drop ONE card's schedule, keeping the card and anything filed against it —

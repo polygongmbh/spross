@@ -593,6 +593,17 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         dispatch(SessionIntent.Answer(rating))
     }
 
+    /**
+     * Take the card on screen out of the round: suspend it and step past with no rating
+     * at all. Never a grade — the learner is saying it should not be ASKED, not that
+     * they failed it ([SessionIntent.SuspendCurrent]).
+     */
+    fun suspendCurrentCard() {
+        sessionRun ?: return
+        pronouncer.stop()
+        dispatch(SessionIntent.SuspendCurrent)
+    }
+
     fun continueEndless() {
         sessionRun ?: return
         dispatch(SessionIntent.ContinueEndless)

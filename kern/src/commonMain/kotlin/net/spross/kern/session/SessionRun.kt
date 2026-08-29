@@ -30,6 +30,14 @@ sealed class SessionIntent {
     data object StartShort : SessionIntent()
     data class Answer(val rating: Rating) : SessionIntent()
 
+    /**
+     * The learner wants no more of the card in front of them: suspend it and move on
+     * WITHOUT an answer. Never a rating — they are not saying they failed it, they are
+     * saying it should not be asked, and a review the box invented would move a schedule
+     * the learner never touched.
+     */
+    data object SuspendCurrent : SessionIntent()
+
     /** "Keep practicing": switch a finished run into endless and pull one refill. */
     data object ContinueEndless : SessionIntent()
 
@@ -136,6 +144,7 @@ object SessionRun {
         SessionIntent.StartExtra -> startExtra(state, nowEpochMillis, tzId)
         SessionIntent.StartShort -> startShort(state, nowEpochMillis, tzId)
         is SessionIntent.Answer -> answer(state, intent.rating, nowEpochMillis, tzId)
+        SessionIntent.SuspendCurrent -> suspendCurrent(state, nowEpochMillis, tzId)
         SessionIntent.ContinueEndless -> continueEndless(state, nowEpochMillis, tzId)
         SessionIntent.RecomposeIfStale -> recompose(state, nowEpochMillis, tzId)
         SessionIntent.FoldPartial -> foldPartial(state, nowEpochMillis, tzId)
@@ -195,6 +204,29 @@ object SessionRun {
             isConsolidated = BoxEngine.isConsolidated(box, cardId),
         )
         return advance(next.copy(queue = next.queue.drop(1)), listOf(SessionEffect.Persist(false)), nowEpochMillis, tzId)
+    }
+
+    /**
+     * Suspend the card on screen and step past it. It counts as nothing — no rating, no
+     * tally, no entry in [SessionRunState.answeredIds] — so the round it leaves is the
+     * round the learner actually did. [SessionRunState.total] shrinks with it: the count
+     * on screen is a promise, and a word taken out of the round was never owed.
+     */
+    private fun suspendCurrent(
+        state: SessionRunState,
+        nowEpochMillis: Long,
+        tzId: String,
+    ): SessionReduction {
+        val cardId = state.currentCardId ?: return unchanged(state)
+        val box = BoxEngine.setSuspended(state.box, cardId, true, nowEpochMillis)
+        val next = state.copy(
+            box = box,
+            queue = state.queue.drop(1),
+            // why: never below what has been answered — `segments` draws one part per
+            // rating, and a total under that would claim fewer parts than it holds.
+            total = maxOf(state.total - 1, state.answered),
+        )
+        return advance(next, listOf(SessionEffect.Persist(false)), nowEpochMillis, tzId)
     }
 
     /**

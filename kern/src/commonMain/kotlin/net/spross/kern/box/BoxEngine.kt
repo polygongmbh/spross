@@ -5,6 +5,8 @@ import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.minus
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
+import net.spross.kern.model.CardPhase
+import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.DayStats
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Rating
@@ -232,9 +234,37 @@ object BoxEngine {
         return state.copy(scheduling = state.scheduling - cardId)
     }
 
-    /** Suspend or revive ONE card; no-op when the id has no schedule. */
-    fun setSuspended(state: BoxState, cardId: String, suspended: Boolean): BoxState {
-        val sched = state.scheduling[cardId] ?: return state
+    /**
+     * Suspend or revive ONE card. A card the box has never asked can be suspended too —
+     * the learner meets a word mid-round and wants no more of it, and being told to
+     * answer it first would be absurd. It gets a New schedule carrying nothing but the
+     * suspension, which is inert everywhere: New satisfies the phase/memory/due
+     * invariant, and a suspended card is filtered out of every inventory read.
+     *
+     * Reviving one that was never answered DROPS that schedule rather than clearing its
+     * flag, because growth only ever reaches a card with no schedule at all
+     * ([Growth.isIntroducible]) — leaving the husk behind would make waking a word the
+     * one way to lose it for good. Unknown ids leave the state alone.
+     */
+    fun setSuspended(
+        state: BoxState,
+        cardId: String,
+        suspended: Boolean,
+        nowEpochMillis: Long,
+    ): BoxState {
+        val sched = state.scheduling[cardId]
+        if (sched == null) {
+            if (!suspended || state.cards[cardId] == null) return state
+            val fresh = CardScheduling(
+                cardId = cardId,
+                addedAt = Instant.fromEpochMilliseconds(nowEpochMillis),
+                suspended = true,
+            )
+            return state.copy(scheduling = state.scheduling + (cardId to fresh))
+        }
+        if (!suspended && sched.reviewCount == 0 && sched.phase == CardPhase.New) {
+            return state.copy(scheduling = state.scheduling - cardId)
+        }
         return state.copy(
             scheduling = state.scheduling + (cardId to sched.copy(suspended = suspended)),
         )

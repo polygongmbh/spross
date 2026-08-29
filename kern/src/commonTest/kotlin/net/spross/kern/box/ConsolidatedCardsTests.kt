@@ -69,7 +69,7 @@ class ConsolidatedCardsTests {
 
         assertEquals(listOf("w01"), BoxEngine.consolidatedCardIds(state))
         // Reviving the suspended card puts it straight back on the shelf.
-        val revived = BoxEngine.setSuspended(state, "w02", suspended = false)
+        val revived = BoxEngine.setSuspended(state, "w02", suspended = false, Box.day1)
         assertEquals(listOf("w01", "w02"), BoxEngine.consolidatedCardIds(revived))
     }
 

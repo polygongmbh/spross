@@ -44,11 +44,11 @@ class PhraseUnlockTests {
         var state = seeded()
         state = Box.answered(state, "w01", Rating.Easy, now)
         state = Box.answered(state, "w02", Rating.Easy, now)
-        state = BoxEngine.setSuspended(state, "w01", true)
+        state = BoxEngine.setSuspended(state, "w01", true, Box.day1)
         assertTrue(Box.candidates(state).unlockedPhrases.isEmpty())
 
         // Reviving the component restores eligibility.
-        state = BoxEngine.setSuspended(state, "w01", false)
+        state = BoxEngine.setSuspended(state, "w01", false, Box.day1)
         assertEquals(listOf("p1"), Box.candidates(state).unlockedPhrases)
     }
 

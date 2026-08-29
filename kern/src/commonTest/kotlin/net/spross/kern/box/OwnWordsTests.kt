@@ -3,8 +3,10 @@ package net.spross.kern.box
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Rating
@@ -239,5 +241,43 @@ class OwnWordsTests {
     fun forgettingAWordTheBoxNeverIntroducedChangesNothing() {
         val state = box()
         assertEquals(state, BoxEngine.forget(state, "w01"))
+    }
+
+    // Suspending a word the box has never asked
+
+    @Test
+    fun aWordCanBeSuspendedBeforeItHasEverBeenAsked() {
+        val state = BoxEngine.setSuspended(box(), "w01", true, Box.day1)
+        val sched = state.scheduling.getValue("w01")
+        assertTrue(sched.suspended)
+        assertEquals(CardPhase.New, sched.phase)
+        assertNull(sched.memory)
+        assertNull(sched.due)
+        assertTrue(Inventory.active(state).none { it.cardId == "w01" })
+    }
+
+    @Test
+    fun wakingOneThatWasNeverAnsweredGivesItBackToGrowth() {
+        // why: growth only ever reaches a card with NO schedule, so clearing the flag
+        // and leaving the husk would make waking a word the one way to lose it.
+        val suspended = BoxEngine.setSuspended(box(), "w01", true, Box.day1)
+        val woken = BoxEngine.setSuspended(suspended, "w01", false, Box.day1)
+        assertNull(woken.scheduling["w01"])
+        assertEquals(box(), woken)
+    }
+
+    @Test
+    fun wakingOneThatWasAnsweredKeepsItsSchedule() {
+        var state = Box.answered(box(), "w01", Rating.Good, Box.day1)
+        state = BoxEngine.setSuspended(state, "w01", true, Box.day1)
+        val woken = BoxEngine.setSuspended(state, "w01", false, Box.day1)
+        assertFalse(woken.scheduling.getValue("w01").suspended)
+        assertEquals(1, woken.scheduling.getValue("w01").reviewCount)
+    }
+
+    @Test
+    fun aCardTheProfileDoesNotHoldCannotBeSuspended() {
+        val state = box()
+        assertEquals(state, BoxEngine.setSuspended(state, "nope", true, Box.day1))
     }
 }

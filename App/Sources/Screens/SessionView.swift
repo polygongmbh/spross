@@ -215,7 +215,14 @@ struct SessionView: View, LanguageNaming {
             }
         }
         Button("box.sleep", systemImage: "moon.zzz") {
-            model.setSuspended(cardID: card.id, suspended: true)
+            // why: the round moves on with it — being made to rate a word one has just
+            // said should never be asked again is the exact busywork this removes.
+            // resetCardState first, so the incoming card never renders the outgoing
+            // card's reveal for a frame (same reason `commit` does).
+            resetCardState()
+            withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .dlCardFlip) {
+                model.suspendCurrentCard()
+            }
         }
     }
 

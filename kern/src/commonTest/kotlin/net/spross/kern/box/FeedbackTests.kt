@@ -46,7 +46,7 @@ class FeedbackTests {
     @Test
     fun suspendingDoesNotReportAndReportingDoesNotSuspend() {
         val answered = BoxEngine.answer(box(), "w01", Rating.Good, Box.day1, "UTC")
-        val suspended = BoxEngine.setSuspended(answered, "w01", true)
+        val suspended = BoxEngine.setSuspended(answered, "w01", true, Box.day1)
         assertTrue(suspended.reportedIssues.isEmpty())
 
         val reported = BoxEngine.reportIssue(answered, "w01", "wrong", null, Box.day1)

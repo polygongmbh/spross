@@ -181,7 +181,7 @@ private fun CardStanding(
         ) {
             Text("💤", modifier = Modifier.semantics { contentDescription = chrome.suspended })
             TextButton(onClick = {
-                model.updateBox { BoxEngine.setSuspended(it, card.id, false) }
+                model.updateBox { BoxEngine.setSuspended(it, card.id, false, model.now()) }
             }) {
                 Text(chrome.wake, style = MaterialTheme.typography.bodySmall)
             }
