@@ -122,6 +122,7 @@
   },
   "the-practice-is-closed": { "text": "L'ambulatorio è chiuso." },
   "i-have-to-see-a-doctor": { "text": "Devo andare dal medico." },
-  "call-an-ambulance": { "text": "Chiami un'ambulanza!", "variants": ["Chiama un'ambulanza!"] }
+  "call-an-ambulance": { "text": "Chiami un'ambulanza!", "variants": ["Chiama un'ambulanza!"] },
+  "the-doctor-will-examine-you-shortly": { "text": "Il medico la visiterà subito." }
  }
 }

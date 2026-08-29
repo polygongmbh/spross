@@ -34,5 +34,10 @@
  },
  { "slug": "the-practice-is-closed", "kind": "phrase", "emoji": "🚪", "components": ["practice"] },
  { "slug": "i-have-to-see-a-doctor", "kind": "phrase", "emoji": "🧑‍⚕️", "components": ["doctor"] },
- { "slug": "call-an-ambulance", "kind": "phrase", "emoji": "🚑", "components": ["ambulance"] }
+ { "slug": "call-an-ambulance", "kind": "phrase", "emoji": "🚑", "components": ["ambulance"] },
+ {
+  "slug": "the-doctor-will-examine-you-shortly",
+  "kind": "phrase",
+  "components": ["doctor", "examine"]
+ }
 ]

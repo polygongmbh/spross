@@ -78,6 +78,7 @@
   },
   "the-practice-is-closed": { "text": "La consulta está cerrada." },
   "i-have-to-see-a-doctor": { "text": "Tengo que ir al médico." },
-  "call-an-ambulance": { "text": "¡Llame a una ambulancia!", "variants": ["¡Llama a una ambulancia!"] }
+  "call-an-ambulance": { "text": "¡Llame a una ambulancia!", "variants": ["¡Llama a una ambulancia!"] },
+  "the-doctor-will-examine-you-shortly": { "text": "El médico le examinará enseguida." }
  }
 }

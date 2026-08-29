@@ -34,6 +34,7 @@
   "show-me-your-insurance-card": { "text": "Покажіть мені вашу картку медичного страхування." },
   "the-practice-is-closed": { "text": "Лікарський кабінет зачинений." },
   "i-have-to-see-a-doctor": { "text": "Мені треба до лікаря." },
-  "call-an-ambulance": { "text": "Викличте швидку допомогу!", "variants": ["Виклич швидку!"] }
+  "call-an-ambulance": { "text": "Викличте швидку допомогу!", "variants": ["Виклич швидку!"] },
+  "the-doctor-will-examine-you-shortly": { "text": "Лікар вас зараз обстежить." }
  }
 }

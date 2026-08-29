@@ -96,6 +96,7 @@
   "show-me-your-insurance-card": { "text": "Montrez-moi votre carte Vitale.", "variants": ["Montre-moi ta carte Vitale."] },
   "the-practice-is-closed": { "text": "Le cabinet est fermé." },
   "i-have-to-see-a-doctor": { "text": "Je dois aller chez le médecin." },
-  "call-an-ambulance": { "text": "Appelez une ambulance !", "variants": ["Appelle une ambulance !"] }
+  "call-an-ambulance": { "text": "Appelez une ambulance !", "variants": ["Appelle une ambulance !"] },
+  "the-doctor-will-examine-you-shortly": { "text": "Le médecin vous examinera tout de suite." }
  }
 }

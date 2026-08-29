@@ -29,6 +29,7 @@
   "show-me-your-insurance-card": { "text": "Nionyeshe kadi yako ya bima ya afya." },
   "the-practice-is-closed": { "text": "Kliniki imefungwa." },
   "i-have-to-see-a-doctor": { "text": "Lazima niende kwa daktari." },
-  "call-an-ambulance": { "text": "Ita gari la wagonjwa!", "variants": ["Ita ambulensi!"] }
+  "call-an-ambulance": { "text": "Ita gari la wagonjwa!", "variants": ["Ita ambulensi!"] },
+  "the-doctor-will-examine-you-shortly": { "text": "Daktari atakuchunguza sasa hivi." }
  }
 }

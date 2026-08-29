@@ -25,6 +25,7 @@
   "show-me-your-insurance-card": { "text": "Show me your insurance card." },
   "the-practice-is-closed": { "text": "The doctor's office is closed." },
   "i-have-to-see-a-doctor": { "text": "I have to see a doctor." },
-  "call-an-ambulance": { "text": "Call an ambulance!" }
+  "call-an-ambulance": { "text": "Call an ambulance!" },
+  "the-doctor-will-examine-you-shortly": { "text": "The doctor will examine you shortly." }
  }
 }

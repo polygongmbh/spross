@@ -45,6 +45,7 @@
   },
   "the-practice-is-closed": { "text": "Die Praxis ist geschlossen." },
   "i-have-to-see-a-doctor": { "text": "Ich muss zum Arzt." },
-  "call-an-ambulance": { "text": "Rufen Sie einen Krankenwagen!", "variants": ["Ruf einen Krankenwagen!"] }
+  "call-an-ambulance": { "text": "Rufen Sie einen Krankenwagen!", "variants": ["Ruf einen Krankenwagen!"] },
+  "the-doctor-will-examine-you-shortly": { "text": "Der Arzt wird Sie gleich untersuchen." }
  }
 }

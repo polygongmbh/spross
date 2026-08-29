@@ -42,6 +42,7 @@
   "show-me-your-insurance-card": { "text": "Montru al mi vian asekurkarton." },
   "the-practice-is-closed": { "text": "La konsultejo estas fermita." },
   "i-have-to-see-a-doctor": { "text": "Mi devas iri al kuracisto.", "variants": ["Mi devas iri al la kuracisto."] },
-  "call-an-ambulance": { "text": "Voku ambulancon!" }
+  "call-an-ambulance": { "text": "Voku ambulancon!" },
+  "the-doctor-will-examine-you-shortly": { "text": "La kuracisto tuj ekzamenos vin." }
  }
 }
