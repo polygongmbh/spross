@@ -15,6 +15,12 @@
   together: onto the clipboard, or as a mail to whoever tends the catalog. Either way you
   can take everything or only what is new since last time.
 
+- **"Nicht mehr abfragen" now does exactly that, mid-round and without a grade.** Saying a
+  word should not be asked, and then being made to rate it, was the busywork the action
+  exists to remove. It leaves the round on the spot, unrated — you are not saying you
+  failed it — and the round's count shrinks with it, because a word taken out was never
+  owed. It reaches words the box has never asked you, too, which mid-round is most of them.
+
 - **Everything you put into the box yourself now stands in one place.** The words you wrote
   and the problems you reported share a section at the foot of the Box, with a button to
   write another right there. Your own words lost the shelf they used to sit on — they are

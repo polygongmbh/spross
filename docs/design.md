@@ -406,19 +406,35 @@ a clone inherits its sibling's gaps, never the rules.
   (pack, unpack, sleep, wake, forget its progress), then what can be MADE of it (an own
   word from it, or editing one), then what is wrong with it, and deleting last because it
   is the entry that cannot be taken back. A round is no place to reorganize the box, so
-  the session card keeps just reporting and sleeping.
+  the session card keeps just reporting and stopping the word being asked.
   Those two are unrelated on purpose: reporting a problem changes nothing about what gets
-  asked, and putting a word to sleep files no complaint (`kern/README.md` §6), which is why
+  asked, and taking a word out files no complaint (`kern/README.md` §6), which is why
   the report sheet carries no suspend switch. What the learner typed rides along without
   being asked about — the answer the catalog rejected is usually the report itself, and a
   box to tick is a box to miss. In a session, only after the reveal: a menu over a prompt
   is a menu over a question they have not been answered yet.
+- **Taking a word out of a round does not grade it on the way out**
+  (`SessionIntent.SuspendCurrent`). The card leaves on the spot with no rating asked —
+  demanding one for a word the learner just said should never be asked is the busywork the
+  action removes — and the round's total shrinks with it, since the count on screen is a
+  promise and a word taken out was never owed. The control is named for what it does,
+  "Nicht mehr abfragen", not for the 💤 the Box draws afterwards: the Box shows a STATE and
+  can afford the metaphor, a menu entry is a verb and cannot.
 - **The picture field takes two characters and offers a few by tap.** Written by hand it is
-  a keyboard trip for something optional, so a short row of common pictures sits above it;
+  a keyboard trip for something optional, so a short row of pictures sits under its label;
   the cap is two so a flag can pair with a thing while a pasted sentence cannot land there
-  (`OwnWords.QUICK_EMOJI`, `OwnWords.MAX_EMOJI`). The two language fields wear their flag,
-  and a button between them swaps what is typed in each, for the learner who filled them in
-  the wrong way round.
+  (`OwnWords.QUICK_EMOJI`, `OwnWords.MAX_EMOJI`). Those pictures are the KIND glyphs the box
+  already draws — a learner writing a word rarely has a picture in mind but does know what
+  kind of word it is, and those five are vocabulary the app has already taught them.
+  The two language fields wear their flag, and a button between them swaps what is typed in
+  each, for the learner who filled them in the wrong way round.
+- **A language is named the same everywhere, by its own name for itself**
+  (`LanguageChoices.name` — "Deutsch", "Kiswahili"). One choice, kern's, because the
+  alternative already drifted: one phone read a localized exonym out of the string catalog
+  while the other read the endonym, so the same language answered to two names. The endonym
+  is what `languages.json` carries for every language rather than the handful someone wrote
+  chrome for, and in an app about languages it is the better default anyway. Pickers still
+  show both (`pickerRow`), where the point is recognizing a row rather than naming it.
 - **Two clean-correct beats, one home: 450 ms live, 1200 ms explicit.** The 0.45–1.2 s a
   clean answer waits above is those two tiers — 450 ms when the typing itself went exactly
   correct, 1200 ms when the learner tapped Check, Enter or a tile. Vocab review, the

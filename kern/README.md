@@ -354,6 +354,12 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   queue slot and anything filed against it — a typo fixed must not cost the progress made
   on the word. It keeps `addedAt` too: that records when the word was written, and editing
   is not writing it again.
+  Suspending reaches a card the box has never asked — the learner meets a word mid-round
+  and wants no more of it — which mints a New schedule carrying nothing but the suspension;
+  waking one that was never answered DROPS that schedule, since growth only ever reaches a
+  card with none (`Growth.isIntroducible`), and the husk would otherwise lose the word.
+  In a session, `SessionIntent.SuspendCurrent` does it without a rating: the learner is
+  saying the word should not be ASKED, not that they failed it.
   `BoxEngine.reset` is the destructive fresh start — schedules, queue and tallies go; the
   join, the configuration, the own words and the reports stay. `BoxEngine.forget` is the
   same idea aimed at ONE card: its schedule goes, the card and its report stay, and the day
