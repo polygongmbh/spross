@@ -46,29 +46,40 @@ class AreaNaming(
 /**
  * A word being written down, before it is one.
  *
- * Both language sides are required, because a word is only studiable as a pair; the
- * picture is not, and an empty one is no picture rather than an empty string. The id is
- * minted from the LEARNED side so it survives a switch of the language the learner speaks.
+ * ONE side is enough to take it in: that is a SUGGESTION, which joins no card and is never
+ * asked until the other half arrives ([OwnWord]). The picture is optional either way, and
+ * an empty one is no picture rather than an empty string.
  */
 data class OwnWordDraft(
     val known: String = "",
     val learning: String = "",
     val emoji: String = "",
 ) {
-    val isComplete: Boolean get() = known.isNotBlank() && learning.isNotBlank()
+    /** Both sides written: a studiable word rather than a suggestion. */
+    val isPair: Boolean get() = known.isNotBlank() && learning.isNotBlank()
+
+    /** One side is enough to take the word in — the other is what makes it studiable. */
+    val hasAnything: Boolean get() = known.isNotBlank() || learning.isNotBlank()
 
     /**
-     * The word as the box would take it in, or null while a side is still missing.
+     * The word as the box would take it in, or null while both sides are still blank.
      * [taken] are the ids already in use — two words that fold alike count up rather than collide.
      */
     fun word(source: Language, target: Language, taken: Set<String>): OwnWord? {
-        if (!isComplete) return null
+        if (!hasAnything) return null
+        val knownText = known.trim()
         val learnt = learning.trim()
-        return OwnWord(
-            id = OwnWords.mint(learnt, taken),
+        // why: the id is minted from the LEARNED side — it is the one that stays put while
+        // the known language is free to change under a source switch. A word written only
+        // in the known language has nothing else to be named after.
+        return OwnWords.write(
+            id = OwnWords.mint(learnt.ifEmpty { knownText }, taken),
             kind = OwnWords.DEFAULT_KIND,
             emoji = emoji.trim().ifEmpty { null },
-            texts = mapOf(source to known.trim(), target to learnt),
+            texts = buildMap {
+                if (knownText.isNotEmpty()) put(source, knownText)
+                if (learnt.isNotEmpty()) put(target, learnt)
+            },
         )
     }
 }

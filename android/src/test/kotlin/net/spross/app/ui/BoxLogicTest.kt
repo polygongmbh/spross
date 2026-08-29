@@ -53,11 +53,30 @@ class BoxLogicTest {
     }
 
     @Test
-    fun aWordNeedsBothSidesBeforeItIsOne() {
-        assertFalse(OwnWordDraft(known = "Haus").isComplete)
-        assertFalse(OwnWordDraft(learning = "nyumba").isComplete)
-        assertFalse(OwnWordDraft(known = "Haus", learning = "   ").isComplete)
-        assertTrue(OwnWordDraft(known = "Haus", learning = "nyumba").isComplete)
+    fun aWordNeedsBothSidesBeforeItIsOneAndOneSideIsStillWorthKeeping() {
+        assertFalse(OwnWordDraft(known = "Haus").isPair)
+        assertFalse(OwnWordDraft(learning = "nyumba").isPair)
+        assertFalse(OwnWordDraft(known = "Haus", learning = "   ").isPair)
+        assertTrue(OwnWordDraft(known = "Haus", learning = "nyumba").isPair)
+
+        assertFalse(OwnWordDraft(emoji = "🏠").hasAnything)
+        assertTrue(OwnWordDraft(known = "Haus").hasAnything)
+        assertTrue(OwnWordDraft(learning = "nyumba").hasAnything)
+    }
+
+    @Test
+    fun aSuggestionCarriesTheOneSideItHasAndIsNamedAfterWhicheverThatIs() {
+        val onlyLearnt = OwnWordDraft(learning = " nyumba ").word("de", "sw", emptySet())
+        requireNotNull(onlyLearnt)
+        assertEquals("${OwnWords.ID_PREFIX}nyumba", onlyLearnt.id)
+        assertEquals(mapOf("sw" to "nyumba"), onlyLearnt.texts)
+        assertTrue(onlyLearnt.isSuggestion(source = "de", target = "sw"))
+
+        val onlyKnown = OwnWordDraft(known = " Haus ").word("de", "sw", emptySet())
+        requireNotNull(onlyKnown)
+        assertEquals("${OwnWords.ID_PREFIX}haus", onlyKnown.id)
+        assertEquals(mapOf("de" to "Haus"), onlyKnown.texts)
+        assertTrue(onlyKnown.isSuggestion(source = "de", target = "sw"))
     }
 
     @Test
@@ -73,8 +92,8 @@ class BoxLogicTest {
     }
 
     @Test
-    fun anIncompleteDraftMakesNoWordAtAll() {
-        assertNull(OwnWordDraft(known = "x", learning = "  ").word("de", "sw", emptySet()))
+    fun aDraftWithNeitherSideWrittenMakesNoWordAtAll() {
+        assertNull(OwnWordDraft(emoji = "🏠", learning = "  ").word("de", "sw", emptySet()))
     }
 
     @Test

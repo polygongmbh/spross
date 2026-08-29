@@ -280,7 +280,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             return CatalogAnswerGrader(norm, state.cards.values.toList())
         }
 
-    private fun now(): Long = System.currentTimeMillis()
+    // internal: the box surfaces stamp their own verbs with it (`FeedbackActions.kt`),
+    // and a second reading of the clock is how two of them end up disagreeing.
+    internal fun now(): Long = System.currentTimeMillis()
     private fun tz(): String = TimeZone.getDefault().id
 
     init {

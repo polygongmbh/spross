@@ -65,10 +65,11 @@ fun BoxSearchScreen(
         OwnWordForm(
             model = model,
             query = query,
-            onCancel = { writing = false },
             // why: the box lands on the shelf the new word joined — the learner wrote it
-            // to use it, not to file it.
-            onAdded = { writing = false; onReveal(OwnWords.AREA) },
+            // to use it, not to file it. A suggestion joined none, so there is no shelf to
+            // land on and the search simply comes back.
+            onAdded = { joined -> writing = false; if (joined) onReveal(OwnWords.AREA) },
+            onCancel = { writing = false },
         )
         return
     }

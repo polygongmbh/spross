@@ -39,6 +39,10 @@ import net.spross.kern.box.BoxEngine
  * naming what they want to be able to SAY than a form they already met in the wild — and
  * so the cursor belongs on the half that is actually missing.
  *
+ * One side alone is still taken, as a SUGGESTION: the learner noticed a gap and only has
+ * the half they came with. It is never scheduled — there is nothing to ask them yet — and
+ * waits in the feedback section to be sent on to the catalog ([BoxFeedbackSection]).
+ *
  * What happens to the word is kern's: [BoxEngine.addOwnWord] mints its id from the learnt
  * side, stores it under the pair's two languages, and PACKS it — the learner named this
  * word themselves, so waiting for growth to walk to it would be absurd.
@@ -47,8 +51,9 @@ import net.spross.kern.box.BoxEngine
 fun OwnWordForm(
     model: AppModel,
     query: String,
+    /** Called once the word is in the box; true where it joined a card rather than waiting. */
+    onAdded: (joined: Boolean) -> Unit,
     onCancel: () -> Unit,
-    onAdded: () -> Unit,
 ) {
     val chrome = model.chrome
     val catalog = model.catalog ?: return
@@ -96,7 +101,7 @@ fun OwnWordForm(
             imeAction = ImeAction.Done,
         )
         Text(
-            chrome.ownWordsExplainer,
+            if (draft.isPair) chrome.ownWordsExplainer else chrome.ownWordSuggestion,
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -108,11 +113,11 @@ fun OwnWordForm(
                         target = stamp.target,
                         taken = state.ownWords.mapTo(mutableSetOf()) { it.id },
                     ) ?: return@updateBox state
-                    BoxEngine.addOwnWord(state, word)
+                    BoxEngine.addOwnWord(state, word, model.now())
                 }
-                onAdded()
+                onAdded(draft.isPair)
             },
-            enabled = draft.isComplete,
+            enabled = draft.hasAnything,
             modifier = Modifier.fillMaxWidth().pressSpring(),
             shape = MaterialTheme.shapes.small,
         ) { Text(chrome.ownWordAdd) }
