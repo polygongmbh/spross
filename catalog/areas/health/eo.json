@@ -55,6 +55,7 @@
   "ive-had-a-fever-since-yesterday": { "text": "Mi havas febron ekde hieraŭ.", "variants": ["Mi havas febron de hieraŭ."] },
   "get-well-soon": { "text": "Rapidan resaniĝon!", "variants": ["Baldaŭan resaniĝon!", "Resaniĝu baldaŭ!"] },
   "the-wound-hurts": { "text": "La vundo doloras." },
-  "i-have-to-rest": { "text": "Mi devas ripozi." }
+  "i-have-to-rest": { "text": "Mi devas ripozi." },
+  "i-hurt-myself-yesterday": { "text": "Mi vundis min hieraŭ." }
  }
 }

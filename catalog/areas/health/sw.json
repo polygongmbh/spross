@@ -49,6 +49,7 @@
    "notes": { "de": "pole = Mitgefühls-Wort ohne direktes deutsches Gegenstück" }
   },
   "the-wound-hurts": { "text": "Jeraha linauma." },
-  "i-have-to-rest": { "text": "Lazima nipumzike.", "variants": ["Ninahitaji kupumzika."] }
+  "i-have-to-rest": { "text": "Lazima nipumzike.", "variants": ["Ninahitaji kupumzika."] },
+  "i-hurt-myself-yesterday": { "text": "Jana nilijiumiza." }
  }
 }

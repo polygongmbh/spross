@@ -34,6 +34,7 @@
   "ive-had-a-fever-since-yesterday": { "text": "I've had a fever since yesterday." },
   "get-well-soon": { "text": "Get well soon!" },
   "the-wound-hurts": { "text": "The wound hurts." },
-  "i-have-to-rest": { "text": "I have to rest." }
+  "i-have-to-rest": { "text": "I have to rest." },
+  "i-hurt-myself-yesterday": { "text": "I hurt myself yesterday." }
  }
 }

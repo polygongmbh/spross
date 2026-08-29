@@ -36,5 +36,6 @@
  },
  { "slug": "get-well-soon", "kind": "phrase", "emoji": "💐", "components": [] },
  { "slug": "the-wound-hurts", "kind": "phrase", "emoji": "🩸", "components": ["wound", "hurt"] },
- { "slug": "i-have-to-rest", "kind": "phrase", "emoji": "🛌", "components": ["rest"] }
+ { "slug": "i-have-to-rest", "kind": "phrase", "emoji": "🛌", "components": ["rest"] },
+ { "slug": "i-hurt-myself-yesterday", "kind": "phrase", "components": ["hurt-oneself"] }
 ]

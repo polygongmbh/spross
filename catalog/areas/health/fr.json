@@ -70,6 +70,7 @@
   "ive-had-a-fever-since-yesterday": { "text": "J'ai de la fièvre depuis hier." },
   "get-well-soon": { "text": "Bon rétablissement !", "variants": ["Remets-toi vite !"] },
   "the-wound-hurts": { "text": "La blessure fait mal.", "variants": ["Ma blessure me fait mal."] },
-  "i-have-to-rest": { "text": "Je dois me reposer." }
+  "i-have-to-rest": { "text": "Je dois me reposer." },
+  "i-hurt-myself-yesterday": { "text": "Je me suis blessé hier.", "variants": ["Je me suis blessée hier."] }
  }
 }

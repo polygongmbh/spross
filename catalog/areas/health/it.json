@@ -53,6 +53,7 @@
   "ive-had-a-fever-since-yesterday": { "text": "Ho la febbre da ieri." },
   "get-well-soon": { "text": "Guarisci presto!", "variants": ["Guarisca presto!", "Rimettiti presto!"] },
   "the-wound-hurts": { "text": "La ferita fa male.", "variants": ["Mi fa male la ferita."] },
-  "i-have-to-rest": { "text": "Devo riposare.", "variants": ["Devo riposarmi."] }
+  "i-have-to-rest": { "text": "Devo riposare.", "variants": ["Devo riposarmi."] },
+  "i-hurt-myself-yesterday": { "text": "Mi sono fatto male ieri.", "variants": ["Mi sono fatta male ieri."] }
  }
 }

@@ -41,6 +41,7 @@
   "ive-had-a-fever-since-yesterday": { "text": "У мене з учора температура." },
   "get-well-soon": { "text": "Швидкого одужання!" },
   "the-wound-hurts": { "text": "Рана болить." },
-  "i-have-to-rest": { "text": "Мені треба відпочити." }
+  "i-have-to-rest": { "text": "Мені треба відпочити." },
+  "i-hurt-myself-yesterday": { "text": "Я вчора поранився.", "variants": ["Я вчора поранилася."] }
  }
 }
