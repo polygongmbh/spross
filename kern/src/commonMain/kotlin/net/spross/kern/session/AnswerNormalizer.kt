@@ -69,12 +69,12 @@ sealed interface Match {
  *
  * [maxTyposPerWord] (default null = one budget for the whole form) switches
  * grading to the WORD-WISE rule trainer drills need — drills pass 1. What a
- * drill must never do is accept one number for another, and that danger lives
- * inside the number, not across the sentence around it: distinct cardinals sit
- * ≥ 2 edits apart (guard sweep in TrainerTypoBridgeGuardTests; audited
- * exceptions sw nne↔nane and uk дев'ять↔десять sit one apart and are gated
- * there explicitly), so capping each word at one slip keeps them apart while
- * the sentence as a whole may fumble once per word. The cap applies flatly
+ * drill must not do is accept one number for another, and that danger lives
+ * inside the number, not across the sentence around it: most distinct
+ * cardinals sit ≥ 2 edits apart, so capping each word at one slip keeps them
+ * apart while the sentence as a whole may fumble once per word, and the few
+ * one-edit twins (sw nne↔nane, uk дев'ять↔десять) are refused above this
+ * budget by the drill grader's own value check (`otherNumber`). The cap applies flatly
  * to every word regardless of its own length, unlike the whole-phrase rule
  * below — a short word (e.g. "für") forgives the same one slip a long one
  * does. A word carrying a digit still grades exact-only: distinct digit

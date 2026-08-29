@@ -48,11 +48,10 @@ kotlin {
     }
 }
 
-// why: two corpus sweeps are 110 s of the suite's 145 s — ClockCollisionSweepTests walks every
-// minute of the day in every language, TrainerFormsTypoBridgeGuardTests every authored form.
-// Only a catalog or trainer-forms edit can move them, so the commit gate leaves them out;
-// `-Psweeps` puts them back, and the release workflow always passes it.
-val corpusSweeps = listOf("*ClockCollisionSweepTests", "*TrainerFormsTypoBridgeGuardTests")
+// why: the day-part sweep walks every minute of the day in every language, far too slow for
+// the commit gate. Only a catalog or trainer edit can move it, so the commit gate leaves it
+// out; `-Psweeps` puts it back, and the release workflow always passes it.
+val corpusSweeps = listOf("*ClockDayPartSweepTests")
 
 tasks.named<Test>("jvmTest") {
     maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)

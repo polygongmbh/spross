@@ -2,20 +2,15 @@ package net.spross.kern.trainer
 
 /**
  * Every number-form value a pack with these [FormLimits] can be asked — the answer space
- * itself, described once.
+ * itself, described once, for [NumberReadingIndex] to enumerate. A form a pack reads that
+ * this enumeration does not offer is a reading the index cannot resolve, so the bounds
+ * below are the reach of the drill's value check.
  *
- * Two readers need the same description and must never hold two of it: the typo-bridge
- * sweeps, which grade every reading against every other, and [NumberReadingIndex], which
- * resolves a typed reading back to the value it names. A form a pack reads that this
- * enumeration does not offer is invisible to both at once — which is what makes the sweep
- * a proof of the index's reach rather than a second opinion about it.
- *
- * The enumeration is bounded to stay the order of the cardinal sweep's German 0–999:
- * negatives 0–99, decimals with a whole part 0–9 and one or two fraction digits, percent and
- * multiplicatives over the range the ladder draws (1–100), every reduced fraction the pack
- * allows, and ordinals over the pack's own range. Values the ladder can never draw are left
- * out — an all-zero fraction-digit string is repaired at the source ([NumberFormLadder]),
- * so no reading exists for "3,0" to bridge with.
+ * The bounds are the ladder's own: negatives 0–99, decimals with a whole part 0–9 and one
+ * or two fraction digits, percent and multiplicatives over the range the ladder draws
+ * (1–100), every reduced fraction the pack allows, and ordinals over the pack's own range.
+ * Values the ladder can never draw are left out — an all-zero fraction-digit string is
+ * repaired at the source ([NumberFormLadder]), so no reading of "3,0" exists.
  */
 internal object NumberFormsAnswerSpace {
 

@@ -40,13 +40,22 @@ class DrillGradingTests {
     }
 
     @Test
-    fun aTwinInsideAWrapperIsRefusedPositionally() {
-        // The negative wrapper is not indexed, so the whole answer names nothing and
-        // the differing word must carry the evidence alone.
+    fun aTwinInsideAWrapperIsRefusedAsTheValueItNames() {
+        // Negatives are indexed like everything drawable, so the whole answer IS -8
+        // and the refusal names it — not just the differing word.
         val match = grade("sw", "hasi nane", listOf("hasi nne"))
         assertIs<Match.OtherWord>(match)
-        assertEquals("nane", match.word)
-        assertEquals(listOf("8"), match.meanings)
+        assertEquals(listOf("-8"), match.meanings)
+    }
+
+    @Test
+    fun aTwinInsideAnUnindexedReadingIsRefusedPositionally() {
+        // A clock reading is not an indexed value, so the differing word must carry
+        // the evidence alone: the minute count names 10 where 9 was asked.
+        val match = grade("uk", "за десять хвилин перша", listOf("за дев'ять хвилин перша"))
+        assertIs<Match.OtherWord>(match)
+        assertEquals("десять", match.word)
+        assertEquals(listOf("10"), match.meanings)
     }
 
     @Test
