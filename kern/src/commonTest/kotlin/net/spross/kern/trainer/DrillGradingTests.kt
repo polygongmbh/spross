@@ -24,10 +24,13 @@ class DrillGradingTests {
     }
 
     @Test
-    fun aCompoundNamingAnotherValueIsRefusedWhole() {
+    fun aCompoundAboveTheIndexedBandIsRefusedThroughItsDifferingWord() {
+        // 178 sits above the indexed cardinals, so the whole answer names nothing and
+        // the positional probe carries it: the word that differs is 70 where 60 was owed.
         val match = grade("es", "ciento setenta y ocho", listOf("ciento sesenta y ocho"))
         assertIs<Match.OtherWord>(match)
-        assertEquals(listOf("178"), match.meanings)
+        assertEquals("setenta", match.word)
+        assertEquals(listOf("70"), match.meanings)
     }
 
     @Test

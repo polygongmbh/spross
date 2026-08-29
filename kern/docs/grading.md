@@ -75,8 +75,9 @@ Leniency is safe to the extent the catalog can disprove it — that rule is the 
   Evidence is keyed to the TYPED side, never the expected one:
   refusing because the expected word is indexed would turn every fumbled numeral
   (`sesemta` for `sesenta`) into a miss, which is the one behavior the drill must keep.
-  The index is the packs' own output — `drillNumber(n)` over the drawn range plus
-  `formReading(value)` over `NumberFormsAnswerSpace` — keyed by the normalizer's
+  The index is the packs' own output — `drillNumber(n)` over the low band where the
+  twins live (0–120 and the round hundreds; a compound above it is caught through its
+  differing word) plus `formReading(value)` over `NumberFormsAnswerSpace` — keyed by the normalizer's
   comparison shape and built lazily per language; nothing about it is authored,
   so a re-spelled numeral moves the index the moment the pack moves.
   The country drill runs the same shape through `CountryNameIndex`, kind-scoped

@@ -38,20 +38,21 @@ internal sealed interface NumberIdentity {
  * **Language-keyed on purpose.** Unkeyed, `dix` would resolve to 10 on an English prompt where
  * it is not a word — harmless in effect, wrong in reasoning, and a trap for the next language.
  *
- * **Every drawable reading is indexed, every form kind included.** Most non-ordinal forms
- * are an invariant wrapper word around an unmodified cardinal (`menos $n`, `$n percent`),
- * which the cardinal entries alone would answer for — but not all: Esperanto welds its
- * multiplicative (`sesfoje`), and the whole-answer probe wants the compound reading itself.
- * One rule beats a per-kind argument.
+ * **Every drawable form kind is indexed except Decimal.** Most non-ordinal forms are an
+ * invariant wrapper word around an unmodified cardinal (`menos $n`, `$n percent`), which
+ * the cardinal entries alone would answer for — but not all: Esperanto welds its
+ * multiplicative (`sesfoje`), so wrapping kinds stay in. Decimal is the one kind that
+ * CANNOT weld — every language speaks its separator as a word — and its digit tails are
+ * cardinals below 100 the index already holds, so its thousand-value space would buy
+ * nothing but build time on the oldest phone this app supports.
  *
- * Built on first lookup, because the check it serves runs only on a near-miss: a run that
- * never mistypes a numeral never pays for the index at all. The build is 15–70 ms per
- * language on the JVM (es widest), which is why no range bounding was added.
+ * Built on first lookup, because the check it serves runs only on a miss: a run that
+ * never misses a numeral never pays for the index at all.
  */
 internal class NumberReadingIndex(
     val language: Language,
     val normalizer: AnswerNormalizer,
-    private val cardinals: LongRange = DRAWN_CARDINALS,
+    private val cardinals: List<Long> = INDEXED_CARDINALS,
 ) {
 
     private val byShape: Map<String, Set<NumberIdentity>> by lazy { build() }
@@ -73,6 +74,7 @@ internal class NumberReadingIndex(
         }
         for (n in cardinals) put(NumberIdentity.Cardinal(n), pack.drillNumber(n))
         for (value in NumberFormsAnswerSpace.drawableValues(pack.formLimits)) {
+            if (value is NumberValue.Decimal) continue
             val identity = NumberIdentity.Form(value, renderForm(value, pack.decimalMark, grouped = false))
             put(identity, pack.formReading(value))
         }
@@ -82,20 +84,22 @@ internal class NumberReadingIndex(
     companion object {
 
         /**
-         * The cardinals a drill draws: [drawSampleNumber] tops out at four digits, a year at
-         * [drawSampleYear]'s 2200, and the widest magnitude the forms ladder wraps is its
-         * rung-10 negative below 10 000. The leveled Numbers ladder reaches ten digits
-         * (`Trainer.maxLevel(Numbers)`), which no index can hold — a reading beyond this range
-         * simply names no indexed value, and grades exactly as it does today.
+         * The cardinals worth indexing: every known one-slip twin is a value below 120
+         * (it `ventotto`/`centotto` is 28/108) or a welded round hundred
+         * (eo `sescent`/`sepcent` is 600/700), so the index stops there. A compound
+         * above the band is caught by the positional probe through the small word it
+         * differs in — the nudge then names that word's value ("setenta" is 70) rather
+         * than the compound's own. Bounded on purpose: indexing the full four-digit
+         * drawn range costs a 10 000-value build on the main thread of the oldest
+         * phone this app supports, for no twin anyone has found up there.
          */
-        val DRAWN_CARDINALS: LongRange = 0L..9_999L
+        val INDEXED_CARDINALS: List<Long> = (0L..120L) + (200L..1000L step 100L)
 
         private var cached: NumberReadingIndex? = null
 
         /**
          * The index for [language] as [normalizer] shapes it, kept across the run that asks
-         * for it. One slot rather than one per language: a run drills one language, and a
-         * cardinal range this wide is worth holding once, not eight times.
+         * for it. One slot rather than one per language: a run drills one language.
          */
         fun of(language: Language, normalizer: AnswerNormalizer): NumberReadingIndex =
             cached?.takeIf { it.language == language && it.normalizer === normalizer }
