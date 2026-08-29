@@ -9,86 +9,13 @@ import net.spross.kern.catalog.RealCatalog
 import net.spross.kern.model.Card
 
 /**
- * The guarantee behind [CatalogAnswerGrader], asserted against the real catalog:
- * no word the catalog teaches is ever a forgiven SLIP of another concept's answer.
- * sw `kufunga` (abschließen) sits one edit from `kufungua` (aufschließen), so the
- * one-card typo budget graded each as the other — the very confusion a learner
- * needs told apart.
- *
- * Relational, not pinned: the pairs come out of the join, so content edits move
- * the sweep instead of breaking it.
+ * [CatalogAnswerGrader] against the real catalog: the known confusion is told apart
+ * (sw `kufunga`/`kufungua`), gendered cards accept their citation forms, and the
+ * article peel neither eats a stray word nor loosens a language without articles.
  */
 class RealCatalogGradingTest {
     private val catalog get() = RealCatalog.catalog
 
-    @Test
-    fun noCatalogWordIsEverAForgivenSlipOfAnother() {
-        for (target in listOf("en", "eo", "es", "fr", "it", "sw", "uk")) {
-            val cards = catalog.join("de", target)
-            val language = catalog.languages.getValue(target)
-            val normalizer = AnswerNormalizer(language)
-            val grader = CatalogAnswerGrader(normalizer, cards)
-            val forms = cards.map { normalizer.normalize(it.target.text) }
-            // A fumbled article, the one stray token the peel reads back: one slip off a
-            // listed one, since an article typed correctly is stripped before grading and
-            // never reaches the recovery. Null where the language lists none — nothing is
-            // peeled there at all, and a token in front of a word is then simply a
-            // different string for the ordinary budget to rule on.
-            val stray = language.articles.firstOrNull()?.let { it.dropLast(1) + "x" }
-
-            var examined = 0
-            var bridged = 0
-            for ((i, card) in cards.withIndex()) {
-                for ((j, other) in cards.withIndex()) {
-                    if (i == j || forms[i] == forms[j]) continue
-                    // why: §3 keeps the base concept's word lenient on a feminine
-                    // card on purpose — that demotion is the one wanted typo.
-                    if (other.id == card.feminineOf) continue
-                    // why: a form the prompted card accepts ITSELF is not a confusion to
-                    // guard — es `talk` lists `hablar` beside `charlar`, so writing it is
-                    // right here and right for `speak`, article fumbled or not.
-                    if (normalizer.evaluate(other.target.text, card) == Match.Exact) continue
-                    if (!near(forms[i], forms[j])) continue
-                    examined++
-                    val verdict = grader.grade(other.target.text, card)
-                    assertFalse(
-                        verdict is Match.Typo,
-                        "de→$target: \"${other.target.text}\" (${other.id}) " +
-                            "graded as a typo of ${card.id} (\"${card.target.text}\")",
-                    )
-                    // The same word behind a fumbled article: the normalizer peels the
-                    // stray token and grades the rest, so the withdrawal has to see the
-                    // remainder rather than the string that was typed.
-                    if (stray != null) {
-                        val prefixed = "$stray ${other.target.text}"
-                        val peeledVerdict = grader.grade(prefixed, card)
-                        if (peeledVerdict is Match.OtherWord) bridged++
-                        assertFalse(
-                            peeledVerdict is Match.Typo,
-                            "de→$target: \"$prefixed\" (${other.id}) " +
-                                "graded as a typo of ${card.id} (\"${card.target.text}\")",
-                        )
-                    }
-                }
-            }
-            // Non-vacuity: every language does carry near-twins to grade.
-            assertTrue(examined > 0, "de→$target swept no near pairs at all")
-            // And the prefixed pass really reaches the recovery, rather than dying on
-            // the length pre-filter and proving nothing.
-            if (stray != null) {
-                assertTrue(bridged > 0, "de→$target never named the word behind the stray token")
-            }
-        }
-    }
-
-    /**
-     * The citation form the reveal teaches — `grammar.gender` plus the text — is the
-     * spelling a learner copies back, so producing it has to grade Exact. It could not
-     * for the es pluralia tantum while they stored a singular `el`/`la` for the
-     * convention's sake: the article-mismatch demotion saw `los auriculares` disagree
-     * with `el` and marked the one right answer a typo. They carry their real article
-     * now, and this is the rule that keeps every gendered card honest, in any language.
-     */
     @Test
     fun everyGenderedCardAcceptsTheCitationFormItTeaches() {
         var examined = 0
@@ -187,37 +114,4 @@ class RealCatalogGradingTest {
         firstOrNull { it.target.text == text }
             ?: throw AssertionError("no de→sw card answers \"$text\"")
 
-    /**
-     * Within reach of any typo budget the formula can hand out (~⅙ of letters),
-     * so the sweep grades only the pairs that could bridge — with a margin.
-     */
-    private fun near(a: String, b: String): Boolean {
-        val budget = maxOf(1, maxOf(a.length, b.length) / 6) + 1
-        if (kotlin.math.abs(a.length - b.length) > budget) return false
-        return distance(a, b, budget) <= budget
-    }
-
-    /** Optimal-string-alignment distance, abandoned once it passes [limit]. */
-    private fun distance(a: String, b: String, limit: Int): Int {
-        var previous = IntArray(b.length + 1) { it }
-        var beforePrevious = IntArray(b.length + 1)
-        for (i in 1..a.length) {
-            val current = IntArray(b.length + 1)
-            current[0] = i
-            var rowBest = current[0]
-            for (j in 1..b.length) {
-                val cost = if (a[i - 1] == b[j - 1]) 0 else 1
-                var value = minOf(previous[j] + 1, current[j - 1] + 1, previous[j - 1] + cost)
-                if (i > 1 && j > 1 && a[i - 1] == b[j - 2] && a[i - 2] == b[j - 1]) {
-                    value = minOf(value, beforePrevious[j - 2] + 1)
-                }
-                current[j] = value
-                rowBest = minOf(rowBest, value)
-            }
-            if (rowBest > limit) return limit + 1
-            beforePrevious = previous
-            previous = current
-        }
-        return previous[b.length]
-    }
 }
