@@ -17,33 +17,37 @@ import SprossKern
 /// went in. In the area list the shelf's own control does both instead
 /// (`BoxAreaSection.packControl`): a queued row states so with the same tray
 /// icon, plain rather than tappable.
+///
+/// A long press opens everything that can be done to the word (`BoxRowMenu`);
+/// the entries that need a screen of their own hand one back here to raise.
 struct BoxCardRow: View {
     let model: AppModel
     let card: Card
     var pack: (() -> Void)?
 
-    @State private var reporting = false
+    /// The sheet the long-press menu asked for, if any (`BoxRowMenu`).
+    @State private var sheet: BoxRowSheet?
 
     var body: some View {
-        row.contextMenu { menu }
+        row.contextMenu {
+            BoxRowMenu(model: model, card: card) { sheet = $0 }
+        }
     }
 
-    /// Reporting reaches every row; deleting only the learner's own words — a
-    /// catalog word can be put to sleep, never removed.
     @ViewBuilder
-    private var menu: some View {
-        if model.reportedIssue(for: card.id) == nil {
-            Button("report.action", systemImage: "exclamationmark.bubble") {
-                reporting = true
-            }
-        } else {
-            Button("report.dismiss", systemImage: "checkmark.bubble") {
-                model.dismissReportedIssue(cardID: card.id)
-            }
-        }
-        if model.isOwnWord(card.id) {
-            Button("box.ownWords.remove", systemImage: "trash", role: .destructive) {
-                model.removeOwnWord(card.id)
+    private func sheetBody(_ which: BoxRowSheet) -> some View {
+        switch which {
+        case .report:
+            // No typed answer to carry: nothing was being answered here.
+            ReportIssueSheet(model: model, card: card, learnerInput: "")
+        case .editReport:
+            ReportIssueSheet(model: model, card: card, learnerInput: "",
+                             filed: model.reportedIssue(for: card.id)?.comment ?? "")
+        case .ownFrom:
+            OwnWordFormView(model: model, seed: .card(card))
+        case .editOwnWord:
+            if let word = model.ownWord(card.id) {
+                OwnWordFormView(model: model, seed: .editing(word))
             }
         }
     }
@@ -99,10 +103,7 @@ struct BoxCardRow: View {
                 .fill(Color.dlSurfaceTint)
         )
         .pronounceOnTap(pronounce)
-        .sheet(isPresented: $reporting) {
-            // No typed answer to carry: nothing was being answered here.
-            ReportIssueSheet(model: model, card: card, learnerInput: "")
-        }
+        .sheet(item: $sheet) { sheetBody($0) }
     }
 
     /// The citation form, with its article in the gender's own color — the same
