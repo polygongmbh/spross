@@ -6,12 +6,17 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 import net.spross.kern.box.BoxState
+import net.spross.kern.box.dayKey
+import net.spross.kern.model.DayStats
 
 /** Round classification, the counts behind it, and a headline pick that survives a relaunch. */
 class SessionOfferTests {
     private val now = Box.day1
 
     private fun id(n: Int) = "w" + n.toString().padStart(2, '0')
+
+    /** This round's line at the scenario clock. */
+    private fun SessionOffer.line() = headline(now, Box.TZ)
 
     /** [due] cards overdue, [ahead] due later, [catalog] words in total. */
     private fun state(due: Int, ahead: Int, catalog: Int, sessionCap: Int): BoxState {
@@ -75,8 +80,8 @@ class SessionOfferTests {
     fun anEmptyRoundBorrowsTheFreshSetHeadline() {
         val offer = SessionOffers.offer(Box.state(emptyList()), now, Box.TZ)
         assertEquals(SessionOfferKind.Nothing, offer.kind)
-        assertEquals(SessionOfferKind.FreshSet, offer.headline.kind)
-        assertTrue(offer.headline.variant in 0 until SessionOffer.HEADLINE_VARIANTS)
+        assertEquals(HeadlineKind.FreshSet, offer.line().kind)
+        assertTrue(offer.line().variant in 0 until SessionOffer.HEADLINE_VARIANTS)
     }
 
     /**
@@ -93,32 +98,77 @@ class SessionOfferTests {
     }
 
     /**
-     * The headline turns on the round's shape and nothing else: same counts, same variant,
-     * every run — a runtime-seeded hash would re-roll the line on every launch, and the two
-     * platforms would disagree.
+     * The headline turns on the round's shape and the day's work so far, and on nothing else:
+     * same counts, same variant, every run — a runtime-seeded hash would re-roll the line on
+     * every launch, and the two platforms would disagree.
      */
     @Test
     fun theHeadlinePickIsStableAndSpreadAcrossVariants() {
         val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 20, dueHeldBack = 20, ahead = 0, fresh = 5, shortRound = 7)
-        assertEquals(offer.headline, offer.copy(dueHeldBack = 3).headline)
-        assertEquals(offer.headline, offer.copy(shortRound = 0).headline)
-        assertEquals(offer.headline, SessionOffers.offer(state(40, 0, 50, 25), now, Box.TZ).headline)
+        assertEquals(offer.line(), offer.copy(dueHeldBack = 3).line())
+        assertEquals(offer.line(), offer.copy(shortRound = 0).line())
+        assertEquals(offer.line(), SessionOffers.offer(state(40, 0, 50, 25), now, Box.TZ).line())
 
         val variants = (0..40).flatMap { reviews ->
             (0..7).map { fresh ->
-                SessionOffer(SessionOfferKind.Reviews, reviews, 0, 0, fresh, shortRound = 0).headline.variant
+                SessionOffer(SessionOfferKind.Reviews, reviews, 0, 0, fresh, shortRound = 0).line().variant
             }
         }
         assertTrue(variants.all { it in 0 until SessionOffer.HEADLINE_VARIANTS })
         assertEquals(SessionOffer.HEADLINE_VARIANTS, variants.toSet().size)
     }
 
+    /**
+     * A day's second round of the same make gets a different line: the shape alone left the
+     * card frozen on the words the learner just finished reading, and a screen that never
+     * moves stops being read.
+     */
+    @Test
+    fun aFinishedRoundMovesTheHeadlineOn() {
+        val first = SessionOffer(SessionOfferKind.Reviews, reviews = 12, dueHeldBack = 0, ahead = 0, fresh = 3, shortRound = 0)
+        val variants = (0..6).map { first.copy(doneToday = it * 12).line().variant }
+        assertTrue(variants.toSet().size > 1, "a day's rounds all headlined the same: $variants")
+        // Still fixed per day-state: the same round read twice never re-rolls between renders.
+        assertEquals(first.line(), first.copy().line())
+    }
+
+    /**
+     * Late in a day that has not paid into a standing run, the card says so instead of naming
+     * the round — the round keeps until tomorrow and the run does not.
+     */
+    @Test
+    fun anExposedRunTakesOverTheHeadlineAfterTheMorning() {
+        val offer = SessionOffers.offer(state(due = 12, ahead = 0, catalog = 20, sessionCap = 25), now, Box.TZ)
+        assertEquals(HeadlineKind.Reviews, offer.line().kind)
+        assertEquals(HeadlineKind.StreakReminder, offer.copy(streakExposed = true).line().kind)
+
+        // A morning is owed nothing yet.
+        val morning = Box.millis(2026, 7, 1, hour = 8)
+        assertEquals(HeadlineKind.Reviews, offer.copy(streakExposed = true).headline(morning, Box.TZ).kind)
+    }
+
+    /**
+     * The run a reminder speaks for is THIS language's: a yesterday worked here and a today
+     * still empty exposes it, and no amount of exposure in another box answers for it.
+     */
+    @Test
+    fun theExposedRunIsReadOffThisLanguageAlone() {
+        val worked = Box.state((1..20).map { Box.word(it) }, Box.config(25))
+            .let { it.copy(dailyStats = mapOf(dayKey(Box.plusDays(now, -1.0), Box.TZ) to DayStats(reviews = 8))) }
+        assertTrue(SessionOffers.offer(worked, now, Box.TZ).streakExposed)
+
+        val alsoToday = worked.copy(
+            dailyStats = worked.dailyStats + (dayKey(now, Box.TZ) to DayStats(reviews = 3)),
+        )
+        assertFalse(SessionOffers.offer(alsoToday, now, Box.TZ).streakExposed)
+    }
+
     /** The pick is a fixed function of the counts — pinned so a rewrite cannot drift it. */
     @Test
     fun theHeadlinePickIsPinned() {
         fun variant(reviews: Int, ahead: Int, fresh: Int) =
-            SessionOffer(SessionOfferKind.Reviews, reviews, 0, ahead, fresh, shortRound = 0).headline.variant
-        assertEquals(listOf(1, 2, 0), listOf(variant(0, 0, 0), variant(1, 0, 0), variant(20, 0, 5)))
+            SessionOffer(SessionOfferKind.Reviews, reviews, 0, ahead, fresh, shortRound = 0).line().variant
+        assertEquals(listOf(0, 1, 2), listOf(variant(0, 0, 0), variant(1, 0, 0), variant(20, 0, 5)))
     }
 
     private fun summary(reviews: Int, ahead: Int, fresh: Int) =

@@ -338,6 +338,7 @@ MAPPING = {
     'growthSown': ['session.finished.growth.sown.%d' % i for i in range(3)],
     'headlineFreshSet': ['heute.session.freshSet.%d' % i for i in range(3)],
     'headlineReviews': ['heute.session.reviews.%d' % i for i in range(3)],
+    'headlineStreak': ['heute.session.streakReminder.%d' % i for i in range(3)],
     'headlineWarmUp': ['heute.session.warmUp.%d' % i for i in range(3)],
 
     'numberSections': {section: 'numbers.section.%s' % section for section in

@@ -103,7 +103,7 @@ fun SessionCard(model: AppModel, standing: HeuteStanding, streak: Int, health: S
         // gets a plain mark instead.
         DayMark(if (streak > 0) null else "✨", streak, health, chrome)
         Text(
-            headlineText(chrome, offer.headline),
+            headlineText(chrome, standing.headline),
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
         )

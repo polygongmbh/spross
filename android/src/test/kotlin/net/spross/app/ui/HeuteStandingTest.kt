@@ -7,6 +7,7 @@ import kotlin.test.assertTrue
 import net.spross.app.Chrome
 import net.spross.kern.box.TodayReport
 import net.spross.kern.box.TomorrowNote
+import net.spross.kern.session.HeadlineKind
 import net.spross.kern.session.SessionHeadline
 import net.spross.kern.session.SessionOffer
 import net.spross.kern.session.SessionOfferKind
@@ -82,7 +83,7 @@ class HeuteStandingTest {
 
     @Test
     fun everyKindAndVariantResolvesToAPhrasing() {
-        for (kind in SessionOfferKind.entries) {
+        for (kind in HeadlineKind.entries) {
             for (variant in 0 until SessionOffer.HEADLINE_VARIANTS) {
                 val text = headlineText(chrome, SessionHeadline(kind, variant))
                 assertTrue(text.isNotBlank(), "$kind/$variant had no words")
@@ -90,14 +91,28 @@ class HeuteStandingTest {
         }
     }
 
+    /** A run that owes nothing headlines by the round's shape, at any hour of the day. */
     @Test
-    fun theHeadlineFollowsTheRoundsShapeRatherThanTheClock() {
+    fun aSafeRunHeadlinesByTheRoundsShapeAtAnyHour() {
         val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 5, dueHeldBack = 0, ahead = 0, fresh = 2, shortRound = 0)
 
-        assertEquals(
-            chrome.headlineReviews[offer.headline.variant],
-            headlineText(chrome, offer.headline),
+        for (hour in 0..23) {
+            val headline = offer.headline(hour * 3_600_000L, "UTC")
+            assertEquals(chrome.headlineReviews[headline.variant], headlineText(chrome, headline))
+        }
+    }
+
+    /** Once the day owes the run, the card says that instead of naming the round. */
+    @Test
+    fun anExposedRunHeadlinesTheStreakInstead() {
+        val offer = SessionOffer(
+            SessionOfferKind.Reviews, reviews = 5, dueHeldBack = 0, ahead = 0, fresh = 2,
+            shortRound = 0, streakExposed = true,
         )
+        val headline = offer.headline(14 * 3_600_000L, "UTC")
+
+        assertEquals(HeadlineKind.StreakReminder, headline.kind)
+        assertEquals(chrome.headlineStreak[headline.variant], headlineText(chrome, headline))
     }
 
     @Test

@@ -22,7 +22,8 @@ extension AppModel {
     /// Today's round as kern classified it. A box that has not loaded offers nothing.
     var heuteOffer: SessionOffer {
         guard let box else {
-            return SessionOffer(kind: .nothing, reviews: 0, dueHeldBack: 0, ahead: 0, fresh: 0, shortRound: 0)
+            return SessionOffer(kind: .nothing, reviews: 0, dueHeldBack: 0, ahead: 0, fresh: 0,
+                                shortRound: 0, doneToday: 0, streakExposed: false)
         }
         return SessionOffers.shared.offer(state: box,
                                           nowEpochMillis: Date().epochMillis,
@@ -282,20 +283,23 @@ extension SessionOffer {
 
     /// The String Catalog key naming this round. Which kind owns the words and
     /// which of its phrasings this round takes are kern's rulings
-    /// (`session/SessionOffer.kt`); only the words themselves are ours.
+    /// (`session/SessionOffer.kt`); only the words themselves are ours. The clock
+    /// goes in because a run today has not renewed takes the line over from late
+    /// morning on.
     var headlineKey: String {
-        "heute.session.\(Self.stem(headline.kind)).\(headline.variant)"
+        let line = headline(nowEpochMillis: Date().epochMillis, tzId: currentTzId())
+        return "heute.session.\(Self.stem(line.kind)).\(line.variant)"
     }
 
     /// One string set per kind, keyed by the kind itself so a new kind cannot
-    /// silently keep an old kind's words. `nothing` never reaches here — kern
-    /// folds it onto `freshSet`, the done card speaking for an empty round —
-    /// but naming it anyway keeps every path off a missing key.
-    private static func stem(_ kind: SessionOfferKind) -> String {
+    /// silently keep an old kind's words. Kern folds an empty round's kind onto
+    /// `freshSet` before it gets here, the done card speaking for that round.
+    private static func stem(_ kind: HeadlineKind) -> String {
         switch kind {
         case .reviews: return "reviews"
         case .warmUp: return "warmUp"
-        case .freshSet, .nothing: return "freshSet"
+        case .freshSet: return "freshSet"
+        case .streakReminder: return "streakReminder"
         }
     }
 }

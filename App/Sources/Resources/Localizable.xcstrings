@@ -2871,6 +2871,54 @@
         }
       }
     },
+    "heute.session.streakReminder.0" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Serie wartet auf heute"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your streak is waiting on today"
+          }
+        }
+      }
+    },
+    "heute.session.streakReminder.1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Runde hält die Serie am Leben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One round keeps the run going"
+          }
+        }
+      }
+    },
+    "heute.session.streakReminder.2" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute hat die Flamme noch nicht genährt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today hasn't fed the flame yet"
+          }
+        }
+      }
+    },
     "heute.session.warmUp.0" : {
       "localizations" : {
         "de" : {

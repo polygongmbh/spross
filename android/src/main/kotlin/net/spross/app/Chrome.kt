@@ -423,6 +423,8 @@ interface Chrome {
     val headlineReviews: List<String>
     val headlineWarmUp: List<String>
     val headlineFreshSet: List<String>
+    /** What the card says instead once a standing run is still owed today's work. */
+    val headlineStreak: List<String>
     /** What a round with no nameable parts says instead of printing zeros. */
     val sessionSomeCards: String
     /** The cap is a promise, not a loss: what it holds back is named. */

@@ -3,7 +3,11 @@ package net.spross.kern.session
 import kotlin.math.max
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
+import net.spross.kern.box.DayPart
 import net.spross.kern.box.Growth
+import net.spross.kern.box.chromePart
+import net.spross.kern.box.dayKey
+import net.spross.kern.box.streakHealth
 import net.spross.kern.model.fnv1a64
 
 /**
@@ -14,12 +18,20 @@ import net.spross.kern.model.fnv1a64
 enum class SessionOfferKind { Reviews, WarmUp, FreshSet, Nothing }
 
 /**
+ * Which line the day's card leads with. Three of these name what the round HOLDS — one per
+ * [SessionOfferKind] that carries words — and the fourth names what the day still OWES: a run
+ * today has not renewed outranks the round's own words, because the round is still there
+ * tomorrow and the run is not.
+ */
+enum class HeadlineKind { Reviews, WarmUp, FreshSet, StreakReminder }
+
+/**
  * Which headline names this round: the kind that owns the words, plus which of its
  * [SessionOffer.HEADLINE_VARIANTS] phrasings this round takes. The words themselves are the
  * platform's string table — kern names the rule, never the rendering.
  */
 data class SessionHeadline(
-    val kind: SessionOfferKind,
+    val kind: HeadlineKind,
     val variant: Int,
 )
 
@@ -42,19 +54,47 @@ data class SessionOffer(
      * shorten — [SessionComposer.shortRoundSize] draws the line.
      */
     val shortRound: Int,
+    /**
+     * Reviews this box has already recorded today — what makes the second round of a day
+     * read differently from the first.
+     */
+    val doneToday: Int = 0,
+    /**
+     * Whether THIS language's run still owes today's work
+     * ([net.spross.kern.box.StreakHealth.isExposed]).
+     *
+     * Read off one box on purpose, never the merged run: the daily rep is per language, so a
+     * learner who has already had their exposure in another language is still owed one here,
+     * and a card that went quiet about it would be the only place that never said so.
+     */
+    val streakExposed: Boolean = false,
 ) {
     /**
-     * The variant turns on the round's SHAPE, never on the clock: a learner does several rounds
-     * in a day, and one repeated line reads as a screen that never moved while a line re-rolling
-     * between renders reads as a glitch — and the offer is recomposed on every read.
+     * Which line names this round right now, and which of its phrasings it takes.
+     *
+     * A run today has not renewed takes the card over from late morning on: the round's own
+     * words say the same thing every day, and on the day the streak is actually exposed that is
+     * the one thing they fail to say. Mornings stay quiet — a day that has barely started is
+     * owed nothing yet — and a run that is safe or absent never nags at all.
      */
-    val headline: SessionHeadline
-        get() = SessionHeadline(
-            // The done state speaks for an empty round, so `Nothing` has no words of its own;
-            // naming it anyway keeps every path off a missing key.
-            kind = if (kind == SessionOfferKind.Nothing) SessionOfferKind.FreshSet else kind,
+    fun headline(nowEpochMillis: Long, tzId: String): SessionHeadline =
+        SessionHeadline(
+            kind = headlineKind(nowEpochMillis, tzId),
             variant = variant(HEADLINE_VARIANTS),
         )
+
+    private fun headlineKind(nowEpochMillis: Long, tzId: String): HeadlineKind {
+        if (streakExposed && chromePart(nowEpochMillis, tzId) != DayPart.Morning) {
+            return HeadlineKind.StreakReminder
+        }
+        return when (kind) {
+            SessionOfferKind.Reviews -> HeadlineKind.Reviews
+            SessionOfferKind.WarmUp -> HeadlineKind.WarmUp
+            // The done state speaks for an empty round, so `Nothing` has no words of its own;
+            // folding it onto FreshSet keeps every path off a missing phrasing.
+            SessionOfferKind.FreshSet, SessionOfferKind.Nothing -> HeadlineKind.FreshSet
+        }
+    }
 
     /**
      * What the day's card SAYS this round holds — which counts it names, in reading order.
@@ -81,12 +121,18 @@ data class SessionOffer(
     }
 
     /**
-     * FNV-1a over the counts, never a runtime-seeded hash: Swift seeds `hashValue` per process
+     * The variant turns on the round's SHAPE and on the day's work so far, never on the clock.
+     * The shape alone left the line standing after a finished round — a second round of the same
+     * make headlines identically, and a screen that never moved stops being read — while a clock
+     * term would re-roll it between renders, which reads as a glitch, since the offer is
+     * recomposed on every read. [doneToday] moves only when a round actually lands.
+     *
+     * FNV-1a over those counts, never a runtime-seeded hash: Swift seeds `hashValue` per process
      * and Kotlin's `hashCode` is no contract either, so the same round would headline differently
      * on the next launch — or differently on the two platforms.
      */
     private fun variant(count: Int): Int {
-        var hash = fnv1a64("$reviews:$ahead:$fresh")
+        var hash = fnv1a64("$reviews:$ahead:$fresh:$doneToday")
         // why: FNV leaves its low bits barely mixed, and the modulo reads exactly those.
         hash = hash xor (hash shr 33)
         return (hash % count.toULong()).toInt()
@@ -144,6 +190,8 @@ object SessionOffers {
             ahead = ahead,
             fresh = fresh,
             shortRound = SessionComposer.shortRoundSize(plan),
+            doneToday = state.dailyStats[dayKey(nowEpochMillis, tzId)]?.reviews ?: 0,
+            streakExposed = streakHealth(state.dailyStats, nowEpochMillis, tzId).isExposed,
         )
     }
 

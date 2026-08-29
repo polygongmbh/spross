@@ -117,6 +117,14 @@ enum class StreakHealth {
 
     /** The streak is 0: there is no run to protect. */
     None,
+    ;
+
+    /**
+     * Whether a run is standing and today has not yet paid into it — the one state a
+     * surface may nag about. [Earned] is safe and [None] has nothing to lose.
+     */
+    val isExposed: Boolean
+        get() = this == Bridgeable || this == Ending
 }
 
 /**

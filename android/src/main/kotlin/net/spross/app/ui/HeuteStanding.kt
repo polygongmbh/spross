@@ -9,6 +9,7 @@ import net.spross.kern.box.TodayReport
 import net.spross.kern.box.TomorrowNote
 import net.spross.kern.box.endOfTomorrow
 import net.spross.kern.box.tomorrowNote
+import net.spross.kern.session.HeadlineKind
 import net.spross.kern.session.OfferPartKind
 import net.spross.kern.session.SessionHeadline
 import net.spross.kern.session.SessionOffer
@@ -48,6 +49,8 @@ fun heuteCard(failed: Boolean, offerKind: SessionOfferKind): HeuteCard = when {
  */
 data class HeuteStanding(
     val offer: SessionOffer,
+    /** The line the day's card leads with — clock-dependent, so it is read at this instant too. */
+    val headline: SessionHeadline,
     val today: TodayReport,
     val tomorrow: TomorrowNote,
     /** What falls due inside tomorrow — kern's horizon, never a local-midnight rederivation. */
@@ -58,8 +61,10 @@ data class HeuteStanding(
         fun of(state: BoxState, nowEpochMillis: Long, tzId: String): HeuteStanding {
             val horizon = endOfTomorrow(nowEpochMillis, tzId).toEpochMilliseconds()
             val due = BoxEngine.dueNow(state, horizon).size
+            val offer = SessionOffers.offer(state, nowEpochMillis, tzId)
             return HeuteStanding(
-                offer = SessionOffers.offer(state, nowEpochMillis, tzId),
+                offer = offer,
+                headline = offer.headline(nowEpochMillis, tzId),
                 today = BoxEngine.today(state, nowEpochMillis, tzId),
                 tomorrow = tomorrowNote(SessionOffers.packedWordsPending(state), due),
                 tomorrowDue = due,
@@ -79,11 +84,10 @@ private const val PART_JOIN = " · "
  */
 fun headlineText(chrome: Chrome, headline: SessionHeadline): String {
     val variants = when (headline.kind) {
-        SessionOfferKind.Reviews -> chrome.headlineReviews
-        SessionOfferKind.WarmUp -> chrome.headlineWarmUp
-        // Kern folds the empty round's kind into FreshSet before it gets here; naming it
-        // anyway keeps every path off a missing phrasing.
-        SessionOfferKind.FreshSet, SessionOfferKind.Nothing -> chrome.headlineFreshSet
+        HeadlineKind.Reviews -> chrome.headlineReviews
+        HeadlineKind.WarmUp -> chrome.headlineWarmUp
+        HeadlineKind.FreshSet -> chrome.headlineFreshSet
+        HeadlineKind.StreakReminder -> chrome.headlineStreak
     }
     return variants[headline.variant % variants.size]
 }

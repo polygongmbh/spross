@@ -339,6 +339,11 @@ internal object ChromeDe : Chrome {
         "Zeit zum Säen!",
         "Ein paar Samen zum Aussäen",
     )
+    override val headlineStreak = listOf(
+        "Deine Serie wartet auf heute",
+        "Eine Runde hält die Serie am Leben",
+        "Heute hat die Flamme noch nicht genährt",
+    )
     override val sessionSomeCards = "Ein paar Karten für dich."
     override val sessionHeldBack = "%d weitere Karten warten noch auf dich."
     override val sessionStart = "Los geht's!"
