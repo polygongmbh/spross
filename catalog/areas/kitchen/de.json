@@ -4,7 +4,7 @@
  "words": {
   "fridge": { "text": "Kühlschrank", "grammar": { "gender": "der", "plural": "Kühlschränke" } },
   "stove": { "text": "Herd", "grammar": { "gender": "der", "plural": "Herde" } },
-  "oven": { "text": "Backofen", "grammar": { "gender": "der", "plural": "Backöfen" } },
+  "oven": { "text": "Backofen", "synonyms": ["Ofen"], "grammar": { "gender": "der", "plural": "Backöfen" } },
   "dishwasher": { "text": "Spülmaschine", "grammar": { "gender": "die", "plural": "-n" } },
   "pot": { "text": "Topf", "grammar": { "gender": "der", "plural": "Töpfe" } },
   "pan": { "text": "Pfanne", "grammar": { "gender": "die", "plural": "-n" } },
