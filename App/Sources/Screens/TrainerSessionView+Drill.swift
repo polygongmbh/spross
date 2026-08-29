@@ -29,7 +29,9 @@ extension TrainerSessionView {
                 // flip; .id gives each run position its own view identity.
                 ZStack {
                     TrainerPromptCard(task: current, sentence: wordyPrompt,
-                                      hint: placeValueHint, revealed: run.showsAnswer,
+                                      hint: placeValueHint,
+                                      otherWord: run.otherWord.map { ($0.word, $0.meanings.joined(separator: ", ")) },
+                                      revealed: run.showsAnswer,
                                       pronounce: model?.pronounceAction(for: current.display, lang: language),
                                       isPlaying: model?.isPronouncing(current.display, lang: language) ?? false)
                         .id(run.index)

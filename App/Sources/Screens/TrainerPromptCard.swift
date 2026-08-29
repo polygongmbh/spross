@@ -20,6 +20,9 @@ struct TrainerPromptCard: View {
     }
 
     var hint: Hint?
+    /// What a refused answer actually named ("setenta" is 70) — the nudge line
+    /// under the reveal, worded by the review session's own key.
+    var otherWord: (word: String, meanings: String)?
     /// The answer is out — the card grows it below the prompt, exactly like a
     /// vocabulary card, instead of a panel under the input field.
     var revealed = false
@@ -51,6 +54,12 @@ struct TrainerPromptCard: View {
                     }
                 }
                 .transition(.opacity.combined(with: .move(edge: .top)))
+                if let otherWord {
+                    // why: same line as the review session's — both explain what
+                    // became of the answer, so they read alike.
+                    Text("session.otherWord \(otherWord.word) \(otherWord.meanings)")
+                        .dlPauseLine()
+                }
             } else if let hint {
                 // why: the reveal TAKES this slot rather than stacking under it —
                 // the hint is scaffolding for a prompt still unanswered.

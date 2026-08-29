@@ -41,6 +41,9 @@ struct CountryPromptCard: View {
     var revealed: Reveal?
 
     struct Reveal {
+        /// What a refused answer actually named (Uswidi is Schweden) — the nudge
+        /// line under the reveal; nil everywhere but a refused miss.
+        var otherWord: (word: String, meanings: String)?
         let word: String
         /// The answer side's neighboring form — the people beside the country,
         /// the country beside the language. Never shown before the answer is in.
@@ -97,6 +100,12 @@ struct CountryPromptCard: View {
                         }
                     }
                     .transition(.opacity.combined(with: .move(edge: .top)))
+                    if let other = revealed.otherWord {
+                        // why: same line as the review session's — both explain
+                        // what became of the answer, so they read alike.
+                        Text("session.otherWord \(other.word) \(other.meanings)")
+                            .dlPauseLine()
+                    }
                 }
             }
             .frame(maxWidth: .infinity)

@@ -61,7 +61,8 @@ extension CountryDrillView {
         case .neutral, .correct:
             return nil
         case .almost, .revealed:
-            return .init(word: task.display,
+            return .init(otherWord: run.otherWord.map { ($0.word, $0.meanings.joined(separator: ", ")) },
+                         word: task.display,
                          note: task.gloss,
                          language: answerLanguage,
                          pronounce: model.pronounceAction(for: task.display, lang: answerLanguage),

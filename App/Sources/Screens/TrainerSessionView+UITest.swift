@@ -89,6 +89,7 @@ extension TrainerRunState {
                seenDigitCounts: seenDigitCounts,
                hintUsed: hintUsed,
                feedback: feedback ?? self.feedback,
+               otherWord: self.otherWord,
                finished: finished)
     }
 }

@@ -110,7 +110,7 @@ object TrainerRun {
             is TurnFeedback.Almost -> advanced(state, correct = true, outcome = AnswerOutcome.Almost)
             else -> state
         }
-        val ended = pending.copy(feedback = TurnFeedback.Neutral, hintUsed = false, finished = true)
+        val ended = pending.copy(feedback = TurnFeedback.Neutral, otherWord = null, hintUsed = false, finished = true)
         if (ended.done == 0) {
             return TrainerClose(ended, null, state.mode.recordKey, emptyMap(), effects)
         }
@@ -147,7 +147,7 @@ object TrainerRun {
                 listOf(DrillEffect.Tone(ToneKind.Correct), DrillEffect.ReleaseFocus),
             )
             else -> TrainerReduction(
-                state.copy(feedback = TurnFeedback.Revealed),
+                state.copy(feedback = TurnFeedback.Revealed, otherWord = match as? Match.OtherWord),
                 listOf(DrillEffect.Tone(ToneKind.Wrong)),
             )
         }
@@ -242,6 +242,7 @@ object TrainerRun {
                 // why: cleared in the SAME transaction as the question — the next prompt must
                 // never render one frame carrying the last one's answer or its almost debt.
                 feedback = TurnFeedback.Neutral,
+                otherWord = null,
                 hintUsed = false,
             ),
             listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),

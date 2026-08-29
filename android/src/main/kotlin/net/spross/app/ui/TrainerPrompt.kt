@@ -68,6 +68,11 @@ fun TrainerPromptCard(model: AppModel, flow: TrainerFlow, chrome: Chrome) {
                     )
                 }
             }
+            state.otherWord?.let { other ->
+                // why: same line as the review session's — both explain what became
+                // of the answer, so they read alike.
+                PauseLine(chrome.otherWordNote.format(other.word, other.meanings.joinToString(", ")))
+            }
             return@CardFace
         }
         // why: the reveal TAKES this slot rather than stacking under it — the hint is

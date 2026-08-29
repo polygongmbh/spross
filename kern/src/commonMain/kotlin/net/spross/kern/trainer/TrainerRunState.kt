@@ -1,6 +1,7 @@
 package net.spross.kern.trainer
 
 import net.spross.kern.session.AnswerOutcome
+import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
 
 /** What the learner does to a slot run. */
@@ -89,6 +90,8 @@ data class TrainerRunState(
     /** The learner looked the numbers up while owing this answer: it books almost. */
     val hintUsed: Boolean,
     val feedback: TurnFeedback,
+    /** What a refused answer actually NAMED ("setenta" is 70) — only beside a Revealed miss. */
+    val otherWord: Match.OtherWord? = null,
     val finished: Boolean,
 ) {
     val currentTask: TrainerTask get() = current.task

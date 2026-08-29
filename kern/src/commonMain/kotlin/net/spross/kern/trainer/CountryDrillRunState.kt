@@ -4,6 +4,7 @@ import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.AnswerOutcome
+import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
 
 /**
@@ -109,6 +110,8 @@ data class CountryDrillRunState(
     val missRun: Int,
     val outcomes: List<AnswerOutcome>,
     val feedback: TurnFeedback,
+    /** What a refused answer actually NAMED (Uswidi is Schweden) — only beside a Revealed miss. */
+    val otherWord: Match.OtherWord? = null,
     val finished: Boolean,
 ) {
     /** The language an answer is owed in — the learned one, or the learner's own reversed. */

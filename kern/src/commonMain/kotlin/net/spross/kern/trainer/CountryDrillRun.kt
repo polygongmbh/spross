@@ -105,7 +105,7 @@ object CountryDrillRun {
             is TurnFeedback.Almost -> advanced(state, correct = true, clean = false)
             else -> state
         }
-        val ended = pending.copy(feedback = TurnFeedback.Neutral, finished = true)
+        val ended = pending.copy(feedback = TurnFeedback.Neutral, otherWord = null, finished = true)
         val summary = if (ended.done == 0) {
             null
         } else {
@@ -172,7 +172,7 @@ object CountryDrillRun {
                 ),
             )
             else -> CountryDrillReduction(
-                state.copy(feedback = TurnFeedback.Revealed),
+                state.copy(feedback = TurnFeedback.Revealed, otherWord = match as? Match.OtherWord),
                 listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong)),
             )
         }
@@ -227,6 +227,7 @@ object CountryDrillRun {
                 // why: cleared in the SAME transaction as the question — the next card must
                 // never render one frame carrying the last one's answer.
                 feedback = TurnFeedback.Neutral,
+                otherWord = null,
             ),
             listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
         )

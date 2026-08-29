@@ -136,7 +136,8 @@ extension CountryDrillView {
                              winsAtLevel: run.winsAtLevel, done: Int32(preset + 6),
                              streak: Int32(preset), bestStreak: Int32(max(preset, 12)),
                              missRun: run.missRun, outcomes: run.outcomes,
-                             feedback: run.feedback, finished: run.finished)
+                             feedback: run.feedback, otherWord: run.otherWord,
+                             finished: run.finished)
         }
         // `-uitest-close 1`: leave the way the ✕ leaves, so the tile the run
         // drops on the page behind it can be photographed.
