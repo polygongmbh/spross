@@ -69,6 +69,24 @@ object OwnWords {
     const val SEED_BASE: Int = 1_000_000
 
     /**
+     * The pictures offered by a tap when writing a word, so the commonest choice
+     * costs no trip to the emoji keyboard. Owned here for the same reason [EMOJI] is:
+     * a set each app carried itself is a set that ends up differing between them.
+     *
+     * Deliberately broad rather than clever — a thing, a person, a place, a doing
+     * word, a feeling — since the word being written could be anything at all.
+     */
+    val QUICK_EMOJI: List<String> =
+        listOf("📦", "🧑", "🏠", "🍎", "🐾", "🚶", "💬", "❤️", "⏰", "🌍")
+
+    /**
+     * The most pictures a word may carry. Two, not one: a flag pairs with a thing,
+     * and a skin-toned or gendered glyph is already several code points that must
+     * not read as two pictures' worth of room.
+     */
+    const val MAX_EMOJI: Int = 2
+
+    /**
      * Plain-word by default. The catch-all kind is never phrase-gated and never
      * verb-prefix-stripped, so a word written by hand is studiable whatever it
      * turns out to be.
