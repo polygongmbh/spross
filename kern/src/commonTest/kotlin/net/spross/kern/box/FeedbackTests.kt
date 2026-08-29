@@ -11,13 +11,18 @@ class FeedbackTests {
 
     private fun box(): BoxState = Box.state(listOf(Box.word(1), Box.word(2)))
 
-    private fun ownWord(id: String, texts: Map<String, String>, at: Long) = OwnWord(
+    private fun ownWord(id: String, texts: Map<String, String>) = OwnWord(
         id = OwnWords.ID_PREFIX + id,
         kind = OwnWords.DEFAULT_KIND,
         emoji = null,
         texts = texts,
-        addedAt = Box.instant(at),
     )
+
+    /** The word as the box holds it once taken in — the engine stamps its age. */
+    private fun added(state: BoxState, word: OwnWord, at: Long): Pair<BoxState, OwnWord> {
+        val next = BoxEngine.addOwnWord(state, word, at)
+        return next to next.ownWords.first { it.id == word.id }
+    }
 
     // Filing a report
 
@@ -98,8 +103,8 @@ class FeedbackTests {
 
     @Test
     fun removingAnOwnWordTakesItsReportWithIt() {
-        val word = ownWord("regenschirm", mapOf("de" to "Regenschirm", "sw" to "mwavuli"), Box.day1)
-        var state = BoxEngine.addOwnWord(box(), word)
+        val word = ownWord("regenschirm", mapOf("de" to "Regenschirm", "sw" to "mwavuli"))
+        var state = BoxEngine.addOwnWord(box(), word, Box.day1)
         state = BoxEngine.reportIssue(state, word.id, "typo", null, Box.day1)
         assertTrue(BoxEngine.removeOwnWord(state, word.id).reportedIssues.isEmpty())
     }
@@ -108,8 +113,7 @@ class FeedbackTests {
 
     @Test
     fun aWordWrittenInOneLanguageIsASuggestionAndIsNeverScheduled() {
-        val half = ownWord("sonne", mapOf("de" to "Sonne"), Box.day1)
-        val state = BoxEngine.addOwnWord(box(), half)
+        val (state, half) = added(box(), ownWord("sonne", mapOf("de" to "Sonne")), Box.day1)
         assertTrue(half.isSuggestion(Box.stamp.source, Box.stamp.target))
         assertNull(state.cards[half.id])
         assertTrue(state.enqueued.isEmpty())
@@ -120,14 +124,14 @@ class FeedbackTests {
 
     @Test
     fun onlyWhatIsNewSinceTheLastExportGoesOut() {
-        val old = ownWord("alt", mapOf("de" to "alt", "sw" to "kuukuu"), Box.day1)
-        val new = ownWord("neu", mapOf("de" to "neu"), Box.plusDays(Box.day1, 2.0))
-        var state = BoxEngine.addOwnWord(box(), old)
-        state = BoxEngine.addOwnWord(state, new)
-        state = BoxEngine.markExported(state, Box.plusDays(Box.day1, 1.0))
+        val (afterOld, old) = added(box(), ownWord("alt", mapOf("de" to "alt", "sw" to "kuukuu")), Box.day1)
+        val (withBoth, fresh) = added(
+            afterOld, ownWord("neu", mapOf("de" to "neu")), Box.plusDays(Box.day1, 2.0),
+        )
+        val state = BoxEngine.markExported(withBoth, Box.plusDays(Box.day1, 1.0))
 
-        assertEquals(listOf(old, new), Feedback.ownWordsSince(state, null))
-        assertEquals(listOf(new), Feedback.ownWordsSince(state, state.lastExportAt))
+        assertEquals(listOf(old, fresh), Feedback.ownWordsSince(state, null))
+        assertEquals(listOf(fresh), Feedback.ownWordsSince(state, state.lastExportAt))
     }
 
     @Test
@@ -138,14 +142,17 @@ class FeedbackTests {
             emoji = null,
             texts = mapOf("de" to "alt", "sw" to "kuukuu"),
         )
-        val state = BoxEngine.markExported(BoxEngine.addOwnWord(box(), ancient), Box.day1)
+        // why: the engine stamps every word it takes in, so the only way a word can
+        // carry DISTANT_PAST is to have been decoded from a document written before
+        // the box recorded ages at all.
+        val stored = box().copy(ownWords = listOf(ancient))
+        val state = BoxEngine.markExported(stored, Box.day1)
         assertTrue(Feedback.ownWordsSince(state, state.lastExportAt).isEmpty())
     }
 
     @Test
     fun theReportNamesTheProfileTheWordsAndTheIssues() {
-        val word = ownWord("sonne", mapOf("de" to "Sonne"), Box.day1)
-        var state = BoxEngine.addOwnWord(box(), word)
+        var state = BoxEngine.addOwnWord(box(), ownWord("sonne", mapOf("de" to "Sonne")), Box.day1)
         state = BoxEngine.reportIssue(state, "w01", "t1 should accept t9", "t9", Box.day1)
 
         assertEquals(
@@ -184,10 +191,9 @@ class FeedbackTests {
 
     @Test
     fun theClipboardTextIsOneWordPerLine() {
-        val paired = ownWord("regenschirm", mapOf("de" to "Regenschirm", "sw" to "mwavuli"), Box.day1)
-        val half = ownWord("sonne", mapOf("de" to "Sonne"), Box.day1)
-        var state = BoxEngine.addOwnWord(box(), paired)
-        state = BoxEngine.addOwnWord(state, half)
+        val paired = ownWord("regenschirm", mapOf("de" to "Regenschirm", "sw" to "mwavuli"))
+        var state = BoxEngine.addOwnWord(box(), paired, Box.day1)
+        state = BoxEngine.addOwnWord(state, ownWord("sonne", mapOf("de" to "Sonne")), Box.day1)
         assertEquals("Regenschirm → mwavuli\nSonne → ?", Feedback.ownWordsText(state, null))
     }
 }

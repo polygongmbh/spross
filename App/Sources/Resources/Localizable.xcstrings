@@ -625,6 +625,22 @@
         }
       }
     },
+    "box.ownWords.explainer.suggestion" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur eine Seite: das Wort wird als Vorschlag aufbewahrt und noch nicht abgefragt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One side only: the word is kept as a suggestion and not asked yet."
+          }
+        }
+      }
+    },
     "box.ownWords.inLanguage %@" : {
       "localizations" : {
         "de" : {
@@ -927,6 +943,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Write “%@” yourself"
+          }
+        }
+      }
+    },
+    "box.sleep" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schlafen legen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Put to sleep"
           }
         }
       }
@@ -1899,6 +1931,118 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unknown language profile (%1$@ → %2$@)."
+          }
+        }
+      }
+    },
+    "feedback.copy" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy"
+          }
+        }
+      }
+    },
+    "feedback.needsTranslation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übersetzung fehlt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Needs translation"
+          }
+        }
+      }
+    },
+    "feedback.scope.all" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything"
+          }
+        }
+      }
+    },
+    "feedback.scope.new" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur Neues"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only what is new"
+          }
+        }
+      }
+    },
+    "feedback.send" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send"
+          }
+        }
+      }
+    },
+    "feedback.suggestions" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fehlende Wörter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Missing words"
+          }
+        }
+      }
+    },
+    "feedback.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rückmeldung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback"
           }
         }
       }
@@ -4107,6 +4251,134 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Every row speaks when tapped"
+          }
+        }
+      }
+    },
+    "report.action" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Problem melden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Report a problem"
+          }
+        }
+      }
+    },
+    "report.comment" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was stimmt nicht? (optional)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What's wrong? (optional)"
+          }
+        }
+      }
+    },
+    "report.dismiss" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meldung zurücknehmen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Withdraw report"
+          }
+        }
+      }
+    },
+    "report.explainer" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geht an die, die den Katalog pflegen. Am Zeitplan des Wortes ändert das nichts."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Goes to whoever maintains the catalog. It changes nothing about the word’s schedule."
+          }
+        }
+      }
+    },
+    "report.reported" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemeldet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reported"
+          }
+        }
+      }
+    },
+    "report.send" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Melden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Report"
+          }
+        }
+      }
+    },
+    "report.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Problem melden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Report a problem"
+          }
+        }
+      }
+    },
+    "report.typed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Getippt:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You typed:"
           }
         }
       }

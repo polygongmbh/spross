@@ -59,6 +59,7 @@ struct BoxView: View {
                                        expanded: fold(of: model.ownArea))
                             .id(model.ownArea)
                     }
+                    BoxFeedbackSection(model: model)
                     BoxSettingsSection(model: model)
                 }
                 .padding(DL.Space.xl)

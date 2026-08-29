@@ -53,13 +53,20 @@ object BoxEngine {
     /**
      * Take in a word the learner wrote and pack it. Packing is not a separate step:
      * they named this word themselves, so waiting for growth to walk to it would be
-     * absurd. A word already known by id, or one the current profile cannot join
-     * (written in only one of its two languages), leaves the state untouched.
+     * absurd. A word already known by id leaves the state untouched.
+     *
+     * One written in only ONE of the profile's languages is still taken in — it is a
+     * SUGGESTION ([OwnWord]) — but joins no card and so is never packed or scheduled.
      */
-    fun addOwnWord(state: BoxState, word: OwnWord): BoxState {
+    fun addOwnWord(state: BoxState, word: OwnWord, nowEpochMillis: Long): BoxState {
         require(OwnWords.owns(word.id)) { "own word id must start with \"${OwnWords.ID_PREFIX}\"" }
         if (state.ownWords.any { it.id == word.id }) return state
-        val words = state.ownWords + word
+        // why: the engine stamps it, not the caller — an app that had to remember
+        // would be the one place a suggestion's age could go wrong, and it is the
+        // only date a suggestion ever gets (it earns no schedule to carry one).
+        val words = state.ownWords + word.copy(
+            addedAt = Instant.fromEpochMilliseconds(nowEpochMillis),
+        )
         val next = state.copy(ownWords = words, cards = rebuilt(state, words))
         return if (next.cards[word.id] == null) next else enqueue(next, listOf(word.id))
     }

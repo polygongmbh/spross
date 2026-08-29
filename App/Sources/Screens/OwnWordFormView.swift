@@ -9,6 +9,11 @@ import SprossKern
 /// known side arrives prefilled from the query: someone typing into a search box
 /// is far more often naming what they want to be able to SAY than a form they
 /// already met in the wild.
+///
+/// One side alone is still taken, as a SUGGESTION: the learner noticed a gap and
+/// only has the half they came with. It is never scheduled — there is nothing to
+/// ask them yet — and waits in the feedback section to be sent on to the catalog
+/// (`BoxFeedbackSection`, `OwnWord`).
 struct OwnWordFormView: View {
     let model: AppModel
     /// What the search could not find; the known-language field starts from it.
@@ -41,7 +46,7 @@ struct OwnWordFormView: View {
                     field("box.ownWords.inLanguage \(languageName(model.targetLanguage ?? ""))",
                           text: $learning, field: .learning)
                     field("box.ownWords.picture", text: $emoji, field: .emoji)
-                    Text("box.ownWords.explainer")
+                    Text(isPair ? "box.ownWords.explainer" : "box.ownWords.explainer.suggestion")
                         .font(DL.Fonts.caption)
                         .foregroundStyle(Color.dlTextSecondary)
                 }
@@ -56,7 +61,7 @@ struct OwnWordFormView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("box.ownWords.add") { save() }
-                        .disabled(!isComplete)
+                        .disabled(!hasAnything)
                 }
             }
         }
@@ -66,15 +71,22 @@ struct OwnWordFormView: View {
         .onAppear { focus = .learning }
     }
 
-    private var isComplete: Bool {
-        !known.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-            && !learning.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    /// Both sides written: a studiable word rather than a suggestion.
+    private var isPair: Bool { written(known) && written(learning) }
+
+    /// One side is enough to take the word in — the other is what makes it studiable.
+    private var hasAnything: Bool { written(known) || written(learning) }
+
+    private func written(_ text: String) -> Bool {
+        !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
     private func save() {
         guard let id = model.addOwnWord(known: known, learning: learning, emoji: emoji)
         else { return }
-        added(id)
+        // why: a suggestion joins no card, so there is nothing on a shelf to reveal —
+        // the caller's scroll-to would land on an area that does not exist.
+        if isPair { added(id) }
         dismiss()
     }
 

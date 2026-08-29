@@ -12,6 +12,14 @@ import SprossKern
 /// What an answer is WORTH, which beat it earns and what a miss opens is kern's
 /// `TurnMachine`: every event becomes a `TurnIntent`, and what comes back is the
 /// whole next state plus the only side effects this screen takes.
+/// A card caught mid-turn for its report sheet: the word, and what stood in the
+/// answer field at that moment.
+private struct ReportedCard: Identifiable {
+    let card: Card
+    let input: String
+    var id: String { card.id }
+}
+
 struct SessionView: View, LanguageNaming {
     @Bindable var model: AppModel
 
@@ -35,6 +43,9 @@ struct SessionView: View, LanguageNaming {
     /// (SessionView+Audio.swift) — stored here because a SwiftUI extension
     /// cannot carry state of its own.
     @State var pronouncedCardID: String?
+    /// The card whose report sheet is up, with the answer as it stood when the
+    /// menu was tapped — the field itself has moved on by the time it presents.
+    @State private var reporting: ReportedCard?
     /// Owned here (not in AnswerInputView) so whichever field is on screen —
     /// the answer field or the write-out step's — takes focus the moment it
     /// mounts. Only ever one of them is mounted at a time.
@@ -165,6 +176,10 @@ struct SessionView: View, LanguageNaming {
                     )
                     .id(card.id)
                     .transition(reduceMotion ? .opacity : .dlCardFlip)
+                    // why: only once the answer is out — before it, the learner has
+                    // not seen the translation they would be reporting, and a menu
+                    // over the prompt is a menu over a question.
+                    .contextMenu { if cardRevealed { cardMenu(card) } }
                 }
                 if model.coachActive,
                    let line = SessionCoach.recognizeLine(role: role, revealed: revealed) {
@@ -176,6 +191,32 @@ struct SessionView: View, LanguageNaming {
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollDismissesKeyboard(.never)
+        .sheet(item: $reporting) { reported in
+            ReportIssueSheet(model: model, card: reported.card, learnerInput: reported.input)
+                .environment(\.locale, locale)
+        }
+    }
+
+    /// The two things a learner can say about the word in front of them, and they
+    /// are unrelated: one is about the CATALOG being wrong, the other about this
+    /// word not being worth their time. Neither implies the other, so neither is a
+    /// step in the other's flow.
+    @ViewBuilder
+    private func cardMenu(_ card: Card) -> some View {
+        if model.reportedIssue(for: card.id) == nil {
+            Button("report.action", systemImage: "exclamationmark.bubble") {
+                // why: the field empties as the turn advances, so what they typed is
+                // taken NOW and carried into the sheet.
+                reporting = ReportedCard(card: card, input: input)
+            }
+        } else {
+            Button("report.dismiss", systemImage: "checkmark.bubble") {
+                model.dismissReportedIssue(cardID: card.id)
+            }
+        }
+        Button("box.sleep", systemImage: "moon.zzz") {
+            model.setSuspended(cardID: card.id, suspended: true)
+        }
     }
 
     /// Grammar (article coloring, plural) renders TARGET-side only; on

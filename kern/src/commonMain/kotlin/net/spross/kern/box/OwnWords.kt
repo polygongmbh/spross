@@ -30,10 +30,11 @@ data class OwnWord(
     /** language → the word in it; a language absent here simply does not join. */
     val texts: Map<Language, String>,
     /**
-     * When it was written. What "only what is new" filters on when the learner copies
-     * or mails their words out ([Feedback]) — a suggestion never earns a schedule, so
-     * its schedule's `addedAt` cannot answer this. Defaults to the beginning of time:
-     * a word from before the box recorded this reads as old, never as brand new.
+     * When it was written — stamped by [BoxEngine.addOwnWord], never by the caller.
+     * What "only what is new" filters on when the learner copies or mails their words
+     * out ([Feedback]); a suggestion never earns a schedule, so its schedule's
+     * `addedAt` cannot answer this. Defaults to the beginning of time: a word from
+     * before the box recorded this reads as old, never as brand new.
      */
     val addedAt: Instant = Instant.DISTANT_PAST,
 ) {
@@ -95,6 +96,15 @@ object OwnWords {
                 promptFeminineMarker = false,
             )
         }
+
+    /**
+     * A word as the learner just wrote it, with no age of its own yet —
+     * [BoxEngine.addOwnWord] stamps that. Exists because a Kotlin default parameter
+     * does not survive the ObjC export, so Swift would otherwise have to mint an
+     * [Instant] it has no business knowing about.
+     */
+    fun write(id: String, kind: CardKind, emoji: String?, texts: Map<Language, String>): OwnWord =
+        OwnWord(id = id, kind = kind, emoji = emoji, texts = texts)
 
     /** Whether this card id belongs to a word the learner wrote. */
     fun owns(cardId: String): Boolean = cardId.startsWith(ID_PREFIX)

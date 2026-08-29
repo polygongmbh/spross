@@ -16,25 +16,32 @@ extension AppModel {
 
     func isOwnWord(_ cardID: String) -> Bool { OwnWords.shared.owns(cardId: cardID) }
 
-    /// Take in a word the learner wrote, in both of the profile's languages.
-    /// Returns its card id, or nil when either side was left blank.
+    /// Take in a word the learner wrote. One side alone is enough: that is a
+    /// SUGGESTION, which joins no card and is never scheduled until the other half
+    /// arrives (`OwnWord`). Returns its card id, or nil when both sides were blank.
     @discardableResult
     func addOwnWord(known: String, learning: String, emoji: String) -> String? {
         guard let box else { return nil }
         let knownText = known.trimmed
         let learningText = learning.trimmed
-        guard !knownText.isEmpty, !learningText.isEmpty else { return nil }
+        guard !knownText.isEmpty || !learningText.isEmpty else { return nil }
 
         // why: the id is minted from the LEARNED side — it is the one that stays put
-        // while the known language is free to change under a source switch.
-        let id = OwnWords.shared.mint(text: learningText,
+        // while the known language is free to change under a source switch. A word
+        // written only in the known language has nothing else to be named after.
+        let id = OwnWords.shared.mint(text: learningText.isEmpty ? knownText : learningText,
                                       taken: Set(box.ownWords.map(\.id)))
-        let word = OwnWord(id: id,
-                           kind: OwnWords.shared.DEFAULT_KIND,
-                           emoji: emoji.trimmed.isEmpty ? nil : emoji.trimmed,
-                           texts: [box.joinStamp.source: knownText,
-                                   box.joinStamp.target: learningText])
-        mutate { $0 = BoxEngine.shared.addOwnWord(state: $0, word: word) }
+        var texts: [String: String] = [:]
+        if !knownText.isEmpty { texts[box.joinStamp.source] = knownText }
+        if !learningText.isEmpty { texts[box.joinStamp.target] = learningText }
+        let word = OwnWords.shared.write(id: id,
+                                        kind: OwnWords.shared.DEFAULT_KIND,
+                                        emoji: emoji.trimmed.isEmpty ? nil : emoji.trimmed,
+                                        texts: texts)
+        mutate {
+            $0 = BoxEngine.shared.addOwnWord(state: $0, word: word,
+                                             nowEpochMillis: Date().epochMillis)
+        }
         return id
     }
 

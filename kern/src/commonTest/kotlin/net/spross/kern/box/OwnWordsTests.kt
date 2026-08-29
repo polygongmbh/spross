@@ -25,7 +25,7 @@ class OwnWordsTests {
 
     @Test
     fun anAddedWordJoinsAsACardInItsOwnArea() {
-        val state = BoxEngine.addOwnWord(box(), umbrella)
+        val state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
         val card = state.cards.getValue(umbrella.id)
         assertEquals(OwnWords.AREA, card.area)
         assertEquals("mwavuli", card.target.text)
@@ -35,27 +35,27 @@ class OwnWordsTests {
 
     @Test
     fun anAddedWordIsPackedWithoutBeingAskedTwice() {
-        val state = BoxEngine.addOwnWord(box(), umbrella)
+        val state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
         assertEquals(listOf(umbrella.id), state.enqueued)
     }
 
     @Test
     fun ownWordsSortBehindEveryCatalogWord() {
-        val state = BoxEngine.addOwnWord(box(), umbrella)
+        val state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
         val catalogTop = state.cards.values.filterNot { OwnWords.owns(it.id) }.maxOf { it.seedIndex }
         assertTrue(state.cards.getValue(umbrella.id).seedIndex > catalogTop)
     }
 
     @Test
     fun theSameWordIsNotTakenInTwice() {
-        val once = BoxEngine.addOwnWord(box(), umbrella)
-        assertEquals(once, BoxEngine.addOwnWord(once, umbrella))
+        val once = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
+        assertEquals(once, BoxEngine.addOwnWord(once, umbrella, Box.day1))
     }
 
     @Test
     fun anIdWithoutThePrefixIsRefused() {
         assertFailsWith<IllegalArgumentException> {
-            BoxEngine.addOwnWord(box(), umbrella.copy(id = "regenschirm"))
+            BoxEngine.addOwnWord(box(), umbrella.copy(id = "regenschirm"), Box.day1)
         }
     }
 
@@ -64,16 +64,16 @@ class OwnWordsTests {
     @Test
     fun aWordTheProfileCannotJoinIsKeptButNotStudied() {
         val halfWritten = umbrella.copy(texts = mapOf("de" to "Regenschirm"))
-        val state = BoxEngine.addOwnWord(box(), halfWritten)
+        val state = BoxEngine.addOwnWord(box(), halfWritten, Box.day1)
         assertNull(state.cards[halfWritten.id])
         assertTrue(state.enqueued.isEmpty())
         // why: not studiable is not the same as lost — the sw side can still be written.
-        assertEquals(listOf(halfWritten), state.ownWords)
+        assertEquals(listOf(halfWritten.id), state.ownWords.map { it.id })
     }
 
     @Test
     fun aSourceSwitchDropsAnUncoveredWordAndRevivesItOnTheWayBack() {
-        val state = BoxEngine.addOwnWord(box(), umbrella)
+        val state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
         val english = JoinStamp("en", "sw", "fixture")
         val switched = BoxEngine.rejoin(state, emptyList(), english)
         assertNull(switched.cards[umbrella.id])
@@ -86,7 +86,7 @@ class OwnWordsTests {
 
     @Test
     fun removingAWordTakesItsCardScheduleAndQueuePlaceWithIt() {
-        var state = BoxEngine.addOwnWord(box(), umbrella)
+        var state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
         state = Box.answered(state, umbrella.id, Rating.Good, Box.day1)
         assertTrue(state.scheduling.containsKey(umbrella.id))
 
@@ -106,24 +106,24 @@ class OwnWordsTests {
     @Test
     fun removingOneWordRenumbersNeitherTheOthersNorTheCatalog() {
         val second = OwnWord("own:kaugummi", CardKind.Noun, null, mapOf("de" to "Kaugummi", "sw" to "ubani"))
-        var state = BoxEngine.addOwnWord(box(), umbrella)
-        state = BoxEngine.addOwnWord(state, second)
+        var state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
+        state = BoxEngine.addOwnWord(state, second, Box.day1)
         val removed = BoxEngine.removeOwnWord(state, umbrella.id)
         assertEquals(OwnWords.SEED_BASE, removed.cards.getValue(second.id).seedIndex)
-        assertEquals(listOf(second), removed.ownWords)
+        assertEquals(listOf(second.id), removed.ownWords.map { it.id })
     }
 
     // A fresh start is about progress, never about content
 
     @Test
     fun resetClearsTheProgressAndKeepsTheWords() {
-        var state = BoxEngine.addOwnWord(box(), umbrella)
+        var state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
         state = Box.answered(state, umbrella.id, Rating.Good, Box.day1)
 
         val fresh = BoxEngine.reset(state)
         assertTrue(fresh.scheduling.isEmpty())
         assertTrue(fresh.enqueued.isEmpty())
-        assertEquals(listOf(umbrella), fresh.ownWords)
+        assertEquals(listOf(umbrella.id), fresh.ownWords.map { it.id })
         assertEquals("mwavuli", fresh.cards.getValue(umbrella.id).target.text)
     }
 

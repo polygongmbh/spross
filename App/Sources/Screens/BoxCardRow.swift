@@ -22,17 +22,29 @@ struct BoxCardRow: View {
     let card: Card
     var pack: (() -> Void)?
 
+    @State private var reporting = false
+
     var body: some View {
-        // why: only a word the learner wrote is theirs to delete — a catalog word
-        // can be put to sleep, never removed, so it carries no menu at all.
-        if model.isOwnWord(card.id) {
-            row.contextMenu {
-                Button("box.ownWords.remove", systemImage: "trash", role: .destructive) {
-                    model.removeOwnWord(card.id)
-                }
+        row.contextMenu { menu }
+    }
+
+    /// Reporting reaches every row; deleting only the learner's own words — a
+    /// catalog word can be put to sleep, never removed.
+    @ViewBuilder
+    private var menu: some View {
+        if model.reportedIssue(for: card.id) == nil {
+            Button("report.action", systemImage: "exclamationmark.bubble") {
+                reporting = true
             }
         } else {
-            row
+            Button("report.dismiss", systemImage: "checkmark.bubble") {
+                model.dismissReportedIssue(cardID: card.id)
+            }
+        }
+        if model.isOwnWord(card.id) {
+            Button("box.ownWords.remove", systemImage: "trash", role: .destructive) {
+                model.removeOwnWord(card.id)
+            }
         }
     }
 
@@ -69,6 +81,13 @@ struct BoxCardRow: View {
                     .lineLimit(1)
             }
             Spacer(minLength: DL.Space.s)
+            // why: standing apart from `standing` on purpose — a report says
+            // nothing about where the word stands, and a reported word keeps
+            // whatever badge it had.
+            if model.reportedIssue(for: card.id) != nil {
+                Text(verbatim: "🚩")
+                    .accessibilityLabel("report.reported")
+            }
             standing
         }
         .padding(.horizontal, DL.Space.m)
@@ -80,6 +99,10 @@ struct BoxCardRow: View {
                 .fill(Color.dlSurfaceTint)
         )
         .pronounceOnTap(pronounce)
+        .sheet(isPresented: $reporting) {
+            // No typed answer to carry: nothing was being answered here.
+            ReportIssueSheet(model: model, card: card, learnerInput: "")
+        }
     }
 
     /// The citation form, with its article in the gender's own color — the same

@@ -2,10 +2,10 @@ package net.spross.kern.store
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.time.Instant
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import kotlin.time.Instant
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
@@ -189,7 +189,7 @@ class StoreCodecTests {
 
     @Test
     fun ownWordsSurviveTheRoundTripAndRejoinAsCards() {
-        val authored = BoxEngine.addOwnWord(state, umbrella)
+        val authored = BoxEngine.addOwnWord(state, umbrella, 1_700_000_000_000)
         val rejoined = StoreCodec.decode(StoreCodec.encode(authored))
             .join(StoreFixture.cards, StoreFixture.stamp)
         assertEquals(authored, rejoined)
