@@ -408,6 +408,16 @@ class CatalogLintTest {
             .toSortedSet()
         assertEquals(
             sortedSetOf(
+                // Reviewed 2026-08-29: de `sich vorstellen` is "to introduce oneself" AND "to
+                // imagine" — the infinitive citation doesn't distinguish the accusative
+                // reflexive (Ich stelle mich vor) from the dative one (Ich stelle mir das
+                // vor), so one phrase genuinely covers both German senses. en/es/fr/it/sw/uk
+                // all split the pair (introduce oneself/imagine, presentarse/imaginar,
+                // se présenter/imaginer, presentarsi/immaginare, kujitambulisha/kuwazia,
+                // представитися/уявляти); `sich einbilden` skews toward a delusion and
+                // `sich ausmalen` toward picturing something vividly, so neither is the
+                // plain word a learner reaches for.
+                "de sich vorstellen: verbs/imagine, work/introduce-oneself",
                 // Reviewed 2026-08-23: `cold` is the illness AND the adjective — English has
                 // one word where de/eo/es/fr/it/sw/uk all split it (Erkältung/kalt,
                 // malvarmumo/malvarma, resfriado/frío, rhume/froid, raffreddore/freddo,

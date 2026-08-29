@@ -21,6 +21,7 @@
    "text": "penser",
    "notes": { "de": "penser à quelque chose = an etwas denken · penser que = glauben, dass." }
   },
+  "imagine": { "text": "imaginer" },
   "wait": { "text": "attendre", "notes": { "de": "attendre steht ohne Präposition: j'attends le bus." } },
   "want": {
    "text": "vouloir",

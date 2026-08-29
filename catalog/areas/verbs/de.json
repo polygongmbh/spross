@@ -12,6 +12,7 @@
   "like": { "text": "mögen" },
   "can": { "text": "können" },
   "think": { "text": "denken" },
+  "imagine": { "text": "sich vorstellen" },
   "wait": { "text": "warten" },
   "want": { "text": "wollen", "variants": ["möchten"] },
   "find": { "text": "finden" },

@@ -31,6 +31,7 @@
    "text": "pensare",
    "notes": { "de": "pensare a qualcosa = an etwas denken · pensare che = glauben, dass." }
   },
+  "imagine": { "text": "immaginare" },
   "wait": { "text": "aspettare", "notes": { "de": "aspettare heißt auch erwarten; hoffen ist sperare." } },
   "want": { "text": "volere", "notes": { "de": "höflicher im Konditional: vorrei = ich hätte gern." } },
   "find": { "text": "trovare" },

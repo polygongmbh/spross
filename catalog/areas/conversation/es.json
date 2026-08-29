@@ -19,6 +19,9 @@
   "help": { "text": "ayuda", "grammar": { "gender": "la" } },
   "need": { "text": "necesitar" },
   "know": { "text": "saber", "notes": { "de": "wissen = saber · kennen (Personen, Orte) = conocer." } },
+  "remember": { "text": "recordar" },
+  "forget": { "text": "olvidar" },
+  "goal": { "text": "meta", "grammar": { "gender": "la" } },
   "say": { "text": "decir" },
   "i-dont-understand": {
    "text": "No entiendo.",

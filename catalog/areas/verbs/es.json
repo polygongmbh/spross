@@ -27,6 +27,7 @@
    "text": "pensar",
    "notes": { "de": "pensar en algo = an etwas denken · pensar que = glauben, dass." }
   },
+  "imagine": { "text": "imaginar" },
   "wait": { "text": "esperar", "notes": { "de": "esperar heißt auch hoffen und erwarten." } },
   "want": { "text": "querer", "notes": { "de": "querer heißt wollen und lieben: Te quiero." } },
   "find": { "text": "encontrar" },

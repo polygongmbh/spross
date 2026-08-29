@@ -12,6 +12,7 @@
  { "slug": "find", "kind": "verb", "emoji": "🎯" },
  { "slug": "like", "kind": "verb", "emoji": "❤️" },
  { "slug": "think", "kind": "verb", "emoji": "🤔" },
+ { "slug": "imagine", "kind": "verb", "emoji": "💭" },
  { "slug": "search", "kind": "verb", "emoji": "🔍" },
  { "slug": "wait", "kind": "verb", "emoji": "⏳" },
  { "slug": "receive", "kind": "verb", "emoji": "📦" },

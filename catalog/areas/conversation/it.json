@@ -22,6 +22,13 @@
    "notes": { "de": "Es gibt kein einzelnes Verb: das Gebrauchte steht nach di — Ho bisogno di aiuto." }
   },
   "know": { "text": "sapere", "notes": { "de": "wissen = sapere · Personen und Orte kennen = conoscere." } },
+  "remember": { "text": "ricordarsi" },
+  "forget": { "text": "dimenticare" },
+  "goal": {
+   "text": "obiettivo",
+   "variants": ["l'obiettivo"],
+   "grammar": { "gender": "l'", "plural": "obiettivi" }
+  },
   "say": { "text": "dire" },
   "i-dont-understand": {
    "text": "Non capisco.",
