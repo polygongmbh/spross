@@ -14,9 +14,11 @@
   "help": { "text": "Hilfe", "grammar": { "gender": "die", "plural": "-n" } },
   "need": { "text": "brauchen" },
   "know": { "text": "wissen" },
-  "remember": { "text": "sich erinnern" },
-  "forget": { "text": "vergessen" },
+  "to-remember": { "text": "sich erinnern" },
+  "to-forget": { "text": "vergessen" },
   "goal": { "text": "Ziel", "grammar": { "gender": "das", "plural": "Ziele" } },
+  "to-show": { "text": "zeigen" },
+  "to-explain": { "text": "erklären" },
   "say": { "text": "sagen" },
   "i-dont-understand": {
    "text": "Ich verstehe nicht.",

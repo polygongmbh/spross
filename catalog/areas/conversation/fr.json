@@ -26,9 +26,11 @@
   "help": { "text": "aide", "variants": ["l'aide"], "grammar": { "gender": "l'" } },
   "need": { "text": "avoir besoin de" },
   "know": { "text": "savoir", "notes": { "de": "wissen = savoir · kennen (Personen, Orte) = connaître." } },
-  "remember": { "text": "se souvenir" },
-  "forget": { "text": "oublier" },
+  "to-remember": { "text": "se souvenir" },
+  "to-forget": { "text": "oublier" },
   "goal": { "text": "but", "grammar": { "gender": "le" } },
+  "to-show": { "text": "montrer" },
+  "to-explain": { "text": "expliquer" },
   "say": { "text": "dire" },
   "i-dont-understand": {
    "text": "Je ne comprends pas.",
