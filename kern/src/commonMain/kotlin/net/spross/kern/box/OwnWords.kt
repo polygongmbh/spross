@@ -1,5 +1,6 @@
 package net.spross.kern.box
 
+import kotlin.time.Instant
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.Language
@@ -15,6 +16,11 @@ import net.spross.kern.model.nfcNormalized
  * concept's realizations, which buys the same coverage rule for free — a word
  * written in two languages joins the profiles that pair them, and is inert in
  * every other, rather than being lost.
+ *
+ * Written in only ONE language it is a SUGGESTION: the learner noticed a gap and
+ * wrote down the half they had. It joins nothing and is never scheduled ([cards]
+ * skips it), it simply waits — either for the other half, or to be read off a
+ * report and answered in the catalog itself.
  */
 data class OwnWord(
     /** Card id, always [OwnWords.ID_PREFIX]ed, so a catalog slug can never mint one. */
@@ -23,7 +29,18 @@ data class OwnWord(
     val emoji: String?,
     /** language → the word in it; a language absent here simply does not join. */
     val texts: Map<Language, String>,
-)
+    /**
+     * When it was written. What "only what is new" filters on when the learner copies
+     * or mails their words out ([Feedback]) — a suggestion never earns a schedule, so
+     * its schedule's `addedAt` cannot answer this. Defaults to the beginning of time:
+     * a word from before the box recorded this reads as old, never as brand new.
+     */
+    val addedAt: Instant = Instant.DISTANT_PAST,
+) {
+    /** Whether this word still waits for one of the profile's two languages. */
+    fun isSuggestion(source: Language, target: Language): Boolean =
+        texts[source] == null || texts[target] == null
+}
 
 /** The rules that turn the learner's own words into cards the box can hold. */
 object OwnWords {

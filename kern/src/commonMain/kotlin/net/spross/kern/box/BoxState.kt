@@ -1,5 +1,6 @@
 package net.spross.kern.box
 
+import kotlin.time.Instant
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardScheduling
@@ -37,6 +38,18 @@ data class BoxState(
      * them would lose the word, not merely a derivation of it.
      */
     val ownWords: List<OwnWord> = emptyList(),
+    /**
+     * Content problems the learner filed, by card id. Persisted and kept across a
+     * [BoxEngine.reset] for the same reason [ownWords] is: a report is something they
+     * WROTE, not progress the box computed, and clearing what the box knows must never
+     * throw away what it holds.
+     */
+    val reportedIssues: Map<String, ReportedIssue> = emptyMap(),
+    /**
+     * When the learner last copied or mailed their words and reports out; null until
+     * they ever have. What "only what is new" measures against — see [Feedback].
+     */
+    val lastExportAt: Instant? = null,
 )
 
 

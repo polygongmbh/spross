@@ -1,10 +1,12 @@
+import SprossKern
 import SwiftUI
 
-/// One home for the addresses the app publishes: the feedback mail is also the
-/// Impressum's contact line, and both surfaces have to name the same one.
+/// The addresses the app publishes, read from Kern (`Legal`) so the two apps and the
+/// engine cannot drift apart on them. Aliased here rather than spelled out at each
+/// call site: the Swift name stays the one this screen already reads by.
 enum Legal {
-    static let contactAddress = "spross@polygon.gmbh"
-    static let privacyUrl = "https://spross.net/privacy"
+    static let contactAddress = SprossKern.Legal.shared.CONTACT_ADDRESS
+    static let privacyUrl = SprossKern.Legal.shared.PRIVACY_URL
 }
 
 /// Who publishes the app, and where its privacy policy stands — the two things

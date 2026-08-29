@@ -2,6 +2,7 @@ package net.spross.kern.store
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.time.Instant
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -198,6 +199,43 @@ class StoreCodecTests {
     @Test
     fun aDocumentWrittenBeforeOwnWordsExistedDecodesAsNone() {
         assertTrue(StoreCodec.decode(doc(entry())).ownWords.isEmpty())
+    }
+
+    // Reports — content the learner wrote, like their own words
+
+    @Test
+    fun reportsAndTheExportMarkSurviveTheRoundTrip() {
+        val reported = BoxEngine.markExported(
+            BoxEngine.reportIssue(state, StoreFixture.cards.first().id, "wrong", "typed", 1_700_000_000_000),
+            1_700_000_100_000,
+        )
+        val rejoined = StoreCodec.decode(StoreCodec.encode(reported))
+            .join(StoreFixture.cards, StoreFixture.stamp)
+        assertEquals(reported, rejoined)
+    }
+
+    @Test
+    fun aReportedIssueRoundTripsWithoutACommentOrAnInput() {
+        val reported = BoxEngine.reportIssue(
+            state, StoreFixture.cards.first().id, null, null, 1_700_000_000_000,
+        )
+        val rejoined = StoreCodec.decode(StoreCodec.encode(reported))
+            .join(StoreFixture.cards, StoreFixture.stamp)
+        assertEquals(reported.reportedIssues, rejoined.reportedIssues)
+    }
+
+    @Test
+    fun aDocumentWrittenBeforeReportingExistedDecodesAsNone() {
+        val decoded = StoreCodec.decode(doc(entry()))
+        assertTrue(decoded.reportedIssues.isEmpty())
+        assertEquals(null, decoded.lastExportAt)
+    }
+
+    @Test
+    fun anOwnWordWrittenBeforeItsAgeWasRecordedDecodesAsOld() {
+        val word = """{"id":"own:regen","kind":"noun","texts":{"de":"Regen","uk":"дощ"}}"""
+        val decoded = StoreCodec.decode(doc(entry(), ownWords = word)).ownWords.single()
+        assertEquals(Instant.DISTANT_PAST, decoded.addedAt)
     }
 
     @Test

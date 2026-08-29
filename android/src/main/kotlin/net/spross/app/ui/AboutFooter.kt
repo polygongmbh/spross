@@ -31,7 +31,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
-import net.spross.app.Legal
+import net.spross.kern.Legal
 
 /**
  * The box's foot: the two doors out of it, and under them the build that is running —

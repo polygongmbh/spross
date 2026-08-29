@@ -1,5 +1,6 @@
 package net.spross.kern.store
 
+import kotlin.time.Instant
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
@@ -8,6 +9,7 @@ import kotlinx.serialization.json.JsonObject
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
+import net.spross.kern.box.ReportedIssue
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardScheduling
@@ -33,6 +35,8 @@ data class DecodedBox(
     val consolidatedCrossed: Map<String, Int>,
     val dailyStats: Map<String, DayStats>,
     val ownWords: List<OwnWord>,
+    val reportedIssues: Map<String, ReportedIssue> = emptyMap(),
+    val lastExportAt: Instant? = null,
 ) {
     /**
      * Re-join hook: attach a fresh catalog join to obtain a live [BoxState]. The
@@ -51,6 +55,8 @@ data class DecodedBox(
         consolidatedCrossed = consolidatedCrossed,
         dailyStats = dailyStats,
         ownWords = ownWords,
+        reportedIssues = reportedIssues,
+        lastExportAt = lastExportAt,
     )
 }
 

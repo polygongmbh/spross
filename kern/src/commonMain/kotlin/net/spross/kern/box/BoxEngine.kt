@@ -1,5 +1,6 @@
 package net.spross.kern.box
 
+import kotlin.time.Instant
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.minus
 import net.spross.kern.model.BoxConfig
@@ -45,6 +46,8 @@ object BoxEngine {
         cards = state.cards,
         joinStamp = state.joinStamp,
         ownWords = state.ownWords,
+        reportedIssues = state.reportedIssues,
+        lastExportAt = state.lastExportAt,
     )
 
     /**
@@ -74,8 +77,51 @@ object BoxEngine {
             cards = rebuilt(state, words),
             scheduling = state.scheduling - wordId,
             enqueued = state.enqueued.filterNot { it == wordId },
+            reportedIssues = state.reportedIssues - wordId,
         )
     }
+
+    /**
+     * File a content problem against ONE card: a wrong translation, a synonym the
+     * catalog should accept, a prompt that reads badly. [learnerInput] is whatever they
+     * had typed as their answer — see [ReportedIssue].
+     *
+     * Deliberately independent of [setSuspended]: neither verb implies the other, and
+     * reporting never changes what the box schedules. Filing again replaces the earlier
+     * report; a card the current profile does not join is refused, since a report
+     * nobody can resolve to a word is unreadable to whoever would fix it.
+     */
+    fun reportIssue(
+        state: BoxState,
+        cardId: String,
+        comment: String?,
+        learnerInput: String?,
+        nowEpochMillis: Long,
+    ): BoxState {
+        if (state.cards[cardId] == null) return state
+        val issue = ReportedIssue(
+            cardId = cardId,
+            comment = comment?.takeIf { it.isNotBlank() },
+            learnerInput = learnerInput?.takeIf { it.isNotBlank() },
+            reportedAt = Instant.fromEpochMilliseconds(nowEpochMillis),
+        )
+        return state.copy(reportedIssues = state.reportedIssues + (cardId to issue))
+    }
+
+    /** Withdraw a report; no-op when the card carries none. */
+    fun dismissReportedIssue(state: BoxState, cardId: String): BoxState {
+        if (cardId !in state.reportedIssues) return state
+        return state.copy(reportedIssues = state.reportedIssues - cardId)
+    }
+
+    /**
+     * Record that the learner has just copied or mailed their words and reports out —
+     * what a later "only what is new" measures against ([Feedback], [BoxState.lastExportAt]).
+     * Taking the whole lot rather than the new part still marks it: either way they
+     * have now seen everything up to this moment.
+     */
+    fun markExported(state: BoxState, nowEpochMillis: Long): BoxState =
+        state.copy(lastExportAt = Instant.fromEpochMilliseconds(nowEpochMillis))
 
     /** The card map with every own-word card re-derived; the catalog half is untouched. */
     private fun rebuilt(state: BoxState, words: List<OwnWord>): Map<String, Card> =

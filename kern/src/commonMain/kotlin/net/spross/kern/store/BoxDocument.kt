@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
+import net.spross.kern.box.ReportedIssue
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
@@ -37,6 +38,19 @@ internal data class BoxDocument(
     // why: defaulted like the counters above — a document written before the learner
     // could author words at all decodes as one who has authored none.
     val ownWords: List<OwnWordDto> = emptyList(),
+    // why: defaulted for the same reason — a document written before reporting existed
+    // decodes as a learner who has filed nothing and exported nothing.
+    val reportedIssues: List<ReportedIssueDto> = emptyList(),
+    @Serializable(with = IsoInstantSerializer::class) val lastExportAt: Instant? = null,
+)
+
+/** A content problem the learner filed; see `ReportedIssue`. */
+@Serializable
+internal data class ReportedIssueDto(
+    val cardId: String,
+    val comment: String? = null,
+    val learnerInput: String? = null,
+    @Serializable(with = IsoInstantSerializer::class) val reportedAt: Instant,
 )
 
 /**
@@ -51,6 +65,9 @@ internal data class OwnWordDto(
     val emoji: String? = null,
     /** language → the word in it, exactly as the catalog keys a concept's realizations. */
     val texts: Map<String, String>,
+    // why: defaulted — a word written before the box recorded this reads as old, which
+    // is what an export filter should conclude about it anyway.
+    @Serializable(with = IsoInstantSerializer::class) val addedAt: Instant? = null,
 )
 
 @Serializable
@@ -110,6 +127,10 @@ internal fun boxDocument(state: BoxState): BoxDocument = BoxDocument(
     consolidatedCrossed = state.consolidatedCrossed,
     dailyStats = state.dailyStats.mapValues { dayStatsDto(it.value) },
     ownWords = state.ownWords.map(::ownWordDto),
+    reportedIssues = state.reportedIssues.values
+        .sortedBy { it.cardId }
+        .map { ReportedIssueDto(it.cardId, it.comment, it.learnerInput, it.reportedAt) },
+    lastExportAt = state.lastExportAt,
 )
 
 private fun ownWordDto(word: OwnWord): OwnWordDto = OwnWordDto(
@@ -117,6 +138,7 @@ private fun ownWordDto(word: OwnWord): OwnWordDto = OwnWordDto(
     kind = kindName(word.kind),
     emoji = word.emoji,
     texts = word.texts,
+    addedAt = word.addedAt.takeIf { it != Instant.DISTANT_PAST },
 )
 
 private fun configDto(config: BoxConfig): ConfigDto = ConfigDto(
@@ -184,6 +206,18 @@ internal fun BoxDocument.toDecoded(): DecodedBox {
         consolidatedCrossed = consolidatedCrossed,
         dailyStats = dailyStats.mapValues { it.value.toDomain() },
         ownWords = ownWords.map { it.toDomain() },
+        reportedIssues = reportedIssues.associate { it.cardId to it.toDomain() },
+        lastExportAt = lastExportAt,
+    )
+}
+
+private fun ReportedIssueDto.toDomain(): ReportedIssue {
+    if (cardId.isEmpty()) fail("reported issue carries no card id")
+    return ReportedIssue(
+        cardId = cardId,
+        comment = comment,
+        learnerInput = learnerInput,
+        reportedAt = reportedAt,
     )
 }
 
@@ -198,7 +232,13 @@ private fun OwnWordDto.toDomain(): OwnWord {
         "idiom" -> CardKind.Idiom
         else -> fail("own word \"$id\": unknown kind \"$kind\"")
     }
-    return OwnWord(id = id, kind = parsedKind, emoji = emoji, texts = texts)
+    return OwnWord(
+        id = id,
+        kind = parsedKind,
+        emoji = emoji,
+        texts = texts,
+        addedAt = addedAt ?: Instant.DISTANT_PAST,
+    )
 }
 
 private fun ConfigDto.toDomain(): BoxConfig = BoxConfig(
