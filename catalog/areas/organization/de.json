@@ -9,6 +9,8 @@
   "confirmation": { "text": "Bestätigung", "grammar": { "gender": "die", "plural": "-en" } },
   "plan": { "text": "Plan", "grammar": { "gender": "der", "plural": "Pläne" } },
   "waiting-time": { "text": "Wartezeit", "grammar": { "gender": "die", "plural": "-en" } },
+  "to-meet": { "text": "sich treffen" },
+  "to-invite": { "text": "einladen" },
   "arrange": { "text": "vereinbaren" },
   "confirm": { "text": "bestätigen" },
   "cancel": { "text": "absagen" },

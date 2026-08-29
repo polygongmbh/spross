@@ -102,6 +102,7 @@
    "text": "studiare",
    "notes": { "de": "Für eine Prüfung oder einen Kurs lernen = studiare; etwas Neues erlernen = imparare." }
   },
+  "to-teach": { "text": "insegnare" },
   "do-the-homework": { "text": "Faccio i compiti." },
   "look-at-the-class-schedule": { "text": "Guarda l'orario.", "variants": ["Guardi l'orario.", "Guarda l'orario delle lezioni."] },
   "the-break-is-over": { "text": "La pausa è finita." },

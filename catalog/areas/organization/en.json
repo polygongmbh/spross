@@ -9,6 +9,8 @@
   "confirmation": { "text": "confirmation" },
   "plan": { "text": "plan" },
   "waiting-time": { "text": "waiting time" },
+  "to-meet": { "text": "to meet" },
+  "to-invite": { "text": "to invite" },
   "arrange": { "text": "to arrange" },
   "confirm": { "text": "to confirm" },
   "cancel": { "text": "to cancel" },

@@ -32,6 +32,7 @@
   "dictionary": { "text": "словник" },
   "to-pronounce": { "text": "вимовляти" },
   "study": { "text": "вчитися" },
+  "to-teach": { "text": "викладати" },
   "do-the-homework": { "text": "Я роблю домашнє завдання." },
   "look-at-the-class-schedule": { "text": "Подивись на розклад.", "variants": ["Подивіться на розклад."] },
   "the-break-is-over": { "text": "Перерва закінчилася." },

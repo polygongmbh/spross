@@ -17,6 +17,9 @@
   "money": { "text": "mono" },
   "buy": { "text": "aĉeti" },
   "pay": { "text": "pagi" },
+  "rich": { "text": "riĉa" },
+  "poor": { "text": "malriĉa" },
+  "free-of-charge": { "text": "senpaga" },
   "how-much-does-this-cost": { "text": "Kiom kostas tio?", "variants": ["Kiom tio kostas?", "Kiom kostas ĉi tio?"] },
   "that-is-too-expensive": {
    "text": "Tio estas tro multekosta.",

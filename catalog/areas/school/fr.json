@@ -106,6 +106,7 @@
    "variants": ["réviser"],
    "notes": { "de": "Für eine Prüfung lernen = réviser oder étudier; etwas Neues lernen = apprendre." }
   },
+  "to-teach": { "text": "enseigner" },
   "do-the-homework": { "text": "Je fais mes devoirs." },
   "look-at-the-class-schedule": { "text": "Regarde l'emploi du temps.", "variants": ["Regardez l'emploi du temps."] },
   "the-break-is-over": { "text": "La pause est finie.", "variants": ["La pause est terminée."] },

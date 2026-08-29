@@ -87,6 +87,7 @@
    "text": "estudiar",
    "notes": { "de": "Für eine Prüfung oder einen Kurs lernen = estudiar; etwas Neues erlernen = aprender." }
   },
+  "to-teach": { "text": "enseñar" },
   "do-the-homework": { "text": "Hago los deberes." },
   "look-at-the-class-schedule": { "text": "Mira el horario.", "variants": ["Mire el horario."] },
   "the-break-is-over": { "text": "El descanso ha terminado." },

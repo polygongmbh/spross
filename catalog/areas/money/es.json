@@ -27,6 +27,9 @@
   "money": { "text": "dinero", "variants": ["plata"], "grammar": { "gender": "el" } },
   "buy": { "text": "comprar" },
   "pay": { "text": "pagar" },
+  "rich": { "text": "rico" },
+  "poor": { "text": "pobre" },
+  "free-of-charge": { "text": "gratis" },
   "how-much-does-this-cost": {
    "text": "¿Cuánto cuesta esto?",
    "variants": ["¿Cuánto cuesta?", "¿Cuánto vale esto?", "¿Cuánto vale?"]

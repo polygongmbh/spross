@@ -28,6 +28,8 @@
   "aunt": { "text": "Tante", "grammar": { "gender": "die", "plural": "-n" } },
   "to-be-born": { "text": "geboren werden" },
   "birthday": { "text": "Geburtstag", "grammar": { "gender": "der", "plural": "-e" } },
+  "to-visit": { "text": "besuchen" },
+  "to-marry": { "text": "heiraten" },
   "this-is-my-mother": { "text": "Das ist meine Mutter." },
   "where-is-your-father": { "text": "Wo ist dein Vater?", "variants": ["Wo ist Ihr Vater?"] },
   "i-have-two-children": { "text": "Ich habe zwei Kinder." },

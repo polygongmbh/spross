@@ -16,6 +16,8 @@
  { "slug": "confirmation", "kind": "noun", "emoji": "☑️" },
  { "slug": "opening-hours", "kind": "noun", "emoji": "🕘" },
  { "slug": "waiting-time", "kind": "noun", "emoji": "⌛" },
+ { "slug": "to-meet", "kind": "verb", "emoji": "🤝" },
+ { "slug": "to-invite", "kind": "verb", "emoji": "💌" },
  {
   "slug": "i-would-like-to-arrange-an-appointment",
   "kind": "phrase",

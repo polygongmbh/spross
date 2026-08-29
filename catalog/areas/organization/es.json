@@ -16,6 +16,8 @@
   "confirmation": { "text": "confirmación", "grammar": { "gender": "la" } },
   "plan": { "text": "plan", "grammar": { "gender": "el" } },
   "waiting-time": { "text": "tiempo de espera", "grammar": { "gender": "el" } },
+  "to-meet": { "text": "reunirse" },
+  "to-invite": { "text": "invitar" },
   "arrange": { "text": "concertar", "synonyms": ["acordar"], "variants": ["pedir"] },
   "confirm": { "text": "confirmar" },
   "cancel": { "text": "cancelar", "synonyms": ["anular"] },

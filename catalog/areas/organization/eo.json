@@ -18,6 +18,8 @@
   "confirmation": { "text": "konfirmo" },
   "plan": { "text": "plano" },
   "waiting-time": { "text": "atendotempo", "variants": ["atenda tempo", "atendtempo"] },
+  "to-meet": { "text": "renkontiĝi" },
+  "to-invite": { "text": "inviti" },
   "arrange": { "text": "aranĝi", "synonyms": ["interkonsenti"], "variants": ["fiksi"] },
   "confirm": { "text": "konfirmi" },
   "cancel": { "text": "nuligi", "variants": ["malmendi"] },

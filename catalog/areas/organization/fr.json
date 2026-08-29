@@ -18,6 +18,8 @@
   "confirmation": { "text": "confirmation", "grammar": { "gender": "la" } },
   "plan": { "text": "plan", "grammar": { "gender": "le" } },
   "waiting-time": { "text": "temps d'attente", "grammar": { "gender": "le", "plural": "=" } },
+  "to-meet": { "text": "se réunir" },
+  "to-invite": { "text": "inviter" },
   "arrange": {
    "text": "fixer",
    "variants": ["convenir", "organiser"],

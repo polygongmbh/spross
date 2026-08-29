@@ -9,6 +9,8 @@
   "confirmation": { "text": "підтвердження", "grammar": { "plural": "=" } },
   "plan": { "text": "план" },
   "waiting-time": { "text": "час очікування" },
+  "to-meet": { "text": "зустрічатися" },
+  "to-invite": { "text": "запрошувати" },
   "arrange": { "text": "домовлятися" },
   "confirm": { "text": "підтверджувати" },
   "cancel": { "text": "скасовувати" },

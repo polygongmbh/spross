@@ -30,6 +30,7 @@
  { "slug": "course-book", "kind": "noun", "emoji": "📕" },
  { "slug": "class-schedule", "kind": "noun", "emoji": "🗓️" },
  { "slug": "study", "kind": "verb", "emoji": "📚" },
+ { "slug": "to-teach", "kind": "verb", "emoji": "📣" },
  { "slug": "do-the-homework", "kind": "phrase", "emoji": "✍️", "components": ["homework"] },
  {
   "slug": "look-at-the-class-schedule",

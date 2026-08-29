@@ -33,6 +33,8 @@
   "aunt": { "text": "тітка" },
   "to-be-born": { "text": "народитися" },
   "birthday": { "text": "день народження", "grammar": { "plural": "дні народження" } },
+  "to-visit": { "text": "відвідувати" },
+  "to-marry": { "text": "одружуватися" },
   "this-is-my-mother": { "text": "Це моя мама." },
   "where-is-your-father": { "text": "Де твій тато?", "variants": ["Де ваш тато?"] },
   "i-have-two-children": { "text": "У мене двоє дітей." },

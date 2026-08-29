@@ -34,6 +34,9 @@
   "money": { "text": "argent", "variants": ["l'argent"], "grammar": { "gender": "l'" } },
   "buy": { "text": "acheter" },
   "pay": { "text": "payer" },
+  "rich": { "text": "riche" },
+  "poor": { "text": "pauvre" },
+  "free-of-charge": { "text": "gratuit" },
   "how-much-does-this-cost": {
    "text": "Combien ça coûte ?",
    "variants": ["Ça coûte combien ?", "Combien est-ce que ça coûte ?", "Combien cela coûte-t-il ?"]

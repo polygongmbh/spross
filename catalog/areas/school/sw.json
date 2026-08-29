@@ -37,6 +37,7 @@
   "dictionary": { "text": "kamusi", "grammar": { "plural": "=" } },
   "to-pronounce": { "text": "kutamka" },
   "study": { "text": "kujifunza" },
+  "to-teach": { "text": "kufundisha" },
   "do-the-homework": { "text": "Ninafanya kazi ya nyumbani." },
   "look-at-the-class-schedule": { "text": "Angalia ratiba." },
   "the-break-is-over": { "text": "Pumziko limeisha." },

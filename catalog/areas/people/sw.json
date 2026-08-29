@@ -51,6 +51,13 @@
   },
   "to-be-born": { "text": "kuzaliwa" },
   "birthday": { "text": "siku ya kuzaliwa", "grammar": { "plural": "siku za kuzaliwa" } },
+  "to-visit": { "text": "kutembelea" },
+  "to-marry": {
+   "text": "kuoa",
+   "notes": {
+    "de": "kuoa ist die Perspektive des Mannes; die Frau heiratet aus ihrer Sicht kuolewa (Passiv)."
+   }
+  },
   "this-is-my-mother": { "text": "Huyu ni mama yangu." },
   "where-is-your-father": { "text": "Baba yako yuko wapi?" },
   "i-have-two-children": { "text": "Nina watoto wawili." },

@@ -31,6 +31,7 @@
   "dictionary": { "text": "dictionary", "grammar": { "plural": "dictionaries" } },
   "to-pronounce": { "text": "to pronounce" },
   "study": { "text": "to study" },
+  "to-teach": { "text": "to teach" },
   "do-the-homework": { "text": "I'm doing my homework." },
   "look-at-the-class-schedule": { "text": "Look at the class schedule.", "variants": ["Look at the timetable."] },
   "the-break-is-over": { "text": "The break is over." },

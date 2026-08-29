@@ -13,6 +13,8 @@
   "confirmation": { "text": "uthibitisho" },
   "plan": { "text": "mpango", "grammar": { "plural": "mipango" } },
   "waiting-time": { "text": "muda wa kusubiri" },
+  "to-meet": { "text": "kukutana" },
+  "to-invite": { "text": "kualika" },
   "arrange": { "text": "kupanga" },
   "confirm": { "text": "kuthibitisha" },
   "cancel": { "text": "kughairi" },
