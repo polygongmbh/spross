@@ -60,27 +60,30 @@ Leniency is safe to the extent the catalog can disprove it — that rule is the 
   and a word carrying a digit forgives none
   ("21"/"29", "18:05" → "18" "05" sit one edit apart),
   and a typed answer with a different word COUNT falls back to the whole-form rule.
-  What a drill must never accept is one number for another, and that danger lives inside
+  What a drill must not accept is one number for another, and that danger lives inside
   the number rather than across the sentence around it:
-  distinct cardinals sit ≥ 2 edits apart, so a per-word cap of 1 keeps them apart
+  most distinct cardinals sit ≥ 2 edits apart, so a per-word cap of 1 keeps them apart
   while the frame ("Ich habe … Hefte.") may fumble once per word.
-  The cardinal sweep (TrainerTypoBridgeGuardTests) grades every 0–999 German pair
-  through the real drill normalizer and proves none is accepted for another;
-  audited exceptions — sw `nne`↔`nane` (4↔8, incl. tens compounds)
-  and uk `дев'ять`↔`десять` (9↔10) — are gated explicitly in the sweep.
-  `TrainerFormsTypoBridgeGuardTests` runs the same machinery (`TypoBridgeSweep`) over the
-  **forms answer space only** — negatives, decimals, percentages, multiplicatives, fractions
-  and ordinals, each pack over its own limits.
-  Scoping it there is the point: two prompts can only be confused if one run grades both
-  against one accepted set, and a run asks one task at a time,
-  so sweeping form readings against plain cardinals would fail on `acht`↔`achte`
-  for a confusion no run can produce.
-  Its allowlist adds the same twins wearing form endings
-  (uk `дев'ята`↔`десята` and the other three, en `eight ninths`↔`eighty ninth`)
-  plus es `un décimo`↔`undécimo`, a space-only minimal pair of the language.
-  Everything else the sweep found was a reading bug and was fixed there instead.
-  `ClockCollisionSweepTests` is its clock half, over all 1440 times in every authored language;
-  which readings a clock may share and which it may not is `../docs/clock-registers.md`.
+  The one-edit twins the budget alone would forgive are refused by the **value check**
+  (`otherNumber` in `DrillGrading.kt`, on the `Match.Typo` arm only):
+  two probes against `NumberReadingIndex` — the whole typed answer first,
+  then each differing word at its own position —
+  refuse whenever both sides name indexed values and the values are disjoint,
+  returning `Match.OtherWord` with what was actually written ("setenta" is 70).
+  Evidence is keyed to the TYPED side, never the expected one:
+  refusing because the expected word is indexed would turn every fumbled numeral
+  (`sesemta` for `sesenta`) into a miss, which is the one behavior the drill must keep.
+  The index is the packs' own output — `drillNumber(n)` over the drawn range plus
+  `formReading(value)` over `NumberFormsAnswerSpace` — keyed by the normalizer's
+  comparison shape and built lazily per language; nothing about it is authored,
+  so a re-spelled numeral moves the index the moment the pack moves.
+  The country drill runs the same shape through `CountryNameIndex`, kind-scoped
+  (countries against countries, peoples against peoples, languages against languages) —
+  `Ĉilio` typed for `Ĉinio` is Chile, refused and named, while de `Spanier` for
+  `Spanien` stays the cross-kind near-miss two different rungs make of it.
+  Coverage is deliberately best-effort: a colliding pair outside the index's reach
+  stays the forgiven slip it always was, and no sweep pins the tail
+  (which readings a clock may share at all is `../docs/clock-registers.md`).
   Vocab reviews (`maxTyposPerWord = null`, the default) keep one budget over the whole form.
   `matchingPrefixWordCount(input, answer)` is a UI-only sibling of `evaluate` — how many
   leading whole words already match, each within its own single-word budget — so a miss's
@@ -100,5 +103,3 @@ Leniency is safe to the extent the catalog can disprove it — that rule is the 
   the feminine base leniency (`../README.md` §3) is left to its own demotion; and dropping a citation
   prefix off the INPUT reaches verb owners only (a noun never owns `kupika`).
   Only the collision is catalog-wide — nothing else about "wrong" widens.
-  `RealCatalogGradingTest` sweeps every near pair of every de→{en,sw,uk} join:
-  no catalog word grades as a forgiven slip of another.

@@ -560,10 +560,11 @@ It stands untouched, and it does no work in this drill.
 the day of month is answered as a word (`dritte`, `tres`, `третього`),
 and digits are deliberately not accepted for it — the reading is the skill.
 
-What covers rung 3 is a proof that already exists.
+What covers rung 3 is machinery that already exists.
 The day-of-month readings are the packs' own ordinals and cardinals over 1–31,
-inside the 1–100 reach `TrainerFormsTypoBridgeGuardTests` and the cardinal sweep
-already grade every pair of, so that rung inherits its safety rather than needing new.
+inside the 1–100 reach `NumberReadingIndex` already resolves —
+the drill's value check (`../kern/docs/grading.md`) refuses a slip that names
+another day, so that rung inherits its safety rather than needing new.
 The two exceptions are the date-specific first-day readings —
 French `premier` and Italian `primo`, which the forms space never draws —
 and they enter the new sweep below.
@@ -587,11 +588,9 @@ Its allowlist is **empty**, and it has no waiver mechanism.
 A future entry would not be a waiver to grant but a report that the owner index missed a form,
 most likely a `dateForm` or a synonym that never made it onto a synthetic card.
 
-**`DatesTypoBridgeGuardTests`** (commonTest, `-Psweeps`-gated) — `TypoBridgeSweep.run`
-over the bare-name space, scoped to it, for the reason `TrainerFormsTypoBridgeGuardTests` gives:
-a run grades one task against one accepted set, so sweeping date readings against plain
-cardinals would fail on `dritte` ↔ `drei` for a confusion no run can produce.
-Same empty allowlist, same reading of a future entry.
+(The exhaustive bridge sweeps this plan once leaned on were removed by owner ruling —
+a bridge typo is best-effort territory; `DateCollisionSweepTests` above should be
+re-weighed against that ruling before it is built.)
 
 **`CatalogDatesLintTest`** (jvmTest, real catalog) — declared-language files only,
 seven weekdays and twelve months in order, every pattern's markers matching its kind,

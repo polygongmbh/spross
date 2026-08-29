@@ -41,6 +41,12 @@ so a form a language cannot read is never drawn.
 An exclusion costs the learner nothing but the rung
 they would otherwise have spent on an invention.
 
+The same reach feeds `NumberReadingIndex`, the drill's value check
+(`../kern/docs/grading.md`): every reading a pack can be asked is indexed
+back to its value through `NumberFormsAnswerSpace`, so a pack owes the index
+nothing beyond honest `FormLimits` — a form read outside them is invisible
+to the check and a slip there stays a forgiven typo.
+
 ## German
 
 | Form | Canonical | Also graded |
@@ -304,7 +310,8 @@ Sources: [Académie française, Questions de langue](https://www.academie-franca
   and `centouno` says the number with nothing given up.
   The twin that could NOT be avoided is `ventotto` ↔ `centotto`,
   where both spellings are the canonical reading of their own number;
-  it is gated in `TypoBridgeSweep.KNOWN_BRIDGES`, and again as `ventesimo` ↔ `centesimo` in the forms space.
+  the drill's value check refuses it (`../kern/docs/grading.md`),
+  as it does `ventesimo` ↔ `centesimo` in the forms space.
 - **`uno` needs the noun that the bare prompt has not got.**
   It agrees with a feminine one (`una volta`), apocopates before any noun (`ventun volte`, `ventun minuti`)
   and stays whole in front of a preposition (`uno per cento`) —

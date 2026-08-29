@@ -175,13 +175,6 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   so "it's half past two" behaves unlike "it is half past two" where the rule still
   lives (vocab review). Testing `cleaned(first)` would make it consistent — a widening,
   so it wants its own `RealCatalogGradingTest` run.
-- Number near-twins gated in `TrainerTypoBridgeGuardTests`
-  (sw `nne`↔`nane` incl. tens compounds; uk `дев'ять`↔`десять`;
-  en `eight`↔`eighty`; es `sesenta`↔`setenta`, both with their compounds):
-  at the drill's one-slip-per-word budget one can pass for the other —
-  product call pending (no slips at all for number drills vs accept).
-  `TrainerFormsTypoBridgeGuardTests` gates the same twins wearing form endings,
-  so the ruling covers both allowlists at once.
 - The number forms have no rung for prices/currency or digit-by-digit readings
   (a phone number, a PIN) — two families a learner meets constantly and the ladder
   never asks; adding one is an enum case, a `draw` arm, a `formReading` arm per pack
@@ -201,10 +194,12 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   returns in `GermanClock.conversational`, en into `EnglishClockRegisters.anchors`, es and uk
   into hand-written `ClockReading` constants, and sw has none by design.
 - The 24-hour register closes the twelve-hour cycle by NUMBER (`achtzehn Uhr` cannot answer 06:00),
-  which `ClockCollisionSweepTests.sweep()` never grades because it skips same-cycle pairs —
-  so that closure is unheld, unlike the day parts' (`dayPartReadingsCloseTheTwelveHourCycle`).
+  a closure nothing holds, unlike the day parts' (`dayPartReadingsCloseTheTwelveHourCycle`).
 - FSRS parameter optimization from review logs —
   enabled by the full per-card logs, unbuilt (kern README §5).
+- Authoring the number packs' word tables in the catalog (`catalog/numbers/<lang>.json`)
+  was assessed and not taken — packs keep their Kotlin tables; the full assessment is in
+  git history (`docs/drill-grading-plan.md`, deleted with the series that closed Part 1).
 - Box pack control under-reports: `BoxBrowser.enqueueableCount` counts only the area's own
   cards, while `BoxEngine.enqueue` also prepends a phrase's missing components — a phrase
   whose components sit on another shelf packs more than the number promised

@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **A different number is wrong, and the drill says which you wrote.** Typing *setenta*
+  when the drill asked for *sesenta* used to pass as a near-miss — one letter off, after
+  all. Now an answer that is really another number is refused outright, in every number,
+  forms, year and clock drill, and the reveal names it: "By the way: setenta means 70."
+  The same goes for the country drill — *Uswidi* for *Uswisi* is Sweden, not a typo of
+  Switzerland, and the card says so. A genuine slip that names nothing (*sesemta*) is
+  forgiven exactly as before.
+
 ## 5.5.2 — 2026-08-26
 
 - **A night owl at nightfall, whoever you happen to be learning.** The Heute greeting was

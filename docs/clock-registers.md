@@ -130,7 +130,7 @@ A **period-less** reading is open across the 12-hour cycle by design.
 `quarter to five` is the right answer to 16:45 and to 04:45 alike;
 `saa sita` is midnight and noon;
 the language leaves the cycle open and the drill may not close it.
-`ClockCollisionSweepTests` skips same-cycle pairs for exactly this reason.
+Nothing may treat a same-cycle pair as a collision for exactly this reason.
 
 A reading that NAMES the part of the day must close it —
 naming it is the whole point — and `dayPartReadingsCloseTheTwelveHourCycle` holds it to that.
@@ -197,8 +197,8 @@ A further language takes all of:
   — or its name in `ruleHintGlosses` where the gloss is a hint rather than a list —
   and its gloss separator in the `separators` it splits on;
   a marker or separator that matches nothing skips 1440 rows quietly, which is exactly what that test is there to catch;
-- its own `@Test` in `ClockCollisionSweepTests` calling `sweep()` with its gated pairs
-  — that sweep runs off hand-written per-language tests, so a language without one gets no collision coverage and nothing goes red.
+- coverage by `dayPartReadingsCloseTheTwelveHourCycle`, which iterates every pack —
+  a new language's day parts are held the moment its pack registers.
 
 ## English a.m./p.m., accepted knowingly
 
