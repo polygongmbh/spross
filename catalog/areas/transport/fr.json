@@ -53,6 +53,7 @@
    "variants": ["Le train part quand ?", "À quelle heure part le train ?"]
   },
   "have-a-good-journey": { "text": "Bon voyage !" },
-  "how-much-is-the-fare": { "text": "Quel est le tarif ?", "variants": ["Combien coûte le billet ?"] }
+  "how-much-is-the-fare": { "text": "Quel est le tarif ?", "variants": ["Combien coûte le billet ?"] },
+  "the-bus-has-already-departed": { "text": "Le bus est déjà parti." }
  }
 }

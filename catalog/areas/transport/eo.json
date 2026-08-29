@@ -51,6 +51,7 @@
   "how-much-is-the-fare": {
    "text": "Kiom kostas la veturo?",
    "variants": ["Kiom alta estas la veturprezo?", "Kiom kostas la bileto?"]
-  }
+  },
+  "the-bus-has-already-departed": { "text": "La aŭtobuso jam forveturis." }
  }
 }

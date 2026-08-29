@@ -65,6 +65,7 @@
   },
   "when-does-the-train-leave": { "text": "¿Cuándo sale el tren?", "variants": ["¿A qué hora sale el tren?"] },
   "have-a-good-journey": { "text": "¡Buen viaje!" },
-  "how-much-is-the-fare": { "text": "¿Cuál es la tarifa?", "variants": ["¿Cuánto cuesta el pasaje?"] }
+  "how-much-is-the-fare": { "text": "¿Cuál es la tarifa?", "variants": ["¿Cuánto cuesta el pasaje?"] },
+  "the-bus-has-already-departed": { "text": "El autobús ya ha salido." }
  }
 }
