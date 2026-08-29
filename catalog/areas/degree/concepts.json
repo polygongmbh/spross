@@ -11,6 +11,7 @@
  { "slug": "enough", "kind": "adjective" },
  { "slug": "partially", "kind": "adjective" },
  { "slug": "gladly", "kind": "adjective" },
+ { "slug": "completely", "kind": "adjective", "emoji": "💯" },
  { "slug": "all", "kind": "adjective" },
  { "slug": "some", "kind": "adjective" },
  { "slug": "every", "kind": "adjective" },

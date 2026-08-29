@@ -100,6 +100,7 @@
    "notes": { "de": "Swahili sagt es als Verb: basi limejaa = der Bus ist voll." }
   },
   "dirty": { "text": "chafu" },
+  "dry": { "text": "kavu", "notes": { "de": "unveränderlich." } },
   "different": {
    "text": "tofauti",
    "notes": {

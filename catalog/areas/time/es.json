@@ -17,6 +17,7 @@
   "today": { "text": "hoy" },
   "tomorrow": { "text": "mañana", "notes": { "de": "mañana heißt auch der Morgen: por la mañana = morgens." } },
   "yesterday": { "text": "ayer" },
+  "day-before-yesterday": { "text": "anteayer" },
   "early": { "text": "temprano" },
   "soon": { "text": "pronto" },
   "noon": { "text": "mediodía", "grammar": { "gender": "el" } },

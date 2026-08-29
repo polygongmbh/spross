@@ -71,6 +71,7 @@
   "empty": { "text": "vuoto", "variants": ["vuota"] },
   "full": { "text": "pieno", "variants": ["piena"] },
   "dirty": { "text": "sporco", "variants": ["sporca"] },
+  "dry": { "text": "secco" },
   "different": { "text": "diverso", "synonyms": ["differente"], "variants": ["diversa", "diversi", "diverse"] },
   "difference": { "text": "differenza", "grammar": { "gender": "la" } },
   "real": { "text": "reale" },

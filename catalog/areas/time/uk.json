@@ -17,6 +17,7 @@
   "today": { "text": "сьогодні" },
   "tomorrow": { "text": "завтра" },
   "yesterday": { "text": "вчора", "variants": ["учора"] },
+  "day-before-yesterday": { "text": "позавчора" },
   "early": { "text": "рано" },
   "late": { "text": "пізно" },
   "soon": { "text": "скоро", "synonyms": ["незабаром"] },

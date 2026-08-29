@@ -22,6 +22,7 @@
   "today": { "text": "leo" },
   "tomorrow": { "text": "kesho" },
   "yesterday": { "text": "jana" },
+  "day-before-yesterday": { "text": "juzi" },
   "early": { "text": "mapema" },
   "soon": {
    "text": "hivi karibuni",

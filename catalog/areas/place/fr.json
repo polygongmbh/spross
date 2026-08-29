@@ -29,6 +29,7 @@
    "synonyms": ["lieu"],
    "grammar": { "gender": "l'" }
   },
+  "country": { "text": "pays", "grammar": { "gender": "le", "plural": "=" } },
   "on-the-table": { "text": "sur la table" },
   "under-the-bed": { "text": "sous le lit" },
   "in-the-city": { "text": "dans la ville" },

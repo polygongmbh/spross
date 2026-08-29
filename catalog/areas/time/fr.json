@@ -29,6 +29,7 @@
   "today": { "text": "aujourd'hui" },
   "tomorrow": { "text": "demain" },
   "yesterday": { "text": "hier" },
+  "day-before-yesterday": { "text": "avant-hier" },
   "early": { "text": "tôt", "variants": ["de bonne heure"] },
   "late": { "text": "tard" },
   "soon": { "text": "bientôt" },

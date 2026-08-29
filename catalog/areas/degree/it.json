@@ -19,6 +19,7 @@
   "enough": { "text": "abbastanza" },
   "partially": { "text": "parzialmente" },
   "gladly": { "text": "volentieri" },
+  "completely": { "text": "completamente" },
   "all": { "text": "tutti", "variants": ["tutte", "tutto"] },
   "some": { "text": "alcuni", "variants": ["alcune", "qualche"] },
   "every": { "text": "ogni" },

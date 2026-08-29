@@ -21,6 +21,7 @@
   "today": { "text": "oggi" },
   "tomorrow": { "text": "domani" },
   "yesterday": { "text": "ieri" },
+  "day-before-yesterday": { "text": "l'altro ieri" },
   "early": { "text": "presto", "variants": ["in anticipo"] },
   "late": { "text": "tardi", "variants": ["in ritardo"] },
   "soon": {

@@ -25,6 +25,7 @@
   },
   "partially": { "text": "kwa sehemu" },
   "gladly": { "text": "kwa furaha" },
+  "completely": { "text": "kabisa" },
   "all": {
    "text": "-ote",
    "variants": ["wote", "yote", "zote", "chote", "vyote", "lote", "pote"],

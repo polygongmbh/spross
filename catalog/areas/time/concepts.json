@@ -3,6 +3,7 @@
  { "slug": "today", "kind": "adjective", "emoji": "📅" },
  { "slug": "tomorrow", "kind": "adjective" },
  { "slug": "yesterday", "kind": "adjective" },
+ { "slug": "day-before-yesterday", "kind": "adjective" },
  { "slug": "time", "kind": "noun", "emoji": "⌚" },
  { "slug": "day", "kind": "noun", "emoji": "📆" },
  { "slug": "hour", "kind": "noun", "emoji": "⏱️" },

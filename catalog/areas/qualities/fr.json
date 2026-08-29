@@ -82,6 +82,7 @@
   "empty": { "text": "vide" },
   "full": { "text": "plein", "variants": ["pleine"] },
   "dirty": { "text": "sale" },
+  "dry": { "text": "sec" },
   "different": { "text": "différent", "variants": ["différente", "différents"] },
   "difference": { "text": "différence", "grammar": { "gender": "la" } },
   "real": { "text": "réel" },

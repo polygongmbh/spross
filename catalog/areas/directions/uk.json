@@ -21,6 +21,10 @@
    "notes": { "de": "іти за steht mit dem Instrumental: іти за мною." }
   },
   "way": { "text": "дорога" },
+  "north": { "text": "північ" },
+  "south": { "text": "південь" },
+  "east": { "text": "схід" },
+  "west": { "text": "захід" },
   "go-straight-ahead": { "text": "Ідіть прямо.", "variants": ["Іди прямо."] },
   "turn-left-at-the-corner": { "text": "Поверніть ліворуч на розі.", "variants": ["Поверни ліворуч на розі."] },
   "where-is-the-exit": { "text": "Де вихід?" },

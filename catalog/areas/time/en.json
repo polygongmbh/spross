@@ -13,6 +13,7 @@
   "today": { "text": "today" },
   "tomorrow": { "text": "tomorrow" },
   "yesterday": { "text": "yesterday" },
+  "day-before-yesterday": { "text": "the day before yesterday" },
   "early": { "text": "early" },
   "late": { "text": "late" },
   "soon": { "text": "soon" },

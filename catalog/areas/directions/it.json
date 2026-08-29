@@ -22,6 +22,10 @@
    "grammar": { "gender": "il" },
    "notes": { "de": "il cammino ist der Weg, den man geht; nach dem Weg fragt man mit la strada." }
   },
+  "north": { "text": "nord", "grammar": { "gender": "il" } },
+  "south": { "text": "sud", "grammar": { "gender": "il" } },
+  "east": { "text": "est", "grammar": { "gender": "il" } },
+  "west": { "text": "ovest", "grammar": { "gender": "il" } },
   "go-straight-ahead": { "text": "Vada dritto.", "variants": ["Vai dritto.", "Prosegua dritto."] },
   "turn-left-at-the-corner": { "text": "Giri a sinistra all'angolo.", "variants": ["Gira a sinistra all'angolo."] },
   "where-is-the-exit": { "text": "Dov'è l'uscita?" },

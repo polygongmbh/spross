@@ -23,6 +23,7 @@
   "without": { "text": "senza" },
   "again": { "text": "di nuovo", "variants": ["un'altra volta", "ancora"] },
   "still": { "text": "ancora" },
+  "then": { "text": "poi" },
   "not": { "text": "non", "notes": { "de": "non steht vor dem Verb: non parlo italiano." } },
   "only": { "text": "solo", "variants": ["soltanto", "solamente"] },
   "together": { "text": "insieme" },

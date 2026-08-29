@@ -15,6 +15,7 @@
   "without": { "text": "without" },
   "again": { "text": "again" },
   "still": { "text": "still" },
+  "then": { "text": "then" },
   "not": { "text": "not" },
   "only": { "text": "only", "variants": ["just"] },
   "together": { "text": "together" },

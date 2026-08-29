@@ -15,6 +15,7 @@
  { "slug": "behind", "kind": "adjective" },
  { "slug": "between", "kind": "adjective" },
  { "slug": "place", "kind": "noun", "emoji": "📍" },
+ { "slug": "country", "kind": "noun", "emoji": "🌍" },
  { "slug": "on-the-table", "kind": "phrase", "components": ["on"] },
  { "slug": "under-the-bed", "kind": "phrase", "components": ["under"] },
  { "slug": "in-the-city", "kind": "phrase", "components": ["in"] },

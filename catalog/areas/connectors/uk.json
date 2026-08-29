@@ -15,6 +15,7 @@
   "without": { "text": "без" },
   "again": { "text": "знову", "variants": ["ще раз"] },
   "still": { "text": "ще", "variants": ["досі"] },
+  "then": { "text": "потім" },
   "not": { "text": "не" },
   "only": { "text": "тільки", "variants": ["лише"] },
   "together": { "text": "разом" },

@@ -38,6 +38,7 @@
   "empty": { "text": "empty" },
   "full": { "text": "full" },
   "dirty": { "text": "dirty" },
+  "dry": { "text": "dry" },
   "different": { "text": "different" },
   "difference": { "text": "difference" },
   "real": { "text": "real" },

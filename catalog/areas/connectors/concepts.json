@@ -8,6 +8,7 @@
  { "slug": "if", "kind": "adjective" },
  { "slug": "again", "kind": "adjective" },
  { "slug": "still", "kind": "adjective" },
+ { "slug": "then", "kind": "adjective", "emoji": "⏭️" },
  { "slug": "only", "kind": "adjective" },
  { "slug": "before", "kind": "adjective" },
  { "slug": "after", "kind": "adjective" },

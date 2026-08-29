@@ -28,6 +28,7 @@
   },
   "far": { "text": "mbali" },
   "place": { "text": "mahali", "grammar": { "plural": "=" } },
+  "country": { "text": "nchi", "grammar": { "plural": "=" } },
   "on-the-table": { "text": "juu ya meza" },
   "under-the-bed": { "text": "chini ya kitanda" },
   "in-the-city": { "text": "katika mji" },

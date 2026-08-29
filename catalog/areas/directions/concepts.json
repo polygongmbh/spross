@@ -10,6 +10,10 @@
  { "slug": "exit", "kind": "noun" },
  { "slug": "follow", "kind": "verb" },
  { "slug": "way", "kind": "noun", "emoji": "🚶" },
+ { "slug": "north", "kind": "noun", "emoji": "⬆️" },
+ { "slug": "south", "kind": "noun", "emoji": "⬇️" },
+ { "slug": "east", "kind": "noun", "emoji": "➡️" },
+ { "slug": "west", "kind": "noun", "emoji": "⬅️" },
  { "slug": "go-straight-ahead", "kind": "phrase", "emoji": "⬆️", "components": ["straight-ahead"] },
  {
   "slug": "turn-left-at-the-corner",

@@ -22,6 +22,7 @@
   "near": { "text": "cerca" },
   "far": { "text": "lejos" },
   "place": { "text": "lugar", "synonyms": ["sitio"], "grammar": { "gender": "el" } },
+  "country": { "text": "país", "grammar": { "gender": "el", "plural": "países" } },
   "on-the-table": { "text": "sobre la mesa" },
   "under-the-bed": { "text": "debajo de la cama" },
   "in-the-city": { "text": "en la ciudad" },

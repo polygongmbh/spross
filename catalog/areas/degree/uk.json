@@ -16,6 +16,7 @@
   "enough": { "text": "достатньо" },
   "partially": { "text": "частково" },
   "gladly": { "text": "залюбки" },
+  "completely": { "text": "повністю" },
   "all": { "text": "всі", "variants": ["усі"] },
   "some": { "text": "деякі", "variants": ["кілька"] },
   "every": { "text": "кожен", "variants": ["кожна", "кожне"] },

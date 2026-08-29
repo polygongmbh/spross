@@ -66,6 +66,7 @@
   "empty": { "text": "vacío", "variants": ["vacía"] },
   "full": { "text": "lleno", "variants": ["llena"] },
   "dirty": { "text": "sucio", "variants": ["sucia"] },
+  "dry": { "text": "seco" },
   "different": {
    "text": "diferente",
    "synonyms": ["distinto"],

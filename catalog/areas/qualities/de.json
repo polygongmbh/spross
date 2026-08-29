@@ -29,6 +29,7 @@
   "empty": { "text": "leer" },
   "full": { "text": "voll" },
   "dirty": { "text": "schmutzig" },
+  "dry": { "text": "trocken" },
   "different": { "text": "anders", "synonyms": ["verschieden"], "variants": ["unterschiedlich"] },
   "difference": { "text": "Unterschied", "grammar": { "gender": "der", "plural": "Unterschiede" } },
   "real": { "text": "echt" },

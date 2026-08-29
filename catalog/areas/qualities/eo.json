@@ -48,6 +48,7 @@
   "empty": { "text": "malplena" },
   "full": { "text": "plena" },
   "dirty": { "text": "malpura" },
+  "dry": { "text": "seka" },
   "different": { "text": "malsama", "variants": ["malsamaj"] },
   "difference": { "text": "diferenco" },
   "real": { "text": "reala" },

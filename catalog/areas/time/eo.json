@@ -13,6 +13,7 @@
   "today": { "text": "hodiaŭ" },
   "tomorrow": { "text": "morgaŭ" },
   "yesterday": { "text": "hieraŭ" },
+  "day-before-yesterday": { "text": "antaŭhieraŭ" },
   "early": {
    "text": "frue",
    "variants": ["frua"],

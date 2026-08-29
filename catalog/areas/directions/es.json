@@ -37,6 +37,10 @@
   "exit": { "text": "salida", "grammar": { "gender": "la" } },
   "follow": { "text": "seguir", "notes": { "de": "Stammwechsel e → i: sigo, sigues, sigue." } },
   "way": { "text": "camino", "grammar": { "gender": "el" } },
+  "north": { "text": "norte", "grammar": { "gender": "el" } },
+  "south": { "text": "sur", "grammar": { "gender": "el" } },
+  "east": { "text": "este", "grammar": { "gender": "el" } },
+  "west": { "text": "oeste", "grammar": { "gender": "el" } },
   "go-straight-ahead": { "text": "Siga todo recto.", "variants": ["Sigue todo recto.", "Vaya todo recto."] },
   "turn-left-at-the-corner": {
    "text": "Gire a la izquierda en la esquina.",

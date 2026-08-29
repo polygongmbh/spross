@@ -22,6 +22,7 @@
   "near": { "text": "близько", "variants": ["поруч"] },
   "far": { "text": "далеко" },
   "place": { "text": "місце", "grammar": { "plural": "місця" } },
+  "country": { "text": "країна" },
   "on-the-table": { "text": "на столі" },
   "under-the-bed": { "text": "під ліжком" },
   "in-the-city": { "text": "у місті" },
