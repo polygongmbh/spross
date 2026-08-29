@@ -20,6 +20,8 @@
   "wound": { "text": "Wunde", "grammar": { "gender": "die", "plural": "-n" } },
   "hurt-oneself": { "text": "sich verletzen" },
   "bandage": { "text": "Verband", "grammar": { "gender": "der", "plural": "Verbände" } },
+  "band-aid": { "text": "Pflaster", "grammar": { "gender": "das", "plural": "=" } },
+  "splint": { "text": "Schiene", "grammar": { "gender": "die", "plural": "-n" } },
   "breathe": { "text": "atmen" },
   "recover": { "text": "gesund werden", "variants": ["genesen"] },
   "life": { "text": "Leben", "grammar": { "gender": "das", "plural": "=" } },

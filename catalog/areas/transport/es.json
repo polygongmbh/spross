@@ -49,6 +49,9 @@
   },
   "truck": { "text": "camión", "grammar": { "gender": "el" } },
   "passenger": { "text": "pasajero", "grammar": { "gender": "el" } },
+  "wheel": { "text": "rueda", "grammar": { "gender": "la" } },
+  "engine": { "text": "motor", "grammar": { "gender": "el" } },
+  "rail": { "text": "riel", "grammar": { "gender": "el", "plural": "rieles" } },
   "luggage": { "text": "equipaje", "grammar": { "gender": "el" } },
   "fare": { "text": "tarifa", "grammar": { "gender": "la" } },
   "get-off": {

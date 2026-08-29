@@ -27,6 +27,8 @@
   "wound": { "text": "рана" },
   "hurt-oneself": { "text": "поранитися", "synonyms": ["травмуватися"] },
   "bandage": { "text": "бинт" },
+  "band-aid": { "text": "пластир" },
+  "splint": { "text": "шина" },
   "breathe": { "text": "дихати" },
   "recover": { "text": "одужувати", "variants": ["одужати"] },
   "life": { "text": "життя", "grammar": { "plural": "=" } },

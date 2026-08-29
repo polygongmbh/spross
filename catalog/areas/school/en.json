@@ -16,6 +16,7 @@
   "pupil": { "text": "pupil" },
   "course": { "text": "course" },
   "lesson": { "text": "lesson" },
+  "period": { "text": "period" },
   "course-book": { "text": "course book" },
   "page": { "text": "page" },
   "grade": { "text": "grade" },

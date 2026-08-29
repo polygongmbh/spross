@@ -46,6 +46,14 @@
    "grammar": { "gender": "le" },
    "notes": { "de": "le pansement ist Verband und Pflaster zugleich; un bandage ist die elastische Binde." }
   },
+  "band-aid": {
+   "text": "sparadrap",
+   "grammar": { "gender": "le" },
+   "notes": {
+    "de": "le sparadrap ist das einzelne Pflaster; pansement (siehe bandage) deckt es umgangssprachlich mit ab."
+   }
+  },
+  "splint": { "text": "attelle", "grammar": { "gender": "la" } },
   "breathe": { "text": "respirer" },
   "recover": {
    "text": "guérir",

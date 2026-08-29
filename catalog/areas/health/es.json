@@ -45,12 +45,9 @@
   },
   "wound": { "text": "herida", "grammar": { "gender": "la" } },
   "hurt-oneself": { "text": "hacerse daño", "variants": ["lesionarse"] },
-  "bandage": {
-   "text": "venda",
-   "variants": ["vendaje"],
-   "grammar": { "gender": "la" },
-   "notes": { "de": "das kleine Pflaster ist la tirita (Spanien), la curita (Lateinamerika)." }
-  },
+  "bandage": { "text": "venda", "variants": ["vendaje"], "grammar": { "gender": "la" } },
+  "band-aid": { "text": "tirita", "variants": ["curita"], "grammar": { "gender": "la" } },
+  "splint": { "text": "férula", "grammar": { "gender": "la" } },
   "breathe": { "text": "respirar" },
   "recover": { "text": "recuperarse", "variants": ["reponerse"] },
   "life": { "text": "vida", "grammar": { "gender": "la" } },

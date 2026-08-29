@@ -16,6 +16,13 @@
   "pupil": { "text": "mwanafunzi", "grammar": { "plural": "wanafunzi" } },
   "course": { "text": "kozi", "grammar": { "plural": "=" } },
   "lesson": { "text": "somo", "grammar": { "plural": "masomo" } },
+  "period": {
+   "text": "kipindi",
+   "grammar": { "plural": "vipindi" },
+   "notes": {
+    "de": "die einzelne Unterrichtsstunde im Stundenplan; das Fach/Thema selbst heißt somo (lesson)."
+   }
+  },
   "course-book": { "text": "kitabu cha kozi", "grammar": { "plural": "vitabu vya kozi" } },
   "page": { "text": "ukurasa", "grammar": { "plural": "kurasa" } },
   "grade": { "text": "alama", "grammar": { "plural": "=" } },

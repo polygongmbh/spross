@@ -28,6 +28,7 @@
   "wound": { "text": "jeraha", "grammar": { "plural": "majeraha" } },
   "hurt-oneself": { "text": "kujiumiza" },
   "bandage": { "text": "bendeji", "variants": ["bandeji"], "grammar": { "plural": "=" } },
+  "band-aid": { "text": "plasta", "grammar": { "plural": "=" } },
   "breathe": { "text": "kupumua" },
   "recover": { "text": "kupona" },
   "life": {

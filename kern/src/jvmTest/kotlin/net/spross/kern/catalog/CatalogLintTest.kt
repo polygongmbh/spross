@@ -408,6 +408,17 @@ class CatalogLintTest {
             .toSortedSet()
         assertEquals(
             sortedSetOf(
+                // Reviewed 2026-08-29: de `Schiene` is the train rail AND the medical splint —
+                // en/es/fr/it/uk all split the pair (rail/splint, riel/férula, rail/attelle,
+                // rotaia/stecca, рейка/шина); sw has no splint card yet. There is no second
+                // German word for either sense of "rigid guiding strip," so both stay.
+                "de Schiene: health/splint, transport/rail",
+                // Reviewed 2026-08-29: de `Stunde` is the clock hour AND the school period —
+                // en/sw both split it (hour/period, saa/kipindi); es/fr/it/uk fold `period`
+                // into their `lesson` card instead (clase/classe/lezione/урок already cover
+                // it), so `school/period` was deliberately authored de/en/sw-only and this
+                // stays one-language.
+                "de Stunde: school/period, time/hour",
                 // Reviewed 2026-08-29: de `sich vorstellen` is "to introduce oneself" AND "to
                 // imagine" — the infinitive citation doesn't distinguish the accusative
                 // reflexive (Ich stelle mich vor) from the dative one (Ich stelle mir das

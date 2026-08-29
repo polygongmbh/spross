@@ -23,6 +23,9 @@
  { "slug": "luggage", "kind": "noun", "emoji": "🧳" },
  { "slug": "fare", "kind": "noun" },
  { "slug": "passenger", "kind": "noun" },
+ { "slug": "wheel", "kind": "noun", "emoji": "🛞" },
+ { "slug": "engine", "kind": "noun", "emoji": "⚙️" },
+ { "slug": "rail", "kind": "noun", "emoji": "🛤️" },
  { "slug": "the-bus-is-coming-soon", "kind": "phrase", "emoji": "🚌", "components": ["bus"] },
  {
   "slug": "when-does-the-train-leave",

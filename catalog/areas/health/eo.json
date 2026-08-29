@@ -41,6 +41,8 @@
    }
   },
   "bandage": { "text": "bandaĝo" },
+  "band-aid": { "text": "plastro" },
+  "splint": { "text": "ŝino" },
   "breathe": { "text": "spiri" },
   "recover": { "text": "resaniĝi", "variants": ["saniĝi"] },
   "life": { "text": "vivo" },

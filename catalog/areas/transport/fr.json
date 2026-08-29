@@ -35,6 +35,9 @@
   "motorbike": { "text": "moto", "variants": ["motocyclette"], "grammar": { "gender": "la" } },
   "truck": { "text": "camion", "grammar": { "gender": "le" } },
   "passenger": { "text": "passager", "grammar": { "gender": "le" } },
+  "wheel": { "text": "roue", "grammar": { "gender": "la" } },
+  "engine": { "text": "moteur", "grammar": { "gender": "le" } },
+  "rail": { "text": "rail", "grammar": { "gender": "le", "plural": "-s" } },
   "luggage": {
    "text": "bagages",
    "grammar": { "gender": "les", "plural": "only" },

@@ -27,6 +27,9 @@
   "motorbike": { "text": "motorciklo", "variants": ["motorbiciklo"] },
   "truck": { "text": "kamiono" },
   "passenger": { "text": "pasaĝero" },
+  "wheel": { "text": "rado" },
+  "engine": { "text": "motoro" },
+  "rail": { "text": "relo" },
   "luggage": { "text": "pakaĵo", "variants": ["bagaĝo", "pakaĵaro"] },
   "fare": { "text": "veturprezo", "variants": ["biletprezo", "veturkosto"] },
   "get-off": {

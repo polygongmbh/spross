@@ -20,6 +20,8 @@
   "wound": { "text": "wound" },
   "hurt-oneself": { "text": "to hurt oneself", "variants": ["to injure oneself", "to hurt yourself"] },
   "bandage": { "text": "bandage" },
+  "band-aid": { "text": "band-aid" },
+  "splint": { "text": "splint" },
   "breathe": { "text": "to breathe" },
   "recover": { "text": "to recover", "variants": ["to get better"] },
   "life": { "text": "life", "grammar": { "plural": "lives" } },

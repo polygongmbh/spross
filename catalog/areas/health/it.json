@@ -35,12 +35,9 @@
   },
   "wound": { "text": "ferita", "grammar": { "gender": "la" } },
   "hurt-oneself": { "text": "farsi male", "variants": ["ferirsi"] },
-  "bandage": {
-   "text": "benda",
-   "variants": ["fasciatura"],
-   "grammar": { "gender": "la" },
-   "notes": { "de": "das kleine Pflaster ist il cerotto." }
-  },
+  "bandage": { "text": "benda", "variants": ["fasciatura"], "grammar": { "gender": "la" } },
+  "band-aid": { "text": "cerotto", "grammar": { "gender": "il" } },
+  "splint": { "text": "stecca", "grammar": { "gender": "la" } },
   "breathe": {
    "text": "respirare",
    "notes": { "de": "Nicht können heißt hier non riuscire a respirare, nicht non potere." }

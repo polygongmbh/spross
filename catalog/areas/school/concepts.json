@@ -9,6 +9,7 @@
  { "slug": "pupil-f", "kind": "noun", "emoji": "👩‍🎓", "feminineOf": "pupil" },
  { "slug": "classroom", "kind": "noun", "emoji": "🎓" },
  { "slug": "lesson", "kind": "noun", "emoji": "🎒" },
+ { "slug": "period", "kind": "noun", "emoji": "🔔" },
  { "slug": "homework", "kind": "noun", "emoji": "✍️" },
  { "slug": "exam", "kind": "noun", "emoji": "📋" },
  { "slug": "break", "kind": "noun", "emoji": "☕" },
