@@ -99,7 +99,7 @@ fun BoxCardRow(
                 interactionSource = interaction,
                 indication = null,
                 enabled = true,
-                onLongClickLabel = chrome.reportAction,
+                onLongClickLabel = chrome.cardActions,
                 onLongClick = { menuOpen = true },
                 onClick = pronounce ?: {},
             )

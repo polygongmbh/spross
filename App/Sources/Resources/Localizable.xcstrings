@@ -433,6 +433,22 @@
         }
       }
     },
+    "box.card.actions" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was mit diesem Wort geht"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What you can do with this word"
+          }
+        }
+      }
+    },
     "box.card.forget" : {
       "localizations" : {
         "de" : {
@@ -2139,38 +2155,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Send"
-          }
-        }
-      }
-    },
-    "feedback.suggestions" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fehlende Wörter"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Missing words"
-          }
-        }
-      }
-    },
-    "feedback.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rückmeldung"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Feedback"
           }
         }
       }

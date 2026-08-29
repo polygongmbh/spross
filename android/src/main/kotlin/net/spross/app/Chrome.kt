@@ -267,6 +267,8 @@ interface Chrome {
      * The card stays, and so does anything filed against it — forgetting the answers
      * does not make the translation right.
      */
+    /** What a long press on a Box row opens, for a reader who cannot see it is a menu. */
+    val cardActions: String
     val cardForget: String
     /** Writing an own word from a catalog one, both sides carried over into the form. */
     val cardOwnFrom: String
@@ -353,9 +355,6 @@ interface Chrome {
     val ownWordAddAction: String
 
     // ── Feedback to the catalog ─────────────────────────────────────────────────
-    val feedbackTitle: String
-    /** The words written with one side only; they join no card, so this is where they show. */
-    val feedbackSuggestions: String
     val feedbackNeedsTranslation: String
     val feedbackCopy: String
     val feedbackSend: String
