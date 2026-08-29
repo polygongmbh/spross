@@ -36,6 +36,7 @@
   "wheres-my-towel": { "text": "Taulo langu liko wapi?" },
   "can-you-hang-the-laundry": { "text": "Unaweza kuanika nguo?" },
   "dont-forget-to-brush-teeth": { "text": "Usisahau kupiga mswaki!" },
-  "wash-your-hands": { "text": "Nawa mikono." }
+  "wash-your-hands": { "text": "Nawa mikono." },
+  "the-laundry-is-being-washed": { "text": "Nguo zinafuliwa sasa hivi." }
  }
 }

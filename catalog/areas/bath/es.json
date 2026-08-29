@@ -69,6 +69,7 @@
    "text": "¡No te olvides de lavarte los dientes!",
    "variants": ["¡No olvides lavarte los dientes!", "¡No te olvides de cepillarte los dientes!"]
   },
-  "wash-your-hands": { "text": "Lávate las manos." }
+  "wash-your-hands": { "text": "Lávate las manos." },
+  "the-laundry-is-being-washed": { "text": "La colada se está lavando ahora mismo." }
  }
 }

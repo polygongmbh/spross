@@ -73,6 +73,7 @@
    "variants": ["Peux-tu étendre le linge ?", "Tu peux étendre la lessive ?"]
   },
   "dont-forget-to-brush-teeth": { "text": "N'oublie pas de te brosser les dents !" },
-  "wash-your-hands": { "text": "Lave-toi les mains." }
+  "wash-your-hands": { "text": "Lave-toi les mains." },
+  "the-laundry-is-being-washed": { "text": "Le linge est en train d'être lavé." }
  }
 }

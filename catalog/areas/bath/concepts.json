@@ -49,5 +49,10 @@
   "emoji": "🪥",
   "components": ["brush-teeth"]
  },
- { "slug": "wash-your-hands", "kind": "phrase", "emoji": "🧼", "components": [] }
+ { "slug": "wash-your-hands", "kind": "phrase", "emoji": "🧼", "components": [] },
+ {
+  "slug": "the-laundry-is-being-washed",
+  "kind": "phrase",
+  "components": ["laundry", "do-laundry"]
+ }
 ]

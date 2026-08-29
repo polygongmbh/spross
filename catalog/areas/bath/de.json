@@ -37,6 +37,7 @@
   "wheres-my-towel": { "text": "Wo ist mein Handtuch?" },
   "can-you-hang-the-laundry": { "text": "Kannst du die Wäsche aufhängen?" },
   "dont-forget-to-brush-teeth": { "text": "Vergiss nicht, Zähne zu putzen!" },
-  "wash-your-hands": { "text": "Wasch dir die Hände." }
+  "wash-your-hands": { "text": "Wasch dir die Hände." },
+  "the-laundry-is-being-washed": { "text": "Die Wäsche wird gerade gewaschen." }
  }
 }

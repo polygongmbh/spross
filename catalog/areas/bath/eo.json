@@ -59,6 +59,7 @@
   "wheres-my-towel": { "text": "Kie estas mia mantuko?" },
   "can-you-hang-the-laundry": { "text": "Ĉu vi povas pendigi la tolaĵon?" },
   "dont-forget-to-brush-teeth": { "text": "Ne forgesu brosi la dentojn!", "variants": ["Ne forgesu brosi viajn dentojn!"] },
-  "wash-your-hands": { "text": "Lavu viajn manojn.", "variants": ["Lavu la manojn.", "Lavu al vi la manojn."] }
+  "wash-your-hands": { "text": "Lavu viajn manojn.", "variants": ["Lavu la manojn.", "Lavu al vi la manojn."] },
+  "the-laundry-is-being-washed": { "text": "La tolaĵo estas lavata nun." }
  }
 }
