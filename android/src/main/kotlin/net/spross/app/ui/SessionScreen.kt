@@ -226,49 +226,51 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     val article = shownArticle(CardDisplay.article(card.target), promptForm, card.target.text)
     val revealed = flow.answerRevealed
 
-    VocabCard(
-        emoji = card.emoji,
-        cue = ui.emojiCue,
-        revealed = revealed,
-        // The prompt is still standing above the reveal — whatever form it rotated in
-        // is on screen and is no longer an alternative.
-        closingLines = if (revealed) {
-            listOfNotNull(CardDisplay.alsoLine(card.target, chrome, promptForm))
-        } else {
-            emptyList()
-        },
-        // The note is the card's last line whichever side authored it — a literal
-        // gloss belongs to the concept, not to one of its two faces.
-        note = if (revealed) card.target.note ?: card.source.note else null,
-    ) {
-        SpokenWord(model.pronounceAction(promptForm), chrome) {
-            Headword(
-                localizedTarget(
-                    if (article == null) {
-                        AnnotatedString(promptForm)
-                    } else {
-                        Dl.colors.articleColoredText(card.target)
-                    },
-                    card.target.lang,
-                ),
-                modifier = Modifier.weight(1f, fill = false),
-            )
-        }
-        if (article != null) {
-            CardDisplay.pluralLine(card.target, chrome)?.let { CardLine(it) }
-        }
-        if (revealed) {
-            CardReveal {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
-                ) {
-                    Headword(
-                        (listOf(card.source.text) + card.source.synonyms).joinToString(" / "),
-                        color = Dl.colors.accent,
-                        modifier = Modifier.weight(1f, fill = false),
-                    )
-                    if (card.promptFeminineMarker) FeminineBadge()
+    ReportableCard(model, card, revealed, typed = { flow.input }) {
+        VocabCard(
+            emoji = card.emoji,
+            cue = ui.emojiCue,
+            revealed = revealed,
+            // The prompt is still standing above the reveal — whatever form it rotated in
+            // is on screen and is no longer an alternative.
+            closingLines = if (revealed) {
+                listOfNotNull(CardDisplay.alsoLine(card.target, chrome, promptForm))
+            } else {
+                emptyList()
+            },
+            // The note is the card's last line whichever side authored it — a literal
+            // gloss belongs to the concept, not to one of its two faces.
+            note = if (revealed) card.target.note ?: card.source.note else null,
+        ) {
+            SpokenWord(model.pronounceAction(promptForm), chrome) {
+                Headword(
+                    localizedTarget(
+                        if (article == null) {
+                            AnnotatedString(promptForm)
+                        } else {
+                            Dl.colors.articleColoredText(card.target)
+                        },
+                        card.target.lang,
+                    ),
+                    modifier = Modifier.weight(1f, fill = false),
+                )
+            }
+            if (article != null) {
+                CardDisplay.pluralLine(card.target, chrome)?.let { CardLine(it) }
+            }
+            if (revealed) {
+                CardReveal {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+                    ) {
+                        Headword(
+                            (listOf(card.source.text) + card.source.synonyms).joinToString(" / "),
+                            color = Dl.colors.accent,
+                            modifier = Modifier.weight(1f, fill = false),
+                        )
+                        if (card.promptFeminineMarker) FeminineBadge()
+                    }
                 }
             }
         }

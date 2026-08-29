@@ -11,15 +11,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -30,7 +33,7 @@ import net.spross.app.AppModel
 import net.spross.app.CardDisplay
 import net.spross.app.Chrome
 import net.spross.app.audio.Pronouncer
-import net.spross.kern.box.AreaStatistics
+import net.spross.app.reportedIssue
 import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.CardRowState
@@ -46,7 +49,9 @@ import net.spross.kern.model.shownArticle
  *
  * The row itself is the audio control — no speaker icon competing with the wake and pack
  * controls for width; a plain tap anywhere on it speaks the target, whether or not reading
- * aloud is switched on (a tap is a request, never an autoplay).
+ * aloud is switched on (a tap is a request, never an autoplay). A long press opens the
+ * word's own menu — what is wrong with it, and for a word the learner wrote, taking it back
+ * out — and a reported word wears its flag beside whatever standing it already had.
  *
  * [pack] is the row's one variation, and it is offered ONLY where a single word can be
  * packed — a search hit, which the learner went looking for by name. In an area listing no
@@ -67,6 +72,7 @@ fun BoxCardRow(model: AppModel, card: Card, pack: (() -> Unit)? = null) {
         OwnWords.owns(card.id) -> ({ model.updateBox { BoxEngine.removeOwnWord(it, card.id) } })
         else -> null
     }
+    var menuOpen by remember(card.id) { mutableStateOf(false) }
     val interaction = remember { MutableInteractionSource() }
     val actions = buildList {
         if (pronounce != null) add(CustomAccessibilityAction(chrome.pronounce) { pronounce(); true })
@@ -85,8 +91,9 @@ fun BoxCardRow(model: AppModel, card: Card, pack: (() -> Unit)? = null) {
             .combinedClickable(
                 interactionSource = interaction,
                 indication = null,
-                enabled = pronounce != null || remove != null,
-                onLongClick = remove,
+                enabled = true,
+                onLongClickLabel = chrome.reportAction,
+                onLongClick = { menuOpen = true },
                 onClick = pronounce ?: {},
             )
             .padding(horizontal = DlSpace.m, vertical = DlSpace.s),
@@ -130,7 +137,21 @@ fun BoxCardRow(model: AppModel, card: Card, pack: (() -> Unit)? = null) {
                 maxLines = 1,
             )
         }
+        // why: standing apart from the badge on purpose — a report says nothing about where
+        // the word stands, and a reported word keeps whatever badge it had.
+        if (model.reportedIssue(card.id) != null) {
+            Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.reported })
+        }
         CardStanding(model, card, standing, pack, chrome)
+        // Nothing was being answered here, so the report carries no typed answer.
+        CardMenu(model, card, menuOpen, learnerInput = "", onDismiss = { menuOpen = false }) { close ->
+            remove?.let {
+                DropdownMenuItem(
+                    text = { Text(chrome.ownWordRemove) },
+                    onClick = { close(); it() },
+                )
+            }
+        }
     }
 }
 
@@ -192,86 +213,6 @@ private fun CardStanding(
         is CardRowState.Standing -> PhaseBadge(standing, chrome)
     }
 }
-
-/**
- * Per-area heading: emoji, name, the catalog's own flavor clause where it authors one,
- * the two (or three) counts, and the bar underneath them.
- *
- * Plain content, no card chrome of its own: it sits inside the area's card, and a second
- * background there would read as a card inside a card.
- */
-@Composable
-fun AreaChip(
-    name: String,
-    emoji: String,
-    subtitle: String?,
-    stats: AreaStatistics?,
-    chrome: Chrome,
-    modifier: Modifier = Modifier,
-) {
-    val consolidated = stats?.consolidated ?: 0
-    val learning = stats?.learning ?: 0
-    val locked = stats?.phrasesLocked ?: 0
-    val spoken = buildList {
-        add(name)
-        add(chrome.progressConsolidated.format(consolidated))
-        add(chrome.progressLearning.format(learning))
-        if (locked > 0) add(chrome.phrasesLockedSpoken.format(locked))
-    }.joinToString(", ")
-
-    Column(
-        modifier = modifier.semantics(mergeDescendants = true) { contentDescription = spoken },
-        verticalArrangement = Arrangement.spacedBy(DlSpace.s),
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
-        ) {
-            Text(emoji, style = MaterialTheme.typography.titleMedium)
-            Text(name, style = MaterialTheme.typography.titleLarge, maxLines = 1)
-        }
-        subtitle?.let {
-            Text(
-                it,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 2,
-            )
-        }
-        Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
-            // Two counts where the bar beneath draws three rungs: there is room here for
-            // the split that matters (cleared the bar, or not yet), and the bar carries
-            // the finer one.
-            CountLabel("$SEAL ${chrome.progressConsolidated.format(consolidated)}", Dl.colors.grown)
-            CountLabel("$LEAF ${chrome.progressLearning.format(learning)}", Dl.colors.success)
-            // why: the padlock carries the "locked", so the text only names what is
-            // locked — and it appears only when it says something.
-            if (locked > 0) CountLabel("$LOCK ${chrome.phrasesLocked.format(locked)}")
-        }
-        AreaProgressBar(stats ?: EMPTY_AREA)
-    }
-}
-
-@Composable
-private fun CountLabel(text: String, color: Color = MaterialTheme.colorScheme.onSurfaceVariant) {
-    Text(
-        text,
-        style = MaterialTheme.typography.bodySmall,
-        color = color,
-        maxLines = 1,
-    )
-}
-
-/** What an area the statistics have not caught up with draws: a bar with nothing on it. */
-private val EMPTY_AREA = AreaStatistics(
-    name = "",
-    total = 0,
-    active = 0,
-    consolidated = 0,
-    settling = 0,
-    phrasesLocked = 0,
-    phrasesUnlocked = 0,
-)
 
 /**
  * Tap-to-replay for a word standing OUTSIDE a session, where the language is the card's own

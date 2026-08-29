@@ -15,6 +15,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -165,3 +166,83 @@ internal fun PackControl(
         )
     }
 }
+
+/**
+ * Per-area heading: emoji, name, the catalog's own flavor clause where it authors one,
+ * the two (or three) counts, and the bar underneath them.
+ *
+ * Plain content, no card chrome of its own: it sits inside the area's card, and a second
+ * background there would read as a card inside a card.
+ */
+@Composable
+fun AreaChip(
+    name: String,
+    emoji: String,
+    subtitle: String?,
+    stats: AreaStatistics?,
+    chrome: Chrome,
+    modifier: Modifier = Modifier,
+) {
+    val consolidated = stats?.consolidated ?: 0
+    val learning = stats?.learning ?: 0
+    val locked = stats?.phrasesLocked ?: 0
+    val spoken = buildList {
+        add(name)
+        add(chrome.progressConsolidated.format(consolidated))
+        add(chrome.progressLearning.format(learning))
+        if (locked > 0) add(chrome.phrasesLockedSpoken.format(locked))
+    }.joinToString(", ")
+
+    Column(
+        modifier = modifier.semantics(mergeDescendants = true) { contentDescription = spoken },
+        verticalArrangement = Arrangement.spacedBy(DlSpace.s),
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+        ) {
+            Text(emoji, style = MaterialTheme.typography.titleMedium)
+            Text(name, style = MaterialTheme.typography.titleLarge, maxLines = 1)
+        }
+        subtitle?.let {
+            Text(
+                it,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                maxLines = 2,
+            )
+        }
+        Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+            // Two counts where the bar beneath draws three rungs: there is room here for
+            // the split that matters (cleared the bar, or not yet), and the bar carries
+            // the finer one.
+            CountLabel("$SEAL ${chrome.progressConsolidated.format(consolidated)}", Dl.colors.grown)
+            CountLabel("$LEAF ${chrome.progressLearning.format(learning)}", Dl.colors.success)
+            // why: the padlock carries the "locked", so the text only names what is
+            // locked — and it appears only when it says something.
+            if (locked > 0) CountLabel("$LOCK ${chrome.phrasesLocked.format(locked)}")
+        }
+        AreaProgressBar(stats ?: EMPTY_AREA)
+    }
+}
+
+@Composable
+private fun CountLabel(text: String, color: Color = MaterialTheme.colorScheme.onSurfaceVariant) {
+    Text(
+        text,
+        style = MaterialTheme.typography.bodySmall,
+        color = color,
+        maxLines = 1,
+    )
+}
+
+/** What an area the statistics have not caught up with draws: a bar with nothing on it. */
+private val EMPTY_AREA = AreaStatistics(
+    name = "",
+    total = 0,
+    active = 0,
+    consolidated = 0,
+    settling = 0,
+    phrasesLocked = 0,
+    phrasesUnlocked = 0,
+)

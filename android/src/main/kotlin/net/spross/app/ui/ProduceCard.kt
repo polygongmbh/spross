@@ -56,30 +56,32 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     // what the reveal owes.
     val written = heard && (flow.promptInText || revealed)
 
-    VocabCard(
-        emoji = card.emoji,
-        cue = ui.emojiCue,
-        revealed = revealed,
-        closingLines = when {
-            !revealed -> emptyList()
-            // The word stands in the prompt slot with its plural under it (`WrittenPrompt`),
-            // exactly as a recognition prompt does, so only the family closes the card.
-            heard -> listOfNotNull(CardDisplay.alsoLine(card.target, chrome, listOf(card.target.text)))
-            else -> targetLines(card.target, chrome)
-        },
-        // The note is the card's last line whichever side authored it — a literal
-        // gloss belongs to the concept, not to one of its two faces.
-        note = if (revealed) card.target.note ?: card.source.note else null,
-    ) {
-        when {
-            written -> WrittenPrompt(model, ui)
-            heard -> ReplayPrompt(model, ui)
-            else -> PromptWord(model, ui)
+    ReportableCard(model, card, revealed, typed = { flow.input }) {
+        VocabCard(
+            emoji = card.emoji,
+            cue = ui.emojiCue,
+            revealed = revealed,
+            closingLines = when {
+                !revealed -> emptyList()
+                // The word stands in the prompt slot with its plural under it (`WrittenPrompt`),
+                // exactly as a recognition prompt does, so only the family closes the card.
+                heard -> listOfNotNull(CardDisplay.alsoLine(card.target, chrome, listOf(card.target.text)))
+                else -> targetLines(card.target, chrome)
+            },
+            // The note is the card's last line whichever side authored it — a literal
+            // gloss belongs to the concept, not to one of its two faces.
+            note = if (revealed) card.target.note ?: card.source.note else null,
+        ) {
+            when {
+                written -> WrittenPrompt(model, ui)
+                heard -> ReplayPrompt(model, ui)
+                else -> PromptWord(model, ui)
+            }
+            // The card is what OPENS onto the answer — inline, growing downward, above the
+            // field the learner is still typing in. A near miss never reaches here: its
+            // correction stands at the field, beside the attempt it is correcting.
+            if (revealed) CardReveal { ProduceReveal(model, ui, heard) }
         }
-        // The card is what OPENS onto the answer — inline, growing downward, above the
-        // field the learner is still typing in. A near miss never reaches here: its
-        // correction stands at the field, beside the attempt it is correcting.
-        if (revealed) CardReveal { ProduceReveal(model, ui, heard) }
     }
 
     val step = flow.copyStep
