@@ -38,11 +38,14 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   Name the failure a gate could catch in this diff and skip it where you cannot —
   docs and copy need no rebuild, a string's value no screenshot, a minor algorithm change no emulator.
   Read another party's red as theirs, not as a blocker, only take time to test your changes in isolation if they have major chance of breakage.
-- **On red, attribute before escalating**: `git status`/`diff` the failing file first — if it's not
-  one you touched, that's someone else's break. Don't rerun the same broad gate or reach for a
-  bigger one hoping for a different answer; narrow instead (targeted tests, `compileKotlinJvm` over
-  `jvmTest` when kern main is untouched) and fall back to reading your own diff when no gate isolates it.
+- **On red, attribute before escalating**: `git status`/`diff` the failing file first — 
+  if it's not one you touched, that's someone else's break.
+  Don't rerun the same broad gate or reach for a bigger one hoping for a different answer;
+  narrow instead (targeted tests, `compileKotlinJvm` over `jvmTest` when kern main is untouched) 
+  and fall back to reading your own diff when no gate isolates it.
   A red in a file nobody edited is the shared Kotlin cache; `../CLAUDE.md` carries that remedy.
+  For smaller changes just skip the check in that case, 
+  only use a separate worktree for verification on conflict at the end of large changes.
 - **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `test:`, `docs:`, `build:`) with scopes
 - A user-facing change lands on iOS and Android in the same sweep, never deferred to a parity pass;
   a change to shared/parity-bearing UI (cards, layout tokens) closes with both checked side by side,
@@ -65,9 +68,13 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - English is American spelling and vocabulary everywhere — docs, comments, chrome copy, catalog
   content (a British spelling is a `variant`, a British word a `synonym`; `catalog/README.md`).
 - ALWAYS use **Semantic linebreaks** for text - in docs, markdown files, documentation comments: one sentence/clause per line.
-- Tests: behavior over implementation detail; extract pure logic so it's testable without the framework.
-- A rule that can be checked gets the check too, never the sentence alone.
 - Engine APIs name the rule, never the rendering: no screen positions in kern types.
+- Simplicity over Perfection: Behavior correctness is important, but don't overcomplicate the code to handle every edge case.
+
+### Tests
+- Test rules and behavior, not implementation details or tweakable constants
+- Extract pure logic so it's testable without the framework
+- When one code change needs multiple test changes, assess the sensibility of the tests - don't overtest!
 
 ## Working with subagents & tools
 
