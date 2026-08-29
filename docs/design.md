@@ -379,11 +379,27 @@ a clone inherits its sibling's gaps, never the rules.
     down belongs, and nowhere else. Both languages are asked for, because a word is only
     studiable as a pair; the known side arrives prefilled from the query, since a search
     box is far more often used to name what one wants to be able to SAY than a form met in
-    the wild. They land in an area of their own, after every catalog area — which is the
-    whole point of the arrangement (`../kern/README.md` §6): a growing catalog can never
-    collide with them, and a box reset never takes them. Deleting one is a long-press on
-    its row, and it is the only deletion in the app: a catalog word can be put to sleep,
+    the wild. One side alone is still taken, as a SUGGESTION — the learner has the half
+    they came with and the catalog owes the other — and it is never asked, since there is
+    nothing to ask yet. They land in an area of their own, after every catalog area — which
+    is the whole point of the arrangement (`../kern/README.md` §6): a growing catalog can
+    never collide with them, and a box reset never takes them. Deleting one is a long-press
+    on its row, and it is the only deletion in the app: a catalog word can be put to sleep,
     never removed.
+  - **Feedback** closes the Box, below the shelves and above the settings, and only once
+    there is something in it — an empty complaints box is furniture. It lists the
+    suggestions, which no shelf can show (a word written in one language joins no card),
+    and sends the lot out two ways: onto the clipboard, or as a mail to whoever tends the
+    catalog. Each offers everything or only what is new, and only once a copy has ever been
+    taken — before that the two would be the same list, so the control asks nothing.
+- **A long press says what is wrong with a word, or that it is not worth the learner's
+  time — never both at once.** The revealed card and every Box row carry the same two
+  entries, and they are unrelated on purpose: reporting a problem changes nothing about
+  what gets asked, and putting a word to sleep files no complaint (`kern/README.md` §6).
+  The report sheet therefore carries no suspend switch. What the learner typed rides along
+  without being asked about — the answer the catalog rejected is usually the report itself,
+  and a box to tick is a box to miss. Only after the reveal: a menu over a prompt is a menu
+  over a question the learner has not been answered yet.
 - **Two clean-correct beats, one home: 450 ms live, 1200 ms explicit.** The 0.45–1.2 s a
   clean answer waits above is those two tiers — 450 ms when the typing itself went exactly
   correct, 1200 ms when the learner tapped Check, Enter or a tile. Vocab review, the

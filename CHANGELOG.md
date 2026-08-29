@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+- **Say what is wrong with a word, without leaving the round.** Press and hold a card once
+  its answer is out: you can report a problem with it — a wrong translation, or your answer
+  being a synonym the catalog ought to accept — and what you typed goes along with the
+  report, since that is usually the whole point. The same press offers to put the word to
+  sleep, which is a separate thing entirely: reporting never changes what you are asked,
+  and sleeping a word files no complaint. Reported words wear a flag in the Box.
+
+- **Write down a word the catalog is missing, even if you only know one side.** The own-word
+  form now takes a single language. That word is kept as a suggestion — never asked, never
+  scheduled — and waits at the bottom of the Box, where suggestions and reports can go out
+  together: onto the clipboard, or as a mail to whoever tends the catalog. Either way you
+  can take everything or only what is new since last time.
+
 - **A different number is wrong, and the drill says which you wrote.** Typing *setenta*
   when the drill asked for *sesenta* used to pass as a near-miss — one letter off, after
   all. Now an answer that is really another number is refused outright, in every number,

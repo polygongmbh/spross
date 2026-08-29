@@ -345,9 +345,26 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   neither collide with the learner's words nor quietly reclaim them.
   `removeOwnWord` is **the one deletion the engine offers**, and it reaches own words only:
   a catalog word is not the learner's to delete, only to suspend.
+  A word written in only ONE of the profile's languages is a **suggestion**
+  (`OwnWord.isSuggestion`): the learner noticed a gap and wrote down the half they had.
+  It joins no card and is never scheduled — there is nothing to ask them yet — and waits
+  to be read off a report. `addedAt` is stamped by `addOwnWord`, never by the caller, and
+  is the only date a suggestion ever gets, since it earns no schedule to carry one.
   `BoxEngine.reset` is the destructive fresh start — schedules, queue and tallies go; the
-  join, the configuration and the own words stay. **Clearing what the box KNOWS must never
-  delete what it HOLDS.**
+  join, the configuration, the own words and the reports stay. **Clearing what the box
+  KNOWS must never delete what it HOLDS.**
+- **Reports** (`ReportedIssue`, `Feedback`, `BoxEngine.reportIssue/dismissReportedIssue`) —
+  what the learner says back about the catalog: a wrong translation, a synonym it should
+  accept, a prompt that reads badly. Whatever they had typed is carried along, because the
+  answer the catalog rejected IS the report in the common case.
+  Reporting is **independent of `setSuspended`** and neither verb implies the other: a word
+  can be wrong and still worth practicing, and irrelevant without being wrong. A report
+  needs no schedule — reveal comes before the first answer, so a card reported on sight has
+  none. `Feedback` renders the suggestions and the reports as text, in kern rather than per
+  platform, because a report is an INTERCHANGE format and two apps would spell it two ways;
+  `BoxState.lastExportAt` (set by `markExported`) is what "only what is new" measures against.
+- **`Legal`** — the addresses Spross publishes about itself. Not a rule the engine applies;
+  simply the one place both apps read them from, so no copy can be left answering alone.
 
 ## 7. Testing & gates
 
