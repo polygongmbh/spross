@@ -17,6 +17,8 @@
   "very": { "text": "tre" },
   "too": { "text": "tro" },
   "enough": { "text": "sufiĉe" },
+  "partially": { "text": "parte" },
+  "gladly": { "text": "volonte" },
   "all": {
    "text": "ĉiuj",
    "variants": ["ĉio"],

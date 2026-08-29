@@ -9,6 +9,8 @@
  { "slug": "sometimes", "kind": "adjective" },
  { "slug": "maybe", "kind": "adjective", "emoji": "🤷" },
  { "slug": "enough", "kind": "adjective" },
+ { "slug": "partially", "kind": "adjective" },
+ { "slug": "gladly", "kind": "adjective" },
  { "slug": "all", "kind": "adjective" },
  { "slug": "some", "kind": "adjective" },
  { "slug": "every", "kind": "adjective" },

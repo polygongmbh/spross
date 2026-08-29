@@ -51,6 +51,7 @@
   "easy": { "text": "facile" },
   "problem": { "text": "problema", "grammar": { "gender": "il", "plural": "problemi" } },
   "to-solve": { "text": "risolvere" },
+  "challenge": { "text": "sfida", "grammar": { "gender": "la", "plural": "sfide" } },
   "clean-adj": { "text": "pulito", "variants": ["pulita"] },
   "sharp": {
    "text": "affilato",
@@ -72,6 +73,7 @@
   "dirty": { "text": "sporco", "variants": ["sporca"] },
   "different": { "text": "diverso", "synonyms": ["differente"], "variants": ["diversa", "diversi", "diverse"] },
   "difference": { "text": "differenza", "grammar": { "gender": "la" } },
+  "real": { "text": "reale" },
   "same": {
    "text": "stesso",
    "variants": ["stessa", "stessi", "stesse"],

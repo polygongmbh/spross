@@ -35,6 +35,7 @@
   "easy": { "text": "facila" },
   "problem": { "text": "problemo" },
   "to-solve": { "text": "solvi" },
+  "challenge": { "text": "defio" },
   "clean-adj": { "text": "pura" },
   "sharp": { "text": "akra" },
   "available": {
@@ -49,6 +50,7 @@
   "dirty": { "text": "malpura" },
   "different": { "text": "malsama", "variants": ["malsamaj"] },
   "difference": { "text": "diferenco" },
+  "real": { "text": "reala" },
   "same": { "text": "sama", "variants": ["samaj"] },
   "similar": { "text": "simila", "variants": ["similaj"] },
   "opposite": { "text": "kontraŭa", "variants": ["kontraŭaj"] },

@@ -64,6 +64,7 @@
    "text": "kutatua",
    "notes": { "de": "für Probleme und Streit: kutatua tatizo = ein Problem lösen." }
   },
+  "challenge": { "text": "changamoto", "grammar": { "plural": "=" } },
   "clean-adj": { "text": "safi", "notes": { "de": "unveränderlich · als Ausruf auch prima: Safi!" } },
   "sharp": {
    "text": "-kali",
@@ -105,6 +106,7 @@
     "de": "unveränderlich: watu tofauti · dasselbe Wort heißt auch der Unterschied: Kuna tofauti gani?"
    }
   },
+  "real": { "text": "halisi", "notes": { "de": "unveränderlich." } },
   "same": { "text": "sawa", "notes": { "de": "unveränderlich · heißt auch in Ordnung: Sawa!" } },
   "similar": {
    "text": "kufanana",

@@ -58,6 +58,7 @@
   "easy": { "text": "facile" },
   "problem": { "text": "problème", "grammar": { "gender": "le" } },
   "to-solve": { "text": "résoudre" },
+  "challenge": { "text": "défi", "grammar": { "gender": "le", "plural": "défis" } },
   "clean-adj": {
    "text": "propre",
    "notes": { "de": "nach dem Substantiv sauber, davor eigen: ma propre chambre." }
@@ -83,6 +84,7 @@
   "dirty": { "text": "sale" },
   "different": { "text": "différent", "variants": ["différente", "différents"] },
   "difference": { "text": "différence", "grammar": { "gender": "la" } },
+  "real": { "text": "réel" },
   "same": {
    "text": "même",
    "variants": ["mêmes"],

@@ -14,6 +14,8 @@
   "very": { "text": "sehr" },
   "too": { "text": "zu" },
   "enough": { "text": "genug" },
+  "partially": { "text": "teilweise" },
+  "gladly": { "text": "gerne" },
   "all": { "text": "alle" },
   "some": { "text": "einige", "variants": ["ein paar"] },
   "every": { "text": "jeder", "variants": ["jede", "jedes"] },

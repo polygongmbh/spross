@@ -23,6 +23,8 @@
     "de": "die Vorsilbe richtet sich nach der Nomenklasse: maji ya kutosha, chakula cha kutosha · Es reicht. heißt Inatosha."
    }
   },
+  "partially": { "text": "kwa sehemu" },
+  "gladly": { "text": "kwa furaha" },
   "all": {
    "text": "-ote",
    "variants": ["wote", "yote", "zote", "chote", "vyote", "lote", "pote"],

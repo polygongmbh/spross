@@ -46,6 +46,7 @@
   "easy": { "text": "fácil" },
   "problem": { "text": "problema", "grammar": { "gender": "el" } },
   "to-solve": { "text": "resolver", "synonyms": ["solucionar"] },
+  "challenge": { "text": "desafío", "grammar": { "gender": "el", "plural": "desafíos" } },
   "clean-adj": { "text": "limpio", "variants": ["limpia"] },
   "sharp": {
    "text": "afilado",
@@ -71,6 +72,7 @@
    "variants": ["diferentes", "distinta", "distintos"]
   },
   "difference": { "text": "diferencia", "grammar": { "gender": "la" } },
+  "real": { "text": "real" },
   "same": {
    "text": "mismo",
    "variants": ["misma", "mismos", "mismas"],
