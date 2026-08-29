@@ -1,0 +1,11 @@
+[
+ { "slug": "joy", "kind": "noun", "emoji": "😊" },
+ { "slug": "sadness", "kind": "noun", "emoji": "😢" },
+ { "slug": "anger", "kind": "noun", "emoji": "😠" },
+ { "slug": "fear", "kind": "noun", "emoji": "😨" },
+ { "slug": "surprise", "kind": "noun", "emoji": "😲" },
+ { "slug": "worry", "kind": "noun", "emoji": "😟" },
+ { "slug": "love", "kind": "noun", "emoji": "❤️" },
+ { "slug": "shame", "kind": "noun", "emoji": "😳" },
+ { "slug": "jealousy", "kind": "noun", "emoji": "😒" }
+]

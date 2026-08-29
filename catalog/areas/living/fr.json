@@ -19,6 +19,9 @@
    }
   },
   "remote": { "text": "télécommande", "grammar": { "gender": "la" } },
+  "floor": { "text": "sol", "grammar": { "gender": "le" } },
+  "song": { "text": "chanson", "grammar": { "gender": "la" } },
+  "story": { "text": "étage", "grammar": { "gender": "le" } },
   "shelf": { "text": "étagère", "variants": ["l'étagère"], "grammar": { "gender": "l'" } },
   "plant": { "text": "plante", "grammar": { "gender": "la" } },
   "window": { "text": "fenêtre", "grammar": { "gender": "la" } },

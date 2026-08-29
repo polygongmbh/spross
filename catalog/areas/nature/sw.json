@@ -44,6 +44,8 @@
    "variants": ["unyevu"],
    "notes": { "de": "unveränderlich · dasselbe Wort heißt auch die Feuchtigkeit: Kuna unyevunyevu." }
   },
+  "wood": { "text": "mbao", "grammar": { "plural": "=" } },
+  "stick": { "text": "fimbo", "grammar": { "plural": "=" } },
   "hows-the-weather-today": { "text": "Hali ya hewa ikoje leo?" },
   "its-raining": {
    "text": "Mvua inanyesha.",

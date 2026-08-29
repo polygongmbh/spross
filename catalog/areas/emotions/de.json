@@ -1,0 +1,15 @@
+{
+ "title": "Gefühle",
+ "subtitle": "Die Launen, die einen Tag färben.",
+ "words": {
+  "joy": { "text": "Freude", "grammar": { "gender": "die" } },
+  "sadness": { "text": "Traurigkeit", "grammar": { "gender": "die" } },
+  "anger": { "text": "Wut", "grammar": { "gender": "die" } },
+  "fear": { "text": "Angst", "grammar": { "gender": "die" } },
+  "surprise": { "text": "Überraschung", "grammar": { "gender": "die" } },
+  "worry": { "text": "Sorge", "grammar": { "gender": "die" } },
+  "love": { "text": "Liebe", "grammar": { "gender": "die" } },
+  "shame": { "text": "Scham", "grammar": { "gender": "die" } },
+  "jealousy": { "text": "Eifersucht", "grammar": { "gender": "die" } }
+ }
+}

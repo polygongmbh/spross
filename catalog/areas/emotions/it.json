@@ -1,0 +1,15 @@
+{
+ "title": "Emozioni",
+ "subtitle": "Gli stati d'animo che colorano una giornata.",
+ "words": {
+  "joy": { "text": "gioia", "grammar": { "gender": "la" } },
+  "sadness": { "text": "tristezza", "grammar": { "gender": "la" } },
+  "anger": { "text": "rabbia", "grammar": { "gender": "la" } },
+  "fear": { "text": "paura", "grammar": { "gender": "la" } },
+  "surprise": { "text": "sorpresa", "grammar": { "gender": "la" } },
+  "worry": { "text": "preoccupazione", "grammar": { "gender": "la" } },
+  "love": { "text": "amore", "variants": ["l'amore"], "grammar": { "gender": "l'", "plural": "amori" } },
+  "shame": { "text": "vergogna", "grammar": { "gender": "la" } },
+  "jealousy": { "text": "gelosia", "grammar": { "gender": "la" } }
+ }
+}

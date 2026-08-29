@@ -33,6 +33,8 @@
   "thunder": { "text": "thunder" },
   "lightning": { "text": "lightning" },
   "humid": { "text": "humid" },
+  "wood": { "text": "wood" },
+  "stick": { "text": "stick" },
   "hows-the-weather-today": { "text": "How's the weather today?" },
   "its-raining": { "text": "It's raining." },
   "the-rain-has-stopped": { "text": "The rain has stopped.", "variants": ["It's stopped raining.", "It stopped raining."] },

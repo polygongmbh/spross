@@ -1,0 +1,15 @@
+{
+ "title": "Hisia",
+ "subtitle": "Hali zinazobadilisha rangi ya siku.",
+ "words": {
+  "joy": { "text": "furaha", "grammar": { "plural": "=" } },
+  "sadness": { "text": "huzuni", "grammar": { "plural": "=" } },
+  "anger": { "text": "hasira", "grammar": { "plural": "=" } },
+  "fear": { "text": "woga", "grammar": { "plural": "=" } },
+  "surprise": { "text": "mshangao", "grammar": { "plural": "=" } },
+  "worry": { "text": "wasiwasi", "grammar": { "plural": "=" } },
+  "love": { "text": "upendo", "grammar": { "plural": "=" } },
+  "shame": { "text": "aibu", "grammar": { "plural": "=" } },
+  "jealousy": { "text": "wivu", "grammar": { "plural": "=" } }
+ }
+}

@@ -32,6 +32,8 @@
   "thunder": { "text": "tondro" },
   "lightning": { "text": "fulmo" },
   "humid": { "text": "humida" },
+  "wood": { "text": "ligno" },
+  "stick": { "text": "bastono" },
   "hows-the-weather-today": { "text": "Kia estas la vetero hodiaŭ?", "variants": ["Kia vetero estas hodiaŭ?"] },
   "its-raining": {
    "text": "Pluvas.",

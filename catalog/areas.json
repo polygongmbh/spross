@@ -52,7 +52,11 @@
    "sw": "Watu na mwili",
    "uk": "Люди і тіло"
   },
-  "areas": [{ "area": "people", "emoji": "👪" }, { "area": "body", "emoji": "🧍" }]
+  "areas": [
+   { "area": "people", "emoji": "👪" },
+   { "area": "body", "emoji": "🧍" },
+   { "area": "emotions", "emoji": "🎢" }
+  ]
  },
  {
   "group": "errands",

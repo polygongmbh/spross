@@ -1,0 +1,15 @@
+{
+ "title": "Емоції",
+ "subtitle": "Настрої, що фарбують день.",
+ "words": {
+  "joy": { "text": "радість" },
+  "sadness": { "text": "сум" },
+  "anger": { "text": "гнів" },
+  "fear": { "text": "страх" },
+  "surprise": { "text": "здивування" },
+  "worry": { "text": "тривога" },
+  "love": { "text": "любов" },
+  "shame": { "text": "сором" },
+  "jealousy": { "text": "ревнощі" }
+ }
+}

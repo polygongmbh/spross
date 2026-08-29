@@ -419,6 +419,19 @@ class CatalogLintTest {
                 // it), so `school/period` was deliberately authored de/en/sw-only and this
                 // stays one-language.
                 "de Stunde: school/period, time/hour",
+                // Reviewed 2026-08-29: de `Stock` is the walking stick AND the building floor
+                // — en/es/fr/it/uk all split the pair (stick/story, palo/piso, bâton/étage,
+                // bastone/piano, палиця/поверх); sw has no shared word either (fimbo/ghorofa).
+                // `Etage`/`Stockwerk` name only the floor sense and `Stab`/`Rute` skew formal
+                // or archaic for the stick sense, so `Stock` stays the plain word for both.
+                "de Stock: living/story, nature/stick",
+                // Reviewed 2026-08-29: es `piso` is the apartment/flat AND the building floor
+                // it sits on — de/en/eo/fr/it/sw/uk all split the pair (Wohnung/Stock,
+                // apartment/story, apartamento/etaĝo, appartement/étage, appartamento/piano,
+                // ghorofa ya kuishi/ghorofa, квартира/поверх). `apartamento` already carries
+                // its own second sense (the small/vacation flat, see hall/apartment's own
+                // note) and is not the everyday word either, so there is no honest repick.
+                "es piso: hall/apartment, living/story",
                 // Reviewed 2026-08-29: de `sich vorstellen` is "to introduce oneself" AND "to
                 // imagine" — the infinitive citation doesn't distinguish the accusative
                 // reflexive (Ich stelle mich vor) from the dative one (Ich stelle mir das
@@ -428,7 +441,7 @@ class CatalogLintTest {
                 // представитися/уявляти); `sich einbilden` skews toward a delusion and
                 // `sich ausmalen` toward picturing something vividly, so neither is the
                 // plain word a learner reaches for.
-                "de sich vorstellen: verbs/imagine, work/introduce-oneself",
+                "de sich vorstellen: verbs/to-imagine, work/introduce-oneself",
                 // Reviewed 2026-08-23: `cold` is the illness AND the adjective — English has
                 // one word where de/eo/es/fr/it/sw/uk all split it (Erkältung/kalt,
                 // malvarmumo/malvarma, resfriado/frío, rhume/froid, raffreddore/freddo,
@@ -481,6 +494,12 @@ class CatalogLintTest {
                 // every other language needs them to be; qualities/much's own it note
                 // already names the second sense.
                 "it molto: degree/very, qualities/much",
+                // Reviewed 2026-08-29: `il piano` is the building floor AND a plan — de/en/eo/
+                // es/fr/sw/uk all split the pair (Stock/Plan, story/plan, ghorofa/mpango,
+                // поверх/план). `piano` is genuinely the everyday word for both ("al primo
+                // piano" and "fare un piano"); `livello` for the floor sense reads like a
+                // video-game level, not a building one.
+                "it piano: living/story, organization/plan",
                 // Reviewed 2026-08-15: `perché` is warum and weil in one word — the
                 // interrogative and the causal conjunction genuinely merge in Italian
                 // (Perché non vieni? — Perché piove.). Every other language splits them,

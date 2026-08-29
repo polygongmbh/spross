@@ -32,6 +32,8 @@
   "thunder": { "text": "грім", "grammar": { "plural": "громи" } },
   "lightning": { "text": "блискавка" },
   "humid": { "text": "вологий", "variants": ["волога", "вологе"] },
+  "wood": { "text": "деревина" },
+  "stick": { "text": "палиця" },
   "hows-the-weather-today": { "text": "Яка сьогодні погода?" },
   "its-raining": { "text": "Йде дощ." },
   "the-rain-has-stopped": { "text": "Дощ припинився.", "variants": ["Дощ перестав.", "Дощ закінчився."] },

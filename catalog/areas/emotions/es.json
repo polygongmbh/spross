@@ -1,0 +1,15 @@
+{
+ "title": "Emociones",
+ "subtitle": "Los ánimos que colorean un día.",
+ "words": {
+  "joy": { "text": "alegría", "grammar": { "gender": "la" } },
+  "sadness": { "text": "tristeza", "grammar": { "gender": "la" } },
+  "anger": { "text": "ira", "grammar": { "gender": "la" } },
+  "fear": { "text": "miedo", "grammar": { "gender": "el" } },
+  "surprise": { "text": "sorpresa", "grammar": { "gender": "la" } },
+  "worry": { "text": "preocupación", "grammar": { "gender": "la" } },
+  "love": { "text": "amor", "grammar": { "gender": "el" } },
+  "shame": { "text": "vergüenza", "grammar": { "gender": "la" } },
+  "jealousy": { "text": "celos", "grammar": { "gender": "los" } }
+ }
+}

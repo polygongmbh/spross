@@ -38,6 +38,8 @@
   "thunder": { "text": "trueno", "grammar": { "gender": "el" } },
   "lightning": { "text": "relámpago", "variants": ["rayo"], "grammar": { "gender": "el" } },
   "humid": { "text": "húmedo", "variants": ["húmeda"] },
+  "wood": { "text": "madera", "grammar": { "gender": "la" } },
+  "stick": { "text": "palo", "grammar": { "gender": "el" } },
   "hows-the-weather-today": { "text": "¿Qué tiempo hace hoy?", "variants": ["¿Cómo está el tiempo hoy?"] },
   "its-raining": { "text": "Está lloviendo.", "variants": ["Llueve."] },
   "the-rain-has-stopped": {

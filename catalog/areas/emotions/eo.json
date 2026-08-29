@@ -1,0 +1,15 @@
+{
+ "title": "Emocioj",
+ "subtitle": "La humoroj, kiuj koloras tagon.",
+ "words": {
+  "joy": { "text": "ĝojo" },
+  "sadness": { "text": "malĝojo" },
+  "anger": { "text": "kolero" },
+  "fear": { "text": "timo" },
+  "surprise": { "text": "surprizo" },
+  "worry": { "text": "zorgo" },
+  "love": { "text": "amo" },
+  "shame": { "text": "honto" },
+  "jealousy": { "text": "ĵaluzo" }
+ }
+}

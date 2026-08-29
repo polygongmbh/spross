@@ -19,6 +19,9 @@
    "variants": ["mando a distancia", "control remoto"],
    "grammar": { "gender": "el" }
   },
+  "floor": { "text": "suelo", "grammar": { "gender": "el" } },
+  "song": { "text": "canción", "grammar": { "gender": "la", "plural": "canciones" } },
+  "story": { "text": "piso", "grammar": { "gender": "el" } },
   "shelf": { "text": "estantería", "variants": ["estante"], "grammar": { "gender": "la" } },
   "plant": { "text": "planta", "grammar": { "gender": "la" } },
   "window": { "text": "ventana", "grammar": { "gender": "la" } },

@@ -1,0 +1,15 @@
+{
+ "title": "Feelings",
+ "subtitle": "The moods that color a day.",
+ "words": {
+  "joy": { "text": "joy" },
+  "sadness": { "text": "sadness" },
+  "anger": { "text": "anger" },
+  "fear": { "text": "fear" },
+  "surprise": { "text": "surprise" },
+  "worry": { "text": "worry" },
+  "love": { "text": "love" },
+  "shame": { "text": "shame" },
+  "jealousy": { "text": "jealousy" }
+ }
+}

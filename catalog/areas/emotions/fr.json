@@ -1,0 +1,15 @@
+{
+ "title": "Émotions",
+ "subtitle": "Les humeurs qui colorent une journée.",
+ "words": {
+  "joy": { "text": "joie", "grammar": { "gender": "la" } },
+  "sadness": { "text": "tristesse", "grammar": { "gender": "la" } },
+  "anger": { "text": "colère", "grammar": { "gender": "la" } },
+  "fear": { "text": "peur", "grammar": { "gender": "la" } },
+  "surprise": { "text": "surprise", "grammar": { "gender": "la" } },
+  "worry": { "text": "inquiétude", "grammar": { "gender": "la" } },
+  "love": { "text": "amour", "variants": ["l'amour"], "grammar": { "gender": "l'" } },
+  "shame": { "text": "honte", "grammar": { "gender": "la" } },
+  "jealousy": { "text": "jalousie", "grammar": { "gender": "la" } }
+ }
+}

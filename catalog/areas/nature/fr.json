@@ -44,6 +44,8 @@
   "thunder": { "text": "tonnerre", "grammar": { "gender": "le" } },
   "lightning": { "text": "éclair", "variants": ["l'éclair"], "grammar": { "gender": "l'" } },
   "humid": { "text": "humide" },
+  "wood": { "text": "bois", "grammar": { "gender": "le" } },
+  "stick": { "text": "bâton", "grammar": { "gender": "le" } },
   "hows-the-weather-today": { "text": "Quel temps fait-il aujourd'hui ?", "variants": ["Il fait quel temps aujourd'hui ?"] },
   "its-raining": { "text": "Il pleut." },
   "the-rain-has-stopped": { "text": "Il ne pleut plus.", "variants": ["La pluie s'est arrêtée.", "La pluie a cessé."] },

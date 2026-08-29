@@ -15,6 +15,9 @@
    }
   },
   "remote": { "text": "telecomando", "grammar": { "gender": "il" } },
+  "floor": { "text": "pavimento", "grammar": { "gender": "il" } },
+  "song": { "text": "canzone", "grammar": { "gender": "la" } },
+  "story": { "text": "piano", "grammar": { "gender": "il" } },
   "shelf": { "text": "scaffale", "grammar": { "gender": "lo" } },
   "plant": { "text": "pianta", "grammar": { "gender": "la" } },
   "window": { "text": "finestra", "grammar": { "gender": "la" } },
