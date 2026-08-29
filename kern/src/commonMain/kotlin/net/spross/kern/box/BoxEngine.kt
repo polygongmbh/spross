@@ -72,6 +72,33 @@ object BoxEngine {
     }
 
     /**
+     * Rewrite a word the learner wrote — its texts, its picture, its kind — KEEPING its
+     * id, and with the id its schedule, its queue slot and anything filed against it.
+     * That is the whole difference from [removeOwnWord] + [addOwnWord]: a typo fixed
+     * should not cost the learner the progress they made on the word.
+     *
+     * [OwnWord.addedAt] is the stored one, never the incoming: it records when the word
+     * was WRITTEN, and editing it is not writing it again. An edit that fills in the
+     * missing half turns a suggestion into a card and packs it, exactly as [addOwnWord]
+     * would have; one that empties a half turns the card back into a suggestion, and its
+     * schedule stays behind untouched, inert, the same way a source switch leaves one.
+     * An id the learner never wrote leaves the state alone.
+     */
+    fun updateOwnWord(state: BoxState, word: OwnWord): BoxState {
+        val stored = state.ownWords.firstOrNull { it.id == word.id } ?: return state
+        val words = state.ownWords.map {
+            if (it.id == word.id) word.copy(addedAt = stored.addedAt) else it
+        }
+        val next = state.copy(ownWords = words, cards = rebuilt(state, words))
+        val joinsNow = next.cards[word.id] != null
+        return if (joinsNow && next.scheduling[word.id] == null) {
+            enqueue(next, listOf(word.id))
+        } else {
+            next
+        }
+    }
+
+    /**
      * Take a word the learner wrote back out, with its schedule and its place in the
      * queue. Catalog words are never removable this way — a word the box did not get
      * from the learner is not theirs to delete, only to suspend ([setSuspended]).
@@ -183,6 +210,26 @@ object BoxEngine {
         val leaving = state.enqueued.filterTo(mutableSetOf()) { state.cards[it]?.area == area }
         if (leaving.isEmpty()) return state
         return state.copy(enqueued = state.enqueued.filterNot { it in leaving })
+    }
+
+    /**
+     * Drop ONE card's schedule: it goes back to New, as if never introduced, and the box
+     * may offer it again. The learner's escape hatch for a word they answered wrong on
+     * purpose, or one whose meaning they only now understand.
+     *
+     * Unlike [reset] this is about ONE card, and unlike [removeOwnWord] it keeps the
+     * card — a catalog word is not theirs to delete, and their own word survives its
+     * progress being cleared. Anything filed against it stays: a report is about the
+     * CONTENT, and forgetting the answers does not make the translation right.
+     *
+     * The day counters ([BoxState.newIntroduced], [BoxState.consolidatedCrossed]) are
+     * deliberately left alone. They record what the learner DID on a day, not what the
+     * box holds now — the introduction really did happen — and they carry no card ids to
+     * undo the right one by. No-op when the id has no schedule.
+     */
+    fun forget(state: BoxState, cardId: String): BoxState {
+        if (state.scheduling[cardId] == null) return state
+        return state.copy(scheduling = state.scheduling - cardId)
     }
 
     /** Suspend or revive ONE card; no-op when the id has no schedule. */

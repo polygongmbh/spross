@@ -151,4 +151,93 @@ class OwnWordsTests {
     fun aWordWithNoLettersStillMintsAnId() {
         assertEquals("own:word", OwnWords.mint("!?!", emptySet()))
     }
+
+    // Rewriting a word without losing the progress made on it
+
+    @Test
+    fun editingAWordKeepsItsScheduleAndItsPlaceInTheQueue() {
+        var state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
+        state = Box.answered(state, umbrella.id, Rating.Good, Box.day1)
+        val before = state.scheduling.getValue(umbrella.id)
+
+        val fixed = umbrella.copy(texts = mapOf("de" to "Regenschirm", "sw" to "mwamvuli"))
+        val edited = BoxEngine.updateOwnWord(state, fixed)
+
+        assertEquals(before, edited.scheduling.getValue(umbrella.id))
+        assertEquals("mwamvuli", edited.cards.getValue(umbrella.id).target.text)
+        assertEquals(1, edited.ownWords.size)
+    }
+
+    @Test
+    fun editingKeepsWhenTheWordWasWrittenNotWhenItWasChanged() {
+        val state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
+        val written = state.ownWords.single().addedAt
+        val edited = BoxEngine.updateOwnWord(state, umbrella.copy(emoji = "🌂"))
+        assertEquals(written, edited.ownWords.single().addedAt)
+        assertEquals("🌂", edited.cards.getValue(umbrella.id).emoji)
+    }
+
+    @Test
+    fun fillingInTheMissingHalfTurnsASuggestionIntoAPackedCard() {
+        val half = umbrella.copy(texts = mapOf("de" to "Regenschirm"))
+        val state = BoxEngine.addOwnWord(box(), half, Box.day1)
+        assertNull(state.cards[half.id])
+
+        val completed = BoxEngine.updateOwnWord(state, umbrella)
+        assertEquals("mwavuli", completed.cards.getValue(umbrella.id).target.text)
+        assertEquals(listOf(umbrella.id), completed.enqueued)
+    }
+
+    @Test
+    fun emptyingAHalfTurnsTheCardBackIntoASuggestionAndParksItsSchedule() {
+        var state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
+        state = Box.answered(state, umbrella.id, Rating.Good, Box.day1)
+
+        val half = BoxEngine.updateOwnWord(state, umbrella.copy(texts = mapOf("de" to "Regenschirm")))
+        assertNull(half.cards[umbrella.id])
+        // why: inert, not lost — writing the sw side back brings the schedule with it.
+        assertTrue(umbrella.id in half.scheduling)
+    }
+
+    @Test
+    fun aWordTheLearnerNeverWroteIsNotTheirsToEdit() {
+        val state = box()
+        assertEquals(state, BoxEngine.updateOwnWord(state, umbrella))
+    }
+
+    // Forgetting one card's progress
+
+    @Test
+    fun forgettingDropsTheScheduleAndKeepsTheCard() {
+        var state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
+        state = Box.answered(state, umbrella.id, Rating.Good, Box.day1)
+
+        val forgotten = BoxEngine.forget(state, umbrella.id)
+        assertNull(forgotten.scheduling[umbrella.id])
+        assertEquals("mwavuli", forgotten.cards.getValue(umbrella.id).target.text)
+        assertEquals(1, forgotten.ownWords.size)
+    }
+
+    @Test
+    fun forgettingACatalogWordKeepsItToo() {
+        val state = Box.answered(box(), "w01", Rating.Good, Box.day1)
+        val forgotten = BoxEngine.forget(state, "w01")
+        assertNull(forgotten.scheduling["w01"])
+        assertTrue("w01" in forgotten.cards)
+    }
+
+    @Test
+    fun forgettingLeavesAReportStanding() {
+        // why: a report is about the CONTENT — forgetting the answers does not make
+        // the translation right.
+        var state = Box.answered(box(), "w01", Rating.Good, Box.day1)
+        state = BoxEngine.reportIssue(state, "w01", "wrong", null, Box.day1)
+        assertTrue("w01" in BoxEngine.forget(state, "w01").reportedIssues)
+    }
+
+    @Test
+    fun forgettingAWordTheBoxNeverIntroducedChangesNothing() {
+        val state = box()
+        assertEquals(state, BoxEngine.forget(state, "w01"))
+    }
 }
