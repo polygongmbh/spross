@@ -337,7 +337,7 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
 - **`Match.producedRating()` is the one place a produce match becomes a rating** — both apps
   call it rather than re-deciding the mapping, which is how the two produce screens drifted
   apart on a typo before it existed.
-- **Own words** (`OwnWord`, `OwnWords`, `BoxEngine.addOwnWord/removeOwnWord`) — what the
+- **Own words** (`OwnWord`, `OwnWords`, `BoxEngine.addOwnWord/updateOwnWord/removeOwnWord`) — what the
   learner writes when the catalog has no word for what they need. They are the second and
   last source of cards, and the only CONTENT the box document holds: every other card in it
   is re-derived on load, so losing this entry would lose a word rather than a computation.
@@ -350,9 +350,15 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   It joins no card and is never scheduled — there is nothing to ask them yet — and waits
   to be read off a report. `addedAt` is stamped by `addOwnWord`, never by the caller, and
   is the only date a suggestion ever gets, since it earns no schedule to carry one.
+  `updateOwnWord` rewrites one in place, **keeping its id** and with it the schedule, the
+  queue slot and anything filed against it — a typo fixed must not cost the progress made
+  on the word. It keeps `addedAt` too: that records when the word was written, and editing
+  is not writing it again.
   `BoxEngine.reset` is the destructive fresh start — schedules, queue and tallies go; the
-  join, the configuration, the own words and the reports stay. **Clearing what the box
-  KNOWS must never delete what it HOLDS.**
+  join, the configuration, the own words and the reports stay. `BoxEngine.forget` is the
+  same idea aimed at ONE card: its schedule goes, the card and its report stay, and the day
+  counters stay too, since they record what the learner DID on a day and carry no card ids
+  to undo the right one by. **Clearing what the box KNOWS must never delete what it HOLDS.**
 - **Reports** (`ReportedIssue`, `Feedback`, `BoxEngine.reportIssue/dismissReportedIssue`) —
   what the learner says back about the catalog: a wrong translation, a synonym it should
   accept, a prompt that reads badly. Whatever they had typed is carried along, because the

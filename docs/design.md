@@ -378,32 +378,47 @@ a clone inherits its sibling's gaps, never the rules.
     kinds offer what they ARE: an area unfolds itself back on the Box screen and scrolls
     into reach, a word can be heard and packed on its own — a learner who went looking for
     one word by name should not have to take the shelf around it.
-  - **Own words** are what a search with no answer leads to: the learner has just proved
-    the catalog has no word for what they need, so the empty state is where writing one
-    down belongs, and nowhere else. Both languages are asked for, because a word is only
-    studiable as a pair; the known side arrives prefilled from the query, since a search
-    box is far more often used to name what one wants to be able to SAY than a form met in
-    the wild. One side alone is still taken, as a SUGGESTION — the learner has the half
-    they came with and the catalog owes the other — and it is never asked, since there is
-    nothing to ask yet. They land in an area of their own, after every catalog area — which
-    is the whole point of the arrangement (`../kern/README.md` §6): a growing catalog can
-    never collide with them, and a box reset never takes them. Deleting one is a long-press
-    on its row, and it is the only deletion in the app: a catalog word can be put to sleep,
-    never removed.
-  - **Feedback** closes the Box, below the shelves and above the settings, and only once
-    there is something in it — an empty complaints box is furniture. It lists the
-    suggestions, which no shelf can show (a word written in one language joins no card),
-    and sends the lot out two ways: onto the clipboard, or as a mail to whoever tends the
-    catalog. Each offers everything or only what is new, and only once a copy has ever been
-    taken — before that the two would be the same list, so the control asks nothing.
-- **A long press says what is wrong with a word, or that it is not worth the learner's
-  time — never both at once.** The revealed card and every Box row carry the same two
-  entries, and they are unrelated on purpose: reporting a problem changes nothing about
-  what gets asked, and putting a word to sleep files no complaint (`kern/README.md` §6).
-  The report sheet therefore carries no suspend switch. What the learner typed rides along
-  without being asked about — the answer the catalog rejected is usually the report itself,
-  and a box to tick is a box to miss. Only after the reveal: a menu over a prompt is a menu
-  over a question the learner has not been answered yet.
+  - **Eigene Inhalte** closes the Box, below the shelves and above the settings, and it is
+    the one section always drawn: it carries the button that writes a word, and the only
+    other way in is a search that found nothing. Everything the learner put into the box
+    themselves is here — the words they wrote, and the problems they filed — and nothing
+    the catalog brought. It is deliberately NOT a shelf: own words are packed the moment
+    they are written, so an area head offering to pack them would say nothing, and a
+    progress bar over a handful of words is furniture.
+    A reported own word appears ONCE, in the words block wearing its flag; the reported
+    block lists catalog cards only, because naming the same word twice in one section
+    reads as two different problems.
+    Both ways out — clipboard and mail — carry the same one text, and each offers
+    everything or only what is new, the latter only once a copy has ever been taken: before
+    that the two would be the same list, so the control asks nothing.
+  - **Own words** are also what a search with no answer leads to: the learner has just
+    proved the catalog has no word for what they need, so the empty state offers to write
+    one, with the known side prefilled from the query — a search box is far more often used
+    to name what one wants to be able to SAY than a form met in the wild. One side alone is
+    still taken, as a SUGGESTION — the learner has the half they came with and the catalog
+    owes the other — and it is never asked, since there is nothing to ask yet. A growing
+    catalog can never collide with them and a box reset never takes them
+    (`../kern/README.md` §6). Rewriting one keeps its id, and with it the progress made on
+    it; deleting one is the only deletion in the app, since a catalog word can be put to
+    sleep but never removed.
+- **A long press on a Box row offers everything that can be done to one word; the same
+  press mid-round offers two things only.** In the Box the menu is where the word stands
+  (pack, unpack, sleep, wake, forget its progress), then what can be MADE of it (an own
+  word from it, or editing one), then what is wrong with it, and deleting last because it
+  is the entry that cannot be taken back. A round is no place to reorganize the box, so
+  the session card keeps just reporting and sleeping.
+  Those two are unrelated on purpose: reporting a problem changes nothing about what gets
+  asked, and putting a word to sleep files no complaint (`kern/README.md` §6), which is why
+  the report sheet carries no suspend switch. What the learner typed rides along without
+  being asked about — the answer the catalog rejected is usually the report itself, and a
+  box to tick is a box to miss. In a session, only after the reveal: a menu over a prompt
+  is a menu over a question they have not been answered yet.
+- **The picture field takes two characters and offers a few by tap.** Written by hand it is
+  a keyboard trip for something optional, so a short row of common pictures sits above it;
+  the cap is two so a flag can pair with a thing while a pasted sentence cannot land there
+  (`OwnWords.QUICK_EMOJI`, `OwnWords.MAX_EMOJI`). The two language fields wear their flag,
+  and a button between them swaps what is typed in each, for the learner who filled them in
+  the wrong way round.
 - **Two clean-correct beats, one home: 450 ms live, 1200 ms explicit.** The 0.45–1.2 s a
   clean answer waits above is those two tiers — 450 ms when the typing itself went exactly
   correct, 1200 ms when the learner tapped Check, Enter or a tile. Vocab review, the

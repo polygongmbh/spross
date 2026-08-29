@@ -15,6 +15,20 @@
   together: onto the clipboard, or as a mail to whoever tends the catalog. Either way you
   can take everything or only what is new since last time.
 
+- **Everything you put into the box yourself now stands in one place.** The words you wrote
+  and the problems you reported share a section at the foot of the Box, with a button to
+  write another right there. Your own words lost the shelf they used to sit on — they are
+  sown the moment you write them, so a control offering to sow them had nothing to say.
+
+- **Press and hold any word in the Box for everything you can do with it.** Sow it or take
+  it back out, put it to sleep or wake it, reset the progress on it and meet it fresh, make
+  your own word from it, report what is wrong with it, or — for a word you wrote — edit it.
+  Editing keeps the word's progress: fixing a typo no longer costs you the practice.
+
+- **The word form says which language is which, and offers you a picture.** Both fields wear
+  their flag, a button between them swaps what you typed when they went in the wrong way
+  round, and a row of common pictures saves the trip to the emoji keyboard.
+
 - **A different number is wrong, and the drill says which you wrote.** Typing *setenta*
   when the drill asked for *sesenta* used to pass as a near-miss — one letter off, after
   all. Now an answer that is really another number is refused outright, in every number,
