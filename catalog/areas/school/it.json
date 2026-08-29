@@ -111,6 +111,7 @@
    "variants": ["Chieda al professore.", "Chiedi all'insegnante."]
   },
   "i-have-a-good-grade": { "text": "Ho un buon voto.", "variants": ["Ho un bel voto."] },
-  "we-go-to-the-classroom": { "text": "Andiamo in aula.", "variants": ["Andiamo in classe."] }
+  "we-go-to-the-classroom": { "text": "Andiamo in aula.", "variants": ["Andiamo in classe."] },
+  "the-exam-is-already-corrected": { "text": "L'esame è già stato corretto." }
  }
 }

@@ -38,6 +38,7 @@
   "the-break-is-over": { "text": "Перерва закінчилася." },
   "ask-the-teacher": { "text": "Запитай вчителя.", "variants": ["Запитайте вчителя."] },
   "i-have-a-good-grade": { "text": "У мене гарна оцінка." },
-  "we-go-to-the-classroom": { "text": "Ми йдемо до класу." }
+  "we-go-to-the-classroom": { "text": "Ми йдемо до класу." },
+  "the-exam-is-already-corrected": { "text": "Іспит уже перевірено." }
  }
 }

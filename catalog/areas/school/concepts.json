@@ -41,5 +41,6 @@
  { "slug": "the-break-is-over", "kind": "phrase", "emoji": "☕", "components": ["break"] },
  { "slug": "ask-the-teacher", "kind": "phrase", "emoji": "🧑‍🏫", "components": ["teacher"] },
  { "slug": "i-have-a-good-grade", "kind": "phrase", "emoji": "💯", "components": ["grade"] },
- { "slug": "we-go-to-the-classroom", "kind": "phrase", "emoji": "🎓", "components": ["classroom"] }
+ { "slug": "we-go-to-the-classroom", "kind": "phrase", "emoji": "🎓", "components": ["classroom"] },
+ { "slug": "the-exam-is-already-corrected", "kind": "phrase", "components": ["exam", "correct"] }
 ]

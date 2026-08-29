@@ -93,6 +93,7 @@
   "the-break-is-over": { "text": "El descanso ha terminado." },
   "ask-the-teacher": { "text": "Pregunta al profesor.", "variants": ["Pregunte al profesor."] },
   "i-have-a-good-grade": { "text": "Tengo una buena nota." },
-  "we-go-to-the-classroom": { "text": "Vamos al aula." }
+  "we-go-to-the-classroom": { "text": "Vamos al aula." },
+  "the-exam-is-already-corrected": { "text": "El examen ya está corregido." }
  }
 }

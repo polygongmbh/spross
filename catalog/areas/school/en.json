@@ -37,6 +37,7 @@
   "the-break-is-over": { "text": "The break is over." },
   "ask-the-teacher": { "text": "Ask the teacher." },
   "i-have-a-good-grade": { "text": "I have a good grade." },
-  "we-go-to-the-classroom": { "text": "We're going to the classroom." }
+  "we-go-to-the-classroom": { "text": "We're going to the classroom." },
+  "the-exam-is-already-corrected": { "text": "The exam has already been corrected." }
  }
 }
