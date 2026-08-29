@@ -2,6 +2,32 @@
 
 ## Unreleased
 
+## 5.7.0 — 2026-08-29
+
+- **German's tenses arrive as sentences you would actually say.** Six phrases, each built
+  around one construction the box could not show you before: the perfect with *sein* (`Der
+  Bus ist schon abgefahren.`), the perfect with *haben* around a reflexive (`Ich habe mich
+  gestern verletzt.`), the ge-less perfect of a verb that refuses the prefix (`Ich habe schon
+  bezahlt.`), the future (`Der Arzt wird Sie gleich untersuchen.`), and the passive in both
+  of its German shapes — the one that happens (`Die Wäsche wird gerade gewaschen.`) and the
+  one that is done (`Die Prüfung ist schon korrigiert.`). Each waits on the shelf where you
+  would meet it — the bus stop, the doctor, the till, the laundry, the classroom — and
+  unlocks from the words standing beside it.
+
+- **A shelf for how a day feels, and the words the rooms were missing.** Feelings is a new
+  shelf: joy and sadness, anger and fear, surprise, worry, love, shame, jealousy. Around it,
+  the everyday gaps close — the floor under you and a song to put on it, wood and a stick, a
+  band-aid and a splint, the wheel and the engine and the rail; showing, explaining and
+  teaching, meeting, inviting, visiting and marrying; using, coming back, losing, pushing and
+  pulling; remembering, forgetting, imagining, a goal and a challenge; dry, completely, then,
+  the day before yesterday, a country and its four directions, rich, poor and free of charge.
+
+- **The day's headline moves with the day.** It used to name the round's shape and nothing
+  else, so a second round of the same make read exactly like the first, and an afternoon
+  with a standing run about to lapse said `your round is ready` as brightly as the morning
+  had. What you have already done today now moves the line on, and from late morning a run
+  at risk takes it over — quietly in the morning, never at all when the run is safe.
+
 ## 5.6.0 — 2026-08-29
 
 - **Say what is wrong with a word, without leaving the round.** Press and hold a card once
