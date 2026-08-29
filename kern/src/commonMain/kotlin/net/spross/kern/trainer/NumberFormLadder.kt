@@ -145,4 +145,4 @@ private fun drawOrdinal(limits: FormLimits, level: Int, rng: Random): NumberValu
 private fun ordinalPool(limits: FormLimits): LongRange =
     maxOf(1L, limits.ordinalRange.first)..limits.ordinalRange.last
 
-private tailrec fun gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
+internal tailrec fun gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)

@@ -17,12 +17,8 @@ import kotlin.test.assertTrue
  * carries the other's answer. A mixed run changes nothing — it interleaves tasks, it does
  * not merge them.
  *
- * The enumeration is bounded to stay the order of the cardinal sweep's German 0–999:
- * negatives 0–99, decimals with a whole part 0–9 and one or two fraction digits, percent and
- * multiplicatives over the range the ladder draws (1–100), every reduced fraction the pack
- * allows, and ordinals over the pack's own range. Values the ladder can never draw are left
- * out — an all-zero fraction-digit string is repaired at the source
- * ([NumberFormLadder]), so no reading exists for "3,0" to bridge with.
+ * The enumeration swept is [NumberFormsAnswerSpace.drawableValues] — the same one the
+ * production index reads, so a reading this guard can find is a reading that index holds.
  *
  * The allowlist is the first run's own offender list, audited entry by entry, exactly as the
  * cardinal one was built. Most of it is compounds of pairs already in
@@ -107,7 +103,7 @@ class TrainerFormsTypoBridgeGuardTests {
 
     private fun sixSevenTwins(language: String): List<Set<String>> {
         val pack = trainerPacks.getValue(language)
-        return drawableValues(pack.formLimits)
+        return NumberFormsAnswerSpace.drawableValues(pack.formLimits)
             .flatMap(pack::formReading)
             .flatMap { it.split(' ') }
             .map(TypoBridgeSweep::comparisonShape)
@@ -122,41 +118,11 @@ class TrainerFormsTypoBridgeGuardTests {
 
     private fun sweep(language: String, extra: List<Set<String>> = emptyList()): List<String> {
         val pack = trainerPacks.getValue(language)
-        val prompts = drawableValues(pack.formLimits)
+        val prompts = NumberFormsAnswerSpace.drawableValues(pack.formLimits)
             .map { TypoBridgeSweep.Prompt(pack.formReading(it)) }
             .filter { it.readings.isNotEmpty() }
         return TypoBridgeSweep.run(language, prompts, FORM_BRIDGES + extra)
     }
-
-    /** Every value the bounded enumeration offers, for the forms this pack reads. */
-    private fun drawableValues(limits: FormLimits): List<NumberValue> = buildList {
-        if (NumberForm.Negative in limits.forms) {
-            for (magnitude in 0L..99L) add(NumberValue.Negative(magnitude))
-        }
-        if (NumberForm.Decimal in limits.forms) {
-            for (whole in 0L..9L) for (digits in FRACTION_DIGITS) add(NumberValue.Decimal(whole, digits))
-        }
-        if (NumberForm.Percent in limits.forms) {
-            for (n in 1L..100L) add(NumberValue.Percent(n))
-        }
-        if (NumberForm.Multiplicative in limits.forms) {
-            for (n in 1L..100L) add(NumberValue.Multiplicative(n))
-        }
-        if (NumberForm.Fraction in limits.forms) {
-            for (d in limits.fractionDenominators.filter { it in 2..12 }.sorted()) {
-                for (n in 1 until d) {
-                    if (gcd(n, d) == 1) add(NumberValue.Fraction(n.toLong(), d.toLong()))
-                }
-            }
-        }
-        if (NumberForm.Ordinal in limits.forms) {
-            for (n in maxOf(1L, limits.ordinalRange.first)..limits.ordinalRange.last) {
-                add(NumberValue.Ordinal(n))
-            }
-        }
-    }
-
-    private tailrec fun gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
 
     private companion object {
         /**
@@ -193,10 +159,5 @@ class TrainerFormsTypoBridgeGuardTests {
             setOf("ventesimo", "centesimo"),
             setOf("ventesima", "centesima"),
         )
-
-        /** One or two digits, never all zeros — the ladder repairs that draw. */
-        val FRACTION_DIGITS: List<String> =
-            (1..9).map { it.toString() } +
-                (0..99).map { it.toString().padStart(2, '0') }.filter { it != "00" }
     }
 }
