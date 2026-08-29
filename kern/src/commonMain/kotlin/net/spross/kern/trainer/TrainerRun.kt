@@ -61,9 +61,11 @@ object TrainerRun {
      * `maxTyposPerWord = 1`). A REVERSED task takes exactly this path — its accepted set already
      * carries the notation twins, and digit-bearing words grade exact-only.
      *
-     * Never [Match.OtherWord]: the task is wrapped as one synthetic card, so there is no catalog
-     * for another concept's word to come out of. A null [normalizer] (a preview with no language
-     * info) falls back to a plain case- and punctuation-insensitive comparison.
+     * [Match.OtherWord] where the slip NAMES another value ([otherNumber] and the
+     * [NumberReadingIndex] behind it): the drill whose job is keeping numbers apart refuses a
+     * different number the typo budget would have forgiven, and carries what it was. A null
+     * [normalizer] (a preview with no language info) falls back to a plain case- and
+     * punctuation-insensitive comparison, with no index and no refusal.
      */
     fun grade(input: String, task: TrainerTask, normalizer: AnswerNormalizer?): Match =
         gradeDrillAnswer(
@@ -73,6 +75,7 @@ object TrainerRun {
             language = task.language,
             cardId = "drill",
             normalizer = normalizer,
+            index = normalizer?.let { NumberReadingIndex.of(task.language, it) },
         )
 
     /**
