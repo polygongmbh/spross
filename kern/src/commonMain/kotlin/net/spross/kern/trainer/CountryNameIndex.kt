@@ -59,8 +59,8 @@ internal class CountryNameIndex(
     }
 
     /**
-     * The entry [typed] names whole in [kind]'s own scope, or null. Consulted only on a
-     * typo verdict, so an accepted answer (Exact) can never reach it and the asked entry
+     * The entry [typed] names whole in [kind]'s own scope, or null. Consulted on every
+     * miss, never on Exact — so an accepted answer can never reach it and the asked entry
      * can never own the probe.
      */
     fun otherName(kind: CountryTaskKind, typed: String): Match.OtherWord? {

@@ -85,7 +85,7 @@ object CountryDrillRun {
             cardId = "atlas",
             normalizer = config.normalizer,
         )
-        if (match !is Match.Typo) return match
+        if (match == Match.Exact) return match
         return config.nameIndex?.otherName(task.kind, input) ?: match
     }
 

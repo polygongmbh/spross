@@ -65,11 +65,13 @@ Leniency is safe to the extent the catalog can disprove it — that rule is the 
   most distinct cardinals sit ≥ 2 edits apart, so a per-word cap of 1 keeps them apart
   while the frame ("Ich habe … Hefte.") may fumble once per word.
   The one-edit twins the budget alone would forgive are refused by the **value check**
-  (`otherNumber` in `DrillGrading.kt`, on the `Match.Typo` arm only):
+  (`otherNumber` in `DrillGrading.kt`, on both miss arms and never on Exact):
   two probes against `NumberReadingIndex` — the whole typed answer first,
-  then each differing word at its own position —
-  refuse whenever both sides name indexed values and the values are disjoint,
-  returning `Match.OtherWord` with what was actually written ("setenta" is 70).
+  then each differing word at its own position (Typo arm only, where a measured
+  form exists) — refuse whenever both sides name indexed values and the values are
+  disjoint, returning `Match.OtherWord` with what was actually written ("setenta" is 70).
+  A plain Wrong that is a complete reading of another value is named the same way
+  ("arobaini na saba" at 46 is 47, two edits and never a typo).
   Evidence is keyed to the TYPED side, never the expected one:
   refusing because the expected word is indexed would turn every fumbled numeral
   (`sesemta` for `sesenta`) into a miss, which is the one behavior the drill must keep.

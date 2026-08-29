@@ -59,6 +59,19 @@ class DrillGradingTests {
     }
 
     @Test
+    fun aWrongAnswerThatNamesAnotherValueWholeIsNamedToo() {
+        // saba/sita is two edits — never a typo, so only the Wrong arm can name it.
+        val match = grade("sw", "arobaini na saba", listOf("arobaini na sita"))
+        assertIs<Match.OtherWord>(match)
+        assertEquals(listOf("47"), match.meanings)
+    }
+
+    @Test
+    fun aWrongAnswerNamingNothingStaysWrong() {
+        assertEquals(Match.Wrong, grade("es", "tortuga", listOf("sesenta")))
+    }
+
+    @Test
     fun aFumbleNamingNothingStaysATypo() {
         assertIs<Match.Typo>(grade("es", "sesemta", listOf("sesenta")))
     }

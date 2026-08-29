@@ -32,13 +32,16 @@ internal fun gradeDrillAnswer(
     return when (val match = normalizer.evaluate(trimmed, card)) {
         Match.Exact -> Match.Exact
         is Match.Typo -> index?.let { otherNumber(normalizer, trimmed, match.corrected, accepted, it) } ?: match
-        is Match.OtherWord, Match.Wrong -> Match.Wrong
+        is Match.OtherWord, Match.Wrong ->
+            index?.let { otherNumber(normalizer, trimmed, corrected = null, accepted, it) } ?: Match.Wrong
     }
 }
 
 /**
  * The value the learner actually wrote, where it is not the one that was asked — or null,
- * and the typo verdict stands.
+ * and the verdict already reached stands. Consulted on BOTH miss arms: a Typo it turns
+ * into a refusal, a Wrong it merely names (`arobaini na saba` for 46 is 47 — two edits,
+ * so never a typo, but exactly as worth telling).
  *
  * Two probes against [index], evidence keyed to what was TYPED, never to what was missed:
  * refusing because the EXPECTED reading names a value would refuse every fumbled numeral
@@ -53,11 +56,12 @@ internal fun gradeDrillAnswer(
  *    word count, a differing word that names a value the expected word does not share is
  *    another number inside a compound — `hasi nane` for `hasi nne`. A differing word that
  *    names nothing (a connector, a fumble) never fires; a sentence slips through untouched.
+ *    Typo arm only ([corrected] is the form the budget measured against; a Wrong has none).
  */
 internal fun otherNumber(
     normalizer: AnswerNormalizer,
     typed: String,
-    corrected: String,
+    corrected: String?,
     accepted: List<String>,
     index: NumberReadingIndex,
 ): Match.OtherWord? {
@@ -74,6 +78,7 @@ internal fun otherNumber(
         }
     }
 
+    if (corrected == null) return null
     val typedWords = shape(typed)?.split(' ') ?: return null
     val expectedWords = shape(corrected)?.split(' ') ?: return null
     if (typedWords.size != expectedWords.size) return null

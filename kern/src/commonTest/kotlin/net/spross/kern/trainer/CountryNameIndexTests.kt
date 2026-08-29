@@ -100,6 +100,14 @@ class CountryNameIndexTests {
     }
 
     @Test
+    fun aWrongAnswerThatIsAnotherCountryWholeIsNamedToo() {
+        // Uhispania is far beyond the typo budget at Uswisi — named, not just wrong.
+        val match = CountryDrillRun.grade("Uhispania", countryTask(), config)
+        assertIs<Match.OtherWord>(match)
+        assertEquals(listOf("Spanien"), match.meanings)
+    }
+
+    @Test
     fun aFumbleNamingNoEntryStaysATypo() {
         assertIs<Match.Typo>(CountryDrillRun.grade("Uswiisi", countryTask(), config))
     }

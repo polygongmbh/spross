@@ -7,8 +7,9 @@
   all. Now an answer that is really another number is refused outright, in every number,
   forms, year and clock drill, and the reveal names it: "By the way: setenta means 70."
   The same goes for the country drill — *Uswidi* for *Uswisi* is Sweden, not a typo of
-  Switzerland, and the card says so. A genuine slip that names nothing (*sesemta*) is
-  forgiven exactly as before.
+  Switzerland, and the card says so. The name shows whenever what you wrote is really
+  another number or country — one letter off or nowhere close — while a genuine slip
+  that names nothing (*sesemta*) is forgiven exactly as before.
 
 ## 5.5.2 — 2026-08-26
 
