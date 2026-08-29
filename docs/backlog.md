@@ -339,6 +339,10 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 
 ## Platform reach
 
+- The two phones name a language differently in chrome: iOS resolves through
+  `LanguageNames.display` (chrome-locale exonym — "Suaheli"), Android reads
+  `catalog.languages[code].name` (endonym — "Kiswahili"). Pre-existing, but the
+  own-word form's flagged labels now put the two side by side in a screenshot.
 - Android surfaces still unported: `design.md` § Not yet owns the list.
 - The web numbers drill never gained it/fr/eo: `web/site.js` mirrors
   `catalog/languages.json` by hand (its `LANGS` rows) and still offers the five older
