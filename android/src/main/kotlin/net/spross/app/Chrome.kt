@@ -263,6 +263,14 @@ interface Chrome {
     /** Putting a word to sleep from the card in front of you; [wake] is the way back. */
     val sleep: String
     /**
+     * Dropping ONE word's progress: it goes back to new and may be offered again.
+     * The card stays, and so does anything filed against it — forgetting the answers
+     * does not make the translation right.
+     */
+    val cardForget: String
+    /** Writing an own word from a catalog one, both sides carried over into the form. */
+    val cardOwnFrom: String
+    /**
      * The flag a reported word wears.
      * Its own mark, said apart from [suspended] — a report says nothing about where the
      * word stands, and a reported word keeps whatever badge it had.
@@ -311,6 +319,12 @@ interface Chrome {
     val ownWordPicture: String
     val ownWordAdd: String
     val ownWordRemove: String     // the app's only deletion; catalog words sleep instead
+    /** The form's title while rewriting a word, and the menu entry that opens it that way. */
+    val ownWordEdit: String
+    /** What confirms a rewrite; [ownWordAdd] is what takes a new word in. */
+    val ownWordSave: String
+    /** Exchanging what stands in the two fields, for a pair written the wrong way round. */
+    val ownWordSwap: String
     /**
      * What the form says while only ONE side is written.
      * The word is kept as a suggestion and never asked until the other half arrives.
@@ -320,6 +334,8 @@ interface Chrome {
     // ── Reporting a problem ─────────────────────────────────────────────────────
     /** The menu entry a word grows, and the way back out of a report already filed. */
     val reportAction: String
+    /** Reopening a report already filed, so the comment can be rewritten rather than refiled. */
+    val reportEdit: String
     val reportDismiss: String
     val reportTitle: String
     val reportSend: String
@@ -327,6 +343,14 @@ interface Chrome {
     /** What they had typed, shown rather than asked about — the rejected answer IS the report. */
     val reportTyped: String
     val reportExplainer: String   // who reads it, and that the word's schedule is untouched
+
+    // ── Own content ─────────────────────────────────────────────────────────────
+    /** The one section for everything the learner put into the box or said back about it. */
+    val ownContentTitle: String
+    /** Its second block: the problems filed against CATALOG words, which no row above lists. */
+    val ownContentReported: String
+    /** The section's way into the form — the one that does not start from a failed search. */
+    val ownWordAddAction: String
 
     // ── Feedback to the catalog ─────────────────────────────────────────────────
     val feedbackTitle: String
