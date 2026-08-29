@@ -65,7 +65,6 @@ import net.spross.kern.model.Card
 @Composable
 internal fun BoxOwnSection(model: AppModel, onWriteOwn: (OwnWordDraft) -> Unit) {
     val chrome = model.chrome
-    val context = LocalContext.current
     val box = model.box ?: return
     val words = model.ownWords
     val reported = model.reportedCatalogCards
@@ -88,8 +87,9 @@ internal fun BoxOwnSection(model: AppModel, onWriteOwn: (OwnWordDraft) -> Unit) 
         }
         // An empty panel is furniture: with nothing written and nothing filed, the header
         // and its one button are the whole section.
-        if (words.isEmpty() && reported.isEmpty() && !actions) return@Column
-        OwnContentPanel(model, box.cards, words, reported, actions, context, onWriteOwn)
+        if (words.isNotEmpty() || reported.isNotEmpty() || actions) {
+            OwnContentPanel(model, box.cards, words, reported, actions, onWriteOwn)
+        }
     }
 }
 
@@ -101,10 +101,10 @@ private fun OwnContentPanel(
     words: List<OwnWord>,
     reported: List<Card>,
     actions: Boolean,
-    context: Context,
     onWriteOwn: (OwnWordDraft) -> Unit,
 ) {
     val chrome = model.chrome
+    val context = LocalContext.current
     Column(
         modifier = Modifier.fillMaxWidth().panel().padding(DlSpace.l),
         verticalArrangement = Arrangement.spacedBy(DlSpace.m),
