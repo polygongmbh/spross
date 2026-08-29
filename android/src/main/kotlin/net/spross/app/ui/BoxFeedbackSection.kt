@@ -32,7 +32,7 @@ import net.spross.app.AppModel
 import net.spross.app.hasExportedBefore
 import net.spross.app.hasFeedback
 import net.spross.app.markExported
-import net.spross.app.ownWordsText
+import net.spross.app.reportText
 import net.spross.app.reportMailBody
 import net.spross.app.suggestionText
 import net.spross.app.suggestions
@@ -82,7 +82,7 @@ internal fun BoxFeedbackSection(model: AppModel) {
             }
             Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
                 ScopedAction(model, chrome.feedbackCopy) { onlyNew ->
-                    context.copyToClipboard(chrome.feedbackTitle, model.ownWordsText(onlyNew))
+                    context.copyToClipboard(chrome.feedbackTitle, model.reportText(onlyNew))
                     model.markExported()
                 }
                 ScopedAction(model, chrome.feedbackSend) { onlyNew ->

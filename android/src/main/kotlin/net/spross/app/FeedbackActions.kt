@@ -61,20 +61,20 @@ fun AppModel.hasFeedback(onlyNew: Boolean): Boolean {
  */
 val AppModel.hasExportedBefore: Boolean get() = box?.lastExportAt != null
 
-/** The learner's own words as text, one per line, for the clipboard. */
-fun AppModel.ownWordsText(onlyNew: Boolean): String {
+/**
+ * The suggestions and the reports as text — the same one the mail carries, so the
+ * clipboard can never come back with less than the Send button would have sent.
+ */
+fun AppModel.reportText(onlyNew: Boolean): String {
     val state = box ?: return ""
-    return Feedback.ownWordsText(state, if (onlyNew) state.lastExportAt else null)
+    return Feedback.reportText(state, if (onlyNew) state.lastExportAt else null)
 }
 
 /**
  * The suggestions and the reports as a mail body, or null when there is nothing to say.
  */
-fun AppModel.reportMailBody(onlyNew: Boolean): String? {
-    val state = box ?: return null
-    if (!hasFeedback(onlyNew)) return null
-    return Feedback.reportText(state, if (onlyNew) state.lastExportAt else null)
-}
+fun AppModel.reportMailBody(onlyNew: Boolean): String? =
+    if (hasFeedback(onlyNew)) reportText(onlyNew) else null
 
 /**
  * Record that a copy has just been taken — what a later "only what is new" measures

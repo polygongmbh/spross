@@ -53,17 +53,18 @@ extension AppModel {
     /// worth making rather than a second name for "everything".
     var hasExportedBefore: Bool { box?.lastExportAt != nil }
 
-    /// The learner's own words as text, one per line, for the clipboard.
-    func ownWordsText(onlyNew: Bool) -> String {
+    /// The suggestions and the reports as text — the same one the mail carries, so the
+    /// clipboard can never come back with less than the Send button would have sent.
+    func reportText(onlyNew: Bool) -> String {
         guard let box else { return "" }
-        return Feedback.shared.ownWordsText(state: box, since: onlyNew ? box.lastExportAt : nil)
+        return Feedback.shared.reportText(state: box, since: onlyNew ? box.lastExportAt : nil)
     }
 
     /// A mail to the maintainer carrying the suggestions and the reports.
     /// Nil when there is nothing to say.
     func reportMailURL(onlyNew: Bool) -> URL? {
-        guard let box, hasFeedback(onlyNew: onlyNew) else { return nil }
-        let body = Feedback.shared.reportText(state: box, since: onlyNew ? box.lastExportAt : nil)
+        guard hasFeedback(onlyNew: onlyNew) else { return nil }
+        let body = reportText(onlyNew: onlyNew)
         var components = URLComponents()
         components.scheme = "mailto"
         components.path = Legal.contactAddress

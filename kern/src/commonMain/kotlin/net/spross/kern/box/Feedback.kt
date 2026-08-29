@@ -41,19 +41,17 @@ object Feedback {
     private const val UNTRANSLATED = "?"
 
     /**
-     * The learner's own words as plain text, one per line, newest last — what the
-     * clipboard action copies. A word written in only one language (a suggestion the
-     * catalog should carry) prints its missing half as [UNTRANSLATED] rather than being
-     * left out: it is the entry most worth reading.
+     * The whole report as text: the profile, the learner's own words, then the problems
+     * they filed — each section omitted when it is empty, and the whole thing empty only
+     * when [hasAnything] is false.
      *
-     * [since] filters to the words added after it — `null` takes them all.
-     */
-    fun ownWordsText(state: BoxState, since: Instant?): String =
-        ownWordsSince(state, since).joinToString("\n") { wordLine(state, it) }
-
-    /**
-     * The full report as mail body: suggestions first, then reported issues, each
-     * section omitted when it is empty. Empty overall when [hasAnything] is false.
+     * ONE text for both ways out, the clipboard and the mail body. A clipboard form that
+     * carried only the words would come back empty for a learner who has filed reports and
+     * written nothing, which is a copy button that silently does nothing.
+     *
+     * A word written in only one language prints its missing half as [UNTRANSLATED] rather
+     * than being left out: it is the entry most worth reading. [since] filters to what was
+     * written or filed after it — `null` takes the lot.
      */
     fun reportText(state: BoxState, since: Instant?): String {
         val words = ownWordsSince(state, since)

@@ -33,6 +33,9 @@ struct BoxFeedbackSection: View {
                     }
                     actions
                 }
+                // why: the card sits under the settings card and must square with it —
+                // an actions-only section would otherwise shrink to hug its two buttons.
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(DL.Space.l)
                 .background(
                     RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
@@ -87,7 +90,7 @@ struct BoxFeedbackSection: View {
     private var actions: some View {
         HStack(spacing: DL.Space.l) {
             scopedButton("feedback.copy", icon: "doc.on.doc") { onlyNew in
-                UIPasteboard.general.string = model.ownWordsText(onlyNew: onlyNew)
+                UIPasteboard.general.string = model.reportText(onlyNew: onlyNew)
                 model.markExported()
             }
             scopedButton("feedback.send", icon: "envelope") { onlyNew in

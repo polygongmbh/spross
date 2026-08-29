@@ -190,10 +190,10 @@ class FeedbackTests {
     }
 
     @Test
-    fun theClipboardTextIsOneWordPerLine() {
-        val paired = ownWord("regenschirm", mapOf("de" to "Regenschirm", "sw" to "mwavuli"))
-        var state = BoxEngine.addOwnWord(box(), paired, Box.day1)
-        state = BoxEngine.addOwnWord(state, ownWord("sonne", mapOf("de" to "Sonne")), Box.day1)
-        assertEquals("Regenschirm → mwavuli\nSonne → ?", Feedback.ownWordsText(state, null))
+    fun aReportWithNoOwnWordsStillCarriesText() {
+        // why: the clipboard and the mail share this one text — a words-only form would
+        // copy nothing at all for a learner who has filed reports and written no words.
+        val state = BoxEngine.reportIssue(box(), "w01", "wrong", null, Box.day1)
+        assertTrue(Feedback.reportText(state, null).isNotEmpty())
     }
 }
