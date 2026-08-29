@@ -260,6 +260,14 @@ interface Chrome {
     val queuedWord: String
     val suspended: String         // the sleeping mark's name
     val wake: String
+    /** Putting a word to sleep from the card in front of you; [wake] is the way back. */
+    val sleep: String
+    /**
+     * The flag a reported word wears.
+     * Its own mark, said apart from [suspended] — a report says nothing about where the
+     * word stands, and a reported word keeps whatever badge it had.
+     */
+    val reported: String
     /**
      * An area's row of counts: the consolidated half beside the seal, the learning half
      * beside the leaf. [dayConsolidated] is the SEPARATE wording for the day's own tally on
@@ -303,6 +311,33 @@ interface Chrome {
     val ownWordPicture: String
     val ownWordAdd: String
     val ownWordRemove: String     // the app's only deletion; catalog words sleep instead
+    /**
+     * What the form says while only ONE side is written.
+     * The word is kept as a suggestion and never asked until the other half arrives.
+     */
+    val ownWordSuggestion: String
+
+    // ── Reporting a problem ─────────────────────────────────────────────────────
+    /** The menu entry a word grows, and the way back out of a report already filed. */
+    val reportAction: String
+    val reportDismiss: String
+    val reportTitle: String
+    val reportSend: String
+    val reportComment: String     // optional, and the label says so
+    /** What they had typed, shown rather than asked about — the rejected answer IS the report. */
+    val reportTyped: String
+    val reportExplainer: String   // who reads it, and that the word's schedule is untouched
+
+    // ── Feedback to the catalog ─────────────────────────────────────────────────
+    val feedbackTitle: String
+    /** The words written with one side only; they join no card, so this is where they show. */
+    val feedbackSuggestions: String
+    val feedbackNeedsTranslation: String
+    val feedbackCopy: String
+    val feedbackSend: String
+    /** The two scopes each action offers once a copy has ever been taken. */
+    val feedbackScopeNew: String
+    val feedbackScopeAll: String
 
     // ── Box settings ────────────────────────────────────────────────────────────
     val settingsTitle: String
