@@ -101,6 +101,8 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
         model.finishDrill(Screen.Countries, closed.summary, chrome.countriesTitle)
     }
     BackHandler { leave() }
+    // Nothing left to ask: hand the run back, never repeat a question.
+    LaunchedEffect(flow.ranOut) { if (flow.ranOut) leave() }
     // D5: leaving mid-word must silence, whichever way the screen goes.
     DisposableEffect(Unit) { onDispose { model.pronouncer.stop() } }
 

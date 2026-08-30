@@ -92,6 +92,8 @@ fun LetterDrillScreen(model: AppModel) {
         model.finishDrill(Screen.Letters, closed.summary, chrome.lettersTitle)
     }
     BackHandler { leave() }
+    // Nothing left to ask: hand the run back, never repeat a question.
+    LaunchedEffect(flow.ranOut) { if (flow.ranOut) leave() }
     // D5: leaving mid-clip must silence, whichever way the screen goes.
     DisposableEffect(Unit) { onDispose { model.pronouncer.stop() } }
 

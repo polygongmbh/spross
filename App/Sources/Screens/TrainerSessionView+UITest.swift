@@ -28,8 +28,8 @@ extension TrainerSessionView {
             let capped = min(presetLevel, Int(mode.maxLevel(variant: variant)))
             var levels = run.levels
             levels[variant] = KotlinInt(int: Int32(capped))
-            run = run.seeded(current: mode.draw(levels: levels, avoiding: nil, rng: drillRandom),
-                             levels: levels)
+            let drawn = mode.draw(levels: levels, avoiding: nil, solved: run.solved, rng: drillRandom)
+            run = run.seeded(current: drawn.drawn, levels: levels)
         }
         let preset = defaults.integer(forKey: "uitest-streak")
         if preset > 0 {
@@ -67,7 +67,7 @@ extension TrainerSessionView {
 extension TrainerRunState {
     /// kern's `copy` with the run's own values standing in for everything a hook
     /// does not touch. No default argument crosses the ObjC boundary, so the
-    /// fifteen unchanged fields are written once here rather than at four call sites.
+    /// sixteen unchanged fields are written once here rather than at four call sites.
     func seeded(current: DrawnTask? = nil,
                 levels: [DrillVariant: KotlinInt]? = nil,
                 done: Int32? = nil,
@@ -86,6 +86,7 @@ extension TrainerRunState {
                bestStreak: bestStreak ?? self.bestStreak,
                missRun: missRun ?? self.missRun,
                outcomes: outcomes,
+               solved: solved,
                seenDigitCounts: seenDigitCounts,
                hintUsed: hintUsed,
                feedback: feedback ?? self.feedback,

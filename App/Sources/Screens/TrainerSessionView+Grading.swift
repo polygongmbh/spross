@@ -24,6 +24,8 @@ extension TrainerSessionView {
             : .easeOut(duration: 0.25)
         withAnimation(animation) { run = reduction.state }
         for effect in reduction.effects { apply(effect) }
+        // Nothing left to ask: hand the run back, never repeat a question.
+        if reduction.state.finished { closeRun() }
     }
 
     private func apply(_ effect: DrillEffect) {

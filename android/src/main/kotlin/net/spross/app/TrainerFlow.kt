@@ -51,6 +51,15 @@ class TrainerFlow(
 
     val mode: TrainerMode get() = state.mode
 
+    /**
+     * Kern has run out of questions: the screen hands the run back rather than sitting on a
+     * card it has already answered. False once the close has been made, whichever way the
+     * screen went — a run is handed back once.
+     */
+    val ranOut: Boolean get() = state.finished && !handedBack
+
+    private var handedBack = false
+
     val armedBeat get() = beat.tier
 
     val beatToken get() = beat.token
@@ -96,6 +105,7 @@ class TrainerFlow(
      * what the platform owes its stores; the caller writes them and shows the summary.
      */
     fun close(standingRecord: Int, standingProgress: Map<String, Int>): TrainerClose {
+        handedBack = true
         val closed = TrainerRun.close(state, standingRecord, standingProgress)
         state = closed.state
         input = ""
