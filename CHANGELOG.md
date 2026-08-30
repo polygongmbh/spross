@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- **The app keeps up with your taps again.** Coming back from the box, opening a round and
+  grading a card each used to hang for a moment. Three things were behind it: the whole box
+  document was being written out — every schedule and every review you have ever logged —
+  on the thread that draws the screen, after every single card; the machine that grades
+  what you type was rebuilt from every word in the catalog before each card went up; and
+  the Heute screen re-asked the engine everything it shows, several times, every time it
+  redrew. All three are answered once now, when something actually changes, and the writing
+  happens out of the way. Starting the app is quicker too — the catalog and your box are
+  read while the first screen is already being drawn rather than before it.
+
 ## 5.7.0 — 2026-08-29
 
 - **German's tenses arrive as sentences you would actually say.** Six phrases, each built

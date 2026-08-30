@@ -396,9 +396,6 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   Still open, and only real hardware can answer them: how the boost and the lead skip
   actually sound, one letter-drill run end to end, and whether `MODIFY_AUDIO_SETTINGS`
   is really needed for a session-scoped effect (it is declared).
-- Android cold-start with an existing box showed the loading spinner 20–90 s on the
-  emulator (fresh install loads in seconds) — likely the 787-card decode+join; profile
-  before real devices (`android/.../AppModel.kt` restore path).
 - On the emulator with a hardware keyboard, Enter after `input text` could walk focus onto
   the session top-bar mute toggle and flip it; probably an emulator artifact — check once
   on hardware before chasing (`android/.../ui/SessionScreen.kt` top bar).
