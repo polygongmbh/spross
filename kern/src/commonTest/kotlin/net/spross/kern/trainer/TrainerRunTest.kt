@@ -224,6 +224,52 @@ class TrainerRunTest {
         assertEquals(listOf(AnswerOutcome.Wrong), booked.outcomes)
     }
 
+    // MARK: - Asking each prompt once
+
+    /** A prompt answered right is retired: a run never comes back round to it. */
+    @Test
+    fun aPromptAnsweredRightIsNeverAskedAgain() {
+        val rng = Random(41)
+        var state = TrainerRun.open(TrainerMode(DrillVariant.Clock, "de"), rng)
+        val asked = mutableListOf<String>()
+        repeat(20) {
+            asked += state.currentTask.prompt
+            state = answerRight(state, rng)
+        }
+        assertEquals(asked.size, asked.toSet().size, "a prompt came round twice: $asked")
+    }
+
+    /** A slip and a miss leave the prompt in the pool — only a clean answer retires it. */
+    @Test
+    fun onlyACleanAnswerRetiresAPrompt() {
+        val rng = Random(43)
+        val state = TrainerRun.open(numbers(), rng)
+        assertEquals(1, answerRight(state, rng).solved.size)
+        assertTrue(miss(state, rng).solved.isEmpty())
+
+        val hinted = reduce(state, TrainerIntent.LookUp, rng).state
+        assertTrue(answerRight(hinted, rng).solved.isEmpty(), "a look-up books almost, not right")
+    }
+
+    /**
+     * Ten single digits is the whole of the first numbers rung, so a run that has answered
+     * them all is carried past it rather than asked one of them again — and the rung it is
+     * carried to is a rung it stood on.
+     */
+    @Test
+    fun aRungWithNothingLeftToAskIsClimbedPast() {
+        val rng = Random(47)
+        val digits = (0L..9L).map { DrillSolved.key(DrillVariant.Numbers, Trainer.number(it, "de")) }
+        val spent = TrainerRun.open(numbers(), rng).copy(solved = digits.toSet())
+
+        val next = answerRight(spent, rng)
+        assertEquals(2, next.currentLevel)
+        assertEquals(2, next.bestLevels[DrillVariant.Numbers])
+        assertEquals(0, next.winsAtLevel[DrillVariant.Numbers], "the wins stay behind with the rung")
+        assertEquals(2, next.currentTask.prompt.length, "the second rung asks two digits")
+        assertFalse(next.finished)
+    }
+
     // MARK: - The place-value hint
 
     @Test

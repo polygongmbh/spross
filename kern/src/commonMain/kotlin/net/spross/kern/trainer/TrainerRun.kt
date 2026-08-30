@@ -22,11 +22,13 @@ object TrainerRun {
     /** A fresh run: every variant at rung 1, one task already drawn. */
     fun open(mode: TrainerMode, rng: Random): TrainerRunState {
         val levels = mode.variants.associateWith { 1 }
+        val opening = mode.draw(levels, null, emptySet(), rng)
         return TrainerRunState(
             mode = mode,
-            current = mode.draw(levels, null, rng),
+            // why: nothing is solved yet, so the draw always has a rung to ask from.
+            current = requireNotNull(opening.drawn) { "no task at rung 1 of ${mode.recordKey}" },
             index = 0,
-            levels = levels,
+            levels = opening.levels,
             winsAtLevel = emptyMap(),
             bestLevels = emptyMap(),
             done = 0,
@@ -34,6 +36,7 @@ object TrainerRun {
             bestStreak = 0,
             missRun = 0,
             outcomes = emptyList(),
+            solved = emptySet(),
             seenDigitCounts = emptySet(),
             hintUsed = false,
             feedback = TurnFeedback.Neutral,
@@ -235,9 +238,12 @@ object TrainerRun {
         rng: Random,
     ): TrainerReduction {
         val next = advanced(state, correct, outcome)
+        val draw = next.mode.draw(next.levels, state.currentTask.prompt, next.solved, rng)
         return TrainerReduction(
-            next.copy(
-                current = state.mode.draw(next.levels, state.currentTask.prompt, rng),
+            climbed(next, draw).copy(
+                // Nothing left to ask anywhere: end on the summary, never on a repeat.
+                current = draw.drawn ?: next.current,
+                finished = draw.drawn == null,
                 index = state.index + 1,
                 // why: cleared in the SAME transaction as the question — the next prompt must
                 // never render one frame carrying the last one's answer or its almost debt.
@@ -246,6 +252,23 @@ object TrainerRun {
                 hintUsed = false,
             ),
             listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
+        )
+    }
+
+    /**
+     * Adopt the rungs the draw climbed to. A rung the run was carried past because its prompts
+     * were answered out is a rung it STOOD on, so the close books it like any other; the wins
+     * banked on the one below stay behind with it.
+     */
+    private fun climbed(state: TrainerRunState, draw: TrainerDraw): TrainerRunState {
+        val moved = draw.levels.filter { (variant, level) -> level != state.levels[variant] }
+        if (moved.isEmpty()) return state
+        return state.copy(
+            levels = draw.levels,
+            winsAtLevel = state.winsAtLevel + moved.map { (variant, _) -> variant to 0 },
+            bestLevels = state.bestLevels + moved.map { (variant, level) ->
+                variant to maxOf(state.bestLevels[variant] ?: 1, level)
+            },
         )
     }
 
@@ -268,6 +291,13 @@ object TrainerRun {
             levels = state.levels + (variant to step.level),
             winsAtLevel = state.winsAtLevel + (variant to step.winsAtLevel),
             bestLevels = state.bestLevels + (variant to maxOf(state.bestLevels[variant] ?: 1, step.level)),
+            // why: only a CLEAN answer retires a prompt — a slip or a look-up leaves it in the
+            // pool, which is what the ramp already says an almost is worth.
+            solved = if (outcome == AnswerOutcome.Right) {
+                state.solved + DrillSolved.key(variant, state.currentTask)
+            } else {
+                state.solved
+            },
             seenDigitCounts = state.currentDigits
                 ?.let { state.seenDigitCounts + it }
                 ?: state.seenDigitCounts,

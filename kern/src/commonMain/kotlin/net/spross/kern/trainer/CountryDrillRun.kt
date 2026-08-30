@@ -34,18 +34,24 @@ object CountryDrillRun {
      */
     fun openAt(config: CountryDrillRunConfig, level: Int, rng: Random): CountryDrillRunState {
         val start = level.coerceIn(1, CountryDrill.MAX_LEVEL)
+        val opening = CountryDrill.draw(config.content, start, config.reverse, null, emptySet(), rng)
+        val content = config.content
         return CountryDrillRunState(
             config = config,
-            task = CountryDrill.sample(config.content, start, config.reverse, null, rng),
+            // why: nothing is solved yet, so only an atlas with no rows at all comes back empty.
+            task = requireNotNull(opening.task) {
+                "no atlas question for ${content.source}→${content.target}"
+            },
             index = 0,
-            level = start,
-            bestLevel = start,
+            level = opening.level,
+            bestLevel = opening.level,
             winsAtLevel = 0,
             done = 0,
             streak = 0,
             bestStreak = 0,
             missRun = 0,
             outcomes = emptyList(),
+            solved = emptySet(),
             feedback = TurnFeedback.Neutral,
             finished = false,
         )
@@ -219,10 +225,24 @@ object CountryDrillRun {
         val next = advanced(state, correct, clean)
         // why: sampled against the id it must avoid — kern resamples once, so a repeat needs
         // two unlucky draws rather than one.
-        val question = CountryDrill.sample(state.config.content, next.level, state.config.reverse, state.task.id, rng)
+        val draw = CountryDrill.draw(
+            state.config.content,
+            next.level,
+            state.config.reverse,
+            state.task.id,
+            next.solved,
+            rng,
+        )
         return CountryDrillReduction(
             next.copy(
-                task = question,
+                // Nothing left to ask: end on the summary, never on a question already answered.
+                task = draw.task ?: state.task,
+                finished = draw.task == null,
+                level = draw.level,
+                // A rung the run answered out is a rung it stood on, and the wins banked on the
+                // one below stay behind with it.
+                bestLevel = maxOf(next.bestLevel, draw.level),
+                winsAtLevel = if (draw.level == next.level) next.winsAtLevel else 0,
                 index = state.index + 1,
                 // why: cleared in the SAME transaction as the question — the next card must
                 // never render one frame carrying the last one's answer.
@@ -251,6 +271,9 @@ object CountryDrillRun {
             level = step.level,
             bestLevel = maxOf(state.bestLevel, step.level),
             winsAtLevel = step.winsAtLevel,
+            // why: only a CLEAN answer retires a question — a slip and a reveal leave it in the
+            // pool, which is what the ramp already says an almost is worth.
+            solved = if (correct && clean) state.solved + DrillSolved.key(state.task) else state.solved,
             streak = streak,
             bestStreak = maxOf(state.bestStreak, streak),
             missRun = if (correct) 0 else state.missRun + 1,

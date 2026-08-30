@@ -83,6 +83,11 @@ data class LetterDrillRunState(
     /** Misses in a row already booked — 1 while a miss shows means this is the second. */
     val missRun: Int,
     val outcomes: List<AnswerOutcome>,
+    /**
+     * The prompts this run has already answered RIGHT ([DrillSolved]): never asked again, and
+     * a stage with nothing left outside them is climbed past rather than repeated.
+     */
+    val solved: Set<String>,
     /** The tile the learner picked, so the grid can mark both it and the answer. */
     val chosen: String?,
     val feedback: TurnFeedback,

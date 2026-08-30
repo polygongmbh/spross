@@ -53,7 +53,9 @@ class RealCatalogLetterDrillTest {
         var avoid: String? = null
         var avoidWord: String? = null
         return (1..count).map {
-            LetterDrill.sample(alphabet, examples(lang), level, refs, avoid, avoidWord, rng).also {
+            assertNotNull(
+                LetterDrill.sample(alphabet, examples(lang), level, refs, avoid, avoidWord, emptySet(), rng),
+            ).also {
                 avoid = it.answerRef
                 avoidWord = it.promptText
             }

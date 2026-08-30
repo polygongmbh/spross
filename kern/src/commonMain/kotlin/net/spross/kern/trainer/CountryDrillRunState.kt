@@ -109,6 +109,11 @@ data class CountryDrillRunState(
      */
     val missRun: Int,
     val outcomes: List<AnswerOutcome>,
+    /**
+     * The questions this run has already answered RIGHT ([DrillSolved]): never asked again,
+     * and a rung with nothing left outside them is climbed past rather than repeated.
+     */
+    val solved: Set<String>,
     val feedback: TurnFeedback,
     /** What a refused answer actually NAMED (Uswidi is Schweden) — only beside a Revealed miss. */
     val otherWord: Match.OtherWord? = null,

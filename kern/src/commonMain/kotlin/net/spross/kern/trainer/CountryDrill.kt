@@ -131,21 +131,44 @@ object CountryDrill {
     }
 
     /**
-     * One question from [level]'s pool. [avoidId] is the previous answer's id, resampled
-     * once so a repeat needs two unlucky draws rather than one — the letter drill's rule.
+     * One question from [level]'s pool, never one [solved] already holds ([DrillSolved]).
+     * [avoidId] is the previous answer's id, resampled once so a repeat needs two unlucky
+     * draws rather than one — the letter drill's rule. Null ⇒ the rung is answered out.
      */
     fun sample(
         content: CountryDrillContent,
         level: Int,
         reverse: Boolean,
         avoidId: String?,
+        solved: Set<String>,
         rng: Random,
-    ): CountryDrillTask {
-        val pool = tasks(content, level, reverse)
-        require(pool.isNotEmpty()) { "no atlas question at rung $level for ${content.source}→${content.target}" }
+    ): CountryDrillTask? {
+        val pool = tasks(content, level, reverse).filterNot { DrillSolved.key(it) in solved }
+        if (pool.isEmpty()) return null
         var picked = pool[rng.nextInt(pool.size)]
         if (picked.id == avoidId) picked = pool[rng.nextInt(pool.size)]
         return picked
+    }
+
+    /**
+     * The first rung at or above [level] with a question left. A rung the run has answered
+     * out is climbed past rather than asked again — the rungs nest, so the one above always
+     * has at least as much to offer — and once the whole ladder is out the task is null,
+     * which ends the run on its summary.
+     */
+    fun draw(
+        content: CountryDrillContent,
+        level: Int,
+        reverse: Boolean,
+        avoidId: String?,
+        solved: Set<String>,
+        rng: Random,
+    ): CountryDrillDraw {
+        for (rung in level.coerceIn(1, MAX_LEVEL)..MAX_LEVEL) {
+            val task = sample(content, rung, reverse, avoidId, solved, rng)
+            if (task != null) return CountryDrillDraw(task, rung)
+        }
+        return CountryDrillDraw(null, level)
     }
 
     /**

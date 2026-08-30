@@ -284,13 +284,17 @@ class CountryDrillRunTest {
 
     // MARK: - The ramp
 
-    /** Three clean wins a rung, and the question moves on with the booking. */
+    /**
+     * Three clean wins a rung, and the question moves on with the booking. Rung 5 has
+     * questions to spare, so what carries the ladder here is the wins rather than the rung
+     * running out of them.
+     */
     @Test
     fun threeCleanWinsCarryTheRun() {
-        var run = open()
-        repeat(CountryDrill.WINS_TO_ADVANCE) { run = run.answered("Ujerumani") }
-        assertEquals(2, run.level)
-        assertEquals(2, run.bestLevel)
+        var run = open(level = 5)
+        repeat(CountryDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
+        assertEquals(6, run.level)
+        assertEquals(6, run.bestLevel)
         assertEquals(3, run.done)
         assertEquals(3, run.streak)
         assertEquals(3, run.index)
@@ -300,7 +304,8 @@ class CountryDrillRunTest {
     /** Fast is one clean win a rung — the price is paid before the run opens. */
     @Test
     fun fastSpendsOneWinARung() {
-        assertEquals(2, open(fast = true).answered("Ujerumani").level)
+        val run = open(fast = true, level = 5)
+        assertEquals(6, run.answered(run.task.display).level)
     }
 
     /** The almost hold is accepted, and moves the rung neither way. */
@@ -316,12 +321,64 @@ class CountryDrillRunTest {
     /** A miss drops the rung, and the rung the run REACHED is what it keeps. */
     @Test
     fun aMissDropsTheRungButNotTheOneTheRunReached() {
-        var run = open()
-        repeat(CountryDrill.WINS_TO_ADVANCE) { run = run.answered("Ujerumani") }
-        assertEquals(2, run.level)
+        var run = open(level = 5)
+        repeat(CountryDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
+        assertEquals(6, run.level)
         run = run.missed()
-        assertEquals(1, run.level)
+        assertEquals(5, run.level)
+        assertEquals(6, run.bestLevel)
+    }
+
+    // MARK: - Asking each question once
+
+    /**
+     * The atlas rung the fixture opens on holds ONE question, so answering it right leaves
+     * the rung with nothing: the run climbs past it rather than asking the same country
+     * again, and the rung it was carried to is a rung it stood on.
+     */
+    @Test
+    fun aRungWithNothingLeftToAskIsClimbedPast() {
+        val run = open().answered("Ujerumani")
+        assertEquals(2, run.level)
         assertEquals(2, run.bestLevel)
+        assertEquals(0, run.winsAtLevel, "the wins stay behind with the rung that earned them")
+        assertFalse(
+            run.task.kind == CountryTaskKind.CountryName && run.task.id == "germany",
+            "the question just answered came round again",
+        )
+        assertFalse(run.finished)
+    }
+
+    /** A slip and a miss both leave the question in the pool — only a clean answer retires it. */
+    @Test
+    fun onlyACleanAnswerRetiresAQuestion() {
+        val slipped = open().answered("Ujerumami")
+        assertEquals(CountryTaskKind.CountryName, slipped.task.kind)
+        assertEquals(1, slipped.level, "an almost neither climbs the rung nor empties it")
+
+        val missed = open().missed()
+        assertEquals(CountryTaskKind.CountryName, missed.task.kind)
+        assertEquals(1, missed.level)
+    }
+
+    /**
+     * A whole ladder answered out ends the run on its summary rather than asking anything
+     * twice — the letter drill's "nothing left to ask", now the atlas rule too.
+     */
+    @Test
+    fun aLadderAnsweredOutEndsTheRun() {
+        var run = open(level = CountryDrill.MAX_LEVEL)
+        val asked = mutableSetOf<String>()
+        while (!run.finished) {
+            asked += "${run.task.kind}:${run.task.id}"
+            run = run.answered(run.task.display)
+        }
+        assertEquals(
+            CountryDrill.tasks(content, CountryDrill.MAX_LEVEL, reverse = false).size,
+            asked.size,
+            "every question was asked exactly once before the run ran out",
+        )
+        assertEquals(asked.size, run.done)
     }
 
     /** The way out belongs to the SECOND miss in a row, not to the first. */

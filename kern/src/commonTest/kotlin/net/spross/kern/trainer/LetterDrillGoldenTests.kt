@@ -3,6 +3,7 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 
 /**
  * The whole ladder replayed from one seed, pinned line by line: stage, answer, prompt
@@ -29,8 +30,11 @@ class LetterDrillGoldenTests {
             val rng = Random(SEED)
             var avoid: String? = null
             repeat(RUN_LENGTH) {
-                val task = LetterDrill.sample(
-                    fixture.alphabet, fixture.example, level, fixture.allRefs, avoid, null, rng,
+                val task = assertNotNull(
+                    LetterDrill.sample(
+                        fixture.alphabet, fixture.example, level, fixture.allRefs,
+                        avoid, null, emptySet(), rng,
+                    ),
                 )
                 avoid = task.answerRef
                 appendLine(
@@ -47,7 +51,9 @@ class LetterDrillGoldenTests {
             // half alone: "Buch" carries a tricky glyph and comes up twice as often.
             val cards = fixture.dictationCandidates()
             repeat(RUN_LENGTH) {
-                val task = LetterDrill.sampleDictation(cards, fixture.alphabet, level, avoid, rng)
+                val task = assertNotNull(
+                    LetterDrill.sampleDictation(cards, fixture.alphabet, level, avoid, emptySet(), rng),
+                )
                 avoid = task.answerRef
                 appendLine("  ${task.stage} ${task.answerRef} ${task.display}")
             }
