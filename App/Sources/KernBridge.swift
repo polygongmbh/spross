@@ -21,6 +21,16 @@ extension KotlinInstant {
     var date: Date { Date(epochMillis: toEpochMilliseconds()) }
 }
 
+// MARK: - Crossing threads
+
+// Kern state is immutable: the engine returns a new `BoxState` rather than
+// editing one, and Kotlin/Native shares objects between threads freely. Saying
+// so lets the box be encoded off the main actor while the model still holds it
+// — encoding walks every schedule and every review ever logged, and that is not
+// work a tap should wait on (`App/Sources/Store/BoxStore.swift`).
+extension BoxState: @retroactive @unchecked Sendable {}
+extension DayStats: @retroactive @unchecked Sendable {}
+
 // MARK: - SwiftUI conformances
 
 extension Card: @retroactive Identifiable {}

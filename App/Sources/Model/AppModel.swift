@@ -220,6 +220,10 @@ final class AppModel {
     /// Load the target's box from disk (re-joined for the profile), or
     /// bootstrap it fresh from the catalog join.
     func activate(source: String, target: String) async {
+        // why: a debounced save may still be holding the box being left behind,
+        // and loading another target replaces it — `swapLanguages` promises the
+        // outgoing box is on disk, so write it before believing that.
+        try? await store.flush()
         guard let catalog, catalog.languages[source] != nil,
               catalog.languages[target] != nil, source != target else {
             loadFailure = .unknownProfile(source: source, target: target)
@@ -243,9 +247,10 @@ final class AppModel {
                                                    joinStamp: stamp)
             }
             box = state
-            try await store.saveNow(json: StoreCodec.shared.encode(state: state), target: target)
+            try await store.saveNow(state: state, target: target)
             await reloadOtherLanguagesDailyStats(excluding: target)
-            await store.saveWidgetSnapshot(json: widgetSnapshotJSON(for: state))
+            await store.saveWidgetSnapshot(state: state, nowEpochMillis: Date().epochMillis,
+                                           otherLanguagesDailyStats: otherLanguagesDailyStats)
             // why: a widget left without a readable snapshot by an update shows the
             // sprout until its timeline is rebuilt — launching is what the sprout
             // asks for, so the handover happens then, not up to six hours later.
@@ -375,31 +380,30 @@ final class AppModel {
         persist(box, immediate: true) // pushes the watch snapshot too (sync spec)
     }
 
+    /// Hand the box to the store. Encoding happens there, off this actor — an
+    /// answer never waits on it, and a burst of them is written once.
     func persist(_ state: BoxState, immediate: Bool = false) {
         // why: every save path also refreshes the watch snapshot, so config
         // changes and session end (immediate saves) reach the watch promptly.
         if immediate { pushWatchSnapshot() }
-        let json = StoreCodec.shared.encode(state: state)
-        let widgetJSON = widgetSnapshotJSON(for: state)
         let target = state.joinStamp.target
+        let now = Date().epochMillis
+        let others = otherLanguagesDailyStats
         Task { [store] in
             if immediate {
-                try? await store.saveNow(json: json, target: target)
+                try? await store.saveNow(state: state, target: target)
+                // why: the decode-only widget renders from this precomputed file
+                // (`kern/docs/snapshots.md`). Built with the immediate saves only —
+                // session end, a config change, the app leaving the screen. Its
+                // worth is long-term exposure, so a round's worth of staleness
+                // costs nothing, and rebuilding it per answer costs a full walk
+                // of the exposure ranking and every day the box has tallied.
+                await store.saveWidgetSnapshot(state: state, nowEpochMillis: now,
+                                               otherLanguagesDailyStats: others)
             } else {
-                await store.save(json: json, target: target)
+                await store.save(state: state, target: target)
             }
-            // why: the decode-only widget renders from this precomputed file
-            // (`kern/docs/snapshots.md`) — refresh it on every persist, never debounced.
-            await store.saveWidgetSnapshot(json: widgetJSON)
         }
-    }
-
-    /// Non-private so AppModel+Queries' reset flow can rewrite the snapshot.
-    func widgetSnapshotJSON(for state: BoxState) -> String {
-        WidgetSnapshotBuilder.shared.build(
-            state: state, nowEpochMillis: Date().epochMillis,
-            exposureLimit: WidgetSnapshotBuilder.shared.DEFAULT_EXPOSURE_LIMIT,
-            otherLanguagesDailyStats: otherLanguagesDailyStats)
     }
 
     /// Apply a change to the box, persist immediately, refresh statistics.

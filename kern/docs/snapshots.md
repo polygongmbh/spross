@@ -19,7 +19,10 @@ Engine contract: `../README.md`.
   no Swift-Date bridging; Instant/TimeZone are constructed inside). TimeZone = device-current
   per call. Day keys are ISO regardless of device calendar
   (DST + non-Gregorian vectors in the test suite).
-- **WidgetSnapshot** (NEW): the phone precomputes on every persist; a widget decodes and
+- **WidgetSnapshot** (NEW): the phone precomputes it on the IMMEDIATE saves — session end,
+  a config change, the app leaving the screen — never per answer: building it walks the
+  exposure ranking, the active cards and every day the box has tallied, and the tile's worth
+  is long-term exposure, which a round's staleness does not touch. A widget decodes and
   draws (it cannot run the join: no catalog in its bundle, ~30 MB extension memory cap vs
   33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
   entries (target-side text, emoji, article tint), per-card `{due}` for render-time
