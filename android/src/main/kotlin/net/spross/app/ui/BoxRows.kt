@@ -73,18 +73,21 @@ fun BoxCardRow(
     val chrome = model.chrome
     val state = model.box ?: return
     val standing = BoxBrowser.cardRowState(state, card.id, packOffered = pack != null)
-    val pronounce = model.boxPronounceAction(card.target)
+    // why: this hands back a fresh closure every time it is asked, so unremembered it
+    // changed the row's own click identity once a frame and no row could ever be skipped.
+    val pronounce = remember(card.id, model.catalog) { model.boxPronounceAction(card.target) }
     // why: only a word the learner wrote is theirs to delete — a catalog word can be put
     // to sleep, never removed, so it grows no such gesture at all.
-    val remove: (() -> Unit)? = when {
-        OwnWords.owns(card.id) -> ({ model.removeOwnWord(card.id) })
-        else -> null
+    val remove: (() -> Unit)? = remember(card.id) {
+        if (OwnWords.owns(card.id)) ({ model.removeOwnWord(card.id) }) else null
     }
     var menuOpen by remember(card.id) { mutableStateOf(false) }
     val interaction = remember { MutableInteractionSource() }
-    val actions = buildList {
-        if (pronounce != null) add(CustomAccessibilityAction(chrome.pronounce) { pronounce(); true })
-        if (remove != null) add(CustomAccessibilityAction(chrome.ownWordRemove) { remove(); true })
+    val actions = remember(pronounce, remove, chrome) {
+        buildList {
+            if (pronounce != null) add(CustomAccessibilityAction(chrome.pronounce) { pronounce(); true })
+            if (remove != null) add(CustomAccessibilityAction(chrome.ownWordRemove) { remove(); true })
+        }
     }
 
     Row(

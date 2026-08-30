@@ -17,10 +17,14 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -33,6 +37,7 @@ import net.spross.app.Chrome
 import net.spross.kern.box.AreaStatistics
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxSearch
+import net.spross.kern.box.BoxSearchResults
 import net.spross.kern.box.OwnWords
 
 /**
@@ -76,8 +81,21 @@ fun BoxSearchScreen(
 
     // why: the search runs on the query SNAPSHOT, not per redraw — packing one hit
     // redraws its row, and the whole box does not need re-scanning for that.
-    val results = remember(query, box) {
-        if (query.isBlank()) null else BoxSearch.search(box, naming.searchable(areas), query)
+    //
+    // And off the typing thread, a beat behind: it scans every card in the box, and a
+    // keystroke that has to wait for the previous letter's scan is how a field comes to
+    // drop characters. The pause is short enough to read as instant and long enough that
+    // a word typed at speed is searched once instead of once a letter.
+    var results by remember { mutableStateOf<BoxSearchResults?>(null) }
+    LaunchedEffect(query, box) {
+        if (query.isBlank()) {
+            results = null
+            return@LaunchedEffect
+        }
+        delay(SEARCH_SETTLE_MS)
+        results = withContext(Dispatchers.Default) {
+            BoxSearch.search(box, naming.searchable(areas), query)
+        }
     }
 
     Column(
@@ -113,13 +131,16 @@ fun BoxSearchScreen(
             modifier = Modifier.fillMaxWidth(),
         )
 
+        // why: read once into a local — the state itself is delegated, so the branches
+        // below could not narrow it.
+        val found = results
         LazyColumn(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
             when {
-                results == null -> item {
+                found == null -> item {
                     SearchNote(chrome.searchHint)
                 }
 
-                results.isEmpty -> item {
+                found.isEmpty -> item {
                     // A box with no answer is where the learner's own words come from:
                     // they have just proved the catalog holds none for what they need.
                     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.l)) {
@@ -136,9 +157,9 @@ fun BoxSearchScreen(
                 }
 
                 else -> {
-                    if (results.areas.isNotEmpty()) {
+                    if (found.areas.isNotEmpty()) {
                         item { Heading(chrome.searchAreas) }
-                        for (match in results.areas) {
+                        for (match in found.areas) {
                             item(key = "area:${match.area}") {
                                 AreaHit(
                                     naming = naming,
@@ -150,9 +171,9 @@ fun BoxSearchScreen(
                             }
                         }
                     }
-                    if (results.cards.isNotEmpty()) {
+                    if (found.cards.isNotEmpty()) {
                         item { Heading(chrome.searchWords) }
-                        for (card in results.cards) {
+                        for (card in found.cards) {
                             item(key = "card:${card.id}") {
                                 BoxCardRow(
                                     model,
@@ -226,3 +247,10 @@ private fun AreaHit(
         }
     }
 }
+
+/**
+ * How long the field settles before the box is scanned. Below a comfortable typing
+ * interval, so a pause reads as instant; above the gap between two quick letters, so a
+ * word typed at speed is searched once rather than once a letter.
+ */
+private const val SEARCH_SETTLE_MS = 120L

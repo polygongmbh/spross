@@ -51,6 +51,7 @@ import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.SessionEffect
 import net.spross.kern.session.SessionIntent
+import net.spross.kern.listen.ListeningPool
 import net.spross.kern.session.SessionOffers
 import net.spross.kern.session.SessionRun
 import net.spross.kern.session.SessionRunState
@@ -447,9 +448,24 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * A voice installed in Settings while the app slept turns the card on without a relaunch.
      */
     fun refreshListening() {
-        val report = listeningReport() ?: return
-        listeningPool = report.candidates
-        listening.refresh(report.candidates)
+        val state = box ?: return
+        val cat = catalog ?: return
+        val stamp = state.joinStamp
+        // why: the voice table belongs to the synthesizer and is read here; the sweep it
+        // feeds walks the whole join asking the catalog for BOTH sides' audio — some
+        // sixteen hundred lookups on a full profile — and runs on every foreground.
+        val hasTarget = pronouncer.canSpeak(stamp.target)
+        val hasSource = pronouncer.canSpeak(stamp.source)
+        viewModelScope.launch {
+            val report = withContext(Dispatchers.Default) {
+                ListeningPool.report(
+                    cat, state, stamp.source, stamp.target,
+                    hasTargetVoice = hasTarget, hasSourceVoice = hasSource,
+                )
+            }
+            listeningPool = report.candidates
+            listening.refresh(report.candidates)
+        }
     }
 
     /**

@@ -12,7 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 
 /**
@@ -45,13 +45,21 @@ private const val PRESS_SCALE = 0.97f
 @Composable
 fun Modifier.pressSpring(): Modifier {
     var pressed by remember { mutableStateOf(false) }
-    val scale by animateFloatAsState(
+    val scale = animateFloatAsState(
         targetValue = if (pressed) PRESS_SCALE else 1f,
         animationSpec = spring(dampingRatio = 0.7f, stiffness = Spring.StiffnessMediumLow),
         label = "pressSpring",
     )
     return this
-        .scale(scale)
+        // why: the animated value is read inside the layer block — in the DRAW phase,
+        // and by this modifier. Read out here it would land in the CALLING composable's
+        // restart scope, and every press would recompose that whole composable once per
+        // frame for the length of the spring: on Heute, the greeting and the date line
+        // rebuilt twenty times because a button was held.
+        .graphicsLayer {
+            scaleX = scale.value
+            scaleY = scale.value
+        }
         .pointerInput(Unit) {
             awaitEachGesture {
                 awaitFirstDown(requireUnconsumed = false)
