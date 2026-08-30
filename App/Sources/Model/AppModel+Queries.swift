@@ -111,11 +111,18 @@ extension AppModel {
 
     /// The same grading with the whole join in view: a form the catalog owns
     /// elsewhere is that word, never a typo of this card's answer (`kern/docs/grading.md`).
-    /// Built per grading pass — one pass over the join's accepted forms, and
-    /// only ever on a submit tap.
+    ///
+    /// One pass over every accepted form the join carries — thousands of
+    /// normalized strings — so it is built on the first turn that asks and kept
+    /// until `refreshStats()` retires it. A card that arrives after the box
+    /// moved is still graded against the box standing now: everything that can
+    /// move the join refreshes the stats with it.
     var produceGrader: CatalogAnswerGrader? {
+        if let cachedProduceGrader { return cachedProduceGrader }
         guard let normalizer = answerNormalizer, let box else { return nil }
-        return CatalogAnswerGrader(normalizer: normalizer, cards: Array(box.cards.values))
+        let grader = CatalogAnswerGrader(normalizer: normalizer, cards: Array(box.cards.values))
+        cachedProduceGrader = grader
+        return grader
     }
 
     // MARK: - Box actions

@@ -47,6 +47,14 @@ final class AppModel {
     /// the summary animates from. Held on the model rather than in the session
     /// state because it is a picture, not a rule kern has any business in.
     var treesBeforeSession: [String: AreaTree] = [:]
+    /// The typed-answer grader over the whole join, held until the box moves.
+    /// Building it walks every card's accepted forms through the normalizer, so
+    /// a session that rebuilt it per card paid for the entire join on every
+    /// answer; `refreshStats()` drops it wherever the join or the language can
+    /// have changed, and the next turn rebuilds it against the box standing then.
+    // why: ignored by Observation — it is filled in on a READ, and a stored
+    // property written during a view's body would invalidate that body.
+    @ObservationIgnored var cachedProduceGrader: CatalogAnswerGrader?
     /// Settable internally only so AppModel+Queries can report reset failures.
     var loadFailure: LoadFailure?
     private(set) var catalog: Catalog?
@@ -326,6 +334,10 @@ final class AppModel {
     // MARK: - Persistence & stats
 
     func refreshStats() {
+        // why: the grader snapshots the join, and this runs wherever the join,
+        // the queue or the profile's languages can have moved — so this is the
+        // one place it goes stale.
+        cachedProduceGrader = nil
         let now = Date().epochMillis
         stats = box.map {
             BoxEngine.shared.statistics(state: $0, nowEpochMillis: now, tzId: currentTzId(),
