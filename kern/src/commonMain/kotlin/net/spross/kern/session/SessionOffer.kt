@@ -186,7 +186,7 @@ object SessionOffers {
         return SessionOffer(
             kind = kind,
             reviews = reviews,
-            dueHeldBack = max(0, BoxEngine.dueNow(state, nowEpochMillis).size - reviews),
+            dueHeldBack = max(0, BoxEngine.dueCount(state, nowEpochMillis) - reviews),
             ahead = ahead,
             fresh = fresh,
             shortRound = SessionComposer.shortRoundSize(plan),
@@ -202,7 +202,7 @@ object SessionOffers {
      */
     fun sessionAvailable(state: BoxState, nowEpochMillis: Long, tzId: String): Boolean =
         !SessionComposer.composeSession(state, nowEpochMillis, tzId).isEmpty ||
-            BoxEngine.dueNow(state, nowEpochMillis).isNotEmpty()
+            BoxEngine.dueCount(state, nowEpochMillis) > 0
 
     /**
      * Whether a round the learner asks for would yield anything — what both the summary's

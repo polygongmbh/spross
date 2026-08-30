@@ -311,6 +311,10 @@ object BoxEngine {
     fun dueNow(state: BoxState, nowEpochMillis: Long): List<String> =
         Inventory.due(state, nowEpochMillis).map { it.cardId }
 
+    /** How many cards stand due — [dueNow]'s size, without composing its order. */
+    fun dueCount(state: BoxState, nowEpochMillis: Long): Int =
+        Inventory.dueCount(state, nowEpochMillis)
+
     /**
      * [otherLanguagesDailyStats]: `dailyStats` from every OTHER target-language box
      * the learner has (each keyed by its own day, THIS state's own [BoxState.dailyStats]

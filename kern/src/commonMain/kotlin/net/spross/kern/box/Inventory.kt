@@ -59,6 +59,21 @@ internal object Inventory {
             .map { it.entry }
     }
 
+    /** How many joined schedules sleep — [scheduled] minus [active], counted. */
+    fun suspendedCount(state: BoxState): Int =
+        state.scheduling.entries.count { it.key in state.cards && it.value.suspended }
+
+    /**
+     * How many active cards stand due — the same population [due] lists, counted.
+     *
+     * A caller that only wants the number never pays for the order: no shuffle keys,
+     * no sort. Whether the backlog is empty is this asked as `> 0`.
+     */
+    fun dueCount(state: BoxState, nowEpochMillis: Long): Int {
+        val now = Instant.fromEpochMilliseconds(nowEpochMillis)
+        return unordered(state).count { it.due != null && it.due <= now }
+    }
+
     private const val MILLIS_PER_DAY = 86_400_000L
 
     private fun dueEpochDay(entry: CardScheduling): Long =

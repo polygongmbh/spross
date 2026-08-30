@@ -211,11 +211,11 @@ internal object Statistics {
             activeCount = active.size,
             consolidatedCount = active.count { isConsolidated(state, it) },
             dueCount = active.count { it.due != null && it.due <= now },
-            suspendedCount = Inventory.scheduled(state).count { it.suspended },
+            suspendedCount = Inventory.suspendedCount(state),
             streak = streak(combinedDailyStats, nowEpochMillis, tzId),
             streakHealth = streakHealth(combinedDailyStats, nowEpochMillis, tzId),
             longestStreak = longestStreak(combinedDailyStats, nowEpochMillis, tzId),
-            areas = areaStatistics(state),
+            areas = areaStatistics(state, active),
         )
     }
 
@@ -303,8 +303,8 @@ internal object Statistics {
         return best
     }
 
-    private fun areaStatistics(state: BoxState): List<AreaStatistics> {
-        val activeCards = Inventory.active(state).mapTo(mutableSetOf()) { it.cardId }
+    private fun areaStatistics(state: BoxState, active: List<CardScheduling>): List<AreaStatistics> {
+        val activeCards = active.mapTo(mutableSetOf()) { it.cardId }
         return state.cards.values.groupBy { it.area }.entries
             .sortedBy { it.key }
             .map { (area, cards) ->

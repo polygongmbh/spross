@@ -47,10 +47,28 @@ internal object Growth {
      * Enqueued cards lead — packing a word is an explicit ask. Unlocked phrases enter next,
      * then seed-order cards (locked phrases wait for their components).
      */
+    /**
+     * The pool [newCandidates] draws from, in the order it draws: every card the box
+     * has not scheduled yet, seed order.
+     *
+     * Separate from the draw so a caller composing a round can sort it ONCE and hand
+     * the same pool to both of its candidate passes — the sort is over every card the
+     * profile joins, and it is the whole cost of a pass.
+     */
+    fun unscheduled(state: BoxState): List<Card> =
+        Inventory.joinedCards(state).filter { state.scheduling[it.id] == null }
+
     fun newCandidates(
         state: BoxState,
         budget: Int,
         capacity: Int,
+    ): NewCandidates = newCandidates(state, budget, capacity, unscheduled(state))
+
+    fun newCandidates(
+        state: BoxState,
+        budget: Int,
+        capacity: Int,
+        unscheduled: List<Card>,
     ): NewCandidates {
         var slots = min(budget, capacity)
         if (slots <= 0) return NewCandidates.empty
@@ -66,8 +84,6 @@ internal object Growth {
             newCards += id
             slots -= 1
         }
-
-        val unscheduled = Inventory.joinedCards(state).filter { state.scheduling[it.id] == null }
 
         // 2a. Unlock fast path: component phrases whose components all sit stable.
         for (card in unscheduled) {

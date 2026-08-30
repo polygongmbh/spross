@@ -134,8 +134,10 @@ object SessionComposer {
         // Reserve headroom only for new work that will actually appear — a box with
         // nothing left to introduce hands every slot back to the review queue. Costs a
         // second candidate pass, which keeps the precedence inside [Growth.newCandidates]
-        // as the one place that decides WHICH cards enter.
-        val available = Growth.newCandidates(state, newBudget, capacity = cap).count
+        // as the one place that decides WHICH cards enter — but both passes draw from
+        // the same pool, and sorting it is the whole cost of one, so it is sorted once.
+        val pool = Growth.unscheduled(state)
+        val available = Growth.newCandidates(state, newBudget, capacity = cap, unscheduled = pool).count
         val growthReserve = min(available, GROWTH_RESERVE_CARDS)
         val reviews = due.take(max(0, cap - growthReserve))
 
@@ -143,6 +145,7 @@ object SessionComposer {
             state,
             budget = newBudget,
             capacity = max(0, cap - reviews.size),
+            unscheduled = pool,
         )
         val plan = SessionPlan(
             reviews = reviews.map { it.cardId },
