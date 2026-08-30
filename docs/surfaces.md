@@ -129,9 +129,11 @@ auto-advance beats these share with it, are `design.md`'s.
 - **An endless run offers its exit where it is wanted, not on a schedule.** "Fertig"
   appears under the button that goes on, and only on the SECOND miss in a row: one
   miss is what a drill is made of, two is where carrying on stops feeling like a choice.
-  A clean answer takes the offer away again. Nothing about the run ends by itself — the
-  corner ✕ still works, and the offer is the same close, worded as finishing rather than
-  abandoning.
+  A clean answer takes the offer away again. The one thing that ends a run unasked is
+  running OUT of questions: a run asks each prompt once (`kern/docs/turns.md`), so a ladder
+  answered out hands its figures over rather than coming round to a question twice.
+  Short of that the corner ✕ still works, and the offer is the same close, worded as
+  finishing rather than abandoning.
 - **A closed run has no screen of its own.** Both drills hand their figures — answered,
   best streak, whether the record fell — to the page that started them and leave; the page
   wears them as one tile above the picks and scrolls up to meet it, and a record still

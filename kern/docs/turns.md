@@ -175,6 +175,21 @@ Engine contract: `../README.md`.
   never as state.
 - **One injected `Random` per run** feeds every draw — task, variant, phrase frame, direction flip —
   so a seeded run is reproducible end to end and identical on both platforms.
+- **A prompt is asked once, and a rung with nothing left is climbed past** (`DrillSolved`).
+  A run keeps what it has answered RIGHT and every draw skips that set;
+  only a clean answer joins it, because a slip, a look-up and a reveal leave a prompt in the pool —
+  which is the ramp's own reading of an almost (`DrillRamp.step` moves nothing on one).
+  A rung answered out is climbed past rather than repeated, and the rung it climbs to is booked
+  like any other, since answering a rung out is standing on it; the wins banked below stay behind.
+  A whole ladder answered out ends the run on its summary — where the letter drill's
+  "nothing left to ask" already went, now the rule for all three.
+  The atlas and the letter drill can ENUMERATE a rung and filter it;
+  the slot drill draws values rather than picking them out of a list, so there
+  `DrillSolved.SPENT_ATTEMPTS` repeats in a row is what "spent" can honestly mean,
+  and in a mixed run a variant that has run out hands the turn to the next one.
+  Nothing of this is persisted: the set lives and dies with the run,
+  because a prompt answered on Tuesday is worth asking again on Friday
+  and keeping that kind of score is the growing box's job.
 - Feedback and cues reuse the turn machine's vocabulary
   (`TurnFeedback`, `AlmostReason`, `AnswerOutcome`, `AdvanceTier`, `ToneKind`);
   nothing new is minted where kern already names a rule.
