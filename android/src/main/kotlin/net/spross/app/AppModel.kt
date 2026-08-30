@@ -271,13 +271,21 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     /**
      * Produce grading with the whole join in view: a form the catalog owns
      * elsewhere is that word, never a typo of this card's answer (`kern/docs/grading.md`).
-     * Built per grading pass — one pass over the join, only on a check tap.
+     * One pass over every accepted form the join carries — thousands of normalized
+     * strings — so it is built on the first turn that asks and kept until
+     * [refreshStats] retires it. A card that arrives after the box moved is still
+     * graded against the box standing now: everything that can move the join
+     * refreshes the numbers with it.
      */
+    private var cachedProduceGrader: CatalogAnswerGrader? = null
+
     val produceGrader: CatalogAnswerGrader?
         get() {
+            cachedProduceGrader?.let { return it }
             val norm = normalizer ?: return null
             val state = box ?: return null
             return CatalogAnswerGrader(norm, state.cards.values.toList())
+                .also { cachedProduceGrader = it }
         }
 
     // internal: the box surfaces stamp their own verbs with it (`FeedbackActions.kt`),
@@ -644,7 +652,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         box = reduction.state.box
         for (effect in reduction.effects) {
             when (effect) {
-                is SessionEffect.Persist -> persist(reduction.state.box, effect.immediate)
+                is SessionEffect.Persist ->
+                    persist(reduction.state.box, effect.immediate, widget = effect.immediate)
                 SessionEffect.DayBooked -> refreshStats()
             }
         }
@@ -680,7 +689,10 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 segments = active.segments, remaining = 0,
                 introduced = active.newCards, strengthened = active.graduated,
                 reviewed = active.reviews,
-                canPracticeMore = SessionOffers.canPracticeMore(state, now(), tz()),
+                // why: `DayBooked` precedes this in [dispatch], so [canPracticeExtra] was
+                // taken against the box this summary is for — asking again would compose
+                // the same round a second time.
+                canPracticeMore = canPracticeExtra,
                 // why: the day is folded and the numbers refreshed before this runs
                 // (`DayBooked` precedes it in [dispatch]), so the finish names the streak
                 // the answer just extended rather than the one it started with.
@@ -728,7 +740,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 introduced = active.newCards,
                 strengthened = active.graduated,
                 reviewed = active.reviews,
-                canPracticeMore = SessionOffers.canPracticeMore(state, now(), tz()),
+                // why: only the finished round shows this, and composing a whole round
+                // to fill a field no card on screen reads is a pause between cards.
+                canPracticeMore = canPracticeExtra,
             )
         }
         sessionUi = ui
@@ -736,6 +750,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     private fun refreshStats() {
         val state = box ?: return
+        // why: the grader snapshots the join, and this runs wherever the join, the
+        // queue or the profile's languages can have moved — the one place it goes stale.
+        cachedProduceGrader = null
         stats = BoxEngine.statistics(state, now(), tz(), otherLanguagesDailyStats)
         // why: the strip reads the same merged days the streak does — a day worked in
         // another language is still a day worked, on the picture as well as the count.
@@ -767,24 +784,34 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * [immediate] is the day's fold asking to be on disk BEFORE the caller returns: it is
      * dispatched from `onStop`, where the process may not live long enough for a queued
      * write, and a fold that never reaches disk is no fold.
+     *
+     * [widget] rebuilds the tile's snapshot. Off for the answers inside a round and only
+     * those: building it walks the exposure ranking, every active card and every day the
+     * box has tallied, and the tile's worth is long-term exposure — a round's staleness
+     * does not touch it, while a rebuild per card is the same order of work as the box
+     * document itself (`kern/docs/snapshots.md`).
      */
-    private fun persist(state: BoxState, immediate: Boolean = false) {
-        val json = StoreCodec.encode(state)
+    private fun persist(state: BoxState, immediate: Boolean = false, widget: Boolean = true) {
         val target = state.joinStamp.target
         val stamp = now()
         if (immediate) {
-            boxFiles.write(target, json)
-            boxFiles.writeWidgetSnapshot(widgetSnapshot(state, stamp))
-            nudgeWidget()
+            boxFiles.write(target, StoreCodec.encode(state))
+            if (widget) {
+                boxFiles.writeWidgetSnapshot(widgetSnapshot(state, stamp))
+                nudgeWidget()
+            }
             return
         }
         // why: NonCancellable — a write racing activity teardown must still land.
         viewModelScope.launch(Dispatchers.IO + NonCancellable) {
-            boxFiles.write(target, json)
-            // Built off the main thread: the ranking walk and the encode are the same
-            // order of work as the box document's, and nothing on screen waits for them.
-            boxFiles.writeWidgetSnapshot(widgetSnapshot(state, stamp))
-            WordWidget.refresh(getApplication())
+            // why: the encode is the expensive half — the whole document, every schedule
+            // and every review ever logged — and it belongs on this thread with the
+            // write, not on the one that has to draw the next card.
+            boxFiles.write(target, StoreCodec.encode(state))
+            if (widget) {
+                boxFiles.writeWidgetSnapshot(widgetSnapshot(state, stamp))
+                WordWidget.refresh(getApplication())
+            }
         }
     }
 
