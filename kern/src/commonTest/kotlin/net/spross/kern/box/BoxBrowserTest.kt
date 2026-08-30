@@ -215,6 +215,19 @@ class BoxBrowserTest {
         assertEquals(listOf("w04"), BoxBrowser.dequeueableCardIds(state, "office"))
     }
 
+    /** Every shelf at once lists what each shelf lists on its own. */
+    @Test
+    fun theGroupedShelvesMatchEachShelfsOwnListing() {
+        val state = Box.state(
+            (1..3).map { Box.word(it, area = "kitchen") } + Box.word(4, area = "office"),
+        )
+        val grouped = BoxBrowser.cardsByArea(state)
+        for (area in listOf("kitchen", "office")) {
+            assertEquals(BoxBrowser.cardsInArea(state, area), grouped[area], area)
+        }
+        assertEquals(null, grouped["nowhere"])
+    }
+
     /**
      * The browser draws both pack numbers on every shelf at once, so it asks for them
      * all at once — and what it is told must be what each shelf's own control would do.

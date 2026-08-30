@@ -175,6 +175,16 @@ object BoxBrowser {
     fun dequeueableCount(state: BoxState, area: String): Int = dequeueableCardIds(state, area).size
 
     /**
+     * Every area's cards, each shelf in seed order — [cardsInArea] for all of them at once.
+     *
+     * A browser listing shelves opens more than one, and each asked on its own filters
+     * and sorts the whole box. Grouping once costs what a single shelf used to.
+     */
+    fun cardsByArea(state: BoxState): Map<String, List<Card>> =
+        state.cards.values.groupBy { it.area }
+            .mapValues { (_, cards) -> cards.sortedWith(Inventory.seedOrder) }
+
+    /**
      * Both pack counts for every area the box holds cards in, in one walk.
      *
      * The same predicates [enqueueableCardIds] and [dequeueableCardIds] apply, read off

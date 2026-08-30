@@ -70,6 +70,25 @@ final class AppModel {
     /// they are resolved when the PROFILE changes and never per composition.
     private(set) var atlasJoinsPair = false
     private(set) var phraseTemplatesForPair: [PhraseTemplate] = []
+    /// The target languages the settings picker offers. Reading this used to run
+    /// a full catalog JOIN per candidate language — every card of every pair
+    /// built and thrown away — twice over, from a view body.
+    private(set) var targetChoices: [String] = []
+    /// Every shelf's heading, resolved for the reader: emoji, title, flavor line.
+    /// Each was its own linear scan of the catalog's area list, and the browser
+    /// asks all three per shelf while the forest asks the emoji again per tree.
+    private(set) var areaChrome: [String: AreaChrome] = [:]
+
+    /// Each area's numbers by name. `BoxStatistics.areas` is a LIST, so finding
+    /// one area in it is a scan — and both the browser and the forest do it once
+    /// per area, which is the same scan squared.
+    private(set) var areaStatsByName: [String: AreaStatistics] = [:]
+    /// How many cards the join holds. `box.cards` is a Kotlin map, so reading
+    /// `.count` off it carries the whole thing across the bridge.
+    private(set) var cardTotal = 0
+    /// Each shelf's cards in seed order. Asked one shelf at a time, every answer
+    /// filtered and sorted the whole box; grouped once it costs what one did.
+    private(set) var cardsByArea: [String: [Card]] = [:]
     /// Each area's tree as it stood when the current run started — the "before"
     /// the summary animates from. Held on the model rather than in the session
     /// state because it is a picture, not a rule kern has any business in.
@@ -406,6 +425,9 @@ final class AppModel {
         areaGroupSections = composedAreaGroupSections()
         shelves = box.map { BoxBrowser.shared.shelfCounts(state: $0) } ?? [:]
         anyWordAudible = composedAnyWordAudible()
+        areaStatsByName = Dictionary(uniqueKeysWithValues: (stats?.areas ?? []).map { ($0.name, $0) })
+        cardTotal = box?.cards.count ?? 0
+        cardsByArea = box.map { BoxBrowser.shared.cardsByArea(state: $0) } ?? [:]
     }
 
     /// What the trainer card can offer for this pair. A catalog question, not a
@@ -416,6 +438,8 @@ final class AppModel {
         else {
             atlasJoinsPair = false
             phraseTemplatesForPair = []
+            targetChoices = []
+            areaChrome = [:]
             return
         }
         // why: kern throws on an unknown or self-paired language rather than
@@ -423,6 +447,10 @@ final class AppModel {
         // the guard above, which both drills used to take for themselves.
         atlasJoinsPair = catalog.countryDrillContent(source: sourceLanguage, target: target) != nil
         phraseTemplatesForPair = catalog.phraseTemplates(source: sourceLanguage, target: target)
+        targetChoices = LanguageChoices.shared.targetChoices(
+            catalog: catalog,
+            selection: LanguageChoices.Selection(source: sourceLanguage, target: target))
+        areaChrome = composedAreaChrome(catalog: catalog)
     }
 
     /// Reload `otherLanguagesDailyStats` for every catalog language except

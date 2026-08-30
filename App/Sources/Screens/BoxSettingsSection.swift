@@ -301,10 +301,9 @@ struct BoxSettingsSection: View {
 
     /// The target picker's rows — `LanguageChoices.targetChoices`, which offers
     /// the swap row only where the swapped pair actually teaches something.
-    private var targetChoices: [String] {
-        guard let catalog = model.catalog else { return [] }
-        return LanguageChoices.shared.targetChoices(catalog: catalog, selection: selection)
-    }
+    /// Resolved when the profile changes: asking counts the cards of every pair
+    /// the catalog could teach, which means joining all of them.
+    private var targetChoices: [String] { model.targetChoices }
 
     private var sourceBinding: Binding<String> {
         Binding(

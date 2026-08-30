@@ -125,13 +125,27 @@ struct TreeMark {
     /// The branches, grown from the area's name and its standing — so the very
     /// same tree stands before and after a round and only what hangs on it moves.
     ///
+    /// Grown with the mark rather than on each read: a `Canvas` redraws more
+    /// often than the forest is laid out — a scroll, a size change, a theme
+    /// change — and growing a tree is the expensive half of drawing one.
+    let skeleton: TreeSkeleton
+
+    init(tree: AreaTree, foot: CGPoint, height: CGFloat, cell: CGRect, baseline: CGFloat) {
+        self.tree = tree
+        self.foot = foot
+        self.height = height
+        self.cell = cell
+        self.baseline = baseline
+        self.skeleton = Self.grown(tree: tree, foot: foot, height: height)
+    }
+
     /// Grown TWICE. `TreeSkeleton` fits the wood to the box it is given, and the
     /// leaves hang off the ends of that wood — so a crown fitted flush reaches
     /// past its own box by up to half a leaf, and at hero size that is a canopy
     /// visibly sliced off along the top of the canvas. The first growing is
     /// there to be measured: it says how far this crown's marks reach, and the
     /// second is grown into a box holding that much back for them.
-    var skeleton: TreeSkeleton {
+    private static func grown(tree: AreaTree, foot: CGPoint, height: CGFloat) -> TreeSkeleton {
         // why: both counts come from the TREE — the finished one, whatever
         // moment is being drawn — and never from the height it is drawn at.
         // A transition scales the height every frame, and a crown that grew

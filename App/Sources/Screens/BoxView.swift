@@ -167,7 +167,7 @@ struct BoxView: View {
 
     private var subtitle: Text {
         let active = model.stats?.activeCards ?? 0
-        let total = model.box?.cards.count ?? 0
+        let total = model.cardTotal
         return Text("box.cardsInProgress \(active.formatted()) \(total.formatted())")
     }
 

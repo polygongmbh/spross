@@ -183,23 +183,40 @@ extension AppModel {
     /// Area heading in the profile's source language, catalog-provided. The
     /// learner's own area is chrome, so it reads from the string catalog instead.
     func areaTitle(_ area: String) -> String {
-        if area == ownArea { return DLChrome.string("box.ownWords", locale: knownLocale) }
-        return catalog?.areaTitle(area: area, lang: sourceLanguage) ?? area.capitalized
+        areaChrome[area]?.title ?? area.capitalized
     }
 
     /// The flavor clause under the heading, in the same language — optional content,
     /// so nil is the ordinary answer for an area that authors none. The learner's own
     /// area has no author to write one.
     func areaSubtitle(_ area: String) -> String? {
-        guard area != ownArea else { return nil }
-        return catalog?.areaSubtitle(area: area, lang: sourceLanguage)
+        areaChrome[area]?.subtitle
     }
 
     /// Area icon, language-neutral: the catalog owns its own (`areas.json`), Kern
     /// owns the one area the catalog cannot. A neutral box for anything else.
     func areaEmoji(_ area: String) -> String {
-        if area == ownArea { return OwnWords.shared.EMOJI }
-        return catalog?.areaEmoji(area: area) ?? "📦"
+        areaChrome[area]?.emoji ?? "📦"
+    }
+
+    /// Every shelf's heading resolved in one pass — `areaChrome` holds it.
+    /// Asked per shelf, each of the three was a linear scan of the catalog's
+    /// area list, and the forest asks for the emoji again once per tree.
+    func composedAreaChrome(catalog: Catalog) -> [String: AreaChrome] {
+        var chrome: [String: AreaChrome] = [:]
+        for area in catalog.areaNames {
+            chrome[area] = AreaChrome(
+                emoji: catalog.areaEmoji(area: area) ?? "📦",
+                title: catalog.areaTitle(area: area, lang: sourceLanguage) ?? area.capitalized,
+                subtitle: catalog.areaSubtitle(area: area, lang: sourceLanguage))
+        }
+        // The one area the catalog does not own: kern names its icon, and its
+        // heading is chrome in the reader's language rather than catalog content.
+        chrome[ownArea] = AreaChrome(
+            emoji: OwnWords.shared.EMOJI,
+            title: DLChrome.string("box.ownWords", locale: knownLocale),
+            subtitle: nil)
+        return chrome
     }
 
     /// The manifest's groups with the areas this box holds — `BoxBrowser.sections`.
@@ -232,18 +249,13 @@ extension AppModel {
         return BoxBrowser.shared.defaultExpandedGroupId(sections: areaGroupSections, stats: stats)
     }
 
-    func areaStats(_ name: String) -> AreaStatistics? {
-        stats?.areas.first { $0.name == name }
-    }
+    func areaStats(_ name: String) -> AreaStatistics? { areaStatsByName[name] }
 
     /// One card by id, or nil where this profile's join holds none — a suggestion's
     /// id, or a word written in a pair this box does not teach.
     func card(_ cardID: String) -> Card? { box?.cards[cardID] }
 
-    func cards(inArea area: String) -> [Card] {
-        guard let box else { return [] }
-        return BoxBrowser.shared.cardsInArea(state: box, area: area)
-    }
+    func cards(inArea area: String) -> [Card] { cardsByArea[area] ?? [] }
 
     /// What "Pack in die Box" would actually add to this shelf.
     func enqueueableCount(area: String) -> Int { Int(shelves[area]?.packable ?? 0) }
@@ -305,4 +317,11 @@ extension SessionOffer {
         case .streakReminder: return "streakReminder"
         }
     }
+}
+
+/// A shelf's heading, resolved for the reader once per profile.
+struct AreaChrome {
+    let emoji: String
+    let title: String
+    let subtitle: String?
 }
