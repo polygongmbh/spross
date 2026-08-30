@@ -215,6 +215,39 @@ class BoxBrowserTest {
         assertEquals(listOf("w04"), BoxBrowser.dequeueableCardIds(state, "office"))
     }
 
+    /**
+     * The browser draws both pack numbers on every shelf at once, so it asks for them
+     * all at once — and what it is told must be what each shelf's own control would do.
+     */
+    @Test
+    fun theShelfCountsAgreeWithEachShelfsOwnControls() {
+        var state = Box.state(
+            (1..4).map { Box.word(it, area = "kitchen") } +
+                (5..7).map { Box.word(it, area = "office") },
+        )
+        state = Box.inject(state, Box.sched("w01", dueMillis = future, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w05", dueMillis = future, lastReviewMillis = now))
+        state = BoxEngine.enqueue(state, listOf("w03", "w06"))
+
+        val counts = BoxBrowser.shelfCounts(state)
+        for (area in listOf("kitchen", "office")) {
+            assertEquals(BoxBrowser.enqueueableCount(state, area), counts[area]?.packable, area)
+            assertEquals(BoxBrowser.dequeueableCount(state, area), counts[area]?.queued, area)
+        }
+        assertEquals(ShelfCounts(packable = 2, queued = 1), counts["kitchen"])
+        assertEquals(ShelfCounts(packable = 1, queued = 1), counts["office"])
+    }
+
+    /** A shelf with nothing left to pack and nothing queued drops out rather than reading zero. */
+    @Test
+    fun aShelfWithNothingToOfferIsAbsentFromTheCounts() {
+        var state = Box.state(listOf(Box.word(1, area = "kitchen"), Box.word(2, area = "office")))
+        state = Box.inject(state, Box.sched("w01", dueMillis = future, lastReviewMillis = now))
+
+        assertEquals(null, BoxBrowser.shelfCounts(state)["kitchen"])
+        assertEquals(ShelfCounts(packable = 1, queued = 0), BoxBrowser.shelfCounts(state)["office"])
+    }
+
     @Test
     fun theConsolidatedFlagFollowsTheBarAndNeverThePhase() {
         var state = Box.state((1..5).map { Box.word(it) })

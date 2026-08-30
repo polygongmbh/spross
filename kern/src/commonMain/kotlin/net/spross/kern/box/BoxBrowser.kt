@@ -18,6 +18,21 @@ data class AreaGroupSection(
 )
 
 /**
+ * What a shelf's two pack controls have to offer, counted for every area at once.
+ *
+ * The browser draws both numbers on every shelf it lists, and asked one shelf at a
+ * time each answer is a walk of the whole box ([enqueueableCardIds] filters
+ * [cardsInArea]) — so a screenful of shelves costs areas x cards. [BoxBrowser.shelfCounts]
+ * answers them all in one pass instead, under the same predicates the id lists use.
+ */
+data class ShelfCounts(
+    /** What packing this shelf would add — the size of [BoxBrowser.enqueueableCardIds]. */
+    val packable: Int,
+    /** What taking its queue back out would remove — the size of [BoxBrowser.dequeueableCardIds]. */
+    val queued: Int,
+)
+
+/**
  * What one listed card says about itself besides the word — the rule, never the mark.
  *
  * Exactly one of these holds at a time, and which one is a box question:
@@ -158,6 +173,30 @@ object BoxBrowser {
 
     /** What taking this shelf's queue back out would remove — the size of [dequeueableCardIds]. */
     fun dequeueableCount(state: BoxState, area: String): Int = dequeueableCardIds(state, area).size
+
+    /**
+     * Both pack counts for every area the box holds cards in, in one walk.
+     *
+     * The same predicates [enqueueableCardIds] and [dequeueableCardIds] apply, read off
+     * the cards rather than off the areas: a browser listing thirty shelves asks once
+     * instead of sixty times, and no shelf can promise a number its own pack would not add.
+     * An area with nothing to offer on either control is absent rather than zeroed.
+     */
+    fun shelfCounts(state: BoxState): Map<String, ShelfCounts> {
+        val queued = state.enqueued.toSet()
+        val packable = mutableMapOf<String, Int>()
+        val waiting = mutableMapOf<String, Int>()
+        for (card in state.cards.values) {
+            if (card.id in queued) {
+                waiting[card.area] = (waiting[card.area] ?: 0) + 1
+            } else if (state.scheduling[card.id] == null) {
+                packable[card.area] = (packable[card.area] ?: 0) + 1
+            }
+        }
+        return (packable.keys + waiting.keys).associateWith {
+            ShelfCounts(packable = packable[it] ?: 0, queued = waiting[it] ?: 0)
+        }
+    }
 
     /**
      * What this card's row has to state, and nothing about how it is drawn.
