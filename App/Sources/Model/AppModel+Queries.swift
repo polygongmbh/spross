@@ -208,9 +208,22 @@ extension AppModel {
     /// the groups, which is a test affordance kern has no business knowing about;
     /// with areas present the guard changes nothing (an empty box drops every
     /// group anyway).
-    var areaGroupSections: [AreaGroupSection] {
+    /// Held on the model as `areaGroupSections`: `BoxBrowser.sections` re-derives
+    /// `areaNames` internally, and the browser reads the shelves three times a redraw.
+    func composedAreaGroupSections() -> [AreaGroupSection] {
         guard let catalog, let stats, !areaNames.isEmpty else { return [] }
         return BoxBrowser.shared.sections(catalog: catalog, stats: stats, source: sourceLanguage)
+    }
+
+    /// Whether a single word in the box can be said aloud here — `anyWordAudible`
+    /// holds the answer. A target language with a device voice says yes without
+    /// looking; one without has to ask the catalog for a recording, card by card.
+    func composedAnyWordAudible() -> Bool {
+        guard let target = targetLanguage else { return false }
+        if Pronouncer.shared.canSpeak(language: target) { return true }
+        return box?.cards.values.contains { card in
+            pronounceAction(for: card.target.text, lang: card.target.lang) != nil
+        } ?? false
     }
 
     /// The group the Box browser opens on — `BoxBrowser.defaultExpandedGroupId`.
@@ -233,16 +246,10 @@ extension AppModel {
     }
 
     /// What "Pack in die Box" would actually add to this shelf.
-    func enqueueableCount(area: String) -> Int {
-        guard let box else { return 0 }
-        return Int(BoxBrowser.shared.enqueueableCount(state: box, area: area))
-    }
+    func enqueueableCount(area: String) -> Int { Int(shelves[area]?.packable ?? 0) }
 
     /// What `dequeueArea` would take back out of this shelf.
-    func dequeueableCount(area: String) -> Int {
-        guard let box else { return 0 }
-        return Int(BoxBrowser.shared.dequeueableCount(state: box, area: area))
-    }
+    func dequeueableCount(area: String) -> Int { Int(shelves[area]?.queued ?? 0) }
 
     /// What one listed card's row has to state about itself. `packOffered` is
     /// the row's context, not the card's: a search hit packs a single word, an

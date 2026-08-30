@@ -174,13 +174,7 @@ struct BoxView: View {
     /// Whether the hint is worth showing at all — a box whose language has
     /// neither a recording nor a device voice for a single word must not
     /// promise a tap that would do nothing everywhere.
-    private var anyWordCanBeHeard: Bool {
-        guard let target = model.targetLanguage else { return false }
-        return Pronouncer.shared.canSpeak(language: target)
-            || (model.box?.cards.values.contains { card in
-                model.pronounceAction(for: card.target.text, lang: card.target.lang) != nil
-            } ?? false)
-    }
+    private var anyWordCanBeHeard: Bool { model.anyWordAudible }
 }
 
 // MARK: - Fold chevron

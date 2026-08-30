@@ -52,6 +52,18 @@ final class AppModel {
     private(set) var trees: [AreaTree] = []
     /// The fortnight the activity strip shows, refreshed with the rest.
     private(set) var activity: [ActivityDay] = []
+    /// The Box browser's shelves, in manifest order. Derived from `stats`, and
+    /// the screen reads it three times per redraw.
+    private(set) var areaGroupSections: [AreaGroupSection] = []
+    /// What each shelf's two pack controls would do, every area at once
+    /// (`BoxBrowser.shelfCounts`) — asked per shelf, each answer walked the
+    /// whole box, and the browser draws both numbers on every one of them.
+    private(set) var shelves: [String: ShelfCounts] = [:]
+    /// Whether ANY word in the box can be said aloud on this device — the gate
+    /// on the box's tap-to-hear hint. Where the target language has no device
+    /// voice this is a walk of every card asking the catalog for a recording,
+    /// so it is answered with the rest and not per redraw.
+    private(set) var anyWordAudible = false
     /// Each area's tree as it stood when the current run started — the "before"
     /// the summary animates from. Held on the model rather than in the session
     /// state because it is a picture, not a rule kern has any business in.
@@ -371,6 +383,9 @@ final class AppModel {
         heute = box.map { HeuteStanding.of(box: $0, nowEpochMillis: now, tzId: tz) } ?? .none
         trees = composedAreaTrees()
         activity = composedActivityWindow(now: now, tzId: tz)
+        areaGroupSections = composedAreaGroupSections()
+        shelves = box.map { BoxBrowser.shared.shelfCounts(state: $0) } ?? [:]
+        anyWordAudible = composedAnyWordAudible()
     }
 
     /// Take the standing again where the day has turned under a screen that
