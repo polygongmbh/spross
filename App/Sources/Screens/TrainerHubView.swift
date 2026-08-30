@@ -34,28 +34,18 @@ struct TrainerHubView: View, LanguageNaming {
     /// The sentence drill this profile can run: the frames the catalog joins
     /// for the pair, always asked known-language prompt → learned-language answer.
     var phraseDrill: (source: String, target: String, templates: [PhraseTemplate])? {
-        guard let catalog = model.catalog, let target = drillLanguage else { return nil }
-        let source = model.sourceLanguage
-        // why: Kern throws on an unknown or self-paired language rather than
-        // returning empty, and a Kotlin throw crossing back is a crash.
-        guard source != target,
-              catalog.languages[source] != nil,
-              catalog.languages[target] != nil else { return nil }
-        let templates = catalog.phraseTemplates(source: source, target: target)
-        return templates.isEmpty ? nil : (source: source, target: target, templates: templates)
+        guard let target = drillLanguage else { return nil }
+        let templates = model.phraseTemplatesForPair
+        return templates.isEmpty ? nil : (source: model.sourceLanguage, target: target,
+                                          templates: templates)
     }
 
     /// The pair whose atlas this profile can drill, or nil where the catalog
     /// joins none — registry by FILE, exactly as the alphabet's is. Kern is the
     /// only judge of that, so nothing here counts countries.
     var atlasPair: (source: String, target: String)? {
-        guard let catalog = model.catalog, let target = drillLanguage else { return nil }
-        let source = model.sourceLanguage
-        // why: kern REQUIRES a real pair and a Kotlin throw crossing back is a
-        // crash — the same guard the phrase drill takes.
-        guard source != target,
-              catalog.countryDrillContent(source: source, target: target) != nil else { return nil }
-        return (source: source, target: target)
+        guard model.atlasJoinsPair, let target = drillLanguage else { return nil }
+        return (source: model.sourceLanguage, target: target)
     }
 
     var atlasAvailable: Bool { atlasPair != nil }

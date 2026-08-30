@@ -272,10 +272,15 @@ enum ForestLayout {
     }
 
 
+    /// How tall a laid-out forest stands.
+    // why: the marks are ordered by depth, not down the page — the lowest
+    // edge belongs to whichever tree stands furthest forward.
+    static func height(of marks: [TreeMark]) -> CGFloat {
+        marks.map(\.cell.maxY).max() ?? 0
+    }
+
     static func height(_ trees: [AreaTree], width: CGFloat) -> CGFloat {
-        // why: the marks are ordered by depth, not down the page — the lowest
-        // edge belongs to whichever tree stands furthest forward.
-        marks(trees, width: width).map(\.cell.maxY).max() ?? 0
+        height(of: marks(trees, width: width))
     }
 
     /// The mass at which a tree reaches full height — a large area, thoroughly

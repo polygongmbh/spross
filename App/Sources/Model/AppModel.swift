@@ -64,6 +64,12 @@ final class AppModel {
     /// voice this is a walk of every card asking the catalog for a recording,
     /// so it is answered with the rest and not per redraw.
     private(set) var anyWordAudible = false
+    /// Whether the profile's pair joins a country atlas, and the sentence frames
+    /// it joins. Both are catalog walks — the atlas one builds every country row
+    /// and every language name — and the trainer card asks on every redraw, so
+    /// they are resolved when the PROFILE changes and never per composition.
+    private(set) var atlasJoinsPair = false
+    private(set) var phraseTemplatesForPair: [PhraseTemplate] = []
     /// Each area's tree as it stood when the current run started — the "before"
     /// the summary animates from. Held on the model rather than in the session
     /// state because it is a picture, not a rule kern has any business in.
@@ -279,6 +285,7 @@ final class AppModel {
             UserDefaults.standard.set(source, forKey: Self.sourceLanguageKey)
             UserDefaults.standard.set(target, forKey: Self.targetLanguageKey)
             loadFailure = nil
+            refreshTrainerContent()
             refreshStats()
             pushWatchSnapshot()
             recomposeSessionIfStale()
@@ -302,6 +309,7 @@ final class AppModel {
         self.box = next
         UserDefaults.standard.set(newSource, forKey: Self.sourceLanguageKey)
         persist(next, immediate: true)
+        refreshTrainerContent()
         refreshStats()
         recomposeSessionIfStale()
     }
@@ -386,6 +394,23 @@ final class AppModel {
         areaGroupSections = composedAreaGroupSections()
         shelves = box.map { BoxBrowser.shared.shelfCounts(state: $0) } ?? [:]
         anyWordAudible = composedAnyWordAudible()
+    }
+
+    /// What the trainer card can offer for this pair. A catalog question, not a
+    /// box one, so it is asked when the profile changes rather than with the rest.
+    func refreshTrainerContent() {
+        guard let catalog, let target = targetLanguage, sourceLanguage != target,
+              catalog.languages[sourceLanguage] != nil, catalog.languages[target] != nil
+        else {
+            atlasJoinsPair = false
+            phraseTemplatesForPair = []
+            return
+        }
+        // why: kern throws on an unknown or self-paired language rather than
+        // returning empty, and a Kotlin throw crossing back is a crash — hence
+        // the guard above, which both drills used to take for themselves.
+        atlasJoinsPair = catalog.countryDrillContent(source: sourceLanguage, target: target) != nil
+        phraseTemplatesForPair = catalog.phraseTemplates(source: sourceLanguage, target: target)
     }
 
     /// Take the standing again where the day has turned under a screen that

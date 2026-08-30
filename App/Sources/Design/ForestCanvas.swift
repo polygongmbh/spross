@@ -43,7 +43,9 @@ struct ForestCanvas: View {
                 label(mark)
             }
         }
-        .frame(width: width, height: ForestLayout.height(trees, width: width), alignment: .topLeading)
+        // why: from the marks already laid out — asking `ForestLayout.height`
+        // would lay the whole forest out a second time for the same number.
+        .frame(width: width, height: ForestLayout.height(of: marks), alignment: .topLeading)
     }
 
     /// The area's emoji under its tree — the identity the catalog already owns,
