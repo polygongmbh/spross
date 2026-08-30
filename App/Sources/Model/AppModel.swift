@@ -186,7 +186,7 @@ final class AppModel {
         uitestScreen = defaults.string(forKey: "uitest-screen")
         #endif
 
-        guard let catalog = loadCatalog() else {
+        guard let catalog = await Self.loadCatalog() else {
             loadFailure = .catalogMissing
             phase = .ready
             return
@@ -216,10 +216,15 @@ final class AppModel {
 
     /// The Xcode project bundles the repo's catalog/ folder as a folder
     /// reference; Kern parses it through a path-based reader.
-    private func loadCatalog() -> Catalog? {
+    // why: ~350 JSON files, most of a megabyte, parsed and fingerprinted — the
+    // longest single thing a cold start does, and nothing about it needs the
+    // main actor. Android has always loaded it off the main thread.
+    private static func loadCatalog() async -> Catalog? {
         guard let directory = Bundle.main.url(forResource: "catalog", withExtension: nil)
         else { return nil }
-        return Catalog.companion.load(source: BundleCatalogSource(directory: directory))
+        return await Task.detached {
+            Catalog.companion.load(source: BundleCatalogSource(directory: directory))
+        }.value
     }
 
     /// The end of the ONLY first-run path — the pick, then the round it was made for.
@@ -258,23 +263,30 @@ final class AppModel {
             return
         }
         do {
-            let cards = catalog.join(source: source, target: target)
-            let stamp = JoinStamp(source: source, target: target,
-                                  catalogFingerprint: catalog.fingerprint)
-            let state: BoxState
-            if let json = try await store.load(target: target) {
+            let stored = try await store.load(target: target)
+            // why: joining the catalog and decoding the document are the two
+            // heaviest things a launch does — every card in the profile built,
+            // every schedule and review parsed — and neither needs this actor.
+            let state = try await Task.detached {
+                let cards = catalog.join(source: source, target: target)
+                let stamp = JoinStamp(source: source, target: target,
+                                      catalogFingerprint: catalog.fingerprint)
+                guard let stored else {
+                    return BoxEngine.shared.bootstrap(cards: cards,
+                                                      config: BoxConfig.companion.product(),
+                                                      joinStamp: stamp)
+                }
                 // why: schedules are keyed by card id (source-agnostic), so a
                 // stored box re-joins under ANY source with progress intact.
-                state = try StoreCodec.shared.decode(json: json)
+                return try StoreCodec.shared.decode(json: stored)
                     .join(cards: cards, joinStamp: stamp)
                     .withProductCalibration()
-            } else {
-                state = BoxEngine.shared.bootstrap(cards: cards,
-                                                   config: BoxConfig.companion.product(),
-                                                   joinStamp: stamp)
-            }
+            }.value
             box = state
-            try await store.saveNow(state: state, target: target)
+            // why: only a box that did not exist yet owes the disk anything here.
+            // A re-join is derived from what is already stored and reproduces
+            // itself on the next launch, so writing it back buys nothing.
+            if stored == nil { try await store.saveNow(state: state, target: target) }
             await reloadOtherLanguagesDailyStats(excluding: target)
             await store.saveWidgetSnapshot(state: state, nowEpochMillis: Date().epochMillis,
                                            otherLanguagesDailyStats: otherLanguagesDailyStats)
@@ -430,10 +442,13 @@ final class AppModel {
         guard let catalog else { otherLanguagesDailyStats = []; return }
         var gathered: [[String: DayStats]] = []
         for language in catalog.languages.keys where language != target {
-            guard let json = try? await store.load(target: language),
-                  let decoded = try? StoreCodec.shared.decode(json: json)
-            else { continue }
-            gathered.append(decoded.dailyStats)
+            guard let json = try? await store.load(target: language) else { continue }
+            // why: a whole sibling document parsed for its day tallies alone —
+            // off this actor, and only the tallies come back.
+            guard let days = await Task.detached(operation: {
+                try? StoreCodec.shared.decode(json: json).dailyStats
+            }).value else { continue }
+            gathered.append(days)
         }
         otherLanguagesDailyStats = gathered
     }
