@@ -535,10 +535,14 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     private suspend fun activate(source: String, target: String) {
         val cat = catalog ?: return
         chrome = Chrome.forSource(source)
-        val cards = cat.join(source, target)
         val stamp = JoinStamp(source, target, cat.fingerprint)
-        val restored = withContext(Dispatchers.IO) {
-            boxFiles.read(target)?.let { json ->
+        val stored = withContext(Dispatchers.IO) { boxFiles.read(target) }
+        // why: the join builds every card the profile holds, the decode parses every
+        // schedule and every review ever logged, and the atlas walks the whole country
+        // manifest — none of it belongs on the thread that has to draw the first frame.
+        val loaded = withContext(Dispatchers.Default) {
+            val cards = cat.join(source, target)
+            val restored = stored?.let { json ->
                 try {
                     // why: calibration belongs to the BUILD — a box written months ago would
                     // otherwise keep pacing itself by the numbers that shipped with it.
@@ -547,15 +551,21 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                     null // unreadable document: start fresh rather than crash (pre-production)
                 }
             }
+            // why: the pair only changes here — the hub reads the atlas on every
+            // composition, and a sweep per frame is one no start-up should pay.
+            Pair(
+                restored ?: BoxEngine.bootstrap(cards, BoxConfig.product(), stamp),
+                cat.countryDrillContent(source, target),
+            )
         }
-        val state = restored ?: BoxEngine.bootstrap(cards, BoxConfig.product(), stamp)
+        val (state, joinedAtlas) = loaded
         box = state
-        // why: the join walks the manifest, and the pair only changes here — the hub reads
-        // this on every composition, and a sweep per frame is one no start-up should pay.
-        atlas = cat.countryDrillContent(source, target)
+        atlas = joinedAtlas
         normalizer = AnswerNormalizer(cat.languages.getValue(target))
         meaningNormalizer = AnswerNormalizer(cat.languages.getValue(source))
-        persist(state)
+        // why: only a box that did not exist yet owes the disk anything here. A re-join is
+        // derived from what is already stored and reproduces itself on the next launch.
+        if (stored == null) persist(state)
         otherLanguagesDailyStats = withContext(Dispatchers.IO) { loadOtherLanguagesDailyStats(cat, target) }
         refreshStats()
         refreshListening()
