@@ -10,7 +10,9 @@ extension AppModel {
 
     /// One tree per area the box holds, in the Box screen's own order
     /// (`areaNames` — catalog groups top to bottom, own words last).
-    var areaTrees: [AreaTree] {
+    /// Held on the model as `trees`: it walks every card in the join and sorts
+    /// each area's reaches, and the forest asks for it on every redraw.
+    func composedAreaTrees() -> [AreaTree] {
         let counts = growthByArea()
         return areaNames.compactMap { area in
             counts[area]?.tree(id: area, emoji: areaEmoji(area), title: areaTitle(area))

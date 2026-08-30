@@ -30,6 +30,10 @@ extension KotlinInstant {
 // work a tap should wait on (`App/Sources/Store/BoxStore.swift`).
 extension BoxState: @retroactive @unchecked Sendable {}
 extension DayStats: @retroactive @unchecked Sendable {}
+// The catalog is parsed once and never written again; the pool report is a
+// value kern hands back. Both cross to a background sweep and back.
+extension Catalog: @retroactive @unchecked Sendable {}
+extension ListeningPool.Report: @retroactive @unchecked Sendable {}
 
 // MARK: - SwiftUI conformances
 

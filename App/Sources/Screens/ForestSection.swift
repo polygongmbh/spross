@@ -21,10 +21,10 @@ struct ForestSection: View {
             widthProbe
             // Both pieces name themselves — the strip in its own header, the forest in
             // the caption under it — so a section title above says the word a third time.
-            ActivityStripView(days: model.activityWindow().map(ActivityColumn.init),
+            ActivityStripView(days: model.activity.map(ActivityColumn.init),
                               streakDays: model.stats?.streakDays ?? 0,
                               flame: model.stats?.flame ?? .unlit)
-            ForestCanvas(trees: model.areaTrees, open: open, describe: describe)
+            ForestCanvas(trees: model.trees, open: open, describe: describe)
                 .environment(\.dlContentWidth, width)
             caption
         }

@@ -96,8 +96,22 @@ struct HeuteView: View {
         }
     }
 
+    /// The sweep is a walk of the whole join asking the catalog for both sides'
+    /// audio, and it runs on every foreground — so only the voice check, which
+    /// must be on this actor, happens here.
     private func refreshListening() {
-        listening = ListeningAvailability(model: model)
+        model.refreshIfDayTurned()
+        guard let catalog = model.catalog, let box = model.box,
+              let target = model.targetLanguage, let voices = ListeningAvailability.voices(model: model)
+        else { listening = nil; return }
+        let source = model.sourceLanguage
+        Task {
+            let report = await Task.detached {
+                ListeningAvailability.swept(catalog: catalog, box: box, source: source, target: target,
+                                            hasSourceVoice: voices.source, hasTargetVoice: voices.target)
+            }.value
+            listening = ListeningAvailability(report: report)
+        }
     }
 
     // MARK: - Voice upgrade

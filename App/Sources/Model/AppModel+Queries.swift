@@ -10,43 +10,25 @@ extension AppModel {
 
     // MARK: - Heute-derived values
 
+    // Every value below is one of `heute`'s, taken when the box last moved
+    // (`AppModel.refreshStats`). They read as properties because the screens
+    // read them as facts — but each is a walk of the box, and three of them
+    // compose a whole round, so none of them is derived here.
+
     /// Whether there is a round to sit down to — kern counts due work the composed
     /// round could not carry, so a capped backlog never reads as "nothing".
-    var sessionAvailable: Bool {
-        guard let box else { return false }
-        return SessionOffers.shared.sessionAvailable(state: box,
-                                                     nowEpochMillis: Date().epochMillis,
-                                                     tzId: currentTzId())
-    }
+    var sessionAvailable: Bool { heute.sessionAvailable }
 
     /// Today's round as kern classified it. A box that has not loaded offers nothing.
-    var heuteOffer: SessionOffer {
-        guard let box else {
-            return SessionOffer(kind: .nothing, reviews: 0, dueHeldBack: 0, ahead: 0, fresh: 0,
-                                shortRound: 0, doneToday: 0, streakExposed: false)
-        }
-        return SessionOffers.shared.offer(state: box,
-                                          nowEpochMillis: Date().epochMillis,
-                                          tzId: currentTzId())
-    }
+    var heuteOffer: SessionOffer { heute.offer }
 
     /// What the learner did today — reviews, first meetings, words that consolidated,
     /// and whether today's recall has fallen far enough to suggest stopping.
-    var today: TodayReport? {
-        guard let box else { return nil }
-        return BoxEngine.shared.today(state: box,
-                                      nowEpochMillis: Date().epochMillis,
-                                      tzId: currentTzId())
-    }
+    var today: TodayReport? { heute.today }
 
     /// Cards that will be due by tomorrow evening (preview on the done state) —
     /// the horizon is kern's, not a second local-midnight derivation.
-    var tomorrowDueCount: Int {
-        guard let box else { return 0 }
-        let horizon = endOfTomorrow(nowEpochMillis: Date().epochMillis, tzId: currentTzId())
-        return BoxEngine.shared.dueNow(state: box,
-                                       nowEpochMillis: horizon.toEpochMilliseconds()).count
-    }
+    var tomorrowDueCount: Int { heute.tomorrowDue }
 
     // MARK: - Presentation (contract §3 — render-time role resolution)
 
@@ -283,6 +265,13 @@ extension AppModel {
         let combined = mergeDailyStats(dailyStatsByLanguage: otherLanguagesDailyStats + [box.dailyStats])
         return streakWindow(dailyStats: combined, days: Int32(days),
                             nowEpochMillis: now.epochMillis, tzId: currentTzId())
+    }
+
+    /// The strip's own fortnight, taken with the rest of the standing — `activity` holds it.
+    func composedActivityWindow(now: Int64, tzId: String) -> [ActivityDay] {
+        guard let box else { return [] }
+        let combined = mergeDailyStats(dailyStatsByLanguage: otherLanguagesDailyStats + [box.dailyStats])
+        return streakWindow(dailyStats: combined, days: 14, nowEpochMillis: now, tzId: tzId)
     }
 }
 

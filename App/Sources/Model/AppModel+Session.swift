@@ -69,7 +69,7 @@ extension AppModel {
         // why: the summary shows what THIS round did to an area, so the before
         // has to be taken while it still is the before — one snapshot at the
         // door, since which area the round will favour is not knowable yet.
-        treesBeforeSession = Dictionary(uniqueKeysWithValues: areaTrees.map { ($0.id, $0) })
+        treesBeforeSession = Dictionary(uniqueKeysWithValues: trees.map { ($0.id, $0) })
         reduce(intent)
         // why: a run kern refused to start (no box, or an extra round that came back
         // empty) must not raise the cover over nothing.
@@ -180,18 +180,11 @@ extension AppModel {
 
     /// Whether a round the learner asks for would yield anything — drives both the summary's
     /// "Weiter üben" and the done card's extra round, which open the same composition.
-    var canPracticeMore: Bool {
-        guard let box else { return false }
-        return SessionOffers.shared.canPracticeMore(state: box,
-                                                    nowEpochMillis: Date().epochMillis,
-                                                    tzId: currentTzId())
-    }
+    /// Taken with the rest of the standing, never per redraw (`HeuteStanding`).
+    var canPracticeMore: Bool { heute.canPracticeMore }
 
     /// Whether words the learner packed are still waiting to enter a round.
-    var hasPackedWords: Bool {
-        guard let box else { return false }
-        return SessionOffers.shared.packedWordsPending(state: box)
-    }
+    var hasPackedWords: Bool { heute.hasPackedWords }
 
     /// The day streak standing at its all-time best, which the finish screen names.
     var streakIsRecord: Bool {

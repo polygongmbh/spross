@@ -25,6 +25,31 @@ struct ListeningAvailability {
         report = Self.built(model: model)
     }
 
+    init(report: ListeningPool.Report) {
+        self.report = report
+    }
+
+    /// The two device facts the sweep needs, read where they live — the voice
+    /// table is UIKit's and main-actor only. Handed to [swept] so the walk
+    /// itself, which is the whole join with two catalog lookups per card, can
+    /// happen off this actor.
+    static func voices(model: AppModel) -> (source: Bool, target: Bool)? {
+        guard let target = model.targetLanguage else { return nil }
+        return (Pronouncer.shared.canSpeak(language: model.sourceLanguage),
+                Pronouncer.shared.canSpeak(language: target))
+    }
+
+    /// The pool sweep itself: pure kern over immutable values, so it runs
+    /// wherever the caller puts it.
+    nonisolated static func swept(
+        catalog: Catalog, box: BoxState, source: String, target: String,
+        hasSourceVoice: Bool, hasTargetVoice: Bool,
+    ) -> ListeningPool.Report {
+        ListeningPool.shared.report(
+            catalog: catalog, box: box, source: source, target: target,
+            hasTargetVoice: hasTargetVoice, hasSourceVoice: hasSourceVoice)
+    }
+
     /// Whether the Heute card stands at all.
     var available: Bool { report.available }
 

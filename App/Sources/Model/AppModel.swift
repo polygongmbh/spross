@@ -43,6 +43,15 @@ final class AppModel {
     /// from. Cached beside `stats` rather than derived on read: it is one entry
     /// per card in the join, and Heute would otherwise rebuild it every redraw.
     private(set) var growth: [CardGrowth] = []
+    /// Everything the Heute screen asks kern for, taken in one pass — see
+    /// `HeuteStanding`. Cached for the same reason `growth` is, and more so:
+    /// three of its answers each compose a whole round.
+    private(set) var heute: HeuteStanding = .none
+    /// One tree per area, as the forest draws them. Derived from `growth`, so
+    /// it is rebuilt with it rather than per redraw.
+    private(set) var trees: [AreaTree] = []
+    /// The fortnight the activity strip shows, refreshed with the rest.
+    private(set) var activity: [ActivityDay] = []
     /// Each area's tree as it stood when the current run started — the "before"
     /// the summary animates from. Held on the model rather than in the session
     /// state because it is a picture, not a rule kern has any business in.
@@ -338,19 +347,39 @@ final class AppModel {
 
     // MARK: - Persistence & stats
 
+    /// Recompute everything derived from the box: the statistics, the growth
+    /// ladder, the Heute standing, the forest and the activity strip.
+    ///
+    /// The ONE place any of them go stale, and so the one place they are taken
+    /// again — every path that can move the box ends here (a mutation, a
+    /// language switch, a booked day, a foreground). Screens read the results
+    /// as values; nothing on a hot path derives them for itself.
     func refreshStats() {
         // why: the grader snapshots the join, and this runs wherever the join,
         // the queue or the profile's languages can have moved — so this is the
         // one place it goes stale.
         cachedProduceGrader = nil
         let now = Date().epochMillis
+        let tz = currentTzId()
         stats = box.map {
-            BoxEngine.shared.statistics(state: $0, nowEpochMillis: now, tzId: currentTzId(),
+            BoxEngine.shared.statistics(state: $0, nowEpochMillis: now, tzId: tz,
                                          otherLanguagesDailyStats: otherLanguagesDailyStats)
         }
         growth = box.map {
-            BoxEngine.shared.growth(state: $0, nowEpochMillis: now, tzId: currentTzId())
+            BoxEngine.shared.growth(state: $0, nowEpochMillis: now, tzId: tz)
         } ?? []
+        heute = box.map { HeuteStanding.of(box: $0, nowEpochMillis: now, tzId: tz) } ?? .none
+        trees = composedAreaTrees()
+        activity = composedActivityWindow(now: now, tzId: tz)
+    }
+
+    /// Take the standing again where the day has turned under a screen that
+    /// stayed open — nothing else moved, so nothing else would ask.
+    func refreshIfDayTurned() {
+        guard box != nil,
+              heute.day != dayKey(nowEpochMillis: Date().epochMillis, tzId: currentTzId())
+        else { return }
+        refreshStats()
     }
 
     /// Reload `otherLanguagesDailyStats` for every catalog language except
