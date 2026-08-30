@@ -24,9 +24,6 @@ struct HeuteStanding {
     let hasPackedWords: Bool
     /// Cards that will be due by tomorrow evening — the preview on the done state.
     let tomorrowDue: Int
-    /// The day this standing was taken, so a screen left open past midnight
-    /// can tell that it has (`AppModel.refreshIfDayTurned`).
-    let day: String
 
     /// Nothing loaded: the shape Heute draws before a box exists.
     // why: computed, not stored — it carries Kern values, which are not Sendable,
@@ -36,7 +33,7 @@ struct HeuteStanding {
             offer: SessionOffer(kind: .nothing, reviews: 0, dueHeldBack: 0, ahead: 0, fresh: 0,
                                 shortRound: 0, doneToday: 0, streakExposed: false),
             today: nil, sessionAvailable: false, canPracticeMore: false,
-            hasPackedWords: false, tomorrowDue: 0, day: "")
+            hasPackedWords: false, tomorrowDue: 0)
     }
 
     static func of(box: BoxState, nowEpochMillis: Int64, tzId: String) -> HeuteStanding {
@@ -51,7 +48,6 @@ struct HeuteStanding {
             tomorrowDue: Int(BoxEngine.shared.dueCount(
                 state: box,
                 nowEpochMillis: endOfTomorrow(nowEpochMillis: nowEpochMillis, tzId: tzId)
-                    .toEpochMilliseconds())),
-            day: dayKey(nowEpochMillis: nowEpochMillis, tzId: tzId))
+                    .toEpochMilliseconds())))
     }
 }

@@ -425,15 +425,6 @@ final class AppModel {
         phraseTemplatesForPair = catalog.phraseTemplates(source: sourceLanguage, target: target)
     }
 
-    /// Take the standing again where the day has turned under a screen that
-    /// stayed open — nothing else moved, so nothing else would ask.
-    func refreshIfDayTurned() {
-        guard box != nil,
-              heute.day != dayKey(nowEpochMillis: Date().epochMillis, tzId: currentTzId())
-        else { return }
-        refreshStats()
-    }
-
     /// Reload `otherLanguagesDailyStats` for every catalog language except
     /// `target`. A sibling box that is missing or fails to decode is simply
     /// skipped — its own load path surfaces the real error when the learner

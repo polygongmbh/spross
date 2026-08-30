@@ -44,10 +44,6 @@ Two things sit outside it because they are not box questions:
   Taken on every foreground, because a voice may be installed in Settings while the app
   sleeps, and off the main thread; only the voice table itself is read on it.
 
-The day's standing is taken against a clock, so a screen left open past midnight would
-hold yesterday's numbers: `refreshIfDayTurned` takes it again when the day key no longer
-matches.
-
 ## Asking kern for less
 
 Where only the SIZE of something is wanted, there is a counting entry point that does not

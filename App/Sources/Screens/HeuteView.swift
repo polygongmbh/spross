@@ -100,7 +100,6 @@ struct HeuteView: View {
     /// audio, and it runs on every foreground — so only the voice check, which
     /// must be on this actor, happens here.
     private func refreshListening() {
-        model.refreshIfDayTurned()
         guard let catalog = model.catalog, let box = model.box,
               let target = model.targetLanguage, let voices = ListeningAvailability.voices(model: model)
         else { listening = nil; return }
