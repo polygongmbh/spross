@@ -42,6 +42,8 @@ import net.spross.app.lettersOffered
 import net.spross.app.numbersOffered
 import net.spross.app.werkstattOffered
 import net.spross.kern.box.StreakHealth
+import net.spross.kern.box.chromePart
+import net.spross.kern.box.dayPart
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.session.SessionOfferKind
 
@@ -66,8 +68,26 @@ fun HeuteScreen(model: AppModel) {
     }
     // why: each of these is a walk over the box, and they are read together so the card,
     // its tally and its fine print describe one moment rather than three a frame apart.
-    val standing = remember(box) {
-        box?.let { HeuteStanding.of(it, System.currentTimeMillis(), TimeZone.getDefault().id) }
+    // why: an ICU pattern built and a formatter compiled, for a date that moves once
+    // a day — it stood in the body, so a button's press animation rebuilt it once a
+    // frame for the whole spring.
+    val today = remember(locale, LocalDate.now()) { todayLine(locale) }
+    // why: the greeting's words follow the stretch of the day, and which of the
+    // candidates it takes is keyed on exactly that (kern's `partVariant`) — so it is
+    // rebuilt when the stretch turns, and never between two frames of the same one.
+    val greetingTarget = box?.joinStamp?.target
+    val greetingNow = System.currentTimeMillis()
+    val greetingZone = TimeZone.getDefault().id
+    val hello = remember(
+        model.chrome, greetingTarget,
+        chromePart(greetingNow, greetingZone),
+        dayPart(greetingNow, greetingZone, greetingTarget),
+    ) { greeting(model) }
+    val standing = remember(box, model.canPracticeExtra) {
+        box?.let {
+            HeuteStanding.of(it, System.currentTimeMillis(), TimeZone.getDefault().id,
+                             model.canPracticeExtra)
+        }
     }
 
     Column(
@@ -81,14 +101,14 @@ fun HeuteScreen(model: AppModel) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
                 Text(
-                    todayLine(locale),
+                    today,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 // A greeting is a phrase, not a headline word: it shrinks a step rather
                 // than pushing the day's card down a third line.
                 Text(
-                    greeting(model),
+                    hello,
                     style = MaterialTheme.typography.headlineLarge,
                     maxLines = 2,
                     autoSize = TextAutoSize.StepBased(

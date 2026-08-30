@@ -58,9 +58,21 @@ data class HeuteStanding(
     val canPracticeMore: Boolean,
 ) {
     companion object {
-        fun of(state: BoxState, nowEpochMillis: Long, tzId: String): HeuteStanding {
+        /**
+         * [canPracticeMore] is handed in rather than asked for: it composes a whole
+         * round, and the model already took that answer for the same box
+         * (`AppModel.canPracticeExtra`) — asking again composes it twice.
+         */
+        fun of(
+            state: BoxState,
+            nowEpochMillis: Long,
+            tzId: String,
+            canPracticeMore: Boolean,
+        ): HeuteStanding {
             val horizon = endOfTomorrow(nowEpochMillis, tzId).toEpochMilliseconds()
-            val due = BoxEngine.dueNow(state, horizon).size
+            // why: the SIZE of the pile, so nothing composes its order — the shuffle
+            // keys and the sort behind `dueNow` are thrown away for an integer.
+            val due = BoxEngine.dueCount(state, horizon)
             val offer = SessionOffers.offer(state, nowEpochMillis, tzId)
             return HeuteStanding(
                 offer = offer,
@@ -68,7 +80,7 @@ data class HeuteStanding(
                 today = BoxEngine.today(state, nowEpochMillis, tzId),
                 tomorrow = tomorrowNote(SessionOffers.packedWordsPending(state), due),
                 tomorrowDue = due,
-                canPracticeMore = SessionOffers.canPracticeMore(state, nowEpochMillis, tzId),
+                canPracticeMore = canPracticeMore,
             )
         }
     }

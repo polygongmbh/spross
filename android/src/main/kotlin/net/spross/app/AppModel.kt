@@ -21,8 +21,10 @@ import net.spross.app.ui.AreaNaming
 import net.spross.app.widget.WordWidget
 import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.BoxEngine
+import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
+import net.spross.kern.box.ShelfCounts
 import net.spross.kern.box.mergeDailyStats
 import net.spross.kern.box.streakWindow
 import net.spross.kern.catalog.Catalog
@@ -220,6 +222,17 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     /** Whether the done card's extra round would come back with anything. */
     var canPracticeExtra by mutableStateOf(false)
+        private set
+
+    /**
+     * What each shelf's two pack controls would do, every area at once
+     * (`BoxBrowser.shelfCounts`).
+     *
+     * The browser draws both numbers on every shelf it lists, and asked one shelf at a
+     * time each answer scans and sorts the whole box — so a screenful cost sixty walks
+     * per frame. Refreshed with the rest of the numbers, never per composition.
+     */
+    var shelfCounts by mutableStateOf<Map<String, ShelfCounts>>(emptyMap())
         private set
 
     /**
@@ -764,6 +777,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         )
         sessionAvailable = SessionOffers.sessionAvailable(state, now(), tz())
         canPracticeExtra = SessionOffers.canPracticeMore(state, now(), tz())
+        shelfCounts = BoxBrowser.shelfCounts(state)
     }
 
     override fun onCleared() {

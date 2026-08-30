@@ -13,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -86,8 +87,14 @@ internal fun AreaSection(
 ) {
     val chrome = model.chrome
     val box = model.box ?: return
-    val packable = BoxBrowser.enqueueableCardIds(box, area)
-    val queued = BoxBrowser.dequeueableCardIds(box, area)
+    // why: both numbers come from the one pass the model already took — asked here,
+    // each was a scan and a sort of the whole box, per shelf, per frame. The pack
+    // itself still derives its ids from the state it is about to change, so the
+    // count and the action cannot come apart.
+    val counts = model.shelfCounts[area]
+    val cards = remember(box.cards, area, expanded) {
+        if (expanded) BoxBrowser.cardsInArea(box, area) else emptyList()
+    }
 
     Column(
         modifier = Modifier.fillMaxWidth().panel(),
@@ -108,8 +115,10 @@ internal fun AreaSection(
                                 if (expanded) chrome.stateExpanded else chrome.stateCollapsed
                         },
                 )
-                PackControl(chrome, packable.size, queued.size,
-                    onPack = { model.updateBox { BoxEngine.enqueue(it, packable) } },
+                PackControl(chrome, counts?.packable ?: 0, counts?.queued ?: 0,
+                    onPack = {
+                        model.updateBox { BoxEngine.enqueue(it, BoxBrowser.enqueueableCardIds(it, area)) }
+                    },
                     onUnpack = { model.updateBox { BoxEngine.dequeueArea(it, area) } })
             }
             if (expanded) {
@@ -117,7 +126,7 @@ internal fun AreaSection(
                     modifier = Modifier.padding(top = DlSpace.m),
                     verticalArrangement = Arrangement.spacedBy(DlSpace.s),
                 ) {
-                    BoxBrowser.cardsInArea(box, area).forEach { card ->
+                    cards.forEach { card ->
                         BoxCardRow(model, card, onWriteOwn = onWriteOwn)
                     }
                 }
