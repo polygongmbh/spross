@@ -30,18 +30,33 @@ internal object Inventory {
     fun active(state: BoxState): List<CardScheduling> =
         scheduled(state).filter { !it.suspended }
 
+    /**
+     * Active schedules in no promised order — for callers that impose a TOTAL
+     * order of their own, so the id sort [scheduled] pays for determinism is
+     * one both of them would only throw away.
+     */
+    private fun unordered(state: BoxState): List<CardScheduling> =
+        state.scheduling.entries
+            .filter { it.key in state.cards && !it.value.suspended }
+            .map { it.value }
+
     /** Active cards carrying a due date, soonest first — the pull-forward pool. */
     fun scheduledAhead(state: BoxState): List<CardScheduling> =
-        active(state)
+        unordered(state)
             .filter { it.due != null }
             .sortedWith(compareBy({ it.due }, { it.cardId }))
 
     /** Active cards with `due <= now`, oldest DAY first, shuffled within the day. */
     fun due(state: BoxState, nowEpochMillis: Long): List<CardScheduling> {
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
-        return active(state)
+        return unordered(state)
             .filter { it.due != null && it.due <= now }
-            .sortedWith(dueOrder)
+            // why: the shuffle key hashes a string, so it is built ONCE per card
+            // here rather than inside the comparator, which would pay for it
+            // O(n log n) times over.
+            .map(::DueKey)
+            .sortedWith(dueKeyOrder)
+            .map { it.entry }
     }
 
     private const val MILLIS_PER_DAY = 86_400_000L
@@ -65,9 +80,14 @@ internal object Inventory {
      * yields the same order every day, a trailing id keeps seed neighbors
      * adjacent within the day. Both halves must arrive well spread.
      */
-    private val dueOrder: Comparator<CardScheduling> = compareBy(
-        { dueEpochDay(it) },
-        { fnv1a64("${dueEpochDay(it)}:${fnv1a64(it.cardId)}") },
-        { it.cardId },
+    private class DueKey(val entry: CardScheduling) {
+        val day: Long = dueEpochDay(entry)
+        val shuffle: ULong = fnv1a64("$day:${fnv1a64(entry.cardId)}")
+    }
+
+    private val dueKeyOrder: Comparator<DueKey> = compareBy(
+        { it.day },
+        { it.shuffle },
+        { it.entry.cardId },
     )
 }
