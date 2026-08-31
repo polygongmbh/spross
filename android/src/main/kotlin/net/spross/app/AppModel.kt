@@ -19,6 +19,7 @@ import net.spross.app.audio.Pronouncer
 import net.spross.app.listen.ListeningDriver
 import net.spross.app.ui.AreaNaming
 import net.spross.app.widget.WordWidget
+import net.spross.kern.box.ACTIVITY_WINDOW_DAYS
 import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxBrowser
@@ -102,12 +103,6 @@ sealed interface Screen {
      */
     data class Box(val area: String? = null) : Screen
 }
-
-/**
- * How far back the activity strip looks. The window is the strip's whole subject, so the
- * number lives with the state it shapes rather than with the drawing of it.
- */
-const val ACTIVITY_WINDOW_DAYS: Int = 14
 
 data class SessionUi(
     val card: Card?,               // null ⇒ drained: show the summary

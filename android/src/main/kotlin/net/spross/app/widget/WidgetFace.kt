@@ -7,6 +7,7 @@ import java.util.TimeZone
 import net.spross.app.BoxFiles
 import net.spross.app.Chrome
 import net.spross.app.ProfileStore
+import net.spross.kern.box.ACTIVITY_WINDOW_DAYS
 import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.StreakHealth
 import net.spross.kern.snapshot.WidgetSnapshotBuilder
@@ -59,9 +60,6 @@ object WidgetFaces {
      */
     const val ROTATION_MILLIS: Long = 30 * 60 * 1000
 
-    /** The fortnight the header strip draws. */
-    const val ACTIVITY_DAYS: Int = 14
-
     /** A card with no picture of its own still needs one, and this is the app's own stand-in. */
     private const val FALLBACK_PICTURE = "🗂️"
 
@@ -83,7 +81,7 @@ object WidgetFaces {
             dueCount = view.dueCount(nowEpochMillis),
             streak = view.streak(nowEpochMillis, tz),
             health = view.streakHealth(nowEpochMillis, tz),
-            days = view.activityWindow(ACTIVITY_DAYS, nowEpochMillis, tz),
+            days = view.activityWindow(ACTIVITY_WINDOW_DAYS, nowEpochMillis, tz),
             chrome = chrome(context),
         )
     }

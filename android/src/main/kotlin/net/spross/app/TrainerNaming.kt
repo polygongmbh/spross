@@ -4,6 +4,7 @@ import net.spross.kern.trainer.CountryTaskKind
 import net.spross.kern.trainer.DrillModifier
 import net.spross.kern.trainer.DrillVariant
 import net.spross.kern.trainer.LetterStage
+import net.spross.kern.trainer.drillVariantEmoji
 
 /**
  * What kern's drill enums are CALLED to this learner.
@@ -13,18 +14,6 @@ import net.spross.kern.trainer.LetterStage
  * and the result tile alike, so a run can never be named two things on one page.
  */
 
-/**
- * A variant's face. Numbers, Clock and Forms deliberately borrow the slot kind's glyph:
- * they are the same exercise, met through the ladder rather than beside it.
- */
-val DrillVariant.trainerEmoji: String
-    get() = when (this) {
-        DrillVariant.Numbers -> "🔢"
-        DrillVariant.Clock -> "🕐"
-        DrillVariant.Phrases -> "💬"
-        DrillVariant.Forms -> "➗"
-    }
-
 fun Chrome.name(variant: DrillVariant): String = when (variant) {
     DrillVariant.Numbers -> numbersTitle
     DrillVariant.Clock -> variantClock
@@ -33,7 +22,7 @@ fun Chrome.name(variant: DrillVariant): String = when (variant) {
 }
 
 /** Face and name together — how a row, a price and a mixed run's score line all read. */
-fun Chrome.badge(variant: DrillVariant): String = "${variant.trainerEmoji} ${name(variant)}"
+fun Chrome.badge(variant: DrillVariant): String = "${drillVariantEmoji(variant)} ${name(variant)}"
 
 /**
  * A modifier has no face of its own: it changes every variant alike, so it is named and
