@@ -5703,22 +5703,6 @@
         }
       }
     },
-    "trainer.newForm %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Neu: %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New: %@"
-          }
-        }
-      }
-    },
     "trainer.newPlace %@" : {
       "localizations" : {
         "de" : {

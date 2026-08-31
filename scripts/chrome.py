@@ -14,6 +14,10 @@ The catalog is the source in both directions of work: a new Android string is ad
 there (and named in ANDROID_ONLY in scripts/strings.py, so the iOS drift check knows
 no Swift will ever ask for it), then this regenerates the tables.
 
+Every catalog key is either read by a field below or named in [IOS_ONLY] / [ANDROID_TODO],
+which the no-flag run checks — so a string written for one phone is classified as it lands,
+and what Android still owes is a list rather than a silence.
+
 [MAPPING] is field → key. A field may also take:
   ['key.0', 'key.1']    a List<String>, in order
   {'id': 'key'}         a Map<String, String>
@@ -341,6 +345,45 @@ MAPPING = {
                         'hundreds', 'places', 'forms')},
 }
 
+# Catalog keys no chrome field claims, each with the reason it does not. Together with
+# [MAPPING] these account for every key in the catalog — `main` checks that — so a string
+# written for one phone is classified the day it lands, and the two kinds of not-claimed
+# stay apart: what Android has no use for, and what it still owes.
+IOS_ONLY = {
+    # The voice-download banner walks the reader to an iOS Settings path; which voices an
+    # Android device has is its TTS engine's own affair. `common.dismiss` is that banner's ✕.
+    'common.dismiss', 'heute.voiceUpgrade.path', 'heute.voiceUpgrade.title %@',
+    'settings.audio.voiceUpgrade %@',
+    # Xcode canvas scaffolding, inside `#Preview("Palette")` in Design/Theme.swift.
+    'preview.skip', 'preview.tokens',
+    # A Swift switch owes every case a branch, including two kern never hands out: new is
+    # the absence of a standing, and Years folds into the Numbers variant.
+    'phase.new', 'trainer.years',
+    # The same control, named by another key on Android: box search heads with `box.search`,
+    # the credits door is `settings.about`, and the session ✕ reads `common.done`.
+    'a11y.endSession', 'box.search.title', 'settings.credits',
+}
+# Surfaces iOS ships that Android owes. A key leaves this set by being claimed above,
+# which is what finishing the Android side looks like.
+ANDROID_TODO = {
+    # The § 5 DDG Impressum and the privacy link. Android's AboutScreen carries the speaker
+    # credits alone, and Obtainium ships the APK with no store listing to hold them instead
+    # (docs/distribution.md).
+    'legal.address.value', 'legal.company', 'legal.contact.label', 'legal.director.label',
+    'legal.director.value', 'legal.privacy', 'legal.register.label', 'legal.register.value',
+    'legal.title', 'legal.vat.label', 'legal.vat.value',
+    # What a screen reader is owed on surfaces Android already draws: the feminine mark, a
+    # revealed answer, the segments bar's tally and position, and a hub chip's suffix.
+    'a11y.feminineForm', 'a11y.notAnswered', 'a11y.practiceSuffix %@',
+    'a11y.sessionTally %@ %@ %@', 'session.cardPosition %@ %@',
+    # Onboarding's two pickers ask for a language on iOS; Android heads them with the
+    # settings labels ([Chrome.iSpeak]/[Chrome.iLearn]).
+    'onboarding.source.question', 'onboarding.target.question',
+    # Settings doors Android has yet to build: replaying the onboarding, and mail to the
+    # developer beside the per-card report flow.
+    'settings.feedback', 'settings.restartTutorial.button', 'settings.restartTutorial.hint',
+}
+
 
 def catalog():
     return json.load(open(CATALOG))['strings']
@@ -421,11 +464,37 @@ def render(lang, code, name, strings):
     return ''.join(body) + '}\n'
 
 
+def claimed():
+    """Every catalog key some chrome field reads."""
+    keys = set()
+    for spec in MAPPING.values():
+        keys.update(spec.values() if isinstance(spec, dict) else
+                    spec if isinstance(spec, list) else [spec])
+    return keys
+
+
+def unclassified(strings):
+    """Where a key and the three sets that account for it disagree."""
+    mine, declared = claimed(), IOS_ONLY | ANDROID_TODO
+    return ['%s: claimed in MAPPING and declared unclaimed' % k
+            for k in sorted(mine & declared)] + \
+           ['%s: declared unclaimed but not in the catalog' % k
+            for k in sorted(declared - set(strings))] + \
+           ['%s: no chrome field reads it — give one its key, or name it in IOS_ONLY '
+            '(Android has no use for it) or ANDROID_TODO (Android owes it)' % k
+            for k in sorted(set(strings) - mine - declared)]
+
+
 def main():
     strings = catalog()
     unused = sorted(set(MAPPING) - set(fields()))
     if unused:
         print('MAPPING names fields Chrome.kt does not declare: %s' % ', '.join(unused))
+        return 1
+
+    gaps = unclassified(strings)
+    if gaps:
+        print('\n'.join(gaps), file=sys.stderr)
         return 1
 
     # --check is the bare report under the name the pre-commit hook calls it by.
@@ -444,9 +513,10 @@ def main():
         print('%s: not what the catalog says — run `scripts/chrome.py --fix`'
               % ', '.join(drifted), file=sys.stderr)
         return 1
-    print('%d chrome fields%s' % (len(MAPPING),
-                                  ' — rewrote %s' % ', '.join(drifted) if drifted else
-                                  ' — in step with the catalog'))
+    print('%d chrome fields%s; %d keys Android owes' %
+          (len(MAPPING),
+           ' — rewrote %s' % ', '.join(drifted) if drifted else ' — in step with the catalog',
+           len(ANDROID_TODO)))
     return 0
 
 
