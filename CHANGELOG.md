@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.7.2 — 2026-08-31
+
 - **A drill asks you each question once.** Numbers, the clock, forms and sentences, the
   letters and the atlas: whatever you have answered right does not come round again in the
   same run, so an evening on the drills is spent on what you still owe rather than on the
