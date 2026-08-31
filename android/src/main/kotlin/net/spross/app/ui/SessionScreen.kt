@@ -83,7 +83,7 @@ private fun SessionTopBar(model: AppModel, ui: SessionUi) {
         horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
     ) {
         CloseSessionButton(model)
-        SegmentsBar(ui.segments, ui.remaining, Modifier.weight(1f))
+        SegmentsBar(ui.segments, ui.remaining, model.chrome, Modifier.weight(1f))
         ReadAloudSwitch(model)
     }
 }
@@ -269,7 +269,7 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
                             color = Dl.colors.accent,
                             modifier = Modifier.weight(1f, fill = false),
                         )
-                        if (card.promptFeminineMarker) FeminineBadge()
+                        if (card.promptFeminineMarker) FeminineBadge(chrome)
                     }
                 }
             }

@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **Android: TalkBack hears what the colors say.** Four places said something in color or
+  in a glyph and nothing in words: the progress bar over a round (now "3 richtig, 1 schwer,
+  1 daneben", or which card you are on before the first answer), the amber edge on an answer
+  you gave up on, the ♀ beside a feminine word, and the practice chips, which now say what
+  they open and in which language.
+
 - **Android: who publishes Spross, and what it does with your data, are in the app.** The
   About screen led with the speakers and said nothing about the publisher — and an app
   installed through Obtainium has no store listing to say it elsewhere. The Impressum now

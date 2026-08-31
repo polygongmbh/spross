@@ -59,12 +59,30 @@ import net.spross.kern.session.AnswerOutcome
  * as one, and no card ever repeats it back at the learner.
  */
 @Composable
-fun SegmentsBar(segments: List<AnswerOutcome>, remaining: Int, modifier: Modifier = Modifier) {
+fun SegmentsBar(
+    segments: List<AnswerOutcome>,
+    remaining: Int,
+    chrome: Chrome,
+    modifier: Modifier = Modifier,
+) {
     val palette = Dl.colors
     val slots = segments.size + remaining
+    // why: colored stretches are the whole of what the bar says, and a color says nothing
+    // to TalkBack — so it speaks the tally it is drawing, or where the round stands before
+    // there is one.
+    val spoken = if (segments.isEmpty()) {
+        chrome.cardPosition.format(1, slots)
+    } else {
+        chrome.sessionTally.format(
+            segments.count { it == AnswerOutcome.Right },
+            segments.count { it == AnswerOutcome.Almost },
+            segments.count { it == AnswerOutcome.Wrong },
+        )
+    }
     Row(
         modifier = modifier.fillMaxWidth().height(10.dp)
-            .clip(CircleShape).background(palette.separator),
+            .clip(CircleShape).background(palette.separator)
+            .semantics { contentDescription = spoken },
         horizontalArrangement = Arrangement.spacedBy(if (slots > 40) 0.dp else 1.dp),
     ) {
         segments.forEach { tone ->
@@ -105,8 +123,10 @@ fun Pill(text: String, color: Color, modifier: Modifier = Modifier) {
  * is still read (and heard) as the word it is.
  */
 @Composable
-fun FeminineBadge(modifier: Modifier = Modifier) {
-    Pill("♀", Dl.colors.die, modifier)
+fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
+    // why: ♀ is a glyph TalkBack either skips or reads as a symbol name; the badge says
+    // what it marks instead, which is the only way the grammar reaches a spoken card.
+    Pill("♀", Dl.colors.die, modifier.semantics { contentDescription = chrome.feminineForm })
 }
 
 /**

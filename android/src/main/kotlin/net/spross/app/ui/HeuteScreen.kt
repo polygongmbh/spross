@@ -198,15 +198,19 @@ private fun WerkstattCard(model: AppModel) {
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+            // why: the chips name an exercise and nothing else — spoken, "Zahlen" could be
+            // a shelf. The suffix says it is practice, and in which language.
+            val practice =
+                chrome.practiceSuffix.format(model.languageName(model.box?.joinStamp?.target.orEmpty()))
             Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
                 if (model.numbersOffered) {
-                    EntryChip("🔢", chrome.trainerNumbers) { model.openNumbers() }
+                    EntryChip("🔢", chrome.trainerNumbers, practice) { model.openNumbers() }
                 }
                 if (model.lettersOffered) {
-                    EntryChip("🔤", chrome.trainerLetters) { model.openLetters() }
+                    EntryChip("🔤", chrome.trainerLetters, practice) { model.openLetters() }
                 }
                 if (model.countriesOffered) {
-                    EntryChip("🌍", chrome.trainerCountries) { model.openCountries() }
+                    EntryChip("🌍", chrome.trainerCountries, practice) { model.openCountries() }
                 }
             }
         }
@@ -218,9 +222,17 @@ private fun WerkstattCard(model: AppModel) {
  * the iOS chip's face, stacked so three names share the row without shrinking to fit
  * beside their glyphs. The label still steps down rather than wrapping, but only where
  * a name alone outgrows a third of the screen.
+ *
+ * [suffix] finishes the spoken name — the chip says what it opens on screen and what it is
+ * for in the reading order, where a bare "Zahlen" could be anything.
  */
 @Composable
-private fun RowScope.EntryChip(emoji: String, title: String, onClick: () -> Unit) {
+private fun RowScope.EntryChip(
+    emoji: String,
+    title: String,
+    suffix: String,
+    onClick: () -> Unit,
+) {
     Column(
         modifier = Modifier
             .weight(1f)
@@ -230,6 +242,7 @@ private fun RowScope.EntryChip(emoji: String, title: String, onClick: () -> Unit
             .clip(MaterialTheme.shapes.medium)
             .background(Dl.colors.surfaceTint)
             .clickable(role = Role.Button, onClick = onClick)
+            .semantics(mergeDescendants = true) { contentDescription = title + suffix }
             .heightIn(min = DlReserve.tile)
             .padding(horizontal = DlSpace.xs, vertical = DlSpace.s),
         horizontalAlignment = Alignment.CenterHorizontally,

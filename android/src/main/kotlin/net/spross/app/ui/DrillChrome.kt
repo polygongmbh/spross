@@ -66,7 +66,7 @@ fun DrillTopBar(
         horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
     ) {
         DrillCloseButton(chrome, onClose)
-        SegmentsBar(outcomes, remaining = 1, modifier = Modifier.weight(1f))
+        SegmentsBar(outcomes, remaining = 1, chrome = chrome, modifier = Modifier.weight(1f))
         Text(
             "${tally.clean}/${tally.judged}",
             style = MaterialTheme.typography.bodySmall,

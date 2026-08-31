@@ -90,6 +90,7 @@ MAPPING = {
     'cardActions': 'box.card.actions',
     'cardForget': 'box.card.forget',
     'cardOwnFrom': 'box.card.ownFrom',
+    'cardPosition': 'session.cardPosition %@ %@',
     'caughtUpTitle': 'heute.caughtUp.title',
     'check': 'common.check',
     'chooseSubtitle': 'onboarding.languages.subtitle',
@@ -144,6 +145,7 @@ MAPPING = {
     'feedbackScopeAll': 'feedback.scope.all',
     'feedbackScopeNew': 'feedback.scope.new',
     'feedbackSend': 'feedback.send',
+    'feminineForm': 'a11y.feminineForm',
     'finish': 'common.done',
     'firstRoundGrade': 'onboarding.firstRound.grade',
     'firstRoundRecognize': 'onboarding.firstRound.recognize',
@@ -199,6 +201,7 @@ MAPPING = {
     'newPlace': 'trainer.newPlace %@',
     'newRecord': 'trainer.newRecord',
     'next': 'common.next',
+    'notAnswered': 'a11y.notAnswered',
     'numbersNotes': 'numbers.notes',
     'numbersPage': 'numbers.title %@',
     'numbersReference': 'numbers.reference',
@@ -231,6 +234,7 @@ MAPPING = {
     'pluralEquals': 'grammar.plural.equals',
     'pluralForm': 'grammar.plural %@',
     'pluralOnly': 'grammar.plural.only',
+    'practiceSuffix': 'a11y.practiceSuffix %@',
     'profileHint': 'settings.profile.hint',
     'progressConsolidated': 'progress.consolidatedCount %@',
     'progressLearning': 'progress.learningCount %@',
@@ -275,6 +279,7 @@ MAPPING = {
     'sessionShortRound': 'heute.session.shortRound',
     'sessionSomeCards': 'heute.session.someCards',
     'sessionStart': 'heute.session.start',
+    'sessionTally': 'a11y.sessionTally %@ %@ %@',
     'settingsTitle': 'settings.title',
     'skipStep': 'session.skipCopy',
     'sleep': 'box.sleep',
@@ -377,10 +382,6 @@ IOS_ONLY = {
 # Surfaces iOS ships that Android owes. A key leaves this set by being claimed above,
 # which is what finishing the Android side looks like.
 ANDROID_TODO = {
-    # What a screen reader is owed on surfaces Android already draws: the feminine mark, a
-    # revealed answer, the segments bar's tally and position, and a hub chip's suffix.
-    'a11y.feminineForm', 'a11y.notAnswered', 'a11y.practiceSuffix %@',
-    'a11y.sessionTally %@ %@ %@', 'session.cardPosition %@ %@',
     # Onboarding's two pickers ask for a language on iOS; Android heads them with the
     # settings labels ([Chrome.iSpeak]/[Chrome.iLearn]).
     'onboarding.source.question', 'onboarding.target.question',

@@ -149,7 +149,7 @@ private fun PromptWord(model: AppModel, ui: SessionUi) {
         horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
     ) {
         Headword(card.source.text, modifier = Modifier.weight(1f, fill = false))
-        if (card.promptFeminineMarker) FeminineBadge()
+        if (card.promptFeminineMarker) FeminineBadge(model.chrome)
     }
 }
 
@@ -282,7 +282,7 @@ private fun ProduceReveal(model: AppModel, ui: SessionUi, heard: Boolean) {
                 color = Dl.colors.accent,
                 modifier = Modifier.weight(1f, fill = false),
             )
-            if (card.promptFeminineMarker) FeminineBadge()
+            if (card.promptFeminineMarker) FeminineBadge(chrome)
         }
         return
     }

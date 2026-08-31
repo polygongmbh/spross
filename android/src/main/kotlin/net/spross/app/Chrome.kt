@@ -95,6 +95,8 @@ interface Chrome {
     val pluralEquals: String
     val pluralOnly: String
     val pluralForm: String        // %s = the plural, where a card carries one
+    /** The ♀ badge's name — a glyph outside the reading order until it is given one. */
+    val feminineForm: String
     val readAloud: String         // the switch's stable a11y label — never flips
     val stateOn: String
     val stateOff: String
@@ -140,6 +142,12 @@ interface Chrome {
     /** The free-practice card's own name — the ladder both drills climb, not a workshop. */
     val trainingTitle: String
     val trainingSubtitle: String  // what free practice is, under its name
+    /**
+     * What a hub chip is FOR, appended to its name for a reader the glyph tells nothing:
+     * %s = the language being practiced. Leads with a space — it finishes the chip's own
+     * name rather than standing as a sentence.
+     */
+    val practiceSuffix: String
     val trainerLetters: String
     val lettersHear: String       // the question a letter-name prompt asks
     val lettersSpell: String      // …and the one a gap word asks
@@ -161,6 +169,8 @@ interface Chrome {
     val answerCorrect: String     // an answered tile's state, never color alone
     val answerAlmost: String      // the near miss's own — amber is not a state a reader hears
     val answerWrong: String
+    /** A revealed answer: the amber edge is all that marks it, and a color is not a state. */
+    val notAnswered: String
 
     // ── The three overview pages ────────────────────────────────────────────────
     /** The ✕'s name — the corner every page and every run wears on the left. */
@@ -401,6 +411,14 @@ interface Chrome {
     val skipStep: String
     /** The way out of a card asked by ear: the word goes on screen instead of in the air. */
     val cantListen: String
+    /**
+     * How far a round has got, for the one reader the segments bar shows nothing:
+     * [cardPosition] (%1$s of %2$s) before the first answer, and once there are answers to
+     * report, [sessionTally] — %1$s right, %2$s hard, %3$s missed — which says the same
+     * three colors in words.
+     */
+    val cardPosition: String
+    val sessionTally: String
 
     // ── The day's standing (Heute) ──────────────────────────────────────────────
     /** Nothing due, and nothing done yet — never [doneToday], which the day must earn. */

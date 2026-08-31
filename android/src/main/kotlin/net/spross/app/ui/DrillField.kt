@@ -61,6 +61,9 @@ fun DrillAnswerField(
                     // why: the amber edge is the whole of what tells a near miss from a
                     // clean answer, and a color says nothing to TalkBack (WCAG 1.4.1).
                     is TurnFeedback.Almost -> stateDescription = chrome.answerAlmost
+                    // why: a reveal leaves the field its amber edge and nothing else — the
+                    // one state that has to SAY it was never answered.
+                    TurnFeedback.Revealed -> stateDescription = chrome.notAnswered
                     else -> {}
                 }
             },
