@@ -72,9 +72,9 @@ interface Chrome {
     val check: String
     val reveal: String
     val next: String
-    val also: String              // %s = the forms a card also answers to
-    val otherWordNote: String     // %1$s = the word typed, %2$s = what it means
-    val answerPlaceholder: String // %s = target language name
+    val also: String              // %s
+    val otherWordNote: String     // %1$s %2$s
+    val answerPlaceholder: String // %s
     val ratingQuestion: String
     /** The three the FIRST round teaches itself with, one per moment ([SessionCoach]). */
     val coachRecognize: String
@@ -82,34 +82,34 @@ interface Chrome {
     val coachWrite: String
     val hard: String
     val good: String
-    val unknown: String           // the third verdict — a judgment, not an instruction
+    val unknown: String
     val sessionDone: String
     val keepPracticing: String
     val finish: String
     val pluralEquals: String
     val pluralOnly: String
-    val pluralForm: String        // %s = the plural, where a card carries one
+    val pluralForm: String        // %s
     val feminineForm: String
-    val readAloud: String         // the switch's stable a11y label — never flips
+    val readAloud: String
     val stateOn: String
     val stateOff: String
-    val pronounce: String         // "say it again" action on a word
+    val pronounce: String
     val aboutButton: String
     val feedbackMail: String
     val updateButton: String
     val updateOfferTitle: String
-    val updateOfferBody: String   // what Obtainium does, and what going without costs
+    val updateOfferBody: String
     val updateViaObtainium: String
     val updateDownload: String
     val audioToggle: String
-    val audioOptionOff: String      // the box's three-way audio preference
+    val audioOptionOff: String
     val audioOptionRecordings: String
     val audioOptionTts: String
-    val audioHintOff: String        // the hint under the picker, per selection
+    val audioHintOff: String
     val audioHintRecordings: String
     val audioHintTts: String
     val creditsTitle: String
-    val creditsRecordings: String // %d = how many files the speaker contributed
+    val creditsRecordings: String // %d
     val creditsUnmodified: String
     val creditsCommons: String
     /** The address the notice answers on is kern's ([net.spross.kern.Legal]). */
@@ -125,39 +125,39 @@ interface Chrome {
     val legalContactLabel: String
     val legalPrivacy: String
     val trainingTitle: String
-    val trainingSubtitle: String  // what free practice is, under its name
+    val trainingSubtitle: String
     val practiceSuffix: String
     val trainerLetters: String
-    val lettersHear: String       // the question a letter-name prompt asks
-    val lettersSpell: String      // …and the one a gap word asks
+    val lettersHear: String
+    val lettersSpell: String
     val lettersDictation: String
-    val letterChoice: String      // %s = the glyph — a tile's spoken name
-    val replayPrompt: String      // the replay button's name
-    val promptInLanguage: String  // %s = target language name
-    val level: String             // %d — the rung a run stands on
-    val streak: String            // %d — answers in a row, never days
+    val letterChoice: String      // %s
+    val replayPrompt: String
+    val promptInLanguage: String  // %s
+    val level: String             // %d
+    val streak: String            // %d
     // The two captions an amber hold wears; the form itself follows, composed by
     // the reader, so the words stay one string and the layout stays each phone's.
     val almostTypo: String
     val almostHeard: String
     val audioOff: String
     val enableSound: String
-    val tasksDoneOne: String      // the count-of-one form, which carries the number too
+    val tasksDoneOne: String
     val tasksDone: String         // %d
     val bestStreak: String        // %d
-    val answerCorrect: String     // an answered tile's state, never color alone
-    val answerAlmost: String      // the near miss's own — amber is not a state a reader hears
+    val answerCorrect: String
+    val answerAlmost: String
     val answerWrong: String
     val notAnswered: String
 
     // ── The three overview pages ────────────────────────────────────────────────
     val close: String
-    val trainerNumbers: String    // the hub entry, and the variant's own name
-    val numbersPage: String       // %s = the language being learnt
+    val trainerNumbers: String
+    val numbersPage: String       // %s
     val lettersPage: String       // %s
-    val overviewPractice: String  // the heading the picks stand under
-    val overviewStart: String     // the button both pages open a run with
-    val tapToHear: String         // the gesture a reference page discloses once, under its heading
+    val overviewPractice: String
+    val overviewStart: String
+    val tapToHear: String
     val boxTapToHear: String
     val boxNoAudio: String
     val numbersReference: String
@@ -180,14 +180,14 @@ interface Chrome {
     val unlockPrefix: String
 
     // ── Inside a run ────────────────────────────────────────────────────────────
-    val digitsOne: String         // the numbers rung, which counts digits
+    val digitsOne: String
     val digits: String            // %d
-    val record: String            // %d — the standing streak the run has not beaten yet
-    val streakSpoken: String      // %d — the score line as a screen reader hears it
-    val recordSpoken: String      // %d — appended to it
-    val answerDigits: String      // a reversed task owes digits, never a language
-    val newPlace: String          // %s = the place word, the first time a length appears
-    val lookUp: String            // the "?" that raises the numbers page mid-run
+    val record: String            // %d
+    val streakSpoken: String      // %d
+    val recordSpoken: String      // %d
+    val answerDigits: String
+    val newPlace: String          // %s
+    val lookUp: String
     val newRecord: String
 
     // ── The letter drill's stages, as the overview lists them ───────────────────
@@ -207,13 +207,13 @@ interface Chrome {
     val alphabetSpeakExample: String
 
     // ── The atlas: the Länder page and its run ──────────────────────────────────
-    val trainerCountries: String  // the hub entry, and what the result tile says was drilled
-    val countriesPage: String     // %s = the language being learnt
+    val trainerCountries: String
+    val countriesPage: String     // %s
     val countriesReference: String
     val countriesPace: String
-    val countriesBest: String     // %d = the furthest rung any run reached
-    val countriesFastHint: String // this ladder costs THREE clean wins, so it prices its own
-    val countriesReverseHint: String // %1$s = the side asked in, %2$s = the side owed
+    val countriesBest: String     // %d
+    val countriesFastHint: String
+    val countriesReverseHint: String // %1$s %2$s
     /**
      * The rungs, in the order they are climbed — one entry per rung of kern's own ladder
      * ([net.spross.kern.trainer.CountryDrill.MAX_LEVEL]), read through [countryRung].
@@ -232,16 +232,16 @@ interface Chrome {
     // ── Box browse ──────────────────────────────────────────────────────────────
     val boxTitle: String
     val boxNav: String
-    val boxSubtitle: String       // %1$d active of %2$d held
+    val boxSubtitle: String       // %1$d %2$d
     val ownWordsTitle: String
     val ownWordsExplainer: String
-    val packArea: String          // %d = what packing this shelf would add
+    val packArea: String          // %d
     val packDone: String
-    val packWord: String          // the single-word offer a search hit carries
+    val packWord: String
     val unpackWord: String
     val dequeueArea: String
     val queuedWord: String
-    val suspended: String         // the sleeping mark's name
+    val suspended: String
     val wake: String
     val sleep: String
     /**
@@ -255,7 +255,7 @@ interface Chrome {
     val reported: String
     val progressConsolidated: String // %d
     val progressLearning: String  // %d
-    val phrasesLockedShort: String // %d = phrases still waiting on their components
+    val phrasesLockedShort: String // %d
     val phrasesLockedSpoken: String // %d
     val stateExpanded: String
     val stateCollapsed: String
@@ -273,19 +273,19 @@ interface Chrome {
     // ── Box search ──────────────────────────────────────────────────────────────
     val search: String
     val searchPlaceholder: String
-    val searchHint: String        // what the field will look through, before anything is typed
+    val searchHint: String
     val searchAreas: String
     val searchWords: String
-    val searchNothing: String     // %s = the query
-    val searchWriteOwn: String    // %s = the query — the one door to writing a word
+    val searchNothing: String     // %s
+    val searchWriteOwn: String    // %s
     val searchClear: String
 
     // ── Own-word form ───────────────────────────────────────────────────────────
     val ownWordTitle: String
-    val ownWordInLanguage: String // %s = language name — both fields ask it
+    val ownWordInLanguage: String // %s
     val ownWordPicture: String
     val ownWordAdd: String
-    val ownWordRemove: String     // the app's only deletion; catalog words sleep instead
+    val ownWordRemove: String
     val ownWordEdit: String
     val ownWordSave: String
     val ownWordSwap: String
@@ -297,9 +297,9 @@ interface Chrome {
     val reportDismiss: String
     val reportTitle: String
     val reportSend: String
-    val reportComment: String     // optional, and the label says so
+    val reportComment: String
     val reportTyped: String
-    val reportExplainer: String   // who reads it, and that the word's schedule is untouched
+    val reportExplainer: String
 
     // ── Own content ─────────────────────────────────────────────────────────────
     val ownContentTitle: String
@@ -321,15 +321,15 @@ interface Chrome {
     val profileHint: String
     val restartTutorial: String
     val restartTutorialHint: String
-    val resetButton: String       // %s = the language being learnt, in its own name
+    val resetButton: String       // %s
     val resetHint: String
-    val resetConfirm: String      // %s = the language being learnt, in its own name
+    val resetConfirm: String      // %s
     val cancel: String
     val reset: String
 
     // ── Session turn ────────────────────────────────────────────────────────────
-    val copyPrompt: String        // %s = target language name — the write-it-out field
-    val copyMismatch: String      // the copy was another word: the card still holds the answer
+    val copyPrompt: String        // %s
+    val copyMismatch: String
     val skipStep: String
     val cantListen: String
     val cardPosition: String
@@ -338,11 +338,11 @@ interface Chrome {
     // ── The day's standing (Heute) ──────────────────────────────────────────────
     val caughtUpTitle: String
     val dayReviews: String        // %d
-    val dayReviewsOne: String     // the count-of-one line, verbatim
+    val dayReviewsOne: String
     val dayNewCards: String       // %d
     val dayNewCardsOne: String
     val dayNewWordsOnly: String    // %d
-    val dayConsolidated: String   // %d — "gefestigt" needs no declining
+    val dayConsolidated: String   // %d
     /** Which of the two a round names is [net.spross.kern.session.SessionOffer.summaryParts]'. */
     val dayAhead: String          // %d
     val dayAheadOne: String
@@ -380,8 +380,8 @@ interface Chrome {
     // ── Load failures ───────────────────────────────────────────────────────────
     val errorTitle: String
     val errorCatalogMissing: String
-    val errorContentUnavailable: String // %s = what the system said
-    val errorUnknownProfile: String     // %1$s = known, %2$s = learnt
+    val errorContentUnavailable: String // %s
+    val errorUnknownProfile: String     // %1$s %2$s
     val errorResetFailed: String        // %s
 
     // ── Round completion ────────────────────────────────────────────────────────
@@ -389,8 +389,8 @@ interface Chrome {
     val roundNewOnly: String      // %d
     val roundConsolidated: String // %d
     val roundReviewed: String     // %d
-    val roundAllDone: String      // the round had nothing nameable in it
-    val restHint: String          // today's recall is strained; more reps buy little
+    val roundAllDone: String
+    val restHint: String
     val streakRecord: String
 
     val growthGrew: String
@@ -401,10 +401,10 @@ interface Chrome {
 
     // ── Activity strip ──────────────────────────────────────────────────────────
     val last14Days: String
-    val activityDays: String      // %d = days worked inside the window
-    val streakDays: String        // %d — days in a row, the strip's own label
+    val activityDays: String      // %d
+    val streakDays: String        // %d
     val streakDaysOne: String
-    val dayOne: String            // the badge's unit word, by count
+    val dayOne: String
     val dayMany: String
 
     // ── Home-screen widget ──────────────────────────────────────────────────────

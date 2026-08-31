@@ -39,7 +39,8 @@
             }
           }
         }
-      }
+      },
+      "comment" : "%d = days worked inside the window"
     },
     "a11y.almost" : {
       "localizations" : {
@@ -55,7 +56,8 @@
             "value" : "Almost correct"
           }
         }
-      }
+      },
+      "comment" : "the near miss's own — amber is not a state a reader hears"
     },
     "a11y.collapsed" : {
       "localizations" : {
@@ -87,7 +89,8 @@
             "value" : "Correct"
           }
         }
-      }
+      },
+      "comment" : "an answered tile's state, never color alone"
     },
     "a11y.endSession" : {
       "localizations" : {
@@ -153,7 +156,8 @@
             "value" : "Letter %@"
           }
         }
-      }
+      },
+      "comment" : "%s = the glyph — a tile's spoken name"
     },
     "a11y.notAnswered" : {
       "localizations" : {
@@ -235,7 +239,8 @@
             "value" : "Pronounce"
           }
         }
-      }
+      },
+      "comment" : "\"say it again\" action on a word"
     },
     "a11y.readAloud" : {
       "localizations" : {
@@ -251,7 +256,8 @@
             "value" : "Read words aloud"
           }
         }
-      }
+      },
+      "comment" : "the switch's stable a11y label — never flips"
     },
     "a11y.recordSuffix %@" : {
       "localizations" : {
@@ -267,7 +273,8 @@
             "value" : ", record %@"
           }
         }
-      }
+      },
+      "comment" : "%d — appended to it"
     },
     "a11y.replayPrompt" : {
       "localizations" : {
@@ -283,7 +290,8 @@
             "value" : "Play it again"
           }
         }
-      }
+      },
+      "comment" : "the replay button's name"
     },
     "a11y.sessionTally %@ %@ %@" : {
       "localizations" : {
@@ -339,7 +347,8 @@
             }
           }
         }
-      }
+      },
+      "comment" : "%d — days in a row, the strip's own label"
     },
     "a11y.streakInARow %@" : {
       "localizations" : {
@@ -355,7 +364,8 @@
             "value" : "Streak: %@ in a row"
           }
         }
-      }
+      },
+      "comment" : "%d — the score line as a screen reader hears it"
     },
     "a11y.wrong" : {
       "localizations" : {
@@ -501,7 +511,8 @@
             "value" : "%1$@ of %2$@ cards in progress"
           }
         }
-      }
+      },
+      "comment" : "%1$d active of %2$d held"
     },
     "box.dequeue %@" : {
       "localizations" : {
@@ -550,7 +561,8 @@
             "value" : "Add to box (%@)"
           }
         }
-      }
+      },
+      "comment" : "%d = what packing this shelf would add"
     },
     "box.enqueueDone" : {
       "localizations" : {
@@ -733,7 +745,8 @@
             "value" : "In %@"
           }
         }
-      }
+      },
+      "comment" : "%s = language name — both fields ask it"
     },
     "box.ownWords.picture" : {
       "localizations" : {
@@ -765,7 +778,8 @@
             "value" : "Delete word"
           }
         }
-      }
+      },
+      "comment" : "the app's only deletion; catalog words sleep instead"
     },
     "box.ownWords.save" : {
       "localizations" : {
@@ -831,7 +845,8 @@
             "value" : "Pack this word"
           }
         }
-      }
+      },
+      "comment" : "the single-word offer a search hit carries"
     },
     "box.phrasesLocked %lld" : {
       "comment" : "The same count spelled out for a screen reader. box.phrasesLockedShort sits beside a padlock that carries the \"locked\"; spoken, the padlock is gone.",
@@ -875,7 +890,7 @@
       }
     },
     "box.phrasesLockedShort %lld" : {
-      "comment" : "Sits beside a padlock, which carries the \"locked\"; box.phrasesLocked is what VoiceOver reads.",
+      "comment" : "Sits beside a padlock, which carries the \"locked\"; box.phrasesLocked is what VoiceOver reads. %d = phrases still waiting on their components",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -978,7 +993,8 @@
             "value" : "Words in either language, and the names of the areas."
           }
         }
-      }
+      },
+      "comment" : "what the field will look through, before anything is typed"
     },
     "box.search.nothing %@" : {
       "localizations" : {
@@ -994,7 +1010,8 @@
             "value" : "Nothing for “%@” in the box."
           }
         }
-      }
+      },
+      "comment" : "%s = the query"
     },
     "box.search.placeholder" : {
       "localizations" : {
@@ -1058,7 +1075,8 @@
             "value" : "Write “%@” yourself"
           }
         }
-      }
+      },
+      "comment" : "%s = the query — the one door to writing a word"
     },
     "box.sleep" : {
       "localizations" : {
@@ -1091,7 +1109,8 @@
             "value" : "Paused"
           }
         }
-      }
+      },
+      "comment" : "the sleeping mark's name"
     },
     "box.tapToHear" : {
       "localizations" : {
@@ -1255,7 +1274,8 @@
             "value" : "day"
           }
         }
-      }
+      },
+      "comment" : "the badge's unit word, by count"
     },
     "common.dismiss" : {
       "localizations" : {
@@ -1433,7 +1453,8 @@
             "value" : "Furthest so far: Sprosse %@"
           }
         }
-      }
+      },
+      "comment" : "%d = the furthest rung any run reached"
     },
     "countries.fast.hint" : {
       "extractionState" : "manual",
@@ -1450,7 +1471,8 @@
             "value" : "One clean answer per Sprosse instead of three."
           }
         }
-      }
+      },
+      "comment" : "this ladder costs THREE clean wins, so it prices its own"
     },
     "countries.pace" : {
       "localizations" : {
@@ -1499,7 +1521,8 @@
             "value" : "The question comes in %@, the answer is owed in %@."
           }
         }
-      }
+      },
+      "comment" : "%1$s = the side asked in, %2$s = the side owed"
     },
     "countries.rung.1" : {
       "extractionState" : "manual",
@@ -1885,7 +1908,8 @@
             "value" : "Countries · %@"
           }
         }
-      }
+      },
+      "comment" : "%s = the language being learnt"
     },
     "credits.commonsNote" : {
       "localizations" : {
@@ -1941,7 +1965,8 @@
             }
           }
         }
-      }
+      },
+      "comment" : "%d = how many files the speaker contributed"
     },
     "credits.title" : {
       "localizations" : {
@@ -2005,7 +2030,8 @@
             "value" : "The content could not be loaded. (%@)"
           }
         }
-      }
+      },
+      "comment" : "%s = what the system said"
     },
     "error.resetFailed %@" : {
       "localizations" : {
@@ -2053,7 +2079,8 @@
             "value" : "Unknown language profile (%1$@ → %2$@)."
           }
         }
-      }
+      },
+      "comment" : "%1$s = known, %2$s = learnt"
     },
     "feedback.copy" : {
       "localizations" : {
@@ -2150,7 +2177,8 @@
             "value" : "also: %@"
           }
         }
-      }
+      },
+      "comment" : "%s = the forms a card also answers to"
     },
     "grammar.plural %@" : {
       "localizations" : {
@@ -2166,7 +2194,8 @@
             "value" : "pl. %@"
           }
         }
-      }
+      },
+      "comment" : "%s = the plural, where a card carries one"
     },
     "grammar.plural.equals" : {
       "localizations" : {
@@ -2231,7 +2260,8 @@
             "value" : "%@ solidified"
           }
         }
-      }
+      },
+      "comment" : "%d — \"gefestigt\" needs no declining"
     },
     "heute.done.extraRound" : {
       "localizations" : {
@@ -2755,7 +2785,8 @@
             }
           }
         }
-      }
+      },
+      "comment" : "the count-of-one line, verbatim"
     },
     "heute.session.reviews.0" : {
       "localizations" : {
@@ -3223,7 +3254,8 @@
             "value" : "Which letter is this?"
           }
         }
-      }
+      },
+      "comment" : "the question a letter-name prompt asks"
     },
     "letters.spell" : {
       "localizations" : {
@@ -3239,7 +3271,8 @@
             "value" : "What's missing in the word?"
           }
         }
-      }
+      },
+      "comment" : "…and the one a gap word asks"
     },
     "letters.stage.choiceConfusable" : {
       "localizations" : {
@@ -3764,7 +3797,8 @@
             "value" : "Numbers · %@"
           }
         }
-      }
+      },
+      "comment" : "%s = the language being learnt"
     },
     "numbers.unlock" : {
       "localizations" : {
@@ -4057,7 +4091,8 @@
             "value" : "Practice"
           }
         }
-      }
+      },
+      "comment" : "the heading the picks stand under"
     },
     "overview.start" : {
       "localizations" : {
@@ -4073,7 +4108,8 @@
             "value" : "Start"
           }
         }
-      }
+      },
+      "comment" : "the button both pages open a run with"
     },
     "phase.consolidated" : {
       "localizations" : {
@@ -4299,7 +4335,8 @@
             "value" : "Not at all"
           }
         }
-      }
+      },
+      "comment" : "the third verdict — a judgment, not an instruction"
     },
     "reference.tapToHear" : {
       "localizations" : {
@@ -4315,7 +4352,8 @@
             "value" : "Every row speaks when tapped"
           }
         }
-      }
+      },
+      "comment" : "the gesture a reference page discloses once, under its heading"
     },
     "report.action" : {
       "localizations" : {
@@ -4348,7 +4386,8 @@
             "value" : "What's wrong? (optional)"
           }
         }
-      }
+      },
+      "comment" : "optional, and the label says so"
     },
     "report.dismiss" : {
       "localizations" : {
@@ -4397,7 +4436,8 @@
             "value" : "Goes to whoever maintains the catalog. It changes nothing about the word’s schedule."
           }
         }
-      }
+      },
+      "comment" : "who reads it, and that the word's schedule is untouched"
     },
     "report.reported" : {
       "localizations" : {
@@ -4527,7 +4567,8 @@
             "value" : "In %@ …"
           }
         }
-      }
+      },
+      "comment" : "%s = target language name"
     },
     "session.cardPosition %@ %@" : {
       "localizations" : {
@@ -4608,7 +4649,8 @@
             "value" : "Write it once in %@ …"
           }
         }
-      }
+      },
+      "comment" : "%s = target language name — the write-it-out field"
     },
     "session.copyMismatch" : {
       "localizations" : {
@@ -4624,7 +4666,8 @@
             "value" : "Not quite — the word is right above."
           }
         }
-      }
+      },
+      "comment" : "the copy was another word: the card still holds the answer"
     },
     "session.finished.grew" : {
       "localizations" : {
@@ -4833,7 +4876,8 @@
             "value" : "Not much is sticking today — a tired head keeps nothing. Tomorrow will go easier."
           }
         }
-      }
+      },
+      "comment" : "today's recall is strained; more reps buy little"
     },
     "session.finished.streakRecord" : {
       "localizations" : {
@@ -4898,7 +4942,8 @@
             "value" : "By the way: %1$@ means “%2$@”"
           }
         }
-      }
+      },
+      "comment" : "%1$s = the word typed, %2$s = what it means"
     },
     "session.reveal" : {
       "localizations" : {
@@ -4947,7 +4992,8 @@
             "value" : "All done"
           }
         }
-      }
+      },
+      "comment" : "the round had nothing nameable in it"
     },
     "session.summary.consolidated %@" : {
       "localizations" : {
@@ -5044,7 +5090,8 @@
             "value" : "No words are read aloud. Tapping a word still speaks it."
           }
         }
-      }
+      },
+      "comment" : "the hint under the picker, per selection"
     },
     "settings.audio.hint.recordings" : {
       "localizations" : {
@@ -5092,7 +5139,8 @@
             "value" : "No audio"
           }
         }
-      }
+      },
+      "comment" : "the box's three-way audio preference"
     },
     "settings.audio.option.recordings" : {
       "localizations" : {
@@ -5270,7 +5318,8 @@
             "value" : "Reset %@ …"
           }
         }
-      }
+      },
+      "comment" : "%s = the language being learnt, in its own name"
     },
     "settings.reset.confirm %@" : {
       "localizations" : {
@@ -5286,7 +5335,8 @@
             "value" : "Delete all learning progress for %@ and start over with the first words?"
           }
         }
-      }
+      },
+      "comment" : "%s = the language being learnt, in its own name"
     },
     "settings.reset.hint" : {
       "localizations" : {
@@ -5448,7 +5498,8 @@
             "value" : "Obtainium watches this app's releases and offers each new version as it appears. Without it, every update is a download by hand."
           }
         }
-      }
+      },
+      "comment" : "what Obtainium does, and what going without costs"
     },
     "settings.update.title" : {
       "localizations" : {
@@ -5496,7 +5547,8 @@
             "value" : "In digits …"
           }
         }
-      }
+      },
+      "comment" : "a reversed task owes digits, never a language"
     },
     "trainer.bestStreak %@" : {
       "localizations" : {
@@ -5544,7 +5596,8 @@
             "value" : "Countries"
           }
         }
-      }
+      },
+      "comment" : "the hub entry, and what the result tile says was drilled"
     },
     "trainer.digits %lld" : {
       "localizations" : {
@@ -5584,7 +5637,8 @@
             }
           }
         }
-      }
+      },
+      "comment" : "the numbers rung, which counts digits"
     },
     "trainer.forms" : {
       "localizations" : {
@@ -5632,7 +5686,8 @@
             "value" : "Sprosse %@"
           }
         }
-      }
+      },
+      "comment" : "%d — the rung a run stands on"
     },
     "trainer.lookup" : {
       "localizations" : {
@@ -5648,7 +5703,8 @@
             "value" : "Look up numbers"
           }
         }
-      }
+      },
+      "comment" : "the \"?\" that raises the numbers page mid-run"
     },
     "trainer.modifier.fast" : {
       "localizations" : {
@@ -5760,7 +5816,8 @@
             "value" : "New place: %@"
           }
         }
-      }
+      },
+      "comment" : "%s = the place word, the first time a length appears"
     },
     "trainer.newRecord" : {
       "localizations" : {
@@ -5792,7 +5849,8 @@
             "value" : "Numbers"
           }
         }
-      }
+      },
+      "comment" : "the hub entry, and the variant's own name"
     },
     "trainer.phrases" : {
       "localizations" : {
@@ -5824,7 +5882,8 @@
             "value" : "in %@"
           }
         }
-      }
+      },
+      "comment" : "%s = target language name"
     },
     "trainer.record %@" : {
       "localizations" : {
@@ -5840,7 +5899,8 @@
             "value" : "Record %@"
           }
         }
-      }
+      },
+      "comment" : "%d — the standing streak the run has not beaten yet"
     },
     "trainer.streak %@" : {
       "localizations" : {
@@ -5856,7 +5916,8 @@
             "value" : "🔥 %@ in a row"
           }
         }
-      }
+      },
+      "comment" : "%d — answers in a row, never days"
     },
     "trainer.subtitle" : {
       "localizations" : {
@@ -5872,7 +5933,8 @@
             "value" : "Free practice — no schedule, no limit"
           }
         }
-      }
+      },
+      "comment" : "what free practice is, under its name"
     },
     "trainer.tasksDone %lld" : {
       "localizations" : {
@@ -5912,7 +5974,8 @@
             }
           }
         }
-      }
+      },
+      "comment" : "the count-of-one form, which carries the number too"
     },
     "trainer.title" : {
       "localizations" : {
