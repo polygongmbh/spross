@@ -20,8 +20,7 @@ no Swift will ever ask for it), then this regenerates the tables.
 
 A counted key holds plural forms rather than one string, and which form a field reads is
 its own NAME's to say: `<field>One` takes the `one` form, every other name the general
-`other` one. So a counted pair is `foo`/`fooOne` — never `fooMany`, never two bare names —
-and the key needs no category written beside it.
+`other` one.
 
 Placeholders are rewritten on the way out — iOS writes %@ and %lld, java.lang.String
 wants %s and %d — so a call site's `.format(...)` keeps working unchanged.
