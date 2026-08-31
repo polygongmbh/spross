@@ -1,21 +1,16 @@
 # What may run when
 
-Cache what is expensive, and key the cache on everything the answer depends on. A key that
-covers its inputs cannot go stale — a changed input is a miss, and a miss is only slow.
-That is the whole discipline; abstaining from caching is not a substitute for it, and
-recomputing by default is how a screen comes to compose the day's session three times
-before it can draw.
+Cache what is expensive, and key the cache on everything the answer depends on.
 
-Most kern entry points nonetheless recompute, for one practical reason rather than a moral
-one: they take `nowEpochMillis` as an input, so a correct key would include it and the
-cache would never hit. What knows when an answer really needs to change is the platform —
+Most kern entry points nonetheless recompute: they take `nowEpochMillis` as an input, so a
+correct key would include it and the cache would never hit. What knows when an answer really needs to change is the platform —
 a mutation, a foreground, a booked day — so **that is where box-derived answers are held**,
 keyed on the event rather than on the clock. Where an answer does NOT depend on the clock,
 kern keeps it: `box/Time.kt`'s `zoneOf` holds the last time zone resolved by name, because
 resolving one reads the platform's zone database off disk, and `Catalog` holds lazy indices
 over its own immutable contents.
 
-Two things kern still does not do, and these are rules rather than defaults. It never reads
+Two things kern does not do. It never reads
 a clock — `nowEpochMillis` and `tzId` are parameters, which is what makes a rule testable at
 a pinned moment. And it never decides for itself when to refresh something whose truth is
 the platform's to know: a voice arriving from Settings while the app slept is not an event
