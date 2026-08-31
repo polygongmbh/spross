@@ -94,11 +94,16 @@ Strict dependency direction: App → SprossKern, never the reverse.
   additive. How a key is written and kept honest: `scripts/strings.py`.
 - The String Catalog is the ONE home for that copy, on both phones: Android's tables are
   generated from it (`scripts/chrome.py`, keyed by its `MAPPING`), and a pre-commit check
-  refuses a catalog edit that leaves them behind. `MAPPING` stays hand-written on purpose:
-  it carries CURATION as well as naming — which of the catalog's keys Android exposes at
-  all — and only about 60% of the entries would derive from the key, the rest being reworded
-  or regrouped for Kotlin call sites, so deriving it would trade one table for a smaller one
-  plus a rule with exceptions. Strings only Android says live there too,
+  refuses a catalog edit that leaves them behind. `MAPPING` is hand-written and names alone:
+  a field diverges from its key's wording where the Kotlin call site reads better for it,
+  and a counted key's form follows the field's own name — `<field>One` takes the `one` form,
+  any other name the general `other` one.
+  Which keys Android does not read is declared beside it and checked against the whole
+  catalog: `IOS_ONLY` for what Android has no use for, `ANDROID_TODO` for what it still owes.
+  What a string MEANS is its catalog entry's `comment`, where the other phone and whoever
+  translates it read the same sentence; a field's KDoc says only what Kotlin owns —
+  the shape of a list or map, the kern enum indexing it, the placeholders owed.
+  Strings only Android says live there too,
   named in `strings.py`'s `ANDROID_ONLY` so the iOS drift check knows no Swift will ask.
   Where the layout differs the READER composes — the catalog holds the caption
   ("Fast! Korrekte Schreibweise"), and each phone sets the form beside or below it.
