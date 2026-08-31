@@ -3,8 +3,8 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.catalog.AlphabetEntry
@@ -18,7 +18,11 @@ class LetterDrillTests {
     private val fixture = LetterDrillFixture
 
     private fun sample(level: Int, seed: Int, refs: List<String> = fixture.allRefs, avoid: String? = null) =
-        LetterDrill.sample(fixture.alphabet, fixture.example, level, refs, avoid, null, Random(seed))
+        assertNotNull(
+            LetterDrill.sample(
+                fixture.alphabet, fixture.example, level, refs, avoid, null, emptySet(), Random(seed),
+            ),
+        )
 
     @Test
     fun theLadderMapsLevelsToStages() {
@@ -134,7 +138,11 @@ class LetterDrillTests {
     ): List<String> {
         val rng = Random(4)
         return (1..count).map {
-            LetterDrill.sample(fixture.alphabet, { words }, 6, listOf("ß"), null, avoidWord, rng).promptText
+            assertNotNull(
+                LetterDrill.sample(
+                    fixture.alphabet, { words }, 6, listOf("ß"), null, avoidWord, emptySet(), rng,
+                ),
+            ).promptText
         }
     }
 
@@ -174,11 +182,14 @@ class LetterDrillTests {
 
     @Test
     fun aRowWhoseWordsCannotBeGappedIsNeverAsked() {
-        // "Wasser" holds no ß at all — the pool empties and the row leaves the draw.
+        // "Wasser" holds no ß at all — the pool empties and the row leaves the draw, which
+        // leaves the rung with nothing to ask rather than an unanswerable question.
         val unusable = listOf(AlphabetExampleWord("Wasser", null))
-        assertFailsWith<IllegalArgumentException> {
-            LetterDrill.sample(fixture.alphabet, { unusable }, 6, listOf("ß"), null, null, Random(1))
-        }
+        assertNull(
+            LetterDrill.sample(
+                fixture.alphabet, { unusable }, 6, listOf("ß"), null, null, emptySet(), Random(1),
+            ),
+        )
     }
 
     @Test
@@ -228,8 +239,10 @@ class LetterDrillTests {
                     ?: entry.exampleText?.let { AlphabetExampleWord(it, null) },
             )
         }
-        val task = LetterDrill.sample(
-            fixture.alphabet, resolved, 6, listOf("ch-ich"), null, null, Random(1),
+        val task = assertNotNull(
+            LetterDrill.sample(
+                fixture.alphabet, resolved, 6, listOf("ch-ich"), null, null, emptySet(), Random(1),
+            ),
         )
         assertEquals(LetterPromptKind.Word, task.promptKind)
         assertEquals("light", task.promptSlug)

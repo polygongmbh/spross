@@ -28,17 +28,19 @@ object LetterDrillRun {
     /** The same, forced to one rung — the deterministic way to reach a stage. */
     fun openAt(config: LetterDrillRunConfig, level: Int, rng: Random): LetterDrillRunState {
         val start = level.coerceIn(1, config.report.maxLevel)
+        val opening = question(config, start, null, null, emptySet(), rng)
         return LetterDrillRunState(
             config = config,
-            task = sample(config, start, null, null, rng),
+            task = opening.task,
             index = 0,
-            level = start,
+            level = opening.level,
             winsAtLevel = 0,
             done = 0,
             streak = 0,
             bestStreak = 0,
             missRun = 0,
             outcomes = emptyList(),
+            solved = emptySet(),
             chosen = null,
             feedback = TurnFeedback.Neutral,
             finished = false,
@@ -200,23 +202,27 @@ object LetterDrillRun {
         rng: Random,
     ): LetterDrillReduction {
         val next = advanced(state, correct, clean)
-        val question = sample(
+        val question = question(
             state.config,
             next.level,
             state.task?.answerRef,
             state.task?.let { if (it.gapText == null) null else it.promptText },
+            next.solved,
             rng,
         )
         return LetterDrillReduction(
             next.copy(
-                task = question,
+                task = question.task,
+                level = question.level,
+                // A rung the run was carried past keeps none of the wins banked below it.
+                winsAtLevel = if (question.level == next.level) next.winsAtLevel else 0,
                 index = state.index + 1,
                 // why: cleared in the SAME transaction as the question — the next one must never
                 // render a frame carrying the last one's answer.
                 feedback = TurnFeedback.Neutral,
                 chosen = null,
                 // Nothing left to ask: end on the summary, never on a blank card.
-                finished = question == null,
+                finished = question.task == null,
             ),
             listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
         )
@@ -236,9 +242,17 @@ object LetterDrillRun {
             winsRequired = state.config.report.winsToAdvance,
         )
         val streak = if (correct) state.streak + 1 else 0
+        val task = state.task
         return state.copy(
             level = step.level,
             winsAtLevel = step.winsAtLevel,
+            // why: only a CLEAN answer retires a prompt — a slip, a heard-instead and a reveal
+            // all leave it in the pool, which is what the ramp already says they are worth.
+            solved = if (correct && clean && task != null) {
+                state.solved + DrillSolved.key(task)
+            } else {
+                state.solved
+            },
             streak = streak,
             bestStreak = maxOf(state.bestStreak, streak),
             missRun = if (correct) 0 else state.missRun + 1,
@@ -253,16 +267,40 @@ object LetterDrillRun {
         else -> AnswerOutcome.Almost
     }
 
+    /** The next question and the rung it came from — see [question]. */
+    private data class Question(val task: LetterDrillTask?, val level: Int)
+
+    /**
+     * The first rung at or above [from] with something left to ask. A stage the run has
+     * answered out is climbed past rather than repeated ([DrillSolved]), and where the whole
+     * ladder above is spent the task is null: the run ends on its summary.
+     */
+    private fun question(
+        config: LetterDrillRunConfig,
+        from: Int,
+        avoiding: String?,
+        avoidingWord: String?,
+        solved: Set<String>,
+        rng: Random,
+    ): Question {
+        for (level in from..config.report.maxLevel) {
+            val task = sample(config, level, avoiding, avoidingWord, solved, rng)
+            if (task != null) return Question(task, level)
+        }
+        return Question(null, from)
+    }
+
     /**
      * One question at [level]: dictation draws from the box, every other stage from the alphabet.
      * [avoiding] is the previous answer and [avoidingWord] the word it gapped, each of which kern
-     * resamples once. Null ⇒ this device can ask nothing more.
+     * resamples once. Null ⇒ this device, at this rung, can ask nothing more.
      */
     private fun sample(
         config: LetterDrillRunConfig,
         level: Int,
         avoiding: String?,
         avoidingWord: String?,
+        solved: Set<String>,
         rng: Random,
     ): LetterDrillTask? {
         val report = config.report
@@ -274,6 +312,7 @@ object LetterDrillRun {
                 report.alphabet,
                 level,
                 avoiding,
+                solved,
                 rng,
             )
         }
@@ -286,6 +325,7 @@ object LetterDrillRun {
             report.promptableRefs,
             avoiding,
             avoidingWord,
+            solved,
             rng,
         )
     }

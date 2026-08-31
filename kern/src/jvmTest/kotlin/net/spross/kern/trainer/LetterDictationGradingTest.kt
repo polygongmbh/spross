@@ -5,6 +5,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertIs
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import net.spross.kern.catalog.RealCatalog
 import net.spross.kern.model.Card
@@ -35,10 +36,14 @@ class LetterDictationGradingTest {
     private fun normalizer(target: Language) =
         AnswerNormalizer(catalog.languages.getValue(target), articleLeniency = false, maxTyposPerWord = 1)
 
-    private fun grading(card: Card): Card =
-        LetterDrill.dictationGradingCard(card, LetterDrill.sampleDictation(
-            listOf(LetterDrill.DictationCandidate(card)), null, 9, null, Random(1),
-        ))
+    private fun grading(card: Card): Card = LetterDrill.dictationGradingCard(
+        card,
+        assertNotNull(
+            LetterDrill.sampleDictation(
+                listOf(LetterDrill.DictationCandidate(card)), null, 9, null, emptySet(), Random(1),
+            ),
+        ),
+    )
 
     private fun List<Card>.byText(text: String): Card =
         firstOrNull { it.target.text == text } ?: throw AssertionError("no card answers \"$text\"")

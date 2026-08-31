@@ -3,6 +3,7 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.Card
@@ -15,8 +16,10 @@ class LetterDrillDictationTests {
 
     private fun drawn(level: Int, from: List<Card> = cards, avoid: String? = null): List<String> =
         (1..200).map {
-            LetterDrill.sampleDictation(
-                LetterDrillFixture.dictationCandidates(from), null, level, avoid, Random(it),
+            assertNotNull(
+                LetterDrill.sampleDictation(
+                    LetterDrillFixture.dictationCandidates(from), null, level, avoid, emptySet(), Random(it),
+                ),
             ).display
         }
 
@@ -60,7 +63,11 @@ class LetterDrillDictationTests {
 
     @Test
     fun theTaskSpeaksTheCardAndKeepsItsMeaningBack() {
-        val task = LetterDrill.sampleDictation(LetterDrillFixture.dictationCandidates(cards), null, 9, null, Random(3))
+        val task = assertNotNull(
+            LetterDrill.sampleDictation(
+                LetterDrillFixture.dictationCandidates(cards), null, 9, null, emptySet(), Random(3),
+            ),
+        )
         val card = cards.first { it.id == task.answerRef }
         assertEquals(LetterStage.Dictation, task.stage)
         assertEquals(card.target.lang, task.language)
@@ -123,7 +130,7 @@ class LetterDrillDictationTests {
         )
         val rng = Random(11)
         val drawn = (1..600).map {
-            LetterDrill.sampleDictation(pool, alphabet, 9, null, rng).answerRef
+            assertNotNull(LetterDrill.sampleDictation(pool, alphabet, 9, null, emptySet(), rng)).answerRef
         }
         val easy = drawn.count { it == "easy" }
         assertTrue(drawn.count { it == "spelt" } > easy, "a tricky spelling must out-draw a plain one")
@@ -159,8 +166,10 @@ class LetterDrillDictationTests {
             ),
             promptFeminineMarker = true,
         )
-        val task = LetterDrill.sampleDictation(
-            LetterDrillFixture.dictationCandidates(listOf(real)), null, 9, null, Random(1),
+        val task = assertNotNull(
+            LetterDrill.sampleDictation(
+                LetterDrillFixture.dictationCandidates(listOf(real)), null, 9, null, emptySet(), Random(1),
+            ),
         )
         val grading = LetterDrill.dictationGradingCard(real, task)
 

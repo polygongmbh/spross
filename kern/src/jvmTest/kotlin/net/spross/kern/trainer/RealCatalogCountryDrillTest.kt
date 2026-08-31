@@ -76,7 +76,9 @@ class RealCatalogCountryDrillTest {
                     val rng = Random(level.toLong())
                     var last: String? = null
                     repeat(200) {
-                        val task = CountryDrill.sample(content, level, reverse, last, rng)
+                        val task = assertNotNull(
+                            CountryDrill.sample(content, level, reverse, last, emptySet(), rng),
+                        )
                         // A flag question shows no name at all, so what every task owes is
                         // SOMETHING to go on: a name, or the flag standing in for one.
                         assertTrue(

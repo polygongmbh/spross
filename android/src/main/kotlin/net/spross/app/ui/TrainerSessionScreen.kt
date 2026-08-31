@@ -94,6 +94,8 @@ fun TrainerSessionScreen(model: AppModel, mode: TrainerMode) {
         model.finishDrill(Screen.Numbers, closed.summary, title)
     }
     BackHandler(enabled = !flow.showingReference) { leave() }
+    // Nothing left to ask: hand the run back, never repeat a question.
+    LaunchedEffect(flow.ranOut) { if (flow.ranOut) leave() }
     // D5: leaving mid-clip must silence, whichever way the screen goes.
     DisposableEffect(Unit) { onDispose { model.pronouncer.stop() } }
 

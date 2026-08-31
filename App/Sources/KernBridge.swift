@@ -136,12 +136,6 @@ extension CountryDrill {
     /// Whether the top rung has EVER been stood on — the whole price of fast
     /// mode, kept in kern so the page never spells the number out itself.
     func fastUnlocked(bestLevel: Int) -> Bool { fastUnlocked(bestLevel: Int32(bestLevel)) }
-
-    func sample(content: CountryDrillContent, level: Int, reverse: Bool,
-                avoidId: String?, rng: KotlinRandom) -> CountryDrillTask {
-        sample(content: content, level: Int32(level), reverse: reverse,
-               avoidId: avoidId, rng: rng)
-    }
 }
 
 /// The one rung ramp both drills answer to. How long a rung is stays theirs

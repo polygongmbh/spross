@@ -107,6 +107,10 @@ object LetterDrill {
      * gap entry whose examples do not resolve or whose glyph sits in none of them exactly
      * once. Lint makes all three unreachable in shipped content; the filter is what turns
      * an authoring slip into a smaller pool instead of an unanswerable question.
+     *
+     * [solved] is what this run has already got right ([DrillSolved]): those prompts are
+     * dropped from the pool too, and a stage with nothing left outside them samples null —
+     * a spent rung the run climbs past rather than asks again.
      */
     fun sample(
         alphabet: Alphabet,
@@ -115,22 +119,23 @@ object LetterDrill {
         promptableRefs: List<String>,
         avoidRef: String?,
         avoidWord: String?,
+        solved: Set<String>,
         rng: Random,
-    ): LetterDrillTask {
+    ): LetterDrillTask? {
         val allowed = promptableRefs.toSet()
+        // why: the letter stages stop at 7 — 8 and 9 are dictation, which draws from the
+        // box and enters through sampleDictation, never here.
+        val stage = stageFor(level.coerceIn(1, MAX_LEVEL_WITHOUT_DICTATION))
         val pool = alphabet.entries
             .filter { it.ref in allowed && it.drill && it.kind != AlphabetKind.Rule }
-            .map { entry -> entry to gapCandidates(entry, targetExamples) }
+            .map { entry -> entry to unsolved(gapCandidates(entry, targetExamples), stage, entry, solved) }
             .filter { (entry, words) -> entry.kind == AlphabetKind.Letter || words.isNotEmpty() }
-            .filter { (entry, _) -> entry.kind != AlphabetKind.Letter || entry.name != null }
-        require(pool.isNotEmpty()) { "no promptable entry in the ${alphabet.language} alphabet" }
+            .filter { (entry, _) -> entry.kind != AlphabetKind.Letter || askableName(entry, stage, solved) }
+        if (pool.isEmpty()) return null
         var picked = pool[rng.nextInt(pool.size)]
         if (picked.first.ref == avoidRef) picked = pool[rng.nextInt(pool.size)]
         val (entry, words) = picked
         val prompt = prompt(entry, words, avoidWord, rng)
-        // why: the letter stages stop at 7 — 8 and 9 are dictation, which draws from the
-        // box and enters through sampleDictation, never here.
-        val stage = stageFor(level.coerceIn(1, MAX_LEVEL_WITHOUT_DICTATION))
         return LetterDrillTask(
             stage = stage,
             language = alphabet.language,
@@ -172,16 +177,23 @@ object LetterDrill {
      * spent on words already spelt right is a rung spent on nothing. [alphabet] is only
      * consulted for the language's own hard graphemes; a language without one dictates
      * fine, it just weighs the spelling half at zero.
+     *
+     * [solved] is what this run has already transcribed right; null comes back once every
+     * candidate is in it, and the run climbs past the rung rather than dictating twice.
      */
     fun sampleDictation(
         candidates: List<DictationCandidate>,
         alphabet: Alphabet?,
         level: Int,
         avoidCardId: String?,
+        solved: Set<String>,
         rng: Random,
-    ): LetterDrillTask {
-        val words = candidates.filter { ' ' !in it.card.target.text }
-        require(words.isNotEmpty()) { "no single-word dictation candidate" }
+    ): LetterDrillTask? {
+        val words = candidates.filter {
+            ' ' !in it.card.target.text &&
+                DrillSolved.letterKey(LetterStage.Dictation, it.card.id, it.card.target.text) !in solved
+        }
+        if (words.isEmpty()) return null
         val short = words.filter { it.card.target.text.count { ch -> ch != ' ' } <= SHORT_WORD_LETTERS }
         val pool = if (level <= 8 && short.size >= MIN_SHORT_CANDIDATES) short else words
         val tricky = alphabet?.trickyGlyphs.orEmpty()
@@ -273,6 +285,21 @@ object LetterDrill {
     ): List<AlphabetExampleWord> =
         if (entry.kind == AlphabetKind.Letter) emptyList()
         else examples(entry).filter { entry.gapWord(it.text) != null }
+
+    /** The gap words this run has not already spelt right at this stage. */
+    private fun unsolved(
+        words: List<AlphabetExampleWord>,
+        stage: LetterStage,
+        entry: AlphabetEntry,
+        solved: Set<String>,
+    ): List<AlphabetExampleWord> =
+        words.filter { DrillSolved.letterKey(stage, entry.ref, it.text) !in solved }
+
+    /** A letter is asked by its NAME, so that one prompt is the whole of what it can offer. */
+    private fun askableName(entry: AlphabetEntry, stage: LetterStage, solved: Set<String>): Boolean {
+        val name = entry.name ?: return false
+        return DrillSolved.letterKey(stage, entry.ref, name) !in solved
+    }
 
     private fun prompt(
         entry: AlphabetEntry,

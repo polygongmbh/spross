@@ -4,6 +4,7 @@ import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
@@ -198,9 +199,10 @@ class TrainerModeTest {
         val mix = TrainerMode(listOf(DrillVariant.Numbers), "de", setOf(DrillModifier.Mix))
         val levels = mapOf(DrillVariant.Numbers to 3)
 
-        assertTrue((1..20).none { plain.draw(levels, null, rng).reversed })
-        assertTrue((1..20).all { reverse.draw(levels, null, rng).reversed })
-        val flips = (1..40).map { mix.draw(levels, null, rng).reversed }
+        fun TrainerMode.reversedDraw() = assertNotNull(draw(levels, null, emptySet(), rng).drawn).reversed
+        assertTrue((1..20).none { plain.reversedDraw() })
+        assertTrue((1..20).all { reverse.reversedDraw() })
+        val flips = (1..40).map { mix.reversedDraw() }
         assertTrue(flips.contains(true) && flips.contains(false), "Mix flips per task: $flips")
     }
 

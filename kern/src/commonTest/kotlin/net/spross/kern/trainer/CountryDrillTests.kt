@@ -395,7 +395,7 @@ class CountryDrillTests {
     fun theSameSeedDrawsTheSameRun() {
         fun run(): List<String> {
             val rng = Random(7)
-            return (1..20).map { CountryDrill.sample(content, 4, false, null, rng).id }
+            return (1..20).map { assertNotNull(CountryDrill.sample(content, 4, false, null, emptySet(), rng)).id }
         }
         assertEquals(run(), run())
         assertTrue(run().toSet().size > 1, "the run asked one question twenty times")
@@ -405,7 +405,7 @@ class CountryDrillTests {
     @Test
     fun theLastAnswerIsResampledOnce() {
         fun hits(avoid: String?) = (1..400).count {
-            CountryDrill.sample(content, 1, false, avoid, Random(it.toLong())).id == "homeland"
+            CountryDrill.sample(content, 1, false, avoid, emptySet(), Random(it.toLong()))?.id == "homeland"
         }
         assertTrue(hits("homeland") < hits(null), "avoidId bought nothing")
     }

@@ -130,8 +130,9 @@ extension LetterDrillView {
                              level: run.level, winsAtLevel: run.winsAtLevel,
                              done: Int32(preset + 6), streak: Int32(preset),
                              bestStreak: Int32(max(preset, 12)), missRun: run.missRun,
-                             outcomes: run.outcomes, chosen: run.chosen,
-                             feedback: run.feedback, finished: run.finished)
+                             outcomes: run.outcomes, solved: run.solved,
+                             chosen: run.chosen, feedback: run.feedback,
+                             finished: run.finished)
         }
         // `-uitest-close 1`: leave the way the ✕ leaves, so the tile the run
         // drops on the page behind it can be photographed.

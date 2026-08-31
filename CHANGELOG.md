@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **A drill asks you each question once.** Numbers, the clock, forms and sentences, the
+  letters and the atlas: whatever you have answered right does not come round again in the
+  same run, so an evening on the drills is spent on what you still owe rather than on the
+  same handful of prompts. A level with nothing left to ask is skipped rather than repeated
+  — the atlas level you start on can hold a single country — and a drill that runs out of
+  questions altogether hands you its figures instead of asking again. A slip or a look-up
+  still leaves the question in the pool: only an answer you got right retires it.
+
 ## 5.7.1 — 2026-08-31
 
 - **The app keeps up with your taps again.** Coming back from the box, opening a round and

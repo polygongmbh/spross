@@ -87,6 +87,15 @@ data class CountryDrillTask(
     val gloss: String?,
 )
 
+/**
+ * What [CountryDrill.draw] hands back: the question, and the rung it actually came from —
+ * a rung the run has answered out is climbed past rather than asked again.
+ *
+ * [task] is null exactly when the whole ladder above is answered out, which ends the run on
+ * its summary rather than repeating a question.
+ */
+data class CountryDrillDraw(val task: CountryDrillTask?, val level: Int)
+
 /** One country as the reference table lists it, both sides of the pair side by side. */
 data class CountryReferenceRow(
     val slug: String,

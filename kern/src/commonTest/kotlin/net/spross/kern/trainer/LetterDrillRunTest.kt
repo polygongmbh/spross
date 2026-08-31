@@ -316,6 +316,49 @@ class LetterDrillRunTest {
         assertEquals(1, state.done)
     }
 
+    // MARK: - Asking each prompt once
+
+    /** The question on screen, answered right the way its stage takes an answer. */
+    private fun answeredRight(state: LetterDrillRunState, rng: Random): LetterDrillRunState {
+        val task = assertNotNull(state.task)
+        val intent = if (task.choices == null) {
+            LetterDrillIntent.Submit(task.display)
+        } else {
+            LetterDrillIntent.Choose(task.display)
+        }
+        return reduce(reduce(state, intent, rng).state, LetterDrillIntent.ConfirmPending, rng).state
+    }
+
+    /**
+     * One promptable letter is one question per STAGE, so answering it right empties both
+     * rungs of that stage at once: the run climbs past them rather than asking `m` again,
+     * and the same letter is a question again where the next stage asks it another way.
+     */
+    @Test
+    fun aStageAnsweredOutIsClimbedPast() {
+        val rng = Random(41)
+        val one = config(report(consolidated = 0, refs = listOf("m")))
+        var state = LetterDrillRun.openAt(one, 1, rng)
+        assertEquals("em", state.task?.promptText)
+
+        state = answeredRight(state, rng)
+        assertEquals(3, state.level, "both easy rungs ask the same one question")
+        assertEquals(LetterStage.ChoiceConfusable, state.stage)
+        assertEquals(0, state.winsAtLevel, "the wins stay behind with the rung that earned them")
+        assertEquals("em", state.task?.promptText, "a tile stage and a typed one are two questions")
+        assertFalse(state.finished)
+    }
+
+    /** A ladder answered out ends the run on its summary, never on a repeat. */
+    @Test
+    fun aLadderAnsweredOutEndsTheRun() {
+        val rng = Random(43)
+        var state = LetterDrillRun.openAt(config(report(consolidated = 0, refs = listOf("m"))), 1, rng)
+        while (!state.finished) state = answeredRight(state, rng)
+        assertNull(state.task)
+        assertEquals(3, state.done, "one question per stage: two tile stages and the typed one")
+    }
+
     // MARK: - Closing
 
     @Test

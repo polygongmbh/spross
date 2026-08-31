@@ -85,6 +85,11 @@ data class TrainerRunState(
      */
     val missRun: Int,
     val outcomes: List<AnswerOutcome>,
+    /**
+     * The prompts this run has already answered RIGHT ([DrillSolved]): never drawn again, and
+     * a rung with nothing left outside them is climbed past rather than repeated.
+     */
+    val solved: Set<String>,
     /** Digit counts already introduced with a place-value hint; each length is hinted once. */
     val seenDigitCounts: Set<Int>,
     /** The learner looked the numbers up while owing this answer: it books almost. */

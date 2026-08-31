@@ -92,22 +92,59 @@ data class TrainerMode(
     fun progressKey(variant: DrillVariant): String = progressKey(variant, language)
 
     /**
-     * One fresh task from the selection, each variant at its own rung; a prompt never
-     * repeats back-to-back (resampled once when it equals [avoiding]).
+     * One fresh task from the selection, each variant at its own rung: never a prompt
+     * [solved] already holds and never the one on screen ([avoiding]), so no question is
+     * asked twice in a run ([DrillSolved]).
+     *
+     * A rung whose values keep coming back solved is spent, and the draw climbs past it
+     * rather than repeating it — which is why the rungs come back with the task. A variant
+     * that has run out altogether hands the turn to the next one, so a mixed run outlives
+     * the exercise that ran dry; only when every variant is out is [TrainerDraw.drawn] null.
      *
      * Every random choice a run makes goes through this one [rng] — the variant pick, the
      * frame pick, Mix's per-task direction flip and the value itself — so a seeded run is
      * reproducible end to end instead of three-quarters of the way.
      */
-    fun draw(levels: Map<DrillVariant, Int>, avoiding: String?, rng: Random): DrawnTask {
-        val drawn = drawOnce(levels, rng)
-        if (drawn.task.prompt != avoiding) return drawn
-        return drawOnce(levels, rng)
+    fun draw(
+        levels: Map<DrillVariant, Int>,
+        avoiding: String?,
+        solved: Set<String>,
+        rng: Random,
+    ): TrainerDraw {
+        val first = variants[rng.nextInt(variants.size)]
+        for (variant in listOf(first) + variants.filter { it != first }) {
+            val fresh = drawFresh(variant, levels, avoiding, solved, rng)
+            if (fresh != null) return fresh
+        }
+        return TrainerDraw(null, levels)
     }
 
-    private fun drawOnce(levels: Map<DrillVariant, Int>, rng: Random): DrawnTask {
-        val variant = variants[rng.nextInt(variants.size)]
-        val forward = drawForward(variant, levels[variant] ?: 1, levels[DrillVariant.Numbers] ?: 1, rng)
+    /** The first rung at or above [variant]'s with a value left to ask; null once it is out. */
+    private fun drawFresh(
+        variant: DrillVariant,
+        levels: Map<DrillVariant, Int>,
+        avoiding: String?,
+        solved: Set<String>,
+        rng: Random,
+    ): TrainerDraw? {
+        for (level in (levels[variant] ?: 1)..maxLevel(variant)) {
+            repeat(DrillSolved.SPENT_ATTEMPTS) {
+                val drawn = drawOnce(variant, level, levels, rng)
+                if (DrillSolved.key(variant, drawn.task) !in solved && drawn.task.prompt != avoiding) {
+                    return TrainerDraw(drawn, levels + (variant to level))
+                }
+            }
+        }
+        return null
+    }
+
+    private fun drawOnce(
+        variant: DrillVariant,
+        level: Int,
+        levels: Map<DrillVariant, Int>,
+        rng: Random,
+    ): DrawnTask {
+        val forward = drawForward(variant, level, levels[DrillVariant.Numbers] ?: 1, rng)
         val reversed = drawsReversed(rng)
         // The flip happens HERE and nowhere else: kern hands back an ordinary task with the
         // reading as its prompt, so no surface below has to ask the direction.
@@ -213,6 +250,18 @@ data class DrawnTask(
     val variant: DrillVariant,
     val task: TrainerTask,
     val reversed: Boolean,
+)
+
+/**
+ * What [TrainerMode.draw] hands back: the question, and the rungs the run stands on now that
+ * it has been drawn — a variant whose rung was answered out has climbed past it.
+ *
+ * [drawn] is null exactly when every variant has run out of fresh prompts at every rung,
+ * which ends the run on its summary rather than asking anything a second time.
+ */
+data class TrainerDraw(
+    val drawn: DrawnTask?,
+    val levels: Map<DrillVariant, Int>,
 )
 
 /**

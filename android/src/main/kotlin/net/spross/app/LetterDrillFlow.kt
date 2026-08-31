@@ -39,6 +39,15 @@ class LetterDrillFlow(
     var input by mutableStateOf("")
         private set
 
+    /**
+     * Kern has run out of questions: the screen hands the run back rather than sitting on a
+     * card it has already answered. False once the close has been made, whichever way the
+     * screen went — a run is handed back once.
+     */
+    val ranOut: Boolean get() = state.finished && !handedBack
+
+    private var handedBack = false
+
     val armedBeat get() = beat.tier
 
     val beatToken get() = beat.token
@@ -70,6 +79,7 @@ class LetterDrillFlow(
 
     /** Leaving: kern books a pending answer exactly as the tap would, then reports. */
     fun close(): LetterDrillClose {
+        handedBack = true
         val closed = LetterDrillRun.close(state)
         state = closed.state
         input = ""
