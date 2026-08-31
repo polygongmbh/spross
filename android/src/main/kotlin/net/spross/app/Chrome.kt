@@ -14,6 +14,10 @@ import net.spross.kern.catalog.LanguageChoices
  * in step, so the same surface cannot read differently on the two phones.
  * Placeholders are java-format, rendered with `.format(...)`.
  *
+ * What a string MEANS is its catalog entry's `comment`, where the other phone and whoever
+ * translates it read the same sentence. What a field says here is what only Kotlin can:
+ * the shape a list or map takes, the kern enum it is indexed by, and the placeholders owed.
+ *
  * An INTERFACE, and it cannot go back to being a class: a constructor holds one parameter per
  * string, and the JVM caps a method descriptor at 255 slots including `this` — a `data class`
  * spends eight more on `copy$default`'s bitmasks — so past ~250 strings the table died at class
@@ -40,12 +44,6 @@ interface Chrome {
     val greetDay: List<String>
     val greetEvening: List<String>
     val greetNight: List<String>
-    /**
-     * Who a spoken line is addressed to when no name is known: the hour lends the word, and
-     * it goes INSIDE the target-language sentence ("Tayari kujifunza, Nachteule?"), so it is
-     * never rendered on its own. Morning and night only — nobody is a night owl at two in
-     * the afternoon.
-     */
     val greetMorningAddressee: String
     val greetNightAddressee: String
     val heuteTitle: String
@@ -53,21 +51,13 @@ interface Chrome {
     val doneToday: String
     val dueLabel: String
     val chooseTitle: String
-    /**
-     * What each picker ASKS on the first page. The box's own settings LABEL the same two
-     * lists instead ([iSpeak]/[iLearn]) — a settings sheet states, a first run asks, and
-     * the questions are the whole of what makes onboarding read as one.
-     */
     val sourceQuestion: String
     val targetQuestion: String
     val iSpeak: String
     val iLearn: String
-    /** The third question of the first page. */
     val learnerNameQuestion: String
     val letsGo: String
-    /** The way back out of a page, wherever a flow has one behind it. */
     val back: String
-    /** What Spross is for, said once before the first round asks anything of you. */
     val whyTitle: String
     val whyBreadthTitle: String
     val whyBreadthBody: String
@@ -75,7 +65,6 @@ interface Chrome {
     val whyCompanionBody: String
     val whyGrammarTitle: String
     val whyGrammarBody: String
-    /** What a round asks of you, before the first one runs. */
     val firstRoundTitle: String
     val firstRoundRecognize: String
     val firstRoundGrade: String
@@ -86,7 +75,6 @@ interface Chrome {
     val also: String              // %s = the forms a card also answers to
     val otherWordNote: String     // %1$s = the word typed, %2$s = what it means
     val answerPlaceholder: String // %s = target language name
-    /** The question the three verdicts answer, standing under them. */
     val ratingQuestion: String
     /** The three the FIRST round teaches itself with, one per moment ([SessionCoach]). */
     val coachRecognize: String
@@ -101,20 +89,13 @@ interface Chrome {
     val pluralEquals: String
     val pluralOnly: String
     val pluralForm: String        // %s = the plural, where a card carries one
-    /** The ♀ badge's name — a glyph outside the reading order until it is given one. */
     val feminineForm: String
     val readAloud: String         // the switch's stable a11y label — never flips
     val stateOn: String
     val stateOff: String
     val pronounce: String         // "say it again" action on a word
     val aboutButton: String
-    /**
-     * What the footer's envelope is FOR. The door itself prints the address — readable on
-     * a phone with no mail app at all, a deliberate delta from the iPhone's verb — so this
-     * is the name a screen reader gets in front of it.
-     */
     val feedbackMail: String
-    /** The footer's door to newer builds — a noun, not an errand. */
     val updateButton: String
     val updateOfferTitle: String
     val updateOfferBody: String   // what Obtainium does, and what going without costs
@@ -131,15 +112,7 @@ interface Chrome {
     val creditsRecordings: String // %d = how many files the speaker contributed
     val creditsUnmodified: String
     val creditsCommons: String
-    /**
-     * The § 5 DDG notice, and the privacy policy beside it: who publishes the app, findable
-     * in the app itself — this build ships through Obtainium, which has no listing to carry
-     * it instead (`docs/distribution.md`).
-     *
-     * Each registry fact is a LABEL and a value, kept apart because only the label
-     * translates: "Registergericht: Amtsgericht Coburg, HRB 7580" is one line of two
-     * strings. The address the notice answers on is kern's ([net.spross.kern.Legal]).
-     */
+    /** The address the notice answers on is kern's ([net.spross.kern.Legal]). */
     val legalTitle: String
     val legalCompany: String
     val legalAddressValue: String
@@ -151,14 +124,8 @@ interface Chrome {
     val legalVatValue: String
     val legalContactLabel: String
     val legalPrivacy: String
-    /** The free-practice card's own name — the ladder both drills climb, not a workshop. */
     val trainingTitle: String
     val trainingSubtitle: String  // what free practice is, under its name
-    /**
-     * What a hub chip is FOR, appended to its name for a reader the glyph tells nothing:
-     * %s = the language being practiced. Leads with a space — it finishes the chip's own
-     * name rather than standing as a sentence.
-     */
     val practiceSuffix: String
     val trainerLetters: String
     val lettersHear: String       // the question a letter-name prompt asks
@@ -181,11 +148,9 @@ interface Chrome {
     val answerCorrect: String     // an answered tile's state, never color alone
     val answerAlmost: String      // the near miss's own — amber is not a state a reader hears
     val answerWrong: String
-    /** A revealed answer: the amber edge is all that marks it, and a color is not a state. */
     val notAnswered: String
 
     // ── The three overview pages ────────────────────────────────────────────────
-    /** The ✕'s name — the corner every page and every run wears on the left. */
     val close: String
     val trainerNumbers: String    // the hub entry, and the variant's own name
     val numbersPage: String       // %s = the language being learnt
@@ -193,9 +158,7 @@ interface Chrome {
     val overviewPractice: String  // the heading the picks stand under
     val overviewStart: String     // the button both pages open a run with
     val tapToHear: String         // the gesture a reference page discloses once, under its heading
-    /** The box names its rows "words", not a table's rows, so it discloses the tap in its own words. */
     val boxTapToHear: String
-    /** Beside a word neither a recording nor the device's voice can say — the tap that does nothing. */
     val boxNoAudio: String
     val numbersReference: String
     val numbersNotes: String
@@ -213,9 +176,7 @@ interface Chrome {
     val modifierFastHint: String
     val modifierMix: String
     val modifierMixHint: String
-    /** Why the picks are a radio: mixing several exercises into one run is itself earned. */
     val combineLocked: String
-    /** What a locked row costs, before kern's table words the rungs themselves. */
     val unlockPrefix: String
 
     // ── Inside a run ────────────────────────────────────────────────────────────
@@ -239,7 +200,6 @@ interface Chrome {
     val stageDictation: String
     val stageDictationHint: String
     val stageDictationLocked: String
-    /** The one stage row that says where THIS learner's run opens. */
     val stageEntry: String
     val lettersUnavailable: String
     val alphabetTitle: String
@@ -250,7 +210,6 @@ interface Chrome {
     val trainerCountries: String  // the hub entry, and what the result tile says was drilled
     val countriesPage: String     // %s = the language being learnt
     val countriesReference: String
-    /** How the ladder is walked, said once instead of marked on every rung row. */
     val countriesPace: String
     val countriesBest: String     // %d = the furthest rung any run reached
     val countriesFastHint: String // this ladder costs THREE clean wins, so it prices its own
@@ -263,10 +222,6 @@ interface Chrome {
     val countryRungHints: List<String>
     /** How far from home a reference group sits, innermost first — read through [countryTier]. */
     val countryTiers: List<String>
-    /**
-     * What a question ASKS. None of them names a language: the field's placeholder says
-     * which side is owed, and saying it here too would be the third telling.
-     */
     val countryAskCountry: String
     val countryAskFlag: String
     val countryAskLanguage: String
@@ -276,59 +231,32 @@ interface Chrome {
 
     // ── Box browse ──────────────────────────────────────────────────────────────
     val boxTitle: String
-    /** The door to the box, wherever a screen puts one — a name for an icon that has none. */
     val boxNav: String
     val boxSubtitle: String       // %1$d active of %2$d held
-    /**
-     * The learner's own shelf. Kern hands back the area KEY for it
-     * (`OwnWords.AREA`, in no group) and leaves the naming to the reader's chrome;
-     * catalog shelves name themselves, down to `BoxBrowser.sections`' own id fallback.
-     */
     val ownWordsTitle: String
     val ownWordsExplainer: String
     val packArea: String          // %d = what packing this shelf would add
     val packDone: String
     val packWord: String          // the single-word offer a search hit carries
-    /** The queued mark's own control: tapping it takes the word back out. */
     val unpackWord: String
-    /** A shelf's own control, taking its whole queue back out. %d = what it would remove. */
     val dequeueArea: String
-    /** A queued row's mark where no per-word control is offered — the shelf's own does it. */
     val queuedWord: String
     val suspended: String         // the sleeping mark's name
     val wake: String
-    /** Putting a word to sleep from the card in front of you; [wake] is the way back. */
     val sleep: String
     /**
      * Dropping ONE word's progress: it goes back to new and may be offered again.
      * The card stays, and so does anything filed against it — forgetting the answers
      * does not make the translation right.
      */
-    /** What a long press on a Box row opens, for a reader who cannot see it is a menu. */
     val cardActions: String
     val cardForget: String
-    /** Writing an own word from a catalog one, both sides carried over into the form. */
     val cardOwnFrom: String
-    /**
-     * The flag a reported word wears.
-     * Its own mark, said apart from [suspended] — a report says nothing about where the
-     * word stands, and a reported word keeps whatever badge it had.
-     */
     val reported: String
-    /**
-     * An area's row of counts: the consolidated half beside the seal, the learning half
-     * beside the leaf. [dayConsolidated] is the SEPARATE wording for the day's own tally on
-     * Heute — a different screen's sentence, not this one read twice.
-     */
     val progressConsolidated: String // %d
     val progressLearning: String  // %d
     val phrasesLockedShort: String // %d = phrases still waiting on their components
-    /**
-     * The same count spelled out for a screen reader.
-     * [phrasesLockedShort] sits beside a padlock that carries the "locked"; spoken, the padlock is gone.
-     */
     val phrasesLockedSpoken: String // %d
-    /** A fold's state, never its label — the heading stays the heading whichever way it points. */
     val stateExpanded: String
     val stateCollapsed: String
     // A card with nothing behind it has NO phase word: new is the absence of a badge. Past
@@ -358,59 +286,39 @@ interface Chrome {
     val ownWordPicture: String
     val ownWordAdd: String
     val ownWordRemove: String     // the app's only deletion; catalog words sleep instead
-    /** The form's title while rewriting a word, and the menu entry that opens it that way. */
     val ownWordEdit: String
-    /** What confirms a rewrite; [ownWordAdd] is what takes a new word in. */
     val ownWordSave: String
-    /** Exchanging what stands in the two fields, for a pair written the wrong way round. */
     val ownWordSwap: String
-    /**
-     * What the form says while only ONE side is written.
-     * The word is kept as a suggestion and never asked until the other half arrives.
-     */
     val ownWordSuggestion: String
 
     // ── Reporting a problem ─────────────────────────────────────────────────────
-    /** The menu entry a word grows, and the way back out of a report already filed. */
     val reportAction: String
-    /** Reopening a report already filed, so the comment can be rewritten rather than refiled. */
     val reportEdit: String
     val reportDismiss: String
     val reportTitle: String
     val reportSend: String
     val reportComment: String     // optional, and the label says so
-    /** What they had typed, shown rather than asked about — the rejected answer IS the report. */
     val reportTyped: String
     val reportExplainer: String   // who reads it, and that the word's schedule is untouched
 
     // ── Own content ─────────────────────────────────────────────────────────────
-    /** The one section for everything the learner put into the box or said back about it. */
     val ownContentTitle: String
-    /** Its second block: the problems filed against CATALOG words, which no row above lists. */
     val ownContentReported: String
-    /** The section's way into the form — the one that does not start from a failed search. */
     val ownWordAddAction: String
 
     // ── Feedback to the catalog ─────────────────────────────────────────────────
     val feedbackNeedsTranslation: String
     val feedbackCopy: String
     val feedbackSend: String
-    /** The two scopes each action offers once a copy has ever been taken. */
     val feedbackScopeNew: String
     val feedbackScopeAll: String
 
     // ── Box settings ────────────────────────────────────────────────────────────
     val settingsTitle: String
-    /** The name the greeting uses — cleared here as well as given here. */
     val learnerNameTitle: String
     val learnerNamePlaceholder: String
     val learnerNameHint: String
     val profileHint: String
-    /**
-     * The way back into the story pages, long after the first run. Nothing here touches the
-     * box — the pair is made, so the restart opens on what Spross is for and the hint says
-     * as much, standing beside the one row that IS destructive.
-     */
     val restartTutorial: String
     val restartTutorialHint: String
     val resetButton: String       // %s = the language being learnt, in its own name
@@ -422,43 +330,20 @@ interface Chrome {
     // ── Session turn ────────────────────────────────────────────────────────────
     val copyPrompt: String        // %s = target language name — the write-it-out field
     val copyMismatch: String      // the copy was another word: the card still holds the answer
-    /**
-     * Leaving a step that has already decided its rating: the write-out's skip, and
-     * giving up on an open retry. One word for both, as on iOS (`session.skipCopy`) —
-     * a step you cannot leave is a trap, and neither leaving costs the schedule anything.
-     */
     val skipStep: String
-    /** The way out of a card asked by ear: the word goes on screen instead of in the air. */
     val cantListen: String
-    /**
-     * How far a round has got, for the one reader the segments bar shows nothing:
-     * [cardPosition] (%1$s of %2$s) before the first answer, and once there are answers to
-     * report, [sessionTally] — %1$s right, %2$s hard, %3$s missed — which says the same
-     * three colors in words.
-     */
     val cardPosition: String
     val sessionTally: String
 
     // ── The day's standing (Heute) ──────────────────────────────────────────────
-    /** Nothing due, and nothing done yet — never [doneToday], which the day must earn. */
     val caughtUpTitle: String
     val dayReviews: String        // %d
     val dayReviewsOne: String     // the count-of-one line, verbatim
     val dayNewCards: String       // %d
     val dayNewCardsOne: String
-    /**
-     * Fresh cards spelled out with their noun, for the one shape [dayNewCards] cannot
-     * cover on its own: the round names nothing else, so a bare count needs the word
-     * it is counting ("neue Wörter") rather than a nominalized adjective standing alone.
-     * No count-of-one form — a round with only fresh cards and only one is not a real shape.
-     */
     val dayNewWordsOnly: String    // %d
     val dayConsolidated: String   // %d — "gefestigt" needs no declining
-    /**
-     * Pull-aheads carrying the round on their own — the freshening-up.
-     * Named only in that case: everywhere else they count into [dayReviews]
-     * ([net.spross.kern.session.SessionOffer.summaryParts] decides which).
-     */
+    /** Which of the two a round names is [net.spross.kern.session.SessionOffer.summaryParts]'. */
     val dayAhead: String          // %d
     val dayAheadOne: String
     val tomorrowPacked: String
@@ -477,25 +362,19 @@ interface Chrome {
     val headlineFreshSet: List<String>
     /** What the card says instead once a standing run is still owed today's work. */
     val headlineStreak: List<String>
-    /** What a round with no nameable parts says instead of printing zeros. */
     val sessionSomeCards: String
-    /** The cap is a promise, not a loss: what it holds back is named. */
     val sessionHeldBack: String   // %d
     val sessionStart: String
-    /** The quiet way in, up while the round is long enough to be worth halving. */
     val sessionShortRound: String
 
     // ── Listening (Heute's one row, and the run it opens) ───────────────────────
     val listenTitle: String
-    /** The row's second line: which words it leans on, and that it needs no hands. */
     val listenSubtitle: String
     val listenPause: String
     val listenResume: String
     val listenSkip: String
     val listenRepeat: String
-    /** The bedtime control, off — and its screen-reader label in both states. */
     val listenTimer: String
-    /** The bedtime control while it runs; minutes, never m:ss — a ticking clock is watched. */
     val listenMinutesLeft: String   // %d
 
     // ── Load failures ───────────────────────────────────────────────────────────
@@ -507,7 +386,6 @@ interface Chrome {
 
     // ── Round completion ────────────────────────────────────────────────────────
     val roundNew: String          // %d
-    /** [roundNew] spelled out with its noun, for a round that named nothing else. */
     val roundNewOnly: String      // %d
     val roundConsolidated: String // %d
     val roundReviewed: String     // %d
@@ -515,12 +393,6 @@ interface Chrome {
     val restHint: String          // today's recall is strained; more reps buy little
     val streakRecord: String
 
-    /**
-     * What the round's area GREW, read off the tree's own delta rather than the round's tallies.
-     * [growthGrew] is the one line a strained day gets — no growth claim on a bad day —
-     * and [growthOpened] the first ground broken in an area; the three lists are the
-     * variants a stable seeded pick chooses from.
-     */
     val growthGrew: String
     val growthOpened: String
     val growthBlooming: List<String>
@@ -536,7 +408,6 @@ interface Chrome {
     val dayMany: String
 
     // ── Home-screen widget ──────────────────────────────────────────────────────
-    /** The two lines a tile with no readable snapshot stands on, beside the sprout. */
     val widgetAwaitingTitle: String
     val widgetAwaitingBody: String
     companion object {
