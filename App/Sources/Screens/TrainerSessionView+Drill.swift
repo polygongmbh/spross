@@ -76,7 +76,7 @@ extension TrainerSessionView {
         }
         let text = Text("trainer.level \(rung.formatted())")
         guard run.severalVariants else { return text }
-        return Text(verbatim: "\(variant.trainerEmoji) ") + text
+        return Text(verbatim: "\(drillVariantEmoji(variant: variant)) ") + text
     }
 
     /// What the field asks for. Naming the language is right only while the

@@ -100,6 +100,10 @@ struct DrillRunResult: Equatable {
     /// The run beat the drill's standing record. A drill that keeps no record
     /// store leaves it false, which drops the record line and the confetti with it.
     var newRecord = false
+    /// Which rung the best streak earned. Kern's (`DrillRunSummary.tier`) — the
+    /// ladder is one table, and a second copy of it here is one coincidence away
+    /// from praising a run the engine does not.
+    var tier: StreakTier = .sprout
     /// What was drilled — the variant's own name, since a page can host several.
     let title: LocalizedStringKey
 }
@@ -143,13 +147,13 @@ struct DrillResultTile: View {
         .accessibilityElement(children: .combine)
     }
 
-    /// The ladder the run's best streak earns.
+    /// The face of the rung kern says the run reached.
     private var emoji: String {
-        switch result.bestStreak {
-        case 10...: return "🏆"
-        case 5...: return "🎉"
-        case 2...: return "💪"
-        default: return "🌱"
+        switch result.tier {
+        case .trophy: return "🏆"
+        case .cheer: return "🎉"
+        case .effort: return "💪"
+        case .sprout: return "🌱"
         }
     }
 }
@@ -159,7 +163,7 @@ struct DrillResultTile: View {
 #Preview("Result tile · record") {
     VStack(spacing: DL.Space.l) {
         DrillResultTile(result: DrillRunResult(doneCount: 17, bestStreak: 12, newRecord: true,
-                                               title: "trainer.numbers"))
+                                               tier: .trophy, title: "trainer.numbers"))
         DrillResultTile(result: DrillRunResult(doneCount: 4, bestStreak: 1, title: "trainer.letters"))
     }
     .padding(DL.Space.xl)

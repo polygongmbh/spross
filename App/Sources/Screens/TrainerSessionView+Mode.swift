@@ -85,21 +85,9 @@ private extension TrainerMode {
 }
 #endif
 
-// MARK: - Variant ↔ slot kind
+// MARK: - Variant ↔ storage
 
 extension DrillVariant {
-    /// The generator behind the variant — nil for Phrases, whose slot kind is named
-    /// by each FRAME rather than by the variant, and differs between them. Kern has
-    /// the same rule internally; this is the half the chrome names a variant by.
-    var slotKind: TrainerKind? {
-        switch self {
-        case .numbers: return .numbers
-        case .clock: return .clock
-        case .forms: return .forms
-        case .phrases: return nil
-        }
-    }
-
     /// The word a rung is filed under in UserDefaults. Kotlin's own spelling for
     /// the slot variants and the lowercase word for Phrases, matching
     /// `TrainerMode.progressKey` — those exact strings are already stored.

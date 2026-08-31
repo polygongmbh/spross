@@ -50,11 +50,6 @@ struct AreaGrowth {
     /// stands for it.
     var reaches: [Double] = []
 
-    /// A word is fruit only once it is well past the matured bar. Blossom is
-    /// meant to be the rare thing on a tree — mapping it to `consolidated`, the
-    /// state most of a worked area sits in, turned every grown tree pink.
-    static let fruitStability = 120.0
-
     mutating func add(_ entry: CardGrowth, maximumInterval: Double) {
         if entry.touchedToday { tendedToday = true }
         // why: mass is what the trunk is made of, so every word that has come
@@ -78,8 +73,11 @@ struct AreaGrowth {
         case .consolidated:
             leaves += 1
             reaches.append(reach)
+        // A word is fruit only once it is well past the matured bar; kern draws
+        // that second line (`FRUIT_STABILITY`), so both phones split a canopy
+        // the same way.
         case .matured:
-            if entry.stability >= Self.fruitStability { fruit += 1 } else { blossoms += 1 }
+            if entry.stability >= FRUIT_STABILITY { fruit += 1 } else { blossoms += 1 }
             reaches.append(reach)
         case .relearning: fallen += 1
         // A word the box has taken out of rotation is owed no space in the

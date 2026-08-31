@@ -126,7 +126,7 @@ struct TrainerHubView: View, LanguageNaming {
             destination = .numbers(language: language)
         } label: {
             // layer-ok: the chip IS the numbers one — reading its own emoji, not picking a kind
-            chipLabel(emoji: TrainerKind.numbers.trainerEmoji, title: Text("trainer.numbers"))
+            chipLabel(emoji: trainerKindEmoji(kind: .numbers), title: Text("trainer.numbers"))
         }
         .buttonStyle(TrainerChipButtonStyle())
         .accessibilityLabel(Text("trainer.numbers")
@@ -184,17 +184,6 @@ struct TrainerChipButtonStyle: ButtonStyle {
 // MARK: - Shared display names
 
 extension TrainerKind {
-    /// A fraction wears the Forms face: it is one of the number forms, and it is only
-    /// ever met inside a sentence, so it never names a drill of its own.
-    var trainerEmoji: String {
-        switch self {
-        case .numbers: return "🔢"
-        case .years: return "📅"
-        case .clock: return "🕐"
-        case .forms, .fraction: return "➗"
-        }
-    }
-
     /// Catalog key for the drill title.
     var trainerTitleKey: LocalizedStringKey {
         switch self {
@@ -208,15 +197,9 @@ extension TrainerKind {
 
 /// What a RUN variant is called, wherever one has to be named on its own — the
 /// score line of a mixed run today, the overview's rows next. Numbers, Clock and
-/// Forms deliberately borrow the slot kind's face: they are the same exercise.
+/// Forms deliberately borrow the slot kind's title: they are the same exercise.
+/// The matching FACE is kern's `drillVariantEmoji` — one glyph table, not two.
 extension DrillVariant {
-    var trainerEmoji: String {
-        switch self {
-        case .phrases: return "💬"
-        case .numbers, .clock, .forms: return slotKind?.trainerEmoji ?? "🔢"
-        }
-    }
-
     var trainerTitleKey: LocalizedStringKey {
         switch self {
         case .phrases: return "trainer.phrases"

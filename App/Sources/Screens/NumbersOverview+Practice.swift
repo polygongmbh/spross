@@ -55,7 +55,7 @@ extension NumbersOverview {
     private func variantRow(_ variant: DrillVariant) -> some View {
         let open = unlocked(variant)
         return DLSelectionRow(
-            title: Text(verbatim: "\(variant.trainerEmoji) ") + Text(variant.trainerTitleKey),
+            title: Text(verbatim: "\(drillVariantEmoji(variant: variant)) ") + Text(variant.trainerTitleKey),
             caption: open ? nil : unlockCaption(DrillUnlocks.shared.requirements(variant: variant)),
             mark: open ? (combining ? .many : .one) : .locked,
             selected: open && picked.contains(variant)
@@ -123,7 +123,7 @@ extension NumbersOverview {
         let parts: [Text] = DrillVariant.allCases.compactMap { variant in
             guard let level = required[variant].map({ Int(truncating: $0) }) else { return nil }
             guard variant != .numbers else { return Text("trainer.digits \(level)") }
-            return Text(verbatim: "\(variant.trainerEmoji) ") + Text(variant.trainerTitleKey)
+            return Text(verbatim: "\(drillVariantEmoji(variant: variant)) ") + Text(variant.trainerTitleKey)
                 + Text(verbatim: " ") + Text("trainer.level \(level.formatted())")
         }
         guard let priced = parts.joined() else { return Text("numbers.unlock") }

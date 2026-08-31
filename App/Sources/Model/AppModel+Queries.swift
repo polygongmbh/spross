@@ -279,7 +279,7 @@ extension AppModel {
     /// Merges in every OTHER target language's `dailyStats` first: the streak is
     /// one commitment across languages, not one per language (`AppModel.swift`'s
     /// `otherLanguagesDailyStats`, `Statistics.mergeDailyStats`).
-    func activityWindow(days: Int = 14, now: Date = Date()) -> [ActivityDay] {
+    func activityWindow(days: Int = Int(ACTIVITY_WINDOW_DAYS), now: Date = Date()) -> [ActivityDay] {
         guard let box else { return [] }
         let combined = mergeDailyStats(dailyStatsByLanguage: otherLanguagesDailyStats + [box.dailyStats])
         return streakWindow(dailyStats: combined, days: Int32(days),
