@@ -11,6 +11,19 @@ import net.spross.kern.model.Language
 enum class TrainerKind { Numbers, Years, Clock, Forms, Fraction }
 
 /**
+ * The glyph a slot kind wears, wherever a run needs a face rather than a word — the hub's
+ * chips, a mixed run's score line. Kern's rather than each app's, for the reason
+ * [net.spross.kern.model.kindEmoji] is: a map is a map, and Swift and Kotlin had each drawn
+ * this exact table from scratch, one coincidence away from disagreeing.
+ */
+fun trainerKindEmoji(kind: TrainerKind): String = when (kind) {
+    TrainerKind.Numbers -> "🔢"
+    TrainerKind.Years -> "📅"
+    TrainerKind.Clock -> "🕐"
+    TrainerKind.Forms, TrainerKind.Fraction -> "➗"
+}
+
+/**
  * One procedural drill task. Pure data — the UI compares typed input against
  * [accepted] normalize-insensitively and reveals [display].
  */

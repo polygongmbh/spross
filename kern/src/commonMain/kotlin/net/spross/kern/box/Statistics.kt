@@ -157,6 +157,12 @@ data class ActivityDay(
 )
 
 /**
+ * The trailing window both phones' activity strip and widget show — a named home for the
+ * number so three independent literal `14`s (one per surface) can't drift apart.
+ */
+const val ACTIVITY_WINDOW_DAYS: Int = 14
+
+/**
  * The trailing [days] local days, OLDEST first and today last, each with its review
  * count and its place in the current streak.
  *

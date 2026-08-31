@@ -158,15 +158,24 @@ data class TrainerMode(
 
 /**
  * The generator behind a variant — null for Phrases, whose slot kind is named by each FRAME
- * rather than by the variant, and differs between them.
+ * rather than by the variant, and differs between them. Public: the chrome names a variant
+ * by this same half, and a platform re-deriving it from the enum cases is the map drifting
+ * from itself.
  */
-internal val DrillVariant.slotKind: TrainerKind?
+val DrillVariant.slotKind: TrainerKind?
     get() = when (this) {
         DrillVariant.Numbers -> TrainerKind.Numbers
         DrillVariant.Clock -> TrainerKind.Clock
         DrillVariant.Forms -> TrainerKind.Forms
         DrillVariant.Phrases -> null
     }
+
+/**
+ * A run variant's face, borrowing the slot kind's glyph where it has one — Phrases has none,
+ * so it wears its own.
+ */
+fun drillVariantEmoji(variant: DrillVariant): String =
+    variant.slotKind?.let(::trainerKindEmoji) ?: "💬"
 
 /**
  * The ladder variant a slot kind belongs to. Years maps onto Numbers because it has no rung

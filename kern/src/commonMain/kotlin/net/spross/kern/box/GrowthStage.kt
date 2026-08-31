@@ -15,6 +15,14 @@ import net.spross.kern.model.CardScheduling
 const val MATURED_STABILITY: Double = 30.0
 
 /**
+ * Days of stability at which a Matured card draws as fruit rather than a blossom on the
+ * area tree — reporting-only, like [MATURED_STABILITY], and kern's for the same reason
+ * [net.spross.kern.model.kindEmoji] is: one platform minting this cutoff is one platform
+ * drawing a different tree than the other once both render it.
+ */
+const val FRUIT_STABILITY: Double = 120.0
+
+/**
  * How far one card has come, as one rung of the box's own ladder.
  *
  * The rungs name the RULE, never a picture. A surface is free to draw them as it
