@@ -53,7 +53,13 @@ interface Chrome {
     val doneToday: String
     val dueLabel: String
     val chooseTitle: String
-    val chooseSubtitle: String    // what the first page asks for, under the welcome
+    /**
+     * What each picker ASKS on the first page. The box's own settings LABEL the same two
+     * lists instead ([iSpeak]/[iLearn]) — a settings sheet states, a first run asks, and
+     * the questions are the whole of what makes onboarding read as one.
+     */
+    val sourceQuestion: String
+    val targetQuestion: String
     val iSpeak: String
     val iLearn: String
     /** The third question of the first page. */

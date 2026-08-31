@@ -118,10 +118,10 @@ fun OnboardingScreen(model: AppModel) {
     ) { current ->
         when (current) {
             Page.Languages -> OnboardingStoryPage {
-                OnboardingHero("👋", chrome.chooseTitle, chrome.chooseSubtitle)
+                OnboardingHero("👋", chrome.chooseTitle)
 
                 PickerSection(
-                    heading = chrome.iSpeak,
+                    heading = chrome.sourceQuestion,
                     open = pickingSource,
                     options = catalog.coveredSources(),
                     selected = source,
@@ -140,7 +140,7 @@ fun OnboardingScreen(model: AppModel) {
                 }
 
                 PickerSection(
-                    heading = chrome.iLearn,
+                    heading = chrome.targetQuestion,
                     open = !pickingSource,
                     options = choices,
                     selected = target,

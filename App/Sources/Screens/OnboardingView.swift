@@ -107,9 +107,7 @@ struct OnboardingView: View {
     /// which is why it takes the hero alone and not the story pages' scaffold.
     private var languagesPage: some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
-            OnboardingHero(emoji: "👋",
-                           title: "onboarding.welcome",
-                           subtitle: "onboarding.languages.subtitle")
+            OnboardingHero(emoji: "👋", title: "onboarding.welcome")
             sourceSection
             targetSection
             nameSection

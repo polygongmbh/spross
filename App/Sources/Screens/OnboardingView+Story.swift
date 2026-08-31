@@ -83,13 +83,10 @@ extension OnboardingView {
 // MARK: - OnboardingHero
 
 /// The face of an onboarding page: a mark large enough to be seen across the room,
-/// the page's title under it, and — where the page points at something below it —
-/// one secondary line. The line stays secondary by design: it is a finger pointing
-/// at the content beneath, not prose of its own.
+/// and the page's title under it.
 struct OnboardingHero: View {
     let emoji: String
     let title: LocalizedStringKey
-    var subtitle: LocalizedStringKey?
 
     var body: some View {
         VStack(spacing: DL.Space.l) {
@@ -98,19 +95,11 @@ struct OnboardingHero: View {
             Text(verbatim: emoji)
                 .font(.system(size: 56))
                 .accessibilityHidden(true)
-            VStack(spacing: DL.Space.xs) {
-                Text(title)
-                    .font(DL.Fonts.title)
-                    .foregroundStyle(Color.dlTextPrimary)
-                    .multilineTextAlignment(.center)
-                    .accessibilityAddTraits(.isHeader)
-                if let subtitle {
-                    Text(subtitle)
-                        .font(DL.Fonts.subheadline)
-                        .foregroundStyle(Color.dlTextSecondary)
-                        .multilineTextAlignment(.center)
-                }
-            }
+            Text(title)
+                .font(DL.Fonts.title)
+                .foregroundStyle(Color.dlTextPrimary)
+                .multilineTextAlignment(.center)
+                .accessibilityAddTraits(.isHeader)
         }
         .frame(maxWidth: .infinity)
     }

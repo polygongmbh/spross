@@ -42,14 +42,13 @@ fun OnboardingStoryPage(content: @Composable ColumnScope.() -> Unit) {
 }
 
 /**
- * A page's opening: the mark, the title,
- * and — where the page asks something — the line under it.
+ * A page's opening: the mark, and the title under it.
  *
  * Centered, because these pages are read rather than operated;
  * the mark says nothing a screen reader could pass on, so it is skipped rather than read out.
  */
 @Composable
-fun OnboardingHero(mark: String, title: String, subtitle: String? = null) {
+fun OnboardingHero(mark: String, title: String) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -66,14 +65,6 @@ fun OnboardingHero(mark: String, title: String, subtitle: String? = null) {
             textAlign = TextAlign.Center,
             modifier = Modifier.semantics { heading() },
         )
-        subtitle?.let {
-            Text(
-                it,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center,
-            )
-        }
     }
 }
 

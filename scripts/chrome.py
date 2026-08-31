@@ -93,7 +93,6 @@ MAPPING = {
     'cardPosition': 'session.cardPosition %@ %@',
     'caughtUpTitle': 'heute.caughtUp.title',
     'check': 'common.check',
-    'chooseSubtitle': 'onboarding.languages.subtitle',
     'chooseTitle': 'onboarding.welcome',
     'close': 'common.close',
     'coachGrade': 'session.coach.grade',
@@ -286,6 +285,7 @@ MAPPING = {
     'settingsTitle': 'settings.title',
     'skipStep': 'session.skipCopy',
     'sleep': 'box.sleep',
+    'sourceQuestion': 'onboarding.source.question',
     'stageChoiceConfusable': 'letters.stage.choiceConfusable',
     'stageChoiceConfusableHint': 'letters.stage.choiceConfusable.hint',
     'stageChoiceEasy': 'letters.stage.choiceEasy',
@@ -307,6 +307,7 @@ MAPPING = {
     'streakSpoken': 'a11y.streakInARow %@',
     'suspended': 'box.suspended',
     'tapToHear': 'reference.tapToHear',
+    'targetQuestion': 'onboarding.target.question',
     'tasksDone': 'trainer.tasksDone %lld',
     'tasksDoneOne': 'trainer.tasksDone %lld',
     'tomorrowDue': 'heute.done.tomorrowDue %lld',
@@ -383,12 +384,9 @@ IOS_ONLY = {
     'a11y.endSession', 'box.search.title', 'settings.credits',
 }
 # Surfaces iOS ships that Android owes. A key leaves this set by being claimed above,
-# which is what finishing the Android side looks like.
-ANDROID_TODO = {
-    # Onboarding's two pickers ask for a language on iOS; Android heads them with the
-    # settings labels ([Chrome.iSpeak]/[Chrome.iLearn]).
-    'onboarding.source.question', 'onboarding.target.question',
-}
+# which is what finishing the Android side looks like — and empty is what caught up looks
+# like, which is where Android stands. The next one-sided surface is named here.
+ANDROID_TODO = set()
 
 
 def catalog():

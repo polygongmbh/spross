@@ -3807,22 +3807,6 @@
         }
       }
     },
-    "onboarding.languages.subtitle" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Was möchtest du lernen?"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "What are you here for?"
-          }
-        }
-      }
-    },
     "onboarding.name.question" : {
       "localizations" : {
         "de" : {
