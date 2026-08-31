@@ -141,6 +141,7 @@ MAPPING = {
     'errorUnknownProfile': 'error.unknownProfile %@ %@',
     'extraRound': 'heute.done.extraRound',
     'feedbackCopy': 'feedback.copy',
+    'feedbackMail': 'settings.feedback',
     'feedbackNeedsTranslation': 'feedback.needsTranslation',
     'feedbackScopeAll': 'feedback.scope.all',
     'feedbackScopeNew': 'feedback.scope.new',
@@ -260,6 +261,8 @@ MAPPING = {
     'resetConfirm': 'settings.reset.confirm %@',
     'resetHint': 'settings.reset.hint',
     'restHint': 'session.finished.restHint',
+    'restartTutorial': 'settings.restartTutorial.button',
+    'restartTutorialHint': 'settings.restartTutorial.hint',
     'reveal': 'session.reveal',
     'roundAllDone': 'session.summary.allDone',
     'roundConsolidated': 'session.summary.consolidated %@',
@@ -385,9 +388,6 @@ ANDROID_TODO = {
     # Onboarding's two pickers ask for a language on iOS; Android heads them with the
     # settings labels ([Chrome.iSpeak]/[Chrome.iLearn]).
     'onboarding.source.question', 'onboarding.target.question',
-    # Settings doors Android has yet to build: replaying the onboarding, and mail to the
-    # developer beside the per-card report flow.
-    'settings.feedback', 'settings.restartTutorial.button', 'settings.restartTutorial.hint',
 }
 
 

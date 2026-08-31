@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Android: the introduction can be read again.** What Spross is for and what a round asks
+  of you were shown once, on the first launch, and never again. The box settings now have a
+  row that replays them — the pair you learn and everything you have learnt stay exactly
+  where they are.
+
 - **Android: TalkBack hears what the colors say.** Four places said something in color or
   in a glyph and nothing in words: the progress bar over a round (now "3 richtig, 1 schwer,
   1 daneben", or which card you are on before the first answer), the amber edge on an answer

@@ -84,6 +84,7 @@ internal object ChromeEn : Chrome {
     override val stateOff = "off"
     override val pronounce = "Pronounce"
     override val aboutButton = "About"
+    override val feedbackMail = "Send feedback"
     override val updateButton = "Updates"
     override val updateOfferTitle = "Newer versions"
     override val updateOfferBody = "Obtainium watches this app's releases and offers each " +
@@ -307,6 +308,9 @@ internal object ChromeEn : Chrome {
         "without one."
     override val profileHint = "Switching the language you speak keeps all your progress; " +
         "each language you learn has its own box."
+    override val restartTutorial = "Restart tutorial"
+    override val restartTutorialHint = "Shows the introduction again — your languages and " +
+        "progress stay."
     override val resetButton = "Reset %s …"
     override val resetHint = "Deletes progress and history — your own words and your other " +
         "languages stay."

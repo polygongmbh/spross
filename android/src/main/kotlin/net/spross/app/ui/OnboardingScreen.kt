@@ -55,9 +55,11 @@ private const val PAGE_FADE_MS = 200
  * Coverage-driven: sources are languages with at least one learnable target, and neither
  * side hides the other's pick — choosing it swaps the two selections ([LanguageChoices]).
  *
- * It is reached once, on a device with no profile yet: a learner who wants another pair
- * later changes it in the box's own settings, where the pickers stand beside everything
- * else the box is configured by.
+ * It is reached on a device with no profile yet, or through the box settings' own
+ * "restart tutorial" row ([net.spross.app.AppModel.restartOnboarding]) — that one opens
+ * past the pair, which is already made. A learner who wants ANOTHER pair changes it in the
+ * box's own settings, where the pickers stand beside everything else the box is configured
+ * by, and takes none of these pages.
  *
  * One side is open at a time and the other shows its pick as a row that opens it:
  * both lists at once is more of the screen than the two questions are worth, and a
@@ -67,11 +69,16 @@ private const val PAGE_FADE_MS = 200
 @Composable
 fun OnboardingScreen(model: AppModel) {
     val catalog = model.catalog ?: return
-    val initialSource = model.defaultSource(catalog)
-    var page by rememberSaveable { mutableStateOf(Page.Languages) }
+    // A standing join means this is a RESTART (`AppModel.restartOnboarding`), so the pair
+    // is the one in force and the page that asks for it has nothing left to ask.
+    val joined = model.box?.joinStamp
+    val initialSource = joined?.source ?: model.defaultSource(catalog)
+    var page by rememberSaveable {
+        mutableStateOf(if (joined == null) Page.Languages else Page.Why)
+    }
     var source by rememberSaveable { mutableStateOf(initialSource) }
     var target by rememberSaveable {
-        mutableStateOf(catalog.availableTargets(initialSource).firstOrNull()?.code)
+        mutableStateOf(joined?.target ?: catalog.availableTargets(initialSource).firstOrNull()?.code)
     }
     var pickingSource by rememberSaveable { mutableStateOf(false) }
     // The device's own guess, where it is named after somebody ([DeviceName]) — offered

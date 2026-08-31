@@ -360,6 +360,15 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     fun suggestedLearnerName(): String? =
         DeviceName.suggestedLearnerName(getApplication<Application>().contentResolver)
 
+    /**
+     * The story pages again, on demand (the box settings' own row). The pair and the box
+     * are untouched — [net.spross.app.ui.OnboardingScreen] reads the standing join and
+     * opens past the language pick, which has nothing left to ask.
+     */
+    fun restartOnboarding() {
+        screen = Screen.Onboarding
+    }
+
     fun openAbout() {
         screen = Screen.About
     }

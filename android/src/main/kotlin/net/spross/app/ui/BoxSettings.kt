@@ -112,6 +112,13 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                 ReadAloudSetting(model)
                 HorizontalDivider(color = Dl.colors.separator)
                 Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
+                    TextButton(onClick = { model.restartOnboarding() }) {
+                        Text(chrome.restartTutorial)
+                    }
+                    SettingHint(chrome.restartTutorialHint)
+                }
+                HorizontalDivider(color = Dl.colors.separator)
+                Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
                     TextButton(onClick = { confirmingReset = true }) {
                         Text(chrome.resetButton.format(targetName), color = Dl.colors.wrong)
                     }

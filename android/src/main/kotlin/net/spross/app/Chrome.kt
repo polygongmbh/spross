@@ -102,6 +102,12 @@ interface Chrome {
     val stateOff: String
     val pronounce: String         // "say it again" action on a word
     val aboutButton: String
+    /**
+     * What the footer's envelope is FOR. The door itself prints the address — readable on
+     * a phone with no mail app at all, a deliberate delta from the iPhone's verb — so this
+     * is the name a screen reader gets in front of it.
+     */
+    val feedbackMail: String
     /** The footer's door to newer builds — a noun, not an errand. */
     val updateButton: String
     val updateOfferTitle: String
@@ -394,6 +400,13 @@ interface Chrome {
     val learnerNamePlaceholder: String
     val learnerNameHint: String
     val profileHint: String
+    /**
+     * The way back into the story pages, long after the first run. Nothing here touches the
+     * box — the pair is made, so the restart opens on what Spross is for and the hint says
+     * as much, standing beside the one row that IS destructive.
+     */
+    val restartTutorial: String
+    val restartTutorialHint: String
     val resetButton: String       // %s = the language being learnt, in its own name
     val resetHint: String
     val resetConfirm: String      // %s = the language being learnt, in its own name

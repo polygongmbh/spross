@@ -58,9 +58,14 @@ fun AboutFooter(model: AppModel) {
         // why: the address is the longer label and grows with the font scale, so the pair
         // wraps to a second line rather than clipping it.
         FlowRow(horizontalArrangement = Arrangement.Center) {
-            FooterDoor(SprossIcons.Envelope, Legal.CONTACT_ADDRESS) {
-                context.openFeedbackMail(version)
-            }
+            // why: an address is not an errand — spoken, it says where the mail would go and
+            // never that a mail is what this opens. The envelope carries that on screen; the
+            // door is named for the reader it does not reach.
+            FooterDoor(
+                SprossIcons.Envelope,
+                Legal.CONTACT_ADDRESS,
+                spoken = "${model.chrome.feedbackMail} · ${Legal.CONTACT_ADDRESS}",
+            ) { context.openFeedbackMail(version) }
             FooterDoor(SprossIcons.Info, model.chrome.aboutButton) { model.openAbout() }
         }
         UpdateLine(model.chrome, version)
@@ -82,14 +87,25 @@ internal fun appVersion(): String {
     }
 }
 
-/** One door: the mark of what kind it is, then its own name. */
+/**
+ * One door: the mark of what kind it is, then its own name. [spoken] stands in for that
+ * name where what is printed is not what the door does.
+ */
 @Composable
-private fun FooterDoor(icon: ImageVector, label: String, onClick: () -> Unit) {
+private fun FooterDoor(
+    icon: ImageVector,
+    label: String,
+    spoken: String? = null,
+    onClick: () -> Unit,
+) {
     // why: the padding is tighter than a button's default so the pair still shares one row
     // on a narrow phone — the address is long, and wrapping is the fallback, not the intent.
     TextButton(
         onClick = onClick,
         contentPadding = PaddingValues(horizontal = DlSpace.s, vertical = DlSpace.s),
+        modifier = spoken?.let {
+            Modifier.semantics(mergeDescendants = true) { contentDescription = it }
+        } ?: Modifier,
     ) {
         Icon(icon, contentDescription = null, modifier = Modifier.size(16.dp))
         Spacer(Modifier.width(DlSpace.xs))
