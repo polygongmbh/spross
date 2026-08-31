@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.7.1 — 2026-08-31
+
 - **The app keeps up with your taps again.** Coming back from the box, opening a round and
   grading a card each used to hang for a moment. Three things were behind it: the whole box
   document was being written out — every schedule and every review you have ever logged —
@@ -11,6 +13,10 @@
   redrew. All three are answered once now, when something actually changes, and the writing
   happens out of the way. Starting the app is quicker too — the catalog and your box are
   read while the first screen is already being drawn rather than before it.
+
+- **A shelf you left open is open when you come back.** Opening a shelf, stepping away to
+  Heute and returning shut it again — the box was forgetting the fold on the way out. It is
+  remembered above the trip now, so where you were is where you land.
 
 ## 5.7.0 — 2026-08-29
 
