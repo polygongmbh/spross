@@ -123,7 +123,7 @@ still move. What ends that, on each side:
 
 ## Impressum and privacy policy — the gate before anyone outside sees a build
 
-Both live in the app itself, under the credits sheet (Box settings → Impressum & Lizenzen):
+Both live in the app itself, on the About screen each phone reaches from Box settings:
 the provider identification § 5 DDG asks a German company for, and a link to
 `https://spross.net/privacy`, which App Review wants reachable in-app as well as in
 App Store Connect. Neither is optional once a build leaves the team.
