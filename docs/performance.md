@@ -1,21 +1,26 @@
 # What may run when
 
-The engine recomputes every derivation of the box from scratch. No kern entry point holds
-a `BoxState`, a capability flag or any other answer across calls, and none decides for
-itself when to refresh one — that decision is the platform's, because only the platform
-knows what moved: a mutation, a foreground, a voice arriving from Settings while the app
-slept. So **where an answer is held is the platform's question**, and there is exactly one
-right place to hold it.
+Cache what is expensive, and key the cache on everything the answer depends on. A key that
+covers its inputs cannot go stale — a changed input is a miss, and a miss is only slow.
+That is the whole discipline; abstaining from caching is not a substitute for it, and
+recomputing by default is how a screen comes to compose the day's session three times
+before it can draw.
 
-Separately, kern never reads a clock: `nowEpochMillis` and `tzId` are parameters, which is
-what makes a rule testable at a pinned moment. That is a rule about the determinism of
-inputs, not about holding state; the two are easy to fuse and they protect different things.
+Most kern entry points nonetheless recompute, for one practical reason rather than a moral
+one: they take `nowEpochMillis` as an input, so a correct key would include it and the
+cache would never hit. What knows when an answer really needs to change is the platform —
+a mutation, a foreground, a booked day — so **that is where box-derived answers are held**,
+keyed on the event rather than on the clock. Where an answer does NOT depend on the clock,
+kern keeps it: `box/Time.kt`'s `zoneOf` holds the last time zone resolved by name, because
+resolving one reads the platform's zone database off disk, and `Catalog` holds lazy indices
+over its own immutable contents.
 
-What kern may still keep is the resolution of an input that carries its own cache key and
-cannot go stale under it — `box/Time.kt`'s `zoneOf`, which holds the last time zone
-resolved by name because resolving one reads the platform's zone database off disk, and
-`Catalog`'s per-instance lazy indices. Those are not derivations of the box: a miss is
-never wrong, only slow.
+Two things kern still does not do, and these are rules rather than defaults. It never reads
+a clock — `nowEpochMillis` and `tzId` are parameters, which is what makes a rule testable at
+a pinned moment. And it never decides for itself when to refresh something whose truth is
+the platform's to know: a voice arriving from Settings while the app slept is not an event
+kern can observe, so `LetterDrillAvailability` and `ListeningPool` answer freshly every time
+and the platform owns the rebuild trigger (`kern/docs/turns.md`).
 
 Both apps are shaped the same way: a screen reads values off the model, and the model
 takes those values when something moves. A screen that asks kern a question directly is
@@ -61,8 +66,9 @@ Two things sit outside it because they are not box questions:
 Where only the SIZE of something is wanted, there is a counting entry point that does not
 compose an order — `BoxEngine.dueCount` rather than `dueNow().size`. Where a screen draws
 one number per area, there is one that answers for every area in a walk —
-`BoxBrowser.shelfCounts` rather than `enqueueableCount` per shelf. Reach for those before
-reaching for a cache.
+`BoxBrowser.shelfCounts` rather than `enqueueableCount` per shelf. Prefer these to caching
+a more expensive answer: an answer cheap enough to just ask for is one nothing has to
+remember to invalidate.
 
 ## Compose
 
