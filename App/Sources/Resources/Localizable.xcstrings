@@ -497,22 +497,6 @@
         }
       }
     },
-    "box.consolidated" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "gefestigt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "consolidated"
-          }
-        }
-      }
-    },
     "box.dequeue %@" : {
       "localizations" : {
         "de" : {
@@ -573,38 +557,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "All packed"
-          }
-        }
-      }
-    },
-    "box.fresh" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "frisch"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "fresh"
-          }
-        }
-      }
-    },
-    "box.new" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "neu"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "new"
           }
         }
       }
@@ -5019,22 +4971,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ reviewed"
-          }
-        }
-      }
-    },
-    "session.typoNote" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kleiner Tippfehler – zählt!"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Small typo – still counts!"
           }
         }
       }

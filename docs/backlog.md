@@ -355,8 +355,7 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   (`android/.../AppModel.kt`).
 - Android Heute's failure card and the `error*`/`growth*` chrome are wired but unreachable:
   AppModel has no load-failure state yet and the round summary does not render growth.
-- Dead after the wave-3 Android sweep, prune in one pass: Chrome `practice`/`typoNote`/
-  `consolidatedLabel`/`freshLabel`, and `AppModel.canPracticeExtra` (unread since
+- Dead after the wave-3 Android sweep: `AppModel.canPracticeExtra` (unread since
   `HeuteStanding`).
 - Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs, `docs/portability.md` § Moves)
   deferred per user 2026-08-08.

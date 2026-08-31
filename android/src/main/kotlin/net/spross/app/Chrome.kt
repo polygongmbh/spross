@@ -49,13 +49,9 @@ interface Chrome {
     val greetMorningAddressee: String
     val greetNightAddressee: String
     val heuteTitle: String
-    val practice: String
     val extraRound: String
     val doneToday: String
     val dueLabel: String
-    val newLabel: String
-    val consolidatedLabel: String
-    val freshLabel: String
     val chooseTitle: String
     val chooseSubtitle: String    // what the first page asks for, under the welcome
     val iSpeak: String
@@ -82,7 +78,6 @@ interface Chrome {
     val reveal: String
     val next: String
     val also: String              // %s = the forms a card also answers to
-    val typoNote: String
     val otherWordNote: String     // %1$s = the word typed, %2$s = what it means
     val answerPlaceholder: String // %s = target language name
     /** The question the three verdicts answer, standing under them. */
