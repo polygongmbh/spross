@@ -9,6 +9,10 @@ struct RootView: View {
     /// The area the box should open on, set by a tree in Heute's forest —
     /// the forest names a place, the box is still the screen that shows it.
     @State private var boxArea: String?
+    /// How the box stands folded. Held HERE, above the push: the browser is a
+    /// navigation destination, so its own state dies on every trip back to
+    /// Heute, and a shelf the learner opened would shut itself behind them.
+    @State private var boxFold = BoxFold()
     @State private var sprouting = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -50,7 +54,7 @@ struct RootView: View {
                 boxPresented = true
             })
                 .navigationDestination(isPresented: $boxPresented) {
-                    BoxView(model: model, revealArea: boxArea)
+                    BoxView(model: model, revealArea: boxArea, fold: $boxFold)
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
