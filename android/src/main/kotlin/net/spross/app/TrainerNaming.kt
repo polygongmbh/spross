@@ -15,7 +15,7 @@ import net.spross.kern.trainer.drillVariantEmoji
  */
 
 fun Chrome.name(variant: DrillVariant): String = when (variant) {
-    DrillVariant.Numbers -> numbersTitle
+    DrillVariant.Numbers -> trainerNumbers
     DrillVariant.Clock -> variantClock
     DrillVariant.Phrases -> variantPhrases
     DrillVariant.Forms -> variantForms

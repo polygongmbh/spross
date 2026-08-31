@@ -125,7 +125,7 @@ interface Chrome {
     /** The free-practice card's own name — the ladder both drills climb, not a workshop. */
     val trainingTitle: String
     val trainingSubtitle: String  // what free practice is, under its name
-    val lettersTitle: String
+    val trainerLetters: String
     val lettersHear: String       // the question a letter-name prompt asks
     val lettersSpell: String      // …and the one a gap word asks
     val lettersDictation: String
@@ -150,7 +150,7 @@ interface Chrome {
     // ── The three overview pages ────────────────────────────────────────────────
     /** The ✕'s name — the corner every page and every run wears on the left. */
     val close: String
-    val numbersTitle: String      // the hub entry, and the variant's own name
+    val trainerNumbers: String    // the hub entry, and the variant's own name
     val numbersPage: String       // %s = the language being learnt
     val lettersPage: String       // %s
     val overviewPractice: String  // the heading the picks stand under
@@ -210,7 +210,7 @@ interface Chrome {
     val alphabetSpeakExample: String
 
     // ── The atlas: the Länder page and its run ──────────────────────────────────
-    val countriesTitle: String    // the hub entry, and what the result tile says was drilled
+    val trainerCountries: String  // the hub entry, and what the result tile says was drilled
     val countriesPage: String     // %s = the language being learnt
     val countriesReference: String
     /** How the ladder is walked, said once instead of marked on every rung row. */
@@ -285,10 +285,10 @@ interface Chrome {
      */
     val progressConsolidated: String // %d
     val progressLearning: String  // %d
-    val phrasesLocked: String     // %d = phrases still waiting on their components
+    val phrasesLockedShort: String // %d = phrases still waiting on their components
     /**
      * The same count spelled out for a screen reader.
-     * [phrasesLocked] sits beside a padlock that carries the "locked"; spoken, the padlock is gone.
+     * [phrasesLockedShort] sits beside a padlock that carries the "locked"; spoken, the padlock is gone.
      */
     val phrasesLockedSpoken: String // %d
     /** A fold's state, never its label — the heading stays the heading whichever way it points. */

@@ -231,7 +231,7 @@ fun AreaChip(
             CountLabel("$LEAF ${chrome.progressLearning.format(learning)}", Dl.colors.success)
             // why: the padlock carries the "locked", so the text only names what is
             // locked — and it appears only when it says something.
-            if (locked > 0) CountLabel("$LOCK ${chrome.phrasesLocked.format(locked)}")
+            if (locked > 0) CountLabel("$LOCK ${chrome.phrasesLockedShort.format(locked)}")
         }
         AreaProgressBar(stats ?: EMPTY_AREA)
     }

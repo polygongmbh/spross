@@ -98,7 +98,7 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
                 }
             }
         }
-        model.finishDrill(Screen.Countries, closed.summary, chrome.countriesTitle)
+        model.finishDrill(Screen.Countries, closed.summary, chrome.trainerCountries)
     }
     BackHandler { leave() }
     // Nothing left to ask: hand the run back, never repeat a question.

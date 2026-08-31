@@ -200,13 +200,13 @@ private fun WerkstattCard(model: AppModel) {
             )
             Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
                 if (model.numbersOffered) {
-                    EntryChip("🔢", chrome.numbersTitle) { model.openNumbers() }
+                    EntryChip("🔢", chrome.trainerNumbers) { model.openNumbers() }
                 }
                 if (model.lettersOffered) {
-                    EntryChip("🔤", chrome.lettersTitle) { model.openLetters() }
+                    EntryChip("🔤", chrome.trainerLetters) { model.openLetters() }
                 }
                 if (model.countriesOffered) {
-                    EntryChip("🌍", chrome.countriesTitle) { model.openCountries() }
+                    EntryChip("🌍", chrome.trainerCountries) { model.openCountries() }
                 }
             }
         }

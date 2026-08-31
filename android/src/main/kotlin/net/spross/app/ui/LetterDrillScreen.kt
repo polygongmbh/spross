@@ -89,7 +89,7 @@ fun LetterDrillScreen(model: AppModel) {
     // figures. The letter drill books no rung and keeps no record, so it stores nothing.
     val leave = {
         val closed = flow.close()
-        model.finishDrill(Screen.Letters, closed.summary, chrome.lettersTitle)
+        model.finishDrill(Screen.Letters, closed.summary, chrome.trainerLetters)
     }
     BackHandler { leave() }
     // Nothing left to ask: hand the run back, never repeat a question.
