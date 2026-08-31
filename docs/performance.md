@@ -2,19 +2,22 @@
 
 Cache what is expensive, and key the cache on everything the answer depends on.
 
-Most kern entry points nonetheless recompute: they take `nowEpochMillis` as an input, so a
-correct key would include it and the cache would never hit. What knows when an answer really needs to change is the platform —
-a mutation, a foreground, a booked day — so **that is where box-derived answers are held**,
-keyed on the event rather than on the clock. Where an answer does NOT depend on the clock,
-kern keeps it: `box/Time.kt`'s `zoneOf` holds the last time zone resolved by name, because
-resolving one reads the platform's zone database off disk, and `Catalog` holds lazy indices
-over its own immutable contents.
+Most kern entry points nonetheless recompute:
+they take `nowEpochMillis` as an input, so a correct key would include it and never hit.
+What knows when an answer really needs to change is the platform —
+a mutation, a foreground, a booked day —
+so **that is where box-derived answers are held**, keyed on the event rather than the clock.
+Where an answer does not depend on the clock, kern keeps it:
+`box/Time.kt`'s `zoneOf` holds the last time zone resolved by name,
+because resolving one reads the platform's zone database off disk,
+and `Catalog` holds lazy indices over its own immutable contents.
 
-Two things kern does not do. It never reads
-a clock — `nowEpochMillis` and `tzId` are parameters, which is what makes a rule testable at
-a pinned moment. And it never decides for itself when to refresh something whose truth is
-the platform's to know: a voice arriving from Settings while the app slept is not an event
-kern can observe, so `LetterDrillAvailability` and `ListeningPool` answer freshly every time
+Two things kern does not do.
+It never reads a clock — `nowEpochMillis` and `tzId` are parameters,
+which is what makes a rule testable at a pinned moment.
+And it never decides for itself when to refresh something whose truth is the platform's:
+a voice arriving from Settings while the app slept is not an event kern can observe,
+so `LetterDrillAvailability` and `ListeningPool` answer freshly every time
 and the platform owns the rebuild trigger (`kern/docs/turns.md`).
 
 Both apps are shaped the same way: a screen reads values off the model, and the model
