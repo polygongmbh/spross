@@ -21,6 +21,7 @@ scripts/run-emu.sh           # same for Android: boots the AVD, builds, installs
 scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodegen
 scripts/strings.py --fix     # run after ANY String Catalog edit — Xcode's formatting, then the Android tables
 scripts/catalog-format.py --fix   # run after ANY catalog/ edit — one line per entry that fits (--check to verify)
+scripts/release.sh <version>      # cut a release: changelog heading, version, gates, tag, push (docs/distribution.md)
 ```
 
 Xcode/`xcodegen`/simctl lines above are Mac-only — never present, never installable, on Linux/cloud sessions.

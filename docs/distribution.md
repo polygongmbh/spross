@@ -8,15 +8,31 @@ Both come out of one GitHub Actions run, `.github/workflows/release.yml`.
 ## Cutting a release
 
 ```sh
-# CHANGELOG.md: rename '## Unreleased' to '## <version> — <date>', open a fresh Unreleased
-# project.yml:  MARKETING_VERSION to the same version
-git commit -am "chore: release 4.1.0"
-git tag v4.1.0 && git push origin main v4.1.0
+# CHANGELOG.md: what moved for the LEARNER, under '## Unreleased'
+scripts/release.sh 5.7.2             # heading, version, gates, commit, tag, push
+scripts/deploy-devices.sh --launch   # your own phones — a separate build, from here
 ```
 
-The tag is the trigger and the version:
+The script owns the mechanical half:
+it renames `## Unreleased` to `## <version> — <today>` and opens a fresh one,
+writes `MARKETING_VERSION`,
+regenerates `Spross.xcodeproj` — generated and gitignored,
+so it keeps stamping the old number until something regenerates it —
+runs the Kotlin gates and an unsigned simulator build,
+and only then commits, tags and pushes.
+`--check` stops before the commit, `--no-app` drops the Xcode gate on a Linux session.
+Two things stay yours: which number, and what the entries say.
+An empty `## Unreleased` is refused rather than cut.
+
+The shape of the number follows the entries.
+Content, a new capability or a scheduling change earns a minor;
+a sweep that only fixes or speeds up what was already there is a patch.
+
+Every gate runs BEFORE the tag exists, because the tag is the trigger and the version:
 the workflow strips the leading `v` and hands the rest to both surfaces,
-so nothing is bumped twice.
+so nothing is bumped twice — and a red found after the push costs the release rather than a
+rerun, since the publish step creates the GitHub release and will not overwrite one that
+already stands.
 `MARKETING_VERSION` in `project.yml` is what a local build shows —
 Gradle reads it too rather than keeping a second number,
 and `scripts/release-notes.sh` fails the run when the changelog has no section
