@@ -162,6 +162,17 @@ MAPPING = {
     'learnerNamePlaceholder': 'settings.name.placeholder',
     'learnerNameQuestion': 'onboarding.name.question',
     'learnerNameTitle': 'settings.name.title',
+    'legalAddressValue': 'legal.address.value',
+    'legalCompany': 'legal.company',
+    'legalContactLabel': 'legal.contact.label',
+    'legalDirectorLabel': 'legal.director.label',
+    'legalDirectorValue': 'legal.director.value',
+    'legalPrivacy': 'legal.privacy',
+    'legalRegisterLabel': 'legal.register.label',
+    'legalRegisterValue': 'legal.register.value',
+    'legalTitle': 'legal.title',
+    'legalVatLabel': 'legal.vat.label',
+    'legalVatValue': 'legal.vat.value',
     'letsGo': 'onboarding.start',
     'letterChoice': 'a11y.letterChoice %@',
     'lettersDictation': 'letters.dictation',
@@ -366,12 +377,6 @@ IOS_ONLY = {
 # Surfaces iOS ships that Android owes. A key leaves this set by being claimed above,
 # which is what finishing the Android side looks like.
 ANDROID_TODO = {
-    # The § 5 DDG Impressum and the privacy link. Android's AboutScreen carries the speaker
-    # credits alone, and Obtainium ships the APK with no store listing to hold them instead
-    # (docs/distribution.md).
-    'legal.address.value', 'legal.company', 'legal.contact.label', 'legal.director.label',
-    'legal.director.value', 'legal.privacy', 'legal.register.label', 'legal.register.value',
-    'legal.title', 'legal.vat.label', 'legal.vat.value',
     # What a screen reader is owed on surfaces Android already draws: the feminine mark, a
     # revealed answer, the segments bar's tally and position, and a hub chip's suffix.
     'a11y.feminineForm', 'a11y.notAnswered', 'a11y.practiceSuffix %@',

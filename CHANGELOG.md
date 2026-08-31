@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **Android: who publishes Spross, and what it does with your data, are in the app.** The
+  About screen led with the speakers and said nothing about the publisher — and an app
+  installed through Obtainium has no store listing to say it elsewhere. The Impressum now
+  heads that screen, the address it answers on opens a mail, and the privacy policy is one
+  tap from it.
+
 - **Android: a fresh start opens onboarding instead of crashing.** Installing Spross, or
   clearing its data, dropped straight back to the launcher: the welcome screen asked the
   system for the phone's bluetooth name to guess who you are, and modern Android refuses

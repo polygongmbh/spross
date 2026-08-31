@@ -30,9 +30,9 @@ import net.spross.app.Chrome
 import net.spross.kern.catalog.AudioCredit
 
 /**
- * Who spoke the bundled recordings. Which build is installed, the address that answers for
- * it and the read-aloud switch stand in the box's own settings, where the door to this
- * screen is — this page only credits.
+ * Who publishes the app ([LegalSection]) and who spoke the bundled recordings. Which build
+ * is installed and the read-aloud switch stand in the box's own settings, where the door to
+ * this screen is.
  *
  * The credits come from `Catalog.audioCredits()`, derived from the SHIPPED manifests,
  * so this screen can neither credit what is not bundled nor miss what is — and it
@@ -54,6 +54,7 @@ fun AboutScreen(model: AppModel) {
         }
         LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp)) {
             item { Spacer(Modifier.height(4.dp)) }
+            item { LegalSection(chrome) }
             item {
                 Text(chrome.creditsTitle, style = MaterialTheme.typography.titleLarge)
             }

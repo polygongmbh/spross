@@ -50,11 +50,7 @@ import net.spross.kern.Legal
 @Composable
 fun AboutFooter(model: AppModel) {
     val context = LocalContext.current
-    // why: read off the installed package rather than BuildConfig — the app declares no
-    // buildConfig feature, and this is the version the store actually shipped.
-    val version = remember(context) {
-        "Spross v" + context.packageManager.getPackageInfo(context.packageName, 0).versionName
-    }
+    val version = appVersion()
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -68,6 +64,21 @@ fun AboutFooter(model: AppModel) {
             FooterDoor(SprossIcons.Info, model.chrome.aboutButton) { model.openAbout() }
         }
         UpdateLine(model.chrome, version)
+    }
+}
+
+/**
+ * The build that is running — the footer's stamp, and the subject a feedback mail rides in
+ * on, wherever one is opened ([LegalSection]).
+ *
+ * why: read off the installed package rather than BuildConfig — the app declares no
+ * buildConfig feature, and this is the version the store actually shipped.
+ */
+@Composable
+internal fun appVersion(): String {
+    val context = LocalContext.current
+    return remember(context) {
+        "Spross v" + context.packageManager.getPackageInfo(context.packageName, 0).versionName
     }
 }
 

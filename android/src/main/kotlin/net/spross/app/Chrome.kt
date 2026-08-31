@@ -117,6 +117,26 @@ interface Chrome {
     val creditsRecordings: String // %d = how many files the speaker contributed
     val creditsUnmodified: String
     val creditsCommons: String
+    /**
+     * The § 5 DDG notice, and the privacy policy beside it: who publishes the app, findable
+     * in the app itself — this build ships through Obtainium, which has no listing to carry
+     * it instead (`docs/distribution.md`).
+     *
+     * Each registry fact is a LABEL and a value, kept apart because only the label
+     * translates: "Registergericht: Amtsgericht Coburg, HRB 7580" is one line of two
+     * strings. The address the notice answers on is kern's ([net.spross.kern.Legal]).
+     */
+    val legalTitle: String
+    val legalCompany: String
+    val legalAddressValue: String
+    val legalDirectorLabel: String
+    val legalDirectorValue: String
+    val legalRegisterLabel: String
+    val legalRegisterValue: String
+    val legalVatLabel: String
+    val legalVatValue: String
+    val legalContactLabel: String
+    val legalPrivacy: String
     /** The free-practice card's own name — the ladder both drills climb, not a workshop. */
     val trainingTitle: String
     val trainingSubtitle: String  // what free practice is, under its name
