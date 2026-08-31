@@ -12,6 +12,11 @@
 #   scripts/deploy-devices.sh --dry-run   show which devices are reachable, do nothing
 #   scripts/deploy-devices.sh --debug     Debug build — for iterating, not for judging
 # Flags combine, e.g. --no-build --launch Pluto.
+# A build that fails on SIGNING is this Mac's, not the release's: sign in under
+# Xcode > Settings > Accounts, or, when only the watch targets lack a profile,
+# regenerate with `scripts/gen.sh --no-watch` and deploy to the iPhones alone.
+# Each device gets ONE attempt: an install that fails is a device asleep, locked or
+# out of range, which is the operator's to settle rather than something to retry at.
 # A bare name may be any paired device, listed above or not — watches are
 # recognized by model and get SprossWatch.app.
 set -eu

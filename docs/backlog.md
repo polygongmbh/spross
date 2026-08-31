@@ -339,6 +339,9 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 
 ## Platform reach
 
+- The `ios` job stops at `App Store Connect API key from secret` and no release has
+  carried an IPA: the Apple secrets wait on the developer-program registration, so a
+  release publishes the APK alone and iPhones are served by `scripts/deploy-devices.sh`.
 - The two phones name a language differently in chrome: iOS resolves through
   `LanguageNames.display` (chrome-locale exonym — "Suaheli"), Android reads
   `catalog.languages[code].name` (endonym — "Kiswahili"). Pre-existing, but the

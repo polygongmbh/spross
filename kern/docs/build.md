@@ -24,6 +24,9 @@ Engine contract: `../README.md`.
 - Swift ergonomics: UI-crossing Kotlin types are data classes; a small Swift bridge file in
   App/Sources adds `Date ↔ epochMillis` helpers and `Identifiable`/`Equatable`
   conformances; Kotlin `Int` surfaces as `Int32` — bridge there, not at call sites.
+  A Kotlin default value does NOT cross: adding a parameter to a UI-crossing type keeps
+  every Kotlin caller compiling and breaks every Swift construction site, so the jvm and
+  Android gates stay green and only an app build reports it.
 - Trainer: single `:kern` module, `Long` cardinals everywhere (Kotlin `Int` is 32-bit on
   all platforms). Trainer registry: de/en/es/sw/uk/eo/fr/it
   authored; a language outside it has no drills (the hub's handling of that is an app rule).

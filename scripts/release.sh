@@ -34,6 +34,16 @@ echo "$VERSION" | awk -F. '
     print "error: minor and patch stay under 100 — versionCode packs them two digits wide" > "/dev/stderr"; exit 1 }
 '
 
+# A rule of thumb: two feat commits or a sweep of dozens usually means a minor
+# A feat that only sharpens behavior already there reads as a patch just as easily,
+# so the call is the releaser's and this only prints the counts.
+LAST=$(git describe --tags --abbrev=0 2>/dev/null || true)
+if [ -n "$LAST" ]; then
+  FEATS=$(git log --oneline "$LAST..HEAD" --grep '^feat' | wc -l | tr -d ' ')
+  COMMITS=$(git log --oneline "$LAST..HEAD" | wc -l | tr -d ' ')
+  echo "Since $LAST: $COMMITS commits, $FEATS of them feat."
+fi
+
 if git rev-parse -q --verify "refs/tags/v$VERSION" >/dev/null; then
   echo "error: v$VERSION already exists — pick the next number" >&2
   exit 1

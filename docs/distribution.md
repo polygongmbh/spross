@@ -24,9 +24,10 @@ and only then commits, tags and pushes.
 Two things stay yours: which number, and what the entries say.
 An empty `## Unreleased` is refused rather than cut.
 
-The shape of the number follows the entries.
-Content, a new capability or a scheduling change earns a minor;
-a sweep that only fixes or speeds up what was already there is a patch.
+The shape of the number is a judgment, and a loose one.
+Two `feat:` commits since the last tag, or a sweep of dozens of commits, usually reads as a
+minor; a `feat` that only sharpens behavior already there reads as a patch just as easily.
+`release.sh` prints the two counts and leaves the number to you.
 
 Every gate runs BEFORE the tag exists, because the tag is the trigger and the version:
 the workflow strips the leading `v` and hands the rest to both surfaces,
