@@ -1,7 +1,6 @@
 package net.spross.kern.box
 
 import kotlinx.datetime.DateTimeUnit
-import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.plus
 import net.spross.kern.model.Rating
@@ -149,7 +148,7 @@ fun tomorrowNote(hasPackedWords: Boolean, tomorrowDue: Int): TomorrowNote = when
 }
 
 internal fun todayReport(state: BoxState, nowEpochMillis: Long, tzId: String): TodayReport {
-    val zone = TimeZone.of(tzId)
+    val zone = zoneOf(tzId)
     val start = localDate(nowEpochMillis, tzId).atStartOfDayIn(zone)
     val end = localDate(nowEpochMillis, tzId).plus(1, DateTimeUnit.DAY).atStartOfDayIn(zone)
     val day = dayKey(nowEpochMillis, tzId)

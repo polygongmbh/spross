@@ -3,7 +3,6 @@ package net.spross.kern.box
 import kotlin.time.Instant
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
-import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.minus
 import kotlinx.datetime.plus
@@ -176,7 +175,7 @@ fun streakWindow(
     tzId: String,
 ): List<ActivityDay> {
     require(days > 0) { "window needs at least one day" }
-    val zone = TimeZone.of(tzId)
+    val zone = zoneOf(tzId)
     val today = localDate(nowEpochMillis, tzId)
     val run = Statistics.streakRun(dailyStats, today)
     return (days - 1 downTo 0).map { back ->

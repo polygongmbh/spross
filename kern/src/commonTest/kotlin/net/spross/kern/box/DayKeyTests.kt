@@ -16,6 +16,22 @@ class DayKeyTests {
     private fun local(tz: String, y: Int, mo: Int, d: Int, h: Int, min: Int): Long =
         LocalDateTime(y, mo, d, h, min).toInstant(TimeZone.of(tz)).toEpochMilliseconds()
 
+    /**
+     * Zones are resolved by name and the last one is kept ([zoneOf]), so a learner who
+     * travels — or two calls a frame apart naming different zones — must not be handed
+     * the zone before it. Alternating proves the memo answers the name it was asked.
+     */
+    @Test
+    fun alternatingZonesEachAnswerTheirOwn() {
+        // 02:00 UTC: still yesterday evening in New York, already afternoon on Kiritimati.
+        val earlyUtc = Box.millis(2026, 7, 1, 2, 0)
+        repeat(3) {
+            assertEquals("2026-07-01", dayKey(earlyUtc, "Pacific/Kiritimati"))
+            assertEquals("2026-07-01", dayKey(earlyUtc, "UTC"))
+            assertEquals("2026-06-30", dayKey(earlyUtc, "America/New_York"))
+        }
+    }
+
     @Test
     fun dayKeyFollowsTheCallersZone() {
         val noonUtc = Box.millis(2026, 7, 1)
