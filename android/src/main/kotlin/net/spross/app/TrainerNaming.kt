@@ -96,7 +96,7 @@ fun Chrome.unlockPrice(required: Map<DrillVariant, Int>): String {
     val parts = DrillVariant.entries.mapNotNull { variant ->
         val rung = required[variant] ?: return@mapNotNull null
         if (variant == DrillVariant.Numbers) {
-            countLine(digitsOne, digitsMany, rung)
+            countLine(digitsOne, digits, rung)
         } else {
             "${badge(variant)} ${level.format(rung)}"
         }

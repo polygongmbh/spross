@@ -15,9 +15,13 @@ there (and named in ANDROID_ONLY in scripts/strings.py, so the iOS drift check k
 no Swift will ever ask for it), then this regenerates the tables.
 
 [MAPPING] is field → key. A field may also take:
-  ('key %lld', 'one')   one plural category, where Android reads a String per form
   ['key.0', 'key.1']    a List<String>, in order
   {'id': 'key'}         a Map<String, String>
+
+A counted key holds plural forms rather than one string, and which form a field reads is
+its own NAME's to say: `<field>One` takes the `one` form, every other name the general
+`other` one. So a counted pair is `foo`/`fooOne` — never `fooMany`, never two bare names —
+and the key needs no category written beside it.
 
 Placeholders are rewritten on the way out — iOS writes %@ and %lld, java.lang.String
 wants %s and %d — so a call site's `.format(...)` keeps working unchanged.
@@ -51,6 +55,7 @@ FALLBACK = ('\n *\n * Also the one every source without chrome of its own falls 
 
 MAPPING = {
     'aboutButton': 'settings.about',
+    'activityDays': 'a11y.activity14Days %lld',
     'almostHeard': 'session.almost.heard',
     'almostTypo': 'session.almost.typo',
     'alphabetSpeakExample': 'alphabet.speakExample',
@@ -62,10 +67,10 @@ MAPPING = {
     'answerDigits': 'trainer.answer.digits',
     'answerPlaceholder': 'session.answer.placeholder %@',
     'answerWrong': 'a11y.wrong',
-    'audioOff': 'audio.off',
     'audioHintOff': 'settings.audio.hint.off',
     'audioHintRecordings': 'settings.audio.hint.recordings',
     'audioHintTts': 'settings.audio.hint.tts',
+    'audioOff': 'audio.off',
     'audioOptionOff': 'settings.audio.option.off',
     'audioOptionRecordings': 'settings.audio.option.recordings',
     'audioOptionTts': 'settings.audio.option.tts',
@@ -73,13 +78,15 @@ MAPPING = {
     'back': 'common.back',
     'bestStreak': 'trainer.bestStreak %@',
     'boxNav': 'nav.box',
+    'boxNoAudio': 'box.noAudio',
     'boxSubtitle': 'box.cardsInProgress %@ %@',
+    'boxTapToHear': 'box.tapToHear',
     'boxTitle': 'box.title',
     'cancel': 'common.cancel',
+    'cantListen': 'session.hear.cantListen',
     'cardActions': 'box.card.actions',
     'cardForget': 'box.card.forget',
     'cardOwnFrom': 'box.card.ownFrom',
-    'cantListen': 'session.hear.cantListen',
     'caughtUpTitle': 'heute.caughtUp.title',
     'check': 'common.check',
     'chooseSubtitle': 'onboarding.languages.subtitle',
@@ -97,7 +104,6 @@ MAPPING = {
     'countriesPage': 'countries.title %@',
     'countriesReference': 'countries.reference',
     'countriesReverseHint': 'countries.reverse.hint %@ %@',
-    'trainerCountries': 'trainer.countries',
     'countryAskCountry': 'countries.ask.country',
     'countryAskFlag': 'countries.ask.flag',
     'countryAskLanguage': 'countries.ask.language',
@@ -105,11 +111,22 @@ MAPPING = {
     'countryAskSpokenIn': 'countries.ask.spokenIn',
     'countryAskSpokenWhere': 'countries.ask.spokenWhere',
     'creditsCommons': 'credits.commonsNote',
+    'creditsRecordings': 'credits.recordings %lld',
     'creditsTitle': 'credits.title',
     'creditsUnmodified': 'credits.unmodified',
+    'dayAhead': 'heute.session.ahead %lld',
+    'dayAheadOne': 'heute.session.ahead %lld',
     'dayConsolidated': 'heute.done.consolidated %@',
     'dayMany': 'common.dayMany',
+    'dayNewCards': 'heute.session.newCards %lld',
+    'dayNewCardsOne': 'heute.session.newCards %lld',
+    'dayNewWordsOnly': 'heute.session.newWordsOnly %@',
     'dayOne': 'common.dayOne',
+    'dayReviews': 'heute.session.reviews %lld',
+    'dayReviewsOne': 'heute.session.reviews %lld',
+    'dequeueArea': 'box.dequeue %@',
+    'digits': 'trainer.digits %lld',
+    'digitsOne': 'trainer.digits %lld',
     'doneToday': 'heute.done.title',
     'dueLabel': 'box.due',
     'enableSound': 'audio.enable',
@@ -119,16 +136,16 @@ MAPPING = {
     'errorTitle': 'error.title',
     'errorUnknownProfile': 'error.unknownProfile %@ %@',
     'extraRound': 'heute.done.extraRound',
-    'finish': 'common.done',
-    'firstRoundGrade': 'onboarding.firstRound.grade',
-    'firstRoundRecognize': 'onboarding.firstRound.recognize',
-    'firstRoundTitle': 'onboarding.firstRound.title',
-    'firstRoundWrite': 'onboarding.firstRound.write',
     'feedbackCopy': 'feedback.copy',
     'feedbackNeedsTranslation': 'feedback.needsTranslation',
     'feedbackScopeAll': 'feedback.scope.all',
     'feedbackScopeNew': 'feedback.scope.new',
     'feedbackSend': 'feedback.send',
+    'finish': 'common.done',
+    'firstRoundGrade': 'onboarding.firstRound.grade',
+    'firstRoundRecognize': 'onboarding.firstRound.recognize',
+    'firstRoundTitle': 'onboarding.firstRound.title',
+    'firstRoundWrite': 'onboarding.firstRound.write',
     'good': 'rating.good',
     'growthGrew': 'session.finished.grew',
     'growthOpened': 'session.finished.growth.opened',
@@ -148,9 +165,16 @@ MAPPING = {
     'lettersHear': 'letters.hear',
     'lettersPage': 'letters.title %@',
     'lettersSpell': 'letters.spell',
-    'trainerLetters': 'trainer.letters',
     'lettersUnavailable': 'letters.unavailable',
     'level': 'trainer.level %@',
+    'listenMinutesLeft': 'listen.minutesLeft %lld',
+    'listenPause': 'listen.pause',
+    'listenRepeat': 'listen.repeat',
+    'listenResume': 'listen.resume',
+    'listenSkip': 'listen.skip',
+    'listenSubtitle': 'listen.subtitle',
+    'listenTimer': 'listen.timer',
+    'listenTitle': 'listen.title',
     'lookUp': 'trainer.lookup',
     'modifierFast': 'trainer.modifier.fast',
     'modifierFastHint': 'trainer.modifier.fast.hint',
@@ -164,7 +188,6 @@ MAPPING = {
     'numbersNotes': 'numbers.notes',
     'numbersPage': 'numbers.title %@',
     'numbersReference': 'numbers.reference',
-    'trainerNumbers': 'trainer.numbers',
     'otherWordNote': 'session.otherWord %@ %@',
     'overviewPractice': 'overview.practice',
     'overviewStart': 'overview.start',
@@ -185,13 +208,12 @@ MAPPING = {
     'packArea': 'box.enqueue %@',
     'packDone': 'box.enqueueDone',
     'packWord': 'box.packWord',
-    'unpackWord': 'box.unpackWord',
-    'dequeueArea': 'box.dequeue %@',
-    'queuedWord': 'box.queuedWord',
     'phaseConsolidated': 'phase.consolidated',
     'phaseLearning': 'phase.learning',
     'phaseRelearning': 'phase.relearning',
     'phaseSettled': 'phase.settled',
+    'phrasesLockedShort': 'box.phrasesLockedShort %lld',
+    'phrasesLockedSpoken': 'box.phrasesLocked %lld',
     'pluralEquals': 'grammar.plural.equals',
     'pluralForm': 'grammar.plural %@',
     'pluralOnly': 'grammar.plural.only',
@@ -200,6 +222,7 @@ MAPPING = {
     'progressLearning': 'progress.learningCount %@',
     'promptInLanguage': 'trainer.promptInLanguage %@',
     'pronounce': 'a11y.pronounce',
+    'queuedWord': 'box.queuedWord',
     'ratingQuestion': 'rating.question',
     'readAloud': 'a11y.readAloud',
     'record': 'trainer.record %@',
@@ -234,16 +257,9 @@ MAPPING = {
     'searchWords': 'box.search.words',
     'searchWriteOwn': 'box.search.writeOwn %@',
     'sessionDone': 'session.finished.title',
-    'sessionSomeCards': 'heute.session.someCards',
-    'listenPause': 'listen.pause',
-    'listenRepeat': 'listen.repeat',
-    'listenResume': 'listen.resume',
-    'listenSkip': 'listen.skip',
-    'listenSubtitle': 'listen.subtitle',
-    'listenMinutesLeft': ('listen.minutesLeft %lld', 'other'),
-    'listenTimer': 'listen.timer',
-    'listenTitle': 'listen.title',
+    'sessionHeldBack': 'heute.session.heldBack %lld',
     'sessionShortRound': 'heute.session.shortRound',
+    'sessionSomeCards': 'heute.session.someCards',
     'sessionStart': 'heute.session.start',
     'settingsTitle': 'settings.title',
     'skipStep': 'session.skipCopy',
@@ -263,23 +279,30 @@ MAPPING = {
     'stateOff': 'a11y.off',
     'stateOn': 'a11y.on',
     'streak': 'trainer.streak %@',
+    'streakDays': 'a11y.streakDays %lld',
+    'streakDaysOne': 'a11y.streakDays %lld',
     'streakRecord': 'session.finished.streakRecord',
     'streakSpoken': 'a11y.streakInARow %@',
     'suspended': 'box.suspended',
     'tapToHear': 'reference.tapToHear',
-    'boxTapToHear': 'box.tapToHear',
-    'boxNoAudio': 'box.noAudio',
+    'tasksDone': 'trainer.tasksDone %lld',
+    'tasksDoneOne': 'trainer.tasksDone %lld',
+    'tomorrowDue': 'heute.done.tomorrowDue %lld',
     'tomorrowFresh': 'heute.done.tomorrowFresh',
     'tomorrowPacked': 'heute.done.packed',
+    'trainerCountries': 'trainer.countries',
+    'trainerLetters': 'trainer.letters',
+    'trainerNumbers': 'trainer.numbers',
     'trainingSubtitle': 'trainer.subtitle',
     'trainingTitle': 'trainer.title',
     'unknown': 'rating.unknown',
+    'unlockPrefix': 'numbers.unlock',
+    'unpackWord': 'box.unpackWord',
     'updateButton': 'settings.update.button',
     'updateDownload': 'settings.update.download',
     'updateOfferBody': 'settings.update.offer',
     'updateOfferTitle': 'settings.update.title',
     'updateViaObtainium': 'settings.update.obtainium',
-    'unlockPrefix': 'numbers.unlock',
     'variantClock': 'trainer.clock',
     'variantForms': 'trainer.forms',
     'variantPhrases': 'trainer.phrases',
@@ -289,32 +312,10 @@ MAPPING = {
     'whyCompanionBody': 'onboarding.why.companion.body',
     'whyCompanionTitle': 'onboarding.why.companion.title',
     'whyGrammarBody': 'onboarding.why.grammar.body',
-    'widgetAwaitingBody': 'widget.awaiting.body',
-    'widgetAwaitingTitle': 'widget.awaiting.title',
     'whyGrammarTitle': 'onboarding.why.grammar.title',
     'whyTitle': 'onboarding.why.title',
-
-    # One plural category of a counted key — Android reads a String per form,
-    # and `countLine` formats whichever of the two it picked.
-    'activityDays': ('a11y.activity14Days %lld', 'other'),
-    'creditsRecordings': ('credits.recordings %lld', 'other'),
-    'dayAhead': ('heute.session.ahead %lld', 'other'),
-    'dayAheadOne': ('heute.session.ahead %lld', 'one'),
-    'dayNewCards': ('heute.session.newCards %lld', 'other'),
-    'dayNewWordsOnly': 'heute.session.newWordsOnly %@',
-    'dayNewCardsOne': ('heute.session.newCards %lld', 'one'),
-    'dayReviews': ('heute.session.reviews %lld', 'other'),
-    'dayReviewsOne': ('heute.session.reviews %lld', 'one'),
-    'digitsMany': ('trainer.digits %lld', 'other'),
-    'digitsOne': ('trainer.digits %lld', 'one'),
-    'phrasesLockedShort': ('box.phrasesLockedShort %lld', 'other'),
-    'phrasesLockedSpoken': ('box.phrasesLocked %lld', 'other'),
-    'sessionHeldBack': ('heute.session.heldBack %lld', 'other'),
-    'streakDays': ('a11y.streakDays %lld', 'other'),
-    'streakDaysOne': ('a11y.streakDays %lld', 'one'),
-    'tasksDone': ('trainer.tasksDone %lld', 'other'),
-    'tasksDoneOne': ('trainer.tasksDone %lld', 'one'),
-    'tomorrowDue': ('heute.done.tomorrowDue %lld', 'other'),
+    'widgetAwaitingBody': 'widget.awaiting.body',
+    'widgetAwaitingTitle': 'widget.awaiting.title',
 
     # Families — one key per entry, in the order the reader indexes them.
     'countryRungHints': ['countries.rung.%d.hint' % i for i in range(1, 10)],
@@ -352,17 +353,17 @@ def placeholders(text):
     return re.sub(r'%(\d+\$)?@', lambda m: '%' + (m.group(1) or '') + 's', text)
 
 
-def value(strings, key, lang, category=None):
+def value(strings, key, lang, field=''):
+    """What [field] reads off [key] — the string, or the plural form its name asks for."""
     entry = strings.get(key)
     if entry is None:
         raise SystemExit('%s: not in the catalog — add it there first' % key)
     local = entry.get('localizations', {}).get(lang)
     if local is None:
         raise SystemExit('%s: no %s translation' % (key, lang))
-    if category is None:
-        if 'stringUnit' not in local:
-            raise SystemExit('%s: counted key needs a plural category in MAPPING' % key)
+    if 'stringUnit' in local:
         return placeholders(local['stringUnit']['value'])
+    category = 'one' if field.endswith('One') else 'other'
     forms = local.get('variations', {}).get('plural', {})
     if category not in forms:
         raise SystemExit('%s (%s): no "%s" plural form' % (key, lang, category))
@@ -406,19 +407,18 @@ def render(lang, code, name, strings):
         if spec is None:
             raise SystemExit('Chrome.%s: no key in scripts/chrome.py MAPPING' % field)
         opening = len('    override val %s = ' % field)
-        if isinstance(spec, tuple):
-            body.append('    override val %s = %s\n'
-                        % (field, literal(value(strings, spec[0], lang, spec[1]), opening)))
-        elif isinstance(spec, list):
-            entries = ''.join('        %s,\n' % literal(value(strings, k, lang), 8) for k in spec)
+        if isinstance(spec, list):
+            entries = ''.join('        %s,\n' % literal(value(strings, k, lang, field), 8)
+                              for k in spec)
             body.append('    override val %s = listOf(\n%s    )\n' % (field, entries))
         elif isinstance(spec, dict):
             entries = ''.join('        "%s" to %s,\n'
-                              % (i, literal(value(strings, k, lang), 12 + len(i)))
+                              % (i, literal(value(strings, k, lang, field), 12 + len(i)))
                               for i, k in spec.items())
             body.append('    override val %s = mapOf(\n%s    )\n' % (field, entries))
         else:
-            body.append('    override val %s = %s\n' % (field, literal(value(strings, spec, lang), opening)))
+            body.append('    override val %s = %s\n'
+                        % (field, literal(value(strings, spec, lang, field), opening)))
     return ''.join(body) + '}\n'
 
 

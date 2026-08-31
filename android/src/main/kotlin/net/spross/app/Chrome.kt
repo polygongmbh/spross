@@ -178,7 +178,7 @@ interface Chrome {
 
     // ── Inside a run ────────────────────────────────────────────────────────────
     val digitsOne: String         // the numbers rung, which counts digits
-    val digitsMany: String        // %d
+    val digits: String            // %d
     val record: String            // %d — the standing streak the run has not beaten yet
     val streakSpoken: String      // %d — the score line as a screen reader hears it
     val recordSpoken: String      // %d — appended to it

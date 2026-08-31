@@ -167,7 +167,7 @@ private fun rungText(state: TrainerRunState, chrome: Chrome): String? {
     // why: the digits wording is the numbers drill's own and already wears 🔢 — putting
     // the variant's face in front would double it.
     if (state.currentVariant == DrillVariant.Numbers) {
-        return countLine(chrome.digitsOne, chrome.digitsMany, rung)
+        return countLine(chrome.digitsOne, chrome.digits, rung)
     }
     val level = chrome.level.format(rung)
     if (!state.severalVariants) return level

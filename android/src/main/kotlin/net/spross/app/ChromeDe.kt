@@ -157,7 +157,7 @@ internal object ChromeDe : Chrome {
     override val combineLocked = "Mehreres in einem Lauf, sobald alles freigeschaltet ist."
     override val unlockPrefix = "Freischalten:"
     override val digitsOne = "🔢 %d Stelle"
-    override val digitsMany = "🔢 %d Stellen"
+    override val digits = "🔢 %d Stellen"
     override val record = "Rekord %s"
     override val streakSpoken = "Serie: %s in Folge"
     override val recordSpoken = ", Rekord %s"
