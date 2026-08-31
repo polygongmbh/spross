@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **Android: a fresh start opens onboarding instead of crashing.** Installing Spross, or
+  clearing its data, dropped straight back to the launcher: the welcome screen asked the
+  system for the phone's bluetooth name to guess who you are, and modern Android refuses
+  that read outright rather than answering it. The guess comes from the device name alone
+  now, which is where someone who names a phone after themselves puts it anyway.
+
 ## 5.7.2 — 2026-08-31
 
 - **A drill asks you each question once.** Numbers, the clock, forms and sentences, the

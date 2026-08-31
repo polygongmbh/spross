@@ -13,16 +13,13 @@ import android.provider.Settings
  * someone's name is left alone, so the field opens empty rather than greeting a handset.
  *
  * Read from the settings table alone — the device name the system's own "Device name"
- * writes, else the bluetooth name beside it. Both are plain reads that cost no permission;
- * accounts and contacts know the name too and are deliberately never asked.
+ * writes, which is a plain read that costs no permission; accounts and contacts know the
+ * name too and are deliberately never asked.
  */
 object DeviceName {
 
     fun suggestedLearnerName(resolver: ContentResolver): String? =
-        listOfNotNull(
-            Settings.Global.getString(resolver, Settings.Global.DEVICE_NAME),
-            Settings.Secure.getString(resolver, BLUETOOTH_NAME),
-        ).firstNotNullOfOrNull { possessiveOwner(it) }
+        Settings.Global.getString(resolver, Settings.Global.DEVICE_NAME)?.let { possessiveOwner(it) }
 
     /**
      * Whoever the device is named after, or null where it is named after nothing.
@@ -45,9 +42,6 @@ object DeviceName {
         if (!owner.first().isUpperCase()) return null
         return owner.takeIf { it.lowercase() !in DEVICE_WORDS }
     }
-
-    /** The bluetooth name has no public constant; this is the key the system files it under. */
-    private const val BLUETOOTH_NAME = "bluetooth_name"
 
     private val WHITESPACE = Regex("\\s+")
 
