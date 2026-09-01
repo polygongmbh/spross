@@ -190,8 +190,9 @@ queue. It is not.
 **What intake really costs is the reviews it draws.** A new card is not one card of load; it is
 every review it will pull for as long as it stays in the box, so sustained intake settles at
 `intake × reviews-per-card-so-far` a day. At `desiredRetention` 0.8 a card accrues roughly four
-to five reviews in its first year, putting the ≤ 5-card reserve near 22 reviews a day against a
-`sessionCap` of 25 — close to the ceiling rather than far beneath it, and the margin narrows as a
+to five reviews in its first year, putting the ≤ 4-card reserve near 18 reviews a day against a
+`sessionCap` of 24 — about three quarters of it, where 5 against 25 sat at ninety percent and left
+a box behind holding its backlog level rather than working it down. The margin narrows as a
 box ages, because that per-card count keeps climbing. The model is calibrated: at 0.9, where the
 interval is exactly `S`, it reproduces Anki's documented 20 new cards a day settling at about 200
 ([deck options](https://docs.ankiweb.net/deck-options.html)).

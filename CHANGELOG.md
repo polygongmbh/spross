@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **New words arrive a little slower, so a busy box catches up instead of only keeping pace.**
+  A round behind on reviews used to bring in five new words a day and hand you 25 cards; it now
+  brings four and hands you 24. The number of words to recall in a round is unchanged — what
+  changed is that every new word also books the reviews it will ask for over the following weeks,
+  and five a day was enough to spend nearly the whole sitting on itself. Four leaves room to
+  work a backlog down rather than hold it level, and a caught-up day still offers a full round
+  of first sights.
+
 - **A word that keeps slipping gets more room, not less.** Missing a word used to bring it
   back after the same fixed wait every time — 2 minutes for a brand-new word, 10 for one
   you'd already learned — and a second miss anywhere quietly suspended it out of rotation

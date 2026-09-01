@@ -10,7 +10,7 @@ data class BoxConfig(
      * (output interference falls on how many cards a sitting TESTS, not on how
      * many words enter; see `docs/growth-evidence.md`).
      */
-    val sessionCap: Int = 25,
+    val sessionCap: Int = 24,
     val desiredRetention: Double = 0.8,
     val maximumIntervalDays: Int = 365,
     /**

@@ -32,11 +32,11 @@ class SessionComposerTests {
 
     @Test
     fun slotReservationForGrowth() {
-        // 40 due cards, sessionCap 25 → 20 reviews + 5 reserved growth slots.
+        // 40 due cards, sessionCap 24 → 20 reviews + 4 reserved growth slots.
         val plan = SessionComposer.composeSession(backloggedState(), now, Box.TZ)
         assertEquals(20, plan.reviews.size)
-        assertEquals(5, plan.unlockedPhrases.size + plan.newCards.size)
-        assertEquals((41..45).map { "w$it" }, plan.newCards)
+        assertEquals(4, plan.unlockedPhrases.size + plan.newCards.size)
+        assertEquals((41..44).map { "w$it" }, plan.newCards)
     }
 
     /**
@@ -57,7 +57,7 @@ class SessionComposerTests {
     fun noReservationWithoutNewWork() {
         // Every card already scheduled → nothing to introduce → reviews take the whole cap.
         val plan = SessionComposer.composeSession(backloggedState(spare = 0), now, Box.TZ)
-        assertEquals(25, plan.reviews.size)
+        assertEquals(24, plan.reviews.size)
         assertTrue(plan.newCards.isEmpty())
         assertTrue(plan.unlockedPhrases.isEmpty())
     }
@@ -72,9 +72,9 @@ class SessionComposerTests {
             )
         }
         val plan = SessionComposer.composeSession(state, now, Box.TZ)
-        // reviewCap = 25 − 5 = 20 → 20 reviews; 5 card slots remain for new.
+        // reviewCap = 24 − 4 = 20 → 20 reviews; 4 card slots remain for new.
         assertEquals(20, plan.reviews.size)
-        assertEquals(5, plan.newCards.size)
+        assertEquals(4, plan.newCards.size)
     }
 
     @Test

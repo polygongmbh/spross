@@ -62,7 +62,7 @@ internal object Box {
         promptFeminineMarker = false,
     )
 
-    fun config(sessionCap: Int = 25): BoxConfig = BoxConfig(sessionCap = sessionCap)
+    fun config(sessionCap: Int = BoxConfig().sessionCap): BoxConfig = BoxConfig(sessionCap = sessionCap)
 
     val stamp = JoinStamp("de", "sw", "fixture")
 

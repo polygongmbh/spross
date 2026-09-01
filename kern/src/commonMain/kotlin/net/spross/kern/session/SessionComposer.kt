@@ -22,14 +22,14 @@ object SessionComposer {
     /**
      * Up to this many session slots are reserved so a full due queue can't starve growth.
      *
-     * Also the whole of the backlog policy. At `desiredRetention` 0.8 a sitting sends far more
-     * cards away on longer intervals than these few bring in, so a reserve this small cannot
-     * compound into a backlog the learner never works off — it does not scale with the queue,
-     * and FSRS shrinks each card's review load as it matures. A separate brake used to close
-     * growth entirely once the projected backlog passed a cap; it only ever fought this reserve,
-     * whose entire job is letting a busy box keep growing (`docs/growth-evidence.md`).
+     * Also the rate a BUSY box grows at, and the whole of the backlog policy: once reviews
+     * fill the round, what is left for new cards is exactly this. Sustained intake settles at
+     * `intake × reviews-per-card-so-far` a day — four to five reviews per card in its first
+     * year at `desiredRetention` 0.8 — so four a day settles near three quarters of a
+     * `sessionCap` of 24, and the quarter left over is what lets a box behind work the
+     * backlog down instead of only holding it level (`docs/growth-evidence.md`).
      */
-    private const val GROWTH_RESERVE_CARDS = 5
+    private const val GROWTH_RESERVE_CARDS = 4
 
     /**
      * A round shorter than this is not worth sitting down for: two or three cards

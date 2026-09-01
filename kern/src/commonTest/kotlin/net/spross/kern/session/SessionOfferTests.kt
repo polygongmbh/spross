@@ -42,7 +42,7 @@ class SessionOfferTests {
     /** A rested box offers first sights, and they outnumber everything there is to recall. */
     @Test
     fun freshWorkLeadsWhenItOutnumbersRecall() {
-        val offer = SessionOffers.offer(state(due = 0, ahead = 0, catalog = 30, sessionCap = 25), now, Box.TZ)
+        val offer = SessionOffers.offer(state(due = 0, ahead = 0, catalog = 30, sessionCap = 24), now, Box.TZ)
         assertEquals(SessionOfferKind.FreshSet, offer.kind)
         assertEquals(SessionComposer.NEW_CARDS_PER_ROUND, offer.fresh)
         assertEquals(0, offer.reviews)
@@ -52,11 +52,11 @@ class SessionOfferTests {
     /** A backlog leads, and the cap's leftovers are named rather than hidden. */
     @Test
     fun recallLeadsAndTheCapsLeftoversAreNamed() {
-        val offer = SessionOffers.offer(state(due = 40, ahead = 0, catalog = 50, sessionCap = 25), now, Box.TZ)
+        val offer = SessionOffers.offer(state(due = 40, ahead = 0, catalog = 50, sessionCap = 24), now, Box.TZ)
         assertEquals(SessionOfferKind.Reviews, offer.kind)
         assertEquals(20, offer.reviews)
         assertEquals(20, offer.dueHeldBack)
-        assertEquals(5, offer.fresh)
+        assertEquals(4, offer.fresh)
     }
 
     /**
@@ -66,7 +66,7 @@ class SessionOfferTests {
      */
     @Test
     fun aRemainderTooSmallToNameIsNotNamed() {
-        val offer = SessionOffers.offer(state(due = 25, ahead = 0, catalog = 50, sessionCap = 25), now, Box.TZ)
+        val offer = SessionOffers.offer(state(due = 25, ahead = 0, catalog = 50, sessionCap = 24), now, Box.TZ)
         assertEquals(20, offer.reviews)
         assertEquals(0, offer.dueHeldBack)
     }
@@ -74,7 +74,7 @@ class SessionOfferTests {
     /** One or two due cards are a warm-up, never the round's headline. */
     @Test
     fun aTokenCoupleOfDueCardsIsAWarmUp() {
-        val offer = SessionOffers.offer(state(due = 2, ahead = 3, catalog = 5, sessionCap = 25), now, Box.TZ)
+        val offer = SessionOffers.offer(state(due = 2, ahead = 3, catalog = 5, sessionCap = 24), now, Box.TZ)
         assertEquals(SessionOfferKind.WarmUp, offer.kind)
         assertEquals(2, offer.reviews)
         assertEquals(3, offer.ahead)
@@ -82,7 +82,7 @@ class SessionOfferTests {
         assertEquals(0, offer.dueHeldBack)
 
         // One more due card and recall takes the lead.
-        val leading = SessionOffers.offer(state(due = 3, ahead = 2, catalog = 5, sessionCap = 25), now, Box.TZ)
+        val leading = SessionOffers.offer(state(due = 3, ahead = 2, catalog = 5, sessionCap = 24), now, Box.TZ)
         assertEquals(SessionOffer.REVIEWS_LEAD_FROM, leading.reviews)
         assertEquals(SessionOfferKind.Reviews, leading.kind)
     }
@@ -102,10 +102,10 @@ class SessionOfferTests {
      */
     @Test
     fun onlyALongRoundOffersAShortOne() {
-        val behind = SessionOffers.offer(state(due = 40, ahead = 0, catalog = 50, sessionCap = 25), now, Box.TZ)
+        val behind = SessionOffers.offer(state(due = 40, ahead = 0, catalog = 50, sessionCap = 24), now, Box.TZ)
         assertEquals(SessionComposer.SHORT_ROUND_CARDS, behind.shortRound)
 
-        val rested = SessionOffers.offer(state(due = 0, ahead = 0, catalog = 30, sessionCap = 25), now, Box.TZ)
+        val rested = SessionOffers.offer(state(due = 0, ahead = 0, catalog = 30, sessionCap = 24), now, Box.TZ)
         assertEquals(0, rested.shortRound)
     }
 
@@ -116,10 +116,10 @@ class SessionOfferTests {
      */
     @Test
     fun theHeadlinePickIsStableAndSpreadAcrossVariants() {
-        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 20, dueHeldBack = 20, ahead = 0, fresh = 5, shortRound = 7)
+        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 20, dueHeldBack = 20, ahead = 0, fresh = 4, shortRound = 7)
         assertEquals(offer.line(), offer.copy(dueHeldBack = 3).line())
         assertEquals(offer.line(), offer.copy(shortRound = 0).line())
-        assertEquals(offer.line(), SessionOffers.offer(state(40, 0, 50, 25), now, Box.TZ).line())
+        assertEquals(offer.line(), SessionOffers.offer(state(40, 0, 50, 24), now, Box.TZ).line())
 
         val variants = (0..40).flatMap { reviews ->
             (0..7).map { fresh ->
@@ -150,7 +150,7 @@ class SessionOfferTests {
      */
     @Test
     fun anExposedRunTakesOverTheHeadlineAfterTheMorning() {
-        val offer = SessionOffers.offer(state(due = 12, ahead = 0, catalog = 20, sessionCap = 25), now, Box.TZ)
+        val offer = SessionOffers.offer(state(due = 12, ahead = 0, catalog = 20, sessionCap = 24), now, Box.TZ)
         assertEquals(HeadlineKind.Reviews, offer.line().kind)
         assertEquals(HeadlineKind.StreakReminder, offer.copy(streakExposed = true).line().kind)
 
@@ -165,7 +165,7 @@ class SessionOfferTests {
      */
     @Test
     fun theExposedRunIsReadOffThisLanguageAlone() {
-        val worked = Box.state((1..20).map { Box.word(it) }, Box.config(25))
+        val worked = Box.state((1..20).map { Box.word(it) }, Box.config())
             .let { it.copy(dailyStats = mapOf(dayKey(Box.plusDays(now, -1.0), Box.TZ) to DayStats(reviews = 8))) }
         assertTrue(SessionOffers.offer(worked, now, Box.TZ).streakExposed)
 
@@ -233,17 +233,17 @@ class SessionOfferTests {
         // A token couple of due cards still absorbs the pull-ahead behind it.
         assertEquals(
             listOf(OfferPart(OfferPartKind.Reviews, 5)),
-            SessionOffers.offer(state(due = 2, ahead = 3, catalog = 5, sessionCap = 25), now, Box.TZ).summaryParts(),
+            SessionOffers.offer(state(due = 2, ahead = 3, catalog = 5, sessionCap = 24), now, Box.TZ).summaryParts(),
         )
         // A caught-up box has only pull-ahead to offer, so it is named.
         assertEquals(
             listOf(OfferPart(OfferPartKind.Ahead, 4)),
-            SessionOffers.offer(state(due = 0, ahead = 4, catalog = 4, sessionCap = 25), now, Box.TZ).summaryParts(),
+            SessionOffers.offer(state(due = 0, ahead = 4, catalog = 4, sessionCap = 24), now, Box.TZ).summaryParts(),
         )
         // A rested box offers first sights and nothing to recall.
         assertEquals(
             listOf(OfferPart(OfferPartKind.Fresh, SessionComposer.NEW_CARDS_PER_ROUND)),
-            SessionOffers.offer(state(due = 0, ahead = 0, catalog = 30, sessionCap = 25), now, Box.TZ).summaryParts(),
+            SessionOffers.offer(state(due = 0, ahead = 0, catalog = 30, sessionCap = 24), now, Box.TZ).summaryParts(),
         )
     }
 
@@ -272,7 +272,7 @@ class SessionOfferTests {
      */
     @Test
     fun anAskedForRoundOutlastsACaughtUpBox() {
-        val caughtUp = state(due = 0, ahead = 4, catalog = 4, sessionCap = 25)
+        val caughtUp = state(due = 0, ahead = 4, catalog = 4, sessionCap = 24)
         assertTrue(SessionOffers.canPracticeMore(caughtUp, now, Box.TZ))
         assertFalse(SessionOffers.canPracticeMore(Box.state(emptyList()), now, Box.TZ))
     }
