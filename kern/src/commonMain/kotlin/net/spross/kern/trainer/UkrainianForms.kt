@@ -143,6 +143,25 @@ internal object UkrainianForms {
         return genders(cardinal.substring(0, cut) + last)
     }
 
+    /**
+     * The ordinal a DATE takes: the genitive, which is a suffix swap on the last word of
+     * the masculine nominative — `третій` → `третього`, `двадцять перший` → `двадцять
+     * першого`. That swap is the whole of the difference, so the numbers drill keeps its
+     * case-free answer space instead of growing a form no bare prompt asks for.
+     * One reading: a date names no gender the other forms could agree with.
+     */
+    fun dateGenitive(n: Long): List<String> {
+        val masculine = ordinal(n).firstOrNull() ?: return emptyList()
+        val cut = masculine.lastIndexOf(' ') + 1
+        val last = masculine.substring(cut)
+        val genitive = when {
+            last.endsWith("ій") -> last.dropLast(2) + "ього"
+            last.endsWith("ий") -> last.dropLast(2) + "ого"
+            else -> return emptyList()
+        }
+        return listOf(masculine.substring(0, cut) + genitive)
+    }
+
     /** третій is a soft adjective (третя/третє); every other ordinal takes -а/-е. */
     private fun genders(masculine: String): List<String> {
         val stem = masculine.dropLast(2)

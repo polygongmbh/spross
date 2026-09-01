@@ -51,6 +51,14 @@ internal interface TrainerLanguagePack {
     fun drillNumber(n: Long): List<String> = number(n)
 
     /**
+     * Accepted readings of a day of the month, canonical first — what this language calls
+     * the 3rd INSIDE a date, which is rarely what it calls a bare 3 (`docs/date-readings.md`).
+     * Defaulted like [formReading] to the plain cardinal, so a language whose dates simply
+     * count says nothing here instead of restating its own numerals.
+     */
+    fun dateDay(day: Int): List<String> = drillNumber(day.toLong())
+
+    /**
      * Whether a leading capital in this language's readings is PUNCTUATION rather than
      * spelling. Swahili writes its clock standalone ("Saa mbili usiku") and lowercases it
      * inside a sentence; German's readings begin on nouns — Mitternacht, Mittag, Viertel —
@@ -88,6 +96,9 @@ private object GermanPack : TrainerLanguagePack {
     )
     override val clockDayParts: Set<String> = (0..23).flatMapTo(mutableSetOf(), GermanClock::dayParts)
     override fun formReading(value: NumberValue) = GermanForms.reading(value)
+    // "der dritte März" is the weak ordinal, and the -en the accusative pattern wants is
+    // already one of the endings GermanForms grades beside it.
+    override fun dateDay(day: Int) = formReading(NumberValue.Ordinal(day.toLong()))
     override val formLimits = GermanForms.LIMITS
     override val decimalMark = ','
     override val slotEcho = "Uhr"
@@ -108,6 +119,7 @@ private object EnglishPack : TrainerLanguagePack {
     override val clockDayParts: Set<String> =
         (0..23).flatMapTo(mutableSetOf(), EnglishClockRegisters::dayParts)
     override fun formReading(value: NumberValue) = EnglishForms.reading(value)
+    override fun dateDay(day: Int) = formReading(NumberValue.Ordinal(day.toLong()))
     override val formLimits = EnglishForms.LIMITS
 }
 
@@ -135,6 +147,10 @@ private object SpanishPack : TrainerLanguagePack {
         }
     }
     override fun formReading(value: NumberValue) = SpanishForms.reading(value)
+    // The 1st is the live split: `el primero de marzo` across most of Latin America,
+    // `el uno de marzo` in Spain. Both grade; the reveal teaches primero.
+    override fun dateDay(day: Int) =
+        if (day == 1) listOf("primero", "uno") else drillNumber(day.toLong())
     override val formLimits = SpanishForms.LIMITS
     override val decimalMark = ','
 }
@@ -154,6 +170,10 @@ private object SwahiliPack : TrainerLanguagePack {
     override fun formReading(value: NumberValue) = SwahiliForms.reading(value)
     override val formLimits = SwahiliForms.LIMITS
     override fun drillNumber(n: Long) = SwahiliNumbers.acceptedVariants(n)
+    // Swahili has no ordinals at all, so a date counts — except the conventional
+    // `tarehe mosi` for the 1st, a word the numerals never reach.
+    override fun dateDay(day: Int) =
+        if (day == 1) listOf("mosi", "moja") else drillNumber(day.toLong())
     // why: "Saa mbili usiku" is written as a standalone answer — the capital is the
     // sentence's, not the word's, and it drops the moment the reading goes mid-sentence.
     override val readingsCarrySentenceCapital = true
@@ -173,6 +193,7 @@ private object UkrainianPack : TrainerLanguagePack {
     override val clockDayParts: Set<String> =
         (0..23).flatMapTo(mutableSetOf(), UkrainianClockForms::dayParts)
     override fun formReading(value: NumberValue) = UkrainianForms.reading(value)
+    override fun dateDay(day: Int) = UkrainianForms.dateGenitive(day.toLong())
     override val formLimits = UkrainianForms.LIMITS
     override val decimalMark = ','
 }
@@ -199,6 +220,7 @@ private object EsperantoPack : TrainerLanguagePack {
         }
     }
     override fun formReading(value: NumberValue) = EsperantoForms.reading(value)
+    override fun dateDay(day: Int) = formReading(NumberValue.Ordinal(day.toLong()))
     override val formLimits = EsperantoForms.LIMITS
     override val decimalMark = ','
 }
@@ -217,6 +239,10 @@ private object FrenchPack : TrainerLanguagePack {
     override val clockDayParts: Set<String> =
         (0..23).flatMapTo(mutableSetOf(), FrenchClockForms::dayParts)
     override fun formReading(value: NumberValue) = FrenchForms.reading(value)
+    // `le premier mars`, never `le un mars` — and a date day is masculine, so the
+    // feminine the ordinal offers beside it stays out.
+    override fun dateDay(day: Int) =
+        if (day == 1) listOf("premier") else drillNumber(day.toLong())
     override val formLimits = FrenchForms.LIMITS
     override val decimalMark = ','
     // why: "il est deux heures" is a whole statement — it answers the bare drill, and it
@@ -239,6 +265,9 @@ private object ItalianPack : TrainerLanguagePack {
     override val clockDayParts: Set<String> =
         (0..23).flatMapTo(mutableSetOf(), ItalianClockForms::dayParts)
     override fun formReading(value: NumberValue) = ItalianForms.reading(value)
+    // `il primo marzo` is the one exception, masculine like French's; the rest counts.
+    override fun dateDay(day: Int) =
+        if (day == 1) listOf("primo") else drillNumber(day.toLong())
     override val formLimits = ItalianForms.LIMITS
     override val decimalMark = ','
 }
