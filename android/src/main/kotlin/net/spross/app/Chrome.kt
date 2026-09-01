@@ -228,6 +228,27 @@ interface Chrome {
     val countriesAskSpokenIn: String
     val countriesAskSpokenWhere: String
 
+    // ── The calendar: the Datum page and its run ────────────────────────────────
+    val trainerSkillDates: String
+    val datesTitle: String     // %s
+    val datesReference: String
+    val datesPace: String
+    val datesBest: String     // %d
+    val datesFastHint: String
+    val datesReverseHint: String // %1$s %2$s
+    /**
+     * The rung wordings by KIND in full-ladder order, the mixed rung last — read through
+     * [dateRung]. Unlike the atlas ladder the height here is the pair's own
+     * ([net.spross.kern.trainer.DateDrill.maxLevel]), so the on-screen number is the
+     * row's position and never this index.
+     */
+    val dateRungs: List<String>
+    val dateRungHints: List<String>
+    val datesAskWeekday: String
+    val datesAskMonth: String
+    val datesAskDay: String
+    val datesAskDate: String
+
     // ── Box browse ──────────────────────────────────────────────────────────────
     val boxTitle: String
     val boxDoor: String

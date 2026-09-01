@@ -1,0 +1,143 @@
+package net.spross.app
+
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import kotlin.random.Random
+import net.spross.kern.session.AnswerNormalizer
+import net.spross.kern.session.ToneKind
+import net.spross.kern.trainer.DateDrill
+import net.spross.kern.trainer.DateDrillClose
+import net.spross.kern.trainer.DateDrillIntent
+import net.spross.kern.trainer.DateDrillRun
+import net.spross.kern.trainer.DateDrillRunConfig
+import net.spross.kern.trainer.DateDrillRunState
+
+/**
+ * One dates run as this platform holds it — the fourth sibling of [TrainerFlow],
+ * [LetterDrillFlow] and [CountryDrillFlow], over kern's own [DateDrillRun].
+ *
+ * Everything decidable is kern's: which question a rung may ask, which date is drawn, what
+ * a typed reading earns, how far one answer moves the ramp, which beat is armed. What is
+ * left here is the text standing in the field and the beat itself.
+ *
+ * Stateless like all its siblings: no review is ever booked and the box is never read at
+ * all — the material is the catalog's calendars, not the learner's own words. The one
+ * thing that outlives a run is the furthest rung it stood on, which the page that started
+ * it files ([TrainerStore.bookRung]).
+ */
+class DateDrillFlow(
+    start: DateDrillRunState,
+    private val rng: Random,
+    onTone: (ToneKind) -> Unit = {},
+    onReleaseFocus: () -> Unit = {},
+    onSilence: () -> Unit = {},
+    screenReaderOn: () -> Boolean = { false },
+) {
+    private val beat = DrillBeat(screenReaderOn)
+    private val acts = DrillActs(beat, onTone, onReleaseFocus, onSilence)
+
+    var state by mutableStateOf(start)
+        private set
+
+    /** The learner's answer text — kern owns what it means, the field is ours. */
+    var input by mutableStateOf("")
+        private set
+
+    /**
+     * Kern has run out of questions: the screen hands the run back rather than sitting on a
+     * card it has already answered. False once the close has been made, whichever way the
+     * screen went — a run is handed back once.
+     */
+    val ranOut: Boolean get() = state.finished && !handedBack
+
+    private var handedBack = false
+
+    val armedBeat get() = beat.tier
+
+    val beatToken get() = beat.token
+
+    /** The beat became a tap: render the explicit "Weiter", which books the same answer. */
+    val awaitsConfirm get() = beat.awaitsConfirm
+
+    /** A live keystroke: writing the reading out IS the answer, within kern's exact-only guard. */
+    fun type(text: String) {
+        input = text
+        dispatch(DateDrillIntent.InputChanged(text))
+    }
+
+    /**
+     * The ONE primary action: an empty field asks to see the answer, a typed one checks it.
+     * Kern's Submit is inert on blank text, so which of the two a press is stays ours.
+     */
+    fun primary() {
+        if (input.isBlank()) dispatch(DateDrillIntent.Reveal) else dispatch(DateDrillIntent.Submit(input))
+    }
+
+    /** The tap that books whatever the feedback already said — and the beat's stand-in. */
+    fun confirm() = dispatch(DateDrillIntent.ConfirmPending)
+
+    /** Enter: check while the answer is owed, otherwise book what stands. */
+    fun enter() {
+        if (state.owesAnswer) primary() else confirm()
+    }
+
+    fun advanceElapsed() {
+        beat.spend()
+        dispatch(DateDrillIntent.AdvanceElapsed)
+    }
+
+    /**
+     * Leaving, from the corner or from "Fertig". Kern books a pending answer exactly as the
+     * tap would, then says what the page owes its store.
+     */
+    fun close(standingRecord: Int): DateDrillClose {
+        handedBack = true
+        val closed = DateDrillRun.close(state, standingRecord)
+        state = closed.state
+        input = ""
+        acts.carryOut(closed.effects)
+        return closed
+    }
+
+    private fun dispatch(intent: DateDrillIntent) {
+        val reduction = DateDrillRun.reduce(state, intent, rng)
+        // why: cleared in the SAME transaction as the question — the next card must never
+        // render one frame carrying the last one's answer.
+        if (reduction.state.index != state.index) input = ""
+        state = reduction.state
+        acts.carryOut(reduction.effects)
+    }
+}
+
+/**
+ * The run the dates page opens, or null before the catalog has landed.
+ *
+ * The normalizer is the STRICT drill one, built for the language the answer is owed in —
+ * which is the learner's OWN language on a reversed run, so the direction is settled here
+ * rather than assumed to be the target.
+ */
+fun AppModel.newDateDrill(
+    reverse: Boolean,
+    fast: Boolean,
+    onTone: (ToneKind) -> Unit = {},
+    onReleaseFocus: () -> Unit = {},
+    rng: Random = Random.Default,
+): DateDrillFlow? {
+    val content = dates ?: return null
+    val info = catalog?.languages?.get(DateDrill.answerLanguage(content, reverse)) ?: return null
+    val config = DateDrillRunConfig(
+        content = content,
+        reverse = reverse,
+        fast = fast,
+        normalizer = AnswerNormalizer.drill(info),
+    )
+    return DateDrillFlow(
+        start = DateDrillRun.open(config, rng),
+        rng = rng,
+        onTone = onTone,
+        onReleaseFocus = onReleaseFocus,
+        onSilence = { pronouncer.stop() },
+        screenReaderOn = { pronouncer.readsScreenAloud },
+    )
+}

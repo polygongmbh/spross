@@ -1,6 +1,7 @@
 package net.spross.app
 
 import net.spross.kern.trainer.CountryTaskKind
+import net.spross.kern.trainer.DateTaskKind
 import net.spross.kern.trainer.DrillModifier
 import net.spross.kern.trainer.DrillVariant
 import net.spross.kern.trainer.LetterStage
@@ -72,6 +73,41 @@ fun Chrome.countryAsk(kind: CountryTaskKind): String = when (kind) {
 fun Chrome.countryRung(rung: Int): String = countryRungs.rowFor(rung)
 
 fun Chrome.countryRungHint(rung: Int): String = countryRungHints.rowFor(rung)
+
+/**
+ * What a dates question ASKS — the atlas rule, one table. The three assembled kinds share
+ * one sentence: what changes between them is on the card, not in the ask.
+ */
+fun Chrome.dateAsk(kind: DateTaskKind): String = when (kind) {
+    DateTaskKind.Weekday -> datesAskWeekday
+    DateTaskKind.Month -> datesAskMonth
+    DateTaskKind.DayOfMonth -> datesAskDay
+    DateTaskKind.DayAndMonth, DateTaskKind.FullDate, DateTaskKind.FullDateWithYear -> datesAskDate
+}
+
+/**
+ * What a rung of the dates ladder is called, from what kern says it ASKS
+ * ([net.spross.kern.trainer.DateDrill.kinds]) — the wordings are keyed by KIND because
+ * the ladder has no fixed length: a pair without a year pattern skips that row, and the
+ * number on screen is the row's own position.
+ */
+fun Chrome.dateRung(kinds: List<DateTaskKind>): String = dateRungs.rowFor(dateRungIndex(kinds))
+
+fun Chrome.dateRungHint(kinds: List<DateTaskKind>): String =
+    dateRungHints.rowFor(dateRungIndex(kinds))
+
+/** More than one kind on a rung is the mixed top one — the table's last row. */
+private fun dateRungIndex(kinds: List<DateTaskKind>): Int {
+    val kind = kinds.singleOrNull() ?: return 7
+    return when (kind) {
+        DateTaskKind.Weekday -> 1
+        DateTaskKind.Month -> 2
+        DateTaskKind.DayOfMonth -> 3
+        DateTaskKind.DayAndMonth -> 4
+        DateTaskKind.FullDate -> 5
+        DateTaskKind.FullDateWithYear -> 6
+    }
+}
 
 /** How far from home a reference group sits — kern hands the tier over already effective. */
 fun Chrome.countryTier(tier: Int): String = countryTiers.rowFor(tier)

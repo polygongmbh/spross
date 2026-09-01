@@ -238,6 +238,36 @@ internal object ChromeEn : Chrome {
     override val countriesAskNationality = "What are these people called?"
     override val countriesAskSpokenIn = "Which language is spoken there?"
     override val countriesAskSpokenWhere = "Where is this language spoken?"
+    override val trainerSkillDates = "Dates"
+    override val datesTitle = "Dates · %s"
+    override val datesReference = "The calendar"
+    override val datesPace = "Every run opens at Sprosse 1 and climbs on by itself."
+    override val datesBest = "Furthest so far: Sprosse %s"
+    override val datesFastHint = "One clean answer per Sprosse instead of three."
+    override val datesReverseHint = "The question comes in %s, the answer is owed in %s — " +
+        "names only, the date itself stays forward."
+    override val dateRungs = listOf(
+        "The weekdays",
+        "The months",
+        "The day of the month",
+        "Day and month",
+        "The whole date",
+        "The date with its year",
+        "All of it, mixed",
+    )
+    override val dateRungHints = listOf(
+        "The week's seven names, asked one at a time.",
+        "The twelve month names, asked one at a time.",
+        "3 becomes third — the number a date needs.",
+        "3/3 becomes March third.",
+        "With the weekday in front: Mon, 3/3.",
+        "Plus the year, read out in words.",
+        "Any question from any Sprosse, drawn at random.",
+    )
+    override val datesAskWeekday = "What is this weekday called?"
+    override val datesAskMonth = "What is this month called?"
+    override val datesAskDay = "How is this day read?"
+    override val datesAskDate = "How is this date read?"
     override val boxTitle = "The box"
     override val boxDoor = "Box"
     override val boxSubtitle = "%1\$s of %2\$s cards in progress"

@@ -38,6 +38,7 @@ import java.util.Locale
 import java.util.TimeZone
 import net.spross.app.AppModel
 import net.spross.app.countriesOffered
+import net.spross.app.datesOffered
 import net.spross.app.lettersOffered
 import net.spross.app.numbersOffered
 import net.spross.app.werkstattOffered
@@ -175,11 +176,12 @@ fun HomeScreen(model: AppModel) {
 /**
  * Sprossen: free practice, with no schedule and no limit.
  *
- * THREE entries on ONE row, and each opens a PAGE rather than a run — the reading and the
+ * FOUR entries on ONE row, and each opens a PAGE rather than a run — the reading and the
  * drill it prepares you for are one surface. Each is its own SKILL, which is the only thing
  * that earns a chip. Zahlen stands where the pair has counting content; Buchstaben on the
  * alphabet FILE alone, because the table ships even where this device can sound nothing;
- * Länder on the joined atlas. A card with none of the three is absent rather than empty.
+ * Länder on the joined atlas; Datum on the joined calendars. A card with none of the four
+ * is absent rather than empty.
  */
 @Composable
 private fun WerkstattCard(model: AppModel) {
@@ -211,6 +213,9 @@ private fun WerkstattCard(model: AppModel) {
                 }
                 if (model.countriesOffered) {
                     EntryChip("🌍", chrome.trainerSkillCountries, practice) { model.openCountries() }
+                }
+                if (model.datesOffered) {
+                    EntryChip("📅", chrome.trainerSkillDates, practice) { model.openDates() }
                 }
             }
         }

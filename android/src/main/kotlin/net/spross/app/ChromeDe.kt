@@ -244,6 +244,37 @@ internal object ChromeDe : Chrome {
     override val countriesAskNationality = "Wie heißen diese Leute?"
     override val countriesAskSpokenIn = "Welche Sprache spricht man dort?"
     override val countriesAskSpokenWhere = "Wo spricht man diese Sprache?"
+    override val trainerSkillDates = "Datum"
+    override val datesTitle = "Datum · %s"
+    override val datesReference = "Der Kalender"
+    override val datesPace = "Jeder Durchgang beginnt bei Sprosse 1 und klettert von selbst " +
+        "weiter."
+    override val datesBest = "Am weitesten gekommen: Sprosse %s"
+    override val datesFastHint = "Eine saubere Antwort pro Sprosse statt drei."
+    override val datesReverseHint = "Gefragt wird auf %s, geantwortet auf %s – nur die " +
+        "Namen, das Datum bleibt vorwärts."
+    override val dateRungs = listOf(
+        "Die Wochentage",
+        "Die Monate",
+        "Der Tag im Monat",
+        "Tag und Monat",
+        "Das ganze Datum",
+        "Das Datum mit Jahr",
+        "Alles gemischt",
+    )
+    override val dateRungHints = listOf(
+        "Die sieben Namen der Woche, einzeln gefragt.",
+        "Die zwölf Monatsnamen, einzeln gefragt.",
+        "Aus 3. wird dritte – die Zahl, die ein Datum braucht.",
+        "Aus 3.3. wird der dritte März.",
+        "Mit dem Wochentag davor: Mo, 3.3.",
+        "Dazu die Jahreszahl, in Worten gelesen.",
+        "Jede Frage von jeder Sprosse, zufällig gezogen.",
+    )
+    override val datesAskWeekday = "Wie heißt dieser Wochentag?"
+    override val datesAskMonth = "Wie heißt dieser Monat?"
+    override val datesAskDay = "Wie liest man diesen Tag?"
+    override val datesAskDate = "Wie liest man dieses Datum?"
     override val boxTitle = "Die Box"
     override val boxDoor = "Box"
     override val boxSubtitle = "%s von %s Karten in Arbeit"

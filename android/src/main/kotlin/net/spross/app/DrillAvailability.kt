@@ -15,11 +15,11 @@ import net.spross.kern.trainer.Trainer
 
 /**
  * Whether the hub card belongs on Home at all: the pair has counting content, an alphabet
- * file exists for the target, or the atlas joins. Three entries, any of which is reason
- * enough.
+ * file exists for the target, the atlas joins, or the calendars do. Four entries, any of
+ * which is reason enough.
  */
 val AppModel.werkstattOffered: Boolean
-    get() = numbersOffered || lettersOffered || countriesOffered
+    get() = numbersOffered || lettersOffered || countriesOffered || datesOffered
 
 /** Counting, clock and forms all come out of one pack — the registry rule, not the ladder. */
 val AppModel.numbersOffered: Boolean
@@ -42,6 +42,14 @@ val AppModel.lettersOffered: Boolean
  */
 val AppModel.countriesOffered: Boolean
     get() = atlas != null
+
+/**
+ * The Datum entry rides on the JOIN of the two calendars — the atlas rule again, and kern
+ * is the only judge of it: a side without a dates file, or a target whose trainer cannot
+ * read a day of the month, joins nothing.
+ */
+val AppModel.datesOffered: Boolean
+    get() = dates != null
 
 /**
  * What the letter drill can ASK here, freshly swept.

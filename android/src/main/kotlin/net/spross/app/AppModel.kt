@@ -30,6 +30,7 @@ import net.spross.kern.box.mergeDailyStats
 import net.spross.kern.box.streakWindow
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.CountryDrillContent
+import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.listen.ListeningCandidate
 import net.spross.kern.model.BoxConfig
@@ -86,6 +87,9 @@ sealed interface Screen {
     /** The Länder page: the rungs and the button first, the atlas table under them. */
     data object Countries : Screen
 
+    /** The Datum page: the rungs and the button first, the calendar table under them. */
+    data object Dates : Screen
+
     /** A slot run, carrying the spec the page it was started from spelled. */
     data class Trainer(val mode: TrainerMode) : Screen
 
@@ -96,6 +100,9 @@ sealed interface Screen {
      * round the questions are asked, and whether a rung falls on one clean win.
      */
     data class CountryDrill(val reverse: Boolean, val fast: Boolean) : Screen
+
+    /** A dates run, carrying the same two settled things the atlas run does. */
+    data class DateDrill(val reverse: Boolean, val fast: Boolean) : Screen
 
     /**
      * The box browser. [area] is the shelf it opens UNFOLDED — the screen was reached by
@@ -205,6 +212,14 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * drift from what the run grades against.
      */
     var atlas by mutableStateOf<CountryDrillContent?>(null)
+        private set
+
+    /**
+     * The two calendars joined for this profile, or null where the pair has no dates
+     * drill — the atlas rule again: registry by file, joined ONCE as the profile
+     * activates, and the whole of what the Datum chip gates on.
+     */
+    var dates by mutableStateOf<DateDrillContent?>(null)
         private set
 
     /**
@@ -434,6 +449,12 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.Countries
     }
 
+    fun openDates() {
+        werkstatt.clearResult()
+        refreshWerkstatt()
+        screen = Screen.Dates
+    }
+
     /** Back to Home from any of them — nothing may keep talking into it. */
     fun closeOverview() {
         pronouncer.stop()
@@ -506,6 +527,11 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.CountryDrill(reverse, fast)
     }
 
+    /** A dates run — the atlas rule: both switches are the page's, the run only obeys. */
+    fun startDateDrill(reverse: Boolean, fast: Boolean) {
+        screen = Screen.DateDrill(reverse, fast)
+    }
+
     /**
      * A closed run has no screen of its own: its figures travel back to the page that
      * started it, which wears them as one tile above the picks.
@@ -535,6 +561,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         werkstatt.readLadder(stamp.target)
         werkstatt.seeLetters(letterReport())
         werkstatt.readCountries(stamp.source, stamp.target)
+        werkstatt.readDates(stamp.source, stamp.target)
     }
 
     private suspend fun activate(source: String, target: String) {
@@ -559,16 +586,19 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                     null // unreadable document: start fresh rather than crash (pre-production)
                 }
             }
-            // why: the pair only changes here — the hub reads the atlas on every
-            // composition, and a sweep per frame is one no start-up should pay.
-            Pair(
+            // why: the pair only changes here — the hub reads the atlas and the
+            // calendars on every composition, and a sweep per frame is one no
+            // start-up should pay.
+            Triple(
                 restored ?: BoxEngine.bootstrap(cards, BoxConfig.product(), stamp),
                 cat.countryDrillContent(source, target),
+                cat.dateDrillContent(source, target),
             )
         }
-        val (state, joinedAtlas) = loaded
+        val (state, joinedAtlas, joinedDates) = loaded
         box = state
         atlas = joinedAtlas
+        dates = joinedDates
         normalizer = AnswerNormalizer(cat.languages.getValue(target))
         meaningNormalizer = AnswerNormalizer(cat.languages.getValue(source))
         // why: only a box that did not exist yet owes the disk anything here. A re-join is

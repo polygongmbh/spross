@@ -81,6 +81,9 @@ class TrainerStore(private val prefs: SharedPreferences) {
          * (`CountriesOverview.storageKey`).
          */
         fun countriesKey(source: Language, target: Language): String = "countries.$source-$target"
+
+        /** The dates ladder's twin of [countriesKey], authored by `DatesOverview.storageKey`. */
+        fun datesKey(source: Language, target: Language): String = "dates.$source-$target"
     }
 }
 
@@ -115,6 +118,10 @@ class Werkstatt(val store: TrainerStore) {
     var countriesBest by mutableStateOf(0)
         private set
 
+    /** The dates ladder's twin of [countriesBest], for the Datum page and its Fast price. */
+    var datesBest by mutableStateOf(0)
+        private set
+
     /** The figures the last closed run handed back; null while no run has closed. */
     var result by mutableStateOf<DrillRunSummary?>(null)
         private set
@@ -133,6 +140,10 @@ class Werkstatt(val store: TrainerStore) {
 
     fun readCountries(source: Language, target: Language) {
         countriesBest = store.best(TrainerStore.countriesKey(source, target))
+    }
+
+    fun readDates(source: Language, target: Language) {
+        datesBest = store.best(TrainerStore.datesKey(source, target))
     }
 
     fun show(summary: DrillRunSummary?, title: String) {

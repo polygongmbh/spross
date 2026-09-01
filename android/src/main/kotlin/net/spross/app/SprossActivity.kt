@@ -30,6 +30,8 @@ import net.spross.app.ui.AboutScreen
 import net.spross.app.ui.BoxScreen
 import net.spross.app.ui.CountriesOverviewScreen
 import net.spross.app.ui.CountryDrillScreen
+import net.spross.app.ui.DateDrillScreen
+import net.spross.app.ui.DatesOverviewScreen
 import net.spross.app.ui.HomeScreen
 import net.spross.app.ui.LetterDrillScreen
 import net.spross.app.ui.LettersOverviewScreen
@@ -171,9 +173,11 @@ private fun Root(model: AppModel = viewModel()) {
             Screen.Numbers -> NumbersOverviewScreen(model)
             Screen.Letters -> LettersOverviewScreen(model)
             Screen.Countries -> CountriesOverviewScreen(model)
+            Screen.Dates -> DatesOverviewScreen(model)
             is Screen.Trainer -> TrainerSessionScreen(model, screen.mode)
             Screen.LetterDrill -> LetterDrillScreen(model)
             is Screen.CountryDrill -> CountryDrillScreen(model, screen.reverse, screen.fast)
+            is Screen.DateDrill -> DateDrillScreen(model, screen.reverse, screen.fast)
             is Screen.Box -> BoxScreen(model, openAt = screen.area)
         }
     }
