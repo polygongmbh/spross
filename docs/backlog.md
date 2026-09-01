@@ -284,8 +284,8 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   correct states, so a near miss there is amber and nothing else in the field itself
   (`ui/SessionTurn.kt` `AnswerField`, `ui/DrillField.kt`). Not a live 1.4.1 failure —
   the correction box below says the state in words — but the mark is the parity.
-- A revealed field has a spoken state on iOS (`a11y.notAnswered`) and none on Android,
-  the same silence `a11y.almost` was just brought out of: one `scripts/chrome.py`
+- A revealed field has a spoken state on iOS (`a11y.verdict.notAnswered`) and none on Android,
+  the same silence `a11y.verdict.almost` was just brought out of: one `scripts/chrome.py`
   `MAPPING` entry, a `Chrome.kt` field, and the same two `when` arms.
 - A row that speaks is a gesture on content rather than a control (`pronounceOnTap`,
   `App/Sources/Design/DLSpokenWord.swift`; `clickable` on Android), so VoiceOver reaches it

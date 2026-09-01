@@ -89,9 +89,16 @@ Strict dependency direction: App → SprossKern, never the reverse.
 - UI chrome renders in the KNOWN language when chrome exists (de/en today), otherwise en.
   Onboarding follows the source being PICKED — device language first, re-rendering on
   each tap — so the greeting is already in the user's language.
-- Chrome strings are SYMBOLIC keys (`settings.source.title`), never source text in either
+- Chrome strings are SYMBOLIC keys (`settings.known.title`), never source text in either
   language: copy edits then never detach a translation, and a new chrome language is
   additive. How a key is written and kept honest: `scripts/strings.py`.
+  A key's first level is the SURFACE it renders on, one namespace apiece — never a
+  namespace per widget, and never two for one screen. Where a surface holds several
+  KINDS of thing the second level says which (`box.card` vs `box.shelf` vs `box.area`,
+  `home.offer` vs `home.done`), and where a rule reaches every surface the namespace is
+  the channel instead (`a11y`, `common`). It names the domain's word, not the code's —
+  known and learning over source and target, rung over level, pack over enqueue — and no
+  key is also the stem of a family that means something else.
 - The String Catalog is the ONE home for that copy, on both phones: Android's tables are
   generated from it (`scripts/chrome.py`, keyed by its `MAPPING`), and a pre-commit check
   refuses a catalog edit that leaves them behind. `MAPPING` is hand-written and names alone:
