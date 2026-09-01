@@ -1,0 +1,31 @@
+{
+ "weekdays": [
+  { "text": "lundo", "abbr": "lun" },
+  { "text": "mardo", "abbr": "mar" },
+  { "text": "merkredo", "abbr": "mer" },
+  { "text": "ĵaŭdo", "abbr": "ĵaŭ", "variants": ["jxauxdo"] },
+  { "text": "vendredo", "abbr": "ven" },
+  { "text": "sabato", "abbr": "sab" },
+  { "text": "dimanĉo", "abbr": "dim", "variants": ["dimancxo"] }
+ ],
+ "months": [
+  { "text": "januaro" },
+  { "text": "februaro" },
+  { "text": "marto" },
+  { "text": "aprilo" },
+  { "text": "majo" },
+  { "text": "junio" },
+  { "text": "julio" },
+  { "text": "aŭgusto", "variants": ["auxgusto"] },
+  { "text": "septembro" },
+  { "text": "oktobro" },
+  { "text": "novembro" },
+  { "text": "decembro" }
+ ],
+ "numeric": "{y}-{m}-{d}",
+ "patterns": {
+  "dayMonth": { "text": "la {day} de {month}" },
+  "date": { "text": "{weekday}, la {day} de {month}" },
+  "dateWithYear": { "text": "{weekday}, la {day} de {month} {year}" }
+ }
+}

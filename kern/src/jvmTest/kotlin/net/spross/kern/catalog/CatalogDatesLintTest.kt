@@ -145,6 +145,21 @@ class CatalogDatesLintTest {
         "de" to setOf("der", "den"),
         // The formal English reading's article and joiner ("the third of March").
         "en" to setOf("the", "of"),
+        // Esperanto's one invariable article, and the `de` its month hangs on.
+        "eo" to setOf("la", "de"),
+        // The Spanish article, the `de` before the month and once more before the
+        // year, and the contracted `del` the year's accept-only variant takes.
+        "es" to setOf("el", "de", "del"),
+        // The article a bare French date leads with; once the weekday is named it goes.
+        "fr" to setOf("le"),
+        // The Italian article, and the `l'` it elides to before a vowel-initial day
+        // ("l'otto marzo") — accept-only, because a pattern cannot elide by itself.
+        "it" to setOf("il", "l"),
+        // `tarehe` — the word a Swahili date counts from, no article in sight.
+        "sw" to setOf("tarehe"),
+        // Ukrainian assembles a date out of its parts alone: the genitive does the work
+        // an article or a preposition does elsewhere, and there is no year rung to word.
+        "uk" to emptySet(),
     )
 
     @Test

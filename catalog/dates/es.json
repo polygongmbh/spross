@@ -1,0 +1,34 @@
+{
+ "weekdays": [
+  { "text": "lunes", "abbr": "lun" },
+  { "text": "martes", "abbr": "mar" },
+  { "text": "miércoles", "abbr": "mié" },
+  { "text": "jueves", "abbr": "jue" },
+  { "text": "viernes", "abbr": "vie" },
+  { "text": "sábado", "abbr": "sáb" },
+  { "text": "domingo", "abbr": "dom" }
+ ],
+ "months": [
+  { "text": "enero" },
+  { "text": "febrero" },
+  { "text": "marzo" },
+  { "text": "abril" },
+  { "text": "mayo" },
+  { "text": "junio" },
+  { "text": "julio" },
+  { "text": "agosto" },
+  { "text": "septiembre", "variants": ["setiembre"] },
+  { "text": "octubre" },
+  { "text": "noviembre" },
+  { "text": "diciembre" }
+ ],
+ "numeric": "{d}/{m}/{y}",
+ "patterns": {
+  "dayMonth": { "text": "el {day} de {month}" },
+  "date": { "text": "{weekday}, {day} de {month}" },
+  "dateWithYear": {
+   "text": "{weekday}, {day} de {month} de {year}",
+   "variants": ["{weekday}, {day} de {month} del {year}"]
+  }
+ }
+}

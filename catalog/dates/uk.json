@@ -1,0 +1,27 @@
+{
+ "weekdays": [
+  { "text": "понеділок", "abbr": "пн" },
+  { "text": "вівторок", "abbr": "вт" },
+  { "text": "середа", "abbr": "ср" },
+  { "text": "четвер", "abbr": "чт" },
+  { "text": "п'ятниця", "abbr": "пт" },
+  { "text": "субота", "abbr": "сб" },
+  { "text": "неділя", "abbr": "нд" }
+ ],
+ "months": [
+  { "text": "січень", "dateForm": "січня" },
+  { "text": "лютий", "dateForm": "лютого" },
+  { "text": "березень", "dateForm": "березня" },
+  { "text": "квітень", "dateForm": "квітня" },
+  { "text": "травень", "dateForm": "травня" },
+  { "text": "червень", "dateForm": "червня" },
+  { "text": "липень", "dateForm": "липня" },
+  { "text": "серпень", "dateForm": "серпня" },
+  { "text": "вересень", "dateForm": "вересня" },
+  { "text": "жовтень", "dateForm": "жовтня" },
+  { "text": "листопад", "dateForm": "листопада" },
+  { "text": "грудень", "dateForm": "грудня" }
+ ],
+ "numeric": "{d}.{m}.{y}",
+ "patterns": { "dayMonth": { "text": "{day} {month}" }, "date": { "text": "{weekday}, {day} {month}" } }
+}

@@ -1,0 +1,31 @@
+{
+ "weekdays": [
+  { "text": "Jumatatu", "abbr": "Jtt" },
+  { "text": "Jumanne", "abbr": "Jnn" },
+  { "text": "Jumatano", "abbr": "Jtn" },
+  { "text": "Alhamisi", "abbr": "Alh" },
+  { "text": "Ijumaa", "abbr": "Ijm" },
+  { "text": "Jumamosi", "abbr": "Jmo" },
+  { "text": "Jumapili", "abbr": "Jpl" }
+ ],
+ "months": [
+  { "text": "Januari" },
+  { "text": "Februari" },
+  { "text": "Machi" },
+  { "text": "Aprili" },
+  { "text": "Mei" },
+  { "text": "Juni" },
+  { "text": "Julai" },
+  { "text": "Agosti" },
+  { "text": "Septemba" },
+  { "text": "Oktoba" },
+  { "text": "Novemba" },
+  { "text": "Desemba" }
+ ],
+ "numeric": "{d}/{m}/{y}",
+ "patterns": {
+  "dayMonth": { "text": "tarehe {day} {month}" },
+  "date": { "text": "{weekday}, tarehe {day} {month}" },
+  "dateWithYear": { "text": "{weekday}, tarehe {day} {month} {year}" }
+ }
+}
