@@ -383,70 +383,6 @@
         }
       }
     },
-    "alphabet.speakExample" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beispiel anhören"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hear the example"
-          }
-        }
-      }
-    },
-    "alphabet.speakName" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Name anhören"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hear the name"
-          }
-        }
-      }
-    },
-    "audio.enable" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ton einschalten"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turn sound on"
-          }
-        }
-      }
-    },
-    "audio.off" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ton ist aus"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sound is off"
-          }
-        }
-      }
-    },
     "box.area.phrasesLocked %lld" : {
       "comment" : "The same count spelled out for a screen reader. box.area.phrasesLockedShort sits beside a padlock that carries the \"locked\"; spoken, the padlock is gone.",
       "localizations" : {
@@ -3320,7 +3256,55 @@
         }
       }
     },
-    "letters.dictation" : {
+    "letters.alphabet.speakExample" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beispiel anhören"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hear the example"
+          }
+        }
+      }
+    },
+    "letters.alphabet.speakName" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name anhören"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hear the name"
+          }
+        }
+      }
+    },
+    "letters.alphabet.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alphabet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alphabet"
+          }
+        }
+      }
+    },
+    "letters.ask.dictation" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3336,24 +3320,7 @@
         }
       }
     },
-    "letters.entry" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "hier geht es los"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "your run starts here"
-          }
-        }
-      },
-      "comment" : "The one stage row that says where THIS learner's run opens."
-    },
-    "letters.hear" : {
+    "letters.ask.hear" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3370,7 +3337,7 @@
       },
       "comment" : "the question a letter-name prompt asks"
     },
-    "letters.spell" : {
+    "letters.ask.spell" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3386,6 +3353,55 @@
         }
       },
       "comment" : "…and the one a gap word asks"
+    },
+    "letters.muted.enable" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ton einschalten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn sound on"
+          }
+        }
+      }
+    },
+    "letters.muted.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ton ist aus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sound is off"
+          }
+        }
+      }
+    },
+    "letters.promptInLanguage %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "auf %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "in %@"
+          }
+        }
+      },
+      "comment" : "%s = target language name"
     },
     "letters.stage.choiceConfusable" : {
       "localizations" : {
@@ -3498,6 +3514,23 @@
           }
         }
       }
+    },
+    "letters.stage.entry" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hier geht es los"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "your run starts here"
+          }
+        }
+      },
+      "comment" : "The one stage row that says where THIS learner's run opens."
     },
     "letters.stage.typed" : {
       "localizations" : {
@@ -5517,22 +5550,6 @@
         }
       }
     },
-    "trainer.alphabet" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alphabet"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alphabet"
-          }
-        }
-      }
-    },
     "trainer.answer.digits" : {
       "localizations" : {
         "de" : {
@@ -5867,23 +5884,6 @@
           }
         }
       }
-    },
-    "trainer.promptInLanguage %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "auf %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "in %@"
-          }
-        }
-      },
-      "comment" : "%s = target language name"
     },
     "trainer.record %@" : {
       "localizations" : {

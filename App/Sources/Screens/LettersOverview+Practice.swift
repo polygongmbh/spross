@@ -77,7 +77,7 @@ extension LettersOverview {
     private func caption(_ stage: LetterStage, entry: Bool, open: Bool) -> Text {
         if !open, drillAvailable { return Text("letters.stage.dictation.locked") }
         guard entry else { return Text(Self.hint(stage)) }
-        return Text(Self.hint(stage)) + Text(verbatim: " · ") + Text("letters.entry")
+        return Text(Self.hint(stage)) + Text(verbatim: " · ") + Text("letters.stage.entry")
     }
 
     private static func title(_ stage: LetterStage) -> LocalizedStringKey {

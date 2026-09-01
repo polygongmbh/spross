@@ -132,16 +132,16 @@ private struct HearPromptPreviewHost: View {
 
     var body: some View {
         VStack(spacing: DL.Space.xl) {
-            HearPromptCard(question: "letters.hear", language: "uk",
+            HearPromptCard(question: "letters.ask.hear", language: "uk",
                            replay: {}, replayFocus: $focus)
-            HearPromptCard(question: "letters.spell", language: "de",
+            HearPromptCard(question: "letters.ask.spell", language: "de",
                            gapText: "Na＿t", replay: {}, replayFocus: $focus)
             // The gap closed: the whole word stands where the blank did.
-            HearPromptCard(question: "letters.spell", language: "de",
+            HearPromptCard(question: "letters.ask.spell", language: "de",
                            gapText: "Na＿t", revealed: .init(word: "Nacht", pronounce: {}),
                            replay: {}, replayFocus: $focus)
             // Dictation: no gap to close, so the word grows below the glyph.
-            HearPromptCard(question: "letters.dictation", language: "sw",
+            HearPromptCard(question: "letters.ask.dictation", language: "sw",
                            revealed: .init(word: "lugha", note: "Sprache", pronounce: {}),
                            replay: {}, replayFocus: $focus)
         }

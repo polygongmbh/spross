@@ -45,8 +45,8 @@ extension LetterDrillView {
     /// What the question asks: a letter by its name, a grapheme missing from a
     /// heard word, or a whole word to transcribe.
     func question(for task: LetterDrillTask) -> LocalizedStringKey {
-        if task.stage == .dictation { return "letters.dictation" }
-        return task.gapText == nil ? "letters.hear" : "letters.spell"
+        if task.stage == .dictation { return "letters.ask.dictation" }
+        return task.gapText == nil ? "letters.ask.hear" : "letters.ask.spell"
     }
 
     /// The answer, once the learner has stopped owing it. A gap question closes

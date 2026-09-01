@@ -35,7 +35,7 @@ extension LettersOverview {
     var alphabetSection: some View {
         if alphabet != nil {
             VStack(alignment: .leading, spacing: DL.Space.l) {
-                heading("trainer.alphabet")
+                heading("letters.alphabet.title")
                 VStack(alignment: .leading, spacing: DL.Space.m) {
                     if sections.isEmpty {
                         ForEach(entries) { entry in
@@ -102,10 +102,10 @@ extension LettersOverview {
         // are row ACTIONS rather than targets to hunt for inside the label.
         .accessibilityActions {
             if let speak = speakName(entry) {
-                Button("alphabet.speakName", action: speak)
+                Button("letters.alphabet.speakName", action: speak)
             }
             if let speak = speakExample(entry) {
-                Button("alphabet.speakExample", action: speak)
+                Button("letters.alphabet.speakExample", action: speak)
             }
         }
     }

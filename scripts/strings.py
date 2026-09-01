@@ -80,8 +80,8 @@ UNEXTRACTABLE = {
 # the rest and no Swift will ever ask for them.
 ANDROID_ONLY = {
     'a11y.state.collapsed', 'a11y.state.expanded', 'a11y.verdict.wrong',
-    'audio.enable', 'audio.off',
-    'box.card.due', 'settings.about', 'trainer.promptInLanguage %@',
+    'letters.muted.enable', 'letters.muted.title',
+    'box.card.due', 'settings.about', 'letters.promptInLanguage %@',
     # The Android tile's no-snapshot face; the iOS widget target's own strings
     # are not extracted into the app's tables, so no Swift will ever ask for these.
     'widget.awaiting.body', 'widget.awaiting.title',
