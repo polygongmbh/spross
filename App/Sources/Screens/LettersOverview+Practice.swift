@@ -13,7 +13,7 @@ extension LettersOverview {
 
     var practiceSection: some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
-            heading("overview.practice")
+            heading("trainer.overview.practice")
             VStack(alignment: .leading, spacing: DL.Space.l) {
                 ForEach(Self.stages, id: \.self) { stageRow($0) }
             }
@@ -127,7 +127,7 @@ extension LettersOverview {
         Button {
             start()
         } label: {
-            Text("overview.start")
+            Text("trainer.overview.start")
                 .frame(maxWidth: .infinity)
         }
         .buttonStyle(DLPrimaryButtonStyle())

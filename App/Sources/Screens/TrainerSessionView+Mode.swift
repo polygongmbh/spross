@@ -46,7 +46,7 @@ extension TrainerMode {
     /// thing, and the trainer's own name where it asks several. Chrome, so it
     /// lives here: kern names the rule, never the rendering.
     var titleKey: LocalizedStringKey {
-        variants.count == 1 ? variants[0].trainerTitleKey : "trainer.title"
+        variants.count == 1 ? variants[0].trainerTitleKey : "trainer.hub.title"
     }
 
     /// The grader this run is played with — one home, because both surfaces that

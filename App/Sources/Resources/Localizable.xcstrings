@@ -4298,40 +4298,6 @@
       },
       "comment" : "What Spross is for, said once before the first round asks anything of you."
     },
-    "overview.practice" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Üben"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Practice"
-          }
-        }
-      },
-      "comment" : "the heading the picks stand under"
-    },
-    "overview.start" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Start"
-          }
-        }
-      },
-      "comment" : "the button both pages open a run with"
-    },
     "preview.skip" : {
       "localizations" : {
         "de" : {
@@ -4478,23 +4444,6 @@
         }
       },
       "comment" : "the third verdict — a judgment, not an instruction"
-    },
-    "reference.tapToHear" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jede Zeile spricht beim Antippen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Every row speaks when tapped"
-          }
-        }
-      },
-      "comment" : "the gesture a reference page discloses once, under its heading"
     },
     "report.action" : {
       "localizations" : {
@@ -5642,103 +5591,39 @@
         }
       }
     },
-    "trainer.bestStreak %@" : {
+    "trainer.hub.subtitle" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beste Serie: 🔥 %@ in Folge"
+            "value" : "Freies Üben – ohne Termin, ohne Limit"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Best streak: 🔥 %@ in a row"
-          }
-        }
-      }
-    },
-    "trainer.clock" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uhrzeit"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Time"
-          }
-        }
-      }
-    },
-    "trainer.countries" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Länder"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Countries"
+            "value" : "Free practice — no schedule, no limit"
           }
         }
       },
-      "comment" : "the hub entry, and what the result tile says was drilled"
+      "comment" : "what free practice is, under its name"
     },
-    "trainer.forms" : {
+    "trainer.hub.title" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zahlformen"
+            "value" : "Sprossen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Forms"
-          }
-        }
-      }
-    },
-    "trainer.letters" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buchstaben"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Letters"
-          }
-        }
-      }
-    },
-    "trainer.level %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sprosse %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sprosse %@"
+            "value" : "Sprossen"
           }
         }
       },
-      "comment" : "%d — the rung a run stands on"
+      "comment" : "The free-practice card's own name — the ladder both drills climb, not a workshop."
     },
     "trainer.modifier.fast" : {
       "localizations" : {
@@ -5836,7 +5721,74 @@
         }
       }
     },
-    "trainer.newRecord" : {
+    "trainer.overview.practice" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Üben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practice"
+          }
+        }
+      },
+      "comment" : "the heading the picks stand under"
+    },
+    "trainer.overview.start" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start"
+          }
+        }
+      },
+      "comment" : "the button both pages open a run with"
+    },
+    "trainer.reference.tapToHear" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jede Zeile spricht beim Antippen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Every row speaks when tapped"
+          }
+        }
+      },
+      "comment" : "the gesture a reference page discloses once, under its heading"
+    },
+    "trainer.result.bestStreak %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beste Serie: 🔥 %@ in Folge"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best streak: 🔥 %@ in a row"
+          }
+        }
+      }
+    },
+    "trainer.result.newRecord" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5852,91 +5804,7 @@
         }
       }
     },
-    "trainer.numbers" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zahlen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Numbers"
-          }
-        }
-      },
-      "comment" : "the hub entry, and the variant's own name"
-    },
-    "trainer.phrases" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sätze"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sentences"
-          }
-        }
-      }
-    },
-    "trainer.record %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rekord %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Record %@"
-          }
-        }
-      },
-      "comment" : "%d — the standing streak the run has not beaten yet"
-    },
-    "trainer.streak %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "🔥 %@ in Folge"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "🔥 %@ in a row"
-          }
-        }
-      },
-      "comment" : "%d — answers in a row, never days"
-    },
-    "trainer.subtitle" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Freies Üben – ohne Termin, ohne Limit"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Free practice — no schedule, no limit"
-          }
-        }
-      },
-      "comment" : "what free practice is, under its name"
-    },
-    "trainer.tasksDone %lld" : {
+    "trainer.result.tasksDone %lld" : {
       "localizations" : {
         "de" : {
           "variations" : {
@@ -5977,24 +5845,156 @@
       },
       "comment" : "the count-of-one form, which carries the number too"
     },
-    "trainer.title" : {
+    "trainer.run.record %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sprossen"
+            "value" : "Rekord %@"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sprossen"
+            "value" : "Record %@"
           }
         }
       },
-      "comment" : "The free-practice card's own name — the ladder both drills climb, not a workshop."
+      "comment" : "%d — the standing streak the run has not beaten yet"
     },
-    "trainer.years" : {
+    "trainer.run.streak %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🔥 %@ in Folge"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🔥 %@ in a row"
+          }
+        }
+      },
+      "comment" : "%d — answers in a row, never days"
+    },
+    "trainer.rung %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprosse %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprosse %@"
+          }
+        }
+      },
+      "comment" : "%d — the rung a run stands on"
+    },
+    "trainer.skill.countries" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Länder"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Countries"
+          }
+        }
+      },
+      "comment" : "the hub entry, and what the result tile says was drilled"
+    },
+    "trainer.skill.letters" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buchstaben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letters"
+          }
+        }
+      }
+    },
+    "trainer.skill.numbers" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahlen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numbers"
+          }
+        }
+      },
+      "comment" : "the hub entry, and the variant's own name"
+    },
+    "trainer.variant.clock" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uhrzeit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time"
+          }
+        }
+      }
+    },
+    "trainer.variant.forms" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahlformen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forms"
+          }
+        }
+      }
+    },
+    "trainer.variant.phrases" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sätze"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sentences"
+          }
+        }
+      }
+    },
+    "trainer.variant.years" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {

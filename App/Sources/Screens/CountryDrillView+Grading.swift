@@ -107,7 +107,7 @@ extension CountryDrillView {
         // why: the cheer marks the record, not the end of a run — confetti and
         // cheer are one thing (`docs/design.md`), and the tile rains the one.
         if summary.newRecord { DLSound.cheer() }
-        onFinish(DrillRunResult(summary, title: "trainer.countries"))
+        onFinish(DrillRunResult(summary, title: "trainer.skill.countries"))
         dismiss()
     }
 

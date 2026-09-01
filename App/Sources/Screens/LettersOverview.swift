@@ -84,7 +84,7 @@ struct LettersOverview: View {
                 // why: the same corners as the numbers page — the way out left,
                 // the way in right, reachable from inside the alphabet table.
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("overview.start") { start() }
+                    Button("trainer.overview.start") { start() }
                         .disabled(!drillAvailable)
                 }
             }

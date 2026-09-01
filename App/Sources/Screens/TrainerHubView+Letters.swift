@@ -75,10 +75,10 @@ extension TrainerHubView {
             guard let language = drillLanguage else { return }
             destination = .letters(language: language)
         } label: {
-            chipLabel(emoji: "🔤", title: Text("trainer.letters"))
+            chipLabel(emoji: "🔤", title: Text("trainer.skill.letters"))
         }
         .buttonStyle(TrainerChipButtonStyle())
-        .accessibilityLabel(Text("trainer.letters")
+        .accessibilityLabel(Text("trainer.skill.letters")
             + Text("a11y.suffix.practice \(languageName(drillLanguage ?? ""))"))
     }
 }

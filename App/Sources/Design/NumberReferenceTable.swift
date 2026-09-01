@@ -195,7 +195,7 @@ struct NumberReferenceTable: View {
 struct ReferenceTapHint: View {
     /// Defaults to the reference tables' own wording; the box names its rows
     /// "words" rather than a table's, so it passes its own key.
-    var textKey: LocalizedStringKey = "reference.tapToHear"
+    var textKey: LocalizedStringKey = "trainer.reference.tapToHear"
 
     var body: some View {
         HStack(spacing: DL.Space.s) {

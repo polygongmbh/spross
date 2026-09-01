@@ -74,7 +74,7 @@ extension TrainerSessionView {
             // wears 🔢 — putting the variant's face in front would double it.
             return Text("numbers.rung \(rung)")
         }
-        let text = Text("trainer.level \(rung.formatted())")
+        let text = Text("trainer.rung \(rung.formatted())")
         guard run.severalVariants else { return text }
         return Text(verbatim: "\(drillVariantEmoji(variant: variant)) ") + text
     }

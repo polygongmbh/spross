@@ -114,7 +114,7 @@ struct CountriesOverview: View {
                 // why: the app's corners — the way out left, the way in right,
                 // still in reach from inside the table.
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("overview.start") { start() }
+                    Button("trainer.overview.start") { start() }
                         .disabled(content == nil)
                 }
             }

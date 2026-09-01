@@ -58,8 +58,8 @@ struct DrillStreakLine: View {
     private var text: Text {
         var parts: [Text] = []
         if let level { parts.append(level) }
-        parts.append(Text("trainer.streak \(streak.formatted())"))
-        if bestStreak > streak { parts.append(Text("trainer.record \(bestStreak.formatted())")) }
+        parts.append(Text("trainer.run.streak \(streak.formatted())"))
+        if bestStreak > streak { parts.append(Text("trainer.run.record \(bestStreak.formatted())")) }
         return parts.joined() ?? Text(verbatim: "")
     }
 
@@ -120,14 +120,14 @@ struct DrillResultTile: View {
                 .dlSway(angle: 4, period: 3.4)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
-                Text("trainer.tasksDone \(result.doneCount)")
+                Text("trainer.result.tasksDone \(result.doneCount)")
                     .font(DL.Fonts.headline)
                     .foregroundStyle(Color.dlTextPrimary)
-                Text("trainer.bestStreak \(result.bestStreak.formatted())")
+                Text("trainer.result.bestStreak \(result.bestStreak.formatted())")
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
                 if result.newRecord {
-                    Text("trainer.newRecord")
+                    Text("trainer.result.newRecord")
                         .font(DL.Fonts.caption)
                         .foregroundStyle(Color.dlAccent)
                 }
@@ -163,8 +163,8 @@ struct DrillResultTile: View {
 #Preview("Result tile · record") {
     VStack(spacing: DL.Space.l) {
         DrillResultTile(result: DrillRunResult(doneCount: 17, bestStreak: 12, newRecord: true,
-                                               tier: .trophy, title: "trainer.numbers"))
-        DrillResultTile(result: DrillRunResult(doneCount: 4, bestStreak: 1, title: "trainer.letters"))
+                                               tier: .trophy, title: "trainer.skill.numbers"))
+        DrillResultTile(result: DrillRunResult(doneCount: 4, bestStreak: 1, title: "trainer.skill.letters"))
     }
     .padding(DL.Space.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -173,7 +173,7 @@ struct DrillResultTile: View {
 
 #Preview("Streak line") {
     VStack(spacing: DL.Space.xl) {
-        DrillStreakLine(level: Text("trainer.level \(7.formatted())"), streak: 0, bestStreak: 0)
+        DrillStreakLine(level: Text("trainer.rung \(7.formatted())"), streak: 0, bestStreak: 0)
         DrillStreakLine(level: Text("numbers.rung \(5)"), streak: 7, bestStreak: 12,
                         announcesRecord: true)
         DrillStreakLine(streak: 3, bestStreak: 3)

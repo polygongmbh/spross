@@ -75,10 +75,10 @@ struct TrainerHubView: View, LanguageNaming {
 
     private var card: some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
-            Text("trainer.title")
+            Text("trainer.hub.title")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
-            Text("trainer.subtitle")
+            Text("trainer.hub.subtitle")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
             // ONE row: three chips sit on it comfortably on every device, and a
@@ -126,10 +126,10 @@ struct TrainerHubView: View, LanguageNaming {
             destination = .numbers(language: language)
         } label: {
             // layer-ok: the chip IS the numbers one — reading its own emoji, not picking a kind
-            chipLabel(emoji: trainerKindEmoji(kind: .numbers), title: Text("trainer.numbers"))
+            chipLabel(emoji: trainerKindEmoji(kind: .numbers), title: Text("trainer.skill.numbers"))
         }
         .buttonStyle(TrainerChipButtonStyle())
-        .accessibilityLabel(Text("trainer.numbers")
+        .accessibilityLabel(Text("trainer.skill.numbers")
             + Text("a11y.suffix.practice \(languageName(drillLanguage ?? ""))"))
     }
 
@@ -140,10 +140,10 @@ struct TrainerHubView: View, LanguageNaming {
             guard let pair = atlasPair else { return }
             destination = .countries(source: pair.source, target: pair.target)
         } label: {
-            chipLabel(emoji: "🌍", title: Text("trainer.countries"))
+            chipLabel(emoji: "🌍", title: Text("trainer.skill.countries"))
         }
         .buttonStyle(TrainerChipButtonStyle())
-        .accessibilityLabel(Text("trainer.countries")
+        .accessibilityLabel(Text("trainer.skill.countries")
             + Text("a11y.suffix.practice \(languageName(drillLanguage ?? ""))"))
     }
 
@@ -187,10 +187,10 @@ extension TrainerKind {
     /// Catalog key for the drill title.
     var trainerTitleKey: LocalizedStringKey {
         switch self {
-        case .numbers: return "trainer.numbers"
-        case .years: return "trainer.years"
-        case .clock: return "trainer.clock"
-        case .forms, .fraction: return "trainer.forms"
+        case .numbers: return "trainer.skill.numbers"
+        case .years: return "trainer.variant.years"
+        case .clock: return "trainer.variant.clock"
+        case .forms, .fraction: return "trainer.variant.forms"
         }
     }
 }
@@ -202,8 +202,8 @@ extension TrainerKind {
 extension DrillVariant {
     var trainerTitleKey: LocalizedStringKey {
         switch self {
-        case .phrases: return "trainer.phrases"
-        case .numbers, .clock, .forms: return slotKind?.trainerTitleKey ?? "trainer.numbers"
+        case .phrases: return "trainer.variant.phrases"
+        case .numbers, .clock, .forms: return slotKind?.trainerTitleKey ?? "trainer.skill.numbers"
         }
     }
 }

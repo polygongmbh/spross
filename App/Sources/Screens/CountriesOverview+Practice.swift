@@ -18,7 +18,7 @@ extension CountriesOverview {
 
     var practiceSection: some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
-            heading("overview.practice")
+            heading("trainer.overview.practice")
             VStack(alignment: .leading, spacing: DL.Space.l) {
                 ForEach(Self.rungs, id: \.self) { rungRow($0) }
             }
@@ -172,7 +172,7 @@ extension CountriesOverview {
             // "statt zwei" hint would misprice it — this ladder says its own.
             (open ? Text("countries.fast.hint")
                   : Text("numbers.unlock") + Text(verbatim: " ")
-                      + Text("trainer.level \(CountryDrill.shared.ceiling.formatted())"))
+                      + Text("trainer.rung \(CountryDrill.shared.ceiling.formatted())"))
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -195,7 +195,7 @@ extension CountriesOverview {
         Button {
             start()
         } label: {
-            Text("overview.start")
+            Text("trainer.overview.start")
                 .frame(maxWidth: .infinity)
         }
         .buttonStyle(DLPrimaryButtonStyle())

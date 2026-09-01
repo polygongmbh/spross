@@ -8,7 +8,7 @@ extension NumbersOverview {
 
     var practiceSection: some View {
         VStack(alignment: .leading, spacing: DL.Space.l) {
-            heading("overview.practice")
+            heading("trainer.overview.practice")
             VStack(alignment: .leading, spacing: DL.Space.s) {
                 ForEach(offered, id: \.self) { variantRow($0) }
                 if !combining {
@@ -124,7 +124,7 @@ extension NumbersOverview {
             guard let level = required[variant].map({ Int(truncating: $0) }) else { return nil }
             guard variant != .numbers else { return Text("numbers.rung \(level)") }
             return Text(verbatim: "\(drillVariantEmoji(variant: variant)) ") + Text(variant.trainerTitleKey)
-                + Text(verbatim: " ") + Text("trainer.level \(level.formatted())")
+                + Text(verbatim: " ") + Text("trainer.rung \(level.formatted())")
         }
         guard let priced = parts.joined() else { return Text("numbers.unlock") }
         return Text("numbers.unlock") + Text(verbatim: " ") + priced
@@ -149,7 +149,7 @@ extension NumbersOverview {
         Button {
             start()
         } label: {
-            Text("overview.start")
+            Text("trainer.overview.start")
                 .frame(maxWidth: .infinity)
         }
         .buttonStyle(DLPrimaryButtonStyle())

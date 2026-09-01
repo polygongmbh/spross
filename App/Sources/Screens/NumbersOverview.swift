@@ -169,7 +169,7 @@ struct NumbersOverview: View {
                 .accessibilityLabel(Text("common.close"))
         }
         ToolbarItem(placement: .topBarTrailing) {
-            Button("overview.start") { start() }
+            Button("trainer.overview.start") { start() }
                 .disabled(picked.isEmpty)
         }
     }
