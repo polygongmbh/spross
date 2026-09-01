@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.8.0 — 2026-09-01
+
 - **New words arrive a little slower, so a busy box catches up instead of only keeping pace.**
   A round behind on reviews used to bring in five new words a day and hand you 25 cards; it now
   brings four and hands you 24. The number of words to recall in a round is unchanged — what
