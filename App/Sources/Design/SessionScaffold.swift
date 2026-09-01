@@ -46,7 +46,7 @@ struct SessionScaffold<Content: View>: View {
         let right = outcomes.filter { $0 == .right }.count
         let tough = outcomes.filter { $0 == .tough }.count
         let wrong = outcomes.filter { $0 == .wrong }.count
-        return Text("a11y.sessionTally \(right.formatted()) \(tough.formatted()) \(wrong.formatted())")
+        return Text("a11y.count.sessionTally \(right.formatted()) \(tough.formatted()) \(wrong.formatted())")
     }
 
     var body: some View {
@@ -133,12 +133,12 @@ struct SessionScaffold<Content: View>: View {
         // why: ONE label, the state as the VALUE — a label that flips with the
         // state leaves VoiceOver announcing the action as if it were the
         // condition ("Ton an" on a muted app).
-        .accessibilityLabel("a11y.readAloud")
+        .accessibilityLabel("a11y.action.readAloud")
         .accessibilityValue(readAloudValue)
     }
 
     private var readAloudValue: LocalizedStringKey {
-        Pronouncer.shared.muted ? "a11y.off" : "a11y.on"
+        Pronouncer.shared.muted ? "a11y.state.off" : "a11y.state.on"
     }
 }
 
@@ -148,7 +148,7 @@ struct SessionScaffold<Content: View>: View {
 /// screen that ends it. The thumb that closed one round early finds the next
 /// round's exit where it left it, without a trip to the bottom of the screen.
 struct SessionCloseButton: View {
-    var label: LocalizedStringKey = "a11y.endSession"
+    var label: LocalizedStringKey = "a11y.action.endSession"
     var action: () -> Void
 
     var body: some View {
@@ -166,7 +166,7 @@ struct SessionCloseButton: View {
 extension View {
     /// Hangs the close button in the top-left corner of a summary screen, at
     /// the inset `SessionScaffold` uses — so it lands under the same thumb.
-    func sessionCloseCorner(label: LocalizedStringKey = "a11y.endSession",
+    func sessionCloseCorner(label: LocalizedStringKey = "a11y.action.endSession",
                             action: @escaping () -> Void) -> some View {
         overlay(alignment: .topLeading) {
             SessionCloseButton(label: label, action: action)

@@ -88,9 +88,9 @@ struct ActivityStripView: View {
 
     private func activityLabel(_ days: [ActivityColumn]) -> Text {
         let activeDays = days.filter { $0.reviews > 0 }.count
-        let activity = Text("a11y.activity14Days \(activeDays)")
+        let activity = Text("a11y.count.activity14Days \(activeDays)")
         guard streakDays > 0 else { return activity }
-        return activity + Text(verbatim: ". ") + Text("a11y.streakDays \(streakDays)")
+        return activity + Text(verbatim: ". ") + Text("a11y.count.streakDays \(streakDays)")
     }
 
     // MARK: - Runs

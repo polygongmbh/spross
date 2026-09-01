@@ -69,7 +69,7 @@ UNEXTRACTABLE = {
     'grammar.also %@', 'session.answer.placeholder %@', 'session.copy.placeholder %@',
     # A drill tile's a11y label interpolates the glyph into a plain String —
     # no extractor follows an accessibilityLabel built at runtime either way.
-    'a11y.letterChoice %@',
+    'a11y.glyph.letter %@',
     # The Box's own-words area title, resolved through DLChrome like the above.
     'box.ownWords',
     # The two words that fill the address slot of a target-language greeting.
@@ -79,7 +79,7 @@ UNEXTRACTABLE = {
 # says — scripts/chrome.py generates the Kotlin tables from it — so these live here with
 # the rest and no Swift will ever ask for them.
 ANDROID_ONLY = {
-    'a11y.collapsed', 'a11y.expanded', 'a11y.wrong',
+    'a11y.state.collapsed', 'a11y.state.expanded', 'a11y.verdict.wrong',
     'audio.enable', 'audio.off',
     'box.due', 'settings.about', 'trainer.promptInLanguage %@',
     # The Android tile's no-snapshot face; the iOS widget target's own strings

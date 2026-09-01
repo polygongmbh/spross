@@ -79,7 +79,7 @@ extension TrainerHubView {
         }
         .buttonStyle(TrainerChipButtonStyle())
         .accessibilityLabel(Text("trainer.letters")
-            + Text("a11y.practiceSuffix \(languageName(drillLanguage ?? ""))"))
+            + Text("a11y.suffix.practice \(languageName(drillLanguage ?? ""))"))
     }
 }
 

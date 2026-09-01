@@ -134,12 +134,12 @@ struct AnswerInputView: View {
     private var statusValue: Text {
         switch feedback {
         case .neutral: return Text(verbatim: "")
-        case .correct: return Text("a11y.correct")
+        case .correct: return Text("a11y.verdict.correct")
         // why: amber is all that separates a near miss from a clean answer, and
         // a color says nothing to a screen reader (WCAG 1.4.1) — spoken as
         // "richtig" it would not even be a downgrade, it would be wrong.
-        case .almost: return Text("a11y.almost")
-        case .revealed: return Text("a11y.notAnswered")
+        case .almost: return Text("a11y.verdict.almost")
+        case .revealed: return Text("a11y.verdict.notAnswered")
         }
     }
 
@@ -153,9 +153,9 @@ struct AnswerInputView: View {
         case .neutral, .revealed:
             EmptyView()
         case .correct:
-            statusCheck(label: "a11y.correct")
+            statusCheck(label: "a11y.verdict.correct")
         case .almost:
-            statusCheck(label: "a11y.almost")
+            statusCheck(label: "a11y.verdict.almost")
         }
     }
 
@@ -209,7 +209,7 @@ struct AnswerInputView: View {
                 SpeakerIcon(size: .small,
                             isPlaying: correctionVoice.isPlaying(form),
                             pronounce: pronounce)
-                    .accessibilityLabel("a11y.pronounce")
+                    .accessibilityLabel("a11y.action.pronounce")
             }
         }
         .padding(DL.Space.l)

@@ -74,7 +74,7 @@ struct StreakFlameView: View {
         .padding(.vertical, DL.Space.m)
         .background(Color.dlSurfaceTint, in: Capsule())
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(Text("a11y.streakDays \(days)"))
+        .accessibilityLabel(Text("a11y.count.streakDays \(days)"))
     }
 
     /// The celebrating screen's own emoji where one is handed in, else the flame

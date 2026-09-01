@@ -64,9 +64,9 @@ struct DrillStreakLine: View {
     }
 
     private var accessibility: Text {
-        let spoken = Text("a11y.streakInARow \(streak.formatted())")
+        let spoken = Text("a11y.count.streakInARow \(streak.formatted())")
         guard announcesRecord, bestStreak > streak else { return spoken }
-        return spoken + Text("a11y.recordSuffix \(bestStreak.formatted())")
+        return spoken + Text("a11y.suffix.record \(bestStreak.formatted())")
     }
 }
 

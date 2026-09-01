@@ -271,7 +271,7 @@ struct VocabCardView: View {
             // it, and it keeps its own label because there is no headword for
             // VoiceOver to read instead.
             SpeakerIcon(size: .large, isPlaying: side.isPlaying, pronounce: side.pronounce)
-                .accessibilityLabel("a11y.pronounce")
+                .accessibilityLabel("a11y.action.pronounce")
         } else {
             DLSpokenWord(pronounce: side.pronounce,
                          isPlaying: side.isPlaying,
@@ -314,7 +314,7 @@ struct FeminineBadge: View {
             .padding(.horizontal, DL.Space.s)
             .padding(.vertical, DL.Space.xs)
             .background(Color.dlDie.opacity(0.14), in: Capsule())
-            .accessibilityLabel("a11y.feminineForm")
+            .accessibilityLabel("a11y.glyph.feminineForm")
     }
 }
 

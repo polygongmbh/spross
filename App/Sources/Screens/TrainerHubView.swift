@@ -130,7 +130,7 @@ struct TrainerHubView: View, LanguageNaming {
         }
         .buttonStyle(TrainerChipButtonStyle())
         .accessibilityLabel(Text("trainer.numbers")
-            + Text("a11y.practiceSuffix \(languageName(drillLanguage ?? ""))"))
+            + Text("a11y.suffix.practice \(languageName(drillLanguage ?? ""))"))
     }
 
     /// The atlas: the countries of the two languages first, then the world
@@ -144,7 +144,7 @@ struct TrainerHubView: View, LanguageNaming {
         }
         .buttonStyle(TrainerChipButtonStyle())
         .accessibilityLabel(Text("trainer.countries")
-            + Text("a11y.practiceSuffix \(languageName(drillLanguage ?? ""))"))
+            + Text("a11y.suffix.practice \(languageName(drillLanguage ?? ""))"))
     }
 
     /// One chip's face — shared with the letters chip next door.

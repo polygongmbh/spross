@@ -44,7 +44,7 @@ struct DLSpokenWord<Word: View>: View {
         HStack(spacing: DL.Space.s) {
             if let pronounce {
                 SpeakerIcon(size: .small, isPlaying: isPlaying, pronounce: pronounce)
-                    .accessibilityLabel("a11y.pronounce")
+                    .accessibilityLabel("a11y.action.pronounce")
                     .frame(width: 26)
             }
             badge
@@ -84,7 +84,7 @@ extension View {
     func pronounceOnTap(_ pronounce: (() -> Void)?) -> some View {
         if let pronounce {
             saysOnTap(pronounce)
-                .accessibilityAction(named: Text("a11y.pronounce"), pronounce)
+                .accessibilityAction(named: Text("a11y.action.pronounce"), pronounce)
         } else {
             self
         }

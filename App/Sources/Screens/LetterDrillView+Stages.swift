@@ -121,10 +121,10 @@ extension LetterDrillView {
         .disabled(answered)
         // why: a bare Cyrillic glyph read by a German engine is a guess —
         // "Buchstabe ч" is not.
-        .accessibilityLabel(Text(verbatim: String(format: DLChrome.string("a11y.letterChoice %@",
+        .accessibilityLabel(Text(verbatim: String(format: DLChrome.string("a11y.glyph.letter %@",
                                                                          locale: locale),
                                                   glyph)))
-        .accessibilityValue(answered && isAnswer ? Text("a11y.correct") : Text(verbatim: ""))
+        .accessibilityValue(answered && isAnswer ? Text("a11y.verdict.correct") : Text(verbatim: ""))
     }
 
     private func tileFill(answered: Bool, isAnswer: Bool, isChosen: Bool) -> Color {

@@ -1,7 +1,74 @@
 {
   "sourceLanguage" : "de",
   "strings" : {
-    "a11y.activity14Days %lld" : {
+    "a11y.action.endSession" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sitzung beenden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "End session"
+          }
+        }
+      }
+    },
+    "a11y.action.pronounce" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aussprechen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pronounce"
+          }
+        }
+      },
+      "comment" : "\"say it again\" action on a word"
+    },
+    "a11y.action.readAloud" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aussprache vorlesen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read words aloud"
+          }
+        }
+      },
+      "comment" : "the switch's stable a11y label — never flips"
+    },
+    "a11y.action.replayPrompt" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch einmal anhören"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play it again"
+          }
+        }
+      },
+      "comment" : "the replay button's name"
+    },
+    "a11y.count.activity14Days %lld" : {
       "localizations" : {
         "de" : {
           "variations" : {
@@ -42,258 +109,7 @@
       },
       "comment" : "%d = days worked inside the window"
     },
-    "a11y.almost" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fast richtig"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Almost correct"
-          }
-        }
-      },
-      "comment" : "the near miss's own — amber is not a state a reader hears"
-    },
-    "a11y.collapsed" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "eingeklappt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "collapsed"
-          }
-        }
-      }
-    },
-    "a11y.correct" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Richtig"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Correct"
-          }
-        }
-      },
-      "comment" : "an answered tile's state, never color alone"
-    },
-    "a11y.endSession" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sitzung beenden"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "End session"
-          }
-        }
-      }
-    },
-    "a11y.expanded" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ausgeklappt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "expanded"
-          }
-        }
-      },
-      "comment" : "A fold's state, never its label — the heading stays the heading whichever way it points."
-    },
-    "a11y.feminineForm" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Weibliche Form"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Feminine form"
-          }
-        }
-      },
-      "comment" : "The ♀ badge's name — a glyph outside the reading order until it is given one."
-    },
-    "a11y.letterChoice %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buchstabe %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Letter %@"
-          }
-        }
-      },
-      "comment" : "%s = the glyph — a tile's spoken name"
-    },
-    "a11y.notAnswered" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nicht beantwortet"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Not answered"
-          }
-        }
-      },
-      "comment" : "A revealed answer: the amber edge is all that marks it, and a color is not a state."
-    },
-    "a11y.off" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "aus"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "off"
-          }
-        }
-      }
-    },
-    "a11y.on" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "an"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "on"
-          }
-        }
-      }
-    },
-    "a11y.practiceSuffix %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " üben, auf %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " practice, in %@"
-          }
-        }
-      },
-      "comment" : "What a hub chip is FOR, appended to its name for a reader the glyph tells nothing: %s = the language being practiced. Leads with a space — it finishes the chip's own name rather than standing as a sentence."
-    },
-    "a11y.pronounce" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aussprechen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pronounce"
-          }
-        }
-      },
-      "comment" : "\"say it again\" action on a word"
-    },
-    "a11y.readAloud" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aussprache vorlesen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Read words aloud"
-          }
-        }
-      },
-      "comment" : "the switch's stable a11y label — never flips"
-    },
-    "a11y.recordSuffix %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ", Rekord %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ", record %@"
-          }
-        }
-      },
-      "comment" : "%d — appended to it"
-    },
-    "a11y.replayPrompt" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch einmal anhören"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Play it again"
-          }
-        }
-      },
-      "comment" : "the replay button's name"
-    },
-    "a11y.sessionTally %@ %@ %@" : {
+    "a11y.count.sessionTally %@ %@ %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -309,7 +125,7 @@
         }
       }
     },
-    "a11y.streakDays %lld" : {
+    "a11y.count.streakDays %lld" : {
       "localizations" : {
         "de" : {
           "variations" : {
@@ -350,7 +166,7 @@
       },
       "comment" : "%d — days in a row, the strip's own label"
     },
-    "a11y.streakInARow %@" : {
+    "a11y.count.streakInARow %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -367,7 +183,191 @@
       },
       "comment" : "%d — the score line as a screen reader hears it"
     },
-    "a11y.wrong" : {
+    "a11y.glyph.feminineForm" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weibliche Form"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feminine form"
+          }
+        }
+      },
+      "comment" : "The ♀ badge's name — a glyph outside the reading order until it is given one."
+    },
+    "a11y.glyph.letter %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buchstabe %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letter %@"
+          }
+        }
+      },
+      "comment" : "%s = the glyph — a tile's spoken name"
+    },
+    "a11y.state.collapsed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "eingeklappt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "collapsed"
+          }
+        }
+      }
+    },
+    "a11y.state.expanded" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ausgeklappt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "expanded"
+          }
+        }
+      },
+      "comment" : "A fold's state, never its label — the heading stays the heading whichever way it points."
+    },
+    "a11y.state.off" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "aus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "off"
+          }
+        }
+      }
+    },
+    "a11y.state.on" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "an"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "on"
+          }
+        }
+      }
+    },
+    "a11y.suffix.practice %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " üben, auf %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " practice, in %@"
+          }
+        }
+      },
+      "comment" : "What a hub chip is FOR, appended to its name for a reader the glyph tells nothing: %s = the language being practiced. Leads with a space — it finishes the chip's own name rather than standing as a sentence."
+    },
+    "a11y.suffix.record %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ", Rekord %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ", record %@"
+          }
+        }
+      },
+      "comment" : "%d — appended to it"
+    },
+    "a11y.verdict.almost" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast richtig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Almost correct"
+          }
+        }
+      },
+      "comment" : "the near miss's own — amber is not a state a reader hears"
+    },
+    "a11y.verdict.correct" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richtig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correct"
+          }
+        }
+      },
+      "comment" : "an answered tile's state, never color alone"
+    },
+    "a11y.verdict.notAnswered" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht beantwortet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not answered"
+          }
+        }
+      },
+      "comment" : "A revealed answer: the amber edge is all that marks it, and a color is not a state."
+    },
+    "a11y.verdict.wrong" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4585,7 +4585,7 @@
           }
         }
       },
-      "comment" : "How far a round has got, for the one reader the segments bar shows nothing: session.cardPosition (%1$s of %2$s) before the first answer, and once there are answers to report, a11y.sessionTally — %1$s right, %2$s hard, %3$s missed — which says the same three colors in words."
+      "comment" : "How far a round has got, for the one reader the segments bar shows nothing: session.cardPosition (%1$s of %2$s) before the first answer, and once there are answers to report, a11y.count.sessionTally — %1$s right, %2$s hard, %3$s missed — which says the same three colors in words."
     },
     "session.coach.grade" : {
       "localizations" : {

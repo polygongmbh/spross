@@ -118,7 +118,7 @@ struct HearPromptCard: View {
     /// tappable, and at full height it cost the card 36 pt of empty air.
     private var replayGlyph: some View {
         SpeakerIcon(size: .large, isPlaying: isPlaying, pronounce: replay)
-            .accessibilityLabel("a11y.replayPrompt")
+            .accessibilityLabel("a11y.action.replayPrompt")
             .accessibilityAddTraits(.startsMediaSession)
             .accessibilityFocused(replayFocus)
             .frame(height: 52)

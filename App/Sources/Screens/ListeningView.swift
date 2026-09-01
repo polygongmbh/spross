@@ -198,7 +198,7 @@ struct ListeningView: View {
     }
 
     private var timerValue: Text {
-        guard let left = driver.bedtime.minutesLeft else { return Text("a11y.off") }
+        guard let left = driver.bedtime.minutesLeft else { return Text("a11y.state.off") }
         return Text("listen.minutesLeft \(left)")
     }
 }
