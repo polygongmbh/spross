@@ -93,7 +93,7 @@ class SessionOfferTests {
         val offer = SessionOffers.offer(Box.state(emptyList()), now, Box.TZ)
         assertEquals(SessionOfferKind.Nothing, offer.kind)
         assertEquals(HeadlineKind.FreshSet, offer.line().kind)
-        assertTrue(offer.line().variant in 0 until SessionOffer.HEADLINE_VARIANTS)
+        assertTrue(offer.line().variant in 0 until offer.line().kind.variants)
     }
 
     /**
@@ -126,8 +126,8 @@ class SessionOfferTests {
                 SessionOffer(SessionOfferKind.Reviews, reviews, 0, 0, fresh, shortRound = 0).line().variant
             }
         }
-        assertTrue(variants.all { it in 0 until SessionOffer.HEADLINE_VARIANTS })
-        assertEquals(SessionOffer.HEADLINE_VARIANTS, variants.toSet().size)
+        assertTrue(variants.all { it in 0 until HeadlineKind.Reviews.variants })
+        assertEquals(HeadlineKind.Reviews.variants, variants.toSet().size)
     }
 
     /**
@@ -180,7 +180,7 @@ class SessionOfferTests {
     fun theHeadlinePickIsPinned() {
         fun variant(reviews: Int, ahead: Int, fresh: Int) =
             SessionOffer(SessionOfferKind.Reviews, reviews, 0, ahead, fresh, shortRound = 0).line().variant
-        assertEquals(listOf(0, 1, 2), listOf(variant(0, 0, 0), variant(1, 0, 0), variant(20, 0, 5)))
+        assertEquals(listOf(3, 0, 1), listOf(variant(0, 0, 0), variant(1, 0, 0), variant(20, 0, 5)))
     }
 
     private fun summary(reviews: Int, ahead: Int, fresh: Int) =

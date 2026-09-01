@@ -84,7 +84,7 @@ class HomeStandingTest {
     @Test
     fun everyKindAndVariantResolvesToAPhrasing() {
         for (kind in HeadlineKind.entries) {
-            for (variant in 0 until SessionOffer.HEADLINE_VARIANTS) {
+            for (variant in 0 until kind.variants) {
                 val text = headlineText(chrome, SessionHeadline(kind, variant))
                 assertTrue(text.isNotBlank(), "$kind/$variant had no words")
             }

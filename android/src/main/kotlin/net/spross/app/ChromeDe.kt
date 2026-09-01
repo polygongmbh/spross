@@ -344,14 +344,13 @@ internal object ChromeDe : Chrome {
     override val homeDoneTomorrowFresh = "Morgen gibt es frische Karten. Bis dann! 👋"
     override val homeDoneTomorrowDue = "Morgen kannst du %d Karten wiederholen."
     override val headlineReviews = listOf(
-        "Deine Runde ist startklar",
-        "Ein Stapel liegt bereit",
-        "Die Box hat was für dich",
+        "Ran an die Wörter",
+        "Ein paar Wörter sind wieder dran",
+        "Greif in die Box",
+        "Zeit zum Auffrischen",
     )
     override val headlineWarmUp = listOf(
-        "Zeit zum Auffrischen",
         "Ein Wiedersehen mit Bekanntem",
-        "Kurz durchs Bekannte",
     )
     override val headlineFreshSet = listOf(
         "Lust auf neue Wörter?",

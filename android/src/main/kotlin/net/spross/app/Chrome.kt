@@ -354,7 +354,8 @@ interface Chrome {
      * The phrasings each offer kind carries, indexed by
      * [net.spross.kern.session.SessionHeadline.variant] — kern picks which, from the
      * round's shape, so the same round headlines the same on both platforms.
-     * Each list holds [net.spross.kern.session.SessionOffer.HEADLINE_VARIANTS] entries.
+     * How many each list holds is kern's, sized per kind by how often a learner meets it —
+     * see [net.spross.kern.session.HeadlineKind]; the tables are generated to match.
      */
     val headlineReviews: List<String>
     val headlineWarmUp: List<String>

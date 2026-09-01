@@ -57,6 +57,26 @@ internal object Chrome%(code)s : Chrome {
 FALLBACK = ('\n *\n * Also the one every source without chrome of its own falls back to'
             ' ([Chrome.forSource]).')
 
+class Series:
+    """Every `<prefix>.<n>` key the catalog holds, in index order.
+
+    How MANY a set holds is kern's to say — `HeadlineKind` sizes each headline set by how
+    often a learner meets the kind — so writing the count here as well would be one fact in
+    two homes, with nothing to stop one of them going quietly stale. Reading whatever the
+    catalog holds leaves adding or dropping a phrasing a catalog edit and nothing else; the
+    Android test `everyKindAndVariantResolvesToAPhrasing` is what fails if the two disagree.
+    """
+
+    def __init__(self, prefix):
+        self.prefix = prefix
+
+    def keys(self, strings):
+        found = [(int(tail), k) for k, (head, _, tail)
+                 in ((k, k.rpartition('.')) for k in strings)
+                 if head == self.prefix and tail.isdigit()]
+        return [k for _, k in sorted(found)]
+
+
 FAMILIES = {
 
     # Families — one key per entry, in the order the reader indexes them.
@@ -72,10 +92,10 @@ FAMILIES = {
     'growthBlooming': ['session.done.growth.blooming.%d' % i for i in range(3)],
     'growthGrown': ['session.done.growth.grown.%d' % i for i in range(3)],
     'growthSown': ['session.done.growth.sown.%d' % i for i in range(3)],
-    'headlineFreshSet': ['home.offer.headline.freshSet.%d' % i for i in range(3)],
-    'headlineReviews': ['home.offer.headline.reviews.%d' % i for i in range(3)],
-    'headlineStreak': ['home.offer.headline.streakReminder.%d' % i for i in range(3)],
-    'headlineWarmUp': ['home.offer.headline.warmUp.%d' % i for i in range(3)],
+    'headlineFreshSet': Series('home.offer.headline.freshSet'),
+    'headlineReviews': Series('home.offer.headline.reviews'),
+    'headlineStreak': Series('home.offer.headline.streakReminder'),
+    'headlineWarmUp': Series('home.offer.headline.warmUp'),
 
     'numberSections': {section: 'numbers.section.%s' % section for section in
                        ('base', 'tens', 'irregulars', 'compounds',
@@ -115,7 +135,7 @@ def camel(key):
 def claimed(strings):
     """field → key for every key Android reads. A counted key also answers to a
     `<field>One` sibling, where a screen has a wording for exactly one."""
-    spoken = set(strings) - IOS_ONLY - ANDROID_TODO - family_keys()
+    spoken = set(strings) - IOS_ONLY - ANDROID_TODO - family_keys(strings)
     table = {}
     for key in sorted(spoken):
         name = camel(key)
@@ -125,10 +145,15 @@ def claimed(strings):
     return table
 
 
-def family_keys():
+def family_keys(strings):
     keys = set()
     for spec in FAMILIES.values():
-        keys.update(spec.values() if isinstance(spec, dict) else spec)
+        if isinstance(spec, Series):
+            keys.update(spec.keys(strings))
+        elif isinstance(spec, dict):
+            keys.update(spec.values())
+        else:
+            keys.update(spec)
     return keys
 
 
@@ -194,6 +219,8 @@ def render(lang, code, name, strings):
     table = claimed(strings)
     for field in fields():
         spec = FAMILIES.get(field) or table.get(field)
+        if isinstance(spec, Series):
+            spec = spec.keys(strings)
         if spec is None:
             raise SystemExit('Chrome.%s: names no catalog key — a field is its key '
                              'camelCased' % field)

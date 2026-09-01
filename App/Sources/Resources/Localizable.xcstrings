@@ -2514,13 +2514,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deine Runde ist startklar"
+            "value" : "Ran an die Wörter"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your round is ready"
+            "value" : "Back to your words"
           }
         }
       }
@@ -2530,13 +2530,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein Stapel liegt bereit"
+            "value" : "Ein paar Wörter sind wieder dran"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A stack is ready"
+            "value" : "A few words are up again"
           }
         }
       }
@@ -2546,13 +2546,29 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Box hat was für dich"
+            "value" : "Greif in die Box"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The box has something for you"
+            "value" : "Reach into the box"
+          }
+        }
+      }
+    },
+    "home.offer.headline.reviews.3" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeit zum Auffrischen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time for a refresher"
           }
         }
       }
@@ -2610,22 +2626,6 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeit zum Auffrischen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Time for a refresher"
-          }
-        }
-      }
-    },
-    "home.offer.headline.warmUp.1" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
             "value" : "Ein Wiedersehen mit Bekanntem"
           }
         },
@@ -2633,22 +2633,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A reunion with familiar words"
-          }
-        }
-      }
-    },
-    "home.offer.headline.warmUp.2" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kurz durchs Bekannte"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A quick pass through the familiar"
           }
         }
       }

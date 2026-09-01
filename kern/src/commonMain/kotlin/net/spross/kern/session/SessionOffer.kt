@@ -23,11 +23,23 @@ enum class SessionOfferKind { Reviews, WarmUp, FreshSet, Nothing }
  * today has not renewed outranks the round's own words, because the round is still there
  * tomorrow and the run is not.
  */
-enum class HeadlineKind { Reviews, WarmUp, FreshSet, StreakReminder }
+enum class HeadlineKind(
+    /**
+     * How many phrasings this kind offers — how often a learner MEETS the kind, not how much
+     * there is to say about it. Reviews is the everyday state and carries the most; a warm-up
+     * is rare enough that one line never wears out. A string table owes exactly this many.
+     */
+    val variants: Int,
+) {
+    Reviews(4),
+    WarmUp(1),
+    FreshSet(3),
+    StreakReminder(3),
+}
 
 /**
  * Which headline names this round: the kind that owns the words, plus which of its
- * [SessionOffer.HEADLINE_VARIANTS] phrasings this round takes. The words themselves are the
+ * [HeadlineKind.variants] phrasings this round takes. The words themselves are the
  * platform's string table — kern names the rule, never the rendering.
  */
 data class SessionHeadline(
@@ -81,11 +93,10 @@ data class SessionOffer(
      * the one thing they fail to say. Mornings stay quiet — a day that has barely started is
      * owed nothing yet — and a run that is safe or absent never nags at all.
      */
-    fun headline(nowEpochMillis: Long, tzId: String): SessionHeadline =
-        SessionHeadline(
-            kind = headlineKind(nowEpochMillis, tzId),
-            variant = variant(HEADLINE_VARIANTS),
-        )
+    fun headline(nowEpochMillis: Long, tzId: String): SessionHeadline {
+        val kind = headlineKind(nowEpochMillis, tzId)
+        return SessionHeadline(kind = kind, variant = variant(kind.variants))
+    }
 
     private fun headlineKind(nowEpochMillis: Long, tzId: String): HeadlineKind {
         if (streakExposed && chromePart(nowEpochMillis, tzId) != DayPart.Morning) {
@@ -145,9 +156,6 @@ data class SessionOffer(
     companion object {
         /** Fewer due cards than this and recall is a warm-up, never the round's headline. */
         const val REVIEWS_LEAD_FROM: Int = 3
-
-        /** How many phrasings each kind offers. */
-        const val HEADLINE_VARIANTS: Int = 3
     }
 }
 
