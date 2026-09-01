@@ -114,17 +114,17 @@ fun offerSummary(chrome: Chrome, offer: SessionOffer): String {
     val allParts = offer.summaryParts()
     val parts = allParts.map { part ->
         when (part.kind) {
-            OfferPartKind.Reviews -> countLine(chrome.dayReviewsOne, chrome.dayReviews, part.count)
-            OfferPartKind.Ahead -> countLine(chrome.dayAheadOne, chrome.dayAhead, part.count)
+            OfferPartKind.Reviews -> countLine(chrome.homeTallyReviewsOne, chrome.homeTallyReviews, part.count)
+            OfferPartKind.Ahead -> countLine(chrome.homeTallyAheadOne, chrome.homeTallyAhead, part.count)
             OfferPartKind.Fresh ->
                 if (allParts.size == 1) {
-                    chrome.dayNewWordsOnly.format(part.count)
+                    chrome.homeTallyNewWordsOnly.format(part.count)
                 } else {
-                    countLine(chrome.dayNewCardsOne, chrome.dayNewCards, part.count)
+                    countLine(chrome.homeTallyNewCardsOne, chrome.homeTallyNewCards, part.count)
                 }
         }
     }
-    return if (parts.isEmpty()) chrome.sessionSomeCards else parts.joinToString(PART_JOIN)
+    return if (parts.isEmpty()) chrome.homeTallySomeCards else parts.joinToString(PART_JOIN)
 }
 
 /**
@@ -134,9 +134,9 @@ fun offerSummary(chrome: Chrome, offer: SessionOffer): String {
 fun todayTally(chrome: Chrome, report: TodayReport): String? {
     val parts = report.tallyParts().map { part ->
         when (part.kind) {
-            TallyPartKind.Reviews -> countLine(chrome.dayReviewsOne, chrome.dayReviews, part.count)
-            TallyPartKind.Introduced -> countLine(chrome.dayNewCardsOne, chrome.dayNewCards, part.count)
-            TallyPartKind.Consolidated -> chrome.dayConsolidated.format(part.count)
+            TallyPartKind.Reviews -> countLine(chrome.homeTallyReviewsOne, chrome.homeTallyReviews, part.count)
+            TallyPartKind.Introduced -> countLine(chrome.homeTallyNewCardsOne, chrome.homeTallyNewCards, part.count)
+            TallyPartKind.Consolidated -> chrome.homeTallyConsolidated.format(part.count)
         }
     }
     return parts.takeIf { it.isNotEmpty() }?.joinToString(PART_JOIN)
@@ -144,7 +144,7 @@ fun todayTally(chrome: Chrome, report: TodayReport): String? {
 
 /** What a done day leaves the learner with — which of the three is kern's ([tomorrowNote]). */
 fun tomorrowText(chrome: Chrome, note: TomorrowNote, due: Int): String = when (note) {
-    TomorrowNote.Packed -> chrome.tomorrowPacked
-    TomorrowNote.Fresh -> chrome.tomorrowFresh
-    TomorrowNote.Due -> chrome.tomorrowDue.format(due)
+    TomorrowNote.Packed -> chrome.homeDonePacked
+    TomorrowNote.Fresh -> chrome.homeDoneTomorrowFresh
+    TomorrowNote.Due -> chrome.homeDoneTomorrowDue.format(due)
 }

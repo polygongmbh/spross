@@ -35,7 +35,7 @@ fun StatsLine(face: WidgetFace, withLabel: Boolean) {
         }
         if (face.dueCount > 0) {
             Spacer(GlanceModifier.width(10.dp))
-            val due = if (withLabel) "${face.dueCount} ${face.chrome.dueLabel}" else "${face.dueCount}"
+            val due = if (withLabel) "${face.dueCount} ${face.chrome.boxCardDue}" else "${face.dueCount}"
             Text(due, style = WidgetType.stat, maxLines = 1)
         }
     }

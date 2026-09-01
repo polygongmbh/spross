@@ -47,7 +47,7 @@ internal fun GroupHeader(
                 .sizeIn(minHeight = 48.dp)
                 .clickable(onClick = onToggle)
                 .semantics {
-                    stateDescription = if (open) chrome.stateExpanded else chrome.stateCollapsed
+                    stateDescription = if (open) chrome.a11yStateExpanded else chrome.a11yStateCollapsed
                 },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
@@ -112,7 +112,7 @@ internal fun AreaSection(
                         .clickable(onClick = onToggle)
                         .semantics {
                             stateDescription =
-                                if (expanded) chrome.stateExpanded else chrome.stateCollapsed
+                                if (expanded) chrome.a11yStateExpanded else chrome.a11yStateCollapsed
                         },
                 )
                 PackControl(chrome, counts?.packable ?: 0, counts?.queued ?: 0,
@@ -154,14 +154,14 @@ internal fun PackControl(
     if (count > 0) {
         TextButton(
             onClick = onPack,
-            modifier = Modifier.semantics { contentDescription = chrome.packArea.format(count) },
+            modifier = Modifier.semantics { contentDescription = chrome.boxShelfPack.format(count) },
         ) {
             Icon(SprossIcons.PackIn, contentDescription = null)
         }
     } else if (queuedCount > 0) {
         TextButton(
             onClick = onUnpack,
-            modifier = Modifier.semantics { contentDescription = chrome.dequeueArea.format(queuedCount) },
+            modifier = Modifier.semantics { contentDescription = chrome.boxShelfUnpack.format(queuedCount) },
         ) {
             Icon(SprossIcons.PackOut, contentDescription = null, tint = Dl.colors.success)
         }
@@ -173,7 +173,7 @@ internal fun PackControl(
             modifier = Modifier
                 .sizeIn(minWidth = 48.dp, minHeight = 48.dp)
                 .padding(DlSpace.m)
-                .semantics { contentDescription = chrome.packDone },
+                .semantics { contentDescription = chrome.boxShelfPacked },
         )
     }
 }
@@ -199,9 +199,9 @@ fun AreaChip(
     val locked = stats?.phrasesLocked ?: 0
     val spoken = buildList {
         add(name)
-        add(chrome.progressConsolidated.format(consolidated))
-        add(chrome.progressLearning.format(learning))
-        if (locked > 0) add(chrome.phrasesLockedSpoken.format(locked))
+        add(chrome.progressConsolidatedCount.format(consolidated))
+        add(chrome.progressLearningCount.format(learning))
+        if (locked > 0) add(chrome.boxAreaPhrasesLocked.format(locked))
     }.joinToString(", ")
 
     Column(
@@ -227,11 +227,11 @@ fun AreaChip(
             // Two counts where the bar beneath draws three rungs: there is room here for
             // the split that matters (cleared the bar, or not yet), and the bar carries
             // the finer one.
-            CountLabel("$SEAL ${chrome.progressConsolidated.format(consolidated)}", Dl.colors.grown)
-            CountLabel("$LEAF ${chrome.progressLearning.format(learning)}", Dl.colors.success)
+            CountLabel("$SEAL ${chrome.progressConsolidatedCount.format(consolidated)}", Dl.colors.grown)
+            CountLabel("$LEAF ${chrome.progressLearningCount.format(learning)}", Dl.colors.success)
             // why: the padlock carries the "locked", so the text only names what is
             // locked — and it appears only when it says something.
-            if (locked > 0) CountLabel("$LOCK ${chrome.phrasesLockedShort.format(locked)}")
+            if (locked > 0) CountLabel("$LOCK ${chrome.boxAreaPhrasesLockedShort.format(locked)}")
         }
         AreaProgressBar(stats ?: EMPTY_AREA)
     }

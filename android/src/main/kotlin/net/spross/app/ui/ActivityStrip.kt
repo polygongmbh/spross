@@ -66,9 +66,9 @@ fun ActivityStrip(
     val bars = remember(days) { ActivityBars.of(days) }
     val palette = Dl.colors
     val label = remember(bars, streakDays, chrome) {
-        val activity = chrome.activityDays.format(ActivityBars.activeDays(bars))
+        val activity = chrome.a11yCountActivity14Days.format(ActivityBars.activeDays(bars))
         if (streakDays > 0) {
-            "$activity. ${countLine(chrome.streakDaysOne, chrome.streakDays, streakDays)}"
+            "$activity. ${countLine(chrome.a11yCountStreakDaysOne, chrome.a11yCountStreakDays, streakDays)}"
         } else {
             activity
         }
@@ -88,12 +88,12 @@ fun ActivityStrip(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    chrome.last14Days,
+                    chrome.progressLast14Days,
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.weight(1f),
                 )
                 if (streakDays > 0) {
-                    val unit = if (streakDays == 1) chrome.dayOne else chrome.dayMany
+                    val unit = if (streakDays == 1) chrome.commonDayOne else chrome.commonDayOther
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),

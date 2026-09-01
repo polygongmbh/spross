@@ -62,13 +62,13 @@ private fun DayMark(emoji: String?, streak: Int, health: StreakHealth, chrome: C
         emoji?.let { Text(it, style = MaterialTheme.typography.displaySmall) }
         return
     }
-    val unit = if (streak == 1) chrome.dayOne else chrome.dayMany
+    val unit = if (streak == 1) chrome.commonDayOne else chrome.commonDayOther
     Row(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(percent = 50))
             .padding(horizontal = DlSpace.l, vertical = DlSpace.m)
             .semantics(mergeDescendants = true) {
-                contentDescription = countLine(chrome.streakDaysOne, chrome.streakDays, streak)
+                contentDescription = countLine(chrome.a11yCountStreakDaysOne, chrome.a11yCountStreakDays, streak)
             },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
@@ -117,7 +117,7 @@ fun SessionCard(model: AppModel, standing: HomeStanding, streak: Int, health: St
             // The cap is a promise, not a loss: name the rest, so a backlog never looks
             // like cards that vanished.
             Text(
-                chrome.sessionHeldBack.format(offer.dueHeldBack),
+                chrome.homeOfferHeldBack.format(offer.dueHeldBack),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
@@ -128,7 +128,7 @@ fun SessionCard(model: AppModel, standing: HomeStanding, streak: Int, health: St
             modifier = Modifier.fillMaxWidth().pressSpring(),
             shape = MaterialTheme.shapes.small,
         ) {
-            Text(chrome.sessionStart, style = MaterialTheme.typography.titleMedium)
+            Text(chrome.homeOfferStart, style = MaterialTheme.typography.titleMedium)
         }
         // A long round is more than an evening some days, and an abandoned one leaves the
         // day unworked; kern says when the two are different enough to offer both.
@@ -137,7 +137,7 @@ fun SessionCard(model: AppModel, standing: HomeStanding, streak: Int, health: St
                 onClick = { model.startShortSession() },
                 modifier = Modifier.fillMaxWidth().pressSpring(),
                 shape = MaterialTheme.shapes.small,
-            ) { Text(chrome.sessionShortRound) }
+            ) { Text(chrome.homeOfferShortRound) }
         }
     }
 }
@@ -154,7 +154,7 @@ fun DoneCard(model: AppModel, standing: HomeStanding, streak: Int, health: Strea
     DayCard {
         DayMark(if (worked) "🎉" else "🌱", streak, health, chrome)
         Text(
-            if (worked) chrome.doneToday else chrome.caughtUpTitle,
+            if (worked) chrome.homeDoneTitle else chrome.homeDoneCaughtUp,
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
         )
@@ -173,7 +173,7 @@ fun DoneCard(model: AppModel, standing: HomeStanding, streak: Int, health: Strea
                 onClick = { model.startExtraSession() },
                 modifier = Modifier.fillMaxWidth().pressSpring(),
                 shape = MaterialTheme.shapes.small,
-            ) { Text(chrome.extraRound) }
+            ) { Text(chrome.homeDoneExtraRound) }
         }
         // Under the button on purpose: what happens next is the smallest thing on the card,
         // and the way on is what the thumb is looking for.

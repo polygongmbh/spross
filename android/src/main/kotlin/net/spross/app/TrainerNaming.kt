@@ -15,10 +15,10 @@ import net.spross.kern.trainer.drillVariantEmoji
  */
 
 fun Chrome.name(variant: DrillVariant): String = when (variant) {
-    DrillVariant.Numbers -> trainerNumbers
-    DrillVariant.Clock -> variantClock
-    DrillVariant.Phrases -> variantPhrases
-    DrillVariant.Forms -> variantForms
+    DrillVariant.Numbers -> trainerSkillNumbers
+    DrillVariant.Clock -> trainerVariantClock
+    DrillVariant.Phrases -> trainerVariantPhrases
+    DrillVariant.Forms -> trainerVariantForms
 }
 
 /** Face and name together — how a row, a price and a mixed run's score line all read. */
@@ -29,29 +29,29 @@ fun Chrome.badge(variant: DrillVariant): String = "${drillVariantEmoji(variant)}
  * explained in words.
  */
 fun Chrome.name(modifier: DrillModifier): String = when (modifier) {
-    DrillModifier.Reverse -> modifierReverse
-    DrillModifier.Fast -> modifierFast
-    DrillModifier.Mix -> modifierMix
+    DrillModifier.Reverse -> trainerModifierReverse
+    DrillModifier.Fast -> trainerModifierFast
+    DrillModifier.Mix -> trainerModifierMix
 }
 
 fun Chrome.hint(modifier: DrillModifier): String = when (modifier) {
-    DrillModifier.Reverse -> modifierReverseHint
-    DrillModifier.Fast -> modifierFastHint
-    DrillModifier.Mix -> modifierMixHint
+    DrillModifier.Reverse -> trainerModifierReverseHint
+    DrillModifier.Fast -> trainerModifierFastHint
+    DrillModifier.Mix -> trainerModifierMixHint
 }
 
 fun Chrome.name(stage: LetterStage): String = when (stage) {
-    LetterStage.ChoiceEasy -> stageChoiceEasy
-    LetterStage.ChoiceConfusable -> stageChoiceConfusable
-    LetterStage.Typed -> stageTyped
-    LetterStage.Dictation -> stageDictation
+    LetterStage.ChoiceEasy -> lettersStageChoiceEasy
+    LetterStage.ChoiceConfusable -> lettersStageChoiceConfusable
+    LetterStage.Typed -> lettersStageTyped
+    LetterStage.Dictation -> lettersStageDictation
 }
 
 fun Chrome.hint(stage: LetterStage): String = when (stage) {
-    LetterStage.ChoiceEasy -> stageChoiceEasyHint
-    LetterStage.ChoiceConfusable -> stageChoiceConfusableHint
-    LetterStage.Typed -> stageTypedHint
-    LetterStage.Dictation -> stageDictationHint
+    LetterStage.ChoiceEasy -> lettersStageChoiceEasyHint
+    LetterStage.ChoiceConfusable -> lettersStageChoiceConfusableHint
+    LetterStage.Typed -> lettersStageTypedHint
+    LetterStage.Dictation -> lettersStageDictationHint
 }
 
 /**
@@ -60,12 +60,12 @@ fun Chrome.hint(stage: LetterStage): String = when (stage) {
  * side is owed.
  */
 fun Chrome.countryAsk(kind: CountryTaskKind): String = when (kind) {
-    CountryTaskKind.CountryName -> countryAskCountry
-    CountryTaskKind.FlagCountry -> countryAskFlag
-    CountryTaskKind.LanguageName -> countryAskLanguage
-    CountryTaskKind.Nationality -> countryAskNationality
-    CountryTaskKind.SpokenIn -> countryAskSpokenIn
-    CountryTaskKind.SpokenWhere -> countryAskSpokenWhere
+    CountryTaskKind.CountryName -> countriesAskCountry
+    CountryTaskKind.FlagCountry -> countriesAskFlag
+    CountryTaskKind.LanguageName -> countriesAskLanguage
+    CountryTaskKind.Nationality -> countriesAskNationality
+    CountryTaskKind.SpokenIn -> countriesAskSpokenIn
+    CountryTaskKind.SpokenWhere -> countriesAskSpokenWhere
 }
 
 /** What a rung of the atlas ladder is called, and the line under it. */
@@ -96,11 +96,11 @@ fun Chrome.unlockPrice(required: Map<DrillVariant, Int>): String {
     val parts = DrillVariant.entries.mapNotNull { variant ->
         val rung = required[variant] ?: return@mapNotNull null
         if (variant == DrillVariant.Numbers) {
-            countLine(digitsOne, digits, rung)
+            countLine(numbersRungOne, numbersRung, rung)
         } else {
-            "${badge(variant)} ${level.format(rung)}"
+            "${badge(variant)} ${trainerRung.format(rung)}"
         }
     }
-    if (parts.isEmpty()) return unlockPrefix
-    return "$unlockPrefix ${parts.joinToString(" · ")}"
+    if (parts.isEmpty()) return numbersUnlock
+    return "$numbersUnlock ${parts.joinToString(" · ")}"
 }

@@ -26,5 +26,5 @@ object SessionCoach {
      * describes.
      */
     fun recognizeLine(chrome: Chrome, role: PresentationRole?, revealed: Boolean): String? =
-        if (role == PresentationRole.Recognize && !revealed) chrome.coachRecognize else null
+        if (role == PresentationRole.Recognize && !revealed) chrome.sessionCoachRecognize else null
 }

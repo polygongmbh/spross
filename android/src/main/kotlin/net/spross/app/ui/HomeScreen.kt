@@ -125,7 +125,7 @@ fun HomeScreen(model: AppModel) {
                 onClick = { model.openBox() },
                 modifier = Modifier
                     .heightIn(min = 48.dp)
-                    .semantics { contentDescription = chrome.boxNav }
+                    .semantics { contentDescription = chrome.boxDoor }
                     .pressSpring(),
                 shape = MaterialTheme.shapes.small,
                 colors = ButtonDefaults.filledTonalButtonColors(
@@ -134,7 +134,7 @@ fun HomeScreen(model: AppModel) {
                 ),
                 contentPadding = PaddingValues(horizontal = DlSpace.l, vertical = DlSpace.s),
             ) {
-                Text("📦 ${chrome.boxNav}")
+                Text("📦 ${chrome.boxDoor}")
             }
         }
 
@@ -192,25 +192,25 @@ private fun WerkstattCard(model: AppModel) {
             modifier = Modifier.fillMaxWidth().padding(DlSpace.l),
             verticalArrangement = Arrangement.spacedBy(DlSpace.m),
         ) {
-            Text(chrome.trainingTitle, style = MaterialTheme.typography.titleLarge)
+            Text(chrome.trainerHubTitle, style = MaterialTheme.typography.titleLarge)
             Text(
-                chrome.trainingSubtitle,
+                chrome.trainerHubSubtitle,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             // why: the chips name an exercise and nothing else — spoken, "Zahlen" could be
             // a shelf. The suffix says it is practice, and in which language.
             val practice =
-                chrome.practiceSuffix.format(model.languageName(model.box?.joinStamp?.target.orEmpty()))
+                chrome.a11ySuffixPractice.format(model.languageName(model.box?.joinStamp?.target.orEmpty()))
             Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
                 if (model.numbersOffered) {
-                    EntryChip("🔢", chrome.trainerNumbers, practice) { model.openNumbers() }
+                    EntryChip("🔢", chrome.trainerSkillNumbers, practice) { model.openNumbers() }
                 }
                 if (model.lettersOffered) {
-                    EntryChip("🔤", chrome.trainerLetters, practice) { model.openLetters() }
+                    EntryChip("🔤", chrome.trainerSkillLetters, practice) { model.openLetters() }
                 }
                 if (model.countriesOffered) {
-                    EntryChip("🌍", chrome.trainerCountries, practice) { model.openCountries() }
+                    EntryChip("🌍", chrome.trainerSkillCountries, practice) { model.openCountries() }
                 }
             }
         }

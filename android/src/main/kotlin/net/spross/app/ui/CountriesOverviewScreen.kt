@@ -71,7 +71,7 @@ fun CountriesOverviewScreen(model: AppModel) {
     val start = { model.startCountryDrill(reverse, fast) }
 
     OverviewScaffold(
-        title = chrome.countriesPage.format(model.languageName(content.target)),
+        title = chrome.countriesTitle.format(model.languageName(content.target)),
         chrome = chrome,
         scroll = scroll,
         startEnabled = true,
@@ -80,7 +80,7 @@ fun CountriesOverviewScreen(model: AppModel) {
     ) {
         result?.let { DrillResultTile(it, model.werkstatt.resultTitle, chrome) }
 
-        OverviewHeading(chrome.overviewPractice)
+        OverviewHeading(chrome.trainerOverviewPractice)
         OverviewPanel {
             // Kern's ceiling, never a count written down beside it.
             for (rung in 1..CountryDrill.MAX_LEVEL) RungRow(rung, chrome)
@@ -97,21 +97,21 @@ fun CountriesOverviewScreen(model: AppModel) {
         }
         OverviewPanel {
             ModifierSwitchRow(
-                title = chrome.modifierReverse,
+                title = chrome.trainerModifierReverse,
                 caption = reverseHint(model, chrome, content, reverse),
                 open = true,
                 on = reverse,
                 onChange = { reverse = it },
             )
             ModifierSwitchRow(
-                title = chrome.modifierFast,
+                title = chrome.trainerModifierFast,
                 // why: the atlas rung costs THREE clean wins, so the shared "statt zwei"
                 // hint would misprice it — this ladder says its own. Its price is kern's
                 // ceiling rather than a rung number authored beside it.
                 caption = if (fastOpen) {
                     chrome.countriesFastHint
                 } else {
-                    "${chrome.unlockPrefix} ${chrome.level.format(CountryDrill.MAX_LEVEL)}"
+                    "${chrome.numbersUnlock} ${chrome.trainerRung.format(CountryDrill.MAX_LEVEL)}"
                 },
                 open = fastOpen,
                 on = fast,

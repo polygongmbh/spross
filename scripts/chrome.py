@@ -18,9 +18,10 @@ Every catalog key is either read by a field below or named in [IOS_ONLY] / [ANDR
 which the no-flag run checks — so a string written for one phone is classified as it lands,
 and what Android still owes is a list rather than a silence.
 
-[MAPPING] is field → key. A field may also take:
-  ['key.0', 'key.1']    a List<String>, in order
-  {'id': 'key'}         a Map<String, String>
+A field's NAME is its key: `box.card.due` is read by `boxCardDue`, the key's segments
+camelCased. So the two are one fact, not a table to keep in step, and a field cannot end up
+naming a key that says something else. [FAMILIES] holds the few fields that read SEVERAL
+keys — a List<String> in the order the reader indexes them, or a Map<String, String>.
 
 A counted key holds plural forms rather than one string, and which form a field reads is
 its own NAME's to say: `<field>One` takes the `one` form, every other name the general
@@ -56,297 +57,13 @@ internal object Chrome%(code)s : Chrome {
 FALLBACK = ('\n *\n * Also the one every source without chrome of its own falls back to'
             ' ([Chrome.forSource]).')
 
-MAPPING = {
-    'aboutButton': 'settings.about',
-    'activityDays': 'a11y.count.activity14Days %lld',
-    'almostHeard': 'session.almost.heard',
-    'almostTypo': 'session.almost.typo',
-    'alphabetSpeakExample': 'letters.alphabet.speakExample',
-    'alphabetSpeakName': 'letters.alphabet.speakName',
-    'alphabetTitle': 'letters.alphabet.title',
-    'also': 'session.grammar.also %@',
-    'answerAlmost': 'a11y.verdict.almost',
-    'answerCorrect': 'a11y.verdict.correct',
-    'answerDigits': 'numbers.answer.placeholder',
-    'answerPlaceholder': 'session.answer.placeholder %@',
-    'answerWrong': 'a11y.verdict.wrong',
-    'audioHintOff': 'settings.audio.hint.off',
-    'audioHintRecordings': 'settings.audio.hint.recordings',
-    'audioHintTts': 'settings.audio.hint.tts',
-    'audioOff': 'letters.muted.title',
-    'audioOptionOff': 'settings.audio.option.off',
-    'audioOptionRecordings': 'settings.audio.option.recordings',
-    'audioOptionTts': 'settings.audio.option.tts',
-    'audioToggle': 'settings.audio.title',
-    'back': 'common.back',
-    'bestStreak': 'trainer.result.bestStreak %@',
-    'boxNav': 'box.door',
-    'boxNoAudio': 'box.card.noAudio',
-    'boxSubtitle': 'box.subtitle %@ %@',
-    'boxTapToHear': 'box.tapToHear',
-    'boxTitle': 'box.title',
-    'cancel': 'common.cancel',
-    'cantListen': 'session.hear.cantListen',
-    'cardActions': 'box.card.actions',
-    'cardForget': 'box.card.forget',
-    'cardOwnFrom': 'box.card.ownFrom',
-    'cardPosition': 'session.cardPosition %@ %@',
-    'caughtUpTitle': 'home.done.caughtUp',
-    'check': 'common.check',
-    'chooseTitle': 'onboarding.welcome',
-    'close': 'common.close',
-    'coachGrade': 'session.coach.grade',
-    'coachRecognize': 'session.coach.recognize',
-    'coachWrite': 'session.coach.write',
-    'combineLocked': 'numbers.combine.locked',
-    'copyMismatch': 'session.copy.mismatch',
-    'copyPrompt': 'session.copy.placeholder %@',
-    'countriesBest': 'countries.best %@',
-    'countriesFastHint': 'countries.fast.hint',
-    'countriesPace': 'countries.pace',
-    'countriesPage': 'countries.title %@',
-    'countriesReference': 'countries.reference',
-    'countriesReverseHint': 'countries.reverse.hint %@ %@',
-    'countryAskCountry': 'countries.ask.country',
-    'countryAskFlag': 'countries.ask.flag',
-    'countryAskLanguage': 'countries.ask.language',
-    'countryAskNationality': 'countries.ask.nationality',
-    'countryAskSpokenIn': 'countries.ask.spokenIn',
-    'countryAskSpokenWhere': 'countries.ask.spokenWhere',
-    'creditsCommons': 'credits.commonsNote',
-    'creditsRecordings': 'credits.recordings %lld',
-    'creditsTitle': 'credits.title',
-    'creditsUnmodified': 'credits.unmodified',
-    'dayAhead': 'home.tally.ahead %lld',
-    'dayAheadOne': 'home.tally.ahead %lld',
-    'dayConsolidated': 'home.tally.consolidated %@',
-    'dayMany': 'common.day.other',
-    'dayNewCards': 'home.tally.newCards %lld',
-    'dayNewCardsOne': 'home.tally.newCards %lld',
-    'dayNewWordsOnly': 'home.tally.newWordsOnly %@',
-    'dayOne': 'common.day.one',
-    'dayReviews': 'home.tally.reviews %lld',
-    'dayReviewsOne': 'home.tally.reviews %lld',
-    'dequeueArea': 'box.shelf.unpack %@',
-    'digits': 'numbers.rung %lld',
-    'digitsOne': 'numbers.rung %lld',
-    'doneToday': 'home.done.title',
-    'dueLabel': 'box.card.due',
-    'enableSound': 'letters.muted.enable',
-    'errorCatalogMissing': 'error.catalogMissing',
-    'errorContentUnavailable': 'error.contentUnavailable %@',
-    'errorResetFailed': 'error.resetFailed %@',
-    'errorTitle': 'error.title',
-    'errorUnknownProfile': 'error.unknownProfile %@ %@',
-    'extraRound': 'home.done.extraRound',
-    'feedbackCopy': 'report.export.copy',
-    'feedbackMail': 'settings.feedback',
-    'feedbackNeedsTranslation': 'box.own.word.needsTranslation',
-    'feedbackScopeAll': 'report.export.scope.all',
-    'feedbackScopeNew': 'report.export.scope.new',
-    'feedbackSend': 'report.export.send',
-    'feminineForm': 'a11y.glyph.feminineForm',
-    'finish': 'common.done',
-    'firstRoundGrade': 'onboarding.firstRound.grade',
-    'firstRoundRecognize': 'onboarding.firstRound.recognize',
-    'firstRoundTitle': 'onboarding.firstRound.title',
-    'firstRoundWrite': 'onboarding.firstRound.write',
-    'good': 'session.rating.good',
-    'growthGrew': 'session.done.growth.grew',
-    'growthOpened': 'session.done.growth.opened',
-    'hard': 'session.rating.hard',
-    'heuteTitle': 'home.title',
-    'iLearn': 'settings.learning.title',
-    'iSpeak': 'settings.known.title',
-    'keepPracticing': 'session.done.keepPracticing',
-    'last14Days': 'progress.last14Days',
-    'learnerNameHint': 'settings.name.hint',
-    'learnerNamePlaceholder': 'settings.name.placeholder',
-    'learnerNameQuestion': 'onboarding.name.question',
-    'learnerNameTitle': 'settings.name.title',
-    'legalAddressValue': 'legal.address.value',
-    'legalCompany': 'legal.company',
-    'legalContactLabel': 'legal.contact.label',
-    'legalDirectorLabel': 'legal.director.label',
-    'legalDirectorValue': 'legal.director.value',
-    'legalPrivacy': 'legal.privacy',
-    'legalRegisterLabel': 'legal.register.label',
-    'legalRegisterValue': 'legal.register.value',
-    'legalTitle': 'legal.title',
-    'legalVatLabel': 'legal.vat.label',
-    'legalVatValue': 'legal.vat.value',
-    'letsGo': 'onboarding.start',
-    'letterChoice': 'a11y.glyph.letter %@',
-    'lettersDictation': 'letters.ask.dictation',
-    'lettersHear': 'letters.ask.hear',
-    'lettersPage': 'letters.title %@',
-    'lettersSpell': 'letters.ask.spell',
-    'lettersUnavailable': 'letters.unavailable',
-    'level': 'trainer.rung %@',
-    'listenMinutesLeft': 'listen.minutesLeft %lld',
-    'listenPause': 'listen.pause',
-    'listenRepeat': 'listen.repeat',
-    'listenResume': 'listen.resume',
-    'listenSkip': 'listen.skip',
-    'listenSubtitle': 'listen.subtitle',
-    'listenTimer': 'listen.timer',
-    'listenTitle': 'listen.title',
-    'lookUp': 'numbers.lookup',
-    'modifierFast': 'trainer.modifier.fast',
-    'modifierFastHint': 'trainer.modifier.fast.hint',
-    'modifierMix': 'trainer.modifier.mix',
-    'modifierMixHint': 'trainer.modifier.mix.hint',
-    'modifierReverse': 'trainer.modifier.reverse',
-    'modifierReverseHint': 'trainer.modifier.reverse.hint',
-    'newPlace': 'numbers.newPlace %@',
-    'newRecord': 'trainer.result.newRecord',
-    'next': 'common.next',
-    'notAnswered': 'a11y.verdict.notAnswered',
-    'numbersNotes': 'numbers.notes',
-    'numbersPage': 'numbers.title %@',
-    'numbersReference': 'numbers.reference',
-    'otherWordNote': 'session.otherWord %@ %@',
-    'overviewPractice': 'trainer.overview.practice',
-    'overviewStart': 'trainer.overview.start',
-    'ownContentReported': 'box.own.reported',
-    'ownContentTitle': 'box.own.title',
-    'ownWordAdd': 'box.own.word.add',
-    'ownWordAddAction': 'box.own.word.addAction',
-    'ownWordEdit': 'box.own.word.edit',
-    'ownWordInLanguage': 'box.own.word.inLanguage %@',
-    'ownWordPicture': 'box.own.word.picture',
-    'ownWordRemove': 'box.own.word.remove',
-    'ownWordSave': 'box.own.word.save',
-    'ownWordSuggestion': 'box.own.word.explainer.suggestion',
-    'ownWordSwap': 'box.own.word.swap',
-    'ownWordTitle': 'box.own.word.title',
-    'ownWordsExplainer': 'box.own.word.explainer',
-    'ownWordsTitle': 'box.own.shelf',
-    'packArea': 'box.shelf.pack %@',
-    'packDone': 'box.shelf.packed',
-    'packWord': 'box.card.pack',
-    'phaseConsolidated': 'box.phase.consolidated',
-    'phaseLearning': 'box.phase.learning',
-    'phaseRelearning': 'box.phase.relearning',
-    'phaseSettled': 'box.phase.settled',
-    'phrasesLockedShort': 'box.area.phrasesLockedShort %lld',
-    'phrasesLockedSpoken': 'box.area.phrasesLocked %lld',
-    'pluralEquals': 'session.grammar.plural.equals',
-    'pluralForm': 'session.grammar.plural %@',
-    'pluralOnly': 'session.grammar.plural.only',
-    'practiceSuffix': 'a11y.suffix.practice %@',
-    'profileHint': 'settings.profile.hint',
-    'progressConsolidated': 'progress.consolidatedCount %@',
-    'progressLearning': 'progress.learningCount %@',
-    'promptInLanguage': 'letters.promptInLanguage %@',
-    'pronounce': 'a11y.action.pronounce',
-    'queuedWord': 'box.card.queued',
-    'ratingQuestion': 'session.rating.question',
-    'readAloud': 'a11y.action.readAloud',
-    'record': 'trainer.run.record %@',
-    'recordSpoken': 'a11y.suffix.record %@',
-    'replayPrompt': 'a11y.action.replayPrompt',
-    'reportAction': 'report.action',
-    'reportComment': 'report.comment',
-    'reportDismiss': 'report.dismiss',
-    'reportEdit': 'report.edit',
-    'reportExplainer': 'report.explainer',
-    'reportSend': 'report.send',
-    'reportTitle': 'report.title',
-    'reportTyped': 'report.typed',
-    'reported': 'report.reported',
-    'reset': 'common.reset',
-    'resetButton': 'settings.reset.button %@',
-    'resetConfirm': 'settings.reset.confirm %@',
-    'resetHint': 'settings.reset.hint',
-    'restHint': 'session.done.restHint',
-    'restartTutorial': 'settings.restartTutorial.button',
-    'restartTutorialHint': 'settings.restartTutorial.hint',
-    'reveal': 'session.reveal',
-    'roundAllDone': 'session.done.tally.allDone',
-    'roundConsolidated': 'session.done.tally.consolidated %@',
-    'roundNew': 'session.done.tally.new %@',
-    'roundNewOnly': 'session.done.tally.newOnly %@',
-    'roundReviewed': 'session.done.tally.reviewed %@',
-    'search': 'box.search.button',
-    'searchAreas': 'box.search.areas',
-    'searchClear': 'box.search.clear',
-    'searchHint': 'box.search.hint',
-    'searchNothing': 'box.search.nothing %@',
-    'searchPlaceholder': 'box.search.placeholder',
-    'searchWords': 'box.search.words',
-    'searchWriteOwn': 'box.search.writeOwn %@',
-    'sessionDone': 'session.done.title',
-    'sessionHeldBack': 'home.offer.heldBack %lld',
-    'sessionShortRound': 'home.offer.shortRound',
-    'sessionSomeCards': 'home.tally.someCards',
-    'sessionStart': 'home.offer.start',
-    'sessionTally': 'a11y.count.sessionTally %@ %@ %@',
-    'settingsTitle': 'settings.title',
-    'skipStep': 'session.skip',
-    'sleep': 'box.card.sleep',
-    'sourceQuestion': 'onboarding.known.question',
-    'stageChoiceConfusable': 'letters.stage.choiceConfusable',
-    'stageChoiceConfusableHint': 'letters.stage.choiceConfusable.hint',
-    'stageChoiceEasy': 'letters.stage.choiceEasy',
-    'stageChoiceEasyHint': 'letters.stage.choiceEasy.hint',
-    'stageDictation': 'letters.stage.dictation',
-    'stageDictationHint': 'letters.stage.dictation.hint',
-    'stageDictationLocked': 'letters.stage.dictation.locked',
-    'stageEntry': 'letters.stage.entry',
-    'stageTyped': 'letters.stage.typed',
-    'stageTypedHint': 'letters.stage.typed.hint',
-    'stateCollapsed': 'a11y.state.collapsed',
-    'stateExpanded': 'a11y.state.expanded',
-    'stateOff': 'a11y.state.off',
-    'stateOn': 'a11y.state.on',
-    'streak': 'trainer.run.streak %@',
-    'streakDays': 'a11y.count.streakDays %lld',
-    'streakDaysOne': 'a11y.count.streakDays %lld',
-    'streakRecord': 'session.done.streakRecord',
-    'streakSpoken': 'a11y.count.streakInARow %@',
-    'suspended': 'box.card.suspended',
-    'tapToHear': 'trainer.reference.tapToHear',
-    'targetQuestion': 'onboarding.learning.question',
-    'tasksDone': 'trainer.result.tasksDone %lld',
-    'tasksDoneOne': 'trainer.result.tasksDone %lld',
-    'tomorrowDue': 'home.done.tomorrowDue %lld',
-    'tomorrowFresh': 'home.done.tomorrowFresh',
-    'tomorrowPacked': 'home.done.packed',
-    'trainerCountries': 'trainer.skill.countries',
-    'trainerLetters': 'trainer.skill.letters',
-    'trainerNumbers': 'trainer.skill.numbers',
-    'trainingSubtitle': 'trainer.hub.subtitle',
-    'trainingTitle': 'trainer.hub.title',
-    'unknown': 'session.rating.unknown',
-    'unlockPrefix': 'numbers.unlock',
-    'unpackWord': 'box.card.unpack',
-    'updateButton': 'settings.update.button',
-    'updateDownload': 'settings.update.download',
-    'updateOfferBody': 'settings.update.offer',
-    'updateOfferTitle': 'settings.update.title',
-    'updateViaObtainium': 'settings.update.obtainium',
-    'variantClock': 'trainer.variant.clock',
-    'variantForms': 'trainer.variant.forms',
-    'variantPhrases': 'trainer.variant.phrases',
-    'wake': 'box.card.wake',
-    'whyBreadthBody': 'onboarding.why.breadth.body',
-    'whyBreadthTitle': 'onboarding.why.breadth.title',
-    'whyCompanionBody': 'onboarding.why.companion.body',
-    'whyCompanionTitle': 'onboarding.why.companion.title',
-    'whyGrammarBody': 'onboarding.why.grammar.body',
-    'whyGrammarTitle': 'onboarding.why.grammar.title',
-    'whyTitle': 'onboarding.why.title',
-    'widgetAwaitingBody': 'widget.awaiting.body',
-    'widgetAwaitingTitle': 'widget.awaiting.title',
+FAMILIES = {
 
     # Families — one key per entry, in the order the reader indexes them.
     'countryRungHints': ['countries.rung.%d.hint' % i for i in range(1, 10)],
     'countryRungs': ['countries.rung.%d' % i for i in range(1, 10)],
     'countryTiers': ['countries.tier.%d' % i for i in range(1, 5)],
     'greetDay': ['home.greeting.day.%d %%@' % i for i in range(2)],
-    'greetMorningAddressee': 'home.greeting.morning.addressee',
-    'greetNightAddressee': 'home.greeting.night.addressee',
     'greetEvening': ['home.greeting.evening.%d %%@' % i for i in range(2)],
     'greetMorning': ['home.greeting.morning.%d %%@' % i for i in range(2)]
                     + ['home.greeting.morning.epithet %@'],
@@ -365,10 +82,10 @@ MAPPING = {
                         'hundreds', 'places', 'forms')},
 }
 
-# Catalog keys no chrome field claims, each with the reason it does not. Together with
-# [MAPPING] these account for every key in the catalog — `main` checks that — so a string
-# written for one phone is classified the day it lands, and the two kinds of not-claimed
-# stay apart: what Android has no use for, and what it still owes.
+# Catalog keys no chrome field reads, each with the reason it does not. Every other key is
+# read by the field its name camelCases to — `main` checks that — so a string written for
+# one phone is classified the day it lands, and the two kinds of not-read stay apart:
+# what Android has no use for, and what it still owes.
 IOS_ONLY = {
     # The voice-download banner walks the reader to an iOS Settings path; which voices an
     # Android device has is its TTS engine's own affair. `common.dismiss` is that banner's ✕.
@@ -387,6 +104,32 @@ IOS_ONLY = {
 # which is what finishing the Android side looks like — and empty is what caught up looks
 # like, which is where Android stands. The next one-sided surface is named here.
 ANDROID_TODO = set()
+
+
+def camel(key):
+    """The field that reads [key] — its segments, camelCased, placeholder dropped."""
+    segments = re.sub(r'\s*%(\d+\$)?(lld|@)', '', key).split('.')
+    return segments[0] + ''.join(s[:1].upper() + s[1:] for s in segments[1:])
+
+
+def claimed(strings):
+    """field → key for every key Android reads. A counted key also answers to a
+    `<field>One` sibling, where a screen has a wording for exactly one."""
+    spoken = set(strings) - IOS_ONLY - ANDROID_TODO - family_keys()
+    table = {}
+    for key in sorted(spoken):
+        name = camel(key)
+        table[name] = key
+        if 'stringUnit' not in strings[key]['localizations']['en']:
+            table[name + 'One'] = key
+    return table
+
+
+def family_keys():
+    keys = set()
+    for spec in FAMILIES.values():
+        keys.update(spec.values() if isinstance(spec, dict) else spec)
+    return keys
 
 
 def catalog():
@@ -448,10 +191,12 @@ def fields():
 def render(lang, code, name, strings):
     body = [HEADER % {'name': name, 'code': code,
                       'fallback': FALLBACK if lang == 'en' else ''}]
+    table = claimed(strings)
     for field in fields():
-        spec = MAPPING.get(field)
+        spec = FAMILIES.get(field) or table.get(field)
         if spec is None:
-            raise SystemExit('Chrome.%s: no key in scripts/chrome.py MAPPING' % field)
+            raise SystemExit('Chrome.%s: names no catalog key — a field is its key '
+                             'camelCased' % field)
         opening = len('    override val %s = ' % field)
         if isinstance(spec, list):
             entries = ''.join('        %s,\n' % literal(value(strings, k, lang, field), 8)
@@ -468,35 +213,28 @@ def render(lang, code, name, strings):
     return ''.join(body) + '}\n'
 
 
-def claimed():
-    """Every catalog key some chrome field reads."""
-    keys = set()
-    for spec in MAPPING.values():
-        keys.update(spec.values() if isinstance(spec, dict) else
-                    spec if isinstance(spec, list) else [spec])
-    return keys
-
-
-def unclassified(strings):
-    """Where a key and the three sets that account for it disagree."""
-    mine, declared = claimed(), IOS_ONLY | ANDROID_TODO
-    return ['%s: claimed in MAPPING and declared unclaimed' % k
-            for k in sorted(mine & declared)] + \
+def unclassified(strings, declared_fields):
+    """Where a key, the two sets, and Chrome.kt's field list disagree."""
+    table, both = claimed(strings), IOS_ONLY & ANDROID_TODO
+    return ['%s: in IOS_ONLY and ANDROID_TODO at once' % k for k in sorted(both)] + \
            ['%s: declared unclaimed but not in the catalog' % k
-            for k in sorted(declared - set(strings))] + \
-           ['%s: no chrome field reads it — give one its key, or name it in IOS_ONLY '
-            '(Android has no use for it) or ANDROID_TODO (Android owes it)' % k
-            for k in sorted(set(strings) - mine - declared)]
+            for k in sorted((IOS_ONLY | ANDROID_TODO) - set(strings))] + \
+           ['%s: no field reads it — declare `val %s` in Chrome.kt, or name it in '
+            'IOS_ONLY (Android has no use for it) or ANDROID_TODO (Android owes it)'
+            % (k, camel(k))
+            for f, k in sorted(table.items()) if not f.endswith('One')
+            and f not in declared_fields]
 
 
 def main():
     strings = catalog()
-    unused = sorted(set(MAPPING) - set(fields()))
-    if unused:
-        print('MAPPING names fields Chrome.kt does not declare: %s' % ', '.join(unused))
+    declared = set(fields())
+    orphan = sorted(set(FAMILIES) - declared)
+    if orphan:
+        print('FAMILIES names fields Chrome.kt does not declare: %s' % ', '.join(orphan))
         return 1
 
-    gaps = unclassified(strings)
+    gaps = unclassified(strings, declared)
     if gaps:
         print('\n'.join(gaps), file=sys.stderr)
         return 1
@@ -518,7 +256,7 @@ def main():
               % ', '.join(drifted), file=sys.stderr)
         return 1
     print('%d chrome fields%s; %d keys Android owes' %
-          (len(MAPPING),
+          (len(fields()),
            ' — rewrote %s' % ', '.join(drifted) if drifted else ' — in step with the catalog',
            len(ANDROID_TODO)))
     return 0

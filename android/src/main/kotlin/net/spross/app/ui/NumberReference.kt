@@ -220,10 +220,10 @@ fun NumberReferenceOverlay(
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
-                chrome.numbersPage.format(model.languageName(language)),
+                chrome.numbersTitle.format(model.languageName(language)),
                 style = MaterialTheme.typography.titleMedium,
             )
-            TextButton(onClick = onDismiss) { Text(chrome.finish) }
+            TextButton(onClick = onDismiss) { Text(chrome.commonDone) }
         }
         Column(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),

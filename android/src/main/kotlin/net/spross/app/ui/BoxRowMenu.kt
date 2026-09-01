@@ -53,22 +53,22 @@ internal fun BoxRowMenu(
         onDismiss = onDismiss,
         before = { close ->
             when (standing) {
-                CardRowState.PackOffered -> MenuAction(chrome.packWord) {
+                CardRowState.PackOffered -> MenuAction(chrome.boxCardPack) {
                     close()
                     model.updateBox { BoxEngine.enqueue(it, listOf(card.id)) }
                 }
 
-                is CardRowState.Packed -> MenuAction(chrome.unpackWord) {
+                is CardRowState.Packed -> MenuAction(chrome.boxCardUnpack) {
                     close()
                     model.updateBox { BoxEngine.dequeue(it, card.id) }
                 }
 
-                is CardRowState.Standing -> MenuAction(chrome.sleep) {
+                is CardRowState.Standing -> MenuAction(chrome.boxCardSleep) {
                     close()
                     model.updateBox { BoxEngine.setSuspended(it, card.id, true, model.now()) }
                 }
 
-                CardRowState.Sleeping -> MenuAction(chrome.wake) {
+                CardRowState.Sleeping -> MenuAction(chrome.boxCardWake) {
                     close()
                     model.updateBox { BoxEngine.setSuspended(it, card.id, false, model.now()) }
                 }
@@ -76,12 +76,12 @@ internal fun BoxRowMenu(
                 CardRowState.Plain -> Unit
             }
             if (scheduled) {
-                MenuAction(chrome.cardForget) { close(); model.forgetCard(card.id) }
+                MenuAction(chrome.boxCardForget) { close(); model.forgetCard(card.id) }
             }
             onWriteOwn?.let { write ->
                 // Both sides carried over: the learner wants THIS pair in their own words,
                 // not a blank sheet with the search box's guess in it.
-                MenuAction(chrome.cardOwnFrom) {
+                MenuAction(chrome.boxCardOwnFrom) {
                     close()
                     write(
                         OwnWordDraft(
@@ -92,7 +92,7 @@ internal fun BoxRowMenu(
                     )
                 }
                 own?.let { word ->
-                    MenuAction(chrome.ownWordEdit) {
+                    MenuAction(chrome.boxOwnWordEdit) {
                         close()
                         write(OwnWordDraft.of(word, stamp.source, stamp.target))
                     }
@@ -104,7 +104,7 @@ internal fun BoxRowMenu(
             // put to sleep, never removed, so it grows no such entry at all. Last and in the
             // error color: the one irreversible thing in the menu.
             own?.let { word ->
-                MenuAction(chrome.ownWordRemove, destructive = true) {
+                MenuAction(chrome.boxOwnWordRemove, destructive = true) {
                     close()
                     model.removeOwnWord(word.id)
                 }

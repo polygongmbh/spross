@@ -9,9 +9,10 @@ import net.spross.kern.catalog.LanguageChoices
  *
  * The two tables live beside this file ([ChromeDe], [ChromeEn]) and are GENERATED from
  * the iOS String Catalog by `scripts/chrome.py` — the words themselves are never written
- * here. A new field is declared below, given its key in that script's MAPPING, and worded
- * in `App/Sources/Resources/Localizable.xcstrings`; a pre-commit check keeps the three
- * in step, so the same surface cannot read differently on the two phones.
+ * here. A new field is worded in `App/Sources/Resources/Localizable.xcstrings` and declared
+ * below under the name its key camelCases to (`box.card.due` → `boxCardDue`), which is the
+ * whole of the binding; a pre-commit check keeps the two in step, so the same surface
+ * cannot read differently on the two phones.
  * Placeholders are java-format, rendered with `.format(...)`.
  *
  * What a string MEANS is its catalog entry's `comment`, where the other phone and whoever
@@ -37,81 +38,81 @@ interface Chrome {
      * the words that fit the hour: one list per [net.spross.kern.box.DayPart], indexed by
      * [net.spross.kern.box.partVariant]. Every line here NAMES the language and asks rather
      * than states — the register that SPEAKS it comes from the catalog instead, and the two
-     * hours that lend an epithet carry a third line for it. [heuteTitle] stands in only
+     * hours that lend an epithet carry a third line for it. [homeTitle] stands in only
      * where no profile names a language yet.
      */
     val greetMorning: List<String>
     val greetDay: List<String>
     val greetEvening: List<String>
     val greetNight: List<String>
-    val greetMorningAddressee: String
-    val greetNightAddressee: String
-    val heuteTitle: String
-    val extraRound: String
-    val doneToday: String
-    val dueLabel: String
-    val chooseTitle: String
-    val sourceQuestion: String
-    val targetQuestion: String
-    val iSpeak: String
-    val iLearn: String
-    val learnerNameQuestion: String
-    val letsGo: String
-    val back: String
-    val whyTitle: String
-    val whyBreadthTitle: String
-    val whyBreadthBody: String
-    val whyCompanionTitle: String
-    val whyCompanionBody: String
-    val whyGrammarTitle: String
-    val whyGrammarBody: String
-    val firstRoundTitle: String
-    val firstRoundRecognize: String
-    val firstRoundGrade: String
-    val firstRoundWrite: String
-    val check: String
-    val reveal: String
-    val next: String
-    val also: String              // %s
-    val otherWordNote: String     // %1$s %2$s
-    val answerPlaceholder: String // %s
-    val ratingQuestion: String
+    val homeGreetingMorningAddressee: String
+    val homeGreetingNightAddressee: String
+    val homeTitle: String
+    val homeDoneExtraRound: String
+    val homeDoneTitle: String
+    val boxCardDue: String
+    val onboardingWelcome: String
+    val onboardingKnownQuestion: String
+    val onboardingLearningQuestion: String
+    val settingsKnownTitle: String
+    val settingsLearningTitle: String
+    val onboardingNameQuestion: String
+    val onboardingStart: String
+    val commonBack: String
+    val onboardingWhyTitle: String
+    val onboardingWhyBreadthTitle: String
+    val onboardingWhyBreadthBody: String
+    val onboardingWhyCompanionTitle: String
+    val onboardingWhyCompanionBody: String
+    val onboardingWhyGrammarTitle: String
+    val onboardingWhyGrammarBody: String
+    val onboardingFirstRoundTitle: String
+    val onboardingFirstRoundRecognize: String
+    val onboardingFirstRoundGrade: String
+    val onboardingFirstRoundWrite: String
+    val commonCheck: String
+    val sessionReveal: String
+    val commonNext: String
+    val sessionGrammarAlso: String              // %s
+    val sessionOtherWord: String     // %1$s %2$s
+    val sessionAnswerPlaceholder: String // %s
+    val sessionRatingQuestion: String
     /** The three the FIRST round teaches itself with, one per moment ([SessionCoach]). */
-    val coachRecognize: String
-    val coachGrade: String
-    val coachWrite: String
-    val hard: String
-    val good: String
-    val unknown: String
-    val sessionDone: String
-    val keepPracticing: String
-    val finish: String
-    val pluralEquals: String
-    val pluralOnly: String
-    val pluralForm: String        // %s
-    val feminineForm: String
-    val readAloud: String
-    val stateOn: String
-    val stateOff: String
-    val pronounce: String
-    val aboutButton: String
-    val feedbackMail: String
-    val updateButton: String
-    val updateOfferTitle: String
-    val updateOfferBody: String
-    val updateViaObtainium: String
-    val updateDownload: String
-    val audioToggle: String
-    val audioOptionOff: String
-    val audioOptionRecordings: String
-    val audioOptionTts: String
-    val audioHintOff: String
-    val audioHintRecordings: String
-    val audioHintTts: String
+    val sessionCoachRecognize: String
+    val sessionCoachGrade: String
+    val sessionCoachWrite: String
+    val sessionRatingHard: String
+    val sessionRatingGood: String
+    val sessionRatingUnknown: String
+    val sessionDoneTitle: String
+    val sessionDoneKeepPracticing: String
+    val commonDone: String
+    val sessionGrammarPluralEquals: String
+    val sessionGrammarPluralOnly: String
+    val sessionGrammarPlural: String        // %s
+    val a11yGlyphFeminineForm: String
+    val a11yActionReadAloud: String
+    val a11yStateOn: String
+    val a11yStateOff: String
+    val a11yActionPronounce: String
+    val settingsAbout: String
+    val settingsFeedback: String
+    val settingsUpdateButton: String
+    val settingsUpdateTitle: String
+    val settingsUpdateOffer: String
+    val settingsUpdateObtainium: String
+    val settingsUpdateDownload: String
+    val settingsAudioTitle: String
+    val settingsAudioOptionOff: String
+    val settingsAudioOptionRecordings: String
+    val settingsAudioOptionTts: String
+    val settingsAudioHintOff: String
+    val settingsAudioHintRecordings: String
+    val settingsAudioHintTts: String
     val creditsTitle: String
     val creditsRecordings: String // %d
     val creditsUnmodified: String
-    val creditsCommons: String
+    val creditsCommonsNote: String
     /** The address the notice answers on is kern's ([net.spross.kern.Legal]). */
     val legalTitle: String
     val legalCompany: String
@@ -124,42 +125,42 @@ interface Chrome {
     val legalVatValue: String
     val legalContactLabel: String
     val legalPrivacy: String
-    val trainingTitle: String
-    val trainingSubtitle: String
-    val practiceSuffix: String
-    val trainerLetters: String
-    val lettersHear: String
-    val lettersSpell: String
-    val lettersDictation: String
-    val letterChoice: String      // %s
-    val replayPrompt: String
-    val promptInLanguage: String  // %s
-    val level: String             // %d
-    val streak: String            // %d
+    val trainerHubTitle: String
+    val trainerHubSubtitle: String
+    val a11ySuffixPractice: String
+    val trainerSkillLetters: String
+    val lettersAskHear: String
+    val lettersAskSpell: String
+    val lettersAskDictation: String
+    val a11yGlyphLetter: String      // %s
+    val a11yActionReplayPrompt: String
+    val lettersPromptInLanguage: String  // %s
+    val trainerRung: String             // %d
+    val trainerRunStreak: String            // %d
     // The two captions an amber hold wears; the form itself follows, composed by
     // the reader, so the words stay one string and the layout stays each phone's.
-    val almostTypo: String
-    val almostHeard: String
-    val audioOff: String
-    val enableSound: String
-    val tasksDoneOne: String
-    val tasksDone: String         // %d
-    val bestStreak: String        // %d
-    val answerCorrect: String
-    val answerAlmost: String
-    val answerWrong: String
-    val notAnswered: String
+    val sessionAlmostTypo: String
+    val sessionAlmostHeard: String
+    val lettersMutedTitle: String
+    val lettersMutedEnable: String
+    val trainerResultTasksDoneOne: String
+    val trainerResultTasksDone: String         // %d
+    val trainerResultBestStreak: String        // %d
+    val a11yVerdictCorrect: String
+    val a11yVerdictAlmost: String
+    val a11yVerdictWrong: String
+    val a11yVerdictNotAnswered: String
 
     // ── The three overview pages ────────────────────────────────────────────────
-    val close: String
-    val trainerNumbers: String
-    val numbersPage: String       // %s
-    val lettersPage: String       // %s
-    val overviewPractice: String
-    val overviewStart: String
-    val tapToHear: String
+    val commonClose: String
+    val trainerSkillNumbers: String
+    val numbersTitle: String       // %s
+    val lettersTitle: String       // %s
+    val trainerOverviewPractice: String
+    val trainerOverviewStart: String
+    val trainerReferenceTapToHear: String
     val boxTapToHear: String
-    val boxNoAudio: String
+    val boxCardNoAudio: String
     val numbersReference: String
     val numbersNotes: String
     /**
@@ -167,48 +168,48 @@ interface Chrome {
      * grow: one it has no wording for still gets its rows rather than printing a key.
      */
     val numberSections: Map<String, String>
-    val variantClock: String
-    val variantPhrases: String
-    val variantForms: String
-    val modifierReverse: String
-    val modifierReverseHint: String
-    val modifierFast: String
-    val modifierFastHint: String
-    val modifierMix: String
-    val modifierMixHint: String
-    val combineLocked: String
-    val unlockPrefix: String
+    val trainerVariantClock: String
+    val trainerVariantPhrases: String
+    val trainerVariantForms: String
+    val trainerModifierReverse: String
+    val trainerModifierReverseHint: String
+    val trainerModifierFast: String
+    val trainerModifierFastHint: String
+    val trainerModifierMix: String
+    val trainerModifierMixHint: String
+    val numbersCombineLocked: String
+    val numbersUnlock: String
 
     // ── Inside a run ────────────────────────────────────────────────────────────
-    val digitsOne: String
-    val digits: String            // %d
-    val record: String            // %d
-    val streakSpoken: String      // %d
-    val recordSpoken: String      // %d
-    val answerDigits: String
-    val newPlace: String          // %s
-    val lookUp: String
-    val newRecord: String
+    val numbersRungOne: String
+    val numbersRung: String            // %d
+    val trainerRunRecord: String            // %d
+    val a11yCountStreakInARow: String      // %d
+    val a11ySuffixRecord: String      // %d
+    val numbersAnswerPlaceholder: String
+    val numbersNewPlace: String          // %s
+    val numbersLookup: String
+    val trainerResultNewRecord: String
 
     // ── The letter drill's stages, as the overview lists them ───────────────────
-    val stageChoiceEasy: String
-    val stageChoiceEasyHint: String
-    val stageChoiceConfusable: String
-    val stageChoiceConfusableHint: String
-    val stageTyped: String
-    val stageTypedHint: String
-    val stageDictation: String
-    val stageDictationHint: String
-    val stageDictationLocked: String
-    val stageEntry: String
+    val lettersStageChoiceEasy: String
+    val lettersStageChoiceEasyHint: String
+    val lettersStageChoiceConfusable: String
+    val lettersStageChoiceConfusableHint: String
+    val lettersStageTyped: String
+    val lettersStageTypedHint: String
+    val lettersStageDictation: String
+    val lettersStageDictationHint: String
+    val lettersStageDictationLocked: String
+    val lettersStageEntry: String
     val lettersUnavailable: String
-    val alphabetTitle: String
-    val alphabetSpeakName: String
-    val alphabetSpeakExample: String
+    val lettersAlphabetTitle: String
+    val lettersAlphabetSpeakName: String
+    val lettersAlphabetSpeakExample: String
 
     // ── The atlas: the Länder page and its run ──────────────────────────────────
-    val trainerCountries: String
-    val countriesPage: String     // %s
+    val trainerSkillCountries: String
+    val countriesTitle: String     // %s
     val countriesReference: String
     val countriesPace: String
     val countriesBest: String     // %d
@@ -222,74 +223,74 @@ interface Chrome {
     val countryRungHints: List<String>
     /** How far from home a reference group sits, innermost first — read through [countryTier]. */
     val countryTiers: List<String>
-    val countryAskCountry: String
-    val countryAskFlag: String
-    val countryAskLanguage: String
-    val countryAskNationality: String
-    val countryAskSpokenIn: String
-    val countryAskSpokenWhere: String
+    val countriesAskCountry: String
+    val countriesAskFlag: String
+    val countriesAskLanguage: String
+    val countriesAskNationality: String
+    val countriesAskSpokenIn: String
+    val countriesAskSpokenWhere: String
 
     // ── Box browse ──────────────────────────────────────────────────────────────
     val boxTitle: String
-    val boxNav: String
+    val boxDoor: String
     val boxSubtitle: String       // %1$d %2$d
-    val ownWordsTitle: String
-    val ownWordsExplainer: String
-    val packArea: String          // %d
-    val packDone: String
-    val packWord: String
-    val unpackWord: String
-    val dequeueArea: String
-    val queuedWord: String
-    val suspended: String
-    val wake: String
-    val sleep: String
+    val boxOwnShelf: String
+    val boxOwnWordExplainer: String
+    val boxShelfPack: String          // %d
+    val boxShelfPacked: String
+    val boxCardPack: String
+    val boxCardUnpack: String
+    val boxShelfUnpack: String
+    val boxCardQueued: String
+    val boxCardSuspended: String
+    val boxCardWake: String
+    val boxCardSleep: String
     /**
      * Dropping ONE word's progress: it goes back to new and may be offered again.
      * The card stays, and so does anything filed against it — forgetting the answers
      * does not make the translation right.
      */
-    val cardActions: String
-    val cardForget: String
-    val cardOwnFrom: String
-    val reported: String
-    val progressConsolidated: String // %d
-    val progressLearning: String  // %d
-    val phrasesLockedShort: String // %d
-    val phrasesLockedSpoken: String // %d
-    val stateExpanded: String
-    val stateCollapsed: String
+    val boxCardActions: String
+    val boxCardForget: String
+    val boxCardOwnFrom: String
+    val reportReported: String
+    val progressConsolidatedCount: String // %d
+    val progressLearningCount: String  // %d
+    val boxAreaPhrasesLockedShort: String // %d
+    val boxAreaPhrasesLocked: String // %d
+    val a11yStateExpanded: String
+    val a11yStateCollapsed: String
     // A card with nothing behind it has NO phase word: new is the absence of a badge. Past
-    // that, a row reads one of four: [phaseLearning] while walking the learning steps,
-    // [phaseRelearning] the same rung after a lapse (same color/icon, its own word),
-    // [phaseSettled] once in Review but short of the consolidated bar, and
-    // [phaseConsolidated] once a card has cleared it — the shelf's own count stays the
+    // that, a row reads one of four: [boxPhaseLearning] while walking the learning steps,
+    // [boxPhaseRelearning] the same rung after a lapse (same color/icon, its own word),
+    // [boxPhaseSettled] once in Review but short of the consolidated bar, and
+    // [boxPhaseConsolidated] once a card has cleared it — the shelf's own count stays the
     // two-way consolidated/learning split it has always been (`AreaStatistics.learning`).
-    val phaseLearning: String
-    val phaseRelearning: String
-    val phaseSettled: String
-    val phaseConsolidated: String
+    val boxPhaseLearning: String
+    val boxPhaseRelearning: String
+    val boxPhaseSettled: String
+    val boxPhaseConsolidated: String
 
     // ── Box search ──────────────────────────────────────────────────────────────
-    val search: String
-    val searchPlaceholder: String
-    val searchHint: String
-    val searchAreas: String
-    val searchWords: String
-    val searchNothing: String     // %s
-    val searchWriteOwn: String    // %s
-    val searchClear: String
+    val boxSearchButton: String
+    val boxSearchPlaceholder: String
+    val boxSearchHint: String
+    val boxSearchAreas: String
+    val boxSearchWords: String
+    val boxSearchNothing: String     // %s
+    val boxSearchWriteOwn: String    // %s
+    val boxSearchClear: String
 
     // ── Own-word form ───────────────────────────────────────────────────────────
-    val ownWordTitle: String
-    val ownWordInLanguage: String // %s
-    val ownWordPicture: String
-    val ownWordAdd: String
-    val ownWordRemove: String
-    val ownWordEdit: String
-    val ownWordSave: String
-    val ownWordSwap: String
-    val ownWordSuggestion: String
+    val boxOwnWordTitle: String
+    val boxOwnWordInLanguage: String // %s
+    val boxOwnWordPicture: String
+    val boxOwnWordAdd: String
+    val boxOwnWordRemove: String
+    val boxOwnWordEdit: String
+    val boxOwnWordSave: String
+    val boxOwnWordSwap: String
+    val boxOwnWordExplainerSuggestion: String
 
     // ── Reporting a problem ─────────────────────────────────────────────────────
     val reportAction: String
@@ -302,53 +303,53 @@ interface Chrome {
     val reportExplainer: String
 
     // ── Own content ─────────────────────────────────────────────────────────────
-    val ownContentTitle: String
-    val ownContentReported: String
-    val ownWordAddAction: String
+    val boxOwnTitle: String
+    val boxOwnReported: String
+    val boxOwnWordAddAction: String
 
     // ── Feedback to the catalog ─────────────────────────────────────────────────
-    val feedbackNeedsTranslation: String
-    val feedbackCopy: String
-    val feedbackSend: String
-    val feedbackScopeNew: String
-    val feedbackScopeAll: String
+    val boxOwnWordNeedsTranslation: String
+    val reportExportCopy: String
+    val reportExportSend: String
+    val reportExportScopeNew: String
+    val reportExportScopeAll: String
 
     // ── Box settings ────────────────────────────────────────────────────────────
     val settingsTitle: String
-    val learnerNameTitle: String
-    val learnerNamePlaceholder: String
-    val learnerNameHint: String
-    val profileHint: String
-    val restartTutorial: String
-    val restartTutorialHint: String
-    val resetButton: String       // %s
-    val resetHint: String
-    val resetConfirm: String      // %s
-    val cancel: String
-    val reset: String
+    val settingsNameTitle: String
+    val settingsNamePlaceholder: String
+    val settingsNameHint: String
+    val settingsProfileHint: String
+    val settingsRestartTutorialButton: String
+    val settingsRestartTutorialHint: String
+    val settingsResetButton: String       // %s
+    val settingsResetHint: String
+    val settingsResetConfirm: String      // %s
+    val commonCancel: String
+    val commonReset: String
 
     // ── Session turn ────────────────────────────────────────────────────────────
-    val copyPrompt: String        // %s
-    val copyMismatch: String
-    val skipStep: String
-    val cantListen: String
-    val cardPosition: String
-    val sessionTally: String
+    val sessionCopyPlaceholder: String        // %s
+    val sessionCopyMismatch: String
+    val sessionSkip: String
+    val sessionHearCantListen: String
+    val sessionCardPosition: String
+    val a11yCountSessionTally: String
 
     // ── The day's standing (Home) ──────────────────────────────────────────────
-    val caughtUpTitle: String
-    val dayReviews: String        // %d
-    val dayReviewsOne: String
-    val dayNewCards: String       // %d
-    val dayNewCardsOne: String
-    val dayNewWordsOnly: String    // %d
-    val dayConsolidated: String   // %d
+    val homeDoneCaughtUp: String
+    val homeTallyReviews: String        // %d
+    val homeTallyReviewsOne: String
+    val homeTallyNewCards: String       // %d
+    val homeTallyNewCardsOne: String
+    val homeTallyNewWordsOnly: String    // %d
+    val homeTallyConsolidated: String   // %d
     /** Which of the two a round names is [net.spross.kern.session.SessionOffer.summaryParts]'. */
-    val dayAhead: String          // %d
-    val dayAheadOne: String
-    val tomorrowPacked: String
-    val tomorrowFresh: String
-    val tomorrowDue: String       // %d
+    val homeTallyAhead: String          // %d
+    val homeTallyAheadOne: String
+    val homeDonePacked: String
+    val homeDoneTomorrowFresh: String
+    val homeDoneTomorrowDue: String       // %d
 
     // ── The session offer (Home's one card) ────────────────────────────────────
     /**
@@ -362,10 +363,10 @@ interface Chrome {
     val headlineFreshSet: List<String>
     /** What the card says instead once a standing run is still owed today's work. */
     val headlineStreak: List<String>
-    val sessionSomeCards: String
-    val sessionHeldBack: String   // %d
-    val sessionStart: String
-    val sessionShortRound: String
+    val homeTallySomeCards: String
+    val homeOfferHeldBack: String   // %d
+    val homeOfferStart: String
+    val homeOfferShortRound: String
 
     // ── Listening (Home's one row, and the run it opens) ───────────────────────
     val listenTitle: String
@@ -385,27 +386,27 @@ interface Chrome {
     val errorResetFailed: String        // %s
 
     // ── Round completion ────────────────────────────────────────────────────────
-    val roundNew: String          // %d
-    val roundNewOnly: String      // %d
-    val roundConsolidated: String // %d
-    val roundReviewed: String     // %d
-    val roundAllDone: String
-    val restHint: String
-    val streakRecord: String
+    val sessionDoneTallyNew: String          // %d
+    val sessionDoneTallyNewOnly: String      // %d
+    val sessionDoneTallyConsolidated: String // %d
+    val sessionDoneTallyReviewed: String     // %d
+    val sessionDoneTallyAllDone: String
+    val sessionDoneRestHint: String
+    val sessionDoneStreakRecord: String
 
-    val growthGrew: String
-    val growthOpened: String
+    val sessionDoneGrowthGrew: String
+    val sessionDoneGrowthOpened: String
     val growthBlooming: List<String>
     val growthSown: List<String>
     val growthGrown: List<String>
 
     // ── Activity strip ──────────────────────────────────────────────────────────
-    val last14Days: String
-    val activityDays: String      // %d
-    val streakDays: String        // %d
-    val streakDaysOne: String
-    val dayOne: String
-    val dayMany: String
+    val progressLast14Days: String
+    val a11yCountActivity14Days: String      // %d
+    val a11yCountStreakDays: String        // %d
+    val a11yCountStreakDaysOne: String
+    val commonDayOne: String
+    val commonDayOther: String
 
     // ── Home-screen widget ──────────────────────────────────────────────────────
     val widgetAwaitingTitle: String

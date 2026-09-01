@@ -88,9 +88,9 @@ private fun ChoiceTile(
         enabled = !answered,
         shape = MaterialTheme.shapes.medium,
         modifier = modifier.heightIn(min = DlReserve.tile).semantics {
-            contentDescription = chrome.letterChoice.format(glyph)
-            if (answered && isAnswer) stateDescription = chrome.answerCorrect
-            if (answered && isChosen && !isAnswer) stateDescription = chrome.answerWrong
+            contentDescription = chrome.a11yGlyphLetter.format(glyph)
+            if (answered && isAnswer) stateDescription = chrome.a11yVerdictCorrect
+            if (answered && isChosen && !isAnswer) stateDescription = chrome.a11yVerdictWrong
         }.pressSpring(),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = fill,
@@ -121,7 +121,7 @@ fun TypedStage(
         DrillAnswerField(
             value = flow.input,
             onValueChange = flow::type,
-            placeholder = chrome.answerPlaceholder.format(model.languageName(task.language)),
+            placeholder = chrome.sessionAnswerPlaceholder.format(model.languageName(task.language)),
             feedback = flow.state.feedback,
             chrome = chrome,
             focus = inputFocus,
@@ -133,7 +133,7 @@ fun TypedStage(
                 modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) {
-                Text(if (flow.input.isBlank()) chrome.reveal else chrome.check)
+                Text(if (flow.input.isBlank()) chrome.sessionReveal else chrome.commonCheck)
             }
         }
         AnswerLine(flow, chrome)
@@ -157,8 +157,8 @@ private fun AnswerLine(flow: LetterDrillFlow, chrome: Chrome) {
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
         hold?.let {
             val caption = when (it.reason) {
-                AlmostReason.Typo -> chrome.almostTypo
-                AlmostReason.Heard -> chrome.almostHeard
+                AlmostReason.Typo -> chrome.sessionAlmostTypo
+                AlmostReason.Heard -> chrome.sessionAlmostHeard
             }
             // The letter drill has no voice of its own to replay, so the box carries no
             // speaker here rather than one that would do nothing.

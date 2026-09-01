@@ -74,7 +74,7 @@ fun SleepTimerChip(model: AppModel) {
             // where the control's own name belongs.
             .semantics(mergeDescendants = true) {
                 contentDescription = chrome.listenTimer
-                stateDescription = left ?: chrome.stateOff
+                stateDescription = left ?: chrome.a11yStateOff
             }
             // why: a tap adds five minutes and a hold turns the timer straight back off —
             // the only gesture that ever brings the minutes down.

@@ -71,9 +71,9 @@ fun SegmentsBar(
     // to TalkBack — so it speaks the tally it is drawing, or where the round stands before
     // there is one.
     val spoken = if (segments.isEmpty()) {
-        chrome.cardPosition.format(1, slots)
+        chrome.sessionCardPosition.format(1, slots)
     } else {
-        chrome.sessionTally.format(
+        chrome.a11yCountSessionTally.format(
             segments.count { it == AnswerOutcome.Right },
             segments.count { it == AnswerOutcome.Almost },
             segments.count { it == AnswerOutcome.Wrong },
@@ -126,7 +126,7 @@ fun Pill(text: String, color: Color, modifier: Modifier = Modifier) {
 fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
     // why: ♀ is a glyph TalkBack either skips or reads as a symbol name; the badge says
     // what it marks instead, which is the only way the grammar reaches a spoken card.
-    Pill("♀", Dl.colors.die, modifier.semantics { contentDescription = chrome.feminineForm })
+    Pill("♀", Dl.colors.die, modifier.semantics { contentDescription = chrome.a11yGlyphFeminineForm })
 }
 
 /**
@@ -154,13 +154,13 @@ fun PhaseBadge(standing: CardRowState.Standing, chrome: Chrome) {
         // Fresh/Shaky/Growing would be ambiguous glyphs without one.
         Pill(
             SEAL, color,
-            modifier = Modifier.semantics { contentDescription = chrome.phaseConsolidated },
+            modifier = Modifier.semantics { contentDescription = chrome.boxPhaseConsolidated },
         )
     } else {
         val word = when {
-            settled -> chrome.phaseSettled
-            standing.phase == CardPhase.Relearning -> chrome.phaseRelearning
-            else -> chrome.phaseLearning
+            settled -> chrome.boxPhaseSettled
+            standing.phase == CardPhase.Relearning -> chrome.boxPhaseRelearning
+            else -> chrome.boxPhaseLearning
         }
         val glyph = if (settled) SETTLED else LEAF
         Pill("$glyph $word", color)
@@ -241,7 +241,7 @@ fun Modifier.pronounceOnTap(
     } else {
         Modifier
             .semantics {
-                customActions = listOf(CustomAccessibilityAction(chrome.pronounce) {
+                customActions = listOf(CustomAccessibilityAction(chrome.a11yActionPronounce) {
                     pronounce()
                     true
                 })
@@ -266,7 +266,7 @@ internal val SPEAKER_GLYPH = 18.dp
  * rather than a table's, so it passes its own.
  */
 @Composable
-fun TapToHearHint(chrome: Chrome, text: String = chrome.tapToHear) {
+fun TapToHearHint(chrome: Chrome, text: String = chrome.trainerReferenceTapToHear) {
     Row(
         // Every row below offers hearing as its own named action, so spoken this line is
         // the same thing said a second time.

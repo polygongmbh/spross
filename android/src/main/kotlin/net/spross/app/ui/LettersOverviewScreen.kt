@@ -51,7 +51,7 @@ fun LettersOverviewScreen(model: AppModel) {
     val available = report?.drillAvailable == true
 
     OverviewScaffold(
-        title = chrome.lettersPage.format(model.languageName(language)),
+        title = chrome.lettersTitle.format(model.languageName(language)),
         chrome = chrome,
         scroll = scroll,
         startEnabled = available,
@@ -60,7 +60,7 @@ fun LettersOverviewScreen(model: AppModel) {
     ) {
         result?.let { DrillResultTile(it, model.werkstatt.resultTitle, chrome) }
 
-        OverviewHeading(chrome.overviewPractice)
+        OverviewHeading(chrome.trainerOverviewPractice)
         OverviewPanel {
             LetterStage.entries.forEachIndexed { index, stage ->
                 StageRow(stage, index + 1, report, chrome)
@@ -96,8 +96,8 @@ private fun StageRow(
     val caption = when {
         // Where the drill cannot run at all, every stage is out of reach for the one
         // reason the line under the button already gives.
-        !open -> if (ready == null) chrome.hint(stage) else chrome.stageDictationLocked
-        entry -> "${chrome.hint(stage)} · ${chrome.stageEntry}"
+        !open -> if (ready == null) chrome.hint(stage) else chrome.lettersStageDictationLocked
+        entry -> "${chrome.hint(stage)} · ${chrome.lettersStageEntry}"
         else -> chrome.hint(stage)
     }
     Row(

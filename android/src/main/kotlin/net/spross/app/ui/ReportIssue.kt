@@ -120,7 +120,7 @@ fun ReportableCard(
             learnerInput = captured,
             onDismiss = { open = false },
             after = { close ->
-                MenuAction(chrome.sleep) {
+                MenuAction(chrome.boxCardSleep) {
                     close()
                     // why: the round moves on with it — being made to rate a word one
                     // has just said should never be asked again is the exact busywork
@@ -201,6 +201,6 @@ private fun ReportIssueDialog(
                 onDismiss()
             }) { Text(chrome.reportSend) }
         },
-        dismissButton = { TextButton(onClick = onDismiss) { Text(chrome.cancel) } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(chrome.commonCancel) } },
     )
 }

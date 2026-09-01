@@ -53,7 +53,7 @@ import net.spross.kern.model.Language
 fun AlphabetSection(model: AppModel, language: Language, chrome: Chrome) {
     val alphabet = model.catalog?.alphabet(language) ?: return
     val reader = model.box?.joinStamp?.source ?: FALLBACK_READER
-    OverviewHeading(chrome.alphabetTitle)
+    OverviewHeading(chrome.lettersAlphabetTitle)
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
         if (alphabet.sections.isEmpty()) {
             for (entry in alphabet.entries) AlphabetRow(model, entry, language, reader, chrome)
@@ -95,8 +95,8 @@ private fun AlphabetRow(
     val exampleText = example?.text ?: entry.exampleText
     val speakExample = exampleText?.let { model.speakOnTap(model.formPronunciation(it, language)) }
     val actions = listOfNotNull(
-        speakName?.let { CustomAccessibilityAction(chrome.alphabetSpeakName) { it(); true } },
-        speakExample?.let { CustomAccessibilityAction(chrome.alphabetSpeakExample) { it(); true } },
+        speakName?.let { CustomAccessibilityAction(chrome.lettersAlphabetSpeakName) { it(); true } },
+        speakExample?.let { CustomAccessibilityAction(chrome.lettersAlphabetSpeakExample) { it(); true } },
     )
     Column(
         modifier = Modifier

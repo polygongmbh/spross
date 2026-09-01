@@ -98,7 +98,7 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
                 }
             }
         }
-        model.finishDrill(Screen.Countries, closed.summary, chrome.trainerCountries)
+        model.finishDrill(Screen.Countries, closed.summary, chrome.trainerSkillCountries)
     }
     BackHandler { leave() }
     // Nothing left to ask: hand the run back, never repeat a question.
@@ -149,7 +149,7 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
             verticalArrangement = Arrangement.spacedBy(DlSpace.m),
         ) {
             DrillStreakLine(
-                rung = chrome.level.format(state.level),
+                rung = chrome.trainerRung.format(state.level),
                 streak = state.streak,
                 bestStreak = state.bestStreak,
                 chrome = chrome,
@@ -191,7 +191,7 @@ private fun Prompt(model: AppModel, flow: CountryDrillFlow, chrome: Chrome) {
         state.otherWord?.let { other ->
             // why: same line as the review session's — both explain what became of
             // the answer, so they read alike.
-            PauseLine(chrome.otherWordNote.format(other.word, other.meanings.joinToString(", ")))
+            PauseLine(chrome.sessionOtherWord.format(other.word, other.meanings.joinToString(", ")))
         }
     }
 }
@@ -214,7 +214,7 @@ private fun Controls(
         DrillAnswerField(
             value = flow.input,
             onValueChange = flow::type,
-            placeholder = chrome.answerPlaceholder.format(model.languageName(state.answerLanguage)),
+            placeholder = chrome.sessionAnswerPlaceholder.format(model.languageName(state.answerLanguage)),
             feedback = state.feedback,
             chrome = chrome,
             focus = inputFocus,
@@ -227,7 +227,7 @@ private fun Controls(
                 modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) {
-                Text(if (flow.input.isBlank()) chrome.reveal else chrome.check)
+                Text(if (flow.input.isBlank()) chrome.sessionReveal else chrome.commonCheck)
             }
             // why: nothing is drawn for a clean answer — it already stands in the learner's
             // own text with the field's checkmark, and the card is on its way out.
@@ -249,7 +249,7 @@ private fun AlmostLine(model: AppModel, flow: CountryDrillFlow, form: String, ch
     val state = flow.state
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
         AlmostCorrection(
-            chrome.almostTypo,
+            chrome.sessionAlmostTypo,
             form,
             chrome,
             model.speakFormOnTap(form, state.answerLanguage),

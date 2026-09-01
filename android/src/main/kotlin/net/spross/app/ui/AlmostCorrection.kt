@@ -98,7 +98,7 @@ fun AlmostCorrection(
                     .clickable(onClick = pronounce)
                     .semantics(mergeDescendants = true) {
                         role = Role.Button
-                        contentDescription = chrome.pronounce
+                        contentDescription = chrome.a11yActionPronounce
                     },
                 contentAlignment = Alignment.Center,
             ) {

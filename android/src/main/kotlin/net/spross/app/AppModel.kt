@@ -252,7 +252,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * and produce's blank reveal) read it.
      */
     val gradeCaption: String
-        get() = if (coachActive) chrome.coachGrade else chrome.ratingQuestion
+        get() = if (coachActive) chrome.sessionCoachGrade else chrome.sessionRatingQuestion
     var sessionUi by mutableStateOf<SessionUi?>(null)
         private set
     var chrome by mutableStateOf(Chrome.forSource("en"))

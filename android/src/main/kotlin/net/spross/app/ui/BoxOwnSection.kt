@@ -76,13 +76,13 @@ internal fun BoxOwnSection(model: AppModel, onWriteOwn: (OwnWordDraft) -> Unit) 
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
-                chrome.ownContentTitle,
+                chrome.boxOwnTitle,
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.weight(1f),
             )
             TextButton(
                 onClick = { onWriteOwn(OwnWordDraft()) },
-                modifier = Modifier.semantics { contentDescription = chrome.ownWordAddAction },
+                modifier = Modifier.semantics { contentDescription = chrome.boxOwnWordAddAction },
             ) { Icon(SprossIcons.Plus, contentDescription = null) }
         }
         // An empty panel is furniture: with nothing written and nothing filed, the header
@@ -110,7 +110,7 @@ private fun OwnContentPanel(
         verticalArrangement = Arrangement.spacedBy(DlSpace.m),
     ) {
         if (words.isNotEmpty()) {
-            BlockLabel(chrome.ownWordsTitle)
+            BlockLabel(chrome.boxOwnShelf)
             words.forEach { word ->
                 // A word written in both languages IS a card, and reads as one — badge,
                 // 💤, 🚩 and menu. One written in a single language joins nothing, so it
@@ -125,17 +125,17 @@ private fun OwnContentPanel(
             HorizontalDivider(color = Dl.colors.separator)
         }
         if (reported.isNotEmpty()) {
-            BlockLabel(chrome.ownContentReported)
+            BlockLabel(chrome.boxOwnReported)
             reported.forEach { card -> ReportedRow(model, card) }
             HorizontalDivider(color = Dl.colors.separator)
         }
         if (actions) {
             Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
-                ScopedAction(model, chrome.feedbackCopy) { onlyNew ->
-                    context.copyToClipboard(chrome.ownContentTitle, model.reportText(onlyNew))
+                ScopedAction(model, chrome.reportExportCopy) { onlyNew ->
+                    context.copyToClipboard(chrome.boxOwnTitle, model.reportText(onlyNew))
                     model.markExported()
                 }
-                ScopedAction(model, chrome.feedbackSend) { onlyNew ->
+                ScopedAction(model, chrome.reportExportSend) { onlyNew ->
                     val body = model.reportMailBody(onlyNew) ?: return@ScopedAction
                     context.openFeedbackMail(Feedback.MAIL_SUBJECT, body)
                     model.markExported()
@@ -174,7 +174,7 @@ private fun SuggestionRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDr
             .sizeIn(minHeight = 48.dp)
             .background(MaterialTheme.colorScheme.surfaceVariant, MaterialTheme.shapes.small)
             .combinedClickable(
-                onLongClickLabel = chrome.ownWordEdit,
+                onLongClickLabel = chrome.boxOwnWordEdit,
                 onLongClick = { menuOpen = true },
                 onClick = {},
             )
@@ -190,16 +190,16 @@ private fun SuggestionRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDr
             modifier = Modifier.weight(1f),
         )
         Text(
-            chrome.feedbackNeedsTranslation,
+            chrome.boxOwnWordNeedsTranslation,
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         DropdownMenu(expanded = menuOpen, onDismissRequest = { menuOpen = false }) {
-            MenuAction(chrome.ownWordEdit) {
+            MenuAction(chrome.boxOwnWordEdit) {
                 menuOpen = false
                 onWriteOwn(OwnWordDraft.of(word, stamp.source, stamp.target))
             }
-            MenuAction(chrome.ownWordRemove, destructive = true) {
+            MenuAction(chrome.boxOwnWordRemove, destructive = true) {
                 menuOpen = false
                 model.removeOwnWord(word.id)
             }
@@ -231,7 +231,7 @@ private fun ReportedRow(model: AppModel, card: Card) {
         verticalArrangement = Arrangement.spacedBy(DlSpace.xs),
     ) {
         Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
-            Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.reported })
+            Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.reportReported })
             // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
             Text(
                 "${card.target.text} → ${card.source.text}",
@@ -268,12 +268,12 @@ private fun ScopedAction(model: AppModel, label: String, run: (onlyNew: Boolean)
         TextButton(onClick = { open = true }) { Text(label) }
         DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
             DropdownMenuItem(
-                text = { Text(chrome.feedbackScopeNew) },
+                text = { Text(chrome.reportExportScopeNew) },
                 enabled = model.hasFeedback(onlyNew = true),
                 onClick = { open = false; run(true) },
             )
             DropdownMenuItem(
-                text = { Text(chrome.feedbackScopeAll) },
+                text = { Text(chrome.reportExportScopeAll) },
                 onClick = { open = false; run(false) },
             )
         }

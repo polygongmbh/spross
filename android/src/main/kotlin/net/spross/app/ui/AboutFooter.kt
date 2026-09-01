@@ -64,9 +64,9 @@ fun AboutFooter(model: AppModel) {
             FooterDoor(
                 SprossIcons.Envelope,
                 Legal.CONTACT_ADDRESS,
-                spoken = "${model.chrome.feedbackMail} · ${Legal.CONTACT_ADDRESS}",
+                spoken = "${model.chrome.settingsFeedback} · ${Legal.CONTACT_ADDRESS}",
             ) { context.openFeedbackMail(version) }
-            FooterDoor(SprossIcons.Info, model.chrome.aboutButton) { model.openAbout() }
+            FooterDoor(SprossIcons.Info, model.chrome.settingsAbout) { model.openAbout() }
         }
         UpdateLine(model.chrome, version)
     }
@@ -131,7 +131,7 @@ private fun UpdateLine(chrome: Chrome, version: String) {
         // why: the number alone says nothing about where it leads, and a screen reader has
         // no accent to go on — so the door is NAMED here, for the one reader that cannot
         // see it is one.
-        modifier = Modifier.semantics { contentDescription = "$version · ${chrome.updateButton}" },
+        modifier = Modifier.semantics { contentDescription = "$version · ${chrome.settingsUpdateButton}" },
     ) {
         Text(version, style = MaterialTheme.typography.bodySmall)
     }
@@ -144,19 +144,19 @@ private fun UpdateOffer(chrome: Chrome, onDismiss: () -> Unit) {
     val uris = LocalUriHandler.current
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(chrome.updateOfferTitle) },
-        text = { Text(chrome.updateOfferBody) },
+        title = { Text(chrome.settingsUpdateTitle) },
+        text = { Text(chrome.settingsUpdateOffer) },
         confirmButton = {
             TextButton(onClick = {
                 onDismiss()
                 uris.openUri(OBTAINIUM_URL)
-            }) { Text(chrome.updateViaObtainium) }
+            }) { Text(chrome.settingsUpdateObtainium) }
         },
         dismissButton = {
             TextButton(onClick = {
                 onDismiss()
                 uris.openUri(RELEASES_URL)
-            }) { Text(chrome.updateDownload) }
+            }) { Text(chrome.settingsUpdateDownload) }
         },
     )
 }

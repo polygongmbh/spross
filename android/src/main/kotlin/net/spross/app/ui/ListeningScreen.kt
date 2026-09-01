@@ -123,7 +123,7 @@ fun ListeningScreen(model: AppModel) {
 private fun BackFromRun(chrome: Chrome, onClose: () -> Unit) {
     IconButton(
         onClick = onClose,
-        modifier = Modifier.semantics(mergeDescendants = true) { contentDescription = chrome.close },
+        modifier = Modifier.semantics(mergeDescendants = true) { contentDescription = chrome.commonClose },
     ) {
         Icon(SprossIcons.ArrowLeft, contentDescription = null, tint = Dl.colors.textSecondary)
     }

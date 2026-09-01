@@ -118,10 +118,10 @@ fun OnboardingScreen(model: AppModel) {
     ) { current ->
         when (current) {
             Page.Languages -> OnboardingStoryPage {
-                OnboardingHero("👋", chrome.chooseTitle)
+                OnboardingHero("👋", chrome.onboardingWelcome)
 
                 PickerSection(
-                    heading = chrome.sourceQuestion,
+                    heading = chrome.onboardingKnownQuestion,
                     open = pickingSource,
                     options = catalog.coveredSources(),
                     selected = source,
@@ -140,7 +140,7 @@ fun OnboardingScreen(model: AppModel) {
                 }
 
                 PickerSection(
-                    heading = chrome.targetQuestion,
+                    heading = chrome.onboardingLearningQuestion,
                     open = !pickingSource,
                     options = choices,
                     selected = target,
@@ -154,7 +154,7 @@ fun OnboardingScreen(model: AppModel) {
 
                 NameSection(chrome, name) { name = it }
 
-                OnboardingPrimary(chrome.next, enabled = target != null) {
+                OnboardingPrimary(chrome.commonNext, enabled = target != null) {
                     if (target != null) page = Page.Why
                 }
             }
@@ -193,12 +193,12 @@ fun OnboardingScreen(model: AppModel) {
 @Composable
 private fun NameSection(chrome: Chrome, name: String, onName: (String) -> Unit) {
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
-        Text(chrome.learnerNameQuestion, style = MaterialTheme.typography.titleSmall)
+        Text(chrome.onboardingNameQuestion, style = MaterialTheme.typography.titleSmall)
         OutlinedTextField(
             value = name,
             onValueChange = onName,
             singleLine = true,
-            placeholder = { Text(chrome.learnerNamePlaceholder) },
+            placeholder = { Text(chrome.settingsNamePlaceholder) },
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Words,
                 autoCorrectEnabled = false,
@@ -245,7 +245,7 @@ private fun PickerSection(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth().sizeIn(minHeight = 48.dp)
                     .clickable(onClick = onOpen)
-                    .semantics { stateDescription = chrome.stateCollapsed },
+                    .semantics { stateDescription = chrome.a11yStateCollapsed },
             ) {
                 Text(
                     selected?.let(label).orEmpty(),

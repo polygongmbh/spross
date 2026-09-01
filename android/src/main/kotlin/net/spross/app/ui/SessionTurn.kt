@@ -109,13 +109,13 @@ fun AnswerField(
             .focusRequester(focus)
             .semantics {
                 when (feedback) {
-                    TurnFeedback.Correct -> stateDescription = chrome.answerCorrect
+                    TurnFeedback.Correct -> stateDescription = chrome.a11yVerdictCorrect
                     // why: the amber edge is the whole of what tells a near miss from a
                     // clean answer, and a color says nothing to TalkBack (WCAG 1.4.1).
-                    is TurnFeedback.Almost -> stateDescription = chrome.answerAlmost
+                    is TurnFeedback.Almost -> stateDescription = chrome.a11yVerdictAlmost
                     // why: a reveal leaves the field its amber edge and nothing else — the
                     // one state that has to SAY it was never answered.
-                    TurnFeedback.Revealed -> stateDescription = chrome.notAnswered
+                    TurnFeedback.Revealed -> stateDescription = chrome.a11yVerdictNotAnswered
                     else -> {}
                 }
             },
@@ -152,7 +152,7 @@ fun VerdictButtons(
     chrome: Chrome,
     flow: TurnFlow,
     modifier: Modifier = Modifier,
-    caption: String = chrome.ratingQuestion,
+    caption: String = chrome.sessionRatingQuestion,
 ) {
     val palette = Dl.colors
     Column(
@@ -160,13 +160,13 @@ fun VerdictButtons(
         verticalArrangement = Arrangement.spacedBy(DlSpace.s),
     ) {
         Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.s)) {
-            VerdictTile(SprossIcons.Check, chrome.good, palette.success, Modifier.weight(1f)) {
+            VerdictTile(SprossIcons.Check, chrome.sessionRatingGood, palette.success, Modifier.weight(1f)) {
                 flow.selfGrade(SelfGrading.Verdict.Knew)
             }
-            VerdictTile(SprossIcons.Dot, chrome.hard, palette.amber, Modifier.weight(1f)) {
+            VerdictTile(SprossIcons.Dot, chrome.sessionRatingHard, palette.amber, Modifier.weight(1f)) {
                 flow.selfGrade(SelfGrading.Verdict.Tough)
             }
-            VerdictTile(SprossIcons.Close, chrome.unknown, palette.wrong, Modifier.weight(1f)) {
+            VerdictTile(SprossIcons.Close, chrome.sessionRatingUnknown, palette.wrong, Modifier.weight(1f)) {
                 flow.selfGrade(SelfGrading.Verdict.Unknown)
             }
         }
@@ -245,17 +245,17 @@ fun WriteOutStep(model: AppModel, flow: TurnFlow, step: CopyStep, targetName: St
         AnswerField(
             value = flow.copyInput,
             onValueChange = flow::writeCopy,
-            placeholder = chrome.copyPrompt.format(targetName),
+            placeholder = chrome.sessionCopyPlaceholder.format(targetName),
             feedback = if (step.written) TurnFeedback.Correct else TurnFeedback.Neutral,
             chrome = chrome,
             onDone = { flow.submitCopy() },
         )
         // why: the field opened by itself after a miss — the first round says what it is
         // FOR, or copying a word off the card reads as busywork.
-        if (model.coachActive) PauseLine(chrome.coachWrite)
+        if (model.coachActive) PauseLine(chrome.sessionCoachWrite)
         if (step.missed) {
             Text(
-                chrome.copyMismatch,
+                chrome.sessionCopyMismatch,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
@@ -268,7 +268,7 @@ fun WriteOutStep(model: AppModel, flow: TurnFlow, step: CopyStep, targetName: St
             onClick = { flow.skipCopy() },
             modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
         ) {
-            Text(chrome.skipStep, style = MaterialTheme.typography.bodyMedium)
+            Text(chrome.sessionSkip, style = MaterialTheme.typography.bodyMedium)
         }
     }
 }
@@ -281,7 +281,7 @@ fun ConfirmButton(chrome: Chrome, onClick: () -> Unit) {
         modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
         shape = MaterialTheme.shapes.small,
     ) {
-        Text(chrome.next)
+        Text(chrome.commonNext)
     }
 }
 

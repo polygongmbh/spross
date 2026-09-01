@@ -34,14 +34,14 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
     val chrome = model.chrome
     val parts = completionTallyParts(ui.introduced, ui.strengthened, ui.reviewed)
     val tally = if (parts.isEmpty()) {
-        chrome.roundAllDone
+        chrome.sessionDoneTallyAllDone
     } else {
         parts.joinToString(" · ") {
             when (it.kind) {
                 TallyPartKind.Introduced ->
-                    if (parts.size == 1) chrome.roundNewOnly.format(it.count) else chrome.roundNew.format(it.count)
-                TallyPartKind.Consolidated -> chrome.roundConsolidated.format(it.count)
-                TallyPartKind.Reviews -> chrome.roundReviewed.format(it.count)
+                    if (parts.size == 1) chrome.sessionDoneTallyNewOnly.format(it.count) else chrome.sessionDoneTallyNew.format(it.count)
+                TallyPartKind.Consolidated -> chrome.sessionDoneTallyConsolidated.format(it.count)
+                TallyPartKind.Reviews -> chrome.sessionDoneTallyReviewed.format(it.count)
             }
         }
     }
@@ -52,7 +52,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
     ) {
         Text("🎉", fontSize = 64.sp)
         Spacer(Modifier.height(16.dp))
-        Text(chrome.sessionDone, style = MaterialTheme.typography.headlineMedium)
+        Text(chrome.sessionDoneTitle, style = MaterialTheme.typography.headlineMedium)
         Spacer(Modifier.height(8.dp))
         Text(
             tally,
@@ -64,7 +64,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
             // why: the day unit declines with the count (1 Tag / 2 Tage) — the same
             // dayOne/dayMany pair the Home pill wears, so the two can never disagree;
             // no "Serie:" prefix, matching the iOS summary's plain streak pill.
-            val unit = if (ui.streakDays == 1) chrome.dayOne else chrome.dayMany
+            val unit = if (ui.streakDays == 1) chrome.commonDayOne else chrome.commonDayOther
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
@@ -75,7 +75,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
                 Text("${ui.streakDays} $unit", style = MaterialTheme.typography.titleMedium)
             }
             if (ui.streakIsRecord) {
-                Text(chrome.streakRecord, style = MaterialTheme.typography.titleMedium,
+                Text(chrome.sessionDoneStreakRecord, style = MaterialTheme.typography.titleMedium,
                     color = Dl.colors.accent)
             }
         }
@@ -84,7 +84,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
             // claim — a screen that celebrates and is contradicted two lines down
             // teaches the learner not to believe it.
             Spacer(Modifier.height(16.dp))
-            Text(chrome.restHint, style = MaterialTheme.typography.bodyMedium,
+            Text(chrome.sessionDoneRestHint, style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         Spacer(Modifier.height(32.dp))
@@ -96,7 +96,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
                 modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) {
-                Text(chrome.keepPracticing)
+                Text(chrome.sessionDoneKeepPracticing)
             }
             Spacer(Modifier.height(8.dp))
         }
@@ -105,7 +105,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
             modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
             shape = MaterialTheme.shapes.small,
         ) {
-            Text(chrome.finish)
+            Text(chrome.commonDone)
         }
     }
 }

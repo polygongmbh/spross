@@ -100,11 +100,12 @@ Strict dependency direction: App → SprossKern, never the reverse.
   known and learning over source and target, rung over level, pack over enqueue — and no
   key is also the stem of a family that means something else.
 - The String Catalog is the ONE home for that copy, on both phones: Android's tables are
-  generated from it (`scripts/chrome.py`, keyed by its `MAPPING`), and a pre-commit check
-  refuses a catalog edit that leaves them behind. `MAPPING` is hand-written and names alone:
-  a field diverges from its key's wording where the Kotlin call site reads better for it,
-  and a counted key's form follows the field's own name — `<field>One` takes the `one` form,
-  any other name the general `other` one.
+  generated from it (`scripts/chrome.py`), and a pre-commit check
+  refuses a catalog edit that leaves them behind. A field's NAME is its key, camelCased
+  (`box.card.due` → `boxCardDue`), so the binding is derived rather than tabulated and a
+  field cannot come to name a key that says something else; only the few fields reading
+  SEVERAL keys are written out, in `FAMILIES`. A counted key's form follows the field's
+  own name — `<field>One` takes the `one` form, the bare name the general `other` one.
   Which keys Android does not read is declared beside it and checked against the whole
   catalog: `IOS_ONLY` for what Android has no use for, `ANDROID_TODO` for what it still owes.
   What a string MEANS is its catalog entry's `comment`, where the other phone and whoever

@@ -76,7 +76,7 @@ fun TrainerSessionScreen(model: AppModel, mode: TrainerMode) {
 
     // What the result tile says was drilled: a run that asks one thing names it, and one
     // that interleaves several is the Werkstatt itself.
-    val title = mode.variants.singleOrNull()?.let { chrome.name(it) } ?: chrome.trainingTitle
+    val title = mode.variants.singleOrNull()?.let { chrome.name(it) } ?: chrome.trainerHubTitle
 
     // why: from the corner or from "Fertig", the close is the same one — kern books what
     // is pending, says what to store, and the page that started the run wears the figures.
@@ -167,9 +167,9 @@ private fun rungText(state: TrainerRunState, chrome: Chrome): String? {
     // why: the digits wording is the numbers drill's own and already wears 🔢 — putting
     // the variant's face in front would double it.
     if (state.currentVariant == DrillVariant.Numbers) {
-        return countLine(chrome.digitsOne, chrome.digits, rung)
+        return countLine(chrome.numbersRungOne, chrome.numbersRung, rung)
     }
-    val level = chrome.level.format(rung)
+    val level = chrome.trainerRung.format(rung)
     if (!state.severalVariants) return level
     return "${chrome.badge(state.currentVariant)} $level"
 }

@@ -95,7 +95,7 @@ fun NumbersOverviewScreen(model: AppModel) {
     }
 
     OverviewScaffold(
-        title = chrome.numbersPage.format(model.languageName(language)),
+        title = chrome.numbersTitle.format(model.languageName(language)),
         chrome = chrome,
         scroll = scroll,
         startEnabled = picked.isNotEmpty(),
@@ -104,7 +104,7 @@ fun NumbersOverviewScreen(model: AppModel) {
     ) {
         result?.let { DrillResultTile(it, model.werkstatt.resultTitle, chrome) }
 
-        OverviewHeading(chrome.overviewPractice)
+        OverviewHeading(chrome.trainerOverviewPractice)
         Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
             for (variant in offered) {
                 VariantRow(variant, chrome, ladder, combining, variant in picked) {
@@ -113,7 +113,7 @@ fun NumbersOverviewScreen(model: AppModel) {
                         .map { it.name }
                 }
             }
-            if (!combining) OverviewNote(chrome.combineLocked)
+            if (!combining) OverviewNote(chrome.numbersCombineLocked)
         }
         OverviewPanel {
             for (modifier in DrillModifier.entries) {

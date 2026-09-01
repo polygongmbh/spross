@@ -46,7 +46,7 @@ fun AboutScreen(model: AppModel) {
     Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
-                chrome.aboutButton,
+                chrome.settingsAbout,
                 style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier.weight(1f),
             )
@@ -158,7 +158,7 @@ private fun CreditFooter(chrome: Chrome) {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Text(
-            chrome.creditsCommons,
+            chrome.creditsCommonsNote,
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )

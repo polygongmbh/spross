@@ -89,7 +89,7 @@ fun LetterDrillScreen(model: AppModel) {
     // figures. The letter drill books no rung and keeps no record, so it stores nothing.
     val leave = {
         val closed = flow.close()
-        model.finishDrill(Screen.Letters, closed.summary, chrome.trainerLetters)
+        model.finishDrill(Screen.Letters, closed.summary, chrome.trainerSkillLetters)
     }
     BackHandler { leave() }
     // Nothing left to ask: hand the run back, never repeat a question.
@@ -176,14 +176,14 @@ private fun HearPrompt(
 ) {
     val language = model.languageName(task.language)
     val question = when {
-        task.stage == LetterStage.Dictation -> chrome.lettersDictation
-        task.gapText == null -> chrome.lettersHear
-        else -> chrome.lettersSpell
+        task.stage == LetterStage.Dictation -> chrome.lettersAskDictation
+        task.gapText == null -> chrome.lettersAskHear
+        else -> chrome.lettersAskSpell
     }
     val replay = model.letterReplay(task)
     CardFace {
         Text(
-            "$question · ${chrome.promptInLanguage.format(language)}",
+            "$question · ${chrome.lettersPromptInLanguage.format(language)}",
             style = MaterialTheme.typography.bodySmall,
             color = Dl.colors.textSecondary,
             textAlign = TextAlign.Center,
@@ -231,7 +231,7 @@ private fun ReplayButton(chrome: Chrome, replay: (() -> Unit)?, focus: FocusRequ
             // TalkBack would read the picture after the button it belongs to.
             .semantics(mergeDescendants = true) {
                 role = Role.Button
-                contentDescription = chrome.replayPrompt
+                contentDescription = chrome.a11yActionReplayPrompt
             },
         contentAlignment = Alignment.Center,
     ) {
@@ -254,7 +254,7 @@ private fun UnmuteRow(model: AppModel, task: LetterDrillTask, chrome: Chrome) {
         verticalArrangement = Arrangement.spacedBy(DlSpace.s),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(chrome.audioOff, style = MaterialTheme.typography.bodyMedium, color = Dl.colors.textSecondary)
+        Text(chrome.lettersMutedTitle, style = MaterialTheme.typography.bodyMedium, color = Dl.colors.textSecondary)
         OutlinedButton(
             onClick = {
                 model.pronouncer.muted = false
@@ -263,7 +263,7 @@ private fun UnmuteRow(model: AppModel, task: LetterDrillTask, chrome: Chrome) {
             modifier = Modifier.heightIn(min = 48.dp).pressSpring(),
             shape = MaterialTheme.shapes.small,
         ) {
-            Text(chrome.enableSound)
+            Text(chrome.lettersMutedEnable)
         }
     }
 }

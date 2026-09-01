@@ -25,16 +25,16 @@ object CardDisplay {
     fun pluralLine(realization: Realization, chrome: Chrome): String? =
         when (val plural = pluralForm(realization)) {
             null -> null
-            PluralForm.SameAsSingular -> chrome.pluralEquals
-            PluralForm.PluralOnly -> chrome.pluralOnly
-            is PluralForm.Form -> chrome.pluralForm.format(plural.text)
+            PluralForm.SameAsSingular -> chrome.sessionGrammarPluralEquals
+            PluralForm.PluralOnly -> chrome.sessionGrammarPluralOnly
+            is PluralForm.Form -> chrome.sessionGrammarPlural.format(plural.text)
         }
 
     /** "auch: …" — the word's family beyond every form already standing on screen. */
     fun alsoLine(realization: Realization, chrome: Chrome, shown: Collection<String>): String? =
         alternates(realization, shown.toList())
             .takeIf { it.isNotEmpty() }
-            ?.let { chrome.also.format(it.joinToString(" / ")) }
+            ?.let { chrome.sessionGrammarAlso.format(it.joinToString(" / ")) }
 
     fun alsoLine(realization: Realization, chrome: Chrome, shown: String): String? =
         alsoLine(realization, chrome, listOf(shown))

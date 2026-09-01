@@ -78,7 +78,7 @@ class HomeStandingTest {
     fun aRoundThatNamesNothingSaysSoInOnePhrase() {
         val offer = SessionOffer(SessionOfferKind.Nothing, reviews = 0, dueHeldBack = 0, ahead = 0, fresh = 0, shortRound = 0)
 
-        assertEquals(chrome.sessionSomeCards, offerSummary(chrome, offer))
+        assertEquals(chrome.homeTallySomeCards, offerSummary(chrome, offer))
     }
 
     @Test
@@ -131,10 +131,10 @@ class HomeStandingTest {
 
     @Test
     fun aPackOutranksTheDueCountInWhatTomorrowIsToldToHold() {
-        assertEquals(chrome.tomorrowPacked, tomorrowText(chrome, TomorrowNote.Packed, due = 9))
-        assertEquals(chrome.tomorrowFresh, tomorrowText(chrome, TomorrowNote.Fresh, due = 0))
+        assertEquals(chrome.homeDonePacked, tomorrowText(chrome, TomorrowNote.Packed, due = 9))
+        assertEquals(chrome.homeDoneTomorrowFresh, tomorrowText(chrome, TomorrowNote.Fresh, due = 0))
         assertEquals(
-            chrome.tomorrowDue.format(9),
+            chrome.homeDoneTomorrowDue.format(9),
             tomorrowText(chrome, TomorrowNote.Due, due = 9),
         )
     }

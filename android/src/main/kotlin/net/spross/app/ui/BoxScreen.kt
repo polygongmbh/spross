@@ -254,7 +254,7 @@ private fun BoxTopBar(chrome: Chrome, onSearch: (() -> Unit)?, onClose: () -> Un
         onSearch?.let {
             TextButton(
                 onClick = it,
-                modifier = Modifier.semantics { contentDescription = chrome.search },
+                modifier = Modifier.semantics { contentDescription = chrome.boxSearchButton },
             ) { Text("🔍") }
         }
         TextButton(onClick = onClose) { Icon(SprossIcons.Close, contentDescription = null) }

@@ -135,12 +135,12 @@ fun PrincipleBlock(title: String, body: String) {
 @Composable
 fun PrinciplesPage(chrome: Chrome, onNext: () -> Unit, onBack: () -> Unit) {
     OnboardingStoryPage {
-        OnboardingHero("🌱", chrome.whyTitle)
-        PrincipleBlock(chrome.whyBreadthTitle, chrome.whyBreadthBody)
-        PrincipleBlock(chrome.whyCompanionTitle, chrome.whyCompanionBody)
-        PrincipleBlock(chrome.whyGrammarTitle, chrome.whyGrammarBody)
-        OnboardingPrimary(chrome.next, onClick = onNext)
-        OnboardingBack(chrome.back, onBack)
+        OnboardingHero("🌱", chrome.onboardingWhyTitle)
+        PrincipleBlock(chrome.onboardingWhyBreadthTitle, chrome.onboardingWhyBreadthBody)
+        PrincipleBlock(chrome.onboardingWhyCompanionTitle, chrome.onboardingWhyCompanionBody)
+        PrincipleBlock(chrome.onboardingWhyGrammarTitle, chrome.onboardingWhyGrammarBody)
+        OnboardingPrimary(chrome.commonNext, onClick = onNext)
+        OnboardingBack(chrome.commonBack, onBack)
     }
 }
 
@@ -155,13 +155,13 @@ fun PrinciplesPage(chrome: Chrome, onNext: () -> Unit, onBack: () -> Unit) {
 @Composable
 fun FirstRoundPage(chrome: Chrome, busy: Boolean, onStart: () -> Unit, onBack: () -> Unit) {
     OnboardingStoryPage {
-        OnboardingHero("🌿", chrome.firstRoundTitle)
+        OnboardingHero("🌿", chrome.onboardingFirstRoundTitle)
         Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
-            Text(chrome.firstRoundRecognize, style = MaterialTheme.typography.bodyLarge)
-            Text(chrome.firstRoundGrade, style = MaterialTheme.typography.bodyLarge)
-            Text(chrome.firstRoundWrite, style = MaterialTheme.typography.bodyLarge)
+            Text(chrome.onboardingFirstRoundRecognize, style = MaterialTheme.typography.bodyLarge)
+            Text(chrome.onboardingFirstRoundGrade, style = MaterialTheme.typography.bodyLarge)
+            Text(chrome.onboardingFirstRoundWrite, style = MaterialTheme.typography.bodyLarge)
         }
-        OnboardingPrimary(chrome.letsGo, busy = busy, onClick = onStart)
-        OnboardingBack(chrome.back, onBack)
+        OnboardingPrimary(chrome.onboardingStart, busy = busy, onClick = onStart)
+        OnboardingBack(chrome.commonBack, onBack)
     }
 }

@@ -95,7 +95,7 @@ private fun CloseSessionButton(model: AppModel) {
     Box(
         modifier = Modifier
             .chromeDisc()
-            .semantics(mergeDescendants = true) { contentDescription = chrome.finish }
+            .semantics(mergeDescendants = true) { contentDescription = chrome.commonDone }
             .clickable(role = Role.Button) { model.finishSession() },
         contentAlignment = Alignment.Center,
     ) {
@@ -136,8 +136,8 @@ fun ReadAloudSwitch(model: AppModel) {
             // why: merged, or the glyph inside would be a node of its own and TalkBack
             // would read the picture of a loudspeaker after the switch it belongs to.
             .semantics(mergeDescendants = true) {
-                contentDescription = chrome.readAloud
-                stateDescription = if (muted) chrome.stateOff else chrome.stateOn
+                contentDescription = chrome.a11yActionReadAloud
+                stateDescription = if (muted) chrome.a11yStateOff else chrome.a11yStateOn
             },
         contentAlignment = Alignment.Center,
     ) {
@@ -285,7 +285,7 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
             modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
             shape = MaterialTheme.shapes.small,
         ) {
-            Text(chrome.reveal)
+            Text(chrome.sessionReveal)
         }
         return
     }

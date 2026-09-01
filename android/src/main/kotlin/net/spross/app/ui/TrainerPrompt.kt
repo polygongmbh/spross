@@ -71,7 +71,7 @@ fun TrainerPromptCard(model: AppModel, flow: TrainerFlow, chrome: Chrome) {
             state.otherWord?.let { other ->
                 // why: same line as the review session's — both explain what became
                 // of the answer, so they read alike.
-                PauseLine(chrome.otherWordNote.format(other.word, other.meanings.joinToString(", ")))
+                PauseLine(chrome.sessionOtherWord.format(other.word, other.meanings.joinToString(", ")))
             }
             return@CardFace
         }
@@ -79,7 +79,7 @@ fun TrainerPromptCard(model: AppModel, flow: TrainerFlow, chrome: Chrome) {
         // scaffolding for a prompt still unanswered, and a fact about THIS number.
         state.placeValueHint?.let {
             Text(
-                chrome.newPlace.format(it),
+                chrome.numbersNewPlace.format(it),
                 style = MaterialTheme.typography.bodySmall,
                 color = Dl.colors.accent,
                 modifier = Modifier
@@ -105,9 +105,9 @@ fun TrainerControls(
 ) {
     val state = flow.state
     val placeholder = if (state.currentReversed) {
-        chrome.answerDigits
+        chrome.numbersAnswerPlaceholder
     } else {
-        chrome.answerPlaceholder.format(model.languageName(state.mode.language))
+        chrome.sessionAnswerPlaceholder.format(model.languageName(state.mode.language))
     }
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
         DrillAnswerField(
@@ -126,7 +126,7 @@ fun TrainerControls(
                 modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
                 shape = MaterialTheme.shapes.small,
             ) {
-                Text(if (flow.input.isBlank()) chrome.reveal else chrome.check)
+                Text(if (flow.input.isBlank()) chrome.sessionReveal else chrome.commonCheck)
             }
             // why: nothing is drawn for a clean answer — it already stands in the learner's
             // own text with the field's checkmark, and the card is on its way out.
@@ -142,7 +142,7 @@ fun TrainerControls(
         if (state.offersLookUp) {
             TextButton(onClick = { flow.lookUp() }, modifier = Modifier.fillMaxWidth()) {
                 Text(
-                    "? ${chrome.lookUp}",
+                    "? ${chrome.numbersLookup}",
                     style = MaterialTheme.typography.bodySmall,
                     color = Dl.colors.textSecondary,
                 )
@@ -156,7 +156,7 @@ fun TrainerControls(
 private fun AlmostLine(model: AppModel, flow: TrainerFlow, form: String, chrome: Chrome) {
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
         AlmostCorrection(
-            chrome.almostTypo,
+            chrome.sessionAlmostTypo,
             form,
             chrome,
             model.speakFormOnTap(form, flow.state.mode.language),

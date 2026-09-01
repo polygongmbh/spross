@@ -18,7 +18,7 @@ import net.spross.kern.box.partVariant
  * The screen's own name stands in only while no profile names a language.
  */
 fun greeting(model: AppModel): String {
-    val target = model.box?.joinStamp?.target ?: return model.chrome.heuteTitle
+    val target = model.box?.joinStamp?.target ?: return model.chrome.homeTitle
     val now = System.currentTimeMillis()
     val tz = TimeZone.getDefault().id
     // The target's own hours for its own lines: four in the afternoon is still Tag in
@@ -39,8 +39,8 @@ fun greeting(model: AppModel): String {
 private fun greetingLines(model: AppModel, targetPart: DayPart, chromePart: DayPart, target: String): List<String> {
     val chrome = model.chrome
     val address = model.learnerName ?: when (chromePart) {
-        DayPart.Morning -> chrome.greetMorningAddressee
-        DayPart.Night -> chrome.greetNightAddressee
+        DayPart.Morning -> chrome.homeGreetingMorningAddressee
+        DayPart.Night -> chrome.homeGreetingNightAddressee
         else -> null
     }
     val lines = model.catalog?.spokenLines(target, targetPart, address).orEmpty().toMutableList()

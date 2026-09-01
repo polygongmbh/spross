@@ -84,7 +84,7 @@ fun DrillCloseButton(chrome: Chrome, onClose: () -> Unit) {
             .size(48.dp)
             .clip(CircleShape)
             .background(MaterialTheme.colorScheme.surfaceVariant)
-            .semantics(mergeDescendants = true) { contentDescription = chrome.close }
+            .semantics(mergeDescendants = true) { contentDescription = chrome.commonClose }
             .clickable(role = Role.Button, onClick = onClose),
         contentAlignment = Alignment.Center,
     ) {
@@ -111,11 +111,11 @@ fun DrillStreakLine(
     val showsRecord = bestStreak > streak
     val parts = listOfNotNull(
         rung,
-        chrome.streak.format(streak),
-        if (showsRecord) chrome.record.format(bestStreak) else null,
+        chrome.trainerRunStreak.format(streak),
+        if (showsRecord) chrome.trainerRunRecord.format(bestStreak) else null,
     )
-    val spoken = chrome.streakSpoken.format(streak) +
-        if (announcesRecord && showsRecord) chrome.recordSpoken.format(bestStreak) else ""
+    val spoken = chrome.a11yCountStreakInARow.format(streak) +
+        if (announcesRecord && showsRecord) chrome.a11ySuffixRecord.format(bestStreak) else ""
     Text(
         parts.joinToString(" · "),
         style = MaterialTheme.typography.bodySmall,
@@ -138,7 +138,7 @@ fun DrillStopOffer(chrome: Chrome, onClick: () -> Unit) {
         modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
         shape = MaterialTheme.shapes.small,
     ) {
-        Text(chrome.finish)
+        Text(chrome.commonDone)
     }
 }
 
@@ -165,17 +165,17 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
             verticalArrangement = Arrangement.spacedBy(2.dp),
         ) {
             Text(
-                countLine(chrome.tasksDoneOne, chrome.tasksDone, summary.done),
+                countLine(chrome.trainerResultTasksDoneOne, chrome.trainerResultTasksDone, summary.done),
                 style = MaterialTheme.typography.titleMedium,
             )
             Text(
-                chrome.bestStreak.format(summary.bestStreak),
+                chrome.trainerResultBestStreak.format(summary.bestStreak),
                 style = MaterialTheme.typography.bodySmall,
                 color = Dl.colors.textSecondary,
             )
             if (summary.newRecord) {
                 Text(
-                    chrome.newRecord,
+                    chrome.trainerResultNewRecord,
                     style = MaterialTheme.typography.bodySmall,
                     color = Dl.colors.accent,
                 )

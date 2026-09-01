@@ -96,7 +96,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
             onValueChange = flow::type,
             // The card asked by ear owes the MEANING, so the field names the source
             // language — kern's `answerLang`, never this screen's reading of the prompt.
-            placeholder = chrome.answerPlaceholder.format(model.answerName(flow)),
+            placeholder = chrome.sessionAnswerPlaceholder.format(model.answerName(flow)),
             feedback = flow.fieldFeedback,
             chrome = chrome,
             onDone = { flow.enter() },
@@ -112,7 +112,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
                 modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) {
-                Text(if (flow.input.isBlank()) chrome.reveal else chrome.check)
+                Text(if (flow.input.isBlank()) chrome.sessionReveal else chrome.commonCheck)
             }
         }
         // why: nothing is drawn for a clean answer — it already stands in the learner's
@@ -127,7 +127,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     // and not the way through — and only while the card is still asking.
     if (heard && !flow.promptInText && flow.feedback == TurnFeedback.Neutral && !flow.selfGrading) {
         TextButton(onClick = { flow.showPromptText() }, modifier = Modifier.fillMaxWidth()) {
-            Text(chrome.cantListen, style = MaterialTheme.typography.bodyMedium)
+            Text(chrome.sessionHearCantListen, style = MaterialTheme.typography.bodyMedium)
         }
     }
 }
@@ -170,7 +170,7 @@ private fun ReplayPrompt(model: AppModel, ui: SessionUi) {
             // would read the picture after the button it belongs to.
             .semantics(mergeDescendants = true) {
                 role = Role.Button
-                contentDescription = chrome.pronounce
+                contentDescription = chrome.a11yActionPronounce
             },
         contentAlignment = Alignment.Center,
     ) {
@@ -215,8 +215,8 @@ private fun WrittenPrompt(model: AppModel, ui: SessionUi) {
 private fun AlmostHold(model: AppModel, flow: TurnFlow, hold: TurnFeedback.Almost, heard: Boolean) {
     val chrome = model.chrome
     val caption = when (hold.reason) {
-        AlmostReason.Typo -> chrome.almostTypo
-        AlmostReason.Heard -> chrome.almostHeard
+        AlmostReason.Typo -> chrome.sessionAlmostTypo
+        AlmostReason.Heard -> chrome.sessionAlmostHeard
     }
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
         AlmostCorrection(
@@ -242,7 +242,7 @@ private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
             // why: the line says what the learner DID write; the word it speaks is the
             // one they owed, the same one the card above has opened onto.
             PauseLine(
-                chrome.otherWordNote.format(other.word, other.meanings.joinToString(", ")),
+                chrome.sessionOtherWord.format(other.word, other.meanings.joinToString(", ")),
                 modifier = Modifier.pronounceOnTap(model.pronounceAction(card.target.text), chrome),
             )
         }
@@ -254,7 +254,7 @@ private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
             onClick = { flow.giveUp() },
             modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
         ) {
-            Text(chrome.skipStep, style = MaterialTheme.typography.bodyMedium)
+            Text(chrome.sessionSkip, style = MaterialTheme.typography.bodyMedium)
         }
     }
 }

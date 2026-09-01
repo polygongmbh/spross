@@ -69,7 +69,7 @@ fun OwnWordForm(
     LaunchedEffect(Unit) { if (!rewriting) learningFocus.requestFocus() }
 
     fun label(code: String): String =
-        chrome.ownWordInLanguage.format(flaggedLanguage(catalog.languages[code], code))
+        chrome.boxOwnWordInLanguage.format(flaggedLanguage(catalog.languages[code], code))
 
     Column(
         modifier = Modifier
@@ -80,11 +80,11 @@ fun OwnWordForm(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
-                if (rewriting) chrome.ownWordEdit else chrome.ownWordTitle,
+                if (rewriting) chrome.boxOwnWordEdit else chrome.boxOwnWordTitle,
                 style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier.weight(1f),
             )
-            TextButton(onClick = onCancel) { Text(chrome.cancel) }
+            TextButton(onClick = onCancel) { Text(chrome.commonCancel) }
         }
         WordField(
             label = label(stamp.source),
@@ -96,7 +96,7 @@ fun OwnWordForm(
         // them in the wrong way round, which is a retype of both otherwise.
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
             TextButton(onClick = { draft = draft.swapped() }) {
-                Text("⇅ ${chrome.ownWordSwap}", style = MaterialTheme.typography.bodySmall)
+                Text("⇅ ${chrome.boxOwnWordSwap}", style = MaterialTheme.typography.bodySmall)
             }
         }
         WordField(
@@ -107,12 +107,12 @@ fun OwnWordForm(
             modifier = Modifier.focusRequester(learningFocus),
         )
         PictureField(
-            label = chrome.ownWordPicture,
+            label = chrome.boxOwnWordPicture,
             value = draft.emoji,
             onValueChange = { draft = draft.withPicture(it) },
         )
         Text(
-            if (draft.isPair) chrome.ownWordsExplainer else chrome.ownWordSuggestion,
+            if (draft.isPair) chrome.boxOwnWordExplainer else chrome.boxOwnWordExplainerSuggestion,
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -129,6 +129,6 @@ fun OwnWordForm(
             enabled = draft.hasAnything,
             modifier = Modifier.fillMaxWidth().pressSpring(),
             shape = MaterialTheme.shapes.small,
-        ) { Text(if (rewriting) chrome.ownWordSave else chrome.ownWordAdd) }
+        ) { Text(if (rewriting) chrome.boxOwnWordSave else chrome.boxOwnWordAdd) }
     }
 }

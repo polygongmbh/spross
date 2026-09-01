@@ -227,7 +227,7 @@ class ListeningDriver(
                 resumeLabel = chrome.listenResume,
                 skipLabel = chrome.listenSkip,
                 repeatLabel = chrome.listenRepeat,
-                closeLabel = chrome.close,
+                closeLabel = chrome.commonClose,
             )
         }
     }

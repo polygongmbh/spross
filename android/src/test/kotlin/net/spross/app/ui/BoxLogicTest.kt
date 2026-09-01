@@ -32,8 +32,8 @@ class BoxLogicTest {
         assertEquals("Hier duftet es", naming.subtitle("kitchen"))
         assertEquals("🍳", naming.emoji("kitchen"))
 
-        assertEquals(chrome.ownWordsTitle, naming.title(OwnWords.AREA))
-        assertEquals(chrome.ownWordsExplainer, naming.subtitle(OwnWords.AREA))
+        assertEquals(chrome.boxOwnShelf, naming.title(OwnWords.AREA))
+        assertEquals(chrome.boxOwnWordExplainer, naming.subtitle(OwnWords.AREA))
         assertEquals(OwnWords.EMOJI, naming.emoji(OwnWords.AREA))
     }
 
@@ -50,7 +50,7 @@ class BoxLogicTest {
 
         assertEquals(listOf("kitchen", "bath", OwnWords.AREA), searchable.map { it.area })
         // Nobody types "own" looking for their own words.
-        assertEquals(listOf("Küche", "Bad", chrome.ownWordsTitle), searchable.map { it.title })
+        assertEquals(listOf("Küche", "Bad", chrome.boxOwnShelf), searchable.map { it.title })
     }
 
     @Test

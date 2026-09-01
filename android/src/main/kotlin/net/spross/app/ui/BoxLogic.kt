@@ -25,10 +25,10 @@ class AreaNaming(
 ) {
     /** An area the catalog cannot name falls back to its own key — a visible content bug, not a blank. */
     fun title(area: String): String =
-        if (area == OwnWords.AREA) chrome.ownWordsTitle else catalogTitle(area) ?: area
+        if (area == OwnWords.AREA) chrome.boxOwnShelf else catalogTitle(area) ?: area
 
     fun subtitle(area: String): String? =
-        if (area == OwnWords.AREA) chrome.ownWordsExplainer else catalogSubtitle(area)
+        if (area == OwnWords.AREA) chrome.boxOwnWordExplainer else catalogSubtitle(area)
 
     fun emoji(area: String): String =
         if (area == OwnWords.AREA) OwnWords.EMOJI else catalogEmoji(area) ?: FALLBACK_EMOJI

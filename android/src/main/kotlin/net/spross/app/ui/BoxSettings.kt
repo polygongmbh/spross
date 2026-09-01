@@ -86,7 +86,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
             ) {
                 Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.l)) {
                     LanguageMenu(
-                        title = chrome.iSpeak,
+                        title = chrome.settingsKnownTitle,
                         selected = selection.source,
                         choices = catalog.coveredSources(),
                         catalog = catalog,
@@ -97,7 +97,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                         onPick = { apply(LanguageChoices.pickSource(catalog, selection, it)) },
                     )
                     LanguageMenu(
-                        title = chrome.iLearn,
+                        title = chrome.settingsLearningTitle,
                         selected = selection.target ?: selection.source,
                         choices = targets,
                         catalog = catalog,
@@ -105,7 +105,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                         onPick = { apply(LanguageChoices.pickTarget(selection, it)) },
                     )
                 }
-                SettingHint(chrome.profileHint)
+                SettingHint(chrome.settingsProfileHint)
                 HorizontalDivider(color = Dl.colors.separator)
                 LearnerNameSetting(model)
                 HorizontalDivider(color = Dl.colors.separator)
@@ -113,16 +113,16 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                 HorizontalDivider(color = Dl.colors.separator)
                 Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
                     TextButton(onClick = { model.restartOnboarding() }) {
-                        Text(chrome.restartTutorial)
+                        Text(chrome.settingsRestartTutorialButton)
                     }
-                    SettingHint(chrome.restartTutorialHint)
+                    SettingHint(chrome.settingsRestartTutorialHint)
                 }
                 HorizontalDivider(color = Dl.colors.separator)
                 Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
                     TextButton(onClick = { confirmingReset = true }) {
-                        Text(chrome.resetButton.format(targetName), color = Dl.colors.wrong)
+                        Text(chrome.settingsResetButton.format(targetName), color = Dl.colors.wrong)
                     }
-                    SettingHint(chrome.resetHint.format(targetName))
+                    SettingHint(chrome.settingsResetHint.format(targetName))
                 }
             }
         }
@@ -134,7 +134,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
             onDismissRequest = { confirmingReset = false },
             // The question IS the title, as on iOS: the button behind it already names the
             // language, and a title repeating it over the same sentence reads twice.
-            title = { Text(chrome.resetConfirm.format(targetName)) },
+            title = { Text(chrome.settingsResetConfirm.format(targetName)) },
             confirmButton = {
                 TextButton(onClick = {
                     confirmingReset = false
@@ -142,10 +142,10 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                     // and tallies go, the join, the configuration and the learner's own
                     // words stay.
                     model.updateBox { BoxEngine.reset(it) }
-                }) { Text(chrome.reset, color = Dl.colors.wrong) }
+                }) { Text(chrome.commonReset, color = Dl.colors.wrong) }
             },
             dismissButton = {
-                TextButton(onClick = { confirmingReset = false }) { Text(chrome.cancel) }
+                TextButton(onClick = { confirmingReset = false }) { Text(chrome.commonCancel) }
             },
         )
     }
@@ -235,12 +235,12 @@ private fun LearnerNameSetting(model: AppModel) {
     // space before a second name does not vanish under the finger that typed it.
     var draft by rememberSaveable { mutableStateOf(model.learnerName.orEmpty()) }
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
-        Text(chrome.learnerNameTitle, style = MaterialTheme.typography.titleMedium)
+        Text(chrome.settingsNameTitle, style = MaterialTheme.typography.titleMedium)
         OutlinedTextField(
             value = draft,
             onValueChange = { draft = it; model.renameLearner(it) },
             singleLine = true,
-            placeholder = { Text(chrome.learnerNamePlaceholder) },
+            placeholder = { Text(chrome.settingsNamePlaceholder) },
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Words,
                 autoCorrectEnabled = false,
@@ -248,7 +248,7 @@ private fun LearnerNameSetting(model: AppModel) {
             ),
             modifier = Modifier.fillMaxWidth(),
         )
-        SettingHint(chrome.learnerNameHint)
+        SettingHint(chrome.settingsNameHint)
     }
 }
 
@@ -265,15 +265,15 @@ private fun ReadAloudSetting(model: AppModel) {
     val preference = model.pronouncer.audioPreference
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
         Text(
-            chrome.audioToggle,
+            chrome.settingsAudioTitle,
             style = MaterialTheme.typography.titleMedium,
         )
         SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
             val options = listOf(
-                chrome.audioOptionOff to net.spross.app.audio.Pronouncer.AudioPreference.OFF,
-                chrome.audioOptionRecordings to
+                chrome.settingsAudioOptionOff to net.spross.app.audio.Pronouncer.AudioPreference.OFF,
+                chrome.settingsAudioOptionRecordings to
                     net.spross.app.audio.Pronouncer.AudioPreference.RECORDINGS,
-                chrome.audioOptionTts to net.spross.app.audio.Pronouncer.AudioPreference.TTS,
+                chrome.settingsAudioOptionTts to net.spross.app.audio.Pronouncer.AudioPreference.TTS,
             )
             options.forEachIndexed { index, (label, option) ->
                 SegmentedButton(
@@ -290,10 +290,10 @@ private fun ReadAloudSetting(model: AppModel) {
         // preference where a learner might think the app has gone silent for good.
         SettingHint(
             when (preference) {
-                net.spross.app.audio.Pronouncer.AudioPreference.OFF -> chrome.audioHintOff
+                net.spross.app.audio.Pronouncer.AudioPreference.OFF -> chrome.settingsAudioHintOff
                 net.spross.app.audio.Pronouncer.AudioPreference.RECORDINGS ->
-                    chrome.audioHintRecordings
-                net.spross.app.audio.Pronouncer.AudioPreference.TTS -> chrome.audioHintTts
+                    chrome.settingsAudioHintRecordings
+                net.spross.app.audio.Pronouncer.AudioPreference.TTS -> chrome.settingsAudioHintTts
             }
         )
     }

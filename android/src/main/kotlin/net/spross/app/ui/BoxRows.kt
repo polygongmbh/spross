@@ -85,8 +85,8 @@ fun BoxCardRow(
     val interaction = remember { MutableInteractionSource() }
     val actions = remember(pronounce, remove, chrome) {
         buildList {
-            if (pronounce != null) add(CustomAccessibilityAction(chrome.pronounce) { pronounce(); true })
-            if (remove != null) add(CustomAccessibilityAction(chrome.ownWordRemove) { remove(); true })
+            if (pronounce != null) add(CustomAccessibilityAction(chrome.a11yActionPronounce) { pronounce(); true })
+            if (remove != null) add(CustomAccessibilityAction(chrome.boxOwnWordRemove) { remove(); true })
         }
     }
 
@@ -103,7 +103,7 @@ fun BoxCardRow(
                 interactionSource = interaction,
                 indication = null,
                 enabled = true,
-                onLongClickLabel = chrome.cardActions,
+                onLongClickLabel = chrome.boxCardActions,
                 onLongClick = { menuOpen = true },
                 onClick = pronounce ?: {},
             )
@@ -135,7 +135,7 @@ fun BoxCardRow(
                 if (pronounce == null) {
                     Icon(
                         SprossIcons.SpeakerOff,
-                        contentDescription = chrome.boxNoAudio,
+                        contentDescription = chrome.boxCardNoAudio,
                         tint = Dl.colors.textSecondary,
                         modifier = Modifier.size(SPEAKER_GLYPH),
                     )
@@ -151,7 +151,7 @@ fun BoxCardRow(
         // why: standing apart from the badge on purpose — a report says nothing about where
         // the word stands, and a reported word keeps whatever badge it had.
         if (model.reportedIssue(card.id) != null) {
-            Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.reported })
+            Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.reportReported })
         }
         CardStanding(model, card, standing, pack, chrome)
         BoxRowMenu(
@@ -182,18 +182,18 @@ private fun CardStanding(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),
         ) {
-            Text("💤", modifier = Modifier.semantics { contentDescription = chrome.suspended })
+            Text("💤", modifier = Modifier.semantics { contentDescription = chrome.boxCardSuspended })
             TextButton(onClick = {
                 model.updateBox { BoxEngine.setSuspended(it, card.id, false, model.now()) }
             }) {
-                Text(chrome.wake, style = MaterialTheme.typography.bodySmall)
+                Text(chrome.boxCardWake, style = MaterialTheme.typography.bodySmall)
             }
         }
 
         CardRowState.PackOffered -> pack?.let {
             TextButton(
                 onClick = it,
-                modifier = Modifier.semantics { contentDescription = chrome.packWord },
+                modifier = Modifier.semantics { contentDescription = chrome.boxCardPack },
             ) {
                 Icon(SprossIcons.PackIn, contentDescription = null)
             }
@@ -206,7 +206,7 @@ private fun CardStanding(
         is CardRowState.Packed -> if (standing.removalOffered) {
             TextButton(
                 onClick = { model.updateBox { BoxEngine.dequeue(it, card.id) } },
-                modifier = Modifier.semantics { contentDescription = chrome.unpackWord },
+                modifier = Modifier.semantics { contentDescription = chrome.boxCardUnpack },
             ) {
                 Icon(SprossIcons.PackOut, contentDescription = null, tint = Dl.colors.success)
             }
@@ -214,7 +214,7 @@ private fun CardStanding(
             // A pill, not an icon: a bare tray glyph reads as a control here too, and
             // this one has none — the shelf's own takes the whole queue out. Clay, not
             // green: green is the growth ladder's, and a queued word is not on it yet.
-            Pill(chrome.queuedWord, Dl.colors.accent)
+            Pill(chrome.boxCardQueued, Dl.colors.accent)
         }
 
         CardRowState.Plain -> Unit

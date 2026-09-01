@@ -67,7 +67,7 @@ fun OverviewScaffold(
                 modifier = Modifier.weight(1f).padding(horizontal = DlSpace.s),
             )
             TextButton(onClick = onStart, enabled = startEnabled) {
-                Text(chrome.overviewStart)
+                Text(chrome.trainerOverviewStart)
             }
         }
         Column(
@@ -90,7 +90,7 @@ fun OverviewStartButton(chrome: Chrome, enabled: Boolean, onStart: () -> Unit) {
         modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
         shape = MaterialTheme.shapes.small,
     ) {
-        Text(chrome.overviewStart, style = MaterialTheme.typography.titleMedium)
+        Text(chrome.trainerOverviewStart, style = MaterialTheme.typography.titleMedium)
     }
 }
 

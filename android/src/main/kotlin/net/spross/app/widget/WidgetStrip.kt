@@ -65,7 +65,7 @@ fun ActivityStrip(days: List<ActivityDay>, chrome: Chrome) {
             .width(BAR_WIDTH * bars.size + GUTTER * (bars.size - 1))
             .height(HEIGHT)
             .semantics {
-                contentDescription = chrome.activityDays.format(ActivityBars.activeDays(bars))
+                contentDescription = chrome.a11yCountActivity14Days.format(ActivityBars.activeDays(bars))
             },
     )
 }

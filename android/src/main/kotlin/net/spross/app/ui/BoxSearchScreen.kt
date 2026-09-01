@@ -104,7 +104,7 @@ fun BoxSearchScreen(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
-                chrome.search,
+                chrome.boxSearchButton,
                 style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier.weight(1f),
             )
@@ -114,12 +114,12 @@ fun BoxSearchScreen(
             value = query,
             onValueChange = { query = it },
             singleLine = true,
-            placeholder = { Text(chrome.searchPlaceholder) },
+            placeholder = { Text(chrome.boxSearchPlaceholder) },
             trailingIcon = {
                 if (query.isNotEmpty()) {
                     TextButton(
                         onClick = { query = "" },
-                        modifier = Modifier.semantics { contentDescription = chrome.searchClear },
+                        modifier = Modifier.semantics { contentDescription = chrome.boxSearchClear },
                     ) { Icon(SprossIcons.Close, contentDescription = null) }
                 }
             },
@@ -137,14 +137,14 @@ fun BoxSearchScreen(
         LazyColumn(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
             when {
                 found == null -> item {
-                    SearchNote(chrome.searchHint)
+                    SearchNote(chrome.boxSearchHint)
                 }
 
                 found.isEmpty -> item {
                     // A box with no answer is where the learner's own words come from:
                     // they have just proved the catalog holds none for what they need.
                     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.l)) {
-                        SearchNote(chrome.searchNothing.format(query))
+                        SearchNote(chrome.boxSearchNothing.format(query))
                         Button(
                             // why: the KNOWN side is prefilled — someone typing into a
                             // search box is far more often naming what they want to be
@@ -152,13 +152,13 @@ fun BoxSearchScreen(
                             onClick = { writing = OwnWordDraft(known = query) },
                             modifier = Modifier.pressSpring(),
                             shape = MaterialTheme.shapes.small,
-                        ) { Text(chrome.searchWriteOwn.format(query)) }
+                        ) { Text(chrome.boxSearchWriteOwn.format(query)) }
                     }
                 }
 
                 else -> {
                     if (found.areas.isNotEmpty()) {
-                        item { Heading(chrome.searchAreas) }
+                        item { Heading(chrome.boxSearchAreas) }
                         for (match in found.areas) {
                             item(key = "area:${match.area}") {
                                 AreaHit(
@@ -172,7 +172,7 @@ fun BoxSearchScreen(
                         }
                     }
                     if (found.cards.isNotEmpty()) {
-                        item { Heading(chrome.searchWords) }
+                        item { Heading(chrome.boxSearchWords) }
                         for (card in found.cards) {
                             item(key = "card:${card.id}") {
                                 BoxCardRow(
