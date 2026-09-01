@@ -156,8 +156,8 @@ MAPPING = {
     'growthOpened': 'session.done.growth.opened',
     'hard': 'session.rating.hard',
     'heuteTitle': 'home.title',
-    'iLearn': 'settings.target.title',
-    'iSpeak': 'settings.source.title',
+    'iLearn': 'settings.learning.title',
+    'iSpeak': 'settings.known.title',
     'keepPracticing': 'session.done.keepPracticing',
     'last14Days': 'progress.last14Days',
     'learnerNameHint': 'settings.name.hint',
@@ -285,7 +285,7 @@ MAPPING = {
     'settingsTitle': 'settings.title',
     'skipStep': 'session.skip',
     'sleep': 'box.card.sleep',
-    'sourceQuestion': 'onboarding.source.question',
+    'sourceQuestion': 'onboarding.known.question',
     'stageChoiceConfusable': 'letters.stage.choiceConfusable',
     'stageChoiceConfusableHint': 'letters.stage.choiceConfusable.hint',
     'stageChoiceEasy': 'letters.stage.choiceEasy',
@@ -307,7 +307,7 @@ MAPPING = {
     'streakSpoken': 'a11y.count.streakInARow %@',
     'suspended': 'box.card.suspended',
     'tapToHear': 'trainer.reference.tapToHear',
-    'targetQuestion': 'onboarding.target.question',
+    'targetQuestion': 'onboarding.learning.question',
     'tasksDone': 'trainer.result.tasksDone %lld',
     'tasksDoneOne': 'trainer.result.tasksDone %lld',
     'tomorrowDue': 'home.done.tomorrowDue %lld',
@@ -380,9 +380,8 @@ IOS_ONLY = {
     # the absence of a standing, and Years folds into the Numbers variant.
     'box.phase.new', 'trainer.variant.years',
     # The same control, named by another key on Android: box search heads with
-    # `box.search.button`,
-    # the credits door is `settings.about`, and the session ✕ reads `common.done`.
-    'a11y.action.endSession', 'box.search.title', 'settings.credits',
+    # `box.search.button`, and the session ✕ reads `common.done`.
+    'a11y.action.endSession', 'box.search.title',
 }
 # Surfaces iOS ships that Android owes. A key leaves this set by being claimed above,
 # which is what finishing the Android side looks like — and empty is what caught up looks

@@ -3972,6 +3972,39 @@
         }
       }
     },
+    "onboarding.known.question" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welche Sprache sprichst du?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Which language do you speak?"
+          }
+        }
+      },
+      "comment" : "What each picker ASKS on the first page. The box's own settings LABEL the same two lists instead (settings.known.title/settings.learning.title) — a settings sheet states, a first run asks, and the questions are the whole of what makes onboarding read as one."
+    },
+    "onboarding.learning.question" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welche Sprache lernst du?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Which language are you learning?"
+          }
+        }
+      }
+    },
     "onboarding.name.question" : {
       "localizations" : {
         "de" : {
@@ -3989,23 +4022,6 @@
       },
       "comment" : "The third question of the first page."
     },
-    "onboarding.source.question" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Welche Sprache sprichst du?"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Which language do you speak?"
-          }
-        }
-      },
-      "comment" : "What each picker ASKS on the first page. The box's own settings LABEL the same two lists instead (settings.source.title/settings.target.title) — a settings sheet states, a first run asks, and the questions are the whole of what makes onboarding read as one."
-    },
     "onboarding.start" : {
       "localizations" : {
         "de" : {
@@ -4018,22 +4034,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Let's go!"
-          }
-        }
-      }
-    },
-    "onboarding.target.question" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Welche Sprache lernst du?"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Which language are you learning?"
           }
         }
       }
@@ -5280,22 +5280,6 @@
         }
       }
     },
-    "settings.credits" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Impressum & Lizenzen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Legal & licenses"
-          }
-        }
-      }
-    },
     "settings.feedback" : {
       "localizations" : {
         "de" : {
@@ -5312,6 +5296,38 @@
         }
       },
       "comment" : "What the footer's envelope is FOR. The door itself prints the address — readable on a phone with no mail app at all, a deliberate delta from the iPhone's verb — so this is the name a screen reader gets in front of it."
+    },
+    "settings.known.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ich spreche"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I speak"
+          }
+        }
+      }
+    },
+    "settings.learning.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ich lerne"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I'm learning"
+          }
+        }
+      }
     },
     "settings.name.hint" : {
       "localizations" : {
@@ -5457,38 +5473,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shows the introduction again — your languages and progress stay."
-          }
-        }
-      }
-    },
-    "settings.source.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ich spreche"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "I speak"
-          }
-        }
-      }
-    },
-    "settings.target.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ich lerne"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "I'm learning"
           }
         }
       }

@@ -122,7 +122,7 @@ struct OnboardingView: View {
     // MARK: - Which language you already speak
 
     private var sourceSection: some View {
-        picker(question: "onboarding.source.question",
+        picker(question: "onboarding.known.question",
                open: pickingSource,
                options: sources,
                selected: source,
@@ -145,7 +145,7 @@ struct OnboardingView: View {
     }
 
     private var targetSection: some View {
-        picker(question: "onboarding.target.question",
+        picker(question: "onboarding.learning.question",
                open: !pickingSource,
                options: targetChoices,
                selected: target,

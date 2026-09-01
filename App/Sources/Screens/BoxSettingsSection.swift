@@ -81,7 +81,7 @@ struct BoxSettingsSection: View {
         Button {
             creditsPresented = true
         } label: {
-            Label("settings.credits", systemImage: "info.circle")
+            Label("credits.title", systemImage: "info.circle")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlAccent)
         }
@@ -102,9 +102,9 @@ struct BoxSettingsSection: View {
     private var profileRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
             HStack(alignment: .top, spacing: DL.Space.l) {
-                languageMenu(title: "settings.source.title",
+                languageMenu(title: "settings.known.title",
                              selection: sourceBinding, choices: sourceChoices)
-                languageMenu(title: "settings.target.title",
+                languageMenu(title: "settings.learning.title",
                              selection: targetBinding, choices: targetChoices)
             }
             Text("settings.profile.hint")
