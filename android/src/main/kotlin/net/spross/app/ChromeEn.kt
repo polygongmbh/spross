@@ -354,9 +354,9 @@ internal object ChromeEn : Chrome {
         "A few seeds to sow",
     )
     override val headlineStreak = listOf(
-        "Your streak is still waiting",
-        "One round keeps the streak going",
-        "Your flame's still hungry today",
+        "Don't let the streak go cold",
+        "One round keeps the flame alive",
+        "Still time to rekindle today",
     )
     override val homeTallySomeCards = "A few cards for you."
     override val homeOfferHeldBack = "%d more cards ready for you."

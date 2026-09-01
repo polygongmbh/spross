@@ -2562,13 +2562,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deine Serie wartet noch"
+            "value" : "Leg heute noch mal nach!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your streak is still waiting"
+            "value" : "Don't let the streak go cold"
           }
         }
       }
@@ -2578,13 +2578,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eine Runde hält die Serie am Leben"
+            "value" : "Lass dein Feuer nicht verglühen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "One round keeps the streak going"
+            "value" : "One round keeps the flame alive"
           }
         }
       }
@@ -2594,13 +2594,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deine Flamme hat heute noch Hunger"
+            "value" : "Zeit, die Glut neu zu entfachen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your flame's still hungry today"
+            "value" : "Still time to rekindle today"
           }
         }
       }
