@@ -13,8 +13,9 @@ Intake is bounded by **two** things: how many cards a sitting tests (`sessionCap
 first sights one round offers (`NEW_CARDS_PER_ROUND`). Nothing throttles on how *shaky* the
 material is, and nothing throttles on how far behind the box has fallen. Both of those throttles
 existed and were removed on 2026-08-01 — `maxUnsettled` against `unsettledLoad`, and the
-`dueSoftCap` health gate. The sections below are why; the backlog one is arithmetic rather than
-literature, so it is [its own section](#the-backlog-gate-was-arithmetic-not-evidence).
+`dueSoftCap` health gate. The sections below are why; the backlog one turns on the box's own
+arithmetic rather than literature, so it is
+[its own section](#a-standing-backlog-is-the-normal-state-and-no-gate-should-close-on-it).
 
 ## Proactive interference does not survive spaced practice
 
@@ -179,42 +180,42 @@ the threshold itself, merged into the one landed bar (`kern/README.md` §5). A b
 look good just as easily as a depth-first one can pick one that makes keeping it look good;
 neither is a finding.
 
-## The backlog gate was arithmetic, not evidence
+## A standing backlog is the normal state, and no gate should close on it
 
 The health gate shut growth off entirely once the projected post-session backlog
-(`dueCount − sessionCap`) reached `dueSoftCap`. Unlike the throttles above it aimed at a real
-failure mode — a queue the learner never works off — but it was never needed to prevent one,
-and it contradicted the mechanism sitting next to it.
+(`dueCount − sessionCap`) reached `dueSoftCap`. It aimed at a real failure mode — a queue the
+learner never works off — and it still went, but not because intake is negligible against the
+queue. It is not.
 
-**The reserve already bounds intake to a small constant.** `growthReserve` is ≤ 5 slots and does
-not scale with the queue, so a sitting introduces at most a handful of cards no matter how far
-behind the box is. At `desiredRetention` 0.8 that same sitting sends the great majority of ~25
-reviewed cards away on longer intervals, and FSRS shrinks each card's ongoing load as its
-stability grows. Cards leave the daily queue faster than five a day enter it, so growth cannot
-compound into a backlog — the ratio is structural, not a tuning question.
+**What intake really costs is the reviews it draws.** A new card is not one card of load; it is
+every review it will pull for as long as it stays in the box, so sustained intake settles at
+`intake × reviews-per-card-so-far` a day. At `desiredRetention` 0.8 a card accrues roughly four
+to five reviews in its first year, putting the ≤ 5-card reserve near 22 reviews a day against a
+`sessionCap` of 25 — close to the ceiling rather than far beneath it, and the margin narrows as a
+box ages, because that per-card count keeps climbing. The model is calibrated: at 0.9, where the
+interval is exactly `S`, it reproduces Anki's documented 20 new cards a day settling at about 200
+([deck options](https://docs.ankiweb.net/deck-options.html)).
 
-**The two mechanisms were fighting.** `growthReserve` exists precisely so a full due queue cannot
-starve growth; the health gate existed to starve growth anyway once the queue got full enough.
-Keeping both meant the box grew through a busy period and then stopped at an arbitrary
-threshold — with no bound on `dueSoftCap` derived from what a learner actually answers.
+**So a remainder left over is normal, not a debt.** A box whose intake sits near what a sitting
+can service will usually have cards over, and should — the alternative is a box that runs dry.
+It also absorbs the days a learner skips or cuts short. Chrome names what is left as cards
+ready rather than cards owed for exactly this reason.
 
-**The cost of keeping it fell on the returning learner.** Coming back after two weeks away is
-exactly when the gate shut, so the box that had been growing daily went silent at the moment the
-learner re-engaged, and stayed silent until the backlog cleared. Nothing above supports paying
-that for a backlog the arithmetic says will not run away.
+**Falling behind costs single retention points.** With FSRS-6's learned decay
+(`w[20]` = 0.1542, so `R(t) = (1 + 0.98·t/S)^−0.1542`) the tail is flat: a card a month past due
+sits near R 0.74 against a target of 0.80, and one ten stability-lengths late is still near 0.69.
+Nothing throttles on how far behind the box has fallen because there is little there to throttle.
 
-**Delay itself costs little.** The best available measurement is one practitioner's 13-year Anki
-history — 105,393 reviews that came due late
-([analysis](https://controlaltbackspace.org/assets/attachments/overduecards.html)) — where
-overdue cards were forgotten 14.8 % of the time against a 13.6 % baseline: a penalty of about
-1.8 points. n = 1 and not peer-reviewed, but it points the same way FSRS does structurally, since
-a successful review while retrievability has decayed raises stability more than an early one
-(see the section above). A backlog is an adherence problem, not a memory one, and no study links
-backlog size to dropout — that link is folklore.
+**What the gate cost fell on was the returning learner.** Coming back after two weeks away is
+exactly when it shut, so the box that had been growing daily went silent at the moment the
+learner re-engaged, and stayed silent until the backlog cleared. That is why it is gone.
 
-What remains as backlog protection is the ordering, not a brake: reviews fill the session first
-and new cards take only what the reserve holds back, so a busy box spends nearly its whole
-sitting catching up on its own.
+**The order the queue drains in is not worth optimizing.** It is contested — Anki's manual
+recommends ascending retrievability for a backlog, while FSRS's own author found descending
+better under a daily cap
+([forum](https://forums.ankiweb.net/t/improving-sort-orders/50081)) — and the flat tail above
+makes it a few points either way. `kern/README.md` §6 fixes the order for de-correlation, which
+is a reason that does not turn on retention at all.
 
 ## What the other systems do is not evidence
 
@@ -245,9 +246,8 @@ The load-bearing findings above are from accessible primary sources. A few older
 not be confirmed at source and are cited only where the direction, not the number, carries the
 argument: the exact recall percentages in Kornell (2009), and the statistics inside Tinkham
 (1993/1997), Waring (1997) and Erten & Tekin (2008), all of which are paywalled and reached via
-named secondaries. Two supporting figures are deliberately weak evidence and are labeled as
-such where they appear: the overdue-review penalty is one practitioner's own history (n = 1,
-not peer-reviewed), and Welbers et al. (2019) is a single field experiment on a study app rather
+named secondaries. One supporting figure is deliberately weak evidence and is labeled as such
+where it appears: Welbers et al. (2019) is a single field experiment on a study app rather
 than a vocabulary SRS.
 
 **The gap worth naming**: no peer-reviewed study manipulates new-card intake rate in a real

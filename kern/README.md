@@ -233,8 +233,7 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   across EVERY composed round and including packed cards, since a packed queue overloads the
   same way; the rest is not withdrawn, only deferred. **Nothing throttles on how shaky the
   material is, and nothing on how far behind the box has fallen** — neither predicts
-  retention, and a small constant reserve cannot compound a backlog the learner never works
-  off, so a box far behind still gets its round (`docs/growth-evidence.md`).
+  retention, and a box far behind still gets its round (`docs/growth-evidence.md`).
 - **Phrase unlock** reads each component's schedule **by card id** — join- and
   source-independent, so a source switch can never re-lock phrases. Components with no
   TARGET realization are excluded from the gate.
