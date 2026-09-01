@@ -1,0 +1,115 @@
+import SwiftUI
+import SprossKern
+
+/// The reading half of the dates overview: the seven weekdays and the twelve
+/// months, both sides beside each other. State lives on DatesOverview; split
+/// out purely for file size.
+///
+/// The table is `DateDrill.reference` — the same joined rows the run grades
+/// against, so it cannot claim one name and ask for another. Under a learned
+/// name stand the forms the drill also accepts and teaches: its short form,
+/// its other lexemes (de `Sonnabend`), and what it becomes inside a date where
+/// that differs (uk `березня`).
+extension DatesOverview {
+
+    @ViewBuilder
+    var referenceSection: some View {
+        if let content {
+            let groups = DateDrill.shared.reference(content: content)
+            VStack(alignment: .leading, spacing: DL.Space.l) {
+                heading("dates.reference")
+                if groups.contains(where: canBeHeard) {
+                    ReferenceTapHint()
+                }
+                ForEach(groups, id: \.kind) { group in
+                    kindGroup(group)
+                }
+            }
+        }
+    }
+
+    /// Whether the device can actually say a group's names — the page must not
+    /// offer a sound it has no voice for.
+    private func canBeHeard(_ group: DateReferenceGroup) -> Bool {
+        group.rows.contains { speak($0.target) != nil }
+    }
+
+    private func kindGroup(_ group: DateReferenceGroup) -> some View {
+        VStack(alignment: .leading, spacing: DL.Space.m) {
+            // The rung rows above already name the two pools, so the group
+            // headings reuse their words rather than authoring a second pair.
+            Text(Self.groupTitle(group.kind))
+                .font(DL.Fonts.subheadline)
+                .foregroundStyle(Color.dlTextSecondary)
+                .textCase(.uppercase)
+                .accessibilityAddTraits(.isHeader)
+            VStack(alignment: .leading, spacing: DL.Space.l) {
+                ForEach(Array(group.rows.enumerated()), id: \.offset) { _, row in
+                    nameRow(row)
+                }
+            }
+            .padding(DL.Space.l)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
+                    .fill(Color.dlSurface)
+            )
+        }
+    }
+
+    /// The reference groups only ever carry the two bare-name pools.
+    private static func groupTitle(_ kind: DateTaskKind) -> LocalizedStringKey {
+        kind == .weekday ? "dates.rung.1" : "dates.rung.2"
+    }
+
+    /// One name, twice: the known language on the left, the learned one on the
+    /// right, with the learned side's other forms under it.
+    ///
+    /// A tap says the LEARNED side only: the other column is the reader's own
+    /// language, and a reference sheet is read to hear what one cannot yet say.
+    /// The whole row is that target, the numbers table's rule — the hint under
+    /// the heading is where the page says so.
+    private func nameRow(_ row: DateReferenceRow) -> some View {
+        HStack(alignment: .top, spacing: DL.Space.m) {
+            Text(verbatim: row.source)
+                .font(DL.Fonts.headline)
+                .foregroundStyle(Color.dlTextPrimary)
+                .dlSpoken(row.source, language: source)
+            Spacer(minLength: DL.Space.s)
+            VStack(alignment: .trailing, spacing: 2) {
+                Text(verbatim: row.target)
+                    .font(DL.Fonts.headline)
+                    .foregroundStyle(Color.dlAccent)
+                    .dlSpoken(row.target, language: target)
+                if let under = Self.otherForms(row) {
+                    Text(verbatim: under)
+                        .font(DL.Fonts.caption)
+                        .foregroundStyle(Color.dlTextSecondary)
+                        .dlSpoken(under, language: target)
+                }
+            }
+            .multilineTextAlignment(.trailing)
+        }
+        .fixedSize(horizontal: false, vertical: true)
+        // why: one name is one VoiceOver stop — both sides and the forms under
+        // them are the same row of the table.
+        .accessibilityElement(children: .combine)
+        .pronounceOnTap(speak(row.target))
+    }
+
+    /// What else the learned name answers to, on one caption line: the short
+    /// form the prompt wears, the other lexemes, and the in-a-date form.
+    private static func otherForms(_ row: DateReferenceRow) -> String? {
+        var forms: [String] = []
+        if let abbr = row.abbr { forms.append(abbr) }
+        forms += row.synonyms
+        if let dateForm = row.dateForm { forms.append(dateForm) }
+        return forms.isEmpty ? nil : forms.joined(separator: " · ")
+    }
+
+    /// Hearing a name in the language being learned — nil where the device can
+    /// neither play nor say it, so the page offers no sound it cannot make.
+    private func speak(_ name: String) -> (() -> Void)? {
+        model.pronounceAction(for: name, lang: target)
+    }
+}

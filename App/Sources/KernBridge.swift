@@ -138,6 +138,25 @@ extension CountryDrill {
     func fastUnlocked(bestLevel: Int) -> Bool { fastUnlocked(bestLevel: Int32(bestLevel)) }
 }
 
+/// Same bridge for the dates drill. Its ladder has no constant ceiling: how
+/// tall it is depends on what the pair's content carries and which way round
+/// the run asks, so every question here takes both.
+extension DateDrill {
+    func ceiling(content: DateDrillContent, reverse: Bool) -> Int {
+        Int(maxLevel(content: content, reverse: reverse))
+    }
+
+    /// Whether the top rung has EVER been stood on — the whole price of fast
+    /// mode, kept in kern so the page never spells the number out itself.
+    func fastUnlocked(bestLevel: Int, content: DateDrillContent, reverse: Bool) -> Bool {
+        fastUnlocked(bestLevel: Int32(bestLevel), content: content, reverse: reverse)
+    }
+
+    func kinds(content: DateDrillContent, level: Int, reverse: Bool) -> [DateTaskKind] {
+        kinds(content: content, level: Int32(level), reverse: reverse)
+    }
+}
+
 /// The one rung ramp both drills answer to. How long a rung is stays theirs
 /// (`LetterDrill.winsToAdvance` counts a vocabulary, `Trainer.winsToAdvance`
 /// reads the Fast modifier); what a rung does with an answer is kern's.

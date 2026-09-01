@@ -2065,6 +2065,412 @@
         }
       }
     },
+    "dates.ask.date" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie liest man dieses Datum?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How is this date read?"
+          }
+        }
+      },
+      "comment" : "One sentence for all three assembled kinds — what changes between them is on the card, not in the ask."
+    },
+    "dates.ask.day" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie liest man diesen Tag?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How is this day read?"
+          }
+        }
+      }
+    },
+    "dates.ask.month" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie heißt dieser Monat?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What is this month called?"
+          }
+        }
+      }
+    },
+    "dates.ask.weekday" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie heißt dieser Wochentag?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What is this weekday called?"
+          }
+        }
+      }
+    },
+    "dates.best %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Am weitesten gekommen: Sprosse %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Furthest so far: Sprosse %@"
+          }
+        }
+      },
+      "comment" : "%d = the furthest rung any run reached"
+    },
+    "dates.fast.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine saubere Antwort pro Sprosse statt drei."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One clean answer per Sprosse instead of three."
+          }
+        }
+      },
+      "comment" : "this ladder costs THREE clean wins, so it prices its own"
+    },
+    "dates.pace" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeder Durchgang beginnt bei Sprosse 1 und klettert von selbst weiter."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Every run opens at Sprosse 1 and climbs on by itself."
+          }
+        }
+      },
+      "comment" : "How the ladder is walked, said once instead of marked on every rung row."
+    },
+    "dates.reference" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Kalender"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The calendar"
+          }
+        }
+      }
+    },
+    "dates.reverse.hint %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gefragt wird auf %@, geantwortet auf %@ – nur die Namen, das Datum bleibt vorwärts."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The question comes in %@, the answer is owed in %@ — names only, the date itself stays forward."
+          }
+        }
+      },
+      "comment" : "%1$s = the side asked in, %2$s = the side owed. Reversed, only the bare-name rungs stand (the numeric side of a date is a convention, not a skill)."
+    },
+    "dates.rung.1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Wochentage"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The weekdays"
+          }
+        }
+      },
+      "comment" : "The rung keys are indexed by KIND in full-ladder order (weekday, month, day, day+month, date, date+year, 7 = the mix) — a pair without a year pattern skips index 6, and the number on screen is the row's own position."
+    },
+    "dates.rung.1.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die sieben Namen der Woche, einzeln gefragt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The week's seven names, asked one at a time."
+          }
+        }
+      }
+    },
+    "dates.rung.2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Monate"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The months"
+          }
+        }
+      }
+    },
+    "dates.rung.2.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die zwölf Monatsnamen, einzeln gefragt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The twelve month names, asked one at a time."
+          }
+        }
+      }
+    },
+    "dates.rung.3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Tag im Monat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The day of the month"
+          }
+        }
+      }
+    },
+    "dates.rung.3.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus 3. wird dritte – die Zahl, die ein Datum braucht."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 becomes third — the number a date needs."
+          }
+        }
+      }
+    },
+    "dates.rung.4" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tag und Monat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Day and month"
+          }
+        }
+      }
+    },
+    "dates.rung.4.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus 3.3. wird der dritte März."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3/3 becomes March third."
+          }
+        }
+      }
+    },
+    "dates.rung.5" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das ganze Datum"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The whole date"
+          }
+        }
+      }
+    },
+    "dates.rung.5.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit dem Wochentag davor: Mo, 3.3."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "With the weekday in front: Mon, 3/3."
+          }
+        }
+      }
+    },
+    "dates.rung.6" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Datum mit Jahr"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The date with its year"
+          }
+        }
+      }
+    },
+    "dates.rung.6.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dazu die Jahreszahl, in Worten gelesen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus the year, read out in words."
+          }
+        }
+      }
+    },
+    "dates.rung.7" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles gemischt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All of it, mixed"
+          }
+        }
+      }
+    },
+    "dates.rung.7.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jede Frage von jeder Sprosse, zufällig gezogen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Any question from any Sprosse, drawn at random."
+          }
+        }
+      }
+    },
+    "dates.title %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum · %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dates · %@"
+          }
+        }
+      },
+      "comment" : "%s = the language being learnt"
+    },
     "error.catalogMissing" : {
       "localizations" : {
         "de" : {
@@ -5840,6 +6246,22 @@
         }
       },
       "comment" : "the hub entry, and what the result tile says was drilled"
+    },
+    "trainer.skill.dates" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dates"
+          }
+        }
+      }
     },
     "trainer.skill.letters" : {
       "localizations" : {

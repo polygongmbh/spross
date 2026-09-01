@@ -123,7 +123,15 @@ IOS_ONLY = {
 # Surfaces iOS ships that Android owes. A key leaves this set by being claimed above,
 # which is what finishing the Android side looks like — and empty is what caught up looks
 # like, which is where Android stands. The next one-sided surface is named here.
-ANDROID_TODO = set()
+# The dates drill landed on iOS first; its Android sweep claims every one of these
+# (the rung keys as dateRungs/dateRungHints FAMILIES, the rest as fields).
+ANDROID_TODO = (
+    {'trainer.skill.dates', 'dates.title %@', 'dates.reference', 'dates.pace',
+     'dates.best %@', 'dates.fast.hint', 'dates.reverse.hint %@ %@',
+     'dates.ask.weekday', 'dates.ask.month', 'dates.ask.day', 'dates.ask.date'}
+    | {'dates.rung.%d' % i for i in range(1, 8)}
+    | {'dates.rung.%d.hint' % i for i in range(1, 8)}
+)
 
 
 def camel(key):

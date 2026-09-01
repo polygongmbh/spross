@@ -20,12 +20,16 @@ enum HubDestination: Identifiable {
     /// The atlas is the one surface named in BOTH languages — a country's name
     /// is a pair, never a property of the language being learned.
     case countries(source: String, target: String)
+    /// The calendars are a pair too: the prompt side lends its weekday
+    /// abbreviations and its digit format, the answer side spells the date out.
+    case dates(source: String, target: String)
 
     var id: String {
         switch self {
         case let .numbers(language): return "numbers-\(language)"
         case let .letters(language): return "letters-\(language)"
         case let .countries(source, target): return "countries-\(source)-\(target)"
+        case let .dates(source, target): return "dates-\(source)-\(target)"
         }
     }
 
@@ -33,7 +37,7 @@ enum HubDestination: Identifiable {
     var numbersLanguage: String? {
         switch self {
         case let .numbers(language): return language
-        case .letters, .countries: return nil
+        case .letters, .countries, .dates: return nil
         }
     }
 
@@ -41,7 +45,7 @@ enum HubDestination: Identifiable {
     var lettersLanguage: String? {
         switch self {
         case let .letters(language): return language
-        case .numbers, .countries: return nil
+        case .numbers, .countries, .dates: return nil
         }
     }
 
@@ -49,7 +53,15 @@ enum HubDestination: Identifiable {
     var countriesPair: (source: String, target: String)? {
         switch self {
         case let .countries(source, target): return (source: source, target: target)
-        case .numbers, .letters: return nil
+        case .numbers, .letters, .dates: return nil
+        }
+    }
+
+    /// The dates overview's pair.
+    var datesPair: (source: String, target: String)? {
+        switch self {
+        case let .dates(source, target): return (source: source, target: target)
+        case .numbers, .letters, .countries: return nil
         }
     }
 }
@@ -85,8 +97,8 @@ extension TrainerHubView {
 
 #if DEBUG
 extension TrainerHubView {
-    /// UI-test hook: `-uitest-trainer numbers|letters|countries` resolved
-    /// against what this language actually offers.
+    /// UI-test hook: `-uitest-trainer numbers|letters|countries|dates`
+    /// resolved against what this language actually offers.
     ///
     /// Clock, phrases and the alphabet are no longer surfaces of their own:
     /// reach them with `-uitest-trainer numbers -uitest-variants clock
@@ -101,6 +113,9 @@ extension TrainerHubView {
         }
         if raw == "countries", let pair = atlasPair {
             return .countries(source: pair.source, target: pair.target)
+        }
+        if raw == "dates", let pair = datesPair {
+            return .dates(source: pair.source, target: pair.target)
         }
         return nil
     }

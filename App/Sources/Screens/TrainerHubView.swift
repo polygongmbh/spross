@@ -1,16 +1,17 @@
 import SwiftUI
 import SprossKern
 
-/// Compact "Sprossen" card on the Home screen: 🔢 Zahlen, 🔤 Buchstaben and
-/// 🌍 Länder. Each opens an overview: what the language does with numbers or
-/// letters, or what the world is called in it, and the run started from the same
-/// page. Clock and sentences are not siblings of the numbers drill but variants
-/// of it, and the alphabet is not a sibling of the letter drill but the page it
-/// is launched from, so the chips only have to name the things a learner can
-/// practice. Offerings stay registry-driven: numbers appears only when Kern's
-/// trainer supports the learned language, letters only where an alphabet file
-/// was authored, and the atlas only where the pair joins one — an empty card
-/// hides entirely. Trainers are stateless: they never touch BoxState or FSRS.
+/// Compact "Sprossen" card on the Home screen: 🔢 Zahlen, 🔤 Buchstaben,
+/// 🌍 Länder and 📅 Datum. Each opens an overview: what the language does with
+/// numbers or letters, what the world is called in it, or how it says a date,
+/// and the run started from the same page. Clock and sentences are not siblings
+/// of the numbers drill but variants of it, and the alphabet is not a sibling
+/// of the letter drill but the page it is launched from, so the chips only have
+/// to name the things a learner can practice. Offerings stay registry-driven:
+/// numbers appears only when Kern's trainer supports the learned language,
+/// letters only where an alphabet file was authored, the atlas and the calendar
+/// only where the pair joins one — an empty card hides entirely. Trainers are
+/// stateless: they never touch BoxState or FSRS.
 struct TrainerHubView: View, LanguageNaming {
     let model: AppModel
 
@@ -50,9 +51,18 @@ struct TrainerHubView: View, LanguageNaming {
 
     var atlasAvailable: Bool { atlasPair != nil }
 
+    /// The pair whose calendars this profile can drill, or nil where the
+    /// catalog joins none — the atlas' registry rule, on the dates files.
+    var datesPair: (source: String, target: String)? {
+        guard model.datesJoinPair, let target = drillLanguage else { return nil }
+        return (source: model.sourceLanguage, target: target)
+    }
+
+    var datesAvailable: Bool { datesPair != nil }
+
     var body: some View {
         Group {
-            if slotsAvailable || alphabetAvailable || atlasAvailable {
+            if slotsAvailable || alphabetAvailable || atlasAvailable || datesAvailable {
                 card
             }
         }
@@ -65,6 +75,8 @@ struct TrainerHubView: View, LanguageNaming {
                     LettersOverview(model: model, language: language)
                 } else if let pair = destination.countriesPair {
                     CountriesOverview(model: model, source: pair.source, target: pair.target)
+                } else if let pair = destination.datesPair {
+                    DatesOverview(model: model, source: pair.source, target: pair.target)
                 }
             }
             .environment(\.locale, model.knownLocale)
@@ -81,8 +93,8 @@ struct TrainerHubView: View, LanguageNaming {
             Text("trainer.hub.subtitle")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
-            // ONE row: three chips sit on it comfortably on every device, and a
-            // grid that wrapped the third onto a line of its own would spend a
+            // ONE row: four chips sit on it comfortably on every device, and a
+            // grid that wrapped one onto a line of its own would spend a
             // whole row saying what fits beside its siblings.
             HStack(spacing: DL.Space.m) {
                 if slotsAvailable {
@@ -93,6 +105,9 @@ struct TrainerHubView: View, LanguageNaming {
                 }
                 if atlasAvailable {
                     countriesChip
+                }
+                if datesAvailable {
+                    datesChip
                 }
             }
         }
@@ -144,6 +159,20 @@ struct TrainerHubView: View, LanguageNaming {
         }
         .buttonStyle(TrainerChipButtonStyle())
         .accessibilityLabel(Text("trainer.skill.countries")
+            + Text("a11y.suffix.practice \(languageName(drillLanguage ?? ""))"))
+    }
+
+    /// The calendar: the weekday and month names drilled alone, and the whole
+    /// spoken date assembled out of them from the same page.
+    private var datesChip: some View {
+        Button {
+            guard let pair = datesPair else { return }
+            destination = .dates(source: pair.source, target: pair.target)
+        } label: {
+            chipLabel(emoji: "📅", title: Text("trainer.skill.dates"))
+        }
+        .buttonStyle(TrainerChipButtonStyle())
+        .accessibilityLabel(Text("trainer.skill.dates")
             + Text("a11y.suffix.practice \(languageName(drillLanguage ?? ""))"))
     }
 

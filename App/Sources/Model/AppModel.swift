@@ -69,6 +69,9 @@ final class AppModel {
     /// and every language name — and the trainer card asks on every redraw, so
     /// they are resolved when the PROFILE changes and never per composition.
     private(set) var atlasJoinsPair = false
+    /// Whether the pair joins the two calendars the dates drill needs — the
+    /// same kind of walk, resolved beside the atlas and never per composition.
+    private(set) var datesJoinPair = false
     private(set) var phraseTemplatesForPair: [PhraseTemplate] = []
     /// The target languages the settings picker offers. Reading this used to run
     /// a full catalog JOIN per candidate language — every card of every pair
@@ -439,6 +442,7 @@ final class AppModel {
               catalog.languages[sourceLanguage] != nil, catalog.languages[target] != nil
         else {
             atlasJoinsPair = false
+            datesJoinPair = false
             phraseTemplatesForPair = []
             targetChoices = []
             areaChrome = [:]
@@ -448,6 +452,7 @@ final class AppModel {
         // returning empty, and a Kotlin throw crossing back is a crash — hence
         // the guard above, which both drills used to take for themselves.
         atlasJoinsPair = catalog.countryDrillContent(source: sourceLanguage, target: target) != nil
+        datesJoinPair = catalog.dateDrillContent(source: sourceLanguage, target: target) != nil
         phraseTemplatesForPair = catalog.phraseTemplates(source: sourceLanguage, target: target)
         targetChoices = LanguageChoices.shared.targetChoices(
             catalog: catalog,
