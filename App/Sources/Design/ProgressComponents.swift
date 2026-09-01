@@ -66,7 +66,7 @@ struct StreakFlameView: View {
             // why: the number carries the big type, so the unit stands alone —
             // and a string that does not name its count cannot be plural-varied
             // (the compiler refuses it), which is what these two keys are for.
-            Text(days == 1 ? "common.dayOne" : "common.dayMany")
+            Text(days == 1 ? "common.day.one" : "common.day.other")
                 .font(DL.Fonts.subheadline)
                 .foregroundStyle(Color.dlTextSecondary)
         }

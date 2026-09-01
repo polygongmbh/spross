@@ -1244,23 +1244,7 @@
       },
       "comment" : "The ✕'s name — the corner every page and every run wears on the left."
     },
-    "common.dayMany" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tage"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "days"
-          }
-        }
-      }
-    },
-    "common.dayOne" : {
+    "common.day.one" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1276,6 +1260,22 @@
         }
       },
       "comment" : "the badge's unit word, by count"
+    },
+    "common.day.other" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tage"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "days"
+          }
+        }
+      }
     },
     "common.dismiss" : {
       "localizations" : {

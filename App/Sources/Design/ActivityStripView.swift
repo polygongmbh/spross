@@ -78,7 +78,7 @@ struct ActivityStripView: View {
                 .grayscale(flame.grayscale)
                 .opacity(flame.opacity)
             (Text(streakDays.formatted()) + Text(verbatim: " ")
-                + Text(streakDays == 1 ? "common.dayOne" : "common.dayMany"))
+                + Text(streakDays == 1 ? "common.day.one" : "common.day.other"))
                 .foregroundStyle(Color.dlAccent)
         }
         .font(DL.Fonts.caption)
