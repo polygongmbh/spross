@@ -70,7 +70,6 @@ UNEXTRACTABLE = {
     # A drill tile's a11y label interpolates the glyph into a plain String —
     # no extractor follows an accessibilityLabel built at runtime either way.
     'a11y.letterChoice %@',
-    'lang.de', 'lang.en', 'lang.es', 'lang.sw', 'lang.uk',
     # The Box's own-words area title, resolved through DLChrome like the above.
     'box.ownWords',
     # The two words that fill the address slot of a target-language greeting.
@@ -95,7 +94,7 @@ ANDROID_ONLY = {
 # ours, the choice is not, so no call site ever spells the key out.
 COMPOSED = (
     'heute.session.reviews.', 'heute.session.warmUp.', 'heute.session.freshSet.',
-    'session.finished.growth.',
+    'heute.session.streakReminder.', 'session.finished.growth.',
 )
 
 
