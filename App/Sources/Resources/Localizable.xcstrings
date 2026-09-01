@@ -2692,7 +2692,7 @@
           }
         }
       },
-      "comment" : "The cap is a promise, not a loss: what it holds back is named."
+      "comment" : "The cap is a promise, not a loss: what it holds back is named — but only from SessionOffer.HELD_BACK_NAMED_FROM up, so the singular never renders and stands only because a counted key owes every plural category."
     },
     "home.offer.shortRound" : {
       "localizations" : {

@@ -59,6 +59,17 @@ class SessionOfferTests {
         assertEquals(5, offer.fresh)
     }
 
+    /**
+     * A handful over the cap goes unsaid: a box in good health nearly always carries a few,
+     * so naming them would put an arrears notice on an ordinary day.
+     */
+    @Test
+    fun aRemainderTooSmallToNameIsNotNamed() {
+        val offer = SessionOffers.offer(state(due = 25, ahead = 0, catalog = 50, sessionCap = 25), now, Box.TZ)
+        assertEquals(20, offer.reviews)
+        assertEquals(0, offer.dueHeldBack)
+    }
+
     /** One or two due cards are a warm-up, never the round's headline. */
     @Test
     fun aTokenCoupleOfDueCardsIsAWarmUp() {

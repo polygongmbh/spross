@@ -43,7 +43,10 @@ data class SessionOffer(
     val kind: SessionOfferKind,
     /** Reviews this round actually takes (capped), not the whole backlog. */
     val reviews: Int,
-    /** Due cards the session cap holds back for a later round. */
+    /**
+     * Due cards the session cap holds back for a later round, or 0 where the remainder is
+     * too small to be worth naming — [SessionOffer.HELD_BACK_NAMED_FROM] draws the line.
+     */
     val dueHeldBack: Int,
     /** Cards pulled forward to fill a short round out (the session floor). */
     val ahead: Int,
@@ -142,6 +145,15 @@ data class SessionOffer(
         /** Fewer due cards than this and recall is a warm-up, never the round's headline. */
         const val REVIEWS_LEAD_FROM: Int = 3
 
+        /**
+         * A remainder smaller than this goes unsaid.
+         *
+         * Intake sits near what a sitting can service, so a box in good health almost always
+         * has a few cards over (`docs/growth-evidence.md`). Naming three of them turns that
+         * standing, healthy state into an arrears notice the learner reads every single day.
+         */
+        const val HELD_BACK_NAMED_FROM: Int = 10
+
         /** How many phrasings each kind offers. */
         const val HEADLINE_VARIANTS: Int = 3
     }
@@ -183,10 +195,11 @@ object SessionOffers {
             reviews >= SessionOffer.REVIEWS_LEAD_FROM -> SessionOfferKind.Reviews
             else -> SessionOfferKind.WarmUp
         }
+        val heldBack = max(0, BoxEngine.dueCount(state, nowEpochMillis) - reviews)
         return SessionOffer(
             kind = kind,
             reviews = reviews,
-            dueHeldBack = max(0, BoxEngine.dueCount(state, nowEpochMillis) - reviews),
+            dueHeldBack = if (heldBack >= SessionOffer.HELD_BACK_NAMED_FROM) heldBack else 0,
             ahead = ahead,
             fresh = fresh,
             shortRound = SessionComposer.shortRoundSize(plan),
