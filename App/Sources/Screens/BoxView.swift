@@ -6,33 +6,33 @@ import SprossKern
 /// (`BoxOwnContentSection`) and the settings block. The magnifier in the bar opens
 /// the same box by typing (`BoxSearchView`), which hands an area back here to be
 /// revealed.
-/// How the box stands folded — which groups and which areas are open, and
-/// whether the opening fold has been chosen yet.
-///
-/// Outlives the screen: the browser is a navigation destination, so every trip
-/// back to Home takes its `@State` with it, and the shelf the learner left
-/// open is theirs to find open.
-struct BoxFold {
-    var groups: Set<String> = []
-    var areas: Set<String> = []
-    /// Whether the box has been opened once, and so whether `groups` is a
-    /// choice the learner made rather than one nobody has made yet.
-    var opened = false
-}
-
 struct BoxView: View {
     let model: AppModel
     /// The area to open on, when the box was reached by naming one — a tree in
     /// Home's forest. Revealed once, on appear, exactly as a search hit is.
     var revealArea: String?
 
-    /// Which groups and areas stand open. Held by whoever PRESENTS this screen,
-    /// not by the screen: a push destroys the view and its `@State` with it, so
-    /// a shelf opened, glanced away from and come back to would be shut again.
-    @Binding var fold: BoxFold
+    @State private var expandedGroups: Set<String>
+    /// Which areas stand open — lifted out of the sections themselves, because a
+    /// search hit has to be able to open the one it landed in.
+    @State private var expandedAreas: Set<String> = []
     @State private var searchPresented = false
     /// The area the box should bring into view; cleared the moment it has.
     @State private var scrollTarget: String?
+
+    init(model: AppModel, revealArea: String? = nil) {
+        self.model = model
+        self.revealArea = revealArea
+        // why: the opening fold reads the box once, at construction — a group
+        // that folds itself shut again as the learner works would be worse.
+        // An area named on the way in opens INSTEAD of the default group: the
+        // learner already said which one they meant.
+        let opening = revealArea.flatMap { area in
+            model.areaGroupSections.first { $0.areas.contains(area) }?.id
+        } ?? model.defaultExpandedGroupID
+        _expandedGroups = State(initialValue: Set([opening].compactMap { $0 }))
+        _expandedAreas = State(initialValue: Set([revealArea].compactMap { $0 }))
+    }
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -43,7 +43,7 @@ struct BoxView: View {
                     ForEach(model.areaGroupSections, id: \.id) { group in
                         VStack(alignment: .leading, spacing: DL.Space.l) {
                             groupHeader(group)
-                            if fold.groups.contains(group.id) {
+                            if expandedGroups.contains(group.id) {
                                 ForEach(group.areas, id: \.self) { area in
                                     BoxAreaSection(model: model, area: area,
                                                    expanded: fold(of: area))
@@ -63,33 +63,21 @@ struct BoxView: View {
             }
             // why: revealing an area is two moves — open it, then bring it up to
             // the thumb; the second one needs the proxy the scroll view owns.
+            // The scroll waits a turn: the row it names is a lazy one, and on
+            // the way in it is not laid out yet for the proxy to find.
             .onChange(of: scrollTarget) { _, area in
                 guard let area else { return }
-                withAnimation(.easeInOut(duration: 0.25)) {
-                    proxy.scrollTo(area, anchor: .top)
-                }
                 scrollTarget = nil
-            }
-            // why: the opening fold is read ONCE, the first time the box is
-            // opened — a group that folded itself shut again as the learner
-            // works would be worse, and so would one that reopened on every
-            // visit over the shelf they left standing open.
-            .onAppear {
-                if !fold.opened {
-                    fold.opened = true
-                    fold.groups = Set([model.defaultExpandedGroupID].compactMap { $0 })
-                }
-                // An area named on the way in opens whatever the fold stood at:
-                // the learner already said which one they meant.
-                if let revealArea {
-                    if let group = model.areaGroupSections.first(where: {
-                        $0.areas.contains(revealArea)
-                    }) {
-                        fold.groups.insert(group.id)
+                Task { @MainActor in
+                    withAnimation(.easeInOut(duration: 0.25)) {
+                        proxy.scrollTo(area, anchor: .top)
                     }
-                    fold.areas.insert(revealArea)
-                    if scrollTarget == nil { scrollTarget = revealArea }
                 }
+            }
+            // why: the fold is already set by init — this only brings the named
+            // area up to the thumb, and only on the first appearance.
+            .onAppear {
+                if let revealArea, scrollTarget == nil { scrollTarget = revealArea }
             }
         }
         .background(Color.dlBackground.ignoresSafeArea())
@@ -113,9 +101,9 @@ struct BoxView: View {
     /// can move it.
     private func fold(of area: String) -> Binding<Bool> {
         Binding(
-            get: { fold.areas.contains(area) },
+            get: { expandedAreas.contains(area) },
             set: { open in
-                if open { fold.areas.insert(area) } else { fold.areas.remove(area) }
+                if open { expandedAreas.insert(area) } else { expandedAreas.remove(area) }
             }
         )
     }
@@ -128,8 +116,8 @@ struct BoxView: View {
         if area != model.ownArea {
             let group = model.areaGroupSections.first { $0.areas.contains(area) }
             withAnimation(.easeInOut(duration: 0.2)) {
-                if let group { fold.groups.insert(group.id) }
-                fold.areas.insert(area)
+                if let group { expandedGroups.insert(group.id) }
+                expandedAreas.insert(area)
             }
         }
         scrollTarget = area
@@ -138,11 +126,11 @@ struct BoxView: View {
     /// Foldable group row — a hairline rule and no card of its own, so the
     /// area cards below it stay the heaviest thing on the screen.
     private func groupHeader(_ group: AreaGroupSection) -> some View {
-        let open = fold.groups.contains(group.id)
+        let open = expandedGroups.contains(group.id)
         return VStack(alignment: .leading, spacing: DL.Space.xs) {
             Button {
                 withAnimation(.easeInOut(duration: 0.2)) {
-                    if open { fold.groups.remove(group.id) } else { fold.groups.insert(group.id) }
+                    if open { expandedGroups.remove(group.id) } else { expandedGroups.insert(group.id) }
                 }
             } label: {
                 HStack(spacing: DL.Space.s) {
