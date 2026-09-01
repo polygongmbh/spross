@@ -38,8 +38,7 @@ interface Chrome {
      * the words that fit the hour: one list per [net.spross.kern.box.DayPart], indexed by
      * [net.spross.kern.box.partVariant]. Every line here NAMES the language and asks rather
      * than states — the register that SPEAKS it comes from the catalog instead, and the two
-     * hours that lend an epithet carry a third line for it. [homeTitle] stands in only
-     * where no profile names a language yet.
+     * hours that lend an epithet carry a third line for it.
      */
     val greetMorning: List<String>
     val greetDay: List<String>
@@ -47,7 +46,6 @@ interface Chrome {
     val greetNight: List<String>
     val homeGreetingMorningAddressee: String
     val homeGreetingNightAddressee: String
-    val homeTitle: String
     val homeDoneExtraRound: String
     val homeDoneTitle: String
     val boxCardDue: String

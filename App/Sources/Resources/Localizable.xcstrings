@@ -2876,22 +2876,6 @@
       },
       "comment" : "What a round with no nameable parts says instead of printing zeros."
     },
-    "home.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Heute"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Today"
-          }
-        }
-      }
-    },
     "home.voiceUpgrade.path" : {
       "localizations" : {
         "de" : {

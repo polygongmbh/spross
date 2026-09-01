@@ -82,7 +82,7 @@ fun HomeScreen(model: AppModel) {
         model.chrome, greetingTarget,
         chromePart(greetingNow, greetingZone),
         dayPart(greetingNow, greetingZone, greetingTarget),
-    ) { greeting(model) }
+    ) { greetingTarget?.let { greeting(model, it) } }
     val standing = remember(box, model.canPracticeExtra) {
         box?.let {
             HomeStanding.of(it, System.currentTimeMillis(), TimeZone.getDefault().id,
@@ -107,7 +107,7 @@ fun HomeScreen(model: AppModel) {
                 )
                 // A greeting is a phrase, not a headline word: it shrinks a step rather
                 // than pushing the day's card down a third line.
-                Text(
+                if (hello != null) Text(
                     hello,
                     style = MaterialTheme.typography.headlineLarge,
                     maxLines = 2,

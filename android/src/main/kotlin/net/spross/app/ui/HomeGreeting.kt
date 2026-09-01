@@ -15,10 +15,8 @@ import net.spross.kern.box.partVariant
  *
  * Which stretch of the day it is and which of the candidates this one takes are kern's
  * ([dayPart], [chromePart], [partVariant]); the words are the catalog's and the chrome's.
- * The screen's own name stands in only while no profile names a language.
  */
-fun greeting(model: AppModel): String {
-    val target = model.box?.joinStamp?.target ?: return model.chrome.homeTitle
+fun greeting(model: AppModel, target: String): String {
     val now = System.currentTimeMillis()
     val tz = TimeZone.getDefault().id
     // The target's own hours for its own lines: four in the afternoon is still Tag in

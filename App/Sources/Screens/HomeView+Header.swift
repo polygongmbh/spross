@@ -21,11 +21,13 @@ extension HomeView {
             .textCase(.uppercase)
             // A greeting is a phrase, not a headline word: it shrinks a step rather than
             // pushing the day's card down a third line.
-            greeting
-                .font(DL.Fonts.hero)
-                .foregroundStyle(Color.dlTextPrimary)
-                .lineLimit(2)
-                .minimumScaleFactor(0.7)
+            if let greeting {
+                greeting
+                    .font(DL.Fonts.hero)
+                    .foregroundStyle(Color.dlTextPrimary)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.7)
+            }
         }
     }
 
@@ -44,9 +46,10 @@ extension HomeView {
     ///
     /// Which stretch of the day it is and which of the candidates this one takes are kern's
     /// (`dayPart`, `chromePart`, `partVariant`); the words are the catalog's and the
-    /// chrome's. Falls back to the screen's own name while no profile names a language.
-    var greeting: Text {
-        guard let language = targetLanguageName else { return Text("home.title") }
+    /// chrome's. Nil while no profile names a language — the first launch, where this
+    /// screen stands behind the onboarding sheet and the header has nothing to greet.
+    var greeting: Text? {
+        guard let language = targetLanguageName else { return nil }
         let now = Date().epochMillis, tz = currentTzId()
         let target = model.targetLanguage
         // The target's own hours for its own lines: four in the afternoon is still Tag in
