@@ -10,16 +10,21 @@ against them. What the PRODUCT decided on top is the contract's (`../README.md` 
 - `elapsedDays` = fractional `max(0, (now - lastLog)/86400)`; short-term path < 1.0.
   Golden vectors all review exactly at due; real-timestamp vectors stay out of the suite.
 - Golden vectors are copied verbatim from the pinned releases with PROVENANCE
-  (repo/tag/SHA), and the engine's own defaults stay the reference pair
-  (`learning [1m, 10m]`, `relearning [10m]`, desired retention 0.9) so they run unmodified.
+  (repo/tag/SHA). The stability/difficulty (memory-state) formulas run unmodified
+  against the reference — `Fsrs.nextMemory` is untouched — but the (re)learning-STEP
+  MACHINE (`FsrsScheduler`) is product-owned and diverges even at this class's own
+  defaults (`FsrsParameters.stepsSeconds` = `[10m]`, desired retention 0.9 still
+  matches): see `../README.md` §5 for what changed and why, and `FsrsGoldenVectorTest`
+  for which vectors had to be recomputed against the divergence rather than copied.
 - **Graduated intervals are continuous in the product.** `Fsrs.intervalRawDays` is the
   fractional interval the model asks for; `FsrsScheduler.graduate` quantizes it to
   `intervalGranularitySeconds` and floors it at `minimumIntervalSeconds`.
   Both default to 86_400 s — whole-day rounding is the reference bucket convention, not part
   of FSRS, and the default keeps the golden vectors on their exact day multiples.
   The product sets granularity to 1 s, so a 7.6-day interval is scheduled at 7.6 days.
-- Two minute-scale learning steps put a missed word back in front of the learner half a
-  dozen cards later, where it passes on being recognized as "that new one" rather than on
-  the source-target pair having bound; `3m` was tried first and outlasted the day's practice
-  altogether. Graduation otherwise follows the reference machine, tested against the pinned
-  minute tables.
+- The (re)learning step machine keeps ONE piece of the reference machine — the Hard
+  interval's whole-minute-rounded blend of the ladder's first two entries — and diverges
+  on Again (climbs the ladder instead of resetting to step 0) and Good/Easy (graduates
+  immediately instead of walking every configured step); `FsrsStepLadderTest` covers
+  both the kept piece and the divergence against the pinned minute tables where they
+  still apply. `../README.md` §5 has the product's own ladder and why.

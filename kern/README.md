@@ -162,25 +162,28 @@ arguments do not cross the ObjC boundary
 Parameters, provenance and the golden vectors are `docs/fsrs.md`; the numbers behind each
 bar are on `BoxConfig` itself. What the product decided:
 
-- **The product runs ONE learning step, `[2m]`** (user ruling 2026-07-29). What keeps a
-  missed word out of THIS sitting is the run boundary, not the clock — a composed session
-  never refills (§6) — so the step only has to be short enough that the word is there for
-  the next one, a follow-up sitting or an endless run minutes away.
-  By role resolution (§3) that retry is the typed production attempt, the first real recall.
-  **No in-session lapse retry** (breadth ruling 2026-07-22): the run a card lapsed in does
-  not wait for it.
+- **ONE growing-backoff ladder, `stepsSeconds`, shared by Learning and Relearning**
+  (user ruling 2026-09-01, supersedes both the single-`[2m]`-learning-step ruling of
+  2026-07-29 and the 2026-08-07 leech ruling) — a brand-new word and a lapsed one wait
+  on the same cadence, not two separately-tuned mechanisms. A lapse is any `Again` past
+  introduction — learning- and relearning-step retries count too, not just review-phase
+  ones — and is always tracked (`CardScheduling.lapses`, drill/listening scoring reads
+  it), but no longer auto-suspends: each `Again` climbs `stepsSeconds`
+  (`FsrsScheduler.stepOutcome`) instead of resetting to its first entry, capped at the
+  ladder's last rung — the product ships `[10m, 1d, 3d, 7d]`, so a word appears at most
+  twice on its first day (the introduction, then one 10-minute retry) before a repeat
+  miss pushes it out to day scale rather than repeating inside the same sitting. A
+  single `Good` or `Easy` graduates to Review immediately, from wherever the ladder
+  sits — it only spaces out repeated fails, it is not a run of successes to climb back
+  through. **No in-session lapse retry** (breadth ruling 2026-07-22): the run a card
+  lapsed in does not wait for it, whatever the ladder's first step is — a composed
+  session never refills (§6), so the run boundary keeps a lapsed word out of the
+  sitting it lapsed in regardless of the step length; by role resolution (§3), the
+  retry that follows is the typed production attempt, the first real recall.
+  Suspension is now purely the learner's own call — `setSuspended`, reversible from
+  the Box.
 - **A graduated interval floors at one day.** Bringing a card back inside the same day is
-  what a learning step is for, not what an already-graduated schedule should ask.
-- **Relearning steps grow with repeated lapses** (user ruling 2026-09-01, supersedes the
-  2026-08-07 leech ruling). A lapse is any `Again` past introduction — learning- and
-  relearning-step retries count too, not just review-phase ones — and is always tracked
-  (`CardScheduling.lapses`, drill/listening scoring reads it), but no longer auto-suspends.
-  Instead, each `Again` while relearning climbs `relearningStepsSeconds`
-  (`FsrsScheduler.relearningStepOutcome`) instead of resetting to its first entry — the
-  product ships `[10m, 1d, 3d, 7d]`, so a word that keeps slipping gets more room before
-  its next try rather than being repeated inside the same day. A single `Good` or `Easy`
-  graduates back to Review immediately, from wherever the ladder sits. Suspension is now
-  purely the learner's own call — `setSuspended`, reversible from the Box.
+  what a ladder step is for, not what an already-graduated schedule should ask.
 - **ONE "has this word landed" threshold**: `consolidatedStability`
   (`Statistics.isConsolidated`, facade `BoxEngine.isConsolidated(state, cardId)`) —
   Review phase AND stability ≥ the bar, so a lapse un-lands a card, which is the point:

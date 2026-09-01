@@ -1,20 +1,26 @@
 package net.spross.kern.fsrs
 
 /**
- * FSRS-6 parameters. Defaults mirror the pinned references
- * (ts-fsrs v5.4.1 / py-fsrs v6.3.1 — identical values) so the golden vectors
- * run verbatim; the product overrides retention, maximum interval, and
- * relearning steps from `BoxConfig`.
+ * FSRS-6 parameters. The stability/difficulty weights mirror the pinned
+ * references (ts-fsrs v5.4.1 / py-fsrs v6.3.1 — identical values) exactly, so
+ * the memory-state golden vectors run verbatim; the product overrides
+ * retention, maximum interval, and the step ladder from `BoxConfig`. The
+ * (re)learning-STEP MACHINE itself (`FsrsScheduler`) is product-owned and
+ * diverges from the reference machine even at this class's own defaults —
+ * see its KDoc.
  */
 data class FsrsParameters(
     /** 21 weights; `w[20]` is the trainable decay (default 0.1542). */
     val w: List<Double> = DEFAULT_WEIGHTS,
     val desiredRetention: Double = 0.9,
     val maximumIntervalDays: Int = 36500,
-    /** Learning steps in seconds (reference `[1m, 10m]`). */
-    val learningStepsSeconds: List<Long> = listOf(60L, 600L),
-    /** Relearning steps in seconds (reference `[10m]`; product keeps `[10m]` — model/Config.kt). */
-    val relearningStepsSeconds: List<Long> = listOf(600L),
+    /**
+     * (Re)learning steps in seconds: one growing-backoff ladder shared by a
+     * brand-new word's Learning phase and a lapsed word's Relearning phase
+     * (product ruling 2026-09-01 — `FsrsScheduler`). Default `[10m]`; the
+     * product ships a longer ladder (`model/Config.kt`).
+     */
+    val stepsSeconds: List<Long> = listOf(600L),
     /**
      * Granularity a graduated interval is rounded to. Whole days by default —
      * the reference day-bucket convention the golden vectors are pinned to;
@@ -35,8 +41,7 @@ data class FsrsParameters(
             "desiredRetention must be in (0, 1]"
         }
         require(maximumIntervalDays >= 1) { "maximumIntervalDays must be >= 1" }
-        require(learningStepsSeconds.all { it > 0 }) { "learning steps must be positive" }
-        require(relearningStepsSeconds.all { it > 0 }) { "relearning steps must be positive" }
+        require(stepsSeconds.all { it > 0 }) { "(re)learning steps must be positive" }
         require(intervalGranularitySeconds >= 1) { "interval granularity must be >= 1 s" }
         require(minimumIntervalSeconds >= 1) { "minimum interval must be >= 1 s" }
     }

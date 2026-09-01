@@ -79,8 +79,10 @@ internal data class ConfigDto(
     // keys it replaced (settledStability among them) are dropped by ignoreUnknownKeys.
     // Calibration the build re-applies on load, not user data worth migrating.
     val consolidatedStability: Double = 6.0,
-    val learningStepsSeconds: List<Long>,
-    val relearningStepsSeconds: List<Long>,
+    // why: defaulted so a document written under the old learningStepsSeconds /
+    // relearningStepsSeconds split still decodes — both keys are unknown now and
+    // dropped, and this falls back to the build's calibration like the bar above.
+    val stepsSeconds: List<Long> = listOf(600L, 86_400L, 3 * 86_400L, 7 * 86_400L),
 )
 
 @Serializable
@@ -146,8 +148,7 @@ private fun configDto(config: BoxConfig): ConfigDto = ConfigDto(
     desiredRetention = config.desiredRetention,
     maximumIntervalDays = config.maximumIntervalDays,
     consolidatedStability = config.consolidatedStability,
-    learningStepsSeconds = config.learningStepsSeconds,
-    relearningStepsSeconds = config.relearningStepsSeconds,
+    stepsSeconds = config.stepsSeconds,
 )
 
 private fun cardDto(sched: CardScheduling): CardDto = CardDto(
@@ -246,8 +247,7 @@ private fun ConfigDto.toDomain(): BoxConfig = BoxConfig(
     desiredRetention = desiredRetention,
     maximumIntervalDays = maximumIntervalDays,
     consolidatedStability = consolidatedStability,
-    learningStepsSeconds = learningStepsSeconds,
-    relearningStepsSeconds = relearningStepsSeconds,
+    stepsSeconds = stepsSeconds,
 )
 
 private fun CardDto.toDomain(key: String): CardScheduling {

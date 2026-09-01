@@ -9,6 +9,7 @@ import kotlin.time.Instant
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
+import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.CardPhase
 
 class StoreCodecTests {
@@ -75,9 +76,9 @@ class StoreCodecTests {
         /** null omits the key entirely — the shape a box written before own words has. */
         ownWords: String? = null,
     ): String =
-        """{"config":{"desiredRetention":0.8,"learningStepsSeconds":[60,600],""" +
+        """{"config":{"desiredRetention":0.8,""" +
             """"maximumIntervalDays":365,""" +
-            """"relearningStepsSeconds":[600],"sessionCap":30},"dailyStats":{},"enqueued":[],""" +
+            """"sessionCap":30,"stepsSeconds":[60,600]},"dailyStats":{},"enqueued":[],""" +
             """"newIntroduced":{},""" +
             (ownWords?.let { """"ownWords":[$it],""" } ?: "") +
             """"scheduling":{$scheduling},"schemaVersion":$schemaVersion,""" +
@@ -125,6 +126,7 @@ class StoreCodecTests {
 
         assertEquals(30, decoded.config.sessionCap)
         assertEquals(6.0, decoded.config.consolidatedStability)
+        assertEquals(BoxConfig().stepsSeconds, decoded.config.stepsSeconds)
         assertEquals("w1", decoded.scheduling.getValue("w1").cardId)
     }
 

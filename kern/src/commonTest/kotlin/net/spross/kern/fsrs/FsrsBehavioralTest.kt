@@ -9,17 +9,16 @@ import net.spross.kern.model.Rating
 
 /**
  * Behavioral expectations under the PRODUCT configuration (retention 0.8,
- * maximum interval 365, learning [2m], relearning [10m], continuous intervals).
- * Self-computed, NOT reference vectors — they pin contract choices, not upstream
- * numerics. Keep in step with `model/Config.kt`.
+ * maximum interval 365, (re)learning ladder [10m, 1d, 3d, 7d], continuous
+ * intervals). Self-computed, NOT reference vectors — they pin contract
+ * choices, not upstream numerics. Keep in step with `model/Config.kt`.
  */
 class FsrsBehavioralTest {
 
     private val productParameters = FsrsParameters(
         desiredRetention = 0.8,
         maximumIntervalDays = 365,
-        learningStepsSeconds = listOf(120L),
-        relearningStepsSeconds = listOf(600L),
+        stepsSeconds = listOf(600L, 86_400L, 3 * 86_400L, 7 * 86_400L),
         intervalGranularitySeconds = 1L,
     )
 
@@ -33,8 +32,8 @@ class FsrsBehavioralTest {
         assertTrue(ratio > 3.2 && ratio < 3.5, "expected ~3.3x stability, got $ratio")
     }
 
-    // Product relearning [10m]: a lapsed review card comes back past the end of a
-    // session, not inside it — the breadth ruling, unchanged by the learning step.
+    // Product ladder opens at [10m]: a lapsed review card comes back past the end of
+    // a session, not inside it — the breadth ruling, unchanged by the step length.
     @Test
     fun productRelearningStepReturnsLapsedCardAfterTheSession() {
         val scheduler = FsrsScheduler(productParameters)

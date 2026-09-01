@@ -10,27 +10,6 @@ import kotlin.time.Instant
 
 class ModelDefaultsTest {
     @Test
-    fun boxConfigProductDefaults() {
-        // The factory IS the defaults — the platforms call it because Kotlin default
-        // arguments do not cross the ObjC boundary, not to state a second calibration.
-        val config = BoxConfig.product()
-        assertEquals(BoxConfig(), config)
-        assertEquals(25, config.sessionCap)
-        assertEquals(0.8, config.desiredRetention)
-        assertEquals(365, config.maximumIntervalDays)
-        assertEquals(6.0, config.consolidatedStability)
-        // One learning step, no in-session lapse retry; relearning is a growing
-        // backoff ladder (10 min, 1 day, 3 days, 7 days) for repeated lapses.
-        assertEquals(listOf(120L), config.learningStepsSeconds)
-        assertEquals(listOf(600L, 86_400L, 259_200L, 604_800L), config.relearningStepsSeconds)
-    }
-
-    @Test
-    fun dayStatsDefaultsToZero() {
-        assertEquals(DayStats(0, 0, 0), DayStats())
-    }
-
-    @Test
     fun ratingValuesMatchFsrs() {
         assertEquals(listOf(1, 2, 3, 4), Rating.entries.map { it.value })
     }

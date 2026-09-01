@@ -18,8 +18,7 @@ import net.spross.kern.model.ReviewLogEntry
 internal fun BoxConfig.fsrsParameters(): FsrsParameters = FsrsParameters(
     desiredRetention = desiredRetention,
     maximumIntervalDays = maximumIntervalDays,
-    learningStepsSeconds = learningStepsSeconds,
-    relearningStepsSeconds = relearningStepsSeconds,
+    stepsSeconds = stepsSeconds,
     // why: the product schedules continuously — whole-day rounding is the
     // reference bucket convention, and a day is already the floor.
     intervalGranularitySeconds = 1L,
@@ -101,8 +100,8 @@ internal object Answering {
         )
         // why: counts any Again past introduction, not just review-phase ones — feeds
         // drill and listening scoring (LetterDrill, ListeningPool) even though it no
-        // longer drives suspension; a relearning lapse grows the wait instead
-        // (FsrsScheduler.relearningStepOutcome).
+        // longer drives suspension; a lapse grows the wait before its next try instead
+        // (FsrsScheduler.stepOutcome).
         val lapses = existing.lapses + if (rating == Rating.Again) 1 else 0
         return applied(existing, outcome, rating, now, elapsedDays).copy(lapses = lapses)
     }

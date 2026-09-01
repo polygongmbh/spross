@@ -29,21 +29,23 @@ data class SchedulerOutcome(
 )
 
 /**
- * FSRS-6 learning/relearning-steps state machine over [Fsrs].
+ * FSRS-6 (re)learning-steps state machine over [Fsrs]: ONE growing-backoff
+ * ladder ([FsrsParameters.stepsSeconds]) shared by Learning and Relearning
+ * (product ruling 2026-09-01, supersedes the 2026-08-07 leech ruling and the
+ * earlier per-phase split into two arrays) — a new word and a lapsed word
+ * wait on the same cadence. Again climbs the ladder rather than resetting to
+ * step 0, so repeated fails get spaced further apart instead of repeating the
+ * same short wait; a single Good or Easy graduates immediately, from wherever
+ * the ladder sits, rather than requiring a run of successes through the
+ * remaining steps. Hard holds at the first-steps blend. Review + Again always
+ * opens Relearning at the ladder's first entry. Graduation interval =
+ * I(desiredRetention, S′).
  *
- * Learning follows the reference machine: Again → step 0; Hard → hold with the
- * first-steps blend; Good → advance or graduate past the last step; Easy →
- * graduate. Relearning is a product-owned growing backoff instead (ruling
- * 2026-09-01, supersedes the 2026-08-07 leech ruling): Again climbs the ladder
- * rather than resetting, so repeated fails get spaced further apart instead of
- * repeating the same short wait; a single Good or Easy graduates immediately,
- * from wherever the ladder sits. Review + Again always opens Relearning at the
- * ladder's first entry. Graduation interval = I(desiredRetention, S′).
- *
- * Learning semantics follow py-fsrs v6.3.1 (single-outcome machine), with the
- * Hard interval rounded to whole minutes as ts-fsrs v5.4.1 pins it (6 m for
- * [1m, 10m]; ×1.5 rounded for a single step) — Relearning keeps the same Hard
- * blend, but its Again/Good behavior diverges as above.
+ * The Hard interval rounds to whole minutes as ts-fsrs v5.4.1 pins it (6 m for
+ * [1m, 10m]; ×1.5 rounded for a single step) — the one piece of the reference
+ * step machine this keeps; Again/Good/Easy diverge from py-fsrs/ts-fsrs as
+ * above. [Fsrs.nextMemory]'s stability/difficulty math is unaffected and
+ * still matches the reference exactly.
  */
 class FsrsScheduler(val parameters: FsrsParameters = FsrsParameters()) {
 
@@ -57,18 +59,21 @@ class FsrsScheduler(val parameters: FsrsParameters = FsrsParameters()) {
     fun review(state: SchedulerState, elapsedDays: Double, rating: Rating): SchedulerOutcome {
         val memory = algorithm.nextMemory(state.memory, elapsedDays, rating)
         return when (state.phase) {
+            // Step -1: New has never stood on the ladder, so its first Again must land
+            // on step 0 (a same-day retry) rather than climb past it — a word appears
+            // at most twice on its first day, not once.
             CardPhase.New ->
-                learningStepOutcome(parameters.learningStepsSeconds, 0, rating, memory)
+                stepOutcome(parameters.stepsSeconds, CardPhase.Learning, -1, rating, memory)
             CardPhase.Learning ->
-                learningStepOutcome(parameters.learningStepsSeconds, state.stepIndex ?: 0, rating, memory)
+                stepOutcome(parameters.stepsSeconds, CardPhase.Learning, state.stepIndex ?: 0, rating, memory)
             CardPhase.Relearning ->
-                relearningStepOutcome(parameters.relearningStepsSeconds, state.stepIndex ?: 0, rating, memory)
+                stepOutcome(parameters.stepsSeconds, CardPhase.Relearning, state.stepIndex ?: 0, rating, memory)
             CardPhase.Review -> reviewOutcome(rating, memory)
         }
     }
 
     private fun reviewOutcome(rating: Rating, memory: MemoryState): SchedulerOutcome {
-        val steps = parameters.relearningStepsSeconds
+        val steps = parameters.stepsSeconds
         // why: with no relearning steps configured, a lapsed card stays in Review
         // and reschedules from its post-lapse stability (reference behavior).
         return if (rating == Rating.Again && steps.isNotEmpty()) {
@@ -78,43 +83,26 @@ class FsrsScheduler(val parameters: FsrsParameters = FsrsParameters()) {
         }
     }
 
-    private fun learningStepOutcome(
+    // One growing-backoff ladder, shared by Learning and Relearning: Again climbs it
+    // instead of resetting, capped at the last entry; a single Good/Easy graduates
+    // immediately from wherever it sits — it only spaces out repeated fails, it is
+    // not a run of successes to climb back. `step` can arrive as -1 (New's first
+    // answer, never yet on the ladder) — coerced up so Hard never stores a negative
+    // stepIndex, and Again's climb naturally lands a first-ever fail on step 0.
+    private fun stepOutcome(
         steps: List<Long>,
-        step: Int,
-        rating: Rating,
-        memory: MemoryState,
-    ): SchedulerOutcome {
-        // Past-the-end steps (config shrank) graduate on success; Again still restarts.
-        if (steps.isEmpty() || (step >= steps.size && rating != Rating.Again)) {
-            return graduate(memory)
-        }
-        return when (rating) {
-            Rating.Again -> stepped(CardPhase.Learning, 0, steps[0], memory)
-            Rating.Hard -> stepped(CardPhase.Learning, step, hardStepSeconds(steps), memory)
-            Rating.Good ->
-                if (step + 1 >= steps.size) graduate(memory)
-                else stepped(CardPhase.Learning, step + 1, steps[step + 1], memory)
-            Rating.Easy -> graduate(memory)
-        }
-    }
-
-    private fun relearningStepOutcome(
-        steps: List<Long>,
+        phase: CardPhase,
         step: Int,
         rating: Rating,
         memory: MemoryState,
     ): SchedulerOutcome {
         if (steps.isEmpty()) return graduate(memory)
         return when (rating) {
-            // Climbs the ladder instead of resetting — repeated fails get more room
-            // before their next try, capped at the ladder's last entry.
             Rating.Again -> {
-                val next = (step + 1).coerceAtMost(steps.size - 1)
-                stepped(CardPhase.Relearning, next, steps[next], memory)
+                val next = (step + 1).coerceIn(0, steps.size - 1)
+                stepped(phase, next, steps[next], memory)
             }
-            Rating.Hard -> stepped(CardPhase.Relearning, step, hardStepSeconds(steps), memory)
-            // A single Good/Easy graduates from wherever the ladder sits — it only
-            // spaces out repeated fails, it is not a run of successes to climb back.
+            Rating.Hard -> stepped(phase, step.coerceAtLeast(0), hardStepSeconds(steps), memory)
             Rating.Good, Rating.Easy -> graduate(memory)
         }
     }

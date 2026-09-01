@@ -2,11 +2,13 @@
 
 ## Unreleased
 
-- **A word that keeps slipping gets more room, not less.** Missing a word repeatedly used to
-  bring it back after the same fixed 10 minutes every time, and a second miss anywhere
-  quietly suspended it out of rotation for good. Repeated misses now wait longer each time —
-  10 minutes, a day, three days, a week — so a hard word gets space to sink in instead of
-  being drilled again the same day; a word only sleeps now if you suspend it yourself.
+- **A word that keeps slipping gets more room, not less.** Missing a word used to bring it
+  back after the same fixed wait every time — 2 minutes for a brand-new word, 10 for one
+  you'd already learned — and a second miss anywhere quietly suspended it out of rotation
+  for good. Repeated misses now wait longer each time, new word or old — 10 minutes, a day,
+  three days, a week — so a word appears at most twice on the day you first meet it before a
+  repeat miss gives it space to sink in, instead of being drilled again the same day; a word
+  only sleeps now if you suspend it yourself.
 
 - **Android: the introduction can be read again.** What Spross is for and what a round asks
   of you were shown once, on the first launch, and never again. The box settings now have a

@@ -274,8 +274,8 @@ object BoxEngine {
      * Apply one answer to a card. Introduction = the card's first answer: creates its
      * schedule, counts it introduced, and dequeues it. Any Again past introduction
      * counts a lapse — tracked for drill/listening scoring, never auto-suspending;
-     * a lapse while relearning grows the wait before its next try instead of
-     * repeating the same short one ([net.spross.kern.fsrs.FsrsScheduler]).
+     * a lapse grows the wait before its next try instead of repeating the same short
+     * one, new word or lapsed alike ([net.spross.kern.fsrs.FsrsScheduler]).
      * An unknown id leaves the state untouched.
      */
     fun answer(

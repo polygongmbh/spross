@@ -35,24 +35,21 @@ data class BoxConfig(
      */
     val consolidatedStability: Double = 6.0,
     /**
-     * ONE learning step, deliberately longer than the sitting that earned it: the
-     * retry belongs to the NEXT sitting or an endless run, not to the tail of this
-     * one, where it would push the finish line back after the learner had already
-     * counted the cards left. Two minutes clears a short sitting without pushing
-     * the word out of the day (reference default was `[1m, 10m]`).
+     * (Re)learning steps in seconds — ONE growing-backoff ladder, the same cadence
+     * whether a word has never graduated (Learning) or lapsed after it did
+     * (Relearning): 10 min, 1 day, 3 days, 7 days (user ruling 2026-09-01,
+     * supersedes both the single-step-Learning split and the 2026-08-07 leech
+     * ruling — a lapse no longer auto-suspends). A retry belongs to the NEXT
+     * sitting or an endless run, not the tail of this one — a composed session
+     * never refills (no in-session retry, breadth ruling 2026-07-22), so the run
+     * boundary keeps a lapsed word out of the sitting it lapsed in regardless of
+     * the step length. Repeated fails climb the ladder instead of repeating its
+     * first entry (see [net.spross.kern.fsrs.FsrsScheduler]), giving a word that
+     * keeps slipping room to consolidate rather than being shoved at the learner
+     * again the same day; a single correct answer graduates it immediately from
+     * wherever the ladder sits.
      */
-    val learningStepsSeconds: List<Long> = listOf(120L),
-    /**
-     * Relearning steps in seconds, a growing backoff ladder: 10 min, 1 day, 3
-     * days, 7 days. Only the first entry is the FSRS-6 reference default — a
-     * lapse still returns in 10 minutes the first time (no in-session retry,
-     * breadth ruling 2026-07-22). Repeated lapses climb the ladder instead of
-     * repeating that 10 minutes (see [net.spross.kern.fsrs.FsrsScheduler]),
-     * giving a word that keeps slipping room to consolidate rather than being
-     * shoved at the learner again the same day (user ruling 2026-09-01,
-     * supersedes the 2026-08-07 leech ruling — a lapse no longer auto-suspends).
-     */
-    val relearningStepsSeconds: List<Long> = listOf(600L, 86_400L, 3 * 86_400L, 7 * 86_400L),
+    val stepsSeconds: List<Long> = listOf(600L, 86_400L, 3 * 86_400L, 7 * 86_400L),
 ) {
     companion object {
         /**

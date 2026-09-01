@@ -17,8 +17,7 @@ class CalibrationTest {
             desiredRetention = 0.95,
             maximumIntervalDays = 30,
             consolidatedStability = 3.0,
-            learningStepsSeconds = listOf(60L, 600L),
-            relearningStepsSeconds = listOf(60L),
+            stepsSeconds = listOf(60L),
         )
         assertNotEquals(BoxConfig.product(), stale)
         val loaded = state.copy(config = stale).withProductCalibration()
