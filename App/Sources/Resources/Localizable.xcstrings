@@ -2692,7 +2692,7 @@
           }
         }
       },
-      "comment" : "The cap is a promise, not a loss: what it holds back is named — but only from SessionOffer.HELD_BACK_NAMED_FROM up, so the singular never renders and stands only because a counted key owes every plural category."
+      "comment" : "The cap is a promise, not a loss: what it holds back is named — but only from half a sitting up (BoxConfig.heldBackNamedFrom), so on a default cap the count starts at 12; a small cap puts the line at 1 and the singular back in reach."
     },
     "home.offer.shortRound" : {
       "localizations" : {

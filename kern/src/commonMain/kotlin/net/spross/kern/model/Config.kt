@@ -51,6 +51,18 @@ data class BoxConfig(
      */
     val stepsSeconds: List<Long> = listOf(600L, 86_400L, 3 * 86_400L, 7 * 86_400L),
 ) {
+    /**
+     * Due cards left over from a round go unsaid below this
+     * ([net.spross.kern.session.SessionOffer.dueHeldBack]).
+     *
+     * Intake sits near what a sitting can service, so a box in good health almost always has a
+     * few cards over (`docs/growth-evidence.md`). Naming three of them turns that standing,
+     * healthy state into an arrears notice the learner reads every single day. Half the sitting
+     * rather than a number, so the line means the same thing at every [sessionCap]: a remainder
+     * is worth saying once it approaches another sitting's worth of work.
+     */
+    val heldBackNamedFrom: Int = sessionCap / 2
+
     companion object {
         /**
          * The shipped calibration, handed out as a value: exactly the defaults above.
