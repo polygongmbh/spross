@@ -27,7 +27,7 @@ struct RatingButtonsView: View {
     var onGrade: (SessionOutcome) -> Void
     /// What stands under the row. The standing question by default; the first
     /// round's coaching replaces it, so only ever one line sits there.
-    var caption: LocalizedStringKey = "rating.question"
+    var caption: LocalizedStringKey = "session.rating.question"
 
     var body: some View {
         VStack(spacing: DL.Space.s) {
@@ -51,9 +51,9 @@ struct RatingButtonsView: View {
 private extension SessionOutcome {
     var label: LocalizedStringKey {
         switch self {
-        case .right: return "rating.good"
-        case .tough: return "rating.hard"
-        case .wrong: return "rating.unknown"
+        case .right: return "session.rating.good"
+        case .tough: return "session.rating.hard"
+        case .wrong: return "session.rating.unknown"
         }
     }
 

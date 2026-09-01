@@ -196,7 +196,7 @@ struct SessionExitButtons: View {
             }
             .buttonStyle(DLPrimaryButtonStyle())
             if let onPractice {
-                Button("session.finished.keepPracticing", action: onPractice)
+                Button("session.done.keepPracticing", action: onPractice)
                     .buttonStyle(DLSoftButtonStyle())
             }
         }

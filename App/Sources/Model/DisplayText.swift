@@ -115,10 +115,10 @@ enum CardDisplay {
     static func plural(of realization: Realization, locale: Locale) -> String? {
         guard let plural = pluralForm(realization: realization) else { return nil }
         switch onEnum(of: plural) {
-        case .sameAsSingular: return DLChrome.string("grammar.plural.equals", locale: locale)
-        case .pluralOnly: return DLChrome.string("grammar.plural.only", locale: locale)
+        case .sameAsSingular: return DLChrome.string("session.grammar.plural.equals", locale: locale)
+        case .pluralOnly: return DLChrome.string("session.grammar.plural.only", locale: locale)
         case .form(let form):
-            return String(format: DLChrome.string("grammar.plural %@", locale: locale), form.text)
+            return String(format: DLChrome.string("session.grammar.plural %@", locale: locale), form.text)
         }
     }
 
@@ -129,7 +129,7 @@ enum CardDisplay {
                            locale: Locale) -> String? {
         let family = SprossKern.alternates(realization: realization, shown: [shown])
         guard !family.isEmpty else { return nil }
-        return String(format: DLChrome.string("grammar.also %@", locale: locale),
+        return String(format: DLChrome.string("session.grammar.also %@", locale: locale),
                       family.joined(separator: " / "))
     }
 }

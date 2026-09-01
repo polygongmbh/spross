@@ -161,7 +161,7 @@ extension SessionView {
                     // trap, same as the write-out step's own skip. Giving up
                     // here ends the card: this field already is the one
                     // write-out the word gets, so nothing hands it a second.
-                    Button("session.skipCopy") { dispatch(TurnIntent.GiveUp.shared) }
+                    Button("session.skip") { dispatch(TurnIntent.GiveUp.shared) }
                         .font(DL.Fonts.caption)
                         .foregroundStyle(Color.dlTextSecondary)
                 }

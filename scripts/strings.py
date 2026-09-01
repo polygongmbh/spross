@@ -65,8 +65,8 @@ CATEGORIES = {'de': ('one', 'other'), 'en': ('one', 'other')}
 # locale), so no extractor can see them.
 UNEXTRACTABLE = {
     'home.offer.start',
-    'grammar.plural.equals', 'grammar.plural.only', 'grammar.plural %@',
-    'grammar.also %@', 'session.answer.placeholder %@', 'session.copy.placeholder %@',
+    'session.grammar.plural.equals', 'session.grammar.plural.only', 'session.grammar.plural %@',
+    'session.grammar.also %@', 'session.answer.placeholder %@', 'session.copy.placeholder %@',
     # A drill tile's a11y label interpolates the glyph into a plain String —
     # no extractor follows an accessibilityLabel built at runtime either way.
     'a11y.glyph.letter %@',
@@ -93,7 +93,7 @@ ANDROID_ONLY = {
 # (`AppModel+Queries.headlineKey`, `SessionCompletionView.growthKey`). The words are
 # ours, the choice is not, so no call site ever spells the key out.
 COMPOSED = (
-    'home.offer.headline.', 'session.finished.growth.',
+    'home.offer.headline.', 'session.done.growth.',
 )
 
 

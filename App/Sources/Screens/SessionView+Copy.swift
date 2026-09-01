@@ -37,13 +37,13 @@ extension SessionView {
             }
             if step.missed {
                 // why: the answer is already on the card, so this points back to it.
-                Text("session.copyMismatch")
+                Text("session.copy.mismatch")
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity)
             }
-            Button("session.skipCopy") { dispatch(TurnIntent.SkipCopy.shared) }
+            Button("session.skip") { dispatch(TurnIntent.SkipCopy.shared) }
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }

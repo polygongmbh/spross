@@ -338,7 +338,7 @@ struct SessionView: View, LanguageNaming {
     /// (recognize, and produce's blank reveal) read it.
     // why: internal, not private — SessionView+Produce mounts the same row.
     var gradeCaption: LocalizedStringKey {
-        model.coachActive ? SessionCoach.gradeCaption : "rating.question"
+        model.coachActive ? SessionCoach.gradeCaption : "session.rating.question"
     }
 
     /// It matters here for the step "Unbekannt" opens: the write-it-out field

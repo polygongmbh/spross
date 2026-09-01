@@ -2212,72 +2212,6 @@
         }
       }
     },
-    "grammar.also %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "auch: %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "also: %@"
-          }
-        }
-      },
-      "comment" : "%s = the forms a card also answers to"
-    },
-    "grammar.plural %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pl. %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "pl. %@"
-          }
-        }
-      },
-      "comment" : "%s = the plural, where a card carries one"
-    },
-    "grammar.plural.equals" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "= Pl."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "= pl."
-          }
-        }
-      }
-    },
-    "grammar.plural.only" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "nur Pl."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "pl. only"
-          }
-        }
-      }
-    },
     "home.done.caughtUp" : {
       "localizations" : {
         "de" : {
@@ -4379,72 +4313,6 @@
         }
       }
     },
-    "rating.good" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wusste ich"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Knew it"
-          }
-        }
-      }
-    },
-    "rating.hard" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wackelig"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shaky"
-          }
-        }
-      }
-    },
-    "rating.question" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wie gut wusstest du es?"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "How well did you know it?"
-          }
-        }
-      },
-      "comment" : "The question the three verdicts answer, standing under them."
-    },
-    "rating.unknown" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gar nicht"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Not at all"
-          }
-        }
-      },
-      "comment" : "the third verdict — a judgment, not an instruction"
-    },
     "report.action" : {
       "localizations" : {
         "de" : {
@@ -4709,6 +4577,23 @@
         }
       }
     },
+    "session.copy.mismatch" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch nicht ganz — das Wort steht oben."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not quite — the word is right above."
+          }
+        }
+      },
+      "comment" : "the copy was another word: the card still holds the answer"
+    },
     "session.copy.placeholder %@" : {
       "localizations" : {
         "de" : {
@@ -4726,41 +4611,7 @@
       },
       "comment" : "%s = target language name — the write-it-out field"
     },
-    "session.copyMismatch" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch nicht ganz — das Wort steht oben."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Not quite — the word is right above."
-          }
-        }
-      },
-      "comment" : "the copy was another word: the card still holds the answer"
-    },
-    "session.finished.grew" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Auch heute bleibt was hängen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Some of it sticks today too"
-          }
-        }
-      },
-      "comment" : "What the round's area GREW, read off the tree's own delta rather than the round's tallies. session.finished.grew is the one line a strained day gets — no growth claim on a bad day — and session.finished.growth.opened the first ground broken in an area; the three lists are the variants a stable seeded pick chooses from."
-    },
-    "session.finished.growth.blooming.0" : {
+    "session.done.growth.blooming.0" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4776,7 +4627,7 @@
         }
       }
     },
-    "session.finished.growth.blooming.1" : {
+    "session.done.growth.blooming.1" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4792,7 +4643,7 @@
         }
       }
     },
-    "session.finished.growth.blooming.2" : {
+    "session.done.growth.blooming.2" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4808,7 +4659,24 @@
         }
       }
     },
-    "session.finished.growth.grown.0" : {
+    "session.done.growth.grew" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auch heute bleibt was hängen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some of it sticks today too"
+          }
+        }
+      },
+      "comment" : "What the round's area GREW, read off the tree's own delta rather than the round's tallies. session.done.growth.grew is the one line a strained day gets — no growth claim on a bad day — and session.done.growth.opened the first ground broken in an area; the three lists are the variants a stable seeded pick chooses from."
+    },
+    "session.done.growth.grown.0" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4824,7 +4692,7 @@
         }
       }
     },
-    "session.finished.growth.grown.1" : {
+    "session.done.growth.grown.1" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4840,7 +4708,7 @@
         }
       }
     },
-    "session.finished.growth.grown.2" : {
+    "session.done.growth.grown.2" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4856,7 +4724,7 @@
         }
       }
     },
-    "session.finished.growth.opened" : {
+    "session.done.growth.opened" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4872,7 +4740,7 @@
         }
       }
     },
-    "session.finished.growth.sown.0" : {
+    "session.done.growth.sown.0" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4888,7 +4756,7 @@
         }
       }
     },
-    "session.finished.growth.sown.1" : {
+    "session.done.growth.sown.1" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4904,7 +4772,7 @@
         }
       }
     },
-    "session.finished.growth.sown.2" : {
+    "session.done.growth.sown.2" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4920,7 +4788,7 @@
         }
       }
     },
-    "session.finished.keepPracticing" : {
+    "session.done.keepPracticing" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4936,7 +4804,7 @@
         }
       }
     },
-    "session.finished.restHint" : {
+    "session.done.restHint" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4953,7 +4821,7 @@
       },
       "comment" : "today's recall is strained; more reps buy little"
     },
-    "session.finished.streakRecord" : {
+    "session.done.streakRecord" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4969,7 +4837,89 @@
         }
       }
     },
-    "session.finished.title" : {
+    "session.done.tally.allDone" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles erledigt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All done"
+          }
+        }
+      },
+      "comment" : "the round had nothing nameable in it"
+    },
+    "session.done.tally.consolidated %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ gefestigt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ consolidated"
+          }
+        }
+      }
+    },
+    "session.done.tally.new %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ gesät"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ new"
+          }
+        }
+      }
+    },
+    "session.done.tally.newOnly %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ neue Wörter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ new words"
+          }
+        }
+      },
+      "comment" : "session.done.tally.new spelled out with its noun, for a round that named nothing else."
+    },
+    "session.done.tally.reviewed %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ gecheckt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ reviewed"
+          }
+        }
+      }
+    },
+    "session.done.title" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4981,6 +4931,72 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "All done!"
+          }
+        }
+      }
+    },
+    "session.grammar.also %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "auch: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "also: %@"
+          }
+        }
+      },
+      "comment" : "%s = the forms a card also answers to"
+    },
+    "session.grammar.plural %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pl. %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pl. %@"
+          }
+        }
+      },
+      "comment" : "%s = the plural, where a card carries one"
+    },
+    "session.grammar.plural.equals" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "= Pl."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "= pl."
+          }
+        }
+      }
+    },
+    "session.grammar.plural.only" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nur Pl."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pl. only"
           }
         }
       }
@@ -5019,6 +5035,72 @@
       },
       "comment" : "%1$s = the word typed, %2$s = what it means"
     },
+    "session.rating.good" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wusste ich"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Knew it"
+          }
+        }
+      }
+    },
+    "session.rating.hard" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wackelig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shaky"
+          }
+        }
+      }
+    },
+    "session.rating.question" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie gut wusstest du es?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How well did you know it?"
+          }
+        }
+      },
+      "comment" : "The question the three verdicts answer, standing under them."
+    },
+    "session.rating.unknown" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gar nicht"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not at all"
+          }
+        }
+      },
+      "comment" : "the third verdict — a judgment, not an instruction"
+    },
     "session.reveal" : {
       "localizations" : {
         "de" : {
@@ -5035,7 +5117,7 @@
         }
       }
     },
-    "session.skipCopy" : {
+    "session.skip" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5050,89 +5132,7 @@
           }
         }
       },
-      "comment" : "Leaving a step that has already decided its rating: the write-out's skip, and giving up on an open retry. One word for both, as on iOS (`session.skipCopy`) — a step you cannot leave is a trap, and neither leaving costs the schedule anything."
-    },
-    "session.summary.allDone" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alles erledigt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "All done"
-          }
-        }
-      },
-      "comment" : "the round had nothing nameable in it"
-    },
-    "session.summary.consolidated %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ gefestigt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ consolidated"
-          }
-        }
-      }
-    },
-    "session.summary.new %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ gesät"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ new"
-          }
-        }
-      }
-    },
-    "session.summary.newOnly %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ neue Wörter"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ new words"
-          }
-        }
-      },
-      "comment" : "session.summary.new spelled out with its noun, for a round that named nothing else."
-    },
-    "session.summary.reviewed %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ gecheckt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ reviewed"
-          }
-        }
-      }
+      "comment" : "Leaving a step that has already decided its rating: the write-out's skip, and giving up on an open retry. One word for both, as on iOS (`session.skip`) — a step you cannot leave is a trap, and neither leaving costs the schedule anything."
     },
     "settings.about" : {
       "localizations" : {

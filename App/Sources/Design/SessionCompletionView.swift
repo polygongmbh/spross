@@ -51,16 +51,16 @@ struct SessionCompletionView: View {
         let parts = completionTallyParts(introduced: Int32(newCount),
                                          consolidated: Int32(graduatedCount),
                                          reviews: Int32(reviewCount))
-        return parts.map { Self.partText($0, alone: parts.count == 1) }.joined() ?? Text("session.summary.allDone")
+        return parts.map { Self.partText($0, alone: parts.count == 1) }.joined() ?? Text("session.done.tally.allDone")
     }
 
     private static func partText(_ part: TallyPart, alone: Bool) -> Text {
         let count = Int(part.count).formatted()
         switch part.kind {
         case .introduced:
-            return alone ? Text("session.summary.newOnly \(count)") : Text("session.summary.new \(count)")
-        case .consolidated: return Text("session.summary.consolidated \(count)")
-        case .reviews: return Text("session.summary.reviewed \(count)")
+            return alone ? Text("session.done.tally.newOnly \(count)") : Text("session.done.tally.new \(count)")
+        case .consolidated: return Text("session.done.tally.consolidated \(count)")
+        case .reviews: return Text("session.done.tally.reviewed \(count)")
         }
     }
 
@@ -71,7 +71,7 @@ struct SessionCompletionView: View {
             // a party popper is the same picture whatever the learner did, and
             // two celebratory graphics on one screen is one too many.
             if grownArea == nil { burstHero } else { grownAreaHero }
-            Text("session.finished.title")
+            Text("session.done.title")
                 .font(DL.Fonts.hero)
                 .foregroundStyle(Color.dlTextPrimary)
             summaryText
@@ -83,13 +83,13 @@ struct SessionCompletionView: View {
                 // today has reviews by construction — the flame is lit or nothing.
                 StreakFlameView(days: streakDays, flame: .lit)
                 if streakIsRecord {
-                    Text("session.finished.streakRecord")
+                    Text("session.done.streakRecord")
                         .font(DL.Fonts.headline)
                         .foregroundStyle(Color.dlAccent)
                 }
             }
             if restSuggested {
-                Text("session.finished.restHint")
+                Text("session.done.restHint")
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
                     .multilineTextAlignment(.center)
@@ -171,12 +171,12 @@ struct SessionCompletionView: View {
         // line is the point: on a bad day the box genuinely cannot say which
         // words survived, and pretending otherwise is what the rest hint exists
         // to prevent.
-        guard !restSuggested else { return "session.finished.grew" }
-        guard let move = grownArea else { return "session.finished.growth.grown.0" }
+        guard !restSuggested else { return "session.done.growth.grew" }
+        guard let move = grownArea else { return "session.done.growth.grown.0" }
 
         // Ground where there had never been any: the most narratable thing the
         // box does, and it used to read like any other round of new words.
-        if move.before.isBare { return "session.finished.growth.opened" }
+        if move.before.isBare { return "session.done.growth.opened" }
 
         // why: the key is built as a STRING and only then wrapped. Interpolating
         // inside `LocalizedStringKey("…\(n)")` takes the string-INTERPOLATION
@@ -202,7 +202,7 @@ struct SessionCompletionView: View {
                 offset = 1
             }
         }
-        let key = "session.finished.growth.\(kind).\(variant(of: variants) + offset)"
+        let key = "session.done.growth.\(kind).\(variant(of: variants) + offset)"
         return LocalizedStringKey(key)
     }
 
@@ -247,7 +247,7 @@ struct SessionCompletionView: View {
                 .dlSway(angle: 3, period: 3.7)
         }
         .frame(height: 180)
-        .accessibilityHidden(true) // why: purely celebratory; "session.finished.title" below carries the message
+        .accessibilityHidden(true) // why: purely celebratory; "session.done.title" below carries the message
     }
 }
 
