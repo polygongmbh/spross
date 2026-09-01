@@ -363,7 +363,7 @@ internal object ChromeDe : Chrome {
         "Zeit, die Glut neu zu entfachen",
     )
     override val homeTallySomeCards = "Ein paar Karten für dich."
-    override val homeOfferHeldBack = "%d weitere Karten liegen für dich bereit."
+    override val homeOfferHeldBack = "%d weitere sind startklar."
     override val homeOfferStart = "Los geht's!"
     override val homeOfferShortRound = "Lieber nur kurz?"
     override val listenTitle = "Wörter hören"
