@@ -344,7 +344,7 @@ internal object ChromeEn : Chrome {
         "Time for a refresher",
     )
     override val headlineWarmUp = listOf(
-        "A reunion with familiar words",
+        "A few old friends",
     )
     override val headlineFreshSet = listOf(
         "Up for some new words?",
