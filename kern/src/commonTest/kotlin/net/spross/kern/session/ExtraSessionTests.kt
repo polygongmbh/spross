@@ -87,7 +87,7 @@ class ExtraSessionTests {
         assertEquals(listOf("w02", "w03", "w04", "w05"), soon.newCards)
 
         // Once its step is genuinely due, it comes back as a review.
-        val later = SessionComposer.composeRound(state, Box.plusSeconds(day0, 600), Box.TZ)
+        val later = SessionComposer.composeRound(state, Box.plusSeconds(day0, Box.steps[0]), Box.TZ)
         assertEquals(listOf("w01"), later.reviews)
     }
 }

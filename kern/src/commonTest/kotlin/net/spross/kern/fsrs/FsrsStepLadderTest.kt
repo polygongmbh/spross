@@ -8,12 +8,18 @@ import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Rating
 
 /**
- * (Re)learning-step ladder vectors — one machine shared by Learning and Relearning
- * (product ruling 2026-09-01; see [FsrsScheduler]'s KDoc for why this diverges from
- * the py-fsrs/ts-fsrs reference step machine). Again is the only rating that stays
- * on the ladder; Hard, Good and Easy graduate from wherever it sits.
+ * This port's OWN (re)learning-step machine — one ladder shared by Learning and
+ * Relearning (product ruling 2026-09-01; see [FsrsScheduler]'s KDoc). Again is the
+ * only rating that stays on the ladder; Hard, Good and Easy graduate from wherever it
+ * sits. Every number here is self-computed against that machine, including in the
+ * trajectories seeded from upstream's fixtures ([firstRepeatStatesAndIntervals],
+ * [flagshipIvlHistory], [retrievabilityAtDueAfterFirstRating]) — those started as
+ * ts-fsrs/py-fsrs vectors and are kept for their inputs, not their expectations.
+ * The memory-state numbers upstream still pins are [FsrsGoldenVectorTest]'s.
  */
 class FsrsStepLadderTest {
+
+    private val grades = listOf(Rating.Again, Rating.Hard, Rating.Good, Rating.Easy)
 
     private fun scheduler(steps: List<Long> = listOf(60L, 600L)) =
         FsrsScheduler(FsrsParameters(stepsSeconds = steps))
@@ -124,5 +130,75 @@ class FsrsStepLadderTest {
         assertEquals(CardPhase.Review, o.phase)
         assertNull(o.stepIndex)
         assertTrue(o.intervalDays >= 1)
+    }
+
+    // The four grades on a brand-new card (ts-fsrs FSRS-6.test.ts "first repeat"'s
+    // setup): only Again opens the ladder, the rest go straight to Review, so the
+    // scheduled days follow from S0 rather than from upstream's step walk.
+    @Test
+    fun firstRepeatStatesAndIntervals() {
+        val scheduler = FsrsScheduler()
+        val outcomes = grades.map { scheduler.review(SchedulerState(), 0.0, it) }
+        assertEquals(listOf(0, 1, 2, 8), outcomes.map { it.intervalDays })
+        assertEquals(
+            listOf(CardPhase.Learning, CardPhase.Review, CardPhase.Review, CardPhase.Review),
+            outcomes.map { it.phase },
+        )
+        assertEquals(listOf(0, null, null, null), outcomes.map { it.stepIndex })
+    }
+
+    // A long trajectory reviewed exactly at due — ratings from ts-fsrs FSRS-6.test.ts
+    // "ivl_history" / py-fsrs test_review_card, intervals this machine's own: the first
+    // Good graduates straight from New instead of walking a second Learning step, and
+    // every following review compounds that departure.
+    @Test
+    fun flagshipIvlHistory() {
+        val scheduler = FsrsScheduler()
+        val ratings = listOf(
+            Rating.Good, Rating.Good, Rating.Good, Rating.Good, Rating.Good, Rating.Good,
+            Rating.Again, Rating.Again,
+            Rating.Good, Rating.Good, Rating.Good, Rating.Good, Rating.Good,
+        )
+        var state = SchedulerState()
+        var nowSeconds = 0L
+        var lastSeconds = 0L
+        val history = mutableListOf<Int>()
+        for (rating in ratings) {
+            val elapsedDays = (nowSeconds - lastSeconds) / 86_400.0
+            val outcome = scheduler.review(state, elapsedDays, rating)
+            history += outcome.intervalDays
+            state = SchedulerState(outcome.phase, outcome.stepIndex, outcome.memory)
+            lastSeconds = nowSeconds
+            nowSeconds += outcome.intervalSeconds
+        }
+        assertEquals(listOf(2, 11, 46, 163, 497, 1346, 0, 0, 3, 5, 9, 16, 26), history)
+    }
+
+    // R at the due day each grade schedules (ts-fsrs FSRS-6.test.ts "get retrievability"'s
+    // question, this machine's due days): [Fsrs.retrievability] is upstream's formula,
+    // but the day it is asked about comes from the graduation above.
+    @Test
+    fun retrievabilityAtDueAfterFirstRating() {
+        val scheduler = FsrsScheduler()
+        val expected = listOf(1.0, 0.9166697187203525, 0.9094932559773545, 0.9024733)
+        for (i in grades.indices) {
+            val outcome = scheduler.review(SchedulerState(), 0.0, grades[i])
+            val r = scheduler.algorithm.retrievability(
+                outcome.intervalDays.toDouble(),
+                outcome.memory.stability,
+            )
+            assertEquals(expected[i], r, 1e-6)
+        }
+    }
+
+    // Contract invariant: no outcome ever leaves New phase or a null memory behind.
+    @Test
+    fun reviewAlwaysLeavesNewPhase() {
+        val scheduler = FsrsScheduler()
+        for (grade in grades) {
+            val outcome = scheduler.review(SchedulerState(), 0.0, grade)
+            assertEquals(true, outcome.phase != CardPhase.New)
+            if (outcome.phase == CardPhase.Review) assertNull(outcome.stepIndex)
+        }
     }
 }

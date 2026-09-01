@@ -25,7 +25,7 @@ class BoxAnswerTests {
         assertEquals(CardPhase.Review, sched.phase)
         assertNull(sched.stepIndex)
         assertTrue(sched.due!! >= Box.instant(now) + 1.days)
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 600)).isEmpty())
+        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, Box.steps[0])).isEmpty())
     }
 
     // A word you missed comes back at the ladder's first entry — past the end of a
@@ -37,11 +37,11 @@ class BoxAnswerTests {
         val sched = state.scheduling.getValue("w01")
         assertEquals(CardPhase.Learning, sched.phase)
         assertEquals(0, sched.stepIndex)
-        assertEquals(Box.instant(now) + 600.seconds, sched.due)
+        assertEquals(Box.instant(now) + Box.steps[0].seconds, sched.due)
         assertEquals(0, sched.lapses) // lapses never count introduction, only tries after it
 
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 599)).isEmpty())
-        assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, 600)))
+        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, Box.steps[0] - 1)).isEmpty())
+        assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, Box.steps[0])))
     }
 
     // A single Good graduates the word off the ladder immediately, whatever step it
@@ -51,7 +51,7 @@ class BoxAnswerTests {
     fun againThenGoodGraduatesOffTheStep() {
         var state = Box.state(listOf(Box.word(1)))
         state = Box.answered(state, "w01", Rating.Again, now)
-        val retry = Box.plusSeconds(now, 600)
+        val retry = Box.plusSeconds(now, Box.steps[0])
         state = Box.answered(state, "w01", Rating.Good, retry)
 
         val sched = state.scheduling.getValue("w01")
@@ -80,13 +80,13 @@ class BoxAnswerTests {
     fun consecutiveAgainOnTheStepClimbsIt() {
         var state = Box.state(listOf(Box.word(1)))
         state = Box.answered(state, "w01", Rating.Again, now)
-        val retry = Box.plusSeconds(now, 600)
+        val retry = Box.plusSeconds(now, Box.steps[0])
         state = Box.answered(state, "w01", Rating.Again, retry)
 
         val sched = state.scheduling.getValue("w01")
         assertEquals(CardPhase.Learning, sched.phase)
         assertEquals(1, sched.stepIndex)
-        assertEquals(Box.instant(retry) + 86_400.seconds, sched.due)
+        assertEquals(Box.instant(retry) + Box.steps[1].seconds, sched.due)
     }
 
     @Test
@@ -113,7 +113,7 @@ class BoxAnswerTests {
         assertEquals(CardPhase.Relearning, sched.phase)
         assertEquals(1, sched.lapses)
         assertFalse(sched.suspended)
-        assertEquals(Box.instant(now) + 600.seconds, sched.due)
+        assertEquals(Box.instant(now) + Box.steps[0].seconds, sched.due)
     }
 
     @Test
@@ -126,9 +126,9 @@ class BoxAnswerTests {
         state = Box.answered(state, "w01", Rating.Again, now)
         // The drain loop stays empty for the rest of the session window …
         assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 60)).isEmpty())
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 599)).isEmpty())
+        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, Box.steps[0] - 1)).isEmpty())
         // … the lapsed card only returns at its 10-minute relearning step.
-        assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, 600)))
+        assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, Box.steps[0])))
     }
 
     // Repeated fails widen the gap instead of repeating the same short wait: relearning
@@ -149,16 +149,16 @@ class BoxAnswerTests {
         var sched = state.scheduling.getValue("w01")
         assertEquals(CardPhase.Relearning, sched.phase)
         assertEquals(1, sched.stepIndex)
-        assertEquals(Box.instant(now) + 86_400.seconds, sched.due)
+        assertEquals(Box.instant(now) + Box.steps[1].seconds, sched.due)
         assertFalse(sched.suspended)
 
-        val retry = Box.plusSeconds(now, 86_400)
+        val retry = Box.plusSeconds(now, Box.steps[1])
         state = Box.answered(state, "w01", Rating.Again, retry) // 3rd consecutive Again: 1d -> 3d
         sched = state.scheduling.getValue("w01")
         assertEquals(2, sched.stepIndex)
-        assertEquals(Box.instant(retry) + (3 * 86_400).seconds, sched.due)
+        assertEquals(Box.instant(retry) + Box.steps[2].seconds, sched.due)
 
-        val recall = Box.plusSeconds(retry, 3 * 86_400)
+        val recall = Box.plusSeconds(retry, Box.steps[2])
         state = Box.answered(state, "w01", Rating.Good, recall) // graduates from step 2, immediately
         sched = state.scheduling.getValue("w01")
         assertEquals(CardPhase.Review, sched.phase)

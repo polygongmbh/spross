@@ -28,6 +28,9 @@ internal object Box {
 
     fun instant(millis: Long): Instant = Instant.fromEpochMilliseconds(millis)
 
+    /** The product ladder these scenarios run on — index it, never restate its numbers. */
+    val steps: List<Long> = BoxConfig().stepsSeconds
+
     fun plusSeconds(millis: Long, s: Long): Long = millis + s * 1000
     fun plusDays(millis: Long, d: Double): Long = millis + (d * 86_400_000).toLong()
 

@@ -98,13 +98,13 @@ class SessionComposerTests {
 
         // w01 comes back once its first ladder step matures — past a short sitting;
         // w02 went straight to day scale and never re-enters the drain.
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 599)).isEmpty())
-        var t = Box.plusSeconds(now, 600)
+        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, Box.steps[0] - 1)).isEmpty())
+        var t = Box.plusSeconds(now, Box.steps[0])
         assertEquals(listOf("w01"), BoxEngine.dueNow(state, t))
 
         // Missing it again climbs the ladder instead of repeating the same wait.
         state = Box.answered(state, "w01", Rating.Again, t)
-        val next = Box.plusSeconds(t, 86_400)
+        val next = Box.plusSeconds(t, Box.steps[1])
         assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(next, -1)).isEmpty())
         t = next
         assertEquals(listOf("w01"), BoxEngine.dueNow(state, t))

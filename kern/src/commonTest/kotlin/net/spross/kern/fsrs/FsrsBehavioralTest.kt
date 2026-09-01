@@ -3,24 +3,29 @@ package net.spross.kern.fsrs
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import net.spross.kern.box.fsrsParameters
+import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.MemoryState
 import net.spross.kern.model.Rating
 
 /**
- * Behavioral expectations under the PRODUCT configuration (retention 0.8,
- * maximum interval 365, (re)learning ladder [10m, 1d, 3d, 7d], continuous
- * intervals). Self-computed, NOT reference vectors — they pin contract
- * choices, not upstream numerics. Keep in step with `model/Config.kt`.
+ * Behavioral expectations under the PRODUCT configuration ([BoxConfig.product],
+ * mapped by [fsrsParameters]). Self-computed, NOT reference vectors — they pin
+ * contract choices, not upstream numerics.
  */
 class FsrsBehavioralTest {
 
-    private val productParameters = FsrsParameters(
-        desiredRetention = 0.8,
-        maximumIntervalDays = 365,
-        stepsSeconds = listOf(600L, 86_400L, 3 * 86_400L, 7 * 86_400L),
-        intervalGranularitySeconds = 1L,
-    )
+    private val productParameters = BoxConfig.product().fsrsParameters()
+
+    // The one place the shipped ladder is spelled out: everything else derives it from
+    // [BoxConfig], so this is the tripwire that catches a change to the numbers.
+    @Test
+    fun theProductShipsTheTenMinuteToOneWeekLadder() {
+        assertEquals(listOf(600L, 86_400L, 259_200L, 604_800L), productParameters.stepsSeconds)
+        assertEquals(0.8, productParameters.desiredRetention)
+        assertEquals(365, productParameters.maximumIntervalDays)
+    }
 
     // At retention 0.8 the interval modifier is ~3.32, so S = 5 schedules 17 days.
     @Test
@@ -43,13 +48,13 @@ class FsrsBehavioralTest {
         val lapse = scheduler.review(state, 17.0, Rating.Again)
         assertEquals(CardPhase.Relearning, lapse.phase)
         assertEquals(0, lapse.stepIndex)
-        assertEquals(600L, lapse.intervalSeconds)
+        assertEquals(productParameters.stepsSeconds[0], lapse.intervalSeconds)
         assertEquals(0, lapse.intervalDays)
 
         // The retry ten minutes later graduates back to Review.
         val retry = scheduler.review(
             SchedulerState(lapse.phase, lapse.stepIndex, lapse.memory),
-            600.0 / 86_400.0,
+            productParameters.stepsSeconds[0] / 86_400.0,
             Rating.Good,
         )
         assertEquals(CardPhase.Review, retry.phase)

@@ -82,7 +82,7 @@ internal data class ConfigDto(
     // why: defaulted so a document written under the old learningStepsSeconds /
     // relearningStepsSeconds split still decodes — both keys are unknown now and
     // dropped, and this falls back to the build's calibration like the bar above.
-    val stepsSeconds: List<Long> = listOf(600L, 86_400L, 3 * 86_400L, 7 * 86_400L),
+    val stepsSeconds: List<Long> = BoxConfig().stepsSeconds,
 )
 
 @Serializable
