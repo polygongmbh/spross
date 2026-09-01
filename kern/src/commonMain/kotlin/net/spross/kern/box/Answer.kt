@@ -14,10 +14,6 @@ import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.Rating
 import net.spross.kern.model.ReviewLogEntry
 
-// why: breadth over retention (CLAUDE.md) — a word that does not stick gets pushed
-// out fast rather than repeating on the learner indefinitely (user ruling 2026-08-07).
-internal const val LEECH_LAPSE_THRESHOLD = 2
-
 /** Product FSRS parameters: default weights, box retention/interval/steps. */
 internal fun BoxConfig.fsrsParameters(): FsrsParameters = FsrsParameters(
     desiredRetention = desiredRetention,
@@ -103,13 +99,12 @@ internal object Answering {
             elapsedDays,
             rating,
         )
-        // why: counts any Again past introduction, not just review-phase ones — a word
-        // still struggling through its learning/relearning steps is still not sticking.
-        val lapsed = rating == Rating.Again
-        val lapses = existing.lapses + if (lapsed) 1 else 0
-        val suspended = existing.suspended || (lapsed && lapses >= LEECH_LAPSE_THRESHOLD)
-        return applied(existing, outcome, rating, now, elapsedDays)
-            .copy(lapses = lapses, suspended = suspended)
+        // why: counts any Again past introduction, not just review-phase ones — feeds
+        // drill and listening scoring (LetterDrill, ListeningPool) even though it no
+        // longer drives suspension; a relearning lapse grows the wait instead
+        // (FsrsScheduler.relearningStepOutcome).
+        val lapses = existing.lapses + if (rating == Rating.Again) 1 else 0
+        return applied(existing, outcome, rating, now, elapsedDays).copy(lapses = lapses)
     }
 
     private fun applied(

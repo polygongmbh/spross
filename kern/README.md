@@ -171,12 +171,16 @@ bar are on `BoxConfig` itself. What the product decided:
   not wait for it.
 - **A graduated interval floors at one day.** Bringing a card back inside the same day is
   what a learning step is for, not what an already-graduated schedule should ask.
-- **Leech: breadth over retention** (user ruling 2026-08-07). A lapse is any `Again` past
-  introduction — learning- and relearning-step retries count too, not just review-phase
-  ones — and 2 lapses auto-suspend the card. A word that has not stuck in two tries is
-  pushed outward rather than repeating on the learner indefinitely; suspension is the same
-  reversible state `setSuspended` uses everywhere else — the learner can always revive it
-  from the Box.
+- **Relearning steps grow with repeated lapses** (user ruling 2026-09-01, supersedes the
+  2026-08-07 leech ruling). A lapse is any `Again` past introduction — learning- and
+  relearning-step retries count too, not just review-phase ones — and is always tracked
+  (`CardScheduling.lapses`, drill/listening scoring reads it), but no longer auto-suspends.
+  Instead, each `Again` while relearning climbs `relearningStepsSeconds`
+  (`FsrsScheduler.relearningStepOutcome`) instead of resetting to its first entry — the
+  product ships `[10m, 1d, 3d, 7d]`, so a word that keeps slipping gets more room before
+  its next try rather than being repeated inside the same day. A single `Good` or `Easy`
+  graduates back to Review immediately, from wherever the ladder sits. Suspension is now
+  purely the learner's own call — `setSuspended`, reversible from the Box.
 - **ONE "has this word landed" threshold**: `consolidatedStability`
   (`Statistics.isConsolidated`, facade `BoxEngine.isConsolidated(state, cardId)`) —
   Review phase AND stability ≥ the bar, so a lapse un-lands a card, which is the point:
@@ -320,9 +324,9 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   words the learner packed, then the rest of the unseen ones in catalog order, so a language
   with an empty box plays from its very first word — and the run walks that order and laps
   it, so the same box gives the same run.
-  **Suspended cards stay in the pool**: the leech rule pushes a word out of the box's queue
-  (§5) and never said stop meeting the word, so a leech pays a toll on its own rung instead
-  of being sent to the back.
+  **Suspended cards stay in the pool**: suspending a word pushes it out of the box's queue
+  (§5) and never said stop meeting the word, so a suspended card pays a toll on its own
+  rung instead of being sent to the back.
   Hearing a word does not introduce it — introduction is the first answer, and listening
   answers nothing; `ListeningRun` holds no `BoxState` at all, which is what makes that
   structural rather than promised. The pool, the ladder, the deal, the beats and the bedtime

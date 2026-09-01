@@ -54,7 +54,7 @@ class ListeningPriorityTests {
      * RULE: a suspended word keeps its stability's rung less the toll — it is NOT sent to the
      * floor, and a shaky leech still comes in early.
      * WHY: the pool holds leeches precisely because they are what an hour of listening is for;
-     * the leech rule takes a word out of the box's rotation and this is the surface that can
+     * suspension takes a word out of the box's rotation and this is the surface that can
      * still reach it. Two rungs are enough that it does not lead the hour.
      */
     @Test

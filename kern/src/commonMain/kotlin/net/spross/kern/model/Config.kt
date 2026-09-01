@@ -43,10 +43,16 @@ data class BoxConfig(
      */
     val learningStepsSeconds: List<Long> = listOf(120L),
     /**
-     * Relearning steps in seconds — FSRS-6 reference default; no in-session
-     * lapse retry (breadth ruling 2026-07-22).
+     * Relearning steps in seconds, a growing backoff ladder: 10 min, 1 day, 3
+     * days, 7 days. Only the first entry is the FSRS-6 reference default — a
+     * lapse still returns in 10 minutes the first time (no in-session retry,
+     * breadth ruling 2026-07-22). Repeated lapses climb the ladder instead of
+     * repeating that 10 minutes (see [net.spross.kern.fsrs.FsrsScheduler]),
+     * giving a word that keeps slipping room to consolidate rather than being
+     * shoved at the learner again the same day (user ruling 2026-09-01,
+     * supersedes the 2026-08-07 leech ruling — a lapse no longer auto-suspends).
      */
-    val relearningStepsSeconds: List<Long> = listOf(600L),
+    val relearningStepsSeconds: List<Long> = listOf(600L, 86_400L, 3 * 86_400L, 7 * 86_400L),
 ) {
     companion object {
         /**

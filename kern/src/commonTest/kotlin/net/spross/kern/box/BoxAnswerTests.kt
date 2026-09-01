@@ -10,7 +10,7 @@ import kotlin.time.Duration.Companion.seconds
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Rating
 
-/** Answering: FSRS-6 scheduling, drain feed, leeches, unknown ids, budget drops. */
+/** Answering: FSRS-6 scheduling, drain feed, lapses, unknown ids, budget drops. */
 class BoxAnswerTests {
     private val now = Box.day1
 
@@ -130,35 +130,46 @@ class BoxAnswerTests {
         assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, 600)))
     }
 
-    // Breadth over retention: two tries that don't stick push the word out rather
-    // than let it keep coming back (LEECH_LAPSE_THRESHOLD = 2, user ruling 2026-08-07).
+    // Repeated fails widen the gap instead of repeating the same short wait: relearning
+    // steps grow with each consecutive Again (product ruling 2026-09-01, supersedes the
+    // leech ruling — a lapse no longer auto-suspends).
     @Test
-    fun leechSecondLapseAutoSuspends() {
-        var state = Box.state(listOf(Box.word(1), Box.word(2)))
+    fun consecutiveLapsesGrowTheRelearningWaitThenGoodGraduatesImmediately() {
+        var state = Box.state(listOf(Box.word(1)))
         state = Box.inject(
             state,
-            Box.sched("w01", dueMillis = now - 3_600_000, lastReviewMillis = Box.plusDays(now, -5.0), lapses = 1),
-        )
-        state = Box.inject(
-            state,
-            Box.sched("w02", dueMillis = now - 3_600_000, lastReviewMillis = Box.plusDays(now, -5.0)),
+            Box.sched(
+                "w01", phase = CardPhase.Relearning,
+                dueMillis = now - 60_000, lastReviewMillis = Box.plusDays(now, -1.0), lapses = 1,
+            ),
         )
 
-        state = Box.answered(state, "w01", Rating.Again, now)
-        val sched = state.scheduling.getValue("w01")
-        assertEquals(2, sched.lapses)
-        assertTrue(sched.suspended)
+        state = Box.answered(state, "w01", Rating.Again, now) // 2nd consecutive Again: 10m -> 1d
+        var sched = state.scheduling.getValue("w01")
+        assertEquals(CardPhase.Relearning, sched.phase)
+        assertEquals(1, sched.stepIndex)
+        assertEquals(Box.instant(now) + 86_400.seconds, sched.due)
+        assertFalse(sched.suspended)
 
-        assertEquals(listOf("w02"), BoxEngine.dueNow(state, now))
-        val stats = BoxEngine.statistics(state, now, Box.TZ)
-        assertEquals(1, stats.activeCount)
-        assertEquals(1, stats.suspendedCount)
+        val retry = Box.plusSeconds(now, 86_400)
+        state = Box.answered(state, "w01", Rating.Again, retry) // 3rd consecutive Again: 1d -> 3d
+        sched = state.scheduling.getValue("w01")
+        assertEquals(2, sched.stepIndex)
+        assertEquals(Box.instant(retry) + (3 * 86_400).seconds, sched.due)
+
+        val recall = Box.plusSeconds(retry, 3 * 86_400)
+        state = Box.answered(state, "w01", Rating.Good, recall) // graduates from step 2, immediately
+        sched = state.scheduling.getValue("w01")
+        assertEquals(CardPhase.Review, sched.phase)
+        assertNull(sched.stepIndex)
+        assertFalse(sched.suspended)
     }
 
-    // A word still struggling through its learning steps counts too — lapses are not
-    // gated to review phase, so a word that never even graduates still gets pushed out.
+    // A word still struggling through its learning steps counts lapses too — lapses are
+    // not gated to review phase — but counting alone no longer suspends the card (leech
+    // ruling overturned 2026-09-01); only setSuspended does that.
     @Test
-    fun againOnTheStepCountsTowardTheLeechAndCanSuspend() {
+    fun againOnTheStepCountsLapsesWithoutSuspending() {
         var state = Box.state(listOf(Box.word(1)))
         state = Box.answered(state, "w01", Rating.Again, now) // introduction: exempt
         val retry1 = Box.plusSeconds(now, 120)
@@ -169,10 +180,10 @@ class BoxAnswerTests {
         assertFalse(sched.suspended)
 
         val retry2 = Box.plusSeconds(retry1, 120)
-        state = Box.answered(state, "w01", Rating.Again, retry2) // 2nd lapse: suspend
+        state = Box.answered(state, "w01", Rating.Again, retry2) // 2nd lapse
         sched = state.scheduling.getValue("w01")
         assertEquals(2, sched.lapses)
-        assertTrue(sched.suspended)
+        assertFalse(sched.suspended)
     }
 
     @Test

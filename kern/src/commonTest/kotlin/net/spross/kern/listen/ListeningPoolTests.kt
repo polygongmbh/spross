@@ -53,8 +53,8 @@ class ListeningPoolTests {
 
     /**
      * RULE: a suspended card is in the pool.
-     * WHY: the leech rule auto-suspends at two lapses, so the words that stick worst are
-     * exactly the ones `Inventory.active` drops — and those are the words the hour is for.
+     * WHY: a suspended word is exactly the kind `Inventory.active` drops — and those are
+     * the words the hour is for.
      * Suspension takes a word out of the box's queue; it never said stop meeting the word.
      */
     @Test

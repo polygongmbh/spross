@@ -14,9 +14,12 @@ import net.spross.kern.model.Rating
  * (commit bfc0a1960dfde4b4627ae4f4c8757b9211314963); machine transitions from
  * py-fsrs v6.3.1 tests/test_basic.py (commit 3abe686e9c058d3f3c00bbeb92e68b71211b2b31).
  *
- * Two reference divergences are resolved per the contract:
+ * Three reference divergences are resolved per the contract:
  * - Hard interval rounds to whole minutes (ts): [1m,10m] -> 6m where py pins 5.5m.
- * - Again on a past-the-end step restarts at step 0 (py): ts would graduate.
+ * - Again on a past-the-end learning step restarts at step 0 (py): ts would graduate.
+ * - Relearning is a growing backoff ladder, not the reference machine (product ruling
+ *   2026-09-01): Again climbs the ladder instead of resetting, Good/Easy graduate from
+ *   any step. Learning keeps the reference machine unchanged.
  */
 class FsrsLearningStepsTest {
 
@@ -125,30 +128,39 @@ class FsrsLearningStepsTest {
         assertTrue(good.intervalDays >= 1)
     }
 
-    // ts relearning-steps `['10m', '20m']`: Again 10m/step0, Hard 15m ((10+20)/2),
-    // Good 20m/step1; at step 1 Good graduates and Hard holds at 15m.
+    // Relearning ladder `['10m', '20m']`: Again climbs it (10m -> 20m, held at the last
+    // entry once there); Hard still holds the reference blend; Good/Easy graduate
+    // immediately from wherever the ladder sits (product ruling 2026-09-01 — growing
+    // backoff on repeated lapses, not a required run of successes).
     @Test
-    fun relearningTwoStepsMinuteTable() {
+    fun relearningTwoStepsGrowsOnAgainGraduatesOnGood() {
         val s = scheduler(relearning = listOf(600L, 1200L))
-        val atZero = listOf(
-            Triple(Rating.Again, 600L, 0),
-            Triple(Rating.Hard, 900L, 0),
-            Triple(Rating.Good, 1200L, 1),
-        )
-        for ((rating, seconds, step) in atZero) {
-            val o = outcome(s, CardPhase.Relearning, 0, rating)
-            assertEquals(seconds, o.intervalSeconds)
-            assertEquals(step, o.stepIndex)
-            assertEquals(CardPhase.Relearning, o.phase)
-        }
 
-        val hardAtOne = outcome(s, CardPhase.Relearning, 1, Rating.Hard)
-        assertEquals(900L, hardAtOne.intervalSeconds)
-        assertEquals(1, hardAtOne.stepIndex)
+        val again0 = outcome(s, CardPhase.Relearning, 0, Rating.Again)
+        assertEquals(1200L, again0.intervalSeconds)
+        assertEquals(1, again0.stepIndex)
+        assertEquals(CardPhase.Relearning, again0.phase)
 
-        val goodAtOne = outcome(s, CardPhase.Relearning, 1, Rating.Good)
-        assertEquals(CardPhase.Review, goodAtOne.phase)
-        assertTrue(goodAtOne.intervalDays >= 1)
+        val again1 = outcome(s, CardPhase.Relearning, 1, Rating.Again)
+        assertEquals(1200L, again1.intervalSeconds) // already at the last step, holds
+        assertEquals(1, again1.stepIndex)
+
+        val hard0 = outcome(s, CardPhase.Relearning, 0, Rating.Hard)
+        assertEquals(900L, hard0.intervalSeconds)
+        assertEquals(0, hard0.stepIndex)
+
+        val hard1 = outcome(s, CardPhase.Relearning, 1, Rating.Hard)
+        assertEquals(900L, hard1.intervalSeconds)
+        assertEquals(1, hard1.stepIndex)
+
+        val good0 = outcome(s, CardPhase.Relearning, 0, Rating.Good)
+        assertEquals(CardPhase.Review, good0.phase)
+        assertNull(good0.stepIndex)
+        assertTrue(good0.intervalDays >= 1)
+
+        val good1 = outcome(s, CardPhase.Relearning, 1, Rating.Good)
+        assertEquals(CardPhase.Review, good1.phase)
+        assertNull(good1.stepIndex)
     }
 
     // py test_good_learning_steps / test_easy_learning_steps: Good advances then

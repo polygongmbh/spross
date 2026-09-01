@@ -55,7 +55,7 @@ enum class GrowthStage {
     /** Lapsed and earning its stability back. */
     Relearning,
 
-    /** Out of rotation — hand-suspended, or a leech the box suspended itself. */
+    /** Out of rotation — hand-suspended. */
     Suspended,
 }
 

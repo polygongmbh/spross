@@ -19,9 +19,10 @@ class ModelDefaultsTest {
         assertEquals(0.8, config.desiredRetention)
         assertEquals(365, config.maximumIntervalDays)
         assertEquals(6.0, config.consolidatedStability)
-        // FSRS-6 reference step defaults — no in-session lapse retry.
+        // One learning step, no in-session lapse retry; relearning is a growing
+        // backoff ladder (10 min, 1 day, 3 days, 7 days) for repeated lapses.
         assertEquals(listOf(120L), config.learningStepsSeconds)
-        assertEquals(listOf(600L), config.relearningStepsSeconds)
+        assertEquals(listOf(600L, 86_400L, 259_200L, 604_800L), config.relearningStepsSeconds)
     }
 
     @Test

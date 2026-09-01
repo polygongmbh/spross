@@ -29,14 +29,21 @@ data class SchedulerOutcome(
 )
 
 /**
- * FSRS-6 learning/relearning-steps state machine over [Fsrs]:
- * Again → step 0; Hard → hold with the first-steps blend; Good → advance or
- * graduate past the last step; Easy → graduate; Review + Again → Relearning
- * (lapse). Graduation interval = I(desiredRetention, S′).
+ * FSRS-6 learning/relearning-steps state machine over [Fsrs].
  *
- * Semantics follow py-fsrs v6.3.1 (single-outcome machine), with the Hard
- * interval rounded to whole minutes as ts-fsrs v5.4.1 pins it (6 m for
- * [1m, 10m]; ×1.5 rounded for a single step).
+ * Learning follows the reference machine: Again → step 0; Hard → hold with the
+ * first-steps blend; Good → advance or graduate past the last step; Easy →
+ * graduate. Relearning is a product-owned growing backoff instead (ruling
+ * 2026-09-01, supersedes the 2026-08-07 leech ruling): Again climbs the ladder
+ * rather than resetting, so repeated fails get spaced further apart instead of
+ * repeating the same short wait; a single Good or Easy graduates immediately,
+ * from wherever the ladder sits. Review + Again always opens Relearning at the
+ * ladder's first entry. Graduation interval = I(desiredRetention, S′).
+ *
+ * Learning semantics follow py-fsrs v6.3.1 (single-outcome machine), with the
+ * Hard interval rounded to whole minutes as ts-fsrs v5.4.1 pins it (6 m for
+ * [1m, 10m]; ×1.5 rounded for a single step) — Relearning keeps the same Hard
+ * blend, but its Again/Good behavior diverges as above.
  */
 class FsrsScheduler(val parameters: FsrsParameters = FsrsParameters()) {
 
@@ -51,17 +58,11 @@ class FsrsScheduler(val parameters: FsrsParameters = FsrsParameters()) {
         val memory = algorithm.nextMemory(state.memory, elapsedDays, rating)
         return when (state.phase) {
             CardPhase.New ->
-                stepOutcome(parameters.learningStepsSeconds, CardPhase.Learning, 0, rating, memory)
+                learningStepOutcome(parameters.learningStepsSeconds, 0, rating, memory)
             CardPhase.Learning ->
-                stepOutcome(
-                    parameters.learningStepsSeconds, CardPhase.Learning,
-                    state.stepIndex ?: 0, rating, memory,
-                )
+                learningStepOutcome(parameters.learningStepsSeconds, state.stepIndex ?: 0, rating, memory)
             CardPhase.Relearning ->
-                stepOutcome(
-                    parameters.relearningStepsSeconds, CardPhase.Relearning,
-                    state.stepIndex ?: 0, rating, memory,
-                )
+                relearningStepOutcome(parameters.relearningStepsSeconds, state.stepIndex ?: 0, rating, memory)
             CardPhase.Review -> reviewOutcome(rating, memory)
         }
     }
@@ -77,9 +78,8 @@ class FsrsScheduler(val parameters: FsrsParameters = FsrsParameters()) {
         }
     }
 
-    private fun stepOutcome(
+    private fun learningStepOutcome(
         steps: List<Long>,
-        phase: CardPhase,
         step: Int,
         rating: Rating,
         memory: MemoryState,
@@ -89,12 +89,33 @@ class FsrsScheduler(val parameters: FsrsParameters = FsrsParameters()) {
             return graduate(memory)
         }
         return when (rating) {
-            Rating.Again -> stepped(phase, 0, steps[0], memory)
-            Rating.Hard -> stepped(phase, step, hardStepSeconds(steps), memory)
+            Rating.Again -> stepped(CardPhase.Learning, 0, steps[0], memory)
+            Rating.Hard -> stepped(CardPhase.Learning, step, hardStepSeconds(steps), memory)
             Rating.Good ->
                 if (step + 1 >= steps.size) graduate(memory)
-                else stepped(phase, step + 1, steps[step + 1], memory)
+                else stepped(CardPhase.Learning, step + 1, steps[step + 1], memory)
             Rating.Easy -> graduate(memory)
+        }
+    }
+
+    private fun relearningStepOutcome(
+        steps: List<Long>,
+        step: Int,
+        rating: Rating,
+        memory: MemoryState,
+    ): SchedulerOutcome {
+        if (steps.isEmpty()) return graduate(memory)
+        return when (rating) {
+            // Climbs the ladder instead of resetting — repeated fails get more room
+            // before their next try, capped at the ladder's last entry.
+            Rating.Again -> {
+                val next = (step + 1).coerceAtMost(steps.size - 1)
+                stepped(CardPhase.Relearning, next, steps[next], memory)
+            }
+            Rating.Hard -> stepped(CardPhase.Relearning, step, hardStepSeconds(steps), memory)
+            // A single Good/Easy graduates from wherever the ladder sits — it only
+            // spaces out repeated fails, it is not a run of successes to climb back.
+            Rating.Good, Rating.Easy -> graduate(memory)
         }
     }
 

@@ -180,10 +180,10 @@ auto-advance beats these share with it, are `design.md`'s.
   the middle, and consolidated ones come round least often — and never by what is due, since a
   schedule is about when to ASK and nothing is being asked. Words you have PACKED sit just
   under the shaky ones, so the mode that asks the least of you still honors the queue the
-  day's round does. Suspended words are in the pool: the leech rule takes a word out of the
-  rotation after two lapses, which makes the worst-stuck words exactly the ones a due-driven
-  surface would never reach — they pay a toll rather than dropping to the back, so they come
-  in without taking the hour over. The pool is your WHOLE sayable vocabulary, new words
+  day's round does. Suspended words are in the pool: hand-suspending a word takes it out of
+  the rotation, which makes the words you set aside exactly the ones a due-driven surface
+  would never reach — they pay a toll rather than dropping to the back, so they come in
+  without taking the hour over. The pool is your WHOLE sayable vocabulary, new words
   included, so when you hold few words the run streams the new ones — hearing a word you have
   never answered, target-meaning-target, is the mode's cheapest breadth — and a language you
   have only just started plays from its very first word onward rather than from anywhere in

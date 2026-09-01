@@ -243,7 +243,7 @@ const val LISTENING_SUSPENDED_PENALTY: Int = 2
  *
  * A SUSPENDED word keeps the rung its stability earned, less [LISTENING_SUSPENDED_PENALTY].
  * A hard floor would contradict `ListeningPool`, which puts leeches in the pool precisely
- * because they are what an hour of listening is FOR: the leech rule takes a word out of the
+ * because they are what an hour of listening is FOR: suspension takes a word out of the
  * box's rotation, and this is the surface that can still reach it. So a shaky leech lands at
  * rung 3 or 4 — it comes in, it does not lead.
  */

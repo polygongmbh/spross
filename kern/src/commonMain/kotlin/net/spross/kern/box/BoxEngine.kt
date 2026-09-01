@@ -273,8 +273,10 @@ object BoxEngine {
     /**
      * Apply one answer to a card. Introduction = the card's first answer: creates its
      * schedule, counts it introduced, and dequeues it. Any Again past introduction
-     * counts a lapse; 2 lapses auto-suspend the card (leech). An unknown id leaves
-     * the state untouched.
+     * counts a lapse — tracked for drill/listening scoring, never auto-suspending;
+     * a lapse while relearning grows the wait before its next try instead of
+     * repeating the same short one ([net.spross.kern.fsrs.FsrsScheduler]).
+     * An unknown id leaves the state untouched.
      */
     fun answer(
         state: BoxState,

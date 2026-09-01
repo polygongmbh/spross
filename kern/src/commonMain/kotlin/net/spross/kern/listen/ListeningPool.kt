@@ -48,9 +48,9 @@ object ListeningPool {
      * ANYTHING in each language, answered by the platform's synthesizer at call time.
      *
      * **The pool is the whole sayable join, not a composed subset** — every joined card that
-     * both halves of a turn can say, scheduled and unseen alike, suspended included. The leech
-     * rule auto-suspends at two lapses (README §5), so the words that stick worst are exactly
-     * the ones `Inventory.active` drops — and those are the words an hour of listening is for.
+     * both halves of a turn can say, scheduled and unseen alike, suspended included. A
+     * suspended word — whether hand-suspended or a shaky leech (README §5) — is exactly the
+     * kind `Inventory.active` drops, and those are the words an hour of listening is for.
      * Suspension pushes a word out of the box's own queue; it was never a statement that the
      * learner should stop meeting the word.
      *
