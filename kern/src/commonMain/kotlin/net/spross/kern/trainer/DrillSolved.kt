@@ -52,4 +52,7 @@ internal object DrillSolved {
 
     /** The atlas asks each row several ways too, so its KIND carries the identity. */
     fun key(task: CountryDrillTask): String = "${task.kind}:${task.id}"
+
+    /** The dates ladder numbers weekdays and months alike, so its KIND carries the identity. */
+    fun key(task: DateDrillTask): String = "${task.kind}:${task.id}"
 }
