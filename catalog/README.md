@@ -48,6 +48,9 @@ catalog/
     README.md
     atlas.json          # language-neutral manifest: languages + countries, with tiers
     <lang>.json         # { slug: { text, nationality } }
+  dates/                # the dates drill's calendars
+    README.md
+    <lang>.json         # { weekdays, months, numeric, patterns }
   phrases/              # sentence frames for the generated number/year/clock drills
     README.md
     frames.json         # ordered [{slug, slot}] — language-neutral frame concepts

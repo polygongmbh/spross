@@ -5,8 +5,8 @@ auto-advance beats these share with it, are `design.md`'s.
 
 ## Trainers & the letter drill
 
-- **Trainers**: the Sprossen card offers THREE entries — Zahlen, Buchstaben and Länder —
-  on ONE row, which all three sit on comfortably. A step of the ladder is a **Sprosse**
+- **Trainers**: the Sprossen card offers FOUR entries — Zahlen, Buchstaben, Länder and Datum —
+  on ONE row, which all four sit on comfortably. A step of the ladder is a **Sprosse**
   in EVERY interface language, plural Sprossen: it is the brand word (`website.md`),
   so English chrome says "Sprosse 5" where the code and these docs still say rung.
   Each is its own SKILL,
@@ -126,6 +126,24 @@ auto-advance beats these share with it, are `design.md`'s.
   Tapping a country says it — the row is the control here as in the numbers table (`read-aloud.md`) —
   and what is said is the name in the language being learned,
   the half of the pair a run would ask for.
+- **Datum overview**: the calendar entry, on the run-first shape again — the rungs and the
+  start above, the reference table of both calendars under them. Its rungs are STAGES like
+  the letter drill's, not pools: each asks only what it introduces — the weekday names, the
+  month names, the day of the month as the words a date wants (`date-readings.md`), day and
+  month assembled, the whole dated line — and the top rung is where everything below mixes.
+  Accumulating them instead would let three weekday wins carry a learner past questions
+  they never met. A rung the answer language cannot read is absent, not locked: Ukrainian
+  speaks no year inside a date, so its ladder tops out a rung short and the mix moves down
+  one. The prompt is the source language's name on the bare rungs and the date in the
+  source's own digits above them — `Mo, 3.3.` wears the source's weekday abbreviation,
+  authored display-only, never graded. REVERSED, only the name rungs stand: the numeric
+  side of a date is a separator convention rather than a language skill, the same thinness
+  that cost the atlas its flag rung in reverse. The rungs are not earned (no review, no
+  schedule — the letter drill's rule), reverse is offered from the first run, and FAST has
+  the atlas' price: one clean win a rung, offered once the top rung has ever been stood on.
+  A bare name typed for its neighbor is refused by name — *Juli* for *Juni* is the other
+  month, not a slip (`kern/docs/grading.md`) — while the same slip inside an assembled date
+  stays the typo it is: strictness is graded by how much of the answer the word was.
 - **An endless run offers its exit where it is wanted, not on a schedule.** "Fertig"
   appears under the button that goes on, and only on the SECOND miss in a row: one
   miss is what a drill is made of, two is where carrying on stops feeling like a choice.
@@ -134,7 +152,7 @@ auto-advance beats these share with it, are `design.md`'s.
   answered out hands its figures over rather than coming round to a question twice.
   Short of that the corner ✕ still works, and the offer is the same close, worded as
   finishing rather than abandoning.
-- **A closed run has no screen of its own.** Both drills hand their figures — answered,
+- **A closed run has no screen of its own.** The endless drills hand their figures — answered,
   best streak, whether the record fell — to the page that started them and leave; the page
   wears them as one tile above the picks and scrolls up to meet it, and a record still
   rains its confetti there. Three numbers do not earn a page, and a page they do not earn

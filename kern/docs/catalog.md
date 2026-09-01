@@ -84,6 +84,19 @@ Engine contract: `../README.md`.
   disjoint from concepts and frames, a flag and a nationality on every row, forms
   trimmed/deduped/never echoing their text, note keys are declared readers, and every
   ordered pair joining an atlas with a tier-1 country in it).
+- `catalog/dates/` → `DateCalendar` + `DateNames`/`DatePatterns` (`DateCalendarParser`,
+  hand-parsed on the same conventions). No manifest: seven weekdays and twelve months in
+  ISO order are the same list in every language, so file presence is the whole registry.
+  Read through the **RAW** source, not the fingerprinting wrapper — a calendar joins no
+  card, so editing one must not restamp a running box (the atlas' exemption, for its
+  reason). `Catalog.dateNames(lang)` is null where no file is authored;
+  `Catalog.dateDrillContent(source, target)` joins a pair and is null where either side has
+  no file or the TARGET has no trainer pack — the day of the month is the pack's to read
+  (`docs/date-readings.md`), so a pack-less calendar may prompt and never answer.
+  Parse-shape rules (unknown keys, wrong list lengths, a pattern marker its kind does not
+  take, `dateForm` echoing its `text`) hard-fail the load; **`CatalogDatesLintTest`**
+  carries what content alone can break (registry, form hygiene, every ordered pair joining,
+  the rung-4 distance predicate, the pattern-word audit).
 - **Language markers** (`{language}`, `{language-in}`, `{language-speak}`, `{language-learn}`)
   in a realization's text/synonyms/variants. No schema field declares them: the marker's
   presence is the declaration, and it always names the profile's TARGET, so each side of

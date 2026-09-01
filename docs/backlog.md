@@ -158,6 +158,14 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   the afternoon. Spanish still meets the morning as `de la mañana` in `time/nine-am-sharp`.
   es `evening` keeps `noche` as a variant beside `night`'s `noche`: a variant is graded and
   never prompted, so the two stay tellable apart where it counts.
+- Italian dates: the dayMonth reveal teaches `il otto`/`il undici marzo` on 2 of 31 days —
+  a static pattern cannot elide; the elided `l'{day} {month}` already grades as a variant
+  (`catalog/dates/it.json`; the article ruling itself is still ⚠ in `docs/date-readings.md`).
+- Swahili weekday `abbr` (Jtt, Jnn, Jtn, Alh, Ijm, Jmo, Jpl) are invented, display-only —
+  a native may prefer other truncations (`catalog/dates/sw.json`).
+- Dates `notes` parse and lint but reach no screen: `DateReferenceRow` carries no note
+  slot, so the Swahili counting note (⚠ `docs/date-readings.md` § Swahili) has nowhere to
+  land once a native words it (`kern/.../trainer/DateDrillTask.kt`).
 
 ## Engine & scheduling
 
@@ -171,6 +179,10 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 
 - Watch snapshot 60-entry cap: due-first ranking keeps due cards on-watch,
   but revisit the cap if the active box outgrows it (`../kern/docs/snapshots.md`).
+- The assembled dates accepted set is an uncapped cross-product graded on every keystroke
+  (worst de rung 6 ≈ 128 five-word forms per `evaluate`; typical ~16) — measure on the
+  oldest supported phone before trusting it free (`DateDrillTasks.fill`;
+  `NumberReadingIndex.INDEXED_CARDINALS` states the bound precedent).
 - `AnswerNormalizer.strayLeadingWordRecovery` tests the RAW leading token for letters,
   so "it's half past two" behaves unlike "it is half past two" where the rule still
   lives (vocab review). Testing `cleaned(first)` would make it consistent — a widening,

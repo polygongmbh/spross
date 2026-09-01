@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **A fourth Sprossen drill: the date.** The weekday names, the month names, the day of
+  the month as the words a date actually wants — *der dritte*, *третього* — and then the
+  whole spoken date assembled out of them, over a ladder that mixes everything at the top.
+  Every language pair drills it; a rung a language cannot honestly read is simply absent
+  (Ukrainian speaks no year inside a date), and a reversed run asks just the names, because
+  the numeric side of a date is a separator convention rather than a language skill. Typing
+  one bare month for its neighbor — *Juli* for *Juni* — is named as the other month, not
+  forgiven as a slip.
+
 ## 5.8.0 — 2026-09-01
 
 - **New words arrive a little slower, so a busy box catches up instead of only keeping pace.**
