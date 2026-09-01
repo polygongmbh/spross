@@ -225,13 +225,13 @@ object DateDrillRun {
         rng: Random,
     ): DateDrillReduction {
         val next = advanced(state, correct, clean)
-        // why: sampled against the id it must avoid — kern resamples once, so a repeat needs
+        // why: sampled against the key it must avoid — kern resamples once, so a repeat needs
         // two unlucky draws rather than one.
         val draw = DateDrill.draw(
             state.config.content,
             next.level,
             state.config.reverse,
-            state.task.id,
+            DrillSolved.key(state.task),
             next.solved,
             rng,
         )

@@ -169,7 +169,7 @@ class DateDrillTests {
         fun hits(avoid: String?) = (1..400).count {
             DateDrill.sample(german, 1, false, avoid, emptySet(), Random(it.toLong()))?.id == "0"
         }
-        assertTrue(hits("0") < hits(null), "avoidId bought nothing")
+        assertTrue(hits("${DateTaskKind.Weekday}:0") < hits(null), "avoid bought nothing")
     }
 
     @Test

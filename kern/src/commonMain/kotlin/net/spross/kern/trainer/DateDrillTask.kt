@@ -32,9 +32,9 @@ data class DateDrillDraw(val task: DateDrillTask?, val level: Int)
 data class DateReferenceRow(
     val source: String,
     val target: String,
-    /** The answer side's other taught lexemes (de `Sonnabend`) — spelling variants stay out. */
+    /** The target side's other taught lexemes (de `Sonnabend`) — spelling variants stay out. */
     val synonyms: List<String>,
-    /** The answer side's short form — weekdays only. */
+    /** The target side's short form — weekdays only; a reversed run's prompts wear the source's. */
     val abbr: String?,
     /** What the name becomes inside a date, where that differs (uk `березня`). */
     val dateForm: String?,

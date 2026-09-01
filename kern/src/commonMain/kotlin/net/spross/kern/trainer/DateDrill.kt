@@ -62,23 +62,23 @@ object DateDrill {
 
     /**
      * One question from [level]'s pool, never one [solved] already holds ([DrillSolved]).
-     * [avoidId] is the previous answer's id, resampled once so a repeat needs two unlucky
-     * draws. Null ⇒ the rung is answered out — for an assembled rung, that
+     * [avoid] is the previous task's [DrillSolved.key], resampled once so a repeat needs
+     * two unlucky draws. Null ⇒ the rung is answered out — for an assembled rung, that
      * [DrillSolved.SPENT_ATTEMPTS] draws in a row landed on solved questions.
      */
     fun sample(
         content: DateDrillContent,
         level: Int,
         reverse: Boolean,
-        avoidId: String?,
+        avoid: String?,
         solved: Set<String>,
         rng: Random,
     ): DateDrillTask? {
         for (kind in kinds(content, level, reverse).shuffled(rng)) {
             val task = when (kind) {
                 DateTaskKind.Weekday, DateTaskKind.Month, DateTaskKind.DayOfMonth ->
-                    samplePool(DateDrillTasks.pool(content, kind, reverse), avoidId, solved, rng)
-                else -> sampleComposed(content, kind, avoidId, solved, rng)
+                    samplePool(DateDrillTasks.pool(content, kind, reverse), avoid, solved, rng)
+                else -> sampleComposed(content, kind, avoid, solved, rng)
             }
             if (task != null) return task
         }
@@ -94,16 +94,17 @@ object DateDrill {
         content: DateDrillContent,
         level: Int,
         reverse: Boolean,
-        avoidId: String?,
+        avoid: String?,
         solved: Set<String>,
         rng: Random,
     ): DateDrillDraw {
         val top = maxLevel(content, reverse)
-        for (rung in level.coerceIn(1, top)..top) {
-            val task = sample(content, rung, reverse, avoidId, solved, rng)
+        val start = level.coerceIn(1, top)
+        for (rung in start..top) {
+            val task = sample(content, rung, reverse, avoid, solved, rng)
             if (task != null) return DateDrillDraw(task, rung)
         }
-        return DateDrillDraw(null, level)
+        return DateDrillDraw(null, start)
     }
 
     /** The language an answer is owed in — the learned one, or the learner's own reversed. */
@@ -136,26 +137,26 @@ object DateDrill {
 
     private fun samplePool(
         pool: List<DateDrillTask>,
-        avoidId: String?,
+        avoid: String?,
         solved: Set<String>,
         rng: Random,
     ): DateDrillTask? {
         val open = pool.filterNot { DrillSolved.key(it) in solved }
         if (open.isEmpty()) return null
         var picked = open[rng.nextInt(open.size)]
-        if (picked.id == avoidId) picked = open[rng.nextInt(open.size)]
+        if (DrillSolved.key(picked) == avoid) picked = open[rng.nextInt(open.size)]
         return picked
     }
 
     private fun sampleComposed(
         content: DateDrillContent,
         kind: DateTaskKind,
-        avoidId: String?,
+        avoid: String?,
         solved: Set<String>,
         rng: Random,
     ): DateDrillTask? {
         val first = composedUnsolved(content, kind, solved, rng) ?: return null
-        if (first.id != avoidId) return first
+        if (DrillSolved.key(first) != avoid) return first
         return composedUnsolved(content, kind, solved, rng) ?: first
     }
 
