@@ -2661,13 +2661,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld weitere Karte wartet noch auf dich."
+                  "value" : "%lld weitere Karte liegt für dich bereit."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld weitere Karten warten noch auf dich."
+                  "value" : "%lld weitere Karten liegen für dich bereit."
                 }
               }
             }
@@ -2679,13 +2679,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld more card is still waiting for you."
+                  "value" : "%lld more card ready for you."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld more cards are still waiting for you."
+                  "value" : "%lld more cards ready for you."
                 }
               }
             }
