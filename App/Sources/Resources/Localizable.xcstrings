@@ -2648,7 +2648,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld more cards ready for you."
+            "value" : "%lld more ready for you."
           }
         }
       },

@@ -357,7 +357,7 @@ internal object ChromeEn : Chrome {
         "Still time to rekindle today",
     )
     override val homeTallySomeCards = "A few cards for you."
-    override val homeOfferHeldBack = "%d more cards ready for you."
+    override val homeOfferHeldBack = "%d more ready for you."
     override val homeOfferStart = "Let's go!"
     override val homeOfferShortRound = "Just a short one?"
     override val listenTitle = "Hear your words"
