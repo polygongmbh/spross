@@ -7,7 +7,8 @@ and for the source that decided it.
 
 Everything else about the forms is owned elsewhere:
 how a value is drawn and how its prompt is written are `../kern/docs/build.md`,
-and how the readings are held apart from one another is `../kern/docs/grading.md` (the forms sweep).
+how the readings are held apart from one another is `../kern/docs/grading.md` (the forms sweep),
+and what a date asks of a numeral — each language's day-of-month reading — is `date-readings.md`.
 The code is one `<Lang>Forms.kt` per language
 under `../kern/src/commonMain/kotlin/net/spross/kern/trainer/`,
 each declaring that pack's `FormLimits`;
