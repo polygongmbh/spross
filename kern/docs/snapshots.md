@@ -10,6 +10,9 @@ Engine contract: `../README.md`.
   learner could author any decodes as one who has authored none;
   the stored `config` is a record of the calibration a box was written under, never an input —
   `BoxState.withProductCalibration()` re-applies the build's (`../README.md` §4) to every box that loads;
+  `BoxState.revivingLeechSuspensions()` runs alongside it, a temporary migration (delete at
+  7.0+) reviving any card the leech rule auto-suspended before the 2026-09-01 ruling that
+  removed it;
   kotlinx.serialization; dates as ISO-8601 UTC strings via explicit `kotlin.time.Instant`
   serializers; facade encodes with **sorted keys** (deterministic bytes).
   All `@Serializable` types are `internal`; the public surface is a narrow facade
