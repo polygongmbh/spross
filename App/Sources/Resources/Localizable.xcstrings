@@ -447,409 +447,8 @@
         }
       }
     },
-    "box.card.actions" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Was mit diesem Wort geht"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "What you can do with this word"
-          }
-        }
-      },
-      "comment" : "What a long press on a Box row opens, for a reader who cannot see it is a menu."
-    },
-    "box.card.forget" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fortschritt zurücksetzen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reset progress"
-          }
-        }
-      }
-    },
-    "box.card.ownFrom" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eigenes Wort daraus"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Make your own word"
-          }
-        }
-      },
-      "comment" : "Writing an own word from a catalog one, both sides carried over into the form."
-    },
-    "box.cardsInProgress %@ %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ von %@ Karten in Arbeit"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ of %2$@ cards in progress"
-          }
-        }
-      },
-      "comment" : "%1$d active of %2$d held"
-    },
-    "box.dequeue %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aus der Box nehmen (%@)"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Take out of box (%@)"
-          }
-        }
-      },
-      "comment" : "A shelf's own control, taking its whole queue back out. %d = what it would remove."
-    },
-    "box.due" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "fällig"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "due"
-          }
-        }
-      }
-    },
-    "box.enqueue %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pack in die Box (%@)"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add to box (%@)"
-          }
-        }
-      },
-      "comment" : "%d = what packing this shelf would add"
-    },
-    "box.enqueueDone" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alles eingepackt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "All packed"
-          }
-        }
-      }
-    },
-    "box.noAudio" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kein Ton für dieses Wort"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No audio for this word"
-          }
-        }
-      },
-      "comment" : "Beside a word neither a recording nor the device's voice can say — the tap that does nothing."
-    },
-    "box.own.reported" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gemeldet"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reported"
-          }
-        }
-      },
-      "comment" : "Its second block: the problems filed against CATALOG words, which no row above lists."
-    },
-    "box.own.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eigene Inhalte"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your own content"
-          }
-        }
-      },
-      "comment" : "The one section for everything the learner put into the box or said back about it."
-    },
-    "box.ownWords" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eigene Wörter"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your own words"
-          }
-        }
-      },
-      "comment" : "The learner's own shelf. Kern hands back the area KEY for it (`OwnWords.AREA`, in no group) and leaves the naming to the reader's chrome; catalog shelves name themselves, down to `BoxBrowser.sections`' own id fallback."
-    },
-    "box.ownWords.add" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anlegen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add"
-          }
-        }
-      }
-    },
-    "box.ownWords.addAction" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wort hinzufügen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add a word"
-          }
-        }
-      },
-      "comment" : "The section's way into the form — the one that does not start from a failed search."
-    },
-    "box.ownWords.edit" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wort bearbeiten"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Edit word"
-          }
-        }
-      },
-      "comment" : "The form's title while rewriting a word, and the menu entry that opens it that way."
-    },
-    "box.ownWords.explainer" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eigene Wörter gehören dir allein. Ein wachsender Katalog rührt sie nicht an."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your own words are yours alone. A growing catalog never touches them."
-          }
-        }
-      }
-    },
-    "box.ownWords.explainer.suggestion" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nur eine Seite: das Wort wird als Vorschlag aufbewahrt und noch nicht abgefragt."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "One side only: the word is kept as a suggestion and not asked yet."
-          }
-        }
-      },
-      "comment" : "What the form says while only ONE side is written. The word is kept as a suggestion and never asked until the other half arrives."
-    },
-    "box.ownWords.inLanguage %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Auf %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In %@"
-          }
-        }
-      },
-      "comment" : "%s = language name — both fields ask it"
-    },
-    "box.ownWords.picture" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bild (optional)"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Picture (optional)"
-          }
-        }
-      }
-    },
-    "box.ownWords.remove" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wort löschen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delete word"
-          }
-        }
-      },
-      "comment" : "the app's only deletion; catalog words sleep instead"
-    },
-    "box.ownWords.save" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sichern"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save"
-          }
-        }
-      },
-      "comment" : "What confirms a rewrite; box.ownWords.add is what takes a new word in."
-    },
-    "box.ownWords.swap" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Richtung tauschen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Swap direction"
-          }
-        }
-      },
-      "comment" : "Exchanging what stands in the two fields, for a pair written the wrong way round."
-    },
-    "box.ownWords.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eigenes Wort"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your own word"
-          }
-        }
-      }
-    },
-    "box.packWord" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dieses Wort einpacken"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pack this word"
-          }
-        }
-      },
-      "comment" : "the single-word offer a search hit carries"
-    },
-    "box.phrasesLocked %lld" : {
-      "comment" : "The same count spelled out for a screen reader. box.phrasesLockedShort sits beside a padlock that carries the \"locked\"; spoken, the padlock is gone.",
+    "box.area.phrasesLocked %lld" : {
+      "comment" : "The same count spelled out for a screen reader. box.area.phrasesLockedShort sits beside a padlock that carries the \"locked\"; spoken, the padlock is gone.",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -889,8 +488,8 @@
         }
       }
     },
-    "box.phrasesLockedShort %lld" : {
-      "comment" : "Sits beside a padlock, which carries the \"locked\"; box.phrasesLocked is what VoiceOver reads. %d = phrases still waiting on their components",
+    "box.area.phrasesLockedShort %lld" : {
+      "comment" : "Sits beside a padlock, which carries the \"locked\"; box.area.phrasesLocked is what VoiceOver reads. %d = phrases still waiting on their components",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -930,7 +529,107 @@
         }
       }
     },
-    "box.queuedWord" : {
+    "box.card.actions" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was mit diesem Wort geht"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What you can do with this word"
+          }
+        }
+      },
+      "comment" : "What a long press on a Box row opens, for a reader who cannot see it is a menu."
+    },
+    "box.card.due" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fällig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "due"
+          }
+        }
+      }
+    },
+    "box.card.forget" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortschritt zurücksetzen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset progress"
+          }
+        }
+      }
+    },
+    "box.card.noAudio" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Ton für dieses Wort"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No audio for this word"
+          }
+        }
+      },
+      "comment" : "Beside a word neither a recording nor the device's voice can say — the tap that does nothing."
+    },
+    "box.card.ownFrom" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigenes Wort daraus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make your own word"
+          }
+        }
+      },
+      "comment" : "Writing an own word from a catalog one, both sides carried over into the form."
+    },
+    "box.card.pack" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Wort einpacken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pack this word"
+          }
+        }
+      },
+      "comment" : "the single-word offer a search hit carries"
+    },
+    "box.card.queued" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -947,18 +646,416 @@
       },
       "comment" : "A queued row's mark where no per-word control is offered — the shelf's own does it."
     },
-    "box.search" : {
+    "box.card.sleep" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Suchen"
+            "value" : "Nicht mehr abfragen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Search"
+            "value" : "Stop asking this"
+          }
+        }
+      },
+      "comment" : "Putting a word to sleep from the card in front of you; box.card.wake is the way back."
+    },
+    "box.card.suspended" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pausiert"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paused"
+          }
+        }
+      },
+      "comment" : "the sleeping mark's name"
+    },
+    "box.card.unpack" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Wort auspacken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unpack this word"
+          }
+        }
+      },
+      "comment" : "The queued mark's own control: tapping it takes the word back out."
+    },
+    "box.card.wake" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wecken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wake"
+          }
+        }
+      }
+    },
+    "box.door" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Box"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Box"
+          }
+        }
+      },
+      "comment" : "The door to the box, wherever a screen puts one — a name for an icon that has none."
+    },
+    "box.own.reported" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemeldet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reported"
+          }
+        }
+      },
+      "comment" : "Its second block: the problems filed against CATALOG words, which no row above lists."
+    },
+    "box.own.shelf" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigene Wörter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your own words"
+          }
+        }
+      },
+      "comment" : "The learner's own shelf. Kern hands back the area KEY for it (`OwnWords.AREA`, in no group) and leaves the naming to the reader's chrome; catalog shelves name themselves, down to `BoxBrowser.sections`' own id fallback."
+    },
+    "box.own.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigene Inhalte"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your own content"
+          }
+        }
+      },
+      "comment" : "The one section for everything the learner put into the box or said back about it."
+    },
+    "box.own.word.add" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anlegen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        }
+      }
+    },
+    "box.own.word.addAction" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wort hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a word"
+          }
+        }
+      },
+      "comment" : "The section's way into the form — the one that does not start from a failed search."
+    },
+    "box.own.word.edit" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wort bearbeiten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit word"
+          }
+        }
+      },
+      "comment" : "The form's title while rewriting a word, and the menu entry that opens it that way."
+    },
+    "box.own.word.explainer" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigene Wörter gehören dir allein. Ein wachsender Katalog rührt sie nicht an."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your own words are yours alone. A growing catalog never touches them."
+          }
+        }
+      }
+    },
+    "box.own.word.explainer.suggestion" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur eine Seite: das Wort wird als Vorschlag aufbewahrt und noch nicht abgefragt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One side only: the word is kept as a suggestion and not asked yet."
+          }
+        }
+      },
+      "comment" : "What the form says while only ONE side is written. The word is kept as a suggestion and never asked until the other half arrives."
+    },
+    "box.own.word.inLanguage %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In %@"
+          }
+        }
+      },
+      "comment" : "%s = language name — both fields ask it"
+    },
+    "box.own.word.needsTranslation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übersetzung fehlt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Needs translation"
+          }
+        }
+      }
+    },
+    "box.own.word.picture" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bild (optional)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Picture (optional)"
+          }
+        }
+      }
+    },
+    "box.own.word.remove" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wort löschen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete word"
+          }
+        }
+      },
+      "comment" : "the app's only deletion; catalog words sleep instead"
+    },
+    "box.own.word.save" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sichern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        }
+      },
+      "comment" : "What confirms a rewrite; box.own.word.add is what takes a new word in."
+    },
+    "box.own.word.swap" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richtung tauschen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swap direction"
+          }
+        }
+      },
+      "comment" : "Exchanging what stands in the two fields, for a pair written the wrong way round."
+    },
+    "box.own.word.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigenes Wort"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your own word"
+          }
+        }
+      }
+    },
+    "box.phase.consolidated" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Steht"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grown"
+          }
+        }
+      }
+    },
+    "box.phase.learning" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frisch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fresh"
+          }
+        }
+      }
+    },
+    "box.phase.new" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neu"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New"
+          }
+        }
+      }
+    },
+    "box.phase.relearning" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wackelt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shaky"
+          }
+        }
+      }
+    },
+    "box.phase.settled" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wächst"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Growing"
           }
         }
       }
@@ -975,6 +1072,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Areas"
+          }
+        }
+      }
+    },
+    "box.search.button" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suchen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        }
+      }
+    },
+    "box.search.clear" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suche löschen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear search"
           }
         }
       }
@@ -1078,39 +1207,72 @@
       },
       "comment" : "%s = the query — the one door to writing a word"
     },
-    "box.sleep" : {
+    "box.shelf.pack %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nicht mehr abfragen"
+            "value" : "Pack in die Box (%@)"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stop asking this"
+            "value" : "Add to box (%@)"
           }
         }
       },
-      "comment" : "Putting a word to sleep from the card in front of you; box.wake is the way back."
+      "comment" : "%d = what packing this shelf would add"
     },
-    "box.suspended" : {
+    "box.shelf.packed" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pausiert"
+            "value" : "Alles eingepackt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Paused"
+            "value" : "All packed"
+          }
+        }
+      }
+    },
+    "box.shelf.unpack %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus der Box nehmen (%@)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take out of box (%@)"
           }
         }
       },
-      "comment" : "the sleeping mark's name"
+      "comment" : "A shelf's own control, taking its whole queue back out. %d = what it would remove."
+    },
+    "box.subtitle %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ von %@ Karten in Arbeit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ of %2$@ cards in progress"
+          }
+        }
+      },
+      "comment" : "%1$d active of %2$d held"
     },
     "box.tapToHear" : {
       "localizations" : {
@@ -1141,39 +1303,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The box"
-          }
-        }
-      }
-    },
-    "box.unpackWord" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dieses Wort auspacken"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unpack this word"
-          }
-        }
-      },
-      "comment" : "The queued mark's own control: tapping it takes the word back out."
-    },
-    "box.wake" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wecken"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wake"
           }
         }
       }
@@ -2094,22 +2223,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copy"
-          }
-        }
-      }
-    },
-    "feedback.needsTranslation" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Übersetzung fehlt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Needs translation"
           }
         }
       }
@@ -3605,23 +3718,6 @@
         }
       }
     },
-    "nav.box" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Box"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Box"
-          }
-        }
-      },
-      "comment" : "The door to the box, wherever a screen puts one — a name for an icon that has none."
-    },
     "numbers.combine.locked" : {
       "localizations" : {
         "de" : {
@@ -4111,86 +4207,6 @@
       },
       "comment" : "the button both pages open a run with"
     },
-    "phase.consolidated" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Steht"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grown"
-          }
-        }
-      }
-    },
-    "phase.learning" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Frisch"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fresh"
-          }
-        }
-      }
-    },
-    "phase.new" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Neu"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New"
-          }
-        }
-      }
-    },
-    "phase.relearning" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wackelt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shaky"
-          }
-        }
-      }
-    },
-    "phase.settled" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wächst"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Growing"
-          }
-        }
-      }
-    },
     "preview.skip" : {
       "localizations" : {
         "de" : {
@@ -4454,7 +4470,7 @@
           }
         }
       },
-      "comment" : "The flag a reported word wears. Its own mark, said apart from box.suspended — a report says nothing about where the word stands, and a reported word keeps whatever badge it had."
+      "comment" : "The flag a reported word wears. Its own mark, said apart from box.card.suspended — a report says nothing about where the word stands, and a reported word keeps whatever badge it had."
     },
     "report.send" : {
       "localizations" : {
@@ -4504,22 +4520,6 @@
         }
       },
       "comment" : "What they had typed, shown rather than asked about — the rejected answer IS the report."
-    },
-    "search.clear" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suche löschen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clear search"
-          }
-        }
-      }
     },
     "session.almost.heard" : {
       "localizations" : {

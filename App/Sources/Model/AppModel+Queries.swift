@@ -214,7 +214,7 @@ extension AppModel {
         // heading is chrome in the reader's language rather than catalog content.
         chrome[ownArea] = AreaChrome(
             emoji: OwnWords.shared.EMOJI,
-            title: DLChrome.string("box.ownWords", locale: knownLocale),
+            title: DLChrome.string("box.own.shelf", locale: knownLocale),
             subtitle: nil)
         return chrome
     }

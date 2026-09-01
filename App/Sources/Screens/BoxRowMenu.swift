@@ -31,11 +31,11 @@ struct BoxRowMenu: View {
         standing
         Button("box.card.ownFrom", systemImage: "doc.on.doc") { open(.ownFrom) }
         if model.isOwnWord(card.id) {
-            Button("box.ownWords.edit", systemImage: "pencil") { open(.editOwnWord) }
+            Button("box.own.word.edit", systemImage: "pencil") { open(.editOwnWord) }
         }
         reporting
         if model.isOwnWord(card.id) {
-            Button("box.ownWords.remove", systemImage: "trash", role: .destructive) {
+            Button("box.own.word.remove", systemImage: "trash", role: .destructive) {
                 model.removeOwnWord(card.id)
             }
         }
@@ -48,19 +48,19 @@ struct BoxRowMenu: View {
         let state = model.cardRowState(card.id, packOffered: true)
         switch onEnum(of: state) {
         case .packOffered:
-            Button("box.packWord", systemImage: "tray.and.arrow.down") {
+            Button("box.card.pack", systemImage: "tray.and.arrow.down") {
                 model.enqueueCard(card.id)
             }
         case .packed:
-            Button("box.unpackWord", systemImage: "tray.and.arrow.up") {
+            Button("box.card.unpack", systemImage: "tray.and.arrow.up") {
                 model.dequeue(cardID: card.id)
             }
         case .standing:
-            Button("box.sleep", systemImage: "moon.zzz") {
+            Button("box.card.sleep", systemImage: "moon.zzz") {
                 model.setSuspended(cardID: card.id, suspended: true)
             }
         case .sleeping:
-            Button("box.wake", systemImage: "sun.max") {
+            Button("box.card.wake", systemImage: "sun.max") {
                 model.setSuspended(cardID: card.id, suspended: false)
             }
         case .plain:

@@ -68,21 +68,21 @@ struct OwnWordFormView: View {
                     swapButton
                     field(label(model.targetLanguage ?? ""), text: $learning, field: .learning)
                     picture
-                    Text(isPair ? "box.ownWords.explainer" : "box.ownWords.explainer.suggestion")
+                    Text(isPair ? "box.own.word.explainer" : "box.own.word.explainer.suggestion")
                         .font(DL.Fonts.caption)
                         .foregroundStyle(Color.dlTextSecondary)
                 }
                 .padding(DL.Space.xl)
             }
             .background(Color.dlBackground.ignoresSafeArea())
-            .navigationTitle(isEditing ? "box.ownWords.edit" : "box.ownWords.title")
+            .navigationTitle(isEditing ? "box.own.word.edit" : "box.own.word.title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("common.cancel") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(isEditing ? "box.ownWords.save" : "box.ownWords.add") { save() }
+                    Button(isEditing ? "box.own.word.save" : "box.own.word.add") { save() }
                         .disabled(!hasAnything)
                 }
             }
@@ -131,7 +131,7 @@ struct OwnWordFormView: View {
     private func label(_ code: String) -> LocalizedStringKey {
         let name = LanguageNames.display(code, locale: model.knownLocale, catalog: model.catalog)
         let flag = model.languageInfo(code)?.flag
-        return "box.ownWords.inLanguage \(flag.map { "\($0) \(name)" } ?? name)"
+        return "box.own.word.inLanguage \(flag.map { "\($0) \(name)" } ?? name)"
     }
 
     /// For the learner who filled the two fields in the wrong way round — the one
@@ -140,7 +140,7 @@ struct OwnWordFormView: View {
         Button {
             swap(&known, &learning)
         } label: {
-            Label("box.ownWords.swap", systemImage: "arrow.up.arrow.down")
+            Label("box.own.word.swap", systemImage: "arrow.up.arrow.down")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlAccent)
         }
@@ -148,7 +148,7 @@ struct OwnWordFormView: View {
     }
 
     private var picture: some View {
-        field("box.ownWords.picture", text: $emoji, field: .emoji) { quickPicks }
+        field("box.own.word.picture", text: $emoji, field: .emoji) { quickPicks }
             // why: the field takes anything a keyboard can send, so the cap is
             // enforced on what lands in it rather than on what may be typed.
             .onChange(of: emoji) { _, typed in

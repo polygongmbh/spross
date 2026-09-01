@@ -71,7 +71,7 @@ UNEXTRACTABLE = {
     # no extractor follows an accessibilityLabel built at runtime either way.
     'a11y.glyph.letter %@',
     # The Box's own-words area title, resolved through DLChrome like the above.
-    'box.ownWords',
+    'box.own.shelf',
     # The two words that fill the address slot of a target-language greeting.
     'heute.greeting.morning.addressee', 'heute.greeting.night.addressee',
 }
@@ -81,7 +81,7 @@ UNEXTRACTABLE = {
 ANDROID_ONLY = {
     'a11y.state.collapsed', 'a11y.state.expanded', 'a11y.verdict.wrong',
     'audio.enable', 'audio.off',
-    'box.due', 'settings.about', 'trainer.promptInLanguage %@',
+    'box.card.due', 'settings.about', 'trainer.promptInLanguage %@',
     # The Android tile's no-snapshot face; the iOS widget target's own strings
     # are not extracted into the app's tables, so no Swift will ever ask for these.
     'widget.awaiting.body', 'widget.awaiting.title',

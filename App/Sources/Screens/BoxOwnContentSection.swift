@@ -61,7 +61,7 @@ struct BoxOwnContentSection: View {
                 Image(systemName: "plus")
             }
             .buttonStyle(DLIconButtonStyle())
-            .accessibilityLabel("box.ownWords.addAction")
+            .accessibilityLabel("box.own.word.addAction")
         }
     }
 
@@ -102,7 +102,7 @@ struct BoxOwnContentSection: View {
 
     private var wordList: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {
-            blockTitle("box.ownWords")
+            blockTitle("box.own.shelf")
             ForEach(model.ownWords, id: \.id) { word in
                 if let card = model.card(word.id) {
                     BoxCardRow(model: model, card: card)
@@ -125,7 +125,7 @@ struct BoxOwnContentSection: View {
             Spacer(minLength: DL.Space.s)
             // why: it is not a shortcoming of the word, it is the whole point of the
             // entry — the half that is missing is what the catalog owes.
-            Text("feedback.needsTranslation")
+            Text("box.own.word.needsTranslation")
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
         }
@@ -138,8 +138,8 @@ struct BoxOwnContentSection: View {
         // A menu of its own, and a short one: with no card behind it there is
         // nothing to pack, forget or report — only the two halves to fix or drop.
         .contextMenu {
-            Button("box.ownWords.edit", systemImage: "pencil") { sheet = .editing(word) }
-            Button("box.ownWords.remove", systemImage: "trash", role: .destructive) {
+            Button("box.own.word.edit", systemImage: "pencil") { sheet = .editing(word) }
+            Button("box.own.word.remove", systemImage: "trash", role: .destructive) {
                 model.removeOwnWord(word.id)
             }
         }

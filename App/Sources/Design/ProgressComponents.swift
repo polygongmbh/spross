@@ -216,8 +216,8 @@ struct AreaChip: View {
             if lockedPhrases > 0 {
                 // why: the padlock carries "locked", so the text only has to
                 // name what is locked — three full labels do not fit the card.
-                Label("box.phrasesLockedShort \(lockedPhrases)", systemImage: "lock.fill")
-                    .accessibilityLabel(Text("box.phrasesLocked \(lockedPhrases)"))
+                Label("box.area.phrasesLockedShort \(lockedPhrases)", systemImage: "lock.fill")
+                    .accessibilityLabel(Text("box.area.phrasesLocked \(lockedPhrases)"))
             }
             Spacer(minLength: 0)
         }
@@ -263,12 +263,12 @@ struct PhaseBadge: View {
     var growth: Color?
 
     private var label: LocalizedStringKey {
-        if phase == .new { return "phase.new" }
-        if consolidated { return "phase.consolidated" }
+        if phase == .new { return "box.phase.new" }
+        if consolidated { return "box.phase.consolidated" }
         switch phase {
-        case .review: return "phase.settled"
-        case .relearning: return "phase.relearning"
-        case .learning, .new: return "phase.learning"
+        case .review: return "box.phase.settled"
+        case .relearning: return "box.phase.relearning"
+        case .learning, .new: return "box.phase.learning"
         }
     }
 

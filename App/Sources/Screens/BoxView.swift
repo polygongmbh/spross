@@ -100,7 +100,7 @@ struct BoxView: View {
                 } label: {
                     Image(systemName: "magnifyingglass")
                 }
-                .accessibilityLabel("box.search")
+                .accessibilityLabel("box.search.button")
             }
         }
         .toolbarBackground(.hidden, for: .navigationBar)
@@ -184,7 +184,7 @@ struct BoxView: View {
     private var subtitle: Text {
         let active = model.stats?.activeCards ?? 0
         let total = model.cardTotal
-        return Text("box.cardsInProgress \(active.formatted()) \(total.formatted())")
+        return Text("box.subtitle \(active.formatted()) \(total.formatted())")
     }
 
     /// Whether the hint is worth showing at all — a box whose language has
@@ -274,7 +274,7 @@ private struct BoxAreaSection: View {
                 Image(systemName: "tray.and.arrow.down.fill")
             }
             .buttonStyle(DLIconButtonStyle())
-            .accessibilityLabel(Text("box.enqueue \(count.formatted())"))
+            .accessibilityLabel(Text("box.shelf.pack \(count.formatted())"))
         } else if queued > 0 {
             Button {
                 model.dequeueArea(area)
@@ -282,13 +282,13 @@ private struct BoxAreaSection: View {
                 Image(systemName: "tray.and.arrow.up.fill")
             }
             .buttonStyle(DLIconButtonStyle(color: .dlSuccess))
-            .accessibilityLabel(Text("box.dequeue \(queued.formatted())"))
+            .accessibilityLabel(Text("box.shelf.unpack \(queued.formatted())"))
         } else {
             Image(systemName: "checkmark.circle.fill")
                 .font(DL.Fonts.headline)
                 .foregroundStyle(Color.dlSuccess)
                 .frame(width: 40, height: 40)
-                .accessibilityLabel(Text("box.enqueueDone"))
+                .accessibilityLabel(Text("box.shelf.packed"))
         }
     }
 

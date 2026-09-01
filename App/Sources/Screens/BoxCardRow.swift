@@ -76,7 +76,7 @@ struct BoxCardRow: View {
                         Image(systemName: "speaker.slash")
                             .font(.caption2)
                             .foregroundStyle(Color.dlTextSecondary)
-                            .accessibilityLabel("box.noAudio")
+                            .accessibilityLabel("box.card.noAudio")
                     }
                 }
                 Text(card.source.text)
@@ -135,8 +135,8 @@ struct BoxCardRow: View {
         switch onEnum(of: model.cardRowState(card.id, packOffered: pack != nil)) {
         case .sleeping:
             Text(verbatim: "💤")
-                .accessibilityLabel("box.suspended")
-            Button("box.wake") {
+                .accessibilityLabel("box.card.suspended")
+            Button("box.card.wake") {
                 model.setSuspended(cardID: card.id, suspended: false)
             }
             .font(DL.Fonts.caption)
@@ -150,25 +150,25 @@ struct BoxCardRow: View {
                     Image(systemName: "tray.and.arrow.down.fill")
                 }
                 .buttonStyle(DLIconButtonStyle())
-                .accessibilityLabel("box.packWord")
+                .accessibilityLabel("box.card.pack")
             }
         case .packed(let packed):
             if packed.removalOffered {
                 // Direct tap, no confirmation: nothing has been studied yet, so taking a
-                // queued word back out costs it nothing (mirrors "box.wake"'s own direct tap).
+                // queued word back out costs it nothing (mirrors "box.card.wake"'s own direct tap).
                 Button {
                     model.dequeue(cardID: card.id)
                 } label: {
                     Image(systemName: "tray.and.arrow.up.fill")
                 }
                 .buttonStyle(DLIconButtonStyle(color: .dlSuccess))
-                .accessibilityLabel("box.unpackWord")
+                .accessibilityLabel("box.card.unpack")
             } else {
                 // A pill, not an icon: a bare tray glyph reads as a control here too,
                 // and this one has none — the shelf's own takes the whole queue out.
                 // Clay, not green: green is the growth ladder's, and a queued word
                 // is not on it yet.
-                Text("box.queuedWord")
+                Text("box.card.queued")
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlAccent)
                     .padding(.horizontal, DL.Space.m)

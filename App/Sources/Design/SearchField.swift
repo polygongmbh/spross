@@ -34,7 +34,7 @@ struct DLSearchField: View {
                         .foregroundStyle(Color.dlTextSecondary)
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel("search.clear")
+                .accessibilityLabel("box.search.clear")
             }
         }
         .padding(.horizontal, DL.Space.l)

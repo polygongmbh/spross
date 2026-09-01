@@ -63,7 +63,7 @@ struct RootView: View {
                         } label: {
                             Image(systemName: "shippingbox.fill")
                         }
-                        .accessibilityLabel("nav.box")
+                        .accessibilityLabel("box.door")
                     }
                 }
                 .toolbarBackground(.hidden, for: .navigationBar)
