@@ -23,7 +23,7 @@ internal object Growth {
     // isConsolidated: a phrase waits for its components to have genuinely landed.
     fun isComponentStable(state: BoxState, componentId: String): Boolean {
         val sched = state.scheduling[componentId] ?: return false
-        return !sched.suspended && Statistics.isConsolidated(state, sched)
+        return Statistics.isConsolidated(state, sched)
     }
 
     /** Zero-component phrases never take the fast path (they follow seed order). */

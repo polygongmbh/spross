@@ -39,16 +39,16 @@ class PhraseUnlockTests {
         assertEquals(listOf("w03"), plan3.newCards)
     }
 
+    // Unlock reads consolidation alone (user ruling 2026-09-01): a suspended component
+    // the learner already knows is still stable knowledge to build a phrase on, and
+    // suspension is no longer what a struggling component looks like (that is a low
+    // stability, gated by componentBelowUnlockStabilityKeepsPhraseLocked instead).
     @Test
-    fun suspendedComponentBlocksUnlock() {
+    fun suspendedButConsolidatedComponentStillUnlocks() {
         var state = seeded()
         state = Box.answered(state, "w01", Rating.Easy, now)
         state = Box.answered(state, "w02", Rating.Easy, now)
         state = BoxEngine.setSuspended(state, "w01", true, Box.day1)
-        assertTrue(Box.candidates(state).unlockedPhrases.isEmpty())
-
-        // Reviving the component restores eligibility.
-        state = BoxEngine.setSuspended(state, "w01", false, Box.day1)
         assertEquals(listOf("p1"), Box.candidates(state).unlockedPhrases)
     }
 
