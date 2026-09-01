@@ -32,7 +32,7 @@ class DateNameIndexTests {
     )
 
     private fun monthTask(index: Int) =
-        DateDrill.pool(DateDrillFixture.germanContent, DateTaskKind.Month, reverse = false)[index]
+        DateDrillTasks.pool(DateDrillFixture.germanContent, DateTaskKind.Month, reverse = false)[index]
 
     /** Where the whole answer is the name, `Juli` for `Juni` is July — refused and named. */
     @Test
@@ -55,7 +55,7 @@ class DateNameIndexTests {
     /** A synonym is a name's own form everywhere, the index included. */
     @Test
     fun aSynonymRefusesForItsOwnerToo() {
-        val sunday = DateDrill.pool(DateDrillFixture.germanContent, DateTaskKind.Weekday, false)[6]
+        val sunday = DateDrillTasks.pool(DateDrillFixture.germanContent, DateTaskKind.Weekday, false)[6]
         val match = DateDrillRun.grade("Sonnabend", sunday, config)
         assertIs<Match.OtherWord>(match)
         assertEquals(listOf("Saturday"), match.meanings)
@@ -76,7 +76,7 @@ class DateNameIndexTests {
     /** The pattern's `den` variant is what admits the accusative — as an Exact, not a slip. */
     @Test
     fun thePatternVariantAdmitsTheAccusative() {
-        val task = DateDrill.dayMonthTask(DateDrillFixture.germanContent, 3, 5)
+        val task = DateDrillTasks.dayMonth(DateDrillFixture.germanContent, 3, 5)
         assertEquals(Match.Exact, DateDrillRun.grade("den dritten Juni", task, config))
     }
 
@@ -87,7 +87,7 @@ class DateNameIndexTests {
      */
     @Test
     fun anAssembledDateKeepsItsBridge() {
-        val task = DateDrill.dayMonthTask(DateDrillFixture.germanContent, 3, 5)
+        val task = DateDrillTasks.dayMonth(DateDrillFixture.germanContent, 3, 5)
         val match = DateDrillRun.grade("der dritte Juli", task, config)
         assertIs<Match.Typo>(match)
         assertEquals("der dritte Juni", match.corrected)
@@ -127,7 +127,7 @@ class DateNameIndexTests {
                     flag = "💚", articles = listOf("la")),
             ),
         )
-        val tuesday = DateDrill.pool(esperanto, DateTaskKind.Weekday, reverse = false)[1]
+        val tuesday = DateDrillTasks.pool(esperanto, DateTaskKind.Weekday, reverse = false)[1]
         val match = DateDrillRun.grade("marto", tuesday, eoConfig)
         assertIs<Match.OtherWord>(match)
         assertEquals(listOf("March"), match.meanings)
@@ -146,7 +146,7 @@ class DateNameIndexTests {
             fast = false,
             normalizer = AnswerNormalizer.drill(DateDrillFixture.ukrainian),
         )
-        val months = DateDrill.pool(DateDrillFixture.ukrainianContent, DateTaskKind.Month, false)
+        val months = DateDrillTasks.pool(DateDrillFixture.ukrainianContent, DateTaskKind.Month, false)
         assertEquals(Match.Wrong, DateDrillRun.grade("березня", months[2], ukConfig))
 
         val atJuly = DateDrillRun.grade("березня", months[6], ukConfig)
@@ -186,7 +186,7 @@ class DateNameIndexTests {
                     articles = listOf("le", "la", "les", "l'", "un", "une")),
             ),
         )
-        val task = DateDrill.dayTask(french, 1)
+        val task = DateDrillTasks.day(french, 1)
         assertEquals(listOf("premier"), task.accepted)
         val match = DateDrillRun.grade("un", task, frConfig)
         assertIs<Match.OtherWord>(match)

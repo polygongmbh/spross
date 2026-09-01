@@ -79,18 +79,18 @@ class DateDrillTests {
 
     @Test
     fun aBareNameTaskCarriesEveryTaughtAndAcceptedForm() {
-        val saturday = DateDrill.pool(german, DateTaskKind.Weekday, reverse = false)[5]
+        val saturday = DateDrillTasks.pool(german, DateTaskKind.Weekday, reverse = false)[5]
         assertEquals("Saturday", saturday.promptText)
         assertEquals(listOf("Samstag", "Sonnabend"), saturday.accepted)
         assertEquals("Samstag", saturday.display)
         assertEquals("5", saturday.id)
-        assertEquals(12, DateDrill.pool(german, DateTaskKind.Month, reverse = false).size)
+        assertEquals(12, DateDrillTasks.pool(german, DateTaskKind.Month, reverse = false).size)
     }
 
     /** Reverse is a direction, not another ladder: the same names, asked the other way. */
     @Test
     fun reverseSwapsThePromptAndTheAcceptedSide() {
-        val back = DateDrill.pool(german, DateTaskKind.Weekday, reverse = true)[5]
+        val back = DateDrillTasks.pool(german, DateTaskKind.Weekday, reverse = true)[5]
         assertEquals("Samstag", back.promptText)
         assertEquals(listOf("Saturday"), back.accepted)
         assertEquals("Saturday", back.display)
@@ -99,35 +99,35 @@ class DateDrillTests {
     /** The day is the pack's reading, prompted language-neutrally — never authored, never digits. */
     @Test
     fun theDayRungReadsThePacksOrdinal() {
-        val task = DateDrill.dayTask(german, 3)
+        val task = DateDrillTasks.day(german, 3)
         assertEquals("3.", task.promptText)
         assertEquals("dritte", task.display)
         assertContains(task.accepted, "dritten")
-        assertEquals(31, DateDrill.pool(german, DateTaskKind.DayOfMonth, reverse = false).size)
+        assertEquals(31, DateDrillTasks.pool(german, DateTaskKind.DayOfMonth, reverse = false).size)
     }
 
     /** Pattern variants cross-multiply with the day's readings — the accusative rides along. */
     @Test
     fun anAssembledDayAndMonthCrossMultipliesItsParts() {
-        val task = DateDrill.dayMonthTask(german, 3, 5)
+        val task = DateDrillTasks.dayMonth(german, 3, 5)
         assertEquals("der dritte Juni", task.display)
         assertContains(task.accepted, "den dritten Juni")
         assertEquals("6/3", task.promptText, "the prompt wears the SOURCE's numeric format")
         assertEquals("3.6", task.id)
-        assertContains(DateDrill.dayMonthTask(german, 3, 0).accepted, "der dritte Jänner")
+        assertContains(DateDrillTasks.dayMonth(german, 3, 0).accepted, "der dritte Jänner")
     }
 
     /** Ukrainian's `dateForm` replaces the citation form inside a date — and only it grades. */
     @Test
     fun aDateFormDeclinesTheMonthInsideADate() {
-        val task = DateDrill.dayMonthTask(ukrainian, 3, 2)
+        val task = DateDrillTasks.dayMonth(ukrainian, 3, 2)
         assertEquals(listOf("третього березня"), task.accepted)
         assertEquals("3.3.", task.promptText, "the de ordinal dot survives the year's removal")
     }
 
     @Test
     fun aFullDateAsksWithTheSourceAbbreviationAndAcceptsTheSynonymWeekday() {
-        val task = DateDrill.fullDateTask(german, 5, 3, 5)
+        val task = DateDrillTasks.fullDate(german, 5, 3, 5)
         assertEquals("Sat, 6/3", task.promptText)
         assertEquals("Samstag, der dritte Juni", task.display)
         assertContains(task.accepted, "Sonnabend, der dritte Juni")
@@ -138,10 +138,10 @@ class DateDrillTests {
     /** Once a year fixes the date the weekday is a fact: computed, never drawn. */
     @Test
     fun aDatedCardComputesItsWeekday() {
-        assertEquals(1, DateDrill.weekdayIndex(2026, 3, 3), "2026-03-03 is a Tuesday")
-        assertEquals(3, DateDrill.weekdayIndex(2024, 2, 29), "the leap day exists and is a Thursday")
-        assertEquals(5, DateDrill.weekdayIndex(2000, 1, 1), "the century leap rule holds")
-        val task = DateDrill.fullDateWithYearTask(german, 3, 2, 2026)
+        assertEquals(1, DateDrillTasks.weekdayIndex(2026, 3, 3), "2026-03-03 is a Tuesday")
+        assertEquals(3, DateDrillTasks.weekdayIndex(2024, 2, 29), "the leap day exists and is a Thursday")
+        assertEquals(5, DateDrillTasks.weekdayIndex(2000, 1, 1), "the century leap rule holds")
+        val task = DateDrillTasks.fullDateWithYear(german, 3, 2, 2026)
         val year = Trainer.pack("de").year(2026)
         assertEquals("Dienstag, der dritte März ${year.display}", task.display)
         assertEquals("Tue, 3/3/2026", task.promptText)

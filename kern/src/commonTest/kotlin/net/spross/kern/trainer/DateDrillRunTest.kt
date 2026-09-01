@@ -160,7 +160,7 @@ class DateDrillRunTest {
      */
     @Test
     fun aDayThatNamesAnotherDayIsRefusedNotForgiven() {
-        val task = DateDrill.dayTask(DateDrillFixture.germanContent, 3)
+        val task = DateDrillTasks.day(DateDrillFixture.germanContent, 3)
         val match = DateDrillRun.grade("vierte", task, config())
         assertIs<Match.OtherWord>(match)
         assertEquals("vierte", match.word)
@@ -170,7 +170,7 @@ class DateDrillRunTest {
     /** No language info (a preview): a plain case- and punctuation-insensitive comparison. */
     @Test
     fun aPreviewWithNoLanguageInfoStillGradesPlainly() {
-        val task = DateDrill.dayTask(DateDrillFixture.germanContent, 3)
+        val task = DateDrillTasks.day(DateDrillFixture.germanContent, 3)
         assertEquals(Match.Exact, DateDrillRun.grade("  dritte!  ", task, config(graded = false)))
         assertEquals(Match.Wrong, DateDrillRun.grade("drittex", task, config(graded = false)))
     }

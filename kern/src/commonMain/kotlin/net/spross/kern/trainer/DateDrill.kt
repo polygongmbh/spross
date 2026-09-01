@@ -3,8 +3,6 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.catalog.DateEntry
-import net.spross.kern.catalog.DateNames
-import net.spross.kern.catalog.DatePattern
 import net.spross.kern.model.Language
 
 /**
@@ -24,19 +22,14 @@ import net.spross.kern.model.Language
  * Reversed, only the bare-name rungs stand — the numeric side of a date is a separator
  * convention, not a language skill — so that ladder is the two names plus their mix.
  *
- * The bare rungs are a symmetric pair join; the assembled rungs are half authored and
- * half generated: names and pattern from the catalog, the day from the answer pack's
- * [TrainerLanguagePack.dateDay], the year from its year reading. Their draws are
- * generated like the slot drill's, so [DrillSolved.SPENT_ATTEMPTS] is what "spent"
- * means there.
+ * The bare rungs enumerate their pools; the assembled rungs are drawn like the slot
+ * drill's values, so [DrillSolved.SPENT_ATTEMPTS] is what "spent" means there. What a
+ * drawn question looks like — prompt, accepted set, display — is [DateDrillTasks]'.
  */
 object DateDrill {
 
     /** Three clean wins a rung — the country drill's pacing, for the country drill's reason. */
     const val WINS_TO_ADVANCE = 3
-
-    /** Years an assembled date may draw: both the hundred-counted and the thousand-counted centuries. */
-    internal val YEARS: IntRange = 1900..2099
 
     fun winsToAdvance(fast: Boolean): Int = if (fast) 1 else WINS_TO_ADVANCE
 
@@ -84,7 +77,7 @@ object DateDrill {
         for (kind in kinds(content, level, reverse).shuffled(rng)) {
             val task = when (kind) {
                 DateTaskKind.Weekday, DateTaskKind.Month, DateTaskKind.DayOfMonth ->
-                    samplePool(pool(content, kind, reverse), avoidId, solved, rng)
+                    samplePool(DateDrillTasks.pool(content, kind, reverse), avoidId, solved, rng)
                 else -> sampleComposed(content, kind, avoidId, solved, rng)
             }
             if (task != null) return task
@@ -126,121 +119,6 @@ object DateDrill {
         DateReferenceGroup(DateTaskKind.Weekday, content.weekdays.map(::referenceRow)),
         DateReferenceGroup(DateTaskKind.Month, content.months.map(::referenceRow)),
     )
-
-    /** The enumerable rungs' whole pools; the assembled kinds are drawn, never enumerated. */
-    internal fun pool(content: DateDrillContent, kind: DateTaskKind, reverse: Boolean): List<DateDrillTask> =
-        when (kind) {
-            DateTaskKind.Weekday -> content.weekdays.map { nameTask(kind, it, reverse) }
-            DateTaskKind.Month -> content.months.map { nameTask(kind, it, reverse) }
-            DateTaskKind.DayOfMonth -> (1..31).map { dayTask(content, it) }
-            else -> emptyList()
-        }
-
-    internal fun nameTask(kind: DateTaskKind, entry: DateEntry, reverse: Boolean): DateDrillTask {
-        val answer = entry.answer(reverse)
-        return DateDrillTask(
-            kind = kind,
-            id = entry.index.toString(),
-            promptText = entry.prompt(reverse).text,
-            accepted = listOf(answer.text) + answer.synonyms + answer.variants,
-            display = answer.text,
-        )
-    }
-
-    internal fun dayTask(content: DateDrillContent, day: Int): DateDrillTask {
-        val readings = Trainer.pack(content.target).dateDay(day)
-        return DateDrillTask(
-            kind = DateTaskKind.DayOfMonth,
-            id = day.toString(),
-            promptText = "$day.",
-            accepted = readings,
-            display = readings.first(),
-        )
-    }
-
-    internal fun dayMonthTask(content: DateDrillContent, day: Int, monthIndex: Int): DateDrillTask {
-        val accepted = fill(
-            content.patterns.dayMonth,
-            listOf(
-                "{day}" to Trainer.pack(content.target).dateDay(day),
-                "{month}" to dateForms(content.months[monthIndex].target),
-            ),
-        )
-        return DateDrillTask(
-            kind = DateTaskKind.DayAndMonth,
-            id = "$day.${monthIndex + 1}",
-            promptText = numericDayMonth(content.numeric, day, monthIndex + 1),
-            accepted = accepted,
-            display = accepted.first(),
-        )
-    }
-
-    internal fun fullDateTask(
-        content: DateDrillContent,
-        weekdayIndex: Int,
-        day: Int,
-        monthIndex: Int,
-    ): DateDrillTask {
-        val weekday = content.weekdays[weekdayIndex]
-        val accepted = fill(
-            content.patterns.date,
-            listOf(
-                "{weekday}" to dateForms(weekday.target),
-                "{day}" to Trainer.pack(content.target).dateDay(day),
-                "{month}" to dateForms(content.months[monthIndex].target),
-            ),
-        )
-        return DateDrillTask(
-            kind = DateTaskKind.FullDate,
-            id = "$weekdayIndex:$day.${monthIndex + 1}",
-            promptText = "${abbr(weekday)}, ${numericDayMonth(content.numeric, day, monthIndex + 1)}",
-            accepted = accepted,
-            display = accepted.first(),
-        )
-    }
-
-    internal fun fullDateWithYearTask(
-        content: DateDrillContent,
-        day: Int,
-        monthIndex: Int,
-        year: Int,
-    ): DateDrillTask {
-        // why: once the year fixes the date the weekday is a fact — computed, never drawn,
-        // so the card never states a date that does not exist.
-        val weekday = content.weekdays[weekdayIndex(year, monthIndex + 1, day)]
-        val pack = Trainer.pack(content.target)
-        val reading = pack.year(year.toLong())
-        val pattern = requireNotNull(content.patterns.dateWithYear) {
-            "no dateWithYear pattern for ${content.target}"
-        }
-        val accepted = fill(
-            pattern,
-            listOf(
-                "{weekday}" to dateForms(weekday.target),
-                "{day}" to pack.dateDay(day),
-                "{month}" to dateForms(content.months[monthIndex].target),
-                "{year}" to (listOf(reading.display) + reading.accepted).distinct(),
-            ),
-        )
-        val numeric = content.numeric
-            .replace("{d}", day.toString())
-            .replace("{m}", (monthIndex + 1).toString())
-            .replace("{y}", year.toString())
-        return DateDrillTask(
-            kind = DateTaskKind.FullDateWithYear,
-            id = "$day.${monthIndex + 1}.$year",
-            promptText = "${abbr(weekday)}, $numeric",
-            accepted = accepted,
-            display = accepted.first(),
-        )
-    }
-
-    /** ISO weekday of a date, 0 = Monday — Sakamoto's method, no clock and no calendar API. */
-    internal fun weekdayIndex(year: Int, month: Int, day: Int): Int {
-        val y = if (month < 3) year - 1 else year
-        val sundayFirst = (y + y / 4 - y / 100 + y / 400 + SAKAMOTO[month - 1] + day) % 7
-        return (sundayFirst + 6) % 7
-    }
 
     private fun rungs(content: DateDrillContent, reverse: Boolean): List<DateTaskKind> =
         if (reverse) {
@@ -297,68 +175,29 @@ object DateDrill {
     private fun compose(content: DateDrillContent, kind: DateTaskKind, rng: Random): DateDrillTask {
         val monthIndex = rng.nextInt(content.months.size)
         return when (kind) {
-            DateTaskKind.DayAndMonth ->
-                dayMonthTask(content, rng.nextInt(daysIn(monthIndex)) + 1, monthIndex)
-            DateTaskKind.FullDate -> fullDateTask(
+            DateTaskKind.DayAndMonth -> DateDrillTasks.dayMonth(
+                content,
+                rng.nextInt(DateDrillTasks.daysIn(monthIndex)) + 1,
+                monthIndex,
+            )
+            DateTaskKind.FullDate -> DateDrillTasks.fullDate(
                 content,
                 rng.nextInt(content.weekdays.size),
-                rng.nextInt(daysIn(monthIndex)) + 1,
+                rng.nextInt(DateDrillTasks.daysIn(monthIndex)) + 1,
                 monthIndex,
             )
             else -> {
-                val year = YEARS.first + rng.nextInt(YEARS.last - YEARS.first + 1)
-                fullDateWithYearTask(content, rng.nextInt(daysIn(monthIndex, year)) + 1, monthIndex, year)
+                val years = DateDrillTasks.YEARS
+                val year = years.first + rng.nextInt(years.last - years.first + 1)
+                DateDrillTasks.fullDateWithYear(
+                    content,
+                    rng.nextInt(DateDrillTasks.daysIn(monthIndex, year)) + 1,
+                    monthIndex,
+                    year,
+                )
             }
         }
     }
-
-    /**
-     * Every form a name takes inside an assembled date. Where a [DateNames.dateForm] is
-     * authored the date declines, and only that form is known to — a declined synonym
-     * would be invented. Everywhere else the name stands as it is, so whatever a bare
-     * answer accepts an assembled one accepts too (de `Sonnabend, der dritte März`).
-     */
-    private fun dateForms(name: DateNames): List<String> =
-        name.dateForm?.let(::listOf) ?: (listOf(name.text) + name.synonyms + name.variants)
-
-    /** The accepted set: each pattern form crossed with every reading of every part. */
-    private fun fill(pattern: DatePattern, slots: List<Pair<String, List<String>>>): List<String> {
-        var forms = listOf(pattern.text) + pattern.variants
-        for ((marker, options) in slots) {
-            forms = forms.flatMap { form -> options.map { form.replace(marker, it) } }
-        }
-        return forms.distinct()
-    }
-
-    /**
-     * The numeric format with its year dropped, for the rungs that ask no year. The year
-     * leaves with the separator that joined it on — except a "." standing before it,
-     * which is the ordinal dot de/uk write after every number ("3.3."), not a joiner.
-     */
-    private fun numericDayMonth(numeric: String, day: Int, month: Int): String {
-        val at = numeric.indexOf("{y}")
-        val bare = when {
-            at < 0 -> numeric
-            at == 0 -> numeric.removeRange(0, minOf(numeric.length, 4))
-            else -> numeric.removeRange(if (numeric[at - 1] == '.') at else at - 1, at + 3)
-        }
-        return bare.replace("{d}", day.toString()).replace("{m}", month.toString())
-    }
-
-    private fun abbr(weekday: DateEntry): String =
-        checkNotNull(weekday.source.abbr) { "weekday without abbr on the prompt side" }
-
-    private fun daysIn(monthIndex: Int): Int = DAYS[monthIndex]
-
-    private fun daysIn(monthIndex: Int, year: Int): Int =
-        if (monthIndex == 1 && !leap(year)) 28 else DAYS[monthIndex]
-
-    private fun leap(year: Int): Boolean = year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
-
-    /** Days each month can carry — February keeps its 29th, so a yearless draw reaches all 366. */
-    private val DAYS = intArrayOf(31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
-
-    private val SAKAMOTO = intArrayOf(0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4)
 
     private fun referenceRow(entry: DateEntry) = DateReferenceRow(
         source = entry.source.text,
@@ -367,8 +206,4 @@ object DateDrill {
         abbr = entry.target.abbr,
         dateForm = entry.target.dateForm,
     )
-
-    private fun DateEntry.prompt(reverse: Boolean) = if (reverse) target else source
-
-    private fun DateEntry.answer(reverse: Boolean) = if (reverse) source else target
 }
