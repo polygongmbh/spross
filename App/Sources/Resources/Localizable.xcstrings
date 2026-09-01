@@ -3751,6 +3751,23 @@
         }
       }
     },
+    "numbers.answer.placeholder" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In Ziffern …"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In digits …"
+          }
+        }
+      },
+      "comment" : "a reversed task owes digits, never a language"
+    },
     "numbers.combine.locked" : {
       "localizations" : {
         "de" : {
@@ -3767,6 +3784,40 @@
         }
       },
       "comment" : "Why the picks are a radio: mixing several exercises into one run is itself earned."
+    },
+    "numbers.lookup" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahlen nachschlagen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Look up numbers"
+          }
+        }
+      },
+      "comment" : "the \"?\" that raises the numbers page mid-run"
+    },
+    "numbers.newPlace %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neue Stelle: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New place: %@"
+          }
+        }
+      },
+      "comment" : "%s = the place word, the first time a length appears"
     },
     "numbers.notes" : {
       "localizations" : {
@@ -3799,6 +3850,47 @@
           }
         }
       }
+    },
+    "numbers.rung %lld" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "🔢 %lld Stelle"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "🔢 %lld Stellen"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "🔢 %lld digit"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "🔢 %lld digits"
+                }
+              }
+            }
+          }
+        }
+      },
+      "comment" : "the numbers rung, which counts digits"
     },
     "numbers.section.base" : {
       "localizations" : {
@@ -5550,23 +5642,6 @@
         }
       }
     },
-    "trainer.answer.digits" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In Ziffern …"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In digits …"
-          }
-        }
-      },
-      "comment" : "a reversed task owes digits, never a language"
-    },
     "trainer.bestStreak %@" : {
       "localizations" : {
         "de" : {
@@ -5616,47 +5691,6 @@
       },
       "comment" : "the hub entry, and what the result tile says was drilled"
     },
-    "trainer.digits %lld" : {
-      "localizations" : {
-        "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "🔢 %lld Stelle"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "🔢 %lld Stellen"
-                }
-              }
-            }
-          }
-        },
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "🔢 %lld digit"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "🔢 %lld digits"
-                }
-              }
-            }
-          }
-        }
-      },
-      "comment" : "the numbers rung, which counts digits"
-    },
     "trainer.forms" : {
       "localizations" : {
         "de" : {
@@ -5705,23 +5739,6 @@
         }
       },
       "comment" : "%d — the rung a run stands on"
-    },
-    "trainer.lookup" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zahlen nachschlagen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Look up numbers"
-          }
-        }
-      },
-      "comment" : "the \"?\" that raises the numbers page mid-run"
     },
     "trainer.modifier.fast" : {
       "localizations" : {
@@ -5818,23 +5835,6 @@
           }
         }
       }
-    },
-    "trainer.newPlace %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Neue Stelle: %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New place: %@"
-          }
-        }
-      },
-      "comment" : "%s = the place word, the first time a length appears"
     },
     "trainer.newRecord" : {
       "localizations" : {

@@ -174,7 +174,7 @@ struct DrillResultTile: View {
 #Preview("Streak line") {
     VStack(spacing: DL.Space.xl) {
         DrillStreakLine(level: Text("trainer.level \(7.formatted())"), streak: 0, bestStreak: 0)
-        DrillStreakLine(level: Text("trainer.digits \(5)"), streak: 7, bestStreak: 12,
+        DrillStreakLine(level: Text("numbers.rung \(5)"), streak: 7, bestStreak: 12,
                         announcesRecord: true)
         DrillStreakLine(streak: 3, bestStreak: 3)
     }

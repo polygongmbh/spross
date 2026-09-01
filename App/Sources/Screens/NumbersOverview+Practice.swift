@@ -122,7 +122,7 @@ extension NumbersOverview {
     private func unlockCaption(_ required: [DrillVariant: KotlinInt]) -> Text {
         let parts: [Text] = DrillVariant.allCases.compactMap { variant in
             guard let level = required[variant].map({ Int(truncating: $0) }) else { return nil }
-            guard variant != .numbers else { return Text("trainer.digits \(level)") }
+            guard variant != .numbers else { return Text("numbers.rung \(level)") }
             return Text(verbatim: "\(drillVariantEmoji(variant: variant)) ") + Text(variant.trainerTitleKey)
                 + Text(verbatim: " ") + Text("trainer.level \(level.formatted())")
         }

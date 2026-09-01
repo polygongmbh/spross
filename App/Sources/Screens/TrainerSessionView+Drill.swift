@@ -18,7 +18,7 @@ extension TrainerSessionView {
     /// Place word shown the first time a new number length appears — on the
     /// card itself, so the prompts that carry no hint sit exactly as high.
     private var placeValueHint: TrainerPromptCard.Hint? {
-        run.placeValueHint.map { .init(icon: "textformat.123", text: "trainer.newPlace \($0)") }
+        run.placeValueHint.map { .init(icon: "textformat.123", text: "numbers.newPlace \($0)") }
     }
 
     var drillContent: some View {
@@ -72,7 +72,7 @@ extension TrainerSessionView {
         guard variant != .numbers else {
             // why: `trainer.digits` is the numbers drill's own wording and already
             // wears 🔢 — putting the variant's face in front would double it.
-            return Text("trainer.digits \(rung)")
+            return Text("numbers.rung \(rung)")
         }
         let text = Text("trainer.level \(rung.formatted())")
         guard run.severalVariants else { return text }
@@ -84,7 +84,7 @@ extension TrainerSessionView {
     /// "Auf Swahili …" over a number pad asks for the wrong thing.
     private var fieldPlaceholder: String {
         run.currentReversed
-            ? DLChrome.string("trainer.answer.digits", locale: locale)
+            ? DLChrome.string("numbers.answer.placeholder", locale: locale)
             : answerPlaceholder(language)
     }
 
@@ -163,7 +163,7 @@ extension TrainerSessionView {
         Button {
             lookUp()
         } label: {
-            Label("trainer.lookup", systemImage: "questionmark.circle")
+            Label("numbers.lookup", systemImage: "questionmark.circle")
                 .font(DL.Fonts.caption)
         }
         .buttonStyle(.plain)
