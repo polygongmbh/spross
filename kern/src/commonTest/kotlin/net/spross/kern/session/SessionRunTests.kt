@@ -73,12 +73,12 @@ class SessionRunTests {
     @Test
     fun nothingJoinsARunAlreadyUnderWay() {
         var run = started(backloggedState(), now)
-        assertEquals(24, run.total)
+        assertEquals(Box.config().sessionCap, run.total)
         while (run.currentCardId != null) {
             run = answer(run, Rating.Good, now)
-            assertEquals(24, run.total)
+            assertEquals(Box.config().sessionCap, run.total)
         }
-        assertEquals(24, run.answered)
+        assertEquals(Box.config().sessionCap, run.answered)
         assertTrue(run.finished)
         assertEquals(SessionStep.Completed, run.step)
         // The held-back work is still due — the summary is where it gets offered.
@@ -93,7 +93,7 @@ class SessionRunTests {
         val cardId = assertNotNull(run.currentCardId)
         val pruned = SessionRun.withBox(run, run.box.copy(cards = run.box.cards - cardId))
         val after = answer(pruned, Rating.Good, now)
-        assertEquals(24, after.total)
+        assertEquals(Box.config().sessionCap, after.total)
         assertEquals(1, after.answered)
         assertEquals(1, after.ratings.size)
         assertTrue(after.currentCardId != null && after.currentCardId != cardId)
@@ -293,7 +293,7 @@ class SessionRunTests {
         run = answer(run, Rating.Easy, now)
         assertEquals(listOf(AnswerOutcome.Wrong, AnswerOutcome.Almost, AnswerOutcome.Right), run.segments)
         assertEquals(4, run.position)
-        assertEquals(21, run.remaining)
+        assertEquals(Box.config().sessionCap - 3, run.remaining)
     }
 
     /** A first day is not a record: every box has one. */

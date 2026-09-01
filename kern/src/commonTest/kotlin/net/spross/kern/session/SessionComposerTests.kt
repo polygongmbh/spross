@@ -57,7 +57,7 @@ class SessionComposerTests {
     fun noReservationWithoutNewWork() {
         // Every card already scheduled → nothing to introduce → reviews take the whole cap.
         val plan = SessionComposer.composeSession(backloggedState(spare = 0), now, Box.TZ)
-        assertEquals(24, plan.reviews.size)
+        assertEquals(Box.config().sessionCap, plan.reviews.size)
         assertTrue(plan.newCards.isEmpty())
         assertTrue(plan.unlockedPhrases.isEmpty())
     }
