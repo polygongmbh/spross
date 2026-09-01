@@ -7,7 +7,7 @@ change is made here and nowhere else.
 
 How a chrome key must be written, so the catalog stays honest in the first place:
 resolution runs through LocalizedStringKey against the environment locale, so a key
-keeps its arguments ("heute.session.reviews %@") and is never resolved with
+keeps its arguments ("home.tally.reviews %@") and is never resolved with
 String(localized:), which would read the DEVICE language instead. A %@ argument is
 pre-formatted at the call site — `\\(due.formatted())`, never a bare `\\(due)`, which
 the extractor writes as %@ while the compiler emits %lld, leaving the project to
@@ -64,7 +64,7 @@ CATEGORIES = {'de': ('one', 'other'), 'en': ('one', 'other')}
 # (a chrome string in the TARGET language cannot go through the environment
 # locale), so no extractor can see them.
 UNEXTRACTABLE = {
-    'heute.session.start',
+    'home.offer.start',
     'grammar.plural.equals', 'grammar.plural.only', 'grammar.plural %@',
     'grammar.also %@', 'session.answer.placeholder %@', 'session.copy.placeholder %@',
     # A drill tile's a11y label interpolates the glyph into a plain String —
@@ -73,7 +73,7 @@ UNEXTRACTABLE = {
     # The Box's own-words area title, resolved through DLChrome like the above.
     'box.own.shelf',
     # The two words that fill the address slot of a target-language greeting.
-    'heute.greeting.morning.addressee', 'heute.greeting.night.addressee',
+    'home.greeting.morning.addressee', 'home.greeting.night.addressee',
 }
 # Surfaces only the Android app has. The catalog holds every chrome string the product
 # says — scripts/chrome.py generates the Kotlin tables from it — so these live here with
@@ -93,8 +93,7 @@ ANDROID_ONLY = {
 # (`AppModel+Queries.headlineKey`, `SessionCompletionView.growthKey`). The words are
 # ours, the choice is not, so no call site ever spells the key out.
 COMPOSED = (
-    'heute.session.reviews.', 'heute.session.warmUp.', 'heute.session.freshSet.',
-    'heute.session.streakReminder.', 'session.finished.growth.',
+    'home.offer.headline.', 'session.finished.growth.',
 )
 
 

@@ -131,10 +131,10 @@ struct HeuteView: View {
                     .foregroundStyle(Color.dlAccent)
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: DL.Space.xs) {
-                    Text("heute.voiceUpgrade.title \(targetLanguageName ?? "?")")
+                    Text("home.voiceUpgrade.title \(targetLanguageName ?? "?")")
                         .font(DL.Fonts.headline)
                         .foregroundStyle(Color.dlTextPrimary)
-                    Text("heute.voiceUpgrade.path")
+                    Text("home.voiceUpgrade.path")
                         .font(DL.Fonts.caption)
                         .foregroundStyle(Color.dlTextSecondary)
                 }
@@ -176,7 +176,7 @@ struct HeuteView: View {
                 // never looks like cards that vanished.
                 // why: Int, not the engine's Int32 — a plural key only varies
                 // on a count the String Catalog recognises.
-                Text("heute.session.heldBack \(Int(offer.dueHeldBack))")
+                Text("home.offer.heldBack \(Int(offer.dueHeldBack))")
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
                     .multilineTextAlignment(.center)
@@ -184,13 +184,13 @@ struct HeuteView: View {
             Button {
                 model.startSession()
             } label: {
-                DLActionLabel(key: "heute.session.start", targetLocale: model.targetChromeLocale)
+                DLActionLabel(key: "home.offer.start", targetLocale: model.targetChromeLocale)
             }
             .buttonStyle(DLPrimaryButtonStyle())
             // A long round is more than an evening some days, and an abandoned one leaves
             // the day unworked; kern says when the two are different enough to offer both.
             if offer.shortRound > 0 {
-                Button("heute.session.shortRound") {
+                Button("home.offer.shortRound") {
                     model.startShortSession()
                 }
                 .buttonStyle(DLSoftButtonStyle())
@@ -231,7 +231,7 @@ struct HeuteView: View {
     /// via the environment locale with catalog plural handling.
     private func sessionSummary(_ offer: SessionOffer) -> Text {
         let parts = offer.summaryParts()
-        return parts.map { offerPartText($0, alone: parts.count == 1) }.joined() ?? Text("heute.session.someCards")
+        return parts.map { offerPartText($0, alone: parts.count == 1) }.joined() ?? Text("home.tally.someCards")
     }
 
     private func offerPartText(_ part: OfferPart, alone: Bool) -> Text {
@@ -239,12 +239,12 @@ struct HeuteView: View {
         // a plural key only varies on a count the String Catalog recognises.
         let count = Int(part.count)
         switch part.kind {
-        case .reviews: return Text("heute.session.reviews \(count)")
-        case .ahead: return Text("heute.session.ahead \(count)")
+        case .reviews: return Text("home.tally.reviews \(count)")
+        case .ahead: return Text("home.tally.ahead \(count)")
         case .fresh:
             return alone
-                ? Text("heute.session.newWordsOnly \(count.formatted())")
-                : Text("heute.session.newCards \(count)")
+                ? Text("home.tally.newWordsOnly \(count.formatted())")
+                : Text("home.tally.newCards \(count)")
         }
     }
 
@@ -263,7 +263,7 @@ struct HeuteView: View {
         let worked = today?.worked ?? false
         return VStack(spacing: DL.Space.l) {
             doneMark(worked: worked)
-            Text(worked ? "heute.done.title" : "heute.caughtUp.title")
+            Text(worked ? "home.done.title" : "home.done.caughtUp")
                 .font(DL.Fonts.title)
                 .foregroundStyle(Color.dlTextPrimary)
                 .multilineTextAlignment(.center)
@@ -278,7 +278,7 @@ struct HeuteView: View {
             // renders in every done state with active cards; hidden only when the box has
             // nothing left to compose at all.
             if model.canPracticeMore {
-                Button("heute.done.extraRound") {
+                Button("home.done.extraRound") {
                     model.startExtraSession()
                 }
                 .buttonStyle(DLSoftButtonStyle())
@@ -320,15 +320,15 @@ struct HeuteView: View {
     /// that it happened. Which counts the day names and in which order is the day's
     /// own report (`TodayReport.tallyParts`); the words are ours.
     private func todayTally(_ report: TodayReport) -> Text {
-        report.tallyParts().map(tallyText).joined() ?? Text("heute.session.someCards")
+        report.tallyParts().map(tallyText).joined() ?? Text("home.tally.someCards")
     }
 
     private func tallyText(_ part: TallyPart) -> Text {
         let count = Int(part.count)
         switch part.kind {
-        case .reviews: return Text("heute.session.reviews \(count)")
-        case .introduced: return Text("heute.session.newCards \(count)")
-        case .consolidated: return Text("heute.done.consolidated \(count.formatted())")
+        case .reviews: return Text("home.tally.reviews \(count)")
+        case .introduced: return Text("home.tally.newCards \(count)")
+        case .consolidated: return Text("home.tally.consolidated \(count.formatted())")
         }
     }
 
@@ -339,9 +339,9 @@ struct HeuteView: View {
     private var tomorrowText: Text {
         switch tomorrowNote(hasPackedWords: model.hasPackedWords,
                             tomorrowDue: Int32(model.tomorrowDueCount)) {
-        case .packed: return Text("heute.done.packed")
-        case .fresh: return Text("heute.done.tomorrowFresh")
-        case .due: return Text("heute.done.tomorrowDue \(model.tomorrowDueCount)")
+        case .packed: return Text("home.done.packed")
+        case .fresh: return Text("home.done.tomorrowFresh")
+        case .due: return Text("home.done.tomorrowDue \(model.tomorrowDueCount)")
         }
     }
 

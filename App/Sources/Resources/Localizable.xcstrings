@@ -2342,7 +2342,7 @@
         }
       }
     },
-    "heute.caughtUp.title" : {
+    "home.done.caughtUp" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2357,26 +2357,9 @@
           }
         }
       },
-      "comment" : "Nothing due, and nothing done yet — never heute.done.title, which the day must earn."
+      "comment" : "Nothing due, and nothing done yet — never home.done.title, which the day must earn."
     },
-    "heute.done.consolidated %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ gefestigt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ solidified"
-          }
-        }
-      },
-      "comment" : "%d — \"gefestigt\" needs no declining"
-    },
-    "heute.done.extraRound" : {
+    "home.done.extraRound" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2392,7 +2375,7 @@
         }
       }
     },
-    "heute.done.packed" : {
+    "home.done.packed" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2408,7 +2391,7 @@
         }
       }
     },
-    "heute.done.title" : {
+    "home.done.title" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2424,7 +2407,7 @@
         }
       }
     },
-    "heute.done.tomorrowDue %lld" : {
+    "home.done.tomorrowDue %lld" : {
       "localizations" : {
         "de" : {
           "variations" : {
@@ -2464,7 +2447,7 @@
         }
       }
     },
-    "heute.done.tomorrowFresh" : {
+    "home.done.tomorrowFresh" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2480,7 +2463,7 @@
         }
       }
     },
-    "heute.greeting.day.0 %@" : {
+    "home.greeting.day.0 %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2496,7 +2479,7 @@
         }
       }
     },
-    "heute.greeting.day.1 %@" : {
+    "home.greeting.day.1 %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2512,7 +2495,7 @@
         }
       }
     },
-    "heute.greeting.evening.0 %@" : {
+    "home.greeting.evening.0 %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2528,7 +2511,7 @@
         }
       }
     },
-    "heute.greeting.evening.1 %@" : {
+    "home.greeting.evening.1 %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2544,7 +2527,7 @@
         }
       }
     },
-    "heute.greeting.morning.0 %@" : {
+    "home.greeting.morning.0 %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2560,7 +2543,7 @@
         }
       }
     },
-    "heute.greeting.morning.1 %@" : {
+    "home.greeting.morning.1 %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2576,7 +2559,7 @@
         }
       }
     },
-    "heute.greeting.morning.addressee" : {
+    "home.greeting.morning.addressee" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2593,7 +2576,7 @@
       },
       "comment" : "Who a spoken line is addressed to when no name is known: the hour lends the word, and it goes INSIDE the target-language sentence (\"Tayari kujifunza, Nachteule?\"), so it is never rendered on its own. Morning and night only — nobody is a night owl at two in the afternoon."
     },
-    "heute.greeting.morning.epithet %@" : {
+    "home.greeting.morning.epithet %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2609,7 +2592,7 @@
         }
       }
     },
-    "heute.greeting.night.0 %@" : {
+    "home.greeting.night.0 %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2625,7 +2608,7 @@
         }
       }
     },
-    "heute.greeting.night.1 %@" : {
+    "home.greeting.night.1 %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2641,7 +2624,7 @@
         }
       }
     },
-    "heute.greeting.night.addressee" : {
+    "home.greeting.night.addressee" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2657,7 +2640,7 @@
         }
       }
     },
-    "heute.greeting.night.epithet %@" : {
+    "home.greeting.night.epithet %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2673,48 +2656,7 @@
         }
       }
     },
-    "heute.session.ahead %lld" : {
-      "localizations" : {
-        "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld Auffrischer"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld Auffrischer"
-                }
-              }
-            }
-          }
-        },
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld refresher"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld refreshers"
-                }
-              }
-            }
-          }
-        }
-      },
-      "comment" : "Pull-aheads carrying the round on their own — the freshening-up. Named only in that case: everywhere else they count into heute.session.reviews."
-    },
-    "heute.session.freshSet.0" : {
+    "home.offer.headline.freshSet.0" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2730,7 +2672,7 @@
         }
       }
     },
-    "heute.session.freshSet.1" : {
+    "home.offer.headline.freshSet.1" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2746,7 +2688,7 @@
         }
       }
     },
-    "heute.session.freshSet.2" : {
+    "home.offer.headline.freshSet.2" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2762,7 +2704,151 @@
         }
       }
     },
-    "heute.session.heldBack %lld" : {
+    "home.offer.headline.reviews.0" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Runde ist startklar"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your round is ready"
+          }
+        }
+      }
+    },
+    "home.offer.headline.reviews.1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Stapel liegt bereit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A stack is ready"
+          }
+        }
+      }
+    },
+    "home.offer.headline.reviews.2" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Box hat was für dich"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The box has something for you"
+          }
+        }
+      }
+    },
+    "home.offer.headline.streakReminder.0" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Serie wartet auf heute"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your streak is waiting on today"
+          }
+        }
+      }
+    },
+    "home.offer.headline.streakReminder.1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Runde hält die Serie am Leben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One round keeps the run going"
+          }
+        }
+      }
+    },
+    "home.offer.headline.streakReminder.2" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute hat die Flamme noch nicht genährt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today hasn't fed the flame yet"
+          }
+        }
+      }
+    },
+    "home.offer.headline.warmUp.0" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeit zum Auffrischen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time for a refresher"
+          }
+        }
+      }
+    },
+    "home.offer.headline.warmUp.1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Wiedersehen mit Bekanntem"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A reunion with familiar words"
+          }
+        }
+      }
+    },
+    "home.offer.headline.warmUp.2" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kurz durchs Bekannte"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A quick pass through the familiar"
+          }
+        }
+      }
+    },
+    "home.offer.heldBack %lld" : {
       "localizations" : {
         "de" : {
           "variations" : {
@@ -2803,7 +2889,98 @@
       },
       "comment" : "The cap is a promise, not a loss: what it holds back is named."
     },
-    "heute.session.newCards %lld" : {
+    "home.offer.shortRound" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lieber nur kurz?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Just a short one?"
+          }
+        }
+      },
+      "comment" : "The quiet way in, up while the round is long enough to be worth halving."
+    },
+    "home.offer.start" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los geht's!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let's go!"
+          }
+        }
+      }
+    },
+    "home.tally.ahead %lld" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Auffrischer"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Auffrischer"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld refresher"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld refreshers"
+                }
+              }
+            }
+          }
+        }
+      },
+      "comment" : "Pull-aheads carrying the round on their own — the freshening-up. Named only in that case: everywhere else they count into home.tally.reviews."
+    },
+    "home.tally.consolidated %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ gefestigt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ solidified"
+          }
+        }
+      },
+      "comment" : "%d — \"gefestigt\" needs no declining"
+    },
+    "home.tally.newCards %lld" : {
       "localizations" : {
         "de" : {
           "variations" : {
@@ -2843,7 +3020,7 @@
         }
       }
     },
-    "heute.session.newWordsOnly %@" : {
+    "home.tally.newWordsOnly %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2858,9 +3035,9 @@
           }
         }
       },
-      "comment" : "Fresh cards spelled out with their noun, for the one shape heute.session.newCards cannot cover on its own: the round names nothing else, so a bare count needs the word it is counting (\"neue Wörter\") rather than a nominalized adjective standing alone. No count-of-one form — a round with only fresh cards and only one is not a real shape."
+      "comment" : "Fresh cards spelled out with their noun, for the one shape home.tally.newCards cannot cover on its own: the round names nothing else, so a bare count needs the word it is counting (\"neue Wörter\") rather than a nominalized adjective standing alone. No count-of-one form — a round with only fresh cards and only one is not a real shape."
     },
-    "heute.session.reviews %lld" : {
+    "home.tally.reviews %lld" : {
       "localizations" : {
         "de" : {
           "variations" : {
@@ -2901,72 +3078,7 @@
       },
       "comment" : "the count-of-one line, verbatim"
     },
-    "heute.session.reviews.0" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deine Runde ist startklar"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your round is ready"
-          }
-        }
-      }
-    },
-    "heute.session.reviews.1" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ein Stapel liegt bereit"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A stack is ready"
-          }
-        }
-      }
-    },
-    "heute.session.reviews.2" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die Box hat was für dich"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The box has something for you"
-          }
-        }
-      }
-    },
-    "heute.session.shortRound" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lieber nur kurz?"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Just a short one?"
-          }
-        }
-      },
-      "comment" : "The quiet way in, up while the round is long enough to be worth halving."
-    },
-    "heute.session.someCards" : {
+    "home.tally.someCards" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2983,119 +3095,7 @@
       },
       "comment" : "What a round with no nameable parts says instead of printing zeros."
     },
-    "heute.session.start" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los geht's!"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Let's go!"
-          }
-        }
-      }
-    },
-    "heute.session.streakReminder.0" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deine Serie wartet auf heute"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your streak is waiting on today"
-          }
-        }
-      }
-    },
-    "heute.session.streakReminder.1" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eine Runde hält die Serie am Leben"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "One round keeps the run going"
-          }
-        }
-      }
-    },
-    "heute.session.streakReminder.2" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Heute hat die Flamme noch nicht genährt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Today hasn't fed the flame yet"
-          }
-        }
-      }
-    },
-    "heute.session.warmUp.0" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeit zum Auffrischen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Time for a refresher"
-          }
-        }
-      }
-    },
-    "heute.session.warmUp.1" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ein Wiedersehen mit Bekanntem"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A reunion with familiar words"
-          }
-        }
-      }
-    },
-    "heute.session.warmUp.2" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kurz durchs Bekannte"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A quick pass through the familiar"
-          }
-        }
-      }
-    },
-    "heute.title" : {
+    "home.title" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3111,7 +3111,7 @@
         }
       }
     },
-    "heute.voiceUpgrade.path" : {
+    "home.voiceUpgrade.path" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3127,7 +3127,7 @@
         }
       }
     },
-    "heute.voiceUpgrade.title %@" : {
+    "home.voiceUpgrade.title %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4254,7 +4254,7 @@
           }
         }
       },
-      "comment" : "An area's row of counts: the consolidated half beside the seal, the learning half beside the leaf. heute.done.consolidated is the SEPARATE wording for the day's own tally on Heute — a different screen's sentence, not this one read twice."
+      "comment" : "An area's row of counts: the consolidated half beside the seal, the learning half beside the leaf. home.tally.consolidated is the SEPARATE wording for the day's own tally on Heute — a different screen's sentence, not this one read twice."
     },
     "progress.last14Days" : {
       "localizations" : {

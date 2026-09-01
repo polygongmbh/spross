@@ -303,7 +303,7 @@ extension SessionOffer {
     /// morning on.
     var headlineKey: String {
         let line = headline(nowEpochMillis: Date().epochMillis, tzId: currentTzId())
-        return "heute.session.\(Self.stem(line.kind)).\(line.variant)"
+        return "home.offer.headline.\(Self.stem(line.kind)).\(line.variant)"
     }
 
     /// One string set per kind, keyed by the kind itself so a new kind cannot

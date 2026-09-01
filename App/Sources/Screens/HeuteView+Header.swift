@@ -46,7 +46,7 @@ extension HeuteView {
     /// (`dayPart`, `chromePart`, `partVariant`); the words are the catalog's and the
     /// chrome's. Falls back to the screen's own name while no profile names a language.
     var greeting: Text {
-        guard let language = targetLanguageName else { return Text("heute.title") }
+        guard let language = targetLanguageName else { return Text("home.title") }
         let now = Date().epochMillis, tz = currentTzId()
         let target = model.targetLanguage
         // The target's own hours for its own lines: four in the afternoon is still Tag in
@@ -74,19 +74,19 @@ extension HeuteView {
         }
         switch chromePart {
         case .morning:
-            lines += [Text("heute.greeting.morning.0 \(language)"),
-                      Text("heute.greeting.morning.1 \(language)"),
-                      Text("heute.greeting.morning.epithet \(language)")]
+            lines += [Text("home.greeting.morning.0 \(language)"),
+                      Text("home.greeting.morning.1 \(language)"),
+                      Text("home.greeting.morning.epithet \(language)")]
         case .day:
-            lines += [Text("heute.greeting.day.0 \(language)"),
-                      Text("heute.greeting.day.1 \(language)")]
+            lines += [Text("home.greeting.day.0 \(language)"),
+                      Text("home.greeting.day.1 \(language)")]
         case .evening:
-            lines += [Text("heute.greeting.evening.0 \(language)"),
-                      Text("heute.greeting.evening.1 \(language)")]
+            lines += [Text("home.greeting.evening.0 \(language)"),
+                      Text("home.greeting.evening.1 \(language)")]
         case .night:
-            lines += [Text("heute.greeting.night.0 \(language)"),
-                      Text("heute.greeting.night.1 \(language)"),
-                      Text("heute.greeting.night.epithet \(language)")]
+            lines += [Text("home.greeting.night.0 \(language)"),
+                      Text("home.greeting.night.1 \(language)"),
+                      Text("home.greeting.night.epithet \(language)")]
         }
         return lines
     }
@@ -98,9 +98,9 @@ extension HeuteView {
     private func addressee(_ part: DayPart) -> String? {
         switch part {
         case .morning:
-            return DLChrome.string("heute.greeting.morning.addressee", locale: model.knownLocale)
+            return DLChrome.string("home.greeting.morning.addressee", locale: model.knownLocale)
         case .night:
-            return DLChrome.string("heute.greeting.night.addressee", locale: model.knownLocale)
+            return DLChrome.string("home.greeting.night.addressee", locale: model.knownLocale)
         case .day, .evening:
             return nil
         }
