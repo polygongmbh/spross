@@ -72,20 +72,33 @@ object DateDrillRun {
      * ([NumberReadingIndex]): a day that names another day (`vierte` for `dritte`) is
      * refused and named, never forgiven. Nothing is inherited — the bare-name rungs have
      * no numeral to check, so they pass no index.
+     *
+     * The bare-name rungs carry the calendar's own instead ([DateNameIndex], on a miss
+     * only): where the whole answer is the name, `Juli` typed for `Juni` is July and the
+     * refusal says so. An assembled date keeps its bridge — a month slip inside one is a
+     * typo by the owner's ruling, so the index is never consulted above the bare rungs.
      */
     fun grade(
         input: String,
         task: DateDrillTask,
         config: DateDrillRunConfig,
-    ): Match = gradeDrillAnswer(
-        input = input,
-        accepted = task.accepted,
-        display = task.display,
-        language = config.answerLanguage,
-        cardId = "dates",
-        normalizer = config.normalizer,
-        index = numberIndex(task.kind, config),
-    )
+    ): Match {
+        val match = gradeDrillAnswer(
+            input = input,
+            accepted = task.accepted,
+            display = task.display,
+            language = config.answerLanguage,
+            cardId = "dates",
+            normalizer = config.normalizer,
+            index = numberIndex(task.kind, config),
+        )
+        if (match == Match.Exact) return match
+        return when (task.kind) {
+            DateTaskKind.Weekday, DateTaskKind.Month ->
+                config.nameIndex?.otherName(task, input) ?: match
+            else -> match
+        }
+    }
 
     /**
      * Leaving, from the corner or from "Fertig". A pending accepted answer books first,

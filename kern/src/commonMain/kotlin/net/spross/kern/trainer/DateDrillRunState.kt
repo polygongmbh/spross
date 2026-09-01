@@ -70,6 +70,11 @@ class DateDrillRunConfig(
     /** The language an answer is owed in — the learned one, or the learner's own reversed. */
     val answerLanguage: Language get() = DateDrill.answerLanguage(content, reverse)
 
+    /** The calendar turned around for the refusal check — null exactly where [normalizer] is. */
+    internal val nameIndex: DateNameIndex? by lazy {
+        normalizer?.let { DateNameIndex(content, reverse, it) }
+    }
+
     /** The language the prompt is written in — the other side of the same pair. */
     val promptLanguage: Language get() = DateDrill.promptLanguage(content, reverse)
 }

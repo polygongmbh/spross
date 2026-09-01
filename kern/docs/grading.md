@@ -83,7 +83,11 @@ Leniency is safe to the extent the catalog can disprove it — that rule is the 
   The country drill runs the same shape through `CountryNameIndex`, kind-scoped
   (countries against countries, peoples against peoples, languages against languages) —
   `Ĉilio` typed for `Ĉinio` is Chile, refused and named, while de `Spanier` for
-  `Spanien` stays the cross-kind near-miss two different rungs make of it.
+  `Spanien` stays the cross-kind near-miss two different rungs make of it —
+  and the dates drill through `DateNameIndex`, one MERGED space over all nineteen names
+  (eo `mardo`/`marto` collide across the weekday/month line),
+  consulted on its bare-name rungs only and skipping the entry that was asked,
+  whose `dateForm` it owns without the rung accepting it.
   Coverage is deliberately best-effort: a colliding pair outside the index's reach
   stays the forgiven slip it always was, and no sweep pins the tail
   (which readings a clock may share at all is `../docs/clock-registers.md`).
