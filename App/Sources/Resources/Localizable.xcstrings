@@ -2562,13 +2562,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deine Serie wartet auf heute"
+            "value" : "Deine Serie wartet noch"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your streak is waiting on today"
+            "value" : "Your streak is still waiting"
           }
         }
       }
@@ -2584,7 +2584,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "One round keeps the run going"
+            "value" : "One round keeps the streak going"
           }
         }
       }
@@ -2594,13 +2594,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Heute hat die Flamme noch nicht genährt"
+            "value" : "Deine Flamme hat heute noch Hunger"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Today hasn't fed the flame yet"
+            "value" : "Your flame's still hungry today"
           }
         }
       }

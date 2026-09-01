@@ -360,9 +360,9 @@ internal object ChromeDe : Chrome {
         "Ein paar Samen zum Aussäen",
     )
     override val headlineStreak = listOf(
-        "Deine Serie wartet auf heute",
+        "Deine Serie wartet noch",
         "Eine Runde hält die Serie am Leben",
-        "Heute hat die Flamme noch nicht genährt",
+        "Deine Flamme hat heute noch Hunger",
     )
     override val homeTallySomeCards = "Ein paar Karten für dich."
     override val homeOfferHeldBack = "%d weitere Karten liegen für dich bereit."
