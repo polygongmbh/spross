@@ -12,7 +12,8 @@ String(localized:), which would read the DEVICE language instead. A %@ argument 
 pre-formatted at the call site — `\\(due.formatted())`, never a bare `\\(due)`, which
 the extractor writes as %@ while the compiler emits %lld, leaving the project to
 rewrite the catalog with dead twins. A key whose wording turns on the number takes a
-counted %lld instead, and then owes every plural category (see plural_problems).
+counted %lld instead, plus a plural block, which then owes every category the language
+uses; one that merely carries a number writes a single string (see plural_problems).
 
 Xcode's index-based extractor is weaker than the compiler's: it cannot see a
 LocalizedStringKey returned from a computed property, passed to one of our own
@@ -113,15 +114,22 @@ def compiler_keys():
 
 
 def plural_problems(key, lang, localization):
-    """A counted key (`… %lld`) owes every category its language uses, and a
-    plain one must not carry variations — a `%@` argument is a formatted
-    string at runtime, so nothing could select a category from it."""
+    """A plural block owes every category its language uses, and only a counted
+    key may carry one — a `%@` argument is a formatted string at runtime, so
+    nothing could select a category from it.
+
+    Carrying no block at all is legal on a counted key and goes unflagged: plenty
+    of wordings take a number without turning on it ("Level %lld"), and a count
+    the rule keeps away from 1 has no singular to write.
+
+    The compiler catches a missing category too, but only in a Mac build, and
+    chrome.py only for the one category the Android field reads. This is what
+    covers every category on the Linux sessions where there is no Xcode."""
     variations = localization.get('variations', {}).get('plural')
-    if '%lld' not in key:
-        return ['%s (%s): plural variations on a key with no counted argument'
-                % (key, lang)] if variations else []
     if not variations:
-        return ['%s (%s): counted key without plural variations' % (key, lang)]
+        return []
+    if '%lld' not in key:
+        return ['%s (%s): plural variations on a key with no counted argument' % (key, lang)]
     missing = sorted(set(CATEGORIES[lang]) - set(variations))
     return ['%s (%s): plural is missing "%s"' % (key, lang, '", "'.join(missing))] if missing else []
 

@@ -2656,43 +2656,19 @@
     "home.offer.heldBack %lld" : {
       "localizations" : {
         "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld weitere Karte liegt für dich bereit."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld weitere Karten liegen für dich bereit."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld weitere Karten liegen für dich bereit."
           }
         },
         "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld more card ready for you."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld more cards ready for you."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld more cards ready for you."
           }
         }
       },
-      "comment" : "The cap is a promise, not a loss: what it holds back is named — but only from half a sitting up (BoxConfig.heldBackNamedFrom), so on a default cap the count starts at 12; a small cap puts the line at 1 and the singular back in reach."
+      "comment" : "The cap is a promise, not a loss: what it holds back is named — but only from half a sitting up (BoxConfig.heldBackNamedFrom), so the count starts at 12 and no singular is reachable."
     },
     "home.offer.shortRound" : {
       "localizations" : {
