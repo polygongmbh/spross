@@ -52,10 +52,10 @@ import net.spross.kern.session.SessionOfferKind
  *
  * Top to bottom: the date and the day's name, ONE state card, the trainers, and the
  * fortnight behind it. Which state card is a strict precedence over the box's own answers
- * ([heuteCard]) — an offer outranks a done state.
+ * ([homeCard]) — an offer outranks a done state.
  */
 @Composable
-fun HeuteScreen(model: AppModel) {
+fun HomeScreen(model: AppModel) {
     val chrome = model.chrome
     val stats = model.stats
     // The run's grade travels with its count: the card's flame and the strip's read one
@@ -85,7 +85,7 @@ fun HeuteScreen(model: AppModel) {
     ) { greeting(model) }
     val standing = remember(box, model.canPracticeExtra) {
         box?.let {
-            HeuteStanding.of(it, System.currentTimeMillis(), TimeZone.getDefault().id,
+            HomeStanding.of(it, System.currentTimeMillis(), TimeZone.getDefault().id,
                              model.canPracticeExtra)
         }
     }
@@ -117,7 +117,7 @@ fun HeuteScreen(model: AppModel) {
                     ),
                 )
             }
-            // The way out of Heute: the box holds every word the profile has, packed
+            // The way out of Home: the box holds every word the profile has, packed
             // or not. Named rather than a bare glyph — an unlabelled emoji does not
             // read as a control — and tonal on the clay wash, one step under the
             // day's own call to action inside the card.
@@ -140,22 +140,22 @@ fun HeuteScreen(model: AppModel) {
 
         // Android surfaces no load failure of its own yet (the model has no such state),
         // so the failure branch is unreachable here — the chrome for it stands ready.
-        val card = heuteCard(
+        val card = homeCard(
             failed = false,
             offerKind = standing?.offer?.kind ?: SessionOfferKind.Nothing,
         )
         when (card) {
-            HeuteCard.Failure -> StateCard(
+            HomeCard.Failure -> StateCard(
                 emoji = "🫤",
                 title = chrome.errorTitle,
                 message = chrome.errorCatalogMissing,
             )
 
-            HeuteCard.Session -> standing?.let {
+            HomeCard.Session -> standing?.let {
                 SessionCard(model, it, stats?.streak ?: 0, health)
             }
 
-            HeuteCard.Done -> standing?.let {
+            HomeCard.Done -> standing?.let {
                 DoneCard(model, it, stats?.streak ?: 0, health)
             }
         }

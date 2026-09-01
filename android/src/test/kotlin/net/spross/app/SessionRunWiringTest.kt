@@ -169,7 +169,7 @@ class SessionRunWiringTest {
         assertTrue(seen, "the extra round opened first sights instead of mixing recall in")
     }
 
-    /** Nothing to pull, nothing to open: the tap leaves the learner on Heute. */
+    /** Nothing to pull, nothing to open: the tap leaves the learner on Home. */
     @Test
     fun anExtraRoundWithNothingBehindItGoesNowhere() {
         val model = Model(BoxEngine.bootstrap(emptyList(), BoxConfig.product(), JoinStamp("de", "sw", "fp")))

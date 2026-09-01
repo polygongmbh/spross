@@ -3,8 +3,8 @@ import Observation
 import SprossKern
 import WidgetKit
 
-/// A failure worth showing as error chrome on Heute. The model names the
-/// case only — the view localizes it (`HeuteView`), so the message follows
+/// A failure worth showing as error chrome on Home. The model names the
+/// case only — the view localizes it (`HomeView`), so the message follows
 /// the known-language chrome locale like every other string.
 enum LoadFailure: Equatable {
     /// The bundled catalog folder is missing from the app bundle.
@@ -41,12 +41,12 @@ final class AppModel {
     private(set) var stats: BoxStatistics?
     /// Where every card stands on the growth ladder — what the forest is drawn
     /// from. Cached beside `stats` rather than derived on read: it is one entry
-    /// per card in the join, and Heute would otherwise rebuild it every redraw.
+    /// per card in the join, and Home would otherwise rebuild it every redraw.
     private(set) var growth: [CardGrowth] = []
-    /// Everything the Heute screen asks kern for, taken in one pass — see
-    /// `HeuteStanding`. Cached for the same reason `growth` is, and more so:
+    /// Everything the Home screen asks kern for, taken in one pass — see
+    /// `HomeStanding`. Cached for the same reason `growth` is, and more so:
     /// three of its answers each compose a whole round.
-    private(set) var heute: HeuteStanding = .none
+    private(set) var home: HomeStanding = .none
     /// One tree per area, as the forest draws them. Derived from `growth`, so
     /// it is rebuilt with it rather than per redraw.
     private(set) var trees: [AreaTree] = []
@@ -251,7 +251,7 @@ final class AppModel {
     /// the box's settings must not raise a session over the screen you were reading.
     func completeOnboarding(source: String, target: String) async {
         await activate(source: source, target: target)
-        // why: the picker is the last question the app asks. Landing on Heute to press
+        // why: the picker is the last question the app asks. Landing on Home to press
         // one more button makes the first round something you have to go and find — and
         // the coaching arms with that round, never ahead of a round nothing can open.
         if sessionAvailable {
@@ -399,7 +399,7 @@ final class AppModel {
     // MARK: - Persistence & stats
 
     /// Recompute everything derived from the box: the statistics, the growth
-    /// ladder, the Heute standing, the forest and the activity strip.
+    /// ladder, the Home standing, the forest and the activity strip.
     ///
     /// The ONE place any of them go stale, and so the one place they are taken
     /// again — every path that can move the box ends here (a mutation, a
@@ -419,7 +419,7 @@ final class AppModel {
         growth = box.map {
             BoxEngine.shared.growth(state: $0, nowEpochMillis: now, tzId: tz)
         } ?? []
-        heute = box.map { HeuteStanding.of(box: $0, nowEpochMillis: now, tzId: tz) } ?? .none
+        home = box.map { HomeStanding.of(box: $0, nowEpochMillis: now, tzId: tz) } ?? .none
         trees = composedAreaTrees()
         activity = composedActivityWindow(now: now, tzId: tz)
         areaGroupSections = composedAreaGroupSections()

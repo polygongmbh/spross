@@ -3,7 +3,7 @@ import SwiftUI
 // MARK: - GrowingTreeView
 //
 // One area's tree, rising out of the ground. The one place in the app where a
-// tree is allowed to move: the forest on Heute holds still because a box grows
+// tree is allowed to move: the forest on Home holds still because a box grows
 // over weeks and motion there would claim a change the picture is not showing —
 // here a round has just finished, so something did in fact just happen.
 //

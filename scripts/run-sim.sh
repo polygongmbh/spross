@@ -4,7 +4,7 @@
 #   scripts/run-sim.sh --no-build             — reinstall the last build, skip xcodebuild
 #   scripts/run-sim.sh --device 'iPhone 16'   — pick another simulator by name
 #   scripts/run-sim.sh --clean                — uninstall first (⇒ onboarding runs)
-#   scripts/run-sim.sh --shot /tmp/heute.png  — screenshot once the app has drawn
+#   scripts/run-sim.sh --shot /tmp/home.png  — screenshot once the app has drawn
 #   scripts/run-sim.sh --mute                 — start with reading aloud switched off
 #   scripts/run-sim.sh --shot x.png --sound   — let a screenshot run speak after all
 #   scripts/run-sim.sh -- -uitest-source de -uitest-target sw   — DEBUG launch args

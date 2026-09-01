@@ -49,14 +49,14 @@ extension AppModel {
         begin(SessionIntent.Start.shared)
     }
 
-    /// On-demand extra round from the Heute done card: kern's review-ahead round —
+    /// On-demand extra round from the Home done card: kern's review-ahead round —
     /// everything due, then packed vocab within the new-word budget, then pull-aheads
     /// by soonest due. Composing empty is a no-op there, so nothing gets presented.
     func startExtraSession() {
         begin(SessionIntent.StartExtra.shared)
     }
 
-    /// The day's round taken short from the Heute session card: its due work alone,
+    /// The day's round taken short from the Home session card: its due work alone,
     /// a round's worth of it. Composing empty is a no-op, so nothing gets presented.
     func startShortSession() {
         begin(SessionIntent.StartShort.shared)
@@ -180,11 +180,11 @@ extension AppModel {
 
     /// Whether a round the learner asks for would yield anything — drives both the summary's
     /// "Weiter üben" and the done card's extra round, which open the same composition.
-    /// Taken with the rest of the standing, never per redraw (`HeuteStanding`).
-    var canPracticeMore: Bool { heute.canPracticeMore }
+    /// Taken with the rest of the standing, never per redraw (`HomeStanding`).
+    var canPracticeMore: Bool { home.canPracticeMore }
 
     /// Whether words the learner packed are still waiting to enter a round.
-    var hasPackedWords: Bool { heute.hasPackedWords }
+    var hasPackedWords: Bool { home.hasPackedWords }
 
     /// The day streak standing at its all-time best, which the finish screen names.
     var streakIsRecord: Bool {

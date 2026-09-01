@@ -1,6 +1,6 @@
 # Spross — app design (v2)
 
-This doc is the build contract for the REVIEW LOOP: the card, the typing, Heute, the Box.
+This doc is the build contract for the REVIEW LOOP: the card, the typing, Home, the Box.
 Two app domains have their own pages — `surfaces.md` (drills, the wrist, Android) and
 `read-aloud.md` (what speaks, and when).
 The product thesis and phase plan live in `../../docs/roadmap.md`;
@@ -68,7 +68,7 @@ Strict dependency direction: App → SprossKern, never the reverse.
   then what a round asks of you — and the button on the last page joins the box
   and opens the session. Only that page commits, so the join happens once,
   behind something worth reading, and every page before it is free to go back from;
-  the first round is never something the learner has to go and find on Heute.
+  the first round is never something the learner has to go and find on Home.
   It is the first-run path alone — a later language change is the box's own settings,
   which take none of the pages and open no session over the screen you were on.
 - One list is open at a time; the other stands folded on its pick and opens at a tap,
@@ -278,7 +278,7 @@ a clone inherits its sibling's gaps, never the rules.
 
 ## App structure (single screen)
 
-- **Heute** is the only root screen:
+- **Home** is the only root screen:
   the day's line, session card (streak flame + the round's counts, or done state),
   the listening card, trainer hub, then the 14-day strip and the forest.
   The listening card sits under the round and above the trainers because that is its
@@ -333,7 +333,7 @@ a clone inherits its sibling's gaps, never the rules.
   figures to the page that started it (`surfaces.md`), where the way on is the button
   that was already there.
   A day that is going badly says so, and says why stopping is the better call.
-- **The forest** at the foot of Heute is a picture of the box, never a way around it:
+- **The forest** at the foot of Home is a picture of the box, never a way around it:
   one tree per area, in catalog order, on ground its whole row shares. It answers the one
   question a count cannot — how the box is SHAPED, and which corners of the language have
   never been opened — and it hands anything actionable to the Box screen by opening it at
@@ -371,7 +371,7 @@ a clone inherits its sibling's gaps, never the rules.
   leaf in shape before color, and the standing figures are spelled out beneath.
   Nothing in it moves: a box grows over weeks, and motion would claim a change the
   picture is not showing.
-- **Box** (📦 from Heute): browse the catalog by area, pack words in and take a
+- **Box** (📦 from Home): browse the catalog by area, pack words in and take a
   shelf's queue back out before a round has met it, revive suspended ones;
   settings live here — profile, reset. A tree in the forest opens it already
   unfolded at that area, exactly as a search hit does. **The area is the unit for

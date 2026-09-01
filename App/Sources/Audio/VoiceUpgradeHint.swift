@@ -47,7 +47,7 @@ final class VoiceUpgradeHint {
         return Pronouncer.shared.hasOnlyBasicVoice(language: language)
     }
 
-    /// The Heute banner: the same condition, plus a dismissal, plus a box that
+    /// The Home banner: the same condition, plus a dismissal, plus a box that
     /// has actually been heard from — a fresh install is told about the voice
     /// before it has played a single word otherwise.
     func suggestsBanner(language: String?, activeCards: Int) -> Bool {

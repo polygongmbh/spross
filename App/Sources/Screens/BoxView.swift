@@ -10,7 +10,7 @@ import SprossKern
 /// whether the opening fold has been chosen yet.
 ///
 /// Outlives the screen: the browser is a navigation destination, so every trip
-/// back to Heute takes its `@State` with it, and the shelf the learner left
+/// back to Home takes its `@State` with it, and the shelf the learner left
 /// open is theirs to find open.
 struct BoxFold {
     var groups: Set<String> = []
@@ -23,7 +23,7 @@ struct BoxFold {
 struct BoxView: View {
     let model: AppModel
     /// The area to open on, when the box was reached by naming one — a tree in
-    /// Heute's forest. Revealed once, on appear, exactly as a search hit is.
+    /// Home's forest. Revealed once, on appear, exactly as a search hit is.
     var revealArea: String?
 
     /// Which groups and areas stand open. Held by whoever PRESENTS this screen,

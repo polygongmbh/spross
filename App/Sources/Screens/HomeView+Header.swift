@@ -1,12 +1,12 @@
 import SwiftUI
 import SprossKern
 
-/// Heute's header: the date, and the line under it that greets the learner.
-extension HeuteView {
+/// Home's header: the date, and the line under it that greets the learner.
+extension HomeView {
 
     // MARK: - Header
 
-    /// The date, and under it what the box is growing. Naming the screen "Heute" spent the
+    /// The date, and under it what the box is growing. Naming the screen "Home" spent the
     /// biggest type on the page on the one thing a learner who just opened the app already
     /// knows; the language being learned is the one piece of standing the screen never said,
     /// and it is what the day's work is for.

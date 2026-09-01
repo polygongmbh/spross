@@ -30,7 +30,7 @@ import net.spross.app.ui.AboutScreen
 import net.spross.app.ui.BoxScreen
 import net.spross.app.ui.CountriesOverviewScreen
 import net.spross.app.ui.CountryDrillScreen
-import net.spross.app.ui.HeuteScreen
+import net.spross.app.ui.HomeScreen
 import net.spross.app.ui.LetterDrillScreen
 import net.spross.app.ui.LettersOverviewScreen
 import net.spross.app.ui.ListeningScreen
@@ -121,15 +121,15 @@ class SprossActivity : ComponentActivity() {
 }
 
 /**
- * How far under Heute a screen sits — the only thing a push or a pop needs to tell them apart.
+ * How far under Home a screen sits — the only thing a push or a pop needs to tell them apart.
  *
  * Not a route stack: the model holds ONE screen and the app has no back stack to read a
- * direction off, so depth is what says whether the learner went in or came back out. Heute is
+ * direction off, so depth is what says whether the learner went in or came back out. Home is
  * the floor, everything reached from it is one down, and About is one further because the only
  * way in is through the box's own settings.
  */
 private fun Screen.depth(): Int = when (this) {
-    Screen.Loading, Screen.Onboarding, Screen.Heute -> 0
+    Screen.Loading, Screen.Onboarding, Screen.Home -> 0
     Screen.About -> 2
     else -> 1
 }
@@ -164,7 +164,7 @@ private fun Root(model: AppModel = viewModel()) {
                 CircularProgressIndicator()
             }
             Screen.Onboarding -> OnboardingScreen(model)
-            Screen.Heute -> HeuteScreen(model)
+            Screen.Home -> HomeScreen(model)
             Screen.Session -> SessionScreen(model)
             Screen.Listening -> ListeningScreen(model)
             Screen.About -> AboutScreen(model)

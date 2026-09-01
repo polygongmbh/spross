@@ -16,8 +16,8 @@ import net.spross.kern.session.SessionOffer
 import net.spross.kern.session.SessionOfferKind
 import net.spross.kern.session.SessionOffers
 
-/** Which of Heute's three cards the day is standing on. */
-enum class HeuteCard {
+/** Which of Home's three cards the day is standing on. */
+enum class HomeCard {
     /** The box could not be read at all; nothing else on the screen means anything. */
     Failure,
 
@@ -34,20 +34,20 @@ enum class HeuteCard {
  * A failure outranks everything (the counts behind it are meaningless), and an offer outranks
  * a done state.
  */
-fun heuteCard(failed: Boolean, offerKind: SessionOfferKind): HeuteCard = when {
-    failed -> HeuteCard.Failure
-    offerKind != SessionOfferKind.Nothing -> HeuteCard.Session
-    else -> HeuteCard.Done
+fun homeCard(failed: Boolean, offerKind: SessionOfferKind): HomeCard = when {
+    failed -> HomeCard.Failure
+    offerKind != SessionOfferKind.Nothing -> HomeCard.Session
+    else -> HomeCard.Done
 }
 
 /**
- * Everything Heute asks the box for at one instant, asked once.
+ * Everything Home asks the box for at one instant, asked once.
  *
  * The screen recomposes on every tap that touches state, and each of these is a walk over
  * the box; reading them together keeps the day's card, its tally and its fine print
  * describing the same moment rather than three moments a frame apart.
  */
-data class HeuteStanding(
+data class HomeStanding(
     val offer: SessionOffer,
     /** The line the day's card leads with — clock-dependent, so it is read at this instant too. */
     val headline: SessionHeadline,
@@ -68,13 +68,13 @@ data class HeuteStanding(
             nowEpochMillis: Long,
             tzId: String,
             canPracticeMore: Boolean,
-        ): HeuteStanding {
+        ): HomeStanding {
             val horizon = endOfTomorrow(nowEpochMillis, tzId).toEpochMilliseconds()
             // why: the SIZE of the pile, so nothing composes its order — the shuffle
             // keys and the sort behind `dueNow` are thrown away for an integer.
             val due = BoxEngine.dueCount(state, horizon)
             val offer = SessionOffers.offer(state, nowEpochMillis, tzId)
-            return HeuteStanding(
+            return HomeStanding(
                 offer = offer,
                 headline = offer.headline(nowEpochMillis, tzId),
                 today = BoxEngine.today(state, nowEpochMillis, tzId),

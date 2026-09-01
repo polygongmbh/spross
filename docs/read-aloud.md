@@ -19,7 +19,7 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   no system prompt offers. The gap is large enough to hear, and it lands on every generated
   reading — so the app asks what would actually answer (`Speaker.voiceQuality`) and points at
   the download while, and only while, the compact voice is the one speaking: a line in the
-  audio setting, and one dismissible notice on Heute once the box has cards. Never a link —
+  audio setting, and one dismissible notice on Home once the box has cards. Never a link —
   no public URL opens that pane, and the one that exists lands on the app's own settings page,
   which is not where the setting is. The voice table is dropped on every foreground, so a
   download made in Settings is picked up on return and the pointer goes with it.

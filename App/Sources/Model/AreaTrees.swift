@@ -3,7 +3,7 @@ import SprossKern
 
 // The box as trees: kern names how far each word has come (`GrowthStage`), and
 // this is the one place that decides which rung becomes which mark. Both the
-// forest on Heute and the single tree a session summary draws read it, so they
+// forest on Home and the single tree a session summary draws read it, so they
 // can never disagree about what an area looks like.
 
 extension AppModel {

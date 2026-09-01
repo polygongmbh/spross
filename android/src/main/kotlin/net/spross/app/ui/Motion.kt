@@ -54,7 +54,7 @@ fun Modifier.pressSpring(): Modifier {
         // why: the animated value is read inside the layer block — in the DRAW phase,
         // and by this modifier. Read out here it would land in the CALLING composable's
         // restart scope, and every press would recompose that whole composable once per
-        // frame for the length of the spring: on Heute, the greeting and the date line
+        // frame for the length of the spring: on Home, the greeting and the date line
         // rebuilt twenty times because a button was held.
         .graphicsLayer {
             scaleX = scale.value

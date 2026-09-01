@@ -1,17 +1,17 @@
 import SwiftUI
 
-/// Single-screen app: Heute is the root, the Box pushes via the 📦 toolbar
+/// Single-screen app: Home is the root, the Box pushes via the 📦 toolbar
 /// icon. Onboarding sheet on first launch, full-screen session cover.
 struct RootView: View {
     @Bindable var model: AppModel
 
     @State private var boxPresented = false
-    /// The area the box should open on, set by a tree in Heute's forest —
+    /// The area the box should open on, set by a tree in Home's forest —
     /// the forest names a place, the box is still the screen that shows it.
     @State private var boxArea: String?
     /// How the box stands folded. Held HERE, above the push: the browser is a
     /// navigation destination, so its own state dies on every trip back to
-    /// Heute, and a shelf the learner opened would shut itself behind them.
+    /// Home, and a shelf the learner opened would shut itself behind them.
     @State private var boxFold = BoxFold()
     @State private var sprouting = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -49,7 +49,7 @@ struct RootView: View {
 
     private var home: some View {
         NavigationStack {
-            HeuteView(model: model, openBox: { area in
+            HomeView(model: model, openBox: { area in
                 boxArea = area
                 boxPresented = true
             })

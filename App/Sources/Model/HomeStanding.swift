@@ -1,7 +1,7 @@
 import Foundation
 import SprossKern
 
-/// Every kern answer the Heute screen puts on the page, taken together.
+/// Every kern answer the Home screen puts on the page, taken together.
 ///
 /// Each of these is a walk of the box and three of them compose a whole round,
 /// so a screen that asked for them one at a time — from computed properties, in
@@ -10,7 +10,7 @@ import SprossKern
 ///
 /// They are read together, so they are computed together: once, whenever
 /// something that could move them moves (`AppModel.refreshStats`).
-struct HeuteStanding {
+struct HomeStanding {
     /// Today's round as kern classified it.
     let offer: SessionOffer
     /// What the learner did today — reviews, first meetings, words consolidated.
@@ -25,19 +25,19 @@ struct HeuteStanding {
     /// Cards that will be due by tomorrow evening — the preview on the done state.
     let tomorrowDue: Int
 
-    /// Nothing loaded: the shape Heute draws before a box exists.
+    /// Nothing loaded: the shape Home draws before a box exists.
     // why: computed, not stored — it carries Kern values, which are not Sendable,
     // and a stored static would have to be.
-    static var none: HeuteStanding {
-        HeuteStanding(
+    static var none: HomeStanding {
+        HomeStanding(
             offer: SessionOffer(kind: .nothing, reviews: 0, dueHeldBack: 0, ahead: 0, fresh: 0,
                                 shortRound: 0, doneToday: 0, streakExposed: false),
             today: nil, sessionAvailable: false, canPracticeMore: false,
             hasPackedWords: false, tomorrowDue: 0)
     }
 
-    static func of(box: BoxState, nowEpochMillis: Int64, tzId: String) -> HeuteStanding {
-        HeuteStanding(
+    static func of(box: BoxState, nowEpochMillis: Int64, tzId: String) -> HomeStanding {
+        HomeStanding(
             offer: SessionOffers.shared.offer(state: box, nowEpochMillis: nowEpochMillis, tzId: tzId),
             today: BoxEngine.shared.today(state: box, nowEpochMillis: nowEpochMillis, tzId: tzId),
             sessionAvailable: SessionOffers.shared.sessionAvailable(

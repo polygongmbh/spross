@@ -2,33 +2,33 @@ import Foundation
 import SprossKern
 import WidgetKit
 
-// Read-side derivations: Heute values, box browsing, presentation
+// Read-side derivations: Home values, box browsing, presentation
 // resolution, and Fortschritt aggregates. Every count is in cards
 // (kern/README.md §3 — one schedule per card).
 
 extension AppModel {
 
-    // MARK: - Heute-derived values
+    // MARK: - Home-derived values
 
-    // Every value below is one of `heute`'s, taken when the box last moved
+    // Every value below is one of `home`'s, taken when the box last moved
     // (`AppModel.refreshStats`). They read as properties because the screens
     // read them as facts — but each is a walk of the box, and three of them
     // compose a whole round, so none of them is derived here.
 
     /// Whether there is a round to sit down to — kern counts due work the composed
     /// round could not carry, so a capped backlog never reads as "nothing".
-    var sessionAvailable: Bool { heute.sessionAvailable }
+    var sessionAvailable: Bool { home.sessionAvailable }
 
     /// Today's round as kern classified it. A box that has not loaded offers nothing.
-    var heuteOffer: SessionOffer { heute.offer }
+    var homeOffer: SessionOffer { home.offer }
 
     /// What the learner did today — reviews, first meetings, words that consolidated,
     /// and whether today's recall has fallen far enough to suggest stopping.
-    var today: TodayReport? { heute.today }
+    var today: TodayReport? { home.today }
 
     /// Cards that will be due by tomorrow evening (preview on the done state) —
     /// the horizon is kern's, not a second local-midnight derivation.
-    var tomorrowDueCount: Int { heute.tomorrowDue }
+    var tomorrowDueCount: Int { home.tomorrowDue }
 
     // MARK: - Presentation (contract §3 — render-time role resolution)
 

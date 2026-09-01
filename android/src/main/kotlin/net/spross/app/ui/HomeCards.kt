@@ -30,7 +30,7 @@ import net.spross.kern.box.StreakHealth
 
 /**
  * The one card the day stands on, whichever it is: hero, headline, what it holds, the way
- * on, fine print. The four Heute cards differ in their content, never in that order.
+ * on, fine print. The four Home cards differ in their content, never in that order.
  */
 @Composable
 private fun DayCard(content: @Composable ColumnScope.() -> Unit) {
@@ -95,7 +95,7 @@ private fun DayMark(emoji: String?, streak: Int, health: StreakHealth, chrome: C
  * when a capped backlog is worst. The counts say it without the false comfort.
  */
 @Composable
-fun SessionCard(model: AppModel, standing: HeuteStanding, streak: Int, health: StreakHealth) {
+fun SessionCard(model: AppModel, standing: HomeStanding, streak: Int, health: StreakHealth) {
     val chrome = model.chrome
     val offer = standing.offer
     DayCard {
@@ -148,7 +148,7 @@ fun SessionCard(model: AppModel, standing: HeuteStanding, streak: Int, health: S
  * never made ([net.spross.kern.box.TodayReport.worked] is the difference).
  */
 @Composable
-fun DoneCard(model: AppModel, standing: HeuteStanding, streak: Int, health: StreakHealth) {
+fun DoneCard(model: AppModel, standing: HomeStanding, streak: Int, health: StreakHealth) {
     val chrome = model.chrome
     val worked = standing.today.worked
     DayCard {

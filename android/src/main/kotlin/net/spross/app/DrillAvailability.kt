@@ -14,7 +14,7 @@ import net.spross.kern.trainer.Trainer
  */
 
 /**
- * Whether the hub card belongs on Heute at all: the pair has counting content, an alphabet
+ * Whether the hub card belongs on Home at all: the pair has counting content, an alphabet
  * file exists for the target, or the atlas joins. Three entries, any of which is reason
  * enough.
  */

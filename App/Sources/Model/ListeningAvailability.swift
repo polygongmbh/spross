@@ -12,7 +12,7 @@ import SprossKern
 /// (`ListeningPool`).
 ///
 /// Deliberately NOT cached: a voice may be installed in Settings while the app
-/// sleeps, so Heute rebuilds this on every foreground rather than deciding once
+/// sleeps, so Home rebuilds this on every foreground rather than deciding once
 /// at launch that the mode does not exist — the letter drill's discipline
 /// (`LetterDrillAvailability`), for the same reason.
 @MainActor
@@ -50,7 +50,7 @@ struct ListeningAvailability {
             hasTargetVoice: hasTargetVoice, hasSourceVoice: hasSourceVoice)
     }
 
-    /// Whether the Heute card stands at all.
+    /// Whether the Home card stands at all.
     var available: Bool { report.available }
 
     var candidates: [ListeningCandidate] { report.candidates }

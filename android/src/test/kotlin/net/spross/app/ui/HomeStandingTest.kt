@@ -13,11 +13,11 @@ import net.spross.kern.session.SessionOffer
 import net.spross.kern.session.SessionOfferKind
 
 /**
- * The WORDS Heute wraps around the box's answers, and the precedence between its three
+ * The WORDS Home wraps around the box's answers, and the precedence between its three
  * cards. Which parts an offer or a day names, and in which order, is kern's
  * (`SessionOffer.summaryParts` / `TodayReport.tallyParts`) and tested there.
  */
-class HeuteStandingTest {
+class HomeStandingTest {
 
     private val chrome = Chrome.forSource("de")
 
@@ -33,16 +33,16 @@ class HeuteStandingTest {
     @Test
     fun anOfferOutranksADoneState() {
         assertEquals(
-            HeuteCard.Session,
-            heuteCard(failed = false, offerKind = SessionOfferKind.WarmUp),
+            HomeCard.Session,
+            homeCard(failed = false, offerKind = SessionOfferKind.WarmUp),
         )
         assertEquals(
-            HeuteCard.Done,
-            heuteCard(failed = false, offerKind = SessionOfferKind.Nothing),
+            HomeCard.Done,
+            homeCard(failed = false, offerKind = SessionOfferKind.Nothing),
         )
         assertEquals(
-            HeuteCard.Failure,
-            heuteCard(failed = true, offerKind = SessionOfferKind.Reviews),
+            HomeCard.Failure,
+            homeCard(failed = true, offerKind = SessionOfferKind.Reviews),
         )
     }
 

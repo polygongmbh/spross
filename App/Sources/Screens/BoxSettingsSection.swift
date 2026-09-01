@@ -156,7 +156,7 @@ struct BoxSettingsSection: View {
     /// mute button), and the place the tap-to-replay gesture is disclosed — the
     /// card itself grows no affordance for it, so the hint line is where it is
     /// named. It is also the standing home of the voice-download pointer, which
-    /// the Heute banner only borrows once: dismissed there, it is still findable
+    /// the Home banner only borrows once: dismissed there, it is still findable
     /// here.
     private var audioRow: some View {
         VStack(alignment: .leading, spacing: DL.Space.s) {

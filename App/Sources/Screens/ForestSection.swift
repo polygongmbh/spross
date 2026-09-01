@@ -1,7 +1,7 @@
 import SwiftUI
 import SprossKern
 
-/// The bottom of Heute: the 14-day strip, then the box as a forest — one tree
+/// The bottom of Home: the 14-day strip, then the box as a forest — one tree
 /// per area, in catalog order with the learner's own words last.
 ///
 /// It is a picture of the box, not a way around it: tapping a tree opens the

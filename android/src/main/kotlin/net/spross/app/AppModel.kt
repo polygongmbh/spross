@@ -66,7 +66,7 @@ import net.spross.kern.trainer.TrainerMode
 sealed interface Screen {
     data object Loading : Screen
     data object Onboarding : Screen
-    data object Heute : Screen
+    data object Home : Screen
     data object Session : Screen
     data object About : Screen
 
@@ -174,7 +174,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     /**
      * What a listening run may draw from on THIS device, swept on activation and on every
      * foreground ([listeningReport]) rather than per composition — it is a catalog walk, and
-     * the Heute card asks for it on every frame it stands on.
+     * the Home card asks for it on every frame it stands on.
      */
     var listeningPool by mutableStateOf<List<ListeningCandidate>>(emptyList())
         private set
@@ -329,7 +329,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     /**
      * The pair is settled. [thenPractice] is the FIRST-RUN path only — the picker is the
      * last question the app asks, so the round it was made for opens straight away rather
-     * than behind one more button on Heute. A language change from the box's settings
+     * than behind one more button on Home. A language change from the box's settings
      * passes false: it must not raise a session over the screen you were reading.
      */
     fun completeOnboarding(source: String, target: String, thenPractice: Boolean = false) {
@@ -374,7 +374,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun closeAbout() {
-        screen = Screen.Heute
+        screen = Screen.Home
     }
 
     /**
@@ -386,9 +386,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun closeBox() {
-        // why: the browser's rows speak on tap — nothing may keep talking into Heute.
+        // why: the browser's rows speak on tap — nothing may keep talking into Home.
         pronouncer.stop()
-        screen = Screen.Heute
+        screen = Screen.Home
     }
 
     /**
@@ -433,10 +433,10 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.Countries
     }
 
-    /** Back to Heute from any of them — nothing may keep talking into it. */
+    /** Back to Home from any of them — nothing may keep talking into it. */
     fun closeOverview() {
         pronouncer.stop()
-        screen = Screen.Heute
+        screen = Screen.Home
     }
 
     /**
@@ -486,7 +486,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     /** The ✕, Back, and the bedtime running out all arrive here. */
     fun closeListening() {
         listening.stop()
-        screen = Screen.Heute
+        screen = Screen.Home
     }
 
     fun startTrainerRun(mode: TrainerMode) {
@@ -526,7 +526,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * voice may be installed in Settings while the app sleeps
      * (`SprossActivity.onResume` calls this too).
      *
-     * Never on the way to Heute: the Werkstatt card gates on file presence alone, and this
+     * Never on the way to Home: the Werkstatt card gates on file presence alone, and this
      * is a catalog sweep no start-up should pay for.
      */
     fun refreshWerkstatt() {
@@ -573,14 +573,14 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         otherLanguagesDailyStats = withContext(Dispatchers.IO) { loadOtherLanguagesDailyStats(cat, target) }
         refreshStats()
         refreshListening()
-        screen = Screen.Heute
+        screen = Screen.Home
     }
 
     /**
      * The one door a box SURFACE changes the box through — packing a shelf, waking a
      * word, a word of one's own, a reset. The change itself is kern's: the caller hands
      * back what a [BoxEngine] call returned, and this is the platform half of it, the
-     * observable state and the disk and the numbers Heute reads.
+     * observable state and the disk and the numbers Home reads.
      *
      * Anything that touches a SCHEDULE goes through the run instead ([dispatch]) —
      * every answer is a review, and only kern's session machine books one.
@@ -672,11 +672,11 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     fun finishSession() {
         sessionRun ?: return
-        pronouncer.stop() // the run is over: nothing keeps talking into Heute
+        pronouncer.stop() // the run is over: nothing keeps talking into Home
         dispatch(SessionIntent.Close)
         sessionRun = null
         sessionUi = null
-        screen = Screen.Heute
+        screen = Screen.Home
         // why: one round is what the coaching is for, and leaving is what says it was
         // read — a learner who quits after two cards still comes back to a quiet screen.
         coachPending = false
@@ -875,7 +875,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     /**
      * What the home-screen widget draws, resolved HERE because the widget cannot run
      * the join (`kern/docs/snapshots.md`) — it decodes this and nothing else.
-     * Carries the other languages' days for the same reason Heute's strip does: the
+     * Carries the other languages' days for the same reason Home's strip does: the
      * run is one commitment across every box.
      */
     private fun widgetSnapshot(state: BoxState, nowEpochMillis: Long): String =

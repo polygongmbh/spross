@@ -316,7 +316,7 @@ private val SprossTypography: Typography by lazy {
         copy(
             displayLarge = displayLarge.rounded(),
             displayMedium = displayMedium.rounded(),
-            // The emoji face of a Heute card; a glyph, not a ramp entry.
+            // The emoji face of a Home card; a glyph, not a ramp entry.
             displaySmall = displaySmall.rounded(),
             // hero — screen titles.
             headlineLarge = headlineLarge.rounded(FontWeight.Bold, 34.sp),

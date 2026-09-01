@@ -335,7 +335,7 @@ interface Chrome {
     val cardPosition: String
     val sessionTally: String
 
-    // ── The day's standing (Heute) ──────────────────────────────────────────────
+    // ── The day's standing (Home) ──────────────────────────────────────────────
     val caughtUpTitle: String
     val dayReviews: String        // %d
     val dayReviewsOne: String
@@ -350,7 +350,7 @@ interface Chrome {
     val tomorrowFresh: String
     val tomorrowDue: String       // %d
 
-    // ── The session offer (Heute's one card) ────────────────────────────────────
+    // ── The session offer (Home's one card) ────────────────────────────────────
     /**
      * The phrasings each offer kind carries, indexed by
      * [net.spross.kern.session.SessionHeadline.variant] — kern picks which, from the
@@ -367,7 +367,7 @@ interface Chrome {
     val sessionStart: String
     val sessionShortRound: String
 
-    // ── Listening (Heute's one row, and the run it opens) ───────────────────────
+    // ── Listening (Home's one row, and the run it opens) ───────────────────────
     val listenTitle: String
     val listenSubtitle: String
     val listenPause: String

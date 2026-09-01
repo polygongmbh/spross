@@ -1,6 +1,6 @@
 import SwiftUI
 
-// MARK: - Progress components (Heute progress section / Box screen)
+// MARK: - Progress components (Home progress section / Box screen)
 //
 // Small reusable stat pieces. All color-coded elements also carry their
 // meaning in text or icons (colorblind-safe).

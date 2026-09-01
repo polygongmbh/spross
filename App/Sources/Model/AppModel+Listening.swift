@@ -169,7 +169,7 @@ final class ListeningDriver {
         // on-screen button all arrive through this one door.
         if state.paused != was.paused || state.active != was.active { publish() }
         // An empty pool opens on silence rather than on a card with nothing to
-        // say; the Heute card gates on the same report, so this is a closed
+        // say; the Home card gates on the same report, so this is a closed
         // door and not a screen.
         if state.active, state.turn == nil { closed = true }
     }

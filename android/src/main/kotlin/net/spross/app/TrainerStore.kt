@@ -140,7 +140,7 @@ class Werkstatt(val store: TrainerStore) {
         resultTitle = title
     }
 
-    /** Opening a page from Heute is a fresh visit — last night's figures are not news. */
+    /** Opening a page from Home is a fresh visit — last night's figures are not news. */
     fun clearResult() {
         result = null
     }

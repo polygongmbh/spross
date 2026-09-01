@@ -350,13 +350,13 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 - The web numbers drill never gained it/fr/eo: `web/site.js` mirrors
   `catalog/languages.json` by hand (its `LANGS` rows) and still offers the five older
   languages only (`docs/website.md` § Drill scope).
-- Android back doors land on Heute even when opened from the box: `closeAbout()` and
-  `activate()` (reached via a box-settings language change) both end at `Screen.Heute`
+- Android back doors land on Home even when opened from the box: `closeAbout()` and
+  `activate()` (reached via a box-settings language change) both end at `Screen.Home`
   (`android/.../AppModel.kt`).
-- Android Heute's failure card and the `error*`/`growth*` chrome are wired but unreachable:
+- Android Home's failure card and the `error*`/`growth*` chrome are wired but unreachable:
   AppModel has no load-failure state yet and the round summary does not render growth.
 - Dead after the wave-3 Android sweep: `AppModel.canPracticeExtra` (unread since
-  `HeuteStanding`).
+  `HomeStanding`).
 - Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs, `docs/portability.md` § Moves)
   deferred per user 2026-08-08.
 - Audio ships un-thinned: `catalog/audio/` is 76 MB (8–14 MB per language) and

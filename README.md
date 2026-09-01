@@ -20,8 +20,8 @@ because both asked the same box for it.
 
 | | Today | A card | The box |
 |---|---|---|---|
-| **iOS** | ![Spross on iOS — the Today screen](docs/screenshots/ios-heute.png) | ![Spross on iOS — a review card](docs/screenshots/ios-session.png) | ![Spross on iOS — the box](docs/screenshots/ios-box.png) |
-| **Android** | ![Spross on Android — the Today screen](docs/screenshots/android-heute.png) | ![Spross on Android — a review card](docs/screenshots/android-session.png) | ![Spross on Android — the box](docs/screenshots/android-box.png) |
+| **iOS** | ![Spross on iOS — the Today screen](docs/screenshots/ios-home.png) | ![Spross on iOS — a review card](docs/screenshots/ios-session.png) | ![Spross on iOS — the box](docs/screenshots/ios-box.png) |
+| **Android** | ![Spross on Android — the Today screen](docs/screenshots/android-home.png) | ![Spross on Android — a review card](docs/screenshots/android-session.png) | ![Spross on Android — the box](docs/screenshots/android-box.png) |
 
 The rungs match now too: Numbers, Letters and Countries stand on both
 phones, each run on kern's rules — what still parts the platforms is listed
@@ -60,11 +60,11 @@ internal TestFlight testers get the same build minutes after the tag, without re
   Pure logic, time injected (`nowEpochMillis`/`tzId`), fully unit-tested.
   Engine contract: `kern/README.md`.
 - `App/` — SwiftUI app: design system (poster-derived theme), file-backed store
-  (one document per target language), screens (Heute / Box / Fortschritt).
+  (one document per target language), screens (Home / Box / Fortschritt).
   The only target that links the Kotlin framework.
 - `Shared/`, `Watch/`, `Widgets/`, `WatchWidgets/` — decode-only Swift surfaces
   reading phone-built snapshots; no Kotlin linkage.
-- `android/` — Jetpack Compose app (core loop: onboarding, Heute, sessions)
+- `android/` — Jetpack Compose app (core loop: onboarding, Home, sessions)
   on the same engine; catalog bundled by a Gradle sync task.
 - `catalog/` — the in-repo content catalog (format spec: `catalog/README.md`);
   bundled as a folder resource.
@@ -88,7 +88,7 @@ scripts/run-sim.sh                        # build, install, launch on iPhone 17
 scripts/run-sim.sh --no-build             # reinstall the last build
 scripts/run-sim.sh --clean                # uninstall first, so onboarding runs
 scripts/run-sim.sh --device 'iPhone 16'   # another simulator, by name
-scripts/run-sim.sh --shot /tmp/heute.png  # screenshot once it has drawn (implies --mute)
+scripts/run-sim.sh --shot /tmp/home.png  # screenshot once it has drawn (implies --mute)
 scripts/run-sim.sh --mute                 # start with reading aloud switched off
 scripts/run-sim.sh -- -uitest-source de -uitest-target sw   # skip onboarding
 ```

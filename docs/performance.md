@@ -45,7 +45,7 @@ any of it is allowed to run.
 box goes stale and the one place it is taken again. Everything that can move the box ends
 there: a mutation, a language switch, a booked day, a foreground.
 
-It holds the statistics, the growth ladder, the day's standing (`HeuteStanding` — the
+It holds the statistics, the growth ladder, the day's standing (`HomeStanding` — the
 offer, the day's report, what tomorrow holds, whether another round would yield
 anything), the forest, the activity strip, the browser's shelves and their pack counts,
 and it retires the typed-answer grader so the next turn rebuilds it against the box

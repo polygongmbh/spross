@@ -2,7 +2,7 @@ import SwiftUI
 import SprossKern
 
 /// The north star screen: one glance = what to do right now.
-struct HeuteView: View {
+struct HomeView: View {
     let model: AppModel
     /// Open the box — at one area when the forest names it, else at the top.
     var openBox: (String?) -> Void = { _ in }
@@ -17,7 +17,7 @@ struct HeuteView: View {
     @State private var listeningPresented = false
 
     var body: some View {
-        let offer = model.heuteOffer
+        let offer = model.homeOffer
         ScrollView {
             VStack(alignment: .leading, spacing: DL.Space.xl) {
                 header
