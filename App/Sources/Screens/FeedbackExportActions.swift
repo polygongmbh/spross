@@ -14,11 +14,11 @@ struct FeedbackExportActions: View {
 
     var body: some View {
         HStack(spacing: DL.Space.l) {
-            scopedButton("feedback.copy", icon: "doc.on.doc") { onlyNew in
+            scopedButton("report.export.copy", icon: "doc.on.doc") { onlyNew in
                 UIPasteboard.general.string = model.reportText(onlyNew: onlyNew)
                 model.markExported()
             }
-            scopedButton("feedback.send", icon: "envelope") { onlyNew in
+            scopedButton("report.export.send", icon: "envelope") { onlyNew in
                 guard let url = model.reportMailURL(onlyNew: onlyNew) else { return }
                 openURL(url)
                 model.markExported()
@@ -34,9 +34,9 @@ struct FeedbackExportActions: View {
                               run: @escaping (Bool) -> Void) -> some View {
         if model.hasExportedBefore {
             Menu {
-                Button("feedback.scope.new") { run(true) }
+                Button("report.export.scope.new") { run(true) }
                     .disabled(!model.hasFeedback(onlyNew: true))
-                Button("feedback.scope.all") { run(false) }
+                Button("report.export.scope.all") { run(false) }
             } label: {
                 Label(title, systemImage: icon)
                     .font(DL.Fonts.subheadline)
