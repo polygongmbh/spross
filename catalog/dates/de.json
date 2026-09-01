@@ -1,0 +1,34 @@
+{
+ "weekdays": [
+  { "text": "Montag", "abbr": "Mo" },
+  { "text": "Dienstag", "abbr": "Di" },
+  { "text": "Mittwoch", "abbr": "Mi" },
+  { "text": "Donnerstag", "abbr": "Do" },
+  { "text": "Freitag", "abbr": "Fr" },
+  { "text": "Samstag", "abbr": "Sa", "synonyms": ["Sonnabend"] },
+  { "text": "Sonntag", "abbr": "So" }
+ ],
+ "months": [
+  { "text": "Januar", "synonyms": ["Jänner"] },
+  { "text": "Februar" },
+  { "text": "März" },
+  { "text": "April" },
+  { "text": "Mai" },
+  { "text": "Juni" },
+  { "text": "Juli" },
+  { "text": "August" },
+  { "text": "September" },
+  { "text": "Oktober" },
+  { "text": "November" },
+  { "text": "Dezember" }
+ ],
+ "numeric": "{d}.{m}.{y}",
+ "patterns": {
+  "dayMonth": { "text": "der {day} {month}", "variants": ["den {day} {month}"] },
+  "date": { "text": "{weekday}, der {day} {month}", "variants": ["{weekday}, den {day} {month}"] },
+  "dateWithYear": {
+   "text": "{weekday}, der {day} {month} {year}",
+   "variants": ["{weekday}, den {day} {month} {year}"]
+  }
+ }
+}
