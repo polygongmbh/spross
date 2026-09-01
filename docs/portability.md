@@ -88,7 +88,7 @@ No new kern dependency; data classes already cross the boundary.
 Shipped from this list, both apps reading kern:
 
 - `session/SessionOffer` (its FNV now hashes UTF-8 bytes, so a round may pick a
-  different one of its three phrasings than Swift's per-process hash did — intended),
+  different one of its phrasings than Swift's per-process hash did — intended),
   including `summaryParts()` — the reviews+ahead merge / Auffrischer / fresh-append rule;
   its empty list is deliberately each surface's own fallback phrase, the `tallyParts` contract.
 - `model/Article.kt` (`articleGender` + `shownArticle`), `box/Statistics` (`streakWindow`,
