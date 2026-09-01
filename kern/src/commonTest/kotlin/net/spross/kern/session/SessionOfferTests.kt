@@ -61,18 +61,14 @@ class SessionOfferTests {
 
     /**
      * A handful over the cap goes unsaid: a box in good health nearly always carries a few,
-     * so naming them would put an arrears notice on an ordinary day. The line is half a
-     * sitting, so a remainder that stays quiet on a long round is worth saying on a short one.
+     * so naming them would put an arrears notice on an ordinary day.
+     * [recallLeadsAndTheCapsLeftoversAreNamed] holds the other side of the line.
      */
     @Test
-    fun aRemainderIsNamedFromHalfASittingUp() {
-        val long = SessionOffers.offer(state(due = 25, ahead = 0, catalog = 50, sessionCap = 25), now, Box.TZ)
-        assertEquals(20, long.reviews)
-        assertEquals(0, long.dueHeldBack)
-
-        val short = SessionOffers.offer(state(due = 11, ahead = 0, catalog = 50, sessionCap = 10), now, Box.TZ)
-        assertEquals(5, short.reviews)
-        assertEquals(6, short.dueHeldBack)
+    fun aRemainderTooSmallToNameIsNotNamed() {
+        val offer = SessionOffers.offer(state(due = 25, ahead = 0, catalog = 50, sessionCap = 25), now, Box.TZ)
+        assertEquals(20, offer.reviews)
+        assertEquals(0, offer.dueHeldBack)
     }
 
     /** One or two due cards are a warm-up, never the round's headline. */
