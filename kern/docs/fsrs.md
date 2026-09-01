@@ -12,7 +12,7 @@ against them. What the PRODUCT decided on top is the contract's (`../README.md` 
 - Golden vectors are copied verbatim from the pinned releases with PROVENANCE
   (repo/tag/SHA). The stability/difficulty (memory-state) formulas run unmodified
   against the reference — `Fsrs.nextMemory` is untouched — but the (re)learning-STEP
-  MACHINE (`FsrsScheduler`) is product-owned and diverges even at this class's own
+  MACHINE (`FsrsScheduler`) is product-owned throughout and diverges even at this class's own
   defaults (`FsrsParameters.stepsSeconds` = `[10m]`, desired retention 0.9 still
   matches): see `../README.md` §5 for what changed and why, and `FsrsGoldenVectorTest`
   for which vectors had to be recomputed against the divergence rather than copied.
@@ -22,9 +22,9 @@ against them. What the PRODUCT decided on top is the contract's (`../README.md` 
   Both default to 86_400 s — whole-day rounding is the reference bucket convention, not part
   of FSRS, and the default keeps the golden vectors on their exact day multiples.
   The product sets granularity to 1 s, so a 7.6-day interval is scheduled at 7.6 days.
-- The (re)learning step machine keeps ONE piece of the reference machine — the Hard
-  interval's whole-minute-rounded blend of the ladder's first two entries — and diverges
-  on Again (climbs the ladder instead of resetting to step 0) and Good/Easy (graduates
-  immediately instead of walking every configured step); `FsrsStepLadderTest` covers
-  both the kept piece and the divergence against the pinned minute tables where they
-  still apply. `../README.md` §5 has the product's own ladder and why.
+- The (re)learning step machine borrows nothing from the reference machine any more.
+  It diverges on every rating: `Again` climbs the ladder instead of resetting to step 0,
+  and Hard/Good/Easy graduate immediately instead of walking every configured step —
+  the ladder spaces out repeated FAILURES, it does not grade flavors of success.
+  `FsrsStepLadderTest` covers that behavior on its own terms.
+  `../README.md` §5 has the product's own ladder and why.

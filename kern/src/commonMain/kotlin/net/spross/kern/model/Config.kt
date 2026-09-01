@@ -46,7 +46,7 @@ data class BoxConfig(
      * the step length. Repeated fails climb the ladder instead of repeating its
      * first entry (see [net.spross.kern.fsrs.FsrsScheduler]), giving a word that
      * keeps slipping room to consolidate rather than being shoved at the learner
-     * again the same day; a single correct answer graduates it immediately from
+     * again the same day; every rating but `Again` graduates it immediately from
      * wherever the ladder sits.
      */
     val stepsSeconds: List<Long> = listOf(600L, 86_400L, 3 * 86_400L, 7 * 86_400L),

@@ -10,10 +10,8 @@ import net.spross.kern.model.Rating
 /**
  * (Re)learning-step ladder vectors — one machine shared by Learning and Relearning
  * (product ruling 2026-09-01; see [FsrsScheduler]'s KDoc for why this diverges from
- * the py-fsrs/ts-fsrs reference step machine). The Hard blend is the one piece still
- * borrowed from the reference: ts-fsrs v5.4.1's whole-minute rounding
- * (commit bfc0a1960dfde4b4627ae4f4c8757b9211314963) — 6m for [1m,10m], ×1.5 for a
- * single step.
+ * the py-fsrs/ts-fsrs reference step machine). Again is the only rating that stays
+ * on the ladder; Hard, Good and Easy graduate from wherever it sits.
  */
 class FsrsStepLadderTest {
 
@@ -33,11 +31,11 @@ class FsrsStepLadderTest {
         return scheduler.review(SchedulerState(phase, step, memory), elapsedDays, rating)
     }
 
-    // Again climbs the ladder instead of resetting, capped at the last entry; a single
-    // Good/Easy graduates immediately from wherever it sits. Learning and Relearning
-    // share this machine — only how each phase is ENTERED differs (below).
+    // Again climbs the ladder instead of resetting, capped at the last entry; every
+    // rating that is not Again graduates immediately from wherever it sits. Learning
+    // and Relearning share this machine — only how each phase is ENTERED differs (below).
     @Test
-    fun ladderGrowsOnAgainGraduatesOnGoodInEitherPhase() {
+    fun ladderGrowsOnAgainGraduatesOnEveryOtherRatingInEitherPhase() {
         for (phase in listOf(CardPhase.Learning, CardPhase.Relearning)) {
             val s = scheduler(listOf(600L, 1200L))
 
@@ -50,39 +48,18 @@ class FsrsStepLadderTest {
             assertEquals(1200L, again1.intervalSeconds) // already at the last step, holds
             assertEquals(1, again1.stepIndex)
 
-            val good0 = outcome(s, phase, 0, Rating.Good)
-            assertEquals(CardPhase.Review, good0.phase)
-            assertNull(good0.stepIndex)
-            assertTrue(good0.intervalDays >= 1)
-
-            val easy1 = outcome(s, phase, 1, Rating.Easy)
-            assertEquals(CardPhase.Review, easy1.phase)
-            assertNull(easy1.stepIndex)
+            // Hard graduates like Good and Easy: the ladder spaces out repeated fails,
+            // it does not grade flavors of success. From step 1 that is a SHORTER wait
+            // than climbing would have given — intended, the word is catching on.
+            for (step in 0..1) {
+                for (rating in listOf(Rating.Hard, Rating.Good, Rating.Easy)) {
+                    val passed = outcome(s, phase, step, rating)
+                    assertEquals(CardPhase.Review, passed.phase)
+                    assertNull(passed.stepIndex)
+                    assertTrue(passed.intervalDays >= 1)
+                }
+            }
         }
-    }
-
-    // ts learning-steps.test.ts minute table (['1m','10m']): Hard blends the first two
-    // entries regardless of position, rounded to whole minutes.
-    @Test
-    fun hardHoldsAtTheFirstStepsBlend() {
-        val s = scheduler(listOf(60L, 600L))
-        for (phase in listOf(CardPhase.Learning, CardPhase.Relearning)) {
-            val hard0 = outcome(s, phase, 0, Rating.Hard)
-            assertEquals(360L, hard0.intervalSeconds) // (1+10)/2 = 5.5m -> rounds to 6m
-            assertEquals(0, hard0.stepIndex)
-
-            val hard1 = outcome(s, phase, 1, Rating.Hard)
-            assertEquals(360L, hard1.intervalSeconds) // position-independent blend
-            assertEquals(1, hard1.stepIndex)
-        }
-    }
-
-    // ts learning-steps.test.ts `['1m']`: Hard = round(1m x 1.5) = 2m for a single step.
-    @Test
-    fun hardTimesOnePointFiveForASingleStep() {
-        val s = scheduler(listOf(60L))
-        val hard = outcome(s, CardPhase.Learning, 0, Rating.Hard)
-        assertEquals(120L, hard.intervalSeconds)
     }
 
     // A single-entry ladder cannot grow: Again always lands back at its one step.

@@ -62,17 +62,16 @@ class BoxAnswerTests {
         assertTrue(sched.log.last().elapsedDays > 0)
     }
 
-    // Hard holds on the ladder too, at the whole-minute blend of its first two
-    // entries (10m, 1d): (10 + 1440) / 2 = 725m = 12h5m. It does NOT graduate — only
-    // Good and Easy leave the ladder on a first answer.
+    // Hard is a pass, so it leaves the ladder like Good and Easy — the ladder only
+    // spaces out repeated fails. FSRS-6 S0(Hard) = 1.2931 keeps the wait short.
     @Test
-    fun hardOnNewHoldsAtTheFirstTwoStepsBlend() {
+    fun hardOnNewGraduatesToAShortInterval() {
         var state = Box.state(listOf(Box.word(1)))
         state = Box.answered(state, "w01", Rating.Hard, now)
         val sched = state.scheduling.getValue("w01")
-        assertEquals(CardPhase.Learning, sched.phase)
-        assertEquals(0, sched.stepIndex)
-        assertEquals(Box.instant(now) + (725 * 60).seconds, sched.due)
+        assertEquals(CardPhase.Review, sched.phase)
+        assertNull(sched.stepIndex)
+        assertTrue(sched.due!! >= Box.instant(now) + 1.days)
     }
 
     // A second consecutive Again climbs the ladder instead of repeating its first

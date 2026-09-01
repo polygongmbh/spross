@@ -8,7 +8,8 @@
   for good. Repeated misses now wait longer each time, new word or old — 10 minutes, a day,
   three days, a week — so a word appears at most twice on the day you first meet it before a
   repeat miss gives it space to sink in, instead of being drilled again the same day; a word
-  only sleeps now if you suspend it yourself.
+  only sleeps now if you suspend it yourself. Getting one right but finding it hard no longer
+  holds it back either — only a miss keeps a word on the short leash.
 
 - **Android: the introduction can be read again.** What Spross is for and what a round asks
   of you were shown once, on the first launch, and never again. The box settings now have a

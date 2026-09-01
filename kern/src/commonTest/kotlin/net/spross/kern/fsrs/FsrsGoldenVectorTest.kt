@@ -21,9 +21,10 @@ import net.spross.kern.model.Rating
  *
  * The stability/difficulty (memory-state) vectors still match upstream exactly —
  * [Fsrs.nextMemory] is untouched. The (re)learning-STEP MACHINE diverges from the
- * pinned references (product ruling 2026-09-01, [FsrsScheduler]'s KDoc): Good/Easy
- * graduate immediately rather than walking every configured step, so vectors that
- * exercise multi-step Learning ([firstRepeatInitialStates], [flagshipIvlHistory],
+ * pinned references (product ruling 2026-09-01, [FsrsScheduler]'s KDoc): Again is the
+ * only rating that stays on the ladder, so Hard/Good/Easy graduate immediately rather
+ * than walking every configured step, and vectors that exercise multi-step Learning
+ * ([firstRepeatInitialStates], [flagshipIvlHistory],
  * [retrievabilityAtDueAfterFirstRating]) are recomputed against THIS port's step
  * machine, not copied from upstream's phase/interval trajectory.
  */
@@ -43,14 +44,14 @@ class FsrsGoldenVectorTest {
             assertEquals(expectedStability[i], outcomes[i].memory.stability, 1e-9)
             assertEquals(expectedDifficulty[i], outcomes[i].memory.difficulty, 1e-6)
         }
-        // Good now graduates immediately instead of walking to Learning/step1 (product
-        // step machine, not upstream's) — Again/Hard still hold in Learning.
-        assertEquals(listOf(0, 0, 2, 8), outcomes.map { it.intervalDays })
+        // Every rating but Again graduates immediately instead of walking the ladder
+        // (product step machine, not upstream's) — only Again holds in Learning.
+        assertEquals(listOf(0, 1, 2, 8), outcomes.map { it.intervalDays })
         assertEquals(
-            listOf(CardPhase.Learning, CardPhase.Learning, CardPhase.Review, CardPhase.Review),
+            listOf(CardPhase.Learning, CardPhase.Review, CardPhase.Review, CardPhase.Review),
             outcomes.map { it.phase },
         )
-        assertEquals(listOf(0, 0, null, null), outcomes.map { it.stepIndex })
+        assertEquals(listOf(0, null, null, null), outcomes.map { it.stepIndex })
     }
 
     // Adapted from ts-fsrs FSRS-6.test.ts "ivl_history" / py-fsrs test_review_card:
@@ -130,13 +131,13 @@ class FsrsGoldenVectorTest {
     }
 
     // Adapted from ts-fsrs FSRS-6.test.ts "get retrievability": R at due after the
-    // first rating. Good graduates immediately in this port's step machine (product
-    // ruling 2026-09-01), so its scheduled day is 2 (not upstream's still-in-Learning
-    // 0) and R at that due day departs from upstream's expected value.
+    // first rating. Hard and Good graduate immediately in this port's step machine
+    // (product ruling 2026-09-01), so their scheduled days are 1 and 2 (not upstream's
+    // still-in-Learning 0) and R at those due days departs from upstream's values.
     @Test
     fun retrievabilityAtDueAfterFirstRating() {
         val scheduler = FsrsScheduler()
-        val expected = listOf(1.0, 1.0, 0.9094932559773545, 0.9024733)
+        val expected = listOf(1.0, 0.9166697187203525, 0.9094932559773545, 0.9024733)
         for (i in grades.indices) {
             val outcome = scheduler.review(SchedulerState(), 0.0, grades[i])
             val r = scheduler.algorithm.retrievability(

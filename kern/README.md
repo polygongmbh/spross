@@ -172,10 +172,13 @@ bar are on `BoxConfig` itself. What the product decided:
   (`FsrsScheduler.stepOutcome`) instead of resetting to its first entry, capped at the
   ladder's last rung — the product ships `[10m, 1d, 3d, 7d]`, so a word appears at most
   twice on its first day (the introduction, then one 10-minute retry) before a repeat
-  miss pushes it out to day scale rather than repeating inside the same sitting. A
-  single `Good` or `Easy` graduates to Review immediately, from wherever the ladder
-  sits — it only spaces out repeated fails, it is not a run of successes to climb back
-  through. **No in-session lapse retry** (breadth ruling 2026-07-22): the run a card
+  miss pushes it out to day scale rather than repeating inside the same sitting.
+  `Again` is the ONLY rating that stays on the ladder: `Hard`, `Good` and `Easy` all
+  graduate to Review immediately, from wherever the ladder sits — the ladder spaces out
+  repeated fails, it does not grade flavors of success. High on the ladder that hands a
+  `Hard` a SHORTER interval than another rung would have, which is the point: the word
+  is catching on, so it earns real spaced review rather than another artificial wait.
+  **No in-session lapse retry** (breadth ruling 2026-07-22): the run a card
   lapsed in does not wait for it, whatever the ladder's first step is — a composed
   session never refills (§6), so the run boundary keeps a lapsed word out of the
   sitting it lapsed in regardless of the step length; by role resolution (§3), the
