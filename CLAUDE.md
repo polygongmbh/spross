@@ -47,7 +47,9 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   A red in a file nobody edited is the shared Kotlin cache; `../CLAUDE.md` carries that remedy.
   For smaller changes just skip the check in that case, 
   only use a separate worktree for verification on conflict at the end of large changes.
-- **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `test:`, `docs:`, `build:`) with scopes
+- **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `refactor:`, `test:`, `docs:`, `build:`, `chore:`) with scopes
+- `!` marks a change that invalidates state outside the repo —
+  a stored box, a watch snapshot, a catalog id — never an internal rename.
 - A user-facing change lands on iOS and Android in the same sweep, never deferred to a parity pass;
   a change to shared/parity-bearing UI (cards, layout tokens) closes with both checked side by side,
   not just implemented on both — a small copy or cosmetic tweak does not need this.
