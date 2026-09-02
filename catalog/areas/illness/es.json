@@ -1,6 +1,6 @@
 {
- "title": "La salud",
- "subtitle": "Cómo te encuentras hoy.",
+ "title": "La enfermedad",
+ "subtitle": "Qué te pasa y qué ayuda.",
  "words": {
   "pain": { "text": "dolor", "grammar": { "gender": "el" } },
   "fever": { "text": "fiebre", "grammar": { "gender": "la" } },
@@ -19,23 +19,8 @@
    }
   },
   "to-cough": { "text": "toser" },
-  "rest": { "text": "descansar" },
   "sick": { "text": "enfermo", "variants": ["enferma"] },
-  "feel": {
-   "text": "sentirse",
-   "variants": ["encontrarse"],
-   "notes": { "de": "Beim Arzt fragt man auch ¿Cómo se encuentra? = Wie fühlen Sie sich?" }
-  },
-  "health": { "text": "salud", "grammar": { "gender": "la" } },
   "illness": { "text": "enfermedad", "grammar": { "gender": "la" } },
-  "healthy": {
-   "text": "sano",
-   "synonyms": ["saludable"],
-   "variants": ["sana"],
-   "notes": {
-    "de": "sano beschreibt den Menschen: estoy sano · saludable eher Essen und Lebensweise: comida saludable."
-   }
-  },
   "tired": { "text": "cansado", "variants": ["cansada"] },
   "weak": { "text": "débil" },
   "dizziness": {
@@ -48,28 +33,12 @@
   "bandage": { "text": "venda", "variants": ["vendaje"], "grammar": { "gender": "la" } },
   "band-aid": { "text": "tirita", "variants": ["curita"], "grammar": { "gender": "la" } },
   "splint": { "text": "férula", "grammar": { "gender": "la" } },
-  "breathe": { "text": "respirar" },
   "recover": { "text": "recuperarse", "variants": ["reponerse"] },
-  "life": { "text": "vida", "grammar": { "gender": "la" } },
-  "to-be-alive": { "text": "estar vivo", "variants": ["estar viva"] },
-  "alive": { "text": "vivo", "variants": ["viva"] },
-  "death": { "text": "muerte", "grammar": { "gender": "la" } },
-  "to-die": { "text": "morir" },
   "allergy": { "text": "alergia", "grammar": { "gender": "la" } },
-  "lung": { "text": "pulmón", "grammar": { "gender": "el", "plural": "pulmones" } },
-  "liver": { "text": "hígado", "grammar": { "gender": "el" } },
-  "kidney": { "text": "riñón", "grammar": { "gender": "el", "plural": "riñones" } },
-  "intestine": { "text": "intestino", "grammar": { "gender": "el" } },
-  "muscle": { "text": "músculo", "grammar": { "gender": "el" } },
-  "bladder": { "text": "vejiga", "grammar": { "gender": "la" } },
-  "nerve": { "text": "nervio", "grammar": { "gender": "el" } },
-  "vein": { "text": "vena", "grammar": { "gender": "la" } },
-  "thyroid": { "text": "tiroides", "grammar": { "gender": "el", "plural": "=" } },
   "my-throat-hurts-a-lot": { "text": "Me duele mucho la garganta." },
   "ive-had-a-fever-since-yesterday": { "text": "Tengo fiebre desde ayer." },
   "get-well-soon": { "text": "¡Que te mejores!", "variants": ["¡Que se mejore!", "¡Mejórate pronto!"] },
   "the-wound-hurts": { "text": "Me duele la herida." },
-  "i-have-to-rest": { "text": "Tengo que descansar." },
   "i-hurt-myself-yesterday": { "text": "Ayer me hice daño." }
  }
 }

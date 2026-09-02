@@ -1,0 +1,15 @@
+{
+ "title": "Uhai na kifo",
+ "subtitle": "Kinachoanza na kinachoisha.",
+ "words": {
+  "life": {
+   "text": "maisha",
+   "grammar": { "plural": "only" },
+   "notes": { "de": "grammatisch immer Plural (Klasse 6): Maisha ni mazuri = Das Leben ist schön." }
+  },
+  "to-be-alive": { "text": "kuwa hai" },
+  "alive": { "text": "hai", "notes": { "de": "unveränderlich — kein Klassenpräfix: mtu hai, viumbe hai." } },
+  "death": { "text": "kifo", "grammar": { "plural": "vifo" } },
+  "to-die": { "text": "kufa" }
+ }
+}

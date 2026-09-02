@@ -1,0 +1,11 @@
+{
+ "title": "Vivo kaj morto",
+ "subtitle": "Kio komenciĝas kaj kio finiĝas.",
+ "words": {
+  "life": { "text": "vivo" },
+  "to-be-alive": { "text": "vivi" },
+  "alive": { "text": "viva" },
+  "death": { "text": "morto" },
+  "to-die": { "text": "morti" }
+ }
+}

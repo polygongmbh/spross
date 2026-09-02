@@ -21,16 +21,22 @@
   Formen each print the best Sprosse they have reached under their own name, the way the atlas
   and the calendar already did under theirs.
 
-- **Politics gets a shelf, and the body gets the words it was missing.** Krieg and Frieden
-  had nowhere to sit in the box — every shelf's name said no to them — so there is now a
-  `Politik` shelf holding war and peace, the freedom they are about, who governs, how they
-  are chosen and the border they are chosen inside. Elsewhere: das Gehirn joins the
-  everyday body words beside dem Bauch, while the organs a doctor asks after — Lunge,
-  Leber, Niere, Darm, Blase, Muskel, Nerv, Vene, Schilddrüse — file under illness, which
-  is where they actually get named; `schön` stops being `gut` said twice and becomes
-  its own card, and positiv/negativ/neutral and aggressiv/defensiv arrive for the moment a
-  conversation turns to an opinion. `vegetarisch` leaves as a word of its own — the
-  question that uses it teaches everything the bare adjective did.
+- **Three new shelves, and the body words sorted onto the right ones.** Krieg and Frieden had
+  nowhere to sit, so there is now a `Politik` shelf: war and peace, the freedom they are
+  about, who governs, how they are chosen and the border they are chosen inside. The organs
+  move out of the sickroom onto an `Organe` shelf of their own — Lunge, Leber, Niere, Magen,
+  Darm, Blase, Milz, Galle, Blinddarm, Gebärmutter, Bauchspeicheldrüse, plus Nerv, Vene,
+  Arterie, Gelenk, Drüse and Schilddrüse — which leaves `Die Gesundheit` to be about how you
+  feel. Leben, Tod, lebendig and sterben get their own `Leben & Tod` shelf beside the family
+  and the body, where they arrive early instead of two hundred cards into an illness list.
+  What is left is `Die Krankheit`, a shelf about being ill rather than one that also had to
+  hold the word for being well — Gesundheit and gesund move up to the building blocks, where
+  a learner meets them in the first weeks. Elsewhere: das Gehirn and der Muskel join the
+  everyday body words, `sich fühlen` joins the feelings, `sich ausruhen` moves to the
+  bedroom where you actually do it, `schön` stops being `gut` said twice, and
+  positiv/negativ/neutral and aggressiv/defensiv arrive for the moment a conversation turns
+  to an opinion. `vegetarisch` leaves as a word of its own — the question that uses it
+  teaches everything the bare adjective did.
 
 - **A report is one thing to open, not two, and never on your own word.** Filing a problem
   with a word used to leave two entries on its menu — reopen the report, or withdraw it —

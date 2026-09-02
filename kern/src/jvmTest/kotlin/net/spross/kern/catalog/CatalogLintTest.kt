@@ -472,7 +472,7 @@ class CatalogLintTest {
                 // en/es/fr/it/uk all split the pair (rail/splint, riel/férula, rail/attelle,
                 // rotaia/stecca, рейка/шина); sw has no splint card yet. There is no second
                 // German word for either sense of "rigid guiding strip," so both stay.
-                "de Schiene: health/splint, transport/rail",
+                "de Schiene: illness/splint, transport/rail",
                 // Reviewed 2026-08-29: de `Stunde` is the clock hour AND the school period —
                 // en/sw both split it (hour/period, saa/kipindi); es/fr/it/uk fold `period`
                 // into their `lesson` card instead (clase/classe/lezione/урок already cover
@@ -506,10 +506,10 @@ class CatalogLintTest {
                 // one word where de/eo/es/fr/it/sw/uk all split it (Erkältung/kalt,
                 // malvarmumo/malvarma, resfriado/frío, rhume/froid, raffreddore/freddo,
                 // mafua/baridi, застуда/холодний). qualities/cold-adj exists because `hot`
-                // needs its polar partner, and health/cold is the illness a learner asks the
+                // needs its polar partner, and illness/cold is the illness a learner asks the
                 // doctor about; the adjective carries the de note naming the second sense,
                 // the ndege treatment.
-                "en cold: health/cold, qualities/cold-adj",
+                "en cold: illness/cold, qualities/cold-adj",
                 // Reviewed 2026-07-31: `el tiempo` is both Zeit and Wetter. de/en/sw/uk
                 // all split it; `clima` is das Klima in Spain, so there is no alternative.
                 // Reviewed 2026-08-23: `la dirección` is the direction AND the postal

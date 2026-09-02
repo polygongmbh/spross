@@ -43,6 +43,7 @@
    "variants": ["blanda"],
    "notes": { "de": "blando = nachgiebig weich (Matratze, Kissen); suave = sanft, glatt (Haut, Stoff)" }
   },
+  "rest": { "text": "descansar" },
   "sleep-well": { "text": "¡Que duermas bien!", "variants": ["¡Duerme bien!"] },
   "good-morning-my-love": { "text": "¡Buenos días, mi amor!", "variants": ["¡Buenos días, cariño!"] },
   "im-tired": { "text": "Estoy cansado.", "variants": ["Estoy cansada."] },
@@ -51,6 +52,7 @@
    "text": "Te quiero.",
    "variants": ["Te amo."],
    "notes": { "de": "Alltagsform in Spanien; te amo ist deutlich pathetischer und in Spanien selten" }
-  }
+  },
+  "i-have-to-rest": { "text": "Tengo que descansar." }
  }
 }

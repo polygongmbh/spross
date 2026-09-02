@@ -63,6 +63,8 @@
   "neutral": { "text": "neŭtrala", "variants": ["neŭtrale"] },
   "aggressive": { "text": "agresema", "variants": ["agresiva", "agreseme"] },
   "defensive": { "text": "defenda", "variants": ["defensiva", "defende"] },
+  "health": { "text": "sano" },
+  "healthy": { "text": "sana" },
   "a-lot-of-water": { "text": "multe da akvo" }
  }
 }

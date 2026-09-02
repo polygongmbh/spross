@@ -1,6 +1,6 @@
 {
- "title": "La salute",
- "subtitle": "Come ti senti oggi.",
+ "title": "La malattia",
+ "subtitle": "Che cosa hai e che cosa aiuta.",
  "words": {
   "pain": { "text": "dolore", "grammar": { "gender": "il" } },
   "fever": { "text": "febbre", "grammar": { "gender": "la" } },
@@ -17,15 +17,8 @@
    }
   },
   "to-cough": { "text": "tossire" },
-  "rest": { "text": "riposare", "variants": ["riposarsi"] },
   "sick": { "text": "malato", "variants": ["malata"] },
-  "feel": {
-   "text": "sentirsi",
-   "notes": { "de": "Beim Arzt fragt man come si sente? = Wie fühlen Sie sich?" }
-  },
-  "health": { "text": "salute", "grammar": { "gender": "la" } },
   "illness": { "text": "malattia", "grammar": { "gender": "la" } },
-  "healthy": { "text": "sano", "variants": ["sana"] },
   "tired": { "text": "stanco", "variants": ["stanca"] },
   "weak": { "text": "debole" },
   "dizziness": {
@@ -38,31 +31,12 @@
   "bandage": { "text": "benda", "variants": ["fasciatura"], "grammar": { "gender": "la" } },
   "band-aid": { "text": "cerotto", "grammar": { "gender": "il" } },
   "splint": { "text": "stecca", "grammar": { "gender": "la" } },
-  "breathe": {
-   "text": "respirare",
-   "notes": { "de": "Nicht können heißt hier non riuscire a respirare, nicht non potere." }
-  },
   "recover": { "text": "guarire", "variants": ["rimettersi"] },
-  "life": { "text": "vita", "grammar": { "gender": "la" } },
-  "to-be-alive": { "text": "vivere" },
-  "alive": { "text": "vivo", "variants": ["viva"] },
-  "death": { "text": "morte", "grammar": { "gender": "la" } },
-  "to-die": { "text": "morire" },
   "allergy": { "text": "allergia", "variants": ["l'allergia", "un'allergia"], "grammar": { "gender": "l'" } },
-  "lung": { "text": "polmone", "grammar": { "gender": "il", "plural": "polmoni" } },
-  "liver": { "text": "fegato", "grammar": { "gender": "il" } },
-  "kidney": { "text": "rene", "grammar": { "gender": "il", "plural": "reni" } },
-  "intestine": { "text": "intestino", "grammar": { "gender": "il", "plural": "intestini" } },
-  "muscle": { "text": "muscolo", "grammar": { "gender": "il", "plural": "muscoli" } },
-  "bladder": { "text": "vescica", "grammar": { "gender": "la", "plural": "vesciche" } },
-  "nerve": { "text": "nervo", "grammar": { "gender": "il", "plural": "nervi" } },
-  "vein": { "text": "vena", "grammar": { "gender": "la", "plural": "vene" } },
-  "thyroid": { "text": "tiroide", "grammar": { "gender": "la", "plural": "tiroidi" } },
   "my-throat-hurts-a-lot": { "text": "Mi fa molto male la gola." },
   "ive-had-a-fever-since-yesterday": { "text": "Ho la febbre da ieri." },
   "get-well-soon": { "text": "Guarisci presto!", "variants": ["Guarisca presto!", "Rimettiti presto!"] },
   "the-wound-hurts": { "text": "La ferita fa male.", "variants": ["Mi fa male la ferita."] },
-  "i-have-to-rest": { "text": "Devo riposare.", "variants": ["Devo riposarmi."] },
   "i-hurt-myself-yesterday": { "text": "Mi sono fatto male ieri.", "variants": ["Mi sono fatta male ieri."] }
  }
 }

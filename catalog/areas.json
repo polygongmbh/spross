@@ -55,7 +55,8 @@
   "areas": [
    { "area": "people", "emoji": "👪" },
    { "area": "body", "emoji": "🧍" },
-   { "area": "emotions", "emoji": "🎢" }
+   { "area": "emotions", "emoji": "🎢" },
+   { "area": "life-death", "emoji": "🕯️" }
   ]
  },
  {
@@ -119,7 +120,7 @@
   ]
  },
  {
-  "group": "care",
+  "group": "healthcare",
   "titles": {
    "en": "Illness & treatment",
    "de": "Krankheit & Behandlung",
@@ -130,7 +131,11 @@
    "sw": "Ugonjwa na matibabu",
    "uk": "Хвороба та лікування"
   },
-  "areas": [{ "area": "health", "emoji": "🩺" }, { "area": "doctor", "emoji": "🧑‍⚕️" }]
+  "areas": [
+   { "area": "illness", "emoji": "🩺" },
+   { "area": "doctor", "emoji": "🧑‍⚕️" },
+   { "area": "organs", "emoji": "🫀" }
+  ]
  },
  {
   "group": "official",

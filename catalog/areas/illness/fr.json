@@ -1,6 +1,6 @@
 {
- "title": "La santé",
- "subtitle": "Comment tu te sens aujourd'hui.",
+ "title": "La maladie",
+ "subtitle": "Ce que tu as, et ce qui aide.",
  "words": {
   "pain": { "text": "douleur", "grammar": { "gender": "la" } },
   "fever": { "text": "fièvre", "grammar": { "gender": "la" } },
@@ -17,19 +17,8 @@
    }
   },
   "to-cough": { "text": "tousser" },
-  "rest": { "text": "se reposer" },
   "sick": { "text": "malade" },
-  "feel": { "text": "se sentir" },
-  "health": { "text": "santé", "grammar": { "gender": "la" } },
   "illness": { "text": "maladie", "grammar": { "gender": "la" } },
-  "healthy": {
-   "text": "sain",
-   "synonyms": ["en bonne santé"],
-   "variants": ["saine"],
-   "notes": {
-    "de": "Über Menschen sagt man meist être en bonne santé; sain beschreibt vor allem Essen und Lebensweise: une alimentation saine."
-   }
-  },
   "tired": { "text": "fatigué", "variants": ["fatiguée"] },
   "weak": { "text": "faible" },
   "dizziness": {
@@ -54,32 +43,16 @@
    }
   },
   "splint": { "text": "attelle", "grammar": { "gender": "la" } },
-  "breathe": { "text": "respirer" },
   "recover": {
    "text": "guérir",
    "variants": ["se remettre"],
    "notes": { "de": "guérir steht auch ohne Objekt für gesund werden: je guéris vite." }
   },
-  "life": { "text": "vie", "grammar": { "gender": "la" } },
-  "to-be-alive": { "text": "vivre" },
-  "alive": { "text": "vivant", "variants": ["vivante"] },
-  "death": { "text": "mort", "grammar": { "gender": "la" } },
-  "to-die": { "text": "mourir" },
   "allergy": { "text": "allergie", "variants": ["l'allergie"], "grammar": { "gender": "l'" } },
-  "lung": { "text": "poumon", "grammar": { "gender": "le" } },
-  "liver": { "text": "foie", "grammar": { "gender": "le" } },
-  "kidney": { "text": "rein", "grammar": { "gender": "le" } },
-  "intestine": { "text": "intestin", "grammar": { "gender": "le" } },
-  "muscle": { "text": "muscle", "grammar": { "gender": "le" } },
-  "bladder": { "text": "vessie", "grammar": { "gender": "la" } },
-  "nerve": { "text": "nerf", "grammar": { "gender": "le" } },
-  "vein": { "text": "veine", "grammar": { "gender": "la" } },
-  "thyroid": { "text": "thyroïde", "variants": ["la thyroïde"], "grammar": { "gender": "la" } },
   "my-throat-hurts-a-lot": { "text": "J'ai très mal à la gorge.", "variants": ["Ma gorge me fait très mal."] },
   "ive-had-a-fever-since-yesterday": { "text": "J'ai de la fièvre depuis hier." },
   "get-well-soon": { "text": "Bon rétablissement !", "variants": ["Remets-toi vite !"] },
   "the-wound-hurts": { "text": "La blessure fait mal.", "variants": ["Ma blessure me fait mal."] },
-  "i-have-to-rest": { "text": "Je dois me reposer." },
   "i-hurt-myself-yesterday": { "text": "Je me suis blessé hier.", "variants": ["Je me suis blessée hier."] }
  }
 }

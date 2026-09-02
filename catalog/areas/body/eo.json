@@ -41,6 +41,7 @@
   },
   "neck": { "text": "kolo" },
   "brain": { "text": "cerbo" },
+  "muscle": { "text": "muskolo" },
   "my-head-hurts": { "text": "Mia kapo doloras.", "variants": ["Doloras al mi la kapo."] },
   "give-me-your-hand": { "text": "Donu al mi vian manon." },
   "open-your-mouth": { "text": "Malfermu la buŝon.", "variants": ["Malfermu vian buŝon."] },

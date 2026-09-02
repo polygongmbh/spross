@@ -1,0 +1,24 @@
+{
+ "title": "Organs",
+ "subtitle": "What lies inside, and comes up at the doctor's.",
+ "words": {
+  "lung": { "text": "lung" },
+  "liver": { "text": "liver" },
+  "kidney": { "text": "kidney" },
+  "intestine": { "text": "intestine" },
+  "bladder": { "text": "bladder" },
+  "nerve": { "text": "nerve" },
+  "vein": { "text": "vein" },
+  "thyroid": { "text": "thyroid" },
+  "breathe": { "text": "to breathe" },
+  "stomach-organ": { "text": "stomach" },
+  "artery": { "text": "artery" },
+  "joint": { "text": "joint" },
+  "gland": { "text": "gland" },
+  "spleen": { "text": "spleen" },
+  "bile": { "text": "bile" },
+  "appendix": { "text": "appendix" },
+  "womb": { "text": "womb", "synonyms": ["uterus"] },
+  "pancreas": { "text": "pancreas", "grammar": { "plural": "=" } }
+ }
+}

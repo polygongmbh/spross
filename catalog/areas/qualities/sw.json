@@ -132,6 +132,14 @@
    "notes": { "sw": "Chanya na hasi hazibadiliki kwa ngeli: matokeo chanya, namba hasi." }
   },
   "negative": { "text": "hasi" },
+  "health": { "text": "afya" },
+  "healthy": {
+   "text": "-zima",
+   "variants": ["mzima", "wazima", "nzima"],
+   "notes": {
+    "sw": "Mzima ni asiye mgonjwa; mwaka mzima ni mwaka wote. Kuzima taa ni kitenzi kingine kabisa."
+   }
+  },
   "a-lot-of-water": { "text": "maji mengi" }
  }
 }

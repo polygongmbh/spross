@@ -1,6 +1,6 @@
 {
- "title": "Здоров'я",
- "subtitle": "Як ти почуваєшся сьогодні.",
+ "title": "Хвороба",
+ "subtitle": "Що болить і що допомагає.",
  "words": {
   "pain": {
    "text": "біль",
@@ -12,15 +12,8 @@
   "cold": { "text": "застуда" },
   "hurt": { "text": "боліти" },
   "to-cough": { "text": "кашляти" },
-  "rest": { "text": "відпочивати" },
   "sick": { "text": "хворий" },
-  "feel": {
-   "text": "почуватися",
-   "notes": { "de": "Unpersönlich mit Dativ: Мені погано — mir ist schlecht." }
-  },
-  "health": { "text": "здоров'я" },
   "illness": { "text": "хвороба" },
-  "healthy": { "text": "здоровий" },
   "tired": { "text": "втомлений" },
   "weak": { "text": "слабкий" },
   "dizziness": { "text": "запаморочення", "grammar": { "plural": "=" } },
@@ -29,32 +22,12 @@
   "bandage": { "text": "бинт" },
   "band-aid": { "text": "пластир" },
   "splint": { "text": "шина" },
-  "breathe": { "text": "дихати" },
   "recover": { "text": "одужувати", "variants": ["одужати"] },
-  "life": { "text": "життя", "grammar": { "plural": "=" } },
-  "to-be-alive": { "text": "бути живим" },
-  "alive": { "text": "живий" },
-  "death": { "text": "смерть" },
-  "to-die": { "text": "помирати", "variants": ["померти"] },
   "allergy": { "text": "алергія" },
-  "lung": { "text": "легеня" },
-  "liver": { "text": "печінка" },
-  "kidney": { "text": "нирка" },
-  "intestine": { "text": "кишківник", "synonyms": ["кишка"] },
-  "muscle": { "text": "м'яз" },
-  "bladder": { "text": "міхур", "variants": ["сечовий міхур"] },
-  "nerve": { "text": "нерв" },
-  "vein": { "text": "вена" },
-  "thyroid": {
-   "text": "щитоподібна залоза",
-   "variants": ["щитовидна залоза"],
-   "grammar": { "plural": "щитоподібні залози" }
-  },
   "my-throat-hurts-a-lot": { "text": "У мене дуже болить горло." },
   "ive-had-a-fever-since-yesterday": { "text": "У мене з учора температура." },
   "get-well-soon": { "text": "Швидкого одужання!" },
   "the-wound-hurts": { "text": "Рана болить." },
-  "i-have-to-rest": { "text": "Мені треба відпочити." },
   "i-hurt-myself-yesterday": { "text": "Я вчора поранився.", "variants": ["Я вчора поранилася."] }
  }
 }

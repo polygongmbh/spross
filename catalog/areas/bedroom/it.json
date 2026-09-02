@@ -44,6 +44,7 @@
   "belt": { "text": "cintura", "grammar": { "gender": "la" } },
   "make-bed": { "text": "fare il letto" },
   "soft": { "text": "morbido", "variants": ["morbida", "soffice"] },
+  "rest": { "text": "riposare", "variants": ["riposarsi"] },
   "sleep-well": { "text": "Dormi bene!" },
   "good-morning-my-love": {
    "text": "Buongiorno, amore mio!",
@@ -56,6 +57,7 @@
    "notes": {
     "de": "Ti amo gilt der Partnerin oder dem Partner; Familie und Freunden sagt man ti voglio bene."
    }
-  }
+  },
+  "i-have-to-rest": { "text": "Devo riposare.", "variants": ["Devo riposarmi."] }
  }
 }

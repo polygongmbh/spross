@@ -10,6 +10,7 @@
   "worry": { "text": "inquiétude", "grammar": { "gender": "la" } },
   "love": { "text": "amour", "variants": ["l'amour"], "grammar": { "gender": "l'" } },
   "shame": { "text": "honte", "grammar": { "gender": "la" } },
-  "jealousy": { "text": "jalousie", "grammar": { "gender": "la" } }
+  "jealousy": { "text": "jalousie", "grammar": { "gender": "la" } },
+  "feel": { "text": "se sentir" }
  }
 }

@@ -1,6 +1,6 @@
 {
- "title": "La sano",
- "subtitle": "Kiel vi fartas hodiaŭ.",
+ "title": "Malsano",
+ "subtitle": "Kio doloras kaj kio helpas.",
  "words": {
   "pain": { "text": "doloro" },
   "fever": { "text": "febro" },
@@ -16,19 +16,8 @@
    }
   },
   "to-cough": { "text": "tusi" },
-  "rest": { "text": "ripozi" },
   "sick": { "text": "malsana" },
-  "feel": {
-   "text": "senti sin",
-   "synonyms": ["farti"],
-   "variants": ["sin senti"],
-   "notes": {
-    "de": "farti fragt nach dem Befinden: Kiel vi fartas? · senti sin beschreibt es mit einem Wort dazu: Mi sentas min malbone."
-   }
-  },
-  "health": { "text": "sano" },
   "illness": { "text": "malsano" },
-  "healthy": { "text": "sana" },
   "tired": { "text": "laca" },
   "weak": { "text": "malforta" },
   "dizziness": { "text": "kapturno", "synonyms": ["vertiĝo"] },
@@ -43,28 +32,12 @@
   "bandage": { "text": "bandaĝo" },
   "band-aid": { "text": "plastro" },
   "splint": { "text": "ŝino" },
-  "breathe": { "text": "spiri" },
   "recover": { "text": "resaniĝi", "variants": ["saniĝi"] },
-  "life": { "text": "vivo" },
-  "to-be-alive": { "text": "vivi" },
-  "alive": { "text": "viva" },
-  "death": { "text": "morto" },
-  "to-die": { "text": "morti" },
   "allergy": { "text": "alergio" },
-  "lung": { "text": "pulmo" },
-  "liver": { "text": "hepato" },
-  "kidney": { "text": "reno" },
-  "intestine": { "text": "intesto" },
-  "muscle": { "text": "muskolo" },
-  "bladder": { "text": "veziko" },
-  "nerve": { "text": "nervo" },
-  "vein": { "text": "vejno" },
-  "thyroid": { "text": "tiroido" },
   "my-throat-hurts-a-lot": { "text": "Mia gorĝo tre doloras.", "variants": ["Tre doloras al mi la gorĝo."] },
   "ive-had-a-fever-since-yesterday": { "text": "Mi havas febron ekde hieraŭ.", "variants": ["Mi havas febron de hieraŭ."] },
   "get-well-soon": { "text": "Rapidan resaniĝon!", "variants": ["Baldaŭan resaniĝon!", "Resaniĝu baldaŭ!"] },
   "the-wound-hurts": { "text": "La vundo doloras." },
-  "i-have-to-rest": { "text": "Mi devas ripozi." },
   "i-hurt-myself-yesterday": { "text": "Mi vundis min hieraŭ." }
  }
 }

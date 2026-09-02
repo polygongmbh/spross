@@ -1,0 +1,24 @@
+{
+ "title": "Organoj",
+ "subtitle": "Kio kuŝas interne kaj aperas ĉe la kuracisto.",
+ "words": {
+  "lung": { "text": "pulmo" },
+  "liver": { "text": "hepato" },
+  "kidney": { "text": "reno" },
+  "intestine": { "text": "intesto" },
+  "bladder": { "text": "veziko" },
+  "nerve": { "text": "nervo" },
+  "vein": { "text": "vejno" },
+  "thyroid": { "text": "tiroido" },
+  "breathe": { "text": "spiri" },
+  "stomach-organ": { "text": "stomako" },
+  "artery": { "text": "arterio" },
+  "joint": { "text": "artiko" },
+  "gland": { "text": "glando" },
+  "spleen": { "text": "lieno" },
+  "bile": { "text": "galo" },
+  "appendix": { "text": "apendico" },
+  "womb": { "text": "utero" },
+  "pancreas": { "text": "pankreato" }
+ }
+}

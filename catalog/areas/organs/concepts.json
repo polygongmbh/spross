@@ -1,0 +1,20 @@
+[
+ { "slug": "lung", "kind": "noun", "emoji": "🫁" },
+ { "slug": "liver", "kind": "noun" },
+ { "slug": "kidney", "kind": "noun" },
+ { "slug": "intestine", "kind": "noun" },
+ { "slug": "bladder", "kind": "noun" },
+ { "slug": "nerve", "kind": "noun" },
+ { "slug": "vein", "kind": "noun" },
+ { "slug": "thyroid", "kind": "noun" },
+ { "slug": "breathe", "kind": "verb" },
+ { "slug": "stomach-organ", "kind": "noun" },
+ { "slug": "artery", "kind": "noun" },
+ { "slug": "joint", "kind": "noun" },
+ { "slug": "gland", "kind": "noun" },
+ { "slug": "spleen", "kind": "noun" },
+ { "slug": "bile", "kind": "noun" },
+ { "slug": "appendix", "kind": "noun" },
+ { "slug": "womb", "kind": "noun" },
+ { "slug": "pancreas", "kind": "noun" }
+]

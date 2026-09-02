@@ -50,6 +50,7 @@
   },
   "neck": { "text": "cou", "grammar": { "gender": "le" } },
   "brain": { "text": "cerveau", "grammar": { "gender": "le", "plural": "cerveaux" } },
+  "muscle": { "text": "muscle", "grammar": { "gender": "le" } },
   "my-head-hurts": { "text": "J'ai mal à la tête.", "variants": ["Ma tête me fait mal."] },
   "give-me-your-hand": { "text": "Donne-moi la main.", "variants": ["Donne-moi ta main."] },
   "open-your-mouth": { "text": "Ouvre la bouche." },

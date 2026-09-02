@@ -1,6 +1,6 @@
 {
- "title": "Afya",
- "subtitle": "Unajisikiaje leo.",
+ "title": "Ugonjwa",
+ "subtitle": "Unaumwa nini na nini kinasaidia.",
  "words": {
   "pain": { "text": "maumivu", "grammar": { "plural": "only" } },
   "fever": { "text": "homa" },
@@ -8,16 +8,8 @@
   "cold": { "text": "mafua", "grammar": { "plural": "only" } },
   "hurt": { "text": "kuuma" },
   "to-cough": { "text": "kukohoa" },
-  "rest": { "text": "kupumzika" },
   "sick": { "text": "mgonjwa" },
-  "feel": { "text": "kujisikia" },
-  "health": { "text": "afya" },
   "illness": { "text": "ugonjwa", "grammar": { "plural": "magonjwa" } },
-  "healthy": {
-   "text": "-zima",
-   "variants": ["mzima", "wazima", "nzima"],
-   "notes": { "de": "mzima heißt auch „ganz“: «Mzima?» ist die übliche Rückfrage nach dem Befinden." }
-  },
   "tired": {
    "text": "-chovu",
    "variants": ["mchovu", "wachovu"],
@@ -29,24 +21,8 @@
   "hurt-oneself": { "text": "kujiumiza" },
   "bandage": { "text": "bendeji", "variants": ["bandeji"], "grammar": { "plural": "=" } },
   "band-aid": { "text": "plasta", "grammar": { "plural": "=" } },
-  "breathe": { "text": "kupumua" },
   "recover": { "text": "kupona" },
-  "life": {
-   "text": "maisha",
-   "grammar": { "plural": "only" },
-   "notes": { "de": "grammatisch immer Plural (Klasse 6): Maisha ni mazuri = Das Leben ist schön." }
-  },
-  "to-be-alive": { "text": "kuwa hai" },
-  "alive": { "text": "hai", "notes": { "de": "unveränderlich — kein Klassenpräfix: mtu hai, viumbe hai." } },
-  "death": { "text": "kifo", "grammar": { "plural": "vifo" } },
-  "to-die": { "text": "kufa" },
   "allergy": { "text": "mzio", "grammar": { "plural": "mizio" } },
-  "lung": { "text": "pafu", "grammar": { "plural": "mapafu" } },
-  "liver": { "text": "ini", "grammar": { "plural": "maini" } },
-  "kidney": { "text": "figo", "grammar": { "plural": "mafigo" } },
-  "intestine": { "text": "utumbo", "grammar": { "plural": "matumbo" } },
-  "muscle": { "text": "msuli", "grammar": { "plural": "misuli" } },
-  "bladder": { "text": "kibofu", "grammar": { "plural": "vibofu" } },
   "my-throat-hurts-a-lot": { "text": "Koo linaniuma sana." },
   "ive-had-a-fever-since-yesterday": { "text": "Nina homa tangu jana." },
   "get-well-soon": {
@@ -55,7 +31,6 @@
    "notes": { "de": "pole = Mitgefühls-Wort ohne direktes deutsches Gegenstück" }
   },
   "the-wound-hurts": { "text": "Jeraha linauma." },
-  "i-have-to-rest": { "text": "Lazima nipumzike.", "variants": ["Ninahitaji kupumzika."] },
   "i-hurt-myself-yesterday": { "text": "Jana nilijiumiza." }
  }
 }

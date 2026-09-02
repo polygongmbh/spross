@@ -31,6 +31,7 @@
   "tongue": { "text": "язик" },
   "neck": { "text": "шия" },
   "brain": { "text": "мозок", "grammar": { "plural": "мізки" } },
+  "muscle": { "text": "м'яз" },
   "my-head-hurts": { "text": "У мене болить голова." },
   "give-me-your-hand": { "text": "Дай мені руку." },
   "open-your-mouth": { "text": "Відкрий рот." },

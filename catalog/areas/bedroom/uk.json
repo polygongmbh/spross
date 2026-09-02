@@ -30,10 +30,12 @@
   "belt": { "text": "ремінь", "grammar": { "plural": "ремені" } },
   "make-bed": { "text": "застеляти ліжко" },
   "soft": { "text": "м'який" },
+  "rest": { "text": "відпочивати" },
   "sleep-well": { "text": "Спи солодко!" },
   "good-morning-my-love": { "text": "Доброго ранку, моє сонечко!" },
   "im-tired": { "text": "Я втомився.", "variants": ["Я втомилася."] },
   "did-you-set-the-alarm": { "text": "Ти завів будильник?", "variants": ["Ти завела будильник?"] },
-  "i-love-you": { "text": "Я тебе кохаю." }
+  "i-love-you": { "text": "Я тебе кохаю." },
+  "i-have-to-rest": { "text": "Мені треба відпочити." }
  }
 }

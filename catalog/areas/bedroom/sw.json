@@ -30,6 +30,7 @@
   "belt": { "text": "mkanda", "grammar": { "plural": "mikanda" } },
   "make-bed": { "text": "kutandika kitanda" },
   "soft": { "text": "laini" },
+  "rest": { "text": "kupumzika" },
   "sleep-well": { "text": "Lala salama!" },
   "good-morning-my-love": {
    "text": "Habari za asubuhi, mpenzi wangu!",
@@ -39,6 +40,7 @@
   },
   "im-tired": { "text": "Nimechoka." },
   "did-you-set-the-alarm": { "text": "Umeweka saa ya kengele?" },
-  "i-love-you": { "text": "Nakupenda." }
+  "i-love-you": { "text": "Nakupenda." },
+  "i-have-to-rest": { "text": "Lazima nipumzike.", "variants": ["Ninahitaji kupumzika."] }
  }
 }

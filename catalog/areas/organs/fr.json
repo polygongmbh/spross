@@ -1,0 +1,24 @@
+{
+ "title": "Les organes",
+ "subtitle": "Ce qui est à l'intérieur et se dit chez le médecin.",
+ "words": {
+  "lung": { "text": "poumon", "grammar": { "gender": "le" } },
+  "liver": { "text": "foie", "grammar": { "gender": "le" } },
+  "kidney": { "text": "rein", "grammar": { "gender": "le" } },
+  "intestine": { "text": "intestin", "grammar": { "gender": "le" } },
+  "bladder": { "text": "vessie", "grammar": { "gender": "la" } },
+  "nerve": { "text": "nerf", "grammar": { "gender": "le" } },
+  "vein": { "text": "veine", "grammar": { "gender": "la" } },
+  "thyroid": { "text": "thyroïde", "variants": ["la thyroïde"], "grammar": { "gender": "la" } },
+  "breathe": { "text": "respirer" },
+  "stomach-organ": { "text": "estomac", "grammar": { "gender": "le" } },
+  "artery": { "text": "artère", "grammar": { "gender": "l'" }, "variants": ["l'artère"] },
+  "joint": { "text": "articulation", "grammar": { "gender": "l'" }, "variants": ["l'articulation"] },
+  "gland": { "text": "glande", "grammar": { "gender": "la" } },
+  "spleen": { "text": "rate", "grammar": { "gender": "la" } },
+  "bile": { "text": "bile", "grammar": { "gender": "la" } },
+  "appendix": { "text": "appendice", "grammar": { "gender": "l'" }, "variants": ["l'appendice"] },
+  "womb": { "text": "utérus", "grammar": { "gender": "l'", "plural": "=" }, "variants": ["l'utérus"] },
+  "pancreas": { "text": "pancréas", "grammar": { "gender": "le", "plural": "=" } }
+ }
+}

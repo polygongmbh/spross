@@ -30,10 +30,12 @@
   "belt": { "text": "belt" },
   "make-bed": { "text": "to make the bed" },
   "soft": { "text": "soft" },
+  "rest": { "text": "to rest" },
   "sleep-well": { "text": "Sleep well!" },
   "good-morning-my-love": { "text": "Good morning, my love!" },
   "im-tired": { "text": "I'm tired." },
   "did-you-set-the-alarm": { "text": "Did you set the alarm?" },
-  "i-love-you": { "text": "I love you." }
+  "i-love-you": { "text": "I love you." },
+  "i-have-to-rest": { "text": "I have to rest." }
  }
 }

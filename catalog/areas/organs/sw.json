@@ -1,0 +1,18 @@
+{
+ "title": "Viungo vya mwili",
+ "subtitle": "Vilivyo ndani, vinavyotajwa kwa daktari.",
+ "words": {
+  "lung": { "text": "pafu", "grammar": { "plural": "mapafu" } },
+  "liver": { "text": "ini", "grammar": { "plural": "maini" } },
+  "kidney": { "text": "figo", "grammar": { "plural": "mafigo" } },
+  "intestine": { "text": "utumbo", "grammar": { "plural": "matumbo" } },
+  "bladder": { "text": "kibofu", "grammar": { "plural": "vibofu" } },
+  "breathe": { "text": "kupumua" },
+  "artery": { "text": "ateri", "grammar": { "plural": "=" } },
+  "joint": { "text": "kiungo", "grammar": { "plural": "viungo" } },
+  "gland": { "text": "tezi", "grammar": { "plural": "=" } },
+  "spleen": { "text": "wengu", "grammar": { "plural": "mawengu" } },
+  "bile": { "text": "nyongo", "grammar": { "plural": "=" } },
+  "pancreas": { "text": "kongosho", "grammar": { "plural": "=" } }
+ }
+}

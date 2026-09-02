@@ -10,6 +10,10 @@
   "worry": { "text": "preoccupazione", "grammar": { "gender": "la" } },
   "love": { "text": "amore", "variants": ["l'amore"], "grammar": { "gender": "l'", "plural": "amori" } },
   "shame": { "text": "vergogna", "grammar": { "gender": "la" } },
-  "jealousy": { "text": "gelosia", "grammar": { "gender": "la" } }
+  "jealousy": { "text": "gelosia", "grammar": { "gender": "la" } },
+  "feel": {
+   "text": "sentirsi",
+   "notes": { "de": "Beim Arzt fragt man come si sente? = Wie fühlen Sie sich?" }
+  }
  }
 }

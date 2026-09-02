@@ -1,0 +1,7 @@
+[
+ { "slug": "life", "kind": "noun" },
+ { "slug": "to-be-alive", "kind": "verb" },
+ { "slug": "alive", "kind": "adjective" },
+ { "slug": "death", "kind": "noun" },
+ { "slug": "to-die", "kind": "verb" }
+]

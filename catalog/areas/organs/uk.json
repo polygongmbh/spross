@@ -1,0 +1,28 @@
+{
+ "title": "Органи",
+ "subtitle": "Те, що всередині і про що йдеться в лікаря.",
+ "words": {
+  "lung": { "text": "легеня" },
+  "liver": { "text": "печінка" },
+  "kidney": { "text": "нирка" },
+  "intestine": { "text": "кишківник", "synonyms": ["кишка"] },
+  "bladder": { "text": "міхур", "variants": ["сечовий міхур"] },
+  "nerve": { "text": "нерв" },
+  "vein": { "text": "вена" },
+  "thyroid": {
+   "text": "щитоподібна залоза",
+   "variants": ["щитовидна залоза"],
+   "grammar": { "plural": "щитоподібні залози" }
+  },
+  "breathe": { "text": "дихати" },
+  "stomach-organ": { "text": "шлунок", "grammar": { "plural": "шлунки" } },
+  "artery": { "text": "артерія" },
+  "joint": { "text": "суглоб" },
+  "gland": { "text": "залоза" },
+  "spleen": { "text": "селезінка" },
+  "bile": { "text": "жовч" },
+  "appendix": { "text": "апендикс" },
+  "womb": { "text": "матка" },
+  "pancreas": { "text": "підшлункова залоза", "grammar": { "plural": "підшлункові залози" } }
+ }
+}

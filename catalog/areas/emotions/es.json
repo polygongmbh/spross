@@ -10,6 +10,11 @@
   "worry": { "text": "preocupación", "grammar": { "gender": "la" } },
   "love": { "text": "amor", "grammar": { "gender": "el" } },
   "shame": { "text": "vergüenza", "grammar": { "gender": "la" } },
-  "jealousy": { "text": "celos", "grammar": { "gender": "los" } }
+  "jealousy": { "text": "celos", "grammar": { "gender": "los" } },
+  "feel": {
+   "text": "sentirse",
+   "variants": ["encontrarse"],
+   "notes": { "de": "Beim Arzt fragt man auch ¿Cómo se encuentra? = Wie fühlen Sie sich?" }
+  }
  }
 }

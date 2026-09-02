@@ -7,5 +7,6 @@
  { "slug": "worry", "kind": "noun", "emoji": "😟" },
  { "slug": "love", "kind": "noun", "emoji": "❤️" },
  { "slug": "shame", "kind": "noun", "emoji": "😳" },
- { "slug": "jealousy", "kind": "noun", "emoji": "😒" }
+ { "slug": "jealousy", "kind": "noun", "emoji": "😒" },
+ { "slug": "feel", "kind": "verb" }
 ]

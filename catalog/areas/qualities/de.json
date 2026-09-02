@@ -44,6 +44,8 @@
   "neutral": { "text": "neutral" },
   "aggressive": { "text": "aggressiv" },
   "defensive": { "text": "defensiv" },
+  "health": { "text": "Gesundheit", "grammar": { "gender": "die" } },
+  "healthy": { "text": "gesund" },
   "a-lot-of-water": { "text": "viel Wasser" }
  }
 }

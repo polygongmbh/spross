@@ -10,6 +10,10 @@
   "worry": { "text": "тривога" },
   "love": { "text": "любов" },
   "shame": { "text": "сором" },
-  "jealousy": { "text": "ревнощі" }
+  "jealousy": { "text": "ревнощі" },
+  "feel": {
+   "text": "почуватися",
+   "notes": { "de": "Unpersönlich mit Dativ: Мені погано — mir ist schlecht." }
+  }
  }
 }

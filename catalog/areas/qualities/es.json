@@ -89,6 +89,15 @@
   "neutral": { "text": "neutral", "variants": ["neutro"] },
   "aggressive": { "text": "agresivo", "variants": ["agresiva"] },
   "defensive": { "text": "defensivo", "variants": ["defensiva"] },
+  "health": { "text": "salud", "grammar": { "gender": "la" } },
+  "healthy": {
+   "text": "sano",
+   "synonyms": ["saludable"],
+   "variants": ["sana"],
+   "notes": {
+    "de": "sano beschreibt den Menschen: estoy sano · saludable eher Essen und Lebensweise: comida saludable."
+   }
+  },
   "a-lot-of-water": { "text": "mucha agua", "notes": { "de": "trotz el agua feminin: mucha agua." } }
  }
 }

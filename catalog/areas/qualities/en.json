@@ -53,6 +53,8 @@
   "neutral": { "text": "neutral" },
   "aggressive": { "text": "aggressive" },
   "defensive": { "text": "defensive" },
+  "health": { "text": "health" },
+  "healthy": { "text": "healthy" },
   "a-lot-of-water": { "text": "a lot of water" }
  }
 }

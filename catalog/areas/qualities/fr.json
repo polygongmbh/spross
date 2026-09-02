@@ -101,6 +101,15 @@
   "neutral": { "text": "neutre" },
   "aggressive": { "text": "agressif", "variants": ["agressive"] },
   "defensive": { "text": "défensif", "variants": ["défensive"] },
+  "health": { "text": "santé", "grammar": { "gender": "la" } },
+  "healthy": {
+   "text": "sain",
+   "synonyms": ["en bonne santé"],
+   "variants": ["saine"],
+   "notes": {
+    "de": "Über Menschen sagt man meist être en bonne santé; sain beschreibt vor allem Essen und Lebensweise: une alimentation saine."
+   }
+  },
   "a-lot-of-water": { "text": "beaucoup d'eau" }
  }
 }

@@ -1,0 +1,24 @@
+{
+ "title": "Los órganos",
+ "subtitle": "Lo que está dentro y sale en la consulta.",
+ "words": {
+  "lung": { "text": "pulmón", "grammar": { "gender": "el", "plural": "pulmones" } },
+  "liver": { "text": "hígado", "grammar": { "gender": "el" } },
+  "kidney": { "text": "riñón", "grammar": { "gender": "el", "plural": "riñones" } },
+  "intestine": { "text": "intestino", "grammar": { "gender": "el" } },
+  "bladder": { "text": "vejiga", "grammar": { "gender": "la" } },
+  "nerve": { "text": "nervio", "grammar": { "gender": "el" } },
+  "vein": { "text": "vena", "grammar": { "gender": "la" } },
+  "thyroid": { "text": "tiroides", "grammar": { "gender": "el", "plural": "=" } },
+  "breathe": { "text": "respirar" },
+  "stomach-organ": { "text": "estómago", "grammar": { "gender": "el" } },
+  "artery": { "text": "arteria", "grammar": { "gender": "la" } },
+  "joint": { "text": "articulación", "grammar": { "gender": "la", "plural": "articulaciones" } },
+  "gland": { "text": "glándula", "grammar": { "gender": "la" } },
+  "spleen": { "text": "bazo", "grammar": { "gender": "el" } },
+  "bile": { "text": "bilis", "grammar": { "gender": "la", "plural": "=" } },
+  "appendix": { "text": "apéndice", "grammar": { "gender": "el", "plural": "apéndices" } },
+  "womb": { "text": "útero", "grammar": { "gender": "el" } },
+  "pancreas": { "text": "páncreas", "grammar": { "gender": "el", "plural": "=" } }
+ }
+}

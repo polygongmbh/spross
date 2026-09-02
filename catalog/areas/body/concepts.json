@@ -26,6 +26,7 @@
  { "slug": "lip", "kind": "noun", "emoji": "💋" },
  { "slug": "tongue", "kind": "noun", "emoji": "👅" },
  { "slug": "brain", "kind": "noun", "emoji": "🧠" },
+ { "slug": "muscle", "kind": "noun" },
  { "slug": "my-head-hurts", "kind": "phrase", "emoji": "🤕", "components": ["head"] },
  { "slug": "give-me-your-hand", "kind": "phrase", "emoji": "✋", "components": ["hand"] },
  { "slug": "open-your-mouth", "kind": "phrase", "emoji": "👄", "components": ["mouth"] },

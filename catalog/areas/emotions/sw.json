@@ -10,6 +10,7 @@
   "worry": { "text": "wasiwasi", "grammar": { "plural": "=" } },
   "love": { "text": "upendo", "grammar": { "plural": "=" } },
   "shame": { "text": "aibu", "grammar": { "plural": "=" } },
-  "jealousy": { "text": "wivu", "grammar": { "plural": "=" } }
+  "jealousy": { "text": "wivu", "grammar": { "plural": "=" } },
+  "feel": { "text": "kujisikia" }
  }
 }

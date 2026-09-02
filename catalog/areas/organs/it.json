@@ -1,0 +1,39 @@
+{
+ "title": "Gli organi",
+ "subtitle": "Ciò che sta dentro e si dice dal medico.",
+ "words": {
+  "lung": { "text": "polmone", "grammar": { "gender": "il", "plural": "polmoni" } },
+  "liver": { "text": "fegato", "grammar": { "gender": "il" } },
+  "kidney": { "text": "rene", "grammar": { "gender": "il", "plural": "reni" } },
+  "intestine": { "text": "intestino", "grammar": { "gender": "il", "plural": "intestini" } },
+  "bladder": { "text": "vescica", "grammar": { "gender": "la", "plural": "vesciche" } },
+  "nerve": { "text": "nervo", "grammar": { "gender": "il", "plural": "nervi" } },
+  "vein": { "text": "vena", "grammar": { "gender": "la", "plural": "vene" } },
+  "thyroid": { "text": "tiroide", "grammar": { "gender": "la", "plural": "tiroidi" } },
+  "breathe": {
+   "text": "respirare",
+   "notes": { "de": "Nicht können heißt hier non riuscire a respirare, nicht non potere." }
+  },
+  "stomach-organ": { "text": "stomaco", "grammar": { "gender": "lo", "plural": "stomachi" } },
+  "artery": {
+   "text": "arteria",
+   "grammar": { "gender": "l'", "plural": "arterie" },
+   "variants": ["l'arteria"]
+  },
+  "joint": {
+   "text": "articolazione",
+   "grammar": { "gender": "l'", "plural": "articolazioni" },
+   "variants": ["l'articolazione"]
+  },
+  "gland": { "text": "ghiandola", "grammar": { "gender": "la", "plural": "ghiandole" } },
+  "spleen": { "text": "milza", "grammar": { "gender": "la", "plural": "milze" } },
+  "bile": { "text": "bile", "grammar": { "gender": "la" } },
+  "appendix": {
+   "text": "appendice",
+   "grammar": { "gender": "l'", "plural": "appendici" },
+   "variants": ["l'appendice"]
+  },
+  "womb": { "text": "utero", "grammar": { "gender": "l'", "plural": "uteri" }, "variants": ["l'utero"] },
+  "pancreas": { "text": "pancreas", "grammar": { "gender": "il", "plural": "=" } }
+ }
+}

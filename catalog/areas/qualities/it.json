@@ -90,6 +90,8 @@
   "neutral": { "text": "neutrale" },
   "aggressive": { "text": "aggressivo", "variants": ["aggressiva"] },
   "defensive": { "text": "difensivo", "variants": ["difensiva"] },
+  "health": { "text": "salute", "grammar": { "gender": "la" } },
+  "healthy": { "text": "sano", "variants": ["sana"] },
   "a-lot-of-water": { "text": "molta acqua" }
  }
 }

@@ -30,10 +30,12 @@
   "belt": { "text": "Gürtel", "grammar": { "gender": "der", "plural": "=" } },
   "make-bed": { "text": "Bett machen" },
   "soft": { "text": "weich" },
+  "rest": { "text": "sich ausruhen" },
   "sleep-well": { "text": "Schlaf gut!" },
   "good-morning-my-love": { "text": "Guten Morgen, mein Schatz!" },
   "im-tired": { "text": "Ich bin müde." },
   "did-you-set-the-alarm": { "text": "Hast du den Wecker gestellt?" },
-  "i-love-you": { "text": "Ich liebe dich." }
+  "i-love-you": { "text": "Ich liebe dich." },
+  "i-have-to-rest": { "text": "Ich muss mich ausruhen." }
  }
 }

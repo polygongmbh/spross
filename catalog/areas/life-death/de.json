@@ -1,0 +1,11 @@
+{
+ "title": "Leben & Tod",
+ "subtitle": "Was anfängt und was aufhört.",
+ "words": {
+  "life": { "text": "Leben", "grammar": { "gender": "das", "plural": "=" } },
+  "to-be-alive": { "text": "leben" },
+  "alive": { "text": "lebendig", "variants": ["am Leben"] },
+  "death": { "text": "Tod", "grammar": { "gender": "der" } },
+  "to-die": { "text": "sterben" }
+ }
+}

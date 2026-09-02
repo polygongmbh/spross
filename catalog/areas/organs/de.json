@@ -1,0 +1,32 @@
+{
+ "title": "Organe",
+ "subtitle": "Was innen liegt und beim Arzt zur Sprache kommt.",
+ "words": {
+  "lung": { "text": "Lunge", "grammar": { "gender": "die", "plural": "-n" } },
+  "liver": { "text": "Leber", "grammar": { "gender": "die", "plural": "-n" } },
+  "kidney": { "text": "Niere", "grammar": { "gender": "die", "plural": "-n" } },
+  "intestine": { "text": "Darm", "grammar": { "gender": "der", "plural": "Därme" } },
+  "bladder": {
+   "text": "Blase",
+   "grammar": { "gender": "die", "plural": "-n" },
+   "notes": { "de": "Blase ist auch die am Fuß und die im Wasser." }
+  },
+  "nerve": { "text": "Nerv", "grammar": { "gender": "der", "plural": "-en" } },
+  "vein": { "text": "Vene", "synonyms": ["Ader"], "grammar": { "gender": "die", "plural": "-n" } },
+  "thyroid": { "text": "Schilddrüse", "grammar": { "gender": "die", "plural": "-n" } },
+  "breathe": { "text": "atmen" },
+  "stomach-organ": { "text": "Magen", "grammar": { "gender": "der", "plural": "Mägen" } },
+  "artery": { "text": "Arterie", "synonyms": ["Schlagader"], "grammar": { "gender": "die", "plural": "-n" } },
+  "joint": { "text": "Gelenk", "grammar": { "gender": "das", "plural": "-e" } },
+  "gland": { "text": "Drüse", "grammar": { "gender": "die", "plural": "-n" } },
+  "spleen": { "text": "Milz", "grammar": { "gender": "die", "plural": "-en" } },
+  "bile": {
+   "text": "Galle",
+   "grammar": { "gender": "die" },
+   "notes": { "de": "Galle heißt auch kurz die Gallenblase: Ich habe Gallensteine." }
+  },
+  "appendix": { "text": "Blinddarm", "grammar": { "gender": "der", "plural": "Blinddärme" } },
+  "womb": { "text": "Gebärmutter", "grammar": { "gender": "die", "plural": "Gebärmütter" } },
+  "pancreas": { "text": "Bauchspeicheldrüse", "grammar": { "gender": "die", "plural": "-n" } }
+ }
+}

@@ -48,6 +48,8 @@
   "neutral": { "text": "нейтральний", "variants": ["нейтрально"] },
   "aggressive": { "text": "агресивний", "variants": ["агресивно"] },
   "defensive": { "text": "оборонний", "synonyms": ["захисний"] },
+  "health": { "text": "здоров'я" },
+  "healthy": { "text": "здоровий" },
   "a-lot-of-water": { "text": "багато води" }
  }
 }

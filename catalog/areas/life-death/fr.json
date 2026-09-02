@@ -1,0 +1,11 @@
+{
+ "title": "La vie et la mort",
+ "subtitle": "Ce qui commence et ce qui finit.",
+ "words": {
+  "life": { "text": "vie", "grammar": { "gender": "la" } },
+  "to-be-alive": { "text": "vivre" },
+  "alive": { "text": "vivant", "variants": ["vivante"] },
+  "death": { "text": "mort", "grammar": { "gender": "la" } },
+  "to-die": { "text": "mourir" }
+ }
+}

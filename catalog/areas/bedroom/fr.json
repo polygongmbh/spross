@@ -44,6 +44,7 @@
    "variants": ["douce"],
    "notes": { "de": "doux ist weich und sanft beim Anfassen; eine weiche Matratze ist un matelas moelleux." }
   },
+  "rest": { "text": "se reposer" },
   "sleep-well": { "text": "Dors bien !" },
   "good-morning-my-love": {
    "text": "Bonjour, mon amour !",
@@ -57,6 +58,7 @@
    "text": "Tu as mis le réveil ?",
    "variants": ["As-tu mis le réveil ?", "Tu as réglé le réveil ?"]
   },
-  "i-love-you": { "text": "Je t'aime." }
+  "i-love-you": { "text": "Je t'aime." },
+  "i-have-to-rest": { "text": "Je dois me reposer." }
  }
 }

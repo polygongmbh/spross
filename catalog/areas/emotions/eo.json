@@ -10,6 +10,14 @@
   "worry": { "text": "zorgo" },
   "love": { "text": "amo" },
   "shame": { "text": "honto" },
-  "jealousy": { "text": "ĵaluzo" }
+  "jealousy": { "text": "ĵaluzo" },
+  "feel": {
+   "text": "senti sin",
+   "synonyms": ["farti"],
+   "variants": ["sin senti"],
+   "notes": {
+    "de": "farti fragt nach dem Befinden: Kiel vi fartas? · senti sin beschreibt es mit einem Wort dazu: Mi sentas min malbone."
+   }
+  }
  }
 }

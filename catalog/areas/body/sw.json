@@ -42,6 +42,7 @@
   "tongue": { "text": "ulimi", "grammar": { "plural": "ndimi" } },
   "neck": { "text": "shingo", "grammar": { "plural": "=" } },
   "brain": { "text": "ubongo", "grammar": { "plural": "=" } },
+  "muscle": { "text": "msuli", "grammar": { "plural": "misuli" } },
   "my-head-hurts": { "text": "Kichwa kinaniuma." },
   "give-me-your-hand": { "text": "Nipe mkono wako." },
   "open-your-mouth": { "text": "Fungua mdomo." },

@@ -1,0 +1,11 @@
+{
+ "title": "Life & death",
+ "subtitle": "What begins, and what ends.",
+ "words": {
+  "life": { "text": "life", "grammar": { "plural": "lives" } },
+  "to-be-alive": { "text": "to be alive" },
+  "alive": { "text": "alive" },
+  "death": { "text": "death" },
+  "to-die": { "text": "to die" }
+ }
+}
