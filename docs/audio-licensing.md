@@ -46,6 +46,13 @@ lives outside the repo in `data/reference/audio/README.md`.
 | `audio/it/calendar/` | 19 names | Lingua Libre + Shtooka, via Commons | BY-SA 3.0 13 · BY 3.0 us 5 · CC0 1 | GerardM 11, 4 further | credit all but the CC0 |
 | `audio/sw/calendar/` | 19 names | Commons `Sw-ke-*.flac` | BY-SA 4.0, whole set | Waithera Were, all 19 | credit + share-alike |
 | `audio/uk/calendar/` | 19 names | Commons `Uk-*.ogg` (Shtooka) | BY 3.0 us, whole set | Галя Раптова / Nicolas Vion, all 19 | attribution only |
+| `audio/de/countries/` | 127 names | Commons `De-*.ogg` | BY-SA 4.0 103 · BY-SA 3.0 19 · BY 3.0 5 | Jeuwre 101, 7 further | credit + share-alike |
+| `audio/eo/countries/` | 74 names | Lingua Libre, via Commons | BY-SA 4.0 69 · CC0 5 | Castelobranco 56, 5 further | credit all but the 5 CC0 |
+| `audio/es/countries/` | 75 names | Lingua Libre + Commons | BY-SA 4.0 44 · CC0 18 · BY 4.0 6 · BY-SA 3.0 6 · PD 1 | Rodelar 39, 9 further | credit all but the 18 CC0 |
+| `audio/fr/countries/` | 120 names | Lingua Libre + Shtooka, via Commons | CC0 71 · BY-SA 4.0 27 · BY-SA 3.0 14 · BY 2.0 fr 6 · PD 2 | Jules78120 39, 10 further | credit all but the 71 CC0 |
+| `audio/it/countries/` | 69 names | Lingua Libre + Commons | BY-SA 4.0 41 · CC0 24 · BY-SA 3.0 3 · PD 1 | Francyskus 41, Ciampix 24 | credit all but the 24 CC0 |
+| `audio/sw/countries/` | 74 names | Commons `Sw-ke-*.flac` | BY-SA 4.0, whole set | Waithera Were, all 74 | credit + share-alike |
+| `audio/uk/countries/` | 70 names | Lingua Libre, via Commons | BY-SA 4.0 63 · CC0 5 · BY 3.0 us 2 | Tohaomg 61, 4 further | credit + share-alike on the 63 |
 
 The `articles/` sets are where a word may ship TWICE, and deliberately: the bare file is
 what the learner's own language is read with, the article one what the target is heard as
@@ -57,9 +64,9 @@ Nothing else on Commons could have been used: article-form recordings exist for 
 (one speaker) and Italian (one set), and for Spanish and French they do not exist at all —
 the research and its counts are `data/reference/audio/README.md`'s.
 
-**Two licenses are refused outright**, and the calendar is where Commons first offered
-them (`scripts/audio-catalog.py`'s `UNSHIPPABLE_LICENSES`). Neither is a CC license and
-neither is shaped for media:
+**Three licenses are refused outright**, and the drills' own vocabularies are where Commons
+first offered them (`scripts/audio-catalog.py`'s `UNSHIPPABLE_LICENSES`). None is a CC
+license and none is shaped for media:
 
 - **GFDL** obliges shipping the full license text and keeping a "Transparent copy"
   available — a document's terms, which a credits screen linking a deed does not meet.
@@ -68,6 +75,9 @@ neither is shaped for media:
   anti-tivoization and Installation Information terms are irreconcilable with App Store
   distribution. It cost sixteen of the nineteen Esperanto names, all one uploader
   (Kurso de Esperanto) — which is why that row reads 3 and not 19.
+- **"Attribution"**, Commons' legacy bare template, asks for credit and names no versioned
+  license, so there are no stated terms and no deed to link. Public domain also has no deed,
+  but that is a waiver; this is a claim of rights without terms. It cost the Spanish `Chile`.
 
 A refused row is a printed decision and the word falls to the device voice; an
 *unlisted* license remains a hard stop, because the difference is whether anyone has
@@ -79,7 +89,12 @@ CC carries no GPL-style linking clause,
 so bundling BY-SA recordings leaves the Kotlin core, the UI and the catalog data unaffected.
 The Ukrainian WORDS are the one pack free of share-alike entirely, and that is one
 recording deep: a single BY-SA file taken for a gap the alphabet needed would end it,
-as one already did once before being re-cut away. Nothing else depends on the property,
+as one already did once before being re-cut away.
+That property is the `words` section's alone and stays intact — the fill added 174 words
+under the same Shtooka attribution-only terms — but the uk FOLDER is now share-alike in
+three places rather than one: the letters, and since the atlas landed, 63 of its 70 country
+names. Lingua Libre is where Ukrainian toponyms exist at all (the Shtooka convention found
+2 of 140), so this was the price of the atlas speaking Ukrainian, spent knowingly. Nothing else depends on the property,
 since every other pack carries the obligation anyway — but it is worth spending
 deliberately rather than by accident.
 The French words are the near-miss beside it: 442 of 511 are one Shtooka voice under
