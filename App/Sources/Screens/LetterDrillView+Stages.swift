@@ -69,8 +69,22 @@ extension LetterDrillView {
                      // why: the meaning is a REVEAL, never a cue — and a gap
                      // question's gloss IS the word, so it would repeat it.
                      note: task.gapText == nil ? task.gloss : nil,
-                     pronounce: model.pronounceAction(for: word, lang: task.language),
+                     pronounce: speaker(task, word),
                      isPlaying: model.isPronouncing(word, lang: task.language))
+    }
+
+    /// The speaker beside a form the drill hands back — the revealed answer,
+    /// the correction box. The dictated word only.
+    ///
+    /// Every other Sprosse answers with a bare GLYPH, and a glyph is not a form
+    /// anything may be asked to say: the lookup never reaches the letter-name
+    /// recording the card's own replay button plays, and a voice reads it "as
+    /// anything from a spelling alphabet to a pause" (kern `LetterDrillTask`).
+    /// Those reveals carry no speaker at all, and the replay above stays the one
+    /// way to hear the question.
+    func speaker(_ task: LetterDrillTask, _ form: String) -> (() -> Void)? {
+        guard task.stage == .dictation else { return nil }
+        return model.pronounceAction(for: form, lang: task.language)
     }
 
     private var streakLine: some View {
@@ -180,7 +194,7 @@ extension LetterDrillView {
                             // Tap-to-replay for the correction box — the form
                             // the slip owed, said in the drilled language.
                             correctionVoice: .init(
-                                pronounce: { model.pronounceAction(for: $0, lang: task.language) },
+                                pronounce: { speaker(task, $0) },
                                 isPlaying: { model.isPronouncing($0, lang: task.language) })) {
                 submit()
             }
