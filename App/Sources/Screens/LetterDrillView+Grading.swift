@@ -128,9 +128,12 @@ extension LetterDrillView {
         if preset > 0 {
             run = run.doCopy(config: run.config, task: run.task, index: run.index,
                              level: run.level, winsAtLevel: run.winsAtLevel,
-                             done: Int32(preset + 6), streak: Int32(preset),
-                             bestStreak: Int32(max(preset, 12)), missRun: run.missRun,
-                             outcomes: run.outcomes, solved: run.solved,
+                             core: run.core.doCopy(done: Int32(preset + 6),
+                                                   streak: Int32(preset),
+                                                   bestStreak: Int32(max(preset, 12)),
+                                                   missRun: run.core.missRun,
+                                                   outcomes: run.core.outcomes,
+                                                   solved: run.core.solved),
                              chosen: run.chosen, feedback: run.feedback,
                              finished: run.finished)
         }

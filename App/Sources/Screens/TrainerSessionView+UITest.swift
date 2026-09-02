@@ -67,7 +67,8 @@ extension TrainerSessionView {
 extension TrainerRunState {
     /// kern's `copy` with the run's own values standing in for everything a hook
     /// does not touch. No default argument crosses the ObjC boundary, so the
-    /// sixteen unchanged fields are written once here rather than at four call sites.
+    /// unchanged fields are written once here rather than at four call sites — the
+    /// counters among them, which live in the run's shared `DrillRunCore`.
     func seeded(current: DrawnTask? = nil,
                 levels: [DrillVariant: KotlinInt]? = nil,
                 done: Int32? = nil,
@@ -81,12 +82,12 @@ extension TrainerRunState {
                levels: levels ?? self.levels,
                winsAtLevel: winsAtLevel,
                bestLevels: bestLevels,
-               done: done ?? self.done,
-               streak: streak ?? self.streak,
-               bestStreak: bestStreak ?? self.bestStreak,
-               missRun: missRun ?? self.missRun,
-               outcomes: outcomes,
-               solved: solved,
+               core: core.doCopy(done: done ?? core.done,
+                                 streak: streak ?? core.streak,
+                                 bestStreak: bestStreak ?? core.bestStreak,
+                                 missRun: missRun ?? core.missRun,
+                                 outcomes: core.outcomes,
+                                 solved: core.solved),
                seenDigitCounts: seenDigitCounts,
                hintUsed: hintUsed,
                feedback: feedback ?? self.feedback,

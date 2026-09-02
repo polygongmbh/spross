@@ -135,10 +135,14 @@ extension DateDrillView {
         if preset > 0 {
             run = run.doCopy(config: run.config, task: run.task, index: run.index,
                              level: run.level, bestLevel: run.bestLevel,
-                             winsAtLevel: run.winsAtLevel, done: Int32(preset + 6),
-                             streak: Int32(preset), bestStreak: Int32(max(preset, 12)),
-                             missRun: run.missRun, outcomes: run.outcomes,
-                             solved: run.solved, feedback: run.feedback,
+                             winsAtLevel: run.winsAtLevel,
+                             core: run.core.doCopy(done: Int32(preset + 6),
+                                                   streak: Int32(preset),
+                                                   bestStreak: Int32(max(preset, 12)),
+                                                   missRun: run.core.missRun,
+                                                   outcomes: run.core.outcomes,
+                                                   solved: run.core.solved),
+                             feedback: run.feedback,
                              otherWord: run.otherWord, finished: run.finished)
         }
         // `-uitest-close 1`: leave the way the ✕ leaves, so the tile the run
