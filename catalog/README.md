@@ -290,6 +290,25 @@ Realization fields — only `text` is required:
   teaches it rather than being restated per card. Where the rule is what the
   learner has to practice, a phrase that exercises it beats every wording of it.
 
+## Parked areas
+
+An area folder that is deliberately absent from `areas.json`.
+The manifest is what the loader reads, so a parked area takes no seed index, joins no card
+and reaches no box — it is content kept in the catalog rather than in a branch, because the
+catalog is where it will land and where the gates can watch it.
+
+Parking is for content whose GUARD is missing, never for content that is unfinished:
+a half-written area belongs on a branch, where nothing has to explain it.
+What earns the state is work that is done and must not yet be met —
+`reproduction` waits on a quiet flag and a default-off setting, not on its own wording.
+
+The declaration is `CatalogLintTest.parkedAreas`, beside the collision list and reviewed the
+same way: a folder missing from the manifest is a hole unless that set says otherwise.
+While it waits, `parkedAreasStayActivatable` holds only what decides whether it can still
+land — its slugs are card ids, so one minted live in the meantime would fuse two concepts,
+and a missing language file would ship a hole. The content rules do NOT apply, because a
+parked area is not in `catalog.areas`; activation is a review, not a rename.
+
 ## The rest of the format
 
 This file owns the concept model and the area files.

@@ -1,14 +1,10 @@
-# Parked draft — the `reproduction` area
+# Parked area — `reproduction`
 
-An area written, validated and deliberately NOT shipped.
-It lives here rather than under `catalog/areas/` because two lints make an
-unregistered area impossible there:
-`everyAreaFolderIsRegisteredInTheManifest` requires every folder holding a
-`concepts.json` to appear in `areas.json`, and `noConceptsFileLivesOutsideAreas`
-refuses a `concepts.json` anywhere else under `catalog/`.
-There is no third state, so parking means leaving the tree.
-
-The files are already in `catalog-format.py` layout, so activation is mechanical.
+An area written, sourced and deliberately NOT shipped.
+It sits in the catalog like any other and is absent from `areas.json` on purpose,
+which `CatalogLintTest.parkedAreas` records so the gap reads as a decision rather
+than a hole. The loader reads the manifest, so nothing here takes a seed index,
+joins a card or reaches a box. What the format means by parking is `../../README.md`.
 
 ## Why it is parked
 
@@ -33,11 +29,13 @@ answers a reviewer better than a partial age signal does.
 
 ## Activating it
 
-1. `git mv docs/drafts/reproduction catalog/areas/reproduction`
-2. Add it to `catalog/areas.json` — last inside the `healthcare` group, so it
+1. Add it to `catalog/areas.json` — last inside the `healthcare` group, so it
    lands several hundred cards into the seed order rather than in a beginner's
    first weeks. It needs an `emoji` there; the concepts deliberately carry none.
+2. Drop `"reproduction"` from `CatalogLintTest.parkedAreas`.
 3. `scripts/catalog-format.py --check` and `./gradlew :kern:jvmTest -Psweeps`.
+   The content lints see this area for the first time here, so expect them to have
+   something to say — that is the review, and it is the point of doing it in one step.
 4. Delete this README.
 
 ## What the register rule is, and why

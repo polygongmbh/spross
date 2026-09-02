@@ -19,6 +19,26 @@ class CatalogLintTest {
     private val areasRoot get() = File(RealCatalog.root, "areas")
     private val slugPattern = Regex("^[a-z0-9]+(-[a-z0-9]+)*$")
 
+    /**
+     * Areas that exist on disk on purpose and are deliberately NOT in `areas.json` —
+     * written, sourced and formatted, waiting on something outside the catalog before a
+     * learner may meet them. The manifest is what the loader reads, so a parked area takes
+     * no seed index, joins no card and reaches no box; this set is what tells the folder
+     * rule that the absence is a decision rather than a hole
+     * ([everyAreaFolderIsRegisteredInTheManifest]), and [parkedAreasStayActivatable] is
+     * what keeps the content honest while it waits.
+     *
+     * Parking is for content whose guard is missing, never for content that is unfinished:
+     * a half-written area belongs on a branch, where nothing has to explain it.
+     *
+     * - `reproduction` (parked 2026-09-02): Penis, Vagina and Hoden, ready in all eight
+     *   languages. Two things have to ship before they may: a kern-owned quiet flag, so the
+     *   listening drill never reads them aloud unattended, and a default-off setting that
+     *   hides the shelf. `catalog/areas/reproduction/README.md` carries the rest, including
+     *   why the crude Swahili the corpus holds is absent rather than merely unlisted.
+     */
+    private val parkedAreas = setOf("reproduction")
+
     /** The one word each language adds to soften a request — see [alternatesDoNotAddOrDropPolitenessParticles]. */
     private val politenessParticle = mapOf(
         "de" to Regex("\\bbitte\\b", RegexOption.IGNORE_CASE),
@@ -60,7 +80,42 @@ class CatalogLintTest {
             .map { it.name }
             .toSortedSet()
         assertTrue(onDisk.isNotEmpty(), "no area folders found under $areasRoot")
-        assertEquals(onDisk, catalog.areaNames.toSortedSet())
+        assertEquals(parkedAreas, parkedAreas intersect onDisk, "parked area with no folder")
+        assertEquals(onDisk - parkedAreas, catalog.areaNames.toSortedSet())
+    }
+
+    /**
+     * A parked area is held to everything that decides whether it can still be activated,
+     * because the catalog moves underneath it while it waits: its slugs are the card ids
+     * the box would key by, so one minted live in the meantime would fuse two concepts on
+     * the day it lands, and a language file gone missing would ship a hole.
+     *
+     * What it is NOT held to is the content rules the live lints apply — a parked area is
+     * not in `catalog.areas`, so wording, notes and grammar go unchecked until it joins.
+     * Activation is therefore a review, never a rename: move it into `areas.json`, drop it
+     * from [parkedAreas], and let the full gate say what it thinks.
+     */
+    @Test
+    fun parkedAreasStayActivatable() {
+        val live = catalog.areas.flatMap { it.concepts }.map { it.slug }.toSet()
+        for (area in parkedAreas) {
+            val folder = File(areasRoot, area)
+            assertTrue(slugPattern.matches(area), "bad parked area name: $area")
+            val concepts = CatalogParser.parseConcepts(
+                area = area,
+                path = "areas/$area/concepts.json",
+                text = File(folder, "concepts.json").readText(),
+                firstSeedIndex = 0,
+            )
+            assertTrue(concepts.isNotEmpty(), "$area: parked with no concepts")
+            val slugs = concepts.map { it.slug }
+            assertEquals(emptyList(), slugs.filter { it in live }, "$area: slug already live")
+            for (lang in catalog.languages.keys) {
+                val file = File(folder, "$lang.json")
+                assertTrue(file.isFile, "$area: parked without $lang.json")
+                CatalogParser.parseAreaLanguageFile("areas/$area/$lang.json", file.readText(), slugs.toSet())
+            }
+        }
     }
 
     /**
