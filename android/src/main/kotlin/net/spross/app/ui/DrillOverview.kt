@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
 
 /**
- * The shape both Werkstatt pages wear.
+ * The shape both TrainerStanding pages wear.
  *
  * Run first, reading after: the picks and the button on top, the table below them. Reading
  * matter and the run it prepares you for are ONE surface — a look-up five taps inside a

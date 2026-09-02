@@ -24,7 +24,7 @@ fun DatesOverviewScreen(model: AppModel) {
     // The join is the registry: no calendars for this pair, no page — and the chip that
     // opens it gates on the same predicate, so this is a closed door rather than a screen.
     val content = model.dates ?: return
-    val best = model.werkstatt.datesBest
+    val best = model.trainer.datesBest
     TypedDrillOverview(
         model = model,
         ladder = TypedDrillLadder(

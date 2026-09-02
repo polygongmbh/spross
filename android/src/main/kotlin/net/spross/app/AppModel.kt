@@ -188,11 +188,11 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         private set
 
     /**
-     * The Werkstatt's standing: the climbed ladder, what the letter drill can ask here, and
+     * The TrainerStanding's standing: the climbed ladder, what the letter drill can ask here, and
      * what the last run came to. Its store is kern-keyed SharedPreferences — a drill touches
      * no card and no schedule, so none of it is box state.
      */
-    val werkstatt = Werkstatt(TrainerStore(prefs))
+    val trainer = TrainerStanding(TrainerStore(prefs))
 
     var screen by mutableStateOf<Screen>(Screen.Loading)
         private set
@@ -432,25 +432,25 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * and last night's figures are not news, so the result tile starts clear.
      */
     fun openNumbers() {
-        werkstatt.clearResult()
+        trainer.clearResult()
         refreshWerkstatt()
         screen = Screen.Numbers
     }
 
     fun openLetters() {
-        werkstatt.clearResult()
+        trainer.clearResult()
         refreshWerkstatt()
         screen = Screen.Letters
     }
 
     fun openCountries() {
-        werkstatt.clearResult()
+        trainer.clearResult()
         refreshWerkstatt()
         screen = Screen.Countries
     }
 
     fun openDates() {
-        werkstatt.clearResult()
+        trainer.clearResult()
         refreshWerkstatt()
         screen = Screen.Dates
     }
@@ -542,7 +542,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     fun finishDrill(back: Screen, summary: DrillRunSummary?, title: String) {
         pronouncer.stop()
-        werkstatt.show(summary, title)
+        trainer.show(summary, title)
         refreshWerkstatt()
         screen = back
     }
@@ -553,15 +553,15 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * voice may be installed in Settings while the app sleeps
      * (`SprossActivity.onResume` calls this too).
      *
-     * Never on the way to Home: the Werkstatt card gates on file presence alone, and this
+     * Never on the way to Home: the TrainerStanding card gates on file presence alone, and this
      * is a catalog sweep no start-up should pay for.
      */
     fun refreshWerkstatt() {
         val stamp = box?.joinStamp ?: return
-        werkstatt.readLadder(stamp.target)
-        werkstatt.seeLetters(letterReport())
-        werkstatt.readCountries(stamp.source, stamp.target)
-        werkstatt.readDates(stamp.source, stamp.target)
+        trainer.readLadder(stamp.target)
+        trainer.seeLetters(letterReport())
+        trainer.readCountries(stamp.source, stamp.target)
+        trainer.readDates(stamp.source, stamp.target)
     }
 
     private suspend fun activate(source: String, target: String) {

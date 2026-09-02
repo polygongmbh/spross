@@ -23,7 +23,7 @@ fun CountriesOverviewScreen(model: AppModel) {
     // The join is the registry: no atlas for this pair, no page — and the chip that opens
     // it gates on the same predicate, so this is a closed door rather than a screen.
     val content = model.atlas ?: return
-    val best = model.werkstatt.countriesBest
+    val best = model.trainer.countriesBest
     TypedDrillOverview(
         model = model,
         ladder = TypedDrillLadder(

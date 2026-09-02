@@ -223,7 +223,7 @@ private fun WerkstattCard(model: AppModel) {
 }
 
 /**
- * One Werkstatt entry: the glyph large on top, the name at full caption size under it —
+ * One TrainerStanding entry: the glyph large on top, the name at full caption size under it —
  * the iOS chip's face, stacked so three names share the row without shrinking to fit
  * beside their glyphs. The label still steps down rather than wrapping, but only where
  * a name alone outgrows a third of the screen.

@@ -89,7 +89,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         return
     }
     val run = flow.view(chrome)
-    val store = model.werkstatt.store
+    val store = model.trainer.store
     val key = page.key
 
     // why: from the corner or from "Fertig", the close is the same one — a pending answer

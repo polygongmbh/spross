@@ -96,7 +96,7 @@ class TrainerStore(private val prefs: SharedPreferences) {
  * closing run books INTO, the availability is recomputed on every foreground, and the
  * result is shown by the page the run came back to rather than by a screen of its own.
  */
-class Werkstatt(val store: TrainerStore) {
+class TrainerStanding(val store: TrainerStore) {
 
     /** The highest Sprosse each variant ever reached in the language being learnt. */
     var ladder by mutableStateOf<Map<DrillVariant, Int>>(emptyMap())

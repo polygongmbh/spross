@@ -57,7 +57,7 @@ fun NumbersOverviewScreen(model: AppModel) {
     val offered = remember(language, templates) {
         DrillSelection.offered(language, phrasesRealized = templates.isNotEmpty())
     }
-    val ladder = model.werkstatt.ladder
+    val ladder = model.trainer.ladder
     val combining = DrillSelection.combining(offered, ladder)
 
     // Names rather than the enums, so a rotation keeps the picks: only primitives survive
@@ -75,7 +75,7 @@ fun NumbersOverviewScreen(model: AppModel) {
         .filter { DrillUnlocks.unlocked(it, ladder) }
         .toSet()
 
-    val result = model.werkstatt.result
+    val result = model.trainer.result
     // why: a tile inserted ABOVE the content keeps the scroll offset, so what a run came
     // back with would sit off the top of a page the learner is still looking at.
     LaunchedEffect(result) { if (result != null) scroll.animateScrollTo(0) }
@@ -103,7 +103,7 @@ fun NumbersOverviewScreen(model: AppModel) {
         onClose = { model.closeOverview() },
         onStart = start,
     ) {
-        result?.let { DrillResultTile(it, model.werkstatt.resultTitle, chrome) }
+        result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
 
         OverviewHeading(chrome.trainerOverviewPractice)
         Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {

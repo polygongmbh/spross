@@ -39,11 +39,11 @@ import net.spross.kern.trainer.LetterStage
 fun LettersOverviewScreen(model: AppModel) {
     val chrome = model.chrome
     val language = model.box?.joinStamp?.target ?: return
-    val report = model.werkstatt.letters
+    val report = model.trainer.letters
     val scroll = rememberScrollState()
     BackHandler { model.closeOverview() }
 
-    val result = model.werkstatt.result
+    val result = model.trainer.result
     // why: the numbers page's rule — a tile inserted above the content keeps the offset,
     // so the page comes up to meet it.
     LaunchedEffect(result) { if (result != null) scroll.animateScrollTo(0) }
@@ -58,7 +58,7 @@ fun LettersOverviewScreen(model: AppModel) {
         onClose = { model.closeOverview() },
         onStart = { model.startLetterDrill() },
     ) {
-        result?.let { DrillResultTile(it, model.werkstatt.resultTitle, chrome) }
+        result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
 
         OverviewHeading(chrome.trainerOverviewPractice)
         OverviewPanel {

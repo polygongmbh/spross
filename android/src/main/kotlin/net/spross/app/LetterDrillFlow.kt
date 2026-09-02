@@ -106,7 +106,7 @@ fun AppModel.newLetterDrill(
     onReleaseFocus: () -> Unit = {},
     rng: Random = Random.Default,
 ): LetterDrillFlow? {
-    val report = werkstatt.letters ?: return null
+    val report = trainer.letters ?: return null
     if (!report.drillAvailable) return null
     val state = box ?: return null
     val info = catalog?.languages?.get(report.language) ?: return null

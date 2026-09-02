@@ -348,7 +348,7 @@ fun SpokenWord(
  * mid-word ("Sprach" / "e") and the paragraph reports no overflow at all, so the step
  * search would leave it at full size. A single token gets ONE line, because the only wrap
  * available to it IS a broken word; anything with a space keeps a second line and breaks
- * there. The verdict labels and the Werkstatt entries already wear the same pair.
+ * there. The verdict labels and the TrainerStanding entries already wear the same pair.
  *
  * The floor is where iOS bottoms out — `minimumScaleFactor(0.85)` on its own headword
  * (`VocabCardView.swift`) — so a shrunken word never lands smaller here than it can there.

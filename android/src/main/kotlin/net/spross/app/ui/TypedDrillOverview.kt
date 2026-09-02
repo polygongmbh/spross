@@ -86,7 +86,7 @@ fun TypedDrillOverview(
     // out of reach, and a switch must never outlive the price that bought it.
     val fast = fastPicked && fastOpen
 
-    val result = model.werkstatt.result
+    val result = model.trainer.result
     // why: a tile inserted ABOVE the content keeps the scroll offset, so what a run came
     // back with would sit off the top of a page the learner is still looking at.
     LaunchedEffect(result) { if (result != null) scroll.animateScrollTo(0) }
@@ -101,7 +101,7 @@ fun TypedDrillOverview(
         onClose = { model.closeOverview() },
         onStart = start,
     ) {
-        result?.let { DrillResultTile(it, model.werkstatt.resultTitle, chrome) }
+        result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
 
         OverviewHeading(chrome.trainerOverviewPractice)
         OverviewPanel {

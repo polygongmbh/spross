@@ -72,10 +72,10 @@ fun TrainerSessionScreen(model: AppModel, mode: TrainerMode) {
         return
     }
     val state = flow.state
-    val store = model.werkstatt.store
+    val store = model.trainer.store
 
     // What the result tile says was drilled: a run that asks one thing names it, and one
-    // that interleaves several is the Werkstatt itself.
+    // that interleaves several is the TrainerStanding itself.
     val title = mode.variants.singleOrNull()?.let { chrome.name(it) } ?: chrome.trainerHubTitle
 
     // why: from the corner or from "Fertig", the close is the same one — kern books what
