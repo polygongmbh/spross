@@ -43,14 +43,14 @@ struct TrainerPromptCard: View {
                 .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.center)
             if revealed {
-                DLCardReveal(note: task.gloss) {
-                    DLSpokenWord(pronounce: pronounce, isPlaying: isPlaying) {
+                CardReveal(note: task.gloss) {
+                    SpokenWord(pronounce: pronounce, isPlaying: isPlaying) {
                         Text(task.display)
                             .font(sentence ? Theme.typography.headline : Theme.typography.title)
                             .foregroundStyle(Theme.colors.accent)
                             .multilineTextAlignment(.center)
                             .minimumScaleFactor(0.6)
-                            .dlSpoken(task.display, language: task.language)
+                            .spoken(task.display, language: task.language)
                     }
                 }
                 .transition(.opacity.combined(with: .move(edge: .top)))
@@ -58,7 +58,7 @@ struct TrainerPromptCard: View {
                     // why: same line as the review session's — both explain what
                     // became of the answer, so they read alike.
                     Text("session.otherWord \(otherWord.word) \(otherWord.meanings)")
-                        .dlPauseLine()
+                        .pauseLine()
                 }
             } else if let hint {
                 // why: the reveal TAKES this slot rather than stacking under it —
@@ -71,7 +71,7 @@ struct TrainerPromptCard: View {
         // why: room for the prompt AND the hint pill, held whether or not the
         // pill is there, so the field and button below never move.
         .frame(minHeight: Theme.reserve.drillCard)
-        .dlCardSurface()
+        .cardSurface()
         .animation(.easeOut(duration: 0.25), value: revealed)
     }
 

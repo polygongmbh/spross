@@ -85,7 +85,7 @@ extension SessionView {
                             .frame(maxWidth: .infinity)
                             .contentTransition(.opacity)
                     }
-                    .buttonStyle(DLPrimaryButtonStyle())
+                    .buttonStyle(PrimaryButtonStyle())
                     .keyboardShortcut(.defaultAction)
                     .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
                     // why: this card's whole content is a sound, and a learner who
@@ -110,9 +110,9 @@ extension SessionView {
                 Button {
                     dispatch(TurnIntent.ConfirmPending.shared)
                 } label: {
-                    DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
+                    ActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
                 }
-                .buttonStyle(DLPrimaryButtonStyle())
+                .buttonStyle(PrimaryButtonStyle())
                 .keyboardShortcut(.defaultAction)
             case .correct:
                 // A clean answer auto-advances on the beat kern armed
@@ -123,9 +123,9 @@ extension SessionView {
                     Button {
                         dispatch(TurnIntent.ConfirmPending.shared)
                     } label: {
-                        DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
+                        ActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
                     }
-                    .buttonStyle(DLPrimaryButtonStyle())
+                    .buttonStyle(PrimaryButtonStyle())
                     .keyboardShortcut(.defaultAction)
                 } else {
                     EmptyView()
@@ -140,7 +140,7 @@ extension SessionView {
                         // why: same line as the typo correction — both explain
                         // what became of the answer, so they read alike.
                         Text("session.otherWord \(otherWord.word) \(otherWord.meanings.joined(separator: ", "))")
-                            .dlPauseLine()
+                            .pauseLine()
                             // why: the line says what the learner DID write —
                             // the word it plays is the one they owed, the same
                             // one the reveal above it carries.
@@ -153,9 +153,9 @@ extension SessionView {
                         Button {
                             dispatch(TurnIntent.ConfirmPending.shared)
                         } label: {
-                            DLActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
+                            ActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
                         }
-                        .buttonStyle(DLPrimaryButtonStyle())
+                        .buttonStyle(PrimaryButtonStyle())
                     }
                     // why: always reachable — a step you cannot leave is a
                     // trap, same as the write-out step's own skip. Giving up

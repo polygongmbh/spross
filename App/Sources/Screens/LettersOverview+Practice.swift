@@ -130,7 +130,7 @@ extension LettersOverview {
             Text("trainer.overview.start")
                 .frame(maxWidth: .infinity)
         }
-        .buttonStyle(DLPrimaryButtonStyle())
+        .buttonStyle(PrimaryButtonStyle())
         .disabled(!drillAvailable)
     }
 }

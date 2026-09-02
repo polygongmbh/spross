@@ -34,7 +34,7 @@ struct CountryPromptCard: View {
     /// The name asked about; nil where the flag alone is the question.
     var text: String?
     /// BCP-47 code of the language [text] is WRITTEN in. Never shown — it tags
-    /// the name for VoiceOver (`dlSpoken`), which the caption no longer does
+    /// the name for VoiceOver (`spoken`), which the caption no longer does
     /// and which the placeholder cannot: a11y metadata is not a caption.
     var language: String?
     /// The answer, once the learner has stopped owing it.
@@ -55,13 +55,13 @@ struct CountryPromptCard: View {
         var isPlaying = false
     }
 
-    /// The flag rides in the card's leading slot (`DLCardEmoji`) exactly as a
+    /// The flag rides in the card's leading slot (`CardEmoji`) exactly as a
     /// word's picture does on a review card — never above the words, where it
     /// pushes the name into the space the reveal needs.
     var body: some View {
         HStack(spacing: Theme.spacing.md) {
             if let emoji, text != nil {
-                DLCardEmoji(emoji,
+                CardEmoji(emoji,
                             cue: emojiCue(givesAnswerAway: emojiIsGiveaway),
                             revealed: revealed != nil)
             }
@@ -74,7 +74,7 @@ struct CountryPromptCard: View {
                         .multilineTextAlignment(.center)
                         .lineLimit(3)
                         .minimumScaleFactor(0.5)
-                        .dlSpoken(text, language: language)
+                        .spoken(text, language: language)
                 } else if let emoji {
                     // why: no side slot here — the flag is not the picture beside
                     // the question, it IS the question, so it takes the place and
@@ -89,14 +89,14 @@ struct CountryPromptCard: View {
                         .font(Theme.prompt.glyph)
                 }
                 if let revealed {
-                    DLCardReveal(note: revealed.note) {
-                        DLSpokenWord(pronounce: revealed.pronounce, isPlaying: revealed.isPlaying) {
+                    CardReveal(note: revealed.note) {
+                        SpokenWord(pronounce: revealed.pronounce, isPlaying: revealed.isPlaying) {
                             Text(verbatim: revealed.word)
                                 .font(Theme.typography.title)
                                 .foregroundStyle(Theme.colors.accent)
                                 .multilineTextAlignment(.center)
                                 .minimumScaleFactor(0.6)
-                                .dlSpoken(revealed.word, language: revealed.language)
+                                .spoken(revealed.word, language: revealed.language)
                         }
                     }
                     .transition(.opacity.combined(with: .move(edge: .top)))
@@ -104,13 +104,13 @@ struct CountryPromptCard: View {
                         // why: same line as the review session's — both explain
                         // what became of the answer, so they read alike.
                         Text("session.otherWord \(other.word) \(other.meanings)")
-                            .dlPauseLine()
+                            .pauseLine()
                     }
                 }
             }
             .frame(maxWidth: .infinity)
             if emoji != nil, text != nil {
-                DLCardEmoji.balance()
+                CardEmoji.balance()
             }
         }
         .padding(Theme.spacing.lg)
@@ -118,7 +118,7 @@ struct CountryPromptCard: View {
         // why: the sibling drill cards' height — a learner moving between the
         // drills meets one layout, and the field below never jumps.
         .frame(minHeight: Theme.reserve.drillCard)
-        .dlCardSurface()
+        .cardSurface()
         .animation(.easeOut(duration: 0.25), value: revealed?.word)
     }
 

@@ -1,6 +1,6 @@
 import SwiftUI
 
-// MARK: - DLSpokenWord
+// MARK: - SpokenWord
 //
 // A centered word with the speaker that says it. Every surface that reveals a
 // target-language answer renders it through here — a review card, a drill card,
@@ -12,7 +12,7 @@ import SwiftUI
 // a card carry different accessories (the target side has the speaker, the
 // source side does not).
 
-struct DLSpokenWord<Word: View>: View {
+struct SpokenWord<Word: View>: View {
     /// nil where the word can neither be played nor spoken — the icon and its
     /// ballast both drop, so a word with nothing to hear centers on its own
     /// instead of leaning against an affordance that does nothing.
@@ -52,7 +52,7 @@ struct DLSpokenWord<Word: View>: View {
     }
 }
 
-// MARK: - DLVoice
+// MARK: - Voice
 
 /// Saying a form out loud, asked BY the form rather than handed in already
 /// resolved — for the surfaces that hold MANY forms and cannot know in advance
@@ -60,7 +60,7 @@ struct DLSpokenWord<Word: View>: View {
 ///
 /// nil back — nothing recorded and no voice for the language — drops the
 /// speaker rather than showing a dead one.
-struct DLVoice {
+struct Voice {
     let pronounce: (String) -> (() -> Void)?
     let isPlaying: (String) -> Bool
 }
@@ -127,7 +127,7 @@ extension View {
     /// word on screen tags it the same way. Untagged where no language is
     /// known: a label repeating what is already written buys nothing.
     @ViewBuilder
-    func dlSpoken(_ text: String, language: String?) -> some View {
+    func spoken(_ text: String, language: String?) -> some View {
         if let label = Text.spoken(text, language: language) {
             accessibilityLabel(label)
         } else {
@@ -140,19 +140,19 @@ extension View {
 
 #Preview("Spoken word") {
     VStack(spacing: Theme.spacing.xl) {
-        DLSpokenWord(pronounce: {}) {
+        SpokenWord(pronounce: {}) {
             Text(verbatim: "billete")
                 .font(Theme.typography.title)
                 .foregroundStyle(Theme.colors.accent)
         }
-        DLSpokenWord(pronounce: {}, isPlaying: true) {
+        SpokenWord(pronounce: {}, isPlaying: true) {
             Text(verbatim: "son las tres y cuarto")
                 .font(Theme.typography.title)
                 .foregroundStyle(Theme.colors.accent)
                 .multilineTextAlignment(.center)
         }
         // Nothing to hear: no icon, no ballast — the word centers on its own.
-        DLSpokenWord {
+        SpokenWord {
             Text(verbatim: "elfu mbili")
                 .font(Theme.typography.title)
                 .foregroundStyle(Theme.colors.accent)

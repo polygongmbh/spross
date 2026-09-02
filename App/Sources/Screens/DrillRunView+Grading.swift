@@ -23,7 +23,7 @@ extension DrillRunView {
         // one frame carrying the last one's answer.
         if moved { input = "" }
         let animation: Animation = moved
-            ? (reduceMotion ? .easeOut(duration: 0.2) : .dlCardFlip)
+            ? (reduceMotion ? .easeOut(duration: 0.2) : .cardFlip)
             : .easeOut(duration: 0.25)
         withAnimation(animation) { run = step.run }
         for effect in step.effects { apply(effect) }
@@ -44,9 +44,9 @@ extension DrillRunView {
             autoAdvance?.cancel()
         case .tone(let cue):
             switch cue.kind {
-            case .correct: DLSound.correct()
-            case .wrong: DLSound.wrong()
-            case .reveal: DLSound.reveal()
+            case .correct: Sound.correct()
+            case .wrong: Sound.wrong()
+            case .reveal: Sound.reveal()
             }
         case .releaseFocus:
             // why: the amber hold waits for a tap, and a held keyboard covers
@@ -106,7 +106,7 @@ extension DrillRunView {
         TrainerRecords.record(Int(summary.bestStreak), for: storageKey)
         // why: the cheer marks the record, not the end of a run — confetti and
         // cheer are one thing (`docs/design.md`), and the tile rains the one.
-        if summary.newRecord { DLSound.cheer() }
+        if summary.newRecord { Sound.cheer() }
         onFinish(DrillRunResult(summary, title: Face.resultTitle))
         dismiss()
     }

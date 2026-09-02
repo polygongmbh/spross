@@ -9,7 +9,7 @@ import SwiftUI
 // that carries meaning has to hold still to be read. Nothing here changes
 // layout, so a swaying piece never nudges its neighbors.
 
-private struct DLSway: ViewModifier {
+private struct Sway: ViewModifier {
     let angle: Double
     let period: Double
 
@@ -34,7 +34,7 @@ extension View {
     /// periods — one shared clock reads as a single rigid object rocking,
     /// which is the opposite of several light things hanging in the air.
     /// Reduce Motion drops it entirely: it is decoration that never stops.
-    func dlSway(angle: Double = 5, period: Double = 2.6) -> some View {
-        modifier(DLSway(angle: angle, period: period))
+    func sway(angle: Double = 5, period: Double = 2.6) -> some View {
+        modifier(Sway(angle: angle, period: period))
     }
 }

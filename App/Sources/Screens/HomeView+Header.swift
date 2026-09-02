@@ -94,16 +94,16 @@ extension HomeView {
         return lines
     }
 
-    /// The word the hour lends as an address. Resolved through `DLChrome` against the
+    /// The word the hour lends as an address. Resolved through `ChromeStrings` against the
     /// profile's known language rather than `String(localized:)`, which would read the
     /// device's — and it has to be a plain String, since it goes inside a sentence the
     /// catalog wrote.
     private func addressee(_ part: DayPart) -> String? {
         switch part {
         case .morning:
-            return DLChrome.string("home.greeting.morning.addressee", locale: model.knownLocale)
+            return ChromeStrings.string("home.greeting.morning.addressee", locale: model.knownLocale)
         case .night:
-            return DLChrome.string("home.greeting.night.addressee", locale: model.knownLocale)
+            return ChromeStrings.string("home.greeting.night.addressee", locale: model.knownLocale)
         case .day, .evening:
             return nil
         }

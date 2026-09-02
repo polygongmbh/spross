@@ -33,7 +33,7 @@ extension SessionView {
             if model.coachActive {
                 // why: the field opened by itself after a miss — the first round says
                 // what it is FOR, or copying a word off the card reads as busywork.
-                Text(SessionCoach.writeLine).dlPauseLine()
+                Text(SessionCoach.writeLine).pauseLine()
             }
             if step.missed {
                 // why: the answer is already on the card, so this points back to it.
@@ -53,6 +53,6 @@ extension SessionView {
     private var copyPlaceholder: String {
         guard let target = model.targetLanguage else { return "" }
         let name = LanguageNames.display(target, locale: locale, catalog: model.catalog)
-        return String(format: DLChrome.string("session.copy.placeholder %@", locale: locale), name)
+        return String(format: ChromeStrings.string("session.copy.placeholder %@", locale: locale), name)
     }
 }

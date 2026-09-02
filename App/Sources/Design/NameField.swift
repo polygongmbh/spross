@@ -5,7 +5,7 @@ import SwiftUI
 ///
 /// Both places that ask for the name take it — the box's settings and the first run —
 /// so the question cannot come to look like two different questions.
-struct DLNameField: View {
+struct NameField: View {
     let placeholder: LocalizedStringKey
     @Binding var text: String
 

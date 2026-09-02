@@ -19,7 +19,7 @@ struct VocabCardView: View {
     /// ♀ badge (never graded).
     struct Side {
         var text: String
-        var article: DLArticle?
+        var article: Theme.Article?
         var plural: String?
         var alternates: String?
         /// Disambiguating label ABOVE the headword — the area, set only on an ambiguous
@@ -42,7 +42,7 @@ struct VocabCardView: View {
         /// ear, where showing the word would be showing the answer.
         var listening: Bool = false
 
-        init(text: String, article: DLArticle? = nil, plural: String? = nil,
+        init(text: String, article: Theme.Article? = nil, plural: String? = nil,
              alternates: String? = nil, context: String? = nil, femMarker: Bool = false,
              language: String? = nil, pronounce: (() -> Void)? = nil, isPlaying: Bool = false,
              listening: Bool = false) {
@@ -62,7 +62,7 @@ struct VocabCardView: View {
     /// WHEN the picture appears — the shared slot's rule, named here for the
     /// call sites that already speak of a card's emoji cue. Its place never
     /// changes, so `onReveal` fades it into a slot that was already there.
-    typealias EmojiCue = DLCardEmoji.Cue
+    typealias EmojiCue = CardEmoji.Cue
 
     /// Per-word illustration; nil for verbs/phrases with no seed emoji —
     /// the card then drops the slot and centers on the word itself.
@@ -92,7 +92,7 @@ struct VocabCardView: View {
     /// What the surface is; the card works its own layout out from that.
     var arrangement: Arrangement = .beside
 
-    /// The picture (`DLCardEmoji`) belongs to the CARD rather than the prompt
+    /// The picture (`CardEmoji`) belongs to the CARD rather than the prompt
     /// line, so it stays centered against prompt and reveal together instead of
     /// riding up as the card grows. Its slot is held for the card's whole life
     /// in either arrangement — the card's text stays centered and the picture is
@@ -106,7 +106,7 @@ struct VocabCardView: View {
             // word, a word under an area label, or the replay glyph of a by-ear
             // question; a card that owns the screen is free to grow into it.
             .frame(minHeight: shared ? Theme.reserve.reviewCard : nil)
-            .dlCardSurface()
+            .cardSurface()
             .animation(.easeOut(duration: 0.25), value: revealed)
     }
 
@@ -144,14 +144,14 @@ struct VocabCardView: View {
                 if revealed {
                     // why: the divider belongs beside the picture, so the reveal
                     // grows the row rather than starting a second stack under it.
-                    DLCardReveal(note: nil) {
+                    CardReveal(note: nil) {
                         headwordBlock(answer, emphasized: true)
                     }
                     .transition(.opacity.combined(with: .move(edge: .top)))
                 }
             }
             .frame(maxWidth: .infinity)
-            if hasEmoji { DLCardEmoji.balance(emojiSize) }
+            if hasEmoji { CardEmoji.balance(emojiSize) }
         }
     }
 
@@ -162,7 +162,7 @@ struct VocabCardView: View {
         VStack(spacing: Theme.spacing.xs) {
             secondaryLines(answer)
             if let note {
-                Text(note).dlNoteLine()
+                Text(note).noteLine()
             }
         }
         .frame(maxWidth: .infinity)
@@ -173,7 +173,7 @@ struct VocabCardView: View {
     }
 
     private var picture: some View {
-        DLCardEmoji(emoji ?? "", size: emojiSize, cue: emojiCue, revealed: revealed)
+        CardEmoji(emoji ?? "", size: emojiSize, cue: emojiCue, revealed: revealed)
     }
 
     private var words: some View {
@@ -194,11 +194,11 @@ struct VocabCardView: View {
     /// The screen belongs to more than this card — the tighter of the two.
     private var shared: Bool { arrangement == .beside }
 
-    private var emojiSize: DLCardEmoji.Size { shared ? .compact : .hero }
+    private var emojiSize: CardEmoji.Size { shared ? .compact : .hero }
 
     @ViewBuilder
     private var revealSection: some View {
-        DLCardReveal(note: note) {
+        CardReveal(note: note) {
             sideBlock(answer, emphasized: true)
         }
     }
@@ -273,7 +273,7 @@ struct VocabCardView: View {
             SpeakerIcon(size: .large, isPlaying: side.isPlaying, pronounce: side.pronounce)
                 .accessibilityLabel("a11y.action.pronounce")
         } else {
-            DLSpokenWord(pronounce: side.pronounce,
+            SpokenWord(pronounce: side.pronounce,
                          isPlaying: side.isPlaying,
                          badge: side.femMarker ? AnyView(FeminineBadge()) : nil) {
                 headlineWord(side, emphasized: emphasized)
@@ -282,11 +282,11 @@ struct VocabCardView: View {
     }
 
     /// The headline as VoiceOver should hear it: tagged with the language it is
-    /// written in (`dlSpoken`), article included, because that is how the line
+    /// written in (`spoken`), article included, because that is how the line
     /// reads on screen.
     private func headlineWord(_ side: Side, emphasized: Bool) -> some View {
         headlineText(side, emphasized: emphasized)
-            .dlSpoken(side.article.map { "\($0.text) \(side.text)" } ?? side.text,
+            .spoken(side.article.map { "\($0.text) \(side.text)" } ?? side.text,
                       language: side.language)
     }
 
@@ -342,7 +342,7 @@ struct CardFlipEffect: ViewModifier, @MainActor Animatable {
 
 extension AnyTransition {
     /// Insertion flips in from the right, removal flips out to the left.
-    @MainActor static var dlCardFlip: AnyTransition {
+    @MainActor static var cardFlip: AnyTransition {
         .asymmetric(
             insertion: .modifier(active: CardFlipEffect(angle: 90),
                                  identity: CardFlipEffect(angle: 0)),
@@ -354,7 +354,7 @@ extension AnyTransition {
 
 extension Animation {
     /// The one animation used for the between-cards flip.
-    static let dlCardFlip = Animation.easeInOut(duration: 0.3)
+    static let cardFlip = Animation.easeInOut(duration: 0.3)
 }
 
 // MARK: - ArticleBadge
@@ -362,7 +362,7 @@ extension Animation {
 /// Colored article pill, exactly like the poster's "der/die/das" pills.
 /// The article text itself carries the meaning; color only reinforces it.
 struct ArticleBadge: View {
-    let article: DLArticle
+    let article: Theme.Article
 
     var body: some View {
         Text(article.text)

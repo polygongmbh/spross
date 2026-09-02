@@ -155,11 +155,11 @@ extension DrillOverview {
     }
 
     /// Which side asks and which side answers, as the switch stands right now —
-    /// a runtime `%@` pair, so it resolves through `DLChrome`.
+    /// a runtime `%@` pair, so it resolves through `ChromeStrings`.
     private var reverseHint: String {
         let asked = reverse ? target : source
         let owed = reverse ? source : target
-        return String(format: DLChrome.string(Face.reverseHintKey, locale: locale),
+        return String(format: ChromeStrings.string(Face.reverseHintKey, locale: locale),
                       LanguageNames.display(asked, locale: locale, catalog: model.catalog),
                       LanguageNames.display(owed, locale: locale, catalog: model.catalog))
     }
@@ -173,7 +173,7 @@ extension DrillOverview {
             Text("trainer.overview.start")
                 .frame(maxWidth: .infinity)
         }
-        .buttonStyle(DLPrimaryButtonStyle())
+        .buttonStyle(PrimaryButtonStyle())
         .disabled(content == nil)
     }
 }

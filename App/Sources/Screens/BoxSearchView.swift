@@ -24,7 +24,7 @@ struct BoxSearchView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                DLSearchField(placeholder: "box.search.placeholder", text: $query)
+                SearchField(placeholder: "box.search.placeholder", text: $query)
                     .padding(.horizontal, Theme.spacing.xl)
                     .padding(.bottom, Theme.spacing.lg)
                 ScrollView {
@@ -93,7 +93,7 @@ struct BoxSearchView: View {
                     .font(Theme.typography.body)
                     .foregroundStyle(Theme.colors.textSecondary)
                 Button("box.search.writeOwn \(query)") { writingOwnWord = true }
-                    .buttonStyle(DLSoftButtonStyle())
+                    .buttonStyle(SoftButtonStyle())
             }
             .padding(.top, Theme.spacing.lg)
         } else {

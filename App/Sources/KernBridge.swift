@@ -236,10 +236,10 @@ extension AnswerInputView.AlmostReason {
     }
 }
 
-extension DLGender {
+extension Theme.Gender {
     /// The palette's twin of the box's `Gender` — kern names the gender an
     /// article marks (`model/Article.kt`), the design system names the hue.
-    init?(_ gender: Gender?) {
+    init?(_ gender: SprossKern.Gender?) {
         guard let gender else { return nil }
         switch gender {
         case .masculine: self = .masculine

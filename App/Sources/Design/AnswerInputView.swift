@@ -63,7 +63,7 @@ struct AnswerInputView: View {
     /// How the correction box says the form it is carrying — the box is the one
     /// place that knows which word it shows, so it is the one place that may ask
     /// for a voice for it. Left off where a surface has nothing to say it with.
-    var correctionVoice: DLVoice?
+    var correctionVoice: Voice?
     /// Which keyboard the answer is written on. A question answered with a VALUE
     /// asks for `.numbersAndPunctuation`, which — unlike `.numberPad` — has a
     /// return key as well as the `, . / : -` a time, a decimal or a fraction needs.
@@ -190,7 +190,7 @@ struct AnswerInputView: View {
     /// correction is the one word on screen the learner most needs to take in,
     /// and a 12 pt italic afterthought is not how that lands.
     ///
-    /// Leading-aligned, so no mirrored ballast is needed — `DLSpokenWord`
+    /// Leading-aligned, so no mirrored ballast is needed — `SpokenWord`
     /// centers, which is a different problem.
     private func correctionBox(form: String, caption: LocalizedStringKey) -> some View {
         HStack(spacing: Theme.spacing.md) {

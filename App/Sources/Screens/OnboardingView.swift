@@ -169,7 +169,7 @@ struct OnboardingView: View {
             Text("onboarding.name.question")
                 .font(Theme.typography.headline)
                 .foregroundStyle(Theme.colors.textPrimary)
-            DLNameField(placeholder: "settings.name.placeholder", text: $name)
+            NameField(placeholder: "settings.name.placeholder", text: $name)
         }
     }
 
@@ -189,12 +189,12 @@ struct OnboardingView: View {
                 .foregroundStyle(Theme.colors.textPrimary)
             if open {
                 ForEach(options, id: \.self) { candidate in
-                    DLSelectionRow(title: Text(verbatim: languageName(candidate)),
+                    SelectionRow(title: Text(verbatim: languageName(candidate)),
                                    mark: .one,
                                    selected: selected == candidate) { onPick(candidate) }
                 }
             } else if let selected {
-                DLSelectionRow(title: Text(verbatim: languageName(selected)),
+                SelectionRow(title: Text(verbatim: languageName(selected)),
                                mark: .fold,
                                selected: false) {
                     withAnimation(.easeInOut(duration: 0.2)) { onOpen() }
@@ -212,7 +212,7 @@ struct OnboardingView: View {
             Text("common.next")
                 .frame(maxWidth: .infinity)
         }
-        .buttonStyle(DLPrimaryButtonStyle())
+        .buttonStyle(PrimaryButtonStyle())
         .disabled(target == nil)
         .padding(.top, Theme.spacing.lg)
     }

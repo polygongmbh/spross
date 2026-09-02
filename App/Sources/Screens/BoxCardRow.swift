@@ -47,7 +47,7 @@ struct BoxCardRow: View {
     }
 
     /// The word as it explains itself: picture, both sides, and the catalog's
-    /// note under them in the same line the card's reveal wears (`dlNoteLine`),
+    /// note under them in the same line the card's reveal wears (`noteLine`),
     /// so a gloss read here and a gloss read mid-round are the same line.
     private func notePreview(_ note: String) -> some View {
         VStack(spacing: Theme.spacing.sm) {
@@ -59,7 +59,7 @@ struct BoxCardRow: View {
             Text(card.source.text)
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
-            Text(note).dlNoteLine()
+            Text(note).noteLine()
         }
         .padding(Theme.spacing.lg)
         .frame(maxWidth: 300)
@@ -181,7 +181,7 @@ struct BoxCardRow: View {
                 Button(action: pack) {
                     Image(systemName: "tray.and.arrow.down.fill")
                 }
-                .buttonStyle(DLIconButtonStyle())
+                .buttonStyle(IconButtonStyle())
                 .accessibilityLabel("box.card.pack")
             }
         case .packed(let packed):
@@ -193,7 +193,7 @@ struct BoxCardRow: View {
                 } label: {
                     Image(systemName: "tray.and.arrow.up.fill")
                 }
-                .buttonStyle(DLIconButtonStyle(color: Theme.colors.success))
+                .buttonStyle(IconButtonStyle(color: Theme.colors.success))
                 .accessibilityLabel("box.card.unpack")
             } else {
                 // A pill, not an icon: a bare tray glyph reads as a control here too,

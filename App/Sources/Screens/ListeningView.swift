@@ -80,9 +80,9 @@ struct ListeningView: View {
 
     /// The article the card paints, out of the one kern already decided is
     /// spoken — so what is heard and what is read can never disagree.
-    private func article(of turn: ListeningTurn) -> DLArticle? {
+    private func article(of turn: ListeningTurn) -> Theme.Article? {
         guard let article = turn.spokenArticle else { return nil }
-        return DLArticle(article, gender: DLGender(articleGender(article: article)))
+        return Theme.Article(article, gender: Theme.Gender(articleGender(article: article)))
     }
 
     // MARK: - Transport

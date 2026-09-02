@@ -8,7 +8,7 @@ import SwiftUI
 /// `key` is a catalog key (`home.offer.start`). `targetLocale` is
 /// `AppModel.targetChromeLocale` — nil for learners whose target language has
 /// no chrome yet, which simply hides the subtitle.
-struct DLActionLabel: View {
+struct ActionLabel: View {
     @Environment(\.locale) private var locale
     let key: String
     var targetLocale: Locale?
@@ -18,7 +18,7 @@ struct DLActionLabel: View {
             Text(LocalizedStringKey(key))
             if let targetLocale,
                targetLocale.language.languageCode?.identifier != locale.language.languageCode?.identifier {
-                Text(DLChrome.string(key, locale: targetLocale))
+                Text(ChromeStrings.string(key, locale: targetLocale))
                     .font(Theme.typography.caption)
                     .opacity(0.75)
             }

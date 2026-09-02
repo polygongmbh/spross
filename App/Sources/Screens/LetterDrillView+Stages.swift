@@ -23,7 +23,7 @@ extension LetterDrillView {
                                        isPlaying: promptIsPlaying,
                                        replayFocus: $replayFocused)
                             .id(run.index)
-                            .transition(reduceMotion ? .opacity : .dlCardFlip)
+                            .transition(reduceMotion ? .opacity : .cardFlip)
                     }
                     switch task.stage {
                     case .choiceEasy, .choiceConfusable:
@@ -135,7 +135,7 @@ extension LetterDrillView {
         .disabled(answered)
         // why: a bare Cyrillic glyph read by a German engine is a guess —
         // "Buchstabe ч" is not.
-        .accessibilityLabel(Text(verbatim: String(format: DLChrome.string("a11y.glyph.letter %@",
+        .accessibilityLabel(Text(verbatim: String(format: ChromeStrings.string("a11y.glyph.letter %@",
                                                                          locale: locale),
                                                   glyph)))
         .accessibilityValue(answered && isAnswer ? Text("a11y.verdict.correct") : Text(verbatim: ""))
@@ -208,7 +208,7 @@ extension LetterDrillView {
                         .frame(maxWidth: .infinity)
                         .contentTransition(.opacity)
                 }
-                .buttonStyle(DLPrimaryButtonStyle())
+                .buttonStyle(PrimaryButtonStyle())
                 .keyboardShortcut(.defaultAction)
                 .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
             case .almost:
@@ -239,7 +239,7 @@ extension LetterDrillView {
         } label: {
             Text("common.next").frame(maxWidth: .infinity)
         }
-        .buttonStyle(DLPrimaryButtonStyle())
+        .buttonStyle(PrimaryButtonStyle())
         .keyboardShortcut(.defaultAction)
     }
 }

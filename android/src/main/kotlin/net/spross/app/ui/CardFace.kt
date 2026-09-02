@@ -97,7 +97,7 @@ fun CardFace(
  * (`surfaceTint = Transparent`), which left every surface but this one perfectly flat.
  *
  * The hairline is deliberately faint: the fill and the shadow carry the boundary and the
- * edge only closes it (iOS `dlCardSurface`, separator @ 0.6).
+ * edge only closes it (iOS `cardSurface`, separator @ 0.6).
  */
 @Composable
 fun Modifier.panel(shape: Shape = MaterialTheme.shapes.medium): Modifier = this
@@ -497,7 +497,7 @@ private val HEADWORD_FLOOR = 19.sp
  *
  * An elevation shadow is the platform's, cut for the platform's own depth ladder: tight,
  * dark, and hard at the edge. The canonical one is a wide bloom at 8 % black, dropped six
- * below the card (iOS `dlCardShadow`), and it is drawn here rather than asked for so the
+ * below the card (iOS `cardShadow`), and it is drawn here rather than asked for so the
  * two cuts lift their cards the same amount.
  */
 private val CARD_SHADOW = Shadow(

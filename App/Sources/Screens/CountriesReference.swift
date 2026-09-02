@@ -99,11 +99,11 @@ struct CountriesReference: View {
             Text(verbatim: name)
                 .font(Theme.typography.headline)
                 .foregroundStyle(tint)
-                .dlSpoken(name, language: language)
+                .spoken(name, language: language)
             Text(verbatim: people)
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
-                .dlSpoken(people, language: language)
+                .spoken(people, language: language)
         }
         .multilineTextAlignment(alignment == .trailing ? .trailing : .leading)
         .fixedSize(horizontal: false, vertical: true)

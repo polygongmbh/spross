@@ -25,7 +25,7 @@ struct ForestSection: View {
                               streakDays: model.stats?.streakDays ?? 0,
                               flame: model.stats?.flame ?? .unlit)
             ForestCanvas(trees: model.trees, open: open, describe: describe)
-                .environment(\.dlContentWidth, width)
+                .environment(\.contentWidth, width)
             caption
         }
     }

@@ -63,7 +63,7 @@ struct ActivityStripView: View {
             RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
                 .fill(Theme.colors.surface)
         )
-        .dlCardShadow()
+        .cardShadow()
         .accessibilityElement(children: .combine)
         .accessibilityLabel(activityLabel(days))
     }

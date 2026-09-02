@@ -111,7 +111,7 @@ struct SessionScaffold<Content: View>: View {
     /// Constant chrome, so it costs the card below it not one point of layout —
     /// which is why the switch lives up here and not on the card itself.
     ///
-    /// It governs the SPOKEN WORDS only. The feedback chimes are DLSound's and
+    /// It governs the SPOKEN WORDS only. The feedback chimes are Sound's and
     /// deliberately stay outside its scope (the ring/silent switch reaches them
     /// already); a global sound switch, if it is ever wanted, is its own thing.
     /// Switching it ON is read as a request to hear something and lifts autoplay
@@ -194,10 +194,10 @@ struct SessionExitButtons: View {
             Button(action: onDone) {
                 Text("common.done").frame(maxWidth: .infinity)
             }
-            .buttonStyle(DLPrimaryButtonStyle())
+            .buttonStyle(PrimaryButtonStyle())
             if let onPractice {
                 Button("session.done.keepPracticing", action: onPractice)
-                    .buttonStyle(DLSoftButtonStyle())
+                    .buttonStyle(SoftButtonStyle())
             }
         }
         // why: a celebration ending flush against the bottom edge reads as a

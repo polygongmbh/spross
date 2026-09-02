@@ -77,18 +77,18 @@ struct DatesReference: View {
             Text(verbatim: row.source)
                 .font(Theme.typography.headline)
                 .foregroundStyle(Theme.colors.textPrimary)
-                .dlSpoken(row.source, language: source)
+                .spoken(row.source, language: source)
             Spacer(minLength: Theme.spacing.sm)
             VStack(alignment: .trailing, spacing: 2) {
                 Text(verbatim: row.target)
                     .font(Theme.typography.headline)
                     .foregroundStyle(Theme.colors.accent)
-                    .dlSpoken(row.target, language: target)
+                    .spoken(row.target, language: target)
                 if let under = Self.otherForms(row) {
                     Text(verbatim: under)
                         .font(Theme.typography.caption)
                         .foregroundStyle(Theme.colors.textSecondary)
-                        .dlSpoken(under, language: target)
+                        .spoken(under, language: target)
                 }
             }
             .multilineTextAlignment(.trailing)

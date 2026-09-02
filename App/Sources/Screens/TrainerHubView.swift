@@ -114,7 +114,7 @@ struct TrainerHubView: View, LanguageNaming {
             RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
                 .fill(Theme.colors.surface)
         )
-        .dlCardShadow()
+        .cardShadow()
         #if DEBUG
         // UI-test hook: `-uitest-trainer numbers|letters`
         // opens that surface (in the learned language, like the chips).
@@ -195,7 +195,7 @@ struct TrainerHubView: View, LanguageNaming {
     }
 }
 
-/// Pressed-state feedback for the hub's chips (mirrors DL button springs).
+/// Pressed-state feedback for the hub's chips (mirrors the shared button springs).
 /// Internal: the letters chip is a TrainerHubView+Letters.swift one, and the
 /// letter drill's answer tiles borrow the same press.
 struct TrainerChipButtonStyle: ButtonStyle {
@@ -259,7 +259,7 @@ extension DrillModifier {
 /// runtime strings interpolated as `%@` arguments (e.g. a language name),
 /// where SwiftUI's environment locale — which only drives `Text` /
 /// `LocalizedStringKey` — can't reach.
-enum DLChrome {
+enum ChromeStrings {
     static func string(_ key: String, locale: Locale) -> String {
         let code = locale.language.languageCode?.identifier ?? "de"
         guard let path = Bundle.main.path(forResource: code, ofType: "lproj"),

@@ -61,7 +61,7 @@ LANGUAGES = ('de', 'en')
 # language with more (uk: one/few/many/other) brings its own list, and every
 # counted key then owes that language each of them.
 CATEGORIES = {'de': ('one', 'other'), 'en': ('one', 'other')}
-# Looked up at runtime through DLChrome/DLActionLabel as a plain String
+# Looked up at runtime through ChromeStrings/ActionLabel as a plain String
 # (a chrome string in the TARGET language cannot go through the environment
 # locale), so no extractor can see them.
 UNEXTRACTABLE = {
@@ -71,7 +71,7 @@ UNEXTRACTABLE = {
     # A drill tile's a11y label interpolates the glyph into a plain String —
     # no extractor follows an accessibilityLabel built at runtime either way.
     'a11y.glyph.letter %@',
-    # The Box's own-words area title, resolved through DLChrome like the above.
+    # The Box's own-words area title, resolved through ChromeStrings like the above.
     'box.own.shelf',
     # The two words that fill the address slot of a target-language greeting.
     'home.greeting.morning.addressee', 'home.greeting.night.addressee',

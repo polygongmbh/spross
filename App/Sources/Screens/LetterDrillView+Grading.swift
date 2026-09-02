@@ -27,7 +27,7 @@ extension LetterDrillView {
             #endif
         }
         let animation: Animation = moved
-            ? (reduceMotion ? .easeOut(duration: 0.2) : .dlCardFlip)
+            ? (reduceMotion ? .easeOut(duration: 0.2) : .cardFlip)
             : .easeOut(duration: 0.25)
         withAnimation(animation) { run = reduction.state }
         for effect in reduction.effects { apply(effect) }
@@ -48,9 +48,9 @@ extension LetterDrillView {
             autoAdvance?.cancel()
         case .tone(let cue):
             switch cue.kind {
-            case .correct: DLSound.correct()
-            case .wrong: DLSound.wrong()
-            case .reveal: DLSound.reveal()
+            case .correct: Sound.correct()
+            case .wrong: Sound.wrong()
+            case .reveal: Sound.reveal()
             }
         case .releaseFocus:
             // why: both amber holds wait for a tap, and a held keyboard covers

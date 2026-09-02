@@ -138,7 +138,7 @@ final class ListeningDriver {
     /// knows — the same language every other piece of chrome is in.
     private var nowPlayingRun: NowPlaying.Run {
         let locale = model.knownLocale
-        let mode = DLChrome.string("listen.title", locale: locale)
+        let mode = ChromeStrings.string("listen.title", locale: locale)
         let known = LanguageNames.display(model.sourceLanguage, locale: locale, catalog: model.catalog)
         let learning = model.targetLanguage.map {
             LanguageNames.display($0, locale: locale, catalog: model.catalog)

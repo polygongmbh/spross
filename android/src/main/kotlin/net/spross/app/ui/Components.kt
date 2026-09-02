@@ -292,7 +292,7 @@ fun TapToHearHint(chrome: Chrome, text: String = chrome.trainerReferenceTapToHea
  * The quiet line a screen pauses on: the note under a reveal, what became of an answer,
  * the question the verdicts answer. Italic and secondary, never a heading — it explains
  * what is already on screen, and every such line on either phone wears this one face
- * (iOS `dlPauseLine`).
+ * (iOS `pauseLine`).
  *
  * Body size, not caption: a post-reveal line is meant to be READ, and secondary text a
  * step smaller is where legibility broke on the iOS card.

@@ -15,7 +15,7 @@ struct NumberReferenceTable: View {
     /// the readings are generated and no catalog lists them, so what answers is
     /// almost always the live voice — and nothing at all where the language has
     /// none, which drops the hint rather than promising a sound.
-    var voice: DLVoice?
+    var voice: Voice?
 
     @Environment(\.dynamicTypeSize) private var typeSize
 
@@ -31,7 +31,7 @@ struct NumberReferenceTable: View {
         }
     }
 
-    /// Whether the device can actually say a band's rows — `DLVoice` hands back
+    /// Whether the device can actually say a band's rows — `Voice` hands back
     /// nil where it can neither play nor speak, and a page that stays silent
     /// must not offer to sound.
     private func canBeHeard(_ section: ReferenceSection) -> Bool {
@@ -163,7 +163,7 @@ struct NumberReferenceTable: View {
             .font(.system(.title3, design: .rounded, weight: .semibold))
             .foregroundStyle(Theme.colors.textPrimary)
             .fixedSize(horizontal: false, vertical: true)
-            .dlSpoken(entry.reading, language: language)
+            .spoken(entry.reading, language: language)
     }
 
     /// Kern's band key → its heading. Spelled out rather than interpolated: a
@@ -215,7 +215,7 @@ struct NumberReferenceSheet: View {
     /// Names the language where no chrome exonym exists for it.
     var catalog: Catalog?
     /// How a row is heard — passed straight through to the table.
-    var voice: DLVoice?
+    var voice: Voice?
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.locale) private var locale

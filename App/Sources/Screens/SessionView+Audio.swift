@@ -57,7 +57,7 @@ extension SessionView {
 
     /// Says the produce card's word once its transition has landed.
     ///
-    /// A beat out (~300 ms): the correct/wrong/reveal chime belongs to DLSound
+    /// A beat out (~300 ms): the correct/wrong/reveal chime belongs to Sound
     /// and is never ducked or altered, so the word waits for it rather than
     /// talking over its own first syllable. Nothing waits on the word in turn —
     /// these are the two produce paths that carry no auto-advance at all.

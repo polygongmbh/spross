@@ -3,7 +3,7 @@ import SwiftUI
 // MARK: - SpeakerIcon
 //
 // Where there is a row or a line to run down, the CONTENT is the control
-// (`pronounceOnTap`, `DLSpokenWord.swift`) and no icon is drawn at all —
+// (`pronounceOnTap`, `SpokenWord.swift`) and no icon is drawn at all —
 // the reference tables, the box list, the produce narration lines.
 // Where there is not — a card headline, the big glyph of a pure-listening
 // drill, the correction box — the icon IS the control.
@@ -46,7 +46,7 @@ struct SpeakerIcon: View {
     /// vanishing, on a card where the glyph is the only content
     /// (`HearPromptCard`).
     /// Callers that draw the icon only where audio exists —
-    /// the correction box, `DLSpokenWord`, an alphabet row — never pass nil.
+    /// the correction box, `SpokenWord`, an alphabet row — never pass nil.
     var pronounce: (() -> Void)?
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion

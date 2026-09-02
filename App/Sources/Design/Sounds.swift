@@ -1,7 +1,7 @@
 import AVFoundation
 import UIKit
 
-// MARK: - DLSound
+// MARK: - Sound
 //
 // Tiny feedback layer for the review loop: one soft sound per event, and a
 // haptic on a wrong answer only.
@@ -31,7 +31,7 @@ import UIKit
 // that, because nobody ever asked for a chime.
 
 @MainActor
-enum DLSound {
+enum Sound {
 
     /// Ascending major third — the positive confirmation people already know.
     private static let correctPlayer = load("correct")
@@ -102,17 +102,17 @@ enum DLSound {
             Task { @MainActor in
                 try? await Task.sleep(for: .milliseconds(index * 1400))
                 guard let player = probe.1 else {
-                    print("DLSound probe: \(probe.0) MISSING from the bundle")
+                    print("Sound probe: \(probe.0) MISSING from the bundle")
                     return
                 }
                 player.currentTime = 0
                 guard player.play() else {
-                    print("DLSound probe: \(probe.0) REFUSED to start")
+                    print("Sound probe: \(probe.0) REFUSED to start")
                     return
                 }
                 try? await Task.sleep(for: .seconds(player.duration))
                 print("""
-                    DLSound probe: \(probe.0) played \
+                    Sound probe: \(probe.0) played \
                     \(String(format: "%.2f", player.duration)) s to completion
                     """)
             }

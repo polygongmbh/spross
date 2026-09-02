@@ -33,7 +33,7 @@ struct WatchQuizView: View {
     }
 
     /// Reduce Motion keeps the colors and the badge — only the movement goes,
-    /// exactly as every phone screen treats `.dlCardFlip`.
+    /// exactly as every phone screen treats `.cardFlip`.
     private var feedbackAnimation: Animation {
         reduceMotion ? .easeOut(duration: 0.15) : .spring(response: 0.28, dampingFraction: 0.6)
     }

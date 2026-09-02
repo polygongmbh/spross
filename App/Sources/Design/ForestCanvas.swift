@@ -30,7 +30,7 @@ struct ForestCanvas: View {
     /// measured: a Canvas has to be given a height, the height falls out of the
     /// layout, and the layout needs the width first — so the screen states it
     /// once and both the picture and its buttons are placed against one number.
-    @Environment(\.dlContentWidth) private var width
+    @Environment(\.contentWidth) private var width
 
     var body: some View {
         let marks = ForestLayout.marks(trees, width: width)
@@ -72,7 +72,7 @@ struct ForestCanvas: View {
 
 // MARK: - Content width
 
-private struct DLContentWidthKey: EnvironmentKey {
+private struct ContentWidthKey: EnvironmentKey {
     static let defaultValue: CGFloat = 320
 }
 
@@ -80,9 +80,9 @@ extension EnvironmentValues {
     /// The width a section may actually draw in — the screen's width less its
     /// own padding. Set by the screen; read by anything that has to know its
     /// height before it is laid out.
-    var dlContentWidth: CGFloat {
-        get { self[DLContentWidthKey.self] }
-        set { self[DLContentWidthKey.self] = newValue }
+    var contentWidth: CGFloat {
+        get { self[ContentWidthKey.self] }
+        set { self[ContentWidthKey.self] = newValue }
     }
 }
 
@@ -127,7 +127,7 @@ private struct ForestPreview: View {
             ForestCanvas(trees: sampleTrees(age: age), open: { _ in })
         }
         .padding(Theme.spacing.xl)
-        .environment(\.dlContentWidth, 402 - Theme.spacing.xl * 2)
+        .environment(\.contentWidth, 402 - Theme.spacing.xl * 2)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .background(Theme.colors.background)
     }

@@ -5,7 +5,7 @@ import SwiftUI
 ///
 /// It takes the keyboard on appear. A search surface exists to be typed into,
 /// and every other field in the app is reached by choosing to answer.
-struct DLSearchField: View {
+struct SearchField: View {
     let placeholder: LocalizedStringKey
     @Binding var text: String
 

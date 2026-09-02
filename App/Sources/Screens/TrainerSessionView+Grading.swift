@@ -20,7 +20,7 @@ extension TrainerSessionView {
         // one frame carrying the last one's answer.
         if moved { input = "" }
         let animation: Animation = moved
-            ? (reduceMotion ? .easeOut(duration: 0.2) : .dlCardFlip)
+            ? (reduceMotion ? .easeOut(duration: 0.2) : .cardFlip)
             : .easeOut(duration: 0.25)
         withAnimation(animation) { run = reduction.state }
         for effect in reduction.effects { apply(effect) }
@@ -41,9 +41,9 @@ extension TrainerSessionView {
             autoAdvance?.cancel()
         case .tone(let cue):
             switch cue.kind {
-            case .correct: DLSound.correct()
-            case .wrong: DLSound.wrong()
-            case .reveal: DLSound.reveal()
+            case .correct: Sound.correct()
+            case .wrong: Sound.wrong()
+            case .reveal: Sound.reveal()
             }
         case .releaseFocus:
             // why: a pause that waits for a tap must not hold the keyboard —
@@ -107,7 +107,7 @@ extension TrainerSessionView {
         TrainerProgress.book(closed.progressBookings)
         // why: the cheer marks the record, not the end of a run — closing a
         // drill is a dozen-times-an-evening event and owes no fanfare.
-        if summary.newRecord { DLSound.cheer() }
+        if summary.newRecord { Sound.cheer() }
         onFinish(DrillRunResult(summary, title: mode.titleKey))
         dismiss()
     }

@@ -24,7 +24,7 @@ struct HearPromptCard: View {
     let question: LocalizedStringKey
     /// BCP-47 code of the language everything written on this card is in — the
     /// gap word, and the answer that closes it. Never shown: it tags them for
-    /// VoiceOver (`dlSpoken`), which is the only reading a screen-reader
+    /// VoiceOver (`spoken`), which is the only reading a screen-reader
     /// session gets, since nothing may autoplay over one.
     let language: String
     /// `Na＿t` for a gap question; nil where a letter's name is spoken.
@@ -66,19 +66,19 @@ struct HearPromptCard: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
                     .contentTransition(.opacity)
-                    .dlSpoken(word, language: language)
+                    .spoken(word, language: language)
             }
             // A dictation has no gap to close — the word grows below instead,
             // the same reveal a vocabulary card shows.
             if gapText == nil, let revealed {
-                DLCardReveal(note: revealed.note) {
-                    DLSpokenWord(pronounce: revealed.pronounce, isPlaying: revealed.isPlaying) {
+                CardReveal(note: revealed.note) {
+                    SpokenWord(pronounce: revealed.pronounce, isPlaying: revealed.isPlaying) {
                         Text(verbatim: revealed.word)
                             .font(Theme.typography.title)
                             .foregroundStyle(Theme.colors.accent)
                             .multilineTextAlignment(.center)
                             .minimumScaleFactor(0.6)
-                            .dlSpoken(revealed.word, language: language)
+                            .spoken(revealed.word, language: language)
                     }
                 }
                 .transition(.opacity.combined(with: .move(edge: .top)))
@@ -90,7 +90,7 @@ struct HearPromptCard: View {
         // exactly, so a run sits still and a learner moving between the two
         // drills meets one layout. A gap word is what may still grow it.
         .frame(minHeight: Theme.reserve.drillCard)
-        .dlCardSurface()
+        .cardSurface()
         .animation(.easeOut(duration: 0.25), value: revealed?.word)
     }
 

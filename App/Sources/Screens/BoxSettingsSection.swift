@@ -34,7 +34,7 @@ struct BoxSettingsSection: View {
                 RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
                     .fill(Theme.colors.surface)
             )
-            .dlCardShadow()
+            .cardShadow()
 
             aboutFooter
         }

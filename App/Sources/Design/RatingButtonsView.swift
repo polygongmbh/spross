@@ -37,7 +37,7 @@ struct RatingButtonsView: View {
                 button(.wrong)
             }
             Text(caption)
-                .dlPauseLine()
+                .pauseLine()
         }
     }
 

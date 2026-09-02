@@ -60,7 +60,7 @@ struct BoxOwnContentSection: View {
             } label: {
                 Image(systemName: "plus")
             }
-            .buttonStyle(DLIconButtonStyle())
+            .buttonStyle(IconButtonStyle())
             .accessibilityLabel("box.own.word.addAction")
         }
     }
@@ -87,7 +87,7 @@ struct BoxOwnContentSection: View {
             RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
                 .fill(Theme.colors.surface)
         )
-        .dlCardShadow()
+        .cardShadow()
     }
 
     private var separator: some View { Divider().overlay(Theme.colors.separator) }

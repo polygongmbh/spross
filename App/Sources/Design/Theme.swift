@@ -155,6 +155,25 @@ enum Theme {
         let das = Color(Palette.shared.das)
     }
 
+    /// The grammatical gender a word's article marks, as this palette reads it.
+    /// The Design-local twin of the box's `Gender`, so components stay kern-free.
+    enum Gender {
+        case masculine, feminine, neuter
+    }
+
+    /// An article as a card face shows it: the word itself and the gender it marks,
+    /// as ONE value so the two can never disagree. The screen resolves the gender
+    /// when it builds the face — the design system only paints it.
+    struct Article {
+        let text: String
+        let gender: Gender?
+
+        init(_ text: String, gender: Gender?) {
+            self.text = text
+            self.gender = gender
+        }
+    }
+
     /// Gender → color. Text always carries the meaning; color only reinforces.
     ///
     /// A two-gender language folds onto the SAME two hues rather than minting its
@@ -164,32 +183,13 @@ enum Theme {
     /// target already does. Widget and watch surfaces mirror this mapping in their
     /// own palettes. WHICH article marks which gender is not decided here:
     /// that list is `kern/model/Article.kt`.
-    static func genderColor(_ gender: DLGender?) -> Color {
+    static func genderColor(_ gender: Gender?) -> Color {
         switch gender {
         case .masculine: return colors.der
         case .feminine: return colors.die
         case .neuter: return colors.das
         case nil: return colors.textSecondary
         }
-    }
-}
-
-/// The grammatical gender a word's article marks, as this palette reads it.
-/// The Design-local twin of the box's `Gender`, so components stay kern-free.
-enum DLGender {
-    case masculine, feminine, neuter
-}
-
-/// An article as a card face shows it: the word itself and the gender it marks,
-/// as ONE value so the two can never disagree. The screen resolves the gender
-/// when it builds the face — the design system only paints it.
-struct DLArticle {
-    let text: String
-    let gender: DLGender?
-
-    init(_ text: String, gender: DLGender?) {
-        self.text = text
-        self.gender = gender
     }
 }
 
@@ -227,14 +227,14 @@ extension Color {
 
 extension View {
     /// The one card shadow used everywhere.
-    func dlCardShadow() -> some View {
+    func cardShadow() -> some View {
         shadow(color: .black.opacity(0.08), radius: 16, x: 0, y: 6)
     }
 
     /// The one card FACE: surface fill, hairline, shadow. Every card a session
     /// puts up — vocabulary, drill prompt, listening prompt — wears this, so a
     /// screen never shows two cards cut from different cloth.
-    func dlCardSurface() -> some View {
+    func cardSurface() -> some View {
         background(
             RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
                 .fill(Theme.colors.surface)
@@ -243,12 +243,12 @@ extension View {
             RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
                 .strokeBorder(Theme.colors.separator.opacity(0.6), lineWidth: 1)
         )
-        .dlCardShadow()
+        .cardShadow()
     }
 }
 
 /// Filled terracotta primary action. Never a default gray Button.
-struct DLPrimaryButtonStyle: ButtonStyle {
+struct PrimaryButtonStyle: ButtonStyle {
     var color: Color = Theme.colors.accent
 
     func makeBody(configuration: Configuration) -> some View {
@@ -266,7 +266,7 @@ struct DLPrimaryButtonStyle: ButtonStyle {
 }
 
 /// Soft tinted secondary action (colored text on a translucent tint).
-struct DLSoftButtonStyle: ButtonStyle {
+struct SoftButtonStyle: ButtonStyle {
     var color: Color = Theme.colors.accent
 
     func makeBody(configuration: Configuration) -> some View {
@@ -284,7 +284,7 @@ struct DLSoftButtonStyle: ButtonStyle {
 }
 
 /// Compact icon-only action: one glyph on a round tint, sized for a thumb.
-struct DLIconButtonStyle: ButtonStyle {
+struct IconButtonStyle: ButtonStyle {
     var color: Color = Theme.colors.accent
 
     func makeBody(configuration: Configuration) -> some View {
@@ -309,7 +309,7 @@ struct DLIconButtonStyle: ButtonStyle {
                 .foregroundStyle(Theme.colors.textPrimary)
 
             HStack(spacing: Theme.spacing.sm) {
-                let articles: [DLArticle] = [
+                let articles: [Theme.Article] = [
                     .init("der", gender: .masculine), .init("die", gender: .feminine),
                     .init("das", gender: .neuter), .init("el", gender: .masculine),
                     .init("la", gender: .feminine),
@@ -334,14 +334,14 @@ struct DLIconButtonStyle: ButtonStyle {
             }
 
             Button("common.next") {}
-                .buttonStyle(DLPrimaryButtonStyle())
+                .buttonStyle(PrimaryButtonStyle())
             Button("preview.skip") {}
-                .buttonStyle(DLSoftButtonStyle(color: Theme.colors.teal))
+                .buttonStyle(SoftButtonStyle(color: Theme.colors.teal))
             HStack(spacing: Theme.spacing.md) {
                 Button { } label: { Image(systemName: "plus") }
-                    .buttonStyle(DLIconButtonStyle())
+                    .buttonStyle(IconButtonStyle())
                 Button { } label: { Image(systemName: "speaker.wave.2.fill") }
-                    .buttonStyle(DLIconButtonStyle(color: Theme.colors.teal))
+                    .buttonStyle(IconButtonStyle(color: Theme.colors.teal))
             }
         }
         .padding(Theme.spacing.xl)

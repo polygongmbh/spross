@@ -228,7 +228,7 @@ private struct BoxAreaSection: View {
             RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
                 .fill(Theme.colors.surface)
         )
-        .dlCardShadow()
+        .cardShadow()
     }
 
     private func header(_ stats: AreaStatistics?) -> some View {
@@ -261,7 +261,7 @@ private struct BoxAreaSection: View {
             } label: {
                 Image(systemName: "tray.and.arrow.down.fill")
             }
-            .buttonStyle(DLIconButtonStyle())
+            .buttonStyle(IconButtonStyle())
             .accessibilityLabel(Text("box.shelf.pack \(count.formatted())"))
         } else if queued > 0 {
             Button {
@@ -269,7 +269,7 @@ private struct BoxAreaSection: View {
             } label: {
                 Image(systemName: "tray.and.arrow.up.fill")
             }
-            .buttonStyle(DLIconButtonStyle(color: Theme.colors.success))
+            .buttonStyle(IconButtonStyle(color: Theme.colors.success))
             .accessibilityLabel(Text("box.shelf.unpack \(queued.formatted())"))
         } else {
             Image(systemName: "checkmark.circle.fill")

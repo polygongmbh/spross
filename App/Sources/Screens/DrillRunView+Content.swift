@@ -29,7 +29,7 @@ extension DrillRunView {
                                       language: task.promptText == nil ? nil : task.promptLanguage,
                                       revealed: cardReveal(task))
                         .id(task.index)
-                        .transition(reduceMotion ? .opacity : .dlCardFlip)
+                        .transition(reduceMotion ? .opacity : .cardFlip)
                 }
                 typedControls
             }
@@ -91,7 +91,7 @@ extension DrillRunView {
                         .frame(maxWidth: .infinity)
                         .contentTransition(.opacity)
                 }
-                .buttonStyle(DLPrimaryButtonStyle())
+                .buttonStyle(PrimaryButtonStyle())
                 .keyboardShortcut(.defaultAction)
                 .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
             case .almost:
@@ -118,7 +118,7 @@ extension DrillRunView {
         Button(action: action) {
             Text("common.next").frame(maxWidth: .infinity)
         }
-        .buttonStyle(DLPrimaryButtonStyle())
+        .buttonStyle(PrimaryButtonStyle())
         .keyboardShortcut(.defaultAction)
     }
 }

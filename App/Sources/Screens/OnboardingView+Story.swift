@@ -146,11 +146,11 @@ struct OnboardingStoryPage<Content: View>: View {
                 }
                 .frame(maxWidth: .infinity)
             }
-            .buttonStyle(DLPrimaryButtonStyle())
+            .buttonStyle(PrimaryButtonStyle())
             .disabled(busy)
             if let onBack {
                 Button("common.back", action: onBack)
-                    .buttonStyle(DLSoftButtonStyle())
+                    .buttonStyle(SoftButtonStyle())
             }
         }
     }

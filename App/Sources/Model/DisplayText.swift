@@ -46,9 +46,9 @@ extension LanguageNaming {
     }
 
     /// "Auf Suaheli …" — what the answer field asks for. A runtime `%@`, so it
-    /// resolves through `DLChrome` rather than the environment locale.
+    /// resolves through `ChromeStrings` rather than the environment locale.
     func answerPlaceholder(_ code: String) -> String {
-        String(format: DLChrome.string("session.answer.placeholder %@", locale: locale),
+        String(format: ChromeStrings.string("session.answer.placeholder %@", locale: locale),
                languageName(code))
     }
 }
@@ -85,12 +85,12 @@ enum CardDisplay {
     /// marks — both rules are the box's (`model/Article.kt`): a rotated synonym
     /// is a different word, so the card's article steps aside rather than
     /// mislabel it, and which article marks which gender is stated there once.
-    static func articleLabel(of realization: Realization, shown: String) -> DLArticle? {
+    static func articleLabel(of realization: Realization, shown: String) -> Theme.Article? {
         guard let article = shownArticle(article: article(of: realization),
                                          shownForm: shown,
                                          targetText: realization.text)
         else { return nil }
-        return DLArticle(article, gender: DLGender(articleGender(article: article)))
+        return Theme.Article(article, gender: Theme.Gender(articleGender(article: article)))
     }
 
     /// The article the VOICE says in front of `shown`, or nil where there is
@@ -115,10 +115,10 @@ enum CardDisplay {
     static func plural(of realization: Realization, locale: Locale) -> String? {
         guard let plural = pluralForm(realization: realization) else { return nil }
         switch onEnum(of: plural) {
-        case .sameAsSingular: return DLChrome.string("session.grammar.plural.equals", locale: locale)
-        case .pluralOnly: return DLChrome.string("session.grammar.plural.only", locale: locale)
+        case .sameAsSingular: return ChromeStrings.string("session.grammar.plural.equals", locale: locale)
+        case .pluralOnly: return ChromeStrings.string("session.grammar.plural.only", locale: locale)
         case .form(let form):
-            return String(format: DLChrome.string("session.grammar.plural %@", locale: locale), form.text)
+            return String(format: ChromeStrings.string("session.grammar.plural %@", locale: locale), form.text)
         }
     }
 
@@ -129,7 +129,7 @@ enum CardDisplay {
                            locale: Locale) -> String? {
         let family = SprossKern.alternates(realization: realization, shown: [shown])
         guard !family.isEmpty else { return nil }
-        return String(format: DLChrome.string("session.grammar.also %@", locale: locale),
+        return String(format: ChromeStrings.string("session.grammar.also %@", locale: locale),
                       family.joined(separator: " / "))
     }
 }

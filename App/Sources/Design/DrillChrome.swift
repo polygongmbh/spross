@@ -83,7 +83,7 @@ struct DrillStopOffer: View {
 
     var body: some View {
         Button("common.done", action: action)
-            .buttonStyle(DLSoftButtonStyle())
+            .buttonStyle(SoftButtonStyle())
             .transition(.opacity)
     }
 }
@@ -117,7 +117,7 @@ struct DrillResultTile: View {
         HStack(alignment: .center, spacing: Theme.spacing.lg) {
             Text(verbatim: emoji)
                 .font(.system(size: 40))
-                .dlSway(angle: 4, period: 3.4)
+                .sway(angle: 4, period: 3.4)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
                 Text("trainer.result.tasksDone \(result.doneCount)")

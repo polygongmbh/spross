@@ -54,7 +54,7 @@ extension NumbersOverview {
 
     private func variantRow(_ variant: DrillVariant) -> some View {
         let open = unlocked(variant)
-        return DLSelectionRow(
+        return SelectionRow(
             title: Text(verbatim: "\(drillVariantEmoji(variant: variant)) ") + Text(variant.trainerTitleKey),
             caption: open ? bestCaption(variant)
                           : unlockCaption(DrillUnlocks.shared.requirements(variant: variant)),
@@ -164,7 +164,7 @@ extension NumbersOverview {
             Text("trainer.overview.start")
                 .frame(maxWidth: .infinity)
         }
-        .buttonStyle(DLPrimaryButtonStyle())
+        .buttonStyle(PrimaryButtonStyle())
         .disabled(picked.isEmpty)
     }
 }

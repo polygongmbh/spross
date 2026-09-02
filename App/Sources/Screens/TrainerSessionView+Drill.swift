@@ -35,7 +35,7 @@ extension TrainerSessionView {
                                       pronounce: model?.pronounceAction(for: current.display, lang: language),
                                       isPlaying: model?.isPronouncing(current.display, lang: language) ?? false)
                         .id(run.index)
-                        .transition(reduceMotion ? .opacity : .dlCardFlip)
+                        .transition(reduceMotion ? .opacity : .cardFlip)
                 }
                 controls
             }
@@ -50,9 +50,9 @@ extension TrainerSessionView {
 
     /// How the look-up sheet says a row. nil with no model — a preview run has
     /// nothing to look a voice up with, and the sheet then reads silently.
-    private var referenceVoice: DLVoice? {
+    private var referenceVoice: Voice? {
         guard let model else { return nil }
-        return DLVoice(pronounce: { model.pronounceAction(for: $0, lang: language) },
+        return Voice(pronounce: { model.pronounceAction(for: $0, lang: language) },
                        isPlaying: { model.isPronouncing($0, lang: language) })
     }
 
@@ -84,7 +84,7 @@ extension TrainerSessionView {
     /// "Auf Swahili …" over a number pad asks for the wrong thing.
     private var fieldPlaceholder: String {
         run.currentReversed
-            ? DLChrome.string("numbers.answer.placeholder", locale: locale)
+            ? ChromeStrings.string("numbers.answer.placeholder", locale: locale)
             : answerPlaceholder(language)
     }
 
@@ -111,7 +111,7 @@ extension TrainerSessionView {
                         .frame(maxWidth: .infinity)
                         .contentTransition(.opacity)
                 }
-                .buttonStyle(DLPrimaryButtonStyle())
+                .buttonStyle(PrimaryButtonStyle())
                 .keyboardShortcut(.defaultAction)
                 .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
             case .almost:
@@ -151,7 +151,7 @@ extension TrainerSessionView {
             Text("common.next")
                 .frame(maxWidth: .infinity)
         }
-        .buttonStyle(DLPrimaryButtonStyle())
+        .buttonStyle(PrimaryButtonStyle())
         // why: Enter advances here too (hardware keyboards).
         .keyboardShortcut(.defaultAction)
     }

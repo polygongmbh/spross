@@ -109,7 +109,7 @@ struct SessionCompletionView: View {
         .sessionCloseCorner(label: "common.done", action: onDone)
         .onAppear {
             burst = true
-            DLSound.cheer()
+            Sound.cheer()
         }
     }
 
@@ -123,7 +123,7 @@ struct SessionCompletionView: View {
             burst = true
             celebration += 1
         }
-        DLSound.cheer()
+        Sound.cheer()
     }
 
     /// The area the round moved most, as it stood before this round and as it
@@ -235,7 +235,7 @@ struct SessionCompletionView: View {
                         .delay(0.15 + Double(index) * 0.06),
                         value: burst
                     )
-                    .dlSway(angle: Self.swayAngle(index), period: Self.swayPeriod(index))
+                    .sway(angle: Self.swayAngle(index), period: Self.swayPeriod(index))
             }
             Text(verbatim: "🎉")
                 .font(.system(size: 88))
@@ -244,7 +244,7 @@ struct SessionCompletionView: View {
                 .animation(.spring(response: 0.5, dampingFraction: 0.5), value: burst)
                 // why: the popper carries the least of it — a big shape rocking
                 // as far as a small one reads as the screen itself tilting.
-                .dlSway(angle: 3, period: 3.7)
+                .sway(angle: 3, period: 3.7)
         }
         .frame(height: 180)
         .accessibilityHidden(true) // why: purely celebratory; "session.done.title" below carries the message

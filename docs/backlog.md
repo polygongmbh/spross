@@ -350,7 +350,7 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   the same silence `a11y.verdict.almost` was just brought out of: a `Chrome.kt` field
   and the same two `when` arms.
 - A row that speaks is a gesture on content rather than a control (`pronounceOnTap`,
-  `App/Sources/Design/DLSpokenWord.swift`; `clickable` on Android), so VoiceOver reaches it
+  `App/Sources/Design/SpokenWord.swift`; `clickable` on Android), so VoiceOver reaches it
   as a named action while Switch Control and Full Keyboard Access, which scan for focusable
   controls, reach nothing — shared by every surface on that modifier: the reference rows,
   `BoxCardRow.swift`, the produce narration lines.

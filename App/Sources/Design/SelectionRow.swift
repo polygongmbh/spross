@@ -8,7 +8,7 @@ import SwiftUI
 ///
 /// A row that has not been earned keeps its place and states its price instead
 /// of vanishing: a ladder you can see is a reason to climb, an absence is not.
-struct DLSelectionRow: View {
+struct SelectionRow: View {
 
     /// How many of the list may be on at once — and whether this one may be
     /// chosen at all.

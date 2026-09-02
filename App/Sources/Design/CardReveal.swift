@@ -1,14 +1,14 @@
 import SprossKern
 import SwiftUI
 
-// MARK: - DLCardReveal
+// MARK: - CardReveal
 //
 // What a card grows when the answer comes out: a short rule, the answer, and
 // an optional note under it. The reveal is always BELOW the prompt and always
 // looks the same — a vocabulary card and a drill card reveal alike, so the two
 // never drift into two different ideas of "the answer".
 
-struct DLCardReveal<Content: View>: View {
+struct CardReveal<Content: View>: View {
     /// Literal gloss ("wörtlich: …") or the sentence's meaning — post-reveal
     /// only, and always the last line.
     var note: String?
@@ -21,13 +21,13 @@ struct DLCardReveal<Content: View>: View {
                 .frame(width: 44, height: 2)
             content
             if let note {
-                Text(note).dlNoteLine()
+                Text(note).noteLine()
             }
         }
     }
 }
 
-// MARK: - DLCardEmoji
+// MARK: - CardEmoji
 //
 // The picture on a card. WHERE it sits is the card's own call, worked out from
 // what the surface is (`VocabCardView.Arrangement`) rather than passed in as a
@@ -36,7 +36,7 @@ struct DLCardReveal<Content: View>: View {
 // thing. One definition, so the review card and the drill cards cannot drift
 // into two ideas of what a card's picture looks like.
 
-struct DLCardEmoji: View {
+struct CardEmoji: View {
     enum Size {
         /// A card that shares the screen — the picture rides beside the words,
         /// so it takes as little of their width as it can.
@@ -108,7 +108,7 @@ extension View {
     /// a modifier because the card may place the note away from the reveal it
     /// belongs to (beside a picture there is no room for a long line), and one
     /// definition is what keeps the two placements the same line.
-    func dlNoteLine() -> some View {
+    func noteLine() -> some View {
         font(Theme.typography.subheadline)
             .italic()
             .foregroundStyle(Theme.colors.textSecondary)
@@ -122,7 +122,7 @@ extension View {
     /// The line an amber hold pauses on — a typo's proper spelling, the word
     /// that was heard instead, the other word the answer turned out to be.
     /// Read, not glanced at, so it carries the same weight everywhere.
-    func dlPauseLine() -> some View {
+    func pauseLine() -> some View {
         font(Theme.typography.subheadline)
             .italic()
             .foregroundStyle(Theme.colors.textSecondary)
@@ -135,13 +135,13 @@ extension View {
 
 #Preview("Reveal") {
     VStack(spacing: Theme.spacing.lg) {
-        DLCardReveal(note: "wörtlich: kleines Bratgefäß") {
+        CardReveal(note: "wörtlich: kleines Bratgefäß") {
             Text(verbatim: "kikaango")
                 .font(Theme.typography.title)
                 .foregroundStyle(Theme.colors.accent)
         }
         Text(verbatim: "Fast! Richtig geschrieben: cuatro")
-            .dlPauseLine()
+            .pauseLine()
     }
     .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)

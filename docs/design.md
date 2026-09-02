@@ -156,7 +156,7 @@ never the shape of the app.
   make room.
   A picture that would ANSWER the question is **withheld as a hint, never dropped**: it is
   held back while the answer is owed and appears at the reveal, so the learner always ends
-  up seeing what they were asked about. The slot itself keeps this (`DLCardEmoji.Cue`) —
+  up seeing what they were asked about. The slot itself keeps this (`CardEmoji.Cue`) —
   there is no way for a card face to say "hide it for good".
 - Ambiguous prompts (the target merges two source concepts) carry an **area label**.
   Produce only: on a recognition prompt a cue precise enough to disambiguate would give

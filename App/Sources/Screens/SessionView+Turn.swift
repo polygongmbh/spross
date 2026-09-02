@@ -43,9 +43,9 @@ extension SessionView {
             input = primed.text
         case .tone(let cue):
             switch cue.kind {
-            case .correct: DLSound.correct()
-            case .wrong: DLSound.wrong()
-            case .reveal: DLSound.reveal()
+            case .correct: Sound.correct()
+            case .wrong: Sound.wrong()
+            case .reveal: Sound.reveal()
             }
         case .releaseFocus:
             // why: a pause that waits for a tap must not hold the keyboard —
@@ -63,7 +63,7 @@ extension SessionView {
         // transaction — the incoming card must never render one frame
         // carrying the outgoing one's reveal.
         resetCardState()
-        withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .dlCardFlip) {
+        withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .cardFlip) {
             model.answerCurrent(rating)
         }
     }
@@ -143,7 +143,7 @@ extension SessionView {
     /// one line is all the reveal ever carries.
     var meansAlsoLine: String? {
         guard let also = turn?.alsoMeans, !also.isEmpty else { return nil }
-        return String(format: DLChrome.string("session.means.also %@", locale: locale),
+        return String(format: ChromeStrings.string("session.means.also %@", locale: locale),
                       also.joined(separator: " / "))
     }
 

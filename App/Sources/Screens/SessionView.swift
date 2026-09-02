@@ -104,7 +104,7 @@ struct SessionView: View, LanguageNaming {
             // inaudible clip, here where nothing is typed — never on a produce
             // reveal that carries the keyboard.
             Pronouncer.shared.warmUp()
-            DLSound.warmUp()
+            Sound.warmUp()
             if let card = model.currentCard { autoplayPrompt(card) }
         }
         .onDisappear {
@@ -125,7 +125,7 @@ struct SessionView: View, LanguageNaming {
                 dispatch(TurnIntent.Reveal.shared, at: ensureTurn()?.promptShownAtMillis)
             }
             if defaults.bool(forKey: "uitest-sound") {
-                DLSound.uitestProbe()
+                Sound.uitestProbe()
             }
             if let form = defaults.string(forKey: "uitest-pronounce") {
                 uitestPronounce(form)
@@ -175,7 +175,7 @@ struct SessionView: View, LanguageNaming {
                         arrangement: .beside
                     )
                     .id(card.id)
-                    .transition(reduceMotion ? .opacity : .dlCardFlip)
+                    .transition(reduceMotion ? .opacity : .cardFlip)
                     // why: only once the answer is out — before it, the learner has
                     // not seen the translation they would be reporting, and a menu
                     // over the prompt is a menu over a question.
@@ -183,7 +183,7 @@ struct SessionView: View, LanguageNaming {
                 }
                 if model.coachActive,
                    let line = SessionCoach.recognizeLine(role: role, revealed: revealed) {
-                    Text(line).dlPauseLine()
+                    Text(line).pauseLine()
                 }
                 controls(card, role: role)
             }
@@ -225,7 +225,7 @@ struct SessionView: View, LanguageNaming {
             // resetCardState first, so the incoming card never renders the outgoing
             // card's reveal for a frame (same reason `commit` does).
             resetCardState()
-            withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .dlCardFlip) {
+            withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .cardFlip) {
                 model.suspendCurrentCard()
             }
         }
@@ -369,7 +369,7 @@ struct SessionView: View, LanguageNaming {
                 Text("session.reveal")
                     .frame(maxWidth: .infinity)
             }
-            .buttonStyle(DLPrimaryButtonStyle())
+            .buttonStyle(PrimaryButtonStyle())
             .keyboardShortcut(.defaultAction)
         }
     }

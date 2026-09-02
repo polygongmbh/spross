@@ -90,7 +90,7 @@ struct HomeView: View {
                     RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
                         .fill(Theme.colors.surface)
                 )
-                .dlCardShadow()
+                .cardShadow()
             }
             .buttonStyle(.plain)
         }
@@ -154,7 +154,7 @@ struct HomeView: View {
                 RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
                     .fill(Theme.colors.surface)
             )
-            .dlCardShadow()
+            .cardShadow()
         }
     }
 
@@ -184,16 +184,16 @@ struct HomeView: View {
             Button {
                 model.startSession()
             } label: {
-                DLActionLabel(key: "home.offer.start", targetLocale: model.targetChromeLocale)
+                ActionLabel(key: "home.offer.start", targetLocale: model.targetChromeLocale)
             }
-            .buttonStyle(DLPrimaryButtonStyle())
+            .buttonStyle(PrimaryButtonStyle())
             // A long round is more than an evening some days, and an abandoned one leaves
             // the day unworked; kern says when the two are different enough to offer both.
             if offer.shortRound > 0 {
                 Button("home.offer.shortRound") {
                     model.startShortSession()
                 }
-                .buttonStyle(DLSoftButtonStyle())
+                .buttonStyle(SoftButtonStyle())
             }
         }
         .padding(Theme.spacing.xl)
@@ -202,7 +202,7 @@ struct HomeView: View {
             RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
                 .fill(Theme.colors.surface)
         )
-        .dlCardShadow()
+        .cardShadow()
     }
 
     /// Flame hero, or a sprout when there is no streak to show. This card is up
@@ -281,7 +281,7 @@ struct HomeView: View {
                 Button("home.done.extraRound") {
                     model.startExtraSession()
                 }
-                .buttonStyle(DLSoftButtonStyle())
+                .buttonStyle(SoftButtonStyle())
             }
             // Under the button on purpose: what happens next is the smallest thing on
             // the card, and the way on is what the thumb is looking for.
@@ -296,7 +296,7 @@ struct HomeView: View {
             RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
                 .fill(Theme.colors.surface)
         )
-        .dlCardShadow()
+        .cardShadow()
     }
 
     /// The day's mark: the celebration wearing the streak, or the bare emoji when there
@@ -367,7 +367,7 @@ struct HomeView: View {
             RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
                 .fill(Theme.colors.surface)
         )
-        .dlCardShadow()
+        .cardShadow()
     }
 }
 

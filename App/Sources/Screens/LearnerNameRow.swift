@@ -23,7 +23,7 @@ struct LearnerNameRow: View {
             Text("settings.name.title")
                 .font(Theme.typography.headline)
                 .foregroundStyle(Theme.colors.textPrimary)
-            DLNameField(placeholder: "settings.name.placeholder", text: $nameDraft)
+            NameField(placeholder: "settings.name.placeholder", text: $nameDraft)
                 .onChange(of: nameDraft) { _, typed in model.setLearnerName(typed) }
             Text("settings.name.hint")
                 .font(Theme.typography.caption)
