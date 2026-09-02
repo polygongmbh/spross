@@ -7,7 +7,6 @@ import kotlin.random.Random
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.CountryDrill
-import net.spross.kern.trainer.CountryDrillClose
 import net.spross.kern.trainer.CountryDrillIntent
 import net.spross.kern.trainer.CountryDrillRun
 import net.spross.kern.trainer.CountryDrillRunConfig
@@ -33,7 +32,7 @@ class CountryDrillFlow(
     onReleaseFocus: () -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
-) {
+) : TypedDrill {
     private val beat = DrillBeat(screenReaderOn)
     private val acts = DrillActs(beat, onTone, onReleaseFocus, onSilence)
 
@@ -41,7 +40,7 @@ class CountryDrillFlow(
         private set
 
     /** The learner's answer text — kern owns what it means, the field is ours. */
-    var input by mutableStateOf("")
+    override var input by mutableStateOf("")
         private set
 
     /**
@@ -49,19 +48,19 @@ class CountryDrillFlow(
      * card it has already answered. False once the close has been made, whichever way the
      * screen went — a run is handed back once.
      */
-    val ranOut: Boolean get() = state.finished && !handedBack
+    override val ranOut: Boolean get() = state.finished && !handedBack
 
     private var handedBack = false
 
-    val armedBeat get() = beat.tier
+    override val armedBeat get() = beat.tier
 
-    val beatToken get() = beat.token
+    override val beatToken get() = beat.token
 
     /** The beat became a tap: render the explicit "Weiter", which books the same answer. */
-    val awaitsConfirm get() = beat.awaitsConfirm
+    override val awaitsConfirm get() = beat.awaitsConfirm
 
     /** A live keystroke: writing the name out IS the answer, within kern's exact-only guard. */
-    fun type(text: String) {
+    override fun type(text: String) {
         input = text
         dispatch(CountryDrillIntent.InputChanged(text))
     }
@@ -70,34 +69,62 @@ class CountryDrillFlow(
      * The ONE primary action: an empty field asks to see the answer, a typed one checks it.
      * Kern's Submit is inert on blank text, so which of the two a press is stays ours.
      */
-    fun primary() {
+    override fun primary() {
         if (input.isBlank()) dispatch(CountryDrillIntent.Reveal) else dispatch(CountryDrillIntent.Submit(input))
     }
 
     /** The tap that books whatever the feedback already said — and the beat's stand-in. */
-    fun confirm() = dispatch(CountryDrillIntent.ConfirmPending)
+    override fun confirm() = dispatch(CountryDrillIntent.ConfirmPending)
 
     /** Enter: check while the answer is owed, otherwise book what stands. */
-    fun enter() {
+    override fun enter() {
         if (state.owesAnswer) primary() else confirm()
     }
 
-    fun advanceElapsed() {
+    override fun advanceElapsed() {
         beat.spend()
         dispatch(CountryDrillIntent.AdvanceElapsed)
     }
 
     /**
+     * The run as the shared typed-drill screen reads it. The one rule about a picture — when
+     * a withheld flag comes back — is the card's; this only hands over what kern drew.
+     */
+    override fun view(chrome: Chrome): TypedDrillView = TypedDrillView(
+        index = state.index,
+        level = state.level,
+        streak = state.streak,
+        bestStreak = state.bestStreak,
+        outcomes = state.outcomes,
+        tally = state.tally,
+        feedback = state.feedback,
+        showsAnswer = state.showsAnswer,
+        offersFinish = state.offersFinish,
+        otherWord = state.otherWord,
+        answerLanguage = state.answerLanguage,
+        prompt = TypedDrillPrompt(
+            ask = chrome.countryAsk(state.task.kind),
+            text = state.task.promptText,
+            // A flag is written in no language, so it is tagged with none.
+            language = if (state.task.promptText == null) null else state.promptLanguage,
+            display = state.task.display,
+            gloss = state.task.gloss,
+            emoji = state.task.promptEmoji,
+            emojiIsGiveaway = state.task.emojiIsGiveaway,
+        ),
+    )
+
+    /**
      * Leaving, from the corner or from "Fertig". Kern books a pending answer exactly as the
      * tap would, then says what the page owes its store.
      */
-    fun close(standingRecord: Int): CountryDrillClose {
+    override fun close(standingRecord: Int): TypedDrillClose {
         handedBack = true
         val closed = CountryDrillRun.close(state, standingRecord)
         state = closed.state
         input = ""
         acts.carryOut(closed.effects)
-        return closed
+        return TypedDrillClose(closed.summary, closed.bestLevel)
     }
 
     private fun dispatch(intent: CountryDrillIntent) {
