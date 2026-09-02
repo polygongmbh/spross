@@ -208,24 +208,24 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   than switching it off, so a learner can skip words they judge unimportant without them
   vanishing. Distinct from `setSuspended`, which is hard off until revived by hand — defer
   would stay in seed order, just last, and only surface once nothing unseen is left.
-  Wants a `BoxState` field (not a `GrowthStage` rung — it is an intent, not a standing), a
+  Wants a `BoxState` field (not a `GrowthStage` Sprosse — it is an intent, not a standing), a
   `BoxEngine` verb, a Box-screen affordance, and a decision on where it sorts against
   `OwnWords.SEED_BASE`, which is already "behind every catalog concept".
 
 - Watch snapshot 60-entry cap: due-first ranking keeps due cards on-watch,
   but revisit the cap if the active box outgrows it (`../kern/docs/snapshots.md`).
 - The assembled dates accepted set is an uncapped cross-product graded on every keystroke
-  (worst de rung 6 ≈ 128 five-word forms per `evaluate`; typical ~16) — measure on the
+  (worst de Sprosse 6 ≈ 128 five-word forms per `evaluate`; typical ~16) — measure on the
   oldest supported phone before trusting it free (`DateDrillTasks.fill`;
   `NumberReadingIndex.INDEXED_CARDINALS` states the bound precedent).
 - `AnswerNormalizer.strayLeadingWordRecovery` tests the RAW leading token for letters,
   so "it's half past two" behaves unlike "it is half past two" where the rule still
   lives (vocab review). Testing `cleaned(first)` would make it consistent — a widening,
   so it wants its own `RealCatalogGradingTest` run.
-- The number forms have no rung for prices/currency or digit-by-digit readings
+- The number forms have no Sprosse for prices/currency or digit-by-digit readings
   (a phone number, a PIN) — two families a learner meets constantly and the ladder
   never asks; adding one is an enum case, a `draw` arm, a `formReading` arm per pack
-  and a rung row (`kern/src/commonMain/kotlin/net/spross/kern/trainer/NumberForms.kt`).
+  and a Sprosse row (`kern/src/commonMain/kotlin/net/spross/kern/trainer/NumberForms.kt`).
 - `<pack>.cardinal(-n)` returns the digits rather than a reading: the negative reading
   lives in `formReading` deliberately, so nothing needs it today, but a caller that
   assumes `cardinal` covers every `Long` gets a digit string back with no error.
@@ -295,7 +295,7 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   `articleColoredText` and the iOS twin), so an elided `l'` renders "l' acqua" —
   an apostrophe-final article should write onto its noun, the citation
   `RealCatalogGradingTest.everyGenderedCardAcceptsTheCitationFormItTeaches` now grades.
-- Nothing marks an unlock: a rung turning a locked row into a pickable one is the whole
+- Nothing marks an unlock: a Sprosse turning a locked row into a pickable one is the whole
   event, and the learner only sees it next time the overview opens
   (`App/Sources/Screens/NumbersOverview+Practice.swift`). A full-screen ceremony was
   rejected for something that happens a handful of times; a moment on the row itself was
@@ -451,7 +451,7 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   the session top-bar mute toggle and flip it; probably an emulator artifact — check once
   on hardware before chasing (`android/.../ui/SessionScreen.kt` top bar).
 - `TrainerStore`'s read/write plumbing is untested (needs `SharedPreferences`, no Robolectric
-  in the module; the key rules are kern's and tested there) — one emulator check that a rung
+  in the module; the key rules are kern's and tested there) — one emulator check that a Sprosse
   survives an app restart (`android/.../TrainerStore.kt`).
 - The iPhone install link is an `itms-services://` URL in the release notes, which GitHub
   renders as code rather than a tappable link. A one-page `web/install.html` taking `?v=`
@@ -469,16 +469,16 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   kern already takes an injected `Random` per run, so `-uitest-seed N` is a small hook.
   Narrower than it was: `idb ui text` types AFTER the prompt has been read back out of
   `idb ui describe-all`, so AIMING an answer needs no seed. What is still unreachable is
-  pinning WHICH task gets drawn — a screenshot of one particular verdict or rung.
+  pinning WHICH task gets drawn — a screenshot of one particular verdict or Sprosse.
 - Read-aloud is stored differently on the two phones: iOS keeps the three-state `readAloud`
   (`App/Sources/Audio/AudioSession.swift`), Android is still on the boolean iOS calls its
   LEGACY key, `pronunciationMuted` (`android/.../audio/Pronouncer.kt`). So Android has no
   `followsPhone` middle state, and the two cannot be reasoned about as one setting.
-- The letter drill's dictation rung is dealt on a device silenced by its own volume, where
+- The letter drill's dictation Sprosse is dealt on a device silenced by its own volume, where
   the review card asked by ear is not any more (`LetterDrillAvailability.report` takes only
   `hasVoice`, `docs/read-aloud.md`). Its question plays under `.playback`, so the phone's
   switch is deliberately overruled there — but a volume slider at zero silences that too,
-  and the rung has no "can't listen right now?" of its own to fall back on.
+  and the Sprosse has no "can't listen right now?" of its own to fall back on.
 - `CatalogAudioLintTest` (399 lines) and `CatalogAudioFixtureTest` (340) are both past the
   ~300-line budget and split cleanly: provenance/attribution rules apart from the playback
   index and the naming rules, lookup apart from parse in the fixture half.

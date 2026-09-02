@@ -36,7 +36,7 @@ struct TrainerSessionView: View, LanguageNaming {
     @Environment(\.dismiss) var dismiss
 
     /// The whole run, kern's: what is on screen, what the answers have done to
-    /// it, and the per-variant rungs it stands on.
+    /// it, and the per-variant Sprossen it stands on.
     // why: internal, not private — the +Drill/+Audio/+UITest extensions read it.
     @State var run: TrainerRunState
     /// The learner's text — the one thing the run deliberately does NOT hold:

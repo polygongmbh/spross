@@ -18,7 +18,7 @@ import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
 /**
- * The letter run: which rung it opens on, what a tile and a typed glyph earn, the three-step
+ * The letter run: which Sprosse it opens on, what a tile and a typed glyph earn, the three-step
  * dictation verdict ladder, and what a close leaves behind (which is figures and nothing else
  * — D12, the drill books no review and keeps no record).
  *
@@ -88,7 +88,7 @@ class LetterDrillRunTest {
     // MARK: - Where a run opens
 
     /**
-     * The entry rung comes from the words the learner already holds, capped one stage below
+     * The entry Sprosse comes from the words the learner already holds, capped one stage below
      * whatever this device can reach — nobody starts by taking dictation.
      */
     @Test
@@ -106,10 +106,10 @@ class LetterDrillRunTest {
         assertEquals(6, held.entryLevel)
         assertEquals(LetterStage.Typed, held.entryStage)
         assertEquals(LetterDrill.MAX_LEVEL_WITH_DICTATION, held.maxLevel)
-        assertEquals(1, held.winsToAdvance, "a consolidated vocabulary earns a rung in one win")
+        assertEquals(1, held.winsToAdvance, "a consolidated vocabulary earns a Sprosse in one win")
     }
 
-    /** Dictation exists only above the floor, and the ramp stops one rung short of it below. */
+    /** Dictation exists only above the floor, and the ramp stops one Sprosse short of it below. */
     @Test
     fun theCeilingFollowsWhetherThereIsEnoughToDictate() {
         val cards = LetterDrillFixture.dictationCards()
@@ -123,7 +123,7 @@ class LetterDrillRunTest {
     }
 
     @Test
-    fun aRungForcedAboveTheCeilingOpensInsideIt() {
+    fun aSprosseForcedAboveTheCeilingOpensInsideIt() {
         val rng = Random(3)
         val typed = LetterDrillRun.openAt(config(report(consolidated = 0)), 9, rng)
         assertEquals(7, typed.level)
@@ -180,7 +180,7 @@ class LetterDrillRunTest {
         assertEquals(listOf(AnswerOutcome.Wrong), state.outcomes)
         assertEquals(0, state.streak)
         assertEquals(1, state.missRun)
-        assertEquals(4, state.level, "a miss steps the rung back down")
+        assertEquals(4, state.level, "a miss steps the Sprosse back down")
     }
 
     // MARK: - Typed and dictated
@@ -256,9 +256,9 @@ class LetterDrillRunTest {
         assertEquals(LetterVerdict.Clean, LetterDrillRun.verdict("миша", task, null, null))
     }
 
-    /** Both almost holds wait for a tap, give the field back, and move the rung neither way. */
+    /** Both almost holds wait for a tap, give the field back, and move the Sprosse neither way. */
     @Test
-    fun anAlmostAnswerHoldsTheRungAndExtendsTheStreak() {
+    fun anAlmostAnswerHoldsTheSprosseAndExtendsTheStreak() {
         val rng = Random(17)
         val state = LetterDrillRun.openAt(config(report(consolidated = 72)), 6, rng)
         for (reason in listOf(AlmostReason.Typo, AlmostReason.Heard)) {
@@ -284,7 +284,7 @@ class LetterDrillRunTest {
         var slow = LetterDrillRun.openAt(config(report(consolidated = 0)), 6, rng)
         slow = reduce(slow, LetterDrillIntent.Submit(slow.task!!.display), rng).state
         slow = reduce(slow, LetterDrillIntent.AdvanceElapsed, rng).state
-        assertEquals(6, slow.level, "the classic two wins per rung below a held vocabulary")
+        assertEquals(6, slow.level, "the classic two wins per Sprosse below a held vocabulary")
         assertEquals(1, slow.winsAtLevel)
     }
 
@@ -331,7 +331,7 @@ class LetterDrillRunTest {
 
     /**
      * One promptable letter is one question per STAGE, so answering it right empties both
-     * rungs of that stage at once: the run climbs past them rather than asking `m` again,
+     * Sprossen of that stage at once: the run climbs past them rather than asking `m` again,
      * and the same letter is a question again where the next stage asks it another way.
      */
     @Test
@@ -342,9 +342,9 @@ class LetterDrillRunTest {
         assertEquals("em", state.task?.promptText)
 
         state = answeredRight(state, rng)
-        assertEquals(3, state.level, "both easy rungs ask the same one question")
+        assertEquals(3, state.level, "both easy Sprossen ask the same one question")
         assertEquals(LetterStage.ChoiceConfusable, state.stage)
-        assertEquals(0, state.winsAtLevel, "the wins stay behind with the rung that earned them")
+        assertEquals(0, state.winsAtLevel, "the wins stay behind with the Sprosse that earned them")
         assertEquals("em", state.task?.promptText, "a tile stage and a typed one are two questions")
         assertFalse(state.finished)
     }

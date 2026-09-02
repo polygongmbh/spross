@@ -30,11 +30,11 @@ extension SessionScaffold {
 
 // MARK: - Streak line
 
-/// The score line above the card: which rung the run stands on, how long the
+/// The score line above the card: which Sprosse the run stands on, how long the
 /// streak is, and the standing record once the streak has fallen short of it.
 struct DrillStreakLine: View {
-    /// The rung, worded by the drill that owns it — a digit count reads
-    /// differently from a plain level. nil where a run has one rung only.
+    /// The Sprosse, worded by the drill that owns it — a digit count reads
+    /// differently from a plain level. nil where a run has one Sprosse only.
     var level: Text?
     let streak: Int
     let bestStreak: Int
@@ -100,7 +100,7 @@ struct DrillRunResult: Equatable {
     /// The run beat the drill's standing record. A drill that keeps no record
     /// store leaves it false, which drops the record line and the confetti with it.
     var newRecord = false
-    /// Which rung the best streak earned. Kern's (`DrillRunSummary.tier`) — the
+    /// Which Sprosse the best streak earned. Kern's (`DrillRunSummary.tier`) — the
     /// ladder is one table, and a second copy of it here is one coincidence away
     /// from praising a run the engine does not.
     var tier: StreakTier = .sprout
@@ -147,7 +147,7 @@ struct DrillResultTile: View {
         .accessibilityElement(children: .combine)
     }
 
-    /// The face of the rung kern says the run reached.
+    /// The face of the Sprosse kern says the run reached.
     private var emoji: String {
         switch result.tier {
         case .trophy: return "🏆"
@@ -173,8 +173,8 @@ struct DrillResultTile: View {
 
 #Preview("Streak line") {
     VStack(spacing: DL.Space.xl) {
-        DrillStreakLine(level: Text("trainer.rung \(7.formatted())"), streak: 0, bestStreak: 0)
-        DrillStreakLine(level: Text("numbers.rung \(5)"), streak: 7, bestStreak: 12,
+        DrillStreakLine(level: Text("trainer.sprosse \(7.formatted())"), streak: 0, bestStreak: 0)
+        DrillStreakLine(level: Text("numbers.sprosse \(5)"), streak: 7, bestStreak: 12,
                         announcesRecord: true)
         DrillStreakLine(streak: 3, bestStreak: 3)
     }

@@ -126,7 +126,7 @@ internal object ChromeEn : Chrome {
     override val a11yGlyphLetter = "Letter %s"
     override val a11yActionReplayPrompt = "Play it again"
     override val lettersPromptInLanguage = "in %s"
-    override val trainerRung = "Sprosse %s"
+    override val trainerSprosse = "Sprosse %s"
     override val trainerRunStreak = "🔥 %s in a row"
     override val sessionAlmostTypo = "Almost! Correct spelling"
     override val sessionAlmostHeard = "You heard"
@@ -172,8 +172,8 @@ internal object ChromeEn : Chrome {
     override val numbersCombineLocked = "Several in one run, once everything is unlocked."
     override val numbersUnlock = "Unlocks at:"
     override val numbersBest = "Best yet:"
-    override val numbersRungOne = "🔢 %d digit"
-    override val numbersRung = "🔢 %d digits"
+    override val numbersSprosseOne = "🔢 %d digit"
+    override val numbersSprosse = "🔢 %d digits"
     override val trainerRunRecord = "Record %s"
     override val a11yCountStreakInARow = "Streak: %s in a row"
     override val a11ySuffixRecord = ", record %s"
@@ -206,7 +206,7 @@ internal object ChromeEn : Chrome {
     override val countriesBest = "Best yet: Sprosse %s"
     override val countriesFastHint = "One clean answer per Sprosse instead of three."
     override val countriesReverseHint = "Asks in %s, you answer in %s."
-    override val countryRungs = listOf(
+    override val countrySprossen = listOf(
         "The countries of your languages",
         "The names of the languages",
         "The people",
@@ -217,7 +217,7 @@ internal object ChromeEn : Chrome {
         "Less common countries and languages",
         "From language to country",
     )
-    override val countryRungHints = listOf(
+    override val countrySprosseHints = listOf(
         "What is a country one of your languages is at home in called?",
         "Plus: what is the language itself called?",
         "Plus: what are the people from there called?",
@@ -249,7 +249,7 @@ internal object ChromeEn : Chrome {
     override val datesFastHint = "One clean answer per Sprosse instead of three."
     override val datesReverseHint = "Asks in %s, you answer in %s — names only, the date " +
         "itself stays forward."
-    override val dateRungs = listOf(
+    override val dateSprossen = listOf(
         "The weekdays",
         "The months",
         "The day of the month",
@@ -257,7 +257,7 @@ internal object ChromeEn : Chrome {
         "The whole date",
         "The date with its year",
     )
-    override val dateRungHints = listOf(
+    override val dateSprosseHints = listOf(
         "The week's seven names, asked one at a time.",
         "The twelve month names, mixed in with the weekdays.",
         "3 becomes third — the number a date needs.",

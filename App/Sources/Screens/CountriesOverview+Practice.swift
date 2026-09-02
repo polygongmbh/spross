@@ -1,15 +1,15 @@
 import SwiftUI
 import SprossKern
 
-/// The drilling half of the atlas overview: the nine rungs a run climbs, which
+/// The drilling half of the atlas overview: the nine Sprossen a run climbs, which
 /// way round it asks, how fast it climbs, and the button that starts it. State
 /// lives on CountriesOverview; split out purely for file size.
 ///
 /// The RUNGS are not earned. The drill is ungated — the atlas is reading matter,
 /// and material a learner may look up on the same page is material they may be
-/// asked — so those rows never carry a padlock: they say what a rung ASKS, and
-/// the run walks them by itself from rung 1 every time. Each names ONE new
-/// thing, because that is all a rung brings (`CountryDrill`).
+/// asked — so those rows never carry a padlock: they say what a Sprosse ASKS, and
+/// the run walks them by itself from Sprosse 1 every time. Each names ONE new
+/// thing, because that is all a Sprosse brings (`CountryDrill`).
 ///
 /// Fast is the one thing here with a price, and it is a way of PLAYING rather
 /// than something to be asked: it is the reward for having topped the ladder the
@@ -20,7 +20,7 @@ extension CountriesOverview {
         VStack(alignment: .leading, spacing: DL.Space.l) {
             heading("trainer.overview.practice")
             VStack(alignment: .leading, spacing: DL.Space.l) {
-                ForEach(Self.rungs, id: \.self) { rungRow($0) }
+                ForEach(Self.sprossen, id: \.self) { sprosseRow($0) }
             }
             .padding(DL.Space.l)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -34,67 +34,67 @@ extension CountriesOverview {
         }
     }
 
-    /// Every rung the ladder has, in the order it is climbed — kern's ceiling,
+    /// Every Sprosse the ladder has, in the order it is climbed — kern's ceiling,
     /// never a count written down beside it.
-    private static var rungs: [Int] {
+    private static var sprossen: [Int] {
         Array(1...max(1, CountryDrill.shared.ceiling))
     }
 
     // MARK: - What a run asks
 
-    /// One rung: the pool it opens and the question it adds. The mark is the
-    /// rung's NUMBER, the letters page's rule — these rows are a ladder the run
+    /// One Sprosse: the pool it opens and the question it adds. The mark is the
+    /// Sprosse's NUMBER, the letters page's rule — these rows are a ladder the run
     /// walks by itself, and a circle beside each one reads as a choice that
     /// never answers the tap.
-    private func rungRow(_ rung: Int) -> some View {
+    private func sprosseRow(_ sprosse: Int) -> some View {
         HStack(alignment: .firstTextBaseline, spacing: DL.Space.m) {
-            Image(systemName: "\(rung).circle")
+            Image(systemName: "\(sprosse).circle")
                 .font(.title3)
                 .foregroundStyle(Color.dlTextSecondary)
             VStack(alignment: .leading, spacing: 2) {
-                Text(Self.title(rung))
+                Text(Self.title(sprosse))
                     .font(DL.Fonts.headline)
                     .foregroundStyle(Color.dlTextPrimary)
-                Text(Self.hint(rung))
+                Text(Self.hint(sprosse))
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer(minLength: 0)
         }
-        // why: one rung is one VoiceOver stop — the mark, the name and the line
+        // why: one Sprosse is one VoiceOver stop — the mark, the name and the line
         // under it describe a single thing.
         .accessibilityElement(children: .combine)
     }
 
-    // why: spelled out rather than interpolated — a key built with `\(rung)`
-    // becomes the format string "countries.rung.%lld" and localizes nothing,
+    // why: spelled out rather than interpolated — a key built with `\(sprosse)`
+    // becomes the format string "countries.Sprosse.%lld" and localizes nothing,
     // and these keys would stop being greppable from the catalog.
-    private static func title(_ rung: Int) -> LocalizedStringKey {
-        switch rung {
-        case 1: return "countries.rung.1"
-        case 2: return "countries.rung.2"
-        case 3: return "countries.rung.3"
-        case 4: return "countries.rung.4"
-        case 5: return "countries.rung.5"
-        case 6: return "countries.rung.6"
-        case 7: return "countries.rung.7"
-        case 8: return "countries.rung.8"
-        default: return "countries.rung.9"
+    private static func title(_ sprosse: Int) -> LocalizedStringKey {
+        switch sprosse {
+        case 1: return "countries.sprosse.1"
+        case 2: return "countries.sprosse.2"
+        case 3: return "countries.sprosse.3"
+        case 4: return "countries.sprosse.4"
+        case 5: return "countries.sprosse.5"
+        case 6: return "countries.sprosse.6"
+        case 7: return "countries.sprosse.7"
+        case 8: return "countries.sprosse.8"
+        default: return "countries.sprosse.9"
         }
     }
 
-    private static func hint(_ rung: Int) -> LocalizedStringKey {
-        switch rung {
-        case 1: return "countries.rung.1.hint"
-        case 2: return "countries.rung.2.hint"
-        case 3: return "countries.rung.3.hint"
-        case 4: return "countries.rung.4.hint"
-        case 5: return "countries.rung.5.hint"
-        case 6: return "countries.rung.6.hint"
-        case 7: return "countries.rung.7.hint"
-        case 8: return "countries.rung.8.hint"
-        default: return "countries.rung.9.hint"
+    private static func hint(_ sprosse: Int) -> LocalizedStringKey {
+        switch sprosse {
+        case 1: return "countries.sprosse.1.hint"
+        case 2: return "countries.sprosse.2.hint"
+        case 3: return "countries.sprosse.3.hint"
+        case 4: return "countries.sprosse.4.hint"
+        case 5: return "countries.sprosse.5.hint"
+        case 6: return "countries.sprosse.6.hint"
+        case 7: return "countries.sprosse.7.hint"
+        case 8: return "countries.sprosse.8.hint"
+        default: return "countries.sprosse.9.hint"
         }
     }
 
@@ -103,11 +103,11 @@ extension CountriesOverview {
     private var pace: some View {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
             Text("countries.pace")
-            if bestRung > 0 {
-                // why: printed as it stands, ceiling and all — the rung keeps
+            if bestSprosse > 0 {
+                // why: printed as it stands, ceiling and all — the Sprosse keeps
                 // counting past the named ladder, so the record is a number to
                 // beat rather than a row on the page.
-                Text("countries.best \(bestRung.formatted())")
+                Text("countries.best \(bestSprosse.formatted())")
             }
         }
         .font(DL.Fonts.caption)
@@ -146,7 +146,7 @@ extension CountriesOverview {
         )
     }
 
-    /// Fast, priced out of kern's own rule: the top rung, stood on once. The
+    /// Fast, priced out of kern's own rule: the top Sprosse, stood on once. The
     /// caption follows the numbers page's unlock line ("Freischalten: Sprosse
     /// 9") rather than authoring a second price beside the ladder that sets it.
     private var fastRow: some View {
@@ -166,11 +166,11 @@ extension CountriesOverview {
             }
             .tint(.dlAccent)
             .disabled(!open)
-            // why: the atlas rung costs THREE clean wins, so the shared
+            // why: the atlas Sprosse costs THREE clean wins, so the shared
             // "statt zwei" hint would misprice it — this ladder says its own.
             (open ? Text("countries.fast.hint")
                   : Text("numbers.unlock") + Text(verbatim: " ")
-                      + Text("trainer.rung \(CountryDrill.shared.ceiling.formatted())"))
+                      + Text("trainer.sprosse \(CountryDrill.shared.ceiling.formatted())"))
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
                 .fixedSize(horizontal: false, vertical: true)

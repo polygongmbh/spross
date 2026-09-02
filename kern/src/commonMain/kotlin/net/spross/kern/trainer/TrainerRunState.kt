@@ -15,7 +15,7 @@ sealed class TrainerIntent {
     /** "Aufdecken" on an empty field — the answer stands and the task books a miss. */
     data object Reveal : TrainerIntent()
 
-    /** The reference table raised mid-run; while the answer is still owed it costs the rung. */
+    /** The reference table raised mid-run; while the answer is still owed it costs the Sprosse. */
     data object LookUp : TrainerIntent()
 
     /** The explicit tap that books whatever the feedback already said. */
@@ -39,9 +39,9 @@ data class TrainerClose(
     /** Where the streak record is filed ([TrainerMode.RECORD_PREFIX] + this). */
     val recordKey: String,
     /**
-     * Progress key ([TrainerMode.PROGRESS_PREFIX] + it) → the rung to store, already filtered to
+     * Progress key ([TrainerMode.PROGRESS_PREFIX] + it) → the Sprosse to store, already filtered to
      * the ones that strictly beat what was standing. Every variant the run ASKED, not only the
-     * one it ended on; a variant it never drew is absent, because an unasked rung was never
+     * one it ended on; a variant it never drew is absent, because an unasked Sprosse was never
      * stood on.
      */
     val progressBookings: Map<String, Int>,
@@ -50,7 +50,7 @@ data class TrainerClose(
 
 /**
  * One slot run, whole and immutable: what is on screen, what the answers have done to it, and
- * the per-variant rungs it is standing on.
+ * the per-variant Sprossen it is standing on.
  *
  * The learner's TEXT is not in here — the platform owns the field, the keyboard and the focus,
  * and hands text in through [TrainerIntent]. What is in here is every rule that decides what
@@ -65,14 +65,14 @@ data class TrainerRunState(
     /** Bumped per question — what an autoplay effect keys on, since two draws can be equal values. */
     val index: Int,
     /**
-     * The rung each variant stands on, all starting at 1 however far the learner has climbed
+     * The Sprosse each variant stands on, all starting at 1 however far the learner has climbed
      * before: persisted progress buys ACCESS, never a head start, because the climb is the drill.
      */
     val levels: Map<DrillVariant, Int>,
     val winsAtLevel: Map<DrillVariant, Int>,
     /**
-     * The highest rung each variant STOOD ON in this run — what the close books. Tracked apart
-     * from [levels] because a rung steps back down on a miss, and the ladder rewards reaching
+     * The highest Sprosse each variant STOOD ON in this run — what the close books. Tracked apart
+     * from [levels] because a Sprosse steps back down on a miss, and the ladder rewards reaching
      * one, not finishing on it.
      */
     val bestLevels: Map<DrillVariant, Int>,
@@ -87,7 +87,7 @@ data class TrainerRunState(
     val outcomes: List<AnswerOutcome>,
     /**
      * The prompts this run has already answered RIGHT ([DrillSolved]): never drawn again, and
-     * a rung with nothing left outside them is climbed past rather than repeated.
+     * a Sprosse with nothing left outside them is climbed past rather than repeated.
      */
     val solved: Set<String>,
     /** Digit counts already introduced with a place-value hint; each length is hinted once. */
@@ -111,13 +111,13 @@ data class TrainerRunState(
 
     val currentMaxLevel: Int get() = mode.maxLevel(currentVariant)
 
-    /** A variant with one rung has no rung to report. */
-    val showsRung: Boolean get() = currentMaxLevel > 1
+    /** A variant with one Sprosse has no Sprosse to report. */
+    val showsSprosse: Boolean get() = currentMaxLevel > 1
 
     /** A run that asks one thing has already said what it asks. */
     val severalVariants: Boolean get() = mode.variants.size > 1
 
-    /** The answer is still owed — what makes a look-up cost the rung. */
+    /** The answer is still owed — what makes a look-up cost the Sprosse. */
     val owesAnswer: Boolean get() = feedback == TurnFeedback.Neutral
 
     /** Correct or almost: something is pending that closing must book rather than lose. */

@@ -11,11 +11,11 @@ import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.TrainerMode
 
 /**
- * Where a drill's standing record and its climbed rungs are filed.
+ * Where a drill's standing record and its climbed Sprossen are filed.
  *
  * SharedPreferences rather than the box document, for the reason iOS files them in
  * UserDefaults: a drill run touches no card and no schedule, so it is not box state —
- * losing a rung costs a climb, where anything in the box costs learning history.
+ * losing a Sprosse costs a climb, where anything in the box costs learning history.
  *
  * Every key is KERN's ([TrainerMode.RECORD_PREFIX] / [TrainerMode.PROGRESS_PREFIX] plus the
  * identity kern spells for the run), so the two platforms file the same feat under the same
@@ -36,18 +36,18 @@ class TrainerStore(private val prefs: SharedPreferences) {
     }
 
     /**
-     * Every variant's highest rung in [language], as the unlock table wants to read it.
+     * Every variant's highest Sprosse in [language], as the unlock table wants to read it.
      * Read whole rather than per row, because a requirement names a variant other than
      * the row it gates (Phrases is bought with Clock).
      */
     fun ladder(language: Language): Map<DrillVariant, Int> =
-        DrillVariant.entries.associateWith { rung(TrainerMode.progressKey(it, language)) }
+        DrillVariant.entries.associateWith { sprosse(TrainerMode.progressKey(it, language)) }
 
     /** The same numbers keyed the way [net.spross.kern.trainer.TrainerRun.close] books them. */
     fun standing(language: Language): Map<String, Int> =
         DrillVariant.entries.associate {
             val key = TrainerMode.progressKey(it, language)
-            key to rung(key)
+            key to sprosse(key)
         }
 
     /** What a closed run left behind — already filtered by kern to what beats the standing. */
@@ -58,19 +58,19 @@ class TrainerStore(private val prefs: SharedPreferences) {
         edit.apply()
     }
 
-    /** The highest rung ever reached under [key], 0 where it was never run. */
-    fun best(key: String): Int = rung(key)
+    /** The highest Sprosse ever reached under [key], 0 where it was never run. */
+    fun best(key: String): Int = sprosse(key)
 
     /**
-     * Books [level] as the furthest rung reached. Strictly greater, so a run re-closed
-     * over its own figures never re-claims a rung that was already standing.
+     * Books [level] as the furthest Sprosse reached. Strictly greater, so a run re-closed
+     * over its own figures never re-claims a Sprosse that was already standing.
      */
-    fun bookRung(key: String, level: Int) {
-        if (level <= rung(key)) return
+    fun bookSprosse(key: String, level: Int) {
+        if (level <= sprosse(key)) return
         prefs.edit().putInt(TrainerMode.PROGRESS_PREFIX + key, level).apply()
     }
 
-    private fun rung(key: String): Int = prefs.getInt(TrainerMode.PROGRESS_PREFIX + key, 0)
+    private fun sprosse(key: String): Int = prefs.getInt(TrainerMode.PROGRESS_PREFIX + key, 0)
 
     companion object {
         /**
@@ -98,7 +98,7 @@ class TrainerStore(private val prefs: SharedPreferences) {
  */
 class Werkstatt(val store: TrainerStore) {
 
-    /** The highest rung each variant ever reached in the language being learnt. */
+    /** The highest Sprosse each variant ever reached in the language being learnt. */
     var ladder by mutableStateOf<Map<DrillVariant, Int>>(emptyMap())
         private set
 
@@ -111,7 +111,7 @@ class Werkstatt(val store: TrainerStore) {
         private set
 
     /**
-     * The furthest rung any atlas run ever reached for this PAIR; 0 where none has.
+     * The furthest Sprosse any atlas run ever reached for this PAIR; 0 where none has.
      * The atlas page only reads it — nothing on that page is earned — except that Fast is
      * priced against it ([net.spross.kern.trainer.CountryDrill.fastUnlocked]).
      */

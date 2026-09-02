@@ -170,7 +170,7 @@ fun SelectionRow(
  *
  * A LOCKED one keeps its switch, off and untappable, and swaps the line for its price: a
  * ladder you can see is a reason to climb it, and an absence is not. What that price says
- * is the caller's, since each ladder prices its own rung.
+ * is the caller's, since each ladder prices its own Sprosse.
  */
 @Composable
 fun ModifierSwitchRow(

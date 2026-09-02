@@ -49,7 +49,7 @@ class TrainerRunTest {
     // MARK: - The draw
 
     @Test
-    fun everyRunStartsAtRungOneHoweverFarTheLearnerHasClimbed() {
+    fun everyRunStartsAtSprosseOneHoweverFarTheLearnerHasClimbed() {
         val mode = TrainerMode(listOf(DrillVariant.Numbers, DrillVariant.Clock), "de", emptySet())
         val state = TrainerRun.open(mode, Random(11))
         assertEquals(mapOf(DrillVariant.Numbers to 1, DrillVariant.Clock to 1), state.levels)
@@ -163,10 +163,10 @@ class TrainerRunTest {
 
     /**
      * A look-up while the answer is still owed books the task almost: the streak carries on, the
-     * rung banks nothing. After the answer is in, nothing is owed and reading is free.
+     * Sprosse banks nothing. After the answer is in, nothing is owed and reading is free.
      */
     @Test
-    fun readingTheReferenceWhileTheAnswerIsOwedCostsTheRung() {
+    fun readingTheReferenceWhileTheAnswerIsOwedCostsTheSprosse() {
         val rng = Random(13)
         var state = TrainerRun.open(numbers(), rng)
         assertTrue(state.offersLookUp)
@@ -252,12 +252,12 @@ class TrainerRunTest {
     }
 
     /**
-     * Ten single digits is the whole of the first numbers rung, so a run that has answered
-     * them all is carried past it rather than asked one of them again — and the rung it is
-     * carried to is a rung it stood on.
+     * Ten single digits is the whole of the first numbers Sprosse, so a run that has answered
+     * them all is carried past it rather than asked one of them again — and the Sprosse it is
+     * carried to is a Sprosse it stood on.
      */
     @Test
-    fun aRungWithNothingLeftToAskIsClimbedPast() {
+    fun aSprosseWithNothingLeftToAskIsClimbedPast() {
         val rng = Random(47)
         val digits = (0L..9L).map { DrillSolved.key(DrillVariant.Numbers, Trainer.number(it, "de")) }
         val spent = TrainerRun.open(numbers(), rng).copy(solved = digits.toSet())
@@ -265,8 +265,8 @@ class TrainerRunTest {
         val next = answerRight(spent, rng)
         assertEquals(2, next.currentLevel)
         assertEquals(2, next.bestLevels[DrillVariant.Numbers])
-        assertEquals(0, next.winsAtLevel[DrillVariant.Numbers], "the wins stay behind with the rung")
-        assertEquals(2, next.currentTask.prompt.length, "the second rung asks two digits")
+        assertEquals(0, next.winsAtLevel[DrillVariant.Numbers], "the wins stay behind with the Sprosse")
+        assertEquals(2, next.currentTask.prompt.length, "the second Sprosse asks two digits")
         assertFalse(next.finished)
     }
 

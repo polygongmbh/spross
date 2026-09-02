@@ -35,7 +35,7 @@ class ListeningPriorityTests {
     /**
      * RULE: higher stability means lower priority, one point per step of the ladder.
      * WHY: the whole draw is one figure — a just-learned word leads, and every two days of
-     * stability drops it a rung, so the not-quite-settled sit in the middle and the
+     * stability drops it a Sprosse, so the not-quite-settled sit in the middle and the
      * consolidated ones are pushed to the end.
      */
     @Test
@@ -45,17 +45,17 @@ class ListeningPriorityTests {
         assertEquals(4, listeningPriority(candidate(4.0, suspended = false, scheduled = true)))
         assertEquals(3, listeningPriority(candidate(6.0, suspended = false, scheduled = true)))
         assertEquals(2, listeningPriority(candidate(8.0, suspended = false, scheduled = true)))
-        // The floor, however settled: ten days or a hundred are the same rung.
+        // The floor, however settled: ten days or a hundred are the same Sprosse.
         assertEquals(1, listeningPriority(candidate(10.0, suspended = false, scheduled = true)))
         assertEquals(1, listeningPriority(candidate(40.0, suspended = false, scheduled = true)))
     }
 
     /**
-     * RULE: a suspended word keeps its stability's rung less the toll — it is NOT sent to the
+     * RULE: a suspended word keeps its stability's Sprosse less the toll — it is NOT sent to the
      * floor, and a shaky leech still comes in early.
      * WHY: the pool holds leeches precisely because they are what an hour of listening is for;
      * suspension takes a word out of the box's rotation and this is the surface that can
-     * still reach it. Two rungs are enough that it does not lead the hour.
+     * still reach it. Two Sprossen are enough that it does not lead the hour.
      */
     @Test
     fun aSuspendedWordPaysATollRatherThanTakingTheFloor() {
@@ -95,7 +95,7 @@ class ListeningPriorityTests {
     /**
      * RULE: a packed word outranks a plain unseen one, and is outranked by a very shaky one.
      * WHY: packing is the learner saying *these words next*, which every other surface honors,
-     * so the ear must honor it too — but one rung is the whole of the ask. A word that is
+     * so the ear must honor it too — but one Sprosse is the whole of the ask. A word that is
      * actively falling out of the box still leads, because that is what the hour is for.
      */
     @Test

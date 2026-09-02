@@ -84,10 +84,10 @@ sealed interface Screen {
     /** The Buchstaben page: the stages and the button first, the alphabet under them. */
     data object Letters : Screen
 
-    /** The Länder page: the rungs and the button first, the atlas table under them. */
+    /** The Länder page: the Sprossen and the button first, the atlas table under them. */
     data object Countries : Screen
 
-    /** The Datum page: the rungs and the button first, the calendar table under them. */
+    /** The Datum page: the Sprossen and the button first, the calendar table under them. */
     data object Dates : Screen
 
     /** A slot run, carrying the spec the page it was started from spelled. */
@@ -97,7 +97,7 @@ sealed interface Screen {
 
     /**
      * An atlas run, carrying the two things the page settled before it opened: which way
-     * round the questions are asked, and whether a rung falls on one clean win.
+     * round the questions are asked, and whether a Sprosse falls on one clean win.
      */
     data class CountryDrill(val reverse: Boolean, val fast: Boolean) : Screen
 
@@ -428,7 +428,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * drill it prepares you for are one surface, and the run is what the page is opened
      * for, so the picks and the button sit above the reading.
      *
-     * The ladder is re-read on the way in — a run closed earlier may have opened a rung —
+     * The ladder is re-read on the way in — a run closed earlier may have opened a Sprosse —
      * and last night's figures are not news, so the result tile starts clear.
      */
     fun openNumbers() {
@@ -537,7 +537,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * started it, which wears them as one tile above the picks.
      *
      * [summary] null ⇒ nothing was answered; the run simply closes. The ladder is re-read
-     * because a closing run books the rungs it stood on, and the rows behind it are stale
+     * because a closing run books the Sprossen it stood on, and the rows behind it are stale
      * the moment it leaves.
      */
     fun finishDrill(back: Screen, summary: DrillRunSummary?, title: String) {
@@ -549,7 +549,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     /**
      * What the two pages read: the climbed ladder, and what the letter drill can ask on
-     * THIS device. Recomputed rather than cached — a rung opens as a run closes, and a
+     * THIS device. Recomputed rather than cached — a Sprosse opens as a run closes, and a
      * voice may be installed in Settings while the app sleeps
      * (`SprossActivity.onResume` calls this too).
      *

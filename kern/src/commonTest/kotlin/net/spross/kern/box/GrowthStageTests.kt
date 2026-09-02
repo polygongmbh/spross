@@ -6,7 +6,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import net.spross.kern.model.CardPhase
 
-/** The growth ladder: which rung a card stands on, and what outranks what. */
+/** The growth ladder: which Sprosse a card stands on, and what outranks what. */
 class GrowthStageTests {
     private val now = Box.day1
     private val future = Box.plusDays(now, 5.0)
@@ -15,7 +15,7 @@ class GrowthStageTests {
         BoxEngine.growth(state, nowMillis, Box.TZ).associate { it.cardId to it.stage }
 
     @Test
-    fun everyRungIsReachable() {
+    fun everySprosseIsReachable() {
         var state = Box.state((1..8).map { Box.word(it) })
         state = BoxEngine.enqueue(state, listOf("w02"))
         state = Box.inject(
@@ -81,7 +81,7 @@ class GrowthStageTests {
     fun suspensionOutranksEveryBar() {
         var state = Box.state(listOf(Box.word(1), Box.word(2)))
         // A leech (8 lapses, suspended) and a hand-suspended matured card
-        // both stand outside the ladder, not on the rung their stability bought.
+        // both stand outside the ladder, not on the Sprosse their stability bought.
         state = Box.inject(
             state,
             Box.sched(

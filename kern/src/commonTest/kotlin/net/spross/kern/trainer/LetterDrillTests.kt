@@ -12,7 +12,7 @@ import net.spross.kern.trainer.LetterDrill.AlphabetExampleWord
 
 /**
  * The ladder, what may be asked at all, and how a typed glyph grades.
- * The rung ramp itself is shared with the slot drill and lives in [DrillProgressionTests].
+ * The Sprosse ramp itself is shared with the slot drill and lives in [DrillProgressionTests].
  */
 class LetterDrillTests {
     private val fixture = LetterDrillFixture
@@ -183,7 +183,7 @@ class LetterDrillTests {
     @Test
     fun aRowWhoseWordsCannotBeGappedIsNeverAsked() {
         // "Wasser" holds no ß at all — the pool empties and the row leaves the draw, which
-        // leaves the rung with nothing to ask rather than an unanswerable question.
+        // leaves the Sprosse with nothing to ask rather than an unanswerable question.
         val unusable = listOf(AlphabetExampleWord("Wasser", null))
         assertNull(
             LetterDrill.sample(

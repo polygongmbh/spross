@@ -164,7 +164,7 @@ object PhraseSlots {
      * Digit renderings of the slot ("347", "1978"; clock "08:05" and "8:05").
      * A grouped value is offered alongside the plain one: the prompt shows "12 345",
      * so a learner who copies the separator into a sentence answer must not lose the
-     * rung to the word-count rule.
+     * Sprosse to the word-count rule.
      */
     private fun digitForms(slot: TrainerTask): List<String> {
         if (slot.kind != TrainerKind.Clock) return listOf(slot.prompt, slot.promptDisplay).distinct()

@@ -36,7 +36,7 @@ extension DatesOverview {
 
     private func kindGroup(_ group: DateReferenceGroup) -> some View {
         VStack(alignment: .leading, spacing: DL.Space.m) {
-            // The rung rows above already name the two pools, so the group
+            // The Sprosse rows above already name the two pools, so the group
             // headings reuse their words rather than authoring a second pair.
             Text(Self.groupTitle(group.kind))
                 .font(DL.Fonts.subheadline)
@@ -59,7 +59,7 @@ extension DatesOverview {
 
     /// The reference groups only ever carry the two bare-name pools.
     private static func groupTitle(_ kind: DateTaskKind) -> LocalizedStringKey {
-        kind == .weekday ? "dates.rung.1" : "dates.rung.2"
+        kind == .weekday ? "dates.sprosse.1" : "dates.sprosse.2"
     }
 
     /// One name, twice: the known language on the left, the learned one on the

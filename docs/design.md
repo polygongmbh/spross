@@ -97,7 +97,7 @@ Strict dependency direction: App → SprossKern, never the reverse.
   KINDS of thing the second level says which (`box.card` vs `box.shelf` vs `box.area`,
   `home.offer` vs `home.done`), and where a rule reaches every surface the namespace is
   the channel instead (`a11y`, `common`). It names the domain's word, not the code's —
-  known and learning over source and target, rung over level, pack over enqueue — and no
+  known and learning over source and target, Sprosse over rung or level, pack over enqueue — and no
   key is also the stem of a family that means something else.
 - The String Catalog is the ONE home for that copy, on both phones: Android's tables are
   generated from it (`scripts/chrome.py`), and a pre-commit check
@@ -349,11 +349,11 @@ a clone inherits its sibling's gaps, never the rules.
   **The unit is the area, not the word.** Five hundred plants can only be read as texture,
   and drawing each as an object made packing an area — forty words at once, a normal
   move — look like a spilled bag rather than like sowing. One tree can be looked at.
-  **A tree is one organism its whole life**, never swapped for another at some rung: the
+  **A tree is one organism its whole life**, never swapped for another at some Sprosse: the
   trunk is what the area has grown, the canopy IS its words that have landed, and blossom
-  and fruit appear ON that canopy. So the picture never starts over, and has no top rung
+  and fruit appear ON that canopy. So the picture never starts over, and has no top Sprosse
   at which it stops. A word is a leaf — a thing believed many of without being counted;
-  which rung of `GrowthStage` (`../kern/docs/reports.md`) becomes which mark is decided in
+  which Sprosse of `GrowthStage` (`../kern/docs/reports.md`) becomes which mark is decided in
   `AreaTrees` and nowhere else.
   **A word the learner has MET hangs on the tree from its first answer on**, as a bud until
   it settles into a leaf — ochre and a third a leaf's size, so a word leafing out always

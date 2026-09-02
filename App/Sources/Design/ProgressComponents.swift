@@ -205,7 +205,7 @@ struct AreaChip: View {
     ///
     /// Two counts, not the bar's three: three German words do not fit this width,
     /// so the text keeps the coarse split — cleared the bar, or still short of it —
-    /// and the bar alone draws the rung between them.
+    /// and the bar alone draws the Sprosse between them.
     private var counts: some View {
         HStack(spacing: DL.Space.m) {
             Label("progress.consolidatedCount \(progress.consolidated.formatted())",
@@ -230,9 +230,9 @@ struct AreaChip: View {
 
 // MARK: PhaseBadge
 
-/// Where one card stands on the ladder, as one word in the rung's own color.
+/// Where one card stands on the ladder, as one word in the Sprosse's own color.
 ///
-/// Four rungs, growing: a card just planted is fresh, one that lapsed back to the
+/// Four Sprossen, growing: a card just planted is fresh, one that lapsed back to the
 /// learning steps is shaky, one in Review is growing, and one past [consolidated] —
 /// kern's stricter bar, the same one the shelf's tally counts against — has grown.
 /// Fresh and shaky share amber and a glyph deliberately: both are still walking the
@@ -242,9 +242,9 @@ struct AreaChip: View {
 /// is handed over beside the phase rather than read out of it (kern
 /// `CardRowState.Standing` states why).
 ///
-/// The rung's [growth] color is handed in, never re-derived here: kern resolves it
+/// The Sprosse's [growth] color is handed in, never re-derived here: kern resolves it
 /// once (`CardRowState.Standing.swatch`) so a row's badge and the shelf's own bar,
-/// which reads the same three tokens, cannot paint one rung two ways.
+/// which reads the same three tokens, cannot paint one Sprosse two ways.
 struct PhaseBadge: View {
     /// Kept for the exhaustive mapping callers build from `CardPhase` — see
     /// `BoxCardRow.badgePhase`. It picks the WORD and the glyph; the color arrives
@@ -258,7 +258,7 @@ struct PhaseBadge: View {
     /// has cleared, handed over beside the phase rather than read out of it
     /// (kern `CardRowState.Standing` states why).
     var consolidated: Bool = false
-    /// The rung's color as the box resolved it. Absent where there is no rung to
+    /// The Sprosse's color as the box resolved it. Absent where there is no Sprosse to
     /// color — a card with nothing behind it, which kern's ladder does not cover.
     var growth: Color?
 
@@ -275,7 +275,7 @@ struct PhaseBadge: View {
     private var color: Color { growth ?? .dlTextSecondary }
 
     /// The area row's own icon at the consolidated end; Growing gets one, and the two
-    /// amber rungs share the leaf their shared color already pairs them by.
+    /// amber Sprossen share the leaf their shared color already pairs them by.
     private var icon: String {
         if phase == .new { return "circle.dashed" }
         if consolidated { return "checkmark.seal.fill" }
@@ -284,7 +284,7 @@ struct PhaseBadge: View {
 
     var body: some View {
         Group {
-            // Grown is the one rung that needs no word: a seal already reads as
+            // Grown is the one Sprosse that needs no word: a seal already reads as
             // "done" on its own, where Fresh/Shaky/Growing would be ambiguous
             // glyphs without one.
             if consolidated {
@@ -320,7 +320,7 @@ private extension View {
     }
 }
 
-/// Every rung a badge can wear, in climbing order, with the colors kern hands the
+/// Every Sprosse a badge can wear, in climbing order, with the colors kern hands the
 /// real row (`CardRowState.Standing.swatch`) written out — a preview has no box to
 /// ask, and seeing the four words side by side is the point of it.
 private var ladder: some View {

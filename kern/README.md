@@ -170,13 +170,13 @@ bar are on `BoxConfig` itself. What the product decided:
   ones — and is always tracked (`CardScheduling.lapses`, drill/listening scoring reads
   it), but no longer auto-suspends: each `Again` climbs `stepsSeconds`
   (`FsrsScheduler.stepOutcome`) instead of resetting to its first entry, capped at the
-  ladder's last rung — the product ships `[10m, 1d, 3d, 7d]`, so a word appears at most
+  ladder's last Sprosse — the product ships `[10m, 1d, 3d, 7d]`, so a word appears at most
   twice on its first day (the introduction, then one 10-minute retry) before a repeat
   miss pushes it out to day scale rather than repeating inside the same sitting.
   `Again` is the ONLY rating that stays on the ladder: `Hard`, `Good` and `Easy` all
   graduate to Review immediately, from wherever the ladder sits — the ladder spaces out
   repeated fails, it does not grade flavors of success. High on the ladder that hands a
-  `Hard` a SHORTER interval than another rung would have, which is the point: the word
+  `Hard` a SHORTER interval than another Sprosse would have, which is the point: the word
   is catching on, so it earns real spaced review rather than another artificial wait.
   **No in-session lapse retry** (breadth ruling 2026-07-22): the run a card
   lapsed in does not wait for it, whatever the ladder's first step is — a composed
@@ -278,15 +278,15 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   an ORDINARY round, so there is no second composition path to keep in step.
   "Today" and "tomorrow" are local-calendar questions and `composeSession` takes `tzId` for
   them; the returning span is the one deliberate exception.
-- **No surface derives a card's standing from a raw phase** — the engine reports the rung
+- **No surface derives a card's standing from a raw phase** — the engine reports the Sprosse
   (`GrowthStage`), and every listing carries it beside the phase rather than re-reading it:
   a card reaches Review well below `consolidatedStability`, so a second derivation is a
   second answer waiting to disagree. The read models a surface draws the box from —
-  the day's report, the rungs, the browsable box, the greeting clock — are `docs/reports.md`.
-  **The color a rung wears is the same fact, extended to drawing**: `CardRowState.Standing.swatch`
+  the day's report, the Sprossen, the browsable box, the greeting clock — are `docs/reports.md`.
+  **The color a Sprosse wears is the same fact, extended to drawing**: `CardRowState.Standing.swatch`
   resolves it once, off `net.spross.kern.design.Palette`, so a row's own badge and the shelf's
-  own progress bar read the identical color for the identical rung on both platforms — neither
-  a platform's badge logic nor its bar logic re-derives which color a rung gets.
+  own progress bar read the identical color for the identical Sprosse on both platforms — neither
+  a platform's badge logic nor its bar logic re-derives which color a Sprosse gets.
   **Packing and unpacking act on the area, never a single word, except where a search
   reached that word by name**: `BoxEngine.enqueue`/`dequeueArea` are the shelf's own controls,
   batching the whole queue; `dequeue` alone (a single card id) exists for the one context that
@@ -331,7 +331,7 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   it, so the same box gives the same run.
   **Suspended cards stay in the pool**: suspending a word pushes it out of the box's queue
   (§5) and never said stop meeting the word, so a suspended card pays a toll on its own
-  rung instead of being sent to the back.
+  Sprosse instead of being sent to the back.
   Hearing a word does not introduce it — introduction is the first answer, and listening
   answers nothing; `ListeningRun` holds no `BoxState` at all, which is what makes that
   structural rather than promised. The pool, the ladder, the deal, the beats and the bedtime

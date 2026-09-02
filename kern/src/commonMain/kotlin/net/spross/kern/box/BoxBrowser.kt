@@ -234,7 +234,7 @@ object BoxBrowser {
             GrowthStage.Suspended -> CardRowState.Sleeping
             GrowthStage.Learning -> CardRowState.Standing(CardPhase.Learning, false)
             GrowthStage.Relearning -> CardRowState.Standing(CardPhase.Relearning, false)
-            // The Review rungs — Fresh, Consolidated, Matured — differ only in which bars
+            // The Review Sprossen — Fresh, Consolidated, Matured — differ only in which bars
             // they have cleared, and the seal follows the consolidated one.
             else -> CardRowState.Standing(CardPhase.Review, Statistics.isConsolidated(state, sched))
         }

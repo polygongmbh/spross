@@ -31,7 +31,7 @@ import net.spross.kern.session.TurnFeedback
  * [CountryDrillTests]; what is asserted here is the run that steps through them — the half
  * both apps used to hold a copy of, which is where the two of them drifted apart.
  *
- * The atlas is one tier-1 country, so rung 1 has exactly one question and every assertion
+ * The atlas is one tier-1 country, so Sprosse 1 has exactly one question and every assertion
  * below reads a task it can predict.
  */
 class CountryDrillRunTest {
@@ -110,7 +110,7 @@ class CountryDrillRunTest {
     // MARK: - Where a run opens
 
     @Test
-    fun aRunOpensOnTheFirstRungWithAQuestionStanding() {
+    fun aRunOpensOnTheFirstSprosseWithAQuestionStanding() {
         val run = CountryDrillRun.open(config(), Random(7))
         assertEquals(1, run.level)
         assertEquals(1, run.bestLevel)
@@ -121,9 +121,9 @@ class CountryDrillRunTest {
         assertEquals(0, run.done)
     }
 
-    /** The forced rung is for tests and screenshot drivers; kern clamps it to the ladder. */
+    /** The forced Sprosse is for tests and screenshot drivers; kern clamps it to the ladder. */
     @Test
-    fun aForcedRungIsClampedToTheLadder() {
+    fun aForcedSprosseIsClampedToTheLadder() {
         assertEquals(CountryDrill.MAX_LEVEL, open(level = 99).level)
         assertEquals(1, open(level = 0).level)
     }
@@ -285,8 +285,8 @@ class CountryDrillRunTest {
     // MARK: - The ramp
 
     /**
-     * Three clean wins a rung, and the question moves on with the booking. Rung 5 has
-     * questions to spare, so what carries the ladder here is the wins rather than the rung
+     * Three clean wins a Sprosse, and the question moves on with the booking. Sprosse 5 has
+     * questions to spare, so what carries the ladder here is the wins rather than the Sprosse
      * running out of them.
      */
     @Test
@@ -301,14 +301,14 @@ class CountryDrillRunTest {
         assertTrue(run.owesAnswer, "the next question is up, not the last one's verdict")
     }
 
-    /** Fast is one clean win a rung — the price is paid before the run opens. */
+    /** Fast is one clean win a Sprosse — the price is paid before the run opens. */
     @Test
-    fun fastSpendsOneWinARung() {
+    fun fastSpendsOneWinASprosse() {
         val run = open(fast = true, level = 5)
         assertEquals(6, run.answered(run.task.display).level)
     }
 
-    /** The almost hold is accepted, and moves the rung neither way. */
+    /** The almost hold is accepted, and moves the Sprosse neither way. */
     @Test
     fun theAlmostHoldBanksNoWin() {
         val run = open().answered("Ujerumami")
@@ -318,9 +318,9 @@ class CountryDrillRunTest {
         assertEquals(1, run.streak, "a slip is still an answer the learner got")
     }
 
-    /** A miss drops the rung, and the rung the run REACHED is what it keeps. */
+    /** A miss drops the Sprosse, and the Sprosse the run REACHED is what it keeps. */
     @Test
-    fun aMissDropsTheRungButNotTheOneTheRunReached() {
+    fun aMissDropsTheSprosseButNotTheOneTheRunReached() {
         var run = open(level = 5)
         repeat(CountryDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
         assertEquals(6, run.level)
@@ -332,16 +332,16 @@ class CountryDrillRunTest {
     // MARK: - Asking each question once
 
     /**
-     * The atlas rung the fixture opens on holds ONE question, so answering it right leaves
-     * the rung with nothing: the run climbs past it rather than asking the same country
-     * again, and the rung it was carried to is a rung it stood on.
+     * The atlas Sprosse the fixture opens on holds ONE question, so answering it right leaves
+     * the Sprosse with nothing: the run climbs past it rather than asking the same country
+     * again, and the Sprosse it was carried to is a Sprosse it stood on.
      */
     @Test
-    fun aRungWithNothingLeftToAskIsClimbedPast() {
+    fun aSprosseWithNothingLeftToAskIsClimbedPast() {
         val run = open().answered("Ujerumani")
         assertEquals(2, run.level)
         assertEquals(2, run.bestLevel)
-        assertEquals(0, run.winsAtLevel, "the wins stay behind with the rung that earned them")
+        assertEquals(0, run.winsAtLevel, "the wins stay behind with the Sprosse that earned them")
         assertFalse(
             run.task.kind == CountryTaskKind.CountryName && run.task.id == "germany",
             "the question just answered came round again",
@@ -354,7 +354,7 @@ class CountryDrillRunTest {
     fun onlyACleanAnswerRetiresAQuestion() {
         val slipped = open().answered("Ujerumami")
         assertEquals(CountryTaskKind.CountryName, slipped.task.kind)
-        assertEquals(1, slipped.level, "an almost neither climbs the rung nor empties it")
+        assertEquals(1, slipped.level, "an almost neither climbs the Sprosse nor empties it")
 
         val missed = open().missed()
         assertEquals(CountryTaskKind.CountryName, missed.task.kind)
@@ -400,7 +400,7 @@ class CountryDrillRunTest {
     // MARK: - Leaving
 
     @Test
-    fun anUntouchedRunReportsNothingButStillNamesItsRung() {
+    fun anUntouchedRunReportsNothingButStillNamesItsSprosse() {
         val closed = CountryDrillRun.close(open(), standingRecord = 0)
         assertNull(closed.summary)
         assertEquals(1, closed.bestLevel)

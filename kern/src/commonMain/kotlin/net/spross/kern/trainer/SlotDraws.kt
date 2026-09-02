@@ -26,7 +26,7 @@ internal sealed interface SlotValue {
 /**
  * Full-difficulty draw: the biases ported from the prototype — numbers favour 2–3 digits,
  * years cluster around 1950–2050 with rarer historic outliers, and the clock reads the
- * whole face (its top rung, which IS any minute).
+ * whole face (its top Sprosse, which IS any minute).
  */
 internal fun drawSlot(kind: TrainerKind, language: Language, rng: Random): SlotValue = when (kind) {
     TrainerKind.Numbers -> SlotValue.Count(drawSampleNumber(rng))
@@ -79,13 +79,13 @@ private fun drawSampleYear(level: Int, rng: Random): Long = when (level) {
     else -> rng.nextLong(1100, 2100)
 }
 
-/** Two rungs: unit fractions the size of a recipe step, then any the language reads. */
+/** Two Sprossen: unit fractions the size of a recipe step, then any the language reads. */
 internal const val FRACTION_MAX_LEVEL = 2
 
 /**
  * A fraction a frame can carry as a BARE NOUN, drawn from the pack's own denominators.
  *
- * Halves are excluded at every rung, which is the whole reason this is not simply the
+ * Halves are excluded at every Sprosse, which is the whole reason this is not simply the
  * Forms ladder's fraction draw: German and Spanish read 1/2 adjectivally ("ein halb",
  * "medio"), so a half has to agree with the noun beside it ("ein halbes Kilo") — and the
  * agreement device runs the other way round, from the numeral to the noun. Everything from

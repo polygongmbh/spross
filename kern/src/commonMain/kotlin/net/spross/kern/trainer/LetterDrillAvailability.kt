@@ -30,7 +30,7 @@ object LetterDrillAvailability {
 
     /**
      * Below this many candidates the resample-once rule degenerates into the same word all
-     * evening: dictation does not exist yet and the ramp stops one rung short of it. The
+     * evening: dictation does not exist yet and the ramp stops one Sprosse short of it. The
      * drill itself still exists.
      */
     const val DICTATION_FLOOR: Int = 5
@@ -49,27 +49,27 @@ object LetterDrillAvailability {
         val dictationCandidates: List<LetterDrill.DictationCandidate>,
         /** Ref → every word this device can say the row's gap from, known words flagged. */
         val gapWords: Map<String, List<LetterDrill.AlphabetExampleWord>>,
-        /** The learner's whole consolidated vocabulary — what paces the entry rung and the rung length. */
+        /** The learner's whole consolidated vocabulary — what paces the entry Sprosse and its length. */
         val consolidatedCards: Int,
     ) {
         val drillAvailable: Boolean get() = alphabet != null && promptableRefs.isNotEmpty()
 
         val dictationAvailable: Boolean get() = dictationCandidates.size >= DICTATION_FLOOR
 
-        /** The rung ceiling: 9 where dictation exists, else 7. */
+        /** The Sprosse ceiling: 9 where dictation exists, else 7. */
         val maxLevel: Int get() = LetterDrill.maxLevel(dictationAvailable)
 
         /**
-         * Which rung a run OPENS on — kern's step from the words the learner already holds,
+         * Which Sprosse a run OPENS on — kern's step from the words the learner already holds,
          * capped by [maxLevel]. Derived here rather than at the run, so the overview naming
          * the stage and the run that starts there read one number.
          */
         val entryLevel: Int get() = minOf(LetterDrill.entryLevel(consolidatedCards), maxLevel)
 
-        /** The stage that rung lands in — what the overview marks. */
+        /** The stage that Sprosse lands in — what the overview marks. */
         val entryStage: LetterStage get() = LetterDrill.stageFor(entryLevel)
 
-        /** How long a rung is for this learner. */
+        /** How long a Sprosse is for this learner. */
         val winsToAdvance: Int get() = LetterDrill.winsToAdvance(consolidatedCards)
 
         /** What kern is handed for one row — empty for a letter row, which gaps nothing. */
@@ -120,7 +120,7 @@ object LetterDrillAvailability {
      * Whether the drill exists at all — the hub-chip predicate, and the only question a card
      * on a list that recomposes constantly should have to ask.
      *
-     * The box is deliberately NOT walked: dictation decides a rung ceiling, never whether the
+     * The box is deliberately NOT walked: dictation decides a Sprosse ceiling, never whether the
      * drill exists. The sweep stays lazy behind [promptable], so the cheap letter half answers
      * first and a catalog walk happens only where no letter of the language can be said.
      */

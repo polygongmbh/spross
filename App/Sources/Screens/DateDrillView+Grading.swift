@@ -7,7 +7,7 @@ import SprossKern
 /// sibling drill splits its off.
 ///
 /// Grading itself is `DateDrillRun.grade`'s, against every reading kern accepts
-/// (`DateDrillTask.accepted`: the authored names on the bare rungs, every
+/// (`DateDrillTask.accepted`: the authored names on the bare Sprossen, every
 /// pattern filling on the assembled ones). All this side still owes is the
 /// grader — one STRICT drill normalizer for the language the answer is owed in.
 extension DateDrillView {
@@ -88,14 +88,14 @@ extension DateDrillView {
     // MARK: - Close → back to the page that opened it
 
     /// X during a run: kern books a pending answer exactly as the tap would,
-    /// then hands the figures and the rung it reached back. An untouched run
+    /// then hands the figures and the Sprosse it reached back. An untouched run
     /// leaves nothing to report.
     func closeRun() {
         let closed = DateDrillRun.shared.close(state: run,
                                                standingRecord: Int32(TrainerRecords.best(for: storageKey)))
         run = closed.state
         for effect in closed.effects { apply(effect) }
-        // why: the rung buys nothing (the drill is ungated); it is what the
+        // why: the Sprosse buys nothing (the drill is ungated); it is what the
         // overview reads back, and what Fast is priced against.
         TrainerProgress.record(Int(closed.bestLevel), for: storageKey)
         guard let summary = closed.summary else {

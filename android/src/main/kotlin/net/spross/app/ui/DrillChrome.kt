@@ -93,16 +93,16 @@ fun DrillCloseButton(chrome: Chrome, onClose: () -> Unit) {
 }
 
 /**
- * The score line above the card: which rung the run stands on, how long the streak is, and
+ * The score line above the card: which Sprosse the run stands on, how long the streak is, and
  * the standing record while the streak has fallen short of it.
  *
- * [rung] is worded by the drill that owns it — a digit count reads differently from a plain
- * level — and is null where a run has one rung only. [announcesRecord] carries a real
+ * [Sprosse] is worded by the drill that owns it — a digit count reads differently from a plain
+ * level — and is null where a run has one Sprosse only. [announcesRecord] carries a real
  * difference rather than settling it: the letter drill has always spoken the streak alone.
  */
 @Composable
 fun DrillStreakLine(
-    rung: String?,
+    sprosse: String?,
     streak: Int,
     bestStreak: Int,
     chrome: Chrome,
@@ -110,7 +110,7 @@ fun DrillStreakLine(
 ) {
     val showsRecord = bestStreak > streak
     val parts = listOfNotNull(
-        rung,
+        sprosse,
         chrome.trainerRunStreak.format(streak),
         if (showsRecord) chrome.trainerRunRecord.format(bestStreak) else null,
     )

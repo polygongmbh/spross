@@ -69,10 +69,10 @@ fun Chrome.countryAsk(kind: CountryTaskKind): String = when (kind) {
     CountryTaskKind.SpokenWhere -> countriesAskSpokenWhere
 }
 
-/** What a rung of the atlas ladder is called, and the line under it. */
-fun Chrome.countryRung(rung: Int): String = countryRungs.rowFor(rung)
+/** What a Sprosse of the atlas ladder is called, and the line under it. */
+fun Chrome.countrySprosse(sprosse: Int): String = countrySprossen.rowFor(sprosse)
 
-fun Chrome.countryRungHint(rung: Int): String = countryRungHints.rowFor(rung)
+fun Chrome.countrySprosseHint(sprosse: Int): String = countrySprosseHints.rowFor(sprosse)
 
 /**
  * What a dates question ASKS — the atlas rule, one table. The three assembled kinds share
@@ -86,18 +86,18 @@ fun Chrome.dateAsk(kind: DateTaskKind): String = when (kind) {
 }
 
 /**
- * What a rung of the dates ladder is called, from what kern says it ASKS
+ * What a Sprosse of the dates ladder is called, from what kern says it ASKS
  * ([net.spross.kern.trainer.DateDrill.kinds]) — the wordings are keyed by KIND because
  * the ladder has no fixed length: a pair without a year pattern skips that row, and the
  * number on screen is the row's own position.
  */
-fun Chrome.dateRung(kinds: List<DateTaskKind>): String = dateRungs.rowFor(dateRungIndex(kinds))
+fun Chrome.dateSprosse(kinds: List<DateTaskKind>): String = dateSprossen.rowFor(dateSprosseIndex(kinds))
 
-fun Chrome.dateRungHint(kinds: List<DateTaskKind>): String =
-    dateRungHints.rowFor(dateRungIndex(kinds))
+fun Chrome.dateSprosseHint(kinds: List<DateTaskKind>): String =
+    dateSprosseHints.rowFor(dateSprosseIndex(kinds))
 
-/** A rung carries every kind below it, so the LAST one is what it introduced and is named for. */
-private fun dateRungIndex(kinds: List<DateTaskKind>): Int =
+/** A Sprosse carries every kind below it, so the LAST one is what it introduced and is named for. */
+private fun dateSprosseIndex(kinds: List<DateTaskKind>): Int =
     when (kinds.lastOrNull()) {
         DateTaskKind.Weekday -> 1
         DateTaskKind.Month -> 2
@@ -113,8 +113,8 @@ fun Chrome.countryTier(tier: Int): String = countryTiers.rowFor(tier)
 
 /**
  * The wording for a 1-based row of a kern-length ladder. A ladder that grew past the table
- * takes the last wording rather than printing nothing: kern is free to add a rung before the
- * chrome has a sentence for it, and a rung with no name at all would be worse than a
+ * takes the last wording rather than printing nothing: kern is free to add a Sprosse before the
+ * chrome has a sentence for it, and a Sprosse with no name at all would be worse than a
  * repeated one — the same fallback the iOS catalog's `default:` case makes.
  */
 private fun List<String>.rowFor(index: Int): String =
@@ -125,15 +125,15 @@ private fun List<String>.rowFor(index: Int): String =
  * beside it, which would go stale the day the table moves.
  *
  * Numbers counts DIGITS and its wording already wears the drill's face, so it prints as
- * the length it is; every other variant names itself and its rung.
+ * the length it is; every other variant names itself and its Sprosse.
  */
 fun Chrome.unlockPrice(required: Map<DrillVariant, Int>): String {
     val parts = DrillVariant.entries.mapNotNull { variant ->
-        val rung = required[variant] ?: return@mapNotNull null
+        val sprosse = required[variant] ?: return@mapNotNull null
         if (variant == DrillVariant.Numbers) {
-            countLine(numbersRungOne, numbersRung, rung)
+            countLine(numbersSprosseOne, numbersSprosse, sprosse)
         } else {
-            "${badge(variant)} ${trainerRung.format(rung)}"
+            "${badge(variant)} ${trainerSprosse.format(sprosse)}"
         }
     }
     if (parts.isEmpty()) return numbersUnlock
@@ -145,9 +145,9 @@ fun Chrome.unlockPrice(required: Map<DrillVariant, Int>): String {
  * calendar print under their ladder, said per exercise here because each one climbs its
  * own. Numbers counts DIGITS, exactly as its price does.
  */
-fun Chrome.bestRung(variant: DrillVariant, rung: Int): String =
+fun Chrome.bestSprosse(variant: DrillVariant, sprosse: Int): String =
     if (variant == DrillVariant.Numbers) {
-        "$numbersBest ${countLine(numbersRungOne, numbersRung, rung)}"
+        "$numbersBest ${countLine(numbersSprosseOne, numbersSprosse, sprosse)}"
     } else {
-        "$numbersBest ${trainerRung.format(rung)}"
+        "$numbersBest ${trainerSprosse.format(sprosse)}"
     }

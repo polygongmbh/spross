@@ -18,11 +18,11 @@ import net.spross.kern.model.Language
  * takes an injected [Random], so both platforms derive the same run from the same seed and
  * the ladder is pinned in tests rather than described twice in two UI layers.
  *
- * The ladder widens OUTWARD from the learner's own two languages, each rung keeping
- * everything below it — and each rung brings exactly ONE new thing, either a question or a
+ * The ladder widens OUTWARD from the learner's own two languages, each Sprosse keeping
+ * everything below it — and each Sprosse brings exactly ONE new thing, either a question or a
  * tier, never both at once:
  *
- * | rung | pool | asks |
+ * | Sprosse | pool | asks |
  * |---|---|---|
  * | 1 | the profile's own languages and their countries (tier 1) | the country's name, where the two languages differ on it |
  * | 2 | tier 1 | + the language's name |
@@ -35,36 +35,36 @@ import net.spross.kern.model.Language
  * | 9 | everything | + where a language is spoken |
  *
  * A tier the catalog has not authored yet costs nothing: the pool is the join intersected
- * with the ceiling, so an empty new tier simply repeats the pool below it. Rung 7 is that
+ * with the ceiling, so an empty new tier simply repeats the pool below it. Sprosse 7 is that
  * same nothing in a REVERSED run, where the flag question does not exist — see [kinds].
  */
 object CountryDrill {
     const val MAX_LEVEL = 9
 
-    /** Three clean wins a rung: more rungs, and more rows standing on each of them. */
+    /** Three clean wins a Sprosse: more Sprossen, and more rows standing on each of them. */
     const val WINS_TO_ADVANCE = 3
 
     /**
-     * How LONG a rung is. Fast spends one clean win instead of the three, and is the reward
+     * How LONG a Sprosse is. Fast spends one clean win instead of the three, and is the reward
      * for having topped the ladder the hard way ([fastUnlocked]) — the numbers drill's rule
      * ([Trainer.winsToAdvance]), read off this ladder's own pacing.
      */
     fun winsToAdvance(fast: Boolean): Int = if (fast) 1 else WINS_TO_ADVANCE
 
     /**
-     * Whether the Fast modifier is on offer at all. Having EVER stood on the top rung is the
-     * price — [bestLevel] is the highest rung any run reached, which is what the app keeps.
+     * Whether the Fast modifier is on offer at all. Having EVER stood on the top Sprosse is the
+     * price — [bestLevel] is the highest Sprosse any run reached, which is what the app keeps.
      */
     fun fastUnlocked(bestLevel: Int): Boolean = bestLevel >= MAX_LEVEL
 
-    /** The rung ramp, on the ladder's rung length ([DrillRamp.step]). */
+    /** The Sprosse ramp, on the ladder's Sprosse length ([DrillRamp.step]). */
     fun step(
         level: Int,
         winsAtLevel: Int,
         correct: Boolean,
         clean: Boolean,
         fast: Boolean = false,
-    ): DrillRamp.RungStep =
+    ): DrillRamp.SprosseStep =
         DrillRamp.step(level, winsAtLevel, correct, clean, winsToAdvance(fast))
 
     /** How far out [level] reaches — tier 1 is the profile's own, 4 the regional rest. */
@@ -80,7 +80,7 @@ object CountryDrill {
      *
      * A REVERSED run has no [CountryTaskKind.FlagCountry] at all: the answer is then owed in
      * the learner's OWN language, so a flag alone asks them to recognize their own flag and
-     * write down a name they have said all their life. Rung 7, whose whole novelty that is,
+     * write down a name they have said all their life. Sprosse 7, whose whole novelty that is,
      * simply repeats the pool below it there — the same nothing an unauthored tier costs.
      *
      * The OTHER country questions keep their flag in reverse; it is merely held back while
@@ -112,13 +112,13 @@ object CountryDrill {
     }
 
     /**
-     * Every question [level] could ask, in a stable order — the rung's pool, made explicit.
+     * Every question [level] could ask, in a stable order — the Sprosse's pool, made explicit.
      * [reverse] flips which side prompts: forward asks in the language the learner KNOWS,
      * reversed asks in the one they are learning and grades in their own.
      *
      * Where the ceiling's pool builds nothing at all — a catalog whose inner tiers are not
-     * authored yet — it widens until something stands, because a rung with no question is
-     * not a rung the learner can climb off.
+     * authored yet — it widens until something stands, because a Sprosse with no question is
+     * not a Sprosse the learner can climb off.
      */
     fun tasks(content: CountryDrillContent, level: Int, reverse: Boolean = false): List<CountryDrillTask> {
         val kinds = kinds(level, reverse)
@@ -133,7 +133,7 @@ object CountryDrill {
     /**
      * One question from [level]'s pool, never one [solved] already holds ([DrillSolved]).
      * [avoidId] is the previous answer's id, resampled once so a repeat needs two unlucky
-     * draws rather than one — the letter drill's rule. Null ⇒ the rung is answered out.
+     * draws rather than one — the letter drill's rule. Null ⇒ the Sprosse is answered out.
      */
     fun sample(
         content: CountryDrillContent,
@@ -151,8 +151,8 @@ object CountryDrill {
     }
 
     /**
-     * The first rung at or above [level] with a question left ([DrillLadder.climb]). A rung
-     * the run has answered out is climbed past rather than asked again — the rungs nest, so
+     * The first Sprosse at or above [level] with a question left ([DrillLadder.climb]). A Sprosse
+     * the run has answered out is climbed past rather than asked again — the Sprossen nest, so
      * the one above always has at least as much to offer.
      */
     fun draw(
@@ -163,8 +163,8 @@ object CountryDrill {
         solved: Set<String>,
         rng: Random,
     ): CountryDrillDraw {
-        val climbed = DrillLadder.climb(level, MAX_LEVEL) { rung ->
-            sample(content, rung, reverse, avoidId, solved, rng)
+        val climbed = DrillLadder.climb(level, MAX_LEVEL) { sprosse ->
+            sample(content, sprosse, reverse, avoidId, solved, rng)
         }
         return CountryDrillDraw(climbed.task, climbed.level)
     }
@@ -216,7 +216,7 @@ object CountryDrill {
         return kinds.flatMap { kind ->
             when (kind) {
                 // why: a name both sides spell alike is no question — the prompt IS the
-                // answer. The fallback holds a pair whose every name matches: a rung with
+                // answer. The fallback holds a pair whose every name matches: a Sprosse with
                 // nothing in it would be worse than an easy one.
                 CountryTaskKind.CountryName ->
                     countries.filter { it.namesDiffer() }.ifEmpty { countries }
@@ -245,7 +245,7 @@ object CountryDrill {
     }
 
     /**
-     * The flag alone, with no name on the card at all — the outer rungs' recognition game.
+     * The flag alone, with no name on the card at all — the outer Sprossen' recognition game.
      * Every country stands here, including the ones [namesDiffer] keeps out of the name
      * questions: nothing is written down to give the answer away, so "Venezuela" is a
      * question again. The reveal names the country on the asking side too, or a miss would
@@ -293,7 +293,7 @@ object CountryDrill {
 
     /**
      * Country → language. EVERY language the country speaks is accepted, including ones
-     * the rung has not reached: "French" is a true answer about Switzerland whether or not
+     * the Sprosse has not reached: "French" is a true answer about Switzerland whether or not
      * the ladder has opened tier 3 yet. The reveal shows one the learner has met.
      */
     private fun spokenIn(

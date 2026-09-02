@@ -39,7 +39,7 @@ sealed class LetterDrillIntent {
 /** The closed result of one intent. */
 data class LetterDrillReduction(val state: LetterDrillRunState, val effects: List<DrillEffect>)
 
-/** What a closed letter run leaves behind — figures only; no record, no rung (D12). */
+/** What a closed letter run leaves behind — figures only; no record, no Sprosse (D12). */
 data class LetterDrillClose(
     val state: LetterDrillRunState,
     /** null ⇒ nothing was answered: dismiss, report nothing. */
@@ -58,7 +58,7 @@ class LetterDrillRunConfig(
     /**
      * The STRICT drill grader with the whole join in view: a per-word slip budget alone would
      * accept `kufungua` for `kufunga`, and only the catalog-wide grader withdraws that credit.
-     * Null falls the dictation rung back to glyph grading — defensive, never asserted.
+     * Null falls the dictation Sprosse back to glyph grading — defensive, never asserted.
      */
     val dictationGrader: CatalogAnswerGrader?,
 )
@@ -67,7 +67,7 @@ class LetterDrillRunConfig(
  * One letter run, whole and immutable.
  *
  * No FSRS anywhere (D12 — transcription is not recall): the box is READ, for the pacing figures
- * and the dictation pool, and never written. The run keeps no record and books no rung, so its
+ * and the dictation pool, and never written. The run keeps no record and books no Sprosse, so its
  * close has nothing to store.
  */
 data class LetterDrillRunState(

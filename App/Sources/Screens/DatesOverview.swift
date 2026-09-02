@@ -5,7 +5,7 @@ import SprossKern
 /// place its drill is started from.
 ///
 /// Two sections, in the order every overview uses — start first, reading after:
-/// the rungs a run climbs and the button that opens it, then the calendar
+/// the Sprossen a run climbs and the button that opens it, then the calendar
 /// itself, both sides of every name beside each other.
 ///
 /// Named in TWO languages like the atlas: the prompt side lends its weekday
@@ -14,11 +14,11 @@ import SprossKern
 /// sides (`Catalog.dateDrillContent`).
 ///
 /// Nothing on this page is earned. The drill is ungated — every run opens at
-/// rung 1 and climbs by itself — so the rung rows say what a rung ASKS and never
-/// carry a padlock. The one thing that persists is the highest rung reached,
+/// Sprosse 1 and climbs by itself — so the Sprosse rows say what a Sprosse ASKS and never
+/// carry a padlock. The one thing that persists is the highest Sprosse reached,
 /// which this page reads and never writes.
 ///
-/// The rungs and the toggle live in DatesOverview+Practice.swift, the table in
+/// The Sprossen and the toggle live in DatesOverview+Practice.swift, the table in
 /// DatesOverview+Reference.swift; split purely for file size.
 struct DatesOverview: View {
     let model: AppModel
@@ -31,22 +31,22 @@ struct DatesOverview: View {
     // why: internal, not private — both extensions read the reader's locale.
     @Environment(\.locale) var locale
 
-    /// The joined calendars. Held rather than recomputed per row: the rungs and
+    /// The joined calendars. Held rather than recomputed per row: the Sprossen and
     /// the table read the very same content the run grades against.
     // why: internal, not private — both extensions render from it.
     @State var content: DateDrillContent?
     /// Which way round a run asks. Offered from the first run — reversed, only
-    /// the name rungs stand, and the ladder above redraws to say so.
+    /// the name Sprossen stand, and the ladder above redraws to say so.
     @State var reverse = false
-    /// Whether a rung falls on one clean win instead of three. Unlike reverse
-    /// this one IS earned — the top rung has to have been stood on once — so it
-    /// stays off, and out of reach, until `bestRung` says otherwise.
+    /// Whether a Sprosse falls on one clean win instead of three. Unlike reverse
+    /// this one IS earned — the top Sprosse has to have been stood on once — so it
+    /// stays off, and out of reach, until `bestSprosse` says otherwise.
     @State var fast = false
-    /// The furthest rung any run has reached — read on every appearance, since a
+    /// The furthest Sprosse any run has reached — read on every appearance, since a
     /// closing run books its own.
-    @State var bestRung = 0
+    @State var bestSprosse = 0
     @State private var launch: Launch?
-    /// What the run that just closed came to — one tile above the rungs, the
+    /// What the run that just closed came to — one tile above the Sprossen, the
     /// shape every overview uses.
     @State private var lastRun: DrillRunResult?
 
@@ -64,7 +64,7 @@ struct DatesOverview: View {
     /// Scroll target for the tile carrying the reverse and fast switches.
     static let modifierAnchor = "modifiers"
 
-    /// Where the rung and the record are kept — one key per PAIR, because the
+    /// Where the Sprosse and the record are kept — one key per PAIR, because the
     /// calendars are a pair's material and not a language's.
     var storageKey: String { "dates.\(source)-\(target)" }
 
@@ -121,7 +121,7 @@ struct DatesOverview: View {
         }
         .tint(.dlAccent)
         .onAppear { reload() }
-        // why: a closing run books the rung it reached, so the line under the
+        // why: a closing run books the Sprosse it reached, so the line under the
         // ladder is stale the moment the cover comes down.
         .fullScreenCover(item: $launch, onDismiss: reload) { launch in
             Group {
@@ -150,29 +150,29 @@ struct DatesOverview: View {
     }
 
     /// Whether fast mode may be picked at all — kern's rule on the stored best,
-    /// never a rung number written down beside it. The price is the ladder the
+    /// never a Sprosse number written down beside it. The price is the ladder the
     /// switches stand for RIGHT NOW: reversed, the ladder is shorter and kern
     /// prices it as such.
     var fastUnlocked: Bool {
         guard let content else { return false }
-        return DateDrill.shared.fastUnlocked(bestLevel: bestRung, content: content, reverse: reverse)
+        return DateDrill.shared.fastUnlocked(bestLevel: bestSprosse, content: content, reverse: reverse)
     }
 
-    /// Reads the join and the standing rung at once. Both change under this page
-    /// — the catalog when the profile does, the rung when a run closes.
+    /// Reads the join and the standing Sprosse at once. Both change under this page
+    /// — the catalog when the profile does, the Sprosse when a run closes.
     func reload() {
         content = model.catalog?.dateDrillContent(source: source, target: target)
-        bestRung = TrainerProgress.best(for: storageKey)
+        bestSprosse = TrainerProgress.best(for: storageKey)
         // why: the numbers page's `normalizePicks` rule — a ladder that grew
         // under a stored best puts fast back out of reach, and a toggle must
         // never outlive the price that bought it.
         if !fastUnlocked { fast = false }
         #if DEBUG
         Self.uitestSeedProgress(key: storageKey)
-        bestRung = max(bestRung, TrainerProgress.best(for: storageKey))
+        bestSprosse = max(bestSprosse, TrainerProgress.best(for: storageKey))
         // why: the numbers page's `-uitest-modifiers` hook — a toggle nobody can
         // tap from a script is a surface no screenshot can reach. Fast still
-        // answers to its price, so seeding the rung is what opens it.
+        // answers to its price, so seeding the Sprosse is what opens it.
         let asked = Self.uitestModifiers
         if asked.contains("rev") { reverse = true }
         if asked.contains("fast"), fastUnlocked { fast = true }
@@ -231,7 +231,7 @@ extension DatesOverview {
             .split(whereSeparator: { $0 == "," || $0 == " " }).map(String.init))
     }
 
-    /// `-uitest-dates-best 7` stands the ladder at a rung a fresh install has
+    /// `-uitest-dates-best 7` stands the ladder at a Sprosse a fresh install has
     /// not climbed, which is the only way to photograph fast mode OPEN. Booked
     /// through `TrainerProgress` so it meets exactly the rule a real run would
     /// have written, rather than a second door into the same state.

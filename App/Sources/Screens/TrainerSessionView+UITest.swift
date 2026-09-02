@@ -12,7 +12,7 @@ import SprossKern
 /// a thumb could do goes through an intent, exactly as a finger would.
 extension TrainerSessionView {
 
-    /// `-uitest-level N` starts the run's FIRST variant at that rung (numbers:
+    /// `-uitest-level N` starts the run's FIRST variant at that Sprosse (numbers:
     /// digit count), the only way to photograph a long prompt without playing up to it;
     /// `-uitest-streak N` presets a running streak;
     /// `-uitest-misses N` presets the run's booked miss streak;

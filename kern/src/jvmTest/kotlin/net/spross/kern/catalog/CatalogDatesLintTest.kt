@@ -88,7 +88,7 @@ class CatalogDatesLintTest {
     }
 
     /**
-     * The rung-4 ruling's own predicate: putting the day+month rung on the assembled
+     * The Sprosse-4 ruling's own predicate: putting the day+month Sprosse on the assembled
      * (bridging) side is safe only while no language has BOTH a two-word `dayMonth`
      * reading AND a distance-1 calendar pair — measured over the drill normalizer's own
      * comparison shapes, one merged space, exactly as the refusal index sees them. The
@@ -128,7 +128,7 @@ class CatalogDatesLintTest {
             assertTrue(
                 fewestWords >= 3,
                 "dates/$lang.json: a $fewestWords-word dayMonth reading beside distance-1 " +
-                    "pair(s) $confusable — the rung-4 ruling is no longer moot, ask the owner",
+                    "pair(s) $confusable — the Sprosse-4 ruling is no longer moot, ask the owner",
             )
         }
     }
@@ -158,7 +158,7 @@ class CatalogDatesLintTest {
         // `tarehe` — the word a Swahili date counts from, no article in sight.
         "sw" to setOf("tarehe"),
         // Ukrainian assembles a date out of its parts alone: the genitive does the work
-        // an article or a preposition does elsewhere, and there is no year rung to word.
+        // an article or a preposition does elsewhere, and there is no year Sprosse to word.
         "uk" to emptySet(),
     )
 

@@ -10,12 +10,12 @@ import net.spross.kern.trainer.DrillVariant
 /**
  * What a locked row SAYS it costs. The ladder itself is kern's and is tested there; what is
  * asserted here is that the price is read off that table rather than authored beside it,
- * and that the numbers rung is worded as the length it is.
+ * and that the numbers Sprosse is worded as the length it is.
  */
 class TrainerNamingTest {
 
     @Test
-    fun theNumbersRungIsPricedAsDigitsAndTheOthersNameThemselves() {
+    fun theNumbersSprosseIsPricedAsDigitsAndTheOthersNameThemselves() {
         val clock = ChromeDe.unlockPrice(DrillUnlocks.requirements(DrillVariant.Clock))
         // Clock is bought with the numbers ladder, which counts digits and wears 🔢 itself.
         assertEquals("Freischalten: 🔢 4 Stellen", clock)
@@ -31,7 +31,7 @@ class TrainerNamingTest {
     }
 
     /**
-     * The join, on a map built by hand: no rung in kern's table costs two variants at
+     * The join, on a map built by hand: no Sprosse in kern's table costs two variants at
      * once today, so reading one out of it would assert nothing about the separator —
      * and the day one does, this is the line that already covers it.
      */

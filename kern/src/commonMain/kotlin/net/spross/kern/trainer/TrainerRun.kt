@@ -19,14 +19,14 @@ import net.spross.kern.session.TurnFeedback
  */
 object TrainerRun {
 
-    /** A fresh run: every variant at rung 1, one task already drawn. */
+    /** A fresh run: every variant at Sprosse 1, one task already drawn. */
     fun open(mode: TrainerMode, rng: Random): TrainerRunState {
         val levels = mode.variants.associateWith { 1 }
         val opening = mode.draw(levels, null, emptySet(), rng)
         return TrainerRunState(
             mode = mode,
-            // why: nothing is solved yet, so the draw always has a rung to ask from.
-            current = requireNotNull(opening.drawn) { "no task at rung 1 of ${mode.recordKey}" },
+            // why: nothing is solved yet, so the draw always has a Sprosse to ask from.
+            current = requireNotNull(opening.drawn) { "no task at Sprosse 1 of ${mode.recordKey}" },
             index = 0,
             levels = opening.levels,
             winsAtLevel = emptyMap(),
@@ -205,7 +205,7 @@ object TrainerRun {
     }
 
     /**
-     * why: a look-up while the answer is still owed costs the rung — the task books almost. Once
+     * why: a look-up while the answer is still owed costs the Sprosse — the task books almost. Once
      * the answer is in, nothing is owed and reading is free.
      */
     private fun lookUp(state: TrainerRunState): TrainerReduction =
@@ -230,7 +230,7 @@ object TrainerRun {
 
     // MARK: - Booking
 
-    /** Book the answer, then put the next question up at the rungs the booking left. */
+    /** Book the answer, then put the next question up at the Sprossen the booking left. */
     private fun booked(
         state: TrainerRunState,
         correct: Boolean,
@@ -256,8 +256,8 @@ object TrainerRun {
     }
 
     /**
-     * Adopt the rungs the draw climbed to. A rung the run was carried past because its prompts
-     * were answered out is a rung it STOOD on, so the close books it like any other; the wins
+     * Adopt the Sprossen the draw climbed to. A Sprosse the run was carried past because its prompts
+     * were answered out is a Sprosse it STOOD on, so the close books it like any other; the wins
      * banked on the one below stay behind with it.
      */
     private fun climbed(state: TrainerRunState, draw: TrainerDraw): TrainerRunState {

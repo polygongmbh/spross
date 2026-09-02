@@ -54,9 +54,9 @@ class TrainerModeTest {
         )
     }
 
-    /** A rung belongs to ONE variant, which is what lets the ladder read them all at once. */
+    /** A Sprosse belongs to ONE variant, which is what lets the ladder read them all at once. */
     @Test
-    fun aRungIsFiledPerVariantAndPhrasesKeepsItsLowercaseSpelling() {
+    fun aSprosseIsFiledPerVariantAndPhrasesKeepsItsLowercaseSpelling() {
         assertEquals("Numbers.sw", TrainerMode.progressKey(DrillVariant.Numbers, "sw"))
         assertEquals("Clock.sw", TrainerMode.progressKey(DrillVariant.Clock, "sw"))
         assertEquals("Forms.sw", TrainerMode.progressKey(DrillVariant.Forms, "sw"))
@@ -77,7 +77,7 @@ class TrainerModeTest {
 
         val counting = TrainerMode(listOf(DrillVariant.Numbers), "uk", "de", templates, emptySet())
         assertEquals("Numbers.de-uk", counting.recordKey)
-        // The rung key never takes the pair — a rung belongs to the language it was climbed in.
+        // The Sprosse key never takes the pair — a Sprosse belongs to the language it was climbed in.
         assertEquals("Numbers.uk", counting.progressKey(DrillVariant.Numbers))
     }
 
@@ -180,7 +180,7 @@ class TrainerModeTest {
         )
         // Nothing picked and the ladder closed still opens on the one row that is free.
         assertEquals(listOf(DrillVariant.Numbers), DrillSelection.normalized(emptyList(), offered, fresh))
-        // A rung the run just booked lets both stand.
+        // A Sprosse the run just booked lets both stand.
         assertEquals(
             listOf(DrillVariant.Numbers, DrillVariant.Clock),
             DrillSelection.normalized(
@@ -206,7 +206,7 @@ class TrainerModeTest {
         assertTrue(flips.contains(true) && flips.contains(false), "Mix flips per task: $flips")
     }
 
-    /** Mix widens Forms out of the Numbers rung — which means nothing without a Numbers rung. */
+    /** Mix widens Forms out of the Numbers Sprosse — which means nothing without a Numbers Sprosse. */
     @Test
     fun mixWidensFormsOnlyWhileTheRunIsClimbingNumbers() {
         val both = TrainerMode(
@@ -219,7 +219,7 @@ class TrainerModeTest {
     }
 
     @Test
-    fun fastHalvesTheRung() {
+    fun fastHalvesTheSprosse() {
         assertEquals(2, TrainerMode(DrillVariant.Numbers, "de").winsToAdvance)
         val fast = TrainerMode(listOf(DrillVariant.Numbers), "de", setOf(DrillModifier.Fast))
         assertEquals(1, fast.winsToAdvance)

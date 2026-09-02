@@ -15,17 +15,17 @@ import net.spross.kern.session.alsoAccepts
  * The letter drill as pure state plus one reducer. The run's shape is [LetterDrillRunState];
  * what it can ask is [LetterDrillAvailability.Report].
  *
- * Its rungs are STAGES — they change what a question is rather than how big the number is — and
+ * Its Sprossen are STAGES — they change what a question is rather than how big the number is — and
  * its verdict ladder carries a third outcome no slot task can produce. That is the whole of what
  * it does not share with the slot run; the ramp, the effects and the summary are the same ones.
  */
 object LetterDrillRun {
 
-    /** A fresh run at the rung the learner's vocabulary opens on. */
+    /** A fresh run at the Sprosse the learner's vocabulary opens on. */
     fun open(config: LetterDrillRunConfig, rng: Random): LetterDrillRunState =
         openAt(config, config.report.entryLevel, rng)
 
-    /** The same, forced to one rung — the deterministic way to reach a stage. */
+    /** The same, forced to one Sprosse — the deterministic way to reach a stage. */
     fun openAt(config: LetterDrillRunConfig, level: Int, rng: Random): LetterDrillRunState {
         val start = level.coerceIn(1, config.report.maxLevel)
         val opening = draw(config, start, null, null, emptySet(), rng)
@@ -214,7 +214,7 @@ object LetterDrillRun {
             next.copy(
                 task = question.task,
                 level = question.level,
-                // A rung the run was carried past keeps none of the wins banked below it.
+                // A Sprosse the run was carried past keeps none of the wins banked below it.
                 winsAtLevel = if (question.level == next.level) next.winsAtLevel else 0,
                 index = state.index + 1,
                 // why: cleared in the SAME transaction as the question — the next one must never
@@ -267,7 +267,7 @@ object LetterDrillRun {
     }
 
     /**
-     * The first rung at or above [from] with something left to ask ([DrillLadder.climb]).
+     * The first Sprosse at or above [from] with something left to ask ([DrillLadder.climb]).
      * A stage the run has answered out is climbed past rather than repeated ([DrillSolved]).
      */
     private fun draw(
@@ -277,7 +277,7 @@ object LetterDrillRun {
         avoidingWord: String?,
         solved: Set<String>,
         rng: Random,
-    ): DrillLadder.Rung<LetterDrillTask> =
+    ): DrillLadder.Sprosse<LetterDrillTask> =
         DrillLadder.climb(from, config.report.maxLevel) { level ->
             sample(config, level, avoiding, avoidingWord, solved, rng)
         }
@@ -285,7 +285,7 @@ object LetterDrillRun {
     /**
      * One question at [level]: dictation draws from the box, every other stage from the alphabet.
      * [avoiding] is the previous answer and [avoidingWord] the word it gapped, each of which kern
-     * resamples once. Null ⇒ this device, at this rung, can ask nothing more.
+     * resamples once. Null ⇒ this device, at this Sprosse, can ask nothing more.
      */
     private fun sample(
         config: LetterDrillRunConfig,

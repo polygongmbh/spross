@@ -5,9 +5,9 @@ import net.spross.kern.design.Swatch
 import net.spross.kern.model.CardPhase
 
 /**
- * Which color this rung wears, decided once here so a row's badge and the shelf's own
+ * Which color this Sprosse wears, decided once here so a row's badge and the shelf's own
  * progress bar — whose segments reference [Palette.amber]/[Palette.success]/[Palette.grown]
- * by these same names — can never disagree about the same rung on either platform.
+ * by these same names — can never disagree about the same Sprosse on either platform.
  */
 val CardRowState.Standing.swatch: Swatch
     get() = when {

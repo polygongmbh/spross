@@ -14,7 +14,7 @@ import net.spross.kern.model.Card
  * leniency. `baseAccepted` goes, with the synonyms: the feminine demotion accepts the base
  * word, which in a transcription is simply not what played.
  *
- * One definition for both surfaces that ask by ear — the letter drill's dictation rung and
+ * One definition for both surfaces that ask by ear — the letter drill's dictation Sprosse and
  * a sound-prompted produce review — because "credit only what was spoken" is one rule.
  */
 fun spokenOnly(card: Card, spokenForm: String): Card = card.copy(

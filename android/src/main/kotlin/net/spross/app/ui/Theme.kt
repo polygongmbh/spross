@@ -82,7 +82,7 @@ class DlColors(
     /** Ochre: the reveal, the tough answer, the word still being learnt — never red. */
     val amber: Color,
     /**
-     * Jade — the consolidated/"grown" rung's own color. Not [teal]: that one sits too
+     * Jade — the consolidated/"grown" Sprosse's own color. Not [teal]: that one sits too
      * close to [der] on the hue wheel to read as anything but another blue at a badge's
      * size, so this one is its own token, pulled toward green instead.
      */

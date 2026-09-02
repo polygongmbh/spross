@@ -70,7 +70,7 @@ extension NumbersOverview {
 
     /// Keeps the picks answerable by the list as it now stands: one of them
     /// while the ladder is a radio, and never one whose row is a padlock.
-    /// Called whenever the ladder is (re)read — a run can open a rung, and a
+    /// Called whenever the ladder is (re)read — a run can open a Sprosse, and a
     /// screenshot seed can hand the page a ladder the picks predate.
     func normalizePicks() {
         picked = Set(DrillSelection.shared.normalized(picked: orderedPicks, offered: offered,
@@ -116,16 +116,16 @@ extension NumbersOverview {
 
     // MARK: - The ladder, as a sentence
 
-    /// Every rung a locked row costs, straight out of kern's table — never a
+    /// Every Sprosse a locked row costs, straight out of kern's table — never a
     /// price authored beside it, which would go stale the day the table moves.
     /// Numbers counts DIGITS and its wording already wears the drill's face, so
     /// it prints as the length it is and the other variants name themselves.
     private func unlockCaption(_ required: [DrillVariant: KotlinInt]) -> Text {
         let parts: [Text] = DrillVariant.allCases.compactMap { variant in
             guard let level = required[variant].map({ Int(truncating: $0) }) else { return nil }
-            guard variant != .numbers else { return Text("numbers.rung \(level)") }
+            guard variant != .numbers else { return Text("numbers.sprosse \(level)") }
             return Text(verbatim: "\(drillVariantEmoji(variant: variant)) ") + Text(variant.trainerTitleKey)
-                + Text(verbatim: " ") + Text("trainer.rung \(level.formatted())")
+                + Text(verbatim: " ") + Text("trainer.sprosse \(level.formatted())")
         }
         guard let priced = parts.joined() else { return Text("numbers.unlock") }
         return Text("numbers.unlock") + Text(verbatim: " ") + priced
@@ -134,12 +134,12 @@ extension NumbersOverview {
     /// How far this exercise has ever climbed, under its name — the record the
     /// atlas and the calendar print under their ladder, said per exercise here
     /// because each one climbs its own. Numbers counts DIGITS, exactly as its
-    /// price does; nothing shows until a run has booked a rung.
+    /// price does; nothing shows until a run has booked a Sprosse.
     private func bestCaption(_ variant: DrillVariant) -> Text? {
-        guard let rung = progress[variant], rung > 0 else { return nil }
+        guard let sprosse = progress[variant], sprosse > 0 else { return nil }
         return Text("numbers.best") + Text(verbatim: " ")
-            + (variant == .numbers ? Text("numbers.rung \(rung)")
-                                   : Text("trainer.rung \(rung.formatted())"))
+            + (variant == .numbers ? Text("numbers.sprosse \(sprosse)")
+                                   : Text("trainer.sprosse \(sprosse.formatted())"))
     }
 
     /// The ladder as kern wants to read it — one conversion, not one per row.

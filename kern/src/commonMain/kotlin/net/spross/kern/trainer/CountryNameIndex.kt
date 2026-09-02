@@ -10,7 +10,7 @@ import net.spross.kern.session.Match
  * (eo `Ĉilio` for `Ĉinio`, sw `Uswidi` for `Uswisi`).
  *
  * Scoped to ONE kind at a time: countries against countries, peoples against peoples,
- * languages against languages. A country and its nationality are two rungs asking two
+ * languages against languages. A country and its nationality are two Sprossen asking two
  * questions, never one accepted set — de `Spanien`/`Spanier` is a near-miss to forgive,
  * not a confusion to refuse — so a scope may never see another scope's names.
  *

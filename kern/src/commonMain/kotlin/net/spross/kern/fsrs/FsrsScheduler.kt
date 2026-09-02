@@ -38,7 +38,7 @@ data class SchedulerOutcome(
  * further apart instead of repeating the same short wait. Hard, Good and Easy
  * all graduate immediately, from wherever the ladder sits — the ladder spaces
  * out repeated FAILURES, it does not grade flavors of success, so a Hard high
- * on the ladder can graduate to a shorter interval than another rung would
+ * on the ladder can graduate to a shorter interval than another Sprosse would
  * have given: the word is catching on and earns real spaced review. Review +
  * Again always opens Relearning at the ladder's first entry. Graduation
  * interval = I(desiredRetention, S′).

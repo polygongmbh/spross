@@ -150,7 +150,7 @@ object Trainer {
      * with rarer historic outliers, clock uses any hour and any minute.
      */
     fun sample(kind: TrainerKind, language: Language, rng: Random): TrainerTask {
-        // Forms has no full-difficulty bias of its own: its ceiling IS its top rung.
+        // Forms has no full-difficulty bias of its own: its ceiling IS its top Sprosse.
         if (kind == TrainerKind.Forms) return sample(kind, language, maxLevel(kind), rng)
         // why: the full-difficulty cardinal keeps the STRICT accepted set — the looser
         // drill spellings belong to the leveled draw, which is what the drills run on.
@@ -190,10 +190,10 @@ object Trainer {
      * - numbers: level = digit count (1 → 0–9 … 10 → 1000000000–9999999999).
      * - years: 1 recent decades (1990–2029), 2 modern century (1900–2099),
      *   3 full historic range (1100–2099, German hundred-style variants).
-     * - clock: the five nested rungs of [clockRung] — 1 full hours, 2 the quarters,
+     * - clock: the five nested Sprossen of [clockSprosse] — 1 full hours, 2 the quarters,
      *   3 five-minute steps to the half (:45 kept), 4 the whole five-minute grid
      *   (the to-the-hour countdown), 5 any minute.
-     * - forms: the ten rungs of [rungForms], each keeping everything below it.
+     * - forms: the ten Sprossen of [SprosseForms], each keeping everything below it.
      */
     fun sample(kind: TrainerKind, language: Language, level: Int, rng: Random): TrainerTask {
         val l = level.coerceIn(1, maxLevel(kind))
@@ -215,7 +215,7 @@ object Trainer {
         }
 
     /**
-     * A Forms task whose values are sized by a NUMBERS rung rather than by the forms
+     * A Forms task whose values are sized by a NUMBERS Sprosse rather than by the forms
      * ladder's own gentler one — [DrillModifier.Mix]'s second half, where "−7" grows into
      * "−4 072 918" and "3,7" into "12 345,7". [level] still decides which forms are on
      * offer; [magnitudeDigits] only widens the two that have a magnitude to widen.
@@ -279,7 +279,7 @@ object Trainer {
     fun reference(language: Language): List<ReferenceSection> = buildReference(language)
 
     /**
-     * How LONG a rung is. Two clean wins per level is the climb; fast mode spends
+     * How LONG a Sprosse is. Two clean wins per level is the climb; fast mode spends
      * one, which is the reward for having topped the ladder the hard way.
      * (Same shape as [LetterDrill.winsToAdvance], whose pacing rule this follows.)
      */
@@ -301,7 +301,7 @@ object Trainer {
             TrainerKind.Years -> listOf(value)
             TrainerKind.Clock -> clockDigitForms(value)
             // why: a form is written, not just spelled — "3,7" and "3.7" are the same
-            // number, "20." and "20" the same rank, so the notation must not cost the rung.
+            // number, "20." and "20" the same rank, so the notation must not cost the Sprosse.
             TrainerKind.Forms -> formDigitForms(task.prompt, task.promptDisplay)
             // A fraction has one notation and no separator to get wrong.
             TrainerKind.Fraction -> listOf(value)

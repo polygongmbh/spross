@@ -38,7 +38,7 @@ class TrainerCloseTest {
         )
         assertEquals(listOf(AnswerOutcome.Almost), almost.state.outcomes)
         assertEquals(1, almost.summary?.done)
-        assertEquals(1, almost.state.currentLevel, "almost moves the rung neither way")
+        assertEquals(1, almost.state.currentLevel, "almost moves the Sprosse neither way")
 
         // A hint-assisted clean answer is almost too, exactly as the explicit tap would book it.
         val hinted = TrainerRun.close(
@@ -64,15 +64,15 @@ class TrainerCloseTest {
 
     /**
      * Every variant the run ASKED books its high-water — not only the one it ended on, and never
-     * one it never drew, because an unasked rung was never stood on.
+     * one it never drew, because an unasked Sprosse was never stood on.
      */
     @Test
-    fun everyAskedVariantBooksTheHighestRungItStoodOn() {
+    fun everyAskedVariantBooksTheHighestSprosseItStoodOn() {
         val mode = TrainerMode(listOf(DrillVariant.Numbers, DrillVariant.Clock), "sw", emptySet())
         val played = TrainerRun.open(mode, Random(53)).copy(
             done = 9,
             bestStreak = 4,
-            // The rung fell back to 3, but the ladder rewards reaching 5.
+            // The Sprosse fell back to 3, but the ladder rewards reaching 5.
             levels = mapOf(DrillVariant.Numbers to 3, DrillVariant.Clock to 1),
             bestLevels = mapOf(DrillVariant.Numbers to 5),
         )
@@ -80,7 +80,7 @@ class TrainerCloseTest {
             mapOf("Numbers.sw" to 5),
             TrainerRun.close(played, 0, mapOf("Numbers.sw" to 3)).progressBookings,
         )
-        // A rung already earned is not fresh progress.
+        // A Sprosse already earned is not fresh progress.
         assertEquals(
             emptyMap<String, Int>(),
             TrainerRun.close(played, 0, mapOf("Numbers.sw" to 5)).progressBookings,
@@ -101,11 +101,11 @@ class TrainerCloseTest {
         assertEquals(StreakTier.Trophy, tier(10))
     }
 
-    /** A variant with one rung has no rung to report; the emoji leads only in a mixed run. */
+    /** A variant with one Sprosse has no Sprosse to report; the emoji leads only in a mixed run. */
     @Test
-    fun theScoreLineOnlyReportsARungThereIsSomethingToClimb() {
+    fun theScoreLineOnlyReportsASprosseThereIsSomethingToClimb() {
         val one = TrainerRun.open(numbers(), Random(61))
-        assertTrue(one.showsRung)
+        assertTrue(one.showsSprosse)
         assertFalse(one.severalVariants)
         val mixed = TrainerRun.open(
             TrainerMode(listOf(DrillVariant.Numbers, DrillVariant.Clock), "de", emptySet()),

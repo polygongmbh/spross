@@ -46,7 +46,7 @@ data class DateNames(
 /**
  * How this language assembles a date, over `{weekday}`, `{day}`, `{month}` and `{year}`.
  * [dateWithYear] is optional: a language that reads no year inside a date omits it and its
- * ladder simply stops one rung short (uk, `docs/date-readings.md`).
+ * ladder simply stops one Sprosse short (uk, `docs/date-readings.md`).
  */
 data class DatePatterns(
     val dayMonth: DatePattern,

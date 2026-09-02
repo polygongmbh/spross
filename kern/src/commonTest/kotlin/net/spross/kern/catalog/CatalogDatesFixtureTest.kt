@@ -77,7 +77,7 @@ class CatalogDatesFixtureTest {
         assertEquals("{weekday}, der {day} {month}", de.patterns.date.text)
         assertEquals("{weekday}, der {day} {month} {year}", de.patterns.dateWithYear?.text)
         assertEquals("{d}.{m}.{y}", de.numeric)
-        // Ukrainian reads no year inside a date, so its ladder stops one rung short.
+        // Ukrainian reads no year inside a date, so its ladder stops one Sprosse short.
         assertNull(uk.patterns.dateWithYear)
     }
 

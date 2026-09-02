@@ -18,7 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
-import net.spross.app.dateRung
+import net.spross.app.dateSprosse
 import net.spross.app.speakFormOnTap
 import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.trainer.DateDrill
@@ -51,7 +51,7 @@ fun DateReferenceSection(model: AppModel, content: DateDrillContent, chrome: Chr
     for (group in groups) KindGroup(group, model, content, chrome)
 }
 
-/** One bare-name pool — the rung rows above already name the two, so this reuses them. */
+/** One bare-name pool — the Sprosse rows above already name the two, so this reuses them. */
 @Composable
 private fun KindGroup(
     group: DateReferenceGroup,
@@ -61,7 +61,7 @@ private fun KindGroup(
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
         Text(
-            chrome.dateRung(listOf(group.kind)).uppercase(),
+            chrome.dateSprosse(listOf(group.kind)).uppercase(),
             style = MaterialTheme.typography.bodySmall,
             color = Dl.colors.textSecondary,
             modifier = Modifier.semantics { heading() },

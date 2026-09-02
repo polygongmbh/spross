@@ -13,7 +13,7 @@ extension DateDrillView {
     var drillContent: some View {
         ScrollView {
             VStack(spacing: DL.Space.m) {
-                DrillStreakLine(level: Text("trainer.rung \(Int(run.level).formatted())"),
+                DrillStreakLine(level: Text("trainer.sprosse \(Int(run.level).formatted())"),
                                 streak: Int(run.streak), bestStreak: Int(run.bestStreak),
                                 announcesRecord: true)
                 // ZStack so the outgoing and incoming question overlap during

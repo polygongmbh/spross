@@ -17,14 +17,14 @@ import net.spross.kern.trainer.CountryDrillRunState
  * One atlas run as this platform holds it — the third sibling of [TrainerFlow] and
  * [LetterDrillFlow], over kern's own [CountryDrillRun].
  *
- * Everything decidable is kern's: which question a rung may ask, which row is drawn, what a
+ * Everything decidable is kern's: which question a Sprosse may ask, which row is drawn, what a
  * typed name earns, how far one answer moves the ramp, which beat is armed. What is left
  * here is the text standing in the field and the beat itself.
  *
  * Stateless like both its siblings: no review is ever booked and the box is never read at
  * all — the material is the catalog's atlas, not the learner's own words. The one thing
- * that outlives a run is the furthest rung it stood on, which the page that started it
- * files ([TrainerStore.bookRung]).
+ * that outlives a run is the furthest Sprosse it stood on, which the page that started it
+ * files ([TrainerStore.bookSprosse]).
  */
 class CountryDrillFlow(
     start: CountryDrillRunState,

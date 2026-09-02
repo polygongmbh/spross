@@ -13,11 +13,11 @@ import net.spross.kern.session.Match
  *
  * Exactness is the whole test: only forms the calendar itself carries count, keyed by the
  * normalizer's own comparison shape, so the check re-labels a miss and never widens what
- * counts as wrong. `dateForm` is indexed although the bare rung does not accept it —
+ * counts as wrong. `dateForm` is indexed although the bare Sprosse does not accept it —
  * inside a date it is that name's word, and typed bare it still names that name.
  *
  * The asked entry is skipped by key rather than by its accepted forms: its `dateForm`
- * sits in the index and NOT in the bare rung's accepted set (the rung asks the citation
+ * sits in the index and NOT in the bare Sprosse's accepted set (the Sprosse asks the citation
  * name), so uk `березня` typed at March must stay March's own plain miss, never a
  * refusal naming the month that was asked.
  */
@@ -58,7 +58,7 @@ internal class DateNameIndex(
     /**
      * The name [typed] spells whole and [task] did not ask, or null. Consulted on a
      * bare-name miss only — never on Exact, so an accepted answer cannot reach it, and
-     * never on an assembled rung, where a bridged name is the forgiven typo the owner
+     * never on an assembled Sprosse, where a bridged name is the forgiven typo the owner
      * ruled it to be.
      */
     fun otherName(task: DateDrillTask, typed: String): Match.OtherWord? {

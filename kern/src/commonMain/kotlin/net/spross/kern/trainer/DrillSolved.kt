@@ -10,23 +10,23 @@ package net.spross.kern.trainer
  * a CLEAN answer solves a prompt: a slip, a look-up and a reveal all leave it in the pool,
  * which is the ramp's own reading of an almost ([DrillRamp.step] moves nothing on one).
  *
- * **A rung with nothing left to ask is climbed past**, never repeated, and the rung it
- * climbs to is booked like any other — answering a rung out is standing on it. Where the
+ * **A Sprosse with nothing left to ask is climbed past**, never repeated, and the Sprosse it
+ * climbs to is booked like any other — answering a Sprosse out is standing on it. Where the
  * whole ladder is answered out the run ENDS on its summary, which is where the letter
  * drill's "nothing left to ask" already went.
  *
  * Nothing here is persisted: the set lives and dies with the run. What outlives it is the
- * rung the ladder books — a prompt answered on Tuesday is worth asking again on Friday, and
+ * Sprosse the ladder books — a prompt answered on Tuesday is worth asking again on Friday, and
  * keeping that kind of score is the growing box's job, never a drill's.
  */
 internal object DrillSolved {
 
     /**
-     * How many draws in a row must land on an already-solved prompt before a GENERATED rung
+     * How many draws in a row must land on an already-solved prompt before a GENERATED Sprosse
      * counts as spent. The slot drill draws values rather than picking them out of a list —
-     * ten single digits at its first rung, a billion at its last — so its rungs cannot be
+     * ten single digits at its first Sprosse, a billion at its last — so its Sprossen cannot be
      * enumerated, and a run of nothing but repeats is what "spent" can honestly mean there.
-     * Twenty is far enough that a rung with a fifth of itself left almost never trips it,
+     * Twenty is far enough that a Sprosse with a fifth of itself left almost never trips it,
      * and cheap enough to spend on every question.
      */
     const val SPENT_ATTEMPTS: Int = 20

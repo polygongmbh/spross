@@ -8,7 +8,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * The Forms GENERATOR: which values each rung draws, how the prompt is written, and
+ * The Forms GENERATOR: which values each Sprosse draws, how the prompt is written, and
  * what the reversed task takes back. The readings themselves are pinned separately
  * ([TrainerFormsTests]) — this file never asserts a word.
  */
@@ -33,22 +33,22 @@ class TrainerFormLevelTests {
     }
 
     @Test
-    fun eachOfTheFirstSixRungsAddsOneFormAndKeepsTheOnesBelow() {
+    fun eachOfTheFirstSixSprossenAddsOneFormAndKeepsTheOnesBelow() {
         for (level in 1..6) {
-            assertEquals(NumberForm.entries.take(level).toSet(), rungForms(level))
+            assertEquals(NumberForm.entries.take(level).toSet(), sprosseForms(level))
         }
         for (level in 7..Trainer.maxLevel(TrainerKind.Forms)) {
-            assertEquals(NumberForm.entries.toSet(), rungForms(level), "rung $level widens, adds nothing")
+            assertEquals(NumberForm.entries.toSet(), sprosseForms(level), "Sprosse $level widens, adds nothing")
         }
     }
 
     @Test
-    fun theFirstRungDrawsNothingButSmallNegatives() {
+    fun theFirstSprosseDrawsNothingButSmallNegatives() {
         for (language in authored) {
             for (value in draws(language, 1)) {
                 val negative = value as? NumberValue.Negative
-                assertTrue(negative != null, "$language rung 1 drew $value")
-                assertTrue(negative.magnitude in 1..20, "$language rung 1 drew $negative")
+                assertTrue(negative != null, "$language Sprosse 1 drew $value")
+                assertTrue(negative.magnitude in 1..20, "$language Sprosse 1 drew $negative")
             }
         }
     }
@@ -56,9 +56,9 @@ class TrainerFormLevelTests {
     // The Mix magnitude
 
     /**
-     * Under Mix a form is sized by the Numbers rung, so rung 1's "−7" becomes a
+     * Under Mix a form is sized by the Numbers Sprosse, so Sprosse 1's "−7" becomes a
      * seven-digit negative and a decimal grows a five-digit whole part — while the
-     * forms on offer, and the reading that grades them, stay the rung's own.
+     * forms on offer, and the reading that grades them, stay the Sprosse's own.
      */
     @Test
     fun theMixMagnitudeWidensTheFormsThatHaveOne() {
@@ -69,11 +69,11 @@ class TrainerFormLevelTests {
             val magnitude = when (value) {
                 is NumberValue.Negative -> value.magnitude
                 is NumberValue.Decimal -> value.whole
-                else -> error("rung 1 with two forms drew $value")
+                else -> error("Sprosse 1 with two forms drew $value")
             }
             assertTrue(magnitude >= 1_000_000, "seven digits asked for, got $value")
         }
-        // Rung 1 still offers rung 1: no ordinal, no percentage, however wide the value.
+        // Sprosse 1 still offers Sprosse 1: no ordinal, no percentage, however wide the value.
         assertTrue(wide.any { it is NumberValue.Negative })
     }
 
@@ -102,7 +102,7 @@ class TrainerFormLevelTests {
     }
 
     @Test
-    fun everyRungStaysInsideTheLanguagesOwnLimits() {
+    fun everySprosseStaysInsideTheLanguagesOwnLimits() {
         for (language in authored) {
             val limits = limits(language)
             for (level in 1..Trainer.maxLevel(TrainerKind.Forms)) {
@@ -146,9 +146,9 @@ class TrainerFormLevelTests {
         }
     }
 
-    /** Below rung 8 a fraction is a unit fraction, and below rung 9 an ordinal stays small. */
+    /** Below Sprosse 8 a fraction is a unit fraction, and below Sprosse 9 an ordinal stays small. */
     @Test
-    fun theGentleRungsStayGentle() {
+    fun theGentleSprossenStayGentle() {
         for (language in authored) {
             for (level in 1..7) {
                 for (value in draws(language, level)) {
@@ -164,11 +164,11 @@ class TrainerFormLevelTests {
     }
 
     /**
-     * A rung offering nothing this language reads still has to draw: the pack's own set
-     * stands in. Rung 1 is negatives, so a fractions-only language draws a fraction there.
+     * A Sprosse offering nothing this language reads still has to draw: the pack's own set
+     * stands in. Sprosse 1 is negatives, so a fractions-only language draws a fraction there.
      */
     @Test
-    fun aRungWithNothingToOfferFallsBackToTheLanguagesOwnForms() {
+    fun aSprosseWithNothingToOfferFallsBackToTheLanguagesOwnForms() {
         val fractionsOnly = FormLimits(forms = setOf(NumberForm.Fraction))
         val value = drawForm(fractionsOnly, level = 1, rng = Random(7))
         assertTrue(value is NumberValue.Fraction, "expected the pack's own form, got $value")

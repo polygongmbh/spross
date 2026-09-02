@@ -192,7 +192,7 @@ fun DoneCard(model: AppModel, standing: HomeStanding, streak: Int, health: Strea
  * The round is what the box ASKS of the learner; this is what the learner can do when
  * answering is not on the table — a walk, a commute, a sink full of dishes. It is not a
  * Sprosse and gets no chip on that row: a Sprosse is a skill with a ladder to climb, and
- * listening asks nothing, grades nothing and has no rung to reach (`docs/surfaces.md`).
+ * listening asks nothing, grades nothing and has no Sprosse to reach (`docs/surfaces.md`).
  *
  * ONE CARD, and the whole card is the tap. The emoji leads, the title names the mode once,
  * and the subtitle carries the two facts the name cannot — which words it leans on, and that

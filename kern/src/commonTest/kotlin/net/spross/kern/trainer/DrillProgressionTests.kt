@@ -7,7 +7,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * The ladder and the direction axis. What matters here is that a rung is earned
+ * The ladder and the direction axis. What matters here is that a Sprosse is earned
  * exactly at its requirement — one level short must still read as locked, because
  * the caption the learner sees is derived from this and nothing else.
  */
@@ -36,7 +36,7 @@ class DrillProgressionTests {
     }
 
     @Test
-    fun everyRungOpensExactlyAtItsRequirement() {
+    fun everySprosseOpensExactlyAtItsRequirement() {
         val variants = listOf(
             Triple(DrillVariant.Clock, DrillVariant.Numbers, 4),
             // The phrase gate rides the clock ceiling, so growing the ladder raises it.
@@ -55,12 +55,12 @@ class DrillProgressionTests {
     }
 
     /**
-     * Mix rides on the forms rung alone. It needs no numbers rung of its own: Forms
+     * Mix rides on the forms Sprosse alone. It needs no numbers Sprosse of its own: Forms
      * cannot open below seven digits, so the climb is already paid for by the time
      * this can be reached.
      */
     @Test
-    fun mixRidesOnTheFormsRungAlone() {
+    fun mixRidesOnTheFormsSprosseAlone() {
         assertEquals(mapOf(DrillVariant.Forms to 5), DrillUnlocks.requirements(DrillModifier.Mix))
         assertFalse(DrillUnlocks.unlocked(DrillModifier.Mix, progress(DrillVariant.Forms to 4)))
         assertTrue(DrillUnlocks.unlocked(DrillModifier.Mix, progress(DrillVariant.Forms to 5)))
@@ -76,7 +76,7 @@ class DrillProgressionTests {
     }
 
     @Test
-    fun fastModeHalvesTheRung() {
+    fun fastModeHalvesTheSprosse() {
         assertEquals(2, Trainer.winsToAdvance(fast = false))
         assertEquals(1, Trainer.winsToAdvance(fast = true))
     }
@@ -84,29 +84,29 @@ class DrillProgressionTests {
     // The ramp — one rule for every drill, whatever it asks.
 
     @Test
-    fun twoCleanWinsClimbOneRungAndAMissStepsBack() {
+    fun twoCleanWinsClimbOneSprosseAndAMissStepsBack() {
         val first = DrillRamp.step(3, 0, correct = true, clean = true, winsRequired = 2)
-        assertEquals(DrillRamp.RungStep(3, 1), first)
+        assertEquals(DrillRamp.SprosseStep(3, 1), first)
         val second = DrillRamp.step(3, 1, correct = true, clean = true, winsRequired = 2)
-        assertEquals(DrillRamp.RungStep(4, 0), second)
+        assertEquals(DrillRamp.SprosseStep(4, 0), second)
         val missed = DrillRamp.step(4, 1, correct = false, clean = true, winsRequired = 2)
-        assertEquals(DrillRamp.RungStep(3, 0), missed)
+        assertEquals(DrillRamp.SprosseStep(3, 0), missed)
         // The floor holds however long the run goes wrong.
         assertEquals(
-            DrillRamp.RungStep(1, 0),
+            DrillRamp.SprosseStep(1, 0),
             DrillRamp.step(1, 0, correct = false, clean = true, winsRequired = 2),
         )
     }
 
     @Test
-    fun aShorterRungClimbsOnASingleWin() {
+    fun aShorterSprosseClimbsOnASingleWin() {
         assertEquals(
-            DrillRamp.RungStep(4, 0),
+            DrillRamp.SprosseStep(4, 0),
             DrillRamp.step(3, 0, correct = true, clean = true, winsRequired = 1),
         )
         // The narrower stage does not change what a miss costs.
         assertEquals(
-            DrillRamp.RungStep(2, 0),
+            DrillRamp.SprosseStep(2, 0),
             DrillRamp.step(3, 0, correct = false, clean = true, winsRequired = 1),
         )
     }
@@ -115,40 +115,40 @@ class DrillProgressionTests {
     fun anAlmostAnswerMovesNeitherWay() {
         for (width in 1..2) {
             assertEquals(
-                DrillRamp.RungStep(3, 1),
+                DrillRamp.SprosseStep(3, 1),
                 DrillRamp.step(3, 1, correct = true, clean = false, winsRequired = width),
             )
         }
     }
 
     /**
-     * The rung has no ceiling: a ladder's named rungs cap the CONTENT, and each drill
+     * The Sprosse has no ceiling: a ladder's named Sprossen cap the CONTENT, and each drill
      * clamps its own draw, but the number goes on so a climbed-out ladder still has
      * something to beat.
      */
     @Test
-    fun theRungKeepsCountingPastTheNamedLadder() {
+    fun theSprosseKeepsCountingPastTheNamedLadder() {
         assertEquals(8, DrillRamp.step(7, 1, correct = true, clean = true, winsRequired = 2).level)
         assertEquals(10, DrillRamp.step(9, 0, correct = true, clean = true, winsRequired = 1).level)
-        // A miss costs one rung up there like anywhere else, and the floor still holds.
+        // A miss costs one Sprosse up there like anywhere else, and the floor still holds.
         assertEquals(11, DrillRamp.step(12, 1, correct = false, clean = true, winsRequired = 2).level)
     }
 
     // The ladder — where the next question comes from, shared by all four drills.
 
     /**
-     * The climb: the standing rung first, the ones above it only where it is answered out,
-     * and a rung ABOVE the named ladder keeps its own number rather than the clamped one.
+     * The climb: the standing Sprosse first, the ones above it only where it is answered out,
+     * and a Sprosse ABOVE the named ladder keeps its own number rather than the clamped one.
      */
     @Test
-    fun theClimbFindsTheFirstRungWithAQuestionLeft() {
+    fun theClimbFindsTheFirstSprosseWithAQuestionLeft() {
         val spent = setOf(1, 2)
-        assertEquals(DrillLadder.Rung("q3", 3), DrillLadder.climb(1, 5) { if (it in spent) null else "q$it" })
-        assertEquals(DrillLadder.Rung("q2", 2), DrillLadder.climb(2, 5) { "q$it" })
-        // Past the top the sampler is asked for the top rung and the answer keeps the tail's number.
-        assertEquals(DrillLadder.Rung("q5", 9), DrillLadder.climb(9, 5) { "q$it" })
+        assertEquals(DrillLadder.Sprosse("q3", 3), DrillLadder.climb(1, 5) { if (it in spent) null else "q$it" })
+        assertEquals(DrillLadder.Sprosse("q2", 2), DrillLadder.climb(2, 5) { "q$it" })
+        // Past the top the sampler is asked for the top Sprosse and the answer keeps the tail's number.
+        assertEquals(DrillLadder.Sprosse("q5", 9), DrillLadder.climb(9, 5) { "q$it" })
         // A ladder answered out draws nothing and leaves the run standing where it was.
-        assertEquals(DrillLadder.Rung(null, 4), DrillLadder.climb(4, 5) { null })
+        assertEquals(DrillLadder.Sprosse(null, 4), DrillLadder.climb(4, 5) { null })
     }
 
     // Direction

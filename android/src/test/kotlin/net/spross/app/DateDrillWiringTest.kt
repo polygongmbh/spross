@@ -125,7 +125,7 @@ class DateDrillWiringTest {
     }
 
     @Test
-    fun aClosedDatesRunReportsItsFiguresAndTheRungItReached() {
+    fun aClosedDatesRunReportsItsFiguresAndTheSprosseItReached() {
         val untouched = dates(Platform()).close(standingRecord = 0)
         assertNull(untouched.summary)
 

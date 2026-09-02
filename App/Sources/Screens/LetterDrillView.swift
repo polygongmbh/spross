@@ -49,7 +49,7 @@ struct LetterDrillView: View, LanguageNaming {
             dictationGrader: Self.dictationGrader(model: model, language: language)
         )
         #if DEBUG
-        // UI-test hook: `-uitest-letters-level N` opens the run at that rung,
+        // UI-test hook: `-uitest-letters-level N` opens the run at that Sprosse,
         // which is how any stage is reached deterministically. Kern clamps it.
         let preset = UserDefaults.standard.integer(forKey: "uitest-letters-level")
         if preset > 0 {

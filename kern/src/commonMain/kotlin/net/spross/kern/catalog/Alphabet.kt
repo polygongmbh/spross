@@ -93,7 +93,7 @@ data class Alphabet(
     /**
      * The graphemes this language singles out as worth a lesson — every drillable digraph
      * and contextual row, lowercased. A word carrying one is a word whose SPELLING is the
-     * hard part, which is what a dictation rung is testing; the plain letters say nothing
+     * hard part, which is what a dictation Sprosse is testing; the plain letters say nothing
      * about difficulty, so they are not here.
      */
     val trickyGlyphs: List<String> = entries

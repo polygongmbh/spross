@@ -10,7 +10,7 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.Realization
 
-/** The last rung: words out of the box, spoken once, typed back. */
+/** The last Sprosse: words out of the box, spoken once, typed back. */
 class LetterDrillDictationTests {
     private val cards = LetterDrillFixture.dictationCards()
 
@@ -32,7 +32,7 @@ class LetterDrillDictationTests {
     }
 
     @Test
-    fun theShortRungAsksForShortWords() {
+    fun theShortSprosseAsksForShortWords() {
         val texts = drawn(8).toSet()
         assertTrue(
             texts.all { it.length <= 6 },
@@ -44,7 +44,7 @@ class LetterDrillDictationTests {
     @Test
     fun theShortFilterWidensRatherThanDrawFromOneWord() {
         // Only two short words in the whole box: filtering would dictate the same pair
-        // forever, so the rung takes the long ones instead.
+        // forever, so the Sprosse takes the long ones instead.
         val narrow = listOf(
             LetterDrillFixture.card("ice", "Eis"),
             LetterDrillFixture.card("house", "Haus"),
@@ -56,7 +56,7 @@ class LetterDrillDictationTests {
     }
 
     @Test
-    fun theLastRungAsksAnyConsolidatedWord() {
+    fun theLastSprosseAsksAnyConsolidatedWord() {
         val texts = drawn(9).toSet()
         assertTrue("Regenbogen" in texts, "level 9 takes the long ones too: $texts")
     }
@@ -110,7 +110,7 @@ class LetterDrillDictationTests {
         assertEquals(3, weight("Buchstraße"), "two of them, two steps")
         assertEquals(3, weight("Haus", lapses = 2))
         assertEquals(2, weight("Haus", difficulty = 8.0))
-        // Each cap holds, so no single term can take the rung over on its own.
+        // Each cap holds, so no single term can take the Sprosse over on its own.
         assertEquals(1 + 3, weight("abcd", tricky = listOf("a", "b", "c", "d")))
         assertEquals(1 + 3, weight("Haus", lapses = 99))
         assertEquals(1 + 2, weight("Haus", difficulty = 10.0))

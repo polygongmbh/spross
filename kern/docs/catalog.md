@@ -102,7 +102,7 @@ Engine contract: `../README.md`.
   Parse-shape rules (unknown keys, wrong list lengths, a pattern marker its kind does not
   take, `dateForm` echoing its `text`) hard-fail the load; **`CatalogDatesLintTest`**
   carries what content alone can break (registry, form hygiene, every ordered pair joining,
-  the rung-4 distance predicate, the pattern-word audit).
+  the Sprosse-4 distance predicate, the pattern-word audit).
 - **Language markers** (`{language}`, `{language-in}`, `{language-speak}`, `{language-learn}`)
   in a realization's text/synonyms/variants. No schema field declares them: the marker's
   presence is the declaration, and it always names the profile's TARGET, so each side of

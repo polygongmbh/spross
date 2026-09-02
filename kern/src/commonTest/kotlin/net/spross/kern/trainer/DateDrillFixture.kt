@@ -12,7 +12,7 @@ import net.spross.kern.model.LanguageInfo
  * ladder (a `dateWithYear`, the article patterns, a synonym on Samstag and Januar, the
  * distance-1 `Juni`/`Juli`) and a de→uk pair carrying the short one (a `dateForm` on
  * every month, no year pattern) — the two shapes `docs/date-readings.md` says the
- * content can take. Both targets are pack languages, so the generated rungs draw.
+ * content can take. Both targets are pack languages, so the generated Sprossen draw.
  */
 internal object DateDrillFixture {
 
@@ -60,7 +60,7 @@ internal object DateDrillFixture {
         "жовтень" to "жовтня", "листопад" to "листопада", "грудень" to "грудня",
     ).map { (text, dateForm) -> DateNames(text, dateForm = dateForm) }
 
-    /** en→de: the full seven-rung ladder, answers in German. */
+    /** en→de: the full seven-Sprosse ladder, answers in German. */
     val germanContent = DateDrillContent(
         source = "en",
         target = "de",
@@ -77,7 +77,7 @@ internal object DateDrillFixture {
         ),
     )
 
-    /** de→uk: no `dateWithYear`, so the ladder tops out a rung short; months decline. */
+    /** de→uk: no `dateWithYear`, so the ladder tops out a Sprosse short; months decline. */
     val ukrainianContent = DateDrillContent(
         source = "de",
         target = "uk",

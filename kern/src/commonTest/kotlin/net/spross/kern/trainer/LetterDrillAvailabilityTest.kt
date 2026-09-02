@@ -22,7 +22,7 @@ import net.spross.kern.model.Realization
  * The predicate ladder behind the letter drill: which rows this device can ASK, and which of
  * the learner's own words it can dictate.
  *
- * The `uk` alphabet is authored here rather than reused, because every rung of the ladder is a
+ * The `uk` alphabet is authored here rather than reused, because every Sprosse of the ladder is a
  * row shape: a letter with a bundled recording, a letter without one, a letter with no NAME to
  * speak, a row barred from the drill, a gap row whose catalog example can be heard, a gap row
  * that only has the `exampleText` escape hatch, a gap row with nothing at all, and a prose
@@ -215,10 +215,10 @@ class LetterDrillAvailabilityTest {
             voiced.dictationCandidates.map { it.card.id },
         )
         assertFalse("morning" in voiced.dictationCandidates.map { it.card.id }, "a phrase card is two words")
-        assertEquals(6, voiced.consolidatedCards, "the whole vocabulary paces the entry rung")
+        assertEquals(6, voiced.consolidatedCards, "the whole vocabulary paces the entry Sprosse")
     }
 
-    /** The floor is `>=`: one word short and the ramp stops one rung below dictation. */
+    /** The floor is `>=`: one word short and the ramp stops one Sprosse below dictation. */
     @Test
     fun theFloorIsExactlyFiveCandidates() {
         val enough = report(hasVoice = true)

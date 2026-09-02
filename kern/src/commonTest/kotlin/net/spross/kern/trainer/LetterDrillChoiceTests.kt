@@ -77,7 +77,7 @@ class LetterDrillChoiceTests {
     }
 
     @Test
-    fun theEasyRungStaysOffBothConfusionAxes() {
+    fun theEasySprosseStaysOffBothConfusionAxes() {
         for (level in 1..2) {
             for (task in tasks(level)) {
                 val answer = LetterDrillFixture.entry(task.answerRef)
@@ -85,14 +85,14 @@ class LetterDrillChoiceTests {
                 val distractors = task.choices.orEmpty() - task.display
                 assertTrue(
                     distractors.none { it in near },
-                    "level $level, ${task.answerRef}: a confusable slipped into the easy rung — $distractors",
+                    "level $level, ${task.answerRef}: a confusable slipped into the easy Sprosse — $distractors",
                 )
             }
         }
     }
 
     @Test
-    fun theConfusableRungDrawsOneThenTwoThenThree() {
+    fun theConfusableSprosseDrawsOneThenTwoThenThree() {
         for (level in 3..5) {
             val wanted = level - 2
             for (task in tasks(level)) {
@@ -126,7 +126,7 @@ class LetterDrillChoiceTests {
         assertTrue(vau.none { "f" in it.choices.orEmpty() })
 
         // `ß` and `ss` share one too — but the WORD's spelling decides, so there they are
-        // the sharpest question the drill has, and the confusable rung always offers it.
+        // the sharpest question the drill has, and the confusable Sprosse always offers it.
         val sharp = tasks(3).filter { it.answerRef == "ß" }
         assertTrue(sharp.isNotEmpty(), "the fixture must ask about ß")
         assertTrue(sharp.all { "ss" in it.choices.orEmpty() }, "the homophone belongs on the gap question")

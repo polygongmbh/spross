@@ -38,14 +38,14 @@ data class TrainerMode(
     constructor(selection: List<DrillVariant>, language: Language, modifiers: Set<DrillModifier>) :
         this(selection, language, null, emptyList(), modifiers)
 
-    /** One clean win per rung instead of two. */
+    /** One clean win per Sprosse instead of two. */
     val isFast: Boolean get() = DrillModifier.Fast in modifiers
 
-    /** How long a rung is in this run. */
+    /** How long a Sprosse is in this run. */
     val winsToAdvance: Int get() = Trainer.winsToAdvance(isFast)
 
     /**
-     * Mix widens Forms out of the Numbers rung — which only means something while the run
+     * Mix widens Forms out of the Numbers Sprosse — which only means something while the run
      * is climbing one. Without Numbers selected, Forms keeps its own gentler ladder.
      */
     val mixesForms: Boolean
@@ -88,16 +88,16 @@ data class TrainerMode(
                 listOf(recordLanguage)
             ).joinToString(".")
 
-    /** Identity a rung is kept under, per variant — deliberately NOT [recordKey]. */
+    /** Identity a Sprosse is kept under, per variant — deliberately NOT [recordKey]. */
     fun progressKey(variant: DrillVariant): String = progressKey(variant, language)
 
     /**
-     * One fresh task from the selection, each variant at its own rung: never a prompt
+     * One fresh task from the selection, each variant at its own Sprosse: never a prompt
      * [solved] already holds and never the one on screen ([avoiding]), so no question is
      * asked twice in a run ([DrillSolved]).
      *
-     * A rung whose values keep coming back solved is spent, and the draw climbs past it
-     * rather than repeating it — which is why the rungs come back with the task. A variant
+     * A Sprosse whose values keep coming back solved is spent, and the draw climbs past it
+     * rather than repeating it — which is why the Sprossen come back with the task. A variant
      * that has run out altogether hands the turn to the next one, so a mixed run outlives
      * the exercise that ran dry; only when every variant is out is [TrainerDraw.drawn] null.
      *
@@ -120,7 +120,7 @@ data class TrainerMode(
     }
 
     /**
-     * The first rung at or above [variant]'s with a value left to ask ([DrillLadder.climb]);
+     * The first Sprosse at or above [variant]'s with a value left to ask ([DrillLadder.climb]);
      * null once it is out, which hands the turn to the next variant of a mixed run.
      */
     private fun drawVariant(
@@ -138,7 +138,7 @@ data class TrainerMode(
     }
 
     /**
-     * One value from [level] the run does not already hold. The rung draws rather than
+     * One value from [level] the run does not already hold. The Sprosse draws rather than
      * enumerates, so [DrillSolved.SPENT_ATTEMPTS] repeats in a row is what spent means here.
      */
     private fun drawUnsolved(
@@ -180,7 +180,7 @@ data class TrainerMode(
         val kind = variant.slotKind
             // why: non-empty by construction — the frameless Phrases pick was dropped above.
             ?: return PhraseSlots.sample(templates[rng.nextInt(templates.size)], level, rng)
-        // Mix's second half: a form takes its magnitude from the numbers rung the run stands
+        // Mix's second half: a form takes its magnitude from the numbers Sprosse the run stands
         // on, so a topped-out climb reads "−4 072 918", not "−7".
         if (kind == TrainerKind.Forms && mixesForms) {
             return Trainer.sampleForms(language, level, magnitudeDigits, rng)
@@ -195,14 +195,14 @@ data class TrainerMode(
         /** Store prefix of the streak records — the full key is this plus [recordKey]. */
         const val RECORD_PREFIX: String = "trainer.record."
 
-        /** Store prefix of the rung high-waters — the full key is this plus [progressKey]. */
+        /** Store prefix of the Sprosse high-waters — the full key is this plus [progressKey]. */
         const val PROGRESS_PREFIX: String = "trainer.level."
 
         /**
-         * Where a variant's highest-ever rung is filed, so the overview can read the whole
+         * Where a variant's highest-ever Sprosse is filed, so the overview can read the whole
          * ladder without building a run. Kotlin's own spelling for the slot variants and the
          * lowercase word for Phrases: those exact strings are already stored, and a tidier
-         * scheme would silently reset every rung a learner has climbed.
+         * scheme would silently reset every Sprosse a learner has climbed.
          */
         fun progressKey(variant: DrillVariant, language: Language): String =
             "${variant.storageTag}.$language"
@@ -235,7 +235,7 @@ fun drillVariantEmoji(variant: DrillVariant): String =
     variant.slotKind?.let(::trainerKindEmoji) ?: "💬"
 
 /**
- * The ladder variant a slot kind belongs to. Years maps onto Numbers because it has no rung
+ * The ladder variant a slot kind belongs to. Years maps onto Numbers because it has no Sprosse
  * of its own; Fraction belongs to Forms — a fraction is one of the number forms.
  */
 internal val TrainerKind.drillVariant: DrillVariant
@@ -245,7 +245,7 @@ internal val TrainerKind.drillVariant: DrillVariant
         TrainerKind.Forms, TrainerKind.Fraction -> DrillVariant.Forms
     }
 
-/** The word a record or a rung is filed under. Stored, so it may not follow the screen name. */
+/** The word a record or a Sprosse is filed under. Stored, so it may not follow the screen name. */
 internal val DrillVariant.storageTag: String
     get() = if (this == DrillVariant.Phrases) "phrases" else name
 
@@ -273,10 +273,10 @@ data class DrawnTask(
 )
 
 /**
- * What [TrainerMode.draw] hands back: the question, and the rungs the run stands on now that
- * it has been drawn — a variant whose rung was answered out has climbed past it.
+ * What [TrainerMode.draw] hands back: the question, and the Sprossen the run stands on now that
+ * it has been drawn — a variant whose Sprosse was answered out has climbed past it.
  *
- * [drawn] is null exactly when every variant has run out of fresh prompts at every rung,
+ * [drawn] is null exactly when every variant has run out of fresh prompts at every Sprosse,
  * which ends the run on its summary rather than asking anything a second time.
  */
 data class TrainerDraw(
@@ -325,7 +325,7 @@ object DrillSelection {
     /**
      * The picks as the ladder now stands: never one whose row is a padlock, and only one of
      * them while the list is a radio. Re-run whenever the ladder is read — a closing run can
-     * open a rung, and the picks may predate it.
+     * open a Sprosse, and the picks may predate it.
      */
     fun normalized(
         picked: List<DrillVariant>,

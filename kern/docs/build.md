@@ -54,9 +54,9 @@ Engine contract: `../README.md`.
   that teaches neither as the truth.
   Years and clock times are never grouped — they keep the default by setting nothing.
   `TrainerKind.Forms` asks the other ways a number is written — negatives, decimals,
-  percentages, multiplicatives, fractions, ordinals — over a ten-rung ladder where each
-  rung keeps everything below it, and its own `internal` model (`NumberValue`, `FormLimits`)
-  never reaches the ObjC header. The rung's forms are intersected with the language's, so a
+  percentages, multiplicatives, fractions, ordinals — over a ten-Sprosse ladder where each
+  Sprosse keeps everything below it, and its own `internal` model (`NumberValue`, `FormLimits`)
+  never reaches the ObjC header. The Sprosse's forms are intersected with the language's, so a
   pack that cannot read one never draws it, and a pack that authors none offers no Forms
   drill at all (`Trainer.supportsForms`). **A Forms prompt is the one language-dependent
   prompt**: German shows `3,7` where English shows `3.7`, because the reading names the mark
@@ -71,9 +71,9 @@ Engine contract: `../README.md`.
   run draws tasks whose kind is Numbers, Years or Clock — and the two must not be
   collapsed, because progress is kept per variant. `DrillUnlocks` holds the whole ladder
   as two tables of variant → level reached (empty = always available), reading a
-  progress map the APP persists; kern stores nothing. `DrillRamp.step` is the rung ramp
+  progress map the APP persists; kern stores nothing. `DrillRamp.step` is the Sprosse ramp
   every drill shares (clean wins up, a miss down, floor 1, almost moves nothing), with how
-  long a rung is left to the caller — `Trainer.winsToAdvance(fast)` reads the Fast
+  long a Sprosse is left to the caller — `Trainer.winsToAdvance(fast)` reads the Fast
   modifier, `LetterDrill.winsToAdvance` counts a held vocabulary.
   `Trainer.reversed(task)` inverts the direction (words shown, the value typed) for any
   kind, so the app stays direction-agnostic: it always shows the prompt and grades
@@ -101,7 +101,7 @@ Engine contract: `../README.md`.
   Dictation weighs its draw (`dictationWeight`): a floor of one that shuts nothing out,
   plus how many of the language's own hard graphemes the word carries (`Alphabet.trickyGlyphs`),
   its lapses, and FSRS difficulty above the midpoint — each capped, so one leech cannot take
-  a rung over, and all three zero on a clean plain word, where the draw is bit-for-bit the
+  a Sprosse over, and all three zero on a clean plain word, where the draw is bit-for-bit the
   uniform one. The two schedule figures ride in on `DictationCandidate`; kern reads no state.
   Dictation draws only
   `BoxEngine.consolidatedCardIds` through `dictationGradingCard` — it never books a

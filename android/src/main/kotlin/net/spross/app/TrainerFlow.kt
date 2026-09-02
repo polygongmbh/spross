@@ -15,7 +15,7 @@ import net.spross.kern.trainer.TrainerRunState
 /**
  * One slot run as this platform holds it.
  *
- * Every rule is kern's [TrainerRun] — what an answer is worth, which rung it moves, when
+ * Every rule is kern's [TrainerRun] — what an answer is worth, which Sprosse it moves, when
  * the way out is offered, what a look-up costs. What is left here is the platform's half:
  * the text standing in the field, the beat that is armed, whether the reference table is
  * raised. The screen reads this and hands taps back; it decides nothing.
@@ -94,7 +94,7 @@ class TrainerFlow(
         dispatch(TrainerIntent.AdvanceElapsed)
     }
 
-    /** The "?": a look-up while the answer is still owed costs the rung — kern books it. */
+    /** The "?": a look-up while the answer is still owed costs the Sprosse — kern books it. */
     fun lookUp() {
         showingReference = true
         dispatch(TrainerIntent.LookUp)

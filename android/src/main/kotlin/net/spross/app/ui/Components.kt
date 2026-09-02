@@ -132,16 +132,16 @@ fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
 /**
  * Where one card stands on the growth ladder: fresh → growing → grown.
  *
- * Four rungs, three colors. [CardRowState.Standing.consolidated] — kern's stricter bar —
+ * Four Sprossen, three colors. [CardRowState.Standing.consolidated] — kern's stricter bar —
  * decides the top one, exactly as the shelf's own tally does, so a row's seal never claims
  * a word the shelf above does not also count: Review alone gets there well before it,
  * which is why a Review card short of the bar reads its own "growing" mark instead of
- * borrowing the seal. Learning and relearning share one amber rung and one glyph — a lapse
+ * borrowing the seal. Learning and relearning share one amber Sprosse and one glyph — a lapse
  * puts a card back where it was, so only the WORD says which of the two it is. Grown is
- * the one rung that carries no word at all — the seal alone already says "done".
+ * the one Sprosse that carries no word at all — the seal alone already says "done".
  *
  * The color comes from [swatch] rather than being picked here, so this badge and the
- * shelf's own [AreaProgressBar] can never disagree about the same rung. A card with
+ * shelf's own [AreaProgressBar] can never disagree about the same Sprosse. A card with
  * nothing behind it gets no badge at all; that absence is what says "new"
  * (kern `CardRowState.Plain`), so this is never asked about one.
  */
@@ -184,7 +184,7 @@ const val LOCK = "🔒"
  * measured against the area's FULL card count, so the untouched rest of a shelf stays
  * visible instead of a bar that always reads as full.
  *
- * The three colored ones are the rungs [PhaseBadge] draws, in the same colors, so the
+ * The three colored ones are the Sprossen [PhaseBadge] draws, in the same colors, so the
  * shelf and its own rows tell one story. [AreaStatistics.learning] still counts everything
  * short of the bar — the settling cards among them included — so the amber stretch is what
  * is left after they are taken out.

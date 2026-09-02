@@ -80,7 +80,7 @@ Engine contract: `../README.md`.
   answers nothing.
   `listeningPriority` is one ladder in STABILITY, and the pool is DEALT down it rather than
   drawn from it — higher means earlier, and the same box gives the same run.
-  A scheduled word starts at `LISTENING_MAX_STABILITY_PRIORITY` (6) and loses a rung per
+  A scheduled word starts at `LISTENING_MAX_STABILITY_PRIORITY` (6) and loses a Sprosse per
   `LISTENING_STABILITY_STEP_DAYS` (2.0) of stability, clamped to 1..6: just learned or just
   lapsed leads, the not-quite-settled rotate in the middle, and the consolidated ones sit at
   the floor — still worth hearing, never what the hour is about.
@@ -88,26 +88,26 @@ Engine contract: `../README.md`.
   other **unscheduled** one `LISTENING_NEW_PRIORITY` (4): neither has a stability to read, so
   those figures are deal-rates rather than measurements — packing is the learner saying
   *these words next*, and a first hearing is the mode's cheapest breadth.
-  A **suspended** card keeps its stability's rung and pays `LISTENING_SUSPENDED_PENALTY` (2)
+  A **suspended** card keeps its stability's Sprosse and pays `LISTENING_SUSPENDED_PENALTY` (2)
   down to the floor of 1, rather than being sent to the floor outright: the leech rule takes a
   word out of the box's rotation, and this is the surface that can still reach it, so a shaky
-  leech lands at rung 3 or 4 — it comes in, it does not lead.
+  leech lands at Sprosse 3 or 4 — it comes in, it does not lead.
   The ladder that falls out: 6 is stability 0–2 d; 5 is 2–4 d and the packed words; 4 is
   4–6 d and every other unseen word; 3 is 6–8 d and a leech at 2–4 d; 2 is 8–10 d and a leech
   at 4–6 d; 1 is 10 d and up.
   **Nothing on that ladder reads a due date.** A word the box wants back is a word whose
-  stability is low, so it rises on the rungs it already has; a due term would make listening a
+  stability is low, so it rises on the Sprossen it already has; a due term would make listening a
   second scheduler, need a clock the run does not take, and pin the same word first every
   run — which listening cannot resolve, since it books nothing.
-  **The pool is dealt across the run, not sorted by rung.** A plain sort would empty rung 6,
-  then rung 5, then spend the rest of the run inside a rung-4 block of every unseen word in
-  the catalog, and rungs 3, 2 and 1 would never be reached in a session at all. So the pool is
+  **The pool is dealt across the run, not sorted by Sprosse.** A plain sort would empty Sprosse 6,
+  then Sprosse 5, then spend the rest of the run inside a Sprosse-4 block of every unseen word in
+  the catalog, and Sprossen 3, 2 and 1 would never be reached in a session at all. So the pool is
   split into **lanes** — `(kind, priority)`, kind being scheduled / new / packed — and each
   lane is dealt evenly across the whole run: the n-th candidate of a lane whose priority is p
   is placed at `(n + 0.5) / p`, and everything sorts by that placement. A lane of priority 6
   advances six times faster than one of priority 1, so the mix is the old weighted draw's
   proportions made deterministic — every lane reaches the ear, the high ones simply reach it
-  more often. Lanes rather than shared rungs, because the two unscheduled kinds' figures are
+  more often. Lanes rather than shared Sprossen, because the two unscheduled kinds' figures are
   rates and not measurements: three hundred unseen words must not crowd out twenty
   mid-stability ones that happened to score the same.
   **Within a lane the order depends on what the lane is.** New and packed words run in strict
@@ -175,15 +175,15 @@ Engine contract: `../README.md`.
   never as state.
 - **One injected `Random` per run** feeds every draw — task, variant, phrase frame, direction flip —
   so a seeded run is reproducible end to end and identical on both platforms.
-- **A prompt is asked once, and a rung with nothing left is climbed past** (`DrillSolved`).
+- **A prompt is asked once, and a Sprosse with nothing left is climbed past** (`DrillSolved`).
   A run keeps what it has answered RIGHT and every draw skips that set;
   only a clean answer joins it, because a slip, a look-up and a reveal leave a prompt in the pool —
   which is the ramp's own reading of an almost (`DrillRamp.step` moves nothing on one).
-  A rung answered out is climbed past rather than repeated, and the rung it climbs to is booked
-  like any other, since answering a rung out is standing on it; the wins banked below stay behind.
+  A Sprosse answered out is climbed past rather than repeated, and the Sprosse it climbs to is booked
+  like any other, since answering a Sprosse out is standing on it; the wins banked below stay behind.
   A whole ladder answered out ends the run on its summary — where the letter drill's
   "nothing left to ask" already went, now the rule for all three.
-  The atlas and the letter drill can ENUMERATE a rung and filter it;
+  The atlas and the letter drill can ENUMERATE a Sprosse and filter it;
   the slot drill draws values rather than picking them out of a list, so there
   `DrillSolved.SPENT_ATTEMPTS` repeats in a row is what "spent" can honestly mean,
   and in a mixed run a variant that has run out hands the turn to the next one.
@@ -199,7 +199,7 @@ Engine contract: `../README.md`.
   judged either way, with almost in neither half for `DrillRamp.step`'s reason;
   the "2/3" string is rendering.
 - **Storage contract**: the streak record under `trainer.record.<key>`,
-  per-variant rung progress under `trainer.level.<key>`
+  per-variant Sprosse progress under `trainer.level.<key>`
   (`TrainerMode.RECORD_PREFIX` / `PROGRESS_PREFIX`, keys byte-identical across the two stores).
   `close` returns only bookings that beat the standing value (strictly greater);
   the platform writes blindly.

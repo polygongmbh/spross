@@ -138,7 +138,7 @@ fun TrainerSessionScreen(model: AppModel, mode: TrainerMode) {
             verticalArrangement = Arrangement.spacedBy(DlSpace.m),
         ) {
             DrillStreakLine(
-                rung = rungText(state, chrome),
+                sprosse = sprosseText(state, chrome),
                 streak = state.streak,
                 bestStreak = state.bestStreak,
                 chrome = chrome,
@@ -156,20 +156,20 @@ fun TrainerSessionScreen(model: AppModel, mode: TrainerMode) {
 }
 
 /**
- * The rung part of the score line, for the variant that just asked: numbers count DIGITS,
- * everything else counts plain levels — and a variant with one rung shows none. The face
+ * The Sprosse part of the score line, for the variant that just asked: numbers count DIGITS,
+ * everything else counts plain levels — and a variant with one Sprosse shows none. The face
  * leads only where the run offers more than one variant, since a run that asks one thing
  * has already said what it asks.
  */
-private fun rungText(state: TrainerRunState, chrome: Chrome): String? {
-    if (!state.showsRung) return null
-    val rung = state.currentLevel
+private fun sprosseText(state: TrainerRunState, chrome: Chrome): String? {
+    if (!state.showsSprosse) return null
+    val sprosse = state.currentLevel
     // why: the digits wording is the numbers drill's own and already wears 🔢 — putting
     // the variant's face in front would double it.
     if (state.currentVariant == DrillVariant.Numbers) {
-        return countLine(chrome.numbersRungOne, chrome.numbersRung, rung)
+        return countLine(chrome.numbersSprosseOne, chrome.numbersSprosse, sprosse)
     }
-    val level = chrome.trainerRung.format(rung)
+    val level = chrome.trainerSprosse.format(sprosse)
     if (!state.severalVariants) return level
     return "${chrome.badge(state.currentVariant)} $level"
 }

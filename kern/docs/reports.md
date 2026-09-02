@@ -38,10 +38,10 @@ already did. Engine contract: `../README.md`.
 ## One card's standing
 
 - **`GrowthStage`** (`BoxEngine.growth`) is the same box told per card instead of per count:
-  one rung each for unscheduled / queued / learning / fresh / consolidated /
+  one Sprosse each for unscheduled / queued / learning / fresh / consolidated /
   matured / relearning / suspended, in seed order, with the card's raw stability and whether
-  today's answer touched it. Suspension and a lapse outrank every bar — a rung says where a
-  card stands now, never how far it once got. The rungs name the RULE, so a surface may draw
+  today's answer touched it. Suspension and a lapse outrank every bar — a Sprosse says where a
+  card stands now, never how far it once got. The Sprossen name the RULE, so a surface may draw
   two of them the same; what they look like is not the engine's answer. It is the whole-box
   read behind a surface that draws the box itself rather than the totals `statistics`
   aggregates it into, and the reason the app needs no schedule-reading rules of its own.

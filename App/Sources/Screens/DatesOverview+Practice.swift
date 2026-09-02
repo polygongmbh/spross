@@ -1,18 +1,18 @@
 import SwiftUI
 import SprossKern
 
-/// The drilling half of the dates overview: the rungs a run climbs, which way
+/// The drilling half of the dates overview: the Sprossen a run climbs, which way
 /// round it asks, how fast it climbs, and the button that starts it. State
 /// lives on DatesOverview; split out purely for file size.
 ///
 /// The RUNGS are not earned — the atlas page's rule, for the atlas page's
-/// reason — so the rows never carry a padlock: they say what a rung ASKS, and
-/// the run walks them by itself from rung 1 every time.
+/// reason — so the rows never carry a padlock: they say what a Sprosse ASKS, and
+/// the run walks them by itself from Sprosse 1 every time.
 ///
 /// Unlike its siblings the ladder here is not one fixed list: how tall it is
 /// depends on what the pair's content carries (no `dateWithYear` pattern, no
-/// year rung) and which way round the run asks (reversed, only the name rungs
-/// stand). The rows are therefore drawn from kern's own `kinds` per rung, and
+/// year Sprosse) and which way round the run asks (reversed, only the name Sprossen
+/// stand). The rows are therefore drawn from kern's own `kinds` per Sprosse, and
 /// the panel redraws when the reverse switch below it flips — the page shows
 /// exactly the ladder the start button opens.
 extension DatesOverview {
@@ -22,7 +22,7 @@ extension DatesOverview {
             heading("trainer.overview.practice")
             if let content {
                 VStack(alignment: .leading, spacing: DL.Space.l) {
-                    ForEach(1...ladderCeiling, id: \.self) { rungRow($0, content: content) }
+                    ForEach(1...ladderCeiling, id: \.self) { sprosseRow($0, content: content) }
                 }
                 .padding(DL.Space.l)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -45,14 +45,14 @@ extension DatesOverview {
 
     // MARK: - What a run asks
 
-    /// One rung: what standing on it is asked. The mark is the rung's NUMBER,
+    /// One Sprosse: what standing on it is asked. The mark is the Sprosse's NUMBER,
     /// the letters page's rule — these rows are a ladder the run walks by
     /// itself, and a circle beside each one reads as a choice that never
     /// answers the tap.
-    private func rungRow(_ rung: Int, content: DateDrillContent) -> some View {
-        let kinds = DateDrill.shared.kinds(content: content, level: rung, reverse: reverse)
+    private func sprosseRow(_ sprosse: Int, content: DateDrillContent) -> some View {
+        let kinds = DateDrill.shared.kinds(content: content, level: sprosse, reverse: reverse)
         return HStack(alignment: .firstTextBaseline, spacing: DL.Space.m) {
-            Image(systemName: "\(rung).circle")
+            Image(systemName: "\(sprosse).circle")
                 .font(.title3)
                 .foregroundStyle(Color.dlTextSecondary)
             VStack(alignment: .leading, spacing: 2) {
@@ -66,7 +66,7 @@ extension DatesOverview {
             }
             Spacer(minLength: 0)
         }
-        // why: one rung is one VoiceOver stop — the mark, the name and the line
+        // why: one Sprosse is one VoiceOver stop — the mark, the name and the line
         // under it describe a single thing.
         .accessibilityElement(children: .combine)
     }
@@ -74,30 +74,30 @@ extension DatesOverview {
     // The catalog keys are indexed by KIND in full-ladder order — weekday, month,
     // day, day+month, date, date+year — because the ladder itself has no fixed
     // length: a pair without a year pattern skips index 6, and the number on
-    // screen is the row's own position. A rung carries every kind below it, so
+    // screen is the row's own position. A Sprosse carries every kind below it, so
     // the LAST one is what it introduced and what it is named for.
     // why: spelled out rather than interpolated — a key built with an index
     // becomes a format string and localizes nothing, and these keys would stop
     // being greppable from the catalog.
     private static func title(_ kinds: [DateTaskKind]) -> LocalizedStringKey {
         switch kinds.last {
-        case .weekday: return "dates.rung.1"
-        case .month: return "dates.rung.2"
-        case .dayOfMonth: return "dates.rung.3"
-        case .dayAndMonth: return "dates.rung.4"
-        case .fullDate: return "dates.rung.5"
-        default: return "dates.rung.6"
+        case .weekday: return "dates.sprosse.1"
+        case .month: return "dates.sprosse.2"
+        case .dayOfMonth: return "dates.sprosse.3"
+        case .dayAndMonth: return "dates.sprosse.4"
+        case .fullDate: return "dates.sprosse.5"
+        default: return "dates.sprosse.6"
         }
     }
 
     private static func hint(_ kinds: [DateTaskKind]) -> LocalizedStringKey {
         switch kinds.last {
-        case .weekday: return "dates.rung.1.hint"
-        case .month: return "dates.rung.2.hint"
-        case .dayOfMonth: return "dates.rung.3.hint"
-        case .dayAndMonth: return "dates.rung.4.hint"
-        case .fullDate: return "dates.rung.5.hint"
-        default: return "dates.rung.6.hint"
+        case .weekday: return "dates.sprosse.1.hint"
+        case .month: return "dates.sprosse.2.hint"
+        case .dayOfMonth: return "dates.sprosse.3.hint"
+        case .dayAndMonth: return "dates.sprosse.4.hint"
+        case .fullDate: return "dates.sprosse.5.hint"
+        default: return "dates.sprosse.6.hint"
         }
     }
 
@@ -106,11 +106,11 @@ extension DatesOverview {
     private var pace: some View {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
             Text("dates.pace")
-            if bestRung > 0 {
-                // why: printed as it stands, ceiling and all — the rung keeps
+            if bestSprosse > 0 {
+                // why: printed as it stands, ceiling and all — the Sprosse keeps
                 // counting past the named ladder, so the record is a number to
                 // beat rather than a row on the page.
-                Text("dates.best \(bestRung.formatted())")
+                Text("dates.best \(bestSprosse.formatted())")
             }
         }
         .font(DL.Fonts.caption)
@@ -149,7 +149,7 @@ extension DatesOverview {
         )
     }
 
-    /// Fast, priced out of kern's own rule: the top rung, stood on once. The
+    /// Fast, priced out of kern's own rule: the top Sprosse, stood on once. The
     /// caption follows the numbers page's unlock line rather than authoring a
     /// second price beside the ladder that sets it.
     private var fastRow: some View {
@@ -169,11 +169,11 @@ extension DatesOverview {
             }
             .tint(.dlAccent)
             .disabled(!open)
-            // why: the dates rung costs THREE clean wins, so the shared
+            // why: the dates Sprosse costs THREE clean wins, so the shared
             // "statt zwei" hint would misprice it — this ladder says its own.
             (open ? Text("dates.fast.hint")
                   : Text("numbers.unlock") + Text(verbatim: " ")
-                      + Text("trainer.rung \(ladderCeiling.formatted())"))
+                      + Text("trainer.sprosse \(ladderCeiling.formatted())"))
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
                 .fixedSize(horizontal: false, vertical: true)

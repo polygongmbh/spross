@@ -62,7 +62,7 @@ class DateDrillRunTest {
     // MARK: - Where a run opens
 
     @Test
-    fun aRunOpensOnTheFirstRungWithAQuestionStanding() {
+    fun aRunOpensOnTheFirstSprosseWithAQuestionStanding() {
         val run = DateDrillRun.open(config(), Random(7))
         assertEquals(1, run.level)
         assertEquals(1, run.bestLevel)
@@ -72,9 +72,9 @@ class DateDrillRunTest {
         assertEquals(0, run.done)
     }
 
-    /** The forced rung is for tests and screenshot drivers; kern clamps it to THIS ladder. */
+    /** The forced Sprosse is for tests and screenshot drivers; kern clamps it to THIS ladder. */
     @Test
-    fun aForcedRungIsClampedToTheLadder() {
+    fun aForcedSprosseIsClampedToTheLadder() {
         assertEquals(6, open(level = 99).level)
         assertEquals(1, open(level = 0).level)
         assertEquals(2, open(reverse = true, level = 99).level)
@@ -155,7 +155,7 @@ class DateDrillRunTest {
     }
 
     /**
-     * The numeral rungs carry the numbers drill's value check: a day that names another
+     * The numeral Sprossen carry the numbers drill's value check: a day that names another
      * day is refused and named, while a genuine fumble stays the forgiven slip it was.
      */
     @Test
@@ -205,7 +205,7 @@ class DateDrillRunTest {
 
     // MARK: - The ramp
 
-    /** Three clean wins a rung — rung 3 has 31 questions, so the wins carry the climb. */
+    /** Three clean wins a Sprosse — Sprosse 3 has 31 questions, so the wins carry the climb. */
     @Test
     fun threeCleanWinsCarryTheRun() {
         var run = open(level = 3)
@@ -219,7 +219,7 @@ class DateDrillRunTest {
     }
 
     @Test
-    fun fastSpendsOneWinARung() {
+    fun fastSpendsOneWinASprosse() {
         val run = open(fast = true, level = 3)
         assertEquals(4, run.answered(run.task.display).level)
     }
@@ -235,7 +235,7 @@ class DateDrillRunTest {
     }
 
     @Test
-    fun aMissDropsTheRungButNotTheOneTheRunReached() {
+    fun aMissDropsTheSprosseButNotTheOneTheRunReached() {
         var run = open(level = 5)
         repeat(DateDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
         assertEquals(6, run.level)
@@ -286,7 +286,7 @@ class DateDrillRunTest {
     // MARK: - Leaving
 
     @Test
-    fun anUntouchedRunReportsNothingButStillNamesItsRung() {
+    fun anUntouchedRunReportsNothingButStillNamesItsSprosse() {
         val closed = DateDrillRun.close(open(), standingRecord = 0)
         assertNull(closed.summary)
         assertEquals(1, closed.bestLevel)
@@ -315,9 +315,9 @@ class DateDrillRunTest {
         )
     }
 
-    /** The close reports the rung the run REACHED, which is what the page files. */
+    /** The close reports the Sprosse the run REACHED, which is what the page files. */
     @Test
-    fun theCloseReportsTheRungTheRunStoodOn() {
+    fun theCloseReportsTheSprosseTheRunStoodOn() {
         var run = open(level = 3)
         repeat(DateDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
         run = run.missed()

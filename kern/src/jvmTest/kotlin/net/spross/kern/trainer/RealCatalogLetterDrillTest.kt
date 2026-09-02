@@ -138,7 +138,7 @@ class RealCatalogLetterDrillTest {
     }
 
     @Test
-    fun theConfusableRungsDrawWhatTheyPromise() {
+    fun theConfusableSprossenDrawWhatTheyPromise() {
         for (lang in languages) {
             val alphabet = assertNotNull(catalog.alphabet(lang))
             for (level in 3..5) {

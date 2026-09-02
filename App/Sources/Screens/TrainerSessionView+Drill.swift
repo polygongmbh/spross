@@ -61,20 +61,20 @@ extension TrainerSessionView {
                         announcesRecord: true)
     }
 
-    /// The rung part of the score line, for the variant that just asked: numbers
+    /// The Sprosse part of the score line, for the variant that just asked: numbers
     /// count DIGITS, everything else counts plain levels — and a variant with one
-    /// rung shows none. The emoji leads only where the run offers more than one
+    /// Sprosse shows none. The emoji leads only where the run offers more than one
     /// variant, since a run that asks one thing has already said what it asks.
     private var levelText: Text? {
-        guard run.showsRung else { return nil }
+        guard run.showsSprosse else { return nil }
         let variant = run.currentVariant
-        let rung = Int(run.currentLevel)
+        let sprosse = Int(run.currentLevel)
         guard variant != .numbers else {
             // why: `trainer.digits` is the numbers drill's own wording and already
             // wears 🔢 — putting the variant's face in front would double it.
-            return Text("numbers.rung \(rung)")
+            return Text("numbers.sprosse \(sprosse)")
         }
-        let text = Text("trainer.rung \(rung.formatted())")
+        let text = Text("trainer.sprosse \(sprosse.formatted())")
         guard run.severalVariants else { return text }
         return Text(verbatim: "\(drillVariantEmoji(variant: variant)) ") + text
     }

@@ -164,7 +164,7 @@ class ListeningPoolTests {
      * RULE: packed words are heard inside the opening turns, and ahead of the other new ones.
      * WHY: packing is the learner saying *these words next*; the study round honors it and the
      * widget honors it, so the mode with the least friction cannot be the one that ignores it.
-     * Their own lane runs a rung faster, which puts them in the first handful of turns without
+     * Their own lane runs a Sprosse faster, which puts them in the first handful of turns without
      * making them a block.
      */
     @Test
@@ -176,7 +176,7 @@ class ListeningPoolTests {
 
         assertEquals("w50", played.first(), "a packed word opens the run")
         assertTrue(played.take(6).containsAll(packed), "packed words late: ${played.take(6)}")
-        // The packed lane runs a rung ahead: each of its words lands before the plain new
+        // The packed lane runs a Sprosse ahead: each of its words lands before the plain new
         // word of the same rank, so all three are out while the catalog is on its third.
         for ((rank, word) in packed.withIndex()) {
             assertTrue(played.indexOf(word) < played.indexOf(id(rank + 1)), "$word is late")
@@ -186,20 +186,20 @@ class ListeningPoolTests {
     /**
      * RULE: every lane is reached inside the opening stretch of one lap.
      * WHY: the regression the deal exists to prevent. A plain sort by priority would empty
-     * rung 6, then rung 5, then spend the whole run inside a rung-4 block of every unseen word
+     * Sprosse 6, then Sprosse 5, then spend the whole run inside a Sprosse-4 block of every unseen word
      * in the catalog — the settled and the shaky-suspended words would never be reached in a
      * session at all. Dealing each lane evenly means every one of them reaches the ear.
      */
     @Test
     fun everyLaneIsReachedInsideTheOpeningStretch() {
         var state = box(total = 200, scheduled = 0)
-        // Five words on each rung of the stability ladder, plus a packed lane and 170 unseen.
-        for ((rung, stability) in listOf(0.0, 3.0, 5.0, 7.0, 9.0, 20.0).withIndex()) {
+        // Five words on each Sprosse of the stability ladder, plus a packed lane and 170 unseen.
+        for ((sprosse, stability) in listOf(0.0, 3.0, 5.0, 7.0, 9.0, 20.0).withIndex()) {
             for (n in 1..5) {
                 state = Box.inject(
                     state,
                     Box.sched(
-                        id(rung * 5 + n), stability = stability,
+                        id(sprosse * 5 + n), stability = stability,
                         dueMillis = Box.day1, lastReviewMillis = Box.day1,
                     ),
                 )

@@ -17,14 +17,14 @@ import net.spross.kern.trainer.DateDrillRunState
  * One dates run as this platform holds it — the fourth sibling of [TrainerFlow],
  * [LetterDrillFlow] and [CountryDrillFlow], over kern's own [DateDrillRun].
  *
- * Everything decidable is kern's: which question a rung may ask, which date is drawn, what
+ * Everything decidable is kern's: which question a Sprosse may ask, which date is drawn, what
  * a typed reading earns, how far one answer moves the ramp, which beat is armed. What is
  * left here is the text standing in the field and the beat itself.
  *
  * Stateless like all its siblings: no review is ever booked and the box is never read at
  * all — the material is the catalog's calendars, not the learner's own words. The one
- * thing that outlives a run is the furthest rung it stood on, which the page that started
- * it files ([TrainerStore.bookRung]).
+ * thing that outlives a run is the furthest Sprosse it stood on, which the page that started
+ * it files ([TrainerStore.bookSprosse]).
  */
 class DateDrillFlow(
     start: DateDrillRunState,

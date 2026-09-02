@@ -9,7 +9,7 @@ built to sit beside native-speaker conversation or a structured course, never to
 - Palette: `App/Sources/Design/Theme.swift` is the source of truth (stone-and-moss surfaces, clay accent, ocean/forest secondaries, ochre for near-miss — never red).
   `web/site.css` restates the hex pairs; when Theme.swift moves, the CSS follows.
 - Type: SF Rounded in-app → `ui-rounded` system stack on the web.
-- Wordplay: **Spross** (sprout) / **Sprosse** (ladder rung) — organic growth first, the rung as the progression wink
+- Wordplay: **Spross** (sprout) / **Sprosse** (a ladder's step) — organic growth first, the climb as the progression wink
   (phrases unlock from component words; drill levels climb a digit at a time).
   The pun is performed, never written out: the drill's level IS a Sprosse with a small ladder beside it,
   where a card spelling the joke out had stopped being one.

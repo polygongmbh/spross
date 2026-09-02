@@ -19,7 +19,7 @@ class BoxBrowserTest {
 
     /**
      * Three groups over four areas: `home` titled for the reader, `work` in English only,
-     * `wild` titled in no language at all — the three rungs of the heading fallback.
+     * `wild` titled in no language at all — the three Sprossen of the heading fallback.
      * The concepts are empty because the browser reads the BOX's cards, never the catalog's.
      */
     private val catalog: Catalog = Catalog.load(
@@ -271,7 +271,7 @@ class BoxBrowserTest {
         // Review well under the consolidated bar (6.0) — the phase says nothing about it.
         state = Box.inject(state, Box.sched("w02", stability = 3.0, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w03", stability = 9.0, dueMillis = future, lastReviewMillis = now))
-        // Matured is a further rung, not a further mark: one bar, one flag.
+        // Matured is a further Sprosse, not a further mark: one bar, one flag.
         state = Box.inject(state, Box.sched("w04", stability = 99.0, dueMillis = future, lastReviewMillis = now))
         // Lapsed after consolidating: the bar has to be earned back.
         state = Box.inject(
@@ -291,11 +291,11 @@ class BoxBrowserTest {
     }
 
     /**
-     * The rung's color, so a row's badge and the shelf's bar read the same table:
-     * both halves of the amber rung, the green one under the bar, teal above it.
+     * The Sprosse's color, so a row's badge and the shelf's bar read the same table:
+     * both halves of the amber Sprosse, the green one under the bar, teal above it.
      */
     @Test
-    fun theRungsColorFollowsTheBarAndTheTwoAmberPhasesShareIt() {
+    fun theSprossenColorFollowsTheBarAndTheTwoAmberPhasesShareIt() {
         fun swatchOf(phase: CardPhase, consolidated: Boolean) =
             CardRowState.Standing(phase, consolidated).swatch
 

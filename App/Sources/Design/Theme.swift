@@ -193,7 +193,7 @@ extension Color {
     static let dlSuccess = Color(Palette.shared.success)  // forest
     static let dlAmber = Color(Palette.shared.amber)      // ochre — a near miss, or an answer shown
     static let dlWrong = Color(Palette.shared.wrong)      // brick — a miss
-    /// The consolidated/"grown" rung's own color — not `dlTeal`, which sits too close to
+    /// The consolidated/"grown" Sprosse's own color — not `dlTeal`, which sits too close to
     /// `dlDer` on the hue wheel to read as anything but another blue at a badge's size.
     static let dlGrown = Color(Palette.shared.grown)      // jade
 

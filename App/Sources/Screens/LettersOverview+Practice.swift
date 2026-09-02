@@ -109,12 +109,12 @@ extension LettersOverview {
     /// found; the drill says so on its own prompt card instead (§6.1).
     var drillAvailable: Bool { availability?.drillAvailable ?? false }
 
-    /// The stage a run would open on, from the rung Kern derives out of the
+    /// The stage a run would open on, from the Sprosse Kern derives out of the
     /// learner's consolidated words — never recomputed here.
     private var entryStage: LetterStage? { availability?.entryStage }
 
     /// Dictation needs a pool of playable words the learner already holds; below
-    /// that floor the ramp stops one rung short of it, so the row is a padlock
+    /// that floor the ramp stops one Sprosse short of it, so the row is a padlock
     /// with its price rather than a stage that never arrives.
     private func reachable(_ stage: LetterStage) -> Bool {
         guard let availability, availability.drillAvailable else { return false }

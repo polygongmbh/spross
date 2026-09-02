@@ -70,7 +70,7 @@ data class CountryDrillContent(
 ) {
     private val languageByCode: Map<Language, AtlasLanguageEntry> = languages.associateBy { it.code }
 
-    /** The outermost tier this pair actually joins — where a rung's pool stops widening. */
+    /** The outermost tier this pair actually joins — where a Sprosse's pool stops widening. */
     val widestTier: Int = maxOf(
         countries.maxOfOrNull { it.tier } ?: 1,
         languages.maxOfOrNull { it.tier } ?: 1,

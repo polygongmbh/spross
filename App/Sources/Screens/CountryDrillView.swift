@@ -25,11 +25,11 @@ struct CountryDrillView: View, LanguageNaming {
     let content: CountryDrillContent
     /// Which way round the questions are asked, settled before a task is built.
     let reverse: Bool
-    /// Whether a rung falls on ONE clean win instead of three. Earned by having
+    /// Whether a Sprosse falls on ONE clean win instead of three. Earned by having
     /// topped the ladder once (`CountryDrill.fastUnlocked`); the page that opens
     /// the run has already checked the price, so it is only obeyed here.
     let fast: Bool
-    /// Where the rung and the record are kept — the overview's key, so the two
+    /// Where the Sprosse and the record are kept — the overview's key, so the two
     /// surfaces cannot book a run under two names.
     let storageKey: String
     /// Handed the run's figures just before it closes (see `DrillResultTile`).
@@ -62,10 +62,10 @@ struct CountryDrillView: View, LanguageNaming {
             content: content, reverse: reverse, fast: fast,
             normalizer: Self.normalizer(model: model, content: content, reverse: reverse)
         )
-        // Every run opens at rung 1 however far the learner has climbed: what
+        // Every run opens at Sprosse 1 however far the learner has climbed: what
         // the record buys is the page, never a head start (docs/surfaces.md).
         #if DEBUG
-        // UI-test hook: `-uitest-countries-level N` opens the run at that rung,
+        // UI-test hook: `-uitest-countries-level N` opens the run at that Sprosse,
         // which is how the outer tiers are reached deterministically. Kern clamps it.
         let preset = UserDefaults.standard.integer(forKey: "uitest-countries-level")
         if preset > 0 {
@@ -80,8 +80,8 @@ struct CountryDrillView: View, LanguageNaming {
         #endif
     }
 
-    /// The question on screen. The atlas always has one — a rung with none is
-    /// not a rung the learner could climb off.
+    /// The question on screen. The atlas always has one — a Sprosse with none is
+    /// not a Sprosse the learner could climb off.
     var current: CountryDrillTask { run.task }
 
     /// The language an answer is owed in — the learned one, or the learner's own

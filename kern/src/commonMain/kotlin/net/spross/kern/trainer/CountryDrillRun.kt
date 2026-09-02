@@ -14,7 +14,7 @@ import net.spross.kern.session.TurnFeedback
  * [CountryDrill].
  *
  * It types like the slot run — writing the name out IS the answer — and climbs like the
- * letter run, one ladder for the whole run rather than one per variant. That, and the rung
+ * letter run, one ladder for the whole run rather than one per variant. That, and the Sprosse
  * it REACHED being what a close reports, is the whole of what it does not share with them;
  * the ramp, the effects and the summary are the same ones.
  *
@@ -23,12 +23,12 @@ import net.spross.kern.session.TurnFeedback
  */
 object CountryDrillRun {
 
-    /** A fresh run. Every run opens at rung 1 however far the learner has climbed. */
+    /** A fresh run. Every run opens at Sprosse 1 however far the learner has climbed. */
     fun open(config: CountryDrillRunConfig, rng: Random): CountryDrillRunState =
         openAt(config, 1, rng)
 
     /**
-     * The same, forced to one rung — what the record buys is the page and never a head
+     * The same, forced to one Sprosse — what the record buys is the page and never a head
      * start, so this exists for tests and screenshot drivers, which have no other way to
      * reach the outer tiers.
      */
@@ -99,7 +99,7 @@ object CountryDrillRun {
      * Leaving, from the corner or from "Fertig". A pending accepted answer books first,
      * exactly as the explicit tap would — closing may neither lose it nor upgrade it — and a
      * revealed answer nobody confirmed books nothing. An untouched run reports nothing at
-     * all, though it still names the rung it opened on, which the page files either way.
+     * all, though it still names the Sprosse it opened on, which the page files either way.
      *
      * [standingRecord] is what the platform's store holds now; the write is strictly
      * greater, so re-closing a resumed run never double-claims.
@@ -198,7 +198,7 @@ object CountryDrillRun {
         when (state.feedback) {
             TurnFeedback.Neutral -> unchanged(state)
             TurnFeedback.Correct -> booked(state, correct = true, clean = true, rng = rng)
-            // The almost hold: accepted, but the pause showed a spelling, so the rung stays.
+            // The almost hold: accepted, but the pause showed a spelling, so the Sprosse stays.
             is TurnFeedback.Almost -> booked(state, correct = true, clean = false, rng = rng)
             // why: no "I knew it" in a drill — the questions are generated, so self-reporting
             // after seeing the answer proves nothing; revealed simply counts as a miss.
@@ -215,7 +215,7 @@ object CountryDrillRun {
 
     // MARK: - Booking
 
-    /** Book the answer, then put the next question up at the rung the booking left. */
+    /** Book the answer, then put the next question up at the Sprosse the booking left. */
     private fun booked(
         state: CountryDrillRunState,
         correct: Boolean,
@@ -239,7 +239,7 @@ object CountryDrillRun {
                 task = draw.task ?: state.task,
                 finished = draw.task == null,
                 level = draw.level,
-                // A rung the run answered out is a rung it stood on, and the wins banked on the
+                // A Sprosse the run answered out is a Sprosse it stood on, and the wins banked on the
                 // one below stay behind with it.
                 bestLevel = maxOf(next.bestLevel, draw.level),
                 winsAtLevel = if (draw.level == next.level) next.winsAtLevel else 0,
@@ -253,7 +253,7 @@ object CountryDrillRun {
         )
     }
 
-    /** The booking itself: the ramp, the streak, the tallies — the rung it reached included. */
+    /** The booking itself: the ramp, the streak, the tallies — the Sprosse it reached included. */
     private fun advanced(
         state: CountryDrillRunState,
         correct: Boolean,

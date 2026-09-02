@@ -1519,7 +1519,7 @@
           }
         }
       },
-      "comment" : "%d = the furthest rung any run reached"
+      "comment" : "%d = the furthest Sprosse any run reached"
     },
     "countries.fast.hint" : {
       "extractionState" : "manual",
@@ -1554,7 +1554,7 @@
           }
         }
       },
-      "comment" : "How the ladder is walked, said once instead of marked on every rung row."
+      "comment" : "How the ladder is walked, said once instead of marked on every Sprosse row."
     },
     "countries.reference" : {
       "localizations" : {
@@ -1589,7 +1589,7 @@
       },
       "comment" : "%1$s = the side asked in, %2$s = the side owed"
     },
-    "countries.rung.1" : {
+    "countries.sprosse.1" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1606,7 +1606,7 @@
         }
       }
     },
-    "countries.rung.1.hint" : {
+    "countries.sprosse.1.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1623,7 +1623,7 @@
         }
       }
     },
-    "countries.rung.2" : {
+    "countries.sprosse.2" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1640,7 +1640,7 @@
         }
       }
     },
-    "countries.rung.2.hint" : {
+    "countries.sprosse.2.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1657,7 +1657,7 @@
         }
       }
     },
-    "countries.rung.3" : {
+    "countries.sprosse.3" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1674,7 +1674,7 @@
         }
       }
     },
-    "countries.rung.3.hint" : {
+    "countries.sprosse.3.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1691,7 +1691,7 @@
         }
       }
     },
-    "countries.rung.4" : {
+    "countries.sprosse.4" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1708,7 +1708,7 @@
         }
       }
     },
-    "countries.rung.4.hint" : {
+    "countries.sprosse.4.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1725,7 +1725,7 @@
         }
       }
     },
-    "countries.rung.5" : {
+    "countries.sprosse.5" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1742,7 +1742,7 @@
         }
       }
     },
-    "countries.rung.5.hint" : {
+    "countries.sprosse.5.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1759,7 +1759,7 @@
         }
       }
     },
-    "countries.rung.6" : {
+    "countries.sprosse.6" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1776,7 +1776,7 @@
         }
       }
     },
-    "countries.rung.6.hint" : {
+    "countries.sprosse.6.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1793,7 +1793,7 @@
         }
       }
     },
-    "countries.rung.7" : {
+    "countries.sprosse.7" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1810,7 +1810,7 @@
         }
       }
     },
-    "countries.rung.7.hint" : {
+    "countries.sprosse.7.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1827,7 +1827,7 @@
         }
       }
     },
-    "countries.rung.8" : {
+    "countries.sprosse.8" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1844,7 +1844,7 @@
         }
       }
     },
-    "countries.rung.8.hint" : {
+    "countries.sprosse.8.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1861,7 +1861,7 @@
         }
       }
     },
-    "countries.rung.9" : {
+    "countries.sprosse.9" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1878,7 +1878,7 @@
         }
       }
     },
-    "countries.rung.9.hint" : {
+    "countries.sprosse.9.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2145,7 +2145,7 @@
           }
         }
       },
-      "comment" : "%d = the furthest rung any run reached"
+      "comment" : "%d = the furthest Sprosse any run reached"
     },
     "dates.fast.hint" : {
       "extractionState" : "manual",
@@ -2180,7 +2180,7 @@
           }
         }
       },
-      "comment" : "How the ladder is walked, said once instead of marked on every rung row."
+      "comment" : "How the ladder is walked, said once instead of marked on every Sprosse row."
     },
     "dates.reference" : {
       "localizations" : {
@@ -2213,9 +2213,9 @@
           }
         }
       },
-      "comment" : "%1$s = the side asked in, %2$s = the side owed. Reversed, only the bare-name rungs stand (the numeric side of a date is a convention, not a skill)."
+      "comment" : "%1$s = the side asked in, %2$s = the side owed. Reversed, only the bare-name Sprossen stand (the numeric side of a date is a convention, not a skill)."
     },
-    "dates.rung.1" : {
+    "dates.sprosse.1" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2231,9 +2231,9 @@
           }
         }
       },
-      "comment" : "The rung keys are indexed by KIND in full-ladder order (weekday, month, day, day+month, date, date+year, 7 = the mix) — a pair without a year pattern skips index 6, and the number on screen is the row's own position."
+      "comment" : "The Sprosse keys are indexed by KIND in full-ladder order (weekday, month, day, day+month, date, date+year, 7 = the mix) — a pair without a year pattern skips index 6, and the number on screen is the row's own position."
     },
-    "dates.rung.1.hint" : {
+    "dates.sprosse.1.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2250,7 +2250,7 @@
         }
       }
     },
-    "dates.rung.2" : {
+    "dates.sprosse.2" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2267,7 +2267,7 @@
         }
       }
     },
-    "dates.rung.2.hint" : {
+    "dates.sprosse.2.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2284,7 +2284,7 @@
         }
       }
     },
-    "dates.rung.3" : {
+    "dates.sprosse.3" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2301,7 +2301,7 @@
         }
       }
     },
-    "dates.rung.3.hint" : {
+    "dates.sprosse.3.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2318,7 +2318,7 @@
         }
       }
     },
-    "dates.rung.4" : {
+    "dates.sprosse.4" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2335,7 +2335,7 @@
         }
       }
     },
-    "dates.rung.4.hint" : {
+    "dates.sprosse.4.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2352,7 +2352,7 @@
         }
       }
     },
-    "dates.rung.5" : {
+    "dates.sprosse.5" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2369,7 +2369,7 @@
         }
       }
     },
-    "dates.rung.5.hint" : {
+    "dates.sprosse.5.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2386,7 +2386,7 @@
         }
       }
     },
-    "dates.rung.6" : {
+    "dates.sprosse.6" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2403,7 +2403,7 @@
         }
       }
     },
-    "dates.rung.6.hint" : {
+    "dates.sprosse.6.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -3954,7 +3954,7 @@
       "comment" : "a reversed task owes digits, never a language"
     },
     "numbers.best" : {
-      "comment" : "the rung this exercise has ever reached, under its name on the overview",
+      "comment" : "the Sprosse this exercise has ever reached, under its name on the overview",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -4053,47 +4053,6 @@
           }
         }
       }
-    },
-    "numbers.rung %lld" : {
-      "localizations" : {
-        "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "🔢 %lld Stelle"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "🔢 %lld Stellen"
-                }
-              }
-            }
-          }
-        },
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "🔢 %lld digit"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "🔢 %lld digits"
-                }
-              }
-            }
-          }
-        }
-      },
-      "comment" : "the numbers rung, which counts digits"
     },
     "numbers.section.base" : {
       "localizations" : {
@@ -4207,6 +4166,47 @@
         }
       }
     },
+    "numbers.sprosse %lld" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "🔢 %lld Stelle"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "🔢 %lld Stellen"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "🔢 %lld digit"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "🔢 %lld digits"
+                }
+              }
+            }
+          }
+        }
+      },
+      "comment" : "the numbers Sprosse, which counts digits"
+    },
     "numbers.title %@" : {
       "localizations" : {
         "de" : {
@@ -4239,7 +4239,7 @@
           }
         }
       },
-      "comment" : "What a locked row costs, before kern's table words the rungs themselves."
+      "comment" : "What a locked row costs, before kern's table words the Sprossen themselves."
     },
     "onboarding.firstRound.grade" : {
       "localizations" : {
@@ -6197,23 +6197,6 @@
       },
       "comment" : "%d — answers in a row, never days"
     },
-    "trainer.rung %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sprosse %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sprosse %@"
-          }
-        }
-      },
-      "comment" : "%d — the rung a run stands on"
-    },
     "trainer.skill.countries" : {
       "localizations" : {
         "de" : {
@@ -6279,6 +6262,23 @@
         }
       },
       "comment" : "the hub entry, and the variant's own name"
+    },
+    "trainer.sprosse %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprosse %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprosse %@"
+          }
+        }
+      },
+      "comment" : "%d — the Sprosse a run stands on"
     },
     "trainer.variant.clock" : {
       "localizations" : {

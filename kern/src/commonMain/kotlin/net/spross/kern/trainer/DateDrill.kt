@@ -14,34 +14,34 @@ import net.spross.kern.model.Language
  * stateless like its siblings — no schedule read, no review booked, every draw on the
  * caller's [Random].
  *
- * The rungs ACCUMULATE, like the atlas ladder's: a rung asks what it introduces plus
+ * The Sprossen ACCUMULATE, like the atlas ladder's: a Sprosse asks what it introduces plus
  * everything below it, so the weekdays keep coming once the months arrive and the top
- * rung is simply the last one. What keeps the new question from drowning in the old is
- * the draw order, not a narrower rung ([drawOrder]). A rung the answer language cannot
- * carry is absent, not locked: no `dateWithYear` pattern, no year rung, and the ladder
- * simply tops out a rung short (uk, `docs/date-readings.md`).
- * Reversed, only the bare-name rungs stand — the numeric side of a date is a separator
+ * Sprosse is simply the last one. What keeps the new question from drowning in the old is
+ * the draw order, not a narrower Sprosse ([drawOrder]). A Sprosse the answer language cannot
+ * carry is absent, not locked: no `dateWithYear` pattern, no year Sprosse, and the ladder
+ * simply tops out a Sprosse short (uk, `docs/date-readings.md`).
+ * Reversed, only the bare-name Sprossen stand — the numeric side of a date is a separator
  * convention, not a language skill — so that ladder is the two names plus their mix.
  *
- * The bare rungs enumerate their pools; the assembled rungs are drawn like the slot
+ * The bare Sprossen enumerate their pools; the assembled Sprossen are drawn like the slot
  * drill's values, so [DrillSolved.SPENT_ATTEMPTS] is what "spent" means there. What a
  * drawn question looks like — prompt, accepted set, display — is [DateDrillTasks]'.
  */
 object DateDrill {
 
-    /** Three clean wins a rung — the country drill's pacing, for the country drill's reason. */
+    /** Three clean wins a Sprosse — the country drill's pacing, for the country drill's reason. */
     const val WINS_TO_ADVANCE = 3
 
     fun winsToAdvance(fast: Boolean): Int = if (fast) 1 else WINS_TO_ADVANCE
 
-    /** How tall this pair's ladder is: one rung per kind the pair can ask. */
-    fun maxLevel(content: DateDrillContent, reverse: Boolean): Int = rungs(content, reverse).size
+    /** How tall this pair's ladder is: one Sprosse per kind the pair can ask. */
+    fun maxLevel(content: DateDrillContent, reverse: Boolean): Int = sprossen(content, reverse).size
 
-    /** Fast is earned by having EVER stood on this ladder's top rung, like the atlas'. */
+    /** Fast is earned by having EVER stood on this ladder's top Sprosse, like the atlas'. */
     fun fastUnlocked(bestLevel: Int, content: DateDrillContent, reverse: Boolean): Boolean =
         bestLevel >= maxLevel(content, reverse)
 
-    /** The rung ramp, on this ladder's rung length ([DrillRamp.step]). */
+    /** The Sprosse ramp, on this ladder's Sprosse length ([DrillRamp.step]). */
     fun step(
         content: DateDrillContent,
         reverse: Boolean,
@@ -50,19 +50,19 @@ object DateDrill {
         correct: Boolean,
         clean: Boolean,
         fast: Boolean,
-    ): DrillRamp.RungStep =
+    ): DrillRamp.SprosseStep =
         DrillRamp.step(level, winsAtLevel, correct, clean, winsToAdvance(fast))
 
     /** What [level] may ask: the kind it introduces, and every kind below it. */
     fun kinds(content: DateDrillContent, level: Int, reverse: Boolean): List<DateTaskKind> {
-        val ladder = rungs(content, reverse)
+        val ladder = sprossen(content, reverse)
         return ladder.take(level.coerceIn(1, ladder.size))
     }
 
     /**
      * One question from [level]'s pool, never one [solved] already holds ([DrillSolved]).
      * [avoid] is the previous task's [DrillSolved.key], resampled once so a repeat needs
-     * two unlucky draws. Null ⇒ the rung is answered out — for an assembled rung, that
+     * two unlucky draws. Null ⇒ the Sprosse is answered out — for an assembled Sprosse, that
      * [DrillSolved.SPENT_ATTEMPTS] draws in a row landed on solved questions.
      */
     fun sample(
@@ -85,8 +85,8 @@ object DateDrill {
     }
 
     /**
-     * The first rung at or above [level] with a question left ([DrillLadder.climb]). The
-     * rungs nest, so a rung is spent only once everything it carries is answered out, and
+     * The first Sprosse at or above [level] with a question left ([DrillLadder.climb]). The
+     * Sprossen nest, so a Sprosse is spent only once everything it carries is answered out, and
      * the one above always has at least as much to offer.
      */
     fun draw(
@@ -97,8 +97,8 @@ object DateDrill {
         solved: Set<String>,
         rng: Random,
     ): DateDrillDraw {
-        val climbed = DrillLadder.climb(level, maxLevel(content, reverse)) { rung ->
-            sample(content, rung, reverse, avoid, solved, rng)
+        val climbed = DrillLadder.climb(level, maxLevel(content, reverse)) { sprosse ->
+            sample(content, sprosse, reverse, avoid, solved, rng)
         }
         return DateDrillDraw(climbed.task, climbed.level)
     }
@@ -118,10 +118,10 @@ object DateDrill {
     )
 
     /**
-     * The order [sample] tries a rung's kinds in. Half the draws lead with the kind the
-     * rung INTRODUCES — three weekday wins must never carry a learner past a rung whose
+     * The order [sample] tries a Sprosse's kinds in. Half the draws lead with the kind the
+     * Sprosse INTRODUCES — three weekday wins must never carry a learner past a Sprosse whose
      * own question they never met — and the other half are a fair mix of everything the
-     * rung carries, which is what keeps the names alive once the dates are assembled.
+     * Sprosse carries, which is what keeps the names alive once the dates are assembled.
      */
     private fun drawOrder(ladder: List<DateTaskKind>, rng: Random): List<DateTaskKind> {
         val shuffled = ladder.shuffled(rng)
@@ -129,7 +129,7 @@ object DateDrill {
         return if (rng.nextBoolean()) listOf(newest) + shuffled.filterNot { it == newest } else shuffled
     }
 
-    private fun rungs(content: DateDrillContent, reverse: Boolean): List<DateTaskKind> =
+    private fun sprossen(content: DateDrillContent, reverse: Boolean): List<DateTaskKind> =
         if (reverse) {
             listOf(DateTaskKind.Weekday, DateTaskKind.Month)
         } else {

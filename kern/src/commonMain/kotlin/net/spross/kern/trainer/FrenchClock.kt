@@ -36,7 +36,7 @@ internal object FrenchClock {
             readings += "il est $reading"
         }
         // why: the pipeline DELETES a hyphen instead of spacing it, so "quarante-cinq" and
-        // "quarante cinq" are unrelated strings and a learner who spaces one loses the rung.
+        // "quarante cinq" are unrelated strings and a learner who spaces one loses the Sprosse.
         val accepted = (readings + readings.map { it.replace('-', ' ') }).distinct()
         return ClockReading(accepted.first(), accepted, gloss(hours, minutes))
     }

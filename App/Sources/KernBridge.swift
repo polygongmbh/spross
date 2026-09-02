@@ -111,7 +111,7 @@ extension DayStats {
 var drillRandom: KotlinRandom { KotlinRandom.companion }
 
 /// Levels are `Int` everywhere in the drill UI; the ladder is Kotlin `Int`.
-/// Bridged HERE so no view ever writes `Int32(…)` around a rung number.
+/// Bridged HERE so no view ever writes `Int32(…)` around a Sprosse number.
 extension LetterDrill {
     func ceiling(dictation: Bool) -> Int { Int(maxLevel(dictationAvailable: dictation)) }
 
@@ -123,17 +123,17 @@ extension LetterDrill {
 }
 
 /// Same bridge for the atlas drill: its ladder is Kotlin `Int`, its ceiling and
-/// its rung length are its own, and no view of it writes `Int32(…)`.
+/// its Sprosse length are its own, and no view of it writes `Int32(…)`.
 extension CountryDrill {
     var ceiling: Int { Int(MAX_LEVEL) }
 
     func step(level: Int, winsAtLevel: Int, correct: Bool, clean: Bool,
-              fast: Bool) -> DrillRamp.RungStep {
+              fast: Bool) -> DrillRamp.SprosseStep {
         step(level: Int32(level), winsAtLevel: Int32(winsAtLevel),
              correct: correct, clean: clean, fast: fast)
     }
 
-    /// Whether the top rung has EVER been stood on — the whole price of fast
+    /// Whether the top Sprosse has EVER been stood on — the whole price of fast
     /// mode, kept in kern so the page never spells the number out itself.
     func fastUnlocked(bestLevel: Int) -> Bool { fastUnlocked(bestLevel: Int32(bestLevel)) }
 }
@@ -146,7 +146,7 @@ extension DateDrill {
         Int(maxLevel(content: content, reverse: reverse))
     }
 
-    /// Whether the top rung has EVER been stood on — the whole price of fast
+    /// Whether the top Sprosse has EVER been stood on — the whole price of fast
     /// mode, kept in kern so the page never spells the number out itself.
     func fastUnlocked(bestLevel: Int, content: DateDrillContent, reverse: Bool) -> Bool {
         fastUnlocked(bestLevel: Int32(bestLevel), content: content, reverse: reverse)
@@ -157,18 +157,18 @@ extension DateDrill {
     }
 }
 
-/// The one rung ramp both drills answer to. How long a rung is stays theirs
+/// The one Sprosse ramp both drills answer to. How long a Sprosse is stays theirs
 /// (`LetterDrill.winsToAdvance` counts a vocabulary, `Trainer.winsToAdvance`
-/// reads the Fast modifier); what a rung does with an answer is kern's.
+/// reads the Fast modifier); what a Sprosse does with an answer is kern's.
 extension DrillRamp {
     func step(level: Int, winsAtLevel: Int, correct: Bool, clean: Bool,
-              winsRequired: Int) -> DrillRamp.RungStep {
+              winsRequired: Int) -> DrillRamp.SprosseStep {
         step(level: Int32(level), winsAtLevel: Int32(winsAtLevel),
              correct: correct, clean: clean, winsRequired: Int32(winsRequired))
     }
 }
 
-extension DrillRamp.RungStep {
+extension DrillRamp.SprosseStep {
     var nextLevel: Int { Int(level) }
     var wins: Int { Int(winsAtLevel) }
 }

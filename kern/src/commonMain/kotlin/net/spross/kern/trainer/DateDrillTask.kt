@@ -5,19 +5,19 @@ import net.spross.kern.catalog.DateEntry
 import net.spross.kern.catalog.DateNames
 import net.spross.kern.catalog.DatePattern
 
-/** What a dates question asks — the ladder's rungs, in ladder order. */
+/** What a dates question asks — the ladder's Sprossen, in ladder order. */
 enum class DateTaskKind { Weekday, Month, DayOfMonth, DayAndMonth, FullDate, FullDateWithYear }
 
 /**
  * One dates question: what stands on the card, and every reading the answer language
- * accepts for it. Built whole by [DateDrill] — the bare-name rungs from the authored
- * calendar, the assembled rungs by filling the answer side's pattern with the drawn parts.
+ * accepts for it. Built whole by [DateDrill] — the bare-name Sprossen from the authored
+ * calendar, the assembled Sprossen by filling the answer side's pattern with the drawn parts.
  */
 data class DateDrillTask(
     val kind: DateTaskKind,
     /** The drawn identity inside [kind] — indexes and digits, never a rendering. */
     val id: String,
-    /** A prompt-side name on the bare rungs; the date in the prompt side's digits above them. */
+    /** A prompt-side name on the bare Sprossen; the date in the prompt side's digits above them. */
     val promptText: String,
     /** Every reading that grades correct, canonical first. */
     val accepted: List<String>,
@@ -25,7 +25,7 @@ data class DateDrillTask(
     val display: String,
 )
 
-/** One draw: the task and the rung it was found on — a null task ends the run. */
+/** One draw: the task and the Sprosse it was found on — a null task ends the run. */
 data class DateDrillDraw(val task: DateDrillTask?, val level: Int)
 
 /** One calendar name as the reference table shows it — both sides, and the date-only forms. */
@@ -45,7 +45,7 @@ data class DateReferenceGroup(val kind: DateTaskKind, val rows: List<DateReferen
 
 /**
  * How a drawn question becomes a [DateDrillTask]: the bare names straight off the joined
- * calendar, the assembled rungs by filling the answer side's pattern with every reading
+ * calendar, the assembled Sprossen by filling the answer side's pattern with every reading
  * of every part — the day from [TrainerLanguagePack.dateDay], the year from the pack's
  * year reading. [DateDrill] owns WHAT is drawn; this object owns what it looks like.
  */
@@ -54,7 +54,7 @@ internal object DateDrillTasks {
     /** Years an assembled date may draw: both the hundred- and the thousand-counted centuries. */
     val YEARS: IntRange = 1900..2099
 
-    /** The enumerable rungs' whole pools; the assembled kinds are drawn, never enumerated. */
+    /** The enumerable Sprossen' whole pools; the assembled kinds are drawn, never enumerated. */
     fun pool(content: DateDrillContent, kind: DateTaskKind, reverse: Boolean): List<DateDrillTask> =
         when (kind) {
             DateTaskKind.Weekday -> content.weekdays.map { name(kind, it, reverse) }
@@ -193,7 +193,7 @@ internal object DateDrillTasks {
     }
 
     /**
-     * The numeric format with its year dropped, for the rungs that ask no year. The year
+     * The numeric format with its year dropped, for the Sprossen that ask no year. The year
      * leaves with the separator that joined it on — except a "." standing before it,
      * which is the ordinal dot de/uk write after every number ("3.3."), not a joiner.
      */

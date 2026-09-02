@@ -9,7 +9,7 @@ import net.spross.kern.model.CardScheduling
  *
  * Unlike [net.spross.kern.model.BoxConfig.consolidatedStability] this one gates NOTHING:
  * no presentation support, no phrase unlock, no budget. It exists so the ladder has
- * a top rung to report, which is why it is a constant here rather than a config
+ * a top Sprosse to report, which is why it is a constant here rather than a config
  * field — there is no product decision to tune behind it.
  */
 const val MATURED_STABILITY: Double = 30.0
@@ -23,13 +23,13 @@ const val MATURED_STABILITY: Double = 30.0
 const val FRUIT_STABILITY: Double = 120.0
 
 /**
- * How far one card has come, as one rung of the box's own ladder.
+ * How far one card has come, as one Sprosse of the box's own ladder.
  *
- * The rungs name the RULE, never a picture. A surface is free to draw them as it
+ * The Sprossen name the RULE, never a picture. A surface is free to draw them as it
  * likes, and free to draw two of them the same — which bars a card has cleared is
  * the engine's answer, what that looks like is not.
  *
- * Ordered as growth runs, so neighboring rungs compare. The three off-path rungs
+ * Ordered as growth runs, so neighboring Sprossen compare. The three off-path Sprossen
  * ([Unscheduled], [Relearning], [Suspended]) say where the card stands now, never
  * how far it once got: a lapsed card reports [Relearning] whatever it had reached.
  */
@@ -60,7 +60,7 @@ enum class GrowthStage {
 }
 
 /**
- * One card's standing: which rung it is on, and the two facts a caller would
+ * One card's standing: which Sprosse it is on, and the two facts a caller would
  * otherwise re-derive from the schedule to say anything more.
  */
 data class CardGrowth(
@@ -68,7 +68,7 @@ data class CardGrowth(
     val stage: GrowthStage,
     /**
      * Days of stability, 0 for a card with no schedule. Reported raw rather than
-     * scaled: the ladder's rungs are coarse by design, and a surface that wants a
+     * scaled: the ladder's Sprossen are coarse by design, and a surface that wants a
      * continuous figure should scale this against
      * [net.spross.kern.model.BoxConfig.maximumIntervalDays] itself.
      */
@@ -78,7 +78,7 @@ data class CardGrowth(
 )
 
 /**
- * The rung this schedule stands on. Suspension and a lapse outrank every bar:
+ * The Sprosse this schedule stands on. Suspension and a lapse outrank every bar:
  * a suspended card is out of rotation whatever its stability says, and a lapsed
  * one has to earn the bar back before it may claim it again.
  */

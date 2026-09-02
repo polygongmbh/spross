@@ -4,7 +4,7 @@ package net.spross.kern.trainer
  * The ways a number can be asked beyond the bare cardinal.
  *
  * Declaration order is LADDER order: the order the forms unlock on the Forms drill,
- * and the order a language's own set is walked when a rung offers nothing it can read.
+ * and the order a language's own set is walked when a Sprosse offers nothing it can read.
  * All of this is `internal` on purpose — none of it belongs in the ObjC header,
  * because the app only ever sees the rendered [TrainerTask].
  */
@@ -47,7 +47,7 @@ internal val NumberValue.form: NumberForm
     }
 
 /**
- * How far a language reaches. The ladder INTERSECTS its rung with this, so a language
+ * How far a language reaches. The ladder INTERSECTS its Sprosse with this, so a language
  * that cannot read a form simply never draws it — the registry pattern again, and the
  * default is "nothing", so an unauthored pack offers no Forms drill instead of crashing.
  *

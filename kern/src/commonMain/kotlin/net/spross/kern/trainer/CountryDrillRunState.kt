@@ -33,15 +33,15 @@ data class CountryDrillReduction(val state: CountryDrillRunState, val effects: L
 
 /**
  * What a closed atlas run leaves behind: the figures for the page that started it, and the
- * furthest rung it stood on for that page to file.
+ * furthest Sprosse it stood on for that page to file.
  */
 data class CountryDrillClose(
     val state: CountryDrillRunState,
     /** null ⇒ the run was never answered: dismiss, store nothing. */
     val summary: DrillRunSummary?,
     /**
-     * The rung the run REACHED, not the one it ends on — the ramp drops back on a miss, and
-     * the ladder rewards standing on a rung rather than finishing there.
+     * The Sprosse the run REACHED, not the one it ends on — the ramp drops back on a miss, and
+     * the ladder rewards standing on a Sprosse rather than finishing there.
      */
     val bestLevel: Int,
     val effects: List<DrillEffect>,
@@ -49,7 +49,7 @@ data class CountryDrillClose(
 
 /**
  * Everything one atlas run is fixed to, resolved when it opens and never per question: the
- * joined atlas, which way round it asks, how long a rung is, and the grader.
+ * joined atlas, which way round it asks, how long a Sprosse is, and the grader.
  */
 class CountryDrillRunConfig(
     /** The joined atlas, handed over once by the page that opened the run. */
@@ -57,7 +57,7 @@ class CountryDrillRunConfig(
     /** Which side prompts: forward asks in the language the learner knows. */
     val reverse: Boolean,
     /**
-     * Whether a rung falls on ONE clean win instead of three. Its price is
+     * Whether a Sprosse falls on ONE clean win instead of three. Its price is
      * [CountryDrill.fastUnlocked]'s and the page that opened the run has already paid it.
      */
     val fast: Boolean,
@@ -93,7 +93,7 @@ class CountryDrillRunConfig(
  */
 data class CountryDrillRunState(
     val config: CountryDrillRunConfig,
-    /** The question on screen. The atlas always has one — a rung with none is not a rung. */
+    /** The question on screen. The atlas always has one — a Sprosse with none is not a Sprosse. */
     val task: CountryDrillTask,
     /** Bumped per question — what the card's identity and an autoplay effect key on. */
     val index: Int,
@@ -111,7 +111,7 @@ data class CountryDrillRunState(
     val outcomes: List<AnswerOutcome>,
     /**
      * The questions this run has already answered RIGHT ([DrillSolved]): never asked again,
-     * and a rung with nothing left outside them is climbed past rather than repeated.
+     * and a Sprosse with nothing left outside them is climbed past rather than repeated.
      */
     val solved: Set<String>,
     val feedback: TurnFeedback,

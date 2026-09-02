@@ -2,14 +2,14 @@
 
 ## Unreleased
 
-- **A drill rung no longer stops at the top of its ladder.** Clean wins used to bank into
-  nothing once the last named rung was reached; the number now goes on climbing — Sprosse 12
-  on a ladder of nine — while the questions stay at the top rung's mix. Every drill counts
+- **A drill Sprosse no longer stops at the top of its ladder.** Clean wins used to bank into
+  nothing once the last named Sprosse was reached; the number now goes on climbing — Sprosse 12
+  on a ladder of nine — while the questions stay at the top Sprosse's mix. Every drill counts
   this way, and the overview prints the record as it stands instead of trimming it back to
   the last row on the page.
 
 - **The numbers page says how far each exercise has come.** Zahlen, Uhrzeit, Sätze and
-  Formen each print the best rung they have reached under their own name, the way the atlas
+  Formen each print the best Sprosse they have reached under their own name, the way the atlas
   and the calendar already did under theirs.
 
 - **Politics gets a shelf, and the body gets the words it was missing.** Krieg and Frieden
@@ -32,9 +32,9 @@
 
 - **A fourth Sprossen drill: the date.** The weekday names, the month names, the day of
   the month as the words a date actually wants — *der dritte*, *третього* — and then the
-  whole spoken date assembled out of them, over a ladder whose every rung adds its new
+  whole spoken date assembled out of them, over a ladder whose every Sprosse adds its new
   question to the ones below it rather than replacing them.
-  Every language pair drills it; a rung a language cannot honestly read is simply absent
+  Every language pair drills it; a Sprosse a language cannot honestly read is simply absent
   (Ukrainian speaks no year inside a date), and a reversed run asks just the names, because
   the numeric side of a date is a separator convention rather than a language skill. Typing
   one bare month for its neighbor — *Juli* for *Juni* — is named as the other month, not
@@ -391,7 +391,7 @@
 
 - **A typo no longer costs you a point in a drill.** The counter beside the progress bar now
   counts only the answers a drill judged either way: a slip, a revealed hint or a synonym drops
-  out of both halves of it, the way it has always left the rung where it was. The bar still
+  out of both halves of it, the way it has always left the Sprosse where it was. The bar still
   shows the answer in amber, so nothing is hidden — it simply stops being scored against you.
 
 - **Your words, read to you — hands free.** A new listening card on the day's screen plays
@@ -556,7 +556,7 @@
 - **Android learns the world too: Länder joins Zahlen and Buchstaben.** Name the country,
   the people and the language, and say which is spoken where — typed, in either direction,
   and starting from the two languages you already have before it widens outward. Nine
-  rungs, each bringing exactly one new thing, and every run opens at the first one and
+  Sprossen, each bringing exactly one new thing, and every run opens at the first one and
   climbs by itself: nothing on the page is locked except Fast, which is what topping the
   ladder once buys you. The flag sits beside the question rather than above it, a flag
   that would give a reversed answer away waits for the reveal instead of vanishing, and a
@@ -565,7 +565,7 @@
   grades against. Finishing a name is the answer, with no Check tap to confirm what you
   already wrote.
 
-- **The free-practice card is called Sprossen now, and its levels are rungs** — the words
+- **The free-practice card is called Sprossen now, and its levels are Sprossen** — the words
   the iPhone already uses, so the same surface reads the same on either phone.
 
 - **Android answers out loud now.** The same three chimes the iPhone has always played —
@@ -660,12 +660,12 @@
   every country the two languages both have a name for, with what its people are called
   and what is spoken there, on one page you can look things up on and start a run from.
   The run begins with the countries your own two languages are at home in and widens
-  outward from there over nine rungs, each adding ONE new thing rather than two at once —
+  outward from there over nine Sprossen, each adding ONE new thing rather than two at once —
   the country, the language, the people, a wider circle, which of them belongs where, and
   further out the country behind a flag with no name beside it; a switch
   turns the whole thing round, so the question can just as well come in the language you
   are learning, and then no flag is shown at all, since recognizing your own is no
-  question. Standing on the top rung once earns Schnell, which shortens every rung after.
+  question. Standing on the top Sprosse once earns Schnell, which shortens every Sprosse after.
   Where a name can be said out loud, the answer is.
 
 - **The phrases about the language you are learning now say which language that is.** Every
@@ -685,7 +685,7 @@
   form the language reads — German's comma where English has its point, no ordinal at all
   for Swahili, which cannot rank anything without the noun it ranks. The "?" that opens
   that page mid-run now appears in a forms run too, on the same terms as everywhere else:
-  reading while you still owe an answer costs the rung, reading after it is free. And the
+  reading while you still owe an answer costs the Sprosse, reading after it is free. And the
   card itself hands over the word the first time it asks a form — "Neu: menos", "Neu:
   coma", "Neu: asilimia" — the way a new digit length has always announced its place word.
   It is the word in the language being learned, not a name for the category: what a
@@ -720,7 +720,7 @@
   the page exists for meant scrolling past twenty screens of table; the picks and the start
   button are what you land on, and the table and notes sit under them for when they are
   wanted. What a run may ask changed with it: while any exercise on the list is still
-  locked, choosing one unchooses the last, because a first run should climb the rung it was
+  locked, choosing one unchooses the last, because a first run should climb the Sprosse it was
   handed rather than dilute it — the line under the rows says so, and a fully open ladder is
   what turns them into a list you can combine. The card these pages hang off is called
   Werkstatt rather than Training: nothing here is a regimen.
@@ -751,7 +751,7 @@
 - **The numbers drill asks the other ways a number gets written down.** It only ever wanted
   a plain cardinal, though negatives, decimals, percentages, "three times", a quarter and
   "the twentieth" are all numbers a learner meets in the first week and none of them appeared
-  anywhere in the app. They arrive as a rung of their own, climbing from small negatives
+  anywhere in the app. They arrive as a Sprosse of their own, climbing from small negatives
   through decimals, percentages and multiples to fractions and the ordinals — and each
   language reads them its own way rather than a translated one: German runs "dreimal" into
   one word, English says "once" and "twice" before it says "three times", Spanish will not
@@ -767,7 +767,7 @@
   that starts it. And the "?" mid-drill — which produced a short list of Swahili tens and
   nothing at all in any other language — now raises the whole numbers page the overview
   shows, whatever language you are learning. Looking something up while you still owe an
-  answer costs the rung, exactly as it always did; reading it afterwards is free.
+  answer costs the Sprosse, exactly as it always did; reading it afterwards is free.
 
 - **The clock drill climbs a step at a time, and never takes back a minute it taught.**
   Past the quarters it jumped straight to any minute at all, and the quarter to the hour
@@ -869,7 +869,7 @@
   mark is a thin space rather than a dot or a comma: those two swap meaning between German
   and English, so either would teach one convention as the truth to a learner of the other.
   A sentence slot takes the separator alongside the bare digits, so copying the prompt as
-  written cannot cost the rung.
+  written cannot cost the Sprosse.
 ## 3.11.0 — 2026-08-07
 
 - **Every word an area holds gets its mark on the tree.** How many marks a crown could
@@ -1109,7 +1109,7 @@
   gives the meaning back. A word the phone cannot say right now, or one you have reading
   aloud switched off, keeps asking the old way.
 
-- **Dictation now asks for the words worth spelling twice.** The last rungs of the letter
+- **Dictation now asks for the words worth spelling twice.** The last Sprossen of the letter
   drill picked any word you had settled, so an evening could go by on words you had never
   once got wrong. It now leans toward the ones that earn the practice: words carrying the
   letters the language's own alphabet page singles out, and words you have forgotten before

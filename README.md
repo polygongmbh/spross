@@ -23,7 +23,7 @@ because both asked the same box for it.
 | **iOS** | ![Spross on iOS — the Today screen](docs/screenshots/ios-home.png) | ![Spross on iOS — a review card](docs/screenshots/ios-session.png) | ![Spross on iOS — the box](docs/screenshots/ios-box.png) |
 | **Android** | ![Spross on Android — the Today screen](docs/screenshots/android-home.png) | ![Spross on Android — a review card](docs/screenshots/android-session.png) | ![Spross on Android — the box](docs/screenshots/android-box.png) |
 
-The rungs match now too: Numbers, Letters and Countries stand on both
+The Sprossen match now too: Numbers, Letters and Countries stand on both
 phones, each run on kern's rules — what still parts the platforms is listed
 in `docs/design.md`.
 

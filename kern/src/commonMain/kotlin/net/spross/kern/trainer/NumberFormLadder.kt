@@ -3,7 +3,7 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 
 /**
- * The Forms ladder: ten rungs, each ADDING to everything below it.
+ * The Forms ladder: ten Sprossen, each ADDING to everything below it.
  *
  * | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
  * |---|---|---|---|---|---|---|---|---|----|
@@ -11,35 +11,35 @@ import kotlin.random.Random
  * | +ordinal 1–12 | −(2–3 digits), decimal 2 places | any reduced n/d, d≤12 |
  * | ordinal 13–100, any percent | −(4 digits), decimal 2–3 whole digits, ×(to 100) |
  *
- * Rungs 1–6 each introduce one form; 7–10 widen forms already in play, which is why
- * [rungForms] runs out after six entries. Every per-form draw is defined at every level,
+ * Sprossen 1–6 each introduce one form; 7–10 widen forms already in play, which is why
+ * [SprosseForms] runs out after six entries. Every per-form draw is defined at every level,
  * so a form reached through the fallback below still has a range to draw from.
  */
 private val LADDER: List<NumberForm> = NumberForm.entries
 
 internal const val FORMS_MAX_LEVEL = 10
 
-/** Which forms rung [level] offers — everything introduced at or below it. */
-internal fun rungForms(level: Int): Set<NumberForm> =
+/** Which forms Sprosse [level] offers — everything introduced at or below it. */
+internal fun sprosseForms(level: Int): Set<NumberForm> =
     LADDER.take(level.coerceIn(1, FORMS_MAX_LEVEL)).toSet()
 
 /**
  * Draws one value for [level] within [limits], or null when the language reads no form
- * at all. The rung's forms are INTERSECTED with the language's; when that intersection is
- * empty — a language that reads fractions but no negatives, asked at rung 1 — the language's
+ * at all. The Sprosse's forms are INTERSECTED with the language's; when that intersection is
+ * empty — a language that reads fractions but no negatives, asked at Sprosse 1 — the language's
  * own set stands in, walked in ladder order. Deterministic in [rng], with no retry loop:
  * a draw that cannot be satisfied is never attempted, it is filtered out first.
  *
  * [magnitudeDigits] sizes the two forms that HAVE a magnitude — the negative's value and
- * the decimal's whole part — from a Numbers rung instead of this ladder's own gentler one
+ * the decimal's whole part — from a Numbers Sprosse instead of this ladder's own gentler one
  * ([DrillModifier.Mix]). Zero, the default, leaves every draw to [level]. A percentage is
  * bounded by its own meaning and a fraction by its denominator, so neither ever grows.
  */
 internal fun drawForm(limits: FormLimits, level: Int, rng: Random, magnitudeDigits: Int = 0): NumberValue? {
     val available = LADDER.filter { it in limits.forms && drawable(it, limits) }
     if (available.isEmpty()) return null
-    val onRung = available.filter { it in rungForms(level) }
-    val candidates = onRung.ifEmpty { available }
+    val onSprosse = available.filter { it in sprosseForms(level) }
+    val candidates = onSprosse.ifEmpty { available }
     return when (candidates[rng.nextInt(candidates.size)]) {
         NumberForm.Negative -> drawNegative(level, magnitudeDigits, rng)
         NumberForm.Decimal -> drawDecimal(level, magnitudeDigits, rng)
@@ -96,7 +96,7 @@ private fun fractionDigits(places: Int, rng: Random): String {
 
 /**
  * Round percentages are the ones a learner meets on a label or a discount sign;
- * the arbitrary ones wait for rung 9, where the drill is about the reading and not
+ * the arbitrary ones wait for Sprosse 9, where the drill is about the reading and not
  * about recognizing 45 as a percentage.
  */
 private val ROUND_PERCENTS = listOf(1L, 5L, 10L, 20L, 25L, 30L, 40L, 50L, 60L, 70L, 75L, 80L, 90L, 100L)

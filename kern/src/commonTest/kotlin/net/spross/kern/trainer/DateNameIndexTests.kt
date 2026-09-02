@@ -19,7 +19,7 @@ import net.spross.kern.session.TurnFeedback
  * The dates drill's refusal check, on the calendar's real confusable shape: `Juni` and
  * `Juli` are one edit apart, the single-card typo budget would certify exactly the
  * confusion the drill exists to fix, and the owner's ruling grades strictness by how much
- * of the answer the confusable word is — the whole of it on a bare rung, one word of an
+ * of the answer the confusable word is — the whole of it on a bare Sprosse, one word of an
  * assembled date above them.
  */
 class DateNameIndexTests {
@@ -67,7 +67,7 @@ class DateNameIndexTests {
         assertIs<Match.Typo>(DateDrillRun.grade("Juki", monthTask(5), config))
     }
 
-    /** The drill normalizer forgives no article — pinned, because the bare rung leans on it. */
+    /** The drill normalizer forgives no article — pinned, because the bare Sprosse leans on it. */
     @Test
     fun anArticleTheCalendarDidNotAuthorGradesWrong() {
         assertEquals(Match.Wrong, DateDrillRun.grade("der Juni", monthTask(5), config))
@@ -83,7 +83,7 @@ class DateNameIndexTests {
     /**
      * A month slip INSIDE an assembled date books a typo — the owner's ruling: a learner
      * who assembled the whole date and slipped inside one word got the structure right,
-     * so the index is never consulted above the bare rungs.
+     * so the index is never consulted above the bare Sprossen.
      */
     @Test
     fun anAssembledDateKeepsItsBridge() {

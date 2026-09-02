@@ -224,7 +224,7 @@ fun AreaChip(
             )
         }
         Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
-            // Two counts where the bar beneath draws three rungs: there is room here for
+            // Two counts where the bar beneath draws three Sprossen: there is room here for
             // the split that matters (cleared the bar, or not yet), and the bar carries
             // the finer one.
             CountLabel("$SEAL ${chrome.progressConsolidatedCount.format(consolidated)}", Dl.colors.grown)

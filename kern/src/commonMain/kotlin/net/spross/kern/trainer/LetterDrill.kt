@@ -30,11 +30,11 @@ object LetterDrill {
     /** One answer plus up to three distractors; two are tolerated on a tiny alphabet. */
     const val CHOICE_COUNT = 4
 
-    /** Entry pacing stops one rung below transcription — nobody starts by taking dictation. */
+    /** Entry pacing stops one Sprosse below transcription — nobody starts by taking dictation. */
     private const val ENTRY_LEVEL_CEILING = 6
     private const val CONSOLIDATED_PER_LEVEL = 12
 
-    /** Consolidated words from which one clean win is enough to move up a rung. */
+    /** Consolidated words from which one clean win is enough to move up a Sprosse. */
     private const val CONSOLIDATED_FOR_SHORT_STAGES = 60
 
     /** Dictation at level 8 asks for short words; the count ignores spaces. */
@@ -51,7 +51,7 @@ object LetterDrill {
     private const val LAPSE_CAP = 3
     private const val DIFFICULTY_CAP = 2
 
-    /** FSRS difficulty runs 1–10; below its middle a word is not what the rung is for. */
+    /** FSRS difficulty runs 1–10; below its middle a word is not what the Sprosse is for. */
     private const val DIFFICULTY_MIDPOINT = 5.0
     private const val DIFFICULTY_PER_STEP = 2.0
 
@@ -68,7 +68,7 @@ object LetterDrill {
         minOf(ENTRY_LEVEL_CEILING, 1 + maxOf(0, consolidatedCards) / CONSOLIDATED_PER_LEVEL)
 
     /**
-     * How LONG a rung is — the second half of the same pacing rule. A consolidated
+     * How LONG a Sprosse is — the second half of the same pacing rule. A consolidated
      * vocabulary earns each level in one clean win; below that the classic two apply, so
      * a beginner gets the repetition and nobody else gets the drag.
      */
@@ -110,7 +110,7 @@ object LetterDrill {
      *
      * [solved] is what this run has already got right ([DrillSolved]): those prompts are
      * dropped from the pool too, and a stage with nothing left outside them samples null —
-     * a spent rung the run climbs past rather than asks again.
+     * a spent Sprosse the run climbs past rather than asks again.
      */
     fun sample(
         alphabet: Alphabet,
@@ -173,13 +173,13 @@ object LetterDrill {
      * filter the whole list is used instead: a drill that always dictates the same two
      * words is worse than one that occasionally dictates a long one.
      *
-     * Inside whatever pool survives, the draw is WEIGHTED by [dictationWeight] — a rung
-     * spent on words already spelt right is a rung spent on nothing. [alphabet] is only
+     * Inside whatever pool survives, the draw is WEIGHTED by [dictationWeight] — a Sprosse
+     * spent on words already spelt right is a Sprosse spent on nothing. [alphabet] is only
      * consulted for the language's own hard graphemes; a language without one dictates
      * fine, it just weighs the spelling half at zero.
      *
      * [solved] is what this run has already transcribed right; null comes back once every
-     * candidate is in it, and the run climbs past the rung rather than dictating twice.
+     * candidate is in it, and the run climbs past the Sprosse rather than dictating twice.
      */
     fun sampleDictation(
         candidates: List<DictationCandidate>,
@@ -225,7 +225,7 @@ object LetterDrill {
      * the SPELLING (how many of the language's own hard graphemes the word carries, which
      * is what a transcription actually tests), the LAPSES (words this learner has
      * forgotten before), and FSRS's DIFFICULTY above the midpoint. Each is capped, so a
-     * single leech cannot take the rung over, and every term is zero on a short clean word
+     * single leech cannot take the Sprosse over, and every term is zero on a short clean word
      * — which is exactly when the draw stays uniform.
      */
     fun dictationWeight(candidate: DictationCandidate, trickyGlyphs: List<String>): Int {

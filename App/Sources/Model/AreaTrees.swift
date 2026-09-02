@@ -2,7 +2,7 @@ import Foundation
 import SprossKern
 
 // The box as trees: kern names how far each word has come (`GrowthStage`), and
-// this is the one place that decides which rung becomes which mark. Both the
+// this is the one place that decides which Sprosse becomes which mark. Both the
 // forest on Home and the single tree a session summary draws read it, so they
 // can never disagree about what an area looks like.
 

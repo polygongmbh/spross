@@ -23,8 +23,8 @@ Every cell marked ⚠ wants a native ruling; until one lands, the drill ships th
 | sw | Jumatatu…Jumapili | Januari…Desemba | **cardinal** after `tarehe`, ⚠ 1st | plain cardinal |
 | uk | понеділок…неділя | січень…грудень | **ordinal, genitive** | **absent — see below** |
 
-A rung a language cannot carry is absent, not locked:
-Ukrainian reads no year inside a date, so its ladder simply tops out one rung short.
+A Sprosse a language cannot carry is absent, not locked:
+Ukrainian reads no year inside a date, so its ladder simply tops out one Sprosse short.
 
 ## German
 
@@ -116,9 +116,9 @@ So Ukrainian reads no year inside a date, exactly as
 "Ukrainian year frames would need ordinal and case forms the trainer does not produce"
 already took that gap for the frames (`../catalog/phrases/README.md`),
 and exactly as French carries no counted-noun frame.
-An honest missing rung costs a learner nothing but the rung.
+An honest missing Sprosse costs a learner nothing but the Sprosse.
 ⚠ A native confirming that the year is genuinely a second numeral family
-and not a suffix swap like the day would bring the rung back cheaply.
+and not a suffix swap like the day would bring the Sprosse back cheaply.
 
 Every Ukrainian reading uses the ASCII apostrophe `U+0027` (`п'ятниця`),
 for the reason `number-forms.md` § Ukrainian gives.

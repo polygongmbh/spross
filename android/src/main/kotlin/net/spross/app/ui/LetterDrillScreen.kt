@@ -54,7 +54,7 @@ import net.spross.kern.trainer.LetterStage
 /**
  * The letter drill: hear a sound, find the letter. Four glyph tiles, then confusable ones,
  * then typing the glyph, and finally dictation of words the learner already holds — one
- * rung, mapped to stages by kern's `LetterDrillRun`, which owns every rule below.
+ * Sprosse, mapped to stages by kern's `LetterDrillRun`, which owns every rule below.
  *
  * The one screen in the app that shows nothing: everything the learner is given is the
  * sound. So both silences that can meet them are named rather than left to be guessed at —
@@ -86,7 +86,7 @@ fun LetterDrillScreen(model: AppModel) {
     val state = flow.state
     // why: from the corner or from "Fertig", the close is the same one — kern books a
     // pending answer exactly as the tap would, and the page that started the run wears the
-    // figures. The letter drill books no rung and keeps no record, so it stores nothing.
+    // figures. The letter drill books no Sprosse and keeps no record, so it stores nothing.
     val leave = {
         val closed = flow.close()
         model.finishDrill(Screen.Letters, closed.summary, chrome.trainerSkillLetters)

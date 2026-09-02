@@ -78,7 +78,7 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
     val state = flow.state
     val store = model.werkstatt.store
     val stamp = model.box?.joinStamp
-    // One key per PAIR, the same one the page reads its best rung back from.
+    // One key per PAIR, the same one the page reads its best Sprosse back from.
     val key = stamp?.let { TrainerStore.countriesKey(it.source, it.target) }
 
     // why: from the corner or from "Fertig", the close is the same one — a pending answer
@@ -86,9 +86,9 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
     val leave = {
         val closed = flow.close(standingRecord = key?.let { store.record(it) } ?: 0)
         if (key != null) {
-            // The rung buys nothing (the drill is ungated); it is what the page reads back,
+            // The Sprosse buys nothing (the drill is ungated); it is what the page reads back,
             // and what Fast is priced against.
-            store.bookRung(key, closed.bestLevel)
+            store.bookSprosse(key, closed.bestLevel)
             closed.summary?.let {
                 if (it.newRecord) {
                     store.bookRecord(key, it.bestStreak)
@@ -149,7 +149,7 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
             verticalArrangement = Arrangement.spacedBy(DlSpace.m),
         ) {
             DrillStreakLine(
-                rung = chrome.trainerRung.format(state.level),
+                sprosse = chrome.trainerSprosse.format(state.level),
                 streak = state.streak,
                 bestStreak = state.bestStreak,
                 chrome = chrome,

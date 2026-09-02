@@ -37,9 +37,9 @@ the canonical and refused readings below are pinned by `TrainerFormsTests`.
 | sw | five — **no ordinal** | **2–4** | — | `.` |
 | uk | all six | 2–12 | 1–100 | `,` |
 
-The ladder intersects its rung with the pack's reach,
+The ladder intersects its Sprosse with the pack's reach,
 so a form a language cannot read is never drawn.
-An exclusion costs the learner nothing but the rung
+An exclusion costs the learner nothing but the Sprosse
 they would otherwise have spent on an invention.
 
 The same reach feeds `NumberReadingIndex`, the drill's value check

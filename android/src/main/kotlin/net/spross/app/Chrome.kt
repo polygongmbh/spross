@@ -133,7 +133,7 @@ interface Chrome {
     val a11yGlyphLetter: String      // %s
     val a11yActionReplayPrompt: String
     val lettersPromptInLanguage: String  // %s
-    val trainerRung: String             // %d
+    val trainerSprosse: String             // %d
     val trainerRunStreak: String            // %d
     // The two captions an amber hold wears; the form itself follows, composed by
     // the reader, so the words stay one string and the layout stays each phone's.
@@ -180,8 +180,8 @@ interface Chrome {
     val numbersBest: String
 
     // ── Inside a run ────────────────────────────────────────────────────────────
-    val numbersRungOne: String
-    val numbersRung: String            // %d
+    val numbersSprosseOne: String
+    val numbersSprosse: String            // %d
     val trainerRunRecord: String            // %d
     val a11yCountStreakInARow: String      // %d
     val a11ySuffixRecord: String      // %d
@@ -215,11 +215,11 @@ interface Chrome {
     val countriesFastHint: String
     val countriesReverseHint: String // %1$s %2$s
     /**
-     * The rungs, in the order they are climbed — one entry per rung of kern's own ladder
-     * ([net.spross.kern.trainer.CountryDrill.MAX_LEVEL]), read through [countryRung].
+     * The Sprossen, in the order they are climbed — one entry per Sprosse of kern's own ladder
+     * ([net.spross.kern.trainer.CountryDrill.MAX_LEVEL]), read through [countrySprosse].
      */
-    val countryRungs: List<String>
-    val countryRungHints: List<String>
+    val countrySprossen: List<String>
+    val countrySprosseHints: List<String>
     /** How far from home a reference group sits, innermost first — read through [countryTier]. */
     val countryTiers: List<String>
     val countriesAskCountry: String
@@ -238,13 +238,13 @@ interface Chrome {
     val datesFastHint: String
     val datesReverseHint: String // %1$s %2$s
     /**
-     * The rung wordings by the KIND each rung INTRODUCES, in full-ladder order — read through
-     * [dateRung]. Unlike the atlas ladder the height here is the pair's own
+     * The Sprosse wordings by the KIND each Sprosse INTRODUCES, in full-ladder order — read through
+     * [dateSprosse]. Unlike the atlas ladder the height here is the pair's own
      * ([net.spross.kern.trainer.DateDrill.maxLevel]), so the on-screen number is the
      * row's position and never this index.
      */
-    val dateRungs: List<String>
-    val dateRungHints: List<String>
+    val dateSprossen: List<String>
+    val dateSprosseHints: List<String>
     val datesAskWeekday: String
     val datesAskMonth: String
     val datesAskDay: String
@@ -282,7 +282,7 @@ interface Chrome {
     val a11yStateCollapsed: String
     // A card with nothing behind it has NO phase word: new is the absence of a badge. Past
     // that, a row reads one of four: [boxPhaseLearning] while walking the learning steps,
-    // [boxPhaseRelearning] the same rung after a lapse (same color/icon, its own word),
+    // [boxPhaseRelearning] the same Sprosse after a lapse (same color/icon, its own word),
     // [boxPhaseSettled] once in Review but short of the consolidated bar, and
     // [boxPhaseConsolidated] once a card has cleared it — the shelf's own count stays the
     // two-way consolidated/learning split it has always been (`AreaStatistics.learning`).

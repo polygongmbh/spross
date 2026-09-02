@@ -323,7 +323,7 @@ internal object Statistics {
                     val sched = state.scheduling[card.id]
                     if (sched != null && !sched.suspended && isConsolidated(state, sched)) consolidated += 1
                     // Counted on its own bar, never off `consolidated`: that one also carries
-                    // the matured cards, so the two buckets read different rungs.
+                    // the matured cards, so the two buckets read different Sprossen.
                     if (sched != null && !sched.suspended && stageOf(state, sched) == GrowthStage.Fresh) {
                         settling += 1
                     }

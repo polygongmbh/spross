@@ -21,8 +21,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
-import net.spross.app.countryRung
-import net.spross.app.countryRungHint
+import net.spross.app.countrySprosse
+import net.spross.app.countrySprosseHint
 import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.trainer.CountryDrill
 
@@ -30,12 +30,12 @@ import net.spross.kern.trainer.CountryDrill
  * The "Länder" entry: the world as the two languages name it, and the place its drill is
  * started from.
  *
- * The shape both other overviews use — the run above, the reading below: the nine rungs a
+ * The shape both other overviews use — the run above, the reading below: the nine Sprossen a
  * run climbs, how it is played, the button, and then the atlas itself.
  *
- * Nothing on this page is earned. The drill is ungated — every run opens at rung 1 and
- * climbs by itself — so the rung rows say what a rung ASKS and never carry a padlock. The
- * one thing that persists is the furthest rung reached, which this page reads and never
+ * Nothing on this page is earned. The drill is ungated — every run opens at Sprosse 1 and
+ * climbs by itself — so the Sprosse rows say what a Sprosse ASKS and never carry a padlock. The
+ * one thing that persists is the furthest Sprosse reached, which this page reads and never
  * writes; Fast is the single row with a price, and kern sets it.
  *
  * The one surface in the app written in TWO languages at once: a country's name is a pair,
@@ -83,13 +83,13 @@ fun CountriesOverviewScreen(model: AppModel) {
         OverviewHeading(chrome.trainerOverviewPractice)
         OverviewPanel {
             // Kern's ceiling, never a count written down beside it.
-            for (rung in 1..CountryDrill.MAX_LEVEL) RungRow(rung, chrome)
+            for (sprosse in 1..CountryDrill.MAX_LEVEL) SprosseRow(sprosse, chrome)
         }
         // How the ladder is walked, said once instead of marked on every row — and, where a
         // run has climbed before, how far it came.
         Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
             OverviewNote(chrome.countriesPace)
-            // why: printed as it stands, ceiling and all — the rung keeps counting past the
+            // why: printed as it stands, ceiling and all — the Sprosse keeps counting past the
             // named ladder, so the record is a number to beat rather than a row on the page.
             if (best > 0) OverviewNote(chrome.countriesBest.format(best))
         }
@@ -103,13 +103,13 @@ fun CountriesOverviewScreen(model: AppModel) {
             )
             ModifierSwitchRow(
                 title = chrome.trainerModifierFast,
-                // why: the atlas rung costs THREE clean wins, so the shared "statt zwei"
+                // why: the atlas Sprosse costs THREE clean wins, so the shared "statt zwei"
                 // hint would misprice it — this ladder says its own. Its price is kern's
-                // ceiling rather than a rung number authored beside it.
+                // ceiling rather than a Sprosse number authored beside it.
                 caption = if (fastOpen) {
                     chrome.countriesFastHint
                 } else {
-                    "${chrome.numbersUnlock} ${chrome.trainerRung.format(CountryDrill.MAX_LEVEL)}"
+                    "${chrome.numbersUnlock} ${chrome.trainerSprosse.format(CountryDrill.MAX_LEVEL)}"
                 },
                 open = fastOpen,
                 on = fast,
@@ -123,32 +123,32 @@ fun CountriesOverviewScreen(model: AppModel) {
 }
 
 /**
- * One rung: the pool it opens and the question it adds, each bringing exactly ONE new
- * thing. The mark is the rung's NUMBER, the letters page's rule — these rows are a ladder
+ * One Sprosse: the pool it opens and the question it adds, each bringing exactly ONE new
+ * thing. The mark is the Sprosse's NUMBER, the letters page's rule — these rows are a ladder
  * the run walks by itself, and a circle beside each one reads as a choice that never
  * answers the tap.
  */
 @Composable
-private fun RungRow(rung: Int, chrome: Chrome) {
+private fun SprosseRow(sprosse: Int, chrome: Chrome) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            // why: one rung is one TalkBack stop — the mark, the name and the line under it
+            // why: one Sprosse is one TalkBack stop — the mark, the name and the line under it
             // describe a single thing.
             .semantics(mergeDescendants = true) { },
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
     ) {
         Text(
-            "$rung.",
+            "$sprosse.",
             style = MaterialTheme.typography.titleMedium,
             color = Dl.colors.textSecondary,
             modifier = Modifier.clearAndSetSemantics { },
         )
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-            Text(chrome.countryRung(rung), style = MaterialTheme.typography.titleMedium)
+            Text(chrome.countrySprosse(sprosse), style = MaterialTheme.typography.titleMedium)
             Text(
-                chrome.countryRungHint(rung),
+                chrome.countrySprosseHint(sprosse),
                 style = MaterialTheme.typography.bodySmall,
                 color = Dl.colors.textSecondary,
             )

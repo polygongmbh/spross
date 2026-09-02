@@ -17,14 +17,14 @@ import net.spross.kern.session.TurnFeedback
  */
 object DateDrillRun {
 
-    /** A fresh run. Every run opens at rung 1 however far the learner has climbed. */
+    /** A fresh run. Every run opens at Sprosse 1 however far the learner has climbed. */
     fun open(config: DateDrillRunConfig, rng: Random): DateDrillRunState =
         openAt(config, 1, rng)
 
     /**
-     * The same, forced to one rung — what the record buys is the page and never a head
+     * The same, forced to one Sprosse — what the record buys is the page and never a head
      * start, so this exists for tests and screenshot drivers, which have no other way to
-     * reach the assembled rungs.
+     * reach the assembled Sprossen.
      */
     fun openAt(config: DateDrillRunConfig, level: Int, rng: Random): DateDrillRunState {
         val content = config.content
@@ -32,7 +32,7 @@ object DateDrillRun {
         val opening = DateDrill.draw(content, start, config.reverse, null, emptySet(), rng)
         return DateDrillRunState(
             config = config,
-            // why: nothing is solved yet, so a fresh calendar's first rung always has a question.
+            // why: nothing is solved yet, so a fresh calendar's first Sprosse always has a question.
             task = requireNotNull(opening.task) {
                 "no dates question for ${content.source}→${content.target}"
             },
@@ -68,15 +68,15 @@ object DateDrillRun {
      * by word, one slip per word, no article forgiven — the pattern authors its own
      * article, and its variants are what admit the accusative.
      *
-     * The rungs whose answer is a numeral carry the numbers drill's value check
+     * The Sprossen whose answer is a numeral carry the numbers drill's value check
      * ([NumberReadingIndex]): a day that names another day (`vierte` for `dritte`) is
-     * refused and named, never forgiven. Nothing is inherited — the bare-name rungs have
+     * refused and named, never forgiven. Nothing is inherited — the bare-name Sprossen have
      * no numeral to check, so they pass no index.
      *
-     * The bare-name rungs carry the calendar's own instead ([DateNameIndex], on a miss
+     * The bare-name Sprossen carry the calendar's own instead ([DateNameIndex], on a miss
      * only): where the whole answer is the name, `Juli` typed for `Juni` is July and the
      * refusal says so. An assembled date keeps its bridge — a month slip inside one is a
-     * typo by the owner's ruling, so the index is never consulted above the bare rungs.
+     * typo by the owner's ruling, so the index is never consulted above the bare Sprossen.
      */
     fun grade(
         input: String,
@@ -104,7 +104,7 @@ object DateDrillRun {
      * Leaving, from the corner or from "Fertig". A pending accepted answer books first,
      * exactly as the explicit tap would — closing may neither lose it nor upgrade it —
      * and a revealed answer nobody confirmed books nothing. An untouched run reports
-     * nothing at all, though it still names the rung it opened on, which the page files
+     * nothing at all, though it still names the Sprosse it opened on, which the page files
      * either way.
      *
      * [standingRecord] is what the platform's store holds now; the write is strictly
@@ -200,7 +200,7 @@ object DateDrillRun {
         when (state.feedback) {
             TurnFeedback.Neutral -> unchanged(state)
             TurnFeedback.Correct -> booked(state, correct = true, clean = true, rng = rng)
-            // The almost hold: accepted, but the pause showed a spelling, so the rung stays.
+            // The almost hold: accepted, but the pause showed a spelling, so the Sprosse stays.
             is TurnFeedback.Almost -> booked(state, correct = true, clean = false, rng = rng)
             // why: no "I knew it" in a drill — the questions are generated, so self-reporting
             // after seeing the answer proves nothing; revealed simply counts as a miss.
@@ -217,7 +217,7 @@ object DateDrillRun {
 
     // MARK: - Booking
 
-    /** Book the answer, then put the next question up at the rung the booking left. */
+    /** Book the answer, then put the next question up at the Sprosse the booking left. */
     private fun booked(
         state: DateDrillRunState,
         correct: Boolean,
@@ -241,7 +241,7 @@ object DateDrillRun {
                 task = draw.task ?: state.task,
                 finished = draw.task == null,
                 level = draw.level,
-                // A rung the run answered out is a rung it stood on, and the wins banked on
+                // A Sprosse the run answered out is a Sprosse it stood on, and the wins banked on
                 // the one below stay behind with it.
                 bestLevel = maxOf(next.bestLevel, draw.level),
                 winsAtLevel = if (draw.level == next.level) next.winsAtLevel else 0,
@@ -255,7 +255,7 @@ object DateDrillRun {
         )
     }
 
-    /** The booking itself: the ramp, the streak, the tallies — the rung it reached included. */
+    /** The booking itself: the ramp, the streak, the tallies — the Sprosse it reached included. */
     private fun advanced(
         state: DateDrillRunState,
         correct: Boolean,
@@ -287,8 +287,8 @@ object DateDrillRun {
     }
 
     /**
-     * The value check, on the rungs whose answer is a numeral. Nothing is inherited:
-     * `gradeDrillAnswer` defaults to none, and the bare-name rungs stay without one.
+     * The value check, on the Sprossen whose answer is a numeral. Nothing is inherited:
+     * `gradeDrillAnswer` defaults to none, and the bare-name Sprossen stay without one.
      */
     private fun numberIndex(kind: DateTaskKind, config: DateDrillRunConfig): NumberReadingIndex? =
         when (kind) {

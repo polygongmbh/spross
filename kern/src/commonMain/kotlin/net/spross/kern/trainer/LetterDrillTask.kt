@@ -2,7 +2,7 @@ package net.spross.kern.trainer
 
 import net.spross.kern.model.Language
 
-/** The ladder the drill climbs: two multiple-choice rungs, typing, then transcription. */
+/** The ladder the drill climbs: two multiple-choice Sprossen, typing, then transcription. */
 enum class LetterStage { ChoiceEasy, ChoiceConfusable, Typed, Dictation }
 
 /**

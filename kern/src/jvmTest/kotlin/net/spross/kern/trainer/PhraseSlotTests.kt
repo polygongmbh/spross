@@ -69,7 +69,7 @@ class PhraseSlotTests {
     /**
      * The sentence prompt is filled twice: once with the machine value everything parses,
      * once with the grouped one the learner reads. Both digit forms grade, so copying the
-     * separator out of the prompt cannot cost the rung.
+     * separator out of the prompt cannot cost the Sprosse.
      */
     @Test
     fun aLongSlotGroupsInTheDisplayedSentenceAndBothDigitFormsGrade() {
@@ -340,7 +340,7 @@ class PhraseSlotTests {
                     if (level == 2) unitOnly += n == "1"
                 }
             }
-            assertTrue(false in unitOnly, "${template.target}: the top rung never left the unit fractions")
+            assertTrue(false in unitOnly, "${template.target}: the top Sprosse never left the unit fractions")
         }
     }
 

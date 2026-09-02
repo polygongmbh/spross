@@ -57,7 +57,7 @@ extension LetterDrillView {
     /// both amber holds reveal too, because a slip and a heard-instead each
     /// leave a spelling worth seeing whole.
     ///
-    /// A letter-name question on a choice rung is the one case that skips it:
+    /// A letter-name question on a choice Sprosse is the one case that skips it:
     /// the tiles below already mark the answer, so a second glyph — spoken by
     /// a lookup that never resolves to the letter-name recording the big
     /// speaker played — would only repeat it, off-key.
@@ -74,7 +74,7 @@ extension LetterDrillView {
     }
 
     private var streakLine: some View {
-        DrillStreakLine(level: Text("trainer.rung \(Int(run.level).formatted())"),
+        DrillStreakLine(level: Text("trainer.sprosse \(Int(run.level).formatted())"),
                         streak: Int(run.streak), bestStreak: Int(run.bestStreak))
     }
 

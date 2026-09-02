@@ -206,10 +206,10 @@ data class ListeningCandidate(
 const val LISTENING_NEW_PRIORITY: Int = 4
 
 /**
- * Where a PACKED word stands — one rung above the rest of the unseen ones.
+ * Where a PACKED word stands — one Sprosse above the rest of the unseen ones.
  *
  * Packing is the learner saying *these words next*, and every other surface honors it
- * (`Growth.newCandidates` leads with it, the widget gives it its first tier). One rung is the
+ * (`Growth.newCandidates` leads with it, the widget gives it its first tier). One Sprosse is the
  * whole of the ask: it puts the packed words inside the opening turns without letting them
  * lead a word that is actively falling out, which is what the hour is for.
  */
@@ -224,7 +224,7 @@ const val LISTENING_STABILITY_STEP_DAYS: Double = 2.0
 /**
  * What being suspended costs a word on the ladder — a toll, not a floor.
  *
- * Two rungs: enough that a leech does not lead the hour, small enough that a shaky one still
+ * Two Sprossen: enough that a leech does not lead the hour, small enough that a shaky one still
  * comes in early. See [listeningPriority] for why a leech is not sent to the back at all.
  */
 const val LISTENING_SUSPENDED_PENALTY: Int = 2
@@ -238,21 +238,22 @@ const val LISTENING_SUSPENDED_PENALTY: Int = 2
  * the not-quite-settled rotate in the middle and the consolidated ones are pushed to the
  * end — at the bare floor, still worth hearing, never what the hour is about.
  *
- * An UNSCHEDULED word has no stability to read, so its rung is set: [LISTENING_NEW_PRIORITY],
+ * An UNSCHEDULED word has no stability to read, so its Sprosse is set: [LISTENING_NEW_PRIORITY],
  * or [LISTENING_QUEUED_PRIORITY] where the learner packed it.
  *
- * A SUSPENDED word keeps the rung its stability earned, less [LISTENING_SUSPENDED_PENALTY].
+ * A SUSPENDED word keeps the Sprosse its stability earned, less [LISTENING_SUSPENDED_PENALTY].
  * A hard floor would contradict `ListeningPool`, which puts leeches in the pool precisely
  * because they are what an hour of listening is FOR: suspension takes a word out of the
  * box's rotation, and this is the surface that can still reach it. So a shaky leech lands at
- * rung 3 or 4 — it comes in, it does not lead.
+ * Sprosse 3 or 4 — it comes in, it does not lead.
  */
 fun listeningPriority(candidate: ListeningCandidate): Int {
     if (!candidate.scheduled) {
         return if (candidate.queued) LISTENING_QUEUED_PRIORITY else LISTENING_NEW_PRIORITY
     }
-    val rung = LISTENING_MAX_STABILITY_PRIORITY - (candidate.stability / LISTENING_STABILITY_STEP_DAYS).toInt()
-    val tolled = if (candidate.suspended) rung - LISTENING_SUSPENDED_PENALTY else rung
+    val sprosse = LISTENING_MAX_STABILITY_PRIORITY -
+        (candidate.stability / LISTENING_STABILITY_STEP_DAYS).toInt()
+    val tolled = if (candidate.suspended) sprosse - LISTENING_SUSPENDED_PENALTY else sprosse
     return tolled.coerceIn(1, LISTENING_MAX_STABILITY_PRIORITY)
 }
 
@@ -270,8 +271,8 @@ fun recallGap(candidate: ListeningCandidate): Long =
  * What a candidate is dealt ALONGSIDE — its [priority] plus what KIND of word it is.
  *
  * The three kinds do not share a lane even at the same number, because only the scheduled
- * one's number is a measurement. New and packed words carry no stability, so their rung is a
- * rate the app chose; sharing rung 4 would let three hundred unseen words crowd out the
+ * one's number is a measurement. New and packed words carry no stability, so their Sprosse is a
+ * rate the app chose; sharing Sprosse 4 would let three hundred unseen words crowd out the
  * twenty mid-stability ones that happened to score the same.
  */
 private data class ListeningLane(val scheduled: Boolean, val queued: Boolean, val priority: Int)
@@ -309,8 +310,8 @@ private val dealOrder: Comparator<Dealt> = compareBy(
  * simply reach it more often, and a long run rotates the shaky and packed words back through
  * as it laps.
  *
- * A plain sort by priority is what this exists instead of. It would empty rung 6, then rung 5,
- * then spend the whole run inside a rung-4 block of every unseen word in the catalog — rungs
+ * A plain sort by priority is what this exists instead of. It would empty Sprosse 6, then Sprosse 5,
+ * then spend the whole run inside a Sprosse-4 block of every unseen word in the catalog — Sprossen
  * 3, 2 and 1 would never be reached in a session at all.
  *
  * WITHIN a lane the order depends on what the lane is. New and packed words play in strict

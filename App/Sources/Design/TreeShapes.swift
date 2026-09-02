@@ -5,7 +5,7 @@ import SwiftUI
 // The tree is ONE organism its whole life. It is never swapped for another:
 // a seedling thickens into a trunk, the canopy fills with the words that have
 // landed, and blossom and fruit appear ON that canopy rather than replacing it.
-// So there is no rung at which the picture starts over, and no top rung at
+// So there is no Sprosse at which the picture starts over, and no top Sprosse at
 // which it stops — a tree can always carry more.
 //
 // The canopy is NOT a shape. It is wherever the twigs ended up, and every mark

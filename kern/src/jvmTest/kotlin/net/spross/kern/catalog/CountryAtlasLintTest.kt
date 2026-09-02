@@ -81,7 +81,7 @@ class CountryAtlasLintTest {
     }
 
     /**
-     * Rung 1 is the learner's OWN languages, derived from the profile — a drill for a pair
+     * Sprosse 1 is the learner's OWN languages, derived from the profile — a drill for a pair
      * the app teaches only opens if both sit in the manifest, at its innermost tier.
      */
     @Test

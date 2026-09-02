@@ -14,7 +14,7 @@ import SprossKern
 ///
 /// Nothing here is graded and nothing is stored: the variant and modifier picks
 /// last as long as the screen does. What DOES persist is the other way round —
-/// `TrainerProgress` holds the highest rung each variant ever reached, and this
+/// `TrainerProgress` holds the highest Sprosse each variant ever reached, and this
 /// screen only reads it, to say which rows have been earned.
 ///
 /// The rows and toggles live in NumbersOverview+Practice.swift, the table and
@@ -31,9 +31,9 @@ struct NumbersOverview: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.locale) var locale
 
-    /// The highest rung ever reached per variant in THIS language — the one
+    /// The highest Sprosse ever reached per variant in THIS language — the one
     /// source the unlock ladder reads. Held in state rather than read per row so
-    /// a run that just booked a rung refreshes the whole ladder in one place.
+    /// a run that just booked a Sprosse refreshes the whole ladder in one place.
     // why: internal, not private — +Practice.swift renders the ladder from it.
     @State var progress: [DrillVariant: Int] = [:]
     /// Never empty in practice; `Los` is disabled while it is.
@@ -93,7 +93,7 @@ struct NumbersOverview: View {
         }
         .tint(.dlAccent)
         .onAppear { reloadProgress() }
-        // why: a closing run books its best rungs into TrainerProgress, so the
+        // why: a closing run books its best Sprossen into TrainerProgress, so the
         // ladder behind it is stale the moment the cover comes down.
         .fullScreenCover(item: $launch, onDismiss: reloadProgress) { launch in
             TrainerSessionView(mode: launch.mode, normalizer: launch.mode.normalizer(model),
@@ -130,7 +130,7 @@ struct NumbersOverview: View {
 
     // MARK: - The ladder
 
-    /// Reads every variant's stored rung at once, because a requirement names a
+    /// Reads every variant's stored Sprosse at once, because a requirement names a
     /// variant other than the row it gates (Phrases is bought with Clock).
     func reloadProgress() {
         var levels: [DrillVariant: Int] = [:]
@@ -206,7 +206,7 @@ extension NumbersOverview {
         }
     }
 
-    /// `-uitest-progress Numbers=7,Forms=5` stands the ladder at a rung a
+    /// `-uitest-progress Numbers=7,Forms=5` stands the ladder at a Sprosse a
     /// screenshot cannot climb to by thumb. In MEMORY only: a photographed
     /// unlock must never become a stored one.
     static var uitestProgress: [DrillVariant: Int] {

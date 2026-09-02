@@ -79,7 +79,7 @@ extension TrainerSessionView {
     }
 
     /// The whole numbers page, one tap away mid-run. Kern is told first: a
-    /// look-up while the answer is still owed costs the rung.
+    /// look-up while the answer is still owed costs the Sprosse.
     func lookUp() {
         dispatch(TrainerIntent.LookUp.shared)
         showingReference = true
@@ -103,7 +103,7 @@ extension TrainerSessionView {
         answerFocused = false
         TrainerRecords.record(Int(summary.bestStreak), for: closed.recordKey)
         // why: booked here, alongside the record, because a run that is still
-        // going can still climb — a rung is only final once the run closes.
+        // going can still climb — a Sprosse is only final once the run closes.
         TrainerProgress.book(closed.progressBookings)
         // why: the cheer marks the record, not the end of a run — closing a
         // drill is a dozen-times-an-evening event and owes no fanfare.
@@ -112,8 +112,8 @@ extension TrainerSessionView {
         dismiss()
     }
 
-    /// What the rung store holds now for every variant this run could book —
-    /// kern compares against it so a rung already earned is not fresh progress.
+    /// What the Sprosse store holds now for every variant this run could book —
+    /// kern compares against it so a Sprosse already earned is not fresh progress.
     private var standingProgress: [String: KotlinInt] {
         TrainerProgress.standing(mode.variants.map { mode.progressKey(variant: $0) })
     }

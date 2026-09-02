@@ -33,7 +33,7 @@ Engine contract: `../README.md` §3.
   being LEARNED, and the source language is the one the learner already has.
   `TurnState.answerText`/`answerLang` are where a field's placeholder and a screen reader
   tag read the answer side off, so no platform re-derives it.
-  (`spokenOnly` stays: the letter drill's dictation rung still transcribes, and there the
+  (`spokenOnly` stays: the letter drill's dictation Sprosse still transcribes, and there the
   glyphs ARE the lesson.)
 - **"Can't listen right now?"** — `TurnIntent.ShowPromptText` puts the played word on the
   card as text (`TurnState.promptInText`), and nothing else about the turn moves: same

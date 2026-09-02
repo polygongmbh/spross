@@ -57,20 +57,20 @@ class TrainerLevelTests {
     }
 
     @Test
-    fun clockRungsOfferExactlyTheirMinutes() {
-        val rungs = mapOf(
+    fun clockSprossenOfferExactlyTheirMinutes() {
+        val sprossen = mapOf(
             1 to setOf(0),
             2 to setOf(0, 15, 30, 45),
             3 to setOf(0, 5, 10, 15, 20, 25, 30, 45),
             4 to (0..55 step 5).toSet(),
         )
-        for ((level, expected) in rungs) {
+        for ((level, expected) in sprossen) {
             assertEquals(expected, minutesDrawn(level, seed = 2 + level), "clock level $level")
         }
     }
 
     @Test
-    fun clockRungsAreNested() {
+    fun clockSprossenAreNested() {
         val seen = (1..Trainer.maxLevel(TrainerKind.Clock)).map { minutesDrawn(it, seed = 20 + it) }
         for ((lower, higher) in seen.zipWithNext()) {
             assertTrue(higher.containsAll(lower), "a minute was withdrawn: $lower ⊄ $higher")
@@ -78,7 +78,7 @@ class TrainerLevelTests {
     }
 
     @Test
-    fun topClockRungReadsTheFaceOut() {
+    fun topClockSprosseReadsTheFaceOut() {
         val top = minutesDrawn(Trainer.maxLevel(TrainerKind.Clock), seed = 9, draws = 400)
         assertTrue(top.all { it in 0..59 })
         assertTrue(top.any { it % 5 != 0 }, "expected off-grid minutes at the ceiling")

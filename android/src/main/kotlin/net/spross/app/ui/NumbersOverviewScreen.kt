@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.badge
-import net.spross.app.bestRung
+import net.spross.app.bestSprosse
 import net.spross.app.hint
 import net.spross.app.name
 import net.spross.app.speakFormOnTap
@@ -38,7 +38,7 @@ import net.spross.kern.trainer.TrainerMode
  *
  * Nothing here is graded and nothing is stored: the variant and modifier picks last as long
  * as the screen does. What DOES persist is the other way round — the store holds the
- * highest rung each variant ever reached, and this page only reads it, to say which rows
+ * highest Sprosse each variant ever reached, and this page only reads it, to say which rows
  * have been earned.
  */
 @Composable
@@ -165,8 +165,8 @@ private fun VariantRow(
         title = chrome.badge(variant),
         caption = when {
             !open -> chrome.unlockPrice(DrillUnlocks.requirements(variant))
-            // The rung it has reached, where a run has booked one — nothing until then.
-            (ladder[variant] ?: 0) > 0 -> chrome.bestRung(variant, ladder.getValue(variant))
+            // The Sprosse it has reached, where a run has booked one — nothing until then.
+            (ladder[variant] ?: 0) > 0 -> chrome.bestSprosse(variant, ladder.getValue(variant))
             else -> null
         },
         mark = when {

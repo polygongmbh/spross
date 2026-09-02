@@ -25,7 +25,7 @@ enum class CountryTaskKind {
      * written on the card, "Venezuela" is a question again.
      *
      * FORWARD runs only. Reversed, the answer is owed in the learner's own language, so the
-     * flag would ask them to recognize their own — no rung builds this kind there.
+     * flag would ask them to recognize their own — no Sprosse builds this kind there.
      */
     FlagCountry,
 
@@ -88,8 +88,8 @@ data class CountryDrillTask(
 )
 
 /**
- * What [CountryDrill.draw] hands back: the question, and the rung it actually came from —
- * a rung the run has answered out is climbed past rather than asked again.
+ * What [CountryDrill.draw] hands back: the question, and the Sprosse it actually came from —
+ * a Sprosse the run has answered out is climbed past rather than asked again.
  *
  * [task] is null exactly when the whole ladder above is answered out, which ends the run on
  * its summary rather than repeating a question.
@@ -111,6 +111,6 @@ data class CountryReferenceRow(
 
 /**
  * The reference table, grouped by the tier a row enters the ladder at, innermost first —
- * the same grouping the rungs climb, so the table reads as the map of the drill.
+ * the same grouping the Sprossen climb, so the table reads as the map of the drill.
  */
 data class CountryReferenceGroup(val tier: Int, val rows: List<CountryReferenceRow>)

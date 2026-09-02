@@ -90,7 +90,7 @@ private fun StageRow(
 ) {
     val ready = report?.takeIf { it.drillAvailable }
     // Dictation needs a pool of playable words the learner already holds; below that floor
-    // the ramp stops one rung short of it, so the row is a padlock with its price.
+    // the ramp stops one Sprosse short of it, so the row is a padlock with its price.
     val open = ready != null && (stage != LetterStage.Dictation || ready.dictationAvailable)
     val entry = open && ready.entryStage == stage
     val caption = when {

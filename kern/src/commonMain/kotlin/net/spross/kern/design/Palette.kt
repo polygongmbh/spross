@@ -42,7 +42,7 @@ object Palette {
     val wrong = Swatch(0x99322E, 0xF08D86) // brick — a miss
 
     /**
-     * The consolidated/"grown" rung's own color — NOT [teal]. [teal] sits only ~15°
+     * The consolidated/"grown" Sprosse's own color — NOT [teal]. [teal] sits only ~15°
      * from [der] on the hue wheel (both read as blue at a badge's size); this one is
      * pulled toward green until it reads unmistakably as jade rather than another blue.
      */

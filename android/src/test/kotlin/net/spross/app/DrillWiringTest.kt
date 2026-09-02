@@ -104,7 +104,7 @@ class DrillWiringTest {
 
     /** The "?" raises the table AND books the amber debt while the answer is still owed. */
     @Test
-    fun lookingUpWhileTheAnswerIsOwedRaisesTheTableAndCostsTheRung() {
+    fun lookingUpWhileTheAnswerIsOwedRaisesTheTableAndCostsTheSprosse() {
         val flow = slots(Platform())
         flow.lookUp()
         assertTrue(flow.showingReference)
@@ -291,7 +291,7 @@ class DrillWiringTest {
     }
 
     @Test
-    fun aClosedAtlasRunReportsItsFiguresAndTheRungItReached() {
+    fun aClosedAtlasRunReportsItsFiguresAndTheSprosseItReached() {
         val untouched = countries(Platform()).close(standingRecord = 0)
         assertNull(untouched.summary)
 
