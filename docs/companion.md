@@ -28,9 +28,9 @@ no taxonomy of its own:
 
 | Block | Sprossen | Form | Why |
 |---|---|---|---|
-| **May use freely** | `Consolidated`, `Matured` | bare target forms, grouped by area | the floor the conversation stands on; the assistant knows what they mean, so glosses would only cost room |
-| **Work these in** | `Learning`, `Fresh`, `Relearning` | `target = source` pairs | the words the box is spending its effort on; the conversation is where they get used |
-| **New** | `Growth.newCandidates` | `target (source)` pairs | what the box will introduce NEXT — see below |
+| **May use freely** | `Consolidated`, `Matured` | bare target forms, grouped by area | the ground the conversation is built out of; the assistant knows what they mean, so glosses would only cost room |
+| **Worth reaching for** | `Learning`, `Fresh`, `Relearning` | `target = source` pairs | the words the box is spending its effort on — reached for where the talk passes them |
+| **Coming up** | `Growth.newCandidates` | `target (source)` pairs | where to reach first when adding a word — see below |
 | **Held back** | `Unscheduled`, `Queued` | not named at all | listing 800 words to forbid them would be the whole catalog with a "no" on it |
 
 `Suspended` is in none of them:
@@ -38,13 +38,22 @@ a word taken out of rotation is one the learner has said they do not want to mee
 Own words carry both halves in the free block, since they are the one entry an assistant may not know.
 Target nouns are written with their article (`articledForm`), as they are everywhere spoken.
 
-**The new-word allowance is the box's own next-up list.**
-The handful of new words the conversation may spend
-are the ones the box is about to teach anyway,
-so the learner meets them again, in the app, two days later — with a hook already set.
-Letting the assistant pick freely was the alternative:
-it reads more natural and it teaches into a void, since nothing follows it up.
-That is what makes this a LOOP rather than a side quest.
+**Only the first block is a rule.** Staying on the ground — building out of what the learner
+already has — is the whole of what the box asks of a partner.
+The other two are worded as offers on purpose,
+and a quota is what they are worded against:
+a partner told to place eight words a session steers a conversation about dinner
+into somebody's relatives, because that is the shelf the box happens to be on,
+and a learner who could not say the thing they wanted to say
+has been handed an exercise rather than a conversation.
+So the words being learned are reached for where the talk goes near them and left alone where it does not,
+and new words are the partner's own call — the conversation outranks both lists.
+
+**The new words are still the box's own next-up list**, and that is what makes this a LOOP
+rather than a side quest: where the partner takes the hint,
+the learner meets that word again, in the app, two days later — with a hook already set.
+It is a preference among words the partner was going to bring in anyway, never a fence:
+any word the conversation actually needs is fine.
 
 ### The brief, worked
 
@@ -53,8 +62,13 @@ Spross — vocabulary brief
 Anna knows German and is learning Swahili.
 214 words consolidated, 31 in play.
 
-You are a patient conversation partner for a vocabulary learner. Speak Swahili.
-Explain in German, and only when the learner stalls or asks.
+You are a conversation partner for someone learning Swahili. Speak Swahili,
+explain in German, and only when they stall or ask.
+Talk about whatever they want to talk about, and follow where they take it.
+Build what you say out of the words below — that is the one thing that matters here.
+Bring in a word of your own where the conversation needs one, one or two at a time,
+glossed in German the first time. Never bend the conversation toward a word:
+a word forced into a turn that had no room for it teaches nothing.
 This app teaches WORDS, not grammar: assume no instruction in tense, case or
 agreement, and keep sentences short and concrete.
 Ask one question per turn and wait for the answer.
@@ -65,11 +79,11 @@ MAY USE FREELY — 214 words the learner has consolidated
 In the bathroom: bafu, kuoga, sabuni, taulo, mswaki …
 In the kitchen: jiko, sufuria, kisu, sahani …
 
-WORK THESE IN — 31 words being learned right now; aim for 8 of them, and prefer them to synonyms
+WORTH REACHING FOR — 31 words being learned right now. Where the talk goes near one, reach for it; where it does not, leave it.
 kusubiri = warten
 ratiba = Fahrplan
 
-NEW — at most 3 per turn, from this list only, glossed in German the first time
+COMING UP — what the app teaches next. When you add a word of your own, one of these lands best, but any word the conversation needs is fine.
 abiria (Fahrgast)
 tikiti (Fahrkarte)
 
@@ -81,7 +95,7 @@ abiria = Fahrgast
 ```
 ```
 
-The grammar line is the load-bearing one:
+The grammar line is load-bearing for the same reason the offers are soft:
 the box teaches words and conjugates nothing,
 so an assistant left to assume otherwise
 writes perfect subordinate clauses at someone who has met nouns.
@@ -94,7 +108,7 @@ There is no stop word for the same reason — one would have to be written
 in one of those two languages, and the text is in neither, so the closing ask is prose.
 
 **Size.** The catalog holds about a thousand concepts,
-so the largest brief that can ever exist — every word consolidated — is around 7 KB.
+so the largest brief that can ever exist — every word consolidated — is around 7.5 KB.
 That is the ceiling, not the typical case.
 
 ## The way back in

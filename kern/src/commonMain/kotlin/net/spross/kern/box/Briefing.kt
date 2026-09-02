@@ -20,17 +20,22 @@ data class BriefArea(val title: String, val words: List<String>)
  * is neither of the learner's two languages but is the one every assistant reads best.
  * The two languages are NAMED inside it; the instructions around them are not translated.
  *
- * Three blocks, and the Sprossen decide which word lands in each ([GrowthStage]):
- * consolidated and matured words may be used freely, the ones still coming in have to be
- * worked in, and the small allowance of NEW words is drawn from [Growth.newCandidates] —
- * what the box will introduce next anyway. That last one is what makes the conversation
- * part of the loop rather than a parallel course: a word met in talk on Tuesday is a word
- * with a hook in it when the box deals it on Thursday.
+ * Three blocks, and the Sprossen decide which word lands in each ([GrowthStage]).
+ * Only the FIRST of them is a rule: consolidated and matured words are the ground the
+ * conversation is built out of, and staying on it is the whole of what the box asks.
+ * The ones still coming in are an OFFER — reached for where the talk passes them, left
+ * alone where it does not — and the [Growth.newCandidates] list is a preference among
+ * words the partner was going to bring in anyway. Both are worded that way on purpose:
+ * a quota turns a conversation into an exercise (§ [protocol]).
+ *
+ * The new words are still what makes this part of the loop rather than a parallel course,
+ * where the partner takes the hint: a word met in talk on Tuesday is a word with a hook in
+ * it when the box deals it on Thursday.
  *
  * [GrowthStage.Suspended] appears nowhere: a word taken out of rotation is one the learner
  * has said they do not want to meet. Neither does anything unscheduled — naming 800 words
- * to forbid them would be the whole catalog with a "no" on it, so the allowance is stated
- * as a list to stay INSIDE rather than a list to stay out of.
+ * to forbid them would be the whole catalog with a "no" on it, so what is listed is where
+ * to reach FIRST, never a fence.
  */
 data class Briefing(
     val learnerName: String?,
@@ -50,9 +55,6 @@ data class Briefing(
      */
     val hasWords: Boolean get() = freeCount > 0 || inPlay.isNotEmpty()
 
-    /** How many of [inPlay] one conversation is asked to reach — never more than there are. */
-    val workInTarget: Int get() = minOf(Briefings.WORK_IN_TARGET, inPlay.size)
-
     /** The whole brief, ready to be pasted into an assistant. */
     val text: String
         get() = buildString {
@@ -69,16 +71,16 @@ data class Briefing(
             if (inPlay.isNotEmpty()) {
                 appendLine()
                 appendLine(
-                    "WORK THESE IN — ${inPlay.size} words being learned right now; " +
-                        "aim for $workInTarget of them, and prefer them to synonyms",
+                    "WORTH REACHING FOR — ${inPlay.size} words being learned right now. " +
+                        "Where the talk goes near one, reach for it; where it does not, leave it.",
                 )
                 for (word in inPlay) appendLine("${word.target} = ${word.source}")
             }
             if (newWords.isNotEmpty()) {
                 appendLine()
                 appendLine(
-                    "NEW — at most ${Briefings.NEW_PER_TURN} per turn, from this list only, " +
-                        "glossed in $sourceName the first time",
+                    "COMING UP — what the app teaches next. When you add a word of your own, " +
+                        "one of these lands best, but any word the conversation needs is fine.",
                 )
                 for (word in newWords) appendLine("${word.target} (${word.source})")
             }
@@ -92,13 +94,28 @@ data class Briefing(
     }
 
     /**
-     * How the partner is asked to behave. The grammar line is the load-bearing one: the box
-     * teaches WORDS and conjugates nothing, so an assistant left to assume otherwise writes
-     * perfect subordinate clauses at someone who has met nouns.
+     * How the partner is asked to behave.
+     *
+     * The ONE hard rule is the ground: build out of the words the learner has. Everything
+     * else is a preference, deliberately — a partner told to place eight words per session
+     * steers a conversation about dinner into somebody's relatives because that is the shelf
+     * the box happens to be on, and a learner who cannot say what they wanted to say has
+     * been handed an exercise rather than a conversation. So the words being learned are
+     * offered where the talk passes them, new words are the partner's own call, and what
+     * the learner wants to talk about outranks both.
+     *
+     * The grammar line is load-bearing for the same reason: the box teaches WORDS and
+     * conjugates nothing, so a partner left to assume otherwise writes perfect subordinate
+     * clauses at someone who has met nouns.
      */
     private fun protocol(): String = listOf(
-        "You are a patient conversation partner for a vocabulary learner. Speak $targetName.",
-        "Explain in $sourceName, and only when the learner stalls or asks.",
+        "You are a conversation partner for someone learning $targetName. Speak $targetName,",
+        "explain in $sourceName, and only when they stall or ask.",
+        "Talk about whatever they want to talk about, and follow where they take it.",
+        "Build what you say out of the words below — that is the one thing that matters here.",
+        "Bring in a word of your own where the conversation needs one, one or two at a time,",
+        "glossed in $sourceName the first time. Never bend the conversation toward a word:",
+        "a word forced into a turn that had no room for it teaches nothing.",
         "This app teaches WORDS, not grammar: assume no instruction in tense, case or",
         "agreement, and keep sentences short and concrete.",
         "Ask one question per turn and wait for the answer.",
@@ -128,16 +145,11 @@ data class Briefing(
 /** Building a [Briefing] out of a box; reading a conversation's answer back is [Harvest]'s. */
 object Briefings {
 
-    /** Words the "work these in" block may name before it stops being a list anyone reads. */
+    /** Words the "worth reaching for" block may name before it stops being a list anyone reads. */
     const val IN_PLAY_LIMIT: Int = 40
 
-    /** How wide the new-word allowance is drawn — a round's worth, give or take. */
+    /** How wide the new-word preference is drawn — a round's worth, give or take. */
     const val NEW_LIMIT: Int = 15
-
-    /** How many of that allowance one turn may spend. */
-    const val NEW_PER_TURN: Int = 3
-
-    internal const val WORK_IN_TARGET: Int = 8
 
     /** What the learner's own shelf is called in a text written in English. */
     private const val OWN_TITLE: String = "Your own words"
