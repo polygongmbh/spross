@@ -3,7 +3,11 @@
  "subtitle": "Kuna shughuli kila wakati.",
  "words": {
   "street": { "text": "barabara", "grammar": { "plural": "=" } },
-  "park": { "text": "bustani", "grammar": { "plural": "=" } },
+  "park": {
+   "text": "bustani",
+   "grammar": { "plural": "=" },
+   "notes": { "sw": "Bustani ni ya umma na ya nyumbani pia: bustani ya jiji, bustani ya mboga." }
+  },
   "city": {
    "text": "mji",
    "grammar": { "plural": "miji" },
