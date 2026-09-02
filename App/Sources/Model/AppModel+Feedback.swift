@@ -86,4 +86,17 @@ extension AppModel {
     func markExported() {
         mutate { $0 = BoxEngine.shared.markExported(state: $0, nowEpochMillis: Date().epochMillis) }
     }
+
+    /// How many entries a clear would take: the suggestions plus the filed reports.
+    /// Kern's count, not the screen's — a word written in both languages is study
+    /// material and is never in it (`Feedback.clearableCount`).
+    var clearableCount: Int {
+        guard let box else { return 0 }
+        return Int(Feedback.shared.clearableCount(state: box))
+    }
+
+    /// Empty the outbox: every suggestion and every report go, the word pairs stay.
+    func clearFeedback() {
+        mutate { $0 = BoxEngine.shared.clearFeedback(state: $0) }
+    }
 }

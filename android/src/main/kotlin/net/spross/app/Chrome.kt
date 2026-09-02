@@ -333,6 +333,9 @@ interface Chrome {
     val reportExportSend: String
     val reportExportScopeNew: String
     val reportExportScopeAll: String
+    val reportExportScopeAllClear: String
+    val reportExportClear: String
+    val reportExportClearConfirm: String   // %d
 
     // ── Box settings ────────────────────────────────────────────────────────────
     val settingsTitle: String
@@ -347,6 +350,7 @@ interface Chrome {
     val settingsResetConfirm: String      // %s
     val commonCancel: String
     val commonReset: String
+    val commonClear: String
 
     // ── Session turn ────────────────────────────────────────────────────────────
     val sessionCopyPlaceholder: String        // %s

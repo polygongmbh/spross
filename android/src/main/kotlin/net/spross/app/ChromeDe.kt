@@ -338,6 +338,10 @@ internal object ChromeDe : Chrome {
     override val reportExportSend = "Senden"
     override val reportExportScopeNew = "Nur Neues"
     override val reportExportScopeAll = "Alles"
+    override val reportExportScopeAllClear = "Alles, dann leeren"
+    override val reportExportClear = "Leeren"
+    override val reportExportClearConfirm = "%d Vorschläge und Meldungen löschen? Eigene " +
+        "Wortpaare bleiben."
     override val settingsTitle = "Einstellungen"
     override val settingsNameTitle = "Dein Name"
     override val settingsNamePlaceholder = "Name oder Spitzname"
@@ -355,6 +359,7 @@ internal object ChromeDe : Chrome {
         "den ersten Wörtern beginnen?"
     override val commonCancel = "Abbrechen"
     override val commonReset = "Zurücksetzen"
+    override val commonClear = "Leeren"
     override val sessionCopyPlaceholder = "Einmal auf %s abschreiben …"
     override val sessionCopyMismatch = "Noch nicht ganz — das Wort steht oben."
     override val sessionSkip = "Überspringen"

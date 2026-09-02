@@ -404,6 +404,12 @@ a clone inherits its sibling's gaps, never the rules.
     Both ways out — clipboard and mail — carry the same one text, and each offers
     everything or only what is new, the latter only once a copy has ever been taken: before
     that the two would be the same list, so the control asks nothing.
+    Each also offers to EMPTY the section behind the export, and a button beside them does
+    it alone: suggestions and reports are an outbox, and a learner who sends theirs on
+    regularly otherwise watches the section only grow. What a clear leaves is the words
+    written in both languages (`kern/README.md` §6) — those are cards with progress on
+    them, not notes. Only the bare button asks first; behind an export there is nothing
+    left to lose, the lot having just landed on the clipboard or in a draft.
   - **Own words** are also what a search with no answer leads to: the learner has just
     proved the catalog has no word for what they need, so the empty state offers to write
     one, with the known side prefilled from the query — a search box is far more often used

@@ -1292,6 +1292,22 @@
         }
       }
     },
+    "common.clear" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leeren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear"
+          }
+        }
+      }
+    },
     "common.close" : {
       "localizations" : {
         "de" : {
@@ -4666,6 +4682,39 @@
       },
       "comment" : "who reads it, and that the word's schedule is untouched"
     },
+    "report.export.clear" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leeren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear"
+          }
+        }
+      }
+    },
+    "report.export.clear.confirm %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Vorschläge und Meldungen löschen? Eigene Wortpaare bleiben."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete %lld suggestions and reports? Your own word pairs stay."
+          }
+        }
+      },
+      "comment" : "%lld = how many suggestions and reports the clear would take"
+    },
     "report.export.copy" : {
       "localizations" : {
         "de" : {
@@ -4694,6 +4743,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Everything"
+          }
+        }
+      }
+    },
+    "report.export.scope.allClear" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles, dann leeren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything, then clear"
           }
         }
       }

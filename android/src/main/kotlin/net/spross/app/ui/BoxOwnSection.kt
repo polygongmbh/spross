@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -32,6 +34,8 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
+import net.spross.app.clearFeedback
+import net.spross.app.clearableCount
 import net.spross.app.hasExportedBefore
 import net.spross.app.hasFeedback
 import net.spross.app.markExported
@@ -140,6 +144,7 @@ private fun OwnContentPanel(
                     context.openFeedbackMail(Feedback.MAIL_SUBJECT, body)
                     model.markExported()
                 }
+                if (model.clearableCount > 0) ClearAction(model)
             }
         }
     }
@@ -253,30 +258,73 @@ private fun ReportedRow(model: AppModel, card: Card) {
 }
 
 /**
- * One action, offered over the whole lot or only over what is new. Until a copy has ever
- * been taken the two would be the same list, so it stays a plain button and asks nothing.
+ * One action, offered over the whole lot, only over what is new, or over the whole lot
+ * with the outbox emptied behind it. It stays a plain button while it has only the one
+ * thing to offer — before any copy has been taken the first two would be the same list,
+ * and with nothing clearable the third says nothing.
  */
 @Composable
 private fun ScopedAction(model: AppModel, label: String, run: (onlyNew: Boolean) -> Unit) {
     val chrome = model.chrome
     var open by remember { mutableStateOf(false) }
-    if (!model.hasExportedBefore) {
+    val exported = model.hasExportedBefore
+    val clearable = model.clearableCount > 0
+    if (!exported && !clearable) {
         TextButton(onClick = { run(false) }) { Text(label) }
         return
     }
     Box {
         TextButton(onClick = { open = true }) { Text(label) }
         DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
-            DropdownMenuItem(
-                text = { Text(chrome.reportExportScopeNew) },
-                enabled = model.hasFeedback(onlyNew = true),
-                onClick = { open = false; run(true) },
-            )
+            if (exported) {
+                DropdownMenuItem(
+                    text = { Text(chrome.reportExportScopeNew) },
+                    enabled = model.hasFeedback(onlyNew = true),
+                    onClick = { open = false; run(true) },
+                )
+            }
             DropdownMenuItem(
                 text = { Text(chrome.reportExportScopeAll) },
                 onClick = { open = false; run(false) },
             )
+            if (clearable) {
+                // why: the lot has just gone to the clipboard or into a draft, so there is
+                // nothing left to lose and nothing to ask about.
+                DropdownMenuItem(
+                    text = { Text(chrome.reportExportScopeAllClear, color = Dl.colors.wrong) },
+                    onClick = { open = false; run(false); model.clearFeedback() },
+                )
+            }
         }
+    }
+}
+
+/**
+ * Emptying the outbox on its own, with nothing copied first — the one control in this
+ * section that can lose something unread, so it asks.
+ */
+@Composable
+private fun ClearAction(model: AppModel) {
+    val chrome = model.chrome
+    var confirming by remember { mutableStateOf(false) }
+    TextButton(onClick = { confirming = true }) {
+        Text(chrome.reportExportClear, color = Dl.colors.wrong)
+    }
+    if (confirming) {
+        AlertDialog(
+            onDismissRequest = { confirming = false },
+            // The question IS the title, as on iOS ([BoxSettings]).
+            title = { Text(chrome.reportExportClearConfirm.format(model.clearableCount)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    confirming = false
+                    model.clearFeedback()
+                }) { Text(chrome.commonClear, color = Dl.colors.wrong) }
+            },
+            dismissButton = {
+                TextButton(onClick = { confirming = false }) { Text(chrome.commonCancel) }
+            },
+        )
     }
 }
 

@@ -65,10 +65,7 @@ val AppModel.ownWordIds: Set<String> get() = ownWords.mapTo(mutableSetOf()) { it
  * never scheduled ([OwnWords.cards]), so they carry no card row of their own.
  */
 val AppModel.suggestions: List<OwnWord>
-    get() {
-        val stamp = box?.joinStamp ?: return emptyList()
-        return ownWords.filter { it.isSuggestion(stamp.source, stamp.target) }
-    }
+    get() = box?.let(Feedback::suggestions).orEmpty()
 
 /**
  * The CATALOG cards a problem stands against, oldest report first.
@@ -127,4 +124,16 @@ fun AppModel.reportMailBody(onlyNew: Boolean): String? =
  */
 fun AppModel.markExported() {
     updateBox { BoxEngine.markExported(it, now()) }
+}
+
+/**
+ * How many entries a clear would take: the suggestions plus the filed reports. Kern's
+ * count, not the screen's — a word written in both languages is study material and is
+ * never in it ([Feedback.clearableCount]).
+ */
+val AppModel.clearableCount: Int get() = box?.let(Feedback::clearableCount) ?: 0
+
+/** Empty the outbox: every suggestion and every report go, the word pairs stay. */
+fun AppModel.clearFeedback() {
+    updateBox(BoxEngine::clearFeedback)
 }
