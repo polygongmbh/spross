@@ -5,7 +5,11 @@
   "traffic-light": { "text": "taa ya barabarani", "grammar": { "plural": "taa za barabarani" } },
   "bicycle": { "text": "baiskeli", "grammar": { "plural": "=" } },
   "bus": { "text": "basi", "grammar": { "plural": "mabasi" } },
-  "bus-stop": { "text": "kituo cha basi", "grammar": { "plural": "vituo vya basi" } },
+  "bus-stop": {
+   "text": "kituo cha basi",
+   "grammar": { "plural": "vituo vya basi" },
+   "notes": { "sw": "Kituo ni mahali pa kusimama: kituo cha basi, kituo cha polisi." }
+  },
   "train": { "text": "treni", "grammar": { "plural": "=" } },
   "car": { "text": "gari", "grammar": { "plural": "magari" } },
   "taxi": { "text": "teksi", "grammar": { "plural": "=" } },

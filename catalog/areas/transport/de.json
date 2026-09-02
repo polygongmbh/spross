@@ -5,7 +5,11 @@
   "traffic-light": { "text": "Ampel", "grammar": { "gender": "die", "plural": "-n" } },
   "bicycle": { "text": "Fahrrad", "grammar": { "gender": "das", "plural": "Fahrräder" } },
   "bus": { "text": "Bus", "grammar": { "gender": "der", "plural": "-se" } },
-  "bus-stop": { "text": "Haltestelle", "grammar": { "gender": "die", "plural": "-n" } },
+  "bus-stop": {
+   "text": "Bushaltestelle",
+   "variants": ["Haltestelle"],
+   "grammar": { "gender": "die", "plural": "-n" }
+  },
   "train": { "text": "Zug", "grammar": { "gender": "der", "plural": "Züge" } },
   "car": { "text": "Auto", "grammar": { "gender": "das", "plural": "-s" } },
   "taxi": { "text": "Taxi", "grammar": { "gender": "das", "plural": "-s" } },
