@@ -122,6 +122,16 @@
    "notes": { "de": "unveränderlich · zu gleichen Teilen: kugawanya sawasawa = gleichmäßig aufteilen." }
   },
   "to-compare": { "text": "kulinganisha" },
+  "beautiful": {
+   "text": "-rembo",
+   "variants": ["mrembo", "warembo", "mirembo", "kirembo", "virembo", "marembo", "rembo"],
+   "notes": { "sw": "Urembo ni wa kuvutia macho: nguo marembo, msichana mrembo." }
+  },
+  "positive": {
+   "text": "chanya",
+   "notes": { "sw": "Chanya na hasi hazibadiliki kwa ngeli: matokeo chanya, namba hasi." }
+  },
+  "negative": { "text": "hasi" },
   "a-lot-of-water": { "text": "maji mengi" }
  }
 }

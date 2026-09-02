@@ -95,6 +95,12 @@
   "opposite": { "text": "opposé", "synonyms": ["contraire"], "variants": ["opposée"] },
   "equal": { "text": "égal", "variants": ["égale", "égaux"] },
   "to-compare": { "text": "comparer" },
+  "beautiful": { "text": "beau", "variants": ["belle", "bel"] },
+  "positive": { "text": "positif", "variants": ["positive"] },
+  "negative": { "text": "négatif", "variants": ["négative"] },
+  "neutral": { "text": "neutre" },
+  "aggressive": { "text": "agressif", "variants": ["agressive"] },
+  "defensive": { "text": "défensif", "variants": ["défensive"] },
   "a-lot-of-water": { "text": "beaucoup d'eau" }
  }
 }

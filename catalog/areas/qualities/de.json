@@ -38,6 +38,12 @@
   "opposite": { "text": "entgegengesetzt", "variants": ["gegenteilig"] },
   "equal": { "text": "gleichwertig", "notes": { "de": "gleich viel wert: zwei gleichwertige Angebote." } },
   "to-compare": { "text": "vergleichen" },
+  "beautiful": { "text": "schön" },
+  "positive": { "text": "positiv" },
+  "negative": { "text": "negativ" },
+  "neutral": { "text": "neutral" },
+  "aggressive": { "text": "aggressiv" },
+  "defensive": { "text": "defensiv" },
   "a-lot-of-water": { "text": "viel Wasser" }
  }
 }

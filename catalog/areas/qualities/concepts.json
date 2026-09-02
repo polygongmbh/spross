@@ -35,5 +35,11 @@
  { "slug": "opposite", "kind": "adjective" },
  { "slug": "equal", "kind": "adjective" },
  { "slug": "to-compare", "kind": "verb" },
+ { "slug": "beautiful", "kind": "adjective" },
+ { "slug": "positive", "kind": "adjective", "emoji": "➕" },
+ { "slug": "negative", "kind": "adjective", "emoji": "➖" },
+ { "slug": "neutral", "kind": "adjective" },
+ { "slug": "aggressive", "kind": "adjective" },
+ { "slug": "defensive", "kind": "adjective" },
  { "slug": "a-lot-of-water", "kind": "phrase", "emoji": "💦", "components": ["much"] }
 ]

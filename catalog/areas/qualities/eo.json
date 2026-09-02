@@ -57,6 +57,12 @@
   "opposite": { "text": "kontraŭa", "variants": ["kontraŭaj"] },
   "equal": { "text": "egala", "variants": ["egalaj"] },
   "to-compare": { "text": "kompari" },
+  "beautiful": { "text": "bela", "variants": ["bele"] },
+  "positive": { "text": "pozitiva", "variants": ["pozitive"] },
+  "negative": { "text": "negativa", "variants": ["negative"] },
+  "neutral": { "text": "neŭtrala", "variants": ["neŭtrale"] },
+  "aggressive": { "text": "agresema", "variants": ["agresiva", "agreseme"] },
+  "defensive": { "text": "defenda", "variants": ["defensiva", "defende"] },
   "a-lot-of-water": { "text": "multe da akvo" }
  }
 }

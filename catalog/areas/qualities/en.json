@@ -47,6 +47,12 @@
   "opposite": { "text": "opposite" },
   "equal": { "text": "equal" },
   "to-compare": { "text": "to compare" },
+  "beautiful": { "text": "beautiful" },
+  "positive": { "text": "positive" },
+  "negative": { "text": "negative" },
+  "neutral": { "text": "neutral" },
+  "aggressive": { "text": "aggressive" },
+  "defensive": { "text": "defensive" },
   "a-lot-of-water": { "text": "a lot of water" }
  }
 }

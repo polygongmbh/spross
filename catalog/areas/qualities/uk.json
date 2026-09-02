@@ -42,6 +42,12 @@
   "opposite": { "text": "протилежний", "variants": ["протилежна", "протилежне", "протилежні"] },
   "equal": { "text": "рівний", "variants": ["рівна", "рівне", "рівні"] },
   "to-compare": { "text": "порівнювати", "variants": ["порівняти"] },
+  "beautiful": { "text": "гарний", "synonyms": ["красивий"], "variants": ["гарно"] },
+  "positive": { "text": "позитивний", "variants": ["позитивно"] },
+  "negative": { "text": "негативний", "variants": ["негативно"] },
+  "neutral": { "text": "нейтральний", "variants": ["нейтрально"] },
+  "aggressive": { "text": "агресивний", "variants": ["агресивно"] },
+  "defensive": { "text": "оборонний", "synonyms": ["захисний"] },
   "a-lot-of-water": { "text": "багато води" }
  }
 }

@@ -83,6 +83,12 @@
   "opposite": { "text": "opuesto", "synonyms": ["contrario"], "variants": ["opuesta", "contraria"] },
   "equal": { "text": "igual", "variants": ["iguales"] },
   "to-compare": { "text": "comparar" },
+  "beautiful": { "text": "bonito", "variants": ["bonita"], "synonyms": ["hermoso"] },
+  "positive": { "text": "positivo", "variants": ["positiva"] },
+  "negative": { "text": "negativo", "variants": ["negativa"] },
+  "neutral": { "text": "neutral", "variants": ["neutro"] },
+  "aggressive": { "text": "agresivo", "variants": ["agresiva"] },
+  "defensive": { "text": "defensivo", "variants": ["defensiva"] },
   "a-lot-of-water": { "text": "mucha agua", "notes": { "de": "trotz el agua feminin: mucha agua." } }
  }
 }
