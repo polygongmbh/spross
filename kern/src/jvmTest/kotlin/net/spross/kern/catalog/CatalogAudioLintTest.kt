@@ -86,10 +86,17 @@ class CatalogAudioLintTest {
     @Test
     fun noAmbiguousMatchedForm() {
         for ((lang, manifest) in catalog.audio) {
-            val bySpeechKey = manifest.words.entries.groupBy { speechKey(checkNotNull(it.value.matches)) }
+            // why: every section the runtime's form index spans, not `words` alone — the
+            // index is built over all three, so a calendar name colliding with a word
+            // silences BOTH, and adding a section could mute a word that used to play.
+            val spoken = manifest.words.entries.map { "words/${it.key}" to it.value } +
+                manifest.texts.entries.map { "texts/${it.key}" to it.value } +
+                manifest.calendar.entries.map { "calendar/${it.key}" to it.value }
+            val bySpeechKey = spoken.groupBy { speechKey(checkNotNull(it.second.matches)) }
             for ((key, group) in bySpeechKey) {
-                val digests = group.mapTo(mutableSetOf()) { it.value.sha256 }
-                assertEquals(1, digests.size, "audio/$lang: \"$key\" is claimed by ${group.map { it.key }}")
+                val digests = group.mapTo(mutableSetOf()) { it.second.sha256 }
+                assertEquals(1, digests.size,
+                             "audio/$lang: \"$key\" is claimed by ${group.map { it.first }}")
             }
         }
     }
