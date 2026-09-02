@@ -202,10 +202,17 @@ can service will usually have cards over, and should — the alternative is a bo
 It also absorbs the days a learner skips or cuts short. Chrome names what is left as cards
 ready rather than cards owed for exactly this reason.
 
-**Falling behind costs single retention points.** With FSRS-6's learned decay
-(`w[20]` = 0.1542, so `R(t) = (1 + 0.98·t/S)^−0.1542`) the tail is flat: a card a month past due
-sits near R 0.74 against a target of 0.80, and one ten stability-lengths late is still near 0.69.
-Nothing throttles on how far behind the box has fallen because there is little there to throttle.
+**Falling behind costs a settled word little and a young one plenty.** The tail of
+`R(t) = (1 + 0.98·t/S)^−0.1542` is flat in proportion to STABILITY, so one delay reads four ways:
+thirty days late leaves a mature card (S 60) at 0.79 against its 0.80 target, a settling one
+(S 10) at 0.74, and a word met once (S 2.31, a first Good) at 0.65.
+
+Read the top of that range as an upper bound rather than a measurement. The weights are the
+shipped defaults, fitted over collections mostly made of mature cards, and one decay cannot
+describe both ends — so recall is over-predicted where stability is lowest, which is where a
+learner notices. Nothing throttles on how far behind the box has fallen because a backlog is
+mostly made of the settled end; the young end is where delay is actually paid for, and this
+curve is not evidence about it.
 
 **What the gate cost fell on was the returning learner.** Coming back after two weeks away is
 exactly when it shut, so the box that had been growing daily went silent at the moment the
