@@ -11,10 +11,12 @@ data class BriefWord(val target: String, val source: String)
 data class BriefArea(val title: String, val words: List<String>)
 
 /**
- * What the box tells an outside conversation partner about this learner.
+ * What the learner tells an outside conversation partner about themselves, in their voice.
  *
  * The app ships no AI: it hands the learner this text, and they paste it into whichever
- * assistant they already have. So the brief is an INTERCHANGE format like [Feedback] and
+ * assistant they already have — as a first message, or into the standing-instructions
+ * field one keeps for what its user is like, which is why it is written first person
+ * (§ [opening]). So the brief is an INTERCHANGE format like [Feedback] and
  * lives here for the same reasons — its reader is a machine rather than the learner's
  * device, one dialect rather than one per platform — and it is written in English, which
  * is neither of the learner's two languages but is the one every assistant reads best.
@@ -58,29 +60,28 @@ data class Briefing(
     /** The whole brief, ready to be pasted into an assistant. */
     val text: String
         get() = buildString {
-            appendLine("Spross — vocabulary brief")
-            appendLine(who())
-            appendLine("$freeCount words consolidated, ${inPlay.size} in play.")
+            appendLine(opening())
+            appendLine("Below are the words I have so far, out of Spross, the app I learn with.")
             appendLine()
             appendLine(protocol())
             if (freeCount > 0) {
                 appendLine()
-                appendLine("MAY USE FREELY — $freeCount words the learner has consolidated")
+                appendLine("WORDS I HAVE — $freeCount I have made mine; say anything to me in these")
                 for (area in free) appendLine("${area.title}: ${area.words.joinToString(", ")}")
             }
             if (inPlay.isNotEmpty()) {
                 appendLine()
                 appendLine(
-                    "WORTH REACHING FOR — ${inPlay.size} words being learned right now. " +
-                        "Where the talk goes near one, reach for it; where it does not, leave it.",
+                    "WORDS I AM LEARNING RIGHT NOW — ${inPlay.size} of them. Where the talk goes " +
+                        "near one, reach for it; where it does not, leave it.",
                 )
                 for (word in inPlay) appendLine("${word.target} = ${word.source}")
             }
             if (newWords.isNotEmpty()) {
                 appendLine()
                 appendLine(
-                    "COMING UP — what the app teaches next. When you add a word of your own, " +
-                        "one of these lands best, but any word the conversation needs is fine.",
+                    "WHAT THE APP TEACHES ME NEXT — when you bring in a word of your own, one of " +
+                        "these lands best, but any word the conversation needs is fine.",
                 )
                 for (word in newWords) appendLine("${word.target} (${word.source})")
             }
@@ -88,9 +89,19 @@ data class Briefing(
             append(closing())
         }
 
-    private fun who(): String {
-        val name = learnerName?.trim()?.takeIf { it.isNotEmpty() } ?: "The learner"
-        return "$name knows $sourceName and is learning $targetName."
+    /**
+     * The learner's own opening line, because the brief is theirs to hand over.
+     *
+     * FIRST PERSON throughout, and not a flourish: this text is pasted into a chat as the
+     * learner's first message, or into the standing-instructions field an assistant keeps
+     * for what its user is like — both of which are written in the user's voice, and the
+     * second of which reads a third-person "the learner has 60 words" as a document about
+     * somebody who is not in the room.
+     */
+    private fun opening(): String {
+        val name = learnerName?.trim()?.takeIf { it.isNotEmpty() }
+        val who = if (name == null) "I am" else "I, $name, am"
+        return "$who learning $targetName — my own language is $sourceName."
     }
 
     /**
@@ -109,18 +120,18 @@ data class Briefing(
      * clauses at someone who has met nouns.
      */
     private fun protocol(): String = listOf(
-        "You are a conversation partner for someone learning $targetName. Speak $targetName,",
-        "explain in $sourceName, and only when they stall or ask.",
-        "Talk about whatever they want to talk about, and follow where they take it.",
+        "Be my conversation partner. Talk to me in $targetName;",
+        "explain in $sourceName, and only where I stall or ask you to.",
+        "We talk about whatever I bring up, and you follow where I take it.",
         "Build what you say out of the words below — that is the one thing that matters here.",
         "Bring in a word of your own where the conversation needs one, one or two at a time,",
-        "glossed in $sourceName the first time. Never bend the conversation toward a word:",
-        "a word forced into a turn that had no room for it teaches nothing.",
-        "This app teaches WORDS, not grammar: assume no instruction in tense, case or",
-        "agreement, and keep sentences short and concrete.",
-        "Ask one question per turn and wait for the answer.",
-        "Correct at most one mistake per turn, in $sourceName, after answering what was said.",
-        "Never list vocabulary back at the learner. Talk.",
+        "and gloss it in $sourceName the first time. Never bend the conversation toward a word:",
+        "a word forced into a turn that had no room for it teaches me nothing.",
+        "The app teaches me WORDS, not grammar: assume I have been taught nothing about tense,",
+        "case or agreement, and keep your sentences short and concrete.",
+        "Ask me one question per turn and wait for my answer.",
+        "Correct at most one mistake per turn, in $sourceName, after answering what I said.",
+        "Never list vocabulary back at me. Talk to me.",
     ).joinToString("\n")
 
     /**
@@ -132,8 +143,8 @@ data class Briefing(
     private fun closing(): String {
         val example = newWords.firstOrNull() ?: inPlay.firstOrNull()
         return listOf(
-            "When the learner says they are done, list the words they met that were new to",
-            "them, one per line as `$targetName = $sourceName`, in a block fenced ```spross:",
+            "When I say I am done, list the words I met that were new to me, one per line",
+            "as `$targetName = $sourceName`, in a block fenced ```spross:",
             "",
             "```spross",
             "${example?.target ?: "…"} = ${example?.source ?: "…"}",
@@ -151,8 +162,8 @@ object Briefings {
     /** How wide the new-word preference is drawn — a round's worth, give or take. */
     const val NEW_LIMIT: Int = 15
 
-    /** What the learner's own shelf is called in a text written in English. */
-    private const val OWN_TITLE: String = "Your own words"
+    /** What the learner's own shelf is called in a text written in their voice. */
+    private const val OWN_TITLE: String = "Words I wrote down myself"
 
     private val IN_PLAY_STAGES = setOf(
         GrowthStage.Learning,

@@ -28,9 +28,9 @@ no taxonomy of its own:
 
 | Block | Sprossen | Form | Why |
 |---|---|---|---|
-| **May use freely** | `Consolidated`, `Matured` | bare target forms, grouped by area | the ground the conversation is built out of; the assistant knows what they mean, so glosses would only cost room |
-| **Worth reaching for** | `Learning`, `Fresh`, `Relearning` | `target = source` pairs | the words the box is spending its effort on — reached for where the talk passes them |
-| **Coming up** | `Growth.newCandidates` | `target (source)` pairs | where to reach first when adding a word — see below |
+| **Words I have** | `Consolidated`, `Matured` | bare target forms, grouped by area | the ground the conversation is built out of; the assistant knows what they mean, so glosses would only cost room |
+| **Words I am learning right now** | `Learning`, `Fresh`, `Relearning` | `target = source` pairs | the words the box is spending its effort on — reached for where the talk passes them |
+| **What the app teaches me next** | `Growth.newCandidates` | `target (source)` pairs | where to reach first when adding a word — see below |
 | **Held back** | `Unscheduled`, `Queued` | not named at all | listing 800 words to forbid them would be the whole catalog with a "no" on it |
 
 `Suspended` is in none of them:
@@ -58,37 +58,36 @@ any word the conversation actually needs is fine.
 ### The brief, worked
 
 ```
-Spross — vocabulary brief
-Anna knows German and is learning Swahili.
-214 words consolidated, 31 in play.
+I, Anna, am learning Swahili — my own language is German.
+Below are the words I have so far, out of Spross, the app I learn with.
 
-You are a conversation partner for someone learning Swahili. Speak Swahili,
-explain in German, and only when they stall or ask.
-Talk about whatever they want to talk about, and follow where they take it.
+Be my conversation partner. Talk to me in Swahili;
+explain in German, and only where I stall or ask you to.
+We talk about whatever I bring up, and you follow where I take it.
 Build what you say out of the words below — that is the one thing that matters here.
 Bring in a word of your own where the conversation needs one, one or two at a time,
-glossed in German the first time. Never bend the conversation toward a word:
-a word forced into a turn that had no room for it teaches nothing.
-This app teaches WORDS, not grammar: assume no instruction in tense, case or
-agreement, and keep sentences short and concrete.
-Ask one question per turn and wait for the answer.
-Correct at most one mistake per turn, in German, after answering what was said.
-Never list vocabulary back at the learner. Talk.
+and gloss it in German the first time. Never bend the conversation toward a word:
+a word forced into a turn that had no room for it teaches me nothing.
+The app teaches me WORDS, not grammar: assume I have been taught nothing about tense,
+case or agreement, and keep your sentences short and concrete.
+Ask me one question per turn and wait for my answer.
+Correct at most one mistake per turn, in German, after answering what I said.
+Never list vocabulary back at me. Talk to me.
 
-MAY USE FREELY — 214 words the learner has consolidated
+WORDS I HAVE — 214 I have made mine; say anything to me in these
 In the bathroom: bafu, kuoga, sabuni, taulo, mswaki …
 In the kitchen: jiko, sufuria, kisu, sahani …
 
-WORTH REACHING FOR — 31 words being learned right now. Where the talk goes near one, reach for it; where it does not, leave it.
+WORDS I AM LEARNING RIGHT NOW — 31 of them. Where the talk goes near one, reach for it; where it does not, leave it.
 kusubiri = warten
 ratiba = Fahrplan
 
-COMING UP — what the app teaches next. When you add a word of your own, one of these lands best, but any word the conversation needs is fine.
+WHAT THE APP TEACHES ME NEXT — when you bring in a word of your own, one of these lands best, but any word the conversation needs is fine.
 abiria (Fahrgast)
 tikiti (Fahrkarte)
 
-When the learner says they are done, list the words they met that were new to
-them, one per line as `Swahili = German`, in a block fenced ```spross:
+When I say I am done, list the words I met that were new to me, one per line
+as `Swahili = German`, in a block fenced ```spross:
 
 ```spross
 abiria = Fahrgast
@@ -99,6 +98,12 @@ The grammar line is load-bearing for the same reason the offers are soft:
 the box teaches words and conjugates nothing,
 so an assistant left to assume otherwise
 writes perfect subordinate clauses at someone who has met nouns.
+
+**In the learner's own voice.** It is pasted either as a first message or into the
+standing-instructions field an assistant keeps for what its user is like,
+and both of those are written first person:
+a third-person "the learner has 60 words" reads there as a document about somebody
+who is not in the room. Without a name in the profile it opens "I am learning …" and loses nothing.
 
 **English, and in kern**, on `Feedback`'s ruling and for its reasons:
 the reader is a machine rather than the learner's device,
