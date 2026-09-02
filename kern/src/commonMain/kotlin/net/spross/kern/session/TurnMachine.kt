@@ -16,9 +16,10 @@ import net.spross.kern.model.Rating
  * TWO answer languages reach it, because a card asked by ear asks what the word MEANS:
  * [grader]/[normalizer] grade the target word with the whole join in view, and
  * [meaningNormalizer] — the SOURCE language's own, articles and all — grades the meaning.
- * The meaning side deliberately has no catalog-wide grader: naming the other concept a
- * learner's word belongs to teaches a word in the language being LEARNED, and the source
- * side is the one they already have.
+ * The join serves both, answering a different question on each side: which concept a typed
+ * TARGET word belongs to, and which meanings a prompted target form is printed with. It
+ * still never NAMES the other concept on the meaning side — that would teach a word in the
+ * language being learned, where the source side is the one the learner already has.
  *
  * What stays with the platform: the text field and its keyboard, focus order, animation,
  * sound PLAYBACK and haptics, and reading the accessibility flags. The RULES those serve —
@@ -153,11 +154,16 @@ class TurnMachine(
             return unchanged(state)
         }
         val graded = grade(state, trimmed)
-        return when {
-            graded == Match.Exact -> accepted(state)
-            graded is Match.Typo -> holding(state, graded.corrected, AlmostReason.Typo, graded.producedRating())
-            graded is Match.OtherWord -> missed(state, text, graded)
-            else -> missed(state, text, null)
+        // why: a meaning borrowed from the concept next door is right and books as much, but
+        // the word this card teaches has still not been said — so it holds on it (§3).
+        if (graded.merged) {
+            return holding(state, state.card.source.text, AlmostReason.Merged, graded.match.producedRating())
+        }
+        return when (val verdict = graded.match) {
+            Match.Exact -> accepted(state)
+            is Match.Typo -> holding(state, verdict.corrected, AlmostReason.Typo, verdict.producedRating())
+            is Match.OtherWord -> missed(state, text, verdict)
+            Match.Wrong -> missed(state, text, null)
         }
     }
 
@@ -195,10 +201,16 @@ class TurnMachine(
         return if (kept.isEmpty()) "" else "$kept "
     }
 
+    /**
+     * Live green is THIS card's answer and no other: a borrowed meaning is right, but it
+     * holds on the word the card teaches ([submit]), and a beat armed here would carry the
+     * turn away before that word was ever seen.
+     */
     private fun isExact(state: TurnState, text: String): Boolean {
         val trimmed = text.trim()
         if (trimmed.isEmpty()) return false
-        return grade(state, trimmed) == Match.Exact
+        val graded = grade(state, trimmed)
+        return graded.match == Match.Exact && !graded.merged
     }
 
     /**
@@ -208,13 +220,30 @@ class TurnMachine(
      * played proves the ear worked and nothing else — so it is graded by the source
      * language's normalizer, whose articles and typo budget are the ones the learner is
      * writing under. Every other turn owes the target word, with the whole join in view.
+     *
+     * The meaning side reads the join too, from the other end: the form that played may be
+     * printed by more than one concept, because the target language merges what the source
+     * splits (sw `kuacha` is verlassen AND aufhören), and every meaning it carries is a
+     * right answer to what it means. The prompted card leads — its own verdict wins where
+     * it has one — and a borrowed one comes back [Graded.merged], for [submit] to hold on.
      */
-    private fun grade(state: TurnState, text: String): Match =
-        if (state.prompt == ProducePrompt.Sound) {
-            meaningNormalizer.evaluate(text, meaningSide(state.card))
-        } else {
-            grader.grade(text, state.card)
-        }
+    private fun grade(state: TurnState, text: String): Graded {
+        if (state.prompt != ProducePrompt.Sound) return Graded(grader.grade(text, state.card))
+        val own = meaningNormalizer.evaluate(text, meaningSide(state.card))
+        if (own == Match.Exact) return Graded(own)
+        val shared = grader.conceptsSharing(state.promptForm, state.card)
+            .map { meaningNormalizer.evaluate(text, meaningSide(it)) }
+        shared.firstOrNull { it == Match.Exact }?.let { return Graded(it, merged = true) }
+        // A slip is forgiven against the word it was aiming at, and the prompted card owns
+        // its own slips first — the same order the normalizer keeps a card's text ahead of
+        // its variants in.
+        if (own != Match.Wrong) return Graded(own)
+        shared.firstOrNull { it is Match.Typo }?.let { return Graded(it, merged = true) }
+        return Graded(own)
+    }
+
+    /** A verdict, plus whether it was earned on a meaning this card does not itself teach. */
+    private data class Graded(val match: Match, val merged: Boolean = false)
 
     private fun answerNormalizer(state: TurnState): AnswerNormalizer =
         if (state.prompt == ProducePrompt.Sound) meaningNormalizer else normalizer

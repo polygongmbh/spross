@@ -217,6 +217,7 @@ private fun AlmostHold(model: AppModel, flow: TurnFlow, hold: TurnFeedback.Almos
     val caption = when (hold.reason) {
         AlmostReason.Typo -> chrome.sessionAlmostTypo
         AlmostReason.Heard -> chrome.sessionAlmostHeard
+        AlmostReason.Merged -> chrome.sessionAlmostMerged
     }
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
         AlmostCorrection(

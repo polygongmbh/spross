@@ -40,6 +40,13 @@ enum class AlmostReason {
 
     /** A form this very card accepts, just not the one that played (a sound prompt). */
     Heard,
+
+    /**
+     * A meaning the word that played really carries, owned by another concept —
+     * the target language merges what the source splits. Full credit; what is owed
+     * back is the meaning THIS card teaches, which is the one still to be learned.
+     */
+    Merged,
 }
 
 /**

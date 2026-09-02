@@ -130,6 +130,7 @@ internal object ChromeEn : Chrome {
     override val trainerRunStreak = "🔥 %s in a row"
     override val sessionAlmostTypo = "Almost! Correct spelling"
     override val sessionAlmostHeard = "You heard"
+    override val sessionAlmostMerged = "Right — it also means"
     override val lettersMutedTitle = "Sound is off"
     override val lettersMutedEnable = "Turn sound on"
     override val trainerResultTasksDoneOne = "%d task 🎯"

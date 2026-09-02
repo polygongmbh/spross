@@ -231,6 +231,7 @@ extension AnswerInputView.AlmostReason {
         switch reason {
         case .typo: self = .typo
         case .heard: self = .heard
+        case .merged: self = .merged
         }
     }
 }

@@ -5,6 +5,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.Rating
@@ -242,9 +243,63 @@ class TurnTest {
     }
 
     @Test
+    fun aMergedWordsOtherMeaningIsFullCredit() {
+        // sw kuacha is verlassen AND aufhören: what the word means is what the turn asked.
+        val held = TurnFixture.step(byEar(TurnFixture.leave), TurnIntent.Submit("aufhören"))
+        assertEquals(TurnFeedback.Almost("verlassen", AlmostReason.Merged), held.state.feedback)
+        assertEquals(Rating.Good, held.state.pendingRating)
+        assertEquals(listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ReleaseFocus), held.effects)
+
+        // One answer, one review, on the card that was asked.
+        val booked = TurnFixture.step(held.state, TurnIntent.ConfirmPending)
+        assertEquals(listOf(TurnEffect.Answer(Rating.Good)), booked.effects)
+        assertEquals("leave", booked.state.card.id)
+    }
+
+    @Test
+    fun aSlipInAMergedMeaningIsCreditedLikeAnyOther() {
+        val held = TurnFixture.step(byEar(TurnFixture.leave), TurnIntent.Submit("aufhöre"))
+        assertEquals(TurnFeedback.Almost("verlassen", AlmostReason.Merged), held.state.feedback)
+        assertEquals(Rating.Hard, held.state.pendingRating)
+    }
+
+    @Test
+    fun theCardsOwnMeaningNeverBecomesABorrowedOne() {
+        // Its own answer is clean and moves on; only a borrowed meaning holds.
+        val clean = TurnFixture.step(byEar(TurnFixture.leave), TurnIntent.Submit("verlassen"))
+        assertEquals(TurnFeedback.Correct, clean.state.feedback)
+        // And its own slip is corrected to its own word, not to the concept next door.
+        val held = TurnFixture.step(byEar(TurnFixture.leave), TurnIntent.Submit("verlasen"))
+        assertEquals(TurnFeedback.Almost("verlassen", AlmostReason.Typo), held.state.feedback)
+    }
+
+    @Test
+    fun aBorrowedMeaningWaitsForTheWordTheCardTeaches() {
+        // Live green would carry the turn off before "verlassen" was ever on screen.
+        val typing = TurnFixture.step(byEar(TurnFixture.leave), TurnIntent.InputChanged("aufhören"))
+        assertEquals(TurnFeedback.Neutral, typing.state.feedback)
+        assertEquals(emptyList(), typing.effects)
+    }
+
+    @Test
+    fun theWrittenPromptCreditsTheMergeToo() {
+        val written = TurnFixture.step(byEar(TurnFixture.leave), TurnIntent.ShowPromptText)
+        val held = TurnFixture.step(written.state, TurnIntent.Submit("aufhören"))
+        assertEquals(TurnFeedback.Almost("verlassen", AlmostReason.Merged), held.state.feedback)
+    }
+
+    @Test
+    fun theMergeNeverReachesTheProduceDirection() {
+        // Asked FROM "verlassen", the answer owed is the Swahili word — the other concept's
+        // source text is not an answer at all, and the target side still tells words apart.
+        val seen = TurnFixture.produce(TurnFixture.leave)
+        assertEquals(TurnFeedback.Revealed, TurnFixture.state(seen, TurnIntent.Submit("aufhören")).feedback)
+    }
+
+    @Test
     fun aWrongMeaningRevealsAndPrimesAndNamesNoOtherWord() {
-        // The meaning side has no catalog-wide grader: another concept's word in the language
-        // the learner already HAS is nothing to teach them, so it misses like any other word.
+        // Only a meaning the played word really carries is credited; nothing else widens,
+        // and the meaning side still names no word in the language being learned.
         val taken = TurnFixture.step(byEar(), TurnIntent.Submit("Messer"))
         assertEquals(TurnFeedback.Revealed, taken.state.feedback)
         assertNull(taken.state.otherWord)
@@ -292,6 +347,6 @@ class TurnTest {
         TurnFixture.state(TurnFixture.produce(TurnFixture.language), TurnIntent.Submit("neno"))
 
     /** The sound-prompted produce turn: "gari" played, nothing on screen. */
-    private fun byEar(): TurnState =
-        TurnFixture.produce(TurnFixture.car, prompt = ProducePrompt.Sound)
+    private fun byEar(card: Card = TurnFixture.car): TurnState =
+        TurnFixture.produce(card, prompt = ProducePrompt.Sound)
 }

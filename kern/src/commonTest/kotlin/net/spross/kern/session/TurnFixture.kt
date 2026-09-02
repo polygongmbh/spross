@@ -56,8 +56,12 @@ internal object TurnFixture {
         sourceSynonyms = listOf("Wagen"),
     )
 
+    /** The merge the catalog documents: one Swahili verb printed by two German concepts. */
+    val leave = card("leave", "verlassen", "kuacha", CardKind.Verb, seedIndex = 5)
+    val quit = card("quit", "aufhören", "kuacha", CardKind.Verb, seedIndex = 6)
+
     private val machine = TurnMachine(
-        CatalogAnswerGrader(normalizer, listOf(knife, open, close, language, car)),
+        CatalogAnswerGrader(normalizer, listOf(knife, open, close, language, car, leave, quit)),
         normalizer,
         meaningNormalizer,
     )

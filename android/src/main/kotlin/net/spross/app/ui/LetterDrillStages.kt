@@ -165,6 +165,7 @@ private fun AnswerLine(
             val caption = when (it.reason) {
                 AlmostReason.Typo -> chrome.sessionAlmostTypo
                 AlmostReason.Heard -> chrome.sessionAlmostHeard
+                AlmostReason.Merged -> chrome.sessionAlmostMerged
             }
             AlmostCorrection(
                 caption, it.correctForm, chrome,

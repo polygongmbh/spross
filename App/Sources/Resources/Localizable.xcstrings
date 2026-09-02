@@ -4878,6 +4878,22 @@
         }
       }
     },
+    "session.almost.merged" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stimmt — heißt auch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Right — it also means"
+          }
+        }
+      }
+    },
     "session.almost.typo" : {
       "localizations" : {
         "de" : {
