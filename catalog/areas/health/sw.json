@@ -41,6 +41,9 @@
   "death": { "text": "kifo", "grammar": { "plural": "vifo" } },
   "to-die": { "text": "kufa" },
   "allergy": { "text": "mzio", "grammar": { "plural": "mizio" } },
+  "lung": { "text": "pafu", "grammar": { "plural": "mapafu" } },
+  "liver": { "text": "ini", "grammar": { "plural": "maini" } },
+  "kidney": { "text": "figo", "grammar": { "plural": "mafigo" } },
   "my-throat-hurts-a-lot": { "text": "Koo linaniuma sana." },
   "ive-had-a-fever-since-yesterday": { "text": "Nina homa tangu jana." },
   "get-well-soon": {
