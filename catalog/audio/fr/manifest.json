@@ -16,6 +16,219 @@
     "Vion Nicolas": "CC BY 2.0 fr",
     "WikiLucas00": "CC BY-SA 4.0"
   },
+  "calendar": {
+    "août": {
+      "author": "Vion Nicolas",
+      "capPhone": 0.2,
+      "file": "calendar/aou00fbt.mp3",
+      "gain": -2.9,
+      "gainPhone": 3.9,
+      "matches": "août",
+      "sha256": "2c85bc54359446b11a93517a56dad235dc86e0313f30a10cddf7ee0eef488375",
+      "snr": 37.3,
+      "source": "Fr-août.ogg"
+    },
+    "avril": {
+      "author": "Vion Nicolas",
+      "file": "calendar/avril.mp3",
+      "gain": -0.6,
+      "gainPhone": 1.2,
+      "lead": 127,
+      "matches": "avril",
+      "sha256": "e581fa6325e2fff6db95bc5dc7738566aab458ed2dc7874fdbd7b128940db335",
+      "snr": 50.6,
+      "source": "Fr-avril.ogg"
+    },
+    "dimanche": {
+      "author": "Poslovitch",
+      "file": "calendar/dimanche.mp3",
+      "gain": 5.9,
+      "gainPhone": 4.2,
+      "lead": 185,
+      "matches": "dimanche",
+      "sha256": "7c7015ddcf15dca24fe0285f172d6748070bc88e1169d2eb0a16d9d4f3476316",
+      "snr": 47.7,
+      "source": "LL-Q150 (fra)-Poslovitch-dimanche.wav"
+    },
+    "décembre": {
+      "author": "Vion Nicolas",
+      "file": "calendar/du00e9cembre.mp3",
+      "gain": -1.8,
+      "gainPhone": -1.0,
+      "lead": 196,
+      "matches": "décembre",
+      "sha256": "e20e216ca31a7ce437cc1686f577af54b0ce718df8468d6ab7277d47da648ba6",
+      "snr": 46.6,
+      "source": "Fr-décembre.ogg"
+    },
+    "février": {
+      "author": "Vion Nicolas",
+      "file": "calendar/fu00e9vrier.mp3",
+      "gain": -1.8,
+      "gainPhone": -1.4,
+      "lead": 74,
+      "matches": "février",
+      "sha256": "84430decd97880fe94764264f66ec913fabb1de20e20a1623bee450846b5344d",
+      "snr": 47.2,
+      "source": "Fr-février.ogg"
+    },
+    "janvier": {
+      "author": "Vion Nicolas",
+      "capPhone": 0.7,
+      "file": "calendar/janvier.mp3",
+      "gain": 1.0,
+      "gainPhone": 3.9,
+      "lead": 44,
+      "matches": "janvier",
+      "sha256": "21e7187fa646677e6bc1095f6cf965803765492c15623c8e0e07a90c6ee321f6",
+      "snr": 50.8,
+      "source": "Fr-janvier.ogg"
+    },
+    "jeudi": {
+      "author": "Poslovitch",
+      "file": "calendar/jeudi.mp3",
+      "gain": 5.0,
+      "gainPhone": 2.7,
+      "lead": 110,
+      "matches": "jeudi",
+      "sha256": "682e54ff3653f9b8bf306da317e0cbfff03fa300c9180763c00117e01da81ebe",
+      "snr": 48.1,
+      "source": "LL-Q150 (fra)-Poslovitch-jeudi.wav"
+    },
+    "juillet": {
+      "author": "Vion Nicolas",
+      "file": "calendar/juillet.mp3",
+      "gain": -2.7,
+      "gainPhone": -3.1,
+      "lead": 137,
+      "matches": "juillet",
+      "sha256": "a2641e8736e30004378e57cbf38727afd885cd56e64caf6236f73f1db44b8a9a",
+      "snr": 49.3,
+      "source": "Fr-juillet.ogg"
+    },
+    "juin": {
+      "author": "Vion Nicolas",
+      "file": "calendar/juin.mp3",
+      "gain": -0.5,
+      "gainPhone": 2.1,
+      "lead": 202,
+      "matches": "juin",
+      "sha256": "678d810dced76911a1916bcd93b5a2f084e5f1a5f848c0ef9e4d98d49ec02c37",
+      "snr": 51.8,
+      "source": "Fr-juin.ogg"
+    },
+    "lundi": {
+      "author": "Poslovitch",
+      "file": "calendar/lundi.mp3",
+      "gain": 5.2,
+      "gainPhone": 1.3,
+      "lead": 74,
+      "matches": "lundi",
+      "sha256": "70de59f4b478365a24da2fd444617a4cc83187163b973da82c4245a7bec402a5",
+      "snr": 50.4,
+      "source": "LL-Q150 (fra)-Poslovitch-lundi.wav"
+    },
+    "mai": {
+      "author": "Vion Nicolas",
+      "file": "calendar/mai.mp3",
+      "gain": -2.9,
+      "gainPhone": 1.6,
+      "lead": 199,
+      "matches": "mai",
+      "sha256": "f831fe7149fb1469c0213527a9e1a9ab3339a98e4877bcd61258c958da686daa",
+      "snr": 50.0,
+      "source": "Fr-mai.ogg"
+    },
+    "mardi": {
+      "author": "Poslovitch",
+      "file": "calendar/mardi.mp3",
+      "gain": 4.3,
+      "gainPhone": 3.0,
+      "lead": 232,
+      "matches": "mardi",
+      "sha256": "6b5608e3af4cddd082624799d0b6ccc3572f8ed248bef4309085eb6a77d58368",
+      "snr": 52.1,
+      "source": "LL-Q150 (fra)-Poslovitch-mardi.wav"
+    },
+    "mars": {
+      "author": "Vion Nicolas",
+      "file": "calendar/mars.mp3",
+      "gainPhone": 3.6,
+      "lead": 235,
+      "matches": "mars",
+      "sha256": "cb5d2475fa3576b3000ec77f3e61067b7b2b705206d28fbfcc9889b5b7a85b71",
+      "snr": 54.5,
+      "source": "Fr-mars.ogg"
+    },
+    "mercredi": {
+      "author": "Poslovitch",
+      "file": "calendar/mercredi.mp3",
+      "gain": 1.4,
+      "gainPhone": -4.0,
+      "lead": 210,
+      "matches": "mercredi",
+      "sha256": "badfbb48b2bcb4a0723c59a344c6349bdc63dd0ce3e63d4aa718e2e091beac7a",
+      "snr": 55.0,
+      "source": "LL-Q150 (fra)-Poslovitch-mercredi.wav"
+    },
+    "novembre": {
+      "author": "Vion Nicolas",
+      "capPhone": 0.8,
+      "file": "calendar/novembre.mp3",
+      "gain": -3.8,
+      "gainPhone": 3.9,
+      "lead": 205,
+      "matches": "novembre",
+      "sha256": "73352d00f364b410eb0b1229f9d64fe0bcfd99bd7deefe2822f746f0e899f9bf",
+      "snr": 52.3,
+      "source": "Fr-novembre.ogg"
+    },
+    "octobre": {
+      "author": "Vion Nicolas",
+      "capPhone": 1.4,
+      "file": "calendar/octobre.mp3",
+      "gain": 0.2,
+      "gainPhone": 4.2,
+      "lead": 215,
+      "matches": "octobre",
+      "sha256": "3cc3c07521b236b5b8f73f4aa5c152445da8993562990019e551938bcf21f8bd",
+      "snr": 51.0,
+      "source": "Fr-octobre.ogg"
+    },
+    "samedi": {
+      "author": "Poslovitch",
+      "file": "calendar/samedi.mp3",
+      "gain": 1.5,
+      "gainPhone": -3.2,
+      "lead": 83,
+      "matches": "samedi",
+      "sha256": "da4aaee02ec74acf77e09ed17b8230c4adcc2676d8e58744b86995ced11ab9ef",
+      "snr": 54.5,
+      "source": "LL-Q150 (fra)-Poslovitch-samedi.wav"
+    },
+    "septembre": {
+      "author": "Vion Nicolas",
+      "file": "calendar/septembre.mp3",
+      "gain": -0.8,
+      "gainPhone": -0.8,
+      "lead": 137,
+      "matches": "septembre",
+      "sha256": "7ed5ea412caeeba7806d15dc3ba02c22c90cdc6a00f631c27488edc3651b810f",
+      "snr": 46.7,
+      "source": "Fr-septembre.ogg"
+    },
+    "vendredi": {
+      "author": "Poslovitch",
+      "file": "calendar/vendredi.mp3",
+      "gain": 3.1,
+      "gainPhone": 6.0,
+      "lead": 229,
+      "matches": "vendredi",
+      "sha256": "361d9b4a40d573f0f50dd41cebef668cac48734c23d35df0953137b89759d20d",
+      "snr": 51.0,
+      "source": "LL-Q150 (fra)-Poslovitch-vendredi.wav"
+    }
+  },
   "language": "fr",
   "letters": {
     "h": {

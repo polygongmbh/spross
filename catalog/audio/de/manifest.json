@@ -2628,14 +2628,157 @@
   },
   "authors": {
     "Bleibein": "CC BY-SA 3.0",
+    "Cyrotux": "CC BY-SA 2.5",
     "Dinock90": "CC BY-SA 4.0",
     "Jeuwre": "CC BY-SA 4.0",
     "Kampy": "CC BY-SA 3.0",
     "Natschoba": "CC BY-SA 4.0",
+    "Netzize~commonswiki": "CC BY-SA 3.0",
+    "Pill": "CC BY-SA 3.0",
     "T.Voekler": "CC BY-SA 3.0",
     "User:Tosca": "CC BY-SA 3.0",
     "Wikimedia Commons user Jakob.scholbach": "CC BY-SA 3.0",
     "joni": "CC BY-SA 3.0"
+  },
+  "calendar": {
+    "April": {
+      "author": "joni",
+      "file": "calendar/april.mp3",
+      "gain": 3.3,
+      "gainPhone": -0.5,
+      "matches": "April",
+      "sha256": "9948559efe266d6483b75393fe4944b3576f7eae68889c342ea678c74173cf3f",
+      "snr": 33.6,
+      "source": "De-April.ogg"
+    },
+    "August": {
+      "author": "Cyrotux",
+      "file": "calendar/august.mp3",
+      "gain": 16.3,
+      "gainPhone": 15.7,
+      "lead": 66,
+      "matches": "August",
+      "sha256": "946e905fa8b57108d8255f1b02757cf5ed44be7961c5a1cf203a681e92d63f01",
+      "snr": 26.3,
+      "source": "De-August.ogg"
+    },
+    "Dezember": {
+      "author": "joni",
+      "file": "calendar/dezember.mp3",
+      "gain": 3.8,
+      "gainPhone": -1.0,
+      "matches": "Dezember",
+      "sha256": "7db9a266bef6fb1dbc25c09681d24efc82553d0def2d8651bbd9474238fa8741",
+      "snr": 26.9,
+      "source": "De-Dezember.ogg"
+    },
+    "Dienstag": {
+      "author": "Jeuwre",
+      "file": "calendar/dienstag.mp3",
+      "gain": -2.6,
+      "gainPhone": -0.8,
+      "lead": 344,
+      "matches": "Dienstag",
+      "sha256": "d350fd7f6abdaa06757c32c29f619ece3302f5ba06e73d58b281debbc1eecd1c",
+      "snr": 86.7,
+      "source": "De-Dienstag.ogg"
+    },
+    "Februar": {
+      "author": "Netzize~commonswiki",
+      "cap": 0.5,
+      "capPhone": 2.3,
+      "file": "calendar/februar.mp3",
+      "gain": 2.4,
+      "gainPhone": 2.4,
+      "matches": "Februar",
+      "sha256": "015d949b20252402e9a9a535bf39f45773b1fce72fd60ab9eafccca7534fe4e7",
+      "snr": 32.5,
+      "source": "De-Februar.ogg"
+    },
+    "Freitag": {
+      "author": "Jeuwre",
+      "file": "calendar/freitag.mp3",
+      "gain": 0.4,
+      "gainPhone": -3.6,
+      "lead": 409,
+      "matches": "Freitag",
+      "sha256": "894baf5f2d8abd9df111f92d58721bbcdf4fdfd72a3e36e018c0f328643334cf",
+      "snr": 85.5,
+      "source": "De-Freitag.ogg"
+    },
+    "Januar": {
+      "author": "joni",
+      "file": "calendar/januar.mp3",
+      "gain": 4.4,
+      "gainPhone": 3.2,
+      "matches": "Januar",
+      "sha256": "5787049c8b11550c9a1fd1ec810c24b4b595cb1fd462832ba3154abfcf540b37",
+      "snr": 28.7,
+      "source": "De-Januar.ogg"
+    },
+    "Mai": {
+      "author": "joni",
+      "file": "calendar/mai.mp3",
+      "gain": 3.9,
+      "gainPhone": 0.2,
+      "matches": "Mai",
+      "sha256": "2ba6ff8495de76a63c55fbeefcce451a11786767c658dc18958d3345ac61b075",
+      "snr": 21.8,
+      "source": "De-Mai.ogg"
+    },
+    "Montag": {
+      "author": "Jeuwre",
+      "file": "calendar/montag.mp3",
+      "gain": -5.4,
+      "gainPhone": -4.1,
+      "lead": 439,
+      "matches": "Montag",
+      "sha256": "fa2dbace8d30f90dc0aeec3e8996b168bb684c08a36eea37c96aa4eac1b4474d",
+      "snr": 87.0,
+      "source": "De-Montag.ogg"
+    },
+    "März": {
+      "author": "joni",
+      "file": "calendar/mu00e4rz.mp3",
+      "gain": 6.7,
+      "gainPhone": 0.9,
+      "matches": "März",
+      "sha256": "f4a053b4667d3c0abdb06aa5fa44760903bbc885b5c6d9b27279c33225621ee0",
+      "snr": 29.4,
+      "source": "De-März.ogg"
+    },
+    "Samstag": {
+      "author": "Jeuwre",
+      "file": "calendar/samstag.mp3",
+      "gain": 1.3,
+      "gainPhone": -1.4,
+      "lead": 444,
+      "matches": "Samstag",
+      "sha256": "0f40419008314bd9d54e16ed1124bd136b99da73caf5aea519f95cebe7b87f90",
+      "snr": 83.8,
+      "source": "De-Samstag.ogg"
+    },
+    "Sonnabend": {
+      "author": "Jeuwre",
+      "file": "calendar/sonnabend.mp3",
+      "gain": -0.4,
+      "gainPhone": -1.9,
+      "lead": 347,
+      "matches": "Sonnabend",
+      "sha256": "7bbc38c6f7430d5e8458af12e9b44ac23d061d6c1e0875b8c3224b3b185d55b7",
+      "snr": 86.0,
+      "source": "De-Sonnabend.ogg"
+    },
+    "Sonntag": {
+      "author": "Pill",
+      "file": "calendar/sonntag.mp3",
+      "gain": 3.0,
+      "gainPhone": 4.2,
+      "matches": "Sonntag",
+      "sha256": "a30d0aadd6ac9451ffe604cd047c42496155f4b1a1a4d7e6dd61ad32766d16d2",
+      "snr": 25.8,
+      "source": "De-Sonntag.ogg"
+    }
   },
   "language": "de",
   "letters": {
@@ -2711,6 +2854,7 @@
     }
   },
   "licenses": {
+    "CC BY-SA 2.5": "https://creativecommons.org/licenses/by-sa/2.5/",
     "CC BY-SA 3.0": "https://creativecommons.org/licenses/by-sa/3.0/",
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/"
   },

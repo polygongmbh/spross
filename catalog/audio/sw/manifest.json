@@ -3,6 +3,215 @@
     "Goethe-Institut Cameroon": "CC BY-SA 4.0",
     "Waithera Were": "CC BY-SA 4.0"
   },
+  "calendar": {
+    "Agosti": {
+      "author": "Waithera Were",
+      "file": "calendar/agosti.mp3",
+      "gain": -8.1,
+      "gainPhone": -11.9,
+      "lead": 48,
+      "matches": "Agosti",
+      "sha256": "ab6c54dc626c759df335f598e40a437d6ba4eb10c9a747e51625ec8625751bef",
+      "snr": 50.5,
+      "source": "Sw-ke-Agosti.flac"
+    },
+    "Alhamisi": {
+      "author": "Waithera Were",
+      "file": "calendar/alhamisi.mp3",
+      "gain": -1.7,
+      "gainPhone": -8.1,
+      "lead": 47,
+      "matches": "Alhamisi",
+      "sha256": "a4edb50b480142cc11719f159e12118a1f3806d17bd31e16c0752bc37791e930",
+      "snr": 56.1,
+      "source": "Sw-ke-Alhamisi.flac"
+    },
+    "Aprili": {
+      "author": "Waithera Were",
+      "file": "calendar/aprili.mp3",
+      "gain": -5.1,
+      "gainPhone": -11.8,
+      "lead": 44,
+      "matches": "Aprili",
+      "sha256": "95ec45dfe6550ab289a238ad78ee694f912fbf5edd4a17fb3a6d2742dcc6463e",
+      "snr": 51.1,
+      "source": "Sw-ke-Aprili.flac"
+    },
+    "Desemba": {
+      "author": "Waithera Were",
+      "file": "calendar/desemba.mp3",
+      "gain": -7.1,
+      "gainPhone": -13.3,
+      "lead": 33,
+      "matches": "Desemba",
+      "sha256": "a4319cce25eeb649d4b318681b06f60b730d0895fcd96b4b5e0ef92dd7e0c3b5",
+      "snr": 49.8,
+      "source": "Sw-ke-Desemba.flac"
+    },
+    "Februari": {
+      "author": "Waithera Were",
+      "file": "calendar/februari.mp3",
+      "gain": -7.7,
+      "gainPhone": -13.8,
+      "matches": "Februari",
+      "sha256": "581ab0fe72eed16325cf8640030e19da67e6c256982d64b17754d8e2c8aba006",
+      "snr": 44.6,
+      "source": "Sw-ke-Februari.flac"
+    },
+    "Ijumaa": {
+      "author": "Waithera Were",
+      "file": "calendar/ijumaa.mp3",
+      "gain": -1.1,
+      "gainPhone": -8.8,
+      "lead": 40,
+      "matches": "Ijumaa",
+      "sha256": "2ffc7c098b42f51b013fd8604d1a66e8f3e0dee5ef009d0ab6e5f5dd19068f4a",
+      "snr": 52.6,
+      "source": "Sw-ke-Ijumaa.flac"
+    },
+    "Januari": {
+      "author": "Waithera Were",
+      "file": "calendar/januari.mp3",
+      "gain": -5.2,
+      "gainPhone": -12.3,
+      "matches": "Januari",
+      "sha256": "77c0005fd22f8d9f3caff54bcfbca97e4c6c831f6be13a173255946f29483af5",
+      "snr": 34.4,
+      "source": "Sw-ke-Januari.flac"
+    },
+    "Julai": {
+      "author": "Waithera Were",
+      "file": "calendar/julai.mp3",
+      "gain": -8.8,
+      "gainPhone": -16.0,
+      "lead": 34,
+      "matches": "Julai",
+      "sha256": "ae3e11e4cb44818aa18064c2aed1d8d0fd6ad1e6492dfa0035e37d2db55e5628",
+      "snr": 45.2,
+      "source": "Sw-ke-Julai.flac"
+    },
+    "Jumamosi": {
+      "author": "Waithera Were",
+      "file": "calendar/jumamosi.mp3",
+      "gain": -6.8,
+      "gainPhone": -9.9,
+      "lead": 35,
+      "matches": "Jumamosi",
+      "sha256": "014cb4d88a849cd7f698999096e33ec72e312132522edb5ac68d7b2116a0a733",
+      "snr": 53.3,
+      "source": "Sw-ke-Jumamosi.flac"
+    },
+    "Jumanne": {
+      "author": "Waithera Were",
+      "file": "calendar/jumanne.mp3",
+      "gain": -6.2,
+      "gainPhone": -12.0,
+      "lead": 34,
+      "matches": "Jumanne",
+      "sha256": "56a63525b75ff948610f15e2aef07a61ed194a0423546b96ce29703adb9ce119",
+      "snr": 44.3,
+      "source": "Sw-ke-Jumanne.flac"
+    },
+    "Jumapili": {
+      "author": "Waithera Were",
+      "file": "calendar/jumapili.mp3",
+      "gain": -3.0,
+      "gainPhone": -8.3,
+      "lead": 36,
+      "matches": "Jumapili",
+      "sha256": "5b4ff8547cb3a89dd1b38a729bddd92eda14945425a1453493575b2199fe9e07",
+      "snr": 55.9,
+      "source": "Sw-ke-Jumapili.flac"
+    },
+    "Jumatano": {
+      "author": "Waithera Were",
+      "file": "calendar/jumatano.mp3",
+      "gain": -7.9,
+      "gainPhone": -15.4,
+      "lead": 8,
+      "matches": "Jumatano",
+      "sha256": "03cd03ad5d424beee80db3277e5308d01c4fb45ce287dfdfb1d657d7d7edc38c",
+      "snr": 55.8,
+      "source": "Sw-ke-Jumatano.flac"
+    },
+    "Jumatatu": {
+      "author": "Waithera Were",
+      "file": "calendar/jumatatu.mp3",
+      "gain": -9.8,
+      "gainPhone": -17.0,
+      "lead": 35,
+      "matches": "Jumatatu",
+      "sha256": "ead86a667188c60d1e321f9ffda12646e294703791a476cc2c6b582761ec5863",
+      "snr": 48.7,
+      "source": "Sw-ke-Jumatatu.flac"
+    },
+    "Juni": {
+      "author": "Waithera Were",
+      "file": "calendar/juni.mp3",
+      "gain": 1.8,
+      "gainPhone": -0.3,
+      "lead": 10,
+      "matches": "Juni",
+      "sha256": "a052176419f368d49c8519a9757186966f7092781bcd4c9538ceb4475811ac9e",
+      "snr": 47.3,
+      "source": "Sw-ke-Juni.flac"
+    },
+    "Machi": {
+      "author": "Waithera Were",
+      "file": "calendar/machi.mp3",
+      "gain": -7.5,
+      "gainPhone": -15.6,
+      "lead": 45,
+      "matches": "Machi",
+      "sha256": "73e2217e199e0ecd3c8634dd3c8ce0b4043d23ca5569ba1d02de067216cc0db6",
+      "snr": 50.2,
+      "source": "Sw-ke-Machi.flac"
+    },
+    "Mei": {
+      "author": "Waithera Were",
+      "file": "calendar/mei.mp3",
+      "gain": -4.9,
+      "gainPhone": -10.0,
+      "lead": 39,
+      "matches": "Mei",
+      "sha256": "d34e3e55db8e9a813542c31a78d65dc77611f254f88d252c43226bbc9a3e8009",
+      "snr": 57.5,
+      "source": "Sw-ke-Mei.flac"
+    },
+    "Novemba": {
+      "author": "Waithera Were",
+      "file": "calendar/novemba.mp3",
+      "gain": -3.3,
+      "gainPhone": -8.2,
+      "lead": 38,
+      "matches": "Novemba",
+      "sha256": "37583e20bc6155b9fa06da2565aceef92de25612e68a3e3ca92af21eadc3b18f",
+      "snr": 50.8,
+      "source": "Sw-ke-Novemba.flac"
+    },
+    "Oktoba": {
+      "author": "Waithera Were",
+      "file": "calendar/oktoba.mp3",
+      "gain": -4.5,
+      "gainPhone": -8.8,
+      "lead": 45,
+      "matches": "Oktoba",
+      "sha256": "a2987ec922d7adf2db5ee67ef4f23afe357589570f566d68f630f1b1850e6806",
+      "snr": 51.1,
+      "source": "Sw-ke-Oktoba.flac"
+    },
+    "Septemba": {
+      "author": "Waithera Were",
+      "file": "calendar/septemba.mp3",
+      "gain": -6.3,
+      "gainPhone": -12.5,
+      "lead": 33,
+      "matches": "Septemba",
+      "sha256": "e1992fda5a00ed026fde873e87bf95aa1db77435e7d12f2571e4e083bdf0800a",
+      "snr": 47.3,
+      "source": "Sw-ke-Septemba.flac"
+    }
+  },
   "language": "sw",
   "licenses": {
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/"

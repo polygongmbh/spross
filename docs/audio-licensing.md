@@ -13,8 +13,8 @@ lives outside the repo in `data/reference/audio/README.md`.
 
 ## 1. What ships, and under what
 
-3881 mp3 files, ~80 MB, all of them Wikimedia Commons transcodes:
-**2325 CC BY-SA · 1042 CC BY · 514 CC0**.
+3992 mp3 files, ~88 MB, all of them Wikimedia Commons transcodes:
+**2378 CC BY-SA · 1081 CC BY · 532 CC0 · 1 public domain**.
 
 | Pack | Files | Source | Licenses | Speakers | Obligation |
 |---|---|---|---|---|---|
@@ -39,6 +39,13 @@ lives outside the repo in `data/reference/audio/README.md`.
 | `audio/eo/` | 529 words | Lingua Libre + the Commons Esperanto phrasebook | BY-SA 4.0 349 · CC0 180 | 12 credit groups (Lepticed7 341, Poslovitch 100) | credit all but the 180 CC0; share-alike on 349 |
 | `audio/eo/letters/` | 28 letters | Lingua Libre word recordings | BY-SA 4.0 | Lepticed7 | credit + share-alike |
 | `audio/eo/texts/` | 2 words | Lingua Libre, via Commons | BY-SA 4.0 | Lepticed7, NMaia | credit + share-alike |
+| `audio/de/calendar/` | 13 names | Commons `De-*.ogg` | BY-SA 3.0 7 · BY-SA 4.0 5 · BY-SA 2.5 1 | joni 5, Jeuwre 5, 3 further | credit + share-alike |
+| `audio/eo/calendar/` | 3 names | Lingua Libre, via Commons | CC0 1 · BY-SA 4.0 1 · Public domain 1 | 3 groups | credit the BY-SA |
+| `audio/es/calendar/` | 19 names | Lingua Libre, via Commons | CC0 9 · BY-SA 4.0 7 · BY 4.0 3 | GlyphEnjoyer 8, 5 further | credit all but the 9 CC0 |
+| `audio/fr/calendar/` | 19 names | Commons `Fr-*.ogg` (Shtooka) + Lingua Libre | **BY 2.0 fr 12 — attribution only** · CC0 7 | Vion Nicolas 12, Poslovitch 7 | credit the 12; no share-alike |
+| `audio/it/calendar/` | 19 names | Lingua Libre + Shtooka, via Commons | BY-SA 3.0 13 · BY 3.0 us 5 · CC0 1 | GerardM 11, 4 further | credit all but the CC0 |
+| `audio/sw/calendar/` | 19 names | Commons `Sw-ke-*.flac` | BY-SA 4.0, whole set | Waithera Were, all 19 | credit + share-alike |
+| `audio/uk/calendar/` | 19 names | Commons `Uk-*.ogg` (Shtooka) | BY 3.0 us, whole set | Галя Раптова / Nicolas Vion, all 19 | attribution only |
 
 The `articles/` sets are where a word may ship TWICE, and deliberately: the bare file is
 what the learner's own language is read with, the article one what the target is heard as
@@ -49,6 +56,23 @@ Italian's fourteen — a second voice on 221 and 54 cards, not a replacement of 
 Nothing else on Commons could have been used: article-form recordings exist for German
 (one speaker) and Italian (one set), and for Spanish and French they do not exist at all —
 the research and its counts are `data/reference/audio/README.md`'s.
+
+**Two licenses are refused outright**, and the calendar is where Commons first offered
+them (`scripts/audio-catalog.py`'s `UNSHIPPABLE_LICENSES`). Neither is a CC license and
+neither is shaped for media:
+
+- **GFDL** obliges shipping the full license text and keeping a "Transparent copy"
+  available — a document's terms, which a credits screen linking a deed does not meet.
+  It cost two German month and weekday names.
+- **GPLv3** is a software license whose copyleft reaches the work as a whole, and whose
+  anti-tivoization and Installation Information terms are irreconcilable with App Store
+  distribution. It cost sixteen of the nineteen Esperanto names, all one uploader
+  (Kurso de Esperanto) — which is why that row reads 3 and not 19.
+
+A refused row is a printed decision and the word falls to the device voice; an
+*unlisted* license remains a hard stop, because the difference is whether anyone has
+looked at it. Refusing only ever ships less, which is the safe side of the question —
+but the Esperanto cost is large enough to be worth revisiting deliberately.
 
 Share-alike reaches the **audio files only**.
 CC carries no GPL-style linking clause,

@@ -1,7 +1,9 @@
 {
   "authors": {
+    "Balamutick": "CC0",
     "Citoyenovice": "CC BY-SA 4.0",
     "DanieruOtakuBoy": "CC0",
+    "Fernando Maia Jr. [1]": "Public domain",
     "Golmore": "CC0",
     "Lepticed7": "CC BY-SA 4.0",
     "NMaia": "CC BY-SA 4.0",
@@ -13,6 +15,40 @@
     "Rodrigo5260": "CC0",
     "Tiguliano": "CC0",
     "Wierzbowski": "CC0"
+  },
+  "calendar": {
+    "aprilo": {
+      "author": "Balamutick",
+      "file": "calendar/aprilo.mp3",
+      "gain": 20.0,
+      "gainPhone": 20.0,
+      "lead": 563,
+      "matches": "aprilo",
+      "sha256": "e7dbd8fe5c925411add8d7b757c410770219faec7821f1602dc6ab699bfd1bda",
+      "snr": 20.9,
+      "source": "Eo-aprilo.ogg"
+    },
+    "septembro": {
+      "author": "Lepticed7",
+      "file": "calendar/septembro.mp3",
+      "gain": 2.7,
+      "gainPhone": -2.4,
+      "lead": 173,
+      "matches": "septembro",
+      "sha256": "e1ee219e69e083514da0628ecf45161a185192e624d45f386cdd25de1488a466",
+      "snr": 62.7,
+      "source": "LL-Q143 (epo)-Lepticed7-septembro.wav"
+    },
+    "vendredo": {
+      "author": "Fernando Maia Jr. [1]",
+      "file": "calendar/vendredo.mp3",
+      "gain": 8.1,
+      "gainPhone": 9.4,
+      "matches": "vendredo",
+      "sha256": "eceeed8ee069e94f89b759646e5b45ee566e1a0917aa7aecda288defbca84765",
+      "snr": 21.0,
+      "source": "Eo-vendredo.ogg"
+    }
   },
   "language": "eo",
   "letters": {
@@ -270,7 +306,8 @@
   },
   "licenses": {
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/"
+    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "Public domain": null
   },
   "texts": {
     "Eĥoŝanĝo ĉiuĵaŭde": {

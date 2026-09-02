@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **The days and the months are spoken by a person now.** The calendar arrived after the
+  recordings did, so every weekday and month name in the dates drill and on the dates page
+  was read by the phone's own voice — the one part of the app where a name in the language
+  you are learning had never been said by somebody who speaks it. They are recorded now,
+  in the same voices the rest of each language already uses. What no recording exists for
+  still falls to the device voice, exactly as an unrecorded word does, so nothing has gone
+  quiet. Swahili gains the most: iOS has no Swahili voice at all, so those names could not
+  be heard on an iPhone by any route until now.
+
 - **A word you keep missing comes back the same day, not only days later.** The retry
   ladder only ever grew: ten minutes, then a day, then three, then a week, so the second
   miss already pushed a word out to day scale and every miss after that pushed it

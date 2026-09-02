@@ -50,7 +50,7 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   every license the pack uses to its deed URL — `null` for `Public domain`, the one
   license with nothing to point a reader at. Provenance is authored ONCE per speaker
   rather than once per file: a license is effectively a property of the voice, and across
-  all 3881 shipped recordings four depart from their own author's. Those four carry a
+  all 3992 shipped recordings four depart from their own author's. Those four carry a
   `license` of their own, which is the only place an entry names one; the deed is never
   written on an entry at all, being derivable from the license. There is deliberately no
   default AUTHOR, though one voice covers 476 of the 477 Swahili files — a missing key

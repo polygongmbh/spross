@@ -126,7 +126,13 @@ LICENSE_URLS = {
 # unlike every CC license here it grants no media-shaped permission. Two Wiktionary German
 # recordings carry it (`docs/audio-licensing.md`); the drill says those two words in the
 # device voice instead, which costs a learner nothing a license notice would not.
-UNSHIPPABLE_LICENSES = {'GFDL'}
+# GPLv3 is a SOFTWARE license: its copyleft reaches the work as a whole, and its
+# anti-tivoization and Installation Information terms are famously irreconcilable with App
+# Store distribution — which is where this app ships. It also carries no media-shaped
+# permission at all. The Esperanto calendar is where it turns up (Kurso de Esperanto
+# recorded 16 of the 19 names), and that is the whole cost of refusing it: those names are
+# said by the device voice, which Esperanto has on both platforms.
+UNSHIPPABLE_LICENSES = {'GFDL', 'GPLv3'}
 
 
 def shippable(rows, where):
@@ -530,7 +536,7 @@ def credit_index(sections, where):
     """`(authors, licenses)`: who records under what, and what each license deeds to.
 
     A license is effectively a property of the SPEAKER — across every shipped pack only
-    four entries out of 3881 depart from their own author's usual one — so it is carried
+    four entries out of 3992 depart from their own author's usual one — so it is carried
     once per author instead of once per file, and the deed URL once per license instead
     of once per file again. An author's default is the license covering the most of their
     files, ties broken by the alphabetically first license string, so a rebuild of
