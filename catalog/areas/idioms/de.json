@@ -3,7 +3,10 @@
  "words": {
   "buy-a-pig-in-a-poke": {
    "text": "Kauf nicht die Katze im Sack!",
-   "notes": { "en": "Literally: \"Don't buy the cat in the sack.\"" }
+   "notes": {
+    "en": "Literally: \"Don't buy the cat in the sack.\"",
+    "es": "Literalmente: «No compres el gato en el saco»."
+   }
   },
   "cross-your-fingers": {
    "text": "Ich drücke dir die Daumen!",
@@ -21,7 +24,7 @@
   },
   "pull-someones-leg": {
    "text": "Er hat mir einen Bären aufgebunden.",
-   "notes": { "en": "Literally: \"He tied a bear onto me.\"" }
+   "notes": { "en": "Literally: \"He tied a bear onto me.\"", "es": "Literalmente: «Me ató un oso encima»." }
   },
   "fed-up-to-here": {
    "text": "Ich habe die Nase gestrichen voll.",
@@ -43,7 +46,10 @@
   },
   "bite-the-bullet": {
    "text": "Beiß in den sauren Apfel!",
-   "notes": { "en": "Literally: \"Bite into the sour apple!\"" }
+   "notes": {
+    "en": "Literally: \"Bite into the sour apple!\"",
+    "es": "Literalmente: «¡Muerde la manzana agria!»."
+   }
   },
   "raining-cats-and-dogs": {
    "text": "Es gießt wie aus Eimern.",
