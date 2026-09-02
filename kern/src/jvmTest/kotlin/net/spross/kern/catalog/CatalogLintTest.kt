@@ -387,6 +387,11 @@ class CatalogLintTest {
             "for" to setOf("de", "es", "uk"),
             "because-of" to setOf("de", "eo", "uk"),
             "follow" to setOf("de", "uk"),
+            // Cases German has no counterpart for: the uk vocative, the uk genitive of
+            // negation (German keeps the accusative), the es personal `a`.
+            "mom-help-me" to setOf("de", "eo", "sw", "uk"),
+            "i-dont-eat-meat" to setOf("fr", "uk"),
+            "ask-the-teacher" to setOf("es"),
         )
         for ((slug, langs) in anchors) {
             val realized = catalog.areas.firstNotNullOfOrNull { area ->

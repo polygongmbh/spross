@@ -5,10 +5,12 @@
 - **The explanations on a card now reach you, whatever language you read.** A card can carry a
   short note about its answer — which case a verb takes, why one word is not the other — and
   until now you only ever saw it if you happened to be a German speaker, because that is who
-  every one of them was written for. A note in the language you are LEARNING now shows when
-  none is written in yours, so the same explanation reaches everybody instead of one audience.
-  Some notes had been written for German speakers learning German, which is nobody, and had
-  never appeared on a card at all; those work now too.
+  every one of them was written for. A note is now written in the language you are LEARNING
+  and shown to everybody, so the same explanation reaches all eight audiences instead of one;
+  where a note would land before you could read that language, or says something that only
+  makes sense between your two languages, it still arrives in yours. Some notes had been
+  written for German speakers learning German, which is nobody, and had never appeared on a
+  card at all; those work now too.
 
 - **German explains its cases instead of leaving you to notice them.** "in der Schule" and
   "in die Schule" were two cards that never said why they differ, and nothing said that
@@ -19,6 +21,13 @@
   The same pairs teach the matching distinction where another language draws one — the
   Esperanto -n of direction, the Ukrainian locative against the accusative — and where a
   language draws none, the card says so.
+
+- **The cases German does not have are taught too.** Ukrainian has seven cases to German's
+  four, and the one German has no counterpart for — the form a name takes when you call
+  someone, мама becoming мамо — was nowhere in the catalog; a new card now asks for it.
+  Two more were already on cards without ever being pointed out: the Ukrainian "Я не їм
+  м'яса", where a negated sentence changes the form of what follows, and the Spanish
+  "Pregunta al profesor", where a person as the object takes an "a" that a thing does not.
 
 ## 5.8.0 — 2026-09-01
 

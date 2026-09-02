@@ -19,11 +19,17 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   six of eight. `people/a-good-friend`, `people/many-friends`, `people/old-people` and
   `qualities/a-lot-of-water` already exercise it unlabeled — the same shape
   `at-school`/`go-to-school` was in before it was named.
-- The 838 German-reader notes on the seven non-German targets stay German-reader-only:
-  the self-note fallback serves a reader only where the target annotates ITSELF, and no
-  target but German does yet. Rewriting even the load-bearing ones in their own language
-  would serve all eight audiences at once, and is the highest-leverage note work left —
-  but Swahili and Esperanto prose need a reviewer who reads them.
+- ~800 German-reader notes on the seven non-German targets are still the tail rather than
+  the default: `notes` now leads with the language it explains, so each of those reaches a
+  German reader alone where one rewrite in the target's own language would reach all eight.
+  It is the highest-leverage note work left, and the pattern to copy is example-first —
+  «мама → мамо, тато → тату» teaches the vocative to a learner who could not yet read the
+  word for it, where naming the case would need `pairNotes` and eight translations.
+  Swahili and Esperanto prose still need a reviewer who reads them.
+- Cases still unnamed where a language draws one German does not: Ukrainian's instrumental
+  of predication («працює вчителем») and its dative of the experiencer beyond the one
+  `health/feel` note. Esperanto's accusative of measure and time (`Mi restos tri tagojn`)
+  is not one — German marks it the same way, so it fails the more-than-one-language test.
 - Phrase→component linking gaps: 55/192 phrases (29%) carry no `components` —
   these are hand-authored, not auto-linked (`catalog/README.md` § concepts.json),
   so the gap is unfinished authoring, not a matcher to fix.
