@@ -54,6 +54,7 @@
   },
   "have-a-good-journey": { "text": "Bon voyage !" },
   "how-much-is-the-fare": { "text": "Quel est le tarif ?", "variants": ["Combien coûte le billet ?"] },
-  "the-bus-has-already-departed": { "text": "Le bus est déjà parti." }
+  "the-bus-has-already-departed": { "text": "Le bus est déjà parti." },
+  "my-parents-are-coming-by-train": { "text": "Mes parents viennent en train." }
  }
 }

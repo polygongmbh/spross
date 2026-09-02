@@ -61,6 +61,7 @@
    "text": "Qual è la tariffa?",
    "variants": ["Quanto costa la corsa?", "Quanto costa il biglietto?"]
   },
-  "the-bus-has-already-departed": { "text": "L'autobus è già partito." }
+  "the-bus-has-already-departed": { "text": "L'autobus è già partito." },
+  "my-parents-are-coming-by-train": { "text": "I miei genitori vengono in treno." }
  }
 }

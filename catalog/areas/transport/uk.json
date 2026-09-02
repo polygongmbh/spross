@@ -33,6 +33,14 @@
   "when-does-the-train-leave": { "text": "Коли вирушає поїзд?" },
   "have-a-good-journey": { "text": "Гарної подорожі!", "variants": ["Щасливої дороги!"] },
   "how-much-is-the-fare": { "text": "Скільки коштує проїзд?" },
-  "the-bus-has-already-departed": { "text": "Автобус вже від'їхав." }
+  "the-bus-has-already-departed": { "text": "Автобус вже від'їхав." },
+  "my-parents-are-coming-by-train": {
+   "text": "Мої батьки приїжджають потягом.",
+   "variants": ["Мої батьки приїжджають поїздом."],
+   "notes": {
+    "de": "Das Verkehrsmittel steht im bloßen Instrumental, ganz ohne Präposition: потягом.",
+    "en": "The means of travel is a bare instrumental, with no preposition at all: потягом."
+   }
+  }
  }
 }
