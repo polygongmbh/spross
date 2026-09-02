@@ -2,28 +2,31 @@ import SwiftUI
 import SprossKern
 
 /// The reading half of the dates overview: the seven weekdays and the twelve
-/// months, both sides beside each other. State lives on DatesOverview; split
-/// out purely for file size.
+/// months, both sides beside each other. The page around it is `DrillOverview`,
+/// which asks the face for this section and knows nothing of what is in it.
 ///
 /// The table is `DateDrill.reference` — the same joined rows the run grades
 /// against, so it cannot claim one name and ask for another. Under a learned
 /// name stand the forms the drill also accepts and teaches: its short form,
 /// its other lexemes (de `Sonnabend`), and what it becomes inside a date where
 /// that differs (uk `березня`).
-extension DatesOverview {
+struct DatesReference: View {
+    let model: AppModel
+    let content: DateDrillContent
+    /// The language the learner KNOWS — the left of every row.
+    let source: String
+    /// The language being learned — the right of it, and the side a tap says.
+    let target: String
 
-    @ViewBuilder
-    var referenceSection: some View {
-        if let content {
-            let groups = DateDrill.shared.reference(content: content)
-            VStack(alignment: .leading, spacing: DL.Space.l) {
-                heading("dates.reference")
-                if groups.contains(where: canBeHeard) {
-                    ReferenceTapHint()
-                }
-                ForEach(groups, id: \.kind) { group in
-                    kindGroup(group)
-                }
+    var body: some View {
+        let groups = DateDrill.shared.reference(content: content)
+        return VStack(alignment: .leading, spacing: DL.Space.l) {
+            DrillHeading("dates.reference")
+            if groups.contains(where: canBeHeard) {
+                ReferenceTapHint()
+            }
+            ForEach(groups, id: \.kind) { group in
+                kindGroup(group)
             }
         }
     }

@@ -1,44 +1,52 @@
 import SwiftUI
 import SprossKern
 
-/// The drilling half of the atlas overview: the nine Sprossen a run climbs, which
-/// way round it asks, how fast it climbs, and the button that starts it. State
-/// lives on CountriesOverview; split out purely for file size.
+/// The drilling half of a typed drill's overview: the Sprossen a run climbs,
+/// which way round it asks, how fast it climbs, and the button that starts it.
+/// State lives on DrillOverview; split out purely for file size.
 ///
-/// The RUNGS are not earned. The drill is ungated — the atlas is reading matter,
-/// and material a learner may look up on the same page is material they may be
-/// asked — so those rows never carry a padlock: they say what a Sprosse ASKS, and
-/// the run walks them by itself from Sprosse 1 every time. Each names ONE new
-/// thing, because that is all a Sprosse brings (`CountryDrill`).
+/// The RUNGS are not earned. The drills are ungated — the table is reading
+/// matter, and material a learner may look up on the same page is material they
+/// may be asked — so those rows never carry a padlock: they say what a Sprosse
+/// ASKS, and the run walks them by itself from Sprosse 1 every time.
+///
+/// How tall the ladder is, and what each Sprosse is named, is the face's
+/// (`DrillFace.rungs`) — the atlas has nine fixed ones, while the dates ladder
+/// depends on what the pair's content carries and which way round the run asks.
+/// The panel redraws when the reverse switch below it flips, so the page shows
+/// exactly the ladder the start button opens.
 ///
 /// Fast is the one thing here with a price, and it is a way of PLAYING rather
-/// than something to be asked: it is the reward for having topped the ladder the
-/// hard way, so it wears the numbers page's locked-modifier row until then.
-extension CountriesOverview {
+/// than something to be asked: it is the reward for having topped the ladder
+/// the hard way, so it wears the numbers page's locked-modifier row until then.
+extension DrillOverview {
 
     var practiceSection: some View {
-        VStack(alignment: .leading, spacing: DL.Space.l) {
-            heading("trainer.overview.practice")
-            VStack(alignment: .leading, spacing: DL.Space.l) {
-                ForEach(Self.sprossen, id: \.self) { sprosseRow($0) }
+        let rungs = Face.rungs(content, reverse: reverse)
+        return VStack(alignment: .leading, spacing: DL.Space.l) {
+            DrillHeading("trainer.overview.practice")
+            if !rungs.isEmpty {
+                VStack(alignment: .leading, spacing: DL.Space.l) {
+                    ForEach(Array(rungs.enumerated()), id: \.offset) { row in
+                        sprosseRow(row.offset + 1, row.element)
+                    }
+                }
+                .padding(DL.Space.l)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(
+                    RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
+                        .fill(Color.dlSurface)
+                )
             }
-            .padding(DL.Space.l)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(Color.dlSurface)
-            )
             pace
-            modifierTile.id(CountriesOverview.modifierAnchor)
+            modifierTile.id(DrillAnchor.modifiers)
             startButton
         }
     }
 
-    /// Every Sprosse the ladder has, in the order it is climbed — kern's ceiling,
-    /// never a count written down beside it.
-    private static var sprossen: [Int] {
-        Array(1...max(1, CountryDrill.shared.ceiling))
-    }
+    /// This ladder's own ceiling, as the switches stand — kern's, never a count
+    /// written down beside it.
+    private var ladderCeiling: Int { Face.ceiling(content, reverse: reverse) }
 
     // MARK: - What a run asks
 
@@ -46,16 +54,16 @@ extension CountriesOverview {
     /// Sprosse's NUMBER, the letters page's rule — these rows are a ladder the run
     /// walks by itself, and a circle beside each one reads as a choice that
     /// never answers the tap.
-    private func sprosseRow(_ sprosse: Int) -> some View {
+    private func sprosseRow(_ sprosse: Int, _ rung: DrillRung) -> some View {
         HStack(alignment: .firstTextBaseline, spacing: DL.Space.m) {
             Image(systemName: "\(sprosse).circle")
                 .font(.title3)
                 .foregroundStyle(Color.dlTextSecondary)
             VStack(alignment: .leading, spacing: 2) {
-                Text(Self.title(sprosse))
+                Text(rung.title)
                     .font(DL.Fonts.headline)
                     .foregroundStyle(Color.dlTextPrimary)
-                Text(Self.hint(sprosse))
+                Text(rung.hint)
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -67,47 +75,16 @@ extension CountriesOverview {
         .accessibilityElement(children: .combine)
     }
 
-    // why: spelled out rather than interpolated — a key built with `\(sprosse)`
-    // becomes the format string "countries.Sprosse.%lld" and localizes nothing,
-    // and these keys would stop being greppable from the catalog.
-    private static func title(_ sprosse: Int) -> LocalizedStringKey {
-        switch sprosse {
-        case 1: return "countries.sprosse.1"
-        case 2: return "countries.sprosse.2"
-        case 3: return "countries.sprosse.3"
-        case 4: return "countries.sprosse.4"
-        case 5: return "countries.sprosse.5"
-        case 6: return "countries.sprosse.6"
-        case 7: return "countries.sprosse.7"
-        case 8: return "countries.sprosse.8"
-        default: return "countries.sprosse.9"
-        }
-    }
-
-    private static func hint(_ sprosse: Int) -> LocalizedStringKey {
-        switch sprosse {
-        case 1: return "countries.sprosse.1.hint"
-        case 2: return "countries.sprosse.2.hint"
-        case 3: return "countries.sprosse.3.hint"
-        case 4: return "countries.sprosse.4.hint"
-        case 5: return "countries.sprosse.5.hint"
-        case 6: return "countries.sprosse.6.hint"
-        case 7: return "countries.sprosse.7.hint"
-        case 8: return "countries.sprosse.8.hint"
-        default: return "countries.sprosse.9.hint"
-        }
-    }
-
     /// How the ladder is walked, said once instead of marked on every row — and,
     /// where a run has climbed before, how far it came.
     private var pace: some View {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
-            Text("countries.pace")
+            Text(Face.paceKey)
             if bestSprosse > 0 {
                 // why: printed as it stands, ceiling and all — the Sprosse keeps
                 // counting past the named ladder, so the record is a number to
                 // beat rather than a row on the page.
-                Text("countries.best \(bestSprosse.formatted())")
+                Text(Face.bestLine(bestSprosse))
             }
         }
         .font(DL.Fonts.caption)
@@ -166,11 +143,11 @@ extension CountriesOverview {
             }
             .tint(.dlAccent)
             .disabled(!open)
-            // why: the atlas Sprosse costs THREE clean wins, so the shared
-            // "statt zwei" hint would misprice it — this ladder says its own.
-            (open ? Text("countries.fast.hint")
+            // why: a Sprosse here costs THREE clean wins, so the shared
+            // "statt zwei" hint would misprice it — each ladder says its own.
+            (open ? Text(Face.fastHintKey)
                   : Text("numbers.unlock") + Text(verbatim: " ")
-                      + Text("trainer.sprosse \(CountryDrill.shared.ceiling.formatted())"))
+                      + Text("trainer.sprosse \(ladderCeiling.formatted())"))
                 .font(DL.Fonts.caption)
                 .foregroundStyle(Color.dlTextSecondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -182,7 +159,7 @@ extension CountriesOverview {
     private var reverseHint: String {
         let asked = reverse ? target : source
         let owed = reverse ? source : target
-        return String(format: DLChrome.string("countries.reverse.hint %@ %@", locale: locale),
+        return String(format: DLChrome.string(Face.reverseHintKey, locale: locale),
                       LanguageNames.display(asked, locale: locale, catalog: model.catalog),
                       LanguageNames.display(owed, locale: locale, catalog: model.catalog))
     }

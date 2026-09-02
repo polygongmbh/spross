@@ -358,7 +358,7 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 - A drill's typed-answer controls — the field, the one primary action that reveals or
   checks, the amber hold, the revealed branch with its stop offer, the screen-reader
   "Weiter" — stand verbatim in three files (`TrainerSessionView+Drill.swift`,
-  `LetterDrillView+Stages.swift`, `CountryDrillView+Content.swift`), and the live check
+  `LetterDrillView+Stages.swift`, `DrillRunView+Content.swift`), and the live check
   that arms them is wired per copy. One component owning the branch and the
   `onChange(of: input)` beside it would make a fourth drill's auto-confirm structural
   rather than remembered.
@@ -371,7 +371,7 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 - The atlas is the first drill whose PROMPT is a word rather than a numeral or a played
   sound: it can be heard neither by tap nor by autoplay — `read-aloud.md`'s table has no
   row for a spoken-word drill prompt, so the rule is owed before the code
-  (`CountryDrillView+Content.swift`).
+  (`DrillRunView+Content.swift`).
 
 - The watch quiz tells correctness to the EYE only — tile tint, red wash and the rating
   emoji are all visual, and the emoji is `accessibilityHidden` because VoiceOver reading

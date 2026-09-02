@@ -2,27 +2,30 @@ import SwiftUI
 import SprossKern
 
 /// The reading half of the atlas overview: every country the pair joins, both
-/// sides beside each other. State lives on CountriesOverview; split out purely
-/// for file size.
+/// sides beside each other. The page around it is `DrillOverview`, which asks
+/// the face for this section and knows nothing of what is in it.
 ///
 /// The table is `CountryDrill.reference` — the same joined rows the run grades
 /// against, grouped by the tier a row enters the ladder at, innermost first. It
 /// cannot claim one name and ask for another, because there is nothing for it to
 /// drift from.
-extension CountriesOverview {
+struct CountriesReference: View {
+    let model: AppModel
+    let content: CountryDrillContent
+    /// The language the learner KNOWS — the left of every row.
+    let source: String
+    /// The language being learned — the right of it, and the side a tap says.
+    let target: String
 
-    @ViewBuilder
-    var referenceSection: some View {
-        if let content {
-            let groups = CountryDrill.shared.reference(content: content)
-            VStack(alignment: .leading, spacing: DL.Space.l) {
-                heading("countries.reference")
-                if groups.contains(where: canBeHeard) {
-                    ReferenceTapHint()
-                }
-                ForEach(groups, id: \.tier) { group in
-                    tierGroup(group)
-                }
+    var body: some View {
+        let groups = CountryDrill.shared.reference(content: content)
+        return VStack(alignment: .leading, spacing: DL.Space.l) {
+            DrillHeading("countries.reference")
+            if groups.contains(where: canBeHeard) {
+                ReferenceTapHint()
+            }
+            ForEach(groups, id: \.tier) { group in
+                tierGroup(group)
             }
         }
     }

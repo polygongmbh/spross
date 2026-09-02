@@ -1,40 +1,44 @@
 import SwiftUI
 import SprossKern
 
-/// The "Länder" hub entry: the world as the two languages name it, and the place
-/// its drill is started from.
+/// A typed drill's hub entry: the material as the two languages name it, and
+/// the place its drill is started from — the "Länder" page and the "Datum" page
+/// are this one page with two faces.
 ///
-/// Two sections, in the order the other two overviews use — start first, reading
-/// after: the Sprossen a run climbs and the button that opens it, then the atlas
-/// itself, both sides of every country beside each other.
+/// Two sections, in the order every overview uses — start first, reading after:
+/// the Sprossen a run climbs and the button that opens it, then the table
+/// itself, both sides of every name beside each other.
 ///
-/// The one surface here that is named in TWO languages: a country's name is a
-/// pair, not a property of the language being learned, and the reference table
-/// is the join the drill grades against (`CountryDrill.reference`) rather than a
-/// second table beside it.
+/// Named in TWO languages: a country's name is a pair rather than a property of
+/// the language being learned, and a date is spelled out by one side while the
+/// other lends its digits — so both drills exist only where the catalog carries
+/// the material on BOTH sides.
 ///
-/// Nothing on this page is earned. The drill is ungated — every run opens at
-/// Sprosse 1 and climbs by itself — so the Sprosse rows say what a Sprosse ASKS and never
-/// carry a padlock. The one thing that persists is the highest Sprosse reached,
-/// which this page reads and never writes.
+/// Nothing on this page is earned. The drills are ungated — every run opens at
+/// Sprosse 1 and climbs by itself — so the Sprosse rows say what a Sprosse ASKS and
+/// never carry a padlock. The one thing that persists is the highest Sprosse
+/// reached, which this page reads and never writes.
 ///
-/// The Sprossen and the toggle live in CountriesOverview+Practice.swift, the table
-/// in CountriesOverview+Reference.swift; split purely for file size.
-struct CountriesOverview: View {
+/// The Sprossen and the toggles live in DrillOverview+Practice.swift, the table
+/// in the face's own reference view; split purely for file size.
+struct DrillOverview<Face: DrillFace>: View {
     let model: AppModel
-    /// The language the learner KNOWS — one half of every row.
+    /// The language the learner KNOWS — one half of every row, and the prompt
+    /// side of a forward run.
     let source: String
-    /// The language being learned — the other half, and what a forward run answers in.
+    /// The language being learned — the other half, and what a forward run
+    /// answers in.
     let target: String
 
     @Environment(\.dismiss) private var dismiss
-    // why: internal, not private — both extensions read the reader's locale.
+    // why: internal, not private — the practice section reads the reader's locale.
     @Environment(\.locale) var locale
 
-    /// The joined atlas. Held rather than recomputed per row: the join walks the
-    /// whole manifest, and the Sprossen and the table read the very same content.
-    // why: internal, not private — both extensions render from it.
-    @State var content: CountryDrillContent?
+    /// The joined material. Held rather than recomputed per row: the join walks
+    /// the whole manifest, and the Sprossen and the table read the very same
+    /// content the run grades against.
+    // why: internal, not private — the practice section renders from it.
+    @State var content: Face.Content?
     /// Which way round a run asks. Offered from the first run: nothing here is
     /// bought, so there is no ladder for it to sit behind.
     @State var reverse = false
@@ -47,26 +51,20 @@ struct CountriesOverview: View {
     @State var bestSprosse = 0
     @State private var launch: Launch?
     /// What the run that just closed came to — one tile above the Sprossen, the
-    /// shape both other overviews use.
+    /// shape every overview uses.
     @State private var lastRun: DrillRunResult?
 
     /// The run the start button opens, wrapped so ONE `fullScreenCover(item:)`
-    /// carries it — the shape both other overviews use.
+    /// carries it — the shape every overview uses.
     private struct Launch: Identifiable {
         let reverse: Bool
         let fast: Bool
         let id = UUID()
     }
 
-    /// Scroll target for the tile a closed run leaves.
-    static let resultAnchor = "result"
-
-    /// Scroll target for the tile carrying the reverse and fast switches.
-    static let modifierAnchor = "modifiers"
-
     /// Where the Sprosse and the record are kept — one key per PAIR, because the
-    /// atlas is a pair's material and not a language's.
-    var storageKey: String { "countries.\(source)-\(target)" }
+    /// material is a pair's and not a language's.
+    var storageKey: String { "\(Face.key).\(source)-\(target)" }
 
     var body: some View {
         NavigationStack {
@@ -75,7 +73,7 @@ struct CountriesOverview: View {
                     LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
                         if let lastRun {
                             DrillResultTile(result: lastRun)
-                                .id(Self.resultAnchor)
+                                .id(DrillAnchor.result)
                         }
                         practiceSection
                         referenceSection
@@ -87,7 +85,7 @@ struct CountriesOverview: View {
                 .onChange(of: lastRun) { _, run in
                     guard run != nil else { return }
                     withAnimation(.easeOut(duration: 0.25)) {
-                        scroll.scrollTo(Self.resultAnchor, anchor: .top)
+                        scroll.scrollTo(DrillAnchor.result, anchor: .top)
                     }
                 }
                 #if DEBUG
@@ -96,7 +94,7 @@ struct CountriesOverview: View {
                 .task {
                     guard Self.uitestWantsModifiers else { return }
                     try? await Task.sleep(for: .milliseconds(400))
-                    scroll.scrollTo(Self.modifierAnchor, anchor: .center)
+                    scroll.scrollTo(DrillAnchor.modifiers, anchor: .center)
                 }
                 #endif
             }
@@ -104,7 +102,7 @@ struct CountriesOverview: View {
             .defaultScrollAnchor(Self.uitestAnchor)
             #endif
             .background(Color.dlBackground.ignoresSafeArea())
-            .navigationTitle(Text("countries.title \(languageName)"))
+            .navigationTitle(Text(Face.title(languageName)))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -126,11 +124,11 @@ struct CountriesOverview: View {
         .fullScreenCover(item: $launch, onDismiss: reload) { launch in
             Group {
                 if let content {
-                    CountryDrillView(model: model, content: content, reverse: launch.reverse,
-                                     fast: launch.fast, storageKey: storageKey,
-                                     onFinish: { result in
-                                         withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
-                                     })
+                    DrillRunView<Face>(model: model, content: content, reverse: launch.reverse,
+                                       fast: launch.fast, storageKey: storageKey,
+                                       onFinish: { result in
+                                           withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
+                                       })
                 }
             }
             .environment(\.locale, model.knownLocale)
@@ -143,6 +141,15 @@ struct CountriesOverview: View {
         }
     }
 
+    /// The reading matter: the drill's own table, which is the one thing here
+    /// that is genuinely a different page per drill.
+    @ViewBuilder
+    private var referenceSection: some View {
+        if let content {
+            Face.reference(model: model, content: content, source: source, target: target)
+        }
+    }
+
     // MARK: - Starting a run
 
     func start() {
@@ -150,13 +157,18 @@ struct CountriesOverview: View {
     }
 
     /// Whether fast mode may be picked at all — kern's rule on the stored best,
-    /// never a Sprosse number written down beside it.
-    var fastUnlocked: Bool { CountryDrill.shared.fastUnlocked(bestLevel: bestSprosse) }
+    /// never a Sprosse number written down beside it. The price is the ladder the
+    /// switches stand for RIGHT NOW: where reversing shortens the ladder, kern
+    /// prices it as such.
+    var fastUnlocked: Bool {
+        guard let content else { return false }
+        return Face.fastUnlocked(best: bestSprosse, content: content, reverse: reverse)
+    }
 
     /// Reads the join and the standing Sprosse at once. Both change under this page
     /// — the catalog when the profile does, the Sprosse when a run closes.
     func reload() {
-        content = model.catalog?.countryDrillContent(source: source, target: target)
+        content = Face.content(model.catalog, source: source, target: target)
         bestSprosse = TrainerProgress.best(for: storageKey)
         // why: the numbers page's `normalizePicks` rule — a ladder that grew
         // under a stored best puts fast back out of reach, and a toggle must
@@ -171,12 +183,12 @@ struct CountriesOverview: View {
         let asked = Self.uitestModifiers
         if asked.contains("rev") { reverse = true }
         if asked.contains("fast"), fastUnlocked { fast = true }
-        if launch == nil, !Self.uitestLaunched, UserDefaults.standard.bool(forKey: "uitest-run"),
-           content != nil {
+        if launch == nil, !DrillUITest.launched.contains(Face.key),
+           UserDefaults.standard.bool(forKey: "uitest-run"), content != nil {
             // why: a cover raised while the sheet under it is still animating in
             // is dropped — the tap this stands in for always comes after that.
             // ONCE: a run that reopens itself on every foreground never ends.
-            Self.uitestLaunched = true
+            DrillUITest.launched.insert(Face.key)
             Task { @MainActor in
                 try? await Task.sleep(for: .milliseconds(600))
                 start()
@@ -192,8 +204,15 @@ struct CountriesOverview: View {
     var languageName: String {
         LanguageNames.display(target, locale: locale, catalog: model.catalog)
     }
+}
 
-    func heading(_ key: LocalizedStringKey) -> some View {
+/// A section's name on an overview, in the one weight every one of them uses.
+struct DrillHeading: View {
+    let key: LocalizedStringKey
+
+    init(_ key: LocalizedStringKey) { self.key = key }
+
+    var body: some View {
         Text(key)
             .font(DL.Fonts.title)
             .foregroundStyle(Color.dlTextPrimary)
@@ -202,11 +221,8 @@ struct CountriesOverview: View {
 }
 
 #if DEBUG
-extension CountriesOverview {
-    /// One auto-start per launch — see `reload`.
-    @MainActor static var uitestLaunched = false
-
-    /// `-uitest-section table` opens the page at the atlas instead of at the
+extension DrillOverview {
+    /// `-uitest-section table` opens the page at the table instead of at the
     /// top — the other overviews' hook, reused, because the reading sits below
     /// the fold here too and no tap driver is installed.
     static var uitestAnchor: UnitPoint {
@@ -214,9 +230,9 @@ extension CountriesOverview {
     }
 
     /// `-uitest-section modifiers` brings the switches into view. A fraction of
-    /// the page would not do it: the atlas under them is dozens of rows long, so
-    /// where the tile falls depends on how much content the pair has. Scrolling
-    /// to the tile's own id lands on it whatever the table's length.
+    /// the page would not do it: the table under them can be dozens of rows
+    /// long, so where the tile falls depends on how much content the pair has.
+    /// Scrolling to the tile's own id lands on it whatever the table's length.
     static var uitestWantsModifiers: Bool {
         UserDefaults.standard.string(forKey: "uitest-section") == "modifiers"
     }
@@ -228,13 +244,19 @@ extension CountriesOverview {
             .split(whereSeparator: { $0 == "," || $0 == " " }).map(String.init))
     }
 
-    /// `-uitest-countries-best 9` stands the ladder at a Sprosse a fresh install
+    /// `-uitest-<drill>-best 7` stands the ladder at a Sprosse a fresh install
     /// has not climbed, which is the only way to photograph fast mode OPEN.
     /// Booked through `TrainerProgress` so it meets exactly the rule a real run
     /// would have written, rather than a second door into the same state.
     static func uitestSeedProgress(key: String) {
-        let best = UserDefaults.standard.integer(forKey: "uitest-countries-best")
+        let best = UserDefaults.standard.integer(forKey: Face.uitestBestKey)
         if best > 0 { TrainerProgress.record(best, for: key) }
     }
+}
+
+/// One auto-start per drill per launch — see `reload`. Off the page itself
+/// because a generic type can hold no stored static.
+enum DrillUITest {
+    @MainActor static var launched: Set<String> = []
 }
 #endif
