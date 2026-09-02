@@ -48,6 +48,14 @@
    "variants": ["Ni veturas al la montoj.", "Ni iras en la montaron."]
   },
   "look-a-bird": { "text": "Rigardu, birdo!", "variants": ["Jen birdo!", "Rigardu, jen birdo!"] },
-  "the-sun-has-come-out": { "text": "La suno eliris.", "variants": ["La suno aperis.", "La suno elvenis."] }
+  "the-sun-has-come-out": { "text": "La suno eliris.", "variants": ["La suno aperis.", "La suno elvenis."] },
+  "its-cold-in-the-mountains": {
+   "text": "En la montaro estas malvarme.",
+   "notes": {
+    "de": "Ohne -n, weil es der Ort ist: en la montaro. Mit -n wäre es die Richtung: en la montaron.",
+    "en": "No -n, because this is the place: en la montaro. With -n it would be the direction: en la montaron."
+   }
+  },
+  "we-are-staying-home-because-of-the-rain": { "text": "Pro la pluvo ni restas hejme." }
  }
 }

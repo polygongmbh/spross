@@ -60,6 +60,8 @@
   "the-sun-has-come-out": {
    "text": "Le soleil est sorti.",
    "variants": ["Le soleil est revenu.", "Le soleil s'est montré."]
-  }
+  },
+  "its-cold-in-the-mountains": { "text": "Il fait froid à la montagne." },
+  "we-are-staying-home-because-of-the-rain": { "text": "À cause de la pluie, nous restons à la maison." }
  }
 }

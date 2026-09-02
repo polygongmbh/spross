@@ -45,5 +45,17 @@
   "components": ["mountain"]
  },
  { "slug": "look-a-bird", "kind": "phrase", "emoji": "🐦", "components": ["bird"] },
- { "slug": "the-sun-has-come-out", "kind": "phrase", "emoji": "⛅", "components": ["sun"] }
+ { "slug": "the-sun-has-come-out", "kind": "phrase", "emoji": "⛅", "components": ["sun"] },
+ {
+  "slug": "its-cold-in-the-mountains",
+  "kind": "phrase",
+  "emoji": "⛰️",
+  "components": ["mountain"]
+ },
+ {
+  "slug": "we-are-staying-home-because-of-the-rain",
+  "kind": "phrase",
+  "emoji": "🌧️",
+  "components": ["rain"]
+ }
 ]

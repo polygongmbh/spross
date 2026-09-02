@@ -42,6 +42,14 @@
   "lets-go-to-the-beach": { "text": "Ходімо на пляж!" },
   "we-are-going-to-the-mountains": { "text": "Ми їдемо в гори." },
   "look-a-bird": { "text": "Дивись, пташка!", "variants": ["Дивись, птах!"] },
-  "the-sun-has-come-out": { "text": "Сонце вийшло.", "variants": ["Сонце визирнуло.", "Виглянуло сонце."] }
+  "the-sun-has-come-out": { "text": "Сонце вийшло.", "variants": ["Сонце визирнуло.", "Виглянуло сонце."] },
+  "its-cold-in-the-mountains": {
+   "text": "У горах холодно.",
+   "notes": {
+    "de": "wo? → у mit Lokativ: у горах. Ми їдемо в гори ist wohin?, darum Akkusativ.",
+    "en": "where? takes у with the locative: у горах — against в гори, the accusative, for where to."
+   }
+  },
+  "we-are-staying-home-because-of-the-rain": { "text": "Через дощ ми залишаємося вдома." }
  }
 }
