@@ -97,12 +97,24 @@ class CatalogFixtureTest {
         assertTrue(card.target.synonyms.isEmpty())
     }
 
+    /** The reader's own language wins; the language being explained is what everyone else gets. */
     @Test
-    fun notesSelectedBySourceLanguageOnly() {
+    fun notesPreferTheReaderAndFallBackToTheLanguageExplained() {
         val deSourced = catalog.join("de", "uk").byId("the-mouse-sprints")
         assertEquals("Nur im Fixture.", deSourced.target.note)
         val enSourced = catalog.join("en", "uk").byId("the-mouse-sprints")
-        assertNull(enSourced.target.note)
+        assertEquals("Лише у фікстурі.", enSourced.target.note)
+    }
+
+    /**
+     * The fallback is the realization's OWN language and nothing else — a third language's
+     * note is still a language the reader cannot read, so it stays hidden.
+     */
+    @Test
+    fun aThirdLanguagesNoteNeverLeaks() {
+        // uk `mouse` is annotated in sw alone: neither the en reader nor uk itself.
+        assertNull(catalog.join("en", "uk").byId("mouse").target.note)
+        assertEquals("Panya tu.", catalog.join("sw", "uk").byId("mouse").target.note)
     }
 
     @Test

@@ -18,9 +18,14 @@ Engine contract: `../README.md`.
   NAME: it is also the produce prompt's disambiguating cue, which no consumer trims.
   Lint (`subtitlesAreCompletePerAreaAndDistinctFromTheTitle`): an area authoring one
   authors it in every declared language, and it neither contains the title nor a `·`.
-- Realization: `notes` is selected by the profile's SOURCE language at join time with **no
-  cross-language fallback** — a `de` note never surfaces for an `en`-source learner, and a
-  source nobody has authored notes for is note-less rather than served another language's.
+- Realization: `notes` is selected by the profile's SOURCE language at join time, falling back
+  to the realization's OWN language — the reader's language first, then the language being
+  explained. A `de` note still never surfaces for an `en`-source learner, because a reader
+  must not be served a language they cannot read; the language they are LEARNING is the one
+  exception, and it is what makes a rule authorable once instead of once per reader.
+  A source with no note of its own and a target that self-annotates nothing is note-less.
+  On the source side the fallback is a no-op (the realization's language IS the source),
+  so only the target half of a card can gain a note this way.
 - Realization: `variants: [String]` next to `synonyms` — a **display/accept distinction
   only**, never a scheduling one (`../README.md` §3): synonyms rotate as recognition prompt forms and
   show on reveal; variants are accepted silently and never prompted.

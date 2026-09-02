@@ -114,12 +114,28 @@ class RealCatalogJoinTest {
         }
     }
 
+    /**
+     * A note reaches the reader who can read it and nobody else: Swahili annotates its rice
+     * card in German alone, so a German reader gets it and an English one gets nothing —
+     * German is neither their language nor the one they are studying.
+     */
     @Test
     fun riceNoteSurfacesOnlyForGermanSources() {
         val id = "are-you-cooking-rice-today"
         val fromDe = catalog.join("de", "sw").byId(id)
         assertEquals("Reis = mpunga (geerntet) → mchele (roh) → wali (gekocht)!", fromDe.target.note)
         assertNull(catalog.join("en", "sw").byId(id).target.note)
+    }
+
+    /**
+     * The fallback's payoff on real content: German annotates its own word, and a reader
+     * whose language carries no note of its own is served that one rather than nothing.
+     */
+    @Test
+    fun aGermanSelfNoteReachesEveryReader() {
+        val note = "schwer heißt auch schwierig: eine schwere Aufgabe."
+        assertEquals(note, catalog.join("en", "de").byId("heavy").target.note)
+        assertEquals(note, catalog.join("uk", "de").byId("heavy").target.note)
     }
 
     @Test

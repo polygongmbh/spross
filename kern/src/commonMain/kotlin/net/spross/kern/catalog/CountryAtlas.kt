@@ -43,7 +43,7 @@ data class CountryName(
     val grammar: Map<String, String> = emptyMap(),
     /** The person noun — every country carries one; the triple is country/nationality/language. */
     val nationality: NationalityName,
-    /** Keyed by explanation language, exactly as a realization's notes are. */
+    /** Keyed by explanation language, as a realization's notes are; no fallback. */
     val notes: Map<Language, String> = emptyMap(),
 )
 

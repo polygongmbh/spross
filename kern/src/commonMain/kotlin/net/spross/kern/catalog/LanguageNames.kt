@@ -23,7 +23,7 @@ data class LanguageName(
     val learn: String? = null,
     /** Accept-only alternates (de "Kisuaheli" beside "Suaheli"), never displayed. */
     val variants: List<String> = emptyList(),
-    /** Keyed by explanation language, exactly as a realization's notes are. */
+    /** Keyed by explanation language, as a realization's notes are; no fallback. */
     val notes: Map<Language, String> = emptyMap(),
 ) {
     fun form(marker: LanguageMarker): String = when (marker) {
