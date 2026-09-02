@@ -339,6 +339,29 @@ interface Chrome {
     val reportExportClear: String
     val reportExportClearConfirm: String   // %d
 
+    // ── The conversation the app does not host ──────────────────────────────────
+    // The brief itself is kern's and is written in English (`Briefing`); everything
+    // here is the chrome around handing it over and reading the answer back.
+    val briefingTitle: String
+    val briefingRowSubtitle: String
+    val briefingIntro: String
+    val briefingTallyFreeOne: String       // %d
+    val briefingTallyFree: String          // %d
+    val briefingTallyInPlayOne: String     // %d
+    val briefingTallyInPlay: String        // %d
+    val briefingTallyNewOne: String        // %d
+    val briefingTallyNew: String           // %d
+    val briefingCopy: String
+    val briefingCopied: String
+    val briefingShare: String
+    val briefingReturnTitle: String
+    val briefingReturnExplainer: String
+    val briefingReturnPaste: String
+    val briefingReturnEmpty: String
+    val briefingReturnKeepOne: String      // %d
+    val briefingReturnKeep: String         // %d
+    val sessionDoneTalk: String
+
     // ── Box settings ────────────────────────────────────────────────────────────
     val settingsTitle: String
     val settingsNameTitle: String

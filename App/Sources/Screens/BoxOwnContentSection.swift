@@ -29,10 +29,12 @@ struct BoxOwnContentSection: View {
         case writing
         case editing(OwnWord)
         case reporting(Card)
+        case talking
 
         var id: String {
             switch self {
             case .writing: return "writing"
+            case .talking: return "talking"
             case .editing(let word): return "edit:\(word.id)"
             case .reporting(let card): return "report:\(card.id)"
             }
@@ -42,7 +44,8 @@ struct BoxOwnContentSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             header
-            if !model.ownWords.isEmpty || !reports.isEmpty || model.hasFeedback(onlyNew: false) {
+            if model.hasBriefing || !model.ownWords.isEmpty || !reports.isEmpty
+                || model.hasFeedback(onlyNew: false) {
                 card
             }
         }
@@ -67,17 +70,21 @@ struct BoxOwnContentSection: View {
 
     private var card: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.lg) {
+            if model.hasBriefing {
+                briefingRow
+            }
             if !model.ownWords.isEmpty {
+                if model.hasBriefing { separator }
                 wordList
             }
             if !reports.isEmpty {
-                if !model.ownWords.isEmpty { separator }
+                if model.hasBriefing || !model.ownWords.isEmpty { separator }
                 reportList
             }
             // why: an empty complaints box is furniture — the actions appear once
             // there is something for them to carry, exactly as they always have.
             if model.hasFeedback(onlyNew: false) {
-                if !model.ownWords.isEmpty || !reports.isEmpty { separator }
+                if model.hasBriefing || !model.ownWords.isEmpty || !reports.isEmpty { separator }
                 FeedbackExportActions(model: model)
             }
         }
@@ -91,6 +98,33 @@ struct BoxOwnContentSection: View {
     }
 
     private var separator: some View { Divider().overlay(Theme.colors.separator) }
+
+    /// The box handed to a conversation the app does not host (`BriefingSheet`).
+    /// It leads the section because it is the one entry here that goes OUT and comes
+    /// back: the words below it are what a conversation writes home.
+    private var briefingRow: some View {
+        Button {
+            sheet = .talking
+        } label: {
+            HStack(spacing: Theme.spacing.md) {
+                Image(systemName: "bubble.left.and.text.bubble.right")
+                    .foregroundStyle(Theme.colors.accent)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("briefing.title")
+                        .font(Theme.typography.body)
+                        .foregroundStyle(Theme.colors.textPrimary)
+                    Text("briefing.row.subtitle")
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: "chevron.right")
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
+            }
+        }
+        .buttonStyle(.plain)
+    }
 
     private func blockTitle(_ key: LocalizedStringKey) -> some View {
         Text(key)
@@ -204,6 +238,8 @@ struct BoxOwnContentSection: View {
             OwnWordFormView(model: model, seed: .query(""))
         case .editing(let word):
             OwnWordFormView(model: model, seed: .editing(word))
+        case .talking:
+            BriefingSheet(model: model)
         case .reporting(let card):
             ReportIssueSheet(model: model, card: card, learnerInput: "",
                              filed: model.reportedIssue(for: card.id)?.comment ?? "")

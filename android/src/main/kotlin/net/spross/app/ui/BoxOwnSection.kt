@@ -5,6 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -35,6 +36,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.clearFeedback
+import net.spross.app.hasBriefing
 import net.spross.app.clearableCount
 import net.spross.app.hasExportedBefore
 import net.spross.app.hasFeedback
@@ -91,7 +93,7 @@ internal fun BoxOwnSection(model: AppModel, onWriteOwn: (OwnWordDraft) -> Unit) 
         }
         // An empty panel is furniture: with nothing written and nothing filed, the header
         // and its one button are the whole section.
-        if (words.isNotEmpty() || reported.isNotEmpty() || actions) {
+        if (model.hasBriefing || words.isNotEmpty() || reported.isNotEmpty() || actions) {
             OwnContentPanel(model, box.cards, words, reported, actions, onWriteOwn)
         }
     }
@@ -109,10 +111,18 @@ private fun OwnContentPanel(
 ) {
     val chrome = model.chrome
     val context = LocalContext.current
+    var briefingOpen by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier.fillMaxWidth().panel().padding(Theme.spacing.lg),
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
+        // The box handed to a conversation the app does not host. It leads the panel
+        // because it is the one entry here that goes OUT and comes back: the words under
+        // it are what a conversation writes home.
+        if (model.hasBriefing) {
+            BriefingRow(model) { briefingOpen = true }
+            HorizontalDivider(color = Theme.colors.separator)
+        }
         if (words.isNotEmpty()) {
             BlockLabel(chrome.boxOwnShelf)
             words.forEach { word ->
@@ -147,6 +157,28 @@ private fun OwnContentPanel(
                 if (model.clearableCount > 0) ClearAction(model)
             }
         }
+    }
+    if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
+}
+
+/** The entry into [BriefingSheet] — what it is, and what it is for, in two lines. */
+@Composable
+private fun BriefingRow(model: AppModel, onOpen: () -> Unit) {
+    val chrome = model.chrome
+    Row(
+        modifier = Modifier.fillMaxWidth().clickable(onClick = onOpen).padding(vertical = 4.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Column(modifier = Modifier.weight(1f)) {
+            Text(chrome.briefingTitle, style = MaterialTheme.typography.bodyLarge)
+            Text(
+                chrome.briefingRowSubtitle,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+        Icon(SprossIcons.ChevronRight, contentDescription = null,
+             tint = MaterialTheme.colorScheme.onSurfaceVariant)
     }
 }
 
