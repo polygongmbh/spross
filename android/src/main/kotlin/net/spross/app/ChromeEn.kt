@@ -200,10 +200,11 @@ internal object ChromeEn : Chrome {
     override val trainerSkillCountries = "Countries"
     override val countriesTitle = "Countries · %s"
     override val countriesReference = "The atlas"
-    override val countriesPace = "Every run opens at Sprosse 1 and climbs on by itself."
-    override val countriesBest = "Furthest so far: Sprosse %s"
+    override val countriesPace = "Every run opens at Sprosse 1 and climbs on with every " +
+        "clean answer."
+    override val countriesBest = "Best yet: Sprosse %s"
     override val countriesFastHint = "One clean answer per Sprosse instead of three."
-    override val countriesReverseHint = "The question comes in %s, the answer is owed in %s."
+    override val countriesReverseHint = "Asks in %s, you answer in %s."
     override val countryRungs = listOf(
         "The countries of your languages",
         "The names of the languages",
@@ -241,11 +242,12 @@ internal object ChromeEn : Chrome {
     override val trainerSkillDates = "Dates"
     override val datesTitle = "Dates · %s"
     override val datesReference = "The calendar"
-    override val datesPace = "Every run opens at Sprosse 1 and climbs on by itself."
-    override val datesBest = "Furthest so far: Sprosse %s"
+    override val datesPace = "Every run opens at Sprosse 1 and climbs on with every clean " +
+        "answer."
+    override val datesBest = "Best yet: Sprosse %s"
     override val datesFastHint = "One clean answer per Sprosse instead of three."
-    override val datesReverseHint = "The question comes in %s, the answer is owed in %s — " +
-        "names only, the date itself stays forward."
+    override val datesReverseHint = "Asks in %s, you answer in %s — names only, the date " +
+        "itself stays forward."
     override val dateRungs = listOf(
         "The weekdays",
         "The months",

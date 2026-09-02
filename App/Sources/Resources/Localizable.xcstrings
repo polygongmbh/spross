@@ -1509,13 +1509,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Am weitesten gekommen: Sprosse %@"
+            "value" : "Bestmarke: Sprosse %@"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Furthest so far: Sprosse %@"
+            "value" : "Best yet: Sprosse %@"
           }
         }
       },
@@ -1544,13 +1544,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jeder Durchgang beginnt bei Sprosse 1 und klettert von selbst weiter."
+            "value" : "Jeder Lauf beginnt bei Sprosse 1 und klettert mit jeder sauberen Antwort weiter."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Every run opens at Sprosse 1 and climbs on by itself."
+            "value" : "Every run opens at Sprosse 1 and climbs on with every clean answer."
           }
         }
       },
@@ -1577,13 +1577,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gefragt wird auf %@, geantwortet auf %@."
+            "value" : "Fragt auf %@, du antwortest auf %@."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The question comes in %@, the answer is owed in %@."
+            "value" : "Asks in %@, you answer in %@."
           }
         }
       },
@@ -1714,7 +1714,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Kreis wird größer – dieselben Fragen, mehr Länder."
+            "value" : "Der Kreis wird größer — dieselben Fragen, mehr Länder."
           }
         },
         "en" : {
@@ -2135,13 +2135,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Am weitesten gekommen: Sprosse %@"
+            "value" : "Bestmarke: Sprosse %@"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Furthest so far: Sprosse %@"
+            "value" : "Best yet: Sprosse %@"
           }
         }
       },
@@ -2170,13 +2170,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jeder Durchgang beginnt bei Sprosse 1 und klettert von selbst weiter."
+            "value" : "Jeder Lauf beginnt bei Sprosse 1 und klettert mit jeder sauberen Antwort weiter."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Every run opens at Sprosse 1 and climbs on by itself."
+            "value" : "Every run opens at Sprosse 1 and climbs on with every clean answer."
           }
         }
       },
@@ -2203,13 +2203,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gefragt wird auf %@, geantwortet auf %@ – nur die Namen, das Datum bleibt vorwärts."
+            "value" : "Fragt auf %@, du antwortest auf %@ — nur die Namen, das Datum bleibt vorwärts."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The question comes in %@, the answer is owed in %@ — names only, the date itself stays forward."
+            "value" : "Asks in %@, you answer in %@ — names only, the date itself stays forward."
           }
         }
       },
@@ -2307,7 +2307,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aus 3. wird dritte – die Zahl, die ein Datum braucht."
+            "value" : "Aus 3. wird dritte — die Zahl, die ein Datum braucht."
           }
         },
         "en" : {
@@ -3673,7 +3673,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ganze Wörter aus dem eigenen Kasten nach Gehör schreiben"
+            "value" : "Ganze Wörter aus der eigenen Box nach Gehör schreiben"
           }
         },
         "en" : {
@@ -5896,7 +5896,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Freies Üben – ohne Termin, ohne Limit"
+            "value" : "Freies Üben — ohne Termin, ohne Limit"
           }
         },
         "en" : {

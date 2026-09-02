@@ -119,7 +119,7 @@ internal object ChromeDe : Chrome {
     override val legalContactLabel = "Kontakt"
     override val legalPrivacy = "Datenschutzerklärung"
     override val trainerHubTitle = "Sprossen"
-    override val trainerHubSubtitle = "Freies Üben – ohne Termin, ohne Limit"
+    override val trainerHubSubtitle = "Freies Üben — ohne Termin, ohne Limit"
     override val a11ySuffixPractice = " üben, auf %s"
     override val trainerSkillLetters = "Buchstaben"
     override val lettersAskHear = "Welcher Buchstabe ist das?"
@@ -192,7 +192,7 @@ internal object ChromeDe : Chrome {
     override val lettersStageTyped = "Tippen"
     override val lettersStageTypedHint = "Den Buchstaben selbst schreiben, ohne Auswahl"
     override val lettersStageDictation = "Diktat"
-    override val lettersStageDictationHint = "Ganze Wörter aus dem eigenen Kasten nach Gehör " +
+    override val lettersStageDictationHint = "Ganze Wörter aus der eigenen Box nach Gehör " +
         "schreiben"
     override val lettersStageDictationLocked = "Braucht mehr gefestigte Wörter, die dieses " +
         "Gerät vorlesen kann"
@@ -205,11 +205,11 @@ internal object ChromeDe : Chrome {
     override val trainerSkillCountries = "Länder"
     override val countriesTitle = "Länder · %s"
     override val countriesReference = "Der Atlas"
-    override val countriesPace = "Jeder Durchgang beginnt bei Sprosse 1 und klettert von " +
-        "selbst weiter."
-    override val countriesBest = "Am weitesten gekommen: Sprosse %s"
+    override val countriesPace = "Jeder Lauf beginnt bei Sprosse 1 und klettert mit jeder " +
+        "sauberen Antwort weiter."
+    override val countriesBest = "Bestmarke: Sprosse %s"
     override val countriesFastHint = "Eine saubere Antwort pro Sprosse statt drei."
-    override val countriesReverseHint = "Gefragt wird auf %s, geantwortet auf %s."
+    override val countriesReverseHint = "Fragt auf %s, du antwortest auf %s."
     override val countryRungs = listOf(
         "Die Länder eurer Sprachen",
         "Die Namen der Sprachen",
@@ -225,7 +225,7 @@ internal object ChromeDe : Chrome {
         "Wie heißt das Land, in dem eine eurer Sprachen zu Hause ist?",
         "Dazu: wie heißt die Sprache selbst?",
         "Dazu: wie heißen die Menschen von dort?",
-        "Der Kreis wird größer – dieselben Fragen, mehr Länder.",
+        "Der Kreis wird größer — dieselben Fragen, mehr Länder.",
         "Dazu: welche Sprache spricht man in diesem Land?",
         "Noch mehr Länder, dieselben Fragen.",
         "Dazu: welches Land ist das, nur an der Flagge? Umgekehrt entfällt das.",
@@ -247,12 +247,12 @@ internal object ChromeDe : Chrome {
     override val trainerSkillDates = "Datum"
     override val datesTitle = "Datum · %s"
     override val datesReference = "Der Kalender"
-    override val datesPace = "Jeder Durchgang beginnt bei Sprosse 1 und klettert von selbst " +
-        "weiter."
-    override val datesBest = "Am weitesten gekommen: Sprosse %s"
+    override val datesPace = "Jeder Lauf beginnt bei Sprosse 1 und klettert mit jeder " +
+        "sauberen Antwort weiter."
+    override val datesBest = "Bestmarke: Sprosse %s"
     override val datesFastHint = "Eine saubere Antwort pro Sprosse statt drei."
-    override val datesReverseHint = "Gefragt wird auf %s, geantwortet auf %s – nur die " +
-        "Namen, das Datum bleibt vorwärts."
+    override val datesReverseHint = "Fragt auf %s, du antwortest auf %s — nur die Namen, das " +
+        "Datum bleibt vorwärts."
     override val dateRungs = listOf(
         "Die Wochentage",
         "Die Monate",
@@ -264,7 +264,7 @@ internal object ChromeDe : Chrome {
     override val dateRungHints = listOf(
         "Die sieben Namen der Woche, einzeln gefragt.",
         "Die zwölf Monatsnamen, gemischt mit den Wochentagen.",
-        "Aus 3. wird dritte – die Zahl, die ein Datum braucht.",
+        "Aus 3. wird dritte — die Zahl, die ein Datum braucht.",
         "Aus 3.3. wird der dritte März.",
         "Mit dem Wochentag davor: Mo, 3.3.",
         "Dazu die Jahreszahl, in Worten gelesen.",
