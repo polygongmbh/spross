@@ -8,6 +8,22 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 
 ## Content & catalog
 
+- `nature` is at 44 concepts, past the ~40 an area is meant to hold
+  (`catalog/areas/README.md` § which area a concept lives in), and the two case-contrast
+  phrases added there made it worse rather than caused it. The seam a learner would name is
+  `weather`: `sun`, `rain`, `wind`, `snow`, `sky`, `cloud`, `storm`, `thunder`, `lightning`,
+  `humid` plus the five weather phrases — a shelf that can say no, where what is left of
+  `nature` keeps the landscape. `scripts/catalog-move.py` carries it, recordings included.
+- German adjective endings are the next rule family with an anchor and no note: it draws
+  them, and eo/es/fr/it/uk/sw all agree adjectives too, so the cross-language test passes at
+  six of eight. `people/a-good-friend`, `people/many-friends`, `people/old-people` and
+  `qualities/a-lot-of-water` already exercise it unlabeled — the same shape
+  `at-school`/`go-to-school` was in before it was named.
+- The 838 German-reader notes on the seven non-German targets stay German-reader-only:
+  the self-note fallback serves a reader only where the target annotates ITSELF, and no
+  target but German does yet. Rewriting even the load-bearing ones in their own language
+  would serve all eight audiences at once, and is the highest-leverage note work left —
+  but Swahili and Esperanto prose need a reviewer who reads them.
 - Phrase→component linking gaps: 55/192 phrases (29%) carry no `components` —
   these are hand-authored, not auto-linked (`catalog/README.md` § concepts.json),
   so the gap is unfinished authoring, not a matcher to fix.
@@ -303,6 +319,8 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   takes the rating row with it, and nothing scrolls — that card cannot be graded at all.
   The card's own growth is unbounded by design (`Theme.swift` reserves a minimum, never
   a maximum); it is the row below that has nowhere left to stand.
+  Now more likely to be hit: the note fallback means a card shows a note for every reader
+  rather than only a German one, and the grammar notes are among the longest authored.
 - The atlas is the first drill whose PROMPT is a word rather than a numeral or a played
   sound: it can be heard neither by tap nor by autoplay — `read-aloud.md`'s table has no
   row for a spoken-word drill prompt, so the rule is owed before the code

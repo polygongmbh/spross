@@ -2,6 +2,24 @@
 
 ## Unreleased
 
+- **The explanations on a card now reach you, whatever language you read.** A card can carry a
+  short note about its answer — which case a verb takes, why one word is not the other — and
+  until now you only ever saw it if you happened to be a German speaker, because that is who
+  every one of them was written for. A note in the language you are LEARNING now shows when
+  none is written in yours, so the same explanation reaches everybody instead of one audience.
+  Some notes had been written for German speakers learning German, which is nobody, and had
+  never appeared on a card at all; those work now too.
+
+- **German explains its cases instead of leaving you to notice them.** "in der Schule" and
+  "in die Schule" were two cards that never said why they differ, and nothing said that
+  helfen takes a different case from sehen, or that mit, für and wegen each take their own —
+  mit, für and wegen had no cards at all. They do now, each saying which case it takes, and
+  new sentences put the contrast in your mouth rather than only in front of your eyes: the
+  mountains you go to against the mountains you are in, going home against being at home.
+  The same pairs teach the matching distinction where another language draws one — the
+  Esperanto -n of direction, the Ukrainian locative against the accusative — and where a
+  language draws none, the card says so.
+
 ## 5.8.0 — 2026-09-01
 
 - **New words arrive a little slower, so a busy box catches up instead of only keeping pace.**
