@@ -205,6 +205,9 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   the afternoon. Spanish still meets the morning as `de la mañana` in `time/nine-am-sharp`.
   es `evening` keeps `noche` as a variant beside `night`'s `noche`: a variant is graded and
   never prompted, so the two stay tellable apart where it counts.
+- The letter drill's choice Sprossen: Android shows a reveal under the tiles, iOS suppresses it —
+  the tiles already mark the answer (`ui/LetterDrillStages.kt`, `LetterDrillView+Stages.swift`).
+
 - Italian dates: the dayMonth reveal teaches `il otto`/`il undici marzo` on 2 of 31 days —
   a static pattern cannot elide; the elided `l'{day} {month}` already grades as a variant
   (`catalog/dates/it.json`; the article ruling itself is still ⚠ in `docs/date-readings.md`).
