@@ -4,16 +4,10 @@ import SprossKern
 /// The Letters hub entry: the alphabet of the language being learned, and
 /// the place its drill is started from.
 ///
-/// Two sections, in the order the numbers page uses — start first, reading
-/// after: the stages the drill will walk through and the button that opens it,
-/// then the alphabet table (one card per row of
-/// `catalog/alphabet/<lang>.json`). The table and the drill it prepares you for
-/// used to be two unrelated surfaces, one of them buried under a row of its own.
-///
-/// Nothing here is graded and nothing is stored: the letter drill books no
-/// review (D12) and keeps no record, so this page has no ladder to read — where
-/// a run STARTS is derived from the words the learner already holds, and which
-/// stages it can reach from what this device can say.
+/// Two sections, start first: the stages the drill will walk through and the
+/// button that opens it, then the alphabet table (one card per row of
+/// `catalog/alphabet/<lang>.json`). What the stage rows say, and why the page
+/// still stands where this device can sound nothing: `docs/surfaces.md`.
 ///
 /// The alphabet rows live in LettersOverview+Alphabet.swift and the stage
 /// ladder in LettersOverview+Practice.swift; split purely for file size.

@@ -32,17 +32,9 @@ import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
 
 /**
- * The shape the Countries and Dates pages both wear.
- *
- * Run first, reading after: the picks and the button on top, the table below them. Reading
- * matter and the run it prepares you for are ONE surface — a look-up five taps inside a
- * running drill is a look-up nobody makes, and a reference page you cannot start from is a
- * page nobody returns to — but the run is what the page is opened for, so nobody scrolls
- * past twenty screens of table to reach it.
- *
- * The corners are the app's: the ✕ out on the left, the run in on the right. The right one
- * REPEATS the `Los` button on purpose — it is the one still in reach from inside the
- * reading.
+ * The shape the Countries and Dates pages both wear: run first, reading after — the picks
+ * and the button on top, the table below them, the ✕ out on the left and the run in on the
+ * right. Why that order, and why the right corner repeats `Los`: `docs/surfaces.md`.
  */
 @Composable
 fun OverviewScaffold(

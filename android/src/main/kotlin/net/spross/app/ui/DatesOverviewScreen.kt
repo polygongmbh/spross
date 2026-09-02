@@ -13,10 +13,9 @@ import net.spross.kern.trainer.DateDrill
  * The page itself is [TypedDrillOverview], shared with the atlas; what is here is the
  * calendar's own words, its own ladder and the table under it.
  *
- * Unlike its siblings the ladder here is not one fixed list: how tall it is depends on
- * what the pair's content carries (no `dateWithYear` pattern, no year Sprosse) and which way
- * round the run asks (reversed, only the name Sprossen stand). The rows are therefore drawn
- * from kern's own [DateDrill.kinds] per Sprosse.
+ * Unlike the atlas the ladder here is not one fixed list — its height is the pair's own
+ * and the direction's (`docs/surfaces.md`) — so the rows are drawn from kern's own
+ * [DateDrill.kinds] per Sprosse rather than from a list of fixed length.
  */
 @Composable
 fun DatesOverviewScreen(model: AppModel) {

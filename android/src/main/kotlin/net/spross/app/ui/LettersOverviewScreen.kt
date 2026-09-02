@@ -27,13 +27,8 @@ import net.spross.kern.trainer.LetterStage
  * drill is started from.
  *
  * The same shape as the numbers page — the drill's stages and start first, the alphabet
- * table under them. Where the drill cannot run at all (this device can sound nothing in the
- * language) the stages are out of reach and the page is the alphabet alone: audio is the
- * DRILL's precondition, not the table's.
- *
- * Nothing here is graded and nothing is stored: the letter drill books no review and keeps
- * no record, so this page has no ladder to read. The stage rows say which stage a run OPENS
- * on, derived from the learner's consolidated words.
+ * table under them. What the stage rows say, and why the page still stands where this
+ * device can sound nothing: `docs/surfaces.md`.
  */
 @Composable
 fun LettersOverviewScreen(model: AppModel) {

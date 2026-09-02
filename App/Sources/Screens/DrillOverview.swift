@@ -5,19 +5,11 @@ import SprossKern
 /// the place its drill is started from — the Countries page and the Dates page
 /// are this one page with two faces.
 ///
-/// Two sections, in the order every overview uses — start first, reading after:
-/// the Sprossen a run climbs and the button that opens it, then the table
-/// itself, both sides of every name beside each other.
-///
-/// Named in TWO languages: a country's name is a pair rather than a property of
-/// the language being learned, and a date is spelled out by one side while the
-/// other lends its digits — so both drills exist only where the catalog carries
-/// the material on BOTH sides.
-///
-/// Nothing on this page is earned. The drills are ungated — every run opens at
-/// Sprosse 1 and climbs by itself — so the Sprosse rows say what a Sprosse ASKS and
-/// never carry a padlock. The one thing that persists is the highest Sprosse
-/// reached, which this page reads and never writes.
+/// Two sections, start first: the Sprossen a run climbs and the button that
+/// opens it, then the table itself, both sides of every name beside each other.
+/// Both drills exist only where the catalog carries the material on BOTH sides.
+/// What a Sprosse row says, and what the page reads rather than writes:
+/// `docs/surfaces.md`.
 ///
 /// The Sprossen and the toggles live in DrillOverview+Practice.swift, the table
 /// in the face's own reference view; split purely for file size.

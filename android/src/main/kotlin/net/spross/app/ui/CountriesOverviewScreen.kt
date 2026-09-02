@@ -13,9 +13,8 @@ import net.spross.kern.trainer.CountryDrill
  * The page itself is [TypedDrillOverview], shared with the calendar; what is here is the
  * atlas's own words, its own ladder and the table under it.
  *
- * That table is the one surface in the app written in TWO languages at once: a country's
- * name is a pair, not a property of the language being learned, and it is the very join the
- * run grades against ([CountryDrill.reference]) rather than a second table beside it.
+ * That table is written in TWO languages at once, and is the very join the run grades
+ * against ([CountryDrill.reference]) rather than a second table beside it.
  */
 @Composable
 fun CountriesOverviewScreen(model: AppModel) {
