@@ -13,6 +13,7 @@
   "down": { "text": "in basso", "variants": ["giù"] },
   "inside": { "text": "dentro", "variants": ["all'interno"] },
   "outdoors": { "text": "fuori", "variants": ["all'aperto"] },
+  "at-home": { "text": "a casa" },
   "in": { "text": "in" },
   "on": {
    "text": "sopra",
@@ -45,6 +46,7 @@
   "go-to-school": {
    "text": "andare a scuola",
    "notes": { "de": "a steht für wo und wohin: sono a scuola, vado a scuola — das Verb entscheidet." }
-  }
+  },
+  "are-you-going-home-already": { "text": "Andate già a casa?", "variants": ["Vai già a casa?"] }
  }
 }

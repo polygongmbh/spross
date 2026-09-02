@@ -33,6 +33,14 @@
   "when-does-the-train-leave": { "text": "Wann fährt der Zug ab?" },
   "have-a-good-journey": { "text": "Gute Reise!" },
   "how-much-is-the-fare": { "text": "Wie hoch ist der Fahrpreis?", "variants": ["Was kostet die Fahrt?"] },
-  "the-bus-has-already-departed": { "text": "Der Bus ist schon abgefahren." }
+  "the-bus-has-already-departed": { "text": "Der Bus ist schon abgefahren." },
+  "my-parents-are-coming-by-train": {
+   "text": "Meine Eltern kommen mit dem Zug.",
+   "notes": {
+    "de": "mit dem Zug — mit steht mit Dativ, darum dem und nicht den.",
+    "en": "mit dem Zug: mit takes the dative, so dem and never den.",
+    "es": "mit dem Zug: mit rige dativo, de ahí dem y nunca den."
+   }
+  }
  }
 }

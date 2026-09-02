@@ -17,6 +17,8 @@
   "after": { "text": "baada ya" },
   "until": { "text": "mpaka", "synonyms": ["hadi"] },
   "without": { "text": "bila" },
+  "for": { "text": "kwa" },
+  "because-of": { "text": "kwa sababu ya" },
   "again": { "text": "tena" },
   "still": {
    "text": "bado",

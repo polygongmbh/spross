@@ -165,8 +165,11 @@ internal object Fixture {
               "words": {
                 "waiter": { "text": "офіціант" },
                 "waiter-f": { "text": "офіціантка" },
-                "mouse": { "text": "миша", "synonyms": ["мишеня"], "variants": ["мишка"] },
-                "the-mouse-sprints": { "text": "Миша спринтує.", "notes": { "de": "Nur im Fixture." } } } }
+                "mouse": { "text": "миша", "synonyms": ["мишеня"], "variants": ["мишка"],
+                           "notes": { "sw": "Panya tu." } },
+                "the-mouse-sprints": {
+                  "text": "Миша спринтує.",
+                  "notes": { "de": "Nur im Fixture.", "uk": "Лише у фікстурі." } } } }
         """.trimIndent(),
         "areas/beta/concepts.json" to """
             [

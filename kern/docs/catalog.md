@@ -18,9 +18,15 @@ Engine contract: `../README.md`.
   NAME: it is also the produce prompt's disambiguating cue, which no consumer trims.
   Lint (`subtitlesAreCompletePerAreaAndDistinctFromTheTitle`): an area authoring one
   authors it in every declared language, and it neither contains the title nor a `·`.
-- Realization: `notes` is selected by the profile's SOURCE language at join time with **no
-  cross-language fallback** — a `de` note never surfaces for an `en`-source learner, and a
-  source nobody has authored notes for is note-less rather than served another language's.
+- Realization notes resolve `notes[source] ?: notes[lang]` — one map, keyed by the language
+  the note is WRITTEN IN, and the key is the whole distinction. A note keyed by the
+  realization's OWN language is the shared wording every reader falls to; a note keyed by
+  some other language was written FOR that reader and wins for them.
+  Nothing else can happen: a `de` note never surfaces for an `en`-source learner of French,
+  and on the SOURCE side `lang == source`, so the two arms collapse into one and no note
+  written in the target can reach a prompt.
+  Which of the two to author is a content decision, not the engine's —
+  `../../catalog/README.md` § `notes` states it.
 - Realization: `variants: [String]` next to `synonyms` — a **display/accept distinction
   only**, never a scheduling one (`../README.md` §3): synonyms rotate as recognition prompt forms and
   show on reveal; variants are accepted silently and never prompted.

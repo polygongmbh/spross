@@ -60,7 +60,7 @@ internal data class RawRealization(
     val synonyms: List<String>,
     val variants: List<String>,
     val grammar: Map<String, String>,
-    /** Keyed by explanation language; selected by the profile's source at join time. */
+    /** Keyed by the language written in: the reader's own, else this file's. */
     val notes: Map<Language, String>,
 )
 
@@ -97,7 +97,7 @@ internal data class RawFrame(
     val masculineNumeral: Boolean,
     /** The counted noun's Bantu class, so the numeral agrees with it; Swahili only. */
     val swahiliNounClass: SwahiliConcord.NounClass?,
-    /** Keyed by explanation language; selected by the profile's source at join time. */
+    /** Keyed by explanation language; the source at join time, else this file's own. */
     val notes: Map<Language, String>,
 )
 

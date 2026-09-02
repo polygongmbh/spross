@@ -39,7 +39,10 @@
   "drink": { "text": "пити" },
   "im-hungry": { "text": "Я голодний.", "variants": ["Я голодна."] },
   "whats-for-dinner": { "text": "Що на вечерю?" },
-  "i-dont-eat-meat": { "text": "Я не їм м'яса." },
+  "i-dont-eat-meat": {
+   "text": "Я не їм м'яса.",
+   "notes": { "uk": "Після «не» форма інша: їм м'ясо, але не їм м'яса." }
+  },
   "i-eat-rice-with-sauce": { "text": "Я їм рис із соусом." },
   "the-food-is-ready": { "text": "Їжа готова!" }
  }

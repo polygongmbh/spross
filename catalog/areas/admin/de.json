@@ -11,7 +11,10 @@
   "ticket-number": {
    "text": "Wartenummer",
    "grammar": { "gender": "die", "plural": "-n" },
-   "notes": { "en": "You DRAW a number here — ziehen, never nehmen." }
+   "notes": {
+    "en": "You DRAW a number here — ziehen, never nehmen.",
+    "es": "Aquí se SACA un número — ziehen, nunca nehmen."
+   }
   },
   "case-worker": { "text": "Sachbearbeiter", "grammar": { "gender": "der", "plural": "=" } },
   "case-worker-f": { "text": "Sachbearbeiterin", "grammar": { "gender": "die", "plural": "-nen" } },

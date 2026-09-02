@@ -52,6 +52,7 @@
    "text": "Kiom kostas la veturo?",
    "variants": ["Kiom alta estas la veturprezo?", "Kiom kostas la bileto?"]
   },
-  "the-bus-has-already-departed": { "text": "La aŭtobuso jam forveturis." }
+  "the-bus-has-already-departed": { "text": "La aŭtobuso jam forveturis." },
+  "my-parents-are-coming-by-train": { "text": "Miaj gepatroj venas per trajno." }
  }
 }

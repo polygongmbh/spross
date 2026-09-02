@@ -24,6 +24,15 @@
   "after": { "text": "post" },
   "until": { "text": "ĝis" },
   "without": { "text": "sen" },
+  "with": { "text": "kun" },
+  "for": { "text": "por" },
+  "because-of": {
+   "text": "pro",
+   "notes": {
+    "de": "pro nennt den Grund, por den Zweck: pro la pluvo · por vi.",
+    "en": "pro is the cause, por the purpose: pro la pluvo · por vi."
+   }
+  },
   "again": { "text": "denove", "variants": ["refoje", "ree"] },
   "still": { "text": "ankoraŭ", "notes": { "de": "ankoraŭ (noch) und ankaŭ (auch) nicht verwechseln." } },
   "then": { "text": "poste" },

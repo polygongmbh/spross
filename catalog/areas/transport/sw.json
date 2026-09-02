@@ -41,6 +41,7 @@
   "when-does-the-train-leave": { "text": "Treni inaondoka lini?" },
   "have-a-good-journey": { "text": "Safari njema!" },
   "how-much-is-the-fare": { "text": "Nauli ni ngapi?" },
-  "the-bus-has-already-departed": { "text": "Basi limeshaondoka." }
+  "the-bus-has-already-departed": { "text": "Basi limeshaondoka." },
+  "my-parents-are-coming-by-train": { "text": "Wazazi wangu wanakuja kwa treni." }
  }
 }

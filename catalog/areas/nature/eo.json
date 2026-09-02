@@ -48,6 +48,11 @@
    "variants": ["Ni veturas al la montoj.", "Ni iras en la montaron."]
   },
   "look-a-bird": { "text": "Rigardu, birdo!", "variants": ["Jen birdo!", "Rigardu, jen birdo!"] },
-  "the-sun-has-come-out": { "text": "La suno eliris.", "variants": ["La suno aperis.", "La suno elvenis."] }
+  "the-sun-has-come-out": { "text": "La suno eliris.", "variants": ["La suno aperis.", "La suno elvenis."] },
+  "its-cold-in-the-mountains": {
+   "text": "En la montaro estas malvarme.",
+   "notes": { "eo": "Sen -n estas la loko: en la montaro. Kun -n estas la direkto: en la montaron." }
+  },
+  "we-are-staying-home-because-of-the-rain": { "text": "Pro la pluvo ni restas hejme." }
  }
 }

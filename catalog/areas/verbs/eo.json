@@ -41,6 +41,10 @@
   "to-push": { "text": "puŝi" },
   "to-pull": { "text": "tiri" },
   "do-you-have-water": { "text": "Ĉu vi havas akvon?" },
-  "where-are-you-from": { "text": "De kie vi venas?" }
+  "where-are-you-from": { "text": "De kie vi venas?" },
+  "can-you-see-me": {
+   "text": "Ĉu vi vidas min?",
+   "notes": { "eo": "La objekto ricevas -n: mi vidas vin, vi vidas min." }
+  }
  }
 }

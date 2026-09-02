@@ -10,6 +10,8 @@
   "down": { "text": "down" },
   "inside": { "text": "inside" },
   "outdoors": { "text": "outside" },
+  "at-home": { "text": "at home" },
+  "home": { "text": "home" },
   "in": { "text": "in" },
   "on": { "text": "on" },
   "under": { "text": "under" },
@@ -30,6 +32,7 @@
     "de": "ohne Artikel, wenn der Unterricht gemeint ist: at school · das Gebäude ist at the school."
    }
   },
-  "go-to-school": { "text": "to go to school" }
+  "go-to-school": { "text": "to go to school" },
+  "are-you-going-home-already": { "text": "Are you going home already?" }
  }
 }

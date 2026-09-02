@@ -23,7 +23,7 @@ Per-language app metadata — the picker's self-name, the flag, the articles —
   Ukrainian is the one that needs them: instrumental "німецькою" after *розмовляти*,
   accusative "німецьку" after *вчити*.
 - `variants` — accept-only alternates, never displayed (de "Kisuaheli" beside "Suaheli").
-- `notes` — keyed by explanation language, exactly as a realization's `notes` are.
+- `notes` — keyed by explanation language, as a realization's `notes` are; no fallback.
 
 **Language markers.** A realization may name the language being LEARNED instead of hardcoding
 one, with `{language}`, `{language-in}`, `{language-speak}` or `{language-learn}`:

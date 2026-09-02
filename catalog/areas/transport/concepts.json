@@ -35,5 +35,11 @@
  },
  { "slug": "have-a-good-journey", "kind": "phrase", "emoji": "🗺️", "components": ["journey"] },
  { "slug": "how-much-is-the-fare", "kind": "phrase", "components": ["fare"] },
- { "slug": "the-bus-has-already-departed", "kind": "phrase", "components": ["bus", "depart"] }
+ { "slug": "the-bus-has-already-departed", "kind": "phrase", "components": ["bus", "depart"] },
+ {
+  "slug": "my-parents-are-coming-by-train",
+  "kind": "phrase",
+  "emoji": "🚆",
+  "components": ["train"]
+ }
 ]

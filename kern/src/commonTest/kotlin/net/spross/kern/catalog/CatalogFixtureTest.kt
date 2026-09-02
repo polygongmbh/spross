@@ -97,12 +97,24 @@ class CatalogFixtureTest {
         assertTrue(card.target.synonyms.isEmpty())
     }
 
+    /**
+     * The key decides who reads a note: one written FOR this reader wins, and the one
+     * written in the language being explained is what every other reader falls to.
+     * `the-mouse-sprints` carries both, so the German reader and the English reader
+     * each get a different sentence off the same card.
+     */
     @Test
-    fun notesSelectedBySourceLanguageOnly() {
-        val deSourced = catalog.join("de", "uk").byId("the-mouse-sprints")
-        assertEquals("Nur im Fixture.", deSourced.target.note)
-        val enSourced = catalog.join("en", "uk").byId("the-mouse-sprints")
-        assertNull(enSourced.target.note)
+    fun aReaderNoteWinsAndTheSharedWordingCatchesEveryoneElse() {
+        assertEquals("Nur im Fixture.", catalog.join("de", "uk").byId("the-mouse-sprints").target.note)
+        assertEquals("Лише у фікстурі.", catalog.join("en", "uk").byId("the-mouse-sprints").target.note)
+    }
+
+    /** A note in a language that is neither the reader's nor the card's reaches nobody. */
+    @Test
+    fun aThirdLanguagesNoteNeverLeaks() {
+        // uk `mouse` is annotated in sw alone: not in uk, and not for the en reader.
+        assertEquals("Panya tu.", catalog.join("sw", "uk").byId("mouse").target.note)
+        assertNull(catalog.join("en", "uk").byId("mouse").target.note)
     }
 
     @Test

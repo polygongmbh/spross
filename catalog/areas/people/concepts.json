@@ -40,5 +40,6 @@
  { "slug": "my-girlfriend", "kind": "phrase", "emoji": "👩‍❤️‍👩", "components": ["friend"] },
  { "slug": "her-boyfriend", "kind": "phrase", "emoji": "👩‍❤️‍👨", "components": ["friend"] },
  { "slug": "old-people", "kind": "phrase", "emoji": "🧓", "components": ["person"] },
- { "slug": "many-friends", "kind": "phrase", "emoji": "👥", "components": ["friend"] }
+ { "slug": "many-friends", "kind": "phrase", "emoji": "👥", "components": ["friend"] },
+ { "slug": "mom-help-me", "kind": "phrase", "components": ["mother"] }
 ]

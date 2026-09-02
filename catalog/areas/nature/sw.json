@@ -63,6 +63,8 @@
   "lets-go-to-the-beach": { "text": "Twende ufukweni!", "variants": ["Twende pwani!"] },
   "we-are-going-to-the-mountains": { "text": "Tunaenda milimani." },
   "look-a-bird": { "text": "Angalia, ndege!", "variants": ["Tazama, ndege!"] },
-  "the-sun-has-come-out": { "text": "Jua limetoka." }
+  "the-sun-has-come-out": { "text": "Jua limetoka." },
+  "its-cold-in-the-mountains": { "text": "Milimani kuna baridi." },
+  "we-are-staying-home-because-of-the-rain": { "text": "Kwa sababu ya mvua tunabaki nyumbani." }
  }
 }

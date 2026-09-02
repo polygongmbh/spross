@@ -13,6 +13,12 @@
   "after": { "text": "después de" },
   "until": { "text": "hasta" },
   "without": { "text": "sin" },
+  "with": { "text": "con" },
+  "for": {
+   "text": "para",
+   "notes": { "es": "para = destino o finalidad, por = causa: para ti · por la lluvia." }
+  },
+  "because-of": { "text": "por" },
   "again": { "text": "otra vez", "variants": ["de nuevo"] },
   "still": { "text": "todavía", "variants": ["aún"] },
   "then": { "text": "luego" },

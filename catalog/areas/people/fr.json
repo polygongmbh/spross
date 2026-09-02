@@ -81,6 +81,7 @@
    "variants": ["les gens âgés"],
    "notes": { "de": "vieux klingt bei Menschen abwertend — im Alltag âgé." }
   },
-  "many-friends": { "text": "beaucoup d'amis" }
+  "many-friends": { "text": "beaucoup d'amis" },
+  "mom-help-me": { "text": "Maman, aide-moi !" }
  }
 }

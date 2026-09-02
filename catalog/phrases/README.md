@@ -50,9 +50,10 @@ the table is derived from the trainer's own readings and can never be authored,
 so this is the only place a language's irregularities get said in words.
 Being a ROOT key it never enters the slug namespace: a frame may still be called `numberNotes`,
 and would be realized inside `frames` like any other.
-Selection is by READER with an English fallback, unlike a card's note, which has none:
-a note hangs off a card that carries itself without it, while this IS the section,
-so lint requires English of every language the trainer can generate.
+Selection is by READER with an ENGLISH fallback, where a card's note falls back to the
+language it explains instead: a note hangs off a card that carries itself without it, and its
+reader is at least studying that language, while this IS the section and its reader may have
+met no numbers yet. So lint requires English of every language the trainer can generate.
 
 - `slot` is `numbers`, `years`, `clock` or `fraction` — which generator fills the frame.
   A `fraction` slot draws a reduced `n/d` the answer language can read as a NOUN

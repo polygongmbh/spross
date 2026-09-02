@@ -52,6 +52,8 @@
   "lets-go-to-the-beach": { "text": "Andiamo in spiaggia!", "variants": ["Andiamo alla spiaggia!", "Andiamo al mare!"] },
   "we-are-going-to-the-mountains": { "text": "Andiamo in montagna.", "variants": ["Andiamo sulle montagne."] },
   "look-a-bird": { "text": "Guarda, un uccello!", "variants": ["Guarda, c'è un uccello!"] },
-  "the-sun-has-come-out": { "text": "È uscito il sole.", "variants": ["Il sole è uscito."] }
+  "the-sun-has-come-out": { "text": "È uscito il sole.", "variants": ["Il sole è uscito."] },
+  "its-cold-in-the-mountains": { "text": "In montagna fa freddo." },
+  "we-are-staying-home-because-of-the-rain": { "text": "Per la pioggia restiamo a casa." }
  }
 }

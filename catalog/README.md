@@ -266,10 +266,20 @@ Realization fields — only `text` is required:
   stem alternations (`ніж`→`ножі`), fleeting vowels (`день`→`дні`),
   suppletives (`людина`→`люди`), indeclinables and `-ння` neuters (`"="`),
   and phrases whose other words have to agree (`письмовий стіл`→`письмові столи`).
-- `notes` — keyed by EXPLANATION language (today only `de`). A note lives on the
-  realization it explains and is selected by the reader's base language, so the
-  key is load-bearing the moment a language is taught to more than one audience
-  (a German note on a shared `sw.json` must not surface for an English learner).
+- `notes` — keyed by the language the note is WRITTEN IN, and that key decides who reads it.
+  Key it by the FILE'S OWN language and it is the shared wording: one sentence about the word,
+  in the language the learner is studying, which every reader falls to. **That is what to
+  write.** Eight readers get one wording where eight translations each served one, and it is
+  the language the learner is there to read.
+  Key it by some other language and it is written for that reader alone, and beats the shared
+  one for them (`../kern/docs/catalog.md`). Two things earn that and nothing else: a quirk of
+  those two languages meeting (Spanish `doler` explained as German's `gefallen`, an idiom's
+  literal back-translation), and a card that arrives before a learner could read the target's
+  own words. It never reaches anyone else — a German note on a shared `sw.json` stays hidden
+  from an English learner, so writing one is a promise to write it for every reader who needs it.
+  Reach for the shared wording first and make it carry: an example-first note
+  (`мама → мамо, тато → тату`) teaches what naming the case would, and stays readable to a
+  learner who could not yet read the word for it.
   Keep a note only if it changes what the learner would say or do; pure etymology
   ("wörtl. …") is cut. Load-bearing teaching (e.g. which word for "rice") is
   destined to become first-class training content, not a permanent note.

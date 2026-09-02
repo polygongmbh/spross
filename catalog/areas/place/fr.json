@@ -16,6 +16,7 @@
    }
   },
   "outdoors": { "text": "dehors", "variants": ["à l'extérieur"] },
+  "at-home": { "text": "à la maison" },
   "in": { "text": "dans" },
   "on": { "text": "sur" },
   "under": { "text": "sous" },
@@ -41,6 +42,7 @@
    "notes": {
     "de": "à steht für wo und wohin: je suis à l'école, je vais à l'école — das Verb entscheidet."
    }
-  }
+  },
+  "are-you-going-home-already": { "text": "Vous rentrez déjà ?", "variants": ["Tu rentres déjà ?"] }
  }
 }

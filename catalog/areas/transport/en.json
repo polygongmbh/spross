@@ -33,6 +33,7 @@
   "when-does-the-train-leave": { "text": "When does the train leave?" },
   "have-a-good-journey": { "text": "Have a good journey!", "variants": ["Have a good trip!"] },
   "how-much-is-the-fare": { "text": "How much is the fare?" },
-  "the-bus-has-already-departed": { "text": "The bus has already left." }
+  "the-bus-has-already-departed": { "text": "The bus has already left." },
+  "my-parents-are-coming-by-train": { "text": "My parents are coming by train." }
  }
 }

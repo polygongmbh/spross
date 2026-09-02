@@ -75,6 +75,7 @@
   "to-push": { "text": "kusukuma" },
   "to-pull": { "text": "kuvuta" },
   "do-you-have-water": { "text": "Una maji?" },
-  "where-are-you-from": { "text": "Unatoka wapi?" }
+  "where-are-you-from": { "text": "Unatoka wapi?" },
+  "can-you-see-me": { "text": "Unaniona?", "notes": { "sw": "Mimi ndani ya kitenzi ni -ni-: u-na-ni-ona." } }
  }
 }

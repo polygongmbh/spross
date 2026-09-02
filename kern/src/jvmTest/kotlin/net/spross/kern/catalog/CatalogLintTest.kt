@@ -6,6 +6,7 @@ import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import kotlin.test.fail
 
 /**
  * Permanent lint over the REAL catalog: every content rule (`kern/docs/catalog.md`).
@@ -329,6 +330,65 @@ class CatalogLintTest {
                 raw.notes.keys.all { it in catalog.languages },
                 "$area/$lang.json $slug: unknown note key ${raw.notes.keys}",
             )
+        }
+    }
+
+    /**
+     * Writing a note FOR one reader is a promise to write it for every reader who needs it,
+     * so a German card that addresses a reader at all addresses both the readers German is
+     * taught to. A self-keyed note is not addressing a reader — it is the shared wording —
+     * so a card carrying only `de` is untouched.
+     */
+    @Test
+    fun readerNotesOnGermanTargetsCoverEnglishAndSpanish() {
+        forEachRealization { area, lang, slug, raw ->
+            if (lang != "de") return@forEachRealization
+            val readers = raw.notes.keys.filter { it != "de" }
+            if (readers.isEmpty()) return@forEachRealization
+            assertTrue(
+                "en" in readers && "es" in readers,
+                "$area/de.json $slug: a reader note needs both en and es, has ${readers.sorted()}",
+            )
+        }
+    }
+
+    /**
+     * The rules the catalog teaches by note, and every language that draws the
+     * distinction and must therefore say so. A pin, not an inference: no gate can tell
+     * whether a language HAS a rule to state, so the languages that draw no line are
+     * named here with their reason rather than being silently absent.
+     *
+     * This is the class of gap that goes unnoticed — `at-school`/`go-to-school` carried
+     * the location/destination rule in six languages and not in German, the one that
+     * draws it most sharply, for as long as the pair existed.
+     */
+    @Test
+    fun anchoredRulesAreStatedByEveryLanguageThatDrawsThem() {
+        // anchor slug → the languages whose realization must carry a note.
+        // fr/it/sw say location and destination one way and state that on `at-school`;
+        // en draws it lexically and annotates the article instead.
+        val anchors = mapOf(
+            "go-to-school" to setOf("de", "eo", "es", "fr", "it", "uk"),
+            "its-cold-in-the-mountains" to setOf("de", "eo", "uk"),
+            "home" to setOf("de", "eo", "uk"),
+            "with" to setOf("de", "uk"),
+            "for" to setOf("de", "es", "uk"),
+            "because-of" to setOf("de", "eo", "uk"),
+            "follow" to setOf("de", "uk"),
+            // Cases German has no counterpart for: the uk vocative, the uk genitive of
+            // negation (German keeps the accusative), the es personal `a`.
+            "mom-help-me" to setOf("de", "eo", "sw", "uk"),
+            "i-dont-eat-meat" to setOf("fr", "uk"),
+            "ask-the-teacher" to setOf("es"),
+        )
+        for ((slug, langs) in anchors) {
+            val realized = catalog.areas.firstNotNullOfOrNull { area ->
+                area.realizations.takeIf { rs -> rs.values.any { slug in it } }
+            } ?: fail("anchor $slug names no concept")
+            for (lang in langs) {
+                val raw = realized[lang]?.get(slug) ?: fail("anchor $slug is unrealized in $lang")
+                assertTrue(raw.notes.isNotEmpty(), "$slug: $lang draws this rule and states nothing")
+            }
         }
     }
 

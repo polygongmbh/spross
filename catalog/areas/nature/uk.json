@@ -42,6 +42,11 @@
   "lets-go-to-the-beach": { "text": "Ходімо на пляж!" },
   "we-are-going-to-the-mountains": { "text": "Ми їдемо в гори." },
   "look-a-bird": { "text": "Дивись, пташка!", "variants": ["Дивись, птах!"] },
-  "the-sun-has-come-out": { "text": "Сонце вийшло.", "variants": ["Сонце визирнуло.", "Виглянуло сонце."] }
+  "the-sun-has-come-out": { "text": "Сонце вийшло.", "variants": ["Сонце визирнуло.", "Виглянуло сонце."] },
+  "its-cold-in-the-mountains": {
+   "text": "У горах холодно.",
+   "notes": { "uk": "Де? — у горах. Куди? — в гори. Прийменник той самий, форма інша." }
+  },
+  "we-are-staying-home-because-of-the-rain": { "text": "Через дощ ми залишаємося вдома." }
  }
 }

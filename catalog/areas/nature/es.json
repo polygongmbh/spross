@@ -58,6 +58,8 @@
    "variants": ["Nos vamos a la montaña.", "Vamos a las montañas."]
   },
   "look-a-bird": { "text": "¡Mira, un pájaro!" },
-  "the-sun-has-come-out": { "text": "Ha salido el sol.", "variants": ["El sol ha salido.", "Salió el sol."] }
+  "the-sun-has-come-out": { "text": "Ha salido el sol.", "variants": ["El sol ha salido.", "Salió el sol."] },
+  "its-cold-in-the-mountains": { "text": "En la montaña hace frío." },
+  "we-are-staying-home-because-of-the-rain": { "text": "Por la lluvia nos quedamos en casa." }
  }
 }
