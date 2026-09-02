@@ -39,6 +39,14 @@
   "to-push": { "text": "штовхати" },
   "to-pull": { "text": "тягнути" },
   "do-you-have-water": { "text": "У вас є вода?", "variants": ["У тебе є вода?"] },
-  "where-are-you-from": { "text": "Звідки ви?" }
+  "where-are-you-from": { "text": "Звідки ви?" },
+  "can-you-see-me": {
+   "text": "Ти мене бачиш?",
+   "variants": ["Ви мене бачите?"],
+   "notes": {
+    "de": "мене ist Akkusativ — мені wäre Dativ.",
+    "en": "мене is the accusative; мені would be the dative."
+   }
+  }
  }
 }

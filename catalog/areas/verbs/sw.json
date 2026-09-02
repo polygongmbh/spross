@@ -75,6 +75,13 @@
   "to-push": { "text": "kusukuma" },
   "to-pull": { "text": "kuvuta" },
   "do-you-have-water": { "text": "Una maji?" },
-  "where-are-you-from": { "text": "Unatoka wapi?" }
+  "where-are-you-from": { "text": "Unatoka wapi?" },
+  "can-you-see-me": {
+   "text": "Unaniona?",
+   "notes": {
+    "de": "Das Objekt steckt im Verb: -ni- ist mich, u-na-ni-ona.",
+    "en": "The object rides inside the verb: -ni- is me, u-na-ni-ona."
+   }
+  }
  }
 }

@@ -29,5 +29,6 @@
  { "slug": "to-push", "kind": "verb", "emoji": "👉" },
  { "slug": "to-pull", "kind": "verb", "emoji": "👈" },
  { "slug": "do-you-have-water", "kind": "phrase", "emoji": "💧", "components": ["have"] },
- { "slug": "where-are-you-from", "kind": "phrase", "emoji": "🌍", "components": ["come"] }
+ { "slug": "where-are-you-from", "kind": "phrase", "emoji": "🌍", "components": ["come"] },
+ { "slug": "can-you-see-me", "kind": "phrase", "emoji": "👀", "components": ["see"] }
 ]

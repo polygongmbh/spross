@@ -58,6 +58,7 @@
   "where-are-you-from": {
    "text": "D'où venez-vous ?",
    "variants": ["Vous venez d'où ?", "D'où viens-tu ?", "Tu viens d'où ?"]
-  }
+  },
+  "can-you-see-me": { "text": "Tu me vois ?", "variants": ["Vous me voyez ?"] }
  }
 }

@@ -41,6 +41,10 @@
   "to-push": { "text": "puŝi" },
   "to-pull": { "text": "tiri" },
   "do-you-have-water": { "text": "Ĉu vi havas akvon?" },
-  "where-are-you-from": { "text": "De kie vi venas?" }
+  "where-are-you-from": { "text": "De kie vi venas?" },
+  "can-you-see-me": {
+   "text": "Ĉu vi vidas min?",
+   "notes": { "de": "Das Objekt bekommt -n: min, vin, lin.", "en": "The object takes -n: min, vin, lin." }
+  }
  }
 }

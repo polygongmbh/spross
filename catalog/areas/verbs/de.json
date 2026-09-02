@@ -39,6 +39,15 @@
   "to-push": { "text": "schieben" },
   "to-pull": { "text": "ziehen" },
   "do-you-have-water": { "text": "Haben Sie Wasser?", "variants": ["Hast du Wasser?"] },
-  "where-are-you-from": { "text": "Woher kommen Sie?", "variants": ["Woher kommst du?"] }
+  "where-are-you-from": { "text": "Woher kommen Sie?", "variants": ["Woher kommst du?"] },
+  "can-you-see-me": {
+   "text": "Siehst du mich?",
+   "variants": ["Sehen Sie mich?"],
+   "notes": {
+    "de": "mich ist Akkusativ — helfen verlangt an derselben Stelle mir.",
+    "en": "mich is the accusative; helfen would take mir in the same slot.",
+    "es": "mich es acusativo; helfen exigiría mir en el mismo lugar."
+   }
+  }
  }
 }

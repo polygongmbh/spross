@@ -61,6 +61,7 @@
    "text": "¿De dónde es usted?",
    "variants": ["¿De dónde es?", "¿De dónde eres?"],
    "notes": { "de": "Spanisch fragt nach der Herkunft mit ser, nicht mit venir." }
-  }
+  },
+  "can-you-see-me": { "text": "¿Me ves?" }
  }
 }
