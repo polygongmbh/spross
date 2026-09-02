@@ -23,6 +23,8 @@ and potential future crowdsourced per-language contribution.
   Th **area** is the disambiguator, and the engine renders the area label on an ambiguous *produce* prompt only — 
   never on recognize, where any cue strong enough to identify the concept would reveal the answer.
   Tolerated cross-area collisions are pinned by a test, so minting a new one has to be a conscious decision.
+  Asked the other way — what does this word MEAN — the merge is simply honored: every concept
+  printing the form answers for it, and the reveal names the rest (`../kern/docs/grading.md`).
 
 ## Layout
 

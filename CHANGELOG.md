@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **A word that means two things in your language now counts either way.** Swahili *ndege* is
+  both a bird and an airplane; hearing it and writing the other one was marked wrong. It
+  counts in full now, and the card pauses on the meaning it was teaching, so the word you
+  did not think of is the one you end up looking at. Every card that asks what a word means
+  also says what else it means, on the line the card's own note would otherwise use.
+
 - **A word explains itself on a long press in the Box.** The catalog's note — why *la mano*
   is feminine, which of two Spanish words for "ear" the doctor wants — used to arrive only
   when a card was turned over mid-round. Holding a word in the Box now shows it above the

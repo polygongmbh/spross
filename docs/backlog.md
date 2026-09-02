@@ -497,3 +497,7 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 - `CatalogAudioLintTest` (399 lines) and `CatalogAudioFixtureTest` (340) are both past the
   ~300-line budget and split cleanly: provenance/attribution rules apart from the playback
   index and the naming rules, lookup apart from parse in the fixture half.
+- The watch's recognize question can offer a merged word's OTHER meaning as a wrong tile:
+  `WatchSnapshotBuilder.option` draws distractors from the pool by `source.text`, and a
+  co-owner of the prompted form answers the question correctly (`conceptsSharing` is the
+  filter). The watch reveal carries no "also means" line either.

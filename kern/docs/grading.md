@@ -110,3 +110,20 @@ Leniency is safe to the extent the catalog can disprove it — that rule is the 
   the feminine base leniency (`../README.md` §3) is left to its own demotion; and dropping a citation
   prefix off the INPUT reaches verb owners only (a noun never owns `kupika`).
   Only the collision is catalog-wide — nothing else about "wrong" widens.
+- **The meaning side reads the join from the other end** — `conceptsSharing(form, card)`,
+  every OTHER concept that PRINTS `form` on its target side, seed order. A card asked by ear
+  (and the same turn put in writing) owes what the word MEANS, and the target language merges
+  what the source splits: sw `ndege` is Vogel AND Flugzeug, so both understand the word and
+  both book. The prompted card leads — its own Exact wins, and its own slip is corrected to
+  its own word — and a borrowed meaning comes back as `AlmostReason.Merged`, rated exactly
+  what it earned (Good clean, Hard for a slip) and holding on the meaning THIS card teaches:
+  full credit, and the word still to be learned stands on screen for the tap.
+  Live green stays the card's own answer alone, or the beat would carry the turn off before
+  that word was ever seen.
+  This index is LITERAL where the produce one is lenient, and that is the whole difference:
+  `owners` asks "could this typing be that word" and forgives an article, a citation prefix
+  and a case; `sharedForms` asks "does another concept print this very form", and a form that
+  has to be bent to match is a different word — de `Arm` is not `arm`, which by ear is not a
+  merge either, since the target is spoken with its article.
+  The meaning side still mints no `Match.OtherWord`: naming the concept a wrong answer
+  belongs to would teach a word in the language being learned.

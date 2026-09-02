@@ -77,6 +77,10 @@ declarations cannot state are here.
   disambiguated by its badge. The residue is real: Swahili merges pairs German splits
   (`kuvaa` = anziehen + sich anziehen, `kupumzika` = 3 concepts), so an sw-source learner
   gets prompts no cue in the answer language could resolve. Produce-side only — see §3.
+  From the TARGET side the same merge is not a residue but a fact of the word: a form more
+  than one concept prints means all of what they mean (sw `ndege` is Vogel AND Flugzeug),
+  so a card asked what it MEANS credits any of them and the reveal names the rest (§3).
+  That join is literal, not the lenient grading one — de `Arm` is not `arm`.
 - **Grammar display is target-side only**: the plural line and the article coloring render
   for the target realization alone (`model/DisplayText.kt` resolves what the catalog
   authored; the words a surface prints for each sentinel are chrome).
@@ -122,7 +126,11 @@ No config flag, no user-facing direction anywhere.
   so it needs the stricter consolidated bar (§5) — it is not a third role, only the side the
   card asks FROM moving, so one schedule still sees one kind of answer. The ANSWER moves
   with it: what is typed is the meaning, in the source language, because a word heard and
-  written back down has been transcribed rather than understood. It is the one turn typed in
+  written back down has been transcribed rather than understood. EVERY meaning the played
+  form carries counts, not only this card's — the merge is the target language's own and
+  both answers understand the word — and the borrowed one books in full while pausing on
+  the meaning THIS card teaches, which is the one still to be learned
+  (`AlmostReason.Merged`). It is the one turn typed in
   the language the learner already has, and it stands on the same reasoning the recognition
   rule does — a self-graded reveal would not tell whether the word was understood at all,
   which is the whole of what a sound prompt asks.
@@ -434,7 +442,10 @@ What was built and later removed is git's to remember, not this doc's.
   Also rejected: emoji-as-cue — verbs and phrases carry an emoji now, but a merged pair
   merges on one meaning and so wears one picture, leaving the cue silent exactly where the
   ambiguity bites; the area label resolves it for free. Also rejected: cluster-wide
-  grading leniency (accepting any cluster member teaches away the distinction the learner
-  is there to acquire; if a same-area cluster ever proves unfixable, revisit as `Typo`,
-  never `Exact`), and suppressing/deferring a cluster member (breaks composition
+  grading leniency IN THE PRODUCE DIRECTION (accepting any cluster member for a shared
+  SOURCE prompt teaches away the distinction the learner is there to acquire; if a same-area
+  cluster ever proves unfixable, revisit as `Typo`, never `Exact`). The meaning direction is
+  not that case and credits every owner (§3): the merge there is the target language's own,
+  and honoring it blurs no distinction the learner is acquiring.
+  Also rejected: suppressing/deferring a cluster member (breaks composition
   determinism to hide a content problem, and the collision returns once both are learned).

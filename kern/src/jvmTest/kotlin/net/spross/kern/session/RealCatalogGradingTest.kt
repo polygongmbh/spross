@@ -110,6 +110,40 @@ class RealCatalogGradingTest {
         assertEquals(Match.Wrong, CatalogAnswerGrader(normalizer, cards).grade("muda nini", whenCard))
     }
 
+    /**
+     * The merges the shipping catalog really carries: one Swahili word, two German
+     * concepts, each in its own area — and the ear cannot tell them apart because
+     * there is nothing to tell apart.
+     */
+    @Test
+    fun aMergedTargetWordNamesEveryMeaningItCarries() {
+        val cards = catalog.join("de", "sw")
+        val normalizer = AnswerNormalizer(catalog.languages.getValue("sw"))
+        val grader = CatalogAnswerGrader(normalizer, cards)
+        val bird = cards.first { it.id == "bird" }
+        val plane = cards.first { it.id == "plane" }
+
+        assertEquals(listOf("plane"), grader.conceptsSharing("ndege", bird).map { it.id })
+        assertEquals(listOf("bird"), grader.conceptsSharing("ndege", plane).map { it.id })
+        // And a word only one concept prints carries nothing besides itself.
+        assertTrue(grader.conceptsSharing("kufunga", cards.byTargetText("kufunga")).isEmpty())
+    }
+
+    /** Case is the difference between two words, and the merge index must keep it. */
+    @Test
+    fun aGermanNounIsNotItsOwnVerb() {
+        val cards = catalog.join("en", "de")
+        val grader = CatalogAnswerGrader(AnswerNormalizer(catalog.languages.getValue("de")), cards)
+        for (card in cards) {
+            for (other in grader.conceptsSharing(card.target.text, card)) {
+                assertEquals(
+                    card.target.text, other.target.text,
+                    "${card.id} and ${other.id} were merged across a case difference",
+                )
+            }
+        }
+    }
+
     private fun List<Card>.byTargetText(text: String): Card =
         firstOrNull { it.target.text == text }
             ?: throw AssertionError("no de→sw card answers \"$text\"")

@@ -28,8 +28,14 @@ Engine contract: `../README.md` §3.
   typo budget included. Hearing a word and writing it back down proves the ear worked and
   nothing else; translating it is what the box is for. So the meaning side's synonyms are
   simply the answer, and the word that played is a miss like any other — the reveal then
-  teaches both, which is where the spelling still lands. No catalog-wide grader on this
-  side: naming the other concept a typed word belongs to teaches a word in the language
+  teaches both, which is where the spelling still lands.
+  The join is read from the other end here: a form more than one concept PRINTS carries
+  every meaning they give it, because the target language merges what the source splits
+  (sw `ndege` is Vogel AND Flugzeug), and each of them answers what the word means —
+  `CatalogAnswerGrader.conceptsSharing`, literal where produce grading is lenient, so a
+  case difference stays two words. The borrowed meaning books in full and holds on the one
+  THIS card teaches (`AlmostReason.Merged`), which is the word still to be learned.
+  It still never NAMES the other concept's target word: that would teach in the language
   being LEARNED, and the source language is the one the learner already has.
   `TurnState.answerText`/`answerLang` are where a field's placeholder and a screen reader
   tag read the answer side off, so no platform re-derives it.

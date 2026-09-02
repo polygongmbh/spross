@@ -194,6 +194,12 @@ a clone inherits its sibling's gaps, never the rules.
   with the form it missed in the box below, so the slip is seen before the card goes.
 - A wrong answer that IS another word of the catalog **names that word** instead of
   forgiving it, so two words a learner needs told apart can never grade each other correct.
+- **A word asked for its MEANING accepts every meaning it has**, where the language being
+  learned merges two of the learner's own words into one of its own. It is right, and it
+  counts in full — and the card then holds on the meaning it teaches, because that is the
+  word the learner has still not said. The reveal names the other meanings in the same quiet
+  line the note uses, and **only one of the two is ever on the card**: a card with something
+  of its own to say says that, and a second hint under the first is a line nobody reads.
 - **A word you have consolidated is sometimes asked by ear alone**: the prompt is the
   replay glyph and nothing else, and what is typed is what the word MEANS, in your own
   language — hearing a word and writing it back down is transcription, and translating it
