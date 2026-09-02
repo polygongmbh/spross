@@ -57,6 +57,38 @@ class DueOrderTests {
         assertEquals(setOf("w01", "w02", "w03"), order.drop(3).toSet())
     }
 
+    /**
+     * A shaky word leads a settled one however far behind the settled one has fallen:
+     * delay costs almost nothing at high stability and plenty at low, so a capped sitting
+     * is spent where a review still changes the outcome.
+     */
+    @Test
+    fun anUnconsolidatedWordLeadsAWholeDayOfSettledOnes() {
+        var state = Box.state((1..4).map { Box.word(it) })
+        // w01..w03 settled and three days overdue; w04 shaky and due only now.
+        for (n in 1..3) {
+            state = Box.inject(
+                state,
+                Box.sched(
+                    "w0$n",
+                    stability = 30.0,
+                    dueMillis = Box.plusDays(now, -3.0),
+                    lastReviewMillis = Box.plusDays(now, -40.0),
+                ),
+            )
+        }
+        state = Box.inject(
+            state,
+            Box.sched(
+                "w04",
+                stability = 1.5,
+                dueMillis = now,
+                lastReviewMillis = Box.plusDays(now, -2.0),
+            ),
+        )
+        assertEquals("w04", BoxEngine.dueNow(state, now).first())
+    }
+
     @Test
     fun theSameStateOrdersIdenticallyEveryTime() {
         val state = secondsApart(6, Box.plusSeconds(now, -3600))

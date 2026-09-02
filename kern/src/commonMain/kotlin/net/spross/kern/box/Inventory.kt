@@ -46,7 +46,18 @@ internal object Inventory {
             .filter { it.due != null }
             .sortedWith(compareBy({ it.due }, { it.cardId }))
 
-    /** Active cards with `due <= now`, oldest DAY first, shuffled within the day. */
+    /**
+     * Active cards with `due <= now`: words not yet consolidated first, then oldest DAY,
+     * shuffled within the day.
+     *
+     * Delay is not one cost. `R(t) = (1 + factor·t/S)^decay` flattens in proportion to
+     * STABILITY, so a month late leaves a mature word barely under its target and a word
+     * met once far below it — and the shipped weights, fitted over collections mostly made
+     * of mature cards, over-predict recall exactly where stability is lowest. So the queue
+     * spends a capped sitting where a review still changes the outcome: a shaky word waits
+     * behind nothing, and a settled one can afford the wait it is being asked for
+     * (`docs/growth-evidence.md`).
+     */
     fun due(state: BoxState, nowEpochMillis: Long): List<CardScheduling> {
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
         return unordered(state)
@@ -54,7 +65,7 @@ internal object Inventory {
             // why: the shuffle key hashes a string, so it is built ONCE per card
             // here rather than inside the comparator, which would pay for it
             // O(n log n) times over.
-            .map(::DueKey)
+            .map { DueKey(it, Statistics.isConsolidated(state, it)) }
             .sortedWith(dueKeyOrder)
             .map { it.entry }
     }
@@ -95,12 +106,13 @@ internal object Inventory {
      * yields the same order every day, a trailing id keeps seed neighbors
      * adjacent within the day. Both halves must arrive well spread.
      */
-    private class DueKey(val entry: CardScheduling) {
+    private class DueKey(val entry: CardScheduling, val consolidated: Boolean) {
         val day: Long = dueEpochDay(entry)
         val shuffle: ULong = fnv1a64("$day:${fnv1a64(entry.cardId)}")
     }
 
     private val dueKeyOrder: Comparator<DueKey> = compareBy(
+        { it.consolidated },
         { it.day },
         { it.shuffle },
         { it.entry.cardId },
