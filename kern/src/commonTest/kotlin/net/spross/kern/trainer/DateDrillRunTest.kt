@@ -75,9 +75,9 @@ class DateDrillRunTest {
     /** The forced rung is for tests and screenshot drivers; kern clamps it to THIS ladder. */
     @Test
     fun aForcedRungIsClampedToTheLadder() {
-        assertEquals(7, open(level = 99).level)
+        assertEquals(6, open(level = 99).level)
         assertEquals(1, open(level = 0).level)
-        assertEquals(3, open(reverse = true, level = 99).level)
+        assertEquals(2, open(reverse = true, level = 99).level)
     }
 
     @Test

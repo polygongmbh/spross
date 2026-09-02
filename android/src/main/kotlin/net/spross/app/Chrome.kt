@@ -237,7 +237,7 @@ interface Chrome {
     val datesFastHint: String
     val datesReverseHint: String // %1$s %2$s
     /**
-     * The rung wordings by KIND in full-ladder order, the mixed rung last — read through
+     * The rung wordings by the KIND each rung INTRODUCES, in full-ladder order — read through
      * [dateRung]. Unlike the atlas ladder the height here is the pair's own
      * ([net.spross.kern.trainer.DateDrill.maxLevel]), so the on-screen number is the
      * row's position and never this index.

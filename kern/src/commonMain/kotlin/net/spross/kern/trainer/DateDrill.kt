@@ -14,11 +14,12 @@ import net.spross.kern.model.Language
  * stateless like its siblings — no schedule read, no review booked, every draw on the
  * caller's [Random].
  *
- * Unlike the atlas ladder its rungs do not accumulate: each one asks ONLY what it
- * introduces — three weekday wins must never carry a learner past a rung whose own
- * question they never met — and the top rung is where everything below mixes. A rung the
- * answer language cannot carry is absent, not locked: no `dateWithYear` pattern, no year
- * rung, and the ladder simply tops out a rung short (uk, `docs/date-readings.md`).
+ * The rungs ACCUMULATE, like the atlas ladder's: a rung asks what it introduces plus
+ * everything below it, so the weekdays keep coming once the months arrive and the top
+ * rung is simply the last one. What keeps the new question from drowning in the old is
+ * the draw order, not a narrower rung ([drawOrder]). A rung the answer language cannot
+ * carry is absent, not locked: no `dateWithYear` pattern, no year rung, and the ladder
+ * simply tops out a rung short (uk, `docs/date-readings.md`).
  * Reversed, only the bare-name rungs stand — the numeric side of a date is a separator
  * convention, not a language skill — so that ladder is the two names plus their mix.
  *
@@ -33,9 +34,8 @@ object DateDrill {
 
     fun winsToAdvance(fast: Boolean): Int = if (fast) 1 else WINS_TO_ADVANCE
 
-    /** How tall this pair's ladder is: its rungs plus the mixed top one. */
-    fun maxLevel(content: DateDrillContent, reverse: Boolean): Int =
-        rungs(content, reverse).size + 1
+    /** How tall this pair's ladder is: one rung per kind the pair can ask. */
+    fun maxLevel(content: DateDrillContent, reverse: Boolean): Int = rungs(content, reverse).size
 
     /** Fast is earned by having EVER stood on this ladder's top rung, like the atlas'. */
     fun fastUnlocked(bestLevel: Int, content: DateDrillContent, reverse: Boolean): Boolean =
@@ -53,11 +53,10 @@ object DateDrill {
     ): DrillRamp.RungStep =
         DrillRamp.step(level, winsAtLevel, correct, clean, maxLevel(content, reverse), winsToAdvance(fast))
 
-    /** What [level] may ask: one kind per rung, everything below on the top one. */
+    /** What [level] may ask: the kind it introduces, and every kind below it. */
     fun kinds(content: DateDrillContent, level: Int, reverse: Boolean): List<DateTaskKind> {
         val ladder = rungs(content, reverse)
-        val rung = level.coerceIn(1, ladder.size + 1)
-        return if (rung > ladder.size) ladder else listOf(ladder[rung - 1])
+        return ladder.take(level.coerceIn(1, ladder.size))
     }
 
     /**
@@ -74,7 +73,7 @@ object DateDrill {
         solved: Set<String>,
         rng: Random,
     ): DateDrillTask? {
-        for (kind in kinds(content, level, reverse).shuffled(rng)) {
+        for (kind in drawOrder(kinds(content, level, reverse), rng)) {
             val task = when (kind) {
                 DateTaskKind.Weekday, DateTaskKind.Month, DateTaskKind.DayOfMonth ->
                     samplePool(DateDrillTasks.pool(content, kind, reverse), avoid, solved, rng)
@@ -86,9 +85,10 @@ object DateDrill {
     }
 
     /**
-     * The first rung at or above [level] with a question left — a spent rung is climbed
-     * past, never repeated, and once the whole ladder is out the task is null, which ends
-     * the run on its summary.
+     * The first rung at or above [level] with a question left. The rungs nest, so a rung
+     * is spent only once everything it carries is answered out, and the one above always
+     * has at least as much to offer; once the whole ladder is out the task is null, which
+     * ends the run on its summary.
      */
     fun draw(
         content: DateDrillContent,
@@ -120,6 +120,18 @@ object DateDrill {
         DateReferenceGroup(DateTaskKind.Weekday, content.weekdays.map(::referenceRow)),
         DateReferenceGroup(DateTaskKind.Month, content.months.map(::referenceRow)),
     )
+
+    /**
+     * The order [sample] tries a rung's kinds in. Half the draws lead with the kind the
+     * rung INTRODUCES — three weekday wins must never carry a learner past a rung whose
+     * own question they never met — and the other half are a fair mix of everything the
+     * rung carries, which is what keeps the names alive once the dates are assembled.
+     */
+    private fun drawOrder(ladder: List<DateTaskKind>, rng: Random): List<DateTaskKind> {
+        val shuffled = ladder.shuffled(rng)
+        val newest = ladder.last()
+        return if (rng.nextBoolean()) listOf(newest) + shuffled.filterNot { it == newest } else shuffled
+    }
 
     private fun rungs(content: DateDrillContent, reverse: Boolean): List<DateTaskKind> =
         if (reverse) {

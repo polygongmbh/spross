@@ -5,13 +5,14 @@ import kotlin.test.Test
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
  * The ladder and the task shapes, on [DateDrillFixture]'s two hand-built pairs: the full
- * seven-rung en→de ladder and the year-less de→uk one. The run that steps through them is
+ * six-rung en→de ladder and the year-less de→uk one. The run that steps through them is
  * [DateDrillRunTest]'s.
  */
 class DateDrillTests {
@@ -27,36 +28,33 @@ class DateDrillTests {
     /** The year rung exists only where the answer side reads a year; reverse keeps the names. */
     @Test
     fun theLadderIsAsTallAsTheContentCanCarry() {
-        assertEquals(7, DateDrill.maxLevel(german, reverse = false))
-        assertEquals(6, DateDrill.maxLevel(ukrainian, reverse = false))
-        assertEquals(3, DateDrill.maxLevel(german, reverse = true))
-        assertEquals(3, DateDrill.maxLevel(ukrainian, reverse = true))
+        assertEquals(6, DateDrill.maxLevel(german, reverse = false))
+        assertEquals(5, DateDrill.maxLevel(ukrainian, reverse = false))
+        assertEquals(2, DateDrill.maxLevel(german, reverse = true))
+        assertEquals(2, DateDrill.maxLevel(ukrainian, reverse = true))
     }
 
-    /**
-     * Each rung asks ONLY what it introduces — three weekday wins must never carry the run
-     * past a rung whose own question it never met — and the top rung mixes everything below.
-     */
+    /** A rung carries what it introduces and everything below it; the top one is all of it. */
     @Test
-    fun eachRungAsksItsOwnKindAndTheTopMixes() {
+    fun eachRungAddsItsKindToTheOnesBelow() {
         for ((index, kind) in fullLadder.withIndex()) {
-            assertEquals(listOf(kind), DateDrill.kinds(german, index + 1, reverse = false))
+            val kinds = DateDrill.kinds(german, index + 1, reverse = false)
+            assertEquals(fullLadder.take(index + 1), kinds)
+            assertEquals(kind, kinds.last(), "the rung introduces its own kind")
         }
-        assertEquals(fullLadder, DateDrill.kinds(german, 7, reverse = false))
-        assertEquals(fullLadder.dropLast(1), DateDrill.kinds(ukrainian, 6, reverse = false))
+        assertEquals(fullLadder.dropLast(1), DateDrill.kinds(ukrainian, 5, reverse = false))
         assertEquals(listOf(DateTaskKind.Weekday), DateDrill.kinds(german, 1, reverse = true))
-        assertEquals(listOf(DateTaskKind.Month), DateDrill.kinds(german, 2, reverse = true))
-        assertEquals(bareKinds, DateDrill.kinds(german, 3, reverse = true))
+        assertEquals(bareKinds, DateDrill.kinds(german, 2, reverse = true))
         assertEquals(fullLadder, DateDrill.kinds(german, 99, reverse = false), "clamped to the top")
         assertEquals(listOf(DateTaskKind.Weekday), DateDrill.kinds(german, 0, reverse = false))
     }
 
     @Test
     fun fastIsOfferedOnlyOnceThisLaddersTopRungHasBeenReached() {
-        assertFalse(DateDrill.fastUnlocked(6, german, reverse = false))
-        assertTrue(DateDrill.fastUnlocked(7, german, reverse = false))
-        assertTrue(DateDrill.fastUnlocked(6, ukrainian, reverse = false), "the short ladder tops at 6")
-        assertTrue(DateDrill.fastUnlocked(3, german, reverse = true))
+        assertFalse(DateDrill.fastUnlocked(5, german, reverse = false))
+        assertTrue(DateDrill.fastUnlocked(6, german, reverse = false))
+        assertTrue(DateDrill.fastUnlocked(5, ukrainian, reverse = false), "the short ladder tops at 5")
+        assertTrue(DateDrill.fastUnlocked(2, german, reverse = true))
     }
 
     /** Three clean wins a rung, or one where fast was earned — on this pair's own ceiling. */
@@ -71,8 +69,8 @@ class DateDrillTests {
         }
         assertEquals(2, step.level)
         assertEquals(2, DateDrill.step(german, false, 1, 0, correct = true, clean = true, fast = true).level)
-        val top = DateDrill.step(ukrainian, false, 6, 2, correct = true, clean = true, fast = false)
-        assertEquals(6, top.level, "the short ladder's ramp stops at its own top")
+        val top = DateDrill.step(ukrainian, false, 5, 2, correct = true, clean = true, fast = false)
+        assertEquals(5, top.level, "the short ladder's ramp stops at its own top")
     }
 
     // MARK: - Task shapes
@@ -181,25 +179,33 @@ class DateDrillTests {
         }
     }
 
-    /** A spent rung is climbed past, and the rung above is booked like any other. */
+    /** A rung with something left keeps it: the day rung answered out still has its names. */
+    @Test
+    fun aRungKeepsWhatTheRungsBelowItStillHold() {
+        val daysOut = (1..31).map { "${DateTaskKind.DayOfMonth}:$it" }.toSet()
+        val draw = DateDrill.draw(german, 3, false, null, daysOut, Random(7))
+        assertEquals(3, draw.level)
+        assertNotEquals(DateTaskKind.DayOfMonth, assertNotNull(draw.task).kind)
+    }
+
+    /** A rung with NOTHING left is climbed past, and the rung above is booked like any other. */
     @Test
     fun aSpentRungIsClimbedPast() {
-        val weekdaysOut = (0..6).map { "${DateTaskKind.Weekday}:$it" }.toSet()
-        val draw = DateDrill.draw(german, 1, false, null, weekdaysOut, Random(7))
-        assertEquals(2, draw.level)
-        assertEquals(DateTaskKind.Month, assertNotNull(draw.task).kind)
-
-        val daysOut = (1..31).map { "${DateTaskKind.DayOfMonth}:$it" }.toSet()
-        val past = DateDrill.draw(german, 3, false, null, daysOut, Random(7))
-        assertEquals(4, past.level)
-        assertEquals(DateTaskKind.DayAndMonth, assertNotNull(past.task).kind)
+        val namesOut = ((0..6).map { "${DateTaskKind.Weekday}:$it" } +
+            (0..11).map { "${DateTaskKind.Month}:$it" }).toSet()
+        val draw = DateDrill.draw(german, 2, false, null, namesOut, Random(7))
+        assertEquals(3, draw.level)
+        assertEquals(DateTaskKind.DayOfMonth, assertNotNull(draw.task).kind)
     }
 
     /** A generated rung is spent when a whole run of draws lands on solved questions. */
     @Test
     fun aSpentGeneratedRungIsClimbedPast() {
         val oneMonth = german.copy(months = german.months.take(1))
-        val solved = (1..31).map { "${DateTaskKind.DayAndMonth}:$it.1" }.toSet()
+        val below = (0..6).map { "${DateTaskKind.Weekday}:$it" } +
+            listOf("${DateTaskKind.Month}:0") +
+            (1..31).map { "${DateTaskKind.DayOfMonth}:$it" }
+        val solved = (below + (1..31).map { "${DateTaskKind.DayAndMonth}:$it.1" }).toSet()
         val draw = DateDrill.draw(oneMonth, 4, false, null, solved, Random(7))
         assertEquals(5, draw.level)
         assertEquals(DateTaskKind.FullDate, assertNotNull(draw.task).kind)
@@ -214,12 +220,15 @@ class DateDrillTests {
         assertNull(draw.task)
     }
 
+    /** Every rung mixes what it carries — and leads with what it introduced. */
     @Test
-    fun theTopRungMixesTheKindsBelowIt() {
-        val kinds = (1..60).mapNotNull {
-            DateDrill.sample(german, 7, false, null, emptySet(), Random(it.toLong()))?.kind
-        }.toSet()
-        assertTrue(kinds.size >= 4, "the mixed rung kept asking one kind: $kinds")
+    fun aRungMixesTheKindsBelowItAndFavorsItsOwn() {
+        val drawn = (1..200).mapNotNull {
+            DateDrill.sample(german, 6, false, null, emptySet(), Random(it.toLong()))?.kind
+        }
+        assertEquals(fullLadder.toSet(), drawn.toSet(), "the rung stopped asking a kind it carries")
+        val newest = drawn.count { it == DateTaskKind.FullDateWithYear }
+        assertTrue(newest > drawn.size / 4, "the rung buried its own question: $newest of ${drawn.size}")
     }
 
     // MARK: - Reference

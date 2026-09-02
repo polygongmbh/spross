@@ -253,16 +253,14 @@ internal object ChromeEn : Chrome {
         "Day and month",
         "The whole date",
         "The date with its year",
-        "All of it, mixed",
     )
     override val dateRungHints = listOf(
         "The week's seven names, asked one at a time.",
-        "The twelve month names, asked one at a time.",
+        "The twelve month names, mixed in with the weekdays.",
         "3 becomes third — the number a date needs.",
         "3/3 becomes March third.",
         "With the weekday in front: Mon, 3/3.",
         "Plus the year, read out in words.",
-        "Any question from any Sprosse, drawn at random.",
     )
     override val datesAskWeekday = "What is this weekday called?"
     override val datesAskMonth = "What is this month called?"

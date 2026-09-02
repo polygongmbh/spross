@@ -260,16 +260,14 @@ internal object ChromeDe : Chrome {
         "Tag und Monat",
         "Das ganze Datum",
         "Das Datum mit Jahr",
-        "Alles gemischt",
     )
     override val dateRungHints = listOf(
         "Die sieben Namen der Woche, einzeln gefragt.",
-        "Die zwölf Monatsnamen, einzeln gefragt.",
+        "Die zwölf Monatsnamen, gemischt mit den Wochentagen.",
         "Aus 3. wird dritte – die Zahl, die ein Datum braucht.",
         "Aus 3.3. wird der dritte März.",
         "Mit dem Wochentag davor: Mo, 3.3.",
         "Dazu die Jahreszahl, in Worten gelesen.",
-        "Jede Frage von jeder Sprosse, zufällig gezogen.",
     )
     override val datesAskWeekday = "Wie heißt dieser Wochentag?"
     override val datesAskMonth = "Wie heißt dieser Monat?"

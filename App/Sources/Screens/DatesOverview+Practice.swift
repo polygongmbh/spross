@@ -72,33 +72,32 @@ extension DatesOverview {
     }
 
     // The catalog keys are indexed by KIND in full-ladder order — weekday, month,
-    // day, day+month, date, date+year, then 7 for the mixed top rung — because
-    // the ladder itself has no fixed length: a pair without a year pattern skips
-    // index 6, and the number on screen is the row's own position.
+    // day, day+month, date, date+year — because the ladder itself has no fixed
+    // length: a pair without a year pattern skips index 6, and the number on
+    // screen is the row's own position. A rung carries every kind below it, so
+    // the LAST one is what it introduced and what it is named for.
     // why: spelled out rather than interpolated — a key built with an index
     // becomes a format string and localizes nothing, and these keys would stop
     // being greppable from the catalog.
     private static func title(_ kinds: [DateTaskKind]) -> LocalizedStringKey {
-        guard kinds.count == 1, let kind = kinds.first else { return "dates.rung.7" }
-        switch kind {
+        switch kinds.last {
         case .weekday: return "dates.rung.1"
         case .month: return "dates.rung.2"
         case .dayOfMonth: return "dates.rung.3"
         case .dayAndMonth: return "dates.rung.4"
         case .fullDate: return "dates.rung.5"
-        case .fullDateWithYear: return "dates.rung.6"
+        default: return "dates.rung.6"
         }
     }
 
     private static func hint(_ kinds: [DateTaskKind]) -> LocalizedStringKey {
-        guard kinds.count == 1, let kind = kinds.first else { return "dates.rung.7.hint" }
-        switch kind {
+        switch kinds.last {
         case .weekday: return "dates.rung.1.hint"
         case .month: return "dates.rung.2.hint"
         case .dayOfMonth: return "dates.rung.3.hint"
         case .dayAndMonth: return "dates.rung.4.hint"
         case .fullDate: return "dates.rung.5.hint"
-        case .fullDateWithYear: return "dates.rung.6.hint"
+        default: return "dates.rung.6.hint"
         }
     }
 

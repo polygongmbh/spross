@@ -2273,13 +2273,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die zwölf Monatsnamen, einzeln gefragt."
+            "value" : "Die zwölf Monatsnamen, gemischt mit den Wochentagen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The twelve month names, asked one at a time."
+            "value" : "The twelve month names, mixed in with the weekdays."
           }
         }
       }
@@ -2416,40 +2416,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Plus the year, read out in words."
-          }
-        }
-      }
-    },
-    "dates.rung.7" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alles gemischt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "All of it, mixed"
-          }
-        }
-      }
-    },
-    "dates.rung.7.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jede Frage von jeder Sprosse, zufällig gezogen."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Any question from any Sprosse, drawn at random."
           }
         }
       }

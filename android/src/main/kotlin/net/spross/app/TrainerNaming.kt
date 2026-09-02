@@ -96,18 +96,17 @@ fun Chrome.dateRung(kinds: List<DateTaskKind>): String = dateRungs.rowFor(dateRu
 fun Chrome.dateRungHint(kinds: List<DateTaskKind>): String =
     dateRungHints.rowFor(dateRungIndex(kinds))
 
-/** More than one kind on a rung is the mixed top one — the table's last row. */
-private fun dateRungIndex(kinds: List<DateTaskKind>): Int {
-    val kind = kinds.singleOrNull() ?: return 7
-    return when (kind) {
+/** A rung carries every kind below it, so the LAST one is what it introduced and is named for. */
+private fun dateRungIndex(kinds: List<DateTaskKind>): Int =
+    when (kinds.lastOrNull()) {
         DateTaskKind.Weekday -> 1
         DateTaskKind.Month -> 2
         DateTaskKind.DayOfMonth -> 3
         DateTaskKind.DayAndMonth -> 4
         DateTaskKind.FullDate -> 5
         DateTaskKind.FullDateWithYear -> 6
+        null -> 6
     }
-}
 
 /** How far from home a reference group sits — kern hands the tier over already effective. */
 fun Chrome.countryTier(tier: Int): String = countryTiers.rowFor(tier)
