@@ -8,6 +8,10 @@
   this way, and the overview prints the record as it stands instead of trimming it back to
   the last row on the page.
 
+- **The numbers page says how far each exercise has come.** Zahlen, Uhrzeit, Sätze and
+  Formen each print the best rung they have reached under their own name, the way the atlas
+  and the calendar already did under theirs.
+
 - **A fourth Sprossen drill: the date.** The weekday names, the month names, the day of
   the month as the words a date actually wants — *der dritte*, *третього* — and then the
   whole spoken date assembled out of them, over a ladder whose every rung adds its new

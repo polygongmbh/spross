@@ -171,6 +171,7 @@ internal object ChromeEn : Chrome {
         "the size the numbers reached."
     override val numbersCombineLocked = "Several in one run, once everything is unlocked."
     override val numbersUnlock = "Unlocks at:"
+    override val numbersBest = "Best yet:"
     override val numbersRungOne = "🔢 %d digit"
     override val numbersRung = "🔢 %d digits"
     override val trainerRunRecord = "Record %s"

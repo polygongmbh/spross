@@ -56,7 +56,8 @@ extension NumbersOverview {
         let open = unlocked(variant)
         return DLSelectionRow(
             title: Text(verbatim: "\(drillVariantEmoji(variant: variant)) ") + Text(variant.trainerTitleKey),
-            caption: open ? nil : unlockCaption(DrillUnlocks.shared.requirements(variant: variant)),
+            caption: open ? bestCaption(variant)
+                          : unlockCaption(DrillUnlocks.shared.requirements(variant: variant)),
             mark: open ? (combining ? .many : .one) : .locked,
             selected: open && picked.contains(variant)
         ) {
@@ -128,6 +129,17 @@ extension NumbersOverview {
         }
         guard let priced = parts.joined() else { return Text("numbers.unlock") }
         return Text("numbers.unlock") + Text(verbatim: " ") + priced
+    }
+
+    /// How far this exercise has ever climbed, under its name — the record the
+    /// atlas and the calendar print under their ladder, said per exercise here
+    /// because each one climbs its own. Numbers counts DIGITS, exactly as its
+    /// price does; nothing shows until a run has booked a rung.
+    private func bestCaption(_ variant: DrillVariant) -> Text? {
+        guard let rung = progress[variant], rung > 0 else { return nil }
+        return Text("numbers.best") + Text(verbatim: " ")
+            + (variant == .numbers ? Text("numbers.rung \(rung)")
+                                   : Text("trainer.rung \(rung.formatted())"))
     }
 
     /// The ladder as kern wants to read it — one conversion, not one per row.

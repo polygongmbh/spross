@@ -3953,6 +3953,24 @@
       },
       "comment" : "a reversed task owes digits, never a language"
     },
+    "numbers.best" : {
+      "comment" : "the rung this exercise has ever reached, under its name on the overview",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestmarke:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best yet:"
+          }
+        }
+      }
+    },
     "numbers.combine.locked" : {
       "localizations" : {
         "de" : {

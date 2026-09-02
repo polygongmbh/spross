@@ -175,6 +175,7 @@ internal object ChromeDe : Chrome {
     override val numbersCombineLocked = "Mehreres in einem Lauf, sobald alles freigeschaltet " +
         "ist."
     override val numbersUnlock = "Freischalten:"
+    override val numbersBest = "Bestmarke:"
     override val numbersRungOne = "🔢 %d Stelle"
     override val numbersRung = "🔢 %d Stellen"
     override val trainerRunRecord = "Rekord %s"

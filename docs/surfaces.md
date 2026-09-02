@@ -127,14 +127,15 @@ auto-advance beats these share with it, are `design.md`'s.
   and what is said is the name in the language being learned,
   the half of the pair a run would ask for.
 - **Datum overview**: the calendar entry, on the run-first shape again — the rungs and the
-  start above, the reference table of both calendars under them. Its rungs are STAGES like
-  the letter drill's, not pools: each asks only what it introduces — the weekday names, the
+  start above, the reference table of both calendars under them. Its rungs NEST like the
+  atlas': each adds what it introduces to everything below it — the weekday names, the
   month names, the day of the month as the words a date wants (`date-readings.md`), day and
-  month assembled, the whole dated line — and the top rung is where everything below mixes.
-  Accumulating them instead would let three weekday wins carry a learner past questions
-  they never met. A rung the answer language cannot read is absent, not locked: Ukrainian
-  speaks no year inside a date, so its ladder tops out a rung short and the mix moves down
-  one. The prompt is the source language's name on the bare rungs and the date in the
+  month assembled, the whole dated line — so the names keep coming once the dates are being
+  assembled. Half of a rung's draws lead with the kind it introduced, which is what keeps
+  three weekday wins from carrying a learner past a question they never met. A rung the
+  answer language cannot read is absent, not locked: Ukrainian speaks no year inside a
+  date, so its ladder simply tops out a rung short.
+  The prompt is the source language's name on the bare rungs and the date in the
   source's own digits above them — `Mo, 3.3.` wears the source's weekday abbreviation,
   authored display-only, never graded. REVERSED, only the name rungs stand: the numeric
   side of a date is a separator convention rather than a language skill, the same thinness
@@ -144,6 +145,11 @@ auto-advance beats these share with it, are `design.md`'s.
   A bare name typed for its neighbor is refused by name — *Juli* for *Juni* is the other
   month, not a slip (`kern/docs/grading.md`) — while the same slip inside an assembled date
   stays the typo it is: strictness is graded by how much of the answer the word was.
+- **An overview prints the rung it has been climbed to, as it stands.** The atlas and the
+  calendar say it under their ladder, the numbers page under each exercise's own name,
+  because there four ladders are climbed separately and Zahlen counts its rung in digits.
+  The number is never trimmed to the rows on the page: a rung goes on counting past the
+  last named one (`DrillRamp.step`), which is what a climbed-out ladder leaves to beat.
 - **An endless run offers its exit where it is wanted, not on a schedule.** "Fertig"
   appears under the button that goes on, and only on the SECOND miss in a row: one
   miss is what a drill is made of, two is where carrying on stops feeling like a choice.

@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.badge
+import net.spross.app.bestRung
 import net.spross.app.hint
 import net.spross.app.name
 import net.spross.app.speakFormOnTap
@@ -162,7 +163,12 @@ private fun VariantRow(
     val open = DrillUnlocks.unlocked(variant, ladder)
     SelectionRow(
         title = chrome.badge(variant),
-        caption = if (open) null else chrome.unlockPrice(DrillUnlocks.requirements(variant)),
+        caption = when {
+            !open -> chrome.unlockPrice(DrillUnlocks.requirements(variant))
+            // The rung it has reached, where a run has booked one — nothing until then.
+            (ladder[variant] ?: 0) > 0 -> chrome.bestRung(variant, ladder.getValue(variant))
+            else -> null
+        },
         mark = when {
             !open -> RowMark.Locked
             combining -> RowMark.Many

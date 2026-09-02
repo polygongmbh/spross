@@ -139,3 +139,15 @@ fun Chrome.unlockPrice(required: Map<DrillVariant, Int>): String {
     if (parts.isEmpty()) return numbersUnlock
     return "$numbersUnlock ${parts.joinToString(" · ")}"
 }
+
+/**
+ * How far an exercise has ever climbed, under its name — the record the atlas and the
+ * calendar print under their ladder, said per exercise here because each one climbs its
+ * own. Numbers counts DIGITS, exactly as its price does.
+ */
+fun Chrome.bestRung(variant: DrillVariant, rung: Int): String =
+    if (variant == DrillVariant.Numbers) {
+        "$numbersBest ${countLine(numbersRungOne, numbersRung, rung)}"
+    } else {
+        "$numbersBest ${trainerRung.format(rung)}"
+    }

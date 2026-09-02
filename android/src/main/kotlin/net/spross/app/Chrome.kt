@@ -177,6 +177,7 @@ interface Chrome {
     val trainerModifierMixHint: String
     val numbersCombineLocked: String
     val numbersUnlock: String
+    val numbersBest: String
 
     // ── Inside a run ────────────────────────────────────────────────────────────
     val numbersRungOne: String
