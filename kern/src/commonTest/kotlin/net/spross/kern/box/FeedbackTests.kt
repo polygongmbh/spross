@@ -196,4 +196,76 @@ class FeedbackTests {
         val state = BoxEngine.reportIssue(box(), "w01", "wrong", null, Box.day1)
         assertTrue(Feedback.reportText(state, null).isNotEmpty())
     }
+
+    // Emptying the outbox
+
+    /** A suggestion, a studiable own word and a filed report — one of each. */
+    private fun outbox(): BoxState {
+        var state = BoxEngine.addOwnWord(box(), ownWord("sonne", mapOf("de" to "Sonne")), Box.day1)
+        state = BoxEngine.addOwnWord(
+            state, ownWord("mwavuli", mapOf("de" to "Regenschirm", "sw" to "mwavuli")), Box.day1,
+        )
+        return BoxEngine.reportIssue(state, "w01", "wrong", null, Box.day1)
+    }
+
+    @Test
+    fun clearingTakesTheSuggestionsAndTheReportsAndNothingElse() {
+        val state = outbox()
+        assertEquals(2, Feedback.clearableCount(state))
+
+        val cleared = BoxEngine.clearFeedback(state)
+        assertEquals(listOf("own:mwavuli"), cleared.ownWords.map { it.id })
+        assertTrue(cleared.reportedIssues.isEmpty())
+        assertEquals(0, Feedback.clearableCount(cleared))
+    }
+
+    @Test
+    fun clearingKeepsAStudiedWordWithItsScheduleAndItsQueueSlot() {
+        var state = outbox()
+        state = BoxEngine.answer(state, "own:mwavuli", Rating.Good, Box.day1, "UTC")
+        val cleared = BoxEngine.clearFeedback(state)
+
+        assertEquals(state.scheduling, cleared.scheduling)
+        assertEquals(state.enqueued, cleared.enqueued)
+        assertEquals(state.cards.keys, cleared.cards.keys)
+    }
+
+    @Test
+    fun clearingLeavesTheExportStampAlone() {
+        // why: the stamp records that a copy was TAKEN, which emptying the outbox
+        // afterwards does not undo — "only what is new" still measures from there.
+        val state = BoxEngine.markExported(outbox(), Box.day1)
+        assertEquals(state.lastExportAt, BoxEngine.clearFeedback(state).lastExportAt)
+    }
+
+    @Test
+    fun aReportedOwnWordKeepsTheWordAndLosesTheReport() {
+        var state = BoxEngine.addOwnWord(
+            box(), ownWord("mwavuli", mapOf("de" to "Regenschirm", "sw" to "mwavuli")), Box.day1,
+        )
+        state = BoxEngine.reportIssue(state, "own:mwavuli", "typo", null, Box.day1)
+        val cleared = BoxEngine.clearFeedback(state)
+
+        assertEquals(listOf("own:mwavuli"), cleared.ownWords.map { it.id })
+        assertTrue(cleared.reportedIssues.isEmpty())
+    }
+
+    @Test
+    fun clearingAnEmptyOutboxChangesNothing() {
+        val state = box()
+        assertEquals(0, Feedback.clearableCount(state))
+        assertEquals(state, BoxEngine.clearFeedback(state))
+    }
+
+    @Test
+    fun fillingInTheMissingHalfTakesAWordOutOfTheOutbox() {
+        val (state, half) = added(box(), ownWord("sonne", mapOf("de" to "Sonne")), Box.day1)
+        assertEquals(1, Feedback.clearableCount(state))
+
+        val whole = BoxEngine.updateOwnWord(
+            state, half.copy(texts = mapOf("de" to "Sonne", "sw" to "jua")),
+        )
+        assertEquals(0, Feedback.clearableCount(whole))
+        assertEquals(whole.ownWords, BoxEngine.clearFeedback(whole).ownWords)
+    }
 }

@@ -77,6 +77,24 @@ object Feedback {
     fun ownWordsSince(state: BoxState, since: Instant?): List<OwnWord> =
         state.ownWords.filter { since == null || it.addedAt > since }
 
+    /**
+     * The words still waiting for one of the profile's two languages, oldest first.
+     *
+     * Read here rather than per platform because being a suggestion is a JOIN question —
+     * the same word is a suggestion under one pair and a card under another — and a
+     * surface that answered it itself would answer it for the pair it happens to draw.
+     */
+    fun suggestions(state: BoxState): List<OwnWord> =
+        state.ownWords.filter { it.isSuggestion(state.joinStamp.source, state.joinStamp.target) }
+
+    /**
+     * How much a [BoxEngine.clearFeedback] would take: the suggestions plus the filed
+     * reports. It is the whole of what waits to be sent on — a word written in both
+     * languages is study material and is never counted here.
+     */
+    fun clearableCount(state: BoxState): Int =
+        suggestions(state).size + state.reportedIssues.size
+
     /** Issues filed after [since], oldest first. */
     fun issuesSince(state: BoxState, since: Instant?): List<ReportedIssue> =
         state.reportedIssues.values

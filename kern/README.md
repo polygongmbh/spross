@@ -352,8 +352,8 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   is re-derived on load, so losing this entry would lose a word rather than a computation.
   Their ids carry an `own:` prefix and their area is fixed, so a catalog that grows can
   neither collide with the learner's words nor quietly reclaim them.
-  `removeOwnWord` is **the one deletion the engine offers**, and it reaches own words only:
-  a catalog word is not the learner's to delete, only to suspend.
+  `removeOwnWord` is **the one deletion that reaches a single word**, and it reaches own
+  words only: a catalog word is not the learner's to delete, only to suspend.
   A word written in only ONE of the profile's languages is a **suggestion**
   (`OwnWord.isSuggestion`): the learner noticed a gap and wrote down the half they had.
   It joins no card and is never scheduled — there is nothing to ask them yet — and waits
@@ -363,6 +363,12 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   queue slot and anything filed against it — a typo fixed must not cost the progress made
   on the word. It keeps `addedAt` too: that records when the word was written, and editing
   is not writing it again.
+  `clearFeedback` is the bulk deletion, and it reaches the OUTBOX rather than the words:
+  every suggestion and every filed report go together, once the learner has handed them to
+  whoever maintains the catalog and neither has anything left to do here. A word written in
+  both languages is never cleared — it is a card with progress on it, not a note — so a
+  reported own word keeps the word and loses the flag. `Feedback.clearableCount` is what a
+  clear comes to, read there so two surfaces cannot count it two ways.
   Suspending reaches a card the box has never asked — the learner meets a word mid-round
   and wants no more of it — which mints a New schedule carrying nothing but the suspension;
   waking one that was never answered DROPS that schedule, since growth only ever reaches a

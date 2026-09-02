@@ -118,6 +118,32 @@ object BoxEngine {
     }
 
     /**
+     * Empty what waits to be sent on: every suggestion, and every report filed
+     * ([Feedback.clearableCount] is what that comes to). The learner has handed the lot
+     * to whoever maintains the catalog, and neither entry has anything left to do here.
+     *
+     * A word written in BOTH languages is untouched — it is a card with a schedule and
+     * progress on it, not a note to the maintainer. That is the whole line this verb
+     * draws, and the reason it is not [reset]: reset clears what the box KNOWS and keeps
+     * what the learner WROTE, while this one keeps the studiable words and clears the
+     * notes. Neither reaches a catalog word.
+     *
+     * [BoxState.lastExportAt] stays: it records that a copy was taken, which emptying
+     * the outbox does not undo.
+     */
+    fun clearFeedback(state: BoxState): BoxState {
+        val kept = state.ownWords.filterNot {
+            it.isSuggestion(state.joinStamp.source, state.joinStamp.target)
+        }
+        if (kept.size == state.ownWords.size && state.reportedIssues.isEmpty()) return state
+        return state.copy(
+            ownWords = kept,
+            cards = rebuilt(state, kept),
+            reportedIssues = emptyMap(),
+        )
+    }
+
+    /**
      * File a content problem against ONE card: a wrong translation, a synonym the
      * catalog should accept, a prompt that reads badly. [learnerInput] is whatever they
      * had typed as their answer — see [ReportedIssue].
