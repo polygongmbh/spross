@@ -30,6 +30,7 @@
   "neck": { "text": "Nacken", "grammar": { "gender": "der", "plural": "=" } },
   "brain": { "text": "Gehirn", "grammar": { "gender": "das", "plural": "-e" } },
   "muscle": { "text": "Muskel", "grammar": { "gender": "der", "plural": "-n" } },
+  "nipple": { "text": "Brustwarze", "grammar": { "gender": "die", "plural": "-n" } },
   "my-head-hurts": { "text": "Mein Kopf tut weh." },
   "give-me-your-hand": { "text": "Gib mir deine Hand." },
   "open-your-mouth": { "text": "Mach den Mund auf.", "variants": ["Öffne den Mund."] },

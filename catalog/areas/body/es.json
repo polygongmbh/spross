@@ -58,6 +58,7 @@
   "neck": { "text": "cuello", "grammar": { "gender": "el" } },
   "brain": { "text": "cerebro", "grammar": { "gender": "el" } },
   "muscle": { "text": "músculo", "grammar": { "gender": "el" } },
+  "nipple": { "text": "pezón", "grammar": { "gender": "el", "plural": "pezones" } },
   "my-head-hurts": { "text": "Me duele la cabeza." },
   "give-me-your-hand": { "text": "Dame la mano.", "variants": ["Dame tu mano."] },
   "open-your-mouth": { "text": "Abre la boca." },

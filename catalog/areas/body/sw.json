@@ -43,6 +43,7 @@
   "neck": { "text": "shingo", "grammar": { "plural": "=" } },
   "brain": { "text": "ubongo", "grammar": { "plural": "=" } },
   "muscle": { "text": "msuli", "grammar": { "plural": "misuli" } },
+  "nipple": { "text": "chuchu", "grammar": { "plural": "=" } },
   "my-head-hurts": { "text": "Kichwa kinaniuma." },
   "give-me-your-hand": { "text": "Nipe mkono wako." },
   "open-your-mouth": { "text": "Fungua mdomo." },

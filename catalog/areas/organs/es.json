@@ -19,6 +19,7 @@
   "bile": { "text": "bilis", "grammar": { "gender": "la", "plural": "=" } },
   "appendix": { "text": "apéndice", "grammar": { "gender": "el", "plural": "apéndices" } },
   "womb": { "text": "útero", "grammar": { "gender": "el" } },
-  "pancreas": { "text": "páncreas", "grammar": { "gender": "el", "plural": "=" } }
+  "pancreas": { "text": "páncreas", "grammar": { "gender": "el", "plural": "=" } },
+  "ovary": { "text": "ovario", "grammar": { "gender": "el" } }
  }
 }

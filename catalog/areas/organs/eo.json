@@ -19,6 +19,7 @@
   "bile": { "text": "galo" },
   "appendix": { "text": "apendico" },
   "womb": { "text": "utero" },
-  "pancreas": { "text": "pankreato" }
+  "pancreas": { "text": "pankreato" },
+  "ovary": { "text": "ovario" }
  }
 }

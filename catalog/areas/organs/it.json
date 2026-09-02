@@ -34,6 +34,11 @@
    "variants": ["l'appendice"]
   },
   "womb": { "text": "utero", "grammar": { "gender": "l'", "plural": "uteri" }, "variants": ["l'utero"] },
-  "pancreas": { "text": "pancreas", "grammar": { "gender": "il", "plural": "=" } }
+  "pancreas": { "text": "pancreas", "grammar": { "gender": "il", "plural": "=" } },
+  "ovary": {
+   "text": "ovaia",
+   "variants": ["l'ovaia", "ovario"],
+   "grammar": { "gender": "l'", "plural": "ovaie" }
+  }
  }
 }

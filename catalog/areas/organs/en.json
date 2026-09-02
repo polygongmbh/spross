@@ -19,6 +19,7 @@
   "bile": { "text": "bile" },
   "appendix": { "text": "appendix" },
   "womb": { "text": "womb", "synonyms": ["uterus"] },
-  "pancreas": { "text": "pancreas", "grammar": { "plural": "=" } }
+  "pancreas": { "text": "pancreas", "grammar": { "plural": "=" } },
+  "ovary": { "text": "ovary", "grammar": { "plural": "ovaries" } }
  }
 }

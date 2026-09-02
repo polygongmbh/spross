@@ -23,6 +23,7 @@
   "bile": { "text": "жовч" },
   "appendix": { "text": "апендикс" },
   "womb": { "text": "матка" },
-  "pancreas": { "text": "підшлункова залоза", "grammar": { "plural": "підшлункові залози" } }
+  "pancreas": { "text": "підшлункова залоза", "grammar": { "plural": "підшлункові залози" } },
+  "ovary": { "text": "яєчник" }
  }
 }

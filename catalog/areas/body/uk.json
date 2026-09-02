@@ -32,6 +32,7 @@
   "neck": { "text": "шия" },
   "brain": { "text": "мозок", "grammar": { "plural": "мізки" } },
   "muscle": { "text": "м'яз" },
+  "nipple": { "text": "сосок", "grammar": { "plural": "соски" } },
   "my-head-hurts": { "text": "У мене болить голова." },
   "give-me-your-hand": { "text": "Дай мені руку." },
   "open-your-mouth": { "text": "Відкрий рот." },

@@ -16,5 +16,6 @@
  { "slug": "bile", "kind": "noun" },
  { "slug": "appendix", "kind": "noun" },
  { "slug": "womb", "kind": "noun" },
- { "slug": "pancreas", "kind": "noun" }
+ { "slug": "pancreas", "kind": "noun" },
+ { "slug": "ovary", "kind": "noun" }
 ]

@@ -74,6 +74,7 @@
   "neck": { "text": "collo", "grammar": { "gender": "il" } },
   "brain": { "text": "cervello", "grammar": { "gender": "il", "plural": "cervelli" } },
   "muscle": { "text": "muscolo", "grammar": { "gender": "il", "plural": "muscoli" } },
+  "nipple": { "text": "capezzolo", "grammar": { "gender": "il", "plural": "capezzoli" } },
   "my-head-hurts": { "text": "Mi fa male la testa." },
   "give-me-your-hand": { "text": "Dammi la mano.", "variants": ["Dammi la tua mano."] },
   "open-your-mouth": { "text": "Apri la bocca." },
