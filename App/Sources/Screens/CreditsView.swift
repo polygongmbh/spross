@@ -19,15 +19,15 @@ struct CreditsView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
+                LazyVStack(alignment: .leading, spacing: Theme.spacing.xl) {
                     legalSection
                     ForEach(sections) { section in
                         languageSection(section)
                     }
                 }
-                .padding(DL.Space.xl)
+                .padding(Theme.spacing.xl)
             }
-            .background(Color.dlBackground.ignoresSafeArea())
+            .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle("credits.title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -36,14 +36,14 @@ struct CreditsView: View {
                 }
             }
         }
-        .tint(.dlAccent)
+        .tint(Theme.colors.accent)
     }
 
     private func languageSection(_ section: CreditSection) -> some View {
-        VStack(alignment: .leading, spacing: DL.Space.m) {
+        VStack(alignment: .leading, spacing: Theme.spacing.md) {
             Text(verbatim: languageTitle(section.language))
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.textPrimary)
             ForEach(section.credits) { credit in
                 CreditGroupRow(credit: credit)
             }
@@ -54,13 +54,13 @@ struct CreditsView: View {
     /// The second license obligation, beside naming the speaker: the files are
     /// the Commons transcodes, and nothing here re-encoded them.
     private var footer: some View {
-        VStack(alignment: .leading, spacing: DL.Space.xs) {
+        VStack(alignment: .leading, spacing: Theme.spacing.xs) {
             Text("credits.unmodified")
             Text("credits.commonsNote")
         }
-        .font(DL.Fonts.caption)
-        .foregroundStyle(Color.dlTextSecondary)
-        .padding(.horizontal, DL.Space.xs)
+        .font(Theme.typography.caption)
+        .foregroundStyle(Theme.colors.textSecondary)
+        .padding(.horizontal, Theme.spacing.xs)
     }
 
     /// "🇺🇦 Ukrainisch" — the flag from `languages.json`, the name in chrome
@@ -103,37 +103,37 @@ private struct CreditGroupRow: View {
 
     var body: some View {
         DisclosureGroup(isExpanded: $expanded) {
-            VStack(alignment: .leading, spacing: DL.Space.xs) {
+            VStack(alignment: .leading, spacing: Theme.spacing.xs) {
                 // why: one Commons recording fetched for two slugs ships twice,
                 // so neither the label nor the source is a unique identity.
                 ForEach(credit.files.indices, id: \.self) { index in
                     fileRow(credit.files[index])
                 }
             }
-            .padding(.top, DL.Space.s)
+            .padding(.top, Theme.spacing.sm)
         } label: {
             header
         }
-        .tint(.dlTextSecondary)
-        .padding(DL.Space.l)
+        .tint(Theme.colors.textSecondary)
+        .padding(Theme.spacing.lg)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                .fill(Color.dlSurface)
+            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                .fill(Theme.colors.surface)
         )
     }
 
     private var header: some View {
-        VStack(alignment: .leading, spacing: DL.Space.xs) {
+        VStack(alignment: .leading, spacing: Theme.spacing.xs) {
             Text(verbatim: credit.author)
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlTextPrimary)
-            HStack(spacing: DL.Space.xs) {
+                .font(Theme.typography.headline)
+                .foregroundStyle(Theme.colors.textPrimary)
+            HStack(spacing: Theme.spacing.xs) {
                 Text("credits.recordings \(credit.files.count)")
                 Text(verbatim: "·")
                 license
             }
-            .font(DL.Fonts.caption)
-            .foregroundStyle(Color.dlTextSecondary)
+            .font(Theme.typography.caption)
+            .foregroundStyle(Theme.colors.textSecondary)
         }
         // why: a button centers a label that wraps, and this one is the
         // fold-open control — "Wikimedia Commons user …" breaks over two lines.
@@ -148,7 +148,7 @@ private struct CreditGroupRow: View {
         if let url = credit.licenseUrl.flatMap(URL.init(string:)) {
             Link(destination: url) {
                 Text(verbatim: credit.license)
-                    .foregroundStyle(Color.dlAccent)
+                    .foregroundStyle(Theme.colors.accent)
             }
         } else {
             Text(verbatim: credit.license)
@@ -163,11 +163,11 @@ private struct CreditGroupRow: View {
     private func fileRow(_ file: AudioCreditFile) -> some View {
         let row = VStack(alignment: .leading, spacing: 0) {
             Text(verbatim: file.label)
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.body)
+                .foregroundStyle(Theme.colors.textPrimary)
             Text(verbatim: file.source)
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
         }
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)

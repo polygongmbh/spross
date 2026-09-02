@@ -23,19 +23,19 @@ extension DrillOverview {
 
     var practiceSection: some View {
         let sprossen = Face.sprossen(content, reverse: reverse)
-        return VStack(alignment: .leading, spacing: DL.Space.l) {
+        return VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             DrillHeading("trainer.overview.practice")
             if !sprossen.isEmpty {
-                VStack(alignment: .leading, spacing: DL.Space.l) {
+                VStack(alignment: .leading, spacing: Theme.spacing.lg) {
                     ForEach(Array(sprossen.enumerated()), id: \.offset) { row in
                         sprosseRow(row.offset + 1, row.element)
                     }
                 }
-                .padding(DL.Space.l)
+                .padding(Theme.spacing.lg)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(
-                    RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                        .fill(Color.dlSurface)
+                    RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                        .fill(Theme.colors.surface)
                 )
             }
             pace
@@ -55,17 +55,17 @@ extension DrillOverview {
     /// walks by itself, and a circle beside each one reads as a choice that
     /// never answers the tap.
     private func sprosseRow(_ number: Int, _ sprosse: DrillSprosse) -> some View {
-        HStack(alignment: .firstTextBaseline, spacing: DL.Space.m) {
+        HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.md) {
             Image(systemName: "\(number).circle")
                 .font(.title3)
-                .foregroundStyle(Color.dlTextSecondary)
+                .foregroundStyle(Theme.colors.textSecondary)
             VStack(alignment: .leading, spacing: 2) {
                 Text(sprosse.title)
-                    .font(DL.Fonts.headline)
-                    .foregroundStyle(Color.dlTextPrimary)
+                    .font(Theme.typography.headline)
+                    .foregroundStyle(Theme.colors.textPrimary)
                 Text(sprosse.hint)
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer(minLength: 0)
@@ -78,7 +78,7 @@ extension DrillOverview {
     /// How the ladder is walked, said once instead of marked on every row — and,
     /// where a run has climbed before, how far it came.
     private var pace: some View {
-        VStack(alignment: .leading, spacing: DL.Space.xs) {
+        VStack(alignment: .leading, spacing: Theme.spacing.xs) {
             Text(Face.paceKey)
             if bestSprosse > 0 {
                 // why: printed as it stands, ceiling and all — the Sprosse keeps
@@ -87,8 +87,8 @@ extension DrillOverview {
                 Text(Face.bestLine(bestSprosse))
             }
         }
-        .font(DL.Fonts.caption)
-        .foregroundStyle(Color.dlTextSecondary)
+        .font(Theme.typography.caption)
+        .foregroundStyle(Theme.colors.textSecondary)
         .fixedSize(horizontal: false, vertical: true)
     }
 
@@ -100,26 +100,26 @@ extension DrillOverview {
     /// keeps its switch — dimmed, beside a padlock — with its price where the
     /// line would be, because a ladder you can see is a reason to climb it.
     private var modifierTile: some View {
-        VStack(alignment: .leading, spacing: DL.Space.l) {
-            VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
+            VStack(alignment: .leading, spacing: Theme.spacing.sm) {
                 Toggle(isOn: $reverse) {
                     Text("trainer.modifier.reverse")
-                        .font(DL.Fonts.headline)
-                        .foregroundStyle(Color.dlTextPrimary)
+                        .font(Theme.typography.headline)
+                        .foregroundStyle(Theme.colors.textPrimary)
                 }
-                .tint(.dlAccent)
+                .tint(Theme.colors.accent)
                 Text(verbatim: reverseHint)
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
             fastRow
         }
-        .padding(DL.Space.l)
+        .padding(Theme.spacing.lg)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                .fill(Color.dlSurface)
+            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                .fill(Theme.colors.surface)
         )
     }
 
@@ -128,28 +128,28 @@ extension DrillOverview {
     /// 9") rather than authoring a second price beside the ladder that sets it.
     private var fastRow: some View {
         let open = fastUnlocked
-        return VStack(alignment: .leading, spacing: DL.Space.s) {
+        return VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             Toggle(isOn: $fast) {
-                HStack(spacing: DL.Space.s) {
+                HStack(spacing: Theme.spacing.sm) {
                     if !open {
                         Image(systemName: "lock.fill")
-                            .font(DL.Fonts.caption)
-                            .foregroundStyle(Color.dlTextSecondary)
+                            .font(Theme.typography.caption)
+                            .foregroundStyle(Theme.colors.textSecondary)
                     }
                     Text("trainer.modifier.fast")
-                        .font(DL.Fonts.headline)
-                        .foregroundStyle(open ? Color.dlTextPrimary : Color.dlTextSecondary)
+                        .font(Theme.typography.headline)
+                        .foregroundStyle(open ? Theme.colors.textPrimary : Theme.colors.textSecondary)
                 }
             }
-            .tint(.dlAccent)
+            .tint(Theme.colors.accent)
             .disabled(!open)
             // why: a Sprosse here costs THREE clean wins, so the shared
             // "statt zwei" hint would misprice it — each ladder says its own.
             (open ? Text(Face.fastHintKey)
                   : Text("numbers.unlock") + Text(verbatim: " ")
                       + Text("trainer.sprosse \(ladderCeiling.formatted())"))
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
         }
     }

@@ -59,18 +59,18 @@ struct CountryPromptCard: View {
     /// word's picture does on a review card — never above the words, where it
     /// pushes the name into the space the reveal needs.
     var body: some View {
-        HStack(spacing: DL.Space.m) {
+        HStack(spacing: Theme.spacing.md) {
             if let emoji, text != nil {
                 DLCardEmoji(emoji,
                             cue: emojiCue(givesAnswerAway: emojiIsGiveaway),
                             revealed: revealed != nil)
             }
-            VStack(spacing: DL.Space.m) {
+            VStack(spacing: Theme.spacing.md) {
                 caption
                 if let text {
                     Text(verbatim: text)
-                        .font(DL.Fonts.Prompt.name)
-                        .foregroundStyle(Color.dlTextPrimary)
+                        .font(Theme.prompt.name)
+                        .foregroundStyle(Theme.colors.textPrimary)
                         .multilineTextAlignment(.center)
                         .lineLimit(3)
                         .minimumScaleFactor(0.5)
@@ -86,14 +86,14 @@ struct CountryPromptCard: View {
                     // is the flag has nothing left to show if the flag is held
                     // back, which is why kern builds it forward only.
                     Text(verbatim: emoji)
-                        .font(DL.Fonts.Prompt.glyph)
+                        .font(Theme.prompt.glyph)
                 }
                 if let revealed {
                     DLCardReveal(note: revealed.note) {
                         DLSpokenWord(pronounce: revealed.pronounce, isPlaying: revealed.isPlaying) {
                             Text(verbatim: revealed.word)
-                                .font(DL.Fonts.title)
-                                .foregroundStyle(Color.dlAccent)
+                                .font(Theme.typography.title)
+                                .foregroundStyle(Theme.colors.accent)
                                 .multilineTextAlignment(.center)
                                 .minimumScaleFactor(0.6)
                                 .dlSpoken(revealed.word, language: revealed.language)
@@ -113,11 +113,11 @@ struct CountryPromptCard: View {
                 DLCardEmoji.balance()
             }
         }
-        .padding(DL.Space.l)
+        .padding(Theme.spacing.lg)
         .frame(maxWidth: .infinity)
         // why: the sibling drill cards' height — a learner moving between the
         // drills meets one layout, and the field below never jumps.
-        .frame(minHeight: DL.Reserve.drillCard)
+        .frame(minHeight: Theme.reserve.drillCard)
         .dlCardSurface()
         .animation(.easeOut(duration: 0.25), value: revealed?.word)
     }
@@ -125,8 +125,8 @@ struct CountryPromptCard: View {
     /// The ask alone — the one thing the card face cannot say for itself.
     private var caption: some View {
         Text(ask)
-            .font(DL.Fonts.caption)
-            .foregroundStyle(Color.dlTextSecondary)
+            .font(Theme.typography.caption)
+            .foregroundStyle(Theme.colors.textSecondary)
             .textCase(.uppercase)
             .multilineTextAlignment(.center)
     }
@@ -135,7 +135,7 @@ struct CountryPromptCard: View {
 // MARK: - Previews
 
 #Preview("Country prompt") {
-    VStack(spacing: DL.Space.xl) {
+    VStack(spacing: Theme.spacing.xl) {
         CountryPromptCard(ask: "countries.ask.country", emoji: "🇰🇪",
                           text: "Kenia", language: "de")
         CountryPromptCard(ask: "countries.ask.spokenIn",
@@ -154,7 +154,7 @@ struct CountryPromptCard: View {
                           revealed: .init(word: "Österreich", note: "Österreicher",
                                           language: "de", pronounce: {}))
     }
-    .padding(DL.Space.xl)
+    .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
 }

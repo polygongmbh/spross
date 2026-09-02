@@ -59,11 +59,11 @@ private fun KindGroup(
     content: DateDrillContent,
     chrome: Chrome,
 ) {
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
         Text(
             chrome.dateSprosse(listOf(group.kind)).uppercase(),
             style = MaterialTheme.typography.bodySmall,
-            color = Dl.colors.textSecondary,
+            color = Theme.colors.textSecondary,
             modifier = Modifier.semantics { heading() },
         )
         OverviewPanel {
@@ -103,9 +103,9 @@ private fun NameRow(
         Text(
             localizedTarget(row.source, content.source),
             style = MaterialTheme.typography.titleMedium,
-            color = Dl.colors.textPrimary,
+            color = Theme.colors.textPrimary,
         )
-        Spacer(Modifier.width(DlSpace.m).weight(1f))
+        Spacer(Modifier.width(Theme.spacing.md).weight(1f))
         Column(
             verticalArrangement = Arrangement.spacedBy(2.dp),
             horizontalAlignment = Alignment.End,
@@ -113,14 +113,14 @@ private fun NameRow(
             Text(
                 localizedTarget(row.target, content.target),
                 style = MaterialTheme.typography.titleMedium,
-                color = Dl.colors.accent,
+                color = Theme.colors.accent,
                 textAlign = TextAlign.End,
             )
             otherForms(row)?.let {
                 Text(
                     localizedTarget(it, content.target),
                     style = MaterialTheme.typography.bodySmall,
-                    color = Dl.colors.textSecondary,
+                    color = Theme.colors.textSecondary,
                     textAlign = TextAlign.End,
                 )
             }

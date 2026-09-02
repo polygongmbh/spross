@@ -62,7 +62,7 @@ struct NumbersOverview: View {
         NavigationStack {
             ScrollViewReader { scroll in
                 ScrollView {
-                    LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
+                    LazyVStack(alignment: .leading, spacing: Theme.spacing.xl) {
                         if let lastRun {
                             DrillResultTile(result: lastRun)
                                 .id(Self.resultAnchor)
@@ -71,7 +71,7 @@ struct NumbersOverview: View {
                         referenceSection
                         notesSection
                     }
-                    .padding(DL.Space.xl)
+                    .padding(Theme.spacing.xl)
                 }
                 // why: a tile inserted ABOVE the content keeps the scroll offset,
                 // so what a run came back with would sit off the top of a page the
@@ -86,12 +86,12 @@ struct NumbersOverview: View {
             #if DEBUG
             .defaultScrollAnchor(Self.uitestAnchor)
             #endif
-            .background(Color.dlBackground.ignoresSafeArea())
+            .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle(Text("numbers.title \(languageName)"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { overviewToolbar }
         }
-        .tint(.dlAccent)
+        .tint(Theme.colors.accent)
         .onAppear { reloadProgress() }
         // why: a closing run books its best Sprossen into TrainerProgress, so the
         // ladder behind it is stale the moment the cover comes down.
@@ -180,8 +180,8 @@ struct NumbersOverview: View {
 
     func heading(_ key: LocalizedStringKey) -> some View {
         Text(key)
-            .font(DL.Fonts.title)
-            .foregroundStyle(Color.dlTextPrimary)
+            .font(Theme.typography.title)
+            .foregroundStyle(Theme.colors.textPrimary)
             .accessibilityAddTraits(.isHeader)
     }
 }

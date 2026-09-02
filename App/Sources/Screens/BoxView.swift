@@ -37,11 +37,11 @@ struct BoxView: View {
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
-                LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
+                LazyVStack(alignment: .leading, spacing: Theme.spacing.xl) {
                     header
                     // Areas grouped under their areas.json groups, manifest order.
                     ForEach(model.areaGroupSections, id: \.id) { group in
-                        VStack(alignment: .leading, spacing: DL.Space.l) {
+                        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
                             groupHeader(group)
                             if expandedGroups.contains(group.id) {
                                 ForEach(group.areas, id: \.self) { area in
@@ -59,7 +59,7 @@ struct BoxView: View {
                         .id(model.ownArea)
                     BoxSettingsSection(model: model)
                 }
-                .padding(DL.Space.xl)
+                .padding(Theme.spacing.xl)
             }
             // why: revealing an area is two moves — open it, then bring it up to
             // the thumb; the second one needs the proxy the scroll view owns.
@@ -80,7 +80,7 @@ struct BoxView: View {
                 if let revealArea, scrollTarget == nil { scrollTarget = revealArea }
             }
         }
-        .background(Color.dlBackground.ignoresSafeArea())
+        .background(Theme.colors.background.ignoresSafeArea())
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
@@ -127,40 +127,40 @@ struct BoxView: View {
     /// area cards below it stay the heaviest thing on the screen.
     private func groupHeader(_ group: AreaGroupSection) -> some View {
         let open = expandedGroups.contains(group.id)
-        return VStack(alignment: .leading, spacing: DL.Space.xs) {
+        return VStack(alignment: .leading, spacing: Theme.spacing.xs) {
             Button {
                 withAnimation(.easeInOut(duration: 0.2)) {
                     if open { expandedGroups.remove(group.id) } else { expandedGroups.insert(group.id) }
                 }
             } label: {
-                HStack(spacing: DL.Space.s) {
+                HStack(spacing: Theme.spacing.sm) {
                     FoldChevron(open: open)
                     Text(group.title)
-                        .font(DL.Fonts.headline)
+                        .font(Theme.typography.headline)
                         .lineLimit(1)
-                    Spacer(minLength: DL.Space.s)
+                    Spacer(minLength: Theme.spacing.sm)
                     // why: folded shut, these emojis are all that says what is inside.
                     Text(group.areas.map(model.areaEmoji).joined())
-                        .font(DL.Fonts.subheadline)
+                        .font(Theme.typography.subheadline)
                         .lineLimit(1)
                         .accessibilityHidden(true)
                 }
-                .foregroundStyle(Color.dlTextSecondary)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            Divider().overlay(Color.dlSeparator)
+            Divider().overlay(Theme.colors.separator)
         }
     }
 
     private var header: some View {
-        VStack(alignment: .leading, spacing: DL.Space.xs) {
+        VStack(alignment: .leading, spacing: Theme.spacing.xs) {
             Text("box.title")
-                .font(DL.Fonts.hero)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.hero)
+                .foregroundStyle(Theme.colors.textPrimary)
             subtitle
-                .font(DL.Fonts.subheadline)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.subheadline)
+                .foregroundStyle(Theme.colors.textSecondary)
             // why: same disclosure as the number/country reference tables — said
             // once for the page rather than as a glyph competing with every row.
             if anyWordCanBeHeard {
@@ -209,7 +209,7 @@ private struct BoxAreaSection: View {
         let stats = model.areaStats(area)
 
         VStack(alignment: .leading, spacing: 0) {
-            HStack(alignment: .top, spacing: DL.Space.m) {
+            HStack(alignment: .top, spacing: Theme.spacing.md) {
                 Button {
                     withAnimation(.easeInOut(duration: 0.2)) { expanded.toggle() }
                 } label: {
@@ -220,26 +220,26 @@ private struct BoxAreaSection: View {
             }
             if expanded {
                 cardList
-                    .padding(.top, DL.Space.m)
+                    .padding(.top, Theme.spacing.md)
             }
         }
-        .padding(DL.Space.l)
+        .padding(Theme.spacing.lg)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                .fill(Color.dlSurface)
+            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                .fill(Theme.colors.surface)
         )
         .dlCardShadow()
     }
 
     private func header(_ stats: AreaStatistics?) -> some View {
-        HStack(alignment: .top, spacing: DL.Space.s) {
+        HStack(alignment: .top, spacing: Theme.spacing.sm) {
             AreaChip(emoji: model.areaEmoji(area), name: model.areaTitle(area),
                      subtitle: model.areaSubtitle(area),
                      progress: stats?.progress ?? .empty,
                      lockedPhrases: stats?.lockedPhrases ?? 0)
             FoldChevron(open: expanded)
-                .foregroundStyle(Color.dlTextSecondary)
-                .padding(.top, DL.Space.s)
+                .foregroundStyle(Theme.colors.textSecondary)
+                .padding(.top, Theme.spacing.sm)
         }
         .contentShape(Rectangle())
     }
@@ -269,19 +269,19 @@ private struct BoxAreaSection: View {
             } label: {
                 Image(systemName: "tray.and.arrow.up.fill")
             }
-            .buttonStyle(DLIconButtonStyle(color: .dlSuccess))
+            .buttonStyle(DLIconButtonStyle(color: Theme.colors.success))
             .accessibilityLabel(Text("box.shelf.unpack \(queued.formatted())"))
         } else {
             Image(systemName: "checkmark.circle.fill")
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlSuccess)
+                .font(Theme.typography.headline)
+                .foregroundStyle(Theme.colors.success)
                 .frame(width: 40, height: 40)
                 .accessibilityLabel(Text("box.shelf.packed"))
         }
     }
 
     private var cardList: some View {
-        VStack(spacing: DL.Space.s) {
+        VStack(spacing: Theme.spacing.sm) {
             ForEach(model.cards(inArea: area)) { card in
                 BoxCardRow(model: model, card: card)
             }

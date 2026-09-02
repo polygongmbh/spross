@@ -68,7 +68,7 @@ import net.spross.kern.model.Realization
 fun CardFace(
     modifier: Modifier = Modifier,
     /** The inset the content composes flat inside; a card with room to spare takes more. */
-    padding: Dp = DlSpace.l,
+    padding: Dp = Theme.spacing.lg,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Column(
@@ -80,7 +80,7 @@ fun CardFace(
         // shorter than the card it sits in. Arranged from the top, the question hung off
         // the ceiling with the reserve pooled underneath it; the block is read from the
         // middle out, so it is centered in whatever height the card currently has.
-        verticalArrangement = Arrangement.spacedBy(DlSpace.s, Alignment.CenterVertically),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
         content = content,
     )
@@ -186,8 +186,8 @@ fun VocabCard(
         // why: a shared-screen card holds one height whether the prompt is a word, a word
         // under an area label, or the replay glyph of a by-ear question; a card that owns
         // the screen has nothing to keep still for and is free to grow into it.
-        modifier = if (shared) modifier.heightIn(min = DlReserve.reviewCard) else modifier,
-        padding = if (shared) DlSpace.l else DlSpace.xl,
+        modifier = if (shared) modifier.heightIn(min = Theme.reserve.reviewCard) else modifier,
+        padding = if (shared) Theme.spacing.lg else Theme.spacing.xl,
     ) {
         // why: the growth is animated INSIDE the face, so the edge and the shadow
         // are never clipped mid-reveal — the card simply gets taller under them.
@@ -195,16 +195,16 @@ fun VocabCard(
         when (arrangement) {
             CardArrangement.Beside -> Column(
                 modifier = grow,
-                verticalArrangement = Arrangement.spacedBy(DlSpace.s),
+                verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+                    horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
                 ) {
                     if (hasEmoji) EmojiSlot(emoji.orEmpty(), emojiShown, slot, glyph)
-                    CardWords(Modifier.weight(1f), DlSpace.xs, content)
+                    CardWords(Modifier.weight(1f), Theme.spacing.xs, content)
                     // why: the picture's mirror on the trailing edge, so the headwords are
                     // centered in the CARD rather than in what is left of it — the picture
                     // then lands roughly parallel to the reveal's divider instead of
@@ -217,11 +217,11 @@ fun VocabCard(
 
             CardArrangement.Above -> Column(
                 modifier = grow,
-                verticalArrangement = Arrangement.spacedBy(DlSpace.l),
+                verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 if (hasEmoji) EmojiSlot(emoji.orEmpty(), emojiShown, slot, glyph)
-                CardWords(Modifier.fillMaxWidth(), DlSpace.l, content)
+                CardWords(Modifier.fillMaxWidth(), Theme.spacing.lg, content)
                 ClosingLines(closingLines, note)
             }
         }
@@ -251,7 +251,7 @@ private fun ClosingLines(lines: List<String>, note: String?) {
     if (lines.isEmpty() && note == null) return
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.xs),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         lines.forEach { CardLine(it) }
@@ -320,7 +320,7 @@ fun SpokenWord(
     Row(
         modifier = modifier.pronounceOnTap(pronounce, chrome),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.xs, Alignment.CenterHorizontally),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs, Alignment.CenterHorizontally),
     ) {
         // why: a hidden, inert copy of the glyph on the LEADING edge. Without the ballast
         // the word sits half a speaker left of center — off the plural line under it and
@@ -333,7 +333,7 @@ fun SpokenWord(
             Icon(
                 SprossIcons.Speaker,
                 contentDescription = null,
-                tint = Dl.colors.teal,
+                tint = Theme.colors.teal,
                 modifier = Modifier.size(SPEAKER_GLYPH),
             )
         }
@@ -396,8 +396,8 @@ fun TargetReveal(
 ) {
     SpokenWord(pronounce, chrome, modifier) {
         Headword(
-            localizedTarget(Dl.colors.articleColoredText(target), target.lang),
-            color = Dl.colors.accent,
+            localizedTarget(Theme.colors.articleColoredText(target), target.lang),
+            color = Theme.colors.accent,
             modifier = Modifier.weight(1f, fill = false),
         )
     }
@@ -432,13 +432,13 @@ fun CardReveal(
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Column(
-        modifier = modifier.fillMaxWidth().padding(top = DlSpace.xs),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.s),
+        modifier = modifier.fillMaxWidth().padding(top = Theme.spacing.xs),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Box(
             Modifier.width(44.dp).height(2.dp)
-                .background(Dl.colors.separator, RoundedCornerShape(1.dp))
+                .background(Theme.colors.separator, RoundedCornerShape(1.dp))
         )
         content()
         note?.let { PauseLine(it) }

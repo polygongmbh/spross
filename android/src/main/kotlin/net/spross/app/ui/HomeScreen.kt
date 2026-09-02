@@ -95,10 +95,10 @@ fun HomeScreen(model: AppModel) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(DlSpace.xl),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.xl),
+            .padding(Theme.spacing.xl),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
     ) {
-        Spacer(Modifier.height(DlSpace.s))
+        Spacer(Modifier.height(Theme.spacing.sm))
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
                 Text(
@@ -133,7 +133,7 @@ fun HomeScreen(model: AppModel) {
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                 ),
-                contentPadding = PaddingValues(horizontal = DlSpace.l, vertical = DlSpace.s),
+                contentPadding = PaddingValues(horizontal = Theme.spacing.lg, vertical = Theme.spacing.sm),
             ) {
                 Text("📦 ${chrome.boxDoor}")
             }
@@ -169,7 +169,7 @@ fun HomeScreen(model: AppModel) {
         // produced it — the strip reads kern's walk, never one of its own. It names
         // itself, so nothing announces it a second time above.
         ActivityStrip(model.activityWindow, stats?.streak ?: 0, health, chrome, locale)
-        Spacer(Modifier.height(DlSpace.l))
+        Spacer(Modifier.height(Theme.spacing.lg))
     }
 }
 
@@ -189,8 +189,8 @@ private fun SprossenCard(model: AppModel) {
         modifier = Modifier.fillMaxWidth().panel(),
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(DlSpace.l),
-            verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+            modifier = Modifier.fillMaxWidth().padding(Theme.spacing.lg),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
         ) {
             Text(chrome.trainerHubTitle, style = MaterialTheme.typography.titleLarge)
             Text(
@@ -202,7 +202,7 @@ private fun SprossenCard(model: AppModel) {
             // be an area of the box. The suffix says it is practice, and in which language.
             val practice =
                 chrome.a11ySuffixPractice.format(model.languageName(model.box?.joinStamp?.target.orEmpty()))
-            Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
                 if (model.numbersOffered) {
                     EntryChip("🔢", chrome.trainerSkillNumbers, practice) { model.openNumbers() }
                 }
@@ -242,13 +242,13 @@ private fun RowScope.EntryChip(
             // not just the label inside it.
             .pressSpring()
             .clip(MaterialTheme.shapes.medium)
-            .background(Dl.colors.surfaceTint)
+            .background(Theme.colors.surfaceTint)
             .clickable(role = Role.Button, onClick = onClick)
             .semantics(mergeDescendants = true) { contentDescription = title + suffix }
-            .heightIn(min = DlReserve.tile)
-            .padding(horizontal = DlSpace.xs, vertical = DlSpace.s),
+            .heightIn(min = Theme.reserve.tile)
+            .padding(horizontal = Theme.spacing.xs, vertical = Theme.spacing.sm),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(DlSpace.s, Alignment.CenterVertically),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm, Alignment.CenterVertically),
     ) {
         // why: the name is the label — TalkBack reading "Numbers", not "input symbol Numbers".
         Text(emoji, fontSize = 30.sp, modifier = Modifier.clearAndSetSemantics { })

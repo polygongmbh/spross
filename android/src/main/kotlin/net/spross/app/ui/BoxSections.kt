@@ -50,7 +50,7 @@ internal fun GroupHeader(
                     stateDescription = if (open) chrome.a11yStateExpanded else chrome.a11yStateCollapsed
                 },
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+            horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
         ) {
             Icon(
                 if (open) SprossIcons.ChevronDown else SprossIcons.ChevronRight,
@@ -66,7 +66,7 @@ internal fun GroupHeader(
             )
             Text(emojis, style = MaterialTheme.typography.bodyMedium, maxLines = 1)
         }
-        HorizontalDivider(color = Dl.colors.separator)
+        HorizontalDivider(color = Theme.colors.separator)
     }
 }
 
@@ -99,7 +99,7 @@ internal fun AreaSection(
     Column(
         modifier = Modifier.fillMaxWidth().panel(),
     ) {
-        Column(Modifier.fillMaxWidth().padding(DlSpace.l)) {
+        Column(Modifier.fillMaxWidth().padding(Theme.spacing.lg)) {
             Row(verticalAlignment = Alignment.Top) {
                 AreaChip(
                     name = naming.title(area),
@@ -123,8 +123,8 @@ internal fun AreaSection(
             }
             if (expanded) {
                 Column(
-                    modifier = Modifier.padding(top = DlSpace.m),
-                    verticalArrangement = Arrangement.spacedBy(DlSpace.s),
+                    modifier = Modifier.padding(top = Theme.spacing.md),
+                    verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
                 ) {
                     cards.forEach { card ->
                         BoxCardRow(model, card, onWriteOwn = onWriteOwn)
@@ -163,16 +163,16 @@ internal fun PackControl(
             onClick = onUnpack,
             modifier = Modifier.semantics { contentDescription = chrome.boxShelfUnpack.format(queuedCount) },
         ) {
-            Icon(SprossIcons.PackOut, contentDescription = null, tint = Dl.colors.success)
+            Icon(SprossIcons.PackOut, contentDescription = null, tint = Theme.colors.success)
         }
     } else {
         Text(
             SEAL,
-            color = Dl.colors.success,
+            color = Theme.colors.success,
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier
                 .sizeIn(minWidth = 48.dp, minHeight = 48.dp)
-                .padding(DlSpace.m)
+                .padding(Theme.spacing.md)
                 .semantics { contentDescription = chrome.boxShelfPacked },
         )
     }
@@ -206,11 +206,11 @@ fun AreaChip(
 
     Column(
         modifier = modifier.semantics(mergeDescendants = true) { contentDescription = spoken },
-        verticalArrangement = Arrangement.spacedBy(DlSpace.s),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+            horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
         ) {
             Text(emoji, style = MaterialTheme.typography.titleMedium)
             Text(name, style = MaterialTheme.typography.titleLarge, maxLines = 1)
@@ -223,12 +223,12 @@ fun AreaChip(
                 maxLines = 2,
             )
         }
-        Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
             // Two counts where the bar beneath draws three Sprossen: there is room here for
             // the split that matters (cleared the bar, or not yet), and the bar carries
             // the finer one.
-            CountLabel("$SEAL ${chrome.progressConsolidatedCount.format(consolidated)}", Dl.colors.grown)
-            CountLabel("$LEAF ${chrome.progressLearningCount.format(learning)}", Dl.colors.success)
+            CountLabel("$SEAL ${chrome.progressConsolidatedCount.format(consolidated)}", Theme.colors.grown)
+            CountLabel("$LEAF ${chrome.progressLearningCount.format(learning)}", Theme.colors.success)
             // why: the padlock carries the "locked", so the text only names what is
             // locked — and it appears only when it says something.
             if (locked > 0) CountLabel("$LOCK ${chrome.boxAreaPhrasesLockedShort.format(locked)}")

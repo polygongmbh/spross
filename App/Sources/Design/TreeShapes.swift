@@ -60,7 +60,7 @@ enum TreeShapes {
         let width = max(9, mark.height * 0.42)
         let shadow = CGRect(x: mark.foot.x - width / 2, y: mark.baseline - 1.6,
                             width: width, height: 3.2)
-        context.fill(Path(ellipseIn: shadow), with: .color(.dlSeparator.opacity(0.55)))
+        context.fill(Path(ellipseIn: shadow), with: .color(Theme.colors.separator.opacity(0.55)))
     }
 
     /// Answered today — a short line of fresh earth at the foot. A mark on the
@@ -71,7 +71,7 @@ enum TreeShapes {
         var path = Path()
         path.move(to: CGPoint(x: mark.foot.x - half, y: mark.baseline + 3.5))
         path.addLine(to: CGPoint(x: mark.foot.x + half, y: mark.baseline + 3.5))
-        context.stroke(path, with: .color(.dlAccent),
+        context.stroke(path, with: .color(Theme.colors.accent),
                        style: StrokeStyle(lineWidth: max(1.6, mark.height * 0.03), lineCap: .round))
     }
 
@@ -83,11 +83,11 @@ enum TreeShapes {
         var stem = Path()
         stem.move(to: mark.foot)
         stem.addLine(to: top)
-        context.stroke(stem, with: .color(.dlSuccess),
+        context.stroke(stem, with: .color(Theme.colors.success),
                        style: StrokeStyle(lineWidth: max(1.4, mark.height * 0.055), lineCap: .round))
         let leafSize = max(4, mark.height * 0.34)
-        leaf(&context, at: top, size: leafSize, angle: -0.7, color: .dlSuccess)
-        leaf(&context, at: top, size: leafSize, angle: .pi + 0.7, color: .dlSuccess)
+        leaf(&context, at: top, size: leafSize, angle: -0.7, color: Theme.colors.success)
+        leaf(&context, at: top, size: leafSize, angle: .pi + 0.7, color: Theme.colors.success)
     }
 
     // MARK: The tree
@@ -109,8 +109,8 @@ enum TreeShapes {
                 trunkAndLimbs.addPath(taper(segment))
             }
         }
-        context.fill(trunkAndLimbs, with: .color(.dlBorderStrong))
-        context.stroke(twigs, with: .color(.dlBorderStrong),
+        context.fill(trunkAndLimbs, with: .color(Theme.colors.borderStrong))
+        context.stroke(twigs, with: .color(Theme.colors.borderStrong),
                        style: StrokeStyle(lineWidth: 0.7, lineCap: .round))
     }
 
@@ -178,7 +178,7 @@ enum TreeShapes {
         // Three tones of the one green rather than two: at a canopy's worth of
         // marks the extra step is the difference between depth and a flat mass.
         for (index, opacity) in [0.74, 0.88, 1.0].enumerated() {
-            context.fill(tones[index], with: .color(.dlSuccess.opacity(opacity)))
+            context.fill(tones[index], with: .color(Theme.colors.success.opacity(opacity)))
         }
     }
 
@@ -196,7 +196,7 @@ enum TreeShapes {
             let spread = clear + CGFloat(ForestLayout.noise("\(mark.tree.id)-f\(index)", 13)) * clear * 0.5
             let at = CGPoint(x: mark.foot.x + side * spread, y: mark.baseline + 0.5)
             leaf(&context, at: at, size: size, angle: side > 0 ? 0.2 : .pi - 0.2,
-                 color: .dlAmber.opacity(0.85))
+                 color: Theme.colors.amber.opacity(0.85))
         }
     }
 
@@ -229,7 +229,7 @@ enum TreeShapes {
         // the other warm mark — by being a third its size and flat where fruit
         // carries a stalk and a highlight.
         context.fill(circle(point, size * CanopyMark.budRadius),
-                     with: .color(.dlAmber.opacity(0.8)))
+                     with: .color(Theme.colors.amber.opacity(0.8)))
     }
 
     /// A word the learner will not see again for months — the furthest thing on
@@ -243,13 +243,13 @@ enum TreeShapes {
         var stalk = Path()
         stalk.move(to: CGPoint(x: point.x, y: point.y - size * 0.62))
         stalk.addLine(to: CGPoint(x: point.x, y: point.y - size * 0.26))
-        context.stroke(stalk, with: .color(.dlBorderStrong),
+        context.stroke(stalk, with: .color(Theme.colors.borderStrong),
                        style: StrokeStyle(lineWidth: max(0.6, size * 0.1), lineCap: .round))
-        context.fill(circle(point, size * 0.56), with: .color(.dlAccent))
+        context.fill(circle(point, size * 0.56), with: .color(Theme.colors.accent))
         // A highlight: at this size it is the difference between fruit and a dot.
         context.fill(circle(CGPoint(x: point.x - size * 0.17, y: point.y - size * 0.17),
                             size * 0.15),
-                     with: .color(.dlSurface.opacity(0.65)))
+                     with: .color(Theme.colors.surface.opacity(0.65)))
     }
 
     /// A word that has landed.
@@ -271,8 +271,8 @@ enum TreeShapes {
                     .rotated(by: CGFloat(angle + turn))
             ))
         }
-        context.fill(lobes, with: .color(.dlDie))
-        context.fill(circle(point, span * 0.17), with: .color(.dlAmber))
+        context.fill(lobes, with: .color(Theme.colors.die))
+        context.fill(circle(point, span * 0.17), with: .color(Theme.colors.amber))
     }
 
     private static func circle(_ center: CGPoint, _ radius: CGFloat) -> Path {

@@ -20,7 +20,7 @@ struct DatesReference: View {
 
     var body: some View {
         let groups = DateDrill.shared.reference(content: content)
-        return VStack(alignment: .leading, spacing: DL.Space.l) {
+        return VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             DrillHeading("dates.reference")
             if groups.contains(where: canBeHeard) {
                 ReferenceTapHint()
@@ -38,24 +38,24 @@ struct DatesReference: View {
     }
 
     private func kindGroup(_ group: DateReferenceGroup) -> some View {
-        VStack(alignment: .leading, spacing: DL.Space.m) {
+        VStack(alignment: .leading, spacing: Theme.spacing.md) {
             // The Sprosse rows above already name the two pools, so the group
             // headings reuse their words rather than authoring a second pair.
             Text(Self.groupTitle(group.kind))
-                .font(DL.Fonts.subheadline)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.subheadline)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .textCase(.uppercase)
                 .accessibilityAddTraits(.isHeader)
-            VStack(alignment: .leading, spacing: DL.Space.l) {
+            VStack(alignment: .leading, spacing: Theme.spacing.lg) {
                 ForEach(Array(group.rows.enumerated()), id: \.offset) { _, row in
                     nameRow(row)
                 }
             }
-            .padding(DL.Space.l)
+            .padding(Theme.spacing.lg)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(Color.dlSurface)
+                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                    .fill(Theme.colors.surface)
             )
         }
     }
@@ -73,21 +73,21 @@ struct DatesReference: View {
     /// The whole row is that target, the numbers table's rule — the hint under
     /// the heading is where the page says so.
     private func nameRow(_ row: DateReferenceRow) -> some View {
-        HStack(alignment: .top, spacing: DL.Space.m) {
+        HStack(alignment: .top, spacing: Theme.spacing.md) {
             Text(verbatim: row.source)
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.headline)
+                .foregroundStyle(Theme.colors.textPrimary)
                 .dlSpoken(row.source, language: source)
-            Spacer(minLength: DL.Space.s)
+            Spacer(minLength: Theme.spacing.sm)
             VStack(alignment: .trailing, spacing: 2) {
                 Text(verbatim: row.target)
-                    .font(DL.Fonts.headline)
-                    .foregroundStyle(Color.dlAccent)
+                    .font(Theme.typography.headline)
+                    .foregroundStyle(Theme.colors.accent)
                     .dlSpoken(row.target, language: target)
                 if let under = Self.otherForms(row) {
                     Text(verbatim: under)
-                        .font(DL.Fonts.caption)
-                        .foregroundStyle(Color.dlTextSecondary)
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
                         .dlSpoken(under, language: target)
                 }
             }

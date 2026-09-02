@@ -19,7 +19,7 @@ struct DLActionLabel: View {
             if let targetLocale,
                targetLocale.language.languageCode?.identifier != locale.language.languageCode?.identifier {
                 Text(DLChrome.string(key, locale: targetLocale))
-                    .font(DL.Fonts.caption)
+                    .font(Theme.typography.caption)
                     .opacity(0.75)
             }
         }

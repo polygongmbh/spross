@@ -12,14 +12,14 @@ struct DLSearchField: View {
     @FocusState private var focused: Bool
 
     var body: some View {
-        HStack(spacing: DL.Space.s) {
+        HStack(spacing: Theme.spacing.sm) {
             Image(systemName: "magnifyingglass")
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.body)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .accessibilityHidden(true)
             TextField(placeholder, text: $text)
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.body)
+                .foregroundStyle(Theme.colors.textPrimary)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
                 .submitLabel(.search)
@@ -30,22 +30,22 @@ struct DLSearchField: View {
                     focused = true
                 } label: {
                     Image(systemName: "xmark.circle.fill")
-                        .font(DL.Fonts.body)
-                        .foregroundStyle(Color.dlTextSecondary)
+                        .font(Theme.typography.body)
+                        .foregroundStyle(Theme.colors.textSecondary)
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("box.search.clear")
             }
         }
-        .padding(.horizontal, DL.Space.l)
+        .padding(.horizontal, Theme.spacing.lg)
         .frame(minHeight: 52)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                .fill(Color.dlSurface)
+            RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                .fill(Theme.colors.surface)
         )
         .overlay(
-            RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                .strokeBorder(Color.dlSeparator, lineWidth: 1)
+            RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                .strokeBorder(Theme.colors.separator, lineWidth: 1)
         )
         .onAppear { focused = true }
     }

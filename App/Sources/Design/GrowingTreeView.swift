@@ -136,14 +136,14 @@ struct TreeArrival {
                          leaves: 22, blossoms: 4, fruit: 2, buds: 6, growing: 0, fallen: 1,
                          mass: 18, tendedToday: true)
     let move = TreeTransition(before: before, after: after)
-    return HStack(spacing: DL.Space.l) {
+    return HStack(spacing: Theme.spacing.lg) {
         GrowingTreeView(transition: move, progress: 0)
         GrowingTreeView(transition: move, progress: 0.5)
         GrowingTreeView(transition: move, progress: 1)
     }
     .frame(height: 200)
-    .padding(DL.Space.xl)
-    .background(Color.dlBackground)
+    .padding(Theme.spacing.xl)
+    .background(Theme.colors.background)
 }
 
 #Preview("A round that moved no count") {
@@ -151,14 +151,14 @@ struct TreeArrival {
                         leaves: 26, blossoms: 5, fruit: 2, buds: 4, growing: 0, fallen: 0,
                         mass: 19, tendedToday: true)
     let move = TreeTransition(before: same, after: same)
-    return HStack(spacing: DL.Space.l) {
+    return HStack(spacing: Theme.spacing.lg) {
         GrowingTreeView(transition: move, progress: 0)
         GrowingTreeView(transition: move, progress: 0.5)
         GrowingTreeView(transition: move, progress: 1)
     }
     .frame(height: 200)
-    .padding(DL.Space.xl)
-    .background(Color.dlBackground)
+    .padding(Theme.spacing.xl)
+    .background(Theme.colors.background)
 }
 
 // Seven words met and nothing settled — the shape of a first round, and the one
@@ -176,8 +176,8 @@ struct TreeArrival {
         progress: 1
     )
     .frame(height: ForestLayout.heroHeight(after))
-    .padding(DL.Space.xl)
-    .background(Color.dlBackground)
+    .padding(Theme.spacing.xl)
+    .background(Theme.colors.background)
 }
 
 /// An area packed and not yet opened: still a seedling, and nothing hangs.
@@ -188,6 +188,6 @@ struct TreeArrival {
     return GrowingTreeView(transition: TreeTransition(before: packed, after: packed),
                            progress: 1)
         .frame(height: ForestLayout.heroHeight(packed))
-        .padding(DL.Space.xl)
-        .background(Color.dlBackground)
+        .padding(Theme.spacing.xl)
+        .background(Theme.colors.background)
 }

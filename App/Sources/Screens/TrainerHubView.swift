@@ -83,17 +83,17 @@ struct TrainerHubView: View, LanguageNaming {
     // MARK: - Card
 
     private var card: some View {
-        VStack(alignment: .leading, spacing: DL.Space.l) {
+        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             Text("trainer.hub.title")
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.textPrimary)
             Text("trainer.hub.subtitle")
-                .font(DL.Fonts.subheadline)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.subheadline)
+                .foregroundStyle(Theme.colors.textSecondary)
             // ONE row: four chips sit on it comfortably on every device, and a
             // grid that wrapped one onto a line of its own would spend a
             // whole row saying what fits beside its siblings.
-            HStack(spacing: DL.Space.m) {
+            HStack(spacing: Theme.spacing.md) {
                 if slotsAvailable {
                     numbersChip
                 }
@@ -108,11 +108,11 @@ struct TrainerHubView: View, LanguageNaming {
                 }
             }
         }
-        .padding(DL.Space.xl)
+        .padding(Theme.spacing.xl)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                .fill(Color.dlSurface)
+            RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
+                .fill(Theme.colors.surface)
         )
         .dlCardShadow()
         #if DEBUG
@@ -175,22 +175,22 @@ struct TrainerHubView: View, LanguageNaming {
 
     /// One chip's face — shared with the letters chip next door.
     func chipLabel(emoji: String, title: Text) -> some View {
-        VStack(spacing: DL.Space.s) {
+        VStack(spacing: Theme.spacing.sm) {
             Text(emoji)
                 .font(.system(size: 30))
                 .accessibilityHidden(true)
             title
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textPrimary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
         }
-        .frame(maxWidth: .infinity, minHeight: DL.Reserve.tile)
-        .padding(.vertical, DL.Space.s)
-        .padding(.horizontal, DL.Space.xs)
+        .frame(maxWidth: .infinity, minHeight: Theme.reserve.tile)
+        .padding(.vertical, Theme.spacing.sm)
+        .padding(.horizontal, Theme.spacing.xs)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                .fill(Color.dlSurfaceTint)
+            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                .fill(Theme.colors.surfaceTint)
         )
     }
 }

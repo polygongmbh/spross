@@ -45,11 +45,11 @@ fun TrainerPromptCard(model: AppModel, flow: TrainerFlow, chrome: Chrome) {
     val state = flow.state
     val task = state.currentTask
     val wordy = task.promptDisplay.any { it.isLetter() }
-    CardFace(Modifier.heightIn(min = DlReserve.drillCard)) {
+    CardFace(Modifier.heightIn(min = Theme.reserve.drillCard)) {
         Text(
             task.promptDisplay,
             style = MaterialTheme.typography.headlineLarge.copy(
-                fontSize = if (wordy) DlPrompt.sentence else DlPrompt.digits,
+                fontSize = if (wordy) Theme.prompt.sentence else Theme.prompt.digits,
                 fontWeight = FontWeight.Bold,
                 fontFamily = if (wordy) FontFamily.Default else FontFamily.Monospace,
             ),
@@ -62,7 +62,7 @@ fun TrainerPromptCard(model: AppModel, flow: TrainerFlow, chrome: Chrome) {
                     Text(
                         localizedTarget(task.display, state.mode.language),
                         style = MaterialTheme.typography.titleLarge,
-                        color = Dl.colors.accent,
+                        color = Theme.colors.accent,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.weight(1f, fill = false),
                     )
@@ -81,10 +81,10 @@ fun TrainerPromptCard(model: AppModel, flow: TrainerFlow, chrome: Chrome) {
             Text(
                 chrome.numbersNewPlace.format(it),
                 style = MaterialTheme.typography.bodySmall,
-                color = Dl.colors.accent,
+                color = Theme.colors.accent,
                 modifier = Modifier
-                    .background(Dl.colors.surfaceTint, RoundedCornerShape(percent = 50))
-                    .padding(horizontal = DlSpace.m, vertical = DlSpace.s),
+                    .background(Theme.colors.surfaceTint, RoundedCornerShape(percent = 50))
+                    .padding(horizontal = Theme.spacing.md, vertical = Theme.spacing.sm),
             )
         }
     }
@@ -109,7 +109,7 @@ fun TrainerControls(
     } else {
         chrome.sessionAnswerPlaceholder.format(model.languageName(state.mode.language))
     }
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         DrillAnswerField(
             value = flow.input,
             onValueChange = flow::type,
@@ -144,7 +144,7 @@ fun TrainerControls(
                 Text(
                     "? ${chrome.numbersLookup}",
                     style = MaterialTheme.typography.bodySmall,
-                    color = Dl.colors.textSecondary,
+                    color = Theme.colors.textSecondary,
                 )
             }
         }
@@ -154,7 +154,7 @@ fun TrainerControls(
 /** A slip: the box spells the word out, and the tap that ends the pause books it amber. */
 @Composable
 private fun AlmostLine(model: AppModel, flow: TrainerFlow, form: String, chrome: Chrome) {
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
         AlmostCorrection(
             chrome.sessionAlmostTypo,
             form,

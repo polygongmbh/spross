@@ -30,8 +30,8 @@ struct RatingButtonsView: View {
     var caption: LocalizedStringKey = "session.rating.question"
 
     var body: some View {
-        VStack(spacing: DL.Space.s) {
-            HStack(spacing: DL.Space.s) {
+        VStack(spacing: Theme.spacing.sm) {
+            HStack(spacing: Theme.spacing.sm) {
                 button(.right)
                 button(.tough)
                 button(.wrong)
@@ -72,14 +72,14 @@ private struct GradeButton: View {
 
     var body: some View {
         Button(action: action) {
-            VStack(spacing: DL.Space.xs + 2) {
+            VStack(spacing: Theme.spacing.xs + 2) {
                 Image(systemName: outcome.icon)
                     .font(.body.weight(.bold))
                     // why: the glyphs differ in height, which pushed the labels
                     // of neighboring buttons off each other's line.
                     .frame(height: 22)
                 Text(outcome.label)
-                    .font(DL.Fonts.caption)
+                    .font(Theme.typography.caption)
                     .lineLimit(2)
                     .minimumScaleFactor(0.7)
                     .multilineTextAlignment(.center)
@@ -88,11 +88,11 @@ private struct GradeButton: View {
             .frame(maxWidth: .infinity)
             .frame(minHeight: 60)
             .background(
-                RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
+                RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
                     .fill(outcome.color.opacity(0.14))
             )
             .overlay(
-                RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
+                RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
                     .strokeBorder(outcome.color.opacity(0.35), lineWidth: 1)
             )
         }
@@ -116,19 +116,19 @@ private struct PressableStyle: ButtonStyle {
     VStack {
         Spacer()
         RatingButtonsView { _ in }
-            .padding(DL.Space.xl)
+            .padding(Theme.spacing.xl)
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
 }
 
 #Preview("Rating row · dark") {
     VStack {
         Spacer()
         RatingButtonsView { _ in }
-            .padding(DL.Space.xl)
+            .padding(Theme.spacing.xl)
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
     .preferredColorScheme(.dark)
 }

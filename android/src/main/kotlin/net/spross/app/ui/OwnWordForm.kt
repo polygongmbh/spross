@@ -75,8 +75,8 @@ fun OwnWordForm(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(DlSpace.xl),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.l),
+            .padding(Theme.spacing.xl),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(

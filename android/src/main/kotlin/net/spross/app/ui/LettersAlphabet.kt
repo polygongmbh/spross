@@ -54,7 +54,7 @@ fun AlphabetSection(model: AppModel, language: Language, chrome: Chrome) {
     val alphabet = model.catalog?.alphabet(language) ?: return
     val reader = model.box?.joinStamp?.source ?: FALLBACK_READER
     OverviewHeading(chrome.lettersAlphabetTitle)
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         if (alphabet.sections.isEmpty()) {
             for (entry in alphabet.entries) AlphabetRow(model, entry, language, reader, chrome)
             return@Column
@@ -64,8 +64,8 @@ fun AlphabetSection(model: AppModel, language: Language, chrome: Chrome) {
                 Text(
                     it,
                     style = MaterialTheme.typography.titleMedium,
-                    color = Dl.colors.textSecondary,
-                    modifier = Modifier.padding(top = DlSpace.s).semantics { heading() },
+                    color = Theme.colors.textSecondary,
+                    modifier = Modifier.padding(top = Theme.spacing.sm).semantics { heading() },
                 )
             }
             for (entry in alphabet.entries(section.id)) {
@@ -102,15 +102,15 @@ private fun AlphabetRow(
         modifier = Modifier
             .fillMaxWidth()
             .panel()
-            .padding(DlSpace.l)
+            .padding(Theme.spacing.lg)
             .semantics(mergeDescendants = true) {
                 if (actions.isNotEmpty()) customActions = actions
             },
-        verticalArrangement = Arrangement.spacedBy(DlSpace.s),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
     ) {
         AlphabetHeader(entry, language, speakName)
         entry.context.reader(reader)?.let {
-            Text(it, style = MaterialTheme.typography.bodySmall, color = Dl.colors.textSecondary)
+            Text(it, style = MaterialTheme.typography.bodySmall, color = Theme.colors.textSecondary)
         }
         entry.hints.reader(reader)?.let {
             Text(it, style = MaterialTheme.typography.bodyMedium)
@@ -136,7 +136,7 @@ private fun AlphabetHeader(entry: AlphabetEntry, language: Language, speak: (() 
     Row(
         modifier = Modifier.fillMaxWidth().speakOnLineTap(language to entry.glyph, speak),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         Text(
             localizedTarget(glyphs, language),
@@ -144,7 +144,7 @@ private fun AlphabetHeader(entry: AlphabetEntry, language: Language, speak: (() 
             fontWeight = FontWeight.Bold,
         )
         displayName(entry)?.let {
-            Text(it, style = MaterialTheme.typography.bodyMedium, color = Dl.colors.textSecondary)
+            Text(it, style = MaterialTheme.typography.bodyMedium, color = Theme.colors.textSecondary)
         }
         if (speak != null) SpeakerButton(speak)
         Spacer(Modifier.weight(1f))
@@ -154,7 +154,7 @@ private fun AlphabetHeader(entry: AlphabetEntry, language: Language, speak: (() 
             Text(
                 "[$it]",
                 style = MaterialTheme.typography.bodySmall,
-                color = Dl.colors.textSecondary,
+                color = Theme.colors.textSecondary,
                 modifier = Modifier.clearAndSetSemantics { },
             )
         }
@@ -177,12 +177,12 @@ private fun AlphabetExample(
     Row(
         modifier = Modifier.fillMaxWidth().speakOnLineTap(language to text, speak),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
     ) {
         emoji?.let { Text(it, modifier = Modifier.clearAndSetSemantics { }) }
         Text(localizedTarget(text, language), style = MaterialTheme.typography.titleMedium)
         meaning?.let {
-            Text("· $it", style = MaterialTheme.typography.bodyMedium, color = Dl.colors.textSecondary)
+            Text("· $it", style = MaterialTheme.typography.bodyMedium, color = Theme.colors.textSecondary)
         }
         Spacer(Modifier.weight(1f))
         if (speak != null) SpeakerButton(speak)
@@ -211,11 +211,11 @@ private fun SpeakerButton(speak: () -> Unit) {
     Icon(
         SprossIcons.Speaker,
         contentDescription = null,
-        tint = Dl.colors.teal,
+        tint = Theme.colors.teal,
         modifier = Modifier
             .size(44.dp)
             .clickable(onClick = speak)
-            .padding(DlSpace.m)
+            .padding(Theme.spacing.md)
             .clearAndSetSemantics { },
     )
 }

@@ -61,11 +61,11 @@ private fun TierGroup(
     content: CountryDrillContent,
     chrome: Chrome,
 ) {
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
         Text(
             chrome.countryTier(group.tier).uppercase(),
             style = MaterialTheme.typography.bodySmall,
-            color = Dl.colors.textSecondary,
+            color = Theme.colors.textSecondary,
             modifier = Modifier.semantics { heading() },
         )
         OverviewPanel {
@@ -101,7 +101,7 @@ private fun CountryRow(
                 minHeight = 0.dp,
             ),
         verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         Text(row.flag, fontSize = 28.sp, modifier = Modifier.clearAndSetSemantics { })
         CountrySide(
@@ -109,7 +109,7 @@ private fun CountryRow(
             under = row.sourceNationality,
             languages = row.sourceLanguages,
             language = content.source,
-            tint = Dl.colors.textPrimary,
+            tint = Theme.colors.textPrimary,
             align = TextAlign.Start,
             alignment = Alignment.Start,
             modifier = Modifier.weight(1f),
@@ -119,7 +119,7 @@ private fun CountryRow(
             under = row.targetNationality,
             languages = row.targetLanguages,
             language = content.target,
-            tint = Dl.colors.accent,
+            tint = Theme.colors.accent,
             align = TextAlign.End,
             alignment = Alignment.End,
             modifier = Modifier.weight(1f),
@@ -153,7 +153,7 @@ private fun CountrySide(
         Text(
             localizedTarget((listOf(under) + languages).joinToString(" · "), language),
             style = MaterialTheme.typography.bodySmall,
-            color = Dl.colors.textSecondary,
+            color = Theme.colors.textSecondary,
             textAlign = align,
         )
     }

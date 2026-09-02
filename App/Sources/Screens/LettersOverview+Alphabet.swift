@@ -34,9 +34,9 @@ extension LettersOverview {
     @ViewBuilder
     var alphabetSection: some View {
         if alphabet != nil {
-            VStack(alignment: .leading, spacing: DL.Space.l) {
+            VStack(alignment: .leading, spacing: Theme.spacing.lg) {
                 heading("letters.alphabet.title")
-                VStack(alignment: .leading, spacing: DL.Space.m) {
+                VStack(alignment: .leading, spacing: Theme.spacing.md) {
                     if sections.isEmpty {
                         ForEach(entries) { entry in
                             row(entry)
@@ -63,9 +63,9 @@ extension LettersOverview {
     private func sectionHeading(_ section: AlphabetSection) -> some View {
         if let title = reader(section.titles) {
             Text(verbatim: title)
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlTextSecondary)
-                .padding(.top, DL.Space.m)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.textSecondary)
+                .padding(.top, Theme.spacing.md)
                 .accessibilityAddTraits(.isHeader)
         }
     }
@@ -73,26 +73,26 @@ extension LettersOverview {
     // MARK: - One entry
 
     private func row(_ entry: AlphabetEntry) -> some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             header(entry)
             if let context = reader(entry.context) {
                 Text(verbatim: context)
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
             }
             if let hint = reader(entry.hints) {
                 Text(verbatim: hint)
-                    .font(DL.Fonts.subheadline)
-                    .foregroundStyle(Color.dlTextPrimary)
+                    .font(Theme.typography.subheadline)
+                    .foregroundStyle(Theme.colors.textPrimary)
             }
             example(entry)
         }
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(DL.Space.l)
+        .padding(Theme.spacing.lg)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                .fill(Color.dlSurface)
+            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                .fill(Theme.colors.surface)
         )
         // why: one row is one VoiceOver stop, read in the order it stands —
         // glyph, name, context, hint, example. Thirty-five separate elements
@@ -112,14 +112,14 @@ extension LettersOverview {
 
     /// Glyph and capital large, the name beside it, the IPA trailing.
     private func header(_ entry: AlphabetEntry) -> some View {
-        HStack(alignment: .firstTextBaseline, spacing: DL.Space.m) {
+        HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.md) {
             Text(verbatim: glyphs(entry))
                 .font(glyphFont(entry))
-                .foregroundStyle(Color.dlTextPrimary)
+                .foregroundStyle(Theme.colors.textPrimary)
             if let name = displayName(entry) {
                 Text(verbatim: name)
-                    .font(DL.Fonts.body)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.body)
+                    .foregroundStyle(Theme.colors.textSecondary)
             }
             if let name = entry.name, let speak = speakName(entry) {
                 speaker(form: name, speak)
@@ -127,8 +127,8 @@ extension LettersOverview {
             Spacer(minLength: 0)
             if let ipa = entry.ipa {
                 Text(verbatim: "[\(ipa)]")
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
                     // why: phonetic symbols read out by a chrome-language voice
                     // are noise — the hint says the same thing in words.
                     .accessibilityHidden(true)
@@ -157,7 +157,7 @@ extension LettersOverview {
     /// grapheme is set in.
     private func glyphFont(_ entry: AlphabetEntry) -> Font {
         entry.kind == .rule
-            ? DL.Fonts.title
+            ? Theme.typography.title
             : .system(size: 34, weight: .bold, design: .rounded)
     }
 
@@ -170,19 +170,19 @@ extension LettersOverview {
     private func example(_ entry: AlphabetEntry) -> some View {
         let catalogued = model.catalog?.alphabetExample(entry: entry, lang: language)
         if let text = catalogued?.text ?? entry.exampleText {
-            HStack(alignment: .firstTextBaseline, spacing: DL.Space.s) {
+            HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.sm) {
                 if let emoji = catalogued?.emoji {
                     Text(verbatim: emoji)
-                        .font(DL.Fonts.body)
+                        .font(Theme.typography.body)
                         .accessibilityHidden(true)
                 }
                 Text(verbatim: text)
-                    .font(DL.Fonts.headline)
-                    .foregroundStyle(Color.dlTextPrimary)
+                    .font(Theme.typography.headline)
+                    .foregroundStyle(Theme.colors.textPrimary)
                 if let slug = catalogued?.slug, let meaning = meaning(of: slug) {
                     Text(verbatim: "· \(meaning)")
-                        .font(DL.Fonts.subheadline)
-                        .foregroundStyle(Color.dlTextSecondary)
+                        .font(Theme.typography.subheadline)
+                        .foregroundStyle(Theme.colors.textSecondary)
                 }
                 Spacer(minLength: 0)
                 if let speak = speakExample(entry) {

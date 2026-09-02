@@ -109,7 +109,7 @@ fun TypedDrillOverview(
         }
         // How the ladder is walked, said once instead of marked on every row — and, where a
         // run has climbed before, how far it came.
-        Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
+        Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
             OverviewNote(ladder.pace)
             // why: printed as it stands, ceiling and all — the Sprosse keeps counting past the
             // named ladder, so the record is a number to beat rather than a row on the page.
@@ -158,12 +158,12 @@ private fun SprosseRow(sprosse: Int, words: LadderSprosse) {
             // describe a single thing.
             .semantics(mergeDescendants = true) { },
         verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         Text(
             "$sprosse.",
             style = MaterialTheme.typography.titleMedium,
-            color = Dl.colors.textSecondary,
+            color = Theme.colors.textSecondary,
             modifier = Modifier.clearAndSetSemantics { },
         )
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
@@ -171,7 +171,7 @@ private fun SprosseRow(sprosse: Int, words: LadderSprosse) {
             Text(
                 words.hint,
                 style = MaterialTheme.typography.bodySmall,
-                color = Dl.colors.textSecondary,
+                color = Theme.colors.textSecondary,
             )
         }
     }

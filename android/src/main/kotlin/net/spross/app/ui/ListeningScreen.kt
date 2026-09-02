@@ -68,9 +68,9 @@ fun ListeningScreen(model: AppModel) {
         Row(
             // The bar's own inset, not the body's: a navigation icon sits 4 dp in, which
             // puts its glyph at the 16 dp every other screen's title starts from.
-            modifier = Modifier.fillMaxWidth().padding(start = DlSpace.xs, end = DlSpace.m),
+            modifier = Modifier.fillMaxWidth().padding(start = Theme.spacing.xs, end = Theme.spacing.md),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+            horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
         ) {
             BackFromRun(chrome) { model.closeListening() }
             Text(
@@ -85,8 +85,8 @@ fun ListeningScreen(model: AppModel) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = DlSpace.xl, vertical = DlSpace.l),
-            verticalArrangement = Arrangement.spacedBy(DlSpace.l),
+                .padding(horizontal = Theme.spacing.xl, vertical = Theme.spacing.lg),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(Modifier.weight(1f))
@@ -96,7 +96,7 @@ fun ListeningScreen(model: AppModel) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(
-                    DlSpace.xl,
+                    Theme.spacing.xl,
                     Alignment.CenterHorizontally,
                 ),
                 verticalAlignment = Alignment.CenterVertically,
@@ -125,7 +125,7 @@ private fun BackFromRun(chrome: Chrome, onClose: () -> Unit) {
         onClick = onClose,
         modifier = Modifier.semantics(mergeDescendants = true) { contentDescription = chrome.commonClose },
     ) {
-        Icon(SprossIcons.ArrowLeft, contentDescription = null, tint = Dl.colors.textSecondary)
+        Icon(SprossIcons.ArrowLeft, contentDescription = null, tint = Theme.colors.textSecondary)
     }
 }
 
@@ -188,13 +188,13 @@ private fun ListeningCard(model: AppModel, turn: ListeningTurn, beat: ListeningB
     ) {
         Headword(
             localizedTarget(
-                target?.let { Dl.colors.articleColoredText(it) } ?: AnnotatedString(turn.targetForm),
+                target?.let { Theme.colors.articleColoredText(it) } ?: AnnotatedString(turn.targetForm),
                 lang,
             ),
         )
         Headword(
             turn.sourceForm,
-            color = Dl.colors.accent,
+            color = Theme.colors.accent,
             // why: alpha does not measure, so the line is there all along — but it is
             // not YET part of the card, and a screen reader that read it out would be
             // saying the meaning ahead of the voice that owes it.
@@ -234,7 +234,7 @@ private fun TransportButton(
         } else {
             IconButtonDefaults.filledIconButtonColors(
                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                contentColor = Dl.colors.textSecondary,
+                contentColor = Theme.colors.textSecondary,
             )
         },
     ) {

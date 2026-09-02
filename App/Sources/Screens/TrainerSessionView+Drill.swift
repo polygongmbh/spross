@@ -23,7 +23,7 @@ extension TrainerSessionView {
 
     var drillContent: some View {
         ScrollView {
-            VStack(spacing: DL.Space.m) {
+            VStack(spacing: Theme.spacing.md) {
                 streakLine
                 // ZStack so outgoing and incoming prompt overlap during the
                 // flip; .id gives each run position its own view identity.
@@ -39,7 +39,7 @@ extension TrainerSessionView {
                 }
                 controls
             }
-            .padding(.bottom, DL.Space.l)
+            .padding(.bottom, Theme.spacing.lg)
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollDismissesKeyboard(.never)
@@ -89,7 +89,7 @@ extension TrainerSessionView {
     }
 
     private var controls: some View {
-        VStack(spacing: DL.Space.m) {
+        VStack(spacing: Theme.spacing.md) {
             AnswerInputView(text: $input,
                             feedback: feedback,
                             placeholder: fieldPlaceholder,
@@ -130,7 +130,7 @@ extension TrainerSessionView {
                 // why: no "Wusste ich" here — drills are generated, so
                 // self-reporting after seeing the answer proves nothing;
                 // revealed simply counts as a miss and moves on.
-                VStack(spacing: DL.Space.s) {
+                VStack(spacing: Theme.spacing.sm) {
                     nextButton
                     if run.offersFinish { DrillStopOffer { closeRun() } }
                 }
@@ -164,9 +164,9 @@ extension TrainerSessionView {
             lookUp()
         } label: {
             Label("numbers.lookup", systemImage: "questionmark.circle")
-                .font(DL.Fonts.caption)
+                .font(Theme.typography.caption)
         }
         .buttonStyle(.plain)
-        .foregroundStyle(Color.dlTextSecondary)
+        .foregroundStyle(Theme.colors.textSecondary)
     }
 }

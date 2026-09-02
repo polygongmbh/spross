@@ -21,7 +21,7 @@ struct NumberReferenceTable: View {
 
     var body: some View {
         let bands = sections
-        VStack(alignment: .leading, spacing: DL.Space.l) {
+        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             if bands.contains(where: canBeHeard) {
                 ReferenceTapHint()
             }
@@ -47,20 +47,20 @@ struct NumberReferenceTable: View {
     }
 
     private func band(_ section: ReferenceSection) -> some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             if let title = Self.bandTitle(section.key) {
                 Text(title)
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
                     .textCase(.uppercase)
                     .accessibilityAddTraits(.isHeader)
             }
             bandPanel(section)
-            .padding(DL.Space.l)
+            .padding(Theme.spacing.lg)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(Color.dlSurface)
+                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                    .fill(Theme.colors.surface)
             )
         }
     }
@@ -113,9 +113,9 @@ struct NumberReferenceTable: View {
     /// each one still counts upward.
     private func columns(_ entries: [ReferenceEntry], count: Int) -> some View {
         let perColumn = (entries.count + count - 1) / count
-        return HStack(alignment: .top, spacing: DL.Space.xl) {
+        return HStack(alignment: .top, spacing: Theme.spacing.xl) {
             ForEach(0..<count, id: \.self) { column in
-                VStack(alignment: .leading, spacing: DL.Space.xs) {
+                VStack(alignment: .leading, spacing: Theme.spacing.xs) {
                     ForEach(Array(entries.dropFirst(column * perColumn).prefix(perColumn).enumerated()),
                             id: \.offset) { _, entry in
                         row(entry)
@@ -133,7 +133,7 @@ struct NumberReferenceTable: View {
     /// running down the readings, and a glyph to aim at is a detour per row. The
     /// hint above the bands discloses the gesture once, for the page.
     private func row(_ entry: ReferenceEntry) -> some View {
-        HStack(alignment: .firstTextBaseline, spacing: DL.Space.m) {
+        HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.md) {
             value(entry)
             reading(entry)
             // why: the row stretches to its column, so the tap target is the
@@ -153,15 +153,15 @@ struct NumberReferenceTable: View {
 
     private func value(_ entry: ReferenceEntry) -> some View {
         Text(verbatim: entry.value)
-            .font(DL.Fonts.subheadline)
+            .font(Theme.typography.subheadline)
             .monospacedDigit()
-            .foregroundStyle(Color.dlTextSecondary)
+            .foregroundStyle(Theme.colors.textSecondary)
     }
 
     private func reading(_ entry: ReferenceEntry) -> some View {
         Text(verbatim: entry.reading)
             .font(.system(.title3, design: .rounded, weight: .semibold))
-            .foregroundStyle(Color.dlTextPrimary)
+            .foregroundStyle(Theme.colors.textPrimary)
             .fixedSize(horizontal: false, vertical: true)
             .dlSpoken(entry.reading, language: language)
     }
@@ -198,12 +198,12 @@ struct ReferenceTapHint: View {
     var textKey: LocalizedStringKey = "trainer.reference.tapToHear"
 
     var body: some View {
-        HStack(spacing: DL.Space.s) {
+        HStack(spacing: Theme.spacing.sm) {
             Image(systemName: "speaker.wave.2.fill")
             Text(textKey)
         }
-        .font(DL.Fonts.caption)
-        .foregroundStyle(Color.dlTextSecondary)
+        .font(Theme.typography.caption)
+        .foregroundStyle(Theme.colors.textSecondary)
         .accessibilityHidden(true)
     }
 }
@@ -224,9 +224,9 @@ struct NumberReferenceSheet: View {
         NavigationStack {
             ScrollView {
                 NumberReferenceTable(language: language, voice: voice)
-                    .padding(DL.Space.xl)
+                    .padding(Theme.spacing.xl)
             }
-            .background(Color.dlBackground.ignoresSafeArea())
+            .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle(Text("numbers.title \(languageName)"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -235,7 +235,7 @@ struct NumberReferenceSheet: View {
                 }
             }
         }
-        .tint(.dlAccent)
+        .tint(Theme.colors.accent)
     }
 
     private var languageName: String {

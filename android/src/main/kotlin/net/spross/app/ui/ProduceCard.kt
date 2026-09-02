@@ -153,7 +153,7 @@ private fun PromptWord(model: AppModel, ui: SessionUi) {
     if (card.promptAmbiguous) CardCue(model.areaTitle(card.area))
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
     ) {
         Headword(card.source.text, modifier = Modifier.weight(1f, fill = false))
         if (card.promptFeminineMarker) FeminineBadge(model.chrome)
@@ -184,7 +184,7 @@ private fun ReplayPrompt(model: AppModel, ui: SessionUi) {
         Icon(
             SprossIcons.Speaker,
             contentDescription = null,
-            tint = Dl.colors.accent,
+            tint = Theme.colors.accent,
             modifier = Modifier.size(40.dp),
         )
     }
@@ -202,7 +202,7 @@ private fun WrittenPrompt(model: AppModel, ui: SessionUi) {
     val chrome = model.chrome
     SpokenWord(model.pronounceAction(card.target.text), chrome) {
         Headword(
-            localizedTarget(Dl.colors.articleColoredText(card.target), card.target.lang),
+            localizedTarget(Theme.colors.articleColoredText(card.target), card.target.lang),
             modifier = Modifier.weight(1f, fill = false),
         )
     }
@@ -226,7 +226,7 @@ private fun AlmostHold(model: AppModel, flow: TurnFlow, hold: TurnFeedback.Almos
         AlmostReason.Heard -> chrome.sessionAlmostHeard
         AlmostReason.Merged -> chrome.sessionAlmostMerged
     }
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
         AlmostCorrection(
             caption, hold.correctForm, chrome,
             pronounce = if (heard) null else model.pronounceAction(hold.correctForm),
@@ -245,7 +245,7 @@ private fun AlmostHold(model: AppModel, flow: TurnFlow, hold: TurnFeedback.Almos
 private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     val card = ui.card ?: return
     val chrome = model.chrome
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
         flow.otherWord?.let { other ->
             // why: the line says what the learner DID write; the word it speaks is the
             // one they owed, the same one the card above has opened onto.
@@ -283,11 +283,11 @@ private fun ProduceReveal(model: AppModel, ui: SessionUi, heard: Boolean) {
     if (heard) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+            horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
         ) {
             Headword(
                 (listOf(card.source.text) + card.source.synonyms).joinToString(" / "),
-                color = Dl.colors.accent,
+                color = Theme.colors.accent,
                 modifier = Modifier.weight(1f, fill = false),
             )
             if (card.promptFeminineMarker) FeminineBadge(chrome)

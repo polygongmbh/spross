@@ -43,7 +43,7 @@ fun DrillAnswerField(
     /** A reversed task owes digits — the keyboard is the one thing the direction decides. */
     digits: Boolean = false,
 ) {
-    val palette = Dl.colors
+    val palette = Theme.colors
     val tint: Color? = when (feedback) {
         TurnFeedback.Correct -> palette.success
         is TurnFeedback.Almost -> palette.amber

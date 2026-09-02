@@ -17,7 +17,7 @@ struct ForestSection: View {
     @State private var width: CGFloat = 0
 
     var body: some View {
-        VStack(alignment: .leading, spacing: DL.Space.m) {
+        VStack(alignment: .leading, spacing: Theme.spacing.md) {
             widthProbe
             // Both pieces name themselves — the strip in its own header, the forest in
             // the caption under it — so a section title above says the word a third time.
@@ -49,8 +49,8 @@ struct ForestSection: View {
             Text("progress.consolidatedCount \((model.stats?.consolidatedCards ?? 0).formatted())"),
             Text("progress.learningCount \((model.stats?.learningCards ?? 0).formatted())")
         )
-        .font(DL.Fonts.caption)
-        .foregroundStyle(Color.dlTextSecondary)
+        .font(Theme.typography.caption)
+        .foregroundStyle(Theme.colors.textSecondary)
     }
 
     // MARK: - Areas as trees

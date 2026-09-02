@@ -8,13 +8,13 @@ import androidx.glance.color.ColorProvider as dayNight
 import androidx.glance.text.FontWeight
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
-import net.spross.app.ui.DlColors
-import net.spross.app.ui.DlDark
-import net.spross.app.ui.DlLight
+import net.spross.app.ui.ThemeColors
+import net.spross.app.ui.ThemeDark
+import net.spross.app.ui.ThemeLight
 import net.spross.app.ui.articleTint
 
 /**
- * The tile's colors, read off the app's own table rather than copied: `DlLight`/`DlDark`
+ * The tile's colors, read off the app's own table rather than copied: `ThemeLight`/`ThemeDark`
  * in `ui/Theme.kt` are plain values with no composition behind them, so a Glance surface
  * can hold BOTH columns and let the host pick the one the phone is in. (The iOS widget
  * target keeps a copy of the same table only because an extension links neither the
@@ -37,17 +37,17 @@ object WidgetColors {
      * kern's ([net.spross.app.ui.articleTint]); null where the box names no gender.
      */
     fun article(article: String?): ColorProvider? {
-        val day = DlLight.articleTint(article) ?: return null
-        val night = DlDark.articleTint(article) ?: return null
+        val day = ThemeLight.articleTint(article) ?: return null
+        val night = ThemeDark.articleTint(article) ?: return null
         return dayNight(day = day, night = night)
     }
 
-    private fun pair(pick: (DlColors) -> Color) =
-        dayNight(day = pick(DlLight), night = pick(DlDark))
+    private fun pair(pick: (ThemeColors) -> Color) =
+        dayNight(day = pick(ThemeLight), night = pick(ThemeDark))
 
-    private fun washed(pick: (DlColors) -> Color, alpha: Float) = dayNight(
-        day = pick(DlLight).copy(alpha = alpha).compositeOver(DlLight.surface),
-        night = pick(DlDark).copy(alpha = alpha).compositeOver(DlDark.surface),
+    private fun washed(pick: (ThemeColors) -> Color, alpha: Float) = dayNight(
+        day = pick(ThemeLight).copy(alpha = alpha).compositeOver(ThemeLight.surface),
+        night = pick(ThemeDark).copy(alpha = alpha).compositeOver(ThemeDark.surface),
     )
 }
 

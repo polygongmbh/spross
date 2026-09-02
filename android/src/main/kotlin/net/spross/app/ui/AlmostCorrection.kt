@@ -48,17 +48,17 @@ fun AlmostCorrection(
     pronounce: (() -> Unit)?,
     modifier: Modifier = Modifier,
 ) {
-    val amber = Dl.colors.amber
+    val amber = Theme.colors.amber
     val shape = MaterialTheme.shapes.small
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(Dl.colors.wash(amber), shape)
+            .background(Theme.colors.wash(amber), shape)
             .border(1.dp, amber.copy(alpha = 0.35f), shape)
             .clip(shape)
-            .padding(DlSpace.l),
+            .padding(Theme.spacing.lg),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         // Decorative: the caption beside it already says what the turn was, and TalkBack
         // reading "arrow" first says nothing the words do not.
@@ -77,17 +77,17 @@ fun AlmostCorrection(
             modifier = Modifier
                 .weight(1f)
                 .semantics(mergeDescendants = true) { liveRegion = LiveRegionMode.Polite },
-            verticalArrangement = Arrangement.spacedBy(DlSpace.xs),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
         ) {
             Text(
                 caption,
                 style = MaterialTheme.typography.bodySmall,
-                color = Dl.colors.textSecondary,
+                color = Theme.colors.textSecondary,
             )
             Text(
                 form,
                 style = MaterialTheme.typography.titleMedium,
-                color = Dl.colors.textPrimary,
+                color = Theme.colors.textPrimary,
             )
         }
         if (pronounce != null) {
@@ -105,7 +105,7 @@ fun AlmostCorrection(
                 Icon(
                     SprossIcons.Speaker,
                     contentDescription = null,
-                    tint = Dl.colors.textSecondary,
+                    tint = Theme.colors.textSecondary,
                     modifier = Modifier.size(SPEAKER_GLYPH),
                 )
             }

@@ -68,11 +68,11 @@ struct RootView: View {
                 }
                 .toolbarBackground(.hidden, for: .navigationBar)
         }
-        .tint(.dlAccent)
+        .tint(Theme.colors.accent)
     }
 
     private var loading: some View {
-        VStack(spacing: DL.Space.l) {
+        VStack(spacing: Theme.spacing.lg) {
             Text(verbatim: "🌱")
                 .font(.system(size: 56))
                 .dlSway(angle: 4, period: 2.2)
@@ -84,10 +84,10 @@ struct RootView: View {
                 )
                 .onAppear { sprouting = true }
             ProgressView()
-                .tint(.dlSuccess)
+                .tint(Theme.colors.success)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.dlBackground.ignoresSafeArea())
+        .background(Theme.colors.background.ignoresSafeArea())
     }
 
     /// The sheet is driven by the model's phase; it dismisses itself once

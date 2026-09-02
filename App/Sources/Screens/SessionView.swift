@@ -149,7 +149,7 @@ struct SessionView: View, LanguageNaming {
             cardContent(card)
         } else {
             ProgressView()
-                .tint(.dlAccent)
+                .tint(Theme.colors.accent)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
@@ -159,7 +159,7 @@ struct SessionView: View, LanguageNaming {
     private func cardContent(_ card: Card) -> some View {
         let role = model.presentationRole(for: card.id)
         return ScrollView {
-            VStack(spacing: DL.Space.m) {
+            VStack(spacing: Theme.spacing.md) {
                 // ZStack so outgoing and incoming card overlap during the flip
                 // instead of stacking; .id gives each card its own identity.
                 ZStack {
@@ -187,7 +187,7 @@ struct SessionView: View, LanguageNaming {
                 }
                 controls(card, role: role)
             }
-            .padding(.bottom, DL.Space.l)
+            .padding(.bottom, Theme.spacing.lg)
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollDismissesKeyboard(.never)

@@ -71,24 +71,24 @@ fun NumberReferenceTable(
         // and only the page itself knows how wide that is.
         val pageWidth = maxWidth
         Column(
-            verticalArrangement = Arrangement.spacedBy(DlSpace.l),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
         ) {
             if (heard) TapToHearHint(chrome)
             for (section in sections) {
-                Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
+                Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
                     // A band this build has no wording for still gets its rows: a new band
                     // must be able to land in kern first.
                     chrome.numberSections[section.key]?.let {
                         Text(
                             it.uppercase(),
                             style = MaterialTheme.typography.bodySmall,
-                            color = Dl.colors.textSecondary,
+                            color = Theme.colors.textSecondary,
                             modifier = Modifier.semantics { heading() },
                         )
                     }
                     ReferenceBand(
                         entries = section.entries,
-                        columns = columnCount(section.entries, fontScale, pageWidth - DlSpace.l * 2),
+                        columns = columnCount(section.entries, fontScale, pageWidth - Theme.spacing.lg * 2),
                         language = language,
                         chrome = chrome,
                         speak = speak,
@@ -133,13 +133,13 @@ private fun ReferenceBand(
         modifier = Modifier
             .fillMaxWidth()
             .panel()
-            .padding(DlSpace.l),
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.xl),
+            .padding(Theme.spacing.lg),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
     ) {
         for (column in 0 until columns) {
             Column(
                 modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(DlSpace.xs),
+                verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
             ) {
                 for (entry in entries.drop(column * perColumn).take(perColumn)) {
                     ReferenceRow(entry, language, chrome, speak)
@@ -170,12 +170,12 @@ private fun ReferenceRow(
             .fillMaxWidth()
             .semantics(mergeDescendants = true) { }
             .pronounceOnTap(speak(entry.reading), chrome, minHeight = 0.dp),
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         Text(
             entry.value,
             style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FontFamily.Monospace),
-            color = Dl.colors.textSecondary,
+            color = Theme.colors.textSecondary,
             // why: the numeral is set smaller than the reading, so it sits on the reading's
             // baseline rather than at the row's top, where it reads as a superscript.
             modifier = Modifier.alignByBaseline(),
@@ -211,8 +211,8 @@ fun NumberReferenceOverlay(
                 indication = null,
                 onClick = { },
             )
-            .padding(DlSpace.l),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+            .padding(Theme.spacing.lg),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         BackHandler { onDismiss() }
         Row(

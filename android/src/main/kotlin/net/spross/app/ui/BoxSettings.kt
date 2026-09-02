@@ -75,16 +75,16 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
         }
     }
 
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.l)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
         Text(chrome.settingsTitle, style = MaterialTheme.typography.headlineSmall)
         Column(
             modifier = Modifier.fillMaxWidth().panel(),
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth().padding(DlSpace.l),
-                verticalArrangement = Arrangement.spacedBy(DlSpace.l),
+                modifier = Modifier.fillMaxWidth().padding(Theme.spacing.lg),
+                verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
             ) {
-                Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.l)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
                     LanguageMenu(
                         title = chrome.settingsKnownTitle,
                         selected = selection.source,
@@ -106,21 +106,21 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                     )
                 }
                 SettingHint(chrome.settingsProfileHint)
-                HorizontalDivider(color = Dl.colors.separator)
+                HorizontalDivider(color = Theme.colors.separator)
                 LearnerNameSetting(model)
-                HorizontalDivider(color = Dl.colors.separator)
+                HorizontalDivider(color = Theme.colors.separator)
                 ReadAloudSetting(model)
-                HorizontalDivider(color = Dl.colors.separator)
-                Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
+                HorizontalDivider(color = Theme.colors.separator)
+                Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
                     TextButton(onClick = { model.restartOnboarding() }) {
                         Text(chrome.settingsRestartTutorialButton)
                     }
                     SettingHint(chrome.settingsRestartTutorialHint)
                 }
-                HorizontalDivider(color = Dl.colors.separator)
-                Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
+                HorizontalDivider(color = Theme.colors.separator)
+                Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
                     TextButton(onClick = { confirmingReset = true }) {
-                        Text(chrome.settingsResetButton.format(targetName), color = Dl.colors.wrong)
+                        Text(chrome.settingsResetButton.format(targetName), color = Theme.colors.wrong)
                     }
                     SettingHint(chrome.settingsResetHint.format(targetName))
                 }
@@ -142,7 +142,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                     // and tallies go, the join, the configuration and the learner's own
                     // words stay.
                     model.updateBox { BoxEngine.reset(it) }
-                }) { Text(chrome.commonReset, color = Dl.colors.wrong) }
+                }) { Text(chrome.commonReset, color = Theme.colors.wrong) }
             },
             dismissButton = {
                 TextButton(onClick = { confirmingReset = false }) { Text(chrome.commonCancel) }
@@ -171,7 +171,7 @@ private fun LanguageMenu(
 ) {
     var open by remember { mutableStateOf(false) }
     val label = LanguageChoices.pickerLabel(selected, catalog.languages[selected])
-    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
+    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         Text(title, style = MaterialTheme.typography.titleMedium)
         Box {
             Row(
@@ -181,16 +181,16 @@ private fun LanguageMenu(
                     // not just the name inside it.
                     .pressSpring()
                     .clip(MaterialTheme.shapes.small)
-                    .background(Dl.colors.surfaceTint)
+                    .background(Theme.colors.surfaceTint)
                     .clickable(role = Role.DropdownList) { open = true }
                     // why: one stable label, the pick as its VALUE — the field's own text is
                     // a merged child, so without this TalkBack announces which language but
                     // never which of the two questions it answers.
                     .semantics { contentDescription = title; stateDescription = label }
                     .heightIn(min = 48.dp)
-                    .padding(horizontal = DlSpace.m, vertical = DlSpace.s),
+                    .padding(horizontal = Theme.spacing.md, vertical = Theme.spacing.sm),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),
+                horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
             ) {
                 Text(
                     label,
@@ -234,7 +234,7 @@ private fun LearnerNameSetting(model: AppModel) {
     // why: the field keeps what is typed, spaces and all — the store is what trims, so a
     // space before a second name does not vanish under the finger that typed it.
     var draft by rememberSaveable { mutableStateOf(model.learnerName.orEmpty()) }
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         Text(chrome.settingsNameTitle, style = MaterialTheme.typography.titleMedium)
         OutlinedTextField(
             value = draft,
@@ -263,7 +263,7 @@ private fun LearnerNameSetting(model: AppModel) {
 private fun ReadAloudSetting(model: AppModel) {
     val chrome: Chrome = model.chrome
     val preference = model.pronouncer.audioPreference
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         Text(
             chrome.settingsAudioTitle,
             style = MaterialTheme.typography.titleMedium,

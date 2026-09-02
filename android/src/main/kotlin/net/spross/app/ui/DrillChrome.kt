@@ -63,14 +63,14 @@ fun DrillTopBar(
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         DrillCloseButton(chrome, onClose)
         SegmentsBar(outcomes, remaining = 1, chrome = chrome, modifier = Modifier.weight(1f))
         Text(
             "${tally.clean}/${tally.judged}",
             style = MaterialTheme.typography.bodySmall,
-            color = Dl.colors.textSecondary,
+            color = Theme.colors.textSecondary,
         )
         ReadAloudSwitch(model)
     }
@@ -88,7 +88,7 @@ fun DrillCloseButton(chrome: Chrome, onClose: () -> Unit) {
             .clickable(role = Role.Button, onClick = onClose),
         contentAlignment = Alignment.Center,
     ) {
-        Icon(SprossIcons.Close, contentDescription = null, tint = Dl.colors.textSecondary)
+        Icon(SprossIcons.Close, contentDescription = null, tint = Theme.colors.textSecondary)
     }
 }
 
@@ -119,7 +119,7 @@ fun DrillStreakLine(
     Text(
         parts.joinToString(" · "),
         style = MaterialTheme.typography.bodySmall,
-        color = if (streak > 0) Dl.colors.accent else Dl.colors.textSecondary,
+        color = if (streak > 0) Theme.colors.accent else Theme.colors.textSecondary,
         textAlign = TextAlign.Center,
         modifier = Modifier.fillMaxWidth().semantics { contentDescription = spoken },
     )
@@ -152,12 +152,12 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Dl.colors.surfaceTint, RoundedCornerShape(20.dp))
-            .padding(DlSpace.l)
+            .background(Theme.colors.surfaceTint, RoundedCornerShape(20.dp))
+            .padding(Theme.spacing.lg)
             // why: one TalkBack stop — the figures describe a single run.
             .semantics(mergeDescendants = true) { },
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.l),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
     ) {
         Text(tierEmoji(summary.tier), fontSize = 36.sp)
         Column(
@@ -171,17 +171,17 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
             Text(
                 chrome.trainerResultBestStreak.format(summary.bestStreak),
                 style = MaterialTheme.typography.bodySmall,
-                color = Dl.colors.textSecondary,
+                color = Theme.colors.textSecondary,
             )
             if (summary.newRecord) {
                 Text(
                     chrome.trainerResultNewRecord,
                     style = MaterialTheme.typography.bodySmall,
-                    color = Dl.colors.accent,
+                    color = Theme.colors.accent,
                 )
             }
         }
-        Text(title, style = MaterialTheme.typography.bodySmall, color = Dl.colors.textSecondary)
+        Text(title, style = MaterialTheme.typography.bodySmall, color = Theme.colors.textSecondary)
     }
 }
 

@@ -19,7 +19,7 @@ struct HomeView: View {
     var body: some View {
         let offer = model.homeOffer
         ScrollView {
-            VStack(alignment: .leading, spacing: DL.Space.xl) {
+            VStack(alignment: .leading, spacing: Theme.spacing.xl) {
                 header
                 voiceUpgradeBanner
                 if let failure = model.loadFailure {
@@ -35,10 +35,10 @@ struct HomeView: View {
                 TrainerHubView(model: model)
                 ForestSection(model: model, open: { openBox($0) })
             }
-            .padding(DL.Space.xl)
+            .padding(Theme.spacing.xl)
         }
         .scrollBounceBehavior(.basedOnSize)
-        .background(Color.dlBackground.ignoresSafeArea())
+        .background(Theme.colors.background.ignoresSafeArea())
         .onAppear { refreshListening() }
         // why: ACTIVE, not willEnterForeground — the speaker drops its cached
         // voice table on that notification, and the pool must read the new one.
@@ -65,30 +65,30 @@ struct HomeView: View {
     private var listeningCard: some View {
         if listening?.available == true {
             Button { listeningPresented = true } label: {
-                HStack(alignment: .top, spacing: DL.Space.m) {
+                HStack(alignment: .top, spacing: Theme.spacing.md) {
                     Text(verbatim: "🎧")
                         .font(.title2)
                         .accessibilityHidden(true)
-                    VStack(alignment: .leading, spacing: DL.Space.xs) {
+                    VStack(alignment: .leading, spacing: Theme.spacing.xs) {
                         Text("listen.title")
-                            .font(DL.Fonts.title)
-                            .foregroundStyle(Color.dlTextPrimary)
+                            .font(Theme.typography.title)
+                            .foregroundStyle(Theme.colors.textPrimary)
                         Text("listen.subtitle")
-                            .font(DL.Fonts.subheadline)
-                            .foregroundStyle(Color.dlTextSecondary)
+                            .font(Theme.typography.subheadline)
+                            .foregroundStyle(Theme.colors.textSecondary)
                             .multilineTextAlignment(.leading)
                     }
                     Spacer(minLength: 0)
                     Image(systemName: "chevron.right")
                         .font(.title3)
-                        .foregroundStyle(Color.dlTextSecondary)
+                        .foregroundStyle(Theme.colors.textSecondary)
                         .accessibilityHidden(true)
                 }
-                .padding(DL.Space.xl)
+                .padding(Theme.spacing.xl)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(
-                    RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                        .fill(Color.dlSurface)
+                    RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
+                        .fill(Theme.colors.surface)
                 )
                 .dlCardShadow()
             }
@@ -126,17 +126,17 @@ struct HomeView: View {
         let hint = VoiceUpgradeHint.shared
         if hint.suggestsBanner(language: model.targetLanguage,
                                activeCards: model.stats?.activeCards ?? 0) {
-            HStack(alignment: .top, spacing: DL.Space.m) {
+            HStack(alignment: .top, spacing: Theme.spacing.md) {
                 Image(systemName: "speaker.wave.2")
-                    .foregroundStyle(Color.dlAccent)
+                    .foregroundStyle(Theme.colors.accent)
                     .accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: DL.Space.xs) {
+                VStack(alignment: .leading, spacing: Theme.spacing.xs) {
                     Text("home.voiceUpgrade.title \(targetLanguageName ?? "?")")
-                        .font(DL.Fonts.headline)
-                        .foregroundStyle(Color.dlTextPrimary)
+                        .font(Theme.typography.headline)
+                        .foregroundStyle(Theme.colors.textPrimary)
                     Text("home.voiceUpgrade.path")
-                        .font(DL.Fonts.caption)
-                        .foregroundStyle(Color.dlTextSecondary)
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
                 }
                 Spacer(minLength: 0)
                 Button {
@@ -144,15 +144,15 @@ struct HomeView: View {
                 } label: {
                     Image(systemName: "xmark")
                         .font(.caption)
-                        .foregroundStyle(Color.dlTextSecondary)
+                        .foregroundStyle(Theme.colors.textSecondary)
                 }
                 .accessibilityLabel(Text("common.dismiss"))
             }
-            .padding(DL.Space.l)
+            .padding(Theme.spacing.lg)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(Color.dlSurface)
+                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                    .fill(Theme.colors.surface)
             )
             .dlCardShadow()
         }
@@ -161,15 +161,15 @@ struct HomeView: View {
     // MARK: - Session available
 
     private func sessionCard(_ offer: SessionOffer) -> some View {
-        VStack(spacing: DL.Space.l) {
+        VStack(spacing: Theme.spacing.lg) {
             sessionStats
             Text(LocalizedStringKey(offer.headlineKey))
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.textPrimary)
                 .multilineTextAlignment(.center)
             sessionSummary(offer)
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.body)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)
             if offer.dueHeldBack > 0 {
                 // The cap is a promise, not a loss: name the rest so a backlog
@@ -177,8 +177,8 @@ struct HomeView: View {
                 // why: Int, not the engine's Int32 — a plural key only varies
                 // on a count the String Catalog recognises.
                 Text("home.offer.heldBack \(Int(offer.dueHeldBack))")
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
                     .multilineTextAlignment(.center)
             }
             Button {
@@ -196,11 +196,11 @@ struct HomeView: View {
                 .buttonStyle(DLSoftButtonStyle())
             }
         }
-        .padding(DL.Space.xl)
+        .padding(Theme.spacing.xl)
         .frame(maxWidth: .infinity)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                .fill(Color.dlSurface)
+            RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
+                .fill(Theme.colors.surface)
         )
         .dlCardShadow()
     }
@@ -261,17 +261,17 @@ struct HomeView: View {
     private var doneCard: some View {
         let today = model.today
         let worked = today?.worked ?? false
-        return VStack(spacing: DL.Space.l) {
+        return VStack(spacing: Theme.spacing.lg) {
             doneMark(worked: worked)
             Text(worked ? "home.done.title" : "home.done.caughtUp")
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.textPrimary)
                 .multilineTextAlignment(.center)
             if let today, worked {
                 // What the day actually bought, not just that it happened.
                 todayTally(today)
-                    .font(DL.Fonts.body)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.body)
+                    .foregroundStyle(Theme.colors.textSecondary)
                     .multilineTextAlignment(.center)
             }
             // User agency: an extra round is an ordinary round composed on demand, so it
@@ -286,15 +286,15 @@ struct HomeView: View {
             // Under the button on purpose: what happens next is the smallest thing on
             // the card, and the way on is what the thumb is looking for.
             tomorrowText
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)
         }
-        .padding(DL.Space.xl)
+        .padding(Theme.spacing.xl)
         .frame(maxWidth: .infinity)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                .fill(Color.dlSurface)
+            RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
+                .fill(Theme.colors.surface)
         )
         .dlCardShadow()
     }
@@ -348,24 +348,24 @@ struct HomeView: View {
     // MARK: - Error state card
 
     private func stateCard(emoji: String, title: LocalizedStringKey, message: Text) -> some View {
-        VStack(spacing: DL.Space.l) {
+        VStack(spacing: Theme.spacing.lg) {
             Text(emoji)
                 .font(.system(size: 56))
                 .accessibilityHidden(true)
             Text(title)
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.textPrimary)
                 .multilineTextAlignment(.center)
             message
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.body)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)
         }
-        .padding(DL.Space.xl)
+        .padding(Theme.spacing.xl)
         .frame(maxWidth: .infinity)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.card, style: .continuous)
-                .fill(Color.dlSurface)
+            RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
+                .fill(Theme.colors.surface)
         )
         .dlCardShadow()
     }

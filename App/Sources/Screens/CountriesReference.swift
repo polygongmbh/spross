@@ -19,7 +19,7 @@ struct CountriesReference: View {
 
     var body: some View {
         let groups = CountryDrill.shared.reference(content: content)
-        return VStack(alignment: .leading, spacing: DL.Space.l) {
+        return VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             DrillHeading("countries.reference")
             if groups.contains(where: canBeHeard) {
                 ReferenceTapHint()
@@ -37,20 +37,20 @@ struct CountriesReference: View {
     }
 
     private func tierGroup(_ group: CountryReferenceGroup) -> some View {
-        VStack(alignment: .leading, spacing: DL.Space.m) {
+        VStack(alignment: .leading, spacing: Theme.spacing.md) {
             Text(Self.tierTitle(Int(group.tier)))
-                .font(DL.Fonts.subheadline)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.subheadline)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .textCase(.uppercase)
                 .accessibilityAddTraits(.isHeader)
-            VStack(alignment: .leading, spacing: DL.Space.l) {
+            VStack(alignment: .leading, spacing: Theme.spacing.lg) {
                 ForEach(group.rows, id: \.slug) { countryRow($0) }
             }
-            .padding(DL.Space.l)
+            .padding(Theme.spacing.lg)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(Color.dlSurface)
+                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                    .fill(Theme.colors.surface)
             )
         }
     }
@@ -64,16 +64,16 @@ struct CountriesReference: View {
     /// The whole row is that target, the numbers table's rule — the hint under
     /// the heading is where the page says so.
     private func countryRow(_ row: CountryReferenceRow) -> some View {
-        HStack(alignment: .top, spacing: DL.Space.m) {
+        HStack(alignment: .top, spacing: Theme.spacing.md) {
             Text(verbatim: row.flag)
                 .font(.system(size: 28))
                 .accessibilityHidden(true)
             side(name: row.source, nationality: row.sourceNationality,
-                 languages: row.sourceLanguages, tint: Color.dlTextPrimary,
+                 languages: row.sourceLanguages, tint: Theme.colors.textPrimary,
                  alignment: .leading, language: source)
-            Spacer(minLength: DL.Space.s)
+            Spacer(minLength: Theme.spacing.sm)
             side(name: row.target, nationality: row.targetNationality,
-                 languages: row.targetLanguages, tint: Color.dlAccent,
+                 languages: row.targetLanguages, tint: Theme.colors.accent,
                  alignment: .trailing, language: target)
         }
         // why: one country is one VoiceOver stop — both names, the people and
@@ -97,12 +97,12 @@ struct CountriesReference: View {
         let people = ([nationality] + languages).joined(separator: " · ")
         return VStack(alignment: alignment, spacing: 2) {
             Text(verbatim: name)
-                .font(DL.Fonts.headline)
+                .font(Theme.typography.headline)
                 .foregroundStyle(tint)
                 .dlSpoken(name, language: language)
             Text(verbatim: people)
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .dlSpoken(people, language: language)
         }
         .multilineTextAlignment(alignment == .trailing ? .trailing : .leading)

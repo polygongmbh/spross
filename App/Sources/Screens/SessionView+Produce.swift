@@ -24,7 +24,7 @@ extension SessionView {
         // why: writing the word out is the answer — the same rule the write-out
         // step runs on, so a word you know never asks for a confirming tap.
         .onChange(of: input) { _, _ in dispatch(TurnIntent.InputChanged(text: input)) }
-        .padding(.bottom, DL.Space.m)
+        .padding(.bottom, Theme.spacing.md)
         .onAppear { focusAnswerField() }
     }
 
@@ -70,7 +70,7 @@ extension SessionView {
                 RatingButtonsView(onGrade: { dispatch(TurnIntent.SelfGrade(verdict: $0.verdict)) },
                                   caption: gradeCaption)
             case .neutral:
-                VStack(spacing: DL.Space.m) {
+                VStack(spacing: Theme.spacing.md) {
                     // ONE primary action: empty input reveals, typed input checks.
                     // kern's Submit is inert on blank text, so which of the two a
                     // press is stays the platform's to decide.
@@ -99,8 +99,8 @@ extension SessionView {
                             Pronouncer.shared.stop()
                             dispatch(TurnIntent.ShowPromptText.shared)
                         }
-                        .font(DL.Fonts.caption)
-                        .foregroundStyle(Color.dlTextSecondary)
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
                     }
                 }
             case .almost:
@@ -135,7 +135,7 @@ extension SessionView {
                 // to the whole-word prefix that was already right — finishing
                 // the retype IS the self-grade: completing it books the
                 // recalled-with-help rating, giving up an honest Again.
-                VStack(spacing: DL.Space.m) {
+                VStack(spacing: Theme.spacing.md) {
                     if let otherWord {
                         // why: same line as the typo correction — both explain
                         // what became of the answer, so they read alike.
@@ -162,8 +162,8 @@ extension SessionView {
                     // here ends the card: this field already is the one
                     // write-out the word gets, so nothing hands it a second.
                     Button("session.skip") { dispatch(TurnIntent.GiveUp.shared) }
-                        .font(DL.Fonts.caption)
-                        .foregroundStyle(Color.dlTextSecondary)
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
                 }
             }
         }

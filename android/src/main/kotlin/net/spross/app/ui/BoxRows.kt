@@ -107,9 +107,9 @@ fun BoxCardRow(
                 onLongClick = { menuOpen = true },
                 onClick = pronounce ?: {},
             )
-            .padding(horizontal = DlSpace.m, vertical = DlSpace.s),
+            .padding(horizontal = Theme.spacing.md, vertical = Theme.spacing.sm),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         // why: the picture repeats the word beside it — spoken, it is noise.
         Text(
@@ -121,10 +121,10 @@ fun BoxCardRow(
             // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),
+                horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
             ) {
                 Text(
-                    localizedTarget(Dl.colors.articleColoredText(card.target), card.target.lang),
+                    localizedTarget(Theme.colors.articleColoredText(card.target), card.target.lang),
                     style = MaterialTheme.typography.bodyLarge,
                     maxLines = 1,
                     modifier = Modifier.weight(1f, fill = false),
@@ -136,7 +136,7 @@ fun BoxCardRow(
                     Icon(
                         SprossIcons.SpeakerOff,
                         contentDescription = chrome.boxCardNoAudio,
-                        tint = Dl.colors.textSecondary,
+                        tint = Theme.colors.textSecondary,
                         modifier = Modifier.size(SPEAKER_GLYPH),
                     )
                 }
@@ -180,7 +180,7 @@ private fun CardStanding(
     when (standing) {
         CardRowState.Sleeping -> Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),
+            horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
         ) {
             Text("💤", modifier = Modifier.semantics { contentDescription = chrome.boxCardSuspended })
             TextButton(onClick = {
@@ -208,13 +208,13 @@ private fun CardStanding(
                 onClick = { model.updateBox { BoxEngine.dequeue(it, card.id) } },
                 modifier = Modifier.semantics { contentDescription = chrome.boxCardUnpack },
             ) {
-                Icon(SprossIcons.PackOut, contentDescription = null, tint = Dl.colors.success)
+                Icon(SprossIcons.PackOut, contentDescription = null, tint = Theme.colors.success)
             }
         } else {
             // A pill, not an icon: a bare tray glyph reads as a control here too, and
             // this one has none — the shelf's own takes the whole queue out. Clay, not
             // green: green is the growth ladder's, and a queued word is not on it yet.
-            Pill(chrome.boxCardQueued, Dl.colors.accent)
+            Pill(chrome.boxCardQueued, Theme.colors.accent)
         }
 
         CardRowState.Plain -> Unit

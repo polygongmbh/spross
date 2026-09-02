@@ -9,7 +9,7 @@ extension LetterDrillView {
 
     var drillContent: some View {
         ScrollView {
-            VStack(spacing: DL.Space.m) {
+            VStack(spacing: Theme.spacing.md) {
                 streakLine
                 if let task = current {
                     // ZStack so the outgoing and incoming question overlap
@@ -34,7 +34,7 @@ extension LetterDrillView {
                     }
                 }
             }
-            .padding(.bottom, DL.Space.l)
+            .padding(.bottom, Theme.spacing.lg)
         }
         // why: the sibling drill's focus discipline, verbatim — a keyboard that
         // dismisses on a replay tap makes dictation unusable.
@@ -97,9 +97,9 @@ extension LetterDrillView {
     /// 2×2 of glyph tiles in Kern's shuffled order — both platforms render the
     /// same draw, so a seeded run is reproducible.
     private func choiceGrid(_ task: LetterDrillTask) -> some View {
-        LazyVGrid(columns: [GridItem(.flexible(), spacing: DL.Space.m),
-                            GridItem(.flexible(), spacing: DL.Space.m)],
-                  spacing: DL.Space.m) {
+        LazyVGrid(columns: [GridItem(.flexible(), spacing: Theme.spacing.md),
+                            GridItem(.flexible(), spacing: Theme.spacing.md)],
+                  spacing: Theme.spacing.md) {
             ForEach(task.choices ?? [], id: \.self) { glyph in
                 tile(glyph, answer: task.display)
             }
@@ -116,13 +116,13 @@ extension LetterDrillView {
         } label: {
             Text(verbatim: glyph)
                 .font(.system(size: 44, weight: .bold, design: .rounded))
-                .foregroundStyle(Color.dlTextPrimary)
+                .foregroundStyle(Theme.colors.textPrimary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.4)
-                .frame(maxWidth: .infinity, minHeight: DL.Reserve.tile)
-                .padding(DL.Space.m)
+                .frame(maxWidth: .infinity, minHeight: Theme.reserve.tile)
+                .padding(Theme.spacing.md)
                 .background(
-                    RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
+                    RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
                         .fill(tileFill(answered: answered, isAnswer: isAnswer, isChosen: isChosen))
                 )
                 // why: correctness is never color alone — the mark carries it
@@ -142,17 +142,17 @@ extension LetterDrillView {
     }
 
     private func tileFill(answered: Bool, isAnswer: Bool, isChosen: Bool) -> Color {
-        guard answered else { return .dlSurfaceTint }
-        if isAnswer { return Color.dlSuccess.opacity(0.22) }
-        return isChosen ? Color.dlWrong.opacity(0.22) : .dlSurfaceTint
+        guard answered else { return Theme.colors.surfaceTint }
+        if isAnswer { return Theme.colors.success.opacity(0.22) }
+        return isChosen ? Theme.colors.wrong.opacity(0.22) : Theme.colors.surfaceTint
     }
 
     @ViewBuilder
     private func tileMark(answered: Bool, isAnswer: Bool, isChosen: Bool) -> some View {
         if answered, isAnswer {
-            mark("checkmark.circle.fill", tint: .dlSuccess)
+            mark("checkmark.circle.fill", tint: Theme.colors.success)
         } else if answered, isChosen {
-            mark("xmark.circle.fill", tint: .dlWrong)
+            mark("xmark.circle.fill", tint: Theme.colors.wrong)
         }
     }
 
@@ -160,7 +160,7 @@ extension LetterDrillView {
         Image(systemName: symbol)
             .font(.title3)
             .foregroundStyle(tint)
-            .padding(DL.Space.s)
+            .padding(Theme.spacing.sm)
             .accessibilityHidden(true)
     }
 
@@ -186,7 +186,7 @@ extension LetterDrillView {
 
     @ViewBuilder
     private func typedControls(_ task: LetterDrillTask) -> some View {
-        VStack(spacing: DL.Space.m) {
+        VStack(spacing: Theme.spacing.md) {
             AnswerInputView(text: $input,
                             feedback: feedback,
                             placeholder: answerPlaceholder(task.language),
@@ -222,7 +222,7 @@ extension LetterDrillView {
                 // hit would otherwise have nothing to move on with.
                 if screenReaderOn { nextButton }
             case .revealed:
-                VStack(spacing: DL.Space.s) {
+                VStack(spacing: Theme.spacing.sm) {
                     nextButton
                     if run.offersFinish { DrillStopOffer { closeRun() } }
                 }

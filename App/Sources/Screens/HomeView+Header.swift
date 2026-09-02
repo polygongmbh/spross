@@ -11,20 +11,20 @@ extension HomeView {
     /// knows; the language being learned is the one piece of standing the screen never said,
     /// and it is what the day's work is for.
     var header: some View {
-        VStack(alignment: .leading, spacing: DL.Space.xs) {
+        VStack(alignment: .leading, spacing: Theme.spacing.xs) {
             Text(Date().formatted(
                 Date.FormatStyle(locale: locale)
                     .weekday(.wide).day().month(.wide)
             ))
-            .font(DL.Fonts.caption)
-            .foregroundStyle(Color.dlTextSecondary)
+            .font(Theme.typography.caption)
+            .foregroundStyle(Theme.colors.textSecondary)
             .textCase(.uppercase)
             // A greeting is a phrase, not a headline word: it shrinks a step rather than
             // pushing the day's card down a third line.
             if let greeting {
                 greeting
-                    .font(DL.Fonts.hero)
-                    .foregroundStyle(Color.dlTextPrimary)
+                    .font(Theme.typography.hero)
+                    .foregroundStyle(Theme.colors.textPrimary)
                     .lineLimit(2)
                     .minimumScaleFactor(0.7)
             }

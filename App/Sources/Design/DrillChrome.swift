@@ -45,8 +45,8 @@ struct DrillStreakLine: View {
 
     var body: some View {
         text
-            .font(DL.Fonts.caption)
-            .foregroundStyle(streak > 0 ? Color.dlAccent : Color.dlTextSecondary)
+            .font(Theme.typography.caption)
+            .foregroundStyle(streak > 0 ? Theme.colors.accent : Theme.colors.textSecondary)
             .monospacedDigit()
             .frame(maxWidth: .infinity)
             .animation(.easeOut(duration: 0.2), value: streak)
@@ -114,34 +114,34 @@ struct DrillResultTile: View {
     let result: DrillRunResult
 
     var body: some View {
-        HStack(alignment: .center, spacing: DL.Space.l) {
+        HStack(alignment: .center, spacing: Theme.spacing.lg) {
             Text(verbatim: emoji)
                 .font(.system(size: 40))
                 .dlSway(angle: 4, period: 3.4)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
                 Text("trainer.result.tasksDone \(result.doneCount)")
-                    .font(DL.Fonts.headline)
-                    .foregroundStyle(Color.dlTextPrimary)
+                    .font(Theme.typography.headline)
+                    .foregroundStyle(Theme.colors.textPrimary)
                 Text("trainer.result.bestStreak \(result.bestStreak.formatted())")
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
                 if result.newRecord {
                     Text("trainer.result.newRecord")
-                        .font(DL.Fonts.caption)
-                        .foregroundStyle(Color.dlAccent)
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.accent)
                 }
             }
             Spacer(minLength: 0)
             Text(result.title)
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
         }
-        .padding(DL.Space.l)
+        .padding(Theme.spacing.lg)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                .fill(Color.dlSurfaceTint)
+            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                .fill(Theme.colors.surfaceTint)
         )
         // why: one VoiceOver stop — the figures describe a single run.
         .accessibilityElement(children: .combine)
@@ -161,24 +161,24 @@ struct DrillResultTile: View {
 // MARK: - Previews
 
 #Preview("Result tile · record") {
-    VStack(spacing: DL.Space.l) {
+    VStack(spacing: Theme.spacing.lg) {
         DrillResultTile(result: DrillRunResult(doneCount: 17, bestStreak: 12, newRecord: true,
                                                tier: .trophy, title: "trainer.skill.numbers"))
         DrillResultTile(result: DrillRunResult(doneCount: 4, bestStreak: 1, title: "trainer.skill.letters"))
     }
-    .padding(DL.Space.xl)
+    .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
 }
 
 #Preview("Streak line") {
-    VStack(spacing: DL.Space.xl) {
+    VStack(spacing: Theme.spacing.xl) {
         DrillStreakLine(level: Text("trainer.sprosse \(7.formatted())"), streak: 0, bestStreak: 0)
         DrillStreakLine(level: Text("numbers.sprosse \(5)"), streak: 7, bestStreak: 12,
                         announcesRecord: true)
         DrillStreakLine(streak: 3, bestStreak: 3)
     }
-    .padding(DL.Space.xl)
+    .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
 }

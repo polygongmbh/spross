@@ -50,20 +50,20 @@ struct BoxCardRow: View {
     /// note under them in the same line the card's reveal wears (`dlNoteLine`),
     /// so a gloss read here and a gloss read mid-round are the same line.
     private func notePreview(_ note: String) -> some View {
-        VStack(spacing: DL.Space.s) {
+        VStack(spacing: Theme.spacing.sm) {
             Text(card.displayEmoji)
                 .font(.largeTitle)
                 .accessibilityHidden(true)
             citation
                 .multilineTextAlignment(.center)
             Text(card.source.text)
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
             Text(note).dlNoteLine()
         }
-        .padding(DL.Space.l)
+        .padding(Theme.spacing.lg)
         .frame(maxWidth: 300)
-        .background(Color.dlSurface)
+        .background(Theme.colors.surface)
     }
 
     @ViewBuilder
@@ -91,13 +91,13 @@ struct BoxCardRow: View {
             article: CardDisplay.spokenArticle(of: card.target, shown: card.target.text)
         )
 
-        HStack(spacing: DL.Space.m) {
+        HStack(spacing: Theme.spacing.md) {
             Text(card.displayEmoji)
                 .font(.title3)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
                 // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
-                HStack(spacing: DL.Space.xs) {
+                HStack(spacing: Theme.spacing.xs) {
                     citation
                         .lineLimit(1)
                     // why: `pronounce` is nil for exactly the words neither a
@@ -107,16 +107,16 @@ struct BoxCardRow: View {
                     if pronounce == nil {
                         Image(systemName: "speaker.slash")
                             .font(.caption2)
-                            .foregroundStyle(Color.dlTextSecondary)
+                            .foregroundStyle(Theme.colors.textSecondary)
                             .accessibilityLabel("box.card.noAudio")
                     }
                 }
                 Text(card.source.text)
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
                     .lineLimit(1)
             }
-            Spacer(minLength: DL.Space.s)
+            Spacer(minLength: Theme.spacing.sm)
             // why: standing apart from `standing` on purpose — a report says
             // nothing about where the word stands, and a reported word keeps
             // whatever badge it had.
@@ -126,13 +126,13 @@ struct BoxCardRow: View {
             }
             standing
         }
-        .padding(.horizontal, DL.Space.m)
-        .padding(.vertical, DL.Space.xs + 2)
+        .padding(.horizontal, Theme.spacing.md)
+        .padding(.vertical, Theme.spacing.xs + 2)
         .background(
             // why: the row sits INSIDE the area card now — surface on surface
             // would leave the rows without an edge of their own.
-            RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                .fill(Color.dlSurfaceTint)
+            RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                .fill(Theme.colors.surfaceTint)
         )
         .pronounceOnTap(pronounce)
         .sheet(item: $sheet) { sheetBody($0) }
@@ -146,13 +146,13 @@ struct BoxCardRow: View {
     /// would mislabel — the line is simply the word, uncolored.
     private var citation: Text {
         let word = Text(card.target.text)
-            .font(DL.Fonts.body)
-            .foregroundStyle(Color.dlTextPrimary)
+            .font(Theme.typography.body)
+            .foregroundStyle(Theme.colors.textPrimary)
         guard let article = CardDisplay.articleLabel(of: card.target, shown: card.target.text)
         else { return word }
         return Text(verbatim: "\(article.text) ")
-            .font(DL.Fonts.body)
-            .foregroundStyle(DL.genderColor(article.gender))
+            .font(Theme.typography.body)
+            .foregroundStyle(Theme.genderColor(article.gender))
             + word
     }
 
@@ -171,11 +171,11 @@ struct BoxCardRow: View {
             Button("box.card.wake") {
                 model.setSuspended(cardID: card.id, suspended: false)
             }
-            .font(DL.Fonts.caption)
-            .foregroundStyle(Color.dlAccent)
-            .padding(.horizontal, DL.Space.m)
-            .padding(.vertical, DL.Space.xs + 1)
-            .background(Color.dlAccent.opacity(0.14), in: Capsule())
+            .font(Theme.typography.caption)
+            .foregroundStyle(Theme.colors.accent)
+            .padding(.horizontal, Theme.spacing.md)
+            .padding(.vertical, Theme.spacing.xs + 1)
+            .background(Theme.colors.accent.opacity(0.14), in: Capsule())
         case .packOffered:
             if let pack {
                 Button(action: pack) {
@@ -193,7 +193,7 @@ struct BoxCardRow: View {
                 } label: {
                     Image(systemName: "tray.and.arrow.up.fill")
                 }
-                .buttonStyle(DLIconButtonStyle(color: .dlSuccess))
+                .buttonStyle(DLIconButtonStyle(color: Theme.colors.success))
                 .accessibilityLabel("box.card.unpack")
             } else {
                 // A pill, not an icon: a bare tray glyph reads as a control here too,
@@ -201,11 +201,11 @@ struct BoxCardRow: View {
                 // Clay, not green: green is the growth ladder's, and a queued word
                 // is not on it yet.
                 Text("box.card.queued")
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlAccent)
-                    .padding(.horizontal, DL.Space.m)
-                    .padding(.vertical, DL.Space.xs + 1)
-                    .background(Color.dlAccent.opacity(0.14), in: Capsule())
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.accent)
+                    .padding(.horizontal, Theme.spacing.md)
+                    .padding(.vertical, Theme.spacing.xs + 1)
+                    .background(Theme.colors.accent.opacity(0.14), in: Capsule())
             }
         case .plain:
             EmptyView()

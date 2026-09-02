@@ -67,7 +67,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
             val unit = if (ui.streakDays == 1) chrome.commonDayOne else chrome.commonDayOther
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+                horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
             ) {
                 // This screen is only reached by finishing a round, so today has reviews
                 // layer-ok: the run is safe until tomorrow — no other grade can stand here
@@ -76,7 +76,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
             }
             if (ui.streakIsRecord) {
                 Text(chrome.sessionDoneStreakRecord, style = MaterialTheme.typography.titleMedium,
-                    color = Dl.colors.accent)
+                    color = Theme.colors.accent)
             }
         }
         if (ui.restSuggested) {

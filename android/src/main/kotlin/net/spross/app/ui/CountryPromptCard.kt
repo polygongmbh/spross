@@ -55,13 +55,13 @@ fun CountryPromptCard(
         emoji = if (text == null) null else emoji,
         cue = emojiCue(givesAnswerAway = emojiIsGiveaway),
         revealed = revealed,
-        modifier = Modifier.heightIn(min = DlReserve.drillCard),
+        modifier = Modifier.heightIn(min = Theme.reserve.drillCard),
         note = reveal?.note,
     ) {
         Text(
             ask,
             style = MaterialTheme.typography.bodySmall,
-            color = Dl.colors.textSecondary,
+            color = Theme.colors.textSecondary,
             textAlign = TextAlign.Center,
         )
         if (text != null) {
@@ -74,7 +74,7 @@ fun CountryPromptCard(
             // Nor is it ever a giveaway: a question whose whole content is the flag has
             // nothing left to show if the flag is held back, which is why kern builds this
             // kind forward only.
-            Text(emoji, fontSize = DlPrompt.glyph, textAlign = TextAlign.Center)
+            Text(emoji, fontSize = Theme.prompt.glyph, textAlign = TextAlign.Center)
         }
         reveal?.let {
             CardReveal {
@@ -82,7 +82,7 @@ fun CountryPromptCard(
                     Text(
                         localizedTarget(it.word, it.language),
                         style = MaterialTheme.typography.titleLarge,
-                        color = Dl.colors.accent,
+                        color = Theme.colors.accent,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.weight(1f, fill = false),
                     )

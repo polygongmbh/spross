@@ -123,13 +123,13 @@ private struct ForestPreview: View {
     let age: Double
 
     var body: some View {
-        VStack(alignment: .leading, spacing: DL.Space.l) {
+        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             ForestCanvas(trees: sampleTrees(age: age), open: { _ in })
         }
-        .padding(DL.Space.xl)
-        .environment(\.dlContentWidth, 402 - DL.Space.xl * 2)
+        .padding(Theme.spacing.xl)
+        .environment(\.dlContentWidth, 402 - Theme.spacing.xl * 2)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .background(Color.dlBackground)
+        .background(Theme.colors.background)
     }
 }
 

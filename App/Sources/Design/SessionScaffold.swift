@@ -11,9 +11,9 @@ enum SessionOutcome: Equatable {
 
     var color: Color {
         switch self {
-        case .right: return .dlSuccess
-        case .tough: return .dlAmber
-        case .wrong: return .dlWrong
+        case .right: return Theme.colors.success
+        case .tough: return Theme.colors.amber
+        case .wrong: return Theme.colors.wrong
         }
     }
 }
@@ -50,25 +50,25 @@ struct SessionScaffold<Content: View>: View {
     }
 
     var body: some View {
-        VStack(spacing: DL.Space.l) {
+        VStack(spacing: Theme.spacing.lg) {
             topBar
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .padding(DL.Space.l)
-        .background(Color.dlBackground.ignoresSafeArea())
+        .padding(Theme.spacing.lg)
+        .background(Theme.colors.background.ignoresSafeArea())
     }
 
     private var topBar: some View {
-        HStack(spacing: DL.Space.m) {
+        HStack(spacing: Theme.spacing.md) {
             SessionCloseButton(action: onClose)
 
             GeometryReader { geo in
                 if outcomes.isEmpty {
                     ZStack(alignment: .leading) {
-                        Capsule().fill(Color.dlSeparator)
+                        Capsule().fill(Theme.colors.separator)
                         Capsule()
-                            .fill(Color.dlAccent)
+                            .fill(Theme.colors.accent)
                             .frame(width: max(geo.size.width * fraction, 10))
                     }
                 } else {
@@ -85,7 +85,7 @@ struct SessionScaffold<Content: View>: View {
                         }
                         if outcomes.count < slots {
                             Rectangle()
-                                .fill(Color.dlSeparator)
+                                .fill(Theme.colors.separator)
                                 .frame(width: forSegments * CGFloat(slots - outcomes.count) / CGFloat(slots))
                         }
                     }
@@ -99,8 +99,8 @@ struct SessionScaffold<Content: View>: View {
             .accessibilityLabel(progressAccessibility)
 
             Text(counter ?? "\(position)/\(total)")
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .monospacedDigit()
                 .accessibilityHidden(true)
 
@@ -126,9 +126,9 @@ struct SessionScaffold<Content: View>: View {
             // different controls.
             Image(systemName: Pronouncer.shared.muted ? "speaker.slash" : "speaker.wave.2")
                 .font(.subheadline.weight(.bold))
-                .foregroundStyle(Color.dlTextSecondary)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .frame(width: 44, height: 44)
-                .background(Circle().fill(Color.dlSurfaceTint))
+                .background(Circle().fill(Theme.colors.surfaceTint))
         }
         // why: ONE label, the state as the VALUE — a label that flips with the
         // state leaves VoiceOver announcing the action as if it were the
@@ -155,9 +155,9 @@ struct SessionCloseButton: View {
         Button(action: action) {
             Image(systemName: "xmark")
                 .font(.subheadline.weight(.bold))
-                .foregroundStyle(Color.dlTextSecondary)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .frame(width: 44, height: 44)
-                .background(Circle().fill(Color.dlSurfaceTint))
+                .background(Circle().fill(Theme.colors.surfaceTint))
         }
         .accessibilityLabel(label)
     }
@@ -170,7 +170,7 @@ extension View {
                             action: @escaping () -> Void) -> some View {
         overlay(alignment: .topLeading) {
             SessionCloseButton(label: label, action: action)
-                .padding(DL.Space.l)
+                .padding(Theme.spacing.lg)
         }
     }
 }
@@ -187,7 +187,7 @@ struct SessionExitButtons: View {
     var onPractice: (() -> Void)?
 
     var body: some View {
-        VStack(spacing: DL.Space.m) {
+        VStack(spacing: Theme.spacing.md) {
             // why: the round that was planned is done — stopping takes the
             // full-width primary, and going on is offered at its own smaller
             // size below rather than as a second slab.
@@ -202,7 +202,7 @@ struct SessionExitButtons: View {
         }
         // why: a celebration ending flush against the bottom edge reads as a
         // form to dismiss; the pair sits off it instead.
-        .padding(.bottom, DL.Space.xl)
+        .padding(.bottom, Theme.spacing.xl)
     }
 }
 
@@ -210,7 +210,7 @@ struct SessionExitButtons: View {
 
 #Preview("Session chrome") {
     SessionScaffold(position: 4, total: 12, onClose: {}) {
-        VStack(spacing: DL.Space.xl) {
+        VStack(spacing: Theme.spacing.xl) {
             VocabCardView(
                 emoji: "🥄",
                 prompt: .init(text: "kijiko"),

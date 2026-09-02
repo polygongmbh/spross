@@ -192,7 +192,7 @@ fun OnboardingScreen(model: AppModel) {
  */
 @Composable
 private fun NameSection(chrome: Chrome, name: String, onName: (String) -> Unit) {
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         Text(chrome.onboardingNameQuestion, style = MaterialTheme.typography.titleSmall)
         OutlinedTextField(
             value = name,
@@ -224,7 +224,7 @@ private fun PickerSection(
     onOpen: () -> Unit,
     onPick: (String) -> Unit,
 ) {
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         Text(heading, style = MaterialTheme.typography.titleSmall)
         if (open) {
             options.forEach { code ->

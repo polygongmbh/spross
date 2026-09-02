@@ -25,19 +25,19 @@ struct BoxSearchView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 DLSearchField(placeholder: "box.search.placeholder", text: $query)
-                    .padding(.horizontal, DL.Space.xl)
-                    .padding(.bottom, DL.Space.l)
+                    .padding(.horizontal, Theme.spacing.xl)
+                    .padding(.bottom, Theme.spacing.lg)
                 ScrollView {
-                    LazyVStack(alignment: .leading, spacing: DL.Space.l) {
+                    LazyVStack(alignment: .leading, spacing: Theme.spacing.lg) {
                         content
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, DL.Space.xl)
-                    .padding(.bottom, DL.Space.xl)
+                    .padding(.horizontal, Theme.spacing.xl)
+                    .padding(.bottom, Theme.spacing.xl)
                 }
             }
-            .padding(.top, DL.Space.l)
-            .background(Color.dlBackground.ignoresSafeArea())
+            .padding(.top, Theme.spacing.lg)
+            .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle("box.search.title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -46,7 +46,7 @@ struct BoxSearchView: View {
                 }
             }
         }
-        .tint(.dlAccent)
+        .tint(Theme.colors.accent)
         // why: searching in the body would re-run on every unrelated redraw —
         // packing a word redraws its row, and the whole box does not need
         // re-scanning for it. A blank field asked nothing, so it gets the hint
@@ -88,28 +88,28 @@ struct BoxSearchView: View {
         } else if results != nil {
             // A box with no answer is where the learner's own words come from:
             // they have just proved the catalog has none for what they need.
-            VStack(alignment: .leading, spacing: DL.Space.l) {
+            VStack(alignment: .leading, spacing: Theme.spacing.lg) {
                 Text("box.search.nothing \(query)")
-                    .font(DL.Fonts.body)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.body)
+                    .foregroundStyle(Theme.colors.textSecondary)
                 Button("box.search.writeOwn \(query)") { writingOwnWord = true }
                     .buttonStyle(DLSoftButtonStyle())
             }
-            .padding(.top, DL.Space.l)
+            .padding(.top, Theme.spacing.lg)
         } else {
             Text("box.search.hint")
-                .font(DL.Fonts.subheadline)
-                .foregroundStyle(Color.dlTextSecondary)
-                .padding(.top, DL.Space.l)
+                .font(Theme.typography.subheadline)
+                .foregroundStyle(Theme.colors.textSecondary)
+                .padding(.top, Theme.spacing.lg)
         }
     }
 
     private func heading(_ key: LocalizedStringKey) -> some View {
         Text(key)
-            .font(DL.Fonts.caption)
-            .foregroundStyle(Color.dlTextSecondary)
+            .font(Theme.typography.caption)
+            .foregroundStyle(Theme.colors.textSecondary)
             .textCase(.uppercase)
-            .padding(.top, DL.Space.s)
+            .padding(.top, Theme.spacing.sm)
     }
 
     /// An area hit carries its own progress, so the learner can tell a shelf
@@ -121,20 +121,20 @@ struct BoxSearchView: View {
             reveal(area)
             dismiss()
         } label: {
-            HStack(alignment: .top, spacing: DL.Space.s) {
+            HStack(alignment: .top, spacing: Theme.spacing.sm) {
                 AreaChip(emoji: model.areaEmoji(area), name: model.areaTitle(area),
                          progress: stats?.progress ?? .empty,
                          lockedPhrases: stats?.lockedPhrases ?? 0)
                 Image(systemName: "chevron.right")
                     .font(.caption2)
-                    .foregroundStyle(Color.dlTextSecondary)
-                    .padding(.top, DL.Space.s)
+                    .foregroundStyle(Theme.colors.textSecondary)
+                    .padding(.top, Theme.spacing.sm)
             }
-            .padding(DL.Space.l)
+            .padding(Theme.spacing.lg)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(Color.dlSurface)
+                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                    .fill(Theme.colors.surface)
             )
             .contentShape(Rectangle())
         }

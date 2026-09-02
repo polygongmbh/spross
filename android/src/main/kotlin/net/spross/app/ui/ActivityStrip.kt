@@ -64,7 +64,7 @@ fun ActivityStrip(
 ) {
     if (days.isEmpty()) return
     val bars = remember(days) { ActivityBars.of(days) }
-    val palette = Dl.colors
+    val palette = Theme.colors
     val label = remember(bars, streakDays, chrome) {
         val activity = chrome.a11yCountActivity14Days.format(ActivityBars.activeDays(bars))
         if (streakDays > 0) {
@@ -80,8 +80,8 @@ fun ActivityStrip(
         },
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(DlSpace.l),
-            verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+            modifier = Modifier.fillMaxWidth().padding(Theme.spacing.lg),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -96,7 +96,7 @@ fun ActivityStrip(
                     val unit = if (streakDays == 1) chrome.commonDayOne else chrome.commonDayOther
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),
+                        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
                     ) {
                         StreakFlame(health, MaterialTheme.typography.bodySmall)
                         Text(
@@ -120,7 +120,7 @@ fun ActivityStrip(
 }
 
 @Composable
-private fun BarRow(bars: List<ActivityBar>, palette: DlColors) {
+private fun BarRow(bars: List<ActivityBar>, palette: ThemeColors) {
     Row(
         modifier = Modifier.fillMaxWidth().height(ActivityBars.MAX_HEIGHT_DP.dp),
         horizontalArrangement = Arrangement.spacedBy(GUTTER),
@@ -147,13 +147,13 @@ private fun BarRow(bars: List<ActivityBar>, palette: DlColors) {
  * without taking the width back out of its neighbor.
  */
 @Composable
-private fun RunRule(bars: List<ActivityBar>, palette: DlColors) {
+private fun RunRule(bars: List<ActivityBar>, palette: ThemeColors) {
     val current = palette.accent
     val past = palette.success
     Canvas(
         Modifier
             .fillMaxWidth()
-            .padding(top = DlSpace.xs)
+            .padding(top = Theme.spacing.xs)
             .height(RUN_THICKNESS),
     ) {
         val gutter = GUTTER.toPx()
@@ -182,9 +182,9 @@ private fun RunRule(bars: List<ActivityBar>, palette: DlColors) {
 }
 
 @Composable
-private fun WeekdayRow(bars: List<ActivityBar>, locale: Locale, palette: DlColors) {
+private fun WeekdayRow(bars: List<ActivityBar>, locale: Locale, palette: ThemeColors) {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(top = DlSpace.xs),
+        modifier = Modifier.fillMaxWidth().padding(top = Theme.spacing.xs),
         horizontalArrangement = Arrangement.spacedBy(GUTTER),
     ) {
         bars.forEach { bar ->

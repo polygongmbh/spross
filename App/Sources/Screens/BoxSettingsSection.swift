@@ -13,26 +13,26 @@ struct BoxSettingsSection: View {
     @Environment(\.locale) private var locale
 
     var body: some View {
-        VStack(alignment: .leading, spacing: DL.Space.l) {
+        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             Text("settings.title")
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.textPrimary)
 
-            VStack(alignment: .leading, spacing: DL.Space.l) {
+            VStack(alignment: .leading, spacing: Theme.spacing.lg) {
                 profileRow
-                Divider().overlay(Color.dlSeparator)
+                Divider().overlay(Theme.colors.separator)
                 LearnerNameRow(model: model)
-                Divider().overlay(Color.dlSeparator)
+                Divider().overlay(Theme.colors.separator)
                 audioRow
-                Divider().overlay(Color.dlSeparator)
+                Divider().overlay(Theme.colors.separator)
                 restartTutorialRow
-                Divider().overlay(Color.dlSeparator)
+                Divider().overlay(Theme.colors.separator)
                 resetRow
             }
-            .padding(DL.Space.l)
+            .padding(Theme.spacing.lg)
             .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(Color.dlSurface)
+                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                    .fill(Theme.colors.surface)
             )
             .dlCardShadow()
 
@@ -50,22 +50,22 @@ struct BoxSettingsSection: View {
     }
 
     private var aboutFooter: some View {
-        VStack(spacing: DL.Space.s) {
+        VStack(spacing: Theme.spacing.sm) {
             Text(versionText)
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .monospacedDigit()
             if let url = feedbackURL {
                 Link(destination: url) {
                     Label("settings.feedback", systemImage: "envelope")
-                        .font(DL.Fonts.subheadline)
-                        .foregroundStyle(Color.dlAccent)
+                        .font(Theme.typography.subheadline)
+                        .foregroundStyle(Theme.colors.accent)
                 }
             }
             creditsButton
         }
         .frame(maxWidth: .infinity)
-        .padding(.top, DL.Space.m)
+        .padding(.top, Theme.spacing.md)
         .sheet(isPresented: $creditsPresented) {
             // why: a sheet leaves the chrome language behind, and credits are
             // chrome — hand it the locale the settings block renders in.
@@ -82,8 +82,8 @@ struct BoxSettingsSection: View {
             creditsPresented = true
         } label: {
             Label("credits.title", systemImage: "info.circle")
-                .font(DL.Fonts.subheadline)
-                .foregroundStyle(Color.dlAccent)
+                .font(Theme.typography.subheadline)
+                .foregroundStyle(Theme.colors.accent)
         }
     }
 
@@ -100,16 +100,16 @@ struct BoxSettingsSection: View {
     /// re-joins in place (schedules are keyed by card id, so all progress
     /// survives), and each target keeps its own box.
     private var profileRow: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
-            HStack(alignment: .top, spacing: DL.Space.l) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
+            HStack(alignment: .top, spacing: Theme.spacing.lg) {
                 languageMenu(title: "settings.known.title",
                              selection: sourceBinding, choices: sourceChoices)
                 languageMenu(title: "settings.learning.title",
                              selection: targetBinding, choices: targetChoices)
             }
             Text("settings.profile.hint")
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
         }
     }
 
@@ -118,10 +118,10 @@ struct BoxSettingsSection: View {
     /// for "🇺🇦 Українська · Ukrainian".
     private func languageMenu(title: LocalizedStringKey, selection: Binding<String>,
                               choices: [String]) -> some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             Text(title)
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.headline)
+                .foregroundStyle(Theme.colors.textPrimary)
             Menu {
                 Picker(title, selection: selection) {
                     ForEach(choices, id: \.self) { candidate in
@@ -130,7 +130,7 @@ struct BoxSettingsSection: View {
                     }
                 }
             } label: {
-                HStack(spacing: DL.Space.xs) {
+                HStack(spacing: Theme.spacing.xs) {
                     Text(verbatim: LanguageNames.pickerLabel(selection.wrappedValue,
                                                              catalog: model.catalog))
                         .lineLimit(1)
@@ -139,12 +139,12 @@ struct BoxSettingsSection: View {
                     Image(systemName: "chevron.up.chevron.down")
                         .font(.caption2)
                 }
-                .foregroundStyle(Color.dlTextPrimary)
-                .padding(.vertical, DL.Space.s)
-                .padding(.horizontal, DL.Space.m)
+                .foregroundStyle(Theme.colors.textPrimary)
+                .padding(.vertical, Theme.spacing.sm)
+                .padding(.horizontal, Theme.spacing.md)
                 .background(
-                    RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                        .fill(Color.dlSurfaceTint)
+                    RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                        .fill(Theme.colors.surfaceTint)
                 )
             }
             .accessibilityLabel(Text(title))
@@ -159,10 +159,10 @@ struct BoxSettingsSection: View {
     /// the Home banner only borrows once: dismissed there, it is still findable
     /// here.
     private var audioRow: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             Text("settings.audio.title")
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.headline)
+                .foregroundStyle(Theme.colors.textPrimary)
             Picker("settings.audio.title", selection: audioPreferenceBinding) {
                 ForEach(AudioPreference.allCases) { option in
                     Text(optionLabel(option)).tag(option)
@@ -170,14 +170,14 @@ struct BoxSettingsSection: View {
             }
             .pickerStyle(.segmented)
             Text(audioHintKey)
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
             if VoiceUpgradeHint.shared.suggests(language: model.targetLanguage) {
                 Label("settings.audio.voiceUpgrade \(targetChromeName)",
                       systemImage: "speaker.wave.2")
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlAccent)
-                    .padding(.top, DL.Space.xs)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.accent)
+                    .padding(.top, Theme.spacing.xs)
             }
         }
     }
@@ -236,27 +236,27 @@ struct BoxSettingsSection: View {
     /// Shows the onboarding pages again, the pair already made — nothing here
     /// touches progress (`resetRow` is the destructive row).
     private var restartTutorialRow: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             Button {
                 model.restartOnboarding()
             } label: {
                 Text("settings.restartTutorial.button")
-                    .font(DL.Fonts.headline)
+                    .font(Theme.typography.headline)
             }
             Text("settings.restartTutorial.hint")
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
         }
     }
 
     /// Fresh start with the CURRENT catalog content.
     private var resetRow: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             Button(role: .destructive) {
                 confirmingReset = true
             } label: {
                 Text("settings.reset.button \(targetName)")
-                    .font(DL.Fonts.headline)
+                    .font(Theme.typography.headline)
             }
             .confirmationDialog(
                 "settings.reset.confirm \(targetName)",
@@ -269,8 +269,8 @@ struct BoxSettingsSection: View {
                 Button("common.cancel", role: .cancel) {}
             }
             Text("settings.reset.hint")
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
         }
     }
 

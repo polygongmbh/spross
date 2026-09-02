@@ -100,12 +100,12 @@ struct VocabCardView: View {
     /// for it rather than reflowing the words to make room.
     var body: some View {
         arranged
-            .padding(shared ? DL.Space.l : DL.Space.xl)
+            .padding(shared ? Theme.spacing.lg : Theme.spacing.xl)
             .frame(maxWidth: .infinity)
             // why: a shared-screen card holds one height whether the prompt is a
             // word, a word under an area label, or the replay glyph of a by-ear
             // question; a card that owns the screen is free to grow into it.
-            .frame(minHeight: shared ? DL.Reserve.reviewCard : nil)
+            .frame(minHeight: shared ? Theme.reserve.reviewCard : nil)
             .dlCardSurface()
             .animation(.easeOut(duration: 0.25), value: revealed)
     }
@@ -116,7 +116,7 @@ struct VocabCardView: View {
     private var arranged: some View {
         switch arrangement {
         case .beside:
-            VStack(spacing: DL.Space.s) {
+            VStack(spacing: Theme.spacing.sm) {
                 pictureRow
                 if revealed && hasClosingLines {
                     closingLines
@@ -124,7 +124,7 @@ struct VocabCardView: View {
                 }
             }
         case .above:
-            VStack(spacing: DL.Space.l) {
+            VStack(spacing: Theme.spacing.lg) {
                 if hasEmoji { picture }
                 words
             }
@@ -137,9 +137,9 @@ struct VocabCardView: View {
     /// block optically centered in the CARD; the width that costs is given back to
     /// the lines that need it, below (`closingLines`), not taken from the center.
     private var pictureRow: some View {
-        HStack(spacing: DL.Space.m) {
+        HStack(spacing: Theme.spacing.md) {
             if hasEmoji { picture }
-            VStack(spacing: DL.Space.s) {
+            VStack(spacing: Theme.spacing.sm) {
                 sideBlock(prompt, emphasized: false)
                 if revealed {
                     // why: the divider belongs beside the picture, so the reveal
@@ -159,7 +159,7 @@ struct VocabCardView: View {
     /// the other forms, the literal gloss. They are the long lines and they sit
     /// beside nothing, so they take the card's full width.
     private var closingLines: some View {
-        VStack(spacing: DL.Space.xs) {
+        VStack(spacing: Theme.spacing.xs) {
             secondaryLines(answer)
             if let note {
                 Text(note).dlNoteLine()
@@ -177,7 +177,7 @@ struct VocabCardView: View {
     }
 
     private var words: some View {
-        VStack(spacing: shared ? DL.Space.s : DL.Space.l) {
+        VStack(spacing: shared ? Theme.spacing.sm : Theme.spacing.lg) {
             sideBlock(prompt, emphasized: false)
             if revealed {
                 revealSection
@@ -209,7 +209,7 @@ struct VocabCardView: View {
     /// nothing to do with which language this is — either side can be either
     /// role depending on the card's presentation role.
     private func sideBlock(_ side: Side, emphasized: Bool) -> some View {
-        VStack(spacing: DL.Space.xs) {
+        VStack(spacing: Theme.spacing.xs) {
             headwordBlock(side, emphasized: emphasized)
             secondaryLines(side)
         }
@@ -217,13 +217,13 @@ struct VocabCardView: View {
 
     /// The word itself, under its label: the part a picture may stand beside.
     private func headwordBlock(_ side: Side, emphasized: Bool) -> some View {
-        VStack(spacing: DL.Space.xs) {
+        VStack(spacing: Theme.spacing.xs) {
             // why: ABOVE the headword, so it reads as a label on the prompt and never
             // sits in the plural/alternates region that belongs to the reveal.
             if let context = side.context {
                 Text(context)
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
                     .multilineTextAlignment(.center)
             }
             headline(side, emphasized: emphasized)
@@ -241,15 +241,15 @@ struct VocabCardView: View {
     private func secondaryLines(_ side: Side) -> some View {
         if let plural = side.plural {
             Text(plural)
-                .font(DL.Fonts.subheadline)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.subheadline)
+                .foregroundStyle(Theme.colors.textSecondary)
         }
         if let alternates = side.alternates {
             // why: matches the plural line — both belong to the reveal, so
             // neither shrinks below the size the learner has to read.
             Text(alternates)
-                .font(DL.Fonts.subheadline)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.subheadline)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)
         }
     }
@@ -294,12 +294,12 @@ struct VocabCardView: View {
     /// because the card flipped role.
     private func headlineText(_ side: Side, emphasized: Bool) -> Text {
         let word = Text(side.text)
-            .font(shared ? DL.Fonts.title : DL.Fonts.hero)
-            .foregroundStyle(emphasized ? Color.dlAccent : Color.dlTextPrimary)
+            .font(shared ? Theme.typography.title : Theme.typography.hero)
+            .foregroundStyle(emphasized ? Theme.colors.accent : Theme.colors.textPrimary)
         guard let article = side.article else { return word }
         return Text(verbatim: "\(article.text) ")
-            .font(shared ? DL.Fonts.title : DL.Fonts.hero)
-            .foregroundStyle(DL.genderColor(article.gender))
+            .font(shared ? Theme.typography.title : Theme.typography.hero)
+            .foregroundStyle(Theme.genderColor(article.gender))
             + word
     }
 }
@@ -309,11 +309,11 @@ struct VocabCardView: View {
 struct FeminineBadge: View {
     var body: some View {
         Text(verbatim: "♀")
-            .font(DL.Fonts.badge)
-            .foregroundStyle(Color.dlDie)
-            .padding(.horizontal, DL.Space.s)
-            .padding(.vertical, DL.Space.xs)
-            .background(Color.dlDie.opacity(0.14), in: Capsule())
+            .font(Theme.typography.badge)
+            .foregroundStyle(Theme.colors.die)
+            .padding(.horizontal, Theme.spacing.sm)
+            .padding(.vertical, Theme.spacing.xs)
+            .background(Theme.colors.die.opacity(0.14), in: Capsule())
             .accessibilityLabel("a11y.glyph.feminineForm")
     }
 }
@@ -366,11 +366,11 @@ struct ArticleBadge: View {
 
     var body: some View {
         Text(article.text)
-            .font(DL.Fonts.badge)
-            .foregroundStyle(Color.dlOnColor)
-            .padding(.horizontal, DL.Space.m)
-            .padding(.vertical, DL.Space.xs + 2)
-            .background(DL.genderColor(article.gender), in: Capsule())
+            .font(Theme.typography.badge)
+            .foregroundStyle(Theme.colors.onColor)
+            .padding(.horizontal, Theme.spacing.md)
+            .padding(.vertical, Theme.spacing.xs + 2)
+            .background(Theme.genderColor(article.gender), in: Capsule())
     }
 }
 
@@ -385,9 +385,9 @@ struct ArticleBadge: View {
         note: nil,
         revealed: false
     )
-    .padding(DL.Space.xl)
+    .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
 }
 
 #Preview("Shared screen · revealed") {
@@ -400,13 +400,13 @@ struct ArticleBadge: View {
         note: "wörtlich: kleines Bratgefäß",
         revealed: true
     )
-    .padding(DL.Space.xl)
+    .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
 }
 
 #Preview("Shared screen · with vs. without emoji") {
-    VStack(spacing: DL.Space.l) {
+    VStack(spacing: Theme.spacing.lg) {
         // Not-yet-sticking word: emoji as light support.
         VocabCardView(
             emoji: "🥄",
@@ -427,13 +427,13 @@ struct ArticleBadge: View {
             arrangement: .beside
         )
     }
-    .padding(DL.Space.xl)
+    .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
 }
 
 #Preview("Owns the screen · before and after the meaning") {
-    VStack(spacing: DL.Space.l) {
+    VStack(spacing: Theme.spacing.lg) {
         VocabCardView(
             emoji: "🍚",
             prompt: .init(text: "mchele"),
@@ -451,8 +451,8 @@ struct ArticleBadge: View {
             arrangement: .above
         )
     }
-    .padding(DL.Space.xl)
+    .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
     .preferredColorScheme(.dark)
 }

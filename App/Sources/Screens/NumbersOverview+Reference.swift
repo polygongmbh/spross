@@ -12,7 +12,7 @@ extension NumbersOverview {
     /// `NumberReferenceTable` — the same component the in-run "?" opens, so the
     /// two surfaces cannot show a learner two different pages.
     var referenceSection: some View {
-        VStack(alignment: .leading, spacing: DL.Space.l) {
+        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             heading("numbers.reference")
             NumberReferenceTable(language: language, voice: numberVoice)
         }
@@ -36,26 +36,26 @@ extension NumbersOverview {
     var notesSection: some View {
         let lines = model.catalog?.numberNotes(language: language, reader: model.sourceLanguage) ?? []
         if !lines.isEmpty {
-            VStack(alignment: .leading, spacing: DL.Space.l) {
+            VStack(alignment: .leading, spacing: Theme.spacing.lg) {
                 heading("numbers.notes")
-                VStack(alignment: .leading, spacing: DL.Space.m) {
+                VStack(alignment: .leading, spacing: Theme.spacing.md) {
                     ForEach(Array(lines.enumerated()), id: \.offset) { _, line in
-                        HStack(alignment: .firstTextBaseline, spacing: DL.Space.s) {
+                        HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.sm) {
                             Text(verbatim: "·")
-                                .foregroundStyle(Color.dlTextSecondary)
+                                .foregroundStyle(Theme.colors.textSecondary)
                                 .accessibilityHidden(true)
                             Text(verbatim: line)
-                                .font(DL.Fonts.subheadline)
-                                .foregroundStyle(Color.dlTextPrimary)
+                                .font(Theme.typography.subheadline)
+                                .foregroundStyle(Theme.colors.textPrimary)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                     }
                 }
-                .padding(DL.Space.l)
+                .padding(Theme.spacing.lg)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(
-                    RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                        .fill(Color.dlSurface)
+                    RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                        .fill(Theme.colors.surface)
                 )
             }
         }

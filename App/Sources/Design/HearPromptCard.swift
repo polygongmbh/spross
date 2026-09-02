@@ -54,15 +54,15 @@ struct HearPromptCard: View {
     var replayFocus: AccessibilityFocusState<Bool>.Binding
 
     var body: some View {
-        VStack(spacing: DL.Space.m) {
+        VStack(spacing: Theme.spacing.md) {
             caption
             replayGlyph
             // why: the gap word and the whole word occupy ONE slot — the answer
             // replaces the blank where it stood, so nothing below it moves.
             if let word = gapWord {
                 Text(verbatim: word)
-                    .font(DL.Fonts.Prompt.word)
-                    .foregroundStyle(revealed == nil ? Color.dlTextPrimary : Color.dlAccent)
+                    .font(Theme.prompt.word)
+                    .foregroundStyle(revealed == nil ? Theme.colors.textPrimary : Theme.colors.accent)
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
                     .contentTransition(.opacity)
@@ -74,8 +74,8 @@ struct HearPromptCard: View {
                 DLCardReveal(note: revealed.note) {
                     DLSpokenWord(pronounce: revealed.pronounce, isPlaying: revealed.isPlaying) {
                         Text(verbatim: revealed.word)
-                            .font(DL.Fonts.title)
-                            .foregroundStyle(Color.dlAccent)
+                            .font(Theme.typography.title)
+                            .foregroundStyle(Theme.colors.accent)
                             .multilineTextAlignment(.center)
                             .minimumScaleFactor(0.6)
                             .dlSpoken(revealed.word, language: language)
@@ -84,12 +84,12 @@ struct HearPromptCard: View {
                 .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
-        .padding(DL.Space.l)
+        .padding(Theme.spacing.lg)
         .frame(maxWidth: .infinity)
         // why: the sibling drill card's height — an ordinary question holds it
         // exactly, so a run sits still and a learner moving between the two
         // drills meets one layout. A gap word is what may still grow it.
-        .frame(minHeight: DL.Reserve.drillCard)
+        .frame(minHeight: Theme.reserve.drillCard)
         .dlCardSurface()
         .animation(.easeOut(duration: 0.25), value: revealed?.word)
     }
@@ -104,8 +104,8 @@ struct HearPromptCard: View {
 
     private var caption: some View {
         Text(question)
-            .font(DL.Fonts.caption)
-            .foregroundStyle(Color.dlTextSecondary)
+            .font(Theme.typography.caption)
+            .foregroundStyle(Theme.colors.textSecondary)
             .textCase(.uppercase)
             .multilineTextAlignment(.center)
     }
@@ -131,7 +131,7 @@ private struct HearPromptPreviewHost: View {
     @AccessibilityFocusState private var focus: Bool
 
     var body: some View {
-        VStack(spacing: DL.Space.xl) {
+        VStack(spacing: Theme.spacing.xl) {
             HearPromptCard(question: "letters.ask.hear", language: "uk",
                            replay: {}, replayFocus: $focus)
             HearPromptCard(question: "letters.ask.spell", language: "de",
@@ -145,9 +145,9 @@ private struct HearPromptPreviewHost: View {
                            revealed: .init(word: "lugha", note: "Sprache", pronounce: {}),
                            replay: {}, replayFocus: $focus)
         }
-        .padding(DL.Space.xl)
+        .padding(Theme.spacing.xl)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.dlBackground)
+        .background(Theme.colors.background)
     }
 }
 

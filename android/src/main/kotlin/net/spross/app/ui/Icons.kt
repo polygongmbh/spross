@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
  *
  * These are cut to one system instead: a 24 unit box, a 2 unit stroke, round caps and joins.
  * They are drawn in black and TINTED at the call site — `Icon` color-filters the whole
- * vector — so every glyph takes `Dl.colors` like the text it sits with.
+ * vector — so every glyph takes `Theme.colors` like the text it sits with.
  *
  * PICTURES are not affordances and stay emoji: the card's own illustration, the sprout, the
  * Workshop's 🔢 and 🔤. Those carry the app's warmth and the iOS cut keeps them too — it

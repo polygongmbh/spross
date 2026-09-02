@@ -164,7 +164,7 @@ private fun ReportIssueDialog(
         onDismissRequest = onDismiss,
         title = { Text(chrome.reportTitle) },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+            Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
                 // The word as it stood, so the report names what it is about without the
                 // learner having to retype it.
                 Text(card.target.text, style = MaterialTheme.typography.bodyLarge)

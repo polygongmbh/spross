@@ -24,7 +24,7 @@ struct DLSpokenWord<Word: View>: View {
 
     var body: some View {
         if pronounce != nil || badge != nil {
-            HStack(spacing: DL.Space.s) {
+            HStack(spacing: Theme.spacing.sm) {
                 accessories
                     .hidden()
                     .allowsHitTesting(false)
@@ -41,7 +41,7 @@ struct DLSpokenWord<Word: View>: View {
     /// layout, overhanging into the gap — at full width it would cost the word
     /// 104 pt of its line once mirrored.
     private var accessories: some View {
-        HStack(spacing: DL.Space.s) {
+        HStack(spacing: Theme.spacing.sm) {
             if let pronounce {
                 SpeakerIcon(size: .small, isPlaying: isPlaying, pronounce: pronounce)
                     .accessibilityLabel("a11y.action.pronounce")
@@ -139,26 +139,26 @@ extension View {
 // MARK: - Previews
 
 #Preview("Spoken word") {
-    VStack(spacing: DL.Space.xl) {
+    VStack(spacing: Theme.spacing.xl) {
         DLSpokenWord(pronounce: {}) {
             Text(verbatim: "billete")
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlAccent)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.accent)
         }
         DLSpokenWord(pronounce: {}, isPlaying: true) {
             Text(verbatim: "son las tres y cuarto")
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlAccent)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.accent)
                 .multilineTextAlignment(.center)
         }
         // Nothing to hear: no icon, no ballast — the word centers on its own.
         DLSpokenWord {
             Text(verbatim: "elfu mbili")
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlAccent)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.accent)
         }
     }
-    .padding(DL.Space.xl)
+    .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
 }

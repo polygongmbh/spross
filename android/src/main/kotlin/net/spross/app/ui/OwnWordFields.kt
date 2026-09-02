@@ -39,7 +39,7 @@ internal fun WordField(
     imeAction: ImeAction,
     modifier: Modifier = Modifier,
 ) {
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         FieldLabel(label)
         OutlinedTextField(
             value = value,
@@ -65,11 +65,11 @@ internal fun WordField(
  */
 @Composable
 internal fun PictureField(label: String, value: String, onValueChange: (String) -> Unit) {
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         FieldLabel(label)
         Row(
             modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
-            horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),
+            horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
         ) {
             OwnWords.QUICK_EMOJI.forEach { emoji ->
                 val picked = value == emoji
@@ -85,7 +85,7 @@ internal fun PictureField(label: String, value: String, onValueChange: (String) 
                             },
                         )
                         .clickable { onValueChange(emoji) }
-                        .padding(DlSpace.s),
+                        .padding(Theme.spacing.sm),
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(emoji, style = MaterialTheme.typography.titleMedium)

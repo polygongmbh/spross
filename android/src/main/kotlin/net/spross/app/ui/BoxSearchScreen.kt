@@ -99,8 +99,8 @@ fun BoxSearchScreen(
     }
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(horizontal = DlSpace.xl),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+        modifier = Modifier.fillMaxSize().padding(horizontal = Theme.spacing.xl),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
@@ -134,7 +134,7 @@ fun BoxSearchScreen(
         // why: read once into a local — the state itself is delegated, so the branches
         // below could not narrow it.
         val found = results
-        LazyColumn(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
+        LazyColumn(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
             when {
                 found == null -> item {
                     SearchNote(chrome.boxSearchHint)
@@ -143,7 +143,7 @@ fun BoxSearchScreen(
                 found.isEmpty -> item {
                     // A box with no answer is where the learner's own words come from:
                     // they have just proved the catalog holds none for what they need.
-                    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.l)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
                         SearchNote(chrome.boxSearchNothing.format(query))
                         Button(
                             // why: the KNOWN side is prefilled — someone typing into a
@@ -198,7 +198,7 @@ private fun Heading(text: String) {
         text.uppercase(),
         style = MaterialTheme.typography.labelMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
-        modifier = Modifier.padding(top = DlSpace.s),
+        modifier = Modifier.padding(top = Theme.spacing.sm),
     )
 }
 
@@ -208,7 +208,7 @@ private fun SearchNote(text: String) {
         text,
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
-        modifier = Modifier.padding(top = DlSpace.l),
+        modifier = Modifier.padding(top = Theme.spacing.lg),
     )
 }
 
@@ -228,7 +228,7 @@ private fun AreaHit(
             .clickable(onClick = onOpen),
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth().padding(DlSpace.l),
+            modifier = Modifier.fillMaxWidth().padding(Theme.spacing.lg),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             AreaChip(

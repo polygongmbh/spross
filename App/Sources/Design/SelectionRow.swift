@@ -32,7 +32,7 @@ struct DLSelectionRow: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: DL.Space.m) {
+            HStack(spacing: Theme.spacing.md) {
                 if let symbol {
                     Image(systemName: symbol)
                         .font(.title3)
@@ -40,12 +40,12 @@ struct DLSelectionRow: View {
                 }
                 VStack(alignment: .leading, spacing: 2) {
                     title
-                        .font(DL.Fonts.headline)
+                        .font(Theme.typography.headline)
                         .foregroundStyle(titleColor)
                     if let caption {
                         caption
-                            .font(DL.Fonts.caption)
-                            .foregroundStyle(Color.dlTextSecondary)
+                            .font(Theme.typography.caption)
+                            .foregroundStyle(Theme.colors.textSecondary)
                     }
                 }
                 .multilineTextAlignment(.leading)
@@ -54,10 +54,10 @@ struct DLSelectionRow: View {
                 if isFold {
                     Image(systemName: "chevron.right")
                         .font(.caption2)
-                        .foregroundStyle(Color.dlTextSecondary)
+                        .foregroundStyle(Theme.colors.textSecondary)
                 }
             }
-            .padding(DL.Space.m)
+            .padding(Theme.spacing.md)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(background)
         }
@@ -79,17 +79,17 @@ struct DLSelectionRow: View {
         }
     }
 
-    private var markColor: Color { selected ? .dlAccent : .dlTextSecondary }
+    private var markColor: Color { selected ? Theme.colors.accent : Theme.colors.textSecondary }
 
     /// A locked row is readable but plainly out of reach — its caption says why.
-    private var titleColor: Color { isLocked ? .dlTextSecondary : .dlTextPrimary }
+    private var titleColor: Color { isLocked ? Theme.colors.textSecondary : Theme.colors.textPrimary }
 
     private var background: some View {
-        RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-            .fill(selected ? Color.dlSurfaceTint : Color.dlSurface)
+        RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+            .fill(selected ? Theme.colors.surfaceTint : Theme.colors.surface)
             .overlay(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .strokeBorder(selected ? Color.dlAccent : Color.dlSeparator,
+                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                    .strokeBorder(selected ? Theme.colors.accent : Theme.colors.separator,
                                   lineWidth: selected ? 2 : 1)
             )
     }

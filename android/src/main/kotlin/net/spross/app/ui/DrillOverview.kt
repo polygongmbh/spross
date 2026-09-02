@@ -56,7 +56,7 @@ fun OverviewScaffold(
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         Row(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = DlSpace.s),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = Theme.spacing.sm),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             DrillCloseButton(chrome, onClose)
@@ -64,7 +64,7 @@ fun OverviewScaffold(
                 title,
                 style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.weight(1f).padding(horizontal = DlSpace.s),
+                modifier = Modifier.weight(1f).padding(horizontal = Theme.spacing.sm),
             )
             TextButton(onClick = onStart, enabled = startEnabled) {
                 Text(chrome.trainerOverviewStart)
@@ -74,8 +74,8 @@ fun OverviewScaffold(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(scroll)
-                .padding(DlSpace.xl),
-            verticalArrangement = Arrangement.spacedBy(DlSpace.xl),
+                .padding(Theme.spacing.xl),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
             content = content,
         )
     }
@@ -101,8 +101,8 @@ fun OverviewPanel(content: @Composable ColumnScope.() -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .panel()
-            .padding(DlSpace.l),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.l),
+            .padding(Theme.spacing.lg),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
         content = content,
     )
 }
@@ -140,9 +140,9 @@ fun SelectionRow(
             .fillMaxWidth()
             .heightIn(min = 48.dp)
             .then(tap)
-            .padding(vertical = DlSpace.xs),
+            .padding(vertical = Theme.spacing.xs),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         // why: the control carries no click of its own — the row owns the tap and the
         // role, so TalkBack reads one target instead of two that do the same thing.
@@ -155,10 +155,10 @@ fun SelectionRow(
             Text(
                 title,
                 style = MaterialTheme.typography.titleMedium,
-                color = if (open) Dl.colors.textPrimary else Dl.colors.textSecondary,
+                color = if (open) Theme.colors.textPrimary else Theme.colors.textSecondary,
             )
             caption?.let {
-                Text(it, style = MaterialTheme.typography.bodySmall, color = Dl.colors.textSecondary)
+                Text(it, style = MaterialTheme.typography.bodySmall, color = Theme.colors.textSecondary)
             }
         }
     }
@@ -188,15 +188,15 @@ fun ModifierSwitchRow(
             // TalkBack two stops for one thing, and the smaller of them is the tappable one.
             .toggleable(value = on, enabled = open, role = Role.Switch, onValueChange = onChange),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
             Text(
                 if (open) title else "$LOCK $title",
                 style = MaterialTheme.typography.titleMedium,
-                color = if (open) Dl.colors.textPrimary else Dl.colors.textSecondary,
+                color = if (open) Theme.colors.textPrimary else Theme.colors.textSecondary,
             )
-            Text(caption, style = MaterialTheme.typography.bodySmall, color = Dl.colors.textSecondary)
+            Text(caption, style = MaterialTheme.typography.bodySmall, color = Theme.colors.textSecondary)
         }
         Switch(
             checked = on,
@@ -213,7 +213,7 @@ fun OverviewNote(text: String, modifier: Modifier = Modifier) {
     Text(
         text,
         style = MaterialTheme.typography.bodySmall,
-        color = Dl.colors.textSecondary,
+        color = Theme.colors.textSecondary,
         modifier = modifier.fillMaxWidth(),
     )
 }

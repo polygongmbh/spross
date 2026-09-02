@@ -55,7 +55,7 @@ struct SpeakerIcon: View {
         Button { pronounce?() } label: {
             Image(systemName: "speaker.wave.2.fill")
                 .font(.system(size: size.pointSize, weight: .semibold))
-                .foregroundStyle(size == .small ? Color.dlTextSecondary : Color.dlAccent)
+                .foregroundStyle(size == .small ? Theme.colors.textSecondary : Theme.colors.accent)
                 .opacity(pronounce == nil ? 0.35 : 1)
                 .scaleEffect(pulsing ? 1.16 : 1.0)
                 .animation(
@@ -77,18 +77,18 @@ struct SpeakerIcon: View {
 // MARK: - Previews
 
 #Preview("Speaker icon") {
-    VStack(spacing: DL.Space.xl) {
-        HStack(spacing: DL.Space.l) {
+    VStack(spacing: Theme.spacing.xl) {
+        HStack(spacing: Theme.spacing.lg) {
             SpeakerIcon(size: .small, isPlaying: false, pronounce: {})
             SpeakerIcon(size: .small, isPlaying: true, pronounce: {})
         }
-        HStack(spacing: DL.Space.l) {
+        HStack(spacing: Theme.spacing.lg) {
             SpeakerIcon(size: .large, isPlaying: false, pronounce: {})
             SpeakerIcon(size: .large, isPlaying: true, pronounce: {})
             SpeakerIcon(size: .large, isPlaying: false, pronounce: nil)
         }
     }
-    .padding(DL.Space.xl)
+    .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
 }

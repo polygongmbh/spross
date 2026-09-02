@@ -12,22 +12,22 @@ import SprossKern
 extension LettersOverview {
 
     var practiceSection: some View {
-        VStack(alignment: .leading, spacing: DL.Space.l) {
+        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             heading("trainer.overview.practice")
-            VStack(alignment: .leading, spacing: DL.Space.l) {
+            VStack(alignment: .leading, spacing: Theme.spacing.lg) {
                 ForEach(Self.stages, id: \.self) { stageRow($0) }
             }
-            .padding(DL.Space.l)
+            .padding(Theme.spacing.lg)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(Color.dlSurface)
+                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                    .fill(Theme.colors.surface)
             )
             startButton
             if !drillAvailable {
                 Text("letters.unavailable")
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
@@ -51,17 +51,17 @@ extension LettersOverview {
         let open = reachable(stage)
         let entry = open && stage == entryStage
         let step = (Self.stages.firstIndex(of: stage) ?? 0) + 1
-        return HStack(alignment: .firstTextBaseline, spacing: DL.Space.m) {
+        return HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.md) {
             Image(systemName: open ? "\(step).circle\(entry ? ".fill" : "")" : "lock.fill")
                 .font(.title3)
-                .foregroundStyle(entry ? Color.dlAccent : Color.dlTextSecondary)
+                .foregroundStyle(entry ? Theme.colors.accent : Theme.colors.textSecondary)
             VStack(alignment: .leading, spacing: 2) {
                 Text(Self.title(stage))
-                    .font(DL.Fonts.headline)
-                    .foregroundStyle(open ? Color.dlTextPrimary : Color.dlTextSecondary)
+                    .font(Theme.typography.headline)
+                    .foregroundStyle(open ? Theme.colors.textPrimary : Theme.colors.textSecondary)
                 caption(stage, entry: entry, open: open)
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer(minLength: 0)

@@ -22,9 +22,9 @@ import kotlin.math.roundToInt
 import net.spross.app.Chrome
 import net.spross.app.ui.ActivityBar
 import net.spross.app.ui.ActivityBars
-import net.spross.app.ui.DlColors
-import net.spross.app.ui.DlDark
-import net.spross.app.ui.DlLight
+import net.spross.app.ui.ThemeColors
+import net.spross.app.ui.ThemeDark
+import net.spross.app.ui.ThemeLight
 import net.spross.kern.box.ActivityDay
 
 /** The tallest a bar grows here — a header's worth, not the app strip's 52. */
@@ -78,7 +78,7 @@ fun ActivityStrip(days: List<ActivityDay>, chrome: Chrome) {
  * period, which is when a phone that changed scheme picks the other column up.
  */
 private fun render(bars: List<ActivityBar>, context: Context): Bitmap {
-    val palette = if (context.isNight) DlDark else DlLight
+    val palette = if (context.isNight) ThemeDark else ThemeLight
     val density = context.resources.displayMetrics.density
     val barPx = BAR_WIDTH.value * density
     val gutterPx = GUTTER.value * density
@@ -109,7 +109,7 @@ private fun barHeight(bar: ActivityBar): Float =
     if (bar.reviews > 0) max(MIN_BAR.value, HEIGHT.value * bar.scaled) else STUB.value
 
 /** Today takes the accent, every other worked day the forest green, an empty day the rule. */
-private fun fill(bar: ActivityBar, palette: DlColors) = when {
+private fun fill(bar: ActivityBar, palette: ThemeColors) = when {
     bar.reviews == 0 -> palette.separator
     bar.isToday -> palette.accent.copy(alpha = bar.fillOpacity)
     else -> palette.success.copy(alpha = bar.fillOpacity)

@@ -106,7 +106,7 @@ fun NumbersOverviewScreen(model: AppModel) {
         result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
 
         OverviewHeading(chrome.trainerOverviewPractice)
-        Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
+        Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
             for (variant in offered) {
                 VariantRow(variant, chrome, ladder, combining, variant in picked) {
                     pickedNames = DrillSelection

@@ -49,22 +49,33 @@ DROID_PRIMS = ["CardFace", "CardReveal", "EmojiSlot", "SpokenWord", "Headword", 
 
 # Sizes a card may state inline: a hit target and a hairline are device facts, not design.
 ALLOW = {"0", "1", "44", "48"}
+
+# Token group → the type that declares it. Both phones spell these alike, so one
+# name reaches the Swift struct and the Kotlin class both.
+GROUPS = (("spacing", "Spacing"), ("reserve", "Reserve"), ("radius", "Radius"))
 WAIVER = "card-parity:"
 
 # (pattern, what it should have said, token table to rewrite from) — group 1 is the number.
 IOS_RULES = [
-    (re.compile(r"\.font\(\s*\.system\(size:\s*(\d+)"), "a DL.Fonts role", None),
-    (re.compile(r"(?:spacing|padding)\(\s*(\d+(?:\.\d+)?)\s*\)"), "DL.Space", "DL.Space."),
-    (re.compile(r"minHeight:\s*(\d+(?:\.\d+)?)\b"), "DL.Reserve", "DL.Reserve."),
-    (re.compile(r"cornerRadius:\s*(\d+(?:\.\d+)?)"), "DL.Radius", "DL.Radius."),
+    (re.compile(r"\.font\(\s*\.system\(size:\s*(\d+)"), "a Theme.typography role", None, None),
+    (re.compile(r"(?:spacing|padding)\(\s*(\d+(?:\.\d+)?)\s*\)"),
+     "Theme.spacing", "Theme.spacing.", "spacing"),
+    (re.compile(r"minHeight:\s*(\d+(?:\.\d+)?)\b"), "Theme.reserve", "Theme.reserve.", "reserve"),
+    (re.compile(r"cornerRadius:\s*(\d+(?:\.\d+)?)"), "Theme.radius", "Theme.radius.", "radius"),
 ]
 DROID_RULES = [
-    (re.compile(r"fontSize\s*=\s*(\d+(?:\.\d+)?)\.sp"), "a typography role or DlPrompt", None),
-    (re.compile(r"spacedBy\(\s*(\d+(?:\.\d+)?)\.dp"), "DlSpace", "DlSpace."),
-    (re.compile(r"\.padding\(\s*(\d+(?:\.\d+)?)\.dp"), "DlSpace", "DlSpace."),
-    (re.compile(r"heightIn\(\s*min\s*=\s*(\d+(?:\.\d+)?)\.dp"), "DlReserve", "DlReserve."),
-    (re.compile(r"private val [A-Z_]*CARD[A-Z_]*\s*=\s*(\d+(?:\.\d+)?)\.dp"), "DlReserve", "DlReserve."),
-    (re.compile(r"RoundedCornerShape\(\s*(\d+(?:\.\d+)?)\.dp"), "MaterialTheme.shapes", None),
+    (re.compile(r"fontSize\s*=\s*(\d+(?:\.\d+)?)\.sp"),
+     "a typography role or Theme.prompt", None, None),
+    (re.compile(r"spacedBy\(\s*(\d+(?:\.\d+)?)\.dp"),
+     "Theme.spacing", "Theme.spacing.", "spacing"),
+    (re.compile(r"\.padding\(\s*(\d+(?:\.\d+)?)\.dp"),
+     "Theme.spacing", "Theme.spacing.", "spacing"),
+    (re.compile(r"heightIn\(\s*min\s*=\s*(\d+(?:\.\d+)?)\.dp"),
+     "Theme.reserve", "Theme.reserve.", "reserve"),
+    (re.compile(r"private val [A-Z_]*CARD[A-Z_]*\s*=\s*(\d+(?:\.\d+)?)\.dp"),
+     "Theme.reserve", "Theme.reserve.", "reserve"),
+    (re.compile(r"RoundedCornerShape\(\s*(\d+(?:\.\d+)?)\.dp"),
+     "MaterialTheme.shapes", None, None),
 ]
 
 
@@ -84,14 +95,15 @@ def block(text, opener, closer, pattern):
 def tables():
     """Both token tables, read as text, keyed by family and token name."""
     swift, kotlin = read(CANON), read(DROID)
-    swift_token = r"static let (\w+): CGFloat = (\d+)"
+    swift_token = r"let (\w+): CGFloat = (\d+)"
     kotlin_token = r"val (\w+) = (\d+)\.dp"
-    ios = {family: block(swift, f"enum {family} {{", "\n    }", swift_token)
-           for family in ("Space", "Reserve", "Radius")}
-    droid = {family: block(kotlin, f"object Dl{family} {{", "\n}", kotlin_token)
-             for family in ("Space", "Reserve")}
+    ios = {group: block(swift, f"struct {struct} {{", "\n    }", swift_token)
+           for group, struct in GROUPS}
+    droid = {group: block(kotlin, f"class {struct} internal constructor() {{",
+                          "\n    }", kotlin_token)
+             for group, struct in GROUPS if group != "radius"}
     # Compose has no radius table of its own: the family IS `Shapes`, one slot per size.
-    droid["Radius"] = {ios_name: found[0] for ios_name, shape in
+    droid["radius"] = {ios_name: found[0] for ios_name, shape in
                        (("card", "large"), ("tile", "medium"), ("control", "small"))
                        if (found := re.findall(rf"\b{shape} = RoundedCornerShape\((\d+)\.dp\)", kotlin))}
     return ios, droid
@@ -100,7 +112,7 @@ def tables():
 def parity(ios, droid, report):
     """Every token one table names, the other names too — with the same number."""
     bad = 0
-    for family in ("Space", "Radius", "Reserve"):
+    for family, _ in GROUPS:
         for name in sorted(set(ios[family]) | set(droid[family])):
             here, there = ios[family].get(name), droid[family].get(name)
             if here == there:
@@ -121,15 +133,15 @@ def scan(files, rules, prims, tokens, report, fix):
             stripped = line.strip()
             if stripped.startswith(("//", "*", "/*")) or WAIVER in line:
                 continue
-            for pattern, wanted, prefix in rules:
+            for pattern, wanted, prefix, group in rules:
                 for match in list(pattern.finditer(line)):
                     value = match.group(1)
                     if value.rstrip("0").rstrip(".") in ALLOW or value in ALLOW:
                         continue
-                    named = prefix and named_token(tokens, prefix, value)
+                    named = prefix and named_token(tokens, prefix, group, value)
                     if fix and named:
                         # The token carries its own unit, so a `.dp`/`.sp` behind the
-                        # number goes with it — `DlSpace.s.dp` compiles as neither.
+                        # number goes with it — `Theme.spacing.sm.dp` compiles as neither.
                         end = match.end(1)
                         end += 3 if line[end:end + 3] in (".dp", ".sp") else 0
                         lines[n] = line = line[:match.start(1)] + named + line[end:]
@@ -148,10 +160,9 @@ def scan(files, rules, prims, tokens, report, fix):
     return bad
 
 
-def named_token(tokens, prefix, value):
+def named_token(tokens, prefix, group, value):
     """The token name a raw number already has, if one of the tables owns it."""
-    family = prefix.rstrip(".").split(".")[-1].replace("Dl", "")
-    for name, number in tokens.get(family, {}).items():
+    for name, number in tokens.get(group, {}).items():
         if number == value.rstrip("0").rstrip("."):
             return prefix + name
     return None

@@ -105,8 +105,8 @@ fun LetterDrillScreen(model: AppModel) {
     }
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(DlSpace.l),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+        modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         DrillTopBar(model, state.outcomes, state.tally, leave)
         DrillStreakLine(null, state.streak, state.bestStreak, chrome)
@@ -146,7 +146,7 @@ private fun Run(
 
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.l),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
     ) {
         HearPrompt(model, flow, task, chrome, replayFocus)
         when (task.stage) {
@@ -158,7 +158,7 @@ private fun Run(
         // The way out, where it is wanted: under the button that goes on, on the second
         // miss in a row — kern decides which moment that is.
         if (state.offersFinish) DrillStopOffer(chrome, onFinish)
-        Spacer(Modifier.height(DlSpace.s))
+        Spacer(Modifier.height(Theme.spacing.sm))
     }
 }
 
@@ -187,12 +187,12 @@ private fun HearPrompt(
         Text(
             "$question · ${chrome.lettersPromptInLanguage.format(language)}",
             style = MaterialTheme.typography.bodySmall,
-            color = Dl.colors.textSecondary,
+            color = Theme.colors.textSecondary,
             textAlign = TextAlign.Center,
         )
         ReplayButton(chrome, replay, replayFocus)
         task.gapText?.let {
-            Text(localizedTarget(it, task.language), fontSize = DlPrompt.word, fontWeight = FontWeight.Bold)
+            Text(localizedTarget(it, task.language), fontSize = Theme.prompt.word, fontWeight = FontWeight.Bold)
         }
         if (model.pronouncer.muted) UnmuteRow(model, task, chrome)
         if (flow.state.showsAnswer) {
@@ -203,7 +203,7 @@ private fun HearPrompt(
                     Text(
                         localizedTarget(task.display, task.language),
                         style = MaterialTheme.typography.titleLarge,
-                        color = Dl.colors.accent,
+                        color = Theme.colors.accent,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.weight(1f, fill = false),
                     )
@@ -225,7 +225,7 @@ private fun ReplayButton(chrome: Chrome, replay: (() -> Unit)?, focus: FocusRequ
             // asks you to LISTEN to, and a solid clay disc reads as the button to press
             // next. Disabled keeps the recessed chip fill, so the state still shows.
             .background(
-                if (enabled) Dl.colors.wash(Dl.colors.accent) else MaterialTheme.colorScheme.surfaceVariant,
+                if (enabled) Theme.colors.wash(Theme.colors.accent) else MaterialTheme.colorScheme.surfaceVariant,
                 CircleShape,
             )
             // why: focusable in BOTH states — a disabled clickable carries no focus target,
@@ -243,7 +243,7 @@ private fun ReplayButton(chrome: Chrome, replay: (() -> Unit)?, focus: FocusRequ
         Icon(
             SprossIcons.Speaker,
             contentDescription = null,
-            tint = if (enabled) Dl.colors.accent else Dl.colors.textSecondary,
+            tint = if (enabled) Theme.colors.accent else Theme.colors.textSecondary,
             modifier = Modifier.size(40.dp),
         )
     }
@@ -256,10 +256,10 @@ private fun ReplayButton(chrome: Chrome, replay: (() -> Unit)?, focus: FocusRequ
 @Composable
 private fun UnmuteRow(model: AppModel, task: LetterDrillTask, chrome: Chrome) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(DlSpace.s),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(chrome.lettersMutedTitle, style = MaterialTheme.typography.bodyMedium, color = Dl.colors.textSecondary)
+        Text(chrome.lettersMutedTitle, style = MaterialTheme.typography.bodyMedium, color = Theme.colors.textSecondary)
         OutlinedButton(
             onClick = {
                 model.pronouncer.muted = false

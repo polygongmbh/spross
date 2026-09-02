@@ -33,22 +33,22 @@ struct ReportIssueSheet: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: DL.Space.xl) {
+                VStack(alignment: .leading, spacing: Theme.spacing.xl) {
                     pair
                     commentField
                     if !learnerInput.isEmpty {
                         typedLine
                     }
                     Text("report.explainer")
-                        .font(DL.Fonts.caption)
-                        .foregroundStyle(Color.dlTextSecondary)
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
                     if onFile {
                         withdraw
                     }
                 }
-                .padding(DL.Space.xl)
+                .padding(Theme.spacing.xl)
             }
-            .background(Color.dlBackground.ignoresSafeArea())
+            .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle("report.title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -60,7 +60,7 @@ struct ReportIssueSheet: View {
                 }
             }
         }
-        .tint(.dlAccent)
+        .tint(Theme.colors.accent)
         .onAppear {
             comment = filed
             focused = true
@@ -79,7 +79,7 @@ struct ReportIssueSheet: View {
             dismiss()
         } label: {
             Label("report.dismiss", systemImage: "checkmark.bubble")
-                .font(DL.Fonts.body)
+                .font(Theme.typography.body)
         }
     }
 
@@ -88,44 +88,44 @@ struct ReportIssueSheet: View {
     private var pair: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(card.target.text)
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.body)
+                .foregroundStyle(Theme.colors.textPrimary)
             Text(card.source.text)
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
         }
     }
 
     private var commentField: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             Text("report.comment")
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
             TextField(text: $comment, axis: .vertical) { EmptyView() }
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.body)
+                .foregroundStyle(Theme.colors.textPrimary)
                 .lineLimit(3...6)
                 .focused($focused)
-                .padding(DL.Space.l)
+                .padding(Theme.spacing.lg)
                 .background(
-                    RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                        .fill(Color.dlSurface)
+                    RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                        .fill(Theme.colors.surface)
                 )
                 .overlay(
-                    RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                        .strokeBorder(Color.dlSeparator, lineWidth: 1)
+                    RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                        .strokeBorder(Theme.colors.separator, lineWidth: 1)
                 )
         }
     }
 
     private var typedLine: some View {
-        HStack(spacing: DL.Space.xs) {
+        HStack(spacing: Theme.spacing.xs) {
             Text("report.typed")
             Text(verbatim: learnerInput)
-                .foregroundStyle(Color.dlTextPrimary)
+                .foregroundStyle(Theme.colors.textPrimary)
         }
-        .font(DL.Fonts.caption)
-        .foregroundStyle(Color.dlTextSecondary)
+        .font(Theme.typography.caption)
+        .foregroundStyle(Theme.colors.textSecondary)
     }
 
     private func file() {

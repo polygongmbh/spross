@@ -28,18 +28,18 @@ struct ActivityStripView: View {
 
     @Environment(\.locale) private var locale
 
-    private static let barSpacing = DL.Space.xs + 2
+    private static let barSpacing = Theme.spacing.xs + 2
     private static let maxBarHeight: CGFloat = 52
 
     var body: some View {
         let maxReviews = max(days.map(\.reviews).max() ?? 1, 1)
 
-        VStack(alignment: .leading, spacing: DL.Space.m) {
-            HStack(spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.md) {
+            HStack(spacing: Theme.spacing.sm) {
                 Text("progress.last14Days")
-                    .font(DL.Fonts.title)
-                    .foregroundStyle(Color.dlTextPrimary)
-                Spacer(minLength: DL.Space.s)
+                    .font(Theme.typography.title)
+                    .foregroundStyle(Theme.colors.textPrimary)
+                Spacer(minLength: Theme.spacing.sm)
                 if streakDays > 0 {
                     streakBadge
                 }
@@ -58,10 +58,10 @@ struct ActivityStripView: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .padding(DL.Space.l)
+        .padding(Theme.spacing.lg)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                .fill(Color.dlSurface)
+            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                .fill(Theme.colors.surface)
         )
         .dlCardShadow()
         .accessibilityElement(children: .combine)
@@ -73,15 +73,15 @@ struct ActivityStripView: View {
         // MARK is the warning, and fading the number only costs contrast.
         // Two views rather than one concatenated Text: grayscale is a View modifier,
         // and the emoji is the only half that wears it.
-        HStack(spacing: DL.Space.xs) {
+        HStack(spacing: Theme.spacing.xs) {
             Text(verbatim: "🔥")
                 .grayscale(flame.grayscale)
                 .opacity(flame.opacity)
             (Text(streakDays.formatted()) + Text(verbatim: " ")
                 + Text(streakDays == 1 ? "common.day.one" : "common.day.other"))
-                .foregroundStyle(Color.dlAccent)
+                .foregroundStyle(Theme.colors.accent)
         }
-        .font(DL.Fonts.caption)
+        .font(Theme.typography.caption)
         .lineLimit(1)
         .accessibilityHidden(true) // why: the combined strip label names the streak
     }
@@ -107,8 +107,8 @@ struct ActivityStripView: View {
         var color: Color? {
             switch self {
             case .none: return nil
-            case .current: return .dlAccent
-            case .past: return .dlSuccess
+            case .current: return Theme.colors.accent
+            case .past: return Theme.colors.success
             }
         }
     }
@@ -126,12 +126,12 @@ struct ActivityStripView: View {
                            run: RunStyle,
                            joinsLeft: Bool,
                            joinsRight: Bool) -> some View {
-        VStack(spacing: DL.Space.xs) {
+        VStack(spacing: Theme.spacing.xs) {
             bar(entry, maxReviews: maxReviews, isToday: isToday)
             runSegment(run, joinsLeft: joinsLeft, joinsRight: joinsRight)
             Text(weekdayLetter(entry.day))
                 .font(.system(size: 9, weight: .medium, design: .rounded))
-                .foregroundStyle(isToday ? Color.dlAccent : Color.dlTextSecondary)
+                .foregroundStyle(isToday ? Theme.colors.accent : Theme.colors.textSecondary)
         }
         .frame(maxWidth: .infinity)
     }
@@ -144,7 +144,7 @@ struct ActivityStripView: View {
         let share = Double(entry.reviews) / Double(maxReviews)
         let scaled = share > 0 ? share.squareRoot() : 0
         let height = entry.reviews > 0 ? max(10, Self.maxBarHeight * scaled) : 6
-        let hue = isToday ? Color.dlAccent : Color.dlSuccess
+        let hue = isToday ? Theme.colors.accent : Theme.colors.success
         let shape = RoundedRectangle(cornerRadius: 3, style: .continuous)
         return Group {
             if entry.reviews > 0 {
@@ -152,9 +152,9 @@ struct ActivityStripView: View {
             } else if isToday {
                 // why: an empty today reads as "nothing yet", not as a gap — an
                 // outline keeps the column present without claiming a review.
-                shape.strokeBorder(Color.dlAccent.opacity(0.5), lineWidth: 1.5)
+                shape.strokeBorder(Theme.colors.accent.opacity(0.5), lineWidth: 1.5)
             } else {
-                shape.fill(Color.dlSeparator)
+                shape.fill(Theme.colors.separator)
             }
         }
         .frame(height: height)
@@ -190,7 +190,7 @@ struct ActivityStripView: View {
         let day = calendar.date(byAdding: .day, value: offset - 13, to: today)!
         return ActivityColumn(day: day, reviews: counts[offset], inStreak: true)
     }
-    return VStack(spacing: DL.Space.l) {
+    return VStack(spacing: Theme.spacing.lg) {
         ActivityStripView(days: days, streakDays: 11)
         ActivityStripView(days: days, streakDays: 11, flame: .atRisk)
         ActivityStripView(days: days.map {
@@ -198,5 +198,5 @@ struct ActivityStripView: View {
         })
     }
     .padding()
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
 }

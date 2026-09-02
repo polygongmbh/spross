@@ -36,7 +36,7 @@ struct ConfettiView: View {
 
     /// Poster palette, minus the wrong-answer brick. Paper, not signal color.
     private static let palette: [Color] = [
-        .dlAccent, .dlTeal, .dlSuccess, .dlAmber, .dlDer, .dlDie, .dlDas,
+        Theme.colors.accent, Theme.colors.teal, Theme.colors.success, Theme.colors.amber, Theme.colors.der, Theme.colors.die, Theme.colors.das,
     ]
 
     /// Emission window plus the longest fall still to come after it.
@@ -141,7 +141,7 @@ struct ConfettiView: View {
 
 #Preview("Confetti") {
     ZStack {
-        Color.dlBackground.ignoresSafeArea()
+        Theme.colors.background.ignoresSafeArea()
         ConfettiView()
     }
 }

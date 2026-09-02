@@ -65,42 +65,42 @@ struct SessionCompletionView: View {
     }
 
     var body: some View {
-        VStack(spacing: DL.Space.xl) {
+        VStack(spacing: Theme.spacing.xl) {
             Spacer()
             // why: the tree takes the hero slot when the round grew an area —
             // a party popper is the same picture whatever the learner did, and
             // two celebratory graphics on one screen is one too many.
             if grownArea == nil { burstHero } else { grownAreaHero }
             Text("session.done.title")
-                .font(DL.Fonts.hero)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.hero)
+                .foregroundStyle(Theme.colors.textPrimary)
             summaryText
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.body)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)
-            VStack(spacing: DL.Space.s) {
+            VStack(spacing: Theme.spacing.sm) {
                 // why: reaching this screen means a round was just answered, so
                 // today has reviews by construction — the flame is lit or nothing.
                 StreakFlameView(days: streakDays, flame: .lit)
                 if streakIsRecord {
                     Text("session.done.streakRecord")
-                        .font(DL.Fonts.headline)
-                        .foregroundStyle(Color.dlAccent)
+                        .font(Theme.typography.headline)
+                        .foregroundStyle(Theme.colors.accent)
                 }
             }
             if restSuggested {
                 Text("session.done.restHint")
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
                     .multilineTextAlignment(.center)
             }
             Spacer()
             SessionExitButtons(onDone: onDone,
                                onPractice: canPracticeMore ? onPractice : nil)
         }
-        .padding(DL.Space.xl)
+        .padding(Theme.spacing.xl)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.dlBackground.ignoresSafeArea())
+        .background(Theme.colors.background.ignoresSafeArea())
         .overlay(ConfettiView(run: celebration).ignoresSafeArea())
         .contentShape(Rectangle())
         .onTapGesture(perform: replay)
@@ -133,7 +133,7 @@ struct SessionCompletionView: View {
     @ViewBuilder
     private var grownAreaHero: some View {
         if let grownArea, !grownArea.after.isBare {
-            VStack(spacing: DL.Space.s) {
+            VStack(spacing: Theme.spacing.sm) {
                 GrowingTreeView(transition: grownArea,
                                 progress: burst || reduceMotion ? 1 : 0)
                     .frame(height: ForestLayout.heroHeight(grownArea.after))
@@ -142,11 +142,11 @@ struct SessionCompletionView: View {
                                value: burst)
                 VStack(spacing: 2) {
                     Text(growthHeadline)
-                        .font(DL.Fonts.headline)
-                        .foregroundStyle(Color.dlTextPrimary)
+                        .font(Theme.typography.headline)
+                        .foregroundStyle(Theme.colors.textPrimary)
                     Text(verbatim: "\(grownArea.after.emoji) \(grownArea.after.title)")
-                        .font(DL.Fonts.caption)
-                        .foregroundStyle(Color.dlTextSecondary)
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
                 }
             }
             .accessibilityElement(children: .combine)

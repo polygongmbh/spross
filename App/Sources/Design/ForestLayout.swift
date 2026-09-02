@@ -175,7 +175,7 @@ enum ForestLayout {
     static let minCellWidth: CGFloat = 52
     static let rowHeight: CGFloat = 70
     static let labelHeight: CGFloat = 18
-    static let rowGap: CGFloat = DL.Space.s
+    static let rowGap: CGFloat = Theme.spacing.sm
 
     /// Tree heights, foot to crown. The floor is a seedling; the ceiling keeps
     /// the tallest area inside its row instead of towering over the others.

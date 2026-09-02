@@ -53,7 +53,7 @@ import net.spross.kern.model.articleGender
  * picks between them, [SprossTheme] provides the one the system asked for.
  */
 @Immutable
-class DlColors(
+class ThemeColors(
     /** Screen background — stone paper with a moss cast, never plain white or gray. */
     val background: Color,
     /** Card and panel fill. */
@@ -113,14 +113,14 @@ private fun Int.opaque(): Color = Color(0xFF000000L or toLong())
  * A kern [Swatch] in the scheme currently on screen.
  *
  * Reads the system setting [SprossTheme] itself reads, so a color resolved here and one
- * taken from [Dl.colors] can never land in different columns of the same table.
+ * taken from [Theme.colors] can never land in different columns of the same table.
  */
 @Composable
 @ReadOnlyComposable
 fun Swatch.tint(): Color = if (isSystemInDarkTheme()) dark.opaque() else light.opaque()
 
 /** The light column of the canonical table. */
-val DlLight = DlColors(
+val ThemeLight = ThemeColors(
     background = Palette.background.light.opaque(),
     surface = Palette.surface.light.opaque(),
     surfaceTint = Palette.surfaceTint.light.opaque(),
@@ -141,7 +141,7 @@ val DlLight = DlColors(
 )
 
 /** The dark column of the canonical table. */
-val DlDark = DlColors(
+val ThemeDark = ThemeColors(
     background = Palette.background.dark.opaque(),
     surface = Palette.surface.dark.opaque(),
     surfaceTint = Palette.surfaceTint.dark.opaque(),
@@ -169,50 +169,50 @@ val DlDark = DlColors(
 // runs the other way in the dark, where the paper is the deepest tone.
 
 private val SprossLight = lightColorScheme(
-    primary = DlLight.accent, onPrimary = DlLight.onColor,
-    primaryContainer = DlLight.wash(DlLight.accent), onPrimaryContainer = DlLight.accent,
-    secondary = DlLight.teal, onSecondary = DlLight.onColor,
-    secondaryContainer = DlLight.wash(DlLight.teal), onSecondaryContainer = DlLight.teal,
-    tertiary = DlLight.success, onTertiary = DlLight.onColor,
-    tertiaryContainer = DlLight.wash(DlLight.success), onTertiaryContainer = DlLight.success,
-    error = DlLight.wrong, onError = DlLight.onColor,
-    errorContainer = DlLight.wash(DlLight.wrong), onErrorContainer = DlLight.wrong,
-    background = DlLight.background, onBackground = DlLight.textPrimary,
-    surface = DlLight.surface, onSurface = DlLight.textPrimary,
-    surfaceVariant = DlLight.surfaceTint, onSurfaceVariant = DlLight.textSecondary,
+    primary = ThemeLight.accent, onPrimary = ThemeLight.onColor,
+    primaryContainer = ThemeLight.wash(ThemeLight.accent), onPrimaryContainer = ThemeLight.accent,
+    secondary = ThemeLight.teal, onSecondary = ThemeLight.onColor,
+    secondaryContainer = ThemeLight.wash(ThemeLight.teal), onSecondaryContainer = ThemeLight.teal,
+    tertiary = ThemeLight.success, onTertiary = ThemeLight.onColor,
+    tertiaryContainer = ThemeLight.wash(ThemeLight.success), onTertiaryContainer = ThemeLight.success,
+    error = ThemeLight.wrong, onError = ThemeLight.onColor,
+    errorContainer = ThemeLight.wash(ThemeLight.wrong), onErrorContainer = ThemeLight.wrong,
+    background = ThemeLight.background, onBackground = ThemeLight.textPrimary,
+    surface = ThemeLight.surface, onSurface = ThemeLight.textPrimary,
+    surfaceVariant = ThemeLight.surfaceTint, onSurfaceVariant = ThemeLight.textSecondary,
     // why: M3 would otherwise wash every elevated surface toward `primary` — a Spross
     // card takes its boundary from fill, hairline and shadow, never from a tonal tint.
     surfaceTint = Color.Transparent,
-    outline = DlLight.borderStrong, outlineVariant = DlLight.separator,
-    surfaceContainerLowest = DlLight.surface, surfaceContainerLow = DlLight.surface,
+    outline = ThemeLight.borderStrong, outlineVariant = ThemeLight.separator,
+    surfaceContainerLowest = ThemeLight.surface, surfaceContainerLow = ThemeLight.surface,
     // why: the container tiers are what a MENU and a DIALOG are drawn on, and nothing else
     // reads them now that every panel takes the card recipe directly. Pointed at the paper
     // a card is cut from: `surfaceContainer` was the page background itself, so an open
     // language menu was invisible but for its shadow, and the reset dialog arrived in the
     // recessed mint the chips wear.
-    surfaceContainer = DlLight.surface,
-    surfaceContainerHigh = DlLight.surface, surfaceContainerHighest = DlLight.surfaceTint,
-    surfaceBright = DlLight.surface, surfaceDim = DlLight.surfaceTint,
+    surfaceContainer = ThemeLight.surface,
+    surfaceContainerHigh = ThemeLight.surface, surfaceContainerHighest = ThemeLight.surfaceTint,
+    surfaceBright = ThemeLight.surface, surfaceDim = ThemeLight.surfaceTint,
 )
 
 private val SprossDark = darkColorScheme(
-    primary = DlDark.accent, onPrimary = DlDark.onColor,
-    primaryContainer = DlDark.wash(DlDark.accent), onPrimaryContainer = DlDark.accent,
-    secondary = DlDark.teal, onSecondary = DlDark.onColor,
-    secondaryContainer = DlDark.wash(DlDark.teal), onSecondaryContainer = DlDark.teal,
-    tertiary = DlDark.success, onTertiary = DlDark.onColor,
-    tertiaryContainer = DlDark.wash(DlDark.success), onTertiaryContainer = DlDark.success,
-    error = DlDark.wrong, onError = DlDark.onColor,
-    errorContainer = DlDark.wash(DlDark.wrong), onErrorContainer = DlDark.wrong,
-    background = DlDark.background, onBackground = DlDark.textPrimary,
-    surface = DlDark.surface, onSurface = DlDark.textPrimary,
-    surfaceVariant = DlDark.surfaceTint, onSurfaceVariant = DlDark.textSecondary,
+    primary = ThemeDark.accent, onPrimary = ThemeDark.onColor,
+    primaryContainer = ThemeDark.wash(ThemeDark.accent), onPrimaryContainer = ThemeDark.accent,
+    secondary = ThemeDark.teal, onSecondary = ThemeDark.onColor,
+    secondaryContainer = ThemeDark.wash(ThemeDark.teal), onSecondaryContainer = ThemeDark.teal,
+    tertiary = ThemeDark.success, onTertiary = ThemeDark.onColor,
+    tertiaryContainer = ThemeDark.wash(ThemeDark.success), onTertiaryContainer = ThemeDark.success,
+    error = ThemeDark.wrong, onError = ThemeDark.onColor,
+    errorContainer = ThemeDark.wash(ThemeDark.wrong), onErrorContainer = ThemeDark.wrong,
+    background = ThemeDark.background, onBackground = ThemeDark.textPrimary,
+    surface = ThemeDark.surface, onSurface = ThemeDark.textPrimary,
+    surfaceVariant = ThemeDark.surfaceTint, onSurfaceVariant = ThemeDark.textSecondary,
     surfaceTint = Color.Transparent,
-    outline = DlDark.borderStrong, outlineVariant = DlDark.separator,
-    surfaceContainerLowest = DlDark.background, surfaceContainerLow = DlDark.surface,
-    surfaceContainer = DlDark.surface,
-    surfaceContainerHigh = DlDark.surface, surfaceContainerHighest = DlDark.surfaceTint,
-    surfaceBright = DlDark.surfaceTint, surfaceDim = DlDark.background,
+    outline = ThemeDark.borderStrong, outlineVariant = ThemeDark.separator,
+    surfaceContainerLowest = ThemeDark.background, surfaceContainerLow = ThemeDark.surface,
+    surfaceContainer = ThemeDark.surface,
+    surfaceContainerHigh = ThemeDark.surface, surfaceContainerHighest = ThemeDark.surfaceTint,
+    surfaceBright = ThemeDark.surfaceTint, surfaceDim = ThemeDark.background,
 )
 
 /**
@@ -301,7 +301,7 @@ private fun TextStyle.rounded(weight: FontWeight? = null, size: TextUnit? = null
  * headlines, medium captions, bold badges. Every slot is listed, including the ones that
  * keep their M3 value — a slot left out is a slot still set in Roboto.
  *
- * Each slot below names the `DL.Fonts` token it answers for, and is cut to match it. M3's
+ * Each slot below names the `Theme.typography` token it answers for, and is cut to match it. M3's
  * own ramp runs a step under the canonical one across the middle of the range, which is why
  * the Android cut read denser and paler than the iOS one at the same palette: its two
  * workhorses were 14 sp and 16 sp Regular where the canonical ramp sets body and headline
@@ -351,80 +351,83 @@ private val SprossTypography: Typography by lazy {
     }
 }
 
-/**
- * Reserved heights, the same roles and the same numbers `DL.Reserve` names.
- *
- * A session prompt card reserves the height of its own tallest ROUTINE state, so nothing
- * below it moves as optional content comes and goes — vertical space is the scarce axis
- * (card, field, button and keyboard share one screen), and a button that slides under the
- * keyboard costs more than a card with air in it. The reveal is exempt: it grows the card
- * downward and reserves nothing.
- */
-object DlReserve {
-    /**
-     * Drill prompt, shared by both drill faces: one big line of digits plus the
-     * place-value pill (141.3 dp measured on the iOS cut), and the listening card's
-     * caption plus replay glyph plus its once-per-run silent-switch line. A gap word
-     * ("Ge l＿") is the exception that grows the card.
-     */
-    val drillCard = 144.dp
-
-    /**
-     * The floor a review card holds: one height whether the prompt is a word, a word under
-     * an area label, or the replay glyph of a question asked by ear.
-     */
-    val reviewCard = 120.dp
-
-    /**
-     * A tappable tile's floor — a glyph over its label, at a size a thumb finds without
-     * aiming. The letter drill's choices and the hub's entry chips are one size.
-     */
-    val tile = 72.dp
-}
-
-/**
- * The QUESTION itself, at the size its card can hold — the roles `DL.Fonts.Prompt` names,
- * cut for this platform.
- *
- * Fixed sp rather than a ramp slot: a prompt card reserves a height ([DlReserve.drillCard]),
- * and WHAT is asked picks the size — there is room for one numeral where there is none for a
- * whole sentence. A name needs no entry here: [Headword] already sizes one, and steps it
- * down to fit.
- */
-object DlPrompt {
-    /** A numeral the whole card is about ("1 978", "14:35"). */
-    val digits = 46.sp
-
-    /** A picture standing where the name would: a flag that IS the question. */
-    val glyph = 64.sp
-
-    /** One word with a blank in it ("Ge l＿"). */
-    val word = 30.sp
-
-    /** A prompt made of words, laid out like one: wrapped over lines. */
-    val sentence = 26.sp
-}
-
-/** Spacing, the same six steps and the same numbers the canonical table names. */
-object DlSpace {
-    val xs = 4.dp
-    val s = 8.dp
-    val m = 12.dp
-    val l = 16.dp
-    val xl = 24.dp
-    val xxl = 32.dp
-}
-
-private val LocalDlColors = staticCompositionLocalOf { DlLight }
+private val LocalThemeColors = staticCompositionLocalOf { ThemeLight }
 
 /**
  * The tokens M3 has no role for — amber, the article trio, the on-accent ink — read
  * through here, `MaterialTheme.colorScheme`'s sibling. Everything that DOES have a role
  * is read from the color scheme, so a component picks it up without being told.
  */
-object Dl {
-    val colors: DlColors
-        @Composable @ReadOnlyComposable get() = LocalDlColors.current
+object Theme {
+    val colors: ThemeColors
+        @Composable @ReadOnlyComposable get() = LocalThemeColors.current
+
+    val spacing = Spacing()
+    val reserve = Reserve()
+    val prompt = Prompt()
+
+    /** Spacing, the same five steps and the same numbers the canonical table names. */
+    class Spacing internal constructor() {
+        val xs = 4.dp
+        val sm = 8.dp
+        val md = 12.dp
+        val lg = 16.dp
+        val xl = 24.dp
+    }
+
+    /**
+     * Reserved heights, the same roles and the same numbers `Theme.reserve` names.
+     *
+     * A session prompt card reserves the height of its own tallest ROUTINE state, so nothing
+     * below it moves as optional content comes and goes — vertical space is the scarce axis
+     * (card, field, button and keyboard share one screen), and a button that slides under the
+     * keyboard costs more than a card with air in it. The reveal is exempt: it grows the card
+     * downward and reserves nothing.
+     */
+    class Reserve internal constructor() {
+        /**
+         * Drill prompt, shared by both drill faces: one big line of digits plus the
+         * place-value pill (141.3 dp measured on the iOS cut), and the listening card's
+         * caption plus replay glyph plus its once-per-run silent-switch line. A gap word
+         * ("Ge l＿") is the exception that grows the card.
+         */
+        val drillCard = 144.dp
+
+        /**
+         * The floor a review card holds: one height whether the prompt is a word, a word under
+         * an area label, or the replay glyph of a question asked by ear.
+         */
+        val reviewCard = 120.dp
+
+        /**
+         * A tappable tile's floor — a glyph over its label, at a size a thumb finds without
+         * aiming. The letter drill's choices and the hub's entry chips are one size.
+         */
+        val tile = 72.dp
+    }
+
+    /**
+     * The QUESTION itself, at the size its card can hold — the roles `Theme.typography.prompt` names,
+     * cut for this platform.
+     *
+     * Fixed sp rather than a ramp slot: a prompt card reserves a height ([Theme.reserve.drillCard]),
+     * and WHAT is asked picks the size — there is room for one numeral where there is none for a
+     * whole sentence. A name needs no entry here: [Headword] already sizes one, and steps it
+     * down to fit.
+     */
+    class Prompt internal constructor() {
+        /** A numeral the whole card is about ("1 978", "14:35"). */
+        val digits = 46.sp
+
+        /** A picture standing where the name would: a flag that IS the question. */
+        val glyph = 64.sp
+
+        /** One word with a blank in it ("Ge l＿"). */
+        val word = 30.sp
+
+        /** A prompt made of words, laid out like one: wrapped over lines. */
+        val sentence = 26.sp
+    }
 }
 
 /**
@@ -434,7 +437,7 @@ object Dl {
  * Which article marks which gender is content, so [articleGender] answers it once for
  * every surface; only the three colors are this platform's, and they stay here.
  */
-fun DlColors.articleTint(article: String?): Color? = when (articleGender(article)) {
+fun ThemeColors.articleTint(article: String?): Color? = when (articleGender(article)) {
     Gender.Masculine -> der
     Gender.Feminine -> die
     Gender.Neuter -> das
@@ -446,7 +449,7 @@ fun SprossTheme(content: @Composable () -> Unit) {
     // why: the system setting decides, which is why both columns exist — the iOS cut
     // reaches the same place through its dynamic color providers.
     val dark = isSystemInDarkTheme()
-    CompositionLocalProvider(LocalDlColors provides if (dark) DlDark else DlLight) {
+    CompositionLocalProvider(LocalThemeColors provides if (dark) ThemeDark else ThemeLight) {
         MaterialTheme(
             colorScheme = if (dark) SprossDark else SprossLight,
             shapes = SprossShapes,

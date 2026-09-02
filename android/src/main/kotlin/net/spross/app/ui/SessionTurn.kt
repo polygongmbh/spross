@@ -81,7 +81,7 @@ fun AnswerField(
     onDone: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val palette = Dl.colors
+    val palette = Theme.colors
     val tint: Color? = when (feedback) {
         TurnFeedback.Correct -> palette.success
         is TurnFeedback.Almost -> palette.amber
@@ -154,12 +154,12 @@ fun VerdictButtons(
     modifier: Modifier = Modifier,
     caption: String = chrome.sessionRatingQuestion,
 ) {
-    val palette = Dl.colors
+    val palette = Theme.colors
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.s),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
     ) {
-        Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.s)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
             VerdictTile(SprossIcons.Check, chrome.sessionRatingGood, palette.success, Modifier.weight(1f)) {
                 flow.selfGrade(SelfGrading.Verdict.Knew)
             }
@@ -199,13 +199,13 @@ private fun VerdictTile(
     Column(
         modifier = modifier
             .heightIn(min = VERDICT_TILE)
-            .background(Dl.colors.wash(color), shape)
+            .background(Theme.colors.wash(color), shape)
             .border(1.dp, color.copy(alpha = 0.35f), shape)
             .clip(shape)
             .clickable(role = Role.Button, onClick = onClick)
             .pressSpring()
-            .padding(horizontal = DlSpace.xs, vertical = DlSpace.s),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.xs, Alignment.CenterVertically),
+            .padding(horizontal = Theme.spacing.xs, vertical = Theme.spacing.sm),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // Decorative: the name under it is the label, and TalkBack reading "checkmark"

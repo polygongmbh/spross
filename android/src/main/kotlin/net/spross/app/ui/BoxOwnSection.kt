@@ -76,7 +76,7 @@ internal fun BoxOwnSection(model: AppModel, onWriteOwn: (OwnWordDraft) -> Unit) 
 
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.s),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
@@ -110,8 +110,8 @@ private fun OwnContentPanel(
     val chrome = model.chrome
     val context = LocalContext.current
     Column(
-        modifier = Modifier.fillMaxWidth().panel().padding(DlSpace.l),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+        modifier = Modifier.fillMaxWidth().panel().padding(Theme.spacing.lg),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         if (words.isNotEmpty()) {
             BlockLabel(chrome.boxOwnShelf)
@@ -126,15 +126,15 @@ private fun OwnContentPanel(
                     SuggestionRow(model, word, onWriteOwn)
                 }
             }
-            HorizontalDivider(color = Dl.colors.separator)
+            HorizontalDivider(color = Theme.colors.separator)
         }
         if (reported.isNotEmpty()) {
             BlockLabel(chrome.boxOwnReported)
             reported.forEach { card -> ReportedRow(model, card) }
-            HorizontalDivider(color = Dl.colors.separator)
+            HorizontalDivider(color = Theme.colors.separator)
         }
         if (actions) {
-            Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
                 ScopedAction(model, chrome.reportExportCopy) { onlyNew ->
                     context.copyToClipboard(chrome.boxOwnTitle, model.reportText(onlyNew))
                     model.markExported()
@@ -183,9 +183,9 @@ private fun SuggestionRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDr
                 onLongClick = { menuOpen = true },
                 onClick = {},
             )
-            .padding(horizontal = DlSpace.m, vertical = DlSpace.s),
+            .padding(horizontal = Theme.spacing.md, vertical = Theme.spacing.sm),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         Text(word.emoji ?: OwnWords.EMOJI, style = MaterialTheme.typography.titleMedium)
         Text(
@@ -232,10 +232,10 @@ private fun ReportedRow(model: AppModel, card: Card) {
                 onLongClick = { menuOpen = true },
                 onClick = {},
             )
-            .padding(horizontal = DlSpace.m, vertical = DlSpace.s),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.xs),
+            .padding(horizontal = Theme.spacing.md, vertical = Theme.spacing.sm),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
     ) {
-        Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
             Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.reportReported })
             // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
             Text(
@@ -291,7 +291,7 @@ private fun ScopedAction(model: AppModel, label: String, run: (onlyNew: Boolean)
                 // why: the lot has just gone to the clipboard or into a draft, so there is
                 // nothing left to lose and nothing to ask about.
                 DropdownMenuItem(
-                    text = { Text(chrome.reportExportScopeAllClear, color = Dl.colors.wrong) },
+                    text = { Text(chrome.reportExportScopeAllClear, color = Theme.colors.wrong) },
                     onClick = { open = false; run(false); model.clearFeedback() },
                 )
             }
@@ -308,7 +308,7 @@ private fun ClearAction(model: AppModel) {
     val chrome = model.chrome
     var confirming by remember { mutableStateOf(false) }
     TextButton(onClick = { confirming = true }) {
-        Text(chrome.reportExportClear, color = Dl.colors.wrong)
+        Text(chrome.reportExportClear, color = Theme.colors.wrong)
     }
     if (confirming) {
         AlertDialog(
@@ -319,7 +319,7 @@ private fun ClearAction(model: AppModel) {
                 TextButton(onClick = {
                     confirming = false
                     model.clearFeedback()
-                }) { Text(chrome.commonClear, color = Dl.colors.wrong) }
+                }) { Text(chrome.commonClear, color = Theme.colors.wrong) }
             },
             dismissButton = {
                 TextButton(onClick = { confirming = false }) { Text(chrome.commonCancel) }

@@ -7,26 +7,26 @@ import SprossKern
 extension NumbersOverview {
 
     var practiceSection: some View {
-        VStack(alignment: .leading, spacing: DL.Space.l) {
+        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             heading("trainer.overview.practice")
-            VStack(alignment: .leading, spacing: DL.Space.s) {
+            VStack(alignment: .leading, spacing: Theme.spacing.sm) {
                 ForEach(offered, id: \.self) { variantRow($0) }
                 if !combining {
                     Text("numbers.combine.locked")
-                        .font(DL.Fonts.caption)
-                        .foregroundStyle(Color.dlTextSecondary)
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
                         .fixedSize(horizontal: false, vertical: true)
-                        .padding(.horizontal, DL.Space.m)
+                        .padding(.horizontal, Theme.spacing.md)
                 }
             }
-            VStack(alignment: .leading, spacing: DL.Space.l) {
+            VStack(alignment: .leading, spacing: Theme.spacing.lg) {
                 ForEach(DrillModifier.allCases, id: \.self) { modifierRow($0) }
             }
-            .padding(DL.Space.l)
+            .padding(Theme.spacing.lg)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(Color.dlSurface)
+                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                    .fill(Theme.colors.surface)
             )
             startButton
         }
@@ -84,25 +84,25 @@ extension NumbersOverview {
     /// A locked one keeps its switch, dimmed, and swaps the line for its price.
     private func modifierRow(_ modifier: DrillModifier) -> some View {
         let open = unlocked(modifier)
-        return VStack(alignment: .leading, spacing: DL.Space.s) {
+        return VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             Toggle(isOn: binding(modifier)) {
-                HStack(spacing: DL.Space.s) {
+                HStack(spacing: Theme.spacing.sm) {
                     if !open {
                         Image(systemName: "lock.fill")
-                            .font(DL.Fonts.caption)
-                            .foregroundStyle(Color.dlTextSecondary)
+                            .font(Theme.typography.caption)
+                            .foregroundStyle(Theme.colors.textSecondary)
                     }
                     Text(modifier.trainerTitleKey)
-                        .font(DL.Fonts.headline)
-                        .foregroundStyle(open ? Color.dlTextPrimary : Color.dlTextSecondary)
+                        .font(Theme.typography.headline)
+                        .foregroundStyle(open ? Theme.colors.textPrimary : Theme.colors.textSecondary)
                 }
             }
-            .tint(.dlAccent)
+            .tint(Theme.colors.accent)
             .disabled(!open)
             (open ? Text(modifier.trainerHintKey)
                   : unlockCaption(DrillUnlocks.shared.requirements(modifier: modifier)))
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
         }
     }

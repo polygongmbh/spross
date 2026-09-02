@@ -13,7 +13,7 @@ extension DrillRunView {
     var drillContent: some View {
         let task = current
         return ScrollView {
-            VStack(spacing: DL.Space.m) {
+            VStack(spacing: Theme.spacing.md) {
                 DrillStreakLine(level: Text("trainer.sprosse \(task.level.formatted())"),
                                 streak: task.streak, bestStreak: task.bestStreak,
                                 announcesRecord: true)
@@ -33,7 +33,7 @@ extension DrillRunView {
                 }
                 typedControls
             }
-            .padding(.bottom, DL.Space.l)
+            .padding(.bottom, Theme.spacing.lg)
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollDismissesKeyboard(.never)
@@ -68,7 +68,7 @@ extension DrillRunView {
     @ViewBuilder
     private var typedControls: some View {
         let language = current.answerLanguage
-        VStack(spacing: DL.Space.m) {
+        VStack(spacing: Theme.spacing.md) {
             AnswerInputView(text: $input,
                             feedback: feedback,
                             placeholder: answerPlaceholder(language),
@@ -105,7 +105,7 @@ extension DrillRunView {
                     nextButton(confirm)
                 }
             case .revealed:
-                VStack(spacing: DL.Space.s) {
+                VStack(spacing: Theme.spacing.sm) {
                     nextButton(confirm)
                     if current.offersFinish { DrillStopOffer { closeRun() } }
                 }

@@ -32,13 +32,13 @@ struct TrainerPromptCard: View {
     var isPlaying = false
 
     var body: some View {
-        VStack(spacing: DL.Space.m) {
+        VStack(spacing: Theme.spacing.md) {
             // why: promptDisplay is the learner's form — grouped digits ("12 345")
             // where `prompt` is the machine one the kern parses back with toLong().
             Text(task.promptDisplay)
-                .font(sentence ? DL.Fonts.Prompt.sentence : DL.Fonts.Prompt.digits)
+                .font(sentence ? Theme.prompt.sentence : Theme.prompt.digits)
                 .monospacedDigit()
-                .foregroundStyle(Color.dlTextPrimary)
+                .foregroundStyle(Theme.colors.textPrimary)
                 .lineLimit(sentence ? 4 : 1)
                 .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.center)
@@ -46,8 +46,8 @@ struct TrainerPromptCard: View {
                 DLCardReveal(note: task.gloss) {
                     DLSpokenWord(pronounce: pronounce, isPlaying: isPlaying) {
                         Text(task.display)
-                            .font(sentence ? DL.Fonts.headline : DL.Fonts.title)
-                            .foregroundStyle(Color.dlAccent)
+                            .font(sentence ? Theme.typography.headline : Theme.typography.title)
+                            .foregroundStyle(Theme.colors.accent)
                             .multilineTextAlignment(.center)
                             .minimumScaleFactor(0.6)
                             .dlSpoken(task.display, language: task.language)
@@ -66,23 +66,23 @@ struct TrainerPromptCard: View {
                 hintPill(hint)
             }
         }
-        .padding(DL.Space.l)
+        .padding(Theme.spacing.lg)
         .frame(maxWidth: .infinity)
         // why: room for the prompt AND the hint pill, held whether or not the
         // pill is there, so the field and button below never move.
-        .frame(minHeight: DL.Reserve.drillCard)
+        .frame(minHeight: Theme.reserve.drillCard)
         .dlCardSurface()
         .animation(.easeOut(duration: 0.25), value: revealed)
     }
 
     private func hintPill(_ hint: Hint) -> some View {
         Label(hint.text, systemImage: hint.icon)
-            .font(DL.Fonts.caption)
-            .foregroundStyle(Color.dlAccent)
-            .padding(.horizontal, DL.Space.m)
-            .padding(.vertical, DL.Space.s)
+            .font(Theme.typography.caption)
+            .foregroundStyle(Theme.colors.accent)
+            .padding(.horizontal, Theme.spacing.md)
+            .padding(.vertical, Theme.spacing.sm)
             .background(
-                Capsule().fill(Color.dlSurfaceTint)
+                Capsule().fill(Theme.colors.surfaceTint)
             )
     }
 }

@@ -15,9 +15,9 @@ struct DLCardReveal<Content: View>: View {
     @ViewBuilder var content: Content
 
     var body: some View {
-        VStack(spacing: DL.Space.m) {
+        VStack(spacing: Theme.spacing.md) {
             RoundedRectangle(cornerRadius: 1)
-                .fill(Color.dlSeparator)
+                .fill(Theme.colors.separator)
                 .frame(width: 44, height: 2)
             content
             if let note {
@@ -83,7 +83,7 @@ struct DLCardEmoji: View {
         Text(emoji)
             .font(.system(size: size.glyph))
             .frame(width: size.diameter, height: size.diameter)
-            .background(Circle().fill(Color.dlSurfaceTint))
+            .background(Circle().fill(Theme.colors.surfaceTint))
             .accessibilityHidden(true) // why: decorative; the headword carries the content
             // why: faded rather than removed — the slot is already the right
             // size, so a held-back picture arrives without moving the words.
@@ -109,9 +109,9 @@ extension View {
     /// belongs to (beside a picture there is no room for a long line), and one
     /// definition is what keeps the two placements the same line.
     func dlNoteLine() -> some View {
-        font(DL.Fonts.subheadline)
+        font(Theme.typography.subheadline)
             .italic()
-            .foregroundStyle(Color.dlTextSecondary)
+            .foregroundStyle(Theme.colors.textSecondary)
             .multilineTextAlignment(.center)
             // why: the card's emoji slots are fixed points and do not grow with
             // the type size, so a note left to report its own ideal width can
@@ -123,9 +123,9 @@ extension View {
     /// that was heard instead, the other word the answer turned out to be.
     /// Read, not glanced at, so it carries the same weight everywhere.
     func dlPauseLine() -> some View {
-        font(DL.Fonts.subheadline)
+        font(Theme.typography.subheadline)
             .italic()
-            .foregroundStyle(Color.dlTextSecondary)
+            .foregroundStyle(Theme.colors.textSecondary)
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity)
     }
@@ -134,16 +134,16 @@ extension View {
 // MARK: - Previews
 
 #Preview("Reveal") {
-    VStack(spacing: DL.Space.l) {
+    VStack(spacing: Theme.spacing.lg) {
         DLCardReveal(note: "wörtlich: kleines Bratgefäß") {
             Text(verbatim: "kikaango")
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlAccent)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.accent)
         }
         Text(verbatim: "Fast! Richtig geschrieben: cuatro")
             .dlPauseLine()
     }
-    .padding(DL.Space.xl)
+    .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
 }

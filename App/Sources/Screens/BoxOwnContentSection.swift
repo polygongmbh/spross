@@ -40,7 +40,7 @@ struct BoxOwnContentSection: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: DL.Space.l) {
+        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             header
             if !model.ownWords.isEmpty || !reports.isEmpty || model.hasFeedback(onlyNew: false) {
                 card
@@ -50,11 +50,11 @@ struct BoxOwnContentSection: View {
     }
 
     private var header: some View {
-        HStack(spacing: DL.Space.m) {
+        HStack(spacing: Theme.spacing.md) {
             Text("box.own.title")
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlTextPrimary)
-            Spacer(minLength: DL.Space.s)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.textPrimary)
+            Spacer(minLength: Theme.spacing.sm)
             Button {
                 sheet = .writing
             } label: {
@@ -66,7 +66,7 @@ struct BoxOwnContentSection: View {
     }
 
     private var card: some View {
-        VStack(alignment: .leading, spacing: DL.Space.l) {
+        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             if !model.ownWords.isEmpty {
                 wordList
             }
@@ -82,26 +82,26 @@ struct BoxOwnContentSection: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(DL.Space.l)
+        .padding(Theme.spacing.lg)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                .fill(Color.dlSurface)
+            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                .fill(Theme.colors.surface)
         )
         .dlCardShadow()
     }
 
-    private var separator: some View { Divider().overlay(Color.dlSeparator) }
+    private var separator: some View { Divider().overlay(Theme.colors.separator) }
 
     private func blockTitle(_ key: LocalizedStringKey) -> some View {
         Text(key)
-            .font(DL.Fonts.caption)
-            .foregroundStyle(Color.dlTextSecondary)
+            .font(Theme.typography.caption)
+            .foregroundStyle(Theme.colors.textSecondary)
     }
 
     // MARK: - The learner's own words
 
     private var wordList: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             blockTitle("box.own.shelf")
             ForEach(model.ownWords, id: \.id) { word in
                 if let card = model.card(word.id) {
@@ -114,26 +114,26 @@ struct BoxOwnContentSection: View {
     }
 
     private func suggestionRow(_ word: OwnWord) -> some View {
-        HStack(spacing: DL.Space.m) {
+        HStack(spacing: Theme.spacing.md) {
             Text(verbatim: word.emoji ?? OwnWords.shared.EMOJI)
                 .font(.title3)
                 .accessibilityHidden(true)
             Text(verbatim: model.suggestionText(word))
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.body)
+                .foregroundStyle(Theme.colors.textPrimary)
                 .lineLimit(1)
-            Spacer(minLength: DL.Space.s)
+            Spacer(minLength: Theme.spacing.sm)
             // why: it is not a shortcoming of the word, it is the whole point of the
             // entry — the half that is missing is what the catalog owes.
             Text("box.own.word.needsTranslation")
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
         }
-        .padding(.horizontal, DL.Space.m)
-        .padding(.vertical, DL.Space.xs + 2)
+        .padding(.horizontal, Theme.spacing.md)
+        .padding(.vertical, Theme.spacing.xs + 2)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                .fill(Color.dlSurfaceTint)
+            RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                .fill(Theme.colors.surfaceTint)
         )
         // A menu of its own, and a short one: with no card behind it there is
         // nothing to pack, forget or report — only the two halves to fix or drop.
@@ -156,7 +156,7 @@ struct BoxOwnContentSection: View {
     }
 
     private var reportList: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             blockTitle("box.own.reported")
             ForEach(reports, id: \.issue.cardId) { report in
                 reportRow(report.issue, card: report.card)
@@ -165,29 +165,29 @@ struct BoxOwnContentSection: View {
     }
 
     private func reportRow(_ issue: ReportedIssue, card: Card) -> some View {
-        HStack(alignment: .top, spacing: DL.Space.m) {
+        HStack(alignment: .top, spacing: Theme.spacing.md) {
             Text(verbatim: "🚩")
                 .accessibilityLabel("report.reported")
             VStack(alignment: .leading, spacing: 2) {
                 // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
                 Text(verbatim: "\(card.target.text) → \(card.source.text)")
-                    .font(DL.Fonts.body)
-                    .foregroundStyle(Color.dlTextPrimary)
+                    .font(Theme.typography.body)
+                    .foregroundStyle(Theme.colors.textPrimary)
                     .lineLimit(2)
                 if let comment = issue.comment, !comment.isEmpty {
                     Text(verbatim: comment)
-                        .font(DL.Fonts.caption)
-                        .foregroundStyle(Color.dlTextSecondary)
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
                         .lineLimit(3)
                 }
             }
-            Spacer(minLength: DL.Space.s)
+            Spacer(minLength: Theme.spacing.sm)
         }
-        .padding(.horizontal, DL.Space.m)
-        .padding(.vertical, DL.Space.xs + 2)
+        .padding(.horizontal, Theme.spacing.md)
+        .padding(.vertical, Theme.spacing.xs + 2)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                .fill(Color.dlSurfaceTint)
+            RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                .fill(Theme.colors.surfaceTint)
         )
         .contextMenu {
             // One entry: withdrawing lives inside the form the edit opens.

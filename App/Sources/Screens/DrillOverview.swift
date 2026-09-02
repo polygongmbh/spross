@@ -70,7 +70,7 @@ struct DrillOverview<Face: DrillFace>: View {
         NavigationStack {
             ScrollViewReader { scroll in
                 ScrollView {
-                    LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
+                    LazyVStack(alignment: .leading, spacing: Theme.spacing.xl) {
                         if let lastRun {
                             DrillResultTile(result: lastRun)
                                 .id(DrillAnchor.result)
@@ -78,7 +78,7 @@ struct DrillOverview<Face: DrillFace>: View {
                         practiceSection
                         referenceSection
                     }
-                    .padding(DL.Space.xl)
+                    .padding(Theme.spacing.xl)
                 }
                 // why: the other overviews' rule — a tile inserted above the
                 // content keeps the offset, so the page comes up to meet it.
@@ -101,7 +101,7 @@ struct DrillOverview<Face: DrillFace>: View {
             #if DEBUG
             .defaultScrollAnchor(Self.uitestAnchor)
             #endif
-            .background(Color.dlBackground.ignoresSafeArea())
+            .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle(Text(Face.title(languageName)))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -117,7 +117,7 @@ struct DrillOverview<Face: DrillFace>: View {
                 }
             }
         }
-        .tint(.dlAccent)
+        .tint(Theme.colors.accent)
         .onAppear { reload() }
         // why: a closing run books the Sprosse it reached, so the line under the
         // ladder is stale the moment the cover comes down.
@@ -214,8 +214,8 @@ struct DrillHeading: View {
 
     var body: some View {
         Text(key)
-            .font(DL.Fonts.title)
-            .foregroundStyle(Color.dlTextPrimary)
+            .font(Theme.typography.title)
+            .foregroundStyle(Theme.colors.textPrimary)
             .accessibilityAddTraits(.isHeader)
     }
 }

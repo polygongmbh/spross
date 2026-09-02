@@ -129,13 +129,13 @@ fun TrainerSessionScreen(model: AppModel, mode: TrainerMode) {
     }
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(DlSpace.l),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+        modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         DrillTopBar(model, state.outcomes, state.tally, leave)
         Column(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
         ) {
             DrillStreakLine(
                 sprosse = sprosseText(state, chrome),
@@ -146,7 +146,7 @@ fun TrainerSessionScreen(model: AppModel, mode: TrainerMode) {
             )
             TrainerPromptCard(model, flow, chrome)
             TrainerControls(model, flow, chrome, inputFocus, leave)
-            Spacer(Modifier.height(DlSpace.s))
+            Spacer(Modifier.height(Theme.spacing.sm))
         }
     }
 

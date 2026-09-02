@@ -39,9 +39,9 @@ import net.spross.kern.trainer.LetterDrillTask
 /** 2×2 of glyph tiles in kern's shuffled order — both platforms render the same draw. */
 @Composable
 fun ChoiceStage(model: AppModel, flow: LetterDrillFlow, task: LetterDrillTask, chrome: Chrome) {
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         for (row in task.choices.orEmpty().chunked(2)) {
-            Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
                 for (glyph in row) {
                     ChoiceTile(glyph, task.display, flow.state.chosen, chrome, Modifier.weight(1f)) {
                         flow.choose(glyph)
@@ -76,7 +76,7 @@ private fun ChoiceTile(
         answered && isChosen -> "✗"
         else -> null
     }
-    val palette = Dl.colors
+    val palette = Theme.colors
     val fill = when {
         answered && isAnswer -> palette.wash(palette.success)
         answered && isChosen -> palette.wash(palette.wrong)
@@ -88,7 +88,7 @@ private fun ChoiceTile(
         onClick = onClick,
         enabled = !answered,
         shape = MaterialTheme.shapes.medium,
-        modifier = modifier.heightIn(min = DlReserve.tile).semantics {
+        modifier = modifier.heightIn(min = Theme.reserve.tile).semantics {
             contentDescription = chrome.a11yGlyphLetter.format(glyph)
             if (answered && isAnswer) stateDescription = chrome.a11yVerdictCorrect
             if (answered && isChosen && !isAnswer) stateDescription = chrome.a11yVerdictWrong
@@ -118,7 +118,7 @@ fun TypedStage(
     chrome: Chrome,
     inputFocus: FocusRequester,
 ) {
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         DrillAnswerField(
             value = flow.input,
             onValueChange = flow::type,
@@ -160,7 +160,7 @@ private fun AnswerLine(
     if (feedback == TurnFeedback.Neutral) return
     val hold = feedback as? TurnFeedback.Almost
     val waits = feedback != TurnFeedback.Correct || flow.awaitsConfirm
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         hold?.let {
             val caption = when (it.reason) {
                 AlmostReason.Typo -> chrome.sessionAlmostTypo

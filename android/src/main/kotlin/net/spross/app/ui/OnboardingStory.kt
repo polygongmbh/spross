@@ -35,8 +35,8 @@ import net.spross.app.Chrome
 fun OnboardingStoryPage(content: @Composable ColumnScope.() -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
-            .padding(horizontal = DlSpace.xl, vertical = DlSpace.l),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.xl),
+            .padding(horizontal = Theme.spacing.xl, vertical = Theme.spacing.lg),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
         content = content,
     )
 }
@@ -52,7 +52,7 @@ fun OnboardingHero(mark: String, title: String) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(DlSpace.l),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
     ) {
         Text(
             mark,
@@ -118,7 +118,7 @@ private fun ColumnScope.OnboardingBack(label: String, onBack: () -> Unit) {
 fun PrincipleBlock(title: String, body: String) {
     Column(
         modifier = Modifier.fillMaxWidth().semantics(mergeDescendants = true) {},
-        verticalArrangement = Arrangement.spacedBy(DlSpace.xs),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
     ) {
         Text(title, style = MaterialTheme.typography.titleMedium)
         Text(body, style = MaterialTheme.typography.bodyLarge)
@@ -156,7 +156,7 @@ fun PrinciplesPage(chrome: Chrome, onNext: () -> Unit, onBack: () -> Unit) {
 fun FirstRoundPage(chrome: Chrome, busy: Boolean, onStart: () -> Unit, onBack: () -> Unit) {
     OnboardingStoryPage {
         OnboardingHero("🌿", chrome.onboardingFirstRoundTitle)
-        Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+        Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
             Text(chrome.onboardingFirstRoundRecognize, style = MaterialTheme.typography.bodyLarge)
             Text(chrome.onboardingFirstRoundGrade, style = MaterialTheme.typography.bodyLarge)
             Text(chrome.onboardingFirstRoundWrite, style = MaterialTheme.typography.bodyLarge)

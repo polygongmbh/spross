@@ -63,7 +63,7 @@ fun SleepTimerChip(model: AppModel) {
         }
     }
     val left = minutesLeft?.let { chrome.listenMinutesLeft.format(it) }
-    val tint = if (left == null) Dl.colors.textSecondary else Dl.colors.accent
+    val tint = if (left == null) Theme.colors.textSecondary else Theme.colors.accent
     Row(
         modifier = Modifier
             .pressSpring()
@@ -84,9 +84,9 @@ fun SleepTimerChip(model: AppModel) {
                 onLongClick = { run.turnOffTimer() },
             )
             .heightIn(min = 48.dp)
-            .padding(horizontal = DlSpace.l),
+            .padding(horizontal = Theme.spacing.lg),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
     ) {
         Icon(SprossIcons.Moon, contentDescription = null, modifier = Modifier.size(18.dp), tint = tint)
         Text(

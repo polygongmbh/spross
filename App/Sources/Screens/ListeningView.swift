@@ -32,7 +32,7 @@ struct ListeningView: View {
 
     var body: some View {
         ListeningScaffold(onClose: { dismiss() }, trailing: { timerCapsule }) {
-            VStack(spacing: DL.Space.xl) {
+            VStack(spacing: Theme.spacing.xl) {
                 Spacer(minLength: 0)
                 cardFace
                 Spacer(minLength: 0)
@@ -92,7 +92,7 @@ struct ListeningView: View {
     /// already says while stealing the height the card wants. The names stay —
     /// as what VoiceOver reads, which is where they are needed.
     private var transport: some View {
-        HStack(spacing: DL.Space.xl) {
+        HStack(spacing: Theme.spacing.xl) {
             transportButton(symbol: "arrow.counterclockwise",
                             size: 56,
                             label: Text("listen.repeat")) { driver.again() }
@@ -121,9 +121,9 @@ struct ListeningView: View {
         Button(action: action) {
             Image(systemName: symbol)
                 .font(.system(size: size * 0.38, weight: .semibold))
-                .foregroundStyle(emphasized ? Color.dlOnColor : Color.dlAccent)
+                .foregroundStyle(emphasized ? Theme.colors.onColor : Theme.colors.accent)
                 .frame(width: size, height: size)
-                .background(Circle().fill(emphasized ? Color.dlAccent : Color.dlSurfaceTint))
+                .background(Circle().fill(emphasized ? Theme.colors.accent : Theme.colors.surfaceTint))
                 .accessibilityHidden(true)
         }
         .buttonStyle(TrainerChipButtonStyle())
@@ -141,16 +141,16 @@ struct ListeningView: View {
     /// MINUTES: a ticking clock is a clock you watch, which is the opposite of
     /// what a sleep timer is for.
     private var timerCapsule: some View {
-        HStack(spacing: DL.Space.xs) {
+        HStack(spacing: Theme.spacing.xs) {
             Image(systemName: "moon.zzz")
                 .accessibilityHidden(true)
             timerText
         }
-        .font(DL.Fonts.caption)
-        .foregroundStyle(driver.bedtime.isSet ? Color.dlAccent : Color.dlTextSecondary)
-        .padding(.horizontal, DL.Space.m)
-        .padding(.vertical, DL.Space.s)
-        .background(Capsule().fill(Color.dlSurfaceTint))
+        .font(Theme.typography.caption)
+        .foregroundStyle(driver.bedtime.isSet ? Theme.colors.accent : Theme.colors.textSecondary)
+        .padding(.horizontal, Theme.spacing.md)
+        .padding(.vertical, Theme.spacing.sm)
+        .background(Capsule().fill(Theme.colors.surfaceTint))
         // The press `TrainerChipButtonStyle` would give it, by hand — see below
         // for why this chip is not a Button.
         .opacity(timerHeld ? 0.7 : 1)
@@ -219,13 +219,13 @@ private struct ListeningScaffold<Trailing: View, Content: View>: View {
     @ViewBuilder var content: Content
 
     var body: some View {
-        VStack(spacing: DL.Space.l) {
-            HStack(spacing: DL.Space.m) {
+        VStack(spacing: Theme.spacing.lg) {
+            HStack(spacing: Theme.spacing.md) {
                 SessionCloseButton(action: onClose)
                 Spacer(minLength: 0)
                 Text("listen.title")
-                    .font(DL.Fonts.headline)
-                    .foregroundStyle(Color.dlTextPrimary)
+                    .font(Theme.typography.headline)
+                    .foregroundStyle(Theme.colors.textPrimary)
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
                 Spacer(minLength: 0)
@@ -234,7 +234,7 @@ private struct ListeningScaffold<Trailing: View, Content: View>: View {
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .padding(DL.Space.l)
-        .background(Color.dlBackground.ignoresSafeArea())
+        .padding(Theme.spacing.lg)
+        .background(Theme.colors.background.ignoresSafeArea())
     }
 }

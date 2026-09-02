@@ -15,7 +15,7 @@ extension SessionView {
 
     @ViewBuilder
     func copyControls(_ step: CopyStep) -> some View {
-        VStack(spacing: DL.Space.m) {
+        VStack(spacing: Theme.spacing.md) {
             AnswerInputView(text: $copyInput,
                             // why: green edge + checkmark the moment the word
                             // stands written — kern re-judges it per keystroke.
@@ -38,14 +38,14 @@ extension SessionView {
             if step.missed {
                 // why: the answer is already on the card, so this points back to it.
                 Text("session.copy.mismatch")
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity)
             }
             Button("session.skip") { dispatch(TurnIntent.SkipCopy.shared) }
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
         }
     }
 

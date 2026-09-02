@@ -151,13 +151,13 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
     }
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(DlSpace.l),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+        modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         DrillTopBar(model, run.outcomes, run.tally, leave)
         Column(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
         ) {
             DrillStreakLine(
                 sprosse = chrome.trainerSprosse.format(run.level),
@@ -168,7 +168,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
             )
             Prompt(model, run, chrome)
             Controls(model, flow, run, chrome, inputFocus, leave)
-            Spacer(Modifier.height(DlSpace.s))
+            Spacer(Modifier.height(Theme.spacing.sm))
         }
     }
 }
@@ -219,7 +219,7 @@ private fun Controls(
     inputFocus: FocusRequester,
     onFinish: () -> Unit,
 ) {
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         DrillAnswerField(
             value = flow.input,
             onValueChange = flow::type,
@@ -261,7 +261,7 @@ private fun AlmostLine(
     form: String,
     chrome: Chrome,
 ) {
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.s)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
         AlmostCorrection(
             chrome.sessionAlmostTypo,
             form,

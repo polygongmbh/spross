@@ -73,7 +73,7 @@ struct AnswerInputView: View {
     @FocusState private var fallbackFocus: Bool
 
     var body: some View {
-        VStack(spacing: DL.Space.m) {
+        VStack(spacing: Theme.spacing.md) {
             // why: a locked, empty field is not an input — it has nothing of the
             // learner's to show and cannot be typed into, so the placeholder and
             // the border were an invitation the field could not honor.
@@ -97,10 +97,10 @@ struct AnswerInputView: View {
     // MARK: Input field
 
     private var inputField: some View {
-        HStack(spacing: DL.Space.s) {
+        HStack(spacing: Theme.spacing.sm) {
             TextField(placeholder, text: $text)
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.body)
+                .foregroundStyle(Theme.colors.textPrimary)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
                 .keyboardType(keyboard)
@@ -113,18 +113,18 @@ struct AnswerInputView: View {
                 .disabled(locked ?? isRevealed)
             statusIcon
         }
-        .padding(.horizontal, DL.Space.l)
+        .padding(.horizontal, Theme.spacing.lg)
         .frame(minHeight: 56)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                .fill(Color.dlSurface)
+            RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                .fill(Theme.colors.surface)
         )
         .overlay(
-            RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
+            RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
                 .strokeBorder(borderColor, lineWidth: feedback == .neutral ? 1 : 2)
         )
         .shadow(
-            color: feedback == .correct ? Color.dlSuccess.opacity(0.35) : .clear,
+            color: feedback == .correct ? Theme.colors.success.opacity(0.35) : .clear,
             radius: 10
         )
         // why: the amber edge is the only thing left marking a reveal once the
@@ -176,10 +176,10 @@ struct AnswerInputView: View {
     private var borderColor: Color {
         switch feedback {
         // why: the field's edge is a control boundary, not a decorative
-        // hairline — the softer dlSeparator hides it against the surface.
-        case .neutral: return .dlBorderStrong
-        case .correct: return .dlSuccess
-        case .almost, .revealed: return .dlAmber
+        // hairline — the softer Theme.colors.separator hides it against the surface.
+        case .neutral: return Theme.colors.borderStrong
+        case .correct: return Theme.colors.success
+        case .almost, .revealed: return Theme.colors.amber
         }
     }
 
@@ -193,17 +193,17 @@ struct AnswerInputView: View {
     /// Leading-aligned, so no mirrored ballast is needed — `DLSpokenWord`
     /// centers, which is a different problem.
     private func correctionBox(form: String, caption: LocalizedStringKey) -> some View {
-        HStack(spacing: DL.Space.m) {
+        HStack(spacing: Theme.spacing.md) {
             Image(systemName: "arrow.turn.down.right")
                 .font(.subheadline.weight(.semibold))
-                .foregroundStyle(Color.dlAmber)
-            VStack(alignment: .leading, spacing: DL.Space.xs) {
+                .foregroundStyle(Theme.colors.amber)
+            VStack(alignment: .leading, spacing: Theme.spacing.xs) {
                 Text(caption)
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
                 Text(form)
-                    .font(DL.Fonts.headline)
-                    .foregroundStyle(Color.dlTextPrimary)
+                    .font(Theme.typography.headline)
+                    .foregroundStyle(Theme.colors.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer(minLength: 0)
@@ -214,10 +214,10 @@ struct AnswerInputView: View {
                     .accessibilityLabel("a11y.action.pronounce")
             }
         }
-        .padding(DL.Space.l)
+        .padding(Theme.spacing.lg)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                .fill(Color.dlAmber.opacity(0.14))
+            RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                .fill(Theme.colors.amber.opacity(0.14))
         )
         // why: `contain`, not `combine` — combining would swallow the speaker,
         // and a correction the learner cannot replay is the thing this box
@@ -262,7 +262,7 @@ private struct AnswerInputPreviewHost: View {
     @State private var empty = ""
 
     var body: some View {
-        VStack(spacing: DL.Space.xl) {
+        VStack(spacing: Theme.spacing.xl) {
             AnswerInputView(text: $neutral, feedback: .neutral)
             AnswerInputView(text: $right, feedback: .correct)
             AnswerInputView(text: $slip,
@@ -273,9 +273,9 @@ private struct AnswerInputPreviewHost: View {
             // all, so this row is deliberately blank.
             AnswerInputView(text: $empty, feedback: .revealed)
         }
-        .padding(DL.Space.xl)
+        .padding(Theme.spacing.xl)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.dlBackground)
+        .background(Theme.colors.background)
     }
 }
 

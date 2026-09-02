@@ -15,7 +15,7 @@ struct FeedbackExportActions: View {
     @State private var confirmingClear = false
 
     var body: some View {
-        HStack(spacing: DL.Space.l) {
+        HStack(spacing: Theme.spacing.lg) {
             scopedButton("report.export.copy", icon: "doc.on.doc") { onlyNew in
                 UIPasteboard.general.string = model.reportText(onlyNew: onlyNew)
                 model.markExported()
@@ -67,7 +67,7 @@ struct FeedbackExportActions: View {
             confirmingClear = true
         } label: {
             Label("report.export.clear", systemImage: "trash")
-                .font(DL.Fonts.subheadline)
+                .font(Theme.typography.subheadline)
         }
         .confirmationDialog("report.export.clear.confirm \(model.clearableCount)",
                             isPresented: $confirmingClear, titleVisibility: .visible) {
@@ -78,7 +78,7 @@ struct FeedbackExportActions: View {
 
     private func actionLabel(_ title: LocalizedStringKey, icon: String) -> some View {
         Label(title, systemImage: icon)
-            .font(DL.Fonts.subheadline)
-            .foregroundStyle(Color.dlAccent)
+            .font(Theme.typography.subheadline)
+            .foregroundStyle(Theme.colors.accent)
     }
 }

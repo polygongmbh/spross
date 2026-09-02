@@ -51,7 +51,7 @@ struct LettersOverview: View {
         NavigationStack {
             ScrollViewReader { scroll in
                 ScrollView {
-                    LazyVStack(alignment: .leading, spacing: DL.Space.xl) {
+                    LazyVStack(alignment: .leading, spacing: Theme.spacing.xl) {
                         if let lastRun {
                             DrillResultTile(result: lastRun)
                                 .id(Self.resultAnchor)
@@ -59,7 +59,7 @@ struct LettersOverview: View {
                         practiceSection
                         alphabetSection
                     }
-                    .padding(DL.Space.xl)
+                    .padding(Theme.spacing.xl)
                 }
                 // why: the numbers page's rule — a tile inserted above the
                 // content keeps the offset, so the page comes up to meet it.
@@ -73,7 +73,7 @@ struct LettersOverview: View {
             #if DEBUG
             .defaultScrollAnchor(Self.uitestAnchor)
             #endif
-            .background(Color.dlBackground.ignoresSafeArea())
+            .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle(Text("letters.title \(languageName)"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -89,7 +89,7 @@ struct LettersOverview: View {
                 }
             }
         }
-        .tint(.dlAccent)
+        .tint(Theme.colors.accent)
         .onAppear { refreshAvailability() }
         // why: the drill's reach can change while the app sleeps — on becoming
         // ACTIVE, not on willEnterForeground, because the speaker drops its
@@ -137,8 +137,8 @@ struct LettersOverview: View {
 
     func heading(_ key: LocalizedStringKey) -> some View {
         Text(key)
-            .font(DL.Fonts.title)
-            .foregroundStyle(Color.dlTextPrimary)
+            .font(Theme.typography.title)
+            .foregroundStyle(Theme.colors.textPrimary)
             .accessibilityAddTraits(.isHeader)
     }
 }

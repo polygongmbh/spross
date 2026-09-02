@@ -61,8 +61,8 @@ fun SessionScreen(model: AppModel) {
     BackHandler { model.finishSession() }
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(DlSpace.l),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.l),
+        modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
     ) {
         SessionTopBar(model, ui)
         if (ui.card == null) SessionSummary(model, ui) else TurnCard(model, ui)
@@ -80,7 +80,7 @@ private fun SessionTopBar(model: AppModel, ui: SessionUi) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         CloseSessionButton(model)
         SegmentsBar(ui.segments, ui.remaining, model.chrome, Modifier.weight(1f))
@@ -99,7 +99,7 @@ private fun CloseSessionButton(model: AppModel) {
             .clickable(role = Role.Button) { model.finishSession() },
         contentAlignment = Alignment.Center,
     ) {
-        Icon(SprossIcons.Close, contentDescription = null, tint = Dl.colors.textSecondary)
+        Icon(SprossIcons.Close, contentDescription = null, tint = Theme.colors.textSecondary)
     }
 }
 
@@ -144,7 +144,7 @@ fun ReadAloudSwitch(model: AppModel) {
         Icon(
             if (muted) SprossIcons.SpeakerOff else SprossIcons.Speaker,
             contentDescription = null,
-            tint = Dl.colors.textSecondary,
+            tint = Theme.colors.textSecondary,
         )
     }
 }
@@ -197,14 +197,14 @@ private fun TurnCard(model: AppModel, ui: SessionUi) {
 
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         if (ui.role == PresentationRole.Recognize) {
             RecognizeTurn(model, ui, flow)
         } else {
             ProduceCard(model, ui, flow)
         }
-        Spacer(Modifier.height(DlSpace.s))
+        Spacer(Modifier.height(Theme.spacing.sm))
     }
 }
 
@@ -255,7 +255,7 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
                         if (article == null) {
                             AnnotatedString(promptForm)
                         } else {
-                            Dl.colors.articleColoredText(card.target)
+                            Theme.colors.articleColoredText(card.target)
                         },
                         card.target.lang,
                     ),
@@ -269,11 +269,11 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
                 CardReveal {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+                        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
                     ) {
                         Headword(
                             (listOf(card.source.text) + card.source.synonyms).joinToString(" / "),
-                            color = Dl.colors.accent,
+                            color = Theme.colors.accent,
                             modifier = Modifier.weight(1f, fill = false),
                         )
                         if (card.promptFeminineMarker) FeminineBadge(chrome)

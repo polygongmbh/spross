@@ -24,7 +24,7 @@ extension OnboardingView {
                             actionLabel: "common.next",
                             action: { turn(to: .firstRound) },
                             onBack: { turn(to: .languages) }) {
-            VStack(alignment: .leading, spacing: DL.Space.l) {
+            VStack(alignment: .leading, spacing: Theme.spacing.lg) {
                 principle("onboarding.why.breadth.title", "onboarding.why.breadth.body")
                 principle("onboarding.why.companion.title", "onboarding.why.companion.body")
                 principle("onboarding.why.grammar.title", "onboarding.why.grammar.body")
@@ -37,13 +37,13 @@ extension OnboardingView {
     /// (the numbered kind is `LettersOverview+Practice.swift`).
     private func principle(_ title: LocalizedStringKey,
                            _ body: LocalizedStringKey) -> some View {
-        VStack(alignment: .leading, spacing: DL.Space.xs) {
+        VStack(alignment: .leading, spacing: Theme.spacing.xs) {
             Text(title)
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.headline)
+                .foregroundStyle(Theme.colors.textPrimary)
             Text(body)
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.body)
+                .foregroundStyle(Theme.colors.textPrimary)
                 .fixedSize(horizontal: false, vertical: true)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -61,7 +61,7 @@ extension OnboardingView {
                             busy: starting,
                             action: { start() },
                             onBack: starting ? nil : { turn(to: .why) }) {
-            VStack(alignment: .leading, spacing: DL.Space.m) {
+            VStack(alignment: .leading, spacing: Theme.spacing.md) {
                 moment("onboarding.firstRound.recognize")
                 moment("onboarding.firstRound.grade")
                 moment("onboarding.firstRound.write")
@@ -73,8 +73,8 @@ extension OnboardingView {
     /// this is the page's substance and not a footnote to the title above it.
     private func moment(_ key: LocalizedStringKey) -> some View {
         Text(key)
-            .font(DL.Fonts.body)
-            .foregroundStyle(Color.dlTextPrimary)
+            .font(Theme.typography.body)
+            .foregroundStyle(Theme.colors.textPrimary)
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -89,15 +89,15 @@ struct OnboardingHero: View {
     let title: LocalizedStringKey
 
     var body: some View {
-        VStack(spacing: DL.Space.l) {
+        VStack(spacing: Theme.spacing.lg) {
             // why: verbatim — a plain Text would take the emoji for a localization key
             // and read the key back on a screen that has no entry for it.
             Text(verbatim: emoji)
                 .font(.system(size: 56))
                 .accessibilityHidden(true)
             Text(title)
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.textPrimary)
                 .multilineTextAlignment(.center)
                 .accessibilityAddTraits(.isHeader)
         }
@@ -111,7 +111,7 @@ struct OnboardingHero: View {
 /// and the way on. Both story pages take it, so their rhythm cannot drift apart —
 /// the picker keeps its own, a form being a different shape of page.
 ///
-/// The page stands alone on `dlBackground`: no card, no panel, nothing for the eye
+/// The page stands alone on `Theme.colors.background`: no card, no panel, nothing for the eye
 /// to weigh before it reads.
 struct OnboardingStoryPage<Content: View>: View {
     let emoji: String
@@ -127,7 +127,7 @@ struct OnboardingStoryPage<Content: View>: View {
     @ViewBuilder var content: Content
 
     var body: some View {
-        VStack(spacing: DL.Space.xl) {
+        VStack(spacing: Theme.spacing.xl) {
             OnboardingHero(emoji: emoji, title: title)
             content
             buttons
@@ -135,11 +135,11 @@ struct OnboardingStoryPage<Content: View>: View {
     }
 
     private var buttons: some View {
-        VStack(spacing: DL.Space.m) {
+        VStack(spacing: Theme.spacing.md) {
             Button(action: action) {
                 Group {
                     if busy {
-                        ProgressView().tint(Color.dlOnColor)
+                        ProgressView().tint(Theme.colors.onColor)
                     } else {
                         Text(actionLabel)
                     }

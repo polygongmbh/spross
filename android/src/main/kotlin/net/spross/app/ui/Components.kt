@@ -65,7 +65,7 @@ fun SegmentsBar(
     chrome: Chrome,
     modifier: Modifier = Modifier,
 ) {
-    val palette = Dl.colors
+    val palette = Theme.colors
     val slots = segments.size + remaining
     // why: colored stretches are the whole of what the bar says, and a color says nothing
     // to TalkBack — so it speaks the tally it is drawing, or where the round stands before
@@ -111,8 +111,8 @@ fun Pill(text: String, color: Color, modifier: Modifier = Modifier) {
         color = color,
         maxLines = 1,
         modifier = modifier
-            .background(Dl.colors.wash(color), RoundedCornerShape(percent = 50))
-            .padding(horizontal = DlSpace.m, vertical = DlSpace.xs + 1.dp),
+            .background(Theme.colors.wash(color), RoundedCornerShape(percent = 50))
+            .padding(horizontal = Theme.spacing.md, vertical = Theme.spacing.xs + 1.dp),
     )
 }
 
@@ -126,7 +126,7 @@ fun Pill(text: String, color: Color, modifier: Modifier = Modifier) {
 fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
     // why: ♀ is a glyph TalkBack either skips or reads as a symbol name; the badge says
     // what it marks instead, which is the only way the grammar reaches a spoken card.
-    Pill("♀", Dl.colors.die, modifier.semantics { contentDescription = chrome.a11yGlyphFeminineForm })
+    Pill("♀", Theme.colors.die, modifier.semantics { contentDescription = chrome.a11yGlyphFeminineForm })
 }
 
 /**
@@ -195,7 +195,7 @@ const val LOCK = "🔒"
  */
 @Composable
 fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
-    val palette = Dl.colors
+    val palette = Theme.colors
     val shape = RoundedCornerShape(percent = 50)
     Row(
         modifier = modifier.fillMaxWidth().height(6.dp),
@@ -272,18 +272,18 @@ fun TapToHearHint(chrome: Chrome, text: String = chrome.trainerReferenceTapToHea
         // the same thing said a second time.
         modifier = Modifier.clearAndSetSemantics { },
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
     ) {
         Icon(
             SprossIcons.Speaker,
             contentDescription = null,
-            tint = Dl.colors.textSecondary,
+            tint = Theme.colors.textSecondary,
             modifier = Modifier.size(SPEAKER_GLYPH),
         )
         Text(
             text,
             style = MaterialTheme.typography.bodySmall,
-            color = Dl.colors.textSecondary,
+            color = Theme.colors.textSecondary,
         )
     }
 }
@@ -302,7 +302,7 @@ fun PauseLine(text: String, modifier: Modifier = Modifier) {
     Text(
         text,
         style = MaterialTheme.typography.bodyMedium.copy(fontStyle = FontStyle.Italic),
-        color = Dl.colors.textSecondary,
+        color = Theme.colors.textSecondary,
         textAlign = TextAlign.Center,
         modifier = modifier.fillMaxWidth(),
     )
@@ -331,7 +331,7 @@ fun localizedTarget(text: String, lang: Language): AnnotatedString =
  * *pasta de dientes* would have rendered its own head tinted as though *pasta* were an
  * article. Genderless targets render exactly the text and nothing else.
  */
-fun DlColors.articleColoredText(realization: Realization): AnnotatedString {
+fun ThemeColors.articleColoredText(realization: Realization): AnnotatedString {
     val article = CardDisplay.article(realization) ?: return AnnotatedString(realization.text)
     return buildAnnotatedString {
         withStyle(SpanStyle(color = articleTint(article) ?: Color.Unspecified)) { append(article) }

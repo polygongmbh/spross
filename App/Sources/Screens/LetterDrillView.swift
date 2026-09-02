@@ -91,7 +91,7 @@ struct LetterDrillView: View, LanguageNaming {
             } else {
                 // Nothing this device can ask — the hub gates on the same
                 // predicate, so this is a closed door, not a screen.
-                Color.dlBackground.ignoresSafeArea().onAppear { dismiss() }
+                Theme.colors.background.ignoresSafeArea().onAppear { dismiss() }
             }
         }
         // why: BOTH hooks. .onChange never fires for the FIRST item, and a

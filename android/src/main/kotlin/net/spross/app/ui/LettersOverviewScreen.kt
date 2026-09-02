@@ -107,21 +107,21 @@ private fun StageRow(
             // it describe a single thing.
             .semantics(mergeDescendants = true) { },
         verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         Text(
             if (open) "$step." else LOCK,
             style = MaterialTheme.typography.titleMedium,
-            color = if (entry) Dl.colors.accent else Dl.colors.textSecondary,
+            color = if (entry) Theme.colors.accent else Theme.colors.textSecondary,
             modifier = Modifier.clearAndSetSemantics { },
         )
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
             Text(
                 chrome.name(stage),
                 style = MaterialTheme.typography.titleMedium,
-                color = if (open) Dl.colors.textPrimary else Dl.colors.textSecondary,
+                color = if (open) Theme.colors.textPrimary else Theme.colors.textSecondary,
             )
-            Text(caption, style = MaterialTheme.typography.bodySmall, color = Dl.colors.textSecondary)
+            Text(caption, style = MaterialTheme.typography.bodySmall, color = Theme.colors.textSecondary)
         }
     }
 }

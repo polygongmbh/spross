@@ -19,23 +19,23 @@ enum Legal {
 extension CreditsView {
 
     var legalSection: some View {
-        VStack(alignment: .leading, spacing: DL.Space.m) {
+        VStack(alignment: .leading, spacing: Theme.spacing.md) {
             Text("legal.title")
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.textPrimary)
             imprintCard
         }
     }
 
     private var imprintCard: some View {
-        VStack(alignment: .leading, spacing: DL.Space.m) {
+        VStack(alignment: .leading, spacing: Theme.spacing.md) {
             VStack(alignment: .leading, spacing: 2) {
                 Text("legal.company")
-                    .font(DL.Fonts.headline)
+                    .font(Theme.typography.headline)
                 Text("legal.address.value")
-                    .font(DL.Fonts.body)
+                    .font(Theme.typography.body)
             }
-            .foregroundStyle(Color.dlTextPrimary)
+            .foregroundStyle(Theme.colors.textPrimary)
 
             VStack(alignment: .leading, spacing: 2) {
                 line("legal.director.label") { Text("legal.director.value") }
@@ -46,10 +46,10 @@ extension CreditsView {
             privacyLink
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(DL.Space.l)
+        .padding(Theme.spacing.lg)
         .background(
-            RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                .fill(Color.dlSurface)
+            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                .fill(Theme.colors.surface)
         )
     }
 
@@ -57,13 +57,13 @@ extension CreditsView {
     /// line, which is how the notice is read and half the height of stacking them.
     private func line<Value: View>(_ label: LocalizedStringKey,
                                    @ViewBuilder value: () -> Value) -> some View {
-        HStack(alignment: .firstTextBaseline, spacing: DL.Space.xs) {
+        HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.xs) {
             Text(label)
-                .foregroundStyle(Color.dlTextSecondary)
+                .foregroundStyle(Theme.colors.textSecondary)
             value()
-                .foregroundStyle(Color.dlTextPrimary)
+                .foregroundStyle(Theme.colors.textPrimary)
         }
-        .font(DL.Fonts.caption)
+        .font(Theme.typography.caption)
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -74,7 +74,7 @@ extension CreditsView {
     private var contactValue: some View {
         if let url = URL(string: "mailto:\(Legal.contactAddress)") {
             Link(Legal.contactAddress, destination: url)
-                .foregroundStyle(Color.dlAccent)
+                .foregroundStyle(Theme.colors.accent)
         } else {
             Text(verbatim: Legal.contactAddress)
         }
@@ -85,8 +85,8 @@ extension CreditsView {
         if let url = URL(string: Legal.privacyUrl) {
             Link(destination: url) {
                 Label("legal.privacy", systemImage: "hand.raised")
-                    .font(DL.Fonts.caption)
-                    .foregroundStyle(Color.dlAccent)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.accent)
             }
         }
     }

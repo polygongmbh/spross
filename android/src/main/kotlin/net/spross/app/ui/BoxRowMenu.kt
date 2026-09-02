@@ -61,7 +61,7 @@ internal fun BoxRowMenu(
             // the long press is where a word explains itself — the same line the session's
             // reveal wears ([PauseLine]), above every action rather than among them.
             (card.target.note ?: card.source.note)?.let { note ->
-                PauseLine(note, Modifier.widthIn(max = 280.dp).padding(DlSpace.m))
+                PauseLine(note, Modifier.widthIn(max = 280.dp).padding(Theme.spacing.md))
                 HorizontalDivider()
             }
             when (standing) {

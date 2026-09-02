@@ -102,13 +102,13 @@ private fun FooterDoor(
     // on a narrow phone — the address is long, and wrapping is the fallback, not the intent.
     TextButton(
         onClick = onClick,
-        contentPadding = PaddingValues(horizontal = DlSpace.s, vertical = DlSpace.s),
+        contentPadding = PaddingValues(horizontal = Theme.spacing.sm, vertical = Theme.spacing.sm),
         modifier = spoken?.let {
             Modifier.semantics(mergeDescendants = true) { contentDescription = it }
         } ?: Modifier,
     ) {
         Icon(icon, contentDescription = null, modifier = Modifier.size(16.dp))
-        Spacer(Modifier.width(DlSpace.xs))
+        Spacer(Modifier.width(Theme.spacing.xs))
         Text(label)
     }
 }
@@ -127,7 +127,7 @@ private fun UpdateLine(chrome: Chrome, version: String) {
     var offering by remember { mutableStateOf(false) }
     TextButton(
         onClick = { if (!context.openObtainium()) offering = true },
-        contentPadding = PaddingValues(horizontal = DlSpace.m, vertical = DlSpace.s),
+        contentPadding = PaddingValues(horizontal = Theme.spacing.md, vertical = Theme.spacing.sm),
         // why: the number alone says nothing about where it leads, and a screen reader has
         // no accent to go on — so the door is NAMED here, for the one reader that cannot
         // see it is one.

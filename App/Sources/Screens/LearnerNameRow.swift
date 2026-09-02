@@ -19,15 +19,15 @@ struct LearnerNameRow: View {
     @State private var nameDraft = LearnerProfile.name ?? ""
 
     var body: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             Text("settings.name.title")
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.headline)
+                .foregroundStyle(Theme.colors.textPrimary)
             DLNameField(placeholder: "settings.name.placeholder", text: $nameDraft)
                 .onChange(of: nameDraft) { _, typed in model.setLearnerName(typed) }
             Text("settings.name.hint")
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
         }
     }
 }

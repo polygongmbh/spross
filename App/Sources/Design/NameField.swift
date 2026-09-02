@@ -11,20 +11,20 @@ struct DLNameField: View {
 
     var body: some View {
         TextField(placeholder, text: $text)
-            .font(DL.Fonts.body)
-            .foregroundStyle(Color.dlTextPrimary)
+            .font(Theme.typography.body)
+            .foregroundStyle(Theme.colors.textPrimary)
             // why: the opposite of the own-word form, where the automatic capital
             // misspells the word being stored — a name is spelled with one, and no
             // dictionary knows better how it goes on from there.
             .textInputAutocapitalization(.words)
             .autocorrectionDisabled()
             .submitLabel(.done)
-            .padding(.vertical, DL.Space.s)
-            .padding(.horizontal, DL.Space.m)
+            .padding(.vertical, Theme.spacing.sm)
+            .padding(.horizontal, Theme.spacing.md)
             .frame(minHeight: 44, alignment: .leading)
             .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(Color.dlSurfaceTint)
+                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                    .fill(Theme.colors.surfaceTint)
             )
     }
 }

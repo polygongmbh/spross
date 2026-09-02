@@ -83,14 +83,14 @@ struct OnboardingView: View {
                         }
                     }
                 }
-                .padding(DL.Space.l)
+                .padding(Theme.spacing.lg)
             }
             .scrollBounceBehavior(.basedOnSize)
             // why: a page turn from a scrolled picker to a shorter page — the offset
             // it kept would open that page mid-sentence at large Dynamic Type.
             .onChange(of: page) { _, _ in proxy.scrollTo(topAnchor, anchor: .top) }
         }
-        .background(Color.dlBackground.ignoresSafeArea())
+        .background(Theme.colors.background.ignoresSafeArea())
         // why: the OUTERMOST view, above the switch — inside a branch, the story pages
         // would fall back to the persisted profile's locale, empty on a first run.
         .environment(\.locale, AppModel.chromeLocale(source: source))
@@ -106,7 +106,7 @@ struct OnboardingView: View {
     /// The picker keeps its own rhythm: a leading-aligned form under a centered hero,
     /// which is why it takes the hero alone and not the story pages' scaffold.
     private var languagesPage: some View {
-        VStack(alignment: .leading, spacing: DL.Space.l) {
+        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             OnboardingHero(emoji: "👋", title: "onboarding.welcome")
             sourceSection
             targetSection
@@ -165,10 +165,10 @@ struct OnboardingView: View {
     /// here to prefill from. Android fills the same field in from its device name
     /// (`DeviceName.kt`), where that name is someone's.
     private var nameSection: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             Text("onboarding.name.question")
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.headline)
+                .foregroundStyle(Theme.colors.textPrimary)
             DLNameField(placeholder: "settings.name.placeholder", text: $name)
         }
     }
@@ -183,10 +183,10 @@ struct OnboardingView: View {
                         selected: String?,
                         onOpen: @escaping () -> Void,
                         onPick: @escaping (String) -> Void) -> some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             Text(question)
-                .font(DL.Fonts.headline)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.headline)
+                .foregroundStyle(Theme.colors.textPrimary)
             if open {
                 ForEach(options, id: \.self) { candidate in
                     DLSelectionRow(title: Text(verbatim: languageName(candidate)),
@@ -214,7 +214,7 @@ struct OnboardingView: View {
         }
         .buttonStyle(DLPrimaryButtonStyle())
         .disabled(target == nil)
-        .padding(.top, DL.Space.l)
+        .padding(.top, Theme.spacing.lg)
     }
 
     /// The one action that commits: it joins the box AND opens the round it was

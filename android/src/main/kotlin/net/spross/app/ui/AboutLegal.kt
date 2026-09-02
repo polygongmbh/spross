@@ -35,11 +35,11 @@ fun LegalSection(chrome: Chrome) {
     val context = LocalContext.current
     val uris = LocalUriHandler.current
     val version = appVersion()
-    Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         Text(chrome.legalTitle, style = MaterialTheme.typography.titleLarge)
         Column(
-            modifier = Modifier.fillMaxWidth().panel().padding(DlSpace.l),
-            verticalArrangement = Arrangement.spacedBy(DlSpace.m),
+            modifier = Modifier.fillMaxWidth().panel().padding(Theme.spacing.lg),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
         ) {
             Column {
                 Text(chrome.legalCompany, style = MaterialTheme.typography.titleSmall)
@@ -55,7 +55,7 @@ fun LegalSection(chrome: Chrome) {
             }
             TextButton(
                 onClick = { uris.openUri(Legal.PRIVACY_URL) },
-                contentPadding = PaddingValues(horizontal = DlSpace.s, vertical = DlSpace.s),
+                contentPadding = PaddingValues(horizontal = Theme.spacing.sm, vertical = Theme.spacing.sm),
             ) {
                 Text(chrome.legalPrivacy, style = MaterialTheme.typography.bodySmall)
             }
@@ -73,17 +73,17 @@ private fun ImprintLine(label: String, value: String, onOpen: (() -> Unit)? = nu
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.xs),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
     ) {
         Text(
             label,
             style = MaterialTheme.typography.bodySmall,
-            color = Dl.colors.textSecondary,
+            color = Theme.colors.textSecondary,
         )
         Text(
             value,
             style = MaterialTheme.typography.bodySmall,
-            color = if (onOpen == null) Dl.colors.textPrimary else Dl.colors.accent,
+            color = if (onOpen == null) Theme.colors.textPrimary else Theme.colors.accent,
             modifier = if (onOpen == null) {
                 Modifier
             } else {

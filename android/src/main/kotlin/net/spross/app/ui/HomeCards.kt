@@ -38,9 +38,9 @@ private fun DayCard(content: @Composable ColumnScope.() -> Unit) {
         modifier = Modifier.fillMaxWidth().panel(MaterialTheme.shapes.large),
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(DlSpace.xl),
+            modifier = Modifier.fillMaxWidth().padding(Theme.spacing.xl),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(DlSpace.l),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
             content = content,
         )
     }
@@ -66,12 +66,12 @@ private fun DayMark(emoji: String?, streak: Int, health: StreakHealth, chrome: C
     Row(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(percent = 50))
-            .padding(horizontal = DlSpace.l, vertical = DlSpace.m)
+            .padding(horizontal = Theme.spacing.lg, vertical = Theme.spacing.md)
             .semantics(mergeDescendants = true) {
                 contentDescription = countLine(chrome.a11yCountStreakDaysOne, chrome.a11yCountStreakDays, streak)
             },
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.s),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
     ) {
         if (emoji == null) {
             StreakFlame(health, MaterialTheme.typography.titleLarge)
@@ -210,9 +210,9 @@ fun ListenCard(model: AppModel) {
             .clip(MaterialTheme.shapes.large)
             .semantics(mergeDescendants = true) { }
             .clickable(role = Role.Button) { model.startListening() }
-            .padding(DlSpace.xl),
+            .padding(Theme.spacing.xl),
         verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.spacedBy(DlSpace.m),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         Text(
             "🎧",
@@ -221,7 +221,7 @@ fun ListenCard(model: AppModel) {
         )
         Column(
             modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(DlSpace.xs),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
         ) {
             Text(chrome.listenTitle, style = MaterialTheme.typography.titleLarge)
             Text(

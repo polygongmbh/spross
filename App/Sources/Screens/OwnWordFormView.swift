@@ -63,18 +63,18 @@ struct OwnWordFormView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: DL.Space.xl) {
+                VStack(alignment: .leading, spacing: Theme.spacing.xl) {
                     field(label(model.sourceLanguage), text: $known, field: .known)
                     swapButton
                     field(label(model.targetLanguage ?? ""), text: $learning, field: .learning)
                     picture
                     Text(isPair ? "box.own.word.explainer" : "box.own.word.explainer.suggestion")
-                        .font(DL.Fonts.caption)
-                        .foregroundStyle(Color.dlTextSecondary)
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
                 }
-                .padding(DL.Space.xl)
+                .padding(Theme.spacing.xl)
             }
-            .background(Color.dlBackground.ignoresSafeArea())
+            .background(Theme.colors.background.ignoresSafeArea())
             .navigationTitle(isEditing ? "box.own.word.edit" : "box.own.word.title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -87,7 +87,7 @@ struct OwnWordFormView: View {
                 }
             }
         }
-        .tint(.dlAccent)
+        .tint(Theme.colors.accent)
         // why: the cursor belongs on the half that is MISSING — the learned side
         // where the known one arrived prefilled, the first field where neither did.
         // A form that opened on a finished pair is there to be read before it is
@@ -141,8 +141,8 @@ struct OwnWordFormView: View {
             swap(&known, &learning)
         } label: {
             Label("box.own.word.swap", systemImage: "arrow.up.arrow.down")
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlAccent)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.accent)
         }
         .frame(maxWidth: .infinity, alignment: .center)
     }
@@ -162,7 +162,7 @@ struct OwnWordFormView: View {
     /// (`OwnWords.QUICK_EMOJI`), so both phones offer the same set.
     private var quickPicks: some View {
         ScrollView(.horizontal) {
-            HStack(spacing: DL.Space.s) {
+            HStack(spacing: Theme.spacing.sm) {
                 ForEach(OwnWords.shared.QUICK_EMOJI, id: \.self) { pick in
                     Button {
                         emoji = pick
@@ -172,8 +172,8 @@ struct OwnWordFormView: View {
                             .frame(width: 40, height: 40)
                             .background(
                                 Circle().fill(emoji == pick
-                                              ? Color.dlAccent.opacity(0.18)
-                                              : Color.dlSurface)
+                                              ? Theme.colors.accent.opacity(0.18)
+                                              : Theme.colors.surface)
                             )
                     }
                     .buttonStyle(.plain)
@@ -193,14 +193,14 @@ struct OwnWordFormView: View {
         // read as one more thing about the language field before them.
         @ViewBuilder between: () -> Between = { EmptyView() },
     ) -> some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             Text(label)
-                .font(DL.Fonts.caption)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
             between()
             TextField(text: text) { EmptyView() }
-                .font(DL.Fonts.body)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.body)
+                .foregroundStyle(Theme.colors.textPrimary)
                 .autocorrectionDisabled()
                 // why: a word is not a sentence — the automatic capital put one on a
                 // Swahili noun, which is simply the wrong spelling of the word being
@@ -209,15 +209,15 @@ struct OwnWordFormView: View {
                 .submitLabel(field == .emoji ? .done : .next)
                 .focused($focus, equals: field)
                 .onSubmit { advance(from: field) }
-                .padding(.horizontal, DL.Space.l)
+                .padding(.horizontal, Theme.spacing.lg)
                 .frame(minHeight: 52)
                 .background(
-                    RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                        .fill(Color.dlSurface)
+                    RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                        .fill(Theme.colors.surface)
                 )
                 .overlay(
-                    RoundedRectangle(cornerRadius: DL.Radius.control, style: .continuous)
-                        .strokeBorder(Color.dlSeparator, lineWidth: 1)
+                    RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                        .strokeBorder(Theme.colors.separator, lineWidth: 1)
                 )
         }
     }

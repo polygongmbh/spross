@@ -56,23 +56,23 @@ struct StreakFlameView: View {
     var emoji: String?
 
     var body: some View {
-        HStack(spacing: DL.Space.s) {
+        HStack(spacing: Theme.spacing.sm) {
             mark
                 .font(.title2)
                 .accessibilityHidden(true)
             Text(days.formatted())
-                .font(DL.Fonts.title)
-                .foregroundStyle(Color.dlTextPrimary)
+                .font(Theme.typography.title)
+                .foregroundStyle(Theme.colors.textPrimary)
             // why: the number carries the big type, so the unit stands alone —
             // and a string that does not name its count cannot be plural-varied
             // (the compiler refuses it), which is what these two keys are for.
             Text(days == 1 ? "common.day.one" : "common.day.other")
-                .font(DL.Fonts.subheadline)
-                .foregroundStyle(Color.dlTextSecondary)
+                .font(Theme.typography.subheadline)
+                .foregroundStyle(Theme.colors.textSecondary)
         }
-        .padding(.horizontal, DL.Space.l)
-        .padding(.vertical, DL.Space.m)
-        .background(Color.dlSurfaceTint, in: Capsule())
+        .padding(.horizontal, Theme.spacing.lg)
+        .padding(.vertical, Theme.spacing.md)
+        .background(Theme.colors.surfaceTint, in: Capsule())
         .accessibilityElement(children: .combine)
         .accessibilityLabel(Text("a11y.count.streakDays \(days)"))
     }
@@ -146,10 +146,10 @@ struct AreaChip: View {
     /// the settling cards the box counts inside `learning` — the two-way number
     /// the counts row is cut for, which the bar splits one level finer.
     private var segments: [AreaBarSegment] {
-        [(progress.consolidated, Color.dlGrown),
-         (progress.settling, Color.dlSuccess),
-         (progress.learning - progress.settling, Color.dlAmber),
-         (progress.notIntroduced, Color.dlSeparator)]
+        [(progress.consolidated, Theme.colors.grown),
+         (progress.settling, Theme.colors.success),
+         (progress.learning - progress.settling, Theme.colors.amber),
+         (progress.notIntroduced, Theme.colors.separator)]
             .enumerated()
             .filter { $0.element.0 > 0 }
             .map { AreaBarSegment(id: $0.offset, count: $0.element.0, color: $0.element.1) }
@@ -158,19 +158,19 @@ struct AreaChip: View {
     private var denominator: CGFloat { CGFloat(max(progress.progressTotal, 1)) }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: DL.Space.s) {
-            HStack(spacing: DL.Space.s) {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
+            HStack(spacing: Theme.spacing.sm) {
                 Text(emoji).accessibilityHidden(true)
                 Text(name)
-                    .font(DL.Fonts.title)
-                    .foregroundStyle(Color.dlTextPrimary)
+                    .font(Theme.typography.title)
+                    .foregroundStyle(Theme.colors.textPrimary)
                     .lineLimit(1)
-                Spacer(minLength: DL.Space.s)
+                Spacer(minLength: Theme.spacing.sm)
             }
             if let subtitle {
                 Text(subtitle)
-                    .font(DL.Fonts.subheadline)
-                    .foregroundStyle(Color.dlTextSecondary)
+                    .font(Theme.typography.subheadline)
+                    .foregroundStyle(Theme.colors.textSecondary)
                     .lineLimit(2)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -179,7 +179,7 @@ struct AreaChip: View {
                 if segments.isEmpty {
                     // why: an empty area still needs a bar in its slot — a full
                     // amber one would read as "everything learning"; show neutral.
-                    Capsule().fill(Color.dlSeparator)
+                    Capsule().fill(Theme.colors.separator)
                 } else {
                     let unit = max(geo.size.width - CGFloat(segments.count - 1) * 2, 0) / denominator
                     HStack(spacing: 2) {
@@ -207,12 +207,12 @@ struct AreaChip: View {
     /// so the text keeps the coarse split — cleared the bar, or still short of it —
     /// and the bar alone draws the Sprosse between them.
     private var counts: some View {
-        HStack(spacing: DL.Space.m) {
+        HStack(spacing: Theme.spacing.md) {
             Label("progress.consolidatedCount \(progress.consolidated.formatted())",
                   systemImage: "checkmark.seal.fill")
-                .foregroundStyle(Color.dlGrown)
+                .foregroundStyle(Theme.colors.grown)
             Label("progress.learningCount \(progress.learning.formatted())", systemImage: "leaf.fill")
-                .foregroundStyle(Color.dlSuccess)
+                .foregroundStyle(Theme.colors.success)
             if lockedPhrases > 0 {
                 // why: the padlock carries "locked", so the text only has to
                 // name what is locked — three full labels do not fit the card.
@@ -221,8 +221,8 @@ struct AreaChip: View {
             }
             Spacer(minLength: 0)
         }
-        .font(DL.Fonts.caption)
-        .foregroundStyle(Color.dlTextSecondary)
+        .font(Theme.typography.caption)
+        .foregroundStyle(Theme.colors.textSecondary)
         .lineLimit(1)
         .minimumScaleFactor(0.75)
     }
@@ -272,7 +272,7 @@ struct PhaseBadge: View {
         }
     }
 
-    private var color: Color { growth ?? .dlTextSecondary }
+    private var color: Color { growth ?? Theme.colors.textSecondary }
 
     /// The area row's own icon at the consolidated end; Growing gets one, and the two
     /// amber Sprossen share the leaf their shared color already pairs them by.
@@ -298,10 +298,10 @@ struct PhaseBadge: View {
                     .fixedSize(horizontal: true, vertical: false)
             }
         }
-        .font(DL.Fonts.caption)
+        .font(Theme.typography.caption)
         .foregroundStyle(color)
-        .padding(.horizontal, DL.Space.m)
-        .padding(.vertical, DL.Space.xs + 1)
+        .padding(.horizontal, Theme.spacing.md)
+        .padding(.vertical, Theme.spacing.xs + 1)
         .background(color.opacity(0.14), in: Capsule())
     }
 }
@@ -311,10 +311,10 @@ struct PhaseBadge: View {
 /// The card its real callers wrap it in, so the preview shows it in place.
 private extension View {
     func previewCard() -> some View {
-        padding(DL.Space.l)
+        padding(Theme.spacing.lg)
             .background(
-                RoundedRectangle(cornerRadius: DL.Radius.tile, style: .continuous)
-                    .fill(Color.dlSurface)
+                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                    .fill(Theme.colors.surface)
             )
             .dlCardShadow()
     }
@@ -324,18 +324,18 @@ private extension View {
 /// real row (`CardRowState.Standing.swatch`) written out — a preview has no box to
 /// ask, and seeing the four words side by side is the point of it.
 private var ladder: some View {
-    HStack(spacing: DL.Space.s) {
+    HStack(spacing: Theme.spacing.sm) {
         PhaseBadge(phase: .new)
-        PhaseBadge(phase: .learning, growth: .dlAmber)
-        PhaseBadge(phase: .relearning, growth: .dlAmber)
-        PhaseBadge(phase: .review, growth: .dlSuccess)
-        PhaseBadge(phase: .review, consolidated: true, growth: .dlGrown)
+        PhaseBadge(phase: .learning, growth: Theme.colors.amber)
+        PhaseBadge(phase: .relearning, growth: Theme.colors.amber)
+        PhaseBadge(phase: .review, growth: Theme.colors.success)
+        PhaseBadge(phase: .review, consolidated: true, growth: Theme.colors.grown)
     }
 }
 
 #Preview("Progress pieces") {
     ScrollView {
-        VStack(alignment: .leading, spacing: DL.Space.xl) {
+        VStack(alignment: .leading, spacing: Theme.spacing.xl) {
             StreakFlameView(days: 12)
             StreakFlameView(days: 12, flame: .dwindling)
             StreakFlameView(days: 12, flame: .atRisk)
@@ -359,13 +359,13 @@ private var ladder: some View {
             // The whole ladder, in the order a card climbs it.
             ladder
         }
-        .padding(DL.Space.xl)
+        .padding(Theme.spacing.xl)
     }
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
 }
 
 #Preview("Progress pieces · dark") {
-    VStack(alignment: .leading, spacing: DL.Space.xl) {
+    VStack(alignment: .leading, spacing: Theme.spacing.xl) {
         StreakFlameView(days: 3)
         StreakFlameView(days: 3, flame: .atRisk)
         AreaChip(emoji: "🍳", name: "Küche",
@@ -375,8 +375,8 @@ private var ladder: some View {
             .previewCard()
         ladder
     }
-    .padding(DL.Space.xl)
+    .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.dlBackground)
+    .background(Theme.colors.background)
     .preferredColorScheme(.dark)
 }

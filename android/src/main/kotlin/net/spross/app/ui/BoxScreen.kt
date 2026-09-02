@@ -52,7 +52,7 @@ fun BoxScreen(model: AppModel, openAt: String? = null) {
     val box = model.box
     val stats = model.stats
     if (catalog == null || box == null || stats == null) {
-        Column(Modifier.fillMaxSize().padding(DlSpace.xl)) {
+        Column(Modifier.fillMaxSize().padding(Theme.spacing.xl)) {
             BoxTopBar(model.chrome, onSearch = null, onClose = model::closeBox)
         }
         return
@@ -176,7 +176,7 @@ private fun BoxBrowserScreen(
     val anyWordCanBeHeard = remember(catalog, box.cards) {
         box.cards.values.any { model.boxPronounceAction(it.target) != null }
     }
-    Column(Modifier.fillMaxSize().padding(horizontal = DlSpace.xl)) {
+    Column(Modifier.fillMaxSize().padding(horizontal = Theme.spacing.xl)) {
         BoxTopBar(chrome, onSearch = { searching = true }, onClose = model::closeBox)
         Text(
             chrome.boxSubtitle.format(stats.activeCount, box.cards.size),
@@ -192,8 +192,8 @@ private fun BoxBrowserScreen(
         LazyColumn(
             state = listState,
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(DlSpace.l),
-            contentPadding = PaddingValues(vertical = DlSpace.l),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
+            contentPadding = PaddingValues(vertical = Theme.spacing.lg),
         ) {
             itemsIndexed(items, key = { _, item -> itemKey(item) }) { _, item ->
                 when (item) {
