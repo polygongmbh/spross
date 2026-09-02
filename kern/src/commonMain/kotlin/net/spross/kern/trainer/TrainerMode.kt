@@ -113,29 +113,46 @@ data class TrainerMode(
     ): TrainerDraw {
         val first = variants[rng.nextInt(variants.size)]
         for (variant in listOf(first) + variants.filter { it != first }) {
-            val fresh = drawFresh(variant, levels, avoiding, solved, rng)
+            val fresh = drawVariant(variant, levels, avoiding, solved, rng)
             if (fresh != null) return fresh
         }
         return TrainerDraw(null, levels)
     }
 
-    /** The first rung at or above [variant]'s with a value left to ask; null once it is out. */
-    private fun drawFresh(
+    /**
+     * The first rung at or above [variant]'s with a value left to ask ([DrillLadder.climb]);
+     * null once it is out, which hands the turn to the next variant of a mixed run.
+     */
+    private fun drawVariant(
         variant: DrillVariant,
         levels: Map<DrillVariant, Int>,
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
     ): TrainerDraw? {
-        val standing = maxOf(1, levels[variant] ?: 1)
-        // why: past the variant's top rung the values stand still and the number goes on
-        // ([DrillRamp.step]), so a draw there is booked at the rung it was asked at.
-        for (level in minOf(standing, maxLevel(variant))..maxLevel(variant)) {
-            repeat(DrillSolved.SPENT_ATTEMPTS) {
-                val drawn = drawOnce(variant, level, levels, rng)
-                if (DrillSolved.key(variant, drawn.task) !in solved && drawn.task.prompt != avoiding) {
-                    return TrainerDraw(drawn, levels + (variant to maxOf(standing, level)))
-                }
+        val climbed = DrillLadder.climb(levels[variant] ?: 1, maxLevel(variant)) { level ->
+            drawUnsolved(variant, level, levels, avoiding, solved, rng)
+        }
+        val drawn = climbed.task ?: return null
+        return TrainerDraw(drawn, levels + (variant to climbed.level))
+    }
+
+    /**
+     * One value from [level] the run does not already hold. The rung draws rather than
+     * enumerates, so [DrillSolved.SPENT_ATTEMPTS] repeats in a row is what spent means here.
+     */
+    private fun drawUnsolved(
+        variant: DrillVariant,
+        level: Int,
+        levels: Map<DrillVariant, Int>,
+        avoiding: String?,
+        solved: Set<String>,
+        rng: Random,
+    ): DrawnTask? {
+        repeat(DrillSolved.SPENT_ATTEMPTS) {
+            val drawn = drawOnce(variant, level, levels, rng)
+            if (DrillSolved.key(variant, drawn.task) !in solved && drawn.task.prompt != avoiding) {
+                return drawn
             }
         }
         return null

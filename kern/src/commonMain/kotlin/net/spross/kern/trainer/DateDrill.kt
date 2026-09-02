@@ -85,12 +85,9 @@ object DateDrill {
     }
 
     /**
-     * The first rung at or above [level] with a question left. The rungs nest, so a rung
-     * is spent only once everything it carries is answered out, and the one above always
-     * has at least as much to offer; once the whole ladder is out the task is null, which
-     * ends the run on its summary. Past the top the content stands still and the NUMBER
-     * goes on ([DrillRamp.step]): a rung above the ladder draws the top one and keeps its
-     * own count.
+     * The first rung at or above [level] with a question left ([DrillLadder.climb]). The
+     * rungs nest, so a rung is spent only once everything it carries is answered out, and
+     * the one above always has at least as much to offer.
      */
     fun draw(
         content: DateDrillContent,
@@ -100,13 +97,10 @@ object DateDrill {
         solved: Set<String>,
         rng: Random,
     ): DateDrillDraw {
-        val top = maxLevel(content, reverse)
-        val standing = maxOf(1, level)
-        for (rung in minOf(standing, top)..top) {
-            val task = sample(content, rung, reverse, avoid, solved, rng)
-            if (task != null) return DateDrillDraw(task, maxOf(standing, rung))
+        val climbed = DrillLadder.climb(level, maxLevel(content, reverse)) { rung ->
+            sample(content, rung, reverse, avoid, solved, rng)
         }
-        return DateDrillDraw(null, standing)
+        return DateDrillDraw(climbed.task, climbed.level)
     }
 
     /** The language an answer is owed in — the learned one, or the learner's own reversed. */

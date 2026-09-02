@@ -134,6 +134,23 @@ class DrillProgressionTests {
         assertEquals(11, DrillRamp.step(12, 1, correct = false, clean = true, winsRequired = 2).level)
     }
 
+    // The ladder — where the next question comes from, shared by all four drills.
+
+    /**
+     * The climb: the standing rung first, the ones above it only where it is answered out,
+     * and a rung ABOVE the named ladder keeps its own number rather than the clamped one.
+     */
+    @Test
+    fun theClimbFindsTheFirstRungWithAQuestionLeft() {
+        val spent = setOf(1, 2)
+        assertEquals(DrillLadder.Rung("q3", 3), DrillLadder.climb(1, 5) { if (it in spent) null else "q$it" })
+        assertEquals(DrillLadder.Rung("q2", 2), DrillLadder.climb(2, 5) { "q$it" })
+        // Past the top the sampler is asked for the top rung and the answer keeps the tail's number.
+        assertEquals(DrillLadder.Rung("q5", 9), DrillLadder.climb(9, 5) { "q$it" })
+        // A ladder answered out draws nothing and leaves the run standing where it was.
+        assertEquals(DrillLadder.Rung(null, 4), DrillLadder.climb(4, 5) { null })
+    }
+
     // Direction
 
     @Test

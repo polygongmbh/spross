@@ -151,10 +151,9 @@ object CountryDrill {
     }
 
     /**
-     * The first rung at or above [level] with a question left. A rung the run has answered
-     * out is climbed past rather than asked again — the rungs nest, so the one above always
-     * has at least as much to offer — and once the whole ladder is out the task is null,
-     * which ends the run on its summary.
+     * The first rung at or above [level] with a question left ([DrillLadder.climb]). A rung
+     * the run has answered out is climbed past rather than asked again — the rungs nest, so
+     * the one above always has at least as much to offer.
      */
     fun draw(
         content: CountryDrillContent,
@@ -164,14 +163,10 @@ object CountryDrill {
         solved: Set<String>,
         rng: Random,
     ): CountryDrillDraw {
-        val standing = maxOf(1, level)
-        for (rung in minOf(standing, MAX_LEVEL)..MAX_LEVEL) {
-            val task = sample(content, rung, reverse, avoidId, solved, rng)
-            // why: past the ladder's top the content stands still and the number goes on
-            // ([DrillRamp.step]), so the rung a draw reports is never below the one asked for.
-            if (task != null) return CountryDrillDraw(task, maxOf(standing, rung))
+        val climbed = DrillLadder.climb(level, MAX_LEVEL) { rung ->
+            sample(content, rung, reverse, avoidId, solved, rng)
         }
-        return CountryDrillDraw(null, standing)
+        return CountryDrillDraw(climbed.task, climbed.level)
     }
 
     /**

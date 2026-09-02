@@ -28,7 +28,7 @@ object LetterDrillRun {
     /** The same, forced to one rung — the deterministic way to reach a stage. */
     fun openAt(config: LetterDrillRunConfig, level: Int, rng: Random): LetterDrillRunState {
         val start = level.coerceIn(1, config.report.maxLevel)
-        val opening = question(config, start, null, null, emptySet(), rng)
+        val opening = draw(config, start, null, null, emptySet(), rng)
         return LetterDrillRunState(
             config = config,
             task = opening.task,
@@ -202,7 +202,7 @@ object LetterDrillRun {
         rng: Random,
     ): LetterDrillReduction {
         val next = advanced(state, correct, clean)
-        val question = question(
+        val question = draw(
             state.config,
             next.level,
             state.task?.answerRef,
@@ -266,32 +266,21 @@ object LetterDrillRun {
         else -> AnswerOutcome.Almost
     }
 
-    /** The next question and the rung it came from — see [question]. */
-    private data class Question(val task: LetterDrillTask?, val level: Int)
-
     /**
-     * The first rung at or above [from] with something left to ask. A stage the run has
-     * answered out is climbed past rather than repeated ([DrillSolved]), and where the whole
-     * ladder above is spent the task is null: the run ends on its summary.
+     * The first rung at or above [from] with something left to ask ([DrillLadder.climb]).
+     * A stage the run has answered out is climbed past rather than repeated ([DrillSolved]).
      */
-    private fun question(
+    private fun draw(
         config: LetterDrillRunConfig,
         from: Int,
         avoiding: String?,
         avoidingWord: String?,
         solved: Set<String>,
         rng: Random,
-    ): Question {
-        val top = config.report.maxLevel
-        val standing = maxOf(1, from)
-        // why: past the top rung the stage stands still and the number goes on
-        // ([DrillRamp.step]), so a question found there keeps the rung it was asked at.
-        for (level in minOf(standing, top)..top) {
-            val task = sample(config, level, avoiding, avoidingWord, solved, rng)
-            if (task != null) return Question(task, maxOf(standing, level))
+    ): DrillLadder.Rung<LetterDrillTask> =
+        DrillLadder.climb(from, config.report.maxLevel) { level ->
+            sample(config, level, avoiding, avoidingWord, solved, rng)
         }
-        return Question(null, standing)
-    }
 
     /**
      * One question at [level]: dictation draws from the box, every other stage from the alphabet.

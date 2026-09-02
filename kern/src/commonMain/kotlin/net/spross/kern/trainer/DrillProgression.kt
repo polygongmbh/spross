@@ -113,3 +113,37 @@ object DrillRamp {
     /** Where the ramp leaves the run: the rung to ask at next, and the wins banked on it. */
     data class RungStep(val level: Int, val winsAtLevel: Int)
 }
+
+/**
+ * Where the next question comes from — the other half of a rung, and the other thing every
+ * drill does the same way. [DrillRamp] says which rung a run stands on; this says what that
+ * rung has left to ask.
+ *
+ * Each drill keeps its own draw type (they cross to Swift, where a generic would arrive
+ * opaque) and its own sampler; what they share, and what lived four times before, is the
+ * climb itself.
+ */
+internal object DrillLadder {
+
+    /** A drawn question and the rung it is booked at; a null task is a ladder answered out. */
+    data class Rung<T>(val task: T?, val level: Int)
+
+    /**
+     * The first rung at or above [from] with something left to ask, drawn by [sample].
+     *
+     * A rung a run has answered out is climbed past rather than repeated ([DrillSolved]),
+     * and where the whole ladder above is spent the task is null — which is what ends a run
+     * on its summary. Past [top] the content stands still and the NUMBER goes on
+     * ([DrillRamp.step]): a question found up there keeps the rung it was asked at, never
+     * the clamped one, so a tail rung survives its own draw.
+     */
+    fun <T : Any> climb(from: Int, top: Int, sample: (Int) -> T?): Rung<T> {
+        val standing = maxOf(1, from)
+        val ceiling = maxOf(1, top)
+        for (rung in minOf(standing, ceiling)..ceiling) {
+            val task = sample(rung)
+            if (task != null) return Rung(task, maxOf(standing, rung))
+        }
+        return Rung(null, standing)
+    }
+}
