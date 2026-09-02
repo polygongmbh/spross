@@ -5896,13 +5896,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Freies Üben — ohne Termin, ohne Limit"
+            "value" : "Minispiele für zwischendurch — so oft du magst"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Free practice — no schedule, no limit"
+            "value" : "Minigames for in between — as often as you like"
           }
         }
       },
