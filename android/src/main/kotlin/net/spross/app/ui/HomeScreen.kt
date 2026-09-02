@@ -163,7 +163,7 @@ fun HomeScreen(model: AppModel) {
 
         ListenCard(model)
 
-        WerkstattCard(model)
+        SprossenCard(model)
 
         // The same fortnight the streak was counted from, on the very refresh that
         // produced it — the strip reads kern's walk, never one of its own. It names
@@ -182,7 +182,7 @@ fun HomeScreen(model: AppModel) {
  * the four is absent rather than empty.
  */
 @Composable
-private fun WerkstattCard(model: AppModel) {
+private fun SprossenCard(model: AppModel) {
     val chrome = model.chrome
     if (!model.werkstattOffered) return
     Column(

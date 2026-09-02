@@ -107,7 +107,7 @@ class SprossActivity : ComponentActivity() {
      */
     override fun onResume() {
         super.onResume()
-        model.refreshWerkstatt()
+        model.refreshTrainer()
         // why: the same reason, one language further — a voice for the LEARNER's own side
         // decides whether a word may be listened to at all, and both are swept fresh.
         model.refreshListening()

@@ -428,25 +428,25 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     fun openNumbers() {
         trainer.clearResult()
-        refreshWerkstatt()
+        refreshTrainer()
         screen = Screen.Numbers
     }
 
     fun openLetters() {
         trainer.clearResult()
-        refreshWerkstatt()
+        refreshTrainer()
         screen = Screen.Letters
     }
 
     fun openCountries() {
         trainer.clearResult()
-        refreshWerkstatt()
+        refreshTrainer()
         screen = Screen.Countries
     }
 
     fun openDates() {
         trainer.clearResult()
-        refreshWerkstatt()
+        refreshTrainer()
         screen = Screen.Dates
     }
 
@@ -538,7 +538,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     fun finishDrill(back: Screen, summary: DrillRunSummary?, title: String) {
         pronouncer.stop()
         trainer.show(summary, title)
-        refreshWerkstatt()
+        refreshTrainer()
         screen = back
     }
 
@@ -551,7 +551,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * Never on the way to Home: the Sprossen card gates on file presence alone, and this
      * is a catalog sweep no start-up should pay for.
      */
-    fun refreshWerkstatt() {
+    fun refreshTrainer() {
         val stamp = box?.joinStamp ?: return
         trainer.readLadder(stamp.target)
         trainer.seeLetters(letterReport())
