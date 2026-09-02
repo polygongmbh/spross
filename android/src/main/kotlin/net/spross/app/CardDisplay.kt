@@ -38,4 +38,9 @@ object CardDisplay {
 
     fun alsoLine(realization: Realization, chrome: Chrome, shown: String): String? =
         alsoLine(realization, chrome, listOf(shown))
+
+    /** "bedeutet auch: …" — what the prompted form means besides what this card teaches. */
+    fun meansAlsoLine(alsoMeans: List<String>, chrome: Chrome): String? =
+        alsoMeans.takeIf { it.isNotEmpty() }
+            ?.let { chrome.sessionMeansAlso.format(it.joinToString(" / ")) }
 }

@@ -72,6 +72,7 @@ interface Chrome {
     val sessionReveal: String
     val commonNext: String
     val sessionGrammarAlso: String              // %s
+    val sessionMeansAlso: String                // %s
     val sessionOtherWord: String     // %1$s %2$s
     val sessionAnswerPlaceholder: String // %s
     val sessionRatingQuestion: String

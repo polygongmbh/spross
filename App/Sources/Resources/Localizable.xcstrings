@@ -5433,6 +5433,23 @@
       },
       "comment" : "The way out of a card asked by ear: the word goes on screen instead of in the air."
     },
+    "session.means.also %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bedeutet auch: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "also means: %@"
+          }
+        }
+      },
+      "comment" : "%s = what the prompted word means besides this card"
+    },
     "session.otherWord %@ %@" : {
       "localizations" : {
         "de" : {

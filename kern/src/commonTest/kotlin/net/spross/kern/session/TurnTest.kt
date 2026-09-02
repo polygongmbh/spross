@@ -289,6 +289,16 @@ class TurnTest {
     }
 
     @Test
+    fun aTurnThatAsksWhatAWordMeansKnowsWhatElseItMeans() {
+        assertEquals(listOf("aufhören"), byEar(TurnFixture.leave).alsoMeans)
+        assertEquals(listOf("verlassen"), TurnFixture.recognize(TurnFixture.quit).alsoMeans)
+        // A form only one concept prints carries nothing, and a produce prompt stands on the
+        // source word, which has no business in the target index.
+        assertEquals(emptyList(), byEar(TurnFixture.car).alsoMeans)
+        assertEquals(emptyList(), TurnFixture.produce(TurnFixture.leave).alsoMeans)
+    }
+
+    @Test
     fun theMergeNeverReachesTheProduceDirection() {
         // Asked FROM "verlassen", the answer owed is the Swahili word — the other concept's
         // source text is not an answer at all, and the target side still tells words apart.

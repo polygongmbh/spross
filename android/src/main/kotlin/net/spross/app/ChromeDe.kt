@@ -63,6 +63,7 @@ internal object ChromeDe : Chrome {
     override val sessionReveal = "Aufdecken"
     override val commonNext = "Weiter"
     override val sessionGrammarAlso = "auch: %s"
+    override val sessionMeansAlso = "bedeutet auch: %s"
     override val sessionOtherWord = "Übrigens: %1\$s heißt „%2\$s“"
     override val sessionAnswerPlaceholder = "Auf %s …"
     override val sessionRatingQuestion = "Wie gut wusstest du es?"

@@ -54,12 +54,36 @@ class TurnMachine(
         revealed = false,
         pendingRating = null,
         otherWord = null,
+        alsoMeans = alsoMeans(card, role, prompt, promptForm),
         retryApproved = false,
         copyStep = null,
         promptInText = false,
         promptShownAtMillis = nowEpochMillis,
         recallMs = 0,
     )
+
+    /**
+     * The meanings [promptForm] carries besides this card's own — what the reveal has to say
+     * where the target language merges two of the source's words into one of its own.
+     *
+     * Only where the turn ASKS what a word means: a produce prompt stands on the source word,
+     * and probing the target index with it would hit real cards in a same-script pair.
+     * What already stands on the reveal comes out — the rule `DisplayText.alternates` keeps
+     * inside one concept, applied across them, so nothing is offered back as though it were news.
+     */
+    private fun alsoMeans(
+        card: Card,
+        role: PresentationRole,
+        prompt: ProducePrompt,
+        promptForm: String,
+    ): List<String> {
+        if (role != PresentationRole.Recognize && prompt != ProducePrompt.Sound) return emptyList()
+        val standing = (listOf(card.source.text) + card.source.synonyms).toSet()
+        return grader.conceptsSharing(promptForm, card)
+            .map { it.source.text }
+            .filterNot { it in standing }
+            .distinct()
+    }
 
     fun reduce(state: TurnState, intent: TurnIntent, nowEpochMillis: Long): TurnReduction {
         val copying = state.copyStep

@@ -239,8 +239,15 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
                 emptyList()
             },
             // The note is the card's last line whichever side authored it — a literal
-            // gloss belongs to the concept, not to one of its two faces.
-            note = if (revealed) card.target.note ?: card.source.note else null,
+            // gloss belongs to the concept, not to one of its two faces. One line only:
+            // what the word ALSO means takes it where the card had nothing of its own to say.
+            note = if (revealed) {
+                card.target.note
+                    ?: card.source.note
+                    ?: CardDisplay.meansAlsoLine(flow.state.alsoMeans, chrome)
+            } else {
+                null
+            },
         ) {
             SpokenWord(model.pronounceAction(promptForm), chrome) {
                 Headword(

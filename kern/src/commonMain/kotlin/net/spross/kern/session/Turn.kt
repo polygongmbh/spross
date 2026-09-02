@@ -113,6 +113,12 @@ data class TurnState(
     val pendingRating: Rating?,
     /** Set when the typed answer is a word the catalog owns elsewhere; the reveal names it. */
     val otherWord: Match.OtherWord?,
+    /**
+     * What the prompted form means BESIDES this card, seed order — the other side of the
+     * merge the grading rule credits. Empty unless the turn asks what a word means, and
+     * empty for a form only one concept prints, which is nearly all of them.
+     */
+    val alsoMeans: List<String> = emptyList(),
     /** The retype after a miss has reached the word: the field is right while the card still reveals. */
     val retryApproved: Boolean,
     /** Non-null ⇒ the write-out owns the turn. */

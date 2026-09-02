@@ -168,7 +168,7 @@ struct SessionView: View, LanguageNaming {
                         emojiCue: model.emojiCue(for: card),
                         prompt: promptSide(card, role: role),
                         answer: answerSide(card, role: role),
-                        note: card.target.note ?? card.source.note,
+                        note: card.target.note ?? card.source.note ?? meansAlsoLine,
                         revealed: cardRevealed,
                         // why: the input, the button and the keyboard share this
                         // screen with the card — the picture goes beside the words.
