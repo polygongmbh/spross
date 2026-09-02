@@ -76,20 +76,8 @@ data class TrainerRunState(
      * one, not finishing on it.
      */
     val bestLevels: Map<DrillVariant, Int>,
-    val done: Int,
-    val streak: Int,
-    val bestStreak: Int,
-    /**
-     * Misses in a row already BOOKED — the one on screen is not among them, so 1 while a miss
-     * shows means this is the second in a row.
-     */
-    val missRun: Int,
-    val outcomes: List<AnswerOutcome>,
-    /**
-     * The prompts this run has already answered RIGHT ([DrillSolved]): never drawn again, and
-     * a Sprosse with nothing left outside them is climbed past rather than repeated.
-     */
-    val solved: Set<String>,
+    /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
+    val core: DrillRunCore,
     /** Digit counts already introduced with a place-value hint; each length is hinted once. */
     val seenDigitCounts: Set<Int>,
     /** The learner looked the numbers up while owing this answer: it books almost. */
@@ -99,6 +87,18 @@ data class TrainerRunState(
     val otherWord: Match.OtherWord? = null,
     val finished: Boolean,
 ) {
+    val done: Int get() = core.done
+
+    val streak: Int get() = core.streak
+
+    val bestStreak: Int get() = core.bestStreak
+
+    val missRun: Int get() = core.missRun
+
+    val outcomes: List<AnswerOutcome> get() = core.outcomes
+
+    val solved: Set<String> get() = core.solved
+
     val currentTask: TrainerTask get() = current.task
 
     /** Which of the run's variants asked what is on screen — what a win and a miss apply to. */

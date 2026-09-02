@@ -77,22 +77,25 @@ data class LetterDrillRunState(
     val index: Int,
     val level: Int,
     val winsAtLevel: Int,
-    val done: Int,
-    val streak: Int,
-    val bestStreak: Int,
-    /** Misses in a row already booked — 1 while a miss shows means this is the second. */
-    val missRun: Int,
-    val outcomes: List<AnswerOutcome>,
-    /**
-     * The prompts this run has already answered RIGHT ([DrillSolved]): never asked again, and
-     * a stage with nothing left outside them is climbed past rather than repeated.
-     */
-    val solved: Set<String>,
+    /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
+    val core: DrillRunCore,
     /** The tile the learner picked, so the grid can mark both it and the answer. */
     val chosen: String?,
     val feedback: TurnFeedback,
     val finished: Boolean,
 ) {
+    val done: Int get() = core.done
+
+    val streak: Int get() = core.streak
+
+    val bestStreak: Int get() = core.bestStreak
+
+    val missRun: Int get() = core.missRun
+
+    val outcomes: List<AnswerOutcome> get() = core.outcomes
+
+    val solved: Set<String> get() = core.solved
+
     val stage: LetterStage? get() = task?.stage
 
     /** The stages that carry an input field. */

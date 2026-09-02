@@ -31,12 +31,7 @@ object TrainerRun {
             levels = opening.levels,
             winsAtLevel = emptyMap(),
             bestLevels = emptyMap(),
-            done = 0,
-            streak = 0,
-            bestStreak = 0,
-            missRun = 0,
-            outcomes = emptyList(),
-            solved = emptySet(),
+            core = DrillRunCore(),
             seenDigitCounts = emptySet(),
             hintUsed = false,
             feedback = TurnFeedback.Neutral,
@@ -278,33 +273,22 @@ object TrainerRun {
      */
     private fun advanced(state: TrainerRunState, correct: Boolean, outcome: AnswerOutcome): TrainerRunState {
         val variant = state.currentVariant
+        val clean = outcome != AnswerOutcome.Almost
         val step = DrillRamp.step(
             level = state.currentLevel,
             winsAtLevel = state.winsAtLevel[variant] ?: 0,
             correct = correct,
-            clean = outcome != AnswerOutcome.Almost,
+            clean = clean,
             winsRequired = state.mode.winsToAdvance,
         )
-        val streak = if (correct) state.streak + 1 else 0
         return state.copy(
             levels = state.levels + (variant to step.level),
             winsAtLevel = state.winsAtLevel + (variant to step.winsAtLevel),
             bestLevels = state.bestLevels + (variant to maxOf(state.bestLevels[variant] ?: 1, step.level)),
-            // why: only a CLEAN answer retires a prompt — a slip or a look-up leaves it in the
-            // pool, which is what the ramp already says an almost is worth.
-            solved = if (outcome == AnswerOutcome.Right) {
-                state.solved + DrillSolved.key(variant, state.currentTask)
-            } else {
-                state.solved
-            },
             seenDigitCounts = state.currentDigits
                 ?.let { state.seenDigitCounts + it }
                 ?: state.seenDigitCounts,
-            streak = streak,
-            bestStreak = maxOf(state.bestStreak, streak),
-            missRun = if (correct) 0 else state.missRun + 1,
-            outcomes = state.outcomes + outcome,
-            done = state.done + 1,
+            core = state.core.book(correct, clean, DrillSolved.key(variant, state.currentTask)),
         )
     }
 

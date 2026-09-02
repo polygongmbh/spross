@@ -55,7 +55,7 @@ class TrainerCloseTest {
 
     @Test
     fun theRecordFallsOnlyToAStrictlyLongerStreak() {
-        val played = TrainerRun.open(numbers(), Random(47)).copy(done = 6, bestStreak = 8)
+        val played = TrainerRun.open(numbers(), Random(47)).copy(core = DrillRunCore(done = 6, bestStreak = 8))
         assertTrue(TrainerRun.close(played, 7, emptyMap()).summary!!.newRecord)
         assertFalse(TrainerRun.close(played, 8, emptyMap()).summary!!.newRecord)
         // Re-closing a resumed summary can never double-claim.
@@ -70,8 +70,7 @@ class TrainerCloseTest {
     fun everyAskedVariantBooksTheHighestSprosseItStoodOn() {
         val mode = TrainerMode(listOf(DrillVariant.Numbers, DrillVariant.Clock), "sw", emptySet())
         val played = TrainerRun.open(mode, Random(53)).copy(
-            done = 9,
-            bestStreak = 4,
+            core = DrillRunCore(done = 9, bestStreak = 4),
             // The Sprosse fell back to 3, but the ladder rewards reaching 5.
             levels = mapOf(DrillVariant.Numbers to 3, DrillVariant.Clock to 1),
             bestLevels = mapOf(DrillVariant.Numbers to 5),

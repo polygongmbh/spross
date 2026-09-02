@@ -4,7 +4,6 @@ import kotlin.random.Random
 import net.spross.kern.model.Card
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.AlmostReason
-import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
@@ -35,12 +34,7 @@ object LetterDrillRun {
             index = 0,
             level = opening.level,
             winsAtLevel = 0,
-            done = 0,
-            streak = 0,
-            bestStreak = 0,
-            missRun = 0,
-            outcomes = emptyList(),
-            solved = emptySet(),
+            core = DrillRunCore(),
             chosen = null,
             feedback = TurnFeedback.Neutral,
             finished = false,
@@ -240,30 +234,11 @@ object LetterDrillRun {
             clean = clean,
             winsRequired = state.config.report.winsToAdvance,
         )
-        val streak = if (correct) state.streak + 1 else 0
-        val task = state.task
         return state.copy(
             level = step.level,
             winsAtLevel = step.winsAtLevel,
-            // why: only a CLEAN answer retires a prompt — a slip, a heard-instead and a reveal
-            // all leave it in the pool, which is what the ramp already says they are worth.
-            solved = if (correct && clean && task != null) {
-                state.solved + DrillSolved.key(task)
-            } else {
-                state.solved
-            },
-            streak = streak,
-            bestStreak = maxOf(state.bestStreak, streak),
-            missRun = if (correct) 0 else state.missRun + 1,
-            outcomes = state.outcomes + outcome(correct, clean),
-            done = state.done + 1,
+            core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) }),
         )
-    }
-
-    private fun outcome(correct: Boolean, clean: Boolean): AnswerOutcome = when {
-        !correct -> AnswerOutcome.Wrong
-        clean -> AnswerOutcome.Right
-        else -> AnswerOutcome.Almost
     }
 
     /**

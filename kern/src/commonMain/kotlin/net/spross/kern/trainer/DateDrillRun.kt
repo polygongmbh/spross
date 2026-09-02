@@ -3,7 +3,6 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.AlmostReason
-import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -40,12 +39,7 @@ object DateDrillRun {
             level = opening.level,
             bestLevel = opening.level,
             winsAtLevel = 0,
-            done = 0,
-            streak = 0,
-            bestStreak = 0,
-            missRun = 0,
-            outcomes = emptyList(),
-            solved = emptySet(),
+            core = DrillRunCore(),
             feedback = TurnFeedback.Neutral,
             finished = false,
         )
@@ -270,19 +264,11 @@ object DateDrillRun {
             clean = clean,
             fast = state.config.fast,
         )
-        val streak = if (correct) state.streak + 1 else 0
         return state.copy(
             level = step.level,
             bestLevel = maxOf(state.bestLevel, step.level),
             winsAtLevel = step.winsAtLevel,
-            // why: only a CLEAN answer retires a question — a slip and a reveal leave it in
-            // the pool, which is what the ramp already says an almost is worth.
-            solved = if (correct && clean) state.solved + DrillSolved.key(state.task) else state.solved,
-            streak = streak,
-            bestStreak = maxOf(state.bestStreak, streak),
-            missRun = if (correct) 0 else state.missRun + 1,
-            outcomes = state.outcomes + outcome(correct, clean),
-            done = state.done + 1,
+            core = state.core.book(correct, clean, DrillSolved.key(state.task)),
         )
     }
 
@@ -295,12 +281,6 @@ object DateDrillRun {
             DateTaskKind.Weekday, DateTaskKind.Month -> null
             else -> config.normalizer?.let { NumberReadingIndex.of(config.answerLanguage, it) }
         }
-
-    private fun outcome(correct: Boolean, clean: Boolean): AnswerOutcome = when {
-        !correct -> AnswerOutcome.Wrong
-        clean -> AnswerOutcome.Right
-        else -> AnswerOutcome.Almost
-    }
 
     private fun unchanged(state: DateDrillRunState) = DateDrillReduction(state, emptyList())
 }

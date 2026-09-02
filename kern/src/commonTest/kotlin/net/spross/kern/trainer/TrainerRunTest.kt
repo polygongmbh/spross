@@ -260,7 +260,7 @@ class TrainerRunTest {
     fun aSprosseWithNothingLeftToAskIsClimbedPast() {
         val rng = Random(47)
         val digits = (0L..9L).map { DrillSolved.key(DrillVariant.Numbers, Trainer.number(it, "de")) }
-        val spent = TrainerRun.open(numbers(), rng).copy(solved = digits.toSet())
+        val spent = TrainerRun.open(numbers(), rng).copy(core = DrillRunCore(solved = digits.toSet()))
 
         val next = answerRight(spent, rng)
         assertEquals(2, next.currentLevel)
