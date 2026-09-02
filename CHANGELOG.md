@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- **Take your words into a chat with an AI, and bring what you learn back.** The Box offers
+  a text that describes your box to any assistant you already use: the words you have
+  consolidated, so it can speak to you in them; the ones you are learning right now, so it
+  works them in on purpose; and a small allowance of new ones, drawn from what the box is
+  about to teach you anyway — so a word you meet in conversation on Tuesday already has a
+  hook in it when the box deals it on Thursday. Copy it or share it into whichever chat you
+  like; nothing is sent anywhere by the app, which speaks to no assistant itself. At the end
+  the conversation lists the words that were new to you, and pasting that list back into the
+  Box takes them in as your own words. Offered again the moment a round is finished, when
+  the words are warm.
+
 - **A word you keep missing comes back the same day, not only days later.** The retry
   ladder only ever grew: ten minutes, then a day, then three, then a week, so the second
   miss already pushed a word out to day scale and every miss after that pushed it
