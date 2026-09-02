@@ -51,7 +51,7 @@ The Ukrainian side, carrying what only Ukrainian needs:
   Display only, on the prompt side; nothing is graded against it.
 - `patterns` — the assembly, over `{weekday}`, `{day}`, `{month}` and `{year}`.
   `dayMonth` and `date` are required, `dateWithYear` is optional:
-  a language that cannot read a year inside a date simply omits it and the ladder stops one rung short.
+  a language that cannot read a year inside a date simply omits it and the ladder stops one Sprosse short.
   Each kind takes exactly its own markers, each exactly once, and no others.
   `variants` on a pattern is accept-only, exactly as a frame's is,
   and crosses with every reading of every slot —
