@@ -10,6 +10,8 @@
   "down": { "text": "abajo" },
   "inside": { "text": "dentro", "variants": ["adentro"] },
   "outdoors": { "text": "fuera", "variants": ["afuera"] },
+  "at-home": { "text": "en casa" },
+  "home": { "text": "a casa" },
   "in": { "text": "en", "notes": { "de": "en deckt in und auf ab: en la caja, en la mesa." } },
   "on": {
    "text": "sobre",
@@ -32,6 +34,7 @@
   "go-to-school": {
    "text": "ir a la escuela",
    "notes": { "de": "a zeigt die Richtung, en den Ort: voy a la escuela · estoy en la escuela." }
-  }
+  },
+  "are-you-going-home-already": { "text": "¿Ya se van a casa?", "variants": ["¿Ya os vais a casa?", "¿Ya te vas a casa?"] }
  }
 }

@@ -10,6 +10,22 @@
   "down": { "text": "unten" },
   "inside": { "text": "drinnen" },
   "outdoors": { "text": "draußen" },
+  "at-home": {
+   "text": "zu Hause",
+   "notes": {
+    "de": "zu Hause heißt daheim, am Ort: Ich bin zu Hause.",
+    "en": "zu Hause is at home, the place you are: Ich bin zu Hause.",
+    "es": "zu Hause es en casa, el lugar donde estás: Ich bin zu Hause."
+   }
+  },
+  "home": {
+   "text": "nach Hause",
+   "notes": {
+    "de": "nach Hause heißt heimwärts, die Richtung: Ich gehe nach Hause.",
+    "en": "nach Hause is homeward, the direction you move: Ich gehe nach Hause.",
+    "es": "nach Hause es hacia casa, la dirección: Ich gehe nach Hause."
+   }
+  },
   "in": { "text": "in" },
   "on": { "text": "auf" },
   "under": { "text": "unter" },
@@ -32,6 +48,10 @@
     "en": "Two-way prepositions: wohin? (where to) takes the accusative — in die Schule; wo? (where) takes the dative — in der Schule.",
     "es": "Preposiciones de doble régimen: wohin? (adónde) rige acusativo — in die Schule; wo? (dónde) rige dativo — in der Schule."
    }
+  },
+  "are-you-going-home-already": {
+   "text": "Geht ihr schon nach Hause?",
+   "variants": ["Gehen Sie schon nach Hause?", "Gehst du schon nach Hause?"]
   }
  }
 }

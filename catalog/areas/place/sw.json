@@ -10,6 +10,7 @@
   "down": { "text": "chini" },
   "inside": { "text": "ndani" },
   "outdoors": { "text": "nje" },
+  "at-home": { "text": "nyumbani" },
   "in": {
    "text": "katika",
    "notes": {
@@ -40,6 +41,7 @@
     "de": "-ni macht aus dem Nomen den Ort: shule → shuleni · dieselbe Form steht für wo und wohin."
    }
   },
-  "go-to-school": { "text": "kwenda shuleni" }
+  "go-to-school": { "text": "kwenda shuleni" },
+  "are-you-going-home-already": { "text": "Mnaenda nyumbani tayari?" }
  }
 }

@@ -10,6 +10,11 @@
   "down": { "text": "внизу", "variants": ["вниз"] },
   "inside": { "text": "всередині" },
   "outdoors": { "text": "надворі" },
+  "at-home": { "text": "вдома", "variants": ["удома"] },
+  "home": {
+   "text": "додому",
+   "notes": { "de": "додому sagt wohin, вдома sagt wo.", "en": "додому is homeward, вдома is at home." }
+  },
   "in": {
    "text": "в",
    "variants": ["у"],
@@ -32,6 +37,7 @@
   "go-to-school": {
    "text": "йти до школи",
    "notes": { "de": "wohin mit до und Genitiv: до школи · wo mit у und Lokativ: у школі." }
-  }
+  },
+  "are-you-going-home-already": { "text": "Ви вже йдете додому?", "variants": ["Ти вже йдеш додому?"] }
  }
 }

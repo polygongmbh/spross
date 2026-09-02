@@ -12,6 +12,8 @@
  { "slug": "down", "kind": "adjective", "emoji": "⬇️" },
  { "slug": "inside", "kind": "adjective", "emoji": "🏠" },
  { "slug": "outdoors", "kind": "adjective" },
+ { "slug": "at-home", "kind": "adjective" },
+ { "slug": "home", "kind": "adjective" },
  { "slug": "behind", "kind": "adjective" },
  { "slug": "between", "kind": "adjective" },
  { "slug": "place", "kind": "noun", "emoji": "📍" },
@@ -22,5 +24,6 @@
  { "slug": "between-us", "kind": "phrase", "components": ["between"] },
  { "slug": "is-it-far", "kind": "phrase", "components": ["far"] },
  { "slug": "at-school", "kind": "phrase", "emoji": "🏫", "components": ["in"] },
- { "slug": "go-to-school", "kind": "phrase", "emoji": "🏫", "components": ["in"] }
+ { "slug": "go-to-school", "kind": "phrase", "emoji": "🏫", "components": ["in"] },
+ { "slug": "are-you-going-home-already", "kind": "phrase", "components": ["home"] }
 ]

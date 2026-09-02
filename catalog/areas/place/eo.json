@@ -22,6 +22,14 @@
   "down": { "text": "sube", "variants": ["malsupre"] },
   "inside": { "text": "interne", "variants": ["ene"] },
   "outdoors": { "text": "ekstere", "variants": ["eksterdome"] },
+  "at-home": { "text": "hejme" },
+  "home": {
+   "text": "hejmen",
+   "notes": {
+    "de": "Das -n sagt wohin: hejmen ist nach Hause, hejme ist zu Hause.",
+    "en": "The -n says where to: hejmen is homeward, hejme is at home."
+   }
+  },
   "in": { "text": "en" },
   "on": { "text": "sur" },
   "under": { "text": "sub" },
@@ -40,6 +48,7 @@
   "go-to-school": {
    "text": "iri al la lernejo",
    "notes": { "de": "al zeigt die Richtung: iri al la lernejo · der Ort steht mit en: en la lernejo." }
-  }
+  },
+  "are-you-going-home-already": { "text": "Ĉu vi jam iras hejmen?" }
  }
 }
