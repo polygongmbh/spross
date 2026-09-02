@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.LetterDrillFlow
+import net.spross.app.letterSpeaker
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.LetterDrillTask
@@ -37,7 +38,7 @@ import net.spross.kern.trainer.LetterDrillTask
 
 /** 2×2 of glyph tiles in kern's shuffled order — both platforms render the same draw. */
 @Composable
-fun ChoiceStage(flow: LetterDrillFlow, task: LetterDrillTask, chrome: Chrome) {
+fun ChoiceStage(model: AppModel, flow: LetterDrillFlow, task: LetterDrillTask, chrome: Chrome) {
     Column(verticalArrangement = Arrangement.spacedBy(DlSpace.m)) {
         for (row in task.choices.orEmpty().chunked(2)) {
             Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
@@ -51,7 +52,7 @@ fun ChoiceStage(flow: LetterDrillFlow, task: LetterDrillTask, chrome: Chrome) {
                 if (row.size == 1) Spacer(Modifier.weight(1f))
             }
         }
-        AnswerLine(flow, chrome)
+        AnswerLine(model, flow, task, chrome)
     }
 }
 
@@ -136,7 +137,7 @@ fun TypedStage(
                 Text(if (flow.input.isBlank()) chrome.sessionReveal else chrome.commonCheck)
             }
         }
-        AnswerLine(flow, chrome)
+        AnswerLine(model, flow, task, chrome)
     }
 }
 
@@ -149,7 +150,12 @@ fun TypedStage(
  * timed screen change would talk over the announcement it just made.
  */
 @Composable
-private fun AnswerLine(flow: LetterDrillFlow, chrome: Chrome) {
+private fun AnswerLine(
+    model: AppModel,
+    flow: LetterDrillFlow,
+    task: LetterDrillTask,
+    chrome: Chrome,
+) {
     val feedback = flow.state.feedback
     if (feedback == TurnFeedback.Neutral) return
     val hold = feedback as? TurnFeedback.Almost
@@ -160,9 +166,10 @@ private fun AnswerLine(flow: LetterDrillFlow, chrome: Chrome) {
                 AlmostReason.Typo -> chrome.sessionAlmostTypo
                 AlmostReason.Heard -> chrome.sessionAlmostHeard
             }
-            // The letter drill has no voice of its own to replay, so the box carries no
-            // speaker here rather than one that would do nothing.
-            AlmostCorrection(caption, it.correctForm, chrome, pronounce = null)
+            AlmostCorrection(
+                caption, it.correctForm, chrome,
+                model.letterSpeaker(task, it.correctForm),
+            )
         }
         if (waits) ConfirmButton(chrome) { flow.confirm() }
     }

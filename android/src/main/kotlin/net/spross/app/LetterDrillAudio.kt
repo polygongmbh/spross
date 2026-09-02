@@ -6,6 +6,7 @@ import net.spross.kern.catalog.utterance
 import net.spross.kern.model.Language
 import net.spross.kern.trainer.LetterDrillTask
 import net.spross.kern.trainer.LetterPromptKind
+import net.spross.kern.trainer.LetterStage
 
 /**
  * The drill's audio glue — the twin of [SessionAudio]'s review-loop half, and of
@@ -50,6 +51,19 @@ fun AppModel.letterReplay(task: LetterDrillTask): (() -> Unit)? {
     if (!pronouncer.canPronounce(pronunciation)) return null
     return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP) }
 }
+
+/**
+ * The speaker beside a form the drill hands back — the revealed answer, the correction box —
+ * through the same form-keyed lookup every other reveal uses ([speakFormOnTap]).
+ *
+ * The dictated word only. Every other Sprosse answers with a bare GLYPH, and a glyph is not
+ * a form anything may be asked to say: the lookup cannot reach the letter-name recording the
+ * card's own replay button plays, and a voice reads it "as anything from a spelling alphabet
+ * to a pause" (kern `LetterDrillTask`). Those reveals carry no speaker at all, and the replay
+ * above stays the one way to hear the question.
+ */
+fun AppModel.letterSpeaker(task: LetterDrillTask, form: String): (() -> Unit)? =
+    if (task.stage == LetterStage.Dictation) speakFormOnTap(form, task.language) else null
 
 /**
  * A letter's own NAME — «ер», never the bare glyph, which a synthesizer reads as anything

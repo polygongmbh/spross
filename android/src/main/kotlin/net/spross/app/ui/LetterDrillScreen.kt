@@ -48,6 +48,7 @@ import net.spross.app.audio.Pronouncer
 import net.spross.app.letterReplay
 import net.spross.app.newLetterDrill
 import net.spross.app.playLetterPrompt
+import net.spross.app.letterSpeaker
 import net.spross.kern.trainer.LetterDrillTask
 import net.spross.kern.trainer.LetterStage
 
@@ -149,7 +150,8 @@ private fun Run(
     ) {
         HearPrompt(model, flow, task, chrome, replayFocus)
         when (task.stage) {
-            LetterStage.ChoiceEasy, LetterStage.ChoiceConfusable -> ChoiceStage(flow, task, chrome)
+            LetterStage.ChoiceEasy, LetterStage.ChoiceConfusable ->
+                ChoiceStage(model, flow, task, chrome)
             LetterStage.Typed, LetterStage.Dictation ->
                 TypedStage(model, flow, task, chrome, inputFocus)
         }
@@ -197,12 +199,15 @@ private fun HearPrompt(
             // why: the meaning is a REVEAL, never a cue — a dictation that shows what the
             // word means is no longer taken from the sound.
             CardReveal(note = task.gloss) {
-                Text(
-                    localizedTarget(task.display, task.language),
-                    style = MaterialTheme.typography.titleLarge,
-                    color = Dl.colors.accent,
-                    textAlign = TextAlign.Center,
-                )
+                SpokenWord(model.letterSpeaker(task, task.display), chrome) {
+                    Text(
+                        localizedTarget(task.display, task.language),
+                        style = MaterialTheme.typography.titleLarge,
+                        color = Dl.colors.accent,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.weight(1f, fill = false),
+                    )
+                }
             }
         }
     }

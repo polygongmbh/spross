@@ -108,6 +108,16 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   so on rows four points apart it overhangs its neighbor
   and a tap in a row's bottom sliver speaks the row below —
   two targets for one action, one of them wrong.
+  What the speaker follows is the revealed FORM, not the surface it stands on:
+  the letter drill hands back a bare glyph on every Sprosse but the dictation,
+  and a glyph is not a form anything may be asked to say —
+  the form-keyed lookup never reaches the letter-name recording
+  the card's own replay button just played,
+  and a voice reads it as anything from a spelling alphabet to a pause
+  (`../kern/docs/audio.md`).
+  So a revealed letter and the correction box beside it draw no speaker,
+  the replay above stays the one way to hear the question,
+  and only the dictated word — a word, in the language being learned — carries one.
 - **The letters drill is the one autoplay no mute reaches, and it carries no switch of its
   own.** Entering a screen whose only content is a sound is itself the request to hear one,
   so its question plays under `.playback` like a tap does — the exception to "app-fired
