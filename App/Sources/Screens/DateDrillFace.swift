@@ -45,13 +45,13 @@ enum DateDrillFace: DrillFace {
         content.map { DateDrill.shared.ceiling(content: $0, reverse: reverse) } ?? 1
     }
 
-    static func rungs(_ content: DateDrillContent?, reverse: Bool) -> [DrillRung] {
+    static func sprossen(_ content: DateDrillContent?, reverse: Bool) -> [DrillSprosse] {
         guard let content else { return [] }
         let top = ceiling(content, reverse: reverse)
         guard top >= 1 else { return [] }
         return (1...top).map { sprosse in
             let kinds = DateDrill.shared.kinds(content: content, level: sprosse, reverse: reverse)
-            return DrillRung(title: rungTitle(kinds), hint: rungHint(kinds))
+            return DrillSprosse(title: sprosseTitle(kinds), hint: sprosseHint(kinds))
         }
     }
 
@@ -72,7 +72,7 @@ enum DateDrillFace: DrillFace {
     // why: spelled out rather than interpolated — a key built with an index
     // becomes a format string and localizes nothing, and these keys would stop
     // being greppable from the catalog.
-    private static func rungTitle(_ kinds: [DateTaskKind]) -> LocalizedStringKey {
+    private static func sprosseTitle(_ kinds: [DateTaskKind]) -> LocalizedStringKey {
         switch kinds.last {
         case .weekday: return "dates.sprosse.1"
         case .month: return "dates.sprosse.2"
@@ -83,7 +83,7 @@ enum DateDrillFace: DrillFace {
         }
     }
 
-    private static func rungHint(_ kinds: [DateTaskKind]) -> LocalizedStringKey {
+    private static func sprosseHint(_ kinds: [DateTaskKind]) -> LocalizedStringKey {
         switch kinds.last {
         case .weekday: return "dates.sprosse.1.hint"
         case .month: return "dates.sprosse.2.hint"

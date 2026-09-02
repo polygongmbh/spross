@@ -45,9 +45,9 @@ enum CountryDrillFace: DrillFace {
 
     /// Each Sprosse names ONE new thing, because that is all a Sprosse brings
     /// (`CountryDrill`).
-    static func rungs(_ content: CountryDrillContent?, reverse: Bool) -> [DrillRung] {
+    static func sprossen(_ content: CountryDrillContent?, reverse: Bool) -> [DrillSprosse] {
         (1...ceiling(content, reverse: reverse)).map {
-            DrillRung(title: rungTitle($0), hint: rungHint($0))
+            DrillSprosse(title: sprosseTitle($0), hint: sprosseHint($0))
         }
     }
 
@@ -63,7 +63,7 @@ enum CountryDrillFace: DrillFace {
     // why: spelled out rather than interpolated — a key built with `\(sprosse)`
     // becomes the format string "countries.sprosse.%lld" and localizes nothing,
     // and these keys would stop being greppable from the catalog.
-    private static func rungTitle(_ sprosse: Int) -> LocalizedStringKey {
+    private static func sprosseTitle(_ sprosse: Int) -> LocalizedStringKey {
         switch sprosse {
         case 1: return "countries.sprosse.1"
         case 2: return "countries.sprosse.2"
@@ -77,7 +77,7 @@ enum CountryDrillFace: DrillFace {
         }
     }
 
-    private static func rungHint(_ sprosse: Int) -> LocalizedStringKey {
+    private static func sprosseHint(_ sprosse: Int) -> LocalizedStringKey {
         switch sprosse {
         case 1: return "countries.sprosse.1.hint"
         case 2: return "countries.sprosse.2.hint"

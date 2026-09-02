@@ -11,7 +11,7 @@ import SprossKern
 /// ASKS, and the run walks them by itself from Sprosse 1 every time.
 ///
 /// How tall the ladder is, and what each Sprosse is named, is the face's
-/// (`DrillFace.rungs`) — the atlas has nine fixed ones, while the dates ladder
+/// (`DrillFace.Sprossen`) — the atlas has nine fixed ones, while the dates ladder
 /// depends on what the pair's content carries and which way round the run asks.
 /// The panel redraws when the reverse switch below it flips, so the page shows
 /// exactly the ladder the start button opens.
@@ -22,12 +22,12 @@ import SprossKern
 extension DrillOverview {
 
     var practiceSection: some View {
-        let rungs = Face.rungs(content, reverse: reverse)
+        let sprossen = Face.sprossen(content, reverse: reverse)
         return VStack(alignment: .leading, spacing: DL.Space.l) {
             DrillHeading("trainer.overview.practice")
-            if !rungs.isEmpty {
+            if !sprossen.isEmpty {
                 VStack(alignment: .leading, spacing: DL.Space.l) {
-                    ForEach(Array(rungs.enumerated()), id: \.offset) { row in
+                    ForEach(Array(sprossen.enumerated()), id: \.offset) { row in
                         sprosseRow(row.offset + 1, row.element)
                     }
                 }
@@ -54,16 +54,16 @@ extension DrillOverview {
     /// Sprosse's NUMBER, the letters page's rule — these rows are a ladder the run
     /// walks by itself, and a circle beside each one reads as a choice that
     /// never answers the tap.
-    private func sprosseRow(_ sprosse: Int, _ rung: DrillRung) -> some View {
+    private func sprosseRow(_ number: Int, _ sprosse: DrillSprosse) -> some View {
         HStack(alignment: .firstTextBaseline, spacing: DL.Space.m) {
-            Image(systemName: "\(sprosse).circle")
+            Image(systemName: "\(number).circle")
                 .font(.title3)
                 .foregroundStyle(Color.dlTextSecondary)
             VStack(alignment: .leading, spacing: 2) {
-                Text(rung.title)
+                Text(sprosse.title)
                     .font(DL.Fonts.headline)
                     .foregroundStyle(Color.dlTextPrimary)
-                Text(rung.hint)
+                Text(sprosse.hint)
                     .font(DL.Fonts.caption)
                     .foregroundStyle(Color.dlTextSecondary)
                     .fixedSize(horizontal: false, vertical: true)

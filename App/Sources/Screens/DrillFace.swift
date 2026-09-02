@@ -59,7 +59,7 @@ protocol DrillFace {
 
     /// What each Sprosse of that ladder asks, in the order it is climbed. Empty
     /// where the drill has nothing to say without content.
-    static func rungs(_ content: Content?, reverse: Bool) -> [DrillRung]
+    static func sprossen(_ content: Content?, reverse: Bool) -> [DrillSprosse]
 
     /// Whether fast mode may be picked at all — kern's rule on the stored best.
     static func fastUnlocked(best: Int, content: Content, reverse: Bool) -> Bool
@@ -171,8 +171,8 @@ struct DrillSnapshot {
     let otherWord: MatchOtherWord?
 }
 
-/// One rung of a ladder as the overview words it.
-struct DrillRung {
+/// One Sprosse of a ladder as the overview words it.
+struct DrillSprosse {
     let title: LocalizedStringKey
     let hint: LocalizedStringKey
 }
