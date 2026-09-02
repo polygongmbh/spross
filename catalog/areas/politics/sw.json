@@ -1,0 +1,17 @@
+{
+ "title": "Siasa",
+ "subtitle": "Nani anatawala na nini kinabishaniwa.",
+ "words": {
+  "war": {
+   "text": "vita",
+   "grammar": { "plural": "only" },
+   "notes": { "sw": "Vita huchukua upatanisho wa wingi: vita vikuu, vita vibaya." }
+  },
+  "peace": { "text": "amani" },
+  "freedom": { "text": "uhuru" },
+  "government": { "text": "serikali", "grammar": { "plural": "=" } },
+  "election": { "text": "uchaguzi", "grammar": { "plural": "chaguzi" } },
+  "to-vote": { "text": "kupiga kura" },
+  "border": { "text": "mpaka", "grammar": { "plural": "mipaka" } }
+ }
+}

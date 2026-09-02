@@ -1,0 +1,13 @@
+{
+ "title": "La politique",
+ "subtitle": "Qui gouverne, et ce sur quoi on se dispute.",
+ "words": {
+  "war": { "text": "guerre", "grammar": { "gender": "la" } },
+  "peace": { "text": "paix", "grammar": { "gender": "la", "plural": "=" } },
+  "freedom": { "text": "liberté", "grammar": { "gender": "la" } },
+  "government": { "text": "gouvernement", "grammar": { "gender": "le" } },
+  "election": { "text": "élection", "variants": ["l'élection"], "grammar": { "gender": "l'" } },
+  "to-vote": { "text": "voter" },
+  "border": { "text": "frontière", "grammar": { "gender": "la" } }
+ }
+}

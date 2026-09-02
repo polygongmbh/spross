@@ -1,0 +1,13 @@
+{
+ "title": "Politics",
+ "subtitle": "Who governs, and what is fought over.",
+ "words": {
+  "war": { "text": "war" },
+  "peace": { "text": "peace" },
+  "freedom": { "text": "freedom" },
+  "government": { "text": "government" },
+  "election": { "text": "election" },
+  "to-vote": { "text": "to vote" },
+  "border": { "text": "border" }
+ }
+}

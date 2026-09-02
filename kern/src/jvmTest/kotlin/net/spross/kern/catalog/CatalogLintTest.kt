@@ -583,6 +583,13 @@ class CatalogLintTest {
                 // teach the wrong word; money/cheap carries the de note naming the second
                 // sense, the ndege treatment.
                 "sw rahisi: money/cheap, qualities/easy",
+                // Reviewed 2026-09-02: sw `mpaka` is the border AND the preposition "until" —
+                // de/en/eo/es/fr/it/uk all split the pair (Grenze/bis, border/until,
+                // limo/ĝis, frontera/hasta, frontière/jusqu'à, confine/fino a,
+                // кордон/до). `hadi` is already `until`'s synonym rather than a second
+                // word for the border, and `mpakani` is the locative, so there is no
+                // honest repick on either side.
+                "sw mpaka: connectors/until, politics/border",
                 "sw mto: bedroom/pillow, nature/river",
                 // Reviewed 2026-08-04: sw `mwezi` is moon and month, exactly as uk `місяць`
                 // is — so the moon is authored without uk, which keeps this to one language

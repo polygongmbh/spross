@@ -1,0 +1,13 @@
+{
+ "title": "Politik",
+ "subtitle": "Wer regiert und worüber gestritten wird.",
+ "words": {
+  "war": { "text": "Krieg", "grammar": { "gender": "der", "plural": "-e" } },
+  "peace": { "text": "Frieden", "grammar": { "gender": "der" } },
+  "freedom": { "text": "Freiheit", "grammar": { "gender": "die", "plural": "-en" } },
+  "government": { "text": "Regierung", "grammar": { "gender": "die", "plural": "-en" } },
+  "election": { "text": "Wahl", "grammar": { "gender": "die", "plural": "-en" } },
+  "to-vote": { "text": "wählen", "notes": { "de": "wählen heißt auch aussuchen und eine Nummer wählen." } },
+  "border": { "text": "Grenze", "grammar": { "gender": "die", "plural": "-n" } }
+ }
+}

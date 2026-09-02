@@ -1,0 +1,17 @@
+{
+ "title": "La politica",
+ "subtitle": "Chi governa e su cosa si litiga.",
+ "words": {
+  "war": { "text": "guerra", "grammar": { "gender": "la", "plural": "guerre" } },
+  "peace": { "text": "pace", "grammar": { "gender": "la", "plural": "paci" } },
+  "freedom": { "text": "libertà", "grammar": { "gender": "la", "plural": "=" } },
+  "government": { "text": "governo", "grammar": { "gender": "il", "plural": "governi" } },
+  "election": {
+   "text": "elezione",
+   "variants": ["l'elezione"],
+   "grammar": { "gender": "l'", "plural": "elezioni" }
+  },
+  "to-vote": { "text": "votare" },
+  "border": { "text": "confine", "grammar": { "gender": "il", "plural": "confini" } }
+ }
+}

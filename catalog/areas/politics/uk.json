@@ -1,0 +1,13 @@
+{
+ "title": "Політика",
+ "subtitle": "Хто керує і за що сперечаються.",
+ "words": {
+  "war": { "text": "війна" },
+  "peace": { "text": "мир" },
+  "freedom": { "text": "свобода" },
+  "government": { "text": "уряд" },
+  "election": { "text": "вибори", "grammar": { "plural": "only" } },
+  "to-vote": { "text": "голосувати" },
+  "border": { "text": "кордон" }
+ }
+}

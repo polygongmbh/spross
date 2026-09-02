@@ -1,0 +1,9 @@
+[
+ { "slug": "war", "kind": "noun", "emoji": "⚔️" },
+ { "slug": "peace", "kind": "noun", "emoji": "🕊️" },
+ { "slug": "freedom", "kind": "noun" },
+ { "slug": "government", "kind": "noun", "emoji": "🏛️" },
+ { "slug": "election", "kind": "noun", "emoji": "🗳️" },
+ { "slug": "to-vote", "kind": "verb" },
+ { "slug": "border", "kind": "noun", "emoji": "🛂" }
+]

@@ -1,0 +1,13 @@
+{
+ "title": "Politiko",
+ "subtitle": "Kiu regas, kaj pri kio oni disputas.",
+ "words": {
+  "war": { "text": "milito" },
+  "peace": { "text": "paco" },
+  "freedom": { "text": "libereco" },
+  "government": { "text": "registaro" },
+  "election": { "text": "elekto", "variants": ["balotado"] },
+  "to-vote": { "text": "voĉdoni", "variants": ["baloti"] },
+  "border": { "text": "limo", "variants": ["landlimo"] }
+ }
+}
