@@ -8,6 +8,19 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 
 ## Content & catalog
 
+- `qualities` is at 43 concepts after `beautiful` and the two stance pairs landed, past the
+  ~40 an area is meant to hold (`catalog/areas/README.md` § which area a concept lives in).
+  The seam a learner would name is `comparison`: `different`, `difference`, `same`,
+  `similar`, `opposite`, `equal`, `real` and `to-compare` — eight cards that answer "is it
+  the same one?" rather than "what is it like?", which leaves `qualities` the adjectives it
+  is named for. `scripts/catalog-move.py` carries it.
+- Swahili has no honest word for `qualities/neutral`, `aggressive` or `defensive`, so those
+  three ship without sw and never reach a de→sw learner — the pair the suggestions came
+  from. Checked 2026-09-02 against kaikki, freedict swh-eng/eng-swh, the ipa-dict Swahili
+  wordlist and the Tatoeba Swahili sentences: `wastani` is the arithmetic average, `-kali`
+  is already `qualities/sharp`, `-jeuri`/`-korofi` mean rude or savage, and defensive exists
+  only as the verbs `kulinda`/`kujihami`. A reviewer who speaks Swahili may know a phrase
+  the dictionaries do not carry (`-a kujihami`? `bila upande`?); until then the gap stands.
 - `nature` is at 44 concepts, past the ~40 an area is meant to hold
   (`catalog/areas/README.md` § which area a concept lives in), and the two case-contrast
   phrases added there made it worse rather than caused it. The seam a learner would name is

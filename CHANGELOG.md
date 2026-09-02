@@ -12,6 +12,24 @@
   Formen each print the best rung they have reached under their own name, the way the atlas
   and the calendar already did under theirs.
 
+- **Politics gets a shelf, and the body gets the words it was missing.** Krieg and Frieden
+  had nowhere to sit in the box — every shelf's name said no to them — so there is now a
+  `Politik` shelf holding war and peace, the freedom they are about, who governs, how they
+  are chosen and the border they are chosen inside. Elsewhere: das Gehirn joins the
+  everyday body words beside dem Bauch, while Lunge, Leber and Niere file under illness,
+  which is where they actually get named; `schön` stops being `gut` said twice and becomes
+  its own card, and positiv/negativ/neutral and aggressiv/defensiv arrive for the moment a
+  conversation turns to an opinion. `vegetarisch` leaves as a word of its own — the
+  question that uses it teaches everything the bare adjective did.
+
+- **A report is one thing to open, not two, and never on your own word.** Filing a problem
+  with a word used to leave two entries on its menu — reopen the report, or withdraw it —
+  and withdrawing meant deciding without being able to reread what you had written.
+  There is one entry now, and dropping the report is inside the form, under what you wrote.
+  A word you wrote yourself no longer offers to be reported at all: there is nobody to tell
+  about it, and the edit form beside it already changes anything you would have said. In a
+  round, a reported card can finally be edited rather than only withdrawn.
+
 - **A fourth Sprossen drill: the date.** The weekday names, the month names, the day of
   the month as the words a date actually wants — *der dritte*, *третього* — and then the
   whole spoken date assembled out of them, over a ladder whose every rung adds its new
