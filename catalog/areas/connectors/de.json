@@ -15,24 +15,24 @@
   "without": { "text": "ohne" },
   "with": {
    "text": "mit",
-   "notes": { "de": "mit steht immer mit Dativ: mit dem Bus, mit meiner Frau." },
-   "pairNotes": {
+   "notes": {
+    "de": "mit steht immer mit Dativ: mit dem Bus, mit meiner Frau.",
     "en": "mit always takes the dative: mit dem Bus, mit meiner Frau.",
     "es": "mit siempre rige dativo: mit dem Bus, mit meiner Frau."
    }
   },
   "for": {
    "text": "für",
-   "notes": { "de": "für steht immer mit Akkusativ: für den Antrag, für dich." },
-   "pairNotes": {
+   "notes": {
+    "de": "für steht immer mit Akkusativ: für den Antrag, für dich.",
     "en": "für always takes the accusative: für den Antrag, für dich.",
     "es": "für siempre rige acusativo: für den Antrag, für dich."
    }
   },
   "because-of": {
    "text": "wegen",
-   "notes": { "de": "wegen steht mit Genitiv: wegen des Wetters — umgangssprachlich auch wegen dem Wetter." },
-   "pairNotes": {
+   "notes": {
+    "de": "wegen steht mit Genitiv: wegen des Wetters — umgangssprachlich auch wegen dem Wetter.",
     "en": "wegen takes the genitive: wegen des Wetters — colloquially the dative, wegen dem Wetter, is heard too.",
     "es": "wegen rige genitivo: wegen des Wetters — en el habla coloquial también dativo, wegen dem Wetter."
    }

@@ -169,8 +169,7 @@ internal object Fixture {
                            "notes": { "sw": "Panya tu." } },
                 "the-mouse-sprints": {
                   "text": "Миша спринтує.",
-                  "notes": { "de": "Nur im Fixture.", "uk": "Лише у фікстурі." },
-                  "pairNotes": { "de": "Nur f\u00fcr deutsche Leser." } } } }
+                  "notes": { "de": "Nur im Fixture.", "uk": "Лише у фікстурі." } } } }
         """.trimIndent(),
         "areas/beta/concepts.json" to """
             [

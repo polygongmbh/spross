@@ -18,19 +18,15 @@ Engine contract: `../README.md`.
   NAME: it is also the produce prompt's disambiguating cue, which no consumer trims.
   Lint (`subtitlesAreCompletePerAreaAndDistinctFromTheTitle`): an area authoring one
   authors it in every declared language, and it neither contains the title nor a `·`.
-- Realization notes resolve `pairNotes[source] ?: notes[lang] ?: notes[source]`.
-  `notes` is keyed by the language it is WRITTEN IN and the realization's own language LEADS:
-  a learner reads the language they study, so one wording serves all eight readers and a rule
-  is authored once instead of once per pair. `notes[source]` stays as the tail for the
-  realizations nobody has annotated in their own language yet.
-  A `de` note still never surfaces for an `en`-source learner of French — only French does.
-  On the SOURCE side `lang == source`, so the middle arm collapses to the last and no note
+- Realization notes resolve `notes[source] ?: notes[lang]` — one map, keyed by the language
+  the note is WRITTEN IN, and the key is the whole distinction. A note keyed by the
+  realization's OWN language is the shared wording every reader falls to; a note keyed by
+  some other language was written FOR that reader and wins for them.
+  Nothing else can happen: a `de` note never surfaces for an `en`-source learner of French,
+  and on the SOURCE side `lang == source`, so the two arms collapse into one and no note
   written in the target can reach a prompt.
-- Realization: `pairNotes` is keyed by READER and beats `notes` outright. It is for what only
-  that reader needs — a quirk of the two languages meeting (`doler` behaving like `gefallen`),
-  or a card arriving before the learner could read the target's own words. It is the
-  exception, so authoring one is a claim that the shared wording will not do.
-  A `pairNotes` key equal to the file's own language can never be a source and is a lint error.
+  Which of the two to author is a content decision, not the engine's —
+  `../../catalog/README.md` § `notes` states it.
 - Realization: `variants: [String]` next to `synonyms` — a **display/accept distinction
   only**, never a scheduling one (`../README.md` §3): synonyms rotate as recognition prompt forms and
   show on reveal; variants are accepted silently and never prompted.

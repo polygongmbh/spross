@@ -94,9 +94,11 @@ Write the rule in the language it explains, and every reader gets it
 (`../README.md` § `notes`) — a German rule in German, a Ukrainian one in Ukrainian.
 That is the default, not a fallback: one wording where eight would otherwise be needed,
 and a learner reads the language they are studying.
-Reach for `pairNotes` only where the shared wording will not do —
-the first cards of a course, before any sentence of the target would land,
-and the quirks that exist only because these two languages met.
+Write it example-first and it stays readable that early:
+`мама → мамо, тато → тату` teaches the vocative to somebody who could not yet read
+the word for it, where naming the case would need a note per reader instead.
+Key a note to a reader's language only where the shared wording will not do —
+the first cards of a course, and the quirks that exist only because these two languages met.
 
 **A contrast pair is two phrases whose difference IS the lesson.**
 `Wir fahren in die Berge.` beside `In den Bergen ist es kalt.` teaches the case

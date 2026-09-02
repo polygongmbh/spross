@@ -13,8 +13,8 @@
   "exit": { "text": "Ausgang", "grammar": { "gender": "der", "plural": "Ausgänge" } },
   "follow": {
    "text": "folgen",
-   "notes": { "de": "folgen steht mit Dativ, nicht mit Akkusativ: Folgen Sie mir. (nicht: mich)" },
-   "pairNotes": {
+   "notes": {
+    "de": "folgen steht mit Dativ, nicht mit Akkusativ: Folgen Sie mir. (nicht: mich)",
     "en": "folgen takes the dative, not the accusative: Folgen Sie mir — never mich.",
     "es": "folgen rige dativo, no acusativo: Folgen Sie mir — nunca mich."
    }

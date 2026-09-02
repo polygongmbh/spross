@@ -24,7 +24,7 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   German reader alone where one rewrite in the target's own language would reach all eight.
   It is the highest-leverage note work left, and the pattern to copy is example-first —
   «мама → мамо, тато → тату» teaches the vocative to a learner who could not yet read the
-  word for it, where naming the case would need `pairNotes` and eight translations.
+  word for it, where naming the case would need a note per reader instead.
   Swahili and Esperanto prose still need a reviewer who reads them.
 - Cases still unnamed where a language draws one German does not: Ukrainian's instrumental
   of predication («працює вчителем») and its dative of the experiencer beyond the one

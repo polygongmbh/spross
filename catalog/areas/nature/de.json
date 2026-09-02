@@ -49,16 +49,16 @@
   },
   "its-cold-in-the-mountains": {
    "text": "In den Bergen ist es kalt.",
-   "notes": { "de": "wo? → Dativ: in den Bergen. Wir fahren in die Berge ist wohin?, darum Akkusativ." },
-   "pairNotes": {
+   "notes": {
+    "de": "wo? → Dativ: in den Bergen. Wir fahren in die Berge ist wohin?, darum Akkusativ.",
     "en": "wo? (where) takes the dative: in den Bergen — against in die Berge, the accusative, for where to.",
     "es": "wo? (dónde) rige dativo: in den Bergen — frente a in die Berge, acusativo, para adónde."
    }
   },
   "we-are-staying-home-because-of-the-rain": {
    "text": "Wegen des Regens bleiben wir zu Hause.",
-   "notes": { "de": "wegen zieht den Genitiv nach sich: des Regens, nicht der Regen." },
-   "pairNotes": {
+   "notes": {
+    "de": "wegen zieht den Genitiv nach sich: des Regens, nicht der Regen.",
     "en": "wegen pulls the genitive after it: des Regens, not der Regen.",
     "es": "wegen arrastra el genitivo: des Regens, no der Regen."
    }

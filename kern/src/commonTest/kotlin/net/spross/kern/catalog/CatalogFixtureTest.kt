@@ -98,34 +98,23 @@ class CatalogFixtureTest {
     }
 
     /**
-     * The language being explained leads, so one wording serves every reader: the English
-     * reader gets the Ukrainian note although a `de` note is authored right beside it.
+     * The key decides who reads a note: one written FOR this reader wins, and the one
+     * written in the language being explained is what every other reader falls to.
+     * `the-mouse-sprints` carries both, so the German reader and the English reader
+     * each get a different sentence off the same card.
      */
     @Test
-    fun notesPreferTheLanguageBeingExplained() {
+    fun aReaderNoteWinsAndTheSharedWordingCatchesEveryoneElse() {
+        assertEquals("Nur im Fixture.", catalog.join("de", "uk").byId("the-mouse-sprints").target.note)
         assertEquals("Лише у фікстурі.", catalog.join("en", "uk").byId("the-mouse-sprints").target.note)
     }
 
-    /** A pair note is the author overriding that for one reader, and it beats both. */
+    /** A note in a language that is neither the reader's nor the card's reaches nobody. */
     @Test
-    fun aPairNoteBeatsTheSharedWording() {
-        assertEquals("Nur für deutsche Leser.", catalog.join("de", "uk").byId("the-mouse-sprints").target.note)
-    }
-
-    /** With no note in its own language, a realization still reaches the readers it names. */
-    @Test
-    fun aNoteInAnotherLanguageIsTheTail() {
-        // uk `mouse` is annotated in sw alone and never in uk.
+    fun aThirdLanguagesNoteNeverLeaks() {
+        // uk `mouse` is annotated in sw alone: not in uk, and not for the en reader.
         assertEquals("Panya tu.", catalog.join("sw", "uk").byId("mouse").target.note)
         assertNull(catalog.join("en", "uk").byId("mouse").target.note)
-    }
-
-    /** A note written in the target can never reach a PROMPT, which is the reader's own language. */
-    @Test
-    fun theTargetsWordingNeverLeaksOntoTheSourceSide() {
-        val ukSourced = catalog.join("uk", "de").byId("the-mouse-sprints")
-        assertEquals("Лише у фікстурі.", ukSourced.source.note)
-        assertNull(ukSourced.target.note)
     }
 
     @Test
