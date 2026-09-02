@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+- **A word explains itself on a long press in the Box.** The catalog's note — why *la mano*
+  is feminine, which of two Spanish words for "ear" the doctor wants — used to arrive only
+  when a card was turned over mid-round. Holding a word in the Box now shows it above the
+  menu, so a shelf can be read through without starting a session.
+
+- **The dictated word can be heard again once you have written it.** The letter drill's
+  reveal now carries the speaker every other answer in the app already had, so a word you
+  transcribed is one tap from being said back to you — on Android it could not be replayed
+  at all. The letter Sprossen keep none: their answer is a single glyph, and a glyph handed
+  to a voice comes back as a spelling alphabet rather than the letter you were played, so
+  the big replay button above stays the way to hear those.
+
 ## 5.9.0 — 2026-09-02
 
 - **Your own content can be emptied once you have sent it on.** A word you wrote down in

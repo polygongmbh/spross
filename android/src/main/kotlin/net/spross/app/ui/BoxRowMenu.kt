@@ -1,9 +1,14 @@
 package net.spross.app.ui
 
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.forgetCard
 import net.spross.app.ownWords
@@ -52,6 +57,13 @@ internal fun BoxRowMenu(
         learnerInput = "",
         onDismiss = onDismiss,
         before = { close ->
+            // why: the row has no width for a gloss and the box has no card to reveal, so
+            // the long press is where a word explains itself — the same line the session's
+            // reveal wears ([PauseLine]), above every action rather than among them.
+            (card.target.note ?: card.source.note)?.let { note ->
+                PauseLine(note, Modifier.widthIn(max = 280.dp).padding(DlSpace.m))
+                HorizontalDivider()
+            }
             when (standing) {
                 CardRowState.PackOffered -> MenuAction(chrome.boxCardPack) {
                     close()

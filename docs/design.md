@@ -424,7 +424,10 @@ a clone inherits its sibling's gaps, never the rules.
   press mid-round offers two things only.** In the Box the menu is where the word stands
   (pack, unpack, sleep, wake, forget its progress), then what can be MADE of it (an own
   word from it, or editing one), then what is wrong with it, and deleting last because it
-  is the entry that cannot be taken back. A round is no place to reorganize the box, so
+  is the entry that cannot be taken back. Above those, where the word carries one, the
+  catalog's note — the gloss a session card only hands over at the reveal, which nothing
+  in the Box turns over; the row itself has no width for a sentence.
+  A round is no place to reorganize the box, so
   the session card keeps just reporting and stopping the word being asked.
   Those two are unrelated on purpose: reporting a problem changes nothing about what gets
   asked, and taking a word out files no complaint (`kern/README.md` §6), which is why

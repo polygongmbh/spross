@@ -29,9 +29,41 @@ struct BoxCardRow: View {
     @State private var sheet: BoxRowSheet?
 
     var body: some View {
-        row.contextMenu {
-            BoxRowMenu(model: model, card: card) { sheet = $0 }
+        // why: the note is the one thing the row has no width to say, and the
+        // long press is already where a word is asked about itself. A word
+        // without one keeps the system's own preview — a copy of the row would
+        // say nothing the row is not already saying.
+        if let note = card.target.note ?? card.source.note {
+            row.contextMenu {
+                BoxRowMenu(model: model, card: card) { sheet = $0 }
+            } preview: {
+                notePreview(note)
+            }
+        } else {
+            row.contextMenu {
+                BoxRowMenu(model: model, card: card) { sheet = $0 }
+            }
         }
+    }
+
+    /// The word as it explains itself: picture, both sides, and the catalog's
+    /// note under them in the same line the card's reveal wears (`dlNoteLine`),
+    /// so a gloss read here and a gloss read mid-round are the same line.
+    private func notePreview(_ note: String) -> some View {
+        VStack(spacing: DL.Space.s) {
+            Text(card.displayEmoji)
+                .font(.largeTitle)
+                .accessibilityHidden(true)
+            citation
+                .multilineTextAlignment(.center)
+            Text(card.source.text)
+                .font(DL.Fonts.caption)
+                .foregroundStyle(Color.dlTextSecondary)
+            Text(note).dlNoteLine()
+        }
+        .padding(DL.Space.l)
+        .frame(maxWidth: 300)
+        .background(Color.dlSurface)
     }
 
     @ViewBuilder
