@@ -170,17 +170,20 @@ arguments do not cross the ObjC boundary
 Parameters, provenance and the golden vectors are `docs/fsrs.md`; the numbers behind each
 bar are on `BoxConfig` itself. What the product decided:
 
-- **ONE growing-backoff ladder, `stepsSeconds`, shared by Learning and Relearning**
-  (user ruling 2026-09-01, supersedes both the single-`[2m]`-learning-step ruling of
-  2026-07-29 and the 2026-08-07 leech ruling) — a brand-new word and a lapsed one wait
-  on the same cadence, not two separately-tuned mechanisms. A lapse is any `Again` past
-  introduction — learning- and relearning-step retries count too, not just review-phase
-  ones — and is always tracked (`CardScheduling.lapses`, drill/listening scoring reads
-  it), but no longer auto-suspends: each `Again` climbs `stepsSeconds`
-  (`FsrsScheduler.stepOutcome`) instead of resetting to its first entry, capped at the
-  ladder's last Sprosse — the product ships `[10m, 1d, 3d, 7d]`, so a word appears at most
-  twice on its first day (the introduction, then one 10-minute retry) before a repeat
-  miss pushes it out to day scale rather than repeating inside the same sitting.
+- **ONE ALTERNATING ladder, `stepsSeconds`, shared by Learning and Relearning**
+  (user ruling 2026-09-02, supersedes the purely growing ladder of 2026-09-01, which
+  superseded the single-`[2m]`-learning-step ruling of 2026-07-29 and the 2026-08-07
+  leech ruling) — a brand-new word and a lapsed one wait on the same cadence, not two
+  separately-tuned mechanisms. A lapse is any `Again` past introduction — learning- and
+  relearning-step retries count too, not just review-phase ones — and is always tracked
+  (`CardScheduling.lapses`, drill/listening scoring reads it), but no longer
+  auto-suspends: each `Again` climbs `stepsSeconds` (`FsrsScheduler.stepOutcome`)
+  instead of resetting to its first entry, capped at the ladder's last Sprosse.
+  The product ships `[10m, 1d, 10m, 3d, 10m, 7d]` — minutes and days alternate, so a
+  word that will not stick comes back at most TWICE in any day while the gaps between
+  those pairs widen. The short rung is why: a retrieval pays only where it can succeed,
+  and a fail pushed straight out to day scale spends its next look where that look is
+  worth least (`docs/growth-evidence.md`).
   `Again` is the ONLY rating that stays on the ladder: `Hard`, `Good` and `Easy` all
   graduate to Review immediately, from wherever the ladder sits — the ladder spaces out
   repeated fails, it does not grade flavors of success. High on the ladder that hands a

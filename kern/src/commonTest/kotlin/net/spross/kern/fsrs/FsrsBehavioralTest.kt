@@ -21,8 +21,11 @@ class FsrsBehavioralTest {
     // The one place the shipped ladder is spelled out: everything else derives it from
     // [BoxConfig], so this is the tripwire that catches a change to the numbers.
     @Test
-    fun theProductShipsTheTenMinuteToOneWeekLadder() {
-        assertEquals(listOf(600L, 86_400L, 259_200L, 604_800L), productParameters.stepsSeconds)
+    fun theProductShipsAnAlternatingTenMinuteToOneWeekLadder() {
+        assertEquals(
+            listOf(600L, 86_400L, 600L, 259_200L, 600L, 604_800L),
+            productParameters.stepsSeconds,
+        )
         assertEquals(0.8, productParameters.desiredRetention)
         assertEquals(365, productParameters.maximumIntervalDays)
     }

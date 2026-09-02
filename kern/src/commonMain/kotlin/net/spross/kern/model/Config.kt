@@ -35,21 +35,32 @@ data class BoxConfig(
      */
     val consolidatedStability: Double = 6.0,
     /**
-     * (Re)learning steps in seconds — ONE growing-backoff ladder, the same cadence
-     * whether a word has never graduated (Learning) or lapsed after it did
-     * (Relearning): 10 min, 1 day, 3 days, 7 days (user ruling 2026-09-01,
-     * supersedes both the single-step-Learning split and the 2026-08-07 leech
-     * ruling — a lapse no longer auto-suspends). A retry belongs to the NEXT
-     * sitting or an endless run, not the tail of this one — a composed session
-     * never refills (no in-session retry, breadth ruling 2026-07-22), so the run
-     * boundary keeps a lapsed word out of the sitting it lapsed in regardless of
-     * the step length. Repeated fails climb the ladder instead of repeating its
-     * first entry (see [net.spross.kern.fsrs.FsrsScheduler]), giving a word that
-     * keeps slipping room to consolidate rather than being shoved at the learner
-     * again the same day; every rating but `Again` graduates it immediately from
-     * wherever the ladder sits.
+     * (Re)learning steps in seconds — ONE ladder, the same cadence whether a word has
+     * never graduated (Learning) or lapsed after it did (Relearning). Minutes and
+     * day-scale waits ALTERNATE — 10 min, 1 day, 10 min, 3 days, 10 min, 7 days
+     * (user ruling 2026-09-02, supersedes the purely growing ladder of 2026-09-01)
+     * — so a word that will not stick comes back at most TWICE in a day while the
+     * gaps between those pairs still widen.
+     *
+     * The short rung is the load-bearing one, and it is why the ladder is not simply
+     * growing. A retrieval pays only where it can SUCCEED: spacing beats massing by a
+     * wide margin, but past that the schedule's SHAPE barely registers next to the
+     * first interval being short enough to land, and a failed attempt with the answer
+     * shown is worth about a restudy on a pair as arbitrary as a translation
+     * (`docs/growth-evidence.md`). Pushing a word further out the moment it fails
+     * spends its next look exactly where that look is worth least.
+     *
+     * A retry belongs to the NEXT sitting or an endless run, not the tail of this one —
+     * a composed session never refills (no in-session retry, breadth ruling 2026-07-22),
+     * so the run boundary keeps a lapsed word out of the sitting it lapsed in whatever
+     * the step says. Repeated fails climb instead of repeating the first entry (see
+     * [net.spross.kern.fsrs.FsrsScheduler]) and stop at the last rung, so a word that
+     * never lands rests at a week rather than taking a slot a day; every rating but
+     * `Again` graduates it immediately from wherever the ladder sits.
      */
-    val stepsSeconds: List<Long> = listOf(600L, 86_400L, 3 * 86_400L, 7 * 86_400L),
+    val stepsSeconds: List<Long> = listOf(
+        600L, 86_400L, 600L, 3 * 86_400L, 600L, 7 * 86_400L,
+    ),
 ) {
     /**
      * Due cards left over from a round go unsaid below this

@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **A word you keep missing comes back the same day, not only days later.** The retry
+  ladder only ever grew: ten minutes, then a day, then three, then a week, so the second
+  miss already pushed a word out to day scale and every miss after that pushed it
+  further — exactly when it was least likely to be remembered. Minutes and
+  days now alternate — ten minutes, a day, ten minutes, three days, ten minutes, a week
+  — so a word that will not stick still gets a second look on the same day, while the
+  waits between those pairs keep widening. A word never appears more than twice in a day.
+
 - **A word that means two things in your language now counts either way.** Swahili *ndege* is
   both a bird and an airplane; hearing it and writing the other one was marked wrong. It
   counts in full now, and the card pauses on the meaning it was teaching, so the word you
