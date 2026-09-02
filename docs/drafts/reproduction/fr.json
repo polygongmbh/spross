@@ -1,0 +1,9 @@
+{
+ "title": "Les organes sexuels",
+ "subtitle": "Les mots qui se disent chez le médecin.",
+ "words": {
+  "penis": { "text": "pénis", "grammar": { "gender": "le", "plural": "=" } },
+  "vagina": { "text": "vagin", "grammar": { "gender": "le" } },
+  "testicle": { "text": "testicule", "grammar": { "gender": "le" } }
+ }
+}

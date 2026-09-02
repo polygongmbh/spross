@@ -1,0 +1,9 @@
+{
+ "title": "Los órganos sexuales",
+ "subtitle": "Las palabras que salen en la consulta.",
+ "words": {
+  "penis": { "text": "pene", "grammar": { "gender": "el" } },
+  "vagina": { "text": "vagina", "grammar": { "gender": "la" } },
+  "testicle": { "text": "testículo", "grammar": { "gender": "el" } }
+ }
+}

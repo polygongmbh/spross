@@ -1,0 +1,9 @@
+{
+ "title": "Viungo vya uzazi",
+ "subtitle": "Maneno yanayotajwa kwa daktari.",
+ "words": {
+  "penis": { "text": "uume", "notes": { "sw": "Uume ni neno la heshima, lina maana ya uanaume pia." } },
+  "vagina": { "text": "uke", "notes": { "sw": "Uke ni neno la heshima, lina maana ya uanamke pia." } },
+  "testicle": { "text": "pumbu", "grammar": { "plural": "mapumbu" } }
+ }
+}

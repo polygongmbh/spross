@@ -1,0 +1,9 @@
+{
+ "title": "Sexual organs",
+ "subtitle": "The words that come up at the doctor's.",
+ "words": {
+  "penis": { "text": "penis", "grammar": { "plural": "penises" } },
+  "vagina": { "text": "vagina" },
+  "testicle": { "text": "testicle" }
+ }
+}
