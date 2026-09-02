@@ -56,6 +56,7 @@
    "notes": { "de": "dedo deckt Finger und Zehe ab; die Zehe ist el dedo del pie." }
   },
   "neck": { "text": "cuello", "grammar": { "gender": "el" } },
+  "brain": { "text": "cerebro", "grammar": { "gender": "el" } },
   "my-head-hurts": { "text": "Me duele la cabeza." },
   "give-me-your-hand": { "text": "Dame la mano.", "variants": ["Dame tu mano."] },
   "open-your-mouth": { "text": "Abre la boca." },

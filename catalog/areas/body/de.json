@@ -28,6 +28,7 @@
   "finger": { "text": "Finger", "grammar": { "gender": "der", "plural": "=" } },
   "tongue": { "text": "Zunge", "grammar": { "gender": "die", "plural": "-n" } },
   "neck": { "text": "Nacken", "grammar": { "gender": "der", "plural": "=" } },
+  "brain": { "text": "Gehirn", "grammar": { "gender": "das", "plural": "-e" } },
   "my-head-hurts": { "text": "Mein Kopf tut weh." },
   "give-me-your-hand": { "text": "Gib mir deine Hand." },
   "open-your-mouth": { "text": "Mach den Mund auf.", "variants": ["Öffne den Mund."] },
