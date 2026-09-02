@@ -36,10 +36,9 @@ and grades as a pattern variant.
 so the day form composes with nothing new.
 The year is the plain cardinal the pack reads, hundred-style variants included.
 
-⚠ `Sonnabend` beside `Samstag` and `Jänner` beside `Januar` are different lexemes, not spellings,
-so by `catalog/README.md`'s rule they would be `synonyms` and take their turn as prompts.
-Both are regionally alive and nationally marked; a native has to say whether they earn that
-or whether the `octante` ruling applies (accepted-but-not-taught is a register nobody uses).
+`Sonnabend` and `Jänner` stand as `synonyms` beside `Samstag` and `Januar`, prompt turns and all —
+the first common across the north, the second the Austrian standard,
+each a register a learner will genuinely meet.
 
 ## English
 
