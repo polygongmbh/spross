@@ -82,15 +82,21 @@ struct BoxRowMenu: View {
         }
     }
 
+    /// A report is what the learner says to whoever maintains the CATALOG, so a word
+    /// they wrote themselves grows no report entry: there is nobody to tell, and the
+    /// edit form beside it already changes anything they would have reported.
+    ///
+    /// Filed, it offers the one entry — reopening it. Withdrawing lives inside that
+    /// form (`ReportIssueSheet`), where the learner can read what they filed before
+    /// deciding to drop it, rather than as a second menu row beside the first.
     @ViewBuilder
     private var reporting: some View {
-        if model.reportedIssue(for: card.id) == nil {
+        if model.isOwnWord(card.id) {
+            EmptyView()
+        } else if model.reportedIssue(for: card.id) == nil {
             Button("report.action", systemImage: "exclamationmark.bubble") { open(.report) }
         } else {
             Button("report.edit", systemImage: "text.bubble") { open(.editReport) }
-            Button("report.dismiss", systemImage: "checkmark.bubble") {
-                model.dismissReportedIssue(cardID: card.id)
-            }
         }
     }
 }

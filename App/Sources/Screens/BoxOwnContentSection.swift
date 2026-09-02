@@ -190,10 +190,8 @@ struct BoxOwnContentSection: View {
                 .fill(Color.dlSurfaceTint)
         )
         .contextMenu {
+            // One entry: withdrawing lives inside the form the edit opens.
             Button("report.edit", systemImage: "text.bubble") { sheet = .reporting(card) }
-            Button("report.dismiss", systemImage: "checkmark.bubble") {
-                model.dismissReportedIssue(cardID: card.id)
-            }
         }
     }
 

@@ -203,15 +203,20 @@ struct SessionView: View, LanguageNaming {
     /// step in the other's flow.
     @ViewBuilder
     private func cardMenu(_ card: Card) -> some View {
-        if model.reportedIssue(for: card.id) == nil {
+        if model.isOwnWord(card.id) {
+            // A word the learner wrote has nobody to report it to.
+            EmptyView()
+        } else if model.reportedIssue(for: card.id) == nil {
             Button("report.action", systemImage: "exclamationmark.bubble") {
                 // why: the field empties as the turn advances, so what they typed is
                 // taken NOW and carried into the sheet.
                 reporting = ReportedCard(card: card, input: input)
             }
         } else {
-            Button("report.dismiss", systemImage: "checkmark.bubble") {
-                model.dismissReportedIssue(cardID: card.id)
+            // Reopening, not withdrawing: the form carries the drop, and a learner
+            // with more to say should not have to withdraw the report to say it.
+            Button("report.edit", systemImage: "text.bubble") {
+                reporting = ReportedCard(card: card, input: input)
             }
         }
         Button("box.card.sleep", systemImage: "moon.zzz") {

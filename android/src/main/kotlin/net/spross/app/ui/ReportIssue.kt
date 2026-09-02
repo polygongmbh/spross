@@ -20,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -29,6 +30,7 @@ import net.spross.app.dismissReportedIssue
 import net.spross.app.reportIssue
 import net.spross.app.reportedIssue
 import net.spross.kern.box.BoxEngine
+import net.spross.kern.box.OwnWords
 import net.spross.kern.model.Card
 
 /**
@@ -64,13 +66,18 @@ internal fun CardMenu(
     var reporting by remember(card.id) { mutableStateOf(false) }
     DropdownMenu(expanded = expanded, onDismissRequest = onDismiss) {
         before(onDismiss)
-        if (model.reportedIssue(card.id) == null) {
-            MenuAction(chrome.reportAction) { onDismiss(); reporting = true }
-        } else {
-            // Reopening beats refiling: the comment is what the maintainer reads, and a
-            // learner with more to say should not have to withdraw the report to say it.
-            MenuAction(chrome.reportEdit) { onDismiss(); reporting = true }
-            MenuAction(chrome.reportDismiss) { onDismiss(); model.dismissReportedIssue(card.id) }
+        // why: a report is what the learner says to whoever maintains the CATALOG, so a
+        // word they wrote themselves grows no entry — there is nobody to tell, and the
+        // edit form beside it already changes anything they would have reported.
+        if (!OwnWords.owns(card.id)) {
+            if (model.reportedIssue(card.id) == null) {
+                MenuAction(chrome.reportAction) { onDismiss(); reporting = true }
+            } else {
+                // Reopening beats refiling: the comment is what the maintainer reads, and a
+                // learner with more to say should not have to withdraw the report to say it.
+                // Withdrawing is inside that form, not a second row beside this one.
+                MenuAction(chrome.reportEdit) { onDismiss(); reporting = true }
+            }
         }
         after(onDismiss)
     }
@@ -138,7 +145,8 @@ fun ReportableCard(
  * their answer will not.
  *
  * Opened over a report already filed it carries that comment, so rewriting it is an edit
- * rather than a retype.
+ * rather than a retype — and carries the way to withdraw it, which is here rather than in
+ * the menu so a learner can read what they filed before deciding to drop it.
  */
 @Composable
 private fun ReportIssueDialog(
@@ -188,6 +196,16 @@ private fun ReportIssueDialog(
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
+                // Last and set apart: the one thing in the form that editing again
+                // cannot take back. Absent while nothing is on file to withdraw.
+                if (model.reportedIssue(card.id) != null) {
+                    TextButton(
+                        onClick = { model.dismissReportedIssue(card.id); onDismiss() },
+                        modifier = Modifier.align(Alignment.End),
+                    ) {
+                        Text(chrome.reportDismiss, color = MaterialTheme.colorScheme.error)
+                    }
+                }
             }
         },
         confirmButton = {

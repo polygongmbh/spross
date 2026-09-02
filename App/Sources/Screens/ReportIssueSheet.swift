@@ -14,6 +14,9 @@ import SprossKern
 ///
 /// Reopened on a report already on file it arrives carrying what was written, and
 /// sending replaces it — one report per card, never a second one beside the first.
+/// Withdrawing is in HERE for the same reason: the menu that opens this form offers
+/// one entry, not a fork between editing and dropping, and a learner deciding which
+/// they want is already reading the report.
 struct ReportIssueSheet: View {
     let model: AppModel
     let card: Card
@@ -39,6 +42,9 @@ struct ReportIssueSheet: View {
                     Text("report.explainer")
                         .font(DL.Fonts.caption)
                         .foregroundStyle(Color.dlTextSecondary)
+                    if onFile {
+                        withdraw
+                    }
                 }
                 .padding(DL.Space.xl)
             }
@@ -58,6 +64,22 @@ struct ReportIssueSheet: View {
         .onAppear {
             comment = filed
             focused = true
+        }
+    }
+
+    /// Whether this form opened on a report already filed — the one state where
+    /// there is something to withdraw.
+    private var onFile: Bool { model.reportedIssue(for: card.id) != nil }
+
+    /// Dropping the report, last and set apart: it is the only thing in the form
+    /// that cannot be taken back by editing again.
+    private var withdraw: some View {
+        Button(role: .destructive) {
+            model.dismissReportedIssue(cardID: card.id)
+            dismiss()
+        } label: {
+            Label("report.dismiss", systemImage: "checkmark.bubble")
+                .font(DL.Fonts.body)
         }
     }
 
