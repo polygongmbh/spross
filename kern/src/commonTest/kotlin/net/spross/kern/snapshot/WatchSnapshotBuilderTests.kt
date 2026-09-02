@@ -217,6 +217,57 @@ class WatchSnapshotBuilderTests {
         }
     }
 
+    // A merged target word means what BOTH its concepts mean, so the other one is a right
+    // answer — as a tile it would mark the learner wrong for knowing the word.
+    @Test
+    fun aMergedWordsOtherMeaningIsNeverOfferedAsTheWrongTile() {
+        val bird = Snap.card("bird", 0, targetText = "ndege")
+        val plane = Snap.card("plane", 1, targetText = "ndege")
+        val filler = (2..6).map { Snap.card("f$it", it, targetText = "t-f$it") }
+        var state = Snap.state(listOf(bird, plane) + filler)
+        for ((index, card) in (listOf(bird, plane) + filler).withIndex()) {
+            state = Box.inject(
+                state,
+                Box.sched(
+                    card.id, stability = (index + 1).toDouble(),
+                    dueMillis = Box.day1, lastReviewMillis = Box.day1,
+                    // Even counts recognize, so both halves of the merge are asked that way.
+                    logCount = 0,
+                ),
+            )
+        }
+        val entries = WatchSnapshotBuilder.doc(state, Box.day1).entries
+            .filter { it.cardId == "bird" || it.cardId == "plane" }
+        assertEquals(2, entries.size)
+        for (entry in entries) {
+            assertEquals("recognize", entry.nextRole)
+            assertTrue(entry.distractors.isNotEmpty(), "${entry.cardId} kept no tiles at all")
+            assertFalse(
+                entry.distractors.any { it == "s-bird" || it == "s-plane" },
+                "${entry.cardId} was offered the merge's other meaning: ${entry.distractors}",
+            )
+        }
+    }
+
+    // …and only the concepts that share the prompted form leave: a merged word is still
+    // ordinary company for every other question, on either side.
+    @Test
+    fun aMergedWordIsStillOfferedToEverybodyElse() {
+        val bird = Snap.card("bird", 0, targetText = "ndege")
+        val plane = Snap.card("plane", 1, targetText = "ndege")
+        val asked = Snap.card("asked", 2, sourceText = "s-asked", targetText = "t-asked")
+        var state = Snap.state(listOf(bird, plane, asked))
+        for (id in listOf("bird", "plane")) {
+            state = Box.inject(state, Box.sched(id, dueMillis = Box.day1, lastReviewMillis = Box.day1))
+        }
+        // logCount 1 is always production: the tiles are target words.
+        state = Box.inject(state, Box.sched("asked", dueMillis = Box.day1, lastReviewMillis = Box.day1, logCount = 1))
+
+        val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.first { it.cardId == "asked" }
+        assertEquals("produce", entry.nextRole)
+        assertTrue(entry.distractors.contains("ndege"), "${entry.distractors}")
+    }
+
     // why: the JSON flavor omits defaults, so an empty shortlist drops out of
     // the wire (the watch reads it as absent) but a real one must be there.
     @Test

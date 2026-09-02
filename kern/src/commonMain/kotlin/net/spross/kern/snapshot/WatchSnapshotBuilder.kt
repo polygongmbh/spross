@@ -11,6 +11,7 @@ import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.Language
 import net.spross.kern.model.PresentationRole
+import net.spross.kern.model.SharedTargetForms
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.presentationRole
 import net.spross.kern.model.recognitionPromptForm
@@ -97,7 +98,7 @@ object WatchSnapshotBuilder {
         return WatchSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
             generated = nowEpochMillis,
-            entries = entries.map { offer(it, state, pool, citationPrefixes) },
+            entries = entries.map { offer(it, state, pool, SharedTargetForms(pool), citationPrefixes) },
         )
     }
 
@@ -129,15 +130,28 @@ object WatchSnapshotBuilder {
         entry: WatchEntryDto,
         state: BoxState,
         pool: List<Card>,
+        shared: SharedTargetForms,
         citationPrefixes: Map<Language, List<String>>,
     ): WatchEntryDto {
         val role = entry.nextRole
-        val answer = option(state.cards.getValue(entry.cardId), role, citationPrefixes)
+        val card = state.cards.getValue(entry.cardId)
+        val answer = option(card, role, citationPrefixes)
+        // why: the tiles of a recognize question are MEANINGS, and a concept that prints the
+        // prompted form means it too — offered as the wrong one, it marks a right answer
+        // wrong. Recognize only: asked FROM the meaning, the other concept's target word is
+        // the distinction the learner is there to acquire, not a second right answer.
+        val alsoRight = if (role == RECOGNIZE) {
+            shared.concepts(entry.promptForm, card).map { it.id }.toSet()
+        } else {
+            emptySet()
+        }
         return entry.copy(
             optionForm = answer.text.takeIf { it != sideText(entry, role) },
             distractors = MultipleChoice.distractors(
                 answer = answer,
-                candidates = pool.filter { it.id != entry.cardId }.map { option(it, role, citationPrefixes) },
+                candidates = pool
+                    .filter { it.id != entry.cardId && it.id !in alsoRight }
+                    .map { option(it, role, citationPrefixes) },
             ),
         )
     }
