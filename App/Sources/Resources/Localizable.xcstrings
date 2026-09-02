@@ -4538,13 +4538,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "DuoLernen Tokens"
+            "value" : "Spross Tokens"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "DuoLernen tokens"
+            "value" : "Spross tokens"
           }
         }
       }

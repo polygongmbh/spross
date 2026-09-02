@@ -501,3 +501,7 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   `WatchSnapshotBuilder.option` draws distractors from the pool by `source.text`, and a
   co-owner of the prompted form answers the question correctly (`conceptsSharing` is the
   filter). The watch reveal carries no "also means" line either.
+- `tools/FaceGen` cannot build: it depends on `../../Kern` for a `DuoKern` SwiftPM product,
+  and neither has existed since the kern became the Gradle-built `SprossKern` framework.
+  `docs/facegen.md` still documents `swift run facegen` as if it works. Port the imports to
+  SprossKern, or delete the tool and its doc.

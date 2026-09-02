@@ -1,7 +1,7 @@
 import DuoKern
 import SwiftUI
 
-/// DuoLernen design language (docs/design.md): warm cream, article color coding,
+/// Spross design language (docs/design.md): warm cream, article color coding,
 /// emoji as illustration.
 enum Palette {
     static let cream = Color(red: 0xFA / 255, green: 0xF3 / 255, blue: 0xE8 / 255)
