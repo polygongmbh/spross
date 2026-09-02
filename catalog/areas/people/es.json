@@ -50,6 +50,7 @@
    "variants": ["gente mayor", "los mayores"],
    "notes": { "de": "personas viejas klingt abwertend — im Alltag mayores." }
   },
-  "many-friends": { "text": "muchos amigos", "variants": ["muchas amigas"] }
+  "many-friends": { "text": "muchos amigos", "variants": ["muchas amigas"] },
+  "mom-help-me": { "text": "¡Mamá, ayúdame!" }
  }
 }

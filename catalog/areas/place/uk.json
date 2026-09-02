@@ -11,10 +11,7 @@
   "inside": { "text": "всередині" },
   "outdoors": { "text": "надворі" },
   "at-home": { "text": "вдома", "variants": ["удома"] },
-  "home": {
-   "text": "додому",
-   "notes": { "de": "додому sagt wohin, вдома sagt wo.", "en": "додому is homeward, вдома is at home." }
-  },
+  "home": { "text": "додому", "notes": { "uk": "Куди? — додому. Де? — вдома." } },
   "in": {
    "text": "в",
    "variants": ["у"],

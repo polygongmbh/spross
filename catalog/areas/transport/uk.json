@@ -37,10 +37,7 @@
   "my-parents-are-coming-by-train": {
    "text": "Мої батьки приїжджають потягом.",
    "variants": ["Мої батьки приїжджають поїздом."],
-   "notes": {
-    "de": "Das Verkehrsmittel steht im bloßen Instrumental, ganz ohne Präposition: потягом.",
-    "en": "The means of travel is a bare instrumental, with no preposition at all: потягом."
-   }
+   "notes": { "uk": "Чим їдемо — без прийменника: потягом, автобусом, машиною." }
   }
  }
 }

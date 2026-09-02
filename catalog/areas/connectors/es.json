@@ -16,10 +16,7 @@
   "with": { "text": "con" },
   "for": {
    "text": "para",
-   "notes": {
-    "de": "para nennt Zweck und Ziel, por den Grund: para ti · por la lluvia.",
-    "en": "para is purpose and destination, por is cause: para ti · por la lluvia."
-   }
+   "notes": { "es": "para = destino o finalidad, por = causa: para ti · por la lluvia." }
   },
   "because-of": { "text": "por" },
   "again": { "text": "otra vez", "variants": ["de nuevo"] },

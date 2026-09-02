@@ -53,6 +53,10 @@
   },
   "her-boyfriend": { "text": "ŝia koramiko" },
   "old-people": { "text": "maljunaj homoj", "variants": ["maljunuloj"] },
-  "many-friends": { "text": "multaj amikoj" }
+  "many-friends": { "text": "multaj amikoj" },
+  "mom-help-me": {
+   "text": "Panjo, helpu min!",
+   "notes": { "eo": "La objekto ricevas -n, ankaŭ post helpi: helpu min." }
+  }
  }
 }

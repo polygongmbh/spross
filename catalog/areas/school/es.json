@@ -91,7 +91,11 @@
   "do-the-homework": { "text": "Hago los deberes." },
   "look-at-the-class-schedule": { "text": "Mira el horario.", "variants": ["Mire el horario."] },
   "the-break-is-over": { "text": "El descanso ha terminado." },
-  "ask-the-teacher": { "text": "Pregunta al profesor.", "variants": ["Pregunte al profesor."] },
+  "ask-the-teacher": {
+   "text": "Pregunta al profesor.",
+   "variants": ["Pregunte al profesor."],
+   "notes": { "es": "Ante una persona el objeto lleva a: pregunta al profesor, pero mira la pizarra." }
+  },
   "i-have-a-good-grade": { "text": "Tengo una buena nota." },
   "we-go-to-the-classroom": { "text": "Vamos al aula." },
   "the-exam-is-already-corrected": { "text": "El examen ya está corregido." }

@@ -43,10 +43,7 @@
   "can-you-see-me": {
    "text": "Ти мене бачиш?",
    "variants": ["Ви мене бачите?"],
-   "notes": {
-    "de": "мене ist Akkusativ — мені wäre Dativ.",
-    "en": "мене is the accusative; мені would be the dative."
-   }
+   "notes": { "uk": "Бачиш мене, але допомагаєш мені — форма залежить від дієслова." }
   }
  }
 }

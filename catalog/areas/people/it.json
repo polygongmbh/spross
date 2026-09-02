@@ -62,6 +62,7 @@
    "variants": ["gli anziani", "la gente anziana"],
    "notes": { "de": "persone vecchie klingt abwertend — im Alltag anziane." }
   },
-  "many-friends": { "text": "molti amici", "variants": ["molte amiche"] }
+  "many-friends": { "text": "molti amici", "variants": ["molte amiche"] },
+  "mom-help-me": { "text": "Mamma, aiutami!" }
  }
 }

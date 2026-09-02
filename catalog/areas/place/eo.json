@@ -23,13 +23,7 @@
   "inside": { "text": "interne", "variants": ["ene"] },
   "outdoors": { "text": "ekstere", "variants": ["eksterdome"] },
   "at-home": { "text": "hejme" },
-  "home": {
-   "text": "hejmen",
-   "notes": {
-    "de": "Das -n sagt wohin: hejmen ist nach Hause, hejme ist zu Hause.",
-    "en": "The -n says where to: hejmen is homeward, hejme is at home."
-   }
-  },
+  "home": { "text": "hejmen", "notes": { "eo": "hejmen estas al la hejmo, hejme estas en la hejmo." } },
   "in": { "text": "en" },
   "on": { "text": "sur" },
   "under": { "text": "sub" },

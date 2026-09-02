@@ -38,6 +38,14 @@
   "my-girlfriend": { "text": "meine Freundin" },
   "her-boyfriend": { "text": "ihr Freund" },
   "old-people": { "text": "alte Leute", "variants": ["alte Menschen"] },
-  "many-friends": { "text": "viele Freunde" }
+  "many-friends": { "text": "viele Freunde" },
+  "mom-help-me": {
+   "text": "Mama, hilf mir!",
+   "notes": { "de": "helfen bleibt auch im Imperativ beim Dativ: hilf mir, nie hilf mich." },
+   "pairNotes": {
+    "en": "Even as an imperative helfen keeps the dative: hilf mir, never hilf mich.",
+    "es": "Incluso en imperativo helfen mantiene el dativo: hilf mir, nunca hilf mich."
+   }
+  }
  }
 }

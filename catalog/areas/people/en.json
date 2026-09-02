@@ -37,6 +37,7 @@
   "my-girlfriend": { "text": "my girlfriend" },
   "her-boyfriend": { "text": "her boyfriend" },
   "old-people": { "text": "old people" },
-  "many-friends": { "text": "many friends" }
+  "many-friends": { "text": "many friends" },
+  "mom-help-me": { "text": "Mom, help me!", "variants": ["Mum, help me!"] }
  }
 }
