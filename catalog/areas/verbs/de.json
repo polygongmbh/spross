@@ -7,7 +7,14 @@
   "have": { "text": "haben" },
   "give": { "text": "geben" },
   "take": { "text": "nehmen" },
-  "see": { "text": "sehen" },
+  "see": {
+   "text": "sehen",
+   "notes": {
+    "de": "sehen nimmt wie die meisten Verben den Akkusativ: Ich sehe dich. Ein kleiner Kreis — helfen, folgen, danken, antworten — nimmt den Dativ.",
+    "en": "Like most German verbs, sehen takes the accusative: Ich sehe dich. A small set — helfen, folgen, danken, antworten — takes the dative instead.",
+    "es": "Como casi todos los verbos alemanes, sehen rige acusativo: Ich sehe dich. Un grupo pequeño — helfen, folgen, danken, antworten — rige dativo."
+   }
+  },
   "make": { "text": "machen" },
   "like": { "text": "mögen" },
   "can": { "text": "können" },

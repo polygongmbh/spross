@@ -24,7 +24,14 @@
   "leave": { "text": "verlassen" },
   "quit": { "text": "den Job kündigen", "variants": ["kündigen", "die Stelle kündigen"] },
   "hire": { "text": "einstellen" },
-  "to-help": { "text": "helfen" },
+  "to-help": {
+   "text": "helfen",
+   "notes": {
+    "de": "helfen steht mit Dativ: Ich helfe dir. (nicht: dich)",
+    "en": "helfen takes the dative: Ich helfe dir — never dich.",
+    "es": "helfen rige dativo: Ich helfe dir — nunca dich."
+   }
+  },
   "work-overtime": { "text": "Überstunden machen" },
   "profession": { "text": "Beruf", "grammar": { "gender": "der", "plural": "-e" } },
   "interview": { "text": "Vorstellungsgespräch", "grammar": { "gender": "das", "plural": "-e" } },

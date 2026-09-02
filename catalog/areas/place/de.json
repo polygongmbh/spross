@@ -25,6 +25,13 @@
   "between-us": { "text": "zwischen uns" },
   "is-it-far": { "text": "Ist es weit?" },
   "at-school": { "text": "in der Schule" },
-  "go-to-school": { "text": "in die Schule gehen" }
+  "go-to-school": {
+   "text": "in die Schule gehen",
+   "notes": {
+    "de": "in, an, auf, über, unter, vor, hinter, neben, zwischen: wohin? → Akkusativ (in die Schule), wo? → Dativ (in der Schule).",
+    "en": "Two-way prepositions: wohin? (where to) takes the accusative — in die Schule; wo? (where) takes the dative — in der Schule.",
+    "es": "Preposiciones de doble régimen: wohin? (adónde) rige acusativo — in die Schule; wo? (dónde) rige dativo — in der Schule."
+   }
+  }
  }
 }
