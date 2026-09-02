@@ -321,7 +321,7 @@ internal object CatalogParser {
     }
 
     private fun parseRealization(path: String, slug: String, o: JsonObject): RawRealization {
-        o.rejectUnknownKeys(path, slug, setOf("text", "synonyms", "variants", "grammar", "notes"))
+        o.rejectUnknownKeys(path, slug, setOf("text", "synonyms", "variants", "grammar", "notes", "pairNotes"))
         val text = o.requireString(path, slug, "text")
         if (text.isBlank()) parseError(path, "$slug: blank text")
         val synonyms = o.stringList(path, slug, "synonyms")
@@ -335,6 +335,7 @@ internal object CatalogParser {
             variants = variants,
             grammar = o.stringMap(path, slug, "grammar"),
             notes = o.stringMap(path, slug, "notes"),
+            pairNotes = o.stringMap(path, slug, "pairNotes"),
         )
     }
 }

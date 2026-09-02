@@ -12,16 +12,16 @@
   "outdoors": { "text": "draußen" },
   "at-home": {
    "text": "zu Hause",
-   "notes": {
-    "de": "zu Hause heißt daheim, am Ort: Ich bin zu Hause.",
+   "notes": { "de": "zu Hause heißt daheim, am Ort: Ich bin zu Hause." },
+   "pairNotes": {
     "en": "zu Hause is at home, the place you are: Ich bin zu Hause.",
     "es": "zu Hause es en casa, el lugar donde estás: Ich bin zu Hause."
    }
   },
   "home": {
    "text": "nach Hause",
-   "notes": {
-    "de": "nach Hause heißt heimwärts, die Richtung: Ich gehe nach Hause.",
+   "notes": { "de": "nach Hause heißt heimwärts, die Richtung: Ich gehe nach Hause." },
+   "pairNotes": {
     "en": "nach Hause is homeward, the direction you move: Ich gehe nach Hause.",
     "es": "nach Hause es hacia casa, la dirección: Ich gehe nach Hause."
    }
@@ -44,7 +44,9 @@
   "go-to-school": {
    "text": "in die Schule gehen",
    "notes": {
-    "de": "in, an, auf, über, unter, vor, hinter, neben, zwischen: wohin? → Akkusativ (in die Schule), wo? → Dativ (in der Schule).",
+    "de": "in, an, auf, über, unter, vor, hinter, neben, zwischen: wohin? → Akkusativ (in die Schule), wo? → Dativ (in der Schule)."
+   },
+   "pairNotes": {
     "en": "Two-way prepositions: wohin? (where to) takes the accusative — in die Schule; wo? (where) takes the dative — in der Schule.",
     "es": "Preposiciones de doble régimen: wohin? (adónde) rige acusativo — in die Schule; wo? (dónde) rige dativo — in der Schule."
    }

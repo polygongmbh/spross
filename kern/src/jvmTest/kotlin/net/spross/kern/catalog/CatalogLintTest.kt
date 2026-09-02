@@ -304,6 +304,7 @@ class CatalogLintTest {
             }
             for ((key, value) in raw.grammar) unmarked("$where.$key", value)
             for ((reader, note) in raw.notes) unmarked("$where.notes.$reader", note)
+            for ((reader, note) in raw.pairNotes) unmarked("$where.pairNotes.$reader", note)
         }
         for ((lang, frames) in catalog.frameRealizations) {
             for ((slug, frame) in frames) {
@@ -327,24 +328,38 @@ class CatalogLintTest {
     fun notesKeyedByDeclaredLanguages() {
         forEachRealization { area, lang, slug, raw ->
             assertTrue(
-                raw.notes.keys.all { it in catalog.languages },
-                "$area/$lang.json $slug: unknown note key ${raw.notes.keys}",
+                (raw.notes.keys + raw.pairNotes.keys).all { it in catalog.languages },
+                "$area/$lang.json $slug: unknown note key ${raw.notes.keys + raw.pairNotes.keys}",
             )
         }
     }
 
     /**
-     * A German card that bothers to address a reader at all addresses both the readers
-     * German is taught to. A SELF-keyed note is not addressing a reader — it is the
-     * fallback every reader gets — so a card carrying only `de` is untouched.
+     * A pair note is addressed to a READER, and a card's own language is never its reader —
+     * `join` requires `source != target`. Written there it would be unreachable, which is
+     * exactly the bug the twelve dead German notes were.
      */
     @Test
-    fun readerNotesOnGermanTargetsCoverEnglishAndSpanish() {
+    fun pairNotesAreNeverKeyedByTheirOwnLanguage() {
         forEachRealization { area, lang, slug, raw ->
-            if (lang != "de" || raw.notes.keys.none { it != "de" }) return@forEachRealization
             assertTrue(
-                "en" in raw.notes && "es" in raw.notes,
-                "$area/de.json $slug: a reader note needs both en and es, has ${raw.notes.keys.sorted()}",
+                lang !in raw.pairNotes,
+                "$area/$lang.json $slug: a $lang pair note can never be read — $lang is never this card's source",
+            )
+        }
+    }
+
+    /**
+     * A German card that overrides the shared wording for one reader overrides it for both
+     * the readers German is taught to. `notes` are untouched: those are the shared wording.
+     */
+    @Test
+    fun pairNotesOnGermanTargetsCoverEnglishAndSpanish() {
+        forEachRealization { area, lang, slug, raw ->
+            if (lang != "de" || raw.pairNotes.isEmpty()) return@forEachRealization
+            assertTrue(
+                "en" in raw.pairNotes && "es" in raw.pairNotes,
+                "$area/de.json $slug: a pair note needs both en and es, has ${raw.pairNotes.keys.sorted()}",
             )
         }
     }
@@ -379,7 +394,8 @@ class CatalogLintTest {
             } ?: fail("anchor $slug names no concept")
             for (lang in langs) {
                 val raw = realized[lang]?.get(slug) ?: fail("anchor $slug is unrealized in $lang")
-                assertTrue(raw.notes.isNotEmpty(), "$slug: $lang draws this rule and states nothing")
+                val stated = raw.notes.isNotEmpty() || raw.pairNotes.isNotEmpty()
+                assertTrue(stated, "$slug: $lang draws this rule and states nothing")
             }
         }
     }

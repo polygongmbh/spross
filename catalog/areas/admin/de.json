@@ -11,7 +11,7 @@
   "ticket-number": {
    "text": "Wartenummer",
    "grammar": { "gender": "die", "plural": "-n" },
-   "notes": {
+   "pairNotes": {
     "en": "You DRAW a number here — ziehen, never nehmen.",
     "es": "Aquí se SACA un número — ziehen, nunca nehmen."
    }

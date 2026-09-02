@@ -97,24 +97,35 @@ class CatalogFixtureTest {
         assertTrue(card.target.synonyms.isEmpty())
     }
 
-    /** The reader's own language wins; the language being explained is what everyone else gets. */
-    @Test
-    fun notesPreferTheReaderAndFallBackToTheLanguageExplained() {
-        val deSourced = catalog.join("de", "uk").byId("the-mouse-sprints")
-        assertEquals("Nur im Fixture.", deSourced.target.note)
-        val enSourced = catalog.join("en", "uk").byId("the-mouse-sprints")
-        assertEquals("Лише у фікстурі.", enSourced.target.note)
-    }
-
     /**
-     * The fallback is the realization's OWN language and nothing else — a third language's
-     * note is still a language the reader cannot read, so it stays hidden.
+     * The language being explained leads, so one wording serves every reader: the English
+     * reader gets the Ukrainian note although a `de` note is authored right beside it.
      */
     @Test
-    fun aThirdLanguagesNoteNeverLeaks() {
-        // uk `mouse` is annotated in sw alone: neither the en reader nor uk itself.
-        assertNull(catalog.join("en", "uk").byId("mouse").target.note)
+    fun notesPreferTheLanguageBeingExplained() {
+        assertEquals("Лише у фікстурі.", catalog.join("en", "uk").byId("the-mouse-sprints").target.note)
+    }
+
+    /** A pair note is the author overriding that for one reader, and it beats both. */
+    @Test
+    fun aPairNoteBeatsTheSharedWording() {
+        assertEquals("Nur für deutsche Leser.", catalog.join("de", "uk").byId("the-mouse-sprints").target.note)
+    }
+
+    /** With no note in its own language, a realization still reaches the readers it names. */
+    @Test
+    fun aNoteInAnotherLanguageIsTheTail() {
+        // uk `mouse` is annotated in sw alone and never in uk.
         assertEquals("Panya tu.", catalog.join("sw", "uk").byId("mouse").target.note)
+        assertNull(catalog.join("en", "uk").byId("mouse").target.note)
+    }
+
+    /** A note written in the target can never reach a PROMPT, which is the reader's own language. */
+    @Test
+    fun theTargetsWordingNeverLeaksOntoTheSourceSide() {
+        val ukSourced = catalog.join("uk", "de").byId("the-mouse-sprints")
+        assertEquals("Лише у фікстурі.", ukSourced.source.note)
+        assertNull(ukSourced.target.note)
     }
 
     @Test

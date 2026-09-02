@@ -10,7 +10,9 @@
   "see": {
    "text": "sehen",
    "notes": {
-    "de": "sehen nimmt wie die meisten Verben den Akkusativ: Ich sehe dich. Ein kleiner Kreis — helfen, folgen, danken, antworten — nimmt den Dativ.",
+    "de": "sehen nimmt wie die meisten Verben den Akkusativ: Ich sehe dich. Ein kleiner Kreis — helfen, folgen, danken, antworten — nimmt den Dativ."
+   },
+   "pairNotes": {
     "en": "Like most German verbs, sehen takes the accusative: Ich sehe dich. A small set — helfen, folgen, danken, antworten — takes the dative instead.",
     "es": "Como casi todos los verbos alemanes, sehen rige acusativo: Ich sehe dich. Un grupo pequeño — helfen, folgen, danken, antworten — rige dativo."
    }
@@ -43,8 +45,8 @@
   "can-you-see-me": {
    "text": "Siehst du mich?",
    "variants": ["Sehen Sie mich?"],
-   "notes": {
-    "de": "mich ist Akkusativ — helfen verlangt an derselben Stelle mir.",
+   "notes": { "de": "mich ist Akkusativ — helfen verlangt an derselben Stelle mir." },
+   "pairNotes": {
     "en": "mich is the accusative; helfen would take mir in the same slot.",
     "es": "mich es acusativo; helfen exigiría mir en el mismo lugar."
    }

@@ -210,7 +210,8 @@ class Catalog internal constructor(
                 targetTemplate = answer.text,
                 slotKind = frame.slot,
                 acceptedFrames = answer.variants,
-                note = answer.notes[source] ?: answer.notes[target], // why: as a card's note
+                // why: as a card's note, minus the override — no frame has wanted one.
+                note = answer.notes[target] ?: answer.notes[source],
                 countForms = answer.count,
                 sourceCountForms = prompt.count,
                 masculineNumeral = answer.masculineNumeral,
@@ -464,9 +465,11 @@ class Catalog internal constructor(
             synonyms = raw.synonyms,
             variants = raw.variants,
             grammar = raw.grammar,
-            // why: the reader's own language first, then the language being explained —
-            // the one fallback a learner can read (`kern/docs/catalog.md`).
-            note = raw.notes[source] ?: raw.notes[lang],
+            // why: the language being explained leads — a learner reads the language they
+            // study, and one wording then serves every reader. A `pairNotes` entry is the
+            // author overriding that for one reader (`kern/docs/catalog.md`). On the prompt
+            // side `lang == source`, so the middle arm collapses and nothing leaks.
+            note = raw.pairNotes[source] ?: raw.notes[lang] ?: raw.notes[source],
         )
 
     companion object {

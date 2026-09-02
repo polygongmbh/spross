@@ -263,16 +263,19 @@ Realization fields — only `text` is required:
   stem alternations (`ніж`→`ножі`), fleeting vowels (`день`→`дні`),
   suppletives (`людина`→`люди`), indeclinables and `-ння` neuters (`"="`),
   and phrases whose other words have to agree (`письмовий стіл`→`письмові столи`).
-- `notes` — keyed by EXPLANATION language. A note lives on the
-  realization it explains and is selected by the reader's base language, so the
-  key is load-bearing the moment a language is taught to more than one audience
-  (a German note on a shared `sw.json` must not surface for an English learner).
-  Keying a note by the file's OWN language writes it for the learner in the language
-  they are learning, and that self-note is what every reader falls back to when their
-  own is missing (`../kern/docs/catalog.md`). It is the cheap path and the right one
-  past the first few dozen cards: one wording serves eight audiences, and a learner
-  who has met a shelf of a language can read a sentence of it. Reader-language notes
-  are what the earliest cards want, where no such sentence would land yet.
+- `notes` — keyed by the language the note is WRITTEN IN, and the file's OWN language is
+  the one to write. A note lives on the realization it explains, and a learner reads the
+  language they are studying, so one wording in that language serves all eight readers
+  where eight translations served one each. That is the default and the cheap path;
+  a note keyed to some other language is the tail, read only where the target has none
+  of its own yet (`../kern/docs/catalog.md`), and it never reaches a reader who cannot
+  read it — a German note on a shared `sw.json` stays hidden from an English learner.
+- `pairNotes` — keyed by READER, and it BEATS `notes`. Two things earn one, and nothing else:
+  a quirk of those two languages meeting (Spanish `doler` explained as German's `gefallen`),
+  and a card that arrives before the learner could read the target's own words.
+  Writing one is a claim that the shared wording will not do here, so prefer a `notes` entry
+  and reach for this when the shared one would mislead or go over the learner's head.
+  Keying it by the file's own language is an error: that reader is never this card's source.
   Keep a note only if it changes what the learner would say or do; pure etymology
   ("wörtl. …") is cut. Load-bearing teaching (e.g. which word for "rice") is
   destined to become first-class training content, not a permanent note.

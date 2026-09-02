@@ -3,57 +3,57 @@
  "words": {
   "buy-a-pig-in-a-poke": {
    "text": "Kauf nicht die Katze im Sack!",
-   "notes": {
+   "pairNotes": {
     "en": "Literally: \"Don't buy the cat in the sack.\"",
     "es": "Literalmente: «No compres el gato en el saco»."
    }
   },
   "cross-your-fingers": {
    "text": "Ich drücke dir die Daumen!",
-   "notes": {
+   "pairNotes": {
     "en": "Literally: \"I'm pressing my thumbs for you.\"",
     "es": "Literalmente: «Te aprieto los pulgares»."
    }
   },
   "put-your-foot-in-it": {
    "text": "Ich bin ganz schön ins Fettnäpfchen getreten.",
-   "notes": {
+   "pairNotes": {
     "en": "Literally: \"I really stepped into the little fat-pot.\"",
     "es": "Literalmente: «Pisé bien la ollita de grasa»."
    }
   },
   "pull-someones-leg": {
    "text": "Er hat mir einen Bären aufgebunden.",
-   "notes": { "en": "Literally: \"He tied a bear onto me.\"", "es": "Literalmente: «Me ató un oso encima»." }
+   "pairNotes": { "en": "Literally: \"He tied a bear onto me.\"", "es": "Literalmente: «Me ató un oso encima»." }
   },
   "fed-up-to-here": {
    "text": "Ich habe die Nase gestrichen voll.",
-   "notes": {
+   "pairNotes": {
     "en": "Literally: \"My nose is level-full.\"",
     "es": "Literalmente: «Tengo la nariz completamente llena»."
    }
   },
   "turn-a-blind-eye": {
    "text": "Er hat ein Auge zugedrückt.",
-   "notes": { "en": "Literally: \"He pressed one eye shut.\"", "es": "Literalmente: «Cerró un ojo»." }
+   "pairNotes": { "en": "Literally: \"He pressed one eye shut.\"", "es": "Literalmente: «Cerró un ojo»." }
   },
   "seventh-heaven": {
    "text": "Sie ist im siebten Himmel.",
-   "notes": {
+   "pairNotes": {
     "en": "Literally the same image: \"in the seventh heaven.\"",
     "es": "Literalmente la misma imagen: «en el séptimo cielo»."
    }
   },
   "bite-the-bullet": {
    "text": "Beiß in den sauren Apfel!",
-   "notes": {
+   "pairNotes": {
     "en": "Literally: \"Bite into the sour apple!\"",
     "es": "Literalmente: «¡Muerde la manzana agria!»."
    }
   },
   "raining-cats-and-dogs": {
    "text": "Es gießt wie aus Eimern.",
-   "notes": {
+   "pairNotes": {
     "en": "Literally: \"It's pouring as if from buckets.\"",
     "es": "Literalmente: «Está lloviendo como de cubos»."
    }

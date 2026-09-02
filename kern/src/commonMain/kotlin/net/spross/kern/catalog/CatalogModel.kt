@@ -60,8 +60,10 @@ internal data class RawRealization(
     val synonyms: List<String>,
     val variants: List<String>,
     val grammar: Map<String, String>,
-    /** Keyed by explanation language; the source at join time, else this file's own. */
+    /** Keyed by the language written in; this file's own is preferred at join time. */
     val notes: Map<Language, String>,
+    /** Keyed by READER, and beats [notes]: what only that reader needs said. */
+    val pairNotes: Map<Language, String> = emptyMap(),
 )
 
 /**

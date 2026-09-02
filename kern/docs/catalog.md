@@ -18,14 +18,19 @@ Engine contract: `../README.md`.
   NAME: it is also the produce prompt's disambiguating cue, which no consumer trims.
   Lint (`subtitlesAreCompletePerAreaAndDistinctFromTheTitle`): an area authoring one
   authors it in every declared language, and it neither contains the title nor a `·`.
-- Realization: `notes` is selected by the profile's SOURCE language at join time, falling back
-  to the realization's OWN language — the reader's language first, then the language being
-  explained. A `de` note still never surfaces for an `en`-source learner, because a reader
-  must not be served a language they cannot read; the language they are LEARNING is the one
-  exception, and it is what makes a rule authorable once instead of once per reader.
-  A source with no note of its own and a target that self-annotates nothing is note-less.
-  On the source side the fallback is a no-op (the realization's language IS the source),
-  so only the target half of a card can gain a note this way.
+- Realization notes resolve `pairNotes[source] ?: notes[lang] ?: notes[source]`.
+  `notes` is keyed by the language it is WRITTEN IN and the realization's own language LEADS:
+  a learner reads the language they study, so one wording serves all eight readers and a rule
+  is authored once instead of once per pair. `notes[source]` stays as the tail for the
+  realizations nobody has annotated in their own language yet.
+  A `de` note still never surfaces for an `en`-source learner of French — only French does.
+  On the SOURCE side `lang == source`, so the middle arm collapses to the last and no note
+  written in the target can reach a prompt.
+- Realization: `pairNotes` is keyed by READER and beats `notes` outright. It is for what only
+  that reader needs — a quirk of the two languages meeting (`doler` behaving like `gefallen`),
+  or a card arriving before the learner could read the target's own words. It is the
+  exception, so authoring one is a claim that the shared wording will not do.
+  A `pairNotes` key equal to the file's own language can never be a source and is a lint error.
 - Realization: `variants: [String]` next to `synonyms` — a **display/accept distinction
   only**, never a scheduling one (`../README.md` §3): synonyms rotate as recognition prompt forms and
   show on reveal; variants are accepted silently and never prompted.
