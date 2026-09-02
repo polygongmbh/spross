@@ -150,6 +150,40 @@ class CatalogAnswerGraderTests {
     }
 
     @Test
+    fun everyConceptListingATargetFormIsNamed() {
+        // The merge the catalog documents: one Swahili verb, two German concepts.
+        val leave = card("leave", "verlassen", "kuacha", seedIndex = 0)
+        val quit = card("quit", "aufhören", "kuacha", seedIndex = 1)
+        val close = card("close", "schließen", "kufunga", seedIndex = 2)
+        val grader = CatalogAnswerGrader(sw, listOf(leave, quit, close))
+
+        assertEquals(listOf("quit"), grader.conceptsSharing("kuacha", leave).map { it.id })
+        assertEquals(listOf("leave"), grader.conceptsSharing("kuacha", quit).map { it.id })
+        // A form nobody else prints carries no other meaning.
+        assertEquals(emptyList(), grader.conceptsSharing("kufunga", close).map { it.id })
+    }
+
+    /** Case is a word, not a slip: the lenient index merges these and this one must not. */
+    @Test
+    fun aFormPrintedInAnotherCaseIsAnotherWord() {
+        val cough = card("cough", "der Husten", "Husten", kind = CardKind.Noun, seedIndex = 0, lang = "de")
+        val toCough = card("to-cough", "husten", "husten", seedIndex = 1, lang = "de")
+        val grader = CatalogAnswerGrader(de, listOf(cough, toCough))
+        assertEquals(emptyList(), grader.conceptsSharing("Husten", cough).map { it.id })
+        assertEquals(emptyList(), grader.conceptsSharing("husten", toCough).map { it.id })
+    }
+
+    @Test
+    fun aFormListedAsASynonymOrVariantIsShared() {
+        val grader = CatalogAnswerGrader(uk, deToUk)
+        val door = joined(deToUk, "door")
+        // uk mouse carries synonym "мишеня" and variant "мишка"; each is a form it prints.
+        for (form in listOf("миша", "мишеня", "мишка")) {
+            assertEquals(listOf("mouse"), grader.conceptsSharing(form, door).map { it.id })
+        }
+    }
+
+    @Test
     fun synonymsAndVariantsOfOtherConceptsCountAsOwned() {
         val grader = CatalogAnswerGrader(uk, deToUk)
         val door = joined(deToUk, "door")
