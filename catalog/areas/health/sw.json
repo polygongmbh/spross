@@ -44,6 +44,9 @@
   "lung": { "text": "pafu", "grammar": { "plural": "mapafu" } },
   "liver": { "text": "ini", "grammar": { "plural": "maini" } },
   "kidney": { "text": "figo", "grammar": { "plural": "mafigo" } },
+  "intestine": { "text": "utumbo", "grammar": { "plural": "matumbo" } },
+  "muscle": { "text": "msuli", "grammar": { "plural": "misuli" } },
+  "bladder": { "text": "kibofu", "grammar": { "plural": "vibofu" } },
   "my-throat-hurts-a-lot": { "text": "Koo linaniuma sana." },
   "ive-had-a-fever-since-yesterday": { "text": "Nina homa tangu jana." },
   "get-well-soon": {

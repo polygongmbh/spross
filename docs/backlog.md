@@ -8,19 +8,35 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 
 ## Content & catalog
 
+- `health` is at 43 concepts and now carries a clean seam it did not have before: the nine
+  organ cards (`lung`, `liver`, `kidney`, `intestine`, `bladder`, `muscle`, `nerve`, `vein`,
+  `thyroid`) name what a doctor asks after, where the rest of the shelf is being ill. An
+  `organs` area was weighed on 2026-09-02 and rejected because the heart, stomach and brain
+  were the obvious members and all three are everyday `body` words — `heart` cannot even
+  move, since `body/my-heart-is-beating-fast` gates on it and components resolve in-area.
+  That objection is now weaker, not gone: the nine are self-contained and want no heart, so
+  the shelf would cut cleanly and leave `health` at 34. Swahili reaches only six of the
+  nine (see below), which is what still argues for waiting.
 - `qualities` is at 43 concepts after `beautiful` and the two stance pairs landed, past the
   ~40 an area is meant to hold (`catalog/areas/README.md` § which area a concept lives in).
   The seam a learner would name is `comparison`: `different`, `difference`, `same`,
   `similar`, `opposite`, `equal`, `real` and `to-compare` — eight cards that answer "is it
   the same one?" rather than "what is it like?", which leaves `qualities` the adjectives it
   is named for. `scripts/catalog-move.py` carries it.
-- Swahili has no honest word for `qualities/neutral`, `aggressive` or `defensive`, so those
-  three ship without sw and never reach a de→sw learner — the pair the suggestions came
+- Swahili has no honest word for `qualities/neutral`, `aggressive` or `defensive`, nor for
+  `health/thyroid`, `nerve` or `vein`, so those six ship without sw and never reach a de→sw learner — the pair the suggestions came
   from. Checked 2026-09-02 against kaikki, freedict swh-eng/eng-swh, the ipa-dict Swahili
   wordlist and the Tatoeba Swahili sentences: `wastani` is the arithmetic average, `-kali`
   is already `qualities/sharp`, `-jeuri`/`-korofi` mean rude or savage, and defensive exists
-  only as the verbs `kulinda`/`kujihami`. A reviewer who speaks Swahili may know a phrase
-  the dictionaries do not carry (`-a kujihami`? `bila upande`?); until then the gap stands.
+  only as the verbs `kulinda`/`kujihami`. On the organs: no source carries thyroid at all
+  (`tezi` is any gland or swelling), and nerve and vein resolve to the loans `neva`/`vena`
+  or to `mshipa`, which is nerve AND vessel at once — one word cannot take both cards in one
+  area. A reviewer who speaks Swahili may know a phrase the dictionaries do not carry
+  (`-a kujihami`? `bila upande`? `mshipa` on one of the two?); until then the gaps stand.
+- `health/intestine` ships sw `utumbo` with plural `matumbo`, the form the ipa-dict wordlist
+  carries and the one in ordinary use for guts. kaikki disagrees, calling `utumbo` class XI
+  with a class X plural `tumbo` — which would make the intestine's plural identical to the
+  stomach card's singular (`body/stomach` is `tumbo`/`matumbo`). Worth one native check.
 - `nature` is at 44 concepts, past the ~40 an area is meant to hold
   (`catalog/areas/README.md` § which area a concept lives in), and the two case-contrast
   phrases added there made it worse rather than caused it. The seam a learner would name is

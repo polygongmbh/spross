@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **Your own content can be emptied once you have sent it on.** A word you wrote down in
+  only one language, and a problem you filed against a catalog word, both wait there to be
+  read by whoever maintains the catalog — and until now the only way out was one long press
+  at a time. Copy and Send each offer to clear the section behind them in one go, and a
+  button beside them does it alone, asking first. The words you wrote in both languages stay
+  either way: those are cards you are learning, not notes.
+
 - **A drill Sprosse no longer stops at the top of its ladder.** Clean wins used to bank into
   nothing once the last named Sprosse was reached; the number now goes on climbing — Sprosse 12
   on a ladder of nine — while the questions stay at the top Sprosse's mix. Every drill counts
@@ -16,8 +23,9 @@
   had nowhere to sit in the box — every shelf's name said no to them — so there is now a
   `Politik` shelf holding war and peace, the freedom they are about, who governs, how they
   are chosen and the border they are chosen inside. Elsewhere: das Gehirn joins the
-  everyday body words beside dem Bauch, while Lunge, Leber and Niere file under illness,
-  which is where they actually get named; `schön` stops being `gut` said twice and becomes
+  everyday body words beside dem Bauch, while the organs a doctor asks after — Lunge,
+  Leber, Niere, Darm, Blase, Muskel, Nerv, Vene, Schilddrüse — file under illness, which
+  is where they actually get named; `schön` stops being `gut` said twice and becomes
   its own card, and positiv/negativ/neutral and aggressiv/defensiv arrive for the moment a
   conversation turns to an opinion. `vegetarisch` leaves as a word of its own — the
   question that uses it teaches everything the bare adjective did.

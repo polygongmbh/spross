@@ -40,6 +40,16 @@
   "lung": { "text": "легеня" },
   "liver": { "text": "печінка" },
   "kidney": { "text": "нирка" },
+  "intestine": { "text": "кишківник", "synonyms": ["кишка"] },
+  "muscle": { "text": "м'яз" },
+  "bladder": { "text": "міхур", "variants": ["сечовий міхур"] },
+  "nerve": { "text": "нерв" },
+  "vein": { "text": "вена" },
+  "thyroid": {
+   "text": "щитоподібна залоза",
+   "variants": ["щитовидна залоза"],
+   "grammar": { "plural": "щитоподібні залози" }
+  },
   "my-throat-hurts-a-lot": { "text": "У мене дуже болить горло." },
   "ive-had-a-fever-since-yesterday": { "text": "У мене з учора температура." },
   "get-well-soon": { "text": "Швидкого одужання!" },

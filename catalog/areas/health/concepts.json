@@ -30,6 +30,12 @@
  { "slug": "lung", "kind": "noun", "emoji": "🫁" },
  { "slug": "liver", "kind": "noun" },
  { "slug": "kidney", "kind": "noun" },
+ { "slug": "intestine", "kind": "noun" },
+ { "slug": "muscle", "kind": "noun" },
+ { "slug": "bladder", "kind": "noun" },
+ { "slug": "nerve", "kind": "noun" },
+ { "slug": "vein", "kind": "noun" },
+ { "slug": "thyroid", "kind": "noun" },
  { "slug": "my-throat-hurts-a-lot", "kind": "phrase", "emoji": "😣", "components": ["hurt"] },
  {
   "slug": "ive-had-a-fever-since-yesterday",

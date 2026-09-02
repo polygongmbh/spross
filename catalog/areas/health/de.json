@@ -33,6 +33,16 @@
   "lung": { "text": "Lunge", "grammar": { "gender": "die", "plural": "-n" } },
   "liver": { "text": "Leber", "grammar": { "gender": "die", "plural": "-n" } },
   "kidney": { "text": "Niere", "grammar": { "gender": "die", "plural": "-n" } },
+  "intestine": { "text": "Darm", "grammar": { "gender": "der", "plural": "Därme" } },
+  "muscle": { "text": "Muskel", "grammar": { "gender": "der", "plural": "-n" } },
+  "bladder": {
+   "text": "Blase",
+   "grammar": { "gender": "die", "plural": "-n" },
+   "notes": { "de": "Blase ist auch die am Fuß und die im Wasser." }
+  },
+  "nerve": { "text": "Nerv", "grammar": { "gender": "der", "plural": "-en" } },
+  "vein": { "text": "Vene", "synonyms": ["Ader"], "grammar": { "gender": "die", "plural": "-n" } },
+  "thyroid": { "text": "Schilddrüse", "grammar": { "gender": "die", "plural": "-n" } },
   "my-throat-hurts-a-lot": { "text": "Mein Hals tut sehr weh." },
   "ive-had-a-fever-since-yesterday": { "text": "Ich habe seit gestern Fieber." },
   "get-well-soon": { "text": "Gute Besserung!" },
