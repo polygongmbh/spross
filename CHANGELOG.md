@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.9.0 — 2026-09-02
+
 - **Your own content can be emptied once you have sent it on.** A word you wrote down in
   only one language, and a problem you filed against a catalog word, both wait there to be
   read by whoever maintains the catalog — and until now the only way out was one long press
