@@ -48,8 +48,10 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   For smaller changes just skip the check in that case, 
   only use a separate worktree for verification on conflict at the end of large changes.
 - **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `refactor:`, `test:`, `docs:`, `build:`, `chore:`) with scopes
-- `!` marks a change that invalidates state outside the repo —
-  a stored box, a watch snapshot, a catalog id — never an internal rename.
+- `feat` adds what was not there, `enhance` sharpens what was, `fix` corrects what was wrong;
+  a removal is never a `feat`, whatever it makes room for.
+- `!` marks a change to the SHAPE of stored or exchanged state,
+  never content arriving or leaving.
 - A user-facing change lands on iOS and Android in the same sweep, never deferred to a parity pass;
   a change to shared/parity-bearing UI (cards, layout tokens) closes with both checked side by side,
   not just implemented on both — a small copy or cosmetic tweak does not need this.
