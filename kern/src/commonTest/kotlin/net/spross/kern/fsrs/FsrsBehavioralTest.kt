@@ -21,23 +21,23 @@ class FsrsBehavioralTest {
     // The one place the shipped ladder is spelled out: everything else derives it from
     // [BoxConfig], so this is the tripwire that catches a change to the numbers.
     @Test
-    fun theProductShipsAnAlternatingTenMinuteToOneWeekLadder() {
+    fun theProductShipsAnAlternatingTenMinuteToOneMonthLadder() {
         assertEquals(
-            listOf(600L, 86_400L, 600L, 259_200L, 600L, 604_800L),
+            listOf(600L, 86_400L, 600L, 259_200L, 600L, 604_800L, 600L, 2_592_000L),
             productParameters.stepsSeconds,
         )
-        assertEquals(0.8, productParameters.desiredRetention)
+        assertEquals(0.85, productParameters.desiredRetention)
         assertEquals(365, productParameters.maximumIntervalDays)
     }
 
-    // At retention 0.8 the interval modifier is ~3.32, so S = 5 schedules 17 days.
+    // At retention 0.85 the interval modifier is ~1.91, so S = 5 schedules 10 days.
     @Test
-    fun retentionPointEightSchedulesRoughlyThreePointThreeTimesStability() {
+    fun retentionPointEightFiveSchedulesRoughlyTwiceStability() {
         val fsrs = Fsrs(productParameters)
         val interval = fsrs.intervalDays(5.0)
-        assertEquals(17, interval)
+        assertEquals(10, interval)
         val ratio = interval / 5.0
-        assertTrue(ratio > 3.2 && ratio < 3.5, "expected ~3.3x stability, got $ratio")
+        assertTrue(ratio > 1.8 && ratio < 2.1, "expected ~1.9x stability, got $ratio")
     }
 
     // Product ladder opens at [10m]: a lapsed review card comes back past the end of

@@ -179,11 +179,14 @@ bar are on `BoxConfig` itself. What the product decided:
   (`CardScheduling.lapses`, drill/listening scoring reads it), but no longer
   auto-suspends: each `Again` climbs `stepsSeconds` (`FsrsScheduler.stepOutcome`)
   instead of resetting to its first entry, capped at the ladder's last Sprosse.
-  The product ships `[10m, 1d, 10m, 3d, 10m, 7d]` — minutes and days alternate, so a
-  word that will not stick comes back at most TWICE in any day while the gaps between
-  those pairs widen. The short rung is why: a retrieval pays only where it can succeed,
-  and a fail pushed straight out to day scale spends its next look where that look is
-  worth least (`docs/growth-evidence.md`).
+  The product ships `[10m, 1d, 10m, 3d, 10m, 7d, 10m, 30d]` — minutes and days
+  alternate, so a word that will not stick comes back at most TWICE in any day while the
+  gaps between those pairs widen. The short rung is why: a retrieval pays only where it
+  can succeed, and a fail pushed straight out to day scale spends its next look where
+  that look is worth least (`docs/growth-evidence.md`). The last rung is a MONTH rather
+  than a week — a word still missed after four same-day pairs is a leech, and nothing
+  supports drilling one, but the box never suspends on its own, so the ladder parks it
+  within reach instead of dropping it.
   `Again` is the ONLY rating that stays on the ladder: `Hard`, `Good` and `Easy` all
   graduate to Review immediately, from wherever the ladder sits — the ladder spaces out
   repeated fails, it does not grade flavors of success. High on the ladder that hands a

@@ -189,7 +189,7 @@ queue. It is not.
 
 **What intake really costs is the reviews it draws.** A new card is not one card of load; it is
 every review it will pull for as long as it stays in the box, so sustained intake settles at
-`intake × reviews-per-card-so-far` a day. At `desiredRetention` 0.8 a card accrues roughly four
+`intake × reviews-per-card-so-far` a day. At `desiredRetention` 0.85 a card accrues roughly four
 to five reviews in its first year, putting the ≤ 4-card reserve near 18 reviews a day against a
 `sessionCap` of 24 — about three quarters of it, where 5 against 25 sat at ninety percent and left
 a box behind holding its backlog level rather than working it down. The margin narrows as a

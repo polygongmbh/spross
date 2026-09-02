@@ -9,6 +9,15 @@
   days now alternate — ten minutes, a day, ten minutes, three days, ten minutes, a week
   — so a word that will not stick still gets a second look on the same day, while the
   waits between those pairs keep widening. A word never appears more than twice in a day.
+  A word still missed after four of those pairs is parked at a month instead of a week —
+  far enough out to stop costing you a slot, near enough that it can still come back.
+
+- **Words come back sooner while they are still new.** The box aimed to catch you at an
+  85% chance of recall rather than 80%. That sounds like a small change and is not: a word
+  you answered but found hard used to wait four days and now waits two and a half, and the
+  sighting after your first one moves in from two months to four weeks. Later reviews are
+  barely affected, so this costs almost nothing in daily work — it spends the extra looks
+  where words are actually lost, which is the first fortnight.
 
 - **A word that means two things in your language now counts either way.** Swahili *ndege* is
   both a bird and an airplane; hearing it and writing the other one was marked wrong. It
