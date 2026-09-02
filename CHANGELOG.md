@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.10.0 — 2026-09-02
+
 - **A word you keep missing comes back the same day, not only days later.** The retry
   ladder only ever grew: ten minutes, then a day, then three, then a week, so the second
   miss already pushed a word out to day scale and every miss after that pushed it
