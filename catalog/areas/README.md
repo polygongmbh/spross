@@ -10,7 +10,8 @@ A concept is worth a card when knowing it lets the learner say more; charm is no
 `sweet-dreams` was cut on this test — the bedroom already teaches `sleep-well`,
 which covers the same moment with more useful words, so the second phrase only bought a warm feeling.
 Redundancy is the usual symptom: when two entries serve one situation, keep the one whose words go furthest elsewhere.
-Multiple phrases with a single word swapped should keep one, preferring teaching something small like gender agreement in any language.
+Multiple phrases with a single word swapped should keep one, preferring teaching something small like gender agreement in any language —
+unless the SWAP is the lesson, which is the contrast pair below and the case this rule was carving out.
 
 **A card that has not earned its slot moves back; it is deleted only on request.**
 Position is the usual complaint and deletion is rarely the fix:
@@ -75,6 +76,49 @@ which the one-sided version never did. Keep the merged language's private object
 where the source really is unambiguous on its own and the others would sound wrong
 carrying one — and price the length in: a side over
 `WidgetSnapshotBuilder.MAX_TEXT_CHARS` still teaches, but stops reaching the widget.
+
+## How a grammar rule gets taught
+
+**A rule gets one home, and phrases that exercise it.**
+`../README.md` says a note explains its own word and no other,
+and that a rule holding across a language sits on the one realization that teaches it.
+So a CLASS fact — German's two-way prepositions, the accusative most verbs take —
+is stated once, on the earliest card that shows it, and never restated on every card it touches;
+a LEXICAL fact — that `folgen` takes the dative where `sehen` takes the accusative —
+is a fact about that word and sits on it.
+Neither is the teaching. The phrases are:
+a learner who produces `Siehst du mich?` has the accusative,
+and no wording of the rule gets them there.
+
+Write the rule in the language it explains, and every reader gets it
+(`../README.md` § `notes`).
+The first cards of a course are the exception, where no such sentence would land yet.
+
+**A contrast pair is two phrases whose difference IS the lesson.**
+`Wir fahren in die Berge.` beside `In den Bergen ist es kalt.` teaches the case
+that `in` takes for a destination against the one it takes for a location —
+a fact neither sentence can carry alone.
+The pair still owes what any phrase owes: each half useful on its own,
+and both mirroring word for word across the languages that carry them.
+
+**The pair has to be worth a slot in more than one language.**
+Pick the concept the other targets also draw a line through,
+and reject the pair only German can see.
+That mountain pair fires in German (Dativ/Akkusativ),
+Esperanto (`en la montaro` / `en la montaron`) and Ukrainian (`у горах` / `в гори`) alike,
+and the languages that draw no line — French, Italian, Swahili all say it one way —
+teach exactly that, which is why the concept still earns its slot in all eight.
+A German genitive of possession earns none: outside German and Ukrainian it is nothing at all.
+
+**A phrase picks its person on purpose.**
+The corpus is one paradigm, not two hundred independent sentences.
+As of writing, German phrases run 1sg 38, third-person NP 32, Sie 18, 2sg 12,
+`es` 9, 1pl 8 — and third plural and the informal `ihr` are unattested.
+A new phrase whose person is free takes the least-represented one;
+`Ich` needs a reason, and a card genuinely about the speaker (`Ich habe Hunger`) has one.
+This is a preference, not a gate: 84 of the 201 phrases are imperatives or fragments
+carrying no person at all, `Sie` is formal-you and third-plural by construction,
+and a check built on that could only pin a guess.
 
 **Check an authoring pass against the lint, not against a script you wrote for it.**
 `CatalogLintTest` owns the collision rules and is the only home they have:
