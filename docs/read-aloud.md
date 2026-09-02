@@ -13,9 +13,10 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   The drills lean on that fallback for most of what they say: they GENERATE their readings
   ("dreihundertsiebenundvierzig", "son las tres y cuarto"), so no catalog lists them
   and the voice is what says them.
-  The calendar is the exception, and the only drill material that is authored rather than
-  generated — the weekday and month NAMES are recorded (`calendar{}`), so the Sprossen that
-  ask for a bare name play a person and the assembled date around them stays synthesized.
+  The two drills whose material is AUTHORED rather than generated are the exceptions: the
+  calendar's weekday and month names (`calendar{}`) and the atlas' country and nationality
+  names (`countries{}`) are recorded, so those answers play a person while the date
+  assembled around a weekday, and every numeral and clock reading, stay synthesized.
 - **Which voice answers is the device's business, and its tier is worth naming.** iOS bundles
   the compact voice for a language and nothing else; the enhanced and premium ones are a free
   download under Settings › Accessibility › Spoken Content › Voices that no API announces and
@@ -60,7 +61,7 @@ mutes interact. The engine's half — whether a form may be heard at all — is
 | near miss accepted — a typo, a form heard instead (waits for a tap) | yes, after the chime | the form the correction box carries |
 | produce revealed — Aufdecken, wrong, other word | yes, after the chime | the bare target word |
 | trainer drill prompt — a numeral, a clock face | no | there is nothing to say yet: the reading IS the answer |
-| trainer drill reading revealed or corrected | yes, after the chime | the reading itself — generated, so usually the voice; a bare weekday or month name is recorded |
+| trainer drill reading revealed or corrected | yes, after the chime | the reading itself — generated, so usually the voice; a weekday, month, country or nationality name is recorded |
 | listening mode — the meaning, between the two sayings of the word | yes, unattended | the meaning in the learner's own language: the ONE autoplay that speaks the known side, because a word said into silence teaches nothing and there is no answer being owed |
 | a drill answer owed in the learner's OWN language — a reversed atlas run | no | nothing: every autoplay above says a form in the language being LEARNED, and the speaker beside the reveal still says this one on request |
 

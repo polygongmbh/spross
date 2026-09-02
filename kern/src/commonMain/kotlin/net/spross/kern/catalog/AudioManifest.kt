@@ -113,6 +113,14 @@ internal class AudioManifest(
      * flat reference rows do not.
      */
     val calendar: Map<String, AudioRecording> = emptyMap(),
+    /**
+     * form → recording for the atlas' country and nationality names, in manifest order.
+     *
+     * [calendar]'s shape, and keyed by the form for a reason of its own: the countries DO
+     * carry slugs, but a slug holds one file while a row holds two names the drill shows
+     * and asks for — "Deutschland" and "Deutsche" — so only the form keys them both.
+     */
+    val countries: Map<String, AudioRecording> = emptyMap(),
 ) {
     private val byExactForm: Map<String, AudioRecording?> = index { nfcNormalized(it) }
     private val bySpeechKey: Map<String, AudioRecording?> = index { speechKey(it) }
@@ -166,18 +174,20 @@ internal class AudioManifest(
     /**
      * (label, recording) for the credits screen, manifest order: words labeled by the
      * form they speak, then letters by their glyph, then the alphabet's own example words,
-     * the article recordings, and the calendar's weekday and month names.
+     * the article recordings, the calendar's weekday and month names, and the atlas'.
      */
     fun creditRows(): List<Pair<String, AudioRecording>> =
         words.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
             letters.map { (glyph, recording) -> glyph to recording } +
             texts.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
             articles.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
-            calendar.values.mapNotNull { recording -> recording.matches?.let { it to recording } }
+            calendar.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
+            countries.values.mapNotNull { recording -> recording.matches?.let { it to recording } }
 
     /** Spoken-form key → recording, or → null where entries disagree about non-identical bytes. */
     private fun index(
-        recordings: Collection<AudioRecording> = words.values + texts.values + calendar.values,
+        recordings: Collection<AudioRecording> =
+            words.values + texts.values + calendar.values + countries.values,
         key: (String) -> String,
     ): Map<String, AudioRecording?> =
         recordings

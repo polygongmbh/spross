@@ -20,7 +20,7 @@ internal object AudioManifestParser {
         root.rejectUnknownKeys(
             path, "root",
             setOf("language", "authors", "licenses", "words", "letters", "texts", "articles",
-                  "calendar"),
+                  "calendar", "countries"),
         )
         val language = root.requireString(path, "root", "language")
         if (language != expectedLanguage) {
@@ -39,6 +39,7 @@ internal object AudioManifestParser {
             texts = section(path, root, "texts", WORD_KEYS, credits),
             articles = section(path, root, "articles", ARTICLE_KEYS, credits),
             calendar = section(path, root, "calendar", WORD_KEYS, credits),
+            countries = section(path, root, "countries", WORD_KEYS, credits),
         )
     }
 

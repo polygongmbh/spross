@@ -7,7 +7,7 @@ and whose they are `../../docs/audio-licensing.md`.
 
 Bundled pronunciation recordings, one folder per language, **generated** by
 `app/scripts/audio-catalog.py --packs <workspace>` — edit packs, not this directory.
-`--articles` and `--calendar` rebuild only their own section of what already ships, which
+`--articles`, `--calendar` and `--countries` rebuild only their own section of what ships, which
 is how a late pack lands without re-deriving the others from a workspace whose word mp3s a
 renamed slug has already outlived.
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are
@@ -87,6 +87,12 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   It carries `gainPhone` where `texts` does not — these are words spoken on a drill card,
   beside the very vocabulary the phone-speaker plane was measured for, while the
   alphabet's reference rows stay flat.
+- `countries` (optional) is `calendar`'s twin for `../countries/`, holding the country and
+  the nationality name of every atlas row, under `countries/<ascii stem>.mp3`. Keyed by the
+  form for a reason of its own: the countries DO carry slugs, but a slug holds one file
+  while a row holds two names the drill shows and asks for — `Deutschland` and `Deutsche`.
+  `variants` are not recorded on either half, being accept-only and never displayed, so a
+  recording keyed by one could never be reached.
 - `matches` — the surface form the recording actually SPEAKS, and the lookup key:
   playback is keyed by what stands on the card, never by the slug the file was fetched
   for, so a rotated synonym nobody recorded falls through to the app's own voice
