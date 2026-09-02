@@ -23,16 +23,13 @@ fun AppModel.letterPrompt(task: LetterDrillTask): Pronunciation? = when (task.pr
     LetterPromptKind.Name -> task.promptGlyph?.let { glyph ->
         letterName(task.promptText, glyph, task.language)
     }
-    // A word the catalog owns: the matched-form lookup the review cards use.
-    LetterPromptKind.Word -> catalog?.pronunciation(task.language, task.promptText)
-    // why: no lookup at all — an `exampleText` carries no slug, and a concept's recording
-    // may never play over a different word (D2).
-    LetterPromptKind.PlainText -> Pronunciation(
-        form = task.promptText,
-        utterance = utterance(task.promptText),
-        lang = task.language,
-        recordingPath = null,
-    )
+    // A word the catalog owns, and an `exampleText` that no concept does: both take the
+    // matched-form lookup the review cards use. An `exampleText` carries no slug, but the
+    // manifest records it by the FORM it speaks (`texts{}`), so the lookup reaches its own
+    // recording and can reach no other word's — which is the D2 guarantee itself, not an
+    // exception to it. Synthesis is the fallback, as it is for an unrecorded word.
+    LetterPromptKind.Word, LetterPromptKind.PlainText ->
+        catalog?.pronunciation(task.language, task.promptText)
 }
 
 /** Says the question. AUTO is where mute and the TalkBack gate apply; TAP always sounds. */
