@@ -39,6 +39,7 @@ class CatalogAudioLintTest {
             for ((glyph, recording) in manifest.letters) action(lang, glyph, recording)
             for ((form, recording) in manifest.texts) action(lang, form, recording)
             for ((slug, recording) in manifest.articles) action(lang, "$slug (article)", recording)
+            for ((form, recording) in manifest.calendar) action(lang, form, recording)
         }
     }
 
@@ -125,6 +126,14 @@ class CatalogAudioLintTest {
                     "$where: file is not the form's ASCII stem",
                 )
             }
+            for ((form, recording) in manifest.calendar) {
+                val where = "audio/$lang calendar \"$form\""
+                assertEquals(
+                    "calendar/${asciiStem(form)}.mp3",
+                    recording.file,
+                    "$where: file is not the form's ASCII stem",
+                )
+            }
         }
     }
 
@@ -165,6 +174,12 @@ class CatalogAudioLintTest {
                 // keyed by, and the two disagreeing would index the recording under a word
                 // it does not say.
                 assertEquals(form, recording.matches, "audio/$lang text \"$form\": key is not what it speaks")
+            }
+            for ((form, recording) in manifest.calendar) {
+                // why: `texts`' rule for `texts`' reason — the key IS the spoken form, there
+                // being no slug for a weekday to be keyed by.
+                assertEquals(form, recording.matches,
+                             "audio/$lang calendar \"$form\": key is not what it speaks")
             }
         }
     }
@@ -225,6 +240,31 @@ class CatalogAudioLintTest {
     }
 
     /**
+     * [everyTextEntryVoicesAnAlphabetExampleText]'s rule for the calendar: a `calendar{}`
+     * entry voices a weekday or month name the language actually states, `dateForm` and
+     * the synonyms beside it included — a card may show any of those. `abbr` is NOT among
+     * them: it is a written short form the prompt wears and nothing ever says it, so a
+     * recording keyed by one would ship for a string no lookup can reach.
+     */
+    @Test
+    fun everyCalendarEntryVoicesAnAuthoredDateName() {
+        for ((lang, manifest) in catalog.audio) {
+            if (manifest.calendar.isEmpty()) continue
+            val calendar = assertNotNull(
+                catalog.dateNames(lang),
+                "audio/$lang ships calendar recordings but no dates file is authored",
+            )
+            val authored = (calendar.weekdays + calendar.months)
+                .flatMap { listOf(it.text) + it.synonyms + it.variants + listOfNotNull(it.dateForm) }
+                .mapTo(mutableSetOf()) { speechKey(it) }
+            for (form in manifest.calendar.keys) {
+                assertTrue(speechKey(form) in authored,
+                           "audio/$lang calendar \"$form\": no weekday or month is called that")
+            }
+        }
+    }
+
+    /**
      * BY and BY-SA both require naming the author, so a placeholder is a compliance hole,
      * not a cosmetic one. The converter resolves these against Commons and drops the rest.
      */
@@ -250,7 +290,7 @@ class CatalogAudioLintTest {
         val referenced = mutableListOf<String>()
         for ((lang, manifest) in catalog.audio) {
             for (recording in manifest.words.values + manifest.letters.values +
-                manifest.texts.values + manifest.articles.values) {
+                manifest.texts.values + manifest.articles.values + manifest.calendar.values) {
                 val relative = "$lang/${recording.file}"
                 assertTrue(File(audioRoot, relative).isFile, "audio/$relative: missing on disk")
                 referenced += relative
@@ -333,7 +373,7 @@ class CatalogAudioLintTest {
     fun noPackLosesItsRecordingQuality() {
         for ((lang, manifest) in catalog.audio) {
             val measured = (manifest.words.values + manifest.letters.values +
-                manifest.texts.values + manifest.articles.values)
+                manifest.texts.values + manifest.articles.values + manifest.calendar.values)
                 .map { it.snr }.filter { it != 0.0 }
             assertTrue(measured.size > 10, "audio/$lang: only ${measured.size} entries carry an snr")
             val median = measured.sorted()[measured.size / 2]
@@ -387,7 +427,7 @@ class CatalogAudioLintTest {
     fun audioFilesMatchTheirManifestHashes() {
         for ((lang, manifest) in catalog.audio) {
             for (entry in manifest.words.entries + manifest.letters.entries +
-                manifest.texts.entries + manifest.articles.entries) {
+                manifest.texts.entries + manifest.articles.entries + manifest.calendar.entries) {
                 val file = File(audioRoot, "$lang/${entry.value.file}")
                 if (!file.isFile) continue // reported by everyAudioFileShipsAndIsReferencedExactlyOnce
                 val digest = MessageDigest.getInstance("SHA-256").digest(file.readBytes())

@@ -3,9 +3,9 @@
 
     scripts/audio-catalog.py --packs ../data/reference/audio
 
-The packs (`pack-<lang>/manifest.tsv` + slug-named `mp3/`, plus `pack-uk-letters`
-for the alphabet) are unversioned research input; `catalog/audio/` is the versioned
-provenance record. What ships is the Wikimedia Commons transcode UNTOUCHED —
+The packs (`pack-<lang>/manifest.tsv` + slug-named `mp3/`, plus `pack-<lang>-letters`
+for the alphabet and `pack-<lang>-calendar` for the weekday and month names) are
+unversioned research input; `catalog/audio/` is the versioned provenance record. What ships is the Wikimedia Commons transcode UNTOUCHED —
 re-encoding is an adaptation under BY-SA — so every entry carries the sha256 this
 script verified after the copy, and lint re-hashes what was committed. Edit packs,
 never `catalog/audio/`.
@@ -117,13 +117,36 @@ LICENSE_URLS = {
     'Public domain': None,
 }
 
+# Licenses we have LOOKED AT and will not bundle. Separate from an unlisted license, which
+# stays a hard stop: the difference is whether a human has ruled on it, and a row dropped
+# here is a decision, not a surprise.
+#
+# GFDL is written for documents — it obliges shipping the full license text and keeping a
+# "Transparent copy" available, neither of which a credits screen linking a deed does, and
+# unlike every CC license here it grants no media-shaped permission. Two Wiktionary German
+# recordings carry it (`docs/audio-licensing.md`); the drill says those two words in the
+# device voice instead, which costs a learner nothing a license notice would not.
+UNSHIPPABLE_LICENSES = {'GFDL'}
+
+
+def shippable(rows, where):
+    """Pack rows whose license we bundle, with every refusal printed."""
+    kept = []
+    for row in rows:
+        if row.get('license') in UNSHIPPABLE_LICENSES:
+            print('  drop %-15s %-22s %s' % ('license', row.get('text') or row.get('slug', '?'),
+                                             row['license']))
+        else:
+            kept.append(row)
+    return kept
+
 
 def read_json(*parts):
     with open(os.path.join(*parts), encoding='utf-8') as f:
         return json.load(f)
 
 
-SECTIONS = ('words', 'letters', 'texts', 'articles')
+SECTIONS = ('words', 'letters', 'texts', 'articles', 'calendar')
 
 
 def read_manifest(out_dir):
@@ -376,6 +399,35 @@ def convert_texts(pack, out_dir):
     return texts
 
 
+def convert_calendar(pack, out_dir):
+    """The calendar's weekday and month names — the dates drill's own vocabulary.
+
+    Form-keyed like `texts`, and for the same reason: no concept covers a weekday, so
+    nothing here carries a slug the word gates could resolve. What it does NOT share with
+    texts is the playback plane — these are words spoken on a drill card, beside the very
+    vocabulary the phone-speaker plane was measured for, so they are analyzed with it
+    (`phone=True`) rather than left flat like the alphabet's reference rows.
+    """
+    drops = []
+    # why: the authorship gate, not just the license one — a Commons row may name a bot's
+    # guess at the uploader ("X assumed (based on copyright claims)"), and BY and BY-SA
+    # both require naming the actual author. It is the same gate the word pack runs.
+    rows = attribute(shippable(read_rows(os.path.join(pack, 'manifest.tsv')), pack), drops)
+    names = {row['text']: 'calendar/' + row['local_file'] for row in rows}
+    analyzed = copy_and_analyze([(row['text'], os.path.join(pack, 'mp3', row['local_file']),
+                                  os.path.join(out_dir, names[row['text']])) for row in rows],
+                                phone=True)
+    calendar = {}
+    for row in rows:
+        digest, index = analyzed[row['text']]
+        calendar[row['text']] = entry(names[row['text']], row['license'], row['author'],
+                                      row['file'], digest, index, matches=row['text'])
+    for reason, key, detail in sorted(drops):
+        print('  drop %-15s %-22s %s' % (reason, key, detail))
+    print('  calendar: %d recorded' % len(calendar))
+    return calendar
+
+
 def reindex(lang):
     """Re-derive `gain`/`gainPhone`/`lead`/`snr` for a language already under `catalog/audio/`,
     out of the bytes it ships — nothing is copied, converted or renamed.
@@ -401,7 +453,7 @@ def reindex(lang):
         loudness, speaker, leading, peak, floor = measured[path]
         if loudness is None or peak is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % path)
-        phone = section in ('words', 'articles')
+        phone = section in ('words', 'articles', 'calendar')
         if phone and speaker is None:
             sys.exit('%s: nothing above the speaker lens — it cannot be indexed by it' % path)
         index = playback_index(loudness, speaker, leading, peak, floor, phone)
@@ -415,7 +467,8 @@ def reindex(lang):
                 ANALYSIS['speaker_lufs'] - speaker, 1) - 0.05:
             limited += 1
     write_manifest(lang, out_dir, manifest.get('words', {}), manifest.get('letters', {}),
-                   manifest.get('texts', {}), manifest.get('articles', {}))
+                   manifest.get('texts', {}), manifest.get('articles', {}),
+                   manifest.get('calendar', {}))
     moved.sort()
     print('  %s: %d entries, %d re-gained (median %+.1f dB, widest %+.1f), %d held by the '
           'peak ceiling' % (lang, len(entries), len(moved),
@@ -446,7 +499,31 @@ def convert_articles_only(packs, languages):
         shutil.rmtree(os.path.join(out_dir, 'articles'), ignore_errors=True)
         articles = convert_articles(lang, pack, out_dir, targets, forms)
         write_manifest(lang, out_dir, manifest['words'], manifest.get('letters', {}),
-                       manifest.get('texts', {}), articles)
+                       manifest.get('texts', {}), articles, manifest.get('calendar', {}))
+
+
+def convert_calendar_only(packs, languages):
+    """Add (or rebuild) the `calendar` section of languages that already ship a manifest.
+
+    `convert_articles_only`'s reason, and the one that matters most here: the calendar
+    arrived long after the word packs were resolved, and rebuilding a whole language to
+    gain nineteen weekday and month names would re-derive five hundred words from a
+    workspace that has since gone stale.
+    """
+    found = sorted(name[len('pack-'):-len('-calendar')] for name in os.listdir(packs)
+                   if name.startswith('pack-') and name.endswith('-calendar')
+                   and os.path.isdir(os.path.join(packs, name)))
+    for lang in languages or found:
+        pack = os.path.join(packs, 'pack-%s-calendar' % lang)
+        if not os.path.isdir(pack):
+            sys.exit('%s: no pack-%s-calendar' % (packs, lang))
+        out_dir = os.path.join(CATALOG, 'audio', lang)
+        manifest = read_manifest(out_dir)
+        print('pack-%s-calendar' % lang)
+        shutil.rmtree(os.path.join(out_dir, 'calendar'), ignore_errors=True)
+        calendar = convert_calendar(pack, out_dir)
+        write_manifest(lang, out_dir, manifest['words'], manifest.get('letters', {}),
+                       manifest.get('texts', {}), manifest.get('articles', {}), calendar)
 
 
 def credit_index(sections, where):
@@ -485,12 +562,13 @@ def attributed(item, authors):
     return {key: value for key, value in item.items() if key not in dropped}
 
 
-def write_manifest(lang, out_dir, words, letters, texts, articles):
-    sections = [section for section in (words, letters, texts, articles) if section]
+def write_manifest(lang, out_dir, words, letters, texts, articles, calendar):
+    sections = [section for section in (words, letters, texts, articles, calendar) if section]
     authors, licenses = credit_index(sections, 'audio/%s/manifest.json' % lang)
     manifest = {'language': lang, 'authors': authors, 'licenses': licenses,
                 'words': {key: attributed(item, authors) for key, item in words.items()}}
-    for name, section in (('letters', letters), ('texts', texts), ('articles', articles)):
+    for name, section in (('letters', letters), ('texts', texts), ('articles', articles),
+                          ('calendar', calendar)):
         if section:
             manifest[name] = {key: attributed(item, authors) for key, item in section.items()}
     with open(os.path.join(out_dir, 'manifest.json'), 'w', encoding='utf-8') as f:
@@ -507,6 +585,9 @@ def main():
     parser.add_argument('--articles', action='store_true',
                         help='convert only pack-<lang>-articles into the shipped manifest, '
                              'leaving every other section byte-identical')
+    parser.add_argument('--calendar', action='store_true',
+                        help='convert only pack-<lang>-calendar into the shipped manifest, '
+                             'leaving every other section byte-identical')
     args = parser.parse_args()
     if not args.packs and not args.reindex:
         parser.error('--packs is required unless --reindex re-measures what already ships')
@@ -522,6 +603,9 @@ def main():
     if args.articles:
         return convert_articles_only(args.packs, args.lang)
 
+    if args.calendar:
+        return convert_calendar_only(args.packs, args.lang)
+
     if args.reindex:
         shipped = sorted(name for name in os.listdir(os.path.join(CATALOG, 'audio'))
                          if os.path.isdir(os.path.join(CATALOG, 'audio', name)))
@@ -533,7 +617,7 @@ def main():
     slugs, forms, targets = load_catalog()
     languages = sorted(name[len('pack-'):] for name in os.listdir(args.packs)
                        if name.startswith('pack-')
-                       and not name.endswith(('-letters', '-texts', '-articles'))
+                       and not name.endswith(('-letters', '-texts', '-articles', '-calendar'))
                        and os.path.isdir(os.path.join(args.packs, name)))
     for lang in args.lang or languages:
         pack = os.path.join(args.packs, 'pack-%s' % lang)
@@ -560,7 +644,9 @@ def main():
         articles_pack = os.path.join(args.packs, 'pack-%s-articles' % lang)
         articles = (convert_articles(lang, articles_pack, out_dir, targets, forms)
                     if os.path.isdir(articles_pack) else {})
-        write_manifest(lang, out_dir, words, letters, texts, articles)
+        calendar_pack = os.path.join(args.packs, 'pack-%s-calendar' % lang)
+        calendar = convert_calendar(calendar_pack, out_dir) if os.path.isdir(calendar_pack) else {}
+        write_manifest(lang, out_dir, words, letters, texts, articles, calendar)
 
 
 if __name__ == '__main__':

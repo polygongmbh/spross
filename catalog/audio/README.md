@@ -7,8 +7,8 @@ and whose they are `../../docs/audio-licensing.md`.
 
 Bundled pronunciation recordings, one folder per language, **generated** by
 `app/scripts/audio-catalog.py --packs <workspace>` — edit packs, not this directory.
-`--articles` rebuilds only the `articles` section of what already ships, which is how an
-article pack lands without re-deriving three sections from a workspace whose word mp3s a
+`--articles` and `--calendar` rebuild only their own section of what already ships, which
+is how a late pack lands without re-deriving the others from a workspace whose word mp3s a
 renamed slug has already outlived.
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are
 unversioned research input; what is committed here is the shipped bytes and the
@@ -37,7 +37,11 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
     "address": { "file": "articles/address.mp3", "matches": "die Adresse", "word": "Adresse",
                  "author": "Natschoba",
                  "source": "LL-Q188 (deu)-Natschoba-die Adresse.wav", "sha256": "a15c…",
-                 "gain": 8.0, "gainPhone": 3.9, "lead": 240 } } }
+                 "gain": 8.0, "gainPhone": 3.9, "lead": 240 } },
+  "calendar": {
+    "Montag": { "file": "calendar/montag.mp3", "matches": "Montag",
+                "author": "Jeuwre", "source": "De-Montag.ogg", "sha256": "fa2d…",
+                "gain": -5.4, "gainPhone": -4.1, "lead": 439 } } }
 ```
 
 - `language` must equal the folder name, and a folder for a language `languages.json`
@@ -74,6 +78,15 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   Usually an addition beside a bare `words` entry — the source side reads the learner's
   own language, where the article is not what is being taught — but not dependent on one:
   five words ship the article recording alone and it answers both asks.
+- `calendar` (optional) is keyed by the FORM it speaks, like `texts` and for the same
+  reason: no concept covers a weekday, so there is no slug to key one by. Files are
+  `calendar/<ascii stem>.mp3`. It holds the weekday and month names of `../dates/`, the
+  synonyms beside them included — a card may show `Sonnabend`, and a recording is only
+  ever played for the form it actually says. `abbr` is never recorded: it is a written
+  short form the prompt wears, and nothing says it aloud.
+  It carries `gainPhone` where `texts` does not — these are words spoken on a drill card,
+  beside the very vocabulary the phone-speaker plane was measured for, while the
+  alphabet's reference rows stay flat.
 - `matches` — the surface form the recording actually SPEAKS, and the lookup key:
   playback is keyed by what stands on the card, never by the slug the file was fetched
   for, so a rotated synonym nobody recorded falls through to the app's own voice
@@ -84,7 +97,9 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   alphabet file.
 - `source` — the original Commons filename; the credits screen links `File:<source>`,
   which is what keeps attribution checkable rather than merely present.
-- Word files are `<slug>.mp3`, article files `articles/<slug>.mp3`; letter files are `letters/u<codepoint>….mp3`, one
+- Word files are `<slug>.mp3`, article files `articles/<slug>.mp3`, and text and calendar
+  files their form's ASCII stem under `texts/` and `calendar/`; letter files are
+  `letters/u<codepoint>….mp3`, one
   `u` + four lowercase hex digits PER CODEPOINT, never glyph-named — `й`/`ї` decompose
   under NFD on APFS and a Unicode filename has to survive git, Gradle sync and AAPT
   unchanged. A sequence rather than one codepoint because a named row may be a digraph
@@ -96,7 +111,8 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   and lint re-hashes what was committed, which makes it a gate rather than a promise.
 - `gain` (dB) and `lead` (ms) are the generator's own MEASUREMENT of those untouched
   bytes. `gain` is the full-range plane and `gainPhone` the phone-speaker plane
-  (absent on letters and texts, where no phone plane was measured); `lead` is how much
+  (absent on letters and texts, where no phone plane was measured, and present on
+  calendar entries, which are drill-card words); `lead` is how much
   dead air to start past. The files stay unmodified and only the player corrects them,
   picking the plane by its output route. What was measured, against which target,
   is `../../scripts/audio-catalog.py`'s `ANALYSIS`.

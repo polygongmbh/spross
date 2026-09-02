@@ -19,7 +19,8 @@ internal object AudioManifestParser {
         val root = parseJson(path, text).obj(path, "root")
         root.rejectUnknownKeys(
             path, "root",
-            setOf("language", "authors", "licenses", "words", "letters", "texts", "articles"),
+            setOf("language", "authors", "licenses", "words", "letters", "texts", "articles",
+                  "calendar"),
         )
         val language = root.requireString(path, "root", "language")
         if (language != expectedLanguage) {
@@ -37,6 +38,7 @@ internal object AudioManifestParser {
             letters = section(path, root, "letters", LETTER_KEYS, credits),
             texts = section(path, root, "texts", WORD_KEYS, credits),
             articles = section(path, root, "articles", ARTICLE_KEYS, credits),
+            calendar = section(path, root, "calendar", WORD_KEYS, credits),
         )
     }
 

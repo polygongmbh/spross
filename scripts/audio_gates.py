@@ -245,7 +245,10 @@ def attribute(rows, drops):
     for row in rows:
         author = resolved.get(row['file'].replace('_', ' '), '') if unnamed(row['author']) else row['author']
         if unnamed(author):
-            drops.append(('unattributable', row['slug'], '%s credits nobody' % row['file']))
+            # why: `slug` where the row has one, else the form it speaks — the calendar's
+            # rows are keyed by their text, and this gate is otherwise slug-free.
+            drops.append(('unattributable', row.get('slug') or row.get('text', '?'),
+                          '%s credits nobody' % row['file']))
         else:
             kept.append(dict(row, author=author))
     return kept
