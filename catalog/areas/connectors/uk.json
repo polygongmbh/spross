@@ -13,6 +13,22 @@
   "after": { "text": "після" },
   "until": { "text": "до" },
   "without": { "text": "без" },
+  "with": {
+   "text": "з",
+   "variants": ["зі", "із"],
+   "notes": { "de": "з steht mit dem Instrumental: з мамою.", "en": "з takes the instrumental: з мамою." }
+  },
+  "for": {
+   "text": "для",
+   "notes": { "de": "для steht mit dem Genitiv: для тебе.", "en": "для takes the genitive: для тебе." }
+  },
+  "because-of": {
+   "text": "через",
+   "notes": {
+    "de": "через steht mit dem Akkusativ: через дощ.",
+    "en": "через takes the accusative: через дощ."
+   }
+  },
   "again": { "text": "знову", "variants": ["ще раз"] },
   "still": { "text": "ще", "variants": ["досі"] },
   "then": { "text": "потім" },

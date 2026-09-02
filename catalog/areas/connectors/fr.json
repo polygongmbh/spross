@@ -13,6 +13,9 @@
   "after": { "text": "après" },
   "until": { "text": "jusqu'à" },
   "without": { "text": "sans" },
+  "with": { "text": "avec" },
+  "for": { "text": "pour" },
+  "because-of": { "text": "à cause de" },
   "again": { "text": "de nouveau", "variants": ["à nouveau", "encore une fois", "encore"] },
   "still": {
    "text": "encore",
