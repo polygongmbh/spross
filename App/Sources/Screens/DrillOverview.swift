@@ -2,7 +2,7 @@ import SwiftUI
 import SprossKern
 
 /// A typed drill's hub entry: the material as the two languages name it, and
-/// the place its drill is started from — the "Länder" page and the "Datum" page
+/// the place its drill is started from — the Countries page and the Dates page
 /// are this one page with two faces.
 ///
 /// Two sections, in the order every overview uses — start first, reading after:

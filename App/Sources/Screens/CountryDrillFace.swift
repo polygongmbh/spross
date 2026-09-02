@@ -176,7 +176,4 @@ enum CountryDrillFace: DrillFace {
     #endif
 }
 
-/// The "Länder" hub entry: the shared overview wearing the atlas face. The name
-/// stays because it is what the hub, the stored key and the Android twin call
-/// this page.
 typealias CountriesOverview = DrillOverview<CountryDrillFace>

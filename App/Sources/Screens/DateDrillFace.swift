@@ -176,7 +176,4 @@ enum DateDrillFace: DrillFace {
     #endif
 }
 
-/// The "Datum" hub entry: the shared overview wearing the dates face. The name
-/// stays because it is what the hub, the stored key and the Android twin call
-/// this page.
 typealias DatesOverview = DrillOverview<DateDrillFace>

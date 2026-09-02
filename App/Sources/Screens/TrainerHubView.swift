@@ -1,13 +1,10 @@
 import SwiftUI
 import SprossKern
 
-/// Compact "Sprossen" card on the Home screen: 🔢 Zahlen, 🔤 Buchstaben,
-/// 🌍 Länder and 📅 Datum. Each opens an overview: what the language does with
-/// numbers or letters, what the world is called in it, or how it says a date,
-/// and the run started from the same page. Clock and sentences are not siblings
-/// of the numbers drill but variants of it, and the alphabet is not a sibling
-/// of the letter drill but the page it is launched from, so the chips only have
-/// to name the things a learner can practice. Offerings stay registry-driven:
+/// Compact "Sprossen" card on the Home screen: 🔢 Numbers, 🔤 Letters,
+/// 🌍 Countries and 📅 Dates. Each opens an overview: what the language does
+/// with numbers or letters, what the world is called in it, or how it says a
+/// date, and the run started from the same page. Offerings stay registry-driven:
 /// numbers appears only when Kern's trainer supports the learned language,
 /// letters only where an alphabet file was authored, the atlas and the calendar
 /// only where the pair joins one — an empty card hides entirely. Trainers are

@@ -1,7 +1,7 @@
 import SwiftUI
 import SprossKern
 
-/// The "Buchstaben" hub entry: the alphabet of the language being learned, and
+/// The Letters hub entry: the alphabet of the language being learned, and
 /// the place its drill is started from.
 ///
 /// Two sections, in the order the numbers page uses — start first, reading

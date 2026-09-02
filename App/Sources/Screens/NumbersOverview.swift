@@ -1,7 +1,7 @@
 import SwiftUI
 import SprossKern
 
-/// The "Zahlen" hub entry: a numbers page for the language being learned, and
+/// The Numbers hub entry: a numbers page for the language being learned, and
 /// the place its drill is started from.
 ///
 /// Three sections, in this order — start first, reference after: the run to
