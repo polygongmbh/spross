@@ -26,7 +26,7 @@ struct WatchHomeView: View {
                 // caption2 already makes it read as secondary.
                 Text("v\(appVersion)")
                     .font(.system(.caption2, design: .rounded))
-                    .foregroundStyle(Color.wlTextSecondary)
+                    .foregroundStyle(WatchTheme.colors.textSecondary)
             }
         }
     }
@@ -40,10 +40,10 @@ struct WatchHomeView: View {
             HStack(alignment: .firstTextBaseline, spacing: 5) {
                 Text("\(model.dueCount)")
                     .font(.system(.largeTitle, design: .rounded, weight: .bold))
-                    .foregroundStyle(Color.wlAccent)
+                    .foregroundStyle(WatchTheme.colors.accent)
                 Text("fällig")
                     .font(.system(.headline, design: .rounded))
-                    .foregroundStyle(Color.wlTextSecondary)
+                    .foregroundStyle(WatchTheme.colors.textSecondary)
             }
             if model.canStart {
                 Button { model.startSession() } label: {
@@ -52,7 +52,7 @@ struct WatchHomeView: View {
                         .foregroundStyle(.black)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(Color.wlAccent)
+                .tint(WatchTheme.colors.accent)
                 .padding(.top, 6)
             }
         }
@@ -68,7 +68,7 @@ struct WatchHomeView: View {
             if model.tomorrowDueCount > 0 {
                 Text("Morgen: \(model.tomorrowDueCount) fällig")
                     .font(.system(.footnote, design: .rounded))
-                    .foregroundStyle(Color.wlTextSecondary)
+                    .foregroundStyle(WatchTheme.colors.textSecondary)
             }
             if model.canPractice {
                 Button { model.startPractice() } label: {
@@ -77,7 +77,7 @@ struct WatchHomeView: View {
                         .foregroundStyle(.black)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(Color.wlAccent)
+                .tint(WatchTheme.colors.accent)
                 .padding(.top, 6)
             }
         }
@@ -90,7 +90,7 @@ struct WatchHomeView: View {
                 .font(.system(size: 36))
             Text("Öffne Spross auf dem iPhone, um zu starten.")
                 .font(.system(.footnote, design: .rounded))
-                .foregroundStyle(Color.wlTextSecondary)
+                .foregroundStyle(WatchTheme.colors.textSecondary)
                 .multilineTextAlignment(.center)
         }
     }

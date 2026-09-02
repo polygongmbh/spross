@@ -43,7 +43,7 @@ struct WatchQuizView: View {
     @ViewBuilder
     private var wrongFlash: some View {
         if model.wrongFlash {
-            Color.wlWrong
+            WatchTheme.colors.wrong
                 .opacity(0.55)
                 .ignoresSafeArea()
                 .allowsHitTesting(false)
@@ -124,7 +124,7 @@ struct WatchQuizView: View {
     private func sourceLine(_ entry: WatchSnapshot.Entry) -> Text {
         let word = Text(entry.sourceText)
         guard entry.femMarker else { return word }
-        return word + Text(" ♀").foregroundStyle(Color.wlDie)
+        return word + Text(" ♀").foregroundStyle(WatchTheme.colors.die)
     }
 
     /// Target side, e.g. "die Kellnerin" — articleTint drives the article word
@@ -134,8 +134,8 @@ struct WatchQuizView: View {
         guard let tint = entry.articleTint, form == entry.targetText else {
             return Text(form)
         }
-        return Text("\(tint) ").foregroundStyle(Color.wlTextSecondary)
-            + Text(form).foregroundStyle(WL.articleColor(tint))
+        return Text("\(tint) ").foregroundStyle(WatchTheme.colors.textSecondary)
+            + Text(form).foregroundStyle(WatchTheme.articleColor(tint))
     }
 
     // MARK: - Options
@@ -180,16 +180,16 @@ struct WatchQuizView: View {
     /// Neutral until a choice; then the correct tile greens, a wrong pick reds,
     /// other tiles dim.
     private func tint(for index: Int, _ question: WatchPracticeQuestion) -> Color {
-        guard let selected = model.selectedIndex else { return Color.wlTextSecondary.opacity(0.3) }
-        if index == question.correctIndex { return .wlSuccess }
-        if index == selected { return .wlWrong }
-        return Color.wlTextSecondary.opacity(0.15)
+        guard let selected = model.selectedIndex else { return WatchTheme.colors.textSecondary.opacity(0.3) }
+        if index == question.correctIndex { return WatchTheme.colors.success }
+        if index == selected { return WatchTheme.colors.wrong }
+        return WatchTheme.colors.textSecondary.opacity(0.15)
     }
 
     private func labelColor(for index: Int, _ question: WatchPracticeQuestion) -> Color {
         guard let selected = model.selectedIndex else { return .white }
         if index == question.correctIndex || index == selected { return .black }
-        return .wlTextSecondary
+        return WatchTheme.colors.textSecondary
     }
 
     // MARK: - Completion

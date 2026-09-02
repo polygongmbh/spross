@@ -64,9 +64,9 @@ struct WatchWordWidgetView: View {
     /// never reaches the neuter).
     private func tintColor(_ tint: String) -> Color {
         switch tint.lowercased() {
-        case "der", "el", "los", "un": return .wwDer
-        case "die", "la", "las", "una": return .wwDie
-        case "das": return .wwDas
+        case "der", "el", "los", "un": return WatchWidgetColors.der
+        case "die", "la", "las", "una": return WatchWidgetColors.die
+        case "das": return WatchWidgetColors.das
         default: return .white
         }
     }
@@ -76,7 +76,7 @@ struct WatchWordWidgetView: View {
 // kern's `PaletteParityTest` fails the fast gate when this copy drifts from it. A
 // complication extension links neither the app's design tokens nor the watch app's.
 private extension Color {
-    init(wwHex hex: UInt32) {
+    init(complicationHex hex: UInt32) {
         self.init(red: Double((hex >> 16) & 0xFF) / 255,
                   green: Double((hex >> 8) & 0xFF) / 255,
                   blue: Double(hex & 0xFF) / 255)
@@ -86,11 +86,13 @@ private extension Color {
     /// complication always sits on the watch's black, and watchOS has no dynamic
     /// UIColor provider to pick with. The light half is carried so this copy can
     /// be held to the WHOLE table rather than to half of it.
-    init(wwLight: UInt32, wwDark: UInt32) {
-        self.init(wwHex: wwDark)
+    init(light: UInt32, dark: UInt32) {
+        self.init(complicationHex: dark)
     }
+}
 
-    static let wwDer = Color(wwLight: 0x134E85, wwDark: 0x90CBFF)
-    static let wwDie = Color(wwLight: 0x9A2050, wwDark: 0xFF9EC0)
-    static let wwDas = Color(wwLight: 0x18602C, wwDark: 0x6FDC85)
+private enum WatchWidgetColors {
+    static let der = Color(light: 0x134E85, dark: 0x90CBFF)
+    static let die = Color(light: 0x9A2050, dark: 0xFF9EC0)
+    static let das = Color(light: 0x18602C, dark: 0x6FDC85)
 }

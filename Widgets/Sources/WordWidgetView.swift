@@ -226,9 +226,9 @@ struct WordWidgetView: View {
     /// indefinite articles with it) and never reaches the neuter.
     private func tintColor(_ tint: String) -> Color {
         switch tint.lowercased() {
-        case "der", "el", "los", "un": .wgDer
-        case "die", "la", "las", "una": .wgDie
-        case "das": .wgDas
+        case "der", "el", "los", "un": WidgetColors.der
+        case "die", "la", "las", "una": WidgetColors.die
+        case "das": WidgetColors.das
         default: .secondary
         }
     }
@@ -240,21 +240,23 @@ struct WordWidgetView: View {
 // copy drifts from it. Both columns, resolved the way `Theme.swift` resolves them: a
 // home-screen widget follows the phone into dark mode like anything else on that screen.
 extension Color {
-    init(wgLight: UInt32, wgDark: UInt32) {
+    init(light: UInt32, dark: UInt32) {
         self.init(uiColor: UIColor { trait in
-            UIColor(wgHex: trait.userInterfaceStyle == .dark ? wgDark : wgLight)
+            UIColor(widgetHex: trait.userInterfaceStyle == .dark ? dark : light)
         })
     }
+}
 
-    static let wgAccent = Color(wgLight: 0xA23B0B, wgDark: 0xFF9A6B)
-    static let wgSuccess = Color(wgLight: 0x256232, wgDark: 0x8AE39B)
-    static let wgDer = Color(wgLight: 0x134E85, wgDark: 0x90CBFF)
-    static let wgDie = Color(wgLight: 0x9A2050, wgDark: 0xFF9EC0)
-    static let wgDas = Color(wgLight: 0x18602C, wgDark: 0x6FDC85)
+enum WidgetColors {
+    static let accent = Color(light: 0xA23B0B, dark: 0xFF9A6B)
+    static let success = Color(light: 0x256232, dark: 0x8AE39B)
+    static let der = Color(light: 0x134E85, dark: 0x90CBFF)
+    static let die = Color(light: 0x9A2050, dark: 0xFF9EC0)
+    static let das = Color(light: 0x18602C, dark: 0x6FDC85)
 }
 
 private extension UIColor {
-    convenience init(wgHex hex: UInt32) {
+    convenience init(widgetHex hex: UInt32) {
         self.init(red: CGFloat((hex >> 16) & 0xFF) / 255,
                   green: CGFloat((hex >> 8) & 0xFF) / 255,
                   blue: CGFloat(hex & 0xFF) / 255,

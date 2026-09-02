@@ -24,7 +24,7 @@ struct WatchCelebrationView: View {
             burstHero
             Text("\(answered) Karten geübt")
                 .font(.system(.footnote, design: .rounded, weight: .semibold))
-                .foregroundStyle(Color.wlTextSecondary)
+                .foregroundStyle(WatchTheme.colors.textSecondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .contentShape(Rectangle())

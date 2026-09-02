@@ -97,14 +97,14 @@ private const val WATCH_WIDGET = "WatchWidgets/Sources/WatchWordWidgetView.swift
 private val LIGHT: (Swatch) -> Int = { it.light }
 private val DARK: (Swatch) -> Int = { it.dark }
 
-/** `static let wlDer = Color(watchHex: 0x90CBFF)` — a single-column Swift copy. */
+/** `let der = Color(watchHex: 0x90CBFF)` — a single-column Swift copy. */
 private val COPY_TOKEN =
-    Regex("""static let [a-z]{2}(\w+) = Color\(\w+: 0x([0-9A-Fa-f]{6})\)""")
+    Regex("""\blet (\w+) = Color\(\w+: 0x([0-9A-Fa-f]{6})\)""")
 
-/** `static let wgDer = Color(wgLight: 0x134E85, wgDark: 0x90CBFF)` — a two-column one. */
+/** `let der = Color(light: 0x134E85, dark: 0x90CBFF)` — a two-column one. */
 private val COPY_PAIR =
     Regex(
-        """static let [a-z]{2}(\w+) = Color\(\w+: 0x([0-9A-Fa-f]{6}), \w+: 0x([0-9A-Fa-f]{6})\)"""
+        """\blet (\w+) = Color\(\w+: 0x([0-9A-Fa-f]{6}), \w+: 0x([0-9A-Fa-f]{6})\)"""
     )
 
 private fun hex(value: Int): String = "%06X".format(value)
