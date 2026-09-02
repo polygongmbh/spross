@@ -422,11 +422,17 @@ class CountryDrillTests {
         assertEquals(listOf("Kijerumani"), row.targetLanguages)
     }
 
+    /** The named rungs cap the CONTENT; the number climbs on so a climbed-out atlas still counts. */
     @Test
-    fun theRungRampStopsAtTheLaddersTop() {
+    fun theRungKeepsCountingPastTheLaddersTop() {
         var step = DrillRamp.RungStep(CountryDrill.MAX_LEVEL, 0)
         repeat(4) { step = CountryDrill.step(step.level, step.winsAtLevel, correct = true, clean = true) }
-        assertEquals(CountryDrill.MAX_LEVEL, step.level)
+        assertEquals(CountryDrill.MAX_LEVEL + 1, step.level, "three clean wins carried it past the top")
+        assertEquals(
+            CountryDrill.kinds(CountryDrill.MAX_LEVEL),
+            CountryDrill.kinds(step.level),
+            "and asks the top rung's questions up there",
+        )
         assertEquals(1, CountryDrill.step(1, 0, correct = false, clean = true).level)
     }
 }

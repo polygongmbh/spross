@@ -70,7 +70,12 @@ class DateDrillTests {
         assertEquals(2, step.level)
         assertEquals(2, DateDrill.step(german, false, 1, 0, correct = true, clean = true, fast = true).level)
         val top = DateDrill.step(ukrainian, false, 5, 2, correct = true, clean = true, fast = false)
-        assertEquals(5, top.level, "the short ladder's ramp stops at its own top")
+        assertEquals(6, top.level, "the number climbs past the short ladder's last named rung")
+        assertEquals(
+            DateDrill.kinds(ukrainian, 5, reverse = false),
+            DateDrill.kinds(ukrainian, top.level, reverse = false),
+            "and asks the top rung's questions up there",
+        )
     }
 
     // MARK: - Task shapes

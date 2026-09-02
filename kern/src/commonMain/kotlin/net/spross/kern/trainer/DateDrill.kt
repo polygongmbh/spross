@@ -41,7 +41,7 @@ object DateDrill {
     fun fastUnlocked(bestLevel: Int, content: DateDrillContent, reverse: Boolean): Boolean =
         bestLevel >= maxLevel(content, reverse)
 
-    /** The rung ramp, on this pair's own ceiling and rung length ([DrillRamp.step]). */
+    /** The rung ramp, on this ladder's rung length ([DrillRamp.step]). */
     fun step(
         content: DateDrillContent,
         reverse: Boolean,
@@ -51,7 +51,7 @@ object DateDrill {
         clean: Boolean,
         fast: Boolean,
     ): DrillRamp.RungStep =
-        DrillRamp.step(level, winsAtLevel, correct, clean, maxLevel(content, reverse), winsToAdvance(fast))
+        DrillRamp.step(level, winsAtLevel, correct, clean, winsToAdvance(fast))
 
     /** What [level] may ask: the kind it introduces, and every kind below it. */
     fun kinds(content: DateDrillContent, level: Int, reverse: Boolean): List<DateTaskKind> {
@@ -88,7 +88,9 @@ object DateDrill {
      * The first rung at or above [level] with a question left. The rungs nest, so a rung
      * is spent only once everything it carries is answered out, and the one above always
      * has at least as much to offer; once the whole ladder is out the task is null, which
-     * ends the run on its summary.
+     * ends the run on its summary. Past the top the content stands still and the NUMBER
+     * goes on ([DrillRamp.step]): a rung above the ladder draws the top one and keeps its
+     * own count.
      */
     fun draw(
         content: DateDrillContent,
@@ -99,12 +101,12 @@ object DateDrill {
         rng: Random,
     ): DateDrillDraw {
         val top = maxLevel(content, reverse)
-        val start = level.coerceIn(1, top)
-        for (rung in start..top) {
+        val standing = maxOf(1, level)
+        for (rung in minOf(standing, top)..top) {
             val task = sample(content, rung, reverse, avoid, solved, rng)
-            if (task != null) return DateDrillDraw(task, rung)
+            if (task != null) return DateDrillDraw(task, maxOf(standing, rung))
         }
-        return DateDrillDraw(null, start)
+        return DateDrillDraw(null, standing)
     }
 
     /** The language an answer is owed in — the learned one, or the learner's own reversed. */

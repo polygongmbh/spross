@@ -57,7 +57,7 @@ object CountryDrill {
      */
     fun fastUnlocked(bestLevel: Int): Boolean = bestLevel >= MAX_LEVEL
 
-    /** The rung ramp, on the ladder's own ceiling and rung length ([DrillRamp.step]). */
+    /** The rung ramp, on the ladder's rung length ([DrillRamp.step]). */
     fun step(
         level: Int,
         winsAtLevel: Int,
@@ -65,7 +65,7 @@ object CountryDrill {
         clean: Boolean,
         fast: Boolean = false,
     ): DrillRamp.RungStep =
-        DrillRamp.step(level, winsAtLevel, correct, clean, MAX_LEVEL, winsToAdvance(fast))
+        DrillRamp.step(level, winsAtLevel, correct, clean, winsToAdvance(fast))
 
     /** How far out [level] reaches — tier 1 is the profile's own, 4 the regional rest. */
     fun tierCeiling(level: Int): Int = when (level.coerceIn(1, MAX_LEVEL)) {
@@ -164,11 +164,14 @@ object CountryDrill {
         solved: Set<String>,
         rng: Random,
     ): CountryDrillDraw {
-        for (rung in level.coerceIn(1, MAX_LEVEL)..MAX_LEVEL) {
+        val standing = maxOf(1, level)
+        for (rung in minOf(standing, MAX_LEVEL)..MAX_LEVEL) {
             val task = sample(content, rung, reverse, avoidId, solved, rng)
-            if (task != null) return CountryDrillDraw(task, rung)
+            // why: past the ladder's top the content stands still and the number goes on
+            // ([DrillRamp.step]), so the rung a draw reports is never below the one asked for.
+            if (task != null) return CountryDrillDraw(task, maxOf(standing, rung))
         }
-        return CountryDrillDraw(null, level)
+        return CountryDrillDraw(null, standing)
     }
 
     /**

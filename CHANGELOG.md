@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **A drill rung no longer stops at the top of its ladder.** Clean wins used to bank into
+  nothing once the last named rung was reached; the number now goes on climbing — Sprosse 12
+  on a ladder of nine — while the questions stay at the top rung's mix. Every drill counts
+  this way, and the overview prints the record as it stands instead of trimming it back to
+  the last row on the page.
+
 - **A fourth Sprossen drill: the date.** The weekday names, the month names, the day of
   the month as the words a date actually wants — *der dritte*, *третього* — and then the
   whole spoken date assembled out of them, over a ladder whose every rung adds its new

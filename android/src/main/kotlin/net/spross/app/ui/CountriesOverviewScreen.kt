@@ -89,11 +89,9 @@ fun CountriesOverviewScreen(model: AppModel) {
         // run has climbed before, how far it came.
         Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
             OverviewNote(chrome.countriesPace)
-            // why: clamped to the ladder's own ceiling — a best booked under a longer
-            // ladder must never print a rung that is not on the page.
-            if (best > 0) {
-                OverviewNote(chrome.countriesBest.format(minOf(best, CountryDrill.MAX_LEVEL)))
-            }
+            // why: printed as it stands, ceiling and all — the rung keeps counting past the
+            // named ladder, so the record is a number to beat rather than a row on the page.
+            if (best > 0) OverviewNote(chrome.countriesBest.format(best))
         }
         OverviewPanel {
             ModifierSwitchRow(

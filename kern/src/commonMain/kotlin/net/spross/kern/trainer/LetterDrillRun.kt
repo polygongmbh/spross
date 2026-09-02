@@ -238,7 +238,6 @@ object LetterDrillRun {
             winsAtLevel = state.winsAtLevel,
             correct = correct,
             clean = clean,
-            maxLevel = state.config.report.maxLevel,
             winsRequired = state.config.report.winsToAdvance,
         )
         val streak = if (correct) state.streak + 1 else 0
@@ -283,11 +282,15 @@ object LetterDrillRun {
         solved: Set<String>,
         rng: Random,
     ): Question {
-        for (level in from..config.report.maxLevel) {
+        val top = config.report.maxLevel
+        val standing = maxOf(1, from)
+        // why: past the top rung the stage stands still and the number goes on
+        // ([DrillRamp.step]), so a question found there keeps the rung it was asked at.
+        for (level in minOf(standing, top)..top) {
             val task = sample(config, level, avoiding, avoidingWord, solved, rng)
-            if (task != null) return Question(task, level)
+            if (task != null) return Question(task, maxOf(standing, level))
         }
-        return Question(null, from)
+        return Question(null, standing)
     }
 
     /**

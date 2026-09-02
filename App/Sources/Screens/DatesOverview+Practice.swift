@@ -107,10 +107,10 @@ extension DatesOverview {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
             Text("dates.pace")
             if bestRung > 0 {
-                // why: clamped to the ladder's own ceiling — a best booked under
-                // a longer ladder (the forward one, while reverse is switched
-                // on) must never print a rung that is not on the page.
-                Text("dates.best \(min(bestRung, ladderCeiling).formatted())")
+                // why: printed as it stands, ceiling and all — the rung keeps
+                // counting past the named ladder, so the record is a number to
+                // beat rather than a row on the page.
+                Text("dates.best \(bestRung.formatted())")
             }
         }
         .font(DL.Fonts.caption)

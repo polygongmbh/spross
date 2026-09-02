@@ -85,16 +85,16 @@ class DrillProgressionTests {
 
     @Test
     fun twoCleanWinsClimbOneRungAndAMissStepsBack() {
-        val first = DrillRamp.step(3, 0, correct = true, clean = true, maxLevel = 9, winsRequired = 2)
+        val first = DrillRamp.step(3, 0, correct = true, clean = true, winsRequired = 2)
         assertEquals(DrillRamp.RungStep(3, 1), first)
-        val second = DrillRamp.step(3, 1, correct = true, clean = true, maxLevel = 9, winsRequired = 2)
+        val second = DrillRamp.step(3, 1, correct = true, clean = true, winsRequired = 2)
         assertEquals(DrillRamp.RungStep(4, 0), second)
-        val missed = DrillRamp.step(4, 1, correct = false, clean = true, maxLevel = 9, winsRequired = 2)
+        val missed = DrillRamp.step(4, 1, correct = false, clean = true, winsRequired = 2)
         assertEquals(DrillRamp.RungStep(3, 0), missed)
         // The floor holds however long the run goes wrong.
         assertEquals(
             DrillRamp.RungStep(1, 0),
-            DrillRamp.step(1, 0, correct = false, clean = true, maxLevel = 9, winsRequired = 2),
+            DrillRamp.step(1, 0, correct = false, clean = true, winsRequired = 2),
         )
     }
 
@@ -102,12 +102,12 @@ class DrillProgressionTests {
     fun aShorterRungClimbsOnASingleWin() {
         assertEquals(
             DrillRamp.RungStep(4, 0),
-            DrillRamp.step(3, 0, correct = true, clean = true, maxLevel = 9, winsRequired = 1),
+            DrillRamp.step(3, 0, correct = true, clean = true, winsRequired = 1),
         )
         // The narrower stage does not change what a miss costs.
         assertEquals(
             DrillRamp.RungStep(2, 0),
-            DrillRamp.step(3, 0, correct = false, clean = true, maxLevel = 9, winsRequired = 1),
+            DrillRamp.step(3, 0, correct = false, clean = true, winsRequired = 1),
         )
     }
 
@@ -116,19 +116,22 @@ class DrillProgressionTests {
         for (width in 1..2) {
             assertEquals(
                 DrillRamp.RungStep(3, 1),
-                DrillRamp.step(3, 1, correct = true, clean = false, maxLevel = 9, winsRequired = width),
+                DrillRamp.step(3, 1, correct = true, clean = false, winsRequired = width),
             )
         }
     }
 
+    /**
+     * The rung has no ceiling: a ladder's named rungs cap the CONTENT, and each drill
+     * clamps its own draw, but the number goes on so a climbed-out ladder still has
+     * something to beat.
+     */
     @Test
-    fun theCeilingHolds() {
-        val atTop = DrillRamp.step(7, 1, correct = true, clean = true, maxLevel = 7, winsRequired = 2)
-        assertEquals(7, atTop.level)
-        val silent = DrillRamp.step(9, 0, correct = true, clean = true, maxLevel = 9, winsRequired = 1)
-        assertEquals(9, silent.level)
-        // A level above the ceiling (dictation lost while the run was in it) drops into range.
-        assertEquals(7, DrillRamp.step(9, 0, correct = true, clean = true, maxLevel = 7, winsRequired = 1).level)
+    fun theRungKeepsCountingPastTheNamedLadder() {
+        assertEquals(8, DrillRamp.step(7, 1, correct = true, clean = true, winsRequired = 2).level)
+        assertEquals(10, DrillRamp.step(9, 0, correct = true, clean = true, winsRequired = 1).level)
+        // A miss costs one rung up there like anywhere else, and the floor still holds.
+        assertEquals(11, DrillRamp.step(12, 1, correct = false, clean = true, winsRequired = 2).level)
     }
 
     // Direction

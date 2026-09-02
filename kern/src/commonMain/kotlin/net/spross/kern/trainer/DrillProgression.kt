@@ -88,26 +88,26 @@ object DrillRamp {
      * An almost answer ([clean] false: a typo, a revealed hint, a synonym) moves NOTHING.
      * It is neither a win to bank nor a miss to punish, and letting it count either way
      * would make the ramp disagree with what the learner just saw on screen.
+     *
+     * **The rung has no ceiling.** A ladder's named rungs are a CONTENT ceiling — each
+     * drill clamps its own draw to the top rung it can fill — but the number keeps
+     * counting past them, so someone who has climbed a ladder out has a rung to go on
+     * beating rather than a wall to bank wins into. Which rungs are named, and what the
+     * one above the last name asks, is each drill's own business.
      */
     fun step(
         level: Int,
         winsAtLevel: Int,
         correct: Boolean,
         clean: Boolean,
-        maxLevel: Int,
         winsRequired: Int,
     ): RungStep {
-        val ceiling = maxOf(1, maxLevel)
-        val current = level.coerceIn(1, ceiling)
+        val current = maxOf(1, level)
         val wins = maxOf(0, winsAtLevel)
         if (!correct) return RungStep(maxOf(1, current - 1), 0)
         if (!clean) return RungStep(current, wins)
         val earned = wins + 1
-        return if (earned >= maxOf(1, winsRequired) && current < ceiling) {
-            RungStep(current + 1, 0)
-        } else {
-            RungStep(current, earned)
-        }
+        return if (earned >= maxOf(1, winsRequired)) RungStep(current + 1, 0) else RungStep(current, earned)
     }
 
     /** Where the ramp leaves the run: the rung to ask at next, and the wins banked on it. */

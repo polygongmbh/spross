@@ -283,7 +283,6 @@ object TrainerRun {
             winsAtLevel = state.winsAtLevel[variant] ?: 0,
             correct = correct,
             clean = outcome != AnswerOutcome.Almost,
-            maxLevel = state.mode.maxLevel(variant),
             winsRequired = state.mode.winsToAdvance,
         )
         val streak = if (correct) state.streak + 1 else 0

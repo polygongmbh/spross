@@ -104,12 +104,10 @@ extension CountriesOverview {
         VStack(alignment: .leading, spacing: DL.Space.xs) {
             Text("countries.pace")
             if bestRung > 0 {
-                // why: clamped to the ladder's own ceiling. A best booked under
-                // an older, shorter ladder means something else now, and one
-                // booked under a LONGER one would print a rung that is not
-                // there — neither is worth a migration before release, but
-                // neither may show the learner a number off the page either.
-                Text("countries.best \(min(bestRung, CountryDrill.shared.ceiling).formatted())")
+                // why: printed as it stands, ceiling and all — the rung keeps
+                // counting past the named ladder, so the record is a number to
+                // beat rather than a row on the page.
+                Text("countries.best \(bestRung.formatted())")
             }
         }
         .font(DL.Fonts.caption)

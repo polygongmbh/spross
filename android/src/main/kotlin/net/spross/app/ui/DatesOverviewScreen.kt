@@ -91,10 +91,9 @@ fun DatesOverviewScreen(model: AppModel) {
         // run has climbed before, how far it came.
         Column(verticalArrangement = Arrangement.spacedBy(DlSpace.xs)) {
             OverviewNote(chrome.datesPace)
-            // why: clamped to the ladder's own ceiling — a best booked under a longer
-            // ladder (the forward one, while reverse is switched on) must never print a
-            // rung that is not on the page.
-            if (best > 0) OverviewNote(chrome.datesBest.format(minOf(best, ceiling)))
+            // why: printed as it stands, ceiling and all — the rung keeps counting past the
+            // named ladder, so the record is a number to beat rather than a row on the page.
+            if (best > 0) OverviewNote(chrome.datesBest.format(best))
         }
         OverviewPanel {
             ModifierSwitchRow(

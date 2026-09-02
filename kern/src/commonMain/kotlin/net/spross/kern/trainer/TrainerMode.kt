@@ -127,11 +127,14 @@ data class TrainerMode(
         solved: Set<String>,
         rng: Random,
     ): TrainerDraw? {
-        for (level in (levels[variant] ?: 1)..maxLevel(variant)) {
+        val standing = maxOf(1, levels[variant] ?: 1)
+        // why: past the variant's top rung the values stand still and the number goes on
+        // ([DrillRamp.step]), so a draw there is booked at the rung it was asked at.
+        for (level in minOf(standing, maxLevel(variant))..maxLevel(variant)) {
             repeat(DrillSolved.SPENT_ATTEMPTS) {
                 val drawn = drawOnce(variant, level, levels, rng)
                 if (DrillSolved.key(variant, drawn.task) !in solved && drawn.task.prompt != avoiding) {
-                    return TrainerDraw(drawn, levels + (variant to level))
+                    return TrainerDraw(drawn, levels + (variant to maxOf(standing, level)))
                 }
             }
         }
