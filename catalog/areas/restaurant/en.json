@@ -12,7 +12,6 @@
   "glass": { "text": "glass", "grammar": { "plural": "glasses" } },
   "cutlery": { "text": "cutlery", "synonyms": ["silverware"] },
   "napkin": { "text": "napkin" },
-  "vegetarian": { "text": "vegetarian" },
   "dessert": { "text": "dessert" },
   "beverage": { "text": "drink", "synonyms": ["beverage"] },
   "restaurant": { "text": "restaurant" },

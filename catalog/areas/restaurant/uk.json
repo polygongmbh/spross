@@ -13,7 +13,6 @@
   "glass": { "text": "склянка" },
   "cutlery": { "text": "столові прибори", "grammar": { "plural": "only" } },
   "napkin": { "text": "серветка" },
-  "vegetarian": { "text": "вегетаріанський" },
   "dessert": { "text": "десерт" },
   "beverage": { "text": "напій", "grammar": { "plural": "напої" } },
   "restaurant": { "text": "ресторан" },

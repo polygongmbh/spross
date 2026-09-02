@@ -10,12 +10,11 @@
  { "slug": "glass", "kind": "noun", "emoji": "🥛" },
  { "slug": "cutlery", "kind": "noun", "emoji": "🍴" },
  { "slug": "napkin", "kind": "noun" },
- { "slug": "vegetarian", "kind": "adjective", "emoji": "🥗" },
  { "slug": "dessert", "kind": "noun", "emoji": "🍰" },
  { "slug": "beverage", "kind": "noun", "emoji": "🥤" },
  { "slug": "restaurant", "kind": "noun", "emoji": "🍽️" },
  { "slug": "a-table-for-two", "kind": "phrase", "components": ["table"] },
  { "slug": "id-like-to-order", "kind": "phrase", "components": ["order"] },
- { "slug": "is-this-vegetarian", "kind": "phrase", "emoji": "🥗", "components": ["vegetarian"] },
+ { "slug": "is-this-vegetarian", "kind": "phrase", "emoji": "🥗", "components": [] },
  { "slug": "the-bill-please", "kind": "phrase", "emoji": "🧾", "components": ["bill"] }
 ]

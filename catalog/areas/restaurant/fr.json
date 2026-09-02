@@ -22,7 +22,6 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "une serviette allein ist auch das Handtuch." }
   },
-  "vegetarian": { "text": "végétarien" },
   "dessert": { "text": "dessert", "grammar": { "gender": "le" } },
   "beverage": { "text": "boisson", "grammar": { "gender": "la" } },
   "restaurant": { "text": "restaurant", "grammar": { "gender": "le" } },

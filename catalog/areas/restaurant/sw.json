@@ -12,10 +12,6 @@
   "glass": { "text": "glasi", "grammar": { "plural": "=" } },
   "cutlery": { "text": "vyombo vya kulia", "grammar": { "plural": "=" } },
   "napkin": { "text": "kitambaa cha mezani", "grammar": { "plural": "vitambaa vya mezani" } },
-  "vegetarian": {
-   "text": "bila nyama",
-   "notes": { "de": "Kiswahili hat kein eigenes Wort für vegetarisch — man sagt ohne Fleisch." }
-  },
   "dessert": { "text": "kitindamlo", "grammar": { "plural": "vitindamlo" } },
   "beverage": { "text": "kinywaji", "grammar": { "plural": "vinywaji" } },
   "restaurant": { "text": "mkahawa", "grammar": { "plural": "mikahawa" } },

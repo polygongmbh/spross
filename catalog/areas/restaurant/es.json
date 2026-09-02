@@ -22,7 +22,6 @@
   },
   "cutlery": { "text": "cubiertos", "grammar": { "gender": "los", "plural": "only" } },
   "napkin": { "text": "servilleta", "grammar": { "gender": "la" } },
-  "vegetarian": { "text": "vegetariano" },
   "dessert": { "text": "postre", "grammar": { "gender": "el" } },
   "beverage": { "text": "bebida", "grammar": { "gender": "la" } },
   "restaurant": { "text": "restaurante", "grammar": { "gender": "el" } },

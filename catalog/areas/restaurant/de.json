@@ -13,7 +13,6 @@
   "glass": { "text": "Glas", "grammar": { "gender": "das", "plural": "Gläser" } },
   "cutlery": { "text": "Besteck", "grammar": { "gender": "das", "plural": "-e" } },
   "napkin": { "text": "Serviette", "grammar": { "gender": "die", "plural": "-n" } },
-  "vegetarian": { "text": "vegetarisch" },
   "dessert": { "text": "Nachtisch", "synonyms": ["Dessert"], "grammar": { "gender": "der", "plural": "-e" } },
   "beverage": { "text": "Getränk", "grammar": { "gender": "das", "plural": "-e" } },
   "restaurant": { "text": "Restaurant", "grammar": { "gender": "das", "plural": "-s" } },
