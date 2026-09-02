@@ -2,12 +2,15 @@
   "authors": {
     "AdrianAbdulBaha": "CC BY-SA 4.0",
     "Anonymât": "CC BY-SA 4.0",
+    "Arca~commonswiki": "CC BY-SA 3.0",
     "CaroEspinoza": "CC0",
     "Eavqwiki": "CC BY-SA 4.0",
     "Emanuelps27": "CC BY 4.0",
+    "Enohecruzl79": "CC BY 4.0",
     "GlyphEnjoyer": "CC0",
     "Julie Samothrace": "CC BY-SA 4.0",
     "Marreromarco": "CC BY-SA 4.0",
+    "Mentxuwiki": "CC0",
     "Millars": "CC BY-SA 4.0",
     "Octavio Paniagua-Taboada (Mexico)": "CC BY-SA 4.0",
     "Precision27": "CC BY 4.0",
@@ -16,6 +19,7 @@
     "Rodrigo5260": "CC0",
     "Rubýñ": "CC0",
     "Sinaloa": "CC0",
+    "Susana Freixeiro": "Public domain",
     "Wikipedian-walker": "CC0"
   },
   "calendar": {
@@ -229,6 +233,804 @@
       "source": "LL-Q1321 (spa)-Precision27-viernes.wav"
     }
   },
+  "countries": {
+    "Alemania": {
+      "author": "Precision27",
+      "file": "countries/alemania.mp3",
+      "gainPhone": -4.7,
+      "lead": 194,
+      "matches": "Alemania",
+      "sha256": "2178bc8628e2703c5ffcc7052378c8f8f578d857712a711167601c4f06d2f966",
+      "snr": 85.9,
+      "source": "LL-Q1321 (spa)-Precision27-Alemania.wav"
+    },
+    "Angola": {
+      "author": "Rodelar",
+      "file": "countries/angola.mp3",
+      "gain": -1.6,
+      "gainPhone": 1.8,
+      "lead": 204,
+      "matches": "Angola",
+      "sha256": "173e27df1dae31075462d53dd8b90b05947d9c85eddc5604f8dff5ce6e931e9e",
+      "snr": 78.4,
+      "source": "LL-Q1321 (spa)-Rodelar-Angola.wav"
+    },
+    "Arabia Saudí": {
+      "author": "Rodelar",
+      "file": "countries/arabiau0020saudu00ed.mp3",
+      "gain": -1.8,
+      "gainPhone": -4.4,
+      "lead": 213,
+      "matches": "Arabia Saudí",
+      "sha256": "a25243520f40b8331cbdd37f780e31172079cbe0e9b37b62bc0582972008418c",
+      "snr": 79.0,
+      "source": "LL-Q1321 (spa)-Rodelar-Arabia Saudí.wav"
+    },
+    "Argelia": {
+      "author": "Rodelar",
+      "file": "countries/argelia.mp3",
+      "gain": 1.2,
+      "gainPhone": -1.1,
+      "lead": 233,
+      "matches": "Argelia",
+      "sha256": "8c83c694b4719ac861f0eeeaaeac3153fab4bcd25118db92881b9235d8885f13",
+      "snr": 77.1,
+      "source": "LL-Q1321 (spa)-Rodelar-Argelia.wav"
+    },
+    "Argentina": {
+      "author": "Arca~commonswiki",
+      "file": "countries/argentina.mp3",
+      "gain": -4.2,
+      "gainPhone": -6.2,
+      "matches": "Argentina",
+      "sha256": "136f96ef6816fa71684736ae102ec66ab6f2b60a9dd54d126fbfdd7812ac75d4",
+      "snr": 26.5,
+      "source": "Es-Argentina.ogg"
+    },
+    "Australia": {
+      "author": "Rodelar",
+      "file": "countries/australia.mp3",
+      "gain": 0.1,
+      "gainPhone": -2.9,
+      "lead": 239,
+      "matches": "Australia",
+      "sha256": "5431741a50e080bdf616476d064426fd72c5f1cb41fb2945a3b56b8748e94489",
+      "snr": 74.9,
+      "source": "LL-Q1321 (spa)-Rodelar-Australia.wav"
+    },
+    "Austria": {
+      "author": "Rodelar",
+      "file": "countries/austria.mp3",
+      "gain": 3.6,
+      "gainPhone": 1.7,
+      "lead": 263,
+      "matches": "Austria",
+      "sha256": "569d047fe99246df2fc4cf1561bb352ceba245f3dd653165b20b43849cf20fe7",
+      "snr": 73.9,
+      "source": "LL-Q1321 (spa)-Rodelar-Austria.wav"
+    },
+    "Brasil": {
+      "author": "Arca~commonswiki",
+      "file": "countries/brasil.mp3",
+      "gain": -4.0,
+      "gainPhone": -4.3,
+      "matches": "Brasil",
+      "sha256": "5f28408ed22165355da1ce8434faf48c0b8876a22434cc0716301b0bc793b4df",
+      "snr": 26.2,
+      "source": "Es-Brasil.ogg"
+    },
+    "Bulgaria": {
+      "author": "Rodelar",
+      "file": "countries/bulgaria.mp3",
+      "gain": 0.5,
+      "gainPhone": -0.5,
+      "lead": 228,
+      "matches": "Bulgaria",
+      "sha256": "cbbab1bada18409ae54aa7da2c99ae868da4fa106eb8fbc1d756260bf284d963",
+      "source": "LL-Q1321 (spa)-Rodelar-Bulgaria.wav"
+    },
+    "Bélgica": {
+      "author": "Rodrigo5260",
+      "file": "countries/bu00e9lgica.mp3",
+      "gain": 4.0,
+      "gainPhone": -2.5,
+      "lead": 178,
+      "matches": "Bélgica",
+      "sha256": "a75c3070af909b63af11fb473d220edc7c6d0cc8a941a23bc93e3ee0794850c7",
+      "snr": 68.9,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-Bélgica.wav"
+    },
+    "Canadá": {
+      "author": "Enohecruzl79",
+      "file": "countries/canadu00e1.mp3",
+      "gain": 4.9,
+      "gainPhone": -0.5,
+      "lead": 41,
+      "matches": "Canadá",
+      "sha256": "548d3c8d3c5a6d53b387a0885d4a59285ad8a8fe9e47ddd5ef3e701b3db00ec5",
+      "snr": 46.8,
+      "source": "LL-Q1321 (spa)-Enohecruzl79-Canadá.wav"
+    },
+    "Chequia": {
+      "author": "Rodelar",
+      "file": "countries/chequia.mp3",
+      "gain": 0.7,
+      "gainPhone": -0.5,
+      "lead": 237,
+      "matches": "Chequia",
+      "sha256": "73a41133cd2ea1250c9c16ae5a1bd6f36ef4130da0f342df8ca8ca8bf3cf1d5e",
+      "source": "LL-Q1321 (spa)-Rodelar-Chequia.wav"
+    },
+    "China": {
+      "author": "Rodrigo5260",
+      "file": "countries/china.mp3",
+      "gain": 0.9,
+      "gainPhone": -5.9,
+      "lead": 39,
+      "matches": "China",
+      "sha256": "67a36e2dd3149b97f079377edacd4fae1e0fe5d2d37e5f5c133a8d5dd4a6d44b",
+      "snr": 60.7,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-China.wav"
+    },
+    "Colombia": {
+      "author": "Arca~commonswiki",
+      "file": "countries/colombia.mp3",
+      "gain": -3.5,
+      "gainPhone": -3.0,
+      "matches": "Colombia",
+      "sha256": "293f4e6bf9d080994402094a8025a9423723fff0d34039a24569cea288ebdcb9",
+      "snr": 25.3,
+      "source": "Es-Colombia.ogg"
+    },
+    "Corea del Sur": {
+      "author": "Rodelar",
+      "file": "countries/coreau0020delu0020sur.mp3",
+      "gain": -1.7,
+      "gainPhone": -3.2,
+      "lead": 228,
+      "matches": "Corea del Sur",
+      "sha256": "075ab93ecbb8a0f913cabe6a8d04d321fe092741609b0078bfc9c2ff81e08b0f",
+      "source": "LL-Q1321 (spa)-Rodelar-Corea del Sur.wav"
+    },
+    "Costa Rica": {
+      "author": "Rubýñ",
+      "file": "countries/costau0020rica.mp3",
+      "gain": 6.8,
+      "gainPhone": 8.2,
+      "lead": 201,
+      "matches": "Costa Rica",
+      "sha256": "bf7104061b04a69af9113703bb24d1cd5459561ea28d9b09a9c59f8a3730464c",
+      "snr": 57.3,
+      "source": "LL-Q1321 (spa)-Rubýñ-Costa Rica.wav"
+    },
+    "Croacia": {
+      "author": "Rodelar",
+      "file": "countries/croacia.mp3",
+      "gain": 0.5,
+      "gainPhone": -0.2,
+      "lead": 206,
+      "matches": "Croacia",
+      "sha256": "d773a766ee67cd9dfc62840e95ed029d706f52ff9679c0ee053bca1da4c0688a",
+      "source": "LL-Q1321 (spa)-Rodelar-Croacia.wav"
+    },
+    "Cuba": {
+      "author": "GlyphEnjoyer",
+      "capPhone": 1.1,
+      "file": "countries/cuba.mp3",
+      "gain": 13.6,
+      "gainPhone": 16.1,
+      "lead": 140,
+      "matches": "Cuba",
+      "sha256": "39f9cc0513e571cccc9391caef320b5a4496c7540ab4a6b29017ebc0ba36d861",
+      "snr": 51.8,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-Cuba.wav"
+    },
+    "Dinamarca": {
+      "author": "Rodelar",
+      "file": "countries/dinamarca.mp3",
+      "gain": 1.9,
+      "gainPhone": -2.1,
+      "lead": 235,
+      "matches": "Dinamarca",
+      "sha256": "fe0d95cbb00301c38ee8731c2749afb0ac9b2987693fbdaac5e92514c8d0eb80",
+      "source": "LL-Q1321 (spa)-Rodelar-Dinamarca.wav"
+    },
+    "Ecuador": {
+      "author": "Arca~commonswiki",
+      "file": "countries/ecuador.mp3",
+      "gain": -3.7,
+      "gainPhone": -4.0,
+      "matches": "Ecuador",
+      "sha256": "cafdbfbd835d5da42e80cb40c727071eddb5ee6f82a10e7cd8a4d70a7a3a769c",
+      "snr": 28.9,
+      "source": "Es-Ecuador.ogg"
+    },
+    "Egipto": {
+      "author": "Marreromarco",
+      "capPhone": 3.0,
+      "file": "countries/egipto.mp3",
+      "gain": 13.3,
+      "gainPhone": 15.4,
+      "lead": 444,
+      "license": "CC0",
+      "matches": "Egipto",
+      "sha256": "9cb1c307657561d3a1bac41bd0c6f6999d62bff6b95846fb02547e36a35e10d4",
+      "source": "Es-Egipto.ogg"
+    },
+    "Eslovaquia": {
+      "author": "Rodelar",
+      "file": "countries/eslovaquia.mp3",
+      "gain": 0.2,
+      "gainPhone": -0.1,
+      "lead": 212,
+      "matches": "Eslovaquia",
+      "sha256": "b6d447dc1b49cd936c2e215a48e6a3d5ae6d334378942d3566cd83936c0b7438",
+      "source": "LL-Q1321 (spa)-Rodelar-Eslovaquia.wav"
+    },
+    "España": {
+      "author": "Susana Freixeiro",
+      "file": "countries/espau00f1a.mp3",
+      "gain": 1.0,
+      "gainPhone": -3.3,
+      "matches": "España",
+      "sha256": "4d1619ad847fc8c2e75225c0cda16c6702ad00ca1762312737c219e896f56583",
+      "snr": 27.6,
+      "source": "Es-España.ogg"
+    },
+    "Estados Unidos": {
+      "author": "Rodelar",
+      "file": "countries/estadosu0020unidos.mp3",
+      "gain": 0.9,
+      "gainPhone": 1.2,
+      "lead": 246,
+      "matches": "Estados Unidos",
+      "sha256": "809d158d4909c504547853473b2d0c6366fac4fc3317d9a6e01e426745dc09c5",
+      "source": "LL-Q1321 (spa)-Rodelar-Estados Unidos.wav"
+    },
+    "Etiopía": {
+      "author": "Rodelar",
+      "file": "countries/etiopu00eda.mp3",
+      "gain": 1.2,
+      "gainPhone": 1.3,
+      "lead": 253,
+      "matches": "Etiopía",
+      "sha256": "ccfa25af65886eab37d6c30e995c25e767255d224e5bfaf159c55e799b498ab8",
+      "source": "LL-Q1321 (spa)-Rodelar-Etiopía.wav"
+    },
+    "Finlandia": {
+      "author": "Rodelar",
+      "file": "countries/finlandia.mp3",
+      "gain": -0.3,
+      "gainPhone": -4.0,
+      "lead": 245,
+      "matches": "Finlandia",
+      "sha256": "0771f24faa083424aa8d29edc839a17d275d63e4ab0266e2aedf2e63b41dc618",
+      "source": "LL-Q1321 (spa)-Rodelar-Finlandia.wav"
+    },
+    "Francia": {
+      "author": "Rodrigo5260",
+      "file": "countries/francia.mp3",
+      "gain": 8.5,
+      "gainPhone": 4.5,
+      "lead": 162,
+      "matches": "Francia",
+      "sha256": "c37f901019f51299a1a401682ad831a014e3c4dc788f7cb8530d2f14717fe7fd",
+      "snr": 63.6,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-Francia.wav"
+    },
+    "Ghana": {
+      "author": "Rodelar",
+      "file": "countries/ghana.mp3",
+      "gain": 0.8,
+      "gainPhone": -4.5,
+      "lead": 192,
+      "matches": "Ghana",
+      "sha256": "cb0f4d272d02ec09accef85cefb4066bb6debb42dc420408ff7fb8b5db185d9f",
+      "snr": 65.3,
+      "source": "LL-Q1321 (spa)-Rodelar-Ghana.wav"
+    },
+    "Grecia": {
+      "author": "Rubýñ",
+      "file": "countries/grecia.mp3",
+      "gain": 7.4,
+      "gainPhone": 3.6,
+      "lead": 172,
+      "matches": "Grecia",
+      "sha256": "91a63ec9c33b62a9718de1d1834083d81503bef2369546d249f7dee64be92f4f",
+      "source": "LL-Q1321 (spa)-Rubýñ-Grecia.wav"
+    },
+    "Hungría": {
+      "author": "Rodrigo5260",
+      "file": "countries/hungru00eda.mp3",
+      "gain": 3.3,
+      "gainPhone": -0.1,
+      "lead": 191,
+      "matches": "Hungría",
+      "sha256": "d4876a83095e0a37885f74518a496f951dc3d461878c8a5c1063a3b1abf101f9",
+      "snr": 50.4,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-Hungría.wav"
+    },
+    "India": {
+      "author": "Rodelar",
+      "file": "countries/india.mp3",
+      "gain": 4.2,
+      "gainPhone": 6.4,
+      "lead": 270,
+      "matches": "India",
+      "sha256": "cc24fe216867a6144fc3564ee804c9639febfd42ccf97d1b6e58ec633485841e",
+      "source": "LL-Q1321 (spa)-Rodelar-India.wav"
+    },
+    "Indonesia": {
+      "author": "Rodrigo5260",
+      "file": "countries/indonesia.mp3",
+      "gain": 10.7,
+      "gainPhone": 4.8,
+      "lead": 205,
+      "matches": "Indonesia",
+      "sha256": "43a6749708ebf67b9d4ac5f9d33a030e66a7d8fa5aac728274d88711d0e15a76",
+      "snr": 61.3,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-Indonesia.wav"
+    },
+    "Irlanda": {
+      "author": "Rodelar",
+      "file": "countries/irlanda.mp3",
+      "gain": 2.8,
+      "gainPhone": 1.3,
+      "lead": 224,
+      "matches": "Irlanda",
+      "sha256": "cfc8bdfb6d344e4c39d15d605973cec34d835f0fe9b6ec2cc529a9eb0a20a2ad",
+      "source": "LL-Q1321 (spa)-Rodelar-Irlanda.wav"
+    },
+    "Irán": {
+      "author": "Rodrigo5260",
+      "file": "countries/iru00e1n.mp3",
+      "gain": 2.5,
+      "gainPhone": -5.3,
+      "lead": 187,
+      "matches": "Irán",
+      "sha256": "676f34e43e485b0af2236fad5ac77e33f177e386a4b8b983be88a5f7dea70f17",
+      "snr": 67.6,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-Irán.wav"
+    },
+    "Israel": {
+      "author": "Rodelar",
+      "file": "countries/israel.mp3",
+      "gain": -0.8,
+      "gainPhone": 2.0,
+      "lead": 229,
+      "matches": "Israel",
+      "sha256": "c26570e3b94696320a5d3fbe9e8cfb353ce8e569ee36abdb89ff15a0599ec809",
+      "source": "LL-Q1321 (spa)-Rodelar-Israel.wav"
+    },
+    "Italia": {
+      "author": "Precision27",
+      "file": "countries/italia.mp3",
+      "gain": 0.6,
+      "gainPhone": -4.4,
+      "lead": 197,
+      "matches": "Italia",
+      "sha256": "5125951c0ea13598a0f7db4d08216c268067b2e9c825406a3481d8fb548f8a31",
+      "source": "LL-Q1321 (spa)-Precision27-Italia.wav"
+    },
+    "Japón": {
+      "author": "Rodelar",
+      "file": "countries/japu00f3n.mp3",
+      "gain": 1.7,
+      "gainPhone": 3.0,
+      "lead": 214,
+      "matches": "Japón",
+      "sha256": "a3d728649f836deb73a36ceca8a045ea154b604983756fe69d79f88accb31e35",
+      "source": "LL-Q1321 (spa)-Rodelar-Japón.wav"
+    },
+    "Kenia": {
+      "author": "Rodelar",
+      "file": "countries/kenia.mp3",
+      "gain": 0.2,
+      "gainPhone": 1.4,
+      "lead": 209,
+      "matches": "Kenia",
+      "sha256": "4d2b46b3e481577656d137d30ed9a6d69dca58fdb2616c4632d94a8b4ebee2de",
+      "source": "LL-Q1321 (spa)-Rodelar-Kenia.wav"
+    },
+    "Luxemburgo": {
+      "author": "Rodelar",
+      "capPhone": 2.0,
+      "file": "countries/luxemburgo.mp3",
+      "gain": -0.1,
+      "gainPhone": 4.3,
+      "lead": 162,
+      "matches": "Luxemburgo",
+      "sha256": "081cffae170a3b55bdbde676174744531194111b830d913531183153165b1554",
+      "source": "LL-Q1321 (spa)-Rodelar-Luxemburgo.wav"
+    },
+    "Marruecos": {
+      "author": "Rodrigo5260",
+      "file": "countries/marruecos.mp3",
+      "gain": 6.7,
+      "gainPhone": 1.6,
+      "lead": 250,
+      "matches": "Marruecos",
+      "sha256": "70dab3bffddc1b77b3774b79a031eb33b2a907ba4f9413a2387aa45282f99089",
+      "snr": 59.3,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-Marruecos.wav"
+    },
+    "Mozambique": {
+      "author": "Rodelar",
+      "capPhone": 2.4,
+      "file": "countries/mozambique.mp3",
+      "gain": 3.0,
+      "gainPhone": 6.5,
+      "lead": 254,
+      "matches": "Mozambique",
+      "sha256": "ac6853737bf898dc0b0a183118d92c5f93cfbb9d9de3a09ae3989138264157aa",
+      "source": "LL-Q1321 (spa)-Rodelar-Mozambique.wav"
+    },
+    "México": {
+      "author": "Rodrigo5260",
+      "cap": 0.3,
+      "file": "countries/mu00e9xico.mp3",
+      "gain": 9.0,
+      "gainPhone": 3.0,
+      "lead": 146,
+      "matches": "México",
+      "sha256": "611fc94269fe07e037e167b8852cb6410c1a9c885eae2e0a37d19154fafc1038",
+      "snr": 70.2,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-México.wav"
+    },
+    "Nigeria": {
+      "author": "Rodelar",
+      "file": "countries/nigeria.mp3",
+      "gain": -0.6,
+      "gainPhone": 0.4,
+      "lead": 243,
+      "matches": "Nigeria",
+      "sha256": "adb0a1e534a0b471181f22c646954016f119455801cab757f872bbad98c91fde",
+      "source": "LL-Q1321 (spa)-Rodelar-Nigeria.wav"
+    },
+    "Noruega": {
+      "author": "Rodelar",
+      "file": "countries/noruega.mp3",
+      "gain": -1.9,
+      "gainPhone": 3.7,
+      "lead": 237,
+      "matches": "Noruega",
+      "sha256": "86dbc3f92bbe5d55b7970b84cf678cdb01267e5b663223eedf130b5d46ad01cd",
+      "source": "LL-Q1321 (spa)-Rodelar-Noruega.wav"
+    },
+    "Nueva Zelanda": {
+      "author": "Rodelar",
+      "file": "countries/nuevau0020zelanda.mp3",
+      "gain": 2.6,
+      "gainPhone": 4.5,
+      "lead": 210,
+      "matches": "Nueva Zelanda",
+      "sha256": "5322853ad768a2ea1d6cf93519938638fd2907cd5652b9187066a039d0c7394d",
+      "source": "LL-Q1321 (spa)-Rodelar-Nueva Zelanda.wav"
+    },
+    "Países Bajos": {
+      "author": "Rodelar",
+      "file": "countries/pau00edsesu0020bajos.mp3",
+      "gain": 2.8,
+      "gainPhone": 2.7,
+      "lead": 247,
+      "matches": "Países Bajos",
+      "sha256": "02b153737e9fd55b4c01aa3172698877e94482d6ea48665bf088185d00f76a12",
+      "source": "LL-Q1321 (spa)-Rodelar-Países Bajos.wav"
+    },
+    "Perú": {
+      "author": "Enohecruzl79",
+      "file": "countries/peru00fa.mp3",
+      "gain": 8.4,
+      "gainPhone": 10.3,
+      "lead": 185,
+      "matches": "Perú",
+      "sha256": "13cfa18ce6ba1119af680a0bc90f8f00b8dc95692d6590a4c4058a335b6c90de",
+      "snr": 41.9,
+      "source": "LL-Q1321 (spa)-Enohecruzl79-Perú.wav"
+    },
+    "Polonia": {
+      "author": "GlyphEnjoyer",
+      "file": "countries/polonia.mp3",
+      "gain": 3.6,
+      "gainPhone": -0.9,
+      "lead": 189,
+      "matches": "Polonia",
+      "sha256": "1703ba2a4a4e0c8238bc5f059fe07dacbd8064724d506ef2703e37e029239dae",
+      "snr": 66.5,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-Polonia.wav"
+    },
+    "Portugal": {
+      "author": "Mentxuwiki",
+      "file": "countries/portugal.mp3",
+      "gain": -1.4,
+      "gainPhone": -4.1,
+      "lead": 189,
+      "matches": "Portugal",
+      "sha256": "9f888cb588ca4f10767b8018b969b53cd20beb9607ee8e009d955b458f149003",
+      "source": "LL-Q1321 (spa)-Mentxuwiki-Portugal.wav"
+    },
+    "Reino Unido": {
+      "author": "Rodelar",
+      "file": "countries/reinou0020unido.mp3",
+      "gain": -4.2,
+      "gainPhone": 2.0,
+      "lead": 272,
+      "matches": "Reino Unido",
+      "sha256": "391f150b3fbda78205c0c3d8c2deb70b05953ab3372d6f8bce2a0f55e95b724d",
+      "source": "LL-Q1321 (spa)-Rodelar-Reino Unido.wav"
+    },
+    "República Democrática del Congo": {
+      "author": "Rodelar",
+      "file": "countries/repu00fablicau0020democru00e1ticau0020delu0020congo.mp3",
+      "gain": -1.6,
+      "gainPhone": 1.9,
+      "lead": 267,
+      "matches": "República Democrática del Congo",
+      "sha256": "490f9922b5685144e83583b3d5c945eb22fc0985632576a52ac17f838e09a06e",
+      "source": "LL-Q1321 (spa)-Rodelar-República Democrática del Congo.wav"
+    },
+    "Ruanda": {
+      "author": "Rodelar",
+      "file": "countries/ruanda.mp3",
+      "gain": 0.6,
+      "gainPhone": 3.5,
+      "lead": 169,
+      "matches": "Ruanda",
+      "sha256": "9e7eb58ce142fa56525018a146b4e76f377cd4fe1fe8036a10cde9847386cdd3",
+      "snr": 74.0,
+      "source": "LL-Q1321 (spa)-Rodelar-Ruanda.wav"
+    },
+    "Rumanía": {
+      "author": "Rodelar",
+      "capPhone": 0.1,
+      "file": "countries/rumanu00eda.mp3",
+      "gain": 3.9,
+      "gainPhone": 8.8,
+      "lead": 224,
+      "matches": "Rumanía",
+      "sha256": "89704e4807e3770147f3c396eec04e44e8e626882e4bba96a00a50dd1bedf708",
+      "source": "LL-Q1321 (spa)-Rodelar-Rumanía.wav"
+    },
+    "Rusia": {
+      "author": "Precision27",
+      "file": "countries/rusia.mp3",
+      "gain": -1.0,
+      "gainPhone": 1.5,
+      "lead": 195,
+      "matches": "Rusia",
+      "sha256": "3bc002eab09d9dc26678739f64ce2e18e82d5fdf5e8e672afdd89b64f45ae1fb",
+      "snr": 64.6,
+      "source": "LL-Q1321 (spa)-Precision27-Rusia.wav"
+    },
+    "Senegal": {
+      "author": "Rodelar",
+      "file": "countries/senegal.mp3",
+      "gain": -1.4,
+      "gainPhone": -0.1,
+      "lead": 189,
+      "matches": "Senegal",
+      "sha256": "db83fd585c6a9d8eafde34bb8d45c09fbdbb287e76fc13d8ba0f1109e8919778",
+      "source": "LL-Q1321 (spa)-Rodelar-Senegal.wav"
+    },
+    "Serbia": {
+      "author": "Rodelar",
+      "capPhone": 1.6,
+      "file": "countries/serbia.mp3",
+      "gain": 1.8,
+      "gainPhone": 4.1,
+      "lead": 191,
+      "matches": "Serbia",
+      "sha256": "5d0fe7f3014b473a935a2f2a79ae5670d9594c23797840e43f7356d82806cc71",
+      "source": "LL-Q1321 (spa)-Rodelar-Serbia.wav"
+    },
+    "Singapur": {
+      "author": "Rodrigo5260",
+      "file": "countries/singapur.mp3",
+      "gain": 1.5,
+      "gainPhone": -10.9,
+      "lead": 86,
+      "matches": "Singapur",
+      "sha256": "94fb7a84209cae0f7867b60f3ce4b5c25a31b00ced896b5fd60e0ce4c7bbc127",
+      "snr": 73.4,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-Singapur.wav"
+    },
+    "Sudáfrica": {
+      "author": "Rodrigo5260",
+      "file": "countries/sudu00e1frica.mp3",
+      "gain": 2.7,
+      "gainPhone": -1.5,
+      "lead": 194,
+      "matches": "Sudáfrica",
+      "sha256": "70870ff56807b3d580867fd2237d1aedeccd1e60fa4d405fff7c52870c910198",
+      "snr": 53.4,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-Sudáfrica.wav"
+    },
+    "Suecia": {
+      "author": "Rodelar",
+      "capPhone": 1.8,
+      "file": "countries/suecia.mp3",
+      "gain": 1.6,
+      "gainPhone": 5.7,
+      "lead": 155,
+      "matches": "Suecia",
+      "sha256": "a1f8e06d89dcca9caa9cd5b839bdc21b91f0e1fed4ac2eb16a435dba4dd87039",
+      "source": "LL-Q1321 (spa)-Rodelar-Suecia.wav"
+    },
+    "Suiza": {
+      "author": "Rodelar",
+      "file": "countries/suiza.mp3",
+      "gain": 2.6,
+      "gainPhone": 7.7,
+      "lead": 102,
+      "matches": "Suiza",
+      "sha256": "ea0db577475b68155c9d2d56abe2980fca973fb8c6decec058e9dc434b6ecb9d",
+      "source": "LL-Q1321 (spa)-Rodelar-Suiza.wav"
+    },
+    "Tailandia": {
+      "author": "Rodelar",
+      "file": "countries/tailandia.mp3",
+      "gain": 1.9,
+      "gainPhone": 3.4,
+      "lead": 243,
+      "matches": "Tailandia",
+      "sha256": "d7c683e42fcf112d3f1f6bd21bdd9645e3f00fb8438d07f1b08389072997b284",
+      "source": "LL-Q1321 (spa)-Rodelar-Tailandia.wav"
+    },
+    "Tanzania": {
+      "author": "Rodelar",
+      "file": "countries/tanzania.mp3",
+      "gain": 5.0,
+      "gainPhone": 5.2,
+      "lead": 194,
+      "matches": "Tanzania",
+      "sha256": "4afb0557e92df979334294eb1f4b95e83c715012f44b7670746e3c725cc2d103",
+      "source": "LL-Q1321 (spa)-Rodelar-Tanzania.wav"
+    },
+    "Turquía": {
+      "author": "Marreromarco",
+      "capPhone": 1.0,
+      "file": "countries/turquu00eda.mp3",
+      "gain": 11.2,
+      "gainPhone": 17.0,
+      "lead": 661,
+      "license": "CC0",
+      "matches": "Turquía",
+      "sha256": "eec82f6ebfe85f0b0e8cd746e5dc5f3c3603b283a6d5564e7c59e0b1fabd7f1c",
+      "source": "Es-Turquía.ogg"
+    },
+    "Túnez": {
+      "author": "Rodelar",
+      "capPhone": 1.7,
+      "file": "countries/tu00fanez.mp3",
+      "gain": 1.0,
+      "gainPhone": 6.5,
+      "lead": 209,
+      "matches": "Túnez",
+      "sha256": "a85db2c6f9596e9e33e2155fedd554091ffb95178a35539553d76abc09b6bded",
+      "source": "LL-Q1321 (spa)-Rodelar-Túnez.wav"
+    },
+    "Ucrania": {
+      "author": "Rodrigo5260",
+      "cap": 0.1,
+      "file": "countries/ucrania.mp3",
+      "gain": 4.2,
+      "gainPhone": -2.0,
+      "lead": 245,
+      "matches": "Ucrania",
+      "sha256": "62d61cff75c979d7ae353af2314ab97124760eb987963d054adcd93097e68b0f",
+      "snr": 58.9,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-Ucrania.wav"
+    },
+    "Uganda": {
+      "author": "Rodelar",
+      "file": "countries/uganda.mp3",
+      "gain": 2.0,
+      "gainPhone": 1.7,
+      "lead": 246,
+      "matches": "Uganda",
+      "sha256": "b9128c040fc424e6684b03aa437eeac53a1a025fe92b0fda40678c4ba730a222",
+      "source": "LL-Q1321 (spa)-Rodelar-Uganda.wav"
+    },
+    "Uruguay": {
+      "author": "Arca~commonswiki",
+      "file": "countries/uruguay.mp3",
+      "gain": -4.9,
+      "gainPhone": -2.1,
+      "matches": "Uruguay",
+      "sha256": "e010467e79d84730b920a024b6ae54a600ce17b5d83b76deb4166377511fd30c",
+      "snr": 27.9,
+      "source": "Es-Uruguay.ogg"
+    },
+    "Venezuela": {
+      "author": "Arca~commonswiki",
+      "file": "countries/venezuela.mp3",
+      "gain": -4.6,
+      "gainPhone": -6.0,
+      "matches": "Venezuela",
+      "sha256": "c7d9f713dbfc2e6e988c20774ece4e7074235267fc6fe33b175ab4670151483d",
+      "snr": 29.7,
+      "source": "Es-Venezuela.ogg"
+    },
+    "Vietnam": {
+      "author": "Rodelar",
+      "file": "countries/vietnam.mp3",
+      "gain": 0.4,
+      "gainPhone": 2.7,
+      "lead": 226,
+      "matches": "Vietnam",
+      "sha256": "0eef989404552dc6a615e4ed262e9bc7369f98d58f402421479c0df3eed0fc74",
+      "source": "LL-Q1321 (spa)-Rodelar-Vietnam.wav"
+    },
+    "alemanes": {
+      "author": "Precision27",
+      "file": "countries/alemanes.mp3",
+      "gain": 1.3,
+      "gainPhone": -3.4,
+      "lead": 79,
+      "matches": "alemanes",
+      "sha256": "f0bc750af441b9b37a28aa0eac26a5dc3a44e24e536609ba79750d0bc299a953",
+      "snr": 72.0,
+      "source": "LL-Q1321 (spa)-Precision27-alemanes.wav"
+    },
+    "chinos": {
+      "author": "Eavqwiki",
+      "file": "countries/chinos.mp3",
+      "gain": 2.3,
+      "gainPhone": 4.6,
+      "lead": 226,
+      "matches": "chinos",
+      "sha256": "9159e0c99be7880c94067370d8aac4534d662dc288945e303ad3ebd9a5233a69",
+      "snr": 57.1,
+      "source": "LL-Q1321 (spa)-Eavqwiki-chinos.wav"
+    },
+    "españoles": {
+      "author": "AdrianAbdulBaha",
+      "file": "countries/espau00f1oles.mp3",
+      "gain": 7.0,
+      "gainPhone": 8.5,
+      "lead": 228,
+      "matches": "españoles",
+      "sha256": "909904d3195d6ee81cc108ec5dbaab45ce255a2889bcfe77ebba8cea0226d4a3",
+      "snr": 41.1,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-españoles.wav"
+    },
+    "griegos": {
+      "author": "Millars",
+      "capPhone": 0.7,
+      "file": "countries/griegos.mp3",
+      "gain": 12.3,
+      "gainPhone": 17.1,
+      "lead": 204,
+      "matches": "griegos",
+      "sha256": "6fc6fe12a956f69a0a2dfbbd81f021f895dde80c518ffcd316bcf7aaaf619d97",
+      "snr": 56.2,
+      "source": "LL-Q1321 (spa)-Millars-Griegos.wav"
+    },
+    "italianos": {
+      "author": "Marreromarco",
+      "file": "countries/italianos.mp3",
+      "gain": 2.6,
+      "gainPhone": -0.4,
+      "lead": 216,
+      "matches": "italianos",
+      "sha256": "af3378d26bf2c938173b99239b84f3832447002b9c7c5bcaa18083f73ff79cd8",
+      "snr": 52.0,
+      "source": "LL-Q1321 (spa)-Marreromarco-italianos.wav"
+    },
+    "polacos": {
+      "author": "Eavqwiki",
+      "cap": 3.3,
+      "capPhone": 7.0,
+      "file": "countries/polacos.mp3",
+      "gain": 4.1,
+      "gainPhone": 4.1,
+      "lead": 211,
+      "matches": "polacos",
+      "sha256": "e1116d50f0894bd8164c8778cb73c9aba8ed03aceded1b64177db8d8a6114b2a",
+      "snr": 72.6,
+      "source": "LL-Q1321 (spa)-Eavqwiki-polacos.wav"
+    }
+  },
   "language": "es",
   "letters": {
     "b": {
@@ -286,8 +1088,10 @@
   },
   "licenses": {
     "CC BY 4.0": "https://creativecommons.org/licenses/by/4.0/",
+    "CC BY-SA 3.0": "https://creativecommons.org/licenses/by-sa/3.0/",
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/"
+    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "Public domain": null
   },
   "texts": {
     "guitarra": {

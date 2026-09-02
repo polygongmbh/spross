@@ -132,7 +132,12 @@ LICENSE_URLS = {
 # permission at all. The Esperanto calendar is where it turns up (Kurso de Esperanto
 # recorded 16 of the 19 names), and that is the whole cost of refusing it: those names are
 # said by the device voice, which Esperanto has on both platforms.
-UNSHIPPABLE_LICENSES = {'GFDL', 'GPLv3'}
+# "Attribution" is Commons' legacy bare template: the uploader asks to be credited and names
+# no versioned license, so there is no deed for the credits screen to link and no stated terms
+# to hold anyone to. Unlike `Public domain`, which also has no deed, it is a claim of rights
+# rather than a waiver of them — so it is refused rather than deeded to null. One recording
+# carries it (es `Chile`).
+UNSHIPPABLE_LICENSES = {'GFDL', 'GPLv3', 'Attribution'}
 
 
 def shippable(rows, where):
