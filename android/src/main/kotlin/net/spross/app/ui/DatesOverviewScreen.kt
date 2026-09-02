@@ -7,7 +7,7 @@ import net.spross.app.dateSprosseHint
 import net.spross.kern.trainer.DateDrill
 
 /**
- * The "Datum" entry: the calendar as the two languages name it, and the place its drill is
+ * The Dates entry: the calendar as the two languages name it, and the place its drill is
  * started from.
  *
  * The page itself is [TypedDrillOverview], shared with the atlas; what is here is the

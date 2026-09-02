@@ -23,7 +23,7 @@ import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.LetterStage
 
 /**
- * The "Buchstaben" entry: the alphabet of the language being learnt, and the place its
+ * The Letters entry: the alphabet of the language being learnt, and the place its
  * drill is started from.
  *
  * The same shape as the numbers page — the drill's stages and start first, the alphabet

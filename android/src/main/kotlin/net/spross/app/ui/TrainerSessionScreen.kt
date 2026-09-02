@@ -75,7 +75,7 @@ fun TrainerSessionScreen(model: AppModel, mode: TrainerMode) {
     val store = model.trainer.store
 
     // What the result tile says was drilled: a run that asks one thing names it, and one
-    // that interleaves several is the TrainerStanding itself.
+    // that interleaves several falls back to the Sprossen card's own title.
     val title = mode.variants.singleOrNull()?.let { chrome.name(it) } ?: chrome.trainerHubTitle
 
     // why: from the corner or from "Fertig", the close is the same one — kern books what

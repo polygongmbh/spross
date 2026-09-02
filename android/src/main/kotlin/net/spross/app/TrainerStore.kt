@@ -118,7 +118,7 @@ class TrainerStanding(val store: TrainerStore) {
     var countriesBest by mutableStateOf(0)
         private set
 
-    /** The dates ladder's twin of [countriesBest], for the Datum page and its Fast price. */
+    /** The dates ladder's twin of [countriesBest], for the Dates page and its Fast price. */
     var datesBest by mutableStateOf(0)
         private set
 

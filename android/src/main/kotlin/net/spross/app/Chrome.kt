@@ -208,7 +208,7 @@ interface Chrome {
     val lettersAlphabetSpeakName: String
     val lettersAlphabetSpeakExample: String
 
-    // ── The atlas: the Länder page and its run ──────────────────────────────────
+    // ── The atlas: the Countries page and its run ───────────────────────────────
     val trainerSkillCountries: String
     val countriesTitle: String     // %s
     val countriesReference: String
@@ -231,7 +231,7 @@ interface Chrome {
     val countriesAskSpokenIn: String
     val countriesAskSpokenWhere: String
 
-    // ── The calendar: the Datum page and its run ────────────────────────────────
+    // ── The calendar: the Dates page and its run ────────────────────────────────
     val trainerSkillDates: String
     val datesTitle: String     // %s
     val datesReference: String

@@ -178,10 +178,8 @@ fun HomeScreen(model: AppModel) {
  *
  * FOUR entries on ONE row, and each opens a PAGE rather than a run — the reading and the
  * drill it prepares you for are one surface. Each is its own SKILL, which is the only thing
- * that earns a chip. Zahlen stands where the pair has counting content; Buchstaben on the
- * alphabet FILE alone, because the table ships even where this device can sound nothing;
- * Länder on the joined atlas; Datum on the joined calendars. A card with none of the four
- * is absent rather than empty.
+ * that earns a chip; what each one gates on is `DrillAvailability`. A card with none of
+ * the four is absent rather than empty.
  */
 @Composable
 private fun WerkstattCard(model: AppModel) {
@@ -200,8 +198,8 @@ private fun WerkstattCard(model: AppModel) {
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            // why: the chips name an exercise and nothing else — spoken, "Zahlen" could be
-            // a shelf. The suffix says it is practice, and in which language.
+            // why: the chips name an exercise and nothing else — spoken, "Numbers" could
+            // be an area of the box. The suffix says it is practice, and in which language.
             val practice =
                 chrome.a11ySuffixPractice.format(model.languageName(model.box?.joinStamp?.target.orEmpty()))
             Row(horizontalArrangement = Arrangement.spacedBy(DlSpace.m)) {
@@ -223,13 +221,12 @@ private fun WerkstattCard(model: AppModel) {
 }
 
 /**
- * One TrainerStanding entry: the glyph large on top, the name at full caption size under it —
- * the iOS chip's face, stacked so three names share the row without shrinking to fit
- * beside their glyphs. The label still steps down rather than wrapping, but only where
- * a name alone outgrows a third of the screen.
+ * One entry of the Sprossen card: the glyph large on top, the name at full caption size
+ * under it — the iOS chip's face, stacked so three names share the row without shrinking
+ * to fit beside their glyphs. The label still steps down rather than wrapping, but only
+ * where a name alone outgrows a third of the screen.
  *
- * [suffix] finishes the spoken name — the chip says what it opens on screen and what it is
- * for in the reading order, where a bare "Zahlen" could be anything.
+ * [suffix] finishes the spoken name.
  */
 @Composable
 private fun RowScope.EntryChip(
@@ -253,7 +250,7 @@ private fun RowScope.EntryChip(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(DlSpace.s, Alignment.CenterVertically),
     ) {
-        // why: the name is the label — TalkBack reading "Zahlen", not "Eingabesymbol Zahlen".
+        // why: the name is the label — TalkBack reading "Numbers", not "input symbol Numbers".
         Text(emoji, fontSize = 30.sp, modifier = Modifier.clearAndSetSemantics { })
         Text(
             title,

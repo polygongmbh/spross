@@ -7,7 +7,7 @@ import net.spross.app.countrySprosseHint
 import net.spross.kern.trainer.CountryDrill
 
 /**
- * The "Länder" entry: the world as the two languages name it, and the place its drill is
+ * The Countries entry: the world as the two languages name it, and the place its drill is
  * started from.
  *
  * The page itself is [TypedDrillOverview], shared with the calendar; what is here is the

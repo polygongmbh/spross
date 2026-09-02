@@ -29,7 +29,7 @@ import net.spross.kern.trainer.DrillVariant
 import net.spross.kern.trainer.TrainerMode
 
 /**
- * The "Zahlen" entry: a numbers page for the language being learnt, and the place its drill
+ * The Numbers entry: a numbers page for the language being learnt, and the place its drill
  * is started from.
  *
  * Three sections, start first: the run to practice with (what it asks, how it is played,

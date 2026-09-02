@@ -36,7 +36,7 @@ val AppModel.lettersOffered: Boolean
     }
 
 /**
- * The Länder entry rides on the JOIN and nothing else — registry by file, exactly as the
+ * The Countries entry rides on the JOIN and nothing else — registry by file, exactly as the
  * alphabet's is, and kern is the only judge of it. Audio is no precondition here: the atlas
  * is typed in both directions, so a device with no voice still gets the whole drill.
  */
@@ -44,7 +44,7 @@ val AppModel.countriesOffered: Boolean
     get() = atlas != null
 
 /**
- * The Datum entry rides on the JOIN of the two calendars — the atlas rule again, and kern
+ * The Dates entry rides on the JOIN of the two calendars — the atlas rule again, and kern
  * is the only judge of it: a side without a dates file, or a target whose trainer cannot
  * read a day of the month, joins nothing.
  */

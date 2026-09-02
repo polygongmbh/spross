@@ -78,16 +78,12 @@ sealed interface Screen {
      */
     data object Listening : Screen
 
-    /** The Zahlen page: the picks and the button first, the reference under them. */
     data object Numbers : Screen
 
-    /** The Buchstaben page: the stages and the button first, the alphabet under them. */
     data object Letters : Screen
 
-    /** The Länder page: the Sprossen and the button first, the atlas table under them. */
     data object Countries : Screen
 
-    /** The Datum page: the Sprossen and the button first, the calendar table under them. */
     data object Dates : Screen
 
     /** A slot run, carrying the spec the page it was started from spelled. */
@@ -188,9 +184,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         private set
 
     /**
-     * The TrainerStanding's standing: the climbed ladder, what the letter drill can ask here, and
-     * what the last run came to. Its store is kern-keyed SharedPreferences — a drill touches
-     * no card and no schedule, so none of it is box state.
+     * The free-practice standing. Its store is kern-keyed SharedPreferences — a drill
+     * touches no card and no schedule, so none of it is box state.
      */
     val trainer = TrainerStanding(TrainerStore(prefs))
 
@@ -205,7 +200,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     /**
      * The atlas joined for this profile, or null where the pair has no drill at all —
-     * kern's registry by file, and the whole of what the Länder chip gates on.
+     * kern's registry by file, and the whole of what the Countries chip gates on.
      *
      * Joined ONCE, as the profile activates: the hub, the page and the run read the very
      * same rows, so the manifest is never walked per composition and the table can never
@@ -217,7 +212,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     /**
      * The two calendars joined for this profile, or null where the pair has no dates
      * drill — the atlas rule again: registry by file, joined ONCE as the profile
-     * activates, and the whole of what the Datum chip gates on.
+     * activates, and the whole of what the Dates chip gates on.
      */
     var dates by mutableStateOf<DateDrillContent?>(null)
         private set
@@ -553,7 +548,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * voice may be installed in Settings while the app sleeps
      * (`SprossActivity.onResume` calls this too).
      *
-     * Never on the way to Home: the TrainerStanding card gates on file presence alone, and this
+     * Never on the way to Home: the Sprossen card gates on file presence alone, and this
      * is a catalog sweep no start-up should pay for.
      */
     fun refreshWerkstatt() {

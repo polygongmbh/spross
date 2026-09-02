@@ -5,7 +5,7 @@ import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.model.Language
 
 /**
- * What the TrainerStanding says out loud, outside the letter drill's own prompts.
+ * What the drills say out loud, outside the letter drill's own prompts.
  *
  * A drill card is a review card, so its revealed reading is spoken and replayable like any
  * other answer (`docs/read-aloud.md`) — and the alphabet sheet, being reading matter rather
