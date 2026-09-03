@@ -7,9 +7,8 @@ and whose they are `../../docs/audio-licensing.md`.
 
 Bundled pronunciation recordings, one folder per language, **generated** by
 `app/scripts/audio-catalog.py --packs <workspace>` — edit packs, not this directory.
-`--articles`, `--calendar` and `--countries` rebuild only their own section of what ships, which
-is how a late pack lands without re-deriving the others from a workspace whose word mp3s a
-renamed slug has already outlived.
+`--articles`, `--calendar` and `--countries` rebuild only their own section of what ships,
+so a late pack lands without re-deriving the others.
 
 **`--fill` is how a language catches up with the catalog**, and the only way that should be
 used: it ADDS words the manifest lacks and leaves every entry it already has byte-identical

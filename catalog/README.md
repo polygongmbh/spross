@@ -138,8 +138,7 @@ Slugs are readable English lemmas, **globally unique across every area** (lint-e
 English doubles as the keying language AND a content language: the slug is the identity,
 `en.json` carries the English realization (display text may differ from the slug —
 verb `to-cook` → `"to cook"`, phrase `the-fridge-is-empty` → `"The fridge is empty."`).
-A verb slug always carries the `to-` prefix, so a noun and the verb it shares a lemma with
-never compete for one slug (`help`/`to-help`, `work`/`to-work`).
+A verb slug carries `to-` and nothing else does (lint-enforced), so `help`/`to-help` never contend.
 - `emoji` — optional on EVERY kind, not just nouns. It is the engine's meaning cue, shown
   upfront on a first exposure and on an unsettled produce prompt (`../kern/README.md` §3).
   Which concepts get one, and which must not, is `areas/README.md`.
@@ -172,11 +171,8 @@ Global uniqueness is what makes that safe:
 two areas claiming one slug would fuse two concepts into a single schedule,
 so a genuine repeat across areas is disambiguated by qualifying the slug.
 The price is that **renaming a slug is a breaking act**:
-it orphans the schedule and every audio pack row keyed by the old name,
-and the word returns as new — so rename deliberately, never just to polish a lemma.
-When one is due, `../scripts/catalog-rename-slugs.py` carries it through the concept,
-every realization, every `components` reference and the shipped recordings in one run;
-the pack rows outside the repo are still yours to update.
+it orphans the schedule and the word returns as new — so rename deliberately, never just to polish a lemma,
+and always through `../scripts/catalog-rename-slugs.py`, which carries every reference and recording along.
 
 **`areas/<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json
