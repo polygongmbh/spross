@@ -18,17 +18,11 @@ data class BriefArea(val title: String, val words: List<String>)
  * and written in English — neither of the learner's two languages, and the one every
  * assistant reads best. Those two are NAMED inside it, never translated around.
  *
- * The app hosts no assistant: this TEXT is its whole contribution, pasted by the learner
- * into whichever one they already have. An in-app chat would put a running cost on a free
- * offline app and tie it to one vendor's terms and one vendor's outage.
- *
- * [GrowthStage.Suspended] and everything unscheduled appear nowhere: naming 800 words to
- * forbid them would be the whole catalog with a "no" on it, so what is listed is where to
- * reach FIRST, never a fence.
+ * [GrowthStage.Suspended] and everything unscheduled appear nowhere: what is listed is
+ * where to reach FIRST, never a fence.
  */
 data class Briefing(
     val learnerName: String?,
-    /** English exonyms — a brief written in English names both sides in it. */
     val sourceName: String,
     val targetName: String,
     val free: List<BriefArea>,
@@ -51,22 +45,22 @@ data class Briefing(
             appendLine(firstTurn())
             if (freeCount > 0) {
                 appendLine()
-                appendLine("WORDS I HAVE — $freeCount I have made mine; say anything to me in these")
+                appendLine("WORDS I HAVE — $freeCount of them; say anything to me in these")
                 for (area in free) appendLine("${area.title}: ${area.words.joinToString(", ")}")
             }
             if (inPlay.isNotEmpty()) {
                 appendLine()
                 appendLine(
-                    "WORDS I AM LEARNING RIGHT NOW — ${inPlay.size} of them. Where the talk goes " +
-                        "near one, reach for it; where it does not, leave it.",
+                    "WORDS I AM LEARNING RIGHT NOW — ${inPlay.size} of them. Reach for one " +
+                        "where the talk goes near it, leave it where it does not.",
                 )
                 for (word in inPlay) appendLine("${word.target} = ${word.source}")
             }
             if (newWords.isNotEmpty()) {
                 appendLine()
                 appendLine(
-                    "WHAT THE APP TEACHES ME NEXT — when you bring in a word of your own, one of " +
-                        "these lands best, but any word the conversation needs is fine.",
+                    "WHAT THE APP TEACHES ME NEXT — prefer one of these when you bring in a " +
+                        "word of your own; any word the conversation needs is fine.",
                 )
                 for (word in newWords) appendLine("${word.target} (${word.source})")
             }
@@ -87,18 +81,16 @@ data class Briefing(
     /** How the partner is asked to behave. Only the ground is a rule; the rest are offers. */
     private fun protocol(): String = """
         Be my conversation partner. Talk to me in $targetName;
-        explain in $sourceName, and only where I stall or ask you to.
-        We talk about whatever I bring up, and you follow where I take it.
-        Build what you say out of the words below — that is the one thing that matters here.
+        explain in $sourceName only where I stall or ask.
+        We talk about whatever I bring up.
+        Build what you say out of the words below.
         Bring in a word of your own where the conversation needs one, one or two at a time,
-        and gloss it in $sourceName the first time. Never bend the conversation toward a word:
-        a word forced into a turn that had no room for it teaches me nothing.
-        The app teaches me WORDS, not grammar: assume I have been taught nothing about tense,
-        case or agreement, so keep each sentence short and concrete.
-        Short sentences, not short turns: two or three of them, not one clipped line.
-        Ask me one question per turn and wait for my answer.
+        glossed in $sourceName the first time. Never bend the conversation toward a word.
+        The app teaches me WORDS, not grammar: assume I know nothing about tense,
+        case or agreement. One to three short, concrete sentences per turn.
+        Ask me one question per turn.
         Correct at most one mistake per turn, in $sourceName, after answering what I said.
-        Never list vocabulary back at me. Talk to me.
+        Never list vocabulary back at me.
     """.trimIndent()
 
     /** The opening turn: something to read, before the learner has had to say anything. */
@@ -107,10 +99,9 @@ data class Briefing(
         on a topic the words below cover, built out of them.
         Blocks of two sentences — one in $targetName, the same one in $sourceName,
         a line break between them, a blank line between blocks.
-        Alternate which language leads. Five or six blocks, so I can start reading quickly.
-        Keep the pair as close to word-for-word as the grammar allows, so I can map one
-        line onto the other; where that reads unnaturally, give the idiomatic line and the
-        literal one in brackets after it.
+        Alternate which language leads. Three to five blocks.
+        Keep the pair as close to word-for-word as the grammar allows; where that reads
+        unnaturally, give the idiomatic line and the literal one in brackets.
         Then ask me whether to go deeper, switch topic, or just talk.
     """.trimIndent()
 
@@ -157,8 +148,6 @@ object Briefings {
             .map { (area, cards) ->
                 BriefArea(
                     title = areaTitle(catalog, state, area),
-                    // why: an own word is the one entry an assistant cannot already know,
-                    // so it carries its meaning where a catalog word needs none.
                     words = cards.map { card ->
                         if (area == OwnWords.AREA) "${targetForm(card)} (${card.source.text})"
                         else targetForm(card)
@@ -167,7 +156,6 @@ object Briefings {
             }
         val inPlay = joined
             .filter { stages[it.id] in IN_PLAY_STAGES }
-            // why: the least settled words are the ones a conversation can still save.
             .sortedBy { state.scheduling[it.id]?.memory?.stability ?: 0.0 }
             .take(IN_PLAY_LIMIT)
             .map { BriefWord(targetForm(it), it.source.text) }
