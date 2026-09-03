@@ -43,6 +43,16 @@ data class DateDrillTask(
      */
     val choices: List<String>? = null,
     /**
+     * The drawn date in the PROMPT side's own digits, where the question is about a date at
+     * all — `3.6.`, `3.6.2026` — and null on the bare names.
+     *
+     * Carried rather than re-read off [promptText], which prints a weekday abbreviation in
+     * front of it on the assembled Sprossen: a parse wants the date and not the card's
+     * printing of it ([DateDrillParsing]), and cutting one out of the other would make a
+     * rendering the source of a rule.
+     */
+    val dateDigits: String? = null,
+    /**
      * Whether the answer is a DATE rather than a reading — a reversed numeric Sprosse, where
      * the card carries the words and the run wants them written down ([DateDrillParsing]).
      * The one thing the direction decides below kern: which keyboard the field asks for, and
@@ -108,6 +118,7 @@ internal object DateDrillTasks {
             promptText = "$day.",
             accepted = readings,
             display = readings.first(),
+            dateDigits = "$day.",
         )
     }
 
@@ -123,6 +134,7 @@ internal object DateDrillTasks {
             promptText = numericDayMonth(content.numeric, day, monthIndex + 1),
             accepted = fill(pattern, slots),
             display = taught(pattern, day, slots),
+            dateDigits = numericDayMonth(content.numeric, day, monthIndex + 1),
         )
     }
 
@@ -145,6 +157,7 @@ internal object DateDrillTasks {
             promptText = "${abbr(weekday)}, ${numericDayMonth(content.numeric, day, monthIndex + 1)}",
             accepted = fill(pattern, slots),
             display = taught(pattern, day, slots),
+            dateDigits = numericDayMonth(content.numeric, day, monthIndex + 1),
         )
     }
 
@@ -178,6 +191,7 @@ internal object DateDrillTasks {
             promptText = "${abbr(weekday)}, $numeric",
             accepted = fill(pattern, slots),
             display = taught(pattern, day, slots),
+            dateDigits = numeric,
         )
     }
 

@@ -334,19 +334,33 @@ class DateDrillTests {
         assertContains(day.accepted, "03.")
         assertEquals("dritte", day.promptText, "the ordinal is what is read")
 
-        // The weekday the card prints is DROPPED, not merely optional: it is the source's
-        // own abbreviation, no number pad types it, and the prompt already named that day.
+        // The answer is the date the task CARRIES, never the card's printing of it: the
+        // assembled Sprossen print a weekday abbreviation in front, which is the source's own
+        // chrome and which the prompt has named in the learned language already.
         val dated = DateDrillParsing.parsed(DateDrillTasks.fullDateWithYear(german, 3, 2, 2026))
         assertEquals("3/3/2026", dated.display)
         assertFalse(dated.accepted.any { it.contains("Tue") })
         assertContains(dated.accepted, "03/03/2026", "the year keeps its four digits")
     }
 
+    /** Every dated question carries the date itself, so no parse has to cut one out of a card. */
+    @Test
+    fun aDatedTaskCarriesItsDateApartFromTheCardsPrinting() {
+        assertEquals("6/3", DateDrillTasks.dayMonth(german, 3, 5).dateDigits)
+        assertEquals("3.", DateDrillTasks.day(german, 3).dateDigits)
+        val full = DateDrillTasks.fullDate(german, 5, 3, 5)
+        assertEquals("Sat, 6/3", full.promptText, "the card prints the weekday")
+        assertEquals("6/3", full.dateDigits, "the date it is about does not")
+        val dated = DateDrillTasks.fullDateWithYear(german, 3, 2, 2026)
+        assertEquals("Tue, 3/3/2026", dated.promptText)
+        assertEquals("3/3/2026", dated.dateDigits)
+        assertNull(DateDrillTasks.pool(german, DateTaskKind.Weekday, false)[0].dateDigits,
+            "a name is about no date")
+    }
+
     /** The full date is the one Sprosse with no way round — parsed, it asks day and month again. */
     @Test
     fun theFullDateHasNoReversedSprosse() {
-        val untouched = DateDrillParsing.parsed(DateDrillTasks.fullDate(german, 5, 3, 5))
-        assertFalse(untouched.digits)
         assertTrue(
             (1..20).none {
                 DateDrill.sample(german, 99, true, null, emptySet(), Random(it.toLong()))?.kind ==

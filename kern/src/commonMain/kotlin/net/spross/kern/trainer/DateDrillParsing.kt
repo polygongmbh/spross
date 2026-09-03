@@ -18,16 +18,17 @@ package net.spross.kern.trainer
  * leniency a written date needs — the zero a learner may or may not pad with, and the
  * trailing dot German writes and drops.
  *
- * The weekday the card prints is DROPPED rather than made optional. `Sa,` is the source
- * language's own abbreviation, the prompt already named that day in the language being
- * learned, and no number pad types it: copying it back would be chrome standing in for a
- * skill.
+ * What is owed is [DateDrillTask.dateDigits] — the drawn date itself, which every dated
+ * question already carries — and never the card's printing of it, which puts the source
+ * language's own weekday abbreviation in front on the assembled Sprossen. `Sa,` is chrome:
+ * no number pad types it, and the prompt has named that day in the language being learned
+ * already. So the two sides are different things rather than one cut down from the other,
+ * and the reading keeps its weekday while the answer never had one.
  *
- * Two kinds print one, and dropping the Sprosse only settles the first of them: the full
- * date has no reversed direction at all ([DateDrill]), since without its weekday it asks
- * the day and month over again — but the DATED one keeps its Sprosse, because the year is
- * worth parsing, and it prefixes a weekday just the same. So the strip is what that top
- * Sprosse rests on, not a second opinion about the one below it.
+ * The full date is a separate matter: with no weekday to account for it asks the day and
+ * month over again, so it has no reversed direction at all and stands forward alone
+ * ([DateDrill]). The DATED Sprosse keeps its place either way round, because a year is
+ * worth parsing.
  *
  * A digit slip is never forgiven: `3.7.` for `3.6.` is another date, and
  * [net.spross.kern.session.AnswerNormalizer] grades a digit-bearing word exact-only, so the
@@ -36,19 +37,11 @@ package net.spross.kern.trainer
 internal object DateDrillParsing {
 
     /**
-     * The kinds that turn round into a parse. The bare names are not among them — they swap
-     * sides inside their own pool, where both sides are words.
+     * [task] the other way round, or unchanged where it is about no date — which is what a
+     * missing [DateDrillTask.dateDigits] says, so the bare names need no list of their own.
      */
-    private val PARSED = setOf(
-        DateTaskKind.DayOfMonth,
-        DateTaskKind.DayAndMonth,
-        DateTaskKind.FullDateWithYear,
-    )
-
-    /** [task] the other way round, or unchanged where its kind has no other way round. */
     fun parsed(task: DateDrillTask): DateDrillTask {
-        if (task.kind !in PARSED) return task
-        val date = task.promptText.substringAfter(", ", task.promptText)
+        val date = task.dateDigits ?: return task
         return task.copy(
             promptText = task.display,
             accepted = forms(date),
