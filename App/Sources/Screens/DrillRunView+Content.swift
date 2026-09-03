@@ -27,6 +27,7 @@ extension DrillRunView {
                                       // A picture is written in no language,
                                       // so a question that is one is tagged with none.
                                       language: task.promptText == nil ? nil : task.promptLanguage,
+                                      promptVoice: promptVoice(task),
                                       revealed: cardReveal(task))
                         .id(task.index)
                         .transition(reduceMotion ? .opacity : .cardFlip)
@@ -37,6 +38,23 @@ extension DrillRunView {
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollDismissesKeyboard(.never)
+    }
+
+    /// Hearing the question itself, where the question is a NAME in the language
+    /// being learned — which is a REVERSED run, the one that asks in the target
+    /// and grades in the learner's own.
+    ///
+    /// Forward runs stay mute: their prompt is the learner's own language, and
+    /// every autoplay `read-aloud.md` describes says a form in the language being
+    /// LEARNED. So a reversed run, which had nothing audible in it at all — its
+    /// answer is the own-language side and deliberately does not speak — is
+    /// exactly where the voice was missing.
+    ///
+    /// Saying it gives nothing away: the word is already written on the card.
+    func promptVoice(_ task: DrillSnapshot) -> CountryPromptCard.Voice? {
+        guard Face.promptIsAName, reverse, let text = task.promptText else { return nil }
+        return .init(pronounce: model.pronounceAction(for: text, lang: task.promptLanguage),
+                     isPlaying: model.isPronouncing(text, lang: task.promptLanguage))
     }
 
     /// The answer, once the learner has stopped owing it — with whatever kern

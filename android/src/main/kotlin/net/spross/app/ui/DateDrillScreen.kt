@@ -27,6 +27,9 @@ fun DateDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
             skill = model.chrome.trainerSkillDates,
             // One key per PAIR, the same one the page reads its best Sprosse back from.
             key = stamp?.let { TrainerStore.datesKey(it.source, it.target) },
+            // why: false though the weekday and month Sprossen DO prompt with a name — the
+            // day and date Sprossen prompt with a rendering whose reading is the answer.
+            promptIsAName = false,
             open = { onTone, onReleaseFocus ->
                 model.newDateDrill(reverse, fast, onTone, onReleaseFocus)
             },

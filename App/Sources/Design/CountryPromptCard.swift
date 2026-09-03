@@ -37,8 +37,21 @@ struct CountryPromptCard: View {
     /// the name for VoiceOver (`spoken`), which the caption no longer does
     /// and which the placeholder cannot: a11y metadata is not a caption.
     var language: String?
+    /// Hearing the name the question ASKS about, where it is a name in the
+    /// language being learned — a reversed run's prompt. Nil elsewhere, and for
+    /// two different reasons: a forward run's prompt is the learner's own
+    /// language, which nothing outside listening mode says, and a prompt whose
+    /// READING is the answer (a dates run's `Mo, 3.3.`) would hand it over.
+    /// The word is already on the card, so saying it gives nothing away.
+    var promptVoice: Voice?
     /// The answer, once the learner has stopped owing it.
     var revealed: Reveal?
+
+    /// A form that can be heard, and whether it is sounding right now.
+    struct Voice {
+        var pronounce: (() -> Void)?
+        var isPlaying = false
+    }
 
     struct Reveal {
         /// What a refused answer actually named (Uswidi is Schweden) — the nudge
@@ -68,13 +81,16 @@ struct CountryPromptCard: View {
             VStack(spacing: Theme.spacing.md) {
                 caption
                 if let text {
-                    Text(verbatim: text)
-                        .font(Theme.prompt.name)
-                        .foregroundStyle(Theme.colors.textPrimary)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(3)
-                        .minimumScaleFactor(0.5)
-                        .spoken(text, language: language)
+                    SpokenWord(pronounce: promptVoice?.pronounce,
+                               isPlaying: promptVoice?.isPlaying ?? false) {
+                        Text(verbatim: text)
+                            .font(Theme.prompt.name)
+                            .foregroundStyle(Theme.colors.textPrimary)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(3)
+                            .minimumScaleFactor(0.5)
+                            .spoken(text, language: language)
+                    }
                 } else if let emoji {
                     // why: no side slot here — the flag is not the picture beside
                     // the question, it IS the question, so it takes the place and

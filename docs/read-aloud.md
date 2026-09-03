@@ -60,10 +60,12 @@ mutes interact. The engine's half — whether a form may be heard at all — is
 | produce answered correctly, typed or checked | no — the card is already flipping | — |
 | near miss accepted — a typo, a form heard instead (waits for a tap) | yes, after the chime | the form the correction box carries |
 | produce revealed — Aufdecken, wrong, other word | yes, after the chime | the bare target word |
-| trainer drill prompt — a numeral, a clock face | no | there is nothing to say yet: the reading IS the answer |
+| trainer drill prompt — a numeral, a clock face, a dated line | no | there is nothing to say yet: the reading IS the answer |
+| atlas drill prompt, reversed run — a country or a people | yes, at once | the name itself, which already stands on the card |
+| atlas drill prompt, forward run | no | it is the learner's own language, and no autoplay says that side |
 | trainer drill reading revealed or corrected | yes, after the chime | the reading itself — generated, so usually the voice; a weekday, month, country or nationality name is recorded |
 | listening mode — the meaning, between the two sayings of the word | yes, unattended | the meaning in the learner's own language: the ONE autoplay that speaks the known side, because a word said into silence teaches nothing and there is no answer being owed |
-| a drill answer owed in the learner's OWN language — a reversed atlas run | no | nothing: every autoplay above says a form in the language being LEARNED, and the speaker beside the reveal still says this one on request |
+| a drill answer owed in the learner's OWN language — a reversed atlas run | no | nothing: every autoplay above says a form in the language being LEARNED, and the speaker beside the reveal still says this one on request. The PROMPT carries that run's voice instead — it is the target-language form |
 
 - **Listening mode is a run made entirely of sound, and it is the only one that plays
   unattended.** A turn says the target word, the meaning, then the target again: the second
@@ -112,6 +114,11 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   so on rows four points apart it overhangs its neighbor
   and a tap in a row's bottom sliver speaks the row below —
   two targets for one action, one of them wrong.
+  A drill PROMPT draws one only where it is a name in the language being learned —
+  the atlas reversed, where the answer is the learner's own side and stays silent,
+  so without it the whole task would be unhearable.
+  A prompt whose reading IS the answer never does, however much a name it looks like:
+  the dates drill asks `Mo, 3.3.` and is owed exactly the reading of it.
   What the speaker follows is the revealed FORM, not the surface it stands on:
   the letter drill hands back a bare glyph on every Sprosse but the dictation,
   and a glyph is not a form anything may be asked to say —

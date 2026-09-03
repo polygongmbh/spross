@@ -17,6 +17,8 @@ enum CountryDrillFace: DrillFace {
     // MARK: - Who the drill is
 
     static var key: String { "countries" }
+    // Every atlas prompt is a country or a people, so saying one answers nothing.
+    static var promptIsAName: Bool { true }
 
     static var resultTitle: LocalizedStringKey { "trainer.skill.countries" }
 

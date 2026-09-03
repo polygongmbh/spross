@@ -26,6 +26,7 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
             skill = model.chrome.trainerSkillCountries,
             // One key per PAIR, the same one the page reads its best Sprosse back from.
             key = stamp?.let { TrainerStore.countriesKey(it.source, it.target) },
+            promptIsAName = true,
             open = { onTone, onReleaseFocus ->
                 model.newCountryDrill(reverse, fast, onTone, onReleaseFocus)
             },

@@ -31,6 +31,13 @@ protocol DrillFace {
     /// the hub knows the skill by.
     static var key: String { get }
 
+    /// Whether this drill's prompt is a NAME — something a voice may say without
+    /// answering the question. True of the atlas, whose every prompt is a country
+    /// or a people; false of the dates drill, where `Mo, 3.3.` is a rendering
+    /// whose reading IS the answer owed. Only decides whether the prompt MAY be
+    /// heard; which side actually speaks is `DrillRunView.promptVoice`.
+    static var promptIsAName: Bool { get }
+
     /// What the tile a closed run leaves calls it.
     static var resultTitle: LocalizedStringKey { get }
 

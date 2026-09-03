@@ -2,25 +2,8 @@
 
 ## Unreleased
 
-- **Hundreds of words you could only ever hear read by the phone are now read by a person.**
-  The recordings stopped keeping up with the catalog in August — the tool that finds them was
-  looking in the folder the words used to live in, found none, and said nothing — so
-  everything added since had been falling through to the device voice. German goes from about
-  half the catalog recorded to three quarters, Ukrainian from a half to two thirds. Nothing
-  you already had changed: this only adds voices where there were none.
-
-- **The countries and the peoples are spoken too.** The atlas drill asks you to name a country
-  and the people who live there, and both sides of that were read by the phone. They are
-  recorded now, country name and nationality alike.
-
-- **The days and the months are spoken by a person now.** The calendar arrived after the
-  recordings did, so every weekday and month name in the dates drill and on the dates page
-  was read by the phone's own voice — the one part of the app where a name in the language
-  you are learning had never been said by somebody who speaks it. They are recorded now,
-  in the same voices the rest of each language already uses. What no recording exists for
-  still falls to the device voice, exactly as an unrecorded word does, so nothing has gone
-  quiet. Swahili gains the most: iOS has no Swahili voice at all, so those names could not
-  be heard on an iPhone by any route until now.
+- **Around 1,800 more words are read by a person rather than by the phone** — the recordings had stopped keeping up with the catalog since August.
+- **The days, months, countries and peoples are spoken by a person too**, where the dates and atlas drills had only ever had the device voice.
 
 - **A word you keep missing comes back the same day, not only days later.** The retry
   ladder only ever grew: ten minutes, then a day, then three, then a week, so the second

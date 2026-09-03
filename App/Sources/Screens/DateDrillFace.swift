@@ -19,6 +19,10 @@ enum DateDrillFace: DrillFace {
     // MARK: - Who the drill is
 
     static var key: String { "dates" }
+    // why: false even though the weekday and month Sprossen DO prompt with a name —
+    // the day and date Sprossen prompt with `3.` and `Mo, 3.3.`, whose reading is
+    // exactly the answer owed. The split is per Sprosse and is not ruled on yet.
+    static var promptIsAName: Bool { false }
 
     static var resultTitle: LocalizedStringKey { "trainer.skill.dates" }
 

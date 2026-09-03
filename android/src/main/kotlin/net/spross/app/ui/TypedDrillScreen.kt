@@ -50,6 +50,13 @@ class TypedDrillPage(
     val skill: String,
     /** The store key for THIS pair, or null before a box has landed. */
     val key: String?,
+    /**
+     * Whether this drill's prompt is a NAME — something a voice may say without answering
+     * the question. True of the atlas, whose every prompt is a country or a people; false
+     * of the calendar, where `Mo, 3.3.` is a rendering whose reading IS the answer owed.
+     * The iOS twin is `DrillFace.promptIsAName`.
+     */
+    val promptIsAName: Boolean,
     /** Opens the run — null where the pair has nothing this drill can ask. */
     val open: (onTone: (ToneKind) -> Unit, onReleaseFocus: () -> Unit) -> TypedDrill?,
 )
@@ -139,6 +146,18 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         model.speakDrillAnswer(run.prompt.display, run.answerLanguage)
     }
 
+    // The QUESTION is said instead where it is a name in the language being learned, which
+    // is exactly a reversed run — the one whose answer, above, deliberately stays silent.
+    // Saying it gives nothing away: the word is already on the card. No beat in front of
+    // it, unlike the answer's: nothing has just chimed and the question is what is awaited.
+    LaunchedEffect(run.index) {
+        if (!page.promptIsAName || !reverse) return@LaunchedEffect
+        val text = run.prompt.text ?: return@LaunchedEffect
+        // A picture is written in no language, so a question that is one has nothing to say.
+        val language = run.prompt.language ?: return@LaunchedEffect
+        model.speakDrillAnswer(text, language)
+    }
+
     // The field takes the keyboard back with every question — an amber hold gives it up so
     // the button it waits for is not covered, and the next prompt is typed into.
     val inputFocus = remember { FocusRequester() }
@@ -166,7 +185,17 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
                 chrome = chrome,
                 announcesRecord = true,
             )
-            Prompt(model, run, chrome)
+            // The tap speaker rides the same rule as the autoplay above: a prompt that is
+            // a name, on the side being learned. A tap outranks the mute; this only says
+            // whether there is anything to hear.
+            Prompt(
+                model, run, chrome,
+                promptVoice = run.prompt.language?.let { language ->
+                    run.prompt.text
+                        ?.takeIf { page.promptIsAName && reverse }
+                        ?.let { model.speakFormOnTap(it, language) }
+                },
+            )
             Controls(model, flow, run, chrome, inputFocus, leave)
             Spacer(Modifier.height(Theme.spacing.sm))
         }
@@ -174,7 +203,12 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
 }
 
 @Composable
-private fun Prompt(model: AppModel, run: TypedDrillView, chrome: Chrome) {
+private fun Prompt(
+    model: AppModel,
+    run: TypedDrillView,
+    chrome: Chrome,
+    promptVoice: (() -> Unit)?,
+) {
     val prompt = run.prompt
     CountryPromptCard(
         ask = prompt.ask,
@@ -182,6 +216,7 @@ private fun Prompt(model: AppModel, run: TypedDrillView, chrome: Chrome) {
         emojiIsGiveaway = prompt.emojiIsGiveaway,
         text = prompt.text,
         language = prompt.language,
+        promptPronounce = promptVoice,
         // why: a clean answer flips in about a second — opening the card for a beat there
         // would read as a correction the learner did not earn.
         reveal = if (!run.showsAnswer) {
