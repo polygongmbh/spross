@@ -160,6 +160,19 @@ class CatalogLintTest {
         }
     }
 
+    /** `to-` is the verb's mark and nothing else's, so a noun and its verb never contend for one slug. */
+    @Test
+    fun verbSlugsCarryTheToPrefix() {
+        for (area in catalog.areas) {
+            for (concept in area.concepts) {
+                assertEquals(
+                    concept.kind == CardKind.Verb, concept.slug.startsWith("to-"),
+                    "${area.name}/${concept.slug}: ${concept.kind} — a verb slug starts with to-, no other does",
+                )
+            }
+        }
+    }
+
     @Test
     fun seedIndexUniqueAndStrictlyIncreasing() {
         val indices = catalog.areas.flatMap { it.concepts }.map { it.seedIndex }
