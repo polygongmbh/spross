@@ -2,12 +2,14 @@
 
 ## Unreleased
 
+## 5.11.1 — 2026-09-03
+
 - **"Finally" joins the connecting words** in place of a weather phrase five of eight languages had to fake — the sun "coming out" is gone, replaced by "finally done!".
 - **The chat with an AI now opens with a story to read** — the brief asks for a short parallel text in both languages, built out of the words you already have, before it asks you anything.
-- **The dates drill now opens by tapping, not typing** — the weekday and month names come four at a time before any of them has to be written out.
 
 ## 5.11.0 — 2026-09-03
 
+- **The dates drill now opens by tapping, not typing** — the weekday and month names come four at a time before any of them has to be written out.
 - **English dates are taught both ways round** — `March third` and `the third of March` take turns on the reveal, and the article that order drops in speech no longer costs the answer.
 - **Recordings or speech is now a choice per language you learn**, offered only where the phone can actually speak it — so Swahili stops advertising a Speech setting no iPhone voice could honor.
 - **Around 1,800 more words are read by a person rather than by the phone** — the recordings had stopped keeping up with the catalog since August.
