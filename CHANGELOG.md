@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- **"Finally" joins the connecting words** in place of a weather phrase five of eight languages had to fake — the sun "coming out" is gone, replaced by "finally ready!".
+- **"Finally" joins the connecting words** in place of a weather phrase five of eight languages had to fake — the sun "coming out" is gone, replaced by "finally done!".
 - **The chat with an AI now opens with a story to read** — the brief asks for a short parallel text in both languages, built out of the words you already have, before it asks you anything.
 - **The dates drill now opens by tapping, not typing** — the weekday and month names come four at a time before any of them has to be written out.
 

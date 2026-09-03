@@ -34,6 +34,6 @@
    "notes": { "de": "richtet sich nach der Gruppe: juntos (Männer oder gemischt) · juntas (nur Frauen)." }
   },
   "if-you-want": { "text": "Si quiere.", "variants": ["Si quieres."] },
-  "finally-ready": { "text": "¡Por fin listo!", "variants": ["¡Por fin lista!"] }
+  "finally-done": { "text": "¡Por fin terminado!", "variants": ["¡Por fin terminada!"] }
  }
 }

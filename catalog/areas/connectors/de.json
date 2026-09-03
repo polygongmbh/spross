@@ -45,6 +45,6 @@
   "only": { "text": "nur" },
   "together": { "text": "zusammen" },
   "if-you-want": { "text": "Wenn Sie wollen.", "variants": ["Wenn du willst."] },
-  "finally-ready": { "text": "Endlich fertig!" }
+  "finally-done": { "text": "Endlich fertig!" }
  }
 }

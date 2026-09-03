@@ -21,5 +21,5 @@
  { "slug": "so-that", "kind": "adjective" },
  { "slug": "together", "kind": "adjective", "emoji": "👫" },
  { "slug": "if-you-want", "kind": "phrase", "components": ["if"] },
- { "slug": "finally-ready", "kind": "phrase", "components": ["finally"] }
+ { "slug": "finally-done", "kind": "phrase", "components": ["finally"] }
 ]

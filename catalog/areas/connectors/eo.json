@@ -44,6 +44,6 @@
   "only": { "text": "nur" },
   "together": { "text": "kune" },
   "if-you-want": { "text": "Se vi volas." },
-  "finally-ready": { "text": "Fine preta!" }
+  "finally-done": { "text": "Fine finita!" }
  }
 }

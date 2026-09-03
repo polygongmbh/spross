@@ -24,6 +24,6 @@
   "only": { "text": "тільки", "variants": ["лише"] },
   "together": { "text": "разом" },
   "if-you-want": { "text": "Якщо хочете.", "variants": ["Якщо хочеш."] },
-  "finally-ready": { "text": "Нарешті готовий!", "variants": ["Нарешті готова!"] }
+  "finally-done": { "text": "Нарешті закінчив!", "variants": ["Нарешті закінчила!"] }
  }
 }

@@ -32,6 +32,6 @@
   "only": { "text": "solo", "variants": ["soltanto", "solamente"] },
   "together": { "text": "insieme" },
   "if-you-want": { "text": "Se vuole.", "variants": ["Se vuoi."] },
-  "finally-ready": { "text": "Finalmente pronto!", "variants": ["Finalmente pronta!"] }
+  "finally-done": { "text": "Finalmente finito!", "variants": ["Finalmente finita!"] }
  }
 }
