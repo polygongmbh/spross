@@ -11,6 +11,7 @@
   "love": { "text": "amor", "grammar": { "gender": "el" } },
   "shame": { "text": "vergüenza", "grammar": { "gender": "la" } },
   "jealousy": { "text": "celos", "grammar": { "gender": "los" } },
+  "smile": { "text": "sonrisa", "grammar": { "gender": "la" } },
   "feel": {
    "text": "sentirse",
    "variants": ["encontrarse"],

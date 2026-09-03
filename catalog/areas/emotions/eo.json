@@ -11,6 +11,7 @@
   "love": { "text": "amo" },
   "shame": { "text": "honto" },
   "jealousy": { "text": "ĵaluzo" },
+  "smile": { "text": "rideto" },
   "feel": {
    "text": "senti sin",
    "synonyms": ["farti"],
