@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.11.3 — 2026-09-03
+
 - **Words brought back from an AI chat arrive sorted** — everything the chat listed is shown under new, close to a word you already have, or already in your box, and only the new ones start ticked.
 
 ## 5.11.2 — 2026-09-03
