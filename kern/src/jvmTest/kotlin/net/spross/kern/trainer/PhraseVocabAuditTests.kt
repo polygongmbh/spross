@@ -27,7 +27,7 @@ class PhraseVocabAuditTests {
      * and has to say so here.
      */
     private val allowlistSize: Map<Language, Int> =
-        mapOf("de" to 15, "en" to 3, "es" to 1, "fr" to 1, "it" to 2, "sw" to 4, "uk" to 2, "eo" to 1)
+        mapOf("de" to 13, "en" to 3, "es" to 1, "fr" to 1, "it" to 2, "sw" to 4, "uk" to 1, "eo" to 1)
 
     /** Documented allowlist — function words and international words only. */
     private val allowlist: Map<Language, Set<String>> = mapOf(
@@ -35,7 +35,7 @@ class PhraseVocabAuditTests {
         "de" to setOf(
             "der", "das",        // Artikel — der Katalog führt das Genus als Grammatikfeld
             "um", "seit",        // Präpositionen
-            "es", "ich", "wir",  // Personalpronomen
+            "es",                // Personalpronomen ohne Karte — er ist die Karte, es nur ihre Variante
             "sie",               // Höflichkeitsanrede der Sie-Form
             "ist", "haben", "habe", // Kopula sein + Possessiv haben
             "auf", "ab",         // trennbare Verbpartikeln (wache … auf, fährt … ab)
@@ -70,7 +70,6 @@ class PhraseVocabAuditTests {
         ),
         // --- Ukrainian ------------------------------------------------------------
         "uk" to setOf(
-            "нас",   // Personalpronomen „uns“ («у нас є» = wir haben)
             "євро",  // internationale Währung, unveränderlich
         ),
         // --- Esperanto ------------------------------------------------------------
@@ -135,6 +134,7 @@ class PhraseVocabAuditTests {
             "зошити" to "зошит", "зошитів" to "зошит",       // Zählformen
             "стільці" to "стілець", "стільців" to "стілець", // Zählformen
             "ключів" to "ключ",                              // Zählform (ключі steht verbatim im Katalog)
+            "нас" to "ми",                                   // Genitiv nach «у нас є» = wir haben
         ),
         // --- Esperanto ------------------------------------------------------------
         "eo" to mapOf(
