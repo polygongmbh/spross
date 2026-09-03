@@ -60,6 +60,7 @@ import net.spross.kern.session.SessionRunState
 import net.spross.kern.snapshot.WidgetSnapshotBuilder
 import net.spross.kern.store.StoreCodec
 import net.spross.kern.store.StoreFormatException
+import net.spross.kern.store.rekeyingPrefixedVerbs
 import net.spross.kern.store.revivingLeechSuspensions
 import net.spross.kern.store.withProductCalibration
 import net.spross.kern.trainer.DrillRunSummary
@@ -573,10 +574,11 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 try {
                     // why: calibration belongs to the BUILD — a box written months ago would
                     // otherwise keep pacing itself by the numbers that shipped with it.
-                    // revivingLeechSuspensions: TODO remove once the app is past 7.0.
+                    // revivingLeechSuspensions/rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
                     StoreCodec.decode(json).join(cards, stamp)
                         .withProductCalibration()
                         .revivingLeechSuspensions()
+                        .rekeyingPrefixedVerbs()
                 } catch (_: StoreFormatException) {
                     null // unreadable document: start fresh rather than crash (pre-production)
                 }

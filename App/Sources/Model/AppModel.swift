@@ -300,11 +300,12 @@ final class AppModel {
                 }
                 // why: schedules are keyed by card id (source-agnostic), so a
                 // stored box re-joins under ANY source with progress intact.
-                // revivingLeechSuspensions: TODO remove once the app is past 7.0.
+                // revivingLeechSuspensions/rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
                 return try StoreCodec.shared.decode(json: stored)
                     .join(cards: cards, joinStamp: stamp)
                     .withProductCalibration()
                     .revivingLeechSuspensions()
+                    .rekeyingPrefixedVerbs()
             }.value
             box = state
             // why: only a box that did not exist yet owes the disk anything here.
