@@ -10,9 +10,10 @@ import net.spross.kern.model.LanguageInfo
 /**
  * Hand-built calendars for the drill and run tests: an en→de pair carrying the full
  * ladder (a `dateWithYear`, the article patterns, a synonym on Samstag and Januar, the
- * distance-1 `Juni`/`Juli`) and a de→uk pair carrying the short one (a `dateForm` on
- * every month, no year pattern) — the two shapes `docs/date-readings.md` says the
- * content can take. Both targets are pack languages, so the generated Sprossen draw.
+ * distance-1 `Juni`/`Juli`), a de→uk pair carrying the short one (a `dateForm` on
+ * every month, no year pattern) and a de→en pair whose patterns carry a SYNONYM — the
+ * three shapes `docs/date-readings.md` says the content can take. Every target is a pack
+ * language, so the generated Sprossen draw.
  */
 internal object DateDrillFixture {
 
@@ -68,12 +69,36 @@ internal object DateDrillFixture {
         months = entries(enMonths, deMonths),
         numeric = "{m}/{d}/{y}",
         patterns = DatePatterns(
-            dayMonth = DatePattern("der {day} {month}", listOf("den {day} {month}")),
-            date = DatePattern("{weekday}, der {day} {month}", listOf("{weekday}, den {day} {month}")),
+            dayMonth = DatePattern("der {day} {month}", variants = listOf("den {day} {month}")),
+            date = DatePattern(
+                "{weekday}, der {day} {month}",
+                variants = listOf("{weekday}, den {day} {month}"),
+            ),
             dateWithYear = DatePattern(
                 "{weekday}, der {day} {month} {year}",
-                listOf("{weekday}, den {day} {month} {year}"),
+                variants = listOf("{weekday}, den {day} {month} {year}"),
             ),
+        ),
+    )
+
+    /** de→en: the one language that SAYS its date two ways, so the reveal has a turn to take. */
+    val englishContent = DateDrillContent(
+        source = "de",
+        target = "en",
+        weekdays = entries(deWeekdays, enWeekdays),
+        months = entries(deMonths, enMonths),
+        numeric = "{d}.{m}.{y}",
+        patterns = DatePatterns(
+            dayMonth = DatePattern(
+                "{month} {day}",
+                synonyms = listOf("the {day} of {month}"),
+                variants = listOf("{day} of {month}"),
+            ),
+            date = DatePattern(
+                "{weekday}, {month} {day}",
+                synonyms = listOf("{weekday}, the {day} of {month}"),
+            ),
+            dateWithYear = null,
         ),
     )
 

@@ -21,7 +21,7 @@ data class DateDrillTask(
     val promptText: String,
     /** Every reading that grades correct, canonical first. */
     val accepted: List<String>,
-    /** The canonical answer, for the reveal. */
+    /** The reading the reveal teaches — one of [accepted], drawn where the language says a date two ways. */
     val display: String,
 )
 
@@ -86,19 +86,17 @@ internal object DateDrillTasks {
     }
 
     fun dayMonth(content: DateDrillContent, day: Int, monthIndex: Int): DateDrillTask {
-        val accepted = fill(
-            content.patterns.dayMonth,
-            listOf(
-                "{day}" to Trainer.pack(content.target).dateDay(day),
-                "{month}" to dateForms(content.months[monthIndex].target),
-            ),
+        val pattern = content.patterns.dayMonth
+        val slots = listOf(
+            "{day}" to Trainer.pack(content.target).dateDay(day),
+            "{month}" to dateForms(content.months[monthIndex].target),
         )
         return DateDrillTask(
             kind = DateTaskKind.DayAndMonth,
             id = "$day.${monthIndex + 1}",
             promptText = numericDayMonth(content.numeric, day, monthIndex + 1),
-            accepted = accepted,
-            display = accepted.first(),
+            accepted = fill(pattern, slots),
+            display = taught(pattern, day, slots),
         )
     }
 
@@ -109,20 +107,18 @@ internal object DateDrillTasks {
         monthIndex: Int,
     ): DateDrillTask {
         val weekday = content.weekdays[weekdayIndex]
-        val accepted = fill(
-            content.patterns.date,
-            listOf(
-                "{weekday}" to dateForms(weekday.target),
-                "{day}" to Trainer.pack(content.target).dateDay(day),
-                "{month}" to dateForms(content.months[monthIndex].target),
-            ),
+        val pattern = content.patterns.date
+        val slots = listOf(
+            "{weekday}" to dateForms(weekday.target),
+            "{day}" to Trainer.pack(content.target).dateDay(day),
+            "{month}" to dateForms(content.months[monthIndex].target),
         )
         return DateDrillTask(
             kind = DateTaskKind.FullDate,
             id = "$weekdayIndex:$day.${monthIndex + 1}",
             promptText = "${abbr(weekday)}, ${numericDayMonth(content.numeric, day, monthIndex + 1)}",
-            accepted = accepted,
-            display = accepted.first(),
+            accepted = fill(pattern, slots),
+            display = taught(pattern, day, slots),
         )
     }
 
@@ -140,14 +136,11 @@ internal object DateDrillTasks {
         val pattern = requireNotNull(content.patterns.dateWithYear) {
             "no dateWithYear pattern for ${content.target}"
         }
-        val accepted = fill(
-            pattern,
-            listOf(
-                "{weekday}" to dateForms(weekday.target),
-                "{day}" to pack.dateDay(day),
-                "{month}" to dateForms(content.months[monthIndex].target),
-                "{year}" to (listOf(reading.display) + reading.accepted).distinct(),
-            ),
+        val slots = listOf(
+            "{weekday}" to dateForms(weekday.target),
+            "{day}" to pack.dateDay(day),
+            "{month}" to dateForms(content.months[monthIndex].target),
+            "{year}" to (listOf(reading.display) + reading.accepted).distinct(),
         )
         val numeric = content.numeric
             .replace("{d}", day.toString())
@@ -157,8 +150,8 @@ internal object DateDrillTasks {
             kind = DateTaskKind.FullDateWithYear,
             id = "$day.${monthIndex + 1}.$year",
             promptText = "${abbr(weekday)}, $numeric",
-            accepted = accepted,
-            display = accepted.first(),
+            accepted = fill(pattern, slots),
+            display = taught(pattern, day, slots),
         )
     }
 
@@ -185,11 +178,25 @@ internal object DateDrillTasks {
 
     /** The accepted set: each pattern form crossed with every reading of every part. */
     private fun fill(pattern: DatePattern, slots: List<Pair<String, List<String>>>): List<String> {
-        var forms = listOf(pattern.text) + pattern.variants
+        var forms = pattern.forms
         for ((marker, options) in slots) {
             forms = forms.flatMap { form -> options.map { form.replace(marker, it) } }
         }
         return forms.distinct()
+    }
+
+    /**
+     * The reading the reveal teaches. A language that genuinely says its date two ways
+     * ([DatePattern.synonyms]) shows both across a run rather than teaching one and merely
+     * tolerating the other, and the day it asks about decides which — the drawn date is
+     * already the question's identity, so the turn needs no draw of its own. Every part
+     * takes its canonical reading, so the result is always one of [fill]'s.
+     */
+    private fun taught(pattern: DatePattern, day: Int, slots: List<Pair<String, List<String>>>): String {
+        val taught = pattern.taught
+        return slots.fold(taught[(day - 1) % taught.size]) { form, (marker, options) ->
+            form.replace(marker, options.first())
+        }
     }
 
     /**

@@ -53,7 +53,11 @@ The Ukrainian side, carrying what only Ukrainian needs:
   `dayMonth` and `date` are required, `dateWithYear` is optional:
   a language that cannot read a year inside a date simply omits it and the ladder stops one Sprosse short.
   Each kind takes exactly its own markers, each exactly once, and no others.
-  `variants` on a pattern is accept-only, exactly as a frame's is,
+  A pattern wears the realization schema a name does:
+  `synonyms` is a second assembly the language genuinely SAYS,
+  and the reveal turns between it and `text` with the day it asks about
+  (en `March third` / `the third of March`),
+  while `variants` is accept-only, exactly as a frame's is,
   and crosses with every reading of every slot —
   so a mixed agreement (`den dritte Juni`) grades,
   the leniency the day readings already grant bare (`number-forms.md` § German),

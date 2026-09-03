@@ -19,6 +19,7 @@ class DateDrillTests {
 
     private val german = DateDrillFixture.germanContent
     private val ukrainian = DateDrillFixture.ukrainianContent
+    private val english = DateDrillFixture.englishContent
 
     private val bareKinds = listOf(DateTaskKind.Weekday, DateTaskKind.Month)
     private val fullLadder = DateTaskKind.entries.toList()
@@ -118,6 +119,25 @@ class DateDrillTests {
         assertEquals("6/3", task.promptText, "the prompt wears the SOURCE's numeric format")
         assertEquals("3.6", task.id)
         assertContains(DateDrillTasks.dayMonth(german, 3, 0).accepted, "der dritte Jänner")
+    }
+
+    /**
+     * A language that genuinely says its date two ways teaches both rather than teaching
+     * one and merely tolerating the other: the taught assemblies turn with the day, while
+     * the accept-only one grades and never reaches the reveal.
+     */
+    @Test
+    fun aPatternSynonymTakesItsTurnOnTheReveal() {
+        val odd = DateDrillTasks.dayMonth(english, 1, 6)
+        val even = DateDrillTasks.dayMonth(english, 2, 6)
+        assertEquals("July first", odd.display)
+        assertEquals("the second of July", even.display)
+        assertContains(odd.accepted, "the first of July")
+        assertContains(odd.accepted, "first of July")
+        assertFalse(
+            DateDrillTasks.dayMonth(english, 3, 6).display.startsWith("third"),
+            "an accept-only assembly never leads the reveal",
+        )
     }
 
     /** Ukrainian's `dateForm` replaces the citation form inside a date — and only it grades. */

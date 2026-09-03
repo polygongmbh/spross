@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **English dates are taught both ways round** — `March third` and `the third of March` take turns on the reveal, and the article that order drops in speech no longer costs the answer.
+
 - **Recordings or speech is now a choice per language you learn, and it is only offered
   where the phone can actually speak that language.** A pack worth hearing in one target no
   longer decides how the next one sounds, and Swahili — which no iPhone voice says a word

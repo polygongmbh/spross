@@ -68,6 +68,30 @@ class CatalogDatesLintTest {
     }
 
     /**
+     * A pattern wears the same three lists a name does, so it can go wrong the same way:
+     * an assembly repeated across them is a form that says nothing, and a synonym repeating
+     * the text claims the language says one thing two ways when it does not.
+     */
+    @Test
+    fun everyPatternAlternateIsDistinctFromItsTextAndFromTheOthers() {
+        for ((lang, calendar) in catalog.dateCalendars) {
+            val patterns = listOfNotNull(
+                "dayMonth" to calendar.patterns.dayMonth,
+                "date" to calendar.patterns.date,
+                calendar.patterns.dateWithYear?.let { "dateWithYear" to it },
+            )
+            for ((key, pattern) in patterns) {
+                val where = "dates/$lang.json patterns.$key"
+                assertEquals(
+                    pattern.forms.toSet().size,
+                    pattern.forms.size,
+                    "$where: an alternate repeats another form",
+                )
+            }
+        }
+    }
+
+    /**
      * File presence is the registry, and the pack rule cuts it one way: every ordered
      * pair of calendar languages drills dates wherever the ANSWER side has a trainer
      * pack, and a pack-less calendar serves as a prompt side only.
@@ -172,7 +196,7 @@ class CatalogDatesLintTest {
             val patterns = listOfNotNull(
                 calendar.patterns.dayMonth, calendar.patterns.date, calendar.patterns.dateWithYear,
             )
-            val words = patterns.flatMap { listOf(it.text) + it.variants }
+            val words = patterns.flatMap { it.forms }
                 .flatMap { tokens(it.replace(MARKERS, " ")) }
                 .toSet()
             assertEquals(documented, words, "dates/$lang.json: pattern words drifted from the audit")

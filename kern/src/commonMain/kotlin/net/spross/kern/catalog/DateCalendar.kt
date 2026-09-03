@@ -54,11 +54,23 @@ data class DatePatterns(
     val dateWithYear: DatePattern?,
 )
 
-/** One assembly pattern; [variants] is accept-only, exactly as a frame's is. */
+/**
+ * One assembly pattern, on the realization schema the calendar names already wear:
+ * a [synonyms] entry is a second way the language genuinely SAYS the date and takes its
+ * turn on the reveal (en `the third of March` beside `March third`), a [variants] entry is
+ * only ever accepted (the article that same order drops in speech).
+ */
 data class DatePattern(
     val text: String,
+    val synonyms: List<String> = emptyList(),
     val variants: List<String> = emptyList(),
-)
+) {
+    /** Every assembly that grades, the taught ones first. */
+    val forms: List<String> get() = taught + variants
+
+    /** The assemblies a reveal may teach. */
+    val taught: List<String> get() = listOf(text) + synonyms
+}
 
 /**
  * The calendars joined for one (source, target) profile — everything the drill grades

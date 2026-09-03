@@ -104,13 +104,17 @@ internal object DateCalendarParser {
     private fun optionalPattern(path: String, o: JsonObject, key: String): DatePattern? {
         val where = "patterns.$key"
         val row = o[key]?.obj(path, where) ?: return null
-        row.rejectUnknownKeys(path, where, setOf("text", "variants"))
+        row.rejectUnknownKeys(path, where, setOf("text", "synonyms", "variants"))
         val markers = PATTERN_MARKERS.getValue(key)
         val text = row.trimmedString(path, where, "text")
         requireMarkers(path, where, text, markers)
-        val variants = forms(path, where, row, "variants")
-        for (variant in variants) requireMarkers(path, where, variant, markers)
-        return DatePattern(text, variants)
+        val pattern = DatePattern(
+            text = text,
+            synonyms = forms(path, where, row, "synonyms"),
+            variants = forms(path, where, row, "variants"),
+        )
+        for (alternate in pattern.forms.drop(1)) requireMarkers(path, where, alternate, markers)
+        return pattern
     }
 
     private fun requireMarkers(path: String, where: String, text: String, markers: List<String>) {
