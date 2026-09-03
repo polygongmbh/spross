@@ -42,3 +42,19 @@ fun articleGender(article: String?): Gender? = when (article?.lowercase()) {
  */
 fun shownArticle(article: String?, shownForm: String, targetText: String): String? =
     if (shownForm == targetText) article else null
+
+/** Typewriter, curly, and the modifier letter — the apostrophe class an elided article ends on. */
+private val ARTICLE_APOSTROPHES = setOf('\u0027', '\u2019', '\u02bc')
+
+/**
+ * [form] with [article] written in front of it, or [form] alone where there is none.
+ *
+ * An ELIDED article writes ONTO its word — "l'acqua", never "l' acqua": the apostrophe is
+ * the join, and a space beside it spells a word nobody writes. The rule lives here so the
+ * ear and the page cannot disagree about it
+ * ([net.spross.kern.catalog.spokenTargetForm] speaks what this writes).
+ */
+fun articledForm(article: String?, form: String): String {
+    val prefix = article?.trim()?.takeIf { it.isNotEmpty() } ?: return form
+    return if (prefix.last() in ARTICLE_APOSTROPHES) "$prefix$form" else "$prefix $form"
+}

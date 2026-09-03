@@ -292,6 +292,8 @@ a clone inherits its sibling's gaps, never the rules.
 
 ## App structure (single screen)
 
+- **The companion**: the box briefs a chat assistant the app does not host, and reads its
+  answer back into own words — `companion.md` owns the whole of it, screens included.
 - **Home** is the only root screen:
   the day's line, session card (streak flame + the round's counts, or done state),
   the listening card, trainer hub, then the 14-day strip and the forest.

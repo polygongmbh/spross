@@ -46,6 +46,8 @@ struct SessionView: View, LanguageNaming {
     /// The card whose report sheet is up, with the answer as it stood when the
     /// menu was tapped — the field itself has moved on by the time it presents.
     @State private var reporting: ReportedCard?
+    /// The conversation offer taken from the completion screen (`BriefingSheet`).
+    @State private var briefing = false
     /// Owned here (not in AnswerInputView) so whichever field is on screen —
     /// the answer field or the write-out step's — takes focus the moment it
     /// mounts. Only ever one of them is mounted at a time.
@@ -68,6 +70,7 @@ struct SessionView: View, LanguageNaming {
                                       grownArea: model.sessionGrowth,
                                       canPracticeMore: model.canPracticeMore,
                                       restSuggested: model.today?.recallStrained ?? false,
+                                      onTalk: model.hasBriefing ? { briefing = true } : nil,
                                       onPractice: { model.continueEndless() },
                                       onDone: { model.closeSession() })
             } else {
@@ -79,6 +82,11 @@ struct SessionView: View, LanguageNaming {
                     scaffoldContent
                 }
             }
+        }
+        // why: on the Group rather than on the scaffold's content — the offer it
+        // answers stands on the completion screen, which is the other branch.
+        .sheet(isPresented: $briefing) {
+            BriefingSheet(model: model).environment(\.locale, locale)
         }
         // why: the order is normative — reset stops whatever is sounding and
         // clears the one-shot guard, focus lands before anything is played,

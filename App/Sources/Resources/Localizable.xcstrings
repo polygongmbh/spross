@@ -1243,6 +1243,340 @@
         }
       }
     },
+    "briefing.copied" : {
+      "comment" : "The same button once it has been tapped.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopiert"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copied"
+          }
+        }
+      }
+    },
+    "briefing.copy" : {
+      "comment" : "Puts the whole brief on the clipboard.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy"
+          }
+        }
+      }
+    },
+    "briefing.intro" : {
+      "comment" : "The sheet's opening line. The text is never shown itself — the three counts under this stand for it.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopiere den Text in einen KI-Chat deiner Wahl. Er sagt, was du schon kannst, was gerade dran ist und wie viel Neues dazukommen darf."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy the text into an AI chat of your choice. It says what you already know, what is on the table right now, and how much new is allowed."
+          }
+        }
+      }
+    },
+    "briefing.return.empty" : {
+      "comment" : "Nothing parsed, or everything in it is already in the box — both are the same answer to the learner.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In der Zwischenablage steht kein neues Wort."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There is no new word in the clipboard."
+          }
+        }
+      }
+    },
+    "briefing.return.explainer" : {
+      "comment" : "What the brief asked the chat for, said again where the learner acts on it.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Am Ende listet der Chat die neuen Wörter. Kopiere die Liste und füge sie hier ein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At the end the chat lists the new words. Copy that list and paste it here."
+          }
+        }
+      }
+    },
+    "briefing.return.keep %lld" : {
+      "comment" : "%d = the ticked words, taken in as own words.",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Wort übernehmen"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Wörter übernehmen"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Keep %lld word"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Keep %lld words"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "briefing.return.paste" : {
+      "comment" : "Reads the clipboard and offers what it found.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einfügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paste"
+          }
+        }
+      }
+    },
+    "briefing.return.title" : {
+      "comment" : "The second half of the sheet: reading a conversation's answer back in (`Harvest`).",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurück in den Kasten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back into the box"
+          }
+        }
+      }
+    },
+    "briefing.row.subtitle" : {
+      "comment" : "What the row promises, in one line: the app hosts nothing, the learner brings the chat.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Wörter in einem KI-Chat üben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practice your words in an AI chat"
+          }
+        }
+      }
+    },
+    "briefing.share" : {
+      "comment" : "The share sheet, which is how the brief reaches a chat app without the app knowing its name.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teilen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share"
+          }
+        }
+      }
+    },
+    "briefing.tally.free %lld" : {
+      "comment" : "%d = words the brief lets the chat use freely (`Briefing.freeCount`).",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld gefestigtes Wort"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld gefestigte Wörter"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld consolidated word"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld consolidated words"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "briefing.tally.inPlay %lld" : {
+      "comment" : "%d = words the brief asks the chat to work in (`Briefing.inPlay`).",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Wort gerade im Kommen"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Wörter gerade im Kommen"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld word on the way in"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld words on the way in"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "briefing.tally.new %lld" : {
+      "comment" : "%d = the new-word allowance, drawn from what the box introduces next (`Briefing.newWords`).",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld neues Wort obendrauf"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld neue Wörter obendrauf"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld new word on top"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld new words on top"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "briefing.title" : {
+      "comment" : "The box handed to a chat the app does not host (`Briefing`); the sheet's title and its row in Your own content.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gespräch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conversation"
+          }
+        }
+      }
+    },
     "common.back" : {
       "localizations" : {
         "de" : {
@@ -5248,6 +5582,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your longest run yet!"
+          }
+        }
+      }
+    },
+    "session.done.talk" : {
+      "comment" : "The conversation offered where the round just left the words warm; it asks, and the round's own answer stays Fertig.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Über die Wörter reden?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Talk about the words?"
           }
         }
       }

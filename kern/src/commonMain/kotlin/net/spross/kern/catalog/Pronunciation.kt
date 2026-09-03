@@ -1,6 +1,7 @@
 package net.spross.kern.catalog
 
 import net.spross.kern.model.Language
+import net.spross.kern.model.articledForm
 import net.spross.kern.model.nfcNormalized
 import net.spross.kern.model.shownArticle
 
@@ -63,22 +64,12 @@ fun utterance(form: String): String = form.trim().removePrefix("-").trim()
  * one to add an article is an edit kern does not make — so a word with no article recording
  * still plays bare, and only that word sounds shorter than the voice would say it.
  *
- * An ELIDED article writes onto its noun: "l'acqua", never "l' acqua". The apostrophe is the
- * join, a space beside it spells a word nobody writes, and the recording is titled
- * `It-l'acqua.ogg` — one sound, so one key.
- *
- * [shownArticle] is what decides there is one to say: a rotated synonym may carry another
- * gender, so it gets none rather than a wrong one.
+ * [shownArticle] is what decides there is one to say — a rotated synonym may carry another
+ * gender, so it gets none rather than a wrong one — and [articledForm] writes the join,
+ * elision included ("l'acqua", the recording's own title `It-l'acqua.ogg`: one sound, one key).
  */
-fun spokenTargetForm(article: String?, shownForm: String, targetText: String): String {
-    val spoken = utterance(shownForm)
-    val prefix = shownArticle(article, shownForm, targetText)?.trim()?.takeIf { it.isNotEmpty() }
-    return when {
-        prefix == null -> spoken
-        prefix.last() in APOSTROPHES -> "$prefix$spoken"
-        else -> "$prefix $spoken"
-    }
-}
+fun spokenTargetForm(article: String?, shownForm: String, targetText: String): String =
+    articledForm(shownArticle(article, shownForm, targetText), utterance(shownForm))
 
 /**
  * How a bundled recording is PLAYED — the measured half of the manifest, beside the

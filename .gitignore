@@ -10,6 +10,7 @@ xcuserdata/
 build/
 .gradle/
 .kotlin/
+__pycache__/
 local.properties
 *.jks
 *.p8

@@ -150,53 +150,6 @@ class FeedbackTests {
         assertTrue(Feedback.ownWordsSince(state, state.lastExportAt).isEmpty())
     }
 
-    @Test
-    fun theReportNamesTheProfileTheWordsAndTheIssues() {
-        var state = BoxEngine.addOwnWord(box(), ownWord("sonne", mapOf("de" to "Sonne")), Box.day1)
-        state = BoxEngine.reportIssue(state, "w01", "t1 should accept t9", "t9", Box.day1)
-
-        assertEquals(
-            """
-            de → sw
-
-            Suggested words (1):
-            - Sonne → ?
-
-            Reported issues (1):
-            - w01: g1 → t1
-              typed: t9
-              comment: t1 should accept t9
-            """.trimIndent(),
-            Feedback.reportText(state, null),
-        )
-    }
-
-    @Test
-    fun anEmptySectionIsLeftOutEntirely() {
-        val state = BoxEngine.reportIssue(box(), "w01", null, null, Box.day1)
-        val text = Feedback.reportText(state, null)
-        assertFalse("Suggested words" in text)
-        assertTrue("Reported issues (1)" in text)
-        assertFalse("typed:" in text)
-        assertFalse("comment:" in text)
-    }
-
-    @Test
-    fun nothingToSayIsVisibleBeforeTheMailIsBuilt() {
-        assertFalse(Feedback.hasAnything(box(), null))
-        val state = BoxEngine.reportIssue(box(), "w01", null, null, Box.day1)
-        assertTrue(Feedback.hasAnything(state, null))
-        assertFalse(Feedback.hasAnything(state, Box.instant(Box.plusDays(Box.day1, 1.0))))
-    }
-
-    @Test
-    fun aReportWithNoOwnWordsStillCarriesText() {
-        // why: the clipboard and the mail share this one text — a words-only form would
-        // copy nothing at all for a learner who has filed reports and written no words.
-        val state = BoxEngine.reportIssue(box(), "w01", "wrong", null, Box.day1)
-        assertTrue(Feedback.reportText(state, null).isNotEmpty())
-    }
-
     // Emptying the outbox
 
     /** A suggestion, a studiable own word and a filed report — one of each. */

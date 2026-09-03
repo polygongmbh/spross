@@ -14,13 +14,19 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.SessionUi
+import net.spross.app.hasBriefing
 import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.TallyPartKind
 import net.spross.kern.box.completionTallyParts
@@ -32,6 +38,7 @@ import net.spross.kern.box.completionTallyParts
 @Composable
 fun SessionSummary(model: AppModel, ui: SessionUi) {
     val chrome = model.chrome
+    var briefingOpen by remember { mutableStateOf(false) }
     val parts = completionTallyParts(ui.introduced, ui.strengthened, ui.reviewed)
     val tally = if (parts.isEmpty()) {
         chrome.sessionDoneTallyAllDone
@@ -88,6 +95,12 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         Spacer(Modifier.height(32.dp))
+        // why: the round is over and the words are warm — the one moment a conversation
+        // about them costs nothing to offer. It asks rather than instructs, and the
+        // screen's own answer to "what now" is still Fertig.
+        if (model.hasBriefing) {
+            TextButton(onClick = { briefingOpen = true }) { Text(chrome.sessionDoneTalk) }
+        }
         // The offer stands only while there is something behind it: a refill that would
         // come back dry leaves the button doing nothing when tapped.
         if (ui.canPracticeMore) {
@@ -108,4 +121,5 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
             Text(chrome.commonDone)
         }
     }
+    if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
 }

@@ -24,6 +24,9 @@ struct SessionCompletionView: View {
     /// (`TodayReport.recallStrained`). Practicing on stays available either
     /// way — this only adds the line saying why stopping is the better call.
     var restSuggested: Bool = false
+    /// Offered only where there is a box to brief (`AppModel.hasBriefing`); the
+    /// round just filled it with the words a conversation would be about.
+    var onTalk: (() -> Void)?
     var onPractice: () -> Void = {}
     var onDone: () -> Void = {}
 
@@ -95,6 +98,14 @@ struct SessionCompletionView: View {
                     .multilineTextAlignment(.center)
             }
             Spacer()
+            // why: the round is over and the words are warm — the one moment a
+            // conversation about them costs nothing to offer. It asks rather than
+            // instructs, and it sits under the celebration rather than in it: the
+            // screen's own answer to "what now" is still Fertig.
+            if let onTalk {
+                Button("session.done.talk", action: onTalk)
+                    .buttonStyle(SoftButtonStyle())
+            }
             SessionExitButtons(onDone: onDone,
                                onPractice: canPracticeMore ? onPractice : nil)
         }
