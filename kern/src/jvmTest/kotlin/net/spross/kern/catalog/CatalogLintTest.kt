@@ -501,7 +501,7 @@ class CatalogLintTest {
         // [crossAreaPromptCollisionsAreKnown], not the same meaning authored twice.
         // Re-realizing weather as meteo/météo would teach the forecast, not the weather.
         val reviewedPairs = mapOf(
-            ("nature/weather" to "time/time") to setOf("es", "fr", "it"),
+            ("time/time" to "weather/weather") to setOf("es", "fr", "it"),
         )
         val duplicated = langsByPair
             .mapValues { (pair, langs) -> langs - reviewedPairs[pair].orEmpty() }
@@ -574,7 +574,7 @@ class CatalogLintTest {
                 // no honest alternative; directions/direction carries the de note naming
                 // the second sense, the ndege treatment.
                 "es dirección: admin/address, directions/direction",
-                "es tiempo: nature/weather, time/time",
+                "es tiempo: time/time, weather/weather",
                 // Reviewed 2026-08-15: `le tableau` is the picture on the wall AND the
                 // classroom board — genuine French polysemy, one word both areas need
                 // as their first pick. Repicking picture as `cadre` would teach the
@@ -600,7 +600,7 @@ class CatalogLintTest {
                 // the forecast and `le climat` the climate, so there is no honest
                 // alternative. The concept pair is allowlisted in
                 // [noConceptPairCollidesInTwoLanguages] as the reviewed family-wide merge.
-                "fr temps: nature/weather, time/time",
+                "fr temps: time/time, weather/weather",
                 // Reviewed 2026-08-23: `molto` is both viel and sehr — Italian has one word
                 // where de/en/eo/es/fr/sw/uk all split the quantity from the intensifier
                 // (viel/sehr, mucho/muy, beaucoup/très, -ingi/sana). `assai` is the only
@@ -626,7 +626,7 @@ class CatalogLintTest {
                 // `clima` the climate, so there is no honest alternative. The concept
                 // pair is allowlisted in [noConceptPairCollidesInTwoLanguages] as the
                 // reviewed family-wide merge.
-                "it tempo: nature/weather, time/time",
+                "it tempo: time/time, weather/weather",
                 // Reviewed 2026-07-25: the textbook homonym, and the only entry here that
                 // is NOT a merge — sw `mto` is two unrelated senses (river, pillow),
                 // not one word covering two German ones. Same treatment either way.
@@ -653,7 +653,7 @@ class CatalogLintTest {
                 // Reviewed 2026-08-04: `ndege` is the only Swahili word for both bird and
                 // aeroplane; de/en/es/uk all split them. The plane carries a de note so the
                 // learner meets the second sense as a fact, not as a surprise.
-                "sw ndege: nature/bird, transport/plane",
+                "sw ndege: animals/bird, transport/plane",
                 // Reviewed 2026-08-04: `nyanya` is the ordinary word for grandmother and for
                 // tomato alike, both of them the first word a learner needs in their area.
                 // Repicking either would teach the rarer word for no gain.

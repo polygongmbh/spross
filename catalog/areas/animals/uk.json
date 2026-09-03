@@ -1,0 +1,24 @@
+{
+ "title": "Тварини",
+ "subtitle": "Від дворового пса до слона.",
+ "words": {
+  "animal": { "text": "тварина" },
+  "dog": { "text": "собака", "variants": ["пес"] },
+  "cat": { "text": "кіт", "variants": ["кішка"], "grammar": { "plural": "коти" } },
+  "bird": { "text": "птах", "variants": ["пташка"] },
+  "cow": { "text": "корова" },
+  "goat": { "text": "коза" },
+  "sheep": { "text": "вівця", "grammar": { "plural": "вівці" } },
+  "donkey": { "text": "осел", "grammar": { "plural": "осли" } },
+  "horse": { "text": "кінь", "grammar": { "plural": "коні" } },
+  "elephant": { "text": "слон" },
+  "lion": { "text": "лев", "grammar": { "plural": "леви" } },
+  "monkey": { "text": "мавпа" },
+  "snake": { "text": "змія", "grammar": { "plural": "змії" } },
+  "mosquito": { "text": "комар", "grammar": { "plural": "комарі" } },
+  "insect": { "text": "комаха" },
+  "look-a-bird": { "text": "Дивись, пташка!", "variants": ["Дивись, птах!"] },
+  "the-dog-is-barking": { "text": "Собака гавкає." },
+  "the-cat-is-meowing": { "text": "Кіт нявкає." }
+ }
+}

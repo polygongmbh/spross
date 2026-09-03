@@ -1,0 +1,34 @@
+{
+ "title": "Das Wetter",
+ "subtitle": "Was der Himmel heute vorhat.",
+ "words": {
+  "weather": { "text": "Wetter", "grammar": { "gender": "das" } },
+  "sky": { "text": "Himmel", "grammar": { "gender": "der" } },
+  "sun": { "text": "Sonne", "grammar": { "gender": "die", "plural": "-n" } },
+  "cloud": { "text": "Wolke", "grammar": { "gender": "die", "plural": "-n" } },
+  "rain": { "text": "Regen", "grammar": { "gender": "der" } },
+  "snow": { "text": "Schnee", "grammar": { "gender": "der" } },
+  "wind": { "text": "Wind", "grammar": { "gender": "der", "plural": "-e" } },
+  "storm": { "text": "Sturm", "grammar": { "gender": "der", "plural": "Stürme" } },
+  "thunder": { "text": "Donner", "grammar": { "gender": "der" } },
+  "lightning": { "text": "Blitz", "grammar": { "gender": "der", "plural": "-e" } },
+  "humid": { "text": "feucht" },
+  "hows-the-weather-today": { "text": "Wie ist das Wetter heute?" },
+  "its-raining": { "text": "Es regnet." },
+  "the-rain-has-stopped": { "text": "Der Regen hat aufgehört.", "variants": ["Es regnet nicht mehr."] },
+  "the-sun-is-shining": { "text": "Die Sonne scheint!" },
+  "the-sun-has-come-out": {
+   "text": "Die Sonne ist rausgekommen.",
+   "variants": ["Die Sonne ist herausgekommen.", "Die Sonne kommt raus."]
+  },
+  "what-a-beautiful-day": { "text": "Was für ein schöner Tag!" },
+  "we-are-staying-home-because-of-the-rain": {
+   "text": "Wegen des Regens bleiben wir zu Hause.",
+   "notes": {
+    "de": "wegen zieht den Genitiv nach sich: des Regens, nicht der Regen.",
+    "en": "wegen pulls the genitive after it: des Regens, not der Regen.",
+    "es": "wegen arrastra el genitivo: des Regens, no der Regen."
+   }
+  }
+ }
+}

@@ -1,0 +1,24 @@
+{
+ "title": "Les animaux",
+ "subtitle": "Du chien de la cour à l'éléphant.",
+ "words": {
+  "animal": { "text": "animal", "variants": ["l'animal"], "grammar": { "gender": "l'", "plural": "animaux" } },
+  "dog": { "text": "chien", "grammar": { "gender": "le" } },
+  "cat": { "text": "chat", "grammar": { "gender": "le" } },
+  "bird": { "text": "oiseau", "variants": ["l'oiseau"], "grammar": { "gender": "l'", "plural": "-x" } },
+  "cow": { "text": "vache", "grammar": { "gender": "la" } },
+  "goat": { "text": "chèvre", "grammar": { "gender": "la" } },
+  "sheep": { "text": "mouton", "grammar": { "gender": "le" } },
+  "donkey": { "text": "âne", "variants": ["l'âne"], "grammar": { "gender": "l'" } },
+  "horse": { "text": "cheval", "grammar": { "gender": "le", "plural": "chevaux" } },
+  "elephant": { "text": "éléphant", "variants": ["l'éléphant"], "grammar": { "gender": "l'" } },
+  "lion": { "text": "lion", "grammar": { "gender": "le" } },
+  "monkey": { "text": "singe", "grammar": { "gender": "le" } },
+  "snake": { "text": "serpent", "grammar": { "gender": "le" } },
+  "mosquito": { "text": "moustique", "grammar": { "gender": "le" } },
+  "insect": { "text": "insecte", "variants": ["l'insecte"], "grammar": { "gender": "l'" } },
+  "look-a-bird": { "text": "Regarde, un oiseau !" },
+  "the-dog-is-barking": { "text": "Le chien aboie." },
+  "the-cat-is-meowing": { "text": "Le chat miaule." }
+ }
+}

@@ -1,0 +1,28 @@
+{
+ "title": "Wanyama",
+ "subtitle": "Kutoka mbwa wa nyumbani hadi tembo.",
+ "words": {
+  "animal": { "text": "mnyama", "grammar": { "plural": "wanyama" } },
+  "dog": { "text": "mbwa", "grammar": { "plural": "=" } },
+  "cat": { "text": "paka", "grammar": { "plural": "=" } },
+  "bird": { "text": "ndege", "grammar": { "plural": "=" } },
+  "cow": { "text": "ng'ombe", "grammar": { "plural": "=" } },
+  "goat": { "text": "mbuzi", "grammar": { "plural": "=" } },
+  "sheep": { "text": "kondoo", "grammar": { "plural": "=" } },
+  "donkey": { "text": "punda", "grammar": { "plural": "=" } },
+  "horse": { "text": "farasi", "grammar": { "plural": "=" } },
+  "elephant": { "text": "tembo", "synonyms": ["ndovu"], "grammar": { "plural": "=" } },
+  "lion": { "text": "simba", "grammar": { "plural": "=" } },
+  "monkey": { "text": "tumbili", "synonyms": ["kima"], "grammar": { "plural": "=" } },
+  "snake": { "text": "nyoka", "grammar": { "plural": "=" } },
+  "mosquito": { "text": "mbu", "grammar": { "plural": "=" } },
+  "insect": { "text": "mdudu", "grammar": { "plural": "wadudu" } },
+  "look-a-bird": { "text": "Angalia, ndege!", "variants": ["Tazama, ndege!"] },
+  "the-dog-is-barking": { "text": "Mbwa anabweka.", "variants": ["Mbwa hubweka."] },
+  "the-cat-is-meowing": {
+   "text": "Paka analia.",
+   "variants": ["Paka hulia."],
+   "notes": { "sw": "Kulia ni sauti ya mnyama yeyote: paka, ng'ombe, ndege." }
+  }
+ }
+}

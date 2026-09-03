@@ -4,23 +4,12 @@
  "words": {
   "tree": { "text": "mti", "grammar": { "plural": "miti" } },
   "flower": { "text": "ua", "grammar": { "plural": "maua" } },
-  "sun": { "text": "jua" },
-  "rain": { "text": "mvua" },
-  "weather": { "text": "hali ya hewa" },
-  "snow": { "text": "theluji" },
-  "wind": { "text": "upepo", "grammar": { "plural": "pepo" } },
   "river": { "text": "mto", "grammar": { "plural": "mito" } },
   "go-for-walk": { "text": "kutembea" },
   "jog": { "text": "kukimbia" },
   "sunbathe": { "text": "kuota jua" },
   "plant-flowers": { "text": "kupanda maua" },
   "grill-meat": { "text": "kuchoma nyama" },
-  "animal": { "text": "mnyama", "grammar": { "plural": "wanyama" } },
-  "dog": { "text": "mbwa", "grammar": { "plural": "=" } },
-  "cat": { "text": "paka", "grammar": { "plural": "=" } },
-  "bird": { "text": "ndege", "grammar": { "plural": "=" } },
-  "sky": { "text": "anga" },
-  "cloud": { "text": "wingu", "grammar": { "plural": "mawingu" } },
   "mountain": { "text": "mlima", "grammar": { "plural": "milima" } },
   "sea": { "text": "bahari", "grammar": { "plural": "=" } },
   "beach": { "text": "ufukwe", "synonyms": ["pwani"], "grammar": { "plural": "fukwe" } },
@@ -29,21 +18,6 @@
   "stone": { "text": "jiwe", "grammar": { "plural": "mawe" } },
   "moon": { "text": "mwezi", "grammar": { "plural": "miezi" } },
   "star": { "text": "nyota", "grammar": { "plural": "=" } },
-  "storm": { "text": "dhoruba", "grammar": { "plural": "=" } },
-  "thunder": {
-   "text": "radi",
-   "grammar": { "plural": "=" },
-   "notes": { "de": "radi ist der Donnerschlag und steht oft auch für den Blitz und das ganze Gewitter." }
-  },
-  "lightning": {
-   "text": "umeme",
-   "notes": { "de": "umeme heißt im Alltag auch der Strom: Umeme umekatika. — Der Strom ist weg." }
-  },
-  "humid": {
-   "text": "unyevunyevu",
-   "variants": ["unyevu"],
-   "notes": { "de": "unveränderlich · dasselbe Wort heißt auch die Feuchtigkeit: Kuna unyevunyevu." }
-  },
   "wood": { "text": "mbao", "grammar": { "plural": "=" } },
   "stick": { "text": "fimbo", "grammar": { "plural": "=" } },
   "shadow": {
@@ -51,31 +25,8 @@
    "grammar": { "plural": "vivuli" },
    "notes": { "sw": "Kivulini ni mahali penye kivuli: Tunakaa kivulini." }
   },
-  "hows-the-weather-today": { "text": "Hali ya hewa ikoje leo?" },
-  "its-raining": {
-   "text": "Mvua inanyesha.",
-   "notes": {
-    "de": "wörtl. „der Regen regnet“ — Kiswahili verlangt bei Wetterverben ein explizites Subjekt."
-   }
-  },
-  "the-rain-has-stopped": {
-   "text": "Mvua imeisha.",
-   "variants": ["Mvua imekwisha."],
-   "notes": { "de": "kuisha heißt „zu Ende gehen“: Regen hört im Kiswahili nicht auf, er ist zu Ende." }
-  },
-  "the-sun-is-shining": { "text": "Jua linang'aa!" },
-  "what-a-beautiful-day": { "text": "Siku nzuri kama nini!" },
   "lets-go-to-the-beach": { "text": "Twende ufukweni!", "variants": ["Twende pwani!"] },
   "we-are-going-to-the-mountains": { "text": "Tunaenda milimani." },
-  "look-a-bird": { "text": "Angalia, ndege!", "variants": ["Tazama, ndege!"] },
-  "the-sun-has-come-out": { "text": "Jua limetoka." },
-  "its-cold-in-the-mountains": { "text": "Milimani kuna baridi." },
-  "we-are-staying-home-because-of-the-rain": { "text": "Kwa sababu ya mvua tunabaki nyumbani." },
-  "the-dog-is-barking": { "text": "Mbwa anabweka.", "variants": ["Mbwa hubweka."] },
-  "the-cat-is-meowing": {
-   "text": "Paka analia.",
-   "variants": ["Paka hulia."],
-   "notes": { "sw": "Kulia ni sauti ya mnyama yeyote: paka, ng'ombe, ndege." }
-  }
+  "its-cold-in-the-mountains": { "text": "Milimani kuna baridi." }
  }
 }

@@ -4,17 +4,6 @@
  "words": {
   "tree": { "text": "arbre", "variants": ["l'arbre"], "grammar": { "gender": "l'" } },
   "flower": { "text": "fleur", "grammar": { "gender": "la" } },
-  "sun": { "text": "soleil", "grammar": { "gender": "le" } },
-  "rain": { "text": "pluie", "grammar": { "gender": "la" } },
-  "weather": {
-   "text": "temps",
-   "grammar": { "gender": "le" },
-   "notes": {
-    "de": "le temps heißt auch „Zeit“. Nach dem Wetter fragt man mit faire: Quel temps fait-il ? — il fait beau, il fait chaud."
-   }
-  },
-  "snow": { "text": "neige", "grammar": { "gender": "la" } },
-  "wind": { "text": "vent", "grammar": { "gender": "le" } },
   "river": {
    "text": "rivière",
    "variants": ["fleuve"],
@@ -26,12 +15,6 @@
   "sunbathe": { "text": "prendre le soleil", "variants": ["bronzer", "se faire bronzer"] },
   "plant-flowers": { "text": "planter des fleurs" },
   "grill-meat": { "text": "griller de la viande", "variants": ["faire griller de la viande"] },
-  "animal": { "text": "animal", "variants": ["l'animal"], "grammar": { "gender": "l'", "plural": "animaux" } },
-  "dog": { "text": "chien", "grammar": { "gender": "le" } },
-  "cat": { "text": "chat", "grammar": { "gender": "le" } },
-  "bird": { "text": "oiseau", "variants": ["l'oiseau"], "grammar": { "gender": "l'", "plural": "-x" } },
-  "sky": { "text": "ciel", "grammar": { "gender": "le" } },
-  "cloud": { "text": "nuage", "grammar": { "gender": "le" } },
   "mountain": { "text": "montagne", "grammar": { "gender": "la" } },
   "sea": { "text": "mer", "grammar": { "gender": "la" } },
   "beach": { "text": "plage", "grammar": { "gender": "la" } },
@@ -40,31 +23,14 @@
   "stone": { "text": "pierre", "grammar": { "gender": "la" } },
   "moon": { "text": "lune", "grammar": { "gender": "la" } },
   "star": { "text": "étoile", "variants": ["l'étoile"], "grammar": { "gender": "l'" } },
-  "storm": { "text": "tempête", "grammar": { "gender": "la" } },
-  "thunder": { "text": "tonnerre", "grammar": { "gender": "le" } },
-  "lightning": { "text": "éclair", "variants": ["l'éclair"], "grammar": { "gender": "l'" } },
-  "humid": { "text": "humide" },
   "wood": { "text": "bois", "grammar": { "gender": "le" } },
   "stick": { "text": "bâton", "grammar": { "gender": "le" } },
   "shadow": { "text": "ombre", "variants": ["l'ombre"], "grammar": { "gender": "l'" } },
-  "hows-the-weather-today": { "text": "Quel temps fait-il aujourd'hui ?", "variants": ["Il fait quel temps aujourd'hui ?"] },
-  "its-raining": { "text": "Il pleut." },
-  "the-rain-has-stopped": { "text": "Il ne pleut plus.", "variants": ["La pluie s'est arrêtée.", "La pluie a cessé."] },
-  "the-sun-is-shining": { "text": "Le soleil brille !", "variants": ["Il y a du soleil !"] },
-  "what-a-beautiful-day": { "text": "Quelle belle journée !", "variants": ["Quelle journée magnifique !"] },
   "lets-go-to-the-beach": { "text": "Allons à la plage !", "variants": ["On va à la plage !"] },
   "we-are-going-to-the-mountains": {
    "text": "Nous allons à la montagne.",
    "variants": ["On va à la montagne.", "Nous allons en montagne."]
   },
-  "look-a-bird": { "text": "Regarde, un oiseau !" },
-  "the-sun-has-come-out": {
-   "text": "Le soleil est sorti.",
-   "variants": ["Le soleil est revenu.", "Le soleil s'est montré."]
-  },
-  "its-cold-in-the-mountains": { "text": "Il fait froid à la montagne." },
-  "we-are-staying-home-because-of-the-rain": { "text": "À cause de la pluie, nous restons à la maison." },
-  "the-dog-is-barking": { "text": "Le chien aboie." },
-  "the-cat-is-meowing": { "text": "Le chat miaule." }
+  "its-cold-in-the-mountains": { "text": "Il fait froid à la montagne." }
  }
 }

@@ -94,7 +94,9 @@
    { "area": "directions", "emoji": "↗️" },
    { "area": "transport", "emoji": "🚌" },
    { "area": "city", "emoji": "🏙️" },
-   { "area": "nature", "emoji": "🌳" }
+   { "area": "nature", "emoji": "🌳" },
+   { "area": "animals", "emoji": "🐘" },
+   { "area": "weather", "emoji": "🌦️" }
   ]
  },
  {

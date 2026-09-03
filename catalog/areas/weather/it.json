@@ -1,0 +1,33 @@
+{
+ "title": "Il tempo",
+ "subtitle": "Cosa combina il cielo oggi.",
+ "words": {
+  "weather": {
+   "text": "tempo",
+   "variants": ["meteo"],
+   "grammar": { "gender": "il" },
+   "notes": { "de": "il tempo heißt auch „Zeit“. Nach dem Wetter fragt man mit fare: Che tempo fa?" }
+  },
+  "sky": { "text": "cielo", "grammar": { "gender": "il" } },
+  "sun": { "text": "sole", "grammar": { "gender": "il" } },
+  "cloud": { "text": "nuvola", "variants": ["nube"], "grammar": { "gender": "la" } },
+  "rain": { "text": "pioggia", "grammar": { "gender": "la" } },
+  "snow": { "text": "neve", "grammar": { "gender": "la" } },
+  "wind": { "text": "vento", "grammar": { "gender": "il" } },
+  "storm": { "text": "tempesta", "grammar": { "gender": "la" } },
+  "thunder": { "text": "tuono", "grammar": { "gender": "il" } },
+  "lightning": { "text": "fulmine", "variants": ["lampo"], "grammar": { "gender": "il" } },
+  "humid": { "text": "umido", "variants": ["umida"] },
+  "hows-the-weather-today": { "text": "Che tempo fa oggi?", "variants": ["Com'è il tempo oggi?"] },
+  "its-raining": { "text": "Piove.", "variants": ["Sta piovendo."] },
+  "the-rain-has-stopped": { "text": "Ha smesso di piovere.", "variants": ["Non piove più.", "La pioggia è finita."] },
+  "the-sun-is-shining": {
+   "text": "C'è il sole!",
+   "variants": ["Il sole splende!", "Splende il sole!"],
+   "notes": { "de": "Wetter steht mit c'è oder fare: c'è il sole, c'è vento, fa caldo." }
+  },
+  "the-sun-has-come-out": { "text": "È uscito il sole.", "variants": ["Il sole è uscito."] },
+  "what-a-beautiful-day": { "text": "Che bella giornata!", "variants": ["Che bel giorno!"] },
+  "we-are-staying-home-because-of-the-rain": { "text": "Per la pioggia restiamo a casa." }
+ }
+}

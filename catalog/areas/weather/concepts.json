@@ -1,0 +1,25 @@
+[
+ { "slug": "weather", "kind": "noun", "emoji": "🌤️" },
+ { "slug": "sky", "kind": "noun" },
+ { "slug": "sun", "kind": "noun", "emoji": "☀️" },
+ { "slug": "cloud", "kind": "noun", "emoji": "☁️" },
+ { "slug": "rain", "kind": "noun", "emoji": "🌧️" },
+ { "slug": "snow", "kind": "noun", "emoji": "❄️" },
+ { "slug": "wind", "kind": "noun", "emoji": "💨" },
+ { "slug": "storm", "kind": "noun", "emoji": "⛈️" },
+ { "slug": "thunder", "kind": "noun" },
+ { "slug": "lightning", "kind": "noun", "emoji": "🌩️" },
+ { "slug": "humid", "kind": "adjective" },
+ { "slug": "hows-the-weather-today", "kind": "phrase", "emoji": "🌤️", "components": ["weather"] },
+ { "slug": "its-raining", "kind": "phrase", "emoji": "🌧️", "components": [] },
+ { "slug": "the-rain-has-stopped", "kind": "phrase", "emoji": "🌦️", "components": ["rain"] },
+ { "slug": "the-sun-is-shining", "kind": "phrase", "emoji": "☀️", "components": ["sun"] },
+ { "slug": "the-sun-has-come-out", "kind": "phrase", "emoji": "⛅", "components": ["sun"] },
+ { "slug": "what-a-beautiful-day", "kind": "phrase", "emoji": "🌈", "components": [] },
+ {
+  "slug": "we-are-staying-home-because-of-the-rain",
+  "kind": "phrase",
+  "emoji": "🌧️",
+  "components": ["rain"]
+ }
+]

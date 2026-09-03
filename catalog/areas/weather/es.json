@@ -1,0 +1,36 @@
+{
+ "title": "El tiempo",
+ "subtitle": "Lo que trae el cielo hoy.",
+ "words": {
+  "weather": {
+   "text": "tiempo",
+   "variants": ["clima"],
+   "grammar": { "gender": "el" },
+   "notes": { "de": "el tiempo heißt auch „Zeit“. Nach dem Wetter fragt man mit hacer: ¿Qué tiempo hace?" }
+  },
+  "sky": { "text": "cielo", "grammar": { "gender": "el" } },
+  "sun": { "text": "sol", "grammar": { "gender": "el" } },
+  "cloud": { "text": "nube", "grammar": { "gender": "la" } },
+  "rain": { "text": "lluvia", "grammar": { "gender": "la" } },
+  "snow": { "text": "nieve", "grammar": { "gender": "la" } },
+  "wind": { "text": "viento", "grammar": { "gender": "el" } },
+  "storm": { "text": "tormenta", "variants": ["tempestad"], "grammar": { "gender": "la" } },
+  "thunder": { "text": "trueno", "grammar": { "gender": "el" } },
+  "lightning": { "text": "relámpago", "variants": ["rayo"], "grammar": { "gender": "el" } },
+  "humid": { "text": "húmedo", "variants": ["húmeda"] },
+  "hows-the-weather-today": { "text": "¿Qué tiempo hace hoy?", "variants": ["¿Cómo está el tiempo hoy?"] },
+  "its-raining": { "text": "Está lloviendo.", "variants": ["Llueve."] },
+  "the-rain-has-stopped": {
+   "text": "Ha dejado de llover.",
+   "variants": ["Ya no llueve.", "La lluvia ha parado.", "Paró de llover."]
+  },
+  "the-sun-is-shining": {
+   "text": "¡Hace sol!",
+   "variants": ["¡El sol brilla!", "El sol está brillando."],
+   "notes": { "de": "Wetter wird mit hacer ausgedrückt: hace sol, hace calor, hace frío." }
+  },
+  "the-sun-has-come-out": { "text": "Ha salido el sol.", "variants": ["El sol ha salido.", "Salió el sol."] },
+  "what-a-beautiful-day": { "text": "¡Qué día tan bonito!", "variants": ["¡Qué día más bonito!", "¡Qué día tan hermoso!"] },
+  "we-are-staying-home-because-of-the-rain": { "text": "Por la lluvia nos quedamos en casa." }
+ }
+}

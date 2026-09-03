@@ -1,0 +1,24 @@
+{
+ "title": "Los animales",
+ "subtitle": "Del perro del patio al elefante.",
+ "words": {
+  "animal": { "text": "animal", "grammar": { "gender": "el" } },
+  "dog": { "text": "perro", "grammar": { "gender": "el" } },
+  "cat": { "text": "gato", "grammar": { "gender": "el" } },
+  "bird": { "text": "pájaro", "variants": ["ave"], "grammar": { "gender": "el" } },
+  "cow": { "text": "vaca", "grammar": { "gender": "la" } },
+  "goat": { "text": "cabra", "grammar": { "gender": "la" } },
+  "sheep": { "text": "oveja", "grammar": { "gender": "la" } },
+  "donkey": { "text": "burro", "grammar": { "gender": "el" } },
+  "horse": { "text": "caballo", "grammar": { "gender": "el" } },
+  "elephant": { "text": "elefante", "grammar": { "gender": "el" } },
+  "lion": { "text": "león", "grammar": { "gender": "el", "plural": "leones" } },
+  "monkey": { "text": "mono", "grammar": { "gender": "el" } },
+  "snake": { "text": "serpiente", "grammar": { "gender": "la" } },
+  "mosquito": { "text": "mosquito", "grammar": { "gender": "el" } },
+  "insect": { "text": "insecto", "grammar": { "gender": "el" } },
+  "look-a-bird": { "text": "¡Mira, un pájaro!" },
+  "the-dog-is-barking": { "text": "El perro ladra.", "variants": ["El perro está ladrando."] },
+  "the-cat-is-meowing": { "text": "El gato maúlla.", "variants": ["El gato está maullando."] }
+ }
+}

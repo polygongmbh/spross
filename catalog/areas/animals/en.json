@@ -1,0 +1,24 @@
+{
+ "title": "Animals",
+ "subtitle": "From the yard dog to the elephant.",
+ "words": {
+  "animal": { "text": "animal" },
+  "dog": { "text": "dog" },
+  "cat": { "text": "cat" },
+  "bird": { "text": "bird" },
+  "cow": { "text": "cow" },
+  "goat": { "text": "goat" },
+  "sheep": { "text": "sheep", "grammar": { "plural": "=" } },
+  "donkey": { "text": "donkey" },
+  "horse": { "text": "horse" },
+  "elephant": { "text": "elephant" },
+  "lion": { "text": "lion" },
+  "monkey": { "text": "monkey" },
+  "snake": { "text": "snake" },
+  "mosquito": { "text": "mosquito", "grammar": { "plural": "mosquitoes" } },
+  "insect": { "text": "insect" },
+  "look-a-bird": { "text": "Look, a bird!" },
+  "the-dog-is-barking": { "text": "The dog is barking.", "variants": ["The dog barks."] },
+  "the-cat-is-meowing": { "text": "The cat is meowing.", "variants": ["The cat meows."] }
+ }
+}

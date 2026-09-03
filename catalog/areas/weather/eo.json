@@ -1,0 +1,27 @@
+{
+ "title": "La vetero",
+ "subtitle": "Kion la ĉielo planas hodiaŭ.",
+ "words": {
+  "weather": { "text": "vetero" },
+  "sky": { "text": "ĉielo" },
+  "sun": { "text": "suno" },
+  "cloud": { "text": "nubo" },
+  "rain": { "text": "pluvo" },
+  "snow": { "text": "neĝo" },
+  "wind": { "text": "vento" },
+  "storm": { "text": "ŝtormo", "variants": ["tempesto"] },
+  "thunder": { "text": "tondro" },
+  "lightning": { "text": "fulmo" },
+  "humid": { "text": "humida" },
+  "hows-the-weather-today": { "text": "Kia estas la vetero hodiaŭ?", "variants": ["Kia vetero estas hodiaŭ?"] },
+  "its-raining": {
+   "text": "Pluvas.",
+   "notes": { "de": "Wetterverben stehen ohne Subjekt: Pluvas. Neĝas. Ventas." }
+  },
+  "the-rain-has-stopped": { "text": "La pluvo ĉesis.", "variants": ["Ne plu pluvas.", "Ĉesis pluvi."] },
+  "the-sun-is-shining": { "text": "La suno brilas!" },
+  "the-sun-has-come-out": { "text": "La suno eliris.", "variants": ["La suno aperis.", "La suno elvenis."] },
+  "what-a-beautiful-day": { "text": "Kia bela tago!" },
+  "we-are-staying-home-because-of-the-rain": { "text": "Pro la pluvo ni restas hejme." }
+ }
+}
