@@ -1,6 +1,8 @@
 package net.spross.kern.trainer
 
 import kotlin.random.Random
+import net.spross.kern.catalog.DatePattern
+import net.spross.kern.catalog.DatePatterns
 import kotlin.test.Test
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
@@ -182,7 +184,7 @@ class DateDrillTests {
         assertEquals(1, DateDrillTasks.weekdayIndex(2026, 3, 3), "2026-03-03 is a Tuesday")
         assertEquals(3, DateDrillTasks.weekdayIndex(2024, 2, 29), "the leap day exists and is a Thursday")
         assertEquals(5, DateDrillTasks.weekdayIndex(2000, 1, 1), "the century leap rule holds")
-        val task = DateDrillTasks.fullDateWithYear(german, 3, 2, 2026)
+        val task = DateDrillTasks.fullDateWithYear(german, 3, 2, 2026, weekdayFree = false)
         val year = Trainer.pack("de").year(2026)
         assertEquals("Dienstag, der dritte März ${year.display}", task.display)
         assertEquals("Tue, 3/3/2026", task.promptText)
@@ -337,7 +339,9 @@ class DateDrillTests {
         // The answer is the date the task CARRIES, never the card's printing of it: the
         // assembled Sprossen print a weekday abbreviation in front, which is the source's own
         // chrome and which the prompt has named in the learned language already.
-        val dated = DateDrillParsing.parsed(DateDrillTasks.fullDateWithYear(german, 3, 2, 2026))
+        val dated = DateDrillParsing.parsed(
+            DateDrillTasks.fullDateWithYear(german, 3, 2, 2026, weekdayFree = true),
+        )
         assertEquals("3/3/2026", dated.display)
         assertFalse(dated.accepted.any { it.contains("Tue") })
         assertContains(dated.accepted, "03/03/2026", "the year keeps its four digits")
@@ -351,11 +355,56 @@ class DateDrillTests {
         val full = DateDrillTasks.fullDate(german, 5, 3, 5)
         assertEquals("Sat, 6/3", full.promptText, "the card prints the weekday")
         assertEquals("6/3", full.dateDigits, "the date it is about does not")
-        val dated = DateDrillTasks.fullDateWithYear(german, 3, 2, 2026)
+        val dated = DateDrillTasks.fullDateWithYear(german, 3, 2, 2026, weekdayFree = false)
         assertEquals("Tue, 3/3/2026", dated.promptText)
         assertEquals("3/3/2026", dated.dateDigits)
         assertNull(DateDrillTasks.pool(german, DateTaskKind.Weekday, false)[0].dateDigits,
             "a name is about no date")
+    }
+
+    /**
+     * A card must not name a weekday the answer then throws away, so the dated Sprosse reads
+     * its date without one turned round. Composed from the two authored patterns rather than
+     * cut out of `dateWithYear` — es/fr/it give up their article once a weekday is there.
+     */
+    @Test
+    fun aReversedDatedCardReadsItsDateWithoutTheWeekday() {
+        val forward = DateDrillTasks.fullDateWithYear(german, 3, 2, 2026, weekdayFree = false)
+        val back = DateDrillTasks.fullDateWithYear(german, 3, 2, 2026, weekdayFree = true)
+        val year = Trainer.pack("de").year(2026).display
+        assertEquals("Dienstag, der dritte März $year", forward.display)
+        assertEquals("der dritte März $year", back.display, "the weekday is not read at all")
+        assertEquals(forward.dateDigits, back.dateDigits, "and the date itself is the same date")
+    }
+
+    /** The composition is per pattern, and never a weekday cut off the authored one. */
+    @Test
+    fun theWeekdayFreeDatedPatternIsBuiltFromTheWeekdayFreeOne() {
+        val spanish = DateDrillParsing.datedWithoutWeekday(
+            DatePatterns(
+                dayMonth = DatePattern("el {day} de {month}"),
+                date = DatePattern("{weekday}, {day} de {month}"),
+                dateWithYear = DatePattern("{weekday}, {day} de {month} de {year}"),
+            ),
+        )
+        // The article `date` gives up in front of a weekday comes back when there is none.
+        assertEquals("el {day} de {month} de {year}", assertNotNull(spanish).text)
+
+        val english = DateDrillParsing.datedWithoutWeekday(
+            DatePatterns(
+                dayMonth = DatePattern("{month} {day}", synonyms = listOf("the {day} of {month}")),
+                date = DatePattern("{weekday}, {month} {day}"),
+                dateWithYear = DatePattern("{weekday}, {month} {day}, {year}"),
+            ),
+        )
+        assertEquals("{month} {day}, {year}", assertNotNull(english).text)
+        assertEquals(listOf("the {day} of {month}, {year}"), english.synonyms)
+
+        // A pair that reads no year has no such reading, and neither has one whose year is
+        // joined by rearranging the date rather than by adding to the end of it.
+        val patterns = DatePatterns(DatePattern("a"), DatePattern("b"), null)
+        assertNull(DateDrillParsing.datedWithoutWeekday(patterns))
+        assertNull(DateDrillParsing.datedWithoutWeekday(patterns.copy(dateWithYear = DatePattern("c"))))
     }
 
     /** The full date is the one Sprosse with no way round — parsed, it asks day and month again. */

@@ -161,21 +161,34 @@ internal object DateDrillTasks {
         )
     }
 
+    /**
+     * [weekdayFree] reads the date without naming its weekday — what a REVERSED run wants,
+     * where the answer is the date in digits and a weekday on the card would be shown and
+     * then thrown away ([DateDrillParsing.datedWithoutWeekday]).
+     */
     fun fullDateWithYear(
         content: DateDrillContent,
         day: Int,
         monthIndex: Int,
         year: Int,
+        weekdayFree: Boolean,
     ): DateDrillTask {
         // why: once the year fixes the date the weekday is a fact — computed, never drawn,
         // so the card never states a date that does not exist.
         val weekday = content.weekdays[weekdayIndex(year, monthIndex + 1, day)]
         val pack = Trainer.pack(content.target)
         val reading = pack.year(year.toLong())
-        val pattern = requireNotNull(content.patterns.dateWithYear) {
+        val authored = requireNotNull(content.patterns.dateWithYear) {
             "no dateWithYear pattern for ${content.target}"
         }
+        val pattern = if (weekdayFree) {
+            DateDrillParsing.datedWithoutWeekday(content.patterns) ?: authored
+        } else {
+            authored
+        }
         val slots = listOf(
+            // why: still filled where the composed pattern names no weekday — a slot nothing
+            // mentions simply never substitutes, and the fallback pattern does mention it.
             "{weekday}" to dateForms(weekday.target),
             "{day}" to pack.dateDay(day),
             "{month}" to dateForms(content.months[monthIndex].target),

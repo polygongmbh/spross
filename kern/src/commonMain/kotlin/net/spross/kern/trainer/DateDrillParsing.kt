@@ -1,5 +1,8 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.catalog.DatePattern
+import net.spross.kern.catalog.DatePatterns
+
 /**
  * The reversed direction of the numeric Sprossen — PARSING, where forward is production.
  *
@@ -25,10 +28,11 @@ package net.spross.kern.trainer
  * already. So the two sides are different things rather than one cut down from the other,
  * and the reading keeps its weekday while the answer never had one.
  *
- * The full date is a separate matter: with no weekday to account for it asks the day and
- * month over again, so it has no reversed direction at all and stands forward alone
- * ([DateDrill]). The DATED Sprosse keeps its place either way round, because a year is
- * worth parsing.
+ * Nor does the reading SHOW one. A card naming a weekday the answer ignores is a card
+ * asking for something it then throws away, so the dated Sprosse reads its date without one
+ * turned round ([datedWithoutWeekday]). The full date has no reversed direction at all —
+ * with its weekday gone it asks the day and month over again — and stands forward alone
+ * ([DateDrill]); the DATED one keeps its place, because a year is worth parsing.
  *
  * A digit slip is never forgiven: `3.7.` for `3.6.` is another date, and
  * [net.spross.kern.session.AnswerNormalizer] grades a digit-bearing word exact-only, so the
@@ -59,6 +63,34 @@ internal object DateDrillParsing {
         listOf(canonical, padded(canonical))
             .flatMap { form -> listOf(form) + listOfNotNull(form.dropLast(1).takeIf { form.endsWith(".") }) }
             .distinct()
+
+    /**
+     * The dated reading with no weekday in front of it — `el tres de junio de 2026`.
+     *
+     * Composed rather than authored, because the two patterns that are authored already
+     * carry every part of it: a year joins a date the same way whether or not a weekday
+     * stands in front, so the join is exactly what `dateWithYear` adds to `date`, and what
+     * it joins to is `dayMonth`.
+     *
+     * Dropping the weekday off `dateWithYear` would NOT do. Spanish, French and Italian
+     * give up their article once a weekday is there — `el tres de junio` on its own but
+     * `martes, tres de junio` with one — so the weekday-free form has to be rebuilt from
+     * the weekday-free pattern rather than cut out of the other.
+     *
+     * Null where the pair reads no year inside a date, and where the join is not a plain
+     * suffix — a language that rearranges its date around a year keeps its authored form,
+     * weekday and all, rather than being handed an invented one.
+     */
+    fun datedWithoutWeekday(patterns: DatePatterns): DatePattern? {
+        val withYear = patterns.dateWithYear ?: return null
+        val join = withYear.text.removePrefix(patterns.date.text)
+        if (join.length == withYear.text.length) return null
+        return DatePattern(
+            text = patterns.dayMonth.text + join,
+            synonyms = patterns.dayMonth.synonyms.map { it + join },
+            variants = patterns.dayMonth.variants.map { it + join },
+        )
+    }
 
     /**
      * The same date with every one-digit group written as two. Hand-walked rather than a

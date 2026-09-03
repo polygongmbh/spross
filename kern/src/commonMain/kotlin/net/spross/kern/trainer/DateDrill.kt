@@ -96,7 +96,7 @@ object DateDrill {
                         ?.let { DateDrillChoices.tiles(content, it, reverse, rng) }
                 DateTaskKind.Weekday, DateTaskKind.Month, DateTaskKind.DayOfMonth ->
                     samplePool(DateDrillTasks.pool(content, kind, reverse), avoid, solved, rng)
-                else -> sampleComposed(content, kind, avoid, solved, rng)
+                else -> sampleComposed(content, kind, reverse, avoid, solved, rng)
             }
             // why: the flip happens HERE and nowhere else — the draw, the avoid key and the
             // solved set all work on the forward task, whose kind and id a parse keeps.
@@ -180,29 +180,41 @@ object DateDrill {
     private fun sampleComposed(
         content: DateDrillContent,
         kind: DateTaskKind,
+        reverse: Boolean,
         avoid: String?,
         solved: Set<String>,
         rng: Random,
     ): DateDrillTask? {
-        val first = composedUnsolved(content, kind, solved, rng) ?: return null
+        val first = composedUnsolved(content, kind, reverse, solved, rng) ?: return null
         if (DrillSolved.key(first) != avoid) return first
-        return composedUnsolved(content, kind, solved, rng) ?: first
+        return composedUnsolved(content, kind, reverse, solved, rng) ?: first
     }
 
     private fun composedUnsolved(
         content: DateDrillContent,
         kind: DateTaskKind,
+        reverse: Boolean,
         solved: Set<String>,
         rng: Random,
     ): DateDrillTask? {
         repeat(DrillSolved.SPENT_ATTEMPTS) {
-            val task = compose(content, kind, rng)
+            val task = compose(content, kind, reverse, rng)
             if (DrillSolved.key(task) !in solved) return task
         }
         return null
     }
 
-    private fun compose(content: DateDrillContent, kind: DateTaskKind, rng: Random): DateDrillTask {
+    /**
+     * [reverse] reaches only the dated Sprosse, and only to choose which reading its card
+     * carries: turned round the answer is the date in digits, so a weekday on the card would
+     * be a thing the question shows and then throws away ([DateDrillParsing]).
+     */
+    private fun compose(
+        content: DateDrillContent,
+        kind: DateTaskKind,
+        reverse: Boolean,
+        rng: Random,
+    ): DateDrillTask {
         val monthIndex = rng.nextInt(content.months.size)
         return when (kind) {
             DateTaskKind.DayAndMonth -> DateDrillTasks.dayMonth(
@@ -224,6 +236,7 @@ object DateDrill {
                     rng.nextInt(DateDrillTasks.daysIn(monthIndex, year)) + 1,
                     monthIndex,
                     year,
+                    weekdayFree = reverse,
                 )
             }
         }
