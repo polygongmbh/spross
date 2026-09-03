@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **The dates drill turned round now asks you to read a date, not to translate one** — it says `Samstag, der dritte Juni` and you write `3.6.`, which is the half of the skill a calendar actually needs.
+
 ## 5.11.1 — 2026-09-03
 
 - **"Finally" joins the connecting words** in place of a weather phrase five of eight languages had to fake — the sun "coming out" is gone, replaced by "finally done!".

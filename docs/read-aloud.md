@@ -122,9 +122,9 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   Forward runs need no exception written for them: their prompt is the learner's own
   language, which nothing outside listening mode says, and their target-language form
   is the ANSWER, which already speaks on the reveal.
-  The dates drill needs none either — a reversed run asks only its weekday and month
-  Sprossen, and the day and the assembled dates are forward-only, prompting with the
-  learner's own abbreviation and digits (`Mo, 3.3.`) for a reading owed in the target.
+  The dates drill needs none either — every reversed prompt there IS a target-language
+  reading, the names and the dates alike, and what a reversed date owes back is digits,
+  which nothing says out loud.
   What the speaker follows is the revealed FORM, not the surface it stands on:
   the letter drill hands back a bare glyph on every Sprosse but the dictation,
   and a glyph is not a form anything may be asked to say —

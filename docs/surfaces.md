@@ -147,9 +147,17 @@ auto-advance beats these share with it, are `design.md`'s.
   date, so its ladder simply tops out a Sprosse short.
   The prompt is the source language's name on the bare Sprossen and the date in the
   source's own digits above them — `Mo, 3.3.` wears the source's weekday abbreviation,
-  authored display-only, never graded. REVERSED, only the name Sprossen stand: the numeric
-  side of a date is a separator convention rather than a language skill, the same thinness
-  that cost the atlas its flag Sprosse in reverse. The Sprossen are not earned (no review, no
+  authored display-only, never graded. REVERSED the numeric Sprossen have a direction of
+  their own: the card carries the reading and the run wants the date written down. That is
+  PARSING where forward is production — the easier half of the skill and the half a learner
+  actually spends — and its answer is DIGITS, so a reversed run is a comprehension check the
+  whole way up rather than a test of the learner's spelling in a language they already have.
+  A written date forgives the zero-padding and the trailing ordinal dot; a digit is never
+  forgiven, so `3.7.` for `3.6.` is another date and not a slip. The weekday the card prints
+  is dropped rather than made optional — `Sa,` is the SOURCE's own abbreviation, no number
+  pad types it, and the prompt named that day already — which is also why the whole date is
+  the one Sprosse with no way round: without its weekday it is day and month over again, so
+  a reversed ladder is exactly one Sprosse shorter. The Sprossen are not earned (no review, no
   schedule — the letter drill's rule), reverse is offered from the first run, and FAST has
   the atlas' price: one clean win a Sprosse, offered once the top Sprosse has ever been stood on.
   A bare name typed for its neighbor is refused by name — *Juli* for *Juni* is the other
