@@ -53,6 +53,10 @@ never a commit log, and "user-observable" is a lower bar than the one that holds
   What stays is content, scheduling and capability —
   new areas, phrases unlocking differently, progress surviving a card-id change.
   A change that only alters language, wording, layout or naming is carried by its commit message.
+- Content earns an entry by the SHELF, not by the CARD.
+  A new area, a pass across a language, a sweep that re-cuts a whole shelf is a change the
+  learner meets; a single concept added, split or reworded is not — however right the fix,
+  it is carried by its commit message alone.
 - One entry per sweep, not one per finding.
   Three bullets from a single Swahili literalness pass were collapsed back into one:
   the learner experienced one change — answers that map onto their prompt — not three.
