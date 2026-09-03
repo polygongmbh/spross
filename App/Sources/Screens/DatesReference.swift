@@ -62,7 +62,7 @@ struct DatesReference: View {
 
     /// The reference groups only ever carry the two bare-name pools, and each
     /// wears the Sprosse's own name — the face's table, never a second copy of
-    /// the numbering, which is what drifted the day the ladder grew a rung.
+    /// the numbering, which is what drifted the day the ladder grew a Sprosse.
     private static func groupTitle(_ kind: DateTaskKind) -> LocalizedStringKey {
         DateDrillFace.sprosseTitle([kind])
     }

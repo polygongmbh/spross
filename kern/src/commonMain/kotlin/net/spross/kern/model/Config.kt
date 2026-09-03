@@ -56,7 +56,7 @@ data class BoxConfig(
      * 2026-09-01) — so a word that will not stick comes back at most TWICE in a day
      * while the gaps between those pairs still widen.
      *
-     * The short rung is the load-bearing one, and it is why the ladder is not simply
+     * The short Sprosse is the load-bearing one, and it is why the ladder is not simply
      * growing. A retrieval pays only where it can SUCCEED: spacing beats massing by a
      * wide margin, but past that the schedule's SHAPE barely registers next to the
      * first interval being short enough to land, and a failed attempt with the answer
@@ -68,11 +68,11 @@ data class BoxConfig(
      * a composed session never refills (no in-session retry, breadth ruling 2026-07-22),
      * so the run boundary keeps a lapsed word out of the sitting it lapsed in whatever
      * the step says. Repeated fails climb instead of repeating the first entry (see
-     * [net.spross.kern.fsrs.FsrsScheduler]) and stop at the last rung, which is a MONTH:
+     * [net.spross.kern.fsrs.FsrsScheduler]) and stop at the last Sprosse, which is a MONTH:
      * a word still missed after four same-day pairs has earned no further repetition —
      * what the evidence supports there is rewriting the word or letting it go, and
      * nothing supports drilling it — but the box does not suspend on its own, so the
-     * last rung parks it within reach instead of dropping it. Every rating but `Again`
+     * last Sprosse parks it within reach instead of dropping it. Every rating but `Again`
      * graduates it immediately from wherever the ladder sits.
      */
     val stepsSeconds: List<Long> = listOf(
