@@ -16,17 +16,21 @@ lives outside the repo in `data/reference/audio/README.md`.
 3992 mp3 files, ~88 MB, all of them Wikimedia Commons transcodes:
 **2378 CC BY-SA · 1081 CC BY · 532 CC0 · 1 public domain**.
 
+The per-pack rows below are DERIVED, not typed: `scripts/audio-coverage.py --credits`
+emits them from the shipped manifests, and `--check` fails where one names a file git does
+not track. Coverage itself is the bare `audio-coverage.py`.
+
 | Pack | Files | Source | Licenses | Speakers | Obligation |
 |---|---|---|---|---|---|
-| `audio/de/` | 570 words | Commons `De-*.ogg` | BY-SA 4.0 371 · BY-SA 3.0 199 | 8 credit groups, Jeuwre 356 | credit + share-alike, whole pack |
+| `audio/de/` | 767 words | Commons `De-*.ogg` | BY-SA 4.0 490 · BY-SA 3.0 268 · BY 3.0 us 7 · BY-SA 2.5 1 · PD 1 | 11 credit groups (Jeuwre 467, Kampy 194) | credit + share-alike on all but 9 |
 | `audio/de/letters/` | 8 letters | Commons `De-<letter>.ogg` | BY-SA 4.0 6 · BY-SA 3.0 2 | Jeuwre 6, T.Voekler 2 | credit + share-alike |
 | `audio/de/texts/` | 2 words | Commons `De-*.ogg` | BY-SA 4.0 1 · BY-SA 3.0 1 | Jeuwre 1, joni 1 | credit + share-alike |
 | `audio/de/articles/` | 221 words **with their article** | Lingua Libre, via Commons | BY-SA 4.0, whole set | Natschoba, all 221 | credit + share-alike |
 | `audio/es/` | 488 words | Lingua Libre, via Commons | BY-SA 4.0 363 · CC0 88 · BY 4.0 37 | 15 credit groups (AdrianAbdulBaha 195, Marreromarco 88) | credit all but the 88 CC0; share-alike on 363 |
 | `audio/es/letters/` | 6 letters | Lingua Libre, via Commons | CC0 2 · BY 4.0 2 · BY-SA 4.0 2 | 4 groups | credit all but the CC0 |
 | `audio/es/texts/` | 4 words | Lingua Libre, via Commons | CC0 2 · BY 4.0 1 · BY-SA 4.0 1 | 4 groups | credit all but the CC0 |
-| `audio/sw/` | 467 words | Commons `Sw-ke-*.flac` | BY-SA 4.0, whole pack | Waithera Were 466, Goethe-Institut Cameroon 1 | credit + share-alike, whole pack |
-| `audio/uk/` words | 490 words | Commons `Uk-*.ogg` (Shtooka) | BY 3.0 us 489 · BY 2.0 fr 1 | Галя Раптова / Nicolas Vion 476, 2 further groups | attribution only |
+| `audio/sw/` | 623 words | Commons `Sw-ke-*.flac` | BY-SA 4.0, whole pack | Waithera Were 622, Goethe-Institut Cameroon 1 | credit + share-alike, whole pack |
+| `audio/uk/` words | 664 words | Commons `Uk-*.ogg` (Shtooka) | BY 3.0 us 663 · BY 2.0 fr 1 | Галя Раптова / Nicolas Vion 649, 2 further groups | attribution only |
 | `audio/uk/letters/` | 33 letters | Commons `Аа – ukrainian.ogg`, one Lingua Libre | BY-SA 4.0 | Tabrus 32, Tohaomg 1 | credit + share-alike |
 | `audio/uk/texts/` | 1 word | Commons `Uk-*.ogg` | BY 3.0 us | Галя Раптова / Nicolas Vion | attribution only |
 | `audio/it/` | 437 words | Lingua Libre + Wiktionary `It-*.ogg`, via Commons | BY-SA 4.0 234 · CC0 184 · BY 3.0 us 10 · BY 4.0 5 · BY-SA 3.0 3 · BY-SA 2.0 1 | 14 credit groups (LangPao 232, XANA000 105) | credit all but the 184 CC0; share-alike on 238 |
