@@ -2637,15 +2637,13 @@
     "Jeuwre": "CC BY-SA 4.0",
     "Kampy": "CC BY-SA 3.0",
     "Katrin Boxberger, Bernadette Perrin-Riou": "CC BY 3.0 us",
-    "Leni Berlin": "CC BY-SA 2.5",
     "MiER": "CC BY-SA 3.0",
     "Natschoba": "CC BY-SA 4.0",
     "Netzize~commonswiki": "CC BY-SA 3.0",
     "Oceancetaceen Alice Chodura": "CC BY-SA 3.0",
     "Pill": "CC BY-SA 3.0",
-    "Reinsberg": "CC BY-SA 4.0",
+    "Sebastian Wallroth": "CC0",
     "Sicherlich": "CC BY-SA 3.0",
-    "StMH": "CC BY-SA 3.0",
     "T.Voekler": "CC BY-SA 3.0",
     "User:Tosca": "CC BY-SA 3.0",
     "Wikimedia Commons user Jakob.scholbach": "CC BY-SA 3.0",
@@ -4255,7 +4253,7 @@
     "CC BY-SA 2.5": "https://creativecommons.org/licenses/by-sa/2.5/",
     "CC BY-SA 3.0": "https://creativecommons.org/licenses/by-sa/3.0/",
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "Public domain": null
+    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
   "texts": {
     "Quittung": {
@@ -4301,16 +4299,6 @@
       "snr": 63.1,
       "source": "De-nach.ogg"
     },
-    "afternoon": {
-      "author": "Kampy",
-      "file": "afternoon.mp3",
-      "gain": 1.2,
-      "gainPhone": -1.0,
-      "matches": "nachmittag",
-      "sha256": "326f7f826d116a3d366ca529f5484933de9f5f65f42590acdd80efbbe5fd08e9",
-      "snr": 28.9,
-      "source": "De-Nachmittag.ogg"
-    },
     "again": {
       "author": "Dinock90",
       "file": "again.mp3",
@@ -4321,16 +4309,6 @@
       "sha256": "a0c83ec78b67663cf9643e80ea6fec2a39cbf4782c4859bb49c678211a06e271",
       "snr": 63.8,
       "source": "De-wieder.ogg"
-    },
-    "aggressive": {
-      "author": "Oceancetaceen Alice Chodura",
-      "file": "aggressive.mp3",
-      "gain": 10.3,
-      "gainPhone": 1.7,
-      "matches": "aggressiv",
-      "sha256": "1ee5a6a67a08763ac29db147f8ab71f0c1e50482722bb17565f7492d1528bd11",
-      "snr": 25.2,
-      "source": "De-aggressiv.ogg"
     },
     "airport": {
       "author": "Kampy",
@@ -4362,16 +4340,6 @@
       "sha256": "bdf7ef2d95e9f23f6674549151c652c30b8a2622edfffa51cef912b028e8dfbb",
       "snr": 33.6,
       "source": "De-lebendig.ogg"
-    },
-    "all": {
-      "author": "Reinsberg",
-      "file": "all.mp3",
-      "gain": 2.6,
-      "gainPhone": -0.5,
-      "lead": 1062,
-      "matches": "alle",
-      "sha256": "d57ba04eab5c2daec1f2b5e70a6b2853dbb18aacd50cbc304fec742e6d86d30f",
-      "source": "De-alle.ogg"
     },
     "allergy": {
       "author": "Jeuwre",
@@ -4427,16 +4395,6 @@
       "sha256": "4c40a03cd7bb91d2bab7c973cfdbbfec8bc2554303fef5a831ceb702eeff99fd",
       "snr": 72.1,
       "source": "De-und.ogg"
-    },
-    "anger": {
-      "author": "Kampy",
-      "file": "anger.mp3",
-      "gain": -1.3,
-      "gainPhone": -0.1,
-      "matches": "wut",
-      "sha256": "77f08110138dcc71d4167848075c08ae62e63db1e1177129b4d4e0955421a1aa",
-      "snr": 27.3,
-      "source": "De-Wut.ogg"
     },
     "animal": {
       "author": "Jeuwre",
@@ -4781,14 +4739,15 @@
       "source": "De-Strand.ogg"
     },
     "beautiful": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "beautiful.mp3",
-      "gain": -7.5,
-      "gainPhone": -11.0,
+      "gain": 3.2,
+      "gainPhone": 4.8,
+      "lead": 149,
       "matches": "schön",
-      "sha256": "176cd4d94ba20ae0633b61e6bf020d827e8b7cdb99cd3977cdbc64a6640d80f9",
-      "snr": 29.4,
-      "source": "De-schön.ogg"
+      "sha256": "9894ccbd9b181f7c135945ba82d3e4fe6d0eb673d134d54b8ce310291e72bc97",
+      "snr": 58.5,
+      "source": "LL-Q188 (deu)-Natschoba-schön.wav"
     },
     "because": {
       "author": "Jeuwre",
@@ -4846,14 +4805,15 @@
       "source": "De-vor.ogg"
     },
     "behind": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "behind.mp3",
-      "gain": 3.3,
-      "gainPhone": 2.6,
+      "gain": 3.4,
+      "gainPhone": -0.2,
+      "lead": 235,
       "matches": "hinter",
-      "sha256": "3df3e1131521c3bf9a17b7ba1a2da5d2d23ccb6b45adf6b1283a7cbd9ba1079c",
-      "snr": 20.1,
-      "source": "De-hinter.ogg"
+      "sha256": "74dc953d321e4f26cfdd37979f4e3492bd6df0ea8535fe53f424b5cb50fc6f0e",
+      "snr": 62.0,
+      "source": "LL-Q188 (deu)-Natschoba-hinter.wav"
     },
     "belt": {
       "author": "Jeuwre",
@@ -4867,14 +4827,15 @@
       "source": "De-Gürtel.ogg"
     },
     "between": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "between.mp3",
-      "gain": 3.4,
-      "gainPhone": -1.8,
+      "gain": 3.2,
+      "gainPhone": 6.1,
+      "lead": 84,
       "matches": "zwischen",
-      "sha256": "829825924f66688a3b507e393f8e132bea4f5dbc1e63f98bdfb297d10fb80a98",
-      "snr": 25.4,
-      "source": "De-zwischen.ogg"
+      "sha256": "aee1452d7aab0f1670fe06b1d1eff9105ba92c44b31e967df9ee322f68209016",
+      "snr": 58.9,
+      "source": "LL-Q188 (deu)-Natschoba-zwischen.wav"
     },
     "beverage": {
       "author": "Jeuwre",
@@ -4918,17 +4879,6 @@
       "sha256": "d4b4d9c16e771f56ab9bdc644f6ceecaad990f4f10116fbe44567fc9078202e6",
       "snr": 86.5,
       "source": "De-galle.ogg"
-    },
-    "bill": {
-      "author": "Kampy",
-      "cap": 0.7,
-      "file": "bill.mp3",
-      "gain": -0.9,
-      "gainPhone": -1.8,
-      "matches": "rechnung",
-      "sha256": "fde625bc863ab29ff01f8cd26ef20ee3fce03563cd0f67948c70782ddc8ce0fc",
-      "snr": 28.2,
-      "source": "De-Rechnung.ogg"
     },
     "bird": {
       "author": "T.Voekler",
@@ -5108,16 +5058,6 @@
       "sha256": "3f04052ee9aeca0fd19b76241dc8544b50c635ee0274ce919180fa9efc6ba26b",
       "snr": 85.9,
       "source": "De-junge.ogg"
-    },
-    "brain": {
-      "author": "Kampy",
-      "file": "brain.mp3",
-      "gain": -3.3,
-      "gainPhone": 0.9,
-      "matches": "gehirn",
-      "sha256": "dbadd972be679c20bb19ea3ba78f4be921bc05f475b38923fbbd8cd57a8ff122",
-      "snr": 29.2,
-      "source": "De-Gehirn.ogg"
     },
     "bread": {
       "author": "Kampy",
@@ -5659,14 +5599,15 @@
       "source": "De-sauber.ogg"
     },
     "close": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
+      "author": "Natschoba",
       "file": "close.mp3",
-      "gain": 5.3,
-      "gainPhone": 3.4,
+      "gain": 2.8,
+      "gainPhone": 6.2,
+      "lead": 236,
       "matches": "schließen",
-      "sha256": "def5ab4dc8ffc306853c7045373b5da60ebb24096f2a2e06e209fa48a39a5197",
-      "snr": 30.3,
-      "source": "De-schließen.ogg"
+      "sha256": "037490ebdbd561a59afdd534aec507a8531576372e83d147c564754d1a33c92e",
+      "snr": 56.4,
+      "source": "LL-Q188 (deu)-Natschoba-schließen.wav"
     },
     "clothes": {
       "author": "Kampy",
@@ -5746,14 +5687,15 @@
       "source": "De-Erkältung.ogg"
     },
     "cold-adj": {
-      "author": "User:Tosca",
+      "author": "Sebastian Wallroth",
       "file": "cold-adj.mp3",
-      "gain": 6.0,
-      "gainPhone": 2.7,
+      "gain": 7.7,
+      "gainPhone": 4.1,
+      "lead": 241,
       "matches": "kalt",
-      "sha256": "12a314761ff67ac863c712bef4b3b60e5d2d123b99094e9dd2bb53283f915f04",
-      "snr": 28.3,
-      "source": "De-kalt.ogg"
+      "sha256": "a494f5dc8810bdbb286f2965d43a46e7c2c246615130d8955c3b50bfbbafbd5f",
+      "snr": 66.6,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-kalt.wav"
     },
     "colleague": {
       "author": "Bleibein",
@@ -5900,14 +5842,15 @@
       "source": "De-korrigieren.ogg"
     },
     "cost": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "cost.mp3",
-      "gain": 0.5,
-      "gainPhone": -3.6,
+      "gain": 7.2,
+      "gainPhone": 3.3,
+      "lead": 193,
       "matches": "kosten",
-      "sha256": "023195602d214e1d4121b75c6c3de298805665014f1b62323f1cf3907dc3ad71",
-      "snr": 32.6,
-      "source": "De-kosten.ogg"
+      "sha256": "67849ada39525e1dedf7444271e0e0375e335608a3fab454530e3edf996ed43d",
+      "snr": 63.9,
+      "source": "LL-Q188 (deu)-Natschoba-kosten.wav"
     },
     "cough": {
       "author": "Jeuwre",
@@ -5919,16 +5862,6 @@
       "sha256": "a00b6aba842cda9b9f8d9ced86a2c19f8245ec9dff08a8833b8c9fd8c7ee1ed1",
       "snr": 70.8,
       "source": "De-husten.ogg"
-    },
-    "country": {
-      "author": "Pill",
-      "file": "country.mp3",
-      "gain": 3.5,
-      "gainPhone": 0.0,
-      "matches": "land",
-      "sha256": "2dfc595f07bd71e0d5f1c34ffc9dc53014db63771aaecb0abb1b2c5881b8a839",
-      "snr": 25.9,
-      "source": "De-Land.ogg"
     },
     "course": {
       "author": "Jeuwre",
@@ -6392,14 +6325,14 @@
       "source": "De-klingel.ogg"
     },
     "down": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "down.mp3",
-      "gain": 1.6,
-      "gainPhone": 3.0,
+      "gain": 6.8,
+      "gainPhone": 3.7,
       "matches": "unten",
-      "sha256": "d0d11736e734909ad0668243e3eab91d19e69580e6f56e9359931e1f6a52ae32",
-      "snr": 21.0,
-      "source": "De-unten.ogg"
+      "sha256": "672edf158d14e83e6aea392677ea30222767a8a1d014353b3d3d90315200dbcc",
+      "snr": 63.6,
+      "source": "LL-Q188 (deu)-Natschoba-unten.wav"
     },
     "dream": {
       "author": "Jeuwre",
@@ -6711,25 +6644,15 @@
       "source": "De-heft.ogg"
     },
     "exit": {
-      "author": "T.Voekler",
+      "author": "Sebastian Wallroth",
       "file": "exit.mp3",
-      "gain": -5.4,
-      "gainPhone": -4.2,
-      "license": "Public domain",
+      "gain": 7.5,
+      "gainPhone": -1.0,
+      "lead": 219,
       "matches": "ausgang",
-      "sha256": "14e2afad7e9be6420c8980ef6b6813de16a5322c4edd09a8d5c4690e128c6032",
-      "snr": 43.5,
-      "source": "De-Ausgang.ogg"
-    },
-    "expensive": {
-      "author": "Jeuwre",
-      "file": "expensive.mp3",
-      "gain": -2.0,
-      "gainPhone": 2.6,
-      "lead": 84,
-      "matches": "teuer",
-      "sha256": "3472d7b724cd460c509d44f9a59d4f2d03fd2daf46a1e3635e694ddffa7e112f",
-      "source": "De-teuer.ogg"
+      "sha256": "643eb308347beb98324d96ba06dc17722fb336a8f4d1ff024fe96a978cfe6648",
+      "snr": 55.4,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Ausgang.wav"
     },
     "extend": {
       "author": "Jeuwre",
@@ -6774,14 +6697,16 @@
       "source": "De-Familie.ogg"
     },
     "far": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
+      "cap": 0.2,
       "file": "far.mp3",
-      "gain": -0.9,
-      "gainPhone": -4.3,
+      "gain": 6.5,
+      "gainPhone": 3.5,
+      "lead": 235,
       "matches": "weit",
-      "sha256": "a86906095d52ab6b58b01155f2d4c5e8f6bfb937fb24ecf9ede9e17c19a329ff",
-      "snr": 36.3,
-      "source": "De-weit.ogg"
+      "sha256": "0cf1ae3d8ec9a742fc812077184d8c2fea88f33c856f6c543ad31b5f4bf5bee7",
+      "snr": 61.6,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-weit.wav"
     },
     "fare": {
       "author": "Jeuwre",
@@ -6828,15 +6753,15 @@
       "source": "De-Wasserhahn.ogg"
     },
     "fear": {
-      "author": "Kampy",
-      "cap": 0.1,
+      "author": "Sebastian Wallroth",
       "file": "fear.mp3",
-      "gain": 5.0,
-      "gainPhone": 0.3,
+      "gain": 10.5,
+      "gainPhone": 4.0,
+      "lead": 221,
       "matches": "angst",
-      "sha256": "f84d6acb8af62f4d74ca619ce45e465e6da8d37c135f954095af0679de38b810",
-      "snr": 32.6,
-      "source": "De-Angst.ogg"
+      "sha256": "d5fc469105d21fd2d35ee8ea2e2a9a7f6de27cc3e66d316b469b2d561d1be538",
+      "snr": 54.0,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Angst.wav"
     },
     "fee": {
       "author": "Jeuwre",
@@ -6883,14 +6808,15 @@
       "source": "De-ausfüllen.ogg"
     },
     "find": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "find.mp3",
-      "gain": -1.2,
-      "gainPhone": -0.1,
+      "gain": 7.6,
+      "gainPhone": 10.0,
+      "lead": 223,
       "matches": "finden",
-      "sha256": "da57aad84e55924ec55a6166ea88b9c160a67ee299ff7f132385f9be589a5634",
-      "snr": 34.0,
-      "source": "De-finden.ogg"
+      "sha256": "06a4593b99d0a2cea3436cee05a0c0aa0e4ec8de21b888766e08ad3575ba1f73",
+      "snr": 56.4,
+      "source": "LL-Q188 (deu)-Natschoba-finden.wav"
     },
     "fine": {
       "author": "Jeuwre",
@@ -6915,14 +6841,15 @@
       "source": "De-finger.ogg"
     },
     "first": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "first.mp3",
-      "gain": -0.1,
-      "gainPhone": -2.6,
+      "gain": 6.2,
+      "gainPhone": 4.0,
+      "lead": 216,
       "matches": "erste",
-      "sha256": "2231adf81400fdda857c17f3381e1aa243de1503eb4156b1cec48067995893f0",
-      "snr": 33.6,
-      "source": "De-erste.ogg"
+      "sha256": "f92d5263d950c6307a9ab23bba1224daa10d4d4139b2a7304b49f933654e7ad3",
+      "snr": 62.1,
+      "source": "LL-Q188 (deu)-Natschoba-erste.wav"
     },
     "fish": {
       "author": "Jeuwre",
@@ -6982,14 +6909,16 @@
       "source": "De-Ordner.ogg"
     },
     "follow": {
-      "author": "Kampy",
+      "author": "Natschoba",
+      "capPhone": 0.1,
       "file": "follow.mp3",
-      "gain": -4.7,
-      "gainPhone": -1.3,
+      "gain": 1.1,
+      "gainPhone": 5.7,
+      "lead": 215,
       "matches": "folgen",
-      "sha256": "6d74d7b9180033de50230b01fcb858bfc0aeda28313d203b89d5cc48a93cd483",
-      "snr": 36.5,
-      "source": "De-folgen.ogg"
+      "sha256": "5602a48fc3281ca504e8fc0fced200760c7827905d80e321475746389e240cf3",
+      "snr": 68.1,
+      "source": "LL-Q188 (deu)-Natschoba-folgen.wav"
     },
     "food": {
       "author": "Kampy",
@@ -7013,14 +6942,15 @@
       "source": "De-fuß.ogg"
     },
     "for": {
-      "author": "joni",
+      "author": "Natschoba",
       "file": "for.mp3",
-      "gain": -0.1,
-      "gainPhone": -3.9,
+      "gain": 2.4,
+      "gainPhone": 6.0,
+      "lead": 128,
       "matches": "für",
-      "sha256": "1774284a915751bff67280805ef5ee8bc65697e3e7017ddc7a14d83d1a23572b",
-      "snr": 28.0,
-      "source": "De-für.ogg"
+      "sha256": "cbe6eaae1c08a9ee5036d67673a1e82a2796f5380eaf947fbacd0c6c7183e096",
+      "snr": 59.2,
+      "source": "LL-Q188 (deu)-Natschoba-für.wav"
     },
     "forest": {
       "author": "Jeuwre",
@@ -7077,14 +7007,14 @@
       "source": "De-Freiheit.ogg"
     },
     "fresh": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "fresh.mp3",
-      "gain": -4.3,
-      "gainPhone": -5.7,
+      "gain": 5.3,
+      "gainPhone": -0.6,
       "matches": "frisch",
-      "sha256": "17ee33d04cc83bb2665f47e86efb9af6d6d092f65106a5198a3570f866d4e880",
-      "snr": 24.9,
-      "source": "De-frisch.ogg"
+      "sha256": "83195ddb53cc6adde4089255bcf33efe3df9a4da4154b421297315de0130d241",
+      "snr": 58.6,
+      "source": "LL-Q188 (deu)-Natschoba-frisch.wav"
     },
     "fridge": {
       "author": "Kampy",
@@ -7662,16 +7592,6 @@
       "snr": 66.7,
       "source": "De-Krankenhaus.ogg"
     },
-    "hot": {
-      "author": "Kampy",
-      "file": "hot.mp3",
-      "gain": -3.6,
-      "gainPhone": -8.7,
-      "matches": "heiß",
-      "sha256": "3b34bc2f79893efc8b7e673416a4e90db72759760f91064c8e9b3cc7b38c9432",
-      "snr": 26.4,
-      "source": "De-heiß.ogg"
-    },
     "hotel": {
       "author": "Kampy",
       "file": "hotel.mp3",
@@ -7815,14 +7735,15 @@
       "source": "De-wichtig.ogg"
     },
     "in": {
-      "author": "joni",
+      "author": "Sebastian Wallroth",
       "file": "in.mp3",
-      "gain": 2.8,
-      "gainPhone": -2.5,
+      "gain": 17.1,
+      "gainPhone": 11.7,
+      "lead": 149,
       "matches": "in",
-      "sha256": "947f1971bae83647b90843547e0b3cc25c9d531112db93c9e5b34da6b5522531",
-      "snr": 34.0,
-      "source": "De-in.ogg"
+      "sha256": "2bfc805836bc9f17a2dee021a1b794905bc25a8a581ac6e2ffa023dac2b4160b",
+      "snr": 70.1,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-in.wav"
     },
     "inside": {
       "author": "Jeuwre",
@@ -7946,14 +7867,15 @@
       "source": "De-reise.ogg"
     },
     "joy": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "joy.mp3",
-      "gain": 1.3,
-      "gainPhone": -1.0,
+      "gain": 8.4,
+      "gainPhone": 7.3,
+      "lead": 83,
       "matches": "freude",
-      "sha256": "0428f2a40069fc396a2e41f8af102307b7cd6d88b1f5bfc02a259526794b58f9",
-      "snr": 34.8,
-      "source": "De-Freude.ogg"
+      "sha256": "6ba68d32ffd6e813f2321fedab4f21c93374d66ffdaf636aa4d9e11a4d279a42",
+      "snr": 55.3,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Freude.wav"
     },
     "juice": {
       "author": "Jeuwre",
@@ -8210,15 +8132,15 @@
       "source": "De-Bibliothek2.ogg"
     },
     "life": {
-      "author": "User:Tosca",
+      "author": "Sebastian Wallroth",
       "file": "life.mp3",
-      "gain": 2.9,
-      "gainPhone": 7.3,
-      "lead": 56,
+      "gain": 9.8,
+      "gainPhone": 10.6,
+      "lead": 227,
       "matches": "leben",
-      "sha256": "7bf0ab144b57df752422ef911140e482b599077ec89247830ab323e3e6cdffdb",
-      "snr": 33.4,
-      "source": "De-leben.ogg"
+      "sha256": "cb52988dec8971632dcb3fd711e7050ec400897f83ab0f65eb8b8125f48b00f5",
+      "snr": 54.7,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Leben.wav"
     },
     "light": {
       "author": "Jeuwre",
@@ -8371,15 +8293,15 @@
       "source": "De-lauter.ogg"
     },
     "love": {
-      "author": "Leni Berlin",
+      "author": "Sebastian Wallroth",
       "file": "love.mp3",
-      "gain": 14.5,
-      "gainPhone": 15.8,
-      "lead": 6,
+      "gain": 5.1,
+      "gainPhone": 3.7,
+      "lead": 267,
       "matches": "liebe",
-      "sha256": "eec2e149d3f9b05e08139907a14b79f68225358f2762c06ce5f905eb7186b855",
-      "snr": 20.6,
-      "source": "De-liebe.ogg"
+      "sha256": "1ebb6fcc29d3e700f527cc83d2dd29f8e9045c085c39f1464a8ab93c883de23a",
+      "snr": 50.4,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Liebe.wav"
     },
     "lower": {
       "author": "Dinock90",
@@ -8767,14 +8689,15 @@
       "source": "De-Serviette.ogg"
     },
     "near": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "near.mp3",
-      "gain": -6.9,
-      "gainPhone": -8.8,
+      "gain": 3.7,
+      "gainPhone": -0.9,
+      "lead": 258,
       "matches": "nah",
-      "sha256": "2791e65f5a6ff8a68a232a9978ad075a691c92e76ebc158bc0aa783f6d92823b",
-      "snr": 30.8,
-      "source": "De-nah.ogg"
+      "sha256": "734db2c640622bb3d75a8494e86054be82b0b03e9bf8afb7e7c5530faa668c4d",
+      "snr": 63.7,
+      "source": "LL-Q188 (deu)-Natschoba-nah.wav"
     },
     "neck": {
       "author": "Jeuwre",
@@ -8975,14 +8898,15 @@
       "source": "De-Nase.ogg"
     },
     "not": {
-      "author": "joni",
+      "author": "Sebastian Wallroth",
       "file": "not.mp3",
-      "gain": 1.4,
-      "gainPhone": -5.2,
+      "gain": 10.3,
+      "gainPhone": 3.5,
+      "lead": 243,
       "matches": "nicht",
-      "sha256": "f35a3b62ad49fcdf6686cb5c7462fa23c7a5551d86f3e2672ef6407082e225ed",
-      "snr": 40.0,
-      "source": "De-nicht.ogg"
+      "sha256": "ad82c9ac52896c8bf929d0841a79d6be27ca4b856a7e314bc67507a0ae8ffc38",
+      "snr": 60.0,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-nicht.wav"
     },
     "notebook": {
       "author": "Jeuwre",
@@ -9206,15 +9130,15 @@
       "source": "De-oder.ogg"
     },
     "order": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "order.mp3",
-      "gain": -3.4,
-      "gainPhone": -7.5,
-      "lead": 96,
+      "gain": 8.8,
+      "gainPhone": 1.8,
+      "lead": 190,
       "matches": "bestellen",
-      "sha256": "e4405ee1f381acdff66183ae95cdeb821f1ab4905ef073489b3a650241e6b12f",
-      "snr": 43.1,
-      "source": "De-bestellen.ogg"
+      "sha256": "0a0b58a5198e70ce8787875b671819c3306b31eb4598c0a336b7b69a75257a98",
+      "snr": 61.5,
+      "source": "LL-Q188 (deu)-Natschoba-bestellen.wav"
     },
     "other": {
       "author": "Jeuwre",
@@ -9611,6 +9535,17 @@
       "snr": 64.4,
       "source": "De-Polizei.ogg"
     },
+    "poor": {
+      "author": "Sebastian Wallroth",
+      "file": "poor.mp3",
+      "gain": 1.9,
+      "gainPhone": 0.7,
+      "lead": 236,
+      "matches": "arm",
+      "sha256": "5d391dc2a8cbb4def36d4640f535b5bb89f6971cf1c7ccf512872d2ccf83da4f",
+      "snr": 52.3,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Arm.wav"
+    },
     "positive": {
       "author": "Katrin Boxberger, Bernadette Perrin-Riou",
       "capPhone": 2.6,
@@ -9911,14 +9846,16 @@
       "source": "De-Quittung.ogg"
     },
     "receive": {
-      "author": "Kampy",
+      "author": "Natschoba",
+      "capPhone": 1.3,
       "file": "receive.mp3",
-      "gain": -2.0,
-      "gainPhone": -1.3,
+      "gain": 5.4,
+      "gainPhone": 7.5,
+      "lead": 204,
       "matches": "bekommen",
-      "sha256": "ea384775be89328f2019bc3c8962737fcf5ebbaf147eb91b6dbe227fd5b14f06",
-      "snr": 30.7,
-      "source": "De-bekommen.ogg"
+      "sha256": "526bc989e78fa739753fdb301aff19be818440afc52d36f3ddbd0110ef2e2b28",
+      "snr": 65.6,
+      "source": "LL-Q188 (deu)-Natschoba-bekommen.wav"
     },
     "red": {
       "author": "Bleibein",
@@ -9977,15 +9914,15 @@
       "source": "De-Fernbedienung.ogg"
     },
     "repair": {
-      "author": "Kampy",
-      "capPhone": 0.6,
+      "author": "Natschoba",
       "file": "repair.mp3",
-      "gain": 1.2,
-      "gainPhone": 2.1,
+      "gain": 5.5,
+      "gainPhone": 7.0,
+      "lead": 183,
       "matches": "reparieren",
-      "sha256": "72ea785dd0876fca927f48f80397c828a6c588dbcb07f8a186f8940bccfee352",
-      "snr": 27.7,
-      "source": "De-reparieren.ogg"
+      "sha256": "e375bac8234028767fb1d40b130da81f86037ac29311fa97dc3404dad3a1e61a",
+      "snr": 61.9,
+      "source": "LL-Q188 (deu)-Natschoba-reparieren.wav"
     },
     "reply": {
       "author": "User:Tosca",
@@ -10227,16 +10164,16 @@
       "source": "De-Meer.ogg"
     },
     "search": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "capPhone": 2.5,
+      "author": "Natschoba",
+      "capPhone": 0.5,
       "file": "search.mp3",
-      "gain": 4.2,
-      "gainPhone": 8.1,
-      "lead": 83,
+      "gain": 6.6,
+      "gainPhone": 14.3,
+      "lead": 265,
       "matches": "suchen",
-      "sha256": "e7e1dee06381b4afb898fbb2419b71589562324868cc47de40a02f8d97e81bef",
-      "snr": 32.9,
-      "source": "De-suchen.ogg"
+      "sha256": "5e2e1301ab32be3ce7371118eb113c6cce9006265b7762d2a0211e679c3e75bd",
+      "snr": 59.4,
+      "source": "LL-Q188 (deu)-Natschoba-suchen.wav"
     },
     "see": {
       "author": "Kampy",
@@ -10250,24 +10187,27 @@
       "source": "De-sehen.ogg"
     },
     "sell": {
-      "author": "Kampy",
+      "author": "Natschoba",
+      "cap": 0.2,
       "file": "sell.mp3",
-      "gain": -1.3,
-      "gainPhone": 0.3,
+      "gain": 6.7,
+      "gainPhone": 2.0,
+      "lead": 188,
       "matches": "verkaufen",
-      "sha256": "eefe15eabe781a24f731570e30de74da952ee91ed5823bffc301a75b495a615e",
-      "snr": 32.4,
-      "source": "De-verkaufen.ogg"
+      "sha256": "4581e379b526b0583b0f3edb7b79ae7dfa4d4df6d845ec5f61c23ae5a5a8cdb8",
+      "snr": 63.6,
+      "source": "LL-Q188 (deu)-Natschoba-verkaufen.wav"
     },
     "send": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "send.mp3",
-      "gain": 0.1,
-      "gainPhone": -7.8,
+      "gain": 6.7,
+      "gainPhone": 5.5,
+      "lead": 87,
       "matches": "schicken",
-      "sha256": "862ad978862eb699f1b19d80d00a45151b7c75abb20705df5d48ca5481126c12",
-      "snr": 44.7,
-      "source": "De-schicken.ogg"
+      "sha256": "40964850cc42797eb9fa76eb332df7d71a9d01e7b0a4cf0bf93751e6fffe6bdc",
+      "snr": 61.6,
+      "source": "LL-Q188 (deu)-Natschoba-schicken.wav"
     },
     "shame": {
       "author": "Jeuwre",
@@ -10378,16 +10318,6 @@
       "snr": 83.4,
       "source": "De-einkaufen.ogg"
     },
-    "shop-assistant": {
-      "author": "Kampy",
-      "file": "shop-assistant.mp3",
-      "gain": -1.8,
-      "gainPhone": -1.8,
-      "matches": "verkäufer",
-      "sha256": "d78491dcf772b0efed9df5759181d8e4e047b0d83a8c4994ac8b619a0c0466f0",
-      "snr": 29.9,
-      "source": "De-Verkäufer.ogg"
-    },
     "shop-assistant-f": {
       "author": "Jeuwre",
       "file": "shop-assistant-f.mp3",
@@ -10495,14 +10425,15 @@
       "source": "De-Unterschrift.ogg"
     },
     "similar": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "similar.mp3",
-      "gain": -3.5,
-      "gainPhone": -10.4,
+      "gain": 2.2,
+      "gainPhone": -3.3,
+      "lead": 208,
       "matches": "ähnlich",
-      "sha256": "b0bb6399e37a2ef8fdf51e0ce477dac1545b380967b8ee53b613c52b2dd8e40d",
-      "snr": 36.6,
-      "source": "De-ähnlich.ogg"
+      "sha256": "7ecb706aac6da4da12d9143419df9256e6617de3c5598f197f1186c438d5a241",
+      "snr": 53.4,
+      "source": "LL-Q188 (deu)-Natschoba-ähnlich.wav"
     },
     "sink": {
       "author": "Jeuwre",
@@ -10536,16 +10467,6 @@
       "sha256": "57746ff9c95c86b16cfe3302cf534182ab3f450aab3feb0249fd80d850283270",
       "snr": 56.5,
       "source": "De-sitzen.ogg"
-    },
-    "size": {
-      "author": "Jeuwre",
-      "file": "size.mp3",
-      "gain": -2.9,
-      "gainPhone": -1.1,
-      "lead": 189,
-      "matches": "größe",
-      "sha256": "2ed98592c309f2f035d9bccf5a89237b53ba64a07b8257e783a8263a9cc9f7cc",
-      "source": "De-Größe.ogg"
     },
     "skin": {
       "author": "Jeuwre",
@@ -10855,15 +10776,15 @@
       "source": "De-Marktstand.ogg"
     },
     "stand": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
+      "author": "Sebastian Wallroth",
       "file": "stand.mp3",
-      "gain": 3.8,
-      "gainPhone": 1.3,
-      "lead": 269,
+      "gain": 0.1,
+      "gainPhone": -3.5,
+      "lead": 235,
       "matches": "stehen",
-      "sha256": "584bd149c3b58df8149a8f6f41a0caa112a2e400cd86d2c18a2a2779ad815999",
-      "snr": 36.2,
-      "source": "De-stehen.ogg"
+      "sha256": "8a2dd8414f8c5dc1c5756172e1206c773f5161e6de992897310beac4cc06d512",
+      "snr": 51.7,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-stehen.wav"
     },
     "star": {
       "author": "Jeuwre",
@@ -10932,16 +10853,6 @@
       "snr": 86.2,
       "source": "De-bauch.ogg"
     },
-    "stomach-organ": {
-      "author": "Kampy",
-      "file": "stomach-organ.mp3",
-      "gain": -1.7,
-      "gainPhone": -1.1,
-      "matches": "magen",
-      "sha256": "90fdee6bb68f4db7737f6d3e87e0d50e3a8e192df9ec144f5363c458244c30ce",
-      "snr": 24.3,
-      "source": "De-Magen.ogg"
-    },
     "stone": {
       "author": "Jeuwre",
       "file": "stone.mp3",
@@ -10975,15 +10886,15 @@
       "source": "De-laden.ogg"
     },
     "storm": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "storm.mp3",
-      "gain": -1.7,
-      "gainPhone": -3.6,
-      "lead": 43,
+      "gain": 7.3,
+      "gainPhone": 5.5,
+      "lead": 193,
       "matches": "sturm",
-      "sha256": "986e7905af104782c3275526308d23313ac3e9cb448719d8a5666dff9a0741b3",
-      "snr": 39.5,
-      "source": "De-Sturm.ogg"
+      "sha256": "8b6e0e15fa0f6927692caf7605e3467d55cdc736db6b6bd30aae697dd41c4c20",
+      "snr": 53.7,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Sturm.wav"
     },
     "story": {
       "author": "Jeuwre",
@@ -11060,16 +10971,6 @@
       "sha256": "3d51c9cb9b1e2e220ad3da123a3e7e3b5e67bba5d7a06eba02092092759ecaa0",
       "snr": 87.2,
       "source": "De-sonne.ogg"
-    },
-    "supermarket": {
-      "author": "Kampy",
-      "file": "supermarket.mp3",
-      "gain": -4.5,
-      "gainPhone": -1.7,
-      "matches": "supermarkt",
-      "sha256": "63aa32e6f3c5eda2a0be6616a596c5bbc7f56153545fd7afa73fc5eab6385e61",
-      "snr": 28.9,
-      "source": "De-Supermarkt.ogg"
     },
     "surprise": {
       "author": "Kampy",
@@ -11371,15 +11272,15 @@
       "source": "De-müde.ogg"
     },
     "to-be-alive": {
-      "author": "User:Tosca",
+      "author": "Sebastian Wallroth",
       "file": "to-be-alive.mp3",
-      "gain": 2.9,
-      "gainPhone": 7.3,
-      "lead": 56,
+      "gain": 9.8,
+      "gainPhone": 10.6,
+      "lead": 227,
       "matches": "leben",
-      "sha256": "7bf0ab144b57df752422ef911140e482b599077ec89247830ab323e3e6cdffdb",
-      "snr": 33.4,
-      "source": "De-leben.ogg"
+      "sha256": "cb52988dec8971632dcb3fd711e7050ec400897f83ab0f65eb8b8125f48b00f5",
+      "snr": 54.7,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Leben.wav"
     },
     "to-come-back": {
       "author": "Jeuwre",
@@ -11426,24 +11327,27 @@
       "source": "De-zählen.ogg"
     },
     "to-die": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
+      "cap": 0.1,
       "file": "to-die.mp3",
-      "gain": -2.9,
-      "gainPhone": -6.0,
+      "gain": 10.9,
+      "gainPhone": 7.9,
+      "lead": 177,
       "matches": "sterben",
-      "sha256": "636812ea4492dae2bd56ff475f24c2f8d2cb6d5b383d2a09265bc9af8c9a8b68",
-      "snr": 30.2,
-      "source": "De-sterben.ogg"
+      "sha256": "a1c55c1ae668da8b52aabdf49e9ce064e01d8d935f031166c82c11bc54a29731",
+      "snr": 57.0,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-sterben.wav"
     },
     "to-explain": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "to-explain.mp3",
-      "gain": -4.8,
-      "gainPhone": -3.9,
+      "gain": 6.1,
+      "gainPhone": 2.3,
+      "lead": 269,
       "matches": "erklären",
-      "sha256": "41931fc7ec45a3d6418ec9270f3ac364e3ed1e8075ee62c97aad81e94d99cc97",
-      "snr": 20.1,
-      "source": "De-erklären.ogg"
+      "sha256": "2b46fe0bcece90ce35090de139319ceb55860ec0d098184c32e1c77b77984543",
+      "snr": 65.3,
+      "source": "LL-Q188 (deu)-Natschoba-erklären.wav"
     },
     "to-finish": {
       "author": "Jeuwre",
@@ -11457,14 +11361,15 @@
       "source": "De-beenden.ogg"
     },
     "to-forget": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "to-forget.mp3",
-      "gain": 0.6,
-      "gainPhone": -0.3,
+      "gain": 4.2,
+      "gainPhone": 3.7,
+      "lead": 216,
       "matches": "vergessen",
-      "sha256": "14c872ebd95dddd93a3e2cde62c970403cf49b4ecf0a2cb9adb5f6839c7be52b",
-      "snr": 30.9,
-      "source": "De-vergessen.ogg"
+      "sha256": "b154b4816fd4bbda23014a31e5aa3f9fe1d330b5c492f425124293d5a0f48d1a",
+      "snr": 63.3,
+      "source": "LL-Q188 (deu)-Natschoba-vergessen.wav"
     },
     "to-help": {
       "author": "Kampy",
@@ -11489,24 +11394,26 @@
       "source": "De-einladen.ogg"
     },
     "to-lose": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "to-lose.mp3",
-      "gain": 0.8,
-      "gainPhone": -0.1,
+      "gain": 8.9,
+      "gainPhone": 12.9,
+      "lead": 233,
       "matches": "verlieren",
-      "sha256": "a4a77e7ca05425b68a37c2485bf3f43c89bed3f5fcefe36d0db22f98060c2fa2",
-      "snr": 34.7,
-      "source": "De-verlieren.ogg"
+      "sha256": "85f2b309542cd2a09fd148f50e0c735c214ea14a4b5e919be61e2415a40fd74b",
+      "snr": 52.9,
+      "source": "LL-Q188 (deu)-Natschoba-verlieren.wav"
     },
     "to-marry": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "to-marry.mp3",
-      "gain": -1.7,
-      "gainPhone": -4.9,
+      "gain": 2.1,
+      "gainPhone": -4.0,
+      "lead": 266,
       "matches": "heiraten",
-      "sha256": "2a71ffd60b778ff90b02dca54ef30425fafb2e70e71ea42aef2678096171b60f",
-      "snr": 29.9,
-      "source": "De-heiraten.ogg"
+      "sha256": "0464a5a69f086088ce9c78b6be06dcfac50ad0043280c650e5b2b786d67400bc",
+      "snr": 69.9,
+      "source": "LL-Q188 (deu)-Natschoba-heiraten.wav"
     },
     "to-practice": {
       "author": "Jeuwre",
@@ -11530,14 +11437,15 @@
       "source": "De-aussprechen.ogg"
     },
     "to-pull": {
-      "author": "StMH",
+      "author": "Sebastian Wallroth",
       "file": "to-pull.mp3",
-      "gain": 5.0,
-      "gainPhone": 1.1,
+      "gain": 13.3,
+      "gainPhone": 3.6,
+      "lead": 179,
       "matches": "ziehen",
-      "sha256": "31d0d34d36bc6be999d06c9be596fca4f38fd961363bebc08e7eb8db534d5dcc",
-      "snr": 33.9,
-      "source": "De-ziehen.ogg"
+      "sha256": "186a6eb2c3376f9f48693902b074d1a6d011871da59264ef089babcb14199ba3",
+      "snr": 69.7,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-ziehen.wav"
     },
     "to-push": {
       "author": "Wikimedia Commons user Jakob.scholbach",
@@ -11550,14 +11458,15 @@
       "source": "De-schieben.ogg"
     },
     "to-show": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "to-show.mp3",
-      "gain": -2.6,
-      "gainPhone": -3.7,
+      "gain": 3.0,
+      "gainPhone": 1.0,
+      "lead": 131,
       "matches": "zeigen",
-      "sha256": "76adb0daf79e79855f7bf6882e83df636bf0d683a0246eec70a2e45fa8420b8a",
-      "snr": 32.7,
-      "source": "De-zeigen.ogg"
+      "sha256": "b15de1d8e132ada99d50ad0bd503f25e046257b34aa254737390e57a5a1a0a0a",
+      "snr": 61.9,
+      "source": "LL-Q188 (deu)-Natschoba-zeigen.wav"
     },
     "to-solve": {
       "author": "Katrin Boxberger, Bernadette Perrin-Riou",
@@ -11593,25 +11502,17 @@
       "snr": 60.9,
       "source": "De-versuchen.ogg"
     },
-    "to-use": {
-      "author": "Kampy",
-      "file": "to-use.mp3",
-      "gain": -4.0,
-      "gainPhone": -4.5,
-      "matches": "benutzen",
-      "sha256": "2f08a6aa997ece2836516af6079d13caef9ec17b746b34402347bcfdfc1f6318",
-      "snr": 28.2,
-      "source": "De-benutzen.ogg"
-    },
     "to-visit": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
+      "author": "Natschoba",
+      "capPhone": 0.1,
       "file": "to-visit.mp3",
-      "gain": 5.3,
-      "gainPhone": 9.2,
+      "gain": 3.0,
+      "gainPhone": 8.5,
+      "lead": 204,
       "matches": "besuchen",
-      "sha256": "c94ce3a248a94f4df0a93a98db48c6c80691313d8c2576bc538966c06d5408be",
-      "snr": 29.8,
-      "source": "De-besuchen.ogg"
+      "sha256": "5c4f3d596ab289d3f5bf9da0abcd80cc50240139e877f960f754d30a819d2378",
+      "snr": 50.4,
+      "source": "LL-Q188 (deu)-Natschoba-besuchen.wav"
     },
     "to-vote": {
       "author": "Katrin Boxberger, Bernadette Perrin-Riou",
@@ -11715,14 +11616,16 @@
       "source": "De-Zunge.ogg"
     },
     "too": {
-      "author": "joni",
+      "author": "Natschoba",
+      "capPhone": 0.5,
       "file": "too.mp3",
-      "gain": 5.9,
-      "gainPhone": 1.0,
+      "gain": 5.8,
+      "gainPhone": 12.4,
+      "lead": 114,
       "matches": "zu",
-      "sha256": "770217b798fea4439cd8e05e6c96077ec3d49ff07cf661827dc3ecc051bf00d1",
-      "snr": 26.5,
-      "source": "De-zu.ogg"
+      "sha256": "35573d3a03c94dde9e24a162d031e7b380f25b621926d8a6e009850416db3e8d",
+      "snr": 56.8,
+      "source": "LL-Q188 (deu)-Natschoba-zu.wav"
     },
     "tooth": {
       "author": "Jeuwre",
@@ -11889,16 +11792,16 @@
       "source": "De-Lastwagen.ogg"
     },
     "turn": {
-      "author": "Balû",
-      "cap": 6.0,
-      "capPhone": 7.7,
+      "author": "Natschoba",
+      "cap": 1.7,
       "file": "turn.mp3",
-      "gainPhone": 0.0,
-      "license": "CC BY-SA 4.0",
+      "gain": 2.7,
+      "gainPhone": -4.4,
+      "lead": 168,
       "matches": "abbiegen",
-      "sha256": "02a19efdeda63b02f7082bc96581d756cc40a975f60e1935299b1fd944c623f5",
-      "snr": 44.5,
-      "source": "De-abbiegen.ogg"
+      "sha256": "561f1a78682f66ba8b9f46bfac46ec1be783ed89c71704f13b875c53a053530d",
+      "snr": 70.8,
+      "source": "LL-Q188 (deu)-Natschoba-abbiegen.wav"
     },
     "tv": {
       "author": "Kampy",
@@ -11956,16 +11859,6 @@
       "sha256": "12f0a2a6014e16a7005daf869598355a09d691311e6435c4632af5e2cbdeaa6b",
       "snr": 56.2,
       "source": "De-Onkel.ogg"
-    },
-    "under": {
-      "author": "Kampy",
-      "file": "under.mp3",
-      "gain": 4.8,
-      "gainPhone": 5.8,
-      "matches": "unter",
-      "sha256": "6c1adbd6ee426ea498402311858bf390ae721d76045e0d9567210a07c66188a3",
-      "snr": 23.9,
-      "source": "De-unter.ogg"
     },
     "understand": {
       "author": "Kampy",
@@ -12208,14 +12101,15 @@
       "source": "De-Geldbeutel.ogg"
     },
     "want": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "want.mp3",
-      "gain": -0.5,
-      "gainPhone": 1.7,
+      "gain": -0.1,
+      "gainPhone": 3.7,
+      "lead": 196,
       "matches": "wollen",
-      "sha256": "15f6a6361f9874e271b0d94e9c7d7c2adee08b8e3ba6e57161263e414fbeec86",
-      "snr": 36.1,
-      "source": "De-wollen.ogg"
+      "sha256": "4e6ee36f5445810f16acd3c4ac916eb114c284dc30ec524369bf4ae70516ae8c",
+      "snr": 64.1,
+      "source": "LL-Q188 (deu)-Natschoba-wollen.wav"
     },
     "war": {
       "author": "Jeuwre",
@@ -12320,14 +12214,15 @@
       "source": "De-Woche.ogg"
     },
     "weigh": {
-      "author": "Kampy",
+      "author": "Natschoba",
       "file": "weigh.mp3",
-      "gain": -0.6,
-      "gainPhone": 1.5,
+      "gain": 2.6,
+      "gainPhone": 6.3,
+      "lead": 86,
       "matches": "wiegen",
-      "sha256": "a1b29a8274b9b7f8801fd55b1c416077f4602b1f478f3d9c59349f984faffad3",
-      "snr": 31.0,
-      "source": "De-wiegen.ogg"
+      "sha256": "446a3a9d9e6ab67335a93d6513e7c52271e999fab47e146f726e1c567fb68bd5",
+      "snr": 55.6,
+      "source": "LL-Q188 (deu)-Natschoba-wiegen.wav"
     },
     "welcome": {
       "author": "Jeuwre",
@@ -12474,14 +12369,15 @@
       "source": "De-fenster.ogg"
     },
     "with": {
-      "author": "joni",
+      "author": "Sebastian Wallroth",
       "file": "with.mp3",
-      "gain": 5.8,
-      "gainPhone": 1.6,
+      "gain": 1.9,
+      "gainPhone": -1.4,
+      "lead": 193,
       "matches": "mit",
-      "sha256": "1b52562b5d0196977da6b339385367c18214673107684298eb97ad7768633208",
-      "snr": 27.6,
-      "source": "De-mit.ogg"
+      "sha256": "5043c5330f996131fdc17d5498075ff5f4366a535b6c9f18fe5e9c990f488ee8",
+      "snr": 56.9,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-mit.wav"
     },
     "without": {
       "author": "Kampy",

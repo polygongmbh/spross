@@ -100,6 +100,16 @@ GAIN_LIMIT_DB = 20.0
 # stages add their own ringing on top of it.
 PEAK_CEILING_DBFS = -1.0
 
+# The quietest a FILLED word may stand above its own hiss. `CatalogAudioLintTest`
+# .noPackLosesItsRecordingQuality holds a pack to under 5% of entries below 30 dB, and a
+# fill that ignores it can walk a pack over that line one word at a time — which is exactly
+# what happened to German: 197 words went in and 57 entries ended up under the floor.
+# Resolution answers "is there a recording", never "is it worth hearing", so the floor
+# belongs on the way in. A word refused here is spoken by the device voice, which is what
+# it was doing before the fill anyway; `requalify-pack.py` is how a pack finds a cleaner
+# take of the same word.
+FILL_SNR_FLOOR_DB = 30.0
+
 # Every license the packs actually carry → its canonical deed. An unlisted one is a
 # hard stop: the credits screen links what it names, and PD has no deed to link.
 LICENSE_URLS = {
@@ -642,11 +652,21 @@ def fill_words(packs, languages):
                                      for row in fresh], phone=True)
         for row in fresh:
             digest, index = analyzed[row['slug']]
+            # why: the floor is applied AFTER the copy, because `snr` is measured off the
+            # bytes that landed and nothing earlier knows it. The file is then removed
+            # again rather than left orphaned in the tree.
+            if index.get('snr', 0.0) < FILL_SNR_FLOOR_DB:
+                drops.append(('noisy', row['slug'],
+                              '%.1f dB above its own hiss, floor is %.0f'
+                              % (index.get('snr', 0.0), FILL_SNR_FLOOR_DB)))
+                os.remove(os.path.join(out_dir, row['slug'] + '.mp3'))
+                continue
             shipped[row['slug']] = entry(row['slug'] + '.mp3', row['license'], row['author'],
                                          row['file'], digest, index, matches=row['matched_word'])
         for reason, slug, detail in sorted(drops):
             print('  drop %-18s %-22s %s' % (reason, slug, detail))
-        print('  %s: %d added, %d words now' % (lang, len(fresh), len(shipped)))
+        added = sum(1 for row in fresh if row['slug'] in shipped)
+        print('  %s: %d added, %d words now' % (lang, added, len(shipped)))
         write_manifest(lang, out_dir, shipped, manifest.get('letters', {}),
                        manifest.get('texts', {}), manifest.get('articles', {}),
                        manifest.get('calendar', {}), manifest.get('countries', {}))
