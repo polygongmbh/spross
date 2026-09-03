@@ -26,7 +26,6 @@
    "variants": ["Il sole splende!", "Splende il sole!"],
    "notes": { "de": "Wetter steht mit c'è oder fare: c'è il sole, c'è vento, fa caldo." }
   },
-  "the-sun-has-come-out": { "text": "È uscito il sole.", "variants": ["Il sole è uscito."] },
   "what-a-beautiful-day": { "text": "Che bella giornata!", "variants": ["Che bel giorno!"] },
   "we-are-staying-home-because-of-the-rain": { "text": "Per la pioggia restiamo a casa." }
  }

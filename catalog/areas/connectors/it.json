@@ -26,10 +26,12 @@
   "because-of": { "text": "a causa di" },
   "again": { "text": "di nuovo", "variants": ["un'altra volta", "ancora"] },
   "still": { "text": "ancora" },
+  "finally": { "text": "finalmente" },
   "then": { "text": "poi" },
   "not": { "text": "non", "notes": { "de": "non steht vor dem Verb: non parlo italiano." } },
   "only": { "text": "solo", "variants": ["soltanto", "solamente"] },
   "together": { "text": "insieme" },
-  "if-you-want": { "text": "Se vuole.", "variants": ["Se vuoi."] }
+  "if-you-want": { "text": "Se vuole.", "variants": ["Se vuoi."] },
+  "finally-ready": { "text": "Finalmente pronto!", "variants": ["Finalmente pronta!"] }
  }
 }

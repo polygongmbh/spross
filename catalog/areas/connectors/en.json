@@ -18,10 +18,12 @@
   "because-of": { "text": "because of" },
   "again": { "text": "again" },
   "still": { "text": "still" },
+  "finally": { "text": "finally" },
   "then": { "text": "then" },
   "not": { "text": "not" },
   "only": { "text": "only", "variants": ["just"] },
   "together": { "text": "together" },
-  "if-you-want": { "text": "If you want." }
+  "if-you-want": { "text": "If you want." },
+  "finally-ready": { "text": "Finally ready!" }
  }
 }

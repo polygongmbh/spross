@@ -17,7 +17,6 @@
   "its-raining": { "text": "Йде дощ." },
   "the-rain-has-stopped": { "text": "Дощ припинився.", "variants": ["Дощ перестав.", "Дощ закінчився."] },
   "the-sun-is-shining": { "text": "Світить сонце!" },
-  "the-sun-has-come-out": { "text": "Сонце вийшло.", "variants": ["Сонце визирнуло.", "Виглянуло сонце."] },
   "what-a-beautiful-day": { "text": "Який гарний день!" },
   "we-are-staying-home-because-of-the-rain": { "text": "Через дощ ми залишаємося вдома." }
  }

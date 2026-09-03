@@ -23,10 +23,6 @@
   "its-raining": { "text": "Il pleut." },
   "the-rain-has-stopped": { "text": "Il ne pleut plus.", "variants": ["La pluie s'est arrêtée.", "La pluie a cessé."] },
   "the-sun-is-shining": { "text": "Le soleil brille !", "variants": ["Il y a du soleil !"] },
-  "the-sun-has-come-out": {
-   "text": "Le soleil est sorti.",
-   "variants": ["Le soleil est revenu.", "Le soleil s'est montré."]
-  },
   "what-a-beautiful-day": { "text": "Quelle belle journée !", "variants": ["Quelle journée magnifique !"] },
   "we-are-staying-home-because-of-the-rain": { "text": "À cause de la pluie, nous restons à la maison." }
  }

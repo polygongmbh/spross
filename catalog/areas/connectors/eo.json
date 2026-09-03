@@ -35,6 +35,7 @@
   },
   "again": { "text": "denove", "variants": ["refoje", "ree"] },
   "still": { "text": "ankoraŭ", "notes": { "de": "ankoraŭ (noch) und ankaŭ (auch) nicht verwechseln." } },
+  "finally": { "text": "fine", "variants": ["finfine"] },
   "then": { "text": "poste" },
   "not": {
    "text": "ne",
@@ -42,6 +43,7 @@
   },
   "only": { "text": "nur" },
   "together": { "text": "kune" },
-  "if-you-want": { "text": "Se vi volas." }
+  "if-you-want": { "text": "Se vi volas." },
+  "finally-ready": { "text": "Fine preta!" }
  }
 }

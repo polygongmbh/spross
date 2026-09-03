@@ -17,7 +17,6 @@
   "its-raining": { "text": "It's raining." },
   "the-rain-has-stopped": { "text": "The rain has stopped.", "variants": ["It's stopped raining.", "It stopped raining."] },
   "the-sun-is-shining": { "text": "The sun is shining!" },
-  "the-sun-has-come-out": { "text": "The sun has come out.", "variants": ["The sun came out.", "The sun's come out."] },
   "what-a-beautiful-day": { "text": "What a beautiful day!" },
   "we-are-staying-home-because-of-the-rain": {
    "text": "Because of the rain we're staying home.",

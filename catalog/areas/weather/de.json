@@ -17,10 +17,6 @@
   "its-raining": { "text": "Es regnet." },
   "the-rain-has-stopped": { "text": "Der Regen hat aufgehört.", "variants": ["Es regnet nicht mehr."] },
   "the-sun-is-shining": { "text": "Die Sonne scheint!" },
-  "the-sun-has-come-out": {
-   "text": "Die Sonne ist rausgekommen.",
-   "variants": ["Die Sonne ist herausgekommen.", "Die Sonne kommt raus."]
-  },
   "what-a-beautiful-day": { "text": "Was für ein schöner Tag!" },
   "we-are-staying-home-because-of-the-rain": {
    "text": "Wegen des Regens bleiben wir zu Hause.",

@@ -21,6 +21,7 @@
    "text": "encore",
    "notes": { "de": "zeitliches noch: Il est encore là · dafür geht auch toujours." }
   },
+  "finally": { "text": "enfin" },
   "then": { "text": "puis" },
   "not": {
    "text": "pas",
@@ -30,6 +31,7 @@
   },
   "only": { "text": "seulement", "notes": { "de": "im Satz oft ne … que: Je n'ai que dix euros." } },
   "together": { "text": "ensemble" },
-  "if-you-want": { "text": "Si vous voulez.", "variants": ["Si tu veux."] }
+  "if-you-want": { "text": "Si vous voulez.", "variants": ["Si tu veux."] },
+  "finally-ready": { "text": "Enfin prêt !", "variants": ["Enfin prête !"] }
  }
 }

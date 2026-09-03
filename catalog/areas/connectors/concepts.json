@@ -8,6 +8,7 @@
  { "slug": "if", "kind": "adjective" },
  { "slug": "again", "kind": "adjective" },
  { "slug": "still", "kind": "adjective" },
+ { "slug": "finally", "kind": "adjective" },
  { "slug": "then", "kind": "adjective", "emoji": "⏭️" },
  { "slug": "only", "kind": "adjective" },
  { "slug": "before", "kind": "adjective" },
@@ -19,5 +20,6 @@
  { "slug": "until", "kind": "adjective" },
  { "slug": "so-that", "kind": "adjective" },
  { "slug": "together", "kind": "adjective", "emoji": "👫" },
- { "slug": "if-you-want", "kind": "phrase", "components": ["if"] }
+ { "slug": "if-you-want", "kind": "phrase", "components": ["if"] },
+ { "slug": "finally-ready", "kind": "phrase", "components": ["finally"] }
 ]

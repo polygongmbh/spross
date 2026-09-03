@@ -24,6 +24,7 @@
    "text": "bado",
    "notes": { "de": "allein als Antwort heißt bado „noch nicht“: Umemaliza? — Bado." }
   },
+  "finally": { "text": "hatimaye" },
   "then": { "text": "halafu" },
   "not": {
    "text": "si",
@@ -36,6 +37,7 @@
    "notes": { "de": "tu steht hinter dem Wort, das es einschränkt: mmoja tu, leo tu." }
   },
   "together": { "text": "pamoja" },
-  "if-you-want": { "text": "Kama unataka." }
+  "if-you-want": { "text": "Kama unataka." },
+  "finally-ready": { "text": "Hatimaye tayari!" }
  }
 }

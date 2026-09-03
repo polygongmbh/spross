@@ -18,10 +18,12 @@
   "because-of": { "text": "через", "notes": { "uk": "через дощ, через тебе, через це." } },
   "again": { "text": "знову", "variants": ["ще раз"] },
   "still": { "text": "ще", "variants": ["досі"] },
+  "finally": { "text": "нарешті" },
   "then": { "text": "потім" },
   "not": { "text": "не" },
   "only": { "text": "тільки", "variants": ["лише"] },
   "together": { "text": "разом" },
-  "if-you-want": { "text": "Якщо хочете.", "variants": ["Якщо хочеш."] }
+  "if-you-want": { "text": "Якщо хочете.", "variants": ["Якщо хочеш."] },
+  "finally-ready": { "text": "Нарешті готовий!", "variants": ["Нарешті готова!"] }
  }
 }

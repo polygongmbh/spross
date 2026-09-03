@@ -21,6 +21,7 @@
   "because-of": { "text": "por" },
   "again": { "text": "otra vez", "variants": ["de nuevo"] },
   "still": { "text": "todavía", "variants": ["aún"] },
+  "finally": { "text": "por fin", "variants": ["finalmente"] },
   "then": { "text": "luego" },
   "not": {
    "text": "no",
@@ -32,6 +33,7 @@
    "variants": ["juntas"],
    "notes": { "de": "richtet sich nach der Gruppe: juntos (Männer oder gemischt) · juntas (nur Frauen)." }
   },
-  "if-you-want": { "text": "Si quiere.", "variants": ["Si quieres."] }
+  "if-you-want": { "text": "Si quiere.", "variants": ["Si quieres."] },
+  "finally-ready": { "text": "¡Por fin listo!", "variants": ["¡Por fin lista!"] }
  }
 }

@@ -29,7 +29,6 @@
    "variants": ["¡El sol brilla!", "El sol está brillando."],
    "notes": { "de": "Wetter wird mit hacer ausgedrückt: hace sol, hace calor, hace frío." }
   },
-  "the-sun-has-come-out": { "text": "Ha salido el sol.", "variants": ["El sol ha salido.", "Salió el sol."] },
   "what-a-beautiful-day": { "text": "¡Qué día tan bonito!", "variants": ["¡Qué día más bonito!", "¡Qué día tan hermoso!"] },
   "we-are-staying-home-because-of-the-rain": { "text": "Por la lluvia nos quedamos en casa." }
  }

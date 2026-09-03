@@ -20,7 +20,6 @@
   },
   "the-rain-has-stopped": { "text": "La pluvo ĉesis.", "variants": ["Ne plu pluvas.", "Ĉesis pluvi."] },
   "the-sun-is-shining": { "text": "La suno brilas!" },
-  "the-sun-has-come-out": { "text": "La suno eliris.", "variants": ["La suno aperis.", "La suno elvenis."] },
   "what-a-beautiful-day": { "text": "Kia bela tago!" },
   "we-are-staying-home-because-of-the-rain": { "text": "Pro la pluvo ni restas hejme." }
  }
