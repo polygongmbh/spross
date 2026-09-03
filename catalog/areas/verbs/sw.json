@@ -33,9 +33,7 @@
   "find": {
    "text": "kupata",
    "synonyms": ["kukuta"],
-   "notes": {
-    "de": "kupata ist das Alltagswort für „gefunden“, wörtlich bekommen: nimeipata = ich hab's gefunden · kukuta = antreffen, auf etwas stoßen."
-   }
+   "notes": { "de": "kupata ist das Alltagswort für „gefunden“ · kukuta = antreffen, auf etwas stoßen." }
   },
   "search": {
    "text": "kutafuta",
