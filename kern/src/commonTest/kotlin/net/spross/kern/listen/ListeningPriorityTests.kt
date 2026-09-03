@@ -4,6 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
+import net.spross.kern.box.MATURED_STABILITY
 
 /** Where a word stands on the listening draw — one ladder in stability. */
 class ListeningPriorityTests {
@@ -29,25 +30,27 @@ class ListeningPriorityTests {
      */
     @Test
     fun aSettledWordKeepsTheDrawFloor() {
-        assertEquals(1, listeningPriority(candidate(30.0, suspended = false, scheduled = true)))
+        assertEquals(1, listeningPriority(candidate(MATURED_STABILITY, suspended = false, scheduled = true)))
     }
 
     /**
-     * RULE: higher stability means lower priority, one point per step of the ladder.
-     * WHY: the whole draw is one figure — a just-learned word leads, and every two days of
-     * stability drops it a Sprosse, so the not-quite-settled sit in the middle and the
-     * consolidated ones are pushed to the end.
+     * RULE: higher stability means lower priority, one point per ceiling of the ladder passed.
+     * WHY: the whole draw is one figure — a just-learned word leads, and each ceiling in
+     * `LISTENING_STABILITY_BAND_CEILINGS` it clears drops it a Sprosse, so the not-quite-settled
+     * sit in the middle and the consolidated ones are pushed to the end. The ceilings widen on
+     * the way up rather than staying fixed, so the floor waits for `MATURED_STABILITY` instead
+     * of arriving after a flat per-day step.
      */
     @Test
     fun higherStabilityMeansLowerPriority() {
         assertEquals(6, listeningPriority(candidate(0.0, suspended = false, scheduled = true)))
-        assertEquals(5, listeningPriority(candidate(2.0, suspended = false, scheduled = true)))
-        assertEquals(4, listeningPriority(candidate(4.0, suspended = false, scheduled = true)))
-        assertEquals(3, listeningPriority(candidate(6.0, suspended = false, scheduled = true)))
-        assertEquals(2, listeningPriority(candidate(8.0, suspended = false, scheduled = true)))
-        // The floor, however settled: ten days or a hundred are the same Sprosse.
-        assertEquals(1, listeningPriority(candidate(10.0, suspended = false, scheduled = true)))
-        assertEquals(1, listeningPriority(candidate(40.0, suspended = false, scheduled = true)))
+        assertEquals(5, listeningPriority(candidate(3.0, suspended = false, scheduled = true)))
+        assertEquals(4, listeningPriority(candidate(7.0, suspended = false, scheduled = true)))
+        assertEquals(3, listeningPriority(candidate(15.0, suspended = false, scheduled = true)))
+        assertEquals(2, listeningPriority(candidate(25.0, suspended = false, scheduled = true)))
+        // The floor, however settled: thirty days or a hundred are the same Sprosse.
+        assertEquals(1, listeningPriority(candidate(MATURED_STABILITY, suspended = false, scheduled = true)))
+        assertEquals(1, listeningPriority(candidate(100.0, suspended = false, scheduled = true)))
     }
 
     /**
@@ -62,7 +65,7 @@ class ListeningPriorityTests {
         val shaky = listeningPriority(candidate(0.0, suspended = true, scheduled = true))
         assertEquals(LISTENING_MAX_STABILITY_PRIORITY - LISTENING_SUSPENDED_PENALTY, shaky)
         assertTrue(shaky > 1, "a shaky leech is not at the floor")
-        assertEquals(3, listeningPriority(candidate(2.0, suspended = true, scheduled = true)))
+        assertEquals(3, listeningPriority(candidate(3.0, suspended = true, scheduled = true)))
         // Nothing leads a suspended word past a word of the same stability that is not one.
         assertTrue(shaky < listeningPriority(candidate(0.0, suspended = false, scheduled = true)))
     }
@@ -75,7 +78,7 @@ class ListeningPriorityTests {
      */
     @Test
     fun aSettledLeechStillBottomsOut() {
-        assertEquals(1, listeningPriority(candidate(30.0, suspended = true, scheduled = true)))
+        assertEquals(1, listeningPriority(candidate(MATURED_STABILITY, suspended = true, scheduled = true)))
     }
 
     /**
@@ -118,8 +121,8 @@ class ListeningPriorityTests {
     fun unsettledAndNewLeadOverConsolidated() {
         val fresh = listeningPriority(candidate(0.0, suspended = false, scheduled = true))
         val new = listeningPriority(candidate(0.0, suspended = false, scheduled = false))
-        val settling = listeningPriority(candidate(4.0, suspended = false, scheduled = true))
-        val consolidated = listeningPriority(candidate(20.0, suspended = false, scheduled = true))
+        val settling = listeningPriority(candidate(10.0, suspended = false, scheduled = true))
+        val consolidated = listeningPriority(candidate(25.0, suspended = false, scheduled = true))
         assertTrue(fresh >= new && new >= settling && settling > consolidated)
     }
 

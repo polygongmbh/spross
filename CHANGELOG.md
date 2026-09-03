@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **The audio option leans harder on words that aren't sticking** — a word only needs a month of good reviews to count as settled now, not ten days, so it takes much longer to crowd out the ones still shaky.
+
 ## 5.11.1 — 2026-09-03
 
 - **"Finally" joins the connecting words** in place of a weather phrase five of eight languages had to fake — the sun "coming out" is gone, replaced by "finally done!".

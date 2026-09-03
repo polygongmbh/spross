@@ -194,7 +194,7 @@ class ListeningPoolTests {
     fun everyLaneIsReachedInsideTheOpeningStretch() {
         var state = box(total = 200, scheduled = 0)
         // Five words on each Sprosse of the stability ladder, plus a packed lane and 170 unseen.
-        for ((sprosse, stability) in listOf(0.0, 3.0, 5.0, 7.0, 9.0, 20.0).withIndex()) {
+        for ((sprosse, stability) in listOf(0.0, 3.0, 7.0, 15.0, 25.0, 35.0).withIndex()) {
             for (n in 1..5) {
                 state = Box.inject(
                     state,
@@ -215,6 +215,43 @@ class ListeningPoolTests {
             candidates.map(lane).toSet(),
             candidates.take(20).map(lane).toSet(),
             "a lane went unheard in the opening twenty turns",
+        )
+    }
+
+    /**
+     * RULE: a box shaped like a well-used one — a few shaky words, a modest middle band, and a
+     * large block of matured (`MATURED_STABILITY`+) ones — still hears its settling band (10 to
+     * 30 days) well before the matured block, on average.
+     * WHY: the regression this ladder exists to fix. A flat per-day step floored a word at just
+     * ten days, so a settling word and a matured one shared the same slowest-dealt lane and a
+     * box with far more of the latter than shaky words spent almost the whole lap on it. The
+     * wider ceilings give the settling range its own, faster lane instead.
+     */
+    @Test
+    fun aMatureBoxStillLeadsWithItsSettlingBandOverTheMaturedOne() {
+        var state = box(total = 130, scheduled = 0)
+        val settling = (1..20).map(::id)
+        val matured = (21..120).map(::id)
+        for (wordId in settling) {
+            state = Box.inject(
+                state,
+                Box.sched(wordId, stability = 18.0, dueMillis = Box.day1, lastReviewMillis = Box.day1),
+            )
+        }
+        for (wordId in matured) {
+            state = Box.inject(
+                state,
+                Box.sched(wordId, stability = 40.0, dueMillis = Box.day1, lastReviewMillis = Box.day1),
+            )
+        }
+
+        val played = ids(spoken(state))
+        val settlingMeanIndex = settling.map(played::indexOf).average()
+        val maturedMeanIndex = matured.map(played::indexOf).average()
+
+        assertTrue(
+            settlingMeanIndex < maturedMeanIndex,
+            "settling band ($settlingMeanIndex) did not lead the matured one ($maturedMeanIndex)",
         )
     }
 
