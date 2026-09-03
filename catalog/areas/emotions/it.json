@@ -13,7 +13,7 @@
   "jealousy": { "text": "gelosia", "grammar": { "gender": "la" } },
   "smile": { "text": "sorriso", "grammar": { "gender": "il" } },
   "to-smile": { "text": "sorridere" },
-  "feel": {
+  "to-feel": {
    "text": "sentirsi",
    "notes": { "de": "Beim Arzt fragt man come si sente? = Wie fühlen Sie sich?" }
   }

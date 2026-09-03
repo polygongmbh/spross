@@ -3,7 +3,7 @@
  "subtitle": "Wörter, Sätze und was sie bedeuten.",
  "words": {
   "meaning": { "text": "Bedeutung", "grammar": { "gender": "die", "plural": "-en" } },
-  "translate": { "text": "übersetzen" },
+  "to-translate": { "text": "übersetzen" },
   "sentence": { "text": "Satz", "grammar": { "gender": "der", "plural": "Sätze" } },
   "word": { "text": "Wort", "grammar": { "gender": "das", "plural": "Wörter" } },
   "verb": { "text": "Verb", "grammar": { "gender": "das", "plural": "-en" } },

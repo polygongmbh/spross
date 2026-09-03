@@ -64,15 +64,15 @@
     "de": "Der Arzt schickt das certificato medico elektronisch an Kasse und Arbeitgeber; man selbst behält nur il numero di protocollo."
    }
   },
-  "examine": {
+  "to-examine": {
    "text": "visitare",
    "notes": {
     "de": "Den Patienten untersuchen heißt visitare, und la visita ist die Untersuchung beim Arzt."
    }
   },
-  "prescribe-medicine": { "text": "prescrivere medicine", "variants": ["prescrivere farmaci", "prescrivere le medicine"] },
-  "take-medicine": { "text": "prendere le medicine", "variants": ["prendere i farmaci", "prendere medicine"] },
-  "call-in-sick": {
+  "to-prescribe-medicine": { "text": "prescrivere medicine", "variants": ["prescrivere farmaci", "prescrivere le medicine"] },
+  "to-take-medicine": { "text": "prendere le medicine", "variants": ["prendere i farmaci", "prendere medicine"] },
+  "to-call-in-sick": {
    "text": "mettersi in malattia",
    "variants": ["andare in malattia"],
    "notes": {

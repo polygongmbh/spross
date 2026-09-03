@@ -62,8 +62,8 @@
   },
   "dinner": { "text": "dîner", "variants": ["souper"], "grammar": { "gender": "le" } },
   "water": { "text": "eau", "variants": ["l'eau"], "grammar": { "gender": "l'" } },
-  "eat": { "text": "manger" },
-  "drink": { "text": "boire" },
+  "to-eat": { "text": "manger" },
+  "to-drink": { "text": "boire" },
   "im-hungry": { "text": "J'ai faim." },
   "whats-for-dinner": {
    "text": "Qu'est-ce qu'il y a pour le dîner ?",

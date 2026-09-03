@@ -42,33 +42,33 @@
    "grammar": { "gender": "l'" },
    "notes": { "de": "Vorsicht: la firma ist die Unterschrift; „die Firma“ heißt l'azienda oder la ditta." }
   },
-  "apply": {
+  "to-apply": {
    "text": "candidarsi a un posto",
    "variants": ["candidarsi", "fare domanda", "presentare la candidatura"],
    "notes": { "de": "candidarsi steht mit a: candidarsi a un posto · fare domanda passt auch für Anträge." }
   },
-  "introduce-oneself": { "text": "presentarsi" },
-  "earn": {
+  "to-introduce-oneself": { "text": "presentarsi" },
+  "to-earn": {
    "text": "guadagnare",
    "variants": ["prendere"],
    "notes": { "de": "Nach dem Verdienst fragt man mit prendere: Quanto prendi? = Wie viel verdienst du?" }
   },
-  "start": { "text": "cominciare", "synonyms": ["iniziare"] },
-  "leave": {
+  "to-start": { "text": "cominciare", "synonyms": ["iniziare"] },
+  "to-leave": {
    "text": "lasciare",
    "synonyms": ["abbandonare"],
    "notes": {
     "de": "lasciare il lavoro heißt kündigen. Einen Ort verlässt man dagegen mit uscire da oder andarsene da."
    }
   },
-  "quit": {
+  "to-quit": {
    "text": "lasciare il lavoro",
    "variants": ["licenziarsi", "dare le dimissioni"],
    "notes": { "de": "licenziarsi heißt selbst kündigen; licenziare qualcuno ist jemanden entlassen." }
   },
-  "hire": { "text": "assumere" },
+  "to-hire": { "text": "assumere" },
   "to-help": { "text": "aiutare" },
-  "work-overtime": { "text": "fare gli straordinari", "variants": ["fare straordinari"] },
+  "to-work-overtime": { "text": "fare gli straordinari", "variants": ["fare straordinari"] },
   "profession": {
    "text": "professione",
    "synonyms": ["mestiere"],

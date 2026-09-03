@@ -3,10 +3,10 @@
  { "slug": "waiter", "kind": "noun", "emoji": "🧑‍🍳" },
  { "slug": "waiter-f", "kind": "noun", "emoji": "👩‍🍳", "feminineOf": "waiter" },
  { "slug": "table", "kind": "noun", "emoji": "🪑" },
- { "slug": "order", "kind": "verb" },
+ { "slug": "to-order", "kind": "verb" },
  { "slug": "bill", "kind": "noun", "emoji": "🧾" },
  { "slug": "tip", "kind": "noun", "emoji": "💰" },
- { "slug": "reserve", "kind": "verb" },
+ { "slug": "to-reserve", "kind": "verb" },
  { "slug": "glass", "kind": "noun", "emoji": "🥛" },
  { "slug": "cutlery", "kind": "noun", "emoji": "🍴" },
  { "slug": "napkin", "kind": "noun" },
@@ -14,7 +14,7 @@
  { "slug": "beverage", "kind": "noun", "emoji": "🥤" },
  { "slug": "restaurant", "kind": "noun", "emoji": "🍽️" },
  { "slug": "a-table-for-two", "kind": "phrase", "components": ["table"] },
- { "slug": "id-like-to-order", "kind": "phrase", "components": ["order"] },
+ { "slug": "id-like-to-order", "kind": "phrase", "components": ["to-order"] },
  { "slug": "is-this-vegetarian", "kind": "phrase", "emoji": "🥗", "components": [] },
  { "slug": "the-bill-please", "kind": "phrase", "emoji": "🧾", "components": ["bill"] }
 ]

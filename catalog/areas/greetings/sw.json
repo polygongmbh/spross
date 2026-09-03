@@ -2,9 +2,9 @@
  "title": "Salamu na adabu",
  "subtitle": "Unachosema mnapokutana.",
  "words": {
-  "thank": { "text": "kushukuru" },
+  "to-thank": { "text": "kushukuru" },
   "name": { "text": "jina", "grammar": { "plural": "majina" } },
-  "be-called": { "text": "kuitwa" },
+  "to-be-called": { "text": "kuitwa" },
   "hello": { "text": "Hujambo!", "notes": { "de": "Antwort: „Sijambo!“" } },
   "good-day": {
    "text": "Habari!",

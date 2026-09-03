@@ -3,10 +3,10 @@
  "subtitle": "Скільки щось коштує і як за це платять.",
  "words": {
   "price": { "text": "ціна", "grammar": { "plural": "ціни" } },
-  "cost": { "text": "коштувати" },
+  "to-cost": { "text": "коштувати" },
   "expensive": { "text": "дорогий" },
   "cheap": { "text": "дешевий" },
-  "sell": { "text": "продавати", "variants": ["продати"] },
+  "to-sell": { "text": "продавати", "variants": ["продати"] },
   "cash": { "text": "готівка", "notes": { "de": "bar zahlen heißt платити готівкою." } },
   "bank-card": {
    "text": "банківська картка",
@@ -16,8 +16,8 @@
   "coin": { "text": "монета" },
   "change-money": { "text": "решта", "notes": { "de": "решта ist das Wechselgeld und sonst der Rest." } },
   "money": { "text": "гроші", "grammar": { "plural": "only" } },
-  "buy": { "text": "купувати" },
-  "pay": { "text": "платити" },
+  "to-buy": { "text": "купувати" },
+  "to-pay": { "text": "платити" },
   "rich": { "text": "багатий" },
   "poor": { "text": "бідний" },
   "free-of-charge": { "text": "безкоштовний" },

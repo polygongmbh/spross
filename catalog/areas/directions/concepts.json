@@ -1,14 +1,14 @@
 [
  { "slug": "straight-ahead", "kind": "adjective", "emoji": "⬆️" },
- { "slug": "turn", "kind": "verb", "emoji": "↩️" },
+ { "slug": "to-turn", "kind": "verb", "emoji": "↩️" },
  { "slug": "corner", "kind": "noun" },
  { "slug": "crossing", "kind": "noun" },
- { "slug": "cross", "kind": "verb" },
+ { "slug": "to-cross", "kind": "verb" },
  { "slug": "direction", "kind": "noun", "emoji": "🧭" },
  { "slug": "city-map", "kind": "noun", "emoji": "🗺️" },
  { "slug": "entrance", "kind": "noun" },
  { "slug": "exit", "kind": "noun" },
- { "slug": "follow", "kind": "verb" },
+ { "slug": "to-follow", "kind": "verb" },
  { "slug": "way", "kind": "noun", "emoji": "🚶" },
  { "slug": "north", "kind": "noun", "emoji": "⬆️" },
  { "slug": "south", "kind": "noun", "emoji": "⬇️" },
@@ -19,7 +19,7 @@
   "slug": "turn-left-at-the-corner",
   "kind": "phrase",
   "emoji": "↩️",
-  "components": ["turn", "corner"]
+  "components": ["to-turn", "corner"]
  },
  { "slug": "where-is-the-exit", "kind": "phrase", "components": ["exit"] },
  { "slug": "how-do-i-get-to-the-station", "kind": "phrase", "emoji": "🚉", "components": [] },

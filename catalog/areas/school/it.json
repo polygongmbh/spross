@@ -44,13 +44,13 @@
     "de": "l'intervallo ist die Schulpause, in der Grundschule la ricreazione; die allgemeine Pause heißt la pausa."
    }
   },
-  "pass-exam": {
+  "to-pass-exam": {
    "text": "superare l'esame",
    "variants": ["passare l'esame"],
    "notes": { "de": "superare = bestehen; durchfallen heißt essere bocciato." }
   },
   "to-practice": { "text": "esercitarsi", "variants": ["fare esercizi", "fare pratica"] },
-  "raise-hand": { "text": "alzare la mano" },
+  "to-raise-hand": { "text": "alzare la mano" },
   "pupil": {
    "text": "alunno",
    "synonyms": ["studente"],
@@ -77,7 +77,7 @@
   },
   "page": { "text": "pagina", "grammar": { "gender": "la" } },
   "grade": { "text": "voto", "grammar": { "gender": "il" } },
-  "correct": { "text": "correggere" },
+  "to-correct": { "text": "correggere" },
   "book": { "text": "libro", "grammar": { "gender": "il" } },
   "university": {
    "text": "università",
@@ -94,11 +94,11 @@
   },
   "to-count": { "text": "contare" },
   "to-try": { "text": "provare", "variants": ["tentare"] },
-  "learn-by-heart": { "text": "imparare a memoria", "synonyms": ["memorizzare"] },
-  "read-aloud": { "text": "leggere ad alta voce" },
+  "to-learn-by-heart": { "text": "imparare a memoria", "synonyms": ["memorizzare"] },
+  "to-read-aloud": { "text": "leggere ad alta voce" },
   "dictionary": { "text": "dizionario", "grammar": { "gender": "il", "plural": "dizionari" } },
   "to-pronounce": { "text": "pronunciare" },
-  "study": {
+  "to-study": {
    "text": "studiare",
    "notes": { "de": "Für eine Prüfung oder einen Kurs lernen = studiare; etwas Neues erlernen = imparare." }
   },

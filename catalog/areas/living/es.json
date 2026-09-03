@@ -29,14 +29,14 @@
   "carpet": { "text": "alfombra", "grammar": { "gender": "la" } },
   "lamp": { "text": "lámpara", "grammar": { "gender": "la" } },
   "picture": { "text": "cuadro", "grammar": { "gender": "el" } },
-  "watch-tv": { "text": "ver la televisión", "variants": ["ver la tele"] },
-  "read": { "text": "leer" },
-  "relax": { "text": "relajarse" },
-  "tidy-up": { "text": "ordenar", "synonyms": ["recoger"] },
-  "listen-to-music": { "text": "escuchar música" },
-  "water-plants": { "text": "regar las plantas" },
-  "play": { "text": "jugar" },
-  "talk": {
+  "to-watch-tv": { "text": "ver la televisión", "variants": ["ver la tele"] },
+  "to-read": { "text": "leer" },
+  "to-relax": { "text": "relajarse" },
+  "to-tidy-up": { "text": "ordenar", "synonyms": ["recoger"] },
+  "to-listen-to-music": { "text": "escuchar música" },
+  "to-water-plants": { "text": "regar las plantas" },
+  "to-play": { "text": "jugar" },
+  "to-talk": {
    "text": "charlar",
    "variants": ["hablar", "conversar"],
    "notes": { "de": "charlar = plaudern, sich unterhalten; sprechen allgemein ist hablar." }
@@ -47,12 +47,12 @@
   "music": { "text": "música", "grammar": { "gender": "la" } },
   "wall": { "text": "pared", "grammar": { "gender": "la" } },
   "movie": { "text": "película", "variants": ["peli"], "grammar": { "gender": "la" } },
-  "sit": {
+  "to-sit": {
    "text": "sentarse",
    "variants": ["estar sentado"],
    "notes": { "de": "sentarse = sich hinsetzen; sitzen als Zustand heißt estar sentado." }
   },
-  "laugh": { "text": "reírse", "variants": ["reír"] },
+  "to-laugh": { "text": "reírse", "variants": ["reír"] },
   "quiet": {
    "text": "bajo",
    "synonyms": ["silencioso"],

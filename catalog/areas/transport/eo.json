@@ -11,15 +11,15 @@
   "taxi": { "text": "taksio" },
   "train-station": { "text": "stacidomo", "variants": ["stacio", "trajnstacio"] },
   "ticket": { "text": "bileto" },
-  "ride-bike": { "text": "bicikli", "variants": ["veturi per biciklo"] },
-  "take-bus": { "text": "preni la aŭtobuson", "variants": ["preni la buson", "veturi per aŭtobuso"] },
-  "depart": {
+  "to-ride-bike": { "text": "bicikli", "variants": ["veturi per biciklo"] },
+  "to-take-bus": { "text": "preni la aŭtobuson", "variants": ["preni la buson", "veturi per aŭtobuso"] },
+  "to-depart": {
    "text": "ekveturi",
    "variants": ["forveturi"],
    "notes": { "de": "ekveturi ist das Losfahren: La trajno ekveturas je la oka." }
   },
   "journey": { "text": "vojaĝo" },
-  "travel": { "text": "vojaĝi" },
+  "to-travel": { "text": "vojaĝi" },
   "driver": { "text": "ŝoforo", "synonyms": ["veturigisto"] },
   "plane": { "text": "aviadilo", "variants": ["aeroplano"] },
   "airport": { "text": "flughaveno" },
@@ -32,7 +32,7 @@
   "rail": { "text": "relo" },
   "luggage": { "text": "pakaĵo", "variants": ["bagaĝo", "pakaĵaro"] },
   "fare": { "text": "veturprezo", "variants": ["biletprezo", "veturkosto"] },
-  "get-off": {
+  "to-get-off": {
    "text": "eliri",
    "variants": ["elbusiĝi", "eliri el la buso"],
    "notes": {

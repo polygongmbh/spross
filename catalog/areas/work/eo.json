@@ -14,24 +14,24 @@
   "shift": { "text": "deĵoro", "variants": ["laborvico"] },
   "vacation": { "text": "ferioj", "variants": ["ferio", "forpermeso", "libertempo"] },
   "company": { "text": "firmao", "synonyms": ["entrepreno"], "variants": ["kompanio"] },
-  "apply": { "text": "kandidatiĝi por posteno", "variants": ["kandidatiĝi"] },
-  "introduce-oneself": { "text": "prezenti sin", "variants": ["sin prezenti"] },
-  "earn": { "text": "perlabori", "variants": ["enspezi"] },
-  "start": {
+  "to-apply": { "text": "kandidatiĝi por posteno", "variants": ["kandidatiĝi"] },
+  "to-introduce-oneself": { "text": "prezenti sin", "variants": ["sin prezenti"] },
+  "to-earn": { "text": "perlabori", "variants": ["enspezi"] },
+  "to-start": {
    "text": "komenci",
    "notes": {
     "de": "komenci ist transitiv: komenci la laboron. Was von selbst anfängt, komenciĝas — Mia deĵoro komenciĝas je la sesa horo."
    }
   },
-  "leave": { "text": "forlasi" },
-  "quit": {
+  "to-leave": { "text": "forlasi" },
+  "to-quit": {
    "text": "eksiĝi el la laboro",
    "variants": ["eksiĝi", "demisii"],
    "notes": { "de": "eksiĝi heißt selbst kündigen; kündigt der Arbeitgeber, heißt es maldungi." }
   },
-  "hire": { "text": "dungi" },
+  "to-hire": { "text": "dungi" },
   "to-help": { "text": "helpi" },
-  "work-overtime": { "text": "fari kromhorojn", "variants": ["labori kromhorojn", "fari kromlaborhorojn"] },
+  "to-work-overtime": { "text": "fari kromhorojn", "variants": ["labori kromhorojn", "fari kromlaborhorojn"] },
   "profession": { "text": "profesio", "variants": ["metio"] },
   "interview": {
    "text": "labora intervjuo",

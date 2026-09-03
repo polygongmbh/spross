@@ -42,27 +42,27 @@
    }
   },
   "company": { "text": "entreprise", "variants": ["l'entreprise", "boîte"], "grammar": { "gender": "l'" } },
-  "apply": {
+  "to-apply": {
    "text": "postuler à un poste",
    "variants": ["postuler", "poser sa candidature"],
    "notes": { "de": "postuler steht immer mit à: postuler à un poste, postuler à une offre." }
   },
-  "introduce-oneself": { "text": "se présenter" },
-  "earn": {
+  "to-introduce-oneself": { "text": "se présenter" },
+  "to-earn": {
    "text": "gagner",
    "notes": { "de": "gagner heißt verdienen und gewinnen; nach dem Verdienst fragt man Tu gagnes combien ?" }
   },
-  "start": { "text": "commencer", "variants": ["débuter"] },
-  "leave": {
+  "to-start": { "text": "commencer", "variants": ["débuter"] },
+  "to-leave": {
    "text": "quitter",
    "notes": {
     "de": "quitter braucht immer ein Objekt: quitter la maison, quitter la ville · quitter son emploi heißt kündigen."
    }
   },
-  "quit": { "text": "quitter son emploi", "variants": ["démissionner"] },
-  "hire": { "text": "embaucher", "variants": ["recruter"] },
+  "to-quit": { "text": "quitter son emploi", "variants": ["démissionner"] },
+  "to-hire": { "text": "embaucher", "variants": ["recruter"] },
   "to-help": { "text": "aider" },
-  "work-overtime": { "text": "faire des heures supplémentaires", "variants": ["faire des heures sup"] },
+  "to-work-overtime": { "text": "faire des heures supplémentaires", "variants": ["faire des heures sup"] },
   "profession": {
    "text": "métier",
    "synonyms": ["profession"],

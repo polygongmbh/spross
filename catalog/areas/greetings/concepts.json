@@ -20,8 +20,8 @@
  { "slug": "yes", "kind": "phrase", "emoji": "✅", "components": [] },
  { "slug": "no", "kind": "phrase", "emoji": "❌", "components": [] },
  { "slug": "name", "kind": "noun", "emoji": "🏷️" },
- { "slug": "be-called", "kind": "verb", "emoji": "📛" },
- { "slug": "thank", "kind": "verb", "emoji": "🙏" },
- { "slug": "whats-your-name", "kind": "phrase", "components": ["be-called"] },
- { "slug": "my-name-is", "kind": "phrase", "components": ["be-called"] }
+ { "slug": "to-be-called", "kind": "verb", "emoji": "📛" },
+ { "slug": "to-thank", "kind": "verb", "emoji": "🙏" },
+ { "slug": "whats-your-name", "kind": "phrase", "components": ["to-be-called"] },
+ { "slug": "my-name-is", "kind": "phrase", "components": ["to-be-called"] }
 ]

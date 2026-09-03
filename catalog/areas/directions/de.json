@@ -3,15 +3,15 @@
  "subtitle": "Die Antwort auf die Frage „wie komme ich hin?“.",
  "words": {
   "straight-ahead": { "text": "geradeaus" },
-  "turn": { "text": "abbiegen", "notes": { "de": "trennbar, ab steht hinten: Biegen Sie links ab." } },
+  "to-turn": { "text": "abbiegen", "notes": { "de": "trennbar, ab steht hinten: Biegen Sie links ab." } },
   "corner": { "text": "Ecke", "grammar": { "gender": "die", "plural": "-n" } },
   "crossing": { "text": "Kreuzung", "grammar": { "gender": "die", "plural": "-en" } },
-  "cross": { "text": "überqueren" },
+  "to-cross": { "text": "überqueren" },
   "direction": { "text": "Richtung", "grammar": { "gender": "die", "plural": "-en" } },
   "city-map": { "text": "Stadtplan", "grammar": { "gender": "der", "plural": "Stadtpläne" } },
   "entrance": { "text": "Eingang", "grammar": { "gender": "der", "plural": "Eingänge" } },
   "exit": { "text": "Ausgang", "grammar": { "gender": "der", "plural": "Ausgänge" } },
-  "follow": {
+  "to-follow": {
    "text": "folgen",
    "notes": {
     "de": "folgen steht mit Dativ, nicht mit Akkusativ: Folgen Sie mir. (nicht: mich)",

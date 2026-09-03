@@ -8,23 +8,23 @@
  { "slug": "emergency", "kind": "noun", "emoji": "🆘" },
  { "slug": "pill", "kind": "noun", "emoji": "💊" },
  { "slug": "prescription", "kind": "noun", "emoji": "📃" },
- { "slug": "take-medicine", "kind": "verb", "emoji": "💊" },
- { "slug": "examine", "kind": "verb", "emoji": "🔍" },
- { "slug": "call-in-sick", "kind": "verb", "emoji": "📞" },
+ { "slug": "to-take-medicine", "kind": "verb", "emoji": "💊" },
+ { "slug": "to-examine", "kind": "verb", "emoji": "🔍" },
+ { "slug": "to-call-in-sick", "kind": "verb", "emoji": "📞" },
  { "slug": "insurance-card", "kind": "noun", "emoji": "💳" },
  { "slug": "health-insurance", "kind": "noun", "emoji": "🛡️" },
  { "slug": "nurse", "kind": "noun", "emoji": "👨‍⚕️" },
  { "slug": "nurse-f", "kind": "noun", "feminineOf": "nurse" },
  { "slug": "ambulance", "kind": "noun", "emoji": "🚑" },
  { "slug": "dentist", "kind": "noun", "emoji": "🦷" },
- { "slug": "prescribe-medicine", "kind": "verb", "emoji": "📝" },
+ { "slug": "to-prescribe-medicine", "kind": "verb", "emoji": "📝" },
  { "slug": "doctors-note", "kind": "noun", "emoji": "🧾" },
  { "slug": "vaccination", "kind": "noun", "emoji": "💉" },
  {
   "slug": "take-the-pills-twice-daily",
   "kind": "phrase",
   "emoji": "💊",
-  "components": ["pill", "take-medicine"]
+  "components": ["pill", "to-take-medicine"]
  },
  {
   "slug": "show-me-your-insurance-card",
@@ -38,6 +38,6 @@
  {
   "slug": "the-doctor-will-examine-you-shortly",
   "kind": "phrase",
-  "components": ["doctor", "examine"]
+  "components": ["doctor", "to-examine"]
  }
 ]

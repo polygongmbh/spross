@@ -13,7 +13,7 @@
   "jealousy": { "text": "ĵaluzo" },
   "smile": { "text": "rideto" },
   "to-smile": { "text": "rideti" },
-  "feel": {
+  "to-feel": {
    "text": "senti sin",
    "synonyms": ["farti"],
    "variants": ["sin senti"],

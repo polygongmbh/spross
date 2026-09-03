@@ -51,7 +51,7 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "la récréation ist die Schulpause, ugs. la récré; die allgemeine Pause heißt la pause." }
   },
-  "pass-exam": {
+  "to-pass-exam": {
    "text": "réussir l'examen",
    "notes": {
     "de": "réussir heißt bestehen. passer un examen bedeutet nur „eine Prüfung ablegen“; durchfallen ist rater oder échouer.",
@@ -59,7 +59,7 @@
    }
   },
   "to-practice": { "text": "s'entraîner", "variants": ["s'exercer", "pratiquer"] },
-  "raise-hand": { "text": "lever la main", "variants": ["lever le doigt"] },
+  "to-raise-hand": { "text": "lever la main", "variants": ["lever le doigt"] },
   "pupil": {
    "text": "élève",
    "variants": ["l'élève"],
@@ -82,7 +82,7 @@
   },
   "page": { "text": "page", "grammar": { "gender": "la" } },
   "grade": { "text": "note", "grammar": { "gender": "la" } },
-  "correct": { "text": "corriger" },
+  "to-correct": { "text": "corriger" },
   "book": { "text": "livre", "grammar": { "gender": "le" } },
   "university": {
    "text": "université",
@@ -97,11 +97,11 @@
   },
   "to-count": { "text": "compter" },
   "to-try": { "text": "essayer", "variants": ["tenter"] },
-  "learn-by-heart": { "text": "apprendre par cœur", "synonyms": ["mémoriser"], "variants": ["apprendre par coeur"] },
-  "read-aloud": { "text": "lire à voix haute", "variants": ["lire à haute voix"] },
+  "to-learn-by-heart": { "text": "apprendre par cœur", "synonyms": ["mémoriser"], "variants": ["apprendre par coeur"] },
+  "to-read-aloud": { "text": "lire à voix haute", "variants": ["lire à haute voix"] },
   "dictionary": { "text": "dictionnaire", "grammar": { "gender": "le" } },
   "to-pronounce": { "text": "prononcer" },
-  "study": {
+  "to-study": {
    "text": "étudier",
    "variants": ["réviser"],
    "notes": { "de": "Für eine Prüfung lernen = réviser oder étudier; etwas Neues lernen = apprendre." }

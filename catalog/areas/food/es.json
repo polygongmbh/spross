@@ -51,8 +51,8 @@
    "grammar": { "gender": "el" },
    "notes": { "de": "feminin, steht im Singular aber mit el: el agua fría · Plural las aguas." }
   },
-  "eat": { "text": "comer" },
-  "drink": { "text": "beber" },
+  "to-eat": { "text": "comer" },
+  "to-drink": { "text": "beber" },
   "im-hungry": { "text": "Tengo hambre." },
   "whats-for-dinner": { "text": "¿Qué hay para cenar?" },
   "i-dont-eat-meat": { "text": "No como carne." },

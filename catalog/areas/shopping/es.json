@@ -16,7 +16,7 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "la talla ist die Kleidergröße, el número die Schuhgröße." }
   },
-  "shop": {
+  "to-shop": {
    "text": "hacer la compra",
    "synonyms": ["ir de compras"],
    "notes": {

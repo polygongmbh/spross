@@ -34,14 +34,14 @@
   },
   "office-chair": { "text": "sedia da ufficio", "variants": ["poltrona da ufficio"], "grammar": { "gender": "la" } },
   "to-work": { "text": "lavorare" },
-  "type": { "text": "digitare", "variants": ["battere a macchina", "scrivere a macchina"] },
-  "print": { "text": "stampare" },
-  "save": { "text": "salvare", "variants": ["memorizzare"] },
-  "take-break": { "text": "fare una pausa", "variants": ["prendersi una pausa"] },
-  "write": { "text": "scrivere" },
-  "call": { "text": "chiamare", "variants": ["telefonare", "chiamare al telefono"] },
-  "delete": { "text": "cancellare", "synonyms": ["eliminare"] },
-  "repair": {
+  "to-type": { "text": "digitare", "variants": ["battere a macchina", "scrivere a macchina"] },
+  "to-print": { "text": "stampare" },
+  "to-save": { "text": "salvare", "variants": ["memorizzare"] },
+  "to-take-break": { "text": "fare una pausa", "variants": ["prendersi una pausa"] },
+  "to-write": { "text": "scrivere" },
+  "to-call": { "text": "chiamare", "variants": ["telefonare", "chiamare al telefono"] },
+  "to-delete": { "text": "cancellare", "synonyms": ["eliminare"] },
+  "to-repair": {
    "text": "riparare",
    "synonyms": ["aggiustare"],
    "notes": { "de": "Im Alltag sagt man aggiustare; riparare klingt nach Werkstatt." }

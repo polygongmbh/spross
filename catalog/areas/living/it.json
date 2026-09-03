@@ -25,17 +25,17 @@
   "carpet": { "text": "tappeto", "grammar": { "gender": "il" } },
   "lamp": { "text": "lampada", "grammar": { "gender": "la" } },
   "picture": { "text": "quadro", "grammar": { "gender": "il" } },
-  "watch-tv": { "text": "guardare la televisione", "variants": ["guardare la tv", "vedere la televisione"] },
-  "read": { "text": "leggere" },
-  "relax": { "text": "rilassarsi" },
-  "tidy-up": { "text": "riordinare", "variants": ["mettere in ordine", "fare ordine"] },
-  "listen-to-music": { "text": "ascoltare musica", "variants": ["ascoltare la musica"] },
-  "water-plants": { "text": "annaffiare le piante", "variants": ["innaffiare le piante", "bagnare le piante"] },
-  "play": {
+  "to-watch-tv": { "text": "guardare la televisione", "variants": ["guardare la tv", "vedere la televisione"] },
+  "to-read": { "text": "leggere" },
+  "to-relax": { "text": "rilassarsi" },
+  "to-tidy-up": { "text": "riordinare", "variants": ["mettere in ordine", "fare ordine"] },
+  "to-listen-to-music": { "text": "ascoltare musica", "variants": ["ascoltare la musica"] },
+  "to-water-plants": { "text": "annaffiare le piante", "variants": ["innaffiare le piante", "bagnare le piante"] },
+  "to-play": {
    "text": "giocare",
    "notes": { "de": "giocare ist spielen im Sinn von Spiel; ein Instrument spielt man mit suonare." }
   },
-  "talk": {
+  "to-talk": {
    "text": "chiacchierare",
    "variants": ["parlare", "conversare"],
    "notes": { "de": "chiacchierare = plaudern, sich unterhalten; sprechen allgemein ist parlare." }
@@ -56,12 +56,12 @@
    "notes": { "de": "la parete ist die Wand im Raum, il muro die massive Mauer." }
   },
   "movie": { "text": "film", "grammar": { "gender": "il", "plural": "=" } },
-  "sit": {
+  "to-sit": {
    "text": "sedersi",
    "variants": ["essere seduto"],
    "notes": { "de": "sedersi = sich hinsetzen; sitzen als Zustand heißt essere seduto." }
   },
-  "laugh": { "text": "ridere" },
+  "to-laugh": { "text": "ridere" },
   "quiet": {
    "text": "silenzioso",
    "variants": ["silenziosa", "piano", "sottovoce", "a bassa voce"],

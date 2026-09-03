@@ -33,18 +33,18 @@
    "grammar": { "gender": "le", "plural": "-x" },
    "notes": { "de": "le tableau ist das Bild an der Wand — und in der Schule die Tafel." }
   },
-  "watch-tv": { "text": "regarder la télévision", "variants": ["regarder la télé"] },
-  "read": { "text": "lire" },
-  "relax": { "text": "se détendre", "variants": ["se relaxer"] },
-  "tidy-up": { "text": "ranger" },
-  "listen-to-music": {
+  "to-watch-tv": { "text": "regarder la télévision", "variants": ["regarder la télé"] },
+  "to-read": { "text": "lire" },
+  "to-relax": { "text": "se détendre", "variants": ["se relaxer"] },
+  "to-tidy-up": { "text": "ranger" },
+  "to-listen-to-music": {
    "text": "écouter de la musique",
    "variants": ["écouter la musique"],
    "notes": { "de": "vor unbestimmter Menge steht der Teilungsartikel: écouter de la musique." }
   },
-  "water-plants": { "text": "arroser les plantes" },
-  "play": { "text": "jouer" },
-  "talk": {
+  "to-water-plants": { "text": "arroser les plantes" },
+  "to-play": { "text": "jouer" },
+  "to-talk": {
    "text": "bavarder",
    "variants": ["discuter", "parler"],
    "notes": { "de": "bavarder = plaudern; sprechen allgemein ist parler, ein Gespräch führen discuter." }
@@ -61,12 +61,12 @@
   "music": { "text": "musique", "grammar": { "gender": "la" } },
   "wall": { "text": "mur", "grammar": { "gender": "le" } },
   "movie": { "text": "film", "grammar": { "gender": "le" } },
-  "sit": {
+  "to-sit": {
    "text": "s'asseoir",
    "variants": ["être assis"],
    "notes": { "de": "s'asseoir = sich hinsetzen; sitzen als Zustand heißt être assis." }
   },
-  "laugh": { "text": "rire" },
+  "to-laugh": { "text": "rire" },
   "quiet": {
    "text": "bas",
    "synonyms": ["silencieux"],

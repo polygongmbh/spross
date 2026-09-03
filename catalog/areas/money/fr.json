@@ -3,14 +3,14 @@
  "subtitle": "Ce que coûte une chose et comment on la règle.",
  "words": {
   "price": { "text": "prix", "grammar": { "gender": "le", "plural": "=" } },
-  "cost": { "text": "coûter" },
+  "to-cost": { "text": "coûter" },
   "expensive": { "text": "cher" },
   "cheap": {
    "text": "bon marché",
    "variants": ["pas cher"],
    "notes": { "de": "bon marché bleibt unverändert: une robe bon marché." }
   },
-  "sell": { "text": "vendre" },
+  "to-sell": { "text": "vendre" },
   "cash": {
    "text": "espèces",
    "grammar": { "gender": "les", "plural": "only" },
@@ -32,8 +32,8 @@
    "notes": { "de": "la monnaie ist das Wechselgeld — die Währung heißt la devise." }
   },
   "money": { "text": "argent", "variants": ["l'argent"], "grammar": { "gender": "l'" } },
-  "buy": { "text": "acheter" },
-  "pay": { "text": "payer" },
+  "to-buy": { "text": "acheter" },
+  "to-pay": { "text": "payer" },
   "rich": { "text": "riche" },
   "poor": { "text": "pauvre" },
   "free-of-charge": { "text": "gratuit" },

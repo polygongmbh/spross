@@ -6,10 +6,10 @@
    "text": "tout droit",
    "notes": { "de": "tout droit heißt geradeaus, à droite rechts — der Unterschied hängt an einem Wort." }
   },
-  "turn": { "text": "tourner" },
+  "to-turn": { "text": "tourner" },
   "corner": { "text": "coin", "grammar": { "gender": "le" } },
   "crossing": { "text": "carrefour", "variants": ["croisement"], "grammar": { "gender": "le" } },
-  "cross": { "text": "traverser" },
+  "to-cross": { "text": "traverser" },
   "direction": { "text": "direction", "grammar": { "gender": "la" } },
   "city-map": { "text": "plan de la ville", "variants": ["plan"], "grammar": { "gender": "le" } },
   "entrance": {
@@ -21,7 +21,7 @@
    }
   },
   "exit": { "text": "sortie", "grammar": { "gender": "la" } },
-  "follow": { "text": "suivre" },
+  "to-follow": { "text": "suivre" },
   "way": { "text": "chemin", "grammar": { "gender": "le" } },
   "north": { "text": "nord", "grammar": { "gender": "le" } },
   "south": { "text": "sud", "grammar": { "gender": "le" } },

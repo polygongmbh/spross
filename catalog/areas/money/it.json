@@ -3,10 +3,10 @@
  "subtitle": "Quanto costa una cosa e come si paga.",
  "words": {
   "price": { "text": "prezzo", "grammar": { "gender": "il" } },
-  "cost": { "text": "costare" },
+  "to-cost": { "text": "costare" },
   "expensive": { "text": "caro", "synonyms": ["costoso"] },
   "cheap": { "text": "economico", "variants": ["a buon mercato"] },
-  "sell": { "text": "vendere" },
+  "to-sell": { "text": "vendere" },
   "cash": {
    "text": "contanti",
    "grammar": { "gender": "i", "plural": "only" },
@@ -28,8 +28,8 @@
    "grammar": { "gender": "i", "plural": "only" },
    "notes": { "de": "soldi steht immer im Plural; denaro ist der formellere, abstrakte Begriff." }
   },
-  "buy": { "text": "comprare" },
-  "pay": { "text": "pagare" },
+  "to-buy": { "text": "comprare" },
+  "to-pay": { "text": "pagare" },
   "rich": { "text": "ricco" },
   "poor": { "text": "povero" },
   "free-of-charge": { "text": "gratuito" },

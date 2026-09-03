@@ -2,51 +2,51 @@
  "title": "Los verbos esenciales",
  "subtitle": "Lo que necesitas en cualquier sitio.",
  "words": {
-  "go": { "text": "ir", "notes": { "de": "ir = gehen und fahren · zu Fuß betont: ir andando, caminar." } },
-  "come": { "text": "venir" },
-  "have": {
+  "to-go": { "text": "ir", "notes": { "de": "ir = gehen und fahren · zu Fuß betont: ir andando, caminar." } },
+  "to-come": { "text": "venir" },
+  "to-have": {
    "text": "tener",
    "notes": { "de": "haber ist Hilfsverb (he comido) und hay = es gibt — Besitz immer mit tener." }
   },
-  "give": { "text": "dar" },
-  "take": {
+  "to-give": { "text": "dar" },
+  "to-take": {
    "text": "coger",
    "variants": ["tomar", "agarrar"],
    "notes": {
     "de": "in Spanien das Alltagswort (coger el autobús) · in Lateinamerika vulgär, dort tomar oder agarrar."
    }
   },
-  "see": { "text": "ver" },
-  "make": { "text": "hacer" },
-  "like": {
+  "to-see": { "text": "ver" },
+  "to-make": { "text": "hacer" },
+  "to-like": {
    "text": "gustar",
    "notes": { "de": "umgekehrt gebaut: Me gusta el café = Ich mag Kaffee · lieben ist amar oder querer." }
   },
-  "can": { "text": "poder", "notes": { "de": "unregelmäßig: puedo, puedes, puede, podemos." } },
-  "think": {
+  "to-can": { "text": "poder", "notes": { "de": "unregelmäßig: puedo, puedes, puede, podemos." } },
+  "to-think": {
    "text": "pensar",
    "notes": { "de": "pensar en algo = an etwas denken · pensar que = glauben, dass." }
   },
   "to-imagine": { "text": "imaginar" },
-  "wait": { "text": "esperar", "notes": { "de": "esperar heißt auch hoffen und erwarten." } },
-  "want": { "text": "querer", "notes": { "de": "querer heißt wollen und lieben: Te quiero." } },
-  "find": { "text": "encontrar" },
-  "search": { "text": "buscar", "notes": { "de": "buscar steht ohne Präposition: busco un hotel." } },
-  "receive": { "text": "recibir", "synonyms": ["conseguir"] },
-  "look": { "text": "mirar", "notes": { "de": "mirar = den Blick auf etwas richten: mira aquí." } },
-  "open": { "text": "abrir" },
-  "close": { "text": "cerrar" },
-  "stop": {
+  "to-wait": { "text": "esperar", "notes": { "de": "esperar heißt auch hoffen und erwarten." } },
+  "to-want": { "text": "querer", "notes": { "de": "querer heißt wollen und lieben: Te quiero." } },
+  "to-find": { "text": "encontrar" },
+  "to-search": { "text": "buscar", "notes": { "de": "buscar steht ohne Präposition: busco un hotel." } },
+  "to-receive": { "text": "recibir", "synonyms": ["conseguir"] },
+  "to-look": { "text": "mirar", "notes": { "de": "mirar = den Blick auf etwas richten: mira aquí." } },
+  "to-open": { "text": "abrir" },
+  "to-close": { "text": "cerrar" },
+  "to-stop": {
    "text": "dejar de",
    "variants": ["parar de"],
    "notes": { "de": "dejar de steht vor dem Infinitiv: dejar de fumar = aufhören zu rauchen." }
   },
-  "stand": {
+  "to-stand": {
    "text": "estar de pie",
    "notes": { "de": "Spanisch hat kein eigenes Verb dafür · ponerse de pie = sich hinstellen." }
   },
-  "send": { "text": "enviar", "synonyms": ["mandar"] },
-  "deliver": {
+  "to-send": { "text": "enviar", "synonyms": ["mandar"] },
+  "to-deliver": {
    "text": "repartir",
    "notes": { "de": "repartir = ausliefern, zustellen · entregar heißt abgeben und gehört aufs Amt." }
   },

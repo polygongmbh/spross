@@ -25,17 +25,17 @@
   "socket": { "text": "ŝtopilingo", "notes": { "de": "ŝtopilingo ist die Dose, ŝtopilo der Stecker." } },
   "office-chair": { "text": "oficeja seĝo", "variants": ["labora seĝo"] },
   "to-work": { "text": "labori" },
-  "type": { "text": "tajpi" },
-  "print": { "text": "presi", "variants": ["printi"] },
-  "save": { "text": "konservi" },
-  "take-break": { "text": "fari paŭzon", "variants": ["paŭzi"] },
-  "write": { "text": "skribi" },
-  "call": {
+  "to-type": { "text": "tajpi" },
+  "to-print": { "text": "presi", "variants": ["printi"] },
+  "to-save": { "text": "konservi" },
+  "to-take-break": { "text": "fari paŭzon", "variants": ["paŭzi"] },
+  "to-write": { "text": "skribi" },
+  "to-call": {
    "text": "telefoni",
    "notes": { "de": "Mit al: mi telefonas al la kuracisto = ich rufe den Arzt an." }
   },
-  "delete": { "text": "forigi", "variants": ["forviŝi", "viŝi"] },
-  "repair": { "text": "ripari" },
+  "to-delete": { "text": "forigi", "variants": ["forviŝi", "viŝi"] },
+  "to-repair": { "text": "ripari" },
   "phone": {
    "text": "poŝtelefono",
    "variants": ["telefono"],

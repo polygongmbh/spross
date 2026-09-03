@@ -16,7 +16,7 @@
   },
   "shopping-list": { "text": "Einkaufsliste", "grammar": { "gender": "die", "plural": "-n" } },
   "size": { "text": "Größe", "grammar": { "gender": "die", "plural": "-n" } },
-  "shop": { "text": "einkaufen" },
+  "to-shop": { "text": "einkaufen" },
   "store": { "text": "Laden", "variants": ["Geschäft"], "grammar": { "gender": "der", "plural": "Läden" } },
   "the-store-is-still-open": { "text": "Der Laden ist noch offen." },
   "do-you-have-this-in-my-size": { "text": "Haben Sie das in meiner Größe?" },

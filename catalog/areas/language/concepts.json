@@ -1,6 +1,6 @@
 [
  { "slug": "meaning", "kind": "noun" },
- { "slug": "translate", "kind": "verb", "emoji": "🔤" },
+ { "slug": "to-translate", "kind": "verb", "emoji": "🔤" },
  { "slug": "sentence", "kind": "noun", "emoji": "📝" },
  { "slug": "word", "kind": "noun", "emoji": "💬" },
  { "slug": "verb", "kind": "noun" },

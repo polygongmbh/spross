@@ -3,16 +3,16 @@
  { "slug": "trader", "kind": "noun", "emoji": "🧑‍🌾" },
  { "slug": "trader-f", "kind": "noun", "emoji": "👩‍🌾", "feminineOf": "trader" },
  { "slug": "scales", "kind": "noun", "emoji": "⚖️" },
- { "slug": "weigh", "kind": "verb" },
+ { "slug": "to-weigh", "kind": "verb" },
  { "slug": "kilo", "kind": "noun" },
  { "slug": "gram", "kind": "noun" },
  { "slug": "liter", "kind": "noun" },
  { "slug": "fresh", "kind": "adjective" },
  { "slug": "ripe", "kind": "adjective" },
- { "slug": "haggle", "kind": "verb" },
+ { "slug": "to-haggle", "kind": "verb" },
  { "slug": "market", "kind": "noun", "emoji": "🛒" },
  { "slug": "lets-meet-at-the-market", "kind": "phrase", "emoji": "🛒", "components": ["market"] },
  { "slug": "a-kilo-of-tomatoes", "kind": "phrase", "components": ["kilo"] },
  { "slug": "what-does-a-kilo-cost", "kind": "phrase", "components": ["kilo"] },
- { "slug": "can-you-come-down-a-bit", "kind": "phrase", "components": ["haggle"] }
+ { "slug": "can-you-come-down-a-bit", "kind": "phrase", "components": ["to-haggle"] }
 ]

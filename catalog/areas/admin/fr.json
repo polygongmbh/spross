@@ -62,22 +62,22 @@
    "grammar": { "gender": "les" },
    "notes": { "de": "Am Schalter heißt es meist vos papiers; les documents ist das neutrale Wort." }
   },
-  "fill-in": { "text": "remplir" },
-  "sign": { "text": "signer" },
-  "apply-for": {
+  "to-fill-in": { "text": "remplir" },
+  "to-sign": { "text": "signer" },
+  "to-apply-for": {
    "text": "faire une demande",
    "variants": ["solliciter", "demander"],
    "notes": { "de": "beantragen ist faire une demande de … ; demander allein heißt fragen." }
   },
-  "submit": { "text": "déposer" },
-  "hand-in": { "text": "remettre", "variants": ["soumettre"] },
-  "pick-up": {
+  "to-submit": { "text": "déposer" },
+  "to-hand-in": { "text": "remettre", "variants": ["soumettre"] },
+  "to-pick-up": {
    "text": "retirer la carte d'identité",
    "variants": ["récupérer la carte d'identité", "aller chercher la carte d'identité"]
   },
-  "extend": { "text": "renouveler", "variants": ["prolonger"] },
-  "bring": { "text": "apporter", "notes": { "de": "apporter für Sachen, amener für Personen." } },
-  "copy": { "text": "copier", "variants": ["photocopier"] },
+  "to-extend": { "text": "renouveler", "variants": ["prolonger"] },
+  "to-bring": { "text": "apporter", "notes": { "de": "apporter für Sachen, amener für Personen." } },
+  "to-copy": { "text": "copier", "variants": ["photocopier"] },
   "passport": { "text": "passeport", "grammar": { "gender": "le" } },
   "address": { "text": "adresse", "variants": ["l'adresse"], "grammar": { "gender": "l'" } },
   "certificate": {
@@ -114,8 +114,8 @@
    }
   },
   "waiting-room": { "text": "salle d'attente", "grammar": { "gender": "la" } },
-  "reject": { "text": "refuser", "synonyms": ["rejeter"] },
-  "approve": { "text": "approuver", "variants": ["accorder", "autoriser"] },
+  "to-reject": { "text": "refuser", "synonyms": ["rejeter"] },
+  "to-approve": { "text": "approuver", "variants": ["accorder", "autoriser"] },
   "law": { "text": "loi", "grammar": { "gender": "la" } },
   "visa": { "text": "visa", "grammar": { "gender": "le" } },
   "fine": { "text": "amende", "variants": ["l'amende"], "grammar": { "gender": "l'" } },

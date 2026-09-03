@@ -2,48 +2,48 @@
  "title": "Les verbes essentiels",
  "subtitle": "Ce qu'il te faut partout.",
  "words": {
-  "go": { "text": "aller", "notes": { "de": "aller = gehen und fahren · zu Fuß betont: aller à pied." } },
-  "come": { "text": "venir" },
-  "have": { "text": "avoir" },
-  "give": { "text": "donner" },
-  "take": { "text": "prendre" },
-  "see": { "text": "voir", "notes": { "de": "voir = wahrnehmen · regarder = bewusst anschauen." } },
-  "make": {
+  "to-go": { "text": "aller", "notes": { "de": "aller = gehen und fahren · zu Fuß betont: aller à pied." } },
+  "to-come": { "text": "venir" },
+  "to-have": { "text": "avoir" },
+  "to-give": { "text": "donner" },
+  "to-take": { "text": "prendre" },
+  "to-see": { "text": "voir", "notes": { "de": "voir = wahrnehmen · regarder = bewusst anschauen." } },
+  "to-make": {
    "text": "faire",
    "notes": { "de": "faire deckt machen und tun ab: faire la cuisine, faire ses devoirs." }
   },
-  "like": {
+  "to-like": {
    "text": "aimer",
    "notes": { "de": "aimer heißt mögen und lieben; abgeschwächt aimer bien: j'aime bien ce café." }
   },
-  "can": { "text": "pouvoir", "notes": { "de": "unregelmäßig: je peux, tu peux, il peut, nous pouvons." } },
-  "think": {
+  "to-can": { "text": "pouvoir", "notes": { "de": "unregelmäßig: je peux, tu peux, il peut, nous pouvons." } },
+  "to-think": {
    "text": "penser",
    "notes": { "de": "penser à quelque chose = an etwas denken · penser que = glauben, dass." }
   },
   "to-imagine": { "text": "imaginer" },
-  "wait": { "text": "attendre", "notes": { "de": "attendre steht ohne Präposition: j'attends le bus." } },
-  "want": {
+  "to-wait": { "text": "attendre", "notes": { "de": "attendre steht ohne Präposition: j'attends le bus." } },
+  "to-want": {
    "text": "vouloir",
    "notes": { "de": "höflicher im Konditional: je voudrais = ich hätte gern." }
   },
-  "find": { "text": "trouver" },
-  "search": { "text": "chercher", "notes": { "de": "chercher steht ohne Präposition: je cherche un hôtel." } },
-  "receive": { "text": "recevoir", "synonyms": ["obtenir"] },
-  "look": { "text": "regarder", "notes": { "de": "regarder = bewusst hinschauen: regarder la télé." } },
-  "open": { "text": "ouvrir" },
-  "close": { "text": "fermer" },
-  "stop": {
+  "to-find": { "text": "trouver" },
+  "to-search": { "text": "chercher", "notes": { "de": "chercher steht ohne Präposition: je cherche un hôtel." } },
+  "to-receive": { "text": "recevoir", "synonyms": ["obtenir"] },
+  "to-look": { "text": "regarder", "notes": { "de": "regarder = bewusst hinschauen: regarder la télé." } },
+  "to-open": { "text": "ouvrir" },
+  "to-close": { "text": "fermer" },
+  "to-stop": {
    "text": "arrêter",
    "variants": ["s'arrêter", "arrêter de"],
    "notes": { "de": "arrêter de + Infinitiv: arrêter de fumer · s’arrêter = stehen bleiben." }
   },
-  "stand": {
+  "to-stand": {
    "text": "être debout",
    "notes": { "de": "Französisch hat kein eigenes Verb dafür · se mettre debout = sich hinstellen." }
   },
-  "send": { "text": "envoyer" },
-  "deliver": { "text": "livrer" },
+  "to-send": { "text": "envoyer" },
+  "to-deliver": { "text": "livrer" },
   "to-use": { "text": "utiliser" },
   "to-come-back": { "text": "revenir" },
   "to-lose": { "text": "perdre" },

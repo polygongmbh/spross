@@ -41,8 +41,8 @@
   "breakfast": { "text": "сніданок", "grammar": { "plural": "сніданки" } },
   "dinner": { "text": "вечеря" },
   "water": { "text": "вода" },
-  "eat": { "text": "їсти" },
-  "drink": { "text": "пити" },
+  "to-eat": { "text": "їсти" },
+  "to-drink": { "text": "пити" },
   "im-hungry": { "text": "Я голодний.", "variants": ["Я голодна."] },
   "whats-for-dinner": { "text": "Що на вечерю?" },
   "i-dont-eat-meat": {

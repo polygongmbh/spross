@@ -20,17 +20,17 @@
   "waiting-time": { "text": "atendotempo", "variants": ["atenda tempo", "atendtempo"] },
   "to-meet": { "text": "renkontiĝi" },
   "to-invite": { "text": "inviti" },
-  "arrange": { "text": "aranĝi", "synonyms": ["interkonsenti"], "variants": ["fiksi"] },
-  "confirm": { "text": "konfirmi" },
-  "cancel": { "text": "nuligi", "variants": ["malmendi"] },
-  "postpone": { "text": "prokrasti" },
-  "register": {
+  "to-arrange": { "text": "aranĝi", "synonyms": ["interkonsenti"], "variants": ["fiksi"] },
+  "to-confirm": { "text": "konfirmi" },
+  "to-cancel": { "text": "nuligi", "variants": ["malmendi"] },
+  "to-postpone": { "text": "prokrasti" },
+  "to-register": {
    "text": "registriĝi",
    "synonyms": ["aliĝi"],
    "variants": ["enskribiĝi"],
    "notes": { "de": "„sich anmelden“ ist registriĝi; registri heißt jemanden oder etwas eintragen." }
   },
-  "be-late": { "text": "malfruiĝi", "variants": ["malfrui", "esti malfrua"] },
+  "to-be-late": { "text": "malfruiĝi", "variants": ["malfrui", "esti malfrua"] },
   "punctual": {
    "text": "akurata",
    "variants": ["ĝustatempa"],

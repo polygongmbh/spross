@@ -12,7 +12,7 @@
    "grammar": { "gender": "el" },
    "notes": { "de": "estar constipado heißt erkältet sein — nicht „verstopft“ (das ist estreñido)." }
   },
-  "hurt": {
+  "to-hurt": {
    "text": "doler",
    "notes": {
     "de": "doler steht wie „gefallen“: nicht „ich tue weh“, sondern me duele la cabeza (mir schmerzt der Kopf)."
@@ -29,11 +29,11 @@
    "notes": { "de": "estar mareado heißt schwindlig sein — und ebenso reise- oder seekrank." }
   },
   "wound": { "text": "herida", "grammar": { "gender": "la" } },
-  "hurt-oneself": { "text": "hacerse daño", "variants": ["lesionarse"] },
+  "to-hurt-oneself": { "text": "hacerse daño", "variants": ["lesionarse"] },
   "bandage": { "text": "venda", "variants": ["vendaje"], "grammar": { "gender": "la" } },
   "band-aid": { "text": "tirita", "variants": ["curita"], "grammar": { "gender": "la" } },
   "splint": { "text": "férula", "grammar": { "gender": "la" } },
-  "recover": { "text": "recuperarse", "variants": ["reponerse"] },
+  "to-recover": { "text": "recuperarse", "variants": ["reponerse"] },
   "allergy": { "text": "alergia", "grammar": { "gender": "la" } },
   "my-throat-hurts-a-lot": { "text": "Me duele mucho la garganta." },
   "ive-had-a-fever-since-yesterday": { "text": "Tengo fiebre desde ayer." },

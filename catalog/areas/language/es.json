@@ -3,7 +3,7 @@
  "subtitle": "Palabras, frases y lo que significan.",
  "words": {
   "meaning": { "text": "significado", "grammar": { "gender": "el" } },
-  "translate": { "text": "traducir" },
+  "to-translate": { "text": "traducir" },
   "sentence": { "text": "frase", "synonyms": ["oración"], "grammar": { "gender": "la" } },
   "word": { "text": "palabra", "grammar": { "gender": "la" } },
   "verb": { "text": "verbo", "grammar": { "gender": "el" } },

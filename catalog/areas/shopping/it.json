@@ -16,7 +16,7 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "la taglia ist die Kleidergröße, il numero die Schuhgröße." }
   },
-  "shop": {
+  "to-shop": {
    "text": "fare la spesa",
    "synonyms": ["fare spese"],
    "variants": ["fare shopping"],

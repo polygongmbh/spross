@@ -64,10 +64,10 @@
    "grammar": { "gender": "l'", "plural": "arrêts de travail" },
    "notes": { "de": "Der Arzt stellt un arrêt de travail aus; damit ist man en arrêt maladie." }
   },
-  "examine": { "text": "examiner", "variants": ["ausculter"] },
-  "prescribe-medicine": { "text": "prescrire des médicaments", "variants": ["faire une ordonnance"] },
-  "take-medicine": { "text": "prendre des médicaments" },
-  "call-in-sick": {
+  "to-examine": { "text": "examiner", "variants": ["ausculter"] },
+  "to-prescribe-medicine": { "text": "prescrire des médicaments", "variants": ["faire une ordonnance"] },
+  "to-take-medicine": { "text": "prendre des médicaments" },
+  "to-call-in-sick": {
    "text": "se mettre en arrêt maladie",
    "variants": ["prendre un arrêt maladie"],
    "notes": { "de": "Krankmelden läuft über den arrêt de travail vom Arzt: je me mets en arrêt maladie." }

@@ -14,44 +14,44 @@
   "sock": { "text": "ŝtrumpeto" },
   "pants": { "text": "pantalono", "variants": ["pantalonoj"] },
   "t-shirt": { "text": "T-ĉemizo", "variants": ["teĉemizo", "ĉemizeto"] },
-  "sleep": { "text": "dormi" },
-  "wake-up": {
+  "to-sleep": { "text": "dormi" },
+  "to-wake-up": {
    "text": "vekiĝi",
    "notes": {
     "de": "vekiĝi = von selbst aufwachen; veki heißt jemand anderen wecken.",
     "en": "vekiĝi is waking up by yourself; veki is waking someone else."
    }
   },
-  "dream": {
+  "to-dream": {
    "text": "sonĝi",
    "notes": {
     "de": "sonĝi = im Schlaf träumen; wer wach von etwas träumt, sagt revi.",
     "en": "sonĝi is dreaming in your sleep; daydreaming or longing for something is revi."
    }
   },
-  "get-up": { "text": "ellitiĝi", "variants": ["leviĝi"] },
-  "get-undressed": { "text": "senvestiĝi", "variants": ["malvestiĝi", "senvestigi sin"] },
-  "cuddle": {
+  "to-get-up": { "text": "ellitiĝi", "variants": ["leviĝi"] },
+  "to-get-undressed": { "text": "senvestiĝi", "variants": ["malvestiĝi", "senvestigi sin"] },
+  "to-cuddle": {
    "text": "karesi",
    "variants": ["brakumi"],
    "notes": {
     "de": "Esperanto hat kein eigenes Wort fürs Kuscheln: karesi ist streicheln und liebkosen, brakumi umarmen."
    }
   },
-  "yawn": { "text": "oscedi" },
-  "snore": { "text": "ronki" },
+  "to-yawn": { "text": "oscedi" },
+  "to-snore": { "text": "ronki" },
   "clothes": { "text": "vestoj", "variants": ["vestaĵoj"] },
   "shirt": { "text": "ĉemizo" },
   "dress": { "text": "robo" },
   "sweater": { "text": "pulovero" },
   "underwear": { "text": "subvestoj", "variants": ["subvesto"] },
   "belt": { "text": "zono" },
-  "make-bed": { "text": "ordigi la liton", "variants": ["aranĝi la liton", "fari la liton"] },
+  "to-make-bed": { "text": "ordigi la liton", "variants": ["aranĝi la liton", "fari la liton"] },
   "soft": {
    "text": "mola",
    "notes": { "de": "mola = weich, auch für Haut und Stoff; glatt (eben, ohne Rauheit) heißt glata." }
   },
-  "rest": { "text": "ripozi" },
+  "to-rest": { "text": "ripozi" },
   "sleep-well": { "text": "Dormu bone!" },
   "good-morning-my-love": {
    "text": "Bonan matenon, mia amo!",

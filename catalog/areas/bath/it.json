@@ -35,18 +35,18 @@
    "variants": ["l'asciugacapelli", "fon"],
    "grammar": { "gender": "l'", "plural": "=" }
   },
-  "take-shower": { "text": "farsi la doccia", "variants": ["fare la doccia"] },
-  "do-laundry": { "text": "fare il bucato", "variants": ["lavare i panni"] },
-  "brush-teeth": {
+  "to-take-shower": { "text": "farsi la doccia", "variants": ["fare la doccia"] },
+  "to-do-laundry": { "text": "fare il bucato", "variants": ["lavare i panni"] },
+  "to-brush-teeth": {
    "text": "lavarsi i denti",
    "notes": { "de": "man wäscht sich die Zähne: lavarsi i denti; spazzolarsi i denti sagt kaum jemand." }
   },
-  "dry-off": { "text": "asciugarsi" },
-  "hang-up-laundry": { "text": "stendere il bucato", "variants": ["stendere i panni"] },
-  "clean": { "text": "pulire" },
-  "shave": { "text": "radersi", "variants": ["farsi la barba"] },
-  "comb-hair": { "text": "pettinarsi i capelli", "variants": ["pettinarsi"] },
-  "apply-lotion": { "text": "mettersi la crema", "variants": ["darsi la crema", "spalmarsi la crema"] },
+  "to-dry-off": { "text": "asciugarsi" },
+  "to-hang-up-laundry": { "text": "stendere il bucato", "variants": ["stendere i panni"] },
+  "to-clean": { "text": "pulire" },
+  "to-shave": { "text": "radersi", "variants": ["farsi la barba"] },
+  "to-comb-hair": { "text": "pettinarsi i capelli", "variants": ["pettinarsi"] },
+  "to-apply-lotion": { "text": "mettersi la crema", "variants": ["darsi la crema", "spalmarsi la crema"] },
   "bathtub": {
    "text": "vasca da bagno",
    "variants": ["vasca"],

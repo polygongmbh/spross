@@ -21,14 +21,14 @@
   "taxi": { "text": "taxi", "variants": ["tassì"], "grammar": { "gender": "il", "plural": "=" } },
   "train-station": { "text": "stazione", "variants": ["stazione ferroviaria"], "grammar": { "gender": "la" } },
   "ticket": { "text": "biglietto", "grammar": { "gender": "il" } },
-  "ride-bike": { "text": "andare in bicicletta", "variants": ["andare in bici", "pedalare"] },
-  "take-bus": { "text": "prendere l'autobus", "variants": ["prendere il bus"] },
-  "depart": {
+  "to-ride-bike": { "text": "andare in bicicletta", "variants": ["andare in bici", "pedalare"] },
+  "to-take-bus": { "text": "prendere l'autobus", "variants": ["prendere il bus"] },
+  "to-depart": {
    "text": "partire",
    "notes": { "de": "Züge und Busse „fahren ab“ mit partire: Il treno parte alle otto." }
   },
   "journey": { "text": "viaggio", "grammar": { "gender": "il", "plural": "viaggi" } },
-  "travel": { "text": "viaggiare" },
+  "to-travel": { "text": "viaggiare" },
   "driver": {
    "text": "autista",
    "variants": ["l'autista", "conducente"],
@@ -50,7 +50,7 @@
   "rail": { "text": "rotaia", "grammar": { "gender": "la" } },
   "luggage": { "text": "bagaglio", "grammar": { "gender": "il", "plural": "bagagli" } },
   "fare": { "text": "tariffa", "variants": ["prezzo del biglietto"], "grammar": { "gender": "la" } },
-  "get-off": { "text": "scendere" },
+  "to-get-off": { "text": "scendere" },
   "the-bus-is-coming-soon": {
    "text": "L'autobus arriva tra poco.",
    "variants": ["L'autobus arriva fra poco.", "Il bus arriva tra poco."]

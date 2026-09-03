@@ -53,18 +53,18 @@
     "de": "la documentación ist Singular und steht für alle Papiere zusammen — anders als „die Unterlagen“."
    }
   },
-  "fill-in": { "text": "rellenar", "variants": ["completar", "llenar"] },
-  "sign": { "text": "firmar" },
-  "apply-for": { "text": "solicitar", "variants": ["pedir"] },
-  "submit": { "text": "entregar" },
-  "hand-in": { "text": "presentar" },
-  "pick-up": {
+  "to-fill-in": { "text": "rellenar", "variants": ["completar", "llenar"] },
+  "to-sign": { "text": "firmar" },
+  "to-apply-for": { "text": "solicitar", "variants": ["pedir"] },
+  "to-submit": { "text": "entregar" },
+  "to-hand-in": { "text": "presentar" },
+  "to-pick-up": {
    "text": "recoger el carné de identidad",
    "variants": ["recoger el carné", "recoger el DNI", "recoger el carnet de identidad"]
   },
-  "extend": { "text": "renovar", "variants": ["prolongar", "alargar"] },
-  "bring": { "text": "traer" },
-  "copy": { "text": "copiar", "variants": ["fotocopiar"] },
+  "to-extend": { "text": "renovar", "variants": ["prolongar", "alargar"] },
+  "to-bring": { "text": "traer" },
+  "to-copy": { "text": "copiar", "variants": ["fotocopiar"] },
   "passport": { "text": "pasaporte", "grammar": { "gender": "el" } },
   "address": { "text": "dirección", "grammar": { "gender": "la" } },
   "certificate": { "text": "certificado", "grammar": { "gender": "el" } },
@@ -86,8 +86,8 @@
    "grammar": { "gender": "el" }
   },
   "waiting-room": { "text": "sala de espera", "grammar": { "gender": "la" } },
-  "reject": { "text": "rechazar", "synonyms": ["denegar"] },
-  "approve": { "text": "aprobar", "variants": ["autorizar", "conceder"] },
+  "to-reject": { "text": "rechazar", "synonyms": ["denegar"] },
+  "to-approve": { "text": "aprobar", "variants": ["autorizar", "conceder"] },
   "law": { "text": "ley", "grammar": { "gender": "la" } },
   "visa": { "text": "visado", "variants": ["visa"], "grammar": { "gender": "el" } },
   "fine": { "text": "multa", "grammar": { "gender": "la" } },

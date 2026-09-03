@@ -2,9 +2,9 @@
  "title": "Saluti e cortesia",
  "subtitle": "Quello che si dice quando ci si incontra.",
  "words": {
-  "thank": { "text": "ringraziare" },
+  "to-thank": { "text": "ringraziare" },
   "name": { "text": "nome", "grammar": { "gender": "il" } },
-  "be-called": { "text": "chiamarsi" },
+  "to-be-called": { "text": "chiamarsi" },
   "hello": { "text": "Ciao!", "variants": ["Salve!"] },
   "good-day": {
    "text": "Buongiorno!",

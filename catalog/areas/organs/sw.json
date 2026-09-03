@@ -7,7 +7,7 @@
   "kidney": { "text": "figo", "grammar": { "plural": "mafigo" } },
   "intestine": { "text": "utumbo", "grammar": { "plural": "matumbo" } },
   "bladder": { "text": "kibofu", "grammar": { "plural": "vibofu" } },
-  "breathe": { "text": "kupumua" },
+  "to-breathe": { "text": "kupumua" },
   "artery": { "text": "ateri", "grammar": { "plural": "=" } },
   "joint": { "text": "kiungo", "grammar": { "plural": "viungo" } },
   "gland": { "text": "tezi", "grammar": { "plural": "=" } },

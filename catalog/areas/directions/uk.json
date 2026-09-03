@@ -3,19 +3,19 @@
  "subtitle": "Відповідь на питання «як дійти?».",
  "words": {
   "straight-ahead": { "text": "прямо" },
-  "turn": { "text": "повертати", "variants": ["повернути"] },
+  "to-turn": { "text": "повертати", "variants": ["повернути"] },
   "corner": {
    "text": "ріг",
    "grammar": { "plural": "роги" },
    "notes": { "de": "ріг ist die Straßenecke (на розі) und zugleich das Horn." }
   },
   "crossing": { "text": "перехрестя", "grammar": { "plural": "=" } },
-  "cross": { "text": "переходити", "variants": ["перейти"] },
+  "to-cross": { "text": "переходити", "variants": ["перейти"] },
   "direction": { "text": "напрямок", "grammar": { "plural": "напрямки" } },
   "city-map": { "text": "план міста", "variants": ["мапа", "карта"] },
   "entrance": { "text": "вхід", "grammar": { "plural": "входи" } },
   "exit": { "text": "вихід", "grammar": { "plural": "виходи" } },
-  "follow": {
+  "to-follow": {
    "text": "іти за",
    "variants": ["йти за", "слідувати"],
    "notes": { "de": "іти за steht mit dem Instrumental: іти за мною." }

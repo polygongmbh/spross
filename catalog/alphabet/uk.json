@@ -98,7 +98,7 @@
    "upper": "Ж",
    "name": "же",
    "ipa": "ʒ",
-   "example": "live",
+   "example": "to-live",
    "hints": { "de": "wie das J in Journal", "en": "like the s in measure" },
    "confusable": { "sound": ["ш", "з", "ч"] }
   },
@@ -143,7 +143,7 @@
    "upper": "Ї",
    "name": "ї",
    "ipa": "ji",
-   "example": "eat",
+   "example": "to-eat",
    "hints": {
     "de": "immer zwei Laute: j + i (wie „ji“) — die zwei Punkte sind das j",
     "en": "always two sounds: y + ee, as in yeast — the two dots are the y"
@@ -155,7 +155,7 @@
    "upper": "Й",
    "name": "йот",
    "ipa": "j",
-   "example": "go",
+   "example": "to-go",
    "hints": {
     "de": "kurzes j wie in ja; am Silbenende der i-Nachklang wie in Mai — й ist и mit Bogen (Breve), ein eigener Buchstabe",
     "en": "like y in yes, or the y-glide at the end of boy — й is и with a breve, a separate letter"
@@ -347,7 +347,7 @@
    "upper": "Ю",
    "name": "ю",
    "ipa": "ju",
-   "example": "copy",
+   "example": "to-copy",
    "hints": {
     "de": "ju wie in Jubel; nach einem Konsonanten macht ю ihn weich und es bleibt ein u",
     "en": "yu as in youth; after a consonant ю softens it and leaves an oo sound"

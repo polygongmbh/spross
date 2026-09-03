@@ -429,7 +429,7 @@ class CatalogLintTest {
             "with" to setOf("de", "uk"),
             "for" to setOf("de", "es", "uk"),
             "because-of" to setOf("de", "eo", "uk"),
-            "follow" to setOf("de", "uk"),
+            "to-follow" to setOf("de", "uk"),
             // Cases German has no counterpart for: the uk vocative, the uk genitive of
             // negation (German keeps the accusative), the es personal `a`.
             // sw draws the line too, but on the pronoun: the object is an affix inside
@@ -558,7 +558,7 @@ class CatalogLintTest {
                 // представитися/уявляти); `sich einbilden` skews toward a delusion and
                 // `sich ausmalen` toward picturing something vividly, so neither is the
                 // plain word a learner reaches for.
-                "de sich vorstellen: verbs/to-imagine, work/introduce-oneself",
+                "de sich vorstellen: verbs/to-imagine, work/to-introduce-oneself",
                 // Reviewed 2026-08-23: `cold` is the illness AND the adjective — English has
                 // one word where de/eo/es/fr/it/sw/uk all split it (Erkältung/kalt,
                 // malvarmumo/malvarma, resfriado/frío, rhume/froid, raffreddore/freddo,

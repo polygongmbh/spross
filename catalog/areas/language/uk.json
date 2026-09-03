@@ -3,7 +3,7 @@
  "subtitle": "Слова, речення і те, що вони означають.",
  "words": {
   "meaning": { "text": "значення", "grammar": { "plural": "=" } },
-  "translate": { "text": "перекладати" },
+  "to-translate": { "text": "перекладати" },
   "sentence": { "text": "речення", "grammar": { "plural": "=" } },
   "word": { "text": "слово" },
   "verb": { "text": "дієслово", "grammar": { "plural": "дієслова" } },

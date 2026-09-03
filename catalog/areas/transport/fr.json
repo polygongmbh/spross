@@ -20,14 +20,14 @@
    "grammar": { "gender": "le" },
    "notes": { "de": "le billet gilt für Zug und Flugzeug, le ticket für Bus und Metro." }
   },
-  "ride-bike": { "text": "faire du vélo", "variants": ["aller à vélo", "rouler à vélo"] },
-  "take-bus": { "text": "prendre le bus" },
-  "depart": {
+  "to-ride-bike": { "text": "faire du vélo", "variants": ["aller à vélo", "rouler à vélo"] },
+  "to-take-bus": { "text": "prendre le bus" },
+  "to-depart": {
    "text": "partir",
    "notes": { "de": "Züge und Busse „fahren ab“ mit partir: Le train part à huit heures." }
   },
   "journey": { "text": "voyage", "grammar": { "gender": "le" } },
-  "travel": { "text": "voyager" },
+  "to-travel": { "text": "voyager" },
   "driver": { "text": "conducteur", "variants": ["chauffeur"], "grammar": { "gender": "le" } },
   "plane": { "text": "avion", "variants": ["l'avion"], "grammar": { "gender": "l'" } },
   "airport": { "text": "aéroport", "variants": ["l'aéroport"], "grammar": { "gender": "l'" } },
@@ -46,7 +46,7 @@
    }
   },
   "fare": { "text": "tarif", "variants": ["prix du billet"], "grammar": { "gender": "le" } },
-  "get-off": { "text": "descendre", "notes": { "de": "aussteigen ist descendre mit de: Je descends du bus." } },
+  "to-get-off": { "text": "descendre", "notes": { "de": "aussteigen ist descendre mit de: Je descends du bus." } },
   "the-bus-is-coming-soon": { "text": "Le bus arrive bientôt.", "variants": ["Le bus arrive tout de suite."] },
   "when-does-the-train-leave": {
    "text": "Quand part le train ?",

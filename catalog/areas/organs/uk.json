@@ -14,7 +14,7 @@
    "variants": ["щитовидна залоза"],
    "grammar": { "plural": "щитоподібні залози" }
   },
-  "breathe": { "text": "дихати" },
+  "to-breathe": { "text": "дихати" },
   "stomach-organ": { "text": "шлунок", "grammar": { "plural": "шлунки" } },
   "artery": { "text": "артерія" },
   "joint": { "text": "суглоб" },

@@ -77,7 +77,7 @@
    "kind": "digraph",
    "section": "vowel-pairs",
    "ipa": "ɔʏ̯",
-   "example": "dream",
+   "example": "to-dream",
    "hints": { "en": "same oy sound as eu; äu shows the base word had au: Traum → träumen" },
    "confusable": { "look": ["eu", "ei"], "sound": ["eu"] }
   },
@@ -174,7 +174,7 @@
    "kind": "digraph",
    "section": "s-sounds",
    "ipa": "s",
-   "example": "eat",
+   "example": "to-eat",
    "hints": {
     "en": "ss is just s — its job is the vowel in front of it, which is SHORT: essen, Wasser, müssen. ß means that vowel is long: Straße, groß. Every doubled consonant works this way: Sonne, offen."
    },
@@ -255,7 +255,7 @@
    "id": "h-length",
    "section": "position",
    "context": { "en": "after a vowel, when it does not begin a new syllable" },
-   "example": "live",
+   "example": "to-live",
    "hints": {
     "en": "silent — it only stretches the vowel: Schuh = 'shoo', Stuhl, wohnen = 'VOH-nen'. It is spoken when it starts a syllable, also after a prefix: Uhu, Ahorn, Gehalt, gehabt."
    },

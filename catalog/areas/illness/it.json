@@ -10,7 +10,7 @@
    "grammar": { "gender": "il" },
    "notes": { "de": "Erkältet sein heißt essere raffreddato: sono raffreddato." }
   },
-  "hurt": {
+  "to-hurt": {
    "text": "fare male",
    "notes": {
     "de": "Der Körperteil ist das Subjekt, die Person steht im Dativ: mi fa male la testa = mir tut der Kopf weh."
@@ -27,11 +27,11 @@
    "notes": { "de": "Schwindlig ist einem mit ho un capogiro, ho le vertigini oder mi gira la testa." }
   },
   "wound": { "text": "ferita", "grammar": { "gender": "la" } },
-  "hurt-oneself": { "text": "farsi male", "variants": ["ferirsi"] },
+  "to-hurt-oneself": { "text": "farsi male", "variants": ["ferirsi"] },
   "bandage": { "text": "benda", "variants": ["fasciatura"], "grammar": { "gender": "la" } },
   "band-aid": { "text": "cerotto", "grammar": { "gender": "il" } },
   "splint": { "text": "stecca", "grammar": { "gender": "la" } },
-  "recover": { "text": "guarire", "variants": ["rimettersi"] },
+  "to-recover": { "text": "guarire", "variants": ["rimettersi"] },
   "allergy": { "text": "allergia", "variants": ["l'allergia", "un'allergia"], "grammar": { "gender": "l'" } },
   "my-throat-hurts-a-lot": { "text": "Mi fa molto male la gola." },
   "ive-had-a-fever-since-yesterday": { "text": "Ho la febbre da ieri." },

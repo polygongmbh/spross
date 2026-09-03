@@ -7,7 +7,7 @@
    "variants": ["rekte"],
    "notes": { "de": "rekten mit -n sagt wohin, rekte sagt wie: Iru rekten." }
   },
-  "turn": {
+  "to-turn": {
    "text": "turni",
    "variants": ["turniĝi", "turni sin"],
    "notes": {
@@ -16,12 +16,12 @@
   },
   "corner": { "text": "angulo" },
   "crossing": { "text": "vojkruciĝo", "variants": ["kruciĝo", "stratkruciĝo"] },
-  "cross": { "text": "transiri" },
+  "to-cross": { "text": "transiri" },
   "direction": { "text": "direkto" },
   "city-map": { "text": "urboplano", "variants": ["urba mapo"] },
   "entrance": { "text": "enirejo" },
   "exit": { "text": "elirejo" },
-  "follow": { "text": "sekvi" },
+  "to-follow": { "text": "sekvi" },
   "way": { "text": "vojo" },
   "north": { "text": "nordo" },
   "south": { "text": "sudo" },

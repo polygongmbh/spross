@@ -2,9 +2,9 @@
  "title": "Вітання та ввічливість",
  "subtitle": "Те, що кажуть при зустрічі.",
  "words": {
-  "thank": { "text": "дякувати" },
+  "to-thank": { "text": "дякувати" },
   "name": { "text": "ім'я", "grammar": { "plural": "імена" } },
-  "be-called": { "text": "називатися" },
+  "to-be-called": { "text": "називатися" },
   "hello": { "text": "Привіт!", "notes": { "de": "nur informell unter Bekannten" } },
   "good-day": { "text": "Добрий день!", "notes": { "de": "förmlich — im Amt oder beim Arzt" } },
   "good-morning": { "text": "Доброго ранку!", "variants": ["Добрий ранок!"] },

@@ -10,7 +10,7 @@
   "trader": { "text": "Händler", "grammar": { "gender": "der", "plural": "=" } },
   "trader-f": { "text": "Händlerin", "grammar": { "gender": "die", "plural": "-nen" } },
   "scales": { "text": "Waage", "grammar": { "gender": "die", "plural": "-n" } },
-  "weigh": { "text": "wiegen" },
+  "to-weigh": { "text": "wiegen" },
   "kilo": {
    "text": "Kilo",
    "grammar": { "gender": "das", "plural": "=" },
@@ -24,7 +24,7 @@
   "liter": { "text": "Liter", "grammar": { "gender": "der", "plural": "=" } },
   "fresh": { "text": "frisch" },
   "ripe": { "text": "reif" },
-  "haggle": {
+  "to-haggle": {
    "text": "feilschen",
    "synonyms": ["handeln"],
    "notes": {

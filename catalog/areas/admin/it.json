@@ -63,24 +63,24 @@
    "grammar": { "gender": "i" },
    "notes": { "de": "i documenti sind auch die Ausweispapiere: Documenti! heißt „Papiere, bitte!“" }
   },
-  "fill-in": { "text": "compilare", "variants": ["riempire"] },
-  "sign": { "text": "firmare" },
-  "apply-for": { "text": "richiedere", "variants": ["chiedere"] },
-  "submit": { "text": "consegnare" },
-  "hand-in": { "text": "presentare" },
-  "pick-up": {
+  "to-fill-in": { "text": "compilare", "variants": ["riempire"] },
+  "to-sign": { "text": "firmare" },
+  "to-apply-for": { "text": "richiedere", "variants": ["chiedere"] },
+  "to-submit": { "text": "consegnare" },
+  "to-hand-in": { "text": "presentare" },
+  "to-pick-up": {
    "text": "ritirare la carta d'identità",
    "variants": ["ritirare la carta di identità", "ritirare il documento"]
   },
-  "extend": {
+  "to-extend": {
    "text": "rinnovare",
    "variants": ["prolungare"],
    "notes": {
     "de": "Ein Dokument wird rinnovato (erneuert); prolungare verlängert eine Frist oder einen Aufenthalt."
    }
   },
-  "bring": { "text": "portare" },
-  "copy": { "text": "copiare", "variants": ["fotocopiare"] },
+  "to-bring": { "text": "portare" },
+  "to-copy": { "text": "copiare", "variants": ["fotocopiare"] },
   "passport": { "text": "passaporto", "grammar": { "gender": "il" } },
   "address": { "text": "indirizzo", "variants": ["l'indirizzo"], "grammar": { "gender": "l'" } },
   "certificate": { "text": "certificato", "variants": ["attestato"], "grammar": { "gender": "il" } },
@@ -112,12 +112,12 @@
    }
   },
   "waiting-room": { "text": "sala d'attesa", "variants": ["sala di attesa"], "grammar": { "gender": "la" } },
-  "reject": {
+  "to-reject": {
    "text": "respingere",
    "synonyms": ["rifiutare"],
    "notes": { "de": "Ein Antrag wird respinto; rifiutare ist eher etwas ausschlagen." }
   },
-  "approve": { "text": "approvare", "variants": ["autorizzare", "concedere"] },
+  "to-approve": { "text": "approvare", "variants": ["autorizzare", "concedere"] },
   "law": { "text": "legge", "grammar": { "gender": "la" } },
   "visa": { "text": "visto", "grammar": { "gender": "il" } },
   "fine": { "text": "multa", "grammar": { "gender": "la" } },

@@ -2,9 +2,9 @@
  "title": "Salutoj kaj ĝentilaĵoj",
  "subtitle": "Kion oni diras ĉe renkontiĝo.",
  "words": {
-  "thank": { "text": "danki" },
+  "to-thank": { "text": "danki" },
   "name": { "text": "nomo" },
-  "be-called": {
+  "to-be-called": {
    "text": "nomiĝi",
    "notes": { "de": "nomi heißt jemanden benennen · sich selbst so nennen ist nomiĝi: Mi nomiĝas Anna." }
   },

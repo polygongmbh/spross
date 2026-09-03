@@ -23,30 +23,30 @@
   "spoon": { "text": "cuillère", "variants": ["cuiller"], "grammar": { "gender": "la" } },
   "fork": { "text": "fourchette", "grammar": { "gender": "la" } },
   "plate": { "text": "assiette", "variants": ["l'assiette"], "grammar": { "gender": "l'" } },
-  "cook": {
+  "to-cook": {
    "text": "cuisiner",
    "variants": ["faire la cuisine"],
    "notes": { "de": "cuisiner = Essen zubereiten; Wasser kochen heißt faire bouillir." }
   },
-  "bake": {
+  "to-bake": {
    "text": "cuire au four",
    "variants": ["faire cuire au four"],
    "notes": {
     "de": "Es gibt kein eigenes Verb für backen: cuire au four; einen Kuchen backen heißt faire un gâteau."
    }
   },
-  "cut": { "text": "couper" },
-  "wash-the-dishes": { "text": "faire la vaisselle", "variants": ["laver la vaisselle"] },
-  "taste": { "text": "goûter" },
-  "fry": {
+  "to-cut": { "text": "couper" },
+  "to-wash-the-dishes": { "text": "faire la vaisselle", "variants": ["laver la vaisselle"] },
+  "to-taste": { "text": "goûter" },
+  "to-fry": {
    "text": "frire",
    "variants": ["faire frire", "poêler", "faire revenir"],
    "notes": { "de": "frire steht meist als faire frire; in der Pfanne braten heißt poêler." }
   },
-  "boil": { "text": "bouillir", "variants": ["faire bouillir"] },
-  "reheat": { "text": "réchauffer", "variants": ["faire réchauffer"] },
-  "stir": { "text": "remuer", "variants": ["mélanger", "touiller"] },
-  "take-out-trash": {
+  "to-boil": { "text": "bouillir", "variants": ["faire bouillir"] },
+  "to-reheat": { "text": "réchauffer", "variants": ["faire réchauffer"] },
+  "to-stir": { "text": "remuer", "variants": ["mélanger", "touiller"] },
+  "to-take-out-trash": {
    "text": "sortir la poubelle",
    "variants": ["sortir les poubelles", "descendre la poubelle"],
    "notes": { "de": "Man bringt die Tonne raus, nicht den Müll: sortir la poubelle." }

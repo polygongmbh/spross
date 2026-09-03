@@ -31,8 +31,8 @@
    "variants": ["mansako"],
    "notes": { "de": "sako ist die Trage- und Einkaufstasche; die Handtasche heißt mansako." }
   },
-  "lock": { "text": "ŝlosi", "variants": ["fermi per ŝlosilo"] },
-  "ring": {
+  "to-lock": { "text": "ŝlosi", "variants": ["fermi per ŝlosilo"] },
+  "to-ring": {
    "text": "sonorigi",
    "variants": ["sonori"],
    "notes": {
@@ -40,13 +40,13 @@
     "en": "sonorigi is you pressing the bell; sonori is the bell itself sounding."
    }
   },
-  "take-off-shoes": { "text": "demeti la ŝuojn", "variants": ["demeti ŝuojn", "senŝuiĝi"] },
-  "set-off": { "text": "foriri de hejme", "variants": ["eliri el la hejmo", "ekiri de hejme"] },
-  "unlock": { "text": "malŝlosi" },
-  "get-dressed": { "text": "vesti sin", "variants": ["sin vesti", "vestiĝi"] },
-  "arrive": { "text": "alveni" },
-  "greet": { "text": "saluti" },
-  "say-goodbye": { "text": "adiaŭi", "variants": ["diri adiaŭ"] },
+  "to-take-off-shoes": { "text": "demeti la ŝuojn", "variants": ["demeti ŝuojn", "senŝuiĝi"] },
+  "to-set-off": { "text": "foriri de hejme", "variants": ["eliri el la hejmo", "ekiri de hejme"] },
+  "to-unlock": { "text": "malŝlosi" },
+  "to-get-dressed": { "text": "vesti sin", "variants": ["sin vesti", "vestiĝi"] },
+  "to-arrive": { "text": "alveni" },
+  "to-greet": { "text": "saluti" },
+  "to-say-goodbye": { "text": "adiaŭi", "variants": ["diri adiaŭ"] },
   "shoe": { "text": "ŝuo" },
   "apartment": { "text": "loĝejo", "variants": ["apartamento"] },
   "neighbor": { "text": "najbaro" },
@@ -54,14 +54,14 @@
   "wallet": { "text": "monujo" },
   "glove": { "text": "ganto" },
   "letter": { "text": "letero" },
-  "knock-on-door": { "text": "frapi sur la pordon", "variants": ["frapi la pordon", "frapi ĉe la pordo"] },
-  "enter": {
+  "to-knock-on-door": { "text": "frapi sur la pordon", "variants": ["frapi la pordon", "frapi ĉe la pordo"] },
+  "to-enter": {
    "text": "eniri",
    "variants": ["enveni"],
    "notes": { "de": "Wer jemanden hereinbittet, sagt Eniru! oder höflicher Bonvolu eniri!" }
   },
   "house": { "text": "domo" },
-  "live": {
+  "to-live": {
    "text": "loĝi",
    "notes": {
     "de": "loĝi = wohnen; leben im Sinne von am Leben sein heißt vivi.",

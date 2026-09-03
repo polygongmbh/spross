@@ -13,7 +13,7 @@
   "jealousy": { "text": "ревнощі" },
   "smile": { "text": "усмішка", "synonyms": ["посмішка"] },
   "to-smile": { "text": "усміхатися" },
-  "feel": {
+  "to-feel": {
    "text": "почуватися",
    "notes": { "de": "Unpersönlich mit Dativ: Мені погано — mir ist schlecht." }
   }

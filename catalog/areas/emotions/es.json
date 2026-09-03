@@ -13,7 +13,7 @@
   "jealousy": { "text": "celos", "grammar": { "gender": "los" } },
   "smile": { "text": "sonrisa", "grammar": { "gender": "la" } },
   "to-smile": { "text": "sonreír" },
-  "feel": {
+  "to-feel": {
    "text": "sentirse",
    "variants": ["encontrarse"],
    "notes": { "de": "Beim Arzt fragt man auch ¿Cómo se encuentra? = Wie fühlen Sie sich?" }

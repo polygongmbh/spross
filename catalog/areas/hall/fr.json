@@ -35,21 +35,21 @@
   "doorbell": { "text": "sonnette", "grammar": { "gender": "la" } },
   "stairs": { "text": "escalier", "variants": ["l'escalier", "escaliers"], "grammar": { "gender": "l'" } },
   "bag": { "text": "sac", "grammar": { "gender": "le" } },
-  "lock": { "text": "fermer à clé", "variants": ["verrouiller"] },
-  "ring": {
+  "to-lock": { "text": "fermer à clé", "variants": ["verrouiller"] },
+  "to-ring": {
    "text": "sonner",
    "variants": ["sonner à la porte"],
    "notes": {
     "de": "sonner deckt beides ab: die Klingel klingelt (ça sonne) und jemand klingelt an der Tür (il sonne à la porte)."
    }
   },
-  "take-off-shoes": { "text": "enlever ses chaussures", "variants": ["retirer ses chaussures", "se déchausser"] },
-  "set-off": { "text": "partir de chez soi", "variants": ["partir de la maison"] },
-  "unlock": { "text": "déverrouiller", "variants": ["ouvrir avec la clé"] },
-  "get-dressed": { "text": "s'habiller" },
-  "arrive": { "text": "arriver" },
-  "greet": { "text": "saluer" },
-  "say-goodbye": { "text": "dire au revoir", "variants": ["prendre congé"] },
+  "to-take-off-shoes": { "text": "enlever ses chaussures", "variants": ["retirer ses chaussures", "se déchausser"] },
+  "to-set-off": { "text": "partir de chez soi", "variants": ["partir de la maison"] },
+  "to-unlock": { "text": "déverrouiller", "variants": ["ouvrir avec la clé"] },
+  "to-get-dressed": { "text": "s'habiller" },
+  "to-arrive": { "text": "arriver" },
+  "to-greet": { "text": "saluer" },
+  "to-say-goodbye": { "text": "dire au revoir", "variants": ["prendre congé"] },
   "shoe": { "text": "chaussure", "grammar": { "gender": "la" } },
   "apartment": { "text": "appartement", "variants": ["l'appartement", "appart"], "grammar": { "gender": "l'" } },
   "neighbor": { "text": "voisin", "variants": ["voisine"], "grammar": { "gender": "le" } },
@@ -64,13 +64,13 @@
   },
   "glove": { "text": "gant", "grammar": { "gender": "le" } },
   "letter": { "text": "lettre", "grammar": { "gender": "la" } },
-  "knock-on-door": { "text": "frapper à la porte", "variants": ["toquer à la porte"] },
-  "enter": {
+  "to-knock-on-door": { "text": "frapper à la porte", "variants": ["toquer à la porte"] },
+  "to-enter": {
    "text": "entrer",
    "notes": { "de": "Wer jemanden hereinbittet, sagt Entre ! (du) beziehungsweise Entrez ! (Sie)." }
   },
   "house": { "text": "maison", "grammar": { "gender": "la" } },
-  "live": {
+  "to-live": {
    "text": "habiter",
    "notes": { "de": "habiter heißt wohnen; leben im Sinne von am Leben sein ist vivre." }
   },

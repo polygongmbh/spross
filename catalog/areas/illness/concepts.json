@@ -1,7 +1,7 @@
 [
  { "slug": "sick", "kind": "adjective", "emoji": "🤒" },
  { "slug": "pain", "kind": "noun", "emoji": "🤕" },
- { "slug": "hurt", "kind": "verb", "emoji": "🤕" },
+ { "slug": "to-hurt", "kind": "verb", "emoji": "🤕" },
  { "slug": "tired", "kind": "adjective", "emoji": "😴" },
  { "slug": "fever", "kind": "noun", "emoji": "🌡️" },
  { "slug": "cold", "kind": "noun", "emoji": "🤧" },
@@ -9,15 +9,15 @@
  { "slug": "to-cough", "kind": "verb", "emoji": "😷" },
  { "slug": "illness", "kind": "noun", "emoji": "🦠" },
  { "slug": "weak", "kind": "adjective", "emoji": "🪫" },
- { "slug": "recover", "kind": "verb" },
+ { "slug": "to-recover", "kind": "verb" },
  { "slug": "wound", "kind": "noun", "emoji": "🩸" },
- { "slug": "hurt-oneself", "kind": "verb" },
+ { "slug": "to-hurt-oneself", "kind": "verb" },
  { "slug": "dizziness", "kind": "noun", "emoji": "😵‍💫" },
  { "slug": "bandage", "kind": "noun", "emoji": "🩹" },
  { "slug": "band-aid", "kind": "noun" },
  { "slug": "splint", "kind": "noun", "emoji": "🦴" },
  { "slug": "allergy", "kind": "noun" },
- { "slug": "my-throat-hurts-a-lot", "kind": "phrase", "emoji": "😣", "components": ["hurt"] },
+ { "slug": "my-throat-hurts-a-lot", "kind": "phrase", "emoji": "😣", "components": ["to-hurt"] },
  {
   "slug": "ive-had-a-fever-since-yesterday",
   "kind": "phrase",
@@ -25,6 +25,6 @@
   "components": ["fever"]
  },
  { "slug": "get-well-soon", "kind": "phrase", "emoji": "💐", "components": [] },
- { "slug": "the-wound-hurts", "kind": "phrase", "emoji": "🩸", "components": ["wound", "hurt"] },
- { "slug": "i-hurt-myself-yesterday", "kind": "phrase", "components": ["hurt-oneself"] }
+ { "slug": "the-wound-hurts", "kind": "phrase", "emoji": "🩸", "components": ["wound", "to-hurt"] },
+ { "slug": "i-hurt-myself-yesterday", "kind": "phrase", "components": ["to-hurt-oneself"] }
 ]

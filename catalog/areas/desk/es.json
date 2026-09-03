@@ -37,14 +37,14 @@
   },
   "office-chair": { "text": "silla de oficina", "variants": ["silla de escritorio"], "grammar": { "gender": "la" } },
   "to-work": { "text": "trabajar" },
-  "type": { "text": "teclear", "variants": ["mecanografiar", "escribir a máquina"] },
-  "print": { "text": "imprimir" },
-  "save": { "text": "guardar", "variants": ["almacenar"] },
-  "take-break": { "text": "hacer una pausa", "variants": ["hacer un descanso", "tomarse un descanso"] },
-  "write": { "text": "escribir" },
-  "call": { "text": "llamar", "variants": ["llamar por teléfono", "telefonear"] },
-  "delete": { "text": "borrar", "synonyms": ["eliminar"] },
-  "repair": {
+  "to-type": { "text": "teclear", "variants": ["mecanografiar", "escribir a máquina"] },
+  "to-print": { "text": "imprimir" },
+  "to-save": { "text": "guardar", "variants": ["almacenar"] },
+  "to-take-break": { "text": "hacer una pausa", "variants": ["hacer un descanso", "tomarse un descanso"] },
+  "to-write": { "text": "escribir" },
+  "to-call": { "text": "llamar", "variants": ["llamar por teléfono", "telefonear"] },
+  "to-delete": { "text": "borrar", "synonyms": ["eliminar"] },
+  "to-repair": {
    "text": "reparar",
    "synonyms": ["arreglar"],
    "notes": { "de": "Im Alltag sagt man arreglar; reparar klingt nach Werkstatt." }

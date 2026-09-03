@@ -22,21 +22,21 @@
     "de": "In Spanien el billete (auch der Geldschein); in Lateinamerika el boleto oder el pasaje."
    }
   },
-  "ride-bike": {
+  "to-ride-bike": {
    "text": "montar en bicicleta",
    "variants": ["montar en bici", "ir en bici", "andar en bicicleta"]
   },
-  "take-bus": {
+  "to-take-bus": {
    "text": "coger el autobús",
    "variants": ["tomar el autobús"],
    "notes": { "de": "In Spanien coger; in Lateinamerika sagt man tomar, weil coger dort vulgär ist." }
   },
-  "depart": {
+  "to-depart": {
    "text": "salir",
    "notes": { "de": "Züge und Busse „fahren ab“ mit salir: El tren sale a las ocho." }
   },
   "journey": { "text": "viaje", "grammar": { "gender": "el" } },
-  "travel": { "text": "viajar" },
+  "to-travel": { "text": "viajar" },
   "driver": { "text": "conductor", "variants": ["chofer", "chófer"], "grammar": { "gender": "el" } },
   "plane": { "text": "avión", "grammar": { "gender": "el" } },
   "airport": { "text": "aeropuerto", "grammar": { "gender": "el" } },
@@ -54,7 +54,7 @@
   "rail": { "text": "riel", "grammar": { "gender": "el", "plural": "rieles" } },
   "luggage": { "text": "equipaje", "grammar": { "gender": "el" } },
   "fare": { "text": "tarifa", "grammar": { "gender": "la" } },
-  "get-off": {
+  "to-get-off": {
    "text": "bajarse",
    "variants": ["bajar"],
    "notes": { "de": "bajarse ist reflexiv: me bajo aquí." }

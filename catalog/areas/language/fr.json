@@ -3,7 +3,7 @@
  "subtitle": "Les mots, les phrases et leur sens.",
  "words": {
   "meaning": { "text": "sens", "grammar": { "gender": "le", "plural": "=" } },
-  "translate": { "text": "traduire" },
+  "to-translate": { "text": "traduire" },
   "sentence": { "text": "phrase", "grammar": { "gender": "la" } },
   "word": { "text": "mot", "grammar": { "gender": "le" } },
   "verb": { "text": "verbe", "grammar": { "gender": "le" } },

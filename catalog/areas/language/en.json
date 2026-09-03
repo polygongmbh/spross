@@ -3,7 +3,7 @@
  "subtitle": "Words, sentences and what they mean.",
  "words": {
   "meaning": { "text": "meaning" },
-  "translate": { "text": "to translate" },
+  "to-translate": { "text": "to translate" },
   "sentence": { "text": "sentence" },
   "word": { "text": "word" },
   "verb": { "text": "verb" },

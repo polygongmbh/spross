@@ -6,13 +6,13 @@
   "trader": { "text": "komercisto" },
   "trader-f": { "text": "komercistino" },
   "scales": { "text": "pesilo" },
-  "weigh": { "text": "pesi" },
+  "to-weigh": { "text": "pesi" },
   "kilo": { "text": "kilogramo", "variants": ["kilo"] },
   "gram": { "text": "gramo" },
   "liter": { "text": "litro" },
   "fresh": { "text": "freŝa" },
   "ripe": { "text": "matura" },
-  "haggle": { "text": "marĉandi" },
+  "to-haggle": { "text": "marĉandi" },
   "market": {
    "text": "bazaro",
    "notes": {

@@ -2,9 +2,9 @@
  "title": "Salutations et politesse",
  "subtitle": "Ce qu'on se dit quand on se rencontre.",
  "words": {
-  "thank": { "text": "remercier" },
+  "to-thank": { "text": "remercier" },
   "name": { "text": "nom", "grammar": { "gender": "le" } },
-  "be-called": { "text": "s'appeler" },
+  "to-be-called": { "text": "s'appeler" },
   "hello": {
    "text": "Salut !",
    "notes": { "de": "nur informell unter Bekannten · im Laden und im Amt sagt man Bonjour !" }

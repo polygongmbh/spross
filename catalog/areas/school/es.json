@@ -45,13 +45,13 @@
    "grammar": { "gender": "el" },
    "notes": { "de": "el recreo ist die Schulpause; die allgemeine Pause heißt el descanso." }
   },
-  "pass-exam": {
+  "to-pass-exam": {
    "text": "aprobar el examen",
    "variants": ["pasar el examen"],
    "notes": { "de": "aprobar = bestehen, suspender = durchfallen." }
   },
   "to-practice": { "text": "practicar", "variants": ["hacer ejercicios"] },
-  "raise-hand": { "text": "levantar la mano", "variants": ["alzar la mano"] },
+  "to-raise-hand": { "text": "levantar la mano", "variants": ["alzar la mano"] },
   "pupil": { "text": "alumno", "variants": ["estudiante"], "grammar": { "gender": "el" } },
   "pupil-f": { "text": "alumna", "variants": ["estudiante"], "grammar": { "gender": "la" } },
   "course": { "text": "curso", "grammar": { "gender": "el" } },
@@ -67,7 +67,7 @@
   },
   "page": { "text": "página", "grammar": { "gender": "la" } },
   "grade": { "text": "nota", "grammar": { "gender": "la" } },
-  "correct": { "text": "corregir" },
+  "to-correct": { "text": "corregir" },
   "book": { "text": "libro", "grammar": { "gender": "el" } },
   "university": { "text": "universidad", "grammar": { "gender": "la" } },
   "class-schedule": {
@@ -79,11 +79,11 @@
   },
   "to-count": { "text": "contar", "notes": { "de": "contar heißt auch erzählen: cuéntame = erzähl mir." } },
   "to-try": { "text": "intentar", "variants": ["probar"] },
-  "learn-by-heart": { "text": "aprender de memoria", "synonyms": ["memorizar"] },
-  "read-aloud": { "text": "leer en voz alta" },
+  "to-learn-by-heart": { "text": "aprender de memoria", "synonyms": ["memorizar"] },
+  "to-read-aloud": { "text": "leer en voz alta" },
   "dictionary": { "text": "diccionario", "grammar": { "gender": "el" } },
   "to-pronounce": { "text": "pronunciar" },
-  "study": {
+  "to-study": {
    "text": "estudiar",
    "notes": { "de": "Für eine Prüfung oder einen Kurs lernen = estudiar; etwas Neues erlernen = aprender." }
   },

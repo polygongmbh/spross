@@ -40,31 +40,31 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "Vorsicht: la firma ist vor allem die Unterschrift; „die Firma“ heißt la empresa." }
   },
-  "apply": {
+  "to-apply": {
    "text": "solicitar un puesto",
    "variants": ["solicitar un empleo", "presentarse a un puesto", "echar el currículum"],
    "notes": {
     "de": "solicitar allein heißt beantragen; erst mit Objekt wird daraus „sich bewerben“: solicitar un puesto."
    }
   },
-  "introduce-oneself": { "text": "presentarse" },
-  "earn": {
+  "to-introduce-oneself": { "text": "presentarse" },
+  "to-earn": {
    "text": "ganar",
    "variants": ["cobrar"],
    "notes": { "de": "Nach dem Verdienst fragt man mit cobrar: ¿Cuánto cobras? = Wie viel verdienst du?" }
   },
-  "start": { "text": "empezar", "synonyms": ["comenzar"] },
-  "leave": {
+  "to-start": { "text": "empezar", "synonyms": ["comenzar"] },
+  "to-leave": {
    "text": "dejar",
    "synonyms": ["abandonar"],
    "notes": {
     "de": "dejar el trabajo = kündigen. Einen Ort verlässt man dagegen mit salir de oder irse de."
    }
   },
-  "quit": { "text": "dejar el trabajo", "variants": ["dimitir", "renunciar al trabajo", "dejar el empleo"] },
-  "hire": { "text": "contratar", "variants": ["emplear"] },
+  "to-quit": { "text": "dejar el trabajo", "variants": ["dimitir", "renunciar al trabajo", "dejar el empleo"] },
+  "to-hire": { "text": "contratar", "variants": ["emplear"] },
   "to-help": { "text": "ayudar" },
-  "work-overtime": { "text": "hacer horas extra", "variants": ["hacer horas extras", "hacer horas extraordinarias"] },
+  "to-work-overtime": { "text": "hacer horas extra", "variants": ["hacer horas extras", "hacer horas extraordinarias"] },
   "profession": { "text": "profesión", "variants": ["oficio"], "grammar": { "gender": "la" } },
   "interview": {
    "text": "entrevista de trabajo",

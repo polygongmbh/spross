@@ -16,7 +16,7 @@
   },
   "shopping-list": { "text": "список покупок" },
   "size": { "text": "розмір" },
-  "shop": { "text": "ходити за покупками" },
+  "to-shop": { "text": "ходити за покупками" },
   "store": { "text": "магазин" },
   "the-store-is-still-open": { "text": "Магазин ще відчинений." },
   "do-you-have-this-in-my-size": { "text": "У вас є це мого розміру?" },

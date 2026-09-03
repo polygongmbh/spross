@@ -10,10 +10,10 @@
   "waiter": { "text": "serveur", "grammar": { "gender": "le" } },
   "waiter-f": { "text": "serveuse", "grammar": { "gender": "la" } },
   "table": { "text": "table", "grammar": { "gender": "la" } },
-  "order": { "text": "commander" },
+  "to-order": { "text": "commander" },
   "bill": { "text": "addition", "variants": ["l'addition"], "grammar": { "gender": "l'" } },
   "tip": { "text": "pourboire", "grammar": { "gender": "le" } },
-  "reserve": { "text": "réserver" },
+  "to-reserve": { "text": "réserver" },
   "glass": { "text": "verre", "grammar": { "gender": "le" } },
   "cutlery": { "text": "couverts", "grammar": { "gender": "les", "plural": "only" } },
   "napkin": {

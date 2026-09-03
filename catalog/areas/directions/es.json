@@ -7,7 +7,7 @@
    "variants": ["recto", "derecho", "todo derecho"],
    "notes": { "de": "In Spanien todo recto, in Lateinamerika (todo) derecho." }
   },
-  "turn": {
+  "to-turn": {
    "text": "girar",
    "synonyms": ["doblar"],
    "variants": ["torcer"],
@@ -19,7 +19,7 @@
    "notes": { "de": "la esquina ist die Straßenecke von außen; die Zimmerecke ist el rincón." }
   },
   "crossing": { "text": "cruce", "grammar": { "gender": "el" } },
-  "cross": { "text": "cruzar", "synonyms": ["atravesar"] },
+  "to-cross": { "text": "cruzar", "synonyms": ["atravesar"] },
   "direction": {
    "text": "dirección",
    "grammar": { "gender": "la", "plural": "direcciones" },
@@ -35,7 +35,7 @@
   },
   "entrance": { "text": "entrada", "grammar": { "gender": "la" } },
   "exit": { "text": "salida", "grammar": { "gender": "la" } },
-  "follow": { "text": "seguir", "notes": { "de": "Stammwechsel e → i: sigo, sigues, sigue." } },
+  "to-follow": { "text": "seguir", "notes": { "de": "Stammwechsel e → i: sigo, sigues, sigue." } },
   "way": { "text": "camino", "grammar": { "gender": "el" } },
   "north": { "text": "norte", "grammar": { "gender": "el" } },
   "south": { "text": "sur", "grammar": { "gender": "el" } },

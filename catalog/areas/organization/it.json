@@ -18,17 +18,17 @@
   "waiting-time": { "text": "tempo di attesa", "grammar": { "gender": "il" } },
   "to-meet": { "text": "incontrarsi" },
   "to-invite": { "text": "invitare" },
-  "arrange": {
+  "to-arrange": {
    "text": "fissare",
    "synonyms": ["concordare"],
    "variants": ["stabilire"],
    "notes": { "de": "Einen Termin vereinbart man mit fissare oder prendere: fissare un appuntamento." }
   },
-  "confirm": { "text": "confermare" },
-  "cancel": { "text": "annullare", "synonyms": ["disdire"], "variants": ["cancellare"] },
-  "postpone": { "text": "rimandare", "synonyms": ["rinviare"], "variants": ["spostare", "posticipare"] },
-  "register": { "text": "iscriversi", "synonyms": ["registrarsi"] },
-  "be-late": { "text": "essere in ritardo", "synonyms": ["fare tardi"], "variants": ["arrivare in ritardo"] },
+  "to-confirm": { "text": "confermare" },
+  "to-cancel": { "text": "annullare", "synonyms": ["disdire"], "variants": ["cancellare"] },
+  "to-postpone": { "text": "rimandare", "synonyms": ["rinviare"], "variants": ["spostare", "posticipare"] },
+  "to-register": { "text": "iscriversi", "synonyms": ["registrarsi"] },
+  "to-be-late": { "text": "essere in ritardo", "synonyms": ["fare tardi"], "variants": ["arrivare in ritardo"] },
   "punctual": { "text": "puntuale" },
   "urgent": { "text": "urgente" },
   "list": { "text": "lista", "variants": ["elenco"], "grammar": { "gender": "la" } },

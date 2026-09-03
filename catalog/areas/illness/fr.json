@@ -10,7 +10,7 @@
    "grammar": { "gender": "le" },
    "notes": { "de": "Erkältet sein heißt être enrhumé: je suis enrhumé." }
   },
-  "hurt": {
+  "to-hurt": {
    "text": "faire mal",
    "notes": {
     "de": "Meist mit avoir und dem Körperteil: j'ai mal à la tête. faire mal steht dort, wo das Körperteil selbst Subjekt ist: la blessure fait mal."
@@ -28,7 +28,7 @@
    "notes": { "de": "Meist im Plural: j'ai des vertiges = mir ist schwindlig." }
   },
   "wound": { "text": "blessure", "variants": ["plaie"], "grammar": { "gender": "la" } },
-  "hurt-oneself": { "text": "se blesser", "variants": ["se faire mal"] },
+  "to-hurt-oneself": { "text": "se blesser", "variants": ["se faire mal"] },
   "bandage": {
    "text": "pansement",
    "variants": ["bandage"],
@@ -43,7 +43,7 @@
    }
   },
   "splint": { "text": "attelle", "grammar": { "gender": "la" } },
-  "recover": {
+  "to-recover": {
    "text": "guérir",
    "variants": ["se remettre"],
    "notes": { "de": "guérir steht auch ohne Objekt für gesund werden: je guéris vite." }

@@ -55,8 +55,8 @@
   "breakfast": { "text": "colazione", "variants": ["prima colazione"], "grammar": { "gender": "la" } },
   "dinner": { "text": "cena", "grammar": { "gender": "la" } },
   "water": { "text": "acqua", "variants": ["l'acqua", "un'acqua"], "grammar": { "gender": "l'" } },
-  "eat": { "text": "mangiare" },
-  "drink": { "text": "bere" },
+  "to-eat": { "text": "mangiare" },
+  "to-drink": { "text": "bere" },
   "im-hungry": { "text": "Ho fame." },
   "whats-for-dinner": {
    "text": "Cosa c'è per cena?",

@@ -2,71 +2,71 @@
  "title": "Vitenzi muhimu",
  "subtitle": "Unavyohitaji kila mahali.",
  "words": {
-  "go": { "text": "kwenda" },
-  "come": { "text": "kuja" },
-  "have": {
+  "to-go": { "text": "kwenda" },
+  "to-come": { "text": "kuja" },
+  "to-have": {
    "text": "kuwa na",
    "notes": { "de": "Präsens ohne „kuwa“: nina, una, ana … · verneint: sina = ich habe nicht." }
   },
-  "give": {
+  "to-give": {
    "text": "kupa",
    "notes": { "de": "Braucht ein Objekt-Infix: kunipa = mir geben, kumpa = ihm/ihr geben." }
   },
-  "take": { "text": "kuchukua" },
-  "see": { "text": "kuona" },
-  "make": { "text": "kufanya" },
-  "like": {
+  "to-take": { "text": "kuchukua" },
+  "to-see": { "text": "kuona" },
+  "to-make": { "text": "kufanya" },
+  "to-like": {
    "text": "kupenda",
    "notes": { "de": "deckt mögen und lieben ab: Napenda chai · Nakupenda = Ich liebe dich." }
   },
-  "can": {
+  "to-can": {
    "text": "kuweza",
    "notes": { "de": "Präsens: naweza, unaweza, anaweza · verneint: siwezi = ich kann nicht." }
   },
-  "think": { "text": "kufikiri", "notes": { "de": "über etwas nachdenken: kufikiria jambo." } },
+  "to-think": { "text": "kufikiri", "notes": { "de": "über etwas nachdenken: kufikiria jambo." } },
   "to-imagine": { "text": "kuwazia" },
-  "wait": { "text": "kusubiri" },
-  "want": {
+  "to-wait": { "text": "kusubiri" },
+  "to-want": {
    "text": "kutaka",
    "notes": { "de": "Präsens: nataka, unataka, anataka · verneint: sitaki = ich will nicht." }
   },
-  "find": {
+  "to-find": {
    "text": "kupata",
    "synonyms": ["kukuta"],
    "notes": { "de": "kupata ist das Alltagswort für „gefunden“ · kukuta = antreffen, auf etwas stoßen." }
   },
-  "search": {
+  "to-search": {
    "text": "kutafuta",
    "notes": { "de": "kutafuta = suchen und besorgen: natafuta kazi = ich suche Arbeit." }
   },
-  "receive": {
+  "to-receive": {
    "text": "kupokea",
    "notes": {
     "de": "kupokea = entgegennehmen: kupokea barua, kupokea simu. Für „ich habe Arbeit bekommen“ sagt man nilipata kazi."
    }
   },
-  "look": {
+  "to-look": {
    "text": "kuangalia",
    "notes": { "de": "kuangalia = hinsehen, anschauen · kutazama ist eher zuschauen: kutazama televisheni." }
   },
-  "open": { "text": "kufungua" },
-  "close": {
+  "to-open": { "text": "kufungua" },
+  "to-close": {
    "text": "kufunga",
    "notes": { "de": "kufunga heißt auch zubinden und abschließen: kufunga mlango." }
   },
-  "stop": {
+  "to-stop": {
    "text": "kuacha",
    "notes": { "de": "kuacha = aufhören (mit etwas) und verlassen · mit Objekt: kuacha kazi = kündigen." }
   },
-  "stand": {
+  "to-stand": {
    "text": "kusimama",
    "notes": { "de": "kusimama heißt stehen, aufstehen und stehen bleiben: Simama! = Halt!" }
   },
-  "send": {
+  "to-send": {
    "text": "kutuma",
    "notes": { "de": "kutuma = schicken (Nachricht, Geld) · kupeleka ist hinbringen, liefern." }
   },
-  "deliver": { "text": "kupeleka" },
+  "to-deliver": { "text": "kupeleka" },
   "to-use": { "text": "kutumia" },
   "to-come-back": { "text": "kurudi" },
   "to-lose": { "text": "kupoteza" },

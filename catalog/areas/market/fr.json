@@ -6,7 +6,7 @@
   "trader": { "text": "marchand", "grammar": { "gender": "le" }, "synonyms": ["commerçant"] },
   "trader-f": { "text": "marchande", "grammar": { "gender": "la" }, "synonyms": ["commerçante"] },
   "scales": { "text": "balance", "grammar": { "gender": "la" } },
-  "weigh": { "text": "peser" },
+  "to-weigh": { "text": "peser" },
   "kilo": { "text": "kilo", "grammar": { "gender": "le" } },
   "gram": { "text": "gramme", "grammar": { "gender": "le" } },
   "liter": { "text": "litre", "grammar": { "gender": "le" } },
@@ -15,7 +15,7 @@
    "notes": { "de": "frais ist frisch und im Plural zugleich die Gebühren (les frais); feminin fraîche." }
   },
   "ripe": { "text": "mûr" },
-  "haggle": { "text": "marchander" },
+  "to-haggle": { "text": "marchander" },
   "market": { "text": "marché", "grammar": { "gender": "le" } },
   "lets-meet-at-the-market": {
    "text": "On se retrouve au marché.",

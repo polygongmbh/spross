@@ -14,7 +14,7 @@
   "homework": { "text": "hejmtasko", "variants": ["hejma tasko", "hejmlaboro"] },
   "exam": { "text": "ekzameno" },
   "break": { "text": "paŭzo", "variants": ["lerneja paŭzo"] },
-  "pass-exam": {
+  "to-pass-exam": {
    "text": "sukcesi en la ekzameno",
    "variants": ["sukcesi la ekzamenon", "sukcese trapasi la ekzamenon"],
    "notes": {
@@ -28,7 +28,7 @@
     "de": "ekzerci ist transitiv: ekzerci la vortojn. Ohne Objekt heißt „üben“ sin ekzerci oder ekzerciĝi."
    }
   },
-  "raise-hand": { "text": "levi la manon" },
+  "to-raise-hand": { "text": "levi la manon" },
   "pupil": { "text": "lernanto", "variants": ["lernejano"] },
   "pupil-f": { "text": "lernantino", "variants": ["lernejanino"] },
   "course": { "text": "kurso" },
@@ -45,7 +45,7 @@
    "text": "noto",
    "notes": { "de": "noto ist die Schulnote und die Notiz zugleich; der Zusammenhang unterscheidet sie." }
   },
-  "correct": { "text": "korekti" },
+  "to-correct": { "text": "korekti" },
   "book": { "text": "libro" },
   "university": { "text": "universitato" },
   "class-schedule": { "text": "horaro", "variants": ["lerneja horaro"] },
@@ -54,11 +54,11 @@
    "notes": { "de": "kalkuli heißt zählen und rechnen; erzählen heißt rakonti." }
   },
   "to-try": { "text": "provi", "variants": ["klopodi", "peni"] },
-  "learn-by-heart": { "text": "parkere lerni", "variants": ["lerni parkere", "parkerigi"] },
-  "read-aloud": { "text": "laŭte legi", "variants": ["legi laŭte", "laŭtlegi"] },
+  "to-learn-by-heart": { "text": "parkere lerni", "variants": ["lerni parkere", "parkerigi"] },
+  "to-read-aloud": { "text": "laŭte legi", "variants": ["legi laŭte", "laŭtlegi"] },
   "dictionary": { "text": "vortaro" },
   "to-pronounce": { "text": "elparoli", "synonyms": ["prononci"] },
-  "study": {
+  "to-study": {
    "text": "studi",
    "variants": ["lerni"],
    "notes": { "de": "Für Kurs oder Prüfung lernen = studi; etwas Neues erlernen = lerni." }

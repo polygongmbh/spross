@@ -14,7 +14,7 @@
   "nerve": { "text": "Nerv", "grammar": { "gender": "der", "plural": "-en" } },
   "vein": { "text": "Vene", "synonyms": ["Ader"], "grammar": { "gender": "die", "plural": "-n" } },
   "thyroid": { "text": "Schilddrüse", "grammar": { "gender": "die", "plural": "-n" } },
-  "breathe": { "text": "atmen" },
+  "to-breathe": { "text": "atmen" },
   "stomach-organ": { "text": "Magen", "grammar": { "gender": "der", "plural": "Mägen" } },
   "artery": { "text": "Arterie", "synonyms": ["Schlagader"], "grammar": { "gender": "die", "plural": "-n" } },
   "joint": { "text": "Gelenk", "grammar": { "gender": "das", "plural": "-e" } },

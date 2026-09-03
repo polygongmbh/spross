@@ -30,21 +30,21 @@
   "soap": { "text": "sapo" },
   "shampoo": { "text": "ŝampuo" },
   "hairdryer": { "text": "harsekigilo" },
-  "take-shower": { "text": "duŝi sin", "variants": ["sin duŝi", "duŝiĝi"] },
-  "do-laundry": { "text": "lavi la tolaĵon", "variants": ["lavi tolaĵon", "lavi la tolaĵojn"] },
-  "brush-teeth": { "text": "brosi la dentojn", "variants": ["brosi al si la dentojn", "purigi la dentojn"] },
-  "dry-off": {
+  "to-take-shower": { "text": "duŝi sin", "variants": ["sin duŝi", "duŝiĝi"] },
+  "to-do-laundry": { "text": "lavi la tolaĵon", "variants": ["lavi tolaĵon", "lavi la tolaĵojn"] },
+  "to-brush-teeth": { "text": "brosi la dentojn", "variants": ["brosi al si la dentojn", "purigi la dentojn"] },
+  "to-dry-off": {
    "text": "sekigi sin",
    "variants": ["sin sekigi", "viŝi sin"],
    "notes": {
     "de": "sekigi sin = sich abtrocknen; sekiĝi allein heißt trocken werden, ohne dass jemand etwas tut."
    }
   },
-  "hang-up-laundry": { "text": "pendigi la tolaĵon", "variants": ["pendigi la tolaĵojn", "pendigi tolaĵon"] },
-  "clean": { "text": "purigi" },
-  "shave": { "text": "razi sin", "variants": ["sin razi", "raziĝi"] },
-  "comb-hair": { "text": "kombi la harojn", "variants": ["kombi al si la harojn", "kombi sin"] },
-  "apply-lotion": { "text": "surŝmiri kremon", "variants": ["ŝmiri kremon", "surŝmiri al si kremon"] },
+  "to-hang-up-laundry": { "text": "pendigi la tolaĵon", "variants": ["pendigi la tolaĵojn", "pendigi tolaĵon"] },
+  "to-clean": { "text": "purigi" },
+  "to-shave": { "text": "razi sin", "variants": ["sin razi", "raziĝi"] },
+  "to-comb-hair": { "text": "kombi la harojn", "variants": ["kombi al si la harojn", "kombi sin"] },
+  "to-apply-lotion": { "text": "surŝmiri kremon", "variants": ["ŝmiri kremon", "surŝmiri al si kremon"] },
   "bathtub": { "text": "bankuvo", "variants": ["banujo"] },
   "toilet-paper": { "text": "tualetpapero", "variants": ["tualeta papero", "neceseja papero"] },
   "razor": { "text": "razilo" },

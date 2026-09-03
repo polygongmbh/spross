@@ -1,6 +1,6 @@
 [
- { "slug": "eat", "kind": "verb", "emoji": "🍽️" },
- { "slug": "drink", "kind": "verb", "emoji": "🥤" },
+ { "slug": "to-eat", "kind": "verb", "emoji": "🍽️" },
+ { "slug": "to-drink", "kind": "verb", "emoji": "🥤" },
  { "slug": "food", "kind": "noun", "emoji": "🍴" },
  { "slug": "water", "kind": "noun", "emoji": "🌊" },
  { "slug": "bread", "kind": "noun", "emoji": "🍞" },
@@ -50,5 +50,5 @@
   "emoji": "🍚",
   "components": ["cooked-rice", "sauce"]
  },
- { "slug": "the-food-is-ready", "kind": "phrase", "emoji": "🍲", "components": ["eat"] }
+ { "slug": "the-food-is-ready", "kind": "phrase", "emoji": "🍲", "components": ["to-eat"] }
 ]

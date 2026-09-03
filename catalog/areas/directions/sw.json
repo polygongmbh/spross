@@ -3,13 +3,13 @@
  "subtitle": "Jibu la swali „nifikaje?“.",
  "words": {
   "straight-ahead": { "text": "moja kwa moja" },
-  "turn": {
+  "to-turn": {
    "text": "kugeuka",
    "notes": { "de": "kugeuka ist sich wenden; ein Objekt wenden heißt kugeuza." }
   },
   "corner": { "text": "kona", "grammar": { "plural": "=" } },
   "crossing": { "text": "njia panda", "variants": ["makutano"], "grammar": { "plural": "=" } },
-  "cross": { "text": "kuvuka" },
+  "to-cross": { "text": "kuvuka" },
   "direction": { "text": "mwelekeo", "grammar": { "plural": "mielekeo" } },
   "city-map": { "text": "ramani", "grammar": { "plural": "=" }, "variants": ["ramani ya mji"] },
   "entrance": {
@@ -18,7 +18,7 @@
    "variants": ["kiingilio"]
   },
   "exit": { "text": "njia ya kutoka", "grammar": { "plural": "=" }, "variants": ["mlango wa kutoka"] },
-  "follow": { "text": "kufuata" },
+  "to-follow": { "text": "kufuata" },
   "way": { "text": "njia", "grammar": { "plural": "=" } },
   "north": { "text": "kaskazini", "grammar": { "plural": "=" } },
   "south": { "text": "kusini", "grammar": { "plural": "=" } },

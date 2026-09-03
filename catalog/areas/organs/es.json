@@ -10,7 +10,7 @@
   "nerve": { "text": "nervio", "grammar": { "gender": "el" } },
   "vein": { "text": "vena", "grammar": { "gender": "la" } },
   "thyroid": { "text": "tiroides", "grammar": { "gender": "el", "plural": "=" } },
-  "breathe": { "text": "respirar" },
+  "to-breathe": { "text": "respirar" },
   "stomach-organ": { "text": "estómago", "grammar": { "gender": "el" } },
   "artery": { "text": "arteria", "grammar": { "gender": "la" } },
   "joint": { "text": "articulación", "grammar": { "gender": "la", "plural": "articulaciones" } },

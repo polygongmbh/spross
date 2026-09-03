@@ -11,7 +11,7 @@
   "offer": { "text": "special offer", "variants": ["offer", "deal"] },
   "shopping-list": { "text": "shopping list" },
   "size": { "text": "size" },
-  "shop": { "text": "to go shopping" },
+  "to-shop": { "text": "to go shopping" },
   "store": { "text": "store", "synonyms": ["shop"] },
   "the-store-is-still-open": { "text": "The store is still open.", "variants": ["The shop is still open."] },
   "do-you-have-this-in-my-size": { "text": "Do you have this in my size?" },

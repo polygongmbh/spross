@@ -3,14 +3,14 @@
  "subtitle": "Was etwas kostet und wie man es bezahlt.",
  "words": {
   "price": { "text": "Preis", "grammar": { "gender": "der", "plural": "-e" } },
-  "cost": { "text": "kosten" },
+  "to-cost": { "text": "kosten" },
   "expensive": { "text": "teuer" },
   "cheap": {
    "text": "billig",
    "synonyms": ["günstig"],
    "notes": { "de": "günstig lobt den Preis, billig kann abwertend klingen." }
   },
-  "sell": { "text": "verkaufen" },
+  "to-sell": { "text": "verkaufen" },
   "cash": { "text": "Bargeld", "grammar": { "gender": "das" } },
   "bank-card": {
    "text": "Bankkarte",
@@ -24,8 +24,8 @@
    "notes": { "de": "das Wechselgeld bekommt man zurück; das Kleingeld hat man schon dabei." }
   },
   "money": { "text": "Geld", "grammar": { "gender": "das" } },
-  "buy": { "text": "kaufen" },
-  "pay": { "text": "bezahlen", "variants": ["zahlen"] },
+  "to-buy": { "text": "kaufen" },
+  "to-pay": { "text": "bezahlen", "variants": ["zahlen"] },
   "rich": { "text": "reich" },
   "poor": { "text": "arm" },
   "free-of-charge": { "text": "kostenlos" },

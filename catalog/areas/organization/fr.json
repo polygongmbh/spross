@@ -20,21 +20,21 @@
   "waiting-time": { "text": "temps d'attente", "grammar": { "gender": "le", "plural": "=" } },
   "to-meet": { "text": "se réunir" },
   "to-invite": { "text": "inviter" },
-  "arrange": {
+  "to-arrange": {
    "text": "fixer",
    "variants": ["convenir", "organiser"],
    "notes": {
     "de": "Einen Termin vereinbaren heißt prendre rendez-vous; fixer un rendez-vous legt ihn fest."
    }
   },
-  "confirm": { "text": "confirmer" },
-  "cancel": { "text": "annuler", "variants": ["décommander"] },
-  "postpone": { "text": "reporter", "synonyms": ["repousser"], "variants": ["décaler"] },
-  "register": {
+  "to-confirm": { "text": "confirmer" },
+  "to-cancel": { "text": "annuler", "variants": ["décommander"] },
+  "to-postpone": { "text": "reporter", "synonyms": ["repousser"], "variants": ["décaler"] },
+  "to-register": {
    "text": "s'inscrire",
    "notes": { "de": "Sich für einen Kurs anmelden = s'inscrire; sich einloggen heißt se connecter." }
   },
-  "be-late": { "text": "être en retard", "variants": ["arriver en retard"] },
+  "to-be-late": { "text": "être en retard", "variants": ["arriver en retard"] },
   "punctual": { "text": "ponctuel", "variants": ["ponctuelle", "à l'heure"] },
   "urgent": { "text": "urgent", "variants": ["urgente"] },
   "list": { "text": "liste", "grammar": { "gender": "la" } },

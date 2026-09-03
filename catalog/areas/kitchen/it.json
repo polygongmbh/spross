@@ -23,25 +23,25 @@
   "spoon": { "text": "cucchiaio", "grammar": { "gender": "il", "plural": "cucchiai" } },
   "fork": { "text": "forchetta", "grammar": { "gender": "la" } },
   "plate": { "text": "piatto", "grammar": { "gender": "il" } },
-  "cook": {
+  "to-cook": {
    "text": "cucinare",
    "notes": { "de": "cucinare = Essen zubereiten; Wasser kochen heißt bollire." }
   },
-  "bake": {
+  "to-bake": {
    "text": "cuocere al forno",
    "variants": ["fare al forno", "infornare"],
    "notes": {
     "de": "Italienisch hat kein eigenes Verb dafür: cuocere al forno; infornare heißt „in den Ofen schieben“."
    }
   },
-  "cut": { "text": "tagliare" },
-  "wash-the-dishes": { "text": "lavare i piatti", "variants": ["lavare le stoviglie"] },
-  "taste": { "text": "assaggiare" },
-  "fry": { "text": "friggere" },
-  "boil": { "text": "bollire", "variants": ["far bollire"] },
-  "reheat": { "text": "riscaldare", "variants": ["scaldare"] },
-  "stir": { "text": "mescolare", "variants": ["rimescolare", "girare"] },
-  "take-out-trash": {
+  "to-cut": { "text": "tagliare" },
+  "to-wash-the-dishes": { "text": "lavare i piatti", "variants": ["lavare le stoviglie"] },
+  "to-taste": { "text": "assaggiare" },
+  "to-fry": { "text": "friggere" },
+  "to-boil": { "text": "bollire", "variants": ["far bollire"] },
+  "to-reheat": { "text": "riscaldare", "variants": ["scaldare"] },
+  "to-stir": { "text": "mescolare", "variants": ["rimescolare", "girare"] },
+  "to-take-out-trash": {
    "text": "portare fuori la spazzatura",
    "variants": ["portare fuori l'immondizia", "buttare la spazzatura"]
   },

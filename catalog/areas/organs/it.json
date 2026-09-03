@@ -10,7 +10,7 @@
   "nerve": { "text": "nervo", "grammar": { "gender": "il", "plural": "nervi" } },
   "vein": { "text": "vena", "grammar": { "gender": "la", "plural": "vene" } },
   "thyroid": { "text": "tiroide", "grammar": { "gender": "la", "plural": "tiroidi" } },
-  "breathe": {
+  "to-breathe": {
    "text": "respirare",
    "notes": { "de": "Nicht können heißt hier non riuscire a respirare, nicht non potere." }
   },

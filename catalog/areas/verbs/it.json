@@ -2,59 +2,59 @@
  "title": "I verbi essenziali",
  "subtitle": "Quello che ti serve dappertutto.",
  "words": {
-  "go": {
+  "to-go": {
    "text": "andare",
    "notes": { "de": "andare = gehen und fahren · zu Fuß betont: andare a piedi." }
   },
-  "come": { "text": "venire" },
-  "have": { "text": "avere" },
-  "give": { "text": "dare" },
-  "take": {
+  "to-come": { "text": "venire" },
+  "to-have": { "text": "avere" },
+  "to-give": { "text": "dare" },
+  "to-take": {
    "text": "prendere",
    "notes": {
     "de": "prendere nimmt auch Verkehrsmittel und Getränke: prendere l'autobus, prendere un caffè."
    }
   },
-  "see": { "text": "vedere", "notes": { "de": "vedere = sehen · guardare = anschauen." } },
-  "make": {
+  "to-see": { "text": "vedere", "notes": { "de": "vedere = sehen · guardare = anschauen." } },
+  "to-make": {
    "text": "fare",
    "notes": { "de": "fare deckt machen und tun ab: fare la spesa, fare i compiti." }
   },
-  "like": {
+  "to-like": {
    "text": "piacere",
    "notes": {
     "de": "umgekehrt gebaut: Mi piace il caffè = Ich mag Kaffee · lieben ist amare oder voler bene."
    }
   },
-  "can": { "text": "potere", "notes": { "de": "unregelmäßig: posso, puoi, può, possiamo." } },
-  "think": {
+  "to-can": { "text": "potere", "notes": { "de": "unregelmäßig: posso, puoi, può, possiamo." } },
+  "to-think": {
    "text": "pensare",
    "notes": { "de": "pensare a qualcosa = an etwas denken · pensare che = glauben, dass." }
   },
   "to-imagine": { "text": "immaginare" },
-  "wait": { "text": "aspettare", "notes": { "de": "aspettare heißt auch erwarten; hoffen ist sperare." } },
-  "want": { "text": "volere", "notes": { "de": "höflicher im Konditional: vorrei = ich hätte gern." } },
-  "find": { "text": "trovare" },
-  "search": { "text": "cercare", "notes": { "de": "cercare steht ohne Präposition: cerco un albergo." } },
-  "receive": { "text": "ricevere", "synonyms": ["ottenere"] },
-  "look": { "text": "guardare", "notes": { "de": "guardare = bewusst anschauen: guardare la TV." } },
-  "open": { "text": "aprire" },
-  "close": { "text": "chiudere" },
-  "stop": {
+  "to-wait": { "text": "aspettare", "notes": { "de": "aspettare heißt auch erwarten; hoffen ist sperare." } },
+  "to-want": { "text": "volere", "notes": { "de": "höflicher im Konditional: vorrei = ich hätte gern." } },
+  "to-find": { "text": "trovare" },
+  "to-search": { "text": "cercare", "notes": { "de": "cercare steht ohne Präposition: cerco un albergo." } },
+  "to-receive": { "text": "ricevere", "synonyms": ["ottenere"] },
+  "to-look": { "text": "guardare", "notes": { "de": "guardare = bewusst anschauen: guardare la TV." } },
+  "to-open": { "text": "aprire" },
+  "to-close": { "text": "chiudere" },
+  "to-stop": {
    "text": "smettere",
    "variants": ["smettere di"],
    "notes": { "de": "smettere di + Infinitiv: smettere di fumare · anhalten ist fermarsi." }
   },
-  "stand": {
+  "to-stand": {
    "text": "stare in piedi",
    "notes": { "de": "Italienisch hat kein eigenes Verb dafür · alzarsi in piedi = sich hinstellen." }
   },
-  "send": {
+  "to-send": {
    "text": "inviare",
    "variants": ["mandare", "spedire"],
    "notes": { "de": "inviare und mandare gelten beide · spedire ist das Verschicken per Post." }
   },
-  "deliver": {
+  "to-deliver": {
    "text": "recapitare",
    "notes": { "de": "recapitare = zustellen, ausliefern · consegnare heißt abgeben und gehört aufs Amt." }
   },

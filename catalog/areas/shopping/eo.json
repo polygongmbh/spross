@@ -12,7 +12,7 @@
   "offer": { "text": "oferto" },
   "shopping-list": { "text": "aĉetlisto" },
   "size": { "text": "grando", "variants": ["grandeco"] },
-  "shop": {
+  "to-shop": {
    "text": "butikumi",
    "variants": ["fari aĉetojn"],
    "notes": { "de": "butikumi heißt von Laden zu Laden gehen · eine einzelne Sache kauft man mit aĉeti." }

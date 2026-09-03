@@ -48,10 +48,10 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "kurz für la baja médica; das Papier, das der Arzt aushändigt, ist el parte de baja." }
   },
-  "examine": { "text": "examinar", "variants": ["explorar", "reconocer"] },
-  "prescribe-medicine": { "text": "recetar medicamentos", "variants": ["prescribir medicamentos", "recetar medicinas"] },
-  "take-medicine": { "text": "tomar medicamentos", "variants": ["tomar la medicación", "tomar medicinas"] },
-  "call-in-sick": {
+  "to-examine": { "text": "examinar", "variants": ["explorar", "reconocer"] },
+  "to-prescribe-medicine": { "text": "recetar medicamentos", "variants": ["prescribir medicamentos", "recetar medicinas"] },
+  "to-take-medicine": { "text": "tomar medicamentos", "variants": ["tomar la medicación", "tomar medicinas"] },
+  "to-call-in-sick": {
    "text": "coger la baja",
    "variants": ["pedir la baja", "darse de baja", "ponerse de baja"],
    "notes": {

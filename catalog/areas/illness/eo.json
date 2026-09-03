@@ -9,7 +9,7 @@
    "text": "malvarmumo",
    "notes": { "de": "aus malvarma (kalt) mit dem Suffix -um-; sich erkälten heißt malvarmumi." }
   },
-  "hurt": {
+  "to-hurt": {
    "text": "dolori",
    "notes": {
     "de": "dolori steht beim Körperteil, nicht bei der Person: Mia kapo doloras oder Doloras al mi la kapo."
@@ -22,7 +22,7 @@
   "weak": { "text": "malforta" },
   "dizziness": { "text": "kapturno", "synonyms": ["vertiĝo"] },
   "wound": { "text": "vundo" },
-  "hurt-oneself": {
+  "to-hurt-oneself": {
    "text": "vundi sin",
    "variants": ["sin vundi", "vundiĝi"],
    "notes": {
@@ -32,7 +32,7 @@
   "bandage": { "text": "bandaĝo" },
   "band-aid": { "text": "plastro" },
   "splint": { "text": "ŝino" },
-  "recover": { "text": "resaniĝi", "variants": ["saniĝi"] },
+  "to-recover": { "text": "resaniĝi", "variants": ["saniĝi"] },
   "allergy": { "text": "alergio" },
   "my-throat-hurts-a-lot": { "text": "Mia gorĝo tre doloras.", "variants": ["Tre doloras al mi la gorĝo."] },
   "ive-had-a-fever-since-yesterday": { "text": "Mi havas febron ekde hieraŭ.", "variants": ["Mi havas febron de hieraŭ."] },

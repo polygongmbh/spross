@@ -16,6 +16,6 @@
    "grammar": { "gender": "le" },
    "notes": { "fr": "Le verbe est le même mot : sourire." }
   },
-  "feel": { "text": "se sentir" }
+  "to-feel": { "text": "se sentir" }
  }
 }

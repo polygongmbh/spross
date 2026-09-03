@@ -33,8 +33,8 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "la bolsa ist die Trage- oder Einkaufstasche, el bolso die Handtasche." }
   },
-  "lock": { "text": "cerrar con llave", "variants": ["echar la llave"] },
-  "ring": {
+  "to-lock": { "text": "cerrar con llave", "variants": ["echar la llave"] },
+  "to-ring": {
    "text": "sonar",
    "synonyms": ["tocar el timbre"],
    "variants": ["llamar al timbre"],
@@ -42,13 +42,13 @@
     "de": "sonar = die Klingel klingelt; wer selbst an der Tür klingelt, sagt tocar el timbre oder llamar al timbre."
    }
   },
-  "take-off-shoes": { "text": "quitarse los zapatos", "variants": ["sacarse los zapatos", "descalzarse"] },
-  "set-off": { "text": "salir de casa" },
-  "unlock": { "text": "abrir con llave" },
-  "get-dressed": { "text": "vestirse" },
-  "arrive": { "text": "llegar" },
-  "greet": { "text": "saludar" },
-  "say-goodbye": { "text": "despedirse" },
+  "to-take-off-shoes": { "text": "quitarse los zapatos", "variants": ["sacarse los zapatos", "descalzarse"] },
+  "to-set-off": { "text": "salir de casa" },
+  "to-unlock": { "text": "abrir con llave" },
+  "to-get-dressed": { "text": "vestirse" },
+  "to-arrive": { "text": "llegar" },
+  "to-greet": { "text": "saludar" },
+  "to-say-goodbye": { "text": "despedirse" },
   "shoe": { "text": "zapato", "grammar": { "gender": "el" } },
   "apartment": {
    "text": "piso",
@@ -75,13 +75,13 @@
   },
   "glove": { "text": "guante", "grammar": { "gender": "el" } },
   "letter": { "text": "carta", "grammar": { "gender": "la" } },
-  "knock-on-door": { "text": "llamar a la puerta", "variants": ["tocar a la puerta"] },
-  "enter": {
+  "to-knock-on-door": { "text": "llamar a la puerta", "variants": ["tocar a la puerta"] },
+  "to-enter": {
    "text": "entrar",
    "notes": { "de": "Wer jemanden hereinbittet, sagt ¡Pasa! (du) beziehungsweise ¡Pase! (Sie)." }
   },
   "house": { "text": "casa", "grammar": { "gender": "la" } },
-  "live": { "text": "vivir", "notes": { "de": "vivir = wohnen und leben." } },
+  "to-live": { "text": "vivir", "notes": { "de": "vivir = wohnen und leben." } },
   "do-you-have-the-keys": { "text": "¿Tienes las llaves?", "variants": ["¿Llevas las llaves?"] },
   "ill-be-right-back": { "text": "¡Ahora vuelvo!", "variants": ["¡Vuelvo enseguida!", "¡Enseguida vuelvo!"] },
   "take-off-your-shoes": { "text": "Quítate los zapatos.", "variants": ["Sácate los zapatos."] },

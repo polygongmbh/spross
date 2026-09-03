@@ -11,7 +11,7 @@
   "offer": { "text": "ofa", "grammar": { "plural": "=" } },
   "shopping-list": { "text": "orodha ya ununuzi", "grammar": { "plural": "=" } },
   "size": { "text": "saizi", "grammar": { "plural": "=" } },
-  "shop": { "text": "kwenda madukani" },
+  "to-shop": { "text": "kwenda madukani" },
   "store": { "text": "duka", "grammar": { "plural": "maduka" } },
   "the-store-is-still-open": { "text": "Duka bado liko wazi." },
   "do-you-have-this-in-my-size": { "text": "Una hii kwa saizi yangu?" },

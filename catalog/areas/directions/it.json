@@ -3,10 +3,10 @@
  "subtitle": "La risposta alla domanda «come ci arrivo?».",
  "words": {
   "straight-ahead": { "text": "dritto", "variants": ["diritto", "sempre dritto"] },
-  "turn": { "text": "girare", "synonyms": ["svoltare"] },
+  "to-turn": { "text": "girare", "synonyms": ["svoltare"] },
   "corner": { "text": "angolo", "variants": ["l'angolo"], "grammar": { "gender": "l'" } },
   "crossing": { "text": "incrocio", "variants": ["l'incrocio"], "grammar": { "gender": "l'" } },
-  "cross": { "text": "attraversare" },
+  "to-cross": { "text": "attraversare" },
   "direction": { "text": "direzione", "grammar": { "gender": "la" } },
   "city-map": { "text": "pianta della città", "variants": ["pianta", "mappa"], "grammar": { "gender": "la" } },
   "entrance": {
@@ -16,7 +16,7 @@
    "notes": { "de": "entrata ist der Weg hinein; l'ingresso ist der Eingangsbereich, also eher der Flur." }
   },
   "exit": { "text": "uscita", "variants": ["l'uscita"], "grammar": { "gender": "l'" } },
-  "follow": { "text": "seguire" },
+  "to-follow": { "text": "seguire" },
   "way": {
    "text": "cammino",
    "grammar": { "gender": "il" },

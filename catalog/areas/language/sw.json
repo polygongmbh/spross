@@ -3,7 +3,7 @@
  "subtitle": "Maneno, sentensi na maana yake.",
  "words": {
   "meaning": { "text": "maana", "grammar": { "plural": "=" } },
-  "translate": { "text": "kutafsiri" },
+  "to-translate": { "text": "kutafsiri" },
   "sentence": { "text": "sentensi", "grammar": { "plural": "=" } },
   "word": { "text": "neno", "grammar": { "plural": "maneno" } },
   "verb": { "text": "kitenzi", "grammar": { "plural": "vitenzi" } },

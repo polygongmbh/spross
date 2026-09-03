@@ -17,14 +17,14 @@
   "carpet": { "text": "tapiŝo" },
   "lamp": { "text": "lampo" },
   "picture": { "text": "bildo", "variants": ["pentraĵo"] },
-  "watch-tv": { "text": "televidi", "variants": ["rigardi televidon", "spekti televidon"] },
-  "read": { "text": "legi" },
-  "relax": { "text": "malstreĉiĝi", "variants": ["senstreĉiĝi"] },
-  "tidy-up": { "text": "ordigi", "variants": ["enordigi"] },
-  "listen-to-music": { "text": "aŭskulti muzikon" },
-  "water-plants": { "text": "akvumi la plantojn" },
-  "play": { "text": "ludi" },
-  "talk": {
+  "to-watch-tv": { "text": "televidi", "variants": ["rigardi televidon", "spekti televidon"] },
+  "to-read": { "text": "legi" },
+  "to-relax": { "text": "malstreĉiĝi", "variants": ["senstreĉiĝi"] },
+  "to-tidy-up": { "text": "ordigi", "variants": ["enordigi"] },
+  "to-listen-to-music": { "text": "aŭskulti muzikon" },
+  "to-water-plants": { "text": "akvumi la plantojn" },
+  "to-play": { "text": "ludi" },
+  "to-talk": {
    "text": "babili",
    "variants": ["paroli", "konversacii"],
    "notes": { "de": "babili = plaudern, sich unterhalten; sprechen allgemein ist paroli." }
@@ -35,12 +35,12 @@
   "music": { "text": "muziko" },
   "wall": { "text": "muro" },
   "movie": { "text": "filmo" },
-  "sit": {
+  "to-sit": {
    "text": "sidi",
    "variants": ["sidiĝi"],
    "notes": { "de": "sidi = sitzen (Zustand); sich hinsetzen heißt sidiĝi." }
   },
-  "laugh": { "text": "ridi" },
+  "to-laugh": { "text": "ridi" },
   "quiet": {
    "text": "mallaŭta",
    "variants": ["kvieta", "mallaŭte"],

@@ -3,7 +3,7 @@
  "subtitle": "Parole, frasi e il loro significato.",
  "words": {
   "meaning": { "text": "significato", "grammar": { "gender": "il" } },
-  "translate": { "text": "tradurre" },
+  "to-translate": { "text": "tradurre" },
   "sentence": { "text": "frase", "grammar": { "gender": "la" } },
   "word": { "text": "parola", "grammar": { "gender": "la" } },
   "verb": { "text": "verbo", "grammar": { "gender": "il" } },

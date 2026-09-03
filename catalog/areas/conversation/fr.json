@@ -2,19 +2,19 @@
  "title": "Rester dans la conversation",
  "subtitle": "Redemander, comprendre, continuer.",
  "words": {
-  "hear": { "text": "entendre", "notes": { "de": "entendre = wahrnehmen · écouter = bewusst zuhören." } },
-  "understand": { "text": "comprendre" },
-  "speak": {
+  "to-hear": { "text": "entendre", "notes": { "de": "entendre = wahrnehmen · écouter = bewusst zuhören." } },
+  "to-understand": { "text": "comprendre" },
+  "to-speak": {
    "text": "parler",
    "notes": { "de": "Nur ein bisschen: je ne parle qu'un peu — ne … que umklammert das Verb." }
   },
-  "repeat-word": { "text": "répéter le mot" },
+  "to-repeat-word": { "text": "répéter le mot" },
   "loud": {
    "text": "fort",
    "variants": ["forte"],
    "notes": { "de": "Lautstärke: parle plus fort · fort heißt auch stark." }
   },
-  "ask": {
+  "to-ask": {
    "text": "demander",
    "notes": {
     "de": "demander heißt fragen und um etwas bitten: demander l'addition · eine Frage stellen ist poser une question."
@@ -22,16 +22,16 @@
   },
   "question": { "text": "question", "grammar": { "gender": "la" } },
   "answer": { "text": "réponse", "grammar": { "gender": "la" } },
-  "reply": { "text": "répondre", "notes": { "de": "mit à: répondre à la question, répondre à quelqu'un." } },
+  "to-reply": { "text": "répondre", "notes": { "de": "mit à: répondre à la question, répondre à quelqu'un." } },
   "help": { "text": "aide", "variants": ["l'aide"], "grammar": { "gender": "l'" } },
-  "need": { "text": "avoir besoin de" },
-  "know": { "text": "savoir", "notes": { "de": "wissen = savoir · kennen (Personen, Orte) = connaître." } },
+  "to-need": { "text": "avoir besoin de" },
+  "to-know": { "text": "savoir", "notes": { "de": "wissen = savoir · kennen (Personen, Orte) = connaître." } },
   "to-remember": { "text": "se souvenir" },
   "to-forget": { "text": "oublier" },
   "goal": { "text": "but", "grammar": { "gender": "le" } },
   "to-show": { "text": "montrer" },
   "to-explain": { "text": "expliquer" },
-  "say": { "text": "dire" },
+  "to-say": { "text": "dire" },
   "i-dont-understand": {
    "text": "Je ne comprends pas.",
    "variants": ["Je ne vous comprends pas.", "Je ne te comprends pas."]

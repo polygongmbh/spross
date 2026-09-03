@@ -17,19 +17,19 @@
  { "slug": "course", "kind": "noun", "emoji": "📚" },
  { "slug": "grade", "kind": "noun", "emoji": "💯" },
  { "slug": "to-count", "kind": "verb", "emoji": "🔢" },
- { "slug": "read-aloud", "kind": "verb", "emoji": "📢" },
+ { "slug": "to-read-aloud", "kind": "verb", "emoji": "📢" },
  { "slug": "to-pronounce", "kind": "verb", "emoji": "🗣️" },
- { "slug": "correct", "kind": "verb", "emoji": "✏️" },
+ { "slug": "to-correct", "kind": "verb", "emoji": "✏️" },
  { "slug": "dictionary", "kind": "noun", "emoji": "📖" },
- { "slug": "pass-exam", "kind": "verb", "emoji": "🏆" },
+ { "slug": "to-pass-exam", "kind": "verb", "emoji": "🏆" },
  { "slug": "university", "kind": "noun", "emoji": "🏛️" },
  { "slug": "board", "kind": "noun", "emoji": "📝" },
- { "slug": "learn-by-heart", "kind": "verb", "emoji": "🧠" },
- { "slug": "raise-hand", "kind": "verb", "emoji": "✋" },
+ { "slug": "to-learn-by-heart", "kind": "verb", "emoji": "🧠" },
+ { "slug": "to-raise-hand", "kind": "verb", "emoji": "✋" },
  { "slug": "exercise-book", "kind": "noun", "emoji": "📒" },
  { "slug": "course-book", "kind": "noun", "emoji": "📕" },
  { "slug": "class-schedule", "kind": "noun", "emoji": "🗓️" },
- { "slug": "study", "kind": "verb", "emoji": "📚" },
+ { "slug": "to-study", "kind": "verb", "emoji": "📚" },
  { "slug": "to-teach", "kind": "verb", "emoji": "📣" },
  { "slug": "do-the-homework", "kind": "phrase", "emoji": "✍️", "components": ["homework"] },
  {
@@ -42,5 +42,5 @@
  { "slug": "ask-the-teacher", "kind": "phrase", "emoji": "🧑‍🏫", "components": ["teacher"] },
  { "slug": "i-have-a-good-grade", "kind": "phrase", "emoji": "💯", "components": ["grade"] },
  { "slug": "we-go-to-the-classroom", "kind": "phrase", "emoji": "🎓", "components": ["classroom"] },
- { "slug": "the-exam-is-already-corrected", "kind": "phrase", "components": ["exam", "correct"] }
+ { "slug": "the-exam-is-already-corrected", "kind": "phrase", "components": ["exam", "to-correct"] }
 ]

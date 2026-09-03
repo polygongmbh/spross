@@ -4464,28 +4464,6 @@
       "snr": 39.0,
       "source": "De-Antrag.ogg"
     },
-    "apply-for": {
-      "author": "Jeuwre",
-      "file": "apply-for.mp3",
-      "gain": -1.3,
-      "gainPhone": -4.7,
-      "lead": 339,
-      "matches": "beantragen",
-      "sha256": "62336fd6dba1324a5f2d7be2426e5e3c05bbefa3a00bc45fb96391e3370eebc0",
-      "snr": 88.5,
-      "source": "De-beantragen.ogg"
-    },
-    "apply-lotion": {
-      "author": "Jeuwre",
-      "file": "apply-lotion.mp3",
-      "gain": -3.1,
-      "gainPhone": -3.8,
-      "lead": 241,
-      "matches": "eincremen",
-      "sha256": "6178449a842822b62d97cf546d16e815d42e78e8d4deb30ba8b99ed9c818b5a5",
-      "snr": 81.0,
-      "source": "De-eincremen.ogg"
-    },
     "appointment": {
       "author": "Jeuwre",
       "file": "appointment.mp3",
@@ -4496,16 +4474,6 @@
       "sha256": "315d4807f6ccefd99367838e9efafccea535c01a9f9eeb4ab30d09e9af2e27cd",
       "snr": 86.5,
       "source": "De-Termin.ogg"
-    },
-    "approve": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "file": "approve.mp3",
-      "gain": 2.4,
-      "gainPhone": 3.1,
-      "matches": "genehmigen",
-      "sha256": "cf90589d77c77fc1253513dc91d28755cec405a5faf5775a23bf279a790ca1f8",
-      "snr": 31.1,
-      "source": "De-genehmigen.ogg"
     },
     "arm": {
       "author": "Kampy",
@@ -4518,28 +4486,6 @@
       "snr": 52.3,
       "source": "De-arm.ogg"
     },
-    "arrange": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "file": "arrange.mp3",
-      "gain": 5.2,
-      "gainPhone": 7.7,
-      "lead": 16,
-      "matches": "vereinbaren",
-      "sha256": "3c763b269c94686fabb576e0081e323467948706b33c05caa1c38710b3c47fac",
-      "snr": 37.1,
-      "source": "De-vereinbaren.ogg"
-    },
-    "arrive": {
-      "author": "Kampy",
-      "file": "arrive.mp3",
-      "gain": 4.8,
-      "gainPhone": 2.8,
-      "lead": 143,
-      "matches": "ankommen",
-      "sha256": "ef42d10d4c7df31c68a7c38d53997d63e1462034c0f4f0a0e9371fa6143c9cc9",
-      "snr": 57.0,
-      "source": "De-ankommen.ogg"
-    },
     "artery": {
       "author": "Jeuwre",
       "file": "artery.mp3",
@@ -4550,17 +4496,6 @@
       "sha256": "43f15d13cb239454205290064702fafe2d8456158251615d36f36bd2aea1185d",
       "snr": 67.5,
       "source": "De-Arterie.ogg"
-    },
-    "ask": {
-      "author": "User:Tosca",
-      "file": "ask.mp3",
-      "gain": 8.4,
-      "gainPhone": 5.1,
-      "lead": 99,
-      "matches": "fragen",
-      "sha256": "8dcccea55f2d41d3b8bc21f057ede2de93a759ab6464f517b29d6ee20ba2a2de",
-      "snr": 57.6,
-      "source": "De-fragen.ogg"
     },
     "aunt": {
       "author": "Kampy",
@@ -4628,17 +4563,6 @@
       "sha256": "d6dc8383f941e0185f35da5b830f18b102d644cf73a6d7b0d1b322cea6a63cd1",
       "snr": 86.9,
       "source": "De-Tasche2.ogg"
-    },
-    "bake": {
-      "author": "Jeuwre",
-      "file": "bake.mp3",
-      "gain": 2.2,
-      "gainPhone": -0.3,
-      "lead": 107,
-      "matches": "backen",
-      "sha256": "a78dd1be101ace01f9ae2eae2402706b4c7e8178da1c0151e7829b973afebae5",
-      "snr": 70.4,
-      "source": "De-backen.ogg"
     },
     "banana": {
       "author": "Kampy",
@@ -4716,17 +4640,6 @@
       "sha256": "fdf158fc8ed7cd01adebdb9bf4d7f83a570bdbee1aebbd924b5b34a73d226acb",
       "snr": 86.5,
       "source": "De-Badewanne.ogg"
-    },
-    "be-called": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "file": "be-called.mp3",
-      "gain": 7.7,
-      "gainPhone": 6.0,
-      "lead": 184,
-      "matches": "heißen",
-      "sha256": "b47deb84a13a4f5fa0f4fc6cd522c1d81f0a00ace311f1d15a2715db3d06811f",
-      "snr": 60.2,
-      "source": "De-heißen.ogg"
     },
     "beach": {
       "author": "Kampy",
@@ -5082,17 +4995,6 @@
       "snr": 87.4,
       "source": "De-frühstück.ogg"
     },
-    "breathe": {
-      "author": "Jeuwre",
-      "file": "breathe.mp3",
-      "gain": 0.9,
-      "gainPhone": -3.1,
-      "lead": 345,
-      "matches": "atmen",
-      "sha256": "b02ac24667f03c6744ba7088dc8e2200b9609d849129bb3e994ff534125d2c99",
-      "snr": 75.5,
-      "source": "De-atmen.ogg"
-    },
     "bridge": {
       "author": "Jeuwre",
       "capPhone": 2.2,
@@ -5104,17 +5006,6 @@
       "sha256": "4022ecb96fa3d6fa9d3b1b42027556cc2a176285a78a3a6c3639f2bc69e6f219",
       "snr": 86.4,
       "source": "De-brücke.ogg"
-    },
-    "bring": {
-      "author": "Kampy",
-      "file": "bring.mp3",
-      "gain": 4.2,
-      "gainPhone": 5.4,
-      "lead": 208,
-      "matches": "mitbringen",
-      "sha256": "f15544503574e653b5aca1ca47bc2b700492a5c5a09c56f79d4b9ed4a5533491",
-      "snr": 63.0,
-      "source": "De-mitbringen.ogg"
     },
     "broken": {
       "author": "Jeuwre",
@@ -5215,17 +5106,6 @@
       "snr": 86.5,
       "source": "De-butter.ogg"
     },
-    "buy": {
-      "author": "Kampy",
-      "file": "buy.mp3",
-      "gain": 0.1,
-      "gainPhone": -1.4,
-      "lead": 194,
-      "matches": "kaufen",
-      "sha256": "7917a22e800f49e7b71d1549be6c97a36779c4bbab6ed360337012beaacf91b5",
-      "snr": 64.7,
-      "source": "De-kaufen.ogg"
-    },
     "bye": {
       "author": "Jeuwre",
       "file": "bye.mp3",
@@ -5258,39 +5138,6 @@
       "sha256": "cd358b2ef898ec95e38aeba3171fa021d5cca9c4e05ad381c88b00430756a1eb",
       "snr": 59.3,
       "source": "De-Kalender.ogg"
-    },
-    "call": {
-      "author": "Jeuwre",
-      "file": "call.mp3",
-      "gain": -1.6,
-      "gainPhone": -2.8,
-      "lead": 436,
-      "matches": "anrufen",
-      "sha256": "cdff190d3c7c38fcd5b09b8ae82c457b0d9498e5d927fd5785a2ef42aeaea4d9",
-      "snr": 85.5,
-      "source": "De-anrufen.ogg"
-    },
-    "can": {
-      "author": "Bleibein",
-      "file": "can.mp3",
-      "gain": 5.2,
-      "gainPhone": 6.0,
-      "lead": 201,
-      "matches": "können",
-      "sha256": "05ffa73f793531b8f4551d5140480e66aa6aa7416be55b3790facc17ffccb792",
-      "snr": 65.0,
-      "source": "De-können.ogg"
-    },
-    "cancel": {
-      "author": "Jeuwre",
-      "cap": 1.1,
-      "file": "cancel.mp3",
-      "gain": 2.3,
-      "gainPhone": 0.4,
-      "matches": "absagen",
-      "sha256": "57f665fe4c2d2d873b50790485345f37040d5a9bf389a04f1960fcbdb8a2f996",
-      "snr": 46.4,
-      "source": "De-absagen.ogg"
     },
     "car": {
       "author": "Kampy",
@@ -5566,16 +5413,6 @@
       "snr": 76.8,
       "source": "De-Klassenzimmer.ogg"
     },
-    "clean": {
-      "author": "Kampy",
-      "file": "clean.mp3",
-      "gain": 0.8,
-      "gainPhone": -2.7,
-      "matches": "putzen",
-      "sha256": "bb02a85a005b9ee345b408d301a9f96bd36ab1d170861e23fe82cc4ca861584d",
-      "snr": 24.1,
-      "source": "De-putzen.ogg"
-    },
     "clean-adj": {
       "author": "Kampy",
       "file": "clean-adj.mp3",
@@ -5586,17 +5423,6 @@
       "sha256": "0741018997669d91ef366e1f9cbd732349cf83e8228de5a705318efd81a006da",
       "snr": 33.9,
       "source": "De-sauber.ogg"
-    },
-    "close": {
-      "author": "Natschoba",
-      "file": "close.mp3",
-      "gain": 2.8,
-      "gainPhone": 6.2,
-      "lead": 236,
-      "matches": "schließen",
-      "sha256": "037490ebdbd561a59afdd534aec507a8531576372e83d147c564754d1a33c92e",
-      "snr": 56.4,
-      "source": "LL-Q188 (deu)-Natschoba-schließen.wav"
     },
     "clothes": {
       "author": "Kampy",
@@ -5718,19 +5544,6 @@
       "snr": 84.4,
       "source": "De-Farbe.ogg"
     },
-    "come": {
-      "author": "User:Tosca",
-      "cap": 0.3,
-      "capPhone": 1.0,
-      "file": "come.mp3",
-      "gain": 12.5,
-      "gainPhone": 12.5,
-      "lead": 140,
-      "matches": "kommen",
-      "sha256": "32c096250aca8d6cb16998049833d71be0dbf3a1066ea211ce78b0ca51b27e8f",
-      "snr": 61.1,
-      "source": "De-kommen.ogg"
-    },
     "company": {
       "author": "Jeuwre",
       "file": "company.mp3",
@@ -5752,17 +5565,6 @@
       "sha256": "cbae35facfb091534fdd8a5231c049192489a04157c96c5d8d6d47eb385d0c2d",
       "snr": 87.2,
       "source": "De-völlig.ogg"
-    },
-    "confirm": {
-      "author": "User:Tosca",
-      "file": "confirm.mp3",
-      "gain": 6.5,
-      "gainPhone": 2.9,
-      "lead": 67,
-      "matches": "bestätigen",
-      "sha256": "35de456368324302c0a610e2620842e7c898b7e493abf22a32cc6a0d275fa2e5",
-      "snr": 35.8,
-      "source": "De-bestätigen.ogg"
     },
     "confirmation": {
       "author": "Jeuwre",
@@ -5786,28 +5588,6 @@
       "snr": 83.9,
       "source": "De-vertrag.ogg"
     },
-    "cook": {
-      "author": "Jeuwre",
-      "file": "cook.mp3",
-      "gain": -3.3,
-      "gainPhone": -4.4,
-      "lead": 445,
-      "matches": "kochen",
-      "sha256": "bbd1c7fb4ce221e9e0b8ebad6c88481120c2d5fba098e15637b618262f64e7ef",
-      "snr": 86.8,
-      "source": "De-kochen2.ogg"
-    },
-    "copy": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "capPhone": 0.7,
-      "file": "copy.mp3",
-      "gain": 3.4,
-      "gainPhone": 7.8,
-      "matches": "kopieren",
-      "sha256": "4e8d34e583ed450465567c38ba414fa01527823c354de4df56ecc7e66fe102c2",
-      "snr": 32.2,
-      "source": "De-kopieren.ogg"
-    },
     "corner": {
       "author": "Jeuwre",
       "file": "corner.mp3",
@@ -5818,28 +5598,6 @@
       "sha256": "bc06a370316e9aa47ebf0f7a351a45bf1bc15c13d87c2a9ee45438fb2f3832e9",
       "snr": 68.8,
       "source": "De-Ecke.ogg"
-    },
-    "correct": {
-      "author": "Jeuwre",
-      "file": "correct.mp3",
-      "gain": -3.0,
-      "gainPhone": 1.2,
-      "lead": 329,
-      "matches": "korrigieren",
-      "sha256": "16c504f01c5e03fc4498dad3f78d556fddcde40b84c7f1be3e1c399c929f94ee",
-      "snr": 87.1,
-      "source": "De-korrigieren.ogg"
-    },
-    "cost": {
-      "author": "Natschoba",
-      "file": "cost.mp3",
-      "gain": 7.2,
-      "gainPhone": 3.3,
-      "lead": 193,
-      "matches": "kosten",
-      "sha256": "67849ada39525e1dedf7444271e0e0375e335608a3fab454530e3edf996ed43d",
-      "snr": 63.9,
-      "source": "LL-Q188 (deu)-Natschoba-kosten.wav"
     },
     "cough": {
       "author": "Jeuwre",
@@ -5885,17 +5643,6 @@
       "snr": 87.2,
       "source": "De-creme.ogg"
     },
-    "cross": {
-      "author": "Jeuwre",
-      "file": "cross.mp3",
-      "gain": -1.3,
-      "gainPhone": 0.1,
-      "lead": 430,
-      "matches": "überqueren",
-      "sha256": "a92b441cd0ed5adead0a4ee9341c6431b22981a4ef5c5813c92dba0ddd6fb232",
-      "snr": 86.7,
-      "source": "De-überqueren.ogg"
-    },
     "crossing": {
       "author": "Jeuwre",
       "file": "crossing.mp3",
@@ -5906,17 +5653,6 @@
       "sha256": "448e6d780d67ea65b98d0b0df652dd35baa1e76f97c90fe999afb8b00d71353a",
       "snr": 87.5,
       "source": "De-Kreuzung.ogg"
-    },
-    "cuddle": {
-      "author": "Jeuwre",
-      "file": "cuddle.mp3",
-      "gain": -4.4,
-      "gainPhone": -5.0,
-      "lead": 448,
-      "matches": "kuscheln",
-      "sha256": "c33883ef9bb96e68b4771c6a7e3f7117bc9a474dacfaace26abea571df199f27",
-      "snr": 87.3,
-      "source": "De-kuscheln2.ogg"
     },
     "cup": {
       "author": "Kampy",
@@ -5950,17 +5686,6 @@
       "sha256": "dc42166da08b27908ceb51e0c47d11245c3d987f5d26e8a93d9585126723390c",
       "snr": 86.8,
       "source": "De-Kunde.ogg"
-    },
-    "cut": {
-      "author": "Jeuwre",
-      "file": "cut.mp3",
-      "gain": 0.3,
-      "gainPhone": -3.6,
-      "lead": 412,
-      "matches": "schneiden",
-      "sha256": "76e7243338bee0afc44bf0d056cbb9c8e4713fe3c74f2582b7754d1646252238",
-      "snr": 87.4,
-      "source": "De-schneiden2.ogg"
     },
     "cutlery": {
       "author": "Jeuwre",
@@ -6061,28 +5786,6 @@
       "snr": 87.3,
       "source": "De-defensiv.ogg"
     },
-    "delete": {
-      "author": "User:Tosca",
-      "file": "delete.mp3",
-      "gain": 4.1,
-      "gainPhone": 0.2,
-      "lead": 229,
-      "matches": "löschen",
-      "sha256": "0fdd848757110b642312107051d95dad83ae8cb8018c5eb2c746c44db19f4dd7",
-      "snr": 73.6,
-      "source": "De-löschen.ogg"
-    },
-    "deliver": {
-      "author": "Jeuwre",
-      "file": "deliver.mp3",
-      "gain": -1.7,
-      "gainPhone": -3.5,
-      "lead": 246,
-      "matches": "liefern",
-      "sha256": "1f6ef8492aafb5f067aa7fddd11cd73829180ea97dded7fc1d3b89e17b0c1ce1",
-      "snr": 84.9,
-      "source": "De-liefern.ogg"
-    },
     "dentist": {
       "author": "Kampy",
       "file": "dentist.mp3",
@@ -6093,16 +5796,6 @@
       "sha256": "a9ce515218ab963984093faa493b3021978403f442b207bcf54925d62d109702",
       "snr": 37.6,
       "source": "De-Zahnarzt.ogg"
-    },
-    "depart": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "file": "depart.mp3",
-      "gain": 7.5,
-      "gainPhone": 3.2,
-      "matches": "abfahren",
-      "sha256": "b2f6bbb14e22f47de5398823bb7afd06578799af384169035f5090fe83e03c29",
-      "snr": 59.8,
-      "source": "De-abfahren.ogg"
     },
     "desk": {
       "author": "Kampy",
@@ -6323,17 +6016,6 @@
       "snr": 63.6,
       "source": "LL-Q188 (deu)-Natschoba-unten.wav"
     },
-    "dream": {
-      "author": "Jeuwre",
-      "file": "dream.mp3",
-      "gain": -2.3,
-      "gainPhone": 1.7,
-      "lead": 500,
-      "matches": "träumen",
-      "sha256": "26265e51130a9e5a212e5332bbf79c5419f4c0a87d050450969b83335bdece97",
-      "snr": 87.1,
-      "source": "De-träumen2.ogg"
-    },
     "dress": {
       "author": "Jeuwre",
       "file": "dress.mp3",
@@ -6344,17 +6026,6 @@
       "sha256": "31e192c346a4038b9174e923c836fc13d11371c30d5ac78ad4369c8f783348a0",
       "snr": 86.8,
       "source": "De-kleid.ogg"
-    },
-    "drink": {
-      "author": "Kampy",
-      "file": "drink.mp3",
-      "gain": 3.6,
-      "gainPhone": 3.5,
-      "lead": 208,
-      "matches": "trinken",
-      "sha256": "6bc5ee1918fdcad2ba7355967dc175a2c8b43c347f4a9b72b0ac581b379185e3",
-      "snr": 58.8,
-      "source": "De-trinken.ogg"
     },
     "driver": {
       "author": "Jeuwre",
@@ -6400,17 +6071,6 @@
       "snr": 87.2,
       "source": "De-früh.ogg"
     },
-    "earn": {
-      "author": "Kampy",
-      "file": "earn.mp3",
-      "gain": 9.1,
-      "gainPhone": 4.4,
-      "lead": 170,
-      "matches": "verdienen",
-      "sha256": "44545a7d7fe339679d312b61a3237eb8fd84450180d00cb965214b1e0e973106",
-      "snr": 48.1,
-      "source": "De-verdienen.ogg"
-    },
     "east": {
       "author": "Wikimedia Commons user Jakob.scholbach",
       "file": "east.mp3",
@@ -6431,16 +6091,6 @@
       "sha256": "f6a627ffbd09089984f1523db6125b724d5be01b18e78ca18e9337ca45715131",
       "snr": 50.1,
       "source": "De-einfach.ogg"
-    },
-    "eat": {
-      "author": "Kampy",
-      "file": "eat.mp3",
-      "gainPhone": -9.7,
-      "lead": 262,
-      "matches": "essen",
-      "sha256": "b145bc0ea7aa41c7bd73af902a2e044f6cddd96f05c8c1d5ca4f85680a5bc6b6",
-      "snr": 57.6,
-      "source": "De-essen.ogg"
     },
     "egg": {
       "author": "User:Tosca",
@@ -6533,17 +6183,6 @@
       "snr": 86.9,
       "source": "De-genug.ogg"
     },
-    "enter": {
-      "author": "Jeuwre",
-      "file": "enter.mp3",
-      "gain": 0.7,
-      "gainPhone": -2.2,
-      "lead": 281,
-      "matches": "hereinkommen",
-      "sha256": "77523cafe4392d6c15b021e3197160723a5c49459f62f377e4412b47fb2fb536",
-      "snr": 73.5,
-      "source": "De-hereinkommen.ogg"
-    },
     "entrance": {
       "author": "T.Voekler",
       "file": "entrance.mp3",
@@ -6599,17 +6238,6 @@
       "snr": 87.4,
       "source": "De-Prüfung.ogg"
     },
-    "examine": {
-      "author": "Jeuwre",
-      "file": "examine.mp3",
-      "gain": -1.8,
-      "gainPhone": 1.4,
-      "lead": 495,
-      "matches": "untersuchen",
-      "sha256": "4ae18492da979f79a1e7bec0013223afc6462b61bd35f311324b96392fd708da",
-      "snr": 86.5,
-      "source": "De-untersuchen2.ogg"
-    },
     "excuse-me": {
       "author": "Jeuwre",
       "file": "excuse-me.mp3",
@@ -6642,17 +6270,6 @@
       "sha256": "643eb308347beb98324d96ba06dc17722fb336a8f4d1ff024fe96a978cfe6648",
       "snr": 55.4,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Ausgang.wav"
-    },
-    "extend": {
-      "author": "Jeuwre",
-      "file": "extend.mp3",
-      "gain": -3.8,
-      "gainPhone": -3.3,
-      "lead": 272,
-      "matches": "verlängern",
-      "sha256": "7789d003633e884d6097bbd65a38f0f246d618c879c7f356c000f666658693cb",
-      "snr": 76.7,
-      "source": "De-verlängern.ogg"
     },
     "eye": {
       "author": "Jeuwre",
@@ -6785,28 +6402,6 @@
       "snr": 85.1,
       "source": "De-fieber.ogg"
     },
-    "fill-in": {
-      "author": "Jeuwre",
-      "file": "fill-in.mp3",
-      "gain": -1.1,
-      "gainPhone": -0.2,
-      "lead": 433,
-      "matches": "ausfüllen",
-      "sha256": "e71404ae79e9498ed6fafcc8563ad4d32496f1dc2c3562345435bbf064b425f5",
-      "snr": 87.4,
-      "source": "De-ausfüllen.ogg"
-    },
-    "find": {
-      "author": "Natschoba",
-      "file": "find.mp3",
-      "gain": 7.6,
-      "gainPhone": 10.0,
-      "lead": 223,
-      "matches": "finden",
-      "sha256": "06a4593b99d0a2cea3436cee05a0c0aa0e4ec8de21b888766e08ad3575ba1f73",
-      "snr": 56.4,
-      "source": "LL-Q188 (deu)-Natschoba-finden.wav"
-    },
     "fine": {
       "author": "Jeuwre",
       "file": "fine.mp3",
@@ -6896,18 +6491,6 @@
       "sha256": "2bac33ebe78043d14ade245a4ad452ecd302d7895af8e6abf30f50360c5debbc",
       "snr": 85.8,
       "source": "De-Ordner.ogg"
-    },
-    "follow": {
-      "author": "Natschoba",
-      "capPhone": 0.1,
-      "file": "follow.mp3",
-      "gain": 1.1,
-      "gainPhone": 5.7,
-      "lead": 215,
-      "matches": "folgen",
-      "sha256": "5602a48fc3281ca504e8fc0fced200760c7827905d80e321475746389e240cf3",
-      "snr": 68.1,
-      "source": "LL-Q188 (deu)-Natschoba-folgen.wav"
     },
     "food": {
       "author": "Kampy",
@@ -7049,17 +6632,6 @@
       "snr": 87.1,
       "source": "De-obst.ogg"
     },
-    "fry": {
-      "author": "Jeuwre",
-      "file": "fry.mp3",
-      "gain": -0.6,
-      "gainPhone": -1.7,
-      "lead": 443,
-      "matches": "braten",
-      "sha256": "bcae64e39afd89e344ad15239d0f91bf8b541eaaa24741abd75c2d93d5db5453",
-      "snr": 87.5,
-      "source": "De-braten2.ogg"
-    },
     "full": {
       "author": "Jeuwre",
       "file": "full.mp3",
@@ -7104,28 +6676,6 @@
       "snr": 85.3,
       "source": "De-spiel.ogg"
     },
-    "get-off": {
-      "author": "Jeuwre",
-      "file": "get-off.mp3",
-      "gain": -2.7,
-      "gainPhone": -6.3,
-      "lead": 443,
-      "matches": "aussteigen",
-      "sha256": "099644e7bea7adfddbc8b9c64dbfbcc3bd785d3f8ee5ba664ed4fb0ad68597ab",
-      "snr": 87.3,
-      "source": "De-aussteigen.ogg"
-    },
-    "get-up": {
-      "author": "Kampy",
-      "file": "get-up.mp3",
-      "gain": 3.9,
-      "gainPhone": 3.2,
-      "lead": 262,
-      "matches": "aufstehen",
-      "sha256": "caf477f424f6eaf645d3986818ba2387659e3cacbcbbad5146f73221919aede4",
-      "snr": 57.4,
-      "source": "De-aufstehen.ogg"
-    },
     "girl": {
       "author": "joni",
       "file": "girl.mp3",
@@ -7135,17 +6685,6 @@
       "sha256": "18d413e28e17fe0909cba1d4d26805f8adec751e1c0169ad9280d77fc55c15b3",
       "snr": 50.3,
       "source": "De-Mädchen.ogg"
-    },
-    "give": {
-      "author": "Kampy",
-      "file": "give.mp3",
-      "gain": 15.1,
-      "gainPhone": 9.8,
-      "lead": 281,
-      "matches": "geben",
-      "sha256": "c9a94c6241113dc08d280321aee744af184b7ce2597ccc002d9e8cec61fecf7e",
-      "snr": 60.6,
-      "source": "De-geben.ogg"
     },
     "gladly": {
       "author": "Jeuwre",
@@ -7190,17 +6729,6 @@
       "sha256": "7dccd20164a66feea2e7bca79576a812544dcc2343818b06b38d08fedd60e1b7",
       "snr": 54.3,
       "source": "De-Handschuh.ogg"
-    },
-    "go": {
-      "author": "Jeuwre",
-      "file": "go.mp3",
-      "gain": -2.3,
-      "gainPhone": 1.1,
-      "lead": 437,
-      "matches": "gehen",
-      "sha256": "b63354aed05918b64ee6d49339f773120b73b6919a7593e65d6a71196e7d30ae",
-      "snr": 86.3,
-      "source": "De-gehen2.ogg"
     },
     "goal": {
       "author": "Jeuwre",
@@ -7304,17 +6832,6 @@
       "snr": 59.4,
       "source": "De-grün.ogg"
     },
-    "greet": {
-      "author": "Kampy",
-      "file": "greet.mp3",
-      "gain": 10.0,
-      "gainPhone": 8.6,
-      "lead": 254,
-      "matches": "begrüßen",
-      "sha256": "414223d19b7d6d13842a09e9dbbfe36420f60b66ce5f7cde999f7a04c7b95b91",
-      "snr": 42.4,
-      "source": "De-begrüßen.ogg"
-    },
     "guest": {
       "author": "Jeuwre",
       "file": "guest.mp3",
@@ -7325,17 +6842,6 @@
       "sha256": "9d0d42805a7acca723bd6d5f80181f00383d7b5bb71ef9972697d65125273ebb",
       "snr": 86.8,
       "source": "De-gast.ogg"
-    },
-    "haggle": {
-      "author": "Jeuwre",
-      "file": "haggle.mp3",
-      "gain": -4.0,
-      "gainPhone": -4.3,
-      "lead": 302,
-      "matches": "feilschen",
-      "sha256": "7697ecb3032fa6672a78b1be172b720b033d8a7c0d3ef3f13903b03e2cc16933",
-      "snr": 77.0,
-      "source": "De-feilschen.ogg"
     },
     "hair": {
       "author": "Jeuwre",
@@ -7384,16 +6890,6 @@
       "snr": 64.0,
       "source": "De-Hand.ogg"
     },
-    "hand-in": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "file": "hand-in.mp3",
-      "gain": 2.2,
-      "gainPhone": 1.4,
-      "matches": "einreichen",
-      "sha256": "e218972a09c0b6fb048fa9556195dc177d2c7520aa2ab8db9a232e915be8e9e7",
-      "snr": 39.0,
-      "source": "De-einreichen.ogg"
-    },
     "hat": {
       "author": "Kampy",
       "file": "hat.mp3",
@@ -7404,18 +6900,6 @@
       "sha256": "ad53f9973e2048514f1a032262687757e327c324966c6f58b042ad9d8994ff3c",
       "snr": 54.5,
       "source": "De-Mütze.ogg"
-    },
-    "have": {
-      "author": "Jeuwre",
-      "capPhone": 0.6,
-      "file": "have.mp3",
-      "gain": -0.2,
-      "gainPhone": 2.1,
-      "lead": 397,
-      "matches": "haben",
-      "sha256": "5ce3ece5d0ed8e1a97d07926056db3f395fb14c12be685cfa3b29454570808e1",
-      "snr": 86.7,
-      "source": "De-haben3.ogg"
     },
     "head": {
       "author": "Jeuwre",
@@ -7471,16 +6955,6 @@
       "matches": "gesund",
       "sha256": "f9d67ee9f852e4fec2806f6d303441401e1d86bdb0f436fb411527a7d65ec6f1",
       "source": "De-gesund.ogg"
-    },
-    "hear": {
-      "author": "Kampy",
-      "file": "hear.mp3",
-      "gain": -4.3,
-      "gainPhone": -1.4,
-      "matches": "hören",
-      "sha256": "5ac9315874fc9a4451654f5fa2231c20f80666ba22f25a4d50b10ec5527e5d85",
-      "snr": 54.9,
-      "source": "De-hören.ogg"
     },
     "heart": {
       "author": "Jeuwre",
@@ -7546,17 +7020,6 @@
       "sha256": "8d23e57896a8dcaede9530cf657baabfc0f70b97e4562c2f42114fd35a66f1ae",
       "snr": 64.1,
       "source": "De-höher.ogg"
-    },
-    "hire": {
-      "author": "Jeuwre",
-      "file": "hire.mp3",
-      "gain": -2.3,
-      "gainPhone": -5.1,
-      "lead": 442,
-      "matches": "einstellen",
-      "sha256": "21af0cfbd9ae469585444e6e8e11658af656b2066103bb4c4de990ec09c6fbe9",
-      "snr": 86.5,
-      "source": "De-einstellen.ogg"
     },
     "homework": {
       "author": "Jeuwre",
@@ -7656,17 +7119,6 @@
       "sha256": "fdb7c7979c0ad9a589125d2720c3aa53019a86b12de5513c84de5868d345723c",
       "snr": 36.9,
       "source": "De-Hunger.ogg"
-    },
-    "hurt": {
-      "author": "Jeuwre",
-      "file": "hurt.mp3",
-      "gain": -2.6,
-      "gainPhone": 0.7,
-      "lead": 415,
-      "matches": "wehtun",
-      "sha256": "e57ec6c8f555343b1f09d1c6b74871980e7cb24c7068820a7c0bee113bf05afd",
-      "snr": 86.7,
-      "source": "De-wehtun.ogg"
     },
     "husband": {
       "author": "User:Tosca",
@@ -7822,17 +7274,6 @@
       "snr": 86.9,
       "source": "De-Bewerbung.ogg"
     },
-    "jog": {
-      "author": "Jeuwre",
-      "file": "jog.mp3",
-      "gain": -2.1,
-      "gainPhone": -2.9,
-      "lead": 420,
-      "matches": "joggen",
-      "sha256": "b376f6626600aa5785acdf0911809264b3482f735fc4c9860401163bfc847e33",
-      "snr": 87.0,
-      "source": "De-joggen.ogg"
-    },
     "joint": {
       "author": "Jeuwre",
       "file": "joint.mp3",
@@ -7943,17 +7384,6 @@
       "snr": 75.5,
       "source": "De-messer.ogg"
     },
-    "know": {
-      "author": "Jeuwre",
-      "file": "know.mp3",
-      "gain": 3.9,
-      "gainPhone": -3.7,
-      "lead": 218,
-      "matches": "wissen",
-      "sha256": "7ccda2f7553c8e002ceddb8839a102bf903f61a7bd35b595f2e6d15f14f8a446",
-      "snr": 59.7,
-      "source": "De-wissen.ogg"
-    },
     "lake": {
       "author": "Kampy",
       "file": "lake.mp3",
@@ -8010,18 +7440,6 @@
       "snr": 62.6,
       "source": "De-spät.ogg"
     },
-    "laugh": {
-      "author": "Jeuwre",
-      "cap": 1.5,
-      "file": "laugh.mp3",
-      "gain": 1.9,
-      "gainPhone": 0.5,
-      "lead": 431,
-      "matches": "lachen",
-      "sha256": "bc4f04f376c16d92037d6c3222c75bbb9027f70c488a0dddc009bf2abc87307a",
-      "snr": 86.8,
-      "source": "De-lachen2.ogg"
-    },
     "laundry": {
       "author": "Jeuwre",
       "file": "laundry.mp3",
@@ -8043,16 +7461,6 @@
       "sha256": "9099a386c1e7708edf2a01fee9d88bbad00c0f7fe2f68a5d1731e5196054cd85",
       "snr": 87.0,
       "source": "De-Gesetz.ogg"
-    },
-    "leave": {
-      "author": "Kampy",
-      "file": "leave.mp3",
-      "gain": -1.9,
-      "gainPhone": -3.2,
-      "matches": "verlassen",
-      "sha256": "fc2245595f449bbb91b12650b0739d242479d3d5ff6ec2e9433c29407cd4e333",
-      "snr": 29.0,
-      "source": "De-verlassen.ogg"
     },
     "left": {
       "author": "Jeuwre",
@@ -8163,17 +7571,6 @@
       "snr": 35.0,
       "source": "De-leicht.ogg"
     },
-    "like": {
-      "author": "Jeuwre",
-      "file": "like.mp3",
-      "gain": -5.5,
-      "gainPhone": -2.6,
-      "lead": 442,
-      "matches": "mögen",
-      "sha256": "1d7aaa3dc67367260cc6380c24f3f28180bcb9dad81ac34c91fcfbe9cd1e985e",
-      "snr": 86.6,
-      "source": "De-mögen2.ogg"
-    },
     "lip": {
       "author": "Kampy",
       "file": "lip.mp3",
@@ -8206,17 +7603,6 @@
       "snr": 85.2,
       "source": "De-Liter.ogg"
     },
-    "live": {
-      "author": "Kampy",
-      "file": "live.mp3",
-      "gain": 0.7,
-      "gainPhone": 6.2,
-      "lead": 270,
-      "matches": "wohnen",
-      "sha256": "bc68c5d61ec1664cfa8d2720093f98dee234576e4e9cc55fc7b0e1658a47ce6b",
-      "snr": 56.5,
-      "source": "De-wohnen.ogg"
-    },
     "liver": {
       "author": "Jeuwre",
       "file": "liver.mp3",
@@ -8228,17 +7614,6 @@
       "snr": 70.4,
       "source": "De-Leber.ogg"
     },
-    "lock": {
-      "author": "Jeuwre",
-      "file": "lock.mp3",
-      "gain": 2.2,
-      "gainPhone": -3.0,
-      "lead": 509,
-      "matches": "abschließen",
-      "sha256": "7901e41052576018f7a57a62bcca3c0c191c73bae6ab0104530fdb1de66a8783",
-      "snr": 86.7,
-      "source": "De-abschließen.ogg"
-    },
     "long": {
       "author": "Bleibein",
       "file": "long.mp3",
@@ -8248,17 +7623,6 @@
       "sha256": "2e6bfe2be9de0061779634fd84275a767360af9c4b93f1442b416ff5e5d84615",
       "snr": 31.7,
       "source": "De-lang.ogg"
-    },
-    "look": {
-      "author": "Jeuwre",
-      "file": "look.mp3",
-      "gain": -3.2,
-      "gainPhone": -1.8,
-      "lead": 433,
-      "matches": "schauen",
-      "sha256": "e34e780a9ace0c88adf134b6d7e2c816c19890b2b7fdc9491c84986af206ab2b",
-      "snr": 86.5,
-      "source": "De-schauen.ogg"
     },
     "loud": {
       "author": "Kampy",
@@ -8336,17 +7700,6 @@
       "sha256": "a40fa48e9c528239414e221179f6991b35bd0f777321a33b343a0c23920759d7",
       "snr": 86.5,
       "source": "De-Briefkasten.ogg"
-    },
-    "make": {
-      "author": "Kampy",
-      "file": "make.mp3",
-      "gain": 8.3,
-      "gainPhone": 8.3,
-      "lead": 200,
-      "matches": "machen",
-      "sha256": "5b182c630816fb3cd4068c7aa8b3dcb6f2e9ff728444bc16bb3ecff2f3dd913f",
-      "snr": 65.5,
-      "source": "De-machen.ogg"
     },
     "mall": {
       "author": "Jeuwre",
@@ -8698,17 +8051,6 @@
       "sha256": "e85f1758b12e0f1d5f33dc4db8ab38f4f62a6679bfc66a2943ac685fc94542e0",
       "snr": 66.8,
       "source": "De-Nacken.ogg"
-    },
-    "need": {
-      "author": "Kampy",
-      "file": "need.mp3",
-      "gain": 5.1,
-      "gainPhone": 3.7,
-      "lead": 124,
-      "matches": "brauchen",
-      "sha256": "de488ae2839d3c4b8e1a1962dbc4290a012194cfa99901d80c9a134e521dff52",
-      "snr": 60.9,
-      "source": "De-brauchen.ogg"
     },
     "negative": {
       "author": "Katrin Boxberger, Bernadette Perrin-Riou",
@@ -9075,16 +8417,6 @@
       "snr": 54.2,
       "source": "De-nur.ogg"
     },
-    "open": {
-      "author": "Kampy",
-      "file": "open.mp3",
-      "gain": 0.7,
-      "gainPhone": 1.4,
-      "matches": "öffnen",
-      "sha256": "647ff42f21ab38b8c4e939ceda7e84394dad814d552e3c102c9da2dbb964a954",
-      "snr": 34.2,
-      "source": "De-öffnen.ogg"
-    },
     "opening-hours": {
       "author": "Jeuwre",
       "file": "opening-hours.mp3",
@@ -9117,17 +8449,6 @@
       "sha256": "1632c315d670b57ad38e19430a0defbe64a8b8156b578c1abc10ca74cde5c3e9",
       "snr": 61.8,
       "source": "De-oder.ogg"
-    },
-    "order": {
-      "author": "Natschoba",
-      "file": "order.mp3",
-      "gain": 8.8,
-      "gainPhone": 1.8,
-      "lead": 190,
-      "matches": "bestellen",
-      "sha256": "0a0b58a5198e70ce8787875b671819c3306b31eb4598c0a336b7b69a75257a98",
-      "snr": 61.5,
-      "source": "LL-Q188 (deu)-Natschoba-bestellen.wav"
     },
     "other": {
       "author": "Jeuwre",
@@ -9327,17 +8648,6 @@
       "snr": 85.7,
       "source": "De-Passwort.ogg"
     },
-    "pay": {
-      "author": "Jeuwre",
-      "file": "pay.mp3",
-      "gain": -3.8,
-      "gainPhone": -5.1,
-      "lead": 445,
-      "matches": "bezahlen",
-      "sha256": "d99a2b118998b2a4a8287b5648e4edf75c9ca64c717a4bf5314b3b9f2e4c0b83",
-      "snr": 86.8,
-      "source": "De-bezahlen.ogg"
-    },
     "peace": {
       "author": "Jeuwre",
       "file": "peace.mp3",
@@ -9491,17 +8801,6 @@
       "snr": 76.3,
       "source": "De-Teller.ogg"
     },
-    "play": {
-      "author": "Kampy",
-      "file": "play.mp3",
-      "gain": 3.6,
-      "gainPhone": 0.5,
-      "lead": 170,
-      "matches": "spielen",
-      "sha256": "b56a95a3b029bd8dddd1af246177d151c33374a508b93122ee4f0de13427c479",
-      "snr": 57.7,
-      "source": "De-spielen.ogg"
-    },
     "please": {
       "author": "Bleibein",
       "file": "please.mp3",
@@ -9557,17 +8856,6 @@
       "sha256": "c6ea3dbd63a1b3513531333a55d4622729657fae1312e15a76e2685f9a93ec8b",
       "snr": 85.3,
       "source": "De-post.ogg"
-    },
-    "postpone": {
-      "author": "Jeuwre",
-      "file": "postpone.mp3",
-      "gain": -3.6,
-      "gainPhone": -8.2,
-      "lead": 544,
-      "matches": "verschieben",
-      "sha256": "506381fa022030e463aed1a41b5eadc0455beaf36d7675ac1c48d511cc0a1134",
-      "snr": 86.7,
-      "source": "De-verschieben.ogg"
     },
     "pot": {
       "author": "Jeuwre",
@@ -9634,18 +8922,6 @@
       "sha256": "be53b9ce70d9df0244e69b7eeb2811716b50c59098db0c6c208711887e6706c4",
       "snr": 86.1,
       "source": "De-preis.ogg"
-    },
-    "print": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "capPhone": 2.6,
-      "file": "print.mp3",
-      "gain": 9.0,
-      "gainPhone": 9.9,
-      "lead": 13,
-      "matches": "drucken",
-      "sha256": "75f1ce566086bc685365cad08528c1da5eea45319b0dde960252ecdf8dacd3cb",
-      "snr": 33.6,
-      "source": "De-drucken.ogg"
     },
     "printer": {
       "author": "Jeuwre",
@@ -9747,17 +9023,6 @@
       "snr": 62.1,
       "source": "De-leise.ogg"
     },
-    "quit": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "capPhone": 0.7,
-      "file": "quit.mp3",
-      "gain": 4.9,
-      "gainPhone": 10.8,
-      "matches": "kündigen",
-      "sha256": "1865fac29867e3cce63eaf0e317e28a74b48460e5cd7f6228ea3e4de5bfef562",
-      "snr": 31.6,
-      "source": "De-kündigen.ogg"
-    },
     "rail": {
       "author": "Jeuwre",
       "file": "rail.mp3",
@@ -9790,27 +9055,6 @@
       "sha256": "a75cc1c09f9c7ef0287e3cafec6c76766ae2f9cd5e0b9124be1667d161b869f7",
       "snr": 69.5,
       "source": "De-Rasierer.ogg"
-    },
-    "read": {
-      "author": "Kampy",
-      "file": "read.mp3",
-      "gain": 1.7,
-      "gainPhone": -6.5,
-      "lead": 221,
-      "matches": "lesen",
-      "sha256": "a6e89ae314156fc631934767a6624acc8166bf57df8897c121a05ff999f9f909",
-      "snr": 55.0,
-      "source": "De-lesen.ogg"
-    },
-    "read-aloud": {
-      "author": "Kampy",
-      "file": "read-aloud.mp3",
-      "gain": -1.8,
-      "gainPhone": -2.6,
-      "matches": "vorlesen",
-      "sha256": "583064b78f07084143ab39657ff98cabf24819edf727cf6ba0cc2ae83ae104c8",
-      "snr": 34.1,
-      "source": "De-vorlesen.ogg"
     },
     "ready": {
       "author": "Jeuwre",
@@ -9845,18 +9089,6 @@
       "snr": 87.3,
       "source": "De-Quittung.ogg"
     },
-    "receive": {
-      "author": "Natschoba",
-      "capPhone": 1.3,
-      "file": "receive.mp3",
-      "gain": 5.4,
-      "gainPhone": 7.5,
-      "lead": 204,
-      "matches": "bekommen",
-      "sha256": "526bc989e78fa739753fdb301aff19be818440afc52d36f3ddbd0110ef2e2b28",
-      "snr": 65.6,
-      "source": "LL-Q188 (deu)-Natschoba-bekommen.wav"
-    },
     "red": {
       "author": "Bleibein",
       "capPhone": 2.8,
@@ -9879,28 +9111,6 @@
       "snr": 86.5,
       "source": "De-Anmeldung.ogg"
     },
-    "reheat": {
-      "author": "Jeuwre",
-      "file": "reheat.mp3",
-      "gain": 0.7,
-      "gainPhone": 1.8,
-      "lead": 243,
-      "matches": "aufwärmen",
-      "sha256": "7685393b24cb14756cb33bc1bb088daa671128fd3a64663c519526730aa3b1c6",
-      "snr": 73.9,
-      "source": "De-aufwärmen.ogg"
-    },
-    "reject": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "file": "reject.mp3",
-      "gain": 7.1,
-      "gainPhone": 9.6,
-      "lead": 50,
-      "matches": "ablehnen",
-      "sha256": "e216243cbbadda9cd9fad8f7c8c262f3a9b9679bf43f9b0881c07d494017f449",
-      "snr": 31.3,
-      "source": "De-ablehnen.ogg"
-    },
     "remote": {
       "author": "Jeuwre",
       "capPhone": 0.9,
@@ -9912,39 +9122,6 @@
       "sha256": "aff005a2c284ad7bb1429b2641c19da4b0ef98448f7378c4c99c0f23cb02e1ac",
       "snr": 86.4,
       "source": "De-Fernbedienung.ogg"
-    },
-    "repair": {
-      "author": "Natschoba",
-      "file": "repair.mp3",
-      "gain": 5.5,
-      "gainPhone": 7.0,
-      "lead": 183,
-      "matches": "reparieren",
-      "sha256": "e375bac8234028767fb1d40b130da81f86037ac29311fa97dc3404dad3a1e61a",
-      "snr": 61.9,
-      "source": "LL-Q188 (deu)-Natschoba-reparieren.wav"
-    },
-    "reply": {
-      "author": "User:Tosca",
-      "file": "reply.mp3",
-      "gain": 3.8,
-      "gainPhone": 1.1,
-      "lead": 268,
-      "matches": "antworten",
-      "sha256": "34942f30535450ca2e17b85ba7cc1ef330070a5754bda8e121299c7e22fdd005",
-      "snr": 60.9,
-      "source": "De-antworten.ogg"
-    },
-    "reserve": {
-      "author": "Jeuwre",
-      "file": "reserve.mp3",
-      "gain": -2.7,
-      "gainPhone": -4.1,
-      "lead": 269,
-      "matches": "reservieren",
-      "sha256": "812035cb49550ec04e7222f56d957b8777e9df5d66f2abcca774b8bd95675e03",
-      "snr": 56.0,
-      "source": "De-reservieren.ogg"
     },
     "residence-permit": {
       "author": "Jeuwre",
@@ -9999,17 +9176,6 @@
       "sha256": "ab0d322d14b7cd621c01a6e09c787b79755db7845bfd8c5651ba38bee4b873cd",
       "snr": 87.0,
       "source": "De-rechts.ogg"
-    },
-    "ring": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "file": "ring.mp3",
-      "gain": 1.7,
-      "gainPhone": 4.6,
-      "lead": 343,
-      "matches": "klingeln",
-      "sha256": "3a33f9ef032088a3ae6834e8bf561c9495a514952d9e41a282363ff95ac9b57a",
-      "snr": 38.4,
-      "source": "De-klingeln.ogg"
     },
     "ripe": {
       "author": "Jeuwre",
@@ -10097,28 +9263,6 @@
       "snr": 86.8,
       "source": "De-Soße.ogg"
     },
-    "save": {
-      "author": "User:Tosca",
-      "file": "save.mp3",
-      "gain": 5.3,
-      "gainPhone": 0.8,
-      "lead": 232,
-      "matches": "speichern",
-      "sha256": "4b5840b9ec4c4f72fec9f61d2c398c8398562525eeb401776a2f5186c48ca7a0",
-      "snr": 54.9,
-      "source": "De-speichern.ogg"
-    },
-    "say": {
-      "author": "Kampy",
-      "file": "say.mp3",
-      "gain": 9.9,
-      "gainPhone": 7.0,
-      "lead": 230,
-      "matches": "sagen",
-      "sha256": "e80e04d91c0f342ee0aec629ce7fd0bfb4d2cd0bcc2cf595802b07829bf5224e",
-      "snr": 75.1,
-      "source": "De-sagen.ogg"
-    },
     "scales": {
       "author": "Jeuwre",
       "file": "scales.mp3",
@@ -10162,52 +9306,6 @@
       "sha256": "c28b06b657075f7d24635c1b2501a87893c0b23ba49bd774cb8128bce9ab68fc",
       "snr": 71.5,
       "source": "De-Meer.ogg"
-    },
-    "search": {
-      "author": "Natschoba",
-      "capPhone": 0.5,
-      "file": "search.mp3",
-      "gain": 6.6,
-      "gainPhone": 14.3,
-      "lead": 265,
-      "matches": "suchen",
-      "sha256": "5e2e1301ab32be3ce7371118eb113c6cce9006265b7762d2a0211e679c3e75bd",
-      "snr": 59.4,
-      "source": "LL-Q188 (deu)-Natschoba-suchen.wav"
-    },
-    "see": {
-      "author": "Kampy",
-      "file": "see.mp3",
-      "gain": 1.7,
-      "gainPhone": -2.7,
-      "lead": 183,
-      "matches": "sehen",
-      "sha256": "48a38ce822b20404da8177c9e01ef851d010676aec35abed7c0f3ebdd6db354f",
-      "snr": 51.6,
-      "source": "De-sehen.ogg"
-    },
-    "sell": {
-      "author": "Natschoba",
-      "cap": 0.2,
-      "file": "sell.mp3",
-      "gain": 6.7,
-      "gainPhone": 2.0,
-      "lead": 188,
-      "matches": "verkaufen",
-      "sha256": "4581e379b526b0583b0f3edb7b79ae7dfa4d4df6d845ec5f61c23ae5a5a8cdb8",
-      "snr": 63.6,
-      "source": "LL-Q188 (deu)-Natschoba-verkaufen.wav"
-    },
-    "send": {
-      "author": "Natschoba",
-      "file": "send.mp3",
-      "gain": 6.7,
-      "gainPhone": 5.5,
-      "lead": 87,
-      "matches": "schicken",
-      "sha256": "40964850cc42797eb9fa76eb332df7d71a9d01e7b0a4cf0bf93751e6fffe6bdc",
-      "snr": 61.6,
-      "source": "LL-Q188 (deu)-Natschoba-schicken.wav"
     },
     "shame": {
       "author": "Jeuwre",
@@ -10307,17 +9405,6 @@
       "snr": 87.1,
       "source": "De-Schuhregal.ogg"
     },
-    "shop": {
-      "author": "Jeuwre",
-      "file": "shop.mp3",
-      "gain": -0.7,
-      "gainPhone": -1.5,
-      "lead": 449,
-      "matches": "einkaufen",
-      "sha256": "beade1c6077c7755b1289c652988c0dbdaafef5be050c45dbf7e1419fff4b0e7",
-      "snr": 83.4,
-      "source": "De-einkaufen.ogg"
-    },
     "shop-assistant-f": {
       "author": "Jeuwre",
       "file": "shop-assistant-f.mp3",
@@ -10403,16 +9490,6 @@
       "snr": 35.9,
       "source": "De-krank.ogg"
     },
-    "sign": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "file": "sign.mp3",
-      "gain": 4.6,
-      "gainPhone": 3.0,
-      "matches": "unterschreiben",
-      "sha256": "b8331f9c7f0e5470921ac12c2bfc07248a383c06a7a97ddc3113418a817c3be4",
-      "snr": 33.5,
-      "source": "De-unterschreiben.ogg"
-    },
     "signature": {
       "author": "Jeuwre",
       "file": "signature.mp3",
@@ -10457,17 +9534,6 @@
       "snr": 59.6,
       "source": "De-Schwester.ogg"
     },
-    "sit": {
-      "author": "Kampy",
-      "file": "sit.mp3",
-      "gain": -0.1,
-      "gainPhone": -7.9,
-      "lead": 237,
-      "matches": "sitzen",
-      "sha256": "57746ff9c95c86b16cfe3302cf534182ab3f450aab3feb0249fd80d850283270",
-      "snr": 56.5,
-      "source": "De-sitzen.ogg"
-    },
     "skin": {
       "author": "Jeuwre",
       "file": "skin.mp3",
@@ -10489,18 +9555,6 @@
       "sha256": "e4a3fd8832e8b90f5949bebb00ac8b0897a812bb55cf1b3c44f48101a595d97e",
       "snr": 86.9,
       "source": "De-himmel.ogg"
-    },
-    "sleep": {
-      "author": "Kampy",
-      "cap": 0.5,
-      "file": "sleep.mp3",
-      "gain": 8.9,
-      "gainPhone": 6.4,
-      "lead": 177,
-      "matches": "schlafen",
-      "sha256": "69d3b328f7928cd2301232a1e5d29c35e35e23c13443341a089aa8f5b3333116",
-      "snr": 72.4,
-      "source": "De-schlafen.ogg"
     },
     "slow": {
       "author": "Kampy",
@@ -10534,16 +9588,6 @@
       "sha256": "6e861e4adf91e4d3643e238dbda014ddcd79292370bccd7e6971b8e98cb18806",
       "snr": 67.2,
       "source": "De-klein.ogg"
-    },
-    "snore": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "file": "snore.mp3",
-      "gain": 0.6,
-      "gainPhone": -0.1,
-      "matches": "schnarchen",
-      "sha256": "d5eeedd5a6227c03514e5c6253eaba466cf5193d1194f0be00a8231d8e0a2b72",
-      "snr": 37.8,
-      "source": "De-schnarchen.ogg"
     },
     "snow": {
       "author": "Jeuwre",
@@ -10700,16 +9744,6 @@
       "snr": 30.9,
       "source": "De-Süden.ogg"
     },
-    "speak": {
-      "author": "Kampy",
-      "file": "speak.mp3",
-      "gain": 2.4,
-      "gainPhone": 3.6,
-      "matches": "sprechen",
-      "sha256": "6d9459dd71f74a7c8eed54ebe6719a7c297d764aac1617666d685dcc892804cf",
-      "snr": 61.7,
-      "source": "De-sprechen.ogg"
-    },
     "spleen": {
       "author": "Jeuwre",
       "file": "spleen.mp3",
@@ -10775,17 +9809,6 @@
       "snr": 86.7,
       "source": "De-Marktstand.ogg"
     },
-    "stand": {
-      "author": "Sebastian Wallroth",
-      "file": "stand.mp3",
-      "gain": 0.1,
-      "gainPhone": -3.5,
-      "lead": 235,
-      "matches": "stehen",
-      "sha256": "8a2dd8414f8c5dc1c5756172e1206c773f5161e6de992897310beac4cc06d512",
-      "snr": 51.7,
-      "source": "LL-Q188 (deu)-Sebastian Wallroth-stehen.wav"
-    },
     "star": {
       "author": "Jeuwre",
       "file": "star.mp3",
@@ -10796,17 +9819,6 @@
       "sha256": "a127d7aa866516d705b581e5ca27332efbb41435f246d7b050c6d285dd6b79d2",
       "snr": 87.8,
       "source": "De-Stern2.ogg"
-    },
-    "start": {
-      "author": "Jeuwre",
-      "file": "start.mp3",
-      "gain": -1.3,
-      "gainPhone": 1.3,
-      "lead": 447,
-      "matches": "anfangen",
-      "sha256": "cdba076768381f2855d135c9216f0c18844eb2c7e1af8ae561f3808b61884b5c",
-      "snr": 86.8,
-      "source": "De-anfangen.ogg"
     },
     "stick": {
       "author": "Jeuwre",
@@ -10830,18 +9842,6 @@
       "snr": 54.7,
       "source": "De-noch.ogg"
     },
-    "stir": {
-      "author": "Jeuwre",
-      "capPhone": 0.6,
-      "file": "stir.mp3",
-      "gain": -4.7,
-      "gainPhone": 2.2,
-      "lead": 441,
-      "matches": "umrühren",
-      "sha256": "ab3f5c0f695d7c7c29fc64b5a6e3be4e3e69a962a6377b14543b1e2d36b68cf9",
-      "snr": 86.5,
-      "source": "De-umrühren.ogg"
-    },
     "stomach": {
       "author": "Jeuwre",
       "file": "stomach.mp3",
@@ -10863,17 +9863,6 @@
       "sha256": "5e34881a98370e96ab1d8e0759c9670509bc02af4c35875c3f190214de23ca1e",
       "snr": 86.8,
       "source": "De-stein.ogg"
-    },
-    "stop": {
-      "author": "Jeuwre",
-      "file": "stop.mp3",
-      "gain": -4.7,
-      "gainPhone": -1.1,
-      "lead": 434,
-      "matches": "aufhören",
-      "sha256": "094dd37c730f58738979f6dae14dc0b54feb018011fb730c5e7349d6b876cd4f",
-      "snr": 87.0,
-      "source": "De-aufhören.ogg"
     },
     "store": {
       "author": "Wikimedia Commons user Jakob.scholbach",
@@ -10928,27 +9917,6 @@
       "sha256": "ef473dde7fb75a0cb6a96bb69864a7ffee188ac351b9caecc2cb71766780c39a",
       "snr": 53.5,
       "source": "De-Straße.ogg"
-    },
-    "study": {
-      "author": "Kampy",
-      "file": "study.mp3",
-      "gain": 6.4,
-      "gainPhone": 6.9,
-      "matches": "lernen",
-      "sha256": "6cfb41debd7de8858736e64c1b2231b09d74eb790fbe004d0ef80dd191e4b705",
-      "snr": 63.2,
-      "source": "De-lernen.ogg"
-    },
-    "submit": {
-      "author": "Kampy",
-      "cap": 2.4,
-      "file": "submit.mp3",
-      "gain": -0.9,
-      "gainPhone": -3.1,
-      "matches": "abgeben",
-      "sha256": "99a8d30188fa1faf085374c5d6ec2a51fec05fc0ff4ebc630c5c3fe893deda31",
-      "snr": 41.1,
-      "source": "De-abgeben.ogg"
     },
     "sugar": {
       "author": "Jeuwre",
@@ -11016,49 +9984,6 @@
       "snr": 86.3,
       "source": "De-tisch.ogg"
     },
-    "take": {
-      "author": "Kampy",
-      "file": "take.mp3",
-      "gain": 5.2,
-      "gainPhone": 7.1,
-      "lead": 199,
-      "matches": "nehmen",
-      "sha256": "f2d520a5a781513a33c573f81972b6e648b9f91e39ce8c1c0b0807f9e0cc4e99",
-      "snr": 57.3,
-      "source": "De-nehmen.ogg"
-    },
-    "take-shower": {
-      "author": "Kampy",
-      "file": "take-shower.mp3",
-      "gain": -8.5,
-      "gainPhone": -16.1,
-      "matches": "duschen",
-      "sha256": "893ea0e4b50c5d1c170fc2e413e4f4da71b6f2c835a52a824981a5bb4fcb874d",
-      "snr": 16.2,
-      "source": "De-duschen.ogg"
-    },
-    "talk": {
-      "author": "Jeuwre",
-      "file": "talk.mp3",
-      "gain": -1.3,
-      "gainPhone": -1.9,
-      "lead": 443,
-      "matches": "reden",
-      "sha256": "c5d99a8f02c588d0d8dcc8f0543f6c928e2504b5e488333a4d22d1a27f25b5f5",
-      "snr": 83.6,
-      "source": "De-reden.ogg"
-    },
-    "taste": {
-      "author": "Jeuwre",
-      "file": "taste.mp3",
-      "gain": -2.7,
-      "gainPhone": 1.5,
-      "lead": 449,
-      "matches": "probieren",
-      "sha256": "587dff4c31957db04a69f4c45acb3294e3d15fcaf74658a0113cba45e8701dd7",
-      "snr": 86.9,
-      "source": "De-probieren.ogg"
-    },
     "tax": {
       "author": "Jeuwre",
       "file": "tax.mp3",
@@ -11114,17 +10039,6 @@
       "snr": 87.0,
       "source": "De-Lehrerin.ogg"
     },
-    "thank": {
-      "author": "Kampy",
-      "file": "thank.mp3",
-      "gain": 7.1,
-      "gainPhone": 5.0,
-      "lead": 238,
-      "matches": "danken",
-      "sha256": "70a91be15bc02a59ab514c92ab76647a25864f728e662708732b5373147e29a8",
-      "snr": 59.2,
-      "source": "De-danken.ogg"
-    },
     "then": {
       "author": "Katrin Boxberger, Bernadette Perrin-Riou",
       "capPhone": 0.4,
@@ -11147,17 +10061,6 @@
       "sha256": "2d7efde018844e004135d2132fd51cc4b4c2368b1fbefea2b282e486a5786520",
       "snr": 59.1,
       "source": "De-dort.ogg"
-    },
-    "think": {
-      "author": "Kampy",
-      "file": "think.mp3",
-      "gain": -1.9,
-      "gainPhone": -0.8,
-      "lead": 446,
-      "matches": "denken",
-      "sha256": "d7eeb06113c61843eea067cc724a27ef2e96b46b5cffe9321b356debf89bdf8e",
-      "snr": 123.8,
-      "source": "De-denken.ogg"
     },
     "thirst": {
       "author": "Jeuwre",
@@ -11214,18 +10117,6 @@
       "snr": 83.4,
       "source": "De-Fahrkarte.ogg"
     },
-    "tidy-up": {
-      "author": "Jeuwre",
-      "capPhone": 0.3,
-      "file": "tidy-up.mp3",
-      "gain": -2.1,
-      "gainPhone": 2.1,
-      "lead": 430,
-      "matches": "aufräumen",
-      "sha256": "5ff61c5911854d1c8202b391a06b13af7fc055a10d45d719171413b3ab6ee9c2",
-      "snr": 86.8,
-      "source": "De-aufräumen.ogg"
-    },
     "time": {
       "author": "Jeuwre",
       "file": "time.mp3",
@@ -11271,6 +10162,82 @@
       "snr": 62.6,
       "source": "De-müde.ogg"
     },
+    "to-apply-for": {
+      "author": "Jeuwre",
+      "file": "to-apply-for.mp3",
+      "gain": -1.3,
+      "gainPhone": -4.7,
+      "lead": 339,
+      "matches": "beantragen",
+      "sha256": "62336fd6dba1324a5f2d7be2426e5e3c05bbefa3a00bc45fb96391e3370eebc0",
+      "snr": 88.5,
+      "source": "De-beantragen.ogg"
+    },
+    "to-apply-lotion": {
+      "author": "Jeuwre",
+      "file": "to-apply-lotion.mp3",
+      "gain": -3.1,
+      "gainPhone": -3.8,
+      "lead": 241,
+      "matches": "eincremen",
+      "sha256": "6178449a842822b62d97cf546d16e815d42e78e8d4deb30ba8b99ed9c818b5a5",
+      "snr": 81.0,
+      "source": "De-eincremen.ogg"
+    },
+    "to-approve": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "to-approve.mp3",
+      "gain": 2.4,
+      "gainPhone": 3.1,
+      "matches": "genehmigen",
+      "sha256": "cf90589d77c77fc1253513dc91d28755cec405a5faf5775a23bf279a790ca1f8",
+      "snr": 31.1,
+      "source": "De-genehmigen.ogg"
+    },
+    "to-arrange": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "to-arrange.mp3",
+      "gain": 5.2,
+      "gainPhone": 7.7,
+      "lead": 16,
+      "matches": "vereinbaren",
+      "sha256": "3c763b269c94686fabb576e0081e323467948706b33c05caa1c38710b3c47fac",
+      "snr": 37.1,
+      "source": "De-vereinbaren.ogg"
+    },
+    "to-arrive": {
+      "author": "Kampy",
+      "file": "to-arrive.mp3",
+      "gain": 4.8,
+      "gainPhone": 2.8,
+      "lead": 143,
+      "matches": "ankommen",
+      "sha256": "ef42d10d4c7df31c68a7c38d53997d63e1462034c0f4f0a0e9371fa6143c9cc9",
+      "snr": 57.0,
+      "source": "De-ankommen.ogg"
+    },
+    "to-ask": {
+      "author": "User:Tosca",
+      "file": "to-ask.mp3",
+      "gain": 8.4,
+      "gainPhone": 5.1,
+      "lead": 99,
+      "matches": "fragen",
+      "sha256": "8dcccea55f2d41d3b8bc21f057ede2de93a759ab6464f517b29d6ee20ba2a2de",
+      "snr": 57.6,
+      "source": "De-fragen.ogg"
+    },
+    "to-bake": {
+      "author": "Jeuwre",
+      "file": "to-bake.mp3",
+      "gain": 2.2,
+      "gainPhone": -0.3,
+      "lead": 107,
+      "matches": "backen",
+      "sha256": "a78dd1be101ace01f9ae2eae2402706b4c7e8178da1c0151e7829b973afebae5",
+      "snr": 70.4,
+      "source": "De-backen.ogg"
+    },
     "to-be-alive": {
       "author": "Sebastian Wallroth",
       "file": "to-be-alive.mp3",
@@ -11281,6 +10248,117 @@
       "sha256": "cb52988dec8971632dcb3fd711e7050ec400897f83ab0f65eb8b8125f48b00f5",
       "snr": 54.7,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-Leben.wav"
+    },
+    "to-be-called": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "to-be-called.mp3",
+      "gain": 7.7,
+      "gainPhone": 6.0,
+      "lead": 184,
+      "matches": "heißen",
+      "sha256": "b47deb84a13a4f5fa0f4fc6cd522c1d81f0a00ace311f1d15a2715db3d06811f",
+      "snr": 60.2,
+      "source": "De-heißen.ogg"
+    },
+    "to-breathe": {
+      "author": "Jeuwre",
+      "file": "to-breathe.mp3",
+      "gain": 0.9,
+      "gainPhone": -3.1,
+      "lead": 345,
+      "matches": "atmen",
+      "sha256": "b02ac24667f03c6744ba7088dc8e2200b9609d849129bb3e994ff534125d2c99",
+      "snr": 75.5,
+      "source": "De-atmen.ogg"
+    },
+    "to-bring": {
+      "author": "Kampy",
+      "file": "to-bring.mp3",
+      "gain": 4.2,
+      "gainPhone": 5.4,
+      "lead": 208,
+      "matches": "mitbringen",
+      "sha256": "f15544503574e653b5aca1ca47bc2b700492a5c5a09c56f79d4b9ed4a5533491",
+      "snr": 63.0,
+      "source": "De-mitbringen.ogg"
+    },
+    "to-buy": {
+      "author": "Kampy",
+      "file": "to-buy.mp3",
+      "gain": 0.1,
+      "gainPhone": -1.4,
+      "lead": 194,
+      "matches": "kaufen",
+      "sha256": "7917a22e800f49e7b71d1549be6c97a36779c4bbab6ed360337012beaacf91b5",
+      "snr": 64.7,
+      "source": "De-kaufen.ogg"
+    },
+    "to-call": {
+      "author": "Jeuwre",
+      "file": "to-call.mp3",
+      "gain": -1.6,
+      "gainPhone": -2.8,
+      "lead": 436,
+      "matches": "anrufen",
+      "sha256": "cdff190d3c7c38fcd5b09b8ae82c457b0d9498e5d927fd5785a2ef42aeaea4d9",
+      "snr": 85.5,
+      "source": "De-anrufen.ogg"
+    },
+    "to-can": {
+      "author": "Bleibein",
+      "file": "to-can.mp3",
+      "gain": 5.2,
+      "gainPhone": 6.0,
+      "lead": 201,
+      "matches": "können",
+      "sha256": "05ffa73f793531b8f4551d5140480e66aa6aa7416be55b3790facc17ffccb792",
+      "snr": 65.0,
+      "source": "De-können.ogg"
+    },
+    "to-cancel": {
+      "author": "Jeuwre",
+      "cap": 1.1,
+      "file": "to-cancel.mp3",
+      "gain": 2.3,
+      "gainPhone": 0.4,
+      "matches": "absagen",
+      "sha256": "57f665fe4c2d2d873b50790485345f37040d5a9bf389a04f1960fcbdb8a2f996",
+      "snr": 46.4,
+      "source": "De-absagen.ogg"
+    },
+    "to-clean": {
+      "author": "Kampy",
+      "file": "to-clean.mp3",
+      "gain": 0.8,
+      "gainPhone": -2.7,
+      "matches": "putzen",
+      "sha256": "bb02a85a005b9ee345b408d301a9f96bd36ab1d170861e23fe82cc4ca861584d",
+      "snr": 24.1,
+      "source": "De-putzen.ogg"
+    },
+    "to-close": {
+      "author": "Natschoba",
+      "file": "to-close.mp3",
+      "gain": 2.8,
+      "gainPhone": 6.2,
+      "lead": 236,
+      "matches": "schließen",
+      "sha256": "037490ebdbd561a59afdd534aec507a8531576372e83d147c564754d1a33c92e",
+      "snr": 56.4,
+      "source": "LL-Q188 (deu)-Natschoba-schließen.wav"
+    },
+    "to-come": {
+      "author": "User:Tosca",
+      "cap": 0.3,
+      "capPhone": 1.0,
+      "file": "to-come.mp3",
+      "gain": 12.5,
+      "gainPhone": 12.5,
+      "lead": 140,
+      "matches": "kommen",
+      "sha256": "32c096250aca8d6cb16998049833d71be0dbf3a1066ea211ce78b0ca51b27e8f",
+      "snr": 61.1,
+      "source": "De-kommen.ogg"
     },
     "to-come-back": {
       "author": "Jeuwre",
@@ -11304,6 +10382,61 @@
       "snr": 50.9,
       "source": "De-vergleichen.ogg"
     },
+    "to-confirm": {
+      "author": "User:Tosca",
+      "file": "to-confirm.mp3",
+      "gain": 6.5,
+      "gainPhone": 2.9,
+      "lead": 67,
+      "matches": "bestätigen",
+      "sha256": "35de456368324302c0a610e2620842e7c898b7e493abf22a32cc6a0d275fa2e5",
+      "snr": 35.8,
+      "source": "De-bestätigen.ogg"
+    },
+    "to-cook": {
+      "author": "Jeuwre",
+      "file": "to-cook.mp3",
+      "gain": -3.3,
+      "gainPhone": -4.4,
+      "lead": 445,
+      "matches": "kochen",
+      "sha256": "bbd1c7fb4ce221e9e0b8ebad6c88481120c2d5fba098e15637b618262f64e7ef",
+      "snr": 86.8,
+      "source": "De-kochen2.ogg"
+    },
+    "to-copy": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "capPhone": 0.7,
+      "file": "to-copy.mp3",
+      "gain": 3.4,
+      "gainPhone": 7.8,
+      "matches": "kopieren",
+      "sha256": "4e8d34e583ed450465567c38ba414fa01527823c354de4df56ecc7e66fe102c2",
+      "snr": 32.2,
+      "source": "De-kopieren.ogg"
+    },
+    "to-correct": {
+      "author": "Jeuwre",
+      "file": "to-correct.mp3",
+      "gain": -3.0,
+      "gainPhone": 1.2,
+      "lead": 329,
+      "matches": "korrigieren",
+      "sha256": "16c504f01c5e03fc4498dad3f78d556fddcde40b84c7f1be3e1c399c929f94ee",
+      "snr": 87.1,
+      "source": "De-korrigieren.ogg"
+    },
+    "to-cost": {
+      "author": "Natschoba",
+      "file": "to-cost.mp3",
+      "gain": 7.2,
+      "gainPhone": 3.3,
+      "lead": 193,
+      "matches": "kosten",
+      "sha256": "67849ada39525e1dedf7444271e0e0375e335608a3fab454530e3edf996ed43d",
+      "snr": 63.9,
+      "source": "LL-Q188 (deu)-Natschoba-kosten.wav"
+    },
     "to-cough": {
       "author": "Jeuwre",
       "file": "to-cough.mp3",
@@ -11326,6 +10459,71 @@
       "snr": 62.2,
       "source": "De-zählen.ogg"
     },
+    "to-cross": {
+      "author": "Jeuwre",
+      "file": "to-cross.mp3",
+      "gain": -1.3,
+      "gainPhone": 0.1,
+      "lead": 430,
+      "matches": "überqueren",
+      "sha256": "a92b441cd0ed5adead0a4ee9341c6431b22981a4ef5c5813c92dba0ddd6fb232",
+      "snr": 86.7,
+      "source": "De-überqueren.ogg"
+    },
+    "to-cuddle": {
+      "author": "Jeuwre",
+      "file": "to-cuddle.mp3",
+      "gain": -4.4,
+      "gainPhone": -5.0,
+      "lead": 448,
+      "matches": "kuscheln",
+      "sha256": "c33883ef9bb96e68b4771c6a7e3f7117bc9a474dacfaace26abea571df199f27",
+      "snr": 87.3,
+      "source": "De-kuscheln2.ogg"
+    },
+    "to-cut": {
+      "author": "Jeuwre",
+      "file": "to-cut.mp3",
+      "gain": 0.3,
+      "gainPhone": -3.6,
+      "lead": 412,
+      "matches": "schneiden",
+      "sha256": "76e7243338bee0afc44bf0d056cbb9c8e4713fe3c74f2582b7754d1646252238",
+      "snr": 87.4,
+      "source": "De-schneiden2.ogg"
+    },
+    "to-delete": {
+      "author": "User:Tosca",
+      "file": "to-delete.mp3",
+      "gain": 4.1,
+      "gainPhone": 0.2,
+      "lead": 229,
+      "matches": "löschen",
+      "sha256": "0fdd848757110b642312107051d95dad83ae8cb8018c5eb2c746c44db19f4dd7",
+      "snr": 73.6,
+      "source": "De-löschen.ogg"
+    },
+    "to-deliver": {
+      "author": "Jeuwre",
+      "file": "to-deliver.mp3",
+      "gain": -1.7,
+      "gainPhone": -3.5,
+      "lead": 246,
+      "matches": "liefern",
+      "sha256": "1f6ef8492aafb5f067aa7fddd11cd73829180ea97dded7fc1d3b89e17b0c1ce1",
+      "snr": 84.9,
+      "source": "De-liefern.ogg"
+    },
+    "to-depart": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "to-depart.mp3",
+      "gain": 7.5,
+      "gainPhone": 3.2,
+      "matches": "abfahren",
+      "sha256": "b2f6bbb14e22f47de5398823bb7afd06578799af384169035f5090fe83e03c29",
+      "snr": 59.8,
+      "source": "De-abfahren.ogg"
+    },
     "to-die": {
       "author": "Sebastian Wallroth",
       "cap": 0.1,
@@ -11338,6 +10536,71 @@
       "snr": 57.0,
       "source": "LL-Q188 (deu)-Sebastian Wallroth-sterben.wav"
     },
+    "to-dream": {
+      "author": "Jeuwre",
+      "file": "to-dream.mp3",
+      "gain": -2.3,
+      "gainPhone": 1.7,
+      "lead": 500,
+      "matches": "träumen",
+      "sha256": "26265e51130a9e5a212e5332bbf79c5419f4c0a87d050450969b83335bdece97",
+      "snr": 87.1,
+      "source": "De-träumen2.ogg"
+    },
+    "to-drink": {
+      "author": "Kampy",
+      "file": "to-drink.mp3",
+      "gain": 3.6,
+      "gainPhone": 3.5,
+      "lead": 208,
+      "matches": "trinken",
+      "sha256": "6bc5ee1918fdcad2ba7355967dc175a2c8b43c347f4a9b72b0ac581b379185e3",
+      "snr": 58.8,
+      "source": "De-trinken.ogg"
+    },
+    "to-earn": {
+      "author": "Kampy",
+      "file": "to-earn.mp3",
+      "gain": 9.1,
+      "gainPhone": 4.4,
+      "lead": 170,
+      "matches": "verdienen",
+      "sha256": "44545a7d7fe339679d312b61a3237eb8fd84450180d00cb965214b1e0e973106",
+      "snr": 48.1,
+      "source": "De-verdienen.ogg"
+    },
+    "to-eat": {
+      "author": "Kampy",
+      "file": "to-eat.mp3",
+      "gainPhone": -9.7,
+      "lead": 262,
+      "matches": "essen",
+      "sha256": "b145bc0ea7aa41c7bd73af902a2e044f6cddd96f05c8c1d5ca4f85680a5bc6b6",
+      "snr": 57.6,
+      "source": "De-essen.ogg"
+    },
+    "to-enter": {
+      "author": "Jeuwre",
+      "file": "to-enter.mp3",
+      "gain": 0.7,
+      "gainPhone": -2.2,
+      "lead": 281,
+      "matches": "hereinkommen",
+      "sha256": "77523cafe4392d6c15b021e3197160723a5c49459f62f377e4412b47fb2fb536",
+      "snr": 73.5,
+      "source": "De-hereinkommen.ogg"
+    },
+    "to-examine": {
+      "author": "Jeuwre",
+      "file": "to-examine.mp3",
+      "gain": -1.8,
+      "gainPhone": 1.4,
+      "lead": 495,
+      "matches": "untersuchen",
+      "sha256": "4ae18492da979f79a1e7bec0013223afc6462b61bd35f311324b96392fd708da",
+      "snr": 86.5,
+      "source": "De-untersuchen2.ogg"
+    },
     "to-explain": {
       "author": "Natschoba",
       "file": "to-explain.mp3",
@@ -11348,6 +10611,39 @@
       "sha256": "2b46fe0bcece90ce35090de139319ceb55860ec0d098184c32e1c77b77984543",
       "snr": 65.3,
       "source": "LL-Q188 (deu)-Natschoba-erklären.wav"
+    },
+    "to-extend": {
+      "author": "Jeuwre",
+      "file": "to-extend.mp3",
+      "gain": -3.8,
+      "gainPhone": -3.3,
+      "lead": 272,
+      "matches": "verlängern",
+      "sha256": "7789d003633e884d6097bbd65a38f0f246d618c879c7f356c000f666658693cb",
+      "snr": 76.7,
+      "source": "De-verlängern.ogg"
+    },
+    "to-fill-in": {
+      "author": "Jeuwre",
+      "file": "to-fill-in.mp3",
+      "gain": -1.1,
+      "gainPhone": -0.2,
+      "lead": 433,
+      "matches": "ausfüllen",
+      "sha256": "e71404ae79e9498ed6fafcc8563ad4d32496f1dc2c3562345435bbf064b425f5",
+      "snr": 87.4,
+      "source": "De-ausfüllen.ogg"
+    },
+    "to-find": {
+      "author": "Natschoba",
+      "file": "to-find.mp3",
+      "gain": 7.6,
+      "gainPhone": 10.0,
+      "lead": 223,
+      "matches": "finden",
+      "sha256": "06a4593b99d0a2cea3436cee05a0c0aa0e4ec8de21b888766e08ad3575ba1f73",
+      "snr": 56.4,
+      "source": "LL-Q188 (deu)-Natschoba-finden.wav"
     },
     "to-finish": {
       "author": "Jeuwre",
@@ -11360,6 +10656,18 @@
       "snr": 86.6,
       "source": "De-beenden.ogg"
     },
+    "to-follow": {
+      "author": "Natschoba",
+      "capPhone": 0.1,
+      "file": "to-follow.mp3",
+      "gain": 1.1,
+      "gainPhone": 5.7,
+      "lead": 215,
+      "matches": "folgen",
+      "sha256": "5602a48fc3281ca504e8fc0fced200760c7827905d80e321475746389e240cf3",
+      "snr": 68.1,
+      "source": "LL-Q188 (deu)-Natschoba-folgen.wav"
+    },
     "to-forget": {
       "author": "Natschoba",
       "file": "to-forget.mp3",
@@ -11370,6 +10678,115 @@
       "sha256": "b154b4816fd4bbda23014a31e5aa3f9fe1d330b5c492f425124293d5a0f48d1a",
       "snr": 63.3,
       "source": "LL-Q188 (deu)-Natschoba-vergessen.wav"
+    },
+    "to-fry": {
+      "author": "Jeuwre",
+      "file": "to-fry.mp3",
+      "gain": -0.6,
+      "gainPhone": -1.7,
+      "lead": 443,
+      "matches": "braten",
+      "sha256": "bcae64e39afd89e344ad15239d0f91bf8b541eaaa24741abd75c2d93d5db5453",
+      "snr": 87.5,
+      "source": "De-braten2.ogg"
+    },
+    "to-get-off": {
+      "author": "Jeuwre",
+      "file": "to-get-off.mp3",
+      "gain": -2.7,
+      "gainPhone": -6.3,
+      "lead": 443,
+      "matches": "aussteigen",
+      "sha256": "099644e7bea7adfddbc8b9c64dbfbcc3bd785d3f8ee5ba664ed4fb0ad68597ab",
+      "snr": 87.3,
+      "source": "De-aussteigen.ogg"
+    },
+    "to-get-up": {
+      "author": "Kampy",
+      "file": "to-get-up.mp3",
+      "gain": 3.9,
+      "gainPhone": 3.2,
+      "lead": 262,
+      "matches": "aufstehen",
+      "sha256": "caf477f424f6eaf645d3986818ba2387659e3cacbcbbad5146f73221919aede4",
+      "snr": 57.4,
+      "source": "De-aufstehen.ogg"
+    },
+    "to-give": {
+      "author": "Kampy",
+      "file": "to-give.mp3",
+      "gain": 15.1,
+      "gainPhone": 9.8,
+      "lead": 281,
+      "matches": "geben",
+      "sha256": "c9a94c6241113dc08d280321aee744af184b7ce2597ccc002d9e8cec61fecf7e",
+      "snr": 60.6,
+      "source": "De-geben.ogg"
+    },
+    "to-go": {
+      "author": "Jeuwre",
+      "file": "to-go.mp3",
+      "gain": -2.3,
+      "gainPhone": 1.1,
+      "lead": 437,
+      "matches": "gehen",
+      "sha256": "b63354aed05918b64ee6d49339f773120b73b6919a7593e65d6a71196e7d30ae",
+      "snr": 86.3,
+      "source": "De-gehen2.ogg"
+    },
+    "to-greet": {
+      "author": "Kampy",
+      "file": "to-greet.mp3",
+      "gain": 10.0,
+      "gainPhone": 8.6,
+      "lead": 254,
+      "matches": "begrüßen",
+      "sha256": "414223d19b7d6d13842a09e9dbbfe36420f60b66ce5f7cde999f7a04c7b95b91",
+      "snr": 42.4,
+      "source": "De-begrüßen.ogg"
+    },
+    "to-haggle": {
+      "author": "Jeuwre",
+      "file": "to-haggle.mp3",
+      "gain": -4.0,
+      "gainPhone": -4.3,
+      "lead": 302,
+      "matches": "feilschen",
+      "sha256": "7697ecb3032fa6672a78b1be172b720b033d8a7c0d3ef3f13903b03e2cc16933",
+      "snr": 77.0,
+      "source": "De-feilschen.ogg"
+    },
+    "to-hand-in": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "to-hand-in.mp3",
+      "gain": 2.2,
+      "gainPhone": 1.4,
+      "matches": "einreichen",
+      "sha256": "e218972a09c0b6fb048fa9556195dc177d2c7520aa2ab8db9a232e915be8e9e7",
+      "snr": 39.0,
+      "source": "De-einreichen.ogg"
+    },
+    "to-have": {
+      "author": "Jeuwre",
+      "capPhone": 0.6,
+      "file": "to-have.mp3",
+      "gain": -0.2,
+      "gainPhone": 2.1,
+      "lead": 397,
+      "matches": "haben",
+      "sha256": "5ce3ece5d0ed8e1a97d07926056db3f395fb14c12be685cfa3b29454570808e1",
+      "snr": 86.7,
+      "source": "De-haben3.ogg"
+    },
+    "to-hear": {
+      "author": "Kampy",
+      "file": "to-hear.mp3",
+      "gain": -4.3,
+      "gainPhone": -1.4,
+      "matches": "hören",
+      "sha256": "5ac9315874fc9a4451654f5fa2231c20f80666ba22f25a4d50b10ec5527e5d85",
+      "snr": 54.9,
+      "source": "De-hören.ogg"
     },
     "to-help": {
       "author": "Kampy",
@@ -11382,6 +10799,28 @@
       "snr": 64.4,
       "source": "De-helfen.ogg"
     },
+    "to-hire": {
+      "author": "Jeuwre",
+      "file": "to-hire.mp3",
+      "gain": -2.3,
+      "gainPhone": -5.1,
+      "lead": 442,
+      "matches": "einstellen",
+      "sha256": "21af0cfbd9ae469585444e6e8e11658af656b2066103bb4c4de990ec09c6fbe9",
+      "snr": 86.5,
+      "source": "De-einstellen.ogg"
+    },
+    "to-hurt": {
+      "author": "Jeuwre",
+      "file": "to-hurt.mp3",
+      "gain": -2.6,
+      "gainPhone": 0.7,
+      "lead": 415,
+      "matches": "wehtun",
+      "sha256": "e57ec6c8f555343b1f09d1c6b74871980e7cb24c7068820a7c0bee113bf05afd",
+      "snr": 86.7,
+      "source": "De-wehtun.ogg"
+    },
     "to-invite": {
       "author": "Jeuwre",
       "file": "to-invite.mp3",
@@ -11392,6 +10831,94 @@
       "sha256": "500a5673b294fd370feaf56468598ec50485bd307320b587b53510339f88c0e2",
       "snr": 86.5,
       "source": "De-einladen.ogg"
+    },
+    "to-jog": {
+      "author": "Jeuwre",
+      "file": "to-jog.mp3",
+      "gain": -2.1,
+      "gainPhone": -2.9,
+      "lead": 420,
+      "matches": "joggen",
+      "sha256": "b376f6626600aa5785acdf0911809264b3482f735fc4c9860401163bfc847e33",
+      "snr": 87.0,
+      "source": "De-joggen.ogg"
+    },
+    "to-know": {
+      "author": "Jeuwre",
+      "file": "to-know.mp3",
+      "gain": 3.9,
+      "gainPhone": -3.7,
+      "lead": 218,
+      "matches": "wissen",
+      "sha256": "7ccda2f7553c8e002ceddb8839a102bf903f61a7bd35b595f2e6d15f14f8a446",
+      "snr": 59.7,
+      "source": "De-wissen.ogg"
+    },
+    "to-laugh": {
+      "author": "Jeuwre",
+      "cap": 1.5,
+      "file": "to-laugh.mp3",
+      "gain": 1.9,
+      "gainPhone": 0.5,
+      "lead": 431,
+      "matches": "lachen",
+      "sha256": "bc4f04f376c16d92037d6c3222c75bbb9027f70c488a0dddc009bf2abc87307a",
+      "snr": 86.8,
+      "source": "De-lachen2.ogg"
+    },
+    "to-leave": {
+      "author": "Kampy",
+      "file": "to-leave.mp3",
+      "gain": -1.9,
+      "gainPhone": -3.2,
+      "matches": "verlassen",
+      "sha256": "fc2245595f449bbb91b12650b0739d242479d3d5ff6ec2e9433c29407cd4e333",
+      "snr": 29.0,
+      "source": "De-verlassen.ogg"
+    },
+    "to-like": {
+      "author": "Jeuwre",
+      "file": "to-like.mp3",
+      "gain": -5.5,
+      "gainPhone": -2.6,
+      "lead": 442,
+      "matches": "mögen",
+      "sha256": "1d7aaa3dc67367260cc6380c24f3f28180bcb9dad81ac34c91fcfbe9cd1e985e",
+      "snr": 86.6,
+      "source": "De-mögen2.ogg"
+    },
+    "to-live": {
+      "author": "Kampy",
+      "file": "to-live.mp3",
+      "gain": 0.7,
+      "gainPhone": 6.2,
+      "lead": 270,
+      "matches": "wohnen",
+      "sha256": "bc68c5d61ec1664cfa8d2720093f98dee234576e4e9cc55fc7b0e1658a47ce6b",
+      "snr": 56.5,
+      "source": "De-wohnen.ogg"
+    },
+    "to-lock": {
+      "author": "Jeuwre",
+      "file": "to-lock.mp3",
+      "gain": 2.2,
+      "gainPhone": -3.0,
+      "lead": 509,
+      "matches": "abschließen",
+      "sha256": "7901e41052576018f7a57a62bcca3c0c191c73bae6ab0104530fdb1de66a8783",
+      "snr": 86.7,
+      "source": "De-abschließen.ogg"
+    },
+    "to-look": {
+      "author": "Jeuwre",
+      "file": "to-look.mp3",
+      "gain": -3.2,
+      "gainPhone": -1.8,
+      "lead": 433,
+      "matches": "schauen",
+      "sha256": "e34e780a9ace0c88adf134b6d7e2c816c19890b2b7fdc9491c84986af206ab2b",
+      "snr": 86.5,
+      "source": "De-schauen.ogg"
     },
     "to-lose": {
       "author": "Natschoba",
@@ -11404,6 +10931,17 @@
       "snr": 52.9,
       "source": "LL-Q188 (deu)-Natschoba-verlieren.wav"
     },
+    "to-make": {
+      "author": "Kampy",
+      "file": "to-make.mp3",
+      "gain": 8.3,
+      "gainPhone": 8.3,
+      "lead": 200,
+      "matches": "machen",
+      "sha256": "5b182c630816fb3cd4068c7aa8b3dcb6f2e9ff728444bc16bb3ecff2f3dd913f",
+      "snr": 65.5,
+      "source": "De-machen.ogg"
+    },
     "to-marry": {
       "author": "Natschoba",
       "file": "to-marry.mp3",
@@ -11415,6 +10953,71 @@
       "snr": 69.9,
       "source": "LL-Q188 (deu)-Natschoba-heiraten.wav"
     },
+    "to-need": {
+      "author": "Kampy",
+      "file": "to-need.mp3",
+      "gain": 5.1,
+      "gainPhone": 3.7,
+      "lead": 124,
+      "matches": "brauchen",
+      "sha256": "de488ae2839d3c4b8e1a1962dbc4290a012194cfa99901d80c9a134e521dff52",
+      "snr": 60.9,
+      "source": "De-brauchen.ogg"
+    },
+    "to-open": {
+      "author": "Kampy",
+      "file": "to-open.mp3",
+      "gain": 0.7,
+      "gainPhone": 1.4,
+      "matches": "öffnen",
+      "sha256": "647ff42f21ab38b8c4e939ceda7e84394dad814d552e3c102c9da2dbb964a954",
+      "snr": 34.2,
+      "source": "De-öffnen.ogg"
+    },
+    "to-order": {
+      "author": "Natschoba",
+      "file": "to-order.mp3",
+      "gain": 8.8,
+      "gainPhone": 1.8,
+      "lead": 190,
+      "matches": "bestellen",
+      "sha256": "0a0b58a5198e70ce8787875b671819c3306b31eb4598c0a336b7b69a75257a98",
+      "snr": 61.5,
+      "source": "LL-Q188 (deu)-Natschoba-bestellen.wav"
+    },
+    "to-pay": {
+      "author": "Jeuwre",
+      "file": "to-pay.mp3",
+      "gain": -3.8,
+      "gainPhone": -5.1,
+      "lead": 445,
+      "matches": "bezahlen",
+      "sha256": "d99a2b118998b2a4a8287b5648e4edf75c9ca64c717a4bf5314b3b9f2e4c0b83",
+      "snr": 86.8,
+      "source": "De-bezahlen.ogg"
+    },
+    "to-play": {
+      "author": "Kampy",
+      "file": "to-play.mp3",
+      "gain": 3.6,
+      "gainPhone": 0.5,
+      "lead": 170,
+      "matches": "spielen",
+      "sha256": "b56a95a3b029bd8dddd1af246177d151c33374a508b93122ee4f0de13427c479",
+      "snr": 57.7,
+      "source": "De-spielen.ogg"
+    },
+    "to-postpone": {
+      "author": "Jeuwre",
+      "file": "to-postpone.mp3",
+      "gain": -3.6,
+      "gainPhone": -8.2,
+      "lead": 544,
+      "matches": "verschieben",
+      "sha256": "506381fa022030e463aed1a41b5eadc0455beaf36d7675ac1c48d511cc0a1134",
+      "snr": 86.7,
+      "source": "De-verschieben.ogg"
+    },
     "to-practice": {
       "author": "Jeuwre",
       "file": "to-practice.mp3",
@@ -11425,6 +11028,18 @@
       "sha256": "920ddd8653e865eb96d6beb53be6183f496d2056514577d189f46720d0c83f6b",
       "snr": 86.2,
       "source": "De-üben.ogg"
+    },
+    "to-print": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "capPhone": 2.6,
+      "file": "to-print.mp3",
+      "gain": 9.0,
+      "gainPhone": 9.9,
+      "lead": 13,
+      "matches": "drucken",
+      "sha256": "75f1ce566086bc685365cad08528c1da5eea45319b0dde960252ecdf8dacd3cb",
+      "snr": 33.6,
+      "source": "De-drucken.ogg"
     },
     "to-pronounce": {
       "author": "Kampy",
@@ -11457,6 +11072,195 @@
       "snr": 33.2,
       "source": "De-schieben.ogg"
     },
+    "to-quit": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "capPhone": 0.7,
+      "file": "to-quit.mp3",
+      "gain": 4.9,
+      "gainPhone": 10.8,
+      "matches": "kündigen",
+      "sha256": "1865fac29867e3cce63eaf0e317e28a74b48460e5cd7f6228ea3e4de5bfef562",
+      "snr": 31.6,
+      "source": "De-kündigen.ogg"
+    },
+    "to-read": {
+      "author": "Kampy",
+      "file": "to-read.mp3",
+      "gain": 1.7,
+      "gainPhone": -6.5,
+      "lead": 221,
+      "matches": "lesen",
+      "sha256": "a6e89ae314156fc631934767a6624acc8166bf57df8897c121a05ff999f9f909",
+      "snr": 55.0,
+      "source": "De-lesen.ogg"
+    },
+    "to-read-aloud": {
+      "author": "Kampy",
+      "file": "to-read-aloud.mp3",
+      "gain": -1.8,
+      "gainPhone": -2.6,
+      "matches": "vorlesen",
+      "sha256": "583064b78f07084143ab39657ff98cabf24819edf727cf6ba0cc2ae83ae104c8",
+      "snr": 34.1,
+      "source": "De-vorlesen.ogg"
+    },
+    "to-receive": {
+      "author": "Natschoba",
+      "capPhone": 1.3,
+      "file": "to-receive.mp3",
+      "gain": 5.4,
+      "gainPhone": 7.5,
+      "lead": 204,
+      "matches": "bekommen",
+      "sha256": "526bc989e78fa739753fdb301aff19be818440afc52d36f3ddbd0110ef2e2b28",
+      "snr": 65.6,
+      "source": "LL-Q188 (deu)-Natschoba-bekommen.wav"
+    },
+    "to-reheat": {
+      "author": "Jeuwre",
+      "file": "to-reheat.mp3",
+      "gain": 0.7,
+      "gainPhone": 1.8,
+      "lead": 243,
+      "matches": "aufwärmen",
+      "sha256": "7685393b24cb14756cb33bc1bb088daa671128fd3a64663c519526730aa3b1c6",
+      "snr": 73.9,
+      "source": "De-aufwärmen.ogg"
+    },
+    "to-reject": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "to-reject.mp3",
+      "gain": 7.1,
+      "gainPhone": 9.6,
+      "lead": 50,
+      "matches": "ablehnen",
+      "sha256": "e216243cbbadda9cd9fad8f7c8c262f3a9b9679bf43f9b0881c07d494017f449",
+      "snr": 31.3,
+      "source": "De-ablehnen.ogg"
+    },
+    "to-repair": {
+      "author": "Natschoba",
+      "file": "to-repair.mp3",
+      "gain": 5.5,
+      "gainPhone": 7.0,
+      "lead": 183,
+      "matches": "reparieren",
+      "sha256": "e375bac8234028767fb1d40b130da81f86037ac29311fa97dc3404dad3a1e61a",
+      "snr": 61.9,
+      "source": "LL-Q188 (deu)-Natschoba-reparieren.wav"
+    },
+    "to-reply": {
+      "author": "User:Tosca",
+      "file": "to-reply.mp3",
+      "gain": 3.8,
+      "gainPhone": 1.1,
+      "lead": 268,
+      "matches": "antworten",
+      "sha256": "34942f30535450ca2e17b85ba7cc1ef330070a5754bda8e121299c7e22fdd005",
+      "snr": 60.9,
+      "source": "De-antworten.ogg"
+    },
+    "to-reserve": {
+      "author": "Jeuwre",
+      "file": "to-reserve.mp3",
+      "gain": -2.7,
+      "gainPhone": -4.1,
+      "lead": 269,
+      "matches": "reservieren",
+      "sha256": "812035cb49550ec04e7222f56d957b8777e9df5d66f2abcca774b8bd95675e03",
+      "snr": 56.0,
+      "source": "De-reservieren.ogg"
+    },
+    "to-ring": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "to-ring.mp3",
+      "gain": 1.7,
+      "gainPhone": 4.6,
+      "lead": 343,
+      "matches": "klingeln",
+      "sha256": "3a33f9ef032088a3ae6834e8bf561c9495a514952d9e41a282363ff95ac9b57a",
+      "snr": 38.4,
+      "source": "De-klingeln.ogg"
+    },
+    "to-save": {
+      "author": "User:Tosca",
+      "file": "to-save.mp3",
+      "gain": 5.3,
+      "gainPhone": 0.8,
+      "lead": 232,
+      "matches": "speichern",
+      "sha256": "4b5840b9ec4c4f72fec9f61d2c398c8398562525eeb401776a2f5186c48ca7a0",
+      "snr": 54.9,
+      "source": "De-speichern.ogg"
+    },
+    "to-say": {
+      "author": "Kampy",
+      "file": "to-say.mp3",
+      "gain": 9.9,
+      "gainPhone": 7.0,
+      "lead": 230,
+      "matches": "sagen",
+      "sha256": "e80e04d91c0f342ee0aec629ce7fd0bfb4d2cd0bcc2cf595802b07829bf5224e",
+      "snr": 75.1,
+      "source": "De-sagen.ogg"
+    },
+    "to-search": {
+      "author": "Natschoba",
+      "capPhone": 0.5,
+      "file": "to-search.mp3",
+      "gain": 6.6,
+      "gainPhone": 14.3,
+      "lead": 265,
+      "matches": "suchen",
+      "sha256": "5e2e1301ab32be3ce7371118eb113c6cce9006265b7762d2a0211e679c3e75bd",
+      "snr": 59.4,
+      "source": "LL-Q188 (deu)-Natschoba-suchen.wav"
+    },
+    "to-see": {
+      "author": "Kampy",
+      "file": "to-see.mp3",
+      "gain": 1.7,
+      "gainPhone": -2.7,
+      "lead": 183,
+      "matches": "sehen",
+      "sha256": "48a38ce822b20404da8177c9e01ef851d010676aec35abed7c0f3ebdd6db354f",
+      "snr": 51.6,
+      "source": "De-sehen.ogg"
+    },
+    "to-sell": {
+      "author": "Natschoba",
+      "cap": 0.2,
+      "file": "to-sell.mp3",
+      "gain": 6.7,
+      "gainPhone": 2.0,
+      "lead": 188,
+      "matches": "verkaufen",
+      "sha256": "4581e379b526b0583b0f3edb7b79ae7dfa4d4df6d845ec5f61c23ae5a5a8cdb8",
+      "snr": 63.6,
+      "source": "LL-Q188 (deu)-Natschoba-verkaufen.wav"
+    },
+    "to-send": {
+      "author": "Natschoba",
+      "file": "to-send.mp3",
+      "gain": 6.7,
+      "gainPhone": 5.5,
+      "lead": 87,
+      "matches": "schicken",
+      "sha256": "40964850cc42797eb9fa76eb332df7d71a9d01e7b0a4cf0bf93751e6fffe6bdc",
+      "snr": 61.6,
+      "source": "LL-Q188 (deu)-Natschoba-schicken.wav"
+    },
+    "to-shop": {
+      "author": "Jeuwre",
+      "file": "to-shop.mp3",
+      "gain": -0.7,
+      "gainPhone": -1.5,
+      "lead": 449,
+      "matches": "einkaufen",
+      "sha256": "beade1c6077c7755b1289c652988c0dbdaafef5be050c45dbf7e1419fff4b0e7",
+      "snr": 83.4,
+      "source": "De-einkaufen.ogg"
+    },
     "to-show": {
       "author": "Natschoba",
       "file": "to-show.mp3",
@@ -11467,6 +11271,49 @@
       "sha256": "b15de1d8e132ada99d50ad0bd503f25e046257b34aa254737390e57a5a1a0a0a",
       "snr": 61.9,
       "source": "LL-Q188 (deu)-Natschoba-zeigen.wav"
+    },
+    "to-sign": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "to-sign.mp3",
+      "gain": 4.6,
+      "gainPhone": 3.0,
+      "matches": "unterschreiben",
+      "sha256": "b8331f9c7f0e5470921ac12c2bfc07248a383c06a7a97ddc3113418a817c3be4",
+      "snr": 33.5,
+      "source": "De-unterschreiben.ogg"
+    },
+    "to-sit": {
+      "author": "Kampy",
+      "file": "to-sit.mp3",
+      "gain": -0.1,
+      "gainPhone": -7.9,
+      "lead": 237,
+      "matches": "sitzen",
+      "sha256": "57746ff9c95c86b16cfe3302cf534182ab3f450aab3feb0249fd80d850283270",
+      "snr": 56.5,
+      "source": "De-sitzen.ogg"
+    },
+    "to-sleep": {
+      "author": "Kampy",
+      "cap": 0.5,
+      "file": "to-sleep.mp3",
+      "gain": 8.9,
+      "gainPhone": 6.4,
+      "lead": 177,
+      "matches": "schlafen",
+      "sha256": "69d3b328f7928cd2301232a1e5d29c35e35e23c13443341a089aa8f5b3333116",
+      "snr": 72.4,
+      "source": "De-schlafen.ogg"
+    },
+    "to-snore": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "to-snore.mp3",
+      "gain": 0.6,
+      "gainPhone": -0.1,
+      "matches": "schnarchen",
+      "sha256": "d5eeedd5a6227c03514e5c6253eaba466cf5193d1194f0be00a8231d8e0a2b72",
+      "snr": 37.8,
+      "source": "De-schnarchen.ogg"
     },
     "to-solve": {
       "author": "Katrin Boxberger, Bernadette Perrin-Riou",
@@ -11480,6 +11327,125 @@
       "snr": 57.6,
       "source": "De-lösen.ogg"
     },
+    "to-speak": {
+      "author": "Kampy",
+      "file": "to-speak.mp3",
+      "gain": 2.4,
+      "gainPhone": 3.6,
+      "matches": "sprechen",
+      "sha256": "6d9459dd71f74a7c8eed54ebe6719a7c297d764aac1617666d685dcc892804cf",
+      "snr": 61.7,
+      "source": "De-sprechen.ogg"
+    },
+    "to-stand": {
+      "author": "Sebastian Wallroth",
+      "file": "to-stand.mp3",
+      "gain": 0.1,
+      "gainPhone": -3.5,
+      "lead": 235,
+      "matches": "stehen",
+      "sha256": "8a2dd8414f8c5dc1c5756172e1206c773f5161e6de992897310beac4cc06d512",
+      "snr": 51.7,
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-stehen.wav"
+    },
+    "to-start": {
+      "author": "Jeuwre",
+      "file": "to-start.mp3",
+      "gain": -1.3,
+      "gainPhone": 1.3,
+      "lead": 447,
+      "matches": "anfangen",
+      "sha256": "cdba076768381f2855d135c9216f0c18844eb2c7e1af8ae561f3808b61884b5c",
+      "snr": 86.8,
+      "source": "De-anfangen.ogg"
+    },
+    "to-stir": {
+      "author": "Jeuwre",
+      "capPhone": 0.6,
+      "file": "to-stir.mp3",
+      "gain": -4.7,
+      "gainPhone": 2.2,
+      "lead": 441,
+      "matches": "umrühren",
+      "sha256": "ab3f5c0f695d7c7c29fc64b5a6e3be4e3e69a962a6377b14543b1e2d36b68cf9",
+      "snr": 86.5,
+      "source": "De-umrühren.ogg"
+    },
+    "to-stop": {
+      "author": "Jeuwre",
+      "file": "to-stop.mp3",
+      "gain": -4.7,
+      "gainPhone": -1.1,
+      "lead": 434,
+      "matches": "aufhören",
+      "sha256": "094dd37c730f58738979f6dae14dc0b54feb018011fb730c5e7349d6b876cd4f",
+      "snr": 87.0,
+      "source": "De-aufhören.ogg"
+    },
+    "to-study": {
+      "author": "Kampy",
+      "file": "to-study.mp3",
+      "gain": 6.4,
+      "gainPhone": 6.9,
+      "matches": "lernen",
+      "sha256": "6cfb41debd7de8858736e64c1b2231b09d74eb790fbe004d0ef80dd191e4b705",
+      "snr": 63.2,
+      "source": "De-lernen.ogg"
+    },
+    "to-submit": {
+      "author": "Kampy",
+      "cap": 2.4,
+      "file": "to-submit.mp3",
+      "gain": -0.9,
+      "gainPhone": -3.1,
+      "matches": "abgeben",
+      "sha256": "99a8d30188fa1faf085374c5d6ec2a51fec05fc0ff4ebc630c5c3fe893deda31",
+      "snr": 41.1,
+      "source": "De-abgeben.ogg"
+    },
+    "to-take": {
+      "author": "Kampy",
+      "file": "to-take.mp3",
+      "gain": 5.2,
+      "gainPhone": 7.1,
+      "lead": 199,
+      "matches": "nehmen",
+      "sha256": "f2d520a5a781513a33c573f81972b6e648b9f91e39ce8c1c0b0807f9e0cc4e99",
+      "snr": 57.3,
+      "source": "De-nehmen.ogg"
+    },
+    "to-take-shower": {
+      "author": "Kampy",
+      "file": "to-take-shower.mp3",
+      "gain": -8.5,
+      "gainPhone": -16.1,
+      "matches": "duschen",
+      "sha256": "893ea0e4b50c5d1c170fc2e413e4f4da71b6f2c835a52a824981a5bb4fcb874d",
+      "snr": 16.2,
+      "source": "De-duschen.ogg"
+    },
+    "to-talk": {
+      "author": "Jeuwre",
+      "file": "to-talk.mp3",
+      "gain": -1.3,
+      "gainPhone": -1.9,
+      "lead": 443,
+      "matches": "reden",
+      "sha256": "c5d99a8f02c588d0d8dcc8f0543f6c928e2504b5e488333a4d22d1a27f25b5f5",
+      "snr": 83.6,
+      "source": "De-reden.ogg"
+    },
+    "to-taste": {
+      "author": "Jeuwre",
+      "file": "to-taste.mp3",
+      "gain": -2.7,
+      "gainPhone": 1.5,
+      "lead": 449,
+      "matches": "probieren",
+      "sha256": "587dff4c31957db04a69f4c45acb3294e3d15fcaf74658a0113cba45e8701dd7",
+      "snr": 86.9,
+      "source": "De-probieren.ogg"
+    },
     "to-teach": {
       "author": "Jeuwre",
       "file": "to-teach.mp3",
@@ -11491,6 +11457,61 @@
       "snr": 90.7,
       "source": "De-unterrichten.ogg"
     },
+    "to-thank": {
+      "author": "Kampy",
+      "file": "to-thank.mp3",
+      "gain": 7.1,
+      "gainPhone": 5.0,
+      "lead": 238,
+      "matches": "danken",
+      "sha256": "70a91be15bc02a59ab514c92ab76647a25864f728e662708732b5373147e29a8",
+      "snr": 59.2,
+      "source": "De-danken.ogg"
+    },
+    "to-think": {
+      "author": "Kampy",
+      "file": "to-think.mp3",
+      "gain": -1.9,
+      "gainPhone": -0.8,
+      "lead": 446,
+      "matches": "denken",
+      "sha256": "d7eeb06113c61843eea067cc724a27ef2e96b46b5cffe9321b356debf89bdf8e",
+      "snr": 123.8,
+      "source": "De-denken.ogg"
+    },
+    "to-tidy-up": {
+      "author": "Jeuwre",
+      "capPhone": 0.3,
+      "file": "to-tidy-up.mp3",
+      "gain": -2.1,
+      "gainPhone": 2.1,
+      "lead": 430,
+      "matches": "aufräumen",
+      "sha256": "5ff61c5911854d1c8202b391a06b13af7fc055a10d45d719171413b3ab6ee9c2",
+      "snr": 86.8,
+      "source": "De-aufräumen.ogg"
+    },
+    "to-translate": {
+      "author": "Kampy",
+      "file": "to-translate.mp3",
+      "gain": 1.2,
+      "gainPhone": 3.5,
+      "lead": 258,
+      "matches": "übersetzen",
+      "sha256": "0ed84f6b0f597d826ea38142371daa21fcdeef5481d91463bef2b9327994e134",
+      "snr": 69.7,
+      "source": "De-übersetzen.ogg"
+    },
+    "to-travel": {
+      "author": "Kampy",
+      "file": "to-travel.mp3",
+      "gain": 0.8,
+      "gainPhone": 0.9,
+      "matches": "reisen",
+      "sha256": "e82d8a69493accf97fd2a13fd7dbdcc5334a6fac2dee33ee5dd7a27734b6bb6b",
+      "snr": 33.3,
+      "source": "De-reisen.ogg"
+    },
     "to-try": {
       "author": "Kampy",
       "file": "to-try.mp3",
@@ -11501,6 +11522,51 @@
       "sha256": "ebd4693865b893819ba033679673c5181cc5843a22e3a328c16742ff347543a0",
       "snr": 60.9,
       "source": "De-versuchen.ogg"
+    },
+    "to-turn": {
+      "author": "Natschoba",
+      "cap": 1.7,
+      "file": "to-turn.mp3",
+      "gain": 2.7,
+      "gainPhone": -4.4,
+      "lead": 168,
+      "matches": "abbiegen",
+      "sha256": "561f1a78682f66ba8b9f46bfac46ec1be783ed89c71704f13b875c53a053530d",
+      "snr": 70.8,
+      "source": "LL-Q188 (deu)-Natschoba-abbiegen.wav"
+    },
+    "to-type": {
+      "author": "Jeuwre",
+      "file": "to-type.mp3",
+      "gain": 0.3,
+      "gainPhone": 1.0,
+      "lead": 442,
+      "matches": "tippen",
+      "sha256": "16bca13b391951918067242bafd83728081066be98691b63e3aa25eea2495189",
+      "snr": 87.8,
+      "source": "De-tippen.ogg"
+    },
+    "to-understand": {
+      "author": "Kampy",
+      "file": "to-understand.mp3",
+      "gain": 1.9,
+      "gainPhone": 3.5,
+      "lead": 124,
+      "matches": "verstehen",
+      "sha256": "9ceb1e0f7ad76d27baec7fbb3343b5377dca400054c7968d24314eceab5f3a62",
+      "snr": 60.5,
+      "source": "De-verstehen.ogg"
+    },
+    "to-unlock": {
+      "author": "Kampy",
+      "cap": 3.7,
+      "file": "to-unlock.mp3",
+      "gain": -1.0,
+      "gainPhone": -1.0,
+      "matches": "aufschließen",
+      "sha256": "24ca8fc6c95f6e9f2b25a1eddc7a5d24ae665f40c5d869329deefa94327b10ae",
+      "snr": 32.2,
+      "source": "De-aufschließen.ogg"
     },
     "to-visit": {
       "author": "Natschoba",
@@ -11526,6 +11592,60 @@
       "snr": 52.6,
       "source": "De-wählen.ogg"
     },
+    "to-wait": {
+      "author": "Kampy",
+      "file": "to-wait.mp3",
+      "gain": 0.2,
+      "gainPhone": -1.7,
+      "matches": "warten",
+      "sha256": "688ce8a78801818c1d7065a3c20bfc0c788f6e6d8c2efcd7d517627cbd13c80e",
+      "snr": 32.0,
+      "source": "De-warten.ogg"
+    },
+    "to-wake-up": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "to-wake-up.mp3",
+      "gain": 6.1,
+      "gainPhone": 0.8,
+      "lead": 200,
+      "matches": "aufwachen",
+      "sha256": "3a4401c8626f8ef5ad8f675a9993b48c8b0ee82d48e0659c21efcb0a7c6f25fa",
+      "snr": 61.4,
+      "source": "De-aufwachen.ogg"
+    },
+    "to-want": {
+      "author": "Natschoba",
+      "file": "to-want.mp3",
+      "gain": -0.1,
+      "gainPhone": 3.7,
+      "lead": 196,
+      "matches": "wollen",
+      "sha256": "4e6ee36f5445810f16acd3c4ac916eb114c284dc30ec524369bf4ae70516ae8c",
+      "snr": 64.1,
+      "source": "LL-Q188 (deu)-Natschoba-wollen.wav"
+    },
+    "to-watch-tv": {
+      "author": "Jeuwre",
+      "file": "to-watch-tv.mp3",
+      "gain": -1.5,
+      "gainPhone": -1.9,
+      "lead": 414,
+      "matches": "fernsehen",
+      "sha256": "87fb3f39c60d53124fd5d854d741ccfa181a91e83b77cf7a3b93f43acd908a76",
+      "snr": 86.9,
+      "source": "De-fernsehen.ogg"
+    },
+    "to-weigh": {
+      "author": "Natschoba",
+      "file": "to-weigh.mp3",
+      "gain": 2.6,
+      "gainPhone": 6.3,
+      "lead": 86,
+      "matches": "wiegen",
+      "sha256": "446a3a9d9e6ab67335a93d6513e7c52271e999fab47e146f726e1c567fb68bd5",
+      "snr": 55.6,
+      "source": "LL-Q188 (deu)-Natschoba-wiegen.wav"
+    },
     "to-work": {
       "author": "Kampy",
       "cap": 1.9,
@@ -11537,6 +11657,28 @@
       "sha256": "195cade0f694d67cd3727e11143260e69c7dfd9b2756cb98b328c565066f00f8",
       "snr": 58.1,
       "source": "De-arbeiten.ogg"
+    },
+    "to-write": {
+      "author": "Kampy",
+      "file": "to-write.mp3",
+      "gain": 2.8,
+      "gainPhone": -1.1,
+      "lead": 81,
+      "matches": "schreiben",
+      "sha256": "ff69a057cd9d5b60dcdd23e856ccc0596b68944088a77d2c9430bb1ee1fb4437",
+      "snr": 67.7,
+      "source": "De-schreiben.ogg"
+    },
+    "to-yawn": {
+      "author": "Jeuwre",
+      "file": "to-yawn.mp3",
+      "gain": -2.2,
+      "gainPhone": -2.0,
+      "lead": 389,
+      "matches": "gähnen",
+      "sha256": "c8eeb8bcbf4719589412f5e329706e3ad9c9ff8344cb888f1a7547c87572c759",
+      "snr": 86.9,
+      "source": "De-gähnen.ogg"
     },
     "today": {
       "author": "Kampy",
@@ -11736,17 +11878,6 @@
       "snr": 86.8,
       "source": "De-Ausbildung.ogg"
     },
-    "translate": {
-      "author": "Kampy",
-      "file": "translate.mp3",
-      "gain": 1.2,
-      "gainPhone": 3.5,
-      "lead": 258,
-      "matches": "übersetzen",
-      "sha256": "0ed84f6b0f597d826ea38142371daa21fcdeef5481d91463bef2b9327994e134",
-      "snr": 69.7,
-      "source": "De-übersetzen.ogg"
-    },
     "trash-can": {
       "author": "Jeuwre",
       "file": "trash-can.mp3",
@@ -11757,16 +11888,6 @@
       "sha256": "89afdcbf61b3dbe1c67611765b6cd004975d7a4aeddb7d3484965a0d7c69ee3f",
       "snr": 64.9,
       "source": "De-Mülleimer.ogg"
-    },
-    "travel": {
-      "author": "Kampy",
-      "file": "travel.mp3",
-      "gain": 0.8,
-      "gainPhone": 0.9,
-      "matches": "reisen",
-      "sha256": "e82d8a69493accf97fd2a13fd7dbdcc5334a6fac2dee33ee5dd7a27734b6bb6b",
-      "snr": 33.3,
-      "source": "De-reisen.ogg"
     },
     "tree": {
       "author": "Jeuwre",
@@ -11791,18 +11912,6 @@
       "snr": 87.0,
       "source": "De-Lastwagen.ogg"
     },
-    "turn": {
-      "author": "Natschoba",
-      "cap": 1.7,
-      "file": "turn.mp3",
-      "gain": 2.7,
-      "gainPhone": -4.4,
-      "lead": 168,
-      "matches": "abbiegen",
-      "sha256": "561f1a78682f66ba8b9f46bfac46ec1be783ed89c71704f13b875c53a053530d",
-      "snr": 70.8,
-      "source": "LL-Q188 (deu)-Natschoba-abbiegen.wav"
-    },
     "tv": {
       "author": "Kampy",
       "cap": 1.6,
@@ -11814,17 +11923,6 @@
       "sha256": "62e3d08e720fd4f228722ea23d65b2aee4fa0c6f81055df7ac752c8d21a7dfa2",
       "snr": 62.5,
       "source": "De-Fernseher.ogg"
-    },
-    "type": {
-      "author": "Jeuwre",
-      "file": "type.mp3",
-      "gain": 0.3,
-      "gainPhone": 1.0,
-      "lead": 442,
-      "matches": "tippen",
-      "sha256": "16bca13b391951918067242bafd83728081066be98691b63e3aa25eea2495189",
-      "snr": 87.8,
-      "source": "De-tippen.ogg"
     },
     "ugali": {
       "author": "Jeuwre",
@@ -11860,17 +11958,6 @@
       "snr": 56.2,
       "source": "De-Onkel.ogg"
     },
-    "understand": {
-      "author": "Kampy",
-      "file": "understand.mp3",
-      "gain": 1.9,
-      "gainPhone": 3.5,
-      "lead": 124,
-      "matches": "verstehen",
-      "sha256": "9ceb1e0f7ad76d27baec7fbb3343b5377dca400054c7968d24314eceab5f3a62",
-      "snr": 60.5,
-      "source": "De-verstehen.ogg"
-    },
     "underwear": {
       "author": "Kampy",
       "file": "underwear.mp3",
@@ -11891,17 +11978,6 @@
       "sha256": "1567451878a82adee247c09aef7a8fe1065dcfd567b8345a9311e70dcb487029",
       "snr": 87.7,
       "source": "De-Universität.ogg"
-    },
-    "unlock": {
-      "author": "Kampy",
-      "cap": 3.7,
-      "file": "unlock.mp3",
-      "gain": -1.0,
-      "gainPhone": -1.0,
-      "matches": "aufschließen",
-      "sha256": "24ca8fc6c95f6e9f2b25a1eddc7a5d24ae665f40c5d869329deefa94327b10ae",
-      "snr": 32.2,
-      "source": "De-aufschließen.ogg"
     },
     "until": {
       "author": "Kampy",
@@ -12013,16 +12089,6 @@
       "snr": 98.0,
       "source": "De-Visum.ogg"
     },
-    "wait": {
-      "author": "Kampy",
-      "file": "wait.mp3",
-      "gain": 0.2,
-      "gainPhone": -1.7,
-      "matches": "warten",
-      "sha256": "688ce8a78801818c1d7065a3c20bfc0c788f6e6d8c2efcd7d517627cbd13c80e",
-      "snr": 32.0,
-      "source": "De-warten.ogg"
-    },
     "waiter": {
       "author": "Jeuwre",
       "file": "waiter.mp3",
@@ -12067,17 +12133,6 @@
       "snr": 86.7,
       "source": "De-Wartezeit.ogg"
     },
-    "wake-up": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "file": "wake-up.mp3",
-      "gain": 6.1,
-      "gainPhone": 0.8,
-      "lead": 200,
-      "matches": "aufwachen",
-      "sha256": "3a4401c8626f8ef5ad8f675a9993b48c8b0ee82d48e0659c21efcb0a7c6f25fa",
-      "snr": 61.4,
-      "source": "De-aufwachen.ogg"
-    },
     "wall": {
       "author": "Jeuwre",
       "file": "wall.mp3",
@@ -12099,17 +12154,6 @@
       "sha256": "2a44c135eb4151a8cc3491de403063146153c8faca23cfd16d76ca946a1c2741",
       "snr": 85.6,
       "source": "De-Geldbeutel.ogg"
-    },
-    "want": {
-      "author": "Natschoba",
-      "file": "want.mp3",
-      "gain": -0.1,
-      "gainPhone": 3.7,
-      "lead": 196,
-      "matches": "wollen",
-      "sha256": "4e6ee36f5445810f16acd3c4ac916eb114c284dc30ec524369bf4ae70516ae8c",
-      "snr": 64.1,
-      "source": "LL-Q188 (deu)-Natschoba-wollen.wav"
     },
     "war": {
       "author": "Jeuwre",
@@ -12143,17 +12187,6 @@
       "sha256": "82cde2994efb8aae807f12b8cf36f6a90040bdb3a7b53da43dea22e0fa6c3498",
       "snr": 87.1,
       "source": "De-Waschmaschine.ogg"
-    },
-    "watch-tv": {
-      "author": "Jeuwre",
-      "file": "watch-tv.mp3",
-      "gain": -1.5,
-      "gainPhone": -1.9,
-      "lead": 414,
-      "matches": "fernsehen",
-      "sha256": "87fb3f39c60d53124fd5d854d741ccfa181a91e83b77cf7a3b93f43acd908a76",
-      "snr": 86.9,
-      "source": "De-fernsehen.ogg"
     },
     "water": {
       "author": "Jeuwre",
@@ -12212,17 +12245,6 @@
       "sha256": "d5ea90204565bb13a3096266a1d3c19622dbb54afe4a6f28f9b769dafed96a83",
       "snr": 50.9,
       "source": "De-Woche.ogg"
-    },
-    "weigh": {
-      "author": "Natschoba",
-      "file": "weigh.mp3",
-      "gain": 2.6,
-      "gainPhone": 6.3,
-      "lead": 86,
-      "matches": "wiegen",
-      "sha256": "446a3a9d9e6ab67335a93d6513e7c52271e999fab47e146f726e1c567fb68bd5",
-      "snr": 55.6,
-      "source": "LL-Q188 (deu)-Natschoba-wiegen.wav"
     },
     "welcome": {
       "author": "Jeuwre",
@@ -12500,28 +12522,6 @@
       "sha256": "4ad3ba7159051ea28f0e65d6852b1337aa8afaf4f3cdbcf69e5339a9534e48e9",
       "snr": 86.6,
       "source": "De-wunde.ogg"
-    },
-    "write": {
-      "author": "Kampy",
-      "file": "write.mp3",
-      "gain": 2.8,
-      "gainPhone": -1.1,
-      "lead": 81,
-      "matches": "schreiben",
-      "sha256": "ff69a057cd9d5b60dcdd23e856ccc0596b68944088a77d2c9430bb1ee1fb4437",
-      "snr": 67.7,
-      "source": "De-schreiben.ogg"
-    },
-    "yawn": {
-      "author": "Jeuwre",
-      "file": "yawn.mp3",
-      "gain": -2.2,
-      "gainPhone": -2.0,
-      "lead": 389,
-      "matches": "gähnen",
-      "sha256": "c8eeb8bcbf4719589412f5e329706e3ad9c9ff8344cb888f1a7547c87572c759",
-      "snr": 86.9,
-      "source": "De-gähnen.ogg"
     },
     "year": {
       "author": "Jeuwre",

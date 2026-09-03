@@ -3,7 +3,7 @@
  "subtitle": "Vortoj, frazoj kaj ilia signifo.",
  "words": {
   "meaning": { "text": "signifo" },
-  "translate": { "text": "traduki" },
+  "to-translate": { "text": "traduki" },
   "sentence": { "text": "frazo" },
   "word": { "text": "vorto" },
   "verb": { "text": "verbo" },

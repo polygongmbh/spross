@@ -3,10 +3,10 @@
  "subtitle": "Lo que cuesta algo y cómo se paga.",
  "words": {
   "price": { "text": "precio", "grammar": { "gender": "el" } },
-  "cost": { "text": "costar", "notes": { "de": "Stammwechsel o → ue: cuesta, cuestan." } },
+  "to-cost": { "text": "costar", "notes": { "de": "Stammwechsel o → ue: cuesta, cuestan." } },
   "expensive": { "text": "caro" },
   "cheap": { "text": "barato" },
-  "sell": { "text": "vender" },
+  "to-sell": { "text": "vender" },
   "cash": {
    "text": "efectivo",
    "grammar": { "gender": "el" },
@@ -25,8 +25,8 @@
    "notes": { "de": "In Spanien el cambio, in weiten Teilen Lateinamerikas el vuelto." }
   },
   "money": { "text": "dinero", "variants": ["plata"], "grammar": { "gender": "el" } },
-  "buy": { "text": "comprar" },
-  "pay": { "text": "pagar" },
+  "to-buy": { "text": "comprar" },
+  "to-pay": { "text": "pagar" },
   "rich": { "text": "rico" },
   "poor": { "text": "pobre" },
   "free-of-charge": { "text": "gratis" },

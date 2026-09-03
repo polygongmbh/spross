@@ -11,10 +11,10 @@
   "waiter": { "text": "camarero", "grammar": { "gender": "el" } },
   "waiter-f": { "text": "camarera", "grammar": { "gender": "la" } },
   "table": { "text": "mesa", "grammar": { "gender": "la" } },
-  "order": { "text": "pedir", "notes": { "de": "Stammwechsel e → i: pido, pide." } },
+  "to-order": { "text": "pedir", "notes": { "de": "Stammwechsel e → i: pido, pide." } },
   "bill": { "text": "cuenta", "grammar": { "gender": "la" } },
   "tip": { "text": "propina", "grammar": { "gender": "la" } },
-  "reserve": { "text": "reservar" },
+  "to-reserve": { "text": "reservar" },
   "glass": {
    "text": "vaso",
    "grammar": { "gender": "el" },

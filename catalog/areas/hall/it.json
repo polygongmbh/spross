@@ -43,24 +43,24 @@
     "de": "la borsa ist die Trage- und die Handtasche; die Einkaufstüte heißt il sacchetto, der Rucksack lo zaino."
    }
   },
-  "lock": { "text": "chiudere a chiave", "variants": ["chiudere la porta a chiave"] },
-  "ring": {
+  "to-lock": { "text": "chiudere a chiave", "variants": ["chiudere la porta a chiave"] },
+  "to-ring": {
    "text": "suonare",
    "variants": ["suonare il campanello"],
    "notes": {
     "de": "suonare gilt für beides: il campanello suona, und man selbst suona il campanello; im Perfekt mit avere und ohne Subjekt: Ha suonato."
    }
   },
-  "take-off-shoes": { "text": "togliersi le scarpe", "variants": ["levarsi le scarpe"] },
-  "set-off": { "text": "uscire di casa" },
-  "unlock": {
+  "to-take-off-shoes": { "text": "togliersi le scarpe", "variants": ["levarsi le scarpe"] },
+  "to-set-off": { "text": "uscire di casa" },
+  "to-unlock": {
    "text": "aprire con la chiave",
    "notes": { "de": "für aufschließen gibt es kein eigenes Verb; man sagt aprire con la chiave." }
   },
-  "get-dressed": { "text": "vestirsi" },
-  "arrive": { "text": "arrivare" },
-  "greet": { "text": "salutare" },
-  "say-goodbye": {
+  "to-get-dressed": { "text": "vestirsi" },
+  "to-arrive": { "text": "arrivare" },
+  "to-greet": { "text": "salutare" },
+  "to-say-goodbye": {
    "text": "dire arrivederci",
    "variants": ["salutare", "congedarsi"],
    "notes": {
@@ -95,13 +95,13 @@
   },
   "glove": { "text": "guanto", "grammar": { "gender": "il" } },
   "letter": { "text": "lettera", "grammar": { "gender": "la" } },
-  "knock-on-door": { "text": "bussare alla porta" },
-  "enter": {
+  "to-knock-on-door": { "text": "bussare alla porta" },
+  "to-enter": {
    "text": "entrare",
    "notes": { "de": "Wer jemanden hereinbittet, sagt Entra! (du) oder Prego, si accomodi! (Sie)." }
   },
   "house": { "text": "casa", "grammar": { "gender": "la" } },
-  "live": {
+  "to-live": {
    "text": "abitare",
    "variants": ["vivere"],
    "notes": { "de": "abitare heißt wohnen; vivere heißt leben und kann auch wohnen bedeuten." }
