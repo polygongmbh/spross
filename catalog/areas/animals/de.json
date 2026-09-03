@@ -20,6 +20,9 @@
   "the-cat-is-meowing": { "text": "Die Katze miaut." },
   "the-bird-is-singing": { "text": "Der Vogel singt." },
   "the-lion-is-roaring": { "text": "Der Löwe brüllt." },
-  "the-mosquito-is-biting-me": { "text": "Die Mücke sticht mich.", "notes": { "de": "Mücken stechen, sie beißen nicht." } }
+  "the-mosquito-is-biting-me": {
+   "text": "Die Mücke sticht mich.",
+   "notes": { "de": "Mücken stechen, sie beißen nicht — und das Ergebnis heißt der Mückenstich." }
+  }
  }
 }

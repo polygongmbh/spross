@@ -42,7 +42,10 @@
   "wash-the-dishes-in-the-sink": { "text": "Osha vyombo sinkini!" },
   "the-fridge-is-empty": { "text": "Friji iko tupu." },
   "can-you-set-the-table": { "text": "Unaweza kuandaa meza?" },
-  "the-water-is-boiling-hot": { "text": "Maji yanachemka." },
+  "the-water-is-boiling-hot": {
+   "text": "Maji yanachemka.",
+   "notes": { "sw": "Maji yanachemka yenyewe; ukiyachemsha wewe, ni kuchemsha." }
+  },
   "careful-very-hot": { "text": "Tahadhari, moto sana!", "variants": ["Angalia, moto sana!"] }
  }
 }
