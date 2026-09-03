@@ -19,6 +19,9 @@
   "insect": { "text": "комаха" },
   "look-a-bird": { "text": "Дивись, пташка!", "variants": ["Дивись, птах!"] },
   "the-dog-is-barking": { "text": "Собака гавкає." },
-  "the-cat-is-meowing": { "text": "Кіт нявкає." }
+  "the-cat-is-meowing": { "text": "Кіт нявкає." },
+  "the-bird-is-singing": { "text": "Птах співає." },
+  "the-lion-is-roaring": { "text": "Лев реве." },
+  "the-mosquito-is-buzzing": { "text": "Комар дзижчить." }
  }
 }

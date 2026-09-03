@@ -19,6 +19,9 @@
   "insect": { "text": "insecte", "variants": ["l'insecte"], "grammar": { "gender": "l'" } },
   "look-a-bird": { "text": "Regarde, un oiseau !" },
   "the-dog-is-barking": { "text": "Le chien aboie." },
-  "the-cat-is-meowing": { "text": "Le chat miaule." }
+  "the-cat-is-meowing": { "text": "Le chat miaule." },
+  "the-bird-is-singing": { "text": "L'oiseau chante." },
+  "the-lion-is-roaring": { "text": "Le lion rugit." },
+  "the-mosquito-is-buzzing": { "text": "Le moustique bourdonne." }
  }
 }

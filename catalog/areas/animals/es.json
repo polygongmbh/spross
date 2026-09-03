@@ -19,6 +19,9 @@
   "insect": { "text": "insecto", "grammar": { "gender": "el" } },
   "look-a-bird": { "text": "¡Mira, un pájaro!" },
   "the-dog-is-barking": { "text": "El perro ladra.", "variants": ["El perro está ladrando."] },
-  "the-cat-is-meowing": { "text": "El gato maúlla.", "variants": ["El gato está maullando."] }
+  "the-cat-is-meowing": { "text": "El gato maúlla.", "variants": ["El gato está maullando."] },
+  "the-bird-is-singing": { "text": "El pájaro canta.", "variants": ["El pájaro está cantando."] },
+  "the-lion-is-roaring": { "text": "El león ruge.", "variants": ["El león está rugiendo."] },
+  "the-mosquito-is-buzzing": { "text": "El mosquito zumba.", "variants": ["El mosquito está zumbando."] }
  }
 }

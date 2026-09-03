@@ -16,5 +16,8 @@
  { "slug": "insect", "kind": "noun", "emoji": "🐛" },
  { "slug": "look-a-bird", "kind": "phrase", "emoji": "🐦", "components": ["bird"] },
  { "slug": "the-dog-is-barking", "kind": "phrase", "emoji": "🐕", "components": ["dog"] },
- { "slug": "the-cat-is-meowing", "kind": "phrase", "emoji": "🐈", "components": ["cat"] }
+ { "slug": "the-cat-is-meowing", "kind": "phrase", "emoji": "🐈", "components": ["cat"] },
+ { "slug": "the-bird-is-singing", "kind": "phrase", "emoji": "🐦", "components": ["bird"] },
+ { "slug": "the-lion-is-roaring", "kind": "phrase", "emoji": "🦁", "components": ["lion"] },
+ { "slug": "the-mosquito-is-buzzing", "kind": "phrase", "emoji": "🦟", "components": ["mosquito"] }
 ]

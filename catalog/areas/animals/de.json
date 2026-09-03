@@ -19,6 +19,9 @@
   "insect": { "text": "Insekt", "grammar": { "gender": "das", "plural": "-en" } },
   "look-a-bird": { "text": "Schau mal, ein Vogel!", "variants": ["Schau, ein Vogel!"] },
   "the-dog-is-barking": { "text": "Der Hund bellt." },
-  "the-cat-is-meowing": { "text": "Die Katze miaut." }
+  "the-cat-is-meowing": { "text": "Die Katze miaut." },
+  "the-bird-is-singing": { "text": "Der Vogel singt." },
+  "the-lion-is-roaring": { "text": "Der Löwe brüllt." },
+  "the-mosquito-is-buzzing": { "text": "Die Mücke summt." }
  }
 }
