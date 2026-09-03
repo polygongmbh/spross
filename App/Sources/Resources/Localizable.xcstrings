@@ -1277,56 +1277,90 @@
         }
       }
     },
-    "briefing.intro" : {
-      "comment" : "The sheet's opening line. The text is never shown itself — the three counts under this stand for it.",
+    "briefing.group.held" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kopiere den Text in einen KI-Chat deiner Wahl. Er sagt, was du schon kannst, was gerade dran ist und wie viel Neues dazukommen darf."
+            "value" : "Schon in deinem Kasten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Copy the text into an AI chat of your choice. It says what you already know, what is on the table right now, and how much new is allowed."
+            "value" : "Already in your box"
           }
         }
-      }
+      },
+      "comment" : "heading over pasted words the box already teaches exactly (`HarvestKind.Held`)"
+    },
+    "briefing.group.near" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nah an Wörtern, die du hast"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close to words you have"
+          }
+        }
+      },
+      "comment" : "heading over pasted words that lean on one the box already teaches (`HarvestKind.Near`)"
+    },
+    "briefing.group.new" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neu für deinen Kasten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New to your box"
+          }
+        }
+      },
+      "comment" : "heading over pasted words the box has nothing like — the group that arrives ticked"
+    },
+    "briefing.lead" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übe deine Wörter in einem Chat, den du sowieso nutzt. Den Text dafür schreibt Spross."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practice your words in a chat you already use. Spross writes the prompt for you."
+          }
+        }
+      },
+      "comment" : "the sheet's opening line — what the whole screen is for"
     },
     "briefing.return.empty" : {
-      "comment" : "Nothing parsed, or everything in it is already in the box — both are the same answer to the learner.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "In der Zwischenablage steht kein neues Wort."
+            "value" : "In der Zwischenablage steht keine Wortliste."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "There is no new word in the clipboard."
+            "value" : "There is no word list in the clipboard."
           }
         }
-      }
-    },
-    "briefing.return.explainer" : {
-      "comment" : "What the brief asked the chat for, said again where the learner acts on it.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Am Ende listet der Chat die neuen Wörter. Kopiere die Liste und füge sie hier ein."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "At the end the chat lists the new words. Copy that list and paste it here."
-          }
-        }
-      }
+      },
+      "comment" : "said when the pasted text carried no word list at all"
     },
     "briefing.return.keep %lld" : {
       "comment" : "%d = the ticked words, taken in as own words.",
@@ -1437,128 +1471,56 @@
         }
       }
     },
-    "briefing.tally.free %lld" : {
-      "comment" : "%d = words the brief lets the chat use freely (`Briefing.freeCount`).",
+    "briefing.step.back" : {
       "localizations" : {
         "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld gefestigtes Wort"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld gefestigte Wörter"
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wenn du fertig bist, lass dir die neuen Wörter auflisten und füge die Liste hier wieder ein."
           }
         },
         "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld consolidated word"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld consolidated words"
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When you are done, ask for the new words and paste that list back here."
           }
         }
-      }
+      },
+      "comment" : "third of the three steps the sheet walks through"
     },
-    "briefing.tally.inPlay %lld" : {
-      "comment" : "%d = words the brief asks the chat to work in (`Briefing.inPlay`).",
+    "briefing.step.copy" : {
       "localizations" : {
         "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld Wort gerade im Kommen"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld Wörter gerade im Kommen"
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopiere den Text und füge ihn in einen KI-Chat ein."
           }
         },
         "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld word on the way in"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld words on the way in"
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy the text and paste it into any AI chat."
           }
         }
-      }
+      },
+      "comment" : "first of the three steps the sheet walks through"
     },
-    "briefing.tally.new %lld" : {
-      "comment" : "%d = the new-word allowance, drawn from what the box introduces next (`Briefing.newWords`).",
+    "briefing.step.talk" : {
       "localizations" : {
         "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld neues Wort obendrauf"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld neue Wörter obendrauf"
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rede über alles, was du willst — der Chat bleibt bei deinen Wörtern und legt ein paar neue dazu."
           }
         },
         "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld new word on top"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld new words on top"
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Talk about whatever you like — it keeps to the words you have and adds a few of its own."
           }
         }
-      }
+      },
+      "comment" : "second of the three steps the sheet walks through"
     },
     "briefing.title" : {
       "comment" : "The box handed to a chat the app does not host (`Briefing`); the sheet's title and its row in Your own content.",

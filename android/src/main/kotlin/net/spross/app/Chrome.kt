@@ -347,20 +347,19 @@ interface Chrome {
     // here is the chrome around handing it over and reading the answer back.
     val briefingTitle: String
     val briefingRowSubtitle: String
-    val briefingIntro: String
-    val briefingTallyFreeOne: String       // %d
-    val briefingTallyFree: String          // %d
-    val briefingTallyInPlayOne: String     // %d
-    val briefingTallyInPlay: String        // %d
-    val briefingTallyNewOne: String        // %d
-    val briefingTallyNew: String           // %d
+    val briefingLead: String
+    val briefingStepCopy: String
+    val briefingStepTalk: String
+    val briefingStepBack: String
     val briefingCopy: String
     val briefingCopied: String
     val briefingShare: String
     val briefingReturnTitle: String
-    val briefingReturnExplainer: String
     val briefingReturnPaste: String
     val briefingReturnEmpty: String
+    val briefingGroupNew: String
+    val briefingGroupNear: String
+    val briefingGroupHeld: String
     val briefingReturnKeepOne: String      // %d
     val briefingReturnKeep: String         // %d
     val sessionDoneTalk: String

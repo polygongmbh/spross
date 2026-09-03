@@ -351,22 +351,22 @@ internal object ChromeDe : Chrome {
         "Wortpaare bleiben."
     override val briefingTitle = "Gespräch"
     override val briefingRowSubtitle = "Deine Wörter in einem KI-Chat üben"
-    override val briefingIntro = "Kopiere den Text in einen KI-Chat deiner Wahl. Er sagt, " +
-        "was du schon kannst, was gerade dran ist und wie viel Neues dazukommen darf."
-    override val briefingTallyFreeOne = "%d gefestigtes Wort"
-    override val briefingTallyFree = "%d gefestigte Wörter"
-    override val briefingTallyInPlayOne = "%d Wort gerade im Kommen"
-    override val briefingTallyInPlay = "%d Wörter gerade im Kommen"
-    override val briefingTallyNewOne = "%d neues Wort obendrauf"
-    override val briefingTallyNew = "%d neue Wörter obendrauf"
+    override val briefingLead = "Übe deine Wörter in einem Chat, den du sowieso nutzt. Den " +
+        "Text dafür schreibt Spross."
+    override val briefingStepCopy = "Kopiere den Text und füge ihn in einen KI-Chat ein."
+    override val briefingStepTalk = "Rede über alles, was du willst — der Chat bleibt bei " +
+        "deinen Wörtern und legt ein paar neue dazu."
+    override val briefingStepBack = "Wenn du fertig bist, lass dir die neuen Wörter " +
+        "auflisten und füge die Liste hier wieder ein."
     override val briefingCopy = "Kopieren"
     override val briefingCopied = "Kopiert"
     override val briefingShare = "Teilen"
     override val briefingReturnTitle = "Zurück in den Kasten"
-    override val briefingReturnExplainer = "Am Ende listet der Chat die neuen Wörter. " +
-        "Kopiere die Liste und füge sie hier ein."
     override val briefingReturnPaste = "Einfügen"
-    override val briefingReturnEmpty = "In der Zwischenablage steht kein neues Wort."
+    override val briefingReturnEmpty = "In der Zwischenablage steht keine Wortliste."
+    override val briefingGroupNew = "Neu für deinen Kasten"
+    override val briefingGroupNear = "Nah an Wörtern, die du hast"
+    override val briefingGroupHeld = "Schon in deinem Kasten"
     override val briefingReturnKeepOne = "%d Wort übernehmen"
     override val briefingReturnKeep = "%d Wörter übernehmen"
     override val sessionDoneTalk = "Über die Wörter reden?"

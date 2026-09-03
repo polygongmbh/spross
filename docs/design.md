@@ -295,14 +295,29 @@ a clone inherits its sibling's gaps, never the rules.
 - **The companion**: the box briefs a chat assistant the app does not host
   and reads that conversation's answer back into own words (`Briefing`, `Harvest`).
   It leads the Box tab's own-content panel — the one entry there that goes out and comes back,
-  with the words it writes home under it.
-  NOT Home: Home answers "what do I do right now", and the answer to that is the round.
+  with the words it writes home under it,
+  and stands on Home under the listening card, wearing the same face:
+  both are ways into the words that are not the round, and this is the only one that
+  leaves the app, so the panel behind a tab was a door nobody found.
+  UNDER the day's card and never in it: Home still answers "what do I do right now"
+  with the round.
   The finished round offers it once more, under the celebration rather than in it,
   asking rather than instructing — Fertig stays that screen's own answer.
-  The sheet shows the three counts and never the text:
-  7 KB of prompt scrolling past is a wall, not a preview.
+  The sheet shows the loop in three numbered moves and never the text:
+  7 KB of prompt scrolling past is a wall, not a preview,
+  and the counts that once stood in for it named the box back at the learner, who has it.
+  Guidance is what the screen is for — a learner who has never done this has to be told
+  that they talk about anything, and that the words come home by being asked for.
   Copy takes it; Share hands it to any chat app on the phone,
   which is how the app reaches every assistant while knowing the name of none.
+  What comes back is shown WHOLE and sorted, never filtered:
+  every pair the paste carried stands under new, near a word already held, or held as it is
+  (`Harvest`, `HarvestKind`), and only the new group arrives ticked.
+  The assistant was told to gloss what was new to the LEARNER and has never seen the catalog,
+  so half of a good answer is words the box already has —
+  dropping those silently decided about the learner's own words behind their back,
+  and a near word shown beside the one it leans on costs a tap where a missed one costs a
+  second card teaching what the box already teaches.
   Rendering the brief as an IMAGE was rejected:
   what OCR drops first is diacritics and borrowed spellings,
   which is the part of a vocabulary list that carries the learning,

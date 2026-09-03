@@ -30,10 +30,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
+import net.spross.app.Chrome
 import net.spross.app.briefing
 import net.spross.app.harvest
 import net.spross.app.keepHarvested
-import net.spross.kern.box.BriefWord
+import net.spross.kern.box.HarvestKind
+import net.spross.kern.box.HarvestWord
 
 /**
  * Taking the box into a conversation the app does not host, and bringing back what the
@@ -41,12 +43,16 @@ import net.spross.kern.box.BriefWord
  *
  * The app ships no assistant and knows the name of none: it hands over a text and a share
  * intent, and whichever chat the learner already has takes it from there. What that text may
- * say is kern's ([net.spross.kern.box.Briefing]) — this sheet shows only how much of the box
- * is in it, because a wall of prompt scrolling past is not a preview.
+ * say is kern's ([net.spross.kern.box.Briefing]) and is never shown here: 7 KB of prompt
+ * scrolling past is a wall, not a preview. What the sheet spends its words on instead is the
+ * three moves the loop takes — the counts that once stood in for the text named the box back
+ * at the learner, who already has it.
  *
  * The way back is the half that pays: a conversation turns up words no catalog has, the
  * assistant is asked to list them, and pasting that list here reads them into own words
- * ([net.spross.kern.box.Harvest]). Nothing is taken in unasked.
+ * ([net.spross.kern.box.Harvest]). Nothing is taken in unasked: every pair the paste carried
+ * stands under the heading for where it stands against the box, and only the ones the box has
+ * nothing like arrive ticked.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,8 +61,10 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
     val context = LocalContext.current
     val briefing = remember { model.briefing() } ?: return
     var copied by remember { mutableStateOf(false) }
-    var harvested by remember { mutableStateOf(emptyList<BriefWord>()) }
-    var dropped by remember { mutableStateOf(emptySet<String>()) }
+    var harvested by remember { mutableStateOf(emptyList<HarvestWord>()) }
+    // Ticked target forms. Set from the paste, then the learner's — a word dropped and one
+    // never offered are the same answer, so one set holds both.
+    var picked by remember { mutableStateOf(emptySet<String>()) }
     var pasteWasEmpty by remember { mutableStateOf(false) }
 
     ModalBottomSheet(onDismissRequest = onDismiss, sheetState = rememberModalBottomSheetState()) {
@@ -68,11 +76,8 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
         ) {
             Text(chrome.briefingTitle, style = MaterialTheme.typography.titleLarge)
-            Text(
-                chrome.briefingIntro,
-                style = MaterialTheme.typography.bodyMedium,
-            )
-            BriefingTally(model, briefing.freeCount, briefing.inPlay.size, briefing.newWords.size)
+            Text(chrome.briefingLead, style = MaterialTheme.typography.bodyMedium)
+            BriefingSteps(chrome)
             Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
                 TextButton(onClick = {
                     context.copyBrief(chrome.briefingTitle, briefing.text)
@@ -84,15 +89,11 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
             }
             HorizontalDivider(color = Theme.colors.separator)
             Text(chrome.briefingReturnTitle, style = MaterialTheme.typography.titleMedium)
-            Text(
-                chrome.briefingReturnExplainer,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
             TextButton(onClick = {
                 val found = model.harvest(context.clipboardText())
                 harvested = found
-                dropped = emptySet()
+                picked = found.filter { it.kind == HarvestKind.New }
+                    .mapTo(mutableSetOf()) { it.word.target }
                 pasteWasEmpty = found.isEmpty()
             }) { Text(chrome.briefingReturnPaste) }
             if (pasteWasEmpty) {
@@ -102,13 +103,14 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
-            harvested.forEach { word ->
-                HarvestRow(word, kept = word.target !in dropped) {
-                    dropped = if (word.target in dropped) dropped - word.target else dropped + word.target
-                }
+            val toggle: (String) -> Unit = { target ->
+                picked = if (target in picked) picked - target else picked + target
+            }
+            harvested.groupBy { it.kind }.forEach { (kind, words) ->
+                HarvestGroup(heading(kind, chrome), words, picked, toggle)
             }
             if (harvested.isNotEmpty()) {
-                val kept = harvested.filter { it.target !in dropped }
+                val kept = harvested.filter { it.word.target in picked }.map { it.word }
                 Button(
                     onClick = {
                         model.keepHarvested(kept)
@@ -126,34 +128,59 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
     }
 }
 
-/** What the brief carries, as counts. The words themselves are the box, listed everywhere else. */
+/** The loop in three moves, numbered: take it out, talk, bring the words back. */
 @Composable
-private fun BriefingTally(model: AppModel, free: Int, inPlay: Int, fresh: Int) {
-    val chrome = model.chrome
-    Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-        if (free > 0) {
-            TallyLine((if (free == 1) chrome.briefingTallyFreeOne else chrome.briefingTallyFree).format(free))
-        }
-        if (inPlay > 0) {
-            TallyLine((if (inPlay == 1) chrome.briefingTallyInPlayOne else chrome.briefingTallyInPlay).format(inPlay))
-        }
-        if (fresh > 0) {
-            TallyLine((if (fresh == 1) chrome.briefingTallyNewOne else chrome.briefingTallyNew).format(fresh))
-        }
+private fun BriefingSteps(chrome: Chrome) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
+        StepLine(1, chrome.briefingStepCopy)
+        StepLine(2, chrome.briefingStepTalk)
+        StepLine(3, chrome.briefingStepBack)
     }
 }
 
 @Composable
-private fun TallyLine(text: String) {
+private fun StepLine(number: Int, text: String) {
+    Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
+        Text("$number.", style = MaterialTheme.typography.bodySmall, color = Theme.colors.accent)
+        Text(
+            text,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
+}
+
+/** Which heading a group wears. The kinds are kern's; naming them is ours. */
+private fun heading(kind: HarvestKind, chrome: Chrome): String = when (kind) {
+    HarvestKind.New -> chrome.briefingGroupNew
+    HarvestKind.Near -> chrome.briefingGroupNear
+    HarvestKind.Held -> chrome.briefingGroupHeld
+}
+
+/**
+ * One group of what a paste carried, headed. Kern's list arrives grouped
+ * ([net.spross.kern.box.Harvest.read]), so the runs are already in it — and a kind kern
+ * grows later heads itself rather than going unshown.
+ */
+@Composable
+private fun HarvestGroup(
+    title: String,
+    words: List<HarvestWord>,
+    picked: Set<String>,
+    onToggle: (String) -> Unit,
+) {
     Text(
-        text,
-        style = MaterialTheme.typography.bodySmall,
+        title,
+        style = MaterialTheme.typography.labelLarge,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
+    words.forEach { found ->
+        HarvestRow(found, kept = found.word.target in picked) { onToggle(found.word.target) }
+    }
 }
 
 @Composable
-private fun HarvestRow(word: BriefWord, kept: Boolean, onToggle: () -> Unit) {
+private fun HarvestRow(found: HarvestWord, kept: Boolean, onToggle: () -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth().clickable(onClick = onToggle).padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
@@ -167,14 +194,24 @@ private fun HarvestRow(word: BriefWord, kept: Boolean, onToggle: () -> Unit) {
             tint = if (kept) Theme.colors.accent else MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Column {
-            Text(word.target, style = MaterialTheme.typography.bodyMedium)
+            Text(found.word.target, style = MaterialTheme.typography.bodyMedium)
             Text(
-                word.source,
+                gloss(found),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }
+}
+
+/**
+ * The gloss, and after it the box's own word where this one leans on it — which is the whole
+ * reason the row came up unticked, said in the row rather than the heading.
+ */
+private fun gloss(found: HarvestWord): String {
+    val match = found.match
+    return if (found.kind == HarvestKind.Near && match != null) "${found.word.source} · ≈ $match"
+    else found.word.source
 }
 
 private fun Context.clipboardText(): String =

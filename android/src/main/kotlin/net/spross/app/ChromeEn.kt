@@ -345,22 +345,22 @@ internal object ChromeEn : Chrome {
         "word pairs stay."
     override val briefingTitle = "Conversation"
     override val briefingRowSubtitle = "Practice your words in an AI chat"
-    override val briefingIntro = "Copy the text into an AI chat of your choice. It says what " +
-        "you already know, what is on the table right now, and how much new is allowed."
-    override val briefingTallyFreeOne = "%d consolidated word"
-    override val briefingTallyFree = "%d consolidated words"
-    override val briefingTallyInPlayOne = "%d word on the way in"
-    override val briefingTallyInPlay = "%d words on the way in"
-    override val briefingTallyNewOne = "%d new word on top"
-    override val briefingTallyNew = "%d new words on top"
+    override val briefingLead = "Practice your words in a chat you already use. Spross " +
+        "writes the prompt for you."
+    override val briefingStepCopy = "Copy the text and paste it into any AI chat."
+    override val briefingStepTalk = "Talk about whatever you like — it keeps to the words " +
+        "you have and adds a few of its own."
+    override val briefingStepBack = "When you are done, ask for the new words and paste that " +
+        "list back here."
     override val briefingCopy = "Copy"
     override val briefingCopied = "Copied"
     override val briefingShare = "Share"
     override val briefingReturnTitle = "Back into the box"
-    override val briefingReturnExplainer = "At the end the chat lists the new words. Copy " +
-        "that list and paste it here."
     override val briefingReturnPaste = "Paste"
-    override val briefingReturnEmpty = "There is no new word in the clipboard."
+    override val briefingReturnEmpty = "There is no word list in the clipboard."
+    override val briefingGroupNew = "New to your box"
+    override val briefingGroupNear = "Close to words you have"
+    override val briefingGroupHeld = "Already in your box"
     override val briefingReturnKeepOne = "Keep %d word"
     override val briefingReturnKeep = "Keep %d words"
     override val sessionDoneTalk = "Talk about the words?"

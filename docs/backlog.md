@@ -520,3 +520,5 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   `scripts/audio-catalog.py --packs …` run now rewrites hundreds of files and dies on `pack-es`
   ("1 rows have no mp3"), so a slug rename has to be hand-carried into the three manifests instead
   of regenerated. Re-fetch the packs before trusting a regeneration again.
+- `HomeView.swift` (415 lines) is past the ~300-line budget; the day's cards (session, done,
+  error, both tallies) split off cleanly the way `HomeView+Header.swift` already does.

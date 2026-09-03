@@ -15,6 +15,8 @@ struct HomeView: View {
     /// must put the card up without a relaunch (`ListeningAvailability`).
     @State private var listening: ListeningAvailability?
     @State private var listeningPresented = false
+    /// The conversation the app does not host (`BriefingSheet`).
+    @State private var briefingPresented = false
 
     var body: some View {
         let offer = model.homeOffer
@@ -32,6 +34,7 @@ struct HomeView: View {
                     doneCard
                 }
                 listeningCard
+                briefingCard
                 TrainerHubView(model: model)
                 ForestSection(model: model, open: { openBox($0) })
             }
@@ -49,6 +52,25 @@ struct HomeView: View {
             ListeningView(model: model)
                 .environment(\.locale, model.knownLocale)
         }
+        .sheet(isPresented: $briefingPresented) {
+            BriefingSheet(model: model)
+        }
+    }
+
+    // MARK: - Conversation
+
+    /// Under the listening card: both are ways into the words that are not the round,
+    /// and this one is the only way in that leaves the app — a loop nobody finds is a
+    /// loop nobody runs, and the Box tab's panel was the only door it had
+    /// (`docs/design.md` § The companion).
+    @ViewBuilder
+    private var briefingCard: some View {
+        if model.hasBriefing {
+            Button { briefingPresented = true } label: {
+                wayInCard(emoji: "💬", title: "briefing.title", subtitle: "briefing.row.subtitle")
+            }
+            .buttonStyle(.plain)
+        }
     }
 
     // MARK: - Listening
@@ -57,43 +79,47 @@ struct HomeView: View {
     /// the learner, and not a skill with a ladder to climb, but the way in that
     /// needs no hands — up whenever this device can say both sides of enough
     /// words (`docs/design.md`, `docs/surfaces.md` § Listening).
-    ///
-    /// A full card like the trainer hub beside it: the emoji leads, the title
-    /// names the mode once, and the subtitle carries the two facts the name
-    /// cannot — the whole card is the tap target.
     @ViewBuilder
     private var listeningCard: some View {
         if listening?.available == true {
             Button { listeningPresented = true } label: {
-                HStack(alignment: .top, spacing: Theme.spacing.md) {
-                    Text(verbatim: "🎧")
-                        .font(.title2)
-                        .accessibilityHidden(true)
-                    VStack(alignment: .leading, spacing: Theme.spacing.xs) {
-                        Text("listen.title")
-                            .font(Theme.typography.title)
-                            .foregroundStyle(Theme.colors.textPrimary)
-                        Text("listen.subtitle")
-                            .font(Theme.typography.subheadline)
-                            .foregroundStyle(Theme.colors.textSecondary)
-                            .multilineTextAlignment(.leading)
-                    }
-                    Spacer(minLength: 0)
-                    Image(systemName: "chevron.right")
-                        .font(.title3)
-                        .foregroundStyle(Theme.colors.textSecondary)
-                        .accessibilityHidden(true)
-                }
-                .padding(Theme.spacing.xl)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(
-                    RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
-                        .fill(Theme.colors.surface)
-                )
-                .cardShadow()
+                wayInCard(emoji: "🎧", title: "listen.title", subtitle: "listen.subtitle")
             }
             .buttonStyle(.plain)
         }
+    }
+
+    /// The face the ways in share: the emoji leads, the title names the mode once, and
+    /// the subtitle carries what the name cannot. The whole card is the tap target.
+    private func wayInCard(emoji: String,
+                           title: LocalizedStringKey,
+                           subtitle: LocalizedStringKey) -> some View {
+        HStack(alignment: .top, spacing: Theme.spacing.md) {
+            Text(verbatim: emoji)
+                .font(.title2)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: Theme.spacing.xs) {
+                Text(title)
+                    .font(Theme.typography.title)
+                    .foregroundStyle(Theme.colors.textPrimary)
+                Text(subtitle)
+                    .font(Theme.typography.subheadline)
+                    .foregroundStyle(Theme.colors.textSecondary)
+                    .multilineTextAlignment(.leading)
+            }
+            Spacer(minLength: 0)
+            Image(systemName: "chevron.right")
+                .font(.title3)
+                .foregroundStyle(Theme.colors.textSecondary)
+                .accessibilityHidden(true)
+        }
+        .padding(Theme.spacing.xl)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
+                .fill(Theme.colors.surface)
+        )
+        .cardShadow()
     }
 
     /// The sweep is a walk of the whole join asking the catalog for both sides'

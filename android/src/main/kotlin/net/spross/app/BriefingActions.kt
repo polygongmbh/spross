@@ -5,6 +5,7 @@ import net.spross.kern.box.BriefWord
 import net.spross.kern.box.Briefing
 import net.spross.kern.box.Briefings
 import net.spross.kern.box.Harvest
+import net.spross.kern.box.HarvestWord
 
 /**
  * Handing the box to a conversation the app does not host, and reading back what that
@@ -29,8 +30,11 @@ fun AppModel.briefing(): Briefing? {
 val AppModel.hasBriefing: Boolean
     get() = box?.scheduling?.values?.any { !it.suspended } == true
 
-/** The words a pasted conversation brought home that the box does not already hold. */
-fun AppModel.harvest(pasted: String): List<BriefWord> =
+/**
+ * Every word a pasted conversation brought home, each against what the box already has of
+ * it ([net.spross.kern.box.HarvestKind]), grouped new-first.
+ */
+fun AppModel.harvest(pasted: String): List<HarvestWord> =
     box?.let { Harvest.read(pasted, it) }.orEmpty()
 
 /**

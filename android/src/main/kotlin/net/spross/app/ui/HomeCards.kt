@@ -26,6 +26,7 @@ import androidx.compose.ui.text.style.TextAlign
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.countLine
+import net.spross.app.hasBriefing
 import net.spross.kern.box.StreakHealth
 
 /**
@@ -193,15 +194,32 @@ fun DoneCard(model: AppModel, standing: HomeStanding, streak: Int, health: Strea
  * answering is not on the table — a walk, a commute, a sink full of dishes. It is not a
  * Sprosse and gets no chip on that row: a Sprosse is a skill with a ladder to climb, and
  * listening asks nothing, grades nothing and has no Sprosse to reach (`docs/surfaces.md`).
- *
- * ONE CARD, and the whole card is the tap. The emoji leads, the title names the mode once,
- * and the subtitle carries the two facts the name cannot — which words it leans on, and that
- * it needs no hands. The chevron says it opens.
  */
 @Composable
 fun ListenCard(model: AppModel) {
-    val chrome = model.chrome
     if (!model.listeningOffered) return
+    WayInCard("🎧", model.chrome.listenTitle, model.chrome.listenSubtitle) { model.startListening() }
+}
+
+/**
+ * The conversation the app does not host, under the listening card.
+ *
+ * Both are ways into the words that are not the round, and this one is the only way in that
+ * leaves the app — a loop nobody finds is a loop nobody runs, and the Box screen's own-content
+ * panel was the only door it had (`docs/design.md` § The companion).
+ */
+@Composable
+fun TalkCard(model: AppModel, onOpen: () -> Unit) {
+    if (!model.hasBriefing) return
+    WayInCard("💬", model.chrome.briefingTitle, model.chrome.briefingRowSubtitle, onOpen)
+}
+
+/**
+ * The face the ways in share: the glyph leads, the title names the mode once, and the
+ * subtitle carries what the name cannot. The whole card is the tap target.
+ */
+@Composable
+private fun WayInCard(glyph: String, title: String, subtitle: String, onOpen: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -209,13 +227,13 @@ fun ListenCard(model: AppModel) {
             .panel(MaterialTheme.shapes.large)
             .clip(MaterialTheme.shapes.large)
             .semantics(mergeDescendants = true) { }
-            .clickable(role = Role.Button) { model.startListening() }
+            .clickable(role = Role.Button, onClick = onOpen)
             .padding(Theme.spacing.xl),
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         Text(
-            "🎧",
+            glyph,
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.clearAndSetSemantics { },
         )
@@ -223,9 +241,9 @@ fun ListenCard(model: AppModel) {
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
         ) {
-            Text(chrome.listenTitle, style = MaterialTheme.typography.titleLarge)
+            Text(title, style = MaterialTheme.typography.titleLarge)
             Text(
-                chrome.listenSubtitle,
+                subtitle,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
