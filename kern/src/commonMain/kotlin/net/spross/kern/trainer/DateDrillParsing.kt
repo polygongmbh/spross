@@ -21,8 +21,13 @@ package net.spross.kern.trainer
  * The weekday the card prints is DROPPED rather than made optional. `Sa,` is the source
  * language's own abbreviation, the prompt already named that day in the language being
  * learned, and no number pad types it: copying it back would be chrome standing in for a
- * skill. Which is also why the full date has no reversed Sprosse at all — without its
- * weekday it is the day and month again ([DateDrill]).
+ * skill.
+ *
+ * Two kinds print one, and dropping the Sprosse only settles the first of them: the full
+ * date has no reversed direction at all ([DateDrill]), since without its weekday it asks
+ * the day and month over again — but the DATED one keeps its Sprosse, because the year is
+ * worth parsing, and it prefixes a weekday just the same. So the strip is what that top
+ * Sprosse rests on, not a second opinion about the one below it.
  *
  * A digit slip is never forgiven: `3.7.` for `3.6.` is another date, and
  * [net.spross.kern.session.AnswerNormalizer] grades a digit-bearing word exact-only, so the
