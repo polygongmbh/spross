@@ -25,6 +25,7 @@ import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
+import net.spross.kern.box.CardGrowth
 import net.spross.kern.box.ShelfCounts
 import net.spross.kern.box.mergeDailyStats
 import net.spross.kern.box.streakWindow
@@ -313,6 +314,14 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     // and a second reading of the clock is how two of them end up disagreeing.
     internal fun now(): Long = System.currentTimeMillis()
     private fun tz(): String = TimeZone.getDefault().id
+
+    /**
+     * Where ONE word stands on the growth ladder, for a surface holding that word —
+     * null where the join does not carry it. Stamped with the model's clock like
+     * every other box read, so two surfaces never disagree about the day.
+     */
+    fun cardGrowth(cardId: String): CardGrowth? =
+        box?.let { BoxEngine.cardGrowth(it, cardId, now(), tz()) }
 
     init {
         viewModelScope.launch {

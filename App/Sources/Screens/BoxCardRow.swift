@@ -28,16 +28,18 @@ struct BoxCardRow: View {
     /// The sheet the long-press menu asked for, if any (`BoxRowMenu`).
     @State private var sheet: BoxRowSheet?
 
+    @Environment(\.locale) private var locale
+
     var body: some View {
-        // why: the note is the one thing the row has no width to say, and the
-        // long press is already where a word is asked about itself. A word
-        // without one keeps the system's own preview — a copy of the row would
+        // why: the three things the row has no width to say, and the long press
+        // is already where a word is asked about itself. A word that carries
+        // none of them keeps the system's own preview — a copy of the row would
         // say nothing the row is not already saying.
-        if let note = card.target.note ?? card.source.note {
+        if wordCard.hasAnything {
             row.contextMenu {
                 BoxRowMenu(model: model, card: card) { sheet = $0 }
             } preview: {
-                notePreview(note)
+                preview
             }
         } else {
             row.contextMenu {
@@ -46,20 +48,60 @@ struct BoxCardRow: View {
         }
     }
 
-    /// The word as it explains itself: picture, both sides, and the catalog's
-    /// note under them in the same line the card's reveal wears (`noteLine`),
-    /// so a gloss read here and a gloss read mid-round are the same line.
-    private func notePreview(_ note: String) -> some View {
-        VStack(spacing: Theme.spacing.sm) {
+    /// What the long press hands over beyond the row itself: the other words for
+    /// the same thing, the catalog's gloss, and how long the word keeps.
+    private struct WordCard {
+        var alternates: String?
+        var note: String?
+        /// Whole days of stability, absent for a word the box has no schedule for.
+        var lasts: Int?
+
+        var hasAnything: Bool { alternates != nil || note != nil || lasts != nil }
+    }
+
+    private var wordCard: WordCard {
+        // why: a card with no schedule has 0 stability, and "Hält 0 Tage" would
+        // be a fact about the engine rather than about the word — the row says
+        // nothing about an untouched word either (`standing`), so neither does this.
+        let stability = model.growth.first { $0.cardId == card.id }?.stability ?? 0
+        return WordCard(
+            alternates: CardDisplay.alternates(of: card.target, shown: card.target.text,
+                                               locale: locale),
+            note: card.target.note ?? card.source.note,
+            lasts: stability > 0 ? max(1, Int(stability.rounded())) : nil
+        )
+    }
+
+    /// The word as it explains itself: picture, both sides with the target's
+    /// remaining family under it exactly as the reveal draws it, the catalog's
+    /// note in the same line the card's reveal wears (`noteLine`), and last how
+    /// long the word keeps — so a gloss read here and a gloss read mid-round are
+    /// the same line.
+    private var preview: some View {
+        let word = wordCard
+        return VStack(spacing: Theme.spacing.sm) {
             Text(card.displayEmoji)
                 .font(.largeTitle)
                 .accessibilityHidden(true)
             citation
                 .multilineTextAlignment(.center)
+            if let alternates = word.alternates {
+                Text(alternates)
+                    .font(Theme.typography.subheadline)
+                    .foregroundStyle(Theme.colors.textSecondary)
+                    .multilineTextAlignment(.center)
+            }
             Text(card.source.text)
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
-            Text(note).noteLine()
+            if let note = word.note {
+                Text(note).noteLine()
+            }
+            if let lasts = word.lasts {
+                Text("box.card.lasts \(lasts)")
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
+            }
         }
         .padding(Theme.spacing.lg)
         .frame(maxWidth: 300)

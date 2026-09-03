@@ -270,6 +270,9 @@ interface Chrome {
     val boxCardSuspended: String
     val boxCardWake: String
     val boxCardSleep: String
+    /** Whole days of the card's stability, on the long press. */
+    val boxCardLasts: String          // %d
+    val boxCardLastsOne: String       // %d
     /**
      * Dropping ONE word's progress: it goes back to new and may be offered again.
      * The card stays, and so does anything filed against it — forgetting the answers

@@ -460,9 +460,15 @@ a clone inherits its sibling's gaps, never the rules.
   press mid-round offers two things only.** In the Box the menu is where the word stands
   (pack, unpack, sleep, wake, forget its progress), then what can be MADE of it (an own
   word from it, or editing one), then what is wrong with it, and deleting last because it
-  is the entry that cannot be taken back. Above those, where the word carries one, the
-  catalog's note — the gloss a session card only hands over at the reveal, which nothing
-  in the Box turns over; the row itself has no width for a sentence.
+  is the entry that cannot be taken back. Above those, the word explaining itself: the
+  other words for the same thing ("auch: …", the family the reveal rotates through),
+  the catalog's note, and how long the word keeps — the card's stability in whole days.
+  The first two are the gloss a session card only hands over at the reveal, which nothing
+  in the Box turns over, and the row itself has no width for a sentence; the third is
+  nowhere else in the app at all.
+  Each line is drawn only where the word has it, and a word with none of the three keeps
+  the plain menu: an untouched word reports zero days, and a zero would be a fact about
+  the engine rather than about the word — the same reason the row badges nothing there.
   A round is no place to reorganize the box, so
   the session card keeps just reporting and stopping the word being asked.
   Those two are unrelated on purpose: reporting a problem changes nothing about what gets

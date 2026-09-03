@@ -296,6 +296,8 @@ internal object ChromeDe : Chrome {
     override val boxCardSuspended = "Pausiert"
     override val boxCardWake = "Wecken"
     override val boxCardSleep = "Nicht mehr abfragen"
+    override val boxCardLasts = "Hält %d Tage"
+    override val boxCardLastsOne = "Hält %d Tag"
     override val boxCardActions = "Was mit diesem Wort geht"
     override val boxCardForget = "Fortschritt zurücksetzen"
     override val boxCardOwnFrom = "Eigenes Wort daraus"

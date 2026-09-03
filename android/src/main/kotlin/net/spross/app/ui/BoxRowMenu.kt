@@ -1,5 +1,8 @@
 package net.spross.app.ui
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.DropdownMenuItem
@@ -7,9 +10,14 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kotlin.math.max
+import kotlin.math.roundToInt
 import net.spross.app.AppModel
+import net.spross.app.CardDisplay
+import net.spross.app.Chrome
 import net.spross.app.forgetCard
 import net.spross.app.ownWords
 import net.spross.app.removeOwnWord
@@ -57,13 +65,10 @@ internal fun BoxRowMenu(
         learnerInput = "",
         onDismiss = onDismiss,
         before = { close ->
-            // why: the row has no width for a gloss and the box has no card to reveal, so
-            // the long press is where a word explains itself — the same line the session's
-            // reveal wears ([PauseLine]), above every action rather than among them.
-            (card.target.note ?: card.source.note)?.let { note ->
-                PauseLine(note, Modifier.widthIn(max = 280.dp).padding(Theme.spacing.md))
-                HorizontalDivider()
-            }
+            // why: the row has no width for any of this and the box has no card to
+            // reveal, so the long press is where a word explains itself — the same
+            // lines the session's reveal wears, above every action rather than among them.
+            WordCardLines(model, card, chrome)
             when (standing) {
                 CardRowState.PackOffered -> MenuAction(chrome.boxCardPack) {
                     close()
@@ -123,6 +128,40 @@ internal fun BoxRowMenu(
             }
         },
     )
+}
+
+/**
+ * What the long press hands over beyond the row itself, in the reveal's own order:
+ * the other words for the same thing ("auch: …", exactly as [CardDisplay.alsoLine]
+ * offers them mid-round), the catalog's gloss in the line the reveal wears
+ * ([PauseLine]), and how long the word keeps.
+ *
+ * Draws nothing at all — not even its divider — where the word carries none of the
+ * three, so the menu is not opened by an empty header.
+ */
+@Composable
+private fun WordCardLines(model: AppModel, card: Card, chrome: Chrome) {
+    val also = CardDisplay.alsoLine(card.target, chrome, card.target.text)
+    val note = card.target.note ?: card.source.note
+    // why: a card with no schedule reports 0 stability, and "Hält 0 Tage" would be a
+    // fact about the engine rather than about the word — the row itself says nothing
+    // about an untouched word either, so neither does this.
+    val lasts = model.cardGrowth(card.id)?.stability
+        ?.takeIf { it > 0.0 }?.let { max(1, it.roundToInt()) }
+    if (also == null && note == null && lasts == null) return
+    Column(
+        Modifier.widthIn(max = 280.dp).padding(Theme.spacing.md),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        also?.let { CardLine(it, Modifier.fillMaxWidth()) }
+        note?.let { PauseLine(it) }
+        lasts?.let {
+            val form = if (it == 1) chrome.boxCardLastsOne else chrome.boxCardLasts
+            CardCue(form.format(it), Modifier.fillMaxWidth())
+        }
+    }
+    HorizontalDivider()
 }
 
 /** One entry of a word's menu; [destructive] is the only one that is not undoable. */

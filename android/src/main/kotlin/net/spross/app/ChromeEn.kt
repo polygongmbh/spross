@@ -290,6 +290,8 @@ internal object ChromeEn : Chrome {
     override val boxCardSuspended = "Paused"
     override val boxCardWake = "Wake"
     override val boxCardSleep = "Stop asking this"
+    override val boxCardLasts = "Lasts %d days"
+    override val boxCardLastsOne = "Lasts %d day"
     override val boxCardActions = "What you can do with this word"
     override val boxCardForget = "Reset progress"
     override val boxCardOwnFrom = "Make your own word"

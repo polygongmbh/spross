@@ -514,6 +514,47 @@
         }
       }
     },
+    "box.card.lasts %lld" : {
+      "comment" : "How long the word is expected to keep, on the Box's long press — the card's stability in whole days. A word with no schedule yet says nothing at all.",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Hält %lld Tag"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Hält %lld Tage"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Lasts %lld day"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Lasts %lld days"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "box.card.noAudio" : {
       "localizations" : {
         "de" : {
