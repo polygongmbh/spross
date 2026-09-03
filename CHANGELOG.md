@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **The dates drill now opens by tapping, not typing** — the weekday and month names come four at a time before any of them has to be written out.
+
 ## 5.11.0 — 2026-09-03
 
 - **English dates are taught both ways round** — `March third` and `the third of March` take turns on the reveal, and the article that order drops in speech no longer costs the answer.

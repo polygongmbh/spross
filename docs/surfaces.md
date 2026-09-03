@@ -134,7 +134,14 @@ auto-advance beats these share with it, are `design.md`'s.
   atlas': each adds what it introduces to everything below it — the weekday names, the
   month names, the day of the month as the words a date wants (`date-readings.md`), day and
   month assembled, the whole dated line — so the names keep coming once the dates are being
-  assembled. Half of a Sprosse's draws lead with the kind it introduced, which is what keeps
+  assembled.
+  The ladder OPENS on the one Sprosse that is TAPPED: all nineteen names offered four at a
+  time, the answer among three others of its own half, before any of them is written out.
+  Recognition before production is the box's own rule for a word nobody has produced yet
+  and the letters ladder's opening; a blank field is not where a name is met.
+  That Sprosse is a landing rather than a step — every Sprosse above it leaves it behind,
+  because four tiles among written dates are a free point and the Sprosse above would climb
+  on a tap. It is on the reversed ladder too, where the tiles are the learner's own names. Half of a Sprosse's draws lead with the kind it introduced, which is what keeps
   three weekday wins from carrying a learner past a question they never met. A Sprosse the
   answer language cannot read is absent, not locked: Ukrainian speaks no year inside a
   date, so its ladder simply tops out a Sprosse short.
