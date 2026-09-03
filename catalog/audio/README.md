@@ -10,10 +10,25 @@ Bundled pronunciation recordings, one folder per language, **generated** by
 `--articles`, `--calendar` and `--countries` rebuild only their own section of what ships, which
 is how a late pack lands without re-deriving the others from a workspace whose word mp3s a
 renamed slug has already outlived.
+
+**`--fill` is how a language catches up with the catalog**, and the only way that should be
+used: it ADDS words the manifest lacks and leaves every entry it already has byte-identical
+— file, digest and credit. A plain re-convert replaces a language wholesale out of a
+workspace that has moved on, which would discard the German pack's reseated rows (the fix
+for its hiss) and several packs' hand-curated tails. A fill also refuses a row whose spoken
+form a SHIPPED row already claims under different bytes: two files for one sound leave the
+runtime nothing to pick, so filling one word would silence another. German `poor` is
+"arm", which the body part already speaks; French `entrance` and `fresh` are the same story.
+
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are
 unversioned research input; what is committed here is the shipped bytes and the
 license record that has to travel with them. Both apps bundle the whole tree as it
 stands (iOS folder reference, the Android catalog sync), so nothing needs registering.
+
+**Run `app/scripts/audio-coverage.py --check` after adding recordings.** The lint that
+verifies every file ships walks the WORKING TREE, so a recording fetched but never staged
+is indistinguishable from one that ships — the manifests once named 517 files that existed
+on one machine and in no checkout, and no gate could see it. Only `git ls-files` can.
 
 ```json
 { "language": "uk",

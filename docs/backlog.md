@@ -370,7 +370,19 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 - The atlas is the first drill whose PROMPT is a word rather than a numeral or a played
   sound: it can be heard neither by tap nor by autoplay — `read-aloud.md`'s table has no
   row for a spoken-word drill prompt, so the rule is owed before the code
-  (`DrillRunView+Content.swift`).
+  (`DrillRunView+Content.swift`). Worth more now than when it was written: the country and
+  nationality names are recorded (`countries{}`), so the prompt would play a person rather
+  than the device voice the ruling was weighed against.
+- Esperanto's calendar ships 3 of 19 names because 16 are one uploader's GPLv3 set, refused
+  as a software license (`audio-licensing.md` § refused). It is the largest single cost any
+  license ruling here has, and worth re-deciding deliberately rather than by inertia.
+- Italian words sit at 83% of single-word realizations where every other language clears
+  91%: Lingua Libre's `ita` category is 12,621 files against French's 431,957, so the gap
+  is the corpus, not the resolver. Wiktionary `It-*.ogg` is the fill route if it matters.
+- Resolving a Lingua Libre language means paging its whole Commons category — French is
+  431,957 files, ~864 sequential requests — because LL publishes no per-word index and its
+  own wiki left in May 2026. Cached now (`ll-category-cache/`), but a real index would beat
+  a cache; the filenames put the word LAST, so nothing prefix-searchable exists today.
 
 - The watch quiz tells correctness to the EYE only — tile tint, red wash and the rating
   emoji are all visual, and the emoji is `accessibilityHidden` because VoiceOver reading
