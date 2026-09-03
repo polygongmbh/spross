@@ -238,7 +238,7 @@ private fun Prompt(
 
 /**
  * The answer and the one primary action under it — a field where the question is written
- * out, kern's four tiles where it is tapped ([DrillNameTiles]).
+ * out, kern's four tiles where it is tapped ([DrillChoiceGrid]).
  *
  * The placeholder names the language the answer is owed IN — which is the learner's own on
  * a reversed run, and the only place the direction is spelled out.
@@ -256,8 +256,16 @@ private fun Controls(
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         if (choices != null) {
             // The warm-up Sprosse: the answer is picked, not written, so the field stays away
-            // entirely rather than standing unused under the grid.
-            DrillNameTiles(choices, run.prompt.display, flow.chosen, chrome, flow::choose)
+            // entirely rather than standing unused under the grid. A calendar name is prose —
+            // it is set as prose, and a screen reader saying it needs no help.
+            DrillChoiceGrid(
+                options = choices,
+                answer = run.prompt.display,
+                chosen = flow.chosen,
+                optionStyle = MaterialTheme.typography.titleMedium,
+                chrome = chrome,
+                onPick = flow::choose,
+            )
         } else {
             DrillAnswerField(
                 value = flow.input,

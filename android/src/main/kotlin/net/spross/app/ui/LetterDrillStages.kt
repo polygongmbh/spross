@@ -2,21 +2,14 @@ package net.spross.app.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
@@ -36,73 +29,26 @@ import net.spross.kern.trainer.LetterDrillTask
  * hands taps back.
  */
 
-/** 2×2 of glyph tiles in kern's shuffled order — both platforms render the same draw. */
+/**
+ * 2×2 of glyph tiles in kern's shuffled order — both platforms render the same draw. The
+ * grid is [DrillChoiceGrid], shared with the calendar's warm-up Sprosse.
+ */
 @Composable
 fun ChoiceStage(model: AppModel, flow: LetterDrillFlow, task: LetterDrillTask, chrome: Chrome) {
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-        for (row in task.choices.orEmpty().chunked(2)) {
-            Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-                for (glyph in row) {
-                    ChoiceTile(glyph, task.display, flow.state.chosen, chrome, Modifier.weight(1f)) {
-                        flow.choose(glyph)
-                    }
-                }
-                // why: an odd last row keeps the grid's column width instead of stretching
-                // one tile across the screen.
-                if (row.size == 1) Spacer(Modifier.weight(1f))
-            }
-        }
-        AnswerLine(model, flow, task, chrome)
-    }
-}
-
-@Composable
-private fun ChoiceTile(
-    glyph: String,
-    answer: String,
-    chosen: String?,
-    chrome: Chrome,
-    modifier: Modifier,
-    onClick: () -> Unit,
-) {
-    val answered = chosen != null
-    val isAnswer = glyph == answer
-    val isChosen = glyph == chosen
-    // why: correctness is never color alone — the mark carries it on screen, the state
-    // description carries it to TalkBack, and a bare Cyrillic glyph read by a German engine
-    // is a guess where "Buchstabe ч" is not.
-    val mark = when {
-        answered && isAnswer -> "✓"
-        answered && isChosen -> "✗"
-        else -> null
-    }
-    val palette = Theme.colors
-    val fill = when {
-        answered && isAnswer -> palette.wash(palette.success)
-        answered && isChosen -> palette.wash(palette.wrong)
-        // A tile is a recessed slot, not a card: it takes the chip fill, so an unanswered
-        // one still reads as a tile against the paper behind it.
-        else -> palette.surfaceTint
-    }
-    OutlinedButton(
-        onClick = onClick,
-        enabled = !answered,
-        shape = MaterialTheme.shapes.medium,
-        modifier = modifier.heightIn(min = Theme.reserve.tile).semantics {
-            contentDescription = chrome.a11yGlyphLetter.format(glyph)
-            if (answered && isAnswer) stateDescription = chrome.a11yVerdictCorrect
-            if (answered && isChosen && !isAnswer) stateDescription = chrome.a11yVerdictWrong
-        }.pressSpring(),
-        colors = ButtonDefaults.outlinedButtonColors(
-            containerColor = fill,
-            disabledContainerColor = fill,
-            disabledContentColor = MaterialTheme.colorScheme.onSurface,
-        ),
-    ) {
         // The ramp's glyph slot rather than a ramp entry: a letterform is the thing being
-        // READ here, so it is set at picture size the way an emoji face is.
-        Text(glyph, style = MaterialTheme.typography.displaySmall, fontWeight = FontWeight.Bold)
-        mark?.let { Text("  $it", style = MaterialTheme.typography.titleLarge) }
+        // READ here, so it is set at picture size the way an emoji face is — and a bare
+        // Cyrillic glyph read by a German engine is a guess where "Buchstabe ч" is not.
+        DrillChoiceGrid(
+            options = task.choices.orEmpty(),
+            answer = task.display,
+            chosen = flow.state.chosen,
+            optionStyle = MaterialTheme.typography.displaySmall.copy(fontWeight = FontWeight.Bold),
+            chrome = chrome,
+            describe = { chrome.a11yGlyphLetter.format(it) },
+            onPick = flow::choose,
+        )
+        AnswerLine(model, flow, task, chrome)
     }
 }
 

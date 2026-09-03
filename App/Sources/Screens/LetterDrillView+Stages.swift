@@ -95,73 +95,23 @@ extension LetterDrillView {
     // MARK: - Multiple choice
 
     /// 2×2 of glyph tiles in Kern's shuffled order — both platforms render the
-    /// same draw, so a seeded run is reproducible.
+    /// same draw, so a seeded run is reproducible. The grid is
+    /// `DrillChoiceGrid`, shared with the calendar's warm-up Sprosse.
     private func choiceGrid(_ task: LetterDrillTask) -> some View {
-        LazyVGrid(columns: [GridItem(.flexible(), spacing: Theme.spacing.md),
-                            GridItem(.flexible(), spacing: Theme.spacing.md)],
-                  spacing: Theme.spacing.md) {
-            ForEach(task.choices ?? [], id: \.self) { glyph in
-                tile(glyph, answer: task.display)
-            }
-        }
-        .animation(.easeOut(duration: 0.2), value: run.chosen)
-    }
-
-    private func tile(_ glyph: String, answer: String) -> some View {
-        let answered = run.chosen != nil
-        let isAnswer = glyph == answer
-        let isChosen = glyph == run.chosen
-        return Button {
-            choose(glyph)
-        } label: {
-            Text(verbatim: glyph)
-                .font(.system(size: 44, weight: .bold, design: .rounded))
-                .foregroundStyle(Theme.colors.textPrimary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.4)
-                .frame(maxWidth: .infinity, minHeight: Theme.reserve.tile)
-                .padding(Theme.spacing.md)
-                .background(
-                    RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                        .fill(tileFill(answered: answered, isAnswer: isAnswer, isChosen: isChosen))
-                )
-                // why: correctness is never color alone — the mark carries it
-                // for anyone who cannot tell the two tints apart.
-                .overlay(alignment: .topTrailing) {
-                    tileMark(answered: answered, isAnswer: isAnswer, isChosen: isChosen)
-                }
-        }
-        .buttonStyle(TrainerChipButtonStyle())
-        .disabled(answered)
-        // why: a bare Cyrillic glyph read by a German engine is a guess —
-        // "Buchstabe ч" is not.
-        .accessibilityLabel(Text(verbatim: String(format: ChromeStrings.string("a11y.glyph.letter %@",
-                                                                         locale: locale),
-                                                  glyph)))
-        .accessibilityValue(answered && isAnswer ? Text("a11y.verdict.correct") : Text(verbatim: ""))
-    }
-
-    private func tileFill(answered: Bool, isAnswer: Bool, isChosen: Bool) -> Color {
-        guard answered else { return Theme.colors.surfaceTint }
-        if isAnswer { return Theme.colors.success.opacity(0.22) }
-        return isChosen ? Theme.colors.wrong.opacity(0.22) : Theme.colors.surfaceTint
-    }
-
-    @ViewBuilder
-    private func tileMark(answered: Bool, isAnswer: Bool, isChosen: Bool) -> some View {
-        if answered, isAnswer {
-            mark("checkmark.circle.fill", tint: Theme.colors.success)
-        } else if answered, isChosen {
-            mark("xmark.circle.fill", tint: Theme.colors.wrong)
-        }
-    }
-
-    private func mark(_ symbol: String, tint: Color) -> some View {
-        Image(systemName: symbol)
-            .font(.title3)
-            .foregroundStyle(tint)
-            .padding(Theme.spacing.sm)
-            .accessibilityHidden(true)
+        // The ramp's glyph slot rather than a ramp entry: a letterform is the
+        // thing being READ here, so it is set at picture size the way an emoji
+        // face is — and a bare Cyrillic glyph read by a German engine is a
+        // guess where "Buchstabe ч" is not.
+        DrillChoiceGrid(options: task.choices ?? [],
+                        answer: task.display,
+                        chosen: run.chosen,
+                        font: .system(size: 44, weight: .bold, design: .rounded),
+                        label: { glyph in
+                            Text(verbatim: String(format: ChromeStrings.string("a11y.glyph.letter %@",
+                                                                               locale: locale),
+                                                  glyph))
+                        },
+                        pick: choose)
     }
 
     /// A miss always waits for a tap; a clean hit waits only where a timed
