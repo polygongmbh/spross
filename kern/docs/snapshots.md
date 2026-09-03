@@ -13,6 +13,8 @@ Engine contract: `../README.md`.
   `BoxState.revivingLeechSuspensions()` runs alongside it, a temporary migration (delete at
   7.0+) reviving any card the leech rule auto-suspended before the 2026-09-01 ruling that
   removed it;
+  `BoxState.rekeyingPrefixedVerbs()` follows, temporary alike, moving progress stored under a bare
+  verb slug onto the `to-` prefixed card the 2026-09-03 ruling renamed it to;
   kotlinx.serialization; dates as ISO-8601 UTC strings via explicit `kotlin.time.Instant`
   serializers; facade encodes with **sorted keys** (deterministic bytes).
   All `@Serializable` types are `internal`; the public surface is a narrow facade
