@@ -1,0 +1,18 @@
+{
+ "title": "Pronouns",
+ "subtitle": "I, you and everyone else.",
+ "words": {
+  "i": { "text": "I" },
+  "you": { "text": "you" },
+  "he-she": { "text": "he", "variants": ["she", "it"] },
+  "we": { "text": "we" },
+  "you-plural": {
+   "text": "you all",
+   "variants": ["you"],
+   "notes": {
+    "en": "English has one you for one person and for many; you all is how the plural gets said out loud."
+   }
+  },
+  "they": { "text": "they" }
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "title": "Les pronoms",
+ "subtitle": "Moi, toi et tous les autres.",
+ "words": {
+  "i": { "text": "je", "variants": ["moi"] },
+  "you": { "text": "tu", "variants": ["vous", "toi"] },
+  "he-she": { "text": "il", "variants": ["elle"] },
+  "we": { "text": "nous" },
+  "you-plural": { "text": "vous" },
+  "they": { "text": "ils", "variants": ["elles"] }
+ }
+}

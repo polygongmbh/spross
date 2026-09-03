@@ -1,0 +1,12 @@
+{
+ "title": "Займенники",
+ "subtitle": "Я, ти і всі інші.",
+ "words": {
+  "i": { "text": "я" },
+  "you": { "text": "ти", "variants": ["ви"] },
+  "he-she": { "text": "він", "variants": ["вона", "воно"] },
+  "we": { "text": "ми" },
+  "you-plural": { "text": "ви" },
+  "they": { "text": "вони" }
+ }
+}

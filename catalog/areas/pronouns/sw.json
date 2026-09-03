@@ -1,0 +1,18 @@
+{
+ "title": "Viwakilishi",
+ "subtitle": "Mimi, wewe na wengine wote.",
+ "words": {
+  "i": {
+   "text": "mimi",
+   "notes": { "sw": "mimi: ni- (ni-naona) na -ni- ndani ya kitenzi (u-na-ni-saidia)." }
+  },
+  "you": { "text": "wewe", "notes": { "sw": "wewe: u- (u-naona) na -ku- (ni-na-ku-saidia)." } },
+  "he-she": {
+   "text": "yeye",
+   "notes": { "sw": "yeye ni mwanaume au mwanamke: a- (a-naona) na -m- (ni-na-m-saidia)." }
+  },
+  "we": { "text": "sisi", "notes": { "sw": "sisi: tu- (tu-naona) na -tu- (a-na-tu-saidia)." } },
+  "you-plural": { "text": "ninyi", "notes": { "sw": "ninyi: m- (m-naona) na -wa- (a-na-wa-saidia)." } },
+  "they": { "text": "wao", "notes": { "sw": "wao: wa- (wa-naona) na -wa- (ni-na-wa-saidia)." } }
+ }
+}

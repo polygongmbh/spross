@@ -1,0 +1,12 @@
+{
+ "title": "Pronombres",
+ "subtitle": "Yo, tú y todos los demás.",
+ "words": {
+  "i": { "text": "yo" },
+  "you": { "text": "tú", "variants": ["usted"] },
+  "he-she": { "text": "él", "variants": ["ella"] },
+  "we": { "text": "nosotros", "variants": ["nosotras"] },
+  "you-plural": { "text": "ustedes", "variants": ["vosotros", "vosotras"] },
+  "they": { "text": "ellos", "variants": ["ellas"] }
+ }
+}

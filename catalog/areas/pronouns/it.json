@@ -1,0 +1,12 @@
+{
+ "title": "I pronomi",
+ "subtitle": "Io, tu e tutti gli altri.",
+ "words": {
+  "i": { "text": "io" },
+  "you": { "text": "tu", "variants": ["Lei"] },
+  "he-she": { "text": "lui", "variants": ["lei"] },
+  "we": { "text": "noi" },
+  "you-plural": { "text": "voi" },
+  "they": { "text": "loro" }
+ }
+}
