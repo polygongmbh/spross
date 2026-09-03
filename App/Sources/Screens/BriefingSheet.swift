@@ -141,11 +141,12 @@ struct BriefingSheet: View {
         }
     }
 
-    /// One heading's worth of a paste.
+    /// One heading's worth of a paste. The id is the run's place in the list, not its
+    /// title: `LocalizedStringKey` is Equatable but not Hashable, so it cannot be an id.
     private struct HarvestRun: Identifiable {
+        let id: Int
         let title: LocalizedStringKey
         var words: [HarvestWord]
-        var id: LocalizedStringKey { title }
     }
 
     private var harvestRuns: [HarvestRun] {
@@ -153,7 +154,7 @@ struct BriefingSheet: View {
         for found in harvested {
             let title = heading(found.kind)
             if runs.last?.title == title { runs[runs.count - 1].words.append(found) }
-            else { runs.append(HarvestRun(title: title, words: [found])) }
+            else { runs.append(HarvestRun(id: runs.count, title: title, words: [found])) }
         }
         return runs
     }
