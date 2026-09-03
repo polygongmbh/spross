@@ -6,12 +6,17 @@
   "translate": { "text": "tradurre" },
   "sentence": { "text": "frase", "grammar": { "gender": "la" } },
   "word": { "text": "parola", "grammar": { "gender": "la" } },
+  "verb": { "text": "verbo", "grammar": { "gender": "il" } },
+  "noun": { "text": "sostantivo", "grammar": { "gender": "il" } },
+  "adjective": { "text": "aggettivo", "variants": ["l'aggettivo"], "grammar": { "gender": "l'" } },
   "language": {
    "text": "lingua",
    "grammar": { "gender": "la" },
    "notes": { "de": "lingua ist die Sprache und die Zunge im Mund." }
   },
   "mother-tongue": { "text": "lingua madre", "grammar": { "gender": "la" } },
+  "noun-class": { "text": "classe nominale", "grammar": { "gender": "la" } },
+  "affix": { "text": "affisso", "variants": ["l'affisso"], "grammar": { "gender": "l'" } },
   "what-does-this-word-mean": {
    "text": "Che cosa significa questa parola?",
    "variants": ["Cosa significa questa parola?", "Che cosa vuol dire questa parola?"]
