@@ -3,7 +3,11 @@
  "subtitle": "Ich, du und alle anderen.",
  "words": {
   "i": { "text": "ich" },
-  "you": { "text": "du", "variants": ["Sie"] },
+  "you": {
+   "text": "du",
+   "synonyms": ["Sie"],
+   "notes": { "de": "Zu Familie und Freunden sagt man du, sonst Sie: Wie heißen Sie?" }
+  },
   "he-she": {
    "text": "er",
    "variants": ["es"],

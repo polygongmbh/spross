@@ -3,7 +3,11 @@
  "subtitle": "Io, tu e tutti gli altri.",
  "words": {
   "i": { "text": "io" },
-  "you": { "text": "tu", "variants": ["Lei"] },
+  "you": {
+   "text": "tu",
+   "synonyms": ["Lei"],
+   "notes": { "it": "tu è per la famiglia e gli amici; agli altri si dice Lei: Come si chiama Lei?" }
+  },
   "he-she": { "text": "lui", "variants": ["lei"] },
   "we": { "text": "noi" },
   "you-plural": { "text": "voi" },
