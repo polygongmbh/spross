@@ -240,6 +240,7 @@ interface Chrome {
     val datesBest: String     // %d
     val datesFastHint: String
     val datesReverseHint: String // %1$s %2$s
+    val datesReverseHintBack: String // %1$s %2$s
     /**
      * The Sprosse wordings by the KIND each Sprosse INTRODUCES, in full-ladder order — read through
      * [dateSprosse]. Unlike the atlas ladder the height here is the pair's own

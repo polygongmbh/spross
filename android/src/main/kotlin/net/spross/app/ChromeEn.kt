@@ -249,8 +249,9 @@ internal object ChromeEn : Chrome {
         "answer."
     override val datesBest = "Best yet: Sprosse %s"
     override val datesFastHint = "One clean answer per Sprosse instead of three."
-    override val datesReverseHint = "Asks in %s, you answer in %s — names only, the date " +
-        "itself stays forward."
+    override val datesReverseHint = "Asks in %1\$s, you answer in %2\$s."
+    override val datesReverseHintBack = "Asks in %1\$s — the names answered in %2\$s, the " +
+        "dates written in digits."
     override val dateSprossen = listOf(
         "The names, tapped",
         "The weekdays",

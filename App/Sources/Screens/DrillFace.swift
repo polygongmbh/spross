@@ -47,8 +47,10 @@ protocol DrillFace {
     /// What fast mode buys, once it is paid for.
     static var fastHintKey: LocalizedStringKey { get }
 
-    /// The reverse switch's line — a runtime `%@ %@` pair, asked side first.
-    static var reverseHintKey: String { get }
+    /// The reverse switch's line as the switch stands — a runtime `%@ %@` pair,
+    /// asked side first. Two lines where a direction changes what is owed and
+    /// not merely which language owes it.
+    static func reverseHintKey(reverse: Bool) -> String
 
     // MARK: - The material
 
@@ -170,6 +172,9 @@ struct DrillSnapshot {
     /// nil where it is written instead, which is every Sprosse above the
     /// calendar's warm-up.
     let choices: [String]?
+    /// Whether a DATE is owed rather than a reading — the calendar turned
+    /// round. The keyboard and the placeholder are all that follows from it.
+    let digits: Bool
     /// The answer side's neighboring form, where kern hands one over.
     let gloss: String?
     /// What a refused answer actually named — only beside a revealed miss.

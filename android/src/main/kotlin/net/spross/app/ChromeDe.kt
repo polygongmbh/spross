@@ -255,8 +255,9 @@ internal object ChromeDe : Chrome {
         "sauberen Antwort weiter."
     override val datesBest = "Bestmarke: Sprosse %s"
     override val datesFastHint = "Eine saubere Antwort pro Sprosse statt drei."
-    override val datesReverseHint = "Fragt auf %s, du antwortest auf %s — nur die Namen, das " +
-        "Datum bleibt vorwärts."
+    override val datesReverseHint = "Fragt auf %1\$s, du antwortest auf %2\$s."
+    override val datesReverseHintBack = "Fragt auf %1\$s — die Namen auf %2\$s, die Daten in " +
+        "Ziffern."
     override val dateSprossen = listOf(
         "Die Namen, angetippt",
         "Die Wochentage",

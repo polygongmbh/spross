@@ -28,7 +28,9 @@ enum CountryDrillFace: DrillFace {
 
     static var fastHintKey: LocalizedStringKey { "countries.fast.hint" }
 
-    static var reverseHintKey: String { "countries.reverse.hint %@ %@" }
+    /// One line either way: the atlas swaps which language owes the answer and
+    /// nothing else about what is owed.
+    static func reverseHintKey(reverse: Bool) -> String { "countries.reverse.hint %@ %@" }
 
     // MARK: - The atlas
 
@@ -115,8 +117,9 @@ enum CountryDrillFace: DrillFace {
                       promptEmoji: run.task.promptEmoji,
                       emojiIsGiveaway: run.task.emojiIsGiveaway,
                       display: run.task.display,
-                      // The atlas is written all the way up: nothing is ever tapped.
-                      choices: nil, gloss: run.task.gloss,
+                      // The atlas is written all the way up: nothing is ever
+                      // tapped, and every answer it takes is words.
+                      choices: nil, digits: false, gloss: run.task.gloss,
                       otherWord: run.otherWord)
     }
 

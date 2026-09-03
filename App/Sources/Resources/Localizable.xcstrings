@@ -2569,17 +2569,33 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fragt auf %@, du antwortest auf %@ — nur die Namen, das Datum bleibt vorwärts."
+            "value" : "Fragt auf %1$@, du antwortest auf %2$@."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Asks in %@, you answer in %@ — names only, the date itself stays forward."
+            "value" : "Asks in %1$@, you answer in %2$@."
           }
         }
       },
       "comment" : "%1$s = the side asked in, %2$s = the side owed. Reversed, only the bare-name Sprossen stand (the numeric side of a date is a convention, not a skill)."
+    },
+    "dates.reverse.hint.back %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fragt auf %1$@ — die Namen auf %2$@, die Daten in Ziffern."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asks in %1$@ — the names answered in %2$@, the dates written in digits."
+          }
+        }
+      }
     },
     "dates.sprosse.1" : {
       "extractionState" : "manual",

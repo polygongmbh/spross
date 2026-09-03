@@ -105,13 +105,14 @@ extension DrillRunView {
         VStack(spacing: Theme.spacing.md) {
             AnswerInputView(text: $input,
                             feedback: feedback,
-                            placeholder: answerPlaceholder(language),
+                            placeholder: fieldPlaceholder(language),
                             focus: $answerFocused,
                             // Tap-to-replay for the correction box — the form
                             // the slip owed, said in the language it is owed in.
                             correctionVoice: .init(
                                 pronounce: { model.pronounceAction(for: $0, lang: language) },
-                                isPlaying: { model.isPronouncing($0, lang: language) })) {
+                                isPlaying: { model.isPronouncing($0, lang: language) }),
+                            keyboard: current.digits ? .numbersAndPunctuation : .default) {
                 submit()
             }
             // why: writing the answer out is the answer — the review session's
@@ -151,6 +152,16 @@ extension DrillRunView {
             nextButton(confirm)
             if current.offersFinish { DrillStopOffer { closeRun() } }
         }
+    }
+
+    /// What the field asks for. Naming the language is right only while the
+    /// answer is words — a date owed in digits is written the same way in
+    /// either of them, and "Auf Español …" over a number pad asks for the
+    /// wrong thing.
+    private func fieldPlaceholder(_ language: String) -> String {
+        current.digits
+            ? ChromeStrings.string("numbers.answer.placeholder", locale: locale)
+            : answerPlaceholder(language)
     }
 
     // why: internal, not private — the choice grid puts the same button under

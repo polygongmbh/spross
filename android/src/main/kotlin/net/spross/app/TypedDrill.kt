@@ -91,6 +91,11 @@ data class TypedDrillPrompt(
      * is written instead, which is every Sprosse above the calendar's warm-up.
      */
     val choices: List<String>? = null,
+    /**
+     * Whether a DATE is owed rather than a reading — the calendar turned round. The keyboard
+     * and the placeholder are the only things that follow from it.
+     */
+    val digits: Boolean = false,
 )
 
 /** One typed run as it stands: the question, the ladder under it, and the score line. */

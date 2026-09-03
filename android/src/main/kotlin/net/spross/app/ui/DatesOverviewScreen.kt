@@ -32,7 +32,10 @@ fun DatesOverviewScreen(model: AppModel) {
             bestNote = if (best > 0) chrome.datesBest.format(best) else null,
             fastHint = chrome.datesFastHint,
             reverseHint = { reverse ->
-                reverseHint(model, chrome.datesReverseHint, content.source, content.target, reverse)
+                // Two sentences, not one: turned round the calendar asks for a DATE, which is
+                // written in digits rather than in either language.
+                val line = if (reverse) chrome.datesReverseHintBack else chrome.datesReverseHint
+                reverseHint(model, line, content.source, content.target, reverse)
             },
             ceiling = { reverse -> DateDrill.maxLevel(content, reverse) },
             fastOpen = { reverse -> DateDrill.fastUnlocked(best, content, reverse) },

@@ -122,6 +122,7 @@ class DateDrillFlow(
             language = state.promptLanguage,
             display = state.task.display,
             choices = state.task.choices,
+            digits = state.task.digits,
         ),
     )
 

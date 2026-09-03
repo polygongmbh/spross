@@ -270,12 +270,18 @@ private fun Controls(
             DrillAnswerField(
                 value = flow.input,
                 onValueChange = flow::type,
-                placeholder = chrome.sessionAnswerPlaceholder
-                    .format(model.languageName(run.answerLanguage)),
+                // why: naming the language is right only while the answer is words — a date
+                // owed in digits is written the same way in either of them.
+                placeholder = if (run.prompt.digits) {
+                    chrome.numbersAnswerPlaceholder
+                } else {
+                    chrome.sessionAnswerPlaceholder.format(model.languageName(run.answerLanguage))
+                },
                 feedback = run.feedback,
                 chrome = chrome,
                 focus = inputFocus,
                 onDone = { flow.enter() },
+                digits = run.prompt.digits,
             )
         }
         when (val feedback = run.feedback) {
