@@ -57,10 +57,13 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   a change to shared/parity-bearing UI (cards, layout tokens) closes with both checked side by side,
   not just implemented on both — a small copy or cosmetic tweak does not need this.
 - Keep `README.md` / `docs/` in step with behavior changes in the same series.
-- `CHANGELOG.md` is curated, grouped by version, written in ENGLISH; what earns an entry
-  and how it is worded: `docs/distribution.md`.
-  New entries always land under the top `## Unreleased` heading. At bump time, rename `## Unreleased` to `## <version> — <date>` and open a fresh empty `## Unreleased` above it.
+- `CHANGELOG.md` is curated, grouped by version, written in ENGLISH; 
+  what earns an entry and how it is worded: `docs/distribution.md`.
+  New entries always land under the top `## Unreleased` heading.
+  At bump time, rename `## Unreleased` to `## <version> — <date>` and open a fresh empty `## Unreleased` above it.
   Its head carries every heading you need — read that, never the whole file.
+- Changelog and backlog entries should be just one line with one sentence for bullet points, 
+  explanations should live in commit messages and only in the file on absolute exceptions
 - Other parties may change files or commit while you work, do not mind unless their edits conflict with yours.
   Commit with `git commit --only -- <paths>`: `git add` + `git commit` carries every other staged
   path, `--only` skips untracked ones (`git add` those first), and check before touching history.
@@ -71,11 +74,15 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Max ~300 lines per file; split at natural boundaries. Modularity over bloat.
 - Comments only for non-obvious constraints;
   side-effectful effects get a one-line `// why:` (trigger + observable result).
-- English is American spelling and vocabulary everywhere — docs, comments, chrome copy, catalog
-  content (a British spelling is a `variant`, a British word a `synonym`; `catalog/README.md`).
-- ALWAYS use **Semantic linebreaks** for text - in docs, markdown files, documentation comments: one sentence/clause per line.
 - Engine APIs name the rule, never the rendering: no screen positions in kern types.
 - Simplicity over Perfection: Behavior correctness is important, but don't overcomplicate the code to handle every edge case.
+
+### Text
+- ALWAYS use **Semantic linebreaks** for text - in docs, markdown files, documentation comments: one sentence/clause per line.
+- English is American spelling and vocabulary everywhere — docs, comments, chrome copy, catalog
+  content (a British spelling is a `variant`, a British word a `synonym`; `catalog/README.md`).
+- When working on localization, focus on idiomatic variants in each language rather than literal translation.
+  For catalog translations, a literal match is important.
 
 ### Tests
 - Test rules and behavior, not implementation details or tweakable constants
@@ -125,3 +132,5 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Whenever you are corrected or do extensive research, tighten or replace the line that should
   have caught it before adding a new one; a new docs/ file only when no existing doc owns the topic
 - Do not document a removal or absence of something beyond the commits message unless it is likely to be accidentally reintroduced
+- In Code comments, always only explain the current state of things, do not justify or illustrate behavior against the past
+- Behavior rulings documented are snapshots, not absolutes - when challenged, most of them can change
