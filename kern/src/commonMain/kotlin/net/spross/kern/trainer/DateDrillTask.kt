@@ -5,8 +5,21 @@ import net.spross.kern.catalog.DateEntry
 import net.spross.kern.catalog.DateNames
 import net.spross.kern.catalog.DatePattern
 
-/** What a dates question asks — the ladder's Sprossen, in ladder order. */
-enum class DateTaskKind { Weekday, Month, DayOfMonth, DayAndMonth, FullDate, FullDateWithYear }
+/**
+ * What a dates question asks — the ladder's Sprossen, in ladder order.
+ *
+ * [NameChoice] is the only one that is TAPPED rather than written: the same nineteen names
+ * the two Sprossen above it ask for, offered on four tiles ([DateDrillChoices]).
+ */
+enum class DateTaskKind {
+    NameChoice,
+    Weekday,
+    Month,
+    DayOfMonth,
+    DayAndMonth,
+    FullDate,
+    FullDateWithYear,
+}
 
 /**
  * One dates question: what stands on the card, and every reading the answer language
@@ -23,6 +36,12 @@ data class DateDrillTask(
     val accepted: List<String>,
     /** The reading the reveal teaches — one of [accepted], drawn where the language says a date two ways. */
     val display: String,
+    /**
+     * The tiles a [DateTaskKind.NameChoice] question is answered off, in render order and
+     * including [display]; null on every written Sprosse. A tapped tile is submitted as the
+     * text it carries, so nothing below grades a choice any differently ([DateDrillChoices]).
+     */
+    val choices: List<String>? = null,
 )
 
 /** One draw: the task and the Sprosse it was found on — a null task ends the run. */

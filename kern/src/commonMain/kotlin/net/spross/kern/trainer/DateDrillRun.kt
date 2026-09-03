@@ -71,6 +71,8 @@ object DateDrillRun {
      * only): where the whole answer is the name, `Juli` typed for `Juni` is July and the
      * refusal says so. An assembled date keeps its bridge — a month slip inside one is a
      * typo by the owner's ruling, so the index is never consulted above the bare Sprossen.
+     * The warm-up Sprosse consults neither: a tapped tile is a name the learner READ, so a
+     * miss is nothing but the wrong one of four and the reveal already stands on the card.
      */
     fun grade(
         input: String,
@@ -278,7 +280,7 @@ object DateDrillRun {
      */
     private fun numberIndex(kind: DateTaskKind, config: DateDrillRunConfig): NumberReadingIndex? =
         when (kind) {
-            DateTaskKind.Weekday, DateTaskKind.Month -> null
+            DateTaskKind.NameChoice, DateTaskKind.Weekday, DateTaskKind.Month -> null
             else -> config.normalizer?.let { NumberReadingIndex.of(config.answerLanguage, it) }
         }
 

@@ -24,38 +24,46 @@ class DateDrillTests {
     private val bareKinds = listOf(DateTaskKind.Weekday, DateTaskKind.Month)
     private val fullLadder = DateTaskKind.entries.toList()
 
+    /** The ladder above the warm-up: everything a Sprosse still carries once it is left behind. */
+    private val written = fullLadder.drop(1)
+
     // MARK: - The ladder
 
     /** The year Sprosse exists only where the answer side reads a year; reverse keeps the names. */
     @Test
     fun theLadderIsAsTallAsTheContentCanCarry() {
-        assertEquals(6, DateDrill.maxLevel(german, reverse = false))
-        assertEquals(5, DateDrill.maxLevel(ukrainian, reverse = false))
-        assertEquals(2, DateDrill.maxLevel(german, reverse = true))
-        assertEquals(2, DateDrill.maxLevel(ukrainian, reverse = true))
+        assertEquals(7, DateDrill.maxLevel(german, reverse = false))
+        assertEquals(6, DateDrill.maxLevel(ukrainian, reverse = false))
+        assertEquals(3, DateDrill.maxLevel(german, reverse = true))
+        assertEquals(3, DateDrill.maxLevel(ukrainian, reverse = true))
     }
 
-    /** A Sprosse carries what it introduces and everything below it; the top one is all of it. */
+    /**
+     * A Sprosse carries what it introduces and everything below it; the top one is all of it.
+     * All but the warm-up, which every Sprosse above it leaves behind.
+     */
     @Test
     fun eachSprosseAddsItsKindToTheOnesBelow() {
-        for ((index, kind) in fullLadder.withIndex()) {
-            val kinds = DateDrill.kinds(german, index + 1, reverse = false)
-            assertEquals(fullLadder.take(index + 1), kinds)
+        val warmUp = listOf(DateTaskKind.NameChoice)
+        assertEquals(warmUp, DateDrill.kinds(german, 1, reverse = false))
+        for ((index, kind) in written.withIndex()) {
+            val kinds = DateDrill.kinds(german, index + 2, reverse = false)
+            assertEquals(written.take(index + 1), kinds, "a written Sprosse carries no tiles")
             assertEquals(kind, kinds.last(), "the Sprosse introduces its own kind")
         }
-        assertEquals(fullLadder.dropLast(1), DateDrill.kinds(ukrainian, 5, reverse = false))
-        assertEquals(listOf(DateTaskKind.Weekday), DateDrill.kinds(german, 1, reverse = true))
-        assertEquals(bareKinds, DateDrill.kinds(german, 2, reverse = true))
-        assertEquals(fullLadder, DateDrill.kinds(german, 99, reverse = false), "clamped to the top")
-        assertEquals(listOf(DateTaskKind.Weekday), DateDrill.kinds(german, 0, reverse = false))
+        assertEquals(written.dropLast(1), DateDrill.kinds(ukrainian, 6, reverse = false))
+        assertEquals(warmUp, DateDrill.kinds(german, 1, reverse = true))
+        assertEquals(bareKinds, DateDrill.kinds(german, 3, reverse = true))
+        assertEquals(written, DateDrill.kinds(german, 99, reverse = false), "clamped to the top")
+        assertEquals(warmUp, DateDrill.kinds(german, 0, reverse = false))
     }
 
     @Test
     fun fastIsOfferedOnlyOnceThisLaddersTopSprosseHasBeenReached() {
-        assertFalse(DateDrill.fastUnlocked(5, german, reverse = false))
-        assertTrue(DateDrill.fastUnlocked(6, german, reverse = false))
-        assertTrue(DateDrill.fastUnlocked(5, ukrainian, reverse = false), "the short ladder tops at 5")
-        assertTrue(DateDrill.fastUnlocked(2, german, reverse = true))
+        assertFalse(DateDrill.fastUnlocked(6, german, reverse = false))
+        assertTrue(DateDrill.fastUnlocked(7, german, reverse = false))
+        assertTrue(DateDrill.fastUnlocked(6, ukrainian, reverse = false), "the short ladder tops at 6")
+        assertTrue(DateDrill.fastUnlocked(3, german, reverse = true))
     }
 
     /** Three clean wins a Sprosse, or one where fast was earned — on this pair's own ceiling. */
@@ -70,10 +78,10 @@ class DateDrillTests {
         }
         assertEquals(2, step.level)
         assertEquals(2, DateDrill.step(german, false, 1, 0, correct = true, clean = true, fast = true).level)
-        val top = DateDrill.step(ukrainian, false, 5, 2, correct = true, clean = true, fast = false)
-        assertEquals(6, top.level, "the number climbs past the short ladder's last named Sprosse")
+        val top = DateDrill.step(ukrainian, false, 6, 2, correct = true, clean = true, fast = false)
+        assertEquals(7, top.level, "the number climbs past the short ladder's last named Sprosse")
         assertEquals(
-            DateDrill.kinds(ukrainian, 5, reverse = false),
+            DateDrill.kinds(ukrainian, 6, reverse = false),
             DateDrill.kinds(ukrainian, top.level, reverse = false),
             "and asks the top Sprosse's questions up there",
         )
@@ -88,6 +96,7 @@ class DateDrillTests {
         assertEquals(listOf("Samstag", "Sonnabend"), saturday.accepted)
         assertEquals("Samstag", saturday.display)
         assertEquals("5", saturday.id)
+        assertNull(saturday.choices, "a written Sprosse offers nothing to tap")
         assertEquals(12, DateDrillTasks.pool(german, DateTaskKind.Month, reverse = false).size)
     }
 
@@ -179,7 +188,7 @@ class DateDrillTests {
         fun run(): List<String> {
             val rng = Random(7)
             return (1..20).map {
-                assertNotNull(DateDrill.sample(german, 4, false, null, emptySet(), rng)).id
+                assertNotNull(DateDrill.sample(german, 5, false, null, emptySet(), rng)).id
             }
         }
         assertEquals(run(), run())
@@ -190,7 +199,7 @@ class DateDrillTests {
     @Test
     fun theLastAnswerIsResampledOnce() {
         fun hits(avoid: String?) = (1..400).count {
-            DateDrill.sample(german, 1, false, avoid, emptySet(), Random(it.toLong()))?.id == "0"
+            DateDrill.sample(german, 2, false, avoid, emptySet(), Random(it.toLong()))?.id == "0"
         }
         assertTrue(hits("${DateTaskKind.Weekday}:0") < hits(null), "avoid bought nothing")
     }
@@ -199,7 +208,7 @@ class DateDrillTests {
     fun aSolvedQuestionIsNeverAskedAgain() {
         val solved = (0..5).map { "${DateTaskKind.Weekday}:$it" }.toSet()
         repeat(20) {
-            val task = assertNotNull(DateDrill.sample(german, 1, false, null, solved, Random(it.toLong())))
+            val task = assertNotNull(DateDrill.sample(german, 2, false, null, solved, Random(it.toLong())))
             assertEquals("6", task.id)
         }
     }
@@ -208,8 +217,8 @@ class DateDrillTests {
     @Test
     fun aSprosseKeepsWhatTheSprossenBelowItStillHold() {
         val daysOut = (1..31).map { "${DateTaskKind.DayOfMonth}:$it" }.toSet()
-        val draw = DateDrill.draw(german, 3, false, null, daysOut, Random(7))
-        assertEquals(3, draw.level)
+        val draw = DateDrill.draw(german, 4, false, null, daysOut, Random(7))
+        assertEquals(4, draw.level)
         assertNotEquals(DateTaskKind.DayOfMonth, assertNotNull(draw.task).kind)
     }
 
@@ -218,8 +227,8 @@ class DateDrillTests {
     fun aSpentSprosseIsClimbedPast() {
         val namesOut = ((0..6).map { "${DateTaskKind.Weekday}:$it" } +
             (0..11).map { "${DateTaskKind.Month}:$it" }).toSet()
-        val draw = DateDrill.draw(german, 2, false, null, namesOut, Random(7))
-        assertEquals(3, draw.level)
+        val draw = DateDrill.draw(german, 3, false, null, namesOut, Random(7))
+        assertEquals(4, draw.level)
         assertEquals(DateTaskKind.DayOfMonth, assertNotNull(draw.task).kind)
     }
 
@@ -231,8 +240,8 @@ class DateDrillTests {
             listOf("${DateTaskKind.Month}:0") +
             (1..31).map { "${DateTaskKind.DayOfMonth}:$it" }
         val solved = (below + (1..31).map { "${DateTaskKind.DayAndMonth}:$it.1" }).toSet()
-        val draw = DateDrill.draw(oneMonth, 4, false, null, solved, Random(7))
-        assertEquals(5, draw.level)
+        val draw = DateDrill.draw(oneMonth, 5, false, null, solved, Random(7))
+        assertEquals(6, draw.level)
         assertEquals(DateTaskKind.FullDate, assertNotNull(draw.task).kind)
     }
 
@@ -240,7 +249,9 @@ class DateDrillTests {
     @Test
     fun aLadderAnsweredOutDrawsNothing() {
         val everything = ((0..6).map { "${DateTaskKind.Weekday}:$it" } +
-            (0..11).map { "${DateTaskKind.Month}:$it" }).toSet()
+            (0..11).map { "${DateTaskKind.Month}:$it" } +
+            (0..6).map { "${DateTaskKind.NameChoice}:w$it" } +
+            (0..11).map { "${DateTaskKind.NameChoice}:m$it" }).toSet()
         val draw = DateDrill.draw(german, 1, true, null, everything, Random(7))
         assertNull(draw.task)
     }
@@ -249,11 +260,58 @@ class DateDrillTests {
     @Test
     fun aSprosseMixesTheKindsBelowItAndFavorsItsOwn() {
         val drawn = (1..200).mapNotNull {
-            DateDrill.sample(german, 6, false, null, emptySet(), Random(it.toLong()))?.kind
+            DateDrill.sample(german, 7, false, null, emptySet(), Random(it.toLong()))?.kind
         }
-        assertEquals(fullLadder.toSet(), drawn.toSet(), "the Sprosse stopped asking a kind it carries")
+        assertEquals(written.toSet(), drawn.toSet(), "the Sprosse stopped asking a kind it carries")
         val newest = drawn.count { it == DateTaskKind.FullDateWithYear }
         assertTrue(newest > drawn.size / 4, "the Sprosse buried its own question: $newest of ${drawn.size}")
+    }
+
+    // MARK: - The warm-up
+
+    /** Four tiles, the answer among them, and the three others out of its own half. */
+    @Test
+    fun theWarmUpOffersFourTilesFromTheAnswersOwnGroup() {
+        val weekdays = german.weekdays.map { it.target.text }.toSet()
+        val months = german.months.map { it.target.text }.toSet()
+        val drawn = (1..40).map {
+            assertNotNull(DateDrill.sample(german, 1, false, null, emptySet(), Random(it.toLong())))
+        }
+        for (task in drawn) {
+            assertEquals(DateTaskKind.NameChoice, task.kind)
+            val tiles = assertNotNull(task.choices)
+            assertEquals(DateDrillChoices.COUNT, tiles.size)
+            assertEquals(tiles.size, tiles.toSet().size, "a name stood on two tiles")
+            assertContains(tiles, task.display)
+            val group = if (task.display in weekdays) weekdays else months
+            assertTrue(tiles.all { it in group }, "company from the other half: $tiles")
+        }
+        assertTrue(
+            drawn.any { it.display in weekdays } && drawn.any { it.display in months },
+            "the warm-up asks the whole calendar, not one half of it",
+        )
+    }
+
+    /** Tapping a name and writing it are two questions, so neither answers the other out. */
+    @Test
+    fun theWarmUpKeepsSolvedKeysOfItsOwn() {
+        val tapped = assertNotNull(DateDrill.sample(german, 1, false, null, emptySet(), Random(7)))
+        assertTrue(DrillSolved.key(tapped).startsWith("${DateTaskKind.NameChoice}:"))
+        val writtenOut = ((0..6).map { "${DateTaskKind.Weekday}:$it" } +
+            (0..11).map { "${DateTaskKind.Month}:$it" }).toSet()
+        assertNotNull(
+            DateDrill.sample(german, 1, false, null, writtenOut, Random(7)),
+            "the written names answered out took the tiles with them",
+        )
+    }
+
+    /** Reversed, the tiles are the learner's own names — the direction reaches them too. */
+    @Test
+    fun aReversedWarmUpOffersTheLearnersOwnNames() {
+        val own = (german.weekdays + german.months).map { it.source.text }.toSet()
+        val task = assertNotNull(DateDrill.sample(german, 1, true, null, emptySet(), Random(3)))
+        assertTrue(assertNotNull(task.choices).all { it in own })
+        assertContains(task.accepted, task.display)
     }
 
     // MARK: - Reference

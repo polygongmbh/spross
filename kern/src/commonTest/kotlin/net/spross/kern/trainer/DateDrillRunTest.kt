@@ -66,7 +66,7 @@ class DateDrillRunTest {
         val run = DateDrillRun.open(config(), Random(7))
         assertEquals(1, run.level)
         assertEquals(1, run.bestLevel)
-        assertEquals(DateTaskKind.Weekday, run.task.kind)
+        assertEquals(DateTaskKind.NameChoice, run.task.kind, "every ladder opens on the tiles")
         assertTrue(run.owesAnswer)
         assertFalse(run.showsAnswer)
         assertEquals(0, run.done)
@@ -75,9 +75,9 @@ class DateDrillRunTest {
     /** The forced Sprosse is for tests and screenshot drivers; kern clamps it to THIS ladder. */
     @Test
     fun aForcedSprosseIsClampedToTheLadder() {
-        assertEquals(6, open(level = 99).level)
+        assertEquals(7, open(level = 99).level)
         assertEquals(1, open(level = 0).level)
-        assertEquals(2, open(reverse = true, level = 99).level)
+        assertEquals(3, open(reverse = true, level = 99).level)
     }
 
     @Test

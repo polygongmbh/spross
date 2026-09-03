@@ -23,6 +23,10 @@ import net.spross.kern.model.Language
  * Reversed, only the bare-name Sprossen stand — the numeric side of a date is a separator
  * convention, not a language skill — so that ladder is the two names plus their mix.
  *
+ * The ladder OPENS on a tapped Sprosse either way ([DateDrillChoices]): the names are met
+ * on four tiles before any of them is written out, which is the letters ladder's opening
+ * and the box's rule for a word nobody has produced yet.
+ *
  * The bare Sprossen enumerate their pools; the assembled Sprossen are drawn like the slot
  * drill's values, so [DrillSolved.SPENT_ATTEMPTS] is what "spent" means there. What a
  * drawn question looks like — prompt, accepted set, display — is [DateDrillTasks]'.
@@ -53,10 +57,18 @@ object DateDrill {
     ): DrillRamp.SprosseStep =
         DrillRamp.step(level, winsAtLevel, correct, clean, winsToAdvance(fast))
 
-    /** What [level] may ask: the kind it introduces, and every kind below it. */
+    /**
+     * What [level] may ask: the kind it introduces, and every kind below it — except the
+     * warm-up, which every Sprosse above it leaves behind.
+     *
+     * why: [DateTaskKind.NameChoice] is a landing rather than a step. Four tiles carried
+     * up among written dates would be a free point, and the Sprosse above would climb on
+     * a tap that asked nothing the Sprosse below had not already answered.
+     */
     fun kinds(content: DateDrillContent, level: Int, reverse: Boolean): List<DateTaskKind> {
         val ladder = sprossen(content, reverse)
-        return ladder.take(level.coerceIn(1, ladder.size))
+        val carried = ladder.take(level.coerceIn(1, ladder.size))
+        return if (carried.size == 1) carried else carried.drop(1)
     }
 
     /**
@@ -75,6 +87,9 @@ object DateDrill {
     ): DateDrillTask? {
         for (kind in drawOrder(kinds(content, level, reverse), rng)) {
             val task = when (kind) {
+                DateTaskKind.NameChoice ->
+                    samplePool(DateDrillChoices.pool(content, reverse), avoid, solved, rng)
+                        ?.let { DateDrillChoices.tiles(content, it, reverse, rng) }
                 DateTaskKind.Weekday, DateTaskKind.Month, DateTaskKind.DayOfMonth ->
                     samplePool(DateDrillTasks.pool(content, kind, reverse), avoid, solved, rng)
                 else -> sampleComposed(content, kind, avoid, solved, rng)
@@ -131,9 +146,10 @@ object DateDrill {
 
     private fun sprossen(content: DateDrillContent, reverse: Boolean): List<DateTaskKind> =
         if (reverse) {
-            listOf(DateTaskKind.Weekday, DateTaskKind.Month)
+            listOf(DateTaskKind.NameChoice, DateTaskKind.Weekday, DateTaskKind.Month)
         } else {
             listOfNotNull(
+                DateTaskKind.NameChoice,
                 DateTaskKind.Weekday,
                 DateTaskKind.Month,
                 DateTaskKind.DayOfMonth,
