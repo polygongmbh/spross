@@ -39,30 +39,24 @@ data class Briefing(
     val text: String
         get() = buildString {
             appendLine(opening())
-            appendLine("Below are the words I have so far, out of Spross, the app I learn with.")
+            appendLine("The lists below come out of Spross, the app I learn with.")
             appendLine()
             appendLine(protocol())
             appendLine()
             appendLine(firstTurn())
             if (freeCount > 0) {
                 appendLine()
-                appendLine("WORDS I HAVE — $freeCount of them; say anything to me in these")
+                appendLine("WORDS I HAVE — $freeCount; say anything to me in these")
                 for (area in free) appendLine("${area.title}: ${area.words.joinToString(", ")}")
             }
             if (inPlay.isNotEmpty()) {
                 appendLine()
-                appendLine(
-                    "WORDS I AM LEARNING RIGHT NOW — ${inPlay.size} of them. Reach for one " +
-                        "where the talk goes near it, leave it where it does not.",
-                )
+                appendLine("WORDS I AM LEARNING RIGHT NOW — ${inPlay.size}")
                 for (word in inPlay) appendLine("${word.target} = ${word.source}")
             }
             if (newWords.isNotEmpty()) {
                 appendLine()
-                appendLine(
-                    "WHAT THE APP TEACHES ME NEXT — prefer one of these when you bring in a " +
-                        "word of your own; any word the conversation needs is fine.",
-                )
+                appendLine("WHAT THE APP TEACHES ME NEXT — prefer these when you bring in a word")
                 for (word in newWords) appendLine("${word.target} (${word.source})")
             }
             appendLine()
@@ -91,7 +85,6 @@ data class Briefing(
         case or agreement. One to three short, concrete sentences per turn.
         Ask me one question per turn.
         Correct at most one mistake per turn, in $sourceName, after answering what I said.
-        Never list vocabulary back at me.
     """.trimIndent()
 
     /** The opening turn: something to read, before the learner has had to say anything. */
@@ -126,6 +119,9 @@ object Briefings {
     /** How wide the new-word preference is drawn — a round's worth, give or take. */
     const val NEW_LIMIT: Int = 15
 
+    /** Words in play past which the brief stops naming what is next. */
+    const val IN_PLAY_BUSY: Int = 30
+
     private val IN_PLAY_STAGES = setOf(
         GrowthStage.Learning,
         GrowthStage.Fresh,
@@ -148,13 +144,16 @@ object Briefings {
             }
         val inPlay = joined
             .filter { stages[it.id] in IN_PLAY_STAGES }
-            .sortedBy { state.scheduling[it.id]?.memory?.stability ?: 0.0 }
             .map { BriefWord(targetForm(it), it.source.text) }
-        val candidates = Growth.newCandidates(state, NEW_LIMIT, NEW_LIMIT)
-        val newWords = (candidates.newCards + candidates.unlockedPhrases)
-            .mapNotNull { state.cards[it] }
-            .filter { it.area != OwnWords.AREA }
-            .map { BriefWord(targetForm(it), it.source.text) }
+        val newWords = if (inPlay.size >= IN_PLAY_BUSY) {
+            emptyList()
+        } else {
+            val candidates = Growth.newCandidates(state, NEW_LIMIT, NEW_LIMIT)
+            (candidates.newCards + candidates.unlockedPhrases)
+                .mapNotNull { state.cards[it] }
+                .filter { it.area != OwnWords.AREA }
+                .map { BriefWord(targetForm(it), it.source.text) }
+        }
         return Briefing(
             learnerName = learnerName,
             sourceName = languageName(catalog, state.joinStamp.source),
