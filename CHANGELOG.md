@@ -2,24 +2,14 @@
 
 ## Unreleased
 
-- **Animals and weather are their own boxes now, and the animals have company.** Nature had
-  become three shelves in one: it keeps the landscape and the plants, what the sky is doing
-  moved to Weather, and the creatures to Animals — which gained the cow, goat, sheep, donkey,
-  horse, elephant, monkey, snake and insect. Four animals also come with the sound they make
-  — *Mbwa anabweka*, *Paka analia*, *Ndege anaimba*, *Simba ananguruma* — and the mosquito
-  with what it actually does to you, which every language words its own way: German and
-  French sting where English and Swahili bite. The lion and the mosquito arrive in their
-  sentence and no other, because a bare word you would never say alone teaches less than the
-  sentence you would. Your progress on every word that moved is untouched.
+- **Animals and weather are boxes of their own.** Nature had become three shelves in one:
+  it keeps the landscape and the plants, what the sky is doing moved to Weather, and the
+  creatures to Animals. Your progress on every word that moved is untouched.
 
-- **The kitchen shelf fills in.** Beans, garlic, carrot and cabbage join the onion and the
-  potato, and two more of what actually gets eaten in Kenya: *uji* and *sambusa*.
-
-- **New words, and the smaller ones arrive in a sentence.** Nature gained the shadow
-  (Swahili *kivuli*) and Feelings the smile (*tabasamu*), while the dog and the cat now also
-  come with the sound they make — *The dog is barking.*, *The cat is meowing.* — because a
-  word too small to carry a card of its own is still worth having beside its verb.
-  Swahili's *afternoon* also answers to *alasiri*, the late-afternoon word beside *mchana*.
+- **The shelves fill up.** More animals, more of what a market sells and what gets eaten in
+  Kenya, and a handful of words the catalog was missing. Where a word is not worth a card on
+  its own, it now arrives as the short sentence you would actually say it in — the dog
+  barking, the mosquito biting — rather than as a bare word beside it.
 
 ## 5.10.0 — 2026-09-02
 
