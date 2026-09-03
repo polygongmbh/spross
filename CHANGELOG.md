@@ -4,286 +4,67 @@
 
 ## 5.11.3 — 2026-09-03
 
-- **Words brought back from an AI chat arrive sorted** — everything the chat listed is shown under new, close to a word you already have, or already in your box, and only the new ones start ticked.
+- Words brought back from an AI chat arrive sorted, and only the new ones start ticked.
 
 ## 5.11.2 — 2026-09-03
 
-- **The dates drill turned round now asks you to read a date, not to translate one** — it says `Samstag, der dritte Juni` and you write `3.6.`, which is the half of the skill a calendar actually needs.
+- Turned round, the dates drill asks you to read a date rather than translate one.
 
 ## 5.11.1 — 2026-09-03
 
-- **"Finally" joins the connecting words** in place of a weather phrase five of eight languages had to fake — the sun "coming out" is gone, replaced by "finally done!".
-- **The chat with an AI now opens with a story to read** — the brief asks for a short parallel text in both languages, built out of the words you already have, before it asks you anything.
+- The chat with an AI now opens with a short story to read, built from the words you already have.
 
 ## 5.11.0 — 2026-09-03
 
-- **The dates drill now opens by tapping, not typing** — the weekday and month names come four at a time before any of them has to be written out.
-- **English dates are taught both ways round** — `March third` and `the third of March` take turns on the reveal, and the article that order drops in speech no longer costs the answer.
-- **Recordings or speech is now a choice per language you learn**, offered only where the phone can actually speak it — so Swahili stops advertising a Speech setting no iPhone voice could honor.
-- **Around 1,800 more words are read by a person rather than by the phone** — the recordings had stopped keeping up with the catalog since August.
-- **The days, months, countries and peoples are spoken by a person too**, where the dates and atlas drills had only ever had the device voice.
-- **Take your words into a chat with an AI, and bring what you learn back** — the Box hands you a text describing your box for whichever assistant you already use, and takes that conversation's new words back in as your own; the app itself sends nothing anywhere.
-- **A new pronouns area** teaches every person, the polite *Sie*, *usted* and *Lei* among them, along with the grammar words the notes lean on.
-- **Animals and weather are boxes of their own**, cut out of Nature without touching your progress on a single word that moved.
-- **The shelves fill up** with more animals, vegetables and Kenyan plates — and a word not worth a card alone now arrives as the short sentence you would say it in.
+- The dates drill opens by tapping weekday and month names before any of them has to be written out, and English dates are taught both ways round.
+- Many more words are read by a person rather than by the phone, and each language you learn chooses between those recordings and the phone's own voice.
+- Take your words into a chat with the AI you already use and bring what you learn back in; the app itself sends nothing anywhere.
+- New shelves fill the catalog out: every pronoun including the polite ones, animals and weather split out of Nature, and more vegetables and Kenyan plates.
 
 ## 5.10.0 — 2026-09-02
 
-- **A word you keep missing comes back the same day, not only days later.** The retry
-  ladder only ever grew: ten minutes, then a day, then three, then a week, so the second
-  miss already pushed a word out to day scale and every miss after that pushed it
-  further — exactly when it was least likely to be remembered. Minutes and
-  days now alternate — ten minutes, a day, ten minutes, three days, ten minutes, a week
-  — so a word that will not stick still gets a second look on the same day, while the
-  waits between those pairs keep widening. A word never appears more than twice in a day.
-  A word still missed after four of those pairs is parked at a month instead of a week —
-  far enough out to stop costing you a slot, near enough that it can still come back.
-
-- **Words come back sooner while they are still new.** The box aimed to catch you at an
-  85% chance of recall rather than 80%. That sounds like a small change and is not: a word
-  you answered but found hard used to wait four days and now waits two and a half, and the
-  sighting after your first one moves in from two months to four weeks. Later reviews are
-  barely affected, so this costs almost nothing in daily work — it spends the extra looks
-  where words are actually lost, which is the first fortnight.
-
-- **A word that means two things in your language now counts either way.** Swahili *ndege* is
-  both a bird and an airplane; hearing it and writing the other one was marked wrong. It
-  counts in full now, and the card pauses on the meaning it was teaching, so the word you
-  did not think of is the one you end up looking at. Every card that asks what a word means
-  also says what else it means, on the line the card's own note would otherwise use.
-  On the watch, where the answer is picked from four tiles, the other meaning is no longer
-  one of the wrong ones.
-
-- **A word explains itself on a long press in the Box.** The catalog's note — why *la mano*
-  is feminine, which of two Spanish words for "ear" the doctor wants — used to arrive only
-  when a card was turned over mid-round. Holding a word in the Box now shows it above the
-  menu, so a shelf can be read through without starting a session.
-
-- **The dictated word can be heard again once you have written it.** The letter drill's
-  reveal now carries the speaker every other answer in the app already had, so a word you
-  transcribed is one tap from being said back to you — on Android it could not be replayed
-  at all. The letter Sprossen keep none: their answer is a single glyph, and a glyph handed
-  to a voice comes back as a spelling alphabet rather than the letter you were played, so
-  the big replay button above stays the way to hear those.
+- A word you keep missing comes back the same day instead of only days later, and words come back sooner while they are still new.
 
 ## 5.9.0 — 2026-09-02
 
-- **Your own content can be emptied once you have sent it on.** A word you wrote down in
-  only one language, and a problem you filed against a catalog word, both wait there to be
-  read by whoever maintains the catalog — and until now the only way out was one long press
-  at a time. Copy and Send each offer to clear the section behind them in one go, and a
-  button beside them does it alone, asking first. The words you wrote in both languages stay
-  either way: those are cards you are learning, not notes.
-
-- **A drill Sprosse no longer stops at the top of its ladder.** Clean wins used to bank into
-  nothing once the last named Sprosse was reached; the number now goes on climbing — Sprosse 12
-  on a ladder of nine — while the questions stay at the top Sprosse's mix. Every drill counts
-  this way, and the overview prints the record as it stands instead of trimming it back to
-  the last row on the page.
-
-- **The numbers page says how far each exercise has come.** Zahlen, Uhrzeit, Sätze and
-  Formen each print the best Sprosse they have reached under their own name, the way the atlas
-  and the calendar already did under theirs.
-
-- **Three new shelves, and the body words sorted onto the right ones.** Krieg and Frieden had
-  nowhere to sit, so there is now a `Politik` shelf: war and peace, the freedom they are
-  about, who governs, how they are chosen and the border they are chosen inside. The organs
-  move out of the sickroom onto an `Organe` shelf of their own — Lunge, Leber, Niere, Magen,
-  Darm, Blase, Milz, Galle, Blinddarm, Gebärmutter, Bauchspeicheldrüse, plus Nerv, Vene,
-  Arterie, Gelenk, Drüse and Schilddrüse — which leaves `Die Gesundheit` to be about how you
-  feel. Leben, Tod, lebendig and sterben get their own `Leben & Tod` shelf beside the family
-  and the body, where they arrive early instead of two hundred cards into an illness list.
-  What is left is `Die Krankheit`, a shelf about being ill rather than one that also had to
-  hold the word for being well — Gesundheit and gesund move up to the building blocks, where
-  a learner meets them in the first weeks. Elsewhere: das Gehirn and der Muskel join the
-  everyday body words, `sich fühlen` joins the feelings, `sich ausruhen` moves to the
-  bedroom where you actually do it, `schön` stops being `gut` said twice, and
-  positiv/negativ/neutral and aggressiv/defensiv arrive for the moment a conversation turns
-  to an opinion. `vegetarisch` leaves as a word of its own — the question that uses it
-  teaches everything the bare adjective did.
-
-- **A report is one thing to open, not two, and never on your own word.** Filing a problem
-  with a word used to leave two entries on its menu — reopen the report, or withdraw it —
-  and withdrawing meant deciding without being able to reread what you had written.
-  There is one entry now, and dropping the report is inside the form, under what you wrote.
-  A word you wrote yourself no longer offers to be reported at all: there is nobody to tell
-  about it, and the edit form beside it already changes anything you would have said. In a
-  round, a reported card can finally be edited rather than only withdrawn.
-
-- **A fourth Sprossen drill: the date.** The weekday names, the month names, the day of
-  the month as the words a date actually wants — *der dritte*, *третього* — and then the
-  whole spoken date assembled out of them, over a ladder whose every Sprosse adds its new
-  question to the ones below it rather than replacing them.
-  Every language pair drills it; a Sprosse a language cannot honestly read is simply absent
-  (Ukrainian speaks no year inside a date), and a reversed run asks just the names, because
-  the numeric side of a date is a separator convention rather than a language skill. Typing
-  one bare month for its neighbor — *Juli* for *Juni* — is named as the other month, not
-  forgiven as a slip.
-
-- **The explanations on a card now reach you, whatever language you read.** A card can carry a
-  short note about its answer — which case a verb takes, why one word is not the other — and
-  until now you only ever saw it if you happened to be a German speaker, because that is who
-  every one of them was written for. A note is now written in the language you are LEARNING
-  and shown to everybody, so the same explanation reaches all eight audiences instead of one;
-  where a note would land before you could read that language, or says something that only
-  makes sense between your two languages, it still arrives in yours. Some notes had been
-  written for German speakers learning German, which is nobody, and had never appeared on a
-  card at all; those work now too.
-
-- **German explains its cases instead of leaving you to notice them.** "in der Schule" and
-  "in die Schule" were two cards that never said why they differ, and nothing said that
-  helfen takes a different case from sehen, or that mit, für and wegen each take their own —
-  mit, für and wegen had no cards at all. They do now, each saying which case it takes, and
-  new sentences put the contrast in your mouth rather than only in front of your eyes: the
-  mountains you go to against the mountains you are in, going home against being at home.
-  The same pairs teach the matching distinction where another language draws one — the
-  Esperanto -n of direction, the Ukrainian locative against the accusative — and where a
-  language draws none, the card says so.
-
-- **The cases German does not have are taught too.** Ukrainian has seven cases to German's
-  four, and the one German has no counterpart for — the form a name takes when you call
-  someone, мама becoming мамо — was nowhere in the catalog; a new card now asks for it.
-  Two more were already on cards without ever being pointed out: the Ukrainian "Я не їм
-  м'яса", where a negated sentence changes the form of what follows, and the Spanish
-  "Pregunta al profesor", where a person as the object takes an "a" that a thing does not.
+- The words you wrote and the problems you reported can be cleared in one go once you have sent them on.
+- A drill Sprosse keeps climbing past the top of its ladder, and every exercise says how far it has come under its own name.
+- Three new shelves, Politik, Organe and Leben & Tod, with the body and health words sorted onto the right ones.
+- A fourth Sprossen drill teaches the date: the weekday and month names, the day of the month, and the whole spoken date.
+- The short notes on a card now reach every learner, in the language being learned, instead of only German speakers.
+- German says which case a verb or a preposition takes, and new sentences put the contrast in your mouth.
+- The cases German does not have are taught too, from the Ukrainian form for calling someone to the Spanish personal *a*.
 
 ## 5.8.0 — 2026-09-01
 
-- **New words arrive a little slower, so a busy box catches up instead of only keeping pace.**
-  A round behind on reviews used to bring in five new words a day and hand you 25 cards; it now
-  brings four and hands you 24. The number of words to recall in a round is unchanged — what
-  changed is that every new word also books the reviews it will ask for over the following weeks,
-  and five a day was enough to spend nearly the whole sitting on itself. Four leaves room to
-  work a backlog down rather than hold it level, and a caught-up day still offers a full round
-  of first sights.
-
-- **A word that keeps slipping gets more room, not less.** Missing a word used to bring it
-  back after the same fixed wait every time — 2 minutes for a brand-new word, 10 for one
-  you'd already learned — and a second miss anywhere quietly suspended it out of rotation
-  for good. Repeated misses now wait longer each time, new word or old — 10 minutes, a day,
-  three days, a week — so a word appears at most twice on the day you first meet it before a
-  repeat miss gives it space to sink in, instead of being drilled again the same day; a word
-  only sleeps now if you suspend it yourself. Getting one right but finding it hard no longer
-  holds it back either — only a miss keeps a word on the short leash.
-
-- **Android: the introduction can be read again.** What Spross is for and what a round asks
-  of you were shown once, on the first launch, and never again. The box settings now have a
-  row that replays them — the pair you learn and everything you have learnt stay exactly
-  where they are.
-
-- **Android: TalkBack hears what the colors say.** Four places said something in color or
-  in a glyph and nothing in words: the progress bar over a round (now "3 richtig, 1 schwer,
-  1 daneben", or which card you are on before the first answer), the amber edge on an answer
-  you gave up on, the ♀ beside a feminine word, and the practice chips, which now say what
-  they open and in which language.
-
-- **Android: who publishes Spross, and what it does with your data, are in the app.** The
-  About screen led with the speakers and said nothing about the publisher — and an app
-  installed through Obtainium has no store listing to say it elsewhere. The Impressum now
-  heads that screen, the address it answers on opens a mail, and the privacy policy is one
-  tap from it.
-
-- **Android: a fresh start opens onboarding instead of crashing.** Installing Spross, or
-  clearing its data, dropped straight back to the launcher: the welcome screen asked the
-  system for the phone's bluetooth name to guess who you are, and modern Android refuses
-  that read outright rather than answering it. The guess comes from the device name alone
-  now, which is where someone who names a phone after themselves puts it anyway.
+- New words arrive a little slower, so a busy box catches up instead of only keeping pace.
+- A word you keep missing waits longer each time instead of being drilled again the same day, and only sleeps if you put it to sleep yourself.
+- Android: the introduction can be read again from the box settings.
+- Android: TalkBack says what the colors and the glyphs say.
+- Android: a fresh install, or one whose data you cleared, opens onboarding instead of crashing.
 
 ## 5.7.2 — 2026-08-31
 
-- **A drill asks you each question once.** Numbers, the clock, forms and sentences, the
-  letters and the atlas: whatever you have answered right does not come round again in the
-  same run, so an evening on the drills is spent on what you still owe rather than on the
-  same handful of prompts. A level with nothing left to ask is skipped rather than repeated
-  — the atlas level you start on can hold a single country — and a drill that runs out of
-  questions altogether hands you its figures instead of asking again. A slip or a look-up
-  still leaves the question in the pool: only an answer you got right retires it.
+- A drill asks you each question once, so a run is spent on what you still owe rather than on the same handful of prompts.
 
 ## 5.7.1 — 2026-08-31
 
-- **The app keeps up with your taps again.** Coming back from the box, opening a round and
-  grading a card each used to hang for a moment. Three things were behind it: the whole box
-  document was being written out — every schedule and every review you have ever logged —
-  on the thread that draws the screen, after every single card; the machine that grades
-  what you type was rebuilt from every word in the catalog before each card went up; and
-  the Heute screen re-asked the engine everything it shows, several times, every time it
-  redrew. All three are answered once now, when something actually changes, and the writing
-  happens out of the way. Starting the app is quicker too — the catalog and your box are
-  read while the first screen is already being drawn rather than before it.
-
-- **A shelf you left open is open when you come back.** Opening a shelf, stepping away to
-  Heute and returning shut it again — the box was forgetting the fold on the way out. It is
-  remembered above the trip now, so where you were is where you land.
+- The app keeps up with your taps again, and starts quicker.
+- A shelf you left open is open when you come back.
 
 ## 5.7.0 — 2026-08-29
 
-- **German's tenses arrive as sentences you would actually say.** Six phrases, each built
-  around one construction the box could not show you before: the perfect with *sein* (`Der
-  Bus ist schon abgefahren.`), the perfect with *haben* around a reflexive (`Ich habe mich
-  gestern verletzt.`), the ge-less perfect of a verb that refuses the prefix (`Ich habe schon
-  bezahlt.`), the future (`Der Arzt wird Sie gleich untersuchen.`), and the passive in both
-  of its German shapes — the one that happens (`Die Wäsche wird gerade gewaschen.`) and the
-  one that is done (`Die Prüfung ist schon korrigiert.`). Each waits on the shelf where you
-  would meet it — the bus stop, the doctor, the till, the laundry, the classroom — and
-  unlocks from the words standing beside it.
-
-- **A shelf for how a day feels, and the words the rooms were missing.** Feelings is a new
-  shelf: joy and sadness, anger and fear, surprise, worry, love, shame, jealousy. Around it,
-  the everyday gaps close — the floor under you and a song to put on it, wood and a stick, a
-  band-aid and a splint, the wheel and the engine and the rail; showing, explaining and
-  teaching, meeting, inviting, visiting and marrying; using, coming back, losing, pushing and
-  pulling; remembering, forgetting, imagining, a goal and a challenge; dry, completely, then,
-  the day before yesterday, a country and its four directions, rich, poor and free of charge.
-
-- **The day's headline moves with the day.** It used to name the round's shape and nothing
-  else, so a second round of the same make read exactly like the first, and an afternoon
-  with a standing run about to lapse said `your round is ready` as brightly as the morning
-  had. What you have already done today now moves the line on, and from late morning a run
-  at risk takes it over — quietly in the morning, never at all when the run is safe.
+- German's tenses arrive as sentences you would actually say, the perfect and the future among them, each waiting on the shelf where you would meet it.
+- A new shelf for how a day feels, and the everyday words the other rooms were missing.
+- The day's headline moves with the day, and takes up a standing run that is about to lapse.
 
 ## 5.6.0 — 2026-08-29
 
-- **Say what is wrong with a word, without leaving the round.** Press and hold a card once
-  its answer is out: you can report a problem with it — a wrong translation, or your answer
-  being a synonym the catalog ought to accept — and what you typed goes along with the
-  report, since that is usually the whole point. The same press offers to put the word to
-  sleep, which is a separate thing entirely: reporting never changes what you are asked,
-  and sleeping a word files no complaint. Reported words wear a flag in the Box.
-
-- **Write down a word the catalog is missing, even if you only know one side.** The own-word
-  form now takes a single language. That word is kept as a suggestion — never asked, never
-  scheduled — and waits at the bottom of the Box, where suggestions and reports can go out
-  together: onto the clipboard, or as a mail to whoever tends the catalog. Either way you
-  can take everything or only what is new since last time.
-
-- **"Nicht mehr abfragen" now does exactly that, mid-round and without a grade.** Saying a
-  word should not be asked, and then being made to rate it, was the busywork the action
-  exists to remove. It leaves the round on the spot, unrated — you are not saying you
-  failed it — and the round's count shrinks with it, because a word taken out was never
-  owed. It reaches words the box has never asked you, too, which mid-round is most of them.
-
-- **Everything you put into the box yourself now stands in one place.** The words you wrote
-  and the problems you reported share a section at the foot of the Box, with a button to
-  write another right there. Your own words lost the shelf they used to sit on — they are
-  sown the moment you write them, so a control offering to sow them had nothing to say.
-
-- **Press and hold any word in the Box for everything you can do with it.** Sow it or take
-  it back out, put it to sleep or wake it, reset the progress on it and meet it fresh, make
-  your own word from it, report what is wrong with it, or — for a word you wrote — edit it.
-  Editing keeps the word's progress: fixing a typo no longer costs you the practice.
-
-- **The word form says which language is which, and offers you a picture.** Both fields wear
-  their flag, a button between them swaps what you typed when they went in the wrong way
-  round, and a row of common pictures saves the trip to the emoji keyboard.
-
-- **A different number is wrong, and the drill says which you wrote.** Typing *setenta*
-  when the drill asked for *sesenta* used to pass as a near-miss — one letter off, after
-  all. Now an answer that is really another number is refused outright, in every number,
-  forms, year and clock drill, and the reveal names it: "By the way: setenta means 70."
-  The same goes for the country drill — *Uswidi* for *Uswisi* is Sweden, not a typo of
-  Switzerland, and the card says so. The name shows whenever what you wrote is really
-  another number or country — one letter off or nowhere close — while a genuine slip
-  that names nothing (*sesemta*) is forgiven exactly as before.
+- Say what is wrong with a card without leaving the round, and put a word to sleep from the same press.
+- Write down a word the catalog is missing even if you know only one side of it, and find everything you have written or reported together at the foot of the Box.
+- Telling the box not to ask a word again does exactly that, mid-round and without a grade.
+- Press and hold any word in the Box for everything you can do with it, editing your own words included.
+- An answer that is really another number or country is refused instead of forgiven as a typo, and the reveal names what you wrote.
 
 ## 5.5.2 — 2026-08-26
 
