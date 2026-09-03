@@ -153,11 +153,16 @@ auto-advance beats these share with it, are `design.md`'s.
   actually spends — and its answer is DIGITS, so a reversed run is a comprehension check the
   whole way up rather than a test of the learner's spelling in a language they already have.
   A written date forgives the zero-padding and the trailing ordinal dot; a digit is never
-  forgiven, so `3.7.` for `3.6.` is another date and not a slip. The weekday the card prints
-  is dropped rather than made optional — `Sa,` is the SOURCE's own abbreviation, no number
-  pad types it, and the prompt named that day already — which is also why the whole date is
-  the one Sprosse with no way round: without its weekday it is day and month over again, so
-  a reversed ladder is exactly one Sprosse shorter. The Sprossen are not earned (no review, no
+  forgiven, so `3.7.` for `3.6.` is another date and not a slip. NO WEEKDAY is in play either
+  side: `Sa,` is the source's own abbreviation and no number pad types it, so the answer is
+  the date alone — and a card that named a weekday the answer then threw away would be asking
+  for something it discards, so the reversed dated card reads its date without one. That
+  reading is composed, not authored: a year joins a date the same way with or without a
+  weekday in front, so the join is what `dateWithYear` adds to `date`, and what it joins to is
+  `dayMonth`. Cutting the weekday off `dateWithYear` would not do — Spanish, French and
+  Italian give up their article once a weekday stands there. It is also why the whole date is
+  the one Sprosse with no way round: with no weekday to account for it is day and month over
+  again, so a reversed ladder is exactly one Sprosse shorter. The Sprossen are not earned (no review, no
   schedule — the letter drill's rule), reverse is offered from the first run, and FAST has
   the atlas' price: one clean win a Sprosse, offered once the top Sprosse has ever been stood on.
   A bare name typed for its neighbor is refused by name — *Juli* for *Juni* is the other
