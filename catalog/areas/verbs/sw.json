@@ -31,9 +31,10 @@
    "notes": { "de": "Präsens: nataka, unataka, anataka · verneint: sitaki = ich will nicht." }
   },
   "find": {
-   "text": "kukuta",
+   "text": "kupata",
+   "synonyms": ["kukuta"],
    "notes": {
-    "de": "kukuta = antreffen, auf etwas stoßen · gesprochen sagt man für „ich hab es gefunden“ auch nimeipata."
+    "de": "kupata ist das Alltagswort für „gefunden“, wörtlich bekommen: nimeipata = ich hab's gefunden · kukuta = antreffen, auf etwas stoßen."
    }
   },
   "search": {
