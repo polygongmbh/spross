@@ -38,6 +38,12 @@
   "juice": { "text": "zumo", "synonyms": ["jugo"], "grammar": { "gender": "el" } },
   "cooked-rice": { "text": "arroz cocido" },
   "cassava": { "text": "yuca", "synonyms": ["mandioca"], "grammar": { "gender": "la" } },
+  "bean": { "text": "frijol", "synonyms": ["judía"], "grammar": { "gender": "el", "plural": "frijoles" } },
+  "garlic": { "text": "ajo", "grammar": { "gender": "el" } },
+  "carrot": { "text": "zanahoria", "grammar": { "gender": "la" } },
+  "cabbage": { "text": "col", "synonyms": ["repollo"], "grammar": { "gender": "la" } },
+  "porridge": { "text": "gachas", "grammar": { "gender": "las" } },
+  "samosa": { "text": "samosa", "grammar": { "gender": "la" } },
   "breakfast": { "text": "desayuno", "grammar": { "gender": "el" } },
   "dinner": { "text": "cena", "grammar": { "gender": "la" } },
   "water": {
