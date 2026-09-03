@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **New words, and the smaller ones arrive in a sentence.** Nature gained the shadow
+  (Swahili *kivuli*) and Feelings the smile (*tabasamu*), while the dog and the cat now also
+  come with the sound they make — *The dog is barking.*, *The cat is meowing.* — because a
+  word too small to carry a card of its own is still worth having beside its verb.
+  Swahili's *afternoon* also answers to *alasiri*, the late-afternoon word beside *mchana*.
+
 ## 5.10.0 — 2026-09-02
 
 - **A word you keep missing comes back the same day, not only days later.** The retry
