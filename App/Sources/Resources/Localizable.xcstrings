@@ -1277,6 +1277,57 @@
         }
       }
     },
+    "briefing.group.held" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schon in deinem Kasten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Already in your box"
+          }
+        }
+      },
+      "comment" : "heading over pasted words the box already teaches exactly (`HarvestKind.Held`)"
+    },
+    "briefing.group.near" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nah an Wörtern, die du hast"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close to words you have"
+          }
+        }
+      },
+      "comment" : "heading over pasted words that lean on one the box already teaches (`HarvestKind.Near`)"
+    },
+    "briefing.group.new" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neu für deinen Kasten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New to your box"
+          }
+        }
+      },
+      "comment" : "heading over pasted words the box has nothing like — the group that arrives ticked"
+    },
     "briefing.intro" : {
       "comment" : "The sheet's opening line. The text is never shown itself — the three counts under this stand for it.",
       "localizations" : {
@@ -1295,21 +1346,21 @@
       }
     },
     "briefing.return.empty" : {
-      "comment" : "Nothing parsed, or everything in it is already in the box — both are the same answer to the learner.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "In der Zwischenablage steht kein neues Wort."
+            "value" : "In der Zwischenablage steht keine Wortliste."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "There is no new word in the clipboard."
+            "value" : "There is no word list in the clipboard."
           }
         }
-      }
+      },
+      "comment" : "said when the pasted text carried no word list at all"
     },
     "briefing.return.explainer" : {
       "comment" : "What the brief asked the chat for, said again where the learner acts on it.",

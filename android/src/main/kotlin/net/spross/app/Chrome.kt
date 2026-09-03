@@ -360,6 +360,9 @@ interface Chrome {
     val briefingReturnExplainer: String
     val briefingReturnPaste: String
     val briefingReturnEmpty: String
+    val briefingGroupNew: String
+    val briefingGroupNear: String
+    val briefingGroupHeld: String
     val briefingReturnKeepOne: String      // %d
     val briefingReturnKeep: String         // %d
     val sessionDoneTalk: String

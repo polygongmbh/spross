@@ -359,7 +359,10 @@ internal object ChromeEn : Chrome {
     override val briefingReturnExplainer = "At the end the chat lists the new words. Copy " +
         "that list and paste it here."
     override val briefingReturnPaste = "Paste"
-    override val briefingReturnEmpty = "There is no new word in the clipboard."
+    override val briefingReturnEmpty = "There is no word list in the clipboard."
+    override val briefingGroupNew = "New to your box"
+    override val briefingGroupNear = "Close to words you have"
+    override val briefingGroupHeld = "Already in your box"
     override val briefingReturnKeepOne = "Keep %d word"
     override val briefingReturnKeep = "Keep %d words"
     override val sessionDoneTalk = "Talk about the words?"

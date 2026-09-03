@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Words brought back from an AI chat arrive sorted** — everything the chat listed is shown under new, close to a word you already have, or already in your box, and only the new ones start ticked.
 - **The chat with an AI now opens with a story to read** — the brief asks for a short parallel text in both languages, built out of the words you already have, before it asks you anything.
 - **The dates drill now opens by tapping, not typing** — the weekday and month names come four at a time before any of them has to be written out.
 

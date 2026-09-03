@@ -1,6 +1,5 @@
 package net.spross.kern.box
 
-import net.spross.kern.model.articledForm
 import net.spross.kern.model.nfcNormalized
 
 /**
@@ -17,6 +16,12 @@ import net.spross.kern.model.nfcNormalized
  * It parses an ASSISTANT, so it forgives one: fences it did not ask for, bullets, numbering,
  * backticks, an arrow where an `=` was asked for, and prose wrapped around the whole thing.
  * What it will not do is import silently — it hands back a list, and the surface asks.
+ *
+ * Everything the paste carried is in that list, sorted by where it stands against the box
+ * ([HarvestKind]) rather than filtered down to what is new. The assistant was told to gloss
+ * what was new to the LEARNER and has never seen the catalog, so half of a good answer is
+ * words the box already has: shown and unticked they are a report, dropped they were a
+ * silent decision about somebody else's words.
  */
 object Harvest {
 
@@ -46,25 +51,24 @@ object Harvest {
     private val NUMBERING = Regex("""^\d+[.)]\s*""")
 
     /**
-     * The pairs [text] carries that the box does not already hold, in the order they were
-     * written, at most [MAX_WORDS] of them.
+     * Every pair [text] carries, at most [MAX_WORDS] of them, each against what the box
+     * already has of it.
      *
-     * A word the box HAS is dropped rather than offered: the assistant was told to gloss
-     * what was new to the learner and cannot know which of those the catalog already
-     * teaches, so the overlap is its mistake to absorb, not a decision to hand back.
+     * Grouped by [HarvestKind] — new first, then near, then held — and written order
+     * inside each group, so a surface walks one list and starts a heading where the kind
+     * turns. Which words arrive ticked is the kind's answer, not the surface's.
      */
-    fun read(text: String, state: BoxState): List<BriefWord> {
-        val known = knownForms(state)
+    fun read(text: String, state: BoxState): List<HarvestWord> {
+        val forms = BoxForms(state)
         val seen = mutableSetOf<String>()
-        val found = mutableListOf<BriefWord>()
+        val found = mutableListOf<HarvestWord>()
         for (line in fenced(text) ?: text.lines()) {
             val word = parseLine(line) ?: continue
-            val key = fold(word.target)
-            if (key in known || !seen.add(key)) continue
-            found += word
+            if (!seen.add(fold(word.target))) continue
+            found += forms.standing(word)
             if (found.size == MAX_WORDS) break
         }
-        return found
+        return found.sortedBy { it.kind.ordinal }
     }
 
     /**
@@ -125,21 +129,4 @@ object Harvest {
         nfcNormalized(part.trim().trim('`', '*', '"', '\'', '“', '”').trim()).trimEnd('.', ',', ';')
 
     private fun fold(form: String): String = nfcNormalized(form.trim()).lowercase()
-
-    /**
-     * Every written form the box would count as a duplicate: each card's target text, its
-     * synonyms and variants, and the ARTICLED form beside the bare one — an assistant
-     * writing back "das Amt" for a card the catalog keys as "Amt" has found nothing new.
-     */
-    private fun knownForms(state: BoxState): Set<String> {
-        val forms = mutableSetOf<String>()
-        for (card in state.cards.values) {
-            forms += fold(card.target.text)
-            forms += fold(articledForm(card.target.grammar["gender"], card.target.text))
-            card.target.synonyms.forEach { forms += fold(it) }
-            card.target.variants.forEach { forms += fold(it) }
-        }
-        for (word in state.ownWords) word.texts.values.forEach { forms += fold(it) }
-        return forms
-    }
 }

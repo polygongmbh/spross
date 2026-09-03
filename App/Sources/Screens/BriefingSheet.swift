@@ -11,8 +11,9 @@ import SprossKern
 ///
 /// The way back is the half that pays: a conversation turns up words no catalog has,
 /// the assistant is asked to list them, and pasting that list here reads them into
-/// own words (`Harvest`). Nothing is taken in unasked — the parsed words arrive as a
-/// list to keep or drop.
+/// own words (`Harvest`). Nothing is taken in unasked: every pair the paste carried
+/// is shown under the heading for where it stands against the box, and only the ones
+/// the box has nothing like arrive ticked.
 struct BriefingSheet: View {
     let model: AppModel
 
@@ -20,8 +21,10 @@ struct BriefingSheet: View {
     /// Taken once when the sheet opens: building it walks every card in the box.
     @State private var briefing: Briefing?
     @State private var copied = false
-    @State private var harvested: [BriefWord] = []
-    @State private var dropped: Set<String> = []
+    @State private var harvested: [HarvestWord] = []
+    /// Ticked target forms. Set from the paste, then the learner's — a word dropped
+    /// and one never offered are the same answer, so one set holds both.
+    @State private var picked: Set<String> = []
     @State private var pasteWasEmpty = false
 
     var body: some View {
@@ -116,42 +119,91 @@ struct BriefingSheet: View {
                     .foregroundStyle(Theme.colors.textSecondary)
             }
             if !harvested.isEmpty {
-                harvestList
+                harvestGroups
                 keepButton
             }
         }
     }
 
-    private var harvestList: some View {
-        VStack(alignment: .leading, spacing: Theme.spacing.xs) {
-            ForEach(harvested, id: \.target) { word in
-                Button {
-                    toggle(word)
-                } label: {
-                    HStack(spacing: Theme.spacing.md) {
-                        Image(systemName: dropped.contains(word.target) ? "circle" : "checkmark.circle.fill")
-                            .foregroundStyle(dropped.contains(word.target)
-                                             ? Theme.colors.textSecondary : Theme.colors.accent)
-                        VStack(alignment: .leading, spacing: 0) {
-                            Text(verbatim: word.target)
-                                .font(Theme.typography.body)
-                                .foregroundStyle(Theme.colors.textPrimary)
-                            Text(verbatim: word.source)
-                                .font(Theme.typography.caption)
-                                .foregroundStyle(Theme.colors.textSecondary)
-                        }
-                        Spacer(minLength: 0)
-                    }
-                    .padding(.horizontal, Theme.spacing.md)
-                    .padding(.vertical, Theme.spacing.xs + 2)
-                    .background(
-                        RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                            .fill(Theme.colors.surfaceTint)
-                    )
+    /// Everything the paste carried, headed where the kind turns. Kern's list arrives
+    /// grouped (`Harvest.read`), so a run of one kind is one heading — and a kind kern
+    /// grows later heads itself rather than going unshown.
+    private var harvestGroups: some View {
+        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
+            ForEach(harvestRuns) { run in
+                VStack(alignment: .leading, spacing: Theme.spacing.xs) {
+                    blockTitle(run.title)
+                    ForEach(run.words, id: \.word.target) { harvestRow($0) }
                 }
-                .buttonStyle(.plain)
             }
         }
+    }
+
+    /// One heading's worth of a paste.
+    private struct HarvestRun: Identifiable {
+        let title: LocalizedStringKey
+        var words: [HarvestWord]
+        var id: LocalizedStringKey { title }
+    }
+
+    private var harvestRuns: [HarvestRun] {
+        var runs: [HarvestRun] = []
+        for found in harvested {
+            let title = heading(found.kind)
+            if runs.last?.title == title { runs[runs.count - 1].words.append(found) }
+            else { runs.append(HarvestRun(title: title, words: [found])) }
+        }
+        return runs
+    }
+
+    /// Which heading a group wears. The kinds are kern's; naming them is ours.
+    private func heading(_ kind: HarvestKind) -> LocalizedStringKey {
+        switch kind {
+        case .near: return "briefing.group.near"
+        case .held: return "briefing.group.held"
+        default: return "briefing.group.new"
+        }
+    }
+
+    private func blockTitle(_ key: LocalizedStringKey) -> some View {
+        Text(key)
+            .font(Theme.typography.caption)
+            .foregroundStyle(Theme.colors.textSecondary)
+    }
+
+    private func harvestRow(_ found: HarvestWord) -> some View {
+        let on = picked.contains(found.word.target)
+        return Button {
+            toggle(found.word.target)
+        } label: {
+            HStack(spacing: Theme.spacing.md) {
+                Image(systemName: on ? "checkmark.circle.fill" : "circle")
+                    .foregroundStyle(on ? Theme.colors.accent : Theme.colors.textSecondary)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(verbatim: found.word.target)
+                        .font(Theme.typography.body)
+                        .foregroundStyle(Theme.colors.textPrimary)
+                    Text(verbatim: gloss(found))
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
+                }
+                Spacer(minLength: 0)
+            }
+            .padding(.horizontal, Theme.spacing.md)
+            .padding(.vertical, Theme.spacing.xs + 2)
+            .background(
+                RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                    .fill(Theme.colors.surfaceTint)
+            )
+        }
+        .buttonStyle(.plain)
+    }
+
+    /// The gloss, and after it the box's own word where this one leans on it — which is
+    /// the whole reason the row came up unticked, said in the row rather than the heading.
+    private func gloss(_ found: HarvestWord) -> String {
+        guard found.kind == .near, let match = found.match else { return found.word.source }
+        return "\(found.word.source) · ≈ \(match)"
     }
 
     private var keepButton: some View {
@@ -165,20 +217,21 @@ struct BriefingSheet: View {
         .disabled(kept.isEmpty)
     }
 
-    private var kept: [BriefWord] { harvested.filter { !dropped.contains($0.target) } }
+    private var kept: [BriefWord] {
+        harvested.filter { picked.contains($0.word.target) }.map(\.word)
+    }
 
-    private func toggle(_ word: BriefWord) {
-        if dropped.contains(word.target) { dropped.remove(word.target) } else { dropped.insert(word.target) }
+    private func toggle(_ target: String) {
+        if picked.contains(target) { picked.remove(target) } else { picked.insert(target) }
     }
 
     /// Read the clipboard through Kern, which forgives the assistant its formatting and
-    /// drops what the box already holds. Everything it finds arrives already ticked:
-    /// the learner asked for this list, so keeping it is the answer to expect.
+    /// says of each pair what the box already has of it. The new ones arrive ticked —
+    /// the learner asked for exactly those — and the rest wait to be asked for.
     private func paste() {
-        let text = UIPasteboard.general.string ?? ""
-        let found = model.harvest(from: text)
+        let found = model.harvest(from: UIPasteboard.general.string ?? "")
         harvested = found
-        dropped = []
+        picked = Set(found.filter { $0.kind == .theNew }.map { $0.word.target })
         pasteWasEmpty = found.isEmpty
     }
 }

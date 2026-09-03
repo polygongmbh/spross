@@ -25,8 +25,9 @@ extension AppModel {
         return box.scheduling.values.contains { !$0.suspended }
     }
 
-    /// The words a pasted conversation brought home that the box does not already hold.
-    func harvest(from pasted: String) -> [BriefWord] {
+    /// Every word a pasted conversation brought home, each against what the box
+    /// already has of it (`HarvestKind`), grouped new-first.
+    func harvest(from pasted: String) -> [HarvestWord] {
         guard let box else { return [] }
         return Harvest.shared.read(text: pasted, state: box)
     }

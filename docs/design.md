@@ -303,6 +303,14 @@ a clone inherits its sibling's gaps, never the rules.
   7 KB of prompt scrolling past is a wall, not a preview.
   Copy takes it; Share hands it to any chat app on the phone,
   which is how the app reaches every assistant while knowing the name of none.
+  What comes back is shown WHOLE and sorted, never filtered:
+  every pair the paste carried stands under new, near a word already held, or held as it is
+  (`Harvest`, `HarvestKind`), and only the new group arrives ticked.
+  The assistant was told to gloss what was new to the LEARNER and has never seen the catalog,
+  so half of a good answer is words the box already has —
+  dropping those silently decided about the learner's own words behind their back,
+  and a near word shown beside the one it leans on costs a tap where a missed one costs a
+  second card teaching what the box already teaches.
   Rendering the brief as an IMAGE was rejected:
   what OCR drops first is diacritics and borrowed spellings,
   which is the part of a vocabulary list that carries the learning,
