@@ -80,9 +80,10 @@ data class Briefing(
         We talk about whatever I bring up.
         Build what you say out of the words below.
         Bring in a word of your own where the conversation needs one, one or two at a time,
-        glossed in $sourceName the first time. Never bend the conversation toward a word.
+        glossed in $sourceName the first time.
         The app teaches me WORDS, not grammar: assume I know nothing about tense,
-        case or agreement. One to three short, concrete sentences per turn.
+        case or agreement.
+        One to three short, concrete sentences per turn.
         Ask me one question per turn.
         Correct at most one mistake per turn, in $sourceName, after answering what I said.
     """.trimIndent()
@@ -103,8 +104,9 @@ data class Briefing(
     private fun harvestAsk(): String {
         val example = newWords.firstOrNull() ?: inPlay.firstOrNull()
         return """
-            When I say I am done, list the words I met that were new to me, one per line
-            as `$targetName = $sourceName`, in a block fenced ```spross:
+            Check in like this at a natural pause, or whenever I ask. Focus on key words
+            that came up repeatedly and were not part of the prompt, one per line as
+            `$targetName = $sourceName`, in a block fenced ```spross:
 
             ```spross
             ${example?.target ?: "…"} = ${example?.source ?: "…"}
