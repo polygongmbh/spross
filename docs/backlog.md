@@ -420,6 +420,8 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 - The web numbers drill never gained it/fr/eo: `web/site.js` mirrors
   `catalog/languages.json` by hand (its `LANGS` rows) and still offers the five older
   languages only (`docs/website.md` § Drill scope).
+- The `website` branch is left unmerged for now: 16 commits of spross.net work from
+  2026-08-09, in the `../app-website` worktree (`docs/website.md`).
 - Android back doors land on Home even when opened from the box: `closeAbout()` and
   `activate()` (reached via a box-settings language change) both end at `Screen.Home`
   (`android/.../AppModel.kt`).
