@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- **Animals and weather are their own boxes now, and the animals have company.** Nature had
+  become three shelves in one: it keeps the landscape and the plants, what the sky is doing
+  moved to Weather, and the creatures to Animals — which gained the cow, goat, sheep, donkey,
+  horse, elephant, lion, monkey, snake, mosquito and insect. Five of them come with the sound
+  they make, and that is the point: Swahili has *kubweka* for the dog, *kuimba* for the bird,
+  *kunguruma* for the lion and *kuvuma* for the mosquito, but falls back to plain *kulia* for
+  the cat. Your progress on every word that moved is untouched.
+
+- **The kitchen shelf fills in.** Beans, garlic, carrot and cabbage join the onion and the
+  potato, and two more of what actually gets eaten in Kenya: *uji* and *sambusa*.
+
 - **New words, and the smaller ones arrive in a sentence.** Nature gained the shadow
   (Swahili *kivuli*) and Feelings the smile (*tabasamu*), while the dog and the cat now also
   come with the sound they make — *The dog is barking.*, *The cat is meowing.* — because a
