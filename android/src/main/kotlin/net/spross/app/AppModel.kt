@@ -477,11 +477,13 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         // sixteen hundred lookups on a full profile — and runs on every foreground.
         val hasTarget = pronouncer.canSpeak(stamp.target)
         val hasSource = pronouncer.canSpeak(stamp.source)
+        val dealtAt = now()
         viewModelScope.launch {
             val report = withContext(Dispatchers.Default) {
                 ListeningPool.report(
                     cat, state, stamp.source, stamp.target,
                     hasTargetVoice = hasTarget, hasSourceVoice = hasSource,
+                    nowEpochMillis = dealtAt,
                 )
             }
             listeningPool = report.candidates

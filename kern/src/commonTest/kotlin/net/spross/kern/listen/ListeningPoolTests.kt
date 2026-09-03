@@ -30,8 +30,9 @@ class ListeningPoolTests {
         box: BoxState,
         hasTargetVoice: Boolean,
         hasSourceVoice: Boolean,
+        nowEpochMillis: Long = Box.day1,
     ): ListeningPool.Report =
-        ListeningPool.report(catalog, box, "de", "sw", hasTargetVoice, hasSourceVoice)
+        ListeningPool.report(catalog, box, "de", "sw", hasTargetVoice, hasSourceVoice, nowEpochMillis)
 
     private fun spoken(box: BoxState): ListeningPool.Report = report(box, true, true)
 
@@ -279,6 +280,31 @@ class ListeningPoolTests {
         assertEquals((21..60).map(::id), fresh)
         assertEquals((1..20).map(::id).toSet(), held.toSet())
         assertTrue(held != held.sorted(), "the scheduled lane is still in catalog order")
+    }
+
+    /**
+     * RULE: the same box dealt at the same instant repeats; dealt at a later one, its
+     * scheduled lane reshuffles.
+     * WHY: the apps re-sweep the pool on every foreground, so a learner who listens more than
+     * once a day must not hear the identical sequence every time — but a single report is
+     * still a pure function of the box and the instant it names, never a live clock read.
+     */
+    @Test
+    fun theScheduledLaneReshufflesBetweenTwoDealingsOfTheSameBox() {
+        var state = box(total = 20, scheduled = 0)
+        for (n in 1..20) {
+            state = Box.inject(
+                state,
+                Box.sched(id(n), stability = 0.0, dueMillis = Box.day1, lastReviewMillis = Box.day1),
+            )
+        }
+
+        val first = ids(report(state, true, true, nowEpochMillis = Box.day1))
+        val again = ids(report(state, true, true, nowEpochMillis = Box.day1))
+        val later = ids(report(state, true, true, nowEpochMillis = Box.plusDays(Box.day1, 1.0)))
+
+        assertEquals(first, again, "the same instant must deal the same order")
+        assertTrue(first != later, "a later instant never reshuffled the order")
     }
 
     /** A card whose two forms are ones the shipped audio fixture really has recordings for. */

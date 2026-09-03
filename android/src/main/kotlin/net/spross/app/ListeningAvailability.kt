@@ -24,5 +24,6 @@ fun AppModel.listeningReport(): ListeningPool.Report? {
         stamp.target,
         hasTargetVoice = pronouncer.canSpeak(stamp.target),
         hasSourceVoice = pronouncer.canSpeak(stamp.source),
+        nowEpochMillis = now(),
     )
 }

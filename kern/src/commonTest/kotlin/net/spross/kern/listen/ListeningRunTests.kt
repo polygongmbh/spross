@@ -104,7 +104,7 @@ class ListeningRunTests {
     fun theRunBooksNothing() {
         val before = box(total = 20, scheduled = 8)
         val catalog: Catalog = Catalog.load(MapCatalogSource(Fixture.files + AudioFixture.files))
-        val pool = ListeningPool.report(catalog, before, "de", "sw", true, true)
+        val pool = ListeningPool.report(catalog, before, "de", "sw", true, true, Box.day1)
 
         var state = run(pool.candidates)
         repeat(100) { state = ListeningRun.reduce(state, ListeningIntent.Advance).state }
@@ -113,7 +113,7 @@ class ListeningRunTests {
         assertEquals(before, box(total = 20, scheduled = 8))
         assertEquals(
             pool.candidates.map { it.card.id },
-            ListeningPool.report(catalog, before, "de", "sw", true, true).candidates.map { it.card.id },
+            ListeningPool.report(catalog, before, "de", "sw", true, true, Box.day1).candidates.map { it.card.id },
         )
     }
 

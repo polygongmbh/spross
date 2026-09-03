@@ -296,9 +296,15 @@ private fun laneOf(candidate: ListeningCandidate): ListeningLane = ListeningLane
 private val catalogOrder: Comparator<ListeningCandidate> =
     compareBy({ it.card.seedIndex }, { it.card.id })
 
-/** The hash `Inventory.dueOrder` already de-correlates the box with, for the same reason. */
-private val hashedOrder: Comparator<ListeningCandidate> =
-    compareBy({ fnv1a64(it.card.id) }, { it.card.id })
+/**
+ * The hash `Inventory.dueOrder` already de-correlates the box with, for the same reason —
+ * salted with [nowEpochMillis] so a run started later reshuffles instead of replaying the
+ * same sequence: the apps already re-sweep the pool on every foreground, so this alone gives
+ * a learner who listens more than once a day a fresh order each time, without kern reading a
+ * clock of its own.
+ */
+private fun hashedOrder(nowEpochMillis: Long): Comparator<ListeningCandidate> =
+    compareBy({ fnv1a64("$nowEpochMillis:${fnv1a64(it.card.id)}") }, { it.card.id })
 
 private class Dealt(val candidate: ListeningCandidate, val at: Double, val priority: Int)
 
@@ -328,16 +334,17 @@ private val dealOrder: Comparator<Dealt> = compareBy(
  * catalog from its very first word. Scheduled words are hashed by card id instead, because a
  * fixed catalog order would let seed neighbors — often related concepts — be heard in the same
  * sequence every run, and a word half-learned from its neighbor is what `Inventory.dueOrder`
- * fights. No clock re-seeds it per day and none is needed: every review moves a word between
- * lanes, so the sequence changes as the box does.
+ * fights — salted with [nowEpochMillis] on top ([hashedOrder]), so the sequence also changes
+ * between two dealings of an otherwise-unchanged box, not only when a review moves a word
+ * between lanes.
  *
- * Total and deterministic on both platforms: placement, then priority descending, then seed
- * index, then id.
+ * Total and deterministic FOR ONE INSTANT on both platforms: placement, then priority
+ * descending, then seed index, then id.
  */
-fun listeningOrder(candidates: List<ListeningCandidate>): List<ListeningCandidate> =
+fun listeningOrder(candidates: List<ListeningCandidate>, nowEpochMillis: Long): List<ListeningCandidate> =
     candidates.groupBy(::laneOf)
         .flatMap { (lane, members) ->
-            val within = if (lane.scheduled) hashedOrder else catalogOrder
+            val within = if (lane.scheduled) hashedOrder(nowEpochMillis) else catalogOrder
             members.sortedWith(within).mapIndexed { n, candidate ->
                 Dealt(candidate, (n + 0.5) / lane.priority, lane.priority)
             }
