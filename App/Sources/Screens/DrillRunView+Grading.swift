@@ -71,6 +71,14 @@ extension DrillRunView {
         dispatch(.submitted(input))
     }
 
+    /// A tapped tile: submitted as the text it carries, which is the answer's own
+    /// canonical reading, so kern grades it against the same accepted set a
+    /// written answer meets.
+    func choose(_ name: String) {
+        chosen = name
+        dispatch(.submitted(name))
+    }
+
     /// ONE primary action: an empty field reveals — the CARD carries the answer
     /// and the question books a miss — a typed one checks.
     func checkOrReveal() {

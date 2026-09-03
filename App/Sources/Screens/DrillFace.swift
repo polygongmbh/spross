@@ -166,6 +166,10 @@ struct DrillSnapshot {
     let emojiIsGiveaway: Bool
     /// The canonical answer, for the reveal.
     let display: String
+    /// The tiles this question is answered off, in kern's own shuffled order —
+    /// nil where it is written instead, which is every Sprosse above the
+    /// calendar's warm-up.
+    let choices: [String]?
     /// The answer side's neighboring form, where kern hands one over.
     let gloss: String?
     /// What a refused answer actually named — only beside a revealed miss.

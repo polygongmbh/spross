@@ -83,8 +83,8 @@ FAMILIES = {
     'countrySprosseHints': ['countries.sprosse.%d.hint' % i for i in range(1, 10)],
     'countrySprossen': ['countries.sprosse.%d' % i for i in range(1, 10)],
     'countryTiers': ['countries.tier.%d' % i for i in range(1, 5)],
-    'dateSprosseHints': ['dates.sprosse.%d.hint' % i for i in range(1, 7)],
-    'dateSprossen': ['dates.sprosse.%d' % i for i in range(1, 7)],
+    'dateSprosseHints': ['dates.sprosse.%d.hint' % i for i in range(1, 8)],
+    'dateSprossen': ['dates.sprosse.%d' % i for i in range(1, 8)],
     'greetDay': ['home.greeting.day.%d %%@' % i for i in range(2)],
     'greetEvening': ['home.greeting.evening.%d %%@' % i for i in range(2)],
     'greetMorning': ['home.greeting.morning.%d %%@' % i for i in range(2)]

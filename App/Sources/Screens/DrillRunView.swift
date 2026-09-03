@@ -48,6 +48,10 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     @State var run: Face.Run
     /// The learner's text; the run holds every rule that decides what it means.
     @State var input = ""
+    /// The tile this question was answered off, or nil while it is still owed —
+    /// what the grid marks ✓ and ✗ with. nil the whole way up a written ladder.
+    // why: internal, not private — +Content reads it and +Grading sets it.
+    @State var chosen: String?
     // why: internal, not private — the +Grading extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
     /// The beat between the chime and the answer being said (`autoplayAnswer`).
@@ -90,6 +94,10 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     /// Where either runs, an explicit "Weiter" replaces the beat.
     var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
 
+    /// A tapped question has no field to fill, and a keyboard raised over the
+    /// tiles would cover the very answer it is waiting for.
+    private var wantsKeyboard: Bool { !screenReaderOn && current.choices == nil }
+
     var namingCatalog: Catalog? { model.catalog }
 
     var body: some View {
@@ -102,14 +110,15 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
             drillContent
         }
         .onAppear {
-            answerFocused = !screenReaderOn
+            answerFocused = wantsKeyboard
             autoplayPrompt()
             #if DEBUG
             uitestStart()
             #endif
         }
         .onChange(of: current.index) { _, _ in
-            answerFocused = !screenReaderOn
+            chosen = nil
+            answerFocused = wantsKeyboard
             autoplayPrompt()
         }
         // why: one fire per answer — the trigger is "is a form owed", so a slip

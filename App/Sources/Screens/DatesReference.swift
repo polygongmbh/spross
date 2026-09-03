@@ -60,9 +60,11 @@ struct DatesReference: View {
         }
     }
 
-    /// The reference groups only ever carry the two bare-name pools.
+    /// The reference groups only ever carry the two bare-name pools, and each
+    /// wears the Sprosse's own name — the face's table, never a second copy of
+    /// the numbering, which is what drifted the day the ladder grew a rung.
     private static func groupTitle(_ kind: DateTaskKind) -> LocalizedStringKey {
-        kind == .weekday ? "dates.sprosse.1" : "dates.sprosse.2"
+        DateDrillFace.sprosseTitle([kind])
     }
 
     /// One name, twice: the known language on the left, the learned one on the

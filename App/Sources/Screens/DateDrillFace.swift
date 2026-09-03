@@ -64,33 +64,37 @@ enum DateDrillFace: DrillFace {
         DatesReference(model: model, content: content, source: source, target: target)
     }
 
-    // The catalog keys are indexed by KIND in full-ladder order — weekday, month,
-    // day, day+month, date, date+year — because the ladder itself has no fixed
-    // length: a pair without a year pattern skips index 6, and the number on
-    // screen is the row's own position. A Sprosse carries every kind below it, so
+    // The catalog keys are indexed by KIND in full-ladder order — the tapped
+    // names, weekday, month, day, day+month, date, date+year — because the
+    // ladder itself has no fixed length: a pair without a year pattern skips
+    // index 7, and the number on screen is the row's own position. A Sprosse carries every kind below it, so
     // the LAST one is what it introduced and what it is named for.
     // why: spelled out rather than interpolated — a key built with an index
     // becomes a format string and localizes nothing, and these keys would stop
     // being greppable from the catalog.
-    private static func sprosseTitle(_ kinds: [DateTaskKind]) -> LocalizedStringKey {
+    // why: internal, not private — the calendar under the ladder heads its two
+    // groups with the same Sprosse names.
+    static func sprosseTitle(_ kinds: [DateTaskKind]) -> LocalizedStringKey {
         switch kinds.last {
-        case .weekday: return "dates.sprosse.1"
-        case .month: return "dates.sprosse.2"
-        case .dayOfMonth: return "dates.sprosse.3"
-        case .dayAndMonth: return "dates.sprosse.4"
-        case .fullDate: return "dates.sprosse.5"
-        default: return "dates.sprosse.6"
+        case .nameChoice: return "dates.sprosse.1"
+        case .weekday: return "dates.sprosse.2"
+        case .month: return "dates.sprosse.3"
+        case .dayOfMonth: return "dates.sprosse.4"
+        case .dayAndMonth: return "dates.sprosse.5"
+        case .fullDate: return "dates.sprosse.6"
+        default: return "dates.sprosse.7"
         }
     }
 
     private static func sprosseHint(_ kinds: [DateTaskKind]) -> LocalizedStringKey {
         switch kinds.last {
-        case .weekday: return "dates.sprosse.1.hint"
-        case .month: return "dates.sprosse.2.hint"
-        case .dayOfMonth: return "dates.sprosse.3.hint"
-        case .dayAndMonth: return "dates.sprosse.4.hint"
-        case .fullDate: return "dates.sprosse.5.hint"
-        default: return "dates.sprosse.6.hint"
+        case .nameChoice: return "dates.sprosse.1.hint"
+        case .weekday: return "dates.sprosse.2.hint"
+        case .month: return "dates.sprosse.3.hint"
+        case .dayOfMonth: return "dates.sprosse.4.hint"
+        case .dayAndMonth: return "dates.sprosse.5.hint"
+        case .fullDate: return "dates.sprosse.6.hint"
+        default: return "dates.sprosse.7.hint"
         }
     }
 
@@ -119,7 +123,8 @@ enum DateDrillFace: DrillFace {
                       answerLanguage: run.answerLanguage, promptLanguage: run.promptLanguage,
                       ask: ask(run.task.kind), promptText: run.task.promptText,
                       promptEmoji: nil, emojiIsGiveaway: false,
-                      display: run.task.display, gloss: nil, otherWord: run.otherWord)
+                      display: run.task.display, choices: run.task.choices,
+                      gloss: nil, otherWord: run.otherWord)
     }
 
     static func reduce(_ run: DateDrillRunState, _ move: DrillMove) -> DrillStep<DateDrillRunState> {
@@ -148,6 +153,7 @@ enum DateDrillFace: DrillFace {
     /// what changes between them is on the card, not in the ask.
     private static func ask(_ kind: DateTaskKind) -> LocalizedStringKey {
         switch kind {
+        case .nameChoice: return "dates.ask.name"
         case .weekday: return "dates.ask.weekday"
         case .month: return "dates.ask.month"
         case .dayOfMonth: return "dates.ask.day"

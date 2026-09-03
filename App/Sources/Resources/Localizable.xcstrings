@@ -1894,13 +1894,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jeder Lauf beginnt bei Sprosse 1 und klettert mit jeder sauberen Antwort weiter."
+            "value" : "Jeder Lauf beginnt bei Sprosse 1 und klettert bei sauberen Antworten weiter."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Every run opens at Sprosse 1 and climbs on with every clean answer."
+            "value" : "Every run opens at Sprosse 1 and climbs with clean answers."
           }
         }
       },
@@ -2464,6 +2464,22 @@
         }
       }
     },
+    "dates.ask.name" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welches davon ist es?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Which of these is it?"
+          }
+        }
+      }
+    },
     "dates.ask.weekday" : {
       "localizations" : {
         "de" : {
@@ -2571,6 +2587,40 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Die Namen, angetippt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The names, tapped"
+          }
+        }
+      }
+    },
+    "dates.sprosse.1.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wochentage und Monate, ein Name aus vieren — noch nichts geschrieben."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weekdays and months, one name out of four — nothing written yet."
+          }
+        }
+      }
+    },
+    "dates.sprosse.2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "Die Wochentage"
           }
         },
@@ -2583,7 +2633,7 @@
       },
       "comment" : "The Sprosse keys are indexed by KIND in full-ladder order (weekday, month, day, day+month, date, date+year, 7 = the mix) — a pair without a year pattern skips index 6, and the number on screen is the row's own position."
     },
-    "dates.sprosse.1.hint" : {
+    "dates.sprosse.2.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2600,7 +2650,7 @@
         }
       }
     },
-    "dates.sprosse.2" : {
+    "dates.sprosse.3" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2617,7 +2667,7 @@
         }
       }
     },
-    "dates.sprosse.2.hint" : {
+    "dates.sprosse.3.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2634,7 +2684,7 @@
         }
       }
     },
-    "dates.sprosse.3" : {
+    "dates.sprosse.4" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2651,7 +2701,7 @@
         }
       }
     },
-    "dates.sprosse.3.hint" : {
+    "dates.sprosse.4.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2668,7 +2718,7 @@
         }
       }
     },
-    "dates.sprosse.4" : {
+    "dates.sprosse.5" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2685,7 +2735,7 @@
         }
       }
     },
-    "dates.sprosse.4.hint" : {
+    "dates.sprosse.5.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2702,7 +2752,7 @@
         }
       }
     },
-    "dates.sprosse.5" : {
+    "dates.sprosse.6" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2719,7 +2769,7 @@
         }
       }
     },
-    "dates.sprosse.5.hint" : {
+    "dates.sprosse.6.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2736,7 +2786,7 @@
         }
       }
     },
-    "dates.sprosse.6" : {
+    "dates.sprosse.7" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2753,7 +2803,7 @@
         }
       }
     },
-    "dates.sprosse.6.hint" : {
+    "dates.sprosse.7.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {

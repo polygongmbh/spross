@@ -8,6 +8,10 @@ import SprossKern
 /// One card serves both drills. A dates question simply carries no picture, so
 /// the leading slot stays empty and the prompt — a name, or a dated line in the
 /// prompt side's digits — stands where the country's name would.
+///
+/// One question in the calendar is TAPPED rather than written — the warm-up
+/// Sprosse's four names — and the grid that answers it is
+/// DrillRunView+Choices.swift.
 extension DrillRunView {
 
     var drillContent: some View {
@@ -32,7 +36,7 @@ extension DrillRunView {
                         .id(task.index)
                         .transition(reduceMotion ? .opacity : .cardFlip)
                 }
-                typedControls
+                answerControls
             }
             .padding(.bottom, Theme.spacing.lg)
         }
@@ -83,7 +87,17 @@ extension DrillRunView {
         }
     }
 
-    // MARK: - The typed answer
+    // MARK: - The answer
+
+    /// Written, or picked off kern's tiles where the question came with them.
+    @ViewBuilder
+    private var answerControls: some View {
+        if let names = current.choices {
+            choiceControls(names)
+        } else {
+            typedControls
+        }
+    }
 
     @ViewBuilder
     private var typedControls: some View {
@@ -125,16 +139,23 @@ extension DrillRunView {
                     nextButton(confirm)
                 }
             case .revealed:
-                VStack(spacing: Theme.spacing.sm) {
-                    nextButton(confirm)
-                    if current.offersFinish { DrillStopOffer { closeRun() } }
-                }
+                revealedControls
             }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
     }
 
-    private func nextButton(_ action: @escaping () -> Void) -> some View {
+    /// The way on after a miss, and — on the second in a row — the way out.
+    var revealedControls: some View {
+        VStack(spacing: Theme.spacing.sm) {
+            nextButton(confirm)
+            if current.offersFinish { DrillStopOffer { closeRun() } }
+        }
+    }
+
+    // why: internal, not private — the choice grid puts the same button under
+    // its own answers.
+    func nextButton(_ action: @escaping () -> Void) -> some View {
         Button(action: action) {
             Text("common.next").frame(maxWidth: .infinity)
         }

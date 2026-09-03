@@ -114,7 +114,9 @@ enum CountryDrillFace: DrillFace {
                       ask: ask(run.task.kind), promptText: run.task.promptText,
                       promptEmoji: run.task.promptEmoji,
                       emojiIsGiveaway: run.task.emojiIsGiveaway,
-                      display: run.task.display, gloss: run.task.gloss,
+                      display: run.task.display,
+                      // The atlas is written all the way up: nothing is ever tapped.
+                      choices: nil, gloss: run.task.gloss,
                       otherWord: run.otherWord)
     }
 
