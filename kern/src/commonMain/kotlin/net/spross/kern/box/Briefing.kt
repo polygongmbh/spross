@@ -75,38 +75,37 @@ data class Briefing(
 
     /** How the partner is asked to behave. Only the ground is a rule; the rest are offers. */
     private fun protocol(): String = """
-        Be my conversation partner. Talk to me in $targetName;
+        Be my conversation partner.
+        Talk to me in $targetName;
         explain in $sourceName only where I stall or ask.
-        We talk about whatever I bring up.
         Build what you say out of the words below.
-        Bring in a word of your own where the conversation needs one, one or two at a time,
+        Bring in your own words where needed, one or two at a time,
         glossed in $sourceName the first time.
-        The app teaches me WORDS, not grammar: assume I know nothing about tense,
-        case or agreement.
-        One to three short, concrete sentences per turn.
+        One to three short sentences per turn.
         Ask me one question per turn.
-        Correct at most one mistake per turn, in $sourceName, after answering what I said.
+        Correct mistakes by mirroring inside your answer —
+        explain if asked or the mistake repeats.
     """.trimIndent()
 
     /** The opening turn: something to read, before the learner has had to say anything. */
     private fun firstTurn(): String = """
-        START HERE, before I say anything: write me a short story to practice on,
-        on a topic the words above cover, built out of them.
-        Blocks of two sentences — the same sentence in $targetName and in $sourceName,
-        a line break between them, a blank line between blocks. Three to five blocks.
+        START HERE, before I say anything:
+        write a short story on a topic suiting the words I am learning.
+        Three to five blocks of two sentences — the same sentence in $targetName and
+        $sourceName, line break between them, blank line between blocks.
         Put $targetName first in block 1, $sourceName first in block 2, and keep swapping.
-        Keep the pair as close to word-for-word as the grammar allows; where that reads
-        unnaturally, give the idiomatic line and the literal one in brackets.
-        Then ask me whether to go deeper, switch topic, or just talk.
+        Keep the pair word-for-word where grammar allows; otherwise give the idiomatic
+        line with the literal one in brackets.
+        Then ask whether to go deeper, switch topic, or just talk.
     """.trimIndent()
 
     /** The ask that closes the loop: the words the conversation turned up, fenced for [Harvest]. */
     private fun harvestAsk(): String {
         val example = newWords.firstOrNull() ?: inPlay.firstOrNull()
         return """
-            Check in like this at a natural pause, or whenever I ask. Focus on key words
-            that came up repeatedly and were not part of the prompt, one per line as
-            `$targetName = $sourceName`, in a block fenced ```spross:
+            Check in at a natural pause, or whenever I ask. Focus on key words that
+            came up repeatedly and were not part of the prompt, one per line as
+            `$targetName = $sourceName`, fenced ```spross:
 
             ```spross
             ${example?.target ?: "…"} = ${example?.source ?: "…"}
