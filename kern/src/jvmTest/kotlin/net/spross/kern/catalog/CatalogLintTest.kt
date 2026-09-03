@@ -432,7 +432,9 @@ class CatalogLintTest {
             "follow" to setOf("de", "uk"),
             // Cases German has no counterpart for: the uk vocative, the uk genitive of
             // negation (German keeps the accusative), the es personal `a`.
-            "mom-help-me" to setOf("de", "eo", "sw", "uk"),
+            // sw draws the line too, but on the pronoun: the object is an affix inside
+            // the verb, so `pronouns` states it per person and the phrase practices it.
+            "mom-help-me" to setOf("de", "eo", "uk"),
             "i-dont-eat-meat" to setOf("fr", "uk"),
             "ask-the-teacher" to setOf("es"),
         )
