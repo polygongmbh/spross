@@ -29,6 +29,7 @@
   "wash-the-dishes": { "text": "lavi la vazaron", "variants": ["lavi la telerojn"] },
   "taste": { "text": "gustumi" },
   "fry": { "text": "friti" },
+  "boil": { "text": "boli" },
   "reheat": { "text": "revarmigi" },
   "stir": { "text": "kirli" },
   "take-out-trash": { "text": "elporti la rubon", "variants": ["elporti la rubaĵon"] },

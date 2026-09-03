@@ -4,22 +4,11 @@
  "words": {
   "tree": { "text": "arbo" },
   "flower": { "text": "floro" },
-  "sun": { "text": "suno" },
-  "rain": { "text": "pluvo" },
-  "weather": { "text": "vetero" },
-  "snow": { "text": "neĝo" },
-  "wind": { "text": "vento" },
   "river": { "text": "rivero" },
   "go-for-walk": { "text": "promeni", "variants": ["fari promenon"] },
   "sunbathe": { "text": "sunbani sin", "variants": ["sin sunbani", "sunumi sin"] },
   "plant-flowers": { "text": "planti florojn" },
   "grill-meat": { "text": "kradrosti viandon", "variants": ["rosti viandon", "grili viandon"] },
-  "animal": { "text": "besto" },
-  "dog": { "text": "hundo" },
-  "cat": { "text": "kato" },
-  "bird": { "text": "birdo" },
-  "sky": { "text": "ĉielo" },
-  "cloud": { "text": "nubo" },
   "mountain": { "text": "monto" },
   "sea": { "text": "maro" },
   "beach": { "text": "plaĝo" },
@@ -28,31 +17,17 @@
   "stone": { "text": "ŝtono" },
   "moon": { "text": "luno" },
   "star": { "text": "stelo" },
-  "storm": { "text": "ŝtormo", "variants": ["tempesto"] },
-  "thunder": { "text": "tondro" },
-  "lightning": { "text": "fulmo" },
-  "humid": { "text": "humida" },
   "wood": { "text": "ligno" },
   "stick": { "text": "bastono" },
-  "hows-the-weather-today": { "text": "Kia estas la vetero hodiaŭ?", "variants": ["Kia vetero estas hodiaŭ?"] },
-  "its-raining": {
-   "text": "Pluvas.",
-   "notes": { "de": "Wetterverben stehen ohne Subjekt: Pluvas. Neĝas. Ventas." }
-  },
-  "the-rain-has-stopped": { "text": "La pluvo ĉesis.", "variants": ["Ne plu pluvas.", "Ĉesis pluvi."] },
-  "the-sun-is-shining": { "text": "La suno brilas!" },
-  "what-a-beautiful-day": { "text": "Kia bela tago!" },
+  "shadow": { "text": "ombro" },
   "lets-go-to-the-beach": { "text": "Ni iru al la plaĝo!" },
   "we-are-going-to-the-mountains": {
    "text": "Ni veturas en la montaron.",
    "variants": ["Ni veturas al la montoj.", "Ni iras en la montaron."]
   },
-  "look-a-bird": { "text": "Rigardu, birdo!", "variants": ["Jen birdo!", "Rigardu, jen birdo!"] },
-  "the-sun-has-come-out": { "text": "La suno eliris.", "variants": ["La suno aperis.", "La suno elvenis."] },
   "its-cold-in-the-mountains": {
    "text": "En la montaro estas malvarme.",
    "notes": { "eo": "Sen -n estas la loko: en la montaro. Kun -n estas la direkto: en la montaron." }
-  },
-  "we-are-staying-home-because-of-the-rain": { "text": "Pro la pluvo ni restas hejme." }
+  }
  }
 }

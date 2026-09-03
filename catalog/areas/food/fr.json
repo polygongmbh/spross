@@ -49,6 +49,12 @@
   "juice": { "text": "jus", "grammar": { "gender": "le", "plural": "=" } },
   "cooked-rice": { "text": "riz cuit" },
   "cassava": { "text": "manioc", "grammar": { "gender": "le" } },
+  "bean": { "text": "haricot", "grammar": { "gender": "le" } },
+  "garlic": { "text": "ail", "variants": ["l'ail"], "grammar": { "gender": "l'" } },
+  "carrot": { "text": "carotte", "grammar": { "gender": "la" } },
+  "cabbage": { "text": "chou", "grammar": { "gender": "le", "plural": "choux" } },
+  "porridge": { "text": "bouillie", "grammar": { "gender": "la" } },
+  "samosa": { "text": "samoussa", "grammar": { "gender": "le" } },
   "breakfast": {
    "text": "petit-déjeuner",
    "variants": ["petit déjeuner"],

@@ -1,18 +1,7 @@
 [
- { "slug": "weather", "kind": "noun", "emoji": "🌤️" },
- { "slug": "sun", "kind": "noun", "emoji": "☀️" },
- { "slug": "rain", "kind": "noun", "emoji": "🌧️" },
- { "slug": "wind", "kind": "noun", "emoji": "💨" },
- { "slug": "snow", "kind": "noun", "emoji": "❄️" },
  { "slug": "tree", "kind": "noun", "emoji": "🌳" },
  { "slug": "flower", "kind": "noun", "emoji": "🌸" },
- { "slug": "animal", "kind": "noun", "emoji": "🐾" },
- { "slug": "dog", "kind": "noun", "emoji": "🐕" },
- { "slug": "cat", "kind": "noun", "emoji": "🐈" },
- { "slug": "bird", "kind": "noun", "emoji": "🐦" },
  { "slug": "go-for-walk", "kind": "verb", "emoji": "👣" },
- { "slug": "sky", "kind": "noun" },
- { "slug": "cloud", "kind": "noun", "emoji": "☁️" },
  { "slug": "mountain", "kind": "noun", "emoji": "⛰️" },
  { "slug": "sea", "kind": "noun", "emoji": "🌊" },
  { "slug": "beach", "kind": "noun", "emoji": "🏖️" },
@@ -26,17 +15,9 @@
  { "slug": "plant-flowers", "kind": "verb", "emoji": "🌷" },
  { "slug": "grill-meat", "kind": "verb", "emoji": "🍖" },
  { "slug": "sunbathe", "kind": "verb", "emoji": "🌞" },
- { "slug": "storm", "kind": "noun", "emoji": "⛈️" },
- { "slug": "thunder", "kind": "noun" },
- { "slug": "lightning", "kind": "noun", "emoji": "🌩️" },
- { "slug": "humid", "kind": "adjective" },
  { "slug": "wood", "kind": "noun", "emoji": "🪵" },
  { "slug": "stick", "kind": "noun" },
- { "slug": "hows-the-weather-today", "kind": "phrase", "emoji": "🌤️", "components": ["weather"] },
- { "slug": "its-raining", "kind": "phrase", "emoji": "🌧️", "components": [] },
- { "slug": "the-rain-has-stopped", "kind": "phrase", "emoji": "🌦️", "components": ["rain"] },
- { "slug": "the-sun-is-shining", "kind": "phrase", "emoji": "☀️", "components": ["sun"] },
- { "slug": "what-a-beautiful-day", "kind": "phrase", "emoji": "🌈", "components": [] },
+ { "slug": "shadow", "kind": "noun" },
  { "slug": "lets-go-to-the-beach", "kind": "phrase", "emoji": "🏖️", "components": ["beach"] },
  {
   "slug": "we-are-going-to-the-mountains",
@@ -44,18 +25,10 @@
   "emoji": "⛰️",
   "components": ["mountain"]
  },
- { "slug": "look-a-bird", "kind": "phrase", "emoji": "🐦", "components": ["bird"] },
- { "slug": "the-sun-has-come-out", "kind": "phrase", "emoji": "⛅", "components": ["sun"] },
  {
   "slug": "its-cold-in-the-mountains",
   "kind": "phrase",
   "emoji": "⛰️",
   "components": ["mountain"]
- },
- {
-  "slug": "we-are-staying-home-because-of-the-rain",
-  "kind": "phrase",
-  "emoji": "🌧️",
-  "components": ["rain"]
  }
 ]

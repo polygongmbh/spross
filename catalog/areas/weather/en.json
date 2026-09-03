@@ -1,0 +1,27 @@
+{
+ "title": "Weather",
+ "subtitle": "What the sky is up to today.",
+ "words": {
+  "weather": { "text": "weather" },
+  "sky": { "text": "sky" },
+  "sun": { "text": "sun" },
+  "cloud": { "text": "cloud" },
+  "rain": { "text": "rain" },
+  "snow": { "text": "snow" },
+  "wind": { "text": "wind" },
+  "storm": { "text": "storm" },
+  "thunder": { "text": "thunder" },
+  "lightning": { "text": "lightning" },
+  "humid": { "text": "humid" },
+  "hows-the-weather-today": { "text": "How's the weather today?" },
+  "its-raining": { "text": "It's raining." },
+  "the-rain-has-stopped": { "text": "The rain has stopped.", "variants": ["It's stopped raining.", "It stopped raining."] },
+  "the-sun-is-shining": { "text": "The sun is shining!" },
+  "the-sun-has-come-out": { "text": "The sun has come out.", "variants": ["The sun came out.", "The sun's come out."] },
+  "what-a-beautiful-day": { "text": "What a beautiful day!" },
+  "we-are-staying-home-because-of-the-rain": {
+   "text": "Because of the rain we're staying home.",
+   "variants": ["Because of the rain we are staying home."]
+  }
+ }
+}

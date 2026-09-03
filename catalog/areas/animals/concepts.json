@@ -1,0 +1,21 @@
+[
+ { "slug": "animal", "kind": "noun", "emoji": "🐾" },
+ { "slug": "dog", "kind": "noun", "emoji": "🐕" },
+ { "slug": "cat", "kind": "noun", "emoji": "🐈" },
+ { "slug": "bird", "kind": "noun", "emoji": "🐦" },
+ { "slug": "cow", "kind": "noun", "emoji": "🐄" },
+ { "slug": "goat", "kind": "noun", "emoji": "🐐" },
+ { "slug": "sheep", "kind": "noun", "emoji": "🐑" },
+ { "slug": "donkey", "kind": "noun", "emoji": "🫏" },
+ { "slug": "horse", "kind": "noun", "emoji": "🐴" },
+ { "slug": "elephant", "kind": "noun", "emoji": "🐘" },
+ { "slug": "monkey", "kind": "noun", "emoji": "🐒" },
+ { "slug": "snake", "kind": "noun", "emoji": "🐍" },
+ { "slug": "insect", "kind": "noun", "emoji": "🐛" },
+ { "slug": "look-a-bird", "kind": "phrase", "emoji": "🐦", "components": ["bird"] },
+ { "slug": "the-dog-is-barking", "kind": "phrase", "emoji": "🐕", "components": ["dog"] },
+ { "slug": "the-cat-is-meowing", "kind": "phrase", "emoji": "🐈", "components": ["cat"] },
+ { "slug": "the-bird-is-singing", "kind": "phrase", "emoji": "🐦", "components": ["bird"] },
+ { "slug": "the-lion-is-roaring", "kind": "phrase", "emoji": "🦁", "components": [] },
+ { "slug": "the-mosquito-is-biting-me", "kind": "phrase", "emoji": "🦟", "components": [] }
+]

@@ -4,28 +4,12 @@
  "words": {
   "tree": { "text": "albero", "variants": ["l'albero"], "grammar": { "gender": "l'" } },
   "flower": { "text": "fiore", "grammar": { "gender": "il" } },
-  "sun": { "text": "sole", "grammar": { "gender": "il" } },
-  "rain": { "text": "pioggia", "grammar": { "gender": "la" } },
-  "weather": {
-   "text": "tempo",
-   "variants": ["meteo"],
-   "grammar": { "gender": "il" },
-   "notes": { "de": "il tempo heißt auch „Zeit“. Nach dem Wetter fragt man mit fare: Che tempo fa?" }
-  },
-  "snow": { "text": "neve", "grammar": { "gender": "la" } },
-  "wind": { "text": "vento", "grammar": { "gender": "il" } },
   "river": { "text": "fiume", "grammar": { "gender": "il" } },
   "go-for-walk": { "text": "fare una passeggiata", "synonyms": ["passeggiare"] },
   "jog": { "text": "correre", "synonyms": ["fare jogging"], "variants": ["andare a correre"] },
   "sunbathe": { "text": "prendere il sole", "variants": ["abbronzarsi"] },
   "plant-flowers": { "text": "piantare fiori" },
   "grill-meat": { "text": "grigliare la carne", "variants": ["arrostire la carne", "fare una grigliata"] },
-  "animal": { "text": "animale", "variants": ["l'animale"], "grammar": { "gender": "l'" } },
-  "dog": { "text": "cane", "grammar": { "gender": "il" } },
-  "cat": { "text": "gatto", "grammar": { "gender": "il" } },
-  "bird": { "text": "uccello", "variants": ["l'uccello"], "grammar": { "gender": "l'" } },
-  "sky": { "text": "cielo", "grammar": { "gender": "il" } },
-  "cloud": { "text": "nuvola", "variants": ["nube"], "grammar": { "gender": "la" } },
   "mountain": { "text": "montagna", "grammar": { "gender": "la" } },
   "sea": { "text": "mare", "grammar": { "gender": "il" } },
   "beach": { "text": "spiaggia", "grammar": { "gender": "la", "plural": "spiagge" } },
@@ -34,26 +18,11 @@
   "stone": { "text": "pietra", "variants": ["sasso"], "grammar": { "gender": "la" } },
   "moon": { "text": "luna", "grammar": { "gender": "la" } },
   "star": { "text": "stella", "grammar": { "gender": "la" } },
-  "storm": { "text": "tempesta", "grammar": { "gender": "la" } },
-  "thunder": { "text": "tuono", "grammar": { "gender": "il" } },
-  "lightning": { "text": "fulmine", "variants": ["lampo"], "grammar": { "gender": "il" } },
-  "humid": { "text": "umido", "variants": ["umida"] },
   "wood": { "text": "legno", "grammar": { "gender": "il" } },
   "stick": { "text": "bastone", "grammar": { "gender": "il" } },
-  "hows-the-weather-today": { "text": "Che tempo fa oggi?", "variants": ["Com'è il tempo oggi?"] },
-  "its-raining": { "text": "Piove.", "variants": ["Sta piovendo."] },
-  "the-rain-has-stopped": { "text": "Ha smesso di piovere.", "variants": ["Non piove più.", "La pioggia è finita."] },
-  "the-sun-is-shining": {
-   "text": "C'è il sole!",
-   "variants": ["Il sole splende!", "Splende il sole!"],
-   "notes": { "de": "Wetter steht mit c'è oder fare: c'è il sole, c'è vento, fa caldo." }
-  },
-  "what-a-beautiful-day": { "text": "Che bella giornata!", "variants": ["Che bel giorno!"] },
+  "shadow": { "text": "ombra", "variants": ["l'ombra"], "grammar": { "gender": "l'" } },
   "lets-go-to-the-beach": { "text": "Andiamo in spiaggia!", "variants": ["Andiamo alla spiaggia!", "Andiamo al mare!"] },
   "we-are-going-to-the-mountains": { "text": "Andiamo in montagna.", "variants": ["Andiamo sulle montagne."] },
-  "look-a-bird": { "text": "Guarda, un uccello!", "variants": ["Guarda, c'è un uccello!"] },
-  "the-sun-has-come-out": { "text": "È uscito il sole.", "variants": ["Il sole è uscito."] },
-  "its-cold-in-the-mountains": { "text": "In montagna fa freddo." },
-  "we-are-staying-home-because-of-the-rain": { "text": "Per la pioggia restiamo a casa." }
+  "its-cold-in-the-mountains": { "text": "In montagna fa freddo." }
  }
 }

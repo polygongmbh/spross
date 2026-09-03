@@ -37,6 +37,7 @@
   "wash-the-dishes": { "text": "fregar los platos", "synonyms": ["lavar los platos"] },
   "taste": { "text": "probar" },
   "fry": { "text": "freír" },
+  "boil": { "text": "hervir" },
   "reheat": { "text": "calentar", "synonyms": ["recalentar"] },
   "stir": { "text": "remover", "variants": ["revolver"] },
   "take-out-trash": { "text": "sacar la basura" },

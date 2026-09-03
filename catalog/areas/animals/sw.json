@@ -1,0 +1,25 @@
+{
+ "title": "Wanyama",
+ "subtitle": "Kutoka mbwa wa nyumbani hadi tembo.",
+ "words": {
+  "animal": { "text": "mnyama", "grammar": { "plural": "wanyama" } },
+  "dog": { "text": "mbwa", "grammar": { "plural": "=" } },
+  "cat": { "text": "paka", "grammar": { "plural": "=" } },
+  "bird": { "text": "ndege", "grammar": { "plural": "=" } },
+  "cow": { "text": "ng'ombe", "grammar": { "plural": "=" } },
+  "goat": { "text": "mbuzi", "grammar": { "plural": "=" } },
+  "sheep": { "text": "kondoo", "grammar": { "plural": "=" } },
+  "donkey": { "text": "punda", "grammar": { "plural": "=" } },
+  "horse": { "text": "farasi", "grammar": { "plural": "=" } },
+  "elephant": { "text": "tembo", "synonyms": ["ndovu"], "grammar": { "plural": "=" } },
+  "monkey": { "text": "tumbili", "synonyms": ["kima"], "grammar": { "plural": "=" } },
+  "snake": { "text": "nyoka", "grammar": { "plural": "=" } },
+  "insect": { "text": "mdudu", "grammar": { "plural": "wadudu" } },
+  "look-a-bird": { "text": "Angalia, ndege!", "variants": ["Tazama, ndege!"] },
+  "the-dog-is-barking": { "text": "Mbwa anabweka.", "variants": ["Mbwa hubweka."] },
+  "the-cat-is-meowing": { "text": "Paka analia.", "variants": ["Paka hulia.", "Paka anasema miau."] },
+  "the-bird-is-singing": { "text": "Ndege anaimba.", "variants": ["Ndege huimba."] },
+  "the-lion-is-roaring": { "text": "Simba ananguruma.", "variants": ["Simba hunguruma."] },
+  "the-mosquito-is-biting-me": { "text": "Mbu ananiuma.", "variants": ["Mbu anauma."] }
+ }
+}

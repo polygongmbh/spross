@@ -38,6 +38,7 @@
   "wash-the-dishes": { "text": "lavare i piatti", "variants": ["lavare le stoviglie"] },
   "taste": { "text": "assaggiare" },
   "fry": { "text": "friggere" },
+  "boil": { "text": "bollire", "variants": ["far bollire"] },
   "reheat": { "text": "riscaldare", "variants": ["scaldare"] },
   "stir": { "text": "mescolare", "variants": ["rimescolare", "girare"] },
   "take-out-trash": {

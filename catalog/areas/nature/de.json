@@ -4,23 +4,12 @@
  "words": {
   "tree": { "text": "Baum", "grammar": { "gender": "der", "plural": "Bäume" } },
   "flower": { "text": "Blume", "grammar": { "gender": "die", "plural": "-n" } },
-  "sun": { "text": "Sonne", "grammar": { "gender": "die", "plural": "-n" } },
-  "rain": { "text": "Regen", "grammar": { "gender": "der" } },
-  "weather": { "text": "Wetter", "grammar": { "gender": "das" } },
-  "snow": { "text": "Schnee", "grammar": { "gender": "der" } },
-  "wind": { "text": "Wind", "grammar": { "gender": "der", "plural": "-e" } },
   "river": { "text": "Fluss", "grammar": { "gender": "der", "plural": "Flüsse" } },
   "go-for-walk": { "text": "spazieren gehen" },
   "jog": { "text": "joggen" },
   "sunbathe": { "text": "sich sonnen" },
   "plant-flowers": { "text": "Blumen pflanzen" },
   "grill-meat": { "text": "Fleisch grillen" },
-  "animal": { "text": "Tier", "grammar": { "gender": "das", "plural": "-e" } },
-  "dog": { "text": "Hund", "grammar": { "gender": "der", "plural": "-e" } },
-  "cat": { "text": "Katze", "grammar": { "gender": "die", "plural": "-n" } },
-  "bird": { "text": "Vogel", "grammar": { "gender": "der", "plural": "Vögel" } },
-  "sky": { "text": "Himmel", "grammar": { "gender": "der" } },
-  "cloud": { "text": "Wolke", "grammar": { "gender": "die", "plural": "-n" } },
   "mountain": { "text": "Berg", "grammar": { "gender": "der", "plural": "-e" } },
   "sea": { "text": "Meer", "grammar": { "gender": "das", "plural": "-e" } },
   "beach": { "text": "Strand", "grammar": { "gender": "der", "plural": "Strände" } },
@@ -29,38 +18,17 @@
   "stone": { "text": "Stein", "grammar": { "gender": "der", "plural": "-e" } },
   "moon": { "text": "Mond", "grammar": { "gender": "der", "plural": "-e" } },
   "star": { "text": "Stern", "grammar": { "gender": "der", "plural": "-e" } },
-  "storm": { "text": "Sturm", "grammar": { "gender": "der", "plural": "Stürme" } },
-  "thunder": { "text": "Donner", "grammar": { "gender": "der" } },
-  "lightning": { "text": "Blitz", "grammar": { "gender": "der", "plural": "-e" } },
-  "humid": { "text": "feucht" },
   "wood": { "text": "Holz", "grammar": { "gender": "das", "plural": "Hölzer" } },
   "stick": { "text": "Stock", "grammar": { "gender": "der", "plural": "Stöcke" } },
-  "hows-the-weather-today": { "text": "Wie ist das Wetter heute?" },
-  "its-raining": { "text": "Es regnet." },
-  "the-rain-has-stopped": { "text": "Der Regen hat aufgehört.", "variants": ["Es regnet nicht mehr."] },
-  "the-sun-is-shining": { "text": "Die Sonne scheint!" },
-  "what-a-beautiful-day": { "text": "Was für ein schöner Tag!" },
+  "shadow": { "text": "Schatten", "grammar": { "gender": "der", "plural": "=" } },
   "lets-go-to-the-beach": { "text": "Gehen wir an den Strand!", "variants": ["Lass uns an den Strand gehen!"] },
   "we-are-going-to-the-mountains": { "text": "Wir fahren in die Berge." },
-  "look-a-bird": { "text": "Schau mal, ein Vogel!", "variants": ["Schau, ein Vogel!"] },
-  "the-sun-has-come-out": {
-   "text": "Die Sonne ist rausgekommen.",
-   "variants": ["Die Sonne ist herausgekommen.", "Die Sonne kommt raus."]
-  },
   "its-cold-in-the-mountains": {
    "text": "In den Bergen ist es kalt.",
    "notes": {
     "de": "wo? → Dativ: in den Bergen. Wir fahren in die Berge ist wohin?, darum Akkusativ.",
     "en": "wo? (where) takes the dative: in den Bergen — against in die Berge, the accusative, for where to.",
     "es": "wo? (dónde) rige dativo: in den Bergen — frente a in die Berge, acusativo, para adónde."
-   }
-  },
-  "we-are-staying-home-because-of-the-rain": {
-   "text": "Wegen des Regens bleiben wir zu Hause.",
-   "notes": {
-    "de": "wegen zieht den Genitiv nach sich: des Regens, nicht der Regen.",
-    "en": "wegen pulls the genitive after it: des Regens, not der Regen.",
-    "es": "wegen arrastra el genitivo: des Regens, no der Regen."
    }
   }
  }

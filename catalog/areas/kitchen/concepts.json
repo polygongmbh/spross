@@ -17,6 +17,7 @@
  { "slug": "bowl", "kind": "noun", "emoji": "🥣" },
  { "slug": "oven", "kind": "noun", "emoji": "🥧" },
  { "slug": "fry", "kind": "verb", "emoji": "🥘" },
+ { "slug": "boil", "kind": "verb", "emoji": "🫧" },
  { "slug": "stir", "kind": "verb", "emoji": "🌀" },
  { "slug": "reheat", "kind": "verb", "emoji": "♨️" },
  { "slug": "take-out-trash", "kind": "verb", "emoji": "🗑️" },

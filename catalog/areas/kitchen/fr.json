@@ -43,6 +43,7 @@
    "variants": ["faire frire", "poêler", "faire revenir"],
    "notes": { "de": "frire steht meist als faire frire; in der Pfanne braten heißt poêler." }
   },
+  "boil": { "text": "bouillir", "variants": ["faire bouillir"] },
   "reheat": { "text": "réchauffer", "variants": ["faire réchauffer"] },
   "stir": { "text": "remuer", "variants": ["mélanger", "touiller"] },
   "take-out-trash": {

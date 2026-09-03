@@ -1,0 +1,33 @@
+{
+ "title": "Le temps",
+ "subtitle": "Ce que le ciel nous réserve aujourd'hui.",
+ "words": {
+  "weather": {
+   "text": "temps",
+   "grammar": { "gender": "le" },
+   "notes": {
+    "de": "le temps heißt auch „Zeit“. Nach dem Wetter fragt man mit faire: Quel temps fait-il ? — il fait beau, il fait chaud."
+   }
+  },
+  "sky": { "text": "ciel", "grammar": { "gender": "le" } },
+  "sun": { "text": "soleil", "grammar": { "gender": "le" } },
+  "cloud": { "text": "nuage", "grammar": { "gender": "le" } },
+  "rain": { "text": "pluie", "grammar": { "gender": "la" } },
+  "snow": { "text": "neige", "grammar": { "gender": "la" } },
+  "wind": { "text": "vent", "grammar": { "gender": "le" } },
+  "storm": { "text": "tempête", "grammar": { "gender": "la" } },
+  "thunder": { "text": "tonnerre", "grammar": { "gender": "le" } },
+  "lightning": { "text": "éclair", "variants": ["l'éclair"], "grammar": { "gender": "l'" } },
+  "humid": { "text": "humide" },
+  "hows-the-weather-today": { "text": "Quel temps fait-il aujourd'hui ?", "variants": ["Il fait quel temps aujourd'hui ?"] },
+  "its-raining": { "text": "Il pleut." },
+  "the-rain-has-stopped": { "text": "Il ne pleut plus.", "variants": ["La pluie s'est arrêtée.", "La pluie a cessé."] },
+  "the-sun-is-shining": { "text": "Le soleil brille !", "variants": ["Il y a du soleil !"] },
+  "the-sun-has-come-out": {
+   "text": "Le soleil est sorti.",
+   "variants": ["Le soleil est revenu.", "Le soleil s'est montré."]
+  },
+  "what-a-beautiful-day": { "text": "Quelle belle journée !", "variants": ["Quelle journée magnifique !"] },
+  "we-are-staying-home-because-of-the-rain": { "text": "À cause de la pluie, nous restons à la maison." }
+ }
+}

@@ -1,0 +1,25 @@
+{
+ "title": "Gli animali",
+ "subtitle": "Dal cane di casa all'elefante.",
+ "words": {
+  "animal": { "text": "animale", "variants": ["l'animale"], "grammar": { "gender": "l'" } },
+  "dog": { "text": "cane", "grammar": { "gender": "il" } },
+  "cat": { "text": "gatto", "grammar": { "gender": "il" } },
+  "bird": { "text": "uccello", "variants": ["l'uccello"], "grammar": { "gender": "l'" } },
+  "cow": { "text": "mucca", "grammar": { "gender": "la", "plural": "mucche" } },
+  "goat": { "text": "capra", "grammar": { "gender": "la" } },
+  "sheep": { "text": "pecora", "grammar": { "gender": "la" } },
+  "donkey": { "text": "asino", "variants": ["l'asino"], "grammar": { "gender": "l'" } },
+  "horse": { "text": "cavallo", "grammar": { "gender": "il" } },
+  "elephant": { "text": "elefante", "variants": ["l'elefante"], "grammar": { "gender": "l'" } },
+  "monkey": { "text": "scimmia", "grammar": { "gender": "la", "plural": "scimmie" } },
+  "snake": { "text": "serpente", "grammar": { "gender": "il" } },
+  "insect": { "text": "insetto", "variants": ["l'insetto"], "grammar": { "gender": "l'" } },
+  "look-a-bird": { "text": "Guarda, un uccello!", "variants": ["Guarda, c'è un uccello!"] },
+  "the-dog-is-barking": { "text": "Il cane abbaia.", "variants": ["Il cane sta abbaiando."] },
+  "the-cat-is-meowing": { "text": "Il gatto miagola.", "variants": ["Il gatto sta miagolando."] },
+  "the-bird-is-singing": { "text": "L'uccello canta.", "variants": ["L'uccello sta cantando."] },
+  "the-lion-is-roaring": { "text": "Il leone ruggisce.", "variants": ["Il leone sta ruggendo."] },
+  "the-mosquito-is-biting-me": { "text": "La zanzara mi punge.", "variants": ["La zanzara mi sta pungendo."] }
+ }
+}

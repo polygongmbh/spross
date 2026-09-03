@@ -1,0 +1,28 @@
+{
+ "title": "Tiere",
+ "subtitle": "Vom Hofhund bis zum Elefanten.",
+ "words": {
+  "animal": { "text": "Tier", "grammar": { "gender": "das", "plural": "-e" } },
+  "dog": { "text": "Hund", "grammar": { "gender": "der", "plural": "-e" } },
+  "cat": { "text": "Katze", "grammar": { "gender": "die", "plural": "-n" } },
+  "bird": { "text": "Vogel", "grammar": { "gender": "der", "plural": "Vögel" } },
+  "cow": { "text": "Kuh", "grammar": { "gender": "die", "plural": "Kühe" } },
+  "goat": { "text": "Ziege", "grammar": { "gender": "die", "plural": "-n" } },
+  "sheep": { "text": "Schaf", "grammar": { "gender": "das", "plural": "-e" } },
+  "donkey": { "text": "Esel", "grammar": { "gender": "der", "plural": "=" } },
+  "horse": { "text": "Pferd", "grammar": { "gender": "das", "plural": "-e" } },
+  "elephant": { "text": "Elefant", "grammar": { "gender": "der", "plural": "-en" } },
+  "monkey": { "text": "Affe", "grammar": { "gender": "der", "plural": "-n" } },
+  "snake": { "text": "Schlange", "grammar": { "gender": "die", "plural": "-n" } },
+  "insect": { "text": "Insekt", "grammar": { "gender": "das", "plural": "-en" } },
+  "look-a-bird": { "text": "Schau mal, ein Vogel!", "variants": ["Schau, ein Vogel!"] },
+  "the-dog-is-barking": { "text": "Der Hund bellt." },
+  "the-cat-is-meowing": { "text": "Die Katze miaut." },
+  "the-bird-is-singing": { "text": "Der Vogel singt." },
+  "the-lion-is-roaring": { "text": "Der Löwe brüllt." },
+  "the-mosquito-is-biting-me": {
+   "text": "Die Mücke sticht mich.",
+   "notes": { "de": "Mücken stechen, sie beißen nicht — und das Ergebnis heißt der Mückenstich." }
+  }
+ }
+}

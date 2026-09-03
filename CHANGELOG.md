@@ -25,6 +25,9 @@
 - **A new pronouns area** teaches every person, the polite *Sie*, *usted* and *Lei*
   among them, along with the grammar words the notes lean on.
 
+- **Animals and weather are boxes of their own**, cut out of Nature without touching your progress on a single word that moved.
+- **The shelves fill up** with more animals, vegetables and Kenyan plates — and a word not worth a card alone now arrives as the short sentence you would say it in.
+
 ## 5.10.0 — 2026-09-02
 
 - **A word you keep missing comes back the same day, not only days later.** The retry

@@ -32,7 +32,10 @@
   "noon": { "text": "adhuhuri", "grammar": { "plural": "=" } },
   "afternoon": {
    "text": "mchana",
-   "notes": { "de": "mchana ist auch der helle Tag — der Nachmittagsgruß lautet „Habari za mchana“." }
+   "synonyms": ["alasiri"],
+   "notes": {
+    "de": "mchana ist auch der helle Tag, alasiri der späte Nachmittag ab etwa 15 Uhr — gegrüßt wird mit „Habari za mchana“ bzw. „Habari za alasiri“."
+   }
   },
   "morning": { "text": "asubuhi", "grammar": { "plural": "=" } },
   "evening": { "text": "jioni", "grammar": { "plural": "=" } },
