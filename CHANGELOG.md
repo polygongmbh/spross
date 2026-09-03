@@ -2,14 +2,8 @@
 
 ## Unreleased
 
-- **Animals and weather are boxes of their own.** Nature had become three shelves in one:
-  it keeps the landscape and the plants, what the sky is doing moved to Weather, and the
-  creatures to Animals. Your progress on every word that moved is untouched.
-
-- **The shelves fill up.** More animals, more of what a market sells and what gets eaten in
-  Kenya, and a handful of words the catalog was missing. Where a word is not worth a card on
-  its own, it now arrives as the short sentence you would actually say it in — the dog
-  barking, the mosquito biting — rather than as a bare word beside it.
+- **Animals and weather are boxes of their own**, cut out of Nature without touching your progress on a single word that moved.
+- **The shelves fill up** with more animals, vegetables and Kenyan plates — and a word not worth a card alone now arrives as the short sentence you would say it in.
 
 ## 5.10.0 — 2026-09-02
 

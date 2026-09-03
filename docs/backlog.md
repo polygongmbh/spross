@@ -504,7 +504,4 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   and neither has existed since the kern became the Gradle-built `SprossKern` framework.
   `docs/facegen.md` still documents `swift run facegen` as if it works. Port the imports to
   SprossKern, or delete the tool and its doc.
-- `food` holds 47 concepts, past the ~40 an area should stay under
-  (`catalog/areas/README.md`). The seam a learner would name is the raw ingredient against
-  the meal and the drink — the produce, flour and oil on one shelf, breakfast, dinner, soup,
-  coffee and tea on the other.
+- `food` holds 47 concepts, past the ~40 an area should stay under; the seam is raw ingredients against meals and drinks.
