@@ -19,7 +19,8 @@ data class BriefArea(val title: String, val words: List<String>)
  * assistant reads best. Those two are NAMED inside it, never translated around.
  *
  * [GrowthStage.Suspended] and everything unscheduled appear nowhere: what is listed is
- * where to reach FIRST, never a fence.
+ * where to reach FIRST, never a fence. [OwnWords] are out as well — the box's most
+ * personal content, and this is the one text that leaves the device.
  */
 data class Briefing(
     val learnerName: String?,
@@ -122,14 +123,8 @@ data class Briefing(
 /** Building a [Briefing] out of a box; reading a conversation's answer back is [Harvest]'s. */
 object Briefings {
 
-    /** Words the learning block may name before it stops being a list anyone reads. */
-    const val IN_PLAY_LIMIT: Int = 40
-
     /** How wide the new-word preference is drawn — a round's worth, give or take. */
     const val NEW_LIMIT: Int = 15
-
-    /** What the learner's own shelf is called; the catalog has no title for it. */
-    private const val OWN_TITLE: String = "Words I wrote down myself"
 
     private val IN_PLAY_STAGES = setOf(
         GrowthStage.Learning,
@@ -141,27 +136,24 @@ object Briefings {
         val stages = state.cards.mapValues { (_, card) ->
             state.scheduling[card.id]?.let { stageOf(state, it) }
         }
-        val joined = Inventory.joinedCards(state)
+        val joined = Inventory.joinedCards(state).filter { it.area != OwnWords.AREA }
         val free = joined
             .filter { stages[it.id] == GrowthStage.Consolidated || stages[it.id] == GrowthStage.Matured }
             .groupBy { it.area }
             .map { (area, cards) ->
                 BriefArea(
                     title = areaTitle(catalog, state, area),
-                    words = cards.map { card ->
-                        if (area == OwnWords.AREA) "${targetForm(card)} (${card.source.text})"
-                        else targetForm(card)
-                    },
+                    words = cards.map { targetForm(it) },
                 )
             }
         val inPlay = joined
             .filter { stages[it.id] in IN_PLAY_STAGES }
             .sortedBy { state.scheduling[it.id]?.memory?.stability ?: 0.0 }
-            .take(IN_PLAY_LIMIT)
             .map { BriefWord(targetForm(it), it.source.text) }
         val candidates = Growth.newCandidates(state, NEW_LIMIT, NEW_LIMIT)
         val newWords = (candidates.newCards + candidates.unlockedPhrases)
             .mapNotNull { state.cards[it] }
+            .filter { it.area != OwnWords.AREA }
             .map { BriefWord(targetForm(it), it.source.text) }
         return Briefing(
             learnerName = learnerName,
@@ -179,8 +171,7 @@ object Briefings {
 
     /** ENGLISH first — the brief's own language — then the learner's, then the bare key. */
     private fun areaTitle(catalog: Catalog, state: BoxState, area: String): String =
-        if (area == OwnWords.AREA) OWN_TITLE
-        else catalog.areaTitle(area, Catalog.FALLBACK_SOURCE)
+        catalog.areaTitle(area, Catalog.FALLBACK_SOURCE)
             ?: catalog.areaTitle(area, state.joinStamp.source)
             ?: area
 
