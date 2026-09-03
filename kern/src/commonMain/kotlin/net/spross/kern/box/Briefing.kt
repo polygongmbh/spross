@@ -118,6 +118,12 @@ data class Briefing(
      * The grammar line is load-bearing for the same reason: the box teaches WORDS and
      * conjugates nothing, so a partner left to assume otherwise writes perfect subordinate
      * clauses at someone who has met nouns.
+     *
+     * That line governs the SENTENCE, and says so twice because the half of it a partner
+     * acts on otherwise is the wrong half: told only to keep it short, it answers in one
+     * clipped line, and a learner handed four words has nothing to answer. Two or three
+     * short sentences carry a turn — the conversation is meant to die of difficulty, if it
+     * dies at all, never of thrift.
      */
     private fun protocol(): String = listOf(
         "Be my conversation partner. Talk to me in $targetName;",
@@ -128,7 +134,9 @@ data class Briefing(
         "and gloss it in $sourceName the first time. Never bend the conversation toward a word:",
         "a word forced into a turn that had no room for it teaches me nothing.",
         "The app teaches me WORDS, not grammar: assume I have been taught nothing about tense,",
-        "case or agreement, and keep your sentences short and concrete.",
+        "case or agreement, so keep each sentence short and concrete.",
+        "Short sentences, though, not short turns — say two or three of them, so there is",
+        "something for me to answer; a single clipped line leaves me nowhere to go.",
         "Ask me one question per turn and wait for my answer.",
         "Correct at most one mistake per turn, in $sourceName, after answering what I said.",
         "Never list vocabulary back at me. Talk to me.",
