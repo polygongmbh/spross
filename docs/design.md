@@ -292,8 +292,21 @@ a clone inherits its sibling's gaps, never the rules.
 
 ## App structure (single screen)
 
-- **The companion**: the box briefs a chat assistant the app does not host, and reads its
-  answer back into own words — `companion.md` owns the whole of it, screens included.
+- **The companion**: the box briefs a chat assistant the app does not host
+  and reads that conversation's answer back into own words (`Briefing`, `Harvest`).
+  It leads the Box tab's own-content panel — the one entry there that goes out and comes back,
+  with the words it writes home under it.
+  NOT Home: Home answers "what do I do right now", and the answer to that is the round.
+  The finished round offers it once more, under the celebration rather than in it,
+  asking rather than instructing — Fertig stays that screen's own answer.
+  The sheet shows the three counts and never the text:
+  7 KB of prompt scrolling past is a wall, not a preview.
+  Copy takes it; Share hands it to any chat app on the phone,
+  which is how the app reaches every assistant while knowing the name of none.
+  Rendering the brief as an IMAGE was rejected:
+  what OCR drops first is diacritics and borrowed spellings,
+  which is the part of a vocabulary list that carries the learning,
+  and at 7 KB there is no token saving to buy with that anyway.
 - **Home** is the only root screen:
   the day's line, session card (streak flame + the round's counts, or done state),
   the listening card, trainer hub, then the 14-day strip and the forest.

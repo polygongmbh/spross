@@ -36,9 +36,9 @@ The engine's own semantics are below. Nine domains have a page of their own:
 `docs/catalog.md` (what the engine needs of the catalog),
 `docs/audio.md` (pronunciation rules),
 `docs/build.md` (KMP pins and the Xcode hand-off).
-The one engine rule that is not the box's own work — what `Briefing` may tell an outside
-chat assistant about a learner, and what `Harvest` reads back from one — is
-`../docs/companion.md`, which owns both its halves because the feature is the seam.
+The one engine rule that is not the box's own work is the seam to an outside chat assistant:
+`Briefing` writes what it may be told about a learner and `Harvest` reads back what it sends
+home, each carrying its own half; where those two surface is `../docs/design.md`.
 
 ## 1. Languages & profile
 
