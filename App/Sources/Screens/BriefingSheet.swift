@@ -159,11 +159,12 @@ struct BriefingSheet: View {
     }
 
     /// Which heading a group wears. The kinds are kern's; naming them is ours.
+    /// `.theNew` is Kern's `New` — the bridge renames what would collide with `+new`.
     private func heading(_ kind: HarvestKind) -> LocalizedStringKey {
         switch kind {
+        case .theNew: return "briefing.group.new"
         case .near: return "briefing.group.near"
         case .held: return "briefing.group.held"
-        default: return "briefing.group.new"
         }
     }
 
