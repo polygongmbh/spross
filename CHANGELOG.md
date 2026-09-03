@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **The chat with an AI now opens with a story to read** — the brief asks for a short parallel text in both languages, built out of the words you already have, before it asks you anything.
 - **Pretty and beautiful are two words now, in every language** — German *schön* stops standing in for *wunderschön*, and Spanish, French, Italian, Esperanto and Ukrainian draw the same line.
 - **The dates drill now opens by tapping, not typing** — the weekday and month names come four at a time before any of them has to be written out.
 
