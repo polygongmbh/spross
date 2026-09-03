@@ -57,7 +57,9 @@ The Ukrainian side, carrying what only Ukrainian needs:
   `synonyms` is a second assembly the language genuinely SAYS,
   and the reveal turns between it and `text` with the day it asks about
   (en `March third` / `the third of March`),
-  while `variants` is accept-only, exactly as a frame's is,
+  while `variants` is accept-only — a form the drill tolerates without asking for it,
+  which on a pattern is as often a governed case as a spelling
+  (de `den dritten März`, the accusative only an *am* or a dateline assigns) — exactly as a frame's is,
   and crosses with every reading of every slot —
   so a mixed agreement (`den dritte Juni`) grades,
   the leniency the day readings already grant bare (`number-forms.md` § German),

@@ -30,8 +30,13 @@ Ukrainian reads no year inside a date, so its ladder simply tops out one Sprosse
 
 `Montag, der 3. März` reads *Montag, der dritte März*.
 The ordinal is the weak `-e` after `der`;
-`den dritten März` is the accusative a learner meets in *am Mittwoch, den 3. März*
-and grades as a pattern variant.
+`den dritten März` is the accusative a learner meets in *am Mittwoch, den 3. März*.
+It grades as a pattern `variant` and is never taught, because it is never ungoverned:
+something else assigns that case, and a bare date with nothing before it is nominative
+— *Der Wievielte ist heute? Der dritte März.*
+That is what separates it from English's two orders, which are both complete readings of a
+bare date and so are both `synonyms`; the tier is a ruling about the form, not about
+whether the difference happens to be a spelling.
 `GermanForms` already emits `-er`/`-en`/`-es` beside the canonical `-e` (`number-forms.md` § German),
 so the day form composes with nothing new.
 The year is the plain cardinal the pack reads, hundred-style variants included.

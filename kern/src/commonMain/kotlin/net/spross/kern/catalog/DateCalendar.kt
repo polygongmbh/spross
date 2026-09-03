@@ -59,6 +59,10 @@ data class DatePatterns(
  * a [synonyms] entry is a second way the language genuinely SAYS the date and takes its
  * turn on the reveal (en `the third of March` beside `March third`), a [variants] entry is
  * only ever accepted (the article that same order drops in speech).
+ *
+ * The tier rules on the FORM, not on how big the difference is: de `den dritten März` is a
+ * whole case away from the canonical and still only a variant, because nothing governs a
+ * bare date and so nothing assigns that case (`docs/date-readings.md` § German).
  */
 data class DatePattern(
     val text: String,
