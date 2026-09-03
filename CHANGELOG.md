@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- A new drill teaches dates in every language pair: the weekday and month names, the day of the month, and the whole spoken date.
+- The catalog grew by about 9%, to 43 shelves and 1,072 words, with Politik, pronouns, organs, animals and weather among the new shelves.
+- About 50% more of what you hear is read by a person rather than by the phone, the catalog, the days, the months, the countries and the peoples among it.
+- Take your box into a chat with the AI you already use and bring the new words back in, sorted; the app itself sends nothing anywhere.
+- A word you keep missing comes back the same day rather than only days later, the box aims to catch you at an 85% chance of recall, and a word that will not stick is parked at a month instead of dropped.
+- German explains which case a word takes, and a card's note now reaches you in the language you are learning, whichever language you read.
+- A long press on a word in the Box shows its synonyms and how settled it is.
+
 ## 5.11.3 — 2026-09-03
 
 - Words brought back from an AI chat arrive sorted, and only the new ones start ticked.

@@ -62,14 +62,20 @@ never a commit log, and "user-observable" is a lower bar than the one that holds
   the learner experienced one change — answers that map onto their prompt — not three.
   Before adding a second bullet from the same work, ask whether the learner would call it a
   second change; if not, fold it in — one headline, the sharpest example or two, and stop.
-- A bullet is one or two lines. Name what the learner can now do and stop: the reasoning,
-  the before, the mechanism and the examples that convinced you all belong in the commit
-  message, which is where a reader who wants them will look.
-- No raw counts. "the catalog grew from 358 to 506 concepts" was cut in favor of the
-  qualitative claim under it: a count measures the catalog rather than the learner's
-  experience, and it goes stale the moment the next commit lands,
+- A bullet is ONE plain sentence, written for someone reading release notes rather than for a maintainer.
+  No bold lead, no explanation clause after it:
+  name what the learner can now do and stop.
+  The reasoning, the before, the mechanism and the examples that convinced you
+  all belong in the commit message, which is where a reader who wants them will look.
+  An explanation earns its place only where the sentence means nothing without it.
+- No raw counts, with one exception.
+  "the catalog grew from 358 to 506 concepts" was cut in favor of the qualitative claim under it:
+  a count measures the catalog rather than the learner's experience,
+  and it goes stale the moment the next commit lands,
   leaving the bullet either lying or waiting to be re-tallied.
   Write what widened and for whom.
+  The exception is a MAJOR release, whose bullets summarize everything since the last one:
+  there a growth figure is the point, and a percentage carries it better than a pair of totals.
 
 ## Secrets
 
