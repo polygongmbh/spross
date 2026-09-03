@@ -47,6 +47,7 @@
   "opposite": { "text": "opposite" },
   "equal": { "text": "equal" },
   "to-compare": { "text": "to compare" },
+  "pretty": { "text": "pretty", "notes": { "de": "pretty heißt auch ziemlich: pretty good." } },
   "beautiful": { "text": "beautiful" },
   "positive": { "text": "positive" },
   "negative": { "text": "negative" },

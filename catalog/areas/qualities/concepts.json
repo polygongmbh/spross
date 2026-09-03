@@ -35,6 +35,7 @@
  { "slug": "opposite", "kind": "adjective" },
  { "slug": "equal", "kind": "adjective" },
  { "slug": "to-compare", "kind": "verb" },
+ { "slug": "pretty", "kind": "adjective" },
  { "slug": "beautiful", "kind": "adjective" },
  { "slug": "positive", "kind": "adjective", "emoji": "➕" },
  { "slug": "negative", "kind": "adjective", "emoji": "➖" },

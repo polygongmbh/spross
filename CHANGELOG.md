@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Pretty and beautiful are two words now, in every language** — German *schön* stops standing in for *wunderschön*, and Spanish, French, Italian, Esperanto and Ukrainian draw the same line.
 - **The dates drill now opens by tapping, not typing** — the weekday and month names come four at a time before any of them has to be written out.
 
 ## 5.11.0 — 2026-09-03

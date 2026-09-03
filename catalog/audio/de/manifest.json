@@ -4738,17 +4738,6 @@
       "snr": 41.5,
       "source": "De-Strand.ogg"
     },
-    "beautiful": {
-      "author": "Natschoba",
-      "file": "beautiful.mp3",
-      "gain": 3.2,
-      "gainPhone": 4.8,
-      "lead": 149,
-      "matches": "schön",
-      "sha256": "9894ccbd9b181f7c135945ba82d3e4fe6d0eb673d134d54b8ce310291e72bc97",
-      "snr": 58.5,
-      "source": "LL-Q188 (deu)-Natschoba-schön.wav"
-    },
     "because": {
       "author": "Jeuwre",
       "file": "because.mp3",
@@ -9623,6 +9612,17 @@
       "sha256": "60adde16bca8e66264db65ac64ea4080ac200f7de637df34f892a4d681caf6fb",
       "snr": 87.0,
       "source": "De-Rezept.ogg"
+    },
+    "pretty": {
+      "author": "Natschoba",
+      "file": "pretty.mp3",
+      "gain": 3.2,
+      "gainPhone": 4.8,
+      "lead": 149,
+      "matches": "schön",
+      "sha256": "9894ccbd9b181f7c135945ba82d3e4fe6d0eb673d134d54b8ce310291e72bc97",
+      "snr": 58.5,
+      "source": "LL-Q188 (deu)-Natschoba-schön.wav"
     },
     "price": {
       "author": "Jeuwre",

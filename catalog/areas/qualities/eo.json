@@ -57,6 +57,7 @@
   "opposite": { "text": "kontraŭa", "variants": ["kontraŭaj"] },
   "equal": { "text": "egala", "variants": ["egalaj"] },
   "to-compare": { "text": "kompari" },
+  "pretty": { "text": "beleta", "variants": ["belete"] },
   "beautiful": { "text": "bela", "variants": ["bele"] },
   "positive": { "text": "pozitiva", "variants": ["pozitive"] },
   "negative": { "text": "negativa", "variants": ["negative"] },

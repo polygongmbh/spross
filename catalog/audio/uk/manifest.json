@@ -1671,17 +1671,6 @@
       "snr": 44.2,
       "source": "Uk-пляж.ogg"
     },
-    "beautiful": {
-      "author": "Галя Раптова, Nicolas Vion",
-      "file": "beautiful.mp3",
-      "gain": -1.5,
-      "gainPhone": -3.9,
-      "lead": 245,
-      "matches": "гарний",
-      "sha256": "b8af6b98a338e618dc2b9b2c484aab7a3b843d678f9d51efe404170082ddffc9",
-      "snr": 46.7,
-      "source": "Uk-гарний.ogg"
-    },
     "because-of": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "because-of.mp3",
@@ -5903,6 +5892,17 @@
       "sha256": "91d9cbaed0c1d3f3d6b33d4c7aa0ebfb9f84b8372d6e412842edc181763554d2",
       "snr": 37.7,
       "source": "Uk-рецепт.ogg"
+    },
+    "pretty": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "pretty.mp3",
+      "gain": -1.5,
+      "gainPhone": -3.9,
+      "lead": 245,
+      "matches": "гарний",
+      "sha256": "b8af6b98a338e618dc2b9b2c484aab7a3b843d678f9d51efe404170082ddffc9",
+      "snr": 46.7,
+      "source": "Uk-гарний.ogg"
     },
     "price": {
       "author": "Галя Раптова, Nicolas Vion",

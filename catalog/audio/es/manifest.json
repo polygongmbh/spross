@@ -1558,17 +1558,6 @@
       "snr": 61.6,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-playa.wav"
     },
-    "beautiful": {
-      "author": "AdrianAbdulBaha",
-      "file": "beautiful.mp3",
-      "gain": 6.7,
-      "gainPhone": 7.8,
-      "lead": 109,
-      "matches": "bonito",
-      "sha256": "0f9e4b019498d267e73d0bbebeda259e44e917f43b841cb07ce14e8a82534de8",
-      "snr": 51.4,
-      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-bonito.wav"
-    },
     "because": {
       "author": "Precision27",
       "file": "because.mp3",
@@ -5861,6 +5850,17 @@
       "sha256": "fae15522ca5e40549af9747de6dfcb071a1a244891377e7d417c6b916ae53083",
       "snr": 57.4,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-receta.wav"
+    },
+    "pretty": {
+      "author": "AdrianAbdulBaha",
+      "file": "pretty.mp3",
+      "gain": 6.7,
+      "gainPhone": 7.8,
+      "lead": 109,
+      "matches": "bonito",
+      "sha256": "0f9e4b019498d267e73d0bbebeda259e44e917f43b841cb07ce14e8a82534de8",
+      "snr": 51.4,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-bonito.wav"
     },
     "price": {
       "author": "GlyphEnjoyer",
