@@ -145,6 +145,9 @@ verb `cook` → `"to cook"`, phrase `the-fridge-is-empty` → `"The fridge is em
   (`Zähne putzen` may wear the toothbrush's).
 - `components` (phrases only) — same-area word slugs the phrase is built from;
   the box gates a phrase's unlock on those words being learned. Empty = no gate.
+  A word too marginal for a card of its own rides in instead, as the bare collocation with
+  the word it lives with (`bellen` in `Der Hund bellt.`), and the gate can only name a side
+  that HAS a card — the noun here, nothing at all where the noun is the marginal one.
   A component only ever unlocks a phrase where the TARGET realizes it, so gate on a concept every language carries:
   a `feminineOf` component would leave the phrase locked forever in a pair whose target has no feminine form (en, sw).
 - `idiom` — a figurative expression, curated (not auto-linked) for genuine

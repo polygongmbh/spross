@@ -32,19 +32,6 @@ What earns the slot is the small extra the words alone do not give — an agreem
 the form a construction forces (uk `чи` in a choice question, not `або`), an idiomatic turn, or one small function word carried in on the side.
 Where that extra is a remark rather than a construction, it belongs in the WORD's `notes` and the phrase still goes.
 
-**A word too small for a card of its own arrives inside a short phrase.**
-`bellen` is a card nobody would sit down and learn and `Hund` alone is already known,
-but `Der Hund bellt.` / `Mbwa anabweka.` buys the verb, the noun and the sentence they sit in.
-So where a word is real but marginal, prefer the bare collocation — subject and verb,
-nothing else — over both the lone word and a sentence built around it.
-Which side is marginal decides the gate, and the gate can only name a word that HAS a card:
-usually it is the verb that could not stand alone, and then `components` names the noun,
-which is why the barking lands right behind `dog`;
-where the marginal word is the noun instead there is nothing to gate on and `components` is
-empty, exactly as for `its-raining`.
-The pairing owes the mirroring rule like any phrase, and where one language has no matching verb
-the gap IS the teaching: Swahili has `kubweka` for the dog and falls back to `kulia` for the cat.
-
 **A realization mirrors the concept, not the translator's instinct.**
 Every word in one language's text should have a visible counterpart in the others' —
 that mapping is how a learner works out which word did what,
