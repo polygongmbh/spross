@@ -78,7 +78,7 @@ class DateDrillRunTest {
     fun aForcedSprosseIsClampedToTheLadder() {
         assertEquals(7, open(level = 99).level)
         assertEquals(1, open(level = 0).level)
-        assertEquals(7, open(reverse = true, level = 99).level, "the same ladder both ways")
+        assertEquals(6, open(reverse = true, level = 99).level, "one Sprosse shorter back")
     }
 
     @Test

@@ -15,9 +15,14 @@ package net.spross.kern.trainer
  *
  * Nothing new is drawn: a parse is the forward task with its two sides swapped, so the
  * calendar, the patterns and the draw are the ones already there. What is added is the
- * leniency a written date needs — the zero a learner may or may not pad with, the trailing
- * dot German writes and drops, and the weekday abbreviation, which the prompt already names
- * and which nobody should have to copy back to prove they read it.
+ * leniency a written date needs — the zero a learner may or may not pad with, and the
+ * trailing dot German writes and drops.
+ *
+ * The weekday the card prints is DROPPED rather than made optional. `Sa,` is the source
+ * language's own abbreviation, the prompt already named that day in the language being
+ * learned, and no number pad types it: copying it back would be chrome standing in for a
+ * skill. Which is also why the full date has no reversed Sprosse at all — without its
+ * weekday it is the day and month again ([DateDrill]).
  *
  * A digit slip is never forgiven: `3.7.` for `3.6.` is another date, and
  * [net.spross.kern.session.AnswerNormalizer] grades a digit-bearing word exact-only, so the
@@ -32,30 +37,28 @@ internal object DateDrillParsing {
     private val PARSED = setOf(
         DateTaskKind.DayOfMonth,
         DateTaskKind.DayAndMonth,
-        DateTaskKind.FullDate,
         DateTaskKind.FullDateWithYear,
     )
 
     /** [task] the other way round, or unchanged where its kind has no other way round. */
     fun parsed(task: DateDrillTask): DateDrillTask {
         if (task.kind !in PARSED) return task
+        val date = task.promptText.substringAfter(", ", task.promptText)
         return task.copy(
             promptText = task.display,
-            accepted = forms(task.promptText),
-            display = task.promptText,
+            accepted = forms(date),
+            display = date,
             digits = true,
         )
     }
 
     /**
-     * Every way the drawn date may be written: as the card would print it, without the
-     * weekday the prompt already gave away, zero-padded, and without the ordinal dot that
-     * trails a German date. Canonical first — it is what the reveal teaches.
+     * Every way the drawn date may be written: as the card would print it, zero-padded, and
+     * without the ordinal dot that trails a German date. Canonical first — it is what the
+     * reveal teaches.
      */
     private fun forms(canonical: String): List<String> =
-        listOf(canonical, canonical.substringAfter(", ", canonical))
-            .distinct()
-            .flatMap { listOf(it, padded(it)) }
+        listOf(canonical, padded(canonical))
             .flatMap { form -> listOf(form) + listOfNotNull(form.dropLast(1).takeIf { form.endsWith(".") }) }
             .distinct()
 

@@ -20,11 +20,12 @@ import net.spross.kern.model.Language
  * the draw order, not a narrower Sprosse ([drawOrder]). A Sprosse the answer language cannot
  * carry is absent, not locked: no `dateWithYear` pattern, no year Sprosse, and the ladder
  * simply tops out a Sprosse short (uk, `docs/date-readings.md`).
- * Reverse is a DIRECTION, not a shorter ladder: every Sprosse stands both ways round. The
- * bare names swap sides, and the numeric Sprossen turn into a parse — the card carries the
- * reading and the run wants the date written down ([DateDrillParsing]). Which is the easier
- * half of the skill and the half a learner actually spends, so the whole reversed ladder is
- * a comprehension check, answered in digits rather than in the learner's own prose.
+ * Reverse is a DIRECTION rather than a shorter ladder: the bare names swap sides, and the
+ * numeric Sprossen turn into a parse — the card carries the reading and the run wants the
+ * date written down ([DateDrillParsing]). Which is the easier half of the skill and the half
+ * a learner actually spends, so the whole reversed ladder is a comprehension check, answered
+ * in digits rather than in the learner's own prose. Only the full date has no way round: a
+ * parsed one is the day and month again, so that Sprosse stands forward alone.
  *
  * The ladder OPENS on a tapped Sprosse either way ([DateDrillChoices]): the names are met
  * on four tiles before any of them is written out, which is the letters ladder's opening
@@ -149,12 +150,6 @@ object DateDrill {
         return if (rng.nextBoolean()) listOf(newest) + shuffled.filterNot { it == newest } else shuffled
     }
 
-    /**
-     * why: [reverse] is taken and ignored — this ladder is the same height both ways round
-     * now that the numeric Sprossen have a reversed direction of their own. The parameter
-     * stays because the shared overview asks every drill the same question and the atlas
-     * still answers it differently: its flag Sprosse has no way round.
-     */
     private fun sprossen(content: DateDrillContent, reverse: Boolean): List<DateTaskKind> =
         listOfNotNull(
             DateTaskKind.NameChoice,
@@ -162,7 +157,10 @@ object DateDrill {
             DateTaskKind.Month,
             DateTaskKind.DayOfMonth,
             DateTaskKind.DayAndMonth,
-            DateTaskKind.FullDate,
+            // why: reversed, a full date is the day and month over again. Its weekday is on
+            // the card already, and the source abbreviation that would answer it is chrome
+            // rather than language ([DateDrillParsing]) — a Sprosse asking nothing new.
+            DateTaskKind.FullDate.takeIf { !reverse },
             DateTaskKind.FullDateWithYear.takeIf { content.patterns.dateWithYear != null },
         )
 

@@ -30,15 +30,15 @@ class DateDrillTests {
     // MARK: - The ladder
 
     /**
-     * The year Sprosse exists only where the answer side reads a year. Reverse is a
-     * DIRECTION, not a shorter ladder: the same height either way round.
+     * The year Sprosse exists only where the answer side reads a year; the full date is the
+     * one Sprosse with no way round, so a reversed ladder is exactly one shorter.
      */
     @Test
     fun theLadderIsAsTallAsTheContentCanCarry() {
         assertEquals(7, DateDrill.maxLevel(german, reverse = false))
         assertEquals(6, DateDrill.maxLevel(ukrainian, reverse = false))
-        assertEquals(7, DateDrill.maxLevel(german, reverse = true))
-        assertEquals(6, DateDrill.maxLevel(ukrainian, reverse = true))
+        assertEquals(6, DateDrill.maxLevel(german, reverse = true))
+        assertEquals(5, DateDrill.maxLevel(ukrainian, reverse = true))
     }
 
     /**
@@ -57,7 +57,11 @@ class DateDrillTests {
         assertEquals(written.dropLast(1), DateDrill.kinds(ukrainian, 6, reverse = false))
         assertEquals(warmUp, DateDrill.kinds(german, 1, reverse = true))
         assertEquals(bareKinds, DateDrill.kinds(german, 3, reverse = true))
-        assertEquals(written, DateDrill.kinds(german, 7, reverse = true), "the same ladder back")
+        assertEquals(
+            written - DateTaskKind.FullDate,
+            DateDrill.kinds(german, 6, reverse = true),
+            "the same ladder back but for the full date, which has no way round",
+        )
         assertEquals(written, DateDrill.kinds(german, 99, reverse = false), "clamped to the top")
         assertEquals(warmUp, DateDrill.kinds(german, 0, reverse = false))
     }
@@ -67,8 +71,8 @@ class DateDrillTests {
         assertFalse(DateDrill.fastUnlocked(6, german, reverse = false))
         assertTrue(DateDrill.fastUnlocked(7, german, reverse = false))
         assertTrue(DateDrill.fastUnlocked(6, ukrainian, reverse = false), "the short ladder tops at 6")
-        assertFalse(DateDrill.fastUnlocked(6, german, reverse = true), "reverse is not the short way up")
-        assertTrue(DateDrill.fastUnlocked(7, german, reverse = true))
+        assertFalse(DateDrill.fastUnlocked(5, german, reverse = true))
+        assertTrue(DateDrill.fastUnlocked(6, german, reverse = true), "one Sprosse shorter back")
     }
 
     /** Three clean wins a Sprosse, or one where fast was earned — on this pair's own ceiling. */
@@ -324,20 +328,32 @@ class DateDrillTests {
         assertEquals("6/3", dayMonth.display, "the reveal teaches the card's own printing")
         assertContains(dayMonth.accepted, "06/03")
 
-        val full = DateDrillParsing.parsed(DateDrillTasks.fullDate(german, 5, 3, 5))
-        assertEquals("Sat, 6/3", full.display)
-        assertContains(full.accepted, "6/3", "the weekday the prompt named need not be copied")
-        assertContains(full.accepted, "06/03")
-
         val day = DateDrillParsing.parsed(DateDrillTasks.day(german, 3))
         assertEquals("3.", day.display)
         assertContains(day.accepted, "3")
         assertContains(day.accepted, "03.")
         assertEquals("dritte", day.promptText, "the ordinal is what is read")
 
+        // The weekday the card prints is DROPPED, not merely optional: it is the source's
+        // own abbreviation, no number pad types it, and the prompt already named that day.
         val dated = DateDrillParsing.parsed(DateDrillTasks.fullDateWithYear(german, 3, 2, 2026))
-        assertContains(dated.accepted, "3/3/2026")
+        assertEquals("3/3/2026", dated.display)
+        assertFalse(dated.accepted.any { it.contains("Tue") })
         assertContains(dated.accepted, "03/03/2026", "the year keeps its four digits")
+    }
+
+    /** The full date is the one Sprosse with no way round — parsed, it asks day and month again. */
+    @Test
+    fun theFullDateHasNoReversedSprosse() {
+        val untouched = DateDrillParsing.parsed(DateDrillTasks.fullDate(german, 5, 3, 5))
+        assertFalse(untouched.digits)
+        assertTrue(
+            (1..20).none {
+                DateDrill.sample(german, 99, true, null, emptySet(), Random(it.toLong()))?.kind ==
+                    DateTaskKind.FullDate
+            },
+            "a reversed run drew the Sprosse that has no reversed direction",
+        )
     }
 
     // MARK: - The warm-up
