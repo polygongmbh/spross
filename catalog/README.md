@@ -4,6 +4,10 @@ Language learning content organized **one folder per area**.
 Designed for reuse (any language pair is a runtime join of shared parts)
 and potential future crowdsourced per-language contribution.
 
+This file owns the file shapes and what each field means.
+What earns a card and how it is worded is `areas/README.md`;
+every other folder below is documented by the `README.md` standing in it.
+
 ## The key modeling decision: everything is a concept
 
 - A **concept** is language-neutral: a `slug`, a `kind`
@@ -12,19 +16,21 @@ and potential future crowdsourced per-language contribution.
 - A **realization** is one concept rendered in one language (`text` + grammar + notes).
 - A **pair** (de↔sw, de↔uk, later sw↔uk) is a **runtime join** on slug — never stored.
   The German side is authored once and shared across every pair that includes German.
-- **Coverage may be non-uniform.** 
-  A concept without a realization in a language simply never appears in pairs involving that language. 
-  This is how pair-specific content works: `relax` is a concept with `de`, `en` and `uk` realizations and no `sw`,
-  so it never shows up in a pair that teaches Swahili because the swahili word would be the same as for `rest`.
+- **Coverage may be non-uniform.**
+  A concept without a realization in a language never appears in pairs involving that language.
+  This is how pair-specific content works: `relax` has `de`, `en` and `uk` realizations and no `sw`,
+  because the Swahili word would be the same as for `rest`.
 - **Homonyms & target-language merges.** Slugs are unique, but realization *texts* are not:
-  one text may legitimately serve two concepts in two areas — usually because the
-  target language merges a distinction the source draws 
-  (sw `kuacha` = `verlassen` AND `aufhören`, and with an object `kuacha kazi` = `kündigen`). 
-  Th **area** is the disambiguator, and the engine renders the area label on an ambiguous *produce* prompt only — 
-  never on recognize, where any cue strong enough to identify the concept would reveal the answer.
-  Tolerated cross-area collisions are pinned by a test, so minting a new one has to be a conscious decision.
-  Asked the other way — what does this word MEAN — the merge is simply honored: every concept
-  printing the form answers for it, and the reveal names the rest (`../kern/docs/grading.md`).
+  one text may legitimately serve two concepts in two areas — usually because the target language
+  merges a distinction the source draws (sw `kuacha` = `verlassen` AND `aufhören`, and with an
+  object `kuacha kazi` = `kündigen`).
+  The **area** is the disambiguator, and the engine renders the area label on an ambiguous
+  *produce* prompt only — never on recognize, where any cue strong enough to identify the concept
+  would reveal the answer.
+  Tolerated cross-area collisions are pinned by `CatalogLintTest`, so minting a new one has to be
+  a conscious decision. Asked the other way — what does this word MEAN — the merge is simply
+  honored: every concept printing the form answers for it, and the reveal names the rest
+  (`../kern/docs/grading.md`).
 
 ## Layout
 
@@ -66,11 +72,11 @@ catalog/
 ```
 
 The json files are hand-edited, and their shape is part of the review unit:
-an entry that fits on one line stays on one line (`{ "slug": "seventh-heaven", "kind": "idiom" }`, `"notes": { "en": "…" }`), 
+an entry that fits on one line stays on one line
+(`{ "slug": "seventh-heaven", "kind": "idiom" }`, `"notes": { "en": "…" }`),
 so an area file reads as the word list it is and a reordering diff shows the new order rather than a reflow.
 `../scripts/catalog-format.py --fix` applies that layout and `--check` holds it;
 the rules it follows are in its own header, and it owns every catalog file except the generated `audio/` manifests.
-Adding or reviewing a language means per-area editing in `areas/<area>/<lang>.json`.
 
 ## Schemas
 
@@ -89,9 +95,8 @@ is a runtime/user-preference concern; the content only supplies the default.
 - `area` — the folder name; globally unique across groups.
 - `emoji` — the area's illustrative icon. **Language-neutral display metadata owned by the
   catalog**, exactly as concept `emoji` is, so both apps show the same icon instead of each
-  carrying its own map (it used to be a hardcoded Swift dictionary, which meant area icons
-  existed on iOS only). Required and validated at parse time by the same rule as concept
-  emoji — adding an area therefore fails the gate rather than silently losing its icon.
+  carrying its own map. Required and validated at parse time by the same rule as concept emoji,
+  so adding an area fails the gate rather than silently losing its icon.
 
 **`languages.json`** — per-language metadata, keyed by lang code:
 ```json
@@ -103,8 +108,7 @@ is a runtime/user-preference concern; the content only supplies the default.
 - `name` — the language's own name for itself ("Deutsch", "Українська");
   language pickers use this so speakers always recognize their language.
 - `englishName` — English exonym ("German", "Ukrainian"). Required, non-empty.
-- `flag` — exactly ONE emoji flag sequence for chrome/badges
-  (sw uses 🇹🇿 Tanzania, the v1 choice).
+- `flag` — exactly ONE emoji flag sequence for chrome/badges (sw uses 🇹🇿 Tanzania).
 - `articles` — the language's articles (de `der/die/das/ein/eine`, en `the/a/an`).
   ONE leading listed article is optional when grading input in this language;
   it also drives article coloring in the UI.
@@ -135,23 +139,15 @@ English doubles as the keying language AND a content language: the slug is the i
 `en.json` carries the English realization (display text may differ from the slug —
 verb `cook` → `"to cook"`, phrase `the-fridge-is-empty` → `"The fridge is empty."`).
 - `emoji` — optional on EVERY kind, not just nouns. It is the engine's meaning cue, shown
-  upfront on a first exposure and on an unsettled produce prompt (`../kern/README.md` §3),
-  so the bar is that it must not teach the wrong thing: authored wherever an honest picture
-  exists, absent where one does not. That is why the function words have none —
-  `viel`, `jetzt`, `groß`, `wo`, `aber`, `oft` are exactly where a picture would mislead,
-  and a wrong cue costs more than a missing one. A phrase takes its topic's picture, so
-  sharing one with the word it is built from is expected (`the-fridge-is-empty` ← `fridge`);
-  two distinct WORDS in one area sharing a picture is not, unless one names the other
-  (`Zähne putzen` may wear the toothbrush's).
+  upfront on a first exposure and on an unsettled produce prompt (`../kern/README.md` §3).
+  Which concepts get one, and which must not, is `areas/README.md`.
 - `components` (phrases only) — same-area word slugs the phrase is built from;
   the box gates a phrase's unlock on those words being learned. Empty = no gate.
-  A word too marginal for a card of its own rides in instead, as the bare collocation with
-  the word it lives with (`bellen` in `Der Hund bellt.`), and the gate can only name a side
-  that HAS a card — the noun here, nothing at all where the noun is the marginal one.
-  A component only ever unlocks a phrase where the TARGET realizes it, so gate on a concept every language carries:
-  a `feminineOf` component would leave the phrase locked forever in a pair whose target has no feminine form (en, sw).
+  A gate can only name a concept that HAS a card and that every target realizes:
+  a `feminineOf` component would leave the phrase locked forever in a pair whose target
+  has no feminine form (en, sw).
 - `idiom` — a figurative expression, curated (not auto-linked) for genuine
-  cross-language meaning-equivalence; see "Idioms are the exception" below.
+  cross-language meaning-equivalence (`areas/README.md`).
   Structurally forbidden from carrying `emoji`, `components`, or `feminineOf` —
   the parser rejects a concept that tries. Every idiom card shows the engine's
   fixed `IDIOM_EMOJI` instead (`../kern/README.md` §2), and idioms carry no
@@ -159,8 +155,6 @@ verb `cook` → `"to cook"`, phrase `the-fridge-is-empty` → `"The fridge is em
   behind the vocabulary they presuppose.
 - `adjective` is the catch-all for single words that are neither noun nor verb:
   adjectives, adverbs, and interjections (`draußen`, `immer`, `Vorsicht`).
-  Prefer splitting such a word out of a phrase over inflating the phrase:
-  short phrases keep typing manageable and let the word be recalled on its own.
 - `feminineOf` (nouns only) — marks this concept as the feminine form of `<base-slug>`.
   It carries the distinct `de` form always, and a realization only where that language
   grammatically distinguishes the feminine (uk `вчителька`; NOT sw or en, which are
@@ -177,8 +171,8 @@ two areas claiming one slug would fuse two concepts into a single schedule,
 so a genuine repeat is disambiguated by qualifying the slug
 (the noun keeps `help`/`plant`/`work`, the verb becomes `to-help`/`to-plant`/`to-work`).
 The price is that **renaming a slug is a breaking act**:
-it orphans the schedule and the word returns as new,
-so rename deliberately, never just to polish a lemma.
+it orphans the schedule and every audio pack row keyed by the old name,
+and the word returns as new — so rename deliberately, never just to polish a lemma.
 
 **`areas/<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json
@@ -197,9 +191,9 @@ so rename deliberately, never just to polish a lemma.
   in every other reader's box. Lint holds both.
 
 Realization fields — only `text` is required:
-- `text` — the canonical answer/display form, nothing else (no embedded glosses/labels).
-  Never bracket a disambiguator into it (`"mto (Kissen)"`) — everything in `text` has to be
-  typed. Homonyms are handled by the area rule above, not inside the string.
+- `text` — the canonical answer/display form, nothing else: no embedded gloss, label or
+  bracketed disambiguator (`"mto (Kissen)"`), because everything in `text` has to be typed.
+  Homonyms are handled by the area rule above, not inside the string.
   A form that only ever appears bound carries its leading dash (sw `-zuri`, which takes the
   noun's class prefix): it is the citation convention, grading ignores the dash, and the
   engine takes it off again wherever the dash alone would identify the answer among plain
@@ -209,14 +203,9 @@ Realization fields — only `text` is required:
   on their own (uk `office` установа/відомство, uk `boss` шеф/керівник).
   Each entry is **prompt-worthy**: it grades as correct when producing this language,
   and takes its turn as the recognize prompt when learning FROM it — on the concept's
-  one schedule, never as a unit of its own (kern README §3).
+  one schedule, never as a unit of its own (`../kern/README.md` §3).
   NOT a home for distinct learnable items: feminine nouns belong to `feminineOf`
   concepts, and different-meaning words belong to their own concept.
-  **Spell the alternate out.** An abbreviation of a form the card already carries teaches
-  nothing the long form does not, so it grades as a `variants` entry and the full word is
-  what gets shown (en `résumé` names *curriculum vitae*, not CV). An abbreviation that IS
-  the everyday word is a synonym like any other (es `id-card` DNI, whose expansion nobody
-  says).
 - `variants` — ACCEPTED surface forms of the SAME knowledge (array; omit if none):
   alternate renderings a learner already knows if they know `text` — register pairs
   (de Sie-form in `text`, du-form here), gender-agreement forms of a phrase
@@ -226,25 +215,9 @@ Realization fields — only `text` is required:
   **Accept-only, never scheduled and never shown**: they grade as correct on produce,
   and that is the whole of it — `text` is the form prompted on recognize and the form the
   reveal teaches, and `synonyms` are what rotate beside it.
-  Author them for reach, not for display: a form that deserves to be seen is a synonym.
-  **English is authored in American spelling and vocabulary**, and which field the British
-  form takes follows the same rule as any other pair — what a learner already knows from
-  `text` against what they do not. A SPELLING is a variant (`color`/`colour`,
-  `gray`/`grey`, `pajamas`/`pyjamas`, `to practice`/`to practise`): accept it, never teach
-  it. A different WORD is a synonym (`truck`/`lorry`, `pants`/`trousers`, `faucet`/`tap`,
-  `vacation`/`holiday`), because knowing "truck" does not tell anyone what a lorry is —
-  the reveal names it and it takes its turn as the prompt, with `text` leading on first
-  exposure. Slugs and realization prose follow the American form, except where the
-  everyday word already names another card (`tin-can`, beside the modal `can`) or the
-  British word is simply the better one to teach (`cinema`).
-  **A register pair is a swap, not a rewrite**: the du-form differs from the Sie-form in the
-  address alone, and a `bitte` the Sie-form never had makes it a second sentence the slug
-  no longer names (`can-you-repeat-that` says nothing about please). Lint holds the
-  politeness particle equal across `text` and every alternate, in both directions.
-  Which register `text` carries is the **scene's** call — the counter, the surgery and the
-  office say Sie, the kitchen and the hall say du — so a phrase whose scene fixes the
-  register carries no register variant at all, and only the phrases that travel between
-  scenes (`whats-your-name`, `where-is-your-father`) carry both.
+
+  Which of the two an alternate belongs in turns on one question — what a learner already
+  knows from `text` against what they do not — and `areas/README.md` decides it.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
   labels, no `(selten)` qualifier), one fact per key: de and es `gender` + `plural`,
   sw `plural`, en `plural`, uk `plural`. Omit if empty.
@@ -263,35 +236,17 @@ Realization fields — only `text` is required:
   **How much to author is per language**, and the test is always the same:
   write it down when the learner could not derive it.
   de and sw author every countable noun — German plurals are unpredictable by class,
-  and a Swahili plural IS the noun class (`kiti`→`viti`, `mlango`→`milango`),
-  the single most load-bearing fact about the word.
-  en and uk author only what the regular pattern does not give:
-  en beyond a bare +s (`knife`→`knives`, `bus`→`buses`),
-  uk beyond swapping the ending —
-  stem alternations (`ніж`→`ножі`), fleeting vowels (`день`→`дні`),
-  suppletives (`людина`→`люди`), indeclinables and `-ння` neuters (`"="`),
-  and phrases whose other words have to agree (`письмовий стіл`→`письмові столи`).
+  and a Swahili plural IS the noun class (`kiti`→`viti`), the most load-bearing fact about the word.
+  en and uk author only what the regular pattern does not give: en beyond a bare +s
+  (`knife`→`knives`), uk beyond swapping the ending — stem alternations (`ніж`→`ножі`),
+  fleeting vowels (`день`→`дні`), suppletives (`людина`→`люди`), indeclinables and `-ння`
+  neuters (`"="`), and phrases whose other words have to agree (`письмовий стіл`→`письмові столи`).
 - `notes` — keyed by the language the note is WRITTEN IN, and that key decides who reads it.
-  Key it by the FILE'S OWN language and it is the shared wording: one sentence about the word,
-  in the language the learner is studying, which every reader falls to. **That is what to
-  write.** Eight readers get one wording where eight translations each served one, and it is
-  the language the learner is there to read.
-  Key it by some other language and it is written for that reader alone, and beats the shared
-  one for them (`../kern/docs/catalog.md`). Two things earn that and nothing else: a quirk of
-  those two languages meeting (Spanish `doler` explained as German's `gefallen`, an idiom's
-  literal back-translation), and a card that arrives before a learner could read the target's
-  own words. It never reaches anyone else — a German note on a shared `sw.json` stays hidden
-  from an English learner, so writing one is a promise to write it for every reader who needs it.
-  Reach for the shared wording first and make it carry: an example-first note
-  (`мама → мамо, тато → тату`) teaches what naming the case would, and stays readable to a
-  learner who could not yet read the word for it.
-  Keep a note only if it changes what the learner would say or do; pure etymology
-  ("wörtl. …") is cut. Load-bearing teaching (e.g. which word for "rice") is
-  destined to become first-class training content, not a permanent note.
-  A note explains its own word and no other: what OTHER words do belongs on none
-  of them, and a rule holding across a language sits on the one realization that
-  teaches it rather than being restated per card. Where the rule is what the
-  learner has to practice, a phrase that exercises it beats every wording of it.
+  Key it by the FILE'S OWN language and it is the shared wording, which every reader falls to.
+  Key it by another language and it is written for that reader alone, beating the shared one
+  for them (`../kern/docs/catalog.md`) and reaching nobody else — so writing one is a promise
+  to write it for every reader who needs it.
+  Which of the two to write, and what earns a note at all, is `areas/README.md`.
 
 ## Parked areas
 
@@ -311,8 +266,3 @@ While it waits, `parkedAreasStayActivatable` holds only what decides whether it 
 land — its slugs are card ids, so one minted live in the meantime would fuse two concepts,
 and a missing language file would ship a hole. The content rules do NOT apply, because a
 parked area is not in `catalog.areas`; activation is a review, not a rename.
-
-## The rest of the format
-
-This file owns the concept model and the area files.
-Every other folder above is documented by the `README.md` standing in it.

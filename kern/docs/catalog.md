@@ -26,7 +26,7 @@ Engine contract: `../README.md`.
   and on the SOURCE side `lang == source`, so the two arms collapse into one and no note
   written in the target can reach a prompt.
   Which of the two to author is a content decision, not the engine's —
-  `../../catalog/README.md` § `notes` states it.
+  `../../catalog/areas/README.md` states it.
 - Realization: `variants: [String]` next to `synonyms` — a **display/accept distinction
   only**, never a scheduling one (`../README.md` §3): synonyms rotate as recognition prompt forms and
   show on reveal; variants are accepted silently and never prompted.

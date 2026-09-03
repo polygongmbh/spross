@@ -80,7 +80,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 ### Text
 - ALWAYS use **Semantic linebreaks** for text - in docs, markdown files, documentation comments: one sentence/clause per line.
 - English is American spelling and vocabulary everywhere — docs, comments, chrome copy, catalog
-  content (a British spelling is a `variant`, a British word a `synonym`; `catalog/README.md`).
+  content (a British spelling is a `variant`, a British word a `synonym`; `catalog/areas/README.md`).
 - When working on localization, focus on idiomatic variants in each language rather than literal translation.
   For catalog translations, a literal match is important.
 
