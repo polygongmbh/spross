@@ -656,7 +656,7 @@ def credit_index(sections, where):
     """`(authors, licenses)`: who records under what, and what each license deeds to.
 
     A license is effectively a property of the SPEAKER — across every shipped pack only
-    four entries out of 3992 depart from their own author's usual one — so it is carried
+    fourteen entries out of 5828 depart from their own author's usual one — so it is carried
     once per author instead of once per file, and the deed URL once per license instead
     of once per file again. An author's default is the license covering the most of their
     files, ties broken by the alphabetically first license string, so a rebuild of

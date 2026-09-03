@@ -45,7 +45,7 @@ internal object AudioManifestParser {
 
     /**
      * The manifest's two root maps. A license is a property of the SPEAKER — across every
-     * shipped pack four entries out of 3992 depart from their own author's — so it is
+     * shipped pack fourteen entries out of 5828 depart from their own author's — so it is
      * authored once per author rather than once per file, and its deed once per license.
      * An entry's own `license` overrides [authors] for exactly those departures; there is
      * deliberately no default AUTHOR, because a missing key would then read as a credit

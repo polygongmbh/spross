@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- **Hundreds of words you could only ever hear read by the phone are now read by a person.**
+  The recordings stopped keeping up with the catalog in August — the tool that finds them was
+  looking in the folder the words used to live in, found none, and said nothing — so
+  everything added since had been falling through to the device voice. German goes from about
+  half the catalog recorded to three quarters, Ukrainian from a half to two thirds. Nothing
+  you already had changed: this only adds voices where there were none.
+
+- **The countries and the peoples are spoken too.** The atlas drill asks you to name a country
+  and the people who live there, and both sides of that were read by the phone. They are
+  recorded now, country name and nationality alike.
+
 - **The days and the months are spoken by a person now.** The calendar arrived after the
   recordings did, so every weekday and month name in the dates drill and on the dates page
   was read by the phone's own voice — the one part of the app where a name in the language
