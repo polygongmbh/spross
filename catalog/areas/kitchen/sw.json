@@ -18,6 +18,7 @@
   "wash-the-dishes": { "text": "kuosha vyombo" },
   "taste": { "text": "kuonja" },
   "fry": { "text": "kukaanga" },
+  "boil": { "text": "kuchemsha" },
   "reheat": { "text": "kupasha moto" },
   "stir": { "text": "kukoroga" },
   "take-out-trash": { "text": "kutupa taka" },
@@ -42,10 +43,7 @@
   "wash-the-dishes-in-the-sink": { "text": "Osha vyombo sinkini!" },
   "the-fridge-is-empty": { "text": "Friji iko tupu." },
   "can-you-set-the-table": { "text": "Unaweza kuandaa meza?" },
-  "the-water-is-boiling-hot": {
-   "text": "Maji yanachemka.",
-   "notes": { "sw": "Maji yanachemka yenyewe; ukiyachemsha wewe, ni kuchemsha." }
-  },
+  "the-water-is-boiling-hot": { "text": "Maji yanachemka." },
   "careful-very-hot": { "text": "Tahadhari, moto sana!", "variants": ["Angalia, moto sana!"] }
  }
 }
