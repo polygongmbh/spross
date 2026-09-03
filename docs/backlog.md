@@ -367,10 +367,6 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   a maximum); it is the row below that has nowhere left to stand.
   Now more likely to be hit: the note fallback means a card shows a note for every reader
   rather than only a German one, and the grammar notes are among the longest authored.
-- The atlas is the first drill whose PROMPT is a word rather than a numeral or a played
-  sound: it can be heard neither by tap nor by autoplay — `read-aloud.md`'s table has no
-  row for a spoken-word drill prompt, so the rule is owed before the code
-  (`DrillRunView+Content.swift`).
 
 - The watch quiz tells correctness to the EYE only — tile tint, red wash and the rating
   emoji are all visual, and the emoji is `accessibilityHidden` because VoiceOver reading

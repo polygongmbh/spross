@@ -7,13 +7,28 @@ and whose they are `../../docs/audio-licensing.md`.
 
 Bundled pronunciation recordings, one folder per language, **generated** by
 `app/scripts/audio-catalog.py --packs <workspace>` — edit packs, not this directory.
-`--articles` rebuilds only the `articles` section of what already ships, which is how an
-article pack lands without re-deriving three sections from a workspace whose word mp3s a
+`--articles`, `--calendar` and `--countries` rebuild only their own section of what ships, which
+is how a late pack lands without re-deriving the others from a workspace whose word mp3s a
 renamed slug has already outlived.
+
+**`--fill` is how a language catches up with the catalog**, and the only way that should be
+used: it ADDS words the manifest lacks and leaves every entry it already has byte-identical
+— file, digest and credit. A plain re-convert replaces a language wholesale out of a
+workspace that has moved on, which would discard the German pack's reseated rows (the fix
+for its hiss) and several packs' hand-curated tails. A fill also refuses a row whose spoken
+form a SHIPPED row already claims under different bytes: two files for one sound leave the
+runtime nothing to pick, so filling one word would silence another. German `poor` is
+"arm", which the body part already speaks; French `entrance` and `fresh` are the same story.
+
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are
 unversioned research input; what is committed here is the shipped bytes and the
 license record that has to travel with them. Both apps bundle the whole tree as it
 stands (iOS folder reference, the Android catalog sync), so nothing needs registering.
+
+**Run `app/scripts/audio-coverage.py --check` after adding recordings.** The lint that
+verifies every file ships walks the WORKING TREE, so a recording fetched but never staged
+is indistinguishable from one that ships — the manifests once named 517 files that existed
+on one machine and in no checkout, and no gate could see it. Only `git ls-files` can.
 
 ```json
 { "language": "uk",
@@ -37,7 +52,11 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
     "address": { "file": "articles/address.mp3", "matches": "die Adresse", "word": "Adresse",
                  "author": "Natschoba",
                  "source": "LL-Q188 (deu)-Natschoba-die Adresse.wav", "sha256": "a15c…",
-                 "gain": 8.0, "gainPhone": 3.9, "lead": 240 } } }
+                 "gain": 8.0, "gainPhone": 3.9, "lead": 240 } },
+  "calendar": {
+    "Montag": { "file": "calendar/montag.mp3", "matches": "Montag",
+                "author": "Jeuwre", "source": "De-Montag.ogg", "sha256": "fa2d…",
+                "gain": -5.4, "gainPhone": -4.1, "lead": 439 } } }
 ```
 
 - `language` must equal the folder name, and a folder for a language `languages.json`
@@ -46,7 +65,7 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   every license the pack uses to its deed URL — `null` for `Public domain`, the one
   license with nothing to point a reader at. Provenance is authored ONCE per speaker
   rather than once per file: a license is effectively a property of the voice, and across
-  all 3881 shipped recordings four depart from their own author's. Those four carry a
+  all 5828 shipped recordings fourteen depart from their own author's. Those fourteen carry a
   `license` of their own, which is the only place an entry names one; the deed is never
   written on an entry at all, being derivable from the license. There is deliberately no
   default AUTHOR, though one voice covers 476 of the 477 Swahili files — a missing key
@@ -74,6 +93,21 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   Usually an addition beside a bare `words` entry — the source side reads the learner's
   own language, where the article is not what is being taught — but not dependent on one:
   five words ship the article recording alone and it answers both asks.
+- `calendar` (optional) is keyed by the FORM it speaks, like `texts` and for the same
+  reason: no concept covers a weekday, so there is no slug to key one by. Files are
+  `calendar/<ascii stem>.mp3`. It holds the weekday and month names of `../dates/`, the
+  synonyms beside them included — a card may show `Sonnabend`, and a recording is only
+  ever played for the form it actually says. `abbr` is never recorded: it is a written
+  short form the prompt wears, and nothing says it aloud.
+  It carries `gainPhone` where `texts` does not — these are words spoken on a drill card,
+  beside the very vocabulary the phone-speaker plane was measured for, while the
+  alphabet's reference rows stay flat.
+- `countries` (optional) is `calendar`'s twin for `../countries/`, holding the country and
+  the nationality name of every atlas row, under `countries/<ascii stem>.mp3`. Keyed by the
+  form for a reason of its own: the countries DO carry slugs, but a slug holds one file
+  while a row holds two names the drill shows and asks for — `Deutschland` and `Deutsche`.
+  `variants` are not recorded on either half, being accept-only and never displayed, so a
+  recording keyed by one could never be reached.
 - `matches` — the surface form the recording actually SPEAKS, and the lookup key:
   playback is keyed by what stands on the card, never by the slug the file was fetched
   for, so a rotated synonym nobody recorded falls through to the app's own voice
@@ -84,7 +118,9 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   alphabet file.
 - `source` — the original Commons filename; the credits screen links `File:<source>`,
   which is what keeps attribution checkable rather than merely present.
-- Word files are `<slug>.mp3`, article files `articles/<slug>.mp3`; letter files are `letters/u<codepoint>….mp3`, one
+- Word files are `<slug>.mp3`, article files `articles/<slug>.mp3`, and text and calendar
+  files their form's ASCII stem under `texts/` and `calendar/`; letter files are
+  `letters/u<codepoint>….mp3`, one
   `u` + four lowercase hex digits PER CODEPOINT, never glyph-named — `й`/`ї` decompose
   under NFD on APFS and a Unicode filename has to survive git, Gradle sync and AAPT
   unchanged. A sequence rather than one codepoint because a named row may be a digraph
@@ -96,7 +132,8 @@ stands (iOS folder reference, the Android catalog sync), so nothing needs regist
   and lint re-hashes what was committed, which makes it a gate rather than a promise.
 - `gain` (dB) and `lead` (ms) are the generator's own MEASUREMENT of those untouched
   bytes. `gain` is the full-range plane and `gainPhone` the phone-speaker plane
-  (absent on letters and texts, where no phone plane was measured); `lead` is how much
+  (absent on letters and texts, where no phone plane was measured, and present on
+  calendar entries, which are drill-card words); `lead` is how much
   dead air to start past. The files stay unmodified and only the player corrects them,
   picking the plane by its output route. What was measured, against which target,
   is `../../scripts/audio-catalog.py`'s `ANALYSIS`.

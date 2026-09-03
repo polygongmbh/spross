@@ -3,18 +3,1550 @@
     "0x010C": "CC BY-SA 4.0",
     "Althea81": "CC0",
     "Bananax47": "CC0",
+    "Ben": "CC0",
+    "Benoît Prieur": "CC0",
+    "Clément Bucco-Lechat": "CC BY-SA 3.0",
+    "DSwissK": "CC BY 4.0",
+    "DenisdeShawi": "CC BY-SA 4.0",
     "Eihel": "CC BY-SA 3.0",
+    "GrandCelinien": "CC BY-SA 4.0",
     "Helenou66": "CC0",
+    "Jules78120": "CC0",
     "Jérémy-Günther-Heinz Jähnick": "CC BY-SA 4.0",
+    "Le Commissaire": "CC BY-SA 4.0",
     "Lepticed7": "CC BY-SA 4.0",
+    "LoquaxFR": "CC BY-SA 4.0",
+    "LuneMarine": "CC BY 4.0",
     "Lyokoï": "CC BY-SA 4.0",
     "Mecanautes": "CC0",
     "Pamputt": "CC0",
     "Poslovitch": "CC0",
     "Sarah2149": "CC BY-SA 4.0",
     "Sartus85": "CC BY-SA 4.0",
+    "Sayoxime": "CC0",
+    "Sylvain Machefert": "CC BY-SA 3.0",
+    "Vaulque": "CC BY-SA 4.0",
+    "VictorDtmtc": "CC BY-SA 4.0",
     "Vion Nicolas": "CC BY 2.0 fr",
-    "WikiLucas00": "CC BY-SA 4.0"
+    "Vive la Rosière": "CC0",
+    "WikiLucas00": "CC BY-SA 4.0",
+    "ZoliveR": "Public domain"
+  },
+  "calendar": {
+    "août": {
+      "author": "Vion Nicolas",
+      "capPhone": 0.2,
+      "file": "calendar/aou00fbt.mp3",
+      "gain": -2.9,
+      "gainPhone": 3.9,
+      "matches": "août",
+      "sha256": "2c85bc54359446b11a93517a56dad235dc86e0313f30a10cddf7ee0eef488375",
+      "snr": 37.3,
+      "source": "Fr-août.ogg"
+    },
+    "avril": {
+      "author": "Vion Nicolas",
+      "file": "calendar/avril.mp3",
+      "gain": -0.6,
+      "gainPhone": 1.2,
+      "lead": 127,
+      "matches": "avril",
+      "sha256": "e581fa6325e2fff6db95bc5dc7738566aab458ed2dc7874fdbd7b128940db335",
+      "snr": 50.6,
+      "source": "Fr-avril.ogg"
+    },
+    "dimanche": {
+      "author": "Poslovitch",
+      "file": "calendar/dimanche.mp3",
+      "gain": 5.9,
+      "gainPhone": 4.2,
+      "lead": 185,
+      "matches": "dimanche",
+      "sha256": "7c7015ddcf15dca24fe0285f172d6748070bc88e1169d2eb0a16d9d4f3476316",
+      "snr": 47.7,
+      "source": "LL-Q150 (fra)-Poslovitch-dimanche.wav"
+    },
+    "décembre": {
+      "author": "Vion Nicolas",
+      "file": "calendar/du00e9cembre.mp3",
+      "gain": -1.8,
+      "gainPhone": -1.0,
+      "lead": 196,
+      "matches": "décembre",
+      "sha256": "e20e216ca31a7ce437cc1686f577af54b0ce718df8468d6ab7277d47da648ba6",
+      "snr": 46.6,
+      "source": "Fr-décembre.ogg"
+    },
+    "février": {
+      "author": "Vion Nicolas",
+      "file": "calendar/fu00e9vrier.mp3",
+      "gain": -1.8,
+      "gainPhone": -1.4,
+      "lead": 74,
+      "matches": "février",
+      "sha256": "84430decd97880fe94764264f66ec913fabb1de20e20a1623bee450846b5344d",
+      "snr": 47.2,
+      "source": "Fr-février.ogg"
+    },
+    "janvier": {
+      "author": "Vion Nicolas",
+      "capPhone": 0.7,
+      "file": "calendar/janvier.mp3",
+      "gain": 1.0,
+      "gainPhone": 3.9,
+      "lead": 44,
+      "matches": "janvier",
+      "sha256": "21e7187fa646677e6bc1095f6cf965803765492c15623c8e0e07a90c6ee321f6",
+      "snr": 50.8,
+      "source": "Fr-janvier.ogg"
+    },
+    "jeudi": {
+      "author": "Poslovitch",
+      "file": "calendar/jeudi.mp3",
+      "gain": 5.0,
+      "gainPhone": 2.7,
+      "lead": 110,
+      "matches": "jeudi",
+      "sha256": "682e54ff3653f9b8bf306da317e0cbfff03fa300c9180763c00117e01da81ebe",
+      "snr": 48.1,
+      "source": "LL-Q150 (fra)-Poslovitch-jeudi.wav"
+    },
+    "juillet": {
+      "author": "Vion Nicolas",
+      "file": "calendar/juillet.mp3",
+      "gain": -2.7,
+      "gainPhone": -3.1,
+      "lead": 137,
+      "matches": "juillet",
+      "sha256": "a2641e8736e30004378e57cbf38727afd885cd56e64caf6236f73f1db44b8a9a",
+      "snr": 49.3,
+      "source": "Fr-juillet.ogg"
+    },
+    "juin": {
+      "author": "Vion Nicolas",
+      "file": "calendar/juin.mp3",
+      "gain": -0.5,
+      "gainPhone": 2.1,
+      "lead": 202,
+      "matches": "juin",
+      "sha256": "678d810dced76911a1916bcd93b5a2f084e5f1a5f848c0ef9e4d98d49ec02c37",
+      "snr": 51.8,
+      "source": "Fr-juin.ogg"
+    },
+    "lundi": {
+      "author": "Poslovitch",
+      "file": "calendar/lundi.mp3",
+      "gain": 5.2,
+      "gainPhone": 1.3,
+      "lead": 74,
+      "matches": "lundi",
+      "sha256": "70de59f4b478365a24da2fd444617a4cc83187163b973da82c4245a7bec402a5",
+      "snr": 50.4,
+      "source": "LL-Q150 (fra)-Poslovitch-lundi.wav"
+    },
+    "mai": {
+      "author": "Vion Nicolas",
+      "file": "calendar/mai.mp3",
+      "gain": -2.9,
+      "gainPhone": 1.6,
+      "lead": 199,
+      "matches": "mai",
+      "sha256": "f831fe7149fb1469c0213527a9e1a9ab3339a98e4877bcd61258c958da686daa",
+      "snr": 50.0,
+      "source": "Fr-mai.ogg"
+    },
+    "mardi": {
+      "author": "Poslovitch",
+      "file": "calendar/mardi.mp3",
+      "gain": 4.3,
+      "gainPhone": 3.0,
+      "lead": 232,
+      "matches": "mardi",
+      "sha256": "6b5608e3af4cddd082624799d0b6ccc3572f8ed248bef4309085eb6a77d58368",
+      "snr": 52.1,
+      "source": "LL-Q150 (fra)-Poslovitch-mardi.wav"
+    },
+    "mars": {
+      "author": "Vion Nicolas",
+      "file": "calendar/mars.mp3",
+      "gainPhone": 3.6,
+      "lead": 235,
+      "matches": "mars",
+      "sha256": "cb5d2475fa3576b3000ec77f3e61067b7b2b705206d28fbfcc9889b5b7a85b71",
+      "snr": 54.5,
+      "source": "Fr-mars.ogg"
+    },
+    "mercredi": {
+      "author": "Poslovitch",
+      "file": "calendar/mercredi.mp3",
+      "gain": 1.4,
+      "gainPhone": -4.0,
+      "lead": 210,
+      "matches": "mercredi",
+      "sha256": "badfbb48b2bcb4a0723c59a344c6349bdc63dd0ce3e63d4aa718e2e091beac7a",
+      "snr": 55.0,
+      "source": "LL-Q150 (fra)-Poslovitch-mercredi.wav"
+    },
+    "novembre": {
+      "author": "Vion Nicolas",
+      "capPhone": 0.8,
+      "file": "calendar/novembre.mp3",
+      "gain": -3.8,
+      "gainPhone": 3.9,
+      "lead": 205,
+      "matches": "novembre",
+      "sha256": "73352d00f364b410eb0b1229f9d64fe0bcfd99bd7deefe2822f746f0e899f9bf",
+      "snr": 52.3,
+      "source": "Fr-novembre.ogg"
+    },
+    "octobre": {
+      "author": "Vion Nicolas",
+      "capPhone": 1.4,
+      "file": "calendar/octobre.mp3",
+      "gain": 0.2,
+      "gainPhone": 4.2,
+      "lead": 215,
+      "matches": "octobre",
+      "sha256": "3cc3c07521b236b5b8f73f4aa5c152445da8993562990019e551938bcf21f8bd",
+      "snr": 51.0,
+      "source": "Fr-octobre.ogg"
+    },
+    "samedi": {
+      "author": "Poslovitch",
+      "file": "calendar/samedi.mp3",
+      "gain": 1.5,
+      "gainPhone": -3.2,
+      "lead": 83,
+      "matches": "samedi",
+      "sha256": "da4aaee02ec74acf77e09ed17b8230c4adcc2676d8e58744b86995ced11ab9ef",
+      "snr": 54.5,
+      "source": "LL-Q150 (fra)-Poslovitch-samedi.wav"
+    },
+    "septembre": {
+      "author": "Vion Nicolas",
+      "file": "calendar/septembre.mp3",
+      "gain": -0.8,
+      "gainPhone": -0.8,
+      "lead": 137,
+      "matches": "septembre",
+      "sha256": "7ed5ea412caeeba7806d15dc3ba02c22c90cdc6a00f631c27488edc3651b810f",
+      "snr": 46.7,
+      "source": "Fr-septembre.ogg"
+    },
+    "vendredi": {
+      "author": "Poslovitch",
+      "file": "calendar/vendredi.mp3",
+      "gain": 3.1,
+      "gainPhone": 6.0,
+      "lead": 229,
+      "matches": "vendredi",
+      "sha256": "361d9b4a40d573f0f50dd41cebef668cac48734c23d35df0953137b89759d20d",
+      "snr": 51.0,
+      "source": "LL-Q150 (fra)-Poslovitch-vendredi.wav"
+    }
+  },
+  "countries": {
+    "Afrique du Sud": {
+      "author": "Vive la Rosière",
+      "file": "countries/afriqueu0020duu0020sud.mp3",
+      "gain": 6.2,
+      "gainPhone": 2.4,
+      "lead": 22,
+      "matches": "Afrique du Sud",
+      "sha256": "29ce3560e39e97158f43eda31f55174601d876337f76202e35019e61cd535ef8",
+      "snr": 48.8,
+      "source": "Fr-Afrique du Sud.ogg"
+    },
+    "Algérie": {
+      "author": "Vive la Rosière",
+      "file": "countries/algu00e9rie.mp3",
+      "gain": -0.3,
+      "gainPhone": -0.2,
+      "matches": "Algérie",
+      "sha256": "217d28ace67df84f844894acb7eb166cf2f5b57238bb37c6e3983a043a37c49f",
+      "snr": 36.0,
+      "source": "Fr-Algérie.ogg"
+    },
+    "Algériens": {
+      "author": "Eihel",
+      "file": "countries/algu00e9riens.mp3",
+      "gain": -0.4,
+      "gainPhone": 1.2,
+      "lead": 205,
+      "matches": "Algériens",
+      "sha256": "13eb1ece18a1c6eeca0eb25d24448e836af45db60a33c29aeb830c5ac0ee1e09",
+      "snr": 54.9,
+      "source": "LL-Q150 (fra)-Eihel-algériens.wav"
+    },
+    "Allemagne": {
+      "author": "Vive la Rosière",
+      "file": "countries/allemagne.mp3",
+      "gain": -1.7,
+      "gainPhone": -0.2,
+      "matches": "Allemagne",
+      "sha256": "90fe5a024ecec1d60cb3954708997d0a5d30f11668bb706b5d3cb16a613a446e",
+      "snr": 34.9,
+      "source": "Fr-Allemagne.ogg"
+    },
+    "Allemands": {
+      "author": "Poslovitch",
+      "file": "countries/allemands.mp3",
+      "gain": 3.5,
+      "gainPhone": 3.8,
+      "lead": 253,
+      "matches": "Allemands",
+      "sha256": "e14fa0c3baafb3e046894d3f5091dd40112ae6f1d0d8434eea0d7fe9c4999a57",
+      "snr": 51.8,
+      "source": "LL-Q150 (fra)-Poslovitch-allemands.wav"
+    },
+    "Américains": {
+      "author": "Lyokoï",
+      "file": "countries/amu00e9ricains.mp3",
+      "gain": 1.3,
+      "gainPhone": -7.3,
+      "lead": 202,
+      "matches": "Américains",
+      "sha256": "c7690c85e252ce41575824ec885586e4609d0514b34b615ef5a7809a251b89aa",
+      "snr": 47.9,
+      "source": "LL-Q150 (fra)-Lyokoï-américains.wav"
+    },
+    "Angola": {
+      "author": "Vive la Rosière",
+      "file": "countries/angola.mp3",
+      "gain": -1.4,
+      "gainPhone": 1.5,
+      "matches": "Angola",
+      "sha256": "6350c139c2d212e18fc0c310dec9c1bbb6e38531e0fd0b9f74ea01e473df4116",
+      "snr": 42.3,
+      "source": "Fr-Angola.ogg"
+    },
+    "Angolais": {
+      "author": "Pamputt",
+      "file": "countries/angolais.mp3",
+      "gain": 7.8,
+      "gainPhone": 12.8,
+      "lead": 194,
+      "matches": "Angolais",
+      "sha256": "b20a6ef4e8171410edbb1634cb9baebc05743bbe0251638f73db40281aa9a67c",
+      "snr": 31.8,
+      "source": "LL-Q150 (fra)-Pamputt-Angolais.wav"
+    },
+    "Arabie saoudite": {
+      "author": "Vive la Rosière",
+      "cap": 0.1,
+      "file": "countries/arabieu0020saoudite.mp3",
+      "gain": 7.9,
+      "gainPhone": 4.2,
+      "lead": 18,
+      "matches": "Arabie saoudite",
+      "sha256": "6c103706c4d12712e001fc20c5824d9460abb5082398ba75123eb3932e8fbf00",
+      "snr": 58.8,
+      "source": "Fr-Arabie saoudite.ogg"
+    },
+    "Argentine": {
+      "author": "Vive la Rosière",
+      "cap": 0.2,
+      "file": "countries/argentine.mp3",
+      "gain": 10.0,
+      "gainPhone": 7.8,
+      "lead": 95,
+      "matches": "Argentine",
+      "sha256": "5f681e4f3fc8fa2285c9d1049e7452f9f78dbc5c0ffda4b62f1d0cbeaa721c40",
+      "snr": 54.8,
+      "source": "Fr-Argentine.ogg"
+    },
+    "Argentins": {
+      "author": "WikiLucas00",
+      "file": "countries/argentins.mp3",
+      "gain": 3.1,
+      "gainPhone": -1.5,
+      "lead": 245,
+      "matches": "Argentins",
+      "sha256": "254d8e0c5f2f208db2c60ff8fe2b759b1b18845b7b817fadce2a6367f5a5fc09",
+      "snr": 64.8,
+      "source": "LL-Q150 (fra)-WikiLucas00-argentins.wav"
+    },
+    "Australie": {
+      "author": "Vive la Rosière",
+      "file": "countries/australie.mp3",
+      "gain": 8.2,
+      "gainPhone": 4.5,
+      "matches": "Australie",
+      "sha256": "9e19313053d3fb91d56c97a9e73f49ee57e78e11d56fd929100ca31c17fc9dad",
+      "snr": 24.1,
+      "source": "Fr-Australie.ogg"
+    },
+    "Australiens": {
+      "author": "Lepticed7",
+      "cap": 3.5,
+      "file": "countries/australiens.mp3",
+      "gain": 5.4,
+      "gainPhone": 1.7,
+      "lead": 199,
+      "matches": "Australiens",
+      "sha256": "942727ef4451518b4b4bca9a0d6cbfc4875a44b04fcd8206f4fd26df58bf6575",
+      "source": "LL-Q150 (fra)-Lepticed7-australiens.wav"
+    },
+    "Autriche": {
+      "author": "Vive la Rosière",
+      "file": "countries/autriche.mp3",
+      "gain": 8.9,
+      "gainPhone": 3.5,
+      "lead": 62,
+      "matches": "Autriche",
+      "sha256": "76457a1cc2480d9cc34adaadd938694b3d5aa9e586721dc86b7c5db94aadb4f7",
+      "snr": 50.2,
+      "source": "Fr-Autriche.ogg"
+    },
+    "Autrichiens": {
+      "author": "Lyokoï",
+      "file": "countries/autrichiens.mp3",
+      "gain": -0.5,
+      "gainPhone": -8.7,
+      "lead": 207,
+      "matches": "Autrichiens",
+      "sha256": "58f5f525b6439ad999fb506f4becb9a927ce8903b588a425a75d78173f704e9e",
+      "snr": 55.5,
+      "source": "LL-Q150 (fra)-Lyokoï-autrichiens.wav"
+    },
+    "Belges": {
+      "author": "Lepticed7",
+      "cap": 0.4,
+      "file": "countries/belges.mp3",
+      "gain": 6.8,
+      "gainPhone": -0.4,
+      "lead": 187,
+      "matches": "Belges",
+      "sha256": "5426aebf54aea4b6a4c094cd044fc33d23019b16e9f974c3aac81d48f4815d32",
+      "source": "LL-Q150 (fra)-Lepticed7-belges.wav"
+    },
+    "Belgique": {
+      "author": "ZoliveR",
+      "file": "countries/belgique.mp3",
+      "gain": 4.9,
+      "gainPhone": -0.7,
+      "matches": "Belgique",
+      "sha256": "4bf55e2b3fd40f740487fe2c8d9fd8560e2a595d6ccf306eb55502ca2d37061c",
+      "snr": 11.7,
+      "source": "Fr-Belgique.ogg"
+    },
+    "Britanniques": {
+      "author": "Lyokoï",
+      "file": "countries/britanniques.mp3",
+      "gain": 2.3,
+      "gainPhone": -6.0,
+      "lead": 144,
+      "matches": "Britanniques",
+      "sha256": "9f52b90995ce75f5ef949c885f506f22b18adbeb499718c6123f5c2d726fb4e3",
+      "snr": 56.3,
+      "source": "LL-Q150 (fra)-Lyokoï-britanniques.wav"
+    },
+    "Brésil": {
+      "author": "Vion Nicolas",
+      "file": "countries/bru00e9sil.mp3",
+      "gain": -1.7,
+      "gainPhone": 2.5,
+      "matches": "Brésil",
+      "sha256": "245920c061b3a17b54aed4f5b113079154ec07e0e53a8bf5ba23dc50c7ba9e16",
+      "snr": 44.8,
+      "source": "Fr-Brésil.ogg"
+    },
+    "Brésiliens": {
+      "author": "Eihel",
+      "file": "countries/bru00e9siliens.mp3",
+      "gain": 1.2,
+      "gainPhone": 6.2,
+      "lead": 224,
+      "matches": "Brésiliens",
+      "sha256": "f4ba161639d199ed31334d032b7b4e9441d5ab50986123aeab0ae789ac3adf73",
+      "snr": 61.7,
+      "source": "LL-Q150 (fra)-Eihel-brésiliens.wav"
+    },
+    "Bulgares": {
+      "author": "Lyokoï",
+      "file": "countries/bulgares.mp3",
+      "gain": -0.7,
+      "gainPhone": -6.2,
+      "lead": 153,
+      "matches": "Bulgares",
+      "sha256": "112327427d49dcd5d29ce998f6826bad578a97d6d8e127084108a52d7f769d0f",
+      "snr": 49.7,
+      "source": "LL-Q150 (fra)-Lyokoï-bulgares.wav"
+    },
+    "Bulgarie": {
+      "author": "Vive la Rosière",
+      "file": "countries/bulgarie.mp3",
+      "gain": 11.5,
+      "gainPhone": 12.9,
+      "matches": "Bulgarie",
+      "sha256": "899083a881d5c8d9cf6d4808a55d0d6ebc28179d15bb2d6d062b66607815b0d9",
+      "snr": 36.8,
+      "source": "Fr-Bulgarie.ogg"
+    },
+    "Canada": {
+      "author": "Vion Nicolas",
+      "file": "countries/canada.mp3",
+      "gain": -1.5,
+      "gainPhone": -0.9,
+      "matches": "Canada",
+      "sha256": "0464b22871405faa6eead7a6dd32343736498fafc407b9031081c53bc2fc569c",
+      "snr": 43.3,
+      "source": "Fr-Canada.ogg"
+    },
+    "Canadiens": {
+      "author": "Lepticed7",
+      "cap": 0.6,
+      "file": "countries/canadiens.mp3",
+      "gain": 7.1,
+      "gainPhone": -0.3,
+      "lead": 193,
+      "matches": "Canadiens",
+      "sha256": "2047e816653560e95c38421a339e1969b608be00248f87a166d989a4849f5108",
+      "snr": 108.0,
+      "source": "LL-Q150 (fra)-Lepticed7-canadiens.wav"
+    },
+    "Chili": {
+      "author": "Jules78120",
+      "file": "countries/chili.mp3",
+      "gain": 7.2,
+      "gainPhone": -2.1,
+      "lead": 191,
+      "matches": "Chili",
+      "sha256": "17212bcfa1f08aa97601977c82f22ff1ca7caf29b504f75a43b36f483400fccf",
+      "snr": 74.1,
+      "source": "LL-Q150 (fra)-Jules78120-Chili.wav"
+    },
+    "Chine": {
+      "author": "Jules78120",
+      "file": "countries/chine.mp3",
+      "gain": 8.1,
+      "gainPhone": -0.4,
+      "lead": 178,
+      "matches": "Chine",
+      "sha256": "7661532663469d6da35dddb8da91598f6a349f2faefbe398da77ef63809bc9d9",
+      "snr": 98.5,
+      "source": "LL-Q150 (fra)-Jules78120-Chine.wav"
+    },
+    "Chinois": {
+      "author": "Poslovitch",
+      "file": "countries/chinois.mp3",
+      "gain": 3.4,
+      "gainPhone": -1.0,
+      "lead": 181,
+      "matches": "Chinois",
+      "sha256": "e594a96e5bd7a55776b95ac69939c61b799a2b3e3ee96687a406d6222b886768",
+      "snr": 49.1,
+      "source": "LL-Q150 (fra)-Poslovitch-chinois.wav"
+    },
+    "Colombie": {
+      "author": "Jules78120",
+      "file": "countries/colombie.mp3",
+      "gain": 12.1,
+      "gainPhone": 13.2,
+      "lead": 158,
+      "matches": "Colombie",
+      "sha256": "d4937f5357d8a2b3d621235b70876e39c8f3ee49da7f27cbc967a62100ea9003",
+      "snr": 95.4,
+      "source": "LL-Q150 (fra)-Jules78120-Colombie.wav"
+    },
+    "Congolais": {
+      "author": "Pamputt",
+      "file": "countries/congolais.mp3",
+      "gain": 9.1,
+      "gainPhone": 13.7,
+      "lead": 173,
+      "matches": "Congolais",
+      "sha256": "3ecc10430f0003c7c76b8772a556e5a0286c8e1230e1d63244dfeaedfb10f9f7",
+      "snr": 30.3,
+      "source": "LL-Q150 (fra)-Pamputt-Congolais.wav"
+    },
+    "Corée du Sud": {
+      "author": "Jules78120",
+      "file": "countries/coru00e9eu0020duu0020sud.mp3",
+      "gain": 8.2,
+      "gainPhone": 1.3,
+      "lead": 157,
+      "matches": "Corée du Sud",
+      "sha256": "02bfbfb84a74c0ef079147814192ff826075a2f62fa605f261b47485f8f8fa60",
+      "snr": 74.9,
+      "source": "LL-Q150 (fra)-Jules78120-Corée du Sud.wav"
+    },
+    "Costa Rica": {
+      "author": "Jules78120",
+      "cap": 1.9,
+      "file": "countries/costau0020rica.mp3",
+      "gain": 10.0,
+      "gainPhone": 8.1,
+      "lead": 193,
+      "matches": "Costa Rica",
+      "sha256": "151734ed1661887db3fa7823db35c990058c18d29f6014a59695ec2321a3f9f2",
+      "source": "LL-Q150 (fra)-Jules78120-Costa Rica.wav"
+    },
+    "Croates": {
+      "author": "Poslovitch",
+      "file": "countries/croates.mp3",
+      "gain": -1.4,
+      "gainPhone": 2.2,
+      "lead": 126,
+      "matches": "Croates",
+      "sha256": "ee20b9dd915bc26398d1a4c8168e28d9231f41e96e2e9794b09ea87ab5f4b3be",
+      "snr": 46.2,
+      "source": "LL-Q150 (fra)-Poslovitch-croates.wav"
+    },
+    "Croatie": {
+      "author": "Jules78120",
+      "file": "countries/croatie.mp3",
+      "gain": 10.9,
+      "gainPhone": 4.2,
+      "lead": 237,
+      "matches": "Croatie",
+      "sha256": "fb9c6405025463fbeaf939d6af166af9960bddb544a082e600c7adb32455f4c8",
+      "snr": 85.6,
+      "source": "LL-Q150 (fra)-Jules78120-Croatie.wav"
+    },
+    "Cuba": {
+      "author": "Jules78120",
+      "file": "countries/cuba.mp3",
+      "gain": 12.5,
+      "gainPhone": 9.0,
+      "lead": 107,
+      "matches": "Cuba",
+      "sha256": "53df4d6739c2d2ccad208c745713b6f5fa1ac215e7f1485ec77eb7969199bc24",
+      "source": "LL-Q150 (fra)-Jules78120-Cuba.wav"
+    },
+    "Danemark": {
+      "author": "Jules78120",
+      "file": "countries/danemark.mp3",
+      "gain": 15.1,
+      "gainPhone": 11.6,
+      "lead": 279,
+      "matches": "Danemark",
+      "sha256": "14cfe5a32273956a85d7b038f0ba08b4d5308a94d1973bd730084c0c48ab577e",
+      "source": "LL-Q150 (fra)-Jules78120-Danemark.wav"
+    },
+    "Danois": {
+      "author": "Poslovitch",
+      "file": "countries/danois.mp3",
+      "gain": 3.5,
+      "gainPhone": 0.0,
+      "lead": 131,
+      "matches": "Danois",
+      "sha256": "bcf1eef9f4ca42754a935f58eab446bcb6c476c1a26932c5ad645e7c6334ea4d",
+      "snr": 46.4,
+      "source": "LL-Q150 (fra)-Poslovitch-Danois.wav"
+    },
+    "Espagne": {
+      "author": "Vion Nicolas",
+      "file": "countries/espagne.mp3",
+      "gain": -0.1,
+      "gainPhone": -1.6,
+      "lead": 154,
+      "matches": "Espagne",
+      "sha256": "ca821b80a421bb66aee7fb1c42f66f846a6d6ac52a12d797ea4b25bbc074363a",
+      "snr": 42.2,
+      "source": "Fr-Espagne.ogg"
+    },
+    "Espagnols": {
+      "author": "Poslovitch",
+      "file": "countries/espagnols.mp3",
+      "gain": 0.6,
+      "gainPhone": 1.8,
+      "lead": 214,
+      "matches": "Espagnols",
+      "sha256": "ec2a543306fd579be0d4b265afe1e98a33e99a8a4b9199776efa4d8effb99271",
+      "snr": 52.9,
+      "source": "LL-Q150 (fra)-Poslovitch-espagnols.wav"
+    },
+    "Finlandais": {
+      "author": "Poslovitch",
+      "file": "countries/finlandais.mp3",
+      "gain": -0.8,
+      "gainPhone": -2.3,
+      "lead": 125,
+      "matches": "Finlandais",
+      "sha256": "6648d6528e9a9c367058c4ccdc05d9346fd9aeb86ebfcb2c11292d693d371758",
+      "snr": 51.4,
+      "source": "LL-Q150 (fra)-Poslovitch-Finlandais.wav"
+    },
+    "Finlande": {
+      "author": "Jules78120",
+      "file": "countries/finlande.mp3",
+      "gain": 11.3,
+      "gainPhone": 10.6,
+      "lead": 85,
+      "matches": "Finlande",
+      "sha256": "7181d662b35383a5e29a71173631ec702725845b8587c8f70b0e01edb51c15b1",
+      "source": "LL-Q150 (fra)-Jules78120-Finlande.wav"
+    },
+    "France": {
+      "author": "ZoliveR",
+      "file": "countries/france.mp3",
+      "gain": 2.2,
+      "gainPhone": 0.9,
+      "matches": "France",
+      "sha256": "45161db8aab6f974bc2eb73376ef6f6b9c235b3b1e029dd7290b6607c296ba82",
+      "snr": 12.2,
+      "source": "Fr-France.ogg"
+    },
+    "Français": {
+      "author": "Poslovitch",
+      "file": "countries/franu00e7ais.mp3",
+      "gain": 2.8,
+      "gainPhone": -1.0,
+      "lead": 90,
+      "matches": "Français",
+      "sha256": "b38658decd06a8dfda27d3276f1c413da68dac3421c528c57097661b626ef3a2",
+      "snr": 46.8,
+      "source": "LL-Q150 (fra)-Poslovitch-Français.wav"
+    },
+    "Ghana": {
+      "author": "Jules78120",
+      "file": "countries/ghana.mp3",
+      "gain": 10.5,
+      "gainPhone": 7.7,
+      "lead": 220,
+      "matches": "Ghana",
+      "sha256": "9af682c6b6a72149f9acbb8dd32246dc149ee0bf3740b91efee14056cf2ae09c",
+      "source": "LL-Q150 (fra)-Jules78120-Ghana.wav"
+    },
+    "Grecs": {
+      "author": "WikiLucas00",
+      "file": "countries/grecs.mp3",
+      "gain": 2.2,
+      "gainPhone": -1.9,
+      "lead": 171,
+      "matches": "Grecs",
+      "sha256": "a7fb88aa0df42cc479621cacba658ebfa896afa100b514c6144dc364a058e6f4",
+      "snr": 64.5,
+      "source": "LL-Q150 (fra)-WikiLucas00-grecs.wav"
+    },
+    "Grèce": {
+      "author": "Jules78120",
+      "file": "countries/gru00e8ce.mp3",
+      "gain": 10.8,
+      "gainPhone": 2.4,
+      "lead": 228,
+      "matches": "Grèce",
+      "sha256": "871c446b875e75bcd5c509e3d2423b49c561d0755656c286ca144ae5769a8426",
+      "source": "LL-Q150 (fra)-Jules78120-Grèce.wav"
+    },
+    "Hongrie": {
+      "author": "Jules78120",
+      "file": "countries/hongrie.mp3",
+      "gain": 14.1,
+      "gainPhone": 13.9,
+      "lead": 116,
+      "matches": "Hongrie",
+      "sha256": "2dd096fc4f3ae7679efc41368a08f2a7648cd5651db11dbafa74af43bb5b99df",
+      "snr": 98.3,
+      "source": "LL-Q150 (fra)-Jules78120-Hongrie.wav"
+    },
+    "Hongrois": {
+      "author": "Poslovitch",
+      "capPhone": 2.9,
+      "file": "countries/hongrois.mp3",
+      "gain": 8.0,
+      "gainPhone": 10.6,
+      "lead": 216,
+      "matches": "Hongrois",
+      "sha256": "eb2f97c96d20b1a1079266856825d9b9a5e9bd8170f0debdfab3c8cb0882b5fb",
+      "snr": 50.8,
+      "source": "LL-Q150 (fra)-Poslovitch-Hongrois.wav"
+    },
+    "Inde": {
+      "author": "Vion Nicolas",
+      "file": "countries/inde.mp3",
+      "gain": -2.1,
+      "gainPhone": -3.9,
+      "lead": 5,
+      "matches": "Inde",
+      "sha256": "caf45a7f29b5414f646563947f947950871ec1900ef886817a12dcd2c6521994",
+      "snr": 39.9,
+      "source": "Fr-Inde.ogg"
+    },
+    "Indiens": {
+      "author": "Poslovitch",
+      "file": "countries/indiens.mp3",
+      "gain": 3.3,
+      "gainPhone": 4.1,
+      "lead": 227,
+      "matches": "Indiens",
+      "sha256": "20f3979473c776b6e0a39c73986c82a633019b30ffbefb7683a4e919182254e4",
+      "snr": 52.3,
+      "source": "LL-Q150 (fra)-Poslovitch-Indiens.wav"
+    },
+    "Indonésie": {
+      "author": "Jules78120",
+      "file": "countries/indonu00e9sie.mp3",
+      "gain": 12.1,
+      "gainPhone": 8.8,
+      "lead": 251,
+      "matches": "Indonésie",
+      "sha256": "1312fe4ba199c3563c47bb67557c91c829f432587981523105dac2a991e377d3",
+      "source": "LL-Q150 (fra)-Jules78120-Indonésie.wav"
+    },
+    "Indonésiens": {
+      "author": "Lepticed7",
+      "file": "countries/indonu00e9siens.mp3",
+      "gain": 1.1,
+      "gainPhone": 4.4,
+      "lead": 137,
+      "matches": "Indonésiens",
+      "sha256": "7324cfa057fa6bc429016ac5a6fa1d6faec75c170234b91a7d0befc20d2208e9",
+      "snr": 58.9,
+      "source": "LL-Q150 (fra)-Lepticed7-indonésiens.wav"
+    },
+    "Iran": {
+      "author": "Jules78120",
+      "file": "countries/iran.mp3",
+      "gain": 12.6,
+      "gainPhone": 13.0,
+      "lead": 174,
+      "matches": "Iran",
+      "sha256": "e39c2066de0b5835b5678f78d3c12232b0d0ca36c1191cb82717f0cbce7ad5d0",
+      "source": "LL-Q150 (fra)-Jules78120-Iran.wav"
+    },
+    "Irlandais": {
+      "author": "Poslovitch",
+      "file": "countries/irlandais.mp3",
+      "gain": 7.7,
+      "gainPhone": 7.4,
+      "lead": 242,
+      "matches": "Irlandais",
+      "sha256": "bbaf3b10fe6ab326b7954d7d64fd123507cae8498ce6909a0b9c02b374438318",
+      "snr": 57.1,
+      "source": "LL-Q150 (fra)-Poslovitch-irlandais.wav"
+    },
+    "Irlande": {
+      "author": "Jules78120",
+      "file": "countries/irlande.mp3",
+      "gain": 10.8,
+      "gainPhone": 11.1,
+      "lead": 144,
+      "matches": "Irlande",
+      "sha256": "b034e6c44eca91e375469928875a5105282e77fb0f315340dbd78464b61a11d1",
+      "source": "LL-Q150 (fra)-Jules78120-Irlande.wav"
+    },
+    "Israéliens": {
+      "author": "WikiLucas00",
+      "file": "countries/israu00e9liens.mp3",
+      "gain": 2.7,
+      "gainPhone": -0.8,
+      "lead": 261,
+      "matches": "Israéliens",
+      "sha256": "2466546554e77f18bb0db8f798fec5cc517e7c3e44c70451d0acae01ace15bc1",
+      "snr": 64.6,
+      "source": "LL-Q150 (fra)-WikiLucas00-israéliens.wav"
+    },
+    "Israël": {
+      "author": "Jules78120",
+      "file": "countries/israu00ebl.mp3",
+      "gain": 9.6,
+      "gainPhone": 3.2,
+      "lead": 188,
+      "matches": "Israël",
+      "sha256": "89c1a7373115dbf226e63d7955ee5ef848f78877a16445fa2096128ba56ffae0",
+      "source": "LL-Q150 (fra)-Jules78120-Israël.wav"
+    },
+    "Italie": {
+      "author": "Vion Nicolas",
+      "file": "countries/italie.mp3",
+      "gain": 1.3,
+      "gainPhone": 0.4,
+      "lead": 230,
+      "matches": "Italie",
+      "sha256": "0da09801ea59efe30bf1b4ff10a05e4489c0a11e29fc8330ae37142fdff48471",
+      "snr": 42.8,
+      "source": "Fr-Italie.ogg"
+    },
+    "Italiens": {
+      "author": "Eihel",
+      "file": "countries/italiens.mp3",
+      "gain": 3.5,
+      "gainPhone": 6.4,
+      "lead": 240,
+      "matches": "Italiens",
+      "sha256": "084867df75fcf3f323facb29a8bf0ff3f84c0653a294691c8769bda9accdaba7",
+      "snr": 64.8,
+      "source": "LL-Q150 (fra)-Eihel-italiens.wav"
+    },
+    "Japon": {
+      "author": "Sylvain Machefert",
+      "capPhone": 0.1,
+      "file": "countries/japon.mp3",
+      "gain": 6.7,
+      "gainPhone": 10.1,
+      "lead": 43,
+      "matches": "Japon",
+      "sha256": "313bc427aea1c3b724ea63d3c247c798e114392f5d105baec128719ed9d61196",
+      "snr": 44.6,
+      "source": "Fr-Japon.ogg"
+    },
+    "Japonais": {
+      "author": "Poslovitch",
+      "file": "countries/japonais.mp3",
+      "gain": -0.3,
+      "gainPhone": -2.8,
+      "matches": "Japonais",
+      "sha256": "33d4e8d9ae8b5091868b81e090009a5d7bd78932f05bba5f184a195a33699168",
+      "snr": 53.1,
+      "source": "LL-Q150 (fra)-Poslovitch-japonais.wav"
+    },
+    "Kenya": {
+      "author": "Jules78120",
+      "file": "countries/kenya.mp3",
+      "gain": 9.8,
+      "gainPhone": 6.4,
+      "lead": 173,
+      "matches": "Kenya",
+      "sha256": "8d9b7f511dab5c3afb7aed047aa07c532f25d5f0621d397f37eceebbc339eb3d",
+      "source": "LL-Q150 (fra)-Jules78120-Kenya.wav"
+    },
+    "Luxembourg": {
+      "author": "Jules78120",
+      "file": "countries/luxembourg.mp3",
+      "gain": 12.0,
+      "gainPhone": 6.6,
+      "lead": 148,
+      "matches": "Luxembourg",
+      "sha256": "587da98f92a6d6bc3286bc5f05f1c598e689e087fafd95174b1b1cdeb063456c",
+      "snr": 75.8,
+      "source": "LL-Q150 (fra)-Jules78120-Luxembourg.wav"
+    },
+    "Luxembourgeois": {
+      "author": "Lyokoï",
+      "file": "countries/luxembourgeois.mp3",
+      "gain": 9.9,
+      "gainPhone": 1.7,
+      "lead": 246,
+      "matches": "Luxembourgeois",
+      "sha256": "97c17d3fef04a71927c2f216b42e901848808ec3e326fa0d2fd896bf8f6a0ba8",
+      "snr": 37.8,
+      "source": "LL-Q150 (fra)-Lyokoï-luxembourgeois.wav"
+    },
+    "Maroc": {
+      "author": "Clément Bucco-Lechat",
+      "file": "countries/maroc.mp3",
+      "gain": 19.8,
+      "gainPhone": 20.0,
+      "lead": 94,
+      "matches": "Maroc",
+      "sha256": "564fb638f4c9c73973b444c17ed2957ba1576c51fad54f018c461dc6f248f3f0",
+      "snr": 27.4,
+      "source": "Fr-Maroc.ogg"
+    },
+    "Mexique": {
+      "author": "Vion Nicolas",
+      "file": "countries/mexique.mp3",
+      "gain": 1.3,
+      "gainPhone": 0.9,
+      "matches": "Mexique",
+      "sha256": "ca23622f50b0b3f0fb8f82e1fde090a1d2b59bc696fa3eb8b20789e7519e984f",
+      "snr": 46.3,
+      "source": "Fr-Mexique.ogg"
+    },
+    "Mozambique": {
+      "author": "Clément Bucco-Lechat",
+      "file": "countries/mozambique.mp3",
+      "gain": 20.0,
+      "gainPhone": 20.0,
+      "lead": 41,
+      "matches": "Mozambique",
+      "sha256": "285da4536f26f535f36562029d8e46068dd8c98ecfb050c69a76d2e6e03b1f24",
+      "snr": 27.4,
+      "source": "Fr-Mozambique.ogg"
+    },
+    "Nigeria": {
+      "author": "Clément Bucco-Lechat",
+      "file": "countries/nigeria.mp3",
+      "gain": 20.0,
+      "gainPhone": 20.0,
+      "lead": 69,
+      "matches": "Nigeria",
+      "sha256": "9e6090afdc3d7c1d946b0ba53a711efe98aa04abc03c6f878a159201303fa913",
+      "snr": 22.3,
+      "source": "Fr-Nigeria.ogg"
+    },
+    "Norvège": {
+      "author": "Jules78120",
+      "cap": 0.9,
+      "file": "countries/norvu00e8ge.mp3",
+      "gain": 8.6,
+      "gainPhone": 6.1,
+      "lead": 123,
+      "matches": "Norvège",
+      "sha256": "f43746fe79b791b3c1f333488c8960b1b6aec6040ed7e177eadb7499a23f410b",
+      "source": "LL-Q150 (fra)-Jules78120-Norvège.wav"
+    },
+    "Norvégiens": {
+      "author": "Lyokoï",
+      "file": "countries/norvu00e9giens.mp3",
+      "gain": -0.4,
+      "gainPhone": -8.4,
+      "lead": 215,
+      "matches": "Norvégiens",
+      "sha256": "645438ae26b3f17cfb34666a1544a99c47476f7def1f4e24a23ddf32279f940e",
+      "snr": 48.3,
+      "source": "LL-Q150 (fra)-Lyokoï-norvégiens.wav"
+    },
+    "Nouvelle-Zélande": {
+      "author": "Jules78120",
+      "file": "countries/nouvelle-zu00e9lande.mp3",
+      "gain": 9.9,
+      "gainPhone": 6.6,
+      "lead": 178,
+      "matches": "Nouvelle-Zélande",
+      "sha256": "77402ea4f619a67a919bc0454a489820137a7a68133180c29963453b179061a9",
+      "source": "LL-Q150 (fra)-Jules78120-Nouvelle-Zélande.wav"
+    },
+    "Néerlandais": {
+      "author": "Poslovitch",
+      "file": "countries/nu00e9erlandais.mp3",
+      "gain": 0.6,
+      "gainPhone": 0.9,
+      "lead": 124,
+      "matches": "Néerlandais",
+      "sha256": "fb5225abfb105cefaaa46ff9b598d0fe7fdf9a3b6447ce71f77afc26748e47ab",
+      "snr": 53.1,
+      "source": "LL-Q150 (fra)-Poslovitch-néerlandais.wav"
+    },
+    "Néo-Zélandais": {
+      "author": "Le Commissaire",
+      "file": "countries/nu00e9o-zu00e9landais.mp3",
+      "gain": -2.8,
+      "gainPhone": -0.9,
+      "lead": 242,
+      "matches": "Néo-Zélandais",
+      "sha256": "95e34a7a90a189527b8604efe676e004d99aa9527e41a7f7a78575d2ad3dfa95",
+      "snr": 74.4,
+      "source": "LL-Q150 (fra)-Le Commissaire-néo-zélandais.wav"
+    },
+    "Ouganda": {
+      "author": "Clément Bucco-Lechat",
+      "capPhone": 0.2,
+      "file": "countries/ouganda.mp3",
+      "gain": 18.4,
+      "gainPhone": 19.8,
+      "lead": 66,
+      "matches": "Ouganda",
+      "sha256": "364b8d88d89d9c6c051d05f75992df949ea039c4cbe57ac6e0a84b1ad4bb3875",
+      "snr": 26.7,
+      "source": "Fr-Ouganda.ogg"
+    },
+    "Ougandais": {
+      "author": "Pamputt",
+      "file": "countries/ougandais.mp3",
+      "gain": 8.6,
+      "gainPhone": 13.3,
+      "lead": 246,
+      "matches": "Ougandais",
+      "sha256": "545fcf71e1390c492ae8bb107e55c82c14e4f8dbc0f1e019f11c05e9e81cc758",
+      "snr": 29.1,
+      "source": "LL-Q150 (fra)-Pamputt-Ougandais.wav"
+    },
+    "Pays-Bas": {
+      "author": "Jules78120",
+      "file": "countries/pays-bas.mp3",
+      "gain": 11.6,
+      "gainPhone": 8.5,
+      "lead": 202,
+      "matches": "Pays-Bas",
+      "sha256": "c9bf2df6197b81c296827ac17dc4ddc73e2cb600978700814c1df1cc100f0748",
+      "source": "LL-Q150 (fra)-Jules78120-Pays-Bas.wav"
+    },
+    "Pologne": {
+      "author": "Jules78120",
+      "file": "countries/pologne.mp3",
+      "gain": 8.9,
+      "gainPhone": 8.7,
+      "lead": 198,
+      "matches": "Pologne",
+      "sha256": "22ca9510d50a1c0409e843b7f8e891b0b922fb2821d2a0d291c710a73242a825",
+      "source": "LL-Q150 (fra)-Jules78120-Pologne.wav"
+    },
+    "Polonais": {
+      "author": "Sartus85",
+      "file": "countries/polonais.mp3",
+      "gain": 5.1,
+      "gainPhone": 7.2,
+      "lead": 180,
+      "matches": "Polonais",
+      "sha256": "8ebb8a8ff83e9adcfab8e7123d761404614e9043161533783ad75e3e4e9530b2",
+      "snr": 68.6,
+      "source": "LL-Q150 (fra)-Sartus85-polonais.wav"
+    },
+    "Portugais": {
+      "author": "Poslovitch",
+      "file": "countries/portugais.mp3",
+      "gain": 5.0,
+      "gainPhone": 6.8,
+      "lead": 222,
+      "matches": "Portugais",
+      "sha256": "23a67ad4a6dada2d617ede50e0f4804a1323890a39b2bc98082d40f687b2a98a",
+      "snr": 53.4,
+      "source": "LL-Q150 (fra)-Poslovitch-portugais.wav"
+    },
+    "Portugal": {
+      "author": "Jules78120",
+      "cap": 3.4,
+      "capPhone": 0.5,
+      "file": "countries/portugal.mp3",
+      "gain": 9.8,
+      "gainPhone": 9.8,
+      "lead": 187,
+      "matches": "Portugal",
+      "sha256": "0374e54d5183fb1b32c900b50f2f0abd4d784cd648630450ce5e8cb1a1da6c92",
+      "source": "LL-Q150 (fra)-Jules78120-Portugal.wav"
+    },
+    "Pérou": {
+      "author": "Jules78120",
+      "file": "countries/pu00e9rou.mp3",
+      "gain": 11.4,
+      "gainPhone": 6.7,
+      "lead": 242,
+      "matches": "Pérou",
+      "sha256": "6f57b6a65006e5b17d79aa7f659d89772d46d1e43a53c2b2ad08bc2bd5ef8616",
+      "source": "LL-Q150 (fra)-Jules78120-Pérou.wav"
+    },
+    "Roumains": {
+      "author": "Sayoxime",
+      "file": "countries/roumains.mp3",
+      "gain": 5.0,
+      "gainPhone": 5.9,
+      "lead": 132,
+      "matches": "Roumains",
+      "sha256": "0e2b0079b1b58ad817540ce7f9207886d18d7dda99830485cb4ea0d846bb1afc",
+      "snr": 64.0,
+      "source": "LL-Q150 (fra)-Sayoxime-moldavo-roumains.wav"
+    },
+    "Roumanie": {
+      "author": "Jules78120",
+      "file": "countries/roumanie.mp3",
+      "gain": 12.0,
+      "gainPhone": 12.8,
+      "lead": 84,
+      "matches": "Roumanie",
+      "sha256": "0c388fbfb8f0a392c4c1e7cc8dc33b008e1dad00bb9d40956ee3fdba8e8bcbe8",
+      "source": "LL-Q150 (fra)-Jules78120-Roumanie.wav"
+    },
+    "Royaume-Uni": {
+      "author": "Jules78120",
+      "file": "countries/royaume-uni.mp3",
+      "gain": 12.2,
+      "gainPhone": 10.0,
+      "lead": 187,
+      "matches": "Royaume-Uni",
+      "sha256": "9156720f83cb5ccaa407ca368629cbd9dbc9fe5bb37ee5ff276e0f8cb4f0dd64",
+      "snr": 73.7,
+      "source": "LL-Q150 (fra)-Jules78120-Royaume-Uni.wav"
+    },
+    "Russes": {
+      "author": "Poslovitch",
+      "file": "countries/russes.mp3",
+      "gain": 4.3,
+      "gainPhone": 2.3,
+      "lead": 170,
+      "matches": "Russes",
+      "sha256": "d6d2f37f53f67bf21d55ec9a143c8d4c5f599e1ba0dc3aa66ffe39048bbc3ee0",
+      "snr": 49.2,
+      "source": "LL-Q150 (fra)-Poslovitch-russes.wav"
+    },
+    "Russie": {
+      "author": "Jules78120",
+      "file": "countries/russie.mp3",
+      "gain": 10.5,
+      "gainPhone": 2.9,
+      "lead": 180,
+      "matches": "Russie",
+      "sha256": "361756a324e47c2880f483ec67e756ed297a951f91dcefd7f423995a4cba6135",
+      "source": "LL-Q150 (fra)-Jules78120-Russie.wav"
+    },
+    "Rwanda": {
+      "author": "Clément Bucco-Lechat",
+      "cap": 0.4,
+      "capPhone": 3.3,
+      "file": "countries/rwanda.mp3",
+      "gain": 16.7,
+      "gainPhone": 16.7,
+      "lead": 47,
+      "matches": "Rwanda",
+      "sha256": "8f8eca4b6bc272d90451b5fc7948bbe60b2bacbd46416ccb5cefe0f8460fd8c5",
+      "snr": 31.4,
+      "source": "Fr-Rwanda.ogg"
+    },
+    "Rwandais": {
+      "author": "Pamputt",
+      "file": "countries/rwandais.mp3",
+      "gain": 6.9,
+      "gainPhone": 11.4,
+      "lead": 130,
+      "matches": "Rwandais",
+      "sha256": "4e0ba2568e0a2217e8cf7f231b0fdccf2e811f10ea21751f9a42c89d984aa7d5",
+      "snr": 32.2,
+      "source": "LL-Q150 (fra)-Pamputt-Rwandais.wav"
+    },
+    "République démocratique du Congo": {
+      "author": "Clément Bucco-Lechat",
+      "file": "countries/ru00e9publiqueu0020du00e9mocratiqueu0020duu0020congo.mp3",
+      "gain": 20.0,
+      "gainPhone": 20.0,
+      "lead": 131,
+      "matches": "République démocratique du Congo",
+      "sha256": "213e90f906e7cf57b827474806f75c11df7423deaf043ecb075acbdd86bd323f",
+      "snr": 28.9,
+      "source": "Fr-République démocratique du Congo.ogg"
+    },
+    "Serbes": {
+      "author": "WikiLucas00",
+      "file": "countries/serbes.mp3",
+      "gain": 2.1,
+      "gainPhone": -3.3,
+      "lead": 146,
+      "matches": "Serbes",
+      "sha256": "56dab0888f9c4e58ca3870a182aee60760dc3e51873f18076f63410e657c58db",
+      "snr": 63.0,
+      "source": "LL-Q150 (fra)-WikiLucas00-serbes.wav"
+    },
+    "Serbie": {
+      "author": "GrandCelinien",
+      "file": "countries/serbie.mp3",
+      "gain": 3.0,
+      "gainPhone": -0.3,
+      "lead": 201,
+      "matches": "Serbie",
+      "sha256": "5af855dd8d7bc6ab496339a306a9305ce693ebafe87bbe7b9059ef2d0aaadc16",
+      "snr": 58.6,
+      "source": "LL-Q150 (fra)-GrandCelinien-Serbie.wav"
+    },
+    "Singapour": {
+      "author": "Jules78120",
+      "file": "countries/singapour.mp3",
+      "gain": 11.3,
+      "gainPhone": 4.5,
+      "lead": 154,
+      "matches": "Singapour",
+      "sha256": "8427725ac17d036cac9ec7866ed8b3364b479243ca7de87ad5e94ec5a32accd7",
+      "source": "LL-Q150 (fra)-Jules78120-Singapour.wav"
+    },
+    "Slovaques": {
+      "author": "WikiLucas00",
+      "file": "countries/slovaques.mp3",
+      "gain": 0.4,
+      "gainPhone": -0.4,
+      "lead": 212,
+      "matches": "Slovaques",
+      "sha256": "fde8a8ae9208346d98f8f664248255aad9b08fa87c1ce3b4247917694292b059",
+      "snr": 64.2,
+      "source": "LL-Q150 (fra)-WikiLucas00-slovaques.wav"
+    },
+    "Slovaquie": {
+      "author": "Jules78120",
+      "file": "countries/slovaquie.mp3",
+      "gain": 9.3,
+      "gainPhone": 8.4,
+      "lead": 60,
+      "matches": "Slovaquie",
+      "sha256": "12b902e0bae86d23634936cc0ea37db04d3672619a05ed071e2a3585765049ea",
+      "snr": 96.1,
+      "source": "LL-Q150 (fra)-Jules78120-Slovaquie.wav"
+    },
+    "Sud-Coréens": {
+      "author": "WikiLucas00",
+      "file": "countries/sud-coru00e9ens.mp3",
+      "gain": -0.7,
+      "gainPhone": -1.3,
+      "lead": 213,
+      "matches": "Sud-Coréens",
+      "sha256": "508c21ac700635886e262f3802e99ded162aa91c40143f5a9a9819f71ba1ca07",
+      "snr": 61.3,
+      "source": "LL-Q150 (fra)-WikiLucas00-sud-coréens.wav"
+    },
+    "Suisse": {
+      "author": "Jules78120",
+      "file": "countries/suisse.mp3",
+      "gain": 11.0,
+      "gainPhone": 2.4,
+      "lead": 181,
+      "matches": "Suisse",
+      "sha256": "78f54ab94fcc6ba62a4037ed5a51ffd5b67b660dfefebe35d57a69b6c5cab02b",
+      "snr": 65.2,
+      "source": "LL-Q150 (fra)-Jules78120-Suisse.wav"
+    },
+    "Suisses": {
+      "author": "WikiLucas00",
+      "file": "countries/suisses.mp3",
+      "gain": 4.1,
+      "gainPhone": 3.5,
+      "lead": 144,
+      "matches": "Suisses",
+      "sha256": "1270aaf0024de5b2dde61448f260b3ff86415cfd10f79a106413358e35357627",
+      "snr": 56.9,
+      "source": "LL-Q150 (fra)-WikiLucas00-suisses.wav"
+    },
+    "Suède": {
+      "author": "Sylvain Machefert",
+      "file": "countries/suu00e8de.mp3",
+      "gain": 1.8,
+      "gainPhone": 0.1,
+      "lead": 47,
+      "matches": "Suède",
+      "sha256": "3557102f8d510a01be87a211b8d3548eee32d1599f3197a51a4bbfca19dfff9f",
+      "snr": 52.8,
+      "source": "Fr-Suède.ogg"
+    },
+    "Suédois": {
+      "author": "Poslovitch",
+      "file": "countries/suu00e9dois.mp3",
+      "gain": 7.0,
+      "gainPhone": 7.2,
+      "lead": 107,
+      "matches": "Suédois",
+      "sha256": "b95ec7576b0c361339852d13f2f9119abc16639f7e8f62ef7636b7851c8d7d30",
+      "snr": 57.0,
+      "source": "LL-Q150 (fra)-Poslovitch-suédois.wav"
+    },
+    "Sénégal": {
+      "author": "Clément Bucco-Lechat",
+      "file": "countries/su00e9nu00e9gal.mp3",
+      "gain": 18.7,
+      "gainPhone": 18.3,
+      "lead": 63,
+      "matches": "Sénégal",
+      "sha256": "faef7ed634accb1f9d8fa68442d89ea8ee52b1bf5bc84102943476e7c8831f7b",
+      "snr": 26.7,
+      "source": "Fr-Sénégal.ogg"
+    },
+    "Sénégalais": {
+      "author": "Pamputt",
+      "file": "countries/su00e9nu00e9galais.mp3",
+      "gain": 8.1,
+      "gainPhone": 9.6,
+      "lead": 143,
+      "matches": "Sénégalais",
+      "sha256": "6926c5dbdf0d9cf645929164a5ac4cc7e3465697dc1f6cec546841e8fe5185e4",
+      "snr": 32.6,
+      "source": "LL-Q150 (fra)-Pamputt-Sénégalais.wav"
+    },
+    "Tanzanie": {
+      "author": "Clément Bucco-Lechat",
+      "cap": 1.1,
+      "capPhone": 1.9,
+      "file": "countries/tanzanie.mp3",
+      "gain": 18.1,
+      "gainPhone": 18.1,
+      "lead": 83,
+      "matches": "Tanzanie",
+      "sha256": "a555c8621ba2ff7d524df281284bc6626aa8befdf99aef268c1e2411fe80c446",
+      "snr": 28.1,
+      "source": "Fr-Tanzanie.ogg"
+    },
+    "Tchèques": {
+      "author": "WikiLucas00",
+      "file": "countries/tchu00e8ques.mp3",
+      "gain": 4.8,
+      "gainPhone": 0.7,
+      "lead": 233,
+      "matches": "Tchèques",
+      "sha256": "a203b2498560a8a77789b02112f9e8a2556c599871e1896150e66cc956783dce",
+      "snr": 62.9,
+      "source": "LL-Q150 (fra)-WikiLucas00-tchèques.wav"
+    },
+    "Tchéquie": {
+      "author": "Poslovitch",
+      "file": "countries/tchu00e9quie.mp3",
+      "gain": 5.6,
+      "gainPhone": 1.8,
+      "lead": 109,
+      "matches": "Tchéquie",
+      "sha256": "d9cf8fd65d18a56c3c1c88ef1900f7e80a2e9d7077c660ffe9977b8af4ad6ba0",
+      "snr": 49.0,
+      "source": "LL-Q150 (fra)-Poslovitch-Tchéquie.wav"
+    },
+    "Thaïlandais": {
+      "author": "Pamputt",
+      "file": "countries/thau00eflandais.mp3",
+      "gain": 3.8,
+      "gainPhone": 3.3,
+      "lead": 173,
+      "matches": "Thaïlandais",
+      "sha256": "d5c27bf0c3312d5d5b366e3985687c7325606a8a78e3ba6277b27db5ab29193e",
+      "snr": 35.4,
+      "source": "LL-Q150 (fra)-Pamputt-Thaïlandais.wav"
+    },
+    "Thaïlande": {
+      "author": "GrandCelinien",
+      "file": "countries/thau00eflande.mp3",
+      "gain": 2.6,
+      "gainPhone": 4.5,
+      "lead": 211,
+      "matches": "Thaïlande",
+      "sha256": "0375322a136a436c9261d381aaf2b6df75a389acc0c0fb403f0807f0d9e3630b",
+      "snr": 53.9,
+      "source": "LL-Q150 (fra)-GrandCelinien-Thaïlande.wav"
+    },
+    "Tunisie": {
+      "author": "Clément Bucco-Lechat",
+      "file": "countries/tunisie.mp3",
+      "gain": 19.6,
+      "gainPhone": 20.0,
+      "lead": 117,
+      "matches": "Tunisie",
+      "sha256": "d205d56f2ea459ab393abe2c036371fbba433a7a10847cfb8fa9f1561a97c453",
+      "snr": 24.7,
+      "source": "Fr-Tunisie.ogg"
+    },
+    "Tunisiens": {
+      "author": "Lyokoï",
+      "file": "countries/tunisiens.mp3",
+      "gain": 0.8,
+      "gainPhone": -7.9,
+      "lead": 240,
+      "matches": "Tunisiens",
+      "sha256": "974571a938097acdac35c88168beb237556e911fd99fdb13a53d4d7b11965967",
+      "snr": 44.4,
+      "source": "LL-Q150 (fra)-Lyokoï-tunisiens.wav"
+    },
+    "Turcs": {
+      "author": "WikiLucas00",
+      "cap": 0.9,
+      "capPhone": 1.5,
+      "file": "countries/turcs.mp3",
+      "gain": 6.4,
+      "gainPhone": 6.4,
+      "lead": 137,
+      "matches": "Turcs",
+      "sha256": "60d474856bf3ef7b1e08c9a63f6f6ccc0b13055a79d533b98896e54246ab3da8",
+      "snr": 59.8,
+      "source": "LL-Q150 (fra)-WikiLucas00-turcs.wav"
+    },
+    "Turquie": {
+      "author": "Jules78120",
+      "file": "countries/turquie.mp3",
+      "gain": 13.7,
+      "gainPhone": 11.5,
+      "lead": 133,
+      "matches": "Turquie",
+      "sha256": "d0c072bbeb46c4cd4432551dbf551f3c8a5843cf5bea9e5a7384348d6a4ad3ad",
+      "source": "LL-Q150 (fra)-Jules78120-Turquie.wav"
+    },
+    "Ukraine": {
+      "author": "Jules78120",
+      "file": "countries/ukraine.mp3",
+      "gain": 12.6,
+      "gainPhone": 7.1,
+      "lead": 255,
+      "matches": "Ukraine",
+      "sha256": "1d393a53ce4a55fe5fd70a4a8062e8645b4dea2caf9011b7dc94c23cd6a8d912",
+      "snr": 135.4,
+      "source": "LL-Q150 (fra)-Jules78120-Ukraine.wav"
+    },
+    "Ukrainiens": {
+      "author": "Lyokoï",
+      "cap": 1.7,
+      "file": "countries/ukrainiens.mp3",
+      "gain": 5.2,
+      "gainPhone": -2.2,
+      "lead": 196,
+      "matches": "Ukrainiens",
+      "sha256": "5a7767d9b340b759502953a4a4647b7c67cd8ac7df94b9d9badda70ec39e1477",
+      "snr": 49.5,
+      "source": "LL-Q150 (fra)-Lyokoï-ukrainiens.wav"
+    },
+    "Uruguay": {
+      "author": "Jules78120",
+      "file": "countries/uruguay.mp3",
+      "gain": 11.4,
+      "gainPhone": 15.1,
+      "lead": 222,
+      "matches": "Uruguay",
+      "sha256": "f0dbd0299dc255dcb749e95308bac882c553e30a692cc905808dd62f9551af70",
+      "snr": 101.4,
+      "source": "LL-Q150 (fra)-Jules78120-Uruguay.wav"
+    },
+    "Uruguayens": {
+      "author": "WikiLucas00",
+      "capPhone": 1.1,
+      "file": "countries/uruguayens.mp3",
+      "gain": 0.2,
+      "gainPhone": 4.3,
+      "lead": 198,
+      "matches": "Uruguayens",
+      "sha256": "c681f95a0ce1db8b428c425fbf9b9a2e639f3be295e584bf19500aa33ae2c6c2",
+      "snr": 59.2,
+      "source": "LL-Q150 (fra)-WikiLucas00-uruguayens.wav"
+    },
+    "Venezuela": {
+      "author": "Jules78120",
+      "file": "countries/venezuela.mp3",
+      "gain": 5.5,
+      "gainPhone": 3.4,
+      "lead": 128,
+      "matches": "Venezuela",
+      "sha256": "5729d020d072eecac9e95c51f143e35677521e8b6e816d2fede81605797d0892",
+      "source": "LL-Q150 (fra)-Jules78120-Venezuela.wav"
+    },
+    "Vietnam": {
+      "author": "Jules78120",
+      "file": "countries/vietnam.mp3",
+      "gain": 10.5,
+      "gainPhone": 8.8,
+      "lead": 164,
+      "matches": "Vietnam",
+      "sha256": "5c082176517b66ca8c3f07b8d1abb264ffdddf120874c3a9685dc2b33d622c02",
+      "snr": 97.1,
+      "source": "LL-Q150 (fra)-Jules78120-Vietnam.wav"
+    },
+    "Vietnamiens": {
+      "author": "Lyokoï",
+      "file": "countries/vietnamiens.mp3",
+      "gain": 6.9,
+      "gainPhone": -1.1,
+      "lead": 280,
+      "matches": "Vietnamiens",
+      "sha256": "005a0d5b3ae035dcae5eaa637259d67ac1998a7f3a025f786babecc9c71b1e90",
+      "snr": 50.5,
+      "source": "LL-Q150 (fra)-Lyokoï-vietnamiens.wav"
+    },
+    "Égypte": {
+      "author": "Jules78120",
+      "file": "countries/u00e9gypte.mp3",
+      "gain": 6.9,
+      "gainPhone": -0.5,
+      "lead": 220,
+      "matches": "Égypte",
+      "sha256": "09391fdbc1e4e52e1f5ddfee3dbf4218ed883229de0cd863a045990403e4119e",
+      "source": "LL-Q150 (fra)-Jules78120-Égypte.wav"
+    },
+    "Équateur": {
+      "author": "Jules78120",
+      "file": "countries/u00e9quateur.mp3",
+      "gain": 7.3,
+      "gainPhone": 7.7,
+      "lead": 245,
+      "matches": "Équateur",
+      "sha256": "a2e202de22786ad14e33f673b1d727563ea90012927816593d9dfe92b36dee98",
+      "source": "LL-Q150 (fra)-Jules78120-Équateur.wav"
+    },
+    "États-Unis": {
+      "author": "Jules78120",
+      "file": "countries/u00e9tats-unis.mp3",
+      "gain": 7.0,
+      "gainPhone": 3.2,
+      "lead": 193,
+      "matches": "États-Unis",
+      "sha256": "b09225c3972d9927997c803bf1266645460338eee3ef9d0c82d38cba4c3c6a08",
+      "source": "LL-Q150 (fra)-Jules78120-États-Unis.wav"
+    },
+    "Éthiopie": {
+      "author": "Jules78120",
+      "file": "countries/u00e9thiopie.mp3",
+      "gain": 7.9,
+      "gainPhone": 3.1,
+      "lead": 222,
+      "matches": "Éthiopie",
+      "sha256": "d9e3cb643e8ca8c9dbd155e2de21319eb8e618fcda701d81b8feebb3e8ce95f2",
+      "source": "LL-Q150 (fra)-Jules78120-Éthiopie.wav"
+    }
   },
   "language": "fr",
   "letters": {
@@ -65,9 +1597,11 @@
   },
   "licenses": {
     "CC BY 2.0 fr": "https://creativecommons.org/licenses/by/2.0/fr/",
+    "CC BY 4.0": "https://creativecommons.org/licenses/by/4.0/",
     "CC BY-SA 3.0": "https://creativecommons.org/licenses/by-sa/3.0/",
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/"
+    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "Public domain": null
   },
   "texts": {
     "Noël": {
@@ -122,6 +1656,17 @@
       "snr": 38.8,
       "source": "Fr-après-midi.ogg"
     },
+    "aggressive": {
+      "author": "Poslovitch",
+      "file": "aggressive.mp3",
+      "gain": 0.9,
+      "gainPhone": -3.8,
+      "lead": 220,
+      "matches": "agressif",
+      "sha256": "dd6467e29c3b1941404ce745159b9eba743b2a7fe8e9bcef7f8563291abf86f9",
+      "snr": 53.3,
+      "source": "LL-Q150 (fra)-Poslovitch-agressif.wav"
+    },
     "airport": {
       "author": "Vion Nicolas",
       "capPhone": 0.5,
@@ -144,6 +1689,27 @@
       "sha256": "8725e9fb0395771d7e8d4524a56c2687e5a6a8de054695feb5b0b712796b40a7",
       "snr": 46.2,
       "source": "Fr-réveil.ogg"
+    },
+    "alive": {
+      "author": "Poslovitch",
+      "file": "alive.mp3",
+      "gain": 1.6,
+      "gainPhone": 1.7,
+      "matches": "vivant",
+      "sha256": "6191a298834c662c51d81a5acef84e6efef75ada831fb47f77133594377532d4",
+      "snr": 47.6,
+      "source": "LL-Q150 (fra)-Poslovitch-vivant.wav"
+    },
+    "all": {
+      "author": "Poslovitch",
+      "file": "all.mp3",
+      "gain": 6.9,
+      "gainPhone": -1.0,
+      "lead": 201,
+      "matches": "tous",
+      "sha256": "c9d512c267f951e2b7370b4ca8e958b84a71c1948906b8ca9363d23cd3a7b286",
+      "snr": 45.1,
+      "source": "LL-Q150 (fra)-Poslovitch-tous.wav"
     },
     "allergy": {
       "author": "Vion Nicolas",
@@ -199,6 +1765,17 @@
       "snr": 50.2,
       "source": "Fr-et.ogg"
     },
+    "anger": {
+      "author": "Sartus85",
+      "file": "anger.mp3",
+      "gain": 3.5,
+      "gainPhone": 5.5,
+      "lead": 136,
+      "matches": "colère",
+      "sha256": "d7e7b78ba53e5dff0390f293856edd9701b2dd14413b9bd9442df0875e7f91dc",
+      "snr": 68.9,
+      "source": "LL-Q150 (fra)-Sartus85-colère.wav"
+    },
     "animal": {
       "author": "Poslovitch",
       "file": "animal.mp3",
@@ -231,6 +1808,17 @@
       "sha256": "6a80214b173ff8631ff17c9e5df4cc3ae18d8b17fdc0a4819019e5f7f9894d99",
       "snr": 45.1,
       "source": "Fr-appartement.ogg"
+    },
+    "appendix": {
+      "author": "Jérémy-Günther-Heinz Jähnick",
+      "file": "appendix.mp3",
+      "gain": 7.5,
+      "gainPhone": 4.5,
+      "lead": 177,
+      "matches": "appendice",
+      "sha256": "e17706069a0fd32024349893966b121ffdac980300abc8ba61838699454d32c0",
+      "snr": 55.9,
+      "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-appendice.wav"
     },
     "apple": {
       "author": "Vion Nicolas",
@@ -316,6 +1904,17 @@
       "snr": 44.7,
       "source": "Fr-arriver.ogg"
     },
+    "artery": {
+      "author": "Poslovitch",
+      "file": "artery.mp3",
+      "gain": 1.9,
+      "gainPhone": -0.7,
+      "lead": 173,
+      "matches": "artère",
+      "sha256": "7b7e838eb2975b287c79c97d63ea59dc6b10552a03a84af69d7ec218d9c6f10b",
+      "snr": 50.2,
+      "source": "LL-Q150 (fra)-Poslovitch-artère.wav"
+    },
     "ask": {
       "author": "Vion Nicolas",
       "file": "ask.mp3",
@@ -338,6 +1937,16 @@
       "sha256": "bf7270c866aabea43ceaebb025779706cd453f1af38817163824344f94b66d43",
       "snr": 47.8,
       "source": "Fr-tante.ogg"
+    },
+    "available": {
+      "author": "Helenou66",
+      "file": "available.mp3",
+      "gain": 4.6,
+      "gainPhone": 11.2,
+      "lead": 107,
+      "matches": "disponible",
+      "sha256": "7ae16e4f9cac5c0c98d3bef182f7b4850df335488684ee62cd0de58aca4d5426",
+      "source": "LL-Q150 (fra)-Helenou66-disponible.wav"
     },
     "baby": {
       "author": "Vion Nicolas",
@@ -394,6 +2003,16 @@
       "sha256": "7a8b3d8d6408f00dd579b537053e3e70a219dfb8bd02705a0b47dd217628b9b9",
       "snr": 53.4,
       "source": "Fr-banane.ogg"
+    },
+    "band-aid": {
+      "author": "VictorDtmtc",
+      "file": "band-aid.mp3",
+      "gain": 2.1,
+      "gainPhone": -5.2,
+      "lead": 241,
+      "matches": "sparadrap",
+      "sha256": "6a40c8f100a367e9625015c5ee55f7aed95adffefebbd885d1bd1a986b7ff789",
+      "source": "LL-Q150 (fra)-VictorDtmtc-sparadrap.wav"
     },
     "bandage": {
       "author": "Poslovitch",
@@ -461,6 +2080,18 @@
       "snr": 46.3,
       "source": "Fr-plage.ogg"
     },
+    "beautiful": {
+      "author": "Poslovitch",
+      "capPhone": 2.9,
+      "file": "beautiful.mp3",
+      "gain": -1.4,
+      "gainPhone": 4.5,
+      "lead": 171,
+      "matches": "beau",
+      "sha256": "9febfb0883cc23f30e317f3908f364c4080a496e7501526f1f55d927c1a1c79d",
+      "snr": 54.1,
+      "source": "LL-Q150 (fra)-Poslovitch-beau.wav"
+    },
     "bed": {
       "author": "Vion Nicolas",
       "file": "bed.mp3",
@@ -482,6 +2113,17 @@
       "snr": 46.6,
       "source": "Fr-avant.ogg"
     },
+    "behind": {
+      "author": "Poslovitch",
+      "file": "behind.mp3",
+      "gain": 0.4,
+      "gainPhone": -2.5,
+      "lead": 61,
+      "matches": "derrière",
+      "sha256": "5ca07645ebcc04e4f190ad073d342fe8973ef0eeedbf47d54b69c024c693b129",
+      "snr": 45.6,
+      "source": "LL-Q150 (fra)-Poslovitch-derrière.wav"
+    },
     "belt": {
       "author": "Vion Nicolas",
       "file": "belt.mp3",
@@ -492,6 +2134,28 @@
       "sha256": "56466b68e870a4520c520cfd15dc57b75ebc9054663e5c56354e96c74bc57951",
       "snr": 48.9,
       "source": "Fr-ceinture.ogg"
+    },
+    "between": {
+      "author": "Poslovitch",
+      "file": "between.mp3",
+      "gain": 1.4,
+      "gainPhone": 2.4,
+      "lead": 202,
+      "matches": "entre",
+      "sha256": "ed893459b60eb48f89540c4b3537ca5e2924dc7e0f0ba7776ffa3ab47eebc381",
+      "snr": 50.3,
+      "source": "LL-Q150 (fra)-Poslovitch-entre.wav"
+    },
+    "beverage": {
+      "author": "Poslovitch",
+      "file": "beverage.mp3",
+      "gain": 1.3,
+      "gainPhone": -1.1,
+      "lead": 235,
+      "matches": "boisson",
+      "sha256": "27357db41e1437e356a466dddad28b4130513121b6a580d2c1f0a90d2ed84d18",
+      "snr": 56.4,
+      "source": "LL-Q150 (fra)-Poslovitch-boisson.wav"
     },
     "bicycle": {
       "author": "Vion Nicolas",
@@ -515,6 +2179,28 @@
       "snr": 45.1,
       "source": "Fr-grand.ogg"
     },
+    "bile": {
+      "author": "LoquaxFR",
+      "file": "bile.mp3",
+      "gain": 3.6,
+      "gainPhone": 5.3,
+      "lead": 136,
+      "matches": "bile",
+      "sha256": "17414a7efb65ba0ed35574a3062d9a8cd340ad23f748931927522b3097641566",
+      "snr": 60.8,
+      "source": "LL-Q150 (fra)-LoquaxFR-bile.wav"
+    },
+    "bill": {
+      "author": "Poslovitch",
+      "file": "bill.mp3",
+      "gain": 5.2,
+      "gainPhone": 1.3,
+      "lead": 216,
+      "matches": "addition",
+      "sha256": "ab29edc3ae95c457da18cf73cc331a93747890c65ed2b24bd7f2abfc4a068799",
+      "snr": 52.5,
+      "source": "LL-Q150 (fra)-Poslovitch-addition.wav"
+    },
     "bird": {
       "author": "Vion Nicolas",
       "file": "bird.mp3",
@@ -526,6 +2212,17 @@
       "snr": 48.2,
       "source": "Fr-oiseau.ogg"
     },
+    "birthday": {
+      "author": "Poslovitch",
+      "file": "birthday.mp3",
+      "gain": 1.3,
+      "gainPhone": -2.6,
+      "lead": 70,
+      "matches": "anniversaire",
+      "sha256": "6d1881cadc245ce832a16da8d232f73f9f582e768dd47e1890ddeec12a0bff76",
+      "snr": 48.2,
+      "source": "LL-Q150 (fra)-Poslovitch-anniversaire.wav"
+    },
     "black": {
       "author": "Vion Nicolas",
       "file": "black.mp3",
@@ -535,6 +2232,17 @@
       "sha256": "f3b11ccc3918e5e1c52e2c211c18fccdee3122330828432109e31116676baecf",
       "snr": 49.7,
       "source": "Fr-noir.ogg"
+    },
+    "bladder": {
+      "author": "Poslovitch",
+      "file": "bladder.mp3",
+      "gain": 0.4,
+      "gainPhone": -6.1,
+      "lead": 240,
+      "matches": "vessie",
+      "sha256": "b717f7bd91e19cf7b12f4dc808eb4b632e5681cccb96255f4c086a5f4a860624",
+      "snr": 45.4,
+      "source": "LL-Q150 (fra)-Poslovitch-vessie.wav"
     },
     "blanket": {
       "author": "Vion Nicolas",
@@ -602,6 +2310,17 @@
       "snr": 53.2,
       "source": "LL-Q150 (fra)-Poslovitch-livre.wav"
     },
+    "border": {
+      "author": "Poslovitch",
+      "file": "border.mp3",
+      "gain": 6.6,
+      "gainPhone": 5.7,
+      "lead": 139,
+      "matches": "frontière",
+      "sha256": "43de265d02fb678062646d44f62d52b68f6f7e0ec8bcb3f766dc063f3c458af1",
+      "snr": 48.7,
+      "source": "LL-Q150 (fra)-Poslovitch-frontière.wav"
+    },
     "boss": {
       "author": "Vion Nicolas",
       "file": "boss.mp3",
@@ -644,6 +2363,17 @@
       "sha256": "4d252539538a0fdd158eebdb4f430ee303e354a307d92f122dd2bc5d9041cd28",
       "snr": 52.7,
       "source": "Fr-garçon.ogg"
+    },
+    "brain": {
+      "author": "Poslovitch",
+      "file": "brain.mp3",
+      "gain": 1.9,
+      "gainPhone": -3.2,
+      "lead": 89,
+      "matches": "cerveau",
+      "sha256": "4889329b2949ed78ac214a0d2af73b466cf5d0ac5237323a578775cd29928767",
+      "snr": 52.3,
+      "source": "LL-Q150 (fra)-Poslovitch-cerveau.wav"
     },
     "bread": {
       "author": "Poslovitch",
@@ -710,6 +2440,17 @@
       "sha256": "f6352d1e188bb3e1c350e1bbd06ac510178cf0de605aca828cf668080ed47a48",
       "snr": 46.4,
       "source": "Fr-apporter.ogg"
+    },
+    "broken": {
+      "author": "Sartus85",
+      "file": "broken.mp3",
+      "gain": 7.1,
+      "gainPhone": 1.2,
+      "lead": 198,
+      "matches": "cassé",
+      "sha256": "ab673a5db04e4b1c205efe1a0dc93e7a411d7e167f303c6ec8ed3a0c7be1a11b",
+      "snr": 60.6,
+      "source": "LL-Q150 (fra)-Sartus85-cassé.wav"
     },
     "brother": {
       "author": "Vion Nicolas",
@@ -899,6 +2640,17 @@
       "snr": 69.0,
       "source": "LL-Q150 (fra)-WikiLucas00-employée.wav"
     },
+    "cash": {
+      "author": "Poslovitch",
+      "file": "cash.mp3",
+      "gain": -0.5,
+      "gainPhone": -6.4,
+      "lead": 57,
+      "matches": "espèces",
+      "sha256": "bcfd2bf20c651de3523c7d0265ac8f7dd409e26d8dd5be6c1bf8ce951e51d26f",
+      "snr": 48.8,
+      "source": "LL-Q150 (fra)-Poslovitch-espèces.wav"
+    },
     "cassava": {
       "author": "Poslovitch",
       "file": "cassava.mp3",
@@ -953,6 +2705,29 @@
       "snr": 54.2,
       "source": "Fr-chaise.ogg"
     },
+    "challenge": {
+      "author": "Sartus85",
+      "capPhone": 2.1,
+      "file": "challenge.mp3",
+      "gain": 8.9,
+      "gainPhone": 10.8,
+      "lead": 98,
+      "matches": "défi",
+      "sha256": "e882ff1f6454b29f07207f0d5a738b2c298760776150a46301685f40fe9b53f1",
+      "snr": 61.3,
+      "source": "LL-Q150 (fra)-Sartus85-défi.wav"
+    },
+    "change-money": {
+      "author": "Poslovitch",
+      "file": "change-money.mp3",
+      "gain": 3.7,
+      "gainPhone": 9.0,
+      "lead": 24,
+      "matches": "monnaie",
+      "sha256": "1e786229d1cb7a785f7ce1f3b1241b7c4c1b5ff65983f6f7c464a456b187690f",
+      "snr": 47.3,
+      "source": "LL-Q150 (fra)-Poslovitch-monnaie.wav"
+    },
     "charger": {
       "author": "Jérémy-Günther-Heinz Jähnick",
       "file": "charger.mp3",
@@ -963,6 +2738,17 @@
       "sha256": "06e09b48280a618043ab562b3c7d0e1ba91407c077deb3963b91c734d1d5e244",
       "snr": 48.8,
       "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-chargeur.wav"
+    },
+    "checkout": {
+      "author": "Poslovitch",
+      "file": "checkout.mp3",
+      "gain": 0.3,
+      "gainPhone": -4.4,
+      "lead": 123,
+      "matches": "caisse",
+      "sha256": "8ff5904673a84be183e46e70cb7c4786f643dec576be34125ad6f9ce1dd60b2a",
+      "snr": 53.1,
+      "source": "LL-Q150 (fra)-Poslovitch-caisse.wav"
     },
     "cheese": {
       "author": "Vion Nicolas",
@@ -1063,6 +2849,17 @@
       "snr": 49.1,
       "source": "Fr-propre.ogg"
     },
+    "close": {
+      "author": "Poslovitch",
+      "file": "close.mp3",
+      "gain": 2.6,
+      "gainPhone": 1.2,
+      "lead": 89,
+      "matches": "fermer",
+      "sha256": "637584758f12a0dc69473e82bbd516a176ae2a86f7524c2d3bd2b52b920de521",
+      "snr": 50.8,
+      "source": "LL-Q150 (fra)-Poslovitch-fermer.wav"
+    },
     "clothes": {
       "author": "Vion Nicolas",
       "file": "clothes.mp3",
@@ -1118,6 +2915,17 @@
       "snr": 51.4,
       "source": "Fr-rhume.ogg"
     },
+    "cold-adj": {
+      "author": "Poslovitch",
+      "file": "cold-adj.mp3",
+      "gain": -1.5,
+      "gainPhone": 1.7,
+      "lead": 53,
+      "matches": "froid",
+      "sha256": "75b670fda1fc9a7da62e8ac37a061726a82e15cb508eab78b61d74adbe006086",
+      "snr": 46.7,
+      "source": "LL-Q150 (fra)-Poslovitch-froid.wav"
+    },
     "colleague": {
       "author": "Vion Nicolas",
       "file": "colleague.mp3",
@@ -1163,6 +2971,18 @@
       "sha256": "412dcfc87cb58e33df2250001d87da29c368c5d0845587834f13415f11a72fec",
       "snr": 66.6,
       "source": "LL-Q150 (fra)-Sartus85-entreprise.wav"
+    },
+    "completely": {
+      "author": "Poslovitch",
+      "capPhone": 1.8,
+      "file": "completely.mp3",
+      "gain": 2.0,
+      "gainPhone": 4.6,
+      "lead": 207,
+      "matches": "complètement",
+      "sha256": "6652ab4862918edcfde62a5ad4ae79382a555605259fb7e534eef65e782773f1",
+      "snr": 53.1,
+      "source": "LL-Q150 (fra)-Poslovitch-complètement.wav"
     },
     "confirm": {
       "author": "Vion Nicolas",
@@ -1220,6 +3040,17 @@
       "snr": 48.6,
       "source": "Fr-copier.ogg"
     },
+    "corner": {
+      "author": "Poslovitch",
+      "file": "corner.mp3",
+      "gain": 4.1,
+      "gainPhone": 7.1,
+      "lead": 143,
+      "matches": "coin",
+      "sha256": "c362c5aa9469f6c35634745db8fd7a968ed9ecb0e184af9dd6dab036d6bcfd22",
+      "snr": 54.4,
+      "source": "LL-Q150 (fra)-Poslovitch-coin.wav"
+    },
     "correct": {
       "author": "Vion Nicolas",
       "file": "correct.mp3",
@@ -1231,6 +3062,18 @@
       "snr": 44.2,
       "source": "Fr-corriger.ogg"
     },
+    "cost": {
+      "author": "Sartus85",
+      "capPhone": 0.6,
+      "file": "cost.mp3",
+      "gain": 10.4,
+      "gainPhone": 11.5,
+      "lead": 124,
+      "matches": "coûter",
+      "sha256": "261fd7530d456606e6999442939fe23041a3c9df93f53d6e4efc588c1b6e2241",
+      "snr": 64.8,
+      "source": "LL-Q150 (fra)-Sartus85-coûter.wav"
+    },
     "cough": {
       "author": "Vion Nicolas",
       "file": "cough.mp3",
@@ -1240,6 +3083,17 @@
       "sha256": "3e41b2e5fc947fc1d9278382bb07a2417ce3a7d464264355690e3895a679a26e",
       "snr": 39.0,
       "source": "Fr-toux.ogg"
+    },
+    "country": {
+      "author": "Poslovitch",
+      "file": "country.mp3",
+      "gain": -4.2,
+      "gainPhone": -3.3,
+      "lead": 202,
+      "matches": "pays",
+      "sha256": "71c7853da3aae70eeb7a7b7d2bb3a33026c493c1aed7ab6af06a5d221f42889d",
+      "snr": 54.8,
+      "source": "LL-Q150 (fra)-Poslovitch-pays.wav"
     },
     "course": {
       "author": "Vion Nicolas",
@@ -1273,6 +3127,28 @@
       "sha256": "9a7c8e9f58cf4e7fcccf31aed1f6ed173b2431390528b31b70ed63a739f0475f",
       "snr": 47.0,
       "source": "Fr-crème.ogg"
+    },
+    "cross": {
+      "author": "Sartus85",
+      "file": "cross.mp3",
+      "gain": 3.3,
+      "gainPhone": 0.9,
+      "lead": 149,
+      "matches": "traverser",
+      "sha256": "1ef264720feddaa9aa8cc0040ddce2e7e4ccd0abf20b1fbe85252b442c706aaa",
+      "snr": 61.3,
+      "source": "LL-Q150 (fra)-Sartus85-traverser.wav"
+    },
+    "crossing": {
+      "author": "Poslovitch",
+      "file": "crossing.mp3",
+      "gain": 1.2,
+      "gainPhone": 1.9,
+      "lead": 149,
+      "matches": "carrefour",
+      "sha256": "aa1c94f1b9c46f16dc340e7bc512ac1a3a4b614e2989980cd5dbbe40fd36f06a",
+      "snr": 44.4,
+      "source": "LL-Q150 (fra)-Poslovitch-carrefour.wav"
     },
     "cup": {
       "author": "Vion Nicolas",
@@ -1318,6 +3194,17 @@
       "snr": 46.8,
       "source": "Fr-couper.ogg"
     },
+    "cutlery": {
+      "author": "Eihel",
+      "file": "cutlery.mp3",
+      "gain": 0.2,
+      "gainPhone": 3.6,
+      "lead": 195,
+      "matches": "couverts",
+      "sha256": "d105b79a7ba7cfc942e6c6b4a0fb048385fdb4d9189cda8f9806dcbc3581289d",
+      "snr": 58.8,
+      "source": "LL-Q150 (fra)-Eihel-couverts.wav"
+    },
     "cv": {
       "author": "Poslovitch",
       "file": "cv.mp3",
@@ -1362,6 +3249,17 @@
       "snr": 52.7,
       "source": "Fr-jour.ogg"
     },
+    "day-before-yesterday": {
+      "author": "Poslovitch",
+      "file": "day-before-yesterday.mp3",
+      "gain": 0.3,
+      "gainPhone": 0.0,
+      "lead": 197,
+      "matches": "avant-hier",
+      "sha256": "d9bb550a81f7376e284ffe338f35ce024250e0c4c148bbed705a3266ca192040",
+      "snr": 58.1,
+      "source": "LL-Q150 (fra)-Poslovitch-avant-hier.wav"
+    },
     "deadline": {
       "author": "Poslovitch",
       "file": "deadline.mp3",
@@ -1373,6 +3271,27 @@
       "snr": 53.0,
       "source": "LL-Q150 (fra)-Poslovitch-délai.wav"
     },
+    "death": {
+      "author": "Poslovitch",
+      "file": "death.mp3",
+      "gain": 1.3,
+      "gainPhone": 3.8,
+      "lead": 163,
+      "matches": "mort",
+      "sha256": "ecd8b0cafbcca67aa623e5566889305a03d23c700dd0696d873addad762d3026",
+      "snr": 51.9,
+      "source": "LL-Q150 (fra)-Poslovitch-mort.wav"
+    },
+    "defensive": {
+      "author": "VictorDtmtc",
+      "file": "defensive.mp3",
+      "gain": -1.3,
+      "gainPhone": -8.2,
+      "lead": 221,
+      "matches": "défensif",
+      "sha256": "2d67a106975448b62e65d35c3f95b312800c43d25fa42e26f8a836a7096efd93",
+      "source": "LL-Q150 (fra)-VictorDtmtc-défensif.wav"
+    },
     "delete": {
       "author": "Vion Nicolas",
       "file": "delete.mp3",
@@ -1383,6 +3302,16 @@
       "sha256": "babfe1b45473b5a15cc1c9beea8425fe4738d2d981413045e9fc52aa0ea0a0f7",
       "snr": 51.6,
       "source": "Fr-supprimer.ogg"
+    },
+    "deliver": {
+      "author": "Poslovitch",
+      "file": "deliver.mp3",
+      "gain": 3.2,
+      "gainPhone": 4.2,
+      "matches": "livrer",
+      "sha256": "c9966da0dfe3a54932dc1d6fb9f85aca0766a3f8ab1567c06f7a1d6b1c7d647d",
+      "snr": 44.3,
+      "source": "LL-Q150 (fra)-Poslovitch-livrer.wav"
     },
     "dentist": {
       "author": "Vion Nicolas",
@@ -1418,6 +3347,17 @@
       "snr": 48.3,
       "source": "Fr-bureau.ogg"
     },
+    "dessert": {
+      "author": "Poslovitch",
+      "file": "dessert.mp3",
+      "gain": 1.5,
+      "gainPhone": 0.0,
+      "lead": 192,
+      "matches": "dessert",
+      "sha256": "5d3ee6566804f8ab59c7cb79b28a62dde8c52af770a0207b302e39af6e976053",
+      "snr": 53.9,
+      "source": "LL-Q150 (fra)-Poslovitch-dessert.wav"
+    },
     "dictionary": {
       "author": "Poslovitch",
       "file": "dictionary.mp3",
@@ -1428,6 +3368,28 @@
       "sha256": "bc2e40ba39a01426e4abaf8033502b88156b75cb38fdc6cb1f4b74f3b534a73f",
       "snr": 50.6,
       "source": "LL-Q150 (fra)-Poslovitch-dictionnaire.wav"
+    },
+    "difference": {
+      "author": "Poslovitch",
+      "file": "difference.mp3",
+      "gain": 0.6,
+      "gainPhone": 0.4,
+      "lead": 225,
+      "matches": "différence",
+      "sha256": "2d8835ed00777014e629fcf1c03257525d822d585c0b5dfd24fa9f769a6096b6",
+      "snr": 52.1,
+      "source": "LL-Q150 (fra)-Poslovitch-différence.wav"
+    },
+    "different": {
+      "author": "Poslovitch",
+      "file": "different.mp3",
+      "gain": 3.6,
+      "gainPhone": 1.5,
+      "lead": 5,
+      "matches": "différent",
+      "sha256": "d92846a96f54e0d96a987b436d4e0c08f68dc967bc1bdf351b7335e6573b8d4d",
+      "snr": 48.9,
+      "source": "LL-Q150 (fra)-Poslovitch-différent.wav"
     },
     "difficult": {
       "author": "Vion Nicolas",
@@ -1450,6 +3412,17 @@
       "sha256": "71135553d7159e116bcc8b686936e20f70ee025b5bd44138cfdc42f67a40f0ab",
       "snr": 51.3,
       "source": "Fr-dîner.ogg"
+    },
+    "direction": {
+      "author": "Althea81",
+      "file": "direction.mp3",
+      "gain": 2.2,
+      "gainPhone": -2.7,
+      "lead": 169,
+      "matches": "direction",
+      "sha256": "668e40c7df5910fca5351111ccf451aafc8a6f319b91819150db1951eff636d8",
+      "snr": 51.2,
+      "source": "LL-Q150 (fra)-Althea81-direction.wav"
     },
     "dirty": {
       "author": "Vion Nicolas",
@@ -1593,6 +3566,17 @@
       "snr": 51.2,
       "source": "LL-Q150 (fra)-Poslovitch-conducteur.wav"
     },
+    "dry": {
+      "author": "Poslovitch",
+      "file": "dry.mp3",
+      "gain": 2.7,
+      "gainPhone": -0.5,
+      "lead": 156,
+      "matches": "sec",
+      "sha256": "414d14de5bf4543facf13af590a72f25cd6807442a1d725f46dbf597203ef689",
+      "snr": 51.8,
+      "source": "LL-Q150 (fra)-Poslovitch-sec.wav"
+    },
     "ear": {
       "author": "Vion Nicolas",
       "file": "ear.mp3",
@@ -1625,6 +3609,17 @@
       "sha256": "3629ad84a6259a04268fd598d5e1288d6237d8841eb7ca09267763a5ffba0166",
       "snr": 51.3,
       "source": "Fr-gagner.ogg"
+    },
+    "east": {
+      "author": "Poslovitch",
+      "file": "east.mp3",
+      "gain": -0.3,
+      "gainPhone": -3.1,
+      "lead": 262,
+      "matches": "est",
+      "sha256": "f78112d02198200948d4588c7e929eebcdaa5f107900911b44ae93ea6706dfc3",
+      "snr": 56.8,
+      "source": "LL-Q150 (fra)-Poslovitch-est.wav"
     },
     "easy": {
       "author": "Vion Nicolas",
@@ -1659,6 +3654,17 @@
       "snr": 42.4,
       "source": "Fr-œuf.ogg"
     },
+    "election": {
+      "author": "Poslovitch",
+      "file": "election.mp3",
+      "gain": 2.5,
+      "gainPhone": 0.9,
+      "lead": 248,
+      "matches": "élection",
+      "sha256": "5900f0057c125163d07612bbc694e4d4b34bf97c76bc8714096630e273a9e20c",
+      "snr": 49.9,
+      "source": "LL-Q150 (fra)-Poslovitch-élection.wav"
+    },
     "email": {
       "author": "Sartus85",
       "file": "email.mp3",
@@ -1692,6 +3698,39 @@
       "snr": 64.5,
       "source": "LL-Q150 (fra)-Sartus85-employeur.wav"
     },
+    "empty": {
+      "author": "Sartus85",
+      "file": "empty.mp3",
+      "gain": 8.9,
+      "gainPhone": 12.8,
+      "lead": 69,
+      "matches": "vide",
+      "sha256": "53389c9a51031133eda767c444e46c54ee682f2426239bff4a641a476542bc92",
+      "snr": 55.4,
+      "source": "LL-Q150 (fra)-Sartus85-vide.wav"
+    },
+    "engine": {
+      "author": "Poslovitch",
+      "file": "engine.mp3",
+      "gain": 1.3,
+      "gainPhone": -0.6,
+      "lead": 204,
+      "matches": "moteur",
+      "sha256": "5c228efcf3df50466bb8dcb7474ef87d99033c222907cbc7a61191239dbcf273",
+      "snr": 55.8,
+      "source": "LL-Q150 (fra)-Poslovitch-moteur.wav"
+    },
+    "enough": {
+      "author": "Poslovitch",
+      "file": "enough.mp3",
+      "gain": 3.0,
+      "gainPhone": -3.1,
+      "lead": 207,
+      "matches": "assez",
+      "sha256": "dd80dcf65c732414936638c6b64ba8b6811b7260c39b2eab911f4ca24defe024",
+      "snr": 53.3,
+      "source": "LL-Q150 (fra)-Poslovitch-assez.wav"
+    },
     "enter": {
       "author": "Vion Nicolas",
       "file": "enter.mp3",
@@ -1703,6 +3742,16 @@
       "snr": 44.5,
       "source": "Fr-entrer.ogg"
     },
+    "equal": {
+      "author": "Helenou66",
+      "file": "equal.mp3",
+      "gain": -1.1,
+      "gainPhone": 0.4,
+      "lead": 187,
+      "matches": "égal",
+      "sha256": "956c53f42e79b6566e6ba8bf6cd39c19f46488b8eb1051a7e6ed7ae8cf27800a",
+      "source": "LL-Q150 (fra)-Helenou66-égal.wav"
+    },
     "evening": {
       "author": "Vion Nicolas",
       "file": "evening.mp3",
@@ -1713,6 +3762,17 @@
       "sha256": "3476b8bc872c13a53b124fd96e9a20e03a8cd25aa6db00062a5ce88682542bb7",
       "snr": 48.2,
       "source": "Fr-soir.ogg"
+    },
+    "every": {
+      "author": "Ben",
+      "file": "every.mp3",
+      "gain": 5.2,
+      "gainPhone": -1.1,
+      "lead": 167,
+      "matches": "chaque",
+      "sha256": "b8912384e2f58719b673a26c607bf0c62a62e4811f008acd31e67d8769625ccb",
+      "snr": 76.1,
+      "source": "LL-Q150 (fra)-Ben (Mathsou)-chaque.wav"
     },
     "exam": {
       "author": "Vion Nicolas",
@@ -1746,6 +3806,28 @@
       "sha256": "a4a5d9a7f8cb31a916d95d224be40107dedc01f08b44dd963de8f077d1d36e82",
       "snr": 51.2,
       "source": "Fr-cahier.ogg"
+    },
+    "exit": {
+      "author": "Poslovitch",
+      "file": "exit.mp3",
+      "gain": 4.2,
+      "gainPhone": 2.5,
+      "lead": 169,
+      "matches": "sortie",
+      "sha256": "bc412e64bc858f475e7b0b546ba24e0a69b07def848fbbf1d5b3d319e738d98f",
+      "snr": 52.2,
+      "source": "LL-Q150 (fra)-Poslovitch-sortie.wav"
+    },
+    "expensive": {
+      "author": "Poslovitch",
+      "file": "expensive.mp3",
+      "gain": 4.5,
+      "gainPhone": -2.8,
+      "lead": 228,
+      "matches": "cher",
+      "sha256": "443ba44ca4ec8250397bf98a51277322a9235fb0d941b2931d5dd445789f32fb",
+      "snr": 57.4,
+      "source": "LL-Q150 (fra)-Poslovitch-Cher.wav"
     },
     "extend": {
       "author": "Vion Nicolas",
@@ -1792,6 +3874,17 @@
       "snr": 50.9,
       "source": "Fr-famille.ogg"
     },
+    "far": {
+      "author": "Poslovitch",
+      "file": "far.mp3",
+      "gain": 0.5,
+      "gainPhone": 7.1,
+      "lead": 7,
+      "matches": "loin",
+      "sha256": "e42a409e664108d1c3afa94c94e37dba4a75a1ed37772a3fe564576f3e63d857",
+      "snr": 48.7,
+      "source": "LL-Q150 (fra)-Poslovitch-loin.wav"
+    },
     "fare": {
       "author": "Vion Nicolas",
       "file": "fare.mp3",
@@ -1836,6 +3929,17 @@
       "snr": 48.8,
       "source": "Fr-robinet.ogg"
     },
+    "fear": {
+      "author": "Poslovitch",
+      "file": "fear.mp3",
+      "gain": -1.8,
+      "gainPhone": -4.2,
+      "lead": 198,
+      "matches": "peur",
+      "sha256": "c3212971772238c11147f42025412b6d5066a5e49faae13812705d2fe76272ad",
+      "snr": 55.0,
+      "source": "LL-Q150 (fra)-Poslovitch-peur.wav"
+    },
     "fee": {
       "author": "Vion Nicolas",
       "file": "fee.mp3",
@@ -1870,6 +3974,17 @@
       "snr": 50.0,
       "source": "Fr-remplir.ogg"
     },
+    "find": {
+      "author": "Poslovitch",
+      "file": "find.mp3",
+      "gain": 3.2,
+      "gainPhone": 5.9,
+      "lead": 172,
+      "matches": "trouver",
+      "sha256": "1181c51705c2500d45b1db7f485a131dc7380c3d578eab0f43833ac2a4c38fd6",
+      "snr": 49.0,
+      "source": "LL-Q150 (fra)-Poslovitch-trouver.wav"
+    },
     "fine": {
       "author": "Vion Nicolas",
       "file": "fine.mp3",
@@ -1892,6 +4007,17 @@
       "snr": 48.3,
       "source": "Fr-doigt.ogg"
     },
+    "first": {
+      "author": "Poslovitch",
+      "file": "first.mp3",
+      "gain": -0.6,
+      "gainPhone": 3.6,
+      "lead": 204,
+      "matches": "premier",
+      "sha256": "03d0f16f8e69306305d2d892ec86433cd1ba12ed8110cde17c750482ffebec16",
+      "snr": 54.5,
+      "source": "LL-Q150 (fra)-Poslovitch-premier.wav"
+    },
     "fish": {
       "author": "Vion Nicolas",
       "file": "fish.mp3",
@@ -1902,6 +4028,17 @@
       "sha256": "cd0a5c16f70cdb49ae128ac4e203f54becaf6c7479938b624121c79faed6c280",
       "snr": 48.5,
       "source": "Fr-poisson.ogg"
+    },
+    "floor": {
+      "author": "Poslovitch",
+      "file": "floor.mp3",
+      "gain": -1.7,
+      "gainPhone": 0.1,
+      "lead": 203,
+      "matches": "sol",
+      "sha256": "17f25b39a71b5a1cae2da7f389b4eebb6eda0bde4ec9aced378ec33d0a2ddbbe",
+      "snr": 52.9,
+      "source": "LL-Q150 (fra)-Poslovitch-sol.wav"
     },
     "flour": {
       "author": "Vion Nicolas",
@@ -1935,6 +4072,17 @@
       "snr": 52.6,
       "source": "Fr-dossier.ogg"
     },
+    "follow": {
+      "author": "Poslovitch",
+      "file": "follow.mp3",
+      "gain": 1.1,
+      "gainPhone": -3.8,
+      "lead": 15,
+      "matches": "suivre",
+      "sha256": "d27f3cb4188ad5a9757a6f3a8b695e874540885ece23a969512e3d62ab8d2e82",
+      "snr": 44.3,
+      "source": "LL-Q150 (fra)-Poslovitch-suivre.wav"
+    },
     "food": {
       "author": "Vion Nicolas",
       "capPhone": 2.0,
@@ -1956,6 +4104,18 @@
       "sha256": "5f4ec5870866780f9aa8115a00561380a63b5b0ddb6206e5a90ad21237452fa8",
       "snr": 40.5,
       "source": "Fr-pied.ogg"
+    },
+    "for": {
+      "author": "Poslovitch",
+      "capPhone": 2.3,
+      "file": "for.mp3",
+      "gain": -0.4,
+      "gainPhone": 7.2,
+      "lead": 183,
+      "matches": "pour",
+      "sha256": "2f53fb16c41d69ea9309c89c8ca8aa53afe322368bb31b770781c2182229c9fd",
+      "snr": 48.5,
+      "source": "LL-Q150 (fra)-Poslovitch-pour.wav"
     },
     "forest": {
       "author": "Vion Nicolas",
@@ -1989,6 +4149,28 @@
       "sha256": "6d77a1d1d2fae872c8134f48fa6728d75a60d0dda58ebbba945f92da7e17714b",
       "snr": 51.5,
       "source": "Fr-formulaire.ogg"
+    },
+    "free-of-charge": {
+      "author": "Poslovitch",
+      "file": "free-of-charge.mp3",
+      "gain": 1.0,
+      "gainPhone": -0.4,
+      "lead": 129,
+      "matches": "gratuit",
+      "sha256": "515e2f2de944e457c1f343efa1c2c8d88923ae5f0d12e49a101d55165e648d7d",
+      "snr": 54.6,
+      "source": "LL-Q150 (fra)-Poslovitch-gratuit.wav"
+    },
+    "freedom": {
+      "author": "Poslovitch",
+      "file": "freedom.mp3",
+      "gain": -0.5,
+      "gainPhone": -5.5,
+      "lead": 213,
+      "matches": "liberté",
+      "sha256": "bd2a17662bbcb3e7885e162e0b37a33e617b43b80bf693db810cfec52ff654db",
+      "snr": 54.9,
+      "source": "LL-Q150 (fra)-Poslovitch-liberté.wav"
     },
     "fridge": {
       "author": "Vion Nicolas",
@@ -2045,6 +4227,17 @@
       "snr": 44.9,
       "source": "Fr-frire.ogg"
     },
+    "full": {
+      "author": "Poslovitch",
+      "file": "full.mp3",
+      "gain": 1.6,
+      "gainPhone": 0.5,
+      "lead": 75,
+      "matches": "plein",
+      "sha256": "7a06f23447bf40260a02bc72ba20328c3b14771ee5a368814efa9c39f17f3908",
+      "snr": 52.6,
+      "source": "LL-Q150 (fra)-Poslovitch-plein.wav"
+    },
     "furniture": {
       "author": "Pamputt",
       "file": "furniture.mp3",
@@ -2100,6 +4293,38 @@
       "snr": 50.8,
       "source": "Fr-donner.ogg"
     },
+    "gladly": {
+      "author": "WikiLucas00",
+      "file": "gladly.mp3",
+      "gainPhone": 2.8,
+      "lead": 208,
+      "matches": "volontiers",
+      "sha256": "e69cb728762884ab5e6746744171c07d64abdc06c2ef78bb43e364ee488c3bec",
+      "snr": 63.0,
+      "source": "LL-Q150 (fra)-WikiLucas00-volontiers.wav"
+    },
+    "gland": {
+      "author": "Eihel",
+      "file": "gland.mp3",
+      "gain": 0.8,
+      "gainPhone": -0.7,
+      "lead": 198,
+      "matches": "glande",
+      "sha256": "89724e968295c63c275a70f10736d825c1bf87f58d3853aad2a5d2f97cac61f2",
+      "snr": 57.4,
+      "source": "LL-Q150 (fra)-Eihel-glande.wav"
+    },
+    "glass": {
+      "author": "Poslovitch",
+      "file": "glass.mp3",
+      "gain": 2.5,
+      "gainPhone": 2.1,
+      "lead": 147,
+      "matches": "verre",
+      "sha256": "b57194f1a67aade9eb5ada2489c486683c3f929b43f670cee5c0c027080c4996",
+      "snr": 51.7,
+      "source": "LL-Q150 (fra)-Poslovitch-verre.wav"
+    },
     "glove": {
       "author": "Vion Nicolas",
       "file": "glove.mp3",
@@ -2122,6 +4347,17 @@
       "snr": 50.3,
       "source": "Fr-aller.ogg"
     },
+    "goal": {
+      "author": "Poslovitch",
+      "file": "goal.mp3",
+      "gain": 4.2,
+      "gainPhone": 3.5,
+      "lead": 176,
+      "matches": "but",
+      "sha256": "97f45ecfbc76304d1ddf11e0fa2a75d6d9c69097bbf506161c373c38e84df43c",
+      "snr": 46.6,
+      "source": "LL-Q150 (fra)-Poslovitch-but.wav"
+    },
     "good": {
       "author": "Vion Nicolas",
       "capPhone": 4.2,
@@ -2134,6 +4370,17 @@
       "snr": 50.0,
       "source": "Fr-bon.ogg"
     },
+    "government": {
+      "author": "Poslovitch",
+      "file": "government.mp3",
+      "gain": 6.2,
+      "gainPhone": 6.6,
+      "lead": 113,
+      "matches": "gouvernement",
+      "sha256": "5585509842e17bd66c3e0ff9bce3f3f5f485dc902262a65cd5dc7bf568d879e8",
+      "snr": 52.3,
+      "source": "LL-Q150 (fra)-Poslovitch-gouvernement.wav"
+    },
     "grade": {
       "author": "Vion Nicolas",
       "capPhone": 0.6,
@@ -2145,6 +4392,17 @@
       "sha256": "40adc4037e697a24ef11b68e90a5453e1c75307e3e4af7904c5098ae075f9a5a",
       "snr": 54.8,
       "source": "Fr-note.ogg"
+    },
+    "gram": {
+      "author": "Poslovitch",
+      "file": "gram.mp3",
+      "gain": 1.1,
+      "gainPhone": -1.7,
+      "lead": 169,
+      "matches": "gramme",
+      "sha256": "18105cf72ed47b957eb6f8ca1306ad3aba9c59b5cc8342648db408eda14f72e2",
+      "snr": 53.1,
+      "source": "LL-Q150 (fra)-Poslovitch-gramme.wav"
     },
     "grandfather": {
       "author": "Vion Nicolas",
@@ -2210,6 +4468,17 @@
       "sha256": "c557aedf89673943d63461e734e1e003fbbc10812ed177a3c27bb92f84892be0",
       "snr": 69.5,
       "source": "LL-Q150 (fra)-Sartus85-invité.wav"
+    },
+    "haggle": {
+      "author": "Jérémy-Günther-Heinz Jähnick",
+      "file": "haggle.mp3",
+      "gain": 4.6,
+      "gainPhone": 5.9,
+      "lead": 194,
+      "matches": "marchander",
+      "sha256": "9dcbfe2a1488ab7f960cb23a8f8aaac369ab108e5d73c60bfb5c2ae5743e2ca2",
+      "snr": 46.5,
+      "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-marchander.wav"
     },
     "hair": {
       "author": "Vion Nicolas",
@@ -2420,6 +4689,17 @@
       "snr": 50.6,
       "source": "Fr-hôpital.ogg"
     },
+    "hot": {
+      "author": "Poslovitch",
+      "file": "hot.mp3",
+      "gain": -0.4,
+      "gainPhone": -0.6,
+      "lead": 199,
+      "matches": "chaud",
+      "sha256": "30a380b817357a3344771a03511b66b2774fa492f395f1c20fe821addcca0186",
+      "snr": 50.9,
+      "source": "LL-Q150 (fra)-Poslovitch-chaud.wav"
+    },
     "hotel": {
       "author": "Vion Nicolas",
       "file": "hotel.mp3",
@@ -2478,6 +4758,17 @@
       "snr": 44.4,
       "source": "Fr-combien.ogg"
     },
+    "humid": {
+      "author": "Poslovitch",
+      "file": "humid.mp3",
+      "gain": 2.1,
+      "gainPhone": 7.7,
+      "lead": 213,
+      "matches": "humide",
+      "sha256": "9becbc3a645711d4f8dbe5bfc5e15039ca2aa393b8c0c1f863c9787774b087be",
+      "snr": 50.6,
+      "source": "LL-Q150 (fra)-Poslovitch-humide.wav"
+    },
     "hunger": {
       "author": "Vion Nicolas",
       "file": "hunger.mp3",
@@ -2533,6 +4824,17 @@
       "snr": 53.7,
       "source": "Fr-important.ogg"
     },
+    "in": {
+      "author": "Poslovitch",
+      "file": "in.mp3",
+      "gain": 0.7,
+      "gainPhone": 2.0,
+      "lead": 191,
+      "matches": "dans",
+      "sha256": "a1fe80ad4275355bf90689250fb4538b9e530a8712bb8428297bc55ffed943b9",
+      "snr": 53.5,
+      "source": "LL-Q150 (fra)-Poslovitch-dans.wav"
+    },
     "inside": {
       "author": "Vion Nicolas",
       "file": "inside.mp3",
@@ -2566,6 +4868,16 @@
       "snr": 47.2,
       "source": "Fr-veste.ogg"
     },
+    "jealousy": {
+      "author": "Poslovitch",
+      "file": "jealousy.mp3",
+      "gain": -0.3,
+      "gainPhone": -1.3,
+      "matches": "jalousie",
+      "sha256": "fd2dd258d1a934e5f63b4ce4dcba71d4ebe69b118b896609712d41c9e04fe687",
+      "snr": 50.5,
+      "source": "LL-Q150 (fra)-Poslovitch-jalousie.wav"
+    },
     "job-application": {
       "author": "Poslovitch",
       "file": "job-application.mp3",
@@ -2577,6 +4889,17 @@
       "snr": 50.2,
       "source": "LL-Q150 (fra)-Poslovitch-candidature.wav"
     },
+    "joint": {
+      "author": "Poslovitch",
+      "file": "joint.mp3",
+      "gain": 1.3,
+      "gainPhone": -2.6,
+      "lead": 217,
+      "matches": "articulation",
+      "sha256": "5c88ac8abf5ab4b6a06548bf769002e6ba1cb3cc868e1ad84ee7bd3d435aa4f5",
+      "snr": 54.4,
+      "source": "LL-Q150 (fra)-Poslovitch-articulation.wav"
+    },
     "journey": {
       "author": "Vion Nicolas",
       "file": "journey.mp3",
@@ -2587,6 +4910,17 @@
       "sha256": "83f7fa9ebda1f0119d5b4c00e1e79b6f87dbf0468410fb3be65b6873ab5c3cdf",
       "snr": 48.9,
       "source": "Fr-voyage.ogg"
+    },
+    "joy": {
+      "author": "Poslovitch",
+      "file": "joy.mp3",
+      "gain": 2.8,
+      "gainPhone": 6.0,
+      "lead": 214,
+      "matches": "joie",
+      "sha256": "91c7c21f05fb5251a6825c6d55f597c7bd488d1fd442a402e32d9d91cd0ae123",
+      "snr": 49.9,
+      "source": "LL-Q150 (fra)-Poslovitch-joie.wav"
     },
     "juice": {
       "author": "Poslovitch",
@@ -2620,6 +4954,28 @@
       "sha256": "b0601bf7e5a4e2e8fc6cfea24fbe1c4aa18eb94c5f8aca19ad0fea22e154c026",
       "snr": 50.2,
       "source": "Fr-clavier.ogg"
+    },
+    "kidney": {
+      "author": "Poslovitch",
+      "file": "kidney.mp3",
+      "gain": 2.8,
+      "gainPhone": 3.9,
+      "lead": 174,
+      "matches": "rein",
+      "sha256": "301c2f137bd86a17870589c8b549d2c3a3d8d6fdc79288f1dac15de03206809f",
+      "snr": 49.5,
+      "source": "LL-Q150 (fra)-Poslovitch-rein.wav"
+    },
+    "kilo": {
+      "author": "Helenou66",
+      "capPhone": 0.1,
+      "file": "kilo.mp3",
+      "gain": 2.6,
+      "gainPhone": 12.6,
+      "lead": 90,
+      "matches": "kilo",
+      "sha256": "402e4f6d2908169d4e4927cbcaf7da6c1f9bd62bba6225fc498c7c1359f658d9",
+      "source": "LL-Q150 (fra)-Helenou66-kilo.wav"
     },
     "knee": {
       "author": "Vion Nicolas",
@@ -2799,6 +5155,17 @@
       "snr": 44.0,
       "source": "Fr-bibliothèque.ogg"
     },
+    "life": {
+      "author": "Poslovitch",
+      "file": "life.mp3",
+      "gain": 3.0,
+      "gainPhone": 7.5,
+      "lead": 149,
+      "matches": "vie",
+      "sha256": "0b9274b2eff4487a30a5c9f85eb71dc402e054a69ad1b628d19cf11f42d4bbba",
+      "snr": 50.1,
+      "source": "LL-Q150 (fra)-Poslovitch-vie.wav"
+    },
     "light": {
       "author": "Vion Nicolas",
       "file": "light.mp3",
@@ -2809,6 +5176,17 @@
       "sha256": "2b32de53a91532a41c4c3e806b74dccbf13ea52ebadebb963d39ea1e2743d5e1",
       "snr": 49.4,
       "source": "Fr-lumière.ogg"
+    },
+    "lightning": {
+      "author": "Poslovitch",
+      "file": "lightning.mp3",
+      "gain": 3.4,
+      "gainPhone": -0.1,
+      "lead": 196,
+      "matches": "éclair",
+      "sha256": "ecaa8eb3096d3076f9401206470cfaa163dbb05f647823f97864d240aa3c55d4",
+      "snr": 53.2,
+      "source": "LL-Q150 (fra)-Poslovitch-éclair.wav"
     },
     "lightweight": {
       "author": "Vion Nicolas",
@@ -2854,6 +5232,17 @@
       "snr": 44.2,
       "source": "Fr-liste.ogg"
     },
+    "liter": {
+      "author": "Poslovitch",
+      "file": "liter.mp3",
+      "gain": 4.1,
+      "gainPhone": 5.5,
+      "lead": 37,
+      "matches": "litre",
+      "sha256": "6f5a9d22f48f8a1e8b1c6b9592f90d69c2508b5dd27fdda50ae1810a78118f35",
+      "snr": 49.9,
+      "source": "LL-Q150 (fra)-Poslovitch-litre.wav"
+    },
     "live": {
       "author": "Vion Nicolas",
       "file": "live.mp3",
@@ -2864,6 +5253,17 @@
       "sha256": "06938f43f6631aa31a726deffcaa3679cd9ce087c220dd0e9da9a70cc7049376",
       "snr": 47.5,
       "source": "Fr-habiter.ogg"
+    },
+    "liver": {
+      "author": "Poslovitch",
+      "file": "liver.mp3",
+      "gain": -0.3,
+      "gainPhone": 3.8,
+      "lead": 34,
+      "matches": "foie",
+      "sha256": "10bc043ed4dd939de3ba425f24bb8d5c6a943560d408b5242260287cac18a684",
+      "snr": 47.6,
+      "source": "LL-Q150 (fra)-Poslovitch-foie.wav"
     },
     "long": {
       "author": "Vion Nicolas",
@@ -2876,6 +5276,17 @@
       "snr": 49.4,
       "source": "Fr-long.ogg"
     },
+    "look": {
+      "author": "Poslovitch",
+      "file": "look.mp3",
+      "gain": -1.9,
+      "gainPhone": -3.1,
+      "lead": 45,
+      "matches": "regarder",
+      "sha256": "4cc546967c1673ef7e93262e7a0393e174edb5d39eff541c633f9e0b4c1b8237",
+      "snr": 49.7,
+      "source": "LL-Q150 (fra)-Poslovitch-regarder.wav"
+    },
     "loud": {
       "author": "Vion Nicolas",
       "file": "loud.mp3",
@@ -2887,6 +5298,17 @@
       "snr": 51.3,
       "source": "Fr-fort.ogg"
     },
+    "love": {
+      "author": "Poslovitch",
+      "file": "love.mp3",
+      "gain": 3.4,
+      "gainPhone": 6.6,
+      "lead": 198,
+      "matches": "amour",
+      "sha256": "cfca1d9c9e5763b17d610c591a7ba746274ce91b4c1d432ece19e86649fa5b7e",
+      "snr": 53.2,
+      "source": "LL-Q150 (fra)-Poslovitch-amour.wav"
+    },
     "luggage": {
       "author": "Eihel",
       "file": "luggage.mp3",
@@ -2897,6 +5319,18 @@
       "sha256": "a7031dc1414f9e8678d7a8611042afcd0d5f7c2eb511f9e218cf96cf300aea43",
       "snr": 53.1,
       "source": "LL-Q150 (fra)-Eihel-bagages.wav"
+    },
+    "lung": {
+      "author": "Poslovitch",
+      "capPhone": 3.8,
+      "file": "lung.mp3",
+      "gain": 2.2,
+      "gainPhone": 7.3,
+      "lead": 118,
+      "matches": "poumon",
+      "sha256": "3d9fba4dec45d23c2062442692ba81a395703e1fd6cd8d4f080800403b18ffd8",
+      "snr": 48.4,
+      "source": "LL-Q150 (fra)-Poslovitch-poumon.wav"
     },
     "make": {
       "author": "Vion Nicolas",
@@ -2984,6 +5418,17 @@
       "sha256": "eaed3b0341619286b9c9b4009bdcffd9cccb66aa7f45ce27eb646fa2b714258d",
       "snr": 42.7,
       "source": "Fr-médicament.ogg"
+    },
+    "menu": {
+      "author": "Poslovitch",
+      "file": "menu.mp3",
+      "gain": 3.9,
+      "gainPhone": 3.0,
+      "lead": 177,
+      "matches": "carte",
+      "sha256": "ed69d18834139313c62e1b4633f957158c6526c7c4575f42c53625b35a78a5c0",
+      "snr": 58.1,
+      "source": "LL-Q150 (fra)-Poslovitch-carte.wav"
     },
     "milk": {
       "author": "Vion Nicolas",
@@ -3162,6 +5607,17 @@
       "snr": 53.3,
       "source": "Fr-beaucoup.ogg"
     },
+    "muscle": {
+      "author": "Poslovitch",
+      "file": "muscle.mp3",
+      "gain": -0.1,
+      "gainPhone": -2.4,
+      "lead": 143,
+      "matches": "muscle",
+      "sha256": "43b79c81110b1b9e34639fe2245cb97059d087fa777d1ab38f6684bdeb7a4d51",
+      "snr": 54.2,
+      "source": "LL-Q150 (fra)-Poslovitch-muscle.wav"
+    },
     "music": {
       "author": "Vion Nicolas",
       "file": "music.mp3",
@@ -3185,6 +5641,17 @@
       "snr": 49.8,
       "source": "Fr-nom.ogg"
     },
+    "near": {
+      "author": "Poslovitch",
+      "file": "near.mp3",
+      "gain": 2.5,
+      "gainPhone": 1.8,
+      "lead": 113,
+      "matches": "près",
+      "sha256": "14342c6f23cd81b7e32e33c522b616a9efe4f0319f9709231b012830531d48c7",
+      "snr": 50.6,
+      "source": "LL-Q150 (fra)-Poslovitch-près.wav"
+    },
     "neck": {
       "author": "Vion Nicolas",
       "capPhone": 3.0,
@@ -3196,6 +5663,17 @@
       "sha256": "8c7969bda9dd7f620de674a4e54212b65b32c3853ef5815f148d70b252cf76d6",
       "snr": 45.1,
       "source": "Fr-cou.ogg"
+    },
+    "negative": {
+      "author": "Poslovitch",
+      "file": "negative.mp3",
+      "gain": 5.5,
+      "gainPhone": 7.8,
+      "lead": 182,
+      "matches": "négatif",
+      "sha256": "a02a2610dc688834e7c1f93bdda7200be48cd7105b28136d73bbf26862ac97b7",
+      "snr": 55.0,
+      "source": "LL-Q150 (fra)-Poslovitch-négatif.wav"
     },
     "neighbor": {
       "author": "Vion Nicolas",
@@ -3218,6 +5696,28 @@
       "sha256": "0f45737d15cdc8fd0db2347c2decd244bcf58f60fd352512c4224b2338fde08b",
       "snr": 46.3,
       "source": "Fr-quartier.ogg"
+    },
+    "nerve": {
+      "author": "Poslovitch",
+      "file": "nerve.mp3",
+      "gain": -2.2,
+      "gainPhone": -3.2,
+      "lead": 226,
+      "matches": "nerf",
+      "sha256": "25dbbbaaac4793d3cc949535df5cc6949ebe4569ea9c7deff22576a5038a1a24",
+      "snr": 52.9,
+      "source": "LL-Q150 (fra)-Poslovitch-nerf.wav"
+    },
+    "neutral": {
+      "author": "Poslovitch",
+      "file": "neutral.mp3",
+      "gain": 3.0,
+      "gainPhone": 5.5,
+      "lead": 177,
+      "matches": "neutre",
+      "sha256": "bbaef8cc67ebbccb37eaf8f77353509e1d3b128cd8dfa280cf76c146f90365f2",
+      "snr": 54.9,
+      "source": "LL-Q150 (fra)-Poslovitch-neutre.wav"
     },
     "never": {
       "author": "Vion Nicolas",
@@ -3253,6 +5753,17 @@
       "snr": 53.2,
       "source": "Fr-journal.ogg"
     },
+    "next": {
+      "author": "Poslovitch",
+      "file": "next.mp3",
+      "gain": 3.3,
+      "gainPhone": -0.4,
+      "lead": 116,
+      "matches": "prochain",
+      "sha256": "fa85d943603836e940911fef90987d6cbae9d220018b8b2b4e7268e0f7fd93ec",
+      "snr": 49.2,
+      "source": "LL-Q150 (fra)-Poslovitch-prochain.wav"
+    },
     "night": {
       "author": "Vion Nicolas",
       "file": "night.mp3",
@@ -3263,6 +5774,17 @@
       "sha256": "2fe212be5140eb4a28e42649c0ed7ed147480d7cfb6b75072b07aa0c28784160",
       "snr": 47.7,
       "source": "Fr-nuit.ogg"
+    },
+    "nipple": {
+      "author": "Eihel",
+      "file": "nipple.mp3",
+      "gain": 0.3,
+      "gainPhone": -2.1,
+      "lead": 188,
+      "matches": "mamelon",
+      "sha256": "3f199ba5bf9e0a4f209cdd7c55a6b816df4caff0cc3d76d759ed1d2863cb5fef",
+      "snr": 62.6,
+      "source": "LL-Q150 (fra)-Eihel-mamelon.wav"
     },
     "no": {
       "author": "Vion Nicolas",
@@ -3288,6 +5810,17 @@
       "snr": 53.6,
       "source": "Fr-midi.ogg"
     },
+    "north": {
+      "author": "Poslovitch",
+      "file": "north.mp3",
+      "gain": 5.1,
+      "gainPhone": 5.6,
+      "lead": 206,
+      "matches": "nord",
+      "sha256": "12b510f4d78497b295260585ce7d2a12817f9c416d43b19f6732d6f2abb42a94",
+      "snr": 53.4,
+      "source": "LL-Q150 (fra)-Poslovitch-Nord.wav"
+    },
     "nose": {
       "author": "Vion Nicolas",
       "file": "nose.mp3",
@@ -3298,6 +5831,17 @@
       "sha256": "ba63138cef8ba0dde7644962b100bc6a4922d4b0845c65bf19cc303a3096cad5",
       "snr": 49.1,
       "source": "Fr-nez.ogg"
+    },
+    "not": {
+      "author": "Poslovitch",
+      "file": "not.mp3",
+      "gain": 0.9,
+      "gainPhone": -0.1,
+      "lead": 160,
+      "matches": "pas",
+      "sha256": "0e04e13fc9e17c2f42e7ddbb9f08e47e31eef5c08c8de18b0960d9f09b231b84",
+      "snr": 54.9,
+      "source": "LL-Q150 (fra)-Poslovitch-pas.wav"
     },
     "notebook": {
       "author": "Vion Nicolas",
@@ -3364,6 +5908,17 @@
       "snr": 51.0,
       "source": "Fr-infirmière.ogg"
     },
+    "offer": {
+      "author": "Poslovitch",
+      "file": "offer.mp3",
+      "gain": 4.0,
+      "gainPhone": 3.1,
+      "lead": 203,
+      "matches": "promotion",
+      "sha256": "64b55ab7ece468ce22ade37feb12dc1488a2cc3c2f989634aa9036f0227d443d",
+      "snr": 55.8,
+      "source": "LL-Q150 (fra)-Poslovitch-promotion.wav"
+    },
     "office": {
       "author": "Vion Nicolas",
       "file": "office.mp3",
@@ -3408,6 +5963,17 @@
       "snr": 45.8,
       "source": "Fr-vieux.ogg"
     },
+    "on": {
+      "author": "Poslovitch",
+      "file": "on.mp3",
+      "gain": 1.7,
+      "gainPhone": -0.6,
+      "lead": 181,
+      "matches": "sur",
+      "sha256": "fc930a3744f14dbd35d8e6cec6a38d4e2c0e5b5114d2f941dd12b82921b46d43",
+      "snr": 47.8,
+      "source": "LL-Q150 (fra)-Poslovitch-sur.wav"
+    },
     "onion": {
       "author": "Vion Nicolas",
       "file": "onion.mp3",
@@ -3418,6 +5984,39 @@
       "sha256": "f3df00986e516efae75e5c36db471e6468bd760bdecf129d10d4bc749bb5c1b9",
       "snr": 46.5,
       "source": "Fr-oignon.ogg"
+    },
+    "only": {
+      "author": "Ben",
+      "file": "only.mp3",
+      "gain": 3.0,
+      "gainPhone": 3.0,
+      "lead": 148,
+      "matches": "seulement",
+      "sha256": "0c2de1331638ee2d9bb62654ee0be1cdccfa0c346befac6b544b3827d6fdda52",
+      "snr": 65.1,
+      "source": "LL-Q150 (fra)-Ben (Mathsou)-seulement.wav"
+    },
+    "open": {
+      "author": "Poslovitch",
+      "file": "open.mp3",
+      "gain": 1.7,
+      "gainPhone": 6.1,
+      "lead": 249,
+      "matches": "ouvrir",
+      "sha256": "5db6098e4ffefc1db5f58c2ef5f5777a5396dd94e47ddc11bca5ec716b1d5a54",
+      "snr": 49.1,
+      "source": "LL-Q150 (fra)-Poslovitch-ouvrir.wav"
+    },
+    "opposite": {
+      "author": "Poslovitch",
+      "file": "opposite.mp3",
+      "gain": 1.0,
+      "gainPhone": 3.7,
+      "lead": 203,
+      "matches": "opposé",
+      "sha256": "56563e93a344bc932560ca64229c0f169e3fdbee6c88d450d55c71dd8aab366e",
+      "snr": 50.4,
+      "source": "LL-Q150 (fra)-Poslovitch-opposé.wav"
     },
     "or": {
       "author": "Vion Nicolas",
@@ -3431,6 +6030,29 @@
       "snr": 47.3,
       "source": "Fr-ou.ogg"
     },
+    "order": {
+      "author": "Sartus85",
+      "file": "order.mp3",
+      "gain": 3.5,
+      "gainPhone": 7.6,
+      "lead": 141,
+      "matches": "commander",
+      "sha256": "2a484f6d20db76c72b7ddba9fb80678dc4a1d51d76295114dcb0e1665fe18f81",
+      "snr": 64.8,
+      "source": "LL-Q150 (fra)-Sartus85-commander.wav"
+    },
+    "other": {
+      "author": "Poslovitch",
+      "capPhone": 2.0,
+      "file": "other.mp3",
+      "gain": 0.9,
+      "gainPhone": 7.4,
+      "lead": 197,
+      "matches": "autre",
+      "sha256": "59278f8eaa98b251808dce46d666fa4333a829e81fe51093034eea88a1b6e8d4",
+      "snr": 50.9,
+      "source": "LL-Q150 (fra)-Poslovitch-autre.wav"
+    },
     "outdoors": {
       "author": "Vion Nicolas",
       "file": "outdoors.mp3",
@@ -3441,6 +6063,17 @@
       "sha256": "0787bca9c446b192e5781c9cb56984b0a5e7ce26f341997b7ac1082a9685f615",
       "snr": 48.5,
       "source": "Fr-dehors.ogg"
+    },
+    "ovary": {
+      "author": "Vaulque",
+      "file": "ovary.mp3",
+      "gain": -2.9,
+      "gainPhone": -7.7,
+      "lead": 193,
+      "matches": "ovaire",
+      "sha256": "36e07a797b72dd39523a9a4680800bd54ee39f4565bed0adc6cb0acb1c768d31",
+      "snr": 84.3,
+      "source": "LL-Q150 (fra)-Vaulque-ovaire.wav"
     },
     "oven": {
       "author": "Vion Nicolas",
@@ -3497,6 +6130,17 @@
       "snr": 47.1,
       "source": "Fr-poêle.ogg"
     },
+    "pancreas": {
+      "author": "DenisdeShawi",
+      "file": "pancreas.mp3",
+      "gain": 1.0,
+      "gainPhone": -2.6,
+      "lead": 274,
+      "matches": "pancréas",
+      "sha256": "95e48adf93e7316d4086de2e6d30bb70e91e82f187364d7cd3fea8e786aac234",
+      "snr": 63.1,
+      "source": "LL-Q150 (fra)-DenisdeShawi-pancréas.wav"
+    },
     "pants": {
       "author": "Vion Nicolas",
       "file": "pants.mp3",
@@ -3541,6 +6185,17 @@
       "snr": 48.8,
       "source": "Fr-parc.ogg"
     },
+    "partially": {
+      "author": "Poslovitch",
+      "file": "partially.mp3",
+      "gain": -0.1,
+      "gainPhone": -1.7,
+      "lead": 230,
+      "matches": "partiellement",
+      "sha256": "9dee397f7face7c1f0bf359b4432cb3c4db19a9cea4fcbcfb821673f55e3d2df",
+      "snr": 51.6,
+      "source": "LL-Q150 (fra)-Poslovitch-partiellement.wav"
+    },
     "passenger": {
       "author": "Vion Nicolas",
       "file": "passenger.mp3",
@@ -3572,6 +6227,17 @@
       "sha256": "bedf591b3e06eaba71d2679375e965b471b82ad2ee0ceff4e13cf3d943148515",
       "snr": 49.7,
       "source": "Fr-payer.ogg"
+    },
+    "peace": {
+      "author": "Poslovitch",
+      "file": "peace.mp3",
+      "gain": 0.2,
+      "gainPhone": -3.6,
+      "lead": 198,
+      "matches": "paix",
+      "sha256": "49371eb8cae268a6db5f629027ba22c9eed5e59504e5b43e737fa636a54c706b",
+      "snr": 53.9,
+      "source": "LL-Q150 (fra)-Poslovitch-paix.wav"
     },
     "pen": {
       "author": "Vion Nicolas",
@@ -3648,6 +6314,18 @@
       "snr": 49.2,
       "source": "Fr-oreiller.ogg"
     },
+    "place": {
+      "author": "Poslovitch",
+      "capPhone": 0.1,
+      "file": "place.mp3",
+      "gain": 3.3,
+      "gainPhone": 7.5,
+      "lead": 166,
+      "matches": "endroit",
+      "sha256": "3d4bdb24204897838da31879d6dc6468d374d9054981e09091d6793d551aac2b",
+      "snr": 53.8,
+      "source": "LL-Q150 (fra)-Poslovitch-endroit.wav"
+    },
     "plan": {
       "author": "Vion Nicolas",
       "file": "plan.mp3",
@@ -3715,6 +6393,29 @@
       "snr": 45.0,
       "source": "Fr-police.ogg"
     },
+    "poor": {
+      "author": "Poslovitch",
+      "capPhone": 1.8,
+      "file": "poor.mp3",
+      "gain": -1.7,
+      "gainPhone": 4.4,
+      "lead": 106,
+      "matches": "pauvre",
+      "sha256": "9f66cb97c1e95f41de248eaf663d64d9d9b2aecd9d095a071bedfb909fc3bc29",
+      "snr": 52.3,
+      "source": "LL-Q150 (fra)-Poslovitch-pauvre.wav"
+    },
+    "positive": {
+      "author": "Poslovitch",
+      "file": "positive.mp3",
+      "gain": 6.0,
+      "gainPhone": 7.7,
+      "lead": 265,
+      "matches": "positif",
+      "sha256": "87739c8337e4c2101d4d516697201b57a7a2f667ba10d6890f67e39e29a9174e",
+      "snr": 56.8,
+      "source": "LL-Q150 (fra)-Poslovitch-positif.wav"
+    },
     "post-office": {
       "author": "Vion Nicolas",
       "file": "post-office.mp3",
@@ -3771,6 +6472,17 @@
       "snr": 50.4,
       "source": "Fr-ordonnance.ogg"
     },
+    "price": {
+      "author": "Poslovitch",
+      "file": "price.mp3",
+      "gain": 2.4,
+      "gainPhone": 0.0,
+      "lead": 235,
+      "matches": "prix",
+      "sha256": "1f55f5ab1c4597f18aefaf9e4d810dec904357fa34b347e6237d4eda297b9034",
+      "snr": 51.8,
+      "source": "LL-Q150 (fra)-Poslovitch-prix.wav"
+    },
     "print": {
       "author": "Vion Nicolas",
       "file": "print.mp3",
@@ -3792,6 +6504,16 @@
       "sha256": "e35559ed491772ef0cc209588eccb8d2ccad4d7517169d4f5aa0491d706d412d",
       "snr": 49.1,
       "source": "LL-Q150 (fra)-Poslovitch-imprimante.wav"
+    },
+    "problem": {
+      "author": "Helenou66",
+      "file": "problem.mp3",
+      "gain": 0.5,
+      "gainPhone": 1.1,
+      "lead": 196,
+      "matches": "problème",
+      "sha256": "5fc7bdeea45d7060589ccfd6e769a939479a5c9c7cc26dd58695b3c20bb786b3",
+      "source": "LL-Q150 (fra)-Helenou66-problème.wav"
     },
     "profession": {
       "author": "Vion Nicolas",
@@ -3872,6 +6594,17 @@
       "snr": 49.6,
       "source": "Fr-démissionner.ogg"
     },
+    "rail": {
+      "author": "Poslovitch",
+      "file": "rail.mp3",
+      "gain": 0.5,
+      "gainPhone": -2.4,
+      "lead": 160,
+      "matches": "rail",
+      "sha256": "67e8d04298b5f958c261f180c4dd618763690fbbeca2eba6ced3c29d3fbc9813",
+      "snr": 54.4,
+      "source": "LL-Q150 (fra)-Poslovitch-rail.wav"
+    },
     "rain": {
       "author": "Vion Nicolas",
       "file": "rain.mp3",
@@ -3917,6 +6650,17 @@
       "snr": 46.2,
       "source": "Fr-prêt.ogg"
     },
+    "real": {
+      "author": "Poslovitch",
+      "file": "real.mp3",
+      "gain": 1.5,
+      "gainPhone": -0.5,
+      "lead": 192,
+      "matches": "réel",
+      "sha256": "c1f5631281db1ecf0be8838d38cc1754458d3fc3aa7681000372ea9458b51d49",
+      "snr": 51.2,
+      "source": "LL-Q150 (fra)-Poslovitch-réel.wav"
+    },
     "receipt": {
       "author": "Vion Nicolas",
       "file": "receipt.mp3",
@@ -3927,6 +6671,17 @@
       "sha256": "a9c83efe65e76716a1f5530339bb9db1db7c2fb8b4736e8d74a3a189b89e0133",
       "snr": 49.8,
       "source": "Fr-reçu.ogg"
+    },
+    "receive": {
+      "author": "Poslovitch",
+      "file": "receive.mp3",
+      "gain": 1.9,
+      "gainPhone": 2.6,
+      "lead": 205,
+      "matches": "recevoir",
+      "sha256": "760e2b536a92d1c1e7669aa96f8a36232fa13dfd4d0292a2610bdcd0a8cc2035",
+      "snr": 51.5,
+      "source": "LL-Q150 (fra)-Poslovitch-recevoir.wav"
     },
     "recover": {
       "author": "Vion Nicolas",
@@ -4004,6 +6759,17 @@
       "snr": 45.1,
       "source": "LL-Q150 (fra)-Poslovitch-télécommande.wav"
     },
+    "repair": {
+      "author": "Poslovitch",
+      "file": "repair.mp3",
+      "gain": -0.3,
+      "gainPhone": -2.0,
+      "lead": 23,
+      "matches": "réparer",
+      "sha256": "076ca145eecddbadae96767ee92d808d43bfd4256cb0779278641ac86a7f7690",
+      "snr": 55.6,
+      "source": "LL-Q150 (fra)-Poslovitch-réparer.wav"
+    },
     "reply": {
       "author": "Vion Nicolas",
       "file": "reply.mp3",
@@ -4014,6 +6780,18 @@
       "sha256": "463bdca0b88f99528faef4ddc203bc010755d2868f2e4aab9c1f2b20a9ac0305",
       "snr": 49.2,
       "source": "Fr-répondre.ogg"
+    },
+    "reserve": {
+      "author": "Lepticed7",
+      "file": "reserve.mp3",
+      "gain": 6.6,
+      "gainPhone": 1.2,
+      "lead": 179,
+      "license": "CC0",
+      "matches": "réserver",
+      "sha256": "818d7ce17339133ec2966e6b79ad1012bb69d6a70916cc6e9af6c5332d8eebbe",
+      "snr": 57.9,
+      "source": "LL-Q150 (fra)-Lepticed7-réserver.wav"
     },
     "restaurant": {
       "author": "Poslovitch",
@@ -4037,6 +6815,16 @@
       "snr": 50.0,
       "source": "Fr-riz.ogg"
     },
+    "rich": {
+      "author": "Helenou66",
+      "file": "rich.mp3",
+      "gain": 4.5,
+      "gainPhone": 6.6,
+      "lead": 164,
+      "matches": "riche",
+      "sha256": "fe7ea3f2334b3fb9ad8e9132fb65b20afbd42510835b08d09dcfdaf5b66002a2",
+      "source": "LL-Q150 (fra)-Helenou66-riche.wav"
+    },
     "ring": {
       "author": "Vion Nicolas",
       "file": "ring.mp3",
@@ -4047,6 +6835,17 @@
       "sha256": "d97f521685eea9d9f76c756af0b30412ceed3fd919f1b0c6269fd0c6a55bc5a7",
       "snr": 46.2,
       "source": "Fr-sonner.ogg"
+    },
+    "ripe": {
+      "author": "Poslovitch",
+      "file": "ripe.mp3",
+      "gain": 2.1,
+      "gainPhone": 0.7,
+      "lead": 244,
+      "matches": "mûr",
+      "sha256": "bcd350ad60a8b65ace0cce25e4518d518abb5479dec081bcbd5ce3eb3c106a4d",
+      "snr": 46.3,
+      "source": "LL-Q150 (fra)-Poslovitch-mûr.wav"
     },
     "river": {
       "author": "Vion Nicolas",
@@ -4069,6 +6868,17 @@
       "snr": 41.8,
       "source": "Fr-pièce.ogg"
     },
+    "sadness": {
+      "author": "Poslovitch",
+      "file": "sadness.mp3",
+      "gain": 1.6,
+      "gainPhone": -3.7,
+      "lead": 222,
+      "matches": "tristesse",
+      "sha256": "e936fe45c60d23713c8e313b0cefb61f0524fd21cbd418b8420505d2c9e329e6",
+      "snr": 51.1,
+      "source": "LL-Q150 (fra)-Poslovitch-tristesse.wav"
+    },
     "salary": {
       "author": "Vion Nicolas",
       "file": "salary.mp3",
@@ -4088,6 +6898,17 @@
       "sha256": "3fa9925301ef47b82af6d7c48ac1ef8c15ca04a74bc6e6011a8ccb3fe69a85d0",
       "snr": 41.9,
       "source": "Fr-sel.ogg"
+    },
+    "same": {
+      "author": "Poslovitch",
+      "file": "same.mp3",
+      "gain": 0.5,
+      "gainPhone": -1.9,
+      "lead": 220,
+      "matches": "même",
+      "sha256": "c5e31fc78c0a28870eac1f4dee4f4ced0e9224bff627fe0f100c349aeab0c724",
+      "snr": 47.5,
+      "source": "LL-Q150 (fra)-Poslovitch-même.wav"
     },
     "sauce": {
       "author": "Vion Nicolas",
@@ -4122,6 +6943,16 @@
       "snr": 46.1,
       "source": "Fr-dire.ogg"
     },
+    "scales": {
+      "author": "Sartus85",
+      "file": "scales.mp3",
+      "gain": 6.9,
+      "gainPhone": 5.5,
+      "matches": "balance",
+      "sha256": "3fcb30012de9f68484979f57e30b375df6fdd69f5898d7b30af703f47e9ff498",
+      "snr": 68.8,
+      "source": "LL-Q150 (fra)-Sartus85-balance.wav"
+    },
     "school": {
       "author": "Vion Nicolas",
       "file": "school.mp3",
@@ -4154,6 +6985,17 @@
       "snr": 48.5,
       "source": "Fr-mer.ogg"
     },
+    "search": {
+      "author": "Poslovitch",
+      "file": "search.mp3",
+      "gain": 1.9,
+      "gainPhone": -4.2,
+      "lead": 131,
+      "matches": "chercher",
+      "sha256": "fb1f563f1272e74ecad029952bd2c4373ed35a6c201f01f611efe88b7ebc69aa",
+      "snr": 46.9,
+      "source": "LL-Q150 (fra)-Poslovitch-chercher.wav"
+    },
     "see": {
       "author": "Vion Nicolas",
       "file": "see.mp3",
@@ -4165,6 +7007,28 @@
       "snr": 44.9,
       "source": "Fr-voir.ogg"
     },
+    "sell": {
+      "author": "Poslovitch",
+      "file": "sell.mp3",
+      "gain": 2.5,
+      "gainPhone": 5.3,
+      "lead": 152,
+      "matches": "vendre",
+      "sha256": "eb821f9509f2da2fcd8aebda28f542c2fd597c4e01f1ebefce7c6fab0f01c4d3",
+      "snr": 44.7,
+      "source": "LL-Q150 (fra)-Poslovitch-vendre.wav"
+    },
+    "send": {
+      "author": "Poslovitch",
+      "file": "send.mp3",
+      "gain": 1.8,
+      "gainPhone": 6.2,
+      "lead": 188,
+      "matches": "envoyer",
+      "sha256": "7daab64efc799b2d24b48f674974f1efba3e667e61e4e947fd90b155b35de4e7",
+      "snr": 44.0,
+      "source": "LL-Q150 (fra)-Poslovitch-envoyer.wav"
+    },
     "sentence": {
       "author": "Vion Nicolas",
       "file": "sentence.mp3",
@@ -4175,6 +7039,17 @@
       "sha256": "a91b40e56523a51fd64aafdb84de7fcaee40f08b8f21dbbb253fe4ba71b9e4b4",
       "snr": 47.9,
       "source": "Fr-phrase.ogg"
+    },
+    "shame": {
+      "author": "Poslovitch",
+      "file": "shame.mp3",
+      "gain": 4.6,
+      "gainPhone": 4.9,
+      "lead": 184,
+      "matches": "honte",
+      "sha256": "de4cf6ce815f1e8d2cfa10a703e45990b69fe7ddf8174d560ed989f7a02d7806",
+      "snr": 47.6,
+      "source": "LL-Q150 (fra)-Poslovitch-honte.wav"
     },
     "shampoo": {
       "author": "WikiLucas00",
@@ -4253,6 +7128,39 @@
       "snr": 47.0,
       "source": "Fr-chaussure.ogg"
     },
+    "shop-assistant": {
+      "author": "Sartus85",
+      "capPhone": 1.7,
+      "file": "shop-assistant.mp3",
+      "gain": 3.5,
+      "gainPhone": 6.3,
+      "lead": 160,
+      "matches": "vendeur",
+      "sha256": "7d6ce5e0dbf58a1e00dd08469ac1ce6540f633aa07648692f8e125aa0cca3702",
+      "snr": 76.5,
+      "source": "LL-Q150 (fra)-Sartus85-vendeur.wav"
+    },
+    "shop-assistant-f": {
+      "author": "Jérémy-Günther-Heinz Jähnick",
+      "file": "shop-assistant-f.mp3",
+      "gain": 1.0,
+      "gainPhone": 2.4,
+      "lead": 106,
+      "matches": "vendeuse",
+      "sha256": "bc913244c58540e2e599bf3e9994c348685d05c54cc32f1d79a1e699521c0689",
+      "snr": 49.3,
+      "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-vendeuse.wav"
+    },
+    "shopping-cart": {
+      "author": "Poslovitch",
+      "file": "shopping-cart.mp3",
+      "gainPhone": -1.0,
+      "lead": 117,
+      "matches": "chariot",
+      "sha256": "5a10daa47087e153b1674d3ecc1ad3e0d84ba4069968849c03d1ad850456405b",
+      "snr": 45.3,
+      "source": "LL-Q150 (fra)-Poslovitch-chariot.wav"
+    },
     "short": {
       "author": "Vion Nicolas",
       "capPhone": 2.0,
@@ -4320,6 +7228,16 @@
       "snr": 49.7,
       "source": "Fr-signature.ogg"
     },
+    "similar": {
+      "author": "Sartus85",
+      "file": "similar.mp3",
+      "gain": 6.3,
+      "gainPhone": 5.3,
+      "matches": "similaire",
+      "sha256": "06e9f593e5ed68ddeaf2b7ee473ead574920eeebfca47de03b77c224387b4495",
+      "snr": 56.1,
+      "source": "LL-Q150 (fra)-Sartus85-similaire.wav"
+    },
     "sink": {
       "author": "Poslovitch",
       "file": "sink.mp3",
@@ -4352,6 +7270,17 @@
       "sha256": "14a0a3ddc2f37e1d848985c677693876b1082695f5b8aae445dae0f7065965ac",
       "snr": 50.1,
       "source": "LL-Q150 (fra)-Poslovitch-s'asseoir.wav"
+    },
+    "size": {
+      "author": "Poslovitch",
+      "file": "size.mp3",
+      "gain": 0.7,
+      "gainPhone": -6.2,
+      "lead": 203,
+      "matches": "taille",
+      "sha256": "26b2814064dc6f8656c0ebbbcdca6c3487e68e3c0f8e7b6528f61ec6d7495be1",
+      "snr": 49.4,
+      "source": "LL-Q150 (fra)-Poslovitch-taille.wav"
     },
     "skin": {
       "author": "Vion Nicolas",
@@ -4487,6 +7416,17 @@
       "snr": 45.5,
       "source": "Fr-doux.ogg"
     },
+    "some": {
+      "author": "Poslovitch",
+      "file": "some.mp3",
+      "gain": 3.2,
+      "gainPhone": 2.4,
+      "lead": 155,
+      "matches": "quelques",
+      "sha256": "b50ed1f3bb9fe7e324689e0ce53d5956a857857070b6f9e5b58e33795d5c0cdc",
+      "snr": 46.5,
+      "source": "LL-Q150 (fra)-Poslovitch-quelques.wav"
+    },
     "sometimes": {
       "author": "Vion Nicolas",
       "file": "sometimes.mp3",
@@ -4508,6 +7448,17 @@
       "sha256": "36907c4bcdc20b7fc828efb5382682cea89da2e4d4fb6db10fe7db075dff2a44",
       "snr": 48.4,
       "source": "Fr-fils.ogg"
+    },
+    "song": {
+      "author": "Poslovitch",
+      "file": "song.mp3",
+      "gain": 4.1,
+      "gainPhone": -0.6,
+      "lead": 232,
+      "matches": "chanson",
+      "sha256": "574ca57b648efe08ebc30a4a7e7039abd088314cfb96fc49f58c3ebf4b6cd3b3",
+      "snr": 43.4,
+      "source": "LL-Q150 (fra)-Poslovitch-chanson.wav"
     },
     "soon": {
       "author": "Vion Nicolas",
@@ -4531,6 +7482,17 @@
       "snr": 43.9,
       "source": "Fr-soupe.ogg"
     },
+    "south": {
+      "author": "Poslovitch",
+      "file": "south.mp3",
+      "gain": 6.4,
+      "gainPhone": 2.1,
+      "lead": 182,
+      "matches": "sud",
+      "sha256": "4e25257e69a7224ce6a4985c9f548463a51dfb5205be49901fa29064557b098d",
+      "snr": 44.6,
+      "source": "LL-Q150 (fra)-Poslovitch-Sud.wav"
+    },
     "speak": {
       "author": "Vion Nicolas",
       "file": "speak.mp3",
@@ -4541,6 +7503,28 @@
       "sha256": "e0281da8540c3e6be445711c28a80f5480fe939221ebf3ce0a4fbd3679e30a19",
       "snr": 47.2,
       "source": "Fr-parler.ogg"
+    },
+    "spleen": {
+      "author": "Poslovitch",
+      "file": "spleen.mp3",
+      "gain": 1.6,
+      "gainPhone": -0.7,
+      "lead": 168,
+      "matches": "rate",
+      "sha256": "d5efa9e63e2cbb929ee91142b228c29f10835c10fd74310cab7a5579a3796ce7",
+      "snr": 53.3,
+      "source": "LL-Q150 (fra)-Poslovitch-rate.wav"
+    },
+    "splint": {
+      "author": "Poslovitch",
+      "file": "splint.mp3",
+      "gain": 4.8,
+      "gainPhone": 3.8,
+      "lead": 41,
+      "matches": "attelle",
+      "sha256": "e5010aa330078a418aae1d171ce013b2d926a23636bb919d3b5b63e48a0fb759",
+      "snr": 47.6,
+      "source": "LL-Q150 (fra)-Poslovitch-attelle.wav"
     },
     "sponge": {
       "author": "Vion Nicolas",
@@ -4576,6 +7560,16 @@
       "snr": 49.7,
       "source": "Fr-escalier.ogg"
     },
+    "stall": {
+      "author": "VictorDtmtc",
+      "file": "stall.mp3",
+      "gain": 3.8,
+      "gainPhone": 2.9,
+      "lead": 274,
+      "matches": "étal",
+      "sha256": "06370bef8d9c66a8477bcfa29d63f0881d87247ff25f9d7586b3369fd8ce467d",
+      "source": "LL-Q150 (fra)-VictorDtmtc-étal.wav"
+    },
     "star": {
       "author": "Vion Nicolas",
       "file": "star.mp3",
@@ -4596,6 +7590,17 @@
       "sha256": "7eeb1a8e70389478b8e3f05dd95352b7cff21115c1ff3ad97930f1c62f476f52",
       "snr": 48.8,
       "source": "Fr-commencer.ogg"
+    },
+    "stick": {
+      "author": "Poslovitch",
+      "file": "stick.mp3",
+      "gain": 2.5,
+      "gainPhone": 5.3,
+      "lead": 190,
+      "matches": "bâton",
+      "sha256": "94d16eb100051de776320ddc4b1b4d2bec16c0108b80d7b6607258236e0f42fe",
+      "snr": 48.3,
+      "source": "LL-Q150 (fra)-Poslovitch-bâton.wav"
     },
     "still": {
       "author": "Vion Nicolas",
@@ -4631,6 +7636,17 @@
       "snr": 47.8,
       "source": "Fr-ventre.ogg"
     },
+    "stomach-organ": {
+      "author": "Poslovitch",
+      "file": "stomach-organ.mp3",
+      "gain": 0.3,
+      "gainPhone": -2.4,
+      "lead": 152,
+      "matches": "estomac",
+      "sha256": "7efd8fec507cd215cc17f5969eae4a85a391784b014a6389b839c242f3c043b4",
+      "snr": 53.8,
+      "source": "LL-Q150 (fra)-Poslovitch-estomac.wav"
+    },
     "stone": {
       "author": "Vion Nicolas",
       "file": "stone.mp3",
@@ -4642,6 +7658,17 @@
       "snr": 47.7,
       "source": "Fr-pierre.ogg"
     },
+    "stop": {
+      "author": "Poslovitch",
+      "file": "stop.mp3",
+      "gain": 2.1,
+      "gainPhone": -3.4,
+      "lead": 190,
+      "matches": "arrêter",
+      "sha256": "70f6499b8af1e7e008bfbea506623420cf0ea34901bf9b029c249631dbc303db",
+      "snr": 55.2,
+      "source": "LL-Q150 (fra)-Poslovitch-arrêter.wav"
+    },
     "store": {
       "author": "Vion Nicolas",
       "file": "store.mp3",
@@ -4652,6 +7679,28 @@
       "sha256": "d9987051fb2e379e3332f3c117e076428f3c2daab1a8af1ce00ed6a792632f9e",
       "snr": 53.6,
       "source": "Fr-magasin.ogg"
+    },
+    "storm": {
+      "author": "Sartus85",
+      "file": "storm.mp3",
+      "gain": 8.2,
+      "gainPhone": 7.9,
+      "lead": 150,
+      "matches": "tempête",
+      "sha256": "cc7abf278b98ee46d272c4b1787eec2569cc644b21ad4c35615e59a79412028a",
+      "snr": 71.6,
+      "source": "LL-Q150 (fra)-Sartus85-tempête.wav"
+    },
+    "story": {
+      "author": "Poslovitch",
+      "file": "story.mp3",
+      "gain": 3.1,
+      "gainPhone": 4.5,
+      "lead": 218,
+      "matches": "étage",
+      "sha256": "3c5982b00038469dbec7886419fb6eba5ae5baea06abe75537351a9316e5e154",
+      "snr": 59.6,
+      "source": "LL-Q150 (fra)-Poslovitch-étage.wav"
     },
     "stove": {
       "author": "Vion Nicolas",
@@ -4719,6 +7768,28 @@
       "snr": 43.5,
       "source": "Fr-soleil.ogg"
     },
+    "supermarket": {
+      "author": "Benoît Prieur",
+      "file": "supermarket.mp3",
+      "gain": -0.8,
+      "gainPhone": -4.6,
+      "lead": 232,
+      "matches": "supermarché",
+      "sha256": "da0cb69a1a1a007478ce62865c92fd8c392871b78397a7d4f0b118273aaa1279",
+      "snr": 77.6,
+      "source": "LL-Q150 (fra)-Benoît Prieur-supermarché.wav"
+    },
+    "surprise": {
+      "author": "Poslovitch",
+      "file": "surprise.mp3",
+      "gain": 2.1,
+      "gainPhone": -0.4,
+      "lead": 240,
+      "matches": "surprise",
+      "sha256": "9c2ed69baf9efdfef44ccd61163ef38f507cbf2b817e3d69cd024ae17bdb1a00",
+      "snr": 50.6,
+      "source": "LL-Q150 (fra)-Poslovitch-surprise.wav"
+    },
     "sweater": {
       "author": "Vion Nicolas",
       "file": "sweater.mp3",
@@ -4739,6 +7810,17 @@
       "sha256": "dc0d8f2094ce626a128881f49e66f497c0b5fb0bbdaa302634b392ec44e104d4",
       "snr": 50.8,
       "source": "LL-Q150 (fra)-Poslovitch-T-shirt.wav"
+    },
+    "table": {
+      "author": "Poslovitch",
+      "file": "table.mp3",
+      "gain": 0.6,
+      "gainPhone": 1.0,
+      "lead": 189,
+      "matches": "table",
+      "sha256": "c51ff4ff06a747e8375f5e0c5b02c2acfdafc956acd3f01a4aa99e322fb51e05",
+      "snr": 57.8,
+      "source": "LL-Q150 (fra)-Poslovitch-table.wav"
     },
     "take": {
       "author": "Vion Nicolas",
@@ -4852,6 +7934,17 @@
       "snr": 43.4,
       "source": "Fr-cela.ogg"
     },
+    "then": {
+      "author": "Ben",
+      "file": "then.mp3",
+      "gain": 9.4,
+      "gainPhone": 14.3,
+      "lead": 116,
+      "matches": "puis",
+      "sha256": "2411a7551dcbb588e6614642ed3414bf0d5f2f2bb3359ee7d65cc81e6929fb1e",
+      "snr": 58.8,
+      "source": "LL-Q150 (fra)-Ben (Mathsou)-puis.wav"
+    },
     "there": {
       "author": "Vion Nicolas",
       "file": "there.mp3",
@@ -4907,6 +8000,28 @@
       "snr": 51.1,
       "source": "Fr-gorge.ogg"
     },
+    "thunder": {
+      "author": "Poslovitch",
+      "file": "thunder.mp3",
+      "gain": -0.1,
+      "gainPhone": 3.3,
+      "lead": 201,
+      "matches": "tonnerre",
+      "sha256": "55070dd2204577433f4c45ed2cea77c1596344b9e55bbb9f197a04f2ae2be6eb",
+      "snr": 47.1,
+      "source": "LL-Q150 (fra)-Poslovitch-tonnerre.wav"
+    },
+    "thyroid": {
+      "author": "DenisdeShawi",
+      "file": "thyroid.mp3",
+      "gain": 0.3,
+      "gainPhone": -0.7,
+      "lead": 233,
+      "matches": "thyroïde",
+      "sha256": "ac3828cc10cfd3cfe77eb97c1a568b5b35253431680103fcd52930ac07fc8375",
+      "snr": 65.1,
+      "source": "LL-Q150 (fra)-DenisdeShawi-thyroïde.wav"
+    },
     "ticket": {
       "author": "Vion Nicolas",
       "file": "ticket.mp3",
@@ -4940,6 +8055,18 @@
       "snr": 46.9,
       "source": "Fr-temps.ogg"
     },
+    "tip": {
+      "author": "Poslovitch",
+      "capPhone": 0.2,
+      "file": "tip.mp3",
+      "gain": 1.7,
+      "gainPhone": 6.8,
+      "lead": 215,
+      "matches": "pourboire",
+      "sha256": "2bb07a4175386ca48e08562d48b1878dc12852df58701c4f1e1d857c95e42aae",
+      "snr": 53.4,
+      "source": "LL-Q150 (fra)-Poslovitch-pourboire.wav"
+    },
     "tired": {
       "author": "Vion Nicolas",
       "file": "tired.mp3",
@@ -4949,6 +8076,62 @@
       "sha256": "1d2b08e39df0918d47ddc1e96fec30ac3e9da586c3cfee5813549e3b98d986bf",
       "snr": 46.2,
       "source": "Fr-fatigué.ogg"
+    },
+    "to-be-alive": {
+      "author": "Poslovitch",
+      "file": "to-be-alive.mp3",
+      "gain": 0.8,
+      "gainPhone": 4.7,
+      "lead": 94,
+      "matches": "vivre",
+      "sha256": "89bf338917b3212d325f2c75c1086e032161f4477370a52a7b2004730e8cc25e",
+      "snr": 47.8,
+      "source": "LL-Q150 (fra)-Poslovitch-vivre.wav"
+    },
+    "to-be-born": {
+      "author": "Sartus85",
+      "file": "to-be-born.mp3",
+      "gain": 6.4,
+      "gainPhone": 7.4,
+      "lead": 193,
+      "matches": "naître",
+      "sha256": "9c852944aa3483f073b79ef788f0a52f314194d3bf8e362fb193ab31cf207c20",
+      "snr": 65.4,
+      "source": "LL-Q150 (fra)-Sartus85-naître.wav"
+    },
+    "to-break": {
+      "author": "Poslovitch",
+      "file": "to-break.mp3",
+      "gain": 0.2,
+      "gainPhone": -5.4,
+      "lead": 157,
+      "matches": "casser",
+      "sha256": "bb4316694c3c682d21a6611e09d5a839749517c40e3218ed201998ca10b09e35",
+      "snr": 54.8,
+      "source": "LL-Q150 (fra)-Poslovitch-casser.wav"
+    },
+    "to-come-back": {
+      "author": "Poslovitch",
+      "file": "to-come-back.mp3",
+      "gain": 0.3,
+      "gainPhone": 3.7,
+      "lead": 115,
+      "matches": "revenir",
+      "sha256": "e174936d8e1656e28da58b8893cad9855498ae8c978574808f1af075ee4640d0",
+      "snr": 49.8,
+      "source": "LL-Q150 (fra)-Poslovitch-revenir.wav"
+    },
+    "to-compare": {
+      "author": "Lepticed7",
+      "file": "to-compare.mp3",
+      "gain": 6.8,
+      "gainPhone": 3.3,
+      "lead": 121,
+      "license": "CC0",
+      "matches": "comparer",
+      "sha256": "b57943b728ed4741b36399a893df4bef9f8c1805938e542f68fda7d2d38c888a",
+      "snr": 57.2,
+      "source": "LL-Q150 (fra)-Lepticed7-comparer.wav"
     },
     "to-cough": {
       "author": "Vion Nicolas",
@@ -4973,6 +8156,29 @@
       "snr": 44.2,
       "source": "Fr-compter.ogg"
     },
+    "to-die": {
+      "author": "Poslovitch",
+      "capPhone": 1.5,
+      "file": "to-die.mp3",
+      "gain": -0.7,
+      "gainPhone": 6.6,
+      "lead": 85,
+      "matches": "mourir",
+      "sha256": "d5d9dd5706cda38daee8e5fc8959ebd5de90c25a4eca85b008dc348d9e8f43fd",
+      "snr": 46.0,
+      "source": "LL-Q150 (fra)-Poslovitch-mourir.wav"
+    },
+    "to-explain": {
+      "author": "Poslovitch",
+      "file": "to-explain.mp3",
+      "gain": 2.8,
+      "gainPhone": 1.2,
+      "lead": 160,
+      "matches": "expliquer",
+      "sha256": "4c01d018dd0b8b186c939f6c689573beba1bce29a53f1cac3cf0eafdf53d7cef",
+      "snr": 52.0,
+      "source": "LL-Q150 (fra)-Poslovitch-expliquer.wav"
+    },
     "to-finish": {
       "author": "Vion Nicolas",
       "file": "to-finish.mp3",
@@ -4984,6 +8190,17 @@
       "snr": 48.6,
       "source": "Fr-finir.ogg"
     },
+    "to-forget": {
+      "author": "Poslovitch",
+      "file": "to-forget.mp3",
+      "gain": -0.6,
+      "gainPhone": 5.0,
+      "lead": 183,
+      "matches": "oublier",
+      "sha256": "f78038d41df39d48749fdf97adcd5a6f68f65c45231b9588bbf6248630a9b48b",
+      "snr": 50.8,
+      "source": "LL-Q150 (fra)-Poslovitch-oublier.wav"
+    },
     "to-help": {
       "author": "Vion Nicolas",
       "file": "to-help.mp3",
@@ -4994,6 +8211,39 @@
       "sha256": "5e01827c7e4f92a601dc81a36d9e6c4c241dd4d9041c9774d96d5ce3666e7461",
       "snr": 48.7,
       "source": "Fr-aider.ogg"
+    },
+    "to-imagine": {
+      "author": "LuneMarine",
+      "file": "to-imagine.mp3",
+      "gain": -0.9,
+      "gainPhone": -3.6,
+      "matches": "imaginer",
+      "sha256": "a7cc5f91e315e96bbebd34501795e8b950648ad9cb9ce55a80317be77bd03f30",
+      "snr": 64.4,
+      "source": "LL-Q150 (fra)-LuneMarine (DSwissK)-imaginer.wav"
+    },
+    "to-invite": {
+      "author": "Sartus85",
+      "file": "to-invite.mp3",
+      "gain": 10.5,
+      "gainPhone": 10.0,
+      "lead": 176,
+      "matches": "inviter",
+      "sha256": "770310cb18fb4f95b35a8bdfdc3b294177d16b96a19cbf2790eb0306a3456fc2",
+      "snr": 58.1,
+      "source": "LL-Q150 (fra)-Sartus85-inviter.wav"
+    },
+    "to-lose": {
+      "author": "Poslovitch",
+      "capPhone": 0.5,
+      "file": "to-lose.mp3",
+      "gain": -1.6,
+      "gainPhone": 2.1,
+      "lead": 185,
+      "matches": "perdre",
+      "sha256": "010157c5cfbd093f85ad851e47d2a342d3427899b8038549ff685886bb3877d4",
+      "snr": 60.4,
+      "source": "LL-Q150 (fra)-Poslovitch-perdre.wav"
     },
     "to-practice": {
       "author": "Jérémy-Günther-Heinz Jähnick",
@@ -5017,6 +8267,60 @@
       "snr": 50.9,
       "source": "Fr-prononcer.ogg"
     },
+    "to-pull": {
+      "author": "Poslovitch",
+      "file": "to-pull.mp3",
+      "gain": 1.7,
+      "gainPhone": 2.1,
+      "lead": 170,
+      "matches": "tirer",
+      "sha256": "32fa3f4f90d2860b658badb8e1914170c49c829f83dc44507ef21ffe725d065e",
+      "snr": 51.0,
+      "source": "LL-Q150 (fra)-Poslovitch-tirer.wav"
+    },
+    "to-push": {
+      "author": "Poslovitch",
+      "file": "to-push.mp3",
+      "gainPhone": -1.5,
+      "lead": 160,
+      "matches": "pousser",
+      "sha256": "baca7fe78f5b55ceec3a5f2d6dbabace8221db70849f632a666ad5120465b6ee",
+      "snr": 50.3,
+      "source": "LL-Q150 (fra)-Poslovitch-pousser.wav"
+    },
+    "to-show": {
+      "author": "Poslovitch",
+      "file": "to-show.mp3",
+      "gain": 2.8,
+      "gainPhone": 4.3,
+      "lead": 276,
+      "matches": "montrer",
+      "sha256": "34357ec09e4c8e52ae33966a1d16e82cc0c4e0e42003329a275a9ad519c8447a",
+      "snr": 49.3,
+      "source": "LL-Q150 (fra)-Poslovitch-montrer.wav"
+    },
+    "to-solve": {
+      "author": "Sartus85",
+      "file": "to-solve.mp3",
+      "gain": 7.1,
+      "gainPhone": 7.4,
+      "lead": 45,
+      "matches": "résoudre",
+      "sha256": "028769e24f060cb59927e430d1f9582b2e7501133d7db800caf01806eb0d8f40",
+      "snr": 66.0,
+      "source": "LL-Q150 (fra)-Sartus85-résoudre.wav"
+    },
+    "to-teach": {
+      "author": "Jérémy-Günther-Heinz Jähnick",
+      "file": "to-teach.mp3",
+      "gain": 5.6,
+      "gainPhone": 4.4,
+      "lead": 183,
+      "matches": "enseigner",
+      "sha256": "d66d8813f92cc6027af870fafb2da23d61388ede5e62c7b4dd3f94569791f1a9",
+      "snr": 46.1,
+      "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-enseigner.wav"
+    },
     "to-try": {
       "author": "Vion Nicolas",
       "file": "to-try.mp3",
@@ -5027,6 +8331,29 @@
       "sha256": "b2a9b5666a48a557adaa25ca0a15d85c89679e62eb8ad539812998f6f0fbf6d1",
       "snr": 50.7,
       "source": "Fr-essayer.ogg"
+    },
+    "to-use": {
+      "author": "Lepticed7",
+      "file": "to-use.mp3",
+      "gain": 14.0,
+      "gainPhone": 8.7,
+      "lead": 52,
+      "license": "CC0",
+      "matches": "utiliser",
+      "sha256": "f060974529c874590cce2d25862d2fe3ae2a238dab9be632672dde014bcefac2",
+      "snr": 48.4,
+      "source": "LL-Q150 (fra)-Lepticed7-utiliser.wav"
+    },
+    "to-vote": {
+      "author": "Poslovitch",
+      "file": "to-vote.mp3",
+      "gain": 5.1,
+      "gainPhone": 8.0,
+      "lead": 99,
+      "matches": "voter",
+      "sha256": "657e917e238804599ea09f643b887309923950c4874f2a691b046a10183df804",
+      "snr": 59.0,
+      "source": "LL-Q150 (fra)-Poslovitch-voter.wav"
     },
     "to-work": {
       "author": "Vion Nicolas",
@@ -5094,6 +8421,18 @@
       "snr": 48.2,
       "source": "Fr-demain.ogg"
     },
+    "too": {
+      "author": "Poslovitch",
+      "capPhone": 1.9,
+      "file": "too.mp3",
+      "gain": 1.7,
+      "gainPhone": 7.7,
+      "lead": 261,
+      "matches": "trop",
+      "sha256": "62422dbaad6784dffb7547dd0ec25178cc82896e15c3b76d01179a6d3eb4572e",
+      "snr": 46.6,
+      "source": "LL-Q150 (fra)-Poslovitch-trop.wav"
+    },
     "tooth": {
       "author": "Vion Nicolas",
       "capPhone": 0.2,
@@ -5127,6 +8466,27 @@
       "sha256": "38846585cb0dfa7499e57e18f6e56d9384ebdfb991300e4ab2ae68beb5ef2ee7",
       "snr": 45.9,
       "source": "Fr-serviette.ogg"
+    },
+    "trader": {
+      "author": "Helenou66",
+      "file": "trader.mp3",
+      "gain": 0.1,
+      "gainPhone": -0.5,
+      "lead": 197,
+      "matches": "marchand",
+      "sha256": "ee315eb2bba41f62d2557f05a5aa4f771ebc267b4901dbc5cd9fcf00247d0371",
+      "source": "LL-Q150 (fra)-Helenou66-marchand.wav"
+    },
+    "trader-f": {
+      "author": "Jérémy-Günther-Heinz Jähnick",
+      "file": "trader-f.mp3",
+      "gain": 8.9,
+      "gainPhone": 5.5,
+      "lead": 162,
+      "matches": "marchande",
+      "sha256": "2bb2c4fa808d4cd1fa71975d0e8034dc2359413668acc9f6d5ac59c5df813474",
+      "snr": 51.1,
+      "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-marchande.wav"
     },
     "traffic-light": {
       "author": "Vion Nicolas",
@@ -5218,6 +8578,17 @@
       "snr": 50.1,
       "source": "Fr-camion.ogg"
     },
+    "turn": {
+      "author": "Poslovitch",
+      "file": "turn.mp3",
+      "gain": 0.7,
+      "gainPhone": 3.8,
+      "lead": 206,
+      "matches": "tourner",
+      "sha256": "05b52ac11d511b3b175ca81233ed9fe1ac0a06c6bb341f25749e2535ad48e45a",
+      "snr": 54.6,
+      "source": "LL-Q150 (fra)-Poslovitch-tourner.wav"
+    },
     "tv": {
       "author": "Vion Nicolas",
       "file": "tv.mp3",
@@ -5261,6 +8632,17 @@
       "sha256": "7d128a79f1d9cf524602b39b7b9759e524deae8f9945eaa6d281f12d4a3249c5",
       "snr": 44.2,
       "source": "Fr-oncle.ogg"
+    },
+    "under": {
+      "author": "Poslovitch",
+      "file": "under.mp3",
+      "gain": 5.8,
+      "gainPhone": 3.8,
+      "lead": 130,
+      "matches": "sous",
+      "sha256": "47eed82f3ea342c68c58ddebeb6db2b44ae3eced406e84ba0cb1ad56d247b31b",
+      "snr": 43.4,
+      "source": "LL-Q150 (fra)-Poslovitch-sous.wav"
     },
     "understand": {
       "author": "Vion Nicolas",
@@ -5361,6 +8743,28 @@
       "snr": 52.7,
       "source": "Fr-légume.ogg"
     },
+    "vein": {
+      "author": "Poslovitch",
+      "file": "vein.mp3",
+      "gain": -1.6,
+      "gainPhone": -7.3,
+      "lead": 265,
+      "matches": "veine",
+      "sha256": "5fc66cc50f12e3ef2b6ecf086fc41bf3a1ca8ebc24a801545808f42987af7f77",
+      "snr": 47.9,
+      "source": "LL-Q150 (fra)-Poslovitch-veine.wav"
+    },
+    "very": {
+      "author": "Poslovitch",
+      "file": "very.mp3",
+      "gain": 2.6,
+      "gainPhone": 0.7,
+      "lead": 206,
+      "matches": "très",
+      "sha256": "437e092255878b3eb8e0f5adf661cab3083175112ec746606f1ffd7e9bcfdc73",
+      "snr": 51.1,
+      "source": "LL-Q150 (fra)-Poslovitch-très.wav"
+    },
     "village": {
       "author": "Vion Nicolas",
       "file": "village.mp3",
@@ -5394,6 +8798,28 @@
       "snr": 47.1,
       "source": "Fr-attendre.ogg"
     },
+    "waiter": {
+      "author": "Poslovitch",
+      "file": "waiter.mp3",
+      "gain": 1.3,
+      "gainPhone": -0.3,
+      "lead": 167,
+      "matches": "serveur",
+      "sha256": "682f480610e1433881294b53701d0cbd3a4dd605eb267e6c8abb64c150f39c6e",
+      "snr": 54.4,
+      "source": "LL-Q150 (fra)-Poslovitch-serveur.wav"
+    },
+    "waiter-f": {
+      "author": "Poslovitch",
+      "file": "waiter-f.mp3",
+      "gain": 1.5,
+      "gainPhone": 2.6,
+      "lead": 239,
+      "matches": "serveuse",
+      "sha256": "e0f6506ae53cae06c395ce852ce9230e5a5c5faa2010e398ff37fe796b58fa6f",
+      "snr": 57.5,
+      "source": "LL-Q150 (fra)-Poslovitch-serveuse.wav"
+    },
     "wall": {
       "author": "Vion Nicolas",
       "file": "wall.mp3",
@@ -5415,6 +8841,28 @@
       "sha256": "b118186a3d8346701f1dbc97ebc0eb4c662a93715e1d77ab8ba2a4ca9a79c843",
       "snr": 47.0,
       "source": "Fr-portefeuille.ogg"
+    },
+    "want": {
+      "author": "Poslovitch",
+      "file": "want.mp3",
+      "gain": -1.7,
+      "gainPhone": 5.6,
+      "lead": 222,
+      "matches": "vouloir",
+      "sha256": "174231f784163680f1c7c2de5823fd6323af617496bc69bc9e788e2c02ff92f9",
+      "snr": 54.9,
+      "source": "LL-Q150 (fra)-Poslovitch-vouloir.wav"
+    },
+    "war": {
+      "author": "Poslovitch",
+      "file": "war.mp3",
+      "gain": 5.2,
+      "gainPhone": 2.9,
+      "lead": 132,
+      "matches": "guerre",
+      "sha256": "bbfadbded6049980b9b9f0e6ac447cd05b557686c6ad5d084b2a72e4b9a7ed7c",
+      "snr": 60.5,
+      "source": "LL-Q150 (fra)-Poslovitch-guerre.wav"
     },
     "wardrobe": {
       "author": "Vion Nicolas",
@@ -5482,6 +8930,28 @@
       "snr": 44.8,
       "source": "Fr-semaine.ogg"
     },
+    "weigh": {
+      "author": "Sartus85",
+      "file": "weigh.mp3",
+      "gain": 7.3,
+      "gainPhone": 9.9,
+      "lead": 173,
+      "matches": "peser",
+      "sha256": "1135d6e4402c47ec2584aab91e926218c49e57bb75069371a0eccf91cf222e99",
+      "snr": 63.5,
+      "source": "LL-Q150 (fra)-Sartus85-peser.wav"
+    },
+    "west": {
+      "author": "Althea81",
+      "file": "west.mp3",
+      "gain": 5.1,
+      "gainPhone": 0.5,
+      "lead": 120,
+      "matches": "ouest",
+      "sha256": "7ad64bef1d380918bf7cc26896bcf5140b646cb1a287ed473b232fee7b8101b6",
+      "snr": 49.7,
+      "source": "LL-Q150 (fra)-Althea81-ouest.wav"
+    },
     "what": {
       "author": "Poslovitch",
       "file": "what.mp3",
@@ -5492,6 +8962,18 @@
       "sha256": "ffc3dd19eb28552a1a3b9f127afb85836e0fa1114633e67c2480063aa995c07f",
       "snr": 48.5,
       "source": "LL-Q150 (fra)-Poslovitch-quoi.wav"
+    },
+    "wheel": {
+      "author": "Poslovitch",
+      "capPhone": 4.3,
+      "file": "wheel.mp3",
+      "gain": 4.9,
+      "gainPhone": 10.5,
+      "lead": 200,
+      "matches": "roue",
+      "sha256": "bb5e9cacebb5f0cd282bb92ec0e0fd65faa39b671512739724289e1d6a58b176",
+      "snr": 48.8,
+      "source": "LL-Q150 (fra)-Poslovitch-roue.wav"
     },
     "when": {
       "author": "Poslovitch",
@@ -5593,6 +9075,17 @@
       "snr": 53.3,
       "source": "Fr-fenêtre.ogg"
     },
+    "with": {
+      "author": "Poslovitch",
+      "file": "with.mp3",
+      "gain": 3.9,
+      "gainPhone": 0.6,
+      "lead": 210,
+      "matches": "avec",
+      "sha256": "c7980e267004acc603a0203f049a9183a4515fbf197b97d285ae5a4c4c0b7a28",
+      "snr": 49.5,
+      "source": "LL-Q150 (fra)-Poslovitch-avec.wav"
+    },
     "without": {
       "author": "Vion Nicolas",
       "file": "without.mp3",
@@ -5614,6 +9107,29 @@
       "sha256": "e93f19b9ec67bdff469ad6338d0c21962694dff48bd7a7bdcc86e23d78913e69",
       "snr": 47.3,
       "source": "Fr-femme.ogg"
+    },
+    "womb": {
+      "author": "DSwissK",
+      "capPhone": 1.6,
+      "file": "womb.mp3",
+      "gain": 11.0,
+      "gainPhone": 14.3,
+      "lead": 226,
+      "matches": "utérus",
+      "sha256": "f8b3d6a9d26df66ea2836b378d16b0034b4c5b1ccc1b070fe061e14e95d8ad22",
+      "snr": 72.8,
+      "source": "LL-Q150 (fra)-DSwissK-utérus.wav"
+    },
+    "wood": {
+      "author": "Poslovitch",
+      "capPhone": 0.9,
+      "file": "wood.mp3",
+      "gain": 0.6,
+      "gainPhone": 5.2,
+      "matches": "bois",
+      "sha256": "cb026cf32823fd47c9aa130ef85f9ce09ed7c29039f2004227f942a86b448c3d",
+      "snr": 48.4,
+      "source": "LL-Q150 (fra)-Poslovitch-bois.wav"
     },
     "word": {
       "author": "Vion Nicolas",
@@ -5645,6 +9161,17 @@
       "sha256": "1219e79c22943acf2613362a7312182181223fd8bd7cbd2f276cb73ef2f3b33f",
       "snr": 40.0,
       "source": "Fr-travailleur.ogg"
+    },
+    "worry": {
+      "author": "Sartus85",
+      "file": "worry.mp3",
+      "gain": 8.0,
+      "gainPhone": 7.4,
+      "lead": 166,
+      "matches": "inquiétude",
+      "sha256": "55de75e286cba43195879406e2d91b1eefde99d2fc3f0acbfef2c7ad15c75960",
+      "snr": 66.9,
+      "source": "LL-Q150 (fra)-Sartus85-inquiétude.wav"
     },
     "wound": {
       "author": "Vion Nicolas",

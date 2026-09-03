@@ -103,12 +103,14 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
         }
         .onAppear {
             answerFocused = !screenReaderOn
+            autoplayPrompt()
             #if DEBUG
             uitestStart()
             #endif
         }
         .onChange(of: current.index) { _, _ in
             answerFocused = !screenReaderOn
+            autoplayPrompt()
         }
         // why: one fire per answer — the trigger is "is a form owed", so a slip
         // and a miss both speak once, and the neutral state resets it.
@@ -120,6 +122,25 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
             // D5: leaving mid-word must silence.
             hushAnswer()
         }
+    }
+
+    // MARK: - Saying the question
+
+    /// Says the prompt as each question arrives, where the prompt is a name in
+    /// the language being learned (`promptVoice`). One fire per question, keyed
+    /// on the same index the card's identity is.
+    ///
+    /// No beat in front of it, unlike the answer's: nothing has just chimed, and
+    /// the question is what the learner is waiting for.
+    ///
+    /// `pronounceAloud` and not the card's own action: that one fires `.tap`,
+    /// which outranks the read-aloud switch because a tap is a request. This is
+    /// the app speaking by itself, so it goes through `.auto` and the switch —
+    /// and VoiceOver — still veto it.
+    private func autoplayPrompt() {
+        let task = current
+        guard reverse, let text = task.promptText else { return }
+        model.pronounceAloud(text, lang: task.promptLanguage)
     }
 
     // MARK: - Saying the answer

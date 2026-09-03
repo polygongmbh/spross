@@ -31,6 +31,7 @@ protocol DrillFace {
     /// the hub knows the skill by.
     static var key: String { get }
 
+
     /// What the tile a closed run leaves calls it.
     static var resultTitle: LocalizedStringKey { get }
 

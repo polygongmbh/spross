@@ -19,7 +19,8 @@ internal object AudioManifestParser {
         val root = parseJson(path, text).obj(path, "root")
         root.rejectUnknownKeys(
             path, "root",
-            setOf("language", "authors", "licenses", "words", "letters", "texts", "articles"),
+            setOf("language", "authors", "licenses", "words", "letters", "texts", "articles",
+                  "calendar", "countries"),
         )
         val language = root.requireString(path, "root", "language")
         if (language != expectedLanguage) {
@@ -37,12 +38,14 @@ internal object AudioManifestParser {
             letters = section(path, root, "letters", LETTER_KEYS, credits),
             texts = section(path, root, "texts", WORD_KEYS, credits),
             articles = section(path, root, "articles", ARTICLE_KEYS, credits),
+            calendar = section(path, root, "calendar", WORD_KEYS, credits),
+            countries = section(path, root, "countries", WORD_KEYS, credits),
         )
     }
 
     /**
      * The manifest's two root maps. A license is a property of the SPEAKER — across every
-     * shipped pack four entries out of 3881 depart from their own author's — so it is
+     * shipped pack fourteen entries out of 5828 depart from their own author's — so it is
      * authored once per author rather than once per file, and its deed once per license.
      * An entry's own `license` overrides [authors] for exactly those departures; there is
      * deliberately no default AUTHOR, because a missing key would then read as a credit

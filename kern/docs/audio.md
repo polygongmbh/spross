@@ -30,6 +30,12 @@ Engine contract: `../README.md`.
 - **Lookup is keyed by the MATCHED SPOKEN FORM, never by the slug.**
   `audio/<lang>/manifest.json` records, per slug, the form the recording actually speaks (`matches`).
   `AudioManifest` builds two indices — the exact NFC form, then the `speechKey` — and exact wins.
+  Four sections feed them: `words`, the alphabet's slugless `texts`, and the two drills'
+  own vocabularies — `calendar`, the weekday and month names no concept covers, and
+  `countries`, the atlas' country and nationality names, which carry slugs but two names per
+  slug and so are keyed by the form like the rest.
+  One index, so a drill hears a recorded `Montag` or `Deutschland` through the very lookup a
+  card uses, and no surface needs a route of its own.
   The manifest's `articles{}` section indexes TWICE, by the speech key of the whole spoken form
   ("die Adresse") and by the bare `word` inside it ("Adresse"), and `Catalog.pronunciation(lang,
   form, article)` tries them in that order around the bare index: the article form where the card

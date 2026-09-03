@@ -7,6 +7,9 @@
   longer decides how the next one sounds, and Swahili — which no iPhone voice says a word
   of — stops offering a Speech setting that would have played the recordings anyway.
 
+- **Around 1,800 more words are read by a person rather than by the phone** — the recordings had stopped keeping up with the catalog since August.
+- **The days, months, countries and peoples are spoken by a person too**, where the dates and atlas drills had only ever had the device voice.
+
 - **Take your words into a chat with an AI, and bring what you learn back.** The Box offers
   a text that describes your box to any assistant you already use: the words you have
   consolidated, so it can speak to you in them; the ones you are learning right now, so it

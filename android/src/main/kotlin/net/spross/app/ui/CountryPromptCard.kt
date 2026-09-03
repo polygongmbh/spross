@@ -43,6 +43,12 @@ fun CountryPromptCard(
     text: String?,
     /** What language [text] is written in — never shown; it tags the name for TalkBack. */
     language: Language?,
+    /**
+     * Hearing the name the question ASKS about — non-null only where it is a name in the
+     * language being learned (a reversed run). The word is already on the card, so saying
+     * it gives nothing away; the iOS twin is `CountryPromptCard.promptVoice`.
+     */
+    promptPronounce: (() -> Unit)? = null,
     /** The answer, once the learner has stopped owing it. */
     reveal: CountryReveal?,
     chrome: Chrome,
@@ -67,7 +73,11 @@ fun CountryPromptCard(
         if (text != null) {
             // Tagged with the language it is WRITTEN in, so TalkBack reads a Ukrainian name
             // in a Ukrainian voice; a name with no language named is read as it stands.
-            Headword(if (language == null) AnnotatedString(text) else localizedTarget(text, language))
+            SpokenWord(promptPronounce, chrome) {
+                Headword(
+                    if (language == null) AnnotatedString(text) else localizedTarget(text, language),
+                )
+            }
         } else if (emoji != null) {
             // why: no side slot here — the flag is not the picture beside the question, it
             // IS the question, so it takes the place and the size the name would have had.

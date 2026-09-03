@@ -102,6 +102,25 @@ internal class AudioManifest(
      * not what is being taught.
      */
     val articles: Map<String, AudioRecording>,
+    /**
+     * form → recording for the calendar's weekday and month names, in manifest order.
+     *
+     * [texts]' shape and [texts]' reason — no concept covers a weekday, so nothing here has
+     * a slug — and it shares the same form index, which is what lets the dates drill hear a
+     * recorded `Montag` through the ordinary form-keyed lookup rather than a route of its
+     * own. A section apart from [texts] because the two are measured differently: these are
+     * words said on a drill card, so they carry the phone-speaker plane that the alphabet's
+     * flat reference rows do not.
+     */
+    val calendar: Map<String, AudioRecording> = emptyMap(),
+    /**
+     * form → recording for the atlas' country and nationality names, in manifest order.
+     *
+     * [calendar]'s shape, and keyed by the form for a reason of its own: the countries DO
+     * carry slugs, but a slug holds one file while a row holds two names the drill shows
+     * and asks for — "Deutschland" and "Deutsche" — so only the form keys them both.
+     */
+    val countries: Map<String, AudioRecording> = emptyMap(),
 ) {
     private val byExactForm: Map<String, AudioRecording?> = index { nfcNormalized(it) }
     private val bySpeechKey: Map<String, AudioRecording?> = index { speechKey(it) }
@@ -154,17 +173,21 @@ internal class AudioManifest(
 
     /**
      * (label, recording) for the credits screen, manifest order: words labeled by the
-     * form they speak, then letters by their glyph, then the alphabet's own example words.
+     * form they speak, then letters by their glyph, then the alphabet's own example words,
+     * the article recordings, the calendar's weekday and month names, and the atlas'.
      */
     fun creditRows(): List<Pair<String, AudioRecording>> =
         words.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
             letters.map { (glyph, recording) -> glyph to recording } +
             texts.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
-            articles.values.mapNotNull { recording -> recording.matches?.let { it to recording } }
+            articles.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
+            calendar.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
+            countries.values.mapNotNull { recording -> recording.matches?.let { it to recording } }
 
     /** Spoken-form key → recording, or → null where entries disagree about non-identical bytes. */
     private fun index(
-        recordings: Collection<AudioRecording> = words.values + texts.values,
+        recordings: Collection<AudioRecording> =
+            words.values + texts.values + calendar.values + countries.values,
         key: (String) -> String,
     ): Map<String, AudioRecording?> =
         recordings
