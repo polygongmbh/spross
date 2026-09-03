@@ -32,6 +32,7 @@
  { "slug": "humid", "kind": "adjective" },
  { "slug": "wood", "kind": "noun", "emoji": "🪵" },
  { "slug": "stick", "kind": "noun" },
+ { "slug": "shadow", "kind": "noun" },
  { "slug": "hows-the-weather-today", "kind": "phrase", "emoji": "🌤️", "components": ["weather"] },
  { "slug": "its-raining", "kind": "phrase", "emoji": "🌧️", "components": [] },
  { "slug": "the-rain-has-stopped", "kind": "phrase", "emoji": "🌦️", "components": ["rain"] },
@@ -57,5 +58,7 @@
   "kind": "phrase",
   "emoji": "🌧️",
   "components": ["rain"]
- }
+ },
+ { "slug": "the-dog-is-barking", "kind": "phrase", "emoji": "🐕", "components": ["dog"] },
+ { "slug": "the-cat-is-meowing", "kind": "phrase", "emoji": "🐈", "components": ["cat"] }
 ]

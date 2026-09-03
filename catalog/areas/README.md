@@ -32,6 +32,15 @@ What earns the slot is the small extra the words alone do not give — an agreem
 the form a construction forces (uk `чи` in a choice question, not `або`), an idiomatic turn, or one small function word carried in on the side.
 Where that extra is a remark rather than a construction, it belongs in the WORD's `notes` and the phrase still goes.
 
+**A word too small for a card of its own arrives beside the verb it lives with.**
+`bellen` alone is a card nobody says and `Hund` alone is already known,
+but `Der Hund bellt.` / `Mbwa anabweka.` buys both plus the sentence they sit in.
+So where a noun is real but marginal, prefer the bare collocation — subject and verb, nothing else —
+over either the lone word or a sentence built around it,
+and gate it on the noun with `components` so it lands right after it.
+The pairing owes the mirroring rule like any phrase, and where one language has no matching verb
+the gap IS the teaching: Swahili has `kubweka` for the dog and falls back to `kulia` for the cat.
+
 **A realization mirrors the concept, not the translator's instinct.**
 Every word in one language's text should have a visible counterpart in the others' —
 that mapping is how a learner works out which word did what,

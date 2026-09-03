@@ -34,6 +34,7 @@
   "humid": { "text": "вологий", "variants": ["волога", "вологе"] },
   "wood": { "text": "деревина" },
   "stick": { "text": "палиця" },
+  "shadow": { "text": "тінь" },
   "hows-the-weather-today": { "text": "Яка сьогодні погода?" },
   "its-raining": { "text": "Йде дощ." },
   "the-rain-has-stopped": { "text": "Дощ припинився.", "variants": ["Дощ перестав.", "Дощ закінчився."] },
@@ -47,6 +48,8 @@
    "text": "У горах холодно.",
    "notes": { "uk": "Де? — у горах. Куди? — в гори. Прийменник той самий, форма інша." }
   },
-  "we-are-staying-home-because-of-the-rain": { "text": "Через дощ ми залишаємося вдома." }
+  "we-are-staying-home-because-of-the-rain": { "text": "Через дощ ми залишаємося вдома." },
+  "the-dog-is-barking": { "text": "Собака гавкає." },
+  "the-cat-is-meowing": { "text": "Кіт нявкає." }
  }
 }

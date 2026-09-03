@@ -504,3 +504,7 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   and neither has existed since the kern became the Gradle-built `SprossKern` framework.
   `docs/facegen.md` still documents `swift run facegen` as if it works. Port the imports to
   SprossKern, or delete the tool and its doc.
+- `nature` holds 47 concepts, past the ~40 an area should stay under
+  (`catalog/areas/README.md`). The seam a learner would name is weather-and-sky against the
+  living things — animals, trees, flowers — which would also give the animal-sound phrases
+  a shelf of their own.

@@ -35,6 +35,7 @@
   "humid": { "text": "feucht" },
   "wood": { "text": "Holz", "grammar": { "gender": "das", "plural": "Hölzer" } },
   "stick": { "text": "Stock", "grammar": { "gender": "der", "plural": "Stöcke" } },
+  "shadow": { "text": "Schatten", "grammar": { "gender": "der", "plural": "=" } },
   "hows-the-weather-today": { "text": "Wie ist das Wetter heute?" },
   "its-raining": { "text": "Es regnet." },
   "the-rain-has-stopped": { "text": "Der Regen hat aufgehört.", "variants": ["Es regnet nicht mehr."] },
@@ -62,6 +63,8 @@
     "en": "wegen pulls the genitive after it: des Regens, not der Regen.",
     "es": "wegen arrastra el genitivo: des Regens, no der Regen."
    }
-  }
+  },
+  "the-dog-is-barking": { "text": "Der Hund bellt." },
+  "the-cat-is-meowing": { "text": "Die Katze miaut." }
  }
 }

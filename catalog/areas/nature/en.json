@@ -35,6 +35,7 @@
   "humid": { "text": "humid" },
   "wood": { "text": "wood" },
   "stick": { "text": "stick" },
+  "shadow": { "text": "shadow", "synonyms": ["shade"] },
   "hows-the-weather-today": { "text": "How's the weather today?" },
   "its-raining": { "text": "It's raining." },
   "the-rain-has-stopped": { "text": "The rain has stopped.", "variants": ["It's stopped raining.", "It stopped raining."] },
@@ -48,6 +49,8 @@
   "we-are-staying-home-because-of-the-rain": {
    "text": "Because of the rain we're staying home.",
    "variants": ["Because of the rain we are staying home."]
-  }
+  },
+  "the-dog-is-barking": { "text": "The dog is barking.", "variants": ["The dog barks."] },
+  "the-cat-is-meowing": { "text": "The cat is meowing.", "variants": ["The cat meows."] }
  }
 }

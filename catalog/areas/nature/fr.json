@@ -46,6 +46,7 @@
   "humid": { "text": "humide" },
   "wood": { "text": "bois", "grammar": { "gender": "le" } },
   "stick": { "text": "bâton", "grammar": { "gender": "le" } },
+  "shadow": { "text": "ombre", "variants": ["l'ombre"], "grammar": { "gender": "l'" } },
   "hows-the-weather-today": { "text": "Quel temps fait-il aujourd'hui ?", "variants": ["Il fait quel temps aujourd'hui ?"] },
   "its-raining": { "text": "Il pleut." },
   "the-rain-has-stopped": { "text": "Il ne pleut plus.", "variants": ["La pluie s'est arrêtée.", "La pluie a cessé."] },
@@ -62,6 +63,8 @@
    "variants": ["Le soleil est revenu.", "Le soleil s'est montré."]
   },
   "its-cold-in-the-mountains": { "text": "Il fait froid à la montagne." },
-  "we-are-staying-home-because-of-the-rain": { "text": "À cause de la pluie, nous restons à la maison." }
+  "we-are-staying-home-because-of-the-rain": { "text": "À cause de la pluie, nous restons à la maison." },
+  "the-dog-is-barking": { "text": "Le chien aboie." },
+  "the-cat-is-meowing": { "text": "Le chat miaule." }
  }
 }
