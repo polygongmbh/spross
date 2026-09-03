@@ -2,13 +2,15 @@
 """Rename concept slugs — the concept, every realization, every reference, the recordings.
 
     scripts/catalog-rename-slugs.py renames.tsv --check
-    scripts/catalog-rename-slugs.py renames.tsv
+    scripts/catalog-rename-slugs.py renames.tsv [--packs ../data/reference/audio]
 
 The mapping file is `old<TAB>new` per line (`#` comments). A slug is the card id, so one
 rename is the concept's row in `concepts.json`, its key in every `<lang>.json`, every
-`components` entry, `feminineOf` value and alphabet `example` that names it, and — where a recording exists —
-the `audio/<lang>/<slug>.mp3` file plus its `manifest.json` entry, `git mv`'d so history
-follows the bytes. That is a dozen-plus files per slug, which is why it is a script.
+`components` entry, `feminineOf` value and alphabet `example` that names it, and — where a
+recording exists — the `audio/<lang>/<slug>.mp3` file plus its `manifest.json` entry,
+`git mv`'d so history follows the bytes, and the row and mp3 in the unversioned word pack
+it came from (`--packs`, the workspace `audio-catalog.py` reads), so the next
+regeneration still knows the word. A dozen-plus files per slug, which is why it is a script.
 
 What is REFUSED, rather than written (non-zero exit naming the slugs): an unknown old
 slug, a new slug the catalog already claims, and two renames landing on one slug.
@@ -150,10 +152,37 @@ def audio_renames(mapping):
     return out
 
 
+def pack_renames(packs, mapping):
+    """[(pack, new TSV text, [(old mp3, new mp3)])] for every word pack naming a renamed slug."""
+    out = []
+    for name in sorted(os.listdir(packs)):
+        # why: only the word packs are keyed by concept slug; letters, articles,
+        # calendar and countries packs key by their own registries.
+        pack = os.path.join(packs, name)
+        if not name.startswith('pack-') or name.count('-') != 1 \
+                or not os.path.isfile(os.path.join(pack, 'manifest.tsv')):
+            continue
+        lines = read_text(pack, 'manifest.tsv').split('\n')
+        column = lines[0].split('\t').index('slug')
+        moves = []
+        for i, line in enumerate(lines[1:], 1):
+            fields = line.split('\t')
+            if len(fields) > column and fields[column] in mapping:
+                moves.append((os.path.join(pack, 'mp3', fields[column] + '.mp3'),
+                              os.path.join(pack, 'mp3', mapping[fields[column]] + '.mp3')))
+                fields[column] = mapping[fields[column]]
+                lines[i] = '\t'.join(fields)
+        if moves:
+            out.append((pack, '\n'.join(lines), moves))
+    return out
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument('mapping', help='old -> new, as .tsv (old<TAB>new)')
     parser.add_argument('--check', action='store_true', help='print the plan, write nothing')
+    parser.add_argument('--packs', default=os.path.join(ROOT, '..', 'data', 'reference', 'audio'),
+                        help='the audio pack workspace to carry the rename into (skipped when absent)')
     args = parser.parse_args()
 
     langs = sorted(json.loads(read_text(CATALOG, 'languages.json')))
@@ -197,6 +226,24 @@ def main():
                 f.write(text)
     print('%d slug(s) renamed, %d recording(s) moved, %d file(s) %s'
           % (len(mapping), len(moves), len(written), 'to write' if args.check else 'written'))
+    carry_into_packs(args.packs, mapping, args.check)
+
+
+def carry_into_packs(packs, mapping, check):
+    if not os.path.isdir(packs):
+        print('no pack workspace at %s — carry the rename into the packs by hand' % packs)
+        return
+    rows = 0
+    for pack, text, files in pack_renames(packs, mapping):
+        for old, new in files:
+            if not check and os.path.isfile(old):
+                os.rename(old, new)
+        if not check:
+            with open(os.path.join(pack, 'manifest.tsv'), 'w', encoding='utf-8') as f:
+                f.write(text)
+        rows += len(files)
+        print('%s %s: %d row(s)' % ('would rewrite' if check else 'rewrote', os.path.basename(pack), len(files)))
+    print('%d pack row(s) %s' % (rows, 'to carry' if check else 'carried'))
 
 
 if __name__ == '__main__':
