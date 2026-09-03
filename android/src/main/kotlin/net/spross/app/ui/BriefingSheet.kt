@@ -43,8 +43,10 @@ import net.spross.kern.box.HarvestWord
  *
  * The app ships no assistant and knows the name of none: it hands over a text and a share
  * intent, and whichever chat the learner already has takes it from there. What that text may
- * say is kern's ([net.spross.kern.box.Briefing]) — this sheet shows only how much of the box
- * is in it, because a wall of prompt scrolling past is not a preview.
+ * say is kern's ([net.spross.kern.box.Briefing]) and is never shown here: 7 KB of prompt
+ * scrolling past is a wall, not a preview. What the sheet spends its words on instead is the
+ * three moves the loop takes — the counts that once stood in for the text named the box back
+ * at the learner, who already has it.
  *
  * The way back is the half that pays: a conversation turns up words no catalog has, the
  * assistant is asked to list them, and pasting that list here reads them into own words
@@ -74,11 +76,8 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
         ) {
             Text(chrome.briefingTitle, style = MaterialTheme.typography.titleLarge)
-            Text(
-                chrome.briefingIntro,
-                style = MaterialTheme.typography.bodyMedium,
-            )
-            BriefingTally(model, briefing.freeCount, briefing.inPlay.size, briefing.newWords.size)
+            Text(chrome.briefingLead, style = MaterialTheme.typography.bodyMedium)
+            BriefingSteps(chrome)
             Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
                 TextButton(onClick = {
                     context.copyBrief(chrome.briefingTitle, briefing.text)
@@ -90,11 +89,6 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
             }
             HorizontalDivider(color = Theme.colors.separator)
             Text(chrome.briefingReturnTitle, style = MaterialTheme.typography.titleMedium)
-            Text(
-                chrome.briefingReturnExplainer,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
             TextButton(onClick = {
                 val found = model.harvest(context.clipboardText())
                 harvested = found
@@ -134,30 +128,26 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
     }
 }
 
-/** What the brief carries, as counts. The words themselves are the box, listed everywhere else. */
+/** The loop in three moves, numbered: take it out, talk, bring the words back. */
 @Composable
-private fun BriefingTally(model: AppModel, free: Int, inPlay: Int, fresh: Int) {
-    val chrome = model.chrome
-    Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-        if (free > 0) {
-            TallyLine((if (free == 1) chrome.briefingTallyFreeOne else chrome.briefingTallyFree).format(free))
-        }
-        if (inPlay > 0) {
-            TallyLine((if (inPlay == 1) chrome.briefingTallyInPlayOne else chrome.briefingTallyInPlay).format(inPlay))
-        }
-        if (fresh > 0) {
-            TallyLine((if (fresh == 1) chrome.briefingTallyNewOne else chrome.briefingTallyNew).format(fresh))
-        }
+private fun BriefingSteps(chrome: Chrome) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
+        StepLine(1, chrome.briefingStepCopy)
+        StepLine(2, chrome.briefingStepTalk)
+        StepLine(3, chrome.briefingStepBack)
     }
 }
 
 @Composable
-private fun TallyLine(text: String) {
-    Text(
-        text,
-        style = MaterialTheme.typography.bodySmall,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-    )
+private fun StepLine(number: Int, text: String) {
+    Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
+        Text("$number.", style = MaterialTheme.typography.bodySmall, color = Theme.colors.accent)
+        Text(
+            text,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
 }
 
 /** Which heading a group wears. The kinds are kern's; naming them is ours. */

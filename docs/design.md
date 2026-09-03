@@ -299,8 +299,11 @@ a clone inherits its sibling's gaps, never the rules.
   NOT Home: Home answers "what do I do right now", and the answer to that is the round.
   The finished round offers it once more, under the celebration rather than in it,
   asking rather than instructing — Fertig stays that screen's own answer.
-  The sheet shows the three counts and never the text:
-  7 KB of prompt scrolling past is a wall, not a preview.
+  The sheet shows the loop in three numbered moves and never the text:
+  7 KB of prompt scrolling past is a wall, not a preview,
+  and the counts that once stood in for it named the box back at the learner, who has it.
+  Guidance is what the screen is for — a learner who has never done this has to be told
+  that they talk about anything, and that the words come home by being asked for.
   Copy takes it; Share hands it to any chat app on the phone,
   which is how the app reaches every assistant while knowing the name of none.
   What comes back is shown WHOLE and sorted, never filtered:

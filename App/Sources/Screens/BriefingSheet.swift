@@ -6,8 +6,10 @@ import SprossKern
 ///
 /// The app ships no assistant and knows the name of none: it hands over a text and a
 /// share sheet, and whichever chat the learner already pays for takes it from there.
-/// What that text may say is Kern's (`Briefing`) — this sheet shows only how much of
-/// the box is in it, because a wall of prompt scrolling past is not a preview.
+/// What that text may say is Kern's (`Briefing`) and is never shown here: 7 KB of prompt
+/// scrolling past is a wall, not a preview. What the sheet spends its words on instead is
+/// the three moves the loop takes — the counts that once stood in for the text named the
+/// box back at the learner, who already has it.
 ///
 /// The way back is the half that pays: a conversation turns up words no catalog has,
 /// the assistant is asked to list them, and pasting that list here reads them into
@@ -57,10 +59,10 @@ struct BriefingSheet: View {
     @ViewBuilder
     private func handOver(_ briefing: Briefing) -> some View {
         VStack(alignment: .leading, spacing: Theme.spacing.md) {
-            Text("briefing.intro")
+            Text("briefing.lead")
                 .font(Theme.typography.body)
                 .foregroundStyle(Theme.colors.textPrimary)
-            tally(briefing)
+            steps
             HStack(spacing: Theme.spacing.lg) {
                 Button {
                     UIPasteboard.general.string = briefing.text
@@ -78,22 +80,25 @@ struct BriefingSheet: View {
         }
     }
 
-    /// What the brief carries, as three counts. The words themselves are not shown:
-    /// they are already the box, listed everywhere else in it.
-    private func tally(_ briefing: Briefing) -> some View {
-        VStack(alignment: .leading, spacing: Theme.spacing.xs) {
-            countLine("briefing.tally.free \(Int(briefing.freeCount))", when: briefing.freeCount > 0)
-            countLine("briefing.tally.inPlay \(briefing.inPlay.count)", when: !briefing.inPlay.isEmpty)
-            countLine("briefing.tally.new \(briefing.newWords.count)", when: !briefing.newWords.isEmpty)
+    /// The loop in three moves, numbered: take it out, talk, bring the words back.
+    private var steps: some View {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
+            step(1, "briefing.step.copy")
+            step(2, "briefing.step.talk")
+            step(3, "briefing.step.back")
         }
     }
 
-    @ViewBuilder
-    private func countLine(_ key: LocalizedStringKey, when shown: Bool) -> some View {
-        if shown {
-            Text(key)
+    private func step(_ number: Int, _ key: LocalizedStringKey) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.md) {
+            Text(verbatim: "\(number.formatted()).")
                 .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.accent)
+            Text(key)
+                .font(Theme.typography.subheadline)
                 .foregroundStyle(Theme.colors.textSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+            Spacer(minLength: 0)
         }
     }
 
@@ -104,9 +109,6 @@ struct BriefingSheet: View {
             Text("briefing.return.title")
                 .font(Theme.typography.headline)
                 .foregroundStyle(Theme.colors.textPrimary)
-            Text("briefing.return.explainer")
-                .font(Theme.typography.caption)
-                .foregroundStyle(Theme.colors.textSecondary)
             Button {
                 paste()
             } label: {
