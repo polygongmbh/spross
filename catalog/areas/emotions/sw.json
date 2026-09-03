@@ -11,11 +11,8 @@
   "love": { "text": "upendo", "grammar": { "plural": "=" } },
   "shame": { "text": "aibu", "grammar": { "plural": "=" } },
   "jealousy": { "text": "wivu", "grammar": { "plural": "=" } },
-  "smile": {
-   "text": "tabasamu",
-   "grammar": { "plural": "=" },
-   "notes": { "sw": "Kitenzi chake ni kutabasamu: Anatabasamu." }
-  },
+  "smile": { "text": "tabasamu", "grammar": { "plural": "=" } },
+  "to-smile": { "text": "kutabasamu" },
   "feel": { "text": "kujisikia" }
  }
 }

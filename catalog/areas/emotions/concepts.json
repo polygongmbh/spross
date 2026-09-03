@@ -9,5 +9,6 @@
  { "slug": "shame", "kind": "noun", "emoji": "😳" },
  { "slug": "jealousy", "kind": "noun", "emoji": "😒" },
  { "slug": "smile", "kind": "noun", "emoji": "🙂" },
+ { "slug": "to-smile", "kind": "verb", "emoji": "🙂" },
  { "slug": "feel", "kind": "verb" }
 ]

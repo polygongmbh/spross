@@ -11,7 +11,11 @@
   "love": { "text": "amour", "variants": ["l'amour"], "grammar": { "gender": "l'" } },
   "shame": { "text": "honte", "grammar": { "gender": "la" } },
   "jealousy": { "text": "jalousie", "grammar": { "gender": "la" } },
-  "smile": { "text": "sourire", "grammar": { "gender": "le" } },
+  "smile": {
+   "text": "sourire",
+   "grammar": { "gender": "le" },
+   "notes": { "fr": "Le verbe est le même mot : sourire." }
+  },
   "feel": { "text": "se sentir" }
  }
 }

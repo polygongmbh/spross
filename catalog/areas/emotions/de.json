@@ -12,6 +12,7 @@
   "shame": { "text": "Scham", "grammar": { "gender": "die" } },
   "jealousy": { "text": "Eifersucht", "grammar": { "gender": "die" } },
   "smile": { "text": "Lächeln", "grammar": { "gender": "das" } },
+  "to-smile": { "text": "lächeln" },
   "feel": { "text": "sich fühlen" }
  }
 }

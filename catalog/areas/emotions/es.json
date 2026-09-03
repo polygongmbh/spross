@@ -12,6 +12,7 @@
   "shame": { "text": "vergüenza", "grammar": { "gender": "la" } },
   "jealousy": { "text": "celos", "grammar": { "gender": "los" } },
   "smile": { "text": "sonrisa", "grammar": { "gender": "la" } },
+  "to-smile": { "text": "sonreír" },
   "feel": {
    "text": "sentirse",
    "variants": ["encontrarse"],
