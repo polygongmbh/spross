@@ -19,10 +19,6 @@ enum DateDrillFace: DrillFace {
     // MARK: - Who the drill is
 
     static var key: String { "dates" }
-    // why: false even though the weekday and month Sprossen DO prompt with a name —
-    // the day and date Sprossen prompt with `3.` and `Mo, 3.3.`, whose reading is
-    // exactly the answer owed. The split is per Sprosse and is not ruled on yet.
-    static var promptIsAName: Bool { false }
 
     static var resultTitle: LocalizedStringKey { "trainer.skill.dates" }
 
@@ -122,6 +118,7 @@ enum DateDrillFace: DrillFace {
                       offersFinish: run.offersFinish, finished: run.finished,
                       answerLanguage: run.answerLanguage, promptLanguage: run.promptLanguage,
                       ask: ask(run.task.kind), promptText: run.task.promptText,
+                      promptIsAName: isAName(run.task.kind),
                       promptEmoji: nil, emojiIsGiveaway: false,
                       display: run.task.display, gloss: nil, otherWord: run.otherWord)
     }
@@ -144,6 +141,18 @@ enum DateDrillFace: DrillFace {
         case .revealed: return DateDrillIntent.Reveal.shared
         case .confirmed: return DateDrillIntent.ConfirmPending.shared
         case .advanced: return DateDrillIntent.AdvanceElapsed.shared
+        }
+    }
+
+    /// Whether the question is asked with a NAME. The weekday and month Sprossen
+    /// are: they show `Montag` and want the other language's word for it, so the
+    /// name may be heard like any other. The three assembled kinds and the day
+    /// are not — `3.` and `Mo, 3.3.` are renderings whose READING is exactly the
+    /// answer owed, and a voice saying one would hand it over.
+    private static func isAName(_ kind: DateTaskKind) -> Bool {
+        switch kind {
+        case .weekday, .month: return true
+        default: return false
         }
     }
 

@@ -107,6 +107,8 @@ class CountryDrillFlow(
             text = state.task.promptText,
             // A flag is written in no language, so it is tagged with none.
             language = if (state.task.promptText == null) null else state.promptLanguage,
+            // Every atlas question asks with a country or a people.
+            isAName = true,
             display = state.task.display,
             gloss = state.task.gloss,
             emoji = state.task.promptEmoji,

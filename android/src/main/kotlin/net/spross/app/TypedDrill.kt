@@ -65,6 +65,14 @@ data class TypedDrillPrompt(
     val text: String?,
     /** What language [text] is written in — never shown; it tags the words for TalkBack. */
     val language: Language?,
+    /**
+     * Whether [text] is a NAME — a form a voice may say — rather than a rendering whose
+     * READING is the answer owed. Per TASK and not per drill: the atlas asks with a country
+     * or a people throughout, while the calendar asks with `Montag` on one Sprosse and
+     * `Mo, 3.3.` on the next, and only the first may be heard. The iOS twin is
+     * `DrillSnapshot.promptIsAName`.
+     */
+    val isAName: Boolean = false,
     /** The canonical answer, for the reveal. */
     val display: String,
     /** The answer side's neighboring form, where the run hands one over. */

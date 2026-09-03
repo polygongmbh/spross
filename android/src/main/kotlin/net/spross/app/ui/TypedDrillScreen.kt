@@ -50,13 +50,6 @@ class TypedDrillPage(
     val skill: String,
     /** The store key for THIS pair, or null before a box has landed. */
     val key: String?,
-    /**
-     * Whether this drill's prompt is a NAME — something a voice may say without answering
-     * the question. True of the atlas, whose every prompt is a country or a people; false
-     * of the calendar, where `Mo, 3.3.` is a rendering whose reading IS the answer owed.
-     * The iOS twin is `DrillFace.promptIsAName`.
-     */
-    val promptIsAName: Boolean,
     /** Opens the run — null where the pair has nothing this drill can ask. */
     val open: (onTone: (ToneKind) -> Unit, onReleaseFocus: () -> Unit) -> TypedDrill?,
 )
@@ -151,7 +144,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
     // Saying it gives nothing away: the word is already on the card. No beat in front of
     // it, unlike the answer's: nothing has just chimed and the question is what is awaited.
     LaunchedEffect(run.index) {
-        if (!page.promptIsAName || !reverse) return@LaunchedEffect
+        if (!run.prompt.isAName || !reverse) return@LaunchedEffect
         val text = run.prompt.text ?: return@LaunchedEffect
         // A picture is written in no language, so a question that is one has nothing to say.
         val language = run.prompt.language ?: return@LaunchedEffect
@@ -192,7 +185,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
                 model, run, chrome,
                 promptVoice = run.prompt.language?.let { language ->
                     run.prompt.text
-                        ?.takeIf { page.promptIsAName && reverse }
+                        ?.takeIf { run.prompt.isAName && reverse }
                         ?.let { model.speakFormOnTap(it, language) }
                 },
             )

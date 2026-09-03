@@ -52,7 +52,7 @@ extension DrillRunView {
     ///
     /// Saying it gives nothing away: the word is already written on the card.
     func promptVoice(_ task: DrillSnapshot) -> CountryPromptCard.Voice? {
-        guard Face.promptIsAName, reverse, let text = task.promptText else { return nil }
+        guard task.promptIsAName, reverse, let text = task.promptText else { return nil }
         return .init(pronounce: model.pronounceAction(for: text, lang: task.promptLanguage),
                      isPlaying: model.isPronouncing(text, lang: task.promptLanguage))
     }
