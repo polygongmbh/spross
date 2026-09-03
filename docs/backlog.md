@@ -513,3 +513,10 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   `docs/facegen.md` still documents `swift run facegen` as if it works. Port the imports to
   SprossKern, or delete the tool and its doc.
 - `food` holds 47 concepts, past the ~40 an area should stay under; the seam is raw ingredients against meals and drinks.
+- `qualities` holds 46 concepts, past the ~40 an area should stay under; the seam is the comparison
+  words (`same`, `similar`, `different`, `difference`, `opposite`, `equal`, `to-compare`) against the
+  plain adjectives.
+- The unversioned packs under `data/reference/audio` have drifted from `catalog/audio`: a full
+  `scripts/audio-catalog.py --packs …` run now rewrites hundreds of files and dies on `pack-es`
+  ("1 rows have no mp3"), so a slug rename has to be hand-carried into the three manifests instead
+  of regenerated. Re-fetch the packs before trusting a regeneration again.
