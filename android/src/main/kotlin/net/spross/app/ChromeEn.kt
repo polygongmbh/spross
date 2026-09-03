@@ -204,8 +204,7 @@ internal object ChromeEn : Chrome {
     override val trainerSkillCountries = "Countries"
     override val countriesTitle = "Countries · %s"
     override val countriesReference = "The atlas"
-    override val countriesPace = "Every run opens at Sprosse 1 and climbs on with every " +
-        "clean answer."
+    override val countriesPace = "Every run opens at Sprosse 1 and climbs with clean answers."
     override val countriesBest = "Best yet: Sprosse %s"
     override val countriesFastHint = "One clean answer per Sprosse instead of three."
     override val countriesReverseHint = "Asks in %s, you answer in %s."
