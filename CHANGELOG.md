@@ -4,11 +4,12 @@
 
 - **Pronouns are taught now, and so are the words the notes use to explain them.** Nothing
   in the box ever taught *mimi*, *ich* or *я* — the drills said them and no card ever
-  introduced them. A new pronouns area covers all six persons, early, right before the
+  introduced them. A new pronouns area covers every person, early, right before the
   verbs. In Swahili each one also shows how it hides inside the verb (*mimi* is *ni-* in
   front and *-ni-* in the middle), which is what makes *Mama, nisaidie!* readable instead
-  of something to memorize whole. German *Sie*, Spanish *usted* and Italian *Lei* are now
-  asked for, not just accepted, so the polite form is one you can actually produce.
+  of something to memorize whole. German *Sie*, Spanish *usted* and Italian *Lei* are
+  cards of their own, so the polite form is one you are asked for and can actually
+  produce, rather than one that is merely accepted when you happen to know it.
   And the words a grammar note needs — verb, noun, adjective, plus Swahili's *ngeli* and
   *kiambishi* — are cards in their own right, because a note written in the language you
   are learning is worth nothing if it is made of words you have never seen.

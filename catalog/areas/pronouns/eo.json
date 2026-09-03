@@ -7,7 +7,8 @@
    "text": "vi",
    "notes": { "eo": "vi estas unu homo kaj ankaŭ multaj: Esperanto havas nur unu formon." }
   },
-  "he-she": { "text": "li", "variants": ["ŝi", "ĝi"] },
+  "he": { "text": "li", "variants": ["ŝi"] },
+  "it": { "text": "ĝi" },
   "we": { "text": "ni" },
   "they": { "text": "ili" }
  }

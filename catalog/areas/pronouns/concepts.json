@@ -1,7 +1,9 @@
 [
  { "slug": "i", "kind": "adjective" },
  { "slug": "you", "kind": "adjective" },
- { "slug": "he-she", "kind": "adjective" },
+ { "slug": "you-formal", "kind": "adjective" },
+ { "slug": "he", "kind": "adjective" },
+ { "slug": "it", "kind": "adjective" },
  { "slug": "we", "kind": "adjective" },
  { "slug": "you-plural", "kind": "adjective" },
  { "slug": "they", "kind": "adjective" }

@@ -4,7 +4,8 @@
  "words": {
   "i": { "text": "I" },
   "you": { "text": "you" },
-  "he-she": { "text": "he", "variants": ["she", "it"] },
+  "he": { "text": "he", "variants": ["she"] },
+  "it": { "text": "it" },
   "we": { "text": "we" },
   "you-plural": {
    "text": "you all",

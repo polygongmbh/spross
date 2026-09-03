@@ -3,12 +3,12 @@
  "subtitle": "Io, tu e tutti gli altri.",
  "words": {
   "i": { "text": "io" },
-  "you": {
-   "text": "tu",
-   "synonyms": ["Lei"],
-   "notes": { "it": "tu è per la famiglia e gli amici; agli altri si dice Lei: Come si chiama Lei?" }
+  "you": { "text": "tu", "notes": { "it": "tu è per la famiglia e gli amici; agli altri si dice Lei." } },
+  "you-formal": {
+   "text": "Lei",
+   "notes": { "it": "Lei è la forma di rispetto: Come si chiama Lei? Il verbo va come con lui e lei." }
   },
-  "he-she": { "text": "lui", "variants": ["lei"] },
+  "he": { "text": "lui", "variants": ["lei"] },
   "we": { "text": "noi" },
   "you-plural": { "text": "voi" },
   "they": { "text": "loro" }

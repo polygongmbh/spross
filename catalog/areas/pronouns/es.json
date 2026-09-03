@@ -5,12 +5,13 @@
   "i": { "text": "yo" },
   "you": {
    "text": "tú",
-   "synonyms": ["usted"],
-   "notes": {
-    "es": "tú es para la familia y los amigos; a los demás se les dice usted: ¿Cómo se llama usted?"
-   }
+   "notes": { "es": "tú es para la familia y los amigos; a los demás se les dice usted." }
   },
-  "he-she": { "text": "él", "variants": ["ella"] },
+  "you-formal": {
+   "text": "usted",
+   "notes": { "es": "usted es la forma de respeto: ¿Cómo se llama usted? El verbo va como con él y ella." }
+  },
+  "he": { "text": "él", "variants": ["ella"] },
   "we": { "text": "nosotros", "variants": ["nosotras"] },
   "you-plural": { "text": "ustedes", "variants": ["vosotros", "vosotras"] },
   "they": { "text": "ellos", "variants": ["ellas"] }

@@ -3,16 +3,18 @@
  "subtitle": "Ich, du und alle anderen.",
  "words": {
   "i": { "text": "ich" },
-  "you": {
-   "text": "du",
-   "synonyms": ["Sie"],
-   "notes": { "de": "Zu Familie und Freunden sagt man du, sonst Sie: Wie heißen Sie?" }
+  "you": { "text": "du", "notes": { "de": "du sagt man zu Familie und Freunden, zu allen anderen Sie." } },
+  "you-formal": {
+   "text": "Sie",
+   "notes": {
+    "de": "Sie ist die höfliche Anrede: Wie heißen Sie? Das Verb steht wie bei mehreren: Sie kommen."
+   }
   },
-  "he-she": {
+  "he": {
    "text": "er",
-   "variants": ["es"],
    "notes": { "de": "er, sie, es — und sie heißt auch „mehrere“: sie kommt, sie kommen." }
   },
+  "it": { "text": "es" },
   "we": { "text": "wir" },
   "you-plural": { "text": "ihr" },
   "they": { "text": "sie" }

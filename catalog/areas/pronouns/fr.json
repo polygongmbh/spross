@@ -8,7 +8,7 @@
    "variants": ["vous", "toi"],
    "notes": { "fr": "tu est pour la famille et les amis; aux autres on dit vous, qui est aussi le pluriel." }
   },
-  "he-she": { "text": "il", "variants": ["elle"] },
+  "he": { "text": "il", "variants": ["elle"] },
   "we": { "text": "nous" },
   "you-plural": { "text": "vous" },
   "they": { "text": "ils", "variants": ["elles"] }
