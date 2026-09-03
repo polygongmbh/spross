@@ -2,31 +2,14 @@
 
 ## Unreleased
 
+## 5.11.0 — 2026-09-03
+
 - **English dates are taught both ways round** — `March third` and `the third of March` take turns on the reveal, and the article that order drops in speech no longer costs the answer.
-
-- **Recordings or speech is now a choice per language you learn, and it is only offered
-  where the phone can actually speak that language.** A pack worth hearing in one target no
-  longer decides how the next one sounds, and Swahili — which no iPhone voice says a word
-  of — stops offering a Speech setting that would have played the recordings anyway.
-
+- **Recordings or speech is now a choice per language you learn**, offered only where the phone can actually speak it — so Swahili stops advertising a Speech setting no iPhone voice could honor.
 - **Around 1,800 more words are read by a person rather than by the phone** — the recordings had stopped keeping up with the catalog since August.
 - **The days, months, countries and peoples are spoken by a person too**, where the dates and atlas drills had only ever had the device voice.
-
-- **Take your words into a chat with an AI, and bring what you learn back.** The Box offers
-  a text that describes your box to any assistant you already use: the words you have
-  consolidated, so it can speak to you in them; the ones you are learning right now, so it
-  reaches for those where the talk goes near them; and what the box teaches next, so a word
-  you meet in conversation on Tuesday already has a hook in it when the box deals it on
-  Thursday. It is asked to talk about whatever you want to talk about and never to steer
-  the conversation toward a word list. Copy it or share it into whichever chat you
-  like; nothing is sent anywhere by the app, which speaks to no assistant itself. At the end
-  the conversation lists the words that were new to you, and pasting that list back into the
-  Box takes them in as your own words. Offered again the moment a round is finished, when
-  the words are warm.
-
-- **A new pronouns area** teaches every person, the polite *Sie*, *usted* and *Lei*
-  among them, along with the grammar words the notes lean on.
-
+- **Take your words into a chat with an AI, and bring what you learn back** — the Box hands you a text describing your box for whichever assistant you already use, and takes that conversation's new words back in as your own; the app itself sends nothing anywhere.
+- **A new pronouns area** teaches every person, the polite *Sie*, *usted* and *Lei* among them, along with the grammar words the notes lean on.
 - **Animals and weather are boxes of their own**, cut out of Nature without touching your progress on a single word that moved.
 - **The shelves fill up** with more animals, vegetables and Kenyan plates — and a word not worth a card alone now arrives as the short sentence you would say it in.
 
