@@ -105,7 +105,8 @@ data class Briefing(
         return """
             Check in at a natural pause, or whenever I ask. Focus on key words that
             came up repeatedly and were not part of the prompt, one per line as
-            `$targetName = $sourceName`, fenced ```spross:
+            `$targetName = $sourceName`, fenced ```spross, and remind me to paste it
+            back into Spross to add them:
 
             ```spross
             ${example?.target ?: "…"} = ${example?.source ?: "…"}
