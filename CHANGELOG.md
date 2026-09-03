@@ -5,10 +5,12 @@
 - **Animals and weather are their own boxes now, and the animals have company.** Nature had
   become three shelves in one: it keeps the landscape and the plants, what the sky is doing
   moved to Weather, and the creatures to Animals — which gained the cow, goat, sheep, donkey,
-  horse, elephant, lion, monkey, snake, mosquito and insect. Five of them come with the sound
-  they make, and that is the point — each one has a verb of its own to teach: *kubweka*,
-  *kumiau*, *kuimba*, *kunguruma*, *kuvuma*.
-  Your progress on every word that moved is untouched.
+  horse, elephant, monkey, snake and insect. Four animals also come with the sound they make
+  — *Mbwa anabweka*, *Paka analia*, *Ndege anaimba*, *Simba ananguruma* — and the mosquito
+  with what it actually does to you, which every language words its own way: German and
+  French sting where English and Swahili bite. The lion and the mosquito arrive in their
+  sentence and no other, because a bare word you would never say alone teaches less than the
+  sentence you would. Your progress on every word that moved is untouched.
 
 - **The kitchen shelf fills in.** Beans, garlic, carrot and cabbage join the onion and the
   potato, and two more of what actually gets eaten in Kenya: *uji* and *sambusa*.

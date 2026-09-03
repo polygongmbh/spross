@@ -12,16 +12,14 @@
   "donkey": { "text": "azeno" },
   "horse": { "text": "ĉevalo" },
   "elephant": { "text": "elefanto" },
-  "lion": { "text": "leono" },
   "monkey": { "text": "simio" },
   "snake": { "text": "serpento" },
-  "mosquito": { "text": "moskito" },
   "insect": { "text": "insekto" },
   "look-a-bird": { "text": "Rigardu, birdo!", "variants": ["Jen birdo!", "Rigardu, jen birdo!"] },
   "the-dog-is-barking": { "text": "La hundo bojas." },
   "the-cat-is-meowing": { "text": "La kato miaŭas." },
   "the-bird-is-singing": { "text": "La birdo kantas." },
   "the-lion-is-roaring": { "text": "La leono blekegas.", "variants": ["La leono muĝas."] },
-  "the-mosquito-is-buzzing": { "text": "La moskito zumas." }
+  "the-mosquito-is-biting-me": { "text": "La moskito pikas min." }
  }
 }

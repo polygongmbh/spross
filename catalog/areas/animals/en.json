@@ -12,16 +12,14 @@
   "donkey": { "text": "donkey" },
   "horse": { "text": "horse" },
   "elephant": { "text": "elephant" },
-  "lion": { "text": "lion" },
   "monkey": { "text": "monkey" },
   "snake": { "text": "snake" },
-  "mosquito": { "text": "mosquito", "grammar": { "plural": "mosquitoes" } },
   "insect": { "text": "insect" },
   "look-a-bird": { "text": "Look, a bird!" },
   "the-dog-is-barking": { "text": "The dog is barking.", "variants": ["The dog barks."] },
   "the-cat-is-meowing": { "text": "The cat is meowing.", "variants": ["The cat meows."] },
   "the-bird-is-singing": { "text": "The bird is singing.", "variants": ["The bird sings."] },
   "the-lion-is-roaring": { "text": "The lion is roaring.", "variants": ["The lion roars."] },
-  "the-mosquito-is-buzzing": { "text": "The mosquito is buzzing.", "variants": ["The mosquito buzzes."] }
+  "the-mosquito-is-biting-me": { "text": "The mosquito is biting me.", "variants": ["The mosquito bites me."] }
  }
 }

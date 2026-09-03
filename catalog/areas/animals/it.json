@@ -12,16 +12,14 @@
   "donkey": { "text": "asino", "variants": ["l'asino"], "grammar": { "gender": "l'" } },
   "horse": { "text": "cavallo", "grammar": { "gender": "il" } },
   "elephant": { "text": "elefante", "variants": ["l'elefante"], "grammar": { "gender": "l'" } },
-  "lion": { "text": "leone", "grammar": { "gender": "il" } },
   "monkey": { "text": "scimmia", "grammar": { "gender": "la", "plural": "scimmie" } },
   "snake": { "text": "serpente", "grammar": { "gender": "il" } },
-  "mosquito": { "text": "zanzara", "grammar": { "gender": "la" } },
   "insect": { "text": "insetto", "variants": ["l'insetto"], "grammar": { "gender": "l'" } },
   "look-a-bird": { "text": "Guarda, un uccello!", "variants": ["Guarda, c'è un uccello!"] },
   "the-dog-is-barking": { "text": "Il cane abbaia.", "variants": ["Il cane sta abbaiando."] },
   "the-cat-is-meowing": { "text": "Il gatto miagola.", "variants": ["Il gatto sta miagolando."] },
   "the-bird-is-singing": { "text": "L'uccello canta.", "variants": ["L'uccello sta cantando."] },
   "the-lion-is-roaring": { "text": "Il leone ruggisce.", "variants": ["Il leone sta ruggendo."] },
-  "the-mosquito-is-buzzing": { "text": "La zanzara ronza.", "variants": ["La zanzara sta ronzando."] }
+  "the-mosquito-is-biting-me": { "text": "La zanzara mi punge.", "variants": ["La zanzara mi sta pungendo."] }
  }
 }

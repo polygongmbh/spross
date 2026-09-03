@@ -12,16 +12,14 @@
   "donkey": { "text": "осел", "grammar": { "plural": "осли" } },
   "horse": { "text": "кінь", "grammar": { "plural": "коні" } },
   "elephant": { "text": "слон" },
-  "lion": { "text": "лев", "grammar": { "plural": "леви" } },
   "monkey": { "text": "мавпа" },
   "snake": { "text": "змія", "grammar": { "plural": "змії" } },
-  "mosquito": { "text": "комар", "grammar": { "plural": "комарі" } },
   "insect": { "text": "комаха" },
   "look-a-bird": { "text": "Дивись, пташка!", "variants": ["Дивись, птах!"] },
   "the-dog-is-barking": { "text": "Собака гавкає." },
   "the-cat-is-meowing": { "text": "Кіт нявкає." },
   "the-bird-is-singing": { "text": "Птах співає." },
   "the-lion-is-roaring": { "text": "Лев реве." },
-  "the-mosquito-is-buzzing": { "text": "Комар дзижчить." }
+  "the-mosquito-is-biting-me": { "text": "Комар мене кусає." }
  }
 }

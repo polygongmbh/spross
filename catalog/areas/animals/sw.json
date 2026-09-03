@@ -12,16 +12,18 @@
   "donkey": { "text": "punda", "grammar": { "plural": "=" } },
   "horse": { "text": "farasi", "grammar": { "plural": "=" } },
   "elephant": { "text": "tembo", "synonyms": ["ndovu"], "grammar": { "plural": "=" } },
-  "lion": { "text": "simba", "grammar": { "plural": "=" } },
   "monkey": { "text": "tumbili", "synonyms": ["kima"], "grammar": { "plural": "=" } },
   "snake": { "text": "nyoka", "grammar": { "plural": "=" } },
-  "mosquito": { "text": "mbu", "grammar": { "plural": "=" } },
   "insect": { "text": "mdudu", "grammar": { "plural": "wadudu" } },
   "look-a-bird": { "text": "Angalia, ndege!", "variants": ["Tazama, ndege!"] },
   "the-dog-is-barking": { "text": "Mbwa anabweka.", "variants": ["Mbwa hubweka."] },
-  "the-cat-is-meowing": { "text": "Paka anamiau.", "variants": ["Paka humiau.", "Paka analia."] },
+  "the-cat-is-meowing": {
+   "text": "Paka analia.",
+   "variants": ["Paka hulia.", "Paka anasema miau."],
+   "notes": { "sw": "Hakuna kitenzi cha kumiau; kulia ni sauti ya mnyama yeyote." }
+  },
   "the-bird-is-singing": { "text": "Ndege anaimba.", "variants": ["Ndege huimba."] },
   "the-lion-is-roaring": { "text": "Simba ananguruma.", "variants": ["Simba hunguruma."] },
-  "the-mosquito-is-buzzing": { "text": "Mbu anavuma.", "variants": ["Mbu huvuma."] }
+  "the-mosquito-is-biting-me": { "text": "Mbu ananiuma.", "variants": ["Mbu anauma."] }
  }
 }

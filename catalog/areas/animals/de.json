@@ -12,16 +12,14 @@
   "donkey": { "text": "Esel", "grammar": { "gender": "der", "plural": "=" } },
   "horse": { "text": "Pferd", "grammar": { "gender": "das", "plural": "-e" } },
   "elephant": { "text": "Elefant", "grammar": { "gender": "der", "plural": "-en" } },
-  "lion": { "text": "Löwe", "grammar": { "gender": "der", "plural": "-n" } },
   "monkey": { "text": "Affe", "grammar": { "gender": "der", "plural": "-n" } },
   "snake": { "text": "Schlange", "grammar": { "gender": "die", "plural": "-n" } },
-  "mosquito": { "text": "Mücke", "grammar": { "gender": "die", "plural": "-n" } },
   "insect": { "text": "Insekt", "grammar": { "gender": "das", "plural": "-en" } },
   "look-a-bird": { "text": "Schau mal, ein Vogel!", "variants": ["Schau, ein Vogel!"] },
   "the-dog-is-barking": { "text": "Der Hund bellt." },
   "the-cat-is-meowing": { "text": "Die Katze miaut." },
   "the-bird-is-singing": { "text": "Der Vogel singt." },
   "the-lion-is-roaring": { "text": "Der Löwe brüllt." },
-  "the-mosquito-is-buzzing": { "text": "Die Mücke summt." }
+  "the-mosquito-is-biting-me": { "text": "Die Mücke sticht mich.", "notes": { "de": "Mücken stechen, sie beißen nicht." } }
  }
 }

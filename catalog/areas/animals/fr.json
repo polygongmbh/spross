@@ -12,16 +12,14 @@
   "donkey": { "text": "âne", "variants": ["l'âne"], "grammar": { "gender": "l'" } },
   "horse": { "text": "cheval", "grammar": { "gender": "le", "plural": "chevaux" } },
   "elephant": { "text": "éléphant", "variants": ["l'éléphant"], "grammar": { "gender": "l'" } },
-  "lion": { "text": "lion", "grammar": { "gender": "le" } },
   "monkey": { "text": "singe", "grammar": { "gender": "le" } },
   "snake": { "text": "serpent", "grammar": { "gender": "le" } },
-  "mosquito": { "text": "moustique", "grammar": { "gender": "le" } },
   "insect": { "text": "insecte", "variants": ["l'insecte"], "grammar": { "gender": "l'" } },
   "look-a-bird": { "text": "Regarde, un oiseau !" },
   "the-dog-is-barking": { "text": "Le chien aboie." },
   "the-cat-is-meowing": { "text": "Le chat miaule." },
   "the-bird-is-singing": { "text": "L'oiseau chante." },
   "the-lion-is-roaring": { "text": "Le lion rugit." },
-  "the-mosquito-is-buzzing": { "text": "Le moustique bourdonne." }
+  "the-mosquito-is-biting-me": { "text": "Le moustique me pique." }
  }
 }
