@@ -42,8 +42,6 @@ data class Briefing(
             appendLine("The lists below come out of Spross, the app I learn with.")
             appendLine()
             appendLine(protocol())
-            appendLine()
-            appendLine(firstTurn())
             if (freeCount > 0) {
                 appendLine()
                 appendLine("WORDS I HAVE — $freeCount; say anything to me in these")
@@ -60,7 +58,9 @@ data class Briefing(
                 for (word in newWords) appendLine("${word.target} (${word.source})")
             }
             appendLine()
-            append(closing())
+            appendLine(firstTurn())
+            appendLine()
+            append(harvestAsk())
         }
 
     /**
@@ -90,17 +90,17 @@ data class Briefing(
     /** The opening turn: something to read, before the learner has had to say anything. */
     private fun firstTurn(): String = """
         START HERE, before I say anything: write me a short story to practice on,
-        on a topic the words below cover, built out of them.
-        Blocks of two sentences — one in $targetName, the same one in $sourceName,
-        a line break between them, a blank line between blocks.
-        Alternate which language leads. Three to five blocks.
+        on a topic the words above cover, built out of them.
+        Blocks of two sentences — the same sentence in $targetName and in $sourceName,
+        a line break between them, a blank line between blocks. Three to five blocks.
+        Put $targetName first in block 1, $sourceName first in block 2, and keep swapping.
         Keep the pair as close to word-for-word as the grammar allows; where that reads
         unnaturally, give the idiomatic line and the literal one in brackets.
         Then ask me whether to go deeper, switch topic, or just talk.
     """.trimIndent()
 
     /** The ask that closes the loop: the words the conversation turned up, fenced for [Harvest]. */
-    private fun closing(): String {
+    private fun harvestAsk(): String {
         val example = newWords.firstOrNull() ?: inPlay.firstOrNull()
         return """
             When I say I am done, list the words I met that were new to me, one per line
