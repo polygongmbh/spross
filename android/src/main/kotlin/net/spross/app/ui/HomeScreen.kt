@@ -22,7 +22,10 @@ import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -84,6 +87,7 @@ fun HomeScreen(model: AppModel) {
         chromePart(greetingNow, greetingZone),
         dayPart(greetingNow, greetingZone, greetingTarget),
     ) { greetingTarget?.let { greeting(model, it) } }
+    var briefingOpen by remember { mutableStateOf(false) }
     val standing = remember(box, model.canPracticeExtra) {
         box?.let {
             HomeStanding.of(it, System.currentTimeMillis(), TimeZone.getDefault().id,
@@ -163,6 +167,8 @@ fun HomeScreen(model: AppModel) {
 
         ListenCard(model)
 
+        TalkCard(model) { briefingOpen = true }
+
         SprossenCard(model)
 
         // The same fortnight the streak was counted from, on the very refresh that
@@ -171,6 +177,7 @@ fun HomeScreen(model: AppModel) {
         ActivityStrip(model.activityWindow, stats?.streak ?: 0, health, chrome, locale)
         Spacer(Modifier.height(Theme.spacing.lg))
     }
+    if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
 }
 
 /**

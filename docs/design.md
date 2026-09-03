@@ -295,8 +295,12 @@ a clone inherits its sibling's gaps, never the rules.
 - **The companion**: the box briefs a chat assistant the app does not host
   and reads that conversation's answer back into own words (`Briefing`, `Harvest`).
   It leads the Box tab's own-content panel — the one entry there that goes out and comes back,
-  with the words it writes home under it.
-  NOT Home: Home answers "what do I do right now", and the answer to that is the round.
+  with the words it writes home under it,
+  and stands on Home under the listening card, wearing the same face:
+  both are ways into the words that are not the round, and this is the only one that
+  leaves the app, so the panel behind a tab was a door nobody found.
+  UNDER the day's card and never in it: Home still answers "what do I do right now"
+  with the round.
   The finished round offers it once more, under the celebration rather than in it,
   asking rather than instructing — Fertig stays that screen's own answer.
   The sheet shows the loop in three numbered moves and never the text:
