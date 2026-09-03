@@ -3,6 +3,7 @@ package net.spross.kern.box
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.CardPhase
 
@@ -134,6 +135,19 @@ class GrowthStageTests {
         state = Box.inject(state, Box.sched("w99", dueMillis = future, lastReviewMillis = now))
 
         assertEquals(listOf("w01"), BoxEngine.growth(state, now, Box.TZ).map { it.cardId })
+    }
+
+    @Test
+    fun oneCardAskedByNameAnswersAsTheWholeBoxWould() {
+        var state = Box.state(listOf(Box.word(1), Box.word(2)))
+        state = Box.inject(state, Box.sched("w01", stability = 12.5, dueMillis = future, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w99", dueMillis = future, lastReviewMillis = now))
+
+        val whole = BoxEngine.growth(state, now, Box.TZ).associateBy { it.cardId }
+        assertEquals(whole.getValue("w01"), BoxEngine.cardGrowth(state, "w01", now, Box.TZ))
+        assertEquals(whole.getValue("w02"), BoxEngine.cardGrowth(state, "w02", now, Box.TZ))
+        // The join does not carry it, so it has no standing to report.
+        assertNull(BoxEngine.cardGrowth(state, "w99", now, Box.TZ))
     }
 
     @Test

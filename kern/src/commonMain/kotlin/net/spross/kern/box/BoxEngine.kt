@@ -369,6 +369,18 @@ object BoxEngine {
         boxGrowth(state, nowEpochMillis, tzId)
 
     /**
+     * Where ONE card stands, asked by name — see [cardGrowthOf]. Null where the join
+     * does not carry the id. For a surface holding a single word (a Box row's long
+     * press), which would otherwise walk [growth] for one entry.
+     */
+    fun cardGrowth(
+        state: BoxState,
+        cardId: String,
+        nowEpochMillis: Long,
+        tzId: String,
+    ): CardGrowth? = cardGrowthOf(state, cardId, nowEpochMillis, tzId)
+
+    /**
      * Has this card landed? See [Statistics.isConsolidated] — the one threshold
      * behind the fresh/consolidated stats split, phrase unlock, the drill pools and
      * the presentation support a word gets while it is still on its way in.

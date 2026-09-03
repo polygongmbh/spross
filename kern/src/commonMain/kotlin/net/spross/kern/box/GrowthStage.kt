@@ -101,18 +101,44 @@ internal fun stageOf(state: BoxState, sched: CardScheduling): GrowthStage = when
 internal fun boxGrowth(state: BoxState, nowEpochMillis: Long, tzId: String): List<CardGrowth> {
     val queued = state.enqueued.toSet()
     val today = dayKey(nowEpochMillis, tzId)
-    return Inventory.joinedCards(state).map { card ->
-        val sched = state.scheduling[card.id]
-        CardGrowth(
-            cardId = card.id,
-            stage = when {
-                sched != null -> stageOf(state, sched)
-                card.id in queued -> GrowthStage.Queued
-                else -> GrowthStage.Unscheduled
-            },
-            stability = sched?.memory?.stability ?: 0.0,
-            touchedToday = sched?.log?.lastOrNull()
-                ?.let { dayKey(it.date.toEpochMilliseconds(), tzId) == today } ?: false,
-        )
-    }
+    return Inventory.joinedCards(state).map { growthOf(state, it.id, queued, today, tzId) }
+}
+
+/**
+ * ONE card's standing, or null where the join does not carry it — the same ruling
+ * [boxGrowth] reports for the whole box, asked by name.
+ *
+ * For a surface that has a single word in front of it (a row's long press): walking the
+ * whole box for one entry is the alternative, and a surface tempted to skip that walk is
+ * a surface about to re-derive the Sprosse from the schedule itself.
+ */
+internal fun cardGrowthOf(
+    state: BoxState,
+    cardId: String,
+    nowEpochMillis: Long,
+    tzId: String,
+): CardGrowth? {
+    if (cardId !in state.cards) return null
+    return growthOf(state, cardId, state.enqueued.toSet(), dayKey(nowEpochMillis, tzId), tzId)
+}
+
+private fun growthOf(
+    state: BoxState,
+    cardId: String,
+    queued: Set<String>,
+    today: String,
+    tzId: String,
+): CardGrowth {
+    val sched = state.scheduling[cardId]
+    return CardGrowth(
+        cardId = cardId,
+        stage = when {
+            sched != null -> stageOf(state, sched)
+            cardId in queued -> GrowthStage.Queued
+            else -> GrowthStage.Unscheduled
+        },
+        stability = sched?.memory?.stability ?: 0.0,
+        touchedToday = sched?.log?.lastOrNull()
+            ?.let { dayKey(it.date.toEpochMilliseconds(), tzId) == today } ?: false,
+    )
 }
