@@ -483,7 +483,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 ListeningPool.report(
                     cat, state, stamp.source, stamp.target,
                     hasTargetVoice = hasTarget, hasSourceVoice = hasSource,
-                    nowEpochMillis = dealtAt,
+                    seed = dealtAt,
                 )
             }
             listeningPool = report.candidates

@@ -298,13 +298,14 @@ private val catalogOrder: Comparator<ListeningCandidate> =
 
 /**
  * The hash `Inventory.dueOrder` already de-correlates the box with, for the same reason —
- * salted with [nowEpochMillis] so a run started later reshuffles instead of replaying the
- * same sequence: the apps already re-sweep the pool on every foreground, so this alone gives
- * a learner who listens more than once a day a fresh order each time, without kern reading a
- * clock of its own.
+ * salted with [seed] so a run dealt with a different one reshuffles instead of replaying the
+ * same sequence: the apps already re-sweep the pool on every foreground and hand in the
+ * current instant, so this alone gives a learner who listens more than once a day a fresh
+ * order each time, without kern reading a clock of its own — kern only ever sees the number,
+ * never where it came from.
  */
-private fun hashedOrder(nowEpochMillis: Long): Comparator<ListeningCandidate> =
-    compareBy({ fnv1a64("$nowEpochMillis:${fnv1a64(it.card.id)}") }, { it.card.id })
+private fun hashedOrder(seed: Long): Comparator<ListeningCandidate> =
+    compareBy({ fnv1a64("$seed:${fnv1a64(it.card.id)}") }, { it.card.id })
 
 private class Dealt(val candidate: ListeningCandidate, val at: Double, val priority: Int)
 
@@ -334,17 +335,18 @@ private val dealOrder: Comparator<Dealt> = compareBy(
  * catalog from its very first word. Scheduled words are hashed by card id instead, because a
  * fixed catalog order would let seed neighbors — often related concepts — be heard in the same
  * sequence every run, and a word half-learned from its neighbor is what `Inventory.dueOrder`
- * fights — salted with [nowEpochMillis] on top ([hashedOrder]), so the sequence also changes
- * between two dealings of an otherwise-unchanged box, not only when a review moves a word
- * between lanes.
+ * fights — salted with [seed] on top ([hashedOrder]), so the sequence also changes between
+ * two dealings of an otherwise-unchanged box, not only when a review moves a word between
+ * lanes. [seed] is opaque to kern — it only folds the number into the hash, so whatever a
+ * caller hands in (the current instant, today) is theirs to choose.
  *
- * Total and deterministic FOR ONE INSTANT on both platforms: placement, then priority
- * descending, then seed index, then id.
+ * Total and deterministic FOR ONE SEED on both platforms: placement, then priority
+ * descending, then catalog seed index, then id.
  */
-fun listeningOrder(candidates: List<ListeningCandidate>, nowEpochMillis: Long): List<ListeningCandidate> =
+fun listeningOrder(candidates: List<ListeningCandidate>, seed: Long): List<ListeningCandidate> =
     candidates.groupBy(::laneOf)
         .flatMap { (lane, members) ->
-            val within = if (lane.scheduled) hashedOrder(nowEpochMillis) else catalogOrder
+            val within = if (lane.scheduled) hashedOrder(seed) else catalogOrder
             members.sortedWith(within).mapIndexed { n, candidate ->
                 Dealt(candidate, (n + 0.5) / lane.priority, lane.priority)
             }

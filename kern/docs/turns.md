@@ -63,12 +63,11 @@ Engine contract: `../README.md`.
   Each turn says the target word, waits, says its meaning in the SOURCE language, then says
   the target again — so it reaches the hours a language is actually available in, the walk and
   the washing-up, where every other way in asks for a typed answer or a tap.
-  `ListeningPool.report(catalog, box, source, target, hasTargetVoice, hasSourceVoice,
-  nowEpochMillis)` is the one gate, shaped like `LetterDrillAvailability.report` and
-  disciplined the same way: the only platform facts are the two `hasVoice` booleans, one per
-  side, and kern caches nothing. `nowEpochMillis` never reads a clock inside kern — it only
-  salts the scheduled lanes' own tiebreak (below), so it changes what a report deals rather
-  than what belongs in it.
+  `ListeningPool.report(catalog, box, source, target, hasTargetVoice, hasSourceVoice, seed)`
+  is the one gate, shaped like `LetterDrillAvailability.report` and disciplined the same way:
+  the only platform facts are the two `hasVoice` booleans, one per side, and kern caches
+  nothing. `seed` is opaque to kern — it only salts the scheduled lanes' own tiebreak (below),
+  never reads a clock, and does not care that both apps happen to hand it the current instant.
   **Both halves must be sayable** — a turn that plays a word and then silence teaches nothing,
   so the shared `catalog.audible` predicate is applied to the target form AND the source form.
   **Suspended cards stay in the pool.** The leech rule auto-suspends at two lapses (`../README.md` §5), so the
@@ -126,14 +125,15 @@ Engine contract: `../README.md`.
   within the first handful of turns, in catalog order among themselves rather than in pack
   order — `Growth.newCandidates` honors the queue's own order because it spends a budget
   against it, and a run has no budget to spend. Scheduled words are hashed by card id
-  (`fnv1a64`, the hash `Inventory.dueOrder` already uses) salted with `nowEpochMillis`, so
-  seed neighbors — often related concepts, and a word half-learned from its neighbor is what
-  that hash exists to prevent — are not heard in the same sequence every run, AND the same box
-  dealt again later reshuffles rather than replaying: the apps already re-sweep the pool on
-  every foreground, so a learner who listens more than once a day hears a fresh order each
-  time without kern ever reading a clock of its own. The whole deal is `listeningOrder`, pure
-  and private in its lane key, and it is what `ListeningPool.report` returns — nothing but the
-  ordered list crosses the ObjC boundary.
+  (`fnv1a64`, the hash `Inventory.dueOrder` already uses) salted with `seed`, so catalog seed
+  neighbors — often related concepts, and a word half-learned from its neighbor is what that
+  hash exists to prevent — are not heard in the same sequence every run, AND the same box
+  dealt with a different seed reshuffles rather than replaying: both apps happen to hand in
+  the current instant, and re-sweep the pool on every foreground, so a learner who listens
+  more than once a day hears a fresh order each time — kern itself never reads a clock, or
+  cares what the number means, only that a new one showed up. The whole deal is
+  `listeningOrder`, pure and private in its lane key, and it is what `ListeningPool.report`
+  returns — nothing but the ordered list crosses the ObjC boundary.
   `ListeningRun` is the pure machine (`Start`/`Advance`/`Skip`/`Repeat`/`TogglePause`/`Close`),
   and it holds **no `BoxState` at all** — that is what makes "listening books nothing"
   structural rather than promised. Its `ListeningEffect` says `Play`/`Stop`

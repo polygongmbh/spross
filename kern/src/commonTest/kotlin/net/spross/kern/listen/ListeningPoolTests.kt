@@ -30,9 +30,9 @@ class ListeningPoolTests {
         box: BoxState,
         hasTargetVoice: Boolean,
         hasSourceVoice: Boolean,
-        nowEpochMillis: Long = Box.day1,
+        seed: Long = Box.day1,
     ): ListeningPool.Report =
-        ListeningPool.report(catalog, box, "de", "sw", hasTargetVoice, hasSourceVoice, nowEpochMillis)
+        ListeningPool.report(catalog, box, "de", "sw", hasTargetVoice, hasSourceVoice, seed)
 
     private fun spoken(box: BoxState): ListeningPool.Report = report(box, true, true)
 
@@ -283,11 +283,12 @@ class ListeningPoolTests {
     }
 
     /**
-     * RULE: the same box dealt at the same instant repeats; dealt at a later one, its
+     * RULE: the same box dealt with the same seed repeats; dealt with a different one, its
      * scheduled lane reshuffles.
-     * WHY: the apps re-sweep the pool on every foreground, so a learner who listens more than
-     * once a day must not hear the identical sequence every time — but a single report is
-     * still a pure function of the box and the instant it names, never a live clock read.
+     * WHY: the apps re-sweep the pool on every foreground and hand in the current instant, so
+     * a learner who listens more than once a day must not hear the identical sequence every
+     * time — but a single report is still a pure function of the box and the seed it names,
+     * never a live clock read.
      */
     @Test
     fun theScheduledLaneReshufflesBetweenTwoDealingsOfTheSameBox() {
@@ -299,12 +300,12 @@ class ListeningPoolTests {
             )
         }
 
-        val first = ids(report(state, true, true, nowEpochMillis = Box.day1))
-        val again = ids(report(state, true, true, nowEpochMillis = Box.day1))
-        val later = ids(report(state, true, true, nowEpochMillis = Box.plusDays(Box.day1, 1.0)))
+        val first = ids(report(state, true, true, seed = Box.day1))
+        val again = ids(report(state, true, true, seed = Box.day1))
+        val later = ids(report(state, true, true, seed = Box.plusDays(Box.day1, 1.0)))
 
-        assertEquals(first, again, "the same instant must deal the same order")
-        assertTrue(first != later, "a later instant never reshuffled the order")
+        assertEquals(first, again, "the same seed must deal the same order")
+        assertTrue(first != later, "a different seed never reshuffled the order")
     }
 
     /** A card whose two forms are ones the shipped audio fixture really has recordings for. */

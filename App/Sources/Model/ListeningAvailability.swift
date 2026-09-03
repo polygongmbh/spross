@@ -48,7 +48,7 @@ struct ListeningAvailability {
         ListeningPool.shared.report(
             catalog: catalog, box: box, source: source, target: target,
             hasTargetVoice: hasTargetVoice, hasSourceVoice: hasSourceVoice,
-            nowEpochMillis: Date().epochMillis)
+            seed: Date().epochMillis)
     }
 
     /// Whether the Home card stands at all.
@@ -67,7 +67,7 @@ struct ListeningAvailability {
             catalog: catalog, box: box, source: source, target: target,
             hasTargetVoice: Pronouncer.shared.canSpeak(language: target),
             hasSourceVoice: Pronouncer.shared.canSpeak(language: source),
-            nowEpochMillis: Date().epochMillis
+            seed: Date().epochMillis
         )
     }
 }

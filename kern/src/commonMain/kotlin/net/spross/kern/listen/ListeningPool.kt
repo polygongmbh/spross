@@ -63,9 +63,9 @@ object ListeningPool {
      *
      * What comes back is the PLAY ORDER, not merely a stable one — `listeningOrder` deals the
      * lanes into the sequence a run walks, so an empty box opens on the catalog's first word.
-     * [nowEpochMillis] salts that deal's own tiebreak (`hashedOrder`) rather than seeding a
-     * clock kern reads itself, so a report asked for again later reshuffles the scheduled
-     * lanes instead of replaying the same sequence.
+     * [seed] salts that deal's own tiebreak (`hashedOrder`) — opaque to kern, which only folds
+     * the number into the hash, so a caller handing in a different one (the current instant,
+     * say) reshuffles the scheduled lanes instead of replaying the same sequence.
      */
     fun report(
         catalog: Catalog,
@@ -74,7 +74,7 @@ object ListeningPool {
         target: Language,
         hasTargetVoice: Boolean,
         hasSourceVoice: Boolean,
-        nowEpochMillis: Long,
+        seed: Long,
     ): Report {
         val joined = Inventory.joinedCards(box)
         val sayable = joined.filter { sayable(it, catalog, source, target, hasTargetVoice, hasSourceVoice) }
@@ -97,7 +97,7 @@ object ListeningPool {
                     it, stability = 0.0, suspended = false, scheduled = false, queued = it.id in packed,
                 )
             }
-        return Report(candidates = listeningOrder(scheduled + unseen, nowEpochMillis))
+        return Report(candidates = listeningOrder(scheduled + unseen, seed))
     }
 
     /** Both halves of the turn heard, or the card is not a candidate. */
