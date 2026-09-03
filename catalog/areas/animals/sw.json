@@ -17,11 +17,7 @@
   "insect": { "text": "mdudu", "grammar": { "plural": "wadudu" } },
   "look-a-bird": { "text": "Angalia, ndege!", "variants": ["Tazama, ndege!"] },
   "the-dog-is-barking": { "text": "Mbwa anabweka.", "variants": ["Mbwa hubweka."] },
-  "the-cat-is-meowing": {
-   "text": "Paka analia.",
-   "variants": ["Paka hulia.", "Paka anasema miau."],
-   "notes": { "sw": "Hakuna kitenzi cha kumiau; kulia ni sauti ya mnyama yeyote." }
-  },
+  "the-cat-is-meowing": { "text": "Paka analia.", "variants": ["Paka hulia.", "Paka anasema miau."] },
   "the-bird-is-singing": { "text": "Ndege anaimba.", "variants": ["Ndege huimba."] },
   "the-lion-is-roaring": { "text": "Simba ananguruma.", "variants": ["Simba hunguruma."] },
   "the-mosquito-is-biting-me": { "text": "Mbu ananiuma.", "variants": ["Mbu anauma."] }

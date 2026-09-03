@@ -20,11 +20,7 @@
   "star": { "text": "nyota", "grammar": { "plural": "=" } },
   "wood": { "text": "mbao", "grammar": { "plural": "=" } },
   "stick": { "text": "fimbo", "grammar": { "plural": "=" } },
-  "shadow": {
-   "text": "kivuli",
-   "grammar": { "plural": "vivuli" },
-   "notes": { "sw": "Kivulini ni mahali penye kivuli: Tunakaa kivulini." }
-  },
+  "shadow": { "text": "kivuli", "grammar": { "plural": "vivuli" } },
   "lets-go-to-the-beach": { "text": "Twende ufukweni!", "variants": ["Twende pwani!"] },
   "we-are-going-to-the-mountains": { "text": "Tunaenda milimani." },
   "its-cold-in-the-mountains": { "text": "Milimani kuna baridi." }

@@ -37,19 +37,11 @@
   "cooked-rice": { "text": "wali" },
   "cassava": { "text": "muhogo", "grammar": { "plural": "mihogo" } },
   "ugali": { "text": "ugali" },
-  "bean": {
-   "text": "haragwe",
-   "grammar": { "plural": "maharagwe" },
-   "notes": { "sw": "Mara nyingi husemwa kwa wingi: maharagwe." }
-  },
+  "bean": { "text": "haragwe", "grammar": { "plural": "maharagwe" } },
   "garlic": { "text": "kitunguu saumu", "grammar": { "plural": "vitunguu saumu" } },
   "carrot": { "text": "karoti", "grammar": { "plural": "=" } },
   "cabbage": { "text": "kabichi", "grammar": { "plural": "=" } },
-  "porridge": {
-   "text": "uji",
-   "grammar": { "plural": "=" },
-   "notes": { "sw": "Uji ni chakula cha maji, hunywewa kikombeni." }
-  },
+  "porridge": { "text": "uji", "grammar": { "plural": "=" } },
   "samosa": { "text": "sambusa", "grammar": { "plural": "=" } },
   "breakfast": { "text": "kifungua kinywa", "synonyms": ["kiamsha kinywa"] },
   "dinner": { "text": "chakula cha jioni" },
