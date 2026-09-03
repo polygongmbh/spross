@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.11.2 — 2026-09-03
+
 - **The dates drill turned round now asks you to read a date, not to translate one** — it says `Samstag, der dritte Juni` and you write `3.6.`, which is the half of the skill a calendar actually needs.
 
 ## 5.11.1 — 2026-09-03
