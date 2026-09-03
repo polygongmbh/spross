@@ -8,6 +8,16 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 
 ## Content & catalog
 
+- Case names are the gap the word classes did not close. `verbs/de.json` `see` is a shared
+  note — the fallback every learner of German reads — and it explains the dative with
+  `Akkusativ` and `Dativ`, which no card teaches; `uk` will want the same for its seven.
+  `language` now owns the metalanguage (`verb`, `noun`, `adjective`, `ngeli`, `kiambishi`)
+  and is where they would go, but a case name only pays off for the languages that inflect,
+  so the honest coverage is de/uk/eo and an omission elsewhere. Sizing that is the work.
+- `ngeli` and `kiambishi` sit at the end of `language`'s word block for want of a better
+  shelf — they are Swahili-only facts on a shelf every pair reads. `catalog-move.py` carries
+  them once a home exists.
+
 - `qualities` is at 45 concepts after `beautiful`, the two stance pairs and `health`/`healthy`
   landed, well past the ~40 an area is meant to hold (`catalog/areas/README.md` § which area a concept lives in).
   The seam a learner would name is `comparison`: `different`, `difference`, `same`,
