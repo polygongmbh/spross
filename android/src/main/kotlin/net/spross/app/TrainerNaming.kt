@@ -79,6 +79,7 @@ fun Chrome.countrySprosseHint(sprosse: Int): String = countrySprosseHints.rowFor
  * one sentence: what changes between them is on the card, not in the ask.
  */
 fun Chrome.dateAsk(kind: DateTaskKind): String = when (kind) {
+    DateTaskKind.NameChoice -> datesAskName
     DateTaskKind.Weekday -> datesAskWeekday
     DateTaskKind.Month -> datesAskMonth
     DateTaskKind.DayOfMonth -> datesAskDay
@@ -99,13 +100,14 @@ fun Chrome.dateSprosseHint(kinds: List<DateTaskKind>): String =
 /** A Sprosse carries every kind below it, so the LAST one is what it introduced and is named for. */
 private fun dateSprosseIndex(kinds: List<DateTaskKind>): Int =
     when (kinds.lastOrNull()) {
-        DateTaskKind.Weekday -> 1
-        DateTaskKind.Month -> 2
-        DateTaskKind.DayOfMonth -> 3
-        DateTaskKind.DayAndMonth -> 4
-        DateTaskKind.FullDate -> 5
-        DateTaskKind.FullDateWithYear -> 6
-        null -> 6
+        DateTaskKind.NameChoice -> 1
+        DateTaskKind.Weekday -> 2
+        DateTaskKind.Month -> 3
+        DateTaskKind.DayOfMonth -> 4
+        DateTaskKind.DayAndMonth -> 5
+        DateTaskKind.FullDate -> 6
+        DateTaskKind.FullDateWithYear -> 7
+        null -> 7
     }
 
 /** How far from home a reference group sits — kern hands the tier over already effective. */

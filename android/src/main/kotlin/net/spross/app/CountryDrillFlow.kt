@@ -59,11 +59,17 @@ class CountryDrillFlow(
     /** The beat became a tap: render the explicit "Weiter", which books the same answer. */
     override val awaitsConfirm get() = beat.awaitsConfirm
 
+    /** The atlas asks nothing off tiles, so nothing was ever tapped. */
+    override val chosen: String? get() = null
+
     /** A live keystroke: writing the name out IS the answer, within kern's exact-only guard. */
     override fun type(text: String) {
         input = text
         dispatch(CountryDrillIntent.InputChanged(text))
     }
+
+    /** Never reached: the screen offers tiles only where the question came with them. */
+    override fun choose(text: String) = dispatch(CountryDrillIntent.Submit(text))
 
     /**
      * The ONE primary action: an empty field asks to see the answer, a typed one checks it.

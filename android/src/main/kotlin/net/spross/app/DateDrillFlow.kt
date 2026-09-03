@@ -59,10 +59,23 @@ class DateDrillFlow(
     /** The beat became a tap: render the explicit "Weiter", which books the same answer. */
     override val awaitsConfirm get() = beat.awaitsConfirm
 
+    /** The tile the warm-up question was answered off, cleared with the question itself. */
+    override var chosen by mutableStateOf<String?>(null)
+        private set
+
     /** A live keystroke: writing the reading out IS the answer, within kern's exact-only guard. */
     override fun type(text: String) {
         input = text
         dispatch(DateDrillIntent.InputChanged(text))
+    }
+
+    /**
+     * A tapped tile: submitted as the text it carries, so kern grades it against the same
+     * accepted set a written answer meets and nothing here decides what a tap is worth.
+     */
+    override fun choose(text: String) {
+        chosen = text
+        dispatch(DateDrillIntent.Submit(text))
     }
 
     /**
@@ -108,6 +121,7 @@ class DateDrillFlow(
             text = state.task.promptText,
             language = state.promptLanguage,
             display = state.task.display,
+            choices = state.task.choices,
         ),
     )
 
@@ -128,7 +142,10 @@ class DateDrillFlow(
         val reduction = DateDrillRun.reduce(state, intent, rng)
         // why: cleared in the SAME transaction as the question — the next card must never
         // render one frame carrying the last one's answer.
-        if (reduction.state.index != state.index) input = ""
+        if (reduction.state.index != state.index) {
+            input = ""
+            chosen = null
+        }
         state = reduction.state
         acts.carryOut(reduction.effects)
     }

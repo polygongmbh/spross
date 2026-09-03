@@ -248,6 +248,7 @@ interface Chrome {
      */
     val dateSprossen: List<String>
     val dateSprosseHints: List<String>
+    val datesAskName: String
     val datesAskWeekday: String
     val datesAskMonth: String
     val datesAskDay: String

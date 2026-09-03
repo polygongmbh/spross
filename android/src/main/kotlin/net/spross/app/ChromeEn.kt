@@ -253,6 +253,7 @@ internal object ChromeEn : Chrome {
     override val datesReverseHint = "Asks in %s, you answer in %s — names only, the date " +
         "itself stays forward."
     override val dateSprossen = listOf(
+        "The names, tapped",
         "The weekdays",
         "The months",
         "The day of the month",
@@ -261,6 +262,7 @@ internal object ChromeEn : Chrome {
         "The date with its year",
     )
     override val dateSprosseHints = listOf(
+        "Weekdays and months, one name out of four — nothing written yet.",
         "The week's seven names, asked one at a time.",
         "The twelve month names, mixed in with the weekdays.",
         "3 becomes third — the number a date needs.",
@@ -268,6 +270,7 @@ internal object ChromeEn : Chrome {
         "With the weekday in front: Mon, 3/3.",
         "Plus the year, read out in words.",
     )
+    override val datesAskName = "Which of these is it?"
     override val datesAskWeekday = "What is this weekday called?"
     override val datesAskMonth = "What is this month called?"
     override val datesAskDay = "How is this day read?"

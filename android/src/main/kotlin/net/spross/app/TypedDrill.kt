@@ -36,11 +36,24 @@ interface TypedDrill {
     /** The beat became a tap: render the explicit "Weiter", which books the same answer. */
     val awaitsConfirm: Boolean
 
+    /**
+     * The tile this question was answered off, or null while it is still owed — what the
+     * grid marks ✓ and ✗ with once a tap has landed. Null the whole way up a drill whose
+     * questions are all written.
+     */
+    val chosen: String?
+
     /** The question and the figures as they stand, in the words this learner reads. */
     fun view(chrome: Chrome): TypedDrillView
 
     /** A live keystroke: writing the answer out IS the answer, within kern's exact-only guard. */
     fun type(text: String)
+
+    /**
+     * An answer arriving whole rather than a letter at a time — a tapped tile, which the
+     * screen offers only where the question came with [TypedDrillPrompt.choices].
+     */
+    fun choose(text: String)
 
     /** The ONE primary action: an empty field asks to see the answer, a typed one checks it. */
     fun primary()
@@ -73,6 +86,11 @@ data class TypedDrillPrompt(
     val emoji: String? = null,
     /** Whether showing [emoji] while the answer is owed would ANSWER the question. */
     val emojiIsGiveaway: Boolean = false,
+    /**
+     * The tiles this question is answered off, in kern's own shuffled order — null where it
+     * is written instead, which is every Sprosse above the calendar's warm-up.
+     */
+    val choices: List<String>? = null,
 )
 
 /** One typed run as it stands: the question, the ladder under it, and the score line. */

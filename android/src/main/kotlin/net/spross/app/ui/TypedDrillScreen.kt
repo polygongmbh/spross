@@ -156,6 +156,9 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
     val inputFocus = remember { FocusRequester() }
     LaunchedEffect(run.index) {
         if (model.pronouncer.readsScreenAloud) return@LaunchedEffect
+        // why: a tapped question has no field to fill — a keyboard over the tiles would
+        // cover the very answer it is waiting for.
+        if (run.prompt.choices != null) return@LaunchedEffect
         // why: a requester answers only once its node has been placed; one frame is what
         // that takes, and a request fired inside the same composition lands on nothing.
         withFrameNanos { }
@@ -234,9 +237,11 @@ private fun Prompt(
 }
 
 /**
- * The field and the one primary action under it. The placeholder names the language the
- * answer is owed IN — which is the learner's own on a reversed run, and the only place the
- * direction is spelled out.
+ * The answer and the one primary action under it — a field where the question is written
+ * out, kern's four tiles where it is tapped ([DrillNameTiles]).
+ *
+ * The placeholder names the language the answer is owed IN — which is the learner's own on
+ * a reversed run, and the only place the direction is spelled out.
  */
 @Composable
 private fun Controls(
@@ -247,19 +252,28 @@ private fun Controls(
     inputFocus: FocusRequester,
     onFinish: () -> Unit,
 ) {
+    val choices = run.prompt.choices
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-        DrillAnswerField(
-            value = flow.input,
-            onValueChange = flow::type,
-            placeholder = chrome.sessionAnswerPlaceholder.format(model.languageName(run.answerLanguage)),
-            feedback = run.feedback,
-            chrome = chrome,
-            focus = inputFocus,
-            onDone = { flow.enter() },
-        )
+        if (choices != null) {
+            // The warm-up Sprosse: the answer is picked, not written, so the field stays away
+            // entirely rather than standing unused under the grid.
+            DrillNameTiles(choices, run.prompt.display, flow.chosen, chrome, flow::choose)
+        } else {
+            DrillAnswerField(
+                value = flow.input,
+                onValueChange = flow::type,
+                placeholder = chrome.sessionAnswerPlaceholder
+                    .format(model.languageName(run.answerLanguage)),
+                feedback = run.feedback,
+                chrome = chrome,
+                focus = inputFocus,
+                onDone = { flow.enter() },
+            )
+        }
         when (val feedback = run.feedback) {
-            // ONE primary action: an empty field reveals, a typed one checks.
-            TurnFeedback.Neutral -> Button(
+            // ONE primary action: an empty field reveals, a typed one checks. A tapped
+            // question has neither — the grid IS the action, and it waits on its own.
+            TurnFeedback.Neutral -> if (choices == null) Button(
                 onClick = { flow.primary() },
                 modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
                 shape = MaterialTheme.shapes.small,
