@@ -42,6 +42,13 @@ data class DateDrillTask(
      * text it carries, so nothing below grades a choice any differently ([DateDrillChoices]).
      */
     val choices: List<String>? = null,
+    /**
+     * Whether the answer is a DATE rather than a reading — a reversed numeric Sprosse, where
+     * the card carries the words and the run wants them written down ([DateDrillParsing]).
+     * The one thing the direction decides below kern: which keyboard the field asks for, and
+     * that the placeholder names digits rather than a language.
+     */
+    val digits: Boolean = false,
 )
 
 /** One draw: the task and the Sprosse it was found on — a null task ends the run. */

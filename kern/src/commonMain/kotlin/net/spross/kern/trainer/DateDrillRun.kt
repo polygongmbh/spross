@@ -86,7 +86,7 @@ object DateDrillRun {
             language = config.answerLanguage,
             cardId = "dates",
             normalizer = config.normalizer,
-            index = numberIndex(task.kind, config),
+            index = numberIndex(task, config),
         )
         if (match == Match.Exact) return match
         return when (task.kind) {
@@ -275,12 +275,17 @@ object DateDrillRun {
     }
 
     /**
-     * The value check, on the Sprossen whose answer is a numeral. Nothing is inherited:
-     * `gradeDrillAnswer` defaults to none, and the bare-name Sprossen stay without one.
+     * The value check, on the Sprossen whose answer is a NUMERAL — a reading like `dritte`,
+     * never a date like `3.6.`. Nothing is inherited: `gradeDrillAnswer` defaults to none,
+     * and the bare-name and parsed Sprossen stay without one.
      */
-    private fun numberIndex(kind: DateTaskKind, config: DateDrillRunConfig): NumberReadingIndex? =
-        when (kind) {
-            DateTaskKind.NameChoice, DateTaskKind.Weekday, DateTaskKind.Month -> null
+    private fun numberIndex(task: DateDrillTask, config: DateDrillRunConfig): NumberReadingIndex? =
+        when {
+            // A date written in digits is graded exact-only by the normalizer itself, and an
+            // index of NUMBER WORDS has nothing to say about `3.6.` either way.
+            task.digits -> null
+            task.kind == DateTaskKind.NameChoice -> null
+            task.kind == DateTaskKind.Weekday || task.kind == DateTaskKind.Month -> null
             else -> config.normalizer?.let { NumberReadingIndex.of(config.answerLanguage, it) }
         }
 

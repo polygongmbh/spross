@@ -5,6 +5,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertIs
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -77,7 +78,7 @@ class DateDrillRunTest {
     fun aForcedSprosseIsClampedToTheLadder() {
         assertEquals(7, open(level = 99).level)
         assertEquals(1, open(level = 0).level)
-        assertEquals(3, open(reverse = true, level = 99).level)
+        assertEquals(7, open(reverse = true, level = 99).level, "the same ladder both ways")
     }
 
     @Test
@@ -258,19 +259,35 @@ class DateDrillRunTest {
     }
 
     /**
-     * The reversed ladder is finite — nineteen names and their mix — so answering it out
-     * ends the run on its summary, every question asked exactly once.
+     * Reverse is a DIRECTION, not a shorter ladder: a reversed run climbs off the nineteen
+     * names into the parse, where the card carries the reading and the answer is the date
+     * written in digits. It is also why such a run no longer runs out — the names are
+     * finite and the dates above them are drawn.
      */
     @Test
-    fun aLadderAnsweredOutEndsTheRun() {
+    fun aReversedRunClimbsOffTheNamesIntoTheParse() {
         var run = open(reverse = true, level = 3)
-        val asked = mutableSetOf<String>()
-        while (!run.finished) {
-            asked += DrillSolved.key(run.task)
+        assertFalse(run.task.digits, "it opens on the names")
+        var reachedADate = false
+        repeat(30) {
+            reachedADate = reachedADate || run.task.digits
             run = run.answered(run.task.display)
         }
-        assertEquals(19, asked.size, "every name was asked exactly once before the run ran out")
-        assertEquals(asked.size, run.done)
+        assertTrue(reachedADate, "the run never reached a date to parse")
+        assertTrue(run.level > 3, "the reversed ladder stopped at the names")
+        assertFalse(run.finished)
+    }
+
+    /** A parsed date is answered in the digits the card would print, never in words. */
+    @Test
+    fun aParsedDateIsAnsweredInDigits() {
+        var run = open(reverse = true, level = 5)
+        while (!run.task.digits) run = run.answered(run.task.display)
+        val date = run.task
+        assertEquals("en", run.answerLanguage, "the digits are written in the learner's own format")
+        assertTrue(date.display.any { it.isDigit() })
+        assertEquals(Match.Exact, DateDrillRun.grade(date.display, date, run.config))
+        assertNotEquals(Match.Exact, DateDrillRun.grade("the third of June", date, run.config))
     }
 
     @Test

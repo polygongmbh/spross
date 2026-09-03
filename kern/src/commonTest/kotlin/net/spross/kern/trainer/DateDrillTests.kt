@@ -29,13 +29,16 @@ class DateDrillTests {
 
     // MARK: - The ladder
 
-    /** The year Sprosse exists only where the answer side reads a year; reverse keeps the names. */
+    /**
+     * The year Sprosse exists only where the answer side reads a year. Reverse is a
+     * DIRECTION, not a shorter ladder: the same height either way round.
+     */
     @Test
     fun theLadderIsAsTallAsTheContentCanCarry() {
         assertEquals(7, DateDrill.maxLevel(german, reverse = false))
         assertEquals(6, DateDrill.maxLevel(ukrainian, reverse = false))
-        assertEquals(3, DateDrill.maxLevel(german, reverse = true))
-        assertEquals(3, DateDrill.maxLevel(ukrainian, reverse = true))
+        assertEquals(7, DateDrill.maxLevel(german, reverse = true))
+        assertEquals(6, DateDrill.maxLevel(ukrainian, reverse = true))
     }
 
     /**
@@ -54,6 +57,7 @@ class DateDrillTests {
         assertEquals(written.dropLast(1), DateDrill.kinds(ukrainian, 6, reverse = false))
         assertEquals(warmUp, DateDrill.kinds(german, 1, reverse = true))
         assertEquals(bareKinds, DateDrill.kinds(german, 3, reverse = true))
+        assertEquals(written, DateDrill.kinds(german, 7, reverse = true), "the same ladder back")
         assertEquals(written, DateDrill.kinds(german, 99, reverse = false), "clamped to the top")
         assertEquals(warmUp, DateDrill.kinds(german, 0, reverse = false))
     }
@@ -63,7 +67,8 @@ class DateDrillTests {
         assertFalse(DateDrill.fastUnlocked(6, german, reverse = false))
         assertTrue(DateDrill.fastUnlocked(7, german, reverse = false))
         assertTrue(DateDrill.fastUnlocked(6, ukrainian, reverse = false), "the short ladder tops at 6")
-        assertTrue(DateDrill.fastUnlocked(3, german, reverse = true))
+        assertFalse(DateDrill.fastUnlocked(6, german, reverse = true), "reverse is not the short way up")
+        assertTrue(DateDrill.fastUnlocked(7, german, reverse = true))
     }
 
     /** Three clean wins a Sprosse, or one where fast was earned — on this pair's own ceiling. */
@@ -248,12 +253,28 @@ class DateDrillTests {
     /** The whole ladder answered out is the null draw that ends a run on its summary. */
     @Test
     fun aLadderAnsweredOutDrawsNothing() {
-        val everything = ((0..6).map { "${DateTaskKind.Weekday}:$it" } +
+        val names = ((0..6).map { "${DateTaskKind.Weekday}:$it" } +
             (0..11).map { "${DateTaskKind.Month}:$it" } +
             (0..6).map { "${DateTaskKind.NameChoice}:w$it" } +
             (0..11).map { "${DateTaskKind.NameChoice}:m$it" }).toSet()
-        val draw = DateDrill.draw(german, 1, true, null, everything, Random(7))
-        assertNull(draw.task)
+        // The names-only pair has nothing else on its ladder, either way round.
+        val onlyNames = german.copy(patterns = german.patterns.copy(dateWithYear = null))
+        assertNull(DateDrill.draw(onlyNames, 1, true, null, names + everyDate(), Random(7)).task)
+        assertNull(DateDrill.draw(german, 1, false, null, names + everyDate(), Random(7)).task)
+    }
+
+    /** Every drawn-Sprosse key the german fixture can produce, so a ladder can be emptied. */
+    private fun everyDate(): Set<String> {
+        val keys = mutableSetOf<String>()
+        for (day in 1..31) {
+            keys += "${DateTaskKind.DayOfMonth}:$day"
+            for (month in 1..12) {
+                keys += "${DateTaskKind.DayAndMonth}:$day.$month"
+                for (weekday in 0..6) keys += "${DateTaskKind.FullDate}:$weekday:$day.$month"
+                for (year in DateDrillTasks.YEARS) keys += "${DateTaskKind.FullDateWithYear}:$day.$month.$year"
+            }
+        }
+        return keys
     }
 
     /** Every Sprosse mixes what it carries — and leads with what it introduced. */
@@ -265,6 +286,58 @@ class DateDrillTests {
         assertEquals(written.toSet(), drawn.toSet(), "the Sprosse stopped asking a kind it carries")
         val newest = drawn.count { it == DateTaskKind.FullDateWithYear }
         assertTrue(newest > drawn.size / 4, "the Sprosse buried its own question: $newest of ${drawn.size}")
+    }
+
+    // MARK: - Parsing, the reversed direction
+
+    /**
+     * Turned round, a numeric Sprosse hands over the reading and wants the date written:
+     * the same draw with its two sides swapped, and an answer in digits.
+     */
+    @Test
+    fun aReversedNumericSprosseAsksForTheDateInDigits() {
+        val forward = assertNotNull(DateDrill.sample(german, 5, false, null, emptySet(), Random(4)))
+        val back = assertNotNull(DateDrill.sample(german, 5, true, null, emptySet(), Random(4)))
+        assertEquals(forward.kind, back.kind, "the same draw, turned round")
+        assertEquals(forward.display, back.promptText, "the reading became the question")
+        assertEquals(forward.promptText, back.display, "the date became the answer")
+        assertTrue(back.digits)
+        assertFalse(forward.digits)
+    }
+
+    /** The names keep swapping sides in their own pool — both halves of those are words. */
+    @Test
+    fun theBareNameSprossenAreNotParsed() {
+        for (level in 1..3) {
+            val task = assertNotNull(DateDrill.sample(german, level, true, null, emptySet(), Random(11)))
+            assertFalse(task.digits, "a name is not a date: ${task.kind}")
+        }
+    }
+
+    /**
+     * What a written date is allowed to look like: the card's own printing, without the
+     * weekday the prompt already gave away, zero-padded, and without the trailing dot.
+     */
+    @Test
+    fun aParsedDateForgivesThePaddingAndTheWeekdayAndTheTrailingDot() {
+        val dayMonth = DateDrillParsing.parsed(DateDrillTasks.dayMonth(german, 3, 5))
+        assertEquals("6/3", dayMonth.display, "the reveal teaches the card's own printing")
+        assertContains(dayMonth.accepted, "06/03")
+
+        val full = DateDrillParsing.parsed(DateDrillTasks.fullDate(german, 5, 3, 5))
+        assertEquals("Sat, 6/3", full.display)
+        assertContains(full.accepted, "6/3", "the weekday the prompt named need not be copied")
+        assertContains(full.accepted, "06/03")
+
+        val day = DateDrillParsing.parsed(DateDrillTasks.day(german, 3))
+        assertEquals("3.", day.display)
+        assertContains(day.accepted, "3")
+        assertContains(day.accepted, "03.")
+        assertEquals("dritte", day.promptText, "the ordinal is what is read")
+
+        val dated = DateDrillParsing.parsed(DateDrillTasks.fullDateWithYear(german, 3, 2, 2026))
+        assertContains(dated.accepted, "3/3/2026")
+        assertContains(dated.accepted, "03/03/2026", "the year keeps its four digits")
     }
 
     // MARK: - The warm-up

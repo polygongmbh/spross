@@ -20,8 +20,11 @@ import net.spross.kern.model.Language
  * the draw order, not a narrower Sprosse ([drawOrder]). A Sprosse the answer language cannot
  * carry is absent, not locked: no `dateWithYear` pattern, no year Sprosse, and the ladder
  * simply tops out a Sprosse short (uk, `docs/date-readings.md`).
- * Reversed, only the bare-name Sprossen stand — the numeric side of a date is a separator
- * convention, not a language skill — so that ladder is the two names plus their mix.
+ * Reverse is a DIRECTION, not a shorter ladder: every Sprosse stands both ways round. The
+ * bare names swap sides, and the numeric Sprossen turn into a parse — the card carries the
+ * reading and the run wants the date written down ([DateDrillParsing]). Which is the easier
+ * half of the skill and the half a learner actually spends, so the whole reversed ladder is
+ * a comprehension check, answered in digits rather than in the learner's own prose.
  *
  * The ladder OPENS on a tapped Sprosse either way ([DateDrillChoices]): the names are met
  * on four tiles before any of them is written out, which is the letters ladder's opening
@@ -94,7 +97,9 @@ object DateDrill {
                     samplePool(DateDrillTasks.pool(content, kind, reverse), avoid, solved, rng)
                 else -> sampleComposed(content, kind, avoid, solved, rng)
             }
-            if (task != null) return task
+            // why: the flip happens HERE and nowhere else — the draw, the avoid key and the
+            // solved set all work on the forward task, whose kind and id a parse keeps.
+            if (task != null) return if (reverse) DateDrillParsing.parsed(task) else task
         }
         return null
     }
@@ -144,20 +149,22 @@ object DateDrill {
         return if (rng.nextBoolean()) listOf(newest) + shuffled.filterNot { it == newest } else shuffled
     }
 
+    /**
+     * why: [reverse] is taken and ignored — this ladder is the same height both ways round
+     * now that the numeric Sprossen have a reversed direction of their own. The parameter
+     * stays because the shared overview asks every drill the same question and the atlas
+     * still answers it differently: its flag Sprosse has no way round.
+     */
     private fun sprossen(content: DateDrillContent, reverse: Boolean): List<DateTaskKind> =
-        if (reverse) {
-            listOf(DateTaskKind.NameChoice, DateTaskKind.Weekday, DateTaskKind.Month)
-        } else {
-            listOfNotNull(
-                DateTaskKind.NameChoice,
-                DateTaskKind.Weekday,
-                DateTaskKind.Month,
-                DateTaskKind.DayOfMonth,
-                DateTaskKind.DayAndMonth,
-                DateTaskKind.FullDate,
-                DateTaskKind.FullDateWithYear.takeIf { content.patterns.dateWithYear != null },
-            )
-        }
+        listOfNotNull(
+            DateTaskKind.NameChoice,
+            DateTaskKind.Weekday,
+            DateTaskKind.Month,
+            DateTaskKind.DayOfMonth,
+            DateTaskKind.DayAndMonth,
+            DateTaskKind.FullDate,
+            DateTaskKind.FullDateWithYear.takeIf { content.patterns.dateWithYear != null },
+        )
 
     private fun samplePool(
         pool: List<DateDrillTask>,
