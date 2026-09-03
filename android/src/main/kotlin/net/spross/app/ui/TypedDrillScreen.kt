@@ -139,12 +139,12 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         model.speakDrillAnswer(run.prompt.display, run.answerLanguage)
     }
 
-    // The QUESTION is said instead where it is a name in the language being learned, which
-    // is exactly a reversed run — the one whose answer, above, deliberately stays silent.
-    // Saying it gives nothing away: the word is already on the card. No beat in front of
-    // it, unlike the answer's: nothing has just chimed and the question is what is awaited.
+    // The QUESTION is said instead on a REVERSED run, where the prompt IS the target-language
+    // form and the answer above deliberately stays silent — so without this the whole task
+    // would be unhearable. Saying it gives nothing away: the word is already on the card. No
+    // beat in front of it, unlike the answer's: nothing has chimed and the question is awaited.
     LaunchedEffect(run.index) {
-        if (!run.prompt.isAName || !reverse) return@LaunchedEffect
+        if (!reverse) return@LaunchedEffect
         val text = run.prompt.text ?: return@LaunchedEffect
         // A picture is written in no language, so a question that is one has nothing to say.
         val language = run.prompt.language ?: return@LaunchedEffect
@@ -185,7 +185,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
                 model, run, chrome,
                 promptVoice = run.prompt.language?.let { language ->
                     run.prompt.text
-                        ?.takeIf { run.prompt.isAName && reverse }
+                        ?.takeIf { reverse }
                         ?.let { model.speakFormOnTap(it, language) }
                 },
             )

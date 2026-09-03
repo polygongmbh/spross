@@ -112,9 +112,6 @@ enum CountryDrillFace: DrillFace {
                       offersFinish: run.offersFinish, finished: run.finished,
                       answerLanguage: run.answerLanguage, promptLanguage: run.promptLanguage,
                       ask: ask(run.task.kind), promptText: run.task.promptText,
-                      // Every atlas question asks with a country or a people, so the
-                      // prompt is always a form a voice may say.
-                      promptIsAName: true,
                       promptEmoji: run.task.promptEmoji,
                       emojiIsGiveaway: run.task.emojiIsGiveaway,
                       display: run.task.display, gloss: run.task.gloss,

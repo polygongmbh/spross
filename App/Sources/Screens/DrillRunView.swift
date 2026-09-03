@@ -139,7 +139,7 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     /// and VoiceOver — still veto it.
     private func autoplayPrompt() {
         let task = current
-        guard task.promptIsAName, reverse, let text = task.promptText else { return }
+        guard reverse, let text = task.promptText else { return }
         model.pronounceAloud(text, lang: task.promptLanguage)
     }
 

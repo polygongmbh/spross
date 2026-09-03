@@ -61,8 +61,8 @@ mutes interact. The engine's half — whether a form may be heard at all — is
 | near miss accepted — a typo, a form heard instead (waits for a tap) | yes, after the chime | the form the correction box carries |
 | produce revealed — Aufdecken, wrong, other word | yes, after the chime | the bare target word |
 | trainer drill prompt — a numeral, a clock face, a dated line | no | there is nothing to say yet: the reading IS the answer |
-| drill prompt that is a NAME in the language being learned — a reversed atlas run, a reversed dates run's weekday or month | yes, at once | the name itself, which already stands on the card |
-| drill prompt in the learner's OWN language — a forward run | no | no autoplay says that side; the reveal is where that run's voice is |
+| drill prompt in the language being LEARNED — any reversed atlas or dates run | yes, at once | the form itself, which already stands on the card |
+| drill prompt in the learner's OWN language — a forward run, `Mo, 3.3.` among them | no | no autoplay says that side; the reveal is where that run's voice is |
 | trainer drill reading revealed or corrected | yes, after the chime | the reading itself — generated, so usually the voice; a weekday, month, country or nationality name is recorded |
 | listening mode — the meaning, between the two sayings of the word | yes, unattended | the meaning in the learner's own language: the ONE autoplay that speaks the known side, because a word said into silence teaches nothing and there is no answer being owed |
 | a drill answer owed in the learner's OWN language — a reversed atlas run | no | nothing: every autoplay above says a form in the language being LEARNED, and the speaker beside the reveal still says this one on request. The PROMPT carries that run's voice instead — it is the target-language form |
@@ -114,14 +114,17 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   so on rows four points apart it overhangs its neighbor
   and a tap in a row's bottom sliver speaks the row below —
   two targets for one action, one of them wrong.
-  A drill PROMPT draws one wherever it is a NAME in the language being learned,
-  which is the same rule a card obeys — a target-language word gets a speaker
+  A drill PROMPT draws one wherever it stands in the language being learned,
+  which is the same rule a card obeys — a target-language form gets a speaker
   whenever the device can say it, drill or no drill.
-  That is a reversed run, whose answer is the learner's own side and stays silent,
-  so without it the whole task would be unhearable.
-  It is decided per TASK and not per drill: a reversed dates run speaks its weekday
-  and month Sprossen and stays mute on the rest, because `3.` and `Mo, 3.3.` are
-  renderings whose READING is exactly the answer owed, and a voice would hand it over.
+  That is a REVERSED run, whose answer is the learner's own side and stays silent,
+  so without the prompt the whole task would be unhearable.
+  Forward runs need no exception written for them: their prompt is the learner's own
+  language, which nothing outside listening mode says, and their target-language form
+  is the ANSWER, which already speaks on the reveal.
+  The dates drill needs none either — a reversed run asks only its weekday and month
+  Sprossen, and the day and the assembled dates are forward-only, prompting with the
+  learner's own abbreviation and digits (`Mo, 3.3.`) for a reading owed in the target.
   What the speaker follows is the revealed FORM, not the surface it stands on:
   the letter drill hands back a bare glyph on every Sprosse but the dictation,
   and a glyph is not a form anything may be asked to say —

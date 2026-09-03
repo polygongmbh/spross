@@ -11,7 +11,6 @@ import net.spross.kern.trainer.DateDrillIntent
 import net.spross.kern.trainer.DateDrillRun
 import net.spross.kern.trainer.DateDrillRunConfig
 import net.spross.kern.trainer.DateDrillRunState
-import net.spross.kern.trainer.DateTaskKind
 
 /**
  * One dates run as this platform holds it — the fourth sibling of [TrainerFlow],
@@ -108,10 +107,6 @@ class DateDrillFlow(
             ask = chrome.dateAsk(state.task.kind),
             text = state.task.promptText,
             language = state.promptLanguage,
-            // The weekday and month Sprossen show `Montag` and want the other language's
-            // word for it, so the name may be heard. The day and the assembled dates show
-            // `3.` and `Mo, 3.3.`, whose reading is exactly the answer owed.
-            isAName = state.task.kind == DateTaskKind.Weekday || state.task.kind == DateTaskKind.Month,
             display = state.task.display,
         ),
     )

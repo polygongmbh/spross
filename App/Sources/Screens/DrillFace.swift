@@ -160,12 +160,6 @@ struct DrillSnapshot {
     let ask: LocalizedStringKey
     /// The name or line asked about; nil where a picture alone is the question.
     let promptText: String?
-    /// Whether [promptText] is a NAME — a form a voice may say — rather than a
-    /// rendering whose READING is the answer owed. Per TASK and not per drill:
-    /// the atlas asks with a country or a people throughout, while the dates
-    /// drill asks with `Montag` on one Sprosse and `Mo, 3.3.` on the next, and
-    /// only the first may be heard.
-    var promptIsAName: Bool = false
     /// The picture beside the words, where the drill has one.
     let promptEmoji: String?
     /// Whether showing that picture while the answer is owed would answer it.
