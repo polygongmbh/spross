@@ -6,12 +6,17 @@
   "translate": { "text": "traduire" },
   "sentence": { "text": "phrase", "grammar": { "gender": "la" } },
   "word": { "text": "mot", "grammar": { "gender": "le" } },
+  "verb": { "text": "verbe", "grammar": { "gender": "le" } },
+  "noun": { "text": "substantif", "grammar": { "gender": "le" } },
+  "adjective": { "text": "adjectif", "variants": ["l'adjectif"], "grammar": { "gender": "l'" } },
   "language": {
    "text": "langue",
    "grammar": { "gender": "la" },
    "notes": { "de": "langue ist auch die Zunge im Mund." }
   },
   "mother-tongue": { "text": "langue maternelle", "grammar": { "gender": "la" } },
+  "noun-class": { "text": "classe nominale", "grammar": { "gender": "la" } },
+  "affix": { "text": "affixe", "variants": ["l'affixe"], "grammar": { "gender": "l'" } },
   "what-does-this-word-mean": {
    "text": "Que veut dire ce mot ?",
    "variants": ["Que signifie ce mot ?", "Qu'est-ce que ce mot veut dire ?"]

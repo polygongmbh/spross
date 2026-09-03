@@ -1,0 +1,15 @@
+{
+ "title": "Pronomoj",
+ "subtitle": "Mi, vi kaj ĉiuj aliaj.",
+ "words": {
+  "i": { "text": "mi" },
+  "you": {
+   "text": "vi",
+   "notes": { "eo": "vi estas unu homo kaj ankaŭ multaj: Esperanto havas nur unu formon." }
+  },
+  "he": { "text": "li", "variants": ["ŝi"] },
+  "it": { "text": "ĝi" },
+  "we": { "text": "ni" },
+  "they": { "text": "ili" }
+ }
+}

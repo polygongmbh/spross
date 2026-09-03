@@ -1,0 +1,16 @@
+{
+ "title": "Les pronoms",
+ "subtitle": "Moi, toi et tous les autres.",
+ "words": {
+  "i": { "text": "je", "variants": ["moi"] },
+  "you": {
+   "text": "tu",
+   "variants": ["vous", "toi"],
+   "notes": { "fr": "tu est pour la famille et les amis; aux autres on dit vous, qui est aussi le pluriel." }
+  },
+  "he": { "text": "il", "variants": ["elle"] },
+  "we": { "text": "nous" },
+  "you-plural": { "text": "vous" },
+  "they": { "text": "ils", "variants": ["elles"] }
+ }
+}

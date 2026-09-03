@@ -27,55 +27,30 @@ class PhraseVocabAuditTests {
      * and has to say so here.
      */
     private val allowlistSize: Map<Language, Int> =
-        mapOf("de" to 15, "en" to 3, "es" to 1, "fr" to 1, "it" to 2, "sw" to 4, "uk" to 2, "eo" to 1)
+        mapOf("de" to 1, "en" to 1, "it" to 1, "sw" to 2, "uk" to 1)
 
     /** Documented allowlist — function words and international words only. */
     private val allowlist: Map<Language, Set<String>> = mapOf(
         // --- German ---------------------------------------------------------------
         "de" to setOf(
-            "der", "das",        // Artikel — der Katalog führt das Genus als Grammatikfeld
-            "um", "seit",        // Präpositionen
-            "es", "ich", "wir",  // Personalpronomen
-            "sie",               // Höflichkeitsanrede der Sie-Form
-            "ist", "haben", "habe", // Kopula sein + Possessiv haben
-            "auf", "ab",         // trennbare Verbpartikeln (wache … auf, fährt … ab)
             "euro",              // internationale Währung, wie in sw/uk
-            "kilo",              // internationale Maßeinheit, in de/en/es dasselbe Wort — wie euro
         ),
         // --- English ---------------------------------------------------------------
         "en" to setOf(
             "euros", // internationale Währung, wie in de/sw/uk — im Plural, weil „euro“ selbst kein Kartenwort ist
-            "been",  // Hilfsverb: „since“ erzwingt have been + -ing, ein Präsens ist hier ungrammatisch
-            "kilo",  // internationale Maßeinheit, wie in de/es
-        ),
-        // --- Spanish ---------------------------------------------------------------
-        "es" to setOf(
-            "kilo", // internationale Maßeinheit, wie in de/en
-        ),
-        // --- French ---------------------------------------------------------------
-        "fr" to setOf(
-            "kilo", // internationale Maßeinheit, wie in de/en/es
         ),
         // --- Italian ---------------------------------------------------------------
         "it" to setOf(
             "euro",  // internationale Währung, im Plural unverändert — wie in de/sw/uk
-            "chilo", // internationale Maßeinheit, wie in de/en/es
         ),
         // --- Swahili --------------------------------------------------------------
         "sw" to setOf(
             "tuna",  // tu-na „wir haben“: Subjektpräfix tu- + Possessiv-na (Funktionskonstruktion)
-            "tangu", // Präposition „seit“
             "euro",  // internationale Währung, „Euro“ auf beiden Seiten
-            "mwaka", // „Jahr“ — Kopfnomen der Jahresangabe (tangu mwaka …)
         ),
         // --- Ukrainian ------------------------------------------------------------
         "uk" to setOf(
-            "нас",   // Personalpronomen „uns“ («у нас є» = wir haben)
             "євро",  // internationale Währung, unveränderlich
-        ),
-        // --- Esperanto ------------------------------------------------------------
-        "eo" to setOf(
-            "kilogramo", // internationale Maßeinheit, wie „kilo“ in de/en/es
         ),
     )
 
@@ -90,7 +65,7 @@ class PhraseVocabAuditTests {
             "wache" to "aufwachen", "lerne" to "lernen", // 1. Person Singular
             "zeigt" to "zeigen",
             "schreib" to "schreiben",                    // Imperativ
-            "brauche" to "brauchen",
+            "brauche" to "brauchen", "habe" to "haben",
             "hefte" to "Heft", "stühle" to "Stuhl",      // Plural
         ),
         // --- English ---------------------------------------------------------------
@@ -135,6 +110,7 @@ class PhraseVocabAuditTests {
             "зошити" to "зошит", "зошитів" to "зошит",       // Zählformen
             "стільці" to "стілець", "стільців" to "стілець", // Zählformen
             "ключів" to "ключ",                              // Zählform (ключі steht verbatim im Katalog)
+            "нас" to "ми",                                   // Genitiv nach «у нас є» = wir haben
         ),
         // --- Esperanto ------------------------------------------------------------
         "eo" to mapOf(
@@ -179,6 +155,19 @@ class PhraseVocabAuditTests {
             }
         }
         assertTrue(ungrounded.isEmpty(), ungrounded.distinct().joinToString("\n"))
+        // The other direction: an allowlisted word that every join now teaches is a card,
+        // and the entry outlived its reason. Nothing else notices — the audit only asks
+        // whether a displayed word is covered, so a stale pardon sits there being obeyed.
+        val redundant = mutableListOf<String>()
+        for ((lang, words) in allowlist) {
+            val joins = joinedPairs().filter { it.second == lang }.map { joinTargetWords(it.first, lang) }
+            for (word in words) {
+                if (joins.isNotEmpty() && joins.all { word in it }) {
+                    redundant += "$lang allowlists „$word“, which the catalog now teaches — drop the entry"
+                }
+            }
+        }
+        assertTrue(redundant.isEmpty(), redundant.joinToString("\n"))
         for ((lang, words) in allowlist) {
             assertEquals(
                 allowlistSize[lang], words.size,

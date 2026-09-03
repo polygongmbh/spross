@@ -22,6 +22,9 @@
   Box takes them in as your own words. Offered again the moment a round is finished, when
   the words are warm.
 
+- **A new pronouns area** teaches every person, the polite *Sie*, *usted* and *Lei*
+  among them, along with the grammar words the notes lean on.
+
 ## 5.10.0 — 2026-09-02
 
 - **A word you keep missing comes back the same day, not only days later.** The retry

@@ -6,6 +6,9 @@
   "translate": { "text": "traducir" },
   "sentence": { "text": "frase", "synonyms": ["oración"], "grammar": { "gender": "la" } },
   "word": { "text": "palabra", "grammar": { "gender": "la" } },
+  "verb": { "text": "verbo", "grammar": { "gender": "el" } },
+  "noun": { "text": "sustantivo", "grammar": { "gender": "el" } },
+  "adjective": { "text": "adjetivo", "grammar": { "gender": "el" } },
   "language": {
    "text": "idioma",
    "synonyms": ["lengua"],
@@ -15,6 +18,8 @@
    }
   },
   "mother-tongue": { "text": "lengua materna", "grammar": { "gender": "la" } },
+  "noun-class": { "text": "clase nominal", "grammar": { "gender": "la" } },
+  "affix": { "text": "afijo", "grammar": { "gender": "el" } },
   "what-does-this-word-mean": { "text": "¿Qué significa esta palabra?", "variants": ["¿Qué quiere decir esta palabra?"] },
   "how-do-you-say-this": { "text": "¿Cómo se dice esto {language-in}?", "variants": ["¿Cómo se dice eso {language-in}?"] },
   "im-learning-your-language": { "text": "Estoy aprendiendo {language}.", "variants": ["Aprendo {language}."] },

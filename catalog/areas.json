@@ -32,6 +32,7 @@
   },
   "areas": [
    { "area": "place", "emoji": "📍" },
+   { "area": "pronouns", "emoji": "🙋" },
    { "area": "verbs", "emoji": "🏃" },
    { "area": "qualities", "emoji": "📏" },
    { "area": "degree", "emoji": "📊" },

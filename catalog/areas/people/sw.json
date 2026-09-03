@@ -77,9 +77,6 @@
     "de": "wengi trotz ma-: rafiki ist ein Mensch, Übereinstimmung folgt watu (wa-), nicht der ma-Form."
    }
   },
-  "mom-help-me": {
-   "text": "Mama, nisaidie!",
-   "notes": { "sw": "Kiambishi -ni- ndani ya kitenzi ni mimi: ni-saidie." }
-  }
+  "mom-help-me": { "text": "Mama, nisaidie!" }
  }
 }
