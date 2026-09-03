@@ -8,6 +8,9 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 
 ## Content & catalog
 
+- The 2026-09-03 `to-` prefixing of 157 verb slugs renamed the shipped recordings in place,
+  but the audio pack TSVs outside the repo still key those 727 rows by the bare slug —
+  rewrite their `slug` column before the next `audio-catalog.py --packs` run, or every one drops as unknown.
 - Case names are the gap the word classes did not close. `verbs/de.json` `see` is a shared
   note — the fallback every learner of German reads — and it explains the dative with
   `Akkusativ` and `Dativ`, which no card teaches; `uk` will want the same for its seven.

@@ -128,7 +128,7 @@ a component-free phrase is a building block itself (a greeting, `ja`, `bitte`) a
 which is how `greetings` opens the whole course on `Hallo!` and `basics` on `Ja.`:
 ```json
 [ { "slug": "fridge",  "kind": "noun", "emoji": "🧊" },
-  { "slug": "cook",    "kind": "verb", "emoji": "🧑‍🍳" },
+  { "slug": "to-cook", "kind": "verb", "emoji": "🧑‍🍳" },
   { "slug": "caution", "kind": "adjective", "emoji": "⚠️" },
   { "slug": "teacher-f", "kind": "noun", "emoji": "👩‍🏫", "feminineOf": "teacher" },
   { "slug": "the-fridge-is-empty", "kind": "phrase", "emoji": "🧊",
@@ -137,7 +137,9 @@ which is how `greetings` opens the whole course on `Hallo!` and `basics` on `Ja.
 Slugs are readable English lemmas, **globally unique across every area** (lint-enforced).
 English doubles as the keying language AND a content language: the slug is the identity,
 `en.json` carries the English realization (display text may differ from the slug —
-verb `cook` → `"to cook"`, phrase `the-fridge-is-empty` → `"The fridge is empty."`).
+verb `to-cook` → `"to cook"`, phrase `the-fridge-is-empty` → `"The fridge is empty."`).
+A verb slug always carries the `to-` prefix, so a noun and the verb it shares a lemma with
+never compete for one slug (`help`/`to-help`, `work`/`to-work`).
 - `emoji` — optional on EVERY kind, not just nouns. It is the engine's meaning cue, shown
   upfront on a first exposure and on an unsettled produce prompt (`../kern/README.md` §3).
   Which concepts get one, and which must not, is `areas/README.md`.
@@ -168,18 +170,20 @@ which is exactly what makes both free to change:
 a concept can move to another area or be reclassified without resetting anyone's progress.
 Global uniqueness is what makes that safe:
 two areas claiming one slug would fuse two concepts into a single schedule,
-so a genuine repeat is disambiguated by qualifying the slug
-(the noun keeps `help`/`plant`/`work`, the verb becomes `to-help`/`to-plant`/`to-work`).
+so a genuine repeat across areas is disambiguated by qualifying the slug.
 The price is that **renaming a slug is a breaking act**:
 it orphans the schedule and every audio pack row keyed by the old name,
 and the word returns as new — so rename deliberately, never just to polish a lemma.
+When one is due, `../scripts/catalog-rename-slugs.py` carries it through the concept,
+every realization, every `components` reference and the shipped recordings in one run;
+the pack rows outside the repo are still yours to update.
 
 **`areas/<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json
 { "title": "Die Küche", "subtitle": "Hier duftet es nach Abendessen.",
   "words": {
     "fridge": { "text": "Kühlschrank", "grammar": { "gender": "der", "plural": "Kühlschränke" } },
-    "cook":   { "text": "kochen" },
+    "to-cook": { "text": "kochen" },
     "the-fridge-is-empty": { "text": "Der Kühlschrank ist leer." } } }
 ```
 - `title` — the area's plain NAME, nothing appended. It doubles as the disambiguating
