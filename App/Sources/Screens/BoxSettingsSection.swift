@@ -164,7 +164,7 @@ struct BoxSettingsSection: View {
                 .font(Theme.typography.headline)
                 .foregroundStyle(Theme.colors.textPrimary)
             Picker("settings.audio.title", selection: audioPreferenceBinding) {
-                ForEach(AudioPreference.allCases) { option in
+                ForEach(audioOptions) { option in
                     Text(optionLabel(option)).tag(option)
                 }
             }
@@ -172,6 +172,11 @@ struct BoxSettingsSection: View {
             Text(audioHintKey)
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
+            if audioOptions.contains(.tts) {
+                Text("settings.audio.hint.perLanguage")
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
+            }
             if VoiceUpgradeHint.shared.suggests(language: model.targetLanguage) {
                 Label("settings.audio.voiceUpgrade \(targetChromeName)",
                       systemImage: "speaker.wave.2")
@@ -188,6 +193,16 @@ struct BoxSettingsSection: View {
     private enum AudioPreference: String, CaseIterable, Identifiable {
         case off, recordings, tts
         var id: String { rawValue }
+    }
+
+    /// What the row offers: Speech only where the device has a voice for the
+    /// language being learned. Swahili has none on iOS, and a segment that
+    /// would fall straight back to the recordings promises a sound the phone
+    /// cannot make.
+    private var audioOptions: [AudioPreference] {
+        guard let target = model.targetLanguage,
+              Pronouncer.shared.canSpeak(language: target) else { return [.off, .recordings] }
+        return AudioPreference.allCases
     }
 
     private func optionLabel(_ option: AudioPreference) -> LocalizedStringKey {
@@ -210,25 +225,29 @@ struct BoxSettingsSection: View {
     }
 
     /// `.off` is the read-aloud switch off; the two "on" options are the voice
-    /// source with the switch on. Picking one of them turns reading aloud back
-    /// on, so the picker can never leave the app silent behind a chosen source.
+    /// source of the language being learned, with the switch on. Picking one of
+    /// them turns reading aloud back on, so the picker can never leave the app
+    /// silent behind a chosen source. A stored Speech that the phone can no
+    /// longer answer (a voice uninstalled) reads as Recordings, which is what
+    /// would sound anyway.
     private var audioPreferenceBinding: Binding<AudioPreference> {
         Binding(
             get: {
                 if Pronouncer.shared.muted { return .off }
-                return Pronouncer.shared.voiceSource == .tts ? .tts : .recordings
+                guard let target = model.targetLanguage, audioOptions.contains(.tts),
+                      Pronouncer.shared.voiceSource(for: target) == .tts else { return .recordings }
+                return .tts
             },
             set: { preference in
-                switch preference {
-                case .off:
+                guard preference != .off else {
                     Pronouncer.shared.setReadAloud(on: false)
-                case .recordings:
-                    Pronouncer.shared.voiceSource = .recordings
-                    if Pronouncer.shared.muted { Pronouncer.shared.setReadAloud(on: true) }
-                case .tts:
-                    Pronouncer.shared.voiceSource = .tts
-                    if Pronouncer.shared.muted { Pronouncer.shared.setReadAloud(on: true) }
+                    return
                 }
+                if let target = model.targetLanguage {
+                    Pronouncer.shared.setVoiceSource(preference == .tts ? .tts : .recordings,
+                                                     for: target)
+                }
+                if Pronouncer.shared.muted { Pronouncer.shared.setReadAloud(on: true) }
             }
         )
     }

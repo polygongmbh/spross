@@ -5950,6 +5950,22 @@
       },
       "comment" : "the hint under the picker, per selection"
     },
+    "settings.audio.hint.perLanguage" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro Lernsprache wählbar."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chosen per language you learn."
+          }
+        }
+      }
+    },
     "settings.audio.hint.recordings" : {
       "localizations" : {
         "de" : {

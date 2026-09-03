@@ -54,12 +54,14 @@ final class Pronouncer {
     /// read at all.
     var muted: Bool { readAloud == .off }
 
-    /// Which voice answers a target word — recordings or the synthesizer.
-    /// Device-scoped like `readAloud`, and the read-aloud switch above only
-    /// mutes, it never changes this.
-    var voiceSource: VoiceSource {
-        didSet { voiceSource.store() }
-    }
+    /// Which voice answers a target word — recordings or the synthesizer —
+    /// per LANGUAGE: the picked source belongs to the language it was picked
+    /// for, so a pack worth hearing in one target does not silence a better
+    /// system voice in the next. The read-aloud switch above only mutes, it
+    /// never changes this. Holds only what this launch has SET; everything
+    /// else answers from `VoiceSource.stored(for:)`, and reading it here is
+    /// what makes the picker follow a change.
+    private var pickedSources: [String: VoiceSource] = [:]
 
     private let player = PronunciationPlayer()
     private let speaker = Speaker()
@@ -72,7 +74,16 @@ final class Pronouncer {
 
     init() {
         readAloud = .stored
-        voiceSource = .stored
+    }
+
+    /// The source in force for `language`.
+    func voiceSource(for language: String) -> VoiceSource {
+        pickedSources[language] ?? .stored(for: language)
+    }
+
+    func setVoiceSource(_ source: VoiceSource, for language: String) {
+        pickedSources[language] = source
+        source.store(for: language)
     }
 
     /// What both switches call: turning reading aloud ON is itself a request to
@@ -143,7 +154,8 @@ final class Pronouncer {
         // "Speech" preference: the voice reads everything, for one consistent
         // sound and the article always said aloud — the recording only answers
         // where the language has no voice at all.
-        if voiceSource == .tts, canSpeak(language: pronunciation.lang) {
+        if voiceSource(for: pronunciation.lang) == .tts,
+           canSpeak(language: pronunciation.lang) {
             say(key: key, text: spoken(pronunciation, article: article),
                 language: pronunciation.lang, fadeDb: fadeDb, onFinish: onFinish)
             return

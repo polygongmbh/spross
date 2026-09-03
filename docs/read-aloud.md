@@ -156,6 +156,13 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   picked voice on or off, and never changes which one it is. Choosing a voice by hand also
   lifts autoplay past a silenced phone, exactly as the switch does — the picker and the
   button write the same two facts, mute and source, never one without the other.
+- **The source is remembered PER LANGUAGE BEING LEARNED, the mute per device.** Which of
+  the two sounds better is a fact about one language — a pack that beats the system voice
+  in Ukrainian says nothing about Spanish, where a downloaded premium voice may beat the
+  pack — so each target carries its own pick, defaulting to Recordings. "Speech" is
+  offered only where the device HAS a voice for that target: a segment that would fall
+  straight back to the recordings promises a sound the phone cannot make, and a stored
+  Speech whose voice was since uninstalled reads as Recordings, which is what sounds.
 - **The feedback chimes are their own matter** — the read-aloud switch does not silence
   them — but they play under whatever category it left standing, so the phone reaches them
   exactly as it reaches autoplay. Nobody ever asked for a chime, so no chime is ever louder

@@ -109,7 +109,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                 HorizontalDivider(color = Theme.colors.separator)
                 LearnerNameSetting(model)
                 HorizontalDivider(color = Theme.colors.separator)
-                ReadAloudSetting(model)
+                ReadAloudSetting(model, box.joinStamp.target)
                 HorizontalDivider(color = Theme.colors.separator)
                 Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
                     TextButton(onClick = { model.restartOnboarding() }) {
@@ -253,32 +253,37 @@ private fun LearnerNameSetting(model: AppModel) {
 }
 
 /**
- * The same device-scoped setting the session's top bar switches (there reduced to the
- * mute button), and a standing home for the disclosure that a tap on a word speaks it
- * even while this is off. The three-way preference names the voice source too, so the
- * picker alone decides both: there is no state where a source is chosen but the app is
- * silent.
+ * The mute the session's top bar switches (there reduced to the button), and a standing
+ * home for the disclosure that a tap on a word speaks it even while this is off. The
+ * three-way preference names the voice source too, so the picker alone decides both:
+ * there is no state where a source is chosen but the app is silent.
+ *
+ * The source belongs to [target], the language being learned; the mute is the device's.
+ * Speech is offered only where the device actually has a voice for [target] — a segment
+ * that would fall straight back to the recordings promises a sound the phone cannot make.
  */
 @Composable
-private fun ReadAloudSetting(model: AppModel) {
+private fun ReadAloudSetting(model: AppModel, target: Language) {
     val chrome: Chrome = model.chrome
-    val preference = model.pronouncer.audioPreference
+    val preference = model.pronouncer.audioPreference(target)
+    val speaks = model.pronouncer.canSpeak(target)
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         Text(
             chrome.settingsAudioTitle,
             style = MaterialTheme.typography.titleMedium,
         )
         SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
-            val options = listOf(
+            val options = listOfNotNull(
                 chrome.settingsAudioOptionOff to net.spross.app.audio.Pronouncer.AudioPreference.OFF,
                 chrome.settingsAudioOptionRecordings to
                     net.spross.app.audio.Pronouncer.AudioPreference.RECORDINGS,
-                chrome.settingsAudioOptionTts to net.spross.app.audio.Pronouncer.AudioPreference.TTS,
+                (chrome.settingsAudioOptionTts to
+                    net.spross.app.audio.Pronouncer.AudioPreference.TTS).takeIf { speaks },
             )
             options.forEachIndexed { index, (label, option) ->
                 SegmentedButton(
                     selected = option == preference,
-                    onClick = { model.pronouncer.setAudioPreference(option) },
+                    onClick = { model.pronouncer.setAudioPreference(target, option) },
                     shape = SegmentedButtonDefaults.itemShape(index, options.size),
                 ) {
                     Text(label, style = MaterialTheme.typography.labelMedium)
@@ -296,6 +301,9 @@ private fun ReadAloudSetting(model: AppModel) {
                 net.spross.app.audio.Pronouncer.AudioPreference.TTS -> chrome.settingsAudioHintTts
             }
         )
+        // why: only where there is a choice to be scoped — a language with one option
+        // has nothing to remember per language.
+        if (speaks) SettingHint(chrome.settingsAudioHintPerLanguage)
     }
 }
 

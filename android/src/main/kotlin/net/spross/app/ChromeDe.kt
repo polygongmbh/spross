@@ -104,6 +104,7 @@ internal object ChromeDe : Chrome {
         "der Systemstimme."
     override val settingsAudioHintTts = "Jedes Wort in der Systemstimme — immer derselbe " +
         "Klang, Artikel inklusive."
+    override val settingsAudioHintPerLanguage = "Pro Lernsprache wählbar."
     override val creditsTitle = "Impressum & Lizenzen"
     override val creditsRecordings = "%d Aufnahmen"
     override val creditsUnmodified = "Aufnahmen unverändert übernommen"

@@ -170,6 +170,11 @@ extension ReadAloud {
 /// Which voice answers a target word: the bundled recording when one matched,
 /// or the synthesizer. The box settings' audio row carries it as the two
 /// "on" options; the read-aloud switch above only mutes, it never changes this.
+///
+/// Stored PER TARGET LANGUAGE, unlike `ReadAloud`: how good the system voice is
+/// against the pack is a fact about one language — Ukrainian may deserve the
+/// recordings where Spanish is better read by a premium voice — and a language
+/// with no voice at all is never offered the choice.
 enum VoiceSource: String {
     /// Bundled recordings first, the live voice for the rest — the default.
     case recordings
@@ -181,19 +186,19 @@ enum VoiceSource: String {
 
 extension VoiceSource {
 
-    private static let key = "voiceSource"
+    private static func key(_ language: String) -> String { "voiceSource.\(language)" }
 
-    /// Absent default = recordings, so the bundled voices stay first for fresh
-    /// installs and upgrades alike.
-    static var stored: VoiceSource {
-        if let raw = UserDefaults.standard.string(forKey: key),
+    /// Absent default = recordings, so the bundled voices stay first for every
+    /// language until it is told otherwise.
+    static func stored(for language: String) -> VoiceSource {
+        if let raw = UserDefaults.standard.string(forKey: key(language)),
            let stored = VoiceSource(rawValue: raw) {
             return stored
         }
         return .recordings
     }
 
-    func store() {
-        UserDefaults.standard.set(rawValue, forKey: Self.key)
+    func store(for language: String) {
+        UserDefaults.standard.set(rawValue, forKey: Self.key(language))
     }
 }

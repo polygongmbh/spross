@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Recordings or speech is now a choice per language you learn, and it is only offered
+  where the phone can actually speak that language.** A pack worth hearing in one target no
+  longer decides how the next one sounds, and Swahili — which no iPhone voice says a word
+  of — stops offering a Speech setting that would have played the recordings anyway.
+
 - **Take your words into a chat with an AI, and bring what you learn back.** The Box offers
   a text that describes your box to any assistant you already use: the words you have
   consolidated, so it can speak to you in them; the ones you are learning right now, so it

@@ -37,6 +37,10 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
      * Which voice answers a target word: the bundled recording when one matched, or the
      * synthesizer. The box settings' audio row carries it as the two "on" options; the
      * read-aloud switch above only mutes, it never changes this.
+     *
+     * Stored PER TARGET LANGUAGE, unlike [muted]: how good the system voice is against
+     * the pack is a fact about one language, and a language with no voice at all is
+     * never offered the choice.
      */
     enum class VoiceSource(val storedValue: String) {
         /** Bundled recordings first, the live voice for the rest — the default. */
@@ -62,49 +66,54 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
 
     private var mutedState by mutableStateOf(prefs.getBoolean(KEY_MUTED, false))
 
-    private var voiceSourceState by mutableStateOf(
-        VoiceSource.entries.firstOrNull { it.storedValue == prefs.getString(KEY_SOURCE, null) }
-            ?: VoiceSource.RECORDINGS
-    )
+    /**
+     * What THIS launch has picked, per language — everything else answers from the
+     * preferences. Compose state, because the box picker renders it.
+     */
+    private var pickedSources by mutableStateOf(emptyMap<Language, VoiceSource>())
 
     /**
-     * Which voice answers — recordings or the synthesizer. Device-scoped like [muted],
-     * and the absent default keeps bundled recordings first on fresh installs and upgrades
-     * alike. Compose state, because the box picker renders it.
+     * The source in force for [lang]. The absent default keeps bundled recordings first
+     * for every language until it is told otherwise.
      */
-    var voiceSource: VoiceSource
-        get() = voiceSourceState
-        set(value) {
-            voiceSourceState = value
-            prefs.edit().putString(KEY_SOURCE, value.storedValue).apply()
-        }
+    fun voiceSource(lang: Language): VoiceSource = pickedSources[lang] ?: stored(lang)
+
+    fun setVoiceSource(lang: Language, value: VoiceSource) {
+        pickedSources = pickedSources + (lang to value)
+        prefs.edit().putString(keyFor(lang), value.storedValue).apply()
+    }
 
     /**
-     * The box row's three-way preference, derived from [muted] and [voiceSource]: there is
-     * no state where a source is chosen but the app is silent. Setting [OFF] silences the
-     * review loop; picking either source also turns reading aloud back on, so the picker can
-     * never leave the app silent behind a chosen voice.
+     * The box row's three-way preference for [lang], derived from [muted] and
+     * [voiceSource]: there is no state where a source is chosen but the app is silent.
+     * Setting [AudioPreference.OFF] silences the review loop; picking either source also
+     * turns reading aloud back on, so the picker can never leave the app silent behind a
+     * chosen voice. A stored [VoiceSource.TTS] the device can no longer answer reads as
+     * [AudioPreference.RECORDINGS], which is what would sound anyway.
      */
-    val audioPreference: AudioPreference
-        get() = when {
-            muted -> AudioPreference.OFF
-            voiceSource == VoiceSource.TTS -> AudioPreference.TTS
-            else -> AudioPreference.RECORDINGS
-        }
+    fun audioPreference(lang: Language): AudioPreference = when {
+        muted -> AudioPreference.OFF
+        voiceSource(lang) == VoiceSource.TTS && canSpeak(lang) -> AudioPreference.TTS
+        else -> AudioPreference.RECORDINGS
+    }
 
-    fun setAudioPreference(preference: AudioPreference) {
+    fun setAudioPreference(lang: Language, preference: AudioPreference) {
         when (preference) {
             AudioPreference.OFF -> muted = true
             AudioPreference.RECORDINGS -> {
-                voiceSource = VoiceSource.RECORDINGS
+                setVoiceSource(lang, VoiceSource.RECORDINGS)
                 muted = false
             }
             AudioPreference.TTS -> {
-                voiceSource = VoiceSource.TTS
+                setVoiceSource(lang, VoiceSource.TTS)
                 muted = false
             }
         }
     }
+
+    private fun stored(lang: Language): VoiceSource =
+        VoiceSource.entries.firstOrNull { it.storedValue == prefs.getString(keyFor(lang), null) }
+            ?: VoiceSource.RECORDINGS
 
     /**
      * One device-scoped flag (never per target language, never in the box): silences
@@ -212,7 +221,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         // "Speech" preference: the voice reads everything, for one consistent sound and
         // the article always said aloud — the recording only answers where the language
         // has no voice at all.
-        if (voiceSource == VoiceSource.TTS && canSpeak(lang)) {
+        if (voiceSource(lang) == VoiceSource.TTS && canSpeak(lang)) {
             // why: a recording from a previous fire may still be sounding — the
             // synthesized branch takes the word over completely.
             player.stop()
@@ -296,6 +305,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
 
     private companion object {
         const val KEY_MUTED = "pronunciationMuted"
-        const val KEY_SOURCE = "pronunciationSource"
+
+        fun keyFor(lang: Language) = "pronunciationSource.$lang"
     }
 }

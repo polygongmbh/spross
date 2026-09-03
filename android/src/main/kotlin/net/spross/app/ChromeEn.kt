@@ -102,6 +102,7 @@ internal object ChromeEn : Chrome {
         "for the rest."
     override val settingsAudioHintTts = "Every word in the system voice — always the same " +
         "sound, article included."
+    override val settingsAudioHintPerLanguage = "Chosen per language you learn."
     override val creditsTitle = "Legal & licenses"
     override val creditsRecordings = "%d recordings"
     override val creditsUnmodified = "Recordings shipped unmodified"
