@@ -24,11 +24,14 @@
  ],
  "numeric": "{m}/{d}/{y}",
  "patterns": {
-  "dayMonth": { "text": "{month} {day}", "variants": ["the {day} of {month}"] },
-  "date": { "text": "{weekday}, {month} {day}", "variants": ["{weekday}, the {day} of {month}"] },
+  "dayMonth": { "text": "{month} {day}", "variants": ["the {day} of {month}", "{day} of {month}"] },
+  "date": {
+   "text": "{weekday}, {month} {day}",
+   "variants": ["{weekday}, the {day} of {month}", "{weekday}, {day} of {month}"]
+  },
   "dateWithYear": {
    "text": "{weekday}, {month} {day}, {year}",
-   "variants": ["{weekday}, the {day} of {month}, {year}"]
+   "variants": ["{weekday}, the {day} of {month}, {year}", "{weekday}, {day} of {month}, {year}"]
   }
  }
 }

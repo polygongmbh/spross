@@ -45,6 +45,8 @@ each a register a learner will genuinely meet.
 `March 3rd` / `the third of March`, both current, both ordinal.
 ⚠ Which leads the reveal is a ruling: the bare `March third` is what a speaker says out loud,
 `the third of March` is what the learner's own language most resembles.
+The article in that order is optional — `third of March` grades too,
+since the skill the Sprosse tests is the order and the ordinal, not the determiner.
 The year takes the pack's year reading, so `2026` is *twenty twenty-six* and not *two thousand twenty-six*
 — but both are in `EnglishNumbers.yearVariants` already.
 
