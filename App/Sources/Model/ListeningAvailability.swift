@@ -12,9 +12,15 @@ import SprossKern
 /// (`ListeningPool`).
 ///
 /// Deliberately NOT cached: a voice may be installed in Settings while the app
-/// sleeps, so Home rebuilds this on every foreground rather than deciding once
+/// sleeps, so Home re-asks this on every foreground rather than deciding once
 /// at launch that the mode does not exist — the letter drill's discipline
 /// (`LetterDrillAvailability`), for the same reason.
+///
+/// Two ways in, because the two questions cost wildly different things.
+/// [offered] is the card's gate and stops at the first word this device can
+/// say — that is what Home asks. Building one of these deals the whole
+/// playlist instead, and belongs to a run being opened (`ListeningDriver`),
+/// never to a glance at Home.
 @MainActor
 struct ListeningAvailability {
 
@@ -25,37 +31,32 @@ struct ListeningAvailability {
         report = Self.built(model: model)
     }
 
-    init(report: ListeningPool.Report) {
-        self.report = report
-    }
-
-    /// The two device facts the sweep needs, read where they live — the voice
-    /// table is UIKit's and main-actor only. Handed to [swept] so the walk
-    /// itself, which is the whole join with two catalog lookups per card, can
-    /// happen off this actor.
+    /// The two device facts the walk needs, read where they live — the voice
+    /// table is UIKit's and main-actor only. Handed to [offered] so the walk
+    /// itself can happen off this actor.
     static func voices(model: AppModel) -> (source: Bool, target: Bool)? {
         guard let target = model.targetLanguage else { return nil }
         return (Pronouncer.shared.canSpeak(language: model.sourceLanguage),
                 Pronouncer.shared.canSpeak(language: target))
     }
 
-    /// The pool sweep itself: pure kern over immutable values, so it runs
-    /// wherever the caller puts it.
-    nonisolated static func swept(
+    /// Whether the card stands: kern stops at the first word both halves of a
+    /// turn can say, so this is the cheap question Home is allowed to ask.
+    nonisolated static func offered(
         catalog: Catalog, box: BoxState, source: String, target: String,
         hasSourceVoice: Bool, hasTargetVoice: Bool,
-    ) -> ListeningPool.Report {
-        ListeningPool.shared.report(
+    ) -> Bool {
+        ListeningPool.shared.offered(
             catalog: catalog, box: box, source: source, target: target,
-            hasTargetVoice: hasTargetVoice, hasSourceVoice: hasSourceVoice,
-            seed: Date().epochMillis)
+            hasTargetVoice: hasTargetVoice, hasSourceVoice: hasSourceVoice)
     }
-
-    /// Whether the Home card stands at all.
-    var available: Bool { report.available }
 
     var candidates: [ListeningCandidate] { report.candidates }
 
+    /// The playlist itself, dealt for ONE run: the walk of the whole join with
+    /// two catalog lookups per card, which is why it waits for a run to be
+    /// opened rather than running on the way past the card.
+    ///
     /// A profile with no catalog, no box or no target language can play
     /// nothing; kern's own empty report says so without a second predicate on
     /// this side.

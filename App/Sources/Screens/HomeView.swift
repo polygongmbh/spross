@@ -10,10 +10,12 @@ struct HomeView: View {
     @Environment(\.locale) var locale
     @Environment(\.scenePhase) private var scenePhase
 
-    /// What listening can play on THIS device. Rebuilt on every foreground,
-    /// never decided once: a voice installed in Settings while the app slept
-    /// must put the card up without a relaunch (`ListeningAvailability`).
-    @State private var listening: ListeningAvailability?
+    /// Whether listening can say anything on THIS device. Re-asked on every
+    /// foreground, never decided once: a voice installed in Settings while the
+    /// app slept must put the card up without a relaunch
+    /// (`ListeningAvailability`). The GATE only — the playlist is dealt when a
+    /// run opens (`ListeningDriver`).
+    @State private var listeningOffered = false
     @State private var listeningPresented = false
 
     var body: some View {
@@ -63,7 +65,7 @@ struct HomeView: View {
     /// cannot — the whole card is the tap target.
     @ViewBuilder
     private var listeningCard: some View {
-        if listening?.available == true {
+        if listeningOffered {
             Button { listeningPresented = true } label: {
                 HStack(alignment: .top, spacing: Theme.spacing.md) {
                     Text(verbatim: "🎧")
@@ -96,20 +98,20 @@ struct HomeView: View {
         }
     }
 
-    /// The sweep is a walk of the whole join asking the catalog for both sides'
-    /// audio, and it runs on every foreground — so only the voice check, which
-    /// must be on this actor, happens here.
+    /// The gate, not the playlist: kern stops at the first word this device can
+    /// say, so what runs on every foreground is a question and not the walk of
+    /// the whole join the run itself pays for. Only the voice check, which must
+    /// be on this actor, happens here.
     private func refreshListening() {
         guard let catalog = model.catalog, let box = model.box,
               let target = model.targetLanguage, let voices = ListeningAvailability.voices(model: model)
-        else { listening = nil; return }
+        else { listeningOffered = false; return }
         let source = model.sourceLanguage
         Task {
-            let report = await Task.detached {
-                ListeningAvailability.swept(catalog: catalog, box: box, source: source, target: target,
-                                            hasSourceVoice: voices.source, hasTargetVoice: voices.target)
+            listeningOffered = await Task.detached {
+                ListeningAvailability.offered(catalog: catalog, box: box, source: source, target: target,
+                                              hasSourceVoice: voices.source, hasTargetVoice: voices.target)
             }.value
-            listening = ListeningAvailability(report: report)
         }
     }
 
