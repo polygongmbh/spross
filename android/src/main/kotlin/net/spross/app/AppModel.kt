@@ -28,6 +28,7 @@ import net.spross.kern.box.BoxStatistics
 import net.spross.kern.box.ShelfCounts
 import net.spross.kern.box.mergeDailyStats
 import net.spross.kern.box.streakWindow
+import net.spross.kern.catalog.AudioCapability
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.catalog.DateDrillContent
@@ -175,17 +176,19 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     val listening = ListeningDriver(app, this)
 
     /**
-     * Whether the listening card stands: a box with words in it, and nothing else asked.
+     * Whether the listening card stands: a box with words in it, and both sides of a turn
+     * having SOMETHING that can say them ([AudioCapability]).
      *
-     * There is no audio sweep behind this. Every catalog language but `en` ships several
-     * hundred recordings and `en` is spoken by every device there is, so a joined box with
-     * nothing sayable in it does not occur — and walking the whole join to prove that again
-     * on every glance at Home is a catalog question no screen should pay for. The playlist
-     * is dealt in [startListening], where a run is what needs it, and a deal that did come
-     * back empty simply opens nothing.
+     * Still no sweep — two map lookups and two voice probes, never the walk of the join that
+     * dealing the playlist is. Held as state rather than asked per composition because
+     * `canSpeak` is an uncached call into the TTS engine on this platform, and Home reads
+     * this on every frame it stands on; [refreshListening] takes it again on every
+     * foreground, which is when an installed voice can have appeared.
+     *
+     * The playlist itself is dealt in [startListening], where a run is what needs it.
      */
-    val listeningOffered: Boolean
-        get() = box?.cards?.isNotEmpty() == true
+    var listeningOffered by mutableStateOf(false)
+        private set
 
     /**
      * The free-practice standing. Its store is kern-keyed SharedPreferences — a drill
@@ -461,6 +464,17 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     /**
+     * Re-asks whether anything can say this pair. Cheap by construction — the catalog's packs
+     * are a map lookup and the voice table is two probes — so it rides the foreground, which
+     * is where a voice installed in Settings while the app slept turns up.
+     */
+    fun refreshListening() {
+        val stamp = box?.joinStamp
+        listeningOffered = stamp != null && box?.cards?.isNotEmpty() == true &&
+            !audioSources(stamp.source).silent && !audioSources(stamp.target).silent
+    }
+
+    /**
      * Opens the playlist, dealing it here and nowhere else — the walk of the whole join with
      * two catalog lookups per card belongs to a run being opened, not to every glance at
      * Home. Nothing else may be talking into it: a word left sounding from the screen behind
@@ -594,6 +608,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         if (stored == null) persist(state)
         otherLanguagesDailyStats = withContext(Dispatchers.IO) { loadOtherLanguagesDailyStats(cat, target) }
         refreshStats()
+        refreshListening()
         screen = Screen.Home
     }
 

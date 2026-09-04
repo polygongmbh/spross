@@ -108,6 +108,9 @@ class SprossActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         model.refreshTrainer()
+        // why: the same reason, one language further — a voice for either side decides
+        // whether listening has anything to say, and both are asked again on return.
+        model.refreshListening()
     }
 
     private companion object {

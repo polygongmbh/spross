@@ -22,8 +22,13 @@ struct BoxSettingsSection: View {
                 profileRow
                 Divider().overlay(Theme.colors.separator)
                 LearnerNameRow(model: model)
-                Divider().overlay(Theme.colors.separator)
-                audioRow
+                // why: nothing can say this language — a row whose every option is silence
+                // is not a choice, and both "on" segments would promise a sound that
+                // cannot be made.
+                if !audioSources.silent {
+                    Divider().overlay(Theme.colors.separator)
+                    audioRow
+                }
                 Divider().overlay(Theme.colors.separator)
                 restartTutorialRow
                 Divider().overlay(Theme.colors.separator)
@@ -172,7 +177,9 @@ struct BoxSettingsSection: View {
             Text(audioHintKey)
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
-            if audioOptions.contains(.tts) {
+            // why: only where there is a choice to be scoped — a language with one source
+            // has nothing to remember per language.
+            if audioSources == .both {
                 Text("settings.audio.hint.perLanguage")
                     .font(Theme.typography.caption)
                     .foregroundStyle(Theme.colors.textSecondary)
@@ -195,14 +202,23 @@ struct BoxSettingsSection: View {
         var id: String { rawValue }
     }
 
-    /// What the row offers: Speech only where the device has a voice for the
-    /// language being learned. Swahili has none on iOS, and a segment that
-    /// would fall straight back to the recordings promises a sound the phone
-    /// cannot make.
+    /// What can carry the learned language's sound here — kern's rule over the
+    /// catalog's pack and this device's voice.
+    private var audioSources: AudioCapability {
+        guard let catalog = model.catalog, let target = model.targetLanguage else { return .none }
+        return audioCapability(catalog: catalog, language: target,
+                               hasVoice: Pronouncer.shared.canSpeak(language: target))
+    }
+
+    /// What the row offers: one segment per source that can actually answer.
+    /// Speech only where the device has a voice — Swahili has none on iOS —
+    /// and Recordings only where a pack ships, which English does not have.
+    /// Either segment without its source promises a sound nothing can make.
     private var audioOptions: [AudioPreference] {
-        guard let target = model.targetLanguage,
-              Pronouncer.shared.canSpeak(language: target) else { return [.off, .recordings] }
-        return AudioPreference.allCases
+        let sources = audioSources
+        return [.off]
+            + (sources.hasRecordings ? [.recordings] : [])
+            + (sources.hasVoice ? [.tts] : [])
     }
 
     private func optionLabel(_ option: AudioPreference) -> LocalizedStringKey {
@@ -234,8 +250,14 @@ struct BoxSettingsSection: View {
         Binding(
             get: {
                 if Pronouncer.shared.muted { return .off }
-                guard let target = model.targetLanguage, audioOptions.contains(.tts),
-                      Pronouncer.shared.voiceSource(for: target) == .tts else { return .recordings }
+                let sources = audioSources
+                guard let target = model.targetLanguage, sources.hasVoice,
+                      Pronouncer.shared.voiceSource(for: target) == .tts
+                else {
+                    // A stored source the language cannot answer reads as the other one:
+                    // a pack that does not ship is as empty a promise as a missing voice.
+                    return sources.hasRecordings ? .recordings : .tts
+                }
                 return .tts
             },
             set: { preference in

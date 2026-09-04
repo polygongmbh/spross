@@ -52,12 +52,11 @@ struct HomeView: View {
     /// cannot — the whole card is the tap target.
     @ViewBuilder
     private var listeningCard: some View {
-        // why: a box with words in it is the whole gate. Every catalog language
-        // but `en` ships several hundred recordings and `en` is spoken by every
-        // device there is, so a joined box with nothing sayable in it does not
-        // occur — and proving that again on every glance at Home is a walk of
-        // the whole join. The playlist is dealt when the run opens.
-        if model.box?.cards.isEmpty == false {
+        // why: a box with words, and something able to say both sides of a turn.
+        // Two map lookups and two voice probes — never the walk of the whole
+        // join, which is what dealing the playlist is, and that waits for the
+        // run to open.
+        if model.box?.cards.isEmpty == false, model.listeningOffered {
             Button { listeningPresented = true } label: {
                 HStack(alignment: .top, spacing: Theme.spacing.md) {
                     Text(verbatim: "🎧")
