@@ -104,10 +104,6 @@ object ListeningRun {
         paused = false, active = false, played = 0,
     )
 
-    /** The pool was rebuilt under the run (a voice arrived, the box moved) — carry it in. */
-    fun withCandidates(state: ListeningRunState, candidates: List<ListeningCandidate>): ListeningRunState =
-        state.copy(candidates = candidates)
-
     fun reduce(state: ListeningRunState, intent: ListeningIntent): ListeningReduction =
         when (intent) {
             ListeningIntent.Start -> start(state)

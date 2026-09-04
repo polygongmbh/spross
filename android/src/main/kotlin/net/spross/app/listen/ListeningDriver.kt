@@ -109,15 +109,6 @@ class ListeningDriver(
         ListeningService.start(app)
     }
 
-    /**
-     * The pool was rebuilt under a running playlist (a voice arrived in Settings, the box
-     * moved) — carried in rather than restarting the run, which would cut the word in the air.
-     */
-    fun refresh(candidates: List<ListeningCandidate>) {
-        val current = state ?: return
-        state = ListeningRun.withCandidates(current, candidates)
-    }
-
     override fun togglePause() {
         // The learner's own pause outranks the platform's: lifting it is theirs to do.
         pausedByFocus = false

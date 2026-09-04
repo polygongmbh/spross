@@ -32,7 +32,6 @@ import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.catalog.Pronunciation
-import net.spross.kern.listen.ListeningCandidate
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
 import net.spross.kern.model.DayStats
@@ -176,11 +175,12 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     val listening = ListeningDriver(app, this)
 
     /**
-     * What a listening run may draw from on THIS device, swept on activation and on every
-     * foreground ([listeningReport]) rather than per composition — it is a catalog walk, and
-     * the Home card asks for it on every frame it stands on.
+     * Whether listening has anything to say on THIS device — the card's whole standing,
+     * asked on activation and on every foreground ([listeningOffer]) rather than per
+     * composition. The GATE only: the playlist itself is dealt in [startListening], where a
+     * run is what needs it.
      */
-    var listeningPool by mutableStateOf<List<ListeningCandidate>>(emptyList())
+    var listeningOffered by mutableStateOf(false)
         private set
 
     /**
@@ -457,24 +457,27 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * The listening card's standing — whether there is anything to hear at all. The pool
-     * already grows a thin selection as far as the content allows, so whatever is left IS
-     * all there is, and a short one simply laps.
-     */
-    val listeningOffered: Boolean
-        get() = listeningPool.isNotEmpty()
-
-    /**
-     * Re-sweeps what listening can play, and carries the result into a run already going.
-     * A voice installed in Settings while the app slept turns the card on without a relaunch.
+     * Re-asks whether listening can say anything at all. A voice installed in Settings while
+     * the app slept turns the card on without a relaunch.
      */
     fun refreshListening() {
+        listeningOffered = listeningOffer()
+    }
+
+    /**
+     * Opens the playlist, dealing it here and nowhere else — the walk of the whole join with
+     * two catalog lookups per card belongs to a run being opened, not to every glance at
+     * Home. Nothing else may be talking into it: a word left sounding from the screen behind
+     * would land in the middle of the run's first turn.
+     */
+    fun startListening() {
         val state = box ?: return
         val cat = catalog ?: return
         val stamp = state.joinStamp
-        // why: the voice table belongs to the synthesizer and is read here; the sweep it
-        // feeds walks the whole join asking the catalog for BOTH sides' audio — some
-        // sixteen hundred lookups on a full profile — and runs on every foreground.
+        pronouncer.stop()
+        // why: the voice table belongs to the synthesizer and is read here; the deal it feeds
+        // walks the whole join asking the catalog for BOTH sides' audio — some sixteen
+        // hundred lookups on a full profile — so it happens off this thread.
         val hasTarget = pronouncer.canSpeak(stamp.target)
         val hasSource = pronouncer.canSpeak(stamp.source)
         val dealtAt = now()
@@ -486,20 +489,15 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                     seed = dealtAt,
                 )
             }
-            listeningPool = report.candidates
-            listening.refresh(report.candidates)
+            // why: the screen turns only once there is a playlist, so a run never opens on
+            // silence — and the card's own gate can be stale by the time the tap lands.
+            if (report.candidates.isEmpty()) {
+                listeningOffered = false
+                return@launch
+            }
+            listening.start(report.candidates)
+            screen = Screen.Listening
         }
-    }
-
-    /**
-     * Opens the playlist. Nothing else may be talking into it — a word left sounding from
-     * the screen behind would land in the middle of the run's first turn.
-     */
-    fun startListening() {
-        if (listeningPool.isEmpty()) return
-        pronouncer.stop()
-        listening.start(listeningPool)
-        screen = Screen.Listening
     }
 
     /** The ✕, Back, and the bedtime running out all arrive here. */
