@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 6.0.1 — 2026-09-05
+
 - Copying or mailing your feedback can leave your finished word pairs behind and carry just the suggestions and problems you filed.
 - A word you write yourself keeps only its first spelling when it was pasted in as "one / another".
 - Listening leans harder on the words that are not sticking yet, and reshuffles its order on every listen.
