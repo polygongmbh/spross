@@ -120,6 +120,13 @@ class FeedbackTests {
         assertEquals(listOf(half), state.ownWords)
     }
 
+    @Test
+    fun theOwnWordsSplitIntoPairsAndSuggestions() {
+        val state = outbox()
+        assertEquals(listOf("own:sonne"), Feedback.suggestions(state).map { it.id })
+        assertEquals(listOf("own:mwavuli"), Feedback.wordPairs(state).map { it.id })
+    }
+
     // What goes out
 
     @Test

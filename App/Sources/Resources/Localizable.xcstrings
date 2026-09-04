@@ -700,6 +700,23 @@
       },
       "comment" : "The learner's own shelf. Kern hands back the area KEY for it (`OwnWords.AREA`, in no group) and leaves the naming to the reader's chrome; catalog shelves name themselves, down to `BoxBrowser.sections`' own id fallback."
     },
+    "box.own.suggestions" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorschläge"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suggestions"
+          }
+        }
+      },
+      "comment" : "The block of own words still carrying one half — what the catalog owes an answer, listed apart from the finished pairs above it."
+    },
     "box.own.title" : {
       "localizations" : {
         "de" : {

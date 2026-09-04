@@ -328,6 +328,7 @@ interface Chrome {
 
     // ── Own content ─────────────────────────────────────────────────────────────
     val boxOwnTitle: String
+    val boxOwnSuggestions: String
     val boxOwnReported: String
     val boxOwnWordAddAction: String
 

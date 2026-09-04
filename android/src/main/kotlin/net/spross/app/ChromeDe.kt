@@ -337,6 +337,7 @@ internal object ChromeDe : Chrome {
     override val reportExplainer = "Geht an die, die den Katalog pflegen. Am Zeitplan des " +
         "Wortes ändert das nichts."
     override val boxOwnTitle = "Eigene Inhalte"
+    override val boxOwnSuggestions = "Vorschläge"
     override val boxOwnReported = "Gemeldet"
     override val boxOwnWordAddAction = "Wort hinzufügen"
     override val boxOwnWordNeedsTranslation = "Übersetzung fehlt"

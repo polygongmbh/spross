@@ -419,6 +419,10 @@ a clone inherits its sibling's gaps, never the rules.
     the catalog brought. It is deliberately NOT a shelf: own words are packed the moment
     they are written, so an area head offering to pack them would say nothing, and a
     progress bar over a handful of words is furniture.
+    The words stand in two blocks: the ones written in both languages list as the cards
+    they are, and the SUGGESTIONS still carrying a single half list under a heading of
+    their own, next to the reports — what waits on the catalog reads together, and a
+    suggestion has no standing to be read beside a card's.
     A reported own word appears ONCE, in the words block wearing its flag; the reported
     block lists catalog cards only, because naming the same word twice in one section
     reads as two different problems.

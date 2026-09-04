@@ -88,6 +88,17 @@ object Feedback {
         state.ownWords.filter { it.isSuggestion(state.joinStamp.source, state.joinStamp.target) }
 
     /**
+     * The words written in both of the profile's languages, oldest first: the complement of
+     * [suggestions], and the ones the join has made cards of.
+     *
+     * They are the learner's own study material rather than an errand for the catalog, which
+     * is why a surface that lists both lists them apart, and why emptying the outbox leaves
+     * them where they are ([BoxEngine.clearFeedback]).
+     */
+    fun wordPairs(state: BoxState): List<OwnWord> =
+        state.ownWords.filterNot { it.isSuggestion(state.joinStamp.source, state.joinStamp.target) }
+
+    /**
      * How much a [BoxEngine.clearFeedback] would take: the suggestions plus the filed
      * reports. It is the whole of what waits to be sent on — a word written in both
      * languages is study material and is never counted here.

@@ -68,6 +68,13 @@ val AppModel.suggestions: List<OwnWord>
     get() = box?.let(Feedback::suggestions).orEmpty()
 
 /**
+ * Words written in both of the profile's languages, oldest first — study material with a
+ * card behind it, and the complement of [suggestions].
+ */
+val AppModel.ownWordPairs: List<OwnWord>
+    get() = box?.let(Feedback::wordPairs).orEmpty()
+
+/**
  * The CATALOG cards a problem stands against, oldest report first.
  *
  * Own words are left out on purpose: a reported own word is already listed above wearing

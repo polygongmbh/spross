@@ -41,13 +41,14 @@ import net.spross.app.clearableCount
 import net.spross.app.hasExportedBefore
 import net.spross.app.hasFeedback
 import net.spross.app.markExported
-import net.spross.app.ownWords
+import net.spross.app.ownWordPairs
 import net.spross.app.removeOwnWord
 import net.spross.app.reportMailBody
 import net.spross.app.reportText
 import net.spross.app.reportedCatalogCards
 import net.spross.app.reportedIssue
 import net.spross.app.suggestionText
+import net.spross.app.suggestions
 import net.spross.kern.box.Feedback
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
@@ -72,7 +73,8 @@ import net.spross.kern.model.Card
 internal fun BoxOwnSection(model: AppModel, onWriteOwn: (OwnWordDraft) -> Unit) {
     val chrome = model.chrome
     val box = model.box ?: return
-    val words = model.ownWords
+    val pairs = model.ownWordPairs
+    val suggestions = model.suggestions
     val reported = model.reportedCatalogCards
     val actions = model.hasFeedback(onlyNew = false)
 
@@ -93,18 +95,24 @@ internal fun BoxOwnSection(model: AppModel, onWriteOwn: (OwnWordDraft) -> Unit) 
         }
         // An empty panel is furniture: with nothing written and nothing filed, the header
         // and its one button are the whole section.
-        if (model.hasBriefing || words.isNotEmpty() || reported.isNotEmpty() || actions) {
-            OwnContentPanel(model, box.cards, words, reported, actions, onWriteOwn)
+        if (model.hasBriefing || pairs.isNotEmpty() || suggestions.isNotEmpty() ||
+            reported.isNotEmpty() || actions
+        ) {
+            OwnContentPanel(model, box.cards, pairs, suggestions, reported, actions, onWriteOwn)
         }
     }
 }
 
-/** The section's body: the words, the reports, and the two ways to send the lot on. */
+/**
+ * The section's body: the word pairs, the suggestions, the reports, and the two ways to
+ * send what the catalog is owed on.
+ */
 @Composable
 private fun OwnContentPanel(
     model: AppModel,
     cards: Map<String, Card>,
-    words: List<OwnWord>,
+    pairs: List<OwnWord>,
+    suggestions: List<OwnWord>,
     reported: List<Card>,
     actions: Boolean,
     onWriteOwn: (OwnWordDraft) -> Unit,
@@ -123,19 +131,19 @@ private fun OwnContentPanel(
             BriefingRow(model) { briefingOpen = true }
             HorizontalDivider(color = Theme.colors.separator)
         }
-        if (words.isNotEmpty()) {
+        // A word written in both languages IS a card and reads as one — badge, 💤, 🚩 and
+        // menu. One written in a single language joins nothing, so it has no card row to
+        // be drawn as, and stands in a block of its own beside the reports.
+        if (pairs.isNotEmpty()) {
             BlockLabel(chrome.boxOwnShelf)
-            words.forEach { word ->
-                // A word written in both languages IS a card, and reads as one — badge,
-                // 💤, 🚩 and menu. One written in a single language joins nothing, so it
-                // has no card row to be drawn as and gets its own.
-                val card = cards[word.id]
-                if (card != null) {
-                    BoxCardRow(model, card, onWriteOwn = onWriteOwn)
-                } else {
-                    SuggestionRow(model, word, onWriteOwn)
-                }
+            pairs.forEach { word ->
+                cards[word.id]?.let { BoxCardRow(model, it, onWriteOwn = onWriteOwn) }
             }
+            HorizontalDivider(color = Theme.colors.separator)
+        }
+        if (suggestions.isNotEmpty()) {
+            BlockLabel(chrome.boxOwnSuggestions)
+            suggestions.forEach { word -> SuggestionRow(model, word, onWriteOwn) }
             HorizontalDivider(color = Theme.colors.separator)
         }
         if (reported.isNotEmpty()) {
