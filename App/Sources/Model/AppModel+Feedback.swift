@@ -48,28 +48,30 @@ extension AppModel {
     }
 
     /// Whether there is anything to copy or send at all — what grays the actions out.
-    /// `onlyNew` measures against the last time the learner took a copy.
-    func hasFeedback(onlyNew: Bool) -> Bool {
+    /// `onlyNew` measures against the last time the learner took a copy, `scope` against
+    /// how much of what they wrote the catalog is owed.
+    func hasFeedback(onlyNew: Bool, scope: FeedbackScope = .everything) -> Bool {
         guard let box else { return false }
-        return Feedback.shared.hasAnything(state: box, since: onlyNew ? box.lastExportAt : nil)
+        return Feedback.shared.hasAnything(state: box, since: onlyNew ? box.lastExportAt : nil,
+                                           scope: scope)
     }
 
     /// Whether a copy has ever been taken — what makes "only what is new" an offer
     /// worth making rather than a second name for "everything".
     var hasExportedBefore: Bool { box?.lastExportAt != nil }
 
-    /// The suggestions and the reports as text — the same one the mail carries, so the
-    /// clipboard can never come back with less than the Send button would have sent.
-    func reportText(onlyNew: Bool) -> String {
+    /// What goes out as text — the same one the mail carries, so the clipboard can never
+    /// come back with less than the Send button would have sent.
+    func reportText(onlyNew: Bool, scope: FeedbackScope) -> String {
         guard let box else { return "" }
-        return Feedback.shared.reportText(state: box, since: onlyNew ? box.lastExportAt : nil)
+        return Feedback.shared.reportText(state: box, since: onlyNew ? box.lastExportAt : nil,
+                                          scope: scope)
     }
 
-    /// A mail to the maintainer carrying the suggestions and the reports.
-    /// Nil when there is nothing to say.
-    func reportMailURL(onlyNew: Bool) -> URL? {
-        guard hasFeedback(onlyNew: onlyNew) else { return nil }
-        let body = reportText(onlyNew: onlyNew)
+    /// A mail to the maintainer carrying the same. Nil when there is nothing to say.
+    func reportMailURL(onlyNew: Bool, scope: FeedbackScope) -> URL? {
+        guard hasFeedback(onlyNew: onlyNew, scope: scope) else { return nil }
+        let body = reportText(onlyNew: onlyNew, scope: scope)
         var components = URLComponents()
         components.scheme = "mailto"
         components.path = Legal.contactAddress
@@ -81,10 +83,13 @@ extension AppModel {
     }
 
     /// Record that a copy has just been taken — what a later "only what is new"
-    /// measures against. Taking everything still marks it: either way the learner
-    /// has now seen the lot.
-    func markExported() {
-        mutate { $0 = BoxEngine.shared.markExported(state: $0, nowEpochMillis: Date().epochMillis) }
+    /// measures against. Whether this scope moves the stamp at all is kern's
+    /// (`BoxEngine.markExported`).
+    func markExported(scope: FeedbackScope) {
+        mutate {
+            $0 = BoxEngine.shared.markExported(state: $0, nowEpochMillis: Date().epochMillis,
+                                               scope: scope)
+        }
     }
 
     /// How many entries a clear would take: the suggestions plus the filed reports.

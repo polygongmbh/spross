@@ -12,9 +12,9 @@ import SprossKern
 /// Own words need no shelf of their own: they are packed the moment they are
 /// written (`BoxEngine.addOwnWord`), so an area card offering to pack them would
 /// say nothing. The studiable ones list as ordinary rows, keeping their standing
-/// and their long-press menu; a SUGGESTION has no card at all — a word written in
-/// one language joins nothing — so it lists as itself, naming the half the catalog
-/// owes.
+/// and their long-press menu. A SUGGESTION has no card at all — a word written in
+/// one language joins nothing — so it lists in a block of its own, beside the
+/// reports, naming the half the catalog owes.
 ///
 /// The two actions take the whole lot two ways: onto the clipboard, or into a mail
 /// to whoever maintains the catalog (`FeedbackExportActions`).
@@ -69,23 +69,21 @@ struct BoxOwnContentSection: View {
     }
 
     private var card: some View {
-        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-            if model.hasBriefing {
-                briefingRow
-            }
-            if !model.ownWords.isEmpty {
-                if model.hasBriefing { separator }
-                wordList
-            }
-            if !reports.isEmpty {
-                if model.hasBriefing || !model.ownWords.isEmpty { separator }
-                reportList
-            }
-            // why: an empty complaints box is furniture — the actions appear once
-            // there is something for them to carry, exactly as they always have.
-            if model.hasFeedback(onlyNew: false) {
-                if model.hasBriefing || !model.ownWords.isEmpty || !reports.isEmpty { separator }
-                FeedbackExportActions(model: model)
+        // The blocks in the order the section is read: what the learner keeps, then
+        // what the catalog owes them, then the two ways to tell it so.
+        var blocks: [Block] = []
+        if model.hasBriefing { blocks.append(.briefing) }
+        if !model.ownWordPairs.isEmpty { blocks.append(.pairs) }
+        if !model.suggestions.isEmpty { blocks.append(.suggestions) }
+        if !reports.isEmpty { blocks.append(.reports) }
+        // why: an empty complaints box is furniture — the actions appear once there is
+        // something for them to carry, exactly as they always have.
+        if model.hasFeedback(onlyNew: false) { blocks.append(.actions) }
+
+        return VStack(alignment: .leading, spacing: Theme.spacing.lg) {
+            ForEach(Array(blocks.enumerated()), id: \.element) { index, block in
+                if index > 0 { separator }
+                blockBody(block)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -95,6 +93,23 @@ struct BoxOwnContentSection: View {
                 .fill(Theme.colors.surface)
         )
         .cardShadow()
+    }
+
+    /// What the section's card can be made of, top to bottom. Only the ones with
+    /// something in them are drawn, and a separator sits between whichever remain.
+    private enum Block: Hashable {
+        case briefing, pairs, suggestions, reports, actions
+    }
+
+    @ViewBuilder
+    private func blockBody(_ block: Block) -> some View {
+        switch block {
+        case .briefing: briefingRow
+        case .pairs: pairList
+        case .suggestions: suggestionList
+        case .reports: reportList
+        case .actions: FeedbackExportActions(model: model)
+        }
     }
 
     private var separator: some View { Divider().overlay(Theme.colors.separator) }
@@ -134,15 +149,27 @@ struct BoxOwnContentSection: View {
 
     // MARK: - The learner's own words
 
-    private var wordList: some View {
+    /// The words written in both languages. They ARE cards and read as ones — badge,
+    /// 💤, 🚩 and the full menu — so nothing here says they were hand-written.
+    private var pairList: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             blockTitle("box.own.shelf")
-            ForEach(model.ownWords, id: \.id) { word in
+            ForEach(model.ownWordPairs, id: \.id) { word in
                 if let card = model.card(word.id) {
                     BoxCardRow(model: model, card: card)
-                } else {
-                    suggestionRow(word)
                 }
+            }
+        }
+    }
+
+    /// The words still carrying one half. They stand apart from the pairs above rather
+    /// than among them: a suggestion has no standing to compare, and what it is waiting
+    /// for is the same thing the reports below it are waiting for.
+    private var suggestionList: some View {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
+            blockTitle("box.own.suggestions")
+            ForEach(model.suggestions, id: \.id) { word in
+                suggestionRow(word)
             }
         }
     }

@@ -7,6 +7,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import kotlin.time.Instant
 import net.spross.kern.box.BoxEngine
+import net.spross.kern.box.FeedbackScope
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
 import net.spross.kern.model.BoxConfig
@@ -210,6 +211,7 @@ class StoreCodecTests {
         val reported = BoxEngine.markExported(
             BoxEngine.reportIssue(state, StoreFixture.cards.first().id, "wrong", "typed", 1_700_000_000_000),
             1_700_000_100_000,
+            FeedbackScope.Everything,
         )
         val rejoined = StoreCodec.decode(StoreCodec.encode(reported))
             .join(StoreFixture.cards, StoreFixture.stamp)

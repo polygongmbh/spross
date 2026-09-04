@@ -14,6 +14,20 @@ extension AppModel {
     /// joined a card and the suggestions still waiting for their other half alike.
     var ownWords: [OwnWord] { box?.ownWords ?? [] }
 
+    /// The ones written in both of the profile's languages: study material with a card
+    /// behind it, and progress on that card.
+    var ownWordPairs: [OwnWord] {
+        guard let box else { return [] }
+        return Feedback.shared.wordPairs(state: box)
+    }
+
+    /// The ones still carrying a single half. Being a suggestion is a JOIN question and
+    /// is kern's to answer (`Feedback.suggestions`), never the screen's.
+    var suggestions: [OwnWord] {
+        guard let box else { return [] }
+        return Feedback.shared.suggestions(state: box)
+    }
+
     /// One of them by id, or nil for a catalog word.
     func ownWord(_ cardID: String) -> OwnWord? {
         box?.ownWords.first { $0.id == cardID }
