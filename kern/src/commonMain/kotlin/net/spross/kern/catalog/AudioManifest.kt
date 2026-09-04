@@ -122,6 +122,16 @@ internal class AudioManifest(
      */
     val countries: Map<String, AudioRecording> = emptyMap(),
 ) {
+    /**
+     * Whether this pack records nothing at all — a manifest the converter has not filled yet.
+     * Its file existing is what registers the language, and that is one step ahead of the
+     * recordings themselves, so the presence of the pack is asked through this
+     * (`Catalog.hasRecordings`) rather than through the map key.
+     */
+    val isEmpty: Boolean
+        get() = words.isEmpty() && letters.isEmpty() && texts.isEmpty() &&
+            articles.isEmpty() && calendar.isEmpty() && countries.isEmpty()
+
     private val byExactForm: Map<String, AudioRecording?> = index { nfcNormalized(it) }
     private val bySpeechKey: Map<String, AudioRecording?> = index { speechKey(it) }
     private val articlesBySpeechKey: Map<String, AudioRecording?> =
