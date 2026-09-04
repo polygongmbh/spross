@@ -63,15 +63,13 @@ Engine contract: `../README.md`.
   Each turn says the target word, waits, says its meaning in the SOURCE language, then says
   the target again — so it reaches the hours a language is actually available in, the walk and
   the washing-up, where every other way in asks for a typed answer or a tap.
-  `ListeningPool` is the one gate, shaped like `LetterDrillAvailability.report` and disciplined
-  the same way: the only platform facts are the two `hasVoice` booleans, one per side, and kern
-  caches nothing. It answers on TWO entry points, because the two questions cost wildly
-  different things. `offered(catalog, box, source, target, hasTargetVoice, hasSourceVoice)`
-  says whether the mode stands at all and STOPS at the first word that passes — that is what a
-  screen not running the mode asks, and what a platform asks on every foreground so a voice
-  installed while the app slept turns the card on. `report(…, seed)` deals the whole playlist
-  and is what a RUN starts with, asked once when the learner opens one. Both hold the same
-  membership rule, so a card can never stand over a pool that comes back empty.
+  `ListeningPool.report(catalog, box, source, target, hasTargetVoice, hasSourceVoice, seed)`
+  is the one gate, shaped like `LetterDrillAvailability.report` and disciplined the same way:
+  the only platform facts are the two `hasVoice` booleans, one per side, and kern caches
+  nothing. It is asked ONCE PER RUN, when the learner opens one — never on the way past the
+  entry card, which stands on the box holding words at all. Nothing is lost by not asking:
+  every catalog language but `en` ships several hundred recordings and `en` is spoken by every
+  device there is, so a joined box with nothing sayable in it does not occur.
   `seed` is opaque to kern — it only salts the scheduled lanes' own tiebreak (below), never
   reads a clock, and does not care that both apps happen to hand it the current instant.
   **Both halves must be sayable** — a turn that plays a word and then silence teaches nothing,

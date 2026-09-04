@@ -11,16 +11,16 @@ import SprossKern
 /// suspended, and how the whole sayable join becomes the pool are all kern's
 /// (`ListeningPool`).
 ///
-/// Deliberately NOT cached: a voice may be installed in Settings while the app
-/// sleeps, so Home re-asks this on every foreground rather than deciding once
-/// at launch that the mode does not exist — the letter drill's discipline
-/// (`LetterDrillAvailability`), for the same reason.
+/// Deliberately NOT cached, and asked ONCE PER RUN: a voice may be installed in
+/// Settings while the app sleeps, so the sweep reads the voice table as it finds
+/// it when a run opens rather than deciding anything at launch.
 ///
-/// Two ways in, because the two questions cost wildly different things.
-/// [offered] is the card's gate and stops at the first word this device can
-/// say — that is what Home asks. Building one of these deals the whole
-/// playlist instead, and belongs to a run being opened (`ListeningDriver`),
-/// never to a glance at Home.
+/// Home does not ask this at all. Its card stands on the box holding words, and
+/// nothing more: every catalog language but `en` ships several hundred
+/// recordings and `en` is spoken by every device there is, so a joined box with
+/// nothing sayable in it does not occur, and walking the whole join to prove
+/// that again on every glance at Home would be a catalog question no screen
+/// should pay for.
 @MainActor
 struct ListeningAvailability {
 
@@ -29,26 +29,6 @@ struct ListeningAvailability {
 
     init(model: AppModel) {
         report = Self.built(model: model)
-    }
-
-    /// The two device facts the walk needs, read where they live — the voice
-    /// table is UIKit's and main-actor only. Handed to [offered] so the walk
-    /// itself can happen off this actor.
-    static func voices(model: AppModel) -> (source: Bool, target: Bool)? {
-        guard let target = model.targetLanguage else { return nil }
-        return (Pronouncer.shared.canSpeak(language: model.sourceLanguage),
-                Pronouncer.shared.canSpeak(language: target))
-    }
-
-    /// Whether the card stands: kern stops at the first word both halves of a
-    /// turn can say, so this is the cheap question Home is allowed to ask.
-    nonisolated static func offered(
-        catalog: Catalog, box: BoxState, source: String, target: String,
-        hasSourceVoice: Bool, hasTargetVoice: Bool,
-    ) -> Bool {
-        ListeningPool.shared.offered(
-            catalog: catalog, box: box, source: source, target: target,
-            hasTargetVoice: hasTargetVoice, hasSourceVoice: hasSourceVoice)
     }
 
     var candidates: [ListeningCandidate] { report.candidates }

@@ -8,14 +8,7 @@ struct HomeView: View {
     var openBox: (String?) -> Void = { _ in }
 
     @Environment(\.locale) var locale
-    @Environment(\.scenePhase) private var scenePhase
 
-    /// Whether listening can say anything on THIS device. Re-asked on every
-    /// foreground, never decided once: a voice installed in Settings while the
-    /// app slept must put the card up without a relaunch
-    /// (`ListeningAvailability`). The GATE only — the playlist is dealt when a
-    /// run opens (`ListeningDriver`).
-    @State private var listeningOffered = false
     @State private var listeningPresented = false
 
     var body: some View {
@@ -41,12 +34,6 @@ struct HomeView: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .background(Theme.colors.background.ignoresSafeArea())
-        .onAppear { refreshListening() }
-        // why: ACTIVE, not willEnterForeground — the speaker drops its cached
-        // voice table on that notification, and the pool must read the new one.
-        .onChange(of: scenePhase) { _, phase in
-            if phase == .active { refreshListening() }
-        }
         .fullScreenCover(isPresented: $listeningPresented) {
             ListeningView(model: model)
                 .environment(\.locale, model.knownLocale)
@@ -65,7 +52,12 @@ struct HomeView: View {
     /// cannot — the whole card is the tap target.
     @ViewBuilder
     private var listeningCard: some View {
-        if listeningOffered {
+        // why: a box with words in it is the whole gate. Every catalog language
+        // but `en` ships several hundred recordings and `en` is spoken by every
+        // device there is, so a joined box with nothing sayable in it does not
+        // occur — and proving that again on every glance at Home is a walk of
+        // the whole join. The playlist is dealt when the run opens.
+        if model.box?.cards.isEmpty == false {
             Button { listeningPresented = true } label: {
                 HStack(alignment: .top, spacing: Theme.spacing.md) {
                     Text(verbatim: "🎧")
@@ -95,23 +87,6 @@ struct HomeView: View {
                 .cardShadow()
             }
             .buttonStyle(.plain)
-        }
-    }
-
-    /// The gate, not the playlist: kern stops at the first word this device can
-    /// say, so what runs on every foreground is a question and not the walk of
-    /// the whole join the run itself pays for. Only the voice check, which must
-    /// be on this actor, happens here.
-    private func refreshListening() {
-        guard let catalog = model.catalog, let box = model.box,
-              let target = model.targetLanguage, let voices = ListeningAvailability.voices(model: model)
-        else { listeningOffered = false; return }
-        let source = model.sourceLanguage
-        Task {
-            listeningOffered = await Task.detached {
-                ListeningAvailability.offered(catalog: catalog, box: box, source: source, target: target,
-                                              hasSourceVoice: voices.source, hasTargetVoice: voices.target)
-            }.value
         }
     }
 

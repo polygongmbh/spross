@@ -150,47 +150,6 @@ class ListeningPoolTests {
     }
 
     /**
-     * RULE: `offered` answers exactly what a built pool's `available` would have — on every
-     * shape of box and every shape of device.
-     * WHY: the whole point of the split is that a screen which is not running the mode never
-     * pays for the deal, and the one way that can go wrong is silently: a card standing over a
-     * playlist that comes back empty, or a mode hidden while it had words to say. Both entry
-     * points hold the same membership rule so this cannot drift, and this is what says so.
-     */
-    @Test
-    fun theGateAnswersWhatTheDealWouldHave() {
-        val cards = listOf(
-            recorded(1, source = "Tür", target = "mlango"),
-            recorded(2, source = "unaufsagbar", target = "mlango"),
-        )
-        var recordedBox = Box.state(cards)
-        for (card in cards) {
-            recordedBox = Box.inject(recordedBox, Box.sched(card.id, dueMillis = Box.day1, lastReviewMillis = Box.day1))
-        }
-        val locked = Box.state(listOf(Box.phrase("p01", components = listOf("w01", "w02"))))
-
-        val boxes = listOf(
-            Box.state(emptyList()),          // nothing joined at all
-            box(total = 4, scheduled = 0),   // a fresh box, every word unseen
-            box(total = 30, scheduled = 3),  // the thin box
-            recordedBox,                     // only the shipped recordings are sayable
-            locked,                          // a phrase whose components have not landed
-        )
-
-        for (state in boxes) {
-            for (target in listOf(true, false)) {
-                for (source in listOf(true, false)) {
-                    assertEquals(
-                        report(state, target, source).available,
-                        ListeningPool.offered(catalog, state, "de", "sw", target, source),
-                        "gate and deal disagree on $state with voices target=$target source=$source",
-                    )
-                }
-            }
-        }
-    }
-
-    /**
      * RULE: an empty box plays the catalog from `seedIndex` 0 upward, in order.
      * WHY: the beginner case, and the point of dealing an order at all. Every candidate of an
      * untouched box is unscheduled, so they are ONE lane — and a lane of new words plays in

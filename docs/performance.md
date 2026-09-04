@@ -55,19 +55,20 @@ Two things sit outside it because they are not box questions:
 
 - **Catalog content for the pair** — the country atlas, the sentence frames. Taken when
   the profile changes (`refreshTrainerContent` / `activate`).
-- **What this device can say aloud** — whether listening is offered at all, and the letter
-  drill's sweep. Taken on every foreground, because a voice may be installed in Settings
-  while the app sleeps; only the voice table itself is read on the main thread.
-  The listening PLAYLIST is not taken here: dealing it walks the whole join, and a run is
-  the only thing that needs it, so it waits for one to be opened
-  (`AppModel.startListening` / `ListeningDriver`).
+- **What this device can say aloud** — the letter drill's sweep. Taken on every foreground,
+  because a voice may be installed in Settings while the app sleeps; only the voice table
+  itself is read on the main thread.
+  Listening's own sweep is NOT among them, on either count. Dealing its playlist walks the
+  whole join, and a run is the only thing that needs it, so it waits for one to be opened
+  (`AppModel.startListening` / `ListeningDriver`) — and its entry card asks nothing at all,
+  standing on the box holding words. There is no third state to sweep for: every catalog
+  language but `en` ships several hundred recordings and `en` is spoken by every device
+  there is, so a joined box with nothing sayable in it does not occur.
 
 ## Asking kern for less
 
 Where only the SIZE of something is wanted, there is a counting entry point that does not
-compose an order — `BoxEngine.dueCount` rather than `dueNow().size`. Where only WHETHER
-there is anything is wanted, there is one that stops at the first thing there is —
-`ListeningPool.offered` rather than `report(…).available`. Where a screen draws
+compose an order — `BoxEngine.dueCount` rather than `dueNow().size`. Where a screen draws
 one number per area, there is one that answers for every area in a walk —
 `BoxBrowser.shelfCounts` rather than `enqueueableCount` per shelf. Prefer these to caching
 a more expensive answer: an answer cheap enough to just ask for is one nothing has to

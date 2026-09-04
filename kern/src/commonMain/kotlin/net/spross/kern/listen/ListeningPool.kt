@@ -23,11 +23,10 @@ import net.spross.kern.model.Language
  * Nothing here is cached: a voice may be installed in Settings while the app sleeps, so the
  * REBUILD TRIGGER stays the platform's and this answers freshly every time it is asked.
  *
- * TWO entry points, because the two questions cost wildly different things. [offered] answers
- * whether the mode stands at all and stops at the first word that passes; [report] deals the
- * whole playlist and is what a run starts with. A platform asks the first on every foreground
- * — that is how a voice installed while the app slept turns the card on — and the second once,
- * when the learner actually opens a run.
+ * Asked ONCE PER RUN, when the learner opens one. Nothing asks it on the way past: every
+ * catalog language but `en` ships several hundred recordings and `en` is spoken by every
+ * device there is, so a joined box with nothing sayable in it does not occur, and a screen
+ * that only wants to know whether the mode stands reads its own box instead.
  */
 object ListeningPool {
 
@@ -47,26 +46,6 @@ object ListeningPool {
          * one simply laps, which is what a playlist does anyway.
          */
         val available: Boolean get() = candidates.isNotEmpty()
-    }
-
-    /**
-     * Whether listening can say ANYTHING here — the entry card's whole gate, and all a screen
-     * that is not running the mode ever needs to know.
-     *
-     * Stops at the first word that passes, where [report] walks every one of them and orders
-     * the lot: the same membership rule ([inPool] over [sayable]), asked as a question instead
-     * of collected as an answer. A pool of one is offered exactly like a pool of a thousand —
-     * a short one simply laps, which is what a playlist does anyway.
-     */
-    fun offered(
-        catalog: Catalog,
-        box: BoxState,
-        source: Language,
-        target: Language,
-        hasTargetVoice: Boolean,
-        hasSourceVoice: Boolean,
-    ): Boolean = Inventory.joinedCardsUnordered(box).any {
-        sayable(it, catalog, source, target, hasTargetVoice, hasSourceVoice) && inPool(box, it)
     }
 
     /**
@@ -117,7 +96,7 @@ object ListeningPool {
         }
         val packed = Growth.enqueuedEligible(box).toSet()
         val unseen = sayable
-            .filter { box.scheduling[it.id] == null && inPool(box, it) }
+            .filter { box.scheduling[it.id] == null && Growth.isIntroducible(box, it) }
             .map {
                 ListeningCandidate(
                     it, stability = 0.0, suspended = false, scheduled = false, queued = it.id in packed,
@@ -125,17 +104,6 @@ object ListeningPool {
             }
         return Report(candidates = listeningOrder(scheduled + unseen, seed))
     }
-
-    /**
-     * Whether the join's own rules let this card be heard at all — held by BOTH entry points,
-     * so the gate can never stand over a playlist that comes back empty.
-     *
-     * A scheduled card is in whatever its schedule says (suspended included — see [report]).
-     * An unseen one enters through `Growth.isIntroducible`: a phrase whose components have not
-     * landed is not ready to be heard either.
-     */
-    private fun inPool(box: BoxState, card: Card): Boolean =
-        box.scheduling[card.id] != null || Growth.isIntroducible(box, card)
 
     /** Both halves of the turn heard, or the card is not a candidate. */
     private fun sayable(

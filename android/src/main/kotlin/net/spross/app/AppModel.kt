@@ -175,13 +175,17 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     val listening = ListeningDriver(app, this)
 
     /**
-     * Whether listening has anything to say on THIS device — the card's whole standing,
-     * asked on activation and on every foreground ([listeningOffer]) rather than per
-     * composition. The GATE only: the playlist itself is dealt in [startListening], where a
-     * run is what needs it.
+     * Whether the listening card stands: a box with words in it, and nothing else asked.
+     *
+     * There is no audio sweep behind this. Every catalog language but `en` ships several
+     * hundred recordings and `en` is spoken by every device there is, so a joined box with
+     * nothing sayable in it does not occur — and walking the whole join to prove that again
+     * on every glance at Home is a catalog question no screen should pay for. The playlist
+     * is dealt in [startListening], where a run is what needs it, and a deal that did come
+     * back empty simply opens nothing.
      */
-    var listeningOffered by mutableStateOf(false)
-        private set
+    val listeningOffered: Boolean
+        get() = box?.cards?.isNotEmpty() == true
 
     /**
      * The free-practice standing. Its store is kern-keyed SharedPreferences — a drill
@@ -457,14 +461,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * Re-asks whether listening can say anything at all. A voice installed in Settings while
-     * the app slept turns the card on without a relaunch.
-     */
-    fun refreshListening() {
-        listeningOffered = listeningOffer()
-    }
-
-    /**
      * Opens the playlist, dealing it here and nowhere else — the walk of the whole join with
      * two catalog lookups per card belongs to a run being opened, not to every glance at
      * Home. Nothing else may be talking into it: a word left sounding from the screen behind
@@ -490,11 +486,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 )
             }
             // why: the screen turns only once there is a playlist, so a run never opens on
-            // silence — and the card's own gate can be stale by the time the tap lands.
-            if (report.candidates.isEmpty()) {
-                listeningOffered = false
-                return@launch
-            }
+            // silence — the one case a box with words in it can still deal nothing.
+            if (report.candidates.isEmpty()) return@launch
             listening.start(report.candidates)
             screen = Screen.Listening
         }
@@ -601,7 +594,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         if (stored == null) persist(state)
         otherLanguagesDailyStats = withContext(Dispatchers.IO) { loadOtherLanguagesDailyStats(cat, target) }
         refreshStats()
-        refreshListening()
         screen = Screen.Home
     }
 
