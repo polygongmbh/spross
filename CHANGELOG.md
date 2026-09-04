@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- A word you write yourself keeps only its first spelling when it was pasted in as "one / another".
+
 ## 6.0.0 — 2026-09-03
 
 - A new drill teaches dates in every language pair: the weekday and month names, the day of the month, and the whole spoken date.

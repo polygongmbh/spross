@@ -154,6 +154,27 @@ class OwnWordsTests {
         assertEquals("own:word", OwnWords.mint("!?!", emptySet()))
     }
 
+    // Writing a word's text
+
+    @Test
+    fun aSlashJoinedAlternativeKeepsOnlyTheFirstForm() {
+        val word = OwnWords.write(
+            id = "own:gari-yangu",
+            kind = OwnWords.DEFAULT_KIND,
+            emoji = null,
+            texts = mapOf("de" to "mein Auto", "sw" to "gari yangu / gari langu"),
+        )
+        assertEquals("gari yangu", word.texts.getValue("sw"))
+    }
+
+    @Test
+    fun aPlainWordIsWrittenUnchanged() {
+        val word = OwnWords.write(
+            id = umbrella.id, kind = umbrella.kind, emoji = umbrella.emoji, texts = umbrella.texts,
+        )
+        assertEquals(umbrella.texts, word.texts)
+    }
+
     // Rewriting a word without losing the progress made on it
 
     @Test

@@ -121,9 +121,22 @@ object OwnWords {
      * [BoxEngine.addOwnWord] stamps that. Exists because a Kotlin default parameter
      * does not survive the ObjC export, so Swift would otherwise have to mint an
      * [Instant] it has no business knowing about.
+     *
+     * Each side is narrowed to [primaryForm]: an own word has no field for a second
+     * accepted spelling the way a catalog concept lists a `synonym`, so a pasted
+     * "gari yangu / gari langu" would ask the grader for an answer nobody can type.
      */
     fun write(id: String, kind: CardKind, emoji: String?, texts: Map<Language, String>): OwnWord =
-        OwnWord(id = id, kind = kind, emoji = emoji, texts = texts)
+        OwnWord(id = id, kind = kind, emoji = emoji, texts = texts.mapValues { (_, text) -> primaryForm(text) })
+
+    /**
+     * [text] as an own word stores it: the first form only.
+     *
+     * Whichever side wrote it, a "/" marks a second spelling the learner meant as an
+     * alternative, not a phrase to type — untypeable text is the catalog's own rule
+     * (`kern/docs/catalog.md`), and an own word has nowhere else to put the rest.
+     */
+    private fun primaryForm(text: String): String = text.substringBefore('/').trim()
 
     /** Whether this card id belongs to a word the learner wrote. */
     fun owns(cardId: String): Boolean = cardId.startsWith(ID_PREFIX)
