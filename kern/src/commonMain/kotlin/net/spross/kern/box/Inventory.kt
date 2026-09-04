@@ -20,6 +20,13 @@ internal object Inventory {
     fun joinedCards(state: BoxState): List<Card> =
         state.cards.values.sortedWith(seedOrder)
 
+    /**
+     * The same cards in no promised order — for a caller that only asks whether ANY of them
+     * passes something, where the seed sort [joinedCards] pays for determinism is one an
+     * `any` would only throw away. (`Inventory.unordered` does this for schedules.)
+     */
+    fun joinedCardsUnordered(state: BoxState): Collection<Card> = state.cards.values
+
     /** Schedules whose card exists under the current join, sorted by id (deterministic). */
     fun scheduled(state: BoxState): List<CardScheduling> =
         state.scheduling.entries
