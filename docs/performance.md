@@ -55,15 +55,15 @@ Two things sit outside it because they are not box questions:
 
 - **Catalog content for the pair** — the country atlas, the sentence frames. Taken when
   the profile changes (`refreshTrainerContent` / `activate`).
-- **What this device can say aloud** — the letter drill's sweep. Taken on every foreground,
-  because a voice may be installed in Settings while the app sleeps; only the voice table
-  itself is read on the main thread.
-  Listening's own sweep is NOT among them, on either count. Dealing its playlist walks the
-  whole join, and a run is the only thing that needs it, so it waits for one to be opened
-  (`AppModel.startListening` / `ListeningDriver`) — and its entry card asks nothing at all,
-  standing on the box holding words. There is no third state to sweep for: every catalog
-  language but `en` ships several hundred recordings and `en` is spoken by every device
-  there is, so a joined box with nothing sayable in it does not occur.
+- **What this device can say aloud** — `AudioCapability` per language, which is a map
+  lookup over the catalog's packs and one probe of the voice table. Taken on every
+  foreground, because a voice may be installed in Settings while the app sleeps.
+
+No catalog WALK is on that path. The two that exist wait for the surface that reads them:
+the letter drill's report (`AppModel.refreshLetters`, and iOS's `LettersOverview`) is asked
+by its own page, and the listening playlist (`AppModel.startListening` / `ListeningDriver`)
+by a run being opened. Both used to ride the foreground for a question their entry chip
+answers far more cheaply.
 
 ## Asking kern for less
 

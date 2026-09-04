@@ -176,10 +176,15 @@ mutes interact. The engine's half — whether a form may be heard at all — is
 - **The source is remembered PER LANGUAGE BEING LEARNED, the mute per device.** Which of
   the two sounds better is a fact about one language — a pack that beats the system voice
   in Ukrainian says nothing about Spanish, where a downloaded premium voice may beat the
-  pack — so each target carries its own pick, defaulting to Recordings. "Speech" is
-  offered only where the device HAS a voice for that target: a segment that would fall
-  straight back to the recordings promises a sound the phone cannot make, and a stored
-  Speech whose voice was since uninstalled reads as Recordings, which is what sounds.
+  pack — so each target carries its own pick, defaulting to Recordings.
+  **A source is offered only where it can answer**, both ways round: "Speech" where the
+  device HAS a voice for that target, "Recordings" where a pack ships for it, and the row
+  not at all where neither does. A segment that would fall straight through to the other
+  source promises a sound nothing can make — English ships no pack, Swahili has no iOS
+  voice — and a stored source the language cannot answer reads as the one that sounds.
+  Kern names the pair once (`AudioCapability`, over `Catalog.hasRecordings` and the
+  device's own voice table) so the setting, its hint and the listening card cannot come to
+  different answers about the same language.
 - **The feedback chimes are their own matter** — the read-aloud switch does not silence
   them — but they play under whatever category it left standing, so the phone reaches them
   exactly as it reaches autoplay. Nobody ever asked for a chime, so no chime is ever louder

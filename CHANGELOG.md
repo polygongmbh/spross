@@ -4,6 +4,7 @@
 
 - **The audio option leans harder on words that aren't sticking** — a word only needs a month of good reviews to count as settled now, not ten days, so it takes much longer to crowd out the ones still shaky.
 - **The audio option's word order reshuffles on every listen** rather than repeating the same sequence session after session.
+- **The read-aloud setting only offers a source that can actually answer** — "Recordings" is gone for English, which ships none, the way "Speech" was already gone for Swahili on iPhone.
 
 ## 5.11.1 — 2026-09-03
 
