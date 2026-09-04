@@ -8,12 +8,7 @@ struct HomeView: View {
     var openBox: (String?) -> Void = { _ in }
 
     @Environment(\.locale) var locale
-    @Environment(\.scenePhase) private var scenePhase
 
-    /// What listening can play on THIS device. Rebuilt on every foreground,
-    /// never decided once: a voice installed in Settings while the app slept
-    /// must put the card up without a relaunch (`ListeningAvailability`).
-    @State private var listening: ListeningAvailability?
     @State private var listeningPresented = false
     /// The conversation the app does not host (`BriefingSheet`).
     @State private var briefingPresented = false
@@ -42,12 +37,6 @@ struct HomeView: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .background(Theme.colors.background.ignoresSafeArea())
-        .onAppear { refreshListening() }
-        // why: ACTIVE, not willEnterForeground — the speaker drops its cached
-        // voice table on that notification, and the pool must read the new one.
-        .onChange(of: scenePhase) { _, phase in
-            if phase == .active { refreshListening() }
-        }
         .fullScreenCover(isPresented: $listeningPresented) {
             ListeningView(model: model)
                 .environment(\.locale, model.knownLocale)
@@ -81,7 +70,11 @@ struct HomeView: View {
     /// words (`docs/design.md`, `docs/surfaces.md` § Listening).
     @ViewBuilder
     private var listeningCard: some View {
-        if listening?.available == true {
+        // why: a box with words, and something able to say both sides of a turn.
+        // Two map lookups and two voice probes — never the walk of the whole
+        // join, which is what dealing the playlist is, and that waits for the
+        // run to open.
+        if model.box?.cards.isEmpty == false, model.listeningOffered {
             Button { listeningPresented = true } label: {
                 wayInCard(emoji: "🎧", title: "listen.title", subtitle: "listen.subtitle")
             }
@@ -120,23 +113,6 @@ struct HomeView: View {
                 .fill(Theme.colors.surface)
         )
         .cardShadow()
-    }
-
-    /// The sweep is a walk of the whole join asking the catalog for both sides'
-    /// audio, and it runs on every foreground — so only the voice check, which
-    /// must be on this actor, happens here.
-    private func refreshListening() {
-        guard let catalog = model.catalog, let box = model.box,
-              let target = model.targetLanguage, let voices = ListeningAvailability.voices(model: model)
-        else { listening = nil; return }
-        let source = model.sourceLanguage
-        Task {
-            let report = await Task.detached {
-                ListeningAvailability.swept(catalog: catalog, box: box, source: source, target: target,
-                                            hasSourceVoice: voices.source, hasTargetVoice: voices.target)
-            }.value
-            listening = ListeningAvailability(report: report)
-        }
     }
 
     // MARK: - Voice upgrade

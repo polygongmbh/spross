@@ -3,6 +3,7 @@ package net.spross.kern.listen
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.emojiCue
 
+import net.spross.kern.box.MATURED_STABILITY
 import net.spross.kern.catalog.Playback
 import net.spross.kern.model.Card
 import net.spross.kern.model.fnv1a64
@@ -218,8 +219,16 @@ const val LISTENING_QUEUED_PRIORITY: Int = 5
 /** The top of the stability ladder — a word at about zero stability (just learned, just lapsed). */
 const val LISTENING_MAX_STABILITY_PRIORITY: Int = 6
 
-/** Days of stability a priority point costs — the step of the ladder. */
-const val LISTENING_STABILITY_STEP_DAYS: Double = 2.0
+/**
+ * Ascending stability ceilings separating the six Sprossen — each step roughly doubling the
+ * last, so the fast-moving early days of a word's life get the fine distinctions while the
+ * ladder still reaches all the way to [MATURED_STABILITY]: only a word kern itself already
+ * calls matured — a month out from its next review — earns the floor. A fixed per-Sprosse
+ * step put the floor at 10 days, and a box reviewed for a while clears that in no time,
+ * piling almost everything into the one slowest-dealt lane; this staircase gives the
+ * not-quite-settled range room to actually settle before it does.
+ */
+val LISTENING_STABILITY_BAND_CEILINGS: List<Double> = listOf(2.0, 5.0, 10.0, 20.0, MATURED_STABILITY)
 
 /**
  * What being suspended costs a word on the ladder — a toll, not a floor.
@@ -234,9 +243,9 @@ const val LISTENING_SUSPENDED_PENALTY: Int = 2
  * word's stability, the lower its place. Higher priority means heard earlier and oftener.
  *
  * A word at zero stability (just learned, or just lapsed back down) is the whole point of
- * the hour and leads; every [LISTENING_STABILITY_STEP_DAYS] of stability costs a point, so
- * the not-quite-settled rotate in the middle and the consolidated ones are pushed to the
- * end — at the bare floor, still worth hearing, never what the hour is about.
+ * the hour and leads; each ceiling in [LISTENING_STABILITY_BAND_CEILINGS] it has passed costs
+ * a point, so the not-quite-settled rotate in the middle and the consolidated ones are pushed
+ * to the end — at the bare floor, still worth hearing, never what the hour is about.
  *
  * An UNSCHEDULED word has no stability to read, so its Sprosse is set: [LISTENING_NEW_PRIORITY],
  * or [LISTENING_QUEUED_PRIORITY] where the learner packed it.
@@ -251,8 +260,8 @@ fun listeningPriority(candidate: ListeningCandidate): Int {
     if (!candidate.scheduled) {
         return if (candidate.queued) LISTENING_QUEUED_PRIORITY else LISTENING_NEW_PRIORITY
     }
-    val sprosse = LISTENING_MAX_STABILITY_PRIORITY -
-        (candidate.stability / LISTENING_STABILITY_STEP_DAYS).toInt()
+    val bandsPassed = LISTENING_STABILITY_BAND_CEILINGS.count { candidate.stability >= it }
+    val sprosse = LISTENING_MAX_STABILITY_PRIORITY - bandsPassed
     val tolled = if (candidate.suspended) sprosse - LISTENING_SUSPENDED_PENALTY else sprosse
     return tolled.coerceIn(1, LISTENING_MAX_STABILITY_PRIORITY)
 }
@@ -287,9 +296,16 @@ private fun laneOf(candidate: ListeningCandidate): ListeningLane = ListeningLane
 private val catalogOrder: Comparator<ListeningCandidate> =
     compareBy({ it.card.seedIndex }, { it.card.id })
 
-/** The hash `Inventory.dueOrder` already de-correlates the box with, for the same reason. */
-private val hashedOrder: Comparator<ListeningCandidate> =
-    compareBy({ fnv1a64(it.card.id) }, { it.card.id })
+/**
+ * The hash `Inventory.dueOrder` already de-correlates the box with, for the same reason —
+ * salted with [seed] so a run dealt with a different one reshuffles instead of replaying the
+ * same sequence: the apps already re-sweep the pool on every foreground and hand in the
+ * current instant, so this alone gives a learner who listens more than once a day a fresh
+ * order each time, without kern reading a clock of its own — kern only ever sees the number,
+ * never where it came from.
+ */
+private fun hashedOrder(seed: Long): Comparator<ListeningCandidate> =
+    compareBy({ fnv1a64("$seed:${fnv1a64(it.card.id)}") }, { it.card.id })
 
 private class Dealt(val candidate: ListeningCandidate, val at: Double, val priority: Int)
 
@@ -319,16 +335,18 @@ private val dealOrder: Comparator<Dealt> = compareBy(
  * catalog from its very first word. Scheduled words are hashed by card id instead, because a
  * fixed catalog order would let seed neighbors — often related concepts — be heard in the same
  * sequence every run, and a word half-learned from its neighbor is what `Inventory.dueOrder`
- * fights. No clock re-seeds it per day and none is needed: every review moves a word between
- * lanes, so the sequence changes as the box does.
+ * fights — salted with [seed] on top ([hashedOrder]), so the sequence also changes between
+ * two dealings of an otherwise-unchanged box, not only when a review moves a word between
+ * lanes. [seed] is opaque to kern — it only folds the number into the hash, so whatever a
+ * caller hands in (the current instant, today) is theirs to choose.
  *
- * Total and deterministic on both platforms: placement, then priority descending, then seed
- * index, then id.
+ * Total and deterministic FOR ONE SEED on both platforms: placement, then priority
+ * descending, then catalog seed index, then id.
  */
-fun listeningOrder(candidates: List<ListeningCandidate>): List<ListeningCandidate> =
+fun listeningOrder(candidates: List<ListeningCandidate>, seed: Long): List<ListeningCandidate> =
     candidates.groupBy(::laneOf)
         .flatMap { (lane, members) ->
-            val within = if (lane.scheduled) hashedOrder else catalogOrder
+            val within = if (lane.scheduled) hashedOrder(seed) else catalogOrder
             members.sortedWith(within).mapIndexed { n, candidate ->
                 Dealt(candidate, (n + 0.5) / lane.priority, lane.priority)
             }

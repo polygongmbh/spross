@@ -22,6 +22,11 @@ import net.spross.kern.model.Language
  *
  * Nothing here is cached: a voice may be installed in Settings while the app sleeps, so the
  * REBUILD TRIGGER stays the platform's and this answers freshly every time it is asked.
+ *
+ * Asked ONCE PER RUN, when the learner opens one. Nothing asks it on the way past: every
+ * catalog language but `en` ships several hundred recordings and `en` is spoken by every
+ * device there is, so a joined box with nothing sayable in it does not occur, and a screen
+ * that only wants to know whether the mode stands reads its own box instead.
  */
 object ListeningPool {
 
@@ -63,6 +68,9 @@ object ListeningPool {
      *
      * What comes back is the PLAY ORDER, not merely a stable one — `listeningOrder` deals the
      * lanes into the sequence a run walks, so an empty box opens on the catalog's first word.
+     * [seed] salts that deal's own tiebreak (`hashedOrder`) — opaque to kern, which only folds
+     * the number into the hash, so a caller handing in a different one (the current instant,
+     * say) reshuffles the scheduled lanes instead of replaying the same sequence.
      */
     fun report(
         catalog: Catalog,
@@ -71,6 +79,7 @@ object ListeningPool {
         target: Language,
         hasTargetVoice: Boolean,
         hasSourceVoice: Boolean,
+        seed: Long,
     ): Report {
         val joined = Inventory.joinedCards(box)
         val sayable = joined.filter { sayable(it, catalog, source, target, hasTargetVoice, hasSourceVoice) }
@@ -93,7 +102,7 @@ object ListeningPool {
                     it, stability = 0.0, suspended = false, scheduled = false, queued = it.id in packed,
                 )
             }
-        return Report(candidates = listeningOrder(scheduled + unseen))
+        return Report(candidates = listeningOrder(scheduled + unseen, seed))
     }
 
     /** Both halves of the turn heard, or the card is not a candidate. */

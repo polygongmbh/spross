@@ -4,6 +4,8 @@
 
 - Copying or mailing your feedback can leave your finished word pairs behind and carry just the suggestions and problems you filed.
 - A word you write yourself keeps only its first spelling when it was pasted in as "one / another".
+- Listening leans harder on the words that are not sticking yet, and reshuffles its order on every listen.
+- The read-aloud setting only offers what can actually speak, so English no longer lists recordings it does not have.
 
 ## 6.0.0 — 2026-09-03
 

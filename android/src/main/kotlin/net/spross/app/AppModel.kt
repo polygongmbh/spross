@@ -29,11 +29,11 @@ import net.spross.kern.box.CardGrowth
 import net.spross.kern.box.ShelfCounts
 import net.spross.kern.box.mergeDailyStats
 import net.spross.kern.box.streakWindow
+import net.spross.kern.catalog.AudioCapability
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.catalog.Pronunciation
-import net.spross.kern.listen.ListeningCandidate
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
 import net.spross.kern.model.DayStats
@@ -178,11 +178,18 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     val listening = ListeningDriver(app, this)
 
     /**
-     * What a listening run may draw from on THIS device, swept on activation and on every
-     * foreground ([listeningReport]) rather than per composition — it is a catalog walk, and
-     * the Home card asks for it on every frame it stands on.
+     * Whether the listening card stands: a box with words in it, and both sides of a turn
+     * having SOMETHING that can say them ([AudioCapability]).
+     *
+     * Still no sweep — two map lookups and two voice probes, never the walk of the join that
+     * dealing the playlist is. Held as state rather than asked per composition because
+     * `canSpeak` is an uncached call into the TTS engine on this platform, and Home reads
+     * this on every frame it stands on; [refreshListening] takes it again on every
+     * foreground, which is when an installed voice can have appeared.
+     *
+     * The playlist itself is dealt in [startListening], where a run is what needs it.
      */
-    var listeningPool by mutableStateOf<List<ListeningCandidate>>(emptyList())
+    var listeningOffered by mutableStateOf(false)
         private set
 
     /**
@@ -445,6 +452,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     fun openLetters() {
         trainer.clearResult()
         refreshTrainer()
+        refreshLetters()
         screen = Screen.Letters
     }
 
@@ -467,47 +475,47 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * The listening card's standing — whether there is anything to hear at all. The pool
-     * already grows a thin selection as far as the content allows, so whatever is left IS
-     * all there is, and a short one simply laps.
-     */
-    val listeningOffered: Boolean
-        get() = listeningPool.isNotEmpty()
-
-    /**
-     * Re-sweeps what listening can play, and carries the result into a run already going.
-     * A voice installed in Settings while the app slept turns the card on without a relaunch.
+     * Re-asks whether anything can say this pair. Cheap by construction — the catalog's packs
+     * are a map lookup and the voice table is two probes — so it rides the foreground, which
+     * is where a voice installed in Settings while the app slept turns up.
      */
     fun refreshListening() {
+        val stamp = box?.joinStamp
+        listeningOffered = stamp != null && box?.cards?.isNotEmpty() == true &&
+            !audioSources(stamp.source).silent && !audioSources(stamp.target).silent
+    }
+
+    /**
+     * Opens the playlist, dealing it here and nowhere else — the walk of the whole join with
+     * two catalog lookups per card belongs to a run being opened, not to every glance at
+     * Home. Nothing else may be talking into it: a word left sounding from the screen behind
+     * would land in the middle of the run's first turn.
+     */
+    fun startListening() {
         val state = box ?: return
         val cat = catalog ?: return
         val stamp = state.joinStamp
-        // why: the voice table belongs to the synthesizer and is read here; the sweep it
-        // feeds walks the whole join asking the catalog for BOTH sides' audio — some
-        // sixteen hundred lookups on a full profile — and runs on every foreground.
+        pronouncer.stop()
+        // why: the voice table belongs to the synthesizer and is read here; the deal it feeds
+        // walks the whole join asking the catalog for BOTH sides' audio — some sixteen
+        // hundred lookups on a full profile — so it happens off this thread.
         val hasTarget = pronouncer.canSpeak(stamp.target)
         val hasSource = pronouncer.canSpeak(stamp.source)
+        val dealtAt = now()
         viewModelScope.launch {
             val report = withContext(Dispatchers.Default) {
                 ListeningPool.report(
                     cat, state, stamp.source, stamp.target,
                     hasTargetVoice = hasTarget, hasSourceVoice = hasSource,
+                    seed = dealtAt,
                 )
             }
-            listeningPool = report.candidates
-            listening.refresh(report.candidates)
+            // why: the screen turns only once there is a playlist, so a run never opens on
+            // silence — the one case a box with words in it can still deal nothing.
+            if (report.candidates.isEmpty()) return@launch
+            listening.start(report.candidates)
+            screen = Screen.Listening
         }
-    }
-
-    /**
-     * Opens the playlist. Nothing else may be talking into it — a word left sounding from
-     * the screen behind would land in the middle of the run's first turn.
-     */
-    fun startListening() {
-        if (listeningPool.isEmpty()) return
-        pronouncer.stop()
-        listening.start(listeningPool)
-        screen = Screen.Listening
     }
 
     /** The ✕, Back, and the bedtime running out all arrive here. */
@@ -549,24 +557,38 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         pronouncer.stop()
         trainer.show(summary, title)
         refreshTrainer()
+        // why: a closing letter run lands back on the page that reads the report, and the
+        // box it walks has moved — every other drill's page reads prefs alone.
+        if (back == Screen.Letters) refreshLetters()
         screen = back
     }
 
     /**
-     * What the two pages read: the climbed ladder, and what the letter drill can ask on
-     * THIS device. Recomputed rather than cached — a Sprosse opens as a run closes, and a
-     * voice may be installed in Settings while the app sleeps
-     * (`SprossActivity.onResume` calls this too).
+     * What the overview pages read: the climbed ladder and the two drills' best Sprossen.
+     * Four preference reads, recomputed rather than cached — a Sprosse opens as a run closes.
      *
-     * Never on the way to Home: the Sprossen card gates on file presence alone, and this
-     * is a catalog sweep no start-up should pay for.
+     * Never on the way to Home: the Sprossen card gates on file presence alone. What the
+     * LETTER drill can ask is not here: that one is a catalog walk, so it belongs to the
+     * page that reads it ([refreshLetters]).
      */
     fun refreshTrainer() {
         val stamp = box?.joinStamp ?: return
         trainer.readLadder(stamp.target)
-        trainer.seeLetters(letterReport())
         trainer.readCountries(stamp.source, stamp.target)
         trainer.readDates(stamp.source, stamp.target)
+    }
+
+    /**
+     * What the letter drill can ask on THIS device — the one trainer question that is a
+     * walk: the consolidated cards for dictation, and every alphabet row's example words
+     * mined out of the catalog.
+     *
+     * So it is asked by the page that reads it and nowhere else, which is where iOS has
+     * always asked it (`LettersOverview`). Recomputed rather than cached: the box moves as
+     * runs close, and a voice may be installed in Settings while the app sleeps.
+     */
+    fun refreshLetters() {
+        trainer.seeLetters(letterReport())
     }
 
     private suspend fun activate(source: String, target: String) {

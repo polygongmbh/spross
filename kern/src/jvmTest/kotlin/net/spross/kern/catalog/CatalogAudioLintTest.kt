@@ -469,6 +469,34 @@ class CatalogAudioLintTest {
     }
 
     /**
+     * `Catalog.hasRecordings` answers for exactly the packs that ship.
+     *
+     * That predicate decides what the audio setting may offer and whether a language has any
+     * sound of its own, and it is a map lookup rather than a walk — which is only safe while
+     * the map and the folders agree. Dropping a pack in registers a language, and this is
+     * what says so out loud rather than leaving a segment that promises a sound nothing can
+     * make (`docs/read-aloud.md`).
+     */
+    @Test
+    fun everyShippedPackIsOneTheCatalogAdmitsTo() {
+        val shipped = audioRoot.listFiles().orEmpty()
+            .filter { it.isDirectory && File(it, "manifest.json").isFile }
+            .map { it.name }
+            .toSet()
+        assertTrue(shipped.isNotEmpty(), "no packs ship at all — the scan is broken")
+        for (lang in catalog.languages.keys) {
+            assertEquals(
+                lang in shipped,
+                catalog.hasRecordings(lang),
+                "hasRecordings disagrees with catalog/audio/ for $lang",
+            )
+        }
+        for (lang in shipped) {
+            assertTrue(lang in catalog.languages, "audio/$lang ships for a language nothing declares")
+        }
+    }
+
+    /**
      * The untouched-transcodes gate: Commons files ship byte-identical because
      * re-encoding is an adaptation under BY-SA. The converter writes the digest it
      * verified; this re-hashes what is actually committed.

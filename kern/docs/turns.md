@@ -63,9 +63,15 @@ Engine contract: `../README.md`.
   Each turn says the target word, waits, says its meaning in the SOURCE language, then says
   the target again — so it reaches the hours a language is actually available in, the walk and
   the washing-up, where every other way in asks for a typed answer or a tap.
-  `ListeningPool.report(catalog, box, source, target, hasTargetVoice, hasSourceVoice)` is the
-  one gate, shaped like `LetterDrillAvailability.report` and disciplined the same way: the only
-  platform facts are the two `hasVoice` booleans, one per side, and kern caches nothing.
+  `ListeningPool.report(catalog, box, source, target, hasTargetVoice, hasSourceVoice, seed)`
+  is the one gate, shaped like `LetterDrillAvailability.report` and disciplined the same way:
+  the only platform facts are the two `hasVoice` booleans, one per side, and kern caches
+  nothing. It is asked ONCE PER RUN, when the learner opens one — never on the way past the
+  entry card, which stands on the box holding words at all. Nothing is lost by not asking:
+  every catalog language but `en` ships several hundred recordings and `en` is spoken by every
+  device there is, so a joined box with nothing sayable in it does not occur.
+  `seed` is opaque to kern — it only salts the scheduled lanes' own tiebreak (below), never
+  reads a clock, and does not care that both apps happen to hand it the current instant.
   **Both halves must be sayable** — a turn that plays a word and then silence teaches nothing,
   so the shared `catalog.audible` predicate is applied to the target form AND the source form.
   **Suspended cards stay in the pool.** The leech rule auto-suspends at two lapses (`../README.md` §5), so the
@@ -81,9 +87,14 @@ Engine contract: `../README.md`.
   `listeningPriority` is one ladder in STABILITY, and the pool is DEALT down it rather than
   drawn from it — higher means earlier, and the same box gives the same run.
   A scheduled word starts at `LISTENING_MAX_STABILITY_PRIORITY` (6) and loses a Sprosse per
-  `LISTENING_STABILITY_STEP_DAYS` (2.0) of stability, clamped to 1..6: just learned or just
-  lapsed leads, the not-quite-settled rotate in the middle, and the consolidated ones sit at
-  the floor — still worth hearing, never what the hour is about.
+  ceiling of `LISTENING_STABILITY_BAND_CEILINGS` (2, 5, 10, 20 d, then `MATURED_STABILITY`)
+  it has passed, clamped to 1..6: just learned or just lapsed leads, the not-quite-settled
+  rotate in the middle, and the consolidated ones sit at the floor — still worth hearing,
+  never what the hour is about. The steps widen on the way up rather than staying fixed: a
+  flat per-day step put the floor at 10 days, which a reviewed-for-a-while box clears easily,
+  piling almost everything into that one slowest-dealt lane; the floor now waits for
+  `MATURED_STABILITY` (30 d) — kern's own "a month out from the next review" bar — instead of
+  a second number invented for the same idea.
   A **packed** card (`BoxState.enqueued`) takes `LISTENING_QUEUED_PRIORITY` (5) and every
   other **unscheduled** one `LISTENING_NEW_PRIORITY` (4): neither has a stability to read, so
   those figures are deal-rates rather than measurements — packing is the learner saying
@@ -91,10 +102,11 @@ Engine contract: `../README.md`.
   A **suspended** card keeps its stability's Sprosse and pays `LISTENING_SUSPENDED_PENALTY` (2)
   down to the floor of 1, rather than being sent to the floor outright: the leech rule takes a
   word out of the box's rotation, and this is the surface that can still reach it, so a shaky
-  leech lands at Sprosse 3 or 4 — it comes in, it does not lead.
-  The ladder that falls out: 6 is stability 0–2 d; 5 is 2–4 d and the packed words; 4 is
-  4–6 d and every other unseen word; 3 is 6–8 d and a leech at 2–4 d; 2 is 8–10 d and a leech
-  at 4–6 d; 1 is 10 d and up.
+  leech lands at Sprosse 2 to 4 — it comes in, it does not lead.
+  The ladder that falls out: 6 is stability 0–2 d; 5 is 2–5 d and the packed words; 4 is
+  5–10 d and every other unseen word, and a leech at 0–2 d; 3 is 10–20 d and a leech at
+  2–5 d; 2 is 20–30 d and a leech at 5–10 d; 1 is 30 d (`MATURED_STABILITY`) and up, and a
+  leech at 10 d or more.
   **Nothing on that ladder reads a due date.** A word the box wants back is a word whose
   stability is low, so it rises on the Sprossen it already has; a due term would make listening a
   second scheduler, need a clock the run does not take, and pin the same word first every
@@ -117,12 +129,15 @@ Engine contract: `../README.md`.
   within the first handful of turns, in catalog order among themselves rather than in pack
   order — `Growth.newCandidates` honors the queue's own order because it spends a budget
   against it, and a run has no budget to spend. Scheduled words are hashed by card id
-  (`fnv1a64`, the hash `Inventory.dueOrder` already uses), so seed neighbors — often related
-  concepts, and a word half-learned from its neighbor is what that hash exists to prevent —
-  are not heard in the same sequence every run. No clock re-seeds it per day and none is
-  needed: every review moves a word between lanes. The whole deal is `listeningOrder`, pure and
-  private in its lane key, and it is what `ListeningPool.report` returns — nothing but the
-  ordered list crosses the ObjC boundary.
+  (`fnv1a64`, the hash `Inventory.dueOrder` already uses) salted with `seed`, so catalog seed
+  neighbors — often related concepts, and a word half-learned from its neighbor is what that
+  hash exists to prevent — are not heard in the same sequence every run, AND the same box
+  dealt with a different seed reshuffles rather than replaying: both apps happen to hand in
+  the current instant, and re-sweep the pool on every foreground, so a learner who listens
+  more than once a day hears a fresh order each time — kern itself never reads a clock, or
+  cares what the number means, only that a new one showed up. The whole deal is
+  `listeningOrder`, pure and private in its lane key, and it is what `ListeningPool.report`
+  returns — nothing but the ordered list crosses the ObjC boundary.
   `ListeningRun` is the pure machine (`Start`/`Advance`/`Skip`/`Repeat`/`TogglePause`/`Close`),
   and it holds **no `BoxState` at all** — that is what makes "listening books nothing"
   structural rather than promised. Its `ListeningEffect` says `Play`/`Stop`

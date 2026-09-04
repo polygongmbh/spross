@@ -232,12 +232,31 @@ extension AppModel {
         return BoxBrowser.shared.sections(catalog: catalog, stats: stats, source: sourceLanguage)
     }
 
+    /// What can carry `language`'s sound here — kern's rule (`AudioCapability`)
+    /// over the two halves this side owns: the catalog it loaded and the voice
+    /// table the synthesizer reports. Both are lookups; neither walks the join.
+    func audioSources(_ language: String) -> AudioCapability {
+        guard let catalog else { return .none }
+        return audioCapability(catalog: catalog, language: language,
+                               hasVoice: Pronouncer.shared.canSpeak(language: language))
+    }
+
+    /// Whether the listening card stands: something can say BOTH sides of a
+    /// turn. The playlist itself is dealt when a run opens (`ListeningDriver`).
+    var listeningOffered: Bool {
+        guard let target = targetLanguage else { return false }
+        return !audioSources(sourceLanguage).silent && !audioSources(target).silent
+    }
+
     /// Whether a single word in the box can be said aloud here — `anyWordAudible`
-    /// holds the answer. A target language with a device voice says yes without
-    /// looking; one without has to ask the catalog for a recording, card by card.
+    /// holds the answer. A device voice says yes without looking and nothing at
+    /// all says no without looking; only a pack has to be asked card by card,
+    /// because it covers the forms it recorded and no others.
     func composedAnyWordAudible() -> Bool {
         guard let target = targetLanguage else { return false }
-        if Pronouncer.shared.canSpeak(language: target) { return true }
+        let sources = audioSources(target)
+        if sources.hasVoice { return true }
+        if sources.silent { return false }
         return box?.cards.values.contains { card in
             pronounceAction(for: card.target.text, lang: card.target.lang) != nil
         } ?? false

@@ -11,10 +11,16 @@ import SprossKern
 /// suspended, and how the whole sayable join becomes the pool are all kern's
 /// (`ListeningPool`).
 ///
-/// Deliberately NOT cached: a voice may be installed in Settings while the app
-/// sleeps, so Home rebuilds this on every foreground rather than deciding once
-/// at launch that the mode does not exist — the letter drill's discipline
-/// (`LetterDrillAvailability`), for the same reason.
+/// Deliberately NOT cached, and asked ONCE PER RUN: a voice may be installed in
+/// Settings while the app sleeps, so the sweep reads the voice table as it finds
+/// it when a run opens rather than deciding anything at launch.
+///
+/// Home does not ask this at all. Its card stands on the box holding words, and
+/// nothing more: every catalog language but `en` ships several hundred
+/// recordings and `en` is spoken by every device there is, so a joined box with
+/// nothing sayable in it does not occur, and walking the whole join to prove
+/// that again on every glance at Home would be a catalog question no screen
+/// should pay for.
 @MainActor
 struct ListeningAvailability {
 
@@ -25,36 +31,12 @@ struct ListeningAvailability {
         report = Self.built(model: model)
     }
 
-    init(report: ListeningPool.Report) {
-        self.report = report
-    }
-
-    /// The two device facts the sweep needs, read where they live — the voice
-    /// table is UIKit's and main-actor only. Handed to [swept] so the walk
-    /// itself, which is the whole join with two catalog lookups per card, can
-    /// happen off this actor.
-    static func voices(model: AppModel) -> (source: Bool, target: Bool)? {
-        guard let target = model.targetLanguage else { return nil }
-        return (Pronouncer.shared.canSpeak(language: model.sourceLanguage),
-                Pronouncer.shared.canSpeak(language: target))
-    }
-
-    /// The pool sweep itself: pure kern over immutable values, so it runs
-    /// wherever the caller puts it.
-    nonisolated static func swept(
-        catalog: Catalog, box: BoxState, source: String, target: String,
-        hasSourceVoice: Bool, hasTargetVoice: Bool,
-    ) -> ListeningPool.Report {
-        ListeningPool.shared.report(
-            catalog: catalog, box: box, source: source, target: target,
-            hasTargetVoice: hasTargetVoice, hasSourceVoice: hasSourceVoice)
-    }
-
-    /// Whether the Home card stands at all.
-    var available: Bool { report.available }
-
     var candidates: [ListeningCandidate] { report.candidates }
 
+    /// The playlist itself, dealt for ONE run: the walk of the whole join with
+    /// two catalog lookups per card, which is why it waits for a run to be
+    /// opened rather than running on the way past the card.
+    ///
     /// A profile with no catalog, no box or no target language can play
     /// nothing; kern's own empty report says so without a second predicate on
     /// this side.
@@ -65,7 +47,8 @@ struct ListeningAvailability {
         return ListeningPool.shared.report(
             catalog: catalog, box: box, source: source, target: target,
             hasTargetVoice: Pronouncer.shared.canSpeak(language: target),
-            hasSourceVoice: Pronouncer.shared.canSpeak(language: source)
+            hasSourceVoice: Pronouncer.shared.canSpeak(language: source),
+            seed: Date().epochMillis
         )
     }
 }

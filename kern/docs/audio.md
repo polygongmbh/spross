@@ -55,6 +55,15 @@ Engine contract: `../README.md`.
   Manifests are JSON text read through `CatalogSource` like every other catalog file;
   recording paths come back catalog-relative (`audio/uk/office.mp3`),
   and every player, synthesizer and voice table stays app-side.
+- **Two predicates, one per FORM and one per LANGUAGE.**
+  `audible(form, lang, catalog, hasVoice)` is what a pool filters on — a recording of that
+  very form, or a voice. `audioCapability(catalog, lang, hasVoice)` is the coarser
+  question a surface asks before there is any form yet: whether a pack ships
+  (`Catalog.hasRecordings`, a map lookup — `audio/<lang>/manifest.json` having been there
+  at load) and whether the device has a voice, named apart as `RecordingsOnly` / `VoiceOnly`
+  / `Both` / `None` because the audio setting offers one segment per source.
+  A pack answers for the forms it recorded and no others, so the second never stands in for
+  the first. `hasVoice` is the caller's in both, and cached in neither.
 - **The analysis index is measurement data, never an edit** (user ruling 2026-08-01).
   An entry may carry `gain` (dB from the full-range analysis target), `gainPhone`
   (the same loudness through the phone-speaker plane, null where none was measured — letters and texts),

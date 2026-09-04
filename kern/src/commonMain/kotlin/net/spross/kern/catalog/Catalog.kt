@@ -350,6 +350,17 @@ class Catalog internal constructor(
     }
 
     /**
+     * Whether a recording pack ships for [lang] at all — `audio/<lang>/manifest.json` having
+     * been there at load, which is the whole registry (`catalog/audio/README.md`).
+     *
+     * A pack answers for the FORMS it recorded and no others, so this never says a given word
+     * can be heard — [pronunciation] does that. What it settles is whether recordings are a
+     * source here at all: what the audio setting may offer, and whether a language has any
+     * sound of its own before the device is asked (see [audioCapability]).
+     */
+    fun hasRecordings(lang: Language): Boolean = audio[lang]?.isEmpty == false
+
+    /**
      * How [visibleForm] is pronounced in [lang] — keyed by what stands on the card, so a
      * rotated synonym is spoken as itself. A bundled recording is returned only when it
      * speaks that form ([speechKey]); everything else falls to the app's synthesizer,

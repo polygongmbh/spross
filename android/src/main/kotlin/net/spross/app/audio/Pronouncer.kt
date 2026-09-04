@@ -9,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import java.io.IOException
+import net.spross.kern.catalog.AudioCapability
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.catalog.spokenTargetForm
 import net.spross.kern.model.Language
@@ -88,13 +89,18 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
      * [voiceSource]: there is no state where a source is chosen but the app is silent.
      * Setting [AudioPreference.OFF] silences the review loop; picking either source also
      * turns reading aloud back on, so the picker can never leave the app silent behind a
-     * chosen voice. A stored [VoiceSource.TTS] the device can no longer answer reads as
-     * [AudioPreference.RECORDINGS], which is what would sound anyway.
+     * chosen voice. A stored source the language cannot answer reads as the other one:
+     * [sources] carries both halves, so a [VoiceSource.TTS] whose voice was uninstalled and a
+     * [VoiceSource.RECORDINGS] for a language that ships no pack are corrected alike.
      */
-    fun audioPreference(lang: Language): AudioPreference = when {
+    fun audioPreference(lang: Language, sources: AudioCapability): AudioPreference = when {
         muted -> AudioPreference.OFF
-        voiceSource(lang) == VoiceSource.TTS && canSpeak(lang) -> AudioPreference.TTS
-        else -> AudioPreference.RECORDINGS
+        voiceSource(lang) == VoiceSource.TTS && sources.hasVoice -> AudioPreference.TTS
+        // why: a stored source the language cannot answer reads as the other one, in BOTH
+        // directions — a pack that does not ship is as empty a promise as a voice that is
+        // not installed, and the row must never show a segment selected that plays nothing.
+        sources.hasRecordings -> AudioPreference.RECORDINGS
+        else -> AudioPreference.TTS
     }
 
     fun setAudioPreference(lang: Language, preference: AudioPreference) {

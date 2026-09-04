@@ -43,8 +43,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.app.audioSources
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
+import net.spross.kern.catalog.AudioCapability
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.model.Language
@@ -265,8 +267,11 @@ private fun LearnerNameSetting(model: AppModel) {
 @Composable
 private fun ReadAloudSetting(model: AppModel, target: Language) {
     val chrome: Chrome = model.chrome
-    val preference = model.pronouncer.audioPreference(target)
-    val speaks = model.pronouncer.canSpeak(target)
+    val sources = model.audioSources(target)
+    // why: nothing can say this language — a row whose every option is silence is not a
+    // choice, and the two "on" segments would both promise a sound that cannot be made.
+    if (sources.silent) return
+    val preference = model.pronouncer.audioPreference(target, sources)
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         Text(
             chrome.settingsAudioTitle,
@@ -275,10 +280,12 @@ private fun ReadAloudSetting(model: AppModel, target: Language) {
         SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
             val options = listOfNotNull(
                 chrome.settingsAudioOptionOff to net.spross.app.audio.Pronouncer.AudioPreference.OFF,
-                chrome.settingsAudioOptionRecordings to
-                    net.spross.app.audio.Pronouncer.AudioPreference.RECORDINGS,
+                (chrome.settingsAudioOptionRecordings to
+                    net.spross.app.audio.Pronouncer.AudioPreference.RECORDINGS)
+                    .takeIf { sources.hasRecordings },
                 (chrome.settingsAudioOptionTts to
-                    net.spross.app.audio.Pronouncer.AudioPreference.TTS).takeIf { speaks },
+                    net.spross.app.audio.Pronouncer.AudioPreference.TTS)
+                    .takeIf { sources.hasVoice },
             )
             options.forEachIndexed { index, (label, option) ->
                 SegmentedButton(
@@ -301,9 +308,9 @@ private fun ReadAloudSetting(model: AppModel, target: Language) {
                 net.spross.app.audio.Pronouncer.AudioPreference.TTS -> chrome.settingsAudioHintTts
             }
         )
-        // why: only where there is a choice to be scoped — a language with one option
+        // why: only where there is a choice to be scoped — a language with one source
         // has nothing to remember per language.
-        if (speaks) SettingHint(chrome.settingsAudioHintPerLanguage)
+        if (sources == AudioCapability.Both) SettingHint(chrome.settingsAudioHintPerLanguage)
     }
 }
 
