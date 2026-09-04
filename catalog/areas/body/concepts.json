@@ -4,9 +4,9 @@
  { "slug": "eye", "kind": "noun", "emoji": "👁️" },
  { "slug": "mouth", "kind": "noun", "emoji": "👄" },
  { "slug": "foot", "kind": "noun", "emoji": "🦶" },
- { "slug": "stomach", "kind": "noun", "emoji": "🫃" },
+ { "slug": "stomach", "kind": "noun" },
  { "slug": "back", "kind": "noun", "emoji": "🩻" },
- { "slug": "throat", "kind": "noun", "emoji": "🗣️" },
+ { "slug": "throat", "kind": "noun" },
  { "slug": "ear", "kind": "noun", "emoji": "👂" },
  { "slug": "nose", "kind": "noun", "emoji": "👃" },
  { "slug": "tooth", "kind": "noun", "emoji": "🦷" },
@@ -32,7 +32,7 @@
  { "slug": "give-me-your-hand", "kind": "phrase", "emoji": "✋", "components": ["hand"] },
  { "slug": "open-your-mouth", "kind": "phrase", "emoji": "👄", "components": ["mouth"] },
  { "slug": "close-your-eyes", "kind": "phrase", "emoji": "👁️", "components": ["eye"] },
- { "slug": "i-have-long-hair", "kind": "phrase", "emoji": "💇", "components": ["hair"] },
+ { "slug": "i-have-long-hair", "kind": "phrase", "components": ["hair"], "emoji": "💇" },
  { "slug": "my-feet-are-cold", "kind": "phrase", "emoji": "🦶", "components": ["foot"] },
  { "slug": "my-heart-is-beating-fast", "kind": "phrase", "emoji": "🫀", "components": ["heart"] }
 ]

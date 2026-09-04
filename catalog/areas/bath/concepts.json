@@ -23,7 +23,7 @@
  { "slug": "washing-machine", "kind": "noun", "emoji": "🌀" },
  { "slug": "razor", "kind": "noun", "emoji": "🪒" },
  { "slug": "bucket", "kind": "noun", "emoji": "🪣" },
- { "slug": "cream", "kind": "noun", "emoji": "🧴" },
+ { "slug": "cream", "kind": "noun" },
  { "slug": "to-apply-lotion", "kind": "verb", "emoji": "💆" },
  { "slug": "sponge", "kind": "noun", "emoji": "🧽" },
  { "slug": "toilet-paper", "kind": "noun", "emoji": "🧻" },
@@ -36,12 +36,12 @@
  },
  { "slug": "the-bathroom-is-occupied", "kind": "phrase", "emoji": "🚽", "components": [] },
  { "slug": "the-laundry-is-done", "kind": "phrase", "emoji": "✅", "components": ["laundry"] },
- { "slug": "wheres-my-towel", "kind": "phrase", "emoji": "🧖", "components": ["towel"] },
+ { "slug": "wheres-my-towel", "kind": "phrase", "components": ["towel"], "emoji": "🧖" },
  {
   "slug": "can-you-hang-the-laundry",
   "kind": "phrase",
-  "emoji": "👕",
-  "components": ["laundry", "to-hang-up-laundry"]
+  "components": ["laundry", "to-hang-up-laundry"],
+  "emoji": "👕"
  },
  {
   "slug": "dont-forget-to-brush-teeth",

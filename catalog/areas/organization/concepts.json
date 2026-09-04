@@ -1,6 +1,6 @@
 [
  { "slug": "appointment", "kind": "noun", "emoji": "📅" },
- { "slug": "to-arrange", "kind": "verb", "emoji": "🤝" },
+ { "slug": "to-arrange", "kind": "verb" },
  { "slug": "date", "kind": "noun", "emoji": "📆" },
  { "slug": "plan", "kind": "noun", "emoji": "📋" },
  { "slug": "to-cancel", "kind": "verb", "emoji": "❌" },

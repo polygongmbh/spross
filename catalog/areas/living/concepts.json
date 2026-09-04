@@ -23,7 +23,7 @@
  { "slug": "to-tidy-up", "kind": "verb", "emoji": "🧹" },
  { "slug": "plant", "kind": "noun", "emoji": "🪴" },
  { "slug": "newspaper", "kind": "noun", "emoji": "📰" },
- { "slug": "shelf", "kind": "noun", "emoji": "📚" },
+ { "slug": "shelf", "kind": "noun" },
  { "slug": "furniture", "kind": "noun" },
  { "slug": "curtain", "kind": "noun", "emoji": "🎭" },
  { "slug": "carpet", "kind": "noun", "emoji": "🧶" },

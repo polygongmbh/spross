@@ -1,8 +1,8 @@
 [
  { "slug": "menu", "kind": "noun", "emoji": "📜" },
- { "slug": "waiter", "kind": "noun", "emoji": "🧑‍🍳" },
- { "slug": "waiter-f", "kind": "noun", "emoji": "👩‍🍳", "feminineOf": "waiter" },
- { "slug": "table", "kind": "noun", "emoji": "🪑" },
+ { "slug": "waiter", "kind": "noun" },
+ { "slug": "waiter-f", "kind": "noun", "feminineOf": "waiter" },
+ { "slug": "table", "kind": "noun" },
  { "slug": "to-order", "kind": "verb" },
  { "slug": "bill", "kind": "noun", "emoji": "🧾" },
  { "slug": "tip", "kind": "noun", "emoji": "💰" },

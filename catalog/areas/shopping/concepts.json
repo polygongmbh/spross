@@ -10,8 +10,8 @@
  { "slug": "shopping-list", "kind": "noun", "emoji": "📝" },
  { "slug": "size", "kind": "noun" },
  { "slug": "to-shop", "kind": "verb", "emoji": "🛍️" },
- { "slug": "store", "kind": "noun", "emoji": "🏪" },
- { "slug": "the-store-is-still-open", "kind": "phrase", "emoji": "🏪", "components": ["store"] },
+ { "slug": "store", "kind": "noun" },
+ { "slug": "the-store-is-still-open", "kind": "phrase", "components": ["store"] },
  { "slug": "do-you-have-this-in-my-size", "kind": "phrase", "components": ["size"] },
  { "slug": "where-is-the-checkout", "kind": "phrase", "emoji": "🧾", "components": ["checkout"] }
 ]
