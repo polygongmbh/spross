@@ -442,6 +442,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     fun openLetters() {
         trainer.clearResult()
         refreshTrainer()
+        refreshLetters()
         screen = Screen.Letters
     }
 
@@ -546,24 +547,38 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         pronouncer.stop()
         trainer.show(summary, title)
         refreshTrainer()
+        // why: a closing letter run lands back on the page that reads the report, and the
+        // box it walks has moved — every other drill's page reads prefs alone.
+        if (back == Screen.Letters) refreshLetters()
         screen = back
     }
 
     /**
-     * What the two pages read: the climbed ladder, and what the letter drill can ask on
-     * THIS device. Recomputed rather than cached — a Sprosse opens as a run closes, and a
-     * voice may be installed in Settings while the app sleeps
-     * (`SprossActivity.onResume` calls this too).
+     * What the overview pages read: the climbed ladder and the two drills' best Sprossen.
+     * Four preference reads, recomputed rather than cached — a Sprosse opens as a run closes.
      *
-     * Never on the way to Home: the Sprossen card gates on file presence alone, and this
-     * is a catalog sweep no start-up should pay for.
+     * Never on the way to Home: the Sprossen card gates on file presence alone. What the
+     * LETTER drill can ask is not here: that one is a catalog walk, so it belongs to the
+     * page that reads it ([refreshLetters]).
      */
     fun refreshTrainer() {
         val stamp = box?.joinStamp ?: return
         trainer.readLadder(stamp.target)
-        trainer.seeLetters(letterReport())
         trainer.readCountries(stamp.source, stamp.target)
         trainer.readDates(stamp.source, stamp.target)
+    }
+
+    /**
+     * What the letter drill can ask on THIS device — the one trainer question that is a
+     * walk: the consolidated cards for dictation, and every alphabet row's example words
+     * mined out of the catalog.
+     *
+     * So it is asked by the page that reads it and nowhere else, which is where iOS has
+     * always asked it (`LettersOverview`). Recomputed rather than cached: the box moves as
+     * runs close, and a voice may be installed in Settings while the app sleeps.
+     */
+    fun refreshLetters() {
+        trainer.seeLetters(letterReport())
     }
 
     private suspend fun activate(source: String, target: String) {

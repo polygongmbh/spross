@@ -101,16 +101,19 @@ class SprossActivity : ComponentActivity() {
     }
 
     /**
-     * why: what the letter drill can ASK changes while the app sleeps — a voice installed
-     * in Settings must turn the start button on without a relaunch, and the sweep behind it
-     * is a catalog walk, so it is asked here rather than per composition.
+     * why: what this device can SAY changes while the app sleeps — a voice installed in
+     * Settings must turn a start button on without a relaunch, and none of these can be
+     * asked per composition.
      */
     override fun onResume() {
         super.onResume()
         model.refreshTrainer()
-        // why: the same reason, one language further — a voice for either side decides
-        // whether listening has anything to say, and both are asked again on return.
+        // why: whether either side of a turn can be spoken decides the listening card;
+        // two lookups and two probes, cheap enough to ride every return.
         model.refreshListening()
+        // why: the letter drill's own question is a catalog walk, so only the page that
+        // reads it pays for it — and only while that page is the one on screen.
+        if (model.screen == Screen.Letters) model.refreshLetters()
     }
 
     private companion object {
