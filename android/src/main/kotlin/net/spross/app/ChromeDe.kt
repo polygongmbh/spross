@@ -344,6 +344,7 @@ internal object ChromeDe : Chrome {
     override val reportExportCopy = "Kopieren"
     override val reportExportSend = "Senden"
     override val reportExportScopeNew = "Nur Neues"
+    override val reportExportScopeOutbox = "Nur Vorschläge und Meldungen"
     override val reportExportScopeAll = "Alles"
     override val reportExportScopeAllClear = "Alles, dann leeren"
     override val reportExportClear = "Leeren"

@@ -24,6 +24,22 @@ data class ReportedIssue(
 )
 
 /**
+ * How much of what the learner wrote one report carries.
+ *
+ * The two differ exactly where a word has been written in BOTH of the profile's languages:
+ * such a word is study material with progress on it, and a learner who only wants to tell
+ * the catalog what it still owes them has no reason to hand their whole vocabulary over
+ * with it.
+ */
+enum class FeedbackScope {
+    /** Every own word, the finished pairs included, and every filed report. */
+    Everything,
+
+    /** Only what still waits for an answer: the one-sided suggestions and the reports. */
+    Outbox,
+}
+
+/**
  * What the learner has to say back to whoever maintains the catalog: the words they
  * had to write themselves, and the problems they filed.
  *
@@ -51,10 +67,11 @@ object Feedback {
      *
      * A word written in only one language prints its missing half as [UNTRANSLATED] rather
      * than being left out: it is the entry most worth reading. [since] filters to what was
-     * written or filed after it — `null` takes the lot.
+     * written or filed after it — `null` takes the lot — and [scope] to how much of what
+     * survives that filter is the catalog's business.
      */
-    fun reportText(state: BoxState, since: Instant?): String {
-        val words = ownWordsSince(state, since)
+    fun reportText(state: BoxState, since: Instant?, scope: FeedbackScope): String {
+        val words = exportedWords(state, since, scope)
         val issues = issuesSince(state, since)
         val sections = mutableListOf<String>()
         sections += "${state.joinStamp.source} → ${state.joinStamp.target}"
@@ -69,13 +86,15 @@ object Feedback {
         return sections.joinToString("\n\n")
     }
 
-    /** Whether a report built with the same [since] would carry anything at all. */
-    fun hasAnything(state: BoxState, since: Instant?): Boolean =
-        ownWordsSince(state, since).isNotEmpty() || issuesSince(state, since).isNotEmpty()
+    /** Whether a report built with the same filters would carry anything at all. */
+    fun hasAnything(state: BoxState, since: Instant?, scope: FeedbackScope): Boolean =
+        exportedWords(state, since, scope).isNotEmpty() || issuesSince(state, since).isNotEmpty()
 
-    /** Own words added after [since], in the order they were written. */
-    fun ownWordsSince(state: BoxState, since: Instant?): List<OwnWord> =
-        state.ownWords.filter { since == null || it.addedAt > since }
+    /** The own words such a report carries, in the order they were written. */
+    fun exportedWords(state: BoxState, since: Instant?, scope: FeedbackScope): List<OwnWord> {
+        val words = if (scope == FeedbackScope.Outbox) suggestions(state) else state.ownWords
+        return words.filter { since == null || it.addedAt > since }
+    }
 
     /**
      * The words still waiting for one of the profile's two languages, oldest first.

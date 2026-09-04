@@ -337,6 +337,7 @@ interface Chrome {
     val reportExportCopy: String
     val reportExportSend: String
     val reportExportScopeNew: String
+    val reportExportScopeOutbox: String
     val reportExportScopeAll: String
     val reportExportScopeAllClear: String
     val reportExportClear: String

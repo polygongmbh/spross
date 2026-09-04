@@ -5181,6 +5181,22 @@
       },
       "comment" : "The two scopes each action offers once a copy has ever been taken."
     },
+    "report.export.scope.outbox" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur Vorschläge und Meldungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only suggestions and reports"
+          }
+        }
+      }
+    },
     "report.export.send" : {
       "localizations" : {
         "de" : {

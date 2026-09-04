@@ -50,6 +50,7 @@ import net.spross.app.reportedIssue
 import net.spross.app.suggestionText
 import net.spross.app.suggestions
 import net.spross.kern.box.Feedback
+import net.spross.kern.box.FeedbackScope
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
 import net.spross.kern.model.Card
@@ -153,14 +154,14 @@ private fun OwnContentPanel(
         }
         if (actions) {
             Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-                ScopedAction(model, chrome.reportExportCopy) { onlyNew ->
-                    context.copyToClipboard(chrome.boxOwnTitle, model.reportText(onlyNew))
-                    model.markExported()
+                ScopedAction(model, chrome.reportExportCopy) { onlyNew, scope ->
+                    context.copyToClipboard(chrome.boxOwnTitle, model.reportText(onlyNew, scope))
+                    model.markExported(scope)
                 }
-                ScopedAction(model, chrome.reportExportSend) { onlyNew ->
-                    val body = model.reportMailBody(onlyNew) ?: return@ScopedAction
+                ScopedAction(model, chrome.reportExportSend) { onlyNew, scope ->
+                    val body = model.reportMailBody(onlyNew, scope) ?: return@ScopedAction
                     context.openFeedbackMail(Feedback.MAIL_SUBJECT, body)
-                    model.markExported()
+                    model.markExported(scope)
                 }
                 if (model.clearableCount > 0) ClearAction(model)
             }
@@ -298,19 +299,28 @@ private fun ReportedRow(model: AppModel, card: Card) {
 }
 
 /**
- * One action, offered over the whole lot, only over what is new, or over the whole lot
- * with the outbox emptied behind it. It stays a plain button while it has only the one
- * thing to offer — before any copy has been taken the first two would be the same list,
- * and with nothing clearable the third says nothing.
+ * One action, offered over the whole lot, over what is new, over what the catalog is owed,
+ * or over the whole lot with the outbox emptied behind it. It stays a plain button while it
+ * has only the one thing to offer — before any copy has been taken "new" is the same list
+ * as "everything", with no word pair written so is the outbox, and with nothing clearable
+ * the last says nothing.
  */
 @Composable
-private fun ScopedAction(model: AppModel, label: String, run: (onlyNew: Boolean) -> Unit) {
+private fun ScopedAction(
+    model: AppModel,
+    label: String,
+    run: (onlyNew: Boolean, scope: FeedbackScope) -> Unit,
+) {
     val chrome = model.chrome
     var open by remember { mutableStateOf(false) }
+    val whole = FeedbackScope.Everything
     val exported = model.hasExportedBefore
     val clearable = model.clearableCount > 0
+    // The narrower offer is only worth making where it says something the wider one does
+    // not: with no word pair written, the outbox IS the lot.
+    val outbox = model.ownWordPairs.isNotEmpty() && model.hasFeedback(false, FeedbackScope.Outbox)
     if (!exported && !clearable) {
-        TextButton(onClick = { run(false) }) { Text(label) }
+        TextButton(onClick = { run(false, whole) }) { Text(label) }
         return
     }
     Box {
@@ -320,19 +330,25 @@ private fun ScopedAction(model: AppModel, label: String, run: (onlyNew: Boolean)
                 DropdownMenuItem(
                     text = { Text(chrome.reportExportScopeNew) },
                     enabled = model.hasFeedback(onlyNew = true),
-                    onClick = { open = false; run(true) },
+                    onClick = { open = false; run(true, whole) },
+                )
+            }
+            if (outbox) {
+                DropdownMenuItem(
+                    text = { Text(chrome.reportExportScopeOutbox) },
+                    onClick = { open = false; run(false, FeedbackScope.Outbox) },
                 )
             }
             DropdownMenuItem(
                 text = { Text(chrome.reportExportScopeAll) },
-                onClick = { open = false; run(false) },
+                onClick = { open = false; run(false, whole) },
             )
             if (clearable) {
                 // why: the lot has just gone to the clipboard or into a draft, so there is
                 // nothing left to lose and nothing to ask about.
                 DropdownMenuItem(
                     text = { Text(chrome.reportExportScopeAllClear, color = Theme.colors.wrong) },
-                    onClick = { open = false; run(false); model.clearFeedback() },
+                    onClick = { open = false; run(false, whole); model.clearFeedback() },
                 )
             }
         }

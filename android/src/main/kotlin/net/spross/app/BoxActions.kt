@@ -2,6 +2,7 @@ package net.spross.app
 
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.Feedback
+import net.spross.kern.box.FeedbackScope
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
 import net.spross.kern.box.ReportedIssue
@@ -97,11 +98,15 @@ fun AppModel.suggestionText(word: OwnWord): String {
 
 /**
  * Whether there is anything to copy or send at all — what withholds the actions.
- * [onlyNew] measures against the last time the learner took a copy.
+ * [onlyNew] measures against the last time the learner took a copy, [scope] against how
+ * much of what they wrote the catalog is owed.
  */
-fun AppModel.hasFeedback(onlyNew: Boolean): Boolean {
+fun AppModel.hasFeedback(
+    onlyNew: Boolean,
+    scope: FeedbackScope = FeedbackScope.Everything,
+): Boolean {
     val state = box ?: return false
-    return Feedback.hasAnything(state, if (onlyNew) state.lastExportAt else null)
+    return Feedback.hasAnything(state, if (onlyNew) state.lastExportAt else null, scope)
 }
 
 /**
@@ -111,26 +116,24 @@ fun AppModel.hasFeedback(onlyNew: Boolean): Boolean {
 val AppModel.hasExportedBefore: Boolean get() = box?.lastExportAt != null
 
 /**
- * The suggestions and the reports as text — the same one the mail carries, so the
- * clipboard can never come back with less than the Send button would have sent.
+ * What goes out as text — the same one the mail carries, so the clipboard can never come
+ * back with less than the Send button would have sent.
  */
-fun AppModel.reportText(onlyNew: Boolean): String {
+fun AppModel.reportText(onlyNew: Boolean, scope: FeedbackScope): String {
     val state = box ?: return ""
-    return Feedback.reportText(state, if (onlyNew) state.lastExportAt else null)
+    return Feedback.reportText(state, if (onlyNew) state.lastExportAt else null, scope)
 }
 
-/**
- * The suggestions and the reports as a mail body, or null when there is nothing to say.
- */
-fun AppModel.reportMailBody(onlyNew: Boolean): String? =
-    if (hasFeedback(onlyNew)) reportText(onlyNew) else null
+/** The same as a mail body, or null when there is nothing to say. */
+fun AppModel.reportMailBody(onlyNew: Boolean, scope: FeedbackScope): String? =
+    if (hasFeedback(onlyNew, scope)) reportText(onlyNew, scope) else null
 
 /**
  * Record that a copy has just been taken — what a later "only what is new" measures
- * against. Taking everything still marks it: either way the learner has now seen the lot.
+ * against. Whether this scope moves the stamp at all is kern's ([BoxEngine.markExported]).
  */
-fun AppModel.markExported() {
-    updateBox { BoxEngine.markExported(it, now()) }
+fun AppModel.markExported(scope: FeedbackScope) {
+    updateBox { BoxEngine.markExported(it, now(), scope) }
 }
 
 /**

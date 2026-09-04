@@ -427,8 +427,11 @@ a clone inherits its sibling's gaps, never the rules.
     block lists catalog cards only, because naming the same word twice in one section
     reads as two different problems.
     Both ways out — clipboard and mail — carry the same one text, and each offers
-    everything or only what is new, the latter only once a copy has ever been taken: before
-    that the two would be the same list, so the control asks nothing.
+    everything, only what is new, or only the suggestions and reports. A narrower offer is
+    made only where it says something the wider one does not: "only what is new" once a copy
+    has ever been taken, "only suggestions and reports" once a word pair has been written.
+    A whole copy marks itself taken, one that left the pairs behind does not — measuring
+    "new" from it would skip them for good.
     Each also offers to EMPTY the section behind the export, and a button beside them does
     it alone: suggestions and reports are an outbox, and a learner who sends theirs on
     regularly otherwise watches the section only grow. What a clear leaves is the words

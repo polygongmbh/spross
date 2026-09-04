@@ -181,9 +181,13 @@ object BoxEngine {
      * what a later "only what is new" measures against ([Feedback], [BoxState.lastExportAt]).
      * Taking the whole lot rather than the new part still marks it: either way they
      * have now seen everything up to this moment.
+     *
+     * A [FeedbackScope.Outbox] export leaves the stamp where it is. It went out without the
+     * finished word pairs, so a "only what is new" measured from it would carry them never.
      */
-    fun markExported(state: BoxState, nowEpochMillis: Long): BoxState =
-        state.copy(lastExportAt = Instant.fromEpochMilliseconds(nowEpochMillis))
+    fun markExported(state: BoxState, nowEpochMillis: Long, scope: FeedbackScope): BoxState =
+        if (scope == FeedbackScope.Outbox) state
+        else state.copy(lastExportAt = Instant.fromEpochMilliseconds(nowEpochMillis))
 
     /** The card map with every own-word card re-derived; the catalog half is untouched. */
     private fun rebuilt(state: BoxState, words: List<OwnWord>): Map<String, Card> =

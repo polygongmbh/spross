@@ -94,7 +94,7 @@ class FeedbackTests {
     fun resetKeepsWhatTheLearnerWroteAndDropsWhatTheBoxComputed() {
         var state = BoxEngine.reportIssue(box(), "w01", "wrong", null, Box.day1)
         state = BoxEngine.answer(state, "w01", Rating.Good, Box.day1, "UTC")
-        state = BoxEngine.markExported(state, Box.day1)
+        state = BoxEngine.markExported(state, Box.day1, FeedbackScope.Everything)
         val fresh = BoxEngine.reset(state)
         assertEquals(state.reportedIssues, fresh.reportedIssues)
         assertEquals(state.lastExportAt, fresh.lastExportAt)
@@ -135,10 +135,11 @@ class FeedbackTests {
         val (withBoth, fresh) = added(
             afterOld, ownWord("neu", mapOf("de" to "neu")), Box.plusDays(Box.day1, 2.0),
         )
-        val state = BoxEngine.markExported(withBoth, Box.plusDays(Box.day1, 1.0))
+        val whole = FeedbackScope.Everything
+        val state = BoxEngine.markExported(withBoth, Box.plusDays(Box.day1, 1.0), whole)
 
-        assertEquals(listOf(old, fresh), Feedback.ownWordsSince(state, null))
-        assertEquals(listOf(fresh), Feedback.ownWordsSince(state, state.lastExportAt))
+        assertEquals(listOf(old, fresh), Feedback.exportedWords(state, null, whole))
+        assertEquals(listOf(fresh), Feedback.exportedWords(state, state.lastExportAt, whole))
     }
 
     @Test
@@ -153,8 +154,37 @@ class FeedbackTests {
         // carry DISTANT_PAST is to have been decoded from a document written before
         // the box recorded ages at all.
         val stored = box().copy(ownWords = listOf(ancient))
-        val state = BoxEngine.markExported(stored, Box.day1)
-        assertTrue(Feedback.ownWordsSince(state, state.lastExportAt).isEmpty())
+        val whole = FeedbackScope.Everything
+        val state = BoxEngine.markExported(stored, Box.day1, whole)
+        assertTrue(Feedback.exportedWords(state, state.lastExportAt, whole).isEmpty())
+    }
+
+    @Test
+    fun theOutboxScopeLeavesTheFinishedPairsBehind() {
+        val state = outbox()
+        val outbox = Feedback.reportText(state, null, FeedbackScope.Outbox)
+        assertTrue("Sonne → ?" in outbox)
+        assertFalse("mwavuli" in outbox)
+        // The reports are the other half of what waits, and go either way.
+        assertTrue("w01" in outbox)
+        assertTrue("mwavuli" in Feedback.reportText(state, null, FeedbackScope.Everything))
+    }
+
+    @Test
+    fun aBoxOfFinishedPairsHasNothingInItsOutbox() {
+        val state = BoxEngine.addOwnWord(
+            box(), ownWord("mwavuli", mapOf("de" to "Regenschirm", "sw" to "mwavuli")), Box.day1,
+        )
+        assertTrue(Feedback.hasAnything(state, null, FeedbackScope.Everything))
+        assertFalse(Feedback.hasAnything(state, null, FeedbackScope.Outbox))
+    }
+
+    @Test
+    fun anOutboxExportDoesNotMoveTheStamp() {
+        // why: it went out without the finished pairs, so a later "only what is new"
+        // measured from it would carry them never.
+        val state = outbox()
+        assertEquals(state, BoxEngine.markExported(state, Box.day1, FeedbackScope.Outbox))
     }
 
     // Emptying the outbox
@@ -194,7 +224,7 @@ class FeedbackTests {
     fun clearingLeavesTheExportStampAlone() {
         // why: the stamp records that a copy was TAKEN, which emptying the outbox
         // afterwards does not undo — "only what is new" still measures from there.
-        val state = BoxEngine.markExported(outbox(), Box.day1)
+        val state = BoxEngine.markExported(outbox(), Box.day1, FeedbackScope.Everything)
         assertEquals(state.lastExportAt, BoxEngine.clearFeedback(state).lastExportAt)
     }
 
