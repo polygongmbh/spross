@@ -169,9 +169,9 @@ fun HomeScreen(model: AppModel) {
 
         ListenCard(model)
 
-        TalkCard(model) { briefingOpen = true }
-
         SprossenCard(model)
+
+        TalkCard(model) { briefingOpen = true }
 
         // The same fortnight the streak was counted from, on the very refresh that
         // produced it — the strip reads kern's walk, never one of its own. It names
