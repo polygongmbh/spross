@@ -197,6 +197,8 @@ then open design work, then what waits on someone else, grouped by who that is.
   have to be re-cut to phone/telefonear/téléphoner/telefonare first.
 - `verbs/to-deliver` liefern ↔ sw `kupeleka` mirrors hinbringen (take somebody or something
   somewhere), not liefern; an honest re-cut touches all eight languages.
+- uk `the-exam-is-already-corrected` is built on `перевірити` (check) while the `to-correct`
+  component it unlocks from is `виправляти` (fix errors) — phrase and gate name different verbs.
 - The gap sweep counts glyph occurrences with no longest-glyph-wins, so a glyph nested in a
   longer row's glyph sweeps in that row's words (fr `au` would gap the a-u inside 13 `eau`
   words — bateau, beaucoup …); fr `au` opts out via `mine: false` meanwhile, and an
