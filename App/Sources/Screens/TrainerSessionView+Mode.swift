@@ -85,20 +85,6 @@ private extension TrainerMode {
 }
 #endif
 
-// MARK: - Variant ↔ storage
-
-extension DrillVariant {
-    /// The word a Sprosse is filed under in UserDefaults. Kotlin's own spelling for
-    /// the slot variants and the lowercase word for Phrases, matching
-    /// `TrainerMode.progressKey` — those exact strings are already stored.
-    var storageTag: String {
-        switch self {
-        case .numbers, .clock, .forms: return name
-        case .phrases: return "phrases"
-        }
-    }
-}
-
 extension TrainerKind {
     /// The ladder variant a slot kind belongs to. Years maps onto Numbers because
     /// it has no Sprosse of its own: the standalone years drill was dropped as

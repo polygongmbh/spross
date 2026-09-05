@@ -48,10 +48,6 @@ extension NumbersOverview {
     /// who has just met the clock is asked to climb it, not to dilute it.
     var combining: Bool { DrillSelection.shared.combining(offered: offered, progress: ladder) }
 
-    /// The picks in kern's own order. It hands them back ordered too, so the
-    /// same state always collapses the same way on both platforms.
-    private var orderedPicks: [DrillVariant] { DrillVariant.allCases.filter(picked.contains) }
-
     private func variantRow(_ variant: DrillVariant) -> some View {
         let open = unlocked(variant)
         return SelectionRow(
@@ -63,8 +59,8 @@ extension NumbersOverview {
         ) {
             // why: while the ladder is closed the picks are a radio that never
             // empties — `Los` would otherwise have nothing to open. Kern's rule.
-            picked = Set(DrillSelection.shared.toggled(picked: orderedPicks, tapped: variant,
-                                                       combining: combining))
+            picked = DrillSelection.shared.toggled(picked: picked, tapped: variant,
+                                                   combining: combining)
         }
     }
 
@@ -73,8 +69,8 @@ extension NumbersOverview {
     /// Called whenever the ladder is (re)read — a run can open a Sprosse, and a
     /// screenshot seed can hand the page a ladder the picks predate.
     func normalizePicks() {
-        picked = Set(DrillSelection.shared.normalized(picked: orderedPicks, offered: offered,
-                                                      progress: ladder))
+        picked = DrillSelection.shared.normalized(picked: picked, offered: offered,
+                                                  progress: ladder)
     }
 
     // MARK: - How it is played
