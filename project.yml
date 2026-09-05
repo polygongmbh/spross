@@ -23,6 +23,9 @@ settings:
     # one — falls back to the generic simulator, whose standard ARCHS adds
     # x86_64; that slice finds no kern module and every Kotlin type goes missing
     # at once. The watch SDKs never match this condition and are unaffected.
+    # The extension auto-schemes resolve a NAMED iPhone destination erratically
+    # too, so gate on the `Spross` scheme (it builds the whole embed chain) or on
+    # `-scheme SprossWatchWidgets -destination 'generic/platform=iOS Simulator'`.
     "EXCLUDED_ARCHS[sdk=iphonesimulator*]": x86_64
 targets:
   Spross:
