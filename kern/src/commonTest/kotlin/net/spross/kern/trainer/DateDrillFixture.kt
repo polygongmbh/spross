@@ -11,9 +11,10 @@ import net.spross.kern.model.LanguageInfo
  * Hand-built calendars for the drill and run tests: an en→de pair carrying the full
  * ladder (a `dateWithYear`, the article patterns, a synonym on Samstag and Januar, the
  * distance-1 `Juni`/`Juli`), a de→uk pair carrying the short one (a `dateForm` on
- * every month, no year pattern) and a de→en pair whose patterns carry a SYNONYM — the
- * three shapes `docs/date-readings.md` says the content can take. Every target is a pack
- * language, so the generated Sprossen draw.
+ * every month, no year pattern), a de→en pair whose patterns carry a SYNONYM, and a de→sw
+ * pair whose numerals sit one edit apart (`sita`/`saba`) — the shapes
+ * `docs/date-readings.md` says the content can take. Every target is a pack language, so
+ * the generated Sprossen draw.
  */
 internal object DateDrillFixture {
 
@@ -28,6 +29,8 @@ internal object DateDrillFixture {
     )
 
     val ukrainian = LanguageInfo(code = "uk", name = "Українська", englishName = "Ukrainian", flag = "🇺🇦")
+
+    val swahili = LanguageInfo(code = "sw", name = "Kiswahili", englishName = "Swahili", flag = "🇹🇿")
 
     private val enWeekdays = names(
         "Monday" to "Mon", "Tuesday" to "Tue", "Wednesday" to "Wed", "Thursday" to "Thu",
@@ -61,7 +64,17 @@ internal object DateDrillFixture {
         "жовтень" to "жовтня", "листопад" to "листопада", "грудень" to "грудня",
     ).map { (text, dateForm) -> DateNames(text, dateForm = dateForm) }
 
-    /** en→de: the full seven-Sprosse ladder, answers in German. */
+    private val swWeekdays = names(
+        "Jumatatu" to "Jtt", "Jumanne" to "Jnn", "Jumatano" to "Jtn", "Alhamisi" to "Alh",
+        "Ijumaa" to "Ijm", "Jumamosi" to "Jmo", "Jumapili" to "Jpl",
+    )
+
+    private val swMonths = listOf(
+        "Januari", "Februari", "Machi", "Aprili", "Mei", "Juni",
+        "Julai", "Agosti", "Septemba", "Oktoba", "Novemba", "Desemba",
+    ).map { DateNames(it) }
+
+    /** en→de: the whole ladder, answers in German. */
     val germanContent = DateDrillContent(
         source = "en",
         target = "de",
@@ -99,6 +112,20 @@ internal object DateDrillFixture {
                 synonyms = listOf("{weekday}, the {day} of {month}"),
             ),
             dateWithYear = null,
+        ),
+    )
+
+    /** de→sw: a pattern word in front of the day, and numerals one edit from each other. */
+    val swahiliContent = DateDrillContent(
+        source = "de",
+        target = "sw",
+        weekdays = entries(deWeekdays, swWeekdays),
+        months = entries(deMonths, swMonths),
+        numeric = "{d}.{m}.{y}",
+        patterns = DatePatterns(
+            dayMonth = DatePattern("tarehe {day} {month}"),
+            date = DatePattern("{weekday}, tarehe {day} {month}"),
+            dateWithYear = DatePattern("{weekday}, tarehe {day} {month} mwaka wa {year}"),
         ),
     )
 

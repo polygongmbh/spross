@@ -252,7 +252,6 @@ interface Chrome {
     val datesAskName: String
     val datesAskWeekday: String
     val datesAskMonth: String
-    val datesAskDay: String
     val datesAskDate: String
 
     // ── Box browse ──────────────────────────────────────────────────────────────

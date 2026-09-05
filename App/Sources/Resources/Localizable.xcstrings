@@ -2452,22 +2452,6 @@
       },
       "comment" : "One sentence for all three assembled kinds — what changes between them is on the card, not in the ask."
     },
-    "dates.ask.day" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wie liest man diesen Tag?"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "How is this day read?"
-          }
-        }
-      }
-    },
     "dates.ask.month" : {
       "localizations" : {
         "de" : {
@@ -2667,7 +2651,7 @@
           }
         }
       },
-      "comment" : "The Sprosse keys are indexed by KIND in full-ladder order (weekday, month, day, day+month, date, date+year, 7 = the mix) — a pair without a year pattern skips index 6, and the number on screen is the row's own position."
+      "comment" : "The Sprosse keys are indexed by KIND in full-ladder order (weekday, month, day+month, date, date+year) — a pair without a year pattern stops at 5, and the number on screen is the row's own position."
     },
     "dates.sprosse.2.hint" : {
       "extractionState" : "manual",
@@ -2726,40 +2710,6 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Tag im Monat"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The day of the month"
-          }
-        }
-      }
-    },
-    "dates.sprosse.4.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aus 3. wird dritte — die Zahl, die ein Datum braucht."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 becomes third — the number a date needs."
-          }
-        }
-      }
-    },
-    "dates.sprosse.5" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
             "value" : "Tag und Monat"
           }
         },
@@ -2771,7 +2721,7 @@
         }
       }
     },
-    "dates.sprosse.5.hint" : {
+    "dates.sprosse.4.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2788,7 +2738,7 @@
         }
       }
     },
-    "dates.sprosse.6" : {
+    "dates.sprosse.5" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2805,7 +2755,7 @@
         }
       }
     },
-    "dates.sprosse.6.hint" : {
+    "dates.sprosse.5.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2822,7 +2772,7 @@
         }
       }
     },
-    "dates.sprosse.7" : {
+    "dates.sprosse.6" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2839,7 +2789,7 @@
         }
       }
     },
-    "dates.sprosse.7.hint" : {
+    "dates.sprosse.6.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {

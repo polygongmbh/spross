@@ -155,9 +155,9 @@ class DateNameIndexTests {
     }
 
     /**
-     * The day-1 value check fires: fr `un` (the cardinal) and `premier` (the date's own
-     * reading) are disjoint identities in the number index, so the cardinal is refused
-     * rather than forgiven — `le premier mars`, never `le un mars`.
+     * `le premier mars`, never `le un mars`: the pack emits `premier` alone for the 1st
+     * (`docs/date-readings.md` § French), and the cardinal a learner reaches for is two
+     * words from the reading, so nothing forgives it either.
      */
     @Test
     fun theFrenchFirstRefusesItsCardinal() {
@@ -186,10 +186,10 @@ class DateNameIndexTests {
                     articles = listOf("le", "la", "les", "l'", "un", "une")),
             ),
         )
-        val task = DateDrillTasks.day(french, 1)
-        assertEquals(listOf("premier"), task.accepted)
-        val match = DateDrillRun.grade("un", task, frConfig)
-        assertIs<Match.OtherWord>(match)
-        assertEquals("un", match.word)
+        val task = DateDrillTasks.dayMonth(french, 1, 0)
+        assertEquals(listOf("le premier mars"), task.accepted)
+        // Two words apart from the reading, so the typo budget cannot bridge it either:
+        // the cardinal the pack refuses to emit is refused where it is written.
+        assertEquals(Match.Wrong, DateDrillRun.grade("le un mars", task, frConfig))
     }
 }

@@ -9,6 +9,7 @@
 - More phrases unlock from the word they are built on, so internet, email, word, language, movie and rain land before the sentences that use them.
 - The web numbers drill now offers Esperanto, French and Italian alongside the other languages.
 - The watch quiz speaks each answered tile's verdict to VoiceOver instead of showing correctness in color alone.
+- The dates drill no longer asks for a bare day of the month; the day is met inside the dates that use it, and every ladder is one Sprosse shorter.
 - On Android a near miss keeps the checkmark in the answer field, drawn in amber.
 - On Android a box that cannot be read shows an error card instead of quietly starting over empty.
 - Android returns to the box after closing About or changing the learning language from the box's settings.

@@ -6,8 +6,14 @@ import net.spross.kern.catalog.DateEntry
 import net.spross.kern.model.Language
 
 /**
- * The dates drill: the weekday names alone, the month names alone, the day-of-month
- * numeral alone — and then the whole spoken date assembled out of them.
+ * The dates drill: the weekday names alone, the month names alone, and then the whole
+ * spoken date assembled out of them.
+ *
+ * The day of the month has no Sprosse of its own. Its reading is met where the language
+ * uses it — inside [DateTaskKind.DayAndMonth] and the dated line, which is the only place
+ * `le premier`, `il primo` and `tarehe mosi` ever stand — while a BARE numeral is what the
+ * numbers drill owns: `dateDay` is the plain cardinal in es, fr, it and sw and literally
+ * `formReading(Ordinal)` in de, en and eo (`docs/date-readings.md`).
  *
  * Registry-by-file like the atlas: a pair has this drill exactly when
  * [net.spross.kern.catalog.Catalog.dateDrillContent] joins its two calendars. Pure and
@@ -94,7 +100,7 @@ object DateDrill {
                 DateTaskKind.NameChoice ->
                     samplePool(DateDrillChoices.pool(content, reverse), avoid, solved, rng)
                         ?.let { DateDrillChoices.tiles(content, it, reverse, rng) }
-                DateTaskKind.Weekday, DateTaskKind.Month, DateTaskKind.DayOfMonth ->
+                DateTaskKind.Weekday, DateTaskKind.Month ->
                     samplePool(DateDrillTasks.pool(content, kind, reverse), avoid, solved, rng)
                 else -> sampleComposed(content, kind, reverse, avoid, solved, rng)
             }
@@ -155,7 +161,6 @@ object DateDrill {
             DateTaskKind.NameChoice,
             DateTaskKind.Weekday,
             DateTaskKind.Month,
-            DateTaskKind.DayOfMonth,
             DateTaskKind.DayAndMonth,
             // why: reversed, a full date is the day and month over again. Its weekday is on
             // the card already, and the source abbreviation that would answer it is chrome

@@ -132,9 +132,11 @@ auto-advance beats these share with it, are `design.md`'s.
 - **Datum overview**: the calendar entry, on the run-first shape again — the Sprossen and the
   start above, the reference table of both calendars under them. Its Sprossen NEST like the
   atlas': each adds what it introduces to everything below it — the weekday names, the
-  month names, the day of the month as the words a date wants (`date-readings.md`), day and
-  month assembled, the whole dated line — so the names keep coming once the dates are being
-  assembled.
+  month names, day and month assembled, the whole dated line — so the names keep coming
+  once the dates are being assembled.
+  The day of the month has no Sprosse of its own: its reading (`date-readings.md`) is met
+  inside the assembled ones, which is where `le premier` and `tarehe mosi` ever stand,
+  while a bare numeral on a card is the numbers drill's question and not the calendar's.
   The ladder OPENS on the one Sprosse that is TAPPED: all nineteen names offered four at a
   time, the answer among three others of its own half, before any of them is written out.
   Recognition before production is the box's own rule for a word nobody has produced yet

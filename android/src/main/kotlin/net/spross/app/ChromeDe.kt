@@ -262,7 +262,6 @@ internal object ChromeDe : Chrome {
         "Die Namen, angetippt",
         "Die Wochentage",
         "Die Monate",
-        "Der Tag im Monat",
         "Tag und Monat",
         "Das ganze Datum",
         "Das Datum mit Jahr",
@@ -271,7 +270,6 @@ internal object ChromeDe : Chrome {
         "Wochentage und Monate, ein Name aus vieren — noch nichts geschrieben.",
         "Die sieben Namen der Woche, einzeln gefragt.",
         "Die zwölf Monatsnamen, gemischt mit den Wochentagen.",
-        "Aus 3. wird dritte — die Zahl, die ein Datum braucht.",
         "Aus 3.3. wird der dritte März.",
         "Mit dem Wochentag davor: Mo, 3.3.",
         "Dazu die Jahreszahl, in Worten gelesen.",
@@ -279,7 +277,6 @@ internal object ChromeDe : Chrome {
     override val datesAskName = "Welches davon ist es?"
     override val datesAskWeekday = "Wie heißt dieser Wochentag?"
     override val datesAskMonth = "Wie heißt dieser Monat?"
-    override val datesAskDay = "Wie liest man diesen Tag?"
     override val datesAskDate = "Wie liest man dieses Datum?"
     override val boxTitle = "Die Box"
     override val boxDoor = "Box"

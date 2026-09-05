@@ -112,12 +112,13 @@ class CatalogDatesLintTest {
     }
 
     /**
-     * The Sprosse-4 ruling's own predicate: putting the day+month Sprosse on the assembled
-     * (bridging) side is safe only while no language has BOTH a two-word `dayMonth`
-     * reading AND a distance-1 calendar pair — measured over the drill normalizer's own
-     * comparison shapes, one merged space, exactly as the refusal index sees them. The
-     * language that ends that moot judgment call fails here by name, and the owner rules
-     * again before its content ships.
+     * The bridging ruling's own predicate: letting a slip inside an assembled date stay a
+     * typo — where the same slip typed as a bare name is refused by name — is safe only
+     * while no language has BOTH a two-word `dayMonth` reading AND a distance-1 calendar
+     * pair, which together would let one date bridge into another. Measured over the drill
+     * normalizer's own comparison shapes, one merged space, exactly as the refusal index
+     * sees them. The language that ends that moot judgment call fails here by name, and the
+     * owner rules again before its content ships.
      */
     @Test
     fun noLanguageHasATwoWordDayMonthReadingBesideADistanceOnePair() {
@@ -152,7 +153,7 @@ class CatalogDatesLintTest {
             assertTrue(
                 fewestWords >= 3,
                 "dates/$lang.json: a $fewestWords-word dayMonth reading beside distance-1 " +
-                    "pair(s) $confusable — the Sprosse-4 ruling is no longer moot, ask the owner",
+                    "pair(s) $confusable — the bridging ruling is no longer moot, ask the owner",
             )
         }
     }

@@ -15,7 +15,6 @@ enum class DateTaskKind {
     NameChoice,
     Weekday,
     Month,
-    DayOfMonth,
     DayAndMonth,
     FullDate,
     FullDateWithYear,
@@ -95,7 +94,6 @@ internal object DateDrillTasks {
         when (kind) {
             DateTaskKind.Weekday -> content.weekdays.map { name(kind, it, reverse) }
             DateTaskKind.Month -> content.months.map { name(kind, it, reverse) }
-            DateTaskKind.DayOfMonth -> (1..31).map { day(content, it) }
             else -> emptyList()
         }
 
@@ -107,18 +105,6 @@ internal object DateDrillTasks {
             promptText = entry.prompt(reverse).text,
             accepted = listOf(answer.text) + answer.synonyms + answer.variants,
             display = answer.text,
-        )
-    }
-
-    fun day(content: DateDrillContent, day: Int): DateDrillTask {
-        val readings = Trainer.pack(content.target).dateDay(day)
-        return DateDrillTask(
-            kind = DateTaskKind.DayOfMonth,
-            id = day.toString(),
-            promptText = "$day.",
-            accepted = readings,
-            display = readings.first(),
-            dateDigits = "$day.",
         )
     }
 

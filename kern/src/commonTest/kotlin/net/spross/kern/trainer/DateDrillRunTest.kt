@@ -40,6 +40,15 @@ class DateDrillRunTest {
         },
     )
 
+    private val swahili = DateDrillFixture.swahiliContent
+
+    private val swahiliConfig = DateDrillRunConfig(
+        content = swahili,
+        reverse = false,
+        fast = false,
+        normalizer = AnswerNormalizer.drill(DateDrillFixture.swahili),
+    )
+
     private fun open(
         reverse: Boolean = false,
         fast: Boolean = false,
@@ -76,9 +85,9 @@ class DateDrillRunTest {
     /** The forced Sprosse is for tests and screenshot drivers; kern clamps it to THIS ladder. */
     @Test
     fun aForcedSprosseIsClampedToTheLadder() {
-        assertEquals(7, open(level = 99).level)
+        assertEquals(6, open(level = 99).level)
         assertEquals(1, open(level = 0).level)
-        assertEquals(6, open(reverse = true, level = 99).level, "one Sprosse shorter back")
+        assertEquals(5, open(reverse = true, level = 99).level, "one Sprosse shorter back")
     }
 
     @Test
@@ -156,24 +165,28 @@ class DateDrillRunTest {
     }
 
     /**
-     * The numeral Sprossen carry the numbers drill's value check: a day that names another
-     * day is refused and named, while a genuine fumble stays the forgiven slip it was.
+     * The assembled Sprossen carry the numbers drill's value check word by word, which is
+     * what the languages whose numerals sit one edit apart need: sw `nane` (8) written for
+     * `nne` (4) is one insertion, well inside the drill's slip a word, so without the check
+     * a learner would be told they had merely fumbled the day they got wrong. A fumble that
+     * names NO value stays the forgiven slip it was.
      */
     @Test
-    fun aDayThatNamesAnotherDayIsRefusedNotForgiven() {
-        val task = DateDrillTasks.day(DateDrillFixture.germanContent, 3)
-        val match = DateDrillRun.grade("vierte", task, config())
+    fun aNumeralThatNamesAnotherValueIsRefusedNotForgiven() {
+        val task = DateDrillTasks.dayMonth(swahili, 4, 2)
+        assertEquals("tarehe nne Machi", task.display)
+        val match = DateDrillRun.grade("tarehe nane Machi", task, swahiliConfig)
         assertIs<Match.OtherWord>(match)
-        assertEquals("vierte", match.word)
-        assertIs<Match.Typo>(DateDrillRun.grade("drittte", task, config()))
+        assertEquals("nane", match.word, "the refusal names the numeral, not the whole line")
+        assertIs<Match.Typo>(DateDrillRun.grade("tarehe nnr Machi", task, swahiliConfig))
     }
 
     /** No language info (a preview): a plain case- and punctuation-insensitive comparison. */
     @Test
     fun aPreviewWithNoLanguageInfoStillGradesPlainly() {
-        val task = DateDrillTasks.day(DateDrillFixture.germanContent, 3)
-        assertEquals(Match.Exact, DateDrillRun.grade("  dritte!  ", task, config(graded = false)))
-        assertEquals(Match.Wrong, DateDrillRun.grade("drittex", task, config(graded = false)))
+        val task = DateDrillTasks.dayMonth(DateDrillFixture.germanContent, 3, 5)
+        assertEquals(Match.Exact, DateDrillRun.grade("  der dritte Juni!  ", task, config(graded = false)))
+        assertEquals(Match.Wrong, DateDrillRun.grade("der drittex Juni", task, config(graded = false)))
     }
 
     @Test
@@ -206,7 +219,7 @@ class DateDrillRunTest {
 
     // MARK: - The ramp
 
-    /** Three clean wins a Sprosse — Sprosse 3 has 31 questions, so the wins carry the climb. */
+    /** Three clean wins a Sprosse — Sprosse 3 holds nineteen names, so the wins carry the climb. */
     @Test
     fun threeCleanWinsCarryTheRun() {
         var run = open(level = 3)
