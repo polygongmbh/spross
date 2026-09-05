@@ -180,8 +180,10 @@ class CatalogDatesLintTest {
         // The Italian article, and the `l'` it elides to before a vowel-initial day
         // ("l'otto marzo") — accept-only, because a pattern cannot elide by itself.
         "it" to setOf("il", "l"),
-        // `tarehe` — the word a Swahili date counts from, no article in sight.
-        "sw" to setOf("tarehe"),
+        // `tarehe` — the word a Swahili date counts from, no article in sight — and the
+        // year's own noun with the associative `wa` that hangs it off the date; the
+        // `wa`-less `mwaka` and the bare numeral ride behind it as accept-only variants.
+        "sw" to setOf("tarehe", "mwaka", "wa"),
         // Ukrainian assembles a date out of its parts alone: the genitive does the work
         // an article or a preposition does elsewhere, and there is no year Sprosse to word.
         "uk" to emptySet(),

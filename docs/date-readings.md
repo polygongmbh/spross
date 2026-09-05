@@ -21,7 +21,7 @@ Every cell marked ⚠ wants a native ruling; until one lands, the drill ships th
 | es | lunes…domingo | enero…diciembre | **cardinal**, ⚠ 1st | plain cardinal |
 | fr | lundi…dimanche | janvier…décembre | **cardinal**, `premier` for the 1st | plain cardinal, `mil` graded 1001–1999 |
 | it | lunedì…domenica | gennaio…dicembre | **cardinal**, `primo` for the 1st | plain cardinal |
-| sw | Jumatatu…Jumapili | Januari…Desemba | **cardinal** after `tarehe`, ⚠ 1st | plain cardinal |
+| sw | Jumatatu…Jumapili | Januari…Desemba, **counted** beside | **cardinal** after `tarehe`, `mosi` for the 1st | cardinal after `mwaka wa` |
 | uk | понеділок…неділя | січень…грудень | **ordinal, genitive** | **absent — see below** |
 
 A Sprosse a language cannot carry is absent, not locked:
@@ -94,11 +94,48 @@ is a usage question the pattern has to settle.
 `Jumatatu, tarehe 3 Machi` — `tarehe` is a word of the pattern, and the day is a bare cardinal.
 Swahili has no ordinals at all (`number-forms.md` § Swahili: the associative concord slot has no noun
 to agree with, so the pack refuses to invent one), and a date needs none.
-⚠ Three rulings wanted: whether `tarehe mosi` is what a speaker says for the 1st,
-whether the traditional `Mwezi wa Tatu` should grade beside `Machi`
-(it carries the concord slot the pack will not fill, so it can only be authored as a synonym, never generated),
-and how to word the note that the names count from a different origin than the week they fall in —
-*Jumatatu* is literally "day two" and falls on Monday.
+The 1st is **`tarehe mosi`**, an archaic word for one that survives almost nowhere else
+in the language — Jumamosi is the other place — with the plain `moja` graded beside it.
+
+**The year hangs off the date with `mwaka wa`**, and that is the reading the reveal teaches:
+*Jumanne, tarehe tatu Machi mwaka wa elfu mbili na ishirini na sita*.
+Swahili is the only language here whose year takes a word of its own beyond Spanish's `de` —
+`mwaka` is the noun "year" and `wa` its associative concord, so the two are one join and not
+an optional flourish. The `wa`-less `mwaka {year}` grades (it is what a preposition already
+governing the noun leaves behind, as in the frames' *tangu mwaka …*), and so does the bare
+numeral the headlines print.
+
+**The months count as well as name.** `Machi` is also `Mwezi wa Tatu`, the third month, and
+every one of the twelve has its counted twin — `Mwezi wa Kwanza` through `Mwezi wa Kumi na
+Mbili`, `wa` throughout because *mwezi* is class 3. Only the first two carry a true ordinal
+stem (`kwanza`, `pili`); from the third on the bare cardinal stands and the concord alone
+says which one it is. They are authored `synonyms` and never generated, for exactly that
+reason: the slot the pack refuses to fill for a bare numeral is the whole of the form.
+The reveal keeps the borrowed name, which is what a learner meets in print.
+
+The short conversational order — **`Septemba tisa`**, month first and no `tarehe` —
+grades and is never taught: it is the shorthand beside the full form, not a second
+complete reading the way English's two orders are.
+
+`February`, `Mechi` and `November` are not Swahili spellings and do not grade.
+The first and third are English; `mechi` is a Swahili word, but it means a football match.
+
+⚠ One ruling still wanted: which of `mwaka wa` and `mwaka` a speaker reaches for more often
+inside a full date. The sources are pedagogical rather than a corpus count, and both grade
+meanwhile, so the cost of being wrong is which one the reveal shows.
+
+The weekday names count from **Saturday**, on the stems `-mosi`, `-pili`, `-tatu`, `-nne`,
+`-tano`: Jumamosi is day one and falls on Saturday, so *Jumatatu* is day THREE and falls on
+Monday. Alhamisi and Ijumaa are Arabic loans and carry no count.
+
+Sources: [Kamusi Project, *Dates — Tarehe Gani?*](https://kamusi.org/content/dates)
+(`tarehe mosi` beside `tarehe moja` for the same date, and `mwezi wa nane`)
+· Almasi et al., *Swahili Grammar*,
+[ch. 21 *Days, Months, and Dates*](https://hist.hse.ru/data/2019/06/16/1485884965/21.%20Days,%20Months,%20and%20Dates%20in%20Swahili.pdf)
+· [University of Kansas, Kiswahili lesson 16](https://kiswahili.ku.edu/sites/kiswahili/files/documents/lessons/lesson_16.pdf)
+(the months) and [lesson 15](https://kiswahili.ku.edu/sites/kiswahili/files/documents/lessons/lesson_15.pdf)
+(the weekday count)
+· [Wiktionary, mechi](https://en.wiktionary.org/wiki/mechi) — the football match, not March.
 
 ## Ukrainian
 
