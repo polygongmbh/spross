@@ -34,7 +34,14 @@
   "where-is-your-father": { "text": "Wo ist euer Vater?", "variants": ["Wo ist Ihr Vater?"] },
   "i-have-two-children": { "text": "Ich habe zwei Kinder." },
   "how-is-your-grandmother": { "text": "Wie geht es deiner Oma?", "variants": ["Wie geht es Ihrer Oma?"] },
-  "a-good-friend": { "text": "ein guter Freund" },
+  "a-good-friend": {
+   "text": "ein guter Freund",
+   "notes": {
+    "de": "ein guter Freund, aber der gute Freund: nach ein/kein/mein trägt das Adjektiv die Endung, die der Artikel nicht zeigt, und ohne Artikel trägt es sie auch — alte Leute.",
+    "en": "ein guter Freund but der gute Freund: after ein/kein/mein the adjective carries the ending the article does not show, and with no article it carries it too — alte Leute.",
+    "es": "ein guter Freund pero der gute Freund: tras ein/kein/mein el adjetivo lleva la terminación que el artículo no muestra, y sin artículo también la lleva — alte Leute."
+   }
+  },
   "my-girlfriend": { "text": "meine Freundin" },
   "her-boyfriend": { "text": "ihr Freund" },
   "old-people": { "text": "alte Leute", "variants": ["alte Menschen"] },

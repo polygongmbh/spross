@@ -48,6 +48,13 @@
   "healthy": { "text": "gesund" },
   "firm": { "text": "fest", "synonyms": ["stabil"] },
   "liquid": { "text": "flüssig" },
-  "a-lot-of-water": { "text": "viel Wasser" }
+  "a-lot-of-water": {
+   "text": "viel Wasser",
+   "notes": {
+    "de": "viel Wasser, aber viele Freunde: viel bleibt vor einem Stoffnamen endungslos, im Plural heißt es viele.",
+    "en": "viel Wasser but viele Freunde: viel stays uninflected before a mass noun, and the plural is viele.",
+    "es": "viel Wasser pero viele Freunde: viel queda sin terminación ante un nombre de materia, y en plural es viele."
+   }
+  }
  }
 }
