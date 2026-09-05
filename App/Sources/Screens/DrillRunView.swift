@@ -20,7 +20,7 @@ import SprossKern
 /// `DrillFace` and nothing else.
 ///
 /// Screen content lives in DrillRunView+Content.swift and the driver in
-/// DrillRunView+Grading.swift; state stays here, internal where those
+/// DrillRunView+Run.swift; state stays here, internal where those
 /// extensions reach it.
 struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     let model: AppModel
@@ -44,15 +44,15 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     @Environment(\.accessibilityReduceMotion) var reduceMotion
 
     /// The whole run, kern's.
-    // why: internal, not private — +Content and +Grading read and drive it.
+    // why: internal, not private — +Content and +Run read and drive it.
     @State var run: Face.Run
     /// The learner's text; the run holds every rule that decides what it means.
     @State var input = ""
     /// The tile this question was answered off, or nil while it is still owed —
     /// what the grid marks ✓ and ✗ with. nil the whole way up a written ladder.
-    // why: internal, not private — +Content reads it and +Grading sets it.
+    // why: internal, not private — +Content reads it and +Run sets it.
     @State var chosen: String?
-    // why: internal, not private — the +Grading extension arms and cancels it.
+    // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
     /// The beat between the chime and the answer being said (`autoplayAnswer`).
     @State private var answerVoice: Task<Void, Never>?
@@ -201,5 +201,5 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     }
 
     // The draw, the ramp and the verdict ladder are kern's; the driver that
-    // reaches them — and the close — is DrillRunView+Grading.swift.
+    // reaches them — and the close — is DrillRunView+Run.swift.
 }

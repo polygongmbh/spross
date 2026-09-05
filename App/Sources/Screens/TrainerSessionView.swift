@@ -12,7 +12,7 @@ import SprossKern
 /// field of text, a timer, a voice, and the keyboard focus.
 ///
 /// The run spec is `Mode` (TrainerSessionView+Mode.swift), the driver is
-/// TrainerSessionView+Grading.swift, screen content TrainerSessionView+Drill.swift,
+/// TrainerSessionView+Run.swift, screen content TrainerSessionView+Drill.swift,
 /// and the prompt card TrainerPromptCard.swift. State stays here — members are
 /// internal, not private, where an extension reaches them.
 struct TrainerSessionView: View, LanguageNaming {
@@ -44,7 +44,7 @@ struct TrainerSessionView: View, LanguageNaming {
     @State var input = ""
     /// The reference table, raised over the run by "?".
     @State var showingReference = false
-    // why: internal, not private — the +Grading extension arms/cancels it.
+    // why: internal, not private — the +Run extension arms/cancels it.
     @State var autoAdvance: Task<Void, Never>?
     /// The pending "say the answer" wait, held so leaving a task can drop it.
     @State var answerVoice: Task<Void, Never>?
@@ -118,7 +118,7 @@ struct TrainerSessionView: View, LanguageNaming {
 
     // The draw, the ramp and the two storage identities are kern's
     // (TrainerSessionView+Mode.swift points at them); the driver that reaches
-    // them is TrainerSessionView+Grading.swift.
+    // them is TrainerSessionView+Run.swift.
 }
 
 // MARK: - Previews

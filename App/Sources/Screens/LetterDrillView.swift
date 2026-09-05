@@ -15,7 +15,7 @@ import SprossKern
 /// an audio prompt with choice tiles shares no grammar with a typed numeral —
 /// and the two meet only in `DrillEffect` and `DrillRunSummary`.
 ///
-/// The driver lives in LetterDrillView+Grading.swift, stage bodies in
+/// The driver lives in LetterDrillView+Run.swift, stage bodies in
 /// LetterDrillView+Stages.swift, the prompt card in HearPromptCard.swift. State
 /// stays here — members are internal where an extension reaches them.
 struct LetterDrillView: View, LanguageNaming {
@@ -30,11 +30,11 @@ struct LetterDrillView: View, LanguageNaming {
     @Environment(\.accessibilityReduceMotion) var reduceMotion
 
     /// The whole run, kern's.
-    // why: internal, not private — +Grading and +Stages read and drive it.
+    // why: internal, not private — +Run and +Stages read and drive it.
     @State var run: LetterDrillRunState
     /// The learner's text; the run holds every rule that decides what it means.
     @State var input = ""
-    // why: internal, not private — the +Grading extension arms and cancels it.
+    // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
     @FocusState var answerFocused: Bool
     @AccessibilityFocusState var replayFocused: Bool
@@ -159,5 +159,5 @@ struct LetterDrillView: View, LanguageNaming {
     }
 
     // The draw, the ramp and the verdict ladder are kern's; the driver that
-    // reaches them — and the close — is LetterDrillView+Grading.swift.
+    // reaches them — and the close — is LetterDrillView+Run.swift.
 }
