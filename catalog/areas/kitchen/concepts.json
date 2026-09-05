@@ -19,7 +19,7 @@
  { "slug": "to-fry", "kind": "verb", "emoji": "🥘" },
  { "slug": "to-boil", "kind": "verb", "emoji": "🫧" },
  { "slug": "to-stir", "kind": "verb", "emoji": "🌀" },
- { "slug": "to-reheat", "kind": "verb" },
+ { "slug": "to-reheat", "kind": "verb", "emoji": "🔁" },
  { "slug": "to-take-out-trash", "kind": "verb", "emoji": "🗑️" },
  { "slug": "dishwasher", "kind": "noun", "emoji": "💦" },
  { "slug": "basket", "kind": "noun", "emoji": "🧺" },

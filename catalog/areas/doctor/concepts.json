@@ -13,7 +13,7 @@
  { "slug": "to-call-in-sick", "kind": "verb", "emoji": "📞" },
  { "slug": "insurance-card", "kind": "noun", "emoji": "💳" },
  { "slug": "health-insurance", "kind": "noun", "emoji": "🛡️" },
- { "slug": "nurse", "kind": "noun" },
+ { "slug": "nurse", "kind": "noun", "emoji": "🩹" },
  { "slug": "nurse-f", "kind": "noun", "feminineOf": "nurse" },
  { "slug": "ambulance", "kind": "noun", "emoji": "🚑" },
  { "slug": "dentist", "kind": "noun", "emoji": "🦷" },
