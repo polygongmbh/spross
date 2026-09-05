@@ -21,6 +21,11 @@
  { "slug": "next", "kind": "adjective" },
  { "slug": "first", "kind": "adjective" },
  { "slug": "noon", "kind": "noun", "emoji": "🕛" },
+ { "slug": "a-while-ago", "kind": "adjective" },
+ { "slug": "formerly", "kind": "adjective" },
+ { "slug": "later", "kind": "adjective" },
+ { "slug": "last", "kind": "adjective" },
+ { "slug": "day-after-tomorrow", "kind": "adjective" },
  { "slug": "i-have-no-time", "kind": "phrase", "emoji": "⏰", "components": ["time"] },
  {
   "slug": "two-in-the-afternoon",

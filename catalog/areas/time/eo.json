@@ -28,6 +28,11 @@
   "night": { "text": "nokto" },
   "first": { "text": "unua" },
   "next": { "text": "sekva", "variants": ["venonta"] },
+  "a-while-ago": { "text": "antaŭ iom da tempo" },
+  "formerly": { "text": "iam" },
+  "later": { "text": "pli poste" },
+  "last": { "text": "lasta" },
+  "day-after-tomorrow": { "text": "postmorgaŭ" },
   "i-have-no-time": { "text": "Mi ne havas tempon." },
   "two-in-the-afternoon": {
    "text": "la dua posttagmeze",

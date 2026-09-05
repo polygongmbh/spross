@@ -27,6 +27,11 @@
   "night": { "text": "ніч", "grammar": { "plural": "ночі" } },
   "first": { "text": "перший", "variants": ["перша", "перше"] },
   "next": { "text": "наступний", "variants": ["наступна", "наступне"] },
+  "a-while-ago": { "text": "якийсь час тому" },
+  "formerly": { "text": "раніше", "synonyms": ["колись"] },
+  "later": { "text": "пізніше" },
+  "last": { "text": "останній", "variants": ["остання", "останнє"] },
+  "day-after-tomorrow": { "text": "післязавтра" },
   "i-have-no-time": { "text": "У мене немає часу." },
   "two-in-the-afternoon": { "text": "друга дня" },
   "nine-am-sharp": {

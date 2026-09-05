@@ -40,6 +40,11 @@
   "night": { "text": "nuit", "grammar": { "gender": "la" } },
   "first": { "text": "premier", "variants": ["première"] },
   "next": { "text": "prochain", "variants": ["prochaine", "suivant"] },
+  "a-while-ago": { "text": "il y a un moment" },
+  "formerly": { "text": "autrefois" },
+  "later": { "text": "plus tard" },
+  "last": { "text": "dernier", "variants": ["dernière"] },
+  "day-after-tomorrow": { "text": "après-demain" },
   "i-have-no-time": { "text": "Je n'ai pas le temps." },
   "two-in-the-afternoon": { "text": "deux heures de l'après-midi" },
   "nine-am-sharp": {

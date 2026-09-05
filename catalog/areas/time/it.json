@@ -36,6 +36,11 @@
   "night": { "text": "notte", "grammar": { "gender": "la" } },
   "first": { "text": "primo", "variants": ["prima"] },
   "next": { "text": "prossimo", "variants": ["prossima", "seguente"] },
+  "a-while-ago": { "text": "poco fa" },
+  "formerly": { "text": "una volta", "synonyms": ["in passato"] },
+  "later": { "text": "più tardi" },
+  "last": { "text": "ultimo", "variants": ["ultima"] },
+  "day-after-tomorrow": { "text": "dopodomani" },
   "i-have-no-time": { "text": "Non ho tempo." },
   "two-in-the-afternoon": { "text": "le due del pomeriggio" },
   "nine-am-sharp": {

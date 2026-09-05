@@ -50,6 +50,18 @@
    "variants": ["ijayo", "ujao", "yajayo", "zijazo", "kijacho"],
    "notes": { "de": "die Vorsilbe richtet sich nach der Nomenklasse: wiki ijayo, mwezi ujao." }
   },
+  "a-while-ago": {
+   "text": "kitambo",
+   "notes": { "de": "kitambo kidogo = vor Kurzem · tangu kitambo = seit Langem." }
+  },
+  "formerly": { "text": "zamani", "notes": { "de": "auch die Vergangenheit als Nomen: hadithi za zamani." } },
+  "later": { "text": "baadaye" },
+  "last": {
+   "text": "-a mwisho",
+   "variants": ["wa mwisho", "ya mwisho", "za mwisho", "cha mwisho", "la mwisho", "vya mwisho"],
+   "notes": { "de": "mwisho ist das Ende; mit -a wird es zur Ordnung: siku ya mwisho, mtu wa mwisho." }
+  },
+  "day-after-tomorrow": { "text": "kesho kutwa" },
   "i-have-no-time": { "text": "Sina muda." },
   "two-in-the-afternoon": {
    "text": "saa nane mchana",
