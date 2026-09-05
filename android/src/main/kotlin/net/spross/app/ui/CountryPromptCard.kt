@@ -51,6 +51,11 @@ fun CountryPromptCard(
     promptPronounce: (() -> Unit)? = null,
     /** The answer, once the learner has stopped owing it. */
     reveal: CountryReveal?,
+    /**
+     * A word the language adds that the question cannot say for itself, the first time it
+     * is asked for — a dates run's `tarehe`, `mwaka wa`. Null on the atlas.
+     */
+    hint: String? = null,
     chrome: Chrome,
 ) {
     val revealed = reveal != null
@@ -86,11 +91,11 @@ fun CountryPromptCard(
             // kind forward only.
             Text(emoji, fontSize = Theme.prompt.glyph, textAlign = TextAlign.Center)
         }
-        reveal?.let {
+        if (reveal != null) {
             CardReveal {
-                SpokenWord(it.pronounce, chrome) {
+                SpokenWord(reveal.pronounce, chrome) {
                     Text(
-                        localizedTarget(it.word, it.language),
+                        localizedTarget(reveal.word, reveal.language),
                         style = MaterialTheme.typography.titleLarge,
                         color = Theme.colors.accent,
                         textAlign = TextAlign.Center,
@@ -98,6 +103,10 @@ fun CountryPromptCard(
                     )
                 }
             }
+        } else if (hint != null) {
+            // why: the reveal TAKES this slot rather than stacking under it — the hint is
+            // scaffolding for a prompt still unanswered.
+            DrillHintPill(hint)
         }
     }
 }

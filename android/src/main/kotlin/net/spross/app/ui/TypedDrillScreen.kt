@@ -225,6 +225,9 @@ private fun Prompt(
                 pronounce = model.speakFormOnTap(prompt.display, run.answerLanguage),
             )
         },
+        // The word this question's language adds, the first time it is asked for — the
+        // numbers drill's first-sight hint, for a pattern instead of a length.
+        hint = prompt.newWord?.let { chrome.datesNewWord.format(it) },
         chrome = chrome,
     )
     if (run.showsAnswer) {

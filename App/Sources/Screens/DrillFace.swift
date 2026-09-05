@@ -177,6 +177,10 @@ struct DrillSnapshot {
     let digits: Bool
     /// The answer side's neighboring form, where kern hands one over.
     let gloss: String?
+    /// A word in the language being LEARNED that this question adds and cannot
+    /// say for itself, the first time it is asked — nil on every other card
+    /// and on every reversed run. The atlas hands none over.
+    var newWord: String? = nil
     /// What a refused answer actually named — only beside a revealed miss.
     let otherWord: MatchOtherWord?
 }

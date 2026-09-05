@@ -105,6 +105,8 @@ data class DateDrillRunState(
     val feedback: TurnFeedback,
     /** What a refused answer actually NAMED (Juli is July) — only beside a Revealed miss. */
     val otherWord: Match.OtherWord? = null,
+    /** Assembled kinds already introduced with their pattern word; each is shown once. */
+    val seenKinds: Set<DateTaskKind> = emptySet(),
     val finished: Boolean,
 ) {
     val done: Int get() = core.done
@@ -127,6 +129,20 @@ data class DateDrillRunState(
      * prompt for a screen reader, which is the reading such a user gets in place of autoplay.
      */
     val promptLanguage: Language get() = config.promptLanguage
+
+    /**
+     * The word this language adds to assemble the question on screen, the first time it is
+     * asked and never again — the numbers drill's first-sight hint ([Trainer.placeValueHint]),
+     * for a pattern instead of a length, and always a word in the language being LEARNED.
+     *
+     * Nothing REVERSED: the card then carries the reading, which says the word already, and
+     * the answer owed is digits.
+     */
+    val patternWord: String?
+        get() {
+            if (config.reverse || task.kind in seenKinds) return null
+            return DateDrill.patternWord(config.content, task.kind)
+        }
 
     /** Nothing decided yet — the answer is still the learner's to produce. */
     val owesAnswer: Boolean get() = feedback == TurnFeedback.Neutral

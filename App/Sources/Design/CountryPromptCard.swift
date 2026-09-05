@@ -46,6 +46,9 @@ struct CountryPromptCard: View {
     var promptVoice: Voice?
     /// The answer, once the learner has stopped owing it.
     var revealed: Reveal?
+    /// A word the language adds that the question cannot say for itself, the
+    /// first time it is asked for — a dates run's `tarehe`, `mwaka wa`.
+    var hint: DrillHint?
 
     /// A form that can be heard, and whether it is sounding right now.
     struct Voice {
@@ -122,6 +125,10 @@ struct CountryPromptCard: View {
                         Text("session.otherWord \(other.word) \(other.meanings)")
                             .pauseLine()
                     }
+                } else if let hint {
+                    // why: the reveal TAKES this slot rather than stacking under
+                    // it — the hint is scaffolding for a prompt still unanswered.
+                    DrillHintPill(hint)
                 }
             }
             .frame(maxWidth: .infinity)

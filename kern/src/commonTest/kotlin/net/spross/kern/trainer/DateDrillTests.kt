@@ -281,6 +281,41 @@ class DateDrillTests {
         assertTrue(newest > drawn.size / 4, "the Sprosse buried its own question: $newest of ${drawn.size}")
     }
 
+    // MARK: - The word a pattern adds
+
+    /**
+     * The pattern minus its slots is what a learner has to type and no name on the card can
+     * teach them. A kind that adds only what the kind below it already added says nothing
+     * new — sw repeats `tarehe` in its dated line and owes only `mwaka wa`.
+     */
+    @Test
+    fun aPatternWordIsWhatTheKindAddsAndNothingItRepeats() {
+        val swahili = DateDrillFixture.swahiliContent
+        assertEquals("tarehe", DateDrill.patternWord(swahili, DateTaskKind.DayAndMonth))
+        assertNull(DateDrill.patternWord(swahili, DateTaskKind.FullDate))
+        assertEquals("mwaka wa", DateDrill.patternWord(swahili, DateTaskKind.FullDateWithYear))
+
+        assertEquals("der", DateDrill.patternWord(german, DateTaskKind.DayAndMonth))
+        assertNull(DateDrill.patternWord(german, DateTaskKind.FullDate), "the article is already met")
+        assertNull(DateDrill.patternWord(german, DateTaskKind.NameChoice), "a name assembles nothing")
+    }
+
+    /** A language whose pattern is its slots alone adds no word, and says so rather than inventing one. */
+    @Test
+    fun aPatternOfSlotsAloneAddsNoWord() {
+        assertNull(DateDrill.patternWord(ukrainian, DateTaskKind.DayAndMonth))
+        assertNull(DateDrill.patternWord(english, DateTaskKind.DayAndMonth), "en leads with the month")
+    }
+
+    /** Two words a pattern holds apart are not a phrase, so the slot between them shows. */
+    @Test
+    fun wordsAPatternHoldsApartKeepTheirGap() {
+        val spanish = german.copy(
+            patterns = german.patterns.copy(dayMonth = DatePattern("el {day} de {month}")),
+        )
+        assertEquals("el … de", DateDrill.patternWord(spanish, DateTaskKind.DayAndMonth))
+    }
+
     // MARK: - Parsing, the reversed direction
 
     /**

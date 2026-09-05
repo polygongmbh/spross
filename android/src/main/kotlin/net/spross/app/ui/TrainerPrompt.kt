@@ -77,16 +77,7 @@ fun TrainerPromptCard(model: AppModel, flow: TrainerFlow, chrome: Chrome) {
         }
         // why: the reveal TAKES this slot rather than stacking under it — the hint is
         // scaffolding for a prompt still unanswered, and a fact about THIS number.
-        state.placeValueHint?.let {
-            Text(
-                chrome.numbersNewPlace.format(it),
-                style = MaterialTheme.typography.bodySmall,
-                color = Theme.colors.accent,
-                modifier = Modifier
-                    .background(Theme.colors.surfaceTint, RoundedCornerShape(percent = 50))
-                    .padding(horizontal = Theme.spacing.md, vertical = Theme.spacing.sm),
-            )
-        }
+        state.placeValueHint?.let { DrillHintPill(chrome.numbersNewPlace.format(it)) }
     }
 }
 

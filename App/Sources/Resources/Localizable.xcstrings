@@ -2552,6 +2552,23 @@
       },
       "comment" : "this ladder costs THREE clean wins, so it prices its own"
     },
+    "dates.newWord %@" : {
+      "comment" : "%s = the word this language adds to assemble the date, the first time that kind is asked",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neu: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New: %@"
+          }
+        }
+      }
+    },
     "dates.pace" : {
       "localizations" : {
         "de" : {

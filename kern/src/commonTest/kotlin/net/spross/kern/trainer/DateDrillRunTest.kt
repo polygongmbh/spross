@@ -258,6 +258,41 @@ class DateDrillRunTest {
         assertEquals(6, run.bestLevel)
     }
 
+    // MARK: - The word a pattern adds
+
+    /**
+     * The first-sight rule, the place-value hint's: the word is handed over for the card
+     * that owes it and never again, whatever else the run goes on to draw.
+     */
+    @Test
+    fun thePatternWordIsShownOnceAndThenNeverAgain() {
+        var run = DateDrillRun.openAt(swahiliRunConfig(), level = 4, Random(7))
+        while (run.task.kind != DateTaskKind.DayAndMonth) run = run.answered(run.task.display)
+        assertEquals("tarehe", run.patternWord)
+        run = run.answered(run.task.display)
+        while (run.task.kind != DateTaskKind.DayAndMonth) run = run.answered(run.task.display)
+        assertNull(run.patternWord, "the word was already met")
+    }
+
+    /** Reversed the card carries the reading, which says the word already — so no hint at all. */
+    @Test
+    fun aReversedRunIsHandedNoPatternWord() {
+        var run = DateDrillRun.openAt(swahiliRunConfig(reverse = true), level = 4, Random(7))
+        repeat(12) {
+            assertNull(run.patternWord)
+            run = run.answered(run.task.display)
+        }
+    }
+
+    private fun swahiliRunConfig(reverse: Boolean = false) = DateDrillRunConfig(
+        content = swahili,
+        reverse = reverse,
+        fast = false,
+        normalizer = AnswerNormalizer.drill(
+            if (reverse) DateDrillFixture.german else DateDrillFixture.swahili,
+        ),
+    )
+
     // MARK: - Asking each question once
 
     /** A slip and a miss both leave the question in the pool — only a clean answer retires it. */

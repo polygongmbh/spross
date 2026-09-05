@@ -126,7 +126,8 @@ enum DateDrillFace: DrillFace {
                       ask: ask(run.task.kind), promptText: run.task.promptText,
                       promptEmoji: nil, emojiIsGiveaway: false,
                       display: run.task.display, choices: run.task.choices,
-                      digits: run.task.digits, gloss: nil, otherWord: run.otherWord)
+                      digits: run.task.digits, gloss: nil, newWord: run.patternWord,
+                      otherWord: run.otherWord)
     }
 
     static func reduce(_ run: DateDrillRunState, _ move: DrillMove) -> DrillStep<DateDrillRunState> {
@@ -178,7 +179,7 @@ enum DateDrillFace: DrillFace {
                                          outcomes: run.core.outcomes,
                                          solved: run.core.solved),
                    feedback: run.feedback,
-                   otherWord: run.otherWord, finished: run.finished)
+                   otherWord: run.otherWord, seenKinds: run.seenKinds, finished: run.finished)
     }
     #endif
 }

@@ -3,6 +3,7 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.catalog.DateEntry
+import net.spross.kern.catalog.DatePattern
 import net.spross.kern.model.Language
 
 /**
@@ -138,6 +139,27 @@ object DateDrill {
     fun promptLanguage(content: DateDrillContent, reverse: Boolean): Language =
         if (reverse) content.target else content.source
 
+    /**
+     * The word this language ADDS to assemble [kind], in the language itself — sw `tarehe`
+     * and `mwaka wa`, de `der`, es `el … de`, fr `le`. Derived and never authored, the
+     * `formMarker` rule: the pattern with its slots taken out, which is precisely what a
+     * learner has to type and no name on the card can teach them.
+     *
+     * The slots come back as an ELLIPSIS rather than closing up, because two words the
+     * pattern holds apart are not a phrase: Spanish's `el … de` says where the numeral goes
+     * and a welded `el de` would teach a thing nobody says.
+     *
+     * Null where the kind adds no word of its own (en's `{month} {day}`, every uk pattern)
+     * and null for the kinds that assemble nothing. A pattern that adds only what the kind
+     * below it already added says nothing new, so it too answers null — Swahili's dated line
+     * repeats `tarehe` and owes the learner only `mwaka wa`, and Spanish's year takes a
+     * second `de` that is the same word over again.
+     */
+    fun patternWord(content: DateDrillContent, kind: DateTaskKind): String? {
+        val added = segments(pattern(content, kind)) - segments(pattern(content, below(kind)))
+        return added.joinToString(" … ").ifBlank { null }
+    }
+
     /** The overview table, from the same joined rows the drill grades against. */
     fun reference(content: DateDrillContent): List<DateReferenceGroup> = listOf(
         DateReferenceGroup(DateTaskKind.Weekday, content.weekdays.map(::referenceRow)),
@@ -155,6 +177,35 @@ object DateDrill {
         val newest = ladder.last()
         return if (rng.nextBoolean()) listOf(newest) + shuffled.filterNot { it == newest } else shuffled
     }
+
+    /** The kind [kind] is assembled on top of — its own pattern minus this one's is what it adds. */
+    private fun below(kind: DateTaskKind): DateTaskKind? = when (kind) {
+        DateTaskKind.FullDateWithYear -> DateTaskKind.FullDate
+        DateTaskKind.FullDate -> DateTaskKind.DayAndMonth
+        else -> null
+    }
+
+    private fun pattern(content: DateDrillContent, kind: DateTaskKind?): DatePattern? = when (kind) {
+        DateTaskKind.DayAndMonth -> content.patterns.dayMonth
+        DateTaskKind.FullDate -> content.patterns.date
+        DateTaskKind.FullDateWithYear -> content.patterns.dateWithYear
+        else -> null
+    }
+
+    /**
+     * The runs of the language's OWN words in a pattern, in the order it says them — the
+     * slots split them apart and the punctuation between goes with the slots, so
+     * `{weekday}, tarehe {day} {month} mwaka wa {year}` is `tarehe` and `mwaka wa`.
+     */
+    private fun segments(pattern: DatePattern?): List<String> =
+        MARKER.split(pattern?.text.orEmpty())
+            .map { part -> part.split(' ').map { it.trim(',', '.', ';', ':') }.filter { it.isNotEmpty() } }
+            .filter { it.isNotEmpty() }
+            .map { it.joinToString(" ") }
+
+    // why: the closing brace is escaped too — Android's ICU engine rejects a bare `}` in a
+    // pattern the JVM accepts, so an unescaped one is a crash only a device finds.
+    private val MARKER = Regex("\\{[^{}]*\\}")
 
     private fun sprossen(content: DateDrillContent, reverse: Boolean): List<DateTaskKind> =
         listOfNotNull(

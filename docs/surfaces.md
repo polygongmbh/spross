@@ -32,14 +32,23 @@ auto-advance beats these share with it, are `design.md`'s.
   be the third telling of what one tap said.
   The one thing it does carry is the FIRST-SIGHT hint, and it is always a word in the
   language being LEARNED: the place word the first time a length appears, the word a form
-  adds the first time a mark does ("Neu: menos", "Neu: Komma"). One slot, the form winning
+  adds the first time a mark does ("Neu: menos", "Neu: Komma"), and on the calendar the word
+  a date's pattern adds the first time that kind is asked ("Neu: tarehe", then
+  "Neu: mwaka wa"). One slot, the form winning
   where both could fire. Naming the category in the reader's language instead ("Neu:
   Kommazahl") taught nothing — a learner cannot say it, and the card is where saying it is
   owed. The word is DERIVED, never authored: `formMarker` takes the reference band's
   worked example and removes the cardinal's own words, including a cardinal welded to the
   front of one ("dreimal" → "mal"); where nothing can be removed the whole reading stands,
-  which is the honest answer for an ordinal ("erste") or a half ("nusu"). A reversed task
-  gets no hint at all: the prompt is then the reading, which says it in words already.
+  which is the honest answer for an ordinal ("erste") or a half ("nusu").
+  `DateDrill.patternWord` is the same derivation on a calendar — the pattern with its slots
+  taken out, minus whatever the kind below it already added, so Swahili's dated line repeats
+  `tarehe` silently and owes only `mwaka wa`, and a language whose pattern is its slots alone
+  (en's `{month} {day}`, every uk one) hands over nothing rather than inventing something.
+  A slot BETWEEN two of those words comes back as an ellipsis ("Neu: el … de"): two words a
+  pattern holds apart are not a phrase, and welding them would teach one nobody says.
+  A reversed task gets no hint at all: the prompt is then the reading,
+  which says it in words already.
 - **Zahlen overview**: the numbers entry opens a page, not a run — options and start
   first, reference under them. Reading matter and the run it prepares you for are ONE
   surface on purpose: a look-up that lives five taps inside a running drill is a look-up

@@ -164,6 +164,7 @@ interface Chrome {
     val boxCardNoAudio: String
     val numbersReference: String
     val commonNotes: String
+    val datesNewWord: String                // %s
     /**
      * Kern's band key → the heading it takes. A map, because the bands are kern's to
      * grow: one it has no wording for still gets its rows rather than printing a key.

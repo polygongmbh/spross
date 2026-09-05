@@ -12,14 +12,8 @@ struct TrainerPromptCard: View {
     let task: TrainerTask
     var sentence = false
     /// A short fact about THIS prompt ("Neue Stelle: mia"), shown until the
-    /// answer arrives. It rides inside the card so its coming and going never
-    /// moves the field or the button below — see `hintPill`.
-    struct Hint {
-        let icon: String
-        let text: LocalizedStringKey
-    }
-
-    var hint: Hint?
+    /// answer arrives ([DrillHint], the shape the calendar's card wears too).
+    var hint: DrillHint?
     /// What a refused answer actually named ("setenta" is 70) — the nudge line
     /// under the reveal, worded by the review session's own key.
     var otherWord: (word: String, meanings: String)?
@@ -63,7 +57,7 @@ struct TrainerPromptCard: View {
             } else if let hint {
                 // why: the reveal TAKES this slot rather than stacking under it —
                 // the hint is scaffolding for a prompt still unanswered.
-                hintPill(hint)
+                DrillHintPill(hint)
             }
         }
         .padding(Theme.spacing.lg)
@@ -73,16 +67,5 @@ struct TrainerPromptCard: View {
         .frame(minHeight: Theme.reserve.drillCard)
         .cardSurface()
         .animation(.easeOut(duration: 0.25), value: revealed)
-    }
-
-    private func hintPill(_ hint: Hint) -> some View {
-        Label(hint.text, systemImage: hint.icon)
-            .font(Theme.typography.caption)
-            .foregroundStyle(Theme.colors.accent)
-            .padding(.horizontal, Theme.spacing.md)
-            .padding(.vertical, Theme.spacing.sm)
-            .background(
-                Capsule().fill(Theme.colors.surfaceTint)
-            )
     }
 }

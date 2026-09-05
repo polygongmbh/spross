@@ -271,6 +271,10 @@ object DateDrillRun {
             bestLevel = maxOf(state.bestLevel, step.level),
             winsAtLevel = step.winsAtLevel,
             core = state.core.book(correct, clean, DrillSolved.key(state.task)),
+            // why: booked with the answer, so the word is shown for exactly the one card
+            // that owed it — a run that closes and reopens meets it again, which is the
+            // place-value hint's rule and the honest one for a Sprosse climbed twice.
+            seenKinds = state.seenKinds + state.task.kind,
         )
     }
 

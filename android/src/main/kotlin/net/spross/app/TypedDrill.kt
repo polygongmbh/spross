@@ -82,6 +82,12 @@ data class TypedDrillPrompt(
     val display: String,
     /** The answer side's neighboring form, where the run hands one over. */
     val gloss: String? = null,
+    /**
+     * A word in the language being LEARNED that this question adds and cannot say for
+     * itself, the first time it is asked — null on every other card and on every reversed
+     * run. The atlas hands none over.
+     */
+    val newWord: String? = null,
     /** The picture beside the words — a country's flag; a date carries none. */
     val emoji: String? = null,
     /** Whether showing [emoji] while the answer is owed would ANSWER the question. */

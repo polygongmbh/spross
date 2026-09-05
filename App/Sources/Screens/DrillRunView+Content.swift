@@ -32,7 +32,8 @@ extension DrillRunView {
                                       // so a question that is one is tagged with none.
                                       language: task.promptText == nil ? nil : task.promptLanguage,
                                       promptVoice: promptVoice(task),
-                                      revealed: cardReveal(task))
+                                      revealed: cardReveal(task),
+                                      hint: newWordHint(task))
                         .id(task.index)
                         .transition(reduceMotion ? .opacity : .cardFlip)
                 }
@@ -42,6 +43,14 @@ extension DrillRunView {
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollDismissesKeyboard(.never)
+    }
+
+    /// The word this question's language adds, the first time it is asked for
+    /// — the numbers drill's first-sight hint, for a pattern instead of a
+    /// length. Always a word in the language being LEARNED, which is what a
+    /// card carrying only a date in digits cannot otherwise hand over.
+    func newWordHint(_ task: DrillSnapshot) -> DrillHint? {
+        task.newWord.map { .init(icon: "text.append", text: "dates.newWord \($0)") }
     }
 
     /// Hearing the question itself, on a REVERSED run — the one that asks in the

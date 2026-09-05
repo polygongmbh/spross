@@ -17,7 +17,7 @@ extension TrainerSessionView {
 
     /// Place word shown the first time a new number length appears — on the
     /// card itself, so the prompts that carry no hint sit exactly as high.
-    private var placeValueHint: TrainerPromptCard.Hint? {
+    private var placeValueHint: DrillHint? {
         run.placeValueHint.map { .init(icon: "textformat.123", text: "numbers.newPlace \($0)") }
     }
 
