@@ -347,7 +347,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             val source = profile.source
             val target = profile.target
             if (source != null && target != null) {
-                activate(source, target)
+                activate(source, target, Screen.Home)
             } else {
                 chrome = Chrome.forSource(defaultSource(loaded))
                 screen = Screen.Onboarding
@@ -366,12 +366,14 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * The pair is settled. [thenPractice] is the FIRST-RUN path only — the picker is the
      * last question the app asks, so the round it was made for opens straight away rather
      * than behind one more button on Home. A language change from the box's settings
-     * passes false: it must not raise a session over the screen you were reading.
+     * passes false: it must not raise a session over the screen you were reading, and it
+     * comes back to the box it was made in — with no area, since the old one may not
+     * exist in the new join.
      */
     fun completeOnboarding(source: String, target: String, thenPractice: Boolean = false) {
         profile.set(source, target)
         viewModelScope.launch {
-            activate(source, target)
+            activate(source, target, if (thenPractice) Screen.Home else Screen.Box())
             if (!thenPractice) return@launch
             // why: the coaching arms with the round that actually opens — an install with
             // nothing to practice yet must not carry it into some later round.
@@ -409,8 +411,10 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.About
     }
 
+    /** The only way in is the box's own settings ([net.spross.app.ui.AboutFooter]), so the
+     *  way out is the box. */
     fun closeAbout() {
-        screen = Screen.Home
+        screen = Screen.Box()
     }
 
     /**
@@ -599,7 +603,11 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         trainer.seeLetters(letterReport())
     }
 
-    private suspend fun activate(source: String, target: String) {
+    /**
+     * Join the pair and stand the box up on it. [landing] is where the learner ends up —
+     * the caller knows where they came FROM, and this has no back stack to read it off.
+     */
+    private suspend fun activate(source: String, target: String, landing: Screen) {
         val cat = catalog ?: return
         chrome = Chrome.forSource(source)
         val stamp = JoinStamp(source, target, cat.fingerprint)
@@ -641,6 +649,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             // Home says so instead and the file on disk is left exactly as it stands.
             Log.w("Spross", "box for $target unreadable: ${unreadable.message}", unreadable)
             loadFailure = unreadable.message ?: "StoreFormatException"
+            // why: Home is the one screen that carries the failure card, so a load that
+            // failed goes there whatever the caller asked for.
             screen = Screen.Home
             return
         }
@@ -657,7 +667,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         otherLanguagesDailyStats = withContext(Dispatchers.IO) { loadOtherLanguagesDailyStats(cat, target) }
         refreshStats()
         refreshListening()
-        screen = Screen.Home
+        screen = landing
     }
 
     /**
