@@ -256,6 +256,26 @@ class SessionRunTests {
         assertTrue(untouched.effects.isEmpty())
     }
 
+    /** A stale run recomposes as the round that opened it: a short round stays short, an extra one extra. */
+    @Test
+    fun aStaleRoundRecomposesAsTheRoundThatOpenedIt() {
+        val moved = JoinStamp("de", "sw", "fixture-v2")
+        fun recomposed(opener: SessionIntent): SessionRunState {
+            var run = SessionRun.reduce(SessionRun.idle(backloggedState()), opener, now, Box.TZ).state
+            run = answer(run, Rating.Good, now)
+            val rejoined = BoxEngine.rejoin(run.box, run.box.cards.values.toList(), moved)
+            return SessionRun.reduce(SessionRun.withBox(run, rejoined), SessionIntent.RecomposeIfStale, now, Box.TZ).state
+        }
+        val short = recomposed(SessionIntent.StartShort)
+        assertEquals(SessionOpening.Short, short.opening)
+        assertEquals(SessionComposer.SHORT_ROUND_CARDS, short.queue.size)
+        assertEquals(short.answered + short.queue.size, short.total)
+        val extra = recomposed(SessionIntent.StartExtra)
+        assertEquals(SessionOpening.Extra, extra.opening)
+        assertEquals(moved, extra.joinStamp)
+        assertNotNull(extra.currentCardId)
+    }
+
     /** Closing books what was answered and keeps the summary's content for its way out. */
     @Test
     fun closingBooksWhatWasAnswered() {

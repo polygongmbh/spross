@@ -328,7 +328,7 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   **inert** (never pruned; both revive on switch-back).
 - `answer(cardId, rating, nowMillis, tzId)` on an unknown id leaves the state
   untouched. `SessionPlan` carries a `joinStamp` (source, target, catalog
-  fingerprint); the app recomposes when stale.
+  fingerprint); a stale run recomposes as the round that opened it (`SessionOpening`).
 - **"Which words does the learner already hold" is an engine question**, answered once by
   `BoxEngine.consolidatedCardIds` — restated over `box.cards` on two platforms it would
   drift, and drift silently, since a drill that practices a word too early only feels

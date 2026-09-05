@@ -59,6 +59,9 @@ sealed class SessionEffect {
     data object DayBooked : SessionEffect()
 }
 
+/** Which round opened a run: the day's own, the on-demand extra, or the day's taken short. */
+enum class SessionOpening { Day, Extra, Short }
+
 /** The closed result of one intent: the next state plus what it asks for. */
 data class SessionReduction(val state: SessionRunState, val effects: List<SessionEffect>)
 
@@ -103,6 +106,8 @@ data class SessionRunState(
     val active: Boolean,
     /** The join this run was composed against; a mismatch forces a recompose. */
     val joinStamp: JoinStamp?,
+    /** Which round opened this run — a stale run recomposes as the same one. */
+    val opening: SessionOpening = SessionOpening.Day,
 ) {
     val currentCardId: String? get() = (step as? SessionStep.Card)?.cardId
 
@@ -139,8 +144,10 @@ object SessionRun {
         nowEpochMillis: Long,
         tzId: String,
     ): SessionReduction = when (intent) {
-        SessionIntent.Start ->
-            begin(state, SessionComposer.composeSession(state.box, nowEpochMillis, tzId), nowEpochMillis, tzId)
+        SessionIntent.Start -> begin(
+            state, SessionComposer.composeSession(state.box, nowEpochMillis, tzId),
+            SessionOpening.Day, nowEpochMillis, tzId,
+        )
         SessionIntent.StartExtra -> startExtra(state, nowEpochMillis, tzId)
         SessionIntent.StartShort -> startShort(state, nowEpochMillis, tzId)
         is SessionIntent.Answer -> answer(state, intent.rating, nowEpochMillis, tzId)
@@ -162,7 +169,7 @@ object SessionRun {
      */
     private fun startExtra(state: SessionRunState, nowEpochMillis: Long, tzId: String): SessionReduction {
         val plan = SessionComposer.composeRound(state.box, nowEpochMillis, tzId)
-        return if (plan.isEmpty) unchanged(state) else begin(state, plan, nowEpochMillis, tzId)
+        return if (plan.isEmpty) unchanged(state) else begin(state, plan, SessionOpening.Extra, nowEpochMillis, tzId)
     }
 
     /**
@@ -171,12 +178,13 @@ object SessionRun {
      */
     private fun startShort(state: SessionRunState, nowEpochMillis: Long, tzId: String): SessionReduction {
         val plan = SessionComposer.composeShortRound(state.box, nowEpochMillis, tzId)
-        return if (plan.isEmpty) unchanged(state) else begin(state, plan, nowEpochMillis, tzId)
+        return if (plan.isEmpty) unchanged(state) else begin(state, plan, SessionOpening.Short, nowEpochMillis, tzId)
     }
 
     private fun begin(
         state: SessionRunState,
         plan: SessionPlan,
+        opening: SessionOpening,
         nowEpochMillis: Long,
         tzId: String,
     ): SessionReduction = advance(
@@ -185,6 +193,7 @@ object SessionRun {
             answered = 0, folded = 0, ratings = emptyList(),
             newCards = 0, graduated = 0, reviews = 0,
             endless = false, finished = false, active = true, joinStamp = plan.joinStamp,
+            opening = opening,
         ),
         emptyList(),
         nowEpochMillis,
@@ -294,14 +303,18 @@ object SessionRun {
 
     /**
      * The box's join moved under a running session (source switch, catalog update)
-     * → recompose against the live join.
+     * → recompose against the live join, as the round that opened the run.
      */
     private fun recompose(state: SessionRunState, nowEpochMillis: Long, tzId: String): SessionReduction {
         val stamp = state.joinStamp
         if (!state.active || state.finished || stamp == null || stamp == state.box.joinStamp) {
             return unchanged(state)
         }
-        val plan = SessionComposer.composeSession(state.box, nowEpochMillis, tzId)
+        val plan = when (state.opening) {
+            SessionOpening.Day -> SessionComposer.composeSession(state.box, nowEpochMillis, tzId)
+            SessionOpening.Extra -> SessionComposer.composeRound(state.box, nowEpochMillis, tzId)
+            SessionOpening.Short -> SessionComposer.composeShortRound(state.box, nowEpochMillis, tzId)
+        }
         return advance(
             state.copy(
                 queue = plan.queue,
