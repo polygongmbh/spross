@@ -3,7 +3,6 @@ package net.spross.kern.trainer
 import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.catalog.DateEntry
 import net.spross.kern.catalog.DateNames
-import net.spross.kern.catalog.DateNumeral
 import net.spross.kern.catalog.DatePattern
 
 /**
@@ -19,8 +18,6 @@ enum class DateTaskKind {
     DayAndMonth,
     FullDate,
     FullDateWithYear,
-    Century,
-    Millennium,
 }
 
 /**
@@ -92,17 +89,11 @@ internal object DateDrillTasks {
     /** Years an assembled date may draw: both the hundred- and the thousand-counted centuries. */
     val YEARS: IntRange = 1900..2099
 
-    /** Centuries and millennia a span Sprosse draws — every one a learner meets named. */
-    const val CENTURIES = 21
-    const val MILLENNIA = 3
-
     /** The enumerable Sprossen' whole pools; the assembled kinds are drawn, never enumerated. */
     fun pool(content: DateDrillContent, kind: DateTaskKind, reverse: Boolean): List<DateDrillTask> =
         when (kind) {
             DateTaskKind.Weekday -> content.weekdays.map { name(kind, it, reverse) }
             DateTaskKind.Month -> content.months.map { name(kind, it, reverse) }
-            DateTaskKind.Century -> (1..CENTURIES).map { span(content, kind, it) }
-            DateTaskKind.Millennium -> (1..MILLENNIA).map { span(content, kind, it) }
             else -> emptyList()
         }
 
@@ -201,39 +192,6 @@ internal object DateDrillTasks {
             display = taught(pattern, day, slots),
             dateDigits = numeric,
         )
-    }
-
-    /**
-     * One span: the YEARS it covers on the card, and the language's own name for it as the
-     * answer — `1901–2000` reads *das zwanzigste Jahrhundert*.
-     *
-     * The prompt is a year range rather than a numeral because the offset IS the skill: the
-     * twentieth century is the nineteen-hundreds, and a card printing `20.` would hand that
-     * over. It is also the one prompt shape no language has to author — digits, like the
-     * dated Sprossen's, and no source calendar is consulted for it.
-     */
-    fun span(content: DateDrillContent, kind: DateTaskKind, n: Int): DateDrillTask {
-        val pattern = requireNotNull(spanPattern(content, kind)) { "no $kind pattern for ${content.target}" }
-        val pack = Trainer.pack(content.target)
-        val counts = when (pattern.numeral) {
-            DateNumeral.Cardinal -> pack.drillNumber(n.toLong())
-            else -> pack.spanOrdinal(n)
-        }
-        val width = if (kind == DateTaskKind.Century) 100 else 1000
-        val slots = listOf("{count}" to counts)
-        return DateDrillTask(
-            kind = kind,
-            id = n.toString(),
-            promptText = "${(n - 1) * width + 1}–${n * width}",
-            accepted = fill(pattern, slots),
-            display = taught(pattern, n, slots),
-        )
-    }
-
-    fun spanPattern(content: DateDrillContent, kind: DateTaskKind): DatePattern? = when (kind) {
-        DateTaskKind.Century -> content.patterns.century
-        DateTaskKind.Millennium -> content.patterns.millennium
-        else -> null
     }
 
     /** ISO weekday of a date, 0 = Monday — Sakamoto's method, no clock and no calendar API. */

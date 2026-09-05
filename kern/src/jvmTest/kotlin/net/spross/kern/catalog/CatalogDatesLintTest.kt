@@ -192,34 +192,27 @@ class CatalogDatesLintTest {
      */
     private val patternWords: Map<Language, Set<String>> = mapOf(
         // The article the German date reading leads with — nominative on the card,
-        // accusative in the accept-only variant — and the two span nouns with their own.
-        "de" to setOf("der", "den", "das", "jahrhundert", "jahrtausend"),
-        // The formal English reading's article and joiner ("the third of March"), and the
-        // span nouns the same article leads.
-        "en" to setOf("the", "of", "century", "millennium"),
-        // Esperanto's one invariable article, the `de` its month hangs on, and the two
-        // spans, which are compounds of `jaro` rather than words of their own.
-        "eo" to setOf("la", "de", "jarcento", "jarmilo"),
+        // accusative in the accept-only variant.
+        "de" to setOf("der", "den"),
+        // The formal English reading's article and joiner ("the third of March").
+        "en" to setOf("the", "of"),
+        // Esperanto's one invariable article, and the `de` its month hangs on.
+        "eo" to setOf("la", "de"),
         // The Spanish article, the `de` before the month and once more before the
-        // year, the contracted `del` the year's accept-only variant takes, and the two span
-        // nouns — `siglo` stands in front of its numeral, `milenio` behind its own.
-        "es" to setOf("el", "de", "del", "siglo", "milenio"),
+        // year, and the contracted `del` the year's accept-only variant takes.
+        "es" to setOf("el", "de", "del"),
         // The article a bare French date leads with; once the weekday is named it goes.
-        // The spans keep it and add their nouns.
-        "fr" to setOf("le", "siècle", "millénaire"),
+        "fr" to setOf("le"),
         // The Italian article, and the `l'` it elides to before a vowel-initial day
-        // ("l'otto marzo") — accept-only, because a pattern cannot elide by itself — with
-        // the span nouns behind the same article.
-        "it" to setOf("il", "l", "secolo", "millennio"),
-        // `tarehe` — the word a Swahili date counts from, no article in sight — the year's
-        // own noun with the associative `wa` that hangs it off the date (the `wa`-less
-        // `mwaka` and the bare numeral ride behind it as accept-only variants), and the two
-        // span nouns, whose N-class `ya` is the concord slot a bare Swahili ordinal never had.
-        "sw" to setOf("tarehe", "mwaka", "wa", "karne", "ya", "milenia"),
+        // ("l'otto marzo") — accept-only, because a pattern cannot elide by itself.
+        "it" to setOf("il", "l"),
+        // `tarehe` — the word a Swahili date counts from, no article in sight — and the
+        // year's own noun with the associative `wa` that hangs it off the date; the
+        // `wa`-less `mwaka` and the bare numeral ride behind it as accept-only variants.
+        "sw" to setOf("tarehe", "mwaka", "wa"),
         // Ukrainian assembles a date out of its parts alone: the genitive does the work
         // an article or a preposition does elsewhere, and there is no year Sprosse to word.
-        // The spans are the file's only content words, each a bare noun after its ordinal.
-        "uk" to setOf("століття", "тисячоліття"),
+        "uk" to emptySet(),
     )
 
     @Test
@@ -231,7 +224,6 @@ class CatalogDatesLintTest {
             )
             val patterns = listOfNotNull(
                 calendar.patterns.dayMonth, calendar.patterns.date, calendar.patterns.dateWithYear,
-                calendar.patterns.century, calendar.patterns.millennium,
             )
             val words = patterns.flatMap { it.forms }
                 .flatMap { tokens(it.replace(MARKERS, " ")) }
@@ -247,5 +239,5 @@ class CatalogDatesLintTest {
             .split(" ").filter { it.isNotEmpty() }
     }
 
-    private val MARKERS = Regex("""\{(weekday|day|month|year|count)}""")
+    private val MARKERS = Regex("""\{(weekday|day|month|year)}""")
 }

@@ -144,17 +144,6 @@ internal object UkrainianForms {
     }
 
     /**
-     * The same ordinals with the NEUTER leading — what a neuter span noun agrees with
-     * (`docs/date-readings.md` § Spans). The masculine and feminine ride behind it, so a
-     * learner reaching for the citation form is accepted rather than corrected.
-     */
-    fun neuterFirst(n: Long): List<String> {
-        val all = reading(NumberValue.Ordinal(n))
-        val neuter = all.getOrNull(2) ?: return all
-        return listOf(neuter) + all.filterNot { it == neuter }
-    }
-
-    /**
      * The ordinal a DATE takes: the genitive, which is a suffix swap on the last word of
      * the masculine nominative — `третій` → `третього`, `двадцять перший` → `двадцять
      * першого`. That swap is the whole of the difference, so the numbers drill keeps its

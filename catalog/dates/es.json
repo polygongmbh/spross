@@ -43,8 +43,6 @@
   "dateWithYear": {
    "text": "{weekday}, {day} de {month} de {year}",
    "variants": ["{weekday}, {day} de {month} del {year}"]
-  },
-  "century": { "text": "el siglo {count}", "numeral": "cardinal" },
-  "millennium": { "text": "el {count} milenio", "numeral": "ordinal" }
+  }
  }
 }

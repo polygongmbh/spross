@@ -83,8 +83,6 @@ fun Chrome.dateAsk(kind: DateTaskKind): String = when (kind) {
     DateTaskKind.Weekday -> datesAskWeekday
     DateTaskKind.Month -> datesAskMonth
     DateTaskKind.DayAndMonth, DateTaskKind.FullDate, DateTaskKind.FullDateWithYear -> datesAskDate
-    DateTaskKind.Century -> datesAskCentury
-    DateTaskKind.Millennium -> datesAskMillennium
 }
 
 /**
@@ -107,9 +105,7 @@ private fun dateSprosseIndex(kinds: List<DateTaskKind>): Int =
         DateTaskKind.DayAndMonth -> 4
         DateTaskKind.FullDate -> 5
         DateTaskKind.FullDateWithYear -> 6
-        DateTaskKind.Century -> 7
-        DateTaskKind.Millennium -> 8
-        null -> 8
+        null -> 6
     }
 
 /** How far from home a reference group sits — kern hands the tier over already effective. */

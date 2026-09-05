@@ -37,10 +37,5 @@
   { "text": "грудень", "dateForm": "грудня" }
  ],
  "numeric": "{d}.{m}.{y}",
- "patterns": {
-  "dayMonth": { "text": "{day} {month}" },
-  "date": { "text": "{weekday}, {day} {month}" },
-  "century": { "text": "{count} століття", "numeral": "ordinal" },
-  "millennium": { "text": "{count} тисячоліття", "numeral": "ordinal" }
- }
+ "patterns": { "dayMonth": { "text": "{day} {month}" }, "date": { "text": "{weekday}, {day} {month}" } }
 }

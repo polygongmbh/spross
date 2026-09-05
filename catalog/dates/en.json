@@ -52,8 +52,6 @@
    "text": "{weekday}, {month} {day}, {year}",
    "synonyms": ["{weekday}, the {day} of {month}, {year}"],
    "variants": ["{weekday}, {day} of {month}, {year}"]
-  },
-  "century": { "text": "the {count} century", "numeral": "ordinal" },
-  "millennium": { "text": "the {count} millennium", "numeral": "ordinal" }
+  }
  }
 }

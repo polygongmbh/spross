@@ -74,60 +74,6 @@ class RealCatalogDateDrillTest {
         assertContains(task.accepted, "tarehe moja Januari")
     }
 
-    /**
-     * The span Sprossen, against the ruling table in `docs/date-readings.md` § Spans. The
-     * prompt is the years the span covers, because the offset IS the skill: the twentieth
-     * century is the nineteen-hundreds and a card printing `20.` would hand that over.
-     */
-    @Test
-    fun everySpanReadsWhatItsLanguageRules() {
-        val expected = mapOf(
-            "de" to ("das zwanzigste Jahrhundert" to "das dritte Jahrtausend"),
-            "en" to ("the twentieth century" to "the third millennium"),
-            "eo" to ("la dudeka jarcento" to "la tria jarmilo"),
-            "es" to ("el siglo veinte" to "el tercer milenio"),
-            "fr" to ("le vingtième siècle" to "le troisième millénaire"),
-            "it" to ("il ventesimo secolo" to "il terzo millennio"),
-            "sw" to ("karne ya ishirini" to "milenia ya tatu"),
-            "uk" to ("двадцяте століття" to "третє тисячоліття"),
-        )
-        for ((target, readings) in expected) {
-            val content = content(if (target == "de") "en" else "de", target)
-            val century = DateDrillTasks.span(content, DateTaskKind.Century, 20)
-            assertEquals("1901–2000", century.promptText, "$target: the prompt is the years")
-            assertEquals(readings.first, century.display, target)
-            val millennium = DateDrillTasks.span(content, DateTaskKind.Millennium, 3)
-            assertEquals("2001–3000", millennium.promptText, "$target: the prompt is the years")
-            assertEquals(readings.second, millennium.display, target)
-        }
-    }
-
-    /**
-     * Spanish is the one language whose two spans part ways: the cardinal alone from the
-     * eleventh century (`number-forms.md` § Spanish's ordinal cap arriving), while a
-     * millennium never reaches the cap and stays the ordinal it is.
-     */
-    @Test
-    fun theSpanishCenturyCountsWhereItsMillenniumRanks() {
-        val es = content("de", "es")
-        assertEquals("el siglo once", DateDrillTasks.span(es, DateTaskKind.Century, 11).display)
-        assertEquals("el primer milenio", DateDrillTasks.span(es, DateTaskKind.Millennium, 1).display)
-    }
-
-    /**
-     * `karne` and `milenia` are N-class, so the concord is `ya` and the numeral after it is
-     * the plain cardinal — the noun-bearing frame `number-forms.md` § Swahili says a Swahili
-     * ordinal has always needed, arriving rather than the rule bending.
-     */
-    @Test
-    fun theSwahiliSpansSupplyTheConcordItsOrdinalsNeed() {
-        val sw = content("de", "sw")
-        assertEquals(
-            "karne ya ishirini na moja",
-            DateDrillTasks.span(sw, DateTaskKind.Century, 21).display,
-        )
-    }
-
     /** English intrusions are not Swahili spellings, and `mechi` is a football match. */
     @Test
     fun theSwahiliCalendarRefusesTheEnglishSpellings() {

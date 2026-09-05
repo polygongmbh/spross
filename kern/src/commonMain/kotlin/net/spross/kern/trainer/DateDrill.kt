@@ -7,8 +7,8 @@ import net.spross.kern.catalog.DatePattern
 import net.spross.kern.model.Language
 
 /**
- * The dates drill: the weekday names alone, the month names alone, the whole spoken date
- * assembled out of them, and at the top the spans a year sits inside.
+ * The dates drill: the weekday names alone, the month names alone, and then the whole
+ * spoken date assembled out of them.
  *
  * The day of the month has no Sprosse of its own. Its reading is met where the language
  * uses it — inside [DateTaskKind.DayAndMonth] and the dated line, which is the only place
@@ -101,8 +101,7 @@ object DateDrill {
                 DateTaskKind.NameChoice ->
                     samplePool(DateDrillChoices.pool(content, reverse), avoid, solved, rng)
                         ?.let { DateDrillChoices.tiles(content, it, reverse, rng) }
-                DateTaskKind.Weekday, DateTaskKind.Month,
-                DateTaskKind.Century, DateTaskKind.Millennium ->
+                DateTaskKind.Weekday, DateTaskKind.Month ->
                     samplePool(DateDrillTasks.pool(content, kind, reverse), avoid, solved, rng)
                 else -> sampleComposed(content, kind, reverse, avoid, solved, rng)
             }
@@ -190,7 +189,6 @@ object DateDrill {
         DateTaskKind.DayAndMonth -> content.patterns.dayMonth
         DateTaskKind.FullDate -> content.patterns.date
         DateTaskKind.FullDateWithYear -> content.patterns.dateWithYear
-        DateTaskKind.Century, DateTaskKind.Millennium -> DateDrillTasks.spanPattern(content, kind)
         else -> null
     }
 
@@ -220,10 +218,6 @@ object DateDrill {
             // rather than language ([DateDrillParsing]) — a Sprosse asking nothing new.
             DateTaskKind.FullDate.takeIf { !reverse },
             DateTaskKind.FullDateWithYear.takeIf { content.patterns.dateWithYear != null },
-            // why: forward only, like the full date and for the same kind of reason — a span
-            // turned round would want a YEAR RANGE typed, and no number pad types its dash.
-            DateTaskKind.Century.takeIf { !reverse && content.patterns.century != null },
-            DateTaskKind.Millennium.takeIf { !reverse && content.patterns.millennium != null },
         )
 
     private fun samplePool(

@@ -43,8 +43,6 @@
   "dateWithYear": {
    "text": "{weekday}, tarehe {day} {month} mwaka wa {year}",
    "variants": ["{weekday}, tarehe {day} {month} mwaka {year}", "{weekday}, tarehe {day} {month} {year}"]
-  },
-  "century": { "text": "karne ya {count}", "numeral": "cardinal" },
-  "millennium": { "text": "milenia ya {count}", "numeral": "cardinal" }
+  }
  }
 }

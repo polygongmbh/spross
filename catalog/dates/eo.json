@@ -40,8 +40,6 @@
  "patterns": {
   "dayMonth": { "text": "la {day} de {month}" },
   "date": { "text": "{weekday}, la {day} de {month}" },
-  "dateWithYear": { "text": "{weekday}, la {day} de {month} {year}" },
-  "century": { "text": "la {count} jarcento", "numeral": "ordinal" },
-  "millennium": { "text": "la {count} jarmilo", "numeral": "ordinal" }
+  "dateWithYear": { "text": "{weekday}, la {day} de {month} {year}" }
  }
 }

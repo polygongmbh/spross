@@ -243,15 +243,22 @@ then open design work, then what waits on someone else, grouped by who that is.
   a variant (`catalog/dates/it.json`) — elision-aware date patterns in the engine, or wait for
   an Italian native's ruling on `il otto` vs `l'otto` and the weekday article
   (`docs/date-readings.md:88`)?
-- No decade Sprosse: every language names one by its YEARS (`die 1980er Jahre`, `the 1980s`,
-  `los años ochenta`, `вісімдесяті роки`) and each is a numeral form the trainer does not
-  produce, while the positional reading that would derive is a register nobody uses
-  (`docs/date-readings.md` § Spans) — add the year-suffixed family per pack, or leave the
-  decade a card and never a question?
-- Italian names its centuries a second way (`il Novecento` = the 20th), current and offset by
-  one from the numeral, so it is a twelve-row table rather than a form and a span pattern has
-  nowhere to put one (`docs/date-readings.md` § Spans) — author it as a per-value synonym
-  shape, or leave it ungraded?
+- A Swahili ORDINAL frame is still open (`docs/number-forms.md` § Swahili: a bare prompt has
+  no noun for the `-a` concord slot), and the spans are the cheapest noun to give it —
+  `karne` and `milenia` are N-class so the concord is `ya` and the numeral after it is the
+  plain cardinal (`karne ya ishirini na moja`), `mwongo` is class 3 and takes `wa`. The other
+  seven read a span as an ordinal plus the noun, which the Forms drill and the time-area
+  cards already teach separately, except: **es reads its century with a CARDINAL**
+  (`el siglo veinte`, never `siglo vigésimo` — RAE's *El buen uso del español* allows the
+  ordinal only to the 10th) while its millennium stays ordinal and apocopates before the
+  masculine noun (`el tercer milenio`); **uk agrees NEUTER** (`двадцяте століття`), where
+  the pack's ordinal canonical is masculine. A decade is named by its YEARS everywhere
+  (`die 1980er Jahre`, `the 1980s`, `los años ochenta`, `вісімдесяті роки`), each a numeral
+  form no pack produces, and the positional reading that would derive is a register nobody
+  uses. Italian names its centuries a second way (`il Novecento` = the 20th, current per
+  Treccani, 1001–2000 only), offset by one from the numeral and so a table rather than a
+  form. — does the ordinal frame land in `catalog/phrases/`, and do the es and uk facts go
+  to `catalog/dates/` § dateNotes meanwhile?
 - `CountryAtlas.notes` parses and reaches no screen, the shape the dates calendar just
   answered with a calendar-level `dateNotes` band (`catalog/dates/README.md`) — render the
   atlas' on its reference row, drop the field, or give the atlas page its own prose band?

@@ -28,12 +28,7 @@ internal object DateCalendarParser {
         "dayMonth" to listOf("{day}", "{month}"),
         "date" to listOf("{weekday}", "{day}", "{month}"),
         "dateWithYear" to listOf("{weekday}", "{day}", "{month}", "{year}"),
-        "century" to listOf("{count}"),
-        "millennium" to listOf("{count}"),
     )
-
-    /** The kinds whose `{count}` needs a numeral family named; every other kind refuses one. */
-    private val SPAN_KINDS = setOf("century", "millennium")
 
     fun parse(path: String, text: String, language: Language, declared: Set<Language>): DateCalendar {
         val root = parseJson(path, text).obj(path, "root")
@@ -51,8 +46,6 @@ internal object DateCalendarParser {
                 dayMonth = requirePattern(path, patterns, "dayMonth"),
                 date = requirePattern(path, patterns, "date"),
                 dateWithYear = optionalPattern(path, patterns, "dateWithYear"),
-                century = optionalPattern(path, patterns, "century"),
-                millennium = optionalPattern(path, patterns, "millennium"),
             ),
             notes = notes(path, root, declared),
         )
@@ -116,11 +109,7 @@ internal object DateCalendarParser {
     private fun optionalPattern(path: String, o: JsonObject, key: String): DatePattern? {
         val where = "patterns.$key"
         val row = o[key]?.obj(path, where) ?: return null
-        val span = key in SPAN_KINDS
-        row.rejectUnknownKeys(
-            path, where,
-            if (span) setOf("text", "synonyms", "variants", "numeral") else setOf("text", "synonyms", "variants"),
-        )
+        row.rejectUnknownKeys(path, where, setOf("text", "synonyms", "variants"))
         val markers = PATTERN_MARKERS.getValue(key)
         val text = row.trimmedString(path, where, "text")
         requireMarkers(path, where, text, markers)
@@ -128,23 +117,10 @@ internal object DateCalendarParser {
             text = text,
             synonyms = forms(path, where, row, "synonyms"),
             variants = forms(path, where, row, "variants"),
-            numeral = if (span) numeral(path, where, row) else null,
         )
         for (alternate in pattern.forms.drop(1)) requireMarkers(path, where, alternate, markers)
         return pattern
     }
-
-    /**
-     * why: REQUIRED on a span, never defaulted — which numeral family a century takes is the
-     * per-language ruling the pattern exists to carry (`docs/date-readings.md` § Spans), and a
-     * default would let a calendar ship one nobody decided.
-     */
-    private fun numeral(path: String, where: String, row: JsonObject): DateNumeral =
-        when (val named = row.trimmedString(path, where, "numeral")) {
-            "ordinal" -> DateNumeral.Ordinal
-            "cardinal" -> DateNumeral.Cardinal
-            else -> parseError(path, "$where: numeral \"$named\" is neither ordinal nor cardinal")
-        }
 
     private fun requireMarkers(path: String, where: String, text: String, markers: List<String>) {
         val found = MARKER.findAll(text).map { it.value }.toList()

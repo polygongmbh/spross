@@ -85,7 +85,7 @@ class DateDrillRunTest {
     /** The forced Sprosse is for tests and screenshot drivers; kern clamps it to THIS ladder. */
     @Test
     fun aForcedSprosseIsClampedToTheLadder() {
-        assertEquals(8, open(level = 99).level)
+        assertEquals(6, open(level = 99).level)
         assertEquals(1, open(level = 0).level)
         assertEquals(5, open(reverse = true, level = 99).level, "one Sprosse shorter back")
     }

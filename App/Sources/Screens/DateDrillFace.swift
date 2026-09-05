@@ -85,9 +85,7 @@ enum DateDrillFace: DrillFace {
         case .month: return "dates.sprosse.3"
         case .dayAndMonth: return "dates.sprosse.4"
         case .fullDate: return "dates.sprosse.5"
-        case .fullDateWithYear: return "dates.sprosse.6"
-        case .century: return "dates.sprosse.7"
-        default: return "dates.sprosse.8"
+        default: return "dates.sprosse.6"
         }
     }
 
@@ -98,9 +96,7 @@ enum DateDrillFace: DrillFace {
         case .month: return "dates.sprosse.3.hint"
         case .dayAndMonth: return "dates.sprosse.4.hint"
         case .fullDate: return "dates.sprosse.5.hint"
-        case .fullDateWithYear: return "dates.sprosse.6.hint"
-        case .century: return "dates.sprosse.7.hint"
-        default: return "dates.sprosse.8.hint"
+        default: return "dates.sprosse.6.hint"
         }
     }
 
@@ -164,8 +160,6 @@ enum DateDrillFace: DrillFace {
         case .weekday: return "dates.ask.weekday"
         case .month: return "dates.ask.month"
         case .dayAndMonth, .fullDate, .fullDateWithYear: return "dates.ask.date"
-        case .century: return "dates.ask.century"
-        case .millennium: return "dates.ask.millennium"
         }
     }
 

@@ -36,9 +36,9 @@ class DateDrillTests {
      */
     @Test
     fun theLadderIsAsTallAsTheContentCanCarry() {
-        assertEquals(8, DateDrill.maxLevel(german, reverse = false))
-        assertEquals(5, DateDrill.maxLevel(ukrainian, reverse = false), "no year and no spans")
-        assertEquals(5, DateDrill.maxLevel(german, reverse = true), "no span has a way round")
+        assertEquals(6, DateDrill.maxLevel(german, reverse = false))
+        assertEquals(5, DateDrill.maxLevel(ukrainian, reverse = false))
+        assertEquals(5, DateDrill.maxLevel(german, reverse = true))
         assertEquals(4, DateDrill.maxLevel(ukrainian, reverse = true))
     }
 
@@ -55,13 +55,13 @@ class DateDrillTests {
             assertEquals(written.take(index + 1), kinds, "a written Sprosse carries no tiles")
             assertEquals(kind, kinds.last(), "the Sprosse introduces its own kind")
         }
-        assertEquals(written.dropLast(3), DateDrill.kinds(ukrainian, 5, reverse = false))
+        assertEquals(written.dropLast(1), DateDrill.kinds(ukrainian, 5, reverse = false))
         assertEquals(warmUp, DateDrill.kinds(german, 1, reverse = true))
         assertEquals(bareKinds, DateDrill.kinds(german, 3, reverse = true))
         assertEquals(
-            written - DateTaskKind.FullDate - DateTaskKind.Century - DateTaskKind.Millennium,
+            written - DateTaskKind.FullDate,
             DateDrill.kinds(german, 5, reverse = true),
-            "the same ladder back but for the full date and the spans, which have no way round",
+            "the same ladder back but for the full date, which has no way round",
         )
         assertEquals(written, DateDrill.kinds(german, 99, reverse = false), "clamped to the top")
         assertEquals(warmUp, DateDrill.kinds(german, 0, reverse = false))
@@ -69,8 +69,8 @@ class DateDrillTests {
 
     @Test
     fun fastIsOfferedOnlyOnceThisLaddersTopSprosseHasBeenReached() {
-        assertFalse(DateDrill.fastUnlocked(7, german, reverse = false))
-        assertTrue(DateDrill.fastUnlocked(8, german, reverse = false))
+        assertFalse(DateDrill.fastUnlocked(5, german, reverse = false))
+        assertTrue(DateDrill.fastUnlocked(6, german, reverse = false))
         assertTrue(DateDrill.fastUnlocked(5, ukrainian, reverse = false), "the short ladder tops at 5")
         assertFalse(DateDrill.fastUnlocked(4, german, reverse = true))
         assertTrue(DateDrill.fastUnlocked(5, german, reverse = true), "one Sprosse shorter back")
@@ -260,8 +260,6 @@ class DateDrillTests {
     /** Every drawn-Sprosse key the german fixture can produce, so a ladder can be emptied. */
     private fun everyDate(): Set<String> {
         val keys = mutableSetOf<String>()
-        for (century in 1..DateDrillTasks.CENTURIES) keys += "${DateTaskKind.Century}:$century"
-        for (millennium in 1..DateDrillTasks.MILLENNIA) keys += "${DateTaskKind.Millennium}:$millennium"
         for (day in 1..31) {
             for (month in 1..12) {
                 keys += "${DateTaskKind.DayAndMonth}:$day.$month"
@@ -276,10 +274,10 @@ class DateDrillTests {
     @Test
     fun aSprosseMixesTheKindsBelowItAndFavorsItsOwn() {
         val drawn = (1..200).mapNotNull {
-            DateDrill.sample(german, 8, false, null, emptySet(), Random(it.toLong()))?.kind
+            DateDrill.sample(german, 6, false, null, emptySet(), Random(it.toLong()))?.kind
         }
         assertEquals(written.toSet(), drawn.toSet(), "the Sprosse stopped asking a kind it carries")
-        val newest = drawn.count { it == DateTaskKind.Millennium }
+        val newest = drawn.count { it == DateTaskKind.FullDateWithYear }
         assertTrue(newest > drawn.size / 4, "the Sprosse buried its own question: $newest of ${drawn.size}")
     }
 
