@@ -47,7 +47,7 @@
   "visa": { "text": "Visum", "grammar": { "gender": "das", "plural": "Visa" } },
   "fine": { "text": "Bußgeld", "grammar": { "gender": "das", "plural": "-er" } },
   "receipt": { "text": "Quittung", "grammar": { "gender": "die", "plural": "-en" } },
-  "where-do-i-sign": { "text": "Wo muss ich unterschreiben?" },
+  "where-do-i-sign": { "text": "Wo unterschreibe ich?", "variants": ["Wo muss ich unterschreiben?"] },
   "i-want-to-extend-my-residence-permit": { "text": "Ich möchte den Aufenthaltstitel verlängern." },
   "fill-out-the-form": { "text": "Füllen Sie das Formular aus.", "variants": ["Fülle das Formular aus."] },
   "i-need-an-interpreter-for-the-application": { "text": "Ich brauche für den Antrag einen Dolmetscher." },

@@ -127,7 +127,10 @@
     "de": "Für einen eingereichten Antrag bekommt man un récépissé; der Kassenzettel im Laden ist le ticket de caisse."
    }
   },
-  "where-do-i-sign": { "text": "Où dois-je signer ?", "variants": ["Où est-ce que je dois signer ?", "Je signe où ?"] },
+  "where-do-i-sign": {
+   "text": "Où est-ce que je signe ?",
+   "variants": ["Où dois-je signer ?", "Où est-ce que je dois signer ?", "Je signe où ?"]
+  },
   "i-want-to-extend-my-residence-permit": {
    "text": "Je voudrais renouveler mon titre de séjour.",
    "variants": ["Je veux renouveler mon titre de séjour.", "Je voudrais renouveler ma carte de séjour."]

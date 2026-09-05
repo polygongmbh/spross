@@ -92,7 +92,7 @@
   "visa": { "text": "visado", "variants": ["visa"], "grammar": { "gender": "el" } },
   "fine": { "text": "multa", "grammar": { "gender": "la" } },
   "receipt": { "text": "recibo", "grammar": { "gender": "el" } },
-  "where-do-i-sign": { "text": "¿Dónde tengo que firmar?", "variants": ["¿Dónde debo firmar?"] },
+  "where-do-i-sign": { "text": "¿Dónde firmo?", "variants": ["¿Dónde tengo que firmar?", "¿Dónde debo firmar?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Quiero renovar el permiso de residencia.",
    "variants": ["Quisiera renovar el permiso de residencia.", "Quería renovar el permiso de residencia."]

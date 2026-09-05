@@ -42,7 +42,7 @@
   "visa": { "text": "vizo" },
   "fine": { "text": "monpuno" },
   "receipt": { "text": "kvitanco" },
-  "where-do-i-sign": { "text": "Kie mi devas subskribi?", "variants": ["Kie mi subskribu?"] },
+  "where-do-i-sign": { "text": "Kie mi subskribu?", "variants": ["Kie mi devas subskribi?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Mi ŝatus plilongigi la loĝpermeson.",
    "variants": ["Mi volas plilongigi la loĝpermeson.", "Mi ŝatus renovigi la loĝpermeson."]

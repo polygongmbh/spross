@@ -122,7 +122,7 @@
   "visa": { "text": "visto", "grammar": { "gender": "il" } },
   "fine": { "text": "multa", "grammar": { "gender": "la" } },
   "receipt": { "text": "ricevuta", "variants": ["scontrino"], "grammar": { "gender": "la" } },
-  "where-do-i-sign": { "text": "Dove devo firmare?", "variants": ["Dove si firma?"] },
+  "where-do-i-sign": { "text": "Dove firmo?", "variants": ["Dove devo firmare?", "Dove si firma?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Vorrei rinnovare il permesso di soggiorno.",
    "variants": ["Voglio rinnovare il permesso di soggiorno."]
