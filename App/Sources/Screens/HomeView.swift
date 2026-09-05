@@ -48,10 +48,7 @@ struct HomeView: View {
 
     // MARK: - Conversation
 
-    /// Under the Sprossen: both this and the listening card above are ways into the
-    /// words that are not the round, and this one is the only way in that leaves the
-    /// app — a loop nobody finds is a loop nobody runs, and the Box tab's panel was
-    /// the only door it had (`docs/design.md` § The companion).
+    /// `docs/design.md` § The companion.
     @ViewBuilder
     private var briefingCard: some View {
         if model.hasBriefing {
@@ -64,10 +61,7 @@ struct HomeView: View {
 
     // MARK: - Listening
 
-    /// Under the day's round and above the Sprossen: not what the box asks of
-    /// the learner, and not a skill with a ladder to climb, but the way in that
-    /// needs no hands — up whenever this device can say both sides of enough
-    /// words (`docs/design.md`, `docs/surfaces.md` § Listening).
+    /// `docs/design.md`, `docs/surfaces.md` § Listening.
     @ViewBuilder
     private var listeningCard: some View {
         // why: a box with words, and something able to say both sides of a turn.
