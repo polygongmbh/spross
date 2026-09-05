@@ -1,4 +1,5 @@
 import Foundation
+import SprossKern
 
 // MARK: - TrainerRecords
 //
@@ -9,7 +10,7 @@ import Foundation
 // costs a number, where anything in the box costs learning history.
 
 enum TrainerRecords {
-    private static let prefix = "trainer.record."
+    private static var prefix: String { TrainerMode.companion.RECORD_PREFIX }
 
     static func best(for key: String) -> Int {
         UserDefaults.standard.integer(forKey: prefix + key)
