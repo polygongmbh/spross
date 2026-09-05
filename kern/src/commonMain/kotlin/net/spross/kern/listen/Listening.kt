@@ -292,7 +292,12 @@ private fun laneOf(candidate: ListeningCandidate): ListeningLane = ListeningLane
     priority = listeningPriority(candidate),
 )
 
-/** `Inventory.seedOrder`'s own tiebreak, reused — the catalog's curriculum, in order. */
+/**
+ * `Inventory.seedOrder`'s own tiebreak, reused — the catalog's curriculum, in order.
+ *
+ * Kept for the PACKED lane only: packing is the learner naming an explicit order
+ * ("these next"), which a shuffle would be second-guessing.
+ */
 private val catalogOrder: Comparator<ListeningCandidate> =
     compareBy({ it.card.seedIndex }, { it.card.id })
 
@@ -306,6 +311,36 @@ private val catalogOrder: Comparator<ListeningCandidate> =
  */
 private fun hashedOrder(seed: Long): Comparator<ListeningCandidate> =
     compareBy({ fnv1a64("$seed:${fnv1a64(it.card.id)}") }, { it.card.id })
+
+/**
+ * How many of the catalog's earliest concepts still count as "just starting out" — greetings,
+ * thanks, the everyday conversational turns. A session opened on a fresh box leads with this
+ * stretch before the pool opens up, so a learner who has never met the language still hears
+ * hello before anything forty shelves in.
+ *
+ * Past it, breadth is the whole point again and any unseen word may lead ([newWordOrder]).
+ */
+private const val LISTENING_BASICS_WORDS = 50
+
+/**
+ * The plain new lane's own within-lane order — not [catalogOrder], which used to pin a single
+ * word (the earliest unseen one) to the very front of every sweep until growth actually
+ * reached it: a box that packs faster than it grows, or simply grows slowly, could leave that
+ * one word leading every session for weeks, which is a queue of one where listening promises a
+ * stream.
+ *
+ * Split in two: the [LISTENING_BASICS_WORDS] earliest concepts first, everything else after —
+ * each half hashed and salted with [seed] exactly like [hashedOrder], so neither half repeats
+ * the same leader twice. The split keeps the one thing catalog order was actually for — an
+ * empty box still opens on greetings, not on a word from deep in the catalog — without holding
+ * any single word at the front, or the basics to a fixed sequence among themselves: they only
+ * need to lead as a group, not to arrive named in seed order.
+ */
+private fun newWordOrder(seed: Long): Comparator<ListeningCandidate> = compareBy(
+    { it.card.seedIndex >= LISTENING_BASICS_WORDS },
+    { fnv1a64("$seed:${fnv1a64(it.card.id)}") },
+    { it.card.id },
+)
 
 private class Dealt(val candidate: ListeningCandidate, val at: Double, val priority: Int)
 
@@ -330,15 +365,16 @@ private val dealOrder: Comparator<Dealt> = compareBy(
  * then spend the whole run inside a Sprosse-4 block of every unseen word in the catalog — Sprossen
  * 3, 2 and 1 would never be reached in a session at all.
  *
- * WITHIN a lane the order depends on what the lane is. New and packed words play in strict
- * catalog order, which is the beginner case whole: an empty box is one lane, and it plays the
- * catalog from its very first word. Scheduled words are hashed by card id instead, because a
- * fixed catalog order would let seed neighbors — often related concepts — be heard in the same
- * sequence every run, and a word half-learned from its neighbor is what `Inventory.dueOrder`
- * fights — salted with [seed] on top ([hashedOrder]), so the sequence also changes between
- * two dealings of an otherwise-unchanged box, not only when a review moves a word between
- * lanes. [seed] is opaque to kern — it only folds the number into the hash, so whatever a
- * caller hands in (the current instant, today) is theirs to choose.
+ * WITHIN a lane the order depends on what the lane is. Packed words play in strict catalog
+ * order — packing named its own order, and a shuffle would be second-guessing it. Plain new
+ * words split basics-first, then hashed within each half ([newWordOrder]): an empty box still
+ * opens on greetings, but no single word is pinned to the front forever. Scheduled words are
+ * hashed by card id outright, because a fixed catalog order would let seed neighbors — often
+ * related concepts — be heard in the same sequence every run, and a word half-learned from its
+ * neighbor is what `Inventory.dueOrder` fights — all three salted with [seed] on top, so the
+ * sequence also changes between two dealings of an otherwise-unchanged box, not only when a
+ * review moves a word between lanes. [seed] is opaque to kern — it only folds the number into
+ * the hash, so whatever a caller hands in (the current instant, today) is theirs to choose.
  *
  * Total and deterministic FOR ONE SEED on both platforms: placement, then priority
  * descending, then catalog seed index, then id.
@@ -346,7 +382,11 @@ private val dealOrder: Comparator<Dealt> = compareBy(
 fun listeningOrder(candidates: List<ListeningCandidate>, seed: Long): List<ListeningCandidate> =
     candidates.groupBy(::laneOf)
         .flatMap { (lane, members) ->
-            val within = if (lane.scheduled) hashedOrder(seed) else catalogOrder
+            val within = when {
+                lane.scheduled -> hashedOrder(seed)
+                lane.queued -> catalogOrder
+                else -> newWordOrder(seed)
+            }
             members.sortedWith(within).mapIndexed { n, candidate ->
                 Dealt(candidate, (n + 0.5) / lane.priority, lane.priority)
             }

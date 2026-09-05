@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Listening no longer leads every session with the same one unseen word; the earliest ones still lead as a group, but shuffle among themselves.
+
 ## 6.0.1 — 2026-09-05
 
 - Copying or mailing your feedback can leave your finished word pairs behind and carry just the suggestions and problems you filed.

@@ -150,15 +150,23 @@ class ListeningPoolTests {
     }
 
     /**
-     * RULE: an empty box plays the catalog from `seedIndex` 0 upward, in order.
-     * WHY: the beginner case, and the point of dealing an order at all. Every candidate of an
-     * untouched box is unscheduled, so they are ONE lane — and a lane of new words plays in
-     * strict catalog order, which is the curriculum the seed index already encodes. A lottery
-     * here meets *Fernseher* before *ich*.
+     * RULE: an empty box's basics — the earliest `LISTENING_BASICS_WORDS` concepts — lead the
+     * whole lap, ahead of everything past them, whichever order they land in among themselves.
+     * WHY: the beginner case. A first session should still open on greetings and thanks rather
+     * than a word forty shelves in, but the basics do not need a fixed sequence among
+     * themselves to do that — only `newWordOrder`'s bucket split, not `catalogOrder`, decides
+     * this now.
      */
     @Test
-    fun anEmptyBoxPlaysTheCatalogFromItsFirstWord() {
-        assertEquals((1..30).map(::id), ids(spoken(box(total = 30, scheduled = 0))))
+    fun anEmptyBoxLeadsWithItsBasicsButNotInAFixedOrder() {
+        val played = ids(spoken(box(total = 80, scheduled = 0)))
+        // seedIndex is 1-based here, and the split is seedIndex < LISTENING_BASICS_WORDS (50).
+        val basics = (1..49).map(::id)
+        val rest = (50..80).map(::id)
+
+        assertEquals(basics.toSet(), played.take(basics.size).toSet(), "the basics fill the opening stretch")
+        assertTrue(played.take(basics.size) != basics, "a lottery may meet Fernseher before ich")
+        assertEquals(rest.toSet(), played.drop(basics.size).toSet(), "nothing outside the basics is lost")
     }
 
     /**
@@ -177,11 +185,12 @@ class ListeningPoolTests {
 
         assertEquals("w50", played.first(), "a packed word opens the run")
         assertTrue(played.take(6).containsAll(packed), "packed words late: ${played.take(6)}")
-        // The packed lane runs a Sprosse ahead: each of its words lands before the plain new
-        // word of the same rank, so all three are out while the catalog is on its third.
-        for ((rank, word) in packed.withIndex()) {
-            assertTrue(played.indexOf(word) < played.indexOf(id(rank + 1)), "$word is late")
-        }
+        // The packed lane runs a Sprosse ahead of the plain new one, so its own first word
+        // beats the plain lane's regardless of which plain word that turns out to be.
+        assertTrue(
+            played.indexOf("w50") < played.indexOf((played - packed.toSet()).first()),
+            "the packed lane's opener is late",
+        )
     }
 
     /**
@@ -257,14 +266,15 @@ class ListeningPoolTests {
     }
 
     /**
-     * RULE: inside a lane, new words keep catalog order and scheduled ones do not.
-     * WHY: the catalog is a curriculum for words never met, so new ones follow it. For words
-     * already held it is a liability — seed neighbors are often related concepts, and hearing
-     * them in the same sequence every run teaches a word from its neighbor rather than on its
-     * own. Hashing the id de-correlates them exactly as `Inventory.dueOrder` does.
+     * RULE: inside a lane, only the PACKED queue keeps catalog order — scheduled words and
+     * plain new ones both break it, though the new lane still leads with its basics as a group.
+     * WHY: the catalog is a curriculum for words never met, but a fixed sequence inside that
+     * curriculum is what pinned a single word to the front of every sweep until growth reached
+     * it. Packing is the one case a fixed order is the learner's own ask, so it alone keeps
+     * `catalogOrder`. Hashing the rest de-correlates them exactly as `Inventory.dueOrder` does.
      */
     @Test
-    fun scheduledWordsBreakCatalogOrderWhileNewOnesKeepIt() {
+    fun onlyThePackedQueueKeepsCatalogOrder() {
         var state = box(total = 60, scheduled = 0)
         for (n in 1..20) {
             state = Box.inject(
@@ -276,10 +286,15 @@ class ListeningPoolTests {
         val played = ids(spoken(state))
         val held = played.filter { it in (1..20).map(::id) }
         val fresh = played.filter { it in (21..60).map(::id) }
+        val freshBasics = fresh.filter { it in (21..49).map(::id) }
+        val freshRest = fresh.filter { it in (50..60).map(::id) }
 
-        assertEquals((21..60).map(::id), fresh)
         assertEquals((1..20).map(::id).toSet(), held.toSet())
+        assertEquals((21..60).map(::id).toSet(), fresh.toSet())
         assertTrue(held != held.sorted(), "the scheduled lane is still in catalog order")
+        assertTrue(fresh != (21..60).map(::id), "the new lane is still in catalog order")
+        // The basics-vs-rest split survives the shuffle even though neither half is sorted.
+        assertEquals(fresh.take(freshBasics.size).toSet(), freshBasics.toSet(), "basics did not lead the rest")
     }
 
     /**
@@ -306,6 +321,26 @@ class ListeningPoolTests {
 
         assertEquals(first, again, "the same seed must deal the same order")
         assertTrue(first != later, "a different seed never reshuffled the order")
+    }
+
+    /**
+     * RULE: the same box dealt with the same seed repeats; dealt with a different one, the new
+     * lane reshuffles too — including inside its basics.
+     * WHY: this is the fix `newWordOrder` exists for. An unlearned box used to lead every
+     * single sweep with the exact same earliest unseen word until growth reached it; the basics
+     * still lead as a group, but which of them leads changes from one dealing to the next.
+     */
+    @Test
+    fun theNewLaneReshufflesBetweenTwoDealingsOfTheSameBox() {
+        val state = box(total = 80, scheduled = 0)
+
+        val first = ids(report(state, true, true, seed = Box.day1))
+        val again = ids(report(state, true, true, seed = Box.day1))
+        val later = ids(report(state, true, true, seed = Box.plusDays(Box.day1, 1.0)))
+
+        assertEquals(first, again, "the same seed must deal the same order")
+        assertTrue(first != later, "a different seed never reshuffled the order")
+        assertTrue(first.first() != later.first(), "the same word led every dealing")
     }
 
     /** A card whose two forms are ones the shipped audio fixture really has recordings for. */
