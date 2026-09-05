@@ -4311,13 +4311,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Festigt wacklige Wörter zuerst — auf Wunsch im Hintergrund und mit Einschlaf-Timer"
+            "value" : "Festigt wacklige Wörter — im Hintergrund und mit Einschlaf-Timer"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reinforces shaky words first — optionally in the background and with a sleep timer"
+            "value" : "Reinforces shaky words — in the background and with sleep timer"
           }
         }
       },

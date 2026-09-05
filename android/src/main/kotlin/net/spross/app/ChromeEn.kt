@@ -426,8 +426,8 @@ internal object ChromeEn : Chrome {
     override val homeOfferStart = "Let's go!"
     override val homeOfferShortRound = "Just a short one?"
     override val listenTitle = "Hear your words"
-    override val listenSubtitle = "Reinforces shaky words first — optionally in the " +
-        "background and with a sleep timer"
+    override val listenSubtitle = "Reinforces shaky words — in the background and with sleep " +
+        "timer"
     override val listenPause = "Pause"
     override val listenResume = "Resume"
     override val listenSkip = "Next word"
