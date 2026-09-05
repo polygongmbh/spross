@@ -110,4 +110,13 @@ class TrainerLargeNumberTests {
             }
         }
     }
+
+    /** Below zero and past the ceiling every generator hands back the digits, never a throw. */
+    @Test
+    fun outOfRangeValuesFallBackToDigits() {
+        for (lang in Trainer.languages) {
+            assertEquals("-7", Trainer.pack(lang).number(-7).first(), lang)
+            assertEquals("10000000000", Trainer.pack(lang).number(10_000_000_000).first(), lang)
+        }
+    }
 }
