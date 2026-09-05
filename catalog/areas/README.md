@@ -135,6 +135,9 @@ note per reader instead.
 Key a note to a reader's language only where the shared wording will not do — a card that arrives
 before a learner could read the target's own words, and a quirk that exists only because these two
 languages met (Spanish `doler` explained as German's `gefallen`, an idiom's back-translation).
+Where the fact is the target's own and the reader's note only says it at more length, the shared
+wording stays beside it rather than in its place: keyed alone it reaches that one reader and
+leaves every other with nothing.
 
 **Keep a note only if it changes what the learner would say or do**; pure etymology ("wörtl. …")
 is cut, and load-bearing teaching (which word for "rice") is destined to become first-class
