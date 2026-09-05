@@ -34,6 +34,10 @@ import net.spross.kern.trainer.DateReferenceRow
  * drill also accepts and teaches: its short form, its other lexemes (de `Sonnabend`), and
  * what it becomes inside a date where that differs (uk `березня`).
  *
+ * The generated table can say nothing the rows do not carry, so how the language ASSEMBLES
+ * a date — and what trips a learner up doing it — is authored prose under it
+ * (`catalog/dates/<lang>.json` § dateNotes), the numbers page's own shape.
+ *
  * Reading matter, so the CONTENT is the control: a whole row says its learned-side name,
  * and the page discloses that gesture once under its heading instead of growing a speaker
  * on every line.
@@ -49,6 +53,15 @@ fun DateReferenceSection(model: AppModel, content: DateDrillContent, chrome: Chr
     }
     if (audible) TapToHearHint(chrome)
     for (group in groups) KindGroup(group, model, content, chrome)
+    val notes = remember(content) { model.catalog?.dateNotes(content.target, content.source).orEmpty() }
+    if (notes.isNotEmpty()) {
+        OverviewHeading(chrome.commonNotes)
+        OverviewPanel {
+            for (note in notes) {
+                Text(note, style = MaterialTheme.typography.bodyMedium)
+            }
+        }
+    }
 }
 
 /** One bare-name pool — the Sprosse rows above already name the two, so this reuses them. */

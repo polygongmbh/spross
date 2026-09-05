@@ -1,4 +1,18 @@
 {
+ "dateNotes": {
+  "de": [
+   "Wochentags- und Monatsnamen bleiben kleingeschrieben.",
+   "Der Tag ist eine schlichte Grundzahl: el tres de marzo stimmt, el tercero de marzo nicht.",
+   "Der Erste des Monats ist regional geteilt — fast ganz Lateinamerika sagt el primero, Spanien el uno.",
+   "Kommt die Jahreszahl dazu, braucht das Datum ein zweites de: el tres de marzo de dos mil veintiséis."
+  ],
+  "en": [
+   "Weekday and month names stay lowercase.",
+   "The day is a plain cardinal, so el tres de marzo is right and el tercero de marzo is not.",
+   "The first of the month splits by region: most of Latin America says el primero, Spain says el uno.",
+   "Once the year joins, the date needs a second de: el tres de marzo de dos mil veintiséis."
+  ]
+ },
  "weekdays": [
   { "text": "lunes", "abbr": "lun" },
   { "text": "martes", "abbr": "mar" },

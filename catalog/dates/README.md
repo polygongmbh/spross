@@ -35,7 +35,7 @@ The Ukrainian side, carrying what only Ukrainian needs:
   so the parser requires the full set rather than tolerating a hole
   (the `subtitle` rule, for the same reason — a partial calendar reads as a broken drill,
   not as a language that does not use August).
-- `text`, `synonyms`, `variants` and `notes` behave exactly as a realization's do
+- `text`, `synonyms` and `variants` behave exactly as a realization's do
   (`../README.md` § Realization fields): a different lexeme is a synonym and takes its turn as a prompt,
   a spelling is a variant and is only ever accepted.
   Esperanto's x-system twins are variants; German `Sonnabend` is a synonym.
@@ -69,6 +69,19 @@ The Ukrainian side, carrying what only Ukrainian needs:
   for the prompt side of a pair and never for the answer side —
   the frame rule again, and the same registry rule: **file presence is the registry**,
   and a pair drills dates only where both sides carry a file.
+- `dateNotes` — the other root key: what trips a learner up in THIS calendar,
+  two to four lines, keyed by explanation language exactly as `phrases/<lang>.json`'s
+  `numberNotes` is, with the same English fallback and the same lint behind it.
+  It describes the language and not any one name, which is why it sits beside `weekdays`
+  rather than inside a row, and it is where a calendar's irregularities get SAID —
+  the table above it is generated from the drill's own rows and can claim nothing.
+  Being a ROOT key it enters no namespace.
+```json
+{ "dateNotes": {
+    "de": ["Tarehe eröffnet jedes gesprochene Datum."],
+    "en": ["Tarehe opens every spoken date."] },
+  "weekdays": [ "…" ] }
+```
 - An absent `dates/` folder is legal.
 - Nothing here is a concept and nothing here joins a card,
   so a name is not a slug and editing one never restamps a learner's box.

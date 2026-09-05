@@ -17,7 +17,7 @@ import net.spross.kern.model.Language
 internal object DateCalendarParser {
     private const val WEEKDAYS = 7
     private const val MONTHS = 12
-    private val WEEKDAY_KEYS = setOf("text", "synonyms", "variants", "abbr", "dateForm", "notes")
+    private val WEEKDAY_KEYS = setOf("text", "synonyms", "variants", "abbr", "dateForm")
     private val MONTH_KEYS = WEEKDAY_KEYS - "abbr"
 
     private val MARKER = Regex("\\{[^{}]*\\}")
@@ -32,7 +32,7 @@ internal object DateCalendarParser {
 
     fun parse(path: String, text: String, language: Language, declared: Set<Language>): DateCalendar {
         val root = parseJson(path, text).obj(path, "root")
-        root.rejectUnknownKeys(path, "root", setOf("weekdays", "months", "numeric", "patterns"))
+        root.rejectUnknownKeys(path, "root", setOf("dateNotes", "weekdays", "months", "numeric", "patterns"))
         val numeric = root.trimmedString(path, "root", "numeric")
         requireMarkers(path, "numeric", numeric, NUMERIC_MARKERS)
         val patterns = root["patterns"]?.obj(path, "patterns") ?: parseError(path, "missing \"patterns\"")
@@ -47,6 +47,7 @@ internal object DateCalendarParser {
                 date = requirePattern(path, patterns, "date"),
                 dateWithYear = optionalPattern(path, patterns, "dateWithYear"),
             ),
+            notes = notes(path, root, declared),
         )
     }
 
@@ -77,21 +78,25 @@ internal object DateCalendarParser {
                 // its weekday short, so a weekday without an abbr has no prompt to wear.
                 abbr = if (weekday) o.trimmedString(path, where, "abbr") else null,
                 dateForm = dateForm,
-                notes = notes(path, where, o, declared),
             )
         }
     }
 
     private fun notes(
         path: String,
-        where: String,
-        o: JsonObject,
+        root: JsonObject,
         declared: Set<Language>,
-    ): Map<Language, String> =
-        o.stringMap(path, where, "notes").onEach { (reader, note) ->
-            if (reader !in declared) parseError(path, "$where: note for undeclared language \"$reader\"")
-            if (note.isBlank()) parseError(path, "$where: blank note.$reader")
+    ): Map<Language, List<String>> {
+        val rows = root["dateNotes"]?.obj(path, "dateNotes") ?: return emptyMap()
+        return rows.keys.associateWith { reader ->
+            if (reader !in declared) parseError(path, "dateNotes: undeclared language \"$reader\"")
+            val lines = rows.stringList(path, "dateNotes", reader)
+            if (lines.isEmpty()) parseError(path, "dateNotes.$reader: no lines")
+            lines.onEach {
+                if (it.isBlank() || it.trim() != it) parseError(path, "dateNotes.$reader: bad line \"$it\"")
+            }
         }
+    }
 
     private fun forms(path: String, where: String, o: JsonObject, key: String): List<String> =
         o.stringList(path, where, key).onEach {

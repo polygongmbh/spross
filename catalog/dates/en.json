@@ -1,4 +1,18 @@
 {
+ "dateNotes": {
+  "de": [
+   "Wochentags- und Monatsnamen werden großgeschrieben.",
+   "Englisch sagt ein Datum auf zwei Arten, und beide werden gelehrt: March third und the third of March.",
+   "Die of-Reihenfolge braucht Artikel und Präposition zusammen — nur eines wegzulassen ist der häufigste Fehler.",
+   "Das rein numerische Datum nennt zuerst den Monat: 3/9 ist der 3. September und nicht der 9. März."
+  ],
+  "en": [
+   "Weekday and month names are capitalized.",
+   "English says a date two ways and both are taught: March third, and the third of March.",
+   "The of-order needs the article and the preposition together, so dropping just one of the pair is the usual slip.",
+   "The all-digit date reads month first, so 3/9 is September 3rd and not March 9th."
+  ]
+ },
  "weekdays": [
   { "text": "Monday", "abbr": "Mon" },
   { "text": "Tuesday", "abbr": "Tue" },

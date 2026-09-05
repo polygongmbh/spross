@@ -9,6 +9,7 @@
 - More phrases unlock from the word they are built on, so internet, email, word, language, movie and rain land before the sentences that use them.
 - The web numbers drill now offers Esperanto, French and Italian alongside the other languages.
 - The watch quiz speaks each answered tile's verdict to VoiceOver instead of showing correctness in color alone.
+- The calendar page now carries a few lines on what trips a learner up in that language's dates, the way the numbers page does.
 - Swahili dates now read the year as mwaka wa 2026, count their months (Machi is also Mwezi wa Tatu), and accept the short Septemba tisa order.
 - The dates drill no longer asks for a bare day of the month; the day is met inside the dates that use it, and every ladder is one Sprosse shorter.
 - On Android a near miss keeps the checkmark in the answer field, drawn in amber.

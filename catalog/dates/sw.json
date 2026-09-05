@@ -1,4 +1,18 @@
 {
+ "dateNotes": {
+  "de": [
+   "Tarehe eröffnet jedes gesprochene Datum, und der Tag danach ist eine schlichte Grundzahl.",
+   "Der Erste heißt tarehe mosi — ein altes Wort für eins, das sonst kaum noch vorkommt.",
+   "Die Wochentage zählen ab Samstag, deshalb ist Jumatatu der dritte Tag und fällt auf Montag.",
+   "Jeder Monat hat neben dem entlehnten Namen einen gezählten: Machi heißt auch Mwezi wa Tatu."
+  ],
+  "en": [
+   "Tarehe opens every spoken date, and the day after it is a plain cardinal.",
+   "The 1st is tarehe mosi, an archaic word for one that survives almost nowhere else.",
+   "The weekday names count from Saturday, so Jumatatu is day three and falls on Monday.",
+   "Every month has a counted twin beside its borrowed name: Machi is also Mwezi wa Tatu."
+  ]
+ },
  "weekdays": [
   { "text": "Jumatatu", "abbr": "Jtt" },
   { "text": "Jumanne", "abbr": "Jnn" },

@@ -22,6 +22,14 @@ data class DateCalendar(
     /** How this language writes a date in digits, over `{d}`/`{m}`/`{y}` — display only. */
     val numeric: String,
     val patterns: DatePatterns,
+    /**
+     * What trips a learner up in THIS calendar, keyed by the language it is explained in
+     * — the prose under the reference table, and the only place a calendar's irregularities
+     * get SAID. It describes the language rather than any one name, which is why it sits
+     * beside [weekdays] rather than inside a row, exactly as `numberNotes` sits beside the
+     * frames (`catalog/phrases/README.md`).
+     */
+    val notes: Map<Language, List<String>> = emptyMap(),
 )
 
 /** One calendar name, on the realization schema: a synonym is taught, a variant only accepted. */
@@ -39,8 +47,6 @@ data class DateNames(
      * the case, so a language whose date takes some other form needs no second key.
      */
     val dateForm: String? = null,
-    /** Keyed by explanation language, exactly as a realization's notes are. */
-    val notes: Map<Language, String> = emptyMap(),
 )
 
 /**

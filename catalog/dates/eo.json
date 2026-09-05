@@ -1,4 +1,18 @@
 {
+ "dateNotes": {
+  "de": [
+   "Wochentags- und Monatsnamen sind gewöhnliche kleingeschriebene -o-Substantive, keine Eigennamen.",
+   "Nur der Tag ändert seine Form: er bekommt die Ordinalendung -a, der Monat bleibt ein -o-Substantiv.",
+   "Das de zwischen Tag und Monat ist Pflicht, und ohne es ändert sich der Sinn: la unua Majo ist der erste von mehreren Maien.",
+   "Jede Lesart gilt auch im x-System, nauxa ist also so richtig wie naŭa."
+  ],
+  "en": [
+   "Weekday and month names are ordinary lowercase -o nouns, not capitalized proper names.",
+   "Only the day changes shape: it takes the ordinal -a while the month stays an -o noun.",
+   "The de between day and month is required, and dropping it changes the meaning: la unua Majo is the first of several Mays.",
+   "Every reading also grades in the x-system, so nauxa is as right as naŭa."
+  ]
+ },
  "weekdays": [
   { "text": "lundo", "abbr": "lun" },
   { "text": "mardo", "abbr": "mar" },

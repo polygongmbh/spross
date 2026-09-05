@@ -154,7 +154,7 @@ internal object ChromeDe : Chrome {
     override val boxTapToHear = "Wörter sprechen beim Antippen"
     override val boxCardNoAudio = "Kein Ton für dieses Wort"
     override val numbersReference = "Wie diese Sprache zählt"
-    override val numbersNotes = "Darauf kommt es an"
+    override val commonNotes = "Darauf kommt es an"
     override val numberSections = mapOf(
         "base" to "Null bis fünfzehn",
         "tens" to "Die Zehner",

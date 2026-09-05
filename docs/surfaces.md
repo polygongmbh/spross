@@ -147,6 +147,9 @@ auto-advance beats these share with it, are `design.md`'s.
   three weekday wins from carrying a learner past a question they never met. A Sprosse the
   answer language cannot read is absent, not locked: Ukrainian speaks no year inside a
   date, so its ladder simply tops out a Sprosse short.
+  Under the two tables sit two to four authored prose notes on what trips a learner up in
+  that calendar, the Zahlen page's own band: the table is generated from the drill's rows
+  and so can say nothing about the ASSEMBLY around them, which is the half a date is.
   The prompt is the source language's name on the bare Sprossen and the date in the
   source's own digits above them — `Mo, 3.3.` wears the source's weekday abbreviation,
   authored display-only, never graded. REVERSED the numeric Sprossen have a direction of

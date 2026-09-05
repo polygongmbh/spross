@@ -1,4 +1,18 @@
 {
+ "dateNotes": {
+  "de": [
+   "Wochentags- und Monatsnamen bleiben kleingeschrieben.",
+   "Der Tag ist eine schlichte Grundzahl außer dem Ersten, der immer il primo heißt und nie il uno.",
+   "Beginnt die Tageszahl mit einem Vokal, verschmilzt der Artikel: der Achte ist l'otto marzo, nicht il otto marzo.",
+   "Der Artikel fällt weg, sobald ein Wochentag davorsteht: il tre marzo, aber lunedì tre marzo."
+  ],
+  "en": [
+   "Weekday and month names stay lowercase.",
+   "The day is a plain cardinal except the first, which is always il primo and never il uno.",
+   "A day beginning with a vowel elides the article, so the eighth is l'otto marzo rather than il otto marzo.",
+   "The article goes once a weekday stands in front: il tre marzo, but lunedì tre marzo."
+  ]
+ },
  "weekdays": [
   { "text": "lunedì", "abbr": "lun" },
   { "text": "martedì", "abbr": "mar" },

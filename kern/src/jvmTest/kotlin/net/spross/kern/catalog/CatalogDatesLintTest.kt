@@ -112,6 +112,32 @@ class CatalogDatesLintTest {
     }
 
     /**
+     * The calendar page's prose, on `numberNotes`' rule ([CatalogFrameLintTest]): an unknown
+     * reader is prose nobody will ever see, and English is required of every calendar that
+     * can be ANSWERED in, since it is the fallback every other reader lands on and its
+     * absence leaves a heading with nothing under it. A prompt-only calendar owes none —
+     * its overview is the answer side's.
+     */
+    @Test
+    fun dateNotesAreReaderKeyedProseAndEveryDrillableCalendarAuthorsEnglish() {
+        for ((lang, calendar) in catalog.dateCalendars) {
+            for ((reader, lines) in calendar.notes) {
+                val where = "dates/$lang.json dateNotes.$reader"
+                assertTrue(reader in catalog.languages, "$where: unknown reader")
+                assertTrue(lines.size in 2..4, "$where: ${lines.size} lines, wanted two to four")
+                for (line in lines) {
+                    assertTrue(line.isNotBlank() && line.trim() == line, "$where: untrimmed \"$line\"")
+                }
+            }
+            if (!Trainer.supports(lang)) continue
+            assertTrue(
+                catalog.dateNotes(lang, Catalog.FALLBACK_SOURCE).isNotEmpty(),
+                "dates/$lang.json: no English date notes, so every reader's calendar page is empty",
+            )
+        }
+    }
+
+    /**
      * The bridging ruling's own predicate: letting a slip inside an assembled date stay a
      * typo — where the same slip typed as a bare name is refused by name — is safe only
      * while no language has BOTH a two-word `dayMonth` reading AND a distance-1 calendar

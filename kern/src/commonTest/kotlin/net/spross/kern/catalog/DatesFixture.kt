@@ -47,10 +47,11 @@ internal object DatesFixture {
                             "date": { "text": "{weekday}, {day} {month}" } } }
         """.trimIndent(),
         "dates/pt.json" to """
-            { "weekdays": [
-              { "text": "segunda-feira", "abbr": "seg",
-                "notes": { "de": "Der Montag ist der ZWEITE Wochentag — gezählt wird ab Sonntag." },
-                "variants": ["segunda"] },
+            { "dateNotes": {
+                "de": ["Der Montag ist der ZWEITE Wochentag — gezählt wird ab Sonntag.",
+                       "Wochentags- und Monatsnamen bleiben kleingeschrieben."] },
+              "weekdays": [
+              { "text": "segunda-feira", "abbr": "seg", "variants": ["segunda"] },
               { "text": "terça-feira", "abbr": "ter" }, { "text": "quarta-feira", "abbr": "qua" },
               { "text": "quinta-feira", "abbr": "qui" }, { "text": "sexta-feira", "abbr": "sex" },
               { "text": "sábado", "abbr": "sáb", "variants": ["sabado"] },

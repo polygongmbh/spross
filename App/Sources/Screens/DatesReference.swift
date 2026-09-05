@@ -10,6 +10,11 @@ import SprossKern
 /// name stand the forms the drill also accepts and teaches: its short form,
 /// its other lexemes (de `Sonnabend`), and what it becomes inside a date where
 /// that differs (uk `березня`).
+///
+/// The generated table can say nothing the rows do not carry, so how the
+/// language ASSEMBLES a date — and what trips a learner up doing it — is
+/// authored prose under it (`catalog/dates/<lang>.json` § dateNotes), the
+/// numbers page's own shape.
 struct DatesReference: View {
     let model: AppModel
     let content: DateDrillContent
@@ -27,6 +32,38 @@ struct DatesReference: View {
             }
             ForEach(groups, id: \.kind) { group in
                 kindGroup(group)
+            }
+            notesSection
+        }
+    }
+
+    /// Two to four authored lines, picked for the reader — kern falls back to
+    /// English where their own language carries no wording.
+    @ViewBuilder
+    private var notesSection: some View {
+        let lines = model.catalog?.dateNotes(language: target, reader: model.sourceLanguage) ?? []
+        if !lines.isEmpty {
+            VStack(alignment: .leading, spacing: Theme.spacing.md) {
+                DrillHeading("common.notes")
+                VStack(alignment: .leading, spacing: Theme.spacing.md) {
+                    ForEach(Array(lines.enumerated()), id: \.offset) { _, line in
+                        HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.sm) {
+                            Text(verbatim: "·")
+                                .foregroundStyle(Theme.colors.textSecondary)
+                                .accessibilityHidden(true)
+                            Text(verbatim: line)
+                                .font(Theme.typography.subheadline)
+                                .foregroundStyle(Theme.colors.textPrimary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
+                }
+                .padding(Theme.spacing.lg)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(
+                    RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                        .fill(Theme.colors.surface)
+                )
             }
         }
     }

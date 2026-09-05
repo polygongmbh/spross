@@ -132,7 +132,7 @@ fun NumbersOverviewScreen(model: AppModel) {
             model.catalog?.numberNotes(language, stamp.source).orEmpty()
         }
         if (notes.isNotEmpty()) {
-            OverviewHeading(chrome.numbersNotes)
+            OverviewHeading(chrome.commonNotes)
             OverviewPanel {
                 for (note in notes) {
                     Text(note, style = MaterialTheme.typography.bodyMedium)

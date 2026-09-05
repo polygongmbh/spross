@@ -1,4 +1,18 @@
 {
+ "dateNotes": {
+  "de": [
+   "Wochentags- und Monatsnamen werden großgeschrieben wie jedes andere deutsche Substantiv.",
+   "Der Tag ist eine Ordnungszahl, deren Endung dem Fall folgt: der dritte März auf einem bloßen Datum, am dritten März, sobald etwas davorsteht.",
+   "Samstag und Januar haben regionale Zwillinge, die man wirklich hört: Sonnabend im Norden, Jänner in Österreich.",
+   "Die Jahreszahl wird einfach angehängt, ohne Verbindungswort zum Monat."
+  ],
+  "en": [
+   "Weekday and month names are capitalized, like every other German noun.",
+   "The day is an ordinal whose ending follows its case: der dritte März on a bare date, am dritten März once something governs it.",
+   "Samstag and Januar have regional twins a learner will genuinely hear: Sonnabend across the north, Jänner in Austria.",
+   "The year is simply appended, with no word joining it to the month."
+  ]
+ },
  "weekdays": [
   { "text": "Montag", "abbr": "Mo" },
   { "text": "Dienstag", "abbr": "Di" },

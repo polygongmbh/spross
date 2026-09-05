@@ -241,13 +241,9 @@ then open design work, then what waits on someone else, grouped by who that is.
   a variant (`catalog/dates/it.json`) — elision-aware date patterns in the engine, or wait for
   an Italian native's ruling on `il otto` vs `l'otto` and the weekday article
   (`docs/date-readings.md:88`)?
-- Dates `notes` parse and lint but reach no screen (`DateReferenceRow` carries no note slot,
-  `kern/.../trainer/DateDrillTask.kt`), and the one note the slot exists for — Swahili
-  weekdays count from Saturday (⚠ `docs/date-readings.md` § Swahili) — is set-level etymology
-  `catalog/areas/README.md:139-142` cuts: render `notes` on the reference row anyway, remove
-  the field from the dates schema (parser + `catalog/dates/README.md:38`), or replace it with
-  a calendar-level hint under the table heading, a ruling that also settles
-  `CountryAtlas.notes`, parsed and never shown?
+- `CountryAtlas.notes` parses and reaches no screen, the shape the dates calendar just
+  answered with a calendar-level `dateNotes` band (`catalog/dates/README.md`) — render the
+  atlas' on its reference row, drop the field, or give the atlas page its own prose band?
 - `life-death` ships 5 concepts and `people/to-be-born` is the obvious sixth, but moving it
   thins `people`'s family block — does this stay a watch note, or go until a seventh candidate
   (`funeral`? `grave`? `to-grow-up`?) turns up?

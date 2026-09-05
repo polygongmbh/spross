@@ -1,4 +1,18 @@
 {
+ "dateNotes": {
+  "de": [
+   "Wochentags- und Monatsnamen bleiben kleingeschrieben.",
+   "Der Tag ist eine schlichte Grundzahl außer dem Ersten, der immer le premier heißt und nie le un.",
+   "Der Artikel gehört zum bloßen Datum und fällt weg, sobald ein Wochentag davorsteht: le trois mars, aber lundi trois mars.",
+   "Die Jahreszahl wird einfach angehängt, ohne Verbindungswort zum Monat."
+  ],
+  "en": [
+   "Weekday and month names stay lowercase.",
+   "The day is a plain cardinal except the first, which is always le premier and never le un.",
+   "The article belongs to a bare date and goes the moment a weekday stands in front: le trois mars, but lundi trois mars.",
+   "The year is simply appended, with no word joining it to the month."
+  ]
+ },
  "weekdays": [
   { "text": "lundi", "abbr": "lun" },
   { "text": "mardi", "abbr": "mar" },

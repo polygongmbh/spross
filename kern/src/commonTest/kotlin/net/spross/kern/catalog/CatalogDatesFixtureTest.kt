@@ -63,11 +63,24 @@ class CatalogDatesFixtureTest {
     }
 
     @Test
-    fun variantsAndNotesFollowTheRealizationSchema() {
+    fun variantsFollowTheRealizationSchema() {
         val pt = assertNotNull(catalog.dateNames("pt"))
         assertEquals(listOf("segunda"), pt.weekdays.first().variants)
-        assertEquals(setOf("de"), pt.weekdays.first().notes.keys)
         assertEquals(listOf("sabado"), pt.weekdays[5].variants)
+    }
+
+    /**
+     * The prose is the calendar's own, not a name's, and the reader picks it with English
+     * as the fallback — `numberNotes`' rule, so a reader the file does not address still
+     * gets the page rather than a heading with nothing under it.
+     */
+    @Test
+    fun dateNotesAreTheCalendarsOwnAndFallBackToEnglish() {
+        val pt = assertNotNull(catalog.dateNames("pt"))
+        assertEquals(setOf("de"), pt.notes.keys)
+        assertEquals(2, catalog.dateNotes("pt", "de").size)
+        assertTrue(catalog.dateNotes("pt", "en").isEmpty(), "no English authored, no fallback to find")
+        assertTrue(catalog.dateNotes("uk", "de").isEmpty(), "a calendar may author none at all")
     }
 
     @Test

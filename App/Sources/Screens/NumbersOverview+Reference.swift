@@ -37,7 +37,7 @@ extension NumbersOverview {
         let lines = model.catalog?.numberNotes(language: language, reader: model.sourceLanguage) ?? []
         if !lines.isEmpty {
             VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-                heading("numbers.notes")
+                heading("common.notes")
                 VStack(alignment: .leading, spacing: Theme.spacing.md) {
                     ForEach(Array(lines.enumerated()), id: \.offset) { _, line in
                         HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.sm) {

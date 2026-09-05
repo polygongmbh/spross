@@ -317,6 +317,12 @@ class Catalog internal constructor(
         return byReader[reader] ?: byReader[FALLBACK_SOURCE].orEmpty()
     }
 
+    /** [numberNotes] for the calendar, out of `dates/<lang>.json`'s own `dateNotes`. */
+    fun dateNotes(language: Language, reader: Language): List<String> {
+        val byReader = dateCalendars[language]?.notes ?: return emptyList()
+        return byReader[reader] ?: byReader[FALLBACK_SOURCE].orEmpty()
+    }
+
     /**
      * Targets learnable from [source]: every other language with ≥ 50 joinable concepts.
      * Like [join], this answers only for a language the catalog declares — an undeclared

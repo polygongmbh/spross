@@ -1760,6 +1760,23 @@
         }
       }
     },
+    "common.notes" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darauf kommt es an"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What to watch out for"
+          }
+        }
+      },
+      "comment" : "Heads the authored prose under a drill's generated reference table — the numbers page and the calendar ask the same question of their language."
+    },
     "common.reset" : {
       "localizations" : {
         "de" : {
@@ -4407,22 +4424,6 @@
         }
       },
       "comment" : "%s = the place word, the first time a length appears"
-    },
-    "numbers.notes" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darauf kommt es an"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "What to watch out for"
-          }
-        }
-      }
     },
     "numbers.reference" : {
       "localizations" : {
