@@ -135,7 +135,7 @@ class LetterDrillAvailabilityTest {
      */
     @Test
     fun aRecordingAsksALetterWhereNoVoiceCan() {
-        assertEquals(listOf("і", "иш", "дз"), report(hasVoice = false).promptableRefs)
+        assertEquals(listOf("і", "иш"), report(hasVoice = false).promptableRefs)
         assertEquals(listOf("і", "и", "иш", "дз"), report(hasVoice = true).promptableRefs)
     }
 
@@ -153,19 +153,22 @@ class LetterDrillAvailabilityTest {
     }
 
     /**
-     * QUIRK, shared by both platforms and deliberately pinned: the `exampleText` fallback is not
-     * audibility-filtered, so an escape-hatch row stays promptable on a device that cannot say
-     * it — and the drill then shows a dead speaker.
+     * The `exampleText` escape hatch passes the same hearing test as a swept word: unrecorded,
+     * it is asked only where a voice can say it, so no row is ever asked with a dead speaker.
      */
     @Test
-    fun theExampleTextFallbackIsNotFilteredByWhatCanBeHeard() {
+    fun anEscapeHatchNobodyCanSayIsNotAsked() {
         val silent = report(hasVoice = false)
         val hatch = assertNotNull(silent.alphabet).entry("дз")!!
+        assertEquals(emptyList<LetterDrill.AlphabetExampleWord>(), silent.examples(hatch))
+        assertFalse("дз" in silent.promptableRefs)
+
+        val voiced = report(hasVoice = true)
         assertEquals(
             listOf(LetterDrill.AlphabetExampleWord("дзеркало", null, false)),
-            silent.examples(hatch),
+            voiced.examples(hatch),
         )
-        assertTrue("дз" in silent.promptableRefs)
+        assertTrue("дз" in voiced.promptableRefs)
 
         // A row with no example and no hatch simply has nothing to gap.
         val barren = silent.alphabet!!.entry("щ")!!

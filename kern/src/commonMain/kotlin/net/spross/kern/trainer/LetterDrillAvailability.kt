@@ -136,11 +136,8 @@ object LetterDrillAvailability {
     /**
      * Every word kern may gap for an entry, WITH its provenance: a slug only where the target
      * language realizes the concept itself, so an `exampleText` escape hatch can never claim
-     * that concept's recording.
-     *
-     * QUIRK, shared by both platforms and kept deliberately: the `exampleText` fallback is NOT
-     * audibility-filtered. An inaudible escape-hatch row stays promptable, and the drill then
-     * shows a dead speaker. Filed in `docs/backlog.md` rather than fixed inside a port.
+     * that concept's recording. The escape hatch is held to the same hearing test as the
+     * swept words: a row nothing on this device can say is not asked.
      */
     fun exampleWords(
         entry: AlphabetEntry,
@@ -154,6 +151,7 @@ object LetterDrillAvailability {
             .map { LetterDrill.AlphabetExampleWord(it.text, it.slug, it.slug in known) }
         if (swept.isNotEmpty()) return swept
         return entry.exampleText
+            ?.takeIf { audible(it, language, catalog, hasVoice) }
             ?.let { listOf(LetterDrill.AlphabetExampleWord(it, null, false)) }
             .orEmpty()
     }
