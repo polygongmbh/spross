@@ -121,7 +121,7 @@ internal object ChromeDe : Chrome {
     override val legalContactLabel = "Kontakt"
     override val legalPrivacy = "Datenschutzerklärung"
     override val trainerHubTitle = "Sprossen"
-    override val trainerHubSubtitle = "Spielerisches Üben — schau rein, so oft du magst"
+    override val trainerHubSubtitle = "Spielerisches Üben — so oft du magst"
     override val a11ySuffixPractice = " üben, auf %s"
     override val trainerSkillLetters = "Buchstaben"
     override val lettersAskHear = "Welcher Buchstabe ist das?"
