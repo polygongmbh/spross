@@ -11,7 +11,7 @@
  { "slug": "lightning", "kind": "noun", "emoji": "🌩️" },
  { "slug": "humid", "kind": "adjective" },
  { "slug": "hows-the-weather-today", "kind": "phrase", "emoji": "🌤️", "components": ["weather"] },
- { "slug": "its-raining", "kind": "phrase", "emoji": "🌧️", "components": [] },
+ { "slug": "its-raining", "kind": "phrase", "emoji": "🌧️", "components": ["rain"] },
  { "slug": "the-rain-has-stopped", "kind": "phrase", "emoji": "🌦️", "components": ["rain"] },
  { "slug": "the-sun-is-shining", "kind": "phrase", "emoji": "☀️", "components": ["sun"] },
  { "slug": "what-a-beautiful-day", "kind": "phrase", "emoji": "🌈", "components": [] },

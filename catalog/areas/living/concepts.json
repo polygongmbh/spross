@@ -33,8 +33,8 @@
  { "slug": "story", "kind": "noun" },
  { "slug": "to-listen-to-music", "kind": "verb", "emoji": "🎵" },
  { "slug": "to-water-plants", "kind": "verb", "emoji": "🪴" },
- { "slug": "come-sit-with-me", "kind": "phrase", "emoji": "💺", "components": [] },
- { "slug": "shall-we-watch-a-movie", "kind": "phrase", "emoji": "🎬", "components": [] },
+ { "slug": "come-sit-with-me", "kind": "phrase", "emoji": "💺", "components": ["to-sit"] },
+ { "slug": "shall-we-watch-a-movie", "kind": "phrase", "emoji": "🎬", "components": ["movie"] },
  { "slug": "lets-hang-the-picture", "kind": "phrase", "emoji": "🖼️", "components": ["picture"] },
  {
   "slug": "the-curtains-hang-over-the-window",
