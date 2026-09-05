@@ -27,7 +27,6 @@
  { "slug": "to-learn-by-heart", "kind": "verb", "emoji": "🧠" },
  { "slug": "to-raise-hand", "kind": "verb", "emoji": "✋" },
  { "slug": "exercise-book", "kind": "noun", "emoji": "📒" },
- { "slug": "course-book", "kind": "noun", "emoji": "📕" },
  { "slug": "class-schedule", "kind": "noun", "emoji": "🗓️" },
  { "slug": "to-study", "kind": "verb", "emoji": "📚" },
  { "slug": "to-teach", "kind": "verb", "emoji": "📣" },

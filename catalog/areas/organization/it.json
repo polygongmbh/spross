@@ -13,9 +13,7 @@
    }
   },
   "deadline": { "text": "scadenza", "variants": ["termine", "data di scadenza"], "grammar": { "gender": "la" } },
-  "confirmation": { "text": "conferma", "grammar": { "gender": "la" } },
   "plan": { "text": "piano", "variants": ["programma"], "grammar": { "gender": "il" } },
-  "waiting-time": { "text": "tempo di attesa", "grammar": { "gender": "il" } },
   "to-meet": { "text": "incontrarsi" },
   "to-invite": { "text": "invitare" },
   "to-arrange": {

@@ -15,7 +15,6 @@
   "key": { "text": "chiave", "grammar": { "gender": "la" } },
   "jacket": { "text": "giacca", "grammar": { "gender": "la", "plural": "giacche" } },
   "coat": { "text": "cappotto", "grammar": { "gender": "il" } },
-  "shoe-rack": { "text": "scarpiera", "grammar": { "gender": "la" } },
   "umbrella": { "text": "ombrello", "variants": ["l'ombrello"], "grammar": { "gender": "l'" } },
   "hat": {
    "text": "berretto",

@@ -29,7 +29,6 @@
   "police": { "text": "polisi", "grammar": { "plural": "=" } },
   "cinema": { "text": "sinema", "grammar": { "plural": "=" } },
   "bridge": { "text": "daraja", "grammar": { "plural": "madaraja" } },
-  "where-is-the-post-office": { "text": "Posta iko wapi?" },
   "is-there-a-bank-here": { "text": "Kuna benki hapa?" },
   "im-looking-for-a-hotel": { "text": "Natafuta hoteli." },
   "i-live-in-this-neighborhood": { "text": "Ninaishi katika mtaa huu." }

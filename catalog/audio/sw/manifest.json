@@ -2093,17 +2093,6 @@
       "snr": 57.0,
       "source": "Sw-ke-kabisa.flac"
     },
-    "confirmation": {
-      "author": "Waithera Were",
-      "file": "confirmation.mp3",
-      "gain": -9.2,
-      "gainPhone": -14.3,
-      "lead": 50,
-      "matches": "uthibitisho",
-      "sha256": "0f5da4f0715e45093feb4f0c7fa633fc1b8e50828de1ce64473f08a0880beca8",
-      "snr": 48.9,
-      "source": "Sw-ke-uthibitisho.flac"
-    },
     "contract": {
       "author": "Waithera Were",
       "file": "contract.mp3",
@@ -2551,17 +2540,6 @@
       "sha256": "45ead773d3cebab2269ac9e15ad5d9d2c2cfe2bc99d93589f0dca8f16e18584d",
       "snr": 50.9,
       "source": "Sw-ke-injini.flac"
-    },
-    "equal": {
-      "author": "Waithera Were",
-      "file": "equal.mp3",
-      "gain": -6.1,
-      "gainPhone": -14.0,
-      "lead": 1,
-      "matches": "sawasawa",
-      "sha256": "f3e1dd4057b23772e22a519210a86ec4b55fe3d5e1f79dd532530658fe899572",
-      "snr": 55.0,
-      "source": "Sw-ke-sawasawa.flac"
     },
     "evening": {
       "author": "Waithera Were",

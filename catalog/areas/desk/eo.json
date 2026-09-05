@@ -23,7 +23,6 @@
   "notebook": { "text": "notlibro", "variants": ["notkajero", "notbloko"] },
   "printer": { "text": "presilo", "variants": ["printilo"] },
   "socket": { "text": "ŝtopilingo", "notes": { "de": "ŝtopilingo ist die Dose, ŝtopilo der Stecker." } },
-  "office-chair": { "text": "oficeja seĝo", "variants": ["labora seĝo"] },
   "to-work": { "text": "labori" },
   "to-type": { "text": "tajpi" },
   "to-print": { "text": "presi", "variants": ["printi"] },

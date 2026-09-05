@@ -75,11 +75,6 @@
     "de": "Der laufende Unterricht heißt les cours: j'ai cours aujourd'hui = heute habe ich Unterricht."
    }
   },
-  "course-book": {
-   "text": "manuel",
-   "variants": ["manuel scolaire", "livre de cours"],
-   "grammar": { "gender": "le" }
-  },
   "page": { "text": "page", "grammar": { "gender": "la" } },
   "grade": { "text": "note", "grammar": { "gender": "la" } },
   "to-correct": { "text": "corriger" },

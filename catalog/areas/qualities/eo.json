@@ -55,7 +55,6 @@
   "same": { "text": "sama", "variants": ["samaj"] },
   "similar": { "text": "simila", "variants": ["similaj"] },
   "opposite": { "text": "kontraŭa", "variants": ["kontraŭaj"] },
-  "equal": { "text": "egala", "variants": ["egalaj"] },
   "to-compare": { "text": "kompari" },
   "pretty": { "text": "beleta", "variants": ["belete"] },
   "beautiful": { "text": "bela", "variants": ["bele"] },

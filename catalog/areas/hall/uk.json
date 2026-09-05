@@ -7,7 +7,6 @@
   "key": { "text": "ключ" },
   "jacket": { "text": "куртка" },
   "coat": { "text": "пальто", "grammar": { "plural": "пальта" } },
-  "shoe-rack": { "text": "полиця для взуття", "grammar": { "plural": "полиці для взуття" } },
   "umbrella": { "text": "парасолька" },
   "hat": { "text": "шапка" },
   "mailbox": { "text": "поштова скринька", "grammar": { "plural": "поштові скриньки" } },

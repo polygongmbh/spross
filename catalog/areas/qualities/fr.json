@@ -93,7 +93,6 @@
   },
   "similar": { "text": "similaire", "variants": ["similaires"] },
   "opposite": { "text": "opposé", "synonyms": ["contraire"], "variants": ["opposée"] },
-  "equal": { "text": "égal", "variants": ["égale", "égaux"] },
   "to-compare": { "text": "comparer" },
   "pretty": { "text": "joli", "variants": ["jolie"] },
   "beautiful": { "text": "beau", "variants": ["belle", "bel"] },

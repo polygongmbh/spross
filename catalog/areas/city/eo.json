@@ -17,7 +17,6 @@
   "police": { "text": "polico" },
   "cinema": { "text": "kinejo", "variants": ["kino"] },
   "bridge": { "text": "ponto" },
-  "where-is-the-post-office": { "text": "Kie estas la poŝtoficejo?", "variants": ["Kie estas la poŝtejo?"] },
   "is-there-a-bank-here": {
    "text": "Ĉu estas banko ĉi tie?",
    "variants": ["Ĉu ĉi tie estas banko?", "Ĉu troviĝas banko ĉi tie?"]

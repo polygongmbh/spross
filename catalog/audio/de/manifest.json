@@ -5566,17 +5566,6 @@
       "snr": 87.2,
       "source": "De-völlig.ogg"
     },
-    "confirmation": {
-      "author": "Jeuwre",
-      "file": "confirmation.mp3",
-      "gain": -3.0,
-      "gainPhone": -5.4,
-      "lead": 347,
-      "matches": "bestätigung",
-      "sha256": "6a88cf144cd1c123049cfaad316088ab0323365ab635c0e76e7d8ba39bfe3587",
-      "snr": 87.0,
-      "source": "De-Bestätigung.ogg"
-    },
     "contract": {
       "author": "Jeuwre",
       "file": "contract.mp3",
@@ -5620,17 +5609,6 @@
       "sha256": "e44b453a8043bfc87ab551ca9ff474561b6690c120d3bd445e4168c865a29475",
       "snr": 57.6,
       "source": "De-Kurs.ogg"
-    },
-    "course-book": {
-      "author": "Jeuwre",
-      "file": "course-book.mp3",
-      "gain": -2.7,
-      "gainPhone": 2.7,
-      "lead": 440,
-      "matches": "kursbuch",
-      "sha256": "96ead5b2c3bf49a016d583b7453e4d34acef6c18abc84d076e8b058820e14398",
-      "snr": 85.1,
-      "source": "De-Kursbuch.ogg"
     },
     "cream": {
       "author": "Jeuwre",
@@ -6192,17 +6170,6 @@
       "sha256": "a5b835fe24e1af9abdde84782e42f5c93cd38d2659c6f776d8a3093f2de782fe",
       "snr": 45.6,
       "source": "De-Eingang.ogg"
-    },
-    "equal": {
-      "author": "Jeuwre",
-      "file": "equal.mp3",
-      "gain": -2.6,
-      "gainPhone": -0.5,
-      "lead": 386,
-      "matches": "gleichwertig",
-      "sha256": "24e8f4a0c90c68f7f9654ed33bbddb2ce758f98964fc4ead8992c2f5641d7111",
-      "snr": 86.5,
-      "source": "De-gleichwertig.ogg"
     },
     "evening": {
       "author": "Jeuwre",
@@ -8329,17 +8296,6 @@
       "snr": 86.5,
       "source": "De-Amt.ogg"
     },
-    "office-chair": {
-      "author": "Jeuwre",
-      "file": "office-chair.mp3",
-      "gain": -3.3,
-      "gainPhone": 0.5,
-      "lead": 94,
-      "matches": "bürostuhl",
-      "sha256": "4f397bef645f7a246b70c78f1268f5865f5543951b18ccf5634ccdf5eaedd857",
-      "snr": 75.7,
-      "source": "De-Bürostuhl.ogg"
-    },
     "office-hours": {
       "author": "Jeuwre",
       "file": "office-hours.mp3",
@@ -9394,17 +9350,6 @@
       "snr": 86.4,
       "source": "De-schuh.ogg"
     },
-    "shoe-rack": {
-      "author": "Jeuwre",
-      "file": "shoe-rack.mp3",
-      "gain": -2.9,
-      "gainPhone": -2.7,
-      "lead": 410,
-      "matches": "schuhregal",
-      "sha256": "bce836200a4bce823ae819bf7d7db1050c845aab180f48f1a229448bbb210068",
-      "snr": 87.1,
-      "source": "De-Schuhregal.ogg"
-    },
     "shop-assistant-f": {
       "author": "Jeuwre",
       "file": "shop-assistant-f.mp3",
@@ -9416,17 +9361,6 @@
       "snr": 86.7,
       "source": "De-Verkäuferin.ogg"
     },
-    "shopping-bag": {
-      "author": "Jeuwre",
-      "file": "shopping-bag.mp3",
-      "gain": -0.4,
-      "gainPhone": -0.3,
-      "lead": 264,
-      "matches": "einkaufstasche",
-      "sha256": "21afab016e1cb4f2b0de760f1d4f76e5258b5fb8c6021b48001d24e8cdebd23d",
-      "snr": 86.0,
-      "source": "De-Einkaufstasche.ogg"
-    },
     "shopping-cart": {
       "author": "Jeuwre",
       "file": "shopping-cart.mp3",
@@ -9436,17 +9370,6 @@
       "sha256": "1d4d34448f87416a872e8cd095100a280aeeef31dc10a69f68b953213db522b3",
       "snr": 86.2,
       "source": "De-Einkaufswagen.ogg"
-    },
-    "shopping-list": {
-      "author": "Jeuwre",
-      "file": "shopping-list.mp3",
-      "gain": -1.3,
-      "gainPhone": -2.1,
-      "lead": 347,
-      "matches": "einkaufsliste",
-      "sha256": "c815c7ce35c8cb1434f79f3da0860cd9d7cc48896b2211cb9ad13128a2cdb4c0",
-      "snr": 86.8,
-      "source": "De-Einkaufsliste.ogg"
     },
     "short": {
       "author": "Kampy",
@@ -12121,17 +12044,6 @@
       "sha256": "cfab4a44494caf533c38f59f9fc2254199e433606f1659fa4de2e132a1b4ddef",
       "snr": 87.4,
       "source": "De-Wartezimmer.ogg"
-    },
-    "waiting-time": {
-      "author": "Jeuwre",
-      "file": "waiting-time.mp3",
-      "gain": -1.1,
-      "gainPhone": -0.7,
-      "lead": 386,
-      "matches": "wartezeit",
-      "sha256": "9e091ec01782e3230b431076fffca18c3db4c050b54dfe81d3cc43fbdcbdb24f",
-      "snr": 86.7,
-      "source": "De-Wartezeit.ogg"
     },
     "wall": {
       "author": "Jeuwre",

@@ -13,7 +13,6 @@
   "key": { "text": "ŝlosilo" },
   "jacket": { "text": "jako" },
   "coat": { "text": "mantelo" },
-  "shoe-rack": { "text": "ŝuobreto", "variants": ["ŝubreto", "breto por ŝuoj"] },
   "umbrella": { "text": "ombrelo", "variants": ["pluvombrelo"] },
   "hat": {
    "text": "ĉapo",

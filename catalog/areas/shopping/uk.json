@@ -8,19 +8,16 @@
   "shop-assistant": { "text": "продавець", "grammar": { "plural": "продавці" } },
   "shop-assistant-f": { "text": "продавчиня", "variants": ["продавщиця"] },
   "shopping-cart": { "text": "візок", "grammar": { "plural": "візки" } },
-  "shopping-bag": { "text": "сумка для покупок" },
   "offer": {
    "text": "знижка",
    "variants": ["акція"],
    "notes": { "de": "знижка ist der Preisnachlass; акція heißt im Handel die Aktion, sonst die Aktie." }
   },
-  "shopping-list": { "text": "список покупок" },
   "size": { "text": "розмір" },
   "to-shop": { "text": "ходити за покупками" },
   "store": { "text": "магазин" },
   "open": { "text": "відчинений", "variants": ["відчинена", "відчинене"], "synonyms": ["відкритий"] },
   "the-store-is-still-open": { "text": "Магазин ще відчинений." },
-  "do-you-have-this-in-my-size": { "text": "У вас є це мого розміру?" },
-  "where-is-the-checkout": { "text": "Де каса?" }
+  "do-you-have-this-in-my-size": { "text": "У вас є це мого розміру?" }
  }
 }

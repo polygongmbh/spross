@@ -70,11 +70,6 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "Meist im Singular: oggi ho lezione = heute habe ich Unterricht." }
   },
-  "course-book": {
-   "text": "libro di testo",
-   "variants": ["manuale", "libro del corso"],
-   "grammar": { "gender": "il" }
-  },
   "page": { "text": "pagina", "grammar": { "gender": "la" } },
   "grade": { "text": "voto", "grammar": { "gender": "il" } },
   "to-correct": { "text": "correggere" },

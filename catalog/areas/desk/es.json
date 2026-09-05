@@ -35,7 +35,6 @@
    "grammar": { "gender": "el" },
    "notes": { "de": "enchufe ist die Steckdose und der Stecker zugleich." }
   },
-  "office-chair": { "text": "silla de oficina", "variants": ["silla de escritorio"], "grammar": { "gender": "la" } },
   "to-work": { "text": "trabajar" },
   "to-type": { "text": "teclear", "variants": ["mecanografiar", "escribir a máquina"] },
   "to-print": { "text": "imprimir" },

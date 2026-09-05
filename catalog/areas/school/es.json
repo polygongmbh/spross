@@ -60,11 +60,6 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "Meist im Singular: hoy tengo clase = heute habe ich Unterricht." }
   },
-  "course-book": {
-   "text": "libro de texto",
-   "variants": ["manual", "libro del curso"],
-   "grammar": { "gender": "el" }
-  },
   "page": { "text": "página", "grammar": { "gender": "la" } },
   "grade": { "text": "nota", "grammar": { "gender": "la" } },
   "to-correct": { "text": "corregir" },

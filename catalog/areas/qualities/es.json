@@ -81,7 +81,6 @@
   },
   "similar": { "text": "parecido", "synonyms": ["similar"], "variants": ["parecida"] },
   "opposite": { "text": "opuesto", "synonyms": ["contrario"], "variants": ["opuesta", "contraria"] },
-  "equal": { "text": "igual", "variants": ["iguales"] },
   "to-compare": { "text": "comparar" },
   "pretty": { "text": "bonito", "variants": ["bonita"] },
   "beautiful": { "text": "hermoso", "variants": ["hermosa"] },

@@ -7,7 +7,6 @@
   "key": { "text": "key" },
   "jacket": { "text": "jacket" },
   "coat": { "text": "coat" },
-  "shoe-rack": { "text": "shoe rack" },
   "umbrella": { "text": "umbrella" },
   "hat": { "text": "hat" },
   "mailbox": { "text": "mailbox", "grammar": { "plural": "mailboxes" } },

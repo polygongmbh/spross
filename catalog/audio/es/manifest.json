@@ -2314,17 +2314,6 @@
       "snr": 46.2,
       "source": "LL-Q1321 (spa)-Marreromarco-completamente.wav"
     },
-    "confirmation": {
-      "author": "Marreromarco",
-      "file": "confirmation.mp3",
-      "gain": 1.1,
-      "gainPhone": -2.1,
-      "lead": 216,
-      "matches": "confirmación",
-      "sha256": "c10b6e7d81762206474955beb0589da0f13267600d3bcc10107e21fc121bcdea",
-      "snr": 54.3,
-      "source": "LL-Q1321 (spa)-Marreromarco-confirmación.wav"
-    },
     "contract": {
       "author": "Marreromarco",
       "file": "contract.mp3",
@@ -2874,17 +2863,6 @@
       "sha256": "142215fe4063671c423c4b0b67401c0cfc7c83ca8ffadf285f10fe06767ff3e2",
       "snr": 51.6,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-entrada.wav"
-    },
-    "equal": {
-      "author": "Marreromarco",
-      "file": "equal.mp3",
-      "gain": 0.9,
-      "gainPhone": 4.1,
-      "lead": 210,
-      "matches": "igual",
-      "sha256": "025d176579b659c0445517c49e47ea9315411a132b1f4ef80ac0e40eb20bcc53",
-      "snr": 52.6,
-      "source": "LL-Q1321 (spa)-Marreromarco-igual.wav"
     },
     "evening": {
       "author": "AdrianAbdulBaha",
@@ -5667,17 +5645,6 @@
       "sha256": "c07a433e838062e50edaf3d5733bf51de1337ad5353af6866f33c01ed270f114",
       "snr": 68.9,
       "source": "LL-Q1321 (spa)-Rodrigo5260-zapato.wav"
-    },
-    "shoe-rack": {
-      "author": "AdrianAbdulBaha",
-      "file": "shoe-rack.mp3",
-      "gain": 7.0,
-      "gainPhone": 2.2,
-      "lead": 160,
-      "matches": "zapatero",
-      "sha256": "b711d0956f3a795503536d41265dee9a07c2283b122a7f0ad7edffbfdb6b9975",
-      "snr": 56.0,
-      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-zapatero.wav"
     },
     "shop-assistant": {
       "author": "Akhram",

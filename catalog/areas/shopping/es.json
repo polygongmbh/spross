@@ -8,9 +8,7 @@
   "shop-assistant": { "text": "dependiente", "synonyms": ["vendedor"], "grammar": { "gender": "el" } },
   "shop-assistant-f": { "text": "dependienta", "synonyms": ["vendedora"], "grammar": { "gender": "la" } },
   "shopping-cart": { "text": "carrito", "grammar": { "gender": "el" }, "variants": ["carrito de la compra"] },
-  "shopping-bag": { "text": "bolsa de la compra", "grammar": { "gender": "la" } },
   "offer": { "text": "oferta", "grammar": { "gender": "la" } },
-  "shopping-list": { "text": "lista de la compra", "grammar": { "gender": "la" } },
   "size": {
    "text": "talla",
    "grammar": { "gender": "la" },
@@ -26,7 +24,6 @@
   "store": { "text": "tienda", "grammar": { "gender": "la" } },
   "open": { "text": "abierto", "variants": ["abierta"] },
   "the-store-is-still-open": { "text": "La tienda todavía está abierta." },
-  "do-you-have-this-in-my-size": { "text": "¿Lo tiene en mi talla?", "variants": ["¿Lo tienes en mi talla?"] },
-  "where-is-the-checkout": { "text": "¿Dónde está la caja?" }
+  "do-you-have-this-in-my-size": { "text": "¿Lo tiene en mi talla?", "variants": ["¿Lo tienes en mi talla?"] }
  }
 }

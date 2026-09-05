@@ -21,7 +21,6 @@
   "emoji": "↩️",
   "components": ["to-turn", "corner"]
  },
- { "slug": "where-is-the-exit", "kind": "phrase", "components": ["exit"] },
  { "slug": "how-do-i-get-to-the-station", "kind": "phrase", "emoji": "🚉", "components": [] },
  { "slug": "im-lost", "kind": "phrase", "components": [] }
 ]

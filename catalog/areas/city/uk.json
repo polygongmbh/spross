@@ -17,7 +17,6 @@
   "police": { "text": "поліція" },
   "cinema": { "text": "кінотеатр", "variants": ["кіно"] },
   "bridge": { "text": "міст", "grammar": { "plural": "мости" } },
-  "where-is-the-post-office": { "text": "Де пошта?" },
   "is-there-a-bank-here": { "text": "Тут є банк?" },
   "im-looking-for-a-hotel": { "text": "Я шукаю готель." },
   "i-live-in-this-neighborhood": { "text": "Я живу в цьому районі." }

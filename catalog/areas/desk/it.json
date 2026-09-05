@@ -32,7 +32,6 @@
    "grammar": { "gender": "la" },
    "notes": { "de": "la presa ist die Steckdose, la spina der Stecker." }
   },
-  "office-chair": { "text": "sedia da ufficio", "variants": ["poltrona da ufficio"], "grammar": { "gender": "la" } },
   "to-work": { "text": "lavorare" },
   "to-type": { "text": "digitare", "variants": ["battere a macchina", "scrivere a macchina"] },
   "to-print": { "text": "stampare" },

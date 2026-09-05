@@ -28,7 +28,6 @@
  { "slug": "socket", "kind": "noun", "emoji": "🔌" },
  { "slug": "printer", "kind": "noun", "emoji": "🖨️" },
  { "slug": "headphones", "kind": "noun", "emoji": "🎧" },
- { "slug": "office-chair", "kind": "noun", "emoji": "💺" },
  { "slug": "broken", "kind": "adjective" },
  { "slug": "to-repair", "kind": "verb", "emoji": "🔧" },
  { "slug": "feierabend", "kind": "noun", "emoji": "🎉" },

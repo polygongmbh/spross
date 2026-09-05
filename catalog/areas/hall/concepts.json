@@ -30,7 +30,6 @@
  { "slug": "glove", "kind": "noun", "emoji": "🧤" },
  { "slug": "doorbell", "kind": "noun", "emoji": "🔔" },
  { "slug": "to-set-off", "kind": "verb", "emoji": "👣" },
- { "slug": "shoe-rack", "kind": "noun", "emoji": "👞" },
  { "slug": "do-you-have-the-keys", "kind": "phrase", "emoji": "🔑", "components": ["key"] },
  { "slug": "ill-be-right-back", "kind": "phrase", "emoji": "🔙", "components": [] },
  {

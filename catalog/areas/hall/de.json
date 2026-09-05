@@ -7,7 +7,6 @@
   "key": { "text": "Schlüssel", "grammar": { "gender": "der", "plural": "=" } },
   "jacket": { "text": "Jacke", "grammar": { "gender": "die", "plural": "-n" } },
   "coat": { "text": "Mantel", "grammar": { "gender": "der", "plural": "Mäntel" } },
-  "shoe-rack": { "text": "Schuhregal", "grammar": { "gender": "das", "plural": "-e" } },
   "umbrella": { "text": "Regenschirm", "grammar": { "gender": "der", "plural": "-e" } },
   "hat": { "text": "Mütze", "grammar": { "gender": "die", "plural": "-n" } },
   "mailbox": { "text": "Briefkasten", "grammar": { "gender": "der", "plural": "Briefkästen" } },

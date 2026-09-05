@@ -13,7 +13,6 @@
   "notebook": { "text": "Notizbuch", "grammar": { "gender": "das", "plural": "Notizbücher" } },
   "printer": { "text": "Drucker", "grammar": { "gender": "der", "plural": "=" } },
   "socket": { "text": "Steckdose", "grammar": { "gender": "die", "plural": "-n" } },
-  "office-chair": { "text": "Bürostuhl", "grammar": { "gender": "der", "plural": "Bürostühle" } },
   "feierabend": { "text": "Feierabend", "grammar": { "gender": "der" } },
   "to-work": { "text": "arbeiten" },
   "to-type": { "text": "tippen" },

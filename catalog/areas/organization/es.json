@@ -13,9 +13,7 @@
    }
   },
   "deadline": { "text": "plazo", "synonyms": ["fecha límite"], "grammar": { "gender": "el" } },
-  "confirmation": { "text": "confirmación", "grammar": { "gender": "la" } },
   "plan": { "text": "plan", "grammar": { "gender": "el" } },
-  "waiting-time": { "text": "tiempo de espera", "grammar": { "gender": "el" } },
   "to-meet": { "text": "reunirse" },
   "to-invite": { "text": "invitar" },
   "to-arrange": { "text": "concertar", "synonyms": ["acordar"], "variants": ["pedir"] },

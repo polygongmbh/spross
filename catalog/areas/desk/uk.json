@@ -13,7 +13,6 @@
   "notebook": { "text": "блокнот" },
   "printer": { "text": "принтер" },
   "socket": { "text": "розетка" },
-  "office-chair": { "text": "офісне крісло", "grammar": { "plural": "офісні крісла" } },
   "to-work": { "text": "працювати" },
   "to-type": { "text": "друкувати" },
   "to-print": { "text": "роздруковувати" },

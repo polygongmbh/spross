@@ -35,12 +35,6 @@
    "variants": ["prise de courant", "prise électrique"],
    "grammar": { "gender": "la" }
   },
-  "office-chair": {
-   "text": "chaise de bureau",
-   "variants": ["fauteuil de bureau", "siège de bureau"],
-   "grammar": { "gender": "la", "plural": "chaises de bureau" },
-   "notes": { "de": "Der Bürodrehstuhl mit Rollen heißt le fauteuil de bureau." }
-  },
   "to-work": { "text": "travailler" },
   "to-type": { "text": "taper", "variants": ["saisir", "taper à l'ordinateur"] },
   "to-print": { "text": "imprimer" },

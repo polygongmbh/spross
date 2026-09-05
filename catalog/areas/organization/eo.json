@@ -15,9 +15,7 @@
    "synonyms": ["templimo"],
    "notes": { "de": "limdato ist der Stichtag im Kalender, templimo die Frist als Zeitraum." }
   },
-  "confirmation": { "text": "konfirmo" },
   "plan": { "text": "plano" },
-  "waiting-time": { "text": "atendotempo", "variants": ["atenda tempo", "atendtempo"] },
   "to-meet": { "text": "renkontiĝi" },
   "to-invite": { "text": "inviti" },
   "to-arrange": { "text": "aranĝi", "synonyms": ["interkonsenti"], "variants": ["fiksi"] },

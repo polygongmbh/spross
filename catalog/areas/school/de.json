@@ -19,7 +19,6 @@
   "course": { "text": "Kurs", "grammar": { "gender": "der", "plural": "-e" } },
   "lesson": { "text": "Unterricht", "grammar": { "gender": "der" } },
   "period": { "text": "Stunde", "grammar": { "gender": "die", "plural": "-n" } },
-  "course-book": { "text": "Kursbuch", "grammar": { "gender": "das", "plural": "Kursbücher" } },
   "page": { "text": "Seite", "grammar": { "gender": "die", "plural": "-n" } },
   "grade": { "text": "Note", "grammar": { "gender": "die", "plural": "-n" } },
   "to-correct": { "text": "korrigieren" },

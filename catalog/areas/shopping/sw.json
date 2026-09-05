@@ -7,15 +7,12 @@
   "checkout": { "text": "kaunta ya malipo", "grammar": { "plural": "kaunta za malipo" } },
   "shop-assistant": { "text": "muuzaji", "grammar": { "plural": "wauzaji" }, "variants": ["mwuzaji"] },
   "shopping-cart": { "text": "toroli", "grammar": { "plural": "=" } },
-  "shopping-bag": { "text": "mfuko wa ununuzi", "grammar": { "plural": "mifuko ya ununuzi" } },
   "offer": { "text": "ofa", "grammar": { "plural": "=" } },
-  "shopping-list": { "text": "orodha ya ununuzi", "grammar": { "plural": "=" } },
   "size": { "text": "saizi", "grammar": { "plural": "=" } },
   "to-shop": { "text": "kwenda madukani" },
   "store": { "text": "duka", "grammar": { "plural": "maduka" } },
   "open": { "text": "wazi", "notes": { "de": "auch klar, offensichtlich: ni wazi kwamba …" } },
   "the-store-is-still-open": { "text": "Duka bado liko wazi." },
-  "do-you-have-this-in-my-size": { "text": "Una hii kwa saizi yangu?" },
-  "where-is-the-checkout": { "text": "Kaunta ya malipo iko wapi?" }
+  "do-you-have-this-in-my-size": { "text": "Una hii kwa saizi yangu?" }
  }
 }

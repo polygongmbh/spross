@@ -17,7 +17,6 @@
   "police": { "text": "police" },
   "cinema": { "text": "cinema", "synonyms": ["movie theater"], "variants": ["movie theatre"] },
   "bridge": { "text": "bridge" },
-  "where-is-the-post-office": { "text": "Where is the post office?" },
   "is-there-a-bank-here": { "text": "Is there a bank here?" },
   "im-looking-for-a-hotel": { "text": "I'm looking for a hotel." },
   "i-live-in-this-neighborhood": { "text": "I live in this neighborhood.", "variants": ["I live in this neighbourhood."] }

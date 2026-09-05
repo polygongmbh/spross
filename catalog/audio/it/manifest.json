@@ -3303,17 +3303,6 @@
       "snr": 60.8,
       "source": "LL-Q652 (ita)-DivoLetto-entrata.wav"
     },
-    "equal": {
-      "author": "LangPao",
-      "file": "equal.mp3",
-      "gain": 2.6,
-      "gainPhone": 3.6,
-      "lead": 226,
-      "matches": "uguale",
-      "sha256": "b766a28087135ed8d14c89590dde2fbcf527f7f8d9e4cacdb05620eafb6b989e",
-      "snr": 84.2,
-      "source": "LL-Q652 (ita)-LangPao-uguale.wav"
-    },
     "evening": {
       "author": "LangPao",
       "file": "evening.mp3",

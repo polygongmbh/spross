@@ -16,11 +16,6 @@
   "key": { "text": "clé", "variants": ["clef"], "grammar": { "gender": "la" } },
   "jacket": { "text": "veste", "grammar": { "gender": "la" } },
   "coat": { "text": "manteau", "grammar": { "gender": "le", "plural": "-x" } },
-  "shoe-rack": {
-   "text": "meuble à chaussures",
-   "variants": ["range-chaussures", "étagère à chaussures"],
-   "grammar": { "gender": "le", "plural": "meubles à chaussures" }
-  },
   "umbrella": { "text": "parapluie", "grammar": { "gender": "le" } },
   "hat": {
    "text": "bonnet",

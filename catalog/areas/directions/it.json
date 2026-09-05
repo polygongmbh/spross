@@ -28,7 +28,6 @@
   "west": { "text": "ovest", "grammar": { "gender": "il" } },
   "go-straight-ahead": { "text": "Vada dritto.", "variants": ["Vai dritto.", "Prosegua dritto."] },
   "turn-left-at-the-corner": { "text": "Giri a sinistra all'angolo.", "variants": ["Gira a sinistra all'angolo."] },
-  "where-is-the-exit": { "text": "Dov'è l'uscita?" },
   "how-do-i-get-to-the-station": { "text": "Come arrivo alla stazione?" },
   "im-lost": { "text": "Mi sono perso.", "variants": ["Mi sono persa."] }
  }

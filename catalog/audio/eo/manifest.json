@@ -2392,17 +2392,6 @@
       "snr": 42.8,
       "source": "LL-Q143 (epo)-DanieruOtakuBoy-kurso.wav"
     },
-    "course-book": {
-      "author": "Lepticed7",
-      "file": "course-book.mp3",
-      "gain": 4.4,
-      "gainPhone": 0.6,
-      "lead": 259,
-      "matches": "lernolibro",
-      "sha256": "65b7d528f691b7502e227f8acaf11ce4a59fe5e1abd180a2df6baf095c6ec811",
-      "snr": 61.1,
-      "source": "LL-Q143 (epo)-Lepticed7-lernolibro.wav"
-    },
     "cream": {
       "author": "Lepticed7",
       "file": "cream.mp3",
@@ -2866,17 +2855,6 @@
       "sha256": "7d0ff7ce950a5d240670e034dc36e618a24fd424c8397f8c4f9d95ec9d189ea3",
       "snr": 60.8,
       "source": "LL-Q143 (epo)-Lepticed7-enirejo.wav"
-    },
-    "equal": {
-      "author": "Lepticed7",
-      "file": "equal.mp3",
-      "gain": 8.9,
-      "gainPhone": 8.4,
-      "lead": 142,
-      "matches": "egala",
-      "sha256": "abf2be393b998cde2c43155a3323276128a2db698603f81a176d20aab324d428",
-      "snr": 52.1,
-      "source": "LL-Q143 (epo)-Lepticed7-egala.wav"
     },
     "evening": {
       "author": "Lepticed7",

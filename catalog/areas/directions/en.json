@@ -19,7 +19,6 @@
   "west": { "text": "west" },
   "go-straight-ahead": { "text": "Go straight ahead." },
   "turn-left-at-the-corner": { "text": "Turn left at the corner." },
-  "where-is-the-exit": { "text": "Where is the exit?" },
   "how-do-i-get-to-the-station": { "text": "How do I get to the station?" },
   "im-lost": { "text": "I'm lost." }
  }

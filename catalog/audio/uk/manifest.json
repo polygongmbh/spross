@@ -2351,17 +2351,6 @@
       "snr": 45.1,
       "source": "Uk-повністю.ogg"
     },
-    "confirmation": {
-      "author": "Галя Раптова, Nicolas Vion",
-      "file": "confirmation.mp3",
-      "gain": -1.1,
-      "gainPhone": 0.2,
-      "lead": 130,
-      "matches": "підтвердження",
-      "sha256": "30998d51750e527d543eda7b9a2e187e168b2e0180862fb852420baff02796c2",
-      "snr": 46.6,
-      "source": "Uk-підтвердження.ogg"
-    },
     "contract": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 1.2,
@@ -2417,18 +2406,6 @@
       "sha256": "c7af912d7132d7bbe371243ab1aa20c35d603db0c5c96726dcf1936bd3ce2729",
       "snr": 45.9,
       "source": "Uk-курс.ogg"
-    },
-    "course-book": {
-      "author": "Галя Раптова, Nicolas Vion",
-      "capPhone": 1.2,
-      "file": "course-book.mp3",
-      "gain": 0.3,
-      "gainPhone": 2.9,
-      "lead": 106,
-      "matches": "підручник",
-      "sha256": "6b465239d4f151a00595898e6bba252b0e483d39496bee09b5e623ff7a1b0dd5",
-      "snr": 48.0,
-      "source": "Uk-підручник.ogg"
     },
     "cream": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -2876,17 +2853,6 @@
       "sha256": "b8c6535e8bdd08b17e51d51c9a7b1497192aaf856c5961a31a8fc933cd44f636",
       "snr": 40.2,
       "source": "Uk-вхід.ogg"
-    },
-    "equal": {
-      "author": "Галя Раптова, Nicolas Vion",
-      "file": "equal.mp3",
-      "gain": -4.1,
-      "gainPhone": 2.9,
-      "lead": 158,
-      "matches": "рівний",
-      "sha256": "71717f4a5f1c58d245eeb50c3c5f25122d876730728eb0b420858853d1ae2f58",
-      "snr": 43.4,
-      "source": "Uk-рівний.ogg"
     },
     "evening": {
       "author": "Галя Раптова, Nicolas Vion",

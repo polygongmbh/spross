@@ -14,7 +14,6 @@
   "key": { "text": "llave", "grammar": { "gender": "la" } },
   "jacket": { "text": "chaqueta", "grammar": { "gender": "la" } },
   "coat": { "text": "abrigo", "grammar": { "gender": "el" } },
-  "shoe-rack": { "text": "zapatero", "variants": ["mueble zapatero"], "grammar": { "gender": "el" } },
   "umbrella": { "text": "paraguas", "grammar": { "gender": "el", "plural": "=" } },
   "hat": {
    "text": "gorro",

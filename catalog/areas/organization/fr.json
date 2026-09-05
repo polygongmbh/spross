@@ -15,9 +15,7 @@
    "grammar": { "gender": "le" },
    "notes": { "de": "le délai ist die Frist als Zeitraum; la date limite ist der letzte Tag." }
   },
-  "confirmation": { "text": "confirmation", "grammar": { "gender": "la" } },
   "plan": { "text": "plan", "grammar": { "gender": "le" } },
-  "waiting-time": { "text": "temps d'attente", "grammar": { "gender": "le", "plural": "=" } },
   "to-meet": { "text": "se réunir" },
   "to-invite": { "text": "inviter" },
   "to-arrange": {

@@ -14,12 +14,6 @@
  { "slug": "library", "kind": "noun", "emoji": "📚" },
  { "slug": "cinema", "kind": "noun", "emoji": "🎬" },
  { "slug": "bridge", "kind": "noun", "emoji": "🌉" },
- {
-  "slug": "where-is-the-post-office",
-  "kind": "phrase",
-  "emoji": "🏤",
-  "components": ["post-office"]
- },
  { "slug": "is-there-a-bank-here", "kind": "phrase", "emoji": "🏦", "components": ["bank"] },
  { "slug": "im-looking-for-a-hotel", "kind": "phrase", "emoji": "🏨", "components": ["hotel"] },
  { "slug": "i-live-in-this-neighborhood", "kind": "phrase", "components": ["neighborhood"] }

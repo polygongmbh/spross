@@ -13,7 +13,6 @@
   "notebook": { "text": "daftari", "grammar": { "plural": "madaftari" } },
   "printer": { "text": "printa", "grammar": { "plural": "=" } },
   "socket": { "text": "soketi", "grammar": { "plural": "=" } },
-  "office-chair": { "text": "kiti cha ofisi", "grammar": { "plural": "viti vya ofisi" } },
   "to-work": { "text": "kufanya kazi" },
   "to-print": { "text": "kuchapisha" },
   "to-save": { "text": "kuhifadhi" },

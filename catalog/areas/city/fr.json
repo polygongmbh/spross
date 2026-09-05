@@ -22,7 +22,6 @@
   "police": { "text": "police", "grammar": { "gender": "la" } },
   "cinema": { "text": "cinéma", "variants": ["ciné"], "grammar": { "gender": "le" } },
   "bridge": { "text": "pont", "grammar": { "gender": "le" } },
-  "where-is-the-post-office": { "text": "Où est la poste ?" },
   "is-there-a-bank-here": {
    "text": "Il y a une banque ici ?",
    "variants": ["Est-ce qu'il y a une banque ici ?", "Y a-t-il une banque ici ?", "Il y a une banque par ici ?"]

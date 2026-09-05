@@ -6,7 +6,6 @@
   "key": { "text": "ufunguo", "grammar": { "plural": "funguo" } },
   "jacket": { "text": "jaketi", "grammar": { "plural": "majaketi" } },
   "coat": { "text": "koti", "grammar": { "plural": "makoti" } },
-  "shoe-rack": { "text": "rafu ya viatu", "grammar": { "plural": "rafu za viatu" } },
   "umbrella": { "text": "mwavuli", "grammar": { "plural": "miavuli" } },
   "hat": { "text": "kofia", "grammar": { "plural": "=" } },
   "mailbox": { "text": "sanduku la barua", "grammar": { "plural": "masanduku ya barua" } },

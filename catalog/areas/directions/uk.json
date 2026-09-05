@@ -27,7 +27,6 @@
   "west": { "text": "захід" },
   "go-straight-ahead": { "text": "Ідіть прямо.", "variants": ["Іди прямо."] },
   "turn-left-at-the-corner": { "text": "Поверніть ліворуч на розі.", "variants": ["Поверни ліворуч на розі."] },
-  "where-is-the-exit": { "text": "Де вихід?" },
   "how-do-i-get-to-the-station": { "text": "Як дійти до вокзалу?", "variants": ["Як мені дістатися до вокзалу?"] },
   "im-lost": { "text": "Я заблукав.", "variants": ["Я заблукала."] }
  }

@@ -2820,17 +2820,6 @@
       "snr": 53.1,
       "source": "LL-Q150 (fra)-Poslovitch-complètement.wav"
     },
-    "confirmation": {
-      "author": "Sartus85",
-      "file": "confirmation.mp3",
-      "gain": 6.2,
-      "gainPhone": 2.6,
-      "lead": 96,
-      "matches": "confirmation",
-      "sha256": "f0e7e4c12688df9f500a307ab1a2d3e3ee4ca2c3094d88c9dc57c7dd951cb2e5",
-      "snr": 63.1,
-      "source": "LL-Q150 (fra)-Sartus85-confirmation.wav"
-    },
     "contract": {
       "author": "Vion Nicolas",
       "capPhone": 0.4,
@@ -2884,17 +2873,6 @@
       "sha256": "9d907ef1b50fbb953e67cece5dc6e686c95e3359dc3c20088a7fddf01eab3214",
       "snr": 48.5,
       "source": "Fr-cours.ogg"
-    },
-    "course-book": {
-      "author": "Vion Nicolas",
-      "file": "course-book.mp3",
-      "gain": -3.1,
-      "gainPhone": -2.7,
-      "lead": 256,
-      "matches": "manuel",
-      "sha256": "b458c95af24dab48970f58fe15f69e15c350b9b7949139b4006d1df0680ec511",
-      "snr": 43.6,
-      "source": "Fr-manuel.ogg"
     },
     "cream": {
       "author": "Vion Nicolas",
@@ -3412,16 +3390,6 @@
       "sha256": "dd80dcf65c732414936638c6b64ba8b6811b7260c39b2eab911f4ca24defe024",
       "snr": 53.3,
       "source": "LL-Q150 (fra)-Poslovitch-assez.wav"
-    },
-    "equal": {
-      "author": "Helenou66",
-      "file": "equal.mp3",
-      "gain": -1.1,
-      "gainPhone": 0.4,
-      "lead": 187,
-      "matches": "égal",
-      "sha256": "956c53f42e79b6566e6ba8bf6cd39c19f46488b8eb1051a7e6ed7ae8cf27800a",
-      "source": "LL-Q150 (fra)-Helenou66-égal.wav"
     },
     "evening": {
       "author": "Vion Nicolas",
