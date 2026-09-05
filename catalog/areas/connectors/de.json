@@ -44,6 +44,8 @@
   "not": { "text": "nicht" },
   "only": { "text": "nur" },
   "together": { "text": "zusammen" },
+  "therefore": { "text": "deshalb", "synonyms": ["daher"] },
+  "since": { "text": "seit" },
   "if-you-want": { "text": "Wenn Sie wollen.", "variants": ["Wenn du willst."] },
   "finally-done": { "text": "Endlich fertig!" }
  }

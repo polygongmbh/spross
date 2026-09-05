@@ -31,6 +31,8 @@
   },
   "only": { "text": "seulement", "notes": { "de": "im Satz oft ne … que: Je n'ai que dix euros." } },
   "together": { "text": "ensemble" },
+  "therefore": { "text": "donc" },
+  "since": { "text": "depuis" },
   "if-you-want": { "text": "Si vous voulez.", "variants": ["Si tu veux."] },
   "finally-done": { "text": "Enfin fini !", "variants": ["Enfin finie !"] }
  }

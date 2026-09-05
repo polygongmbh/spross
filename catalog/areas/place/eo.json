@@ -33,6 +33,8 @@
   "far": { "text": "malproksime", "variants": ["fore", "malproksima"] },
   "place": { "text": "loko" },
   "country": { "text": "lando" },
+  "in-front": { "text": "antaŭe" },
+  "next-to": { "text": "apud" },
   "on-the-table": { "text": "sur la tablo" },
   "under-the-bed": { "text": "sub la lito" },
   "in-the-city": { "text": "en la urbo" },

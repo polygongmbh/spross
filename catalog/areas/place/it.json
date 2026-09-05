@@ -37,6 +37,8 @@
   "far": { "text": "lontano", "variants": ["lontana"] },
   "place": { "text": "posto", "synonyms": ["luogo"], "grammar": { "gender": "il" } },
   "country": { "text": "nazione", "grammar": { "gender": "la" } },
+  "in-front": { "text": "davanti" },
+  "next-to": { "text": "accanto a" },
   "on-the-table": { "text": "sopra il tavolo", "variants": ["sul tavolo"] },
   "under-the-bed": { "text": "sotto il letto" },
   "in-the-city": { "text": "in città" },

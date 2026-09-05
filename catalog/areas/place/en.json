@@ -21,6 +21,8 @@
   "far": { "text": "far" },
   "place": { "text": "place" },
   "country": { "text": "country" },
+  "in-front": { "text": "in front" },
+  "next-to": { "text": "next to" },
   "on-the-table": { "text": "on the table" },
   "under-the-bed": { "text": "under the bed" },
   "in-the-city": { "text": "in the city" },

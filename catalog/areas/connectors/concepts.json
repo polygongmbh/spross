@@ -20,6 +20,8 @@
  { "slug": "until", "kind": "adjective" },
  { "slug": "so-that", "kind": "adjective" },
  { "slug": "together", "kind": "adjective", "emoji": "👫" },
+ { "slug": "therefore", "kind": "adjective" },
+ { "slug": "since", "kind": "adjective" },
  { "slug": "if-you-want", "kind": "phrase", "components": ["if"] },
  { "slug": "finally-done", "kind": "phrase", "components": ["finally"] }
 ]

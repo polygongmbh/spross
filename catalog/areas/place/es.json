@@ -25,6 +25,8 @@
   "far": { "text": "lejos" },
   "place": { "text": "lugar", "synonyms": ["sitio"], "grammar": { "gender": "el" } },
   "country": { "text": "país", "grammar": { "gender": "el", "plural": "países" } },
+  "in-front": { "text": "delante" },
+  "next-to": { "text": "al lado de" },
   "on-the-table": { "text": "sobre la mesa" },
   "under-the-bed": { "text": "debajo de la cama" },
   "in-the-city": { "text": "en la ciudad" },

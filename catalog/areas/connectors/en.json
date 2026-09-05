@@ -23,6 +23,8 @@
   "not": { "text": "not" },
   "only": { "text": "only", "variants": ["just"] },
   "together": { "text": "together" },
+  "therefore": { "text": "therefore", "synonyms": ["so"] },
+  "since": { "text": "since" },
   "if-you-want": { "text": "If you want." },
   "finally-done": { "text": "Finally done!" }
  }

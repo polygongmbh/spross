@@ -43,6 +43,8 @@
   },
   "only": { "text": "nur" },
   "together": { "text": "kune" },
+  "therefore": { "text": "tial" },
+  "since": { "text": "ekde" },
   "if-you-want": { "text": "Se vi volas." },
   "finally-done": { "text": "Fine finita!" }
  }

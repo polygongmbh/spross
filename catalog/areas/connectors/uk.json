@@ -23,6 +23,8 @@
   "not": { "text": "не" },
   "only": { "text": "тільки", "variants": ["лише"] },
   "together": { "text": "разом" },
+  "therefore": { "text": "тому" },
+  "since": { "text": "від" },
   "if-you-want": { "text": "Якщо хочете.", "variants": ["Якщо хочеш."] },
   "finally-done": { "text": "Нарешті закінчив!", "variants": ["Нарешті закінчила!"] }
  }
