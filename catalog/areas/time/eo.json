@@ -36,6 +36,9 @@
   "since": { "text": "ekde" },
   "right-now": { "text": "tuj" },
   "weekend": { "text": "semajnfino" },
+  "century": { "text": "jarcento" },
+  "decade": { "text": "jardeko" },
+  "millennium": { "text": "jarmilo" },
   "i-have-no-time": { "text": "Mi ne havas tempon." },
   "two-in-the-afternoon": {
    "text": "la dua posttagmeze",

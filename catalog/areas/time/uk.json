@@ -35,6 +35,9 @@
   "since": { "text": "з" },
   "right-now": { "text": "зараз же", "synonyms": ["негайно"] },
   "weekend": { "text": "вихідні", "grammar": { "plural": "only" } },
+  "century": { "text": "століття", "grammar": { "plural": "=" } },
+  "decade": { "text": "десятиліття", "grammar": { "plural": "=" } },
+  "millennium": { "text": "тисячоліття", "grammar": { "plural": "=" } },
   "i-have-no-time": { "text": "У мене немає часу." },
   "two-in-the-afternoon": { "text": "друга дня" },
   "nine-am-sharp": {

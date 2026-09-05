@@ -65,6 +65,9 @@
   "since": { "text": "tangu" },
   "right-now": { "text": "sasa hivi" },
   "weekend": { "text": "wikendi", "synonyms": ["mwishoni mwa wiki"], "grammar": { "plural": "=" } },
+  "century": { "text": "karne", "grammar": { "plural": "=" } },
+  "decade": { "text": "mwongo", "grammar": { "plural": "miongo" } },
+  "millennium": { "text": "milenia", "grammar": { "plural": "=" } },
   "i-have-no-time": { "text": "Sina muda." },
   "two-in-the-afternoon": {
    "text": "saa nane mchana",

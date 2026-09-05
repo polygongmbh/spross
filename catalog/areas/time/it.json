@@ -44,6 +44,9 @@
   "since": { "text": "da" },
   "right-now": { "text": "subito" },
   "weekend": { "text": "fine settimana", "synonyms": ["weekend"], "grammar": { "gender": "il" } },
+  "century": { "text": "secolo", "grammar": { "gender": "il" } },
+  "decade": { "text": "decennio", "grammar": { "gender": "il" } },
+  "millennium": { "text": "millennio", "grammar": { "gender": "il" } },
   "i-have-no-time": { "text": "Non ho tempo." },
   "two-in-the-afternoon": { "text": "le due del pomeriggio" },
   "nine-am-sharp": {
