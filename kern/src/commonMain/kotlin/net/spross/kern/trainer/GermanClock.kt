@@ -61,8 +61,9 @@ internal object GermanClock {
             val hourWord = hourWords[hours % 12]
             // why: at noon and midnight the standard reading is a NAME, so the gate
             // above skipped the colloquial full-hour forms at exactly the two hours
-            // where a speaker says them out loud to disambiguate.
-            for (form in listOf("${beforeUhr(hourWord)} Uhr", "um $hourWord")) {
+            // where a speaker says them out loud to disambiguate. The bare hour word
+            // ("Es ist acht.") comes last, so the reveal reads it as "acht Uhr" shortened.
+            for (form in listOf("${beforeUhr(hourWord)} Uhr", "um $hourWord", hourWord)) {
                 accepted.addUnlessPresent(form)
             }
             for (part in dayParts(hours)) accepted.addUnlessPresent("${beforeUhr(hourWord)} Uhr $part")

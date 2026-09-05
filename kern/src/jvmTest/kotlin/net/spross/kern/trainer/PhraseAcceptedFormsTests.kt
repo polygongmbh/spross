@@ -60,6 +60,7 @@ class PhraseAcceptedFormsTests {
         val now = PhraseSlots.instantiate(RealFrames.frame("de", "it-is-now", source = "uk"), 20, 0)
         assertFalse(now.accepted.any { "um acht" in it }, now.accepted.toString())
         assertTrue("Es ist jetzt acht Uhr." in now.accepted)
+        assertTrue("Es ist jetzt acht." in now.accepted)
         assertTrue("Es ist jetzt zwanzig Uhr." in now.accepted)
     }
 

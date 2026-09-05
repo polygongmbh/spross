@@ -4,6 +4,12 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import net.spross.kern.catalog.Fixture
+import net.spross.kern.model.Card
+import net.spross.kern.model.CardKind
+import net.spross.kern.model.Realization
+import net.spross.kern.session.AnswerNormalizer
+import net.spross.kern.session.Match
 
 /**
  * German clock accepted-set behavior: the display stays the 12-hour standard
@@ -54,6 +60,47 @@ class TrainerGermanClockTests {
         val noon = clock(12, 0)
         assertEquals("Mittag", noon.display)
         assertAccepts(noon, "zwölf uhr mittags")
+    }
+
+    /** "Es ist acht." — the bare hour word reads the full hour, and the reveal never names it. */
+    @Test
+    fun theFullHourAcceptsTheBareHourWord() {
+        assertAccepts(clock(8, 0), "acht")
+        assertAccepts(clock(20, 0), "acht")
+        assertAccepts(clock(0, 0), "zwölf")
+        assertAccepts(clock(12, 0), "zwölf")
+        assertAccepts(clock(1, 0), "eins")
+        assertFalse(clock(1, 0).accepted.any { it.lowercase() == "ein" }, clock(1, 0).accepted.toString())
+        assertEquals("auch: um acht", clock(8, 0).gloss)
+        assertEquals("auch: zwölf Uhr oder um zwölf", clock(12, 0).gloss)
+        for (hour in 0..23) {
+            val bare = clock(hour, 0).accepted.last { " " !in it }
+            val named = clock(hour, 0).gloss?.removePrefix("auch: ")?.split(" oder ").orEmpty()
+            assertFalse(bare in named, "$hour:00 → ${clock(hour, 0).gloss}")
+        }
+    }
+
+    /** The bare hour word answers its own hour alone: at every other time on the grid it grades wrong. */
+    @Test
+    fun theBareHourWordAnswersNoOtherTime() {
+        val normalizer = AnswerNormalizer.drill(Fixture.catalog().languages.getValue("de"))
+        val grid = (0..23).flatMap { h -> (0..55 step 5).map { m -> h to m } }
+        val offenders = mutableListOf<String>()
+        for (hour in 0..23) {
+            val bare = clock(hour, 0).accepted.last { " " !in it }
+            for ((h, m) in grid) {
+                if (m == 0 && h % 12 == hour % 12) continue
+                val forms = clock(h, m).accepted
+                val side = Realization(lang = "de", text = forms.first(), synonyms = forms.drop(1))
+                val card = Card(
+                    id = "drill", kind = CardKind.Noun, area = "drill", emoji = null, seedIndex = 0,
+                    components = emptyList(), feminineOf = null,
+                    source = side, target = side, promptFeminineMarker = false,
+                )
+                if (normalizer.evaluate(bare, card) != Match.Wrong) offenders += "\"$bare\" at $h:$m"
+            }
+        }
+        assertEquals(emptyList<String>(), offenders)
     }
 
     /** Where the hour sits in the day, at the full hour — and the apocope holds. */
