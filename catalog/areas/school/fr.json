@@ -33,7 +33,7 @@
    "variants": ["tableau noir", "tableau blanc"],
    "grammar": { "gender": "le", "plural": "-x" }
   },
-  "exercise-book": { "text": "cahier", "grammar": { "gender": "le" } },
+  "exercise-book": { "text": "cahier d'exercices", "variants": ["cahier"], "grammar": { "gender": "le" } },
   "homework": {
    "text": "devoirs",
    "grammar": { "gender": "les", "plural": "only" },

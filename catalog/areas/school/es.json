@@ -31,7 +31,7 @@
    "grammar": { "gender": "la" }
   },
   "board": { "text": "pizarra", "variants": ["pizarrón"], "grammar": { "gender": "la" } },
-  "exercise-book": { "text": "cuaderno", "grammar": { "gender": "el" } },
+  "exercise-book": { "text": "cuaderno de ejercicios", "variants": ["cuaderno"], "grammar": { "gender": "el" } },
   "homework": {
    "text": "deberes",
    "variants": ["tarea", "tareas"],
