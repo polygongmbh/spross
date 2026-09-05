@@ -43,6 +43,11 @@
   "ask-the-teacher": { "text": "Muulize mwalimu." },
   "i-have-a-good-grade": { "text": "Nina alama nzuri." },
   "we-go-to-the-classroom": { "text": "Tunaenda darasani." },
-  "the-exam-is-already-corrected": { "text": "Mtihani umeshasahihishwa." }
+  "the-exam-is-already-corrected": {
+   "text": "Mtihani umeshasahihishwa.",
+   "notes": {
+    "de": "„-mesha-“ = -me- (Perfekt) + kwisha (schon fertig sein): umeshasahihishwa betont schon, umesahihishwa allein heißt nur „ist korrigiert“."
+   }
+  }
  }
 }
