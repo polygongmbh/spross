@@ -33,6 +33,12 @@
   "bowl": { "text": "bakuli", "grammar": { "plural": "mabakuli" } },
   "basket": { "text": "kikapu", "grammar": { "plural": "vikapu" } },
   "tin-can": { "text": "kopo", "grammar": { "plural": "makopo" } },
+  "gas": {
+   "text": "gesi",
+   "grammar": { "plural": "=" },
+   "notes": { "de": "das Kochgas: gesi imeisha = das Gas ist alle." }
+  },
+  "tasty": { "text": "tamu", "notes": { "de": "tamu heißt auch süß: chai tamu." } },
   "the-knife-is-sharp": { "text": "Kisu ni kikali!" },
   "this-is-very-tasty": { "text": "Hii ni tamu sana!" },
   "are-you-cooking-rice-today": {

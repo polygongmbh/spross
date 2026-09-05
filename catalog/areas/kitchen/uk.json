@@ -31,6 +31,8 @@
    "variants": ["бляшанка"],
    "notes": { "de": "банка ist auch das Einmachglas; die Blechdose allein heißt бляшанка." }
   },
+  "gas": { "text": "газ" },
+  "tasty": { "text": "смачний", "variants": ["смачна", "смачне"] },
   "the-knife-is-sharp": { "text": "Ніж гострий!" },
   "this-is-very-tasty": { "text": "Це дуже смачно!", "variants": ["Це так смачно!"] },
   "are-you-cooking-rice-today": {

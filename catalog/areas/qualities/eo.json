@@ -66,6 +66,8 @@
   "defensive": { "text": "defenda", "variants": ["defensiva", "defende"] },
   "health": { "text": "sano" },
   "healthy": { "text": "sana" },
+  "firm": { "text": "firma" },
+  "liquid": { "text": "likva" },
   "a-lot-of-water": { "text": "multe da akvo" }
  }
 }

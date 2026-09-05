@@ -46,6 +46,8 @@
   "bowl": { "text": "cuenco", "variants": ["bol", "tazón"], "grammar": { "gender": "el" } },
   "basket": { "text": "cesta", "variants": ["cesto", "canasta"], "grammar": { "gender": "la" } },
   "tin-can": { "text": "lata", "grammar": { "gender": "la" } },
+  "gas": { "text": "gas", "grammar": { "gender": "el" } },
+  "tasty": { "text": "sabroso", "variants": ["sabrosa"] },
   "the-knife-is-sharp": { "text": "¡El cuchillo está afilado!", "variants": ["¡El cuchillo corta mucho!"] },
   "this-is-very-tasty": {
    "text": "¡Esto está muy rico!",

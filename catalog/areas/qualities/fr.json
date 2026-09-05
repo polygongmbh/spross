@@ -111,6 +111,8 @@
     "de": "Über Menschen sagt man meist être en bonne santé; sain beschreibt vor allem Essen und Lebensweise: une alimentation saine."
    }
   },
+  "firm": { "text": "solide" },
+  "liquid": { "text": "liquide" },
   "a-lot-of-water": { "text": "beaucoup d'eau" }
  }
 }

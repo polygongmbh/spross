@@ -93,6 +93,8 @@
   "defensive": { "text": "difensivo", "variants": ["difensiva"] },
   "health": { "text": "salute", "grammar": { "gender": "la" } },
   "healthy": { "text": "sano", "variants": ["sana"] },
+  "firm": { "text": "solido", "variants": ["solida"] },
+  "liquid": { "text": "liquido", "variants": ["liquida"] },
   "a-lot-of-water": { "text": "molta acqua" }
  }
 }

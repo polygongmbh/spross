@@ -60,6 +60,8 @@
    "variants": ["conserve"],
    "grammar": { "gender": "la", "plural": "boîtes de conserve" }
   },
+  "gas": { "text": "gaz", "grammar": { "gender": "le", "plural": "=" } },
+  "tasty": { "text": "délicieux", "variants": ["délicieuse"] },
   "the-knife-is-sharp": {
    "text": "Le couteau est tranchant !",
    "variants": ["Le couteau est bien aiguisé !", "Le couteau coupe bien !"]

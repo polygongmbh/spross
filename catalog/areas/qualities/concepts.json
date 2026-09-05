@@ -44,5 +44,7 @@
  { "slug": "defensive", "kind": "adjective" },
  { "slug": "health", "kind": "noun", "emoji": "💚" },
  { "slug": "healthy", "kind": "adjective", "emoji": "💪" },
+ { "slug": "firm", "kind": "adjective" },
+ { "slug": "liquid", "kind": "adjective" },
  { "slug": "a-lot-of-water", "kind": "phrase", "emoji": "💦", "components": ["much"] }
 ]

@@ -609,6 +609,12 @@ class CatalogLintTest {
                 // frais` is what an office actually charges, so both stay; market/fresh
                 // carries the de note naming the second sense, the ndege treatment.
                 "fr frais: admin/fee, market/fresh",
+                // Reviewed 2026-09-05: `liquide` is the adjective flüssig AND, as `argent
+                // liquide`, the everyday word for cash — de/en/eo/es/it/uk all split the pair
+                // (flüssig/Bargeld, liquid/cash, likva/kontanta mono). money/cash keeps it as a
+                // synonym because it is what a French speaker says at the till; the adjective
+                // has no other word at all.
+                "fr liquide: money/cash, qualities/liquid",
                 "fr tableau: living/picture, school/board",
                 // Reviewed 2026-08-15: `le temps` is Zeit and Wetter alike — the same
                 // Romance merge `es tiempo` and `it tempo` pin here; `la météo` names

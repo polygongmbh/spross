@@ -26,6 +26,8 @@
   "bowl": { "text": "Schüssel", "grammar": { "gender": "die", "plural": "-n" } },
   "basket": { "text": "Korb", "grammar": { "gender": "der", "plural": "Körbe" } },
   "tin-can": { "text": "Dose", "grammar": { "gender": "die", "plural": "-n" } },
+  "gas": { "text": "Gas", "grammar": { "gender": "das", "plural": "-e" } },
+  "tasty": { "text": "lecker" },
   "the-knife-is-sharp": { "text": "Das Messer ist scharf!" },
   "this-is-very-tasty": { "text": "Das ist sehr lecker!", "variants": ["Das schmeckt so lecker!"] },
   "are-you-cooking-rice-today": { "text": "Kochst du heute Reis?" },

@@ -38,6 +38,8 @@
   "bowl": { "text": "bovlo" },
   "basket": { "text": "korbo" },
   "tin-can": { "text": "ladskatolo", "variants": ["lada skatolo", "konservujo"] },
+  "gas": { "text": "gaso" },
+  "tasty": { "text": "bongusta" },
   "the-knife-is-sharp": { "text": "La tranĉilo estas akra!" },
   "this-is-very-tasty": { "text": "Tio estas tre bongusta!", "variants": ["Ĉi tio estas tre bongusta!"] },
   "are-you-cooking-rice-today": { "text": "Ĉu vi hodiaŭ kuiras rizon?", "variants": ["Ĉu vi kuiras rizon hodiaŭ?"] },

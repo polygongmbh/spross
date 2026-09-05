@@ -47,6 +47,8 @@
   "defensive": { "text": "defensiv" },
   "health": { "text": "Gesundheit", "grammar": { "gender": "die" } },
   "healthy": { "text": "gesund" },
+  "firm": { "text": "fest", "synonyms": ["stabil"] },
+  "liquid": { "text": "flüssig" },
   "a-lot-of-water": { "text": "viel Wasser" }
  }
 }

@@ -27,6 +27,8 @@
   "bowl": { "text": "bowl" },
   "basket": { "text": "basket" },
   "tin-can": { "text": "tin can", "synonyms": ["tin"], "variants": ["can"] },
+  "gas": { "text": "gas" },
+  "tasty": { "text": "tasty", "synonyms": ["delicious"] },
   "the-knife-is-sharp": { "text": "The knife is sharp!" },
   "this-is-very-tasty": { "text": "This is very tasty!", "variants": ["This tastes so good!"] },
   "are-you-cooking-rice-today": { "text": "Are you cooking rice today?" },

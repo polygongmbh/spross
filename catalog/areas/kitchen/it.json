@@ -56,6 +56,8 @@
    "grammar": { "gender": "il" },
    "notes": { "de": "il barattolo ist die Konservendose oder das Glas, la lattina die Getränkedose." }
   },
+  "gas": { "text": "gas", "grammar": { "gender": "il", "plural": "=" } },
+  "tasty": { "text": "gustoso", "synonyms": ["saporito"], "variants": ["gustosa"] },
   "the-knife-is-sharp": { "text": "Il coltello è affilato!", "variants": ["Il coltello taglia bene!"] },
   "this-is-very-tasty": {
    "text": "Questo è molto buono!",

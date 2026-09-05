@@ -51,6 +51,8 @@
   "defensive": { "text": "оборонний", "synonyms": ["захисний"] },
   "health": { "text": "здоров'я" },
   "healthy": { "text": "здоровий" },
+  "firm": { "text": "міцний", "variants": ["міцна", "міцне"] },
+  "liquid": { "text": "рідкий", "variants": ["рідка", "рідке"] },
   "a-lot-of-water": { "text": "багато води" }
  }
 }

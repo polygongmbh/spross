@@ -99,6 +99,8 @@
     "de": "sano beschreibt den Menschen: estoy sano · saludable eher Essen und Lebensweise: comida saludable."
    }
   },
+  "firm": { "text": "firme" },
+  "liquid": { "text": "líquido", "variants": ["líquida"] },
   "a-lot-of-water": { "text": "mucha agua", "notes": { "de": "trotz el agua feminin: mucha agua." } }
  }
 }
