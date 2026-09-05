@@ -7,7 +7,7 @@ import SprossKern
 /// Two sections, start first: the stages the drill will walk through and the
 /// button that opens it, then the alphabet table (one card per row of
 /// `catalog/alphabet/<lang>.json`). What the stage rows say, and why the page
-/// still stands where this device can sound nothing: `docs/surfaces.md`.
+/// still stands where this device can sound nothing: `docs/drills.md`.
 ///
 /// The alphabet rows live in LettersOverview+Alphabet.swift and the stage
 /// ladder in LettersOverview+Practice.swift; split purely for file size.

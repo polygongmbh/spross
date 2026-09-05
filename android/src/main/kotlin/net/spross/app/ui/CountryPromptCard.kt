@@ -20,7 +20,7 @@ import net.spross.kern.model.Language
  * which of the four things is being asked: "Deutschland" is the prompt whether the country,
  * its people or its language is owed. It says THAT and no more — which language the answer
  * is owed in is the placeholder's to say, and saying it here too would be the third telling
- * of what one tap already settled (`docs/surfaces.md`).
+ * of what one tap already settled (`docs/drills.md`).
  *
  * One question has no name on it at all: where kern hands over a flag and no [text], the
  * flag IS the question and stands where the name would, at the size the name would have had.

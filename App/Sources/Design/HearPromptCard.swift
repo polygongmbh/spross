@@ -8,7 +8,7 @@ import SwiftUI
 /// has nothing on screen to say what it wants back: the same glyph asks for a
 /// letter, for the grapheme missing from a word, or for the whole word. WHICH
 /// language it is owed in is not its business — the field's placeholder already
-/// says that, and a clause here would be the third telling (docs/surfaces.md).
+/// says that, and a clause here would be the third telling (docs/drills.md).
 ///
 /// No answer renders here WHILE THE QUESTION STANDS, and that is the whole
 /// point: everything the learner is given is the sound, plus whatever the gap

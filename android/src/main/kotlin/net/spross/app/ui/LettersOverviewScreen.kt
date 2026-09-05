@@ -28,7 +28,7 @@ import net.spross.kern.trainer.LetterStage
  *
  * The same shape as the numbers page — the drill's stages and start first, the alphabet
  * table under them. What the stage rows say, and why the page still stands where this
- * device can sound nothing: `docs/surfaces.md`.
+ * device can sound nothing: `docs/drills.md`.
  */
 @Composable
 fun LettersOverviewScreen(model: AppModel) {

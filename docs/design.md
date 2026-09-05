@@ -1,8 +1,8 @@
 # Spross — app design (v2)
 
 This doc is the build contract for the REVIEW LOOP: the card, the typing, Home, the Box.
-Two app domains have their own pages — `surfaces.md` (drills, the wrist, Android) and
-`read-aloud.md` (what speaks, and when).
+Three app domains have their own pages — `drills.md` (the Sprossen ladders),
+`surfaces.md` (listening, the wrist, Android) and `read-aloud.md` (what speaks, and when).
 The product thesis and phase plan live in `../../docs/roadmap.md`;
 the engine — scheduling, growth, sessions, grading, snapshots — in `../kern/README.md`.
 
@@ -164,12 +164,12 @@ never the shape of the app.
 - Grammar — plural line, article color — renders TARGET-side only;
   prompt and reveal are styled by role, not by language.
 - A drill card wears this same face — same slot, same reveal
-  (the rule's home is `surfaces.md` § Trainers).
+  (the rule's home is `drills.md`).
 
 ## Review UX rules
 
 These bind every surface that asks the learner for an answer, the drills with the review
-loop (`surfaces.md`): they are rules about the asking, not about the box behind it.
+loop (`drills.md`): they are rules about the asking, not about the box behind it.
 A new surface reads what it owes here, and reads what is already filed against whatever
 it was copied from (`backlog.md`) —
 a clone inherits its sibling's gaps, never the rules.
@@ -374,7 +374,7 @@ a clone inherits its sibling's gaps, never the rules.
   so "Fertig" is the primary button and going on the quiet one below it — an earned break
   needs no arguing for, and another round is still one tap away.
   That is the review session's shape; a drill has no end screen at all — it hands its
-  figures to the page that started it (`surfaces.md`), where the way on is the button
+  figures to the page that started it (`drills.md`), where the way on is the button
   that was already there.
   A day that is going badly says so, and says why stopping is the better call.
 - **The forest** at the foot of Home is a picture of the box, never a way around it:
@@ -549,5 +549,5 @@ Android has the core loop on the full kern turn (write-out, retry, the earned Ea
 Box browse with search, own words and the settings block, the 14-day activity strip,
 the home-screen widget, and the whole of Sprossen — all four drills on kern's rules,
 each behind its overview page with the generated numbers reference, the alphabet table,
-the joined atlas and the joined calendars (`surfaces.md`) — but no forest canvas or growth headline;
+the joined atlas and the joined calendars (`drills.md`) — but no forest canvas or growth headline;
 a new record celebrates in words and a cheer, without confetti.

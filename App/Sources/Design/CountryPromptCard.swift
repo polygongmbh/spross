@@ -11,7 +11,7 @@ import SwiftUI
 /// prompt whether the answer owed is the country, its people or its language.
 /// It says THAT and no more — which language the answer is owed in is the
 /// field's placeholder's to say, and saying it here too would be the third
-/// telling of what one tap already settled (docs/surfaces.md).
+/// telling of what one tap already settled (docs/drills.md).
 ///
 /// One question has no name on it at all: where kern hands over a flag and no
 /// [text], the flag IS the question and stands where the name would.

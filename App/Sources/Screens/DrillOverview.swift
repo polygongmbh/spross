@@ -9,7 +9,7 @@ import SprossKern
 /// opens it, then the table itself, both sides of every name beside each other.
 /// Both drills exist only where the catalog carries the material on BOTH sides.
 /// What a Sprosse row says, and what the page reads rather than writes:
-/// `docs/surfaces.md`.
+/// `docs/drills.md`.
 ///
 /// The Sprossen and the toggles live in DrillOverview+Practice.swift, the table
 /// in the face's own reference view; split purely for file size.

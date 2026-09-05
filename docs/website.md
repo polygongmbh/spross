@@ -48,7 +48,7 @@ built to sit beside native-speaker conversation or a structured course, never to
 
 - Language chips (every language in `catalog/languages.json`), optional generated primer
   (0–12, tens, 100/1000 with place-value words — spelled by the kern, so never wrong), then the drill.
-- Mechanics mirror iOS (`docs/surfaces.md` § Trainers): numeral → typed word, exact=green/typo=amber+correction/wrong=reveal,
+- Mechanics mirror iOS (`docs/drills.md`): numeral → typed word, exact=green/typo=amber+correction/wrong=reveal,
   any accepted answer extends the streak, two clean rights ramp a digit up, one miss steps down; level capped at 4 digits on the web.
 - Before a language is picked, the card cycles a numeral and its reading through the languages — the kern spelling live.
 - The app's own chimes play on verdicts (`web/assets/sounds/`, copies of `App/Resources/Sounds/`);

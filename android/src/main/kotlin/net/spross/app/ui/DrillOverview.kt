@@ -34,7 +34,7 @@ import net.spross.app.Chrome
 /**
  * The shape the Countries and Dates pages both wear: run first, reading after — the picks
  * and the button on top, the table below them, the ✕ out on the left and the run in on the
- * right. Why that order, and why the right corner repeats `Los`: `docs/surfaces.md`.
+ * right. Why that order, and why the right corner repeats `Los`: `docs/drills.md`.
  */
 @Composable
 fun OverviewScaffold(

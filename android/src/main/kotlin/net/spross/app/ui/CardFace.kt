@@ -52,7 +52,7 @@ import net.spross.kern.model.Realization
  * The card face and what a card is made of: the surface every prompt wears, the picture's
  * fixed slot beside the words, and the reveal.
  *
- * `docs/surfaces.md` § Trainers & the letter drill: a drill card is a review card — same
+ * `docs/drills.md`: a drill card is a review card — same
  * face, same reveal — so both ride [CardFace] and neither may cut its own.
  */
 

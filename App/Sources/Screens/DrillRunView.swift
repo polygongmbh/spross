@@ -68,7 +68,7 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
         self.onFinish = onFinish
         let normalizer = Self.normalizer(model: model, content: content, reverse: reverse)
         // Every run opens at Sprosse 1 however far the learner has climbed: what
-        // the record buys is the page, never a head start (docs/surfaces.md).
+        // the record buys is the page, never a head start (docs/drills.md).
         #if DEBUG
         // UI-test hook: `-uitest-<drill>-level N` opens the run at that Sprosse,
         // which is how the outer Sprossen are reached deterministically. Kern clamps it.
