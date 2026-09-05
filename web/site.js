@@ -8,7 +8,10 @@ const SIGNUP_ENDPOINT = "";
 const LANGS = [
   { code: "de", name: "Deutsch", flag: "🇩🇪", speech: "de-DE", articles: ["der", "die", "das", "ein", "eine"] },
   { code: "en", name: "English", flag: "🇬🇧", speech: "en-GB", articles: ["the", "a", "an"] },
+  { code: "eo", name: "Esperanto", flag: "💚", speech: "eo", articles: ["la"] },
   { code: "es", name: "Español", flag: "🇪🇸", speech: "es-ES", articles: ["el", "la", "los", "las", "un", "una"] },
+  { code: "fr", name: "Français", flag: "🇫🇷", speech: "fr-FR", articles: ["le", "la", "les", "l'", "un", "une"] },
+  { code: "it", name: "Italiano", flag: "🇮🇹", speech: "it-IT", articles: ["il", "lo", "la", "l'", "i", "gli", "le", "un", "uno", "una"] },
   { code: "sw", name: "Kiswahili", flag: "🇹🇿", speech: "sw", articles: [] },
   { code: "uk", name: "Українська", flag: "🇺🇦", speech: "uk-UA", articles: [] },
 ];
