@@ -296,7 +296,7 @@ a clone inherits its sibling's gaps, never the rules.
   and reads that conversation's answer back into own words (`Briefing`, `Harvest`).
   It leads the Box tab's own-content panel — the one entry there that goes out and comes back,
   with the words it writes home under it,
-  and stands on Home under the listening card, wearing the same face:
+  and stands on Home under the Sprossen, wearing the same face as the listening card:
   both are ways into the words that are not the round, and this is the only one that
   leaves the app, so the panel behind a tab was a door nobody found.
   UNDER the day's card and never in it: Home still answers "what do I do right now"
@@ -324,7 +324,7 @@ a clone inherits its sibling's gaps, never the rules.
   and at 7 KB there is no token saving to buy with that anyway.
 - **Home** is the only root screen:
   the day's line, session card (streak flame + the round's counts, or done state),
-  the listening card, trainer hub, then the 14-day strip and the forest.
+  the listening card, trainer hub, the companion card, then the 14-day strip and the forest.
   The listening card sits under the round and above the trainers because that is its
   standing: not what the box asks of the learner, and not a skill to climb, but the way in
   that needs no hands — up whenever this device can actually say both sides of enough words

@@ -29,8 +29,8 @@ struct HomeView: View {
                     doneCard
                 }
                 listeningCard
-                briefingCard
                 TrainerHubView(model: model)
+                briefingCard
                 ForestSection(model: model, open: { openBox($0) })
             }
             .padding(Theme.spacing.xl)
@@ -48,10 +48,10 @@ struct HomeView: View {
 
     // MARK: - Conversation
 
-    /// Under the listening card: both are ways into the words that are not the round,
-    /// and this one is the only way in that leaves the app — a loop nobody finds is a
-    /// loop nobody runs, and the Box tab's panel was the only door it had
-    /// (`docs/design.md` § The companion).
+    /// Under the Sprossen: both this and the listening card above are ways into the
+    /// words that are not the round, and this one is the only way in that leaves the
+    /// app — a loop nobody finds is a loop nobody runs, and the Box tab's panel was
+    /// the only door it had (`docs/design.md` § The companion).
     @ViewBuilder
     private var briefingCard: some View {
         if model.hasBriefing {
