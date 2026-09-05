@@ -45,6 +45,7 @@ import net.spross.kern.box.swatch
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Language
 import net.spross.kern.model.Realization
+import net.spross.kern.model.articledForm
 import net.spross.kern.session.AnswerOutcome
 
 /**
@@ -329,12 +330,16 @@ fun localizedTarget(text: String, lang: Language): AnnotatedString =
  * `text`, which carries the bare word in every language. Reading the first word as an
  * article held only because German nouns are one word: es has 32 multi-word nouns, and
  * *pasta de dientes* would have rendered its own head tinted as though *pasta* were an
- * article. Genderless targets render exactly the text and nothing else.
+ * article. How the article joins its word — "l'acqua" onto the noun, "el frigorífico"
+ * with a space — is kern's [articledForm]; the tinted span is the article and its join.
+ * Genderless targets render exactly the text and nothing else.
  */
 fun ThemeColors.articleColoredText(realization: Realization): AnnotatedString {
     val article = CardDisplay.article(realization) ?: return AnnotatedString(realization.text)
+    val shown = articledForm(article, realization.text)
+    val head = article.trim()
     return buildAnnotatedString {
-        withStyle(SpanStyle(color = articleTint(article) ?: Color.Unspecified)) { append(article) }
-        append(" ${realization.text}")
+        withStyle(SpanStyle(color = articleTint(article) ?: Color.Unspecified)) { append(head) }
+        append(shown.removePrefix(head))
     }
 }

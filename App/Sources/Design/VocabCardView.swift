@@ -286,8 +286,8 @@ struct VocabCardView: View {
     /// reads on screen.
     private func headlineWord(_ side: Side, emphasized: Bool) -> some View {
         headlineText(side, emphasized: emphasized)
-            .spoken(side.article.map { "\($0.text) \(side.text)" } ?? side.text,
-                      language: side.language)
+            .spoken(articledForm(article: side.article?.text, form: side.text),
+                    language: side.language)
     }
 
     /// Both sides use the same font so a word never changes size just
@@ -297,7 +297,7 @@ struct VocabCardView: View {
             .font(shared ? Theme.typography.title : Theme.typography.hero)
             .foregroundStyle(emphasized ? Theme.colors.accent : Theme.colors.textPrimary)
         guard let article = side.article else { return word }
-        return Text(verbatim: "\(article.text) ")
+        return Text(verbatim: articledForm(article: article.text, form: ""))
             .font(shared ? Theme.typography.title : Theme.typography.hero)
             .foregroundStyle(Theme.genderColor(article.gender))
             + word

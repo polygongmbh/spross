@@ -192,7 +192,7 @@ struct BoxCardRow: View {
             .foregroundStyle(Theme.colors.textPrimary)
         guard let article = CardDisplay.articleLabel(of: card.target, shown: card.target.text)
         else { return word }
-        return Text(verbatim: "\(article.text) ")
+        return Text(verbatim: articledForm(article: article.text, form: ""))
             .font(Theme.typography.body)
             .foregroundStyle(Theme.genderColor(article.gender))
             + word

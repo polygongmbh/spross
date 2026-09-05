@@ -83,6 +83,14 @@ class ArticleColorTest {
         assertEquals(ThemeLight.articleTint("der"), fridge.spanStyles.single().item.color)
     }
 
+    /** The join is kern's `articledForm`: an elided article writes onto its noun. */
+    @Test
+    fun anElidedArticleWritesOntoItsNoun() {
+        val water = ThemeLight.articleColoredText(noun("it", "acqua", "l'"))
+        assertEquals("l'acqua", water.text)
+        assertEquals(listOf(0 to 2), water.spanStyles.map { it.start to it.end })
+    }
+
     @Test
     fun aPluraliaTantumNounShowsThePluralArticle() {
         val holiday = ThemeLight.articleColoredText(noun("es", "vacaciones", "las"))

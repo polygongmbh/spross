@@ -103,12 +103,6 @@ enum CardDisplay {
                      targetText: realization.text)
     }
 
-    /// "der Kühlschrank" — citation form with its article where present.
-    static func citation(of realization: Realization) -> String {
-        guard let article = article(of: realization) else { return realization.text }
-        return "\(article) \(realization.text)"
-    }
-
     /// Labeled plural line. Which authored value is a sentinel and which resolves
     /// against the word is kern's (`model/DisplayText.kt`); the labels each one
     /// wears ("Pl. …", "= Pl.", "nur Pl.") are chrome.
