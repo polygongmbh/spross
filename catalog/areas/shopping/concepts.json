@@ -11,7 +11,8 @@
  { "slug": "size", "kind": "noun" },
  { "slug": "to-shop", "kind": "verb", "emoji": "🛍️" },
  { "slug": "store", "kind": "noun" },
- { "slug": "the-store-is-still-open", "kind": "phrase", "components": ["store"] },
+ { "slug": "open", "kind": "adjective" },
+ { "slug": "the-store-is-still-open", "kind": "phrase", "components": ["store", "open"] },
  { "slug": "do-you-have-this-in-my-size", "kind": "phrase", "components": ["size"] },
  { "slug": "where-is-the-checkout", "kind": "phrase", "emoji": "🧾", "components": ["checkout"] }
 ]

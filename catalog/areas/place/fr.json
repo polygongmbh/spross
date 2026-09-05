@@ -33,6 +33,7 @@
   "country": { "text": "pays", "grammar": { "gender": "le", "plural": "=" } },
   "in-front": { "text": "devant" },
   "next-to": { "text": "à côté de" },
+  "to-be-there": { "text": "être là" },
   "on-the-table": { "text": "sur la table" },
   "under-the-bed": { "text": "sous le lit" },
   "in-the-city": { "text": "dans la ville" },

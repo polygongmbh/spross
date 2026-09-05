@@ -13,6 +13,7 @@
   "size": { "text": "size" },
   "to-shop": { "text": "to go shopping" },
   "store": { "text": "store", "synonyms": ["shop"] },
+  "open": { "text": "open" },
   "the-store-is-still-open": { "text": "The store is still open.", "variants": ["The shop is still open."] },
   "do-you-have-this-in-my-size": { "text": "Do you have this in my size?" },
   "where-is-the-checkout": { "text": "Where is the checkout?" }

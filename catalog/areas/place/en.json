@@ -23,6 +23,7 @@
   "country": { "text": "country" },
   "in-front": { "text": "in front" },
   "next-to": { "text": "next to" },
+  "to-be-there": { "text": "to be there", "synonyms": ["to be present"] },
   "on-the-table": { "text": "on the table" },
   "under-the-bed": { "text": "under the bed" },
   "in-the-city": { "text": "in the city" },

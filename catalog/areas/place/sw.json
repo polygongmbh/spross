@@ -32,6 +32,7 @@
   "country": { "text": "nchi", "grammar": { "plural": "=" } },
   "in-front": { "text": "mbele", "notes": { "de": "mit ya als Präposition: mbele ya nyumba = vor dem Haus." } },
   "next-to": { "text": "kando ya" },
+  "to-be-there": { "text": "kuwepo", "notes": { "de": "nipo, upo, yupo, tupo, mpo, wapo · Yupo? = Ist er da?" } },
   "on-the-table": { "text": "juu ya meza" },
   "under-the-bed": { "text": "chini ya kitanda" },
   "in-the-city": { "text": "katika mji" },

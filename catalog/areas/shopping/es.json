@@ -24,6 +24,7 @@
    }
   },
   "store": { "text": "tienda", "grammar": { "gender": "la" } },
+  "open": { "text": "abierto", "variants": ["abierta"] },
   "the-store-is-still-open": { "text": "La tienda todavía está abierta." },
   "do-you-have-this-in-my-size": { "text": "¿Lo tiene en mi talla?", "variants": ["¿Lo tienes en mi talla?"] },
   "where-is-the-checkout": { "text": "¿Dónde está la caja?" }

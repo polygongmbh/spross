@@ -37,6 +37,7 @@
   "country": { "text": "Land", "grammar": { "gender": "das", "plural": "Länder" } },
   "in-front": { "text": "vorne" },
   "next-to": { "text": "neben" },
+  "to-be-there": { "text": "da sein" },
   "on-the-table": { "text": "auf dem Tisch" },
   "under-the-bed": { "text": "unter dem Bett" },
   "in-the-city": { "text": "in der Stadt" },

@@ -18,6 +18,7 @@
    "notes": { "de": "butikumi heißt von Laden zu Laden gehen · eine einzelne Sache kauft man mit aĉeti." }
   },
   "store": { "text": "vendejo", "synonyms": ["butiko"] },
+  "open": { "text": "malfermita" },
   "the-store-is-still-open": {
    "text": "La vendejo ankoraŭ estas malfermita.",
    "variants": ["La vendejo estas ankoraŭ malfermita.", "La butiko ankoraŭ estas malfermita."]
