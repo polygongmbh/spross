@@ -2,10 +2,10 @@ import SwiftUI
 
 /// The one watch practice screen: a role-aware multiple-choice question over
 /// the due queue, then review-ahead. Correctness + response time derive the
-/// FSRS rating (`WatchGrading`) — no self-grading. Instant feedback on three
+/// FSRS rating (`WatchGrading`) — no self-grading. Instant feedback on four
 /// channels (green right / red wrong plus a red wash, a haptic shaped like the
-/// rating, and that rating badged on the tile — `WatchFeedback`), then
-/// auto-advance.
+/// rating, that rating badged on the tile — `WatchFeedback` — and the answered
+/// tile's verdict spoken as its accessibility value), then auto-advance.
 /// One progress indicator, in the title: the due batch counts to its end,
 /// free practice shows the answer streak (having no total to count toward).
 /// - recognize: prompt the target `promptForm` (article-tinted), tap the
@@ -159,6 +159,7 @@ struct WatchQuizView: View {
         .buttonStyle(.borderedProminent)
         .tint(tint(for: index, question))
         .foregroundStyle(labelColor(for: index, question))
+        .accessibilityValue(verdict(for: index, question))
     }
 
     /// The rating the tap earned, on the tile that earned it — an emoji rather
@@ -175,6 +176,17 @@ struct WatchQuizView: View {
                 .transition(.scale.combined(with: .opacity))
                 .accessibilityHidden(true)
         }
+    }
+
+    /// What the tint says, said aloud: correctness is never color alone. The
+    /// rating stays unspoken (`WatchFeedback`) — a grade the learner hears is a
+    /// grade the learner can play to. German like the rest of this target,
+    /// which has no string catalog.
+    private func verdict(for index: Int, _ question: WatchPracticeQuestion) -> String {
+        guard let selected = model.selectedIndex else { return "" }
+        if index == question.correctIndex { return "Richtig" }
+        if index == selected { return "Falsch" }
+        return ""
     }
 
     /// Neutral until a choice; then the correct tile greens, a wrong pick reds,
