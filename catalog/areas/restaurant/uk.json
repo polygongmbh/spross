@@ -19,6 +19,7 @@
   "a-table-for-two": { "text": "Столик на двох, будь ласка." },
   "id-like-to-order": { "text": "Я хотів би замовити.", "variants": ["Я хотіла б замовити."] },
   "is-this-vegetarian": { "text": "Це вегетаріанське?" },
-  "the-bill-please": { "text": "Рахунок, будь ласка." }
+  "the-bill-please": { "text": "Рахунок, будь ласка." },
+  "id-like-some-water": { "text": "Можна води?" }
  }
 }

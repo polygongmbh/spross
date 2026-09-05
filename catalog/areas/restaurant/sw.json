@@ -21,6 +21,10 @@
    "text": "Hii ni bila nyama?",
    "notes": { "de": "Kiswahili hat kein eigenes Wort für vegetarisch — man fragt: ist das ohne Fleisch?" }
   },
-  "the-bill-please": { "text": "Bili, tafadhali." }
+  "the-bill-please": { "text": "Bili, tafadhali." },
+  "id-like-some-water": {
+   "text": "Naomba maji.",
+   "notes": { "de": "naomba (ich bitte um) ist die höfliche Bestellformel, ganz ohne tafadhali." }
+  }
  }
 }

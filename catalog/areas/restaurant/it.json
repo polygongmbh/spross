@@ -19,6 +19,7 @@
   "a-table-for-two": { "text": "Un tavolo per due, per favore." },
   "id-like-to-order": { "text": "Vorrei ordinare." },
   "is-this-vegetarian": { "text": "È vegetariano?" },
-  "the-bill-please": { "text": "Il conto, per favore." }
+  "the-bill-please": { "text": "Il conto, per favore." },
+  "id-like-some-water": { "text": "Vorrei dell'acqua." }
  }
 }

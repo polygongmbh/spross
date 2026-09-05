@@ -28,6 +28,7 @@
   "a-table-for-two": { "text": "Une table pour deux, s'il vous plaît." },
   "id-like-to-order": { "text": "Je voudrais commander." },
   "is-this-vegetarian": { "text": "C'est végétarien ?" },
-  "the-bill-please": { "text": "L'addition, s'il vous plaît." }
+  "the-bill-please": { "text": "L'addition, s'il vous plaît." },
+  "id-like-some-water": { "text": "Je voudrais de l'eau." }
  }
 }

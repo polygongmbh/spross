@@ -16,5 +16,6 @@
  { "slug": "a-table-for-two", "kind": "phrase", "components": ["table"] },
  { "slug": "id-like-to-order", "kind": "phrase", "components": ["to-order"] },
  { "slug": "is-this-vegetarian", "kind": "phrase", "emoji": "🥗", "components": [] },
- { "slug": "the-bill-please", "kind": "phrase", "emoji": "🧾", "components": ["bill"] }
+ { "slug": "the-bill-please", "kind": "phrase", "emoji": "🧾", "components": ["bill"] },
+ { "slug": "id-like-some-water", "kind": "phrase" }
 ]

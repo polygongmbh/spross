@@ -19,6 +19,7 @@
   "a-table-for-two": { "text": "Einen Tisch für zwei, bitte." },
   "id-like-to-order": { "text": "Ich möchte bestellen." },
   "is-this-vegetarian": { "text": "Ist das vegetarisch?" },
-  "the-bill-please": { "text": "Die Rechnung, bitte." }
+  "the-bill-please": { "text": "Die Rechnung, bitte." },
+  "id-like-some-water": { "text": "Ich hätte gern Wasser." }
  }
 }
