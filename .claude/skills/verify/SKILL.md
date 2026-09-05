@@ -43,7 +43,9 @@ for the two things no finger reaches:
 
 - **seeding state** the UI cannot author — `-uitest-source de -uitest-target sw`
   (skip onboarding with that profile), `-uitest-streak N`, `-uitest-level N`,
-  `-uitest-misses N`, `-uitest-record 1`, and the Watch's `-uitest-snapshot`;
+  `-uitest-misses N`, `-uitest-record 1`, `-uitest-seed N` (pins which task every
+  drill draws, so one particular verdict or Sprosse needs no relaunch lottery),
+  and the Watch's `-uitest-snapshot`;
 - **instrumentation** — `-uitest-sound 1` and `-uitest-pronounce <form>` print WHICH
   branch played, which no screenshot shows.
 

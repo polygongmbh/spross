@@ -108,7 +108,16 @@ extension DayStats {
 
 /// Kotlin's own `Random`, which every draw in a run is spent out of. Named for
 /// what it is at the call site: the drills never seed one of their own.
-var drillRandom: KotlinRandom { KotlinRandom.companion }
+/// A DEBUG launch may pass `-uitest-seed N` (N > 0) to pin every draw of the run.
+var drillRandom: KotlinRandom {
+    #if DEBUG
+    let seed = UserDefaults.standard.integer(forKey: "uitest-seed")
+    // why: a fresh seeded instance per access — SwiftUI may re-run a view's init,
+    // so every draw is a function of (seed, intents so far), not of render count.
+    if seed > 0 { return Trainer.shared.seededRandom(seed: Int32(seed)) }
+    #endif
+    return KotlinRandom.companion
+}
 
 /// Levels are `Int` everywhere in the drill UI; the ladder is Kotlin `Int`.
 /// Bridged HERE so no view ever writes `Int32(…)` around a Sprosse number.

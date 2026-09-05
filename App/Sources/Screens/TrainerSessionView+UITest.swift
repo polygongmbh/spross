@@ -20,7 +20,9 @@ extension TrainerSessionView {
     /// on the page behind it can be photographed — add `-uitest-record 1` to drop
     /// the stored record first, so the run books one and the tile shows it;
     /// `-uitest-typo 1` renders the accepted-with-typo state;
-    /// `-uitest-reference 1` raises the numbers table the "?" opens.
+    /// `-uitest-reference 1` raises the numbers table the "?" opens;
+    /// `-uitest-seed N` pins every draw of the run (`drillRandom`) — the same task
+    /// and Sprosse on every launch; the letter, date and atlas drills read it too.
     func uitestStart() {
         let defaults = UserDefaults.standard
         let presetLevel = defaults.integer(forKey: "uitest-level")

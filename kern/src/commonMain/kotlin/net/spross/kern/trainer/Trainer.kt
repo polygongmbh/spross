@@ -73,6 +73,12 @@ object Trainer {
 
     fun supports(language: Language): Boolean = language in trainerPacks
 
+    /**
+     * A run replayable from one number — what the platforms' screenshot hooks and the
+     * web page seed their draws with; a bare `Random(seed)` does not reach Swift.
+     */
+    fun seededRandom(seed: Int): Random = Random(seed)
+
     internal fun pack(language: Language): TrainerLanguagePack =
         requireNotNull(trainerPacks[language]) { "no trainer authored for language \"$language\"" }
 
