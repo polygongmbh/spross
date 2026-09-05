@@ -229,9 +229,15 @@ then open design work, then what waits on someone else, grouped by who that is.
   stray-word rescue gone it is safe to add, but it wants its own sweep run.
 - `time` has no `midnight` though the clock reveal teaches it at 00:00 beside `noon`
   (`docs/clock-registers.md` § English a.m./p.m.) — a clean add.
-- `qualities` is 46 concepts, past the ~40 line (`catalog/areas/README.md` § which area a
+- `qualities` is 47 concepts, past the ~40 line (`catalog/areas/README.md` § which area a
   concept lives in); the seam is `comparison` — different, difference, same, similar,
-  opposite, equal, real, to-compare — carried by `scripts/catalog-move.py --create`.
+  opposite, real, to-compare — carried by `scripts/catalog-move.py --create`.
+- `rufen` → sw `kuita` has no card: en/es/fr/it say one word for calling and phoning (to call,
+  llamar, appeler, chiamare — all already `desk/to-call`), so a second card would author one
+  meaning twice (`CatalogLintTest.noConceptPairCollidesInTwoLanguages`); `desk/to-call` would
+  have to be re-cut to phone/telefonear/téléphoner/telefonare first.
+- `verbs/to-deliver` liefern ↔ sw `kupeleka` mirrors hinbringen (take somebody or something
+  somewhere), not liefern; an honest re-cut touches all eight languages.
 - The gap sweep counts glyph occurrences with no longest-glyph-wins, so a glyph nested in a
   longer row's glyph sweeps in that row's words (fr `au` would gap the a-u inside 13 `eau`
   words — bateau, beaucoup …); fr `au` opts out via `mine: false` meanwhile, and an
