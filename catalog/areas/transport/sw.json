@@ -45,12 +45,7 @@
   "when-does-the-train-leave": { "text": "Treni inaondoka lini?" },
   "have-a-good-journey": { "text": "Safari njema!" },
   "how-much-is-the-fare": { "text": "Nauli ni ngapi?" },
-  "the-bus-has-already-departed": {
-   "text": "Basi limeshaondoka.",
-   "notes": {
-    "de": "„-mesha-“ = -me- (Perfekt) + kwisha (schon fertig sein): limeshaondoka betont schon, limeondoka allein heißt nur „ist abgefahren“."
-   }
-  },
+  "the-bus-has-already-departed": { "text": "Basi limeshaondoka.", "notes": { "sw": "limeshaondoka = tayari limeondoka" } },
   "my-parents-are-coming-by-train": { "text": "Wazazi wangu wanakuja kwa treni." }
  }
 }

@@ -45,9 +45,7 @@
   "we-go-to-the-classroom": { "text": "Tunaenda darasani." },
   "the-exam-is-already-corrected": {
    "text": "Mtihani umeshasahihishwa.",
-   "notes": {
-    "de": "„-mesha-“ = -me- (Perfekt) + kwisha (schon fertig sein): umeshasahihishwa betont schon, umesahihishwa allein heißt nur „ist korrigiert“."
-   }
+   "notes": { "sw": "umeshasahihishwa = tayari umesahihishwa" }
   }
  }
 }
