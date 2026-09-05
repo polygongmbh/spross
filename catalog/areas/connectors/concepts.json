@@ -21,7 +21,9 @@
  { "slug": "so-that", "kind": "adjective" },
  { "slug": "together", "kind": "adjective", "emoji": "👫" },
  { "slug": "therefore", "kind": "adjective" },
- { "slug": "since", "kind": "adjective" },
+ { "slug": "even", "kind": "adjective" },
+ { "slug": "although", "kind": "adjective" },
+ { "slug": "that-conj", "kind": "adjective" },
  { "slug": "if-you-want", "kind": "phrase", "components": ["if"] },
  { "slug": "finally-done", "kind": "phrase", "components": ["finally"] }
 ]

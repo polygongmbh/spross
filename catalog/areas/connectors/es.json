@@ -34,7 +34,9 @@
    "notes": { "de": "richtet sich nach der Gruppe: juntos (Männer oder gemischt) · juntas (nur Frauen)." }
   },
   "therefore": { "text": "por eso" },
-  "since": { "text": "desde" },
+  "even": { "text": "incluso" },
+  "although": { "text": "aunque" },
+  "that-conj": { "text": "que" },
   "if-you-want": { "text": "Si quiere.", "variants": ["Si quieres."] },
   "finally-done": { "text": "¡Por fin terminado!", "variants": ["¡Por fin terminada!"] }
  }

@@ -32,7 +32,9 @@
   "only": { "text": "solo", "variants": ["soltanto", "solamente"] },
   "together": { "text": "insieme" },
   "therefore": { "text": "quindi", "synonyms": ["perciò"] },
-  "since": { "text": "da" },
+  "even": { "text": "persino", "synonyms": ["addirittura"] },
+  "although": { "text": "anche se", "synonyms": ["sebbene"] },
+  "that-conj": { "text": "che" },
   "if-you-want": { "text": "Se vuole.", "variants": ["Se vuoi."] },
   "finally-done": { "text": "Finalmente finito!", "variants": ["Finalmente finita!"] }
  }

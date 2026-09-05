@@ -38,7 +38,15 @@
   },
   "together": { "text": "pamoja" },
   "therefore": { "text": "kwa hiyo" },
-  "since": { "text": "tangu" },
+  "even": {
+   "text": "hata",
+   "notes": { "de": "hata kidogo = kein bisschen · hata mimi = ich auch, sogar ich." }
+  },
+  "although": { "text": "ingawa", "synonyms": ["japo"] },
+  "that-conj": {
+   "text": "kwamba",
+   "notes": { "de": "nach sagen und denken oft weggelassen: Nadhani (kwamba) atakuja." }
+  },
   "if-you-want": { "text": "Kama unataka." },
   "finally-done": { "text": "Hatimaye nimemaliza!" }
  }

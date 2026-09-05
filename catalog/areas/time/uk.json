@@ -32,6 +32,9 @@
   "later": { "text": "пізніше" },
   "last": { "text": "останній", "variants": ["остання", "останнє"] },
   "day-after-tomorrow": { "text": "післязавтра" },
+  "since": { "text": "з" },
+  "right-now": { "text": "зараз же", "synonyms": ["негайно"] },
+  "weekend": { "text": "вихідні", "grammar": { "plural": "only" } },
   "i-have-no-time": { "text": "У мене немає часу." },
   "two-in-the-afternoon": { "text": "друга дня" },
   "nine-am-sharp": {

@@ -44,7 +44,9 @@
   "only": { "text": "nur" },
   "together": { "text": "kune" },
   "therefore": { "text": "tial" },
-  "since": { "text": "ekde" },
+  "even": { "text": "eĉ" },
+  "although": { "text": "kvankam" },
+  "that-conj": { "text": "ke" },
   "if-you-want": { "text": "Se vi volas." },
   "finally-done": { "text": "Fine finita!" }
  }

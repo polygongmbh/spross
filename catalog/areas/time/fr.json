@@ -45,6 +45,9 @@
   "later": { "text": "plus tard" },
   "last": { "text": "dernier", "variants": ["dernière"] },
   "day-after-tomorrow": { "text": "après-demain" },
+  "since": { "text": "depuis" },
+  "right-now": { "text": "tout de suite" },
+  "weekend": { "text": "week-end", "grammar": { "gender": "le" } },
   "i-have-no-time": { "text": "Je n'ai pas le temps." },
   "two-in-the-afternoon": { "text": "deux heures de l'après-midi" },
   "nine-am-sharp": {

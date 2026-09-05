@@ -45,7 +45,9 @@
   "only": { "text": "nur" },
   "together": { "text": "zusammen" },
   "therefore": { "text": "deshalb", "synonyms": ["daher"] },
-  "since": { "text": "seit" },
+  "even": { "text": "sogar" },
+  "although": { "text": "obwohl" },
+  "that-conj": { "text": "dass" },
   "if-you-want": { "text": "Wenn Sie wollen.", "variants": ["Wenn du willst."] },
   "finally-done": { "text": "Endlich fertig!" }
  }

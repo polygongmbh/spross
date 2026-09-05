@@ -26,6 +26,9 @@
  { "slug": "later", "kind": "adjective" },
  { "slug": "last", "kind": "adjective" },
  { "slug": "day-after-tomorrow", "kind": "adjective" },
+ { "slug": "since", "kind": "adjective" },
+ { "slug": "right-now", "kind": "adjective" },
+ { "slug": "weekend", "kind": "noun" },
  { "slug": "i-have-no-time", "kind": "phrase", "emoji": "⏰", "components": ["time"] },
  {
   "slug": "two-in-the-afternoon",

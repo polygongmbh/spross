@@ -33,6 +33,9 @@
   "later": { "text": "pli poste" },
   "last": { "text": "lasta" },
   "day-after-tomorrow": { "text": "postmorgaŭ" },
+  "since": { "text": "ekde" },
+  "right-now": { "text": "tuj" },
+  "weekend": { "text": "semajnfino" },
   "i-have-no-time": { "text": "Mi ne havas tempon." },
   "two-in-the-afternoon": {
    "text": "la dua posttagmeze",
