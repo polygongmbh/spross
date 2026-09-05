@@ -2,6 +2,7 @@ package net.spross.app
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -203,6 +204,13 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     var catalog by mutableStateOf<Catalog?>(null)
         private set
     var box by mutableStateOf<BoxState?>(null)
+        private set
+
+    /**
+     * Why the box on disk could not be read, where it could not — the reason the load-error
+     * card on Home carries. Null whenever the box standing here is the one that was asked for.
+     */
+    var loadFailure by mutableStateOf<String?>(null)
         private set
     var stats by mutableStateOf<BoxStatistics?>(null)
         private set
@@ -601,37 +609,51 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         // manifest — none of it belongs on the thread that has to draw the first frame.
         val loaded = withContext(Dispatchers.Default) {
             val cards = cat.join(source, target)
-            val restored = stored?.let { json ->
+            val restored: Result<BoxState>? = stored?.let { json ->
                 try {
                     // why: calibration belongs to the BUILD — a box written months ago would
                     // otherwise keep pacing itself by the numbers that shipped with it.
                     // revivingLeechSuspensions/rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
-                    StoreCodec.decode(json).join(cards, stamp)
-                        .withProductCalibration()
-                        .revivingLeechSuspensions()
-                        .rekeyingPrefixedVerbs()
-                } catch (_: StoreFormatException) {
-                    null // unreadable document: start fresh rather than crash (pre-production)
+                    Result.success(
+                        StoreCodec.decode(json).join(cards, stamp)
+                            .withProductCalibration()
+                            .revivingLeechSuspensions()
+                            .rekeyingPrefixedVerbs()
+                    )
+                } catch (e: StoreFormatException) {
+                    Result.failure(e)
                 }
             }
             // why: the pair only changes here — the hub reads the atlas and the
             // calendars on every composition, and a sweep per frame is one no
             // start-up should pay.
             Triple(
-                restored ?: BoxEngine.bootstrap(cards, BoxConfig.product(), stamp),
+                restored ?: Result.success(BoxEngine.bootstrap(cards, BoxConfig.product(), stamp)),
                 cat.countryDrillContent(source, target),
                 cat.dateDrillContent(source, target),
             )
         }
         val (state, joinedAtlas, joinedDates) = loaded
-        box = state
+        val unreadable = state.exceptionOrNull()
+        if (unreadable != null) {
+            // why: a box that exists but cannot be read must never read as an EMPTY one —
+            // bootstrapping here would hand the learner a fresh box and hide the loss, so
+            // Home says so instead and the file on disk is left exactly as it stands.
+            Log.w("Spross", "box for $target unreadable: ${unreadable.message}", unreadable)
+            loadFailure = unreadable.message ?: "StoreFormatException"
+            screen = Screen.Home
+            return
+        }
+        loadFailure = null
+        val joined = state.getOrThrow()
+        box = joined
         atlas = joinedAtlas
         dates = joinedDates
         normalizer = AnswerNormalizer(cat.languages.getValue(target))
         meaningNormalizer = AnswerNormalizer(cat.languages.getValue(source))
         // why: only a box that did not exist yet owes the disk anything here. A re-join is
         // derived from what is already stored and reproduces itself on the next launch.
-        if (stored == null) persist(state)
+        if (stored == null) persist(joined)
         otherLanguagesDailyStats = withContext(Dispatchers.IO) { loadOtherLanguagesDailyStats(cat, target) }
         refreshStats()
         refreshListening()

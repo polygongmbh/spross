@@ -143,17 +143,19 @@ fun HomeScreen(model: AppModel) {
             }
         }
 
-        // Android surfaces no load failure of its own yet (the model has no such state),
-        // so the failure branch is unreachable here — the chrome for it stands ready.
         val card = homeCard(
-            failed = false,
+            failed = model.loadFailure != null,
             offerKind = standing?.offer?.kind ?: SessionOfferKind.Nothing,
         )
         when (card) {
             HomeCard.Failure -> StateCard(
                 emoji = "🫤",
                 title = chrome.errorTitle,
-                message = chrome.errorCatalogMissing,
+                // The catalog is present — the box is what could not be read, so the card
+                // names the reason the decode gave rather than a missing content pack.
+                message = model.loadFailure
+                    ?.let { chrome.errorContentUnavailable.format(it) }
+                    ?: chrome.errorCatalogMissing,
             )
 
             HomeCard.Session -> standing?.let {
