@@ -22,6 +22,7 @@
   "every": { "text": "jeder", "variants": ["jede", "jedes"] },
   "a-little": { "text": "ein bisschen", "synonyms": ["ein wenig"] },
   "few": { "text": "wenige" },
+  "once": { "text": "einmal" },
   "more-or-less": { "text": "mehr oder weniger" },
   "i-am-always-there": { "text": "Ich bin immer da." },
   "hang-it-higher": { "text": "Häng es höher." },

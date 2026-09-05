@@ -66,6 +66,7 @@
   "to-pull": { "text": "tirare" },
   "to-have-to": { "text": "dovere" },
   "to-put": { "text": "mettere" },
+  "to-carry": { "text": "portare" },
   "do-you-have-water": { "text": "Ha acqua?", "variants": ["Ha dell'acqua?", "Avete acqua?", "Hai acqua?"] },
   "where-are-you-from": {
    "text": "Di dov'è?",

@@ -29,6 +29,7 @@
   "every": { "text": "ĉiu" },
   "a-little": { "text": "iom" },
   "few": { "text": "malmultaj" },
+  "once": { "text": "unufoje" },
   "more-or-less": { "text": "pli-malpli", "variants": ["pli aŭ malpli", "pli malpli"] },
   "i-am-always-there": { "text": "Mi ĉiam estas tie." },
   "hang-it-higher": {

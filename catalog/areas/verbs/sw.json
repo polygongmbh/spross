@@ -78,6 +78,7 @@
    "notes": { "de": "lazima + Konjunktiv: lazima niende = ich muss gehen, lazima ule = du musst essen." }
   },
   "to-put": { "text": "kuweka", "notes": { "de": "legen, stellen, setzen: weka hapa = leg es hier hin." } },
+  "to-carry": { "text": "kubeba" },
   "do-you-have-water": { "text": "Una maji?" },
   "where-are-you-from": { "text": "Unatoka wapi?" },
   "can-you-see-me": { "text": "Unaniona?" }

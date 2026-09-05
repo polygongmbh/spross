@@ -50,6 +50,10 @@
    "variants": ["wachache", "chache", "vichache", "machache", "michache"],
    "notes": { "de": "Vorsilbe der Nomenklasse: watu wachache, siku chache." }
   },
+  "once": {
+   "text": "mara moja",
+   "notes": { "de": "mara zählt die Male: mara mbili = zweimal · mara moja heißt auch sofort." }
+  },
   "more-or-less": { "text": "zaidi au pungufu" },
   "i-am-always-there": { "text": "Niko pale daima." },
   "hang-it-higher": { "text": "Itundike juu zaidi." },

@@ -40,6 +40,7 @@
   "to-pull": { "text": "ziehen" },
   "to-have-to": { "text": "müssen" },
   "to-put": { "text": "hinlegen", "synonyms": ["hinstellen"] },
+  "to-carry": { "text": "tragen" },
   "do-you-have-water": { "text": "Haben Sie Wasser?", "variants": ["Hast du Wasser?"] },
   "where-are-you-from": { "text": "Woher kommen Sie?", "variants": ["Woher kommst du?"] },
   "can-you-see-me": {

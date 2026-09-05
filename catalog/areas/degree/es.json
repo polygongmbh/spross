@@ -22,6 +22,7 @@
   "every": { "text": "cada" },
   "a-little": { "text": "un poco" },
   "few": { "text": "pocos", "variants": ["pocas"] },
+  "once": { "text": "una vez" },
   "more-or-less": { "text": "más o menos" },
   "i-am-always-there": { "text": "Siempre estoy ahí." },
   "hang-it-higher": { "text": "Cuélguelo más alto.", "variants": ["Cuélgalo más alto."] },

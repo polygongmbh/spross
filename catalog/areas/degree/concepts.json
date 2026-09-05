@@ -19,6 +19,7 @@
  { "slug": "lower", "kind": "adjective", "emoji": "⬇️" },
  { "slug": "a-little", "kind": "adjective" },
  { "slug": "few", "kind": "adjective" },
+ { "slug": "once", "kind": "adjective" },
  { "slug": "more-or-less", "kind": "phrase", "components": ["more", "less"], "emoji": "⚖️" },
  { "slug": "i-am-always-there", "kind": "phrase", "components": ["always"], "emoji": "🙋" },
  { "slug": "hang-it-higher", "kind": "phrase", "emoji": "⬆️", "components": ["higher"] },

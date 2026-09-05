@@ -30,6 +30,7 @@
  { "slug": "to-pull", "kind": "verb", "emoji": "👈" },
  { "slug": "to-have-to", "kind": "verb" },
  { "slug": "to-put", "kind": "verb" },
+ { "slug": "to-carry", "kind": "verb" },
  { "slug": "do-you-have-water", "kind": "phrase", "emoji": "💧", "components": ["to-have"] },
  { "slug": "where-are-you-from", "kind": "phrase", "emoji": "🌍", "components": ["to-come"] },
  { "slug": "can-you-see-me", "kind": "phrase", "emoji": "👀", "components": ["to-see"] }
