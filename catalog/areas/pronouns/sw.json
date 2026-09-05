@@ -13,6 +13,21 @@
   },
   "we": { "text": "sisi", "notes": { "sw": "sisi: tu- (tu-naona) na -tu- (a-na-tu-saidia)." } },
   "you-plural": { "text": "ninyi", "notes": { "sw": "ninyi: m- (m-naona) na -wa- (a-na-wa-saidia)." } },
-  "they": { "text": "wao", "notes": { "sw": "wao: wa- (wa-naona) na -wa- (ni-na-wa-saidia)." } }
+  "they": { "text": "wao", "notes": { "sw": "wao: wa- (wa-naona) na -wa- (ni-na-wa-saidia)." } },
+  "my": {
+   "text": "-angu",
+   "variants": ["wangu", "yangu", "langu", "changu", "zangu", "vyangu"],
+   "notes": { "sw": "-angu: mama yangu, rafiki wangu, kitabu changu, viatu vyangu." }
+  },
+  "your": {
+   "text": "-ako",
+   "variants": ["wako", "yako", "lako", "chako", "zako", "vyako"],
+   "notes": { "sw": "-ako: baba yako, jaketi lako, viatu vyako." }
+  },
+  "his": {
+   "text": "-ake",
+   "variants": ["wake", "yake", "lake", "chake", "zake", "vyake"],
+   "notes": { "sw": "-ake ni wa mwanaume na mwanamke: mama yake, mpenzi wake." }
+  }
  }
 }

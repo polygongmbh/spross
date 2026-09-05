@@ -11,6 +11,9 @@
   "he": { "text": "il", "variants": ["elle"] },
   "we": { "text": "nous" },
   "you-plural": { "text": "vous" },
-  "they": { "text": "ils", "variants": ["elles"] }
+  "they": { "text": "ils", "variants": ["elles"] },
+  "my": { "text": "mon", "variants": ["ma", "mes"] },
+  "your": { "text": "ton", "variants": ["ta", "tes"] },
+  "his": { "text": "son", "variants": ["sa", "ses"] }
  }
 }

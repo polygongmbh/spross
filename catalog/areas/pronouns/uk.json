@@ -12,6 +12,9 @@
   "it": { "text": "воно" },
   "we": { "text": "ми" },
   "you-plural": { "text": "ви" },
-  "they": { "text": "вони" }
+  "they": { "text": "вони" },
+  "my": { "text": "мій", "variants": ["моя", "моє", "мої"] },
+  "your": { "text": "твій", "variants": ["твоя", "твоє", "твої"] },
+  "his": { "text": "його", "synonyms": ["її"] }
  }
 }

@@ -14,6 +14,9 @@
     "en": "English has one you for one person and for many; you all is how the plural gets said out loud."
    }
   },
-  "they": { "text": "they" }
+  "they": { "text": "they" },
+  "my": { "text": "my" },
+  "your": { "text": "your" },
+  "his": { "text": "his", "synonyms": ["her"] }
  }
 }

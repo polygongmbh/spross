@@ -11,6 +11,9 @@
   "he": { "text": "lui", "variants": ["lei"] },
   "we": { "text": "noi" },
   "you-plural": { "text": "voi" },
-  "they": { "text": "loro" }
+  "they": { "text": "loro" },
+  "my": { "text": "mio", "variants": ["mia", "miei", "mie"] },
+  "your": { "text": "tuo", "variants": ["tua", "tuoi", "tue"] },
+  "his": { "text": "suo", "variants": ["sua", "suoi", "sue"] }
  }
 }

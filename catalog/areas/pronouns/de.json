@@ -18,6 +18,9 @@
   "it": { "text": "es" },
   "we": { "text": "wir" },
   "you-plural": { "text": "ihr" },
-  "they": { "text": "sie" }
+  "they": { "text": "sie" },
+  "my": { "text": "mein", "variants": ["meine"] },
+  "your": { "text": "dein", "variants": ["deine"] },
+  "his": { "text": "sein", "variants": ["seine"] }
  }
 }

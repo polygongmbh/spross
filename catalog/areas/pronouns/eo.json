@@ -10,6 +10,9 @@
   "he": { "text": "li", "variants": ["ŝi"] },
   "it": { "text": "ĝi" },
   "we": { "text": "ni" },
-  "they": { "text": "ili" }
+  "they": { "text": "ili" },
+  "my": { "text": "mia" },
+  "your": { "text": "via" },
+  "his": { "text": "lia", "synonyms": ["ŝia"], "notes": { "de": "lia = sein, ŝia = ihr." } }
  }
 }

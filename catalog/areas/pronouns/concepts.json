@@ -6,5 +6,8 @@
  { "slug": "it", "kind": "adjective" },
  { "slug": "we", "kind": "adjective" },
  { "slug": "you-plural", "kind": "adjective" },
- { "slug": "they", "kind": "adjective" }
+ { "slug": "they", "kind": "adjective" },
+ { "slug": "my", "kind": "adjective" },
+ { "slug": "your", "kind": "adjective" },
+ { "slug": "his", "kind": "adjective" }
 ]
