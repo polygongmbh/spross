@@ -61,18 +61,16 @@ internal object EnglishClock {
     }
 
     /** "seventeen past two", "twenty-five to three" — the count off the hour. */
-    private fun counted(minutes: Int, cur: String, next: String): String =
-        if (minutes in 1..29) "${EnglishNumbers.underHundred(minutes)} past $cur"
-        else "${EnglishNumbers.underHundred(60 - minutes)} to $next"
+    private fun counted(minutes: Int, cur: String, next: String): String {
+        val offset = Registers.MinuteOffset(minutes)
+        return "${offset.counted} ${offset.joiner("past", "to")} ${offset.target(cur, next)}"
+    }
 
     /** "seventeen minutes past two", "one minute to twelve" — the count with its noun. */
     private fun spelledMinutes(minutes: Int, cur: String, next: String): List<String> {
         // why: "half past two" is the reading at :30; "thirty past two" is not said.
-        val past = minutes <= 30
-        val count = if (past) minutes else 60 - minutes
-        val noun = if (count == 1) "minute" else "minutes"
-        val target = if (past) cur else next
-        return listOf("${EnglishNumbers.underHundred(count)} $noun ${if (past) "past" else "to"} $target")
+        val offset = Registers.MinuteOffset(minutes)
+        return listOf("${offset.counted} ${offset.noun} ${offset.joiner("past", "to")} ${offset.target(cur, next)}")
     }
 
     /**
@@ -83,12 +81,10 @@ internal object EnglishClock {
      */
     private fun american(minutes: Int, cur: String, next: String): List<String> {
         if (minutes == 0 || minutes == 30) return emptyList()
-        val past = minutes < 30
-        val count = EnglishNumbers.underHundred(if (past) minutes else 60 - minutes)
-        val noun = if ((if (past) minutes else 60 - minutes) == 1) "minute" else "minutes"
-        val joiner = if (past) "after" else "till"
-        val target = if (past) cur else next
-        return listOf("$count $joiner $target", "$count $noun $joiner $target")
+        val offset = Registers.MinuteOffset(minutes)
+        val joiner = offset.joiner("after", "till")
+        val target = offset.target(cur, next)
+        return listOf("${offset.counted} $joiner $target", "${offset.counted} ${offset.noun} $joiner $target")
     }
 
     /** "two oh five" below ten past, "two thirty-five" above. */

@@ -7,6 +7,20 @@ package net.spross.kern.trainer
  */
 internal object EnglishClockRegisters {
 
+    /**
+     * The minute counted off the nearer hour: past the current one up to and including
+     * the half hour, to the next one beyond it — the one pivot every English count
+     * ("twenty past", "twenty-five to", "ten after", "quarter to noon") shares.
+     */
+    class MinuteOffset(minute: Int) {
+        val past: Boolean = minute <= 30
+        val count: Int = if (past) minute else 60 - minute
+        val counted: String = EnglishNumbers.underHundred(count)
+        val noun: String = if (count == 1) "minute" else "minutes"
+        fun target(cur: String, next: String): String = if (past) cur else next
+        fun joiner(past: String, to: String): String = if (this.past) past else to
+    }
+
     /** The mark as a style guide writes it — what the reveal names. */
     fun meridiemMark(hour: Int): String = if (hour < 12) "a.m." else "p.m."
 
@@ -83,21 +97,14 @@ internal object EnglishClockRegisters {
             hour == 11 && minute > 30 -> listOf("noon", "midday")
             else -> return emptyList()
         }
-        val past = minute <= 30
-        val count = if (past) minute else 60 - minute
-        val direction = if (past) "past" else "to"
-        val heads = buildList {
-            when (count) {
-                15 -> {
-                    add("quarter")
-                    add("a quarter")
-                    add("fifteen")
-                }
-                30 -> add("half")
-                else -> add(EnglishNumbers.underHundred(count))
-            }
+        val offset = MinuteOffset(minute)
+        val direction = offset.joiner("past", "to")
+        val heads = when (offset.count) {
+            15 -> listOf("quarter", "a quarter", "fifteen")
+            30 -> listOf("half")
+            else -> listOf(offset.counted)
         }
-        val noun = if (count == 1) "one minute" else "${EnglishNumbers.underHundred(count)} minutes"
+        val noun = "${offset.counted} ${offset.noun}"
         return EnglishNumbers.spellings(
             anchor.flatMap { name -> (heads + noun).map { "$it $direction $name" } },
         )
