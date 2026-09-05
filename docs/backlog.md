@@ -19,9 +19,6 @@ then open design work, then what waits on someone else, grouped by who that is.
 - `EnglishClock` triplicates its own count/noun/direction derivation (`spelledMinutes:70-73`,
   `american:85-89`, `EnglishClockRegisters.anchors:58-72`) with `past` as `<= 30` in two of
   them and `< 30` in the third — the largest true duplication in the clock corpus.
-- `TrainerRun` has no `openAt(mode:levels:rng:)` sibling of `LetterDrillRun.openAt`, which
-  forces iOS's DEBUG-only `TrainerRunState.seeded` doCopy helper
-  (`App/Sources/Screens/TrainerSessionView+UITest.swift`).
 - `<pack>.cardinal(-n)` returns the digits rather than a reading — the negative reading lives
   in `formReading` deliberately, so nothing needs it today, but a caller that assumes
   `cardinal` covers every `Long` gets a digit string back with no error.
@@ -84,45 +81,18 @@ then open design work, then what waits on someone else, grouped by who that is.
 
 ## App & UX
 
-- Both reveals join article + text with a plain space (`android/.../ui/Components.kt`
-  `articleColoredText` and the iOS twin), so an elided `l'` renders "l' acqua" where an
-  apostrophe-final article should write onto its noun, the citation form
-  `RealCatalogGradingTest.everyGenderedCardAcceptsTheCitationFormItTeaches` now grades.
-- Italian and French articles render un-hued because `articleGender`
-  (`kern/.../model/Article.kt`) maps de/es articles only, so il/lo/i/gli/le/uno fall to null
-  and French is half-hued — la/un hue via their es homographs while le/les/une fall to null
-  (`l'` stays null rightly, it marks both genders).
-- The answer field's accepted mark is Correct-only on Android where iOS rides it on both
-  correct states, so a near miss there is amber and nothing else in the field itself
-  (`ui/SessionTurn.kt` `AnswerField`, `ui/DrillField.kt`) — the correction box below says
-  the state in words, but the mark is the parity.
-- The watch quiz tells correctness to the EYE only (tile tint, red wash and an
-  `accessibilityHidden` rating emoji, `Watch/Sources/WatchQuizView.swift` `ratingBadge`),
-  where the phone's letter drill rules "correctness is never color alone" (`surfaces.md`), so
-  the watch owes a spoken equivalent — an accessibility label or value on the answered tile,
-  not a mark.
-- `AppModel.activate()` silently bootstraps a fresh box when decode fails
-  (`android/.../AppModel.kt:496-509`), so a corrupt or mis-pathed box reads as empty with no
-  trace — surface the failure (log + error card; the `error*` chrome and `HomeCard.Failure`
-  in `ui/HomeScreen.kt` already stand wired and unreachable) before real devices.
+- Android's answer-field mark returns null for `TurnFeedback.Revealed` where iOS draws `.revealed` amber,
+  against the `// why: correctness is never color alone` comment in the same two files
+  (`android/.../ui/SessionTurn.kt`, `ui/DrillField.kt`).
+- Widget and watch snapshots ship the raw article string (`kern/.../snapshot/SnapshotSupport.kt`
+  `articleTint`, `Widgets/Sources/WordWidgetView.swift`, `Watch/Sources/WatchTheme.swift`), so fr/it
+  `le` cannot take its hue there until the snapshot carries a gender (a `!` change).
 - A drill's typed-answer controls (the field, the one primary action that reveals or checks,
   the amber hold, the revealed branch with its stop offer, the screen-reader "Weiter") stand
   verbatim in `TrainerSessionView+Drill.swift`, `LetterDrillView+Stages.swift` and
   `DrillRunView+Content.swift` with the live check wired per copy, so one component owning the
   branch and the `onChange(of: input)` beside it would make a fourth drill's auto-confirm
   structural rather than remembered.
-- `NumbersOverview.swift` holds its picks as `Set<DrillVariant>` where `DrillSelection` hands
-  back ordered lists (converted at both boundaries) and hand-spells its progress key
-  `"\(variant.storageTag).\(language)"` where `TrainerMode.companion.progressKey(variant:language:)`
-  is the public spelling (`DrillVariant.storageTag`/`.slotKind` stay `internal` in kern over it).
-- `TrainerRecords.swift` hard-codes `"trainer.record."` though `TrainerMode.companion.RECORD_PREFIX`
-  now exists.
-- `TrainerSessionView+Grading.swift` and `LetterDrillView+Grading.swift` now hold the run
-  DRIVERS (dispatch/effects/close), not grading — rename to `+Run.swift` in a pass that
-  regenerates the Xcode project.
-- `HomeView.swift` (391 lines) is past the ~300-line budget; the day's cards (session, done,
-  error, both tallies) split off cleanly the way `HomeView+Header.swift` already does.
-- `AppModel+Queries.swift` `consolidatedCards()` has no caller left — prune.
 - Android still stores read-aloud as the boolean iOS calls its legacy key (`pronunciationMuted`,
   `android/.../audio/Pronouncer.kt:313`, against iOS's three-state `readAloud` in
   `App/Sources/Audio/AudioSession.swift`) and so has no `followsPhone` middle state, but on
@@ -177,16 +147,10 @@ then open design work, then what waits on someone else, grouped by who that is.
 
 ## Platform reach
 
-- Android back doors land on Home even when opened from the box: `closeAbout()` and
-  `activate()` (reached via a box-settings language change) both end at `Screen.Home`
-  (`android/.../AppModel.kt`).
 - `compileSdk` sits at 36 and now holds androidx back — lifecycle 2.11 refuses to resolve below
   37 (`checkDebugAarMetadata`) and the next Compose BOM will follow — so bumping needs the
   android-37 platform installed and a separate re-check of `targetSdk`, since compiling
   against 37 does not opt the app into its runtime behavior.
-- The web numbers drill never gained it/fr/eo: `web/site.js` mirrors `catalog/languages.json`
-  by hand (its `LANGS` rows) and still offers the five older languages only
-  (`docs/website.md` § Drill scope).
 - Android surfaces still unported: `docs/design.md` § Not yet owns the list (couple mode,
   accounts/sync, chrome past de/en, no forest canvas or growth headline), and the `growth*`
   rows in `Chrome.kt:456-458` stand ready for a headline that needs `AreaTree`/`TreeTransition`
@@ -220,11 +184,6 @@ then open design work, then what waits on someone else, grouped by who that is.
   it explains") rules — sw is the largest side (6 frame + 119 word notes, three of them the
   concord-by-note pattern and one pure etymology that README cuts) and, with eo, wants a
   reviewer who reads it.
-- German adjective endings are the next rule family with an anchor and no note: it draws them,
-  and eo/es/fr/it/uk/sw all agree adjectives too, so the cross-language test passes at six of
-  eight, and `people/a-good-friend`, `people/many-friends`, `people/old-people` and
-  `qualities/a-lot-of-water` already exercise it unlabeled — the shape
-  `at-school`/`go-to-school` was in before it was named.
 - de accepts no bare hour word ("Es ist acht.") though the German is right; with the drill's
   stray-word rescue gone it is safe to add, but it wants its own sweep run.
 - `time` has no `midnight` though the clock reveal teaches it at 00:00 beside `noon`
@@ -243,10 +202,9 @@ then open design work, then what waits on someone else, grouped by who that is.
   words — bateau, beaucoup …); fr `au` opts out via `mine: false` meanwhile, and an
   engine-side exclusion would win its honest pool back (`Catalog.alphabetExamples`).
 - 58/212 phrases (27%) carry no `components`: 20 are greetings, component-free by design
-  (`catalog/README.md:127`), 9 have a same-area word to gate on, and ~29 (`im-tired`,
-  `wash-your-hands`, `i-love-you`, …) have none — for those, author the missing word in eight
-  languages, move the phrase to the area that owns the word via `scripts/catalog-move.py`
-  (changing the scene it teaches), or declare it a building block?
+  (`catalog/README.md:127`), 9 gained theirs in 2db13420, and ~29 (`im-tired`, `wash-your-hands`,
+  `i-love-you`, …) have no same-area word to gate on — author the missing word in eight languages,
+  move the phrase via `scripts/catalog-move.py`, or declare it a building block?
 - es has no `morning`, `afternoon` or `late` and uk no `afternoon` because `mañana` and `tarde`
   already realize `time/tomorrow` and `time/evening` (uk simply has no plain noun for the
   afternoon), one form for two cards inside one area being the collision the lint calls
@@ -378,8 +336,8 @@ then open design work, then what waits on someone else, grouped by who that is.
 ## Localization
 
 - Watch, widget, and complication chrome is hardcoded German with no string catalog
-  (`Watch/Sources/WatchHomeView.swift`, `Widgets/Sources/WordWidgetView.swift`,
-  `WatchWidgets/Sources/WatchWordWidgetView.swift`) and needs its own catalog plus a
+  (`Watch/Sources/WatchHomeView.swift`, `Watch/Sources/WatchQuizView.swift`,
+  `Widgets/Sources/WordWidgetView.swift`, `WatchWidgets/Sources/WatchWordWidgetView.swift`) and needs its own catalog plus a
   chrome-language field on the snapshot, since those surfaces never see `AppModel.knownLocale`.
 
 ## Verification gaps
@@ -390,20 +348,6 @@ then open design work, then what waits on someone else, grouped by who that is.
   (`kern/.../session/AnswerNormalizer.kt`), and Italian promotes many cross-article synonyms
   (la vaccinazione on il vaccino, il farmaco on la medicina, il salario on lo stipendio), so
   the reveal teaches forms the grader then punishes.
-- `TrainerStore`'s read/write plumbing is untested (needs `SharedPreferences`, no Robolectric
-  in the module; the key rules are kern's and tested there) — one emulator check that a Sprosse
-  survives an app restart (`android/.../TrainerStore.kt`).
-- Drill runs have no RNG seed hook (`drillRandom` is `KotlinRandom.companion`,
-  `App/Sources/KernBridge.swift`), so a screenshot or verification run cannot pin WHICH task
-  gets drawn — aiming an answer needs no seed since `idb ui text` types after the prompt is
-  read back from `idb ui describe-all`, but a shot of one particular verdict or Sprosse means
-  relaunching until the draw matches, where kern already takes an injected `Random` per run
-  and `-uitest-seed N` is a small hook.
-- The `SprossWatchWidgets` auto-scheme resolves destinations erratically (project.yml declares
-  no schemes, and an extension auto-scheme flip-flops between iOS and watchOS destination
-  lists), so a named iPhone destination may not match — the reliable gates are the `Spross`
-  scheme (builds the whole embed chain, watch app and both widget extensions included) or
-  `-scheme SprossWatchWidgets -destination 'generic/platform=iOS Simulator'`.
 - `CatalogAudioLintTest` (399 lines) and `CatalogAudioFixtureTest` (340) are both past the
   ~300-line budget and split cleanly: provenance/attribution rules apart from the playback
   index and the naming rules, lookup apart from parse in the fixture half.

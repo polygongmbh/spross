@@ -4,6 +4,14 @@
 
 - Everyday glue words that only ever hid inside phrases now have cards of their own, among them later, last, since, therefore, a little, must, put and the possessives my, your and his.
 - Cards that duplicated another word or only glued two known words together are gone, along with three where-is questions that repeated one pattern.
+- Italian and French articles now show their gender color on the card and in the box, and an elided article such as l' writes onto its noun instead of standing apart.
+- German cards now name the adjective ending rule: ein guter Freund against der gute Freund, and viel Wasser against viele Freunde.
+- More phrases unlock from the word they are built on, so internet, email, word, language, movie and rain land before the sentences that use them.
+- The web numbers drill now offers Esperanto, French and Italian alongside the other languages.
+- The watch quiz speaks each answered tile's verdict to VoiceOver instead of showing correctness in color alone.
+- On Android a near miss keeps the checkmark in the answer field, drawn in amber.
+- On Android a box that cannot be read shows an error card instead of quietly starting over empty.
+- Android returns to the box after closing About or changing the learning language from the box's settings.
 
 ## 6.0.1 — 2026-09-05
 
