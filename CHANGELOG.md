@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Everyday glue words that only ever hid inside phrases now have cards of their own, among them later, last, since, therefore, a little, must, put and the possessives my, your and his.
+- Cards that duplicated another word or only glued two known words together are gone, along with three where-is questions that repeated one pattern.
 ## 6.0.1 — 2026-09-05
 
 - Copying or mailing your feedback can leave your finished word pairs behind and carry just the suggestions and problems you filed.
