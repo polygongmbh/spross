@@ -59,7 +59,7 @@
    }
   },
   "this-is-my-mother": { "text": "Huyu ni mama yangu." },
-  "where-is-your-father": { "text": "Baba yako yuko wapi?" },
+  "where-is-your-father": { "text": "Baba yenu yuko wapi?" },
   "i-have-two-children": { "text": "Nina watoto wawili." },
   "how-is-your-grandmother": { "text": "Nyanya yako hajambo?" },
   "a-good-friend": { "text": "rafiki mzuri", "grammar": { "plural": "marafiki wazuri" } },

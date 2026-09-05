@@ -51,7 +51,7 @@
   "to-visit": { "text": "andare a trovare" },
   "to-marry": { "text": "sposarsi" },
   "this-is-my-mother": { "text": "Questa è mia madre." },
-  "where-is-your-father": { "text": "Dov'è tuo padre?", "variants": ["Dov'è Suo padre?"] },
+  "where-is-your-father": { "text": "Dov'è vostro padre?", "variants": ["Dov'è Suo padre?"] },
   "i-have-two-children": { "text": "Ho due figli.", "variants": ["Ho due bambini."] },
   "how-is-your-grandmother": { "text": "Come sta tua nonna?", "variants": ["Come sta Sua nonna?"] },
   "a-good-friend": { "text": "un buon amico" },

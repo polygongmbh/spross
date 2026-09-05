@@ -31,7 +31,7 @@
   "to-visit": { "text": "besuchen" },
   "to-marry": { "text": "heiraten" },
   "this-is-my-mother": { "text": "Das ist meine Mutter." },
-  "where-is-your-father": { "text": "Wo ist dein Vater?", "variants": ["Wo ist Ihr Vater?"] },
+  "where-is-your-father": { "text": "Wo ist euer Vater?", "variants": ["Wo ist Ihr Vater?"] },
   "i-have-two-children": { "text": "Ich habe zwei Kinder." },
   "how-is-your-grandmother": { "text": "Wie geht es deiner Oma?", "variants": ["Wie geht es Ihrer Oma?"] },
   "a-good-friend": { "text": "ein guter Freund" },
