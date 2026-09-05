@@ -4,6 +4,7 @@ import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.catalog.DateEntry
 import net.spross.kern.catalog.DateNames
 import net.spross.kern.catalog.DatePattern
+import net.spross.kern.catalog.DateNumeral
 import net.spross.kern.catalog.DatePatterns
 import net.spross.kern.model.LanguageInfo
 
@@ -12,8 +13,9 @@ import net.spross.kern.model.LanguageInfo
  * ladder (a `dateWithYear`, the article patterns, a synonym on Samstag and Januar, the
  * distance-1 `Juni`/`Juli`), a de→uk pair carrying the short one (a `dateForm` on
  * every month, no year pattern), a de→en pair whose patterns carry a SYNONYM, and a de→sw
- * pair whose numerals sit one edit apart (`sita`/`saba`) — the shapes
- * `docs/date-readings.md` says the content can take. Every target is a pack language, so
+ * pair whose numerals sit one edit apart (`sita`/`saba`) and whose spans count with a
+ * cardinal — the shapes `docs/date-readings.md` says the content can take. Ukrainian carries
+ * neither a year nor a span, so it is the ladder that stops short at both ends. Every target is a pack language, so
  * the generated Sprossen draw.
  */
 internal object DateDrillFixture {
@@ -91,6 +93,8 @@ internal object DateDrillFixture {
                 "{weekday}, der {day} {month} {year}",
                 variants = listOf("{weekday}, den {day} {month} {year}"),
             ),
+            century = DatePattern("das {count} Jahrhundert", numeral = DateNumeral.Ordinal),
+            millennium = DatePattern("das {count} Jahrtausend", numeral = DateNumeral.Ordinal),
         ),
     )
 
@@ -126,6 +130,8 @@ internal object DateDrillFixture {
             dayMonth = DatePattern("tarehe {day} {month}"),
             date = DatePattern("{weekday}, tarehe {day} {month}"),
             dateWithYear = DatePattern("{weekday}, tarehe {day} {month} mwaka wa {year}"),
+            century = DatePattern("karne ya {count}", numeral = DateNumeral.Cardinal),
+            millennium = DatePattern("milenia ya {count}", numeral = DateNumeral.Cardinal),
         ),
     )
 

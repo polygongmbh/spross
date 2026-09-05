@@ -49,6 +49,15 @@ The Ukrainian side, carrying what only Ukrainian needs:
 - `numeric` — how this language writes a date in digits, over `{d}`/`{m}`/`{y}`,
   each exactly once: a yearless prompt truncates the pattern, a file never omits `{y}`.
   Display only, on the prompt side; nothing is graded against it.
+- `century` / `millennium` — the span patterns, over `{count}` alone, each optional and each
+  REQUIRING a `numeral` of `"ordinal"` or `"cardinal"`:
+  which family a span's numeral takes is a per-language ruling (`../../docs/date-readings.md` § Spans)
+  and Spanish's two spans disagree, so a default would let a calendar ship one nobody decided.
+  The numeral itself is still the trainer pack's, exactly as the day of the month is.
+```json
+{ "patterns": { "century": { "text": "el siglo {count}", "numeral": "cardinal" },
+                "millennium": { "text": "el {count} milenio", "numeral": "ordinal" } } }
+```
 - `patterns` — the assembly, over `{weekday}`, `{day}`, `{month}` and `{year}`.
   `dayMonth` and `date` are required, `dateWithYear` is optional:
   a language that cannot read a year inside a date simply omits it and the ladder stops one Sprosse short.

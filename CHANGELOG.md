@@ -9,6 +9,7 @@
 - More phrases unlock from the word they are built on, so internet, email, word, language, movie and rain land before the sentences that use them.
 - The web numbers drill now offers Esperanto, French and Italian alongside the other languages.
 - The watch quiz speaks each answered tile's verdict to VoiceOver instead of showing correctness in color alone.
+- The dates drill now tops out on the century and the millennium a year sits inside: 1901–2000 reads das zwanzigste Jahrhundert, karne ya ishirini, el siglo veinte.
 - Century, decade and millennium are cards now, in all eight languages.
 - A dates card now names the word its language adds — tarehe, der, le — the first time that kind of date is asked for.
 - A dates card now names the word its language adds — tarehe, der, le — the first time that kind of date is asked for.

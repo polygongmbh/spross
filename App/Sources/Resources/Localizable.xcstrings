@@ -2452,6 +2452,22 @@
         }
       }
     },
+    "dates.ask.century" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welches Jahrhundert ist das?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Which century is this?"
+          }
+        }
+      }
+    },
     "dates.ask.date" : {
       "localizations" : {
         "de" : {
@@ -2468,6 +2484,22 @@
         }
       },
       "comment" : "One sentence for all three assembled kinds — what changes between them is on the card, not in the ask."
+    },
+    "dates.ask.millennium" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welches Jahrtausend ist das?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Which millennium is this?"
+          }
+        }
+      }
     },
     "dates.ask.month" : {
       "localizations" : {
@@ -2685,7 +2717,7 @@
           }
         }
       },
-      "comment" : "The Sprosse keys are indexed by KIND in full-ladder order (weekday, month, day+month, date, date+year) — a pair without a year pattern stops at 5, and the number on screen is the row's own position."
+      "comment" : "The Sprosse keys are indexed by KIND in full-ladder order (weekday, month, day+month, date, date+year, century, millennium) — a pair skips any kind its calendar cannot carry, and the number on screen is the row's own position."
     },
     "dates.sprosse.2.hint" : {
       "extractionState" : "manual",
@@ -2836,6 +2868,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Plus the year, read out in words."
+          }
+        }
+      }
+    },
+    "dates.sprosse.7" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Jahrhundert"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The century"
+          }
+        }
+      }
+    },
+    "dates.sprosse.7.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus 1901–2000 wird das zwanzigste Jahrhundert."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1901–2000 becomes the twentieth century."
+          }
+        }
+      }
+    },
+    "dates.sprosse.8" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Jahrtausend"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The millennium"
+          }
+        }
+      }
+    },
+    "dates.sprosse.8.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieselbe Rechnung, tausend Jahre weit."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The same arithmetic, a thousand years wide."
           }
         }
       }

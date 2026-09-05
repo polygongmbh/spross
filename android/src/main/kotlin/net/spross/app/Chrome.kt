@@ -254,6 +254,8 @@ interface Chrome {
     val datesAskWeekday: String
     val datesAskMonth: String
     val datesAskDate: String
+    val datesAskCentury: String
+    val datesAskMillennium: String
 
     // ── Box browse ──────────────────────────────────────────────────────────────
     val boxTitle: String

@@ -260,6 +260,8 @@ internal object ChromeEn : Chrome {
         "Day and month",
         "The whole date",
         "The date with its year",
+        "The century",
+        "The millennium",
     )
     override val dateSprosseHints = listOf(
         "Weekdays and months, one name out of four — nothing written yet.",
@@ -268,11 +270,15 @@ internal object ChromeEn : Chrome {
         "3/3 becomes March third.",
         "With the weekday in front: Mon, 3/3.",
         "Plus the year, read out in words.",
+        "1901–2000 becomes the twentieth century.",
+        "The same arithmetic, a thousand years wide.",
     )
     override val datesAskName = "Which of these is it?"
     override val datesAskWeekday = "What is this weekday called?"
     override val datesAskMonth = "What is this month called?"
     override val datesAskDate = "How is this date read?"
+    override val datesAskCentury = "Which century is this?"
+    override val datesAskMillennium = "Which millennium is this?"
     override val boxTitle = "The box"
     override val boxDoor = "Box"
     override val boxSubtitle = "%1\$s of %2\$s cards in progress"

@@ -13,16 +13,16 @@ Every cell marked ⚠ wants a native ruling; until one lands, the drill ships th
 
 ## Reach
 
-| | Weekday | Month | Day of month | Year in a date |
-|---|---|---|---|---|
-| de | Montag…Sonntag | Januar…Dezember | **ordinal**, weak after the article | plain cardinal |
-| en | Monday…Sunday | January…December | **ordinal** | the pack's year reading (`twenty twenty-six`) |
-| eo | lundo…dimanĉo | januaro…decembro | **ordinal** (`-a`) | plain cardinal |
-| es | lunes…domingo | enero…diciembre | **cardinal**, ⚠ 1st | plain cardinal |
-| fr | lundi…dimanche | janvier…décembre | **cardinal**, `premier` for the 1st | plain cardinal, `mil` graded 1001–1999 |
-| it | lunedì…domenica | gennaio…dicembre | **cardinal**, `primo` for the 1st | plain cardinal |
-| sw | Jumatatu…Jumapili | Januari…Desemba, **counted** beside | **cardinal** after `tarehe`, `mosi` for the 1st | cardinal after `mwaka wa` |
-| uk | понеділок…неділя | січень…грудень | **ordinal, genitive** | **absent — see below** |
+| | Weekday | Month | Day of month | Year in a date | Spans |
+|---|---|---|---|---|---|
+| de | Montag…Sonntag | Januar…Dezember | **ordinal**, weak after the article | plain cardinal | ordinal |
+| en | Monday…Sunday | January…December | **ordinal** | the pack's year reading (`twenty twenty-six`) | ordinal |
+| eo | lundo…dimanĉo | januaro…decembro | **ordinal** (`-a`) | plain cardinal | ordinal |
+| es | lunes…domingo | enero…diciembre | **cardinal**, ⚠ 1st | plain cardinal | **cardinal** century, ordinal millennium |
+| fr | lundi…dimanche | janvier…décembre | **cardinal**, `premier` for the 1st | plain cardinal, `mil` graded 1001–1999 | ordinal |
+| it | lunedì…domenica | gennaio…dicembre | **cardinal**, `primo` for the 1st | plain cardinal | ordinal |
+| sw | Jumatatu…Jumapili | Januari…Desemba, **counted** beside | **cardinal** after `tarehe`, `mosi` for the 1st | cardinal after `mwaka wa` | cardinal after `ya` |
+| uk | понеділок…неділя | січень…грудень | **ordinal, genitive** | **absent — see below** | **ordinal, neuter** |
 
 A Sprosse a language cannot carry is absent, not locked:
 Ukrainian reads no year inside a date, so its ladder simply tops out one Sprosse short.
@@ -168,3 +168,77 @@ and not a suffix swap like the day would bring the Sprosse back cheaply.
 
 Every Ukrainian reading uses the ASCII apostrophe `U+0027` (`п'ятниця`),
 for the reason `number-forms.md` § Ukrainian gives.
+
+## Spans
+
+The top Sprosse asks for the span a year sits inside: a CENTURY or a MILLENNIUM,
+`das zwanzigste Jahrhundert`, `karne ya ishirini`, `el tercer milenio`.
+The pattern is authored beside the date ones (`../catalog/dates/README.md`)
+and the numeral is the pack's, exactly as the day of the month is —
+the pattern only names WHICH family it takes, because that is a fact about the span
+and not a second table of numerals.
+
+| | Century | Millennium |
+|---|---|---|
+| de | `das zwanzigste Jahrhundert` | `das dritte Jahrtausend` |
+| en | `the twentieth century` | `the third millennium` |
+| eo | `la dudeka jarcento` | `la tria jarmilo` |
+| es | `el siglo veinte` — **cardinal** | `el tercer milenio` — ordinal |
+| fr | `le vingtième siècle` | `le troisième millénaire` |
+| it | `il ventesimo secolo` | `il terzo millennio` |
+| sw | `karne ya ishirini` — cardinal | `milenia ya tatu` — cardinal |
+| uk | `двадцяте століття` — **neuter** | `третє тисячоліття` — **neuter** |
+
+Centuries are drawn 1–21 and millennia 1–3, which is every one a learner will meet named.
+
+**Spanish is the one language whose two spans part ways.**
+`El buen uso del español` gives the choice of cardinal or ordinal only for the 1st to the 10th
+century and the cardinal alone from the 11th — `siglo veinte`, never `siglo vigésimo` —
+which is `number-forms.md` § Spanish's ordinal cap arriving where it was always going to bite.
+A millennium never reaches that cap, so `el tercer milenio` stays the ordinal it is.
+
+`el tercer milenio` and never `el tercero milenio`: a span noun is the masculine noun
+`number-forms.md` § Spanish says a bare prompt never supplies, so the apocope that is refused
+on a bare ordinal is obligatory here. The unapocopated form does not grade — where the apocope
+goes is what a Spanish ordinal drill is for, and this is the position that decides it.
+
+**Ukrainian leads with the neuter.** `століття` and `тисячоліття` are neuter nouns,
+and `UkrainianForms` reads an ordinal masculine-first because that is Ukrainian's citation form —
+so a span taking the pack's canonical would teach a wrong agreement as fact.
+The neuter it already emits leads instead; the masculine and feminine grade behind it,
+the leniency the day readings grant bare.
+
+**Swahili's spans are what finally supply the noun its ordinals need.**
+`karne` and `milenia` are N-class and invariant, so the associative concord is `ya`,
+and the numeral after it is the plain cardinal —
+`karne ya ishirini na moja` for the 21st century.
+That `ya` is the slot `number-forms.md` § Swahili says a bare numeral prompt has not got
+and the pack refuses to invent; a span carries it, which is the frame arriving rather than the rule bending.
+
+**No decade Sprosse.** Every language names one by its YEARS rather than by its position —
+`die 1980er Jahre`, `the 1980s`, `los años ochenta`, `les années quatre-vingt`,
+`gli anni Ottanta`, `вісімдесяті роки`, `la kvindekaj jaroj` —
+and each is a numeral form the trainer does not produce:
+a year with a suffix welded on, a bare tens where the pack spells the plural mark
+(fr `quatre-vingts`), an ordinal plural the pack refuses outright (uk).
+The positional reading that WOULD derive (`das zweite Jahrzehnt`) is the register nobody uses,
+so drilling it would teach the mistake `number-forms.md` § French leaves `octante` out to avoid.
+The words themselves are cards (`../catalog/areas/time/`); the reading is `backlog.md`'s.
+
+⚠ Italian names its centuries a second way — `il Novecento` for the 20th, `il Settecento` for the 18th —
+current per Treccani and restricted to 1001–2000. It cannot be derived from the numeral at all:
+the hundreds-name is offset by one from the century number and the 21st has none,
+so it is a twelve-row table rather than a form, and a pattern has nowhere to put one.
+It grades nowhere today; whether it earns its own authored shape is the ruling wanted.
+
+Sources: [Duden, Jahrhundert](https://www.duden.de/rechtschreibung/Jahrhundert)
+· [Académie française, *siècle*](https://www.dictionnaire-academie.fr/article/A9S1571)
+(«on écrit *au XXe siècle*, on dit *au vingtième siècle*»)
+· [RAE, *El buen uso del español* — siglos, años y décadas](https://www.rae.es/buen-uso-espa%C3%B1ol/siglos-a%C3%B1os-y-d%C3%A9cadas)
+(the cardinal from the 11th on) · [RAE on *milenio*](https://www.rae.es/buen-uso-espa%C3%B1ol/los-ordinales)
+· [Treccani, *secoli, nomi dei*](https://www.treccani.it/enciclopedia/nomi-dei-prontuario-secoli_(Enciclopedia-dell'Italiano)/)
+(the `Novecento` series and its 1001–2000 limit)
+· [PMEG, A-vortaj nombrovortoj](https://bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html)
+· [uk.wikipedia, Століття](https://uk.wikipedia.org/wiki/Століття) (the neuter agreement)
+· [*Kiswahili katika karne ya ishirini na moja*](https://openlibrary.org/books/OL339379M/Kiswahili_katika_karne_ya_ishirini_na_moja)
+· [sw.wikipedia, Mwongo](https://sw.wikipedia.org/wiki/Mwongo).

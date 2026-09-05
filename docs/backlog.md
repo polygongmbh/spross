@@ -243,6 +243,15 @@ then open design work, then what waits on someone else, grouped by who that is.
   a variant (`catalog/dates/it.json`) — elision-aware date patterns in the engine, or wait for
   an Italian native's ruling on `il otto` vs `l'otto` and the weekday article
   (`docs/date-readings.md:88`)?
+- No decade Sprosse: every language names one by its YEARS (`die 1980er Jahre`, `the 1980s`,
+  `los años ochenta`, `вісімдесяті роки`) and each is a numeral form the trainer does not
+  produce, while the positional reading that would derive is a register nobody uses
+  (`docs/date-readings.md` § Spans) — add the year-suffixed family per pack, or leave the
+  decade a card and never a question?
+- Italian names its centuries a second way (`il Novecento` = the 20th), current and offset by
+  one from the numeral, so it is a twelve-row table rather than a form and a span pattern has
+  nowhere to put one (`docs/date-readings.md` § Spans) — author it as a per-value synonym
+  shape, or leave it ungraded?
 - `CountryAtlas.notes` parses and reaches no screen, the shape the dates calendar just
   answered with a calendar-level `dateNotes` band (`catalog/dates/README.md`) — render the
   atlas' on its reference row, drop the field, or give the atlas page its own prose band?

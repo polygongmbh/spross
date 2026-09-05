@@ -58,7 +58,19 @@ data class DatePatterns(
     val dayMonth: DatePattern,
     val date: DatePattern,
     val dateWithYear: DatePattern?,
+    /** `das {count} Jahrhundert`, over the numeral family [DatePattern.numeral] names. */
+    val century: DatePattern? = null,
+    /** `das {count} Jahrtausend` — optional apart from [century], though no calendar splits them. */
+    val millennium: DatePattern? = null,
 )
+
+/**
+ * Which numeral family a span's `{count}` takes. A fact about the SPAN rather than about the
+ * language's numerals, which is why it sits on the pattern: Spanish reads its century with a
+ * cardinal and its millennium with an ordinal, and both come out of the same pack
+ * (`docs/date-readings.md` § Spans).
+ */
+enum class DateNumeral { Ordinal, Cardinal }
 
 /**
  * One assembly pattern, on the realization schema the calendar names already wear:
@@ -74,6 +86,8 @@ data class DatePattern(
     val text: String,
     val synonyms: List<String> = emptyList(),
     val variants: List<String> = emptyList(),
+    /** Only a span pattern carries one; the date kinds read their parts off the calendar. */
+    val numeral: DateNumeral? = null,
 ) {
     /** Every assembly that grades, the taught ones first. */
     val forms: List<String> get() = taught + variants

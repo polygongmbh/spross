@@ -107,6 +107,17 @@ internal object SpanishForms {
         else -> listOfNotNull(ORDINALS[d])
     }
 
+    /**
+     * The ordinal BEFORE a masculine noun, where `primero` and `tercero` apocopate — which
+     * is the position `number-forms.md` § Spanish says a bare prompt never supplies and a
+     * span noun does (`el tercer milenio`, never `el tercero milenio`).
+     * One reading: the whole point of the position is that the apocope is obligatory in it.
+     */
+    fun spanOrdinal(n: Long): List<String> {
+        val ordinal = reading(NumberValue.Ordinal(n)).firstOrNull() ?: return emptyList()
+        return listOf(if (ordinal == "primero" || ordinal == "tercero") ordinal.dropLast(1) else ordinal)
+    }
+
     /** Masculine -o to feminine -a, with tercio's irregular partner ("una tercera parte"). */
     private fun feminine(masculine: String): String =
         if (masculine == "tercio") "tercera" else masculine.dropLast(1) + "a"

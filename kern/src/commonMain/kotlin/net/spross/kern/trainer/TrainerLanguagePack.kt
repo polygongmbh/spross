@@ -60,6 +60,15 @@ internal interface TrainerLanguagePack {
     fun dateDay(day: Int): List<String> = drillNumber(day.toLong())
 
     /**
+     * The ordinal a SPAN takes — `das zwanzigste Jahrhundert`, `двадцяте століття`. Defaulted
+     * to the ordinal the numbers drill reads, because a span is the one place most languages
+     * simply reuse it; a language whose span noun forces another agreement leads with that
+     * instead (`docs/date-readings.md` § Spans). Which spans read an ordinal at all is the
+     * calendar's to say, not this pack's.
+     */
+    fun spanOrdinal(n: Int): List<String> = formReading(NumberValue.Ordinal(n.toLong()))
+
+    /**
      * Whether a leading capital in this language's readings is PUNCTUATION rather than
      * spelling. Swahili writes its clock standalone ("Saa mbili usiku") and lowercases it
      * inside a sentence; German's readings begin on nouns — Mitternacht, Mittag, Viertel —
@@ -152,6 +161,8 @@ private object SpanishPack : TrainerLanguagePack {
     // `el uno de marzo` in Spain. Both grade; the reveal teaches primero.
     override fun dateDay(day: Int) =
         if (day == 1) listOf("primero", "uno") else drillNumber(day.toLong())
+    // A span noun is the masculine noun the apocope belongs before: `el tercer milenio`.
+    override fun spanOrdinal(n: Int) = SpanishForms.spanOrdinal(n.toLong())
     override val formLimits = SpanishForms.LIMITS
     override val decimalMark = ','
 }
@@ -195,6 +206,9 @@ private object UkrainianPack : TrainerLanguagePack {
         (0..23).flatMapTo(mutableSetOf(), UkrainianClockForms::dayParts)
     override fun formReading(value: NumberValue) = UkrainianForms.reading(value)
     override fun dateDay(day: Int) = UkrainianForms.dateGenitive(day.toLong())
+    // `століття` and `тисячоліття` are neuter, and the pack reads an ordinal masculine-first
+    // because that is Ukrainian's citation form — so a span leads with the neuter it emits.
+    override fun spanOrdinal(n: Int) = UkrainianForms.neuterFirst(n.toLong())
     override val formLimits = UkrainianForms.LIMITS
     override val decimalMark = ','
 }

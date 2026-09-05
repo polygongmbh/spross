@@ -43,6 +43,8 @@
   "dateWithYear": {
    "text": "{weekday}, der {day} {month} {year}",
    "variants": ["{weekday}, den {day} {month} {year}"]
-  }
+  },
+  "century": { "text": "das {count} Jahrhundert", "numeral": "ordinal" },
+  "millennium": { "text": "das {count} Jahrtausend", "numeral": "ordinal" }
  }
 }
