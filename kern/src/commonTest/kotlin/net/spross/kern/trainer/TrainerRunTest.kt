@@ -57,6 +57,21 @@ class TrainerRunTest {
         assertEquals(TurnFeedback.Neutral, state.feedback)
     }
 
+    @Test
+    fun aRunOpenedAtGivenSprossenStandsThereClampedToTheLadder() {
+        val mode = TrainerMode(listOf(DrillVariant.Numbers, DrillVariant.Clock), "de", emptySet())
+        val forced = TrainerRun.openAt(mode, mapOf(DrillVariant.Numbers to 4), Random(7))
+        assertEquals(4, forced.levels[DrillVariant.Numbers])
+        assertEquals(1, forced.levels[DrillVariant.Clock]) // left out of the map
+        assertEquals(0, forced.done)
+
+        val ceiling = mode.maxLevel(DrillVariant.Numbers)
+        val beyond = TrainerRun.openAt(mode, mapOf(DrillVariant.Numbers to ceiling + 40), Random(7))
+        assertEquals(ceiling, beyond.levels[DrillVariant.Numbers])
+        val below = TrainerRun.openAt(mode, mapOf(DrillVariant.Numbers to -3), Random(7))
+        assertEquals(1, below.levels[DrillVariant.Numbers])
+    }
+
     /**
      * The variant pick, the direction flip and the value all spend ONE rng, so a seeded run is
      * reproducible end to end rather than three-quarters of the way.

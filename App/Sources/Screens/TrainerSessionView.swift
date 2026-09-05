@@ -65,7 +65,19 @@ struct TrainerSessionView: View, LanguageNaming {
         self.catalog = catalog
         self.model = model
         self.onFinish = onFinish
+        #if DEBUG
+        // UI-test hook: `-uitest-level N` opens the run's first variant at that
+        // Sprosse, as the letter drill's `-uitest-letters-level` does. Kern clamps it.
+        let preset = UserDefaults.standard.integer(forKey: "uitest-level")
+        if preset > 0, let variant = mode.variants.first {
+            let levels: [DrillVariant: KotlinInt] = [variant: KotlinInt(int: Int32(preset))]
+            _run = State(initialValue: TrainerRun.shared.openAt(mode: mode, levels: levels, rng: drillRandom))
+        } else {
+            _run = State(initialValue: TrainerRun.shared.open(mode: mode, rng: drillRandom))
+        }
+        #else
         _run = State(initialValue: TrainerRun.shared.open(mode: mode, rng: drillRandom))
+        #endif
     }
 
     var language: String { mode.language }

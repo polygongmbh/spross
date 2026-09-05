@@ -20,9 +20,18 @@ import net.spross.kern.session.TurnFeedback
 object TrainerRun {
 
     /** A fresh run: every variant at Sprosse 1, one task already drawn. */
-    fun open(mode: TrainerMode, rng: Random): TrainerRunState {
-        val levels = mode.variants.associateWith { 1 }
-        val opening = mode.draw(levels, null, emptySet(), rng)
+    fun open(mode: TrainerMode, rng: Random): TrainerRunState =
+        openAt(mode, mode.variants.associateWith { 1 }, rng)
+
+    /**
+     * The same, forced to given Sprossen — the deterministic way to reach a stage. A variant
+     * [levels] leaves out opens at 1; every level is clamped to the variant's ladder.
+     */
+    fun openAt(mode: TrainerMode, levels: Map<DrillVariant, Int>, rng: Random): TrainerRunState {
+        val start = mode.variants.associateWith { variant ->
+            (levels[variant] ?: 1).coerceIn(1, mode.maxLevel(variant))
+        }
+        val opening = mode.draw(start, null, emptySet(), rng)
         return TrainerRunState(
             mode = mode,
             // why: nothing is solved yet, so the draw always has a Sprosse to ask from.

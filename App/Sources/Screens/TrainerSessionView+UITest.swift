@@ -13,7 +13,8 @@ import SprossKern
 extension TrainerSessionView {
 
     /// `-uitest-level N` starts the run's FIRST variant at that Sprosse (numbers:
-    /// digit count), the only way to photograph a long prompt without playing up to it;
+    /// digit count), the only way to photograph a long prompt without playing up to it
+    /// — applied where the run opens (`TrainerSessionView.init`, via kern's `openAt`);
     /// `-uitest-streak N` presets a running streak;
     /// `-uitest-misses N` presets the run's booked miss streak;
     /// `-uitest-close 1` closes the run the way the ✕ does, so the tile it leaves
@@ -25,14 +26,6 @@ extension TrainerSessionView {
     /// and Sprosse on every launch; the letter, date and atlas drills read it too.
     func uitestStart() {
         let defaults = UserDefaults.standard
-        let presetLevel = defaults.integer(forKey: "uitest-level")
-        if presetLevel > 0, let variant = mode.variants.first {
-            let capped = min(presetLevel, Int(mode.maxLevel(variant: variant)))
-            var levels = run.levels
-            levels[variant] = KotlinInt(int: Int32(capped))
-            let drawn = mode.draw(levels: levels, avoiding: nil, solved: run.solved, rng: drillRandom)
-            run = run.seeded(current: drawn.drawn, levels: levels)
-        }
         let preset = defaults.integer(forKey: "uitest-streak")
         if preset > 0 {
             run = run.seeded(done: Int32(preset + 6), streak: Int32(preset),
@@ -69,19 +62,17 @@ extension TrainerSessionView {
 extension TrainerRunState {
     /// kern's `copy` with the run's own values standing in for everything a hook
     /// does not touch. No default argument crosses the ObjC boundary, so the
-    /// unchanged fields are written once here rather than at four call sites — the
+    /// unchanged fields are written once here rather than at three call sites — the
     /// counters among them, which live in the run's shared `DrillRunCore`.
-    func seeded(current: DrawnTask? = nil,
-                levels: [DrillVariant: KotlinInt]? = nil,
-                done: Int32? = nil,
+    func seeded(done: Int32? = nil,
                 streak: Int32? = nil,
                 bestStreak: Int32? = nil,
                 missRun: Int32? = nil,
                 feedback: (any TurnFeedback)? = nil) -> TrainerRunState {
         doCopy(mode: mode,
-               current: current ?? self.current,
+               current: current,
                index: index,
-               levels: levels ?? self.levels,
+               levels: levels,
                winsAtLevel: winsAtLevel,
                bestLevels: bestLevels,
                core: core.doCopy(done: done ?? core.done,
