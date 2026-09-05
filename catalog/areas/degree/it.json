@@ -23,6 +23,8 @@
   "all": { "text": "tutti", "variants": ["tutte", "tutto"] },
   "some": { "text": "alcuni", "variants": ["alcune", "qualche"] },
   "every": { "text": "ogni" },
+  "a-little": { "text": "un po'", "variants": ["un poco"] },
+  "few": { "text": "pochi", "variants": ["poche"] },
   "more-or-less": { "text": "più o meno" },
   "i-am-always-there": { "text": "Ci sono sempre." },
   "hang-it-higher": { "text": "Appendilo più in alto.", "variants": ["Appendilo più alto."] },

@@ -38,6 +38,8 @@
   "to-break": { "text": "ламати" },
   "to-push": { "text": "штовхати" },
   "to-pull": { "text": "тягнути" },
+  "to-have-to": { "text": "мусити", "synonyms": ["повинен"] },
+  "to-put": { "text": "класти", "synonyms": ["ставити"] },
   "do-you-have-water": { "text": "У вас є вода?", "variants": ["У тебе є вода?"] },
   "where-are-you-from": { "text": "Звідки ви?" },
   "can-you-see-me": {

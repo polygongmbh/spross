@@ -73,6 +73,11 @@
   "to-break": { "text": "kuvunja" },
   "to-push": { "text": "kusukuma" },
   "to-pull": { "text": "kuvuta" },
+  "to-have-to": {
+   "text": "lazima",
+   "notes": { "de": "lazima + Konjunktiv: lazima niende = ich muss gehen, lazima ule = du musst essen." }
+  },
+  "to-put": { "text": "kuweka", "notes": { "de": "legen, stellen, setzen: weka hapa = leg es hier hin." } },
   "do-you-have-water": { "text": "Una maji?" },
   "where-are-you-from": { "text": "Unatoka wapi?" },
   "can-you-see-me": { "text": "Unaniona?" }

@@ -20,6 +20,8 @@
   "all": { "text": "всі", "variants": ["усі"] },
   "some": { "text": "деякі", "variants": ["кілька"] },
   "every": { "text": "кожен", "variants": ["кожна", "кожне"] },
+  "a-little": { "text": "трохи" },
+  "few": { "text": "мало", "synonyms": ["небагато"] },
   "more-or-less": { "text": "більш-менш" },
   "i-am-always-there": { "text": "Я завжди там." },
   "hang-it-higher": { "text": "Повісь це вище." },

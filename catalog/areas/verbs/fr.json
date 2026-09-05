@@ -50,6 +50,8 @@
   "to-break": { "text": "casser" },
   "to-push": { "text": "pousser" },
   "to-pull": { "text": "tirer" },
+  "to-have-to": { "text": "devoir" },
+  "to-put": { "text": "mettre" },
   "do-you-have-water": {
    "text": "Avez-vous de l'eau ?",
    "variants": ["Vous avez de l'eau ?", "As-tu de l'eau ?", "Tu as de l'eau ?"],

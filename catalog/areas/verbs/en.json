@@ -31,6 +31,8 @@
   "to-break": { "text": "to break" },
   "to-push": { "text": "to push" },
   "to-pull": { "text": "to pull" },
+  "to-have-to": { "text": "must", "synonyms": ["to have to"] },
+  "to-put": { "text": "to put" },
   "do-you-have-water": { "text": "Do you have water?" },
   "where-are-you-from": { "text": "Where are you from?" },
   "can-you-see-me": { "text": "Can you see me?" }

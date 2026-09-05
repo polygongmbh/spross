@@ -26,6 +26,8 @@
    "text": "every",
    "notes": { "de": "every und each heißen beide jeder; each betont den einzelnen: each of us." }
   },
+  "a-little": { "text": "a little", "synonyms": ["a bit"] },
+  "few": { "text": "few" },
   "more-or-less": { "text": "more or less" },
   "i-am-always-there": { "text": "I am always there." },
   "hang-it-higher": { "text": "Hang it higher." },
