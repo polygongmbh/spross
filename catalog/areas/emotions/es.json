@@ -17,6 +17,8 @@
    "text": "sentirse",
    "variants": ["encontrarse"],
    "notes": { "de": "Beim Arzt fragt man auch ¿Cómo se encuentra? = Wie fühlen Sie sich?" }
-  }
+  },
+  "to-hope": { "text": "esperar" },
+  "to-cry": { "text": "llorar" }
  }
 }

@@ -16,6 +16,8 @@
   "to-feel": {
    "text": "sentirsi",
    "notes": { "de": "Beim Arzt fragt man come si sente? = Wie fühlen Sie sich?" }
-  }
+  },
+  "to-hope": { "text": "sperare" },
+  "to-cry": { "text": "piangere" }
  }
 }

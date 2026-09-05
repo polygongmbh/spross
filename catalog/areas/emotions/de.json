@@ -13,6 +13,8 @@
   "jealousy": { "text": "Eifersucht", "grammar": { "gender": "die" } },
   "smile": { "text": "Lächeln", "grammar": { "gender": "das" } },
   "to-smile": { "text": "lächeln" },
-  "to-feel": { "text": "sich fühlen" }
+  "to-feel": { "text": "sich fühlen" },
+  "to-hope": { "text": "hoffen" },
+  "to-cry": { "text": "weinen" }
  }
 }

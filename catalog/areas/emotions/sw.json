@@ -13,6 +13,8 @@
   "jealousy": { "text": "wivu", "grammar": { "plural": "=" } },
   "smile": { "text": "tabasamu", "grammar": { "plural": "=" } },
   "to-smile": { "text": "kutabasamu" },
-  "to-feel": { "text": "kujisikia" }
+  "to-feel": { "text": "kujisikia" },
+  "to-hope": { "text": "kutumaini", "notes": { "de": "Natumaini … = Ich hoffe …" } },
+  "to-cry": { "text": "kulia" }
  }
 }

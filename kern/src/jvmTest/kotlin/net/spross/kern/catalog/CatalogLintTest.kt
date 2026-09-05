@@ -515,8 +515,12 @@ class CatalogLintTest {
         // fr temps, it tempo) — one linguistic fact per language, each pinned in
         // [crossAreaPromptCollisionsAreKnown], not the same meaning authored twice.
         // Re-realizing weather as meteo/météo would teach the forecast, not the weather.
+        // Reviewed 2026-09-05: that-conj/what is fr `que` and uk `що` — in each language the
+        // relative-conjunction and the object interrogative share one word, and de/en/eo/es/it/sw
+        // keep them apart, so these are two linguistic facts, not one meaning authored twice.
         val reviewedPairs = mapOf(
             ("time/time" to "weather/weather") to setOf("es", "fr", "it"),
+            ("connectors/that-conj" to "questions/what") to setOf("fr", "uk"),
         )
         val duplicated = langsByPair
             .mapValues { (pair, langs) -> langs - reviewedPairs[pair].orEmpty() }
@@ -580,6 +584,11 @@ class CatalogLintTest {
                 // doctor about; the adjective carries the de note naming the second sense,
                 // the ndege treatment.
                 "en cold: illness/cold, qualities/cold-adj",
+                // Reviewed 2026-09-05: en `that` is the demonstrative (das dort) AND the
+                // conjunction (dass) — de/eo/es/fr/it/sw/uk all split the pair (das dort/dass,
+                // tio/ke, eso/que, cela/que, quello/che, hiyo/kwamba, те/що). English has no
+                // second word for either, so both stay.
+                "en that: connectors/that-conj, questions/that",
                 // Reviewed 2026-07-31: `el tiempo` is both Zeit and Wetter. de/en/sw/uk
                 // all split it; `clima` is das Klima in Spain, so there is no alternative.
                 // Reviewed 2026-08-23: `la dirección` is the direction AND the postal
@@ -589,6 +598,10 @@ class CatalogLintTest {
                 // no honest alternative; directions/direction carries the de note naming
                 // the second sense, the ndege treatment.
                 "es dirección: admin/address, directions/direction",
+                // Reviewed 2026-09-05: es `esperar` is to wait AND to hope — de/en/eo/fr/it/sw/uk
+                // all split the pair (warten/hoffen, attendre/espérer, kusubiri/kutumaini).
+                // `aguardar` for waiting is literary, so both stay one-language.
+                "es esperar: emotions/to-hope, verbs/to-wait",
                 "es tiempo: time/time, weather/weather",
                 // Reviewed 2026-08-15: `le tableau` is the picture on the wall AND the
                 // classroom board — genuine French polysemy, one word both areas need
@@ -609,6 +622,15 @@ class CatalogLintTest {
                 // frais` is what an office actually charges, so both stay; market/fresh
                 // carries the de note naming the second sense, the ndege treatment.
                 "fr frais: admin/fee, market/fresh",
+                // Reviewed 2026-09-05: fr `même` is gleich (le même) AND sogar — de/en/eo/es/it/sw/uk
+                // all split the pair (gleich/sogar, same/even, sama/eĉ, igual/incluso, sawa/hata).
+                // `pareil` for same skews colloquial and `voire` for even is written French, so both stay.
+                "fr même: connectors/even, qualities/same",
+                // Reviewed 2026-09-05: fr `que` is the conjunction dass AND, as a synonym on
+                // questions/what, the object what — with uk `що` it is the one pair two languages
+                // merge, and both merges are real polysemy, not one meaning authored twice
+                // (reviewed in [noConceptPairCollidesInTwoLanguages]).
+                "fr que: connectors/that-conj, questions/what",
                 // Reviewed 2026-09-05: `liquide` is the adjective flüssig AND, as `argent
                 // liquide`, the everyday word for cash — de/en/eo/es/it/uk all split the pair
                 // (flüssig/Bargeld, liquid/cash, likva/kontanta mono). money/cash keeps it as a
@@ -636,6 +658,10 @@ class CatalogLintTest {
                 // piano" and "fare un piano"); `livello` for the floor sense reads like a
                 // video-game level, not a building one.
                 "it piano: living/story, organization/plan",
+                // Reviewed 2026-09-05: it `portare` is mitbringen AND tragen — de/en/eo/es/fr/sw/uk
+                // all split the pair (mitbringen/tragen, bring/carry, kuleta/kubeba); `trasportare`
+                // is freight and `recare` is literary, so both stay.
+                "it portare: admin/to-bring, verbs/to-carry",
                 // Reviewed 2026-08-15: `perché` is warum and weil in one word — the
                 // interrogative and the causal conjunction genuinely merge in Italian
                 // (Perché non vieni? — Perché piove.). Every other language splits them,
@@ -665,6 +691,10 @@ class CatalogLintTest {
                 // кордон/до). `hadi` is already `until`'s synonym rather than a second
                 // word for the border, and `mpakani` is the locative, so there is no
                 // honest repick on either side.
+                // Reviewed 2026-09-05: sw `kulia` is the right-hand side AND to cry (ku-lia) —
+                // a homonym, not a merge: de/en/eo/es/fr/it/uk all split it (rechts/weinen). The
+                // area label tells them apart on produce, and the verb has no other everyday word.
+                "sw kulia: emotions/to-cry, place/right",
                 "sw mpaka: connectors/until, politics/border",
                 "sw mto: bedroom/pillow, nature/river",
                 // Reviewed 2026-08-04: sw `mwezi` is moon and month, exactly as uk `місяць`
@@ -679,6 +709,15 @@ class CatalogLintTest {
                 // tomato alike, both of them the first word a learner needs in their area.
                 // Repicking either would teach the rarer word for no gain.
                 "sw nyanya: food/tomato, people/grandmother",
+                // Reviewed 2026-09-05: uk `з` is with AND since (з учора) — de/en/eo/es/fr/it/sw
+                // all split the pair (mit/seit, with/since, kun/ekde, con/desde, avec/depuis,
+                // con/da, na/tangu). `від учора` is understood but not what a speaker says, so
+                // since sits in time, where the label disambiguates, and both stay.
+                "uk з: connectors/with, time/since",
+                // Reviewed 2026-09-05: uk `що` is what AND the conjunction that — every other
+                // language splits the pair (was/dass, what/that, kio/ke, qué/que, quoi/que,
+                // che cosa/che, nini/kwamba). No second Ukrainian word for either, so both stay.
+                "uk що: connectors/that-conj, questions/what",
             ),
             actual,
         )

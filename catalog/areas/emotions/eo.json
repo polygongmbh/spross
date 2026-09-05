@@ -20,6 +20,8 @@
    "notes": {
     "de": "farti fragt nach dem Befinden: Kiel vi fartas? · senti sin beschreibt es mit einem Wort dazu: Mi sentas min malbone."
    }
-  }
+  },
+  "to-hope": { "text": "esperi" },
+  "to-cry": { "text": "plori" }
  }
 }

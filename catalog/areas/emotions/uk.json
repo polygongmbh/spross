@@ -16,6 +16,8 @@
   "to-feel": {
    "text": "почуватися",
    "notes": { "de": "Unpersönlich mit Dativ: Мені погано — mir ist schlecht." }
-  }
+  },
+  "to-hope": { "text": "сподіватися" },
+  "to-cry": { "text": "плакати" }
  }
 }
