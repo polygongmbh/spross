@@ -23,6 +23,13 @@ auto-advance beats these share with it, are `design.md`'s.
   unlock table; everything else is registry-driven from kern and the catalog, so the hub
   offers only languages with authored content. Every run starts at Sprosse 1 however far the
   learner has climbed: persisted progress buys access, never a head start.
+  **A Sprosse has to ask something no other Sprosse already asks.** One that composes
+  answers the ladders teach separately is a free rung, however sensible its name: the
+  calendar dropped its bare day-of-month because that reading IS the numbers drill's
+  cardinal or the Forms drill's ordinal, and dropped its centuries because a span is that
+  ordinal plus a word the box already holds. Where the composition genuinely adds a rule —
+  a concord, an agreement, another numeral family — it is that rule the Sprosse is for, and
+  a note or a frame is usually the cheaper home for one.
   Drills grade word by word and ramp with the learner instead of sitting at one level.
   A drill card is a review card — same face, same reveal, and the revealed reading is
   spoken and replayable like any other answer (`read-aloud.md`) — and carries nothing but
