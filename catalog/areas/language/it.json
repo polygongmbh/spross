@@ -17,6 +17,9 @@
   "mother-tongue": { "text": "lingua madre", "grammar": { "gender": "la" } },
   "noun-class": { "text": "classe nominale", "grammar": { "gender": "la" } },
   "affix": { "text": "affisso", "variants": ["l'affisso"], "grammar": { "gender": "l'" } },
+  "past": { "text": "passato", "grammar": { "gender": "il" } },
+  "present": { "text": "presente", "grammar": { "gender": "il" } },
+  "future": { "text": "futuro", "grammar": { "gender": "il" } },
   "what-does-this-word-mean": {
    "text": "Che cosa significa questa parola?",
    "variants": ["Cosa significa questa parola?", "Che cosa vuol dire questa parola?"]

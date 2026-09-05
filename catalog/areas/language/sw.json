@@ -13,6 +13,12 @@
   "mother-tongue": { "text": "lugha ya mama", "grammar": { "plural": "lugha za mama" } },
   "noun-class": { "text": "ngeli", "grammar": { "plural": "=" } },
   "affix": { "text": "kiambishi", "grammar": { "plural": "viambishi" } },
+  "past": {
+   "text": "wakati uliopita",
+   "notes": { "de": "-li-: nilikuja = ich kam · -me-: nimekuja = ich bin gekommen." }
+  },
+  "present": { "text": "wakati uliopo", "notes": { "de": "-na-: ninakuja = ich komme." } },
+  "future": { "text": "wakati ujao", "notes": { "de": "-ta-: nitakuja = ich werde kommen." } },
   "what-does-this-word-mean": { "text": "Neno hili lina maana gani?" },
   "how-do-you-say-this": { "text": "Hii inasemwaje {language-in}?" },
   "im-learning-your-language": { "text": "Ninajifunza {language}." },
