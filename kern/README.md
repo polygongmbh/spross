@@ -458,3 +458,10 @@ What was built and later removed is git's to remember, not this doc's.
   and honoring it blurs no distinction the learner is acquiring.
   Also rejected: suppressing/deferring a cluster member (breaks composition
   determinism to hide a content problem, and the collision returns once both are learned).
+- **Number word tables in the catalog** (`catalog/numbers/<lang>.json`), assessed 2026-08 and
+  not taken: the packs are module-level objects in the `trainerPacks` registry, reachable from
+  `Trainer.pack(language)` with no catalog in hand, so authored tables would make the registry
+  a function of a loaded catalog and reach `Trainer`, `TrainerMode`, `NumberReference`,
+  `PhraseSlots`, every clock and forms pack and every sweep — eight migrations plus a
+  threading change; a reading is generated, never authored, and `numberNotes` is the one place
+  a language's irregularities get said in words (`catalog/phrases/README.md` § `numberNotes`).
