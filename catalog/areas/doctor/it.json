@@ -112,6 +112,7 @@
    "variants": ["l'ambulanza", "un'ambulanza"],
    "grammar": { "gender": "l'" }
   },
+  "to-look-after": { "text": "curare" },
   "take-the-pills-twice-daily": {
    "text": "Prenda le pastiglie due volte al giorno.",
    "variants": ["Prendi le pastiglie due volte al giorno."]

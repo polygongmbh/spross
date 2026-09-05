@@ -68,6 +68,7 @@
    "notes": { "de": "la vacuna ist Impfung und Impfstoff; der Vorgang selbst heißt la vacunación." }
   },
   "ambulance": { "text": "ambulancia", "grammar": { "gender": "la" } },
+  "to-look-after": { "text": "cuidar" },
   "take-the-pills-twice-daily": {
    "text": "Tome las pastillas dos veces al día.",
    "variants": ["Toma las pastillas dos veces al día.", "Tómese las pastillas dos veces al día."]

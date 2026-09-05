@@ -89,6 +89,7 @@
    }
   },
   "ambulance": { "text": "ambulance", "variants": ["l'ambulance"], "grammar": { "gender": "l'" } },
+  "to-look-after": { "text": "soigner" },
   "take-the-pills-twice-daily": {
    "text": "Prenez les comprimés deux fois par jour.",
    "variants": ["Prends les comprimés deux fois par jour."]

@@ -35,6 +35,7 @@
    "variants": ["Rettungswagen"],
    "grammar": { "gender": "der", "plural": "=" }
   },
+  "to-look-after": { "text": "pflegen" },
   "take-the-pills-twice-daily": {
    "text": "Nehmen Sie die Tabletten zweimal täglich ein.",
    "variants": ["Nimm die Tabletten zweimal täglich ein."]

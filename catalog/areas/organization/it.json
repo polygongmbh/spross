@@ -33,6 +33,7 @@
   "urgent": { "text": "urgente" },
   "list": { "text": "lista", "variants": ["elenco"], "grammar": { "gender": "la" } },
   "to-finish": { "text": "finire", "synonyms": ["terminare"], "variants": ["concludere"] },
+  "to-take-care-of": { "text": "occuparsi di", "synonyms": ["sbrigare"] },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Vorrei fissare un appuntamento.",
    "variants": ["Vorrei prendere un appuntamento.", "Voglio fissare un appuntamento."]
@@ -42,6 +43,7 @@
    "text": "Possiamo rimandare l'appuntamento?",
    "variants": ["Possiamo spostare l'appuntamento?", "Possiamo rinviare l'appuntamento?"]
   },
-  "i-have-an-appointment-at-ten": { "text": "Ho un appuntamento alle dieci." }
+  "i-have-an-appointment-at-ten": { "text": "Ho un appuntamento alle dieci." },
+  "ill-take-care-of-it": { "text": "Me ne occupo io." }
  }
 }

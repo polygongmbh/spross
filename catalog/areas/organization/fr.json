@@ -39,6 +39,7 @@
   "urgent": { "text": "urgent", "variants": ["urgente"] },
   "list": { "text": "liste", "grammar": { "gender": "la" } },
   "to-finish": { "text": "finir", "synonyms": ["terminer"] },
+  "to-take-care-of": { "text": "s'occuper de" },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Je voudrais prendre un rendez-vous.",
    "variants": [
@@ -55,6 +56,7 @@
    "text": "Pouvons-nous reporter le rendez-vous ?",
    "variants": ["Peut-on reporter le rendez-vous ?", "On peut reporter le rendez-vous ?"]
   },
-  "i-have-an-appointment-at-ten": { "text": "J'ai rendez-vous à dix heures.", "variants": ["J'ai un rendez-vous à dix heures."] }
+  "i-have-an-appointment-at-ten": { "text": "J'ai rendez-vous à dix heures.", "variants": ["J'ai un rendez-vous à dix heures."] },
+  "ill-take-care-of-it": { "text": "Je m'en occupe." }
  }
 }

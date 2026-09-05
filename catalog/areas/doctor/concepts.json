@@ -20,6 +20,7 @@
  { "slug": "to-prescribe-medicine", "kind": "verb", "emoji": "📝" },
  { "slug": "doctors-note", "kind": "noun", "emoji": "🧾" },
  { "slug": "vaccination", "kind": "noun", "emoji": "💉" },
+ { "slug": "to-look-after", "kind": "verb" },
  {
   "slug": "take-the-pills-twice-daily",
   "kind": "phrase",

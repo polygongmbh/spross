@@ -42,12 +42,14 @@
    "text": "fini",
    "notes": { "de": "fini ist transitiv: fini la laboron. „Zu Ende gehen“ heißt finiĝi." }
   },
+  "to-take-care-of": { "text": "prizorgi" },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Mi ŝatus aranĝi rendevuon.",
    "variants": ["Mi volus aranĝi rendevuon.", "Mi ŝatus fiksi rendevuon."]
   },
   "the-deadline-is-tomorrow": { "text": "La limdato estas morgaŭ.", "variants": ["La templimo estas morgaŭ."] },
   "can-we-postpone-the-appointment": { "text": "Ĉu ni povas prokrasti la rendevuon?" },
-  "i-have-an-appointment-at-ten": { "text": "Mi havas rendevuon je la deka.", "variants": ["Mi havas rendevuon je la deka horo."] }
+  "i-have-an-appointment-at-ten": { "text": "Mi havas rendevuon je la deka.", "variants": ["Mi havas rendevuon je la deka horo."] },
+  "ill-take-care-of-it": { "text": "Mi prizorgos tion." }
  }
 }

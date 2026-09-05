@@ -18,6 +18,7 @@
  { "slug": "waiting-time", "kind": "noun", "emoji": "⌛" },
  { "slug": "to-meet", "kind": "verb", "emoji": "🤝" },
  { "slug": "to-invite", "kind": "verb", "emoji": "💌" },
+ { "slug": "to-take-care-of", "kind": "verb" },
  {
   "slug": "i-would-like-to-arrange-an-appointment",
   "kind": "phrase",
@@ -36,5 +37,6 @@
   "kind": "phrase",
   "emoji": "🕙",
   "components": ["appointment"]
- }
+ },
+ { "slug": "ill-take-care-of-it", "kind": "phrase", "components": ["to-take-care-of"] }
 ]

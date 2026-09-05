@@ -28,6 +28,7 @@
   "urgent": { "text": "urgente" },
   "list": { "text": "lista", "grammar": { "gender": "la" } },
   "to-finish": { "text": "terminar", "synonyms": ["acabar"] },
+  "to-take-care-of": { "text": "encargarse de", "synonyms": ["ocuparse de"] },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Quiero concertar una cita.",
    "variants": ["Quisiera concertar una cita.", "Quiero pedir cita."]
@@ -43,6 +44,7 @@
   "i-have-an-appointment-at-ten": {
    "text": "Tengo cita a las diez.",
    "variants": ["Tengo una cita a las diez.", "Tengo cita a las diez en punto."]
-  }
+  },
+  "ill-take-care-of-it": { "text": "Yo me encargo." }
  }
 }

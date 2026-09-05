@@ -21,9 +21,11 @@
   "urgent": { "text": "терміновий" },
   "list": { "text": "список" },
   "to-finish": { "text": "закінчувати" },
+  "to-take-care-of": { "text": "подбати про", "synonyms": ["залагодити"] },
   "i-would-like-to-arrange-an-appointment": { "text": "Я хочу записатися на прийом." },
   "the-deadline-is-tomorrow": { "text": "Строк закінчується завтра." },
   "can-we-postpone-the-appointment": { "text": "Чи можемо перенести запис на прийом?" },
-  "i-have-an-appointment-at-ten": { "text": "У мене запис на десяту годину." }
+  "i-have-an-appointment-at-ten": { "text": "У мене запис на десяту годину." },
+  "ill-take-care-of-it": { "text": "Я про це подбаю." }
  }
 }

@@ -24,6 +24,12 @@
   "punctual": { "text": "kwa wakati" },
   "list": { "text": "orodha", "grammar": { "plural": "=" } },
   "to-finish": { "text": "kumaliza" },
+  "to-take-care-of": {
+   "text": "kushughulikia",
+   "notes": {
+    "de": "eine Sache erledigen oder sich darum kümmern: Nitashughulikia. = Ich kümmere mich darum."
+   }
+  },
   "i-would-like-to-arrange-an-appointment": { "text": "Ningependa kupanga miadi." },
   "the-deadline-is-tomorrow": { "text": "Tarehe ya mwisho ni kesho." },
   "can-we-postpone-the-appointment": { "text": "Tunaweza kuahirisha miadi?" },
@@ -32,6 +38,10 @@
    "notes": {
     "de": "saa nne = wörtlich „vierte Stunde“! Die Swahili-Uhr startet um 6 Uhr morgens: 10 Uhr = saa 4"
    }
+  },
+  "ill-take-care-of-it": {
+   "text": "Nitashughulikia.",
+   "notes": { "de": "-ta- ist die Zukunft; ein „darum“ braucht der Satz nicht." }
   }
  }
 }

@@ -38,6 +38,7 @@
    "notes": { "de": "vakcinado ist das Impfen; der Impfstoff selbst heißt vakcino." }
   },
   "ambulance": { "text": "ambulanco", "variants": ["ambulanca aŭto"] },
+  "to-look-after": { "text": "flegi" },
   "take-the-pills-twice-daily": { "text": "Prenu la pilolojn dufoje tage.", "variants": ["Prenu la pilolojn dufoje ĉiutage."] },
   "show-me-your-insurance-card": { "text": "Montru al mi vian asekurkarton." },
   "the-practice-is-closed": { "text": "La konsultejo estas fermita." },

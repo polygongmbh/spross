@@ -21,9 +21,11 @@
   "urgent": { "text": "dringend" },
   "list": { "text": "Liste", "grammar": { "gender": "die", "plural": "-n" } },
   "to-finish": { "text": "beenden" },
+  "to-take-care-of": { "text": "erledigen", "synonyms": ["sich kümmern um"] },
   "i-would-like-to-arrange-an-appointment": { "text": "Ich möchte einen Termin vereinbaren." },
   "the-deadline-is-tomorrow": { "text": "Die Frist ist morgen." },
   "can-we-postpone-the-appointment": { "text": "Können wir den Termin verschieben?" },
-  "i-have-an-appointment-at-ten": { "text": "Ich habe um zehn Uhr einen Termin." }
+  "i-have-an-appointment-at-ten": { "text": "Ich habe um zehn Uhr einen Termin." },
+  "ill-take-care-of-it": { "text": "Ich kümmere mich darum." }
  }
 }
