@@ -39,6 +39,12 @@
   "worker": { "text": "mfanyakazi", "grammar": { "plural": "wafanyakazi" } },
   "employer": { "text": "mwajiri", "grammar": { "plural": "waajiri" } },
   "customer": { "text": "mteja", "grammar": { "plural": "wateja" } },
+  "to-leave": {
+   "text": "kutoka",
+   "notes": {
+    "de": "einen Ort verlassen oder von dort kommen: kutoka nyumbani = das Haus verlassen · Unatoka wapi? = Woher kommst du?"
+   }
+  },
   "tomorrow-i-have-a-job-interview": { "text": "Kesho nitajitambulisha kwenye kampuni." },
   "ill-send-the-doctors-note-right-away": { "text": "Nitakutumia cheti cha daktari mara moja." },
   "can-you-help-me-briefly": { "text": "Unaweza kunisaidia kidogo?" },

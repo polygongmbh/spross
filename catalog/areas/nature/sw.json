@@ -6,7 +6,7 @@
   "flower": { "text": "ua", "grammar": { "plural": "maua" } },
   "river": { "text": "mto", "grammar": { "plural": "mito" } },
   "to-go-for-walk": { "text": "kutembea" },
-  "to-jog": { "text": "kukimbia" },
+  "to-jog": { "text": "kukimbia", "notes": { "de": "kukimbia heißt vor allem rennen, laufen." } },
   "to-sunbathe": { "text": "kuota jua" },
   "to-plant-flowers": { "text": "kupanda maua" },
   "to-grill-meat": { "text": "kuchoma nyama" },
@@ -18,7 +18,12 @@
   "stone": { "text": "jiwe", "grammar": { "plural": "mawe" } },
   "moon": { "text": "mwezi", "grammar": { "plural": "miezi" } },
   "star": { "text": "nyota", "grammar": { "plural": "=" } },
-  "wood": { "text": "mbao", "grammar": { "plural": "=" } },
+  "wood": {
+   "text": "mbao",
+   "grammar": { "plural": "=" },
+   "synonyms": ["kuni"],
+   "notes": { "de": "mbao sind Bretter und Bauholz, kuni das Brennholz." }
+  },
   "stick": { "text": "fimbo", "grammar": { "plural": "=" } },
   "shadow": { "text": "kivuli", "grammar": { "plural": "vivuli" } },
   "lets-go-to-the-beach": { "text": "Twende ufukweni!", "variants": ["Twende pwani!"] },
