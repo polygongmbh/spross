@@ -61,6 +61,9 @@ class RealCatalogGradingTest {
         val sugar = cards.first { it.id == "sugar" }
         assertEquals(Match.Exact, normalizer.evaluate("zucchero", sugar))
         assertEquals(Match.Exact, normalizer.evaluate("lo zucchero", sugar))
+        // A synonym carries its own article: the card's `il` never demotes it.
+        val vaccination = cards.first { it.id == "vaccination" }
+        assertEquals(Match.Exact, normalizer.evaluate("la vaccinazione", vaccination))
     }
 
     /** The same ruling in French: l'eau grades Exact, la eau demotes, le sucre strips. */

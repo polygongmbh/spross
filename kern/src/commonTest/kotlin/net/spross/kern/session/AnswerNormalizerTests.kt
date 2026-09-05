@@ -46,6 +46,12 @@ class AnswerNormalizerTests {
             articles = listOf("el", "la", "los", "las", "un", "una"),
         ),
     )
+    private val it = AnswerNormalizer(
+        LanguageInfo(
+            code = "it", name = "Italiano", englishName = "Italian", flag = "🇮🇹",
+            articles = listOf("il", "lo", "la", "l'", "i", "gli", "le", "un", "uno", "una"),
+        ),
+    )
 
     private val deToSw = catalog.join("de", "sw")
     private val deToEn = catalog.join("de", "en")
@@ -59,11 +65,13 @@ class AnswerNormalizerTests {
         text: String,
         kind: CardKind = CardKind.Noun,
         grammar: Map<String, String> = emptyMap(),
+        synonyms: List<String> = emptyList(),
+        variants: List<String> = emptyList(),
     ): Card = Card(
         id = "test/x", kind = kind, area = "test", emoji = null, seedIndex = 0,
         components = emptyList(), feminineOf = null,
         source = Realization(lang = "xx", text = "prompt"),
-        target = Realization(lang = lang, text = text, grammar = grammar),
+        target = Realization(lang = lang, text = text, synonyms = synonyms, variants = variants, grammar = grammar),
         promptFeminineMarker = false,
     )
 
@@ -246,6 +254,21 @@ class AnswerNormalizerTests {
         assertEquals(Match.Typo("Kellner"), de.evaluate("dee Kellner", waiter)) // stray-word rescue
         // No gender in the grammar → the article is never checked.
         assertEquals(Match.Exact, de.evaluate("das Tisch", card("de", "Tisch")))
+    }
+
+    /** A synonym is another word whose article the catalog does not know; text and variants share the card's. */
+    @Test
+    fun aSynonymsOwnArticleNeverDemotes() {
+        val vaccine = card("it", "vaccino", grammar = mapOf("gender" to "il"), synonyms = listOf("vaccinazione"))
+        assertEquals(Match.Exact, it.evaluate("la vaccinazione", vaccine))
+        assertEquals(Match.Exact, it.evaluate("il vaccino", vaccine))
+        assertEquals(Match.Typo("vaccino"), it.evaluate("la vaccino", vaccine))
+        val medicine = card("it", "medicina", grammar = mapOf("gender" to "la"), synonyms = listOf("farmaco"))
+        assertEquals(Match.Exact, it.evaluate("il farmaco", medicine))
+        // A variant is a surface of the same word, so the card's article still binds it.
+        val water = card("it", "acqua", grammar = mapOf("gender" to "l'"), variants = listOf("l'acqua"))
+        assertEquals(Match.Exact, it.evaluate("l'acqua", water))
+        assertEquals(Match.Typo("acqua"), it.evaluate("la acqua", water))
     }
 
     @Test

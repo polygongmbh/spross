@@ -155,8 +155,10 @@ class AnswerNormalizer(
     /**
      * Grade [input] against every accepted target form. Verb-prefix leniency applies
      * iff `kind == verb`; the article-mismatch demotion applies iff the target's
-     * grammar carries `gender` (a PRESENT leading article that disagrees is a typo,
-     * a missing one stays exact). A leading word that reads as a mistyped article
+     * grammar carries `gender` and the form matched is the text or a variant (a PRESENT
+     * leading article that disagrees is a typo, a missing one stays exact) — a synonym
+     * is another word whose article the catalog does not carry, so its own article
+     * never demotes. A leading word that reads as a mistyped article
      * and, once dropped, makes the rest match is a typo, not a failure — in vocab
      * reviews only, see [strayLeadingWordRecovery].
      */
@@ -164,7 +166,8 @@ class AnswerNormalizer(
         val accepted = listOf(card.target.text) + card.target.synonyms + card.target.variants
         val prefixes = if (card.kind == CardKind.Verb) verbPrefixes else emptyList()
         val expectedArticle = card.target.grammar["gender"]?.lowercase()
-        val result = evaluate(input, accepted, prefixes, expectedArticle)
+        val genderedForms = listOf(card.target.text) + card.target.variants
+        val result = evaluate(input, accepted, prefixes, expectedArticle, genderedForms)
         // Base-word answer on a feminine card grades as typo, not failure (§3):
         // anything the BASE concept would accept demotes to the feminine correction.
         if (result == Match.Wrong && card.baseAccepted.isNotEmpty() &&
@@ -175,11 +178,13 @@ class AnswerNormalizer(
         return result
     }
 
+    /** [genderedForms] are the accepted forms that share [expectedArticle]; a match elsewhere is never demoted. */
     private fun evaluate(
         input: String,
         accepted: List<String>,
         prefixes: List<String>,
         expectedArticle: String?,
+        genderedForms: Collection<String> = emptyList(),
     ): Match {
         val normalizedInput = normalize(input)
         if (normalizedInput.isEmpty()) return Match.Wrong
@@ -219,7 +224,7 @@ class AnswerNormalizer(
             }
         }
 
-        if (best == Match.Exact && expectedArticle != null) {
+        if (best == Match.Exact && expectedArticle != null && bestForm in genderedForms) {
             val typed = leadingArticle(input)
             if (typed != null && typed != expectedArticle) {
                 best = Match.Typo(corrected = bestForm ?: normalizedInput)

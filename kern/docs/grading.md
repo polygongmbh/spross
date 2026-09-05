@@ -15,7 +15,9 @@ Leniency is safe to the extent the catalog can disprove it — that rule is the 
   on both sides → iff `kind == verb`: any listed `optionalVerbPrefixes` entry (normalized
   the same way, space-preserving — en `"to "`) optional on both sides → Damerau-Levenshtein
   typo budget → article-mismatch-demotes-to-typo only when the expected
-  answer's grammar carries `gender`; a leading word that reads as a **mistyped article**
+  answer's grammar carries `gender` AND the form matched is the text or a variant —
+  a synonym is another word whose article the catalog does not carry;
+  a leading word that reads as a **mistyped article**
   and, once dropped, makes the rest match is a typo.
   Article-like is the whole gate — no longer than any listed article
   and within one slip of one of them —
