@@ -45,6 +45,13 @@
    "variants": ["wa kwanza", "ya kwanza", "cha kwanza"],
    "notes": { "de": "als Ordnungszahl mit -a: mtu wa kwanza, siku ya kwanza · allein heißt kwanza zuerst." }
   },
+  "second": {
+   "text": "pili",
+   "variants": ["wa pili", "ya pili", "cha pili"],
+   "notes": {
+    "de": "als Ordnungszahl mit -a: mtu wa pili, siku ya pili · kwanza und pili sind die einzigen eigenen Ordnungszahlen."
+   }
+  },
   "next": {
    "text": "-jayo",
    "variants": ["ijayo", "ujao", "yajayo", "zijazo", "kijacho"],

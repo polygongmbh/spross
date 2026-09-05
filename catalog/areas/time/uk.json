@@ -26,6 +26,7 @@
   "evening": { "text": "вечір", "grammar": { "plural": "вечори" } },
   "night": { "text": "ніч", "grammar": { "plural": "ночі" } },
   "first": { "text": "перший", "variants": ["перша", "перше"] },
+  "second": { "text": "другий", "variants": ["друга", "друге"] },
   "next": { "text": "наступний", "variants": ["наступна", "наступне"] },
   "a-while-ago": { "text": "якийсь час тому" },
   "formerly": { "text": "раніше", "synonyms": ["колись"] },

@@ -20,6 +20,7 @@
  { "slug": "afternoon", "kind": "noun" },
  { "slug": "next", "kind": "adjective" },
  { "slug": "first", "kind": "adjective" },
+ { "slug": "second", "kind": "adjective" },
  { "slug": "noon", "kind": "noun", "emoji": "🕛" },
  { "slug": "a-while-ago", "kind": "adjective" },
  { "slug": "formerly", "kind": "adjective" },

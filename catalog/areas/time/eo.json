@@ -27,6 +27,7 @@
   "evening": { "text": "vespero" },
   "night": { "text": "nokto" },
   "first": { "text": "unua" },
+  "second": { "text": "dua" },
   "next": { "text": "sekva", "variants": ["venonta"] },
   "a-while-ago": { "text": "antaŭ iom da tempo" },
   "formerly": { "text": "iam" },

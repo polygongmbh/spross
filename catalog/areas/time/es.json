@@ -31,6 +31,7 @@
   },
   "night": { "text": "noche", "grammar": { "gender": "la" } },
   "first": { "text": "primero", "variants": ["primera", "primer"] },
+  "second": { "text": "segundo", "variants": ["segunda"] },
   "next": { "text": "próximo", "variants": ["próxima", "siguiente"] },
   "a-while-ago": { "text": "hace un rato" },
   "formerly": { "text": "antes" },

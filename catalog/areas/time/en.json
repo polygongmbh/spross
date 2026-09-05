@@ -23,6 +23,7 @@
   "evening": { "text": "evening" },
   "night": { "text": "night" },
   "first": { "text": "first" },
+  "second": { "text": "second" },
   "next": { "text": "next" },
   "a-while-ago": { "text": "a while ago" },
   "formerly": { "text": "in the past", "synonyms": ["formerly"] },

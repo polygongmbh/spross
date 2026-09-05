@@ -27,6 +27,7 @@
   "evening": { "text": "Abend", "grammar": { "gender": "der", "plural": "-e" } },
   "night": { "text": "Nacht", "grammar": { "gender": "die", "plural": "Nächte" } },
   "first": { "text": "erste", "variants": ["erster", "erstes", "zuerst"] },
+  "second": { "text": "zweite", "variants": ["zweiter", "zweites"] },
   "next": { "text": "nächste", "variants": ["nächster", "nächstes"] },
   "a-while-ago": { "text": "vor einer Weile" },
   "formerly": { "text": "früher" },

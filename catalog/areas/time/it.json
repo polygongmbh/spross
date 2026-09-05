@@ -35,6 +35,7 @@
   "evening": { "text": "sera", "grammar": { "gender": "la" } },
   "night": { "text": "notte", "grammar": { "gender": "la" } },
   "first": { "text": "primo", "variants": ["prima"] },
+  "second": { "text": "secondo", "variants": ["seconda"] },
   "next": { "text": "prossimo", "variants": ["prossima", "seguente"] },
   "a-while-ago": { "text": "poco fa" },
   "formerly": { "text": "in passato" },
