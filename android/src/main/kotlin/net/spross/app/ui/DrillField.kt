@@ -70,10 +70,16 @@ fun DrillAnswerField(
         placeholder = { Text(placeholder) },
         // why: correctness is never color alone — the mark says it on screen, the state
         // description says it to TalkBack, and the tint is the third telling.
-        trailingIcon = if (feedback == TurnFeedback.Correct) {
-            { Icon(SprossIcons.Check, contentDescription = null, tint = palette.success) }
-        } else {
-            null
+        // The mark rides both accepted states and its color says how cleanly: a near miss
+        // runs amber throughout — field edge, checkmark and box agree (docs/design.md).
+        trailingIcon = when (feedback) {
+            TurnFeedback.Correct -> {
+                { Icon(SprossIcons.Check, contentDescription = null, tint = palette.success) }
+            }
+            is TurnFeedback.Almost -> {
+                { Icon(SprossIcons.Check, contentDescription = null, tint = palette.amber) }
+            }
+            else -> null
         },
         colors = if (tint == null) {
             OutlinedTextFieldDefaults.colors()

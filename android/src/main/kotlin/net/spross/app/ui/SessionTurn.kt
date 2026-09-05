@@ -89,10 +89,16 @@ fun AnswerField(
     }
     // why: correctness is never color alone — the mark says it on screen, the state
     // description says it to TalkBack, and the tint is the third telling of the same thing.
-    val mark: (@Composable () -> Unit)? = if (feedback == TurnFeedback.Correct) {
-        { Icon(SprossIcons.Check, contentDescription = null, tint = palette.success) }
-    } else {
-        null
+    // The mark rides both accepted states and its color says how cleanly: a near miss runs
+    // amber throughout — field edge, checkmark and box agree (docs/design.md).
+    val mark: (@Composable () -> Unit)? = when (feedback) {
+        TurnFeedback.Correct -> {
+            { Icon(SprossIcons.Check, contentDescription = null, tint = palette.success) }
+        }
+        is TurnFeedback.Almost -> {
+            { Icon(SprossIcons.Check, contentDescription = null, tint = palette.amber) }
+        }
+        else -> null
     }
     val focus = remember { FocusRequester() }
     // why: a requester answers only once its node has been placed, and one frame is what
