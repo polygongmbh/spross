@@ -339,7 +339,9 @@ fun ThemeColors.articleColoredText(realization: Realization): AnnotatedString {
     val shown = articledForm(article, realization.text)
     val head = article.trim()
     return buildAnnotatedString {
-        withStyle(SpanStyle(color = articleTint(article) ?: Color.Unspecified)) { append(head) }
+        withStyle(SpanStyle(color = articleTint(article, realization.lang) ?: Color.Unspecified)) {
+            append(head)
+        }
         append(shown.removePrefix(head))
     }
 }

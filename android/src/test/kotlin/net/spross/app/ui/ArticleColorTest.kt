@@ -26,6 +26,14 @@ class ArticleColorTest {
     }
 
     @Test
+    fun frenchAndItalianShareTheHuesAndTheLanguageSettlesLe() {
+        assertEquals(ThemeLight.articleTint("der"), ThemeLight.articleTint("le", "fr"))
+        assertEquals(ThemeLight.articleTint("die"), ThemeLight.articleTint("le", "it"))
+        assertEquals(ThemeLight.articleTint("der"), ThemeLight.articleTint("il", "it"))
+        assertNull(ThemeLight.articleTint("le"))
+    }
+
+    @Test
     fun pluralAndIndefiniteArticlesFollowTheirGender() {
         assertEquals(ThemeLight.articleTint("el"), ThemeLight.articleTint("los"))
         assertEquals(ThemeLight.articleTint("el"), ThemeLight.articleTint("un"))

@@ -4,7 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
-/** The article → gender table every surface used to carry its own copy of. */
+/** The article → gender table every surface reads from kern. */
 class ArticleTests {
 
     @Test
@@ -26,6 +26,30 @@ class ArticleTests {
         assertEquals(Gender.Masculine, articleGender("un"))
         assertEquals(Gender.Feminine, articleGender("las"))
         assertEquals(Gender.Feminine, articleGender("una"))
+    }
+
+    @Test
+    fun frenchAndItalianFoldOntoTheSameTwoGenders() {
+        assertEquals(Gender.Feminine, articleGender("la", "fr"))
+        assertEquals(Gender.Feminine, articleGender("la", "it"))
+        for (masculine in listOf("il", "lo", "i", "gli")) {
+            assertEquals(Gender.Masculine, articleGender(masculine, "it"), masculine)
+        }
+    }
+
+    @Test
+    fun aCollidingFormResolvesByLanguageAloneOrNotAtAll() {
+        assertEquals(Gender.Masculine, articleGender("le", "fr"))
+        assertEquals(Gender.Feminine, articleGender("le", "it"))
+        assertNull(articleGender("le"))
+        assertNull(articleGender("le", "de"))
+    }
+
+    @Test
+    fun anArticleMarkingBothGendersNamesNone() {
+        assertNull(articleGender("l'", "fr"))
+        assertNull(articleGender("l'", "it"))
+        assertNull(articleGender("les", "fr"))
     }
 
     @Test

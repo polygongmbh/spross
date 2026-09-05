@@ -17,18 +17,28 @@ enum class Gender { Masculine, Feminine, Neuter }
  * target and an unlisted article degrade the same way).
  *
  * Plurals and indefinites follow the gender they inflect: `los`/`un` are the
- * masculine's, `las`/`una` the feminine's. The article string is the one the
- * catalog authored in the target's `grammar["gender"]`; matching is
- * case-insensitive because that is authoring slack, not a rule.
+ * masculine's, `las`/`una` the feminine's. An article that marks BOTH genders
+ * — fr/it `l'`, fr `les` — names none, like a genderless target. The article
+ * string is the one the catalog authored in the target's `grammar["gender"]`;
+ * matching is case-insensitive because that is authoring slack, not a rule.
  *
- * This is the domain half of what used to be five copied switch statements.
+ * One table serves de, es, fr and it; [lang] is consulted only where a form
+ * collides across them — `le` is French's masculine and Italian's feminine
+ * plural, so without a language it names none. Every other form resolves alike
+ * in every language that writes it.
+ *
  * The hues each surface paints a gender in are aesthetics and stay with the
  * surface — kern names the gender, never the color.
  */
-fun articleGender(article: String?): Gender? = when (article?.lowercase()) {
-    "der", "el", "los", "un" -> Gender.Masculine
+fun articleGender(article: String?, lang: Language? = null): Gender? = when (article?.lowercase()) {
+    "der", "el", "los", "un", "il", "lo", "i", "gli" -> Gender.Masculine
     "die", "la", "las", "una" -> Gender.Feminine
     "das" -> Gender.Neuter
+    "le" -> when (lang) {
+        "fr" -> Gender.Masculine
+        "it" -> Gender.Feminine
+        else -> null
+    }
     else -> null
 }
 

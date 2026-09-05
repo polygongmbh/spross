@@ -29,6 +29,7 @@ import net.spross.app.R
 import net.spross.kern.design.Palette
 import net.spross.kern.design.Swatch
 import net.spross.kern.model.Gender
+import net.spross.kern.model.Language
 import net.spross.kern.model.articleGender
 
 // Spross design tokens, Android cut.
@@ -435,9 +436,10 @@ object Theme {
  * and nothing where the box cannot name a gender.
  *
  * Which article marks which gender is content, so [articleGender] answers it once for
- * every surface; only the three colors are this platform's, and they stay here.
+ * every surface; only the three colors are this platform's, and they stay here. [lang]
+ * settles the one form two languages share; a surface without it leaves that form neutral.
  */
-fun ThemeColors.articleTint(article: String?): Color? = when (articleGender(article)) {
+fun ThemeColors.articleTint(article: String?, lang: Language? = null): Color? = when (articleGender(article, lang)) {
     Gender.Masculine -> der
     Gender.Feminine -> die
     Gender.Neuter -> das

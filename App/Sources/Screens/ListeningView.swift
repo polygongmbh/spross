@@ -82,7 +82,9 @@ struct ListeningView: View {
     /// spoken — so what is heard and what is read can never disagree.
     private func article(of turn: ListeningTurn) -> Theme.Article? {
         guard let article = turn.spokenArticle else { return nil }
-        return Theme.Article(article, gender: Theme.Gender(articleGender(article: article)))
+        return Theme.Article(article,
+                             gender: Theme.Gender(articleGender(article: article,
+                                                                lang: card(turn)?.target.lang)))
     }
 
     // MARK: - Transport
