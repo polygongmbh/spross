@@ -10,7 +10,7 @@
    "notes": { "de": "Die weibliche Form bildet immer das Suffix -in-: instruisto → instruistino." }
   },
   "board": { "text": "tabulo", "variants": ["nigra tabulo", "lerneja tabulo"] },
-  "exercise-book": { "text": "ekzercokajero", "variants": ["kajero"] },
+  "exercise-book": { "text": "kajero", "variants": ["ekzercokajero"] },
   "homework": { "text": "hejmtasko", "variants": ["hejma tasko", "hejmlaboro"] },
   "exam": { "text": "ekzameno" },
   "break": { "text": "paŭzo", "variants": ["lerneja paŭzo"] },

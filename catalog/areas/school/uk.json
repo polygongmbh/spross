@@ -7,7 +7,7 @@
   "teacher": { "text": "вчитель" },
   "teacher-f": { "text": "вчителька" },
   "board": { "text": "дошка" },
-  "exercise-book": { "text": "зошит для вправ", "variants": ["зошит"] },
+  "exercise-book": { "text": "зошит" },
   "homework": { "text": "домашнє завдання", "grammar": { "plural": "домашні завдання" } },
   "exam": { "text": "іспит" },
   "break": { "text": "перерва" },

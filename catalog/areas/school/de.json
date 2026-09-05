@@ -7,7 +7,7 @@
   "teacher": { "text": "Lehrer", "grammar": { "gender": "der", "plural": "=" } },
   "teacher-f": { "text": "Lehrerin", "grammar": { "gender": "die", "plural": "-nen" } },
   "board": { "text": "Tafel", "grammar": { "gender": "die", "plural": "-n" } },
-  "exercise-book": { "text": "Übungsheft", "variants": ["Heft"], "grammar": { "gender": "das", "plural": "-e" } },
+  "exercise-book": { "text": "Heft", "grammar": { "gender": "das", "plural": "-e" } },
   "homework": { "text": "Hausaufgabe", "grammar": { "gender": "die", "plural": "-n" } },
   "exam": { "text": "Prüfung", "grammar": { "gender": "die", "plural": "-en" } },
   "break": { "text": "Pause", "grammar": { "gender": "die", "plural": "-n" } },

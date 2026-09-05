@@ -28,7 +28,7 @@
    "notes": { "de": "Für Frauen sagt man auch l'insegnante — dieses Wort hat keine eigene weibliche Form." }
   },
   "board": { "text": "lavagna", "grammar": { "gender": "la" } },
-  "exercise-book": { "text": "quaderno degli esercizi", "variants": ["quaderno"], "grammar": { "gender": "il" } },
+  "exercise-book": { "text": "quaderno", "grammar": { "gender": "il" } },
   "homework": {
    "text": "compiti",
    "variants": ["compiti a casa"],
