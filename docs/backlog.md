@@ -221,10 +221,6 @@ then open design work, then what waits on someone else, grouped by who that is.
   unfixable at runtime, so Spanish meets the morning only as `de la mañana` in
   `time/nine-am-sharp` — accept the gap, allow one form on two cards in one area (a lint
   change), or move one of each pair to another area?
-- sw has no `time/late` either, for a different reason: `kuchelewa` (organization/to-be-late)
-  is a stative verb, and Swahili verbalizes lateness rather than naming it with a standalone
-  adjective — checked 2026-09-06 against kaikki and TUKI; `marehemu` looks tempting but means
-  "the late" as in deceased, a false friend. No honest word, so the card ships without sw.
 - The es review queue — 20 lowest-confidence picks (`admin/office`, `work/leave`,
   `kitchen/reheat`, `bedroom/cuddle` lead it), ~24 medium flags, 49 per-area disputes, the
   author's choice standing in the JSON in every case — waits on a native es-ES speaker
