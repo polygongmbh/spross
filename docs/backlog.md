@@ -85,12 +85,17 @@ then open design work, then what waits on someone else, grouped by who that is.
   circles carry only the entry mark where the atlas and calendar wear a record
   (`LettersOverview+Practice.swift`, `ui/LettersOverviewScreen.kt`) — should the tile and
   typed stages, which enumerate, file one and open above it too?
-- A report is always filed AGAINST a card (`ReportedIssue.cardId`,
-  `kern/.../box/Feedback.kt`), so a learner with something to say about the APP has to
-  attach it to whatever word is on screen — two of three reports in one batch were app
-  bugs ("German self-hint shown for swahili learner when long pressing in box view")
-  wearing an unrelated card id. A general report needs a nullable card id (a `!` change
-  to `ReportedIssueDto`) and an entry point that is not a card's menu.
+- The own-content section's plus writes a WORD (`OwnWordFormView`, `ui/OwnWordForm.kt`), so
+  there is no way to say something that is not about one — a report always hangs off a card
+  (`ReportedIssue.cardId`, `kern/.../box/Feedback.kt`), and app complaints arrive wearing an
+  unrelated card id. The form takes an optional comment field that files on its own when both
+  word sides are blank; kern side is a nullable `cardId` (a `!` change to `ReportedIssueDto`).
+- A search hit cannot be opened where it lives: an AREA hit hands the box its area to unfold
+  (`BoxSearchView.reveal`), a WORD hit only offers hearing and packing, so a word found by
+  typing is never seen among its neighbors. Its row menu wants a "show in the box" that
+  reveals `card.area` and dismisses — `reveal` is already in hand on iOS
+  (`App/Sources/Screens/BoxSearchView.swift`, `BoxRowMenu.swift`; `android/.../ui/BoxScreen.kt`,
+  `ui/BoxRowMenu.kt`).
 - Android's answer-field mark returns null for `TurnFeedback.Revealed` where iOS draws `.revealed` amber,
   against the `// why: correctness is never color alone` comment in the same two files
   (`android/.../ui/SessionTurn.kt`, `ui/DrillField.kt`).
@@ -103,11 +108,6 @@ then open design work, then what waits on someone else, grouped by who that is.
   `DrillRunView+Content.swift` with the live check wired per copy, so one component owning the
   branch and the `onChange(of: input)` beside it would make a fourth drill's auto-confirm
   structural rather than remembered.
-- Box search answers out of `state.cards` alone (`kern/.../box/BoxSearch.search`), so a
-  word the catalog HAS but this profile never joined — no target realization, a parked
-  area — comes back as nothing rather than as the word
-  (`App/Sources/Screens/BoxSearchView.swift`, `android/.../ui/BoxScreen.kt`) — show the
-  catalog's word unpackable and read-only, or is the box deliberately the only truth?
 - "Move noun class, word types and the tenses further back" — filed as a suggestion
   without a surface; the three are a card's Swahili plural/class grammar, its kind badge
   and the tense phrases' seed positions, which sit in three different places. Which one
