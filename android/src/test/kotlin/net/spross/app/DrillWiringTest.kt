@@ -161,7 +161,7 @@ class DrillWiringTest {
             promptableRefs = alphabet.entries.map { it.ref },
             dictationCandidates = emptyList(),
             gapWords = emptyMap(),
-            consolidatedCards = 0,
+            growingCards = 0,
         )
         val config = LetterDrillRunConfig(report, cards = emptyMap(), dictationGrader = null)
         return LetterDrillFlow(

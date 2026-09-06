@@ -41,8 +41,8 @@ import net.spross.app.CardDisplay
 import net.spross.app.Chrome
 import net.spross.kern.box.AreaStatistics
 import net.spross.kern.box.CardRowState
+import net.spross.kern.box.GrowthStage
 import net.spross.kern.box.swatch
-import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Language
 import net.spross.kern.model.Realization
 import net.spross.kern.session.AnswerOutcome
@@ -132,13 +132,13 @@ fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
 /**
  * Where one card stands on the growth ladder: fresh → growing → grown.
  *
- * Four Sprossen, three colors. [CardRowState.Standing.consolidated] — kern's stricter bar —
- * decides the top one, exactly as the shelf's own tally does, so a row's seal never claims
- * a word the shelf above does not also count: Review alone gets there well before it,
- * which is why a Review card short of the bar reads its own "growing" mark instead of
- * borrowing the seal. Learning and relearning share one amber Sprosse and one glyph — a lapse
- * puts a card back where it was, so only the WORD says which of the two it is. Grown is
- * the one Sprosse that carries no word at all — the seal alone already says "done".
+ * Four labeled Sprossen, three colors. [CardRowState.Standing.stage] — kern's own
+ * ladder — decides the top one directly, exactly as the shelf's own tally does, so a
+ * row's seal never claims a word the shelf above does not also count: Matured is a
+ * further Sprosse, well past Growing, which is why a Growing card reads its own mark
+ * instead of borrowing the seal. Learning and Fresh share one word (only the color
+ * tells them apart), and Relearning gets its own — all three amber. Grown is the one
+ * Sprosse that carries no word at all — the seal alone already says "done".
  *
  * The color comes from [swatch] rather than being picked here, so this badge and the
  * shelf's own [AreaProgressBar] can never disagree about the same Sprosse. A card with
@@ -147,9 +147,8 @@ fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
  */
 @Composable
 fun PhaseBadge(standing: CardRowState.Standing, chrome: Chrome) {
-    val settled = standing.phase == CardPhase.Review && !standing.consolidated
     val color = standing.swatch.tint()
-    if (standing.consolidated) {
+    if (standing.stage == GrowthStage.Matured) {
         // Grown needs no word: a seal already reads as "done" on its own, where
         // Fresh/Shaky/Growing would be ambiguous glyphs without one.
         Pill(
@@ -157,12 +156,12 @@ fun PhaseBadge(standing: CardRowState.Standing, chrome: Chrome) {
             modifier = Modifier.semantics { contentDescription = chrome.boxPhaseConsolidated },
         )
     } else {
-        val word = when {
-            settled -> chrome.boxPhaseSettled
-            standing.phase == CardPhase.Relearning -> chrome.boxPhaseRelearning
-            else -> chrome.boxPhaseLearning
+        val word = when (standing.stage) {
+            GrowthStage.Growing -> chrome.boxPhaseSettled
+            GrowthStage.Relearning -> chrome.boxPhaseRelearning
+            else -> chrome.boxPhaseLearning // Learning, Fresh
         }
-        val glyph = if (settled) SETTLED else LEAF
+        val glyph = if (standing.stage == GrowthStage.Growing) SETTLED else LEAF
         Pill("$glyph $word", color)
     }
 }
@@ -173,25 +172,25 @@ const val SEAL = "✔"
 /** …and the one for a word still on its way in. */
 const val LEAF = "🌱"
 
-/** …and the one for a word in Review, short of the consolidated bar. */
+/** …and the one for a word that has cleared the growing bar. */
 const val SETTLED = "🌿"
 
 /** Phrases waiting on their components — the only count that is not about a schedule. */
 const val LOCK = "🔒"
 
 /**
- * An area's cards as four stretches: grown, growing, still fresh, never introduced —
- * measured against the area's FULL card count, so the untouched rest of a shelf stays
- * visible instead of a bar that always reads as full.
+ * An area's cards as a two-way split (matches the counts row) plus queued: grown,
+ * everything else active, then packed-but-unintroduced — measured against the area's
+ * FULL card count, so the untouched rest of a shelf stays visible instead of a bar
+ * that always reads as full.
  *
- * The three colored ones are the Sprossen [PhaseBadge] draws, in the same colors, so the
- * shelf and its own rows tell one story. [AreaStatistics.learning] still counts everything
- * short of the bar — the settling cards among them included — so the amber stretch is what
- * is left after they are taken out.
+ * No amber segment: amber stays a badge-only color, distinguishing Fresh/Learning/Shaky
+ * from Growing at the per-card level ([PhaseBadge]) without the bar needing that fine a
+ * grain. A card never packed at all draws nothing.
  *
  * The split and the denominator are the box's rulings ([AreaStatistics]); empty stretches
  * are dropped, and an area with nothing in any of them draws one neutral rule rather than
- * a full amber bar claiming everything is being learnt.
+ * a full bar claiming everything is being learnt.
  */
 @Composable
 fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
@@ -203,9 +202,8 @@ fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
     ) {
         val stretches = listOf(
             stats.consolidated to palette.grown,
-            stats.settling to palette.success,
-            (stats.learning - stats.settling) to palette.amber,
-            stats.notIntroduced to palette.separator,
+            stats.learning to palette.success,
+            stats.queued to palette.accent,
         ).filter { it.first > 0 }
         if (stretches.isEmpty()) {
             Box(Modifier.weight(1f).height(6.dp).background(palette.separator, shape))

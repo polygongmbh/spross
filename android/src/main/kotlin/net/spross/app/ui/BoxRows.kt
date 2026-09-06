@@ -195,7 +195,8 @@ private fun CardStanding(
                 onClick = it,
                 modifier = Modifier.semantics { contentDescription = chrome.boxCardPack },
             ) {
-                Icon(SprossIcons.PackIn, contentDescription = null)
+                // Clay: not on the growth ladder yet, same as the queued pill below.
+                Icon(SprossIcons.PackIn, contentDescription = null, tint = Theme.colors.accent)
             }
         }
 
@@ -208,7 +209,7 @@ private fun CardStanding(
                 onClick = { model.updateBox { BoxEngine.dequeue(it, card.id) } },
                 modifier = Modifier.semantics { contentDescription = chrome.boxCardUnpack },
             ) {
-                Icon(SprossIcons.PackOut, contentDescription = null, tint = Theme.colors.success)
+                Icon(SprossIcons.PackOut, contentDescription = null, tint = Theme.colors.accent)
             }
         } else {
             // A pill, not an icon: a bare tray glyph reads as a control here too, and
