@@ -161,31 +161,17 @@
   ]
  },
  {
-  "group": "expressions",
+  "group": "advanced",
   "titles": {
-   "en": "Idioms & expressions",
-   "de": "Redewendungen",
-   "eo": "Parolturnoj kaj esprimoj",
-   "es": "Modismos y expresiones",
-   "fr": "Expressions et tournures",
-   "it": "Modi di dire ed espressioni",
-   "sw": "Misemo",
-   "uk": "Ідіоми та вирази"
+   "en": "Grammar & idioms",
+   "de": "Grammatik & Redewendungen",
+   "eo": "Gramatiko kaj parolturnoj",
+   "es": "Gramática y modismos",
+   "fr": "Grammaire et expressions",
+   "it": "Grammatica e modi di dire",
+   "sw": "Sarufi na misemo",
+   "uk": "Граматика та ідіоми"
   },
-  "areas": [{ "area": "idioms", "emoji": "🎭" }]
- },
- {
-  "group": "grammar",
-  "titles": {
-   "en": "Grammar",
-   "de": "Grammatik",
-   "eo": "Gramatiko",
-   "es": "Gramática",
-   "fr": "Grammaire",
-   "it": "Grammatica",
-   "sw": "Sarufi",
-   "uk": "Граматика"
-  },
-  "areas": [{ "area": "grammar", "emoji": "📐" }]
+  "areas": [{ "area": "grammar", "emoji": "📐" }, { "area": "idioms", "emoji": "🎭" }]
  }
 ]
