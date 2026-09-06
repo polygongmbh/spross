@@ -107,22 +107,42 @@ class BoxGrowthTests {
     }
 
     @Test
-    fun enqueuedPackDripsInARoundAtATimeMostRecentFirst() {
+    fun enqueuedPackDripsInARoundAtATime() {
         var state = Box.state((1..12).map { Box.word(it) })
+        // One pack call, one batch: it still introduces in the order it was packed in.
         state = BoxEngine.enqueue(state, (1..10).map { "w" + it.toString().padStart(2, '0') })
-        // The round takes the freshest end of the pack first.
         assertEquals(
-            listOf("w10", "w09", "w08", "w07", "w06", "w05", "w04"),
+            (1..NEW_CARDS_PER_ROUND).map { "w0$it" },
             Box.candidates(state).newCards,
         )
 
         for (id in Box.candidates(state).newCards) {
             state = Box.answered(state, id, Rating.Good, now)
         }
-        // What the round could not take is still packed — the oldest three, since the
-        // freshest seven already went.
-        assertEquals(listOf("w01", "w02", "w03"), state.enqueued)
-        assertEquals("w03", Box.candidates(state).newCards.first())
+        // What the round could not take is still packed — the raw queue is stored back to
+        // front (`BoxEngine.enqueue`), so it still reads out front-first, w08 next.
+        assertEquals(listOf("w10", "w09", "w08"), state.enqueued)
+        assertEquals("w08", Box.candidates(state).newCards.first())
+    }
+
+    /**
+     * RULE: a batch packed later leads a batch packed earlier, but each batch's own words
+     * still come out in the order they were given — a category packed whole still teaches
+     * front to back.
+     * WHY: the point of most-recently-packed-first is "what I just asked for," not "the last
+     * word of what I just asked for." `BoxEngine.enqueue` stores a batch back to front so
+     * that reading it back to front (`Growth.enqueuedEligible`) restores its own order.
+     */
+    @Test
+    fun aLaterPackLeadsButEachPacksOwnOrderSurvives() {
+        var state = Box.state((1..20).map { Box.word(it) })
+        state = BoxEngine.enqueue(state, listOf("w01", "w02", "w03"))
+        state = BoxEngine.enqueue(state, listOf("w10", "w11", "w12"))
+
+        assertEquals(
+            listOf("w10", "w11", "w12", "w01", "w02", "w03"),
+            Growth.enqueuedEligible(state),
+        )
     }
 
     @Test

@@ -210,6 +210,7 @@ class BoxBrowserTest {
         var state = Box.state((1..3).map { Box.word(it, area = "kitchen") } + Box.word(4, area = "office"))
         state = BoxEngine.enqueue(state, listOf("w01", "w03", "w04"))
 
+        // Seed order, not pack order: a shelf listing reads like the shelf, not the queue.
         assertEquals(listOf("w01", "w03"), BoxBrowser.dequeueableCardIds(state, "kitchen"))
         assertEquals(2, BoxBrowser.dequeueableCount(state, "kitchen"))
         assertEquals(listOf("w04"), BoxBrowser.dequeueableCardIds(state, "office"))

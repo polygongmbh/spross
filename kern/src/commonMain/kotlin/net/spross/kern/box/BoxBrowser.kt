@@ -165,10 +165,14 @@ object BoxBrowser {
      * The area's cards a [BoxEngine.dequeueArea] would take back out, in seed order:
      * queued, and belonging to this area — [BoxEngine.dequeueArea]'s own guard asked
      * in advance, same as [enqueueableCardIds] is for [BoxEngine.enqueue].
+     *
+     * Read off [cardsInArea] rather than filtering `state.enqueued` directly: the queue is
+     * stored back to front so it reads out most-recently-packed first (`BoxEngine.enqueue`),
+     * which is not the shelf's own order — a browse listing wants the shelf's.
      */
     fun dequeueableCardIds(state: BoxState, area: String): List<String> {
-        val inArea = cardsInArea(state, area).mapTo(mutableSetOf()) { it.id }
-        return state.enqueued.filter { it in inArea }
+        val queued = state.enqueued.toSet()
+        return cardsInArea(state, area).filter { it.id in queued }.map { it.id }
     }
 
     /** What taking this shelf's queue back out would remove — the size of [dequeueableCardIds]. */
