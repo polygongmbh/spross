@@ -257,6 +257,12 @@ interface Chrome {
     val boxSubtitle: String       // %1$d %2$d
     val boxOwnShelf: String
     val boxOwnWordExplainer: String
+    /** The optional note beside a written word — and, written alone, the whole entry. */
+    val boxOwnWordComment: String
+    /** What the form says while the note is all there is: nothing is being learned. */
+    val boxOwnWordExplainerRemark: String
+    /** The tail on a listed remark, where a suggestion says what it is missing. */
+    val boxOwnWordRemark: String
     val boxShelfPack: String          // %d
     val boxShelfPacked: String
     /** The jump from a search hit to the shelf the word lives on. */

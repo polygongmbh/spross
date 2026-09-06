@@ -163,6 +163,7 @@ class OwnWordsTests {
             kind = OwnWords.DEFAULT_KIND,
             emoji = null,
             texts = mapOf("de" to "mein Auto", "sw" to "gari yangu / gari langu"),
+            comment = null,
         )
         assertEquals("gari yangu", word.texts.getValue("sw"))
     }
@@ -170,7 +171,8 @@ class OwnWordsTests {
     @Test
     fun aPlainWordIsWrittenUnchanged() {
         val word = OwnWords.write(
-            id = umbrella.id, kind = umbrella.kind, emoji = umbrella.emoji, texts = umbrella.texts,
+            id = umbrella.id, kind = umbrella.kind, emoji = umbrella.emoji,
+            texts = umbrella.texts, comment = null,
         )
         assertEquals(umbrella.texts, word.texts)
     }

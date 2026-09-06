@@ -825,6 +825,23 @@
       },
       "comment" : "The section's way into the form — the one that does not start from a failed search."
     },
+    "box.own.word.comment" : {
+      "comment" : "The optional note beside a written word — and, written alone, the whole entry.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anmerkung (optional)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note (optional)"
+          }
+        }
+      }
+    },
     "box.own.word.edit" : {
       "localizations" : {
         "de" : {
@@ -854,6 +871,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your own words are yours alone. A growing catalog never touches them."
+          }
+        }
+      }
+    },
+    "box.own.word.explainer.remark" : {
+      "comment" : "What the form says while the note is all there is: nothing is being learned, the note goes to the catalog.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur eine Anmerkung: sie geht an den Katalog und wird nie abgefragt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A note only: it goes to the catalog and is never asked."
           }
         }
       }
@@ -920,6 +954,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Picture (optional)"
+          }
+        }
+      }
+    },
+    "box.own.word.remark" : {
+      "comment" : "The tail on a listed remark, where a suggestion says what it is missing.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anmerkung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
           }
         }
       }

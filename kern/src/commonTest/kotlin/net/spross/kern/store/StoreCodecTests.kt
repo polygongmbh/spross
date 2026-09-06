@@ -4,6 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlin.time.Instant
 import net.spross.kern.box.BoxEngine
@@ -197,6 +198,23 @@ class StoreCodecTests {
             .join(StoreFixture.cards, StoreFixture.stamp)
         assertEquals(authored, rejoined)
         assertEquals("парасолька", rejoined.cards.getValue(umbrella.id).target.text)
+    }
+
+    /**
+     * A remark is the one entry with no text in any language, so it is the one the decoder's
+     * "says nothing at all" guard must let through.
+     */
+    @Test
+    fun aBareRemarkSurvivesTheRoundTripAndJoinsNoCard() {
+        val remark = OwnWord(
+            id = "own:remark", kind = OwnWords.DEFAULT_KIND, emoji = null,
+            texts = emptyMap(), comment = "the search should jump to the shelf",
+        )
+        val authored = BoxEngine.addOwnWord(state, remark, 1_700_000_000_000)
+        val rejoined = StoreCodec.decode(StoreCodec.encode(authored))
+            .join(StoreFixture.cards, StoreFixture.stamp)
+        assertEquals(authored, rejoined)
+        assertNull(rejoined.cards[remark.id])
     }
 
     @Test

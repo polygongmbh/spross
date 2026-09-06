@@ -204,7 +204,8 @@ private fun BlockLabel(text: String) {
  * One word waiting for its other half.
  *
  * The missing side is not a shortcoming of the entry, it is the whole point of it — what
- * the catalog owes — so the row says so rather than leaving a blank. It has no card, so it
+ * the catalog owes — so the row says so rather than leaving a blank. A REMARK has no side
+ * missing and owes nothing: its comment IS the row, and the tail says which it is. It has no card, so it
  * has no standing to show and no schedule to act on: its menu is the two things that still
  * apply, filling in the other half and taking it back out.
  */
@@ -229,14 +230,25 @@ private fun SuggestionRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDr
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         Text(word.emoji ?: OwnWords.EMOJI, style = MaterialTheme.typography.titleMedium)
+        Column(Modifier.weight(1f)) {
+            Text(
+                model.suggestionText(word),
+                style = MaterialTheme.typography.bodyLarge,
+                maxLines = if (word.isRemark) 3 else 1,
+            )
+            // The note under the half it is about; a remark IS the line above it.
+            val said = word.comment
+            if (!word.isRemark && !said.isNullOrEmpty()) {
+                Text(
+                    said,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 3,
+                )
+            }
+        }
         Text(
-            model.suggestionText(word),
-            style = MaterialTheme.typography.bodyLarge,
-            maxLines = 1,
-            modifier = Modifier.weight(1f),
-        )
-        Text(
-            chrome.boxOwnWordNeedsTranslation,
+            if (word.isRemark) chrome.boxOwnWordRemark else chrome.boxOwnWordNeedsTranslation,
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )

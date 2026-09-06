@@ -14,7 +14,9 @@ import SprossKern
 /// say nothing. The studiable ones list as ordinary rows, keeping their standing
 /// and their long-press menu. A SUGGESTION has no card at all — a word written in
 /// one language joins nothing — so it lists in a block of its own, beside the
-/// reports, naming the half the catalog owes.
+/// reports, naming the half the catalog owes. A REMARK lists there too: a note
+/// with no word under it, the one thing the learner can file that is about no
+/// card at all, and it owes nothing rather than a translation.
 ///
 /// The two actions take the whole lot two ways: onto the clipboard, or into a mail
 /// to whoever maintains the catalog (`FeedbackExportActions`).
@@ -162,9 +164,9 @@ struct BoxOwnContentSection: View {
         }
     }
 
-    /// The words still carrying one half. They stand apart from the pairs above rather
-    /// than among them: a suggestion has no standing to compare, and what it is waiting
-    /// for is the same thing the reports below it are waiting for.
+    /// The words still carrying one half, and the remarks carrying none. They stand apart
+    /// from the pairs above rather than among them: neither has a standing to compare, and
+    /// what they wait for is what the reports below them are waiting for.
     private var suggestionList: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             blockTitle("box.own.suggestions")
@@ -179,14 +181,25 @@ struct BoxOwnContentSection: View {
             Text(verbatim: word.emoji ?? OwnWords.shared.EMOJI)
                 .font(.title3)
                 .accessibilityHidden(true)
-            Text(verbatim: model.suggestionText(word))
-                .font(Theme.typography.body)
-                .foregroundStyle(Theme.colors.textPrimary)
-                .lineLimit(1)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(verbatim: model.suggestionText(word))
+                    .font(Theme.typography.body)
+                    .foregroundStyle(Theme.colors.textPrimary)
+                    .lineLimit(word.isRemark ? 3 : 1)
+                // The note under the half it is about; a remark IS the line above, so
+                // it is not repeated here.
+                if !word.isRemark, let said = word.comment, !said.isEmpty {
+                    Text(verbatim: said)
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
+                        .lineLimit(3)
+                }
+            }
             Spacer(minLength: Theme.spacing.sm)
-            // why: it is not a shortcoming of the word, it is the whole point of the
-            // entry — the half that is missing is what the catalog owes.
-            Text("box.own.word.needsTranslation")
+            // why: a missing half is not a shortcoming of the word, it is the whole
+            // point of the entry — it is what the catalog owes. A remark owes nothing
+            // and says so instead.
+            Text(word.isRemark ? "box.own.word.remark" : "box.own.word.needsTranslation")
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
         }

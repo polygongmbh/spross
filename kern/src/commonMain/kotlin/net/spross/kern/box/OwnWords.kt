@@ -31,6 +31,14 @@ data class OwnWord(
     /** language → the word in it; a language absent here simply does not join. */
     val texts: Map<Language, String>,
     /**
+     * What the learner wanted to say alongside the word — or INSTEAD of one: an entry
+     * carrying a comment and no text at all is a remark for whoever maintains the
+     * catalog, and the only kind the box holds that was never meant to become a card.
+     * It rides here rather than on [ReportedIssue] because a report names the card it
+     * is filed against, and a remark about the app names nothing.
+     */
+    val comment: String? = null,
+    /**
      * When it was written — stamped by [BoxEngine.addOwnWord], never by the caller.
      * What "only what is new" filters on when the learner copies or mails their words
      * out ([Feedback]); a suggestion never earns a schedule, so its schedule's
@@ -42,6 +50,9 @@ data class OwnWord(
     /** Whether this word still waits for one of the profile's two languages. */
     fun isSuggestion(source: Language, target: Language): Boolean =
         texts[source] == null || texts[target] == null
+
+    /** Whether this is a bare remark: a comment with no word under it in any language. */
+    val isRemark: Boolean get() = texts.isEmpty()
 }
 
 /** The rules that turn the learner's own words into cards the box can hold. */
@@ -125,9 +136,25 @@ object OwnWords {
      * Each side is narrowed to [primaryForm]: an own word has no field for a second
      * accepted spelling the way a catalog concept lists a `synonym`, so a pasted
      * "gari yangu / gari langu" would ask the grader for an answer nobody can type.
+     *
+     * [texts] may be empty where [comment] is not: that is a bare remark
+     * ([OwnWord.isRemark]), which joins no card and waits with the suggestions.
      */
-    fun write(id: String, kind: CardKind, emoji: String?, texts: Map<Language, String>): OwnWord =
-        OwnWord(id = id, kind = kind, emoji = emoji, texts = texts.mapValues { (_, text) -> primaryForm(text) })
+    fun write(
+        id: String,
+        kind: CardKind,
+        emoji: String?,
+        texts: Map<Language, String>,
+        comment: String?,
+    ): OwnWord = OwnWord(
+        id = id,
+        kind = kind,
+        emoji = emoji,
+        texts = texts.mapValues { (_, text) -> primaryForm(text) },
+        // why: a blank comment is no comment — the field is optional, and a form that
+        // stored "" would leave every word carrying an empty line to export.
+        comment = comment?.trim()?.ifEmpty { null },
+    )
 
     /**
      * [text] as an own word stores it: the first form only.

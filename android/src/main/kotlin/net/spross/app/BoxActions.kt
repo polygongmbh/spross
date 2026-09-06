@@ -90,8 +90,12 @@ val AppModel.reportedCatalogCards: List<Card>
             .mapNotNull { state.cards[it.cardId] }
     }
 
-/** The half a suggestion does carry, whichever of the two languages it is in. */
+/**
+ * The half a suggestion does carry, whichever of the two languages it is in — or, for a
+ * bare remark, the comment, which is the whole entry rather than a line under one.
+ */
 fun AppModel.suggestionText(word: OwnWord): String {
+    if (word.isRemark) return word.comment.orEmpty()
     val stamp = box?.joinStamp ?: return ""
     return word.texts[stamp.target] ?: word.texts[stamp.source] ?: ""
 }

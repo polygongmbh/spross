@@ -170,6 +170,30 @@ class FeedbackTests {
         assertTrue("mwavuli" in Feedback.reportText(state, null, FeedbackScope.Everything))
     }
 
+    /**
+     * The point of the bare remark: something the learner had to say that is about no word,
+     * so there is no pair to hang it off and nothing would carry it otherwise.
+     */
+    @Test
+    fun aBareRemarkTravelsAsItsCommentAlone() {
+        val remark = ownWord("remark", emptyMap()).copy(comment = "the box scrolls back to the top")
+        val state = BoxEngine.addOwnWord(box(), remark, Box.day1)
+        val text = Feedback.reportText(state, null, FeedbackScope.Outbox)
+        assertTrue("the box scrolls back to the top" in text)
+        // No half is missing, so none is claimed to be.
+        assertFalse("?" in text)
+    }
+
+    @Test
+    fun aWordsCommentRidesUnderThePairItIsAbout() {
+        val word = ownWord("mwavuli", mapOf("de" to "Regenschirm", "sw" to "mwavuli"))
+            .copy(comment = "heard it as mwamvuli too")
+        val state = BoxEngine.addOwnWord(box(), word, Box.day1)
+        val text = Feedback.reportText(state, null, FeedbackScope.Everything)
+        assertTrue("Regenschirm → mwavuli" in text)
+        assertTrue("heard it as mwamvuli too" in text)
+    }
+
     @Test
     fun aBoxOfFinishedPairsHasNothingInItsOutbox() {
         val state = BoxEngine.addOwnWord(

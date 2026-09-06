@@ -255,6 +255,10 @@ internal object ChromeEn : Chrome {
     override val boxOwnShelf = "Your own words"
     override val boxOwnWordExplainer = "Your own words are yours alone. A growing catalog " +
         "never touches them."
+    override val boxOwnWordComment = "Note (optional)"
+    override val boxOwnWordExplainerRemark = "A note only: it goes to the catalog and is " +
+        "never asked."
+    override val boxOwnWordRemark = "Note"
     override val boxShelfPack = "Add to box (%s)"
     override val boxShelfPacked = "All packed"
     override val boxCardShowInBox = "Show in the box"

@@ -37,13 +37,17 @@ extension AppModel {
 
     /// Take in a word the learner wrote. One side alone is enough: that is a
     /// SUGGESTION, which joins no card and is never scheduled until the other half
-    /// arrives (`OwnWord`). Returns its card id, or nil when both sides were blank.
+    /// arrives (`OwnWord`). A comment with no word under it at all is a REMARK — the
+    /// entry that was never meant to become a card. Returns its card id, or nil when
+    /// the learner wrote nothing anywhere.
     @discardableResult
-    func addOwnWord(known: String, learning: String, emoji: String) -> String? {
+    func addOwnWord(known: String, learning: String, emoji: String,
+                    comment: String = "") -> String? {
         guard let box else { return nil }
         let knownText = known.trimmed
         let learningText = learning.trimmed
-        guard !knownText.isEmpty || !learningText.isEmpty else { return nil }
+        let said = comment.trimmed
+        guard !knownText.isEmpty || !learningText.isEmpty || !said.isEmpty else { return nil }
 
         // why: the id is minted from the LEARNED side — it is the one that stays put
         // while the known language is free to change under a source switch. A word
@@ -54,7 +58,8 @@ extension AppModel {
                                         kind: OwnWords.shared.DEFAULT_KIND,
                                         emoji: picture(emoji),
                                         texts: texts(known: knownText, learning: learningText,
-                                                     onto: [:]))
+                                                     onto: [:]),
+                                        comment: said)
         mutate {
             $0 = BoxEngine.shared.addOwnWord(state: $0, word: word,
                                              nowEpochMillis: Date().epochMillis)
@@ -64,17 +69,20 @@ extension AppModel {
 
     /// Rewrite one the learner already wrote, keeping its id — and with the id its
     /// schedule, its queue slot and anything filed against it (`BoxEngine.updateOwnWord`).
-    /// Both sides blank would be a word that says nothing, so it is refused rather
+    /// Every field blank would be an entry that says nothing, so it is refused rather
     /// than stored empty; deleting is `removeOwnWord`.
-    func updateOwnWord(_ word: OwnWord, known: String, learning: String, emoji: String) {
+    func updateOwnWord(_ word: OwnWord, known: String, learning: String, emoji: String,
+                       comment: String = "") {
         let knownText = known.trimmed
         let learningText = learning.trimmed
-        guard !knownText.isEmpty || !learningText.isEmpty else { return }
+        let said = comment.trimmed
+        guard !knownText.isEmpty || !learningText.isEmpty || !said.isEmpty else { return }
         let rewritten = OwnWords.shared.write(id: word.id, kind: word.kind,
                                               emoji: picture(emoji),
                                               texts: texts(known: knownText,
                                                            learning: learningText,
-                                                           onto: word.texts))
+                                                           onto: word.texts),
+                                              comment: said)
         mutate { $0 = BoxEngine.shared.updateOwnWord(state: $0, word: rewritten) }
     }
 

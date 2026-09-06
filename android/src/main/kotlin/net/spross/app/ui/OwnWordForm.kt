@@ -38,6 +38,10 @@ import net.spross.kern.box.BoxEngine
  * half they came with. It is never scheduled — there is nothing to ask them yet — and waits
  * in the own-content section to be sent on to the catalog ([BoxOwnSection]).
  *
+ * The note field takes what neither side can hold, and takes it ALONE: a form with nothing
+ * but a note filed is a REMARK, which is how the learner says something that is about no
+ * word — this form is the only surface that is not already a card's.
+ *
  * What happens to the word is kern's: [BoxEngine.addOwnWord] mints its id from the learnt
  * side, stores it under the pair's two languages, and PACKS it — the learner named this word
  * themselves, so waiting for growth to walk to it would be absurd. An EDIT
@@ -111,8 +115,19 @@ fun OwnWordForm(
             value = draft.emoji,
             onValueChange = { draft = draft.withPicture(it) },
         )
+        WordField(
+            label = chrome.boxOwnWordComment,
+            value = draft.comment,
+            onValueChange = { draft = draft.copy(comment = it) },
+            imeAction = ImeAction.Done,
+            prose = true,
+        )
         Text(
-            if (draft.isPair) chrome.boxOwnWordExplainer else chrome.boxOwnWordExplainerSuggestion,
+            when {
+                draft.isRemark -> chrome.boxOwnWordExplainerRemark
+                draft.isPair -> chrome.boxOwnWordExplainer
+                else -> chrome.boxOwnWordExplainerSuggestion
+            },
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )

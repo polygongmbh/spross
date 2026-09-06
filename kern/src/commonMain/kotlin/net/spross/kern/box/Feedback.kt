@@ -66,7 +66,8 @@ object Feedback {
      * written nothing, which is a copy button that silently does nothing.
      *
      * A word written in only one language prints its missing half as [UNTRANSLATED] rather
-     * than being left out: it is the entry most worth reading. [since] filters to what was
+     * than being left out: it is the entry most worth reading. A word carrying a comment
+     * prints it under the pair, and a bare remark ([OwnWord.isRemark]) is the comment alone. [since] filters to what was
      * written or filed after it — `null` takes the lot — and [scope] to how much of what
      * survives that filter is the catalog's business.
      */
@@ -132,9 +133,14 @@ object Feedback {
             .sortedBy { it.reportedAt }
 
     private fun wordLine(state: BoxState, word: OwnWord): String {
-        val known = word.texts[state.joinStamp.source] ?: UNTRANSLATED
-        val learning = word.texts[state.joinStamp.target] ?: UNTRANSLATED
-        return "$known → $learning"
+        // why: a bare remark has no pair to print, and "? → ?" in front of it would read
+        // as a word the learner failed to write rather than as something they wanted said.
+        val pair = if (word.isRemark) null else {
+            val known = word.texts[state.joinStamp.source] ?: UNTRANSLATED
+            val learning = word.texts[state.joinStamp.target] ?: UNTRANSLATED
+            "$known → $learning"
+        }
+        return listOfNotNull(pair, word.comment).joinToString("\n  ")
     }
 
     private fun issueLines(state: BoxState, issue: ReportedIssue): String {

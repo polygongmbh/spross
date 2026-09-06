@@ -13,6 +13,10 @@ import SprossKern
 /// ask them yet — and waits in the Box's own-content section to be sent on to the
 /// catalog (`BoxOwnContentSection`, `OwnWord`).
 ///
+/// The note field takes what neither side can hold, and takes it ALONE: a form with
+/// nothing but a note filed is a REMARK, which is how the learner says something that
+/// is about no word — this form is the only surface that is not already a card's.
+///
 /// Editing keeps the word's id, and with it its schedule and its place in the
 /// queue (`BoxEngine.updateOwnWord`): a typo fixed must not cost the progress made
 /// on the word.
@@ -36,9 +40,10 @@ struct OwnWordFormView: View {
     @State private var known: String
     @State private var learning: String
     @State private var emoji: String
+    @State private var comment: String
     @FocusState private var focus: Field?
 
-    private enum Field { case known, learning, emoji }
+    private enum Field { case known, learning, emoji, comment }
 
     init(model: AppModel, seed: Seed, added: @escaping (String) -> Void = { _ in }) {
         self.model = model
@@ -49,14 +54,17 @@ struct OwnWordFormView: View {
             _known = State(initialValue: query)
             _learning = State(initialValue: "")
             _emoji = State(initialValue: "")
+            _comment = State(initialValue: "")
         case .card(let card):
             _known = State(initialValue: card.source.text)
             _learning = State(initialValue: card.target.text)
             _emoji = State(initialValue: card.emoji ?? "")
+            _comment = State(initialValue: "")
         case .editing(let word):
             _known = State(initialValue: word.texts[model.sourceLanguage] ?? "")
             _learning = State(initialValue: word.texts[model.targetLanguage ?? ""] ?? "")
             _emoji = State(initialValue: word.emoji ?? "")
+            _comment = State(initialValue: word.comment ?? "")
         }
     }
 
@@ -68,7 +76,8 @@ struct OwnWordFormView: View {
                     swapButton
                     field(label(model.targetLanguage ?? ""), text: $learning, field: .learning)
                     picture
-                    Text(isPair ? "box.own.word.explainer" : "box.own.word.explainer.suggestion")
+                    field("box.own.word.comment", text: $comment, field: .comment)
+                    Text(explainer)
                         .font(Theme.typography.caption)
                         .foregroundStyle(Theme.colors.textSecondary)
                 }
@@ -105,8 +114,24 @@ struct OwnWordFormView: View {
     /// Both sides written: a studiable word rather than a suggestion.
     private var isPair: Bool { written(known) && written(learning) }
 
-    /// One side is enough to take the word in — the other is what makes it studiable.
-    private var hasAnything: Bool { written(known) || written(learning) }
+    /// The note is all there is: something to say about no word at all. An EMPTY form is
+    /// not one — it has nothing to say yet, and reads as the ordinary word form until the
+    /// learner writes into the note instead of into a side.
+    private var isRemark: Bool {
+        written(comment) && !written(known) && !written(learning)
+    }
+
+    /// One side is enough to take the word in — the other is what makes it studiable —
+    /// and a note on its own is enough to take a remark in.
+    private var hasAnything: Bool {
+        written(known) || written(learning) || written(comment)
+    }
+
+    /// What the form says it is doing, read off what has been typed into it.
+    private var explainer: LocalizedStringKey {
+        if isRemark { return "box.own.word.explainer.remark" }
+        return isPair ? "box.own.word.explainer" : "box.own.word.explainer.suggestion"
+    }
 
     private func written(_ text: String) -> Bool {
         !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -114,11 +139,13 @@ struct OwnWordFormView: View {
 
     private func save() {
         if case .editing(let word) = seed {
-            model.updateOwnWord(word, known: known, learning: learning, emoji: emoji)
+            model.updateOwnWord(word, known: known, learning: learning, emoji: emoji,
+                                comment: comment)
             dismiss()
             return
         }
-        guard let id = model.addOwnWord(known: known, learning: learning, emoji: emoji)
+        guard let id = model.addOwnWord(known: known, learning: learning, emoji: emoji,
+                                        comment: comment)
         else { return }
         // why: a suggestion joins no card, so there is nothing on a shelf to reveal —
         // the caller's scroll-to would land on an area that does not exist.
@@ -193,23 +220,29 @@ struct OwnWordFormView: View {
         // read as one more thing about the language field before them.
         @ViewBuilder between: () -> Between = { EmptyView() },
     ) -> some View {
-        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
+        // The note is prose, not a word: it grows down the page as it is written, and it
+        // gets the keyboard's help — the corrections and the sentence capital that would
+        // MISSPELL a stored word are simply right in a sentence about one.
+        let prose = field == .comment
+        return VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             Text(label)
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
             between()
-            TextField(text: text) { EmptyView() }
+            TextField(text: text, axis: prose ? .vertical : .horizontal) { EmptyView() }
+                .lineLimit(prose ? 2...5 : 1...1)
                 .font(Theme.typography.body)
                 .foregroundStyle(Theme.colors.textPrimary)
-                .autocorrectionDisabled()
+                .autocorrectionDisabled(!prose)
                 // why: a word is not a sentence — the automatic capital put one on a
                 // Swahili noun, which is simply the wrong spelling of the word being
                 // stored. Whoever writes German capitalizes it themselves.
-                .textInputAutocapitalization(.never)
-                .submitLabel(field == .emoji ? .done : .next)
+                .textInputAutocapitalization(prose ? .sentences : .never)
+                .submitLabel(field == .comment ? .done : .next)
                 .focused($focus, equals: field)
                 .onSubmit { advance(from: field) }
                 .padding(.horizontal, Theme.spacing.lg)
+                .padding(.vertical, prose ? Theme.spacing.md : 0)
                 .frame(minHeight: 52)
                 .background(
                     RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
@@ -226,7 +259,8 @@ struct OwnWordFormView: View {
         switch field {
         case .known: focus = .learning
         case .learning: focus = .emoji
-        case .emoji: focus = nil
+        case .emoji: focus = .comment
+        case .comment: focus = nil
         }
     }
 }

@@ -65,6 +65,9 @@ internal data class OwnWordDto(
     val emoji: String? = null,
     /** language → the word in it, exactly as the catalog keys a concept's realizations. */
     val texts: Map<String, String>,
+    // why: defaulted — a word written before the form could carry one decodes as a word
+    // with nothing said about it, which is what it was.
+    val comment: String? = null,
     // why: defaulted — a word written before the box recorded this reads as old, which
     // is what an export filter should conclude about it anyway.
     @Serializable(with = IsoInstantSerializer::class) val addedAt: Instant? = null,
@@ -140,6 +143,7 @@ private fun ownWordDto(word: OwnWord): OwnWordDto = OwnWordDto(
     kind = kindName(word.kind),
     emoji = word.emoji,
     texts = word.texts,
+    comment = word.comment,
     addedAt = word.addedAt.takeIf { it != Instant.DISTANT_PAST },
 )
 
@@ -224,7 +228,11 @@ private fun ReportedIssueDto.toDomain(): ReportedIssue {
 
 private fun OwnWordDto.toDomain(): OwnWord {
     if (!OwnWords.owns(id)) fail("own word \"$id\" does not carry the ${OwnWords.ID_PREFIX} prefix")
-    if (texts.isEmpty()) fail("own word \"$id\" carries no text in any language")
+    // why: a bare remark is the one entry that legitimately has no text — it was never
+    // meant to become a card. Anything with neither text nor comment says nothing at all.
+    if (texts.isEmpty() && comment.isNullOrBlank()) {
+        fail("own word \"$id\" carries neither a text in any language nor a comment")
+    }
     val parsedKind = when (kind) {
         "noun" -> CardKind.Noun
         "verb" -> CardKind.Verb
@@ -238,6 +246,7 @@ private fun OwnWordDto.toDomain(): OwnWord {
         kind = parsedKind,
         emoji = emoji,
         texts = texts,
+        comment = comment,
         addedAt = addedAt ?: Instant.DISTANT_PAST,
     )
 }

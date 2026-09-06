@@ -42,9 +42,11 @@ extension AppModel {
 
     /// The half a suggestion does carry, whichever language it is in. A suggestion
     /// joins nothing and is never scheduled (`OwnWords.cards`), so the box holds no
-    /// card to read it off.
+    /// card to read it off. A bare remark carries no half at all, and its note is the
+    /// whole entry rather than a line under one.
     func suggestionText(_ word: OwnWord) -> String {
-        word.texts[targetLanguage ?? ""] ?? word.texts[sourceLanguage] ?? ""
+        if word.isRemark { return word.comment ?? "" }
+        return word.texts[targetLanguage ?? ""] ?? word.texts[sourceLanguage] ?? ""
     }
 
     /// Whether there is anything to copy or send at all — what grays the actions out.

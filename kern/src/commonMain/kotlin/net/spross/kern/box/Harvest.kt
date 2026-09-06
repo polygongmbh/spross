@@ -88,6 +88,8 @@ object Harvest {
             state.joinStamp.source to word.source,
             state.joinStamp.target to word.target,
         ),
+        // A harvested pair is the conversation's, not the learner's — nothing was said about it.
+        comment = null,
     )
 
     /**

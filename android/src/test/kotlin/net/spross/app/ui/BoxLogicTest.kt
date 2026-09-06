@@ -97,6 +97,28 @@ class BoxLogicTest {
         assertNull(OwnWordDraft(emoji = "🏠", learning = "  ").word("de", "sw", emptySet()))
     }
 
+    /**
+     * The remark: a note with neither side filled in is still an entry, because it is the
+     * one way to say something that is about no word at all.
+     */
+    @Test
+    fun aNoteWithNoWordUnderItIsStillWritten() {
+        val draft = OwnWordDraft(comment = "the box scrolls back to the top")
+        assertTrue(draft.hasAnything)
+        assertTrue(draft.isRemark)
+
+        val word = draft.word("de", "sw", emptySet())
+        assertEquals(emptyMap(), word?.texts)
+        assertEquals("the box scrolls back to the top", word?.comment)
+        assertEquals(true, word?.isRemark)
+    }
+
+    @Test
+    fun anEmptyFormIsNotWrittenAtAll() {
+        assertFalse(OwnWordDraft().hasAnything)
+        assertNull(OwnWordDraft(comment = "   ").word("de", "sw", emptySet()))
+    }
+
     @Test
     fun theSameWordWrittenTwiceCountsUpRatherThanCollides() {
         val taken = setOf("${OwnWords.ID_PREFIX}nyumba")
@@ -112,6 +134,7 @@ class BoxLogicTest {
             kind = OwnWords.DEFAULT_KIND,
             emoji = "🏠",
             texts = mapOf("de" to "Haus", "sw" to "nyumba"),
+            comment = null,
         )
         val draft = OwnWordDraft.of(stored, source = "de", target = "sw")
 

@@ -30,6 +30,9 @@ import net.spross.kern.box.OwnWords
  * why: no autocapitalization and no autocorrect — a word is not a sentence, and the
  * automatic capital puts one on a Swahili noun, which is simply the wrong spelling of the
  * word being stored. Whoever writes German capitalizes it themselves.
+ *
+ * [prose] is the exception and inverts all three: the note field holds a SENTENCE about a
+ * word rather than a word, so it grows down the page and takes the keyboard's help.
  */
 @Composable
 internal fun WordField(
@@ -38,16 +41,23 @@ internal fun WordField(
     onValueChange: (String) -> Unit,
     imeAction: ImeAction,
     modifier: Modifier = Modifier,
+    prose: Boolean = false,
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         FieldLabel(label)
         OutlinedTextField(
             value = value,
             onValueChange = onValueChange,
-            singleLine = true,
+            singleLine = !prose,
+            minLines = if (prose) 2 else 1,
+            maxLines = if (prose) 5 else 1,
             keyboardOptions = KeyboardOptions(
-                capitalization = KeyboardCapitalization.None,
-                autoCorrectEnabled = false,
+                capitalization = if (prose) {
+                    KeyboardCapitalization.Sentences
+                } else {
+                    KeyboardCapitalization.None
+                },
+                autoCorrectEnabled = prose,
                 imeAction = imeAction,
             ),
             modifier = modifier.fillMaxWidth(),

@@ -57,6 +57,12 @@ data class OwnWordDraft(
     val learning: String = "",
     val emoji: String = "",
     /**
+     * What the learner wanted to say alongside the word — or, with both sides blank,
+     * INSTEAD of one: that is a remark, the one entry here that is about no card
+     * ([OwnWord.isRemark]).
+     */
+    val comment: String = "",
+    /**
      * The word this draft REWRITES, or null while it is being written for the first time.
      * What makes an edit an edit: the id (and with it the schedule and the queue slot) and
      * the kind come from here rather than being minted afresh.
@@ -66,8 +72,20 @@ data class OwnWordDraft(
     /** Both sides written: a studiable word rather than a suggestion. */
     val isPair: Boolean get() = known.isNotBlank() && learning.isNotBlank()
 
-    /** One side is enough to take the word in — the other is what makes it studiable. */
-    val hasAnything: Boolean get() = known.isNotBlank() || learning.isNotBlank()
+    /**
+     * The comment is the whole entry: something to say about no word at all. An EMPTY draft
+     * is not one — it has nothing to say yet, and reads as the ordinary word form until the
+     * learner writes into the comment instead of into a side.
+     */
+    val isRemark: Boolean
+        get() = comment.isNotBlank() && known.isBlank() && learning.isBlank()
+
+    /**
+     * One side is enough to take the word in — the other is what makes it studiable —
+     * and a comment on its own is enough to take a remark in.
+     */
+    val hasAnything: Boolean
+        get() = known.isNotBlank() || learning.isNotBlank() || comment.isNotBlank()
 
     /** The two sides the other way round, for a pair filled in back to front. */
     fun swapped(): OwnWordDraft = copy(known = learning, learning = known)
@@ -80,25 +98,29 @@ data class OwnWordDraft(
     fun withPicture(text: String): OwnWordDraft = copy(emoji = cappedPicture(text))
 
     /**
-     * The word as the box would take it in, or null while both sides are still blank.
+     * The word as the box would take it in, or null while every field is still blank.
      * [taken] are the ids already in use — two words that fold alike count up rather than collide.
      */
     fun word(source: Language, target: Language, taken: Set<String>): OwnWord? {
         if (!hasAnything) return null
         val knownText = known.trim()
         val learnt = learning.trim()
+        // why: a remark has no word to be named after, so the mint falls back to its own
+        // stem — an id it can still be edited and deleted by.
+        val naming = learnt.ifEmpty { knownText }
         // why: the id is minted from the LEARNED side — it is the one that stays put while
         // the known language is free to change under a source switch. A word written only
         // in the known language has nothing else to be named after. An edit mints nothing:
         // a new id would be a new word, and the old one's progress would be gone.
         return OwnWords.write(
-            id = editing?.id ?: OwnWords.mint(learnt.ifEmpty { knownText }, taken),
+            id = editing?.id ?: OwnWords.mint(naming, taken),
             kind = editing?.kind ?: OwnWords.DEFAULT_KIND,
             emoji = emoji.trim().ifEmpty { null },
             texts = buildMap {
                 if (knownText.isNotEmpty()) put(source, knownText)
                 if (learnt.isNotEmpty()) put(target, learnt)
             },
+            comment = comment,
         )
     }
 
@@ -108,6 +130,7 @@ data class OwnWordDraft(
             known = word.texts[source].orEmpty(),
             learning = word.texts[target].orEmpty(),
             emoji = word.emoji.orEmpty(),
+            comment = word.comment.orEmpty(),
             editing = word,
         )
     }
