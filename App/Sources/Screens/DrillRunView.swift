@@ -59,7 +59,8 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     @FocusState var answerFocused: Bool
 
     init(model: AppModel, content: Face.Content, reverse: Bool, fast: Bool = false,
-         storageKey: String, onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
+         level: Int? = nil, storageKey: String,
+         onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
         self.model = model
         self.content = content
         self.reverse = reverse
@@ -67,19 +68,18 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
         self.storageKey = storageKey
         self.onFinish = onFinish
         let normalizer = Self.normalizer(model: model, content: content, reverse: reverse)
-        // Every run opens at Sprosse 1 however far the learner has climbed: what
-        // the record buys is the page, never a head start (docs/drills.md).
+        // The page says where the run opens — the lowest Sprosse not yet answered
+        // out, or the one tapped (docs/drills.md); kern clamps it.
         #if DEBUG
-        // UI-test hook: `-uitest-<drill>-level N` opens the run at that Sprosse,
-        // which is how the outer Sprossen are reached deterministically. Kern clamps it.
+        // UI-test hook: `-uitest-<drill>-level N` overrides it, which is how the
+        // outer Sprossen are reached deterministically.
         let preset = UserDefaults.standard.integer(forKey: Face.uitestLevelKey)
-        _run = State(initialValue: Face.open(content: content, reverse: reverse, fast: fast,
-                                             normalizer: normalizer,
-                                             level: preset > 0 ? preset : nil))
+        let opening = preset > 0 ? preset : level
         #else
-        _run = State(initialValue: Face.open(content: content, reverse: reverse, fast: fast,
-                                             normalizer: normalizer, level: nil))
+        let opening = level
         #endif
+        _run = State(initialValue: Face.open(content: content, reverse: reverse, fast: fast,
+                                             normalizer: normalizer, level: opening))
     }
 
     /// The question on screen and the figures around it. A fresh join always has

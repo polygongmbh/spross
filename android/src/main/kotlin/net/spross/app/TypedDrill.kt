@@ -131,4 +131,6 @@ data class TypedDrillClose(
     val summary: DrillRunSummary?,
     /** The Sprosse the run REACHED, not the one it ends on. */
     val bestLevel: Int,
+    /** The Sprossen the run answered OUT, for the page to add to what it holds. */
+    val clearedSprossen: Set<Int>,
 )

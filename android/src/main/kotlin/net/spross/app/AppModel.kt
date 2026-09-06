@@ -98,10 +98,10 @@ sealed interface Screen {
      * An atlas run, carrying the two things the page settled before it opened: which way
      * round the questions are asked, and whether a Sprosse falls on one clean win.
      */
-    data class CountryDrill(val reverse: Boolean, val fast: Boolean) : Screen
+    data class CountryDrill(val reverse: Boolean, val fast: Boolean, val level: Int) : Screen
 
     /** A dates run, carrying the same two settled things the atlas run does. */
-    data class DateDrill(val reverse: Boolean, val fast: Boolean) : Screen
+    data class DateDrill(val reverse: Boolean, val fast: Boolean, val level: Int) : Screen
 
     /**
      * The box browser. [area] is the shelf it opens UNFOLDED — the screen was reached by
@@ -545,16 +545,16 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * An atlas run. Both switches are the page's to settle — Fast has a price and the page
-     * has already checked it — so the run only obeys them.
+     * An atlas run. Both switches and the Sprosse it opens on are the page's to settle —
+     * Fast has a price and the page has already checked it — so the run only obeys them.
      */
-    fun startCountryDrill(reverse: Boolean, fast: Boolean) {
-        screen = Screen.CountryDrill(reverse, fast)
+    fun startCountryDrill(reverse: Boolean, fast: Boolean, level: Int) {
+        screen = Screen.CountryDrill(reverse, fast, level)
     }
 
-    /** A dates run — the atlas rule: both switches are the page's, the run only obeys. */
-    fun startDateDrill(reverse: Boolean, fast: Boolean) {
-        screen = Screen.DateDrill(reverse, fast)
+    /** A dates run — the atlas rule: the switches and the Sprosse are the page's, the run only obeys. */
+    fun startDateDrill(reverse: Boolean, fast: Boolean, level: Int) {
+        screen = Screen.DateDrill(reverse, fast, level)
     }
 
     /**

@@ -130,7 +130,7 @@ class CountryDrillFlow(
         state = closed.state
         input = ""
         acts.carryOut(closed.effects)
-        return TypedDrillClose(closed.summary, closed.bestLevel)
+        return TypedDrillClose(closed.summary, closed.bestLevel, closed.clearedSprossen)
     }
 
     private fun dispatch(intent: CountryDrillIntent) {
@@ -153,6 +153,8 @@ class CountryDrillFlow(
 fun AppModel.newCountryDrill(
     reverse: Boolean,
     fast: Boolean,
+    /** The Sprosse the run opens on — the page's call ([net.spross.kern.trainer.TrainerMode.entrySprosse] or a tap). */
+    level: Int,
     onTone: (ToneKind) -> Unit = {},
     onReleaseFocus: () -> Unit = {},
     rng: Random = Random.Default,
@@ -166,7 +168,7 @@ fun AppModel.newCountryDrill(
         normalizer = AnswerNormalizer.drill(info),
     )
     return CountryDrillFlow(
-        start = CountryDrillRun.open(config, rng),
+        start = CountryDrillRun.openAt(config, level, rng),
         rng = rng,
         onTone = onTone,
         onReleaseFocus = onReleaseFocus,

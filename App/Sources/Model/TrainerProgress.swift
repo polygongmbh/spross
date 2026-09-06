@@ -3,9 +3,11 @@ import SprossKern
 
 // MARK: - TrainerProgress
 //
-// The highest Sprosse a drill has ever reached, per variant and language.
-// It is the one source the unlock ladder reads: everything a learner has
-// earned is derived from these numbers, never tracked a second time.
+// The highest Sprosse a drill has ever reached, per variant and language —
+// and, for the atlas and the calendar, the Sprossen a run has answered OUT,
+// as kern's bitmask. The first is the one source the unlock ladder reads;
+// the second is where the next run opens. Nothing a learner has earned is
+// tracked a second time.
 //
 // A shell over kern's rules and nothing more: WHERE a Sprosse is filed is
 // `TrainerMode.progressKey` (+ this prefix), and WHICH Sprossen a closed run may
@@ -46,6 +48,25 @@ enum TrainerProgress {
         guard level > best(for: key) else { return false }
         UserDefaults.standard.set(level, forKey: prefix + key)
         return true
+    }
+
+    // MARK: - Answered-out Sprossen
+
+    private static var clearedPrefix: String { TrainerMode.companion.CLEARED_PREFIX }
+
+    /// The Sprossen every run under `key` has answered out — kern reads the mask.
+    static func cleared(for key: String) -> Set<Int> {
+        let mask = Int32(truncatingIfNeeded: UserDefaults.standard.integer(forKey: clearedPrefix + key))
+        return Set(TrainerMode.companion.clearedSprossen(mask: mask).map { Int(truncating: $0) })
+    }
+
+    /// ORs a closed run's answered-out Sprossen into the standing mask. Never
+    /// filtered: a Sprosse answered out stays answered out.
+    static func bookCleared(_ sprossen: Set<KotlinInt>, for key: String) {
+        guard !sprossen.isEmpty else { return }
+        let mask = Int(TrainerMode.companion.clearedMask(sprossen: sprossen))
+        let standing = UserDefaults.standard.integer(forKey: clearedPrefix + key)
+        UserDefaults.standard.set(standing | mask, forKey: clearedPrefix + key)
     }
 
     #if DEBUG

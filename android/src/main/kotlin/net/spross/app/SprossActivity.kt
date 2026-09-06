@@ -179,8 +179,8 @@ private fun Root(model: AppModel = viewModel()) {
             Screen.Dates -> DatesOverviewScreen(model)
             is Screen.Trainer -> TrainerSessionScreen(model, screen.mode)
             Screen.LetterDrill -> LetterDrillScreen(model)
-            is Screen.CountryDrill -> CountryDrillScreen(model, screen.reverse, screen.fast)
-            is Screen.DateDrill -> DateDrillScreen(model, screen.reverse, screen.fast)
+            is Screen.CountryDrill -> CountryDrillScreen(model, screen.reverse, screen.fast, screen.level)
+            is Screen.DateDrill -> DateDrillScreen(model, screen.reverse, screen.fast, screen.level)
             is Screen.Box -> BoxScreen(model, openAt = screen.area)
         }
     }

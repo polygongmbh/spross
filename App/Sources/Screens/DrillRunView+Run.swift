@@ -103,15 +103,18 @@ extension DrillRunView {
         let closed = Face.close(run, standingRecord: TrainerRecords.best(for: storageKey))
         run = closed.run
         for effect in closed.effects { apply(effect) }
-        // why: the Sprosse buys nothing (the drill is ungated); it is what the
-        // overview reads back, and what Fast is priced against.
+        // why: neither buys a padlock (the drill is ungated); they are what the
+        // overview reads back — where the next run opens, what Fast is priced against.
         TrainerProgress.record(closed.bestLevel, for: storageKey)
+        TrainerProgress.bookCleared(closed.clearedSprossen,
+                                    for: TrainerMode.companion.clearedKey(key: storageKey, reverse: reverse))
         guard let summary = closed.summary else {
             dismiss()
             return
         }
         answerFocused = false
         TrainerRecords.record(Int(summary.bestStreak), for: storageKey)
+        TrainerRecords.recordAnswers(Int(summary.done), for: storageKey)
         // why: the cheer marks the record, not the end of a run — confetti and
         // cheer are one thing (`docs/design.md`), and the tile rains the one.
         if summary.newRecord { Sound.cheer() }

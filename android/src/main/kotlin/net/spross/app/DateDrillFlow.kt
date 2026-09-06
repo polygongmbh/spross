@@ -137,7 +137,7 @@ class DateDrillFlow(
         state = closed.state
         input = ""
         acts.carryOut(closed.effects)
-        return TypedDrillClose(closed.summary, closed.bestLevel)
+        return TypedDrillClose(closed.summary, closed.bestLevel, closed.clearedSprossen)
     }
 
     private fun dispatch(intent: DateDrillIntent) {
@@ -163,6 +163,8 @@ class DateDrillFlow(
 fun AppModel.newDateDrill(
     reverse: Boolean,
     fast: Boolean,
+    /** The Sprosse the run opens on — the page's call ([net.spross.kern.trainer.TrainerMode.entrySprosse] or a tap). */
+    level: Int,
     onTone: (ToneKind) -> Unit = {},
     onReleaseFocus: () -> Unit = {},
     rng: Random = Random.Default,
@@ -176,7 +178,7 @@ fun AppModel.newDateDrill(
         normalizer = AnswerNormalizer.drill(info),
     )
     return DateDrillFlow(
-        start = DateDrillRun.open(config, rng),
+        start = DateDrillRun.openAt(config, level, rng),
         rng = rng,
         onTone = onTone,
         onReleaseFocus = onReleaseFocus,

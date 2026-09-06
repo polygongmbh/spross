@@ -37,6 +37,7 @@ import net.spross.app.TypedDrillView
 import net.spross.app.speakDrillAnswer
 import net.spross.app.speakFormOnTap
 import net.spross.kern.session.ToneKind
+import net.spross.kern.trainer.TrainerMode
 import net.spross.kern.session.TurnFeedback
 
 /**
@@ -97,10 +98,12 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
     val leave = {
         val closed = flow.close(standingRecord = key?.let { store.record(it) } ?: 0)
         if (key != null) {
-            // The Sprosse buys nothing (the drill is ungated); it is what the page reads back,
-            // and what Fast is priced against.
+            // Neither buys a padlock (the drill is ungated); they are what the page reads
+            // back — where the next run opens, and what Fast is priced against.
             store.bookSprosse(key, closed.bestLevel)
+            store.bookCleared(TrainerMode.clearedKey(key, reverse), closed.clearedSprossen)
             closed.summary?.let {
+                store.bookAnswers(key, it.done)
                 if (it.newRecord) {
                     store.bookRecord(key, it.bestStreak)
                     // why: the run's own reward, sounded as it closes — the result tile the

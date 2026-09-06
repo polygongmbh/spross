@@ -22,7 +22,7 @@ fun CountriesOverviewScreen(model: AppModel) {
     // The join is the registry: no atlas for this pair, no page — and the chip that opens
     // it gates on the same predicate, so this is a closed door rather than a screen.
     val content = model.atlas ?: return
-    val best = model.trainer.countriesBest
+    val best = model.trainer.countries.bestSprosse
     TypedDrillOverview(
         model = model,
         ladder = TypedDrillLadder(
@@ -39,7 +39,7 @@ fun CountriesOverviewScreen(model: AppModel) {
             sprosse = { sprosse, _ ->
                 LadderSprosse(chrome.countrySprosse(sprosse), chrome.countrySprosseHint(sprosse))
             },
-            start = model::startCountryDrill,
+            start = { reverse, fast -> model.startCountryDrill(reverse, fast, 1) },
         ),
     ) {
         CountryReferenceSection(model, content, chrome)

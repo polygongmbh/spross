@@ -59,6 +59,44 @@ class TrainerStoreTest {
         assertEquals(12, store.record("numbers.es"))
     }
 
+    /** A Sprosse answered out stays answered out: the mask grows, never shrinks or resets. */
+    @Test
+    fun theAnsweredOutSprossenAccumulateAcrossRuns() {
+        val store = TrainerStore(FakePrefs())
+        assertEquals(emptySet(), store.cleared("countries.de-sw"))
+        store.bookCleared("countries.de-sw", setOf(1, 2))
+        store.bookCleared("countries.de-sw", setOf(3))
+        store.bookCleared("countries.de-sw", emptySet())
+        assertEquals(setOf(1, 2, 3), store.cleared("countries.de-sw"))
+    }
+
+    @Test
+    fun theAnswersRecordOnlyEverClimbsAndIsFiledApart() {
+        val store = TrainerStore(FakePrefs())
+        store.bookAnswers("countries.de-sw", 30)
+        store.bookAnswers("countries.de-sw", 12)
+        assertEquals(30, store.answers("countries.de-sw"))
+        assertEquals(0, store.record("countries.de-sw"))
+        assertEquals(0, store.best("countries.de-sw"))
+    }
+
+    /** One read hands the page everything, each direction's mask under its own key. */
+    @Test
+    fun aTypedDrillsStandingReadsBothDirections() {
+        val store = TrainerStore(FakePrefs())
+        store.bookSprosse("dates.de-en", 4)
+        store.bookRecord("dates.de-en", 9)
+        store.bookAnswers("dates.de-en", 21)
+        store.bookCleared(TrainerMode.clearedKey("dates.de-en", reverse = false), setOf(1, 2))
+        store.bookCleared(TrainerMode.clearedKey("dates.de-en", reverse = true), setOf(1))
+        val standing = store.typedStanding("dates.de-en")
+        assertEquals(4, standing.bestSprosse)
+        assertEquals(9, standing.record)
+        assertEquals(21, standing.answers)
+        assertEquals(setOf(1, 2), standing.cleared(reverse = false))
+        assertEquals(setOf(1), standing.cleared(reverse = true))
+    }
+
     @Test
     fun aClosedRunsBookingsAreReadBackByTheLadder() {
         val store = TrainerStore(FakePrefs())

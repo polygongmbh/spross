@@ -15,7 +15,7 @@ import net.spross.app.newCountryDrill
  * the three things that tell the two apart.
  */
 @Composable
-fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
+fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, level: Int) {
     val stamp = model.box?.joinStamp
     TypedDrillScreen(
         model = model,
@@ -27,7 +27,7 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean) {
             // One key per PAIR, the same one the page reads its best Sprosse back from.
             key = stamp?.let { TrainerStore.countriesKey(it.source, it.target) },
             open = { onTone, onReleaseFocus ->
-                model.newCountryDrill(reverse, fast, onTone, onReleaseFocus)
+                model.newCountryDrill(reverse, fast, level, onTone, onReleaseFocus)
             },
         ),
     )

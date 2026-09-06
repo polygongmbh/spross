@@ -77,8 +77,8 @@ protocol DrillFace {
     /// where the run was turned round.
     static func answerLanguage(content: Content, reverse: Bool) -> String
 
-    /// A fresh run. `level` opens it partway up the ladder (a run-through hook
-    /// only); nil is where every real run starts.
+    /// A fresh run. `level` is the Sprosse the page opens it on — the lowest one
+    /// not yet answered out, or the one tapped; nil is the foot of the ladder.
     static func open(content: Content, reverse: Bool, fast: Bool,
                      normalizer: AnswerNormalizer?, level: Int?) -> Run
 
@@ -134,6 +134,8 @@ struct DrillEnd<Run> {
     /// nil ⇒ the run was never answered: dismiss, store nothing.
     let summary: DrillRunSummary?
     let bestLevel: Int
+    /// The Sprossen this run answered OUT, for the page to add to what it holds.
+    let clearedSprossen: Set<KotlinInt>
     let effects: [DrillEffect]
 }
 

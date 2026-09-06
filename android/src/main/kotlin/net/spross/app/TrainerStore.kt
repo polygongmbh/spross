@@ -72,6 +72,38 @@ class TrainerStore(private val prefs: SharedPreferences) {
 
     private fun sprosse(key: String): Int = prefs.getInt(TrainerMode.PROGRESS_PREFIX + key, 0)
 
+    /** The most answers one run under [key] ever gave, 0 where none has closed. */
+    fun answers(key: String): Int = prefs.getInt(TrainerMode.ANSWERS_PREFIX + key, 0)
+
+    /** Books [answers] where it beats the standing figure — strictly greater, like the streak. */
+    fun bookAnswers(key: String, answers: Int) {
+        if (answers <= answers(key)) return
+        prefs.edit().putInt(TrainerMode.ANSWERS_PREFIX + key, answers).apply()
+    }
+
+    /** The Sprossen every run under [key] has answered out — kern reads the mask. */
+    fun cleared(key: String): Set<Int> =
+        TrainerMode.clearedSprossen(prefs.getInt(TrainerMode.CLEARED_PREFIX + key, 0))
+
+    /** ORs a closed run's answered-out Sprossen into the standing mask; never filtered. */
+    fun bookCleared(key: String, sprossen: Set<Int>) {
+        if (sprossen.isEmpty()) return
+        val standing = prefs.getInt(TrainerMode.CLEARED_PREFIX + key, 0)
+        val mask = standing or TrainerMode.clearedMask(sprossen)
+        prefs.edit().putInt(TrainerMode.CLEARED_PREFIX + key, mask).apply()
+    }
+
+    /** Everything one typed drill's page reads for [key], both directions' masks included. */
+    fun typedStanding(key: String): TypedDrillStanding = TypedDrillStanding(
+        bestSprosse = best(key),
+        record = record(key),
+        answers = answers(key),
+        cleared = mapOf(
+            false to cleared(TrainerMode.clearedKey(key, false)),
+            true to cleared(TrainerMode.clearedKey(key, true)),
+        ),
+    )
+
     companion object {
         /**
          * Where the atlas ladder and its record are filed — one key per PAIR, because the
@@ -88,9 +120,31 @@ class TrainerStore(private val prefs: SharedPreferences) {
 }
 
 /**
+ * What a typed drill's page reads: every figure its runs have filed for this pair. The page
+ * only reads them — nothing on it is earned — except that Fast is priced against
+ * [bestSprosse] and a run opens above [cleared].
+ */
+data class TypedDrillStanding(
+    /** The furthest Sprosse any run reached; 0 where none has. */
+    val bestSprosse: Int,
+    /** The longest clean streak any run held. */
+    val record: Int,
+    /** The most answers one run gave. */
+    val answers: Int,
+    private val cleared: Map<Boolean, Set<Int>>,
+) {
+    /** The Sprossen answered out in ONE direction — a row means another question turned round. */
+    fun cleared(reverse: Boolean): Set<Int> = cleared[reverse].orEmpty()
+
+    companion object {
+        val NONE = TypedDrillStanding(0, 0, 0, emptyMap())
+    }
+}
+
+/**
  * The free-practice standing, as the three overview pages read it: how far the ladder has
- * been climbed, what the letter drill can ask on THIS device, how far up the atlas any run
- * has come, and what the run that just closed came to.
+ * been climbed, what the letter drill can ask on THIS device, what the atlas and calendar
+ * runs have filed, and what the run that just closed came to.
  *
  * Held apart from the run itself because all of it outlives one: the ladder is what a
  * closing run books INTO, the availability is recomputed on every foreground, and the
@@ -110,16 +164,12 @@ class TrainerStanding(val store: TrainerStore) {
     var letters by mutableStateOf<LetterDrillAvailability.Report?>(null)
         private set
 
-    /**
-     * The furthest Sprosse any atlas run ever reached for this PAIR; 0 where none has.
-     * The atlas page only reads it — nothing on that page is earned — except that Fast is
-     * priced against it ([net.spross.kern.trainer.CountryDrill.fastUnlocked]).
-     */
-    var countriesBest by mutableStateOf(0)
+    /** What every atlas run has filed for this PAIR. */
+    var countries by mutableStateOf(TypedDrillStanding.NONE)
         private set
 
-    /** The dates ladder's twin of [countriesBest], for the Dates page and its Fast price. */
-    var datesBest by mutableStateOf(0)
+    /** The dates ladder's twin of [countries]. */
+    var dates by mutableStateOf(TypedDrillStanding.NONE)
         private set
 
     /** The figures the last closed run handed back; null while no run has closed. */
@@ -139,11 +189,11 @@ class TrainerStanding(val store: TrainerStore) {
     }
 
     fun readCountries(source: Language, target: Language) {
-        countriesBest = store.best(TrainerStore.countriesKey(source, target))
+        countries = store.typedStanding(TrainerStore.countriesKey(source, target))
     }
 
     fun readDates(source: Language, target: Language) {
-        datesBest = store.best(TrainerStore.datesKey(source, target))
+        dates = store.typedStanding(TrainerStore.datesKey(source, target))
     }
 
     fun show(summary: DrillRunSummary?, title: String) {

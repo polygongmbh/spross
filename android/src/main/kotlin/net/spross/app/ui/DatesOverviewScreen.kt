@@ -23,7 +23,7 @@ fun DatesOverviewScreen(model: AppModel) {
     // The join is the registry: no calendars for this pair, no page — and the chip that
     // opens it gates on the same predicate, so this is a closed door rather than a screen.
     val content = model.dates ?: return
-    val best = model.trainer.datesBest
+    val best = model.trainer.dates.bestSprosse
     TypedDrillOverview(
         model = model,
         ladder = TypedDrillLadder(
@@ -44,7 +44,7 @@ fun DatesOverviewScreen(model: AppModel) {
                 val kinds = DateDrill.kinds(content, sprosse, reverse)
                 LadderSprosse(chrome.dateSprosse(kinds), chrome.dateSprosseHint(kinds))
             },
-            start = model::startDateDrill,
+            start = { reverse, fast -> model.startDateDrill(reverse, fast, 1) },
         ),
     ) {
         DateReferenceSection(model, content, chrome)
