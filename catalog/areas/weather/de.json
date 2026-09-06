@@ -18,13 +18,6 @@
   "the-rain-has-stopped": { "text": "Der Regen hat aufgehört.", "variants": ["Es regnet nicht mehr."] },
   "the-sun-is-shining": { "text": "Die Sonne scheint!" },
   "what-a-beautiful-day": { "text": "Was für ein schöner Tag!" },
-  "we-are-staying-home-because-of-the-rain": {
-   "text": "Wegen des Regens bleiben wir zu Hause.",
-   "notes": {
-    "de": "wegen zieht den Genitiv nach sich: des Regens, nicht der Regen.",
-    "en": "wegen pulls the genitive after it: des Regens, not der Regen.",
-    "es": "wegen arrastra el genitivo: des Regens, no der Regen."
-   }
-  }
+  "we-are-staying-home-because-of-the-rain": { "text": "Wegen des Regens bleiben wir zu Hause." }
  }
 }

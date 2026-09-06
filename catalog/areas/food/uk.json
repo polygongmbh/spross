@@ -8,7 +8,7 @@
   "tea": { "text": "чай" },
   "egg": { "text": "яйце" },
   "cheese": { "text": "сир" },
-  "salt": { "text": "сіль", "notes": { "de": "без regiert den Genitiv: без солі." } },
+  "salt": { "text": "сіль" },
   "sugar": { "text": "цукор" },
   "rice": { "text": "рис" },
   "hunger": { "text": "голод" },
