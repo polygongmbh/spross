@@ -3,6 +3,7 @@
 ## Unreleased
 
 - The AI chat says a sentence back to you with the word you reached for in your own language put right, and hands over the words to bring home when the talk ends instead of waiting to be asked.
+- Words brought back from an AI chat only land near a word you already have when the spelling and the meaning both line up.
 
 ## 6.0.1 — 2026-09-05
 
