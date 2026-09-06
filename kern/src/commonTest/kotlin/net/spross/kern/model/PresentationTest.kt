@@ -113,7 +113,7 @@ class PresentationTest {
         // Produce while the word is still landing: the source prompt already names
         // the concept, so the picture adds support without leaking anything. This is
         // the ONLY prompt it rides, and by role resolution the second review is one.
-        assertEquals(EmojiCue.Upfront, emojiCue(produce, consolidated = false))
+        assertEquals(EmojiCue.Upfront, emojiCue(produce, growing = false))
     }
 
     @Test
@@ -122,10 +122,10 @@ class PresentationTest {
         // the very thing being asked for, and a self-grade cannot tell "I knew the
         // word" from "the picture was obvious". It waits for the reveal, which is
         // where a first sight teaches the word anyway.
-        assertEquals(EmojiCue.OnReveal, emojiCue(recognize, consolidated = false))
-        assertEquals(EmojiCue.OnReveal, emojiCue(recognize, consolidated = true))
+        assertEquals(EmojiCue.OnReveal, emojiCue(recognize, growing = false))
+        assertEquals(EmojiCue.OnReveal, emojiCue(recognize, growing = true))
         // A word that has landed gets no prompt support in either role — but still binds on reveal.
-        assertEquals(EmojiCue.OnReveal, emojiCue(produce, consolidated = true))
+        assertEquals(EmojiCue.OnReveal, emojiCue(produce, growing = true))
     }
 
     // -- pronunciation policy ----------------------------------------------------------
@@ -144,16 +144,16 @@ class PresentationTest {
     // -- sound-prompted production -----------------------------------------------------
 
     @Test
-    fun onlyAConsolidatedAudibleWordIsEverAskedByEar() {
+    fun onlyAGrowingAudibleWordIsEverAskedByEar() {
         for (count in 0..9) {
             assertEquals(
                 ProducePrompt.Source,
-                producePrompt("w01", count, consolidated = false, audible = true),
+                producePrompt("w01", count, growing = false, audible = true),
                 "a word still landing must keep its meaning on the prompt (count $count)",
             )
             assertEquals(
                 ProducePrompt.Source,
-                producePrompt("w01", count, consolidated = true, audible = false),
+                producePrompt("w01", count, growing = true, audible = false),
                 "a silent device falls back rather than asking nothing (count $count)",
             )
         }
@@ -169,7 +169,7 @@ class PresentationTest {
         for (id in listOf("w01", "w02", "kitchen/fridge", "тест")) {
             val prompts = (0..20)
                 .filter { presentationRole(id, it) == produce }
-                .map { producePrompt(id, it, consolidated = true, audible = true) }
+                .map { producePrompt(id, it, growing = true, audible = true) }
             assertTrue(ProducePrompt.Sound in prompts, "$id is never asked by ear")
             assertTrue(ProducePrompt.Source in prompts, "$id is never asked by meaning")
             // No run of three: the two ways of asking take turns.
@@ -181,7 +181,7 @@ class PresentationTest {
 
     @Test
     fun theSoundPromptIsDeterministic() {
-        val once = (0..12).map { producePrompt("kitchen/fridge", it, consolidated = true, audible = true) }
-        assertEquals(once, (0..12).map { producePrompt("kitchen/fridge", it, consolidated = true, audible = true) })
+        val once = (0..12).map { producePrompt("kitchen/fridge", it, growing = true, audible = true) }
+        assertEquals(once, (0..12).map { producePrompt("kitchen/fridge", it, growing = true, audible = true) })
     }
 }

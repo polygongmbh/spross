@@ -65,7 +65,7 @@ internal object Inventory {
             // why: the shuffle key hashes a string, so it is built ONCE per card
             // here rather than inside the comparator, which would pay for it
             // O(n log n) times over.
-            .map { DueKey(it, Statistics.isConsolidated(state, it)) }
+            .map { DueKey(it, Statistics.isGrowing(state, it)) }
             .sortedWith(dueKeyOrder)
             .map { it.entry }
     }
@@ -106,13 +106,13 @@ internal object Inventory {
      * yields the same order every day, a trailing id keeps seed neighbors
      * adjacent within the day. Both halves must arrive well spread.
      */
-    private class DueKey(val entry: CardScheduling, val consolidated: Boolean) {
+    private class DueKey(val entry: CardScheduling, val growing: Boolean) {
         val day: Long = dueEpochDay(entry)
         val shuffle: ULong = fnv1a64("$day:${fnv1a64(entry.cardId)}")
     }
 
     private val dueKeyOrder: Comparator<DueKey> = compareBy(
-        { it.consolidated },
+        { it.growing },
         { it.day },
         { it.shuffle },
         { it.entry.cardId },

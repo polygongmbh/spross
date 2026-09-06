@@ -18,7 +18,7 @@ import net.spross.kern.model.Language
  * a device can speak.
  *
  * The only platform fact the whole ladder consults is `hasVoice` — recording presence is
- * kern's own [Catalog], the consolidated pool and its schedule figures are kern's own
+ * kern's own [Catalog], the growing pool and its schedule figures are kern's own
  * [BoxState]. So the audio-capability port collapses to one boolean, named by the rule
  * ("can this device say anything in this language") rather than by any synthesizer.
  *
@@ -45,12 +45,12 @@ object LetterDrillAvailability {
         val alphabet: Alphabet?,
         /** Refs kern may sample, in file order. */
         val promptableRefs: List<String>,
-        /** Consolidated, single-word, audible box cards, each carrying the figures the draw weighs. */
+        /** Growing, single-word, audible box cards, each carrying the figures the draw weighs. */
         val dictationCandidates: List<LetterDrill.DictationCandidate>,
         /** Ref → every word this device can say the row's gap from, known words flagged. */
         val gapWords: Map<String, List<LetterDrill.AlphabetExampleWord>>,
-        /** The learner's whole consolidated vocabulary — what paces the entry Sprosse and its length. */
-        val consolidatedCards: Int,
+        /** The learner's whole growing vocabulary — what paces the entry Sprosse and its length. */
+        val growingCards: Int,
     ) {
         val drillAvailable: Boolean get() = alphabet != null && promptableRefs.isNotEmpty()
 
@@ -64,13 +64,13 @@ object LetterDrillAvailability {
          * capped by [maxLevel]. Derived here rather than at the run, so the overview naming
          * the stage and the run that starts there read one number.
          */
-        val entryLevel: Int get() = minOf(LetterDrill.entryLevel(consolidatedCards), maxLevel)
+        val entryLevel: Int get() = minOf(LetterDrill.entryLevel(growingCards), maxLevel)
 
         /** The stage that Sprosse lands in — what the overview marks. */
         val entryStage: LetterStage get() = LetterDrill.stageFor(entryLevel)
 
         /** How long a Sprosse is for this learner. */
-        val winsToAdvance: Int get() = LetterDrill.winsToAdvance(consolidatedCards)
+        val winsToAdvance: Int get() = LetterDrill.winsToAdvance(growingCards)
 
         /** What kern is handed for one row — empty for a letter row, which gaps nothing. */
         fun examples(entry: AlphabetEntry): List<LetterDrill.AlphabetExampleWord> =
@@ -84,9 +84,9 @@ object LetterDrillAvailability {
      */
     fun report(catalog: Catalog, box: BoxState, language: Language, hasVoice: Boolean): Report {
         val alphabet = catalog.alphabet(language)
-        val consolidated = BoxEngine.consolidatedCardIds(box).mapNotNull { box.cards[it] }
+        val growing = BoxEngine.growingCardIds(box).mapNotNull { box.cards[it] }
         // why: Card.id IS the concept slug, so holding a word is a set lookup.
-        val known = consolidated.map { it.id }.toSet()
+        val known = growing.map { it.id }.toSet()
         val gapWords = alphabet?.entries.orEmpty()
             .filter { it.kind != AlphabetKind.Letter && it.kind != AlphabetKind.Rule }
             .associate { it.ref to exampleWords(it, catalog, language, known, hasVoice) }
@@ -98,7 +98,7 @@ object LetterDrillAvailability {
                     promptable(entry, catalog, language, hasVoice) { gapWords[entry.ref].orEmpty() }
                 }
                 .map { it.ref },
-            dictationCandidates = consolidated
+            dictationCandidates = growing
                 // why: a transcription task is ONE word — a phrase card would ask the learner
                 // to type a sentence from a single hearing.
                 .filter { ' ' !in it.target.text }
@@ -112,7 +112,7 @@ object LetterDrillAvailability {
                     )
                 },
             gapWords = gapWords,
-            consolidatedCards = consolidated.size,
+            growingCards = growing.size,
         )
     }
 

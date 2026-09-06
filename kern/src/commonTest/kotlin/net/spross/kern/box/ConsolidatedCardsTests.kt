@@ -6,7 +6,7 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.CardPhase
 
 /**
- * `BoxEngine.consolidatedCardIds` — the drill's word supply: what the shelf holds,
+ * `BoxEngine.growingCardIds` — the drill's word supply: what the shelf holds,
  * what falls off it, and the order it is handed over in.
  */
 class ConsolidatedCardsTests {
@@ -27,9 +27,9 @@ class ConsolidatedCardsTests {
 
     @Test
     fun anEmptyBoxHandsOverNothing() {
-        assertEquals(emptyList(), BoxEngine.consolidatedCardIds(Box.state(emptyList())))
+        assertEquals(emptyList(), BoxEngine.growingCardIds(Box.state(emptyList())))
         // Cards without a schedule have not been seen at all, let alone consolidated.
-        assertEquals(emptyList(), BoxEngine.consolidatedCardIds(Box.state((1..3).map { Box.word(it) })))
+        assertEquals(emptyList(), BoxEngine.growingCardIds(Box.state((1..3).map { Box.word(it) })))
     }
 
     @Test
@@ -56,7 +56,7 @@ class ConsolidatedCardsTests {
         )
         state = Box.inject(state, consolidated("w05", stability = 40.0))
 
-        assertEquals(listOf("w01", "w05"), BoxEngine.consolidatedCardIds(state))
+        assertEquals(listOf("w01", "w05"), BoxEngine.growingCardIds(state))
     }
 
     @Test
@@ -67,10 +67,10 @@ class ConsolidatedCardsTests {
         // Inert schedule from another join — kept in the map, invisible to inventory reads.
         state = Box.inject(state, consolidated("w99"))
 
-        assertEquals(listOf("w01"), BoxEngine.consolidatedCardIds(state))
+        assertEquals(listOf("w01"), BoxEngine.growingCardIds(state))
         // Reviving the suspended card puts it straight back on the shelf.
         val revived = BoxEngine.setSuspended(state, "w02", suspended = false, Box.day1)
-        assertEquals(listOf("w01", "w02"), BoxEngine.consolidatedCardIds(revived))
+        assertEquals(listOf("w01", "w02"), BoxEngine.growingCardIds(revived))
     }
 
     @Test
@@ -81,6 +81,6 @@ class ConsolidatedCardsTests {
         for (id in listOf("mike", "bravo", "alpha", "zulu")) state = Box.inject(state, consolidated(id))
 
         // Catalog position decides; the id only breaks a seedIndex tie, so the order is total.
-        assertEquals(listOf("zulu", "alpha", "bravo", "mike"), BoxEngine.consolidatedCardIds(state))
+        assertEquals(listOf("zulu", "alpha", "bravo", "mike"), BoxEngine.growingCardIds(state))
     }
 }

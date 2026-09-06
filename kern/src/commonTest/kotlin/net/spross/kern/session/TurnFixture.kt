@@ -70,20 +70,20 @@ internal object TurnFixture {
         card: Card,
         prompt: ProducePrompt = ProducePrompt.Source,
         firstExposure: Boolean = false,
-        consolidated: Boolean = false,
+        growing: Boolean = false,
     ): TurnState = machine.begin(
         card, PresentationRole.Produce, prompt,
         if (prompt == ProducePrompt.Sound) card.target.text else card.source.text,
-        firstExposure, consolidated, T0,
+        firstExposure, growing, T0,
     )
 
     fun recognize(
         card: Card,
         firstExposure: Boolean = false,
-        consolidated: Boolean = false,
+        growing: Boolean = false,
     ): TurnState = machine.begin(
         card, PresentationRole.Recognize, ProducePrompt.Source, card.target.text,
-        firstExposure, consolidated, T0,
+        firstExposure, growing, T0,
     )
 
     fun step(state: TurnState, intent: TurnIntent, nowMillis: Long = T0): TurnReduction =
