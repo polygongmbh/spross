@@ -125,7 +125,9 @@ private fun BoxBrowserScreen(
     }
 
     fun reveal(area: String) {
-        sections.firstOrNull { area in it.areas }?.let { openGroups = openGroups + it.id }
+        // why: the named group opens INSTEAD of whatever stood open — the learner said which
+        // area they meant, and every other shelf left open is list between them and it.
+        sections.firstOrNull { area in it.areas }?.let { openGroups = setOf(it.id) }
         openAreas = openAreas + area
         scrollTo = area
     }
