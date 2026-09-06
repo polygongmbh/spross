@@ -453,7 +453,7 @@ internal object ChromeDe : Chrome {
     override val sessionDoneTallyAllDone = "Alles erledigt"
     override val sessionDoneRestHint = "Heute sitzt wenig — ein Kopf, der müde ist, behält " +
         "nichts mehr. Morgen geht's leichter."
-    override val sessionDoneStreakRecord = "Dein längster Lauf!"
+    override val sessionDoneStreakRecord = "Deine längste Serie!"
     override val sessionDoneGrowthGrew = "Auch heute bleibt was hängen"
     override val sessionDoneGrowthOpened = "Deine ersten Wörter in guter Erde"
     override val growthBlooming = listOf(

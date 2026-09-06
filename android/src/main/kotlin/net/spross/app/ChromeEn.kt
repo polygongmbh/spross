@@ -447,7 +447,7 @@ internal object ChromeEn : Chrome {
     override val sessionDoneTallyAllDone = "All done"
     override val sessionDoneRestHint = "Not much is sticking today — a tired head keeps " +
         "nothing. Tomorrow will go easier."
-    override val sessionDoneStreakRecord = "Your longest run yet!"
+    override val sessionDoneStreakRecord = "Your longest streak yet!"
     override val sessionDoneGrowthGrew = "Some of it sticks today too"
     override val sessionDoneGrowthOpened = "Your first words in good soil"
     override val growthBlooming = listOf(

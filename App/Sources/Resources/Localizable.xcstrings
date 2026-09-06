@@ -5645,13 +5645,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dein längster Lauf!"
+            "value" : "Deine längste Serie!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your longest run yet!"
+            "value" : "Your longest streak yet!"
           }
         }
       }
