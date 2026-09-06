@@ -96,28 +96,28 @@ class StatisticsBucketsTests {
     }
 
     /**
-     * Fully grown backs the jade area-complete mark: every ACTIVE card matured, and at
+     * Mature backs the jade area-complete mark: every ACTIVE card matured, and at
      * least one. Whether every card in the area has even been packed yet is a separate
      * question a screen answers off its own pack/unpack emptiness, not off this field.
      */
     @Test
-    fun fullyGrownRequiresEveryActiveCardMaturedAndAtLeastOne() {
+    fun matureRequiresEveryActiveCardMaturedAndAtLeastOne() {
         var state = Box.state((1..2).map { Box.word(it, area = "kitchen") })
         val future = Box.plusDays(now, 5.0)
         state = Box.inject(state, Box.sched("w01", stability = 35.0, dueMillis = future, lastReviewMillis = now))
         // w02 active but only Fresh — not every active card has matured yet.
         state = Box.inject(state, Box.sched("w02", stability = 3.0, dueMillis = future, lastReviewMillis = now))
-        assertFalse(BoxEngine.statistics(state, now, Box.TZ).areas.single().fullyGrown)
+        assertFalse(BoxEngine.statistics(state, now, Box.TZ).areas.single().mature)
 
         state = Box.inject(state, Box.sched("w02", stability = 40.0, dueMillis = future, lastReviewMillis = now))
-        assertTrue(BoxEngine.statistics(state, now, Box.TZ).areas.single().fullyGrown)
+        assertTrue(BoxEngine.statistics(state, now, Box.TZ).areas.single().mature)
 
-        // An area with nothing active at all has nothing to call fully grown.
+        // An area with nothing active at all has nothing to call mature.
         val empty = AreaStatistics(
             name = "empty", total = 0, active = 0, consolidated = 0, queued = 0,
             phrasesLocked = 0, phrasesUnlocked = 0,
         )
-        assertFalse(empty.fullyGrown)
+        assertFalse(empty.mature)
     }
 
     @Test

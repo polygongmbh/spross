@@ -237,7 +237,7 @@ private struct BoxAreaSection: View {
                      subtitle: model.areaSubtitle(area),
                      progress: stats?.progress ?? .empty,
                      lockedPhrases: stats?.lockedPhrases ?? 0,
-                     hideProgress: fullyPackedAndGrown(stats))
+                     hideProgress: fullyPackedAndMature(stats))
             FoldChevron(open: expanded)
                 .foregroundStyle(Theme.colors.textSecondary)
                 .padding(.top, Theme.spacing.sm)
@@ -246,13 +246,13 @@ private struct BoxAreaSection: View {
     }
 
     /// Whether nothing is left to pack or unpack AND every active card in the
-    /// area has fully grown — the one condition that swaps the green "All
+    /// area has matured — the one condition that swaps the green "All
     /// packed" mark for a jade one and hides the chip's bar/counts, leaving
     /// just the emoji/name/jade mark in the header (Part D).
-    private func fullyPackedAndGrown(_ stats: AreaStatistics?) -> Bool {
+    private func fullyPackedAndMature(_ stats: AreaStatistics?) -> Bool {
         model.enqueueableCount(area: area) == 0
             && model.dequeueableCount(area: area) == 0
-            && (stats?.fullyGrown ?? false)
+            && (stats?.mature ?? false)
     }
 
     /// The count moved from the button's face into its label: an icon-only
@@ -287,10 +287,10 @@ private struct BoxAreaSection: View {
             .buttonStyle(IconButtonStyle(color: Theme.colors.accent))
             .accessibilityLabel(Text("box.shelf.unpack \(queued.formatted())"))
         } else if queued == 0 {
-            let fullyGrown = model.areaStats(area)?.fullyGrown ?? false
+            let mature = model.areaStats(area)?.mature ?? false
             Image(systemName: "checkmark.circle.fill")
                 .font(Theme.typography.headline)
-                .foregroundStyle(fullyGrown ? Theme.colors.grown : Theme.colors.success)
+                .foregroundStyle(mature ? Theme.colors.grown : Theme.colors.success)
                 .frame(width: 40, height: 40)
                 .accessibilityLabel(Text("box.shelf.packed"))
         }

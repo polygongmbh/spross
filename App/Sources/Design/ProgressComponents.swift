@@ -138,7 +138,7 @@ struct AreaChip: View {
     /// count the bar can place (they aren't scheduled yet), so it only ever
     /// shows up here, and only when it says something (never at zero).
     let lockedPhrases: Int
-    /// An area fully packed AND fully grown swaps its header mark for a jade
+    /// An area fully packed AND mature swaps its header mark for a jade
     /// one (the screen's own `packControl`) and has nothing left for the
     /// counts/bar to say — so they step aside, leaving just the emoji/name.
     var hideProgress: Bool = false

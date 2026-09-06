@@ -100,11 +100,11 @@ internal fun AreaSection(
         modifier = Modifier.fillMaxWidth().panel(),
     ) {
         Column(Modifier.fillMaxWidth().padding(Theme.spacing.lg)) {
-            // Nothing left to pack or unpack, and every active card has fully grown —
+            // Nothing left to pack or unpack, and every active card has matured —
             // the one condition that swaps the pack control's mark jade and leaves the
             // chip's bar/counts with nothing to say (Part D).
-            val fullyPackedAndGrown = (counts?.packable ?: 0) == 0 && (counts?.queued ?: 0) == 0 &&
-                (stats?.fullyGrown ?: false)
+            val fullyPackedAndMature = (counts?.packable ?: 0) == 0 && (counts?.queued ?: 0) == 0 &&
+                (stats?.mature ?: false)
             Row(verticalAlignment = Alignment.Top) {
                 AreaChip(
                     name = naming.title(area),
@@ -112,7 +112,7 @@ internal fun AreaSection(
                     subtitle = naming.subtitle(area),
                     stats = stats,
                     chrome = chrome,
-                    hideProgress = fullyPackedAndGrown,
+                    hideProgress = fullyPackedAndMature,
                     modifier = Modifier
                         .weight(1f)
                         .clickable(onClick = onToggle)
@@ -122,7 +122,7 @@ internal fun AreaSection(
                         },
                 )
                 PackControl(chrome, counts?.packable ?: 0, counts?.queued ?: 0,
-                    fullyGrown = stats?.fullyGrown ?: false,
+                    mature = stats?.mature ?: false,
                     onPack = {
                         model.updateBox { BoxEngine.enqueue(it, BoxBrowser.enqueueableCardIds(it, area)) }
                     },
@@ -153,15 +153,15 @@ internal fun AreaSection(
  * the per-word row offers its own unpack instead, and a checkmark here would misleadingly
  * claim the shelf is free of queued words when it is not.
  *
- * [fullyGrown] turns the settled check jade instead of green once every active card in the
- * area has matured — the same mark, not a second indicator (kern `AreaStatistics.fullyGrown`).
+ * [mature] turns the settled check jade instead of green once every active card in the
+ * area has matured — the same mark, not a second indicator (kern `AreaStatistics.mature`).
  */
 @Composable
 internal fun PackControl(
     chrome: Chrome,
     count: Int,
     queuedCount: Int,
-    fullyGrown: Boolean,
+    mature: Boolean,
     onPack: () -> Unit,
     onUnpack: () -> Unit,
 ) {
@@ -183,7 +183,7 @@ internal fun PackControl(
     } else if (queuedCount == 0) {
         Text(
             SEAL,
-            color = if (fullyGrown) Theme.colors.grown else Theme.colors.success,
+            color = if (mature) Theme.colors.grown else Theme.colors.success,
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier
                 .sizeIn(minWidth = 48.dp, minHeight = 48.dp)
@@ -208,7 +208,7 @@ fun AreaChip(
     stats: AreaStatistics?,
     chrome: Chrome,
     modifier: Modifier = Modifier,
-    /** An area fully packed AND fully grown swaps its header mark for a jade one
+    /** An area fully packed AND mature swaps its header mark for a jade one
      * (the screen's own `PackControl`) and has nothing left for the counts/bar to
      * say — so they step aside, leaving just the emoji/name/subtitle. */
     hideProgress: Boolean = false,
