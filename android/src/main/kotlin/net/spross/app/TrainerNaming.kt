@@ -1,5 +1,6 @@
 package net.spross.app
 
+import net.spross.kern.trainer.CountryDrill
 import net.spross.kern.trainer.CountryTaskKind
 import net.spross.kern.trainer.DateTaskKind
 import net.spross.kern.trainer.DrillModifier
@@ -48,13 +49,6 @@ fun Chrome.name(stage: LetterStage): String = when (stage) {
     LetterStage.Dictation -> lettersStageDictation
 }
 
-fun Chrome.hint(stage: LetterStage): String = when (stage) {
-    LetterStage.ChoiceEasy -> lettersStageChoiceEasyHint
-    LetterStage.ChoiceConfusable -> lettersStageChoiceConfusableHint
-    LetterStage.Typed -> lettersStageTypedHint
-    LetterStage.Dictation -> lettersStageDictationHint
-}
-
 /**
  * What an atlas question ASKS. The kind names the rule, and this is the only place it turns
  * into words — none of which names a language, because the field's placeholder says which
@@ -70,9 +64,13 @@ fun Chrome.countryAsk(kind: CountryTaskKind): String = when (kind) {
 }
 
 /** What a Sprosse of the atlas ladder is called, and the line under it. */
-fun Chrome.countrySprosse(sprosse: Int): String = countrySprossen.rowFor(sprosse)
-
-fun Chrome.countrySprosseHint(sprosse: Int): String = countrySprosseHints.rowFor(sprosse)
+/**
+ * What standing on an atlas Sprosse asks. A Sprosse that adds nothing to the one below —
+ * kern's call ([CountryDrill.repeatsBelow]), the flag row of a reversed run — says so
+ * rather than promising a question the run never asks.
+ */
+fun Chrome.countrySprosse(sprosse: Int, reverse: Boolean): String =
+    if (CountryDrill.repeatsBelow(sprosse, reverse)) countriesSprosseRepeats else countrySprossen.rowFor(sprosse)
 
 /**
  * What a dates question ASKS — the atlas rule, one table. The three assembled kinds share
@@ -92,9 +90,6 @@ fun Chrome.dateAsk(kind: DateTaskKind): String = when (kind) {
  * number on screen is the row's own position.
  */
 fun Chrome.dateSprosse(kinds: List<DateTaskKind>): String = dateSprossen.rowFor(dateSprosseIndex(kinds))
-
-fun Chrome.dateSprosseHint(kinds: List<DateTaskKind>): String =
-    dateSprosseHints.rowFor(dateSprosseIndex(kinds))
 
 /** A Sprosse carries every kind below it, so the LAST one is what it introduced and is named for. */
 private fun dateSprosseIndex(kinds: List<DateTaskKind>): Int =

@@ -182,3 +182,42 @@ struct DrillResultTile: View {
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background(Theme.colors.background)
 }
+
+// MARK: - The Sprosse circle
+
+/// What a Sprosse circle says about a ladder's record: never stood on, stood on
+/// by some run (ocean), or answered out by one (forest) — the last only where the
+/// Sprosse enumerates. Untouched differs by SHAPE too: an outline against two fills.
+enum SprosseMark {
+    case untouched, reached, cleared
+
+    var color: Color {
+        switch self {
+        case .untouched: return Theme.colors.textSecondary
+        case .reached: return Theme.colors.teal
+        case .cleared: return Theme.colors.success
+        }
+    }
+
+    /// What VoiceOver says of the row, where the shape says something.
+    var a11y: LocalizedStringKey? {
+        switch self {
+        case .untouched: return nil
+        case .reached: return "trainer.sprosse.reached"
+        case .cleared: return "trainer.sprosse.cleared"
+        }
+    }
+}
+
+/// A Sprosse's number in its circle — the mark on every ladder row. The letters
+/// ladder wears it too, filled only on the stage its run opens on.
+struct SprosseCircle: View {
+    let number: Int
+    let mark: SprosseMark
+
+    var body: some View {
+        Image(systemName: mark == .untouched ? "\(number).circle" : "\(number).circle.fill")
+            .font(.title3)
+            .foregroundStyle(mark.color)
+    }
+}

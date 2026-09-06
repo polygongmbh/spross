@@ -131,6 +131,11 @@ internal object ChromeDe : Chrome {
     override val a11yActionReplayPrompt = "Noch einmal anhören"
     override val lettersPromptInLanguage = "auf %s"
     override val trainerSprosse = "Sprosse %s"
+    override val trainerLadderTap = "Tippe eine Sprosse an, um dort zu starten."
+    override val trainerLadderBest = "Bestmarke: %s in Folge · %s Antworten"
+    override val trainerSprosseEntry = "hier geht es los"
+    override val trainerSprosseReached = "erreicht"
+    override val trainerSprosseCleared = "alle Fragen beantwortet"
     override val trainerRunStreak = "🔥 %s in Folge"
     override val sessionAlmostTypo = "Fast! Korrekte Schreibweise"
     override val sessionAlmostHeard = "Gehört war"
@@ -189,19 +194,12 @@ internal object ChromeDe : Chrome {
     override val numbersNewPlace = "Neue Stelle: %s"
     override val numbersLookup = "Zahlen nachschlagen"
     override val trainerResultNewRecord = "Neuer Rekord!"
-    override val lettersStageChoiceEasy = "Vier Kacheln"
-    override val lettersStageChoiceEasyHint = "Den gehörten Buchstaben unter vieren finden"
-    override val lettersStageChoiceConfusable = "Ähnliche Kacheln"
-    override val lettersStageChoiceConfusableHint = "Dieselbe Wahl, aber mit Buchstaben, die " +
-        "leicht zu verwechseln sind"
-    override val lettersStageTyped = "Tippen"
-    override val lettersStageTypedHint = "Den Buchstaben selbst schreiben, ohne Auswahl"
-    override val lettersStageDictation = "Diktat"
-    override val lettersStageDictationHint = "Ganze Wörter aus der eigenen Box nach Gehör " +
-        "schreiben"
+    override val lettersStageChoiceEasy = "Der gehörte Buchstabe unter vieren"
+    override val lettersStageChoiceConfusable = "Dieselbe Wahl unter ähnlichen Buchstaben"
+    override val lettersStageTyped = "Den Buchstaben selbst schreiben"
+    override val lettersStageDictation = "Ganze Wörter aus der Box nach Gehör"
     override val lettersStageDictationLocked = "Braucht mehr gefestigte Wörter, die dieses " +
         "Gerät vorlesen kann"
-    override val lettersStageEntry = "hier geht es los"
     override val lettersUnavailable = "Dieses Gerät kann noch keinen Buchstaben vorsprechen " +
         "— dafür braucht es eine Stimme für die Sprache."
     override val lettersAlphabetTitle = "Alphabet"
@@ -210,33 +208,20 @@ internal object ChromeDe : Chrome {
     override val trainerSkillCountries = "Länder"
     override val countriesTitle = "Länder · %s"
     override val countriesReference = "Der Atlas"
-    override val countriesPace = "Jeder Lauf beginnt bei Sprosse 1 und klettert bei sauberen " +
-        "Antworten weiter."
-    override val countriesBest = "Bestmarke: Sprosse %s"
     override val countriesFastHint = "Eine saubere Antwort pro Sprosse statt drei."
     override val countriesReverseHint = "Fragt auf %s, du antwortest auf %s."
     override val countrySprossen = listOf(
         "Die Länder eurer Sprachen",
-        "Die Namen der Sprachen",
-        "Die Leute",
-        "Die Sprachen der App",
-        "Wo spricht man was?",
-        "Häufige Sprachen der Welt",
-        "Nur die Flagge",
-        "Seltenere Länder und Sprachen",
-        "Von der Sprache zum Land",
-    )
-    override val countrySprosseHints = listOf(
-        "Wie heißt das Land, in dem eine eurer Sprachen zu Hause ist?",
         "Dazu: wie heißt die Sprache selbst?",
         "Dazu: wie heißen die Menschen von dort?",
-        "Der Kreis wird größer — dieselben Fragen, mehr Länder.",
-        "Dazu: welche Sprache spricht man in diesem Land?",
-        "Noch mehr Länder, dieselben Fragen.",
-        "Dazu: welches Land ist das, nur an der Flagge? Umgekehrt entfällt das.",
-        "Was der Atlas sonst noch kennt.",
+        "Mehr Länder: die Sprachen der App",
+        "Dazu: welche Sprache spricht man dort?",
+        "Mehr Länder: häufige Sprachen der Welt",
+        "Dazu: welches Land ist das, nur an der Flagge?",
+        "Mehr Länder: was der Atlas sonst noch kennt",
         "Dazu: wo spricht man diese Sprache?",
     )
+    override val countriesSprosseRepeats = "Dieselben Fragen, mehr Übung"
     override val countryTiers = listOf(
         "Eure Sprachen",
         "Die Sprachen der App",
@@ -252,9 +237,6 @@ internal object ChromeDe : Chrome {
     override val trainerSkillDates = "Datum"
     override val datesTitle = "Datum · %s"
     override val datesReference = "Der Kalender"
-    override val datesPace = "Jeder Lauf beginnt bei Sprosse 1 und klettert mit jeder " +
-        "sauberen Antwort weiter."
-    override val datesBest = "Bestmarke: Sprosse %s"
     override val datesFastHint = "Eine saubere Antwort pro Sprosse statt drei."
     override val datesReverseHint = "Fragt auf %1\$s, du antwortest auf %2\$s."
     override val datesReverseHintBack = "Fragt auf %1\$s — die Namen auf %2\$s, die Daten in " +
@@ -266,14 +248,6 @@ internal object ChromeDe : Chrome {
         "Tag und Monat",
         "Das ganze Datum",
         "Das Datum mit Jahr",
-    )
-    override val dateSprosseHints = listOf(
-        "Wochentage und Monate, ein Name aus vieren — noch nichts geschrieben.",
-        "Die sieben Namen der Woche, einzeln gefragt.",
-        "Die zwölf Monatsnamen, gemischt mit den Wochentagen.",
-        "Aus 3.3. wird der dritte März.",
-        "Mit dem Wochentag davor: Mo, 3.3.",
-        "Dazu die Jahreszahl, in Worten gelesen.",
     )
     override val datesAskName = "Welches davon ist es?"
     override val datesAskWeekday = "Wie heißt dieser Wochentag?"

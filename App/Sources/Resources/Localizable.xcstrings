@@ -1891,23 +1891,6 @@
         }
       }
     },
-    "countries.best %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bestmarke: Sprosse %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Best yet: Sprosse %@"
-          }
-        }
-      },
-      "comment" : "%d = the furthest Sprosse any run reached"
-    },
     "countries.fast.hint" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1925,23 +1908,6 @@
         }
       },
       "comment" : "this ladder costs THREE clean wins, so it prices its own"
-    },
-    "countries.pace" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jeder Lauf beginnt bei Sprosse 1 und klettert bei sauberen Antworten weiter."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Every run opens at Sprosse 1 and climbs with clean answers."
-          }
-        }
-      },
-      "comment" : "How the ladder is walked, said once instead of marked on every Sprosse row."
     },
     "countries.reference" : {
       "localizations" : {
@@ -1993,41 +1959,7 @@
         }
       }
     },
-    "countries.sprosse.1.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wie heißt das Land, in dem eine eurer Sprachen zu Hause ist?"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "What is a country one of your languages is at home in called?"
-          }
-        }
-      }
-    },
     "countries.sprosse.2" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die Namen der Sprachen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The names of the languages"
-          }
-        }
-      }
-    },
-    "countries.sprosse.2.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2050,23 +1982,6 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Leute"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The people"
-          }
-        }
-      }
-    },
-    "countries.sprosse.3.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
             "value" : "Dazu: wie heißen die Menschen von dort?"
           }
         },
@@ -2084,30 +1999,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Sprachen der App"
+            "value" : "Mehr Länder: die Sprachen der App"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The app's languages"
-          }
-        }
-      }
-    },
-    "countries.sprosse.4.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Der Kreis wird größer — dieselben Fragen, mehr Länder."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The circle widens — the same questions, more countries."
+            "value" : "More countries: the app's languages"
           }
         }
       }
@@ -2118,30 +2016,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wo spricht man was?"
+            "value" : "Dazu: welche Sprache spricht man dort?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "What is spoken there?"
-          }
-        }
-      }
-    },
-    "countries.sprosse.5.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dazu: welche Sprache spricht man in diesem Land?"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Plus: which language is spoken in this country?"
+            "value" : "Plus: which language is spoken there?"
           }
         }
       }
@@ -2152,30 +2033,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Häufige Sprachen der Welt"
+            "value" : "Mehr Länder: häufige Sprachen der Welt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Common languages of the world"
-          }
-        }
-      }
-    },
-    "countries.sprosse.6.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch mehr Länder, dieselben Fragen."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "More countries again, the same questions."
+            "value" : "More countries: common languages of the world"
           }
         }
       }
@@ -2186,30 +2050,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nur die Flagge"
+            "value" : "Dazu: welches Land ist das, nur an der Flagge?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The flag alone"
-          }
-        }
-      }
-    },
-    "countries.sprosse.7.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dazu: welches Land ist das, nur an der Flagge? Umgekehrt entfällt das."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Plus: which country is this, from its flag alone? Not in a reversed run."
+            "value" : "Plus: which country is this, from its flag alone?"
           }
         }
       }
@@ -2220,52 +2067,18 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seltenere Länder und Sprachen"
+            "value" : "Mehr Länder: was der Atlas sonst noch kennt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Less common countries and languages"
-          }
-        }
-      }
-    },
-    "countries.sprosse.8.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Was der Atlas sonst noch kennt."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The rest of what the atlas knows."
+            "value" : "More countries: the rest of the atlas"
           }
         }
       }
     },
     "countries.sprosse.9" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Von der Sprache zum Land"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "From language to country"
-          }
-        }
-      }
-    },
-    "countries.sprosse.9.hint" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2278,6 +2091,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Plus: where is this language spoken?"
+          }
+        }
+      }
+    },
+    "countries.sprosse.repeats" : {
+      "comment" : "An atlas row that adds nothing to the one below — the flag row of a reversed run",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieselben Fragen, mehr Übung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The same questions, more practice"
           }
         }
       }
@@ -2517,23 +2348,6 @@
         }
       }
     },
-    "dates.best %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bestmarke: Sprosse %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Best yet: Sprosse %@"
-          }
-        }
-      },
-      "comment" : "%d = the furthest Sprosse any run reached"
-    },
     "dates.fast.hint" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2568,23 +2382,6 @@
           }
         }
       }
-    },
-    "dates.pace" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jeder Lauf beginnt bei Sprosse 1 und klettert mit jeder sauberen Antwort weiter."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Every run opens at Sprosse 1 and climbs on with every clean answer."
-          }
-        }
-      },
-      "comment" : "How the ladder is walked, said once instead of marked on every Sprosse row."
     },
     "dates.reference" : {
       "localizations" : {
@@ -2652,23 +2449,6 @@
         }
       }
     },
-    "dates.sprosse.1.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wochentage und Monate, ein Name aus vieren — noch nichts geschrieben."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Weekdays and months, one name out of four — nothing written yet."
-          }
-        }
-      }
-    },
     "dates.sprosse.2" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2687,23 +2467,6 @@
       },
       "comment" : "The Sprosse keys are indexed by KIND in full-ladder order (weekday, month, day+month, date, date+year) — a pair without a year pattern stops at 5, and the number on screen is the row's own position."
     },
-    "dates.sprosse.2.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die sieben Namen der Woche, einzeln gefragt."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The week's seven names, asked one at a time."
-          }
-        }
-      }
-    },
     "dates.sprosse.3" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2717,23 +2480,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The months"
-          }
-        }
-      }
-    },
-    "dates.sprosse.3.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die zwölf Monatsnamen, gemischt mit den Wochentagen."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The twelve month names, mixed in with the weekdays."
           }
         }
       }
@@ -2755,23 +2501,6 @@
         }
       }
     },
-    "dates.sprosse.4.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aus 3.3. wird der dritte März."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3/3 becomes March third."
-          }
-        }
-      }
-    },
     "dates.sprosse.5" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2789,23 +2518,6 @@
         }
       }
     },
-    "dates.sprosse.5.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mit dem Wochentag davor: Mo, 3.3."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "With the weekday in front: Mon, 3/3."
-          }
-        }
-      }
-    },
     "dates.sprosse.6" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2819,23 +2531,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The date with its year"
-          }
-        }
-      }
-    },
-    "dates.sprosse.6.hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dazu die Jahreszahl, in Worten gelesen."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Plus the year, read out in words."
           }
         }
       }
@@ -4013,29 +3708,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ähnliche Kacheln"
+            "value" : "Dieselbe Wahl unter ähnlichen Buchstaben"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lookalike tiles"
-          }
-        }
-      }
-    },
-    "letters.stage.choiceConfusable.hint" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dieselbe Wahl, aber mit Buchstaben, die leicht zu verwechseln sind"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The same choice, between letters that are easy to mix up"
+            "value" : "The same choice, among lookalikes"
           }
         }
       }
@@ -4045,29 +3724,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vier Kacheln"
+            "value" : "Der gehörte Buchstabe unter vieren"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Four tiles"
-          }
-        }
-      }
-    },
-    "letters.stage.choiceEasy.hint" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Den gehörten Buchstaben unter vieren finden"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Find the letter you heard among four"
+            "value" : "The letter you heard, among four"
           }
         }
       }
@@ -4077,29 +3740,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diktat"
+            "value" : "Ganze Wörter aus der Box nach Gehör"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dictation"
-          }
-        }
-      }
-    },
-    "letters.stage.dictation.hint" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ganze Wörter aus der eigenen Box nach Gehör schreiben"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Write whole words from your own box by ear"
+            "value" : "Whole words from your box, by ear"
           }
         }
       }
@@ -4120,51 +3767,18 @@
         }
       }
     },
-    "letters.stage.entry" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "hier geht es los"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "your run starts here"
-          }
-        }
-      },
-      "comment" : "The one stage row that says where THIS learner's run opens."
-    },
     "letters.stage.typed" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tippen"
+            "value" : "Den Buchstaben selbst schreiben"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Typing"
-          }
-        }
-      }
-    },
-    "letters.stage.typed.hint" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Den Buchstaben selbst schreiben, ohne Auswahl"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Write the letter yourself, with nothing to pick from"
+            "value" : "Write the letter yourself"
           }
         }
       }
@@ -6478,6 +6092,42 @@
       },
       "comment" : "The free-practice card's own name — the ladder both drills climb, not a workshop."
     },
+    "trainer.ladder.best %@ %@" : {
+      "comment" : "Under the atlas and calendar ladders — the longest clean streak, then the most answers one run gave",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestmarke: %@ in Folge · %@ Antworten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best yet: %@ in a row · %@ answers"
+          }
+        }
+      }
+    },
+    "trainer.ladder.tap" : {
+      "comment" : "Under the atlas and calendar ladders: the rows are the control",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe eine Sprosse an, um dort zu starten."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap a Sprosse to start there."
+          }
+        }
+      }
+    },
     "trainer.modifier.fast" : {
       "localizations" : {
         "de" : {
@@ -6814,6 +6464,60 @@
         }
       },
       "comment" : "%d — the Sprosse a run stands on"
+    },
+    "trainer.sprosse.cleared" : {
+      "comment" : "Screen-reader value of a Sprosse row a run has answered out",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "alle Fragen beantwortet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "every question answered"
+          }
+        }
+      }
+    },
+    "trainer.sprosse.entry" : {
+      "comment" : "Screen-reader value of the Sprosse row a run opens on",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hier geht es los"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "your run starts here"
+          }
+        }
+      }
+    },
+    "trainer.sprosse.reached" : {
+      "comment" : "Screen-reader value of a Sprosse row some run has stood on",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "erreicht"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "reached"
+          }
+        }
+      }
     },
     "trainer.variant.clock" : {
       "localizations" : {

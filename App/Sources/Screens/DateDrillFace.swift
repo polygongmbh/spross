@@ -24,10 +24,6 @@ enum DateDrillFace: DrillFace {
 
     static func title(_ language: String) -> LocalizedStringKey { "dates.title \(language)" }
 
-    static var paceKey: LocalizedStringKey { "dates.pace" }
-
-    static func bestLine(_ best: Int) -> LocalizedStringKey { "dates.best \(best.formatted())" }
-
     static var fastHintKey: LocalizedStringKey { "dates.fast.hint" }
 
     /// Turned round the calendar asks for a DATE, written in digits rather than
@@ -49,13 +45,12 @@ enum DateDrillFace: DrillFace {
         content.map { DateDrill.shared.ceiling(content: $0, reverse: reverse) } ?? 1
     }
 
-    static func sprossen(_ content: DateDrillContent?, reverse: Bool) -> [DrillSprosse] {
+    static func sprossen(_ content: DateDrillContent?, reverse: Bool) -> [LocalizedStringKey] {
         guard let content else { return [] }
         let top = ceiling(content, reverse: reverse)
         guard top >= 1 else { return [] }
         return (1...top).map { sprosse in
-            let kinds = DateDrill.shared.kinds(content: content, level: sprosse, reverse: reverse)
-            return DrillSprosse(title: sprosseTitle(kinds), hint: sprosseHint(kinds))
+            sprosseTitle(DateDrill.shared.kinds(content: content, level: sprosse, reverse: reverse))
         }
     }
 
@@ -69,10 +64,10 @@ enum DateDrillFace: DrillFace {
     }
 
     // The catalog keys are indexed by KIND in full-ladder order — the tapped
-    // names, weekday, month, day, day+month, date, date+year — because the
-    // ladder itself has no fixed length: a pair without a year pattern skips
-    // index 7, and the number on screen is the row's own position. A Sprosse carries every kind below it, so
-    // the LAST one is what it introduced and what it is named for.
+    // names, weekday, month, day+month, date, date+year — because the ladder
+    // itself has no fixed length: a pair without a year pattern skips index 6,
+    // and the number on screen is the row's own position. A Sprosse carries
+    // every kind below it, so the LAST one is what it introduced and is named for.
     // why: spelled out rather than interpolated — a key built with an index
     // becomes a format string and localizes nothing, and these keys would stop
     // being greppable from the catalog.
@@ -86,17 +81,6 @@ enum DateDrillFace: DrillFace {
         case .dayAndMonth: return "dates.sprosse.4"
         case .fullDate: return "dates.sprosse.5"
         default: return "dates.sprosse.6"
-        }
-    }
-
-    private static func sprosseHint(_ kinds: [DateTaskKind]) -> LocalizedStringKey {
-        switch kinds.last {
-        case .nameChoice: return "dates.sprosse.1.hint"
-        case .weekday: return "dates.sprosse.2.hint"
-        case .month: return "dates.sprosse.3.hint"
-        case .dayAndMonth: return "dates.sprosse.4.hint"
-        case .fullDate: return "dates.sprosse.5.hint"
-        default: return "dates.sprosse.6.hint"
         }
     }
 

@@ -112,6 +112,15 @@ object CountryDrill {
     }
 
     /**
+     * Whether [level] adds NOTHING to the Sprosse below it — the same questions over the same
+     * tier. Only the flag Sprosse of a reversed run is that today ([kinds]); an overview
+     * reads it to say so on the row rather than promise a question the run never asks.
+     */
+    fun repeatsBelow(level: Int, reverse: Boolean): Boolean =
+        level > 1 && kinds(level, reverse) == kinds(level - 1, reverse) &&
+            tierCeiling(level) == tierCeiling(level - 1)
+
+    /**
      * Every question [level] could ask, in a stable order — the Sprosse's pool, made explicit.
      * [reverse] flips which side prompts: forward asks in the language the learner KNOWS,
      * reversed asks in the one they are learning and grades in their own.

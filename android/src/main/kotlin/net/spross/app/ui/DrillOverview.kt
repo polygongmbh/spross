@@ -2,7 +2,9 @@ package net.spross.app.ui
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -12,8 +14,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.toggleable
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
@@ -25,6 +29,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.style.TextAlign
@@ -208,4 +214,45 @@ fun OverviewNote(text: String, modifier: Modifier = Modifier) {
         color = Theme.colors.textSecondary,
         modifier = modifier.fillMaxWidth(),
     )
+}
+
+/**
+ * What a Sprosse circle says about a ladder's record: never stood on, stood on by some run
+ * ([Reached], ocean), or answered out by one ([Cleared], forest) — the last only where the
+ * Sprosse enumerates. Untouched differs by SHAPE too: an outline against two fills.
+ */
+enum class SprosseMark { Untouched, Reached, Cleared }
+
+/** What the record says of one Sprosse: answered out beats stood on. */
+fun sprosseMark(sprosse: Int, cleared: Set<Int>, bestSprosse: Int): SprosseMark = when {
+    sprosse in cleared -> SprosseMark.Cleared
+    sprosse <= bestSprosse -> SprosseMark.Reached
+    else -> SprosseMark.Untouched
+}
+
+/**
+ * A Sprosse's number in its circle — the mark on every ladder row. The letters ladder
+ * wears it too, filled only on the stage its run opens on.
+ */
+@Composable
+fun SprosseCircle(number: Int, mark: SprosseMark, modifier: Modifier = Modifier) {
+    val color = when (mark) {
+        SprosseMark.Untouched -> Theme.colors.textSecondary
+        SprosseMark.Reached -> Theme.colors.teal
+        SprosseMark.Cleared -> Theme.colors.success
+    }
+    val filled = mark != SprosseMark.Untouched
+    Box(
+        modifier = modifier
+            .size(28.dp)
+            .clip(CircleShape)
+            .then(if (filled) Modifier.background(color) else Modifier.border(1.5.dp, color, CircleShape)),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            "$number",
+            style = MaterialTheme.typography.labelLarge,
+            color = if (filled) Theme.colors.onColor else color,
+        )
+    }
 }

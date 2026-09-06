@@ -38,12 +38,6 @@ protocol DrillFace {
     /// The page's title, around the name of the language being learned.
     static func title(_ language: String) -> LocalizedStringKey
 
-    /// How the ladder is walked, in one line under the Sprossen.
-    static var paceKey: LocalizedStringKey { get }
-
-    /// How far a run has come, where one has.
-    static func bestLine(_ best: Int) -> LocalizedStringKey
-
     /// What fast mode buys, once it is paid for.
     static var fastHintKey: LocalizedStringKey { get }
 
@@ -60,9 +54,9 @@ protocol DrillFace {
     /// Answered without content too, because the fast row prices itself against it.
     static func ceiling(_ content: Content?, reverse: Bool) -> Int
 
-    /// What each Sprosse of that ladder asks, in the order it is climbed. Empty
-    /// where the drill has nothing to say without content.
-    static func sprossen(_ content: Content?, reverse: Bool) -> [DrillSprosse]
+    /// What each Sprosse of that ladder is called, in the order it is climbed —
+    /// one line apiece. Empty where the drill has nothing to say without content.
+    static func sprossen(_ content: Content?, reverse: Bool) -> [LocalizedStringKey]
 
     /// Whether fast mode may be picked at all — kern's rule on the stored best.
     static func fastUnlocked(best: Int, content: Content, reverse: Bool) -> Bool
@@ -185,12 +179,6 @@ struct DrillSnapshot {
     var newWord: String? = nil
     /// What a refused answer actually named — only beside a revealed miss.
     let otherWord: MatchOtherWord?
-}
-
-/// One Sprosse of a ladder as the overview words it.
-struct DrillSprosse {
-    let title: LocalizedStringKey
-    let hint: LocalizedStringKey
 }
 
 /// Scroll targets on the overview. Here rather than on the page itself: a

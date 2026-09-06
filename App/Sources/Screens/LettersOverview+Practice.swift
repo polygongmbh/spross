@@ -6,9 +6,10 @@ import SprossKern
 /// State lives on LettersOverview; split out purely for file size.
 ///
 /// There is no ladder to earn here — the letter drill books no review and keeps
-/// no record (D12). What the rows say instead is what the run will be: the
-/// entry stage comes from the words the learner already holds, and dictation
-/// exists only once enough of them can be played back.
+/// no record (D12), so its circles have no record to wear. What the rows say
+/// instead is what the run will be: the entry stage comes from the words the
+/// learner already holds and wears the filled circle, and dictation exists only
+/// once enough of them can be played back.
 extension LettersOverview {
 
     var practiceSection: some View {
@@ -41,43 +42,42 @@ extension LettersOverview {
     // MARK: - What a run asks
 
     /// One stage: what it asks, and whether this run will get there. The stage
-    /// the run OPENS on is marked and says so — every learner starts somewhere
-    /// different, and the page should not make them guess where.
-    ///
-    /// The mark is the stage's NUMBER, not a circle: these rows are a ladder the
-    /// run walks by itself, and an empty circle beside each one reads as a choice
-    /// that never answers the tap.
+    /// the run OPENS on wears the filled circle — every learner starts somewhere
+    /// different, and the page should not make them guess where. The rows are
+    /// not tapped: the run walks the ladder by itself from that stage.
     private func stageRow(_ stage: LetterStage) -> some View {
         let open = reachable(stage)
         let entry = open && stage == entryStage
         let step = (Self.stages.firstIndex(of: stage) ?? 0) + 1
-        return HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.md) {
-            Image(systemName: open ? "\(step).circle\(entry ? ".fill" : "")" : "lock.fill")
-                .font(.title3)
-                .foregroundStyle(entry ? Theme.colors.accent : Theme.colors.textSecondary)
+        return HStack(alignment: .center, spacing: Theme.spacing.md) {
+            if open {
+                SprosseCircle(number: step, mark: entry ? .reached : .untouched)
+            } else {
+                Image(systemName: "lock.fill")
+                    .font(.title3)
+                    .foregroundStyle(Theme.colors.textSecondary)
+            }
             VStack(alignment: .leading, spacing: 2) {
                 Text(Self.title(stage))
                     .font(Theme.typography.headline)
                     .foregroundStyle(open ? Theme.colors.textPrimary : Theme.colors.textSecondary)
-                caption(stage, entry: entry, open: open)
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
+                // Only dictation states a price: where the drill cannot run at all,
+                // every stage is out of reach for the one reason the line under the
+                // button gives.
+                if !open, drillAvailable {
+                    Text("letters.stage.dictation.locked")
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
             Spacer(minLength: 0)
         }
-        // why: one stage is one VoiceOver stop — the mark, the name and the line
-        // under it describe a single thing.
+        // why: one stage is one VoiceOver stop — the mark and the name describe a
+        // single thing, and the value says what the filled circle says.
         .accessibilityElement(children: .combine)
-    }
-
-    /// What a stage asks for, and what the entry row says instead. Only
-    /// dictation states a price: where the drill cannot run at all, every stage
-    /// is out of reach for the one reason the line under the button gives.
-    private func caption(_ stage: LetterStage, entry: Bool, open: Bool) -> Text {
-        if !open, drillAvailable { return Text("letters.stage.dictation.locked") }
-        guard entry else { return Text(Self.hint(stage)) }
-        return Text(Self.hint(stage)) + Text(verbatim: " · ") + Text("letters.stage.entry")
+        .accessibilityValue(Text(entry ? "trainer.sprosse.entry" : ""))
     }
 
     private static func title(_ stage: LetterStage) -> LocalizedStringKey {
@@ -86,15 +86,6 @@ extension LettersOverview {
         case .choiceConfusable: return "letters.stage.choiceConfusable"
         case .typed: return "letters.stage.typed"
         case .dictation: return "letters.stage.dictation"
-        }
-    }
-
-    private static func hint(_ stage: LetterStage) -> LocalizedStringKey {
-        switch stage {
-        case .choiceEasy: return "letters.stage.choiceEasy.hint"
-        case .choiceConfusable: return "letters.stage.choiceConfusable.hint"
-        case .typed: return "letters.stage.typed.hint"
-        case .dictation: return "letters.stage.dictation.hint"
         }
     }
 

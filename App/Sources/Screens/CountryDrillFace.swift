@@ -22,10 +22,6 @@ enum CountryDrillFace: DrillFace {
 
     static func title(_ language: String) -> LocalizedStringKey { "countries.title \(language)" }
 
-    static var paceKey: LocalizedStringKey { "countries.pace" }
-
-    static func bestLine(_ best: Int) -> LocalizedStringKey { "countries.best \(best.formatted())" }
-
     static var fastHintKey: LocalizedStringKey { "countries.fast.hint" }
 
     /// One line either way: the atlas swaps which language owes the answer and
@@ -47,10 +43,8 @@ enum CountryDrillFace: DrillFace {
 
     /// Each Sprosse names ONE new thing, because that is all a Sprosse brings
     /// (`CountryDrill`).
-    static func sprossen(_ content: CountryDrillContent?, reverse: Bool) -> [DrillSprosse] {
-        (1...ceiling(content, reverse: reverse)).map {
-            DrillSprosse(title: sprosseTitle($0), hint: sprosseHint($0))
-        }
+    static func sprossen(_ content: CountryDrillContent?, reverse: Bool) -> [LocalizedStringKey] {
+        (1...ceiling(content, reverse: reverse)).map { sprosseTitle($0, reverse: reverse) }
     }
 
     static func fastUnlocked(best: Int, content: CountryDrillContent, reverse: Bool) -> Bool {
@@ -65,7 +59,12 @@ enum CountryDrillFace: DrillFace {
     // why: spelled out rather than interpolated — a key built with `\(sprosse)`
     // becomes the format string "countries.sprosse.%lld" and localizes nothing,
     // and these keys would stop being greppable from the catalog.
-    private static func sprosseTitle(_ sprosse: Int) -> LocalizedStringKey {
+    private static func sprosseTitle(_ sprosse: Int, reverse: Bool) -> LocalizedStringKey {
+        // A Sprosse that adds nothing to the one below — kern's call, the flag row
+        // of a reversed run — says so rather than promising a question never asked.
+        if CountryDrill.shared.repeatsBelow(level: Int32(sprosse), reverse: reverse) {
+            return "countries.sprosse.repeats"
+        }
         switch sprosse {
         case 1: return "countries.sprosse.1"
         case 2: return "countries.sprosse.2"
@@ -76,20 +75,6 @@ enum CountryDrillFace: DrillFace {
         case 7: return "countries.sprosse.7"
         case 8: return "countries.sprosse.8"
         default: return "countries.sprosse.9"
-        }
-    }
-
-    private static func sprosseHint(_ sprosse: Int) -> LocalizedStringKey {
-        switch sprosse {
-        case 1: return "countries.sprosse.1.hint"
-        case 2: return "countries.sprosse.2.hint"
-        case 3: return "countries.sprosse.3.hint"
-        case 4: return "countries.sprosse.4.hint"
-        case 5: return "countries.sprosse.5.hint"
-        case 6: return "countries.sprosse.6.hint"
-        case 7: return "countries.sprosse.7.hint"
-        case 8: return "countries.sprosse.8.hint"
-        default: return "countries.sprosse.9.hint"
         }
     }
 

@@ -136,6 +136,11 @@ interface Chrome {
     val a11yActionReplayPrompt: String
     val lettersPromptInLanguage: String  // %s
     val trainerSprosse: String             // %d
+    val trainerLadderTap: String
+    val trainerLadderBest: String          // %1$s %2$s
+    val trainerSprosseEntry: String
+    val trainerSprosseReached: String
+    val trainerSprosseCleared: String
     val trainerRunStreak: String            // %d
     // The two captions an amber hold wears; the form itself follows, composed by
     // the reader, so the words stay one string and the layout stays each phone's.
@@ -196,15 +201,10 @@ interface Chrome {
 
     // ── The letter drill's stages, as the overview lists them ───────────────────
     val lettersStageChoiceEasy: String
-    val lettersStageChoiceEasyHint: String
     val lettersStageChoiceConfusable: String
-    val lettersStageChoiceConfusableHint: String
     val lettersStageTyped: String
-    val lettersStageTypedHint: String
     val lettersStageDictation: String
-    val lettersStageDictationHint: String
     val lettersStageDictationLocked: String
-    val lettersStageEntry: String
     val lettersUnavailable: String
     val lettersAlphabetTitle: String
     val lettersAlphabetSpeakName: String
@@ -214,8 +214,6 @@ interface Chrome {
     val trainerSkillCountries: String
     val countriesTitle: String     // %s
     val countriesReference: String
-    val countriesPace: String
-    val countriesBest: String     // %d
     val countriesFastHint: String
     val countriesReverseHint: String // %1$s %2$s
     /**
@@ -223,7 +221,8 @@ interface Chrome {
      * ([net.spross.kern.trainer.CountryDrill.MAX_LEVEL]), read through [countrySprosse].
      */
     val countrySprossen: List<String>
-    val countrySprosseHints: List<String>
+    /** The row an atlas Sprosse that adds nothing wears — the flag row of a reversed run. */
+    val countriesSprosseRepeats: String
     /** How far from home a reference group sits, innermost first — read through [countryTier]. */
     val countryTiers: List<String>
     val countriesAskCountry: String
@@ -237,8 +236,6 @@ interface Chrome {
     val trainerSkillDates: String
     val datesTitle: String     // %s
     val datesReference: String
-    val datesPace: String
-    val datesBest: String     // %d
     val datesFastHint: String
     val datesReverseHint: String // %1$s %2$s
     val datesReverseHintBack: String // %1$s %2$s
@@ -249,7 +246,6 @@ interface Chrome {
      * row's position and never this index.
      */
     val dateSprossen: List<String>
-    val dateSprosseHints: List<String>
     val datesAskName: String
     val datesAskWeekday: String
     val datesAskMonth: String

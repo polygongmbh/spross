@@ -5,8 +5,10 @@ import SprossKern
 /// the place its drill is started from — the Countries page and the Dates page
 /// are this one page with two faces.
 ///
-/// Two sections, start first: the Sprossen a run climbs and the button that
-/// opens it, then the table itself, both sides of every name beside each other.
+/// Two sections, start first: the Sprossen a run climbs — each a row that opens
+/// a run there, wearing what the ladder's record says of it — and the button
+/// that opens it on the entry, then the table itself, both sides of every name
+/// beside each other.
 /// Both drills exist only where the catalog carries the material on BOTH sides.
 /// What a Sprosse row says, and what the page reads rather than writes:
 /// `docs/drills.md`.
@@ -41,6 +43,14 @@ struct DrillOverview<Face: DrillFace>: View {
     /// The furthest Sprosse any run has reached — read on every appearance, since a
     /// closing run books its own.
     @State var bestSprosse = 0
+    /// The Sprossen every run has answered out, one set per direction: a row
+    /// means another question turned round, so a forest circle earned forward
+    /// does not show reversed.
+    @State var clearedForward: Set<Int> = []
+    @State var clearedReversed: Set<Int> = []
+    /// The two counted records the line under the ladder prints.
+    @State var record = 0
+    @State var bestAnswers = 0
     @State private var launch: Launch?
     /// What the run that just closed came to — one tile above the Sprossen, the
     /// shape every overview uses.
@@ -51,6 +61,8 @@ struct DrillOverview<Face: DrillFace>: View {
     private struct Launch: Identifiable {
         let reverse: Bool
         let fast: Bool
+        /// The Sprosse the run opens on — the entry, or the row that was tapped.
+        let level: Int
         let id = UUID()
     }
 
@@ -117,7 +129,7 @@ struct DrillOverview<Face: DrillFace>: View {
             Group {
                 if let content {
                     DrillRunView<Face>(model: model, content: content, reverse: launch.reverse,
-                                       fast: launch.fast, storageKey: storageKey,
+                                       fast: launch.fast, level: launch.level, storageKey: storageKey,
                                        onFinish: { result in
                                            withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
                                        })
@@ -144,8 +156,24 @@ struct DrillOverview<Face: DrillFace>: View {
 
     // MARK: - Starting a run
 
+    /// `Los`, from the button or the corner: the run opens on the entry Sprosse.
     func start() {
-        launch = Launch(reverse: reverse, fast: fast && fastUnlocked)
+        start(at: entrySprosse)
+    }
+
+    /// A tapped row: the run opens there instead.
+    func start(at level: Int) {
+        launch = Launch(reverse: reverse, fast: fast && fastUnlocked, level: level)
+    }
+
+    /// The Sprossen answered out in the direction the switch stands for.
+    var cleared: Set<Int> { reverse ? clearedReversed : clearedForward }
+
+    /// Where `Los` opens the run — the lowest Sprosse no run has answered out,
+    /// kern's rule on the stored mask, clamped to the ladder as it stands.
+    var entrySprosse: Int {
+        let held = Set(cleared.map { KotlinInt(int: Int32($0)) })
+        return Int(TrainerMode.companion.entrySprosse(cleared: held, top: Int32(ladderCeiling)))
     }
 
     /// Whether fast mode may be picked at all — kern's rule on the stored best,
@@ -162,6 +190,10 @@ struct DrillOverview<Face: DrillFace>: View {
     func reload() {
         content = Face.content(model.catalog, source: source, target: target)
         bestSprosse = TrainerProgress.best(for: storageKey)
+        clearedForward = TrainerProgress.cleared(for: TrainerMode.companion.clearedKey(key: storageKey, reverse: false))
+        clearedReversed = TrainerProgress.cleared(for: TrainerMode.companion.clearedKey(key: storageKey, reverse: true))
+        record = TrainerRecords.best(for: storageKey)
+        bestAnswers = TrainerRecords.bestAnswers(for: storageKey)
         // why: the numbers page's `normalizePicks` rule — a ladder that grew
         // under a stored best puts fast back out of reach, and a toggle must
         // never outlive the price that bought it.

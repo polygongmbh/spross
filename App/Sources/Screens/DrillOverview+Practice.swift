@@ -5,16 +5,18 @@ import SprossKern
 /// which way round it asks, how fast it climbs, and the button that starts it.
 /// State lives on DrillOverview; split out purely for file size.
 ///
-/// The RUNGS are not earned. The drills are ungated — the table is reading
-/// matter, and material a learner may look up on the same page is material they
-/// may be asked — so those rows never carry a padlock: they say what a Sprosse
-/// ASKS, and the run walks them by itself from Sprosse 1 every time.
+/// The RUNGS are not earned — the drills are ungated, so no row carries a
+/// padlock — but the ladder wears its RECORD: each circle says whether some
+/// run stood on that Sprosse (ocean) or answered every question of it (forest),
+/// and `Los` opens on the lowest Sprosse no run has answered out. The rows are
+/// the control: tapping one opens a run there instead.
 ///
 /// How tall the ladder is, and what each Sprosse is named, is the face's
-/// (`DrillFace.Sprossen`) — the atlas has nine fixed ones, while the dates ladder
+/// (`DrillFace.sprossen`) — the atlas has nine fixed ones, while the dates ladder
 /// depends on what the pair's content carries and which way round the run asks.
 /// The panel redraws when the reverse switch below it flips, so the page shows
-/// exactly the ladder the start button opens.
+/// exactly the ladder the start button opens — and the mask it reads is that
+/// direction's own.
 ///
 /// Fast is the one thing here with a price, and it is a way of PLAYING rather
 /// than something to be asked: it is the reward for having topped the ladder
@@ -38,7 +40,7 @@ extension DrillOverview {
                         .fill(Theme.colors.surface)
                 )
             }
-            pace
+            ladderNotes
             modifierTile.id(DrillAnchor.modifiers)
             startButton
         }
@@ -46,45 +48,51 @@ extension DrillOverview {
 
     /// This ladder's own ceiling, as the switches stand — kern's, never a count
     /// written down beside it.
-    private var ladderCeiling: Int { Face.ceiling(content, reverse: reverse) }
+    // why: internal, not private — the page prices the entry Sprosse against it.
+    var ladderCeiling: Int { Face.ceiling(content, reverse: reverse) }
 
     // MARK: - What a run asks
 
-    /// One Sprosse: the pool it opens and the question it adds. The mark is the
-    /// Sprosse's NUMBER, the letters page's rule — these rows are a ladder the run
-    /// walks by itself, and a circle beside each one reads as a choice that
-    /// never answers the tap.
-    private func sprosseRow(_ number: Int, _ sprosse: DrillSprosse) -> some View {
-        HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.md) {
-            Image(systemName: "\(number).circle")
-                .font(.title3)
-                .foregroundStyle(Theme.colors.textSecondary)
-            VStack(alignment: .leading, spacing: 2) {
-                Text(sprosse.title)
+    /// One Sprosse: its number in a circle that wears the record, and its name.
+    /// The row is a button — it opens a run on that Sprosse.
+    private func sprosseRow(_ number: Int, _ title: LocalizedStringKey) -> some View {
+        let mark = mark(number)
+        let value: LocalizedStringKey? = number == entrySprosse ? "trainer.sprosse.entry" : mark.a11y
+        return Button {
+            start(at: number)
+        } label: {
+            HStack(alignment: .center, spacing: Theme.spacing.md) {
+                SprosseCircle(number: number, mark: mark)
+                Text(title)
                     .font(Theme.typography.headline)
                     .foregroundStyle(Theme.colors.textPrimary)
-                Text(sprosse.hint)
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.textSecondary)
+                    .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
+                Spacer(minLength: 0)
             }
-            Spacer(minLength: 0)
+            .contentShape(Rectangle())
         }
-        // why: one Sprosse is one VoiceOver stop — the mark, the name and the line
-        // under it describe a single thing.
+        .buttonStyle(.plain)
+        // why: one Sprosse is one VoiceOver stop — the mark and the name describe
+        // a single thing, and the value says what the circle's fill says.
         .accessibilityElement(children: .combine)
+        .accessibilityValue(Text(value ?? ""))
     }
 
-    /// How the ladder is walked, said once instead of marked on every row — and,
-    /// where a run has climbed before, how far it came.
-    private var pace: some View {
+    /// What the record says of one Sprosse: answered out beats stood on.
+    private func mark(_ number: Int) -> SprosseMark {
+        if cleared.contains(number) { return .cleared }
+        return number <= bestSprosse ? .reached : .untouched
+    }
+
+    /// Under the ladder: that the rows are the control, and — once a run has
+    /// closed — the two counted records. The Sprosse itself is not printed:
+    /// the circles say where the ladder stands.
+    private var ladderNotes: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.xs) {
-            Text(Face.paceKey)
-            if bestSprosse > 0 {
-                // why: printed as it stands, ceiling and all — the Sprosse keeps
-                // counting past the named ladder, so the record is a number to
-                // beat rather than a row on the page.
-                Text(Face.bestLine(bestSprosse))
+            Text("trainer.ladder.tap")
+            if record > 0 {
+                Text("trainer.ladder.best \(record.formatted()) \(bestAnswers.formatted())")
             }
         }
         .font(Theme.typography.caption)

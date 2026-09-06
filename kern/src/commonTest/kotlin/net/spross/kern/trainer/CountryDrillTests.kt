@@ -4,6 +4,7 @@ import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import net.spross.kern.catalog.AtlasCountryEntry
@@ -434,5 +435,14 @@ class CountryDrillTests {
             "and asks the top Sprosse's questions up there",
         )
         assertEquals(1, CountryDrill.step(1, 0, correct = false, clean = true).level)
+    }
+
+    /** Only the flag Sprosse of a reversed run adds nothing — every other row asks or widens. */
+    @Test
+    fun onlyTheReversedFlagSprosseRepeatsTheOneBelow() {
+        for (level in 1..CountryDrill.MAX_LEVEL) {
+            assertFalse(CountryDrill.repeatsBelow(level, reverse = false), "forward Sprosse $level")
+            assertEquals(level == 7, CountryDrill.repeatsBelow(level, reverse = true), "reversed Sprosse $level")
+        }
     }
 }

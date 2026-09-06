@@ -3,7 +3,6 @@ package net.spross.app.ui
 import androidx.compose.runtime.Composable
 import net.spross.app.AppModel
 import net.spross.app.countrySprosse
-import net.spross.app.countrySprosseHint
 import net.spross.kern.trainer.CountryDrill
 
 /**
@@ -22,24 +21,21 @@ fun CountriesOverviewScreen(model: AppModel) {
     // The join is the registry: no atlas for this pair, no page — and the chip that opens
     // it gates on the same predicate, so this is a closed door rather than a screen.
     val content = model.atlas ?: return
-    val best = model.trainer.countries.bestSprosse
+    val standing = model.trainer.countries
     TypedDrillOverview(
         model = model,
         ladder = TypedDrillLadder(
             title = chrome.countriesTitle.format(model.languageName(content.target)),
-            pace = chrome.countriesPace,
-            bestNote = if (best > 0) chrome.countriesBest.format(best) else null,
+            standing = standing,
             fastHint = chrome.countriesFastHint,
             reverseHint = { reverse ->
                 reverseHint(model, chrome.countriesReverseHint, content.source, content.target, reverse)
             },
             // The atlas ladder is one fixed height, whichever way round it asks.
             ceiling = { CountryDrill.MAX_LEVEL },
-            fastOpen = { CountryDrill.fastUnlocked(best) },
-            sprosse = { sprosse, _ ->
-                LadderSprosse(chrome.countrySprosse(sprosse), chrome.countrySprosseHint(sprosse))
-            },
-            start = { reverse, fast -> model.startCountryDrill(reverse, fast, 1) },
+            fastOpen = { CountryDrill.fastUnlocked(standing.bestSprosse) },
+            sprosse = { sprosse, reverse -> chrome.countrySprosse(sprosse, reverse) },
+            start = model::startCountryDrill,
         ),
     ) {
         CountryReferenceSection(model, content, chrome)
