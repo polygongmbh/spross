@@ -132,7 +132,7 @@ internal object ChromeDe : Chrome {
     override val lettersPromptInLanguage = "auf %s"
     override val trainerSprosse = "Sprosse %s"
     override val trainerLadderTap = "Tippe eine Sprosse an, um dort zu starten."
-    override val trainerLadderBest = "Bestmarke: %s in Folge · %s Antworten"
+    override val trainerLadderBest = "Bestmarke: %s in Folge · %s richtige Antworten"
     override val trainerSprosseEntry = "hier geht es los"
     override val trainerSprosseReached = "erreicht"
     override val trainerSprosseCleared = "alle Fragen beantwortet"

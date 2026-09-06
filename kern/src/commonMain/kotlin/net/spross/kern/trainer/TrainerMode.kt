@@ -198,7 +198,7 @@ data class TrainerMode(
         /** Store prefix of the Sprosse high-waters — the full key is this plus [progressKey]. */
         const val PROGRESS_PREFIX: String = "trainer.level."
 
-        /** Store prefix of the answers-in-one-run records. */
+        /** Store prefix of the most-correct-answers-in-one-run records ([DrillRunSummary.correct]). */
         const val ANSWERS_PREFIX: String = "trainer.answers."
 
         /**
@@ -226,6 +226,13 @@ data class TrainerMode(
         /** The lowest Sprosse [cleared] does not hold, clamped to [top] — where a run opens. */
         fun entrySprosse(cleared: Set<Int>, top: Int): Int =
             ((1..maxOf(1, top)).firstOrNull { it !in cleared }) ?: maxOf(1, top)
+
+        /**
+         * Whether a tapped [sprosse] may open a run: the entry or anything below it, or a
+         * Sprosse some run has reached — never one the learner has not been on yet.
+         */
+        fun openable(sprosse: Int, cleared: Set<Int>, bestSprosse: Int, top: Int): Boolean =
+            sprosse in 1..maxOf(entrySprosse(cleared, top), bestSprosse)
 
         /**
          * Where a variant's highest-ever Sprosse is filed, so the overview can read the whole

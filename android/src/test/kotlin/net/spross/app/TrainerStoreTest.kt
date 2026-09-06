@@ -71,11 +71,11 @@ class TrainerStoreTest {
     }
 
     @Test
-    fun theAnswersRecordOnlyEverClimbsAndIsFiledApart() {
+    fun theCorrectAnswersRecordOnlyEverClimbsAndIsFiledApart() {
         val store = TrainerStore(FakePrefs())
-        store.bookAnswers("countries.de-sw", 30)
-        store.bookAnswers("countries.de-sw", 12)
-        assertEquals(30, store.answers("countries.de-sw"))
+        store.bookCorrect("countries.de-sw", 30)
+        store.bookCorrect("countries.de-sw", 12)
+        assertEquals(30, store.correct("countries.de-sw"))
         assertEquals(0, store.record("countries.de-sw"))
         assertEquals(0, store.best("countries.de-sw"))
     }
@@ -86,13 +86,13 @@ class TrainerStoreTest {
         val store = TrainerStore(FakePrefs())
         store.bookSprosse("dates.de-en", 4)
         store.bookRecord("dates.de-en", 9)
-        store.bookAnswers("dates.de-en", 21)
+        store.bookCorrect("dates.de-en", 21)
         store.bookCleared(TrainerMode.clearedKey("dates.de-en", reverse = false), setOf(1, 2))
         store.bookCleared(TrainerMode.clearedKey("dates.de-en", reverse = true), setOf(1))
         val standing = store.typedStanding("dates.de-en")
         assertEquals(4, standing.bestSprosse)
         assertEquals(9, standing.record)
-        assertEquals(21, standing.answers)
+        assertEquals(21, standing.correct)
         assertEquals(setOf(1, 2), standing.cleared(reverse = false))
         assertEquals(setOf(1), standing.cleared(reverse = true))
     }

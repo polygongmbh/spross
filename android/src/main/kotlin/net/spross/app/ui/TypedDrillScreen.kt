@@ -103,7 +103,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
             store.bookSprosse(key, closed.bestLevel)
             store.bookCleared(TrainerMode.clearedKey(key, reverse), closed.clearedSprossen)
             closed.summary?.let {
-                store.bookAnswers(key, it.done)
+                store.bookCorrect(key, it.correct)
                 if (it.newRecord) {
                     store.bookRecord(key, it.bestStreak)
                     // why: the run's own reward, sounded as it closes — the result tile the

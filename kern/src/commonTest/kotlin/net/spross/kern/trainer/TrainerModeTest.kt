@@ -78,6 +78,17 @@ class TrainerModeTest {
         assertEquals(5, TrainerMode.entrySprosse((1..9).toSet(), 5), "clamped to the ladder as it stands")
     }
 
+    /** A tap opens a run only where the learner has been: the entry or below, or a Sprosse reached. */
+    @Test
+    fun aSprosseNeverReachedCannotBeOpenedByATap() {
+        assertTrue(TrainerMode.openable(1, emptySet(), 0, 9))
+        assertFalse(TrainerMode.openable(2, emptySet(), 0, 9))
+        assertTrue(TrainerMode.openable(3, setOf(1, 2), 0, 9), "the entry")
+        assertTrue(TrainerMode.openable(4, setOf(1, 2), 4, 9), "reached by climbing")
+        assertFalse(TrainerMode.openable(5, setOf(1, 2), 4, 9))
+        assertFalse(TrainerMode.openable(0, setOf(1), 4, 9))
+    }
+
     /** A Sprosse belongs to ONE variant, which is what lets the ladder read them all at once. */
     @Test
     fun aSprosseIsFiledPerVariantAndPhrasesKeepsItsLowercaseSpelling() {

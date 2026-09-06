@@ -209,12 +209,15 @@ answering rules with is `design.md`'s.
   one has reached it, filled forest where one run answered EVERY question of it clean —
   which only a Sprosse that enumerates can earn, so the assembled date Sprossen never turn
   forest. `Los` opens the run on the lowest Sprosse no run has answered out
-  (`TrainerMode.entrySprosse`), and every row is a control that opens a run on its own
-  Sprosse; the one line under the ladder says so. What a run answered out is filed per
+  (`TrainerMode.entrySprosse`), and a row the learner has been on — the entry or below, or
+  a Sprosse some run reached — is a control that opens a run on its own Sprosse
+  (`TrainerMode.openable`); the one line under the ladder says so, and a Sprosse nobody has
+  reached yet reads dimmed and answers no tap. What a run answered out is filed per
   DIRECTION, because a row means another question turned round
   (`kern/docs/turns.md` § storage contract), and the ladder the reverse switch shows reads
   its own direction's mask. The record line under it COUNTS rather than places — the
-  longest clean streak and the most answers one run gave — since the circles already say
+  longest clean streak and the most correct answers one run gave, said as such — since the
+  circles already say
   where the ladder stands. Every Sprosse row is ONE line: the atlas names the question or
   tier it adds, the calendar the kind, and no row explains what its title already says.
 - **The numbers page prints the Sprosse each exercise has been climbed to, as it stands,**

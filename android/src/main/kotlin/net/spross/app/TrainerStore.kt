@@ -72,13 +72,13 @@ class TrainerStore(private val prefs: SharedPreferences) {
 
     private fun sprosse(key: String): Int = prefs.getInt(TrainerMode.PROGRESS_PREFIX + key, 0)
 
-    /** The most answers one run under [key] ever gave, 0 where none has closed. */
-    fun answers(key: String): Int = prefs.getInt(TrainerMode.ANSWERS_PREFIX + key, 0)
+    /** The most correct answers one run under [key] ever gave, 0 where none has closed. */
+    fun correct(key: String): Int = prefs.getInt(TrainerMode.ANSWERS_PREFIX + key, 0)
 
-    /** Books [answers] where it beats the standing figure — strictly greater, like the streak. */
-    fun bookAnswers(key: String, answers: Int) {
-        if (answers <= answers(key)) return
-        prefs.edit().putInt(TrainerMode.ANSWERS_PREFIX + key, answers).apply()
+    /** Books [correct] where it beats the standing figure — strictly greater, like the streak. */
+    fun bookCorrect(key: String, correct: Int) {
+        if (correct <= correct(key)) return
+        prefs.edit().putInt(TrainerMode.ANSWERS_PREFIX + key, correct).apply()
     }
 
     /** The Sprossen every run under [key] has answered out — kern reads the mask. */
@@ -97,7 +97,7 @@ class TrainerStore(private val prefs: SharedPreferences) {
     fun typedStanding(key: String): TypedDrillStanding = TypedDrillStanding(
         bestSprosse = best(key),
         record = record(key),
-        answers = answers(key),
+        correct = correct(key),
         cleared = mapOf(
             false to cleared(TrainerMode.clearedKey(key, false)),
             true to cleared(TrainerMode.clearedKey(key, true)),
@@ -129,8 +129,8 @@ data class TypedDrillStanding(
     val bestSprosse: Int,
     /** The longest clean streak any run held. */
     val record: Int,
-    /** The most answers one run gave. */
-    val answers: Int,
+    /** The most correct answers one run gave. */
+    val correct: Int,
     private val cleared: Map<Boolean, Set<Int>>,
 ) {
     /** The Sprossen answered out in ONE direction — a row means another question turned round. */

@@ -62,8 +62,9 @@ class TypedDrillLadder(
  * The RUNGS are not earned — the drills are ungated, so no row carries a padlock — but the
  * ladder wears its RECORD: each circle says whether some run stood on that Sprosse or
  * answered every question of it, and `Los` opens on the lowest Sprosse no run has answered
- * out ([TrainerMode.entrySprosse]). The rows are the control: tapping one opens a run there
- * instead. Fast is the single row with a price, and kern sets it.
+ * out ([TrainerMode.entrySprosse]). The rows the learner has been on are the control: tapping
+ * one opens a run there instead ([TrainerMode.openable]); a Sprosse nobody has reached yet is
+ * reading matter until the ladder gets there. Fast is the single row with a price, and kern sets it.
  *
  * The ladder redraws when the reverse switch below it flips — the page shows exactly the
  * ladder the start button opens, and the mask it reads is that direction's own.
@@ -117,6 +118,7 @@ fun TypedDrillOverview(
                     name = ladder.sprosse(sprosse, reverse),
                     mark = sprosseMark(sprosse, cleared, ladder.standing.bestSprosse),
                     entry = sprosse == entry,
+                    open = TrainerMode.openable(sprosse, cleared, ladder.standing.bestSprosse, ceiling),
                     chrome = chrome,
                     onClick = { ladder.start(reverse, fast, sprosse) },
                 )
@@ -128,7 +130,7 @@ fun TypedDrillOverview(
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
             OverviewNote(chrome.trainerLadderTap)
             if (ladder.standing.record > 0) {
-                OverviewNote(chrome.trainerLadderBest.format(ladder.standing.record, ladder.standing.answers))
+                OverviewNote(chrome.trainerLadderBest.format(ladder.standing.record, ladder.standing.correct))
             }
         }
         OverviewPanel {
@@ -161,8 +163,9 @@ fun TypedDrillOverview(
 }
 
 /**
- * One Sprosse: its number in a circle that wears the record, and its name. The row is the
- * control — it opens a run on that Sprosse.
+ * One Sprosse: its number in a circle that wears the record, and its name. A row the learner
+ * has been on is the control — it opens a run on that Sprosse; one above that reads dimmed
+ * and answers no tap.
  */
 @Composable
 private fun SprosseRow(
@@ -170,6 +173,7 @@ private fun SprosseRow(
     name: String,
     mark: SprosseMark,
     entry: Boolean,
+    open: Boolean,
     chrome: Chrome,
     onClick: () -> Unit,
 ) {
@@ -185,13 +189,18 @@ private fun SprosseRow(
             .heightIn(min = 44.dp)
             // why: one Sprosse is one TalkBack stop — the mark and the name describe a single
             // thing, and the state says what the circle's fill says.
-            .clickable(role = Role.Button, onClick = onClick)
-            .semantics { state?.let { stateDescription = it } },
+            .then(if (open) Modifier.clickable(role = Role.Button, onClick = onClick) else Modifier)
+            .semantics(mergeDescendants = true) { state?.let { stateDescription = it } },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         SprosseCircle(sprosse, mark)
-        Text(name, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+        Text(
+            name,
+            style = MaterialTheme.typography.titleMedium,
+            color = if (open) Theme.colors.textPrimary else Theme.colors.textSecondary,
+            modifier = Modifier.weight(1f),
+        )
     }
 }
 

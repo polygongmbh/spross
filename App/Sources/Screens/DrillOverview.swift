@@ -50,7 +50,7 @@ struct DrillOverview<Face: DrillFace>: View {
     @State var clearedReversed: Set<Int> = []
     /// The two counted records the line under the ladder prints.
     @State var record = 0
-    @State var bestAnswers = 0
+    @State var bestCorrect = 0
     @State private var launch: Launch?
     /// What the run that just closed came to — one tile above the Sprossen, the
     /// shape every overview uses.
@@ -169,11 +169,20 @@ struct DrillOverview<Face: DrillFace>: View {
     /// The Sprossen answered out in the direction the switch stands for.
     var cleared: Set<Int> { reverse ? clearedReversed : clearedForward }
 
+    /// The same set as kern reads it.
+    private var heldCleared: Set<KotlinInt> { Set(cleared.map { KotlinInt(int: Int32($0)) }) }
+
     /// Where `Los` opens the run — the lowest Sprosse no run has answered out,
     /// kern's rule on the stored mask, clamped to the ladder as it stands.
     var entrySprosse: Int {
-        let held = Set(cleared.map { KotlinInt(int: Int32($0)) })
-        return Int(TrainerMode.companion.entrySprosse(cleared: held, top: Int32(ladderCeiling)))
+        Int(TrainerMode.companion.entrySprosse(cleared: heldCleared, top: Int32(ladderCeiling)))
+    }
+
+    /// Whether a tapped row may open a run there — kern's rule: the entry or
+    /// below, or a Sprosse some run reached, never one the learner has not been on.
+    func openable(_ sprosse: Int) -> Bool {
+        TrainerMode.companion.openable(sprosse: Int32(sprosse), cleared: heldCleared,
+                                       bestSprosse: Int32(bestSprosse), top: Int32(ladderCeiling))
     }
 
     /// Whether fast mode may be picked at all — kern's rule on the stored best,
@@ -193,7 +202,7 @@ struct DrillOverview<Face: DrillFace>: View {
         clearedForward = TrainerProgress.cleared(for: TrainerMode.companion.clearedKey(key: storageKey, reverse: false))
         clearedReversed = TrainerProgress.cleared(for: TrainerMode.companion.clearedKey(key: storageKey, reverse: true))
         record = TrainerRecords.best(for: storageKey)
-        bestAnswers = TrainerRecords.bestAnswers(for: storageKey)
+        bestCorrect = TrainerRecords.bestCorrect(for: storageKey)
         // why: the numbers page's `normalizePicks` rule — a ladder that grew
         // under a stored best puts fast back out of reach, and a toggle must
         // never outlive the price that bought it.

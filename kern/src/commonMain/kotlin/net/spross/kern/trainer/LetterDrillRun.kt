@@ -102,7 +102,7 @@ object LetterDrillRun {
         val summary = if (ended.done == 0) {
             null
         } else {
-            DrillRunSummary(ended.done, ended.bestStreak, newRecord = false)
+            DrillRunSummary(ended.done, ended.core.correct, ended.bestStreak, newRecord = false)
         }
         return LetterDrillClose(ended, summary, effects)
     }

@@ -218,7 +218,7 @@ Engine contract: `../README.md`.
   the "2/3" string is rendering.
 - **Storage contract**: the streak record under `trainer.record.<key>`,
   per-variant Sprosse progress under `trainer.level.<key>`,
-  the most answers one run gave under `trainer.answers.<key>`,
+  the most CORRECT answers one run gave under `trainer.answers.<key>` (`DrillRunSummary.correct`),
   and the atlas' and calendar's answered-out Sprossen as a bitmask under `trainer.cleared.<key>` —
   filed per DIRECTION, a reversed run's key ending `.rev`,
   because a row means a different question either way round
@@ -227,7 +227,9 @@ Engine contract: `../README.md`.
   `close` returns only bookings that beat the standing value (strictly greater);
   the platform writes blindly — except the cleared set, which it ORs into the mask it holds.
   Where a typed run OPENS is kern's too: the lowest Sprosse the mask does not hold
-  (`TrainerMode.entrySprosse`), or the one the learner tapped.
+  (`TrainerMode.entrySprosse`), or the one the learner tapped — which may be that entry or
+  anything below it, or a Sprosse some run reached, never one they have not been on
+  (`TrainerMode.openable`).
   Pinned quirk: a non-null `phraseSource` suffixes the record language with the
   `<source>-<target>` pair even when the run asks no sentence,
   because the overview passes the source whenever the pair realizes frames.

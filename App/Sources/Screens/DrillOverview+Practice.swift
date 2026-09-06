@@ -8,8 +8,9 @@ import SprossKern
 /// The RUNGS are not earned — the drills are ungated, so no row carries a
 /// padlock — but the ladder wears its RECORD: each circle says whether some
 /// run stood on that Sprosse (ocean) or answered every question of it (forest),
-/// and `Los` opens on the lowest Sprosse no run has answered out. The rows are
-/// the control: tapping one opens a run there instead.
+/// and `Los` opens on the lowest Sprosse no run has answered out. The rows the
+/// learner has been on are the control: tapping one opens a run there instead;
+/// a Sprosse nobody has reached yet is reading matter until the ladder gets there.
 ///
 /// How tall the ladder is, and what each Sprosse is named, is the face's
 /// (`DrillFace.sprossen`) — the atlas has nine fixed ones, while the dates ladder
@@ -54,25 +55,29 @@ extension DrillOverview {
     // MARK: - What a run asks
 
     /// One Sprosse: its number in a circle that wears the record, and its name.
-    /// The row is a button — it opens a run on that Sprosse.
+    /// A row the learner has been on is a button that opens a run there; one
+    /// above that reads dimmed and answers no tap.
     private func sprosseRow(_ number: Int, _ title: LocalizedStringKey) -> some View {
         let mark = mark(number)
+        let open = openable(number)
         let value: LocalizedStringKey? = number == entrySprosse ? "trainer.sprosse.entry" : mark.a11y
-        return Button {
-            start(at: number)
-        } label: {
-            HStack(alignment: .center, spacing: Theme.spacing.md) {
-                SprosseCircle(number: number, mark: mark)
-                Text(title)
-                    .font(Theme.typography.headline)
-                    .foregroundStyle(Theme.colors.textPrimary)
-                    .multilineTextAlignment(.leading)
-                    .fixedSize(horizontal: false, vertical: true)
-                Spacer(minLength: 0)
-            }
-            .contentShape(Rectangle())
+        let label = HStack(alignment: .center, spacing: Theme.spacing.md) {
+            SprosseCircle(number: number, mark: mark)
+            Text(title)
+                .font(Theme.typography.headline)
+                .foregroundStyle(open ? Theme.colors.textPrimary : Theme.colors.textSecondary)
+                .multilineTextAlignment(.leading)
+                .fixedSize(horizontal: false, vertical: true)
+            Spacer(minLength: 0)
         }
-        .buttonStyle(.plain)
+        .contentShape(Rectangle())
+        return Group {
+            if open {
+                Button { start(at: number) } label: { label }.buttonStyle(.plain)
+            } else {
+                label
+            }
+        }
         // why: one Sprosse is one VoiceOver stop — the mark and the name describe
         // a single thing, and the value says what the circle's fill says.
         .accessibilityElement(children: .combine)
@@ -92,7 +97,7 @@ extension DrillOverview {
         VStack(alignment: .leading, spacing: Theme.spacing.xs) {
             Text("trainer.ladder.tap")
             if record > 0 {
-                Text("trainer.ladder.best \(record.formatted()) \(bestAnswers.formatted())")
+                Text("trainer.ladder.best \(record.formatted()) \(bestCorrect.formatted())")
             }
         }
         .font(Theme.typography.caption)

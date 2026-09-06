@@ -6093,19 +6093,19 @@
       "comment" : "The free-practice card's own name — the ladder both drills climb, not a workshop."
     },
     "trainer.ladder.best %@ %@" : {
-      "comment" : "Under the atlas and calendar ladders — the longest clean streak, then the most answers one run gave",
+      "comment" : "Under the atlas and calendar ladders — the longest clean streak, then the most correct answers one run gave",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bestmarke: %@ in Folge · %@ Antworten"
+            "value" : "Bestmarke: %@ in Folge · %@ richtige Antworten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Best yet: %@ in a row · %@ answers"
+            "value" : "Best yet: %@ in a row · %@ right answers"
           }
         }
       }
