@@ -27,9 +27,9 @@
   "to-help": {
    "text": "helfen",
    "notes": {
-    "de": "helfen steht mit Dativ: Ich helfe dir. (nicht: dich)",
-    "en": "helfen takes the dative: Ich helfe dir — never dich.",
-    "es": "helfen rige dativo: Ich helfe dir — nunca dich."
+    "de": "helfen steht immer mit Dativ: Ich helfe dir, hilf mir.",
+    "en": "helfen always takes the dative: Ich helfe dir, hilf mir.",
+    "es": "helfen rige siempre dativo: Ich helfe dir, hilf mir."
    }
   },
   "to-work-overtime": { "text": "Überstunden machen" },

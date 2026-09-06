@@ -45,7 +45,9 @@
   "to-apply": {
    "text": "candidarsi a un posto",
    "variants": ["candidarsi", "fare domanda", "presentare la candidatura"],
-   "notes": { "de": "candidarsi steht mit a: candidarsi a un posto · fare domanda passt auch für Anträge." }
+   "notes": {
+    "de": "candidarsi steht mit a: candidarsi a un'offerta · fare domanda passt auch für Anträge."
+   }
   },
   "to-introduce-oneself": { "text": "presentarsi" },
   "to-earn": {

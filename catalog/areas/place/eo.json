@@ -44,7 +44,7 @@
   "at-school": { "text": "en la lernejo" },
   "go-to-school": {
    "text": "iri al la lernejo",
-   "notes": { "de": "al zeigt die Richtung: iri al la lernejo · der Ort steht mit en: en la lernejo." }
+   "notes": { "de": "al zeigt die Richtung, en den Ort: iri al la butiko · esti en la butiko." }
   },
   "are-you-going-home-already": { "text": "Ĉu vi jam iras hejmen?" }
  }

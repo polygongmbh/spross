@@ -37,9 +37,9 @@
   "a-good-friend": {
    "text": "ein guter Freund",
    "notes": {
-    "de": "ein guter Freund, aber der gute Freund: nach ein/kein/mein trägt das Adjektiv die Endung, die der Artikel nicht zeigt, und ohne Artikel trägt es sie auch — alte Leute.",
-    "en": "ein guter Freund but der gute Freund: after ein/kein/mein the adjective carries the ending the article does not show, and with no article it carries it too — alte Leute.",
-    "es": "ein guter Freund pero der gute Freund: tras ein/kein/mein el adjetivo lleva la terminación que el artículo no muestra, y sin artículo también la lleva — alte Leute."
+    "de": "Nach ein/kein/mein trägt das Adjektiv die volle Endung, ohne Artikel ebenso: alte Leute. Nach der/die/das genügt -e: der gute Freund.",
+    "en": "After ein/kein/mein the adjective carries the full ending, and with no article too: alte Leute. After der/die/das a plain -e is enough: der gute Freund.",
+    "es": "Tras ein/kein/mein el adjetivo lleva la terminación completa, y sin artículo también: alte Leute. Tras der/die/das basta -e: der gute Freund."
    }
   },
   "my-girlfriend": { "text": "meine Freundin" },
@@ -49,9 +49,9 @@
   "mom-help-me": {
    "text": "Mama, hilf mir!",
    "notes": {
-    "de": "helfen bleibt auch im Imperativ beim Dativ: hilf mir, nie hilf mich.",
-    "en": "Even as an imperative helfen keeps the dative: hilf mir, never hilf mich.",
-    "es": "Incluso en imperativo helfen mantiene el dativo: hilf mir, nunca hilf mich."
+    "de": "helfen bleibt auch im Imperativ beim Dativ: Hilf deinem Bruder!",
+    "en": "Even as an imperative helfen keeps the dative: Hilf deinem Bruder!",
+    "es": "Incluso en imperativo helfen mantiene el dativo: Hilf deinem Bruder!"
    }
   }
  }

@@ -56,7 +56,9 @@
   "do-you-have-water": {
    "text": "Avez-vous de l'eau ?",
    "variants": ["Vous avez de l'eau ?", "As-tu de l'eau ?", "Tu as de l'eau ?"],
-   "notes": { "de": "Nach avoir steht der Teilungsartikel: de l'eau, nicht bloß eau." }
+   "notes": {
+    "de": "Vor der unbestimmten Menge steht der Teilungsartikel: du pain, de la viande, des fruits."
+   }
   },
   "where-are-you-from": {
    "text": "D'où venez-vous ?",
