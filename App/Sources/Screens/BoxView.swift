@@ -275,8 +275,9 @@ private struct BoxAreaSection: View {
             } label: {
                 Image(systemName: "tray.and.arrow.down.fill")
             }
-            // Clay: not on the growth ladder yet, same as a single word's own control.
-            .buttonStyle(IconButtonStyle(color: Theme.colors.accent))
+            // Ochre, where unpacking is clay: the pair reads as two directions rather
+            // than one control, and neither wears a growth-ladder color.
+            .buttonStyle(IconButtonStyle(color: Theme.colors.amber))
             .accessibilityLabel(Text("box.shelf.pack \(count.formatted())"))
         } else if queued > 2 {
             Button {
@@ -284,6 +285,7 @@ private struct BoxAreaSection: View {
             } label: {
                 Image(systemName: "tray.and.arrow.up.fill")
             }
+            // Clay, matching the queued pill it takes back out.
             .buttonStyle(IconButtonStyle(color: Theme.colors.accent))
             .accessibilityLabel(Text("box.shelf.unpack \(queued.formatted())"))
         } else if queued == 0 {

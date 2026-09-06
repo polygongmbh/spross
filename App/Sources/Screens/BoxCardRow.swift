@@ -223,8 +223,9 @@ struct BoxCardRow: View {
                 Button(action: pack) {
                     Image(systemName: "tray.and.arrow.down.fill")
                 }
-                // Clay: not on the growth ladder yet, same as unpack below.
-                .buttonStyle(IconButtonStyle(color: Theme.colors.accent))
+                // Ochre, where unpacking is clay: the pair reads as two directions rather
+                // than one control, and neither wears a growth-ladder color.
+                .buttonStyle(IconButtonStyle(color: Theme.colors.amber))
                 .accessibilityLabel("box.card.pack")
             }
         case .packed(let packed):
@@ -236,8 +237,7 @@ struct BoxCardRow: View {
                 } label: {
                     Image(systemName: "tray.and.arrow.up.fill")
                 }
-                // Clay, not green: green is the growth ladder's, and a queued
-                // word is not on it yet — matches "box.card.queued" below.
+                // Clay, matching the "box.card.queued" pill it takes back out.
                 .buttonStyle(IconButtonStyle(color: Theme.colors.accent))
                 .accessibilityLabel("box.card.unpack")
             } else {
