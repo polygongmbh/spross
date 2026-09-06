@@ -149,7 +149,7 @@ object Briefings {
         }
         val joined = Inventory.joinedCards(state).filter { it.area != OwnWords.AREA }
         val free = joined
-            .filter { stages[it.id] == GrowthStage.Consolidated || stages[it.id] == GrowthStage.Matured }
+            .filter { stages[it.id] == GrowthStage.Growing || stages[it.id] == GrowthStage.Matured }
             .groupBy { it.area }
             .map { (area, cards) ->
                 BriefArea(

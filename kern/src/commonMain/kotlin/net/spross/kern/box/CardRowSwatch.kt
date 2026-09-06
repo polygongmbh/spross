@@ -2,7 +2,6 @@ package net.spross.kern.box
 
 import net.spross.kern.design.Palette
 import net.spross.kern.design.Swatch
-import net.spross.kern.model.CardPhase
 
 /**
  * Which color this Sprosse wears, decided once here so a row's badge and the shelf's own
@@ -10,9 +9,8 @@ import net.spross.kern.model.CardPhase
  * by these same names — can never disagree about the same Sprosse on either platform.
  */
 val CardRowState.Standing.swatch: Swatch
-    get() = when {
-        consolidated -> Palette.grown
-        phase == CardPhase.Review -> Palette.success
-        // Learning or Relearning — a Standing row is never New (see [CardRowState.Standing]).
-        else -> Palette.amber
+    get() = when (stage) {
+        GrowthStage.Matured -> Palette.grown
+        GrowthStage.Growing -> Palette.success
+        else -> Palette.amber // Learning, Fresh, Relearning
     }

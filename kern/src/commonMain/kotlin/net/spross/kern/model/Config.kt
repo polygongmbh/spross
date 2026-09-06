@@ -28,12 +28,13 @@ data class BoxConfig(
     val desiredRetention: Double = 0.85,
     val maximumIntervalDays: Int = 365,
     /**
-     * Days of stability at which a card counts as CONSOLIDATED — the ONE bar for
-     * "has this word landed", read by every rule that asks the question:
-     * the stats display (fresh/consolidated split, the session-summary tally),
-     * phrase unlock (see [net.spross.kern.box.Growth.isComponentStable]), the drill
+     * Days of stability at which a card counts as GROWING — gate (a), read by
+     * every rule that asks whether a word has landed enough to lean on: phrase
+     * unlock (see [net.spross.kern.box.Growth.isComponentStable]), the drill
      * pools, [net.spross.kern.model.producePrompt] (which WITHDRAWS the meaning),
-     * and [net.spross.kern.model.emojiCue] (which ADDS support).
+     * and [net.spross.kern.model.emojiCue] (which ADDS support). The stats
+     * display, the Grown badge, and the day tallies read a stricter, later bar
+     * instead ([net.spross.kern.box.MATURED_STABILITY]).
      *
      * Set between S0(Good) = 2.3065 and S0(Easy) = 8.2956, so a merely-Good first
      * answer does not read as landed while a genuinely known-on-sight Easy one does.
@@ -47,7 +48,7 @@ data class BoxConfig(
      * included — withdrew the emoji from the very next review, which is the first
      * TYPED one and the first that can actually catch the guess.
      */
-    val consolidatedStability: Double = 6.0,
+    val growingStability: Double = 6.0,
     /**
      * (Re)learning steps in seconds — ONE ladder, the same cadence whether a word has
      * never graduated (Learning) or lapsed after it did (Relearning). Minutes and

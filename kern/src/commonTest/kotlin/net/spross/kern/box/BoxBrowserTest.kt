@@ -263,18 +263,18 @@ class BoxBrowserTest {
     }
 
     @Test
-    fun theConsolidatedFlagFollowsTheBarAndNeverThePhase() {
+    fun theStageFollowsTheGrowthLadderNeverTheRawPhase() {
         var state = Box.state((1..5).map { Box.word(it) })
         state = Box.inject(
             state,
             Box.sched("w01", phase = CardPhase.Learning, stability = 0.5, dueMillis = future, lastReviewMillis = now),
         )
-        // Review well under the consolidated bar (6.0) — the phase says nothing about it.
+        // Review well under the growing bar (6.0) — the phase says nothing about it.
         state = Box.inject(state, Box.sched("w02", stability = 3.0, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w03", stability = 9.0, dueMillis = future, lastReviewMillis = now))
-        // Matured is a further Sprosse, not a further mark: one bar, one flag.
+        // Matured is a further Sprosse of its own, at the 30-day bar.
         state = Box.inject(state, Box.sched("w04", stability = 99.0, dueMillis = future, lastReviewMillis = now))
-        // Lapsed after consolidating: the bar has to be earned back.
+        // Lapsed after growing: the bar has to be earned back.
         state = Box.inject(
             state,
             Box.sched(
@@ -284,26 +284,26 @@ class BoxBrowserTest {
         )
 
         fun row(id: String) = BoxBrowser.cardRowState(state, id, packOffered = false)
-        assertEquals(CardRowState.Standing(CardPhase.Learning, false), row("w01"))
-        assertEquals(CardRowState.Standing(CardPhase.Review, false), row("w02"))
-        assertEquals(CardRowState.Standing(CardPhase.Review, true), row("w03"))
-        assertEquals(CardRowState.Standing(CardPhase.Review, true), row("w04"))
-        assertEquals(CardRowState.Standing(CardPhase.Relearning, false), row("w05"))
+        assertEquals(CardRowState.Standing(GrowthStage.Learning), row("w01"))
+        assertEquals(CardRowState.Standing(GrowthStage.Fresh), row("w02"))
+        assertEquals(CardRowState.Standing(GrowthStage.Growing), row("w03"))
+        assertEquals(CardRowState.Standing(GrowthStage.Matured), row("w04"))
+        assertEquals(CardRowState.Standing(GrowthStage.Relearning), row("w05"))
     }
 
     /**
      * The Sprosse's color, so a row's badge and the shelf's bar read the same table:
-     * both halves of the amber Sprosse, the green one under the bar, teal above it.
+     * amber for Learning/Fresh/Relearning, green for Growing, jade for Matured.
      */
     @Test
-    fun theSprossenColorFollowsTheBarAndTheTwoAmberPhasesShareIt() {
-        fun swatchOf(phase: CardPhase, consolidated: Boolean) =
-            CardRowState.Standing(phase, consolidated).swatch
+    fun theSprossenColorFollowsTheBarAndTheAmberStagesShareIt() {
+        fun swatchOf(stage: GrowthStage) = CardRowState.Standing(stage).swatch
 
-        assertEquals(Palette.amber, swatchOf(CardPhase.Learning, false))
-        assertEquals(Palette.amber, swatchOf(CardPhase.Relearning, false))
-        assertEquals(Palette.success, swatchOf(CardPhase.Review, false))
-        assertEquals(Palette.grown, swatchOf(CardPhase.Review, true))
+        assertEquals(Palette.amber, swatchOf(GrowthStage.Learning))
+        assertEquals(Palette.amber, swatchOf(GrowthStage.Fresh))
+        assertEquals(Palette.amber, swatchOf(GrowthStage.Relearning))
+        assertEquals(Palette.success, swatchOf(GrowthStage.Growing))
+        assertEquals(Palette.grown, swatchOf(GrowthStage.Matured))
     }
 
     /** A schedule outlives a source switch; the card it belongs to may not join. */

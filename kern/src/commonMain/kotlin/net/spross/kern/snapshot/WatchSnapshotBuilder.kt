@@ -89,7 +89,7 @@ object WatchSnapshotBuilder {
         val entries = ranked
             .sortedWith(compareBy({ !it.isDue }, { it.tier }, { it.order }, { it.sched.cardId }))
             .take(ENTRY_CAP)
-            .map { entry(it.sched, state.cards.getValue(it.sched.cardId), Statistics.isConsolidated(state, it.sched)) }
+            .map { entry(it.sched, state.cards.getValue(it.sched.cardId), Statistics.isGrowing(state, it.sched)) }
         // why: options are drawn from every card the learner has met, not just the
         // capped entries — the cap is a wire budget, and a pool that small leaves a
         // question no same-class company to keep. Unscheduled cards stay out: a word
@@ -174,10 +174,10 @@ object WatchSnapshotBuilder {
     private fun sideText(dto: WatchEntryDto, role: String): String =
         if (role == RECOGNIZE) dto.sourceText else dto.targetText
 
-    private fun entry(sched: CardScheduling, card: Card, consolidated: Boolean): WatchEntryDto {
+    private fun entry(sched: CardScheduling, card: Card, growing: Boolean): WatchEntryDto {
         val reviewCount = sched.reviewCount
         val nextRole = presentationRole(card.id, reviewCount)
-        val cue = emojiCue(nextRole, consolidated)
+        val cue = emojiCue(nextRole, growing)
         return WatchEntryDto(
             cardId = card.id,
             sourceText = card.source.text,

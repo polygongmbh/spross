@@ -199,7 +199,9 @@ private fun CardStanding(
                 onClick = it,
                 modifier = Modifier.semantics { contentDescription = chrome.boxCardPack },
             ) {
-                Icon(SprossIcons.PackIn, contentDescription = null)
+                // Ochre, where unpacking is clay: the pair reads as two directions rather
+                // than one control, and neither wears a growth-ladder color.
+                Icon(SprossIcons.PackIn, contentDescription = null, tint = Theme.colors.amber)
             }
         }
 
@@ -212,7 +214,8 @@ private fun CardStanding(
                 onClick = { model.updateBox { BoxEngine.dequeue(it, card.id) } },
                 modifier = Modifier.semantics { contentDescription = chrome.boxCardUnpack },
             ) {
-                Icon(SprossIcons.PackOut, contentDescription = null, tint = Theme.colors.success)
+                // Clay, matching the queued pill it takes back out.
+                Icon(SprossIcons.PackOut, contentDescription = null, tint = Theme.colors.accent)
             }
         } else {
             // A pill, not an icon: a bare tray glyph reads as a control here too, and

@@ -390,23 +390,31 @@ object BoxEngine {
     ): CardGrowth? = cardGrowthOf(state, cardId, nowEpochMillis, tzId)
 
     /**
-     * Has this card landed? See [Statistics.isConsolidated] — the one threshold
-     * behind the fresh/consolidated stats split, phrase unlock, the drill pools and
-     * the presentation support a word gets while it is still on its way in.
-     * Unknown ids read as false: a card with no schedule has certainly not landed.
+     * Has this card fully grown? See [Statistics.isConsolidated] — the display
+     * bucket behind the stats split, the Grown badge, the progress-bar jade
+     * segment, the area-complete mark, and the day tallies. Unknown ids read as
+     * false: a card with no schedule has certainly not grown.
      */
     fun isConsolidated(state: BoxState, cardId: String): Boolean =
         state.scheduling[cardId]?.let { Statistics.isConsolidated(state, it) } ?: false
 
     /**
-     * Every consolidated card id, in seed order — the words the box may hand to a
+     * Has this card cleared the growing bar? See [Statistics.isGrowing] — gate (a): phrase
+     * unlock, the drill pools, and the presentation support a word gets while it is still
+     * on its way in. Unknown ids read as false: a card with no schedule has cleared nothing.
+     */
+    fun isGrowing(state: BoxState, cardId: String): Boolean =
+        state.scheduling[cardId]?.let { Statistics.isGrowing(state, it) } ?: false
+
+    /**
+     * Every growing card id, in seed order — the words the box may hand to a
      * drill that practices only material the learner already holds (letter-drill
      * dictation is the first caller).
      *
      * Which words those are is an ENGINE rule, not a caller's filter: this reads
      * through [Inventory.active] like every other inventory query, so a suspended,
      * non-joining, or never-scheduled card is never offered, and a lapse drops a
-     * card out on its own — [Statistics.isConsolidated] wants the Review phase, and
+     * card out on its own — [Statistics.isGrowing] wants the Review phase, and
      * a lapsed card sits in Relearning until it earns the stability back. Restating
      * that predicate app-side would let two platforms drift on what "known" means.
      *
@@ -414,9 +422,9 @@ object BoxEngine {
      * wants a list that is stable under it rather than a second ordering rule.
      * The query is read-only — drills stay stateless and never book a review.
      */
-    fun consolidatedCardIds(state: BoxState): List<String> =
+    fun growingCardIds(state: BoxState): List<String> =
         Inventory.active(state)
-            .filter { Statistics.isConsolidated(state, it) }
+            .filter { Statistics.isGrowing(state, it) }
             .map { state.cards.getValue(it.cardId) }
             .sortedWith(Inventory.seedOrder)
             .map { it.id }

@@ -72,8 +72,9 @@ internal object Answering {
         return state.copy(
             scheduling = state.scheduling + (card.id to sched),
             newIntroduced = state.newIntroduced + (day to (state.newIntroduced[day] ?: 0) + 1),
-            // A word known on sight (Easy) consolidates the moment it arrives —
-            // introduced and consolidated on the same answer, and the day's report says both.
+            // Crossing the fully-grown bar on the very answer that introduces a card is
+            // rare — no graduating rating reaches it alone — but the check stays generic
+            // rather than assuming introduction can never be the crossing day.
             consolidatedCrossed = state.consolidatedCrossed.bookIf(Statistics.isConsolidated(state, sched), day),
             enqueued = state.enqueued.filter { it != card.id },
         )

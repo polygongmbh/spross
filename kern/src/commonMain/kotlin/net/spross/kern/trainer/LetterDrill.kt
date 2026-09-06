@@ -32,10 +32,10 @@ object LetterDrill {
 
     /** Entry pacing stops one Sprosse below transcription — nobody starts by taking dictation. */
     private const val ENTRY_LEVEL_CEILING = 6
-    private const val CONSOLIDATED_PER_LEVEL = 12
+    private const val GROWING_PER_LEVEL = 12
 
-    /** Consolidated words from which one clean win is enough to move up a Sprosse. */
-    private const val CONSOLIDATED_FOR_SHORT_STAGES = 60
+    /** Growing words from which one clean win is enough to move up a Sprosse. */
+    private const val GROWING_FOR_SHORT_STAGES = 60
 
     /** Dictation at level 8 asks for short words; the count ignores spaces. */
     private const val SHORT_WORD_LETTERS = 6
@@ -59,20 +59,20 @@ object LetterDrill {
         if (dictationAvailable) MAX_LEVEL_WITH_DICTATION else MAX_LEVEL_WITHOUT_DICTATION
 
     /**
-     * Where a learner STARTS, from the words they already hold: 0–11 consolidated → 1,
+     * Where a learner STARTS, from the words they already hold: 0–11 growing → 1,
      * 60+ → 6. The `Growth.newBudget` pacing shape (a step per bucket, a hard ceiling) —
      * someone with a vocabulary should not spell out `em` four times before the drill
      * gets interesting, and someone without one should not be dropped into typing.
      */
-    fun entryLevel(consolidatedCards: Int): Int =
-        minOf(ENTRY_LEVEL_CEILING, 1 + maxOf(0, consolidatedCards) / CONSOLIDATED_PER_LEVEL)
+    fun entryLevel(growingCards: Int): Int =
+        minOf(ENTRY_LEVEL_CEILING, 1 + maxOf(0, growingCards) / GROWING_PER_LEVEL)
 
     /**
-     * How LONG a Sprosse is — the second half of the same pacing rule. A consolidated
+     * How LONG a Sprosse is — the second half of the same pacing rule. A growing
      * vocabulary earns each level in one clean win; below that the classic two apply, so
      * a beginner gets the repetition and nobody else gets the drag.
      */
-    fun winsToAdvance(consolidatedCards: Int): Int = if (consolidatedCards >= CONSOLIDATED_FOR_SHORT_STAGES) 1 else 2
+    fun winsToAdvance(growingCards: Int): Int = if (growingCards >= GROWING_FOR_SHORT_STAGES) 1 else 2
 
     /** 1–2 easy tiles, 3–5 confusable tiles, 6–7 typing, 8–9 dictation. */
     fun stageFor(level: Int): LetterStage = when (level.coerceIn(1, MAX_LEVEL_WITH_DICTATION)) {
@@ -165,7 +165,7 @@ object LetterDrill {
     )
 
     /**
-     * One dictation question. [candidates] arrive filtered to consolidated, speakable box
+     * One dictation question. [candidates] arrive filtered to growing, speakable box
      * cards; kern drops anything with a space of its own — a transcription task is
      * one word, whatever the caller believes.
      *

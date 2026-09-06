@@ -204,13 +204,16 @@ bar are on `BoxConfig` itself. What the product decided:
   the Box.
 - **A graduated interval floors at one day.** Bringing a card back inside the same day is
   what a ladder step is for, not what an already-graduated schedule should ask.
-- **ONE "has this word landed" threshold**: `consolidatedStability`
-  (`Statistics.isConsolidated`, facade `BoxEngine.isConsolidated(state, cardId)`) —
-  Review phase AND stability ≥ the bar, so a lapse un-lands a card, which is the point:
-  it needs the support again. That one bar gates phrase unlock and the drill pools (§6),
-  splits consolidated from fresh in the progress UI, and picks the support a word gets
-  while it is still on its way in (§3) — the emoji that props recall up and the sound
-  prompt that withdraws the meaning read the same bar from opposite sides.
+- **TWO growth bars, not one**: `growingStability` (`Statistics.isGrowing`, facade
+  `BoxEngine.isGrowing(state, cardId)`) is gate (a) — Review phase AND stability ≥ 6
+  days, so a lapse un-lands a card, which is the point: it needs the support again.
+  That bar gates phrase unlock and the drill pools (§6), and picks the support a
+  word gets while it is still on its way in (§3) — the emoji that props recall up
+  and the sound prompt that withdraws the meaning read it from opposite sides.
+  `MATURED_STABILITY` (`Statistics.isConsolidated`, facade `BoxEngine.isConsolidated`)
+  is a later, stricter DISPLAY bar — 30 days — behind the progress-UI split, the
+  Grown badge, the area-complete mark, and the day tallies: deliberately distinct,
+  so the visible "Grown" mark tracks a much later bar than what actually unlocks support.
 - **Weight optimization stays out of scope.**
 
 ## 6. Box / Session semantics
@@ -256,7 +259,7 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
 - **Phrase unlock** reads each component's schedule **by card id** — join- and
   source-independent, so a source switch can never re-lock phrases. Components with no
   TARGET realization are excluded from the gate.
-  Gate: not suspended, and consolidated (§5) — the predicate, never a restated threshold.
+  Gate: not suspended, and growing (§5) — the predicate, never a restated threshold.
 - **Due order is day-bucketed, then shuffled**: reviews drain the oldest overdue DAY first
   for backlog fairness, but inside a day the order is a hash, seeded with the card's OWN due
   day so the function stays pure and the bucket still reshuffles from one day to the next.
@@ -298,9 +301,10 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   "Today" and "tomorrow" are local-calendar questions and `composeSession` takes `tzId` for
   them; the returning span is the one deliberate exception.
 - **No surface derives a card's standing from a raw phase** — the engine reports the Sprosse
-  (`GrowthStage`), and every listing carries it beside the phase rather than re-reading it:
-  a card reaches Review well below `consolidatedStability`, so a second derivation is a
-  second answer waiting to disagree. The read models a surface draws the box from —
+  (`GrowthStage`), and every listing carries it whole (`CardRowState.Standing.stage`) rather
+  than re-deriving it from a phase: three Review-phase labels (Fresh, Growing, Matured) can
+  never be told apart from the phase alone, so a second derivation is a second answer
+  waiting to disagree. The read models a surface draws the box from —
   the day's report, the Sprossen, the browsable box, the greeting clock — are `docs/reports.md`.
   **The color a Sprosse wears is the same fact, extended to drawing**: `CardRowState.Standing.swatch`
   resolves it once, off `net.spross.kern.design.Palette`, so a row's own badge and the shelf's
@@ -332,7 +336,7 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   untouched. `SessionPlan` carries a `joinStamp` (source, target, catalog
   fingerprint); a stale run recomposes as the round that opened it (`SessionOpening`).
 - **"Which words does the learner already hold" is an engine question**, answered once by
-  `BoxEngine.consolidatedCardIds` — restated over `box.cards` on two platforms it would
+  `BoxEngine.growingCardIds` — restated over `box.cards` on two platforms it would
   drift, and drift silently, since a drill that practices a word too early only feels
   slightly harder.
 - **A drill run is a pure machine too** (`net.spross.kern.trainer`), and **one injected

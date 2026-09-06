@@ -2,7 +2,6 @@ package net.spross.kern.box
 
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.model.Card
-import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Language
 
 /**
@@ -64,15 +63,15 @@ sealed class CardRowState {
 
     /**
      * The card is on the ladder, and this is where.
-     * [phase] is never [CardPhase.New]: a card with nothing behind it is [Plain] or [PackOffered].
      *
-     * [consolidated] travels BESIDE the phase rather than being read out of it.
-     * A card reaches Review well below [net.spross.kern.model.BoxConfig.consolidatedStability],
-     * so a mark keyed to the phase would seal cards the area's consolidated count leaves out,
-     * and a row would disagree with the shelf above it on sight.
-     * Whatever a surface shows for "this word has landed", it takes it from here.
+     * [stage] is never [GrowthStage.Unscheduled], [GrowthStage.Queued] or
+     * [GrowthStage.Suspended]: a card with nothing behind it is [Plain] or [PackOffered],
+     * and a sleeping one is [Sleeping] — this constructor only ever sees a schedule that
+     * already cleared that guard. Carrying the raw Sprosse rather than a collapsed boolean
+     * is what lets a surface tell Fresh, Growing and Matured apart on sight, the same way
+     * the badge does.
      */
-    data class Standing(val phase: CardPhase, val consolidated: Boolean) : CardRowState()
+    data class Standing(val stage: GrowthStage) : CardRowState()
 }
 
 /**
@@ -222,9 +221,9 @@ object BoxBrowser {
      * ([enqueueableCardIds]/[dequeueableCardIds]), so an unqueued card there states
      * nothing at all.
      *
-     * Read off the growth ladder ([GrowthStage]) and [Statistics.isConsolidated],
-     * never off the raw phase: those two are where "which bars has this card cleared"
-     * is already answered, and a second derivation is a second answer waiting to disagree.
+     * Read off the growth ladder ([GrowthStage]) directly, never re-derived from the raw
+     * phase: it is already the answer to "which bars has this card cleared", and a second
+     * derivation is a second answer waiting to disagree.
      * A card the current join does not carry has no standing in the box and reads [CardRowState.Plain].
      */
     fun cardRowState(state: BoxState, cardId: String, packOffered: Boolean): CardRowState {
@@ -234,13 +233,7 @@ object BoxBrowser {
             !packOffered -> CardRowState.Plain
             else -> CardRowState.PackOffered
         }
-        return when (stageOf(state, sched)) {
-            GrowthStage.Suspended -> CardRowState.Sleeping
-            GrowthStage.Learning -> CardRowState.Standing(CardPhase.Learning, false)
-            GrowthStage.Relearning -> CardRowState.Standing(CardPhase.Relearning, false)
-            // The Review Sprossen — Fresh, Consolidated, Matured — differ only in which bars
-            // they have cleared, and the seal follows the consolidated one.
-            else -> CardRowState.Standing(CardPhase.Review, Statistics.isConsolidated(state, sched))
-        }
+        val stage = stageOf(state, sched)
+        return if (stage == GrowthStage.Suspended) CardRowState.Sleeping else CardRowState.Standing(stage)
     }
 }

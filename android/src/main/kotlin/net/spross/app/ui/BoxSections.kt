@@ -100,6 +100,11 @@ internal fun AreaSection(
         modifier = Modifier.fillMaxWidth().panel(),
     ) {
         Column(Modifier.fillMaxWidth().padding(Theme.spacing.lg)) {
+            // Nothing left to pack or unpack, and every active card has matured —
+            // the one condition that swaps the pack control's mark jade and leaves the
+            // chip's bar/counts with nothing to say (Part D).
+            val fullyPackedAndMature = (counts?.packable ?: 0) == 0 && (counts?.queued ?: 0) == 0 &&
+                (stats?.mature ?: false)
             Row(verticalAlignment = Alignment.Top) {
                 AreaChip(
                     name = naming.title(area),
@@ -107,6 +112,7 @@ internal fun AreaSection(
                     subtitle = naming.subtitle(area),
                     stats = stats,
                     chrome = chrome,
+                    hideProgress = fullyPackedAndMature,
                     modifier = Modifier
                         .weight(1f)
                         .clickable(onClick = onToggle)
@@ -116,6 +122,7 @@ internal fun AreaSection(
                         },
                 )
                 PackControl(chrome, counts?.packable ?: 0, counts?.queued ?: 0,
+                    mature = stats?.mature ?: false,
                     onPack = {
                         model.updateBox { BoxEngine.enqueue(it, BoxBrowser.enqueueableCardIds(it, area)) }
                     },
@@ -140,14 +147,21 @@ internal fun AreaSection(
  * take in, a settled check once there is not. The count rides in the spoken label rather
  * than on the button's face, which keeps the heading one line tall.
  *
- * Once nothing is left to pack, a shelf holding words still queued for a round offers to
- * take them back out AS A BATCH ([onUnpack]) — the area is the unit this control acts on.
+ * Once nothing is left to pack, a shelf holding MORE than a couple words still queued for
+ * a round offers to take them back out AS A BATCH ([onUnpack]) — the area is the unit this
+ * control acts on. Below that (1–2 queued, nothing packable) the control draws nothing:
+ * the per-word row offers its own unpack instead, and a checkmark here would misleadingly
+ * claim the shelf is free of queued words when it is not.
+ *
+ * [mature] turns the settled check jade instead of green once every active card in the
+ * area has matured — the same mark, not a second indicator (kern `AreaStatistics.mature`).
  */
 @Composable
 internal fun PackControl(
     chrome: Chrome,
     count: Int,
     queuedCount: Int,
+    mature: Boolean,
     onPack: () -> Unit,
     onUnpack: () -> Unit,
 ) {
@@ -156,19 +170,22 @@ internal fun PackControl(
             onClick = onPack,
             modifier = Modifier.semantics { contentDescription = chrome.boxShelfPack.format(count) },
         ) {
-            Icon(SprossIcons.PackIn, contentDescription = null)
+            // Ochre, where unpacking is clay: the pair reads as two directions rather
+            // than one control, and neither wears a growth-ladder color.
+            Icon(SprossIcons.PackIn, contentDescription = null, tint = Theme.colors.amber)
         }
-    } else if (queuedCount > 0) {
+    } else if (queuedCount > 2) {
         TextButton(
             onClick = onUnpack,
             modifier = Modifier.semantics { contentDescription = chrome.boxShelfUnpack.format(queuedCount) },
         ) {
-            Icon(SprossIcons.PackOut, contentDescription = null, tint = Theme.colors.success)
+            // Clay, matching the queued pill it takes back out.
+            Icon(SprossIcons.PackOut, contentDescription = null, tint = Theme.colors.accent)
         }
-    } else {
+    } else if (queuedCount == 0) {
         Text(
             SEAL,
-            color = Theme.colors.success,
+            color = if (mature) Theme.colors.grown else Theme.colors.success,
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier
                 .sizeIn(minWidth = 48.dp, minHeight = 48.dp)
@@ -193,6 +210,10 @@ fun AreaChip(
     stats: AreaStatistics?,
     chrome: Chrome,
     modifier: Modifier = Modifier,
+    /** An area fully packed AND mature swaps its header mark for a jade one
+     * (the screen's own `PackControl`) and has nothing left for the counts/bar to
+     * say — so they step aside, leaving just the emoji/name/subtitle. */
+    hideProgress: Boolean = false,
 ) {
     val consolidated = stats?.consolidated ?: 0
     val learning = stats?.learning ?: 0
@@ -223,17 +244,19 @@ fun AreaChip(
                 maxLines = 2,
             )
         }
-        Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-            // Two counts where the bar beneath draws three Sprossen: there is room here for
-            // the split that matters (cleared the bar, or not yet), and the bar carries
-            // the finer one.
-            CountLabel("$SEAL ${chrome.progressConsolidatedCount.format(consolidated)}", Theme.colors.grown)
-            CountLabel("$LEAF ${chrome.progressLearningCount.format(learning)}", Theme.colors.success)
-            // why: the padlock carries the "locked", so the text only names what is
-            // locked — and it appears only when it says something.
-            if (locked > 0) CountLabel("$LOCK ${chrome.boxAreaPhrasesLockedShort.format(locked)}")
+        if (!hideProgress) {
+            Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
+                // Two counts where the bar beneath draws three Sprossen: there is room here for
+                // the split that matters (cleared the bar, or not yet), and the bar carries
+                // the finer one.
+                CountLabel("$SEAL ${chrome.progressConsolidatedCount.format(consolidated)}", Theme.colors.grown)
+                CountLabel("$LEAF ${chrome.progressLearningCount.format(learning)}", Theme.colors.success)
+                // why: the padlock carries the "locked", so the text only names what is
+                // locked — and it appears only when it says something.
+                if (locked > 0) CountLabel("$LOCK ${chrome.boxAreaPhrasesLockedShort.format(locked)}")
+            }
+            AreaProgressBar(stats ?: EMPTY_AREA)
         }
-        AreaProgressBar(stats ?: EMPTY_AREA)
     }
 }
 
@@ -253,7 +276,7 @@ private val EMPTY_AREA = AreaStatistics(
     total = 0,
     active = 0,
     consolidated = 0,
-    settling = 0,
+    queued = 0,
     phrasesLocked = 0,
     phrasesUnlocked = 0,
 )

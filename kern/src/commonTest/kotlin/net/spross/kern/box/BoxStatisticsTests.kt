@@ -89,9 +89,10 @@ class BoxStatisticsTests {
         )
 
         state = BoxEngine.endSession(state, reviewsDone = 7, nowEpochMillis = now, tzId = Box.TZ)
-        // consolidated = 1: the word was answered on sight, so it landed the day it arrived.
+        // consolidated = 0: Easy's graduating stability (8.2956) clears the growing bar
+        // but falls well short of the fully-grown one, so nothing crossed it today.
         assertEquals(
-            DayStats(reviews = 7, introduced = 1, consolidated = 1, activeCount = 1),
+            DayStats(reviews = 7, introduced = 1, consolidated = 0, activeCount = 1),
             state.dailyStats["2026-07-01"],
         )
         assertNull(state.newIntroduced["2026-01-01"]) // > 60 days back, pruned
@@ -214,14 +215,14 @@ class BoxStatisticsTests {
     }
 
     @Test
-    fun consolidatedCountsOnlyReviewCardsAtOrAboveTheConsolidatedThreshold() {
+    fun consolidatedCountsOnlyReviewCardsAtOrAboveTheMaturedThreshold() {
         var state = Box.state((1..3).map { Box.word(it) })
-        state = Box.inject(state, Box.sched("w01", stability = 6.0, dueMillis = now, lastReviewMillis = now))
-        state = Box.inject(state, Box.sched("w02", stability = 5.9, dueMillis = now, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w01", stability = 30.0, dueMillis = now, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w02", stability = 29.9, dueMillis = now, lastReviewMillis = now))
         state = Box.inject(
             state,
             // Stable enough, but still stepping through Learning — not consolidated.
-            Box.sched("w03", phase = CardPhase.Learning, stability = 9.0, dueMillis = now, lastReviewMillis = now),
+            Box.sched("w03", phase = CardPhase.Learning, stability = 40.0, dueMillis = now, lastReviewMillis = now),
         )
 
         val stats = BoxEngine.statistics(state, now, Box.TZ)
@@ -240,7 +241,7 @@ class BoxStatisticsTests {
             ),
         )
         val future = Box.plusDays(now, 5.0)
-        state = Box.inject(state, Box.sched("w01", stability = 7.0, dueMillis = future, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w01", stability = 35.0, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(
             state,
             Box.sched("w02", phase = CardPhase.Learning, stability = 1.0, dueMillis = future, lastReviewMillis = now),
@@ -251,12 +252,12 @@ class BoxStatisticsTests {
         val kitchen = stats.areas[0]
         assertEquals(4, kitchen.total)
         assertEquals(2, kitchen.active)
-        assertEquals(1, kitchen.consolidated) // only w01: Review phase & stability ≥ 6.0
+        assertEquals(1, kitchen.consolidated) // only w01: Review phase & stability ≥ 30.0
         assertEquals(1, kitchen.phrasesLocked) // p-locked: w02 not stable yet
         assertEquals(1, kitchen.phrasesUnlocked) // p-free has no components
         assertEquals(
             AreaStatistics(
-                "market", total = 1, active = 0, consolidated = 0, settling = 0,
+                "market", total = 1, active = 0, consolidated = 0, queued = 0,
                 phrasesLocked = 0, phrasesUnlocked = 0,
             ),
             stats.areas[1],

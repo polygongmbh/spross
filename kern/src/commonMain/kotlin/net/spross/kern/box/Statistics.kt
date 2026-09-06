@@ -45,8 +45,8 @@ data class AreaStatistics(
     val active: Int,
     /** Cards in the area that have consolidated (see [Statistics.isConsolidated]). */
     val consolidated: Int,
-    /** Active cards in Review, short of the consolidated bar — kern's [GrowthStage.Fresh]. */
-    val settling: Int = 0,
+    /** Cards packed but not yet introduced — the progress bar's clay segment. */
+    val queued: Int = 0,
     /** Component phrases still waiting for their components to stabilize. */
     val phrasesLocked: Int,
     /** Phrases already introduced, component-free, or with all components stable. */
@@ -64,6 +64,14 @@ data class AreaStatistics(
      * total must not make the introduced cards read as more than everything.
      */
     val progressTotal: Int get() = maxOf(total, consolidated + learning, 1)
+
+    /**
+     * Whether every active card in the area stands on [GrowthStage.Matured] — combined
+     * with the pack/unpack emptiness a screen already computes, this is what turns the
+     * area-complete mark jade instead of green. An area holding nothing active is never
+     * mature, whatever [total] says: there is nothing here to have matured.
+     */
+    val mature: Boolean get() = active > 0 && consolidated == active
 }
 
 /**
@@ -225,15 +233,25 @@ internal object Statistics {
     }
 
     /**
-     * "Has this word landed": Review phase at or above [BoxConfig.consolidatedStability].
-     * The ONE bar — the stats split, the session-summary tally, phrase unlock, the drill
-     * pools, and the in-session presentation rules all ask it. A card that just lapsed is
-     * back in Relearning, so it stops being consolidated, which is the point: it needs the
+     * "Has this word fully grown": Review phase at or above [MATURED_STABILITY] — the
+     * display bucket behind the stats split, the session-summary tally, the Grown badge,
+     * the progress-bar jade segment, and the area-complete mark. A card that just lapsed
+     * is back in Relearning, so it stops counting, which is the point: it needs the
      * support again and has to earn the reach back.
      */
     fun isConsolidated(state: BoxState, sched: CardScheduling): Boolean =
         sched.phase == CardPhase.Review &&
-            (sched.memory?.stability ?: 0.0) >= state.config.consolidatedStability
+            (sched.memory?.stability ?: 0.0) >= MATURED_STABILITY
+
+    /**
+     * Whether this card has cleared [BoxConfig.growingStability] — Review phase at or above
+     * the bar. Gate (a): phrase unlock, the drill pools, and the in-session presentation
+     * rules (the emoji that props recall up, the sound prompt that withdraws the meaning)
+     * all ask this.
+     */
+    fun isGrowing(state: BoxState, sched: CardScheduling): Boolean =
+        sched.phase == CardPhase.Review &&
+            (sched.memory?.stability ?: 0.0) >= state.config.growingStability
 
     /**
      * Walk back from today: a missed day is bridged, two in a row end the run. Forgiveness
@@ -310,23 +328,20 @@ internal object Statistics {
 
     private fun areaStatistics(state: BoxState, active: List<CardScheduling>): List<AreaStatistics> {
         val activeCards = active.mapTo(mutableSetOf()) { it.cardId }
+        // why: [BoxBrowser.shelfCounts] already walks the queue per area for the pack
+        // controls — the bar's clay segment reads the same number rather than a second walk.
+        val shelfCounts = BoxBrowser.shelfCounts(state)
         return state.cards.values.groupBy { it.area }.entries
             .sortedBy { it.key }
             .map { (area, cards) ->
                 var active = 0
                 var consolidated = 0
-                var settling = 0
                 var locked = 0
                 var unlocked = 0
                 for (card in cards) {
                     if (card.id in activeCards) active += 1
                     val sched = state.scheduling[card.id]
                     if (sched != null && !sched.suspended && isConsolidated(state, sched)) consolidated += 1
-                    // Counted on its own bar, never off `consolidated`: that one also carries
-                    // the matured cards, so the two buckets read different Sprossen.
-                    if (sched != null && !sched.suspended && stageOf(state, sched) == GrowthStage.Fresh) {
-                        settling += 1
-                    }
                     if (card.kind == CardKind.Phrase) {
                         val open = sched != null || card.components.isEmpty() ||
                             Growth.isPhraseUnlocked(state, card)
@@ -335,7 +350,8 @@ internal object Statistics {
                 }
                 AreaStatistics(
                     name = area, total = cards.size, active = active, consolidated = consolidated,
-                    settling = settling, phrasesLocked = locked, phrasesUnlocked = unlocked,
+                    queued = shelfCounts[area]?.queued ?: 0,
+                    phrasesLocked = locked, phrasesUnlocked = unlocked,
                 )
             }
     }

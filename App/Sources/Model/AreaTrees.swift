@@ -70,7 +70,7 @@ struct AreaGrowth {
             reaches.append(reach)
         // The canopy is green because most of a worked area IS green: words that
         // have landed are the bulk of any box that is being used.
-        case .consolidated:
+        case .growing:
             leaves += 1
             reaches.append(reach)
         // A word is fruit only once it is well past the matured bar; kern draws

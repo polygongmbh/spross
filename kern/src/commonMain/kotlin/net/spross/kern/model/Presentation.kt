@@ -54,8 +54,8 @@ enum class ProducePrompt {
  * what is owed back, because a word heard and written down again has been transcribed, not
  * understood.
  *
- * Two gates and a rotation. [consolidated]
- * ([net.spross.kern.model.BoxConfig.consolidatedStability]) is the same bar
+ * Two gates and a rotation. [growing]
+ * ([net.spross.kern.model.BoxConfig.growingStability]) is the same bar
  * [emojiCue] reads, from the other side: a word that has landed can spare its meaning,
  * and one still landing must not have its only cue taken away. [audible]
  * is the device's word (a recording, a voice, and reading aloud switched on), and false
@@ -69,10 +69,10 @@ enum class ProducePrompt {
 fun producePrompt(
     cardId: String,
     reviewCount: Int,
-    consolidated: Boolean,
+    growing: Boolean,
     audible: Boolean,
 ): ProducePrompt {
-    if (!consolidated || !audible) return ProducePrompt.Source
+    if (!growing || !audible) return ProducePrompt.Source
     val offset = (fnv1a64("$cardId|sound") % 2uL).toInt()
     return if ((reviewCount / 2 + offset) % 2 == 0) ProducePrompt.Sound else ProducePrompt.Source
 }
@@ -137,9 +137,9 @@ fun emojiCue(givesAnswerAway: Boolean): EmojiCue =
  */
 fun emojiCue(
     role: PresentationRole,
-    consolidated: Boolean,
+    growing: Boolean,
 ): EmojiCue =
-    if (role == PresentationRole.Produce && !consolidated) {
+    if (role == PresentationRole.Produce && !growing) {
         EmojiCue.Upfront
     } else {
         EmojiCue.OnReveal

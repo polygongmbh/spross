@@ -227,7 +227,9 @@ struct BoxCardRow: View {
                 Button(action: pack) {
                     Image(systemName: "tray.and.arrow.down.fill")
                 }
-                .buttonStyle(IconButtonStyle())
+                // Ochre, where unpacking is clay: the pair reads as two directions rather
+                // than one control, and neither wears a growth-ladder color.
+                .buttonStyle(IconButtonStyle(color: Theme.colors.amber))
                 .accessibilityLabel("box.card.pack")
             }
         case .packed(let packed):
@@ -239,7 +241,8 @@ struct BoxCardRow: View {
                 } label: {
                     Image(systemName: "tray.and.arrow.up.fill")
                 }
-                .buttonStyle(IconButtonStyle(color: Theme.colors.success))
+                // Clay, matching the "box.card.queued" pill it takes back out.
+                .buttonStyle(IconButtonStyle(color: Theme.colors.accent))
                 .accessibilityLabel("box.card.unpack")
             } else {
                 // A pill, not an icon: a bare tray glyph reads as a control here too,
@@ -256,21 +259,22 @@ struct BoxCardRow: View {
         case .plain:
             EmptyView()
         case .standing(let standing):
-            PhaseBadge(phase: Self.badgePhase(standing.phase),
-                       consolidated: standing.consolidated,
-                       growth: Color(standing.swatch))
+            PhaseBadge(phase: Self.badgePhase(standing.stage), growth: Color(standing.swatch))
         }
     }
 
-    /// Kern's phase in the palette's own terms. `.theNew` never arrives — a card
-    /// with nothing behind it reads `.plain` above — but the case is what makes
-    /// the switch exhaustive.
-    private static func badgePhase(_ phase: CardPhase) -> PhaseBadge.Phase {
-        switch phase {
-        case .theNew: return .new
-        case .learning: return .learning
-        case .review: return .review
+    /// Kern's Sprosse in the palette's own terms. Unscheduled/Queued/Suspended
+    /// never arrive — a `Standing` row's stage is already guaranteed to be one
+    /// of Learning/Fresh/Growing/Matured/Relearning (kern's own invariant) — but
+    /// the switch stays exhaustive over the whole ladder rather than trusting
+    /// that from the outside.
+    private static func badgePhase(_ stage: GrowthStage) -> PhaseBadge.Phase {
+        switch stage {
+        case .learning, .fresh: return .fresh
+        case .growing: return .growing
+        case .matured: return .grown
         case .relearning: return .relearning
+        case .unscheduled, .queued, .suspended: return .new
         }
     }
 }

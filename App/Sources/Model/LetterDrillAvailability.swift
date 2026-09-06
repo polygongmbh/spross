@@ -34,7 +34,7 @@ struct LetterDrillAvailability {
                               language: String) -> SprossKern.LetterDrillAvailability.Report {
         guard let catalog = model.catalog, let box = model.box else {
             return .init(language: language, alphabet: nil, promptableRefs: [],
-                         dictationCandidates: [], gapWords: [:], consolidatedCards: 0)
+                         dictationCandidates: [], gapWords: [:], growingCards: 0)
         }
         return SprossKern.LetterDrillAvailability.shared
             .report(catalog: catalog, box: box, language: language,

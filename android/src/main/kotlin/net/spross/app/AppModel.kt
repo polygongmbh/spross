@@ -121,7 +121,7 @@ data class SessionUi(
     /** `reviewCount == 0` — the word is being taught, so a miss is still written out. */
     val firstExposure: Boolean = false,
     /** A word that already sticks is never slowed down by a write-out. */
-    val consolidated: Boolean = false,
+    val growing: Boolean = false,
     /** Which face carries the picture; null when the word has none. */
     val emojiCue: EmojiCue?,
     /**
@@ -592,7 +592,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     /**
      * What the letter drill can ask on THIS device — the one trainer question that is a
-     * walk: the consolidated cards for dictation, and every alphabet row's example words
+     * walk: the growing cards for dictation, and every alphabet row's example words
      * mined out of the catalog.
      *
      * So it is asked by the page that reads it and nowhere else, which is where iOS has
@@ -798,8 +798,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         return reduction.state
     }
 
-    private fun isConsolidated(cardId: String): Boolean =
-        box?.let { BoxEngine.isConsolidated(it, cardId) } == true
+    private fun isGrowing(cardId: String): Boolean =
+        box?.let { BoxEngine.isGrowing(it, cardId) } == true
 
     /**
      * Whether the card's own form can be heard RIGHT NOW — the one fact kern's
@@ -841,8 +841,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             val count = state.scheduling[card.id]?.reviewCount ?: 0
             val role = presentationRole(card.id, count)
             val promptForm = recognitionPromptForm(card, count)
-            val consolidated = isConsolidated(card.id)
-            val prompt = producePrompt(card.id, count, consolidated, audible(card))
+            val growing = isGrowing(card.id)
+            val prompt = producePrompt(card.id, count, growing, audible(card))
             SessionUi(
                 card = card,
                 role = role,
@@ -850,11 +850,11 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 producePrompt = prompt,
                 // The two facts the turn's write-out rule is decided on, read where the
                 // count already is: a word being taught is written once as it is met,
-                // and one that already sticks — consolidated, the one landed bar — is
+                // and one that already sticks — growing, the one landed bar — is
                 // never slowed down.
                 firstExposure = count == 0,
-                consolidated = consolidated,
-                emojiCue = card.emoji?.let { emojiCue(role, consolidated) },
+                growing = growing,
+                emojiCue = card.emoji?.let { emojiCue(role, growing) },
                 // why: the KERN cue, never `role == Recognize` — one rule, consumed by
                 // both apps. The PROMPTED form, so a rotated synonym is heard as itself.
                 promptPronunciation = catalog
