@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 6.1.0 — 2026-09-06
+
 - The plus in your own content now takes a note on its own, so something to say about the app no longer has to be filed against an unrelated word.
 - A word found by searching can be opened where it lives, among the words on its shelf.
 - The countries and dates ladders now show their record on the Sprosse circles — filled where a run has reached a Sprosse, green where one answered every question of it — and a run opens on the first Sprosse not yet answered out; tap a lower one to start there instead.
