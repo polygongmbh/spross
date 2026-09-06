@@ -131,6 +131,28 @@ object DateDrill {
         return DateDrillDraw(climbed.task, climbed.level)
     }
 
+    /**
+     * The Sprossen a run answered out ([DrillSolved.cleared]). Only the name Sprossen
+     * enumerate; an assembled Sprosse draws its dates and is never answered out, so the
+     * ladder above the names is never cleared.
+     */
+    fun cleared(content: DateDrillContent, reverse: Boolean, solved: Set<String>): Set<Int> =
+        DrillSolved.cleared(solved, maxLevel(content, reverse)) { level -> pool(content, level, reverse) }
+
+    /** Every prompt key [level] can ask, or null where one of its kinds is drawn rather than listed. */
+    private fun pool(content: DateDrillContent, level: Int, reverse: Boolean): List<String>? {
+        val keys = mutableListOf<String>()
+        for (kind in kinds(content, level, reverse)) {
+            val tasks = when (kind) {
+                DateTaskKind.NameChoice -> DateDrillChoices.pool(content, reverse)
+                DateTaskKind.Weekday, DateTaskKind.Month -> DateDrillTasks.pool(content, kind, reverse)
+                else -> return null
+            }
+            tasks.mapTo(keys) { DrillSolved.key(it) }
+        }
+        return keys
+    }
+
     /** The language an answer is owed in — the learned one, or the learner's own reversed. */
     fun answerLanguage(content: DateDrillContent, reverse: Boolean): Language =
         if (reverse) content.source else content.target

@@ -170,6 +170,15 @@ object CountryDrill {
     }
 
     /**
+     * The Sprossen a run answered out ([DrillSolved.cleared]). Every atlas Sprosse enumerates,
+     * and they nest, so answering one out answers out everything below it too.
+     */
+    fun cleared(content: CountryDrillContent, reverse: Boolean, solved: Set<String>): Set<Int> =
+        DrillSolved.cleared(solved, MAX_LEVEL) { level ->
+            tasks(content, level, reverse).map { DrillSolved.key(it) }
+        }
+
+    /**
      * The language an answer is owed in — the learned one, or the learner's own where the
      * run is turned round. Named here because the page that opens a run has to build the
      * grader for it before there is a run to ask.

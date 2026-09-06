@@ -16,14 +16,14 @@ import net.spross.kern.session.TurnFeedback
  */
 object DateDrillRun {
 
-    /** A fresh run. Every run opens at Sprosse 1 however far the learner has climbed. */
+    /** A fresh run from the foot of the ladder. */
     fun open(config: DateDrillRunConfig, rng: Random): DateDrillRunState =
         openAt(config, 1, rng)
 
     /**
-     * The same, forced to one Sprosse — what the record buys is the page and never a head
-     * start, so this exists for tests and screenshot drivers, which have no other way to
-     * reach the assembled Sprossen.
+     * A fresh run opened ON [level], clamped to the ladder. The page opens a run on the lowest
+     * Sprosse the learner has not answered out ([DateDrillClose.clearedSprossen]), or on the
+     * one they tapped.
      */
     fun openAt(config: DateDrillRunConfig, level: Int, rng: Random): DateDrillRunState {
         val content = config.content
@@ -119,7 +119,8 @@ object DateDrillRun {
         } else {
             DrillRunSummary(ended.done, ended.bestStreak, ended.bestStreak > standingRecord)
         }
-        return DateDrillClose(ended, summary, ended.bestLevel, effects)
+        val cleared = DateDrill.cleared(state.config.content, state.config.reverse, ended.solved)
+        return DateDrillClose(ended, summary, ended.bestLevel, cleared, effects)
     }
 
     // MARK: - Intents

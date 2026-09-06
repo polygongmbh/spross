@@ -15,11 +15,24 @@ package net.spross.kern.trainer
  * whole ladder is answered out the run ENDS on its summary, which is where the letter
  * drill's "nothing left to ask" already went.
  *
- * Nothing here is persisted: the set lives and dies with the run. What outlives it is the
- * Sprosse the ladder books — a prompt answered on Tuesday is worth asking again on Friday, and
- * keeping that kind of score is the growing box's job, never a drill's.
+ * The set itself lives and dies with the run — a prompt answered on Tuesday is worth asking
+ * again on Friday, and keeping that kind of score is the growing box's job, never a drill's.
+ * What outlives it is the Sprosse the ladder books and, for an enumerable Sprosse, whether the
+ * run answered it OUT ([cleared]): that is what lets the next run open above it.
  */
 internal object DrillSolved {
+
+    /**
+     * The Sprossen this run answered out: every prompt the Sprosse can ask is in [solved].
+     * [pool] answers null for a GENERATED Sprosse, which can never be cleared — the slot
+     * drill's Sprossen and the calendar's assembled ones draw values rather than picking out
+     * of a list. An empty pool is not cleared either: it has answered nothing.
+     */
+    fun cleared(solved: Set<String>, top: Int, pool: (Int) -> List<String>?): Set<Int> =
+        (1..maxOf(1, top)).filter { sprosse ->
+            val keys = pool(sprosse)
+            !keys.isNullOrEmpty() && keys.all { it in solved }
+        }.toSet()
 
     /**
      * How many draws in a row must land on an already-solved prompt before a GENERATED Sprosse

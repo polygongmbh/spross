@@ -202,9 +202,12 @@ Engine contract: `../README.md`.
   the slot drill draws values rather than picking them out of a list, so there
   `DrillSolved.SPENT_ATTEMPTS` repeats in a row is what "spent" can honestly mean,
   and in a mixed run a variant that has run out hands the turn to the next one.
-  Nothing of this is persisted: the set lives and dies with the run,
+  The set itself lives and dies with the run,
   because a prompt answered on Tuesday is worth asking again on Friday
-  and keeping that kind of score is the growing box's job.
+  and keeping that kind of score is the growing box's job;
+  what outlives it is whether an ENUMERABLE Sprosse was answered out
+  (`clearedSprossen` on the atlas and calendar close, `DrillSolved.cleared`),
+  which is what the next run opens above — a drawn Sprosse is never cleared.
 - Feedback and cues reuse the turn machine's vocabulary
   (`TurnFeedback`, `AlmostReason`, `AnswerOutcome`, `AdvanceTier`, `ToneKind`);
   nothing new is minted where kern already names a rule.
@@ -214,10 +217,17 @@ Engine contract: `../README.md`.
   judged either way, with almost in neither half for `DrillRamp.step`'s reason;
   the "2/3" string is rendering.
 - **Storage contract**: the streak record under `trainer.record.<key>`,
-  per-variant Sprosse progress under `trainer.level.<key>`
-  (`TrainerMode.RECORD_PREFIX` / `PROGRESS_PREFIX`, keys byte-identical across the two stores).
+  per-variant Sprosse progress under `trainer.level.<key>`,
+  the most answers one run gave under `trainer.answers.<key>`,
+  and the atlas' and calendar's answered-out Sprossen as a bitmask under `trainer.cleared.<key>` —
+  filed per DIRECTION, a reversed run's key ending `.rev`,
+  because a row means a different question either way round
+  (`TrainerMode.RECORD_PREFIX` / `PROGRESS_PREFIX` / `ANSWERS_PREFIX` / `CLEARED_PREFIX`,
+  keys byte-identical across the two stores).
   `close` returns only bookings that beat the standing value (strictly greater);
-  the platform writes blindly.
+  the platform writes blindly — except the cleared set, which it ORs into the mask it holds.
+  Where a typed run OPENS is kern's too: the lowest Sprosse the mask does not hold
+  (`TrainerMode.entrySprosse`), or the one the learner tapped.
   Pinned quirk: a non-null `phraseSource` suffixes the record language with the
   `<source>-<target>` pair even when the run asks no sentence,
   because the overview passes the source whenever the pair realizes frames.

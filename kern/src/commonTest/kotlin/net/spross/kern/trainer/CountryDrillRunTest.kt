@@ -379,6 +379,20 @@ class CountryDrillRunTest {
             "every question was asked exactly once before the run ran out",
         )
         assertEquals(asked.size, run.done)
+        assertEquals(
+            (1..CountryDrill.MAX_LEVEL).toSet(),
+            CountryDrillRun.close(run, standingRecord = 0).clearedSprossen,
+            "a ladder answered out is cleared to the top",
+        )
+    }
+
+    /** Answering a Sprosse out is what the next run opens above; the Sprossen above stay open. */
+    @Test
+    fun aSprosseAnsweredOutIsClearedAndNothingAboveIt() {
+        val opened = open()
+        assertEquals(emptySet(), CountryDrillRun.close(opened, standingRecord = 0).clearedSprossen)
+        val answered = opened.answered(opened.task.display)
+        assertEquals(setOf(1), CountryDrillRun.close(answered, standingRecord = 0).clearedSprossen)
     }
 
     /** The way out belongs to the SECOND miss in a row, not to the first. */

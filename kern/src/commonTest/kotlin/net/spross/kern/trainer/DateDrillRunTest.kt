@@ -348,6 +348,30 @@ class DateDrillRunTest {
         assertTrue(second.offersFinish)
     }
 
+    /**
+     * The name Sprossen enumerate and can be answered out; an assembled Sprosse is drawn,
+     * so however long a run stands on it, it is never cleared. The Sprossen nest, so the
+     * months alone clear nothing while weekdays and months together clear two.
+     */
+    @Test
+    fun onlyTheNameSprossenCanBeAnsweredOut() {
+        val content = DateDrillFixture.germanContent
+        fun keys(kind: DateTaskKind) = DateDrillTasks.pool(content, kind, false).map { DrillSolved.key(it) }
+        val weekdays = keys(DateTaskKind.Weekday).toSet()
+        val months = keys(DateTaskKind.Month).toSet()
+        val tiles = DateDrillChoices.pool(content, false).map { DrillSolved.key(it) }.toSet()
+
+        assertEquals(emptySet(), DateDrill.cleared(content, false, months))
+        assertEquals(setOf(2), DateDrill.cleared(content, false, weekdays))
+        assertEquals(setOf(2, 3), DateDrill.cleared(content, false, weekdays + months))
+        assertEquals(setOf(1, 2, 3), DateDrill.cleared(content, false, weekdays + months + tiles))
+
+        var run = open(level = 4)
+        repeat(40) { run = run.answered(run.task.display) }
+        val closed = DateDrillRun.close(run, standingRecord = 0)
+        assertTrue(closed.clearedSprossen.none { it >= 4 }, "an assembled Sprosse was cleared")
+    }
+
     // MARK: - Leaving
 
     @Test

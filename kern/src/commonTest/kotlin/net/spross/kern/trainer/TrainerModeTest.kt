@@ -54,6 +54,30 @@ class TrainerModeTest {
         )
     }
 
+    /** The two typed drills' extra files: how many answers one run gave, and which Sprossen it answered out. */
+    @Test
+    fun theAnsweredOutSprossenAreFiledAsAMaskPerDirection() {
+        assertEquals("trainer.answers.", TrainerMode.ANSWERS_PREFIX)
+        assertEquals("trainer.cleared.", TrainerMode.CLEARED_PREFIX)
+        assertEquals(".rev", TrainerMode.REVERSED_SUFFIX)
+        assertEquals("countries.de-sw", TrainerMode.clearedKey("countries.de-sw", reverse = false))
+        assertEquals("countries.de-sw.rev", TrainerMode.clearedKey("countries.de-sw", reverse = true))
+        assertEquals(0b101, TrainerMode.clearedMask(setOf(1, 3)))
+        assertEquals(setOf(1, 3), TrainerMode.clearedSprossen(0b101))
+        assertEquals(setOf(9), TrainerMode.clearedSprossen(TrainerMode.clearedMask(setOf(9))))
+        assertEquals(emptySet(), TrainerMode.clearedSprossen(0))
+    }
+
+    /** A run opens on the lowest Sprosse not yet answered out — a gap is where it opens, and a ladder answered out opens on its top. */
+    @Test
+    fun aRunOpensOnTheLowestSprosseNotAnsweredOut() {
+        assertEquals(1, TrainerMode.entrySprosse(emptySet(), 9))
+        assertEquals(3, TrainerMode.entrySprosse(setOf(1, 2), 9))
+        assertEquals(2, TrainerMode.entrySprosse(setOf(1, 3), 9))
+        assertEquals(9, TrainerMode.entrySprosse((1..9).toSet(), 9))
+        assertEquals(5, TrainerMode.entrySprosse((1..9).toSet(), 5), "clamped to the ladder as it stands")
+    }
+
     /** A Sprosse belongs to ONE variant, which is what lets the ladder read them all at once. */
     @Test
     fun aSprosseIsFiledPerVariantAndPhrasesKeepsItsLowercaseSpelling() {

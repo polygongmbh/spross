@@ -198,6 +198,35 @@ data class TrainerMode(
         /** Store prefix of the Sprosse high-waters — the full key is this plus [progressKey]. */
         const val PROGRESS_PREFIX: String = "trainer.level."
 
+        /** Store prefix of the answers-in-one-run records. */
+        const val ANSWERS_PREFIX: String = "trainer.answers."
+
+        /**
+         * Store prefix of the answered-out Sprosse masks: bit n-1 stands for Sprosse n. Filed
+         * per DIRECTION — a reversed key wears [REVERSED_SUFFIX] — because a row means a
+         * different question either way round (the reversed calendar drops its full date, so
+         * the row above it moves down one).
+         */
+        const val CLEARED_PREFIX: String = "trainer.cleared."
+
+        const val REVERSED_SUFFIX: String = ".rev"
+
+        /** Where [key]'s mask is filed for one direction — the full key is [CLEARED_PREFIX] plus this. */
+        fun clearedKey(key: String, reverse: Boolean): String =
+            if (reverse) key + REVERSED_SUFFIX else key
+
+        /** The Sprossen a mask holds, [CLEARED_PREFIX]'s reading. */
+        fun clearedSprossen(mask: Int): Set<Int> =
+            (1..Int.SIZE_BITS - 1).filter { mask and (1 shl (it - 1)) != 0 }.toSet()
+
+        /** The mask a set of Sprossen writes, [CLEARED_PREFIX]'s spelling. */
+        fun clearedMask(sprossen: Set<Int>): Int =
+            sprossen.filter { it in 1 until Int.SIZE_BITS }.fold(0) { mask, n -> mask or (1 shl (n - 1)) }
+
+        /** The lowest Sprosse [cleared] does not hold, clamped to [top] — where a run opens. */
+        fun entrySprosse(cleared: Set<Int>, top: Int): Int =
+            ((1..maxOf(1, top)).firstOrNull { it !in cleared }) ?: maxOf(1, top)
+
         /**
          * Where a variant's highest-ever Sprosse is filed, so the overview can read the whole
          * ladder without building a run. Kotlin's own spelling for the slot variants and the

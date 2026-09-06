@@ -44,6 +44,11 @@ data class CountryDrillClose(
      * the ladder rewards standing on a Sprosse rather than finishing there.
      */
     val bestLevel: Int,
+    /**
+     * The Sprossen this run answered OUT, for the page to add to what it holds — the next run
+     * opens above them. Unfiltered: unlike [bestLevel] there is no standing value to beat.
+     */
+    val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
 )
 
