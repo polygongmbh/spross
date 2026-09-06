@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- A word now stays "Growing" for a full month before it is marked fully grown, and the box shelf's badge and progress bar show the difference.
+
 ## 6.0.1 — 2026-09-05
 
 - Copying or mailing your feedback can leave your finished word pairs behind and carry just the suggestions and problems you filed.

@@ -340,7 +340,6 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
   is the public spelling; `DrillVariant.storageTag`/`.slotKind` stay `internal` in kern over it.
 - `TrainerRecords.swift` hard-codes `"trainer.record."`; `TrainerMode.companion.RECORD_PREFIX`
   now exists.
-- `AppModel+Queries.swift` `consolidatedCards()` has no caller left — prune.
 - `TrainerSessionView+Grading.swift` and `LetterDrillView+Grading.swift` now hold the run
   DRIVERS (dispatch/effects/close), not grading — rename to `+Run.swift` in a pass that
   regenerates the Xcode project.
