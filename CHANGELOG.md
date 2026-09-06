@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- The countries and dates ladders now show their record on the Sprosse circles — filled where a run has reached a Sprosse, green where one answered every question of it — and a run opens on the first Sprosse not yet answered out; tap a lower one to start there instead.
+- The record under those two ladders now counts the longest streak and the most answers in one run instead of naming a Sprosse.
 - A card's note now only ever explains the language you are learning.
 - Everyday glue words that only ever hid inside phrases now have cards of their own, among them later, last, since, therefore, a little, must, put and the possessives my, your and his.
 - Cards that duplicated another word or only glued two known words together are gone, along with three where-is questions that repeated one pattern.

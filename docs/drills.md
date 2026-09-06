@@ -23,8 +23,9 @@ answering rules with is `design.md`'s.
   reads for those forms, with its sources, is `number-forms.md`. Which of them a learner may pick is derived
   from one stored number per variant — the highest Sprosse ever reached — through kern's
   unlock table; everything else is registry-driven from kern and the catalog, so the hub
-  offers only languages with authored content. Every run starts at Sprosse 1 however far the
-  learner has climbed: persisted progress buys access, never a head start.
+  offers only languages with authored content. A numbers run starts at Sprosse 1 however far
+  the learner has climbed: persisted progress buys access, never a head start. The atlas and
+  the calendar open where their last run left off instead (§ A run, and what it leaves behind).
   **A Sprosse has to ask something no other Sprosse already asks.** One that composes
   answers the ladders teach separately is a free rung, however sensible its name: the
   calendar dropped its bare day-of-month because that reading IS the numbers drill's
@@ -105,9 +106,11 @@ answering rules with is `design.md`'s.
   installed in Settings turns the start button on without a relaunch. The stage rows carry
   no earned ladder (the drill books no review and keeps no record): they say which stage a
   run OPENS on, derived from the learner's consolidated words, and dictation states its
-  price until enough of them can be played back. Their mark is the step NUMBER, not a
-  circle — the run walks the ladder by itself, and a circle beside each row reads as a
-  choice that never answers the tap.
+  price until enough of them can be played back. Their mark is the shared Sprosse circle,
+  filled on the stage the run opens on and nowhere else — this ladder has no record to
+  wear — and the rows are not tapped: the run walks the ladder by itself from that stage.
+  Each row is ONE line, the stage named by what it asks, with a caption only where
+  dictation states its price.
 - **Länder overview**: the atlas entry opens the run-first shape the other two use — the
   Sprossen and the start above, the table under them. Its Sprossen are POOLS rather than stages:
   Sprosse 1 is the two languages the profile already has and the countries they are at home
@@ -116,6 +119,9 @@ answering rules with is `design.md`'s.
   tier, never both: country names, then language names, then the people; then tier 2; then
   which language is spoken there; then tier 3; then the country behind a flag alone; then
   tier 4; and at the top the reverse of the spoken-in question, where a language is spoken.
+  The row is named for that one thing and nothing else — "Dazu: …" where a question is
+  added, "Mehr Länder: …" where a tier is — so the ladder reads as the list of what each
+  Sprosse brings.
   Bundling the two (the old Sprosse 4 opened a tier AND the flag question at once) left a
   learner who slipped unable to say what had got harder. A tier nobody has
   authored yet costs the learner nothing: the pool is the join intersected with the Sprosse's
@@ -128,7 +134,8 @@ answering rules with is `design.md`'s.
   then owed in the learner's OWN language, so a flag beside the prompt gives it away and a
   flag alone asks them to recognize their own and write a name they have said all their
   life. That leaves the flag Sprosse adding nothing in that direction, where it stands on the
-  pool below exactly as an unauthored tier does.
+  pool below exactly as an unauthored tier does — and its row says so
+  (`CountryDrill.repeatsBelow`) rather than promising a question the run never asks.
   The RUNGS are not earned. The drill books no review and keeps no schedule, exactly
   as the letter drill does not, so the Sprosse rows say what a Sprosse ASKS and never carry a
   padlock or a price. The reverse
@@ -197,11 +204,25 @@ answering rules with is `design.md`'s.
 
 ## A run, and what it leaves behind
 
-- **An overview prints the Sprosse it has been climbed to, as it stands.** The atlas and the
-  calendar say it under their ladder, the numbers page under each exercise's own name,
-  because there four ladders are climbed separately and Zahlen counts its Sprosse in digits.
-  The number is never trimmed to the rows on the page: a Sprosse goes on counting past the
-  last named one (`DrillRamp.step`), which is what a climbed-out ladder leaves to beat.
+- **The atlas and the calendar wear their record on the Sprosse circles, and open where it
+  stands.** A circle is an outline where no run has stood on the Sprosse, filled ocean where
+  one has reached it, filled forest where one run answered EVERY question of it clean —
+  which only a Sprosse that enumerates can earn, so the assembled date Sprossen never turn
+  forest. `Los` opens the run on the lowest Sprosse no run has answered out
+  (`TrainerMode.entrySprosse`), and every row is a control that opens a run on its own
+  Sprosse; the one line under the ladder says so. What a run answered out is filed per
+  DIRECTION, because a row means another question turned round
+  (`kern/docs/turns.md` § storage contract), and the ladder the reverse switch shows reads
+  its own direction's mask. The record line under it COUNTS rather than places — the
+  longest clean streak and the most answers one run gave — since the circles already say
+  where the ladder stands. Every Sprosse row is ONE line: the atlas names the question or
+  tier it adds, the calendar the kind, and no row explains what its title already says.
+- **The numbers page prints the Sprosse each exercise has been climbed to, as it stands,**
+  under the exercise's own name, because there four ladders are climbed separately, their
+  Sprossen draw values rather than listing them (so none can be answered out), and Zahlen
+  counts its Sprosse in digits. The number is never trimmed to the rows on the page: a
+  Sprosse goes on counting past the last named one (`DrillRamp.step`), which is what a
+  climbed-out ladder leaves to beat.
 - **An endless run offers its exit where it is wanted, not on a schedule.** "Fertig"
   appears under the button that goes on, and only on the SECOND miss in a row: one
   miss is what a drill is made of, two is where carrying on stops feeling like a choice.

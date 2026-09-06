@@ -81,6 +81,10 @@ then open design work, then what waits on someone else, grouped by who that is.
 
 ## App & UX
 
+- The letters ladder files no answered-out Sprossen (it has no storage key at all), so its
+  circles carry only the entry mark where the atlas and calendar wear a record
+  (`LettersOverview+Practice.swift`, `ui/LettersOverviewScreen.kt`) — should the tile and
+  typed stages, which enumerate, file one and open above it too?
 - A report is always filed AGAINST a card (`ReportedIssue.cardId`,
   `kern/.../box/Feedback.kt`), so a learner with something to say about the APP has to
   attach it to whatever word is on screen — two of three reports in one batch were app
