@@ -15,7 +15,7 @@
   "taxi": { "text": "Taxi", "grammar": { "gender": "das", "plural": "-s" } },
   "train-station": { "text": "Bahnhof", "grammar": { "gender": "der", "plural": "Bahnhöfe" } },
   "ticket": { "text": "Fahrkarte", "grammar": { "gender": "die", "plural": "-n" } },
-  "to-ride-bike": { "text": "Rad fahren" },
+  "to-ride-bike": { "text": "Fahrrad fahren" },
   "to-take-bus": { "text": "den Bus nehmen" },
   "to-depart": { "text": "abfahren" },
   "journey": { "text": "Reise", "grammar": { "gender": "die", "plural": "-n" } },
