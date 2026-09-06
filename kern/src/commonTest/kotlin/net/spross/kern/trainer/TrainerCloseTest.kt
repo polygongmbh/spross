@@ -90,7 +90,7 @@ class TrainerCloseTest {
 
     @Test
     fun theTierLadderTurnsOnTwoFiveAndTen() {
-        fun tier(streak: Int) = DrillRunSummary(done = 1, correct = 1, bestStreak = streak, newRecord = false).tier
+        fun tier(streak: Int) = DrillRunSummary(done = 1, bestStreak = streak, newRecord = false).tier
         assertEquals(StreakTier.Sprout, tier(0))
         assertEquals(StreakTier.Sprout, tier(1))
         assertEquals(StreakTier.Effort, tier(2))

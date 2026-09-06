@@ -52,9 +52,6 @@ data class DrillRunCore(
         )
     }
 
-    /** Answers that were right or nearly — what the streak counts; a miss is not among them. */
-    val correct: Int get() = outcomes.count { it != AnswerOutcome.Wrong }
-
     private fun outcome(correct: Boolean, clean: Boolean): AnswerOutcome = when {
         !correct -> AnswerOutcome.Wrong
         clean -> AnswerOutcome.Right

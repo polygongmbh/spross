@@ -50,7 +50,7 @@ struct DrillOverview<Face: DrillFace>: View {
     @State var clearedReversed: Set<Int> = []
     /// The two counted records the line under the ladder prints.
     @State var record = 0
-    @State var bestCorrect = 0
+    @State var bestAnswers = 0
     @State private var launch: Launch?
     /// What the run that just closed came to — one tile above the Sprossen, the
     /// shape every overview uses.
@@ -202,7 +202,7 @@ struct DrillOverview<Face: DrillFace>: View {
         clearedForward = TrainerProgress.cleared(for: TrainerMode.companion.clearedKey(key: storageKey, reverse: false))
         clearedReversed = TrainerProgress.cleared(for: TrainerMode.companion.clearedKey(key: storageKey, reverse: true))
         record = TrainerRecords.best(for: storageKey)
-        bestCorrect = TrainerRecords.bestCorrect(for: storageKey)
+        bestAnswers = TrainerRecords.bestAnswers(for: storageKey)
         // why: the numbers page's `normalizePicks` rule — a ladder that grew
         // under a stored best puts fast back out of reach, and a toggle must
         // never outlive the price that bought it.

@@ -114,7 +114,7 @@ extension DrillRunView {
         }
         answerFocused = false
         TrainerRecords.record(Int(summary.bestStreak), for: storageKey)
-        TrainerRecords.recordCorrect(Int(summary.correct), for: storageKey)
+        TrainerRecords.recordAnswers(Int(summary.done), for: storageKey)
         // why: the cheer marks the record, not the end of a run — confetti and
         // cheer are one thing (`docs/design.md`), and the tile rains the one.
         if summary.newRecord { Sound.cheer() }

@@ -109,7 +109,7 @@ object CountryDrillRun {
         val summary = if (ended.done == 0) {
             null
         } else {
-            DrillRunSummary(ended.done, ended.core.correct, ended.bestStreak, ended.bestStreak > standingRecord)
+            DrillRunSummary(ended.done, ended.bestStreak, ended.bestStreak > standingRecord)
         }
         val cleared = CountryDrill.cleared(state.config.content, state.config.reverse, ended.solved)
         return CountryDrillClose(ended, summary, ended.bestLevel, cleared, effects)

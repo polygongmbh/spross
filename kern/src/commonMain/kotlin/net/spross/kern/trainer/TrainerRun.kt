@@ -127,7 +127,7 @@ object TrainerRun {
             .toMap()
         return TrainerClose(
             state = ended,
-            summary = DrillRunSummary(ended.done, ended.core.correct, ended.bestStreak, ended.bestStreak > standingRecord),
+            summary = DrillRunSummary(ended.done, ended.bestStreak, ended.bestStreak > standingRecord),
             recordKey = state.mode.recordKey,
             progressBookings = bookings,
             effects = effects,

@@ -198,7 +198,7 @@ data class TrainerMode(
         /** Store prefix of the Sprosse high-waters — the full key is this plus [progressKey]. */
         const val PROGRESS_PREFIX: String = "trainer.level."
 
-        /** Store prefix of the most-correct-answers-in-one-run records ([DrillRunSummary.correct]). */
+        /** Store prefix of the most-answers-in-one-run records ([DrillRunSummary.done]). */
         const val ANSWERS_PREFIX: String = "trainer.answers."
 
         /**

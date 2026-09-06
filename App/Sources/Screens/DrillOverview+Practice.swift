@@ -97,7 +97,7 @@ extension DrillOverview {
         VStack(alignment: .leading, spacing: Theme.spacing.xs) {
             Text("trainer.ladder.tap")
             if record > 0 {
-                Text("trainer.ladder.best \(record.formatted()) \(bestCorrect.formatted())")
+                Text("trainer.ladder.best \(record.formatted()) \(bestAnswers.formatted())")
             }
         }
         .font(Theme.typography.caption)

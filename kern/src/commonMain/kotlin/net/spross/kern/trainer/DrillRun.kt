@@ -65,8 +65,6 @@ enum class StreakTier { Sprout, Effort, Cheer, Trophy }
  */
 data class DrillRunSummary(
     val done: Int,
-    /** How many of [done] were right or nearly — the streak's own reading of an answer. */
-    val correct: Int,
     val bestStreak: Int,
     /**
      * The run beat the drill's standing record. A drill that keeps no record store leaves it

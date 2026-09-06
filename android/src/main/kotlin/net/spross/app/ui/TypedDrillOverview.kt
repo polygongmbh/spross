@@ -130,7 +130,7 @@ fun TypedDrillOverview(
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
             OverviewNote(chrome.trainerLadderTap)
             if (ladder.standing.record > 0) {
-                OverviewNote(chrome.trainerLadderBest.format(ladder.standing.record, ladder.standing.correct))
+                OverviewNote(chrome.trainerLadderBest.format(ladder.standing.record, ladder.standing.answers))
             }
         }
         OverviewPanel {

@@ -218,7 +218,7 @@ Engine contract: `../README.md`.
   the "2/3" string is rendering.
 - **Storage contract**: the streak record under `trainer.record.<key>`,
   per-variant Sprosse progress under `trainer.level.<key>`,
-  the most CORRECT answers one run gave under `trainer.answers.<key>` (`DrillRunSummary.correct`),
+  the most answers one run took under `trainer.answers.<key>` (`DrillRunSummary.done`, right or wrong),
   and the atlas' and calendar's answered-out Sprossen as a bitmask under `trainer.cleared.<key>` —
   filed per DIRECTION, a reversed run's key ending `.rev`,
   because a row means a different question either way round

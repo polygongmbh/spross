@@ -216,7 +216,7 @@ answering rules with is `design.md`'s.
   DIRECTION, because a row means another question turned round
   (`kern/docs/turns.md` § storage contract), and the ladder the reverse switch shows reads
   its own direction's mask. The record line under it COUNTS rather than places — the
-  longest clean streak and the most correct answers one run gave, said as such — since the
+  longest clean streak and the most answers one run took, right or wrong — since the
   circles already say
   where the ladder stands. Every Sprosse row is ONE line: the atlas names the question or
   tier it adds, the calendar the kind, and no row explains what its title already says.

@@ -5,7 +5,7 @@ import SprossKern
 //
 // The best run a drill has ever produced, per drill and language: the
 // longest clean streak, and — for the atlas and the calendar — the most
-// correct answers one run gave.
+// answers one run took, right or wrong.
 //
 // Kept in UserDefaults rather than the box document on purpose: a drill run
 // touches no card and no schedule, so it is not box state — losing a record
@@ -32,17 +32,16 @@ enum TrainerRecords {
 
     private static var answersPrefix: String { TrainerMode.companion.ANSWERS_PREFIX }
 
-    /// The most correct answers one run under `key` ever gave, or 0 where none
-    /// has closed.
-    static func bestCorrect(for key: String) -> Int {
+    /// The most answers one run under `key` ever took, or 0 where none has closed.
+    static func bestAnswers(for key: String) -> Int {
         UserDefaults.standard.integer(forKey: answersPrefix + key)
     }
 
-    /// Books `correct` where it beats the standing figure. Strictly greater, like
+    /// Books `answers` where it beats the standing figure. Strictly greater, like
     /// the streak — and unlike it no cheer follows: a longer run is not a better one.
-    static func recordCorrect(_ correct: Int, for key: String) {
-        guard correct > bestCorrect(for: key) else { return }
-        UserDefaults.standard.set(correct, forKey: answersPrefix + key)
+    static func recordAnswers(_ answers: Int, for key: String) {
+        guard answers > bestAnswers(for: key) else { return }
+        UserDefaults.standard.set(answers, forKey: answersPrefix + key)
     }
 
     #if DEBUG
