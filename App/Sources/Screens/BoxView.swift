@@ -236,12 +236,23 @@ private struct BoxAreaSection: View {
             AreaChip(emoji: model.areaEmoji(area), name: model.areaTitle(area),
                      subtitle: model.areaSubtitle(area),
                      progress: stats?.progress ?? .empty,
-                     lockedPhrases: stats?.lockedPhrases ?? 0)
+                     lockedPhrases: stats?.lockedPhrases ?? 0,
+                     hideProgress: fullyPackedAndGrown(stats))
             FoldChevron(open: expanded)
                 .foregroundStyle(Theme.colors.textSecondary)
                 .padding(.top, Theme.spacing.sm)
         }
         .contentShape(Rectangle())
+    }
+
+    /// Whether nothing is left to pack or unpack AND every active card in the
+    /// area has fully grown — the one condition that swaps the green "All
+    /// packed" mark for a jade one and hides the chip's bar/counts, leaving
+    /// just the emoji/name/jade mark in the header (Part D).
+    private func fullyPackedAndGrown(_ stats: AreaStatistics?) -> Bool {
+        model.enqueueableCount(area: area) == 0
+            && model.dequeueableCount(area: area) == 0
+            && (stats?.fullyGrown ?? false)
     }
 
     /// The count moved from the button's face into its label: an icon-only
@@ -250,7 +261,10 @@ private struct BoxAreaSection: View {
     ///
     /// Once packing is done, a shelf still holding words queued for a round offers to
     /// take the whole batch back out (`AppModel.dequeueArea`) — the area is the unit
-    /// this control acts on, same as packing itself.
+    /// this control acts on, same as packing itself. Below three queued words the
+    /// bulk control steps aside for the per-word one instead (`BoxCardRow.standing`):
+    /// a blank slot here, not a misleading "All packed" mark, since the shelf still
+    /// holds queued words.
     @ViewBuilder
     private var packControl: some View {
         let count = model.enqueueableCount(area: area)
@@ -261,20 +275,22 @@ private struct BoxAreaSection: View {
             } label: {
                 Image(systemName: "tray.and.arrow.down.fill")
             }
-            .buttonStyle(IconButtonStyle())
+            // Clay: not on the growth ladder yet, same as a single word's own control.
+            .buttonStyle(IconButtonStyle(color: Theme.colors.accent))
             .accessibilityLabel(Text("box.shelf.pack \(count.formatted())"))
-        } else if queued > 0 {
+        } else if queued > 2 {
             Button {
                 model.dequeueArea(area)
             } label: {
                 Image(systemName: "tray.and.arrow.up.fill")
             }
-            .buttonStyle(IconButtonStyle(color: Theme.colors.success))
+            .buttonStyle(IconButtonStyle(color: Theme.colors.accent))
             .accessibilityLabel(Text("box.shelf.unpack \(queued.formatted())"))
-        } else {
+        } else if queued == 0 {
+            let fullyGrown = model.areaStats(area)?.fullyGrown ?? false
             Image(systemName: "checkmark.circle.fill")
                 .font(Theme.typography.headline)
-                .foregroundStyle(Theme.colors.success)
+                .foregroundStyle(fullyGrown ? Theme.colors.grown : Theme.colors.success)
                 .frame(width: 40, height: 40)
                 .accessibilityLabel(Text("box.shelf.packed"))
         }

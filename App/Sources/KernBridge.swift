@@ -91,14 +91,14 @@ extension AreaStatistics {
     var consolidatedCards: Int { Int(consolidated) }
     var lockedPhrases: Int { Int(phrasesLocked) }
 
+    var queuedCards: Int { Int(queued) }
+
     /// The area's buckets and what they are measured against, as the design
     /// system reads them — which card falls in which bucket, and how a stale
     /// total is clamped, are the engine's rulings (`box/Statistics.kt`).
-    /// `settling` sits INSIDE `learning` there and is carried over the same way.
     var progress: AreaProgress {
         AreaProgress(consolidated: Int(consolidated), learning: Int(learning),
-                     settling: Int(settling), notIntroduced: Int(notIntroduced),
-                     progressTotal: Int(progressTotal))
+                     queued: Int(queued), progressTotal: Int(progressTotal))
     }
 }
 
@@ -115,9 +115,9 @@ var drillRandom: KotlinRandom { KotlinRandom.companion }
 extension LetterDrill {
     func ceiling(dictation: Bool) -> Int { Int(maxLevel(dictationAvailable: dictation)) }
 
-    func entryLevel(consolidated: Int) -> Int { Int(entryLevel(consolidatedCards: Int32(consolidated))) }
+    func entryLevel(growing: Int) -> Int { Int(entryLevel(growingCards: Int32(growing))) }
 
-    func winsToAdvance(consolidated: Int) -> Int { Int(winsToAdvance(consolidatedCards: Int32(consolidated))) }
+    func winsToAdvance(growing: Int) -> Int { Int(winsToAdvance(growingCards: Int32(growing))) }
 
     func stage(level: Int) -> LetterStage { stageFor(level: Int32(level)) }
 }

@@ -48,27 +48,18 @@ extension AppModel {
         (scheduling(for: cardID)?.reviewCount ?? 0) == 0
     }
 
-    /// Whether this card has landed — the one bar behind the stats display, the
-    /// session-summary "gefestigt" tally, and the support a word gets on its way in.
-    func isConsolidated(_ cardID: String) -> Bool {
+    /// Whether this card has cleared the growing bar — gate (a): phrase unlock,
+    /// the drill pools, and the support a word gets on its way in.
+    func isGrowing(_ cardID: String) -> Bool {
         guard let box else { return false }
-        return BoxEngine.shared.isConsolidated(state: box, cardId: cardID)
-    }
-
-    /// The words the learner already holds, in seed order — the pool the
-    /// letter drill dictates from. A pure bridge: WHICH cards count as
-    /// consolidated is Kern's rule (`consolidatedCardIds`), and the drill's own
-    /// filters (single word, audible) sit in LetterDrillAvailability.
-    func consolidatedCards() -> [Card] {
-        guard let box else { return [] }
-        return BoxEngine.shared.consolidatedCardIds(state: box).compactMap { box.cards[$0] }
+        return BoxEngine.shared.isGrowing(state: box, cardId: cardID)
     }
 
     /// Which face carries the picture: the prompt only where it cannot give the
     /// answer away, otherwise the reveal (contract §3).
     func emojiCue(for card: Card) -> EmojiCue {
         SprossKern.emojiCue(role: presentationRole(for: card.id),
-                                  consolidated: isConsolidated(card.id))
+                                  growing: isGrowing(card.id))
     }
 
     /// The rotated target form to prompt on a recognition review.
