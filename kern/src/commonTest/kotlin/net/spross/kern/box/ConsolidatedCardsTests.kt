@@ -12,7 +12,7 @@ import net.spross.kern.model.CardPhase
 class ConsolidatedCardsTests {
     private val now = Box.day1
 
-    /** A consolidated schedule at the default `consolidatedStability` of 6.0 days. */
+    /** A consolidated schedule at the default `growingStability` of 6.0 days. */
     private fun consolidated(cardId: String, stability: Double = 7.0, suspended: Boolean = false) =
         Box.sched(
             cardId,

@@ -67,7 +67,7 @@ sealed class CardRowState {
      * [phase] is never [CardPhase.New]: a card with nothing behind it is [Plain] or [PackOffered].
      *
      * [consolidated] travels BESIDE the phase rather than being read out of it.
-     * A card reaches Review well below [net.spross.kern.model.BoxConfig.consolidatedStability],
+     * A card reaches Review well below [net.spross.kern.model.BoxConfig.growingStability],
      * so a mark keyed to the phase would seal cards the area's consolidated count leaves out,
      * and a row would disagree with the shelf above it on sight.
      * Whatever a surface shows for "this word has landed", it takes it from here.

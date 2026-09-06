@@ -47,7 +47,7 @@ data class BoxConfig(
      * included — withdrew the emoji from the very next review, which is the first
      * TYPED one and the first that can actually catch the guess.
      */
-    val consolidatedStability: Double = 6.0,
+    val growingStability: Double = 6.0,
     /**
      * (Re)learning steps in seconds — ONE ladder, the same cadence whether a word has
      * never graduated (Learning) or lapsed after it did (Relearning). Minutes and

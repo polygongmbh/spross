@@ -147,7 +147,7 @@ class TodayReportTests {
             state,
             Box.sched(
                 "w01",
-                stability = 1.5, // under consolidatedStability 6.0 — still on its way in
+                stability = 1.5, // under growingStability 6.0 — still on its way in
                 dueMillis = now,
                 lastReviewMillis = Box.plusDays(now, -10.0),
             ),

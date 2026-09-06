@@ -126,7 +126,7 @@ class StoreCodecTests {
         val decoded = StoreCodec.decode(legacy)
 
         assertEquals(30, decoded.config.sessionCap)
-        assertEquals(6.0, decoded.config.consolidatedStability)
+        assertEquals(6.0, decoded.config.growingStability)
         assertEquals(BoxConfig().stepsSeconds, decoded.config.stepsSeconds)
         assertEquals("w1", decoded.scheduling.getValue("w1").cardId)
     }

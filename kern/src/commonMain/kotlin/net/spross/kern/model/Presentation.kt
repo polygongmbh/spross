@@ -55,7 +55,7 @@ enum class ProducePrompt {
  * understood.
  *
  * Two gates and a rotation. [consolidated]
- * ([net.spross.kern.model.BoxConfig.consolidatedStability]) is the same bar
+ * ([net.spross.kern.model.BoxConfig.growingStability]) is the same bar
  * [emojiCue] reads, from the other side: a word that has landed can spare its meaning,
  * and one still landing must not have its only cue taken away. [audible]
  * is the device's word (a recording, a voice, and reading aloud switched on), and false

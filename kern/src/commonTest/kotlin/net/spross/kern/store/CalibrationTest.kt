@@ -16,7 +16,7 @@ class CalibrationTest {
             sessionCap = 9,
             desiredRetention = 0.95,
             maximumIntervalDays = 30,
-            consolidatedStability = 3.0,
+            growingStability = 3.0,
             stepsSeconds = listOf(60L),
         )
         assertNotEquals(BoxConfig.product(), stale)

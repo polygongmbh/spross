@@ -225,7 +225,7 @@ internal object Statistics {
     }
 
     /**
-     * "Has this word landed": Review phase at or above [BoxConfig.consolidatedStability].
+     * "Has this word landed": Review phase at or above [BoxConfig.growingStability].
      * The ONE bar — the stats split, the session-summary tally, phrase unlock, the drill
      * pools, and the in-session presentation rules all ask it. A card that just lapsed is
      * back in Relearning, so it stops being consolidated, which is the point: it needs the
@@ -233,7 +233,7 @@ internal object Statistics {
      */
     fun isConsolidated(state: BoxState, sched: CardScheduling): Boolean =
         sched.phase == CardPhase.Review &&
-            (sched.memory?.stability ?: 0.0) >= state.config.consolidatedStability
+            (sched.memory?.stability ?: 0.0) >= state.config.growingStability
 
     /**
      * Walk back from today: a missed day is bridged, two in a row end the run. Forgiveness

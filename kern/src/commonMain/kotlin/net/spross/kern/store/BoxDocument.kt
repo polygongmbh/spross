@@ -78,7 +78,7 @@ internal data class ConfigDto(
     // why: defaulted so a document written before this bar existed still decodes; the
     // keys it replaced (settledStability among them) are dropped by ignoreUnknownKeys.
     // Calibration the build re-applies on load, not user data worth migrating.
-    val consolidatedStability: Double = 6.0,
+    val growingStability: Double = 6.0,
     // why: defaulted so a document written under the old learningStepsSeconds /
     // relearningStepsSeconds split still decodes — both keys are unknown now and
     // dropped, and this falls back to the build's calibration like the bar above.
@@ -147,7 +147,7 @@ private fun configDto(config: BoxConfig): ConfigDto = ConfigDto(
     sessionCap = config.sessionCap,
     desiredRetention = config.desiredRetention,
     maximumIntervalDays = config.maximumIntervalDays,
-    consolidatedStability = config.consolidatedStability,
+    growingStability = config.growingStability,
     stepsSeconds = config.stepsSeconds,
 )
 
@@ -246,7 +246,7 @@ private fun ConfigDto.toDomain(): BoxConfig = BoxConfig(
     sessionCap = sessionCap,
     desiredRetention = desiredRetention,
     maximumIntervalDays = maximumIntervalDays,
-    consolidatedStability = consolidatedStability,
+    growingStability = growingStability,
     stepsSeconds = stepsSeconds,
 )
 
