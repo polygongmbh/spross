@@ -103,21 +103,20 @@ class HarvestTests {
      */
     @Test
     fun findsATaughtWordInsideALongerOne() {
-        val box = Box.state(listOf(card(target = "penda", source = "mögen")))
+        val box = Box.state(listOf(card(target = "penda", source = "lieben")))
         val found = one("```spross\nninapenda = ich liebe es\n```", box)
 
         assertEquals(HarvestKind.Near, found.kind)
         assertEquals("penda", found.match)
     }
 
-    /** What the target side hides, the language the learner reads still says. */
+    /** A word the box's own is only a scrap of stands NEXT to it rather than inside it. */
     @Test
-    fun findsTheOverlapOnTheGlossWhenTheSpellingHidesIt() {
-        val box = Box.state(listOf(card(target = "penda", source = "lieben")))
-        val found = one("```spross\nnapendezwa = lieben und geliebt werden\n```", box)
+    fun leavesAWordNewWhenTheBoxsFormIsOnlyAScrapOfIt() {
+        val box = Box.state(listOf(card(target = "hapa", source = "hier")))
+        val found = one("```spross\ntunamaliza hapa = wir machen hier Schluss\n```", box)
 
-        assertEquals(HarvestKind.Near, found.kind)
-        assertEquals("penda", found.match)
+        assertEquals(HarvestKind.New, found.kind)
     }
 
     /** One letter apart is a second card teaching the same word. */
@@ -125,7 +124,24 @@ class HarvestTests {
     fun findsASpellingASlipOff() {
         val box = Box.state(listOf(card(target = "ratiba", source = "Fahrplan")))
 
-        assertEquals(HarvestKind.Near, one("```spross\nratibu = Zeitplan\n```", box).kind)
+        assertEquals(HarvestKind.Near, one("```spross\nratibu = Fahrplan\n```", box).kind)
+    }
+
+    /** One letter apart and glossed nothing like it is a different word, not a slip. */
+    @Test
+    fun leavesASpellingSlipNewWhenItMeansSomethingElse() {
+        val box = Box.state(listOf(card(target = "kupokea", source = "empfangen")))
+        val found = one("```spross\nkupotea = sich verirren\n```", box)
+
+        assertEquals(HarvestKind.New, found.kind)
+    }
+
+    /** A gloss with no word long enough to tell them apart cannot rule the spelling out. */
+    @Test
+    fun keepsANearWhenTheGlossSaysNothingEitherWay() {
+        val box = Box.state(listOf(card(target = "penda", source = "mögen")))
+
+        assertEquals(HarvestKind.Near, one("```spross\nninapenda = ich mag es\n```", box).kind)
     }
 
     /** A word that shares nothing with the box is what the learner asked the chat for. */

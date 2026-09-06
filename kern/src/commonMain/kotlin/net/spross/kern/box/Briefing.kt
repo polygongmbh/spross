@@ -85,6 +85,9 @@ data class Briefing(
         Ask me one question per turn.
         Correct mistakes by mirroring inside your answer —
         explain if asked or the mistake repeats.
+        When I reach for a $sourceName word mid-sentence because I lack the $targetName one,
+        mirror that too: say my sentence back with the $targetName word in its place,
+        so I pick it up from hearing it rather than from being taught it.
     """.trimIndent()
 
     /** The opening turn: something to read, before the learner has had to say anything. */
@@ -99,18 +102,28 @@ data class Briefing(
         Then ask whether to go deeper, switch topic, or just talk.
     """.trimIndent()
 
-    /** The ask that closes the loop: the words the conversation turned up, fenced for [Harvest]. */
+    /**
+     * The ask that closes the loop: the words the conversation turned up, fenced for [Harvest].
+     *
+     * WHEN is as load-bearing as what: the export is the only way a conversation reaches the
+     * box, so the end of a talk is the one turn it may not be missing from, and a learner
+     * having to ask for it is the loop half closed.
+     */
     private fun harvestAsk(): String {
         val example = newWords.firstOrNull() ?: inPlay.firstOrNull()
         return """
-            Check in at a natural pause, or whenever I ask. Focus on key words that
-            came up repeatedly and were not part of the prompt, one per line as
-            `$targetName = $sourceName`, fenced ```spross, and remind me to paste it
-            back into Spross to add them:
+            Export for Spross: the key words that came up repeatedly and were not already
+            in the lists above, one per line as `$targetName = $sourceName`, fenced ```spross,
+            with a reminder to paste it back into Spross to add them:
 
             ```spross
             ${example?.target ?: "…"} = ${example?.source ?: "…"}
             ```
+
+            Send that block UNASKED the moment I say we are done, say goodbye, or the talk
+            winds down — never end that turn without it. Send it whenever I ask, and at a
+            natural pause once we have talked a while; not straight after the opening story,
+            when nothing has come up yet.
         """.trimIndent()
     }
 }

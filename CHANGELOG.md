@@ -26,6 +26,8 @@
 - Android returns to the box after closing About or changing the learning language from the box's settings.
 - Listening no longer leads every session with the same one unseen word; the earliest ones still lead as a group, but shuffle among themselves.
 - A word you pack now comes up before ones you packed earlier, in reviews and in listening alike.
+- The AI chat says a sentence back to you with the word you reached for in your own language put right, and hands over the words to bring home when the talk ends instead of waiting to be asked.
+- Words brought back from an AI chat only land near a word you already have when the spelling and the meaning both line up.
 
 ## 6.0.1 — 2026-09-05
 

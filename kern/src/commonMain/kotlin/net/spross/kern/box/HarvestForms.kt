@@ -1,6 +1,5 @@
 package net.spross.kern.box
 
-import kotlin.math.abs
 import net.spross.kern.model.articledForm
 import net.spross.kern.model.nfcNormalized
 import net.spross.kern.session.AnswerNormalizer
@@ -16,7 +15,7 @@ enum class HarvestKind {
     /** Nothing in the box looks like it. The only kind that arrives ticked. */
     New,
 
-    /** The box teaches something spelled almost like it, inside it, or glossed the same. */
+    /** The box teaches something spelled almost like it that also means almost the same. */
     Near,
 
     /** The box already teaches this exact form. */
@@ -37,35 +36,39 @@ data class HarvestWord(
  *
  * Built once per paste — a walk of every card — and asked once per pasted line.
  *
- * "Something like it" is deliberately WIDE, because the two mistakes are not the same size:
- * a near word shown beside the form it leans on costs one tap to keep, while a missed one
- * is a second card teaching a word the box already has. It catches three shapes:
- * a spelling one or two slips off, a taught word sitting INSIDE a longer one — agglutinating
- * languages hand back whole phrases as single words, sw `ninapenda` around `penda` — and a
- * gloss whose telling words are the other's, which is how a pair the target side hides
- * (`ninapenda` = "I love") is still caught on the language the learner reads.
+ * "Something like it" wants BOTH sides of the pair to lean the same way: a spelling that
+ * relates AND a gloss that does not contradict it. Either side alone is noise in a language
+ * that builds long words out of short ones — sw `kupotea` ("get lost") is one letter off
+ * `kupokea` ("receive") and `anga` ("sky") sits inside `kuchanganya` ("confuse"), and neither
+ * is the word the box already teaches. The spelling side catches a slip or two, and a taught
+ * word sitting INSIDE a longer one where the extra letters do not outweigh the shared ones —
+ * agglutinating languages hand back whole phrases as single words, sw `ninapenda` around
+ * `penda`, while `hapa` inside `tunamaliza hapa` is a different word standing next to it.
+ * The gloss side only VETOES: two glosses whose telling words are strangers are two words,
+ * and a gloss too short to have telling words says nothing either way.
  */
 internal class BoxForms(state: BoxState) {
 
-    /** Every written target form, folded for comparison, against the form as the box writes it. */
+    /** One written form of the box's, folded for comparison, with the gloss it was taught by. */
+    private class Known(val folded: String, val shown: String, val gloss: Set<String>)
+
+    /** Every written target form against the form as the box writes it — the exact lookup. */
     private val targets = LinkedHashMap<String, String>()
 
-    /** Each card's gloss reduced to its telling words, against that card's target form. */
-    private val glosses = mutableListOf<Pair<Set<String>, String>>()
+    private val known = mutableListOf<Known>()
 
     init {
         for (card in state.cards.values) {
             val shown = articledForm(card.target.grammar["gender"], card.target.text)
-            put(card.target.text, shown)
-            put(shown, shown)
-            card.target.synonyms.forEach { put(it, shown) }
-            card.target.variants.forEach { put(it, shown) }
-            glosses += stems(card.source.text) to shown
+            val gloss = stems(card.source.text)
+            put(card.target.text, shown, gloss)
+            put(shown, shown, gloss)
+            card.target.synonyms.forEach { put(it, shown, gloss) }
+            card.target.variants.forEach { put(it, shown, gloss) }
         }
         for (word in state.ownWords) {
             val shown = word.texts[state.joinStamp.target] ?: continue
-            put(shown, shown)
-            word.texts[state.joinStamp.source]?.let { glosses += stems(it) to shown }
+            put(shown, shown, stems(word.texts[state.joinStamp.source].orEmpty()))
         }
     }
 
@@ -73,37 +76,55 @@ internal class BoxForms(state: BoxState) {
     fun standing(word: BriefWord): HarvestWord {
         val target = fold(word.target)
         targets[target]?.let { return HarvestWord(word, HarvestKind.Held, it) }
-        val near = nearForm(target) ?: nearGloss(stems(word.source))
+        val near = nearForm(target, stems(word.source))
         return if (near == null) HarvestWord(word, HarvestKind.New, null)
         else HarvestWord(word, HarvestKind.Near, near)
     }
 
-    private fun put(form: String, shown: String) {
-        targets.getOrPut(fold(form)) { shown }
+    private fun put(form: String, shown: String, gloss: Set<String>) {
+        val folded = fold(form)
+        if (targets.containsKey(folded)) return
+        targets[folded] = shown
+        known += Known(folded, shown, gloss)
     }
 
-    /** A spelling a slip or two off, or one word standing inside the other. */
-    private fun nearForm(target: String): String? {
+    /** The box's form this one leans on: spelled close enough, and not glossed against it. */
+    private fun nearForm(target: String, gloss: Set<String>): String? {
         if (target.length < MIN_STEM) return null
-        for ((folded, shown) in targets) {
-            if (folded.length < MIN_STEM) continue
-            if (target.contains(folded) || folded.contains(target)) return shown
-            val slips = if (minOf(folded.length, target.length) >= TWO_SLIP_LENGTH) 2 else 1
-            if (abs(folded.length - target.length) > slips) continue
-            if (AnswerNormalizer.damerauLevenshtein(target, folded) <= slips) return shown
+        for (form in known) {
+            if (form.folded.length < MIN_STEM) continue
+            if (!spellingLeans(target, form.folded)) continue
+            if (!glossesAgree(gloss, form.gloss)) continue
+            return form.shown
         }
         return null
     }
 
-    /** One gloss carrying every telling word of the other — the same meaning, longer or shorter. */
-    private fun nearGloss(stems: Set<String>): String? {
-        if (stems.isEmpty()) return null
-        for ((known, shown) in glosses) {
-            if (known.isEmpty()) continue
-            if (stems.containsAll(known) || known.containsAll(stems)) return shown
-        }
-        return null
+    /**
+     * One word standing inside the other with the shared letters outweighing the extra ones,
+     * or a spelling a slip or two off.
+     */
+    private fun spellingLeans(one: String, other: String): Boolean {
+        val longest = maxOf(one.length, other.length)
+        val shortest = minOf(one.length, other.length)
+        if (one.contains(other) || other.contains(one)) return shortest * 2 >= longest
+        val slips = if (shortest >= TWO_SLIP_LENGTH) 2 else 1
+        if (longest - shortest > slips) return false
+        return AnswerNormalizer.damerauLevenshtein(one, other) <= slips
     }
+
+    /**
+     * Whether two glosses could be saying the same thing: one telling word shared, counting a
+     * word the other's is built on. A gloss with no telling word at all agrees with anything —
+     * it is silence, not disagreement.
+     */
+    private fun glossesAgree(one: Set<String>, other: Set<String>): Boolean {
+        if (one.isEmpty() || other.isEmpty()) return true
+        return one.any { mine -> other.any { theirs -> sharedRoot(mine, theirs) } }
+    }
+
+    private fun sharedRoot(one: String, other: String): Boolean =
+        one.commonPrefixWith(other).length >= MIN_STEM
 
     private companion object {
         /** Under this many letters a shared spelling is a coincidence rather than a stem. */
