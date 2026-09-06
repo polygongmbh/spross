@@ -85,17 +85,6 @@ then open design work, then what waits on someone else, grouped by who that is.
   circles carry only the entry mark where the atlas and calendar wear a record
   (`LettersOverview+Practice.swift`, `ui/LettersOverviewScreen.kt`) — should the tile and
   typed stages, which enumerate, file one and open above it too?
-- The own-content section's plus writes a WORD (`OwnWordFormView`, `ui/OwnWordForm.kt`), so
-  there is no way to say something that is not about one — a report always hangs off a card
-  (`ReportedIssue.cardId`, `kern/.../box/Feedback.kt`), and app complaints arrive wearing an
-  unrelated card id. The form takes an optional comment field that files on its own when both
-  word sides are blank; kern side is a nullable `cardId` (a `!` change to `ReportedIssueDto`).
-- A search hit cannot be opened where it lives: an AREA hit hands the box its area to unfold
-  (`BoxSearchView.reveal`), a WORD hit only offers hearing and packing, so a word found by
-  typing is never seen among its neighbors. Its row menu wants a "show in the box" that
-  reveals `card.area` and dismisses — `reveal` is already in hand on iOS
-  (`App/Sources/Screens/BoxSearchView.swift`, `BoxRowMenu.swift`; `android/.../ui/BoxScreen.kt`,
-  `ui/BoxRowMenu.kt`).
 - Android's answer-field mark returns null for `TurnFeedback.Revealed` where iOS draws `.revealed` amber,
   against the `// why: correctness is never color alone` comment in the same two files
   (`android/.../ui/SessionTurn.kt`, `ui/DrillField.kt`).
