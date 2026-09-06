@@ -34,7 +34,7 @@
    }
   },
   "again": { "text": "denove", "variants": ["refoje", "ree"] },
-  "still": { "text": "ankoraŭ", "notes": { "de": "ankoraŭ (noch) und ankaŭ (auch) nicht verwechseln." } },
+  "still": { "text": "ankoraŭ", "notes": { "de": "ankoraŭ heißt noch, ankaŭ heißt auch." } },
   "finally": { "text": "fine", "variants": ["finfine"] },
   "then": { "text": "poste" },
   "not": {

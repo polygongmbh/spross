@@ -11,7 +11,7 @@
   "mouth": {
    "text": "mdomo",
    "grammar": { "plural": "midomo" },
-   "notes": { "de": "mdomo heißt Mund und Lippe — eine eigene Vokabel für die Lippe gibt es nicht." }
+   "notes": { "de": "mdomo heißt Mund und Lippe." }
   },
   "tooth": { "text": "jino", "grammar": { "plural": "meno" } },
   "hand": {

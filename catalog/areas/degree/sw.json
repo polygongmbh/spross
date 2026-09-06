@@ -12,25 +12,16 @@
   "sometimes": { "text": "wakati mwingine" },
   "often": { "text": "mara nyingi" },
   "very": { "text": "sana", "notes": { "de": "sana steht hinter dem Wort: nzuri sana, asante sana." } },
-  "too": {
-   "text": "mno",
-   "notes": { "de": "mno steht hinter dem Wort: ghali mno · sana hieße sehr, nicht zu." }
-  },
+  "too": { "text": "mno", "notes": { "de": "mno steht hinter dem Wort: ghali mno = zu teuer." } },
   "enough": {
    "text": "ya kutosha",
    "variants": ["cha kutosha", "vya kutosha", "wa kutosha", "za kutosha"],
-   "notes": {
-    "de": "die Vorsilbe richtet sich nach der Nomenklasse: maji ya kutosha, chakula cha kutosha · Es reicht. heißt Inatosha."
-   }
+   "notes": { "de": "Es reicht. heißt Inatosha." }
   },
   "partially": { "text": "kwa sehemu" },
   "gladly": { "text": "kwa furaha" },
   "completely": { "text": "kabisa" },
-  "all": {
-   "text": "-ote",
-   "variants": ["wote", "yote", "zote", "chote", "vyote", "lote", "pote"],
-   "notes": { "de": "die Vorsilbe richtet sich nach der Nomenklasse: watu wote, maji yote, vitu vyote." }
-  },
+  "all": { "text": "-ote", "variants": ["wote", "yote", "zote", "chote", "vyote", "lote", "pote"] },
   "some": {
    "text": "baadhi ya",
    "notes": {
@@ -45,11 +36,7 @@
    "text": "kidogo",
    "notes": { "de": "hinter dem Verb oder Adjektiv: subiri kidogo, moto kidogo." }
   },
-  "few": {
-   "text": "-chache",
-   "variants": ["wachache", "chache", "vichache", "machache", "michache"],
-   "notes": { "de": "Vorsilbe der Nomenklasse: watu wachache, siku chache." }
-  },
+  "few": { "text": "-chache", "variants": ["wachache", "chache", "vichache", "machache", "michache"] },
   "once": {
    "text": "mara moja",
    "notes": { "de": "mara zählt die Male: mara mbili = zweimal · mara moja heißt auch sofort." }

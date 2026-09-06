@@ -19,7 +19,7 @@
   "to-need": {
    "text": "avere bisogno di",
    "variants": ["avere bisogno"],
-   "notes": { "de": "Es gibt kein einzelnes Verb: das Gebrauchte steht nach di — Ho bisogno di aiuto." }
+   "notes": { "de": "das Gebrauchte steht nach di: Ho bisogno di aiuto." }
   },
   "to-know": { "text": "sapere", "notes": { "de": "wissen = sapere · Personen und Orte kennen = conoscere." } },
   "to-remember": { "text": "ricordarsi" },

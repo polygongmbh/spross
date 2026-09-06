@@ -12,8 +12,8 @@
    "text": "Wartenummer",
    "grammar": { "gender": "die", "plural": "-n" },
    "notes": {
-    "en": "You DRAW a number here — ziehen, never nehmen.",
-    "es": "Aquí se SACA un número — ziehen, nunca nehmen."
+    "en": "A number is DRAWN here: eine Nummer ziehen.",
+    "es": "Aquí se SACA un número: eine Nummer ziehen."
    }
   },
   "case-worker": { "text": "Sachbearbeiter", "grammar": { "gender": "der", "plural": "=" } },

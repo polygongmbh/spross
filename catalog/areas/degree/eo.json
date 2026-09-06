@@ -10,7 +10,7 @@
   },
   "less": { "text": "malpli" },
   "always": { "text": "ĉiam" },
-  "never": { "text": "neniam", "notes": { "de": "verneint allein — kein zweites ne: Mi neniam iras." } },
+  "never": { "text": "neniam", "notes": { "de": "neniam verneint allein: Mi neniam iras." } },
   "maybe": { "text": "eble" },
   "sometimes": { "text": "kelkfoje", "variants": ["iafoje"] },
   "often": { "text": "ofte" },

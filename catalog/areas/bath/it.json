@@ -37,10 +37,7 @@
   },
   "to-take-shower": { "text": "farsi la doccia", "variants": ["fare la doccia"] },
   "to-do-laundry": { "text": "fare il bucato", "variants": ["lavare i panni"] },
-  "to-brush-teeth": {
-   "text": "lavarsi i denti",
-   "notes": { "de": "man wäscht sich die Zähne: lavarsi i denti; spazzolarsi i denti sagt kaum jemand." }
-  },
+  "to-brush-teeth": { "text": "lavarsi i denti", "notes": { "de": "im Italienischen wäscht man sich die Zähne." } },
   "to-dry-off": { "text": "asciugarsi" },
   "to-hang-up-laundry": { "text": "stendere il bucato", "variants": ["stendere i panni"] },
   "to-clean": { "text": "pulire" },

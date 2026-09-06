@@ -22,7 +22,7 @@
   "the-lion-is-roaring": { "text": "Der Löwe brüllt." },
   "the-mosquito-is-biting-me": {
    "text": "Die Mücke sticht mich.",
-   "notes": { "de": "Mücken stechen, sie beißen nicht — und das Ergebnis heißt der Mückenstich." }
+   "notes": { "de": "Mücken stechen — das Ergebnis heißt der Mückenstich." }
   }
  }
 }

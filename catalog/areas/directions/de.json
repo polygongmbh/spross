@@ -14,9 +14,9 @@
   "to-follow": {
    "text": "folgen",
    "notes": {
-    "de": "folgen steht mit Dativ, nicht mit Akkusativ: Folgen Sie mir. (nicht: mich)",
-    "en": "folgen takes the dative, not the accusative: Folgen Sie mir — never mich.",
-    "es": "folgen rige dativo, no acusativo: Folgen Sie mir — nunca mich."
+    "de": "folgen steht mit Dativ: Folgen Sie mir, folgen Sie dem Schild.",
+    "en": "folgen takes the dative: Folgen Sie mir, folgen Sie dem Schild.",
+    "es": "folgen rige dativo: Folgen Sie mir, folgen Sie dem Schild."
    }
   },
   "way": { "text": "Weg", "grammar": { "gender": "der", "plural": "-e" } },
