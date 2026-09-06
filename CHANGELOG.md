@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 6.2.0 — 2026-09-06
+
 - A word now stays "Growing" for a full month before it is marked fully grown, and the box shelf's badge and progress bar show the difference.
 
 ## 6.1.0 — 2026-09-06
