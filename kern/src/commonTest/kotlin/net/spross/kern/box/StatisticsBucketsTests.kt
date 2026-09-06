@@ -17,7 +17,7 @@ class StatisticsBucketsTests {
             ),
         )
         val future = Box.plusDays(now, 5.0)
-        state = Box.inject(state, Box.sched("w01", stability = 7.0, dueMillis = future, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w01", stability = 35.0, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(
             state,
             Box.sched("w02", phase = CardPhase.Learning, stability = 1.0, dueMillis = future, lastReviewMillis = now),
@@ -41,8 +41,8 @@ class StatisticsBucketsTests {
     fun settlingIsTheReviewCardsStillShortOfTheBar() {
         var state = Box.state((1..4).map { Box.word(it, area = "kitchen") })
         val future = Box.plusDays(now, 5.0)
-        // Consolidated (≥ 6.0), still short of matured.
-        state = Box.inject(state, Box.sched("w01", stability = 7.0, dueMillis = future, lastReviewMillis = now))
+        // Consolidated (≥ 30.0).
+        state = Box.inject(state, Box.sched("w01", stability = 35.0, dueMillis = future, lastReviewMillis = now))
         // In Review, under the bar — the settling bucket itself.
         state = Box.inject(state, Box.sched("w02", stability = 3.0, dueMillis = future, lastReviewMillis = now))
         // Still walking the steps: neither consolidated nor settling.

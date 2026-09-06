@@ -225,24 +225,25 @@ internal object Statistics {
     }
 
     /**
-     * "Has this word landed": Review phase at or above [BoxConfig.growingStability].
-     * The ONE bar — the stats split, the session-summary tally, phrase unlock, the drill
-     * pools, and the in-session presentation rules all ask it. A card that just lapsed is
-     * back in Relearning, so it stops being consolidated, which is the point: it needs the
+     * "Has this word fully grown": Review phase at or above [MATURED_STABILITY] — the
+     * display bucket behind the stats split, the session-summary tally, the Grown badge,
+     * the progress-bar jade segment, and the area-complete mark. A card that just lapsed
+     * is back in Relearning, so it stops counting, which is the point: it needs the
      * support again and has to earn the reach back.
      */
     fun isConsolidated(state: BoxState, sched: CardScheduling): Boolean =
         sched.phase == CardPhase.Review &&
-            (sched.memory?.stability ?: 0.0) >= state.config.growingStability
+            (sched.memory?.stability ?: 0.0) >= MATURED_STABILITY
 
     /**
      * Whether this card has cleared [BoxConfig.growingStability] — Review phase at or above
      * the bar. Gate (a): phrase unlock, the drill pools, and the in-session presentation
      * rules (the emoji that props recall up, the sound prompt that withdraws the meaning)
-     * all ask this, identical math to [isConsolidated] under a name naming what it gates
-     * rather than what it displays.
+     * all ask this.
      */
-    fun isGrowing(state: BoxState, sched: CardScheduling): Boolean = isConsolidated(state, sched)
+    fun isGrowing(state: BoxState, sched: CardScheduling): Boolean =
+        sched.phase == CardPhase.Review &&
+            (sched.memory?.stability ?: 0.0) >= state.config.growingStability
 
     /**
      * Walk back from today: a missed day is bridged, two in a row end the run. Forgiveness

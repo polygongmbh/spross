@@ -46,7 +46,7 @@ enum class GrowthStage {
     /** In Review, still under [net.spross.kern.model.BoxConfig.growingStability]. */
     Fresh,
 
-    /** Growing: see [Statistics.isConsolidated] — the "has this word landed" bar. */
+    /** Growing: see [Statistics.isGrowing] — the "has this word landed" bar. */
     Growing,
 
     /** Matured: in Review at or above [MATURED_STABILITY]. */
@@ -87,7 +87,7 @@ internal fun stageOf(state: BoxState, sched: CardScheduling): GrowthStage = when
     sched.phase == CardPhase.Relearning -> GrowthStage.Relearning
     sched.phase != CardPhase.Review -> GrowthStage.Learning
     (sched.memory?.stability ?: 0.0) >= MATURED_STABILITY -> GrowthStage.Matured
-    Statistics.isConsolidated(state, sched) -> GrowthStage.Growing
+    Statistics.isGrowing(state, sched) -> GrowthStage.Growing
     else -> GrowthStage.Fresh
 }
 

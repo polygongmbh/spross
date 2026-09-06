@@ -113,14 +113,14 @@ class TodayReportTests {
         var state = boxOf(3)
         state = Box.answered(state, "w01", Rating.Good, now)
         state = Box.answered(state, "w02", Rating.Good, now)
-        // Known on sight: introduced and consolidated by the same answer, so it
-        // belongs to the consolidated tally and never to the fresh one.
+        // Even known on sight, Easy's graduating stability (8.2956) falls well short of
+        // the matured bar — no rating crosses it on introduction any more.
         state = Box.answered(state, "w03", Rating.Easy, now)
 
         val today = BoxEngine.today(state, now, Box.TZ)
         assertEquals(3, today.introduced)
-        assertEquals(1, today.consolidated)
-        assertEquals(2, today.stillFresh)
+        assertEquals(0, today.consolidated)
+        assertEquals(3, today.stillFresh)
     }
 
     /** An older word crossing today is the consolidated tile's news, not the fresh tile's loss. */
@@ -143,19 +143,15 @@ class TodayReportTests {
     @Test
     fun theCrossingIsBookedOnTheAnswerThatMakesIt() {
         var state = boxOf(2)
-        state = Box.inject(
-            state,
-            Box.sched(
-                "w01",
-                stability = 1.5, // under growingStability 6.0 — still on its way in
-                dueMillis = now,
-                lastReviewMillis = Box.plusDays(now, -10.0),
-            ),
-        )
-        assertFalse(BoxEngine.isConsolidated(state, "w01"))
         state = Box.answered(state, "w01", Rating.Good, now)
+        assertFalse(BoxEngine.isConsolidated(state, "w01"))
+
+        // A second success, well after the natural interval, pushes stability past the
+        // matured bar — that is the day the crossing is booked.
+        val later = Box.plusDays(now, 30.0)
+        state = Box.answered(state, "w01", Rating.Good, later)
         assertTrue(BoxEngine.isConsolidated(state, "w01"))
-        assertEquals(1, BoxEngine.today(state, now, Box.TZ).consolidated)
+        assertEquals(1, BoxEngine.today(state, later, Box.TZ).consolidated)
     }
 
     /** A day nothing was answered on is clear, never finished — and it has no tally to show. */
