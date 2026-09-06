@@ -236,6 +236,15 @@ internal object Statistics {
             (sched.memory?.stability ?: 0.0) >= state.config.growingStability
 
     /**
+     * Whether this card has cleared [BoxConfig.growingStability] — Review phase at or above
+     * the bar. Gate (a): phrase unlock, the drill pools, and the in-session presentation
+     * rules (the emoji that props recall up, the sound prompt that withdraws the meaning)
+     * all ask this, identical math to [isConsolidated] under a name naming what it gates
+     * rather than what it displays.
+     */
+    fun isGrowing(state: BoxState, sched: CardScheduling): Boolean = isConsolidated(state, sched)
+
+    /**
      * Walk back from today: a missed day is bridged, two in a row end the run. Forgiveness
      * is a property of the neighborhood, not a budget — showing up restores it, so a
      * second miss weeks later never takes back the days built before the first. A bridged

@@ -394,6 +394,14 @@ object BoxEngine {
         state.scheduling[cardId]?.let { Statistics.isConsolidated(state, it) } ?: false
 
     /**
+     * Has this card cleared the growing bar? See [Statistics.isGrowing] — gate (a): phrase
+     * unlock, the drill pools, and the presentation support a word gets while it is still
+     * on its way in. Unknown ids read as false: a card with no schedule has cleared nothing.
+     */
+    fun isGrowing(state: BoxState, cardId: String): Boolean =
+        state.scheduling[cardId]?.let { Statistics.isGrowing(state, it) } ?: false
+
+    /**
      * Every consolidated card id, in seed order — the words the box may hand to a
      * drill that practices only material the learner already holds (letter-drill
      * dictation is the first caller).
