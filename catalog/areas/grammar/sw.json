@@ -1,0 +1,17 @@
+{
+ "title": "Sarufi",
+ "subtitle": "Aina za maneno na nyakati, kwa majina yao.",
+ "words": {
+  "verb": { "text": "kitenzi", "grammar": { "plural": "vitenzi" } },
+  "noun": { "text": "nomino", "grammar": { "plural": "=" } },
+  "adjective": { "text": "kivumishi", "grammar": { "plural": "vivumishi" } },
+  "noun-class": { "text": "ngeli", "grammar": { "plural": "=" } },
+  "affix": { "text": "kiambishi", "grammar": { "plural": "viambishi" } },
+  "past": {
+   "text": "wakati uliopita",
+   "notes": { "de": "-li-: nilikuja = ich kam · -me-: nimekuja = ich bin gekommen." }
+  },
+  "present": { "text": "wakati uliopo", "notes": { "de": "-na-: ninakuja = ich komme." } },
+  "future": { "text": "wakati ujao", "notes": { "de": "-ta-: nitakuja = ich werde kommen." } }
+ }
+}

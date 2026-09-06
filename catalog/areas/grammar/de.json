@@ -1,0 +1,14 @@
+{
+ "title": "Grammatik",
+ "subtitle": "Wortarten und Zeitformen benannt.",
+ "words": {
+  "verb": { "text": "Verb", "grammar": { "gender": "das", "plural": "-en" } },
+  "noun": { "text": "Nomen", "synonyms": ["Substantiv"], "grammar": { "gender": "das", "plural": "=" } },
+  "adjective": { "text": "Adjektiv", "grammar": { "gender": "das", "plural": "-e" } },
+  "noun-class": { "text": "Nomenklasse", "grammar": { "gender": "die", "plural": "-n" } },
+  "affix": { "text": "Affix", "grammar": { "gender": "das", "plural": "-e" } },
+  "past": { "text": "Vergangenheit", "synonyms": ["Präteritum"], "grammar": { "gender": "die" } },
+  "present": { "text": "Gegenwart", "synonyms": ["Präsens"], "grammar": { "gender": "die" } },
+  "future": { "text": "Zukunft", "synonyms": ["Futur"], "grammar": { "gender": "die" } }
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "title": "Grammaire",
+ "subtitle": "Classes de mots et temps verbaux, nommés.",
+ "words": {
+  "verb": { "text": "verbe", "grammar": { "gender": "le" } },
+  "noun": { "text": "substantif", "grammar": { "gender": "le" } },
+  "adjective": { "text": "adjectif", "variants": ["l'adjectif"], "grammar": { "gender": "l'" } },
+  "noun-class": { "text": "classe nominale", "grammar": { "gender": "la" } },
+  "affix": { "text": "affixe", "variants": ["l'affixe"], "grammar": { "gender": "l'" } },
+  "past": { "text": "passé", "grammar": { "gender": "le" } },
+  "present": { "text": "présent", "grammar": { "gender": "le" } },
+  "future": { "text": "futur", "synonyms": ["avenir"], "grammar": { "gender": "le" } }
+ }
+}

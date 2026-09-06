@@ -1,0 +1,14 @@
+{
+ "title": "Grammatica",
+ "subtitle": "Classi di parole e tempi verbali, nominati.",
+ "words": {
+  "verb": { "text": "verbo", "grammar": { "gender": "il" } },
+  "noun": { "text": "sostantivo", "grammar": { "gender": "il" } },
+  "adjective": { "text": "aggettivo", "variants": ["l'aggettivo"], "grammar": { "gender": "l'" } },
+  "noun-class": { "text": "classe nominale", "grammar": { "gender": "la" } },
+  "affix": { "text": "affisso", "variants": ["l'affisso"], "grammar": { "gender": "l'" } },
+  "past": { "text": "passato", "grammar": { "gender": "il" } },
+  "present": { "text": "presente", "grammar": { "gender": "il" } },
+  "future": { "text": "futuro", "grammar": { "gender": "il" } }
+ }
+}

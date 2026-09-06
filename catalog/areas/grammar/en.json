@@ -1,0 +1,14 @@
+{
+ "title": "Grammar",
+ "subtitle": "Word classes and tenses, named.",
+ "words": {
+  "verb": { "text": "verb" },
+  "noun": { "text": "noun" },
+  "adjective": { "text": "adjective" },
+  "noun-class": { "text": "noun class", "grammar": { "plural": "noun classes" } },
+  "affix": { "text": "affix", "grammar": { "plural": "affixes" } },
+  "past": { "text": "past", "variants": ["past tense"] },
+  "present": { "text": "present", "variants": ["present tense"] },
+  "future": { "text": "future", "variants": ["future tense"] }
+ }
+}

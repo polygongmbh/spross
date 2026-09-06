@@ -173,5 +173,19 @@
    "uk": "Ідіоми та вирази"
   },
   "areas": [{ "area": "idioms", "emoji": "🎭" }]
+ },
+ {
+  "group": "grammar",
+  "titles": {
+   "en": "Grammar",
+   "de": "Grammatik",
+   "eo": "Gramatiko",
+   "es": "Gramática",
+   "fr": "Grammaire",
+   "it": "Grammatica",
+   "sw": "Sarufi",
+   "uk": "Граматика"
+  },
+  "areas": [{ "area": "grammar", "emoji": "📐" }]
  }
 ]

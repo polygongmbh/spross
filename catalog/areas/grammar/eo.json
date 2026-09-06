@@ -1,0 +1,14 @@
+{
+ "title": "Gramatiko",
+ "subtitle": "Vortklasoj kaj tempoj, nomitaj.",
+ "words": {
+  "verb": { "text": "verbo" },
+  "noun": { "text": "substantivo" },
+  "adjective": { "text": "adjektivo" },
+  "noun-class": { "text": "substantiva klaso" },
+  "affix": { "text": "afikso" },
+  "past": { "text": "pasinteco" },
+  "present": { "text": "estanteco" },
+  "future": { "text": "estonteco" }
+ }
+}

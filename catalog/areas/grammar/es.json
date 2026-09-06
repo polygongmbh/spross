@@ -1,0 +1,14 @@
+{
+ "title": "Gramática",
+ "subtitle": "Clases de palabras y tiempos verbales, nombrados.",
+ "words": {
+  "verb": { "text": "verbo", "grammar": { "gender": "el" } },
+  "noun": { "text": "sustantivo", "grammar": { "gender": "el" } },
+  "adjective": { "text": "adjetivo", "grammar": { "gender": "el" } },
+  "noun-class": { "text": "clase nominal", "grammar": { "gender": "la" } },
+  "affix": { "text": "afijo", "grammar": { "gender": "el" } },
+  "past": { "text": "pasado", "grammar": { "gender": "el" } },
+  "present": { "text": "presente", "grammar": { "gender": "el" } },
+  "future": { "text": "futuro", "grammar": { "gender": "el" } }
+ }
+}

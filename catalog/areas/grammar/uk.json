@@ -1,0 +1,14 @@
+{
+ "title": "Граматика",
+ "subtitle": "Частини мови й часи, названі.",
+ "words": {
+  "verb": { "text": "дієслово", "grammar": { "plural": "дієслова" } },
+  "noun": { "text": "іменник" },
+  "adjective": { "text": "прикметник" },
+  "noun-class": { "text": "іменний клас", "grammar": { "plural": "іменні класи" } },
+  "affix": { "text": "афікс" },
+  "past": { "text": "минуле", "synonyms": ["минулий час"] },
+  "present": { "text": "теперішнє", "synonyms": ["теперішній час"] },
+  "future": { "text": "майбутнє", "synonyms": ["майбутній час"] }
+ }
+}
