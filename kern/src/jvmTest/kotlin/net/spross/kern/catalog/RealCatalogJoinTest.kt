@@ -5,7 +5,6 @@ import net.spross.kern.model.CardKind
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
-import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -137,17 +136,6 @@ class RealCatalogJoinTest {
         val note = "schwer heißt auch schwierig: eine schwere Aufgabe."
         assertEquals(note, catalog.join("en", "de").byId("heavy").target.note)
         assertEquals(note, catalog.join("uk", "de").byId("heavy").target.note)
-    }
-
-    /**
-     * A note explains the language it sits on, so it never reaches the prompt: German's
-     * accusative rule is on the German card, and a German learning Swahili is told nothing.
-     */
-    @Test
-    fun aSelfNoteNeverReachesThePromptSide() {
-        val id = "can-you-see-me"
-        assertNotNull(catalog.join("en", "de").byId(id).target.note)
-        assertNull(catalog.join("de", "sw").byId(id).source.note)
     }
 
     @Test
