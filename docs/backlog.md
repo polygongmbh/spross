@@ -81,6 +81,12 @@ then open design work, then what waits on someone else, grouped by who that is.
 
 ## App & UX
 
+- A report is always filed AGAINST a card (`ReportedIssue.cardId`,
+  `kern/.../box/Feedback.kt`), so a learner with something to say about the APP has to
+  attach it to whatever word is on screen — two of three reports in one batch were app
+  bugs ("German self-hint shown for swahili learner when long pressing in box view")
+  wearing an unrelated card id. A general report needs a nullable card id (a `!` change
+  to `ReportedIssueDto`) and an entry point that is not a card's menu.
 - Android's answer-field mark returns null for `TurnFeedback.Revealed` where iOS draws `.revealed` amber,
   against the `// why: correctness is never color alone` comment in the same two files
   (`android/.../ui/SessionTurn.kt`, `ui/DrillField.kt`).
@@ -93,6 +99,15 @@ then open design work, then what waits on someone else, grouped by who that is.
   `DrillRunView+Content.swift` with the live check wired per copy, so one component owning the
   branch and the `onChange(of: input)` beside it would make a fourth drill's auto-confirm
   structural rather than remembered.
+- Box search answers out of `state.cards` alone (`kern/.../box/BoxSearch.search`), so a
+  word the catalog HAS but this profile never joined — no target realization, a parked
+  area — comes back as nothing rather than as the word
+  (`App/Sources/Screens/BoxSearchView.swift`, `android/.../ui/BoxScreen.kt`) — show the
+  catalog's word unpackable and read-only, or is the box deliberately the only truth?
+- "Move noun class, word types and the tenses further back" — filed as a suggestion
+  without a surface; the three are a card's Swahili plural/class grammar, its kind badge
+  and the tense phrases' seed positions, which sit in three different places. Which one
+  arrives too early for the owner: the card's own lines, or the order content unlocks in?
 - Android still stores read-aloud as the boolean iOS calls its legacy key (`pronunciationMuted`,
   `android/.../audio/Pronouncer.kt:313`, against iOS's three-state `readAloud` in
   `App/Sources/Audio/AudioSession.swift`) and so has no `followsPhone` middle state, but on
