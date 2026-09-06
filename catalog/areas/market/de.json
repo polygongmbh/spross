@@ -16,11 +16,7 @@
    "grammar": { "gender": "das", "plural": "=" },
    "notes": { "de": "nach einer Zahl unverändert: zwei Kilo Tomaten." }
   },
-  "gram": {
-   "text": "Gramm",
-   "grammar": { "gender": "das", "plural": "=" },
-   "notes": { "de": "nach einer Zahl unverändert: 500 Gramm — die Form Gramme sagt niemand." }
-  },
+  "gram": { "text": "Gramm", "grammar": { "gender": "das", "plural": "=" } },
   "liter": { "text": "Liter", "grammar": { "gender": "der", "plural": "=" } },
   "fresh": { "text": "frisch" },
   "ripe": { "text": "reif" },

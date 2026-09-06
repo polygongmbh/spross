@@ -12,7 +12,7 @@
   "to-hurt": {
    "text": "dolori",
    "notes": {
-    "de": "dolori steht beim Körperteil, nicht bei der Person: Mia kapo doloras oder Doloras al mi la kapo."
+    "de": "dolori steht beim Körperteil; die Person kommt mit al: Mia kapo doloras · Doloras al mi la kapo."
    }
   },
   "to-cough": { "text": "tusi" },
@@ -25,9 +25,7 @@
   "to-hurt-oneself": {
    "text": "vundi sin",
    "variants": ["sin vundi", "vundiĝi"],
-   "notes": {
-    "de": "vundi ist transitiv: vundi la manon. Ohne Objekt heißt „sich verletzen“ vundi sin oder vundiĝi."
-   }
+   "notes": { "de": "vundi ist transitiv: vundi la manon; reflexiv wird daraus „sich verletzen“." }
   },
   "bandage": { "text": "bandaĝo" },
   "band-aid": { "text": "plastro" },

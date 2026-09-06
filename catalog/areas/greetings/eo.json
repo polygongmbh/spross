@@ -42,7 +42,7 @@
   "whats-your-name": {
    "text": "Kiel vi nomiĝas?",
    "variants": ["Kio estas via nomo?"],
-   "notes": { "de": "vi ist die einzige Anrede — Esperanto unterscheidet kein du/Sie." }
+   "notes": { "de": "vi ist die einzige Anrede — sie gilt für du und Sie gleichermaßen." }
   },
   "my-name-is": { "text": "Mi nomiĝas …" },
   "yes": { "text": "Jes." },

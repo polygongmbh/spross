@@ -71,7 +71,7 @@
   },
   "i-dont-eat-meat": {
    "text": "Je ne mange pas de viande.",
-   "notes": { "de": "Nach der Verneinung wird aus du/de la ein blankes de: pas de viande." }
+   "notes": { "de": "Nach der Verneinung wird aus du/de la ein blankes de: je ne bois pas de lait." }
   },
   "i-eat-rice-with-sauce": { "text": "Je mange du riz avec de la sauce." },
   "the-food-is-ready": {
