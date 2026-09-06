@@ -23,7 +23,10 @@
   "band-aid": { "text": "plasta", "grammar": { "plural": "=" } },
   "to-recover": { "text": "kupona" },
   "allergy": { "text": "mzio", "grammar": { "plural": "mizio" } },
-  "my-throat-hurts-a-lot": { "text": "Koo linaniuma sana." },
+  "my-throat-hurts-a-lot": {
+   "text": "Koo linaniuma sana.",
+   "notes": { "de": "linaniuma = linauma + -ni- „mir“: das „mein“ steckt im Verb." }
+  },
   "ive-had-a-fever-since-yesterday": { "text": "Nina homa tangu jana." },
   "get-well-soon": {
    "text": "Upone haraka!",
