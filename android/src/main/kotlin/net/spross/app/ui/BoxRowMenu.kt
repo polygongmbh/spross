@@ -142,7 +142,7 @@ internal fun BoxRowMenu(
 @Composable
 private fun WordCardLines(model: AppModel, card: Card, chrome: Chrome) {
     val also = CardDisplay.alsoLine(card.target, chrome, card.target.text)
-    val note = card.target.note ?: card.source.note
+    val note = card.target.note
     // why: a card with no schedule reports 0 stability, and "Hält 0 Tage" would be a
     // fact about the engine rather than about the word — the row itself says nothing
     // about an untouched word either, so neither does this.

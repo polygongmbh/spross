@@ -68,13 +68,10 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
                 heard -> listOfNotNull(CardDisplay.alsoLine(card.target, chrome, listOf(card.target.text)))
                 else -> targetLines(card.target, chrome)
             },
-            // The note is the card's last line whichever side authored it — a literal
-            // gloss belongs to the concept, not to one of its two faces. One line only:
-            // what the word ALSO means takes it where the card had nothing of its own to say.
+            // The note is the card's last line. One line only: what the word ALSO means
+            // takes it where the card had nothing of its own to say.
             note = if (revealed) {
-                card.target.note
-                    ?: card.source.note
-                    ?: CardDisplay.meansAlsoLine(flow.state.alsoMeans, chrome)
+                card.target.note ?: CardDisplay.meansAlsoLine(flow.state.alsoMeans, chrome)
             } else {
                 null
             },

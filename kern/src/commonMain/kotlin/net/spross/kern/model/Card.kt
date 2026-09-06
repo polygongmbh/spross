@@ -46,7 +46,11 @@ data class Realization(
     val variants: List<String> = emptyList(),
     /** Language-specific bare facts (de `gender`/`plural`, …). */
     val grammar: Map<String, String> = emptyMap(),
-    /** Already selected by the profile's SOURCE language at join time — the UI cannot leak. */
+    /**
+     * Already selected by the profile's SOURCE language at join time — the UI cannot leak.
+     * Always null on a card's [Card.source]: a note explains the language it sits on, and
+     * that side's language is the one the learner already speaks.
+     */
     val note: String? = null,
 )
 

@@ -67,7 +67,7 @@ struct BoxCardRow: View {
         return WordCard(
             alternates: CardDisplay.alternates(of: card.target, shown: card.target.text,
                                                locale: locale),
-            note: card.target.note ?? card.source.note,
+            note: card.target.note,
             lasts: stability > 0 ? max(1, Int(stability.rounded())) : nil
         )
     }

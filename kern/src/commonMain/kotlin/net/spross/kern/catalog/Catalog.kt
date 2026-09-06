@@ -160,8 +160,8 @@ class Catalog internal constructor(
                     baseAccepted = concept.feminineOf?.let { base ->
                         targetRealization(base)?.let { listOf(it.text) + it.synonyms + it.variants }
                     }.orEmpty(),
-                    source = realize(source, promptRaw, source),
-                    target = realize(target, targetRaw, source),
+                    source = realize(source, promptRaw, reader = null),
+                    target = realize(target, targetRaw, reader = source),
                     promptFeminineMarker = ownSource == null,
                 )
             }
@@ -512,7 +512,7 @@ class Catalog internal constructor(
         )
     }
 
-    private fun realize(lang: Language, raw: RawRealization, source: Language): Realization =
+    private fun realize(lang: Language, raw: RawRealization, reader: Language?): Realization =
         Realization(
             lang = lang,
             text = raw.text,
@@ -521,8 +521,8 @@ class Catalog internal constructor(
             grammar = raw.grammar,
             // why: a note written FOR this reader wins; otherwise the one written in the
             // language being explained, which every reader can read (`kern/docs/catalog.md`).
-            // On the prompt side `lang == source`, so the two arms collapse into one.
-            note = raw.notes[source] ?: raw.notes[lang],
+            // Null reader is the PROMPT side, where neither arm has anything to say.
+            note = reader?.let { raw.notes[it] ?: raw.notes[lang] },
         )
 
     companion object {
