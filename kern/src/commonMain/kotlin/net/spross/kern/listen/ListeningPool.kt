@@ -67,10 +67,12 @@ object ListeningPool {
      * the steering: what is not sticking leads, and everything else is mixed in.
      *
      * What comes back is the PLAY ORDER, not merely a stable one — `listeningOrder` deals the
-     * lanes into the sequence a run walks, so an empty box opens on the catalog's first word.
-     * [seed] salts that deal's own tiebreak (`hashedOrder`) — opaque to kern, which only folds
-     * the number into the hash, so a caller handing in a different one (the current instant,
-     * say) reshuffles the scheduled lanes instead of replaying the same sequence.
+     * lanes into the sequence a run walks, so an empty box still opens on its basics. [seed]
+     * salts the scheduled and plain-new lanes' own tiebreak (`hashedOrder`, `newWordOrder`) —
+     * opaque to kern, which only folds the number into the hash, so a caller handing in a
+     * different one (the current instant, say) reshuffles those lanes instead of replaying the
+     * same sequence. The packed lane never reshuffles: it plays most-recently-packed first,
+     * which [seed] has no say over.
      */
     fun report(
         catalog: Catalog,
@@ -92,14 +94,18 @@ object ListeningPool {
                 scheduled = true,
                 // Introduction dequeues (`Answer.kt`), so a scheduled card is never packed.
                 queued = false,
+                packedRank = 0,
             )
         }
-        val packed = Growth.enqueuedEligible(box).toSet()
+        // Most recently packed first — the same order growth introduces them in, read once
+        // for both the membership test and the rank `packedOrder` deals by.
+        val packedRank = Growth.enqueuedEligible(box).withIndex().associate { (rank, id) -> id to rank }
         val unseen = sayable
             .filter { box.scheduling[it.id] == null && Growth.isIntroducible(box, it) }
             .map {
                 ListeningCandidate(
-                    it, stability = 0.0, suspended = false, scheduled = false, queued = it.id in packed,
+                    it, stability = 0.0, suspended = false, scheduled = false,
+                    queued = it.id in packedRank, packedRank = packedRank[it.id] ?: 0,
                 )
             }
         return Report(candidates = listeningOrder(scheduled + unseen, seed))

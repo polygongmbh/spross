@@ -196,11 +196,16 @@ object BoxEngine {
                 .associateBy { it.id }
 
     /**
-     * Append card ids to the user priority queue. Enqueuing a phrase auto-prepends
-     * its missing (unscheduled) components ahead of it. Unknown/non-joining ids,
-     * already-scheduled cards, and duplicates are skipped. Enqueued cards lead
-     * composition but respect the per-round cap: a pack enrolls and drips in at the
-     * growth rate, it is not dumped at once.
+     * Append card ids to the user priority queue, stored BACK TO FRONT. Enqueuing a phrase
+     * auto-prepends its missing (unscheduled) components ahead of it. Unknown/non-joining ids,
+     * already-scheduled cards, and duplicates are skipped. Enqueued cards lead composition
+     * most recently packed first (`Growth.enqueuedEligible`) but respect the per-round cap: a
+     * pack enrolls and drips in at the growth rate, it is not dumped at once.
+     *
+     * [cardIds] is stored in REVERSE so that reversal reads it back in the order it was given:
+     * packing a whole shelf hands in its words in seed order, and without this a shelf packed
+     * in one call would introduce backwards — its last word first — the moment anything else
+     * was ever packed on top of it. A single word packed on its own is unaffected either way.
      */
     fun enqueue(state: BoxState, cardIds: List<String>): BoxState {
         val queued = state.enqueued.toMutableList()
@@ -213,7 +218,7 @@ object BoxEngine {
             seen += id
         }
 
-        for (id in cardIds) {
+        for (id in cardIds.asReversed()) {
             state.cards[id]?.components?.forEach(::append)
             append(id)
         }

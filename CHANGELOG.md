@@ -18,13 +18,14 @@
 - Second joins first as a card in all eight languages, which is where Swahili's kwanza and pili belong — its only two ordinal words.
 - Century, decade and millennium are cards now, in all eight languages.
 - A dates card now names the word its language adds — tarehe, der, le — the first time that kind of date is asked for.
-- A dates card now names the word its language adds — tarehe, der, le — the first time that kind of date is asked for.
 - The calendar page now carries a few lines on what trips a learner up in that language's dates, the way the numbers page does.
 - Swahili dates now read the year as mwaka wa 2026, count their months (Machi is also Mwezi wa Tatu), and accept the short Septemba tisa order.
 - The dates drill no longer asks for a bare day of the month; the day is met inside the dates that use it, and every ladder is one Sprosse shorter.
 - On Android a near miss keeps the checkmark in the answer field, drawn in amber.
 - On Android a box that cannot be read shows an error card instead of quietly starting over empty.
 - Android returns to the box after closing About or changing the learning language from the box's settings.
+- Listening no longer leads every session with the same one unseen word; the earliest ones still lead as a group, but shuffle among themselves.
+- A word you pack now comes up before ones you packed earlier, in reviews and in listening alike.
 
 ## 6.0.1 — 2026-09-05
 
