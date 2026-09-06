@@ -183,14 +183,30 @@ class ListeningPoolTests {
 
         val played = ids(spoken(state))
 
-        assertEquals("w50", played.first(), "a packed word opens the run")
         assertTrue(played.take(6).containsAll(packed), "packed words late: ${played.take(6)}")
-        // The packed lane runs a Sprosse ahead of the plain new one, so its own first word
+        // The packed lane runs a Sprosse ahead of the plain new one, so its own opener
         // beats the plain lane's regardless of which plain word that turns out to be.
         assertTrue(
-            played.indexOf("w50") < played.indexOf((played - packed.toSet()).first()),
+            played.indexOf("w70") < played.indexOf((played - packed.toSet()).first()),
             "the packed lane's opener is late",
         )
+    }
+
+    /**
+     * RULE: inside the packed lane, the most recently packed word leads — not pack order,
+     * and not catalog order.
+     * WHY: growth already introduces packed words most-recent-first (`Growth.enqueuedEligible`)
+     * — what a learner just packed on top of an older queue is their freshest ask, and the two
+     * surfaces would disagree if listening kept reading the queue by catalog position instead.
+     */
+    @Test
+    fun thePackedLanePlaysMostRecentlyPackedFirst() {
+        val packed = listOf("w50", "w60", "w70")
+        val state = box(total = 100, scheduled = 0).copy(enqueued = packed)
+
+        val played = ids(spoken(state)).filter { it in packed }
+
+        assertEquals(listOf("w70", "w60", "w50"), played)
     }
 
     /**

@@ -20,6 +20,7 @@ class ListeningPriorityTests {
         suspended = suspended,
         scheduled = scheduled,
         queued = queued,
+        packedRank = 0,
     )
 
     /**

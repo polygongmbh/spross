@@ -20,7 +20,7 @@ import net.spross.kern.model.Realization
 class ListeningRunTests {
 
     private fun candidates(n: Int): List<ListeningCandidate> = (1..n).map {
-        ListeningCandidate(Box.word(it), stability = 5.0, suspended = false, scheduled = true, queued = false)
+        ListeningCandidate(Box.word(it), stability = 5.0, suspended = false, scheduled = true, queued = false, packedRank = 0)
     }
 
     private fun run(pool: List<ListeningCandidate>): ListeningRunState =
@@ -87,7 +87,7 @@ class ListeningRunTests {
     fun aRunPlaysThePoolInTheOrderItWasHanded() {
         // Deliberately NOT catalog order: the walk must not quietly repair it.
         val pool = listOf(7, 2, 9, 1).map {
-            ListeningCandidate(Box.word(it), stability = 5.0, suspended = false, scheduled = true, queued = false)
+            ListeningCandidate(Box.word(it), stability = 5.0, suspended = false, scheduled = true, queued = false, packedRank = 0)
         }
 
         assertEquals(listOf("w07", "w02", "w09", "w01"), heard(pool, turns = 4))
@@ -127,7 +127,7 @@ class ListeningRunTests {
     fun aTurnCarriesEveryBeatAndBothForms() {
         val bread = ListeningCandidate(
             card = gendered("bread", source = "das Brot", target = "mkate", article = "das"),
-            stability = 5.0, suspended = false, scheduled = true, queued = false,
+            stability = 5.0, suspended = false, scheduled = true, queued = false, packedRank = 0,
         )
         val turn = assertNotNull(run(listOf(bread)).turn)
 

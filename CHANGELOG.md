@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Listening no longer leads every session with the same one unseen word; the earliest ones still lead as a group, but shuffle among themselves.
+- A word you pack now comes up before ones you packed earlier, in reviews and in listening alike.
 
 ## 6.0.1 — 2026-09-05
 

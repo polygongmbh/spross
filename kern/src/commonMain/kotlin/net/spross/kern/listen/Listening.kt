@@ -197,6 +197,11 @@ data class ListeningCandidate(
      * by introduction, which dequeues.
      */
     val queued: Boolean,
+    /**
+     * Position in `Growth.enqueuedEligible`'s own order, most recently packed first (0 = just
+     * packed) — meaningful only where [queued] is true; ignored otherwise.
+     */
+    val packedRank: Int,
 )
 
 /**
@@ -293,13 +298,13 @@ private fun laneOf(candidate: ListeningCandidate): ListeningLane = ListeningLane
 )
 
 /**
- * `Inventory.seedOrder`'s own tiebreak, reused — the catalog's curriculum, in order.
- *
- * Kept for the PACKED lane only: packing is the learner naming an explicit order
- * ("these next"), which a shuffle would be second-guessing.
+ * The packed lane's own within-lane order: most recently packed first ([ListeningCandidate.packedRank]),
+ * the same order `Growth.enqueuedEligible` introduces them in. Packing is the learner naming
+ * an explicit order — *this one next* — so a shuffle would be second-guessing it, and what
+ * they packed last is the freshest ask, ahead of an older one still waiting in the queue.
  */
-private val catalogOrder: Comparator<ListeningCandidate> =
-    compareBy({ it.card.seedIndex }, { it.card.id })
+private val packedOrder: Comparator<ListeningCandidate> =
+    compareBy({ it.packedRank }, { it.card.id })
 
 /**
  * The hash `Inventory.dueOrder` already de-correlates the box with, for the same reason —
@@ -323,8 +328,8 @@ private fun hashedOrder(seed: Long): Comparator<ListeningCandidate> =
 private const val LISTENING_BASICS_WORDS = 50
 
 /**
- * The plain new lane's own within-lane order — not [catalogOrder], which used to pin a single
- * word (the earliest unseen one) to the very front of every sweep until growth actually
+ * The plain new lane's own within-lane order — not strict catalog order, which used to pin a
+ * single word (the earliest unseen one) to the very front of every sweep until growth actually
  * reached it: a box that packs faster than it grows, or simply grows slowly, could leave that
  * one word leading every session for weeks, which is a queue of one where listening promises a
  * stream.
@@ -365,16 +370,19 @@ private val dealOrder: Comparator<Dealt> = compareBy(
  * then spend the whole run inside a Sprosse-4 block of every unseen word in the catalog — Sprossen
  * 3, 2 and 1 would never be reached in a session at all.
  *
- * WITHIN a lane the order depends on what the lane is. Packed words play in strict catalog
- * order — packing named its own order, and a shuffle would be second-guessing it. Plain new
- * words split basics-first, then hashed within each half ([newWordOrder]): an empty box still
- * opens on greetings, but no single word is pinned to the front forever. Scheduled words are
- * hashed by card id outright, because a fixed catalog order would let seed neighbors — often
- * related concepts — be heard in the same sequence every run, and a word half-learned from its
- * neighbor is what `Inventory.dueOrder` fights — all three salted with [seed] on top, so the
- * sequence also changes between two dealings of an otherwise-unchanged box, not only when a
- * review moves a word between lanes. [seed] is opaque to kern — it only folds the number into
- * the hash, so whatever a caller hands in (the current instant, today) is theirs to choose.
+ * WITHIN a lane the order depends on what the lane is. Packed words play most-recently-packed
+ * first ([packedOrder]) — the same order `Growth.enqueuedEligible` introduces them in, so
+ * listening and review agree on which packed word is next. Packing named its own order, so
+ * this one never reshuffles with [seed]: a shuffle would be second-guessing the learner's own
+ * ask. Plain new words split basics-first, then hashed within each half ([newWordOrder]): an
+ * empty box still opens on greetings, but no single word is pinned to the front forever.
+ * Scheduled words are hashed by card id outright, because a fixed catalog order would let seed
+ * neighbors — often related concepts — be heard in the same sequence every run, and a word
+ * half-learned from its neighbor is what `Inventory.dueOrder` fights. Both the scheduled and
+ * plain-new hashes are salted with [seed], so their sequence also changes between two dealings
+ * of an otherwise-unchanged box, not only when a review moves a word between lanes. [seed] is
+ * opaque to kern — it only folds the number into the hash, so whatever a caller hands in (the
+ * current instant, today) is theirs to choose.
  *
  * Total and deterministic FOR ONE SEED on both platforms: placement, then priority
  * descending, then catalog seed index, then id.
@@ -384,7 +392,7 @@ fun listeningOrder(candidates: List<ListeningCandidate>, seed: Long): List<Liste
         .flatMap { (lane, members) ->
             val within = when {
                 lane.scheduled -> hashedOrder(seed)
-                lane.queued -> catalogOrder
+                lane.queued -> packedOrder
                 else -> newWordOrder(seed)
             }
             members.sortedWith(within).mapIndexed { n, candidate ->

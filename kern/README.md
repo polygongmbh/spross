@@ -243,8 +243,10 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   whichever language(s) it was spent on; every other bucket (`activeCount`, `dueCount`,
   the areas) stays scoped to the join in view. `WidgetSnapshotBuilder.build` takes the
   same parameter so a widget's render-time streak walk agrees (`docs/snapshots.md`).
-- **Introduction is the card's first answer.** `enqueued` holds card ids;
-  enqueued cards lead composition, respect the per-round cap, and dequeue at introduction.
+- **Introduction is the card's first answer.** `enqueued` holds card ids, stored oldest-packed
+  first; enqueued cards lead composition **most recently packed first** (`Growth.enqueuedEligible`
+  reverses the list), respect the per-round cap, and dequeue at introduction — what a learner
+  just packed on top of an older queue is their freshest ask.
   Zero-component phrases follow seed order, never the unlock fast path.
 - **Intake is bounded per round, and by nothing else.** A round's worth of first sights,
   across EVERY composed round and including packed cards, since a packed queue overloads the
@@ -343,11 +345,11 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   reaches the hours that ask for no typing and no tap.
   **Both halves must be sayable**, or a turn plays a word and then silence.
   **The playlist is dealt, not drawn**: one priority per word — the shakiest lead, then the
-  words the learner packed (in catalog order — packing named its own order), then the rest of
-  the unseen ones, catalog's earliest stretch first as a group and shuffled within it, so a
-  language with an empty box still opens on greetings without pinning any one word to the
-  front of every sweep — and the run walks that order and laps it, so the same box and seed
-  give the same run.
+  words the learner packed (most recently packed first, the same order growth introduces them
+  in), then the rest of the unseen ones, catalog's earliest stretch first as a group and
+  shuffled within it, so a language with an empty box still opens on greetings without pinning
+  any one word to the front of every sweep — and the run walks that order and laps it, so the
+  same box and seed give the same run.
   **Suspended cards stay in the pool**: suspending a word pushes it out of the box's queue
   (§5) and never said stop meeting the word, so a suspended card pays a toll on its own
   Sprosse instead of being sent to the back.

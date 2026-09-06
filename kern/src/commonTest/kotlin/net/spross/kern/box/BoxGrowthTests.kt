@@ -97,29 +97,32 @@ class BoxGrowthTests {
         )
         withPhrase = BoxEngine.enqueue(withPhrase, listOf("p1"))
         assertEquals(listOf("w05", "w06", "p1"), withPhrase.enqueued)
-        // Locked phrase never enters, even enqueued; components lead, then automatic
-        // growth fills the rest of the round.
+        // Locked phrase never enters, even enqueued; its components lead — most recently
+        // pulled in first, since a single pack call queues them in one breath — then
+        // automatic growth fills the rest of the round.
         assertEquals(
-            listOf("w05", "w06", "w01", "w02", "w03", "w04"),
+            listOf("w06", "w05", "w01", "w02", "w03", "w04"),
             Box.candidates(withPhrase).newCards,
         )
     }
 
     @Test
-    fun enqueuedPackDripsInARoundAtATime() {
+    fun enqueuedPackDripsInARoundAtATimeMostRecentFirst() {
         var state = Box.state((1..12).map { Box.word(it) })
         state = BoxEngine.enqueue(state, (1..10).map { "w" + it.toString().padStart(2, '0') })
+        // The round takes the freshest end of the pack first.
         assertEquals(
-            (1..NEW_CARDS_PER_ROUND).map { "w0$it" },
+            listOf("w10", "w09", "w08", "w07", "w06", "w05", "w04"),
             Box.candidates(state).newCards,
         )
 
         for (id in Box.candidates(state).newCards) {
             state = Box.answered(state, id, Rating.Good, now)
         }
-        // What the round could not take is still packed, front first.
-        assertEquals(listOf("w08", "w09", "w10"), state.enqueued)
-        assertEquals("w08", Box.candidates(state).newCards.first())
+        // What the round could not take is still packed — the oldest three, since the
+        // freshest seven already went.
+        assertEquals(listOf("w01", "w02", "w03"), state.enqueued)
+        assertEquals("w03", Box.candidates(state).newCards.first())
     }
 
     @Test

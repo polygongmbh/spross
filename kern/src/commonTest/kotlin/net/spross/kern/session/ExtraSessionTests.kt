@@ -60,9 +60,9 @@ class ExtraSessionTests {
         state = BoxEngine.enqueue(state, listOf("w03", "w04", "w05"))
         val t = Box.plusSeconds(day0, 600)
 
-        // The pack comes first, then the round fills out in seed order — one rule, so the
-        // day's round and an asked-for one agree.
-        val expected = listOf("w03", "w04", "w05", "w01", "w02", "w06", "w07")
+        // The pack comes first, most recently packed leading, then the round fills out in
+        // seed order — one rule, so the day's round and an asked-for one agree.
+        val expected = listOf("w05", "w04", "w03", "w01", "w02", "w06", "w07")
         assertEquals(expected, SessionComposer.composeSession(state, t, Box.TZ).newCards)
         assertEquals(expected, SessionComposer.composeRound(state, t, Box.TZ).newCards)
 
