@@ -45,8 +45,8 @@ data class AreaStatistics(
     val active: Int,
     /** Cards in the area that have consolidated (see [Statistics.isConsolidated]). */
     val consolidated: Int,
-    /** Active cards in Review, short of the consolidated bar — kern's [GrowthStage.Fresh]. */
-    val settling: Int = 0,
+    /** Cards packed but not yet introduced — the progress bar's clay segment. */
+    val queued: Int = 0,
     /** Component phrases still waiting for their components to stabilize. */
     val phrasesLocked: Int,
     /** Phrases already introduced, component-free, or with all components stable. */
@@ -320,23 +320,20 @@ internal object Statistics {
 
     private fun areaStatistics(state: BoxState, active: List<CardScheduling>): List<AreaStatistics> {
         val activeCards = active.mapTo(mutableSetOf()) { it.cardId }
+        // why: [BoxBrowser.shelfCounts] already walks the queue per area for the pack
+        // controls — the bar's clay segment reads the same number rather than a second walk.
+        val shelfCounts = BoxBrowser.shelfCounts(state)
         return state.cards.values.groupBy { it.area }.entries
             .sortedBy { it.key }
             .map { (area, cards) ->
                 var active = 0
                 var consolidated = 0
-                var settling = 0
                 var locked = 0
                 var unlocked = 0
                 for (card in cards) {
                     if (card.id in activeCards) active += 1
                     val sched = state.scheduling[card.id]
                     if (sched != null && !sched.suspended && isConsolidated(state, sched)) consolidated += 1
-                    // Counted on its own bar, never off `consolidated`: that one also carries
-                    // the matured cards, so the two buckets read different Sprossen.
-                    if (sched != null && !sched.suspended && stageOf(state, sched) == GrowthStage.Fresh) {
-                        settling += 1
-                    }
                     if (card.kind == CardKind.Phrase) {
                         val open = sched != null || card.components.isEmpty() ||
                             Growth.isPhraseUnlocked(state, card)
@@ -345,7 +342,8 @@ internal object Statistics {
                 }
                 AreaStatistics(
                     name = area, total = cards.size, active = active, consolidated = consolidated,
-                    settling = settling, phrasesLocked = locked, phrasesUnlocked = unlocked,
+                    queued = shelfCounts[area]?.queued ?: 0,
+                    phrasesLocked = locked, phrasesUnlocked = unlocked,
                 )
             }
     }
