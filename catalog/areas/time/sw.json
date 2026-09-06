@@ -75,6 +75,7 @@
   "century": { "text": "karne", "grammar": { "plural": "=" } },
   "decade": { "text": "mwongo", "grammar": { "plural": "miongo" } },
   "millennium": { "text": "milenia", "grammar": { "plural": "=" } },
+  "nowadays": { "text": "siku hizi" },
   "i-have-no-time": { "text": "Sina muda." },
   "two-in-the-afternoon": {
    "text": "saa nane mchana",

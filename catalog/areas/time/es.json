@@ -44,6 +44,7 @@
   "century": { "text": "siglo", "grammar": { "gender": "el" } },
   "decade": { "text": "década", "grammar": { "gender": "la" } },
   "millennium": { "text": "milenio", "grammar": { "gender": "el" } },
+  "nowadays": { "text": "hoy en día", "synonyms": ["actualmente"] },
   "i-have-no-time": { "text": "No tengo tiempo." },
   "two-in-the-afternoon": { "text": "las dos de la tarde" },
   "nine-am-sharp": { "text": "a las nueve de la mañana en punto" },

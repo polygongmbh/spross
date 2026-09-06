@@ -39,6 +39,7 @@
   "century": { "text": "століття", "grammar": { "plural": "=" } },
   "decade": { "text": "десятиліття", "grammar": { "plural": "=" } },
   "millennium": { "text": "тисячоліття", "grammar": { "plural": "=" } },
+  "nowadays": { "text": "тепер" },
   "i-have-no-time": { "text": "У мене немає часу." },
   "two-in-the-afternoon": { "text": "друга дня" },
   "nine-am-sharp": {

@@ -36,6 +36,7 @@
   "century": { "text": "century" },
   "decade": { "text": "decade" },
   "millennium": { "text": "millennium" },
+  "nowadays": { "text": "nowadays", "synonyms": ["these days"] },
   "i-have-no-time": { "text": "I have no time." },
   "two-in-the-afternoon": { "text": "two in the afternoon" },
   "nine-am-sharp": { "text": "nine a.m. sharp" },
