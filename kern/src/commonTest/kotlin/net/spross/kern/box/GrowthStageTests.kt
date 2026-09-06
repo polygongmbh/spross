@@ -41,7 +41,7 @@ class GrowthStageTests {
                 // Past the retired settled bar of 2.0, still short of the one bar that
                 // remains: a word this far in is Fresh, and still gets its support.
                 "w05" to GrowthStage.Fresh,
-                "w06" to GrowthStage.Consolidated,
+                "w06" to GrowthStage.Growing,
                 "w07" to GrowthStage.Matured,
                 "w08" to GrowthStage.Relearning,
             ),
@@ -60,7 +60,7 @@ class GrowthStageTests {
         )
 
         val stages = stages(state)
-        assertEquals(GrowthStage.Consolidated, stages["w01"])
+        assertEquals(GrowthStage.Growing, stages["w01"])
         assertEquals(GrowthStage.Matured, stages["w02"])
     }
 
