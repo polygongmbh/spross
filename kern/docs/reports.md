@@ -38,7 +38,7 @@ already did. Engine contract: `../README.md`.
 ## One card's standing
 
 - **`GrowthStage`** (`BoxEngine.growth`) is the same box told per card instead of per count:
-  one Sprosse each for unscheduled / queued / learning / fresh / consolidated /
+  one Sprosse each for unscheduled / queued / learning / fresh / growing /
   matured / relearning / suspended, in seed order, with the card's raw stability and whether
   today's answer touched it. Suspension and a lapse outrank every bar — a Sprosse says where a
   card stands now, never how far it once got. The Sprossen name the RULE, so a surface may draw
@@ -69,15 +69,16 @@ already did. Engine contract: `../README.md`.
   enqueuing a phrase also prepends the components it lacks,
   and where those live on another shelf a pack takes in more than the count said (`docs/backlog.md`).
 - **`CardRowState`** (`BoxBrowser.cardRowState`) is what one listed card states besides the word itself:
-  `Sleeping`, `PackOffered`, `Packed`, `Plain`, or `Standing(phase, consolidated)`.
+  `Sleeping`, `PackOffered`, `Packed`, `Plain`, or `Standing(stage)`.
   `packOffered` is the caller's context — a surface that packs a SINGLE word,
   which is a search hit the learner went looking for by name;
   an area listing packs by the shelf, so an unexposed card there is `Plain`:
   NEW is the ABSENCE of a standing, never a standing of its own.
-  `Standing.consolidated` travels beside the phase instead of being read out of it —
-  a card reaches Review well below `consolidatedStability`,
-  so a mark keyed to the phase would seal cards the area's consolidated count leaves out.
-  It is derived from `GrowthStage` and `Statistics.isConsolidated`, never from the raw phase:
+  `Standing` carries the raw `GrowthStage` rather than a collapsed boolean —
+  three Review-phase labels (Fresh, Growing, Matured) can no longer be told apart
+  from one flag, and a card reaches Review well below `growingStability`, so a mark
+  keyed to the raw phase would seal cards the area's consolidated count leaves out.
+  It is read straight off `GrowthStage`, never re-derived from the raw phase:
   a second derivation is a second answer waiting to disagree with the shelf above it.
 
 ## The greeting clock

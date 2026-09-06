@@ -12,11 +12,11 @@ Engine contract: `../README.md` §3.
   Every form gets prompted at zero extra scheduling cost.
   Reveal always shows the full family; the source-side reveal may show source synonyms
   informatively ("Amt / Verwaltung").
-- **Sound-prompted production**: `producePrompt(cardId, reviewCount, consolidated, audible)`
+- **Sound-prompted production**: `producePrompt(cardId, reviewCount, growing, audible)`
   answers whether a produce turn asks by sight or by ear. Not a third role — the role
   function is fixed and a word asked from its sound is still produced,
   so only the side the card asks FROM moves and one schedule still sees one kind of answer.
-  `Sound` needs the STRICTER consolidated bar (`../README.md` §5), because this WITHDRAWS the meaning
+  `Sound` needs `growingStability` (`../README.md` §5), because this WITHDRAWS the meaning
   rather than adding support, plus the app's word that the form can be heard right now
   (no recording and no voice, reading aloud off, the device silenced, or a screen reader —
   each falls back to `Source` rather than putting up an empty card). Alternation divides the
@@ -56,7 +56,7 @@ Engine contract: `../README.md` §3.
   sound different, which is the accepted cost — the recording is the branch falling short.
   Reverses `../../docs/read-aloud.md`'s "only the headword is ever spoken" (user ruling 2026-08-21),
   everywhere a target word is synthesized and not only in listening.
-- **Emoji cue**: `emojiCue(role, consolidated)` answers WHEN the picture appears,
+- **Emoji cue**: `emojiCue(role, growing)` answers WHEN the picture appears,
   never whether it appears at all and never where (that is the renderer's, and it is fixed).
   **Upfront** iff role == Produce ∧ the word has not landed (`../README.md` §5) — the one prompt it can
   support recall on without giving the answer away, since a produce prompt already names

@@ -7,10 +7,12 @@ import net.spross.kern.model.CardScheduling
  * Days of stability at which a card counts as MATURED — the third and last bar,
  * a month out from the next sight of the word.
  *
- * Unlike [net.spross.kern.model.BoxConfig.growingStability] this one gates NOTHING:
- * no presentation support, no phrase unlock, no budget. It exists so the ladder has
- * a top Sprosse to report, which is why it is a constant here rather than a config
- * field — there is no product decision to tune behind it.
+ * Unlike [net.spross.kern.model.BoxConfig.growingStability] this one gates no
+ * presentation support, no phrase unlock, no budget — it backs the DISPLAY side
+ * instead: the Grown badge, the progress bar's jade segment, the area-complete
+ * mark, and the day tallies ([Statistics.isConsolidated]). A constant rather than
+ * a config field because there is no product decision to tune behind it, only a
+ * top Sprosse for the ladder to report.
  */
 const val MATURED_STABILITY: Double = 30.0
 
@@ -46,7 +48,7 @@ enum class GrowthStage {
     /** In Review, still under [net.spross.kern.model.BoxConfig.growingStability]. */
     Fresh,
 
-    /** Growing: see [Statistics.isGrowing] — the "has this word landed" bar. */
+    /** Growing: see [Statistics.isGrowing] — the "has this word landed" bar (gate (a)). */
     Growing,
 
     /** Matured: in Review at or above [MATURED_STABILITY]. */

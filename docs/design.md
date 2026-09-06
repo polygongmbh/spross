@@ -200,13 +200,13 @@ a clone inherits its sibling's gaps, never the rules.
   word the learner has still not said. The reveal names the other meanings in the same quiet
   line the note uses, and **only one of the two is ever on the card**: a card with something
   of its own to say says that, and a second hint under the first is a line nobody reads.
-- **A word you have consolidated is sometimes asked by ear alone**: the prompt is the
-  replay glyph and nothing else, and what is typed is what the word MEANS, in your own
+- **A word that has cleared the growing bar is sometimes asked by ear alone**: the prompt is
+  the replay glyph and nothing else, and what is typed is what the word MEANS, in your own
   language — hearing a word and writing it back down is transcription, and translating it
   is what the box is for. The field's placeholder names that language, as it always names
   the one an answer is owed in. The card is still a produce card and still books its
   review — only the side it asks from moved. It withholds the meaning, so the reveal owes
-  it back, and it waits for the landed bar the emoji reads from the other side: taking a
+  it back, and it waits for the same growing bar the emoji reads from the other side: taking a
   word's only cue away while it is still landing is not support.
   Where the word cannot be heard right now — no recording and no voice, reading aloud off,
   the device turned down or muted, a screen reader running — the card falls back to its
@@ -393,9 +393,9 @@ a clone inherits its sibling's gaps, never the rules.
   `AreaTrees` and nowhere else.
   **A word the learner has MET hangs on the tree from its first answer on**, as a bud until
   it settles into a leaf — ochre and a third a leaf's size, so a word leafing out always
-  reads as a gain. Drawn as nothing until it consolidated, a first round in an area moved
-  the picture not at all, which is the one round with the most to show. A word merely packed
-  still hangs nothing: it has not been met, and it is only why the tree is growing.
+  reads as a gain. Drawn as nothing until it cleared the growing bar, a first round in an
+  area moved the picture not at all, which is the one round with the most to show. A word
+  merely packed still hangs nothing: it has not been met, and it is only why the tree is growing.
   **Size comes from what has grown, never from what the catalog holds.** Sized by catalog
   count, every area would draw the same on install day and a year in — and the one thing a
   growing box's picture owes the learner is a shape that changes. A row is therefore a

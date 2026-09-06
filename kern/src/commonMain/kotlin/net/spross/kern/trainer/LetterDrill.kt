@@ -165,7 +165,7 @@ object LetterDrill {
     )
 
     /**
-     * One dictation question. [candidates] arrive filtered to consolidated, speakable box
+     * One dictation question. [candidates] arrive filtered to growing, speakable box
      * cards; kern drops anything with a space of its own — a transcription task is
      * one word, whatever the caller believes.
      *

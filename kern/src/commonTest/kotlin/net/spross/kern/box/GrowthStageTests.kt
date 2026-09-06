@@ -38,8 +38,8 @@ class GrowthStageTests {
                 "w02" to GrowthStage.Queued,
                 "w03" to GrowthStage.Learning,
                 "w04" to GrowthStage.Fresh,
-                // Past the retired settled bar of 2.0, still short of the one bar that
-                // remains: a word this far in is Fresh, and still gets its support.
+                // Past the retired settled bar of 2.0, still short of growingStability
+                // (6.0): a word this far in is Fresh, and still gets its support.
                 "w05" to GrowthStage.Fresh,
                 "w06" to GrowthStage.Growing,
                 "w07" to GrowthStage.Matured,

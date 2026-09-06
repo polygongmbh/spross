@@ -385,10 +385,10 @@ object BoxEngine {
     ): CardGrowth? = cardGrowthOf(state, cardId, nowEpochMillis, tzId)
 
     /**
-     * Has this card landed? See [Statistics.isConsolidated] — the one threshold
-     * behind the fresh/consolidated stats split, phrase unlock, the drill pools and
-     * the presentation support a word gets while it is still on its way in.
-     * Unknown ids read as false: a card with no schedule has certainly not landed.
+     * Has this card fully grown? See [Statistics.isConsolidated] — the display
+     * bucket behind the stats split, the Grown badge, the progress-bar jade
+     * segment, the area-complete mark, and the day tallies. Unknown ids read as
+     * false: a card with no schedule has certainly not grown.
      */
     fun isConsolidated(state: BoxState, cardId: String): Boolean =
         state.scheduling[cardId]?.let { Statistics.isConsolidated(state, it) } ?: false
