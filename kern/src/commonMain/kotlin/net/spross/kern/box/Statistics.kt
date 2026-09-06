@@ -64,6 +64,14 @@ data class AreaStatistics(
      * total must not make the introduced cards read as more than everything.
      */
     val progressTotal: Int get() = maxOf(total, consolidated + learning, 1)
+
+    /**
+     * Whether every active card in the area has fully grown — combined with the
+     * pack/unpack emptiness a screen already computes, this is what turns the
+     * area-complete mark jade instead of green. An area holding nothing active is
+     * never fully grown, whatever [total] says: there is nothing here to have grown.
+     */
+    val fullyGrown: Boolean get() = active > 0 && consolidated == active
 }
 
 /**
