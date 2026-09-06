@@ -12,9 +12,10 @@ enum BoxRowSheet: String, Identifiable {
 
 /// Everything a learner might want to do to one word, as a long press on its Box row.
 ///
-/// Only what applies, and in one fixed order: where it stands in the box first
-/// (packing, sleep, forgetting), then what can be MADE of it, then what is wrong
-/// with it, and deleting last because it is the one entry that cannot be taken back.
+/// Only what applies, and in one fixed order: where the word IS first (the jump to
+/// its shelf, offered only where the row was not reached from one), then where it
+/// stands in the box (packing, sleep, forgetting), then what can be MADE of it, then
+/// what is wrong with it, and deleting last because it cannot be taken back.
 /// WHERE the word stands is the box's own ruling (`BoxBrowser.cardRowState`), asked
 /// with packing offered — this menu can always pack a single word, whatever the row
 /// behind it draws.
@@ -26,8 +27,14 @@ struct BoxRowMenu: View {
     let card: Card
     /// Raise a sheet the menu cannot present itself.
     let open: (BoxRowSheet) -> Void
+    /// Send the box to the word's own shelf, where a row reached by TYPING has no
+    /// neighbors to be read among. Absent on a row the box is already listing.
+    var showInBox: (() -> Void)?
 
     var body: some View {
+        if let showInBox {
+            Button("box.card.showInBox", systemImage: "arrow.right.circle") { showInBox() }
+        }
         standing
         Button("box.card.ownFrom", systemImage: "doc.on.doc") { open(.ownFrom) }
         if model.isOwnWord(card.id) {

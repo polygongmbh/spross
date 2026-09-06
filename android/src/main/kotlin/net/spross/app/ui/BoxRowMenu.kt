@@ -29,9 +29,10 @@ import net.spross.kern.model.Card
 /**
  * Everything a learner might want to do to ONE word, on the long press every box row carries.
  *
- * Only what applies, and in one order wherever a row is drawn: where the word stands in the
- * queue, then where it stands in the schedule, then what can be made of it, then what is
- * wrong with it, and last — set apart — taking it out for good.
+ * Only what applies, and in one order wherever a row is drawn: where the word IS (the jump
+ * to its shelf, offered only where the row was not reached from one), then where it stands
+ * in the queue, then where it stands in the schedule, then what can be made of it, then what
+ * is wrong with it, and last — set apart — taking it out for good.
  *
  * WHICH of those apply is kern's answer, not this file's: [BoxBrowser.cardRowState] rules on
  * the standing, and it is asked with `packOffered = true` because the MENU always offers the
@@ -49,6 +50,11 @@ internal fun BoxRowMenu(
     onDismiss: () -> Unit,
     /** Opens the own-word form on the draft handed to it — a copy of this card, or an edit. */
     onWriteOwn: ((OwnWordDraft) -> Unit)?,
+    /**
+     * Sends the box to the word's own shelf, where a row reached by TYPING has no
+     * neighbors to be read among. Absent on a row the box is already listing.
+     */
+    onShowInBox: (() -> Unit)? = null,
 ) {
     val chrome = model.chrome
     val state = model.box ?: return
@@ -69,6 +75,7 @@ internal fun BoxRowMenu(
             // reveal, so the long press is where a word explains itself — the same
             // lines the session's reveal wears, above every action rather than among them.
             WordCardLines(model, card, chrome)
+            onShowInBox?.let { show -> MenuAction(chrome.boxCardShowInBox) { close(); show() } }
             when (standing) {
                 CardRowState.PackOffered -> MenuAction(chrome.boxCardPack) {
                     close()

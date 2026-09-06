@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A word found by searching can be opened where it lives, among the words on its shelf.
 - The countries and dates ladders now show their record on the Sprosse circles — filled where a run has reached a Sprosse, green where one answered every question of it — and a run opens on the first Sprosse not yet answered out; tap a lower one to start there instead.
 - The record under those two ladders now counts the longest streak and the most correct answers in one run instead of naming a Sprosse.
 - A card's note now only ever explains the language you are learning.

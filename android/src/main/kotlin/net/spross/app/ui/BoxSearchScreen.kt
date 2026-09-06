@@ -49,7 +49,8 @@ import net.spross.kern.box.OwnWords
  * The two result kinds offer different things, so they act differently. An area is a
  * shelf: choosing it hands the box back the area to unfold and steps aside. A word is
  * itself: it can be heard, and while it is still unpacked it can be packed right here,
- * without taking the whole shelf along.
+ * without taking the whole shelf along — and its long press carries the shelf back too,
+ * for the learner who came to READ the word rather than to pack it.
  */
 @Composable
 fun BoxSearchScreen(
@@ -182,6 +183,10 @@ fun BoxSearchScreen(
                                         model.updateBox { BoxEngine.enqueue(it, listOf(card.id)) }
                                     },
                                     onWriteOwn = { writing = it },
+                                    // why: a word found by typing is shown alone, so the
+                                    // shelf it belongs to — and everything it would have
+                                    // been read beside — is one long press away.
+                                    onShowInBox = { onReveal(card.area) },
                                 )
                             }
                         }

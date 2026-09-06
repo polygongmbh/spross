@@ -261,6 +261,7 @@ internal object ChromeDe : Chrome {
         "Katalog rührt sie nicht an."
     override val boxShelfPack = "Pack in die Box (%s)"
     override val boxShelfPacked = "Alles eingepackt"
+    override val boxCardShowInBox = "In der Box zeigen"
     override val boxCardPack = "Dieses Wort einpacken"
     override val boxCardUnpack = "Dieses Wort auspacken"
     override val boxShelfUnpack = "Aus der Box nehmen (%s)"

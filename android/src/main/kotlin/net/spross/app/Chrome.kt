@@ -259,6 +259,8 @@ interface Chrome {
     val boxOwnWordExplainer: String
     val boxShelfPack: String          // %d
     val boxShelfPacked: String
+    /** The jump from a search hit to the shelf the word lives on. */
+    val boxCardShowInBox: String
     val boxCardPack: String
     val boxCardUnpack: String
     val boxShelfUnpack: String

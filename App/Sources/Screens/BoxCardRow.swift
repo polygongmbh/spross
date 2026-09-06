@@ -10,7 +10,10 @@ import SprossKern
 /// the device's voice can say — there the tap does nothing, and the row must
 /// not promise otherwise.
 ///
-/// `pack` is the row's one variation. Where a word can be packed on its own —
+/// `pack` and `showInBox` are the row's two variations, and both belong to the
+/// search: a hit was reached by name rather than off a shelf, so it is the one
+/// place the word can be packed alone and the one place its shelf is worth
+/// jumping to. Where a word can be packed on its own —
 /// a search hit, which the learner went looking for by name — the "new" badge
 /// gives its place to that offer, and a word already queued there answers
 /// with a tappable tray icon of its own, taking it back out the same way it
@@ -24,6 +27,9 @@ struct BoxCardRow: View {
     let model: AppModel
     let card: Card
     var pack: (() -> Void)?
+    /// Handed on to the long-press menu, where a search hit earns its jump to the
+    /// shelf it lives on (`BoxRowMenu.showInBox`).
+    var showInBox: (() -> Void)?
 
     /// The sheet the long-press menu asked for, if any (`BoxRowMenu`).
     @State private var sheet: BoxRowSheet?
@@ -36,16 +42,14 @@ struct BoxCardRow: View {
         // none of them keeps the system's own preview — a copy of the row would
         // say nothing the row is not already saying.
         if wordCard.hasAnything {
-            row.contextMenu {
-                BoxRowMenu(model: model, card: card) { sheet = $0 }
-            } preview: {
-                preview
-            }
+            row.contextMenu { menu } preview: { preview }
         } else {
-            row.contextMenu {
-                BoxRowMenu(model: model, card: card) { sheet = $0 }
-            }
+            row.contextMenu { menu }
         }
+    }
+
+    private var menu: some View {
+        BoxRowMenu(model: model, card: card, open: { sheet = $0 }, showInBox: showInBox)
     }
 
     /// What the long press hands over beyond the row itself: the other words for

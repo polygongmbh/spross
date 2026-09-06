@@ -8,7 +8,9 @@ import SprossKern
 /// The two result kinds offer different things, so they act differently. An area
 /// is a shelf: choosing it hands the box back the area to unfold and steps
 /// aside. A word is itself: it can be heard, and if it is still unpacked it can
-/// be packed right here, without taking the whole area along.
+/// be packed right here, without taking the whole area along — and its long press
+/// carries the area back too, for the learner who came to READ the word rather
+/// than to pack it.
 struct BoxSearchView: View {
     let model: AppModel
     /// Hand an area back to the box, which unfolds it and scrolls it into reach.
@@ -82,7 +84,14 @@ struct BoxSearchView: View {
             if !results.cards.isEmpty {
                 heading("box.search.words")
                 ForEach(results.cards) { card in
-                    BoxCardRow(model: model, card: card, pack: { model.enqueueCard(card.id) })
+                    BoxCardRow(
+                        model: model, card: card,
+                        pack: { model.enqueueCard(card.id) },
+                        // why: a word found by typing is shown alone, so the shelf it
+                        // belongs to — and everything it would have been read beside —
+                        // is one long press away.
+                        showInBox: { reveal(card.area); dismiss() }
+                    )
                 }
             }
         } else if results != nil {

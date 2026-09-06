@@ -623,6 +623,23 @@
       },
       "comment" : "A queued row's mark where no per-word control is offered — the shelf's own does it."
     },
+    "box.card.showInBox" : {
+      "comment" : "the jump from a search hit to the shelf the word lives on",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In der Box zeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show in the box"
+          }
+        }
+      }
+    },
     "box.card.sleep" : {
       "localizations" : {
         "de" : {

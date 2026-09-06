@@ -257,6 +257,7 @@ internal object ChromeEn : Chrome {
         "never touches them."
     override val boxShelfPack = "Add to box (%s)"
     override val boxShelfPacked = "All packed"
+    override val boxCardShowInBox = "Show in the box"
     override val boxCardPack = "Pack this word"
     override val boxCardUnpack = "Unpack this word"
     override val boxShelfUnpack = "Take out of box (%s)"

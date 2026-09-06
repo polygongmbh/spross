@@ -54,10 +54,11 @@ import net.spross.kern.model.shownArticle
  * word's own menu ([BoxRowMenu]) — everything a learner might want to do to this one word —
  * and a reported word wears its flag beside whatever standing it already had.
  *
- * [pack] is the row's one variation, and it is offered ONLY where a single word can be
- * packed — a search hit, which the learner went looking for by name. In an area listing no
- * such offer is made (the shelf's own control packs there), which is why the offer is a
- * parameter rather than something the row works out. Taking a word back OUT of the queue
+ * [pack] and [onShowInBox] are the row's two variations, and both belong to the SEARCH: a
+ * hit was reached by name rather than off a shelf, so it is the one place a single word can
+ * be packed and the one place its shelf is worth jumping to. In an area listing neither is
+ * offered (the shelf's own control packs there, and the shelf is already open), which is why
+ * both are parameters rather than something the row works out. Taking a word back OUT of the queue
  * needs no such parameter: [BoxEngine.dequeue] is offered wherever a queued row is drawn.
  * The menu offers both regardless: a menu opened by name is the learner naming this word.
  */
@@ -69,6 +70,8 @@ fun BoxCardRow(
     pack: (() -> Unit)? = null,
     /** Opens the own-word form — on a copy of this card, or on the word itself. */
     onWriteOwn: ((OwnWordDraft) -> Unit)? = null,
+    /** Sends the box to this word's shelf; offered where the row was not reached from one. */
+    onShowInBox: (() -> Unit)? = null,
 ) {
     val chrome = model.chrome
     val state = model.box ?: return
@@ -160,6 +163,7 @@ fun BoxCardRow(
             expanded = menuOpen,
             onDismiss = { menuOpen = false },
             onWriteOwn = onWriteOwn,
+            onShowInBox = onShowInBox,
         )
     }
 }
