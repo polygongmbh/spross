@@ -149,12 +149,12 @@ internal fun AreaSection(
  *
  * Once nothing is left to pack, a shelf holding MORE than a couple words still queued for
  * a round offers to take them back out AS A BATCH ([onUnpack]) — the area is the unit this
- * control acts on. Below that (1–2 queued, nothing packable) the control draws nothing:
- * the per-word row offers its own unpack instead, and a checkmark here would misleadingly
- * claim the shelf is free of queued words when it is not.
+ * control acts on. Below that (1–2 queued, nothing packable) the bulk control steps aside
+ * for the per-word row's own unpack, but the shelf still wears the settled check.
  *
  * [mature] turns the settled check jade instead of green once every active card in the
- * area has matured — the same mark, not a second indicator (kern `AreaStatistics.mature`).
+ * area has matured AND nothing is queued — the same mark, not a second indicator
+ * (kern `AreaStatistics.mature`).
  */
 @Composable
 internal fun PackControl(
@@ -182,10 +182,10 @@ internal fun PackControl(
             // Clay, matching the queued pill it takes back out.
             Icon(SprossIcons.PackOut, contentDescription = null, tint = Theme.colors.accent)
         }
-    } else if (queuedCount == 0) {
+    } else {
         Text(
             SEAL,
-            color = if (mature) Theme.colors.grown else Theme.colors.success,
+            color = if (queuedCount == 0 && mature) Theme.colors.grown else Theme.colors.success,
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier
                 .sizeIn(minWidth = 48.dp, minHeight = 48.dp)

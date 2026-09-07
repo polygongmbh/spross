@@ -291,9 +291,9 @@ private struct BoxAreaSection: View {
     /// Once packing is done, a shelf still holding words queued for a round offers to
     /// take the whole batch back out (`AppModel.dequeueArea`) — the area is the unit
     /// this control acts on, same as packing itself. Below three queued words the
-    /// bulk control steps aside for the per-word one instead (`BoxCardRow.standing`):
-    /// a blank slot here, not a misleading "All packed" mark, since the shelf still
-    /// holds queued words.
+    /// bulk control steps aside for the per-word one instead (`BoxCardRow.standing`),
+    /// and the shelf wears the green "packed" mark; the jade mark is reserved for
+    /// nothing queued at all (`fullyPackedAndMature`).
     @ViewBuilder
     private var packControl: some View {
         let count = model.enqueueableCount(area: area)
@@ -317,8 +317,8 @@ private struct BoxAreaSection: View {
             // Clay, matching the queued pill it takes back out.
             .buttonStyle(IconButtonStyle(color: Theme.colors.accent))
             .accessibilityLabel(Text("box.shelf.unpack \(queued.formatted())"))
-        } else if queued == 0 {
-            let mature = model.areaStats(area)?.mature ?? false
+        } else {
+            let mature = queued == 0 && (model.areaStats(area)?.mature ?? false)
             Image(systemName: "checkmark.circle.fill")
                 .font(Theme.typography.headline)
                 .foregroundStyle(mature ? Theme.colors.grown : Theme.colors.success)
