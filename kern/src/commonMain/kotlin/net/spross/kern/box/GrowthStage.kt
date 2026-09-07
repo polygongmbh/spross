@@ -4,17 +4,20 @@ import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
 
 /**
- * Days of stability at which a card counts as MATURED — the third and last bar,
- * a month out from the next sight of the word.
+ * Days of stability at which a card counts as MATURED — the third and last bar.
  *
  * Unlike [net.spross.kern.model.BoxConfig.growingStability] this one gates no
  * presentation support, no phrase unlock, no budget — it backs the DISPLAY side
  * instead: the Grown badge, the progress bar's jade segment, the area-complete
- * mark, and the day tallies ([Statistics.isConsolidated]). A constant rather than
- * a config field because there is no product decision to tune behind it, only a
- * top Sprosse for the ladder to report.
+ * mark, the day tallies ([Statistics.isConsolidated]), and the words [Briefing]
+ * hands over as known.
+ *
+ * Set above two plain Goods (S ≈ 17) and at or below a Good followed by an Easy
+ * (S ≈ 29.8): two successive "I knew it" verdicts
+ * ([net.spross.kern.session.SelfGrading.Verdict.Knew]) count as solid only once
+ * one of them was fast enough to earn Easy, not from reinforcement alone.
  */
-const val MATURED_STABILITY: Double = 30.0
+const val MATURED_STABILITY: Double = 25.0
 
 /**
  * Days of stability at which a Matured card draws as fruit rather than a blossom on the

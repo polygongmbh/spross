@@ -93,8 +93,8 @@ Engine contract: `../README.md`.
   never what the hour is about. The steps widen on the way up rather than staying fixed: a
   flat per-day step put the floor at 10 days, which a reviewed-for-a-while box clears easily,
   piling almost everything into that one slowest-dealt lane; the floor now waits for
-  `MATURED_STABILITY` (30 d) — kern's own "a month out from the next review" bar — instead of
-  a second number invented for the same idea.
+  `MATURED_STABILITY` — kern's own "solid" bar — instead of a second number invented for
+  the same idea.
   A **packed** card (`BoxState.enqueued`) takes `LISTENING_QUEUED_PRIORITY` (5) and every
   other **unscheduled** one `LISTENING_NEW_PRIORITY` (4): neither has a stability to read, so
   those figures are deal-rates rather than measurements — packing is the learner saying
@@ -105,7 +105,7 @@ Engine contract: `../README.md`.
   leech lands at Sprosse 2 to 4 — it comes in, it does not lead.
   The ladder that falls out: 6 is stability 0–2 d; 5 is 2–5 d and the packed words; 4 is
   5–10 d and every other unseen word, and a leech at 0–2 d; 3 is 10–20 d and a leech at
-  2–5 d; 2 is 20–30 d and a leech at 5–10 d; 1 is 30 d (`MATURED_STABILITY`) and up, and a
+  2–5 d; 2 is 20–25 d and a leech at 5–10 d; 1 is 25 d (`MATURED_STABILITY`) and up, and a
   leech at 10 d or more.
   **Nothing on that ladder reads a due date.** A word the box wants back is a word whose
   stability is low, so it rises on the Sprossen it already has; a due term would make listening a

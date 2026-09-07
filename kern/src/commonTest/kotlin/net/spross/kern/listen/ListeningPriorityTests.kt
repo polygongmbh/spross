@@ -48,8 +48,8 @@ class ListeningPriorityTests {
         assertEquals(5, listeningPriority(candidate(3.0, suspended = false, scheduled = true)))
         assertEquals(4, listeningPriority(candidate(7.0, suspended = false, scheduled = true)))
         assertEquals(3, listeningPriority(candidate(15.0, suspended = false, scheduled = true)))
-        assertEquals(2, listeningPriority(candidate(25.0, suspended = false, scheduled = true)))
-        // The floor, however settled: thirty days or a hundred are the same Sprosse.
+        assertEquals(2, listeningPriority(candidate(23.0, suspended = false, scheduled = true)))
+        // The floor, however settled: MATURED_STABILITY or a hundred are the same Sprosse.
         assertEquals(1, listeningPriority(candidate(MATURED_STABILITY, suspended = false, scheduled = true)))
         assertEquals(1, listeningPriority(candidate(100.0, suspended = false, scheduled = true)))
     }

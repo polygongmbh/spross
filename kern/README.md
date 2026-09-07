@@ -211,9 +211,10 @@ bar are on `BoxConfig` itself. What the product decided:
   word gets while it is still on its way in (§3) — the emoji that props recall up
   and the sound prompt that withdraws the meaning read it from opposite sides.
   `MATURED_STABILITY` (`Statistics.isConsolidated`, facade `BoxEngine.isConsolidated`)
-  is a later, stricter DISPLAY bar — 30 days — behind the progress-UI split, the
-  Grown badge, the area-complete mark, and the day tallies: deliberately distinct,
-  so the visible "Grown" mark tracks a much later bar than what actually unlocks support.
+  is a later, stricter DISPLAY bar — 25 days — behind the progress-UI split, the
+  Grown badge, the area-complete mark, the day tallies, and the words a brief hands
+  over as known: deliberately distinct, so the visible "Grown" mark tracks a much
+  later bar than what actually unlocks support.
 - **Weight optimization stays out of scope.**
 
 ## 6. Box / Session semantics

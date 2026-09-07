@@ -43,7 +43,7 @@ class StatisticsBucketsTests {
     fun aGrowingCardCountsTowardLearningJustLikeAFreshOne() {
         var state = Box.state((1..4).map { Box.word(it, area = "kitchen") })
         val future = Box.plusDays(now, 5.0)
-        // Consolidated (≥ 30.0).
+        // Consolidated (≥ MATURED_STABILITY).
         state = Box.inject(state, Box.sched("w01", stability = 35.0, dueMillis = future, lastReviewMillis = now))
         // Fresh: in Review, short of the growing bar.
         state = Box.inject(state, Box.sched("w02", stability = 3.0, dueMillis = future, lastReviewMillis = now))

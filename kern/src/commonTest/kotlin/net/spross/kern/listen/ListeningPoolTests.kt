@@ -220,7 +220,7 @@ class ListeningPoolTests {
     fun everyLaneIsReachedInsideTheOpeningStretch() {
         var state = box(total = 200, scheduled = 0)
         // Five words on each Sprosse of the stability ladder, plus a packed lane and 170 unseen.
-        for ((sprosse, stability) in listOf(0.0, 3.0, 7.0, 15.0, 25.0, 35.0).withIndex()) {
+        for ((sprosse, stability) in listOf(0.0, 3.0, 7.0, 15.0, 22.0, 35.0).withIndex()) {
             for (n in 1..5) {
                 state = Box.inject(
                     state,

@@ -217,8 +217,11 @@ class BoxStatisticsTests {
     @Test
     fun consolidatedCountsOnlyReviewCardsAtOrAboveTheMaturedThreshold() {
         var state = Box.state((1..3).map { Box.word(it) })
-        state = Box.inject(state, Box.sched("w01", stability = 30.0, dueMillis = now, lastReviewMillis = now))
-        state = Box.inject(state, Box.sched("w02", stability = 29.9, dueMillis = now, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w01", stability = MATURED_STABILITY, dueMillis = now, lastReviewMillis = now))
+        state = Box.inject(
+            state,
+            Box.sched("w02", stability = MATURED_STABILITY - 0.1, dueMillis = now, lastReviewMillis = now),
+        )
         state = Box.inject(
             state,
             // Stable enough, but still stepping through Learning — not consolidated.
@@ -252,7 +255,7 @@ class BoxStatisticsTests {
         val kitchen = stats.areas[0]
         assertEquals(4, kitchen.total)
         assertEquals(2, kitchen.active)
-        assertEquals(1, kitchen.consolidated) // only w01: Review phase & stability ≥ 30.0
+        assertEquals(1, kitchen.consolidated) // only w01: Review phase & stability ≥ MATURED_STABILITY
         assertEquals(1, kitchen.phrasesLocked) // p-locked: w02 not stable yet
         assertEquals(1, kitchen.phrasesUnlocked) // p-free has no components
         assertEquals(
