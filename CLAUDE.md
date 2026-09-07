@@ -109,7 +109,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   only the app target links Kotlin (`kern/docs/build.md`).
 - A behavioral rule lives in kern once — a platform may READ a kern decision, never MINT one
   (`LayerBoundaryTest`, waivable per line with `// layer-ok: <reason>`); platforms own layout,
-  animation, focus, haptics, audio, timelines, a11y and string tables, and nothing else.
+  animation, focus, haptics, audio, timelines, a11y and string tables, and nothing else —
+  each of those owned once per platform, never re-cut for a screen that asks the same way.
 - `phase == new ⟺ memory == null ⟺ due == null` on a card's scheduling.
 - **Introduction = first answer**, never at composition — budget accounting relies on this.
 - **One FSRS schedule per card**, keyed by card id (ids never contain `|`) —
