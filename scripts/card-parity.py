@@ -36,11 +36,16 @@ DROID = "android/src/main/kotlin/net/spross/app/ui/Theme.kt"
 # Only a face owes the primitives — a body is already inside one.
 IOS_FACES = ["App/Sources/Design/VocabCardView.swift", "App/Sources/Design/CountryPromptCard.swift",
              "App/Sources/Design/HearPromptCard.swift", "App/Sources/Screens/TrainerPromptCard.swift"]
-IOS_BODIES = ["App/Sources/Design/CardReveal.swift", "App/Sources/Design/SpokenWord.swift"]
+IOS_BODIES = ["App/Sources/Design/CardReveal.swift", "App/Sources/Design/SpokenWord.swift",
+              "App/Sources/Screens/DrillChoiceGrid.swift",
+              "App/Sources/Screens/LetterDrillView+Stages.swift",
+              "App/Sources/Screens/DrillRunView+Content.swift",
+              "App/Sources/Screens/DrillRunView+Choices.swift"]
 DROID_UI = "android/src/main/kotlin/net/spross/app/ui/"
 DROID_FACES = [DROID_UI + n for n in ("CardFace.kt", "CountryPromptCard.kt", "ProduceCard.kt",
                                       "TrainerPrompt.kt", "LetterDrillScreen.kt")]
-DROID_BODIES = [DROID_UI + "LetterDrillStages.kt"]
+DROID_BODIES = [DROID_UI + n for n in ("LetterDrillStages.kt", "DrillChoiceGrid.kt",
+                                       "TypedDrillScreen.kt")]
 
 # The primitives a face is built from. Two is the bar: a face that reaches for none of
 # them is not a card, it is a rectangle that happens to look like one today.

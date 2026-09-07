@@ -125,6 +125,13 @@ then open design work, then what waits on someone else, grouped by who that is.
   divergences (numbers and primitive names, not rendering) — is a snapshot gate
   (Roborazzi/Paparazzi + swift-snapshot-testing or simctl diff, versioned goldens) worth its
   cost, or does this bullet narrow to the residual non-numeric class?
+- Nothing gates a screen re-cutting a component that already exists: `card-parity.py`'s face
+  and body lists are hand-kept, so a newly added file is never scanned (the 2026-09-03 drill
+  choice grid was written, reviewed and merged unseen before `dade95ee` consolidated it).
+  Copied `// why:` comments are the tell — measured 2026-09-07, 90 comment texts stand
+  duplicated WITHIN one platform across 52 files — so a duplicate-comment scan would find
+  them, but it needs those 90 baselined or cleaned first. Deriving the scanned set the way
+  `LayerBoundaryTest` derives its enum list is the other half.
 - The credits screen names the target-language word every bundled recording says and offers
   no way to hear one, since the row tap opens the file's Commons page
   (`App/Sources/Screens/CreditsView.swift` `fileRow`) and `Components.kt:255` /
