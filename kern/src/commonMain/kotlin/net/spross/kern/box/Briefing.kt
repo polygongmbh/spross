@@ -26,14 +26,16 @@ data class Briefing(
     val learnerName: String?,
     val sourceName: String,
     val targetName: String,
-    val free: List<BriefArea>,
-    val inPlay: List<BriefWord>,
+    /** Areas of words at [GrowthStage.Matured] — the only stage solid enough to hand over as known. */
+    val matured: List<BriefArea>,
+    /** Words scheduled but short of [GrowthStage.Matured] — still in progress, named so a partner goes gently. */
+    val learning: List<BriefWord>,
     val newWords: List<BriefWord>,
 ) {
-    val freeCount: Int get() = free.sumOf { it.words.size }
+    val maturedCount: Int get() = matured.sumOf { it.words.size }
 
     /** Whether there is a conversation to be had: a box with nothing introduced briefs nobody. */
-    val hasWords: Boolean get() = freeCount > 0 || inPlay.isNotEmpty()
+    val hasWords: Boolean get() = maturedCount > 0 || learning.isNotEmpty()
 
     /** The whole brief, ready to be pasted into an assistant. */
     val text: String
@@ -42,15 +44,15 @@ data class Briefing(
             appendLine("The lists below come out of Spross, the app I learn with.")
             appendLine()
             appendLine(protocol())
-            if (freeCount > 0) {
+            if (maturedCount > 0) {
                 appendLine()
-                appendLine("WORDS I HAVE — $freeCount; say anything to me in these")
-                for (area in free) appendLine("${area.title}: ${area.words.joinToString(", ")}")
+                appendLine("THE $maturedCount WORDS I KNOW - use these as basis")
+                for (area in matured) appendLine("${area.title}: ${area.words.joinToString(", ")}")
             }
-            if (inPlay.isNotEmpty()) {
+            if (learning.isNotEmpty()) {
                 appendLine()
-                appendLine("WORDS I AM LEARNING RIGHT NOW — ${inPlay.size}")
-                for (word in inPlay) appendLine("${word.target} = ${word.source}")
+                appendLine("WORDS I AM LEARNING RIGHT NOW — ${learning.size}")
+                for (word in learning) appendLine("${word.target} = ${word.source}")
             }
             if (newWords.isNotEmpty()) {
                 appendLine()
@@ -81,24 +83,24 @@ data class Briefing(
         Build what you say out of the words below.
         Bring in your own words where needed, one or two at a time,
         glossed in $sourceName the first time.
+
         One to three short sentences per turn.
-        Ask me one question per turn.
-        Correct mistakes by mirroring inside your answer —
-        explain if asked or the mistake repeats.
-        When I reach for a $sourceName word mid-sentence because I lack the $targetName one,
-        mirror that too: say my sentence back with the $targetName word in its place,
-        so I pick it up from hearing it rather than from being taught it.
+        Ask me one question per turn, but don't force it.
+
+        Correct mistakes and stray foreign language words by mirroring inside your answer —
+        explain only if asked or the mistake repeats.
     """.trimIndent()
 
     /** The opening turn: something to read, before the learner has had to say anything. */
     private fun firstTurn(): String = """
         START HERE, before I say anything:
         write a short story on a topic suiting the words I am learning.
-        Three to five blocks of two sentences — the same sentence in $targetName and
-        $sourceName, line break between them, blank line between blocks.
+        Three to five blocks of two sentences:
+        the same sentence in $targetName and $sourceName,
+        line break between them, blank line between blocks.
         Put $targetName first in block 1, $sourceName first in block 2, and keep swapping.
-        Keep the pair word-for-word where grammar allows; otherwise give the idiomatic
-        line with the literal one in brackets.
+        Keep the pair word-for-word where grammar allows;
+        otherwise give the idiomatic line with a literal gloss in brackets.
         Then ask whether to go deeper, switch topic, or just talk.
     """.trimIndent()
 
@@ -110,7 +112,7 @@ data class Briefing(
      * having to ask for it is the loop half closed.
      */
     private fun harvestAsk(): String {
-        val example = newWords.firstOrNull() ?: inPlay.firstOrNull()
+        val example = newWords.firstOrNull() ?: learning.firstOrNull()
         return """
             Export for Spross: the key words that came up repeatedly and were not already
             in the lists above, one per line as `$targetName = $sourceName`, fenced ```spross,
@@ -134,12 +136,14 @@ object Briefings {
     /** How wide the new-word preference is drawn — a round's worth, give or take. */
     const val NEW_LIMIT: Int = 15
 
-    /** Words in play past which the brief stops naming what is next. */
-    const val IN_PLAY_BUSY: Int = 30
+    /** Words in learning past which the brief stops naming what is next. */
+    const val LEARNING_BUSY: Int = 30
 
-    private val IN_PLAY_STAGES = setOf(
+    /** Scheduled, short of [GrowthStage.Matured] — still in progress, never handed over as known. */
+    private val LEARNING_STAGES = setOf(
         GrowthStage.Learning,
         GrowthStage.Fresh,
+        GrowthStage.Growing,
         GrowthStage.Relearning,
     )
 
@@ -148,8 +152,8 @@ object Briefings {
             state.scheduling[card.id]?.let { stageOf(state, it) }
         }
         val joined = Inventory.joinedCards(state).filter { it.area != OwnWords.AREA }
-        val free = joined
-            .filter { stages[it.id] == GrowthStage.Growing || stages[it.id] == GrowthStage.Matured }
+        val matured = joined
+            .filter { stages[it.id] == GrowthStage.Matured }
             .groupBy { it.area }
             .map { (area, cards) ->
                 BriefArea(
@@ -157,10 +161,10 @@ object Briefings {
                     words = cards.map { targetForm(it) },
                 )
             }
-        val inPlay = joined
-            .filter { stages[it.id] in IN_PLAY_STAGES }
+        val learning = joined
+            .filter { stages[it.id] in LEARNING_STAGES }
             .map { BriefWord(targetForm(it), it.source.text) }
-        val newWords = if (inPlay.size >= IN_PLAY_BUSY) {
+        val newWords = if (learning.size >= LEARNING_BUSY) {
             emptyList()
         } else {
             val candidates = Growth.newCandidates(state, NEW_LIMIT, NEW_LIMIT)
@@ -173,8 +177,8 @@ object Briefings {
             learnerName = learnerName,
             sourceName = languageName(catalog, state.joinStamp.source),
             targetName = languageName(catalog, state.joinStamp.target),
-            free = free,
-            inPlay = inPlay,
+            matured = matured,
+            learning = learning,
             newWords = newWords,
         )
     }
