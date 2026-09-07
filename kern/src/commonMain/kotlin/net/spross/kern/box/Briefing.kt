@@ -139,21 +139,12 @@ object Briefings {
     /** Words in learning past which the brief stops naming what is next. */
     const val LEARNING_BUSY: Int = 30
 
-    /** Scheduled, short of [GrowthStage.Matured] — still in progress, never handed over as known. */
-    private val LEARNING_STAGES = setOf(
-        GrowthStage.Learning,
-        GrowthStage.Fresh,
-        GrowthStage.Growing,
-        GrowthStage.Relearning,
-    )
-
     fun of(state: BoxState, catalog: Catalog, learnerName: String?): Briefing {
-        val stages = state.cards.mapValues { (_, card) ->
-            state.scheduling[card.id]?.let { stageOf(state, it) }
-        }
-        val joined = Inventory.joinedCards(state).filter { it.area != OwnWords.AREA }
-        val matured = joined
-            .filter { stages[it.id] == GrowthStage.Matured }
+        val activeIds = Inventory.active(state).mapTo(mutableSetOf()) { it.cardId }
+        val (maturedCards, learningCards) = Inventory.joinedCards(state)
+            .filter { it.area != OwnWords.AREA && it.id in activeIds }
+            .partition { Statistics.isConsolidated(state, state.scheduling.getValue(it.id)) }
+        val matured = maturedCards
             .groupBy { it.area }
             .map { (area, cards) ->
                 BriefArea(
@@ -161,9 +152,7 @@ object Briefings {
                     words = cards.map { targetForm(it) },
                 )
             }
-        val learning = joined
-            .filter { stages[it.id] in LEARNING_STAGES }
-            .map { BriefWord(targetForm(it), it.source.text) }
+        val learning = learningCards.map { BriefWord(targetForm(it), it.source.text) }
         val newWords = if (learning.size >= LEARNING_BUSY) {
             emptyList()
         } else {
