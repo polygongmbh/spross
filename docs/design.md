@@ -171,15 +171,22 @@ never the shape of the app.
 These bind every surface that asks the learner for an answer, the drills with the review
 loop (`drills.md`): they are rules about the asking, not about the box behind it.
 A new surface that asks the way an existing one asks IS that component with a parameter,
-never a second cut of it: the difference that seems to justify a fresh one —
-a font, a label, what the screen reader says — is precisely what a parameter is for,
-the way the picture's slot is `VocabCardView`'s own parameter and not a caller's choice.
-"The shape is the same, but…" is the sentence that mints a duplicate;
-when it turns up in your own reasoning, parameterize the one that exists.
-Find what to reuse by grepping the BEHAVIOR — the mark it draws, the `why:` above it —
-not the design folder: the piece worth reusing sits private inside a sibling screen
-as often as it sits in `Design/`.
-A clone, where one is genuinely the answer, inherits its sibling's gaps and never its rules,
+never a second cut of it — and sameness is judged on the CONTROLS, not on what they hold:
+four tappable tiles are four tappable tiles whether a glyph or a month name sits in them.
+Reasoning from a difference in the content to a difference in the container
+is how every fork gets written.
+No argument licenses the second one. "The shape is the same, but…" is not a case to weigh
+and answer — the "but" is the fork, already decided, and what follows it is the alibi.
+It reads as reasoning because it is composed afterwards: the piece worth reusing is usually
+`private` in a sibling, so the copy costs nothing where the reuse costs a widening,
+and the paragraph is written to justify where the friction already pushed.
+What licenses a second component is a parameter ATTEMPTED and found not to carry,
+never a paragraph explaining in advance that it would not.
+Widening the private sibling is therefore the change and not scope creep beside it —
+`nextButton` is `internal, not private` exactly so the choice grid can stand under it —
+and what to reuse is found by grepping the BEHAVIOR, the mark it draws or the `why:` above it,
+rather than `Design/`, where as often it is not.
+A clone, where the attempt genuinely failed, inherits its sibling's gaps and never its rules,
 so read what is already filed against whatever it was copied from (`backlog.md`).
 
 - **The answer is never on screen twice, and never in the field** —
