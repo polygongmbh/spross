@@ -13,9 +13,9 @@ import net.spross.kern.model.CardScheduling
  * hands over as known.
  *
  * Set above two plain Goods (S ≈ 17) and at or below a Good followed by an Easy
- * (S ≈ 29.8): two successive "I knew it" verdicts
- * ([net.spross.kern.session.SelfGrading.Verdict.Knew]) count as solid only once
- * one of them was fast enough to earn Easy, not from reinforcement alone.
+ * (S ≈ 29.8): two successive "I knew it" verdicts, [net.spross.kern.session.SelfGrading]'s
+ * Knew case both times, count as solid only once one of them was fast enough to earn Easy,
+ * not from reinforcement alone.
  */
 const val MATURED_STABILITY: Double = 25.0
 
