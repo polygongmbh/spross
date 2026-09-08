@@ -54,7 +54,8 @@ answering rules with is `design.md`'s.
   `DateDrill.patternWord` is the same derivation on a calendar — the pattern with its slots
   taken out, minus whatever the kind below it already added, so Swahili's dated line repeats
   `tarehe` silently and owes only `mwaka wa`, and a language whose pattern is its slots alone
-  (en's `{month} {day}`, every uk one) hands over nothing rather than inventing something.
+  (en's `{month} {day}`, uk's up to the dated line, which owes `року`) hands over nothing
+  rather than inventing something.
   A slot BETWEEN two of those words comes back as an ellipsis ("Neu: el … de"): two words a
   pattern holds apart are not a phrase, and welding them would teach one nobody says.
   A reversed task gets no hint at all: the prompt is then the reading,
@@ -173,8 +174,8 @@ answering rules with is `design.md`'s.
   because four tiles among written dates are a free point and the Sprosse above would climb
   on a tap. It is on the reversed ladder too, where the tiles are the learner's own names. Half of a Sprosse's draws lead with the kind it introduced, which is what keeps
   three weekday wins from carrying a learner past a question they never met. A Sprosse the
-  answer language cannot read is absent, not locked: Ukrainian speaks no year inside a
-  date, so its ladder simply tops out a Sprosse short.
+  answer language cannot read is absent, not locked: a calendar authoring no `dateWithYear`
+  gets no year Sprosse and simply tops out a Sprosse short.
   Under the two tables sit two to four authored prose notes on what trips a learner up in
   that calendar, the Zahlen page's own band: the table is generated from the drill's rows
   and so can say nothing about the ASSEMBLY around them, which is the half a date is.

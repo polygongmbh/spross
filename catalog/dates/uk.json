@@ -4,13 +4,13 @@
    "Wochentags- und Monatsnamen bleiben kleingeschrieben.",
    "Der Monat hat eine Form als Name und eine andere im Datum: aus березень wird березня, sobald ein Tag dazukommt.",
    "Der Tag ist eine Ordnungszahl im Genitiv, keine Grundzahl — der 3. heißt третього.",
-   "Ein Datum trägt hier kein Jahr: es vorzulesen bräuchte eine ganze zweite Zahlenfamilie."
+   "Das Jahr im Datum ist ebenso eine Ordnungszahl im Genitiv und schließt mit року: 2026 heißt дві тисячі двадцять шостого року."
   ],
   "en": [
    "Weekday and month names stay lowercase.",
    "The month has one form for its name and another inside a date, so березень becomes березня the moment a day joins it.",
    "The day is a genitive ordinal, not a cardinal, so the 3rd is третього.",
-   "A date carries no year here: reading one aloud needs a whole second family of numerals."
+   "The year inside a date is a genitive ordinal too, closed by року, so 2026 is дві тисячі двадцять шостого року."
   ]
  },
  "weekdays": [
@@ -37,5 +37,9 @@
   { "text": "грудень", "dateForm": "грудня" }
  ],
  "numeric": "{d}.{m}.{y}",
- "patterns": { "dayMonth": { "text": "{day} {month}" }, "date": { "text": "{weekday}, {day} {month}" } }
+ "patterns": {
+  "dayMonth": { "text": "{day} {month}" },
+  "date": { "text": "{weekday}, {day} {month}" },
+  "dateWithYear": { "text": "{weekday}, {day} {month} {year} року" }
+ }
 }

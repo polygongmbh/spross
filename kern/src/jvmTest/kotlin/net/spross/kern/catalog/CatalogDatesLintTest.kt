@@ -210,9 +210,10 @@ class CatalogDatesLintTest {
         // year's own noun with the associative `wa` that hangs it off the date; the
         // `wa`-less `mwaka` and the bare numeral ride behind it as accept-only variants.
         "sw" to setOf("tarehe", "mwaka", "wa"),
-        // Ukrainian assembles a date out of its parts alone: the genitive does the work
-        // an article or a preposition does elsewhere, and there is no year Sprosse to word.
-        "uk" to emptySet(),
+        // Ukrainian assembles a date out of its parts alone — the genitive does the work an
+        // article or a preposition does elsewhere — so the only word is `року`, the noun the
+        // year hangs off once there is a year to name.
+        "uk" to setOf("року"),
     )
 
     @Test

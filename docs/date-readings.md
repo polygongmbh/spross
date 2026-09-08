@@ -22,10 +22,10 @@ Every cell marked ⚠ wants a native ruling; until one lands, the drill ships th
 | fr | lundi…dimanche | janvier…décembre | **cardinal**, `premier` for the 1st | plain cardinal, `mil` graded 1001–1999 |
 | it | lunedì…domenica | gennaio…dicembre | **cardinal**, `primo` for the 1st | plain cardinal |
 | sw | Jumatatu…Jumapili | Januari…Desemba, **counted** beside | **cardinal** after `tarehe`, `mosi` for the 1st | cardinal after `mwaka wa` |
-| uk | понеділок…неділя | січень…грудень | **ordinal, genitive** | **absent — see below** |
+| uk | понеділок…неділя | січень…грудень | **ordinal, genitive** | **ordinal, genitive**, closed by `року` |
 
-A Sprosse a language cannot carry is absent, not locked:
-Ukrainian reads no year inside a date, so its ladder simply tops out one Sprosse short.
+A Sprosse a language cannot carry is absent, not locked — no `dateWithYear` pattern, no year
+Sprosse, and the ladder tops out one Sprosse short. Every authored language carries one today.
 
 ## German
 
@@ -154,17 +154,22 @@ Two consequences:
   so `dateDay` overrides it rather than widening the numbers drill's answer space.
   Adding it to `NumberForm` instead would put a case form into a drill that asks for none.
 
-**Ukrainian takes the year gap.**
-`3 березня 2026 року` reads *третього березня дві тисячі двадцять шостого року* —
-an ordinal genitive year, which the pack does not produce and which is not
-a date rule but a whole second numeral family.
-So Ukrainian reads no year inside a date, exactly as
-"Ukrainian year frames would need ordinal and case forms the trainer does not produce"
-already took that gap for the frames (`../catalog/phrases/README.md`),
-and exactly as French carries no counted-noun frame.
-An honest missing Sprosse costs a learner nothing but the Sprosse.
-⚠ A native confirming that the year is genuinely a second numeral family
-and not a suffix swap like the day would bring the Sprosse back cheaply.
+**The year is the day's rule one slot over.**
+`3 березня 2026 року` reads *третього березня дві тисячі двадцять шостого року*:
+the same genitive ordinal, on the same last word only — `дві тисячі` stays cardinal in
+front of `двадцять шостого` — and closed by `року`, the noun the year hangs off.
+A year read as a bare cardinal is an error rather than a register, so the date takes
+`dateYear` and never the numbers drill's `year` reading.
+
+Two shapes are NOT that suffix swap, and the tables carry them because
+`YEARS` draws both: a round hundred and a round thousand fuse into one ordinal built on
+the multiplier's GENITIVE, so 1900 is *тисяча дев'ятисотого* (not †дев'ятсотого) and
+2000 *двохтисячного* (not †дві тисячного). `сто` and `тисяча` alone keep their own stems
+(`сотий`, `тисячний`).
+
+A year NAME also drops the `одна` the bare number keeps — *тисяча дев'ятсот дев'яносто
+першого*, not *одна тисяча …* — which is why `UkrainianNumbers.yearVariants` orders them
+the other way round from `variants`. The longer reading still grades: it names the same year.
 
 Every Ukrainian reading uses the ASCII apostrophe `U+0027` (`п'ятниця`),
 for the reason `number-forms.md` § Ukrainian gives.

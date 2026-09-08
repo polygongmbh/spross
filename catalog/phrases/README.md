@@ -108,8 +108,9 @@ and editing one never restamps a learner's box.
   ("alle due" but "all'una"), and a frame cannot know which of the two a draw will need,
   so Italian clock frames are predicate frames too
   ("Adesso …", "La sveglia dice che …") — the reading brings its own copula.
-- Ukrainian year frames would need ordinal and case forms the trainer does not produce,
-  so they use dictation framing, where the bare cardinal reading is natural.
+- Ukrainian year frames use DICTATION framing, where a year is read back as the bare
+  cardinal it is written as; the genitive ordinal a year takes once it stands inside a date
+  is the dates drill's, not a frame's (`../../docs/date-readings.md`).
 - A Swahili counted noun stands in its **plural** and names that plural's class:
   the numeral agrees with the noun beside it, and a class is only unambiguous there
   (*daftari* is contested in the singular, *madaftari* is plainly JI-MA).

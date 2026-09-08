@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- The Ukrainian dates ladder now teaches the whole date with its year, one Sprosse further than it used to reach.
+
 ## 6.2.1 — 2026-09-08
 
 - A word now counts as fully grown after 25 days instead of a month, catching two confident answers in a row that used to just miss it.
