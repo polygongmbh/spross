@@ -77,9 +77,11 @@ class TrainerUkrainianTests {
 
     @Test
     fun yearsUsePlainCardinalReading() {
+        // A year NAME leads without одна, where the bare number 1978 keeps it; both grade.
         val task = Trainer.year(1978, "uk")
-        assertEquals("одна тисяча дев'ятсот сімдесят вісім", task.display)
-        assertTrue("тисяча дев'ятсот сімдесят вісім" in task.accepted)
+        assertEquals("тисяча дев'ятсот сімдесят вісім", task.display)
+        assertTrue("одна тисяча дев'ятсот сімдесят вісім" in task.accepted)
+        assertEquals("одна тисяча дев'ятсот сімдесят вісім", number(1_978).display)
         assertEquals("дві тисячі двадцять шість", Trainer.year(2026, "uk").display)
     }
 

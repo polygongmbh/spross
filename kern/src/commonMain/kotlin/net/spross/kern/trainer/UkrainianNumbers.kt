@@ -119,4 +119,15 @@ internal object UkrainianNumbers {
         }
         return list.distinct()
     }
+
+    /**
+     * A YEAR's readings, canonical first. A year NAME drops the "одна" the number itself
+     * keeps — «тисяча дев'ятсот дев'яносто перший», not «одна тисяча …» — so the short form
+     * leads here while [variants] goes on citing the number. The longer reading still grades:
+     * it names the same year, and the preference is a usage rule rather than a different date.
+     */
+    fun yearVariants(y: Long): List<String> {
+        val all = variants(y)
+        return (all.filterNot { it.startsWith("одна тисяча") } + all).distinct()
+    }
 }

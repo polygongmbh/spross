@@ -130,17 +130,26 @@ internal object UkrainianForms {
     private val UNIT_NOUNS = mapOf(2 to "половина", 3 to "третина", 4 to "чверть")
 
     /**
-     * Only the LAST word of a compound becomes ordinal, so the map is keyed by cardinal
-     * word and 21 falls out as "двадцять перший". Masculine nominative singular is
-     * canonical — it is Ukrainian's citation form and the pack's existing convention —
-     * with feminine and neuter accepted; the plural would need a plural noun the bare
-     * prompt does not supply.
+     * Masculine nominative singular is canonical — it is Ukrainian's citation form and the
+     * pack's existing convention — with feminine and neuter accepted; the plural would need
+     * a plural noun the bare prompt does not supply.
      */
-    private fun ordinal(n: Long): List<String> {
-        val cardinal = UkrainianNumbers.cardinal(n)
+    private fun ordinal(n: Long): List<String> =
+        ordinalOf(UkrainianNumbers.cardinal(n))?.let(::genders) ?: emptyList()
+
+    /**
+     * The masculine nominative ordinal of a written-out cardinal. Only the LAST word of a
+     * compound becomes ordinal, which is why [ORDINALS] is keyed by cardinal word and 21
+     * falls out as "двадцять перший" — except a round hundred or thousand, whose ordinal is
+     * a single fused word built on the multiplier's GENITIVE rather than on the cardinal
+     * standing there: `дев'ятсот` → `дев'ятисотий`, `дві тисячі` → `двохтисячний`.
+     * Null past the tables, which every caller reads as "this language does not say it".
+     */
+    private fun ordinalOf(cardinal: String): String? {
+        ROUND_THOUSANDS[cardinal]?.let { return it }
         val cut = cardinal.lastIndexOf(' ') + 1
-        val last = ORDINALS[cardinal.substring(cut)] ?: return emptyList()
-        return genders(cardinal.substring(0, cut) + last)
+        val last = ORDINALS[cardinal.substring(cut)] ?: return null
+        return cardinal.substring(0, cut) + last
     }
 
     /**
@@ -148,18 +157,32 @@ internal object UkrainianForms {
      * the masculine nominative — `третій` → `третього`, `двадцять перший` → `двадцять
      * першого`. That swap is the whole of the difference, so the numbers drill keeps its
      * case-free answer space instead of growing a form no bare prompt asks for.
-     * One reading: a date names no gender the other forms could agree with.
+     * A date names no gender the other forms could agree with, so the readings that come
+     * back are the cardinal's own alternates declined, never a second gender.
      */
-    fun dateGenitive(n: Long): List<String> {
-        val masculine = ordinal(n).firstOrNull() ?: return emptyList()
+    fun dateGenitive(n: Long): List<String> =
+        UkrainianNumbers.variants(n).mapNotNull(::genitiveOrdinal).distinct()
+
+    /**
+     * The YEAR inside a date — the same genitive ordinal one slot over, over the year's own
+     * readings: `2026` is `дві тисячі двадцять шостого`, `1900` `тисяча дев'ятисотого`.
+     * A year read as a bare cardinal is not a register choice in Ukrainian but an error,
+     * which is why the date takes this and never [UkrainianNumbers.variants]
+     * (`docs/date-readings.md`).
+     */
+    fun dateYear(y: Long): List<String> =
+        UkrainianNumbers.yearVariants(y).mapNotNull(::genitiveOrdinal).distinct()
+
+    private fun genitiveOrdinal(cardinal: String): String? {
+        val masculine = ordinalOf(cardinal) ?: return null
         val cut = masculine.lastIndexOf(' ') + 1
         val last = masculine.substring(cut)
         val genitive = when {
             last.endsWith("ій") -> last.dropLast(2) + "ього"
             last.endsWith("ий") -> last.dropLast(2) + "ого"
-            else -> return emptyList()
+            else -> return null
         }
-        return listOf(masculine.substring(0, cut) + genitive)
+        return masculine.substring(0, cut) + genitive
     }
 
     /** третій is a soft adjective (третя/третє); every other ordinal takes -а/-е. */
@@ -183,5 +206,24 @@ internal object UkrainianForms {
         "двадцять" to "двадцятий", "тридцять" to "тридцятий", "сорок" to "сороковий",
         "п'ятдесят" to "п'ятдесятий", "шістдесят" to "шістдесятий", "сімдесят" to "сімдесятий",
         "вісімдесят" to "вісімдесятий", "дев'яносто" to "дев'яностий", "сто" to "сотий",
+        // The fused hundreds: сто alone keeps its base form, every other hundred builds on
+        // the multiplier's genitive, so дев'ятсот does not survive into its own ordinal.
+        "двісті" to "двохсотий", "триста" to "трьохсотий", "чотириста" to "чотирьохсотий",
+        "п'ятсот" to "п'ятисотий", "шістсот" to "шестисотий", "сімсот" to "семисотий",
+        "вісімсот" to "восьмисотий", "дев'ятсот" to "дев'ятисотий",
+    )
+
+    /**
+     * A round thousand collapses its two words into one ordinal, so it is keyed by the whole
+     * cardinal rather than by a last word: `дві тисячі` → `двохтисячний`, never a swap on
+     * `тисячі`. The bare thousand keeps its own stem (`тисячний`), and its `одна`-less
+     * reading stands here too so a year reaches the same form either way.
+     */
+    private val ROUND_THOUSANDS = mapOf(
+        "тисяча" to "тисячний", "одна тисяча" to "тисячний",
+        "дві тисячі" to "двохтисячний", "три тисячі" to "трьохтисячний",
+        "чотири тисячі" to "чотирьохтисячний", "п'ять тисяч" to "п'ятитисячний",
+        "шість тисяч" to "шеститисячний", "сім тисяч" to "семитисячний",
+        "вісім тисяч" to "восьмитисячний", "дев'ять тисяч" to "дев'ятитисячний",
     )
 }

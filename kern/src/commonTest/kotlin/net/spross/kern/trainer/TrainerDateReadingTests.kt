@@ -28,6 +28,17 @@ class TrainerDateReadingTests {
         for (form in forms) assertTrue(form in all, "$language $day: \"$form\" missing from $all")
     }
 
+    private fun years(language: String, year: Long): List<String> = Trainer.pack(language).dateYear(year)
+
+    private fun assertCanonical(language: String, year: Long, expected: String) {
+        assertEquals(expected, years(language, year).firstOrNull(), "$language $year")
+    }
+
+    private fun assertAccepts(language: String, year: Long, form: String) {
+        val all = years(language, year)
+        assertTrue(form in all, "$language $year: \"$form\" missing from $all")
+    }
+
     private fun assertRefuses(language: String, day: Int, vararg forms: String) {
         val all = readings(language, day)
         for (form in forms) assertTrue(form !in all, "$language $day: \"$form\" must not grade")
@@ -114,6 +125,26 @@ class TrainerDateReadingTests {
     }
 
     /**
+     * The year is the same genitive ordinal one slot over, and only the LAST word carries
+     * it — `дві тисячі` stays cardinal in front of `двадцять шостого`. A round hundred or
+     * thousand is the exception the rule needs: its ordinal is a fused word off the
+     * multiplier's genitive, so `дев'ятсот` yields `дев'ятисотого` and `дві тисячі`
+     * `двохтисячного`, neither of which a suffix swap on the cardinal would reach.
+     */
+    @Test
+    fun ukrainianReadsTheYearAsAGenitiveOrdinalToo() {
+        assertCanonical("uk", 2026L, "дві тисячі двадцять шостого")
+        assertCanonical("uk", 2024L, "дві тисячі двадцять четвертого")
+        assertCanonical("uk", 2010L, "дві тисячі десятого")
+        assertCanonical("uk", 1991L, "тисяча дев'ятсот дев'яносто першого")
+        assertAccepts("uk", 1991L, "одна тисяча дев'ятсот дев'яносто першого")
+        assertEquals(listOf("двохтисячного"), years("uk", 2000L))
+        assertCanonical("uk", 1900L, "тисяча дев'ятисотого")
+        // The cardinal is what a bare 2026 reads, and in a date it is an error, not a register.
+        assertTrue("дві тисячі двадцять шість" !in years("uk", 2026L))
+    }
+
+    /**
      * Every authored pack reads every day of every month. The ladder asks for one of these
      * thirty-one and nothing else, so a pack falling through would offer a blank answer to
      * a question it had already posed.
@@ -126,6 +157,19 @@ class TrainerDateReadingTests {
                 assertTrue(all.isNotEmpty(), "$language: no reading for day $day")
                 assertTrue(all.all { it.isNotBlank() && it.trim() == it }, "$language $day: $all")
                 assertEquals(all.distinct(), all, "$language $day: repeated reading")
+            }
+        }
+    }
+
+    /** The same over [DateDrillTasks.YEARS] — the hole 1900 and 2000 once were. */
+    @Test
+    fun everyPackReadsEveryYearTheDatedSprosseDraws() {
+        for (language in Trainer.languages) {
+            for (year in DateDrillTasks.YEARS) {
+                val all = years(language, year.toLong())
+                assertTrue(all.isNotEmpty(), "$language: no reading for year $year")
+                assertTrue(all.all { it.isNotBlank() && it.trim() == it }, "$language $year: $all")
+                assertEquals(all.distinct(), all, "$language $year: repeated reading")
             }
         }
     }

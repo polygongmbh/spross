@@ -192,7 +192,7 @@ private object SwahiliPack : TrainerLanguagePack {
 private object UkrainianPack : TrainerLanguagePack {
     override fun number(n: Long) = UkrainianNumbers.variants(n)
     override fun year(y: Long): YearReading {
-        val variants = UkrainianNumbers.variants(y)
+        val variants = UkrainianNumbers.yearVariants(y)
         return YearReading(variants[0], variants)
     }
     override fun clock(hour: Int, minute: Int) = UkrainianClock.task(hour, minute)
@@ -204,6 +204,7 @@ private object UkrainianPack : TrainerLanguagePack {
         (0..23).flatMapTo(mutableSetOf(), UkrainianClockForms::dayParts)
     override fun formReading(value: NumberValue) = UkrainianForms.reading(value)
     override fun dateDay(day: Int) = UkrainianForms.dateGenitive(day.toLong())
+    override fun dateYear(y: Long) = UkrainianForms.dateYear(y)
     override val formLimits = UkrainianForms.LIMITS
     override val decimalMark = ','
 }
