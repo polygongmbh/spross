@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 6.2.1 — 2026-09-08
+
+- A word now counts as fully grown after 25 days instead of a month, catching two confident answers in a row that used to just miss it.
+- The AI chat now offers only fully grown words as ones you already know, keeping the still-growing ones on the learning side.
+- The box shelf's badge no longer sits blank when just one or two words are queued to unpack.
+
 ## 6.2.0 — 2026-09-06
 
 - A word now stays "Growing" for a full month before it is marked fully grown, and the box shelf's badge and progress bar show the difference.
