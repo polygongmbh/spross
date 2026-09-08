@@ -40,6 +40,9 @@
  "patterns": {
   "dayMonth": { "text": "{day} {month}" },
   "date": { "text": "{weekday}, {day} {month}" },
-  "dateWithYear": { "text": "{weekday}, {day} {month} {year} року" }
+  "dateWithYear": {
+   "text": "{weekday}, {day} {month} {year} року",
+   "variants": ["{weekday}, {day} {month} {year}"]
+  }
  }
 }

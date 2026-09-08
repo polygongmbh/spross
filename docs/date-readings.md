@@ -160,6 +160,9 @@ the same genitive ordinal, on the same last word only — `дві тисячі` 
 front of `двадцять шостого` — and closed by `року`, the noun the year hangs off.
 A year read as a bare cardinal is an error rather than a register, so the date takes
 `dateYear` and never the numbers drill's `year` reading.
+⚠ `року` is taught and the `року`-less reading only graded: how obligatory the noun is
+turned out to be a question of register, and the alternative a source names is not a bare
+year but the locative `у … році`, which is a different construction rather than a shorter one.
 
 Two shapes are NOT that suffix swap, and the tables carry them because
 `YEARS` draws both: a round hundred and a round thousand fuse into one ordinal built on
