@@ -81,8 +81,8 @@ data class DateReferenceGroup(val kind: DateTaskKind, val rows: List<DateReferen
 /**
  * How a drawn question becomes a [DateDrillTask]: the bare names straight off the joined
  * calendar, the assembled Sprossen by filling the answer side's pattern with every reading
- * of every part — the day from [TrainerLanguagePack.dateDay], the year from the pack's
- * year reading. [DateDrill] owns WHAT is drawn; this object owns what it looks like.
+ * of every part — the day from [TrainerLanguagePack.dateDay], the year from
+ * [TrainerLanguagePack.dateYear]. [DateDrill] owns WHAT is drawn; this object owns what it looks like.
  */
 internal object DateDrillTasks {
 
@@ -163,7 +163,6 @@ internal object DateDrillTasks {
         // so the card never states a date that does not exist.
         val weekday = content.weekdays[weekdayIndex(year, monthIndex + 1, day)]
         val pack = Trainer.pack(content.target)
-        val reading = pack.year(year.toLong())
         val authored = requireNotNull(content.patterns.dateWithYear) {
             "no dateWithYear pattern for ${content.target}"
         }
@@ -178,7 +177,7 @@ internal object DateDrillTasks {
             "{weekday}" to dateForms(weekday.target),
             "{day}" to pack.dateDay(day),
             "{month}" to dateForms(content.months[monthIndex].target),
-            "{year}" to (listOf(reading.display) + reading.accepted).distinct(),
+            "{year}" to pack.dateYear(year.toLong()),
         )
         val numeric = content.numeric
             .replace("{d}", day.toString())

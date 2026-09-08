@@ -60,6 +60,15 @@ internal interface TrainerLanguagePack {
     fun dateDay(day: Int): List<String> = drillNumber(day.toLong())
 
     /**
+     * Accepted readings of a YEAR inside a date, canonical first — [dateDay]'s rule one slot
+     * over. Defaulted to the pack's own [year] reading, which is what a language counting its
+     * years the way it counts anything else already says; a language whose date puts the year
+     * in a case or an ordinal the bare numeral never wears says so here (uk,
+     * `docs/date-readings.md`).
+     */
+    fun dateYear(y: Long): List<String> = year(y).let { listOf(it.display) + it.accepted }.distinct()
+
+    /**
      * Whether a leading capital in this language's readings is PUNCTUATION rather than
      * spelling. Swahili writes its clock standalone ("Saa mbili usiku") and lowercases it
      * inside a sentence; German's readings begin on nouns — Mitternacht, Mittag, Viertel —
