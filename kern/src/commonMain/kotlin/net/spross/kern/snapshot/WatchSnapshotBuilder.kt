@@ -47,6 +47,7 @@ object WatchSnapshotBuilder {
     const val MAX_TEXT_CHARS: Int = 24
 
     private const val RECOGNIZE = "recognize"
+    private const val PRODUCE = "produce"
 
     fun build(
         state: BoxState,
@@ -95,10 +96,20 @@ object WatchSnapshotBuilder {
         // question no same-class company to keep. Unscheduled cards stay out: a word
         // first met as somebody else's wrong answer is no longer new when it arrives.
         val pool = ranked.map { state.cards.getValue(it.sched.cardId) }
+        // why: every entry ranks the SAME pool, on one of only two sides, so the index and
+        // the two option readings are resolved once here rather than per entry. Built per
+        // entry they were the cost of a snapshot, which the phone takes on its main thread
+        // at every save.
+        val shared = SharedTargetForms(pool)
+        val options = listOf(RECOGNIZE, PRODUCE).associateWith { role ->
+            pool.map { card -> card to option(card, role, citationPrefixes) }
+        }
         return WatchSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
             generated = nowEpochMillis,
-            entries = entries.map { offer(it, state, pool, SharedTargetForms(pool), citationPrefixes) },
+            entries = entries.map {
+                offer(it, state, options.getValue(it.nextRole), shared, citationPrefixes)
+            },
         )
     }
 
@@ -120,16 +131,16 @@ object WatchSnapshotBuilder {
     )
 
     /**
-     * [entry] with its multiple-choice options resolved: the wrong ones ranked out
-     * of [pool], and its own [WatchEntryDto.optionForm] whenever the form it is
-     * offered in differs from the form it is taught in. Every option is read on
-     * ENTRY's side — never on its own, or the watch would offer source meanings
-     * and target words in the same question.
+     * [entry] with its multiple-choice options resolved: the wrong ones ranked out of
+     * [candidates], and its own [WatchEntryDto.optionForm] whenever the form it is
+     * offered in differs from the form it is taught in. [candidates] are every pool card
+     * already read on ENTRY's side — never on its own, or the watch would offer source
+     * meanings and target words in the same question.
      */
     private fun offer(
         entry: WatchEntryDto,
         state: BoxState,
-        pool: List<Card>,
+        candidates: List<Pair<Card, MultipleChoice.Option>>,
         shared: SharedTargetForms,
         citationPrefixes: Map<Language, List<String>>,
     ): WatchEntryDto {
@@ -149,9 +160,9 @@ object WatchSnapshotBuilder {
             optionForm = answer.text.takeIf { it != sideText(entry, role) },
             distractors = MultipleChoice.distractors(
                 answer = answer,
-                candidates = pool
-                    .filter { it.id != entry.cardId && it.id !in alsoRight }
-                    .map { option(it, role, citationPrefixes) },
+                candidates = candidates
+                    .filter { (card, _) -> card.id != entry.cardId && card.id !in alsoRight }
+                    .map { (_, option) -> option },
             ),
         )
     }

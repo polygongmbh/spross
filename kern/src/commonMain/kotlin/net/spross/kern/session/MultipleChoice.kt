@@ -103,21 +103,25 @@ object MultipleChoice {
         val seen = mutableSetOf(answer.text.lowercase())
         val unique = candidates.filter { seen.add(it.text.lowercase()) }
         val shape = sentenceShape(answer.text)
-        // Shapes are decided once per candidate rather than inside the
-        // comparator: `offer` already ranks the whole pool once per entry.
+        // Shape AND distance are decided once per candidate rather than inside the
+        // comparator: `offer` already ranks the whole pool once per entry, and a key
+        // that re-splits its string on every comparison pays for it n log n times over.
         return unique
-            .map { it to sentenceShape(it.text) }
+            .map { Ranked(it, sentenceShape(it.text), shapeDistance(it.text, answer.text)) }
             .sortedWith(
                 compareBy(
-                    { (option, _) -> option.kind != answer.kind },
-                    { (_, candidateShape) -> candidateShape != shape },
-                    { (option, _) -> option.area != answer.area },
-                    { (option, _) -> shapeDistance(option.text, answer.text) },
+                    { it.option.kind != answer.kind },
+                    { it.shape != shape },
+                    { it.option.area != answer.area },
+                    { it.distance },
                 ),
             )
             .take(limit)
-            .map { (option, _) -> option.text }
+            .map { it.option.text }
     }
+
+    /** One candidate with the two keys that would otherwise be re-derived per comparison. */
+    private data class Ranked(val option: Option, val shape: SentenceShape, val distance: Int)
 
     /**
      * Character-length gap plus a heavy penalty when the number of
