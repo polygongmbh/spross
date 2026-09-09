@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- The area progress bar again draws the words you have not started yet as a gray rest, so a barely-packed shelf no longer reads as full.
 - The talk offer stays hidden while your box holds only words you wrote yourself, where the brief would list nothing.
 - Typing the Ukrainian apostrophe in any of its three shapes no longer costs a mistake.
 - A finished round now plays its cheer on Android too.
