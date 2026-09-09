@@ -8,10 +8,7 @@
 #   scripts/run-emu.sh --mute                — start with reading aloud switched off
 #   scripts/run-emu.sh --shot x.png --sound  — let a screenshot run speak after all
 #
-# --shot implies --mute: a run nobody is sitting at should not start talking. The mute
-# is a launch extra (`--es readAloud off`, SprossActivity) that silences autoplay for
-# THAT launch without storing anything — so the top-bar toggle turns sound straight back
-# on and a hand-launched app still opens with whatever the learner last chose.
+# --shot implies --mute: a run nobody is sitting at should not start talking (RUNBOOK-android.md).
 #
 # Boots the AVD if it is not already running; an emulator left up is reused.
 # One-time AVD setup: see RUNBOOK-android.md § Emulator.

@@ -12,10 +12,7 @@
 # Everything after `--` is passed to the app (see AppModel.start(): -uitest-source,
 # -uitest-target, -uitest-screen box, -uitest-autostart 1, -uitest-trainer numbers).
 #
-# --shot implies --mute: a run nobody is sitting at should not start talking. The mute
-# rides the argument domain (`-readAloud off`), which OVERRIDES the stored setting for
-# this launch without rewriting it — so the in-app toggle turns sound straight back on
-# and a hand-launched app still opens with whatever the learner last chose.
+# --shot implies --mute: a run nobody is sitting at should not start talking (README.md § Run it).
 set -eu
 cd "$(dirname "$0")/.."
 

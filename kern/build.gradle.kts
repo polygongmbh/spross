@@ -49,7 +49,7 @@ kotlin {
 }
 
 // why: the day-part sweep walks every minute of the day in every language, far too slow for
-// the commit gate. Only a catalog or trainer edit can move it, so the commit gate leaves it
+// the commit gate. Only a trainer-forms edit can move it, so the commit gate leaves it
 // out; `-Psweeps` puts it back, and the release workflow always passes it.
 val corpusSweeps = listOf("*ClockDayPartSweepTests")
 

@@ -116,7 +116,7 @@ struct TrainerHubView: View, LanguageNaming {
         )
         .cardShadow()
         #if DEBUG
-        // UI-test hook: `-uitest-trainer numbers|letters`
+        // UI-test hook: `-uitest-trainer numbers|letters|countries|dates`
         // opens that surface (in the learned language, like the chips).
         // Attached HERE because the card only appears once the box is loaded;
         // resolved in TrainerHubView+Letters.swift.

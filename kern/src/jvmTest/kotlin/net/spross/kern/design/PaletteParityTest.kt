@@ -27,9 +27,8 @@ import kotlin.test.fail
  * the complication that only ever wears the dark half — a half-checked table is where the
  * other half drifts.
  *
- * Gradle does not track these Swift, CSS and XML sources as test inputs the way it tracks
- * the classpath (`kern/build.gradle.kts` names the trees so it can): after a palette-only
- * edit that somehow escapes them, run with `--rerun-tasks`.
+ * Gradle does not see these Swift, CSS and XML sources from the classpath;
+ * `kern/build.gradle.kts` names the trees as inputs so a palette edit re-runs this test.
  */
 class PaletteParityTest {
 
