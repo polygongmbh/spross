@@ -34,9 +34,6 @@ data class Briefing(
 ) {
     val maturedCount: Int get() = matured.sumOf { it.words.size }
 
-    /** Whether there is a conversation to be had: a box with nothing introduced briefs nobody. */
-    val hasWords: Boolean get() = maturedCount > 0 || learning.isNotEmpty()
-
     /** The whole brief, ready to be pasted into an assistant. */
     val text: String
         get() = buildString {
@@ -138,6 +135,15 @@ object Briefings {
 
     /** Words in learning past which the brief stops naming what is next. */
     const val LEARNING_BUSY: Int = 30
+
+    /**
+     * Whether there is a conversation to be had: a box with nothing to name briefs nobody.
+     *
+     * The same words [of] would list, counted without building the brief — every active card
+     * under the join lands in `matured` or `learning`, and [OwnWords] are out of both.
+     */
+    fun available(state: BoxState): Boolean =
+        Inventory.active(state).any { state.cards[it.cardId]?.area != OwnWords.AREA }
 
     fun of(state: BoxState, catalog: Catalog, learnerName: String?): Briefing {
         val activeIds = Inventory.active(state).mapTo(mutableSetOf()) { it.cardId }

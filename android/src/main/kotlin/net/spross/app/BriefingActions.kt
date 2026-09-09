@@ -26,9 +26,9 @@ fun AppModel.briefing(): Briefing? {
     return Briefings.of(state, catalog, learnerName)
 }
 
-/** Whether there is a conversation to be briefed at all — what hides the offer. */
+/** Whether there is a conversation to be briefed at all — what hides the offer ([Briefings.available]). */
 val AppModel.hasBriefing: Boolean
-    get() = box?.scheduling?.values?.any { !it.suspended } == true
+    get() = box?.let { Briefings.available(it) } == true
 
 /**
  * Every word a pasted conversation brought home, each against what the box already has of

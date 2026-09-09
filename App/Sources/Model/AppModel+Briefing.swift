@@ -19,10 +19,11 @@ extension AppModel {
     }
 
     /// Whether there is a conversation to be briefed at all — what hides the offer.
-    /// Cheap enough for a view body: it asks the counts, never the words.
+    /// Kern's rule (`Briefings.available`), and cheap enough for a view body: it counts
+    /// the words a brief would name, never builds them.
     var hasBriefing: Bool {
         guard let box else { return false }
-        return box.scheduling.values.contains { !$0.suspended }
+        return Briefings.shared.available(state: box)
     }
 
     /// Every word a pasted conversation brought home, each against what the box
