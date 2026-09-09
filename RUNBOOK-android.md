@@ -38,6 +38,9 @@ it works the same on macOS and Linux except where a section says otherwise.
   no longer exists on more machines than not, and every tool honours it silently.
 - `adb` for device installs (part of platform-tools; a udev rule may be needed
   for USB debugging on some distros).
+- **Git hooks**: `git config core.hooksPath scripts/hooks` (or `sh scripts/bootstrap.sh`,
+  which installs them before its Mac-only steps) — the pre-commit checks are text-only
+  and hold here too.
 
 ## Build & test
 
