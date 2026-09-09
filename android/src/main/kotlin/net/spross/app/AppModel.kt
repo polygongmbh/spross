@@ -764,7 +764,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     fun foldPartialSession() {
         sessionRun ?: return
-        dispatch(SessionIntent.FoldPartial)
+        dispatch(SessionIntent.FoldPartial, blocking = true)
     }
 
     fun finishSession() {
@@ -783,7 +783,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * Step the run and honor what it asks for. The whole session machine is kern's;
      * this is the platform half — the clock, the disk, and the observable state.
      */
-    private fun dispatch(intent: SessionIntent): SessionRunState? {
+    private fun dispatch(intent: SessionIntent, blocking: Boolean = false): SessionRunState? {
         val state = box ?: return null
         // The box may have moved outside the run (a fresh load, settings) — carry it in.
         val current = sessionRun?.let { SessionRun.withBox(it, state) } ?: SessionRun.idle(state)
@@ -793,7 +793,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         for (effect in reduction.effects) {
             when (effect) {
                 is SessionEffect.Persist ->
-                    persist(reduction.state.box, effect.immediate, widget = effect.immediate)
+                    persist(reduction.state.box, widget = effect.immediate, blocking = blocking)
                 SessionEffect.DayBooked -> refreshStats()
             }
         }
@@ -922,9 +922,11 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * Every answer persists (small doc, IO thread) — process death mid-session then costs
      * at most the in-flight card, matching iOS's debounced-save guarantee.
      *
-     * [immediate] is the day's fold asking to be on disk BEFORE the caller returns: it is
-     * dispatched from `onStop`, where the process may not live long enough for a queued
-     * write, and a fold that never reaches disk is no fold.
+     * [blocking] is `onStop`'s fold asking to be on disk BEFORE the caller returns: the
+     * process may not live long enough for a queued write, and a fold that never reaches
+     * disk is no fold. Nothing else asks for it — the encode and the tile's snapshot
+     * together are the better part of a frame, and the last answer of a round would pay
+     * them where the summary is waiting to be drawn (`docs/performance.md`).
      *
      * [widget] rebuilds the tile's snapshot. Off for the answers inside a round and only
      * those: building it walks the exposure ranking, every active card and every day the
@@ -932,10 +934,10 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * does not touch it, while a rebuild per card is the same order of work as the box
      * document itself (`kern/docs/snapshots.md`).
      */
-    private fun persist(state: BoxState, immediate: Boolean = false, widget: Boolean = true) {
+    private fun persist(state: BoxState, widget: Boolean = true, blocking: Boolean = false) {
         val target = state.joinStamp.target
         val stamp = now()
-        if (immediate) {
+        if (blocking) {
             boxFiles.write(target, StoreCodec.encode(state))
             if (widget) {
                 boxFiles.writeWidgetSnapshot(widgetSnapshot(state, stamp))
