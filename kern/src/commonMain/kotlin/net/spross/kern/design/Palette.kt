@@ -6,8 +6,10 @@ data class Swatch(val light: Int, val dark: Int)
 /**
  * The app's full color table. The single source for iOS app and Android, which link this
  * directly; the Watch app and both widget extensions don't link kern (avoids pulling a
- * Kotlin/Native framework into a standalone target over a color table) and hand-copy instead —
- * `PaletteParityTest` (`:kern` jvmTest) checks those three against these same values.
+ * Kotlin/Native framework into a standalone target over a color table), the website and the
+ * print sheets are CSS, and Android's window background is XML the theme reads before Compose
+ * draws — all of them hand-copy, and `PaletteParityTest` (`:kern` jvmTest) holds every copy
+ * to these same values.
  */
 object Palette {
     // Surfaces — stone paper with a moss cast, never plain white/gray.

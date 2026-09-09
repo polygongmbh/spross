@@ -56,11 +56,12 @@ val corpusSweeps = listOf("*ClockDayPartSweepTests")
 tasks.named<Test>("jvmTest") {
     maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
 
-    // why: the palette-parity, layer-boundary and catalog lints read these trees as text, which
-    // Gradle cannot see from the classpath — without naming them the task reports up-to-date
-    // after a Swift or catalog edit, and the gate silently stops running for exactly the change
-    // it guards. The layer gate reads BOTH app trees whole, which is why these are the roots
-    // rather than the design and ui packages the palette check alone would need.
+    // why: the palette-parity, article-table, layer-boundary and catalog lints read these
+    // trees and stylesheets as text, which Gradle cannot see from the classpath — without
+    // naming them the task reports up-to-date after a Swift, CSS or catalog edit, and the
+    // gate silently stops running for exactly the change it guards. The layer gate reads
+    // BOTH app trees whole, which is why these are the roots rather than the design and ui
+    // packages the palette check alone would need.
     inputs.files(
         rootProject.fileTree("App/Sources"),
         rootProject.fileTree("android/src/main"),
@@ -69,6 +70,8 @@ tasks.named<Test>("jvmTest") {
         rootProject.fileTree("Widgets/Sources"),
         rootProject.fileTree("WatchWidgets/Sources"),
         rootProject.fileTree("catalog") { exclude("audio/**") },
+        rootProject.file("web/site.css"),
+        rootProject.file("marketing/print/print.css"),
     ).withPathSensitivity(PathSensitivity.RELATIVE)
     if (!project.hasProperty("sweeps")) {
         filter { corpusSweeps.forEach { excludeTestsMatching(it) } }
