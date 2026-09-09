@@ -2278,6 +2278,23 @@
         }
       }
     },
+    "credits.font" : {
+      "comment" : "The About screen row naming the bundled typeface; Android only, iOS sets the system face",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schrift: Nunito — SIL Open Font License 1.1"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typeface: Nunito — SIL Open Font License 1.1"
+          }
+        }
+      }
+    },
     "credits.recordings %lld" : {
       "comment" : "%d = how many files the speaker contributed",
       "localizations" : {

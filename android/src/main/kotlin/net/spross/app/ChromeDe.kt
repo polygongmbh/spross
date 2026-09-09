@@ -108,6 +108,7 @@ internal object ChromeDe : Chrome {
     override val creditsTitle = "Impressum & Lizenzen"
     override val creditsRecordings = "%d Aufnahmen"
     override val creditsRecordingsOne = "%d Aufnahme"
+    override val creditsFont = "Schrift: Nunito — SIL Open Font License 1.1"
     override val creditsUnmodified = "Aufnahmen unverändert übernommen"
     override val creditsCommonsNote = "Aufnahmen von Wikimedia Commons"
     override val legalTitle = "Impressum"

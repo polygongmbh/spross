@@ -53,7 +53,8 @@ val SprossShapes = Shapes(
  * one. Nunito carries the same voice: humanist, rounded terminals, apertures wide enough to
  * hold up at caption size. It covers Latin, Latin-ext and Cyrillic, so a Ukrainian target is
  * set in the same face as a German one, and ONE variable file (`wght` 200–1000) serves every
- * weight the ramp names. Its license is `android/licenses/Nunito-OFL.txt`.
+ * weight the ramp names. Its license is `android/licenses/Nunito-OFL.txt`, which ships in
+ * the APK and folds open on the About screen.
  *
  * `♀` and `✔` fall outside its coverage and drop to the platform's symbol font. That is where
  * those two belong anyway — they are marks, not text.

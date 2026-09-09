@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import java.net.URLEncoder
@@ -69,6 +70,7 @@ fun AboutScreen(model: AppModel) {
                 items(credits.size) { index -> CreditGroup(credits[index], chrome) }
                 item { CreditFooter(chrome) }
             }
+            item { FontCredit(chrome) }
             item { Spacer(Modifier.height(16.dp)) }
         }
     }
@@ -170,6 +172,41 @@ private fun CreditFooter(chrome: Chrome) {
         )
     }
 }
+
+/**
+ * The bundled typeface, folding open to the license text itself — OFL 1.1 asks for the
+ * notice to travel with the font, and this is where it is read. iOS sets the system face
+ * and bundles none, so the row is Android's alone.
+ */
+@Composable
+private fun FontCredit(chrome: Chrome) {
+    var expanded by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    val notice = remember(expanded) {
+        if (!expanded) "" else context.assets.open(FONT_LICENSE).bufferedReader().use { it.readText() }
+    }
+    Column(modifier = Modifier.panel()) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { expanded = !expanded }
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            Text(chrome.creditsFont, style = MaterialTheme.typography.bodySmall)
+            if (expanded) {
+                Text(
+                    notice,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+    }
+}
+
+/** Packaged by `android/build.gradle.kts` from `android/licenses/`. */
+private const val FONT_LICENSE = "licenses/Nunito-OFL.txt"
 
 /** The file's page on Commons — those names carry spaces and Cyrillic alike. */
 private fun commonsUrl(source: String): String =

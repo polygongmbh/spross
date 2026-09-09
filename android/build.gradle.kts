@@ -97,8 +97,8 @@ android {
     }
 }
 
-// why: catalog/ and the feedback sounds are in-repo masters authored once for both
-// platforms — bundling goes through this task so the APK can never drift from either.
+// why: catalog/, the feedback sounds and the font's license are in-repo masters — bundling
+// goes through this task so the APK can never drift from any of them.
 abstract class SyncAssetsTask : DefaultTask() {
     @get:InputFiles
     @get:PathSensitive(PathSensitivity.RELATIVE)
@@ -140,6 +140,13 @@ androidComponents {
             subdir.set("sounds")
         }
         assets?.addGeneratedSourceDirectory(syncSounds, SyncAssetsTask::outputDir)
+        // The bundled typeface travels with its notice: OFL 1.1 asks for the license text
+        // to ship with the font, and the About screen opens this copy.
+        val syncLicenses = tasks.register<SyncAssetsTask>("sync${variantName}LicenseAssets") {
+            sourceDir.from(rootProject.layout.projectDirectory.dir("android/licenses"))
+            subdir.set("licenses")
+        }
+        assets?.addGeneratedSourceDirectory(syncLicenses, SyncAssetsTask::outputDir)
     }
 }
 

@@ -106,6 +106,7 @@ internal object ChromeEn : Chrome {
     override val creditsTitle = "Legal & licenses"
     override val creditsRecordings = "%d recordings"
     override val creditsRecordingsOne = "%d recording"
+    override val creditsFont = "Typeface: Nunito — SIL Open Font License 1.1"
     override val creditsUnmodified = "Recordings shipped unmodified"
     override val creditsCommonsNote = "Recordings from Wikimedia Commons"
     override val legalTitle = "Legal notice"
