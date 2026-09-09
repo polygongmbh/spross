@@ -68,7 +68,7 @@ class DrillBeat(private val screenReaderOn: () -> Boolean) {
  */
 class DrillActs(
     val beat: DrillBeat,
-    /** The verdict's cue — a haptic here, since this app bundles no chimes. */
+    /** The verdict's cue: the chime, and a haptic under a miss alone (`View.cueTone`). */
     private val onTone: (ToneKind) -> Unit,
     /** A pause that waits for a tap must give the keyboard back, or it covers the button. */
     private val onReleaseFocus: () -> Unit,
