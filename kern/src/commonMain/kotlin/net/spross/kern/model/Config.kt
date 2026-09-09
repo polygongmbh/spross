@@ -97,7 +97,7 @@ data class BoxConfig(
          * The shipped calibration, handed out as a value: exactly the defaults above.
          * A factory because Kotlin default arguments do not cross the ObjC boundary —
          * without one, every platform that cannot see them restates the table and the
-         * numbers drift apart quietly (see `docs/portability.md`).
+         * numbers drift apart quietly.
          */
         fun product(): BoxConfig = BoxConfig()
     }
