@@ -24,7 +24,7 @@ enum DateDrillFace: DrillFace {
 
     static func title(_ language: String) -> LocalizedStringKey { "dates.title \(language)" }
 
-    static var fastHintKey: LocalizedStringKey { "dates.fast.hint" }
+    static var winsToAdvance: Int { Int(DateDrill.shared.winsToAdvance(fast: false)) }
 
     /// Turned round the calendar asks for a DATE, written in digits rather than
     /// in either language — which is a different sentence, not a swapped one.

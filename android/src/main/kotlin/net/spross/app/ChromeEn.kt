@@ -176,7 +176,7 @@ internal object ChromeEn : Chrome {
     override val trainerModifierReverse = "Reversed"
     override val trainerModifierReverseHint = "The reading is shown, the digits are owed."
     override val trainerModifierFast = "Fast"
-    override val trainerModifierFastHint = "One clean answer per Sprosse instead of two."
+    override val trainerModifierFastHint = "One clean answer per Sprosse instead of %d."
     override val trainerModifierMix = "Mixed up"
     override val trainerModifierMixHint = "The direction flips every task, and forms grow to " +
         "the size the numbers reached."
@@ -206,7 +206,6 @@ internal object ChromeEn : Chrome {
     override val trainerSkillCountries = "Countries"
     override val countriesTitle = "Countries · %s"
     override val countriesReference = "The atlas"
-    override val countriesFastHint = "One clean answer per Sprosse instead of three."
     override val countriesReverseHint = "Asks in %s, you answer in %s."
     override val countrySprossen = listOf(
         "The countries of your languages",
@@ -235,7 +234,6 @@ internal object ChromeEn : Chrome {
     override val trainerSkillDates = "Dates"
     override val datesTitle = "Dates · %s"
     override val datesReference = "The calendar"
-    override val datesFastHint = "One clean answer per Sprosse instead of three."
     override val datesReverseHint = "Asks in %1\$s, you answer in %2\$s."
     override val datesReverseHintBack = "Asks in %1\$s — the names answered in %2\$s, the " +
         "dates written in digits."

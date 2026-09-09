@@ -22,7 +22,7 @@ enum CountryDrillFace: DrillFace {
 
     static func title(_ language: String) -> LocalizedStringKey { "countries.title \(language)" }
 
-    static var fastHintKey: LocalizedStringKey { "countries.fast.hint" }
+    static var winsToAdvance: Int { Int(CountryDrill.shared.winsToAdvance(fast: false)) }
 
     /// One line either way: the atlas swaps which language owes the answer and
     /// nothing else about what is owed.

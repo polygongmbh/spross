@@ -183,7 +183,7 @@ interface Chrome {
     val trainerModifierReverse: String
     val trainerModifierReverseHint: String
     val trainerModifierFast: String
-    val trainerModifierFastHint: String
+    val trainerModifierFastHint: String   // %d
     val trainerModifierMix: String
     val trainerModifierMixHint: String
     val numbersCombineLocked: String
@@ -216,7 +216,6 @@ interface Chrome {
     val trainerSkillCountries: String
     val countriesTitle: String     // %s
     val countriesReference: String
-    val countriesFastHint: String
     val countriesReverseHint: String // %1$s %2$s
     /**
      * The Sprossen, in the order they are climbed — one entry per Sprosse of kern's own ladder
@@ -238,7 +237,6 @@ interface Chrome {
     val trainerSkillDates: String
     val datesTitle: String     // %s
     val datesReference: String
-    val datesFastHint: String
     val datesReverseHint: String // %1$s %2$s
     val datesReverseHintBack: String // %1$s %2$s
     /**

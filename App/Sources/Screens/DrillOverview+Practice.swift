@@ -156,9 +156,9 @@ extension DrillOverview {
             }
             .tint(Theme.colors.accent)
             .disabled(!open)
-            // why: a Sprosse here costs THREE clean wins, so the shared
-            // "statt zwei" hint would misprice it — each ladder says its own.
-            (open ? Text(Face.fastHintKey)
+            // why: what fast buys is priced against this ladder's own pace,
+            // kern's count, so no ladder's line can misstate what it costs.
+            (open ? Text("trainer.modifier.fast.hint \(Face.winsToAdvance)")
                   : Text("numbers.unlock") + Text(verbatim: " ")
                       + Text("trainer.sprosse \(ladderCeiling.formatted())"))
                 .font(Theme.typography.caption)

@@ -1942,24 +1942,6 @@
         }
       }
     },
-    "countries.fast.hint" : {
-      "comment" : "this ladder costs THREE clean wins, so it prices its own",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eine saubere Antwort pro Sprosse statt drei."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "One clean answer per Sprosse instead of three."
-          }
-        }
-      }
-    },
     "countries.reference" : {
       "localizations" : {
         "de" : {
@@ -2412,24 +2394,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "What is this weekday called?"
-          }
-        }
-      }
-    },
-    "dates.fast.hint" : {
-      "comment" : "this ladder costs THREE clean wins, so it prices its own",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eine saubere Antwort pro Sprosse statt drei."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "One clean answer per Sprosse instead of three."
           }
         }
       }
@@ -6180,18 +6144,19 @@
         }
       }
     },
-    "trainer.modifier.fast.hint" : {
+    "trainer.modifier.fast.hint %lld" : {
+      "comment" : "%lld — the ladder's own count of clean wins per Sprosse, out of kern; never 1, so no singular",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eine saubere Antwort pro Sprosse statt zwei."
+            "value" : "Eine saubere Antwort pro Sprosse statt %lld."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "One clean answer per Sprosse instead of two."
+            "value" : "One clean answer per Sprosse instead of %lld."
           }
         }
       }

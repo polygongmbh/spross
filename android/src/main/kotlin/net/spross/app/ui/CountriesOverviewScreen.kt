@@ -27,7 +27,7 @@ fun CountriesOverviewScreen(model: AppModel) {
         ladder = TypedDrillLadder(
             title = chrome.countriesTitle.format(model.languageName(content.target)),
             standing = standing,
-            fastHint = chrome.countriesFastHint,
+            fastHint = chrome.trainerModifierFastHint.format(CountryDrill.winsToAdvance(fast = false)),
             reverseHint = { reverse ->
                 reverseHint(model, chrome.countriesReverseHint, content.source, content.target, reverse)
             },

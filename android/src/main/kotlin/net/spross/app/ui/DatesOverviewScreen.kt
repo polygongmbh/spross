@@ -28,7 +28,7 @@ fun DatesOverviewScreen(model: AppModel) {
         ladder = TypedDrillLadder(
             title = chrome.datesTitle.format(model.languageName(content.target)),
             standing = standing,
-            fastHint = chrome.datesFastHint,
+            fastHint = chrome.trainerModifierFastHint.format(DateDrill.winsToAdvance(fast = false)),
             reverseHint = { reverse ->
                 // Two sentences, not one: turned round the calendar asks for a DATE, which is
                 // written in digits rather than in either language.

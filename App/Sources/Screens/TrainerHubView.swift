@@ -249,7 +249,8 @@ extension DrillModifier {
     var trainerHintKey: LocalizedStringKey {
         switch self {
         case .reverse: return "trainer.modifier.reverse.hint"
-        case .fast: return "trainer.modifier.fast.hint"
+        case .fast:
+            return "trainer.modifier.fast.hint \(Int(Trainer.shared.winsToAdvance(fast: false)))"
         case .mix: return "trainer.modifier.mix.hint"
         }
     }

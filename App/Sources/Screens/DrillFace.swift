@@ -38,8 +38,9 @@ protocol DrillFace {
     /// The page's title, around the name of the language being learned.
     static func title(_ language: String) -> LocalizedStringKey
 
-    /// What fast mode buys, once it is paid for.
-    static var fastHintKey: LocalizedStringKey { get }
+    /// Clean answers one Sprosse costs at the normal pace — kern's count, which
+    /// the fast switch's line is priced against rather than spelling it out.
+    static var winsToAdvance: Int { get }
 
     /// The reverse switch's line as the switch stands — a runtime `%@ %@` pair,
     /// asked side first. Two lines where a direction changes what is owed and

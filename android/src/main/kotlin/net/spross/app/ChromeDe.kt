@@ -179,7 +179,7 @@ internal object ChromeDe : Chrome {
     override val trainerModifierReverseHint = "Das Zahlwort steht da, die Ziffern sind " +
         "gefragt."
     override val trainerModifierFast = "Schnell"
-    override val trainerModifierFastHint = "Eine saubere Antwort pro Sprosse statt zwei."
+    override val trainerModifierFastHint = "Eine saubere Antwort pro Sprosse statt %d."
     override val trainerModifierMix = "Bunt gemischt"
     override val trainerModifierMixHint = "Die Richtung wechselt bei jeder Aufgabe, und " +
         "Formen werden so groß wie die Zahlen."
@@ -210,7 +210,6 @@ internal object ChromeDe : Chrome {
     override val trainerSkillCountries = "Länder"
     override val countriesTitle = "Länder · %s"
     override val countriesReference = "Der Atlas"
-    override val countriesFastHint = "Eine saubere Antwort pro Sprosse statt drei."
     override val countriesReverseHint = "Fragt auf %s, du antwortest auf %s."
     override val countrySprossen = listOf(
         "Die Länder eurer Sprachen",
@@ -239,7 +238,6 @@ internal object ChromeDe : Chrome {
     override val trainerSkillDates = "Datum"
     override val datesTitle = "Datum · %s"
     override val datesReference = "Der Kalender"
-    override val datesFastHint = "Eine saubere Antwort pro Sprosse statt drei."
     override val datesReverseHint = "Fragt auf %1\$s, du antwortest auf %2\$s."
     override val datesReverseHintBack = "Fragt auf %1\$s — die Namen auf %2\$s, die Daten in " +
         "Ziffern."
