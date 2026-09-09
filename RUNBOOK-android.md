@@ -72,9 +72,15 @@ it boots the AVD if it is not already up, builds, installs and launches.
 scripts/run-emu.sh                       # build + (re)launch on the spross-phone AVD
 scripts/run-emu.sh --no-build            # reinstall the last APK
 scripts/run-emu.sh --clean               # uninstall first ⇒ onboarding runs
-scripts/run-emu.sh --shot /tmp/drill.png # screenshot once the app has drawn
+scripts/run-emu.sh --shot /tmp/drill.png # screenshot once it has drawn (implies --mute)
+scripts/run-emu.sh --mute                # start with reading aloud switched off
 scripts/run-emu.sh --avd spross-tablet   # another AVD by name
 ```
+
+`--mute` starts the app silent so a run nobody is sitting at never speaks up.
+It silences autoplay for that launch without storing anything,
+so the top-bar toggle turns sound back on and the next hand-launched run opens
+with whatever was last chosen. `--sound` opts a screenshot run back in.
 
 One-time setup, once per machine:
 
