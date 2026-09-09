@@ -542,7 +542,7 @@ always the one `grammar.gender` names, prepended — never a word sliced off the
 text, which carries the bare word in every language.
 Palette: stone-and-moss paper, clay headline, ocean and forest as secondaries
 (growing-box theme), every pairing clearing WCAG AA in both schemes.
-`App/Sources/Design/Theme.swift` holds the values and the rules that keep them there.
+`Palette.kt` (kern) holds the values; `App/Sources/Design/Theme.swift` holds the rules that keep them there.
 
 ## Content pipeline
 

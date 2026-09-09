@@ -6,8 +6,8 @@ built to sit beside native-speaker conversation or a structured course, never to
 
 ## Brand carry-over
 
-- Palette: `App/Sources/Design/Theme.swift` is the source of truth (stone-and-moss surfaces, clay accent, ocean/forest secondaries, ochre for near-miss — never red).
-  `web/site.css` restates the hex pairs; when Theme.swift moves, the CSS follows.
+- Palette: `kern/src/commonMain/kotlin/net/spross/kern/design/Palette.kt` is the source of truth (stone-and-moss surfaces, clay accent, ocean/forest secondaries, ochre for near-miss — never red).
+  `web/site.css` restates the hex pairs; when Palette.kt moves, the CSS follows.
 - Type: SF Rounded in-app → `ui-rounded` system stack on the web.
 - Wordplay: **Spross** (sprout) / **Sprosse** (a ladder's step) — organic growth first, the climb as the progression wink
   (phrases unlock from component words; drill levels climb a digit at a time).
