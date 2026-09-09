@@ -11,6 +11,7 @@ import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.Language
 import net.spross.kern.model.PresentationRole
+import net.spross.kern.model.Realization
 import net.spross.kern.model.SharedTargetForms
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.presentationRole
@@ -95,11 +96,31 @@ object WatchSnapshotBuilder {
         // question no same-class company to keep. Unscheduled cards stay out: a word
         // first met as somebody else's wrong answer is no longer new when it arrives.
         val pool = ranked.map { state.cards.getValue(it.sched.cardId) }
+        // why: the index and both option sides are the POOL's, not an entry's —
+        // built per entry they were built sixty times over, which is most of what
+        // a snapshot used to cost.
+        val shared = SharedTargetForms(pool)
+        val options = OptionPool(pool, citationPrefixes)
         return WatchSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
             generated = nowEpochMillis,
-            entries = entries.map { offer(it, state, pool, SharedTargetForms(pool), citationPrefixes) },
+            entries = entries.map { offer(it, state, options, shared) },
         )
+    }
+
+    /** Every pool card as it can be offered, both sides resolved once. */
+    private class OptionPool(pool: List<Card>, private val citationPrefixes: Map<Language, List<String>>) {
+        private val produce = pool.map { it.id to option(it, it.target, citationPrefixes) }
+        private val recognize = pool.map { it.id to option(it, it.source, citationPrefixes) }
+
+        /** The pool on [role]'s side, minus the entry itself and anything it would also answer. */
+        fun candidates(role: String, cardId: String, alsoRight: Set<String>): List<MultipleChoice.Option> =
+            (if (role == RECOGNIZE) recognize else produce)
+                .mapNotNull { (id, offered) -> offered.takeIf { id != cardId && id !in alsoRight } }
+
+        /** [card]'s own answer, on the side a question in [role] asks for. */
+        fun own(role: String, card: Card): MultipleChoice.Option =
+            option(card, if (role == RECOGNIZE) card.source else card.target, citationPrefixes)
     }
 
     /**
@@ -129,13 +150,12 @@ object WatchSnapshotBuilder {
     private fun offer(
         entry: WatchEntryDto,
         state: BoxState,
-        pool: List<Card>,
+        options: OptionPool,
         shared: SharedTargetForms,
-        citationPrefixes: Map<Language, List<String>>,
     ): WatchEntryDto {
         val role = entry.nextRole
         val card = state.cards.getValue(entry.cardId)
-        val answer = option(card, role, citationPrefixes)
+        val answer = options.own(role, card)
         // why: the tiles of a recognize question are MEANINGS, and a concept that prints the
         // prompted form means it too — offered as the wrong one, it marks a right answer
         // wrong. Recognize only: asked FROM the meaning, the other concept's target word is
@@ -149,26 +169,21 @@ object WatchSnapshotBuilder {
             optionForm = answer.text.takeIf { it != sideText(entry, role) },
             distractors = MultipleChoice.distractors(
                 answer = answer,
-                candidates = pool
-                    .filter { it.id != entry.cardId && it.id !in alsoRight }
-                    .map { option(it, role, citationPrefixes) },
+                candidates = options.candidates(role, entry.cardId, alsoRight),
             ),
         )
     }
 
-    /** [card] as it can be offered for a question in [role]. */
+    /** [card] as it can be offered, read on [side]. */
     private fun option(
         card: Card,
-        role: String,
+        side: Realization,
         citationPrefixes: Map<Language, List<String>>,
-    ): MultipleChoice.Option {
-        val side = if (role == RECOGNIZE) card.source else card.target
-        return MultipleChoice.Option(
-            text = MultipleChoice.optionForm(side.text, card.kind, citationPrefixes[side.lang].orEmpty()),
-            kind = card.kind,
-            area = card.area,
-        )
-    }
+    ): MultipleChoice.Option = MultipleChoice.Option(
+        text = MultipleChoice.optionForm(side.text, card.kind, citationPrefixes[side.lang].orEmpty()),
+        kind = card.kind,
+        area = card.area,
+    )
 
     /** [dto]'s taught text on the side a question in [role] asks the learner to pick. */
     private fun sideText(dto: WatchEntryDto, role: String): String =
