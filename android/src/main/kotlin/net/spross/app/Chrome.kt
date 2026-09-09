@@ -487,9 +487,3 @@ interface Chrome {
 fun countLine(one: String, many: String, count: Int): String =
     (if (count == 1) one else many).format(count)
 
-/**
- * An amber hold's line: the caption, then the form it owes. The caption alone is what the
- * catalog holds — iOS stacks the two, Android sets them on one line — so the words stay
- * shared and the layout stays each phone's own.
- */
-fun almostLine(caption: String, form: String): String = "$caption: $form"
