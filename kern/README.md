@@ -432,8 +432,9 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   then reads as a join regression, and the assertion measures content, not code.
   A test that restates the mapping it asserts — comparing `RawRealization` to `Realization`
   field by field — is a change-detector for a copy function, not coverage.
-- `PaletteParityTest` (jvmTest) holds the three hand-copied palettes —
-  the watch app and both widget extensions — to `Palette`; its KDoc owns that rule.
+- `PaletteParityTest` (jvmTest) holds every hand-copied palette — the watch app, both widget
+  extensions, the two stylesheets and Android's window background — to `Palette`;
+  its KDoc owns that rule.
 - **A deliberate content change is allowed to move the tests that pin it.**
   Pinned expectations say what the drill teaches,
   so changing what it teaches SHOULD move them —
