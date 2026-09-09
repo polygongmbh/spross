@@ -108,7 +108,7 @@ own and the others would sound wrong carrying one — and price the length in: a
 **Pick the word a speaker says, never the word that sits furthest from another card.**
 Two realizations one edit apart are safe by construction:
 a typed form that is exactly some card's answer grades `Match.OtherWord`
-instead of earning typo credit (`../../kern/README.md` § catalog-wide produce grading),
+instead of earning typo credit (`../../kern/docs/grading.md` § Catalog-wide collision),
 which is why sw `kupata` has always stood beside `kukata`
 and de `sehen` beside `stehen`.
 The bar that does bind is a display-identical prompt inside ONE area,
