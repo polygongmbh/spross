@@ -1,5 +1,10 @@
 .DS_Store
 *.xcodeproj
+# xcodegen writes these from project.yml too, so project.yml is their one home
+App/Info.plist
+Widgets/Info.plist
+WatchWidgets/Info.plist
+*.entitlements
 .build/
 DerivedData/
 xcuserdata/
