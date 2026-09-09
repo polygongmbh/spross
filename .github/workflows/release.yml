@@ -34,6 +34,15 @@ jobs:
           fi
           printf '%s' "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
 
+      # The text lints live in the pre-commit hook, which a clone that never set
+      # hooksPath does not have; this is the backstop for what slipped past it.
+      - name: Text lints
+        run: |
+          python3 scripts/catalog-format.py --check
+          python3 scripts/strings.py --check-format App/Sources/Resources/Localizable.xcstrings
+          python3 scripts/chrome.py
+          python3 scripts/card-parity.py --check
+
       - name: Test and assemble
         env:
           SPROSS_KEYSTORE: ${{ runner.temp }}/release.jks

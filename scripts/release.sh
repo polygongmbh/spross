@@ -79,6 +79,12 @@ if command -v xcodegen >/dev/null 2>&1; then
 fi
 
 echo "Gates…"
+# The four text lints run in the pre-commit hook, which a clone that never set hooksPath
+# does not have — so a release is where their absence would otherwise first show.
+python3 scripts/catalog-format.py --check >/dev/null
+python3 scripts/strings.py --check-format App/Sources/Resources/Localizable.xcstrings
+python3 scripts/chrome.py >/dev/null
+python3 scripts/card-parity.py --check
 ./gradlew --console=plain -q :kern:jvmTest -Psweeps :android:testDebugUnitTest
 
 # The app gate is the only one that sees a Swift call site: a Kotlin change can leave

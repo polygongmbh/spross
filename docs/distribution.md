@@ -18,7 +18,7 @@ it renames `## Unreleased` to `## <version> — <today>` and opens a fresh one,
 writes `MARKETING_VERSION`,
 regenerates `Spross.xcodeproj` — generated and gitignored,
 so it keeps stamping the old number until something regenerates it —
-runs the Kotlin gates and an unsigned simulator build,
+runs the text lints, the Kotlin gates and an unsigned simulator build,
 and only then commits, tags and pushes.
 `--check` stops before the commit, `--no-app` drops the Xcode gate on a Linux session.
 Two things stay yours: which number, and what the entries say.
@@ -238,7 +238,8 @@ Connect rejects a build number it has already seen for a version.
 
 ## What the runners do
 
-`ubuntu-latest` builds the APK behind `:kern:jvmTest` and `:android:testDebugUnitTest`.
+`ubuntu-latest` builds the APK behind the text lints, `:kern:jvmTest`
+and `:android:testDebugUnitTest`.
 `macos-15` pins Xcode 16.4 — the image's default moves — generates the project with
 `xcodegen` (`.xcodeproj` is never committed), caches `~/.konan` against the Kotlin
 version, then archives and exports. macOS minutes bill at ten times the Linux rate,
