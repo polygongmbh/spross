@@ -103,6 +103,23 @@
       "targetText": "Brauchen Sie das hier?"
     },
     {
+      "cardId": "fixture-kochen",
+      "distractors": [
+        "wash",
+        "pay",
+        "ask"
+      ],
+      "due": 1767276000000,
+      "femMarker": false,
+      "nextRole": "recognize",
+      "optionForm": "cook",
+      "promptForm": "kochen",
+      "revealEmoji": "🍳",
+      "sourceText": "to cook",
+      "stability": 1.8,
+      "targetText": "kochen"
+    },
+    {
       "articleTint": "der",
       "cardId": "fixture-fernseher",
       "distractors": [
