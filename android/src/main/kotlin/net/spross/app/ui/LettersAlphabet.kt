@@ -33,6 +33,9 @@ import net.spross.app.speakOnTap
 import net.spross.kern.catalog.AlphabetEntry
 import net.spross.kern.catalog.AlphabetKind
 import net.spross.kern.catalog.Catalog
+import net.spross.kern.catalog.alphabet
+import net.spross.kern.catalog.alphabetExample
+import net.spross.kern.catalog.exampleMeaning
 import net.spross.kern.model.Language
 
 /**

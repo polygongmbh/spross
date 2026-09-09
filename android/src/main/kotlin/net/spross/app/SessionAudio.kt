@@ -2,6 +2,7 @@ package net.spross.app
 
 import net.spross.app.audio.Pronouncer
 import net.spross.kern.catalog.Pronunciation
+import net.spross.kern.catalog.pronunciation
 import net.spross.kern.model.PronunciationCue
 import net.spross.kern.model.pronunciationCue
 import net.spross.kern.model.shownArticle

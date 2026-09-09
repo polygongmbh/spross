@@ -1,5 +1,6 @@
 package net.spross.app
 
+import net.spross.kern.catalog.alphabet
 import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.Trainer
 

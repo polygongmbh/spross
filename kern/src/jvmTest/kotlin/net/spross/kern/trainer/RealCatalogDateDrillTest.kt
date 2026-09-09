@@ -6,6 +6,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import net.spross.kern.catalog.RealCatalog
+import net.spross.kern.catalog.dateDrillContent
 
 /**
  * The CONTENT SPEC for the assembled date, against the SHIPPING calendars — what

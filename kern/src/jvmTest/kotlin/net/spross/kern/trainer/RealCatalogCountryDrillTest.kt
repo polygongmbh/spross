@@ -5,6 +5,7 @@ import kotlin.test.Test
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import net.spross.kern.catalog.RealCatalog
+import net.spross.kern.catalog.countryDrillContent
 
 /**
  * The drill run against the SHIPPING atlas — rules only, never a pinned draw. What a

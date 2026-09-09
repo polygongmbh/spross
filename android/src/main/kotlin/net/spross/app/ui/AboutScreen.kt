@@ -32,6 +32,7 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.countLine
 import net.spross.kern.catalog.AudioCredit
+import net.spross.kern.catalog.audioCredits
 
 /**
  * Who publishes the app ([LegalSection]) and who spoke the bundled recordings. Which build

@@ -9,6 +9,7 @@ import androidx.compose.runtime.setValue
 import net.spross.app.AppModel
 import net.spross.app.audio.Pronouncer
 import net.spross.app.ui.languageName
+import net.spross.kern.catalog.pronunciation
 import net.spross.kern.listen.LISTENING_WATCHDOG_MS
 import net.spross.kern.listen.ListeningCandidate
 import net.spross.kern.listen.ListeningEffect

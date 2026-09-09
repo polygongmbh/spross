@@ -21,6 +21,7 @@ import net.spross.app.Chrome
 import net.spross.app.dateSprosse
 import net.spross.app.speakFormOnTap
 import net.spross.kern.catalog.DateDrillContent
+import net.spross.kern.catalog.dateNotes
 import net.spross.kern.trainer.DateDrill
 import net.spross.kern.trainer.DateReferenceGroup
 import net.spross.kern.trainer.DateReferenceRow

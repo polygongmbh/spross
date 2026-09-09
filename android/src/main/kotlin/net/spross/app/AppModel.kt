@@ -35,6 +35,9 @@ import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.catalog.Pronunciation
+import net.spross.kern.catalog.countryDrillContent
+import net.spross.kern.catalog.dateDrillContent
+import net.spross.kern.catalog.pronunciation
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
 import net.spross.kern.model.DayStats

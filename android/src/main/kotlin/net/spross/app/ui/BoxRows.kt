@@ -40,6 +40,7 @@ import net.spross.kern.box.CardRowState
 import net.spross.kern.box.OwnWords
 import net.spross.kern.model.kindEmoji
 import net.spross.kern.catalog.Pronunciation
+import net.spross.kern.catalog.pronunciation
 import net.spross.kern.model.Card
 import net.spross.kern.model.Realization
 import net.spross.kern.model.shownArticle

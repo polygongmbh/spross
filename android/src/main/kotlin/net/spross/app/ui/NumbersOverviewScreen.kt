@@ -22,6 +22,7 @@ import net.spross.app.hint
 import net.spross.app.name
 import net.spross.app.speakFormOnTap
 import net.spross.app.unlockPrice
+import net.spross.kern.catalog.numberNotes
 import net.spross.kern.trainer.DrillModifier
 import net.spross.kern.trainer.DrillSelection
 import net.spross.kern.trainer.DrillUnlocks
