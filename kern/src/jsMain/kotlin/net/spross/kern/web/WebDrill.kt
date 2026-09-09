@@ -83,12 +83,6 @@ class NumbersDrill(private val language: String, seed: Int, articles: Array<Stri
 /** Stateless lookups the page needs outside a run. */
 @JsExport
 object WebTrainer {
-    fun languages(): Array<String> = Trainer.languages.toTypedArray()
-
-    fun supports(language: String): Boolean = Trainer.supports(language)
-
-    fun maxLevel(): Int = Trainer.maxLevel(TrainerKind.Numbers)
-
     /** Canonical spelled-out reading, for the generated primer tables. */
     fun spellNumber(value: Int, language: String): String =
         Trainer.number(value.toLong(), language).display
