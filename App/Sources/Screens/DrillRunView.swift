@@ -55,7 +55,7 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
     /// The beat between the chime and the answer being said (`autoplayAnswer`).
-    @State private var answerVoice: Task<Void, Never>?
+    @State private var answerVoice = AnswerVoice()
     @FocusState var answerFocused: Bool
 
     init(model: AppModel, content: Face.Content, reverse: Bool, fast: Bool = false,
@@ -172,32 +172,15 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
         }
     }
 
-    /// Fires once when the answer comes out, however it came out. `.auto`, so
-    /// the read-aloud switch and VoiceOver both still veto it.
-    ///
-    /// Held rather than fired and forgotten: the wait outlives a fast tap, and
-    /// a reveal closed within it would otherwise speak over whatever screen
-    /// replaced the run.
+    /// Fires once when the answer comes out, however it came out.
     private func autoplayAnswer() {
         guard let form = spokenAnswer else { return }
-        let language = current.answerLanguage
-        answerVoice?.cancel()
-        answerVoice = Task { @MainActor in
-            // why: the correct/wrong chime lands first — the same 300 ms the
-            // review session waits, or the word starts under the chime.
-            try? await Task.sleep(for: .milliseconds(300))
-            guard !Task.isCancelled else { return }
-            model.pronounceAloud(form, lang: language)
-        }
+        answerVoice.speak(form, lang: current.answerLanguage, via: model)
     }
 
-    /// Silence, and drop a wait that has not fired yet. Every way out of a task
-    /// goes through here — the next question, the door — because a reading
-    /// belongs to the task that revealed it and to nothing after.
+    /// Every way out of a task goes through here — the next question, the door.
     func hushAnswer() {
-        answerVoice?.cancel()
-        answerVoice = nil
-        Pronouncer.shared.stop()
+        answerVoice.hush()
     }
 
     // The draw, the ramp and the verdict ladder are kern's; the driver that

@@ -47,7 +47,7 @@ struct TrainerSessionView: View, LanguageNaming {
     // why: internal, not private — the +Run extension arms/cancels it.
     @State var autoAdvance: Task<Void, Never>?
     /// The pending "say the answer" wait, held so leaving a task can drop it.
-    @State var answerVoice: Task<Void, Never>?
+    @State var answerVoice = AnswerVoice()
     /// Second focus attempt for a field that remounts (see focusAnswerField).
     @State var focusRetry: Task<Void, Never>?
     @FocusState var answerFocused: Bool

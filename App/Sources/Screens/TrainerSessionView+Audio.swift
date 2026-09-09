@@ -22,32 +22,16 @@ extension TrainerSessionView {
         }
     }
 
-    /// Fires once when the answer comes out, however it came out. `.auto`, so
-    /// the read-aloud switch and VoiceOver both still veto it — a tap on the
-    /// speaker outranks the mute, this does not.
-    ///
-    /// Held in `answerVoice` rather than fired and forgotten: the wait outlives
-    /// a fast tap, and a reveal that is closed within it would otherwise speak
-    /// its answer over whatever screen replaced the run.
+    /// Fires once when the answer comes out, however it came out.
     func autoplayAnswer() {
         guard let model, let form = spokenAnswer else { return }
-        answerVoice?.cancel()
-        answerVoice = Task { @MainActor in
-            // why: the correct/wrong chime lands first — the same 300 ms the
-            // review session waits, or the word starts under the chime.
-            try? await Task.sleep(for: .milliseconds(300))
-            guard !Task.isCancelled else { return }
-            model.pronounceAloud(form, lang: language)
-        }
+        answerVoice.speak(form, lang: language, via: model)
     }
 
-    /// Silence, and drop a wait that has not fired yet. Every way out of a task
-    /// goes through here — the next prompt, the summary, the door — because a
-    /// reading belongs to the task that revealed it and to nothing after.
+    /// Every way out of a task goes through here — the next prompt, the
+    /// summary, the door.
     func hushAnswer() {
-        answerVoice?.cancel()
-        answerVoice = nil
-        Pronouncer.shared.stop()
+        answerVoice.hush()
     }
 
     /// It began to matter here when "Aufdecken" started REMOVING the field
