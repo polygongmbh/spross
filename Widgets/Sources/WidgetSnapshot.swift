@@ -34,8 +34,6 @@ struct WidgetSnapshot: Codable {
 
     struct Day: Codable {
         var reviews: Int
-        var introduced: Int
-        var activeCount: Int
     }
 
     var schemaVersion: Int
