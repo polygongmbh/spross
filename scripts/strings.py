@@ -48,11 +48,12 @@ emitted, which is the check that catches REAL drift. Needs a build first:
       build SWIFT_EMIT_LOC_STRINGS=YES
 """
 import glob
-import importlib.util
 import json
 import os
 import subprocess
 import sys
+
+from sibling import load
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'App/Sources/Resources/Localizable.xcstrings')
@@ -160,16 +161,12 @@ def check_format(path):
 
 
 def chrome():
-    """scripts/chrome.py, loaded by path — a hyphenated sibling cannot be imported.
+    """scripts/chrome.py, loaded lazily.
 
-    Lazily, so --check-format stays what the pre-commit hook needs it to be: a read of
-    one file it was handed, with nothing else on disk consulted.
+    So --check-format stays what the pre-commit hook needs it to be: a read of one file
+    it was handed, with nothing else on disk consulted.
     """
-    spec = importlib.util.spec_from_file_location(
-        'chrome', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'chrome.py'))
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
+    return load('chrome', 'chrome.py')
 
 
 def main():

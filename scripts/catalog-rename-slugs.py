@@ -22,28 +22,19 @@ are re-emitted on `audio-catalog.py`'s own contract (2-space indent, sorted keys
 is what keeps a rename's diff down to the renamed keys.
 """
 import argparse
-import importlib.util
 import json
 import os
 import subprocess
 import sys
+
+from sibling import load
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'catalog')
 AREAS = os.path.join(CATALOG, 'areas')
 AUDIO = os.path.join(CATALOG, 'audio')
 
-
-def _load(name, filename):
-    """Sibling scripts are hyphenated, so they are loaded by path rather than imported."""
-    spec = importlib.util.spec_from_file_location(
-        name, os.path.join(os.path.dirname(os.path.abspath(__file__)), filename))
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
-
-
-catalog_format = _load('catalog_format', 'catalog-format.py')
+catalog_format = load('catalog_format', 'catalog-format.py')
 
 
 def read_text(*parts):

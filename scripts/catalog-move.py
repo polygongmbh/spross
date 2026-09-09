@@ -27,28 +27,19 @@ itself is `catalog-format.py`'s, so what the gate really asserts is that the cat
 formatted — run its `--fix` if this refuses.
 """
 import argparse
-import importlib.util
 import json
 import os
 import sys
 import unicodedata
+
+from sibling import load
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'catalog')
 # why: the card areas live one level down, beside the registries rather than among them.
 AREAS = os.path.join(CATALOG, 'areas')
 
-
-def _load(name, filename):
-    """Sibling scripts are hyphenated, so they are loaded by path rather than imported."""
-    spec = importlib.util.spec_from_file_location(
-        name, os.path.join(os.path.dirname(os.path.abspath(__file__)), filename))
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
-
-
-catalog_format = _load('catalog_format', 'catalog-format.py')
+catalog_format = load('catalog_format', 'catalog-format.py')
 
 
 def read_text(*parts):
