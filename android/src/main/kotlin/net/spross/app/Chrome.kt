@@ -346,13 +346,11 @@ interface Chrome {
 
     // ── Feedback to the catalog ─────────────────────────────────────────────────
     val boxOwnWordNeedsTranslation: String
-    val reportExportCopy: String
     val reportExportSend: String
     val reportExportScopeNew: String
     val reportExportScopeOutbox: String
     val reportExportScopeAll: String
     val reportExportScopeAllClear: String
-    val reportExportClear: String
     val reportExportClearConfirm: String   // %d
 
     // ── The conversation the app does not host ──────────────────────────────────
@@ -364,7 +362,6 @@ interface Chrome {
     val briefingStepCopy: String
     val briefingStepTalk: String
     val briefingStepBack: String
-    val briefingCopy: String
     val briefingCopied: String
     val briefingShare: String
     val briefingReturnTitle: String
@@ -391,6 +388,7 @@ interface Chrome {
     val commonCancel: String
     val commonReset: String
     val commonClear: String
+    val commonCopy: String
 
     // ── Session turn ────────────────────────────────────────────────────────────
     val sessionCopyPlaceholder: String        // %s

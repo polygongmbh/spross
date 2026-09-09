@@ -16,7 +16,7 @@ struct FeedbackExportActions: View {
 
     var body: some View {
         HStack(spacing: Theme.spacing.lg) {
-            scopedButton("report.export.copy", icon: "doc.on.doc") { onlyNew, scope in
+            scopedButton("common.copy", icon: "doc.on.doc") { onlyNew, scope in
                 UIPasteboard.general.string = model.reportText(onlyNew: onlyNew, scope: scope)
                 model.markExported(scope: scope)
             }
@@ -77,7 +77,7 @@ struct FeedbackExportActions: View {
         Button(role: .destructive) {
             confirmingClear = true
         } label: {
-            Label("report.export.clear", systemImage: "trash")
+            Label("common.clear", systemImage: "trash")
                 .font(Theme.typography.subheadline)
         }
         .confirmationDialog("report.export.clear.confirm \(model.clearableCount)",

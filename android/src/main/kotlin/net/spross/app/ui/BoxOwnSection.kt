@@ -153,7 +153,7 @@ private fun OwnContentPanel(
         }
         if (actions) {
             Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-                ScopedAction(model, chrome.reportExportCopy) { onlyNew, scope ->
+                ScopedAction(model, chrome.commonCopy) { onlyNew, scope ->
                     context.copyToClipboard(chrome.boxOwnTitle, model.reportText(onlyNew, scope))
                     model.markExported(scope)
                 }
@@ -375,7 +375,7 @@ private fun ClearAction(model: AppModel) {
     val chrome = model.chrome
     var confirming by remember { mutableStateOf(false) }
     TextButton(onClick = { confirming = true }) {
-        Text(chrome.reportExportClear, color = Theme.colors.wrong)
+        Text(chrome.commonClear, color = Theme.colors.wrong)
     }
     if (confirming) {
         AlertDialog(

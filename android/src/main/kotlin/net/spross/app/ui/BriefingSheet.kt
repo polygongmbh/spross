@@ -82,7 +82,7 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
                 TextButton(onClick = {
                     context.copyBrief(chrome.briefingTitle, briefing.text)
                     copied = true
-                }) { Text(if (copied) chrome.briefingCopied else chrome.briefingCopy) }
+                }) { Text(if (copied) chrome.briefingCopied else chrome.commonCopy) }
                 TextButton(onClick = { context.shareBrief(chrome.briefingTitle, briefing.text) }) {
                     Text(chrome.briefingShare)
                 }

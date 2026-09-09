@@ -1370,23 +1370,6 @@
         }
       }
     },
-    "briefing.copy" : {
-      "comment" : "Puts the whole brief on the clipboard.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kopieren"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Copy"
-          }
-        }
-      }
-    },
     "briefing.group.held" : {
       "comment" : "heading over pasted words the box already teaches exactly (`HarvestKind.Held`)",
       "localizations" : {
@@ -1727,6 +1710,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Close"
+          }
+        }
+      }
+    },
+    "common.copy" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy"
           }
         }
       }
@@ -4753,22 +4752,6 @@
         }
       }
     },
-    "report.export.clear" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Leeren"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clear"
-          }
-        }
-      }
-    },
     "report.export.clear.confirm %lld" : {
       "comment" : "%lld = how many suggestions and reports the clear would take",
       "localizations" : {
@@ -4782,22 +4765,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Delete %lld suggestions and reports? Your own word pairs stay."
-          }
-        }
-      }
-    },
-    "report.export.copy" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kopieren"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Copy"
           }
         }
       }

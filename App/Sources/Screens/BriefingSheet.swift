@@ -68,7 +68,7 @@ struct BriefingSheet: View {
                     UIPasteboard.general.string = briefing.text
                     copied = true
                 } label: {
-                    Label(copied ? "briefing.copied" : "briefing.copy",
+                    Label(copied ? "briefing.copied" : "common.copy",
                           systemImage: copied ? "checkmark" : "doc.on.doc")
                         .font(Theme.typography.subheadline)
                 }
