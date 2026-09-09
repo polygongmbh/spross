@@ -108,7 +108,8 @@ is a runtime/user-preference concern; the content only supplies the default.
 - `name` — the language's own name for itself ("Deutsch", "Українська");
   language pickers use this so speakers always recognize their language.
 - `englishName` — English exonym ("German", "Ukrainian"). Required, non-empty.
-- `flag` — exactly ONE emoji flag sequence for chrome/badges (sw uses 🇹🇿 Tanzania).
+- `flag` — exactly ONE emoji flag sequence for chrome/badges (sw uses 🇹🇿 Tanzania);
+  a language with no country of its own carries one badge emoji instead (eo 💚).
 - `articles` — the language's articles (de `der/die/das/ein/eine`, en `the/a/an`).
   ONE leading listed article is optional when grading input in this language;
   it also drives article coloring in the UI.
@@ -121,6 +122,9 @@ is a runtime/user-preference concern; the content only supplies the default.
   `kw` (`ku+enda → kwenda`). Omit for languages with no such prefix (de `-en` suffix, uk
   `-ти` suffix). Harmless to over-list: every verb is stored in infinitive form, so
   stripping a listed prefix only ever yields the same stem.
+- `diacriticDigraphs` — established lossless ASCII spellings of single letters, keyed by
+  the lowercase letter (de `ä`→`ae`, `ö`→`oe`, `ü`→`ue`); grading folds them on both
+  sides like `ß`→`ss` (`../kern/docs/grading.md`). Omit where the language has none.
 
 **`areas/<area>/concepts.json`** — ordered, language-neutral. Order across all kinds IS seed/introduction order.
 A phrase with `components` follows its area's words, so the building blocks land first;
