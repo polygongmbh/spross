@@ -115,6 +115,10 @@ The bar that does bind is a display-identical prompt inside ONE area,
 where the area label would be the same cue on both — and lint holds that,
 so it is never a distance anyone has to measure while authoring.
 
+**Realizations and notes write the typewriter apostrophe** (U+0027);
+the modifier letter U+02BC belongs only inside `alphabet/`, where a letter is its own glyph
+(`CatalogLintTest.contentWritesTheTypewriterApostrophe`).
+
 ## How a grammar rule gets taught
 
 **A rule gets one home, and phrases that exercise it.**
@@ -170,10 +174,10 @@ This is a preference, not a gate — most phrases are imperatives or fragments c
 at all, and a check built on that could only pin a guess.
 
 **Check an authoring pass against the lint, not against a script you wrote for it.**
-`CatalogLintTest` owns the collision rules and is the only home they have:
-`./gradlew :kern:jvmTest --tests '*CatalogLintTest*'` is seconds of typing and the
+`CatalogCollisionLintTest` owns the collision rules and is the only home they have:
+`./gradlew :kern:jvmTest --tests '*Catalog*LintTest*'` is seconds of typing and the
 authority, where a hand-rolled sweep is a second implementation nothing keeps honest.
-The full gate stays `./gradlew :kern:jvmTest -Psweeps` after a content edit;
+The full gate stays `./gradlew :kern:jvmTest` after a content edit;
 this is the narrow one to run while still authoring.
 
 ## Which area a concept lives in

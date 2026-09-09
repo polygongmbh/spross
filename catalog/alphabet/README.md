@@ -49,7 +49,8 @@ fails it loudly instead of letting it sit.
   join: the alphabet's OWN language must realize the word (what the drill speaks and
   gaps — a lint error otherwise), while the reader's language supplies the meaning line
   (nullable — the sheet omits it, graceful degradation). `exampleText` is the escape
-  hatch where no concept fits; it carries no slug and therefore never claims a recording.
+  hatch where no concept fits; it carries no slug, so its recording is keyed by the text
+  itself in the manifest's `texts{}` (`../audio/README.md`).
 - **The drill gaps a POOL, not the one example.** Where the glyph string identifies the
   row's sound on its own, `Catalog.alphabetExamples` sweeps the whole catalog for words of
   the language carrying it exactly once — the authored example leads, the rest follow in

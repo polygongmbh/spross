@@ -16,12 +16,12 @@ no `atlas.json`, no drill; a language without `countries/<lang>.json` has no atl
 ```
 
 - `tier` says how far from home a row sits, and is authored **2–4**:
-  2 is the app's own five languages and their home countries, 3 the common world, 4 the regional rest.
+  2 is the app's own languages (`catalog/languages.json`) and their home countries, 3 the common world, 4 the regional rest.
   **Tier 1 is never authored** — it is derived per profile from the learner's own source and target,
   and the countries that carry them.
 - `languages` on a country resolve into the manifest's own list, in authored order (most widely spoken first);
   the relation is many-to-many, and a country reusing an already-authored language is a cheap row.
-- Language codes are ISO 639-1 and reach far past the five the app teaches from —
+- Language codes are ISO 639-1 and reach far past the languages the app teaches from —
   every one of them needs an entry in **every** `catalog/language-names/<lang>.json` (see above),
   because that table, not this one, is where language names live.
 

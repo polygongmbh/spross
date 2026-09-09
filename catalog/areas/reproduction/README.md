@@ -33,7 +33,7 @@ answers a reviewer better than a partial age signal does.
    lands several hundred cards into the seed order rather than in a beginner's
    first weeks. It needs an `emoji` there; the concepts deliberately carry none.
 2. Drop `"reproduction"` from `CatalogLintTest.parkedAreas`.
-3. `scripts/catalog-format.py --check` and `./gradlew :kern:jvmTest -Psweeps`.
+3. `scripts/catalog-format.py --check` and `./gradlew :kern:jvmTest`.
    The content lints see this area for the first time here, so expect them to have
    something to say — that is the review, and it is the point of doing it in one step.
 4. Delete this README.

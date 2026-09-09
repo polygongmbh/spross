@@ -24,10 +24,11 @@ unversioned research input; what is committed here is the shipped bytes and the
 license record that has to travel with them. Both apps bundle the whole tree as it
 stands (iOS folder reference, the Android catalog sync), so nothing needs registering.
 
-**Run `app/scripts/audio-coverage.py --check` after adding recordings.** The lint that
+**`app/scripts/audio-coverage.py --check` runs on every commit that stages a recording**
+(`scripts/hooks/pre-commit`), and by hand after adding one. The lint that
 verifies every file ships walks the WORKING TREE, so a recording fetched but never staged
 is indistinguishable from one that ships — the manifests once named 517 files that existed
-on one machine and in no checkout, and no gate could see it. Only `git ls-files` can.
+on one machine and in no checkout; the script asks `git ls-files` instead.
 
 ```json
 { "language": "uk",
