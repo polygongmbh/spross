@@ -47,23 +47,19 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
     /// Epoch milliseconds of the build.
     var generated: Int64
     var entries: [Entry]
-    /// TARGET language the mirrored box belongs to. Kern's builder JSON is
-    /// profile-agnostic; the phone stamps this before pushing.
-    var target: String = ""
     /// Card ids the watch already answered against THIS snapshot (queued as
     /// events, removed from the local due list). Absent in phone-built JSON.
     var answeredCardIDs: [String] = []
 
     private enum CodingKeys: String, CodingKey {
-        case schemaVersion, generated, entries, target, answeredCardIDs
+        case schemaVersion, generated, entries, answeredCardIDs
     }
 
     init(schemaVersion: Int, generated: Int64, entries: [Entry],
-         target: String = "", answeredCardIDs: [String] = []) {
+         answeredCardIDs: [String] = []) {
         self.schemaVersion = schemaVersion
         self.generated = generated
         self.entries = entries
-        self.target = target
         self.answeredCardIDs = answeredCardIDs
     }
 
@@ -72,7 +68,6 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
         schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         generated = try container.decode(Int64.self, forKey: .generated)
         entries = try container.decode([Entry].self, forKey: .entries)
-        target = try container.decodeIfPresent(String.self, forKey: .target) ?? ""
         answeredCardIDs = try container.decodeIfPresent([String].self,
                                                         forKey: .answeredCardIDs) ?? []
     }

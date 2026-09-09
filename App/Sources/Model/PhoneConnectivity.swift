@@ -91,17 +91,7 @@ extension AppModel {
         let json = WatchSnapshotBuilder.shared.build(state: box,
                                                      nowEpochMillis: Date().epochMillis,
                                                      citationPrefixes: citationPrefixes)
-        watchBridge.push(snapshotJSON: Self.stampTarget(box.joinStamp.target, onto: json))
-    }
-
-    /// Kern's builder JSON is profile-agnostic; stamp the TARGET language so
-    /// the watch can label its one mirrored box. Falls back to the raw JSON
-    /// if the round-trip ever fails (the watch decodes `target` leniently).
-    static func stampTarget(_ target: String, onto json: String) -> String {
-        guard var snapshot = try? WatchSnapshot.decode(Data(json.utf8)) else { return json }
-        snapshot.target = target
-        guard let data = try? snapshot.encoded() else { return json }
-        return String(decoding: data, as: UTF8.self)
+        watchBridge.push(snapshotJSON: json)
     }
 
     /// Apply queued watch answers ON RECEIPT, oldest first, with `now` =
