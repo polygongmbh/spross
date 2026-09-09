@@ -69,7 +69,9 @@ Strict dependency direction: App → SprossKern, never the reverse.
   and opens the session. Only that page commits, so the join happens once,
   behind something worth reading, and every page before it is free to go back from;
   the first round is never something the learner has to go and find on Home.
-  It is the first-run path alone — a later language change is the box's own settings,
+  Box settings carry a restart-tutorial row that replays it: the pair page is skipped
+  since the pair is already made, nothing in the box is touched, and the last page ends
+  in a coached round the same way. A language change alone is the box's own pickers,
   which take none of the pages and open no session over the screen you were on.
 - One list is open at a time; the other stands folded on its pick and opens at a tap,
   and picking a source hands the screen to the target. Onboarding opens with the known
