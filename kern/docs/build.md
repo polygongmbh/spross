@@ -106,8 +106,8 @@ Engine contract: `../README.md`.
   Dictation draws only
   `BoxEngine.growingCardIds` through `dictationGradingCard` — it never books a
   review (transcription is not recall; drills are stateless).
-  Android: landed — `androidLibrary` KMP target
-  (`com.android.kotlin.multiplatform.library`, AGP 9.3.0, compileSdk 36 / minSdk 26),
+  Android: `androidLibrary` KMP target
+  (`com.android.kotlin.multiplatform.library`, AGP 9.3.1, compileSdk 36 / minSdk 26),
   androidMain NFC actual mirrors jvmMain; `:android` consumes the same facades.
   Gate: `./gradlew :kern:compileAndroidMain`.
 - Web: `js { browser() }` target feeds the spross.net drill (`docs/website.md`).
