@@ -1220,22 +1220,6 @@
         }
       }
     },
-    "box.search.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suchen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search"
-          }
-        }
-      }
-    },
     "box.search.words" : {
       "localizations" : {
         "de" : {

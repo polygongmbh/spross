@@ -40,7 +40,7 @@ struct BoxSearchView: View {
             }
             .padding(.top, Theme.spacing.lg)
             .background(Theme.colors.background.ignoresSafeArea())
-            .navigationTitle("box.search.title")
+            .navigationTitle("box.search.button")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {

@@ -115,9 +115,9 @@ IOS_ONLY = {
     # A Swift switch owes every case a branch, including two kern never hands out: new is
     # the absence of a standing, and Years folds into the Numbers variant.
     'box.phase.new', 'trainer.variant.years',
-    # The same control, named by another key on Android: box search heads with
-    # `box.search.button`, and the session ✕ reads `common.done`.
-    'a11y.action.endSession', 'box.search.title',
+    # The same control, named by another key on Android: the session ✕ reads
+    # `common.done`.
+    'a11y.action.endSession',
 }
 # Surfaces iOS ships that Android owes. A key leaves this set by being claimed above,
 # which is what finishing the Android side looks like — and empty is what caught up looks
