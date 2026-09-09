@@ -365,6 +365,15 @@ then open design work, then what waits on someone else, grouped by who that is.
 - `CatalogAudioLintTest` and `CatalogAudioFixtureTest` are both past the ~300-line budget
   and split cleanly: provenance/attribution rules apart from the playback
   index and the naming rules, lookup apart from parse in the fixture half.
+- Android reads no state-seeding launch extra — iOS pins a drill screenshot with `-uitest-streak/-level/-misses`
+  (`App/Sources/Screens/TrainerSessionView+UITest.swift`) while `SprossActivity` mirrors only `readAloud`,
+  so a side-by-side check of `DrillStreakLine` and the tier beats on Android has to be played to by adb;
+  `--es streak N` and its siblings in `SprossActivity.onCreate` would close it.
+- No Swift test target (`project.yml` declares four app/extension targets only), so pure Swift logic is ungated —
+  the widget streak walk and flame state (`Widgets/Sources/WidgetSnapshot.swift`), watch option assembly
+  (`Shared/Sources/WatchPracticeQuestion.swift`), the sleep-timer minutes (`App/Sources/Model/ListeningBedtime.swift`)
+  and the route-to-plane decision (`App/Sources/Audio/AudioSession.swift`) — add a `bundle.unit-test` target,
+  or accept the build and kern gates as the iOS line?
 - Real hardware still has to answer three things about the Android player
   (`android/.../audio/Pronouncer.kt`): how the boost and lead skip sound, one letter-drill run
   end to end, and whether `MODIFY_AUDIO_SETTINGS` is needed for a session-scoped effect.
