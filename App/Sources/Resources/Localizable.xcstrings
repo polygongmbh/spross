@@ -18,6 +18,7 @@
       }
     },
     "a11y.action.pronounce" : {
+      "comment" : "\"say it again\" action on a word",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -31,10 +32,10 @@
             "value" : "Pronounce"
           }
         }
-      },
-      "comment" : "\"say it again\" action on a word"
+      }
     },
     "a11y.action.readAloud" : {
+      "comment" : "the switch's stable a11y label — never flips",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -48,10 +49,10 @@
             "value" : "Read words aloud"
           }
         }
-      },
-      "comment" : "the switch's stable a11y label — never flips"
+      }
     },
     "a11y.action.replayPrompt" : {
+      "comment" : "the replay button's name",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -65,10 +66,10 @@
             "value" : "Play it again"
           }
         }
-      },
-      "comment" : "the replay button's name"
+      }
     },
     "a11y.count.activity14Days %lld" : {
+      "comment" : "%d = days worked inside the window",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -106,8 +107,7 @@
             }
           }
         }
-      },
-      "comment" : "%d = days worked inside the window"
+      }
     },
     "a11y.count.sessionTally %@ %@ %@" : {
       "localizations" : {
@@ -126,6 +126,7 @@
       }
     },
     "a11y.count.streakDays %lld" : {
+      "comment" : "%d — days in a row, the strip's own label",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -163,10 +164,10 @@
             }
           }
         }
-      },
-      "comment" : "%d — days in a row, the strip's own label"
+      }
     },
     "a11y.count.streakInARow %@" : {
+      "comment" : "%d — the score line as a screen reader hears it",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -180,10 +181,10 @@
             "value" : "Streak: %@ in a row"
           }
         }
-      },
-      "comment" : "%d — the score line as a screen reader hears it"
+      }
     },
     "a11y.glyph.feminineForm" : {
+      "comment" : "The ♀ badge's name — a glyph outside the reading order until it is given one.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -197,10 +198,10 @@
             "value" : "Feminine form"
           }
         }
-      },
-      "comment" : "The ♀ badge's name — a glyph outside the reading order until it is given one."
+      }
     },
     "a11y.glyph.letter %@" : {
+      "comment" : "%s = the glyph — a tile's spoken name",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -214,8 +215,7 @@
             "value" : "Letter %@"
           }
         }
-      },
-      "comment" : "%s = the glyph — a tile's spoken name"
+      }
     },
     "a11y.state.collapsed" : {
       "localizations" : {
@@ -234,6 +234,7 @@
       }
     },
     "a11y.state.expanded" : {
+      "comment" : "A fold's state, never its label — the heading stays the heading whichever way it points.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -247,8 +248,7 @@
             "value" : "expanded"
           }
         }
-      },
-      "comment" : "A fold's state, never its label — the heading stays the heading whichever way it points."
+      }
     },
     "a11y.state.off" : {
       "localizations" : {
@@ -283,6 +283,7 @@
       }
     },
     "a11y.suffix.practice %@" : {
+      "comment" : "What a hub chip is FOR, appended to its name for a reader the glyph tells nothing: %s = the language being practiced. Leads with a space — it finishes the chip's own name rather than standing as a sentence.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -296,10 +297,10 @@
             "value" : " practice, in %@"
           }
         }
-      },
-      "comment" : "What a hub chip is FOR, appended to its name for a reader the glyph tells nothing: %s = the language being practiced. Leads with a space — it finishes the chip's own name rather than standing as a sentence."
+      }
     },
     "a11y.suffix.record %@" : {
+      "comment" : "%d — appended to it",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -313,10 +314,10 @@
             "value" : ", record %@"
           }
         }
-      },
-      "comment" : "%d — appended to it"
+      }
     },
     "a11y.verdict.almost" : {
+      "comment" : "the near miss's own — amber is not a state a reader hears",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -330,10 +331,10 @@
             "value" : "Almost correct"
           }
         }
-      },
-      "comment" : "the near miss's own — amber is not a state a reader hears"
+      }
     },
     "a11y.verdict.correct" : {
+      "comment" : "an answered tile's state, never color alone",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -347,10 +348,10 @@
             "value" : "Correct"
           }
         }
-      },
-      "comment" : "an answered tile's state, never color alone"
+      }
     },
     "a11y.verdict.notAnswered" : {
+      "comment" : "A revealed answer: the amber edge is all that marks it, and a color is not a state.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -364,8 +365,7 @@
             "value" : "Not answered"
           }
         }
-      },
-      "comment" : "A revealed answer: the amber edge is all that marks it, and a color is not a state."
+      }
     },
     "a11y.verdict.wrong" : {
       "localizations" : {
@@ -466,6 +466,7 @@
       }
     },
     "box.card.actions" : {
+      "comment" : "What a long press on a Box row opens, for a reader who cannot see it is a menu.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -479,8 +480,7 @@
             "value" : "What you can do with this word"
           }
         }
-      },
-      "comment" : "What a long press on a Box row opens, for a reader who cannot see it is a menu."
+      }
     },
     "box.card.due" : {
       "localizations" : {
@@ -556,6 +556,7 @@
       }
     },
     "box.card.noAudio" : {
+      "comment" : "Beside a word neither a recording nor the device's voice can say — the tap that does nothing.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -569,10 +570,10 @@
             "value" : "No audio for this word"
           }
         }
-      },
-      "comment" : "Beside a word neither a recording nor the device's voice can say — the tap that does nothing."
+      }
     },
     "box.card.ownFrom" : {
+      "comment" : "Writing an own word from a catalog one, both sides carried over into the form.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -586,10 +587,10 @@
             "value" : "Make your own word"
           }
         }
-      },
-      "comment" : "Writing an own word from a catalog one, both sides carried over into the form."
+      }
     },
     "box.card.pack" : {
+      "comment" : "the single-word offer a search hit carries",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -603,10 +604,10 @@
             "value" : "Pack this word"
           }
         }
-      },
-      "comment" : "the single-word offer a search hit carries"
+      }
     },
     "box.card.queued" : {
+      "comment" : "A queued row's mark where no per-word control is offered — the shelf's own does it.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -620,8 +621,7 @@
             "value" : "Sown"
           }
         }
-      },
-      "comment" : "A queued row's mark where no per-word control is offered — the shelf's own does it."
+      }
     },
     "box.card.showInBox" : {
       "comment" : "the jump from a search hit to the shelf the word lives on",
@@ -641,6 +641,7 @@
       }
     },
     "box.card.sleep" : {
+      "comment" : "Putting a word to sleep from the card in front of you; box.card.wake is the way back.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -654,10 +655,10 @@
             "value" : "Stop asking this"
           }
         }
-      },
-      "comment" : "Putting a word to sleep from the card in front of you; box.card.wake is the way back."
+      }
     },
     "box.card.suspended" : {
+      "comment" : "the sleeping mark's name",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -671,10 +672,10 @@
             "value" : "Paused"
           }
         }
-      },
-      "comment" : "the sleeping mark's name"
+      }
     },
     "box.card.unpack" : {
+      "comment" : "The queued mark's own control: tapping it takes the word back out.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -688,8 +689,7 @@
             "value" : "Unpack this word"
           }
         }
-      },
-      "comment" : "The queued mark's own control: tapping it takes the word back out."
+      }
     },
     "box.card.wake" : {
       "localizations" : {
@@ -708,6 +708,7 @@
       }
     },
     "box.door" : {
+      "comment" : "The door to the box, wherever a screen puts one — a name for an icon that has none.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -721,10 +722,10 @@
             "value" : "Box"
           }
         }
-      },
-      "comment" : "The door to the box, wherever a screen puts one — a name for an icon that has none."
+      }
     },
     "box.own.reported" : {
+      "comment" : "Its second block: the problems filed against CATALOG words, which no row above lists.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -738,10 +739,10 @@
             "value" : "Reported"
           }
         }
-      },
-      "comment" : "Its second block: the problems filed against CATALOG words, which no row above lists."
+      }
     },
     "box.own.shelf" : {
+      "comment" : "The learner's own shelf. Kern hands back the area KEY for it (`OwnWords.AREA`, in no group) and leaves the naming to the reader's chrome; catalog shelves name themselves, down to `BoxBrowser.sections`' own id fallback.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -755,10 +756,10 @@
             "value" : "Your own words"
           }
         }
-      },
-      "comment" : "The learner's own shelf. Kern hands back the area KEY for it (`OwnWords.AREA`, in no group) and leaves the naming to the reader's chrome; catalog shelves name themselves, down to `BoxBrowser.sections`' own id fallback."
+      }
     },
     "box.own.suggestions" : {
+      "comment" : "The block of own words still carrying one half — what the catalog owes an answer, listed apart from the finished pairs above it.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -772,10 +773,10 @@
             "value" : "Suggestions"
           }
         }
-      },
-      "comment" : "The block of own words still carrying one half — what the catalog owes an answer, listed apart from the finished pairs above it."
+      }
     },
     "box.own.title" : {
+      "comment" : "The one section for everything the learner put into the box or said back about it.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -789,8 +790,7 @@
             "value" : "Your own content"
           }
         }
-      },
-      "comment" : "The one section for everything the learner put into the box or said back about it."
+      }
     },
     "box.own.word.add" : {
       "localizations" : {
@@ -809,6 +809,7 @@
       }
     },
     "box.own.word.addAction" : {
+      "comment" : "The section's way into the form — the one that does not start from a failed search.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -822,8 +823,7 @@
             "value" : "Add a word"
           }
         }
-      },
-      "comment" : "The section's way into the form — the one that does not start from a failed search."
+      }
     },
     "box.own.word.comment" : {
       "comment" : "The optional note beside a written word — and, written alone, the whole entry.",
@@ -843,6 +843,7 @@
       }
     },
     "box.own.word.edit" : {
+      "comment" : "The form's title while rewriting a word, and the menu entry that opens it that way.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -856,8 +857,7 @@
             "value" : "Edit word"
           }
         }
-      },
-      "comment" : "The form's title while rewriting a word, and the menu entry that opens it that way."
+      }
     },
     "box.own.word.explainer" : {
       "localizations" : {
@@ -893,6 +893,7 @@
       }
     },
     "box.own.word.explainer.suggestion" : {
+      "comment" : "What the form says while only ONE side is written. The word is kept as a suggestion and never asked until the other half arrives.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -906,10 +907,10 @@
             "value" : "One side only: the word is kept as a suggestion and not asked yet."
           }
         }
-      },
-      "comment" : "What the form says while only ONE side is written. The word is kept as a suggestion and never asked until the other half arrives."
+      }
     },
     "box.own.word.inLanguage %@" : {
+      "comment" : "%s = language name — both fields ask it",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -923,8 +924,7 @@
             "value" : "In %@"
           }
         }
-      },
-      "comment" : "%s = language name — both fields ask it"
+      }
     },
     "box.own.word.needsTranslation" : {
       "localizations" : {
@@ -976,6 +976,7 @@
       }
     },
     "box.own.word.remove" : {
+      "comment" : "the app's only deletion; catalog words sleep instead",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -989,10 +990,10 @@
             "value" : "Delete word"
           }
         }
-      },
-      "comment" : "the app's only deletion; catalog words sleep instead"
+      }
     },
     "box.own.word.save" : {
+      "comment" : "What confirms a rewrite; box.own.word.add is what takes a new word in.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1006,10 +1007,10 @@
             "value" : "Save"
           }
         }
-      },
-      "comment" : "What confirms a rewrite; box.own.word.add is what takes a new word in."
+      }
     },
     "box.own.word.swap" : {
+      "comment" : "Exchanging what stands in the two fields, for a pair written the wrong way round.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1023,8 +1024,7 @@
             "value" : "Swap direction"
           }
         }
-      },
-      "comment" : "Exchanging what stands in the two fields, for a pair written the wrong way round."
+      }
     },
     "box.own.word.title" : {
       "localizations" : {
@@ -1171,6 +1171,7 @@
       }
     },
     "box.search.hint" : {
+      "comment" : "what the field will look through, before anything is typed",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1184,10 +1185,10 @@
             "value" : "Words in either language, and the names of the areas."
           }
         }
-      },
-      "comment" : "what the field will look through, before anything is typed"
+      }
     },
     "box.search.nothing %@" : {
+      "comment" : "%s = the query",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1201,8 +1202,7 @@
             "value" : "Nothing for “%@” in the box."
           }
         }
-      },
-      "comment" : "%s = the query"
+      }
     },
     "box.search.placeholder" : {
       "localizations" : {
@@ -1253,6 +1253,7 @@
       }
     },
     "box.search.writeOwn %@" : {
+      "comment" : "%s = the query — the one door to writing a word",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1266,10 +1267,10 @@
             "value" : "Write “%@” yourself"
           }
         }
-      },
-      "comment" : "%s = the query — the one door to writing a word"
+      }
     },
     "box.shelf.pack %@" : {
+      "comment" : "%d = what packing this shelf would add",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1283,8 +1284,7 @@
             "value" : "Add to box (%@)"
           }
         }
-      },
-      "comment" : "%d = what packing this shelf would add"
+      }
     },
     "box.shelf.packed" : {
       "localizations" : {
@@ -1303,6 +1303,7 @@
       }
     },
     "box.shelf.unpack %@" : {
+      "comment" : "A shelf's own control, taking its whole queue back out. %d = what it would remove.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1316,10 +1317,10 @@
             "value" : "Take out of box (%@)"
           }
         }
-      },
-      "comment" : "A shelf's own control, taking its whole queue back out. %d = what it would remove."
+      }
     },
     "box.subtitle %@ %@" : {
+      "comment" : "%1$d active of %2$d held",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1333,10 +1334,10 @@
             "value" : "%1$@ of %2$@ cards in progress"
           }
         }
-      },
-      "comment" : "%1$d active of %2$d held"
+      }
     },
     "box.tapToHear" : {
+      "comment" : "The box names its rows \"words\", not a table's rows, so it discloses the tap in its own words.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1350,8 +1351,7 @@
             "value" : "Words speak when tapped"
           }
         }
-      },
-      "comment" : "The box names its rows \"words\", not a table's rows, so it discloses the tap in its own words."
+      }
     },
     "box.title" : {
       "localizations" : {
@@ -1404,6 +1404,7 @@
       }
     },
     "briefing.group.held" : {
+      "comment" : "heading over pasted words the box already teaches exactly (`HarvestKind.Held`)",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1417,10 +1418,10 @@
             "value" : "Already in your box"
           }
         }
-      },
-      "comment" : "heading over pasted words the box already teaches exactly (`HarvestKind.Held`)"
+      }
     },
     "briefing.group.near" : {
+      "comment" : "heading over pasted words that lean on one the box already teaches (`HarvestKind.Near`)",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1434,10 +1435,10 @@
             "value" : "Close to words you have"
           }
         }
-      },
-      "comment" : "heading over pasted words that lean on one the box already teaches (`HarvestKind.Near`)"
+      }
     },
     "briefing.group.new" : {
+      "comment" : "heading over pasted words the box has nothing like — the group that arrives ticked",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1451,10 +1452,10 @@
             "value" : "New to your box"
           }
         }
-      },
-      "comment" : "heading over pasted words the box has nothing like — the group that arrives ticked"
+      }
     },
     "briefing.lead" : {
+      "comment" : "the sheet's opening line — what the whole screen is for",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1468,10 +1469,10 @@
             "value" : "Practice your words in a chat you already use. Spross writes the prompt for you."
           }
         }
-      },
-      "comment" : "the sheet's opening line — what the whole screen is for"
+      }
     },
     "briefing.return.empty" : {
+      "comment" : "said when the pasted text carried no word list at all",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1485,8 +1486,7 @@
             "value" : "There is no word list in the clipboard."
           }
         }
-      },
-      "comment" : "said when the pasted text carried no word list at all"
+      }
     },
     "briefing.return.keep %lld" : {
       "comment" : "%d = the ticked words, taken in as own words.",
@@ -1598,6 +1598,7 @@
       }
     },
     "briefing.step.back" : {
+      "comment" : "third of the three steps the sheet walks through",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1611,10 +1612,10 @@
             "value" : "When you are done, ask for the new words and paste that list back here."
           }
         }
-      },
-      "comment" : "third of the three steps the sheet walks through"
+      }
     },
     "briefing.step.copy" : {
+      "comment" : "first of the three steps the sheet walks through",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1628,10 +1629,10 @@
             "value" : "Copy the text and paste it into any AI chat."
           }
         }
-      },
-      "comment" : "first of the three steps the sheet walks through"
+      }
     },
     "briefing.step.talk" : {
+      "comment" : "second of the three steps the sheet walks through",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1645,8 +1646,7 @@
             "value" : "Talk about whatever you like — it keeps to the words you have and adds a few of its own."
           }
         }
-      },
-      "comment" : "second of the three steps the sheet walks through"
+      }
     },
     "briefing.title" : {
       "comment" : "The box handed to a chat the app does not host (`Briefing`); the sheet's title and its row in Your own content.",
@@ -1666,6 +1666,7 @@
       }
     },
     "common.back" : {
+      "comment" : "The way back out of a page, wherever a flow has one behind it.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1679,8 +1680,7 @@
             "value" : "Back"
           }
         }
-      },
-      "comment" : "The way back out of a page, wherever a flow has one behind it."
+      }
     },
     "common.cancel" : {
       "localizations" : {
@@ -1731,6 +1731,7 @@
       }
     },
     "common.close" : {
+      "comment" : "The ✕'s name — the corner every page and every run wears on the left.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1744,10 +1745,10 @@
             "value" : "Close"
           }
         }
-      },
-      "comment" : "The ✕'s name — the corner every page and every run wears on the left."
+      }
     },
     "common.day.one" : {
+      "comment" : "the badge's unit word, by count",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1761,8 +1762,7 @@
             "value" : "day"
           }
         }
-      },
-      "comment" : "the badge's unit word, by count"
+      }
     },
     "common.day.other" : {
       "localizations" : {
@@ -1829,6 +1829,7 @@
       }
     },
     "common.notes" : {
+      "comment" : "Heads the authored prose under a drill's generated reference table — the numbers page and the calendar ask the same question of their language.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1842,8 +1843,7 @@
             "value" : "What to watch out for"
           }
         }
-      },
-      "comment" : "Heads the authored prose under a drill's generated reference table — the numbers page and the calendar ask the same question of their language."
+      }
     },
     "common.reset" : {
       "localizations" : {
@@ -1862,6 +1862,7 @@
       }
     },
     "countries.ask.country" : {
+      "comment" : "What a question ASKS. None of them names a language: the field's placeholder says which side is owed, and saying it here too would be the third telling.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1875,8 +1876,7 @@
             "value" : "What is this country called?"
           }
         }
-      },
-      "comment" : "What a question ASKS. None of them names a language: the field's placeholder says which side is owed, and saying it here too would be the third telling."
+      }
     },
     "countries.ask.flag" : {
       "localizations" : {
@@ -1960,6 +1960,7 @@
       }
     },
     "countries.fast.hint" : {
+      "comment" : "this ladder costs THREE clean wins, so it prices its own",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -1974,8 +1975,7 @@
             "value" : "One clean answer per Sprosse instead of three."
           }
         }
-      },
-      "comment" : "this ladder costs THREE clean wins, so it prices its own"
+      }
     },
     "countries.reference" : {
       "localizations" : {
@@ -1994,6 +1994,7 @@
       }
     },
     "countries.reverse.hint %@ %@" : {
+      "comment" : "%1$s = the side asked in, %2$s = the side owed",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2007,8 +2008,7 @@
             "value" : "Asks in %@, you answer in %@."
           }
         }
-      },
-      "comment" : "%1$s = the side asked in, %2$s = the side owed"
+      }
     },
     "countries.sprosse.1" : {
       "extractionState" : "manual",
@@ -2246,6 +2246,7 @@
       }
     },
     "countries.title %@" : {
+      "comment" : "%s = the language being learnt",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2259,8 +2260,7 @@
             "value" : "Countries · %@"
           }
         }
-      },
-      "comment" : "%s = the language being learnt"
+      }
     },
     "credits.commonsNote" : {
       "localizations" : {
@@ -2279,6 +2279,7 @@
       }
     },
     "credits.recordings %lld" : {
+      "comment" : "%d = how many files the speaker contributed",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -2316,8 +2317,7 @@
             }
           }
         }
-      },
-      "comment" : "%d = how many files the speaker contributed"
+      }
     },
     "credits.title" : {
       "localizations" : {
@@ -2352,6 +2352,7 @@
       }
     },
     "dates.ask.date" : {
+      "comment" : "One sentence for all three assembled kinds — what changes between them is on the card, not in the ask.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2365,8 +2366,7 @@
             "value" : "How is this date read?"
           }
         }
-      },
-      "comment" : "One sentence for all three assembled kinds — what changes between them is on the card, not in the ask."
+      }
     },
     "dates.ask.month" : {
       "localizations" : {
@@ -2417,6 +2417,7 @@
       }
     },
     "dates.fast.hint" : {
+      "comment" : "this ladder costs THREE clean wins, so it prices its own",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2431,8 +2432,7 @@
             "value" : "One clean answer per Sprosse instead of three."
           }
         }
-      },
-      "comment" : "this ladder costs THREE clean wins, so it prices its own"
+      }
     },
     "dates.newWord %@" : {
       "comment" : "%s = the word this language adds to assemble the date, the first time that kind is asked",
@@ -2468,6 +2468,7 @@
       }
     },
     "dates.reverse.hint %@ %@" : {
+      "comment" : "%1$s = the side asked in, %2$s = the side owed. Reversed, only the bare-name Sprossen stand (the numeric side of a date is a convention, not a skill).",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2481,8 +2482,7 @@
             "value" : "Asks in %1$@, you answer in %2$@."
           }
         }
-      },
-      "comment" : "%1$s = the side asked in, %2$s = the side owed. Reversed, only the bare-name Sprossen stand (the numeric side of a date is a convention, not a skill)."
+      }
     },
     "dates.reverse.hint.back %@ %@" : {
       "localizations" : {
@@ -2518,6 +2518,7 @@
       }
     },
     "dates.sprosse.2" : {
+      "comment" : "The Sprosse keys are indexed by KIND in full-ladder order (weekday, month, day+month, date, date+year) — a pair without a year pattern stops at 5, and the number on screen is the row's own position.",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
@@ -2532,8 +2533,7 @@
             "value" : "The weekdays"
           }
         }
-      },
-      "comment" : "The Sprosse keys are indexed by KIND in full-ladder order (weekday, month, day+month, date, date+year) — a pair without a year pattern stops at 5, and the number on screen is the row's own position."
+      }
     },
     "dates.sprosse.3" : {
       "extractionState" : "manual",
@@ -2604,6 +2604,7 @@
       }
     },
     "dates.title %@" : {
+      "comment" : "%s = the language being learnt",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2617,8 +2618,7 @@
             "value" : "Dates · %@"
           }
         }
-      },
-      "comment" : "%s = the language being learnt"
+      }
     },
     "error.catalogMissing" : {
       "localizations" : {
@@ -2637,6 +2637,7 @@
       }
     },
     "error.contentUnavailable %@" : {
+      "comment" : "%s = what the system said",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2650,8 +2651,7 @@
             "value" : "The content could not be loaded. (%@)"
           }
         }
-      },
-      "comment" : "%s = what the system said"
+      }
     },
     "error.resetFailed %@" : {
       "localizations" : {
@@ -2686,6 +2686,7 @@
       }
     },
     "error.unknownProfile %@ %@" : {
+      "comment" : "%1$s = known, %2$s = learnt",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2699,10 +2700,10 @@
             "value" : "Unknown language profile (%1$@ → %2$@)."
           }
         }
-      },
-      "comment" : "%1$s = known, %2$s = learnt"
+      }
     },
     "home.done.caughtUp" : {
+      "comment" : "Nothing due, and nothing done yet — never home.done.title, which the day must earn.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2716,8 +2717,7 @@
             "value" : "Nothing's due right now"
           }
         }
-      },
-      "comment" : "Nothing due, and nothing done yet — never home.done.title, which the day must earn."
+      }
     },
     "home.done.extraRound" : {
       "localizations" : {
@@ -2920,6 +2920,7 @@
       }
     },
     "home.greeting.morning.addressee" : {
+      "comment" : "Who a spoken line is addressed to when no name is known: the hour lends the word, and it goes INSIDE the target-language sentence (\"Tayari kujifunza, Nachteule?\"), so it is never rendered on its own. Morning and night only — nobody is a night owl at two in the afternoon.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2933,8 +2934,7 @@
             "value" : "early bird"
           }
         }
-      },
-      "comment" : "Who a spoken line is addressed to when no name is known: the hour lends the word, and it goes INSIDE the target-language sentence (\"Tayari kujifunza, Nachteule?\"), so it is never rendered on its own. Morning and night only — nobody is a night owl at two in the afternoon."
+      }
     },
     "home.greeting.morning.epithet %@" : {
       "localizations" : {
@@ -3193,6 +3193,7 @@
       }
     },
     "home.offer.heldBack %lld" : {
+      "comment" : "The cap is a promise, not a loss: what it holds back is named — but only from half a sitting up (BoxConfig.heldBackNamedFrom), so the count starts at 12 and no singular is reachable.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3206,10 +3207,10 @@
             "value" : "%lld more ready for you."
           }
         }
-      },
-      "comment" : "The cap is a promise, not a loss: what it holds back is named — but only from half a sitting up (BoxConfig.heldBackNamedFrom), so the count starts at 12 and no singular is reachable."
+      }
     },
     "home.offer.shortRound" : {
+      "comment" : "The quiet way in, up while the round is long enough to be worth halving.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3223,8 +3224,7 @@
             "value" : "Just a short one?"
           }
         }
-      },
-      "comment" : "The quiet way in, up while the round is long enough to be worth halving."
+      }
     },
     "home.offer.start" : {
       "localizations" : {
@@ -3243,6 +3243,7 @@
       }
     },
     "home.tally.ahead %lld" : {
+      "comment" : "Pull-aheads carrying the round on their own — the freshening-up. Named only in that case: everywhere else they count into home.tally.reviews.",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -3280,10 +3281,10 @@
             }
           }
         }
-      },
-      "comment" : "Pull-aheads carrying the round on their own — the freshening-up. Named only in that case: everywhere else they count into home.tally.reviews."
+      }
     },
     "home.tally.consolidated %@" : {
+      "comment" : "%d — \"gefestigt\" needs no declining",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3297,8 +3298,7 @@
             "value" : "%@ solidified"
           }
         }
-      },
-      "comment" : "%d — \"gefestigt\" needs no declining"
+      }
     },
     "home.tally.newCards %lld" : {
       "localizations" : {
@@ -3341,6 +3341,7 @@
       }
     },
     "home.tally.newWordsOnly %@" : {
+      "comment" : "Fresh cards spelled out with their noun, for the one shape home.tally.newCards cannot cover on its own: the round names nothing else, so a bare count needs the word it is counting (\"neue Wörter\") rather than a nominalized adjective standing alone. No count-of-one form — a round with only fresh cards and only one is not a real shape.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3354,10 +3355,10 @@
             "value" : "%@ new words"
           }
         }
-      },
-      "comment" : "Fresh cards spelled out with their noun, for the one shape home.tally.newCards cannot cover on its own: the round names nothing else, so a bare count needs the word it is counting (\"neue Wörter\") rather than a nominalized adjective standing alone. No count-of-one form — a round with only fresh cards and only one is not a real shape."
+      }
     },
     "home.tally.reviews %lld" : {
+      "comment" : "the count-of-one line, verbatim",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -3395,10 +3396,10 @@
             }
           }
         }
-      },
-      "comment" : "the count-of-one line, verbatim"
+      }
     },
     "home.tally.someCards" : {
+      "comment" : "What a round with no nameable parts says instead of printing zeros.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3412,8 +3413,7 @@
             "value" : "A few cards for you."
           }
         }
-      },
-      "comment" : "What a round with no nameable parts says instead of printing zeros."
+      }
     },
     "home.voiceUpgrade.path" : {
       "localizations" : {
@@ -3576,6 +3576,7 @@
       }
     },
     "legal.title" : {
+      "comment" : "The § 5 DDG notice, and the privacy policy beside it: who publishes the app, findable in the app itself — this build ships through Obtainium, which has no listing to carry it instead (docs/distribution.md). Each registry fact is a LABEL and a value, kept apart because only the label translates: \"Registergericht: Amtsgericht Coburg, HRB 7580\" is one line of two strings.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3589,8 +3590,7 @@
             "value" : "Legal notice"
           }
         }
-      },
-      "comment" : "The § 5 DDG notice, and the privacy policy beside it: who publishes the app, findable in the app itself — this build ships through Obtainium, which has no listing to carry it instead (docs/distribution.md). Each registry fact is a LABEL and a value, kept apart because only the label translates: \"Registergericht: Amtsgericht Coburg, HRB 7580\" is one line of two strings."
+      }
     },
     "legal.vat.label" : {
       "localizations" : {
@@ -3689,6 +3689,7 @@
       }
     },
     "letters.ask.hear" : {
+      "comment" : "the question a letter-name prompt asks",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3702,10 +3703,10 @@
             "value" : "Which letter is this?"
           }
         }
-      },
-      "comment" : "the question a letter-name prompt asks"
+      }
     },
     "letters.ask.spell" : {
+      "comment" : "…and the one a gap word asks",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3719,8 +3720,7 @@
             "value" : "What's missing in the word?"
           }
         }
-      },
-      "comment" : "…and the one a gap word asks"
+      }
     },
     "letters.muted.enable" : {
       "localizations" : {
@@ -3755,6 +3755,7 @@
       }
     },
     "letters.promptInLanguage %@" : {
+      "comment" : "%s = target language name",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3768,8 +3769,7 @@
             "value" : "in %@"
           }
         }
-      },
-      "comment" : "%s = target language name"
+      }
     },
     "letters.stage.choiceConfusable" : {
       "localizations" : {
@@ -3884,6 +3884,7 @@
       }
     },
     "listen.minutesLeft %lld" : {
+      "comment" : "The bedtime control while it runs; minutes, never m:ss — a ticking clock is watched.",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -3921,8 +3922,7 @@
             }
           }
         }
-      },
-      "comment" : "The bedtime control while it runs; minutes, never m:ss — a ticking clock is watched."
+      }
     },
     "listen.pause" : {
       "localizations" : {
@@ -3989,6 +3989,7 @@
       }
     },
     "listen.subtitle" : {
+      "comment" : "The row's second line: which words it leans on, and that it needs no hands.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4002,10 +4003,10 @@
             "value" : "Reinforces shaky words — in the background and with sleep timer"
           }
         }
-      },
-      "comment" : "The row's second line: which words it leans on, and that it needs no hands."
+      }
     },
     "listen.timer" : {
+      "comment" : "The bedtime control, off — and its screen-reader label in both states.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4019,8 +4020,7 @@
             "value" : "Timer"
           }
         }
-      },
-      "comment" : "The bedtime control, off — and its screen-reader label in both states."
+      }
     },
     "listen.title" : {
       "localizations" : {
@@ -4039,6 +4039,7 @@
       }
     },
     "numbers.answer.placeholder" : {
+      "comment" : "a reversed task owes digits, never a language",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4052,8 +4053,7 @@
             "value" : "In digits …"
           }
         }
-      },
-      "comment" : "a reversed task owes digits, never a language"
+      }
     },
     "numbers.best" : {
       "comment" : "the Sprosse this exercise has ever reached, under its name on the overview",
@@ -4074,6 +4074,7 @@
       }
     },
     "numbers.combine.locked" : {
+      "comment" : "Why the picks are a radio: mixing several exercises into one run is itself earned.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4087,10 +4088,10 @@
             "value" : "Several in one run, once everything is unlocked."
           }
         }
-      },
-      "comment" : "Why the picks are a radio: mixing several exercises into one run is itself earned."
+      }
     },
     "numbers.lookup" : {
+      "comment" : "the \"?\" that raises the numbers page mid-run",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4104,10 +4105,10 @@
             "value" : "Look up numbers"
           }
         }
-      },
-      "comment" : "the \"?\" that raises the numbers page mid-run"
+      }
     },
     "numbers.newPlace %@" : {
+      "comment" : "%s = the place word, the first time a length appears",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4121,8 +4122,7 @@
             "value" : "New place: %@"
           }
         }
-      },
-      "comment" : "%s = the place word, the first time a length appears"
+      }
     },
     "numbers.reference" : {
       "localizations" : {
@@ -4253,6 +4253,7 @@
       }
     },
     "numbers.sprosse %lld" : {
+      "comment" : "the numbers Sprosse, which counts digits",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -4290,10 +4291,10 @@
             }
           }
         }
-      },
-      "comment" : "the numbers Sprosse, which counts digits"
+      }
     },
     "numbers.title %@" : {
+      "comment" : "%s = the language being learnt",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4307,10 +4308,10 @@
             "value" : "Numbers · %@"
           }
         }
-      },
-      "comment" : "%s = the language being learnt"
+      }
     },
     "numbers.unlock" : {
+      "comment" : "What a locked row costs, before kern's table words the Sprossen themselves.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4324,8 +4325,7 @@
             "value" : "Unlocks at:"
           }
         }
-      },
-      "comment" : "What a locked row costs, before kern's table words the Sprossen themselves."
+      }
     },
     "onboarding.firstRound.grade" : {
       "localizations" : {
@@ -4360,6 +4360,7 @@
       }
     },
     "onboarding.firstRound.title" : {
+      "comment" : "What a round asks of you, before the first one runs.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4373,8 +4374,7 @@
             "value" : "Your first round"
           }
         }
-      },
-      "comment" : "What a round asks of you, before the first one runs."
+      }
     },
     "onboarding.firstRound.write" : {
       "localizations" : {
@@ -4393,6 +4393,7 @@
       }
     },
     "onboarding.known.question" : {
+      "comment" : "What each picker ASKS on the first page. The box's own settings LABEL the same two lists instead (settings.known.title/settings.learning.title) — a settings sheet states, a first run asks, and the questions are the whole of what makes onboarding read as one.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4406,8 +4407,7 @@
             "value" : "Which language do you speak?"
           }
         }
-      },
-      "comment" : "What each picker ASKS on the first page. The box's own settings LABEL the same two lists instead (settings.known.title/settings.learning.title) — a settings sheet states, a first run asks, and the questions are the whole of what makes onboarding read as one."
+      }
     },
     "onboarding.learning.question" : {
       "localizations" : {
@@ -4426,6 +4426,7 @@
       }
     },
     "onboarding.name.question" : {
+      "comment" : "The third question of the first page.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4439,8 +4440,7 @@
             "value" : "How should Spross greet you?"
           }
         }
-      },
-      "comment" : "The third question of the first page."
+      }
     },
     "onboarding.start" : {
       "localizations" : {
@@ -4571,6 +4571,7 @@
       }
     },
     "onboarding.why.title" : {
+      "comment" : "What Spross is for, said once before the first round asks anything of you.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4584,8 +4585,7 @@
             "value" : "What Spross is for"
           }
         }
-      },
-      "comment" : "What Spross is for, said once before the first round asks anything of you."
+      }
     },
     "preview.skip" : {
       "localizations" : {
@@ -4620,6 +4620,7 @@
       }
     },
     "progress.consolidatedCount %@" : {
+      "comment" : "An area's row of counts: the consolidated half beside the seal, the learning half beside the leaf. home.tally.consolidated is the SEPARATE wording for the day's own tally on Heute — a different screen's sentence, not this one read twice.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4633,8 +4634,7 @@
             "value" : "%@ consolidated"
           }
         }
-      },
-      "comment" : "An area's row of counts: the consolidated half beside the seal, the learning half beside the leaf. home.tally.consolidated is the SEPARATE wording for the day's own tally on Heute — a different screen's sentence, not this one read twice."
+      }
     },
     "progress.last14Days" : {
       "localizations" : {
@@ -4669,6 +4669,7 @@
       }
     },
     "report.action" : {
+      "comment" : "The menu entry a word grows, and the way back out of a report already filed.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4682,10 +4683,10 @@
             "value" : "Report a problem"
           }
         }
-      },
-      "comment" : "The menu entry a word grows, and the way back out of a report already filed."
+      }
     },
     "report.comment" : {
+      "comment" : "optional, and the label says so",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4699,8 +4700,7 @@
             "value" : "What's wrong? (optional)"
           }
         }
-      },
-      "comment" : "optional, and the label says so"
+      }
     },
     "report.dismiss" : {
       "localizations" : {
@@ -4719,6 +4719,7 @@
       }
     },
     "report.edit" : {
+      "comment" : "Reopening a report already filed, so the comment can be rewritten rather than refiled.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4732,10 +4733,10 @@
             "value" : "Edit report"
           }
         }
-      },
-      "comment" : "Reopening a report already filed, so the comment can be rewritten rather than refiled."
+      }
     },
     "report.explainer" : {
+      "comment" : "who reads it, and that the word's schedule is untouched",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4749,8 +4750,7 @@
             "value" : "Goes to whoever maintains the catalog. It changes nothing about the word’s schedule."
           }
         }
-      },
-      "comment" : "who reads it, and that the word's schedule is untouched"
+      }
     },
     "report.export.clear" : {
       "localizations" : {
@@ -4769,6 +4769,7 @@
       }
     },
     "report.export.clear.confirm %lld" : {
+      "comment" : "%lld = how many suggestions and reports the clear would take",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4782,8 +4783,7 @@
             "value" : "Delete %lld suggestions and reports? Your own word pairs stay."
           }
         }
-      },
-      "comment" : "%lld = how many suggestions and reports the clear would take"
+      }
     },
     "report.export.copy" : {
       "localizations" : {
@@ -4834,6 +4834,7 @@
       }
     },
     "report.export.scope.new" : {
+      "comment" : "The two scopes each action offers once a copy has ever been taken.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4847,8 +4848,7 @@
             "value" : "Only what is new"
           }
         }
-      },
-      "comment" : "The two scopes each action offers once a copy has ever been taken."
+      }
     },
     "report.export.scope.outbox" : {
       "localizations" : {
@@ -4883,6 +4883,7 @@
       }
     },
     "report.reported" : {
+      "comment" : "The flag a reported word wears. Its own mark, said apart from box.card.suspended — a report says nothing about where the word stands, and a reported word keeps whatever badge it had.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4896,8 +4897,7 @@
             "value" : "Reported"
           }
         }
-      },
-      "comment" : "The flag a reported word wears. Its own mark, said apart from box.card.suspended — a report says nothing about where the word stands, and a reported word keeps whatever badge it had."
+      }
     },
     "report.send" : {
       "localizations" : {
@@ -4932,6 +4932,7 @@
       }
     },
     "report.typed" : {
+      "comment" : "What they had typed, shown rather than asked about — the rejected answer IS the report.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4945,8 +4946,7 @@
             "value" : "You typed:"
           }
         }
-      },
-      "comment" : "What they had typed, shown rather than asked about — the rejected answer IS the report."
+      }
     },
     "session.almost.heard" : {
       "localizations" : {
@@ -4997,6 +4997,7 @@
       }
     },
     "session.answer.placeholder %@" : {
+      "comment" : "%s = target language name",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5010,10 +5011,10 @@
             "value" : "In %@ …"
           }
         }
-      },
-      "comment" : "%s = target language name"
+      }
     },
     "session.cardPosition %@ %@" : {
+      "comment" : "How far a round has got, for the one reader the segments bar shows nothing: session.cardPosition (%1$s of %2$s) before the first answer, and once there are answers to report, a11y.count.sessionTally — %1$s right, %2$s hard, %3$s missed — which says the same three colors in words.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5027,8 +5028,7 @@
             "value" : "Card %1$@ of %2$@"
           }
         }
-      },
-      "comment" : "How far a round has got, for the one reader the segments bar shows nothing: session.cardPosition (%1$s of %2$s) before the first answer, and once there are answers to report, a11y.count.sessionTally — %1$s right, %2$s hard, %3$s missed — which says the same three colors in words."
+      }
     },
     "session.coach.grade" : {
       "localizations" : {
@@ -5079,6 +5079,7 @@
       }
     },
     "session.copy.mismatch" : {
+      "comment" : "the copy was another word: the card still holds the answer",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5092,10 +5093,10 @@
             "value" : "Not quite — the word is right above."
           }
         }
-      },
-      "comment" : "the copy was another word: the card still holds the answer"
+      }
     },
     "session.copy.placeholder %@" : {
+      "comment" : "%s = target language name — the write-it-out field",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5109,8 +5110,7 @@
             "value" : "Write it once in %@ …"
           }
         }
-      },
-      "comment" : "%s = target language name — the write-it-out field"
+      }
     },
     "session.done.growth.blooming.0" : {
       "localizations" : {
@@ -5161,6 +5161,7 @@
       }
     },
     "session.done.growth.grew" : {
+      "comment" : "What the round's area GREW, read off the tree's own delta rather than the round's tallies. session.done.growth.grew is the one line a strained day gets — no growth claim on a bad day — and session.done.growth.opened the first ground broken in an area; the three lists are the variants a stable seeded pick chooses from.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5174,8 +5175,7 @@
             "value" : "Some of it sticks today too"
           }
         }
-      },
-      "comment" : "What the round's area GREW, read off the tree's own delta rather than the round's tallies. session.done.growth.grew is the one line a strained day gets — no growth claim on a bad day — and session.done.growth.opened the first ground broken in an area; the three lists are the variants a stable seeded pick chooses from."
+      }
     },
     "session.done.growth.grown.0" : {
       "localizations" : {
@@ -5306,6 +5306,7 @@
       }
     },
     "session.done.restHint" : {
+      "comment" : "today's recall is strained; more reps buy little",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5319,8 +5320,7 @@
             "value" : "Not much is sticking today — a tired head keeps nothing. Tomorrow will go easier."
           }
         }
-      },
-      "comment" : "today's recall is strained; more reps buy little"
+      }
     },
     "session.done.streakRecord" : {
       "localizations" : {
@@ -5356,6 +5356,7 @@
       }
     },
     "session.done.tally.allDone" : {
+      "comment" : "the round had nothing nameable in it",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5369,8 +5370,7 @@
             "value" : "All done"
           }
         }
-      },
-      "comment" : "the round had nothing nameable in it"
+      }
     },
     "session.done.tally.consolidated %@" : {
       "localizations" : {
@@ -5405,6 +5405,7 @@
       }
     },
     "session.done.tally.newOnly %@" : {
+      "comment" : "session.done.tally.new spelled out with its noun, for a round that named nothing else.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5418,8 +5419,7 @@
             "value" : "%@ new words"
           }
         }
-      },
-      "comment" : "session.done.tally.new spelled out with its noun, for a round that named nothing else."
+      }
     },
     "session.done.tally.reviewed %@" : {
       "localizations" : {
@@ -5454,6 +5454,7 @@
       }
     },
     "session.grammar.also %@" : {
+      "comment" : "%s = the forms a card also answers to",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5467,10 +5468,10 @@
             "value" : "also: %@"
           }
         }
-      },
-      "comment" : "%s = the forms a card also answers to"
+      }
     },
     "session.grammar.plural %@" : {
+      "comment" : "%s = the plural, where a card carries one",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5484,8 +5485,7 @@
             "value" : "pl. %@"
           }
         }
-      },
-      "comment" : "%s = the plural, where a card carries one"
+      }
     },
     "session.grammar.plural.equals" : {
       "localizations" : {
@@ -5520,6 +5520,7 @@
       }
     },
     "session.hear.cantListen" : {
+      "comment" : "The way out of a card asked by ear: the word goes on screen instead of in the air.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5533,10 +5534,10 @@
             "value" : "Can't listen right now?"
           }
         }
-      },
-      "comment" : "The way out of a card asked by ear: the word goes on screen instead of in the air."
+      }
     },
     "session.means.also %@" : {
+      "comment" : "%s = what the prompted word means besides this card",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5550,10 +5551,10 @@
             "value" : "also means: %@"
           }
         }
-      },
-      "comment" : "%s = what the prompted word means besides this card"
+      }
     },
     "session.otherWord %@ %@" : {
+      "comment" : "%1$s = the word typed, %2$s = what it means",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5567,8 +5568,7 @@
             "value" : "By the way: %1$@ means “%2$@”"
           }
         }
-      },
-      "comment" : "%1$s = the word typed, %2$s = what it means"
+      }
     },
     "session.rating.good" : {
       "localizations" : {
@@ -5603,6 +5603,7 @@
       }
     },
     "session.rating.question" : {
+      "comment" : "The question the three verdicts answer, standing under them.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5616,10 +5617,10 @@
             "value" : "How well did you know it?"
           }
         }
-      },
-      "comment" : "The question the three verdicts answer, standing under them."
+      }
     },
     "session.rating.unknown" : {
+      "comment" : "the third verdict — a judgment, not an instruction",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5633,8 +5634,7 @@
             "value" : "Not at all"
           }
         }
-      },
-      "comment" : "the third verdict — a judgment, not an instruction"
+      }
     },
     "session.reveal" : {
       "localizations" : {
@@ -5653,6 +5653,7 @@
       }
     },
     "session.skip" : {
+      "comment" : "Leaving a step that has already decided its rating: the write-out's skip, and giving up on an open retry. One word for both, as on iOS (`session.skip`) — a step you cannot leave is a trap, and neither leaving costs the schedule anything.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5666,8 +5667,7 @@
             "value" : "Skip"
           }
         }
-      },
-      "comment" : "Leaving a step that has already decided its rating: the write-out's skip, and giving up on an open retry. One word for both, as on iOS (`session.skip`) — a step you cannot leave is a trap, and neither leaving costs the schedule anything."
+      }
     },
     "settings.about" : {
       "localizations" : {
@@ -5686,6 +5686,7 @@
       }
     },
     "settings.audio.hint.off" : {
+      "comment" : "the hint under the picker, per selection",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5699,8 +5700,7 @@
             "value" : "No words are read aloud. Tapping a word still speaks it."
           }
         }
-      },
-      "comment" : "the hint under the picker, per selection"
+      }
     },
     "settings.audio.hint.perLanguage" : {
       "localizations" : {
@@ -5751,6 +5751,7 @@
       }
     },
     "settings.audio.option.off" : {
+      "comment" : "the box's three-way audio preference",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5764,8 +5765,7 @@
             "value" : "No audio"
           }
         }
-      },
-      "comment" : "the box's three-way audio preference"
+      }
     },
     "settings.audio.option.recordings" : {
       "localizations" : {
@@ -5832,6 +5832,7 @@
       }
     },
     "settings.feedback" : {
+      "comment" : "What the footer's envelope is FOR. The door itself prints the address — readable on a phone with no mail app at all, a deliberate delta from the iPhone's verb — so this is the name a screen reader gets in front of it.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5845,8 +5846,7 @@
             "value" : "Send feedback"
           }
         }
-      },
-      "comment" : "What the footer's envelope is FOR. The door itself prints the address — readable on a phone with no mail app at all, a deliberate delta from the iPhone's verb — so this is the name a screen reader gets in front of it."
+      }
     },
     "settings.known.title" : {
       "localizations" : {
@@ -5913,6 +5913,7 @@
       }
     },
     "settings.name.title" : {
+      "comment" : "The name the greeting uses — cleared here as well as given here.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5926,8 +5927,7 @@
             "value" : "Your name"
           }
         }
-      },
-      "comment" : "The name the greeting uses — cleared here as well as given here."
+      }
     },
     "settings.profile.hint" : {
       "localizations" : {
@@ -5946,6 +5946,7 @@
       }
     },
     "settings.reset.button %@" : {
+      "comment" : "%s = the language being learnt, in its own name",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5959,10 +5960,10 @@
             "value" : "Reset %@ …"
           }
         }
-      },
-      "comment" : "%s = the language being learnt, in its own name"
+      }
     },
     "settings.reset.confirm %@" : {
+      "comment" : "%s = the language being learnt, in its own name",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5976,8 +5977,7 @@
             "value" : "Delete all learning progress for %@ and start over with the first words?"
           }
         }
-      },
-      "comment" : "%s = the language being learnt, in its own name"
+      }
     },
     "settings.reset.hint" : {
       "localizations" : {
@@ -5996,6 +5996,7 @@
       }
     },
     "settings.restartTutorial.button" : {
+      "comment" : "The way back into the story pages, long after the first run. Nothing here touches the box — the pair is made, so the restart opens on what Spross is for and the hint says as much, standing beside the one row that IS destructive.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6009,8 +6010,7 @@
             "value" : "Restart tutorial"
           }
         }
-      },
-      "comment" : "The way back into the story pages, long after the first run. Nothing here touches the box — the pair is made, so the restart opens on what Spross is for and the hint says as much, standing beside the one row that IS destructive."
+      }
     },
     "settings.restartTutorial.hint" : {
       "localizations" : {
@@ -6045,6 +6045,7 @@
       }
     },
     "settings.update.button" : {
+      "comment" : "The footer's door to newer builds — a noun, not an errand.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6058,8 +6059,7 @@
             "value" : "Updates"
           }
         }
-      },
-      "comment" : "The footer's door to newer builds — a noun, not an errand."
+      }
     },
     "settings.update.download" : {
       "localizations" : {
@@ -6094,6 +6094,7 @@
       }
     },
     "settings.update.offer" : {
+      "comment" : "what Obtainium does, and what going without costs",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6107,8 +6108,7 @@
             "value" : "Obtainium watches this app's releases and offers each new version as it appears. Without it, every update is a download by hand."
           }
         }
-      },
-      "comment" : "what Obtainium does, and what going without costs"
+      }
     },
     "settings.update.title" : {
       "localizations" : {
@@ -6127,6 +6127,7 @@
       }
     },
     "trainer.hub.subtitle" : {
+      "comment" : "what free practice is, under its name",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6140,10 +6141,10 @@
             "value" : "Playful practice, whenever you are up for it"
           }
         }
-      },
-      "comment" : "what free practice is, under its name"
+      }
     },
     "trainer.hub.title" : {
+      "comment" : "The free-practice card's own name — the ladder both drills climb, not a workshop.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6157,8 +6158,7 @@
             "value" : "Sprossen"
           }
         }
-      },
-      "comment" : "The free-practice card's own name — the ladder both drills climb, not a workshop."
+      }
     },
     "trainer.ladder.best %@ %@" : {
       "comment" : "Under the atlas and calendar ladders — the longest clean streak, then the most answers one run took, right or wrong",
@@ -6293,6 +6293,7 @@
       }
     },
     "trainer.overview.practice" : {
+      "comment" : "the heading the picks stand under",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6306,10 +6307,10 @@
             "value" : "Practice"
           }
         }
-      },
-      "comment" : "the heading the picks stand under"
+      }
     },
     "trainer.overview.start" : {
+      "comment" : "the button both pages open a run with",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6323,10 +6324,10 @@
             "value" : "Start"
           }
         }
-      },
-      "comment" : "the button both pages open a run with"
+      }
     },
     "trainer.reference.tapToHear" : {
+      "comment" : "the gesture a reference page discloses once, under its heading",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6340,8 +6341,7 @@
             "value" : "Every row speaks when tapped"
           }
         }
-      },
-      "comment" : "the gesture a reference page discloses once, under its heading"
+      }
     },
     "trainer.result.bestStreak %@" : {
       "localizations" : {
@@ -6376,6 +6376,7 @@
       }
     },
     "trainer.result.tasksDone %lld" : {
+      "comment" : "the count-of-one form, which carries the number too",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -6413,10 +6414,10 @@
             }
           }
         }
-      },
-      "comment" : "the count-of-one form, which carries the number too"
+      }
     },
     "trainer.run.record %@" : {
+      "comment" : "%d — the standing streak the run has not beaten yet",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6430,10 +6431,10 @@
             "value" : "Record %@"
           }
         }
-      },
-      "comment" : "%d — the standing streak the run has not beaten yet"
+      }
     },
     "trainer.run.streak %@" : {
+      "comment" : "%d — answers in a row, never days",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6447,10 +6448,10 @@
             "value" : "🔥 %@ in a row"
           }
         }
-      },
-      "comment" : "%d — answers in a row, never days"
+      }
     },
     "trainer.skill.countries" : {
+      "comment" : "the hub entry, and what the result tile says was drilled",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6464,8 +6465,7 @@
             "value" : "Countries"
           }
         }
-      },
-      "comment" : "the hub entry, and what the result tile says was drilled"
+      }
     },
     "trainer.skill.dates" : {
       "localizations" : {
@@ -6500,6 +6500,7 @@
       }
     },
     "trainer.skill.numbers" : {
+      "comment" : "the hub entry, and the variant's own name",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6513,10 +6514,10 @@
             "value" : "Numbers"
           }
         }
-      },
-      "comment" : "the hub entry, and the variant's own name"
+      }
     },
     "trainer.sprosse %@" : {
+      "comment" : "%d — the Sprosse a run stands on",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6530,8 +6531,7 @@
             "value" : "Sprosse %@"
           }
         }
-      },
-      "comment" : "%d — the Sprosse a run stands on"
+      }
     },
     "trainer.sprosse.cleared" : {
       "comment" : "Screen-reader value of a Sprosse row a run has answered out",
@@ -6668,6 +6668,7 @@
       }
     },
     "widget.awaiting.title" : {
+      "comment" : "The two lines a tile with no readable snapshot stands on, beside the sprout.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6681,8 +6682,7 @@
             "value" : "Open Spross"
           }
         }
-      },
-      "comment" : "The two lines a tile with no readable snapshot stands on, beside the sprout."
+      }
     }
   },
   "version" : "1.0"
