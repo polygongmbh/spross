@@ -4,8 +4,8 @@ The persisted box document, and the watch/widget snapshots the phone precomputes
 Engine contract: `../README.md`.
 
 - One document per TARGET: `box-<target>.json` in App Group `group.net.spross.app`.
-  `BoxDocument { schemaVersion: 1, target, source, config, scheduling, enqueued,
-  newIntroduced, dailyStats, ownWords }` — scheduling keys are card ids;
+  `BoxDocument` (schema version 1, `store/BoxDocument.kt`) documents its own fields —
+  scheduling keys are card ids;
   `ownWords` is the document's only content (`../README.md` §6), defaulted so a box written before the
   learner could author any decodes as one who has authored none;
   the stored `config` is a record of the calibration a box was written under, never an input —
@@ -33,7 +33,7 @@ Engine contract: `../README.md`.
   entries (target-side text, emoji, article tint), per-card `{due}` for render-time
   `dueCount(now)`, the consolidated-card count (`consolidatedCount`, resolved phone-side —
   it does not move with the clock), dailyStats tail
-  (~70 days) for the streak walk, `schemaVersion`. Built by a KMP `SnapshotBuilder`,
+  (~70 days) for the streak walk, `schemaVersion`. Built by `WidgetSnapshotBuilder.build`,
   written by the app.
   **Both sides of the wire are kern's, except the one that cannot be.**
   `WidgetSnapshotBuilder.decode` returns a public `WidgetSnapshotView` — the rows, plus
