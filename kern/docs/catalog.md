@@ -36,8 +36,8 @@ Engine contract: `../README.md`.
   parse/shape/order rules, slug charset (no `|`), seedIndex uniqueness, synonyms ≠ text,
   no duplicate synonym/variant entries, no `" / "` in text, components resolve same-area,
   feminineOf resolves, concept emoji well-formed, every manifest area carries an emoji.
-- **Homonym gates** (no schema field — the area label is the disambiguator,
-  `../README.md` §2/§3).
+- **Homonym gates** (**`CatalogCollisionLintTest`**; no schema field — the area label is the
+  disambiguator, `../README.md` §2/§3).
   Lint owns what the engine cannot fix, runtime tolerates the rest:
   - `noPromptCollisionWithinAnArea` — a display-identical prompt inside ONE area is a hard
     error: the area cue would be identical, so the prompt stays unanswerable. Fix in content.
