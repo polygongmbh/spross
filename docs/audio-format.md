@@ -9,11 +9,9 @@ The engine rule is `../kern/docs/audio.md`, the manifest schema `../catalog/audi
 
 ## What ships
 
-3606 tracked files, **74.4 MB** of bytes, 72.5 minutes total, median clip 1.14 s.
-Every file is 44.1 kHz stereo, VBR spanning 81–231 kbps with a median of 142.
-
-`du` reports 80 MiB: 3606 files averaging 20.6 KB pad to 4 KiB blocks,
-so roughly 6 MB of the apparent size is allocation, not payload.
+Every file is 44.1 kHz stereo, VBR spanning 81–231 kbps with a median of 142,
+median clip 1.14 s. How many there are and what they weigh is `audio-licensing.md` §1.
+The ratios below are what the decision rests on, and they hold as the corpus grows.
 
 ## The codec is Wikimedia's choice, not ours
 
@@ -33,7 +31,7 @@ and it removes the reason the loudness correction is a measurement rather than a
 
 Every Commons source is mono; the transcoder emits stereo.
 This looks like a doubled payload and is not one.
-All 3606 files are joint stereo, mid/side on 97.9% of frames,
+Every file measured on 2026-08-22 is joint stereo, mid/side on 97.9% of frames,
 and 99.4% of them measure a `(L−R)/2` side signal at the −91 dB decoder floor —
 the second channel is a side signal of zeros.
 
@@ -74,13 +72,15 @@ from the same source and separate output trees.
 
 ## The decision
 
-mp3 stays. Opus saves ~52 MB against two encode pipelines, two container trees,
+mp3 stays. Opus saves roughly three quarters of the audio bytes
+against two encode pipelines, two container trees,
 a rewritten converter and lint gate, and a dependency on an undocumented container path.
 
 If bundle size becomes the binding constraint, the first lever is delivery, not codec:
-per-language on-demand packs are 7–13 MB each and change nothing about provenance.
+per-language on-demand packs are a sixth to a fifth of the corpus each
+and change nothing about provenance.
 If the corpus is ever transcoded anyway, AAC-LC `.m4a` is the better target than Opus —
-one pipeline, both platforms, no undocumented API, 74 → ~31 MB.
+one pipeline, both platforms, no undocumented API, ~40% of the mp3 bytes.
 
 The iOS half of this expires when `project.yml`'s deployment target rises past the release
 that added Ogg. The check is whether `kAudioFileGlobalInfo_ReadableTypes` reports `Oggf`
