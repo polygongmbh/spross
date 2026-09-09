@@ -171,9 +171,10 @@ then open design work, then what waits on someone else, grouped by who that is.
   rows in `Chrome.kt:456-458` stand ready for a headline that needs `AreaTree`/`TreeTransition`
   lifted from `App/Sources/Design/ForestLayout.swift` into kern first — render it, or delete
   the rows and let `design.md`'s deferral stand?
-- Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs, `docs/portability.md` § Moves)
-  was deferred 2026-08-08 — reopen it as a series now (kern engine + tests + both consumers +
-  `SCHEMA_VERSION`), or keep it parked?
+- Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs — the watch's own queue and
+  ranking in `Watch/Sources/WatchModel.swift`, latency-to-rating in `Shared/Sources/WatchGrading.swift`,
+  shortlist sampling in `Shared/Sources/WatchPracticeQuestion.swift`) was deferred 2026-08-08 —
+  reopen it as a series now (kern engine + tests + both consumers + `SCHEMA_VERSION`), or keep it parked?
 - Audio ships un-thinned: both installs copy all of `catalog/audio/` (129 MB, 13–25 MB per
   language — `project.yml:35` folder reference, `android/build.gradle.kts:131` asset sync with
   mp3/wav uncompressed), so a Swahili learner carries ~116 MB they can never hear, and
