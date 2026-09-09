@@ -2,9 +2,9 @@
 
 A personal "growing box" vocabulary app:
 pick the language you know (source) and the one you learn (target)
-from the in-repo catalog (Deutsch · English · Kiswahili · Українська).
+from the in-repo catalog (eight languages, declared in `catalog/languages.json`).
 Native iOS (SwiftUI, iOS 17+) + watchOS companion, fully offline,
-plus an Android core-loop app (Jetpack Compose) on the same engine.
+plus an Android app (Jetpack Compose) on the same engine.
 
 The box only grows while your material sits:
 each round offers a round's worth of new cards and nothing throttles that but the round,
@@ -23,7 +23,7 @@ because both asked the same box for it.
 | **iOS** | ![Spross on iOS — the Today screen](docs/screenshots/ios-home.png) | ![Spross on iOS — a review card](docs/screenshots/ios-session.png) | ![Spross on iOS — the box](docs/screenshots/ios-box.png) |
 | **Android** | ![Spross on Android — the Today screen](docs/screenshots/android-home.png) | ![Spross on Android — a review card](docs/screenshots/android-session.png) | ![Spross on Android — the box](docs/screenshots/android-box.png) |
 
-The Sprossen match now too: Numbers, Letters and Countries stand on both
+The Sprossen match now too: all four stand on both
 phones, each run on kern's rules — what still parts the platforms is listed
 in `docs/design.md`.
 
@@ -60,12 +60,13 @@ internal TestFlight testers get the same build minutes after the tag, without re
   Pure logic, time injected (`nowEpochMillis`/`tzId`), fully unit-tested.
   Engine contract: `kern/README.md`.
 - `App/` — SwiftUI app: design system (poster-derived theme), file-backed store
-  (one document per target language), screens (Home / Box / Fortschritt).
+  (one document per target language), screens (Home as the single root;
+  Box, session and trainers push off it).
   The only target that links the Kotlin framework.
 - `Shared/`, `Watch/`, `Widgets/`, `WatchWidgets/` — decode-only Swift surfaces
   reading phone-built snapshots; no Kotlin linkage.
-- `android/` — Jetpack Compose app (core loop: onboarding, Home, sessions)
-  on the same engine; catalog bundled by a Gradle sync task.
+- `android/` — Jetpack Compose app on the same engine;
+  catalog bundled by a Gradle sync task.
 - `catalog/` — the in-repo content catalog (format spec: `catalog/README.md`);
   bundled as a folder resource.
 - `docs/design.md` — the app-layer build contract; read before changing behavior.
