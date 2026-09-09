@@ -10,7 +10,7 @@ import kotlin.test.assertTrue
 /**
  * The Forms GENERATOR: which values each Sprosse draws, how the prompt is written, and
  * what the reversed task takes back. The readings themselves are pinned separately
- * ([TrainerFormsTests]) — this file never asserts a word.
+ * (`Trainer<Language>FormsTests`, one file per language) — this file never asserts a word.
  */
 class TrainerFormLevelTests {
 

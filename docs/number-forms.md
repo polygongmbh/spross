@@ -12,7 +12,8 @@ and what a date asks of a numeral — each language's day-of-month reading — i
 The code is one `<Lang>Forms.kt` per language
 under `../kern/src/commonMain/kotlin/net/spross/kern/trainer/`,
 each declaring that pack's `FormLimits`;
-the canonical and refused readings below are pinned by `TrainerFormsTests`.
+the canonical and refused readings below are pinned by `Trainer<Language>FormsTests`,
+one spec file per language.
 
 ## How to read an entry
 
