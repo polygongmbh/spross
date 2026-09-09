@@ -94,16 +94,14 @@ scripts/run-sim.sh --mute                 # start with reading aloud switched of
 scripts/run-sim.sh -- -uitest-source de -uitest-target sw   # skip onboarding
 ```
 
-`--mute` starts the app silent so a run nobody is sitting at never speaks up.
-It overrides the read-aloud setting for that launch instead of rewriting it,
-so the in-app toggle turns sound back on and the next hand-launched run opens
-with whatever was last chosen. `--sound` opts a screenshot run back in.
+`--mute` keeps a driven run silent for that launch only (nothing is stored);
+`--sound` opts a screenshot run back in.
 
 Arguments after `--` reach the app: `-uitest-source`/`-uitest-target` pick a
 language pair, `-uitest-screen box` opens the Box, `-uitest-autostart 1` starts
-the session, `-uitest-trainer numbers|letters` opens a trainer overview
-(DEBUG only, read in `AppModel.start()`), and `-uitest-run 1` starts the run
-from it.
+the session, `-uitest-trainer <numbers|letters|countries|dates>` opens a
+trainer overview (DEBUG only, read in `TrainerHubView`), and `-uitest-run 1`
+starts the run from it.
 
 Physical devices: `scripts/deploy-devices.sh` — Release, or `--debug` while iterating.
 
