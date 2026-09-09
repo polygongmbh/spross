@@ -30,14 +30,13 @@
 <p class="lang-switch"><a href="privacy.de.html" hreflang="de" lang="de">Diese Seite auf Deutsch</a></p>
 
 <h1>Privacy Policy</h1>
-<p class="updated">Last updated: 12 August 2026</p>
+<p class="updated">Last updated: 9 September 2026</p>
 
 <div class="card">
   <p><strong>The short version.</strong>
     The Spross app contains no networking code at all.
     Nothing you learn, type or answer leaves your phone —
-    there is no account, no analytics, no crash reporting, no advertising and no third-party SDK,
-    and the app asks for no device permissions.</p>
+    there is no account, no analytics, no crash reporting, no advertising and no tracking SDK.</p>
   <p>This website is almost as quiet.
     It sets no cookies, runs no analytics and loads nothing from other servers.
     The only personal data involved is the request your browser makes to our host,
@@ -91,8 +90,11 @@
   <li>no analytics, usage statistics or telemetry;</li>
   <li>no crash or diagnostics reporting to us;</li>
   <li>no advertising, no advertising identifier, no tracking of any kind;</li>
-  <li>no third-party SDKs — the only library the app links is our own learning engine;</li>
-  <li>no camera, microphone, location, contacts or photo access; the app requests no permissions at all.</li>
+  <li>no analytics, advertising or tracking SDK — the app links the platform UI toolkit
+    (Jetpack Compose on Android) and our own learning engine, neither of which opens a connection;</li>
+  <li>no camera, microphone, location, contacts or photo access; the only permissions the Android app
+    declares are the ones "Hear your words" needs — audio settings, a media-playback foreground service,
+    a wake lock, and the notification that carries the run's controls.</li>
 </ul>
 
 <h3>Between your own two devices</h3>

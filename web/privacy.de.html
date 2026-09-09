@@ -30,14 +30,13 @@
 <p class="lang-switch"><a href="privacy.html" hreflang="en" lang="en">This page in English</a></p>
 
 <h1>Datenschutzerklärung</h1>
-<p class="updated">Stand: 12. August 2026</p>
+<p class="updated">Stand: 9. September 2026</p>
 
 <div class="card">
   <p><strong>Die kurze Fassung.</strong>
     In der Spross-App steckt überhaupt kein Netzwerkcode.
     Nichts, was du lernst, tippst oder beantwortest, verlässt dein Telefon —
-    es gibt kein Konto, keine Analyse, keine Absturzberichte, keine Werbung und kein SDK von Dritten,
-    und die App fragt keine einzige Geräteberechtigung ab.</p>
+    es gibt kein Konto, keine Analyse, keine Absturzberichte, keine Werbung und kein Tracking-SDK.</p>
   <p>Diese Website ist fast genauso still.
     Sie setzt keine Cookies, misst nichts und lädt nichts von fremden Servern.
     Personenbezogene Daten fallen nur dort an, wo dein Browser unseren Host anfragt,
@@ -91,8 +90,11 @@
   <li>keine Analyse, keine Nutzungsstatistik, keine Telemetrie;</li>
   <li>keine Absturz- oder Diagnoseberichte an uns;</li>
   <li>keine Werbung, keine Werbe-ID, kein Tracking irgendeiner Art;</li>
-  <li>keine SDKs von Dritten — die einzige Bibliothek, die die App einbindet, ist unsere eigene Lern-Engine;</li>
-  <li>kein Zugriff auf Kamera, Mikrofon, Standort, Kontakte oder Fotos; die App fragt gar keine Berechtigungen ab.</li>
+  <li>keine Analyse-, Werbe- oder Tracking-SDKs — die App bindet das UI-Toolkit der Plattform ein
+    (Jetpack Compose unter Android) und unsere eigene Lern-Engine, und keines von beiden öffnet eine Verbindung;</li>
+  <li>kein Zugriff auf Kamera, Mikrofon, Standort, Kontakte oder Fotos; die einzigen Berechtigungen, die die
+    Android-App anfordert, sind die für „Wörter hören“ — Audio-Einstellungen, ein Vordergrunddienst für
+    Medienwiedergabe, ein Wake Lock und die Benachrichtigung mit den Steuerelementen des Durchlaufs.</li>
 </ul>
 
 <h3>Zwischen deinen eigenen zwei Geräten</h3>
