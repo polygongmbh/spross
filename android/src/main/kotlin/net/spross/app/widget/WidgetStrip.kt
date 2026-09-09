@@ -20,6 +20,7 @@ import androidx.glance.semantics.semantics
 import kotlin.math.max
 import kotlin.math.roundToInt
 import net.spross.app.Chrome
+import net.spross.app.countLine
 import net.spross.app.ui.ActivityBar
 import net.spross.app.ui.ActivityBars
 import net.spross.app.ui.ThemeColors
@@ -65,7 +66,11 @@ fun ActivityStrip(days: List<ActivityDay>, chrome: Chrome) {
             .width(BAR_WIDTH * bars.size + GUTTER * (bars.size - 1))
             .height(HEIGHT)
             .semantics {
-                contentDescription = chrome.a11yCountActivity14Days.format(ActivityBars.activeDays(bars))
+                contentDescription = countLine(
+                    chrome.a11yCountActivity14DaysOne,
+                    chrome.a11yCountActivity14Days,
+                    ActivityBars.activeDays(bars),
+                )
             },
     )
 }

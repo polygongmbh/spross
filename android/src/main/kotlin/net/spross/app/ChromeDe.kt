@@ -107,6 +107,7 @@ internal object ChromeDe : Chrome {
     override val settingsAudioHintPerLanguage = "Pro Lernsprache wählbar."
     override val creditsTitle = "Impressum & Lizenzen"
     override val creditsRecordings = "%d Aufnahmen"
+    override val creditsRecordingsOne = "%d Aufnahme"
     override val creditsUnmodified = "Aufnahmen unverändert übernommen"
     override val creditsCommonsNote = "Aufnahmen von Wikimedia Commons"
     override val legalTitle = "Impressum"
@@ -282,7 +283,9 @@ internal object ChromeDe : Chrome {
     override val progressConsolidatedCount = "%s gefestigt"
     override val progressLearningCount = "%s wachsen"
     override val boxAreaPhrasesLockedShort = "%d Sätze"
+    override val boxAreaPhrasesLockedShortOne = "%d Satz"
     override val boxAreaPhrasesLocked = "%d Sätze gesperrt"
+    override val boxAreaPhrasesLockedOne = "%d Satz gesperrt"
     override val a11yStateExpanded = "ausgeklappt"
     override val a11yStateCollapsed = "eingeklappt"
     override val boxPhaseLearning = "Frisch"
@@ -387,6 +390,7 @@ internal object ChromeDe : Chrome {
     override val homeDonePacked = "Deine gepackten Wörter sind in der nächsten Runde dabei."
     override val homeDoneTomorrowFresh = "Morgen gibt es frische Karten. Bis dann! 👋"
     override val homeDoneTomorrowDue = "Morgen kannst du %d Karten wiederholen."
+    override val homeDoneTomorrowDueOne = "Morgen kannst du %d Karte wiederholen."
     override val headlineReviews = listOf(
         "Ran an die Wörter",
         "Ein paar Wörter sind wieder dran",
@@ -452,6 +456,8 @@ internal object ChromeDe : Chrome {
     )
     override val progressLast14Days = "Letzte 14 Tage"
     override val a11yCountActivity14Days = "Aktivität der letzten 14 Tage: an %d Tagen gelernt"
+    override val a11yCountActivity14DaysOne = "Aktivität der letzten 14 Tage: an %d Tag " +
+        "gelernt"
     override val a11yCountStreakDays = "Serie: %d Tage"
     override val a11yCountStreakDaysOne = "Serie: %d Tag"
     override val commonDayOne = "Tag"

@@ -23,6 +23,7 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.app.countLine
 import net.spross.kern.box.AreaGroupSection
 import net.spross.kern.box.AreaStatistics
 import net.spross.kern.box.BoxBrowser
@@ -222,7 +223,7 @@ fun AreaChip(
         add(name)
         add(chrome.progressConsolidatedCount.format(consolidated))
         add(chrome.progressLearningCount.format(learning))
-        if (locked > 0) add(chrome.boxAreaPhrasesLocked.format(locked))
+        if (locked > 0) add(countLine(chrome.boxAreaPhrasesLockedOne, chrome.boxAreaPhrasesLocked, locked))
     }.joinToString(", ")
 
     Column(
@@ -253,7 +254,9 @@ fun AreaChip(
                 CountLabel("$LEAF ${chrome.progressLearningCount.format(learning)}", Theme.colors.success)
                 // why: the padlock carries the "locked", so the text only names what is
                 // locked — and it appears only when it says something.
-                if (locked > 0) CountLabel("$LOCK ${chrome.boxAreaPhrasesLockedShort.format(locked)}")
+                if (locked > 0) CountLabel(
+                        "$LOCK ${countLine(chrome.boxAreaPhrasesLockedShortOne, chrome.boxAreaPhrasesLockedShort, locked)}",
+                    )
             }
             AreaProgressBar(stats ?: EMPTY_AREA)
         }

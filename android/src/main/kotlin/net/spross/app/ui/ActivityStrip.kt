@@ -66,7 +66,11 @@ fun ActivityStrip(
     val bars = remember(days) { ActivityBars.of(days) }
     val palette = Theme.colors
     val label = remember(bars, streakDays, chrome) {
-        val activity = chrome.a11yCountActivity14Days.format(ActivityBars.activeDays(bars))
+        val activity = countLine(
+            chrome.a11yCountActivity14DaysOne,
+            chrome.a11yCountActivity14Days,
+            ActivityBars.activeDays(bars),
+        )
         if (streakDays > 0) {
             "$activity. ${countLine(chrome.a11yCountStreakDaysOne, chrome.a11yCountStreakDays, streakDays)}"
         } else {

@@ -97,7 +97,8 @@ Strict dependency direction: App → SprossKern, never the reverse.
   (`box.card.due` → `boxCardDue`), so the binding is derived rather than tabulated and a
   field cannot come to name a key that says something else; only the few fields reading
   SEVERAL keys are written out, in `FAMILIES`. A counted key's form follows the field's
-  own name — `<field>One` takes the `one` form, the bare name the general `other` one.
+  own name — `<field>One` takes the `one` form, the bare name the general `other` one,
+  and a key whose two forms differ owes both fields, which the generator checks.
   Which keys Android does not read is declared beside it and checked against the whole
   catalog: `IOS_ONLY` for what Android has no use for, `ANDROID_TODO` for what it still owes.
   What a string MEANS is its catalog entry's `comment`, where the other phone and whoever

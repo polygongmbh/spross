@@ -111,6 +111,7 @@ interface Chrome {
     val settingsAudioHintPerLanguage: String
     val creditsTitle: String
     val creditsRecordings: String // %d
+    val creditsRecordingsOne: String // %d
     val creditsUnmodified: String
     val creditsCommonsNote: String
     /** The address the notice answers on is kern's ([net.spross.kern.Legal]). */
@@ -289,7 +290,9 @@ interface Chrome {
     val progressConsolidatedCount: String // %d
     val progressLearningCount: String  // %d
     val boxAreaPhrasesLockedShort: String // %d
+    val boxAreaPhrasesLockedShortOne: String // %d
     val boxAreaPhrasesLocked: String // %d
+    val boxAreaPhrasesLockedOne: String // %d
     val a11yStateExpanded: String
     val a11yStateCollapsed: String
     // A card with nothing behind it has NO phase word: new is the absence of a badge. Past
@@ -410,6 +413,7 @@ interface Chrome {
     val homeDonePacked: String
     val homeDoneTomorrowFresh: String
     val homeDoneTomorrowDue: String       // %d
+    val homeDoneTomorrowDueOne: String    // %d
 
     // ── The session offer (Home's one card) ────────────────────────────────────
     /**
@@ -464,6 +468,7 @@ interface Chrome {
     // ── Activity strip ──────────────────────────────────────────────────────────
     val progressLast14Days: String
     val a11yCountActivity14Days: String      // %d
+    val a11yCountActivity14DaysOne: String   // %d
     val a11yCountStreakDays: String        // %d
     val a11yCountStreakDaysOne: String
     val commonDayOne: String

@@ -239,6 +239,17 @@ def render(lang, code, name, strings):
     return ''.join(body) + '}\n'
 
 
+def declines(strings, key):
+    """Whether [key] says something different at one than at many, in either language."""
+    for lang in TABLES:
+        forms = (strings[key].get('localizations', {}).get(lang, {})
+                 .get('variations', {}).get('plural', {}))
+        one, other = forms.get('one'), forms.get('other')
+        if one and other and one['stringUnit']['value'] != other['stringUnit']['value']:
+            return True
+    return False
+
+
 def unclassified(strings, declared_fields):
     """Where a key, the two sets, and Chrome.kt's field list disagree."""
     table, both = claimed(strings), IOS_ONLY & ANDROID_TODO
@@ -249,7 +260,13 @@ def unclassified(strings, declared_fields):
             'IOS_ONLY (Android has no use for it) or ANDROID_TODO (Android owes it)'
             % (k, camel(k))
             for f, k in sorted(table.items()) if not f.endswith('One')
-            and f not in declared_fields]
+            and f not in declared_fields] + \
+           ['%s: reads differently at one — declare `val %s` in Chrome.kt and read the '
+            'pair through countLine, or Android prints the plural form at a count of 1'
+            % (k, f + 'One')
+            for f, k in sorted(table.items())
+            if not f.endswith('One') and f in declared_fields
+            and f + 'One' not in declared_fields and declines(strings, k)]
 
 
 def main():

@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import java.net.URLEncoder
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.app.countLine
 import net.spross.kern.catalog.AudioCredit
 
 /**
@@ -116,7 +117,7 @@ private fun CreditGroup(credit: AudioCredit, chrome: Chrome) {
             Text(credit.author, style = MaterialTheme.typography.titleSmall)
             Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                 Text(
-                    chrome.creditsRecordings.format(credit.files.size),
+                    countLine(chrome.creditsRecordingsOne, chrome.creditsRecordings, credit.files.size),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

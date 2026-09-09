@@ -105,6 +105,7 @@ internal object ChromeEn : Chrome {
     override val settingsAudioHintPerLanguage = "Chosen per language you learn."
     override val creditsTitle = "Legal & licenses"
     override val creditsRecordings = "%d recordings"
+    override val creditsRecordingsOne = "%d recording"
     override val creditsUnmodified = "Recordings shipped unmodified"
     override val creditsCommonsNote = "Recordings from Wikimedia Commons"
     override val legalTitle = "Legal notice"
@@ -278,7 +279,9 @@ internal object ChromeEn : Chrome {
     override val progressConsolidatedCount = "%s consolidated"
     override val progressLearningCount = "%s growing"
     override val boxAreaPhrasesLockedShort = "%d sentences"
+    override val boxAreaPhrasesLockedShortOne = "%d sentence"
     override val boxAreaPhrasesLocked = "%d sentences locked"
+    override val boxAreaPhrasesLockedOne = "%d sentence locked"
     override val a11yStateExpanded = "expanded"
     override val a11yStateCollapsed = "collapsed"
     override val boxPhaseLearning = "Fresh"
@@ -383,6 +386,7 @@ internal object ChromeEn : Chrome {
     override val homeDonePacked = "Your packed words are in the next round."
     override val homeDoneTomorrowFresh = "Fresh cards tomorrow. See you then! 👋"
     override val homeDoneTomorrowDue = "Tomorrow you can review %d cards."
+    override val homeDoneTomorrowDueOne = "Tomorrow you can review %d card."
     override val headlineReviews = listOf(
         "Back to your words",
         "A few words are up again",
@@ -449,6 +453,8 @@ internal object ChromeEn : Chrome {
     override val progressLast14Days = "Last 14 days"
     override val a11yCountActivity14Days = "Activity over the last 14 days: practiced on %d " +
         "days"
+    override val a11yCountActivity14DaysOne = "Activity over the last 14 days: practiced on " +
+        "%d day"
     override val a11yCountStreakDays = "Streak: %d days"
     override val a11yCountStreakDaysOne = "Streak: %d day"
     override val commonDayOne = "day"

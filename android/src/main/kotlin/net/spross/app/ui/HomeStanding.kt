@@ -146,5 +146,5 @@ fun todayTally(chrome: Chrome, report: TodayReport): String? {
 fun tomorrowText(chrome: Chrome, note: TomorrowNote, due: Int): String = when (note) {
     TomorrowNote.Packed -> chrome.homeDonePacked
     TomorrowNote.Fresh -> chrome.homeDoneTomorrowFresh
-    TomorrowNote.Due -> chrome.homeDoneTomorrowDue.format(due)
+    TomorrowNote.Due -> countLine(chrome.homeDoneTomorrowDueOne, chrome.homeDoneTomorrowDue, due)
 }
