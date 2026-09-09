@@ -22,7 +22,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.withFrameNanos
@@ -39,7 +38,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.LetterDrillFlow
@@ -93,16 +91,14 @@ fun LetterDrillScreen(model: AppModel) {
         model.finishDrill(Screen.Letters, closed.summary, chrome.trainerSkillLetters)
     }
     BackHandler { leave() }
-    // Nothing left to ask: hand the run back, never repeat a question.
-    LaunchedEffect(flow.ranOut) { if (flow.ranOut) leave() }
-    // D5: leaving mid-clip must silence, whichever way the screen goes.
-    DisposableEffect(Unit) { onDispose { model.pronouncer.stop() } }
-
-    LaunchedEffect(flow.beatToken) {
-        val tier = flow.armedBeat ?: return@LaunchedEffect
-        delay(tier.delayMs)
-        flow.advanceElapsed()
-    }
+    DrillRunEffects(
+        ranOut = flow.ranOut,
+        beatToken = flow.beatToken,
+        armedBeat = flow.armedBeat,
+        onBeatElapsed = flow::advanceElapsed,
+        leave = leave,
+        pronouncer = model.pronouncer,
+    )
 
     Column(
         modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),

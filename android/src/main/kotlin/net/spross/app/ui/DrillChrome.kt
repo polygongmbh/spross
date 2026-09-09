@@ -17,6 +17,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,10 +29,13 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.app.audio.Pronouncer
 import net.spross.app.countLine
 import net.spross.kern.catalog.LanguageChoices
+import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.DrillTally
@@ -212,4 +217,34 @@ fun OverviewHeading(text: String) {
         style = MaterialTheme.typography.titleLarge,
         modifier = Modifier.semantics { heading() },
     )
+}
+
+/**
+ * The three effects every endless drill runs the same way: the hand-back when kern runs
+ * out, the silence on the way out, and the wait a kern-armed beat owes before it advances.
+ *
+ * The three screens keep their own flows — a heard glyph, a typed numeral and a date share
+ * no grammar — but a second copy of these is how two beats come to drift apart.
+ */
+@Composable
+fun DrillRunEffects(
+    ranOut: Boolean,
+    beatToken: Int,
+    armedBeat: AdvanceTier?,
+    onBeatElapsed: () -> Unit,
+    leave: () -> Unit,
+    pronouncer: Pronouncer,
+) {
+    // Nothing left to ask: hand the run back, never repeat a question.
+    LaunchedEffect(ranOut) { if (ranOut) leave() }
+    // why: D5 — leaving mid-question must silence, whichever way the screen goes.
+    DisposableEffect(Unit) { onDispose { pronouncer.stop() } }
+
+    // The beat kern arms. Nothing is ever armed where a screen reader runs — the flow
+    // renders an explicit Weiter instead — so this only waits out beats that may run.
+    LaunchedEffect(beatToken) {
+        val tier = armedBeat ?: return@LaunchedEffect
+        delay(tier.delayMs)
+        onBeatElapsed()
+    }
 }

@@ -15,7 +15,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -94,18 +93,14 @@ fun TrainerSessionScreen(model: AppModel, mode: TrainerMode) {
         model.finishDrill(Screen.Numbers, closed.summary, title)
     }
     BackHandler(enabled = !flow.showingReference) { leave() }
-    // Nothing left to ask: hand the run back, never repeat a question.
-    LaunchedEffect(flow.ranOut) { if (flow.ranOut) leave() }
-    // D5: leaving mid-clip must silence, whichever way the screen goes.
-    DisposableEffect(Unit) { onDispose { model.pronouncer.stop() } }
-
-    // The beat kern armed. Nothing is ever armed where a screen reader runs — the flow
-    // renders an explicit Weiter instead — so this only waits out beats that may run.
-    LaunchedEffect(flow.beatToken) {
-        val tier = flow.armedBeat ?: return@LaunchedEffect
-        delay(tier.delayMs)
-        flow.advanceElapsed()
-    }
+    DrillRunEffects(
+        ranOut = flow.ranOut,
+        beatToken = flow.beatToken,
+        armedBeat = flow.armedBeat,
+        onBeatElapsed = flow::advanceElapsed,
+        leave = leave,
+        pronouncer = model.pronouncer,
+    )
 
     // The revealed reading is spoken like any other answer, once per question however the
     // pause was reached — after a beat, so the verdict cue is out of the way.
