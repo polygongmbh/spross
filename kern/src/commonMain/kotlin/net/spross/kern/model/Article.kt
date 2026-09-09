@@ -27,8 +27,8 @@ enum class Gender { Masculine, Feminine, Neuter }
  * plural, so without a language it names none. Every other form resolves alike
  * in every language that writes it.
  *
- * The hues each surface paints a gender in are aesthetics and stay with the
- * surface — kern names the gender, never the color.
+ * This names the gender only: the hue it wears is [net.spross.kern.design.Palette]'s,
+ * and which hue a gender gets is each surface's own mapping.
  */
 fun articleGender(article: String?, lang: Language? = null): Gender? = when (article?.lowercase()) {
     "der", "el", "los", "un", "il", "lo", "i", "gli" -> Gender.Masculine
