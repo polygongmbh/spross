@@ -1,32 +1,40 @@
 #!/usr/bin/env python3
 """Derive Android's launcher foreground from the iOS app icon.
 
-    scripts/android-icon.py
+    scripts/android-icon.py            # rewrite the foregrounds and the plate color
+    scripts/android-icon.py --check    # exit 1 if either has fallen behind the source
 
 The painted icon (`App/Resources/.../icon-1024.png`) is the one original; Android's
 adaptive icon is a framing of it, not a second drawing. Two facts make the framing
-lossless: the artwork's plate is one flat color, and `ic_launcher_background` is set to
-that same color — so whatever a launcher's mask cuts from the foreground's square, the
-background layer replaces with the identical color, and the seam cannot be seen.
+lossless: the artwork's plate is one flat color, and `ic_launcher_background` in
+`values/colors.xml` is written from that same color — so whatever a launcher's mask cuts
+from the foreground's square, the background layer replaces with the identical color,
+and the seam cannot be seen.
 
 The art is inset so the FURTHEST painted pixel lands inside the adaptive icon's safe
 circle (33 of 108dp): the leaf tips survive a circular mask, and the artwork still fills
 its mask about as fully as it fills the square on iOS.
 """
 import pathlib
+import re
 import sys
 
-from PIL import Image
+from PIL import Image, ImageChops
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SOURCE = ROOT / "App/Resources/Assets.xcassets/AppIcon.appiconset/icon-1024.png"
 RES = ROOT / "android/src/main/res"
+COLORS = RES / "values/colors.xml"
+PLATE = re.compile(r'(<color name="ic_launcher_background">)#[0-9A-Fa-f]{8}(</color>)')
 
 # The safe circle, as a share of the 108dp canvas — everything painted stays inside it.
 SAFE_RADIUS = 33 / 108
 # One foreground per bucket, at 108dp: nothing else in res/ is density-qualified, but a
 # launcher asks for the icon at its own density and upscaling a raster shows.
 DENSITIES = {"mdpi": 108, "hdpi": 162, "xhdpi": 216, "xxhdpi": 324, "xxxhdpi": 432}
+# Lossy WEBP never round-trips exactly and its bytes move with the encoder's version, so
+# staleness is a comparison of what the images SHOW, with room for the codec's noise.
+TOLERANCE = 8
 
 
 def plate_color(image: Image.Image) -> tuple[int, int, int]:
@@ -51,22 +59,73 @@ def painted_radius(image: Image.Image, plate: tuple[int, int, int]) -> float:
     return furthest
 
 
+def foreground(source: Image.Image, scale: float, canvas: int) -> Image.Image:
+    """The source, inset into a transparent canvas-sized square."""
+    art = source.resize((round(canvas * scale),) * 2, Image.LANCZOS)
+    frame = Image.new("RGBA", (canvas, canvas), (0, 0, 0, 0))
+    offset = (canvas - art.width) // 2
+    frame.paste(art, (offset, offset))
+    return frame
+
+
+def drift(shipped: Image.Image, frame: Image.Image, plate) -> float:
+    """Mean per-pixel difference between two foregrounds, each seen over the plate."""
+    over = []
+    for image in (shipped, frame):
+        flat = Image.new("RGB", frame.size, plate)
+        flat.paste(image, mask=image)
+        over.append(flat)
+    counts = ImageChops.difference(*over).convert("L").histogram()
+    return sum(value * n for value, n in enumerate(counts)) / (frame.width * frame.height)
+
+
+def color(plate) -> str:
+    return f"#FF{plate[0]:02X}{plate[1]:02X}{plate[2]:02X}"
+
+
 def main() -> int:
+    check = "--check" in sys.argv
     source = Image.open(SOURCE).convert("RGBA")
     plate = plate_color(source)
     scale = SAFE_RADIUS * source.width / painted_radius(source, plate)
-    print(f"plate #{plate[0]:02X}{plate[1]:02X}{plate[2]:02X}, art inset to {scale:.1%}")
+    if not check:
+        print(f"plate {color(plate)}, art inset to {scale:.1%}")
+
+    stale = []
+    text = COLORS.read_text(encoding="utf-8")
+    written, hits = PLATE.subn(rf"\g<1>{color(plate)}\g<2>", text)
+    if hits != 1:
+        print(f"error: {COLORS.name} has no ic_launcher_background to write.", file=sys.stderr)
+        return 1
+    if written != text:
+        if check:
+            stale.append(f"{COLORS.name}: ic_launcher_background is not the source's {color(plate)}")
+        else:
+            COLORS.write_text(written, encoding="utf-8")
+            print(f"  {COLORS.relative_to(ROOT)} — ic_launcher_background {color(plate)}")
 
     for bucket, canvas in DENSITIES.items():
-        art = source.resize((round(canvas * scale),) * 2, Image.LANCZOS)
-        frame = Image.new("RGBA", (canvas, canvas), (0, 0, 0, 0))
-        offset = (canvas - art.width) // 2
-        frame.paste(art, (offset, offset))
+        frame = foreground(source, scale, canvas)
         out = RES / f"mipmap-{bucket}/ic_launcher_foreground.webp"
+        if check:
+            if not out.exists():
+                stale.append(f"{out.relative_to(ROOT)}: missing")
+            else:
+                shipped = Image.open(out).convert("RGBA")
+                if shipped.size != frame.size:
+                    stale.append(f"{out.relative_to(ROOT)}: {shipped.width}px, not {canvas}px")
+                elif drift(shipped, frame, plate) > TOLERANCE:
+                    stale.append(f"{out.relative_to(ROOT)}: no longer the source artwork")
+            continue
         out.parent.mkdir(parents=True, exist_ok=True)
         frame.save(out, "WEBP", quality=92, method=6)
         print(f"  {out.relative_to(ROOT)} — {out.stat().st_size // 1024} KB")
-    return 0
+
+    for problem in stale:
+        print(f"error: {problem}", file=sys.stderr)
+    if check and stale:
+        print("       Run 'scripts/android-icon.py' to rewrite them from the source.", file=sys.stderr)
+    return 1 if stale else 0
 
 
 if __name__ == "__main__":

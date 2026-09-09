@@ -6,7 +6,7 @@
          The dark column stands in values-night/. -->
     <color name="spross_window_background">#FFF2F1EA</color>
     <!-- The plate the icon artwork is painted on, so a mask cutting the foreground's
-         square exposes the same color the art sits on. Read off the source by
-         `scripts/android-icon.py` — change it there, not here. -->
+         square exposes the same color the art sits on. Written from the source by
+         `scripts/android-icon.py`, whose `--check` fails once it drifts. -->
     <color name="ic_launcher_background">#FFEECE9E</color>
 </resources>
