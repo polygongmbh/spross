@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- The talk offer stays hidden while your box holds only words you wrote yourself, where the brief would list nothing.
+- Typing the Ukrainian apostrophe in any of its three shapes no longer costs a mistake.
 - A finished round now plays its cheer on Android too.
 - TalkBack now names the close button on the About, box and box-search screens.
 - The About screen now credits the Nunito typeface and opens its license.
