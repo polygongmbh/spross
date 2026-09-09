@@ -36,7 +36,7 @@ while [ $# -gt 0 ]; do
     --mute) MUTE='-readAloud off'; shift ;;
     --sound) SOUND=1; shift ;;
     --) shift; break ;;
-    -h|--help) sed -n '2,12p' "$0" | cut -c3-; exit 0 ;;
+    -h|--help) awk 'NR > 1 { if (!/^#/) exit; print substr($0, 3) }' "$0"; exit 0 ;;
     *) echo "error: run-sim: unknown option '$1' (see --help)" >&2; exit 1 ;;
   esac
 done

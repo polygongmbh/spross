@@ -36,7 +36,7 @@ while [ $# -gt 0 ]; do
     --shot) SHOT="$2"; shift 2 ;;
     --mute) MUTE=1; shift ;;
     --sound) SOUND=1; shift ;;
-    -h|--help) sed -n '2,12p' "$0" | cut -c3-; exit 0 ;;
+    -h|--help) awk 'NR > 1 { if (!/^#/) exit; print substr($0, 3) }' "$0"; exit 0 ;;
     *) echo "error: run-emu: unknown option '$1' (see --help)" >&2; exit 1 ;;
   esac
 done
