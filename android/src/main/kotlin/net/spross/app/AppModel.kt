@@ -682,6 +682,20 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * Anything that touches a SCHEDULE goes through the run instead ([dispatch]) —
      * every answer is a review, and only kern's session machine books one.
      */
+    /**
+     * Apply a change nothing derived reads, and let it ride out with the next save.
+     *
+     * The counterpart to [updateBox], for the change that moves no card, no schedule and
+     * no tally: there is nothing for `refreshStats` to take again, and nothing new for the
+     * widget to show.
+     */
+    fun stampBox(change: (BoxState) -> BoxState) {
+        val state = box ?: return
+        val next = change(state)
+        box = next
+        persist(next, widget = false)
+    }
+
     fun updateBox(change: (BoxState) -> BoxState) {
         val state = box ?: return
         val next = change(state)

@@ -423,7 +423,9 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   sections, never one — in kern rather than per platform, because a report is an
   INTERCHANGE format and two apps would spell it two ways;
   `BoxState.lastExportAt` (set by `markExported`) is what "only what is new" measures
-  against.
+  against. The stamp is read by the export surfaces and by nothing else: no statistic, no
+  snapshot and no card turns on it, so a platform that re-derives the box for it is paying
+  a walk of the whole box for a date.
 - **`Legal`** — the addresses Spross publishes about itself. Not a rule the engine applies;
   simply the one place both apps read them from, so no copy can be left answering alone.
 

@@ -517,6 +517,19 @@ final class AppModel {
         }
     }
 
+    /// Apply a change nothing derived reads, and let it ride out with the next save.
+    ///
+    /// The counterpart to `mutate`, for the change that moves no card, no schedule and no
+    /// tally: there is nothing for `refreshStats` to take again, and nothing for the watch
+    /// or the widget to be told. The debounced save carries it, and `persistNow` flushes
+    /// that before the app can leave.
+    func stamp(_ change: (BoxState) -> BoxState) {
+        guard let state = box else { return }
+        let next = change(state)
+        box = next
+        persist(next)
+    }
+
     /// Apply a change to the box, persist immediately, refresh statistics.
     func mutate(_ change: (inout BoxState) -> Void) {
         guard var state = box else { return }

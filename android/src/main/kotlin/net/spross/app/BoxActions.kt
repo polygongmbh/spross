@@ -139,9 +139,13 @@ fun AppModel.reportMailBody(onlyNew: Boolean, scope: FeedbackScope): String? =
 /**
  * Record that a copy has just been taken — what a later "only what is new" measures
  * against. Whether this scope moves the stamp at all is kern's ([BoxEngine.markExported]).
+ *
+ * Stamped rather than updated: [AppModel.updateBox] re-walks the whole box for the
+ * statistics, the streak strip and the shelf counts, and the stamp feeds none of them —
+ * it is read by this file alone.
  */
 fun AppModel.markExported(scope: FeedbackScope) {
-    updateBox { BoxEngine.markExported(it, now(), scope) }
+    stampBox { BoxEngine.markExported(it, now(), scope) }
 }
 
 /**

@@ -85,11 +85,15 @@ extension AppModel {
     /// Record that a copy has just been taken — what a later "only what is new"
     /// measures against. Whether this scope moves the stamp at all is kern's
     /// (`BoxEngine.markExported`).
+    ///
+    /// Stamped rather than mutated: `mutate` re-walks the whole box for the statistics,
+    /// the forest and the activity strip and re-encodes it for the watch and the widget,
+    /// and the stamp feeds none of them — it is read by this file alone. Paying for all
+    /// of that is what made the copy button hang, and what left the mail button's share
+    /// of it landing as the app came back.
     func markExported(scope: FeedbackScope) {
-        mutate {
-            $0 = BoxEngine.shared.markExported(state: $0, nowEpochMillis: Date().epochMillis,
-                                               scope: scope)
-        }
+        stamp { BoxEngine.shared.markExported(state: $0, nowEpochMillis: Date().epochMillis,
+                                              scope: scope) }
     }
 
     /// How many entries a clear would take: the suggestions, the notes and the filed
