@@ -8,7 +8,6 @@ import net.spross.app.Chrome
 import net.spross.kern.box.TodayReport
 import net.spross.kern.box.TomorrowNote
 import net.spross.kern.session.HeadlineKind
-import net.spross.kern.session.SessionHeadline
 import net.spross.kern.session.SessionOffer
 import net.spross.kern.session.SessionOfferKind
 
@@ -81,11 +80,23 @@ class HomeStandingTest {
         assertEquals(chrome.homeTallySomeCards, offerSummary(chrome, offer))
     }
 
+    /**
+     * Kern says how many phrasings a kind owes, and the table owes exactly that many — the
+     * count is asserted against the series itself, because [headlineText] wraps and would
+     * hide a table that is short. iOS composes the same key without a wrap, so a short table
+     * prints the raw key there; this is the gate that catches it for both.
+     */
     @Test
     fun everyKindAndVariantResolvesToAPhrasing() {
         for (kind in HeadlineKind.entries) {
-            for (variant in 0 until kind.variants) {
-                val text = headlineText(chrome, SessionHeadline(kind, variant))
+            val series = when (kind) {
+                HeadlineKind.Reviews -> chrome.headlineReviews
+                HeadlineKind.WarmUp -> chrome.headlineWarmUp
+                HeadlineKind.FreshSet -> chrome.headlineFreshSet
+                HeadlineKind.StreakReminder -> chrome.headlineStreak
+            }
+            assertEquals(kind.variants, series.size, "$kind owes as many phrasings as kern says")
+            series.forEachIndexed { variant, text ->
                 assertTrue(text.isNotBlank(), "$kind/$variant had no words")
             }
         }
