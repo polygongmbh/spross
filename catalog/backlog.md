@@ -5,6 +5,24 @@ one item per bullet with a file or context pointer — as short as that allows,
 longer only to carry evidence or reasoning an author would otherwise have to redo — and pruned when fixed.
 Ready work comes first, then the items that end in a question for the owner, then what waits on a native speaker.
 
+- `LKW` in `catalog/areas/transport/de.json` folds onto its sibling `Lkw` under both the grading
+  and the search fold, so it accepts nothing — delete it; 20 more accept-only variants collide
+  under `AnswerNormalizer.cleaned` alone but stay distinct search keys (`BoxSearch.fold` is NFC + trim +
+  lowercase and indexes variants), so rule whether variants dedupe against the SEARCH fold before any lint is written.
+- `catalog/areas/README.md:174` sends authors to `--tests '*CatalogLintTest*'`, which no longer
+  reaches `CatalogCollisionLintTest`; `'*Catalog*LintTest*'` does.
+- `catalog/areas/README.md:176` and `catalog/areas/reproduction/README.md:36` send a content author
+  to `-Psweeps`, which gates only the clock day-part sweep; `:kern:jvmTest` alone reads the catalog.
+- `catalog/countries/README.md:19` and `:24` still count the app's languages as five;
+  `catalog/languages.json` declares them.
+- `catalog/alphabet/README.md:52` says `exampleText` never claims a recording, but the manifests'
+  `texts{}` section voices exactly those rows (`catalog/audio/README.md`).
+- `catalog/audio/README.md:30` says no gate can see an untracked recording, but
+  `scripts/hooks/pre-commit` now runs `audio-coverage.py --check` on any staged `catalog/audio/` path.
+- `catalog/areas/README.md` § How a realization is worded lacks the sentence
+  `CatalogLintTest.contentWritesTheTypewriterApostrophe` enforces (realizations and notes use U+0027;
+  U+02BC only inside `alphabet/`), and the quote-pair convention (“…” in English prose, „…“ in German,
+  as the idiom and note passes now write) waits on a ruling before it is written down.
 - 778 of 943 catalog notes are de-only on a non-German target (eo 108, es 147, fr 182, it 181,
   sw 125, uk 35, plus 3 es and 2 en phrase frames in `catalog/phrases/*.json`), and each is
   to be rewritten in the target's own language, example-first («мама → мамо, тато → тату»
