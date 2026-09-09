@@ -110,7 +110,7 @@ No config flag, no user-facing direction anywhere.
   practice, and only TYPED phrase recognition was absurd.
   **Never carries the `promptAmbiguous` area cue**: here the prompt is the target form, so
   any cue strong enough to identify the concept would reveal the answer — the same reason
-  the emoji leaves the recognition prompt past the first exposure. Nothing is lost:
+  the emoji never rides a recognition prompt, first exposure included. Nothing is lost:
   a learner who thinks "sich entspannen", reveals "sich ausruhen" and taps Good is doing
   exactly what self-grading is for.
 - **Role resolution** is a pure render-time function of `(cardId, log.count)`:
@@ -179,7 +179,7 @@ bar are on `BoxConfig` itself. What the product decided:
   leech ruling) — a brand-new word and a lapsed one wait on the same cadence, not two
   separately-tuned mechanisms. A lapse is any `Again` past introduction — learning- and
   relearning-step retries count too, not just review-phase ones — and is always tracked
-  (`CardScheduling.lapses`, drill/listening scoring reads it), but no longer
+  (`CardScheduling.lapses`, the dictation draw's weighting reads it), but no longer
   auto-suspends: each `Again` climbs `stepsSeconds` (`FsrsScheduler.stepOutcome`)
   instead of resetting to its first entry, capped at the ladder's last Sprosse.
   The product ships `[10m, 1d, 10m, 3d, 10m, 7d, 10m, 30d]` — minutes and days
