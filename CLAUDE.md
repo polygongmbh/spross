@@ -3,8 +3,8 @@
 A personal spaced-repetition "growing box" app:
 FSRS-6-scheduled vocab that only grows while material sits, phrases unlock from their component words.
 Native iOS (SwiftUI) app "Spross" in `app/` with a Kotlin Multiplatform core (SprossKern);
-scheduling, growth, session and grading rules are `app/kern/README.md` and the KDoc on the type it names,
-screen, copy and layout rules `app/docs/design.md` — read the side you are changing.
+scheduling, growth, session and grading rules are `kern/README.md` and the KDoc on the type it names,
+screen, copy and layout rules `docs/design.md` — read the side you are changing.
 Originally German-focused; any catalog language pair (source = known, target = learning; de/en/eo/es/fr/it/sw/uk) works now.
 Focus is on breadth of exposure to the language for maximum fluency with minimum effort, not perfect retention for single words.
 
@@ -116,7 +116,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - **Introduction = first answer**, never at composition — budget accounting relies on this.
 - **One FSRS schedule per card**, keyed by card id (ids never contain `|`) —
   production and recognition are presentations of it; every answer is a review, nothing UI-only.
-- Seed content changes go through verification sweeps before shipping (`docs/sprachposter-learnings.md`).
+- Seed content changes go through verification sweeps before shipping (`../docs/sprachposter-learnings.md`).
 - The kern takes `nowEpochMillis` + `tzId` as parameters, never reads the clock (keeps it pure/testable).
 
 ## Extended docs

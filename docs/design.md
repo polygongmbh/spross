@@ -549,8 +549,6 @@ Palette: stone-and-moss paper, clay headline, ocean and forest as secondaries
 - `catalog/` is the in-repo master (format spec in `catalog/README.md`), bundled as a
   folder resource; cards are derived from the (source, target) join at load.
 - Format rules are guarded by a lint test on every kern test run.
-- Content changes go through verification sweeps before shipping
-  (method: `../../docs/sprachposter-learnings.md`).
 
 ## Testing & gates
 
