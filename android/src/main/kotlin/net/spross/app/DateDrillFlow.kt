@@ -27,47 +27,17 @@ import net.spross.kern.trainer.DateDrillRunState
  */
 class DateDrillFlow(
     start: DateDrillRunState,
-    private val rng: Random,
+    rng: Random,
     onTone: (ToneKind) -> Unit = {},
     onReleaseFocus: () -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
-) : TypedDrill {
-    private val beat = DrillBeat(screenReaderOn)
-    private val acts = DrillActs(beat, onTone, onReleaseFocus, onSilence)
-
-    var state by mutableStateOf(start)
-        private set
-
-    /** The learner's answer text — kern owns what it means, the field is ours. */
-    override var input by mutableStateOf("")
-        private set
-
-    /**
-     * Kern has run out of questions: the screen hands the run back rather than sitting on a
-     * card it has already answered. False once the close has been made, whichever way the
-     * screen went — a run is handed back once.
-     */
-    override val ranOut: Boolean get() = state.finished && !handedBack
-
-    private var handedBack = false
-
-    override val armedBeat get() = beat.tier
-
-    override val beatToken get() = beat.token
-
-    /** The beat became a tap: render the explicit "Weiter", which books the same answer. */
-    override val awaitsConfirm get() = beat.awaitsConfirm
-
+) : TypedDrillFlow<DateDrillRunState, DateDrillIntent>(
+    start, rng, onTone, onReleaseFocus, onSilence, screenReaderOn,
+) {
     /** The tile the warm-up question was answered off, cleared with the question itself. */
     override var chosen by mutableStateOf<String?>(null)
         private set
-
-    /** A live keystroke: writing the reading out IS the answer, within kern's exact-only guard. */
-    override fun type(text: String) {
-        input = text
-        dispatch(DateDrillIntent.InputChanged(text))
-    }
 
     /**
      * A tapped tile: submitted as the text it carries, so kern grades it against the same
@@ -75,29 +45,40 @@ class DateDrillFlow(
      */
     override fun choose(text: String) {
         chosen = text
-        dispatch(DateDrillIntent.Submit(text))
+        super.choose(text)
     }
 
-    /**
-     * The ONE primary action: an empty field asks to see the answer, a typed one checks it.
-     * Kern's Submit is inert on blank text, so which of the two a press is stays ours.
-     */
-    override fun primary() {
-        if (input.isBlank()) dispatch(DateDrillIntent.Reveal) else dispatch(DateDrillIntent.Submit(input))
+    override fun onQuestionChanged() {
+        chosen = null
     }
 
-    /** The tap that books whatever the feedback already said — and the beat's stand-in. */
-    override fun confirm() = dispatch(DateDrillIntent.ConfirmPending)
+    override fun reduce(state: DateDrillRunState, intent: DateDrillIntent, rng: Random) =
+        DateDrillRun.reduce(state, intent, rng).let { DrillStep(it.state, it.effects) }
 
-    /** Enter: check while the answer is owed, otherwise book what stands. */
-    override fun enter() {
-        if (state.owesAnswer) primary() else confirm()
+    override fun closeRun(state: DateDrillRunState, standingRecord: Int): DrillEnd<DateDrillRunState> {
+        val closed = DateDrillRun.close(state, standingRecord)
+        return DrillEnd(
+            closed.state,
+            closed.effects,
+            TypedDrillClose(closed.summary, closed.bestLevel, closed.clearedSprossen),
+        )
     }
 
-    override fun advanceElapsed() {
-        beat.spend()
-        dispatch(DateDrillIntent.AdvanceElapsed)
-    }
+    override fun index(state: DateDrillRunState) = state.index
+
+    override fun finished(state: DateDrillRunState) = state.finished
+
+    override fun owesAnswer(state: DateDrillRunState) = state.owesAnswer
+
+    override fun inputChanged(text: String) = DateDrillIntent.InputChanged(text)
+
+    override fun submit(text: String) = DateDrillIntent.Submit(text)
+
+    override fun reveal() = DateDrillIntent.Reveal
+
+    override fun confirmPending() = DateDrillIntent.ConfirmPending
+
+    override fun advanceElapsedIntent() = DateDrillIntent.AdvanceElapsed
 
     /**
      * The run as the shared typed-drill screen reads it. A dates question carries no
@@ -126,31 +107,6 @@ class DateDrillFlow(
             newWord = state.patternWord,
         ),
     )
-
-    /**
-     * Leaving, from the corner or from "Fertig". Kern books a pending answer exactly as the
-     * tap would, then says what the page owes its store.
-     */
-    override fun close(standingRecord: Int): TypedDrillClose {
-        handedBack = true
-        val closed = DateDrillRun.close(state, standingRecord)
-        state = closed.state
-        input = ""
-        acts.carryOut(closed.effects)
-        return TypedDrillClose(closed.summary, closed.bestLevel, closed.clearedSprossen)
-    }
-
-    private fun dispatch(intent: DateDrillIntent) {
-        val reduction = DateDrillRun.reduce(state, intent, rng)
-        // why: cleared in the SAME transaction as the question — the next card must never
-        // render one frame carrying the last one's answer.
-        if (reduction.state.index != state.index) {
-            input = ""
-            chosen = null
-        }
-        state = reduction.state
-        acts.carryOut(reduction.effects)
-    }
 }
 
 /**

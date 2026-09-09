@@ -1,8 +1,5 @@
 package net.spross.app
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import kotlin.random.Random
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.ToneKind
@@ -20,6 +17,8 @@ import net.spross.kern.trainer.CountryDrillRunState
  * typed name earns, how far one answer moves the ramp, which beat is armed. What is left
  * here is the text standing in the field and the beat itself.
  *
+ * The atlas asks nothing off tiles, so a question is only ever written.
+ *
  * Stateless like both its siblings: no review is ever booked and the box is never read at
  * all — the material is the catalog's atlas, not the learner's own words. The one thing
  * that outlives a run is the furthest Sprosse it stood on, which the page that started it
@@ -27,70 +26,41 @@ import net.spross.kern.trainer.CountryDrillRunState
  */
 class CountryDrillFlow(
     start: CountryDrillRunState,
-    private val rng: Random,
+    rng: Random,
     onTone: (ToneKind) -> Unit = {},
     onReleaseFocus: () -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
-) : TypedDrill {
-    private val beat = DrillBeat(screenReaderOn)
-    private val acts = DrillActs(beat, onTone, onReleaseFocus, onSilence)
+) : TypedDrillFlow<CountryDrillRunState, CountryDrillIntent>(
+    start, rng, onTone, onReleaseFocus, onSilence, screenReaderOn,
+) {
+    override fun reduce(state: CountryDrillRunState, intent: CountryDrillIntent, rng: Random) =
+        CountryDrillRun.reduce(state, intent, rng).let { DrillStep(it.state, it.effects) }
 
-    var state by mutableStateOf(start)
-        private set
-
-    /** The learner's answer text — kern owns what it means, the field is ours. */
-    override var input by mutableStateOf("")
-        private set
-
-    /**
-     * Kern has run out of questions: the screen hands the run back rather than sitting on a
-     * card it has already answered. False once the close has been made, whichever way the
-     * screen went — a run is handed back once.
-     */
-    override val ranOut: Boolean get() = state.finished && !handedBack
-
-    private var handedBack = false
-
-    override val armedBeat get() = beat.tier
-
-    override val beatToken get() = beat.token
-
-    /** The beat became a tap: render the explicit "Weiter", which books the same answer. */
-    override val awaitsConfirm get() = beat.awaitsConfirm
-
-    /** The atlas asks nothing off tiles, so nothing was ever tapped. */
-    override val chosen: String? get() = null
-
-    /** A live keystroke: writing the name out IS the answer, within kern's exact-only guard. */
-    override fun type(text: String) {
-        input = text
-        dispatch(CountryDrillIntent.InputChanged(text))
+    override fun closeRun(state: CountryDrillRunState, standingRecord: Int): DrillEnd<CountryDrillRunState> {
+        val closed = CountryDrillRun.close(state, standingRecord)
+        return DrillEnd(
+            closed.state,
+            closed.effects,
+            TypedDrillClose(closed.summary, closed.bestLevel, closed.clearedSprossen),
+        )
     }
 
-    /** Never reached: the screen offers tiles only where the question came with them. */
-    override fun choose(text: String) = dispatch(CountryDrillIntent.Submit(text))
+    override fun index(state: CountryDrillRunState) = state.index
 
-    /**
-     * The ONE primary action: an empty field asks to see the answer, a typed one checks it.
-     * Kern's Submit is inert on blank text, so which of the two a press is stays ours.
-     */
-    override fun primary() {
-        if (input.isBlank()) dispatch(CountryDrillIntent.Reveal) else dispatch(CountryDrillIntent.Submit(input))
-    }
+    override fun finished(state: CountryDrillRunState) = state.finished
 
-    /** The tap that books whatever the feedback already said — and the beat's stand-in. */
-    override fun confirm() = dispatch(CountryDrillIntent.ConfirmPending)
+    override fun owesAnswer(state: CountryDrillRunState) = state.owesAnswer
 
-    /** Enter: check while the answer is owed, otherwise book what stands. */
-    override fun enter() {
-        if (state.owesAnswer) primary() else confirm()
-    }
+    override fun inputChanged(text: String) = CountryDrillIntent.InputChanged(text)
 
-    override fun advanceElapsed() {
-        beat.spend()
-        dispatch(CountryDrillIntent.AdvanceElapsed)
-    }
+    override fun submit(text: String) = CountryDrillIntent.Submit(text)
+
+    override fun reveal() = CountryDrillIntent.Reveal
+
+    override fun confirmPending() = CountryDrillIntent.ConfirmPending
+
+    override fun advanceElapsedIntent() = CountryDrillIntent.AdvanceElapsed
 
     /**
      * The run as the shared typed-drill screen reads it. The one rule about a picture — when
@@ -119,28 +89,6 @@ class CountryDrillFlow(
             emojiIsGiveaway = state.task.emojiIsGiveaway,
         ),
     )
-
-    /**
-     * Leaving, from the corner or from "Fertig". Kern books a pending answer exactly as the
-     * tap would, then says what the page owes its store.
-     */
-    override fun close(standingRecord: Int): TypedDrillClose {
-        handedBack = true
-        val closed = CountryDrillRun.close(state, standingRecord)
-        state = closed.state
-        input = ""
-        acts.carryOut(closed.effects)
-        return TypedDrillClose(closed.summary, closed.bestLevel, closed.clearedSprossen)
-    }
-
-    private fun dispatch(intent: CountryDrillIntent) {
-        val reduction = CountryDrillRun.reduce(state, intent, rng)
-        // why: cleared in the SAME transaction as the question — the next card must never
-        // render one frame carrying the last one's answer.
-        if (reduction.state.index != state.index) input = ""
-        state = reduction.state
-        acts.carryOut(reduction.effects)
-    }
 }
 
 /**
