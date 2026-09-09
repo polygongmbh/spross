@@ -74,9 +74,8 @@ Engine contract: `../README.md`.
   reads a clock, and does not care that both apps happen to hand it the current instant.
   **Both halves must be sayable** — a turn that plays a word and then silence teaches nothing,
   so the shared `catalog.audible` predicate is applied to the target form AND the source form.
-  **Suspended cards stay in the pool.** The leech rule auto-suspends at two lapses (`../README.md` §5), so the
-  words that stick worst are exactly the ones `Inventory.active` drops; suspension takes a word
-  out of the box's queue and never said stop meeting the word.
+  **Suspended cards stay in the pool.** Suspension takes a word out of the box's queue
+  (`Inventory.active` drops it) and never said stop meeting the word.
   **The pool is the sayable join short of the grown words, not a composed subset** — every
   joined card that both halves of a turn can say, scheduled and unseen alike. So a learner a
   few words in hears a STREAM of new words rather than lapping the handful they hold, and a
@@ -92,7 +91,7 @@ Engine contract: `../README.md`.
   `growingStability` (`Statistics.isGrowing`, so a lapsed word is shaky whatever it once
   reached) is SHAKY (`LISTENING_SHAKY_PRIORITY`, 2) and one past it is GROWING
   (`LISTENING_GROWING_PRIORITY`, 1). A **suspended** word takes the growing Sprosse whatever
-  its bar: the leech rule takes a word out of the box's rotation and this is the surface that
+  its bar: suspension takes a word out of the box's rotation and this is the surface that
   can still reach it, so it comes in — it does not lead.
   **Nothing on that ladder reads a due date.** A word the box wants back is a word short of
   the bar, so it rises on the Sprosse it already has; a due term would make listening a second
