@@ -147,9 +147,10 @@ director, register entry, VAT id — in
 They are the same values the DSA trader declaration publishes on the App Store product
 page, so the two say one thing or they contradict each other.
 
-What is still missing is the page the privacy link points at:
-`https://spross.net/privacy` has to answer before a build reaches anyone outside the
-team, and App Store Connect demands the same URL for external TestFlight testers.
+The page itself is written (`web/privacy.html`, `website.md` § Legal pages);
+what is still missing is the host serving it, and `https://spross.net/privacy` has to
+answer before a build reaches anyone outside the team — App Store Connect demands the
+same URL for external TestFlight testers.
 
 ## The privacy manifest
 
