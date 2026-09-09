@@ -84,12 +84,12 @@ Engine contract: `../README.md`.
   `Catalog.load` reads the manifests through the RAW source, outside `FingerprintingSource`:
   recordings cannot change the join, so a refreshed pack must never restamp a `JoinStamp`
   and recompose a session that is already running.
-- Surface: `Catalog.pronunciation(lang, visibleForm) -> Pronunciation(form, utterance, lang, recordingPath?, gain, gainPhone?, leadMs)`;
-  `Catalog.letterRecording(lang, glyph) -> LetterRecording(path, gain, gainPhone?, leadMs)` for the letter drill,
+- Surface: `Catalog.pronunciation` -> `Pronunciation`;
+  `Catalog.letterRecording` -> `LetterRecording?` for the letter drill,
   and `Catalog.letterRecordingPath` for the callers that only ask whether a letter can be played at all
   (the recording speaks the letter's NAME — the name string itself is the alphabet file's, and the manifest's
   `letters` section is the only home of letter audio and its attribution);
-  `Catalog.audioCredits() -> [AudioCredit]`, grouped per (language, author, license) with per-file rows.
+  `Catalog.audioCredits` -> `[AudioCredit]`, grouped per (language, author, license) with per-file rows.
   BY and BY-SA cannot share one notice, so the groups ARE the credit rows,
   and they derive from the shipped manifests, so the screen can never credit what is not bundled.
 - Lint (`CatalogAudioLintTest`, real catalog):
