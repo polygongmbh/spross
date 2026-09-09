@@ -126,8 +126,9 @@ on one machine and in no checkout, and no gate could see it. Only `git ls-files`
   (es `ch`), which a single codepoint would file under `c`. The manifest maps the glyph,
   so the name is purely internal.
 - **The mp3 bytes are the Commons transcode untouched**, renamed and nothing else:
-  re-encoding (including loudness normalization, so packs differ in loudness) is an
-  adaptation under BY-SA. `sha256` is the digest the generator verified after the copy
+  re-encoding, loudness normalization included, is ruled out by
+  `../../docs/audio-licensing.md` §3, so packs differ in loudness.
+  `sha256` is the digest the generator verified after the copy
   and lint re-hashes what was committed, which makes it a gate rather than a promise.
 - `gain` (dB) and `lead` (ms) are the generator's own MEASUREMENT of those untouched
   bytes. `gain` is the full-range plane and `gainPhone` the phone-speaker plane

@@ -73,7 +73,7 @@ Engine contract: `../README.md`.
   A cap is spent ONLY under a fade, which is the one thing that opens the headroom it was taken for (`fadedGainDb`);
   at full volume nothing reads it.
   A platform picks the plane by its output route and never mints a number of its own.
-  The mp3 bytes stay the untouched Commons transcode, because re-encoding is an adaptation under BY-SA;
+  The mp3 bytes stay the untouched Commons transcode (`../../docs/audio-licensing.md` §3);
   the packs share no loudness and the uk letters open a second late, so what corrects them is a MEASUREMENT of the shipped bytes
   which only the player applies.
   A third measurement, `snr` (peak minus noise floor), corrects nothing and reaches no player:
@@ -96,8 +96,8 @@ Engine contract: `../README.md`.
   entries name slugs their language realizes, every `matches` is reachable from a visible form,
   no ambiguous speech key, slug-named word files and codepoint-named letter files
   (glyph filenames decompose under NFD on APFS), every file ships and is referenced exactly once,
-  each sha256 re-hashed against the committed bytes — Commons transcodes ship untouched,
-  because re-encoding is an adaptation under BY-SA —
+  each sha256 re-hashed against the committed bytes — Commons transcodes ship untouched
+  (`../../docs/audio-licensing.md` §3) —
   every `authors` and `licenses` row is used by some recording, and no author is a placeholder.
 - The manifest's own schema (fields, naming rules, provenance) is `../../catalog/audio/README.md`'s:
   this section owns the engine rule, not the file format.
