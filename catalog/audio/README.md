@@ -92,7 +92,10 @@ on one machine and in no checkout, and no gate could see it. Only `git ls-files`
   Usually an addition beside a bare `words` entry — the source side reads the learner's
   own language, where the article is not what is being taught — but not dependent on one:
   five words ship the article recording alone and it answers both asks.
-- `calendar` (optional) is keyed by the FORM it speaks, like `texts` and for the same
+- `texts` (optional) is keyed by the FORM it speaks, because it holds the `exampleText`
+  rows of `../alphabet/`, which carry no concept slug. A key no alphabet row cites is
+  refused by lint: it could never be reached and its mp3 would ship for nothing.
+- `calendar` (optional) is keyed by the FORM it speaks like `texts`, and for the same
   reason: no concept covers a weekday, so there is no slug to key one by. Files are
   `calendar/<ascii stem>.mp3`. It holds the weekday and month names of `../dates/`, the
   synonyms beside them included — a card may show `Sonnabend`, and a recording is only
