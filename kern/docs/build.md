@@ -95,7 +95,7 @@ Engine contract: `../README.md`.
   sampling takes an injected `Random` and an
   app-computed promptable set (device voices are an app fact).
   A gap row draws its word from a POOL (`Catalog.alphabetExamples`, rules in
-  `catalog/alphabet/README.md`), the app narrowing it to what the device can say and
+  `../../catalog/alphabet/README.md`), the app narrowing it to what the device can say and
   flagging what the box already holds; kern favours the known words while at least three
   stand, and spends no randomness where a row offers one word.
   Dictation weighs its draw (`dictationWeight`): a floor of one that shuts nothing out,
@@ -110,7 +110,7 @@ Engine contract: `../README.md`.
   (`com.android.kotlin.multiplatform.library`, AGP 9.3.1, compileSdk 36 / minSdk 26),
   androidMain NFC actual mirrors jvmMain; `:android` consumes the same facades.
   Gate: `./gradlew :kern:compileAndroidMain`.
-- Web: `js { browser() }` target feeds the spross.net drill (`docs/website.md`).
+- Web: `js { browser() }` target feeds the spross.net drill (`../../docs/website.md`).
   `binaries.executable()` → one webpack bundle, `:kern:jsBrowserDistribution` →
   `kern/build/dist/js/productionExecutable/kern.js` (UMD global `kern`).
   The page-facing surface is the `@JsExport` facade `net.spross.kern.web`

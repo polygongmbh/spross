@@ -98,7 +98,7 @@ Engine contract: `../README.md`.
   reason). `Catalog.dateNames(lang)` is null where no file is authored;
   `Catalog.dateDrillContent(source, target)` joins a pair and is null where either side has
   no file or the TARGET has no trainer pack — the day of the month is the pack's to read
-  (`docs/date-readings.md`), so a pack-less calendar may prompt and never answer.
+  (`../../docs/date-readings.md`), so a pack-less calendar may prompt and never answer.
   Parse-shape rules (unknown keys, wrong list lengths, a pattern marker its kind does not
   take, `dateForm` echoing its `text`) hard-fail the load; **`CatalogDatesLintTest`**
   carries what content alone can break (registry, form hygiene, every ordered pair joining,
@@ -117,7 +117,7 @@ Engine contract: `../README.md`.
   the two rules only a frame can break — text and variants agree on carrying one, and a
   marked frame joins every pair its realizations otherwise allow.
 - `catalog/phrases/` — the sentence frames, a top-level sibling outside `areas.json`
-  (format owned by `catalog/phrases/README.md`). A frame is a concept + per-language realizations,
+  (format owned by `../../catalog/phrases/README.md`). A frame is a concept + per-language realizations,
   joined at runtime like a card, but it is not a card: no area, no `seedIndex`, outside the
   phrase-unlock gate. **Frames are read through the RAW `CatalogSource`, not the
   fingerprinting wrapper** — the same exemption the audio manifest has, and for the same

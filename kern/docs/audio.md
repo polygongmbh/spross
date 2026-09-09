@@ -9,7 +9,7 @@ Engine contract: `../README.md`.
   `pronunciationCue(role, prompt)` is `Upfront` iff the role is Recognize — the target form stands on the card from frame one —
   or the produce prompt IS the sound; `OnReveal` for a produce card that asks for that very form.
   Both apps CONSUME the cue; neither re-derives `role == Recognize` for audio.
-  Which transitions actually fire, and how autoplay sits beside the auto-advance timers, is `../docs/design.md`'s.
+  Which transitions actually fire, and how autoplay sits beside the auto-advance timers, is `../../docs/design.md`'s.
 - **What is spoken is the headword, and on the TARGET side its article with it** —
   never the rest of the rendering: the ♀ badge, the plural line and the area cue are grammar decoration
   and reach neither a synthesizer nor a lookup.
@@ -99,7 +99,7 @@ Engine contract: `../README.md`.
   each sha256 re-hashed against the committed bytes — Commons transcodes ship untouched,
   because re-encoding is an adaptation under BY-SA —
   every `authors` and `licenses` row is used by some recording, and no author is a placeholder.
-- The manifest's own schema (fields, naming rules, provenance) is `catalog/audio/README.md`'s:
+- The manifest's own schema (fields, naming rules, provenance) is `../../catalog/audio/README.md`'s:
   this section owns the engine rule, not the file format.
 - **Playback trusts the index only so far** (`catalog/Playback.kt`).
   `Playback.GAIN_LIMIT_DB = 20.0` is the converter's own clamp and now the single home of the number:

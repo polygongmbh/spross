@@ -92,7 +92,7 @@ Leniency is safe to the extent the catalog can disprove it — that rule is the 
   whose `dateForm` it owns without the Sprosse accepting it.
   Coverage is deliberately best-effort: a colliding pair outside the index's reach
   stays the forgiven slip it always was, and no sweep pins the tail
-  (which readings a clock may share at all is `../docs/clock-registers.md`).
+  (which readings a clock may share at all is `../../docs/clock-registers.md`).
   Vocab reviews (`maxTyposPerWord = null`, the default) keep one budget over the whole form.
   `matchingPrefixWordCount(input, answer)` is a UI-only sibling of `evaluate` — how many
   leading whole words already match, each within its own single-word budget — so a miss's
