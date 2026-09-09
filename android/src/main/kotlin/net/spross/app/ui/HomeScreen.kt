@@ -54,9 +54,9 @@ import net.spross.kern.session.SessionOfferKind
 /**
  * The north star screen: one glance = what to do right now.
  *
- * Top to bottom: the date and the day's name, ONE state card, the trainers, and the
- * fortnight behind it. Which state card is a strict precedence over the box's own answers
- * ([homeCard]) — an offer outranks a done state.
+ * Top to bottom: the date and the day's name, ONE state card, the listening card, the
+ * trainers, the companion card, and the fortnight behind it. Which state card is a strict
+ * precedence over the box's own answers ([homeCard]) — an offer outranks a done state.
  */
 @Composable
 fun HomeScreen(model: AppModel) {
