@@ -13,7 +13,7 @@
   "case-worker-f": { "text": "працівниця" },
   "registration": {
    "text": "реєстрація",
-   "notes": { "de": "gemeint: Wohnsitzanmeldung — voll «реєстрація місця проживання»" }
+   "notes": { "de": "gemeint: Wohnsitzanmeldung — voll „реєстрація місця проживання“" }
   },
   "documents": { "text": "документи", "grammar": { "plural": "only" } },
   "to-fill-in": { "text": "заповнювати" },
@@ -22,7 +22,7 @@
   "to-submit": { "text": "здавати" },
   "to-hand-in": {
    "text": "подавати",
-   "notes": { "de": "typisch mit Objekt: «подавати документи» = Dokumente einreichen" }
+   "notes": { "de": "typisch mit Objekt: „подавати документи“ = Dokumente einreichen" }
   },
   "to-pick-up": { "text": "забирати посвідчення" },
   "to-extend": { "text": "продовжувати" },

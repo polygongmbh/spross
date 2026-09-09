@@ -5,7 +5,7 @@
   "pain": {
    "text": "біль",
    "grammar": { "plural": "болі" },
-   "notes": { "de": "Achtung: «біль» ist maskulin!" }
+   "notes": { "de": "Achtung: „біль“ ist maskulin!" }
   },
   "fever": { "text": "температура", "synonyms": ["гарячка"] },
   "cough": { "text": "кашель" },

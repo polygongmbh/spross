@@ -7,7 +7,7 @@
   "practice": {
    "text": "лікарський кабінет",
    "grammar": { "plural": "лікарські кабінети" },
-   "notes": { "de": "auch «практика» (vor allem Privatpraxis)" }
+   "notes": { "de": "auch „практика“ (vor allem Privatpraxis)" }
   },
   "pill": { "text": "таблетка", "synonyms": ["пігулка"] },
   "prescription": { "text": "рецепт" },

@@ -26,7 +26,7 @@
   "profession": {
    "text": "taaluma",
    "grammar": { "plural": "=" },
-   "notes": { "de": "taaluma = Beruf/Fachgebiet; nach dem Beruf fragt man aber meist mit «kazi»" }
+   "notes": { "de": "taaluma = Beruf/Fachgebiet; nach dem Beruf fragt man aber meist mit „kazi“" }
   },
   "interview": { "text": "mahojiano ya kazi", "grammar": { "plural": "only" } },
   "working-hours": { "text": "saa za kazi", "grammar": { "plural": "only" } },
