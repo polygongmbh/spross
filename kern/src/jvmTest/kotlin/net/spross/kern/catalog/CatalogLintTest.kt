@@ -250,6 +250,29 @@ class CatalogLintTest {
     }
 
     /**
+     * The modifier letter apostrophe (U+02BC) is the alphabet's alone: `catalog/alphabet/`
+     * stores letter names with it and the uk audio manifest keys one by its glyph, while a
+     * realization, a country name or a note writes the typewriter U+0027. Grading folds the
+     * class, so nothing breaks either way — what breaks is an author meeting the letter in
+     * an alphabet file and carrying it into content, where it then reads as a second
+     * spelling of a word that already exists.
+     */
+    @Test
+    fun contentWritesTheTypewriterApostrophe() {
+        val files = RealCatalog.root.walkTopDown()
+            .filter { it.isFile && it.extension == "json" }
+            .filterNot { it.path.contains("/alphabet/") || it.path.contains("/audio/") }
+            .toList()
+        assertTrue(files.isNotEmpty(), "no catalog json found under ${RealCatalog.root}")
+        for (file in files) {
+            assertTrue(
+                MODIFIER_APOSTROPHE !in file.readText(),
+                "${file.relativeTo(RealCatalog.root)}: U+02BC belongs to catalog/alphabet/ — write U+0027 here",
+            )
+        }
+    }
+
+    /**
      * A register variant swaps the address form and nothing else: a du-form that also
      * gains a "bitte" the Sie-form never had is a second sentence, and the slug
      * (`can-you-repeat-that`, no "please") then names neither of them. Parity in both
@@ -799,3 +822,6 @@ class CatalogLintTest {
         }
     }
 }
+
+/** The alphabet's apostrophe — see [CatalogLintTest.contentWritesTheTypewriterApostrophe]. */
+private const val MODIFIER_APOSTROPHE = '\u02BC'
