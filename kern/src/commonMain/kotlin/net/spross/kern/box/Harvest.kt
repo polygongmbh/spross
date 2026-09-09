@@ -1,5 +1,6 @@
 package net.spross.kern.box
 
+import net.spross.kern.model.caseFolded
 import net.spross.kern.model.nfcNormalized
 
 /**
@@ -64,7 +65,7 @@ object Harvest {
         val found = mutableListOf<HarvestWord>()
         for (line in fenced(text) ?: text.lines()) {
             val word = parseLine(line) ?: continue
-            if (!seen.add(fold(word.target))) continue
+            if (!seen.add(caseFolded(word.target))) continue
             found += forms.standing(word)
             if (found.size == MAX_WORDS) break
         }
@@ -130,5 +131,4 @@ object Harvest {
     private fun clean(part: String): String =
         nfcNormalized(part.trim().trim('`', '*', '"', '\'', '“', '”').trim()).trimEnd('.', ',', ';')
 
-    private fun fold(form: String): String = nfcNormalized(form.trim()).lowercase()
 }

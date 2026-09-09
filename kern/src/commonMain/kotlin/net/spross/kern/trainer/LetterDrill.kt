@@ -7,7 +7,7 @@ import net.spross.kern.catalog.AlphabetKind
 import net.spross.kern.catalog.gapWord
 import net.spross.kern.model.Card
 import net.spross.kern.model.Language
-import net.spross.kern.model.nfcNormalized
+import net.spross.kern.model.caseFolded
 import net.spross.kern.session.spokenOnly
 
 /**
@@ -352,7 +352,7 @@ object LetterDrill {
      * alphabet files store that one canonically while a keyboard offers U+0027 and
      * autocorrect offers U+2019, and all three mean the same letter.
      */
-    private fun graded(text: String): String = nfcNormalized(text).trim().lowercase()
+    private fun graded(text: String): String = caseFolded(text)
         .map { if (it in APOSTROPHES) '\u02bc' else it }
         .joinToString("")
 

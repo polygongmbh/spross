@@ -1,7 +1,7 @@
 package net.spross.kern.box
 
 import net.spross.kern.model.articledForm
-import net.spross.kern.model.nfcNormalized
+import net.spross.kern.model.caseFolded
 import net.spross.kern.session.AnswerNormalizer
 
 /**
@@ -74,7 +74,7 @@ internal class BoxForms(state: BoxState) {
 
     /** Which of the three [HarvestKind]s [word] is, and the form that decided it. */
     fun standing(word: BriefWord): HarvestWord {
-        val target = fold(word.target)
+        val target = caseFolded(word.target)
         targets[target]?.let { return HarvestWord(word, HarvestKind.Held, it) }
         val near = nearForm(target, stems(word.source))
         return if (near == null) HarvestWord(word, HarvestKind.New, null)
@@ -82,7 +82,7 @@ internal class BoxForms(state: BoxState) {
     }
 
     private fun put(form: String, shown: String, gloss: Set<String>) {
-        val folded = fold(form)
+        val folded = caseFolded(form)
         if (targets.containsKey(folded)) return
         targets[folded] = shown
         known += Known(folded, shown, gloss)
@@ -133,13 +133,12 @@ internal class BoxForms(state: BoxState) {
         /** From this length on, a word survives two slips and is still the same word. */
         const val TWO_SLIP_LENGTH = 8
 
-        fun fold(form: String): String = nfcNormalized(form.trim()).lowercase()
 
         /** A gloss as its telling words: articles and pronouns are too short to count. */
         fun stems(text: String): Set<String> {
             val found = mutableSetOf<String>()
             val part = StringBuilder()
-            for (ch in fold(text)) {
+            for (ch in caseFolded(text)) {
                 if (ch.isLetter()) {
                     part.append(ch)
                 } else {

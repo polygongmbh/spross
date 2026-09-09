@@ -2,7 +2,7 @@ package net.spross.kern.box
 
 import net.spross.kern.model.ACCENTED_VOWEL_BASE
 import net.spross.kern.model.Card
-import net.spross.kern.model.nfcNormalized
+import net.spross.kern.model.caseFolded
 
 /** An area as the search sees it: its key and the heading the learner reads. */
 data class SearchableArea(val area: String, val title: String)
@@ -37,7 +37,7 @@ object BoxSearch {
     const val CARD_LIMIT: Int = 60
 
     fun search(state: BoxState, areas: List<SearchableArea>, query: String): BoxSearchResults {
-        val needle = fold(query)
+        val needle = caseFolded(query)
         if (needle.isEmpty()) return BoxSearchResults(emptyList(), emptyList())
         return BoxSearchResults(
             areas = areas.filter { rank(it.title, needle) != null },
@@ -69,7 +69,7 @@ object BoxSearch {
 
     /** 0 = the whole text, 1 = its start, 2 = a word's start, 3 = somewhere inside. */
     private fun rank(hay: String, needle: String): Int? {
-        val folded = fold(hay)
+        val folded = caseFolded(hay)
         return when {
             matchesWhole(folded, needle) -> 0
             matchesPrefix(folded, 0, needle) != null -> 1
@@ -104,7 +104,6 @@ object BoxSearch {
         return at
     }
 
-    private fun fold(text: String): String = nfcNormalized(text).trim().lowercase()
 
     /** Wider than the whole rank scale, so no alternate ever outranks a headword. */
     private const val ALTERNATE_PENALTY = 4
