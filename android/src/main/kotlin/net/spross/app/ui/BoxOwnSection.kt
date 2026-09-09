@@ -59,10 +59,9 @@ import net.spross.kern.model.Card
  * Everything the learner put into the box themselves, and everything they have to say back
  * about what the catalog put there — one section, at the foot of the box.
  *
- * It replaces both the own-words shelf and the old feedback block. Own words needed no shelf:
- * they are packed the moment they are written, so an area control offering to pack them said
- * nothing, while the progress bar over five hand-written words said less. And the reports had
- * nowhere to be reviewed at all except the flag on the row itself.
+ * Own words get no shelf: they are packed the moment they are written, so an area control
+ * offering to pack them would say nothing, and a progress bar over five hand-written words
+ * less still.
  *
  * Unlike a shelf it is ALWAYS drawn, empty or not: it carries the add button, which is the one
  * way into writing a word that does not start from a search that found nothing.

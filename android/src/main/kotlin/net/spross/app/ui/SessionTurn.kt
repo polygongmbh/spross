@@ -295,10 +295,7 @@ fun ConfirmButton(chrome: Chrome, onClick: () -> Unit) {
  * What kern's verdict cue becomes on this platform: the chime [CueSounds] holds, and — on
  * a wrong answer alone — a haptic under it.
  *
- * The three sounds carried the verdict on iOS from the start while this surface only ever
- * buzzed, which is why the buzz used to answer all three: it was standing in for them.
- * With the clips bundled it no longer stands in for anything, so the haptic falls back to
- * the one place iOS puts it — a gentle wake-up on a miss, never on a reveal or a hit.
+ * The haptic falls where iOS puts it — a gentle wake-up on a miss, never on a reveal or a hit.
  */
 fun View.cueTone(kind: ToneKind, sounds: CueSounds) {
     sounds.play(kind)
