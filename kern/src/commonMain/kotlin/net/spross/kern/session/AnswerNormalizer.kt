@@ -1,6 +1,7 @@
 package net.spross.kern.session
 
 import net.spross.kern.model.ACCENTED_VOWEL_BASE
+import net.spross.kern.model.APOSTROPHES
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.LanguageInfo
@@ -359,7 +360,7 @@ class AnswerNormalizer(
      * The one character pass everything shares, so tokenization can never disagree:
      * NFC, lowercase, ß→ss (2 edits — too far for short words' typo budget), the answer
      * language's [LanguageInfo.diacriticDigraphs] (de ä→ae, ö→oe, ü→ue), joiners
-     * `-'’` deleted outright ("E-Mail"/"Email", "geht's"/"gehts"), every other
+     * `-` and the apostrophe class deleted outright ("E-Mail"/"Email", "geht's"/"gehts"), every other
      * non-alphanumeric — punctuation incl. `…—`, and whitespace — becomes a space.
      *
      * The digraph fold runs on both sides like ß→ss does, and for the same reason: it is
@@ -376,7 +377,7 @@ class AnswerNormalizer(
         val out = StringBuilder(lowered.length)
         for (ch in lowered) {
             when {
-                ch == '-' || ch == '\'' || ch == '’' -> {}
+                ch == '-' || ch in APOSTROPHES -> {}
                 ch.isLetter() || ch.isDigit() -> out.append(ch)
                 else -> out.append(' ')
             }

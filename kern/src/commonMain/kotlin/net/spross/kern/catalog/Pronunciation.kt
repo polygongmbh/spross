@@ -1,6 +1,7 @@
 package net.spross.kern.catalog
 
 import net.spross.kern.model.Language
+import net.spross.kern.model.apostropheFolded
 import net.spross.kern.model.articledForm
 import net.spross.kern.model.nfcNormalized
 import net.spross.kern.model.shownArticle
@@ -12,14 +13,6 @@ import net.spross.kern.model.shownArticle
  * them, and a recording of "hola" has to answer a card reading "¡Hola!".
  */
 private const val EDGE_PUNCTUATION = "!?¡¿.,;:…\"'«»„“”‘’‹›"
-
-/**
- * Typewriter, curly, and the modifier letter — the same apostrophe class the alphabet
- * grading folds: an INNER apostrophe is part of the word (uk ім'я, fr s'habiller), but
- * which codepoint spells it is typography — Commons titles French elision with U+2019
- * while the catalog writes U+0027, and the two must key one sound.
- */
-private val APOSTROPHES = setOf('\u0027', '\u2019', '\u02bc')
 
 /**
  * The normative speech normalization (`kern/docs/audio.md`): trim whitespace, strip ONE
@@ -35,8 +28,7 @@ private val APOSTROPHES = setOf('\u0027', '\u2019', '\u02bc')
 fun speechKey(form: String): String {
     val stem = form.trim().removePrefix("-")
     val key = nfcNormalized(stem.trim { it.isWhitespace() || it in EDGE_PUNCTUATION }).lowercase()
-    return if (key.none { it in APOSTROPHES }) key
-    else key.map { if (it in APOSTROPHES) '\u02bc' else it }.joinToString("")
+    return apostropheFolded(key)
 }
 
 /**

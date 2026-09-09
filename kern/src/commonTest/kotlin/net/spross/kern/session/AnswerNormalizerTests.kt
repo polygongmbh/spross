@@ -83,6 +83,9 @@ class AnswerNormalizerTests {
         assertEquals("guten morgen", de.normalize("Guten   Morgen!"))
         assertEquals("strasse", de.normalize("Straße"))
         assertEquals(de.normalize("Fussball"), de.normalize("Fußball"))
+        // Every spelling of the apostrophe is the same joiner, and none of them is a letter.
+        assertEquals(uk.normalize("ім'я"), uk.normalize("ім\u02bcя"))
+        assertEquals(uk.normalize("ім'я"), uk.normalize("ім’я"))
         // Ellipsis and em-dash are punctuation → space; uk strips no articles.
         assertEquals("мене звуть", uk.normalize("Мене звуть …"))
         assertEquals("ja genau", de.normalize("ja — genau"))

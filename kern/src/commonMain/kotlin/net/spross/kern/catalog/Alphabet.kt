@@ -1,6 +1,7 @@
 package net.spross.kern.catalog
 
 import net.spross.kern.model.Language
+import net.spross.kern.model.apostropheFolded
 import net.spross.kern.model.nfcNormalized
 
 /**
@@ -155,19 +156,6 @@ data class Alphabet(
 
 /** The blank a gapped grapheme leaves — ONE marker per grapheme, never one per character. */
 internal const val GAP_MARKER = "＿"
-
-/** Typewriter, curly, and the modifier letter alphabet files store canonically. */
-private val APOSTROPHES = setOf('\u0027', '\u2019', '\u02bc')
-
-/**
- * Apostrophes folded to U+02BC, length-preserving so a folded index still addresses the
- * original string. Alphabet files store U+02BC canonically while catalog realizations
- * keep whatever their author typed — the class has to be one character before anything
- * looks for a glyph inside a word.
- */
-private fun apostropheFolded(text: String): String =
-    if (text.none { it in APOSTROPHES }) text
-    else text.map { if (it in APOSTROPHES) '\u02bc' else it }.joinToString("")
 
 /**
  * [word] with its FIRST occurrence of [glyph] replaced by [GAP_MARKER], or null when the
