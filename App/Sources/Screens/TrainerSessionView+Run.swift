@@ -29,31 +29,12 @@ extension TrainerSessionView {
     }
 
     private func apply(_ effect: DrillEffect) {
-        switch onEnum(of: effect) {
-        case .armAdvance(let beat):
-            // why: AutoAdvance skips the timer under a screen reader (it
-            // truncates the announcement and moves the screen), and the branch
-            // renders "Weiter" there — same booking, through ConfirmPending.
-            AutoAdvance.schedule(beat.tier, &autoAdvance) {
-                dispatch(TrainerIntent.AdvanceElapsed.shared)
-            }
-        case .cancelAdvance:
-            autoAdvance?.cancel()
-        case .tone(let cue):
-            switch cue.kind {
-            case .correct: Sound.correct()
-            case .wrong: Sound.wrong()
-            case .reveal: Sound.reveal()
-            }
-        case .releaseFocus:
-            // why: a pause that waits for a tap must not hold the keyboard —
-            // it covers the button the pause is waiting for. The pending retry
-            // is canceled first, or it re-focuses 120 ms later.
-            focusRetry?.cancel()
-            answerFocused = false
-        case .silence:
-            hushAnswer()
-        }
+        DrillEffects.apply(effect, advance: &autoAdvance,
+                           onAdvance: { dispatch(TrainerIntent.AdvanceElapsed.shared) },
+                           // why: the pending retry is canceled first, or it
+                           // re-focuses 120 ms later.
+                           releaseFocus: { focusRetry?.cancel(); answerFocused = false },
+                           silence: { hushAnswer() })
     }
 
     // MARK: - What the learner does

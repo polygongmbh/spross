@@ -32,30 +32,10 @@ extension DrillRunView {
     }
 
     private func apply(_ effect: DrillEffect) {
-        switch onEnum(of: effect) {
-        case .armAdvance(let beat):
-            // why: AutoAdvance skips the timer under a screen reader — it
-            // truncates the correctness announcement and moves the screen under
-            // the user, and the branches render "Weiter" there instead.
-            AutoAdvance.schedule(beat.tier, &autoAdvance) {
-                dispatch(.advanced)
-            }
-        case .cancelAdvance:
-            autoAdvance?.cancel()
-        case .tone(let cue):
-            switch cue.kind {
-            case .correct: Sound.correct()
-            case .wrong: Sound.wrong()
-            case .reveal: Sound.reveal()
-            }
-        case .releaseFocus:
-            // why: the amber hold waits for a tap, and a held keyboard covers
-            // the button it waits for.
-            answerFocused = false
-        case .silence:
-            // D5: the reading belongs to the question being left.
-            hushAnswer()
-        }
+        DrillEffects.apply(effect, advance: &autoAdvance,
+                           onAdvance: { dispatch(.advanced) },
+                           releaseFocus: { answerFocused = false },
+                           silence: { hushAnswer() })
     }
 
     // MARK: - What the learner does

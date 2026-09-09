@@ -36,30 +36,10 @@ extension LetterDrillView {
     }
 
     private func apply(_ effect: DrillEffect) {
-        switch onEnum(of: effect) {
-        case .armAdvance(let beat):
-            // why: AutoAdvance skips the timer under a screen reader — it
-            // truncates the correctness announcement and moves the screen under
-            // the user, and the branches render "Weiter" there instead.
-            AutoAdvance.schedule(beat.tier, &autoAdvance) {
-                dispatch(LetterDrillIntent.AdvanceElapsed.shared)
-            }
-        case .cancelAdvance:
-            autoAdvance?.cancel()
-        case .tone(let cue):
-            switch cue.kind {
-            case .correct: Sound.correct()
-            case .wrong: Sound.wrong()
-            case .reveal: Sound.reveal()
-            }
-        case .releaseFocus:
-            // why: both amber holds wait for a tap, and a held keyboard covers
-            // the button they wait for.
-            answerFocused = false
-        case .silence:
-            // D5: the clip belongs to the question being left.
-            Pronouncer.shared.stop()
-        }
+        DrillEffects.apply(effect, advance: &autoAdvance,
+                           onAdvance: { dispatch(LetterDrillIntent.AdvanceElapsed.shared) },
+                           releaseFocus: { answerFocused = false },
+                           silence: { Pronouncer.shared.stop() })
     }
 
     // MARK: - What the learner does

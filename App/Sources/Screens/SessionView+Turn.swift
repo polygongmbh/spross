@@ -42,11 +42,7 @@ extension SessionView {
             // never hides it, so there is nothing to re-focus.
             input = primed.text
         case .tone(let cue):
-            switch cue.kind {
-            case .correct: Sound.correct()
-            case .wrong: Sound.wrong()
-            case .reveal: Sound.reveal()
-            }
+            Sound.play(cue.kind)
         case .releaseFocus:
             // why: a pause that waits for a tap must not hold the keyboard —
             // it covers the button the pause is waiting for. The pending

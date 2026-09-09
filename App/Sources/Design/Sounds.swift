@@ -1,4 +1,5 @@
 import AVFoundation
+import SprossKern
 import UIKit
 
 // MARK: - Sound
@@ -55,6 +56,16 @@ enum Sound {
 
     static func reveal() {
         play(revealPlayer)
+    }
+
+    /// The cue a graded answer asks for, named by kern's `ToneKind` — every
+    /// surface that grades reads the mapping here rather than spelling it out.
+    static func play(_ kind: ToneKind) {
+        switch kind {
+        case .correct: correct()
+        case .wrong: wrong()
+        case .reveal: reveal()
+        }
     }
 
     static func cheer() {
