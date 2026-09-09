@@ -16,7 +16,9 @@
      in use redraws far more often, and this only covers the phone nobody has opened.
 
      The picker's thumbnail is the app's own mark. A placed tile only ever shows the
-     learner's own box (docs/surfaces.md), and the picker cannot read one. -->
+     learner's own box (docs/surfaces.md), and the picker cannot read one. The name and the
+     pitch beside that thumbnail are platform resources for the same reason
+     (res/values/strings.xml). -->
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:minWidth="110dp"
     android:minHeight="110dp"
@@ -26,6 +28,8 @@
     android:minResizeHeight="50dp"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen"
+    android:label="@string/widget_picker_title"
+    android:description="@string/widget_picker_description"
     android:previewImage="@mipmap/ic_launcher"
     android:initialLayout="@layout/glance_default_loading_layout"
     android:updatePeriodMillis="1800000" />

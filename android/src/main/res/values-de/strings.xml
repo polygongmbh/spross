@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The German half of the picker strings described in values/strings.xml. -->
+<resources>
+    <string name="widget_picker_title">Wort des Moments</string>
+    <string name="widget_picker_description">Zeigt eine Vokabel aus deiner Box, im Lauf des Tages immer wieder eine neue.</string>
+</resources>

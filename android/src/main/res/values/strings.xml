@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The only strings the app keeps as platform resources. The widget picker is resolved by
+     the launcher before the app has run, so it cannot read the generated Chrome tables and
+     has nothing but the device's locale to go on; the default table is English, the same
+     fallback kern's chromeLanguage makes, with German qualified beside it. -->
+<resources>
+    <string name="widget_picker_title">Word of the moment</string>
+    <string name="widget_picker_description">Shows a word from your box, a new one as the day goes on.</string>
+</resources>
