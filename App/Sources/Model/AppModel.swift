@@ -56,8 +56,8 @@ final class AppModel {
     /// the screen reads it three times per redraw.
     private(set) var areaGroupSections: [AreaGroupSection] = []
     /// What each shelf's two pack controls would do, every area at once
-    /// (`BoxBrowser.shelfCounts`) — asked per shelf, each answer walked the
-    /// whole box, and the browser draws both numbers on every one of them.
+    /// (`BoxBrowser.shelfCounts`) — one answer per shelf is a walk of the whole
+    /// box, and the browser draws both numbers on every one of them.
     private(set) var shelves: [String: ShelfCounts] = [:]
     /// Whether ANY word in the box can be said aloud on this device — the gate
     /// on the box's tap-to-hear hint. Where the target language has no device
@@ -73,13 +73,13 @@ final class AppModel {
     /// same kind of walk, resolved beside the atlas and never per composition.
     private(set) var datesJoinPair = false
     private(set) var phraseTemplatesForPair: [PhraseTemplate] = []
-    /// The target languages the settings picker offers. Reading this used to run
-    /// a full catalog JOIN per candidate language — every card of every pair
-    /// built and thrown away — twice over, from a view body.
+    /// The target languages the settings picker offers. Resolving it is a full
+    /// catalog JOIN per candidate language — every card of every pair built and
+    /// thrown away — so it is held here and never asked from a view body.
     private(set) var targetChoices: [String] = []
     /// Every shelf's heading, resolved for the reader: emoji, title, flavor line.
-    /// Each was its own linear scan of the catalog's area list, and the browser
-    /// asks all three per shelf while the forest asks the emoji again per tree.
+    /// Each is a linear scan of the catalog's area list, and the browser asks all
+    /// three per shelf while the forest asks the emoji again per tree.
     private(set) var areaChrome: [String: AreaChrome] = [:]
 
     /// Each area's numbers by name. `BoxStatistics.areas` is a LIST, so finding
@@ -89,8 +89,8 @@ final class AppModel {
     /// How many cards the join holds. `box.cards` is a Kotlin map, so reading
     /// `.count` off it carries the whole thing across the bridge.
     private(set) var cardTotal = 0
-    /// Each shelf's cards in seed order. Asked one shelf at a time, every answer
-    /// filtered and sorted the whole box; grouped once it costs what one did.
+    /// Each shelf's cards in seed order. One shelf's answer filters and sorts the
+    /// whole box, so grouping them all at once costs what a single shelf does.
     private(set) var cardsByArea: [String: [Card]] = [:]
     /// Each area's tree as it stood when the current run started — the "before"
     /// the summary animates from. Held on the model rather than in the session
@@ -451,7 +451,7 @@ final class AppModel {
         }
         // why: kern throws on an unknown or self-paired language rather than
         // returning empty, and a Kotlin throw crossing back is a crash — hence
-        // the guard above, which both drills used to take for themselves.
+        // the guard above.
         atlasJoinsPair = catalog.countryDrillContent(source: sourceLanguage, target: target) != nil
         datesJoinPair = catalog.dateDrillContent(source: sourceLanguage, target: target) != nil
         phraseTemplatesForPair = catalog.phraseTemplates(source: sourceLanguage, target: target)
