@@ -7,8 +7,8 @@ import java.io.IOException
 import net.spross.kern.session.ToneKind
 
 /**
- * The review loop's feedback chimes: one soft sound per verdict, and the cheer a new
- * record earns. Every run in the app — cards, the letter drill, the trainer — sounds
+ * The review loop's feedback chimes: one soft sound per verdict, and the cheer a finished
+ * round or a new record earns. Every run in the app — cards, the letter drill, the trainer — sounds
  * through this one pool.
  *
  * The clips are the very files iOS plays (`App/Resources/Sounds/`, authored by

@@ -16,6 +16,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -38,6 +39,8 @@ import net.spross.kern.box.completionTallyParts
 @Composable
 fun SessionSummary(model: AppModel, ui: SessionUi) {
     val chrome = model.chrome
+    // why: the round's own reward, sounded once as the screen arrives — iOS cheers here too.
+    LaunchedEffect(Unit) { model.cues.cheer() }
     var briefingOpen by remember { mutableStateOf(false) }
     val parts = completionTallyParts(ui.introduced, ui.strengthened, ui.reviewed)
     val tally = if (parts.isEmpty()) {
