@@ -46,7 +46,7 @@ class CatalogLanguageNamesLintTest {
      * the self entry is as load-bearing as the foreign ones.
      *
      * Containment, not equality: the table also carries every language the country atlas
-     * knows, which reaches far past the five the app teaches from.
+     * knows, which reaches far past the languages the app teaches from.
      */
     @Test
     fun everyLanguageNamesEveryLanguageIncludingItself() {

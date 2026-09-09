@@ -12,7 +12,7 @@ import kotlin.test.assertTrue
  * duplicate rows, tiers outside 2..4, a country naming an undeclared language) hard-fail
  * the load and need no test of their own — [RealCatalog.catalog] parses every shipped file.
  *
- * What is left here is what only CONTENT can break: totality across the five realization
+ * What is left here is what only CONTENT can break: totality across the declared realization
  * files, the language table the drill grades against, and the disjointness that keeps a
  * country slug from ever colliding with a concept or a frame.
  */
@@ -88,9 +88,9 @@ class CountryAtlasLintTest {
     fun everyAppLanguageEntersAtTierTwo() {
         val tiers = atlas.languages.associate { it.code to it.tier }
         for (lang in catalog.languages.keys) {
-            // Reviewed 2026-08-15: eo has no country, so it has no atlas row at all —
-            // a manifest language with no country never surfaces, and every eo pair
-            // still opens through the partner language's own tier-1 countries.
+            // eo has no country, so it has no atlas row at all — a manifest language with
+            // no country never surfaces, and every eo pair still opens through the partner
+            // language's own tier-1 countries.
             if (lang == "eo") continue
             assertEquals(2, tiers[lang], "atlas.json: app language \"$lang\" is not a tier-2 entry")
         }
