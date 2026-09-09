@@ -42,7 +42,9 @@ struct AnswerInputView: View {
 
     @Binding var text: String
     var feedback: Feedback = .neutral
-    var placeholder: String = "Antwort eingeben …"
+    /// Resolved by the caller — the String Catalog is the one home for it,
+    /// so there is no default to fall through to.
+    var placeholder: String
     /// Session views own focus so the keyboard is up the moment a card
     /// appears; standalone use falls back to the internal focus state.
     var focus: FocusState<Bool>.Binding?
@@ -253,15 +255,16 @@ private struct AnswerInputPreviewHost: View {
 
     var body: some View {
         VStack(spacing: Theme.spacing.xl) {
-            AnswerInputView(text: $neutral, feedback: .neutral)
-            AnswerInputView(text: $right, feedback: .correct)
+            AnswerInputView(text: $neutral, feedback: .neutral, placeholder: "type here")
+            AnswerInputView(text: $right, feedback: .correct, placeholder: "type here")
             AnswerInputView(text: $slip,
                             feedback: .almost(correctForm: "kisu", reason: .typo),
+                            placeholder: "type here",
                             correctionVoice: .init(pronounce: { _ in {} }, isPlaying: { _ in false }))
-            AnswerInputView(text: $wrong, feedback: .revealed)
+            AnswerInputView(text: $wrong, feedback: .revealed, placeholder: "type here")
             // Inert: revealed, locked and empty — the field renders nothing at
             // all, so this row is deliberately blank.
-            AnswerInputView(text: $empty, feedback: .revealed)
+            AnswerInputView(text: $empty, feedback: .revealed, placeholder: "type here")
         }
         .padding(Theme.spacing.xl)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
