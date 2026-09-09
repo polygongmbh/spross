@@ -12,8 +12,6 @@ import kotlin.test.assertTrue
 /**
  * The audio half of [CatalogLintTest] — permanent rules over the REAL `catalog/audio/`,
  * a sibling file only because both stay inside the ~300-line budget that way.
- * Rules, never totals: every check iterates the shipped entries, so the suite is
- * vacuously green until the converter generates the manifests.
  *
  * `catalog/audio/` holds no `concepts.json`, so it stays invisible to
  * [CatalogLintTest.everyAreaFolderIsRegisteredInTheManifest].

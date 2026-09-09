@@ -92,7 +92,7 @@ Engine contract: `../README.md`.
   `Catalog.audioCredits() -> [AudioCredit]`, grouped per (language, author, license) with per-file rows.
   BY and BY-SA cannot share one notice, so the groups ARE the credit rows,
   and they derive from the shipped manifests, so the screen can never credit what is not bundled.
-- Lint (`CatalogAudioLintTest`, real catalog, vacuously green while `catalog/audio/` is empty):
+- Lint (`CatalogAudioLintTest`, real catalog):
   entries name slugs their language realizes, every `matches` is reachable from a visible form,
   no ambiguous speech key, slug-named word files and codepoint-named letter files
   (glyph filenames decompose under NFD on APFS), every file ships and is referenced exactly once,
