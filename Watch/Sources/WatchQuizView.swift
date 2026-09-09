@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// The one watch practice screen: a role-aware multiple-choice question over
-/// the due queue, then review-ahead. Correctness + response time derive the
+/// the due batch or a free-practice lap. Correctness + response time derive the
 /// FSRS rating (`WatchGrading`) — no self-grading. Instant feedback on four
 /// channels (green right / red wrong plus a red wash, a haptic shaped like the
 /// rating, that rating badged on the tile — `WatchFeedback` — and the answered
