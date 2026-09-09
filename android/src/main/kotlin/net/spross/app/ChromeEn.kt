@@ -381,7 +381,7 @@ internal object ChromeEn : Chrome {
     override val homeTallyNewCards = "%d newbies"
     override val homeTallyNewCardsOne = "%d newbie"
     override val homeTallyNewWordsOnly = "%s new words"
-    override val homeTallyConsolidated = "%s solidified"
+    override val homeTallyConsolidated = "%s consolidated"
     override val homeTallyAhead = "%d refreshers"
     override val homeTallyAheadOne = "%d refresher"
     override val homeDonePacked = "Your packed words are in the next round."

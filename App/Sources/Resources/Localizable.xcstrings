@@ -3312,7 +3312,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ solidified"
+            "value" : "%@ consolidated"
           }
         }
       }
@@ -4637,7 +4637,7 @@
       }
     },
     "progress.consolidatedCount %@" : {
-      "comment" : "An area's row of counts: the consolidated half beside the seal, the learning half beside the leaf. home.tally.consolidated is the SEPARATE wording for the day's own tally on Heute — a different screen's sentence, not this one read twice.",
+      "comment" : "An area's row of counts: the consolidated half beside the seal, the learning half beside the leaf. home.tally.consolidated is the day's own tally on Heute — a different screen's sentence, not this one read twice.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
