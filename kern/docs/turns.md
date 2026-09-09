@@ -70,58 +70,51 @@ Engine contract: `../README.md`.
   entry card, which stands on the box holding words at all. Nothing is lost by not asking:
   every catalog language but `en` ships several hundred recordings and `en` is spoken by every
   device there is, so a joined box with nothing sayable in it does not occur.
-  `seed` is opaque to kern — it only salts the scheduled lanes' own tiebreak (below), never
+  `seed` is opaque to kern — it only salts the lanes' own tiebreak (below), never
   reads a clock, and does not care that both apps happen to hand it the current instant.
   **Both halves must be sayable** — a turn that plays a word and then silence teaches nothing,
   so the shared `catalog.audible` predicate is applied to the target form AND the source form.
   **Suspended cards stay in the pool.** The leech rule auto-suspends at two lapses (`../README.md` §5), so the
   words that stick worst are exactly the ones `Inventory.active` drops; suspension takes a word
   out of the box's queue and never said stop meeting the word.
-  **The pool is the whole sayable join, not a composed subset** — every joined card that
-  both halves of a turn can say, scheduled and unseen alike. So a learner a few words in hears
-  a STREAM of new words rather than lapping the handful they hold, and a learner with a full
-  vocabulary hears their own words in it. Unseen words enter through
+  **The pool is the sayable join short of the grown words, not a composed subset** — every
+  joined card that both halves of a turn can say, scheduled and unseen alike. So a learner a
+  few words in hears a STREAM of new words rather than lapping the handful they hold, and a
+  learner with a full vocabulary hears their own words in it. Unseen words enter through
   `Growth.isIntroducible`: a phrase whose components have not landed is not ready to be heard
   either. Hearing one does not introduce it: introduction is the first answer, and listening
-  answers nothing.
-  `listeningPriority` is one ladder in STABILITY, and the pool is DEALT down it rather than
-  drawn from it — higher means earlier, and the same box gives the same run.
-  A scheduled word starts at `LISTENING_MAX_STABILITY_PRIORITY` (6) and loses a Sprosse per
-  ceiling of `LISTENING_STABILITY_BAND_CEILINGS` (2, 5, 10, 20 d, then `MATURED_STABILITY`)
-  it has passed, clamped to 1..6: just learned or just lapsed leads, the not-quite-settled
-  rotate in the middle, and the consolidated ones sit at the floor — still worth hearing,
-  never what the hour is about. The steps widen on the way up rather than staying fixed: a
-  flat per-day step put the floor at 10 days, which a reviewed-for-a-while box clears easily,
-  piling almost everything into that one slowest-dealt lane; the floor now waits for
-  `MATURED_STABILITY` — kern's own "solid" bar — instead of a second number invented for
-  the same idea.
-  A **packed** card (`BoxState.enqueued`) takes `LISTENING_QUEUED_PRIORITY` (5) and every
-  other **unscheduled** one `LISTENING_NEW_PRIORITY` (4): neither has a stability to read, so
-  those figures are deal-rates rather than measurements — packing is the learner saying
-  *these words next*, and a first hearing is the mode's cheapest breadth.
-  A **suspended** card keeps its stability's Sprosse and pays `LISTENING_SUSPENDED_PENALTY` (2)
-  down to the floor of 1, rather than being sent to the floor outright: the leech rule takes a
-  word out of the box's rotation, and this is the surface that can still reach it, so a shaky
-  leech lands at Sprosse 2 to 4 — it comes in, it does not lead.
-  The ladder that falls out: 6 is stability 0–2 d; 5 is 2–5 d and the packed words; 4 is
-  5–10 d and every other unseen word, and a leech at 0–2 d; 3 is 10–20 d and a leech at
-  2–5 d; 2 is 20–25 d and a leech at 5–10 d; 1 is 25 d (`MATURED_STABILITY`) and up, and a
-  leech at 10 d or more.
-  **Nothing on that ladder reads a due date.** A word the box wants back is a word whose
-  stability is low, so it rises on the Sprossen it already has; a due term would make listening a
-  second scheduler, need a clock the run does not take, and pin the same word first every
-  run — which listening cannot resolve, since it books nothing.
-  **The pool is dealt across the run, not sorted by Sprosse.** A plain sort would empty Sprosse 6,
-  then Sprosse 5, then spend the rest of the run inside a Sprosse-4 block of every unseen word in
-  the catalog, and Sprossen 3, 2 and 1 would never be reached in a session at all. So the pool is
-  split into **lanes** — `(kind, priority)`, kind being scheduled / new / packed — and each
-  lane is dealt evenly across the whole run: the n-th candidate of a lane whose priority is p
-  is placed at `(n + 0.5) / p`, and everything sorts by that placement. A lane of priority 6
-  advances six times faster than one of priority 1, so the mix is the old weighted draw's
-  proportions made deterministic — every lane reaches the ear, the high ones simply reach it
-  more often. Lanes rather than shared Sprossen, because the two unscheduled kinds' figures are
-  rates and not measurements: three hundred unseen words must not crowd out twenty
-  mid-stability ones that happened to score the same.
+  answers nothing. **A fully grown word is not in the pool** (`Statistics.isConsolidated`):
+  it is what the box already calls done, and an hour of listening is for what is not —
+  left in, a well-used box, where the grown words outnumber everything else, would open on
+  the words it trusts most. It is back the moment it lapses.
+  `listeningPriority(growing, suspended)` is the ladder, and it has two Sprossen read off the
+  box's own bar rather than a ladder of listening's own: a held word short of
+  `growingStability` (`Statistics.isGrowing`, so a lapsed word is shaky whatever it once
+  reached) is SHAKY (`LISTENING_SHAKY_PRIORITY`, 2) and one past it is GROWING
+  (`LISTENING_GROWING_PRIORITY`, 1). A **suspended** word takes the growing Sprosse whatever
+  its bar: the leech rule takes a word out of the box's rotation and this is the surface that
+  can still reach it, so it comes in — it does not lead.
+  **Nothing on that ladder reads a due date.** A word the box wants back is a word short of
+  the bar, so it rises on the Sprosse it already has; a due term would make listening a second
+  scheduler, need a clock the run does not take, and pin the same word first every run —
+  which listening cannot resolve, since it books nothing.
+  **The shaky words play first, strictly, and come back once they are out.** `listeningOrder`
+  deals the playlist turn by turn on one clock: the shaky lane opens at the first turn and
+  plays every word it holds before the growing lane opens at all; from then on both are open,
+  splitting the held turns by Sprosse (two to one), and each lane starts over at its own head
+  when it runs out — so no word comes back before the rest of its Sprosse has, and the fewer
+  words a Sprosse holds the sooner each of them returns. `LISTENING_RETURN_FLOOR_TURNS` (30)
+  is the one brake: a word said that recently waits, and the turn goes to whichever lane is
+  next, so two shaky words are not the whole evening.
+  **Never-answered words are a fixed slice, not a Sprosse.** The unseen lane is open from the
+  first turn and takes `LISTENING_NEW_SHARE` (two turns in five) — audio is the cheapest
+  exposure a new word can get, so breadth rides alongside the shaky words rather than waiting
+  for them, and as a slice rather than a Sprosse three hundred unseen words cannot crowd out
+  the twenty that are slipping. It closes once every unseen word has been said once. Packed
+  words (`BoxState.enqueued`) lead it: packing is the learner saying *these words next*.
+  The deal ends when every held Sprosse has played through once and the unseen lane is spent,
+  and the run laps it from the head — a box holding nothing scheduled hears its unseen words
+  once through, basics first.
   **Within a lane the order depends on what the lane is.** New and packed words run in strict
   catalog order (`seedIndex`, then id — `Inventory.seedOrder`'s own tiebreak): an empty box is
   ONE lane, so a learner new to a language hears the catalog from its very first word, which
@@ -142,12 +135,9 @@ Engine contract: `../README.md`.
   and it holds **no `BoxState` at all** — that is what makes "listening books nothing"
   structural rather than promised. Its `ListeningEffect` says `Play`/`Stop`
   because `Repeat` leaves the state identical and must still make the sound fire.
-  It **walks the order it was handed and laps**: the state carries the ids played since the
-  last lap, the next turn is the first candidate not among them, and when none are left the
-  lap clears and the walk restarts at the head. So no word repeats before the whole pool has
-  lapped, a pool smaller than the run laps cleanly instead of running dry, a one-word pool
-  keeps saying its word, and a long run rotates the shaky and packed ones back through rather
-  than being a front-loaded ten minutes followed by fifty of settled words.
+  It **walks the playlist it was handed by position and laps at its end** — repeats are the
+  deal's business, never the run's: a pool smaller than the run laps cleanly instead of
+  running dry, and a one-word pool keeps saying its word.
   `ListeningTurn` carries both forms, the article, and all three beats
   (`RECALL_GAP_HELD_MS` 1200 / `RECALL_GAP_FRESH_MS` 600, with `ECHO_GAP_MS` the fresh gap and
   `TURN_GAP_MS` the held one), so neither platform decides any of it — the recall gap is the

@@ -69,8 +69,8 @@ class ListeningPoolTests {
         val leech = spoken(state).candidates.single { it.card.id == "w03" }
 
         assertTrue(leech.suspended)
-        // The pool reads the schedule's stability, the one figure the draw ladders on.
-        assertEquals(10.0, leech.stability)
+        // The pool reads the box's own bar, the one fact the ladder stands on.
+        assertTrue(leech.growing)
     }
 
     /**
@@ -101,25 +101,43 @@ class ListeningPoolTests {
     }
 
     /**
-     * RULE: the pool is the whole sayable join — every scheduled word AND every unseen one,
-     * thin box or settled box alike.
+     * RULE: the pool is the sayable join short of the grown words — every scheduled word still
+     * growing AND every unseen one, thin box or settled box alike.
      * WHY: this is the endless mode. A learner a few words in hears a stream of new words
      * rather than lapping the handful they hold, and a learner with a full vocabulary hears
      * their own words in it — the deal does the steering.
      */
     @Test
-    fun thePoolIsTheWholeSayableJoin() {
-        val thin = spoken(box(total = 30, scheduled = 3))
-        assertEquals(30, thin.candidates.size)
-        assertEquals(3, thin.candidates.count { it.scheduled })
-        assertEquals(27, thin.candidates.count { !it.scheduled })
+    fun thePoolIsTheSayableJoinShortOfTheGrownWords() {
+        val thin = spoken(box(total = 30, scheduled = 3)).candidates.distinct()
+        assertEquals(30, thin.size)
+        assertEquals(3, thin.count { it.scheduled })
+        assertEquals(27, thin.count { !it.scheduled })
 
-        val settled = spoken(box(total = 40, scheduled = 17))
-        assertEquals(40, settled.candidates.size)
-        assertEquals(17, settled.candidates.count { it.scheduled })
-        assertEquals(23, settled.candidates.count { !it.scheduled })
+        val settled = spoken(box(total = 40, scheduled = 17)).candidates.distinct()
+        assertEquals(40, settled.size)
+        assertEquals(17, settled.count { it.scheduled })
+        assertEquals(23, settled.count { !it.scheduled })
 
-        assertEquals((1..30).map(::id).toSet(), ids(thin).toSet())
+        assertEquals((1..30).map(::id).toSet(), thin.map { it.card.id }.toSet())
+    }
+
+    /**
+     * RULE: a fully grown word is not in the pool.
+     * WHY: it is what the box already calls done (`Statistics.isConsolidated`), and an hour of
+     * listening is for what is not. Left in, a well-used box — where the grown words outnumber
+     * everything else — would spend its evening on the words it trusts most.
+     */
+    @Test
+    fun aGrownWordIsNotInThePool() {
+        var state = box(total = 20, scheduled = 0)
+        state = Box.inject(state, Box.sched("w01", stability = 18.0, dueMillis = Box.day1, lastReviewMillis = Box.day1))
+        state = Box.inject(state, Box.sched("w02", stability = 40.0, dueMillis = Box.day1, lastReviewMillis = Box.day1))
+
+        val played = ids(spoken(state))
+
+        assertTrue("w01" in played, "a growing word is still heard")
+        assertFalse("w02" in played, "a grown word was dealt")
     }
 
     /**
@@ -209,76 +227,96 @@ class ListeningPoolTests {
         assertEquals(listOf("w70", "w60", "w50"), played)
     }
 
+    /** A box of [shaky] words short of the growing bar and [growing] ones past it, nothing unseen. */
+    private fun ladderBox(shaky: Int, growing: Int): BoxState {
+        var state = box(total = shaky + growing, scheduled = 0)
+        for (n in 1..shaky + growing) {
+            state = Box.inject(
+                state,
+                Box.sched(
+                    id(n), stability = if (n <= shaky) 0.0 else 10.0,
+                    dueMillis = Box.day1, lastReviewMillis = Box.day1,
+                ),
+            )
+        }
+        return state
+    }
+
+    /** The turns between one hearing of [wordId] and the next, over the whole deal. */
+    private fun returnGaps(played: List<String>, wordId: String): List<Int> =
+        played.withIndex().filter { it.value == wordId }.map { it.index }.zipWithNext { a, b -> b - a }
+
     /**
-     * RULE: every lane is reached inside the opening stretch of one lap.
-     * WHY: the regression the deal exists to prevent. A plain sort by priority would empty
-     * Sprosse 6, then Sprosse 5, then spend the whole run inside a Sprosse-4 block of every unseen word
-     * in the catalog — the settled and the shaky-suspended words would never be reached in a
-     * session at all. Dealing each lane evenly means every one of them reaches the ear.
+     * RULE: every shaky word plays before any growing word does.
+     * WHY: the hour is for what is slipping. A learner with plenty of words short of the bar
+     * used to hear a word the box already trusted within the first handful of turns, because
+     * every lane was dealt a fixed slice of the run whatever it held.
      */
     @Test
-    fun everyLaneIsReachedInsideTheOpeningStretch() {
-        var state = box(total = 200, scheduled = 0)
-        // Five words on each Sprosse of the stability ladder, plus a packed lane and 170 unseen.
-        for ((sprosse, stability) in listOf(0.0, 3.0, 7.0, 15.0, 22.0, 35.0).withIndex()) {
-            for (n in 1..5) {
-                state = Box.inject(
-                    state,
-                    Box.sched(
-                        id(sprosse * 5 + n), stability = stability,
-                        dueMillis = Box.day1, lastReviewMillis = Box.day1,
-                    ),
-                )
-            }
-        }
-        state = state.copy(enqueued = listOf("w40", "w41", "w42"))
+    fun theShakyWordsPlayOutBeforeAGrowingOneIsHeard() {
+        val played = ids(spoken(ladderBox(shaky = 10, growing = 10)))
 
-        val candidates = spoken(state).candidates
-        val lane = { c: ListeningCandidate -> Triple(c.scheduled, c.queued, listeningPriority(c)) }
-
-        assertEquals(8, candidates.map(lane).toSet().size, "the fixture must cover eight lanes")
-        assertEquals(
-            candidates.map(lane).toSet(),
-            candidates.take(20).map(lane).toSet(),
-            "a lane went unheard in the opening twenty turns",
-        )
+        assertEquals((1..10).map(::id).toSet(), played.take(10).toSet(), "a growing word led a shaky one")
     }
 
     /**
-     * RULE: a box shaped like a well-used one — a few shaky words, a modest middle band, and a
-     * large block of matured (`MATURED_STABILITY`+) ones — still hears its settling band (10 to
-     * 30 days) well before the matured block, on average.
-     * WHY: the regression this ladder exists to fix. A flat per-day step floored a word at just
-     * ten days, so a settling word and a matured one shared the same slowest-dealt lane and a
-     * box with far more of the latter than shaky words spent almost the whole lap on it. The
-     * wider ceilings give the settling range its own, faster lane instead.
+     * RULE: once the shaky words are out, they come back among the growing ones — and a
+     * smaller shaky lane brings each of its words back sooner than a larger one.
+     * WHY: a long session should keep reinforcing what is slipping rather than drift into the
+     * words the box trusts; and the fewer words are slipping, the more each of them deserves.
      */
     @Test
-    fun aMatureBoxStillLeadsWithItsSettlingBandOverTheMaturedOne() {
-        var state = box(total = 130, scheduled = 0)
-        val settling = (1..20).map(::id)
-        val matured = (21..120).map(::id)
-        for (wordId in settling) {
-            state = Box.inject(
-                state,
-                Box.sched(wordId, stability = 18.0, dueMillis = Box.day1, lastReviewMillis = Box.day1),
-            )
-        }
-        for (wordId in matured) {
-            state = Box.inject(
-                state,
-                Box.sched(wordId, stability = 40.0, dueMillis = Box.day1, lastReviewMillis = Box.day1),
-            )
-        }
+    fun theShakyWordsComeBackAmongTheGrowingOnesSoonerWhenFewer() {
+        val few = ids(spoken(ladderBox(shaky = 5, growing = 30)))
+        val many = ids(spoken(ladderBox(shaky = 60, growing = 30)))
+
+        val afterOpening = few.drop(5)
+        assertTrue(afterOpening.any { it in (1..5).map(::id) }, "no shaky word came back")
+        assertTrue(afterOpening.any { it in (6..35).map(::id) }, "no growing word was reached")
+
+        val fewGap = (1..5).map(::id).flatMap { returnGaps(few, it) }.average()
+        val manyGap = (1..60).map(::id).flatMap { returnGaps(many, it) }.average()
+        assertTrue(fewGap < manyGap, "five shaky words ($fewGap) did not return sooner than sixty ($manyGap)")
+    }
+
+    /**
+     * RULE: no word is said again within `LISTENING_RETURN_FLOOR_TURNS` turns.
+     * WHY: a lane of one or two words would otherwise be every other turn all evening; the
+     * turns it cannot fill go to the next lane instead, which is the new words here.
+     */
+    @Test
+    fun noWordComesBackInsideTheFloor() {
+        var state = box(total = 100, scheduled = 0)
+        state = Box.inject(state, Box.sched("w01", stability = 0.0, dueMillis = Box.day1, lastReviewMillis = Box.day1))
+        state = Box.inject(state, Box.sched("w02", stability = 0.0, dueMillis = Box.day1, lastReviewMillis = Box.day1))
 
         val played = ids(spoken(state))
-        val settlingMeanIndex = settling.map(played::indexOf).average()
-        val maturedMeanIndex = matured.map(played::indexOf).average()
 
-        assertTrue(
-            settlingMeanIndex < maturedMeanIndex,
-            "settling band ($settlingMeanIndex) did not lead the matured one ($maturedMeanIndex)",
-        )
+        for (wordId in listOf("w01", "w02")) {
+            val gaps = returnGaps(played, wordId)
+            assertTrue(gaps.size > 1, "$wordId never came back")
+            assertTrue(gaps.all { it >= LISTENING_RETURN_FLOOR_TURNS }, "$wordId echoed: $gaps")
+        }
+    }
+
+    /**
+     * RULE: unseen words take `LISTENING_NEW_SHARE` of the turns from the first one on.
+     * WHY: audio is the cheapest exposure a new word can get, so breadth rides alongside the
+     * shaky words rather than waiting for them — but as a slice, not a Sprosse, so three
+     * hundred unseen words do not crowd out the twenty that are slipping.
+     */
+    @Test
+    fun unseenWordsTakeTheirShareFromTheFirstTurn() {
+        var state = box(total = 130, scheduled = 0)
+        for (n in 1..30) {
+            state = Box.inject(state, Box.sched(id(n), stability = 0.0, dueMillis = Box.day1, lastReviewMillis = Box.day1))
+        }
+
+        val opening = spoken(state).candidates.take(50)
+        val unseen = opening.count { !it.scheduled }
+
+        assertTrue(unseen in 18..22, "$unseen of the first 50 turns were unseen words")
+        assertTrue(opening.take(3).any { !it.scheduled }, "the first new word waited")
     }
 
     /**

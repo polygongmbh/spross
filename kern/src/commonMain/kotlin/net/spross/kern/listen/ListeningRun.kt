@@ -63,8 +63,8 @@ sealed class ListeningEffect {
 data class ListeningReduction(val state: ListeningRunState, val effects: List<ListeningEffect>)
 
 /**
- * A listening run, whole and immutable — the playlist it walks, the turn on air, and how far
- * into the lap it has got.
+ * A listening run, whole and immutable — the playlist it walks, the turn on air, and where in
+ * it the run stands.
  *
  * There is no box here at all: a run answers nothing, so nothing is booked, and the state
  * carries no [net.spross.kern.box.BoxState] to make that structurally true rather than a
@@ -75,8 +75,8 @@ data class ListeningRunState(
     val candidates: List<ListeningCandidate>,
     /** The turn on air; null before [ListeningIntent.Start] and on an empty pool. */
     val turn: ListeningTurn?,
-    /** Card ids played SINCE THE LAST LAP, oldest first — uncapped, since the pool bounds it. */
-    val heard: List<String>,
+    /** Where in the playlist the turn on air stands; -1 before [ListeningIntent.Start]. */
+    val position: Int,
     val paused: Boolean,
     /** A run exists from [ListeningIntent.Start] until [ListeningIntent.Close]. */
     val active: Boolean,
@@ -100,7 +100,7 @@ object ListeningRun {
 
     /** No run yet: a closed shell around the pool. */
     fun idle(candidates: List<ListeningCandidate>): ListeningRunState = ListeningRunState(
-        candidates = candidates, turn = null, heard = emptyList(),
+        candidates = candidates, turn = null, position = -1,
         paused = false, active = false, played = 0,
     )
 
@@ -162,25 +162,18 @@ object ListeningRun {
         ListeningReduction(state.copy(active = false, paused = false), listOf(ListeningEffect.Stop))
 
     /**
-     * Walk to the next turn: the first word of the playlist not yet [ListeningRunState.heard],
-     * and where none is left the lap starts over at the head.
+     * Walk to the next turn: the playlist's next entry, and past its end the head again.
      *
-     * This is what the old 24-card recency ring bought, kept and made stronger — no word comes
-     * back before the WHOLE pool has lapped, rather than merely before two dozen others have.
-     * A pool shorter than a run laps cleanly instead of running dry, and a one-word pool keeps
-     * saying its word, which is all it can do.
+     * Repeats are the deal's business, never the run's — `listeningOrder` already brings a
+     * shaky word back where it should — so the run only keeps its place. A pool shorter than
+     * a run laps cleanly instead of running dry, and a one-word pool keeps saying its word,
+     * which is all it can do.
      */
     private fun draw(state: ListeningRunState): ListeningRunState {
         val pool = state.candidates
         if (pool.isEmpty()) return state.copy(turn = null)
-        val heard = state.heard.toSet()
-        val next = pool.firstOrNull { it.card.id !in heard }
-        val picked = next ?: pool.first()
-        return state.copy(
-            turn = turnFor(picked),
-            heard = (if (next == null) emptyList() else state.heard) + picked.card.id,
-            played = state.played + 1,
-        )
+        val position = (state.position + 1) % pool.size
+        return state.copy(turn = turnFor(pool[position]), position = position, played = state.played + 1)
     }
 
     /** Play what was drawn, or fall silent where there was nothing to draw. */

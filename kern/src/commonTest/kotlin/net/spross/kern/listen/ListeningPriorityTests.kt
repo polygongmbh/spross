@@ -4,127 +4,48 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
-import net.spross.kern.box.MATURED_STABILITY
 
-/** Where a word stands on the listening draw — one ladder in stability. */
+/** Where a held word stands on the listening ladder — two Sprossen off the box's own bar. */
 class ListeningPriorityTests {
 
     private fun candidate(
-        stability: Double,
+        growing: Boolean,
         suspended: Boolean,
         scheduled: Boolean,
-        queued: Boolean = false,
     ): ListeningCandidate = ListeningCandidate(
         card = Box.word(1),
-        stability = stability,
+        growing = growing,
         suspended = suspended,
         scheduled = scheduled,
-        queued = queued,
+        queued = false,
         packedRank = 0,
     )
 
     /**
-     * RULE: a settled word keeps the draw floor.
-     * WHY: the floor is what makes this a playlist and not a filter — a word that has landed
-     * is not excluded from an hour of exposure, only pushed to the end of the draw by the
-     * ones that have not.
+     * RULE: a word short of the growing bar leads, and one past it takes the floor.
+     * WHY: that is the hour's whole shape — the words that have not landed are what listening
+     * is for, and the ones that have are background. The bar is the box's own, not a second
+     * one invented for the ear.
      */
     @Test
-    fun aSettledWordKeepsTheDrawFloor() {
-        assertEquals(1, listeningPriority(candidate(MATURED_STABILITY, suspended = false, scheduled = true)))
+    fun aShakyWordLeadsAGrowingOne() {
+        val shaky = listeningPriority(growing = false, suspended = false)
+        val growing = listeningPriority(growing = true, suspended = false)
+        assertEquals(LISTENING_SHAKY_PRIORITY, shaky)
+        assertEquals(LISTENING_GROWING_PRIORITY, growing)
+        assertTrue(shaky > growing)
     }
 
     /**
-     * RULE: higher stability means lower priority, one point per ceiling of the ladder passed.
-     * WHY: the whole draw is one figure — a just-learned word leads, and each ceiling in
-     * `LISTENING_STABILITY_BAND_CEILINGS` it clears drops it a Sprosse, so the not-quite-settled
-     * sit in the middle and the consolidated ones are pushed to the end. The ceilings widen on
-     * the way up rather than staying fixed, so the floor waits for `MATURED_STABILITY` instead
-     * of arriving after a flat per-day step.
-     */
-    @Test
-    fun higherStabilityMeansLowerPriority() {
-        assertEquals(6, listeningPriority(candidate(0.0, suspended = false, scheduled = true)))
-        assertEquals(5, listeningPriority(candidate(3.0, suspended = false, scheduled = true)))
-        assertEquals(4, listeningPriority(candidate(7.0, suspended = false, scheduled = true)))
-        assertEquals(3, listeningPriority(candidate(15.0, suspended = false, scheduled = true)))
-        assertEquals(2, listeningPriority(candidate(23.0, suspended = false, scheduled = true)))
-        // The floor, however settled: MATURED_STABILITY or a hundred are the same Sprosse.
-        assertEquals(1, listeningPriority(candidate(MATURED_STABILITY, suspended = false, scheduled = true)))
-        assertEquals(1, listeningPriority(candidate(100.0, suspended = false, scheduled = true)))
-    }
-
-    /**
-     * RULE: a suspended word keeps its stability's Sprosse less the toll — it is NOT sent to the
-     * floor, and a shaky leech still comes in early.
+     * RULE: a suspended word takes the floor whatever its bar — it comes in, it does not lead.
      * WHY: the pool holds leeches precisely because they are what an hour of listening is for;
      * suspension takes a word out of the box's rotation and this is the surface that can
-     * still reach it. Two Sprossen are enough that it does not lead the hour.
+     * still reach it. But a word the box gave up on does not lead the ones it is still working on.
      */
     @Test
-    fun aSuspendedWordPaysATollRatherThanTakingTheFloor() {
-        val shaky = listeningPriority(candidate(0.0, suspended = true, scheduled = true))
-        assertEquals(LISTENING_MAX_STABILITY_PRIORITY - LISTENING_SUSPENDED_PENALTY, shaky)
-        assertTrue(shaky > 1, "a shaky leech is not at the floor")
-        assertEquals(3, listeningPriority(candidate(3.0, suspended = true, scheduled = true)))
-        // Nothing leads a suspended word past a word of the same stability that is not one.
-        assertTrue(shaky < listeningPriority(candidate(0.0, suspended = false, scheduled = true)))
-    }
-
-    /**
-     * RULE: a settled leech still bottoms out at the floor.
-     * WHY: the toll is on top of the stability ladder, not instead of it — a word that both
-     * sat well and was suspended has no claim on the hour, and the floor keeps it audible
-     * without making it a subject.
-     */
-    @Test
-    fun aSettledLeechStillBottomsOut() {
-        assertEquals(1, listeningPriority(candidate(MATURED_STABILITY, suspended = true, scheduled = true)))
-    }
-
-    /**
-     * RULE: an unscheduled word takes the fixed new priority, not the floor.
-     * WHY: it has no stability to ladder on — there is no history to read — so its value is
-     * set, a focus tier on its own: a first hearing is the mode's cheapest breadth, and new
-     * words are met alongside the ones that are not sticking.
-     */
-    @Test
-    fun anUnseenWordTakesTheNewPriority() {
-        assertEquals(
-            LISTENING_NEW_PRIORITY,
-            listeningPriority(candidate(0.0, suspended = false, scheduled = false)),
-        )
-    }
-
-    /**
-     * RULE: a packed word outranks a plain unseen one, and is outranked by a very shaky one.
-     * WHY: packing is the learner saying *these words next*, which every other surface honors,
-     * so the ear must honor it too — but one Sprosse is the whole of the ask. A word that is
-     * actively falling out of the box still leads, because that is what the hour is for.
-     */
-    @Test
-    fun aPackedWordLeadsTheOtherUnseenOnesAndTrailsAShakyOne() {
-        val packed = listeningPriority(candidate(0.0, suspended = false, scheduled = false, queued = true))
-        val unseen = listeningPriority(candidate(0.0, suspended = false, scheduled = false))
-        val shaky = listeningPriority(candidate(0.0, suspended = false, scheduled = true))
-
-        assertEquals(LISTENING_QUEUED_PRIORITY, packed)
-        assertTrue(shaky > packed && packed > unseen)
-    }
-
-    /**
-     * RULE: new and just-learned words lead, settling words rotate in the middle, and
-     * consolidated ones are pushed to the end.
-     * WHY: that is the hour's whole shape — the words that have not landed are what listening
-     * is for, and the ones that have are background.
-     */
-    @Test
-    fun unsettledAndNewLeadOverConsolidated() {
-        val fresh = listeningPriority(candidate(0.0, suspended = false, scheduled = true))
-        val new = listeningPriority(candidate(0.0, suspended = false, scheduled = false))
-        val settling = listeningPriority(candidate(10.0, suspended = false, scheduled = true))
-        val consolidated = listeningPriority(candidate(25.0, suspended = false, scheduled = true))
-        assertTrue(fresh >= new && new >= settling && settling > consolidated)
+    fun aSuspendedWordComesInButDoesNotLead() {
+        assertEquals(LISTENING_GROWING_PRIORITY, listeningPriority(growing = false, suspended = true))
+        assertEquals(LISTENING_GROWING_PRIORITY, listeningPriority(growing = true, suspended = true))
     }
 
     /**
@@ -136,10 +57,10 @@ class ListeningPriorityTests {
      */
     @Test
     fun theRecallGapIsLongForAHeldWordAndShortForAnUnseenOne() {
-        assertEquals(RECALL_GAP_HELD_MS, recallGap(candidate(5.0, suspended = false, scheduled = true)))
-        assertEquals(RECALL_GAP_FRESH_MS, recallGap(candidate(0.0, suspended = false, scheduled = false)))
+        assertEquals(RECALL_GAP_HELD_MS, recallGap(candidate(growing = false, suspended = false, scheduled = true)))
+        assertEquals(RECALL_GAP_FRESH_MS, recallGap(candidate(growing = false, suspended = false, scheduled = false)))
         // Suspended is still a word the learner has answered — the gap follows the history,
         // not the box's decision about it.
-        assertEquals(RECALL_GAP_HELD_MS, recallGap(candidate(9.0, suspended = true, scheduled = true)))
+        assertEquals(RECALL_GAP_HELD_MS, recallGap(candidate(growing = true, suspended = true, scheduled = true)))
     }
 }

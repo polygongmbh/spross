@@ -3,6 +3,7 @@ package net.spross.kern.listen
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.Growth
 import net.spross.kern.box.Inventory
+import net.spross.kern.box.Statistics
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.audible
 import net.spross.kern.model.Card
@@ -52,19 +53,21 @@ object ListeningPool {
      * The full pool. [hasTargetVoice] / [hasSourceVoice] are whether this device can say
      * ANYTHING in each language, answered by the platform's synthesizer at call time.
      *
-     * **The pool is the whole sayable join, not a composed subset** — every joined card that
-     * both halves of a turn can say, scheduled and unseen alike, suspended included. A
-     * suspended word — whether hand-suspended or a shaky leech (README §5) — is exactly the
-     * kind `Inventory.active` drops, and those are the words an hour of listening is for.
-     * Suspension pushes a word out of the box's own queue; it was never a statement that the
-     * learner should stop meeting the word.
+     * **The pool is the sayable join short of the grown words, not a composed subset** — every
+     * joined card that both halves of a turn can say, scheduled and unseen alike, suspended
+     * included. A suspended word — whether hand-suspended or a shaky leech (README §5) — is
+     * exactly the kind `Inventory.active` drops, and those are the words an hour of listening
+     * is for. Suspension pushes a word out of the box's own queue; it was never a statement
+     * that the learner should stop meeting the word. A fully grown word
+     * (`Statistics.isConsolidated`) is the one exclusion: it is what the box already calls
+     * done, and it is back in the pool the moment it lapses.
      *
      * Unseen words are in it too, so a learner a few words in hears a STREAM of new words
      * rather than lapping the handful they hold — the mode's cheapest breadth. They enter
      * through `Growth.isIntroducible`: a phrase whose components have not landed is not ready
      * to be heard either. Hearing one does NOT introduce it — introduction is the first
      * answer, and listening answers nothing. With the whole catalog in the pool, the deal does
-     * the steering: what is not sticking leads, and everything else is mixed in.
+     * the steering: what is not sticking leads, and the rest is mixed in behind it.
      *
      * What comes back is the PLAY ORDER, not merely a stable one — `listeningOrder` deals the
      * lanes into the sequence a run walks, so an empty box still opens on its basics. [seed]
@@ -87,9 +90,12 @@ object ListeningPool {
         val sayable = joined.filter { sayable(it, catalog, source, target, hasTargetVoice, hasSourceVoice) }
         val scheduled = sayable.mapNotNull { card ->
             val scheduling = box.scheduling[card.id] ?: return@mapNotNull null
+            // why: a fully grown word is what the box already calls done, and the hour is for
+            // what is not — left in, a well-used box would open on the words it trusts most.
+            if (Statistics.isConsolidated(box, scheduling)) return@mapNotNull null
             ListeningCandidate(
                 card = card,
-                stability = scheduling.memory?.stability ?: 0.0,
+                growing = Statistics.isGrowing(box, scheduling),
                 suspended = scheduling.suspended,
                 scheduled = true,
                 // Introduction dequeues (`Answer.kt`), so a scheduled card is never packed.
@@ -104,7 +110,7 @@ object ListeningPool {
             .filter { box.scheduling[it.id] == null && Growth.isIntroducible(box, it) }
             .map {
                 ListeningCandidate(
-                    it, stability = 0.0, suspended = false, scheduled = false,
+                    it, growing = false, suspended = false, scheduled = false,
                     queued = it.id in packedRank, packedRank = packedRank[it.id] ?: 0,
                 )
             }

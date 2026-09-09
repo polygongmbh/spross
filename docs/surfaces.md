@@ -17,21 +17,21 @@ the review loop itself, and the auto-advance beats these share with it, are `des
   no streak, so a run costs the box nothing and can be closed at any moment. It has no end
   screen for the drills' reason — a run the learner ends when they like has nothing to
   celebrate — and no way of ending by itself: it laps for as long as it is left playing.
-- **What it plays is the box, dealt into an order by how settled a word is** — stability is
-  the whole ladder: just-learned and just-lapsed words lead, the not-quite-settled rotate in
-  the middle, and consolidated ones come round least often — and never by what is due, since a
-  schedule is about when to ASK and nothing is being asked. Words you have PACKED sit just
-  under the shaky ones, so the mode that asks the least of you still honors the queue the
-  day's round does. Suspended words are in the pool: hand-suspending a word takes it out of
-  the rotation, which makes the words you set aside exactly the ones a due-driven surface
-  would never reach — they pay a toll rather than dropping to the back, so they come in
-  without taking the hour over. The pool is your WHOLE sayable vocabulary, new words
-  included, so when you hold few words the run streams the new ones — hearing a word you have
-  never answered, target-meaning-target, is the mode's cheapest breadth — and a language you
-  have only just started plays from its very first word onward rather than from anywhere in
-  the catalog. Every word in the pool is heard before any of them comes back, and then the run
-  laps. Hearing one does NOT introduce it: introduction is the first ANSWER, and this surface
-  has none. The rule and its numbers are `../kern/docs/turns.md`.
+- **What it plays is the box, short of the words it already calls grown, shakiest first** —
+  the box's own growing bar is the whole ladder: the words still short of it play first, all
+  of them, before a word past it is heard at all, and then they keep coming back among the
+  growing ones — the fewer are slipping, the more often each of them returns, though never
+  inside thirty turns. Fully grown words are not in the pool: the hour is for what is not
+  sticking. Never by what is due, since a schedule is about when to ASK and nothing is being
+  asked. New words are a fixed two turns in five from the very first turn — hearing a word you
+  have never answered, target-meaning-target, is the mode's cheapest breadth — with the words
+  you have PACKED leading them, so the mode that asks the least of you still honors the queue
+  the day's round does, and a language you have only just started plays from its basics
+  onward rather than from anywhere in the catalog. Suspended words are in the pool:
+  hand-suspending a word takes it out of the rotation, which makes the words you set aside
+  exactly the ones a due-driven surface would never reach — they come in with the growing
+  ones rather than leading. Hearing a word does NOT introduce it: introduction is the first
+  ANSWER, and this surface has none. The rule and its numbers are `../kern/docs/turns.md`.
 - **It plays with the screen locked.** That is the point of it — the mode is for the hours
   the phone is in a pocket, and one that stopped at the lock screen would be a mode for
   staring at a phone that is already speaking. Both platforms put the run on the lock screen

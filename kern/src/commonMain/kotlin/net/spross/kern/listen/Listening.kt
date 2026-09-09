@@ -3,7 +3,6 @@ package net.spross.kern.listen
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.emojiCue
 
-import net.spross.kern.box.MATURED_STABILITY
 import net.spross.kern.catalog.Playback
 import net.spross.kern.model.Card
 import net.spross.kern.model.fnv1a64
@@ -175,19 +174,23 @@ fun fadedGainDb(gainDb: Double, capDb: Double, fadeDb: Double): Double {
 
 
 /**
- * A word the playlist may say, plus the facts about it the priority reads that a [Card]
+ * A word the playlist may say, plus the facts about it the deal reads that a [Card]
  * cannot carry.
  *
- * [stability] is FSRS's own figure in days, read from `CardScheduling` and never re-derived —
- * the whole priority ladder is a function of it. [suspended] and [scheduled] are the two facts
- * that decide whether that figure may be believed at all: an unscheduled card has no history,
- * and a suspended one's history has already been acted on (see [listeningPriority]).
- * [queued] is the learner's own say, which no schedule carries.
+ * [growing] is the box's own bar, read from `CardScheduling` and never re-derived — the whole
+ * ladder is a function of it. [suspended] and [scheduled] are the two facts that decide whether
+ * it may be read at all: an unscheduled card has no history, and a suspended one's history has
+ * already been acted on (see [listeningPriority]). [queued] is the learner's own say, which no
+ * schedule carries.
  */
 data class ListeningCandidate(
     val card: Card,
-    /** FSRS stability in days — the whole priority ladder reads off this one figure. */
-    val stability: Double,
+    /**
+     * Whether the word has cleared the box's growing bar (`Statistics.isGrowing`) — the one
+     * reading the ladder takes. Read from the box rather than re-derived from a stability, so
+     * a lapsed word is shaky here exactly as it is everywhere else, whatever it once reached.
+     */
+    val growing: Boolean,
     val suspended: Boolean,
     /** Whether the card carries a schedule — i.e. whether the learner has ever answered it. */
     val scheduled: Boolean,
@@ -205,71 +208,48 @@ data class ListeningCandidate(
 )
 
 /**
- * Where a never-answered word stands, set rather than read — it has no stability to ladder
- * on. A focus tier: a first hearing is the mode's cheapest breadth, and new words are met
- * alongside the ones that are not sticking.
+ * The share of a run's turns that go to words the learner has never answered — two in five,
+ * from the very first turn, whatever the box holds.
+ *
+ * Audio is the cheapest exposure a word never met can get: nothing is asked, nothing is owed,
+ * and a first hearing costs a few seconds. So the unseen words are not a Sprosse of the ladder
+ * but a fixed slice beside it — the shakiest words own the opening, and every second or third
+ * turn is still a word the learner has not met.
  */
-const val LISTENING_NEW_PRIORITY: Int = 4
+const val LISTENING_NEW_SHARE: Double = 0.4
 
 /**
- * Where a PACKED word stands — one Sprosse above the rest of the unseen ones.
+ * How many turns a held word waits, at the least, before it is said again.
  *
- * Packing is the learner saying *these words next*, and every other surface honors it
- * (`Growth.newCandidates` leads with it, the widget gives it its first tier). One Sprosse is the
- * whole of the ask: it puts the packed words inside the opening turns without letting them
- * lead a word that is actively falling out, which is what the hour is for.
+ * A lane's words come back as often as its share and its size allow, so a box holding two
+ * shaky words would otherwise say one of them every other turn all evening. Thirty turns is
+ * a few minutes — long enough that a return is a return, not an echo — and the turns a small
+ * lane cannot fill fall to whichever lane is next.
  */
-const val LISTENING_QUEUED_PRIORITY: Int = 5
+const val LISTENING_RETURN_FLOOR_TURNS: Int = 30
 
-/** The top of the stability ladder — a word at about zero stability (just learned, just lapsed). */
-const val LISTENING_MAX_STABILITY_PRIORITY: Int = 6
+/** The top of the listening ladder: a scheduled word still short of the growing bar. */
+const val LISTENING_SHAKY_PRIORITY: Int = 2
 
-/**
- * Ascending stability ceilings separating the six Sprossen — each step roughly doubling the
- * last, so the fast-moving early days of a word's life get the fine distinctions while the
- * ladder still reaches all the way to [MATURED_STABILITY]: only a word kern itself already
- * calls matured — a month out from its next review — earns the floor. A fixed per-Sprosse
- * step put the floor at 10 days, and a box reviewed for a while clears that in no time,
- * piling almost everything into the one slowest-dealt lane; this staircase gives the
- * not-quite-settled range room to actually settle before it does.
- */
-val LISTENING_STABILITY_BAND_CEILINGS: List<Double> = listOf(2.0, 5.0, 10.0, 20.0, MATURED_STABILITY)
+/** The ladder's floor: a word past the growing bar, or a suspended one. */
+const val LISTENING_GROWING_PRIORITY: Int = 1
 
 /**
- * What being suspended costs a word on the ladder — a toll, not a floor.
+ * Where a scheduled word stands on the listening ladder — two Sprossen, read off the box's own
+ * bar rather than a ladder of listening's own.
  *
- * Two Sprossen: enough that a leech does not lead the hour, small enough that a shaky one still
- * comes in early. See [listeningPriority] for why a leech is not sent to the back at all.
+ * A word short of `growingStability` (`Statistics.isGrowing`, so a lapsed word is shaky whatever
+ * it once reached) leads: it is the whole point of the hour. A word past it is still worth
+ * hearing, and takes the floor. A fully grown word is not on the ladder at all — `ListeningPool`
+ * leaves it out — so the floor is the growing band, not a dumping ground.
+ *
+ * A SUSPENDED word takes the floor whatever its bar. `ListeningPool` keeps leeches in the pool
+ * because they are what an hour of listening is for, and this is the surface that can still
+ * reach them — but a word the box has given up on does not lead the hour over the ones it is
+ * still working on: it comes in, it does not lead.
  */
-const val LISTENING_SUSPENDED_PENALTY: Int = 2
-
-/**
- * Where a candidate stands on the listening draw, as one ladder in STABILITY — the higher a
- * word's stability, the lower its place. Higher priority means heard earlier and oftener.
- *
- * A word at zero stability (just learned, or just lapsed back down) is the whole point of
- * the hour and leads; each ceiling in [LISTENING_STABILITY_BAND_CEILINGS] it has passed costs
- * a point, so the not-quite-settled rotate in the middle and the consolidated ones are pushed
- * to the end — at the bare floor, still worth hearing, never what the hour is about.
- *
- * An UNSCHEDULED word has no stability to read, so its Sprosse is set: [LISTENING_NEW_PRIORITY],
- * or [LISTENING_QUEUED_PRIORITY] where the learner packed it.
- *
- * A SUSPENDED word keeps the Sprosse its stability earned, less [LISTENING_SUSPENDED_PENALTY].
- * A hard floor would contradict `ListeningPool`, which puts leeches in the pool precisely
- * because they are what an hour of listening is FOR: suspension takes a word out of the
- * box's rotation, and this is the surface that can still reach it. So a shaky leech lands at
- * Sprosse 3 or 4 — it comes in, it does not lead.
- */
-fun listeningPriority(candidate: ListeningCandidate): Int {
-    if (!candidate.scheduled) {
-        return if (candidate.queued) LISTENING_QUEUED_PRIORITY else LISTENING_NEW_PRIORITY
-    }
-    val bandsPassed = LISTENING_STABILITY_BAND_CEILINGS.count { candidate.stability >= it }
-    val sprosse = LISTENING_MAX_STABILITY_PRIORITY - bandsPassed
-    val tolled = if (candidate.suspended) sprosse - LISTENING_SUSPENDED_PENALTY else sprosse
-    return tolled.coerceIn(1, LISTENING_MAX_STABILITY_PRIORITY)
-}
+fun listeningPriority(growing: Boolean, suspended: Boolean): Int =
+    if (growing || suspended) LISTENING_GROWING_PRIORITY else LISTENING_SHAKY_PRIORITY
 
 /**
  * The gap between the target word and its meaning: [RECALL_GAP_HELD_MS] for a word the
@@ -280,22 +260,6 @@ fun listeningPriority(candidate: ListeningCandidate): Int {
  */
 fun recallGap(candidate: ListeningCandidate): Long =
     if (candidate.scheduled) RECALL_GAP_HELD_MS else RECALL_GAP_FRESH_MS
-
-/**
- * What a candidate is dealt ALONGSIDE — its [priority] plus what KIND of word it is.
- *
- * The three kinds do not share a lane even at the same number, because only the scheduled
- * one's number is a measurement. New and packed words carry no stability, so their Sprosse is a
- * rate the app chose; sharing Sprosse 4 would let three hundred unseen words crowd out the
- * twenty mid-stability ones that happened to score the same.
- */
-private data class ListeningLane(val scheduled: Boolean, val queued: Boolean, val priority: Int)
-
-private fun laneOf(candidate: ListeningCandidate): ListeningLane = ListeningLane(
-    scheduled = candidate.scheduled,
-    queued = !candidate.scheduled && candidate.queued,
-    priority = listeningPriority(candidate),
-)
 
 /**
  * The packed lane's own within-lane order: most recently packed first ([ListeningCandidate.packedRank]),
@@ -347,57 +311,95 @@ private fun newWordOrder(seed: Long): Comparator<ListeningCandidate> = compareBy
     { it.card.id },
 )
 
-private class Dealt(val candidate: ListeningCandidate, val at: Double, val priority: Int)
-
-private val dealOrder: Comparator<Dealt> = compareBy(
-    { it.at },
-    { -it.priority },
-    { it.candidate.card.seedIndex },
-    { it.candidate.card.id },
-)
+/**
+ * One lane of the deal: its words in their within-lane order, how far it has walked, and when
+ * it is next due on the deal's clock. The held lanes CYCLE — after their first pass they start
+ * over at their head — and the unseen lane is spent once it has said every word once.
+ */
+private class Lane(val members: List<ListeningCandidate>, val priority: Int, val cycles: Boolean) {
+    var cursor: Int = 0
+    var nextAt: Double = 0.0
+    var open: Boolean = false
+    val next: ListeningCandidate get() = members[cursor % members.size]
+    val firstPassDone: Boolean get() = cursor >= members.size
+    val spent: Boolean get() = !cycles && firstPassDone
+}
 
 /**
- * The playlist: every candidate in the order it will be heard, dealt rather than drawn.
+ * The playlist: the sequence a run walks, dealt turn by turn rather than sorted.
  *
- * Each lane is spread evenly over the whole run — the *n*-th candidate of a lane of priority
- * *p* is placed at `(n + 0.5) / p`, and everything is sorted by that placement. A lane of
- * priority 6 therefore advances six times faster than one of priority 1, which reproduces the
- * old weighted draw's proportions without a die: every lane reaches the ear, the high ones
- * simply reach it more often, and a long run rotates the shaky and packed words back through
- * as it laps.
+ * The shaky lane opens at the first turn and plays every word it holds before the growing
+ * lane opens at all — a learner with plenty of words slipping hears those, not a word the box
+ * already trusts. From then on both are open, splitting the held turns by Sprosse
+ * ([listeningPriority], two to one), and each lane starts over at its own head when it runs
+ * out: no word comes back before the rest of its Sprosse has, and the fewer words a Sprosse
+ * holds the sooner each of them returns. [LISTENING_RETURN_FLOOR_TURNS] is the one brake — a
+ * word said that recently waits, and the turn goes to whichever lane is next.
  *
- * A plain sort by priority is what this exists instead of. It would empty Sprosse 6, then Sprosse 5,
- * then spend the whole run inside a Sprosse-4 block of every unseen word in the catalog — Sprossen
- * 3, 2 and 1 would never be reached in a session at all.
+ * The unseen lane is not a Sprosse but a fixed slice, [LISTENING_NEW_SHARE] of the turns from
+ * the very first one, and it closes once every unseen word has been said once. Each open lane
+ * is due every `1 / share` turns on one shared clock; the earliest due plays, a tie going to
+ * the higher Sprosse. The deal ends when every held Sprosse has played through once and the
+ * unseen lane is spent, and the run laps it from the head — so a box holding nothing scheduled
+ * hears its unseen words once through, basics first.
  *
- * WITHIN a lane the order depends on what the lane is. Packed words play most-recently-packed
- * first ([packedOrder]) — the same order `Growth.enqueuedEligible` introduces them in, so
- * listening and review agree on which packed word is next. Packing named its own order, so
- * this one never reshuffles with [seed]: a shuffle would be second-guessing the learner's own
- * ask. Plain new words split basics-first, then hashed within each half ([newWordOrder]): an
- * empty box still opens on greetings, but no single word is pinned to the front forever.
- * Scheduled words are hashed by card id outright, because a fixed catalog order would let seed
- * neighbors — often related concepts — be heard in the same sequence every run, and a word
- * half-learned from its neighbor is what `Inventory.dueOrder` fights. Both the scheduled and
- * plain-new hashes are salted with [seed], so their sequence also changes between two dealings
- * of an otherwise-unchanged box, not only when a review moves a word between lanes. [seed] is
- * opaque to kern — it only folds the number into the hash, so whatever a caller hands in (the
- * current instant, today) is theirs to choose.
+ * WITHIN a lane the order depends on what the lane is. Packed words lead the unseen lane,
+ * most-recently-packed first ([packedOrder]) — the same order `Growth.enqueuedEligible`
+ * introduces them in, so listening and review agree on which packed word is next. Packing
+ * named its own order, so this one never reshuffles with [seed]: a shuffle would be
+ * second-guessing the learner's own ask. Plain new words split basics-first, then hashed
+ * within each half ([newWordOrder]): an empty box still opens on greetings, but no single word
+ * is pinned to the front forever. Scheduled words are hashed by card id outright, because a
+ * fixed catalog order would let seed neighbors — often related concepts — be heard in the same
+ * sequence every run, and a word half-learned from its neighbor is what `Inventory.dueOrder`
+ * fights. Both the scheduled and plain-new hashes are salted with [seed], so their sequence
+ * also changes between two dealings of an otherwise-unchanged box. [seed] is opaque to kern —
+ * it only folds the number into the hash, so whatever a caller hands in (the current instant,
+ * today) is theirs to choose.
  *
- * Total and deterministic FOR ONE SEED on both platforms: placement, then priority
- * descending, then catalog seed index, then id.
+ * Total and deterministic FOR ONE SEED on both platforms.
  */
-fun listeningOrder(candidates: List<ListeningCandidate>, seed: Long): List<ListeningCandidate> =
-    candidates.groupBy(::laneOf)
-        .flatMap { (lane, members) ->
-            val within = when {
-                lane.scheduled -> hashedOrder(seed)
-                lane.queued -> packedOrder
-                else -> newWordOrder(seed)
-            }
-            members.sortedWith(within).mapIndexed { n, candidate ->
-                Dealt(candidate, (n + 0.5) / lane.priority, lane.priority)
-            }
-        }
-        .sortedWith(dealOrder)
-        .map { it.candidate }
+fun listeningOrder(candidates: List<ListeningCandidate>, seed: Long): List<ListeningCandidate> {
+    val (scheduled, unseen) = candidates.partition { it.scheduled }
+    val ladder = scheduled.groupBy { listeningPriority(it.growing, it.suspended) }
+        .entries.sortedByDescending { it.key }
+        .map { (priority, members) -> Lane(members.sortedWith(hashedOrder(seed)), priority, cycles = true) }
+    val (packed, plain) = unseen.partition { it.queued }
+    val fresh = Lane(packed.sortedWith(packedOrder) + plain.sortedWith(newWordOrder(seed)), priority = 0, cycles = false)
+    val lanes = ladder + fresh
+
+    fun step(lane: Lane): Double {
+        val held = ladder.filter { it.open }
+        if (lane === fresh) return if (held.isEmpty()) 1.0 else 1.0 / LISTENING_NEW_SHARE
+        val heldShare = if (fresh.open) 1.0 - LISTENING_NEW_SHARE else 1.0
+        return held.sumOf { it.priority } / (heldShare * lane.priority)
+    }
+
+    var clock = 0.0
+    fun open(lane: Lane) {
+        lane.open = true
+        lane.nextAt = clock + step(lane) / 2
+    }
+    ladder.firstOrNull()?.let(::open)
+    if (fresh.members.isNotEmpty()) open(fresh)
+
+    val playlist = mutableListOf<ListeningCandidate>()
+    val lastSaid = mutableMapOf<String, Int>()
+    while (!(ladder.all { it.firstPassDone } && fresh.spent)) {
+        // A first pass never repeats, and the unseen lane never does, so something is always due.
+        val lane = lanes
+            .filter { it.open && playlist.size - (lastSaid[it.next.card.id] ?: Int.MIN_VALUE / 2) >= LISTENING_RETURN_FLOOR_TURNS }
+            .minWith(compareBy({ it.nextAt }, { -it.priority }))
+        val said = lane.next
+        lastSaid[said.card.id] = playlist.size
+        playlist += said
+        lane.cursor += 1
+        // why: a lane held back by the floor resumes its pace from now rather than replaying
+        // the lag — otherwise it would crowd the next turns to catch up.
+        clock = maxOf(clock, lane.nextAt)
+        lane.nextAt = clock + step(lane)
+        if (lane.spent) lane.open = false
+        if (lane.cycles && lane.cursor == lane.members.size) ladder.firstOrNull { !it.open }?.let(::open)
+    }
+    return playlist
+}

@@ -20,7 +20,7 @@ import net.spross.kern.model.Realization
 class ListeningRunTests {
 
     private fun candidates(n: Int): List<ListeningCandidate> = (1..n).map {
-        ListeningCandidate(Box.word(it), stability = 5.0, suspended = false, scheduled = true, queued = false, packedRank = 0)
+        ListeningCandidate(Box.word(it), growing = false, suspended = false, scheduled = true, queued = false, packedRank = 0)
     }
 
     private fun run(pool: List<ListeningCandidate>): ListeningRunState =
@@ -35,23 +35,6 @@ class ListeningRunTests {
             state = ListeningRun.reduce(state, ListeningIntent.Advance).state
         }
         return ids
-    }
-
-    /**
-     * RULE: no word comes back before the WHOLE pool has lapped.
-     * WHY: what the old 24-card recency ring bought, kept and made stronger. Without it a
-     * short pool says the same words all evening, which is the one way a playlist can be
-     * worse than silence — and a lap is a promise a ring of a fixed size could not make.
-     */
-    @Test
-    fun noWordComesBackBeforeThePoolHasLapped() {
-        val pool = candidates(40)
-        val ids = heard(pool, turns = 200)
-
-        for (index in ids.indices) {
-            val lap = ids.subList(maxOf(0, index - (pool.size - 1)), index)
-            assertFalse(ids[index] in lap, "${ids[index]} repeated inside the lap at $index")
-        }
     }
 
     /**
@@ -87,7 +70,7 @@ class ListeningRunTests {
     fun aRunPlaysThePoolInTheOrderItWasHanded() {
         // Deliberately NOT catalog order: the walk must not quietly repair it.
         val pool = listOf(7, 2, 9, 1).map {
-            ListeningCandidate(Box.word(it), stability = 5.0, suspended = false, scheduled = true, queued = false, packedRank = 0)
+            ListeningCandidate(Box.word(it), growing = false, suspended = false, scheduled = true, queued = false, packedRank = 0)
         }
 
         assertEquals(listOf("w07", "w02", "w09", "w01"), heard(pool, turns = 4))
@@ -127,7 +110,7 @@ class ListeningRunTests {
     fun aTurnCarriesEveryBeatAndBothForms() {
         val bread = ListeningCandidate(
             card = gendered("bread", source = "das Brot", target = "mkate", article = "das"),
-            stability = 5.0, suspended = false, scheduled = true, queued = false, packedRank = 0,
+            growing = false, suspended = false, scheduled = true, queued = false, packedRank = 0,
         )
         val turn = assertNotNull(run(listOf(bread)).turn)
 
