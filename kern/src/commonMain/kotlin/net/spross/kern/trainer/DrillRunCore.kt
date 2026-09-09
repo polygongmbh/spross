@@ -7,9 +7,10 @@ import net.spross.kern.session.AnswerOutcome
  * best it reached, the misses in a row, the outcomes the tally reads, how many questions are
  * done, and the prompts already answered right.
  *
- * A run's own business is its ladder and its questions — those differ per drill and stay with
- * it. These six move the same way in all of them, so an answer is booked here once ([book]);
- * four copies of one piece of arithmetic is how two streaks come to disagree.
+ * A run's own business is the questions it draws and the ladder it climbs where that ladder is
+ * its own; the typed runs share theirs down to the verdicts ([TypedDrillVerdicts]). These six
+ * move the same way in every drill, so an answer is booked here once ([book]); four copies of
+ * one piece of arithmetic is how two streaks come to disagree.
  *
  * Each run state embeds one and forwards the fields it shows, so nothing outside kern has to
  * know the counters moved house.

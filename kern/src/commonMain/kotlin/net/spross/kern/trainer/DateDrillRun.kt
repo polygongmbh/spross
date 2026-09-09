@@ -1,10 +1,7 @@
 package net.spross.kern.trainer
 
 import kotlin.random.Random
-import net.spross.kern.session.AdvanceTier
-import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.Match
-import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
 /**
@@ -108,11 +105,9 @@ object DateDrillRun {
      */
     fun close(state: DateDrillRunState, standingRecord: Int): DateDrillClose {
         val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
-        val pending = when (state.feedback) {
-            TurnFeedback.Correct -> advanced(state, correct = true, clean = true)
-            is TurnFeedback.Almost -> advanced(state, correct = true, clean = false)
-            else -> state
-        }
+        val pending = TypedDrillVerdicts.pending(state.feedback)
+            ?.let { advanced(state, it.correct, it.clean) }
+            ?: state
         val ended = pending.copy(feedback = TurnFeedback.Neutral, otherWord = null, finished = true)
         val summary = if (ended.done == 0) {
             null
@@ -125,92 +120,38 @@ object DateDrillRun {
 
     // MARK: - Intents
 
-    /**
-     * "Finishing the reading IS the answer" — the live approve, the atlas run's rule.
-     * EXACT only: the typo budget would fire a letter early and grade the reading before
-     * it was finished, and backing out of a finished one withdraws the approval.
-     */
+    /** "Finishing the reading IS the answer" — the live approve ([TypedDrillVerdicts.typed]). */
     private fun typed(state: DateDrillRunState, text: String): DateDrillReduction {
-        if (state.feedback is TurnFeedback.Almost || state.feedback == TurnFeedback.Revealed) {
-            return unchanged(state)
-        }
-        if (grade(text, state.task, state.config) != Match.Exact) {
-            val withdrawn = if (state.feedback == TurnFeedback.Correct) {
-                state.copy(feedback = TurnFeedback.Neutral)
-            } else {
-                state
-            }
-            return DateDrillReduction(withdrawn, listOf(DrillEffect.CancelAdvance))
-        }
-        // why: the cue sounds once per approval — a keystroke inside an already-approved
-        // reading must not re-chime on every letter.
-        val tone: List<DrillEffect> = if (state.feedback == TurnFeedback.Correct) {
-            emptyList()
-        } else {
-            listOf(DrillEffect.Tone(ToneKind.Correct))
-        }
-        return DateDrillReduction(
-            state.copy(feedback = TurnFeedback.Correct),
-            tone + DrillEffect.ArmAdvance(AdvanceTier.Live),
-        )
+        val verdict = TypedDrillVerdicts.typed(state.feedback) {
+            grade(text, state.task, state.config) == Match.Exact
+        } ?: return unchanged(state)
+        return DateDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
     private fun submit(state: DateDrillRunState, text: String): DateDrillReduction {
         if (!state.owesAnswer || text.trim().isEmpty()) return unchanged(state)
-        return when (val match = grade(text, state.task, state.config)) {
-            Match.Exact -> DateDrillReduction(
-                state.copy(feedback = TurnFeedback.Correct),
-                listOf(
-                    DrillEffect.Silence,
-                    DrillEffect.Tone(ToneKind.Correct),
-                    DrillEffect.ArmAdvance(AdvanceTier.Explicit),
-                ),
-            )
-            // why: no beat on a slip — the pause shows the proper spelling and waits for the
-            // tap that books it almost, so the keyboard has to give the button back.
-            is Match.Typo -> DateDrillReduction(
-                state.copy(feedback = TurnFeedback.Almost(match.corrected, AlmostReason.Typo)),
-                listOf(
-                    DrillEffect.Silence,
-                    DrillEffect.Tone(ToneKind.Correct),
-                    DrillEffect.ReleaseFocus,
-                ),
-            )
-            else -> DateDrillReduction(
-                state.copy(feedback = TurnFeedback.Revealed, otherWord = match as? Match.OtherWord),
-                listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong)),
-            )
-        }
+        val verdict = TypedDrillVerdicts.submit(grade(text, state.task, state.config))
+        return DateDrillReduction(
+            state.copy(feedback = verdict.feedback, otherWord = verdict.otherWord),
+            verdict.effects,
+        )
     }
 
     private fun reveal(state: DateDrillRunState): DateDrillReduction {
         if (!state.owesAnswer) return unchanged(state)
-        // why: the field stays EMPTY — the card is where the answer stands, and typing it
-        // in for the learner would put the same reading on screen twice.
-        return DateDrillReduction(
-            state.copy(feedback = TurnFeedback.Revealed),
-            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal)),
-        )
+        val verdict = TypedDrillVerdicts.reveal()
+        return DateDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
     private fun confirm(state: DateDrillRunState, rng: Random): DateDrillReduction =
-        when (state.feedback) {
-            TurnFeedback.Neutral -> unchanged(state)
-            TurnFeedback.Correct -> booked(state, correct = true, clean = true, rng = rng)
-            // The almost hold: accepted, but the pause showed a spelling, so the Sprosse stays.
-            is TurnFeedback.Almost -> booked(state, correct = true, clean = false, rng = rng)
-            // why: no "I knew it" in a drill — the questions are generated, so self-reporting
-            // after seeing the answer proves nothing; revealed simply counts as a miss.
-            TurnFeedback.Revealed -> booked(state, correct = false, clean = true, rng = rng)
-        }
+        TypedDrillVerdicts.confirmed(state.feedback)
+            ?.let { booked(state, it.correct, it.clean, rng) }
+            ?: unchanged(state)
 
-    /** The beat only ever arms on a clean answer, so nothing else may ride it. */
     private fun elapsed(state: DateDrillRunState, rng: Random): DateDrillReduction =
-        if (state.feedback == TurnFeedback.Correct) {
-            booked(state, correct = true, clean = true, rng = rng)
-        } else {
-            unchanged(state)
-        }
+        TypedDrillVerdicts.elapsed(state.feedback)
+            ?.let { booked(state, it.correct, it.clean, rng) }
+            ?: unchanged(state)
 
     // MARK: - Booking
 

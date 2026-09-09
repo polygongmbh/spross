@@ -1,10 +1,7 @@
 package net.spross.kern.trainer
 
 import kotlin.random.Random
-import net.spross.kern.session.AdvanceTier
-import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.Match
-import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
 /**
@@ -100,11 +97,9 @@ object CountryDrillRun {
      */
     fun close(state: CountryDrillRunState, standingRecord: Int): CountryDrillClose {
         val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
-        val pending = when (state.feedback) {
-            TurnFeedback.Correct -> advanced(state, correct = true, clean = true)
-            is TurnFeedback.Almost -> advanced(state, correct = true, clean = false)
-            else -> state
-        }
+        val pending = TypedDrillVerdicts.pending(state.feedback)
+            ?.let { advanced(state, it.correct, it.clean) }
+            ?: state
         val ended = pending.copy(feedback = TurnFeedback.Neutral, otherWord = null, finished = true)
         val summary = if (ended.done == 0) {
             null
@@ -119,94 +114,39 @@ object CountryDrillRun {
 
     /**
      * "Finishing the name IS the answer" — the live approve, the review loop's rule and the
-     * one a learner arrives here already knowing.
-     *
-     * EXACT only, where an explicit check still forgives a slip: the typo budget would fire
-     * a letter early and grade the name before it was finished, and a real slip has to pause
-     * on its correction anyway. Backing out of a finished name withdraws the approval, so
-     * typing PAST the answer never books it.
+     * one a learner arrives here already knowing ([TypedDrillVerdicts.typed]).
      */
     private fun typed(state: CountryDrillRunState, text: String): CountryDrillReduction {
-        if (state.feedback is TurnFeedback.Almost || state.feedback == TurnFeedback.Revealed) {
-            return unchanged(state)
-        }
-        if (grade(text, state.task, state.config) != Match.Exact) {
-            val withdrawn = if (state.feedback == TurnFeedback.Correct) {
-                state.copy(feedback = TurnFeedback.Neutral)
-            } else {
-                state
-            }
-            return CountryDrillReduction(withdrawn, listOf(DrillEffect.CancelAdvance))
-        }
-        // why: the cue sounds once per approval — a keystroke inside an already-approved
-        // name must not re-chime on every letter.
-        val tone: List<DrillEffect> = if (state.feedback == TurnFeedback.Correct) {
-            emptyList()
-        } else {
-            listOf(DrillEffect.Tone(ToneKind.Correct))
-        }
-        return CountryDrillReduction(
-            state.copy(feedback = TurnFeedback.Correct),
-            tone + DrillEffect.ArmAdvance(AdvanceTier.Live),
-        )
+        val verdict = TypedDrillVerdicts.typed(state.feedback) {
+            grade(text, state.task, state.config) == Match.Exact
+        } ?: return unchanged(state)
+        return CountryDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
     private fun submit(state: CountryDrillRunState, text: String): CountryDrillReduction {
         if (!state.owesAnswer || text.trim().isEmpty()) return unchanged(state)
-        return when (val match = grade(text, state.task, state.config)) {
-            Match.Exact -> CountryDrillReduction(
-                state.copy(feedback = TurnFeedback.Correct),
-                listOf(
-                    DrillEffect.Silence,
-                    DrillEffect.Tone(ToneKind.Correct),
-                    DrillEffect.ArmAdvance(AdvanceTier.Explicit),
-                ),
-            )
-            // why: no beat on a slip — the pause shows the proper spelling and waits for the
-            // tap that books it almost, so the keyboard has to give the button back.
-            is Match.Typo -> CountryDrillReduction(
-                state.copy(feedback = TurnFeedback.Almost(match.corrected, AlmostReason.Typo)),
-                listOf(
-                    DrillEffect.Silence,
-                    DrillEffect.Tone(ToneKind.Correct),
-                    DrillEffect.ReleaseFocus,
-                ),
-            )
-            else -> CountryDrillReduction(
-                state.copy(feedback = TurnFeedback.Revealed, otherWord = match as? Match.OtherWord),
-                listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong)),
-            )
-        }
+        val verdict = TypedDrillVerdicts.submit(grade(text, state.task, state.config))
+        return CountryDrillReduction(
+            state.copy(feedback = verdict.feedback, otherWord = verdict.otherWord),
+            verdict.effects,
+        )
     }
 
     private fun reveal(state: CountryDrillRunState): CountryDrillReduction {
         if (!state.owesAnswer) return unchanged(state)
-        // why: the field stays EMPTY — the card is where the answer stands, and typing it in
-        // for the learner would put the same name on screen twice.
-        return CountryDrillReduction(
-            state.copy(feedback = TurnFeedback.Revealed),
-            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal)),
-        )
+        val verdict = TypedDrillVerdicts.reveal()
+        return CountryDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
     private fun confirm(state: CountryDrillRunState, rng: Random): CountryDrillReduction =
-        when (state.feedback) {
-            TurnFeedback.Neutral -> unchanged(state)
-            TurnFeedback.Correct -> booked(state, correct = true, clean = true, rng = rng)
-            // The almost hold: accepted, but the pause showed a spelling, so the Sprosse stays.
-            is TurnFeedback.Almost -> booked(state, correct = true, clean = false, rng = rng)
-            // why: no "I knew it" in a drill — the questions are generated, so self-reporting
-            // after seeing the answer proves nothing; revealed simply counts as a miss.
-            TurnFeedback.Revealed -> booked(state, correct = false, clean = true, rng = rng)
-        }
+        TypedDrillVerdicts.confirmed(state.feedback)
+            ?.let { booked(state, it.correct, it.clean, rng) }
+            ?: unchanged(state)
 
-    /** The beat only ever arms on a clean answer, so nothing else may ride it. */
     private fun elapsed(state: CountryDrillRunState, rng: Random): CountryDrillReduction =
-        if (state.feedback == TurnFeedback.Correct) {
-            booked(state, correct = true, clean = true, rng = rng)
-        } else {
-            unchanged(state)
-        }
+        TypedDrillVerdicts.elapsed(state.feedback)
+            ?.let { booked(state, it.correct, it.clean, rng) }
+            ?: unchanged(state)
 
     // MARK: - Booking
 
