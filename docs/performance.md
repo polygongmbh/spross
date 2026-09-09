@@ -35,6 +35,15 @@ backlog, walk the cards, or ask the catalog anything.
 the round, not the day's report, not a serialization of the document, not a rebuild of
 the grading index. The document is written by the store, off the main thread, coalesced.
 
+The last answer of a round is an answer like any other, and it is the most expensive one:
+finishing books the day, which triggers the immediate save and the snapshots that ride on
+it (`../kern/docs/snapshots.md`). None of that may sit on the frame that raises the summary
+— the watch snapshot alone ranks every scheduled card against each of the sixty entries it
+ships, and on the main thread that pause was the summary's. iOS builds both away from it
+and skips the watch one outright where no watch is paired to receive it; Android has only
+the tile's, and it rides the queued write. The one write still owed before its caller
+returns is Android's fold from `onStop`, which has no later thread to be on.
+
 **Per activation** — the catalog parse, the join, the stored document's decode, the
 per-pair drill content. All of it off the main thread; a profile switch is the only time
 any of it is allowed to run.

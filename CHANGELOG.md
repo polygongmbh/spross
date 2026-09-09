@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- The finished screen now comes up the moment you answer the last card, instead of pausing first.
 - The talk offer stays hidden while your box holds only words you wrote yourself, where the brief would list nothing.
 - Typing the Ukrainian apostrophe in any of its three shapes no longer costs a mistake.
 - A finished round now plays its cheer on Android too.
