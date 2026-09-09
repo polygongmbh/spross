@@ -22,11 +22,10 @@ import SprossKern
 /// where it declares none (uk, whose order IS its alphabet) the table is the
 /// flat list it always was.
 ///
-/// Teaching aids follow the READER, with one fallback rule for both maps:
-/// `hints[source] ?? hints["en"]`, `context[source] ?? context["en"]`. The
-/// Ukrainian rows carry en-only hints while their contextual rows carry de+en —
-/// a reader of neither must not be handed a hint whose context silently
-/// vanished.
+/// Teaching aids follow the READER on Kern's fallback rule
+/// (`AlphabetEntry.hint(reader:)`): the Ukrainian rows carry en-only hints while
+/// their contextual rows carry de+en, and a reader of neither must not be handed
+/// a hint whose context silently vanished.
 ///
 /// State lives on LettersOverview; split out purely for file size.
 extension LettersOverview {
@@ -61,7 +60,7 @@ extension LettersOverview {
     /// the table stays the flat list it always was.
     @ViewBuilder
     private func sectionHeading(_ section: AlphabetSection) -> some View {
-        if let title = reader(section.titles) {
+        if let title = section.title(reader: model.sourceLanguage) {
             Text(verbatim: title)
                 .font(Theme.typography.title)
                 .foregroundStyle(Theme.colors.textSecondary)
@@ -75,12 +74,12 @@ extension LettersOverview {
     private func row(_ entry: AlphabetEntry) -> some View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             header(entry)
-            if let context = reader(entry.context) {
+            if let context = entry.context(reader: model.sourceLanguage) {
                 Text(verbatim: context)
                     .font(Theme.typography.caption)
                     .foregroundStyle(Theme.colors.textSecondary)
             }
-            if let hint = reader(entry.hints) {
+            if let hint = entry.hint(reader: model.sourceLanguage) {
                 Text(verbatim: hint)
                     .font(Theme.typography.subheadline)
                     .foregroundStyle(Theme.colors.textPrimary)
@@ -259,9 +258,5 @@ extension LettersOverview {
     /// alphabet is not a join: the word must stand for everyone.
     private func meaning(of slug: String) -> String? {
         model.catalog?.exampleMeaning(slug: slug, lang: model.sourceLanguage)
-    }
-
-    private func reader(_ aid: [String: String]) -> String? {
-        aid[model.sourceLanguage] ?? aid["en"]
     }
 }

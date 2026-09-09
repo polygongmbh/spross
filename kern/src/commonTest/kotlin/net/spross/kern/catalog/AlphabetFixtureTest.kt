@@ -51,6 +51,20 @@ class AlphabetFixtureTest {
         assertTrue(m.drill) // the default
     }
 
+    /**
+     * The sheet's aids follow the reader and fall back to English: a row read in a
+     * language nobody wrote for it is still better than a blank one.
+     */
+    @Test
+    fun teachingAidsFollowTheReaderThenEnglish() {
+        assertEquals("wie in Maus", de.row("m").hint("de"))
+        assertEquals("as in mouse", de.row("m").hint("uk"))
+        assertEquals("after e, i", de.row("ch-ich").context("de"))
+        assertNull(de.row("m").context("en")) // nothing authored, nothing invented
+        assertEquals("Buchstaben", de.sections.first { it.id == "letters" }.title("de"))
+        assertEquals("The s sounds", de.sections.first { it.id == "s-sounds" }.title("de"))
+    }
+
     @Test
     fun aContextualRowKeepsItsIdAsTheRefAndItsContextByReader() {
         val ich = de.row("ch-ich")

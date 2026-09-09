@@ -25,7 +25,10 @@ data class AlphabetSection(
     val id: String,
     /** Keyed by READER language, on [AlphabetEntry.hints]' rule. */
     val titles: Map<Language, String>,
-)
+) {
+    /** This group's heading for a reader, on [AlphabetEntry.hint]'s rule. */
+    fun title(reader: Language): String? = titles[reader] ?: titles[Catalog.FALLBACK_SOURCE]
+}
 
 /** One row of `catalog/alphabet/<lang>.json`; hand-parsed by [AlphabetParser]. */
 data class AlphabetEntry( // data class: Swift sees value equality (`kern/docs/build.md`)
@@ -61,7 +64,18 @@ data class AlphabetEntry( // data class: Swift sees value equality (`kern/docs/b
     val confusableLook: List<String>,
     /** Refs that SOUND alike, closed both ways at parse. */
     val confusableSound: List<String>,
-)
+) {
+    /**
+     * The teaching aid for a reader, falling back to [Catalog.FALLBACK_SOURCE].
+     *
+     * A sheet row read in English beats a blank one: the aid explains the glyph beside it,
+     * and a reader of neither language is better served by the line than by its absence.
+     */
+    fun hint(reader: Language): String? = hints[reader] ?: hints[Catalog.FALLBACK_SOURCE]
+
+    /** When the glyph takes this value, on [hint]'s rule. */
+    fun context(reader: Language): String? = context[reader] ?: context[Catalog.FALLBACK_SOURCE]
+}
 
 /** The target-side example word: what the drill speaks and cuts its gap word from. */
 data class AlphabetExample(val slug: String, val text: String, val emoji: String?)

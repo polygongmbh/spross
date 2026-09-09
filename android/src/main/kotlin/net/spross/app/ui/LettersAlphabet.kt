@@ -32,6 +32,7 @@ import net.spross.app.letterName
 import net.spross.app.speakOnTap
 import net.spross.kern.catalog.AlphabetEntry
 import net.spross.kern.catalog.AlphabetKind
+import net.spross.kern.catalog.Catalog
 import net.spross.kern.model.Language
 
 /**
@@ -46,13 +47,13 @@ import net.spross.kern.model.Language
  * reference sheet by accident.
  *
  * Rows are whatever the file holds, in authored order, and where the file declares sections
- * they head their runs of rows. Teaching aids follow the READER, with one fallback rule for
- * both maps: the source language, else English.
+ * they head their runs of rows. Teaching aids follow the READER on kern's fallback rule
+ * ([AlphabetEntry.hint]).
  */
 @Composable
 fun AlphabetSection(model: AppModel, language: Language, chrome: Chrome) {
     val alphabet = model.catalog?.alphabet(language) ?: return
-    val reader = model.box?.joinStamp?.source ?: FALLBACK_READER
+    val reader = model.box?.joinStamp?.source ?: Catalog.FALLBACK_SOURCE
     OverviewHeading(chrome.lettersAlphabetTitle)
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         if (alphabet.sections.isEmpty()) {
@@ -60,7 +61,7 @@ fun AlphabetSection(model: AppModel, language: Language, chrome: Chrome) {
             return@Column
         }
         for (section in alphabet.sections) {
-            section.titles.reader(reader)?.let {
+            section.title(reader)?.let {
                 Text(
                     it,
                     style = MaterialTheme.typography.titleMedium,
@@ -109,10 +110,10 @@ private fun AlphabetRow(
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
     ) {
         AlphabetHeader(entry, language, speakName)
-        entry.context.reader(reader)?.let {
+        entry.context(reader)?.let {
             Text(it, style = MaterialTheme.typography.bodySmall, color = Theme.colors.textSecondary)
         }
-        entry.hints.reader(reader)?.let {
+        entry.hint(reader)?.let {
             Text(it, style = MaterialTheme.typography.bodyMedium)
         }
         if (exampleText != null) {
@@ -231,7 +232,3 @@ private fun displayName(entry: AlphabetEntry): String? {
     return if (name.lowercase() in shown) null else name
 }
 
-/** A teaching aid in the reader's language, else English — one rule for every such map. */
-private fun Map<Language, String>.reader(source: Language): String? = this[source] ?: this[FALLBACK_READER]
-
-private const val FALLBACK_READER = "en"
