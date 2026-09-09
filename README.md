@@ -75,7 +75,7 @@ internal TestFlight testers get the same build minutes after the tag, without re
 
 ```sh
 brew install xcodegen        # once
-scripts/bootstrap.sh         # fresh clone: JDK check, first SprossKern framework, xcodegen
+scripts/bootstrap.sh         # fresh clone: JDK check, first SprossKern framework, xcodegen, git hooks
 xcodebuild -project Spross.xcodeproj -scheme Spross \
   -destination 'platform=iOS Simulator,name=iPhone 17' build
 ```
