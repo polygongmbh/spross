@@ -236,7 +236,7 @@ Notable rejections, one line each:
    and no country or variety, so nothing about accent is asserted anywhere.
    Read each es file as "a native speaker says this word".
    The consequence is audible where the two meet — an es-MX voice speaks /s/ where the alphabet's c and z rows
-   promise /θ/ — which is a content decision tracked in `backlog.md`, not a license one.
+   promise /θ/ — which is a content decision tracked in `../catalog/backlog.md`, not a license one.
 3. **Azure S0 terms, if the gaps are ever filled by synthesis.**
    Azure AI Speech is the only provider covering every target language including native `sw-KE`
    with an express commercial grant to the output (~$1–4 for the whole catalog, one-off).
@@ -246,4 +246,4 @@ Notable rejections, one line each:
    which bars generative-AI services in products likely accessed by under-18s — a learning app.
 
 Coverage gaps, install size and the index's missing peak term are engineering debts,
-filed in `backlog.md` rather than here.
+filed in `../catalog/backlog.md` and `backlog.md` rather than here.

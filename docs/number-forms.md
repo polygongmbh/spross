@@ -387,7 +387,7 @@ is the lexicographers saying the same thing.
 Ordinals arrive with a noun-bearing frame or not at all.
 The cardinals' `swahiliNounClass` does not reach them —
 it prefixes a numeral stem, where an ordinal needs the frame itself to carry the concord —
-so the ordinal frame stays open in `backlog.md`.
+so the ordinal frame stays open in `../catalog/backlog.md`.
 
 **Denominators stop at 4.**
 `nusu`, `theluthi` and `robo` are the everyday words;

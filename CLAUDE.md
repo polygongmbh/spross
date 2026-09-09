@@ -127,7 +127,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Docs carry foundations; what the running app or the code answers faster stays out, and a needed cross-link means it is filed wrong.
 - Negations and hardlines only where the opposite is what would otherwise happen.
 - A doc states its content, never its own properties.
-- Out-of-scope discoveries go to `docs/backlog.md` (one-liners with pointers); prune on fix.
+- Out-of-scope discoveries go to `docs/backlog.md`, catalog content to `catalog/backlog.md` (one-liners with pointers); prune on fix.
 - Whose the bundled recordings are and what their licenses oblige — the ship/legal record —
   is `docs/audio-licensing.md`; no other doc restates a license term.
 - Write plans into docs/ and delete them once shipped, even if you did not write the plan
