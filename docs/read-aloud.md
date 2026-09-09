@@ -75,9 +75,8 @@ mutes interact. The engine's half — whether a form may be heard at all — is
   unseen word has nothing to recall and its meaning follows in 0.6 s, and the echo and the
   breath between turns are those same two lengths. Every beat is kern's number
   (`../kern/docs/turns.md`), so the two phones cannot drift on the pacing.
-  It carries no mute button, for the letter drill's reason: entering a surface whose only
-  content is a sound is itself the request to hear one, so neither mute reaches it and the
-  run plays under `.playback`.
+  It carries no mute button, for the letter drill's reason, so neither mute reaches it and
+  the run plays under `.playback`.
   It also takes the audio OVER rather than mixing into it — no `.mixWithOthers`, spoken-audio
   mode, and the session is released on stop so whatever was playing resumes. A mode meant to
   be listened to that lands on top of a podcast is a mode nobody hears; that is the one place

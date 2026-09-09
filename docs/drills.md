@@ -259,6 +259,5 @@ answering rules with is `design.md`'s.
   spelling twice: words carrying the language's hard graphemes, and words this learner has
   forgotten before. Correctness is never color
   alone (checkmark/X over the tint); a miss never auto-advances. Neither mute reaches the
-  drill and it carries no mute button: entering a screen whose only content is a sound is
-  itself the request to hear one (`read-aloud.md`), so no run of it can open on a card with
-  nothing to answer.
+  drill and it carries no mute button (`read-aloud.md` owns why), so no run of it can open
+  on a card with nothing to answer.
