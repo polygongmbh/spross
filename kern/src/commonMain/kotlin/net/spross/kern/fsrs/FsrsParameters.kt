@@ -15,10 +15,9 @@ data class FsrsParameters(
     val desiredRetention: Double = 0.9,
     val maximumIntervalDays: Int = 36500,
     /**
-     * (Re)learning steps in seconds: one growing-backoff ladder shared by a
-     * brand-new word's Learning phase and a lapsed word's Relearning phase
-     * (product ruling 2026-09-01 — `FsrsScheduler`). Default `[10m]`; the
-     * product ships a longer ladder (`model/Config.kt`).
+     * (Re)learning steps in seconds: one ladder shared by a brand-new word's
+     * Learning phase and a lapsed word's Relearning phase (`FsrsScheduler`).
+     * Default `[10m]`; the product ships a longer ladder (`model/Config.kt`).
      */
     val stepsSeconds: List<Long> = listOf(600L),
     /**

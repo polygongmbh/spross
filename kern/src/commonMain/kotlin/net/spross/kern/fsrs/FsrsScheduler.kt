@@ -29,11 +29,10 @@ data class SchedulerOutcome(
 )
 
 /**
- * FSRS-6 (re)learning-steps state machine over [Fsrs]: ONE growing-backoff
- * ladder ([FsrsParameters.stepsSeconds]) shared by Learning and Relearning
- * (product ruling 2026-09-01, supersedes the 2026-08-07 leech ruling and the
- * earlier per-phase split into two arrays) — a new word and a lapsed word
- * wait on the same cadence. Again is the only rating that stays on the ladder:
+ * FSRS-6 (re)learning-steps state machine over [Fsrs]: ONE ladder
+ * ([FsrsParameters.stepsSeconds], whose shape is
+ * [net.spross.kern.model.BoxConfig.stepsSeconds]'s) shared by Learning and
+ * Relearning — a new word and a lapsed word wait on the same cadence. Again is the only rating that stays on the ladder:
  * it climbs rather than resetting to step 0, so repeated fails get spaced
  * further apart instead of repeating the same short wait. Hard, Good and Easy
  * all graduate immediately, from wherever the ladder sits — the ladder spaces
@@ -83,7 +82,7 @@ class FsrsScheduler(val parameters: FsrsParameters = FsrsParameters()) {
         }
     }
 
-    // One growing-backoff ladder, shared by Learning and Relearning: Again climbs it
+    // One ladder, shared by Learning and Relearning: Again climbs it
     // instead of resetting, capped at the last entry; every other rating graduates
     // immediately from wherever it sits — it only spaces out repeated fails, it is
     // not a run of successes to climb back. `step` can arrive as -1 (New's first
