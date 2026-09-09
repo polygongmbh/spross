@@ -38,16 +38,6 @@ struct AnswerInputView: View {
         /// The word was not produced at all. Carries nothing: the CARD holds
         /// the answer in every case, so a copy here could only contradict it.
         case revealed
-
-        /// Graded correct — cleanly or nearly. Callers deciding whether an
-        /// answer STANDS must ask this rather than `== .correct`, or a near
-        /// miss silently stops counting as answered.
-        var isAccepted: Bool {
-            switch self {
-            case .correct, .almost: return true
-            case .neutral, .revealed: return false
-            }
-        }
     }
 
     @Binding var text: String

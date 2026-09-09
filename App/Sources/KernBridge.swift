@@ -75,9 +75,7 @@ extension Rating {
 extension BoxStatistics {
     var activeCards: Int { Int(activeCount) }
     var dueCards: Int { Int(dueCount) }
-    var suspendedCards: Int { Int(suspendedCount) }
     var streakDays: Int { Int(streak) }
-    var longestStreakDays: Int { Int(longestStreak) }
     var consolidatedCards: Int { Int(consolidatedCount) }
     var learningCards: Int { Int(learningCount) }
 
@@ -164,22 +162,6 @@ extension DateDrill {
     func kinds(content: DateDrillContent, level: Int, reverse: Bool) -> [DateTaskKind] {
         kinds(content: content, level: Int32(level), reverse: reverse)
     }
-}
-
-/// The one Sprosse ramp both drills answer to. How long a Sprosse is stays theirs
-/// (`LetterDrill.winsToAdvance` counts a vocabulary, `Trainer.winsToAdvance`
-/// reads the Fast modifier); what a Sprosse does with an answer is kern's.
-extension DrillRamp {
-    func step(level: Int, winsAtLevel: Int, correct: Bool, clean: Bool,
-              winsRequired: Int) -> DrillRamp.SprosseStep {
-        step(level: Int32(level), winsAtLevel: Int32(winsAtLevel),
-             correct: correct, clean: clean, winsRequired: Int32(winsRequired))
-    }
-}
-
-extension DrillRamp.SprosseStep {
-    var nextLevel: Int { Int(level) }
-    var wins: Int { Int(winsAtLevel) }
 }
 
 // MARK: - Kern → Design value types
