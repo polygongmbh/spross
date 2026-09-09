@@ -1,6 +1,6 @@
 package net.spross.kern.design
 
-import java.io.File
+import net.spross.kern.repoText
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -121,25 +121,12 @@ private val canon: Map<String, Swatch> by lazy {
 }
 
 private fun swiftCopy(path: String): Map<String, String> =
-    COPY_TOKEN.findAll(read(path))
+    COPY_TOKEN.findAll(repoText(path))
         .associate { it.groupValues[1].lowercase() to it.groupValues[2].uppercase() }
 
 /** Token name → light hex to dark hex, for the copies that declare both. */
 private fun swiftPairs(path: String): Map<String, Pair<String, String>> =
-    COPY_PAIR.findAll(read(path)).associate {
+    COPY_PAIR.findAll(repoText(path)).associate {
         it.groupValues[1].lowercase() to (it.groupValues[2].uppercase() to it.groupValues[3].uppercase())
     }
 
-/** The repo root, found by walking up the way the real-catalog tests find `catalog/`. */
-private val repoRoot: File by lazy {
-    var dir: File? = File(System.getProperty("user.dir")).absoluteFile
-    while (dir != null) {
-        if (File(dir, CANON).isFile) return@lazy dir
-        dir = dir.parentFile
-    }
-    error("$CANON not found above ${System.getProperty("user.dir")}")
-}
-
-private fun read(path: String): String =
-    File(repoRoot, path).takeIf { it.isFile }?.readText()
-        ?: fail("$path: missing — a palette copy cannot be checked against nothing")
