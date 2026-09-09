@@ -82,11 +82,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## App & UX
 
-- Three kern-free article switches still cite `Theme.swift` as the canonical article list
-  (`Watch/Sources/WatchTheme.swift:41`, `Widgets/Sources/WordWidgetView.swift:224`,
-  `WatchWidgets/Sources/WatchWordWidgetView.swift:62`) where `ArticleTableParityTest` now holds
-  them to `kern/model/Article.kt`, and `web/site.css:1` and `android/src/main/res/values/colors.xml:3`
-  likewise name `Theme.swift` / `ThemeLight.background` as a source of truth that is itself a copy of `Palette.kt`.
 - The letters ladder files no answered-out Sprossen (it has no storage key at all), so its
   circles carry only the entry mark where the atlas and calendar wear a record
   (`LettersOverview+Practice.swift`, `ui/LettersOverviewScreen.kt`) — should the tile and
@@ -204,13 +199,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## Verification gaps
 
-- Prose the sweep left stale outside its lanes: `App/Sources/Screens/TrainerHubView.swift:119`
-  lists `-uitest-trainer numbers|letters` (four values now), `scripts/run-sim.sh:15` and
-  `scripts/run-emu.sh:11` restate the mute semantics `.claude/skills/verify/SKILL.md` owns,
-  `PaletteParityTest.kt:32` keeps a `--rerun-tasks` hedge, `kern/build.gradle.kts:51` still
-  names a catalog edit as a `-Psweeps` trigger, `AudioManifestParser.kt:48` counts
-  "fourteen entries out of 5828", and `CLAUDE.md:24` tells an editor to run
-  `audio-coverage.py --check` by hand now that `scripts/hooks/pre-commit` does.
 - A fully correct typed answer carrying a matched synonym's own article demotes Exact→Typo
   because `AnswerNormalizer.evaluate` reads the leading article back against the card's single
   `grammar.gender` instead of the accepted form it actually matched
