@@ -128,8 +128,8 @@ class AnswerNormalizer(
      * than retyping the words that were already right.
      */
     fun matchingPrefixWordCount(input: String, answer: String): Int {
-        val typed = input.trim().split(whitespaceRun).filter { it.isNotEmpty() }
-        val expected = answer.trim().split(whitespaceRun).filter { it.isNotEmpty() }
+        val typed = words(input)
+        val expected = words(answer)
         var count = 0
         while (count < typed.size && count < expected.size) {
             val a = cleaned(typed[count]).trim()
@@ -272,7 +272,7 @@ class AnswerNormalizer(
      */
     internal fun articlePeeledRemainder(input: String): String? {
         if (maxTyposPerWord != null) return null
-        val tokens = input.split(whitespaceRun).filter { it.isNotEmpty() }
+        val tokens = words(input)
         val first = tokens.firstOrNull() ?: return null
         if (tokens.size < 2 || first.length > MAX_LEADING_SLIP_LENGTH) return null
         if (!first.all { it.isLetter() }) return null
@@ -405,6 +405,13 @@ class AnswerNormalizer(
         private const val MAX_LEADING_SLIP_LENGTH = 4
 
         private val whitespaceRun = Regex("\\s+")
+
+        /**
+         * The words an answer is graded and primed by, so a caller that counts them
+         * ([matchingPrefixWordCount]) and a caller that keeps them cannot disagree.
+         */
+        internal fun words(text: String): List<String> =
+            text.trim().split(whitespaceRun).filter { it.isNotEmpty() }
 
         /**
          * ~⅙ of letters, but never for words under [MIN_TYPO_LENGTH].

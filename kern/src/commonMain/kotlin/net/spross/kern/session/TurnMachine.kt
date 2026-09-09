@@ -219,7 +219,7 @@ class TurnMachine(
      */
     private fun primed(state: TurnState, text: String): String {
         val count = answerNormalizer(state).matchingPrefixWordCount(text, state.answerText)
-        val kept = text.trim().split(WHITESPACE_RUN).filter { it.isNotEmpty() }
+        val kept = AnswerNormalizer.words(text)
             .take(count)
             .joinToString(" ")
         return if (kept.isEmpty()) "" else "$kept "
@@ -354,7 +354,5 @@ class TurnMachine(
     private companion object {
         /** Reaching the exact answer with the reveal in view is recalled-with-help. */
         val RETRY_RATING = Rating.Hard
-
-        val WHITESPACE_RUN = Regex("\\s+")
     }
 }
