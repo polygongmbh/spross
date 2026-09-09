@@ -65,12 +65,12 @@ class FsrsBehavioralTest {
         assertTrue(retry.intervalSeconds >= 86_400L)
     }
 
-    // Product maximum interval 365 caps every schedule regardless of stability.
+    // The product maximum interval caps every schedule regardless of stability.
     @Test
-    fun productMaximumIntervalCapsAtOneYear() {
+    fun productMaximumIntervalCapsEverySchedule() {
         val fsrs = Fsrs(productParameters)
-        assertEquals(365, fsrs.intervalDays(400.0))
-        assertEquals(365, fsrs.intervalDays(36500.0))
+        assertEquals(productParameters.maximumIntervalDays, fsrs.intervalDays(400.0))
+        assertEquals(productParameters.maximumIntervalDays, fsrs.intervalDays(36500.0))
     }
 
     // The bar sits in the gap between the two first answers that pass: FSRS-6
