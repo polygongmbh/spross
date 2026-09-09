@@ -58,7 +58,7 @@ runs are full screens rather than covers — Back mirrors ✕ everywhere, and in
 the reference panel eats Back first — and a fallen record celebrates in the tile's own
 words, without confetti.
 The home-screen tile ships there too, in Glance, and it is ONE grid sized to the tile
-rather than iOS's three families (§ Watch & widgets):
+rather than iOS's three home-screen families (§ Watch & widgets):
 an Android tile is dragged to any shape,
 so a bucket boundary would change what the tile IS over a cell of width nobody can see.
 Columns and rows come off the size the host hands over, against a minimum readable cell
@@ -74,17 +74,19 @@ What has not landed there is `design.md` § Not yet.
 
 - The phone precomputes both snapshots on every persist; the surfaces decode and draw,
   and never compute what the phone could pre-resolve.
-- **iOS's three families differ in kind, not in row count.** WidgetKit offers three fixed
+- **iOS's three home-screen families differ in kind, not in row count.** WidgetKit offers three fixed
   sizes and no shape between them, so each is its own answer. Small is one word with its
   picture and a single stats line. Medium is a short list whose rows meet at a fixed emoji
   column — word right of one edge, meaning left of the other, both touching the picture — so
   a pair is read in place instead of scanned across the tile. Large is a poster of stacked
   cells rather than a longer list: equal rows have no hierarchy, so a glance reads none of
   them, and a cell gives each side the full column width that a shared line denies it.
+  The two lock-screen families carry the rotating word alone — rectangular as word over
+  meaning, inline as one line of picture, article and word — and no stats.
 - **Whatever a tile holds, it holds it shortest pair first, over what today owes.** Which
-  cards travel is kern's attention ranking, where they land is the tile's. Every tile states
-  the run and the due count, and adds the fortnight's review bars where the width carries
-  them — which is the header, since the bottom of a tile has no such room.
+  cards travel is kern's attention ranking, where they land is the tile's. Every home-screen
+  tile states the run and the due count, and adds the fortnight's review bars where the width
+  carries them — which is the header, since the bottom of a tile has no such room.
 - **A widget with no readable snapshot draws the sprout, never sample words.** A placed
   tile only ever shows the learner's own — so when the store holds no snapshot this build
   can decode (what an app update leaves behind until the app next runs), the tile says
