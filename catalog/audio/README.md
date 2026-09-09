@@ -64,15 +64,15 @@ on one machine and in no checkout, and no gate could see it. Only `git ls-files`
   every license the pack uses to its deed URL — `null` for `Public domain`, the one
   license with nothing to point a reader at. Provenance is authored ONCE per speaker
   rather than once per file: a license is effectively a property of the voice, and across
-  all 5828 shipped recordings fourteen depart from their own author's. Those fourteen carry a
+  every shipped pack only a handful of entries depart from their own author's. Those carry a
   `license` of their own, which is the only place an entry names one; the deed is never
   written on an entry at all, being derivable from the license. There is deliberately no
-  default AUTHOR, though one voice covers 476 of the 477 Swahili files — a missing key
+  default AUTHOR, though one voice covers all but one Swahili file — a missing key
   would then read as a credit to whoever recorded the most, and a misattribution by
   omission is the one thing a BY notice may not do.
   Every row of both maps has to be used by some recording (lint), so they describe the
   pack rather than accumulating its history.
-- `words` is keyed by concept slug, `letters` (optional, uk only today) by lowercase
+- `words` is keyed by concept slug, `letters` (optional) by lowercase
   glyph. Every field is required except `license`, present only on the entries that
   depart from their author's, `gain`/`cap`/`capPhone`/`lead`, absent where they would be
   zero, and `gainPhone` — present on every word and article entry (0.0 when no
