@@ -7,8 +7,7 @@ used to be kept in step by hand and had drifted on some fifty strings — the sa
 button reading "Sprecher & Lizenzen" on one phone and "Impressum & Lizenzen" on the
 other — which is exactly what a generator cannot let happen.
 
-No flag reports drift and exits non-zero on it; --fix rewrites both tables, and --check
-is the same report under the name the pre-commit hook calls it by.
+No flag reports drift and exits non-zero on it; --fix rewrites both tables.
 
 The catalog is the source in both directions of work: a new Android string is added
 there (and named in ANDROID_ONLY in scripts/strings.py, so the iOS drift check knows
@@ -266,7 +265,6 @@ def main():
         print('\n'.join(gaps), file=sys.stderr)
         return 1
 
-    # --check is the bare report under the name the pre-commit hook calls it by.
     fix = '--fix' in sys.argv
     drifted = []
     for lang, path in TABLES.items():
