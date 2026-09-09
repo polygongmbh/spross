@@ -22,9 +22,6 @@ import net.spross.kern.model.CardKind
  */
 object MultipleChoice {
 
-    /** Tiles per question: the answer plus three distractors. */
-    const val OPTION_COUNT: Int = 4
-
     /**
      * Ranked distractors kept per question, so the tiles vary between rounds:
      * the caller picks three of these, and a snapshot that ships the shortlist
