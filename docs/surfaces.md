@@ -50,8 +50,7 @@ the review loop itself, and the auto-advance beats these share with it, are `des
 
 `android/` renders THIS contract with Compose — same engine facades, and since the turn
 and both drill runs moved into kern the same rules by construction, not by porting discipline.
-The Werkstatt ships there whole (`drills.md`): both overview pages, both drills, the
-generated numbers reference and the alphabet table.
+The Werkstatt ships there whole (`drills.md`).
 Platform deltas only: the catalog and the chimes ship as APK assets synced from
 `catalog/` and `App/Resources/Sounds/`,
 the box is app-private and written after every answer rather than debounced,
