@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- The paper the app is drawn on, light column. Copied from `ThemeLight.background`
-         in ui/Theme.kt: the window is what a cold start shows before the first frame of
+         in ui/ThemeColors.kt: the window is what a cold start shows before the first frame of
          Compose, and a value picked here rather than copied is a flash of the wrong app.
          The dark column stands in values-night/. -->
     <color name="spross_window_background">#FFF2F1EA</color>

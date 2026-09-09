@@ -15,7 +15,7 @@ import net.spross.app.ui.articleTint
 
 /**
  * The tile's colors, read off the app's own table rather than copied: `ThemeLight`/`ThemeDark`
- * in `ui/Theme.kt` are plain values with no composition behind them, so a Glance surface
+ * in `ui/ThemeColors.kt` are plain values with no composition behind them, so a Glance surface
  * can hold BOTH columns and let the host pick the one the phone is in. (The iOS widget
  * target keeps a copy of the same table only because an extension links neither the
  * design tokens nor Kotlin.)
