@@ -98,7 +98,8 @@ enum CardDisplay {
     /// none to say — the audio twin of `articleLabel`, and the same ruling
     /// (`shownArticle`): a rotated synonym may carry another gender, so it is
     /// spoken bare rather than wrong. What the string becomes is kern's
-    /// `spokenTargetForm`, applied on the synthesized branch alone.
+    /// `spokenTargetForm`, which both the voice and the `articles{}` recording
+    /// lookup are handed.
     static func spokenArticle(of realization: Realization, shown: String) -> String? {
         shownArticle(article: article(of: realization), shownForm: shown,
                      targetText: realization.text)

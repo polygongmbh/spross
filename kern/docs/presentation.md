@@ -47,15 +47,6 @@ Engine contract: `../README.md` §3.
   one thing the card consists of, and the alternative to reading it is answering blind.
   Not a mode and not a setting — it lasts the turn, and the next card asked by ear asks by
   ear again, because the device's own audibility is what decides that (`../README.md` §3).
-- **The target is spoken with its article; the source is not.**
-  `spokenTargetForm(article, shownForm, targetText)` (beside `utterance`, which answers the
-  same question — what string does the synthesizer get) prefixes the article `shownArticle`
-  allows, so a rotated synonym that may carry another gender is spoken bare rather than
-  mislabeled. It applies on the SYNTHESIZED branch only: a bundled recording says what was
-  recorded, and re-cutting one is an edit to bytes kern never edits. The two branches then
-  sound different, which is the accepted cost — the recording is the branch falling short.
-  Reverses `../../docs/read-aloud.md`'s "only the headword is ever spoken" (user ruling 2026-08-21),
-  everywhere a target word is synthesized and not only in listening.
 - **Emoji cue**: `emojiCue(role, growing)` answers WHEN the picture appears,
   never whether it appears at all and never where (that is the renderer's, and it is fixed).
   **Upfront** iff role == Produce ∧ the word has not landed (`../README.md` §5) — the one prompt it can
