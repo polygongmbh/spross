@@ -2,9 +2,10 @@ import SwiftUI
 import SprossKern
 
 /// Settings block at the bottom of the Box tab: known language (source),
-/// learning language (target, one box each), daily new-card budget, reset.
-/// The profile persists in UserDefaults + the box document; the budget in
-/// `BoxState.config`.
+/// learning language (target, one box each), learner name,
+/// read-aloud source (only where the language has a sound),
+/// restart tutorial, reset.
+/// The profile persists in UserDefaults + the box document.
 struct BoxSettingsSection: View {
     let model: AppModel
 
