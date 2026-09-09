@@ -78,6 +78,26 @@ class GrowthStageTests {
         assertEquals(GrowthStage.Relearning, stages(state)["w01"])
     }
 
+    /**
+     * A lapsed word back in Review, or one that never left it (no relearning steps), reads
+     * Relearning until it has cleared the growing bar again: it is not fresh, it slipped.
+     */
+    @Test
+    fun aLapsedWordStaysRelearningUntilItClearsTheGrowingBarAgain() {
+        val state = Box.state((1..2).map { Box.word(it) }).let {
+            Box.inject(
+                Box.inject(
+                    it,
+                    Box.sched("w01", stability = 3.0, dueMillis = future, lastReviewMillis = now, lapses = 1),
+                ),
+                Box.sched("w02", stability = 10.0, dueMillis = future, lastReviewMillis = now, lapses = 1),
+            )
+        }
+
+        assertEquals(GrowthStage.Relearning, stages(state)["w01"])
+        assertEquals(GrowthStage.Growing, stages(state)["w02"])
+    }
+
     @Test
     fun suspensionOutranksEveryBar() {
         var state = Box.state(listOf(Box.word(1), Box.word(2)))

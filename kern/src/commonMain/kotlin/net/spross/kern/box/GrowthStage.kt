@@ -57,7 +57,11 @@ enum class GrowthStage {
     /** Matured: in Review at or above [MATURED_STABILITY]. */
     Matured,
 
-    /** Lapsed and earning its stability back. */
+    /**
+     * Lapsed and still short of the growing bar — in the relearning steps, or back in Review
+     * under it with a lapse behind it. A word that has slipped is not fresh, and it does not
+     * read as fresh until it has cleared the bar again.
+     */
     Relearning,
 
     /** Out of rotation — hand-suspended. */
@@ -85,7 +89,9 @@ data class CardGrowth(
 /**
  * The Sprosse this schedule stands on. Suspension and a lapse outrank every bar:
  * a suspended card is out of rotation whatever its stability says, and a lapsed
- * one has to earn the bar back before it may claim it again.
+ * one has to earn the growing bar back before it may claim it again — until then it
+ * reads [GrowthStage.Relearning], whether the relearning steps have let it back into
+ * Review or not (with no steps configured a lapse never leaves Review at all).
  */
 internal fun stageOf(state: BoxState, sched: CardScheduling): GrowthStage = when {
     sched.suspended -> GrowthStage.Suspended
@@ -93,6 +99,7 @@ internal fun stageOf(state: BoxState, sched: CardScheduling): GrowthStage = when
     sched.phase != CardPhase.Review -> GrowthStage.Learning
     (sched.memory?.stability ?: 0.0) >= MATURED_STABILITY -> GrowthStage.Matured
     Statistics.isGrowing(state, sched) -> GrowthStage.Growing
+    sched.lapses > 0 -> GrowthStage.Relearning
     else -> GrowthStage.Fresh
 }
 

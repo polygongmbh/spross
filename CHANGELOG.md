@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A word you have forgotten once reads Shaky in the Box until it clears the growing bar again, rather than Fresh.
 - Listening plays every word you are still shaky on before any you have grown, keeps bringing the shaky ones back as the grown ones join, and mixes in two new words every five turns.
 - The Ukrainian dates ladder now teaches the whole date with its year, one Sprosse further than it used to reach.
 
