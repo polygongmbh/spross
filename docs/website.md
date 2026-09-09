@@ -39,8 +39,8 @@ built to sit beside native-speaker conversation or a structured course, never to
   one click apart, `hreflang`-paired, cross-linked to each other and reachable from every footer.
   Separate pages rather than one bilingual scroll: each language keeps a quotable URL,
   and a reader never sits in the wrong version.
-- The company facts restate `App/Sources/Screens/CreditsView+Legal.swift`, which is their source of truth
-  (the in-app Impressum and this page have to name the same GmbH).
+- The company facts are `distribution.md` § Impressum and privacy policy's:
+  the in-app Impressum and this page have to name the same GmbH.
 - The app links `https://spross.net/privacy` extensionless,
   so the host has to serve `/privacy` from `privacy.html` — a host that does not needs a redirect rule.
 
