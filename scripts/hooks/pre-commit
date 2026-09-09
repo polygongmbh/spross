@@ -58,3 +58,12 @@ if printf '%s\n' "$STAGED" | grep -qE '^(App/Sources/(Design|Screens)|android/sr
     exit 1
   fi
 fi
+
+# A turn machine written once per platform is an ABSENCE — no search returns the kern run
+# that was never written, so only this check reports it, and only while the pair is new.
+if printf '%s\n' "$STAGED" | grep -qE '^(kern/src/commonMain|App/Sources|android/src/main)/'; then
+  if ! python3 scripts/arch-status.py --check; then
+    echo "       Give the machine a run in kern, or fold the platform half into an existing one." >&2
+    exit 1
+  fi
+fi
