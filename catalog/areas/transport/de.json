@@ -25,7 +25,7 @@
   "airport": { "text": "Flughafen", "grammar": { "gender": "der", "plural": "Flughäfen" } },
   "ship": { "text": "Schiff", "grammar": { "gender": "das", "plural": "-e" } },
   "motorbike": { "text": "Motorrad", "grammar": { "gender": "das", "plural": "Motorräder" } },
-  "truck": { "text": "Lastwagen", "variants": ["Lkw", "LKW"], "grammar": { "gender": "der", "plural": "=" } },
+  "truck": { "text": "Lastwagen", "variants": ["Lkw"], "grammar": { "gender": "der", "plural": "=" } },
   "passenger": { "text": "Passagier", "variants": ["Fahrgast"], "grammar": { "gender": "der", "plural": "-e" } },
   "wheel": { "text": "Rad", "grammar": { "gender": "das", "plural": "Räder" } },
   "engine": { "text": "Motor", "grammar": { "gender": "der", "plural": "Motoren" } },
