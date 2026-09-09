@@ -98,10 +98,10 @@ answering rules with is `design.md`'s.
   never open is a lie.
 - **Buchstaben overview**: the letters entry opens the same shape as the numbers one —
   the drill's stages and start first, the alphabet table under them. The Sprossen card shows
-  when slots OR an alphabet exist for the target (the second predicate is catalog file
-  presence), and the letters chip on the second alone: the table renders every row (glyph,
-  name, IPA, context, hint, example with meaning where the reader's language knows the
-  word) and ships even where the drill cannot — audio is the drill's precondition, not the
+  when any of its four entries can offer something — counting content, an alphabet file for
+  the target, a joined atlas or joined calendars — and the letters chip on the alphabet file
+  alone: the table renders every row (glyph, name, IPA, context, hint, example with
+  meaning where the reader's language knows the word) and ships even where the drill cannot — audio is the drill's precondition, not the
   table's, so where this device can sound nothing the stages are out of reach and the page
   is the alphabet alone. What the drill can ask is recomputed on foreground — a voice
   installed in Settings turns the start button on without a relaunch. The stage rows carry
@@ -116,10 +116,8 @@ answering rules with is `design.md`'s.
   Sprossen and the start above, the table under them. Its Sprossen are POOLS rather than stages:
   Sprosse 1 is the two languages the profile already has and the countries they are at home
   in, and every Sprosse after keeps everything below it, so climbing widens the world instead
-  of replacing it. NINE Sprossen, each bringing exactly ONE new thing — either a question or a
-  tier, never both: country names, then language names, then the people; then tier 2; then
-  which language is spoken there; then tier 3; then the country behind a flag alone; then
-  tier 4; and at the top the reverse of the spoken-in question, where a language is spoken.
+  of replacing it. Each Sprosse brings exactly ONE new thing — either a question
+  or a tier, never both (the ladder itself is `CountryDrill`'s KDoc).
   The row is named for that one thing and nothing else — "Dazu: …" where a question is
   added, "Mehr Länder: …" where a tier is — so the ladder reads as the list of what each
   Sprosse brings.
