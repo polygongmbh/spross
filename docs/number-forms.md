@@ -7,7 +7,7 @@ and for the source that decided it.
 
 Everything else about the forms is owned elsewhere:
 how a value is drawn and how its prompt is written are `../kern/docs/build.md`,
-how the readings are held apart from one another is `../kern/docs/grading.md` (the forms sweep),
+how the readings are held apart from one another is `../kern/docs/grading.md` (the value check, `NumberReadingIndex`),
 and what a date asks of a numeral — each language's day-of-month reading — is `date-readings.md`.
 The code is one `<Lang>Forms.kt` per language
 under `../kern/src/commonMain/kotlin/net/spross/kern/trainer/`,
@@ -161,7 +161,9 @@ so nothing runs out at a denominator or a hundredth rank the way it does in de, 
   and usage prefers `procento` — so it grades and is never shown.
 - **`ses` and `sep` are the language's one minimal pair**, and Esperanto's regularity multiplies it:
   the pair comes back inside every ten, ordinal, `-ono` noun and `-foje` adverb built on six or seven.
-  The sweeps gate the family by that one substitution rather than by listing it.
+  The value check catches the family by that one substitution rather than by a list:
+  every reading built on six or seven is indexed to its value,
+  so one typed for the other is refused as another number.
 
 Sources: [PMEG, Nombraj vortetoj — Formoj](https://bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html)
 (both spelling rules, verbatim)
