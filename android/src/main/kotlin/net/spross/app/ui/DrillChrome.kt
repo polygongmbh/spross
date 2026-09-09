@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.countLine
+import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.DrillTally
@@ -198,11 +199,10 @@ fun tierEmoji(tier: StreakTier): String = when (tier) {
 
 /**
  * What a language is called wherever a drill names one — a page title, a field's
- * placeholder. The chrome's exonym, else the code, so a language the chrome does not know
- * is still named rather than spelled "UK".
+ * placeholder. Kern picks the name so both phones say the same one.
  */
 fun AppModel.languageName(language: String): String =
-    catalog?.languages?.get(language)?.name ?: language
+    LanguageChoices.name(language, catalog?.languages?.get(language))
 
 /** A section title on either overview page. */
 @Composable
