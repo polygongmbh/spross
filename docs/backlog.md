@@ -155,7 +155,7 @@ then open design work, then what waits on someone else, grouped by who that is.
   named action while Switch Control and Full Keyboard Access, which scan for focusable
   controls, reach nothing — on every surface on that modifier: the reference rows,
   `BoxCardRow.swift`, the produce narration lines.
-- `android/.../AppModel.kt` sits at 949 lines (guide ~300); extracting the Werkstatt doors
+- `android/.../AppModel.kt` is past the ~300-line budget; extracting the Werkstatt doors
   needs `screen`'s `private set` (:202, and eight more backers) widened or an internal verb minted.
 - Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
   fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).
@@ -362,8 +362,8 @@ then open design work, then what waits on someone else, grouped by who that is.
   (`kern/.../session/AnswerNormalizer.kt`), and Italian promotes many cross-article synonyms
   (la vaccinazione on il vaccino, il farmaco on la medicina, il salario on lo stipendio), so
   the reveal teaches forms the grader then punishes.
-- `CatalogAudioLintTest` (399 lines) and `CatalogAudioFixtureTest` (340) are both past the
-  ~300-line budget and split cleanly: provenance/attribution rules apart from the playback
+- `CatalogAudioLintTest` and `CatalogAudioFixtureTest` are both past the ~300-line budget
+  and split cleanly: provenance/attribution rules apart from the playback
   index and the naming rules, lookup apart from parse in the fixture half.
 - Real hardware still has to answer three things about the Android player
   (`android/.../audio/Pronouncer.kt`): how the boost and lead skip sound, one letter-drill run
