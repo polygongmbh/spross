@@ -12,7 +12,7 @@ Focus is on breadth of exposure to the language for maximum fluency with minimum
 
 ```sh
 ./gradlew :kern:jvmTest      # core test suite — the fast gate, must be green before every commit
-./gradlew :kern:jvmTest -Psweeps       # adds the corpus sweeps — after a catalog or trainer-forms edit
+./gradlew :kern:jvmTest -Psweeps       # adds the clock day-part sweep — after a trainer-forms edit
 ./gradlew :android:testDebugUnitTest   # the Android app layer — after an android/ edit
 xcodebuild -project Spross.xcodeproj -scheme Spross \
   -destination 'platform=iOS Simulator,name=iPhone 17' build   # app build gate
