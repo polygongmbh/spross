@@ -1,21 +1,11 @@
 # Spross — app design (v2)
 
 This doc is the build contract for the REVIEW LOOP: the card, the typing, Home, the Box.
-Three app domains have their own pages — `drills.md` (the Sprossen ladders),
-`surfaces.md` (listening, the wrist, Android) and `read-aloud.md` (what speaks, and when).
+Four app domains have their own pages — `drills.md` (the Sprossen ladders),
+`surfaces.md` (listening, the wrist, Android), `read-aloud.md` (what speaks, and when)
+and `performance.md` (what may run per frame, per answer and per activation).
 The product thesis and phase plan live in `../../docs/roadmap.md`;
 the engine — scheduling, growth, sessions, grading, snapshots — in `../kern/README.md`.
-
-**What belongs here** are the foundations: the decisions a rewrite must not lose,
-and the reasons behind them.
-Everything else belongs wherever it is answered faster — the running app for timings,
-colors and screen inventories, the code for the mechanics of a rule already stated here.
-A negation earns its line only where the opposite is what would otherwise happen.
-Cross-links stay rare on purpose: a fact should sit in the one place it is needed,
-and a doc that keeps pointing elsewhere is telling you something is filed wrong.
-
-Product frame: any source (known) / target (learning) language pair from the catalog;
-no user-facing direction concept; progress tracked per target language.
 
 ## North star
 
