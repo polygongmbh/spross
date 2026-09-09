@@ -14,8 +14,8 @@ kotlin {
 
     androidLibrary {
         namespace = "net.spross.kern"
-        compileSdk = 36
-        minSdk = 26
+        compileSdk = libs.versions.compileSdk.get().toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
     }
 
     js {

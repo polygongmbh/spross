@@ -58,7 +58,7 @@ tasks.matching { it.name == "packageRelease" }.configureEach {
 
 android {
     namespace = "net.spross.app"
-    compileSdk = 36
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     buildFeatures {
         compose = true
@@ -66,8 +66,8 @@ android {
 
     defaultConfig {
         applicationId = "net.spross.app"
-        minSdk = 26
-        targetSdk = 36
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = versionCodeFromName
         versionName = marketingVersion
     }
