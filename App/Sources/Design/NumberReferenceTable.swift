@@ -218,7 +218,6 @@ struct NumberReferenceSheet: View {
     var voice: Voice?
 
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.locale) private var locale
 
     var body: some View {
         NavigationStack {
@@ -239,6 +238,6 @@ struct NumberReferenceSheet: View {
     }
 
     private var languageName: String {
-        LanguageNames.display(language, locale: locale, catalog: catalog)
+        LanguageNames.display(language, catalog: catalog)
     }
 }

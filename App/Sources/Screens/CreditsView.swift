@@ -14,7 +14,6 @@ struct CreditsView: View {
     let model: AppModel
 
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.locale) private var locale
 
     var body: some View {
         NavigationStack {
@@ -66,7 +65,7 @@ struct CreditsView: View {
     /// "🇺🇦 Ukrainisch" — the flag from `languages.json`, the name in chrome
     /// language, like every other language label outside the pickers.
     private func languageTitle(_ code: String) -> String {
-        let name = LanguageNames.display(code, locale: locale, catalog: model.catalog)
+        let name = LanguageNames.display(code, catalog: model.catalog)
         guard let flag = model.languageInfo(code)?.flag else { return name }
         return "\(flag) \(name)"
     }

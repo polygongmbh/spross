@@ -35,7 +35,7 @@ extension HomeView {
     /// picks one.
     var targetLanguageName: String? {
         model.targetLanguage.map {
-            LanguageNames.display($0, locale: locale, catalog: model.catalog)
+            LanguageNames.display($0, catalog: model.catalog)
         }
     }
 

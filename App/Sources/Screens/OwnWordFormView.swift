@@ -156,7 +156,7 @@ struct OwnWordFormView: View {
     /// The language's flag in front of the name — the same pair of marks the profile
     /// pickers wear, so the two fields are told apart at a glance rather than read.
     private func label(_ code: String) -> LocalizedStringKey {
-        let name = LanguageNames.display(code, locale: model.knownLocale, catalog: model.catalog)
+        let name = LanguageNames.display(code, catalog: model.catalog)
         let flag = model.languageInfo(code)?.flag
         return "box.own.word.inLanguage \(flag.map { "\($0) \(name)" } ?? name)"
     }

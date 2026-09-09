@@ -235,7 +235,7 @@ struct DrillOverview<Face: DrillFace>: View {
     /// The language being LEARNED — the page is opened to practice it, however
     /// evenly the table shows both sides.
     var languageName: String {
-        LanguageNames.display(target, locale: locale, catalog: model.catalog)
+        LanguageNames.display(target, catalog: model.catalog)
     }
 }
 

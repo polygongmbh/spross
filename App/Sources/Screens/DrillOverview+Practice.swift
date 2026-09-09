@@ -173,8 +173,8 @@ extension DrillOverview {
         let asked = reverse ? target : source
         let owed = reverse ? source : target
         return String(format: ChromeStrings.string(Face.reverseHintKey(reverse: reverse), locale: locale),
-                      LanguageNames.display(asked, locale: locale, catalog: model.catalog),
-                      LanguageNames.display(owed, locale: locale, catalog: model.catalog))
+                      LanguageNames.display(asked, catalog: model.catalog),
+                      LanguageNames.display(owed, catalog: model.catalog))
     }
 
     // MARK: - Los

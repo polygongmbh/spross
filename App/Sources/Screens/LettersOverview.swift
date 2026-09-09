@@ -18,8 +18,6 @@ struct LettersOverview: View {
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
-    // why: internal, not private — both extensions read the reader's locale.
-    @Environment(\.locale) var locale
 
     /// What the drill can ASK on this device. Rebuilt on every foreground, never
     /// decided once: a voice installed in Settings while the app slept must turn
@@ -126,7 +124,7 @@ struct LettersOverview: View {
     // MARK: - Chrome
 
     var languageName: String {
-        LanguageNames.display(language, locale: locale, catalog: model.catalog)
+        LanguageNames.display(language, catalog: model.catalog)
     }
 
     func heading(_ key: LocalizedStringKey) -> some View {

@@ -52,7 +52,7 @@ extension SessionView {
     /// Only the TARGET language is ever copied, so the field asks for it by name.
     private var copyPlaceholder: String {
         guard let target = model.targetLanguage else { return "" }
-        let name = LanguageNames.display(target, locale: locale, catalog: model.catalog)
+        let name = LanguageNames.display(target, catalog: model.catalog)
         return String(format: ChromeStrings.string("session.copy.placeholder %@", locale: locale), name)
     }
 }

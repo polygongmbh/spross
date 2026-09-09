@@ -139,9 +139,9 @@ final class ListeningDriver {
     private var nowPlayingRun: NowPlaying.Run {
         let locale = model.knownLocale
         let mode = ChromeStrings.string("listen.title", locale: locale)
-        let known = LanguageNames.display(model.sourceLanguage, locale: locale, catalog: model.catalog)
+        let known = LanguageNames.display(model.sourceLanguage, catalog: model.catalog)
         let learning = model.targetLanguage.map {
-            LanguageNames.display($0, locale: locale, catalog: model.catalog)
+            LanguageNames.display($0, catalog: model.catalog)
         }
         return .init(title: "\(Self.brand) · \(mode)",
                      languages: learning.map { "\(known) – \($0)" } ?? known)

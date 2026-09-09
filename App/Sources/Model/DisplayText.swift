@@ -6,14 +6,14 @@ import SprossKern
 /// (`LanguageChoices.name`) — this only hands it the catalog entry, so the two
 /// phones cannot start calling the same language two different things.
 enum LanguageNames {
-    static func display(_ code: String, locale: Locale, catalog: Catalog?) -> String {
+    static func display(_ code: String, catalog: Catalog?) -> String {
         LanguageChoices.shared.name(code: code, info: catalog?.languages[code])
     }
 
     /// Kept as its own name for the sentence chrome that reads better spelling out
     /// what it means; it resolves to the same one word.
     static func native(_ code: String, catalog: Catalog?) -> String {
-        display(code, locale: .current, catalog: catalog)
+        display(code, catalog: catalog)
     }
 
     /// Language PICKER rows ("🇺🇦 Українська · Ukrainian") and the collapsed
@@ -42,7 +42,7 @@ protocol LanguageNaming {
 
 extension LanguageNaming {
     func languageName(_ code: String) -> String {
-        LanguageNames.display(code, locale: locale, catalog: namingCatalog)
+        LanguageNames.display(code, catalog: namingCatalog)
     }
 
     /// "Auf Suaheli …" — what the answer field asks for. A runtime `%@`, so it

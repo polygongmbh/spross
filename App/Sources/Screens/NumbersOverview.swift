@@ -21,7 +21,6 @@ struct NumbersOverview: View {
     let phraseDrill: (source: String, templates: [PhraseTemplate])?
 
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.locale) var locale
 
     /// The highest Sprosse ever reached per variant in THIS language — the one
     /// source the unlock ladder reads. Held in state rather than read per row so
@@ -170,7 +169,7 @@ struct NumbersOverview: View {
     }
 
     var languageName: String {
-        LanguageNames.display(language, locale: locale, catalog: model.catalog)
+        LanguageNames.display(language, catalog: model.catalog)
     }
 
     func heading(_ key: LocalizedStringKey) -> some View {

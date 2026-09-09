@@ -327,7 +327,7 @@ struct BoxSettingsSection: View {
     /// the rest of the block does.
     private var targetChromeName: String {
         model.targetLanguage.map {
-            LanguageNames.display($0, locale: locale, catalog: model.catalog)
+            LanguageNames.display($0, catalog: model.catalog)
         } ?? "?"
     }
 
