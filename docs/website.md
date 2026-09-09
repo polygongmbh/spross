@@ -51,7 +51,7 @@ built to sit beside native-speaker conversation or a structured course, never to
 - Mechanics mirror iOS (`docs/drills.md`): numeral → typed word, exact=green/typo=amber+correction/wrong=reveal,
   any accepted answer extends the streak, two clean rights ramp a digit up, one miss steps down; level capped at 4 digits on the web.
 - Before a language is picked, the card cycles a numeral and its reading through the languages — the kern spelling live.
-- The app's own chimes play on verdicts (`web/assets/sounds/`, copies of `App/Resources/Sounds/`);
+- The app's own chimes play on verdicts (`scripts/build-web.sh` copies `App/Resources/Sounds/` into the bundle);
   a per-language best streak lives in localStorage, and only beating it earns the cheer.
 - Answer-side audio via the browser's SpeechSynthesis voice when one exists for the language; silent degrade.
 - After ~10 answers, a gentle interstitial invites the mailing list; drilling continues freely.
