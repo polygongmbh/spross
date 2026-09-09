@@ -59,7 +59,7 @@ struct WatchWordWidgetView: View {
             }
     }
 
-    /// Article-tint colors; the article set each hue answers for is `Theme.swift`'s
+    /// Article-tint colors; the article set each hue answers for is kern's `Article.kt`
     /// (a two-gender language folds onto masculine-blue and feminine-berry, and
     /// never reaches the neuter).
     private func tintColor(_ tint: String) -> Color {

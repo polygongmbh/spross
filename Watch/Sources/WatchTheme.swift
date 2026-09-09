@@ -38,7 +38,7 @@ enum WatchTheme {
     /// phone; unknown/absent tints render neutral (genderless targets).
     /// A two-gender language folds onto the phone's two hues — masculine
     /// der-blue, feminine die-berry, plural and indefinite articles following
-    /// the gender they inflect (`Theme.swift` holds the canonical list), so the
+    /// the gender they inflect (kern's `Article.kt` holds the canonical list), so the
     /// watch never has to know which language the tint came from.
     static func articleColor(_ tint: String?) -> Color {
         switch tint?.lowercased() {

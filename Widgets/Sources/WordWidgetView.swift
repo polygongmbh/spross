@@ -221,7 +221,7 @@ struct WordWidgetView: View {
         return Text("\(tint) ").foregroundStyle(tintColor(tint))
     }
 
-    /// The article set each hue answers for is `Theme.swift`'s: a two-gender
+    /// The article set each hue answers for is kern's `Article.kt`: a two-gender
     /// language folds onto masculine-blue and feminine-berry (its plural and
     /// indefinite articles with it) and never reaches the neuter.
     private func tintColor(_ tint: String) -> Color {
