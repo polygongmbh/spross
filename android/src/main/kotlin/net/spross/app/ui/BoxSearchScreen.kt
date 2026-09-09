@@ -109,7 +109,10 @@ fun BoxSearchScreen(
                 style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier.weight(1f),
             )
-            TextButton(onClick = onClose) { Icon(SprossIcons.Close, contentDescription = null) }
+            TextButton(
+                onClick = onClose,
+                modifier = Modifier.semantics { contentDescription = chrome.commonClose },
+            ) { Icon(SprossIcons.Close, contentDescription = null) }
         }
         OutlinedTextField(
             value = query,

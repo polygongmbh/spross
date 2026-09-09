@@ -22,6 +22,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import java.net.URLEncoder
@@ -50,7 +52,10 @@ fun AboutScreen(model: AppModel) {
                 style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier.weight(1f),
             )
-            TextButton(onClick = { model.closeAbout() }) { Icon(SprossIcons.Close, contentDescription = null) }
+            TextButton(
+                onClick = { model.closeAbout() },
+                modifier = Modifier.semantics { contentDescription = chrome.commonClose },
+            ) { Icon(SprossIcons.Close, contentDescription = null) }
         }
         LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp)) {
             item { Spacer(Modifier.height(4.dp)) }
