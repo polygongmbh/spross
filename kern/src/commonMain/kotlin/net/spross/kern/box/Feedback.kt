@@ -35,13 +35,13 @@ enum class FeedbackScope {
     /** Every own word, the finished pairs included, and every filed report. */
     Everything,
 
-    /** Only what still waits for an answer: the one-sided suggestions and the reports. */
+    /** Only what still waits for an answer: the one-sided suggestions, the notes, the reports. */
     Outbox,
 }
 
 /**
  * What the learner has to say back to whoever maintains the catalog: the words they
- * had to write themselves, and the problems they filed.
+ * had to write themselves, the notes that name no word, and the problems they filed.
  *
  * The wording lives here rather than on each platform because a report is an
  * INTERCHANGE format, not screen chrome — two apps formatting it their own way would
@@ -66,19 +66,27 @@ object Feedback {
      * written nothing, which is a copy button that silently does nothing.
      *
      * A word written in only one language prints its missing half as [UNTRANSLATED] rather
-     * than being left out: it is the entry most worth reading. A word carrying a comment
-     * prints it under the pair, and a bare remark ([OwnWord.isRemark]) is the comment alone. [since] filters to what was
-     * written or filed after it — `null` takes the lot — and [scope] to how much of what
-     * survives that filter is the catalog's business.
+     * than being left out: it is the entry most worth reading, and a word carrying a comment
+     * prints it under the pair. The notes stand in a section of their own rather than among
+     * the words: a [OwnWord.isRemark] suggests no word, and one listed as a suggested word
+     * reaches its reader as vocabulary to file rather than as the thing it says.
+     *
+     * [since] filters to what was written or filed after it — `null` takes the lot — and
+     * [scope] to how much of what survives that filter is the catalog's business.
      */
     fun reportText(state: BoxState, since: Instant?, scope: FeedbackScope): String {
         val words = exportedWords(state, since, scope)
+        val notes = exportedRemarks(state, since)
         val issues = issuesSince(state, since)
         val sections = mutableListOf<String>()
         sections += "${state.joinStamp.source} → ${state.joinStamp.target}"
         if (words.isNotEmpty()) {
             sections += "Suggested words (${words.size}):\n" +
                 words.joinToString("\n") { "- " + wordLine(state, it) }
+        }
+        if (notes.isNotEmpty()) {
+            sections += "Notes (${notes.size}):\n" +
+                notes.joinToString("\n") { "- " + it.comment.orEmpty() }
         }
         if (issues.isNotEmpty()) {
             sections += "Reported issues (${issues.size}):\n" +
@@ -89,13 +97,25 @@ object Feedback {
 
     /** Whether a report built with the same filters would carry anything at all. */
     fun hasAnything(state: BoxState, since: Instant?, scope: FeedbackScope): Boolean =
-        exportedWords(state, since, scope).isNotEmpty() || issuesSince(state, since).isNotEmpty()
+        exportedWords(state, since, scope).isNotEmpty() ||
+            exportedRemarks(state, since).isNotEmpty() ||
+            issuesSince(state, since).isNotEmpty()
 
-    /** The own words such a report carries, in the order they were written. */
+    /** The own WORDS such a report carries, in the order they were written; never the notes. */
     fun exportedWords(state: BoxState, since: Instant?, scope: FeedbackScope): List<OwnWord> {
-        val words = if (scope == FeedbackScope.Outbox) suggestions(state) else state.ownWords
+        val words =
+            if (scope == FeedbackScope.Outbox) suggestions(state) else wordsAndSuggestions(state)
         return words.filter { since == null || it.addedAt > since }
     }
+
+    /**
+     * The notes such a report carries, in the order they were written.
+     *
+     * No [FeedbackScope] narrows them away: a note is never study material, so the scope
+     * that leaves the learner's own vocabulary behind still owes its reader every one.
+     */
+    fun exportedRemarks(state: BoxState, since: Instant?): List<OwnWord> =
+        remarks(state).filter { since == null || it.addedAt > since }
 
     /**
      * The words still waiting for one of the profile's two languages, oldest first.
@@ -108,23 +128,33 @@ object Feedback {
         state.ownWords.filter { it.isSuggestion(state.joinStamp.source, state.joinStamp.target) }
 
     /**
-     * The words written in both of the profile's languages, oldest first: the complement of
-     * [suggestions], and the ones the join has made cards of.
+     * The bare notes, oldest first: what the learner had to say that names no word at all
+     * ([OwnWord.isRemark]).
+     *
+     * They are neither suggestions nor study material — the third thing the box holds, and
+     * the one whose subject may be nothing in the catalog. Read here rather than per
+     * platform so one surface cannot quietly count them among the words it suggests.
+     */
+    fun remarks(state: BoxState): List<OwnWord> = state.ownWords.filter { it.isRemark }
+
+    /**
+     * The words written in both of the profile's languages, oldest first: the ones the join
+     * has made cards of.
      *
      * They are the learner's own study material rather than an errand for the catalog, which
      * is why a surface that lists both lists them apart, and why emptying the outbox leaves
      * them where they are ([BoxEngine.clearFeedback]).
      */
     fun wordPairs(state: BoxState): List<OwnWord> =
-        state.ownWords.filterNot { it.isSuggestion(state.joinStamp.source, state.joinStamp.target) }
+        state.ownWords.filter { it.isPair(state.joinStamp.source, state.joinStamp.target) }
 
     /**
-     * How much a [BoxEngine.clearFeedback] would take: the suggestions plus the filed
-     * reports. It is the whole of what waits to be sent on — a word written in both
+     * How much a [BoxEngine.clearFeedback] would take: the suggestions, the notes and the
+     * filed reports. It is the whole of what waits to be sent on — a word written in both
      * languages is study material and is never counted here.
      */
     fun clearableCount(state: BoxState): Int =
-        suggestions(state).size + state.reportedIssues.size
+        suggestions(state).size + remarks(state).size + state.reportedIssues.size
 
     /** Issues filed after [since], oldest first. */
     fun issuesSince(state: BoxState, since: Instant?): List<ReportedIssue> =
@@ -132,15 +162,14 @@ object Feedback {
             .filter { since == null || it.reportedAt > since }
             .sortedBy { it.reportedAt }
 
+    /** The pairs and the suggestions, in the order they were written; the notes stay out. */
+    private fun wordsAndSuggestions(state: BoxState): List<OwnWord> =
+        state.ownWords.filterNot { it.isRemark }
+
     private fun wordLine(state: BoxState, word: OwnWord): String {
-        // why: a bare remark has no pair to print, and "? → ?" in front of it would read
-        // as a word the learner failed to write rather than as something they wanted said.
-        val pair = if (word.isRemark) null else {
-            val known = word.texts[state.joinStamp.source] ?: UNTRANSLATED
-            val learning = word.texts[state.joinStamp.target] ?: UNTRANSLATED
-            "$known → $learning"
-        }
-        return listOfNotNull(pair, word.comment).joinToString("\n  ")
+        val known = word.texts[state.joinStamp.source] ?: UNTRANSLATED
+        val learning = word.texts[state.joinStamp.target] ?: UNTRANSLATED
+        return listOfNotNull("$known → $learning", word.comment).joinToString("\n  ")
     }
 
     private fun issueLines(state: BoxState, issue: ReportedIssue): String {

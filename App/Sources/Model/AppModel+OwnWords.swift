@@ -28,6 +28,13 @@ extension AppModel {
         return Feedback.shared.suggestions(state: box)
     }
 
+    /// The bare notes: what the learner had to say that names no word at all. Neither
+    /// suggestions nor study material — what they ask about need not be in the catalog.
+    var remarks: [OwnWord] {
+        guard let box else { return [] }
+        return Feedback.shared.remarks(state: box)
+    }
+
     /// One of them by id, or nil for a catalog word.
     func ownWord(_ cardID: String) -> OwnWord? {
         box?.ownWords.first { $0.id == cardID }

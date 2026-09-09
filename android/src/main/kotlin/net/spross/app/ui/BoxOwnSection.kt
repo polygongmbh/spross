@@ -45,6 +45,7 @@ import net.spross.app.ownWordPairs
 import net.spross.app.removeOwnWord
 import net.spross.app.reportMailBody
 import net.spross.app.reportText
+import net.spross.app.remarks
 import net.spross.app.reportedCatalogCards
 import net.spross.app.reportedIssue
 import net.spross.app.suggestionText
@@ -58,6 +59,10 @@ import net.spross.kern.model.Card
 /**
  * Everything the learner put into the box themselves, and everything they have to say back
  * about what the catalog put there — one section, at the foot of the box.
+ *
+ * The words stand in three blocks: the pairs, which ARE cards; the suggestions, still
+ * waiting for a half the catalog owes; and the notes, which name no word and so suggest
+ * none.
  *
  * Own words get no shelf: they are packed the moment they are written, so an area control
  * offering to pack them would say nothing, and a progress bar over five hand-written words
@@ -75,6 +80,7 @@ internal fun BoxOwnSection(model: AppModel, onWriteOwn: (OwnWordDraft) -> Unit) 
     val box = model.box ?: return
     val pairs = model.ownWordPairs
     val suggestions = model.suggestions
+    val notes = model.remarks
     val reported = model.reportedCatalogCards
     val actions = model.hasFeedback(onlyNew = false)
 
@@ -96,16 +102,18 @@ internal fun BoxOwnSection(model: AppModel, onWriteOwn: (OwnWordDraft) -> Unit) 
         // An empty panel is furniture: with nothing written and nothing filed, the header
         // and its one button are the whole section.
         if (model.hasBriefing || pairs.isNotEmpty() || suggestions.isNotEmpty() ||
-            reported.isNotEmpty() || actions
+            notes.isNotEmpty() || reported.isNotEmpty() || actions
         ) {
-            OwnContentPanel(model, box.cards, pairs, suggestions, reported, actions, onWriteOwn)
+            OwnContentPanel(
+                model, box.cards, pairs, suggestions, notes, reported, actions, onWriteOwn,
+            )
         }
     }
 }
 
 /**
- * The section's body: the word pairs, the suggestions, the reports, and the two ways to
- * send what the catalog is owed on.
+ * The section's body: the word pairs, the suggestions, the notes, the reports, and the two
+ * ways to send what the catalog is owed on.
  */
 @Composable
 private fun OwnContentPanel(
@@ -113,6 +121,7 @@ private fun OwnContentPanel(
     cards: Map<String, Card>,
     pairs: List<OwnWord>,
     suggestions: List<OwnWord>,
+    notes: List<OwnWord>,
     reported: List<Card>,
     actions: Boolean,
     onWriteOwn: (OwnWordDraft) -> Unit,
@@ -144,6 +153,13 @@ private fun OwnContentPanel(
         if (suggestions.isNotEmpty()) {
             BlockLabel(chrome.boxOwnSuggestions)
             suggestions.forEach { word -> SuggestionRow(model, word, onWriteOwn) }
+            HorizontalDivider(color = Theme.colors.separator)
+        }
+        // A note names no word, so it suggests none: what it is about need not be in the
+        // catalog at all, and it stands apart from the words the catalog owes an answer to.
+        if (notes.isNotEmpty()) {
+            BlockLabel(chrome.boxOwnNotes)
+            notes.forEach { note -> EntryRow(model, note, onWriteOwn, lines = 3) }
             HorizontalDivider(color = Theme.colors.separator)
         }
         if (reported.isNotEmpty()) {
@@ -203,14 +219,38 @@ private fun BlockLabel(text: String) {
  * One word waiting for its other half.
  *
  * The missing side is not a shortcoming of the entry, it is the whole point of it — what
- * the catalog owes — so the row says so rather than leaving a blank. A REMARK has no side
- * missing and owes nothing: its comment IS the row, and the tail says which it is. It has no card, so it
- * has no standing to show and no schedule to act on: its menu is the two things that still
- * apply, filling in the other half and taking it back out.
+ * the catalog owes — so the row says so rather than leaving a blank.
+ */
+@Composable
+private fun SuggestionRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDraft) -> Unit) {
+    EntryRow(
+        model, word, onWriteOwn,
+        lines = 1,
+        line = model.suggestionText(word),
+        said = word.comment,
+        tail = model.chrome.boxOwnWordNeedsTranslation,
+    )
+}
+
+/**
+ * One entry the box holds no card for — a suggestion, or a note. With no card it has no
+ * standing to show and no schedule to act on: its menu is the two things that still apply,
+ * writing it over and taking it back out.
+ *
+ * [line] defaults to the entry's comment, which is the whole of a note; [said] is the note
+ * under the line where the entry has one, and [tail] what the catalog still owes on it.
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun SuggestionRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDraft) -> Unit) {
+private fun EntryRow(
+    model: AppModel,
+    word: OwnWord,
+    onWriteOwn: (OwnWordDraft) -> Unit,
+    lines: Int,
+    line: String = word.comment.orEmpty(),
+    said: String? = null,
+    tail: String? = null,
+) {
     val chrome = model.chrome
     val stamp = model.box?.joinStamp ?: return
     var menuOpen by remember(word.id) { mutableStateOf(false) }
@@ -230,14 +270,8 @@ private fun SuggestionRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDr
     ) {
         Text(word.emoji ?: OwnWords.EMOJI, style = MaterialTheme.typography.titleMedium)
         Column(Modifier.weight(1f)) {
-            Text(
-                model.suggestionText(word),
-                style = MaterialTheme.typography.bodyLarge,
-                maxLines = if (word.isRemark) 3 else 1,
-            )
-            // The note under the half it is about; a remark IS the line above it.
-            val said = word.comment
-            if (!word.isRemark && !said.isNullOrEmpty()) {
+            Text(line, style = MaterialTheme.typography.bodyLarge, maxLines = lines)
+            if (!said.isNullOrEmpty()) {
                 Text(
                     said,
                     style = MaterialTheme.typography.bodySmall,
@@ -246,11 +280,13 @@ private fun SuggestionRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDr
                 )
             }
         }
-        Text(
-            if (word.isRemark) chrome.boxOwnWordRemark else chrome.boxOwnWordNeedsTranslation,
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
+        if (tail != null) {
+            Text(
+                tail,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
         DropdownMenu(expanded = menuOpen, onDismissRequest = { menuOpen = false }) {
             MenuAction(chrome.boxOwnWordEdit) {
                 menuOpen = false

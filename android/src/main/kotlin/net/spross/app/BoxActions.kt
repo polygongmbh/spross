@@ -69,6 +69,14 @@ val AppModel.suggestions: List<OwnWord>
     get() = box?.let(Feedback::suggestions).orEmpty()
 
 /**
+ * The bare notes, oldest first: what the learner had to say that names no word at all
+ * ([OwnWord.isRemark]). Neither suggestions nor study material — what a note is about need
+ * not be in the catalog.
+ */
+val AppModel.remarks: List<OwnWord>
+    get() = box?.let(Feedback::remarks).orEmpty()
+
+/**
  * Words written in both of the profile's languages, oldest first — study material with a
  * card behind it, and the complement of [suggestions].
  */
@@ -90,12 +98,8 @@ val AppModel.reportedCatalogCards: List<Card>
             .mapNotNull { state.cards[it.cardId] }
     }
 
-/**
- * The half a suggestion does carry, whichever of the two languages it is in — or, for a
- * bare remark, the comment, which is the whole entry rather than a line under one.
- */
+/** The half a suggestion does carry, whichever of the two languages it is in. */
 fun AppModel.suggestionText(word: OwnWord): String {
-    if (word.isRemark) return word.comment.orEmpty()
     val stamp = box?.joinStamp ?: return ""
     return word.texts[stamp.target] ?: word.texts[stamp.source] ?: ""
 }
@@ -141,13 +145,13 @@ fun AppModel.markExported(scope: FeedbackScope) {
 }
 
 /**
- * How many entries a clear would take: the suggestions plus the filed reports. Kern's
- * count, not the screen's — a word written in both languages is study material and is
- * never in it ([Feedback.clearableCount]).
+ * How many entries a clear would take: the suggestions, the notes and the filed reports.
+ * Kern's count, not the screen's — a word written in both languages is study material and
+ * is never in it ([Feedback.clearableCount]).
  */
 val AppModel.clearableCount: Int get() = box?.let(Feedback::clearableCount) ?: 0
 
-/** Empty the outbox: every suggestion and every report go, the word pairs stay. */
+/** Empty the outbox: every suggestion, every note and every report go, the pairs stay. */
 fun AppModel.clearFeedback() {
     updateBox(BoxEngine::clearFeedback)
 }

@@ -385,13 +385,19 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   It joins no card and is never scheduled — there is nothing to ask them yet — and waits
   to be read off a report. `addedAt` is stamped by `addOwnWord`, never by the caller, and
   is the only date a suggestion ever gets, since it earns no schedule to carry one.
+  An entry with a comment and NO language at all is a **remark** (`OwnWord.isRemark`): a
+  note that names no word, and so suggests none — what it is about need not be anything
+  the catalog holds. The three are disjoint and exhaustive (`isPair`, `isSuggestion`,
+  `isRemark`), and `Feedback` keeps them apart everywhere it lists them: a note carried
+  among the suggested words reaches its reader as vocabulary to file rather than as the
+  thing it says.
   `updateOwnWord` rewrites one in place, **keeping its id** and with it the schedule, the
   queue slot and anything filed against it — a typo fixed must not cost the progress made
   on the word. It keeps `addedAt` too: that records when the word was written, and editing
   is not writing it again.
   `clearFeedback` is the bulk deletion, and it reaches the OUTBOX rather than the words:
-  every suggestion and every filed report go together, once the learner has handed them to
-  whoever maintains the catalog and neither has anything left to do here. A word written in
+  every suggestion, every remark and every filed report go together, once the learner has
+  handed them to whoever maintains the catalog and none has anything left to do here. A word written in
   both languages is never cleared — it is a card with progress on it, not a note — so a
   reported own word keeps the word and loses the flag. `Feedback.clearableCount` is what a
   clear comes to, read there so two surfaces cannot count it two ways.
@@ -413,9 +419,11 @@ and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Bey
   Reporting is **independent of `setSuspended`** and neither verb implies the other: a word
   can be wrong and still worth practicing, and irrelevant without being wrong. A report
   needs no schedule — reveal comes before the first answer, so a card reported on sight has
-  none. `Feedback` renders the suggestions and the reports as text, in kern rather than per
-  platform, because a report is an INTERCHANGE format and two apps would spell it two ways;
-  `BoxState.lastExportAt` (set by `markExported`) is what "only what is new" measures against.
+  none. `Feedback` renders the suggestions, the notes and the reports as text — three
+  sections, never one — in kern rather than per platform, because a report is an
+  INTERCHANGE format and two apps would spell it two ways;
+  `BoxState.lastExportAt` (set by `markExported`) is what "only what is new" measures
+  against.
 - **`Legal`** — the addresses Spross publishes about itself. Not a rule the engine applies;
   simply the one place both apps read them from, so no copy can be left answering alone.
 
