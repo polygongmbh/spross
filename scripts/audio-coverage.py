@@ -3,8 +3,9 @@
 
     scripts/audio-coverage.py               # per-language coverage table
     scripts/audio-coverage.py --missing de  # the slugs de realizes and cannot say
-    scripts/audio-coverage.py --credits     # the docs/audio-licensing.md table rows
+    scripts/audio-coverage.py --credits     # the docs/audio-licensing.md totals and table rows
     scripts/audio-coverage.py --check       # exit 1 if a manifest names an untracked file
+    scripts/audio-coverage.py --check-credits  # exit 1 if that doc drifted from the manifests
 
 `--check` is the one a gate wants. `CatalogAudioLintTest.everyAudioFileShipsAndIsReferencedExactlyOnce`
 walks the WORKING TREE, so a recording that was fetched but never `git add`ed looks exactly
@@ -76,22 +77,90 @@ def missing(realized, shipped, langs):
             print('  %-28s %s' % (slug, realized[lang][slug]))
 
 
-def credits(shipped):
-    """The `docs/audio-licensing.md` rows, so the table is derived rather than retyped."""
+def family(license):
+    """The four buckets the licensing headline counts in."""
+    for prefix in ('CC BY-SA', 'CC BY', 'CC0'):
+        if license.startswith(prefix):
+            return prefix
+    return 'public domain'
+
+
+def credit_rows(shipped):
+    """{`audio/xx/yy/`: (files, licenses, speakers)} — the doc's three derived cells."""
+    rows = {}
     for lang, manifest in shipped.items():
         authors = manifest['authors']
         for section in SECTIONS:
-            rows = manifest.get(section, {})
-            if not rows:
+            entries = manifest.get(section, {})
+            if not entries:
                 continue
             licenses = collections.Counter(
-                entry.get('license') or authors[entry['author']] for entry in rows.values())
-            who = collections.Counter(entry['author'] for entry in rows.values())
+                entry.get('license') or authors[entry['author']] for entry in entries.values())
+            who = collections.Counter(entry['author'] for entry in entries.values())
             where = 'audio/%s/' % lang if section == 'words' else 'audio/%s/%s/' % (lang, section)
-            print('| `%s` | %d | %s | %s |' % (
-                where, len(rows),
+            rows[where] = (
+                str(len(entries)),
                 ' · '.join('%s %d' % (name, n) for name, n in licenses.most_common()),
-                ', '.join('%s %d' % (name, n) for name, n in who.most_common(2))))
+                ', '.join('%s %d' % (name, n) for name, n in who.most_common(2)))
+    return rows
+
+
+def headline(shipped):
+    """The doc's two opening lines: how many files, how big, under what."""
+    tracked = [path for path in subprocess.run(
+        ['git', '-C', ROOT, 'ls-files', 'catalog/audio'],
+        capture_output=True, text=True, check=True).stdout.split('\n') if path.endswith('.mp3')]
+    megabytes = sum(os.path.getsize(os.path.join(ROOT, path)) for path in tracked) / 1e6
+    buckets = collections.Counter()
+    for lang, manifest in shipped.items():
+        authors = manifest['authors']
+        for section in SECTIONS:
+            for entry in manifest.get(section, {}).values():
+                buckets[family(entry.get('license') or authors[entry['author']])] += 1
+    return ('%d mp3 files, ~%d MB, all of them Wikimedia Commons transcodes:'
+            % (len(tracked), round(megabytes)),
+            '**%s**.' % ' · '.join('%d %s' % (buckets[name], name)
+                                   for name in ('CC BY-SA', 'CC BY', 'CC0', 'public domain')))
+
+
+def credits(shipped):
+    """The `docs/audio-licensing.md` totals and rows, so the table is derived rather than retyped."""
+    for line in headline(shipped):
+        print(line)
+    print()
+    for where, cells in credit_rows(shipped).items():
+        print('| `%s` | %s | %s | %s |' % (where, cells[0], cells[1], cells[2]))
+
+
+def check_credits(shipped):
+    """`docs/audio-licensing.md` says its numbers are derived; this is what makes that true."""
+    doc = os.path.join(ROOT, 'docs', 'audio-licensing.md')
+    with open(doc, encoding='utf-8') as f:
+        lines = [line.rstrip('\n') for line in f]
+    drift = []
+    for line in headline(shipped):
+        if line not in lines:
+            drift.append('headline: %s' % line)
+    generated = credit_rows(shipped)
+    typed = {}
+    for line in lines:
+        if not line.startswith('| `audio/'):
+            continue
+        cells = [cell.strip() for cell in line.strip().strip('|').split('|')]
+        typed[cells[0].strip('`')] = (cells[1], cells[3], cells[4])
+    for where, cells in generated.items():
+        if where not in typed:
+            drift.append('%s: no row' % where)
+        elif typed[where] != cells:
+            drift.append('%s: %s -> %s' % (where, ' | '.join(typed[where]), ' | '.join(cells)))
+    for where in typed:
+        if where not in generated:
+            drift.append('%s: row for a pack that no longer ships' % where)
+    for line in drift:
+        print('  ', line)
+    if drift:
+        print('%s has drifted from the manifests in %d place(s)' % (doc, len(drift)))
+    return 1 if drift else 0
 
 
 def check(shipped):
@@ -117,7 +186,9 @@ def main():
     parser.add_argument('--missing', nargs='*', metavar='LANG',
                         help='list the slugs a language realizes and cannot say')
     parser.add_argument('--credits', action='store_true',
-                        help='emit the licensing table rows')
+                        help='emit the licensing totals and table rows')
+    parser.add_argument('--check-credits', action='store_true',
+                        help='exit 1 if docs/audio-licensing.md drifted from the manifests')
     parser.add_argument('--check', action='store_true',
                         help='exit 1 if a manifest names a file git does not track')
     args = parser.parse_args()
@@ -125,6 +196,8 @@ def main():
     shipped = manifests()
     if args.check:
         return check(shipped)
+    if args.check_credits:
+        return check_credits(shipped)
     if args.credits:
         return credits(shipped)
     realized = realizations()

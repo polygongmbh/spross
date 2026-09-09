@@ -2,7 +2,6 @@
 
 The record for the ship/legal questions the bundled audio raises:
 what is in the app, whose it is, what each license asks for, and where the app answers it.
-Successor to `docs/pronunciation-plan.md`, deleted once the feature shipped.
 
 The engine rule is `../kern/docs/audio.md`, the file format `../catalog/audio/README.md`,
 and the per-file truth is the per-language manifests themselves — this doc states the posture,
@@ -13,46 +12,49 @@ lives outside the repo in `data/reference/audio/README.md`.
 
 ## 1. What ships, and under what
 
-5828 mp3 files, ~129 MB, all of them Wikimedia Commons transcodes:
-**3566 CC BY-SA · 1326 CC BY · 930 CC0 · 6 public domain**.
+5792 mp3 files, ~121 MB, all of them Wikimedia Commons transcodes:
+**3520 CC BY-SA · 1322 CC BY · 945 CC0 · 5 public domain**.
 
-The per-pack rows below are DERIVED, not typed: `scripts/audio-coverage.py --credits`
-emits them from the shipped manifests, and `--check` fails where one names a file git does
-not track. Coverage itself is the bare `audio-coverage.py`.
+The totals above and the per-pack rows below are DERIVED, not typed:
+`scripts/audio-coverage.py --credits` emits them from the shipped manifests,
+`--check-credits` fails where this doc has drifted from them (the pre-commit hook runs it
+on any audio or licensing edit), and `--check` fails where a manifest names a file git does
+not track. Only the Source and Obligation columns are written by hand.
+Coverage itself is the bare `audio-coverage.py`.
 
 | Pack | Files | Source | Licenses | Speakers | Obligation |
 |---|---|---|---|---|---|
-| `audio/de/` | 767 | Commons `De-*.ogg` | CC BY-SA 4.0 490 · CC BY-SA 3.0 268 · CC BY 3.0 us 7 · Public domain 1 · CC BY-SA 2.5 1 | Jeuwre 467, Kampy 194 | credit; share-alike on the BY-SA |
+| `audio/de/` | 745 | Commons `De-*.ogg` | CC BY-SA 4.0 507 · CC BY-SA 3.0 215 · CC0 16 · CC BY 3.0 us 7 | Jeuwre 457, Kampy 156 | credit; share-alike on the BY-SA |
 | `audio/de/letters/` | 8 | Commons `De-<letter>.ogg` | CC BY-SA 4.0 6 · CC BY-SA 3.0 2 | Jeuwre 6, T.Voekler 2 | credit + share-alike |
 | `audio/de/texts/` | 2 | Commons `De-*.ogg` | CC BY-SA 4.0 1 · CC BY-SA 3.0 1 | Jeuwre 1, joni 1 | credit + share-alike |
 | `audio/de/articles/` | 221 | Lingua Libre, via Commons | CC BY-SA 4.0 221 | Natschoba 221 | credit + share-alike |
 | `audio/de/calendar/` | 13 | Commons `De-*.ogg` | CC BY-SA 3.0 7 · CC BY-SA 4.0 5 · CC BY-SA 2.5 1 | joni 5, Jeuwre 5 | credit + share-alike |
 | `audio/de/countries/` | 127 | Commons `De-*.ogg` | CC BY-SA 4.0 103 · CC BY-SA 3.0 19 · CC BY 3.0 5 | Jeuwre 101, Hedwig von Ebbel 7 | credit + share-alike |
-| `audio/eo/` | 717 | Lingua Libre + the Commons Esperanto phrasebook | CC BY-SA 4.0 494 · CC0 222 · CC BY 4.0 1 | Lepticed7 483, Poslovitch 117 | credit; share-alike on the BY-SA |
+| `audio/eo/` | 715 | Lingua Libre + the Commons Esperanto phrasebook | CC BY-SA 4.0 492 · CC0 222 · CC BY 4.0 1 | Lepticed7 481, Poslovitch 117 | credit; share-alike on the BY-SA |
 | `audio/eo/letters/` | 28 | Lingua Libre word recordings | CC BY-SA 4.0 28 | Lepticed7 28 | credit + share-alike |
 | `audio/eo/texts/` | 2 | Lingua Libre, via Commons | CC BY-SA 4.0 2 | NMaia 1, Lepticed7 1 | credit + share-alike |
 | `audio/eo/calendar/` | 3 | Lingua Libre, via Commons | CC0 1 · CC BY-SA 4.0 1 · Public domain 1 | Balamutick 1, Lepticed7 1 | credit; share-alike on the BY-SA |
 | `audio/eo/countries/` | 74 | Lingua Libre, via Commons | CC BY-SA 4.0 69 · CC0 5 | Castelobranco 56, Lepticed7 8 | credit; share-alike on the BY-SA |
-| `audio/es/` | 665 | Lingua Libre, via Commons | CC BY-SA 4.0 483 · CC0 126 · CC BY 4.0 56 | AdrianAbdulBaha 257, Marreromarco 133 | credit; share-alike on the BY-SA |
+| `audio/es/` | 662 | Lingua Libre, via Commons | CC BY-SA 4.0 480 · CC0 126 · CC BY 4.0 56 | AdrianAbdulBaha 256, Marreromarco 131 | credit; share-alike on the BY-SA |
 | `audio/es/letters/` | 6 | Lingua Libre, via Commons | CC BY-SA 4.0 2 · CC0 2 · CC BY 4.0 2 | Marreromarco 2, Emanuelps27 2 | credit; share-alike on the BY-SA |
 | `audio/es/texts/` | 4 | Lingua Libre, via Commons | CC0 2 · CC BY 4.0 1 · CC BY-SA 4.0 1 | Rodrigo5260 1, Precision27 1 | credit; share-alike on the BY-SA |
 | `audio/es/calendar/` | 19 | Lingua Libre, via Commons | CC0 9 · CC BY-SA 4.0 7 · CC BY 4.0 3 | GlyphEnjoyer 8, Eavqwiki 3 | credit; share-alike on the BY-SA |
 | `audio/es/countries/` | 75 | Lingua Libre + Commons | CC BY-SA 4.0 44 · CC0 18 · CC BY 4.0 6 · CC BY-SA 3.0 6 · Public domain 1 | Rodelar 39, Rodrigo5260 11 | credit; share-alike on the BY-SA |
-| `audio/fr/` | 692 | Commons `Fr-*.ogg` (Shtooka Paris) + Lingua Libre | CC BY 2.0 fr 442 · CC0 192 · CC BY-SA 4.0 51 · CC BY-SA 3.0 5 · CC BY 4.0 2 | Vion Nicolas 442, Poslovitch 168 | credit; share-alike on the BY-SA |
+| `audio/fr/` | 689 | Commons `Fr-*.ogg` (Shtooka Paris) + Lingua Libre | CC BY 2.0 fr 441 · CC0 191 · CC BY-SA 4.0 50 · CC BY-SA 3.0 5 · CC BY 4.0 2 | Vion Nicolas 441, Poslovitch 168 | credit; share-alike on the BY-SA |
 | `audio/fr/letters/` | 5 | Lingua Libre, via Commons | CC BY-SA 4.0 5 | Sartus85 5 | credit + share-alike |
 | `audio/fr/texts/` | 2 | Lingua Libre, via Commons | CC BY-SA 4.0 1 · CC0 1 | Sartus85 1, Poslovitch 1 | credit; share-alike on the BY-SA |
 | `audio/fr/calendar/` | 19 | Shtooka + Lingua Libre | CC BY 2.0 fr 12 · CC0 7 | Vion Nicolas 12, Poslovitch 7 | credit all but the CC0 |
 | `audio/fr/countries/` | 120 | Lingua Libre + Shtooka | CC0 71 · CC BY-SA 4.0 27 · CC BY-SA 3.0 14 · CC BY 2.0 fr 6 · Public domain 2 | Jules78120 39, Poslovitch 16 | credit; share-alike on the BY-SA |
-| `audio/it/` | 600 | Lingua Libre + Wiktionary `It-*.ogg` | CC BY-SA 4.0 327 · CC0 231 · CC BY 4.0 28 · CC BY 3.0 us 10 · CC BY-SA 3.0 3 · CC BY-SA 2.0 1 | LangPao 325, XANA000 129 | credit; share-alike on the BY-SA |
+| `audio/it/` | 599 | Lingua Libre + Wiktionary `It-*.ogg` | CC BY-SA 4.0 326 · CC0 231 · CC BY 4.0 28 · CC BY 3.0 us 10 · CC BY-SA 3.0 3 · CC BY-SA 2.0 1 | LangPao 324, XANA000 129 | credit; share-alike on the BY-SA |
 | `audio/it/letters/` | 10 | Lingua Libre, via Commons | CC0 10 | XANA000 10 | none — a dedication |
 | `audio/it/texts/` | 4 | Commons | CC0 3 · CC BY-SA 4.0 1 | XANA000 1, DanielParoliere 1 | credit; share-alike on the BY-SA |
 | `audio/it/articles/` | 54 | Commons `It-<article> <word>.ogg` (Shtooka) | CC BY 3.0 us 54 | Marta Carbone, Association Shtooka 54 | attribution only |
 | `audio/it/calendar/` | 19 | Lingua Libre + Shtooka | CC BY-SA 3.0 13 · CC BY 3.0 us 5 · CC0 1 | GerardM 11, Marta Carbone, Association Shtooka 5 | credit; share-alike on the BY-SA |
 | `audio/it/countries/` | 69 | Lingua Libre + Commons | CC BY-SA 4.0 41 · CC0 24 · CC BY-SA 3.0 3 · Public domain 1 | Francyskus 41, Ciampix 24 | credit; share-alike on the BY-SA |
-| `audio/sw/` | 623 | Commons `Sw-ke-*.flac` | CC BY-SA 4.0 623 | Waithera Were 622, Goethe-Institut Cameroon 1 | credit + share-alike |
+| `audio/sw/` | 621 | Commons `Sw-ke-*.flac` | CC BY-SA 4.0 621 | Waithera Were 620, Goethe-Institut Cameroon 1 | credit + share-alike |
 | `audio/sw/calendar/` | 19 | Commons `Sw-ke-*.flac` | CC BY-SA 4.0 19 | Waithera Were 19 | credit + share-alike |
 | `audio/sw/countries/` | 74 | Commons `Sw-ke-*.flac` | CC BY-SA 4.0 74 | Waithera Were 74 | credit + share-alike |
-| `audio/uk/` | 664 | Commons `Uk-*.ogg` (Shtooka) | CC BY 3.0 us 663 · CC BY 2.0 fr 1 | Галя Раптова, Nicolas Vion 649, Женя Музика, Nicolas Vion 8 | attribution only |
+| `audio/uk/` | 661 | Commons `Uk-*.ogg` (Shtooka) | CC BY 3.0 us 660 · CC BY 2.0 fr 1 | Галя Раптова, Nicolas Vion 646, Женя Музика, Nicolas Vion 8 | attribution only |
 | `audio/uk/letters/` | 33 | Commons `Аа – ukrainian.ogg` | CC BY-SA 4.0 33 | Tabrus 32, Tohaomg 1 | credit + share-alike |
 | `audio/uk/texts/` | 1 | Commons `Uk-*.ogg` | CC BY 3.0 us 1 | Галя Раптова, Nicolas Vion 1 | attribution only |
 | `audio/uk/calendar/` | 19 | Commons `Uk-*.ogg` (Shtooka) | CC BY 3.0 us 19 | Галя Раптова, Nicolas Vion 19 | attribution only |
