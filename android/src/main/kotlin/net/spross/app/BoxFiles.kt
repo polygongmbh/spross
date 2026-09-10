@@ -15,6 +15,12 @@ class BoxFiles(private val dir: File) {
 
     fun write(target: String, json: String) = writeAtomically(fileFor(target), json)
 
+    /** Every target's stored document, keyed by target. */
+    fun readAll(): Map<String, String> =
+        dir.listFiles { file -> file.isFile && file.name.startsWith("box-") && file.name.endsWith(".json") }
+            .orEmpty()
+            .associate { it.name.removePrefix("box-").removeSuffix(".json") to it.readText() }
+
     /**
      * The home-screen widget's pre-resolved read model, one file for the whole app
      * rather than one per target: the widget draws the box the learner is IN, and the

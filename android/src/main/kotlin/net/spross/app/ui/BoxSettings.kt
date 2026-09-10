@@ -53,7 +53,7 @@ import net.spross.kern.model.Language
 
 /**
  * The block under the shelves: which pair is being learnt, whether words are read aloud,
- * and the one destructive door — plus the way to who spoke the recordings.
+ * the backup, and the one destructive door — plus the way to who spoke the recordings.
  *
  * Neither picker hides the other's pick: choosing the language the OTHER side holds SWAPS
  * them wherever that swapped pair is one the catalog can teach ([LanguageChoices]), so a
@@ -112,6 +112,8 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                 LearnerNameSetting(model)
                 HorizontalDivider(color = Theme.colors.separator)
                 ReadAloudSetting(model, box.joinStamp.target)
+                HorizontalDivider(color = Theme.colors.separator)
+                BackupSetting(model, catalog)
                 HorizontalDivider(color = Theme.colors.separator)
                 Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
                     TextButton(onClick = { model.restartOnboarding() }) {
@@ -315,7 +317,7 @@ private fun ReadAloudSetting(model: AppModel, target: Language) {
 }
 
 @Composable
-private fun SettingHint(text: String) {
+internal fun SettingHint(text: String) {
     Text(
         text,
         style = MaterialTheme.typography.bodySmall,

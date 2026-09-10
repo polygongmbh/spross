@@ -365,6 +365,18 @@ internal object ChromeDe : Chrome {
         "und deine anderen Sprachen bleiben."
     override val settingsResetConfirm = "Alle Lernfortschritte für %s löschen und neu mit " +
         "den ersten Wörtern beginnen?"
+    override val settingsBackupTitle = "Sicherung"
+    override val settingsBackupExport = "Exportieren"
+    override val settingsBackupImport = "Importieren"
+    override val settingsBackupHint = "Speichert Fortschritt und Verlauf aller gelernten " +
+        "Sprachen in einer Datei — zum Zurückholen nach einer Neuinstallation oder auf einem " +
+        "anderen Handy."
+    override val settingsBackupConfirm = "Den Fortschritt für %s durch den aus dieser " +
+        "Sicherung ersetzen?"
+    override val settingsBackupReplace = "Ersetzen"
+    override val settingsBackupExportFailed = "Die Sicherung konnte nicht gespeichert werden."
+    override val settingsBackupImportFailed = "Diese Datei ist keine Spross-Sicherung, oder " +
+        "eine Box darin lässt sich nicht lesen."
     override val commonCancel = "Abbrechen"
     override val commonReset = "Zurücksetzen"
     override val commonClear = "Leeren"

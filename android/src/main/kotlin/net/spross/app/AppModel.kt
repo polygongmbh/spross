@@ -63,6 +63,7 @@ import net.spross.kern.session.SessionOffers
 import net.spross.kern.session.SessionRun
 import net.spross.kern.session.SessionRunState
 import net.spross.kern.snapshot.WidgetSnapshotBuilder
+import net.spross.kern.store.BoxBackup
 import net.spross.kern.store.StoreCodec
 import net.spross.kern.store.StoreFormatException
 import net.spross.kern.store.rekeyingPrefixedVerbs
@@ -688,6 +689,23 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         box = next
         persist(next)
         refreshStats()
+    }
+
+    /** The backup file's text, every box on disk in it ([BoxBackup]). Reads the disk. */
+    fun backupJson(): String = BoxBackup.encode(boxFiles.readAll())
+
+    /**
+     * Writes boxes a backup restored, then re-opens the pair on screen from disk, so the
+     * box drawn is the restored one and not the one it replaced.
+     */
+    fun restoreBoxes(documents: Map<String, String>) {
+        val stamp = box?.joinStamp ?: return
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                documents.forEach { (target, json) -> boxFiles.write(target, json) }
+            }
+            activate(stamp.source, stamp.target, Screen.Box())
+        }
     }
 
     /**

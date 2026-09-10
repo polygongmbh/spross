@@ -383,6 +383,14 @@ interface Chrome {
     val settingsResetButton: String       // %s
     val settingsResetHint: String
     val settingsResetConfirm: String      // %s
+    val settingsBackupTitle: String
+    val settingsBackupExport: String
+    val settingsBackupImport: String
+    val settingsBackupHint: String
+    val settingsBackupConfirm: String     // %s
+    val settingsBackupReplace: String
+    val settingsBackupExportFailed: String
+    val settingsBackupImportFailed: String
     val commonCancel: String
     val commonReset: String
     val commonClear: String

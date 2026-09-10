@@ -65,6 +65,27 @@ actor BoxStore {
         try write(StoreCodec.shared.encode(state: state), target: target)
     }
 
+    /// Every target's stored document, keyed by target — whatever a debounced save
+    /// left waiting is written first, so the box on screen is the one read.
+    func allDocuments() throws -> [String: String] {
+        try flush()
+        let names = (try? FileManager.default.contentsOfDirectory(atPath: directory.path)) ?? []
+        var documents: [String: String] = [:]
+        for name in names where name.hasPrefix("box-") && name.hasSuffix(".json") {
+            let target = String(name.dropFirst("box-".count).dropLast(".json".count))
+            documents[target] = try String(contentsOf: directory.appendingPathComponent(name),
+                                           encoding: .utf8)
+        }
+        return documents
+    }
+
+    /// Restored documents over the stored ones. A debounced save still waiting holds the
+    /// box being replaced, and would write it back over the restore, so it is dropped.
+    func replace(documents: [String: String]) throws {
+        clearPending()
+        for (target, json) in documents { try write(json, target: target) }
+    }
+
     private func clearPending() {
         waiting = nil
         pendingSave?.cancel()

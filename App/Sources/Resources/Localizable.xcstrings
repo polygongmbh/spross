@@ -5763,6 +5763,135 @@
         }
       }
     },
+    "settings.backup.confirm %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den Fortschritt für %@ durch den aus dieser Sicherung ersetzen?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Replace the progress for %@ with the one in this backup?"
+          }
+        }
+      }
+    },
+    "settings.backup.export" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export"
+          }
+        }
+      }
+    },
+    "settings.backup.exportFailed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Sicherung konnte nicht gespeichert werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The backup could not be saved."
+          }
+        }
+      }
+    },
+    "settings.backup.hint" : {
+      "comment" : "Under the export and import buttons. The file carries learning progress only — the pair, the name and the audio choice stay on the device and are set again after a restore.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speichert Fortschritt und Verlauf aller gelernten Sprachen in einer Datei — zum Zurückholen nach einer Neuinstallation oder auf einem anderen Handy."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saves the progress and history of every language you learn to a file — to bring back after reinstalling, or on another phone."
+          }
+        }
+      }
+    },
+    "settings.backup.import" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import"
+          }
+        }
+      }
+    },
+    "settings.backup.importFailed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Datei ist keine Spross-Sicherung, oder eine Box darin lässt sich nicht lesen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This file is not a Spross backup, or a box in it cannot be read."
+          }
+        }
+      }
+    },
+    "settings.backup.replace" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ersetzen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Replace"
+          }
+        }
+      }
+    },
+    "settings.backup.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sicherung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Backup"
+          }
+        }
+      }
+    },
     "settings.feedback" : {
       "comment" : "What the footer's envelope is FOR. The door itself prints the address — readable on a phone with no mail app at all, a deliberate delta from the iPhone's verb — so this is the name a screen reader gets in front of it.",
       "localizations" : {

@@ -361,6 +361,17 @@ internal object ChromeEn : Chrome {
         "other languages stay."
     override val settingsResetConfirm = "Delete all learning progress for %s and start over " +
         "with the first words?"
+    override val settingsBackupTitle = "Backup"
+    override val settingsBackupExport = "Export"
+    override val settingsBackupImport = "Import"
+    override val settingsBackupHint = "Saves the progress and history of every language you " +
+        "learn to a file — to bring back after reinstalling, or on another phone."
+    override val settingsBackupConfirm = "Replace the progress for %s with the one in this " +
+        "backup?"
+    override val settingsBackupReplace = "Replace"
+    override val settingsBackupExportFailed = "The backup could not be saved."
+    override val settingsBackupImportFailed = "This file is not a Spross backup, or a box in " +
+        "it cannot be read."
     override val commonCancel = "Cancel"
     override val commonReset = "Reset"
     override val commonClear = "Clear"
