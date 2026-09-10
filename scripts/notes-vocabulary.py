@@ -58,6 +58,24 @@ def tokens(text):
     return [t.lower() for t in WORD.findall(text)]
 
 
+def related(token, word):
+    """Same word up to inflection — a shared stem that is most of BOTH sides.
+
+    Bare containment is far too loose in practice: `mara` sits inside `marahaba` and `nada`
+    inside `terminada`, neither of which is the card. Requiring the shorter form to be most
+    of the longer keeps a prefixed form like `mzuri` against `zuri` and drops those two.
+
+    Containment is the whole test, so a form that differs at the END (`amico`/`amici`) is
+    not caught either way; the agreement forms that matter are listed as variants and match
+    exactly.
+    """
+    if len(token) < MIN_STEM or len(word) < MIN_STEM:
+        return False
+    if token not in word and word not in token:
+        return False
+    return min(len(token), len(word)) / max(len(token), len(word)) >= 0.7
+
+
 def surface_forms(realization):
     out = []
     for key in ("text", "synonyms", "variants"):
@@ -122,12 +140,11 @@ def audit(lang, position):
         for token in tokens(note):
             if len(token) < MIN_STEM or token in known:
                 continue
-            if any(len(k) >= MIN_STEM and (k in token or token in k) for k in known):
+            if any(related(token, k) for k in known):
                 continue
             if token in jargon:
                 meta.append(token)
-            elif token in everything or any(
-                    len(w) >= MIN_STEM and (w in token or token in w) for w in everything):
+            elif token in everything or any(related(token, w) for w in everything):
                 # The catalog DOES teach this word, just not yet — swap it for one already seeded.
                 later.append(token)
             # Anything else is a function word or an inflection the catalog never lists as a
