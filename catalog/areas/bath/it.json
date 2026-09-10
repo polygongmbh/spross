@@ -8,6 +8,7 @@
    "variants": ["panni sporchi"],
    "grammar": { "gender": "il" },
    "notes": {
+    "it": "il bucato è la roba da lavare: fare il bucato, stendere il bucato.",
     "de": "il bucato ist die Wäsche als Ladung, die man wäscht oder aufhängt; Kleidung allgemein sind i vestiti."
    }
   },
@@ -17,6 +18,7 @@
    "variants": ["WC", "tazza"],
    "grammar": { "gender": "il" },
    "notes": {
+    "it": "il gabinetto è il water (si dice vater) · si chiede Dov'è il bagno?",
     "de": "il gabinetto ist die Toilette selbst; im Alltag sagt man meist il water, italienisch ausgesprochen vater. Nach der Toilette fragt man mit Dov'è il bagno?",
     "en": "Italian il water (from water closet, said vater) is the toilet bowl, not water; ask for one with Dov'è il bagno?"
    }
@@ -37,7 +39,13 @@
   },
   "to-take-shower": { "text": "farsi la doccia", "variants": ["fare la doccia"] },
   "to-do-laundry": { "text": "fare il bucato", "variants": ["lavare i panni"] },
-  "to-brush-teeth": { "text": "lavarsi i denti", "notes": { "de": "im Italienischen wäscht man sich die Zähne." } },
+  "to-brush-teeth": {
+   "text": "lavarsi i denti",
+   "notes": {
+    "it": "mi lavo i denti: si dice lavarsi, non spazzolare.",
+    "de": "im Italienischen wäscht man sich die Zähne."
+   }
+  },
   "to-dry-off": { "text": "asciugarsi" },
   "to-hang-up-laundry": { "text": "stendere il bucato", "variants": ["stendere i panni"] },
   "to-clean": { "text": "pulire" },
@@ -58,7 +66,10 @@
    "text": "pattumiera",
    "variants": ["cestino", "secchio della spazzatura", "bidone"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "la pattumiera ist der Mülleimer; der kleine Papierkorb im Bad heißt il cestino." }
+   "notes": {
+    "it": "la pattumiera sta in cucina · il cestino è piccolo, per la carta.",
+    "de": "la pattumiera ist der Mülleimer; der kleine Papierkorb im Bad heißt il cestino."
+   }
   },
   "bucket": { "text": "secchio", "grammar": { "gender": "il", "plural": "secchi" } },
   "im-taking-a-quick-shower": {

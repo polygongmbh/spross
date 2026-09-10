@@ -8,6 +8,7 @@
    "variants": ["l'ufficio pubblico"],
    "grammar": { "gender": "l'", "plural": "uffici pubblici" },
    "notes": {
+    "it": "il comune, l'anagrafe, la questura: ogni ufficio ha il suo nome.",
     "de": "Ein bestimmtes Amt nennt man beim Namen: il comune (Rathaus), l'anagrafe (Meldeamt), la questura (Ausländerbehörde)."
    }
   },
@@ -17,6 +18,7 @@
    "variants": ["domanda", "istanza"],
    "grammar": { "gender": "la" },
    "notes": {
+    "it": "la richiesta e la domanda sono la stessa cosa: presentare domanda.",
     "de": "la richiesta und la domanda sind beide der Antrag; einen Antrag stellen heißt presentare domanda."
    }
   },
@@ -25,6 +27,7 @@
    "variants": ["carta di identità"],
    "grammar": { "gender": "la", "plural": "carte d'identità" },
    "notes": {
+    "it": "la carta d'identità è di tutti · gli stranieri hanno il permesso di soggiorno.",
     "de": "Der italienische Personalausweis ist la carta d'identità; Ausländer brauchen zusätzlich il permesso di soggiorno."
    }
   },
@@ -41,6 +44,7 @@
    "variants": ["l'impiegato"],
    "grammar": { "gender": "l'" },
    "notes": {
+    "it": "l'impiegato sta allo sportello · il funzionario decide la pratica.",
     "de": "Am Schalter sitzt l'impiegato; il funzionario ist der Beamte, der den Vorgang entscheidet."
    }
   },
@@ -55,13 +59,17 @@
    "variants": ["l'iscrizione anagrafica", "un'iscrizione anagrafica", "residenza", "cambio di residenza"],
    "grammar": { "gender": "l'" },
    "notes": {
+    "it": "si dice fare la residenza e si fa al comune.",
     "de": "Die Wohnsitzanmeldung heißt iscrizione anagrafica; im Alltag sagt man fare la residenza, angemeldet wird man beim comune."
    }
   },
   "documents": {
    "text": "documenti",
    "grammar": { "gender": "i" },
-   "notes": { "de": "i documenti sind auch die Ausweispapiere: Documenti! heißt „Papiere, bitte!“" }
+   "notes": {
+    "it": "i documenti sono anche la carta d'identità: Documenti, per favore!",
+    "de": "i documenti sind auch die Ausweispapiere: Documenti! heißt „Papiere, bitte!“"
+   }
   },
   "to-fill-in": { "text": "compilare", "variants": ["riempire"] },
   "to-sign": { "text": "firmare" },
@@ -76,6 +84,7 @@
    "text": "rinnovare",
    "variants": ["prolungare"],
    "notes": {
+    "it": "si rinnova un documento · si prolunga una scadenza o un soggiorno.",
     "de": "Ein Dokument wird rinnovato (erneuert); prolungare verlängert eine Frist oder einen Aufenthalt."
    }
   },
@@ -94,6 +103,7 @@
    "synonyms": ["provvedimento"],
    "grammar": { "gender": "la" },
    "notes": {
+    "it": "la comunicazione è la lettera che arriva · il provvedimento è la decisione.",
     "de": "la comunicazione ist das Schreiben, das ankommt; die amtliche Entscheidung selbst heißt il provvedimento."
    }
   },
@@ -101,13 +111,17 @@
    "text": "tassa",
    "variants": ["contributo"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "la tassa ist die Gebühr für eine Leistung; die Steuer heißt l'imposta." }
+   "notes": {
+    "it": "la tassa si paga per un servizio · l'imposta è quella sul reddito.",
+    "de": "la tassa ist die Gebühr für eine Leistung; die Steuer heißt l'imposta."
+   }
   },
   "office-hours": {
    "text": "orario di ricevimento",
    "variants": ["l'orario di ricevimento", "orario di ricevimento al pubblico"],
    "grammar": { "gender": "l'", "plural": "orari di ricevimento" },
    "notes": {
+    "it": "di ricevimento = quando ricevono il pubblico · di apertura = quando è aperto.",
     "de": "l'orario di ricevimento sind die Sprechzeiten für Publikum; die allgemeinen Öffnungszeiten heißen l'orario di apertura."
    }
   },
@@ -115,7 +129,10 @@
   "to-reject": {
    "text": "respingere",
    "synonyms": ["rifiutare"],
-   "notes": { "de": "Ein Antrag wird respinto; rifiutare ist eher etwas ausschlagen." }
+   "notes": {
+    "it": "una domanda viene respinta · rifiutare è dire di no a qualcosa.",
+    "de": "Ein Antrag wird respinto; rifiutare ist eher etwas ausschlagen."
+   }
   },
   "to-approve": { "text": "approvare", "variants": ["autorizzare", "concedere"] },
   "law": { "text": "legge", "grammar": { "gender": "la" } },

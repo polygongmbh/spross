@@ -8,7 +8,10 @@
   "right": { "text": "a destra", "variants": ["destra"] },
   "up": {
    "text": "in alto",
-   "notes": { "de": "su heißt hinauf und ist die Bewegung: Vieni su! · der Ort ist in alto." }
+   "notes": {
+    "it": "vieni su! è il movimento · sta in alto è il posto.",
+    "de": "su heißt hinauf und ist die Bewegung: Vieni su! · der Ort ist in alto."
+   }
   },
   "down": { "text": "in basso", "variants": ["giù"] },
   "inside": { "text": "dentro", "variants": ["all'interno"] },
@@ -18,7 +21,10 @@
   "on": {
    "text": "sopra",
    "variants": ["su"],
-   "notes": { "de": "su verschmilzt mit dem Artikel: sul tavolo." }
+   "notes": {
+    "it": "su si unisce all'articolo: sul tavolo, sulla sedia.",
+    "de": "su verschmilzt mit dem Artikel: sul tavolo."
+   }
   },
   "under": { "text": "sotto" },
   "behind": { "text": "dietro" },
@@ -26,13 +32,17 @@
    "text": "tra",
    "variants": ["fra"],
    "notes": {
+    "it": "tra e fra sono uguali, si sceglie per il suono: fra tre giorni.",
     "de": "tra und fra sind gleichbedeutend; man wählt nach dem Klang: fra tre giorni, tra fratelli."
    }
   },
   "near": {
    "text": "vicino",
    "variants": ["vicina"],
-   "notes": { "de": "il vicino ist auch der Nachbar · als Präposition vicino a: vicino alla porta." }
+   "notes": {
+    "it": "come preposizione vuole a: vicino alla porta · il vicino abita accanto.",
+    "de": "il vicino ist auch der Nachbar · als Präposition vicino a: vicino alla porta."
+   }
   },
   "far": { "text": "lontano", "variants": ["lontana"] },
   "place": { "text": "posto", "synonyms": ["luogo"], "grammar": { "gender": "il" } },
@@ -48,7 +58,10 @@
   "at-school": { "text": "a scuola" },
   "go-to-school": {
    "text": "andare a scuola",
-   "notes": { "de": "a steht für wo und wohin: sono a scuola, vado a scuola — das Verb entscheidet." }
+   "notes": {
+    "it": "a vale per dove si sta e dove si va: sono a scuola, vado a scuola.",
+    "de": "a steht für wo und wohin: sono a scuola, vado a scuola — das Verb entscheidet."
+   }
   },
   "are-you-going-home-already": { "text": "Andate già a casa?", "variants": ["Vai già a casa?"] }
  }

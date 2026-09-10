@@ -18,12 +18,18 @@
    "text": "stipendio",
    "synonyms": ["salario"],
    "grammar": { "gender": "lo", "plural": "stipendi" },
-   "notes": { "de": "lo stipendio ist das monatliche Gehalt, il salario der Lohn nach geleisteter Arbeit." }
+   "notes": {
+    "it": "lo stipendio arriva ogni mese · il salario si conta sul lavoro fatto.",
+    "de": "lo stipendio ist das monatliche Gehalt, il salario der Lohn nach geleisteter Arbeit."
+   }
   },
   "colleague": {
    "text": "collega",
    "grammar": { "gender": "il", "plural": "colleghi" },
-   "notes": { "de": "collega hat nur eine Form; das Geschlecht steht im Artikel: il collega, la collega." }
+   "notes": {
+    "it": "il collega, la collega: cambia solo l'articolo.",
+    "de": "collega hat nur eine Form; das Geschlecht steht im Artikel: il collega, la collega."
+   }
   },
   "boss": { "text": "capo", "grammar": { "gender": "il" } },
   "shift": { "text": "turno", "grammar": { "gender": "il" } },
@@ -32,6 +38,7 @@
    "synonyms": ["vacanze"],
    "grammar": { "gender": "le", "plural": "only" },
    "notes": {
+    "it": "le ferie sono dal lavoro, sempre al plurale · le vacanze sono di tutti.",
     "de": "Bezahlter Urlaub vom Job heißt le ferie, immer im Plural; le vacanze sind Ferien und Reisen allgemein."
    }
   },
@@ -40,12 +47,16 @@
    "synonyms": ["ditta"],
    "variants": ["l'azienda", "un'azienda", "società"],
    "grammar": { "gender": "l'" },
-   "notes": { "de": "Vorsicht: la firma ist die Unterschrift; „die Firma“ heißt l'azienda oder la ditta." }
+   "notes": {
+    "it": "l'azienda o la ditta è dove si lavora · la firma sta sul foglio.",
+    "de": "Vorsicht: la firma ist die Unterschrift; „die Firma“ heißt l'azienda oder la ditta."
+   }
   },
   "to-apply": {
    "text": "candidarsi a un posto",
    "variants": ["candidarsi", "fare domanda", "presentare la candidatura"],
    "notes": {
+    "it": "candidarsi vuole a: mi candido a un posto.",
     "de": "candidarsi steht mit a: candidarsi a un'offerta · fare domanda passt auch für Anträge."
    }
   },
@@ -53,20 +64,27 @@
   "to-earn": {
    "text": "guadagnare",
    "variants": ["prendere"],
-   "notes": { "de": "Nach dem Verdienst fragt man mit prendere: Quanto prendi? = Wie viel verdienst du?" }
+   "notes": {
+    "it": "per lo stipendio si chiede Quanto prendi?",
+    "de": "Nach dem Verdienst fragt man mit prendere: Quanto prendi? = Wie viel verdienst du?"
+   }
   },
   "to-start": { "text": "cominciare", "synonyms": ["iniziare"] },
   "to-leave": {
    "text": "lasciare",
    "synonyms": ["abbandonare"],
    "notes": {
+    "it": "lasciare il lavoro è smettere · da un posto si esce.",
     "de": "lasciare il lavoro heißt kündigen. Einen Ort verlässt man dagegen mit uscire da oder andarsene da."
    }
   },
   "to-quit": {
    "text": "lasciare il lavoro",
    "variants": ["licenziarsi", "dare le dimissioni"],
-   "notes": { "de": "licenziarsi heißt selbst kündigen; licenziare qualcuno ist jemanden entlassen." }
+   "notes": {
+    "it": "licenziarsi è andarsene · licenziare qualcuno è mandarlo via.",
+    "de": "licenziarsi heißt selbst kündigen; licenziare qualcuno ist jemanden entlassen."
+   }
   },
   "to-hire": { "text": "assumere" },
   "to-help": { "text": "aiutare" },
@@ -75,7 +93,10 @@
    "text": "professione",
    "synonyms": ["mestiere"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "la professione ist der erlernte Beruf, il mestiere das Handwerk, das man ausübt." }
+   "notes": {
+    "it": "la professione si studia · il mestiere si impara facendo.",
+    "de": "la professione ist der erlernte Beruf, il mestiere das Handwerk, das man ausübt."
+   }
   },
   "interview": {
    "text": "colloquio di lavoro",
@@ -97,6 +118,7 @@
    "variants": ["a tempo parziale", "part-time"],
    "grammar": { "gender": "il" },
    "notes": {
+    "it": "sul contratto a tempo pieno o parziale · parlando full-time e part-time.",
     "de": "Im Vertrag steht a tempo pieno bzw. a tempo parziale; im Alltag sagt man meist full-time und part-time."
    }
   },
@@ -105,6 +127,7 @@
    "variants": ["l'imposta", "un'imposta", "tassa"],
    "grammar": { "gender": "l'" },
    "notes": {
+    "it": "l'imposta è quella sul reddito · la tassa si paga per un servizio.",
     "de": "l'imposta ist die Steuer (imposta sul reddito); la tassa ist die Gebühr für eine bestimmte Leistung."
    }
   },
@@ -114,6 +137,7 @@
    "variants": ["formazione"],
    "grammar": { "gender": "la" },
    "notes": {
+    "it": "la formazione professionale è a scuola · l'apprendistato è in azienda.",
     "de": "Die italienische Berufsausbildung heißt formazione professionale; die betriebliche Lehre ist l'apprendistato."
    }
   },
@@ -122,6 +146,7 @@
    "variants": ["lettera di licenziamento"],
    "grammar": { "gender": "il" },
    "notes": {
+    "it": "il licenziamento viene dall'azienda · le dimissioni le dai tu.",
     "de": "il licenziamento ist die Kündigung durch den Arbeitgeber; kündigt man selbst, sind es le dimissioni."
    }
   },
@@ -129,7 +154,10 @@
    "text": "lavoratore",
    "synonyms": ["operaio"],
    "grammar": { "gender": "il" },
-   "notes": { "de": "il lavoratore ist der Arbeitnehmer allgemein, l'operaio der Arbeiter im Betrieb." }
+   "notes": {
+    "it": "il lavoratore è chiunque lavori · l'operaio sta in fabbrica.",
+    "de": "il lavoratore ist der Arbeitnehmer allgemein, l'operaio der Arbeiter im Betrieb."
+   }
   },
   "employer": { "text": "datore di lavoro", "grammar": { "gender": "il" } },
   "customer": { "text": "cliente", "grammar": { "gender": "il" } },

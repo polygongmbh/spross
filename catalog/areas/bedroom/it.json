@@ -20,7 +20,10 @@
    "text": "pantaloni",
    "variants": ["pantalone"],
    "grammar": { "gender": "i", "plural": "only" },
-   "notes": { "de": "wie die Hose im Deutschen, aber immer im Plural: i pantaloni." }
+   "notes": {
+    "it": "sempre al plurale: i pantaloni sono neri.",
+    "de": "wie die Hose im Deutschen, aber immer im Plural: i pantaloni."
+   }
   },
   "t-shirt": { "text": "maglietta", "variants": ["t-shirt"], "grammar": { "gender": "la" } },
   "to-sleep": { "text": "dormire" },
@@ -35,7 +38,10 @@
    "text": "vestiti",
    "variants": ["abiti", "abbigliamento"],
    "grammar": { "gender": "i", "plural": "only" },
-   "notes": { "de": "i vestiti ist die Kleidung insgesamt; im Singular heißt il vestito das Kleid." }
+   "notes": {
+    "it": "i vestiti sono tutta la roba · il vestito al singolare è l'abito.",
+    "de": "i vestiti ist die Kleidung insgesamt; im Singular heißt il vestito das Kleid."
+   }
   },
   "shirt": { "text": "camicia", "grammar": { "gender": "la" } },
   "dress": { "text": "vestito", "variants": ["abito"], "grammar": { "gender": "il" } },
@@ -55,6 +61,7 @@
   "i-love-you": {
    "text": "Ti amo.",
    "notes": {
+    "it": "ti amo si dice al partner · alla famiglia si dice ti voglio bene.",
     "de": "Ti amo gilt der Partnerin oder dem Partner; Familie und Freunden sagt man ti voglio bene."
    }
   },

@@ -2,14 +2,23 @@
  "title": "Restare nella conversazione",
  "subtitle": "Richiedere, capire, andare avanti.",
  "words": {
-  "to-hear": { "text": "sentire", "notes": { "de": "sentire = wahrnehmen · ascoltare = bewusst zuhören." } },
+  "to-hear": {
+   "text": "sentire",
+   "notes": {
+    "it": "sentire = accorgersi di un suono · ascoltare = starci attenti.",
+    "de": "sentire = wahrnehmen · ascoltare = bewusst zuhören."
+   }
+  },
   "to-understand": { "text": "capire", "synonyms": ["comprendere"] },
   "to-speak": { "text": "parlare" },
   "to-repeat-word": { "text": "ripetere la parola" },
   "loud": {
    "text": "forte",
    "variants": ["alto"],
-   "notes": { "de": "Lautstärke: parla più forte · forte heißt auch stark." }
+   "notes": {
+    "it": "parla più forte! · forte vuol dire anche robusto.",
+    "de": "Lautstärke: parla più forte · forte heißt auch stark."
+   }
   },
   "to-ask": { "text": "chiedere", "variants": ["domandare"] },
   "question": { "text": "domanda", "grammar": { "gender": "la" } },
@@ -19,9 +28,18 @@
   "to-need": {
    "text": "avere bisogno di",
    "variants": ["avere bisogno"],
-   "notes": { "de": "das Gebrauchte steht nach di: Ho bisogno di aiuto." }
+   "notes": {
+    "it": "dopo bisogno ci vuole di: ho bisogno di aiuto.",
+    "de": "das Gebrauchte steht nach di: Ho bisogno di aiuto."
+   }
   },
-  "to-know": { "text": "sapere", "notes": { "de": "wissen = sapere · Personen und Orte kennen = conoscere." } },
+  "to-know": {
+   "text": "sapere",
+   "notes": {
+    "it": "si sa una cosa · si conosce una persona o un posto.",
+    "de": "wissen = sapere · Personen und Orte kennen = conoscere."
+   }
+  },
   "to-remember": { "text": "ricordarsi" },
   "to-forget": { "text": "dimenticare" },
   "goal": {

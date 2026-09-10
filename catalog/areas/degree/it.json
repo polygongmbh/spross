@@ -7,13 +7,16 @@
   "more": { "text": "più" },
   "less": { "text": "meno" },
   "always": { "text": "sempre" },
-  "never": { "text": "mai", "notes": { "de": "im Satz steht non davor: Non bevo mai caffè." } },
+  "never": { "text": "mai", "notes": { "it": "mai vuole non davanti: non bevo mai caffè." } },
   "maybe": { "text": "forse" },
   "sometimes": { "text": "a volte", "variants": ["qualche volta", "talvolta"] },
   "often": { "text": "spesso" },
   "very": {
    "text": "molto",
-   "notes": { "de": "vor Adjektiv und Verb unveränderlich: molto bene · als Menge heißt molto viel." }
+   "notes": {
+    "it": "davanti a un aggettivo molto non cambia: molto bene, molto bella.",
+    "de": "vor Adjektiv und Verb unveränderlich: molto bene · als Menge heißt molto viel."
+   }
   },
   "too": { "text": "troppo" },
   "enough": { "text": "abbastanza" },

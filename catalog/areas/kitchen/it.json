@@ -8,6 +8,7 @@
    "variants": ["cucina", "piano cottura"],
    "grammar": { "gender": "il" },
    "notes": {
+    "it": "si cuoce sul fornello · il forno è quello per il pane e i dolci.",
     "de": "il fornello ist die Kochstelle, il forno der Backofen; „auf dem Herd“ heißt sul fornello oder sul fuoco. Das Gerät selbst heißt auch la cucina — wie der Raum."
    }
   },
@@ -25,12 +26,16 @@
   "plate": { "text": "piatto", "grammar": { "gender": "il" } },
   "to-cook": {
    "text": "cucinare",
-   "notes": { "de": "cucinare = Essen zubereiten; Wasser kochen heißt bollire." }
+   "notes": {
+    "it": "si cucina il pranzo · l'acqua si fa bollire.",
+    "de": "cucinare = Essen zubereiten; Wasser kochen heißt bollire."
+   }
   },
   "to-bake": {
    "text": "cuocere al forno",
    "variants": ["fare al forno", "infornare"],
    "notes": {
+    "it": "il pane si cuoce al forno · infornare è metterlo dentro.",
     "de": "Italienisch hat kein eigenes Verb dafür: cuocere al forno; infornare heißt „in den Ofen schieben“."
    }
   },
@@ -54,7 +59,10 @@
    "synonyms": ["lattina"],
    "variants": ["scatoletta"],
    "grammar": { "gender": "il" },
-   "notes": { "de": "il barattolo ist die Konservendose oder das Glas, la lattina die Getränkedose." }
+   "notes": {
+    "it": "il barattolo è di vetro o di latta · la lattina è della bibita.",
+    "de": "il barattolo ist die Konservendose oder das Glas, la lattina die Getränkedose."
+   }
   },
   "gas": { "text": "gas", "grammar": { "gender": "il", "plural": "=" } },
   "tasty": { "text": "gustoso", "synonyms": ["saporito"], "variants": ["gustosa"] },
@@ -73,7 +81,10 @@
   "can-you-set-the-table": {
    "text": "Puoi apparecchiare la tavola?",
    "variants": ["Puoi apparecchiare?"],
-   "notes": { "de": "Beim Decken heißt es la tavola; das Möbelstück selbst ist il tavolo." }
+   "notes": {
+    "it": "si apparecchia la tavola · il mobile si chiama il tavolo.",
+    "de": "Beim Decken heißt es la tavola; das Möbelstück selbst ist il tavolo."
+   }
   },
   "the-water-is-boiling-hot": { "text": "L'acqua bolle.", "variants": ["L'acqua sta bollendo."] },
   "careful-very-hot": {

@@ -8,6 +8,7 @@
    "variants": ["l'aula", "un'aula"],
    "grammar": { "gender": "l'" },
    "notes": {
+    "it": "l'aula è la stanza, le aule · la classe sono i compagni.",
     "de": "aula ist feminin: l'aula, Plural le aule. la classe ist die Schulklasse, also die Gruppe."
    }
   },
@@ -17,6 +18,7 @@
    "variants": ["prof"],
    "grammar": { "gender": "il" },
    "notes": {
+    "it": "il maestro alle elementari · il professore dopo · l'insegnante sempre.",
     "de": "il maestro unterrichtet in der Grundschule, il professore an weiterführenden Schulen und im Sprachkurs; l'insegnante gilt für beide."
    }
   },
@@ -25,7 +27,10 @@
    "synonyms": ["maestra"],
    "variants": ["prof"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "Für Frauen sagt man auch l'insegnante — dieses Wort hat keine eigene weibliche Form." }
+   "notes": {
+    "it": "l'insegnante vale anche per lei: non ha una forma femminile.",
+    "de": "Für Frauen sagt man auch l'insegnante — dieses Wort hat keine eigene weibliche Form."
+   }
   },
   "board": { "text": "lavagna", "grammar": { "gender": "la" } },
   "exercise-book": { "text": "quaderno", "grammar": { "gender": "il" } },
@@ -33,7 +38,10 @@
    "text": "compiti",
    "variants": ["compiti a casa"],
    "grammar": { "gender": "i", "plural": "only" },
-   "notes": { "de": "Nur im Plural: i compiti — fare i compiti = Hausaufgaben machen." }
+   "notes": {
+    "it": "solo al plurale: fare i compiti.",
+    "de": "Nur im Plural: i compiti — fare i compiti = Hausaufgaben machen."
+   }
   },
   "exam": { "text": "esame", "variants": ["l'esame", "prova"], "grammar": { "gender": "l'" } },
   "break": {
@@ -41,13 +49,17 @@
    "variants": ["l'intervallo", "ricreazione", "pausa"],
    "grammar": { "gender": "l'" },
    "notes": {
+    "it": "a scuola c'è l'intervallo · alle elementari la ricreazione.",
     "de": "l'intervallo ist die Schulpause, in der Grundschule la ricreazione; die allgemeine Pause heißt la pausa."
    }
   },
   "to-pass-exam": {
    "text": "superare l'esame",
    "variants": ["passare l'esame"],
-   "notes": { "de": "superare = bestehen; durchfallen heißt essere bocciato." }
+   "notes": {
+    "it": "chi supera l'esame passa · chi non passa è bocciato.",
+    "de": "superare = bestehen; durchfallen heißt essere bocciato."
+   }
   },
   "to-practice": { "text": "esercitarsi", "variants": ["fare esercizi", "fare pratica"] },
   "to-raise-hand": { "text": "alzare la mano" },
@@ -55,7 +67,10 @@
    "text": "alunno",
    "synonyms": ["studente"],
    "grammar": { "gender": "l'" },
-   "notes": { "de": "l'alunno geht zur Schule, lo studente auch zur Universität." },
+   "notes": {
+    "it": "l'alunno va a scuola · lo studente anche all'università.",
+    "de": "l'alunno geht zur Schule, lo studente auch zur Universität."
+   },
    "variants": ["l'alunno"]
   },
   "pupil-f": {
@@ -68,7 +83,10 @@
   "lesson": {
    "text": "lezione",
    "grammar": { "gender": "la" },
-   "notes": { "de": "Meist im Singular: oggi ho lezione = heute habe ich Unterricht." }
+   "notes": {
+    "it": "di solito al singolare: oggi ho lezione.",
+    "de": "Meist im Singular: oggi ho lezione = heute habe ich Unterricht."
+   }
   },
   "page": { "text": "pagina", "grammar": { "gender": "la" } },
   "grade": { "text": "voto", "grammar": { "gender": "il" } },
@@ -84,6 +102,7 @@
    "variants": ["l'orario", "orario delle lezioni"],
    "grammar": { "gender": "l'", "plural": "orari" },
    "notes": {
+    "it": "l'orario è ogni orario · a scuola è l'orario delle lezioni.",
     "de": "l'orario ist jeder Zeitplan; der Stundenplan der Schule heißt genauer l'orario delle lezioni."
    }
   },
@@ -95,7 +114,10 @@
   "to-pronounce": { "text": "pronunciare" },
   "to-study": {
    "text": "studiare",
-   "notes": { "de": "Für eine Prüfung oder einen Kurs lernen = studiare; etwas Neues erlernen = imparare." }
+   "notes": {
+    "it": "si studia per un esame · si impara una cosa nuova.",
+    "de": "Für eine Prüfung oder einen Kurs lernen = studiare; etwas Neues erlernen = imparare."
+   }
   },
   "to-teach": { "text": "insegnare" },
   "do-the-homework": { "text": "Faccio i compiti." },

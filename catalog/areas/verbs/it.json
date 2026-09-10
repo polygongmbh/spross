@@ -4,7 +4,10 @@
  "words": {
   "to-go": {
    "text": "andare",
-   "notes": { "de": "andare = gehen und fahren · zu Fuß betont: andare a piedi." }
+   "notes": {
+    "it": "si va a piedi e si va in macchina: vado a scuola.",
+    "de": "andare = gehen und fahren · zu Fuß betont: andare a piedi."
+   }
   },
   "to-come": { "text": "venire" },
   "to-have": { "text": "avere" },
@@ -12,51 +15,98 @@
   "to-take": {
    "text": "prendere",
    "notes": {
+    "it": "prendere l'autobus · prendere un caffè.",
     "de": "prendere nimmt auch Verkehrsmittel und Getränke: prendere l'autobus, prendere un caffè."
    }
   },
-  "to-see": { "text": "vedere", "notes": { "de": "vedere = sehen · guardare = anschauen." } },
+  "to-see": {
+   "text": "vedere",
+   "notes": {
+    "it": "vedere capita · guardare si fa apposta.",
+    "de": "vedere = sehen · guardare = anschauen."
+   }
+  },
   "to-make": {
    "text": "fare",
-   "notes": { "de": "fare deckt machen und tun ab: fare la spesa, fare i compiti." }
+   "notes": {
+    "it": "fare la spesa, fare i compiti, fare una domanda.",
+    "de": "fare deckt machen und tun ab: fare la spesa, fare i compiti."
+   }
   },
   "to-like": {
    "text": "piacere",
    "notes": {
+    "it": "mi piace il caffè · mi piacciono i libri.",
     "de": "umgekehrt gebaut: Mi piace il caffè = Ich mag Kaffee · lieben ist amare oder voler bene."
    }
   },
-  "to-can": { "text": "potere", "notes": { "de": "unregelmäßig: posso, puoi, può, possiamo." } },
+  "to-can": { "text": "potere", "notes": { "it": "posso, puoi, può, possiamo." } },
   "to-think": {
    "text": "pensare",
-   "notes": { "de": "pensare a qualcosa = an etwas denken · pensare che = glauben, dass." }
+   "notes": {
+    "it": "penso a te · penso che sia tardi.",
+    "de": "pensare a qualcosa = an etwas denken · pensare che = glauben, dass."
+   }
   },
   "to-imagine": { "text": "immaginare" },
-  "to-wait": { "text": "aspettare", "notes": { "de": "aspettare heißt auch erwarten; hoffen ist sperare." } },
-  "to-want": { "text": "volere", "notes": { "de": "höflicher im Konditional: vorrei = ich hätte gern." } },
+  "to-wait": {
+   "text": "aspettare",
+   "notes": {
+    "it": "aspetto l'autobus · aspetto un bambino · sperare è un'altra cosa.",
+    "de": "aspettare heißt auch erwarten; hoffen ist sperare."
+   }
+  },
+  "to-want": {
+   "text": "volere",
+   "notes": {
+    "it": "vorrei un caffè è più gentile di voglio un caffè.",
+    "de": "höflicher im Konditional: vorrei = ich hätte gern."
+   }
+  },
   "to-find": { "text": "trovare" },
-  "to-search": { "text": "cercare", "notes": { "de": "cercare steht ohne Präposition: cerco un albergo." } },
+  "to-search": {
+   "text": "cercare",
+   "notes": {
+    "it": "cercare va senza preposizione: cerco un albergo.",
+    "de": "cercare steht ohne Präposition: cerco un albergo."
+   }
+  },
   "to-receive": { "text": "ricevere", "synonyms": ["ottenere"] },
-  "to-look": { "text": "guardare", "notes": { "de": "guardare = bewusst anschauen: guardare la TV." } },
+  "to-look": {
+   "text": "guardare",
+   "notes": { "it": "guardare la TV · guarda qui!", "de": "guardare = bewusst anschauen: guardare la TV." }
+  },
   "to-open": { "text": "aprire" },
   "to-close": { "text": "chiudere" },
   "to-stop": {
    "text": "smettere",
    "variants": ["smettere di"],
-   "notes": { "de": "smettere di + Infinitiv: smettere di fumare · anhalten ist fermarsi." }
+   "notes": {
+    "it": "smettere di fumare · la macchina si ferma.",
+    "de": "smettere di + Infinitiv: smettere di fumare · anhalten ist fermarsi."
+   }
   },
   "to-stand": {
    "text": "stare in piedi",
-   "notes": { "de": "Italienisch hat kein eigenes Verb dafür · alzarsi in piedi = sich hinstellen." }
+   "notes": {
+    "it": "sto in piedi · mi alzo in piedi.",
+    "de": "Italienisch hat kein eigenes Verb dafür · alzarsi in piedi = sich hinstellen."
+   }
   },
   "to-send": {
    "text": "inviare",
    "variants": ["mandare", "spedire"],
-   "notes": { "de": "inviare und mandare gelten beide · spedire ist das Verschicken per Post." }
+   "notes": {
+    "it": "inviare e mandare sono uguali · spedire è per la posta.",
+    "de": "inviare und mandare gelten beide · spedire ist das Verschicken per Post."
+   }
   },
   "to-deliver": {
    "text": "recapitare",
-   "notes": { "de": "recapitare = zustellen, ausliefern · consegnare heißt abgeben und gehört aufs Amt." }
+   "notes": {
+    "it": "la posta recapita a casa · si consegna un documento allo sportello.",
+    "de": "recapitare = zustellen, ausliefern · consegnare heißt abgeben und gehört aufs Amt."
+   }
   },
   "to-use": { "text": "usare" },
   "to-come-back": { "text": "tornare" },
@@ -72,6 +122,7 @@
    "text": "Di dov'è?",
    "variants": ["Da dove viene?", "Di dove sei?", "Da dove vieni?"],
    "notes": {
+    "it": "Di dov'è? · anche Da dove viene?",
     "de": "Italienisch fragt die Herkunft meist mit essere: Di dov'è? · Da dove viene? geht ebenso."
    }
   },

@@ -9,6 +9,7 @@
    "variants": ["l'orario di apertura", "orari di apertura", "orario"],
    "grammar": { "gender": "l'", "plural": "orari di apertura" },
    "notes": {
+    "it": "di solito al singolare: l'orario di apertura · spesso solo l'orario.",
     "de": "Italienisch hat keinen festen Plural wie „die Öffnungszeiten“: meist l'orario di apertura, im Alltag oft nur l'orario."
    }
   },
@@ -20,7 +21,10 @@
    "text": "fissare",
    "synonyms": ["concordare"],
    "variants": ["stabilire"],
-   "notes": { "de": "Einen Termin vereinbart man mit fissare oder prendere: fissare un appuntamento." }
+   "notes": {
+    "it": "si fissa o si prende un appuntamento.",
+    "de": "Einen Termin vereinbart man mit fissare oder prendere: fissare un appuntamento."
+   }
   },
   "to-confirm": { "text": "confermare" },
   "to-cancel": { "text": "annullare", "synonyms": ["disdire"], "variants": ["cancellare"] },

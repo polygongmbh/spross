@@ -12,7 +12,10 @@
   "thyroid": { "text": "tiroide", "grammar": { "gender": "la", "plural": "tiroidi" } },
   "to-breathe": {
    "text": "respirare",
-   "notes": { "de": "Nicht können heißt hier non riuscire a respirare, nicht non potere." }
+   "notes": {
+    "it": "quando manca il fiato si dice non riesco a respirare.",
+    "de": "Nicht können heißt hier non riuscire a respirare, nicht non potere."
+   }
   },
   "stomach-organ": { "text": "stomaco", "grammar": { "gender": "lo", "plural": "stomachi" } },
   "artery": {

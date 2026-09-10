@@ -5,17 +5,24 @@
   "good": {
    "text": "buono",
    "variants": ["buona", "buon"],
-   "notes": { "de": "vor männlichem Substantiv verkürzt: un buon amico · als Adverb bene: tutto bene." }
+   "notes": {
+    "it": "davanti al maschile un buon amico · come avverbio bene: tutto bene.",
+    "de": "vor männlichem Substantiv verkürzt: un buon amico · als Adverb bene: tutto bene."
+   }
   },
   "bad": {
    "text": "cattivo",
    "variants": ["cattiva"],
-   "notes": { "de": "als Adverb male: sto male · schlechtes Wetter und schlechtes Aussehen: brutto." }
+   "notes": {
+    "it": "come avverbio male: sto male · il tempo e l'aspetto sono brutti.",
+    "de": "als Adverb male: sto male · schlechtes Wetter und schlechtes Aussehen: brutto."
+   }
   },
   "big": {
    "text": "grande",
    "variants": ["gran"],
    "notes": {
+    "it": "grande vale per lui e per lei · davanti spesso gran: un gran giorno.",
     "de": "gilt für beide Geschlechter · vor dem Substantiv oft gran: un gran giorno · Körpergröße: alto."
    }
   },
@@ -24,6 +31,7 @@
    "text": "molto",
    "variants": ["molta", "molti", "molte"],
    "notes": {
+    "it": "molto pane, molta acqua, molti amici · davanti a un aggettivo non cambia.",
     "de": "richtet sich nach dem Substantiv: molto pane, molta acqua, molti amici · vor Adjektiv oder Verb unveränderlich und heißt sehr: molto bene."
    }
   },
@@ -31,19 +39,28 @@
   "old": {
    "text": "vecchio",
    "variants": ["vecchia"],
-   "notes": { "de": "bei Personen höflicher: anziano · antik, ehemalig: antico." }
+   "notes": {
+    "it": "per le persone si dice anziano · per le cose di una volta antico.",
+    "de": "bei Personen höflicher: anziano · antik, ehemalig: antico."
+   }
   },
   "slow": {
    "text": "lento",
    "variants": ["lenta"],
-   "notes": { "de": "als Adverb lentamente oder piano: parla piano." }
+   "notes": {
+    "it": "come avverbio lentamente o piano: parla piano.",
+    "de": "als Adverb lentamente oder piano: parla piano."
+   }
   },
   "fast": { "text": "veloce", "variants": ["rapido", "rapida"] },
   "long": { "text": "lungo", "variants": ["lunga"] },
   "short": {
    "text": "corto",
    "variants": ["corta"],
-   "notes": { "de": "kurze Dauer: breve · kleine Körpergröße: basso." }
+   "notes": {
+    "it": "corto è la lunghezza · breve è il tempo · basso è la persona.",
+    "de": "kurze Dauer: breve · kleine Körpergröße: basso."
+   }
   },
   "heavy": { "text": "pesante" },
   "lightweight": { "text": "leggero", "variants": ["leggera"] },
@@ -56,7 +73,10 @@
   "sharp": {
    "text": "affilato",
    "variants": ["affilata"],
-   "notes": { "de": "nur für Klingen; scharf im Geschmack ist piccante." }
+   "notes": {
+    "it": "affilato è il coltello · piccante è il peperoncino.",
+    "de": "nur für Klingen; scharf im Geschmack ist piccante."
+   }
   },
   "available": { "text": "disponibile" },
   "other": { "text": "altro", "variants": ["altra", "altri", "altre"] },
@@ -65,6 +85,7 @@
    "text": "freddo",
    "variants": ["fredda"],
    "notes": {
+    "it": "ho freddo io · il caffè è freddo.",
     "de": "mit avere beim Menschen: ho freddo = mir ist kalt · mit essere bei Sachen: il caffè è freddo."
    }
   },
@@ -78,7 +99,10 @@
   "same": {
    "text": "stesso",
    "variants": ["stessa", "stessi", "stesse"],
-   "notes": { "de": "meist mit Artikel: lo stesso giorno · io stesso heißt ich selbst." }
+   "notes": {
+    "it": "quasi sempre con l'articolo: lo stesso giorno · io stesso = proprio io.",
+    "de": "meist mit Artikel: lo stesso giorno · io stesso heißt ich selbst."
+   }
   },
   "similar": { "text": "simile", "variants": ["simili"] },
   "opposite": { "text": "opposto", "synonyms": ["contrario"], "variants": ["opposta", "contraria"] },

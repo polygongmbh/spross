@@ -12,13 +12,19 @@
   "size": {
    "text": "taglia",
    "grammar": { "gender": "la" },
-   "notes": { "de": "la taglia ist die Kleidergröße, il numero die Schuhgröße." }
+   "notes": {
+    "it": "la taglia è dei vestiti · il numero è delle scarpe.",
+    "de": "la taglia ist die Kleidergröße, il numero die Schuhgröße."
+   }
   },
   "to-shop": {
    "text": "fare la spesa",
    "synonyms": ["fare spese"],
    "variants": ["fare shopping"],
-   "notes": { "de": "fare la spesa ist der Lebensmitteleinkauf, fare spese der Bummel durch die Läden." }
+   "notes": {
+    "it": "fare la spesa è al supermercato · fare spese è nei negozi.",
+    "de": "fare la spesa ist der Lebensmitteleinkauf, fare spese der Bummel durch die Läden."
+   }
   },
   "store": { "text": "negozio", "grammar": { "gender": "il", "plural": "negozi" } },
   "open": { "text": "aperto", "variants": ["aperta"] },

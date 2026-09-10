@@ -7,7 +7,10 @@
   "and": {
    "text": "e",
    "variants": ["ed"],
-   "notes": { "de": "vor Vokal wird e oft zu ed, vor e- fast immer: ed ecco." }
+   "notes": {
+    "it": "davanti a vocale spesso ed: ed ecco, ed è vero.",
+    "de": "vor Vokal wird e oft zu ed, vor e- fast immer: ed ecco."
+   }
   },
   "or": { "text": "o", "variants": ["oppure"] },
   "if": { "text": "se" },
@@ -15,7 +18,10 @@
   "so-that": {
    "text": "affinché",
    "variants": ["perché", "in modo che"],
-   "notes": { "de": "gesprochen meist perché mit Konjunktiv: perché tu capisca." }
+   "notes": {
+    "it": "parlando si dice perché con il congiuntivo: perché tu capisca.",
+    "de": "gesprochen meist perché mit Konjunktiv: perché tu capisca."
+   }
   },
   "before": { "text": "prima di", "variants": ["prima"] },
   "after": { "text": "dopo" },
@@ -28,7 +34,7 @@
   "still": { "text": "ancora" },
   "finally": { "text": "finalmente" },
   "then": { "text": "poi" },
-  "not": { "text": "non", "notes": { "de": "non steht vor dem Verb: non parlo italiano." } },
+  "not": { "text": "non", "notes": { "it": "non sta prima del verbo: non parlo italiano." } },
   "only": { "text": "solo", "variants": ["soltanto", "solamente"] },
   "together": { "text": "insieme" },
   "therefore": { "text": "quindi", "synonyms": ["perciò"] },

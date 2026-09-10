@@ -10,7 +10,7 @@
    "text": "orecchio",
    "variants": ["l'orecchio"],
    "grammar": { "gender": "l'", "plural": "orecchie" },
-   "notes": { "de": "Der Plural ist feminin: le orecchie." }
+   "notes": { "it": "un orecchio → due orecchie.", "de": "Der Plural ist feminin: le orecchie." }
   },
   "nose": { "text": "naso", "grammar": { "gender": "il" } },
   "mouth": { "text": "bocca", "grammar": { "gender": "la", "plural": "bocche" } },
@@ -18,17 +18,20 @@
   "lip": {
    "text": "labbro",
    "grammar": { "gender": "il", "plural": "labbra" },
-   "notes": { "de": "Der Plural ist feminin: le labbra." }
+   "notes": { "it": "un labbro → due labbra.", "de": "Der Plural ist feminin: le labbra." }
   },
   "hand": {
    "text": "mano",
    "grammar": { "gender": "la", "plural": "mani" },
-   "notes": { "de": "la mano ist feminin trotz der Endung -o: la mano destra, le mani." }
+   "notes": {
+    "it": "la mano è femminile: la mano destra, le mani.",
+    "de": "la mano ist feminin trotz der Endung -o: la mano destra, le mani."
+   }
   },
   "arm": {
    "text": "braccio",
    "grammar": { "gender": "il", "plural": "braccia" },
-   "notes": { "de": "Der Plural ist feminin: le braccia." }
+   "notes": { "it": "un braccio → due braccia.", "de": "Der Plural ist feminin: le braccia." }
   },
   "foot": { "text": "piede", "grammar": { "gender": "il" } },
   "leg": { "text": "gamba", "grammar": { "gender": "la" } },
@@ -37,6 +40,7 @@
    "variants": ["ventre"],
    "grammar": { "gender": "la", "plural": "pance" },
    "notes": {
+    "it": "mi fa male la pancia · lo stomaco è dentro, il ventre è formale.",
     "de": "Bauchweh heißt mi fa male la pancia; lo stomaco meint den Magen selbst, il ventre ist gehoben."
    }
   },
@@ -45,6 +49,7 @@
    "text": "gola",
    "grammar": { "gender": "la" },
    "notes": {
+    "it": "la gola fa male quando si è raffreddati · il collo è fuori.",
     "de": "Italienisch trennt, was „Hals“ zusammenfasst: la gola ist der Rachen (Halsschmerzen), il collo der äußere Hals."
    }
   },
@@ -52,7 +57,7 @@
   "knee": {
    "text": "ginocchio",
    "grammar": { "gender": "il", "plural": "ginocchia" },
-   "notes": { "de": "Der Plural ist feminin: le ginocchia." }
+   "notes": { "it": "un ginocchio → due ginocchia.", "de": "Der Plural ist feminin: le ginocchia." }
   },
   "chest": { "text": "petto", "grammar": { "gender": "il" } },
   "heart": { "text": "cuore", "grammar": { "gender": "il" } },
@@ -62,12 +67,16 @@
    "text": "osso",
    "variants": ["l'osso"],
    "grammar": { "gender": "l'", "plural": "ossa" },
-   "notes": { "de": "Der Plural ist feminin: le ossa; gli ossi sind einzelne Knochen, etwa für den Hund." }
+   "notes": {
+    "it": "un osso → le ossa del corpo · gli ossi sono quelli per il cane.",
+    "de": "Der Plural ist feminin: le ossa; gli ossi sind einzelne Knochen, etwa für den Hund."
+   }
   },
   "finger": {
    "text": "dito",
    "grammar": { "gender": "il", "plural": "dita" },
    "notes": {
+    "it": "un dito → due dita · anche del piede: il dito del piede.",
     "de": "dito deckt Finger und Zehe ab; die Zehe ist il dito del piede. Der Plural ist feminin: le dita."
    }
   },

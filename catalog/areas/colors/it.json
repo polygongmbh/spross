@@ -8,15 +8,25 @@
   "red": { "text": "rosso", "variants": ["rossa"] },
   "blue": {
    "text": "blu",
-   "notes": { "de": "blu ist das dunkle Blau · das helle Himmelblau heißt azzurro." }
+   "notes": {
+    "it": "blu è scuro · azzurro è il colore del cielo.",
+    "de": "blu ist das dunkle Blau · das helle Himmelblau heißt azzurro."
+   }
   },
   "green": { "text": "verde" },
   "yellow": { "text": "giallo", "variants": ["gialla"] },
-  "brown": { "text": "marrone", "variants": ["castano"], "notes": { "de": "bei Haaren und Augen castano." } },
+  "brown": {
+   "text": "marrone",
+   "variants": ["castano"],
+   "notes": {
+    "it": "marrone per le cose · castano per capelli e occhi.",
+    "de": "bei Haaren und Augen castano."
+   }
+  },
   "gray": { "text": "grigio", "variants": ["grigia"] },
   "purple": {
    "text": "viola",
-   "notes": { "de": "viola bleibt unverändert: un vestito viola, una macchina viola." }
+   "notes": { "it": "viola non cambia mai: un vestito viola, una macchina viola." }
   },
   "what-color-is-it": { "text": "Di che colore è?" },
   "a-white-car": { "text": "Una macchina bianca." }

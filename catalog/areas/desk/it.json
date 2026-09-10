@@ -7,7 +7,10 @@
    "text": "portatile",
    "variants": ["computer portatile", "laptop"],
    "grammar": { "gender": "il" },
-   "notes": { "de": "Kurzform von il computer portatile; im Alltag sagt man fast immer nur il portatile." }
+   "notes": {
+    "it": "il portatile è il computer portatile: ho il portatile in borsa.",
+    "de": "Kurzform von il computer portatile; im Alltag sagt man fast immer nur il portatile."
+   }
   },
   "keyboard": { "text": "tastiera", "grammar": { "gender": "la" } },
   "screen": { "text": "schermo", "variants": ["monitor"], "grammar": { "gender": "lo" } },
@@ -17,12 +20,18 @@
    "text": "cuffie",
    "synonyms": ["auricolari"],
    "grammar": { "gender": "le", "plural": "only" },
-   "notes": { "de": "Nur im Plural: le cuffie; gli auricolari sind die In-Ear-Hörer." }
+   "notes": {
+    "it": "solo al plurale: le cuffie · gli auricolari stanno nell'orecchio.",
+    "de": "Nur im Plural: le cuffie; gli auricolari sind die In-Ear-Hörer."
+   }
   },
   "pen": {
    "text": "penna",
    "grammar": { "gender": "la" },
-   "notes": { "de": "„Stift“ ist hier der Kugelschreiber: la penna. Der Bleistift heißt la matita." }
+   "notes": {
+    "it": "la penna scrive a inchiostro · la matita si cancella.",
+    "de": "„Stift“ ist hier der Kugelschreiber: la penna. Der Bleistift heißt la matita."
+   }
   },
   "notebook": { "text": "taccuino", "variants": ["blocco note"], "grammar": { "gender": "il" } },
   "printer": { "text": "stampante", "grammar": { "gender": "la" } },
@@ -30,7 +39,7 @@
    "text": "presa",
    "variants": ["presa di corrente"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "la presa ist die Steckdose, la spina der Stecker." }
+   "notes": { "it": "la spina va nella presa.", "de": "la presa ist die Steckdose, la spina der Stecker." }
   },
   "to-work": { "text": "lavorare" },
   "to-type": { "text": "digitare", "variants": ["battere a macchina", "scrivere a macchina"] },
@@ -43,7 +52,10 @@
   "to-repair": {
    "text": "riparare",
    "synonyms": ["aggiustare"],
-   "notes": { "de": "Im Alltag sagt man aggiustare; riparare klingt nach Werkstatt." }
+   "notes": {
+    "it": "parlando si dice aggiustare: mi aggiusti il rubinetto?",
+    "de": "Im Alltag sagt man aggiustare; riparare klingt nach Werkstatt."
+   }
   },
   "phone": {
    "text": "cellulare",
@@ -55,17 +67,27 @@
    "variants": ["l'e-mail", "un'e-mail", "email", "mail", "posta elettronica"],
    "grammar": { "gender": "l'", "plural": "=" },
    "notes": {
+    "it": "l'e-mail è femminile e non cambia: un'e-mail, le e-mail.",
     "de": "l'e-mail ist feminin und unveränderlich: un'e-mail, le e-mail. Die förmliche Form ist la posta elettronica."
    }
   },
   "paper": {
    "text": "carta",
    "grammar": { "gender": "la" },
-   "notes": { "de": "la carta ist das Papier als Material; ein einzelnes Blatt ist il foglio." }
+   "notes": {
+    "it": "la carta è il materiale · il foglio è un pezzo di carta.",
+    "de": "la carta ist das Papier als Material; ein einzelnes Blatt ist il foglio."
+   }
   },
   "folder": { "text": "cartella", "variants": ["raccoglitore"], "grammar": { "gender": "la" } },
   "password": { "text": "password", "grammar": { "gender": "la", "plural": "=" } },
-  "internet": { "text": "internet", "notes": { "de": "Meist ohne Artikel: c'è internet? · Non ho internet." } },
+  "internet": {
+   "text": "internet",
+   "notes": {
+    "it": "di solito senza articolo: c'è internet? · non ho internet.",
+    "de": "Meist ohne Artikel: c'è internet? · Non ho internet."
+   }
+  },
   "charger": {
    "text": "caricabatterie",
    "variants": ["caricatore", "cavo di ricarica"],
@@ -75,18 +97,27 @@
    "text": "calendario",
    "synonyms": ["agenda"],
    "grammar": { "gender": "il", "plural": "calendari" },
-   "notes": { "de": "il calendario hängt an der Wand; der Terminkalender heißt l'agenda." }
+   "notes": {
+    "it": "il calendario sta al muro · l'agenda porta gli appuntamenti.",
+    "de": "il calendario hängt an der Wand; der Terminkalender heißt l'agenda."
+   }
   },
   "important": { "text": "importante" },
   "ready": {
    "text": "pronto",
    "variants": ["pronta", "finito"],
-   "notes": { "de": "sono pronto = ich bin fertig (bereit); ho finito = ich bin fertig (damit)." }
+   "notes": {
+    "it": "sono pronto = posso partire · ho finito = ho terminato.",
+    "de": "sono pronto = ich bin fertig (bereit); ho finito = ich bin fertig (damit)."
+   }
   },
   "broken": {
    "text": "rotto",
    "variants": ["rotta", "guasto"],
-   "notes": { "de": "Mit essere: il telefono è rotto. Ein Gerät, das nur nicht mehr geht, ist guasto." }
+   "notes": {
+    "it": "va con essere: il telefono è rotto · se non funziona è guasto.",
+    "de": "Mit essere: il telefono è rotto. Ein Gerät, das nur nicht mehr geht, ist guasto."
+   }
   },
   "im-in-a-meeting": { "text": "Sono in riunione.", "variants": ["Sono in una riunione."] },
   "dont-disturb-me": { "text": "Non disturbarmi!", "variants": ["Non disturbare!"] },

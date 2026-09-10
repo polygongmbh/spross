@@ -10,13 +10,17 @@
    "text": "uovo",
    "variants": ["l'uovo"],
    "grammar": { "gender": "l'", "plural": "uova" },
-   "notes": { "de": "Im Plural wird das Wort feminin: le uova." }
+   "notes": { "it": "un uovo → due uova.", "de": "Im Plural wird das Wort feminin: le uova." }
   },
   "cheese": { "text": "formaggio", "grammar": { "gender": "il", "plural": "formaggi" } },
   "salt": { "text": "sale", "grammar": { "gender": "il" } },
   "sugar": { "text": "zucchero", "grammar": { "gender": "lo" } },
   "rice": { "text": "riso", "grammar": { "gender": "il" } },
-  "hunger": { "text": "fame", "grammar": { "gender": "la" }, "notes": { "de": "Hunger haben = avere fame." } },
+  "hunger": {
+   "text": "fame",
+   "grammar": { "gender": "la" },
+   "notes": { "it": "la fame va con avere: ho fame.", "de": "Hunger haben = avere fame." }
+  },
   "thirst": { "text": "sete", "grammar": { "gender": "la" } },
   "food": { "text": "cibo", "grammar": { "gender": "il" } },
   "meat": { "text": "carne", "grammar": { "gender": "la" } },
@@ -25,7 +29,10 @@
   "fruit": {
    "text": "frutta",
    "grammar": { "gender": "la" },
-   "notes": { "de": "la frutta ist Obst als Ganzes; die einzelne Frucht heißt il frutto." }
+   "notes": {
+    "it": "la frutta è tutta insieme · il frutto è uno solo.",
+    "de": "la frutta ist Obst als Ganzes; die einzelne Frucht heißt il frutto."
+   }
   },
   "vegetable": { "text": "verdura", "grammar": { "gender": "la" } },
   "potato": { "text": "patata", "grammar": { "gender": "la" } },
@@ -41,7 +48,10 @@
    "text": "salsa",
    "synonyms": ["sugo"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "il sugo ist die Soße zur Pasta, la salsa die Soße allgemein." }
+   "notes": {
+    "it": "il sugo è quello della pasta · la salsa è tutto il resto.",
+    "de": "il sugo ist die Soße zur Pasta, la salsa die Soße allgemein."
+   }
   },
   "juice": { "text": "succo", "grammar": { "gender": "il", "plural": "succhi" } },
   "cooked-rice": { "text": "riso cotto", "variants": ["riso bollito"] },
@@ -70,7 +80,10 @@
   "the-food-is-ready": {
    "text": "È pronto!",
    "variants": ["Il cibo è pronto!", "È pronto in tavola!", "A tavola!"],
-   "notes": { "de": "Am Tisch ruft man meist „È pronto!“ oder „A tavola!“." }
+   "notes": {
+    "it": "a tavola si dice È pronto! oppure A tavola!",
+    "de": "Am Tisch ruft man meist „È pronto!“ oder „A tavola!“."
+   }
   }
  }
 }

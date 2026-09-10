@@ -7,7 +7,10 @@
    "text": "essere umano",
    "variants": ["l'essere umano"],
    "grammar": { "gender": "l'" },
-   "notes": { "de": "essere umano = Mensch als Gattung · persona = der einzelne Mensch." }
+   "notes": {
+    "it": "l'essere umano è la specie · la persona è una sola.",
+    "de": "essere umano = Mensch als Gattung · persona = der einzelne Mensch."
+   }
   },
   "family": { "text": "famiglia", "grammar": { "gender": "la" } },
   "mother": { "text": "madre", "grammar": { "gender": "la" } },
@@ -16,7 +19,10 @@
   "child": {
    "text": "bambino",
    "grammar": { "gender": "il" },
-   "notes": { "de": "bambino ist das Kind allgemein; das eigene Kind ist figlio/figlia." }
+   "notes": {
+    "it": "il bambino è ogni bambino · il tuo è tuo figlio.",
+    "de": "bambino ist das Kind allgemein; das eigene Kind ist figlio/figlia."
+   }
   },
   "son": { "text": "figlio", "grammar": { "gender": "il", "plural": "figli" } },
   "daughter": { "text": "figlia", "grammar": { "gender": "la" } },
@@ -31,6 +37,7 @@
    "variants": ["bebè"],
    "grammar": { "gender": "il" },
    "notes": {
+    "it": "il neonato è appena nato · dopo è un bambino piccolo.",
     "de": "neonato ist genau genommen das Neugeborene; ein größeres Baby ist ein bambino piccolo."
    }
   },
@@ -60,7 +67,10 @@
   "old-people": {
    "text": "le persone anziane",
    "variants": ["gli anziani", "la gente anziana"],
-   "notes": { "de": "persone vecchie klingt abwertend — im Alltag anziane." }
+   "notes": {
+    "it": "si dice persone anziane · persone vecchie suona male.",
+    "de": "persone vecchie klingt abwertend — im Alltag anziane."
+   }
   },
   "many-friends": { "text": "molti amici", "variants": ["molte amiche"] },
   "mom-help-me": { "text": "Mamma, aiutami!" }

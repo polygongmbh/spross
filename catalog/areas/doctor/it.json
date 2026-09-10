@@ -7,6 +7,7 @@
    "text": "dottoressa",
    "grammar": { "gender": "la" },
    "notes": {
+    "it": "si dice la dottoressa · medico resta al maschile: è un bravo medico.",
     "de": "Zur Ärztin sagt man la dottoressa; il medico bleibt auch für Frauen üblich: è un bravo medico."
    }
   },
@@ -16,6 +17,7 @@
    "variants": ["l'ambulatorio"],
    "grammar": { "gender": "l'", "plural": "ambulatori" },
    "notes": {
+    "it": "l'ambulatorio è del medico di base · lo studio medico è privato.",
     "de": "l'ambulatorio ist die Sprechstunde des Hausarztes oder der Poliklinik; die Privatpraxis heißt lo studio medico."
    }
   },
@@ -24,6 +26,7 @@
    "variants": ["compressa", "pillola"],
    "grammar": { "gender": "la" },
    "notes": {
+    "it": "parlando si dice pastiglia · sulla scatola c'è compressa.",
     "de": "Alltagswort ist la pastiglia; auf der Packung steht la compressa, und la pillola meint meist die Antibabypille."
    }
   },
@@ -31,13 +34,17 @@
    "text": "ricetta",
    "variants": ["ricetta medica"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "la ricetta ist das Rezept vom Arzt und das Kochrezept." }
+   "notes": {
+    "it": "la ricetta è quella del medico ed è anche quella di cucina.",
+    "de": "la ricetta ist das Rezept vom Arzt und das Kochrezept."
+   }
   },
   "pharmacy": { "text": "farmacia", "grammar": { "gender": "la" } },
   "insurance-card": {
    "text": "tessera sanitaria",
    "grammar": { "gender": "la" },
    "notes": {
+    "it": "la tessera sanitaria porta anche il codice fiscale.",
     "de": "In Italien ist es die tessera sanitaria des staatlichen Gesundheitsdienstes; auf ihr steht auch der codice fiscale."
    }
   },
@@ -46,6 +53,7 @@
    "variants": ["l'assicurazione sanitaria", "un'assicurazione sanitaria"],
    "grammar": { "gender": "l'" },
    "notes": {
+    "it": "cura tutti il Servizio Sanitario Nazionale · l'assicurazione è privata.",
     "de": "Eine Krankenkasse wie in Deutschland gibt es nicht: versorgt wird man über den staatlichen Servizio Sanitario Nazionale; un'assicurazione sanitaria ist meist eine private Zusatzversicherung."
    }
   },
@@ -54,19 +62,24 @@
    "text": "emergenza",
    "variants": ["l'emergenza", "un'emergenza"],
    "grammar": { "gender": "l'" },
-   "notes": { "de": "Die Notaufnahme heißt il pronto soccorso — andare al pronto soccorso." }
+   "notes": {
+    "it": "in ospedale si va al pronto soccorso.",
+    "de": "Die Notaufnahme heißt il pronto soccorso — andare al pronto soccorso."
+   }
   },
   "doctors-note": {
    "text": "certificato medico",
    "variants": ["certificato di malattia"],
    "grammar": { "gender": "il" },
    "notes": {
+    "it": "il medico manda il certificato · a te resta il numero di protocollo.",
     "de": "Der Arzt schickt das certificato medico elektronisch an Kasse und Arbeitgeber; man selbst behält nur il numero di protocollo."
    }
   },
   "to-examine": {
    "text": "visitare",
    "notes": {
+    "it": "il medico visita · la visita è quella dal medico.",
     "de": "Den Patienten untersuchen heißt visitare, und la visita ist die Untersuchung beim Arzt."
    }
   },
@@ -76,6 +89,7 @@
    "text": "mettersi in malattia",
    "variants": ["andare in malattia"],
    "notes": {
+    "it": "senza certificato medico non si va in malattia.",
     "de": "essere in malattia heißt krankgeschrieben sein; ohne certificato medico vom Arzt gibt es keine Krankmeldung."
    }
   },
@@ -84,6 +98,7 @@
    "synonyms": ["farmaco"],
    "grammar": { "gender": "la" },
    "notes": {
+    "it": "la medicina si prende ed è anche la materia · sulla scatola: farmaco.",
     "de": "la medicina ist das Medikament und die Medizin als Fach; auf der Packung steht il farmaco."
    }
   },
@@ -97,13 +112,17 @@
    "text": "dentista",
    "variants": ["odontoiatra"],
    "grammar": { "gender": "il", "plural": "dentisti" },
-   "notes": { "de": "il dentista, la dentista — die Endung -a bleibt, nur der Artikel wechselt." }
+   "notes": {
+    "it": "il dentista, la dentista: cambia solo l'articolo.",
+    "de": "il dentista, la dentista — die Endung -a bleibt, nur der Artikel wechselt."
+   }
   },
   "vaccination": {
    "text": "vaccino",
    "synonyms": ["vaccinazione"],
    "grammar": { "gender": "il" },
    "notes": {
+    "it": "si dice fare il vaccino · la vaccinazione è la parola formale.",
     "de": "il vaccino ist der Impfstoff und im Alltag die Impfung: fare il vaccino; la vaccinazione ist der formale Vorgang."
    }
   },
