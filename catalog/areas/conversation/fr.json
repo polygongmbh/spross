@@ -5,7 +5,7 @@
   "to-hear": {
    "text": "entendre",
    "notes": {
-    "fr": "entendre, c'est percevoir · écouter, c'est faire attention.",
+    "fr": "entendre du bruit · écouter la radio.",
     "de": "entendre = wahrnehmen · écouter = bewusst zuhören."
    }
   },
@@ -13,7 +13,7 @@
   "to-speak": {
    "text": "parler",
    "notes": {
-    "fr": "je ne parle qu'un peu français · je parle bien anglais.",
+    "fr": "je parle bien · je ne parle qu'un peu = pas beaucoup.",
     "de": "Nur ein bisschen: je ne parle qu'un peu — ne … que umklammert das Verb."
    }
   },
@@ -22,29 +22,26 @@
    "text": "fort",
    "variants": ["forte"],
    "notes": {
-    "fr": "parle plus fort · fort veut aussi dire puissant.",
+    "fr": "parle fort ! · fort = puissant.",
     "de": "Lautstärke: parle plus fort · fort heißt auch stark."
    }
   },
   "to-ask": {
    "text": "demander",
    "notes": {
-    "fr": "demander l'addition, demander de l'aide · poser une question.",
+    "fr": "demander pardon · demander de répéter · demander le nom.",
     "de": "demander heißt fragen und um etwas bitten: demander l'addition · eine Frage stellen ist poser une question."
    }
   },
   "question": { "text": "question", "grammar": { "gender": "la" } },
   "answer": { "text": "réponse", "grammar": { "gender": "la" } },
-  "to-reply": {
-   "text": "répondre",
-   "notes": { "fr": "toujours avec à : répondre à la question, répondre à quelqu'un." }
-  },
+  "to-reply": { "text": "répondre", "notes": { "fr": "répondre à la question · répondre à Paul." } },
   "help": { "text": "aide", "variants": ["l'aide"], "grammar": { "gender": "l'" } },
   "to-need": { "text": "avoir besoin de" },
   "to-know": {
    "text": "savoir",
    "notes": {
-    "fr": "savoir nager, savoir où c'est · connaître une personne, une ville.",
+    "fr": "savoir nager, savoir où c'est · connaître Paris et Paul.",
     "de": "wissen = savoir · kennen (Personen, Orte) = connaître."
    }
   },

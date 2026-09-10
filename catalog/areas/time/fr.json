@@ -6,7 +6,7 @@
    "text": "temps",
    "grammar": { "gender": "le" },
    "notes": {
-    "fr": "le temps passe · Quel temps fait-il ? · une fois, deux fois.",
+    "fr": "le temps passe · Quel temps fait-il ? · une fois, trois fois.",
     "de": "le temps heißt auch Wetter: Quel temps fait-il ? · das einzelne Mal ist une fois."
    }
   },
@@ -15,7 +15,7 @@
    "variants": ["journée"],
    "grammar": { "gender": "le" },
    "notes": {
-    "fr": "trois jours, le jour du rendez-vous · la journée dure du matin au soir.",
+    "fr": "trois jours · la journée dure de l'aube à la nuit.",
     "de": "le jour ist der Tag als Datum und Zeitpunkt, la journée der Tag als Zeitspanne: Bonne journée !"
    }
   },
@@ -28,7 +28,7 @@
    "variants": ["l'an", "année", "l'année"],
    "grammar": { "gender": "l'" },
    "notes": {
-    "fr": "j'ai trente ans, l'an prochain · Bonne année ! toute l'année.",
+    "fr": "j'ai trente ans, trois ans · Bonne année ! toute l'année.",
     "de": "l'an zählt Jahre: deux ans, l'an prochain. Als Zeitraum steht l'année: Bonne année !"
    }
   },

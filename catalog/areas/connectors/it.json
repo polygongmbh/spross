@@ -34,7 +34,7 @@
   "still": { "text": "ancora" },
   "finally": { "text": "finalmente" },
   "then": { "text": "poi" },
-  "not": { "text": "non", "notes": { "it": "non sta prima del verbo: non parlo italiano." } },
+  "not": { "text": "non", "notes": { "it": "non parlo italiano · non capisco: non sta davanti." } },
   "only": { "text": "solo", "variants": ["soltanto", "solamente"] },
   "together": { "text": "insieme" },
   "therefore": { "text": "quindi", "synonyms": ["perciò"] },

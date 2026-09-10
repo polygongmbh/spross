@@ -6,7 +6,7 @@
    "text": "tempo",
    "grammar": { "gender": "il" },
    "notes": {
-    "it": "il tempo passa ed è anche il meteo: Che tempo fa? · tre volte, non tre tempi.",
+    "it": "il tempo è il meteo: Che tempo fa? · tre volte, non tre tempi.",
     "de": "tempo heißt auch Wetter: Che tempo fa? · das einzelne Mal ist una volta."
    }
   },
@@ -34,7 +34,7 @@
    "text": "tra poco",
    "variants": ["fra poco", "presto"],
    "notes": {
-    "it": "tra poco è fra un momento · presto vuol dire anche di buon'ora.",
+    "it": "tra poco = fra poco · presto vuol dire anche di buon'ora.",
     "de": "presto heißt sowohl früh als auch bald; tra poco meint nur die nahe Zukunft."
    }
   },

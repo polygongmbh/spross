@@ -6,7 +6,7 @@
    "text": "buono",
    "variants": ["buona", "buon"],
    "notes": {
-    "it": "davanti al maschile un buon amico · come avverbio bene: tutto bene.",
+    "it": "un buon amico, una buona amica · tutto bene: buono → bene.",
     "de": "vor männlichem Substantiv verkürzt: un buon amico · als Adverb bene: tutto bene."
    }
   },
@@ -14,7 +14,7 @@
    "text": "cattivo",
    "variants": ["cattiva"],
    "notes": {
-    "it": "come avverbio male: sto male · il tempo e l'aspetto sono brutti.",
+    "it": "cattivo → male: sto male · l'aspetto è brutto, non cattivo.",
     "de": "als Adverb male: sto male · schlechtes Wetter und schlechtes Aussehen: brutto."
    }
   },
@@ -22,7 +22,7 @@
    "text": "grande",
    "variants": ["gran"],
    "notes": {
-    "it": "grande vale per lui e per lei · davanti spesso gran: un gran giorno.",
+    "it": "grande vale per lui e per lei · davanti: un gran giorno.",
     "de": "gilt für beide Geschlechter · vor dem Substantiv oft gran: un gran giorno · Körpergröße: alto."
    }
   },
@@ -31,7 +31,7 @@
    "text": "molto",
    "variants": ["molta", "molti", "molte"],
    "notes": {
-    "it": "molto pane, molta acqua, molti amici · davanti a un aggettivo non cambia.",
+    "it": "molto pane, molta acqua, molti amici · molto bene, molto alto.",
     "de": "richtet sich nach dem Substantiv: molto pane, molta acqua, molti amici · vor Adjektiv oder Verb unveränderlich und heißt sehr: molto bene."
    }
   },
@@ -40,7 +40,7 @@
    "text": "vecchio",
    "variants": ["vecchia"],
    "notes": {
-    "it": "per le persone si dice anziano · per le cose di una volta antico.",
+    "it": "vecchio → anziano per le persone · antico per le cose.",
     "de": "bei Personen höflicher: anziano · antik, ehemalig: antico."
    }
   },
@@ -48,7 +48,7 @@
    "text": "lento",
    "variants": ["lenta"],
    "notes": {
-    "it": "come avverbio lentamente o piano: parla piano.",
+    "it": "lento → lentamente · parla piano, parla lentamente.",
     "de": "als Adverb lentamente oder piano: parla piano."
    }
   },
@@ -58,7 +58,7 @@
    "text": "corto",
    "variants": ["corta"],
    "notes": {
-    "it": "corto è la lunghezza · breve è il tempo · basso è la persona.",
+    "it": "corto è la lunghezza · breve è un'ora · basso è la persona.",
     "de": "kurze Dauer: breve · kleine Körpergröße: basso."
    }
   },
@@ -100,7 +100,7 @@
    "text": "stesso",
    "variants": ["stessa", "stessi", "stesse"],
    "notes": {
-    "it": "quasi sempre con l'articolo: lo stesso giorno · io stesso = proprio io.",
+    "it": "lo stesso giorno, la stessa ora · io stesso = proprio io.",
     "de": "meist mit Artikel: lo stesso giorno · io stesso heißt ich selbst."
    }
   },

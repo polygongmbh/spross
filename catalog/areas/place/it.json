@@ -9,7 +9,7 @@
   "up": {
    "text": "in alto",
    "notes": {
-    "it": "vieni su! è il movimento · sta in alto è il posto.",
+    "it": "va su! è il movimento · in alto è dove si sta.",
     "de": "su heißt hinauf und ist die Bewegung: Vieni su! · der Ort ist in alto."
    }
   },
@@ -22,7 +22,7 @@
    "text": "sopra",
    "variants": ["su"],
    "notes": {
-    "it": "su si unisce all'articolo: sul tavolo, sulla sedia.",
+    "it": "su: il → sul · la → sulla · lo → sullo.",
     "de": "su verschmilzt mit dem Artikel: sul tavolo."
    }
   },
@@ -40,7 +40,7 @@
    "text": "vicino",
    "variants": ["vicina"],
    "notes": {
-    "it": "come preposizione vuole a: vicino alla porta · il vicino abita accanto.",
+    "it": "vicino a me, vicino a te · il vicino è una persona.",
     "de": "il vicino ist auch der Nachbar · als Präposition vicino a: vicino alla porta."
    }
   },

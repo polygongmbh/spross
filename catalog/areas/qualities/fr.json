@@ -5,49 +5,46 @@
   "good": {
    "text": "bon",
    "variants": ["bonne"],
-   "notes": { "fr": "un bon café · ça va bien : bien est l'adverbe." }
+   "notes": { "fr": "un bon livre · ça va bien : bon → bien." }
   },
   "bad": {
    "text": "mauvais",
    "variants": ["mauvaise"],
-   "notes": { "fr": "un mauvais café · ça va mal : mal est l'adverbe." }
+   "notes": { "fr": "un mauvais livre · ça va mal : mauvais → mal." }
   },
   "big": {
    "text": "grand",
    "variants": ["grande"],
-   "notes": { "fr": "une grande maison · la plupart suivent le nom : une maison blanche." }
+   "notes": { "fr": "une grande maison · une maison haute : grand passe devant." }
   },
   "small": { "text": "petit", "variants": ["petite"] },
-  "much": {
-   "text": "beaucoup",
-   "notes": { "fr": "devant un nom, toujours de : beaucoup d'eau, beaucoup d'amis." }
-  },
+  "much": { "text": "beaucoup", "notes": { "fr": "beaucoup d'eau, beaucoup de mots, beaucoup de bruit." } },
   "new": {
    "text": "nouveau",
    "variants": ["nouvelle", "nouvel"],
-   "notes": { "fr": "un nouvel ami devant une voyelle · une voiture neuve n'a jamais servi." }
+   "notes": { "fr": "un nouveau livre → un nouvel ami · une table neuve = pas servie." }
   },
   "old": {
    "text": "vieux",
    "variants": ["vieille", "vieil"],
-   "notes": { "fr": "un vieil ami devant une voyelle · pour les gens, âgé est plus poli." }
+   "notes": { "fr": "un vieux livre → un vieil ami · âgé est plus poli." }
   },
   "slow": {
    "text": "lent",
    "variants": ["lente", "lentement"],
-   "notes": { "fr": "l'adverbe est lentement : parle lentement." }
+   "notes": { "fr": "un train lent · parle lentement : lent → lentement." }
   },
   "fast": {
    "text": "rapide",
    "variants": ["vite"],
-   "notes": { "fr": "un train rapide · roule moins vite : vite est l'adverbe." }
+   "notes": { "fr": "un train rapide · il va vite : rapide → vite." }
   },
   "long": { "text": "long", "variants": ["longue"] },
   "short": {
    "text": "court",
    "variants": ["courte"],
    "notes": {
-    "fr": "les cheveux courts, une jupe courte · une personne est petite.",
+    "fr": "des mots courts, une phrase courte · une personne est petite.",
     "de": "bei Körpergröße petit."
    }
   },
@@ -55,7 +52,7 @@
    "text": "lourd",
    "variants": ["lourde"],
    "notes": {
-    "fr": "une valise lourde · un exercice est difficile, jamais lourd.",
+    "fr": "une valise lourde · un problème est difficile, pas lourd.",
     "de": "lourd meint nur das Gewicht; schwierig ist difficile."
    }
   },
@@ -63,7 +60,7 @@
    "text": "léger",
    "variants": ["légère"],
    "notes": {
-    "fr": "une valise légère · un exercice est facile, jamais léger.",
+    "fr": "une valise légère · un problème est facile, pas léger.",
     "de": "léger meint nur das Gewicht; einfach ist facile."
    }
   },
@@ -85,11 +82,7 @@
   "available": { "text": "disponible" },
   "other": { "text": "autre", "variants": ["autres"] },
   "hot": { "text": "chaud", "variants": ["chaude"] },
-  "cold-adj": {
-   "text": "froid",
-   "variants": ["froide"],
-   "notes": { "fr": "j'ai froid · le café est froid : avoir pour les gens, être pour les choses." }
-  },
+  "cold-adj": { "text": "froid", "variants": ["froide"], "notes": { "fr": "j'ai froid · l'eau est froide." } },
   "empty": { "text": "vide" },
   "full": { "text": "plein", "variants": ["pleine"] },
   "dirty": { "text": "sale" },
@@ -100,7 +93,7 @@
   "same": {
    "text": "même",
    "variants": ["mêmes"],
-   "notes": { "fr": "le même jour · moi-même, toi-même : en personne." }
+   "notes": { "fr": "la même heure · moi-même, toi-même : en personne." }
   },
   "similar": { "text": "similaire", "variants": ["similaires"] },
   "opposite": { "text": "opposé", "synonyms": ["contraire"], "variants": ["opposée"] },

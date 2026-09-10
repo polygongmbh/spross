@@ -26,10 +26,7 @@
   },
   "finally": { "text": "enfin" },
   "then": { "text": "puis" },
-  "not": {
-   "text": "pas",
-   "notes": { "fr": "ne … pas encadre le verbe : Je ne fume pas · à l'oral, le ne tombe." }
-  },
+  "not": { "text": "pas", "notes": { "fr": "Je ne fume pas · à l'oral : Je fume pas." } },
   "only": { "text": "seulement", "notes": { "fr": "souvent ne … que : Je n'ai que dix euros." } },
   "together": { "text": "ensemble" },
   "therefore": { "text": "donc" },

@@ -5,7 +5,7 @@
   "to-go": {
    "text": "andare",
    "notes": {
-    "it": "si va a piedi e si va in macchina: vado a scuola.",
+    "it": "andare a scuola, andare a casa, andare in città.",
     "de": "andare = gehen und fahren · zu Fuß betont: andare a piedi."
    }
   },
@@ -21,10 +21,7 @@
   },
   "to-see": {
    "text": "vedere",
-   "notes": {
-    "it": "vedere capita · guardare si fa apposta.",
-    "de": "vedere = sehen · guardare = anschauen."
-   }
+   "notes": { "it": "vedere è per caso, non apposta.", "de": "vedere = sehen · guardare = anschauen." }
   },
   "to-make": {
    "text": "fare",
@@ -44,7 +41,7 @@
   "to-think": {
    "text": "pensare",
    "notes": {
-    "it": "penso a te · penso che sia tardi.",
+    "it": "penso a te · penso che tu sia a casa.",
     "de": "pensare a qualcosa = an etwas denken · pensare che = glauben, dass."
    }
   },
@@ -67,7 +64,7 @@
   "to-search": {
    "text": "cercare",
    "notes": {
-    "it": "cercare va senza preposizione: cerco un albergo.",
+    "it": "cerco una parola, cerco te: cercare non vuole a.",
     "de": "cercare steht ohne Präposition: cerco un albergo."
    }
   },
@@ -82,7 +79,7 @@
    "text": "smettere",
    "variants": ["smettere di"],
    "notes": {
-    "it": "smettere di fumare · la macchina si ferma.",
+    "it": "smettere di fumare · il treno si ferma.",
     "de": "smettere di + Infinitiv: smettere di fumare · anhalten ist fermarsi."
    }
   },
@@ -97,14 +94,14 @@
    "text": "inviare",
    "variants": ["mandare", "spedire"],
    "notes": {
-    "it": "inviare e mandare sono uguali · spedire è per la posta.",
+    "it": "inviare e mandare sono uguali · spedire è per i pacchi.",
     "de": "inviare und mandare gelten beide · spedire ist das Verschicken per Post."
    }
   },
   "to-deliver": {
    "text": "recapitare",
    "notes": {
-    "it": "la posta recapita a casa · si consegna un documento allo sportello.",
+    "it": "si recapita a casa · un documento si consegna a mano.",
     "de": "recapitare = zustellen, ausliefern · consegnare heißt abgeben und gehört aufs Amt."
    }
   },
@@ -122,7 +119,7 @@
    "text": "Di dov'è?",
    "variants": ["Da dove viene?", "Di dove sei?", "Da dove vieni?"],
    "notes": {
-    "it": "Di dov'è? · anche Da dove viene?",
+    "it": "Di dov'è? = Da dove viene?",
     "de": "Italienisch fragt die Herkunft meist mit essere: Di dov'è? · Da dove viene? geht ebenso."
    }
   },

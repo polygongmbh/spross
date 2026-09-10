@@ -24,10 +24,7 @@
    }
   },
   "gray": { "text": "grigio", "variants": ["grigia"] },
-  "purple": {
-   "text": "viola",
-   "notes": { "it": "viola non cambia mai: un vestito viola, una macchina viola." }
-  },
+  "purple": { "text": "viola", "notes": { "it": "viola non cambia mai: un vestito viola, una casa viola." } },
   "what-color-is-it": { "text": "Di che colore è?" },
   "a-white-car": { "text": "Una macchina bianca." }
  }

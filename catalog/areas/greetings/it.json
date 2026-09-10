@@ -10,7 +10,7 @@
    "text": "Buongiorno!",
    "variants": ["Buon giorno!"],
    "notes": {
-    "it": "buongiorno fino al primo pomeriggio · poi buonasera.",
+    "it": "Buongiorno! il giorno · poi Buonasera!",
     "de": "bis zum frühen Nachmittag · danach Buonasera!"
    }
   },
@@ -19,7 +19,7 @@
    "text": "Buonanotte!",
    "variants": ["Buona notte!"],
    "notes": {
-    "it": "buonanotte solo per andare via o a dormire · arrivando: buonasera.",
+    "it": "Buonanotte! la sera, per uscire o dormire · sennò Buonasera!",
     "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Buonasera!“"
    }
   },
@@ -28,7 +28,7 @@
    "text": "A presto!",
    "variants": ["Ciao!", "A dopo!"],
    "notes": {
-    "it": "tra amici basta ciao anche per andare via.",
+    "it": "A presto! · tra amici, Ciao!",
     "de": "unter Freunden sagt man zum Abschied auch einfach Ciao!"
    }
   },
@@ -37,7 +37,7 @@
    "text": "Posso entrare?",
    "variants": ["Si può entrare?", "Permesso?"],
    "notes": {
-    "it": "alla porta basta Permesso? · si risponde Avanti! o Prego!",
+    "it": "Posso entrare? = Permesso?",
     "de": "an der Tür genügt „Permesso?“ · die Antwort ist „Avanti!“ oder „Prego!“"
    }
   },
@@ -48,7 +48,7 @@
    "text": "Per favore!",
    "variants": ["Per piacere!"],
    "notes": {
-    "it": "per favore chiede · a grazie si risponde prego.",
+    "it": "Per favore! non va dopo grazie.",
     "de": "nur die Bitte — als Antwort auf „grazie“ sagt man Prego."
    }
   },

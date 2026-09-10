@@ -8,14 +8,14 @@
   "hello": {
    "text": "Salut !",
    "notes": {
-    "fr": "entre amis · au magasin et au guichet, Bonjour !",
+    "fr": "Salut ! ton familier · au guichet, Bonjour !",
     "de": "nur informell unter Bekannten · im Laden und im Amt sagt man Bonjour !"
    }
   },
   "good-day": {
    "text": "Bonjour !",
    "notes": {
-    "fr": "toute la journée · à partir du soir, Bonsoir !",
+    "fr": "Bonjour ! · à partir de 18 h, Bonsoir !",
     "de": "gilt den ganzen Tag · ab dem frühen Abend Bonsoir !"
    }
   },
@@ -23,7 +23,7 @@
   "good-night": {
    "text": "Bonne nuit !",
    "notes": {
-    "fr": "pour partir et avant de dormir · en arrivant le soir, Bonsoir !",
+    "fr": "Bonne nuit ! en partant ou au lit · sinon Bonsoir !",
     "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Bonsoir !“"
    }
   },
@@ -44,7 +44,7 @@
    "variants": ["Comment tu t'appelles ?", "Comment t'appelles-tu ?"]
   },
   "my-name-is": { "text": "Je m'appelle …" },
-  "yes": { "text": "Oui.", "notes": { "fr": "à une question négative : Tu ne viens pas ? — Si !" } },
+  "yes": { "text": "Oui.", "notes": { "fr": "Tu n'y vas pas ? — Si ! · Si, pas Oui." } },
   "no": { "text": "Non." }
  }
 }

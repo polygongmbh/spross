@@ -3,10 +3,10 @@
  "subtitle": "Io, tu e tutti gli altri.",
  "words": {
   "i": { "text": "io" },
-  "you": { "text": "tu", "notes": { "it": "tu è per la famiglia e gli amici; agli altri si dice Lei." } },
+  "you": { "text": "tu", "notes": { "it": "tu con gli amici · Lei con chi non conosci." } },
   "you-formal": {
    "text": "Lei",
-   "notes": { "it": "Lei è la forma di rispetto: Come si chiama Lei? Il verbo va come con lui e lei." }
+   "notes": { "it": "Lei è di rispetto · lui parla → Lei parla, lui dice → Lei dice." }
   },
   "he": { "text": "lui", "variants": ["lei"] },
   "we": { "text": "noi" },

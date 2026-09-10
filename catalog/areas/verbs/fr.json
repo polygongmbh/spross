@@ -5,7 +5,7 @@
   "to-go": {
    "text": "aller",
    "notes": {
-    "fr": "aller à pied, en bus, en voiture : un seul verbe.",
+    "fr": "aller à l'école à pied · aller à l'école en train.",
     "de": "aller = gehen und fahren · zu Fuß betont: aller à pied."
    }
   },
@@ -16,14 +16,14 @@
   "to-see": {
    "text": "voir",
    "notes": {
-    "fr": "voir, c'est par hasard · regarder, c'est exprès.",
+    "fr": "voir, c'est par hasard, pas exprès.",
     "de": "voir = wahrnehmen · regarder = bewusst anschauen."
    }
   },
   "to-make": {
    "text": "faire",
    "notes": {
-    "fr": "faire la cuisine, faire ses devoirs, faire du sport.",
+    "fr": "faire la cuisine, faire du sport, faire une phrase.",
     "de": "faire deckt machen und tun ab: faire la cuisine, faire ses devoirs."
    }
   },
@@ -38,23 +38,26 @@
   "to-think": {
    "text": "penser",
    "notes": {
-    "fr": "penser à quelqu'un · je pense que c'est vrai.",
+    "fr": "penser à toi · je pense que c'est vrai.",
     "de": "penser à quelque chose = an etwas denken · penser que = glauben, dass."
    }
   },
   "to-imagine": { "text": "imaginer" },
-  "to-wait": { "text": "attendre", "notes": { "fr": "sans préposition : j'attends le bus, je t'attends." } },
-  "to-want": { "text": "vouloir", "notes": { "fr": "je voudrais un café : plus poli que je veux." } },
+  "to-wait": {
+   "text": "attendre",
+   "notes": { "fr": "j'attends le train, je t'attends : attendre n'a pas de à." }
+  },
+  "to-want": { "text": "vouloir", "notes": { "fr": "je voudrais une table · vouloir → voudrais, plus poli." } },
   "to-find": { "text": "trouver" },
   "to-search": {
    "text": "chercher",
-   "notes": { "fr": "sans préposition : je cherche un hôtel, je te cherche." }
+   "notes": { "fr": "je cherche un train, je te cherche : chercher n'a pas de à." }
   },
   "to-receive": { "text": "recevoir", "synonyms": ["obtenir"] },
   "to-look": {
    "text": "regarder",
    "notes": {
-    "fr": "regarder la télé, regarder par la fenêtre.",
+    "fr": "regarder par la fenêtre · regarder, c'est exprès.",
     "de": "regarder = bewusst hinschauen: regarder la télé."
    }
   },
@@ -68,7 +71,7 @@
   "to-stand": {
    "text": "être debout",
    "notes": {
-    "fr": "je suis debout depuis six heures · se mettre debout, c'est se lever.",
+    "fr": "on dit être debout · elle est debout dans le train.",
     "de": "Französisch hat kein eigenes Verb dafür · se mettre debout = sich hinstellen."
    }
   },

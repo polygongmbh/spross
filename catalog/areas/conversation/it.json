@@ -16,7 +16,7 @@
    "text": "forte",
    "variants": ["alto"],
    "notes": {
-    "it": "parla più forte! · forte vuol dire anche robusto.",
+    "it": "parla più forte! · forte = robusto.",
     "de": "Lautstärke: parla più forte · forte heißt auch stark."
    }
   },
@@ -29,14 +29,14 @@
    "text": "avere bisogno di",
    "variants": ["avere bisogno"],
    "notes": {
-    "it": "dopo bisogno ci vuole di: ho bisogno di aiuto.",
+    "it": "ho bisogno di aiuto, ho bisogno di te.",
     "de": "das Gebrauchte steht nach di: Ho bisogno di aiuto."
    }
   },
   "to-know": {
    "text": "sapere",
    "notes": {
-    "it": "si sa una cosa · si conosce una persona o un posto.",
+    "it": "si sa una parola · si conosce Roma e Maria.",
     "de": "wissen = sapere · Personen und Orte kennen = conoscere."
    }
   },
