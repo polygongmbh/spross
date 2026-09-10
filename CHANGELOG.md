@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A card's note now reaches you whichever language you read, not only in German, and the notes on the first shelves are written from words you have already met.
 - Settings can now save every language's progress to a backup file and bring it back, after a reinstall or on another phone.
 - The talk offer stays hidden while your box holds only words you wrote yourself, where the brief would list nothing.
 - Typing the Ukrainian apostrophe in any of its three shapes no longer costs a mistake.
