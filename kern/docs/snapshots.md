@@ -20,6 +20,11 @@ Engine contract: `../README.md`.
   All `@Serializable` types are `internal`; the public surface is a narrow facade
   (`encode/decode` — no `migrate()` until a schema v2 exists) — keeps the ObjC header
   small (probe showed serialization internals otherwise flood it).
+- **Box backup** (`store/BoxBackup.kt`): the settings' export and import file,
+  `{format: "spross-box-backup", version: 1, boxes: {<target>: <box document>}}`, sorted keys.
+  A restore replaces each box it carries and leaves the other targets alone;
+  one box that fails `StoreCodec.decode` or is filed under another target refuses the whole file.
+  Boxes only — pair, name, audio choice and drill Sprossen are device settings and stay behind.
 - Engine boundary time: `nowEpochMillis: Long` + `tzId: String` (kotlinx-datetime 0.8 has
   no Swift-Date bridging; Instant/TimeZone are constructed inside). TimeZone = device-current
   per call. Day keys are ISO regardless of device calendar
