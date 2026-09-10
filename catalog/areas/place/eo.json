@@ -6,6 +6,7 @@
    "text": "ĉi tie",
    "variants": ["tie ĉi"],
    "notes": {
+    "eo": "ĉi proksimigas: tie → ĉi tie · ĉi tie kaj tie ĉi ambaŭ ĝustas.",
     "de": "ĉi rückt heran: tie → ĉi tie, tio → ĉi tio · die Stellung ĉi tie oder tie ĉi ist frei."
    }
   },
@@ -14,6 +15,7 @@
    "text": "maldekstre",
    "variants": ["maldekstren"],
    "notes": {
+    "eo": "maldekstre diras kie · maldekstren diras kien: Turnu maldekstren!",
     "de": "maldekstre sagt wo, maldekstren wohin — das -n zeigt die Richtung an: Turnu maldekstren."
    }
   },
@@ -44,7 +46,10 @@
   "at-school": { "text": "en la lernejo" },
   "go-to-school": {
    "text": "iri al la lernejo",
-   "notes": { "de": "al zeigt die Richtung, en den Ort: iri al la butiko · esti en la butiko." }
+   "notes": {
+    "eo": "iri al la lernejo · esti en la lernejo: al = kien, en = kie.",
+    "de": "al zeigt die Richtung, en den Ort: iri al la butiko · esti en la butiko."
+   }
   },
   "are-you-going-home-already": { "text": "Ĉu vi jam iras hejmen?" }
  }

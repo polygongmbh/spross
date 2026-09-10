@@ -6,7 +6,10 @@
   "stove": {
    "text": "fornelo",
    "variants": ["kuirfornelo"],
-   "notes": { "de": "fornelo ist der Herd zum Kochen; der Backofen heißt forno." }
+   "notes": {
+    "eo": "sur la fornelo oni kuiras · en la forno oni bakas.",
+    "de": "fornelo ist der Herd zum Kochen; der Backofen heißt forno."
+   }
   },
   "oven": { "text": "forno", "variants": ["bakforno"] },
   "dishwasher": { "text": "vazlavilo", "variants": ["vazlavmaŝino", "telerlavilo"] },
@@ -14,7 +17,10 @@
   "pan": {
    "text": "pato",
    "variants": ["fritpato"],
-   "notes": { "de": "pato ist die Pfanne, poto der Topf — die beiden unterscheiden sich nur im Vokal." }
+   "notes": {
+    "eo": "pato estas plata · poto estas profunda — nur unu vokalo diferencas.",
+    "de": "pato ist die Pfanne, poto der Topf — die beiden unterscheiden sich nur im Vokal."
+   }
   },
   "knife": { "text": "tranĉilo" },
   "spoon": { "text": "kulero" },
@@ -22,7 +28,10 @@
   "plate": { "text": "telero" },
   "to-cook": {
    "text": "kuiri",
-   "notes": { "de": "kuiri heißt Essen zubereiten; Wasser kocht heißt la akvo bolas." }
+   "notes": {
+    "eo": "kuiri manĝon · la akvo mem bolas.",
+    "de": "kuiri heißt Essen zubereiten; Wasser kocht heißt la akvo bolas."
+   }
   },
   "to-bake": { "text": "baki" },
   "to-cut": { "text": "tranĉi" },
@@ -49,7 +58,10 @@
   "can-you-set-the-table": {
    "text": "Ĉu vi povas kovri la tablon?",
    "variants": ["Ĉu vi povas aranĝi la tablon?", "Ĉu vi povas pretigi la tablon?"],
-   "notes": { "de": "den Tisch decken heißt kovri la tablon; kovri allein heißt bedecken." }
+   "notes": {
+    "eo": "kovri la tablon = meti telerojn kaj manĝilojn sur ĝin.",
+    "de": "den Tisch decken heißt kovri la tablon; kovri allein heißt bedecken."
+   }
   },
   "the-water-is-boiling-hot": { "text": "La akvo bolas." },
   "careful-very-hot": { "text": "Atentu, tre varmega!" }

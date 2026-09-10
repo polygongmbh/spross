@@ -13,7 +13,10 @@
   "to-shop": {
    "text": "butikumi",
    "variants": ["fari aĉetojn"],
-   "notes": { "de": "butikumi heißt von Laden zu Laden gehen · eine einzelne Sache kauft man mit aĉeti." }
+   "notes": {
+    "eo": "butikumi = iri de butiko al butiko · aĉeti = preni unu aĵon.",
+    "de": "butikumi heißt von Laden zu Laden gehen · eine einzelne Sache kauft man mit aĉeti."
+   }
   },
   "store": { "text": "vendejo", "synonyms": ["butiko"] },
   "open": { "text": "malfermita" },

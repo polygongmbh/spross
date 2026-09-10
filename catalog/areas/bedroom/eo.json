@@ -18,6 +18,7 @@
   "to-wake-up": {
    "text": "vekiĝi",
    "notes": {
+    "eo": "vekiĝi = mem malfermi la okulojn · veki = veki alian homon.",
     "de": "vekiĝi = von selbst aufwachen; veki heißt jemand anderen wecken.",
     "en": "vekiĝi is waking up by yourself; veki is waking someone else."
    }
@@ -25,6 +26,7 @@
   "to-dream": {
    "text": "sonĝi",
    "notes": {
+    "eo": "sonĝi okazas dum dormo · revi estas deziri ion maldormante.",
     "de": "sonĝi = im Schlaf träumen; wer wach von etwas träumt, sagt revi.",
     "en": "sonĝi is dreaming in your sleep; daydreaming or longing for something is revi."
    }
@@ -35,6 +37,7 @@
    "text": "karesi",
    "variants": ["brakumi"],
    "notes": {
+    "eo": "karesi = tuŝi milde per la mano · brakumi = teni en la brakoj.",
     "de": "Esperanto hat kein eigenes Wort fürs Kuscheln: karesi ist streicheln und liebkosen, brakumi umarmen."
    }
   },
@@ -49,7 +52,10 @@
   "to-make-bed": { "text": "ordigi la liton", "variants": ["aranĝi la liton", "fari la liton"] },
   "soft": {
    "text": "mola",
-   "notes": { "de": "mola = weich, auch für Haut und Stoff; glatt (eben, ohne Rauheit) heißt glata." }
+   "notes": {
+    "eo": "mola kiel lito aŭ haŭto · glata estas sen malglataĵoj.",
+    "de": "mola = weich, auch für Haut und Stoff; glatt (eben, ohne Rauheit) heißt glata."
+   }
   },
   "to-rest": { "text": "ripozi" },
   "sleep-well": { "text": "Dormu bone!" },

@@ -16,7 +16,10 @@
   "to-depart": {
    "text": "ekveturi",
    "variants": ["forveturi"],
-   "notes": { "de": "ekveturi ist das Losfahren: La trajno ekveturas je la oka." }
+   "notes": {
+    "eo": "ek- montras la komencon: La trajno ekveturas je la oka.",
+    "de": "ekveturi ist das Losfahren: La trajno ekveturas je la oka."
+   }
   },
   "journey": { "text": "vojaĝo" },
   "to-travel": { "text": "vojaĝi" },
@@ -36,6 +39,7 @@
    "text": "eliri",
    "variants": ["elbusiĝi", "eliri el la buso"],
    "notes": {
+    "eo": "eliri el la vagono: Mi eliras ĉe la sekva haltejo.",
     "de": "aussteigen ist eliri, sobald der Zusammenhang das Fahrzeug nennt: Mi eliras ĉe la sekva haltejo."
    }
   },

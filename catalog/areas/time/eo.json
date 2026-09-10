@@ -2,7 +2,13 @@
  "title": "Tempo kaj dato",
  "subtitle": "Kiam io okazas kaj kiom longe ĝi daŭras.",
  "words": {
-  "time": { "text": "tempo", "notes": { "de": "das einzelne Mal ist fojo: tri fojojn heißt dreimal." } },
+  "time": {
+   "text": "tempo",
+   "notes": {
+    "eo": "tempo daŭras · la unuopa fojo estas fojo: tri fojojn.",
+    "de": "das einzelne Mal ist fojo: tri fojojn heißt dreimal."
+   }
+  },
   "day": { "text": "tago" },
   "week": { "text": "semajno" },
   "hour": { "text": "horo" },
@@ -17,7 +23,10 @@
   "early": {
    "text": "frue",
    "variants": ["frua"],
-   "notes": { "de": "frue ist das Adverb (früh), frua das Adjektiv (der frühe Zug: la frua trajno)." }
+   "notes": {
+    "eo": "frue estas adverbo · frua estas adjektivo: la frua trajno.",
+    "de": "frue ist das Adverb (früh), frua das Adjektiv (der frühe Zug: la frua trajno)."
+   }
   },
   "late": { "text": "malfrue", "variants": ["malfrua"] },
   "soon": { "text": "baldaŭ" },
@@ -45,7 +54,10 @@
   "two-in-the-afternoon": {
    "text": "la dua posttagmeze",
    "variants": ["la dua horo posttagmeze"],
-   "notes": { "de": "die Uhrzeit steht als Ordnungszahl: la dua = zwei Uhr, la naŭa = neun Uhr." }
+   "notes": {
+    "eo": "la horo estas orda nombro: la dua, la naŭa.",
+    "de": "die Uhrzeit steht als Ordnungszahl: la dua = zwei Uhr, la naŭa = neun Uhr."
+   }
   },
   "nine-am-sharp": {
    "text": "precize je la naŭa matene",

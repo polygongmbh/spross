@@ -6,6 +6,7 @@
    "text": "koridoro",
    "synonyms": ["antaŭĉambro"],
    "notes": {
+    "eo": "koridoro kondukas al la ĉambroj · antaŭĉambro estas tuj post la pordo.",
     "de": "koridoro ist der Gang in der Wohnung; der Eingangsbereich direkt hinter der Wohnungstür heißt antaŭĉambro."
    }
   },
@@ -18,6 +19,7 @@
    "text": "ĉapo",
    "synonyms": ["ĉapelo"],
    "notes": {
+    "eo": "ĉapo estas sen rando · ĉapelo havas randon.",
     "de": "ĉapo ist die Mütze ohne Schirm; ĉapelo ist der Hut mit Krempe.",
     "en": "ĉapo is a brimless cap; ĉapelo is a hat with a brim."
    }
@@ -28,13 +30,17 @@
   "bag": {
    "text": "sako",
    "variants": ["mansako"],
-   "notes": { "de": "sako ist die Trage- und Einkaufstasche; die Handtasche heißt mansako." }
+   "notes": {
+    "eo": "sako por porti kaj aĉeti · mansako estas la eta por la mano.",
+    "de": "sako ist die Trage- und Einkaufstasche; die Handtasche heißt mansako."
+   }
   },
   "to-lock": { "text": "ŝlosi", "variants": ["fermi per ŝlosilo"] },
   "to-ring": {
    "text": "sonorigi",
    "variants": ["sonori"],
    "notes": {
+    "eo": "vi sonorigas la sonorilon · la sonorilo sonoras.",
     "de": "sonorigi = selbst klingeln, also auf den Knopf drücken; sonori heißt, dass die Klingel klingt.",
     "en": "sonorigi is you pressing the bell; sonori is the bell itself sounding."
    }
@@ -57,12 +63,16 @@
   "to-enter": {
    "text": "eniri",
    "variants": ["enveni"],
-   "notes": { "de": "Wer jemanden hereinbittet, sagt Eniru! oder höflicher Bonvolu eniri!" }
+   "notes": {
+    "eo": "Eniru! invitas enveni · pli ĝentile: Bonvolu eniri!",
+    "de": "Wer jemanden hereinbittet, sagt Eniru! oder höflicher Bonvolu eniri!"
+   }
   },
   "house": { "text": "domo" },
   "to-live": {
    "text": "loĝi",
    "notes": {
+    "eo": "loĝi estas havi hejmon ie · vivi estas esti viva.",
     "de": "loĝi = wohnen; leben im Sinne von am Leben sein heißt vivi.",
     "en": "loĝi is to live somewhere, to reside; being alive is vivi."
    }

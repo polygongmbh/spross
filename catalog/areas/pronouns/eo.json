@@ -13,6 +13,13 @@
   "they": { "text": "ili" },
   "my": { "text": "mia" },
   "your": { "text": "via" },
-  "his": { "text": "lia", "synonyms": ["ŝia"], "notes": { "de": "lia = sein, ŝia = ihr." } }
+  "his": {
+   "text": "lia",
+   "synonyms": ["ŝia"],
+   "notes": {
+    "eo": "li → lia, ŝi → ŝia: la posedo estas la pronomo kun -a.",
+    "de": "lia = sein, ŝia = ihr."
+   }
+  }
  }
 }

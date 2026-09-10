@@ -16,7 +16,10 @@
   "hows-the-weather-today": { "text": "Kia estas la vetero hodiaŭ?", "variants": ["Kia vetero estas hodiaŭ?"] },
   "its-raining": {
    "text": "Pluvas.",
-   "notes": { "de": "Wetterverben stehen ohne Subjekt: Pluvas. Neĝas. Ventas." }
+   "notes": {
+    "eo": "veteraj verboj ne bezonas subjekton: Pluvas. Neĝas. Ventas.",
+    "de": "Wetterverben stehen ohne Subjekt: Pluvas. Neĝas. Ventas."
+   }
   },
   "the-rain-has-stopped": { "text": "La pluvo ĉesis.", "variants": ["Ne plu pluvas.", "Ĉesis pluvi."] },
   "the-sun-is-shining": { "text": "La suno brilas!" },

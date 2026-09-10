@@ -5,6 +5,7 @@
   "appointment": {
    "text": "rendevuo",
    "notes": {
+    "eo": "rendevuo estas ĉiu interkonsentita renkonto, ankaŭ ĉe la kuracisto.",
     "de": "rendevuo ist jeder vereinbarte Termin — auch beim Amt oder beim Arzt, nicht nur ein Date."
    }
   },
@@ -13,7 +14,10 @@
   "deadline": {
    "text": "limdato",
    "synonyms": ["templimo"],
-   "notes": { "de": "limdato ist der Stichtag im Kalender, templimo die Frist als Zeitraum." }
+   "notes": {
+    "eo": "limdato estas la tago mem · templimo estas la daŭro ĝis ĝi.",
+    "de": "limdato ist der Stichtag im Kalender, templimo die Frist als Zeitraum."
+   }
   },
   "plan": { "text": "plano" },
   "to-meet": { "text": "renkontiĝi" },
@@ -26,19 +30,28 @@
    "text": "registriĝi",
    "synonyms": ["aliĝi"],
    "variants": ["enskribiĝi"],
-   "notes": { "de": "„sich anmelden“ ist registriĝi; registri heißt jemanden oder etwas eintragen." }
+   "notes": {
+    "eo": "registri iun · registriĝi mem: Mi registriĝis ĉe la oficejo.",
+    "de": "„sich anmelden“ ist registriĝi; registri heißt jemanden oder etwas eintragen."
+   }
   },
   "to-be-late": { "text": "malfruiĝi", "variants": ["malfrui", "esti malfrua"] },
   "punctual": {
    "text": "akurata",
    "variants": ["ĝustatempa"],
-   "notes": { "de": "akurata heißt pünktlich und sorgfältig; „genau“ im Sinne von exakt heißt preciza." }
+   "notes": {
+    "eo": "akurata pri tempo kaj zorgo · preciza pri ekzakteco.",
+    "de": "akurata heißt pünktlich und sorgfältig; „genau“ im Sinne von exakt heißt preciza."
+   }
   },
   "urgent": { "text": "urĝa" },
   "list": { "text": "listo" },
   "to-finish": {
    "text": "fini",
-   "notes": { "de": "fini ist transitiv: fini la laboron. „Zu Ende gehen“ heißt finiĝi." }
+   "notes": {
+    "eo": "fini la laboron · la laboro mem finiĝas.",
+    "de": "fini ist transitiv: fini la laboron. „Zu Ende gehen“ heißt finiĝi."
+   }
   },
   "to-take-care-of": { "text": "prizorgi" },
   "i-would-like-to-arrange-an-appointment": {

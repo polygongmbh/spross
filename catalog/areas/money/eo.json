@@ -6,7 +6,7 @@
   "to-cost": { "text": "kosti" },
   "expensive": {
    "text": "multekosta",
-   "notes": { "de": "wörtlich vielkostend — Esperanto baut teuer aus kosti." }
+   "notes": { "eo": "multe + kosti → multekosta · la malo estas malmultekosta." }
   },
   "cheap": { "text": "malmultekosta", "variants": ["malkara"] },
   "to-sell": { "text": "vendi" },

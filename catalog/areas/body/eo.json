@@ -7,6 +7,7 @@
    "text": "haroj",
    "variants": ["haro", "hararo"],
    "notes": {
+    "eo": "unu haro, multaj haroj · la tuta hararo sur la kapo.",
     "de": "haro ist ein einzelnes Haar; die Haare auf dem Kopf sind haroj, zusammen als Schopf hararo."
    }
   },
@@ -23,7 +24,10 @@
   "leg": { "text": "kruro", "variants": ["gambo"] },
   "stomach": {
    "text": "ventro",
-   "notes": { "de": "ventro ist der Bauch von außen; der Magen selbst heißt stomako." }
+   "notes": {
+    "eo": "ventro estas ekstere · la organo interne estas stomako.",
+    "de": "ventro ist der Bauch von außen; der Magen selbst heißt stomako."
+   }
   },
   "back": { "text": "dorso" },
   "throat": { "text": "gorĝo" },
@@ -34,10 +38,19 @@
   "blood": { "text": "sango" },
   "skin": { "text": "haŭto" },
   "bone": { "text": "osto" },
-  "finger": { "text": "fingro", "notes": { "de": "fingro heißt Finger und Zehe; die Zehe ist piedfingro." } },
+  "finger": {
+   "text": "fingro",
+   "notes": {
+    "eo": "fingro estas de la mano kaj de la piedo · piedfingro precizigas.",
+    "de": "fingro heißt Finger und Zehe; die Zehe ist piedfingro."
+   }
+  },
   "tongue": {
    "text": "lango",
-   "notes": { "de": "lango ist nur die Zunge im Mund; die Sprache heißt lingvo." }
+   "notes": {
+    "eo": "lango estas en la buŝo · la parolata lingvo estas lingvo.",
+    "de": "lango ist nur die Zunge im Mund; die Sprache heißt lingvo."
+   }
   },
   "neck": { "text": "kolo" },
   "brain": { "text": "cerbo" },

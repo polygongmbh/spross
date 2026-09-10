@@ -20,6 +20,7 @@
   "to-start": {
    "text": "komenci",
    "notes": {
+    "eo": "komenci la laboron · sen objekto: la laboro komenciĝas.",
     "de": "komenci ist transitiv: komenci la laboron. Was von selbst anfängt, komenciĝas — Mia deĵoro komenciĝas je la sesa horo."
    }
   },
@@ -27,7 +28,10 @@
   "to-quit": {
    "text": "eksiĝi el la laboro",
    "variants": ["eksiĝi", "demisii"],
-   "notes": { "de": "eksiĝi heißt selbst kündigen; kündigt der Arbeitgeber, heißt es maldungi." }
+   "notes": {
+    "eo": "eksiĝi estas propra decido · maldungi faras la dunganto.",
+    "de": "eksiĝi heißt selbst kündigen; kündigt der Arbeitgeber, heißt es maldungi."
+   }
   },
   "to-hire": { "text": "dungi" },
   "to-help": { "text": "helpi" },

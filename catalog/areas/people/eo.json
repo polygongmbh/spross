@@ -5,17 +5,20 @@
   "person": { "text": "persono" },
   "human": {
    "text": "homo",
-   "notes": { "de": "homo = Mensch als Gattung · persono = der einzelne Mensch." }
+   "notes": {
+    "eo": "homo estas la specio · persono estas unu individuo.",
+    "de": "homo = Mensch als Gattung · persono = der einzelne Mensch."
+   }
   },
   "family": { "text": "familio" },
   "mother": {
    "text": "patrino",
-   "notes": { "de": "-ino bildet die weibliche Form: patro → patrino, frato → fratino." }
+   "notes": { "eo": "-in- faras la inan formon: patro → patrino, frato → fratino." }
   },
   "father": { "text": "patro" },
   "parents": {
    "text": "gepatroj",
-   "notes": { "de": "ge- fasst beide Geschlechter zusammen; patroj wären nur die Väter." }
+   "notes": { "eo": "ge- kunigas: patro + patrino → gepatroj · patroj sole = nur viroj." }
   },
   "child": { "text": "infano" },
   "son": { "text": "filo" },
@@ -49,7 +52,10 @@
   "a-good-friend": { "text": "bona amiko" },
   "my-girlfriend": {
    "text": "mia koramikino",
-   "notes": { "de": "koramikino ist die Partnerin; die Freundin ohne Romantik bleibt amikino." }
+   "notes": {
+    "eo": "kor- aldonas amon: amikino → koramikino.",
+    "de": "koramikino ist die Partnerin; die Freundin ohne Romantik bleibt amikino."
+   }
   },
   "her-boyfriend": { "text": "ŝia koramiko" },
   "old-people": { "text": "maljunaj homoj", "variants": ["maljunuloj"] },

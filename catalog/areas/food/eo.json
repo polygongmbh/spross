@@ -13,7 +13,10 @@
   "rice": { "text": "rizo" },
   "hunger": {
    "text": "malsato",
-   "notes": { "de": "Hunger haben heißt mi malsatas; das Verb ist üblicher als havi malsaton." }
+   "notes": {
+    "eo": "Mi malsatas estas pli ofta ol Mi havas malsaton.",
+    "de": "Hunger haben heißt mi malsatas; das Verb ist üblicher als havi malsaton."
+   }
   },
   "thirst": { "text": "soifo" },
   "food": { "text": "manĝaĵo", "variants": ["nutraĵo"] },
@@ -22,7 +25,10 @@
   "chicken": {
    "text": "kokaĵo",
    "variants": ["kokidaĵo"],
-   "notes": { "de": "kokaĵo ist das Fleisch; das lebende Tier heißt koko." }
+   "notes": {
+    "eo": "-aĵ- donas la viandon: koko vivas, kokaĵo estas sur la telero.",
+    "de": "kokaĵo ist das Fleisch; das lebende Tier heißt koko."
+   }
   },
   "fruit": { "text": "frukto" },
   "vegetable": { "text": "legomo" },

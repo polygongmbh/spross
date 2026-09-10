@@ -9,6 +9,7 @@
    "text": "pilolo",
    "synonyms": ["tablojdo"],
    "notes": {
+    "eo": "pilolo estas ronda, tablojdo premita · ambaŭ vortoj taŭgas ĉiutage.",
     "de": "pilolo ist das runde Kügelchen, tablojdo die gepresste Tablette; im Alltag sagt man beides für dieselbe Packung."
    }
   },
@@ -19,6 +20,7 @@
    "text": "sanasekuro",
    "synonyms": ["malsanulkaso"],
    "notes": {
+    "eo": "sanasekuro estas la protekto · malsanulkaso estas la establo.",
     "de": "sanasekuro ist die Krankenversicherung als Schutz; malsanulkaso benennt die Kasse als Einrichtung."
    }
   },
@@ -35,7 +37,10 @@
   "dentist": { "text": "dentisto", "variants": ["dentokuracisto"] },
   "vaccination": {
    "text": "vakcinado",
-   "notes": { "de": "vakcinado ist das Impfen; der Impfstoff selbst heißt vakcino." }
+   "notes": {
+    "eo": "vakcinado estas la ago · vakcino estas la likvaĵo mem.",
+    "de": "vakcinado ist das Impfen; der Impfstoff selbst heißt vakcino."
+   }
   },
   "ambulance": { "text": "ambulanco", "variants": ["ambulanca aŭto"] },
   "to-look-after": { "text": "flegi" },

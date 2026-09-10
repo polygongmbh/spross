@@ -18,6 +18,7 @@
    "text": "sukcesi en la ekzameno",
    "variants": ["sukcesi la ekzamenon", "sukcese trapasi la ekzamenon"],
    "notes": {
+    "eo": "sukcesi = bona rezulto · malsukcesi = malbona · trapasi = nur fari ĝin.",
     "de": "sukcesi = bestehen, malsukcesi = durchfallen; trapasi la ekzamenon heißt nur, sie abzulegen."
    }
   },
@@ -25,6 +26,7 @@
    "text": "ekzerci",
    "variants": ["sin ekzerci", "ekzerciĝi"],
    "notes": {
+    "eo": "ekzerci la vortojn · sen objekto: sin ekzerci aŭ ekzerciĝi.",
     "de": "ekzerci ist transitiv: ekzerci la vortojn. Ohne Objekt heißt „üben“ sin ekzerci oder ekzerciĝi."
    }
   },
@@ -36,13 +38,17 @@
    "text": "leciono",
    "synonyms": ["instruado"],
    "notes": {
+    "eo": "leciono estas unu instruhoro · instruado estas la tuta lernado.",
     "de": "leciono ist die einzelne Unterrichtsstunde; der Unterricht als Ganzes heißt instruado."
    }
   },
   "page": { "text": "paĝo" },
   "grade": {
    "text": "noto",
-   "notes": { "de": "noto ist die Schulnote und die Notiz zugleich; der Zusammenhang unterscheidet sie." }
+   "notes": {
+    "eo": "noto estas kaj la lerneja takso kaj skribita memorigo.",
+    "de": "noto ist die Schulnote und die Notiz zugleich; der Zusammenhang unterscheidet sie."
+   }
   },
   "to-correct": { "text": "korekti" },
   "book": { "text": "libro" },
@@ -50,7 +56,10 @@
   "class-schedule": { "text": "horaro", "variants": ["lerneja horaro"] },
   "to-count": {
    "text": "kalkuli",
-   "notes": { "de": "kalkuli heißt zählen und rechnen; erzählen heißt rakonti." }
+   "notes": {
+    "eo": "kalkuli nombrojn kaj monon · rakonti historion.",
+    "de": "kalkuli heißt zählen und rechnen; erzählen heißt rakonti."
+   }
   },
   "to-try": { "text": "provi", "variants": ["klopodi", "peni"] },
   "to-learn-by-heart": { "text": "parkere lerni", "variants": ["lerni parkere", "parkerigi"] },
@@ -60,7 +69,10 @@
   "to-study": {
    "text": "studi",
    "variants": ["lerni"],
-   "notes": { "de": "Für Kurs oder Prüfung lernen = studi; etwas Neues erlernen = lerni." }
+   "notes": {
+    "eo": "studi por kurso aŭ ekzameno · lerni ion novan.",
+    "de": "Für Kurs oder Prüfung lernen = studi; etwas Neues erlernen = lerni."
+   }
   },
   "to-teach": { "text": "instrui" },
   "do-the-homework": { "text": "Mi faras la hejmtaskojn.", "variants": ["Mi faras la hejmtaskon."] },

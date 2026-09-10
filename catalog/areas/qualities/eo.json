@@ -5,32 +5,53 @@
   "good": {
    "text": "bona",
    "variants": ["bone"],
-   "notes": { "de": "Adjektive enden auf -a, Adverbien auf -e: bona tago · Ĉio bone." }
+   "notes": {
+    "eo": "-a por adjektivo, -e por adverbo: bona tago · Ĉio bone.",
+    "de": "Adjektive enden auf -a, Adverbien auf -e: bona tago · Ĉio bone."
+   }
   },
   "bad": {
    "text": "malbona",
    "variants": ["malbone"],
-   "notes": { "de": "mal- kehrt die Bedeutung um: bona → malbona, granda → malgranda." }
+   "notes": { "eo": "bona → malbona, granda → malgranda: mal- donas la malon." }
   },
   "big": { "text": "granda" },
   "small": { "text": "malgranda" },
   "much": {
    "text": "multe",
    "variants": ["multa", "multaj"],
-   "notes": { "de": "vor dem Substantiv mit da: multe da akvo · als Adjektiv multa." }
+   "notes": {
+    "eo": "antaŭ substantivo venas da: multe da akvo · kiel adjektivo multa.",
+    "de": "vor dem Substantiv mit da: multe da akvo · als Adjektiv multa."
+   }
   },
   "new": { "text": "nova" },
   "old": {
    "text": "maljuna",
    "synonyms": ["malnova"],
-   "notes": { "de": "maljuna bei Lebewesen: maljuna viro · malnova bei Sachen: malnova aŭto." }
+   "notes": {
+    "eo": "maljuna viro (vivanta) · malnova aŭto (aĵo).",
+    "de": "maljuna bei Lebewesen: maljuna viro · malnova bei Sachen: malnova aŭto."
+   }
   },
   "slow": { "text": "malrapida", "variants": ["malrapide"] },
   "fast": { "text": "rapida", "variants": ["rapide"] },
   "long": { "text": "longa" },
   "short": { "text": "mallonga" },
-  "heavy": { "text": "peza", "notes": { "de": "nur das Gewicht; schwierig ist malfacila." } },
-  "lightweight": { "text": "malpeza", "notes": { "de": "nur das Gewicht; einfach ist facila." } },
+  "heavy": {
+   "text": "peza",
+   "notes": {
+    "eo": "peza nur pri la pezo · malfacila pri la malfacileco.",
+    "de": "nur das Gewicht; schwierig ist malfacila."
+   }
+  },
+  "lightweight": {
+   "text": "malpeza",
+   "notes": {
+    "eo": "malpeza nur pri la pezo · facila pri la facileco.",
+    "de": "nur das Gewicht; einfach ist facila."
+   }
+  },
   "difficult": { "text": "malfacila" },
   "easy": { "text": "facila" },
   "problem": { "text": "problemo" },
@@ -40,10 +61,13 @@
   "sharp": { "text": "akra" },
   "available": {
    "text": "havebla",
-   "notes": { "de": "havebla = zu haben · disponebla = verfügbar, zur Verfügung stehend." }
+   "notes": {
+    "eo": "havebla = oni povas havi ĝin · disponebla = preta por uzo.",
+    "de": "havebla = zu haben · disponebla = verfügbar, zur Verfügung stehend."
+   }
   },
   "other": { "text": "alia" },
-  "hot": { "text": "varmega", "notes": { "de": "varma ist warm, varmega heiß." } },
+  "hot": { "text": "varmega", "notes": { "eo": "-eg- fortigas: varma → varmega." } },
   "cold-adj": { "text": "malvarma", "variants": ["malvarme"] },
   "empty": { "text": "malplena" },
   "full": { "text": "plena" },

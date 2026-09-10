@@ -6,12 +6,16 @@
   "name": { "text": "nomo" },
   "to-be-called": {
    "text": "nomiĝi",
-   "notes": { "de": "nomi heißt jemanden benennen · sich selbst so nennen ist nomiĝi: Mi nomiĝas Anna." }
+   "notes": {
+    "eo": "-iĝ- estas per si mem: nomi iun → nomiĝi. Mi nomiĝas Anna.",
+    "de": "nomi heißt jemanden benennen · sich selbst so nennen ist nomiĝi: Mi nomiĝas Anna."
+   }
   },
   "hello": { "text": "Saluton!" },
   "good-day": {
    "text": "Bonan tagon!",
    "notes": {
+    "eo": "taŭgas la tutan tagon · matene ankaŭ Bonan matenon!",
     "de": "gilt den ganzen Tag · morgens Bonan matenon!, abends Bonan vesperon!, zur Nacht Bonan nokton!"
    }
   },
@@ -20,6 +24,7 @@
   "good-night": {
    "text": "Bonan nokton!",
    "notes": {
+    "eo": "nur adiaŭe kaj antaŭ dormo · alvenante vespere: Bonan vesperon!",
     "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Bonan vesperon!“"
    }
   },
@@ -33,7 +38,10 @@
   "please": {
    "text": "Bonvolu!",
    "variants": ["Mi petas!"],
-   "notes": { "de": "steht vor dem Verb: Bonvolu ripeti. · die Antwort auf „Dankon“ ist „Ne dankinde“." }
+   "notes": {
+    "eo": "Bonvolu staras antaŭ la verbo: Bonvolu ripeti.",
+    "de": "steht vor dem Verb: Bonvolu ripeti. · die Antwort auf „Dankon“ ist „Ne dankinde“."
+   }
   },
   "excuse-me": { "text": "Pardonu!", "variants": ["Pardonon!", "Pardonu min!"] },
   "no-problem": { "text": "Neniu problemo!" },
