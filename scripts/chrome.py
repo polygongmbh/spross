@@ -157,7 +157,12 @@ def family_keys(strings):
 
 
 def catalog():
-    return json.load(open(CATALOG))['strings']
+    strings = json.load(open(CATALOG))['strings']
+    # why: the index extractor re-adds an empty %@ twin beside every counted key the moment
+    # the project is opened (scripts/strings.py reports it, --fix drops it); the twin names
+    # the counted key's own field, and an empty entry has no table to write.
+    return {k: v for k, v in strings.items()
+            if not ('%@' in k and k.replace('%@', '%lld') in strings)}
 
 
 def placeholders(text):
