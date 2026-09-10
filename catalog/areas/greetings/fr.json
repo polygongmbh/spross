@@ -7,13 +7,25 @@
   "to-be-called": { "text": "s'appeler" },
   "hello": {
    "text": "Salut !",
-   "notes": { "de": "nur informell unter Bekannten · im Laden und im Amt sagt man Bonjour !" }
+   "notes": {
+    "fr": "entre amis · au magasin et au guichet, Bonjour !",
+    "de": "nur informell unter Bekannten · im Laden und im Amt sagt man Bonjour !"
+   }
   },
-  "good-day": { "text": "Bonjour !", "notes": { "de": "gilt den ganzen Tag · ab dem frühen Abend Bonsoir !" } },
+  "good-day": {
+   "text": "Bonjour !",
+   "notes": {
+    "fr": "toute la journée · à partir du soir, Bonsoir !",
+    "de": "gilt den ganzen Tag · ab dem frühen Abend Bonsoir !"
+   }
+  },
   "good-evening": { "text": "Bonsoir !" },
   "good-night": {
    "text": "Bonne nuit !",
-   "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Bonsoir !“" }
+   "notes": {
+    "fr": "pour partir et avant de dormir · en arrivant le soir, Bonsoir !",
+    "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Bonsoir !“"
+   }
   },
   "goodbye": { "text": "Au revoir !" },
   "bye": { "text": "Ciao !" },
@@ -32,7 +44,7 @@
    "variants": ["Comment tu t'appelles ?", "Comment t'appelles-tu ?"]
   },
   "my-name-is": { "text": "Je m'appelle …" },
-  "yes": { "text": "Oui.", "notes": { "de": "auf eine verneinte Frage antwortet man Si statt Oui." } },
+  "yes": { "text": "Oui.", "notes": { "fr": "à une question négative : Tu ne viens pas ? — Si !" } },
   "no": { "text": "Non." }
  }
 }

@@ -5,13 +5,19 @@
   "desk": {
    "text": "bureau",
    "grammar": { "gender": "le", "plural": "-x" },
-   "notes": { "de": "le bureau ist der Schreibtisch und das Büro als Raum." }
+   "notes": {
+    "fr": "le bureau est le meuble et la pièce où l'on travaille.",
+    "de": "le bureau ist der Schreibtisch und das Büro als Raum."
+   }
   },
   "laptop": {
    "text": "ordinateur portable",
    "variants": ["l'ordinateur portable", "portable", "PC portable"],
    "grammar": { "gender": "l'" },
-   "notes": { "de": "Im Alltag sagt man meist nur le portable — das heißt aber auch „Handy“." }
+   "notes": {
+    "fr": "on dit surtout mon portable · mais le portable, c'est aussi le téléphone.",
+    "de": "Im Alltag sagt man meist nur le portable — das heißt aber auch „Handy“."
+   }
   },
   "keyboard": { "text": "clavier", "grammar": { "gender": "le" } },
   "screen": { "text": "écran", "variants": ["l'écran"], "grammar": { "gender": "l'" } },
@@ -21,12 +27,15 @@
    "text": "écouteurs",
    "variants": ["casque", "casque audio"],
    "grammar": { "gender": "les", "plural": "only" },
-   "notes": { "de": "Nur im Plural: les écouteurs sind die Ohrhörer; der Bügelkopfhörer heißt le casque." }
+   "notes": { "fr": "au pluriel : les écouteurs dans les oreilles · le casque sur la tête." }
   },
   "pen": {
    "text": "stylo",
    "grammar": { "gender": "le" },
-   "notes": { "de": "„Stift“ ist hier der Kugelschreiber: le stylo. Der Bleistift heißt le crayon." }
+   "notes": {
+    "fr": "le stylo écrit à l'encre · le crayon s'efface avec une gomme.",
+    "de": "„Stift“ ist hier der Kugelschreiber: le stylo. Der Bleistift heißt le crayon."
+   }
   },
   "notebook": { "text": "carnet", "variants": ["bloc-notes"], "grammar": { "gender": "le" } },
   "printer": { "text": "imprimante", "variants": ["l'imprimante"], "grammar": { "gender": "l'" } },
@@ -49,6 +58,7 @@
    "variants": ["portable", "téléphone portable", "mobile"],
    "grammar": { "gender": "le" },
    "notes": {
+    "fr": "le portable, c'est le téléphone qu'on met dans la poche.",
     "de": "Das Handy heißt le portable oder le téléphone portable; le téléphone ist jedes Telefon."
    }
   },
@@ -56,18 +66,24 @@
    "text": "e-mail",
    "variants": ["l'e-mail", "mail", "courriel", "courrier électronique"],
    "grammar": { "gender": "l'" },
-   "notes": { "de": "In Frankreich sagt man le mail oder l'e-mail; le courriel ist die amtliche Form." }
+   "notes": {
+    "fr": "on dit le mail ou l'e-mail ; le courriel est la forme officielle.",
+    "de": "In Frankreich sagt man le mail oder l'e-mail; le courriel ist die amtliche Form."
+   }
   },
   "paper": { "text": "papier", "grammar": { "gender": "le" } },
   "folder": {
    "text": "dossier",
    "grammar": { "gender": "le" },
-   "notes": { "de": "le dossier ist der Ordner am Bildschirm ebenso wie die Akte auf dem Schreibtisch." }
+   "notes": {
+    "fr": "un dossier sur l'ordinateur, un dossier de papiers sur le bureau.",
+    "de": "le dossier ist der Ordner am Bildschirm ebenso wie die Akte auf dem Schreibtisch."
+   }
   },
   "password": { "text": "mot de passe", "grammar": { "gender": "le", "plural": "mots de passe" } },
   "internet": {
    "text": "internet",
-   "notes": { "de": "Meist ohne Artikel: Il n'y a plus d'internet. · Je n'ai pas internet." }
+   "notes": { "fr": "souvent sans article : je n'ai pas internet, il n'y a plus d'internet." }
   },
   "charger": { "text": "chargeur", "variants": ["câble de recharge"], "grammar": { "gender": "le" } },
   "calendar": {
@@ -75,18 +91,27 @@
    "synonyms": ["agenda"],
    "variants": ["l'agenda"],
    "grammar": { "gender": "le" },
-   "notes": { "de": "le calendrier hängt an der Wand; der Terminkalender heißt l'agenda." }
+   "notes": {
+    "fr": "le calendrier est au mur · les rendez-vous vont dans l'agenda.",
+    "de": "le calendrier hängt an der Wand; der Terminkalender heißt l'agenda."
+   }
   },
   "important": { "text": "important", "variants": ["importante"] },
   "ready": {
    "text": "prêt",
    "variants": ["prête", "fini", "finie", "terminé", "terminée"],
-   "notes": { "de": "prêt heißt „bereit“: je suis prêt. Fertig im Sinne von beendet ist fini oder terminé." }
+   "notes": {
+    "fr": "je suis prêt, le repas est prêt · un travail fini est terminé.",
+    "de": "prêt heißt „bereit“: je suis prêt. Fertig im Sinne von beendet ist fini oder terminé."
+   }
   },
   "broken": {
    "text": "cassé",
    "variants": ["cassée", "en panne", "abîmé"],
-   "notes": { "de": "cassé heißt zerbrochen; ein Gerät, das nicht mehr geht, ist en panne." }
+   "notes": {
+    "fr": "un verre cassé · un appareil qui ne marche plus est en panne.",
+    "de": "cassé heißt zerbrochen; ein Gerät, das nicht mehr geht, ist en panne."
+   }
   },
   "im-in-a-meeting": { "text": "Je suis en réunion." },
   "dont-disturb-me": { "text": "Ne me dérange pas !", "variants": ["Ne pas déranger !"] },

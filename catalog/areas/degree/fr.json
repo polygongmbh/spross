@@ -7,7 +7,7 @@
   "more": { "text": "plus" },
   "less": { "text": "moins" },
   "always": { "text": "toujours" },
-  "never": { "text": "jamais", "notes": { "de": "im Satz steht ne vor dem Verb: Je ne fume jamais." } },
+  "never": { "text": "jamais", "notes": { "fr": "ne devant le verbe : Je ne fume jamais." } },
   "maybe": { "text": "peut-être" },
   "sometimes": { "text": "parfois", "variants": ["quelquefois"] },
   "often": { "text": "souvent" },

@@ -2,30 +2,52 @@
  "title": "Rester dans la conversation",
  "subtitle": "Redemander, comprendre, continuer.",
  "words": {
-  "to-hear": { "text": "entendre", "notes": { "de": "entendre = wahrnehmen · écouter = bewusst zuhören." } },
+  "to-hear": {
+   "text": "entendre",
+   "notes": {
+    "fr": "entendre, c'est percevoir · écouter, c'est faire attention.",
+    "de": "entendre = wahrnehmen · écouter = bewusst zuhören."
+   }
+  },
   "to-understand": { "text": "comprendre" },
   "to-speak": {
    "text": "parler",
-   "notes": { "de": "Nur ein bisschen: je ne parle qu'un peu — ne … que umklammert das Verb." }
+   "notes": {
+    "fr": "je ne parle qu'un peu français · je parle bien anglais.",
+    "de": "Nur ein bisschen: je ne parle qu'un peu — ne … que umklammert das Verb."
+   }
   },
   "to-repeat-word": { "text": "répéter le mot" },
   "loud": {
    "text": "fort",
    "variants": ["forte"],
-   "notes": { "de": "Lautstärke: parle plus fort · fort heißt auch stark." }
+   "notes": {
+    "fr": "parle plus fort · fort veut aussi dire puissant.",
+    "de": "Lautstärke: parle plus fort · fort heißt auch stark."
+   }
   },
   "to-ask": {
    "text": "demander",
    "notes": {
+    "fr": "demander l'addition, demander de l'aide · poser une question.",
     "de": "demander heißt fragen und um etwas bitten: demander l'addition · eine Frage stellen ist poser une question."
    }
   },
   "question": { "text": "question", "grammar": { "gender": "la" } },
   "answer": { "text": "réponse", "grammar": { "gender": "la" } },
-  "to-reply": { "text": "répondre", "notes": { "de": "mit à: répondre à la question, répondre à quelqu'un." } },
+  "to-reply": {
+   "text": "répondre",
+   "notes": { "fr": "toujours avec à : répondre à la question, répondre à quelqu'un." }
+  },
   "help": { "text": "aide", "variants": ["l'aide"], "grammar": { "gender": "l'" } },
   "to-need": { "text": "avoir besoin de" },
-  "to-know": { "text": "savoir", "notes": { "de": "wissen = savoir · kennen (Personen, Orte) = connaître." } },
+  "to-know": {
+   "text": "savoir",
+   "notes": {
+    "fr": "savoir nager, savoir où c'est · connaître une personne, une ville.",
+    "de": "wissen = savoir · kennen (Personen, Orte) = connaître."
+   }
+  },
   "to-remember": { "text": "se souvenir" },
   "to-forget": { "text": "oublier" },
   "goal": { "text": "but", "grammar": { "gender": "le" } },

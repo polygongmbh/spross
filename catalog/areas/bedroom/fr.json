@@ -29,9 +29,7 @@
   "clothes": {
    "text": "vêtements",
    "grammar": { "gender": "les" },
-   "notes": {
-    "de": "Kleidung steht im Französischen im Plural: les vêtements; ein einzelnes Kleidungsstück ist un vêtement."
-   }
+   "notes": { "fr": "presque toujours au pluriel : les vêtements · un seul, un vêtement." }
   },
   "shirt": { "text": "chemise", "grammar": { "gender": "la" } },
   "dress": { "text": "robe", "grammar": { "gender": "la" } },
@@ -42,7 +40,10 @@
   "soft": {
    "text": "doux",
    "variants": ["douce"],
-   "notes": { "de": "doux ist weich und sanft beim Anfassen; eine weiche Matratze ist un matelas moelleux." }
+   "notes": {
+    "fr": "une peau douce, une voix douce · un matelas moelleux.",
+    "de": "doux ist weich und sanft beim Anfassen; eine weiche Matratze ist un matelas moelleux."
+   }
   },
   "to-rest": { "text": "se reposer" },
   "sleep-well": { "text": "Dors bien !" },
@@ -50,6 +51,7 @@
    "text": "Bonjour, mon amour !",
    "variants": ["Bonjour, mon cœur !", "Bonjour, chéri !"],
    "notes": {
+    "fr": "le matin aussi, on dit bonjour · bon matin se dit au Québec.",
     "de": "Französisch grüßt auch morgens mit bonjour; bon matin ist québécois und in Frankreich unüblich."
    }
   },

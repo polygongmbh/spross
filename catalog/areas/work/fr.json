@@ -9,27 +9,37 @@
    "synonyms": ["curriculum vitae"],
    "variants": ["curriculum"],
    "grammar": { "gender": "le", "plural": "=" },
-   "notes": { "de": "Im Alltag sagt man immer le CV; ausgeschrieben le curriculum vitae." }
+   "notes": {
+    "fr": "on dit toujours le CV · en entier, le curriculum vitae.",
+    "de": "Im Alltag sagt man immer le CV; ausgeschrieben le curriculum vitae."
+   }
   },
   "contract": { "text": "contrat", "grammar": { "gender": "le" } },
   "salary": { "text": "salaire", "grammar": { "gender": "le" } },
   "colleague": {
    "text": "collègue",
    "grammar": { "gender": "le" },
-   "notes": { "de": "collègue ist für Mann und Frau gleich: le collègue, la collègue." }
+   "notes": {
+    "fr": "le collègue, la collègue : le mot ne change pas.",
+    "de": "collègue ist für Mann und Frau gleich: le collègue, la collègue."
+   }
   },
   "boss": { "text": "chef", "grammar": { "gender": "le" } },
   "boss-f": {
    "text": "cheffe",
    "variants": ["chef"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "cheffe ist die heute empfohlene Form; man hört auch la chef." }
+   "notes": {
+    "fr": "on écrit la cheffe ; on entend aussi la chef.",
+    "de": "cheffe ist die heute empfohlene Form; man hört auch la chef."
+   }
   },
   "shift": {
    "text": "service",
    "variants": ["poste"],
    "grammar": { "gender": "le" },
    "notes": {
+    "fr": "je prends mon service à six heures · à l'usine, on dit le poste.",
     "de": "Die Schicht ist le service: je prends mon service à six heures. In der Industrie sagt man le poste."
    }
   },
@@ -38,6 +48,7 @@
    "synonyms": ["congés"],
    "grammar": { "gender": "les", "plural": "only" },
    "notes": {
+    "fr": "les vacances d'été · au travail, je prends des congés.",
     "de": "les vacances sind die Ferien allgemein; freie Tage vom Job nimmt man als congés: je prends des congés."
    }
   },
@@ -45,19 +56,20 @@
   "to-apply": {
    "text": "postuler à un poste",
    "variants": ["postuler", "poser sa candidature"],
-   "notes": { "de": "postuler steht immer mit à: postuler à une offre, postuler à un emploi." }
+   "notes": { "fr": "toujours avec à : postuler à un poste, postuler à une offre." }
   },
   "to-introduce-oneself": { "text": "se présenter" },
   "to-earn": {
    "text": "gagner",
-   "notes": { "de": "gagner heißt verdienen und gewinnen; nach dem Verdienst fragt man Tu gagnes combien ?" }
+   "notes": {
+    "fr": "je gagne mille euros par mois · gagner un match, gagner au loto.",
+    "de": "gagner heißt verdienen und gewinnen; nach dem Verdienst fragt man Tu gagnes combien ?"
+   }
   },
   "to-start": { "text": "commencer", "variants": ["débuter"] },
   "to-leave": {
    "text": "quitter",
-   "notes": {
-    "de": "quitter braucht immer ein Objekt: quitter la maison, quitter la ville · quitter son emploi heißt kündigen."
-   }
+   "notes": { "fr": "toujours un objet : quitter la maison, quitter son emploi." }
   },
   "to-quit": { "text": "quitter son emploi", "variants": ["démissionner"] },
   "to-hire": { "text": "embaucher", "variants": ["recruter"] },
@@ -67,7 +79,10 @@
    "text": "métier",
    "synonyms": ["profession"],
    "grammar": { "gender": "le" },
-   "notes": { "de": "le métier ist der erlernte Beruf, la profession die Berufsangabe im Formular." }
+   "notes": {
+    "fr": "mon métier, c'est boulanger · la profession se met sur le formulaire.",
+    "de": "le métier ist der erlernte Beruf, la profession die Berufsangabe im Formular."
+   }
   },
   "interview": {
    "text": "entretien d'embauche",
@@ -78,9 +93,7 @@
    "text": "horaires de travail",
    "variants": ["horaire de travail", "temps de travail"],
    "grammar": { "gender": "les" },
-   "notes": {
-    "de": "meist im Plural: les horaires de travail; die vertraglich vereinbarte Arbeitszeit heißt le temps de travail."
-   }
+   "notes": { "fr": "au pluriel : mes horaires de travail · la durée, c'est le temps de travail." }
   },
   "full-time": {
    "text": "temps plein",
@@ -97,6 +110,7 @@
    "variants": ["l'impôt"],
    "grammar": { "gender": "l'" },
    "notes": {
+    "fr": "l'impôt sur le revenu · la taxe se paie pour un service précis.",
     "de": "l'impôt ist die Steuer auf Einkommen; eine einzelne Abgabe für eine Leistung heißt la taxe."
    }
   },
@@ -106,6 +120,7 @@
    "variants": ["formation"],
    "grammar": { "gender": "la" },
    "notes": {
+    "fr": "la formation professionnelle se fait à l'école, l'apprentissage en entreprise.",
     "de": "Die duale Ausbildung heißt in Frankreich l'apprentissage; la formation professionnelle ist die schulisch organisierte Berufsausbildung."
    }
   },
@@ -113,6 +128,7 @@
    "text": "licenciement",
    "grammar": { "gender": "le" },
    "notes": {
+    "fr": "le patron licencie · le salarié, lui, donne sa démission.",
     "de": "le licenciement ist die Kündigung durch den Arbeitgeber; kündigt man selbst, heißt das la démission."
    }
   },

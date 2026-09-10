@@ -8,6 +8,7 @@
    "variants": ["l'entrée"],
    "grammar": { "gender": "l'" },
    "notes": {
+    "fr": "l'entrée est juste derrière la porte · le couloir mène aux pièces.",
     "de": "l'entrée ist der Eingangsbereich hinter der Wohnungstür; der Gang dahinter heißt le couloir.",
     "en": "l'entrée is the entryway just inside the front door; the corridor itself is le couloir."
    }
@@ -22,6 +23,7 @@
    "synonyms": ["casquette"],
    "grammar": { "gender": "le" },
    "notes": {
+    "fr": "le bonnet n'a pas de visière · la casquette en a une, le chapeau des bords.",
     "de": "le bonnet ist die Mütze ohne Schirm; die Schirmmütze heißt la casquette, ein Hut mit Krempe le chapeau.",
     "en": "le bonnet is the knit cap with no brim; a peaked cap is la casquette and a brimmed hat le chapeau."
    }
@@ -35,6 +37,7 @@
    "text": "sonner",
    "variants": ["sonner à la porte"],
    "notes": {
+    "fr": "ça sonne à la porte · il sonne chez moi : un seul verbe.",
     "de": "sonner deckt beides ab: die Klingel klingelt (ça sonne) und jemand klingelt an der Tür (il sonne à la porte)."
    }
   },
@@ -54,6 +57,7 @@
    "synonyms": ["porte-monnaie"],
    "grammar": { "gender": "le" },
    "notes": {
+    "fr": "le portefeuille pour les billets · le porte-monnaie pour les pièces.",
     "de": "le portefeuille ist die Brieftasche für Scheine und Karten, le porte-monnaie die Münzbörse."
    }
   },
@@ -62,12 +66,18 @@
   "to-knock-on-door": { "text": "frapper à la porte", "variants": ["toquer à la porte"] },
   "to-enter": {
    "text": "entrer",
-   "notes": { "de": "Wer jemanden hereinbittet, sagt Entre ! (du) beziehungsweise Entrez ! (Sie)." }
+   "notes": {
+    "fr": "on invite : Entre ! ou Entrez !",
+    "de": "Wer jemanden hereinbittet, sagt Entre ! (du) beziehungsweise Entrez ! (Sie)."
+   }
   },
   "house": { "text": "maison", "grammar": { "gender": "la" } },
   "to-live": {
    "text": "habiter",
-   "notes": { "de": "habiter heißt wohnen; leben im Sinne von am Leben sein ist vivre." }
+   "notes": {
+    "fr": "habiter à Paris, dans une maison · vivre, c'est être en vie.",
+    "de": "habiter heißt wohnen; leben im Sinne von am Leben sein ist vivre."
+   }
   },
   "do-you-have-the-keys": { "text": "Tu as les clés ?", "variants": ["As-tu les clés ?"] },
   "ill-be-right-back": { "text": "Je reviens tout de suite !", "variants": ["Je reviens vite !"] },

@@ -6,7 +6,7 @@
   "hair": {
    "text": "cheveux",
    "grammar": { "gender": "les", "plural": "only" },
-   "notes": { "de": "Kopfhaar steht im Französischen immer im Plural: j'ai les cheveux longs." }
+   "notes": { "fr": "toujours au pluriel : j'ai les cheveux longs." }
   },
   "face": { "text": "visage", "variants": ["figure"], "grammar": { "gender": "le" } },
   "eye": {
@@ -26,13 +26,17 @@
   "stomach": {
    "text": "ventre",
    "grammar": { "gender": "le" },
-   "notes": { "de": "Bauchweh heißt j'ai mal au ventre; l'estomac meint den Magen selbst." }
+   "notes": {
+    "fr": "j'ai mal au ventre · l'estomac est l'organe qui digère.",
+    "de": "Bauchweh heißt j'ai mal au ventre; l'estomac meint den Magen selbst."
+   }
   },
   "back": { "text": "dos", "grammar": { "gender": "le", "plural": "=" } },
   "throat": {
    "text": "gorge",
    "grammar": { "gender": "la" },
    "notes": {
+    "fr": "j'ai mal à la gorge · le cou porte la tête.",
     "de": "Französisch trennt, was „Hals“ zusammenfasst: la gorge ist der Rachen (Halsschmerzen), le cou der äußere Hals."
    }
   },
@@ -46,7 +50,10 @@
   "finger": {
    "text": "doigt",
    "grammar": { "gender": "le" },
-   "notes": { "de": "le doigt ist der Finger; die Zehe heißt un orteil oder un doigt de pied." }
+   "notes": {
+    "fr": "le doigt de la main · le doigt de pied, c'est l'orteil.",
+    "de": "le doigt ist der Finger; die Zehe heißt un orteil oder un doigt de pied."
+   }
   },
   "neck": { "text": "cou", "grammar": { "gender": "le" } },
   "brain": { "text": "cerveau", "grammar": { "gender": "le", "plural": "cerveaux" } },

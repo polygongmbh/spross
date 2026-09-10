@@ -13,6 +13,7 @@
    "text": "taille",
    "grammar": { "gender": "la" },
    "notes": {
+    "fr": "quelle taille pour les vêtements · quelle pointure pour les chaussures.",
     "de": "la taille ist die Größe und zugleich die Taille am Körper; die Schuhgröße heißt la pointure."
    }
   },
@@ -20,6 +21,7 @@
    "text": "faire les courses",
    "synonyms": ["faire les magasins"],
    "notes": {
+    "fr": "faire les courses, c'est acheter à manger · faire les magasins, se promener.",
     "de": "faire les courses ist der Lebensmitteleinkauf, faire les magasins der Bummel durch die Läden."
    }
   },

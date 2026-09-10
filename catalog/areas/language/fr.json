@@ -9,7 +9,10 @@
   "language": {
    "text": "langue",
    "grammar": { "gender": "la" },
-   "notes": { "de": "langue ist auch die Zunge im Mund." }
+   "notes": {
+    "fr": "la langue française · la langue dans la bouche : le même mot.",
+    "de": "langue ist auch die Zunge im Mund."
+   }
   },
   "mother-tongue": { "text": "langue maternelle", "grammar": { "gender": "la" } },
   "what-does-this-word-mean": {

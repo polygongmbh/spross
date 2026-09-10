@@ -6,7 +6,10 @@
    "text": "école",
    "variants": ["l'école"],
    "grammar": { "gender": "l'" },
-   "notes": { "de": "Vorsicht: le collège ist die Mittelstufe, nicht die Schule allgemein." }
+   "notes": {
+    "fr": "l'école est pour les petits · après vient le collège.",
+    "de": "Vorsicht: le collège ist die Mittelstufe, nicht die Schule allgemein."
+   }
   },
   "classroom": {
    "text": "salle de classe",
@@ -19,6 +22,7 @@
    "variants": ["prof"],
    "grammar": { "gender": "le" },
    "notes": {
+    "fr": "à l'école : le maître, la maîtresse · au collège : le professeur, le prof.",
     "de": "In der Grundschule sagt man le maître / la maîtresse (offiziell professeur des écoles); ab dem collège le professeur (ugs. le prof)."
    }
   },
@@ -37,23 +41,30 @@
   "homework": {
    "text": "devoirs",
    "grammar": { "gender": "les", "plural": "only" },
-   "notes": { "de": "Nur im Plural: les devoirs — faire ses devoirs = Hausaufgaben machen." }
+   "notes": { "fr": "au pluriel : faire ses devoirs." }
   },
   "exam": {
    "text": "examen",
    "variants": ["l'examen", "contrôle"],
    "grammar": { "gender": "l'" },
-   "notes": { "de": "Die Klassenarbeit heißt le contrôle; l'examen ist die große Prüfung." }
+   "notes": {
+    "fr": "le contrôle se passe en classe · l'examen compte beaucoup plus.",
+    "de": "Die Klassenarbeit heißt le contrôle; l'examen ist die große Prüfung."
+   }
   },
   "break": {
    "text": "récréation",
    "variants": ["la récréation", "récré", "pause"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "la récréation ist die Schulpause, ugs. la récré; die allgemeine Pause heißt la pause." }
+   "notes": {
+    "fr": "à l'école, la récréation (la récré) · ailleurs, la pause.",
+    "de": "la récréation ist die Schulpause, ugs. la récré; die allgemeine Pause heißt la pause."
+   }
   },
   "to-pass-exam": {
    "text": "réussir l'examen",
    "notes": {
+    "fr": "réussir l'examen, c'est l'avoir · passer un examen, c'est le faire.",
     "de": "réussir heißt bestehen. passer un examen bedeutet nur „eine Prüfung ablegen“; durchfallen ist rater oder échouer.",
     "en": "réussir is to pass; passer un examen only means to sit it, and to fail is rater or échouer."
    }
@@ -64,7 +75,10 @@
    "text": "élève",
    "variants": ["l'élève"],
    "grammar": { "gender": "l'" },
-   "notes": { "de": "l'élève geht zur Schule; an der Uni heißt man l'étudiant." }
+   "notes": {
+    "fr": "l'élève va à l'école, l'étudiant à l'université.",
+    "de": "l'élève geht zur Schule; an der Uni heißt man l'étudiant."
+   }
   },
   "course": { "text": "cours", "grammar": { "gender": "le", "plural": "=" } },
   "lesson": {
@@ -72,6 +86,7 @@
    "variants": ["leçon"],
    "grammar": { "gender": "la" },
    "notes": {
+    "fr": "j'ai cours aujourd'hui · la classe est aussi la salle et le groupe.",
     "de": "Der laufende Unterricht heißt les cours: j'ai cours aujourd'hui = heute habe ich Unterricht."
    }
   },
@@ -83,7 +98,10 @@
    "text": "université",
    "variants": ["l'université", "fac"],
    "grammar": { "gender": "l'" },
-   "notes": { "de": "Umgangssprachlich la fac: je vais à la fac." }
+   "notes": {
+    "fr": "on dit la fac : je vais à la fac.",
+    "de": "Umgangssprachlich la fac: je vais à la fac."
+   }
   },
   "class-schedule": {
    "text": "emploi du temps",
@@ -99,7 +117,10 @@
   "to-study": {
    "text": "étudier",
    "variants": ["réviser"],
-   "notes": { "de": "Für eine Prüfung lernen = réviser oder étudier; etwas Neues lernen = apprendre." }
+   "notes": {
+    "fr": "réviser ou étudier pour un examen · apprendre une chose nouvelle.",
+    "de": "Für eine Prüfung lernen = réviser oder étudier; etwas Neues lernen = apprendre."
+   }
   },
   "to-teach": { "text": "enseigner" },
   "do-the-homework": { "text": "Je fais mes devoirs." },

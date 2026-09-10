@@ -2,45 +2,75 @@
  "title": "Les verbes essentiels",
  "subtitle": "Ce qu'il te faut partout.",
  "words": {
-  "to-go": { "text": "aller", "notes": { "de": "aller = gehen und fahren · zu Fuß betont: aller à pied." } },
+  "to-go": {
+   "text": "aller",
+   "notes": {
+    "fr": "aller à pied, en bus, en voiture : un seul verbe.",
+    "de": "aller = gehen und fahren · zu Fuß betont: aller à pied."
+   }
+  },
   "to-come": { "text": "venir" },
   "to-have": { "text": "avoir" },
   "to-give": { "text": "donner" },
   "to-take": { "text": "prendre" },
-  "to-see": { "text": "voir", "notes": { "de": "voir = wahrnehmen · regarder = bewusst anschauen." } },
+  "to-see": {
+   "text": "voir",
+   "notes": {
+    "fr": "voir, c'est par hasard · regarder, c'est exprès.",
+    "de": "voir = wahrnehmen · regarder = bewusst anschauen."
+   }
+  },
   "to-make": {
    "text": "faire",
-   "notes": { "de": "faire deckt machen und tun ab: faire la cuisine, faire ses devoirs." }
+   "notes": {
+    "fr": "faire la cuisine, faire ses devoirs, faire du sport.",
+    "de": "faire deckt machen und tun ab: faire la cuisine, faire ses devoirs."
+   }
   },
   "to-like": {
    "text": "aimer",
-   "notes": { "de": "aimer heißt mögen und lieben; abgeschwächt aimer bien: j'aime bien ce café." }
+   "notes": {
+    "fr": "j'aime ma femme · j'aime bien ce café, c'est plus faible.",
+    "de": "aimer heißt mögen und lieben; abgeschwächt aimer bien: j'aime bien ce café."
+   }
   },
-  "to-can": { "text": "pouvoir", "notes": { "de": "unregelmäßig: je peux, tu peux, il peut, nous pouvons." } },
+  "to-can": { "text": "pouvoir", "notes": { "fr": "je peux, tu peux, il peut, nous pouvons, vous pouvez." } },
   "to-think": {
    "text": "penser",
-   "notes": { "de": "penser à quelque chose = an etwas denken · penser que = glauben, dass." }
+   "notes": {
+    "fr": "penser à quelqu'un · je pense que c'est vrai.",
+    "de": "penser à quelque chose = an etwas denken · penser que = glauben, dass."
+   }
   },
   "to-imagine": { "text": "imaginer" },
-  "to-wait": { "text": "attendre", "notes": { "de": "attendre steht ohne Präposition: j'attends le bus." } },
-  "to-want": {
-   "text": "vouloir",
-   "notes": { "de": "höflicher im Konditional: je voudrais = ich hätte gern." }
-  },
+  "to-wait": { "text": "attendre", "notes": { "fr": "sans préposition : j'attends le bus, je t'attends." } },
+  "to-want": { "text": "vouloir", "notes": { "fr": "je voudrais un café : plus poli que je veux." } },
   "to-find": { "text": "trouver" },
-  "to-search": { "text": "chercher", "notes": { "de": "chercher steht ohne Präposition: je cherche un hôtel." } },
+  "to-search": {
+   "text": "chercher",
+   "notes": { "fr": "sans préposition : je cherche un hôtel, je te cherche." }
+  },
   "to-receive": { "text": "recevoir", "synonyms": ["obtenir"] },
-  "to-look": { "text": "regarder", "notes": { "de": "regarder = bewusst hinschauen: regarder la télé." } },
+  "to-look": {
+   "text": "regarder",
+   "notes": {
+    "fr": "regarder la télé, regarder par la fenêtre.",
+    "de": "regarder = bewusst hinschauen: regarder la télé."
+   }
+  },
   "to-open": { "text": "ouvrir" },
   "to-close": { "text": "fermer" },
   "to-stop": {
    "text": "arrêter",
    "variants": ["s'arrêter", "arrêter de"],
-   "notes": { "de": "arrêter de + Infinitiv: arrêter de fumer · s’arrêter = stehen bleiben." }
+   "notes": { "fr": "arrêter de fumer · le bus s'arrête ici." }
   },
   "to-stand": {
    "text": "être debout",
-   "notes": { "de": "Französisch hat kein eigenes Verb dafür · se mettre debout = sich hinstellen." }
+   "notes": {
+    "fr": "je suis debout depuis six heures · se mettre debout, c'est se lever.",
+    "de": "Französisch hat kein eigenes Verb dafür · se mettre debout = sich hinstellen."
+   }
   },
   "to-send": { "text": "envoyer" },
   "to-deliver": { "text": "livrer" },
@@ -56,9 +86,7 @@
   "do-you-have-water": {
    "text": "Avez-vous de l'eau ?",
    "variants": ["Vous avez de l'eau ?", "As-tu de l'eau ?", "Tu as de l'eau ?"],
-   "notes": {
-    "de": "Vor der unbestimmten Menge steht der Teilungsartikel: du pain, de la viande, des fruits."
-   }
+   "notes": { "fr": "quantité non comptée : du pain, de la viande, des fruits." }
   },
   "where-are-you-from": {
    "text": "D'où venez-vous ?",

@@ -4,7 +4,10 @@
  "words": {
   "straight-ahead": {
    "text": "tout droit",
-   "notes": { "de": "tout droit heißt geradeaus, à droite rechts — der Unterschied hängt an einem Wort." }
+   "notes": {
+    "fr": "tout droit, sans tourner · à droite, du côté de la main droite.",
+    "de": "tout droit heißt geradeaus, à droite rechts — der Unterschied hängt an einem Wort."
+   }
   },
   "to-turn": { "text": "tourner" },
   "corner": { "text": "coin", "grammar": { "gender": "le" } },
@@ -17,6 +20,7 @@
    "variants": ["l'entrée"],
    "grammar": { "gender": "l'" },
    "notes": {
+    "fr": "l'entrée du bâtiment · au restaurant, le plat avant le plat principal.",
     "de": "l'entrée ist der Eingang und zugleich der Flur, in den man tritt — und auf der Karte die Vorspeise."
    }
   },

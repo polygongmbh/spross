@@ -13,7 +13,10 @@
    "text": "poste",
    "variants": ["bureau de poste"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "la poste ist die Post als Einrichtung; ein einzelnes Amt ist le bureau de poste." }
+   "notes": {
+    "fr": "la poste apporte le courrier · le bureau de poste est le bâtiment.",
+    "de": "la poste ist die Post als Einrichtung; ein einzelnes Amt ist le bureau de poste."
+   }
   },
   "hotel": { "text": "hôtel", "variants": ["l'hôtel"], "grammar": { "gender": "l'" } },
   "church": { "text": "église", "variants": ["l'église"], "grammar": { "gender": "l'" } },

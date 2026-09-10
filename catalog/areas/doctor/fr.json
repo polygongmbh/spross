@@ -7,6 +7,7 @@
    "text": "docteure",
    "grammar": { "gender": "la" },
    "notes": {
+    "fr": "le médecin vaut pour tous · pour une femme : la docteure, une médecin.",
     "de": "Der Berufsname le médecin gilt für beide; für eine Ärztin sagt man la docteure oder une médecin."
    }
   },
@@ -14,13 +15,17 @@
    "text": "cabinet",
    "variants": ["cabinet médical"],
    "grammar": { "gender": "le" },
-   "notes": { "de": "le cabinet ist die Praxis als Raum; die Sprechstunde selbst heißt la consultation." }
+   "notes": {
+    "fr": "le cabinet est le lieu · la consultation est le rendez-vous.",
+    "de": "le cabinet ist die Praxis als Raum; die Sprechstunde selbst heißt la consultation."
+   }
   },
   "pill": {
    "text": "comprimé",
    "variants": ["cachet"],
    "grammar": { "gender": "le" },
    "notes": {
+    "fr": "on prend un comprimé ou un cachet · la pilule est contraceptive.",
     "de": "la pilule meint fast immer die Antibabypille — die Tablette ist le comprimé oder le cachet."
    }
   },
@@ -28,7 +33,10 @@
    "text": "ordonnance",
    "variants": ["l'ordonnance"],
    "grammar": { "gender": "l'" },
-   "notes": { "de": "Der Zettel vom Arzt heißt l'ordonnance: le médecin fait une ordonnance." }
+   "notes": {
+    "fr": "le médecin fait une ordonnance, le pharmacien la lit.",
+    "de": "Der Zettel vom Arzt heißt l'ordonnance: le médecin fait une ordonnance."
+   }
   },
   "pharmacy": { "text": "pharmacie", "grammar": { "gender": "la" } },
   "insurance-card": {
@@ -36,6 +44,7 @@
    "variants": ["carte d'assurance maladie"],
    "grammar": { "gender": "la" },
    "notes": {
+    "fr": "la carte Vitale est la carte verte de la Sécu : on la donne au médecin.",
     "de": "In Frankreich ist es la carte Vitale, die Chipkarte der gesetzlichen Krankenversicherung."
    }
   },
@@ -44,6 +53,7 @@
    "variants": ["l'assurance maladie"],
    "grammar": { "gender": "l'" },
    "notes": {
+    "fr": "la Sécurité sociale (la Sécu) rembourse ; la mutuelle paie le reste.",
     "de": "Die gesetzliche Kasse heißt la Sécurité sociale (kurz la Sécu); die private Zusatzversicherung ist la mutuelle."
    }
   },
@@ -56,13 +66,16 @@
    "text": "urgence",
    "variants": ["l'urgence"],
    "grammar": { "gender": "l'" },
-   "notes": { "de": "Die Notaufnahme heißt les urgences: aller aux urgences." }
+   "notes": { "fr": "à l'hôpital, on va aux urgences, toujours au pluriel." }
   },
   "doctors-note": {
    "text": "arrêt de travail",
    "variants": ["l'arrêt de travail", "arrêt maladie"],
    "grammar": { "gender": "l'", "plural": "arrêts de travail" },
-   "notes": { "de": "Der Arzt stellt un arrêt de travail aus; damit ist man en arrêt maladie." }
+   "notes": {
+    "fr": "le médecin donne un arrêt de travail : on est en arrêt maladie.",
+    "de": "Der Arzt stellt un arrêt de travail aus; damit ist man en arrêt maladie."
+   }
   },
   "to-examine": { "text": "examiner", "variants": ["ausculter"] },
   "to-prescribe-medicine": { "text": "prescrire des médicaments", "variants": ["faire une ordonnance"] },
@@ -70,12 +83,18 @@
   "to-call-in-sick": {
    "text": "se mettre en arrêt maladie",
    "variants": ["prendre un arrêt maladie"],
-   "notes": { "de": "Krankmelden läuft über den arrêt de travail vom Arzt: je me mets en arrêt maladie." }
+   "notes": {
+    "fr": "je me mets en arrêt maladie : le médecin fait l'arrêt de travail.",
+    "de": "Krankmelden läuft über den arrêt de travail vom Arzt: je me mets en arrêt maladie."
+   }
   },
   "medicine": {
    "text": "médicament",
    "grammar": { "gender": "le" },
-   "notes": { "de": "le médicament ist das Medikament; la médecine ist die Heilkunde." }
+   "notes": {
+    "fr": "on prend un médicament · la médecine est la science du médecin.",
+    "de": "le médicament ist das Medikament; la médecine ist die Heilkunde."
+   }
   },
   "nurse": { "text": "infirmier", "variants": ["l'infirmier"], "grammar": { "gender": "l'" } },
   "nurse-f": { "text": "infirmière", "variants": ["l'infirmière"], "grammar": { "gender": "l'" } },
@@ -85,6 +104,7 @@
    "variants": ["vaccin"],
    "grammar": { "gender": "la" },
    "notes": {
+    "fr": "la vaccination est l'acte, le vaccin le produit : se faire vacciner.",
     "de": "la vaccination ist der Vorgang, le vaccin der Impfstoff; geimpft wird man mit se faire vacciner."
    }
   },

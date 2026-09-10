@@ -7,6 +7,7 @@
    "variants": ["l'administration"],
    "grammar": { "gender": "l'" },
    "notes": {
+    "fr": "la mairie pour la commune, la préfecture pour les papiers.",
     "de": "Für ein bestimmtes Amt sagt man in Frankreich den Namen: la mairie (Rathaus), la préfecture (Aufenthalt und Ausweise)."
    }
   },
@@ -14,13 +15,17 @@
   "application": {
    "text": "demande",
    "grammar": { "gender": "la" },
-   "notes": { "de": "Der Antrag heißt la demande: faire une demande de titre de séjour." }
+   "notes": {
+    "fr": "faire une demande de titre de séjour, une demande de bourse.",
+    "de": "Der Antrag heißt la demande: faire une demande de titre de séjour."
+   }
   },
   "id-card": {
    "text": "carte d'identité",
    "variants": ["carte nationale d'identité", "CNI"],
    "grammar": { "gender": "la" },
    "notes": {
+    "fr": "la carte nationale d'identité (CNI) est celle des Français.",
     "de": "Der französische Ausweis ist la carte nationale d'identité (CNI); Ausländer bekommen stattdessen un titre de séjour."
    }
   },
@@ -29,6 +34,7 @@
    "synonyms": ["carte de séjour"],
    "grammar": { "gender": "le" },
    "notes": {
+    "fr": "le titre de séjour est le droit, la carte de séjour le papier.",
     "de": "le titre de séjour ist das Aufenthaltsrecht, la carte de séjour die Karte, die man dafür bekommt."
    }
   },
@@ -44,6 +50,7 @@
    "variants": ["l'employé", "l'agent"],
    "grammar": { "gender": "l'" },
    "notes": {
+    "fr": "au guichet : l'employé ou l'agent · le gestionnaire suit le dossier.",
     "de": "Am Schalter sitzt l'employé oder l'agent; wer den Antrag bearbeitet, ist le gestionnaire du dossier."
    }
   },
@@ -53,6 +60,7 @@
    "variants": ["l'inscription"],
    "grammar": { "gender": "l'" },
    "notes": {
+    "fr": "l'inscription sur les listes électorales, à la Sécu, à l'école.",
     "de": "In Frankreich gibt es keine Meldepflicht; l'inscription ist die Eintragung in ein Register, etwa auf der Wählerliste oder bei der Krankenkasse."
    }
   },
@@ -60,14 +68,20 @@
    "text": "documents",
    "synonyms": ["papiers"],
    "grammar": { "gender": "les" },
-   "notes": { "de": "Am Schalter heißt es meist vos papiers; les documents ist das neutrale Wort." }
+   "notes": {
+    "fr": "au guichet on demande vos papiers · à l'écrit, les documents.",
+    "de": "Am Schalter heißt es meist vos papiers; les documents ist das neutrale Wort."
+   }
   },
   "to-fill-in": { "text": "remplir" },
   "to-sign": { "text": "signer" },
   "to-apply-for": {
    "text": "faire une demande",
    "variants": ["solliciter", "demander"],
-   "notes": { "de": "beantragen ist faire une demande de … ; demander allein heißt fragen." }
+   "notes": {
+    "fr": "faire une demande de titre de séjour, de carte Vitale.",
+    "de": "beantragen ist faire une demande de … ; demander allein heißt fragen."
+   }
   },
   "to-submit": { "text": "déposer" },
   "to-hand-in": { "text": "remettre", "variants": ["soumettre"] },
@@ -76,7 +90,13 @@
    "variants": ["récupérer la carte d'identité", "aller chercher la carte d'identité"]
   },
   "to-extend": { "text": "renouveler", "variants": ["prolonger"] },
-  "to-bring": { "text": "apporter", "notes": { "de": "apporter für Sachen, amener für Personen." } },
+  "to-bring": {
+   "text": "apporter",
+   "notes": {
+    "fr": "apporter un papier, un gâteau · amener un enfant, un ami.",
+    "de": "apporter für Sachen, amener für Personen."
+   }
+  },
   "to-copy": { "text": "copier", "variants": ["photocopier"] },
   "passport": { "text": "passeport", "grammar": { "gender": "le" } },
   "address": { "text": "adresse", "variants": ["l'adresse"], "grammar": { "gender": "l'" } },
@@ -85,6 +105,7 @@
    "variants": ["l'attestation", "certificat"],
    "grammar": { "gender": "l'" },
    "notes": {
+    "fr": "l'attestation vient de l'administration, le certificat du médecin.",
     "de": "Die Bescheinigung heißt l'attestation; ein certificat stellt eine Fachperson aus, etwa le certificat médical."
    }
   },
@@ -97,19 +118,23 @@
    "text": "décision",
    "synonyms": ["notification"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "la décision ist die Entscheidung selbst, la notification ihre Zustellung." }
+   "notes": {
+    "fr": "la décision est la réponse · la notification est la lettre qui l'apporte.",
+    "de": "la décision ist die Entscheidung selbst, la notification ihre Zustellung."
+   }
   },
   "fee": {
    "text": "frais",
    "variants": ["frais de dossier"],
    "grammar": { "gender": "les", "plural": "only" },
-   "notes": { "de": "les frais stehen immer im Plural; die Bearbeitungsgebühr heißt les frais de dossier." }
+   "notes": { "fr": "toujours au pluriel : les frais de dossier, les frais de port." }
   },
   "office-hours": {
    "text": "horaires d'accueil",
    "variants": ["heures d'accueil", "horaires d'ouverture"],
    "grammar": { "gender": "les" },
    "notes": {
+    "fr": "les horaires d'accueil du public · une permanence est un jour précis.",
     "de": "Ämter geben ihre horaires d'accueil du public an; ein einzelner Sprechtag heißt la permanence."
    }
   },
@@ -124,6 +149,7 @@
    "variants": ["récépissé"],
    "grammar": { "gender": "le" },
    "notes": {
+    "fr": "au guichet : un récépissé · au magasin : le ticket de caisse.",
     "de": "Für einen eingereichten Antrag bekommt man un récépissé; der Kassenzettel im Laden ist le ticket de caisse."
    }
   },

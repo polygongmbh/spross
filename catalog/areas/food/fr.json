@@ -10,7 +10,7 @@
    "text": "œuf",
    "variants": ["l'œuf", "oeuf", "l'oeuf"],
    "grammar": { "gender": "l'" },
-   "notes": { "de": "un œuf spricht man [œf], des œufs aber [ø] — im Plural verstummt das f." }
+   "notes": { "fr": "un œuf [œf] · des œufs [ø] : au pluriel, le f se tait." }
   },
   "cheese": { "text": "fromage", "grammar": { "gender": "le" } },
   "salt": { "text": "sel", "grammar": { "gender": "le" } },
@@ -19,7 +19,7 @@
   "hunger": {
    "text": "faim",
    "grammar": { "gender": "la" },
-   "notes": { "de": "Hunger haben = avoir faim, ohne Artikel." }
+   "notes": { "fr": "avoir faim, sans article : j'ai faim, tu as faim." }
   },
   "thirst": { "text": "soif", "grammar": { "gender": "la" } },
   "food": { "text": "nourriture", "grammar": { "gender": "la" } },
@@ -27,7 +27,10 @@
   "fish": {
    "text": "poisson",
    "grammar": { "gender": "le" },
-   "notes": { "de": "poisson mit zwei s ist der Fisch; le poison mit einem s ist das Gift." }
+   "notes": {
+    "fr": "le poisson se mange · le poison, avec un seul s, tue.",
+    "de": "poisson mit zwei s ist der Fisch; le poison mit einem s ist das Gift."
+   }
   },
   "chicken": { "text": "poulet", "grammar": { "gender": "le" } },
   "fruit": { "text": "fruit", "grammar": { "gender": "le" } },
@@ -71,13 +74,16 @@
   },
   "i-dont-eat-meat": {
    "text": "Je ne mange pas de viande.",
-   "notes": { "de": "Nach der Verneinung wird aus du/de la ein blankes de: je ne bois pas de lait." }
+   "notes": { "fr": "après la négation, du et de la deviennent de : je ne bois pas de lait." }
   },
   "i-eat-rice-with-sauce": { "text": "Je mange du riz avec de la sauce." },
   "the-food-is-ready": {
    "text": "Le repas est prêt !",
    "variants": ["C'est prêt !", "À table !"],
-   "notes": { "de": "Fertig ist le repas (die Mahlzeit), nicht la nourriture; am Tisch ruft man À table !" }
+   "notes": {
+    "fr": "c'est le repas qui est prêt · pour appeler : À table !",
+    "de": "Fertig ist le repas (die Mahlzeit), nicht la nourriture; am Tisch ruft man À table !"
+   }
   }
  }
 }

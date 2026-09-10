@@ -8,13 +8,13 @@
   "cheap": {
    "text": "bon marché",
    "variants": ["pas cher"],
-   "notes": { "de": "bon marché bleibt unverändert: une robe bon marché." }
+   "notes": { "fr": "invariable : une robe bon marché, des chaussures bon marché." }
   },
   "to-sell": { "text": "vendre" },
   "cash": {
    "text": "espèces",
    "grammar": { "gender": "les", "plural": "only" },
-   "notes": { "de": "nur im Plural: payer en espèces." },
+   "notes": { "fr": "toujours au pluriel : payer en espèces." },
    "synonyms": ["liquide"]
   },
   "bank-card": { "text": "carte bancaire", "variants": ["carte", "carte bleue"], "grammar": { "gender": "la" } },
@@ -23,13 +23,17 @@
    "variants": ["pièce"],
    "grammar": { "gender": "la" },
    "notes": {
+    "fr": "une pièce de deux euros · une pièce est aussi une salle.",
     "de": "une pièce allein ist auch das Zimmer — beim Geld sagt man pièce de monnaie, sobald es missverständlich wäre."
    }
   },
   "change-money": {
    "text": "monnaie",
    "grammar": { "gender": "la" },
-   "notes": { "de": "la monnaie ist das Wechselgeld — die Währung heißt la devise." }
+   "notes": {
+    "fr": "le vendeur rend la monnaie · l'euro, le dollar sont des devises.",
+    "de": "la monnaie ist das Wechselgeld — die Währung heißt la devise."
+   }
   },
   "money": { "text": "argent", "variants": ["l'argent"], "grammar": { "gender": "l'" } },
   "to-buy": { "text": "acheter" },

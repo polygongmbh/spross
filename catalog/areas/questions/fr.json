@@ -7,7 +7,10 @@
   "what": {
    "text": "quoi",
    "synonyms": ["que"],
-   "notes": { "de": "quoi steht allein oder nach einer Präposition · vor dem Verb steht que: Que fais-tu ?" }
+   "notes": {
+    "fr": "Tu fais quoi ? À quoi tu penses ? · devant le verbe : Que fais-tu ?",
+    "de": "quoi steht allein oder nach einer Präposition · vor dem Verb steht que: Que fais-tu ?"
+   }
   },
   "this": { "text": "ceci" },
   "that": { "text": "cela", "variants": ["ça"] },
@@ -15,7 +18,7 @@
   "why": { "text": "pourquoi" },
   "how": { "text": "comment" },
   "which": { "text": "quel", "variants": ["quelle", "quels", "quelles"] },
-  "how-many": { "text": "combien", "notes": { "de": "vor dem Substantiv mit de: combien de livres." } },
+  "how-many": { "text": "combien", "notes": { "fr": "avec de : combien de livres, combien de temps." } },
   "where-are-they": { "text": "Où sont-ils ?", "variants": ["Où sont-elles ?"] },
   "who-is-there": { "text": "Qui est là ?" },
   "do-you-need-this": { "text": "Avez-vous besoin de ceci ?", "variants": ["As-tu besoin de ceci ?"] },

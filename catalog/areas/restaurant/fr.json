@@ -5,7 +5,10 @@
   "menu": {
    "text": "carte",
    "grammar": { "gender": "la" },
-   "notes": { "de": "la carte ist die Speisekarte, le menu das feste Gedeck." }
+   "notes": {
+    "fr": "la carte donne tous les plats · le menu est un repas à prix fixe.",
+    "de": "la carte ist die Speisekarte, le menu das feste Gedeck."
+   }
   },
   "waiter": { "text": "serveur", "grammar": { "gender": "le" } },
   "waiter-f": { "text": "serveuse", "grammar": { "gender": "la" } },
@@ -20,7 +23,10 @@
    "text": "serviette de table",
    "variants": ["serviette"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "une serviette allein ist auch das Handtuch." }
+   "notes": {
+    "fr": "une serviette seule peut être celle de la salle de bains.",
+    "de": "une serviette allein ist auch das Handtuch."
+   }
   },
   "dessert": { "text": "dessert", "grammar": { "gender": "le" } },
   "beverage": { "text": "boisson", "grammar": { "gender": "la" } },

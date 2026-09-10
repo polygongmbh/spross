@@ -8,11 +8,15 @@
   "cold": {
    "text": "rhume",
    "grammar": { "gender": "le" },
-   "notes": { "de": "Erkältet sein heißt être enrhumé: je suis enrhumé." }
+   "notes": {
+    "fr": "j'ai un rhume · je suis enrhumé.",
+    "de": "Erkältet sein heißt être enrhumé: je suis enrhumé."
+   }
   },
   "to-hurt": {
    "text": "faire mal",
    "notes": {
+    "fr": "j'ai mal à la tête · le genou me fait mal.",
     "de": "Meist mit avoir und dem Körperteil: j'ai mal à la tête. faire mal steht dort, wo das Körperteil selbst Subjekt ist: la blessure fait mal."
    }
   },
@@ -25,7 +29,7 @@
    "text": "vertige",
    "variants": ["vertiges"],
    "grammar": { "gender": "le" },
-   "notes": { "de": "Meist im Plural: j'ai des vertiges = mir ist schwindlig." }
+   "notes": { "fr": "souvent au pluriel : j'ai des vertiges." }
   },
   "wound": { "text": "blessure", "variants": ["plaie"], "grammar": { "gender": "la" } },
   "to-hurt-oneself": { "text": "se blesser", "variants": ["se faire mal"] },
@@ -33,12 +37,16 @@
    "text": "pansement",
    "variants": ["bandage"],
    "grammar": { "gender": "le" },
-   "notes": { "de": "le pansement ist Verband und Pflaster zugleich; un bandage ist die elastische Binde." }
+   "notes": {
+    "fr": "le pansement couvre la plaie · le bandage s'enroule et serre.",
+    "de": "le pansement ist Verband und Pflaster zugleich; un bandage ist die elastische Binde."
+   }
   },
   "band-aid": {
    "text": "sparadrap",
    "grammar": { "gender": "le" },
    "notes": {
+    "fr": "le sparadrap est le petit pansement qui colle.",
     "de": "le sparadrap ist das einzelne Pflaster; pansement (siehe bandage) deckt es umgangssprachlich mit ab."
    }
   },
@@ -46,7 +54,10 @@
   "to-recover": {
    "text": "guérir",
    "variants": ["se remettre"],
-   "notes": { "de": "guérir steht auch ohne Objekt für gesund werden: je guéris vite." }
+   "notes": {
+    "fr": "je guéris vite · le médecin me guérit.",
+    "de": "guérir steht auch ohne Objekt für gesund werden: je guéris vite."
+   }
   },
   "allergy": { "text": "allergie", "variants": ["l'allergie"], "grammar": { "gender": "l'" } },
   "my-throat-hurts-a-lot": { "text": "J'ai très mal à la gorge.", "variants": ["Ma gorge me fait très mal."] },

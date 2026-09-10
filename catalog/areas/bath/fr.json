@@ -7,6 +7,7 @@
    "text": "linge",
    "grammar": { "gender": "le" },
    "notes": {
+    "fr": "le linge, ce sont les vêtements à laver · la lessive, le lavage et le produit.",
     "de": "le linge sind die Wäschestücke selbst; der Waschgang und das Waschmittel heißen la lessive."
    }
   },
@@ -14,15 +15,16 @@
    "text": "toilettes",
    "variants": ["WC"],
    "grammar": { "gender": "les", "plural": "only" },
-   "notes": {
-    "de": "die Toilette steht immer im Plural: les toilettes; la toilette im Singular ist die Körperpflege."
-   }
+   "notes": { "fr": "toujours au pluriel : les toilettes · la toilette, c'est se laver." }
   },
   "shower": { "text": "douche", "grammar": { "gender": "la" } },
   "sink": {
    "text": "lavabo",
    "grammar": { "gender": "le" },
-   "notes": { "de": "le lavabo ist das Waschbecken im Bad; die Spüle in der Küche heißt l'évier." }
+   "notes": {
+    "fr": "le lavabo est dans la salle de bains, l'évier dans la cuisine.",
+    "de": "le lavabo ist das Waschbecken im Bad; die Spüle in der Küche heißt l'évier."
+   }
   },
   "mirror": { "text": "miroir", "grammar": { "gender": "le" } },
   "toothbrush": { "text": "brosse à dents", "grammar": { "gender": "la", "plural": "brosses à dents" } },
@@ -32,6 +34,7 @@
    "variants": ["serviette de bain"],
    "grammar": { "gender": "la" },
    "notes": {
+    "fr": "serviette de bain pour le corps, serviette de table à table.",
     "de": "la serviette ist auch die Serviette bei Tisch; wo es darauf ankommt, sagt man serviette de bain."
    }
   },

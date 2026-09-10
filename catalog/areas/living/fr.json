@@ -15,6 +15,7 @@
    "variants": ["télé"],
    "grammar": { "gender": "la" },
    "notes": {
+    "fr": "on dit la télé · le téléviseur est l'appareil.",
     "de": "im Alltag fast immer la télé; le téléviseur ist das Gerät, la télévision auch das Programm."
    }
   },
@@ -31,7 +32,10 @@
   "picture": {
    "text": "tableau",
    "grammar": { "gender": "le", "plural": "-x" },
-   "notes": { "de": "le tableau ist das Bild an der Wand — und in der Schule die Tafel." }
+   "notes": {
+    "fr": "un tableau au mur · à l'école, le tableau où le maître écrit.",
+    "de": "le tableau ist das Bild an der Wand — und in der Schule die Tafel."
+   }
   },
   "to-watch-tv": { "text": "regarder la télévision", "variants": ["regarder la télé"] },
   "to-read": { "text": "lire" },
@@ -40,19 +44,23 @@
   "to-listen-to-music": {
    "text": "écouter de la musique",
    "variants": ["écouter la musique"],
-   "notes": { "de": "vor unbestimmter Menge steht der Teilungsartikel: écouter de la musique." }
+   "notes": { "fr": "quantité non comptée : écouter de la musique, boire de l'eau." }
   },
   "to-water-plants": { "text": "arroser les plantes" },
   "to-play": { "text": "jouer" },
   "to-talk": {
    "text": "bavarder",
    "variants": ["discuter", "parler"],
-   "notes": { "de": "bavarder = plaudern; sprechen allgemein ist parler, ein Gespräch führen discuter." }
+   "notes": {
+    "fr": "bavarder avec une voisine · parler et discuter sont plus neutres.",
+    "de": "bavarder = plaudern; sprechen allgemein ist parler, ein Gespräch führen discuter."
+   }
   },
   "room": {
    "text": "pièce",
    "grammar": { "gender": "la" },
    "notes": {
+    "fr": "un appartement de trois pièces · la chambre est pour dormir.",
     "de": "la pièce ist der Raum in der Wohnung; la chambre ist das Schlafzimmer, la salle ein Saal."
    }
   },
@@ -64,7 +72,10 @@
   "to-sit": {
    "text": "s'asseoir",
    "variants": ["être assis"],
-   "notes": { "de": "s'asseoir = sich hinsetzen; sitzen als Zustand heißt être assis." }
+   "notes": {
+    "fr": "je m'assieds sur la chaise, puis je suis assis.",
+    "de": "s'asseoir = sich hinsetzen; sitzen als Zustand heißt être assis."
+   }
   },
   "to-laugh": { "text": "rire" },
   "quiet": {
@@ -72,13 +83,14 @@
    "synonyms": ["silencieux"],
    "variants": ["doucement", "basse"],
    "notes": {
+    "fr": "parle plus bas · une machine silencieuse ne fait pas de bruit.",
     "de": "leise sprechen oder stellen = parler bas, mettre moins fort; ein leises Zimmer oder Gerät ist silencieux."
    }
   },
   "furniture": {
    "text": "meubles",
    "grammar": { "gender": "les" },
-   "notes": { "de": "meist im Plural: les meubles; un meuble ist ein einzelnes Möbelstück." }
+   "notes": { "fr": "au pluriel : les meubles · un meuble, c'est une armoire, une table." }
   },
   "game": { "text": "jeu", "grammar": { "gender": "le", "plural": "-x" } },
   "come-sit-with-me": {

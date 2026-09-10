@@ -13,7 +13,10 @@
    "text": "délai",
    "synonyms": ["date limite"],
    "grammar": { "gender": "le" },
-   "notes": { "de": "le délai ist die Frist als Zeitraum; la date limite ist der letzte Tag." }
+   "notes": {
+    "fr": "un délai de deux semaines · la date limite est le dernier jour.",
+    "de": "le délai ist die Frist als Zeitraum; la date limite ist der letzte Tag."
+   }
   },
   "plan": { "text": "plan", "grammar": { "gender": "le" } },
   "to-meet": { "text": "se réunir" },
@@ -22,6 +25,7 @@
    "text": "fixer",
    "variants": ["convenir", "organiser"],
    "notes": {
+    "fr": "prendre rendez-vous chez le médecin · fixer la date et l'heure.",
     "de": "Einen Termin vereinbaren heißt prendre rendez-vous; fixer un rendez-vous legt ihn fest."
    }
   },
@@ -30,7 +34,10 @@
   "to-postpone": { "text": "reporter", "synonyms": ["repousser"], "variants": ["décaler"] },
   "to-register": {
    "text": "s'inscrire",
-   "notes": { "de": "Sich für einen Kurs anmelden = s'inscrire; sich einloggen heißt se connecter." }
+   "notes": {
+    "fr": "s'inscrire à un cours · se connecter à son compte.",
+    "de": "Sich für einen Kurs anmelden = s'inscrire; sich einloggen heißt se connecter."
+   }
   },
   "to-be-late": { "text": "être en retard", "variants": ["arriver en retard"] },
   "punctual": { "text": "ponctuel", "variants": ["ponctuelle", "à l'heure"] },

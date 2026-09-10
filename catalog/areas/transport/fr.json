@@ -18,13 +18,19 @@
    "text": "billet",
    "variants": ["ticket"],
    "grammar": { "gender": "le" },
-   "notes": { "de": "le billet gilt für Zug und Flugzeug, le ticket für Bus und Metro." }
+   "notes": {
+    "fr": "un billet de train ou d'avion · un ticket de bus ou de métro.",
+    "de": "le billet gilt für Zug und Flugzeug, le ticket für Bus und Metro."
+   }
   },
   "to-ride-bike": { "text": "faire du vélo", "variants": ["aller à vélo", "rouler à vélo"] },
   "to-take-bus": { "text": "prendre le bus" },
   "to-depart": {
    "text": "partir",
-   "notes": { "de": "Züge und Busse „fahren ab“ mit partir: Le train part à huit heures." }
+   "notes": {
+    "fr": "le train part à huit heures · je pars demain.",
+    "de": "Züge und Busse „fahren ab“ mit partir: Le train part à huit heures."
+   }
   },
   "journey": { "text": "voyage", "grammar": { "gender": "le" } },
   "to-travel": { "text": "voyager" },
@@ -41,12 +47,10 @@
   "luggage": {
    "text": "bagages",
    "grammar": { "gender": "les", "plural": "only" },
-   "notes": {
-    "de": "Gepäck steht im Französischen im Plural: les bagages; ein einzelnes Stück ist un bagage."
-   }
+   "notes": { "fr": "au pluriel : les bagages · un bagage, c'est une valise." }
   },
   "fare": { "text": "tarif", "variants": ["prix du billet"], "grammar": { "gender": "le" } },
-  "to-get-off": { "text": "descendre", "notes": { "de": "aussteigen ist descendre mit de: Je descends du bus." } },
+  "to-get-off": { "text": "descendre", "notes": { "fr": "descendre du bus, du train · monter dans le bus." } },
   "the-bus-is-coming-soon": { "text": "Le bus arrive bientôt.", "variants": ["Le bus arrive tout de suite."] },
   "when-does-the-train-leave": {
    "text": "Quand part le train ?",

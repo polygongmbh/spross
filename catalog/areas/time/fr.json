@@ -5,13 +5,17 @@
   "time": {
    "text": "temps",
    "grammar": { "gender": "le" },
-   "notes": { "de": "le temps heißt auch Wetter: Quel temps fait-il ? · das einzelne Mal ist une fois." }
+   "notes": {
+    "fr": "le temps passe · Quel temps fait-il ? · une fois, deux fois.",
+    "de": "le temps heißt auch Wetter: Quel temps fait-il ? · das einzelne Mal ist une fois."
+   }
   },
   "day": {
    "text": "jour",
    "variants": ["journée"],
    "grammar": { "gender": "le" },
    "notes": {
+    "fr": "trois jours, le jour du rendez-vous · la journée dure du matin au soir.",
     "de": "le jour ist der Tag als Datum und Zeitpunkt, la journée der Tag als Zeitspanne: Bonne journée !"
    }
   },
@@ -23,7 +27,10 @@
    "text": "an",
    "variants": ["l'an", "année", "l'année"],
    "grammar": { "gender": "l'" },
-   "notes": { "de": "l'an zählt Jahre: deux ans, l'an prochain. Als Zeitraum steht l'année: Bonne année !" }
+   "notes": {
+    "fr": "j'ai trente ans, l'an prochain · Bonne année ! toute l'année.",
+    "de": "l'an zählt Jahre: deux ans, l'an prochain. Als Zeitraum steht l'année: Bonne année !"
+   }
   },
   "now": { "text": "maintenant" },
   "today": { "text": "aujourd'hui" },

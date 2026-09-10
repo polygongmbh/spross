@@ -19,17 +19,18 @@
   "again": { "text": "de nouveau", "variants": ["à nouveau", "encore une fois", "encore"] },
   "still": {
    "text": "encore",
-   "notes": { "de": "zeitliches noch: Il est encore là · dafür geht auch toujours." }
+   "notes": {
+    "fr": "Il est encore là = il est toujours là.",
+    "de": "zeitliches noch: Il est encore là · dafür geht auch toujours."
+   }
   },
   "finally": { "text": "enfin" },
   "then": { "text": "puis" },
   "not": {
    "text": "pas",
-   "notes": {
-    "de": "im Satz umklammert ne … pas das Verb: Je ne fume pas · gesprochen fällt das ne oft weg."
-   }
+   "notes": { "fr": "ne … pas encadre le verbe : Je ne fume pas · à l'oral, le ne tombe." }
   },
-  "only": { "text": "seulement", "notes": { "de": "im Satz oft ne … que: Je n'ai que dix euros." } },
+  "only": { "text": "seulement", "notes": { "fr": "souvent ne … que : Je n'ai que dix euros." } },
   "together": { "text": "ensemble" },
   "therefore": { "text": "donc" },
   "even": { "text": "même" },
