@@ -5,26 +5,31 @@ one item per bullet with a file or context pointer — as short as that allows,
 longer only to carry evidence or reasoning an author would otherwise have to redo — and pruned when fixed.
 Ready work comes first, then the items that end in a question for the owner, then what waits on a native speaker.
 
-- Swahili invariability notes are not trustworthy as a class: `qualities/empty` claimed `tupu`
-  takes no concord in BOTH its sw and its (older, German) note, and it does — `kiti kitupu`,
-  proverb `Mkono mtupu haulambwi`. It read as invariable only because the examples happened to
-  be N-class, where the concord is phonologically zero, so any such note whose examples are all
-  N-class proves nothing. `qualities/dry` (`kavu`) is the next suspect.
+- An invariability claim proves nothing when every example is N-class, where the concord is
+  phonologically zero: `tupu` and `kavu` both read as invariable that way and both agree
+  (`kiti kitupu`, `mkate mkavu`), so both are now dashed stems. Any future note asserting a
+  Swahili word does not change needs examples from two classes at least — and mostly should
+  not exist, since "this word does not change" is not something a learner would say differently for.
+- `neno jingine` (class 5 `-ingine`) and `hamna` as the plural negative of `kuwa na` are
+  authored in `qualities/other` and `verbs/to-have` on the authoring agent's word alone;
+  both want a speaker's confirmation.
 - 20 accept-only variants collide under `AnswerNormalizer.cleaned` but stay distinct search keys
   (`BoxSearch.fold` is NFC + trim + lowercase and indexes variants); rule whether variants dedupe
   against the SEARCH fold before any lint is written.
 - `catalog/areas/README.md` § How a realization is worded lacks the quote-pair convention
   (“…” in English prose, „…“ in German, as the idiom and note passes now write),
   which waits on a ruling before it is written down.
-- 778 of 943 catalog notes are de-only on a non-German target (eo 108, es 147, fr 182, it 181,
-  sw 125, uk 35, plus 3 es and 2 en phrase frames in `catalog/phrases/*.json`), and each is
-  to be rewritten in the target's own language, example-first («мама → мамо, тато → тату»
-  teaches the vocative to a learner who could not yet read the word for it), so that it
-  reaches every reader via `notes[source] ?: notes[lang]` (`kern/docs/catalog.md`) as
-  `catalog/areas/README.md` § How a grammar rule gets taught ("Write the note in the language
-  it explains") rules — sw is the largest side (6 frame + 119 word notes, three of them the
-  concord-by-note pattern and one pure etymology that README cuts) and, with eo, wants a
-  reviewer who reads it.
+- The ~250 German notes KEPT beside a new own-language one were judged pair-specific by the
+  agent that wrote the shared wording, and nothing has audited that judgement: a German note
+  earns its place only where it glosses a German word or draws a German-side line, and the
+  `unveränderlich` family showed the same agents will add a note for a fact that should not be
+  one at all. One pass over the kept `de` notes, cutting the ones the shared wording now covers.
+- `scripts/notes-vocabulary.py` is clean for the first twelve areas only; areas 13+ still carry
+  ~340 notes leaning on a later card's word and ~55 naming a grammar term. The same three-agent
+  split does it, and the residue in the early areas (10, all function words that happen to be
+  cards) is the honest floor rather than a target.
+- 3 es and 2 en phrase-frame notes in `catalog/phrases/*.json` were outside the sweep and are
+  still reader-only; frames resolve `notes[source] ?: notes[target]` the same way (`Catalog.kt:215`).
 - de accepts no bare hour word ("Es ist acht.") though the German is right; with the drill's
   stray-word rescue gone it is safe to add, but it wants its own sweep run.
 - `time` has no `midnight` though the clock reveal teaches it at 00:00 beside `noon`
