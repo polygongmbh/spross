@@ -10,7 +10,13 @@
   "cheese": { "text": "jibini", "grammar": { "plural": "=" } },
   "salt": { "text": "chumvi" },
   "sugar": { "text": "sukari", "grammar": { "plural": "=" } },
-  "rice": { "text": "mchele", "notes": { "de": "mchele = roher Reis · wali = gekochter Reis" } },
+  "rice": {
+   "text": "mchele",
+   "notes": {
+    "sw": "mchele = mbichi · wali = uliopikwa",
+    "de": "mchele = roher Reis · wali = gekochter Reis"
+   }
+  },
   "hunger": { "text": "njaa" },
   "thirst": { "text": "kiu" },
   "food": { "text": "chakula", "grammar": { "plural": "vyakula" } },
@@ -21,7 +27,10 @@
   "vegetable": {
    "text": "mboga",
    "grammar": { "plural": "=" },
-   "notes": { "de": "mboga ist das Gemüse und die Beilage, die zu Ugali oder Reis kommt." }
+   "notes": {
+    "sw": "mboga ni mimea ya kuliwa na kitoweo cha ugali au wali",
+    "de": "mboga ist das Gemüse und die Beilage, die zu Ugali oder Reis kommt."
+   }
   },
   "potato": { "text": "kiazi", "grammar": { "plural": "viazi" } },
   "onion": { "text": "kitunguu", "grammar": { "plural": "vitunguu" } },

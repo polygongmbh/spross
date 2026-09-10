@@ -6,9 +6,18 @@
   "to-cost": { "text": "kugharimu" },
   "expensive": {
    "text": "ghali",
-   "notes": { "de": "zu teuer ist ghali mno — ghali sana heißt nur sehr teuer." }
+   "notes": {
+    "sw": "ghali sana = bei kubwa · ghali mno = bei kupita kiasi",
+    "de": "zu teuer ist ghali mno — ghali sana heißt nur sehr teuer."
+   }
   },
-  "cheap": { "text": "rahisi", "notes": { "de": "rahisi heißt billig und zugleich einfach." } },
+  "cheap": {
+   "text": "rahisi",
+   "notes": {
+    "sw": "nguo rahisi = bei ndogo · kazi rahisi = isiyo ngumu",
+    "de": "rahisi heißt billig und zugleich einfach."
+   }
+  },
   "to-sell": { "text": "kuuza" },
   "cash": { "text": "pesa taslimu", "grammar": { "plural": "=" } },
   "bank-card": { "text": "kadi ya benki", "grammar": { "plural": "kadi za benki" } },
@@ -17,9 +26,9 @@
   "money": { "text": "pesa" },
   "to-buy": { "text": "kununua" },
   "to-pay": { "text": "kulipa" },
-  "rich": { "text": "tajiri", "notes": { "de": "unveränderlich." } },
-  "poor": { "text": "maskini", "notes": { "de": "unveränderlich." } },
-  "free-of-charge": { "text": "bure", "notes": { "de": "unveränderlich." } },
+  "rich": { "text": "tajiri" },
+  "poor": { "text": "maskini" },
+  "free-of-charge": { "text": "bure" },
   "how-much-does-this-cost": { "text": "Hii ni bei gani?" },
   "that-is-too-expensive": { "text": "Hii ni ghali mno.", "variants": ["Hii ni ghali sana."] },
   "i-have-no-money": { "text": "Sina pesa." },

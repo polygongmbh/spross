@@ -13,7 +13,10 @@
   "im-learning-your-language": { "text": "Ninajifunza {language}." },
   "ready-to-learn": {
    "text": "Tayari kujifunza?",
-   "notes": { "de": "kujifunza = lernen · tayari heißt auch „schon“, je nach Satz" }
+   "notes": {
+    "sw": "Tayari kujifunza? = Uko tayari kuanza kujifunza?",
+    "de": "kujifunza = lernen · tayari heißt auch „schon“, je nach Satz"
+   }
   },
   "one-more-word": { "text": "Neno moja zaidi?" }
  }

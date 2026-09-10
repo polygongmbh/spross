@@ -19,12 +19,18 @@
   "id-like-to-order": { "text": "Ningependa kuagiza." },
   "is-this-vegetarian": {
    "text": "Hii ni bila nyama?",
-   "notes": { "de": "Kiswahili hat kein eigenes Wort für vegetarisch — man fragt: ist das ohne Fleisch?" }
+   "notes": {
+    "sw": "nyama ni ya mnyama tu · samaki huulizwa peke yake: bila samaki",
+    "de": "Kiswahili hat kein eigenes Wort für vegetarisch — man fragt: ist das ohne Fleisch?"
+   }
   },
   "the-bill-please": { "text": "Bili, tafadhali." },
   "id-like-some-water": {
    "text": "Naomba maji.",
-   "notes": { "de": "naomba (ich bitte um) ist die höfliche Bestellformel, ganz ohne tafadhali." }
+   "notes": {
+    "sw": "Naomba maji · Naomba chai · tafadhali haihitajiki",
+    "de": "naomba (ich bitte um) ist die höfliche Bestellformel, ganz ohne tafadhali."
+   }
   }
  }
 }

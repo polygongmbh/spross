@@ -6,65 +6,108 @@
   "to-come": { "text": "kuja" },
   "to-have": {
    "text": "kuwa na",
-   "notes": { "de": "Präsens ohne „kuwa“: nina, una, ana … · verneint: sina = ich habe nicht." }
+   "notes": {
+    "sw": "nina, una, ana, tuna, mna, wana · kukanusha: sina, huna",
+    "de": "Präsens ohne „kuwa“: nina, una, ana … · verneint: sina = ich habe nicht."
+   }
   },
   "to-give": {
    "text": "kupa",
-   "notes": { "de": "Braucht ein Objekt-Infix: kunipa = mir geben, kumpa = ihm/ihr geben." }
+   "notes": {
+    "sw": "kunipa, kukupa, kumpa · kupa peke yake hakutoshi",
+    "de": "Braucht ein Objekt-Infix: kunipa = mir geben, kumpa = ihm/ihr geben."
+   }
   },
   "to-take": { "text": "kuchukua" },
   "to-see": { "text": "kuona" },
   "to-make": { "text": "kufanya" },
   "to-like": {
    "text": "kupenda",
-   "notes": { "de": "deckt mögen und lieben ab: Napenda chai · Nakupenda = Ich liebe dich." }
+   "notes": {
+    "sw": "Napenda chai · Nakupenda = napenda wewe sana",
+    "de": "deckt mögen und lieben ab: Napenda chai · Nakupenda = Ich liebe dich."
+   }
   },
   "to-can": {
    "text": "kuweza",
-   "notes": { "de": "Präsens: naweza, unaweza, anaweza · verneint: siwezi = ich kann nicht." }
+   "notes": {
+    "sw": "naweza, unaweza, anaweza · kukanusha: siwezi, hawezi",
+    "de": "Präsens: naweza, unaweza, anaweza · verneint: siwezi = ich kann nicht."
+   }
   },
-  "to-think": { "text": "kufikiri", "notes": { "de": "über etwas nachdenken: kufikiria jambo." } },
+  "to-think": {
+   "text": "kufikiri",
+   "notes": {
+    "sw": "Nafikiri · kufikiria jambo = kulitafakari",
+    "de": "über etwas nachdenken: kufikiria jambo."
+   }
+  },
   "to-imagine": { "text": "kuwazia" },
   "to-wait": { "text": "kusubiri" },
   "to-want": {
    "text": "kutaka",
-   "notes": { "de": "Präsens: nataka, unataka, anataka · verneint: sitaki = ich will nicht." }
+   "notes": {
+    "sw": "nataka, unataka, anataka · kukanusha: sitaki, hataki",
+    "de": "Präsens: nataka, unataka, anataka · verneint: sitaki = ich will nicht."
+   }
   },
   "to-find": {
    "text": "kupata",
    "synonyms": ["kukuta"],
-   "notes": { "de": "kupata ist das Alltagswort für „gefunden“ · kukuta = antreffen, auf etwas stoßen." }
+   "notes": {
+    "sw": "nimepata kazi · kukuta = kuona kitu bila kukitafuta",
+    "de": "kupata ist das Alltagswort für „gefunden“ · kukuta = antreffen, auf etwas stoßen."
+   }
   },
   "to-search": {
    "text": "kutafuta",
-   "notes": { "de": "kutafuta = suchen und besorgen: natafuta kazi = ich suche Arbeit." }
+   "notes": {
+    "sw": "natafuta kazi · tafuta maji = nenda ukayalete",
+    "de": "kutafuta = suchen und besorgen: natafuta kazi = ich suche Arbeit."
+   }
   },
   "to-receive": {
    "text": "kupokea",
    "notes": {
+    "sw": "kupokea barua, kupokea simu, kupokea mgeni",
     "de": "kupokea = entgegennehmen: kupokea barua, kupokea simu. Für „ich habe Arbeit bekommen“ sagt man nilipata kazi."
    }
   },
   "to-look": {
    "text": "kuangalia",
-   "notes": { "de": "kuangalia = hinsehen, anschauen · kutazama ist eher zuschauen: kutazama televisheni." }
+   "notes": {
+    "sw": "angalia hapa · kutazama televisheni = kukaa ukiiona",
+    "de": "kuangalia = hinsehen, anschauen · kutazama ist eher zuschauen: kutazama televisheni."
+   }
   },
   "to-open": { "text": "kufungua" },
   "to-close": {
    "text": "kufunga",
-   "notes": { "de": "kufunga heißt auch zubinden und abschließen: kufunga mlango." }
+   "notes": {
+    "sw": "kufunga mlango, kufunga kamba, kufunga duka",
+    "de": "kufunga heißt auch zubinden und abschließen: kufunga mlango."
+   }
   },
   "to-stop": {
    "text": "kuacha",
-   "notes": { "de": "kuacha = aufhören (mit etwas) und verlassen · mit Objekt: kuacha kazi = kündigen." }
+   "notes": {
+    "sw": "acha kelele · kuacha kazi = kuondoka kazini",
+    "de": "kuacha = aufhören (mit etwas) und verlassen · mit Objekt: kuacha kazi = kündigen."
+   }
   },
   "to-stand": {
    "text": "kusimama",
-   "notes": { "de": "kusimama heißt stehen, aufstehen und stehen bleiben: Simama! = Halt!" }
+   "notes": {
+    "sw": "Simama! = inuka · basi limesimama = halitembei",
+    "de": "kusimama heißt stehen, aufstehen und stehen bleiben: Simama! = Halt!"
+   }
   },
   "to-send": {
    "text": "kutuma",
-   "notes": { "de": "kutuma = schicken (Nachricht, Geld) · kupeleka ist hinbringen, liefern." }
+   "notes": {
+    "sw": "kutuma ujumbe, kutuma pesa · kupeleka = kufikisha mwenyewe",
+    "de": "kutuma = schicken (Nachricht, Geld) · kupeleka ist hinbringen, liefern."
+   }
   },
   "to-deliver": { "text": "kupeleka" },
   "to-use": { "text": "kutumia" },
@@ -75,9 +118,18 @@
   "to-pull": { "text": "kuvuta" },
   "to-have-to": {
    "text": "lazima",
-   "notes": { "de": "lazima + Konjunktiv: lazima niende = ich muss gehen, lazima ule = du musst essen." }
+   "notes": {
+    "sw": "lazima niende, lazima ule, lazima tufike",
+    "de": "lazima + Konjunktiv: lazima niende = ich muss gehen, lazima ule = du musst essen."
+   }
   },
-  "to-put": { "text": "kuweka", "notes": { "de": "legen, stellen, setzen: weka hapa = leg es hier hin." } },
+  "to-put": {
+   "text": "kuweka",
+   "notes": {
+    "sw": "weka hapa · kuweka pesa benki, kuweka meza",
+    "de": "legen, stellen, setzen: weka hapa = leg es hier hin."
+   }
+  },
   "to-carry": { "text": "kubeba" },
   "do-you-have-water": { "text": "Una maji?" },
   "where-are-you-from": { "text": "Unatoka wapi?" },

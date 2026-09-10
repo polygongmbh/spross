@@ -11,18 +11,24 @@
   "mouth": {
    "text": "mdomo",
    "grammar": { "plural": "midomo" },
-   "notes": { "de": "mdomo heißt Mund und Lippe." }
+   "notes": {
+    "sw": "mdomo = kinywa · pia ukingo wake: mdomo wa juu, mdomo wa chini",
+    "de": "mdomo heißt Mund und Lippe."
+   }
   },
   "tooth": { "text": "jino", "grammar": { "plural": "meno" } },
   "hand": {
    "text": "mkono",
    "grammar": { "plural": "mikono" },
-   "notes": { "de": "mkono heißt Hand und Arm; welcher gemeint ist, sagt der Zusammenhang." }
+   "notes": {
+    "sw": "mkono huanzia begani hadi vidoleni: shika mkono, inua mkono",
+    "de": "mkono heißt Hand und Arm; welcher gemeint ist, sagt der Zusammenhang."
+   }
   },
   "foot": {
    "text": "mguu",
    "grammar": { "plural": "miguu" },
-   "notes": { "de": "mguu heißt Fuß und Bein." }
+   "notes": { "sw": "mguu huanzia pajani hadi vidoleni: nenda kwa miguu", "de": "mguu heißt Fuß und Bein." }
   },
   "stomach": { "text": "tumbo", "grammar": { "plural": "matumbo" } },
   "back": { "text": "mgongo", "grammar": { "plural": "migongo" } },
@@ -37,7 +43,10 @@
   "finger": {
    "text": "kidole",
    "grammar": { "plural": "vidole" },
-   "notes": { "de": "kidole heißt Finger und Zehe; kidole cha mguu ist die Zehe." }
+   "notes": {
+    "sw": "kidole cha mkono, kidole cha mguu · vidole vitano",
+    "de": "kidole heißt Finger und Zehe; kidole cha mguu ist die Zehe."
+   }
   },
   "tongue": { "text": "ulimi", "grammar": { "plural": "ndimi" } },
   "neck": { "text": "shingo", "grammar": { "plural": "=" } },

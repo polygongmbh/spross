@@ -8,18 +8,31 @@
   "this": {
    "text": "hii",
    "notes": {
+    "sw": "nyumba hii · kiti hiki, mtu huyu: kila ngeli na kionyeshi chake",
     "de": "Klasse-9/10-Form (Standardform für unbestimmte Dinge) — bei anderen Nomenklassen ändert sich das Demonstrativ, z. B. kiti → hiki."
    }
   },
-  "that": { "text": "hiyo", "notes": { "de": "Klasse-9/10-Form, siehe hii." } },
+  "that": {
+   "text": "hiyo",
+   "notes": { "sw": "hiyo ni ile tuliyoitaja · kitu hicho, mtu huyo", "de": "Klasse-9/10-Form, siehe hii." }
+  },
   "when": { "text": "lini" },
   "why": { "text": "kwa nini", "synonyms": ["mbona"] },
   "how": { "text": "vipi" },
-  "which": { "text": "gani", "notes": { "de": "gani steht hinter dem Nomen: chai gani? — welcher Tee?" } },
+  "which": {
+   "text": "gani",
+   "notes": {
+    "sw": "chai gani? gari gani? namna gani?",
+    "de": "gani steht hinter dem Nomen: chai gani? — welcher Tee?"
+   }
+  },
   "how-many": {
    "text": "-ngapi",
    "variants": ["ngapi", "wangapi", "vingapi", "mangapi", "mingapi"],
-   "notes": { "de": "nimmt die Klassenvorsilbe: watu wangapi? vitabu vingapi?" }
+   "notes": {
+    "sw": "watu wangapi? vitabu vingapi? shilingi ngapi?",
+    "de": "nimmt die Klassenvorsilbe: watu wangapi? vitabu vingapi?"
+   }
   },
   "where-are-they": { "text": "Wako wapi?" },
   "who-is-there": { "text": "Nani yuko pale?" },

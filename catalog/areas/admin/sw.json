@@ -14,6 +14,7 @@
    "variants": ["ofisa mhusika", "afisa husika"],
    "grammar": { "plural": "maafisa wahusika" },
    "notes": {
+    "sw": "afisa = mtumishi wa ofisi · mhusika = anayeshughulikia jambo lako",
     "de": "„afisa“ allein heißt nur „Beamter“ — erst „mhusika“ macht daraus den zuständigen Bearbeiter."
    }
   },

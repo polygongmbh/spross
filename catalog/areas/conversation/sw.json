@@ -9,7 +9,10 @@
   "loud": {
    "text": "kwa sauti kubwa",
    "variants": ["kwa sauti ya juu"],
-   "notes": { "de": "kein Adjektiv, sondern adverbial: Sema kwa sauti kubwa." }
+   "notes": {
+    "sw": "Sema kwa sauti kubwa! · kinyume: kwa sauti ndogo",
+    "de": "kein Adjektiv, sondern adverbial: Sema kwa sauti kubwa."
+   }
   },
   "to-ask": { "text": "kuuliza" },
   "question": { "text": "swali", "grammar": { "plural": "maswali" } },

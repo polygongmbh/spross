@@ -13,7 +13,10 @@
   "tired": {
    "text": "-chovu",
    "variants": ["mchovu", "wachovu"],
-   "notes": { "de": "im Alltag sagt man meist das Verb: Nimechoka = ich bin müde." }
+   "notes": {
+    "sw": "Nimechoka = nina uchovu · mtu mchovu, watu wachovu",
+    "de": "im Alltag sagt man meist das Verb: Nimechoka = ich bin müde."
+   }
   },
   "weak": { "text": "dhaifu" },
   "dizziness": { "text": "kizunguzungu", "grammar": { "plural": "vizunguzungu" } },
@@ -25,7 +28,10 @@
   "allergy": { "text": "mzio", "grammar": { "plural": "mizio" } },
   "my-throat-hurts-a-lot": {
    "text": "Koo linaniuma sana.",
-   "notes": { "de": "linaniuma = linauma + -ni- „mir“: das „mein“ steckt im Verb." }
+   "notes": {
+    "sw": "linaniuma = linauma + -ni- (= mimi)",
+    "de": "linaniuma = linauma + -ni- „mir“: das „mein“ steckt im Verb."
+   }
   },
   "ive-had-a-fever-since-yesterday": { "text": "Nina homa tangu jana." },
   "get-well-soon": {

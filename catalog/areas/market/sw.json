@@ -12,7 +12,10 @@
   "fresh": {
    "text": "-bichi",
    "variants": ["mbichi", "kibichi", "vibichi", "mabichi"],
-   "notes": { "de": "-bichi ist frisch und roh zugleich: nyanya mbichi · safi heißt sauber." }
+   "notes": {
+    "sw": "nyanya mbichi, matunda mabichi · nyama mbichi = isiyopikwa",
+    "de": "-bichi ist frisch und roh zugleich: nyanya mbichi · safi heißt sauber."
+   }
   },
   "ripe": { "text": "-bivu", "variants": ["mbivu", "kibivu", "vibivu", "mabivu"] },
   "to-haggle": { "text": "kupatana bei" },

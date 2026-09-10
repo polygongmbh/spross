@@ -5,7 +5,10 @@
   "appointment": {
    "text": "miadi",
    "grammar": { "plural": "=" },
-   "notes": { "de": "miadi sieht aus wie ein Plural (mi-), ist aber Einzahl — arabisches Lehnwort" }
+   "notes": {
+    "sw": "miadi ni umoja pia: nina miadi moja kesho",
+    "de": "miadi sieht aus wie ein Plural (mi-), ist aber Einzahl — arabisches Lehnwort"
+   }
   },
   "date": { "text": "tarehe", "grammar": { "plural": "=" } },
   "opening-hours": { "text": "saa za kufungua", "grammar": { "plural": "only" } },
@@ -25,6 +28,7 @@
   "to-take-care-of": {
    "text": "kushughulikia",
    "notes": {
+    "sw": "Nitashughulikia jambo hili · kushughulikia mgonjwa",
     "de": "eine Sache erledigen oder sich darum kümmern: Nitashughulikia. = Ich kümmere mich darum."
    }
   },
@@ -34,12 +38,16 @@
   "i-have-an-appointment-at-ten": {
    "text": "Nina miadi saa nne asubuhi.",
    "notes": {
+    "sw": "saa nne asubuhi = 10:00 asubuhi",
     "de": "saa nne = wörtlich „vierte Stunde“! Die Swahili-Uhr startet um 6 Uhr morgens: 10 Uhr = saa 4"
    }
   },
   "ill-take-care-of-it": {
    "text": "Nitashughulikia.",
-   "notes": { "de": "-ta- ist die Zukunft; ein „darum“ braucht der Satz nicht." }
+   "notes": {
+    "sw": "Nitashughulikia. = Nitalifanya jambo hilo.",
+    "de": "-ta- ist die Zukunft; ein „darum“ braucht der Satz nicht."
+   }
   }
  }
 }

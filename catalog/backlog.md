@@ -5,6 +5,11 @@ one item per bullet with a file or context pointer — as short as that allows,
 longer only to carry evidence or reasoning an author would otherwise have to redo — and pruned when fixed.
 Ready work comes first, then the items that end in a question for the owner, then what waits on a native speaker.
 
+- Swahili invariability notes are not trustworthy as a class: `qualities/empty` claimed `tupu`
+  takes no concord in BOTH its sw and its (older, German) note, and it does — `kiti kitupu`,
+  proverb `Mkono mtupu haulambwi`. It read as invariable only because the examples happened to
+  be N-class, where the concord is phonologically zero, so any such note whose examples are all
+  N-class proves nothing. `qualities/dry` (`kavu`) is the next suspect.
 - 20 accept-only variants collide under `AnswerNormalizer.cleaned` but stay distinct search keys
   (`BoxSearch.fold` is NFC + trim + lowercase and indexes variants); rule whether variants dedupe
   against the SEARCH fold before any lint is written.

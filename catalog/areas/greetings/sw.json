@@ -5,16 +5,23 @@
   "to-thank": { "text": "kushukuru" },
   "name": { "text": "jina", "grammar": { "plural": "majina" } },
   "to-be-called": { "text": "kuitwa" },
-  "hello": { "text": "Hujambo!", "notes": { "de": "Antwort: „Sijambo!“" } },
+  "hello": {
+   "text": "Hujambo!",
+   "notes": { "sw": "Hujambo? — Sijambo. · kwa wengi: Hamjambo?", "de": "Antwort: „Sijambo!“" }
+  },
   "good-day": {
    "text": "Habari!",
-   "notes": { "de": "habari = Neuigkeit — die Allzweck-Begrüßung; Antwort: „Nzuri!“" }
+   "notes": {
+    "sw": "Habari? — Nzuri. · habari = taarifa mpya",
+    "de": "habari = Neuigkeit — die Allzweck-Begrüßung; Antwort: „Nzuri!“"
+   }
   },
   "good-morning": { "text": "Habari za asubuhi!" },
   "good-evening": { "text": "Habari za jioni!" },
   "good-night": {
    "text": "Usiku mwema!",
    "notes": {
+    "sw": "Usiku mwema! ni kwa kuagana au kwenda kulala",
     "de": "Wunsch zum Abschied und vor dem Schlafen — wer spät ankommt, grüßt mit „Habari za usiku!“"
    }
   },
@@ -22,17 +29,24 @@
   "welcome": {
    "text": "Karibu!",
    "variants": ["Karibuni!"],
-   "notes": { "de": "Auch die Antwort auf „Hodi?“ und die Einladung „Komm herein!“ · an mehrere: Karibuni!" }
+   "notes": {
+    "sw": "Hodi? — Karibu! · kwa wengi: Karibuni!",
+    "de": "Auch die Antwort auf „Hodi?“ und die Einladung „Komm herein!“ · an mehrere: Karibuni!"
+   }
   },
   "greetings-elder": {
    "text": "Shikamoo!",
    "notes": {
+    "sw": "Shikamoo! — Marahaba. · ni salamu kwa wakubwa",
     "de": "Respektgruß an Ältere; die Antwort ist immer „Marahaba!“ · unter Gleichaltrigen bleibt es bei „Hujambo!“"
    }
   },
   "may-i-come-in": {
    "text": "Hodi!",
-   "notes": { "de": "Ruft man an der Tür, statt zu klopfen; die Antwort ist „Karibu!“" }
+   "notes": {
+    "sw": "Hodi! — Karibu! · husemwa mlangoni badala ya kugonga",
+    "de": "Ruft man an der Tür, statt zu klopfen; die Antwort ist „Karibu!“"
+   }
   },
   "how-are-you": { "text": "Habari yako?" },
   "all-good": { "text": "Yote ni sawa.", "variants": ["Yote sawa."] },
@@ -45,6 +59,7 @@
    "text": "Pole!",
    "variants": ["Pole sana!", "Poleni!"],
    "notes": {
+    "sw": "Pole kwa msiba · Pole na kazi · kwa wengi: Poleni!",
     "de": "Mitgefühl bei jedem Missgeschick, auch beim Stolpern oder nach der Arbeit — nie eine Entschuldigung für eigene Schuld · an mehrere: Poleni!"
    }
   },

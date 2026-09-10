@@ -9,9 +9,18 @@
   "affix": { "text": "kiambishi", "grammar": { "plural": "viambishi" } },
   "past": {
    "text": "wakati uliopita",
-   "notes": { "de": "-li-: nilikuja = ich kam · -me-: nimekuja = ich bin gekommen." }
+   "notes": {
+    "sw": "-li-: nilikuja · -me-: nimekuja",
+    "de": "-li-: nilikuja = ich kam · -me-: nimekuja = ich bin gekommen."
+   }
   },
-  "present": { "text": "wakati uliopo", "notes": { "de": "-na-: ninakuja = ich komme." } },
-  "future": { "text": "wakati ujao", "notes": { "de": "-ta-: nitakuja = ich werde kommen." } }
+  "present": {
+   "text": "wakati uliopo",
+   "notes": { "sw": "-na-: ninakuja", "de": "-na-: ninakuja = ich komme." }
+  },
+  "future": {
+   "text": "wakati ujao",
+   "notes": { "sw": "-ta-: nitakuja", "de": "-ta-: nitakuja = ich werde kommen." }
+  }
  }
 }

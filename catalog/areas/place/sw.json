@@ -14,25 +14,45 @@
   "in": {
    "text": "katika",
    "notes": {
+    "sw": "katika hutangulia jina: katika mji huu, katika kitabu",
     "de": "im Alltag hängt man stattdessen -ni an: nyumbani, mezani · katika steht vor Namen und Demonstrativa: katika mji huu."
    }
   },
-  "on": { "text": "juu ya", "notes": { "de": "juu (oben) plus ya ergibt die Präposition: juu ya meza." } },
+  "on": {
+   "text": "juu ya",
+   "notes": {
+    "sw": "juu ya meza, juu ya kitanda · juu peke yake = si chini",
+    "de": "juu (oben) plus ya ergibt die Präposition: juu ya meza."
+   }
+  },
   "under": { "text": "chini ya" },
   "behind": { "text": "nyuma ya" },
   "between": { "text": "kati ya" },
   "near": {
    "text": "karibu",
    "notes": {
+    "sw": "karibu na nyumba, karibu na hapa · Karibu! pia = salamu",
     "de": "karibu heißt beim Empfang auch willkommen · als Präposition karibu na: karibu na nyumba."
    }
   },
   "far": { "text": "mbali" },
   "place": { "text": "mahali", "grammar": { "plural": "=" } },
   "country": { "text": "nchi", "grammar": { "plural": "=" } },
-  "in-front": { "text": "mbele", "notes": { "de": "mit ya als Präposition: mbele ya nyumba = vor dem Haus." } },
+  "in-front": {
+   "text": "mbele",
+   "notes": {
+    "sw": "mbele ya nyumba, mbele ya gari · nenda mbele = songa",
+    "de": "mit ya als Präposition: mbele ya nyumba = vor dem Haus."
+   }
+  },
   "next-to": { "text": "kando ya" },
-  "to-be-there": { "text": "kuwepo", "notes": { "de": "nipo, upo, yupo, tupo, mpo, wapo · Yupo? = Ist er da?" } },
+  "to-be-there": {
+   "text": "kuwepo",
+   "notes": {
+    "sw": "nipo, upo, yupo, tupo, mpo, wapo · Yupo? = yuko hapa?",
+    "de": "nipo, upo, yupo, tupo, mpo, wapo · Yupo? = Ist er da?"
+   }
+  },
   "on-the-table": { "text": "juu ya meza" },
   "under-the-bed": { "text": "chini ya kitanda" },
   "in-the-city": { "text": "katika mji" },
@@ -41,6 +61,7 @@
   "at-school": {
    "text": "shuleni",
    "notes": {
+    "sw": "shule → shuleni, nyumba → nyumbani: -ni ni mahali",
     "de": "-ni macht aus dem Nomen den Ort: shule → shuleni · dieselbe Form steht für wo und wohin."
    }
   },

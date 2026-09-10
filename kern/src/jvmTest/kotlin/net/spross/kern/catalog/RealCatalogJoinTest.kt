@@ -5,7 +5,6 @@ import net.spross.kern.model.CardKind
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
-import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
@@ -115,16 +114,22 @@ class RealCatalogJoinTest {
     }
 
     /**
-     * A note reaches the reader who can read it and nobody else: Swahili annotates its rice
-     * card in German alone, so a German reader gets it and an English one gets nothing —
-     * German is neither their language nor the one they are studying.
+     * Both arms of `notes[source] ?: notes[lang]` on one real card: the rice card carries a
+     * German wording for German readers and a Swahili one for everyone else, so a German
+     * reader gets the note written for them and an English reader falls to the shared
+     * Swahili wording rather than to nothing.
      */
     @Test
-    fun riceNoteSurfacesOnlyForGermanSources() {
+    fun riceNotePrefersTheReadersWordingAndFallsBackToSwahili() {
         val id = "are-you-cooking-rice-today"
-        val fromDe = catalog.join("de", "sw").byId(id)
-        assertEquals("Reis = mpunga (geerntet) → mchele (roh) → wali (gekocht)!", fromDe.target.note)
-        assertNull(catalog.join("en", "sw").byId(id).target.note)
+        assertEquals(
+            "Reis = mpunga (geerntet) → mchele (roh) → wali (gekocht)!",
+            catalog.join("de", "sw").byId(id).target.note,
+        )
+        assertEquals(
+            "wali = mchele uliopikwa · mpunga ni ule wa shambani",
+            catalog.join("en", "sw").byId(id).target.note,
+        )
     }
 
     /**

@@ -5,7 +5,10 @@
   "straight-ahead": { "text": "moja kwa moja" },
   "to-turn": {
    "text": "kugeuka",
-   "notes": { "de": "kugeuka ist sich wenden; ein Objekt wenden heißt kugeuza." }
+   "notes": {
+    "sw": "Geuka kulia · kugeuza gari = kulizungusha gari",
+    "de": "kugeuka ist sich wenden; ein Objekt wenden heißt kugeuza."
+   }
   },
   "corner": { "text": "kona", "grammar": { "plural": "=" } },
   "crossing": { "text": "njia panda", "variants": ["makutano"], "grammar": { "plural": "=" } },

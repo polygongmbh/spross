@@ -13,28 +13,41 @@
   "thunder": {
    "text": "radi",
    "grammar": { "plural": "=" },
-   "notes": { "de": "radi ist der Donnerschlag und steht oft auch für den Blitz und das ganze Gewitter." }
+   "notes": {
+    "sw": "radi ni mlio wa mvua kubwa · hutumika pia kwa umeme wa angani",
+    "de": "radi ist der Donnerschlag und steht oft auch für den Blitz und das ganze Gewitter."
+   }
   },
   "lightning": {
    "text": "umeme",
-   "notes": { "de": "umeme heißt im Alltag auch der Strom: Umeme umekatika. — Der Strom ist weg." }
+   "notes": {
+    "sw": "umeme wa angani humulika · Umeme umekatika = taa zimezimika",
+    "de": "umeme heißt im Alltag auch der Strom: Umeme umekatika. — Der Strom ist weg."
+   }
   },
   "humid": {
    "text": "unyevunyevu",
    "variants": ["unyevu"],
-   "notes": { "de": "unveränderlich · dasselbe Wort heißt auch die Feuchtigkeit: Kuna unyevunyevu." }
+   "notes": {
+    "sw": "Kuna unyevunyevu = hewa ina maji",
+    "de": "dasselbe Wort heißt auch die Feuchtigkeit: Kuna unyevunyevu."
+   }
   },
   "hows-the-weather-today": { "text": "Hali ya hewa ikoje leo?" },
   "its-raining": {
    "text": "Mvua inanyesha.",
    "notes": {
+    "sw": "Mvua inanyesha, jua linawaka: hali ya hewa hudai mtenda",
     "de": "wörtl. „der Regen regnet“ — Kiswahili verlangt bei Wetterverben ein explizites Subjekt."
    }
   },
   "the-rain-has-stopped": {
    "text": "Mvua imeisha.",
    "variants": ["Mvua imekwisha."],
-   "notes": { "de": "kuisha heißt „zu Ende gehen“: Regen hört im Kiswahili nicht auf, er ist zu Ende." }
+   "notes": {
+    "sw": "mvua imeisha = imekoma · kuisha = kufikia mwisho",
+    "de": "kuisha heißt „zu Ende gehen“: Regen hört im Kiswahili nicht auf, er ist zu Ende."
+   }
   },
   "the-sun-is-shining": { "text": "Jua linang'aa!" },
   "what-a-beautiful-day": { "text": "Siku nzuri kama nini!" },

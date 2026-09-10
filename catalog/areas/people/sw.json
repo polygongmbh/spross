@@ -6,13 +6,19 @@
   "human": {
    "text": "binadamu",
    "grammar": { "plural": "=" },
-   "notes": { "de": "binadamu = Mensch als Gattungswesen · mtu = einzelne Person." }
+   "notes": {
+    "sw": "binadamu = jamii ya watu wote · mtu = mmoja tu",
+    "de": "binadamu = Mensch als Gattungswesen · mtu = einzelne Person."
+   }
   },
   "family": { "text": "familia", "grammar": { "plural": "=" } },
   "mother": {
    "text": "mama",
    "grammar": { "plural": "=" },
-   "notes": { "de": "mama ist auch die höfliche Anrede für eine erwachsene Frau, baba für einen Mann." }
+   "notes": {
+    "sw": "mama pia ni heshima kwa mwanamke mzima: Mama, karibu!",
+    "de": "mama ist auch die höfliche Anrede für eine erwachsene Frau, baba für einen Mann."
+   }
   },
   "father": { "text": "baba", "grammar": { "plural": "=" } },
   "parents": { "text": "wazazi", "grammar": { "plural": "only" } },
@@ -28,7 +34,10 @@
   "baby": {
    "text": "mtoto mchanga",
    "grammar": { "plural": "watoto wachanga" },
-   "notes": { "de": "Ein eigenes Wort für Baby gibt es nicht: mtoto mchanga ist der Säugling." }
+   "notes": {
+    "sw": "mtoto mchanga = mtoto aliyezaliwa karibuni",
+    "de": "Ein eigenes Wort für Baby gibt es nicht: mtoto mchanga ist der Säugling."
+   }
   },
   "friend": { "text": "rafiki", "grammar": { "plural": "marafiki" } },
   "grandmother": { "text": "nyanya", "grammar": { "plural": "=" } },
@@ -39,6 +48,7 @@
    "text": "mjomba",
    "grammar": { "plural": "wajomba" },
    "notes": {
+    "sw": "mjomba = kaka wa mama · kaka wa baba ni baba mdogo au mkubwa",
     "de": "mjomba ist der Bruder der Mutter; der Bruder des Vaters heißt baba mdogo oder baba mkubwa."
    }
   },
@@ -46,6 +56,7 @@
    "text": "shangazi",
    "grammar": { "plural": "=" },
    "notes": {
+    "sw": "shangazi = dada wa baba · dada wa mama ni mama mdogo au mkubwa",
     "de": "shangazi ist die Schwester des Vaters; die Schwester der Mutter heißt mama mdogo oder mama mkubwa."
    }
   },
@@ -55,6 +66,7 @@
   "to-marry": {
    "text": "kuoa",
    "notes": {
+    "sw": "mwanaume huoa · mwanamke huolewa",
     "de": "kuoa ist die Perspektive des Mannes; die Frau heiratet aus ihrer Sicht kuolewa (Passiv)."
    }
   },
@@ -66,6 +78,7 @@
   "my-girlfriend": {
    "text": "mpenzi wangu",
    "notes": {
+    "sw": "mpenzi ni wa kiume au wa kike · rafiki si mpenzi",
     "de": "mpenzi ist geschlechtsneutral: Freund wie Freundin. rafiki bleibt der platonische Freund."
    }
   },
@@ -74,6 +87,7 @@
   "many-friends": {
    "text": "marafiki wengi",
    "notes": {
+    "sw": "rafiki ni mtu: marafiki wazuri, marafiki wote",
     "de": "rafiki ist ein Mensch: die Übereinstimmung folgt der wa-Klasse — marafiki wazuri, marafiki wote."
    }
   },

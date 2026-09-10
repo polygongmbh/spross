@@ -6,6 +6,7 @@
    "text": "-zuri",
    "variants": ["nzuri", "mzuri", "wazuri", "kizuri", "vizuri", "mazuri", "mizuri"],
    "notes": {
+    "sw": "mtu mzuri, kitu kizuri, nyumba nzuri: kiambishi hufuata ngeli",
     "de": "Adjektive bekommen die Vorsilbe der Nomenklasse: mtu mzuri, kitu kizuri, nyumba nzuri. Bei einer Person heißt mzuri oft hübsch, nicht nur gut."
    }
   },
@@ -21,21 +22,36 @@
   "much": {
    "text": "-ingi",
    "variants": ["nyingi", "wengi", "mengi", "vingi", "mingi", "mwingi", "kingi"],
-   "notes": { "de": "Vorsilbe verschmilzt: watu wengi, maji mengi, pesa nyingi." }
+   "notes": {
+    "sw": "watu wengi, maji mengi, pesa nyingi",
+    "de": "Vorsilbe verschmilzt: watu wengi, maji mengi, pesa nyingi."
+   }
   },
   "new": { "text": "-pya", "variants": ["mpya", "wapya", "jipya", "kipya", "vipya", "mapya", "mipya"] },
   "old": {
    "text": "-zee",
    "synonyms": ["kuukuu"],
    "variants": ["mzee", "wazee"],
-   "notes": { "de": "-zee bei Menschen: mtu mzee · kuukuu bei Sachen: gari kuukuu." }
+   "notes": {
+    "sw": "mtu mzee, wazee wawili · kitu ni kuukuu: gari kuukuu",
+    "de": "-zee bei Menschen: mtu mzee · kuukuu bei Sachen: gari kuukuu."
+   }
   },
-  "slow": { "text": "polepole", "notes": { "de": "unveränderlich: anaenda polepole." } },
-  "fast": { "text": "haraka", "notes": { "de": "unveränderlich · attributiv mit -a: gari la haraka." } },
+  "slow": { "text": "polepole" },
+  "fast": {
+   "text": "haraka",
+   "notes": {
+    "sw": "fanya haraka · gari la haraka, safari ya haraka",
+    "de": "attributiv mit -a: gari la haraka."
+   }
+  },
   "long": {
    "text": "-refu",
    "variants": ["ndefu", "mrefu", "warefu", "kirefu", "virefu", "marefu", "mirefu"],
-   "notes": { "de": "heißt bei Menschen groß gewachsen: mtu mrefu." }
+   "notes": {
+    "sw": "mtu mrefu = mwenye kimo · njia ndefu, safari ndefu",
+    "de": "heißt bei Menschen groß gewachsen: mtu mrefu."
+   }
   },
   "short": {
    "text": "-fupi",
@@ -48,30 +64,46 @@
   "lightweight": {
    "text": "-epesi",
    "variants": ["nyepesi", "mwepesi", "wepesi", "chepesi", "vyepesi", "mepesi", "myepesi"],
-   "notes": { "de": "Vorsilbe verschmilzt mit dem e: mzigo mwepesi, mizigo myepesi." }
+   "notes": {
+    "sw": "mzigo mwepesi, mizigo myepesi, kazi nyepesi",
+    "de": "Vorsilbe verschmilzt mit dem e: mzigo mwepesi, mizigo myepesi."
+   }
   },
   "difficult": {
    "text": "-gumu",
    "variants": ["ngumu", "mgumu", "wagumu", "kigumu", "vigumu", "magumu", "migumu"],
-   "notes": { "de": "heißt auch hart: mkate mgumu." }
+   "notes": { "sw": "mtihani mgumu · mkate mgumu = si laini", "de": "heißt auch hart: mkate mgumu." }
   },
-  "easy": { "text": "rahisi", "notes": { "de": "unveränderlich · heißt auch billig: nguo rahisi." } },
+  "easy": {
+   "text": "rahisi",
+   "notes": { "sw": "rahisi pia = bei ndogo: nguo rahisi", "de": "heißt auch billig: nguo rahisi." }
+  },
   "problem": { "text": "tatizo", "grammar": { "plural": "matatizo" }, "synonyms": ["shida"] },
   "to-solve": {
    "text": "kutatua",
-   "notes": { "de": "für Probleme und Streit: kutatua tatizo = ein Problem lösen." }
+   "notes": {
+    "sw": "kutatua tatizo, kutatua ugomvi",
+    "de": "für Probleme und Streit: kutatua tatizo = ein Problem lösen."
+   }
   },
   "challenge": { "text": "changamoto", "grammar": { "plural": "=" } },
-  "clean-adj": { "text": "safi", "notes": { "de": "unveränderlich · als Ausruf auch prima: Safi!" } },
+  "clean-adj": {
+   "text": "safi",
+   "notes": { "sw": "nguo safi, maji safi · Safi! = vizuri!", "de": "als Ausruf auch prima: Safi!" }
+  },
   "sharp": {
    "text": "-kali",
    "variants": ["kali", "mkali", "wakali", "kikali", "vikali", "makali", "mikali"],
-   "notes": { "de": "gilt auch für Menschen (streng) und Essen (scharf): mwalimu mkali, pilipili kali." }
+   "notes": {
+    "sw": "kisu kikali · mwalimu mkali · pilipili kali",
+    "de": "gilt auch für Menschen (streng) und Essen (scharf): mwalimu mkali, pilipili kali."
+   }
   },
   "available": {
    "text": "kupatikana",
    "variants": ["patikana"],
    "notes": {
+    "sw": "inapatikana = ipo sokoni · haipatikani = hakuna",
     "de": "Swahili sagt es als Verb: inapatikana = es ist zu haben · haipatikani = das gibt es nicht."
    }
   },
@@ -79,40 +111,66 @@
    "text": "-ingine",
    "variants": ["nyingine", "mwingine", "wengine", "kingine", "vingine", "mengine", "mingine"],
    "notes": {
+    "sw": "mtu mwingine, kitu kingine · chai nyingine = chai zaidi",
     "de": "die Vorsilbe richtet sich nach der Nomenklasse: mtu mwingine, kitu kingine · dasselbe Wort heißt noch ein anderer: chai nyingine."
    }
   },
   "hot": {
    "text": "moto",
-   "notes": { "de": "unveränderlich · dasselbe Wort heißt auch Feuer: Kuna moto." }
+   "notes": {
+    "sw": "chai moto, maji moto · hewa: kuna joto!",
+    "de": "dasselbe Wort heißt auch Feuer: Kuna moto."
+   }
   },
   "cold-adj": {
    "text": "baridi",
-   "notes": { "de": "unveränderlich · dasselbe Wort heißt auch die Kälte: Kuna baridi." }
+   "notes": {
+    "sw": "maji baridi, chai baridi · Kuna baridi leo",
+    "de": "dasselbe Wort heißt auch die Kälte: Kuna baridi."
+   }
   },
-  "empty": { "text": "tupu", "notes": { "de": "unveränderlich: chumba tupu, friji tupu." } },
+  "empty": {
+   "text": "-tupu",
+   "variants": ["tupu", "mtupu", "watupu", "kitupu", "vitupu", "matupu", "mitupu"]
+  },
   "full": {
    "text": "kujaa",
    "variants": ["imejaa", "limejaa", "umejaa"],
-   "notes": { "de": "Swahili sagt es als Verb: basi limejaa = der Bus ist voll." }
+   "notes": {
+    "sw": "basi limejaa · chumba kimejaa watu",
+    "de": "Swahili sagt es als Verb: basi limejaa = der Bus ist voll."
+   }
   },
   "dirty": { "text": "chafu" },
-  "dry": { "text": "kavu", "notes": { "de": "unveränderlich." } },
+  "dry": {
+   "text": "-kavu",
+   "variants": ["kavu", "mkavu", "wakavu", "kikavu", "vikavu", "makavu", "mikavu"]
+  },
   "different": {
    "text": "tofauti",
    "notes": {
-    "de": "unveränderlich: watu tofauti · dasselbe Wort heißt auch der Unterschied: Kuna tofauti gani?"
+    "sw": "watu tofauti · Kuna tofauti gani?",
+    "de": "dasselbe Wort heißt auch der Unterschied: Kuna tofauti gani?"
    }
   },
-  "real": { "text": "halisi", "notes": { "de": "unveränderlich." } },
-  "same": { "text": "sawa", "notes": { "de": "unveränderlich · heißt auch in Ordnung: Sawa!" } },
+  "real": { "text": "halisi" },
+  "same": {
+   "text": "sawa",
+   "notes": { "sw": "urefu sawa · Sawa! = ndiyo", "de": "heißt auch in Ordnung: Sawa!" }
+  },
   "similar": {
    "text": "kufanana",
-   "notes": { "de": "Swahili sagt es als Verb: vitabu hivi vinafanana = diese Bücher sind ähnlich." }
+   "notes": {
+    "sw": "vitabu hivi vinafanana · unafanana na baba yako",
+    "de": "Swahili sagt es als Verb: vitabu hivi vinafanana = diese Bücher sind ähnlich."
+   }
   },
   "opposite": {
    "text": "kinyume",
-   "notes": { "de": "eigentlich ein Substantiv: kinyume cha hilo = das Gegenteil davon." }
+   "notes": {
+    "sw": "kinyume cha hilo · kinyume cha joto ni baridi",
+    "de": "eigentlich ein Substantiv: kinyume cha hilo = das Gegenteil davon."
+   }
   },
   "to-compare": { "text": "kulinganisha" },
   "beautiful": {
@@ -120,10 +178,7 @@
    "variants": ["mrembo", "warembo", "mirembo", "kirembo", "virembo", "marembo", "rembo"],
    "notes": { "sw": "Urembo ni wa kuvutia macho: nguo marembo, msichana mrembo." }
   },
-  "positive": {
-   "text": "chanya",
-   "notes": { "sw": "Chanya na hasi hazibadiliki kwa ngeli: matokeo chanya, namba hasi." }
-  },
+  "positive": { "text": "chanya" },
   "negative": { "text": "hasi" },
   "health": { "text": "afya" },
   "healthy": {
@@ -133,7 +188,13 @@
     "sw": "Mzima ni asiye mgonjwa; mwaka mzima ni mwaka wote. Kuzima taa ni kitenzi kingine kabisa."
    }
   },
-  "firm": { "text": "imara", "notes": { "de": "fest, stabil, standhaft: nyumba imara, msimamo imara." } },
+  "firm": {
+   "text": "imara",
+   "notes": {
+    "sw": "nyumba imara, msimamo imara, afya imara",
+    "de": "fest, stabil, standhaft: nyumba imara, msimamo imara."
+   }
+  },
   "a-lot-of-water": { "text": "maji mengi" }
  }
 }

@@ -26,6 +26,7 @@
    "text": "tahadhari",
    "variants": ["angalia"],
    "notes": {
+    "sw": "Tahadhari! = jihadhari · Angalia! husemwa pia",
     "de": "Tahadhari! ist die Warnung wie „Vorsicht!“ · angalia heißt hinsehen und wird gesprochen auch so gebraucht."
    }
   },
@@ -36,14 +37,26 @@
   "gas": {
    "text": "gesi",
    "grammar": { "plural": "=" },
-   "notes": { "de": "das Kochgas: gesi imeisha = das Gas ist alle." }
+   "notes": {
+    "sw": "gesi ya kupikia: gesi imeisha = hakuna gesi tena",
+    "de": "das Kochgas: gesi imeisha = das Gas ist alle."
+   }
   },
-  "tasty": { "text": "tamu", "notes": { "de": "tamu heißt auch süß: chai tamu." } },
+  "tasty": {
+   "text": "tamu",
+   "notes": {
+    "sw": "chai tamu = yenye sukari · chakula kitamu = chenye ladha nzuri",
+    "de": "tamu heißt auch süß: chai tamu."
+   }
+  },
   "the-knife-is-sharp": { "text": "Kisu ni kikali!" },
   "this-is-very-tasty": { "text": "Hii ni tamu sana!" },
   "are-you-cooking-rice-today": {
    "text": "Unapika wali leo?",
-   "notes": { "de": "Reis = mpunga (geerntet) → mchele (roh) → wali (gekocht)!" }
+   "notes": {
+    "sw": "wali = mchele uliopikwa · mpunga ni ule wa shambani",
+    "de": "Reis = mpunga (geerntet) → mchele (roh) → wali (gekocht)!"
+   }
   },
   "the-pot-is-still-on-the-stove": { "text": "Sufuria bado iko juu ya jiko." },
   "wash-the-dishes-in-the-sink": { "text": "Osha vyombo sinkini!" },

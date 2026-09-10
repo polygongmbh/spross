@@ -4,12 +4,21 @@
  "words": {
   "but": { "text": "lakini" },
   "also": { "text": "pia" },
-  "and": { "text": "na", "notes": { "de": "na heißt auch „mit“: chai na maziwa · njoo na mimi." } },
+  "and": {
+   "text": "na",
+   "notes": {
+    "sw": "chai na maziwa · njoo na mimi = uje pamoja nami",
+    "de": "na heißt auch „mit“: chai na maziwa · njoo na mimi."
+   }
+  },
   "or": { "text": "au" },
   "if": {
    "text": "kama",
    "variants": ["ikiwa"],
-   "notes": { "de": "kama heißt auch „wie, als ob“ · die Frage „wann?“ ist lini." }
+   "notes": {
+    "sw": "kama utakuja, niambie · kama simba = mfano wa simba",
+    "de": "kama heißt auch „wie, als ob“ · die Frage „wann?“ ist lini."
+   }
   },
   "because": { "text": "kwa sababu" },
   "so-that": { "text": "ili" },
@@ -22,30 +31,43 @@
   "again": { "text": "tena" },
   "still": {
    "text": "bado",
-   "notes": { "de": "allein als Antwort heißt bado „noch nicht“: Umemaliza? — Bado." }
+   "notes": {
+    "sw": "Umemaliza? — Bado. · bado ninasoma = ninaendelea kusoma",
+    "de": "allein als Antwort heißt bado „noch nicht“: Umemaliza? — Bado."
+   }
   },
   "finally": { "text": "hatimaye" },
   "then": { "text": "halafu" },
   "not": {
    "text": "si",
    "notes": {
+    "sw": "Hii si chai · vitenzi hukanushwa kwa kiambishi: sijui, hataki",
     "de": "si verneint Nomen und Adjektive: Hii si chai · Verben verneint eine Vorsilbe: sijui, hataki."
    }
   },
   "only": {
    "text": "tu",
-   "notes": { "de": "tu steht hinter dem Wort, das es einschränkt: mmoja tu, leo tu." }
+   "notes": {
+    "sw": "mmoja tu, leo tu, kidogo tu",
+    "de": "tu steht hinter dem Wort, das es einschränkt: mmoja tu, leo tu."
+   }
   },
   "together": { "text": "pamoja" },
   "therefore": { "text": "kwa hiyo" },
   "even": {
    "text": "hata",
-   "notes": { "de": "hata kidogo = kein bisschen · hata mimi = ich auch, sogar ich." }
+   "notes": {
+    "sw": "hata mimi = mimi pia · hata kidogo = hakuna kabisa",
+    "de": "hata kidogo = kein bisschen · hata mimi = ich auch, sogar ich."
+   }
   },
   "although": { "text": "ingawa", "synonyms": ["japo"] },
   "that-conj": {
    "text": "kwamba",
-   "notes": { "de": "nach sagen und denken oft weggelassen: Nadhani (kwamba) atakuja." }
+   "notes": {
+    "sw": "Nadhani kwamba atakuja = Nadhani atakuja",
+    "de": "nach sagen und denken oft weggelassen: Nadhani (kwamba) atakuja."
+   }
   },
   "if-you-want": { "text": "Kama unataka." },
   "finally-done": { "text": "Hatimaye nimemaliza!" }
