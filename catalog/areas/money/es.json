@@ -3,14 +3,14 @@
  "subtitle": "Lo que cuesta algo y cómo se paga.",
  "words": {
   "price": { "text": "precio", "grammar": { "gender": "el" } },
-  "to-cost": { "text": "costar", "notes": { "de": "Stammwechsel o → ue: cuesta, cuestan." } },
+  "to-cost": { "text": "costar", "notes": { "es": "o → ue: cuesta, cuestan." } },
   "expensive": { "text": "caro" },
   "cheap": { "text": "barato" },
   "to-sell": { "text": "vender" },
   "cash": {
    "text": "efectivo",
    "grammar": { "gender": "el" },
-   "notes": { "de": "bar zahlen heißt pagar en efectivo." }
+   "notes": { "es": "pagar en efectivo.", "de": "bar zahlen heißt pagar en efectivo." }
   },
   "bank-card": {
    "text": "tarjeta",
@@ -22,7 +22,10 @@
    "text": "cambio",
    "variants": ["vuelto", "vuelta"],
    "grammar": { "gender": "el" },
-   "notes": { "de": "In Spanien el cambio, in weiten Teilen Lateinamerikas el vuelto." }
+   "notes": {
+    "es": "En España el cambio; en gran parte de América, el vuelto.",
+    "de": "In Spanien el cambio, in weiten Teilen Lateinamerikas el vuelto."
+   }
   },
   "money": { "text": "dinero", "variants": ["plata"], "grammar": { "gender": "el" } },
   "to-buy": { "text": "comprar" },

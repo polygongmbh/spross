@@ -11,6 +11,7 @@
    "variants": ["oreja"],
    "grammar": { "gender": "el" },
    "notes": {
+    "es": "Me duele el oído (dentro) · la oreja es la parte de fuera.",
     "de": "Beim Arzt immer el oído (Innenohr, Gehör): me duele el oído. Die sichtbare Ohrmuschel ist la oreja."
    }
   },
@@ -21,7 +22,7 @@
   "hand": {
    "text": "mano",
    "grammar": { "gender": "la" },
-   "notes": { "de": "la mano ist feminin trotz der Endung -o: la mano derecha." }
+   "notes": { "es": "Femenino aunque acabe en -o: la mano derecha." }
   },
   "arm": { "text": "brazo", "grammar": { "gender": "el" } },
   "foot": { "text": "pie", "grammar": { "gender": "el" } },
@@ -32,6 +33,7 @@
    "variants": ["vientre", "panza"],
    "grammar": { "gender": "la" },
    "notes": {
+    "es": "Me duele la barriga o la tripa; el estómago es el órgano.",
     "de": "Bauchweh heißt me duele la barriga oder me duele la tripa; el vientre ist gehoben, el estómago meint den Magen selbst."
    }
   },
@@ -40,6 +42,7 @@
    "text": "garganta",
    "grammar": { "gender": "la" },
    "notes": {
+    "es": "Me duele la garganta (por dentro) · el cuello es la parte de fuera.",
     "de": "Spanisch trennt, was „Hals“ zusammenfasst: la garganta ist der Rachen (Halsschmerzen), el cuello der äußere Hals."
    }
   },
@@ -53,7 +56,10 @@
   "finger": {
    "text": "dedo",
    "grammar": { "gender": "el" },
-   "notes": { "de": "dedo deckt Finger und Zehe ab; die Zehe ist el dedo del pie." }
+   "notes": {
+    "es": "dedo vale para la mano y el pie: el dedo del pie.",
+    "de": "dedo deckt Finger und Zehe ab; die Zehe ist el dedo del pie."
+   }
   },
   "neck": { "text": "cuello", "grammar": { "gender": "el" } },
   "brain": { "text": "cerebro", "grammar": { "gender": "el" } },

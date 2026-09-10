@@ -6,19 +6,25 @@
    "text": "menú",
    "variants": ["carta"],
    "grammar": { "gender": "el" },
-   "notes": { "de": "la carta ist die Speisekarte, el menú oft das Tagesmenü — carta ist auch der Brief." }
+   "notes": {
+    "es": "El menú es el del día; la carta trae todos los platos.",
+    "de": "la carta ist die Speisekarte, el menú oft das Tagesmenü — carta ist auch der Brief."
+   }
   },
   "waiter": { "text": "camarero", "grammar": { "gender": "el" } },
   "waiter-f": { "text": "camarera", "grammar": { "gender": "la" } },
   "table": { "text": "mesa", "grammar": { "gender": "la" } },
-  "to-order": { "text": "pedir", "notes": { "de": "Stammwechsel e → i: pido, pide." } },
+  "to-order": { "text": "pedir", "notes": { "es": "e → i: pido, pide." } },
   "bill": { "text": "cuenta", "grammar": { "gender": "la" } },
   "tip": { "text": "propina", "grammar": { "gender": "la" } },
   "to-reserve": { "text": "reservar" },
   "glass": {
    "text": "vaso",
    "grammar": { "gender": "el" },
-   "notes": { "de": "el vaso ist das Trinkglas, la copa das Stielglas." }
+   "notes": {
+    "es": "El vaso es recto; la copa tiene pie.",
+    "de": "el vaso ist das Trinkglas, la copa das Stielglas."
+   }
   },
   "cutlery": { "text": "cubiertos", "grammar": { "gender": "los", "plural": "only" } },
   "napkin": { "text": "servilleta", "grammar": { "gender": "la" } },

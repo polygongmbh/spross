@@ -9,6 +9,7 @@
    "variants": ["horario", "horario comercial"],
    "grammar": { "gender": "el" },
    "notes": {
+    "es": "En singular: el horario de apertura · en el día a día, el horario.",
     "de": "Spanisch hat keinen Plural wie „die Öffnungszeiten“: el horario de apertura steht im Singular, im Alltag oft nur el horario."
    }
   },

@@ -2,17 +2,27 @@
  "title": "Los verbos esenciales",
  "subtitle": "Lo que necesitas en cualquier sitio.",
  "words": {
-  "to-go": { "text": "ir", "notes": { "de": "ir = gehen und fahren · zu Fuß betont: ir andando, caminar." } },
+  "to-go": {
+   "text": "ir",
+   "notes": {
+    "es": "ir vale a pie y en coche · a pie: ir andando.",
+    "de": "ir = gehen und fahren · zu Fuß betont: ir andando, caminar."
+   }
+  },
   "to-come": { "text": "venir" },
   "to-have": {
    "text": "tener",
-   "notes": { "de": "haber ist Hilfsverb (he comido) und hay = es gibt — Besitz immer mit tener." }
+   "notes": {
+    "es": "Lo que se tiene va con tener: tengo un coche · hay = existe.",
+    "de": "haber ist Hilfsverb (he comido) und hay = es gibt — Besitz immer mit tener."
+   }
   },
   "to-give": { "text": "dar" },
   "to-take": {
    "text": "coger",
    "variants": ["tomar", "agarrar"],
    "notes": {
+    "es": "En España, coger el autobús · en América es vulgar: tomar, agarrar.",
     "de": "in Spanien das Alltagswort (coger el autobús) · in Lateinamerika vulgär, dort tomar oder agarrar."
    }
   },
@@ -20,35 +30,65 @@
   "to-make": { "text": "hacer" },
   "to-like": {
    "text": "gustar",
-   "notes": { "de": "umgekehrt gebaut: Me gusta el café = Ich mag Kaffee · lieben ist amar oder querer." }
+   "notes": {
+    "es": "Al revés: me gusta el café · me gustan los libros.",
+    "de": "umgekehrt gebaut: Me gusta el café = Ich mag Kaffee · lieben ist amar oder querer."
+   }
   },
-  "to-can": { "text": "poder", "notes": { "de": "unregelmäßig: puedo, puedes, puede, podemos." } },
+  "to-can": { "text": "poder", "notes": { "es": "Irregular: puedo, puedes, puede, podemos." } },
   "to-think": {
    "text": "pensar",
-   "notes": { "de": "pensar en algo = an etwas denken · pensar que = glauben, dass." }
+   "notes": {
+    "es": "pensar en alguien · pensar que algo es así.",
+    "de": "pensar en algo = an etwas denken · pensar que = glauben, dass."
+   }
   },
   "to-imagine": { "text": "imaginar" },
-  "to-wait": { "text": "esperar", "notes": { "de": "esperar heißt auch hoffen und erwarten." } },
-  "to-want": { "text": "querer", "notes": { "de": "querer heißt wollen und lieben: Te quiero." } },
+  "to-wait": {
+   "text": "esperar",
+   "notes": {
+    "es": "esperar el tren y esperar que todo vaya bien.",
+    "de": "esperar heißt auch hoffen und erwarten."
+   }
+  },
+  "to-want": {
+   "text": "querer",
+   "notes": { "es": "Quiero un café · te quiero.", "de": "querer heißt wollen und lieben: Te quiero." }
+  },
   "to-find": { "text": "encontrar" },
-  "to-search": { "text": "buscar", "notes": { "de": "buscar steht ohne Präposition: busco un hotel." } },
+  "to-search": { "text": "buscar", "notes": { "es": "Sin preposición: busco un hotel." } },
   "to-receive": { "text": "recibir", "synonyms": ["conseguir"] },
-  "to-look": { "text": "mirar", "notes": { "de": "mirar = den Blick auf etwas richten: mira aquí." } },
+  "to-look": {
+   "text": "mirar",
+   "notes": {
+    "es": "mirar es dirigir los ojos: mira aquí.",
+    "de": "mirar = den Blick auf etwas richten: mira aquí."
+   }
+  },
   "to-open": { "text": "abrir" },
   "to-close": { "text": "cerrar" },
   "to-stop": {
    "text": "dejar de",
    "variants": ["parar de"],
-   "notes": { "de": "dejar de steht vor dem Infinitiv: dejar de fumar = aufhören zu rauchen." }
+   "notes": {
+    "es": "Con infinitivo detrás: dejar de fumar.",
+    "de": "dejar de steht vor dem Infinitiv: dejar de fumar = aufhören zu rauchen."
+   }
   },
   "to-stand": {
    "text": "estar de pie",
-   "notes": { "de": "Spanisch hat kein eigenes Verb dafür · ponerse de pie = sich hinstellen." }
+   "notes": {
+    "es": "estar de pie (quieto) · ponerse de pie (levantarse).",
+    "de": "Spanisch hat kein eigenes Verb dafür · ponerse de pie = sich hinstellen."
+   }
   },
   "to-send": { "text": "enviar", "synonyms": ["mandar"] },
   "to-deliver": {
    "text": "repartir",
-   "notes": { "de": "repartir = ausliefern, zustellen · entregar heißt abgeben und gehört aufs Amt." }
+   "notes": {
+    "es": "repartir es llevar a cada casa; entregar es dar en mano.",
+    "de": "repartir = ausliefern, zustellen · entregar heißt abgeben und gehört aufs Amt."
+   }
   },
   "to-use": { "text": "usar" },
   "to-come-back": { "text": "volver" },
@@ -63,7 +103,10 @@
   "where-are-you-from": {
    "text": "¿De dónde es usted?",
    "variants": ["¿De dónde es?", "¿De dónde eres?"],
-   "notes": { "de": "Spanisch fragt nach der Herkunft mit ser, nicht mit venir." }
+   "notes": {
+    "es": "El origen va con ser: soy de Alemania.",
+    "de": "Spanisch fragt nach der Herkunft mit ser, nicht mit venir."
+   }
   },
   "can-you-see-me": { "text": "¿Me ves?" }
  }

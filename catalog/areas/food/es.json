@@ -15,6 +15,7 @@
    "text": "hambre",
    "grammar": { "gender": "el" },
    "notes": {
+    "es": "Femenino con el en singular: el hambre, pero mucha hambre · tener hambre.",
     "de": "feminin, im Singular aber mit el: el hambre — trotzdem mucha hambre; Hunger haben = tener hambre."
    }
   },
@@ -49,7 +50,10 @@
   "water": {
    "text": "agua",
    "grammar": { "gender": "el" },
-   "notes": { "de": "feminin, steht im Singular aber mit el: el agua fría · Plural las aguas." }
+   "notes": {
+    "es": "Femenino con el en singular: el agua fría · plural, las aguas.",
+    "de": "feminin, steht im Singular aber mit el: el agua fría · Plural las aguas."
+   }
   },
   "to-eat": { "text": "comer" },
   "to-drink": { "text": "beber" },

@@ -2,7 +2,13 @@
  "title": "Seguir en la conversación",
  "subtitle": "Preguntar de nuevo, entender, seguir adelante.",
  "words": {
-  "to-hear": { "text": "oír", "notes": { "de": "oír = wahrnehmen · escuchar = bewusst zuhören." } },
+  "to-hear": {
+   "text": "oír",
+   "notes": {
+    "es": "oír = darse cuenta · escuchar = poner atención.",
+    "de": "oír = wahrnehmen · escuchar = bewusst zuhören."
+   }
+  },
   "to-understand": { "text": "entender", "synonyms": ["comprender"] },
   "to-speak": { "text": "hablar" },
   "to-repeat-word": { "text": "repetir la palabra" },
@@ -10,7 +16,10 @@
    "text": "alto",
    "synonyms": ["fuerte"],
    "variants": ["alta"],
-   "notes": { "de": "Lautstärke: habla alto oder habla fuerte · alto heißt auch hoch." }
+   "notes": {
+    "es": "habla alto o habla fuerte · alto también es de mucha altura.",
+    "de": "Lautstärke: habla alto oder habla fuerte · alto heißt auch hoch."
+   }
   },
   "to-ask": { "text": "preguntar" },
   "question": { "text": "pregunta", "grammar": { "gender": "la" } },
@@ -18,7 +27,13 @@
   "to-reply": { "text": "responder", "synonyms": ["contestar"] },
   "help": { "text": "ayuda", "grammar": { "gender": "la" } },
   "to-need": { "text": "necesitar" },
-  "to-know": { "text": "saber", "notes": { "de": "wissen = saber · kennen (Personen, Orte) = conocer." } },
+  "to-know": {
+   "text": "saber",
+   "notes": {
+    "es": "saber algo · conocer a alguien o un lugar.",
+    "de": "wissen = saber · kennen (Personen, Orte) = conocer."
+   }
+  },
   "to-remember": { "text": "recordar" },
   "to-forget": { "text": "olvidar" },
   "goal": { "text": "meta", "grammar": { "gender": "la" } },

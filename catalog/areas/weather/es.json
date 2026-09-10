@@ -6,7 +6,10 @@
    "text": "tiempo",
    "variants": ["clima"],
    "grammar": { "gender": "el" },
-   "notes": { "de": "el tiempo heißt auch „Zeit“. Nach dem Wetter fragt man mit hacer: ¿Qué tiempo hace?" }
+   "notes": {
+    "es": "El tiempo se pregunta con hacer: ¿Qué tiempo hace?",
+    "de": "el tiempo heißt auch „Zeit“. Nach dem Wetter fragt man mit hacer: ¿Qué tiempo hace?"
+   }
   },
   "sky": { "text": "cielo", "grammar": { "gender": "el" } },
   "sun": { "text": "sol", "grammar": { "gender": "el" } },
@@ -27,7 +30,10 @@
   "the-sun-is-shining": {
    "text": "¡Hace sol!",
    "variants": ["¡El sol brilla!", "El sol está brillando."],
-   "notes": { "de": "Wetter wird mit hacer ausgedrückt: hace sol, hace calor, hace frío." }
+   "notes": {
+    "es": "hace sol, hace calor, hace frío.",
+    "de": "Wetter wird mit hacer ausgedrückt: hace sol, hace calor, hace frío."
+   }
   },
   "what-a-beautiful-day": { "text": "¡Qué día tan bonito!", "variants": ["¡Qué día más bonito!", "¡Qué día tan hermoso!"] },
   "we-are-staying-home-because-of-the-rain": { "text": "Por la lluvia nos quedamos en casa." }

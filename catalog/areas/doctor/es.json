@@ -9,6 +9,7 @@
    "variants": ["consultorio"],
    "grammar": { "gender": "la" },
    "notes": {
+    "es": "La consulta es la sala del médico; la pública está en el centro de salud.",
     "de": "la consulta = das Sprechzimmer/die Praxis; die staatliche Hausarztstelle in Spanien heißt el centro de salud."
    }
   },
@@ -16,7 +17,10 @@
    "text": "pastilla",
    "variants": ["comprimido", "tableta"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "Alltagswort ist la pastilla; auf der Packung steht meist comprimido." }
+   "notes": {
+    "es": "Se dice pastilla; en la caja pone comprimido.",
+    "de": "Alltagswort ist la pastilla; auf der Packung steht meist comprimido."
+   }
   },
   "prescription": { "text": "receta", "variants": ["receta médica"], "grammar": { "gender": "la" } },
   "pharmacy": { "text": "farmacia", "grammar": { "gender": "la" } },
@@ -24,6 +28,7 @@
    "text": "tarjeta sanitaria",
    "grammar": { "gender": "la" },
    "notes": {
+    "es": "La tarjeta sanitaria da acceso a la sanidad pública.",
     "de": "In Spanien ist es die tarjeta sanitaria der öffentlichen Gesundheitsversorgung — sie ersetzt die Versichertenkarte."
    }
   },
@@ -32,6 +37,7 @@
    "variants": ["seguro de salud"],
    "grammar": { "gender": "el" },
    "notes": {
+    "es": "La sanidad pública va por la Seguridad Social; el seguro médico es privado.",
     "de": "Eine Krankenkasse wie in Deutschland gibt es nicht: gesetzlich versichert ist man über la Seguridad Social; un seguro médico ist meist eine private Zusatzversicherung."
    }
   },
@@ -40,13 +46,19 @@
    "text": "emergencia",
    "synonyms": ["urgencia"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "Die Notaufnahme heißt urgencias — „ir a urgencias“ = in die Notaufnahme gehen." }
+   "notes": {
+    "es": "En el hospital se llama urgencias: ir a urgencias.",
+    "de": "Die Notaufnahme heißt urgencias — „ir a urgencias“ = in die Notaufnahme gehen."
+   }
   },
   "doctors-note": {
    "text": "baja",
    "variants": ["baja médica", "parte de baja"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "kurz für la baja médica; das Papier, das der Arzt aushändigt, ist el parte de baja." }
+   "notes": {
+    "es": "Corto de la baja médica; el papel es el parte de baja.",
+    "de": "kurz für la baja médica; das Papier, das der Arzt aushändigt, ist el parte de baja."
+   }
   },
   "to-examine": { "text": "examinar", "variants": ["explorar", "reconocer"] },
   "to-prescribe-medicine": { "text": "recetar medicamentos", "variants": ["prescribir medicamentos", "recetar medicinas"] },
@@ -55,6 +67,7 @@
    "text": "coger la baja",
    "variants": ["pedir la baja", "darse de baja", "ponerse de baja"],
    "notes": {
+    "es": "La da el médico: coger la baja, estar de baja · en América, coger es vulgar.",
     "de": "Krankmelden läuft in Spanien über la baja, die der Arzt ausstellt: coger la baja, estar de baja. coger ist in Spanien normal, in Lateinamerika vulgär."
    }
   },
@@ -65,7 +78,10 @@
   "vaccination": {
    "text": "vacuna",
    "grammar": { "gender": "la" },
-   "notes": { "de": "la vacuna ist Impfung und Impfstoff; der Vorgang selbst heißt la vacunación." }
+   "notes": {
+    "es": "La vacuna se pone; el acto es la vacunación.",
+    "de": "la vacuna ist Impfung und Impfstoff; der Vorgang selbst heißt la vacunación."
+   }
   },
   "ambulance": { "text": "ambulancia", "grammar": { "gender": "la" } },
   "to-look-after": { "text": "cuidar" },

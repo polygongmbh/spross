@@ -10,11 +10,15 @@
    "synonyms": ["catarro"],
    "variants": ["constipado"],
    "grammar": { "gender": "el" },
-   "notes": { "de": "estar constipado heißt erkältet sein — nicht „verstopft“ (das ist estreñido)." }
+   "notes": {
+    "es": "estar resfriado = estar constipado · constipado no es estreñido.",
+    "de": "estar constipado heißt erkältet sein — nicht „verstopft“ (das ist estreñido)."
+   }
   },
   "to-hurt": {
    "text": "doler",
    "notes": {
+    "es": "Me duele la cabeza · me duelen las piernas.",
     "de": "doler steht wie „gefallen“: der Körperteil ist Subjekt, die Person steht im Dativ — me duele la cabeza."
    }
   },
@@ -26,7 +30,10 @@
   "dizziness": {
    "text": "mareo",
    "grammar": { "gender": "el" },
-   "notes": { "de": "estar mareado heißt schwindlig sein — und ebenso reise- oder seekrank." }
+   "notes": {
+    "es": "estar mareado en el coche, en el barco o de pie.",
+    "de": "estar mareado heißt schwindlig sein — und ebenso reise- oder seekrank."
+   }
   },
   "wound": { "text": "herida", "grammar": { "gender": "la" } },
   "to-hurt-oneself": { "text": "hacerse daño", "variants": ["lesionarse"] },

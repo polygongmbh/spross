@@ -5,7 +5,10 @@
   "time": {
    "text": "tiempo",
    "grammar": { "gender": "el" },
-   "notes": { "de": "tiempo heißt auch Wetter: ¿Qué tiempo hace? · das einzelne Mal ist una vez." }
+   "notes": {
+    "es": "tiempo es el que pasa y el que hace: ¿Qué tiempo hace?",
+    "de": "tiempo heißt auch Wetter: ¿Qué tiempo hace? · das einzelne Mal ist una vez."
+   }
   },
   "day": { "text": "día", "grammar": { "gender": "el" } },
   "week": { "text": "semana", "grammar": { "gender": "la" } },
@@ -15,7 +18,13 @@
   "year": { "text": "año", "grammar": { "gender": "el" } },
   "now": { "text": "ahora" },
   "today": { "text": "hoy" },
-  "tomorrow": { "text": "mañana", "notes": { "de": "mañana heißt auch der Morgen: por la mañana = morgens." } },
+  "tomorrow": {
+   "text": "mañana",
+   "notes": {
+    "es": "mañana también es la parte del día: por la mañana.",
+    "de": "mañana heißt auch der Morgen: por la mañana = morgens."
+   }
+  },
   "yesterday": { "text": "ayer" },
   "day-before-yesterday": { "text": "anteayer" },
   "early": { "text": "temprano" },
@@ -26,6 +35,7 @@
    "variants": ["noche"],
    "grammar": { "gender": "la" },
    "notes": {
+    "es": "La tarde llega hasta que oscurece; luego, la noche.",
     "de": "kein eigenes Wort für Abend: bis zum Dunkelwerden la tarde, danach la noche — Guten Abend = buenas tardes bzw. buenas noches."
    }
   },

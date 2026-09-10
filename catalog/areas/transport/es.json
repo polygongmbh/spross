@@ -19,6 +19,7 @@
    "variants": ["boleto", "pasaje"],
    "grammar": { "gender": "el" },
    "notes": {
+    "es": "En España el billete, también el de dinero; en América, boleto o pasaje.",
     "de": "In Spanien el billete (auch der Geldschein); in Lateinamerika el boleto oder el pasaje."
    }
   },
@@ -29,11 +30,17 @@
   "to-take-bus": {
    "text": "coger el autobús",
    "variants": ["tomar el autobús"],
-   "notes": { "de": "In Spanien coger; in Lateinamerika sagt man tomar, weil coger dort vulgär ist." }
+   "notes": {
+    "es": "En España coger el autobús; en América, tomar — allí coger es vulgar.",
+    "de": "In Spanien coger; in Lateinamerika sagt man tomar, weil coger dort vulgär ist."
+   }
   },
   "to-depart": {
    "text": "salir",
-   "notes": { "de": "Züge und Busse „fahren ab“ mit salir: El tren sale a las ocho." }
+   "notes": {
+    "es": "Trenes y autobuses salen: el tren sale a las ocho.",
+    "de": "Züge und Busse „fahren ab“ mit salir: El tren sale a las ocho."
+   }
   },
   "journey": { "text": "viaje", "grammar": { "gender": "el" } },
   "to-travel": { "text": "viajar" },
@@ -45,7 +52,7 @@
    "text": "moto",
    "variants": ["motocicleta"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "la moto ist die Kurzform von la motocicleta und behält deren Femininum." }
+   "notes": { "es": "La moto es corto de la motocicleta y sigue siendo femenina." }
   },
   "truck": { "text": "camión", "grammar": { "gender": "el" } },
   "passenger": { "text": "pasajero", "grammar": { "gender": "el" } },
@@ -54,11 +61,7 @@
   "rail": { "text": "riel", "grammar": { "gender": "el", "plural": "rieles" } },
   "luggage": { "text": "equipaje", "grammar": { "gender": "el" } },
   "fare": { "text": "tarifa", "grammar": { "gender": "la" } },
-  "to-get-off": {
-   "text": "bajarse",
-   "variants": ["bajar"],
-   "notes": { "de": "bajarse ist reflexiv: me bajo aquí." }
-  },
+  "to-get-off": { "text": "bajarse", "variants": ["bajar"], "notes": { "es": "Reflexivo: me bajo aquí." } },
   "the-bus-is-coming-soon": {
    "text": "El autobús llega enseguida.",
    "variants": ["El autobús viene enseguida.", "Ahora viene el autobús."]

@@ -6,7 +6,10 @@
   "human": {
    "text": "ser humano",
    "grammar": { "gender": "el" },
-   "notes": { "de": "ser humano = Mensch als Gattung · persona = der einzelne Mensch." }
+   "notes": {
+    "es": "El ser humano es la especie · una persona es uno solo.",
+    "de": "ser humano = Mensch als Gattung · persona = der einzelne Mensch."
+   }
   },
   "family": { "text": "familia", "grammar": { "gender": "la" } },
   "mother": { "text": "madre", "grammar": { "gender": "la" } },
@@ -15,7 +18,10 @@
   "child": {
    "text": "niño",
    "grammar": { "gender": "el" },
-   "notes": { "de": "niño ist das Kind allgemein; das eigene Kind ist hijo/hija." }
+   "notes": {
+    "es": "El niño es cualquier niño; el tuyo es tu hijo o tu hija.",
+    "de": "niño ist das Kind allgemein; das eigene Kind ist hijo/hija."
+   }
   },
   "son": { "text": "hijo", "grammar": { "gender": "el" } },
   "daughter": { "text": "hija", "grammar": { "gender": "la" } },
@@ -48,7 +54,10 @@
   "old-people": {
    "text": "personas mayores",
    "variants": ["gente mayor", "los mayores"],
-   "notes": { "de": "personas viejas klingt abwertend — im Alltag mayores." }
+   "notes": {
+    "es": "Se dice personas mayores; personas viejas suena mal.",
+    "de": "personas viejas klingt abwertend — im Alltag mayores."
+   }
   },
   "many-friends": { "text": "muchos amigos", "variants": ["muchas amigas"] },
   "mom-help-me": { "text": "¡Mamá, ayúdame!" }

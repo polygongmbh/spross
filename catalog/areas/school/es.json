@@ -7,13 +7,17 @@
    "synonyms": ["colegio"],
    "grammar": { "gender": "la" },
    "notes": {
+    "es": "La escuela es general: la escuela de idiomas · los niños van al colegio.",
     "de": "el colegio ist die Schule der Kinder; la escuela ist allgemeiner: la escuela de idiomas = die Sprachschule."
    }
   },
   "classroom": {
    "text": "aula",
    "grammar": { "gender": "el" },
-   "notes": { "de": "aula ist feminin, nimmt im Singular aber el (betontes a-): el aula, Plural las aulas." }
+   "notes": {
+    "es": "Femenino con el en singular: el aula, plural las aulas.",
+    "de": "aula ist feminin, nimmt im Singular aber el (betontes a-): el aula, Plural las aulas."
+   }
   },
   "teacher": {
    "text": "profesor",
@@ -21,6 +25,7 @@
    "variants": ["profe"],
    "grammar": { "gender": "el" },
    "notes": {
+    "es": "El profesor da clase en el instituto y en los cursos.",
     "de": "el maestro unterrichtet in der Grundschule, el profesor an weiterführenden Schulen und im Sprachkurs."
    }
   },
@@ -36,19 +41,28 @@
    "text": "deberes",
    "variants": ["tarea", "tareas"],
    "grammar": { "gender": "los", "plural": "only" },
-   "notes": { "de": "Nur im Plural: los deberes — hacer los deberes = Hausaufgaben machen." }
+   "notes": {
+    "es": "Solo en plural: hacer los deberes.",
+    "de": "Nur im Plural: los deberes — hacer los deberes = Hausaufgaben machen."
+   }
   },
   "exam": { "text": "examen", "variants": ["prueba"], "grammar": { "gender": "el" } },
   "break": {
    "text": "recreo",
    "variants": ["descanso", "pausa"],
    "grammar": { "gender": "el" },
-   "notes": { "de": "el recreo ist die Schulpause; die allgemeine Pause heißt el descanso." }
+   "notes": {
+    "es": "El recreo es el del colegio; en el trabajo, el descanso.",
+    "de": "el recreo ist die Schulpause; die allgemeine Pause heißt el descanso."
+   }
   },
   "to-pass-exam": {
    "text": "aprobar el examen",
    "variants": ["pasar el examen"],
-   "notes": { "de": "aprobar = bestehen, suspender = durchfallen." }
+   "notes": {
+    "es": "aprobar el examen · lo contrario es suspender.",
+    "de": "aprobar = bestehen, suspender = durchfallen."
+   }
   },
   "to-practice": { "text": "practicar", "variants": ["hacer ejercicios"] },
   "to-raise-hand": { "text": "levantar la mano", "variants": ["alzar la mano"] },
@@ -58,7 +72,10 @@
   "lesson": {
    "text": "clase",
    "grammar": { "gender": "la" },
-   "notes": { "de": "Meist im Singular: hoy tengo clase = heute habe ich Unterricht." }
+   "notes": {
+    "es": "Casi siempre en singular: hoy tengo clase.",
+    "de": "Meist im Singular: hoy tengo clase = heute habe ich Unterricht."
+   }
   },
   "page": { "text": "página", "grammar": { "gender": "la" } },
   "grade": { "text": "nota", "grammar": { "gender": "la" } },
@@ -69,10 +86,17 @@
    "text": "horario",
    "grammar": { "gender": "el" },
    "notes": {
+    "es": "El horario sirve para cualquier plan; el del colegio es el horario de clases.",
     "de": "el horario ist jeder Zeitplan; der Stundenplan der Schule heißt genauer el horario de clases."
    }
   },
-  "to-count": { "text": "contar", "notes": { "de": "contar heißt auch erzählen: cuéntame = erzähl mir." } },
+  "to-count": {
+   "text": "contar",
+   "notes": {
+    "es": "contar también es narrar: cuéntame qué pasó.",
+    "de": "contar heißt auch erzählen: cuéntame = erzähl mir."
+   }
+  },
   "to-try": { "text": "intentar", "variants": ["probar"] },
   "to-learn-by-heart": { "text": "aprender de memoria", "synonyms": ["memorizar"] },
   "to-read-aloud": { "text": "leer en voz alta" },
@@ -80,7 +104,10 @@
   "to-pronounce": { "text": "pronunciar" },
   "to-study": {
    "text": "estudiar",
-   "notes": { "de": "Für eine Prüfung oder einen Kurs lernen = estudiar; etwas Neues erlernen = aprender." }
+   "notes": {
+    "es": "estudiar para un examen · aprender algo nuevo.",
+    "de": "Für eine Prüfung oder einen Kurs lernen = estudiar; etwas Neues erlernen = aprender."
+   }
   },
   "to-teach": { "text": "enseñar" },
   "do-the-homework": { "text": "Hago los deberes." },

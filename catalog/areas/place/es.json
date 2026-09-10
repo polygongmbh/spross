@@ -12,11 +12,20 @@
   "outdoors": { "text": "fuera", "variants": ["afuera"] },
   "at-home": { "text": "en casa" },
   "home": { "text": "a casa" },
-  "in": { "text": "en", "notes": { "de": "en deckt in und auf ab: en la caja, en la mesa." } },
+  "in": {
+   "text": "en",
+   "notes": {
+    "es": "en la caja, en la mesa: sirve para dentro y encima.",
+    "de": "en deckt in und auf ab: en la caja, en la mesa."
+   }
+  },
   "on": {
    "text": "sobre",
    "variants": ["encima de"],
-   "notes": { "de": "im Alltag steht meist en: el libro está en la mesa · sobre betont obendrauf." }
+   "notes": {
+    "es": "Normalmente basta en: el libro está en la mesa · sobre marca encima.",
+    "de": "im Alltag steht meist en: el libro está en la mesa · sobre betont obendrauf."
+   }
   },
   "under": { "text": "debajo de", "variants": ["bajo"] },
   "behind": { "text": "detrás de" },
@@ -36,7 +45,10 @@
   "at-school": { "text": "en la escuela" },
   "go-to-school": {
    "text": "ir a la escuela",
-   "notes": { "de": "a zeigt die Richtung, en den Ort: voy a la escuela · estoy en la escuela." }
+   "notes": {
+    "es": "a marca adónde, en marca dónde: voy a la escuela · estoy en la escuela.",
+    "de": "a zeigt die Richtung, en den Ort: voy a la escuela · estoy en la escuela."
+   }
   },
   "are-you-going-home-already": { "text": "¿Ya se van a casa?", "variants": ["¿Ya os vais a casa?", "¿Ya te vas a casa?"] }
  }

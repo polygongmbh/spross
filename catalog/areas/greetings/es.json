@@ -10,13 +10,17 @@
    "text": "¡Buenos días!",
    "variants": ["¡Buen día!"],
    "notes": {
+    "es": "Hasta la comida · después, ¡Buenas tardes! y de noche, ¡Buenas noches!",
     "de": "bis zum Mittagessen · danach ¡Buenas tardes!, nach Einbruch der Dunkelheit ¡Buenas noches!"
    }
   },
   "good-evening": { "text": "¡Buenas tardes!" },
   "good-night": {
    "text": "¡Buenas noches!",
-   "notes": { "de": "nach Einbruch der Dunkelheit auch die Begrüßung, nicht nur der Abschied" }
+   "notes": {
+    "es": "También al llegar de noche, no solo al despedirse.",
+    "de": "nach Einbruch der Dunkelheit auch die Begrüßung, nicht nur der Abschied"
+   }
   },
   "goodbye": { "text": "¡Adiós!" },
   "bye": { "text": "¡Hasta luego!", "variants": ["¡Chao!"] },
@@ -27,7 +31,10 @@
   "thank-you": { "text": "¡Muchas gracias!", "variants": ["¡Gracias!"] },
   "please": {
    "text": "¡Por favor!",
-   "notes": { "de": "nur die Bitte — als Antwort auf „gracias“ sagt man De nada." }
+   "notes": {
+    "es": "Solo para pedir · a gracias se responde De nada.",
+    "de": "nur die Bitte — als Antwort auf „gracias“ sagt man De nada."
+   }
   },
   "excuse-me": { "text": "¡Perdón!", "variants": ["¡Perdone!", "¡Perdona!", "¡Disculpe!", "¡Disculpa!"] },
   "no-problem": { "text": "¡No hay problema!" },

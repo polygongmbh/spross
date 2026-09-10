@@ -6,7 +6,7 @@
   "trader": {
    "text": "comerciante",
    "grammar": { "gender": "el" },
-   "notes": { "de": "epicen: el comerciante und la comerciante, nur der Artikel wechselt." }
+   "notes": { "es": "Igual en los dos géneros: el comerciante, la comerciante." }
   },
   "scales": { "text": "báscula", "grammar": { "gender": "la" }, "synonyms": ["balanza"] },
   "to-weigh": { "text": "pesar" },

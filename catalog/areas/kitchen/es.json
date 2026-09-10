@@ -13,6 +13,7 @@
    "variants": ["fogón", "placa", "estufa"],
    "grammar": { "gender": "la" },
    "notes": {
+    "es": "La cocina es el aparato y también el cuarto · encima: en el fuego.",
     "de": "la cocina ist auch der Raum (Küche); die einzelne Kochplatte heißt la placa, „auf dem Herd“ heißt en el fuego."
    }
   },
@@ -30,7 +31,10 @@
   "plate": { "text": "plato", "grammar": { "gender": "el" } },
   "to-cook": {
    "text": "cocinar",
-   "notes": { "de": "cocinar = Essen zubereiten; Wasser kochen heißt hervir." }
+   "notes": {
+    "es": "cocinar es preparar comida; el agua se hierve.",
+    "de": "cocinar = Essen zubereiten; Wasser kochen heißt hervir."
+   }
   },
   "to-bake": { "text": "hornear", "variants": ["cocer al horno", "hacer al horno"] },
   "to-cut": { "text": "cortar" },
@@ -60,7 +64,10 @@
   "the-pot-is-still-on-the-stove": {
    "text": "La olla todavía está en el fuego.",
    "variants": ["La olla sigue en el fuego.", "La olla todavía está al fuego."],
-   "notes": { "de": "auf dem Herd = en el fuego; en la cocina hieße „in der Küche“." }
+   "notes": {
+    "es": "en el fuego = encima de la cocina · en la cocina sería el cuarto.",
+    "de": "auf dem Herd = en el fuego; en la cocina hieße „in der Küche“."
+   }
   },
   "wash-the-dishes-in-the-sink": {
    "text": "¡Friega los platos en el fregadero!",

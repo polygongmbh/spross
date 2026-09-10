@@ -5,18 +5,27 @@
   "straight-ahead": {
    "text": "todo recto",
    "variants": ["recto", "derecho", "todo derecho"],
-   "notes": { "de": "In Spanien todo recto, in Lateinamerika (todo) derecho." }
+   "notes": {
+    "es": "En España todo recto; en América, (todo) derecho.",
+    "de": "In Spanien todo recto, in Lateinamerika (todo) derecho."
+   }
   },
   "to-turn": {
    "text": "girar",
    "synonyms": ["doblar"],
    "variants": ["torcer"],
-   "notes": { "de": "girar gilt überall; in Lateinamerika sagt man meist doblar: doble a la derecha." }
+   "notes": {
+    "es": "girar vale en todas partes; en América, doblar: doble a la derecha.",
+    "de": "girar gilt überall; in Lateinamerika sagt man meist doblar: doble a la derecha."
+   }
   },
   "corner": {
    "text": "esquina",
    "grammar": { "gender": "la" },
-   "notes": { "de": "la esquina ist die Straßenecke von außen; die Zimmerecke ist el rincón." }
+   "notes": {
+    "es": "La esquina es la de la calle; la del cuarto es el rincón.",
+    "de": "la esquina ist die Straßenecke von außen; die Zimmerecke ist el rincón."
+   }
   },
   "crossing": { "text": "cruce", "grammar": { "gender": "el" } },
   "to-cross": { "text": "cruzar", "synonyms": ["atravesar"] },
@@ -24,6 +33,7 @@
    "text": "dirección",
    "grammar": { "gender": "la", "plural": "direcciones" },
    "notes": {
+    "es": "La dirección es hacia dónde vas y también dónde vives.",
     "de": "la dirección ist die Richtung und zugleich die Anschrift; el sentido meint die Fahrtrichtung."
    }
   },
@@ -31,11 +41,14 @@
    "text": "plano",
    "variants": ["plano de la ciudad", "mapa"],
    "grammar": { "gender": "el" },
-   "notes": { "de": "el plano ist der Stadtplan, el mapa die Landkarte — mapa ist trotz -a maskulin." }
+   "notes": {
+    "es": "El plano es de la ciudad; el mapa, del país.",
+    "de": "el plano ist der Stadtplan, el mapa die Landkarte — mapa ist trotz -a maskulin."
+   }
   },
   "entrance": { "text": "entrada", "grammar": { "gender": "la" } },
   "exit": { "text": "salida", "grammar": { "gender": "la" } },
-  "to-follow": { "text": "seguir", "notes": { "de": "Stammwechsel e → i: sigo, sigues, sigue." } },
+  "to-follow": { "text": "seguir", "notes": { "es": "e → i: sigo, sigues, sigue." } },
   "way": { "text": "camino", "grammar": { "gender": "el" } },
   "north": { "text": "norte", "grammar": { "gender": "el" } },
   "south": { "text": "sur", "grammar": { "gender": "el" } },

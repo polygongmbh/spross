@@ -22,6 +22,7 @@
    "variants": ["compañero de trabajo"],
    "grammar": { "gender": "el" },
    "notes": {
+    "es": "El compañero de trabajo · colega en España es también amigo.",
     "de": "Der Arbeitskollege ist el compañero (de trabajo); colega heißt in Spanien umgangssprachlich auch „Kumpel“."
    }
   },
@@ -32,18 +33,22 @@
   "vacation": {
    "text": "vacaciones",
    "grammar": { "gender": "las", "plural": "only" },
-   "notes": { "de": "immer im Plural: las vacaciones." }
+   "notes": { "es": "Siempre en plural: las vacaciones." }
   },
   "company": {
    "text": "empresa",
    "variants": ["compañía"],
    "grammar": { "gender": "la" },
-   "notes": { "de": "Vorsicht: la firma ist vor allem die Unterschrift; „die Firma“ heißt la empresa." }
+   "notes": {
+    "es": "La empresa es donde trabajas; la firma es la del papel.",
+    "de": "Vorsicht: la firma ist vor allem die Unterschrift; „die Firma“ heißt la empresa."
+   }
   },
   "to-apply": {
    "text": "solicitar un puesto",
    "variants": ["solicitar un empleo", "presentarse a un puesto", "echar el currículum"],
    "notes": {
+    "es": "Hace falta el objeto: solicitar un puesto, solicitar una beca.",
     "de": "solicitar allein heißt beantragen; erst mit Objekt wird daraus „sich bewerben“: solicitar un puesto."
    }
   },
@@ -51,13 +56,17 @@
   "to-earn": {
    "text": "ganar",
    "variants": ["cobrar"],
-   "notes": { "de": "Nach dem Verdienst fragt man mit cobrar: ¿Cuánto cobras? = Wie viel verdienst du?" }
+   "notes": {
+    "es": "gano mil euros al mes · en preguntas suele usarse cobrar.",
+    "de": "Nach dem Verdienst fragt man mit cobrar: ¿Cuánto cobras? = Wie viel verdienst du?"
+   }
   },
   "to-start": { "text": "empezar", "synonyms": ["comenzar"] },
   "to-leave": {
    "text": "dejar",
    "synonyms": ["abandonar"],
    "notes": {
+    "es": "dejar el trabajo es irse de la empresa; de un sitio se sale.",
     "de": "dejar el trabajo = kündigen. Einen Ort verlässt man dagegen mit salir de oder irse de."
    }
   },
@@ -75,7 +84,10 @@
    "text": "horario de trabajo",
    "variants": ["jornada laboral", "horario laboral"],
    "grammar": { "gender": "el" },
-   "notes": { "de": "el horario ist der Zeitplan; die vertragliche Arbeitszeit heißt la jornada laboral." }
+   "notes": {
+    "es": "El horario de trabajo es el del día; en el contrato, la jornada laboral.",
+    "de": "el horario ist der Zeitplan; die vertragliche Arbeitszeit heißt la jornada laboral."
+   }
   },
   "full-time": {
    "text": "jornada completa",
@@ -94,6 +106,7 @@
    "variants": ["FP", "formación"],
    "grammar": { "gender": "la" },
    "notes": {
+    "es": "La formación profesional (FP) mezcla clases y prácticas en la empresa.",
     "de": "Die spanische Berufsausbildung ist die formación profesional (kurz FP) — schulisch organisiert, mit Praxisphasen im Betrieb."
    }
   },
@@ -102,6 +115,7 @@
    "variants": ["carta de despido"],
    "grammar": { "gender": "el" },
    "notes": {
+    "es": "El despido lo decide la empresa; irse uno mismo es la dimisión.",
     "de": "el despido ist die Kündigung durch den Arbeitgeber; kündigt man selbst, heißt das la dimisión bzw. la baja voluntaria."
    }
   },
