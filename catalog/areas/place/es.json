@@ -12,18 +12,12 @@
   "outdoors": { "text": "fuera", "variants": ["afuera"] },
   "at-home": { "text": "en casa" },
   "home": { "text": "a casa" },
-  "in": {
-   "text": "en",
-   "notes": {
-    "es": "en la caja, en la mesa: sirve para dentro y encima.",
-    "de": "en deckt in und auf ab: en la caja, en la mesa."
-   }
-  },
+  "in": { "text": "en", "notes": { "de": "en deckt in und auf ab: en la caja, en la mesa." } },
   "on": {
    "text": "sobre",
    "variants": ["encima de"],
    "notes": {
-    "es": "Normalmente basta en: el libro está en la mesa · sobre marca encima.",
+    "es": "sobre = encima · en sirve igual",
     "de": "im Alltag steht meist en: el libro está en la mesa · sobre betont obendrauf."
    }
   },

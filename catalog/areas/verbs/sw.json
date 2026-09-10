@@ -7,7 +7,7 @@
   "to-have": {
    "text": "kuwa na",
    "notes": {
-    "sw": "nina, una, ana, tuna, mna, wana · kukanusha: sina, huna",
+    "sw": "nina, una, ana, tuna, mna, wana · hapana → huna, hamna",
     "de": "Präsens ohne „kuwa“: nina, una, ana … · verneint: sina = ich habe nicht."
    }
   },
@@ -47,7 +47,7 @@
   "to-want": {
    "text": "kutaka",
    "notes": {
-    "sw": "nataka, unataka, anataka · kukanusha: sitaki, hataki",
+    "sw": "kutaka → sitaki, hutaki · kujua → sijui, hujui",
     "de": "Präsens: nataka, unataka, anataka · verneint: sitaki = ich will nicht."
    }
   },
@@ -55,14 +55,14 @@
    "text": "kupata",
    "synonyms": ["kukuta"],
    "notes": {
-    "sw": "nimepata kazi · kukuta = kuona kitu bila kukitafuta",
+    "sw": "nimepata jibu · nimepata msaada · kukuta = kuona kwa bahati",
     "de": "kupata ist das Alltagswort für „gefunden“ · kukuta = antreffen, auf etwas stoßen."
    }
   },
   "to-search": {
    "text": "kutafuta",
    "notes": {
-    "sw": "natafuta kazi · tafuta maji = nenda ukayalete",
+    "sw": "natafuta msaada · kutafuta pia = kwenda kupata",
     "de": "kutafuta = suchen und besorgen: natafuta kazi = ich suche Arbeit."
    }
   },
@@ -105,7 +105,7 @@
   "to-send": {
    "text": "kutuma",
    "notes": {
-    "sw": "kutuma ujumbe, kutuma pesa · kupeleka = kufikisha mwenyewe",
+    "sw": "kutuma ujumbe, kutuma pesa · kupokea = si kutuma",
     "de": "kutuma = schicken (Nachricht, Geld) · kupeleka ist hinbringen, liefern."
    }
   },

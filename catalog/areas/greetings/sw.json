@@ -7,12 +7,12 @@
   "to-be-called": { "text": "kuitwa" },
   "hello": {
    "text": "Hujambo!",
-   "notes": { "sw": "Hujambo? — Sijambo. · kwa wengi: Hamjambo?", "de": "Antwort: „Sijambo!“" }
+   "notes": { "sw": "Hujambo? — Sijambo. · Hamjambo? — Hatujambo.", "de": "Antwort: „Sijambo!“" }
   },
   "good-day": {
    "text": "Habari!",
    "notes": {
-    "sw": "Habari? — Nzuri. · habari = taarifa mpya",
+    "sw": "Habari? — Nzuri.",
     "de": "habari = Neuigkeit — die Allzweck-Begrüßung; Antwort: „Nzuri!“"
    }
   },
@@ -21,7 +21,7 @@
   "good-night": {
    "text": "Usiku mwema!",
    "notes": {
-    "sw": "Usiku mwema! ni kwa kuagana au kwenda kulala",
+    "sw": "Usiku mwema! kwa kuaga · Habari za usiku! kwa kufika",
     "de": "Wunsch zum Abschied und vor dem Schlafen — wer spät ankommt, grüßt mit „Habari za usiku!“"
    }
   },
@@ -29,15 +29,12 @@
   "welcome": {
    "text": "Karibu!",
    "variants": ["Karibuni!"],
-   "notes": {
-    "sw": "Hodi? — Karibu! · kwa wengi: Karibuni!",
-    "de": "Auch die Antwort auf „Hodi?“ und die Einladung „Komm herein!“ · an mehrere: Karibuni!"
-   }
+   "notes": { "de": "Auch die Antwort auf „Hodi?“ und die Einladung „Komm herein!“ · an mehrere: Karibuni!" }
   },
   "greetings-elder": {
    "text": "Shikamoo!",
    "notes": {
-    "sw": "Shikamoo! — Marahaba. · ni salamu kwa wakubwa",
+    "sw": "Shikamoo! — Marahaba.",
     "de": "Respektgruß an Ältere; die Antwort ist immer „Marahaba!“ · unter Gleichaltrigen bleibt es bei „Hujambo!“"
    }
   },
@@ -59,7 +56,7 @@
    "text": "Pole!",
    "variants": ["Pole sana!", "Poleni!"],
    "notes": {
-    "sw": "Pole kwa msiba · Pole na kazi · kwa wengi: Poleni!",
+    "sw": "Pole! ni huruma · Samahani! ni kuomba radhi",
     "de": "Mitgefühl bei jedem Missgeschick, auch beim Stolpern oder nach der Arbeit — nie eine Entschuldigung für eigene Schuld · an mehrere: Poleni!"
    }
   },

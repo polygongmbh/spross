@@ -5,7 +5,7 @@
   "to-go": {
    "text": "ir",
    "notes": {
-    "es": "ir vale a pie y en coche · a pie: ir andando.",
+    "es": "ir no dice cómo · a pie: ir andando",
     "de": "ir = gehen und fahren · zu Fuß betont: ir andando, caminar."
    }
   },
@@ -13,7 +13,7 @@
   "to-have": {
    "text": "tener",
    "notes": {
-    "es": "Lo que se tiene va con tener: tengo un coche · hay = existe.",
+    "es": "tener una casa · hay = existe: no hay problema",
     "de": "haber ist Hilfsverb (he comido) und hay = es gibt — Besitz immer mit tener."
    }
   },
@@ -31,7 +31,7 @@
   "to-like": {
    "text": "gustar",
    "notes": {
-    "es": "Al revés: me gusta el café · me gustan los libros.",
+    "es": "Al revés: me gusta la ciudad · me gustan las palabras",
     "de": "umgekehrt gebaut: Me gusta el café = Ich mag Kaffee · lieben ist amar oder querer."
    }
   },
@@ -53,7 +53,7 @@
   },
   "to-want": {
    "text": "querer",
-   "notes": { "es": "Quiero un café · te quiero.", "de": "querer heißt wollen und lieben: Te quiero." }
+   "notes": { "es": "Quiero ayuda · te quiero", "de": "querer heißt wollen und lieben: Te quiero." }
   },
   "to-find": { "text": "encontrar" },
   "to-search": { "text": "buscar", "notes": { "es": "Sin preposición: busco un hotel." } },
@@ -78,7 +78,7 @@
   "to-stand": {
    "text": "estar de pie",
    "notes": {
-    "es": "estar de pie (quieto) · ponerse de pie (levantarse).",
+    "es": "estar de pie · levantarse = pasar a estar de pie",
     "de": "Spanisch hat kein eigenes Verb dafür · ponerse de pie = sich hinstellen."
    }
   },
@@ -86,7 +86,7 @@
   "to-deliver": {
    "text": "repartir",
    "notes": {
-    "es": "repartir es llevar a cada casa; entregar es dar en mano.",
+    "es": "repartir = casa por casa · entregar = dar en mano",
     "de": "repartir = ausliefern, zustellen · entregar heißt abgeben und gehört aufs Amt."
    }
   },

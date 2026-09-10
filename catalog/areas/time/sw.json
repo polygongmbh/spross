@@ -7,7 +7,7 @@
    "synonyms": ["muda"],
    "grammar": { "plural": "nyakati" },
    "notes": {
-    "sw": "wakati = kipindi kwa jumla · Sina muda = sina nafasi sasa",
+    "sw": "wakati wa jioni · muda mrefu, muda kidogo",
     "de": "wakati = Zeit allgemein · muda = Zeitspanne: „Sina muda“ = Ich habe keine Zeit."
    }
   },
@@ -18,10 +18,7 @@
   "month": {
    "text": "mwezi",
    "grammar": { "plural": "miezi" },
-   "notes": {
-    "sw": "mwezi huu, miezi mitatu · mwezi pia ni ule wa angani",
-    "de": "mwezi ist auch der Mond."
-   }
+   "notes": { "sw": "mwezi huu, miezi mingi · mwezi pia ni ule wa angani", "de": "mwezi ist auch der Mond." }
   },
   "year": { "text": "mwaka", "grammar": { "plural": "miaka" } },
   "now": { "text": "sasa" },
@@ -34,7 +31,7 @@
    "text": "hivi karibuni",
    "synonyms": ["punde"],
    "notes": {
-    "sw": "atakuja hivi karibuni · alikuja hivi karibuni = siku hizi",
+    "sw": "atakuja hivi karibuni · alikuja hivi karibuni = jana, juzi",
     "de": "hivi karibuni heißt auch kürzlich — die Zeitform sagt, was gemeint ist."
    }
   },
@@ -77,7 +74,7 @@
   "a-while-ago": {
    "text": "kitambo",
    "notes": {
-    "sw": "kitambo kidogo = siku chache zilizopita · tangu kitambo = zamani",
+    "sw": "kitambo kidogo = siku chache · tangu kitambo = muda mrefu",
     "de": "kitambo kidogo = vor Kurzem · tangu kitambo = seit Langem."
    }
   },

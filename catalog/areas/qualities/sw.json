@@ -6,7 +6,7 @@
    "text": "-zuri",
    "variants": ["nzuri", "mzuri", "wazuri", "kizuri", "vizuri", "mazuri", "mizuri"],
    "notes": {
-    "sw": "mtu mzuri, kitu kizuri, nyumba nzuri: kiambishi hufuata ngeli",
+    "sw": "mji mzuri · kitanda kizuri · meza nzuri",
     "de": "Adjektive bekommen die Vorsilbe der Nomenklasse: mtu mzuri, kitu kizuri, nyumba nzuri. Bei einer Person heißt mzuri oft hübsch, nicht nur gut."
    }
   },
@@ -23,7 +23,7 @@
    "text": "-ingi",
    "variants": ["nyingi", "wengi", "mengi", "vingi", "mingi", "mwingi", "kingi"],
    "notes": {
-    "sw": "watu wengi, maji mengi, pesa nyingi",
+    "sw": "maji mengi · maneno mengi · lugha nyingi",
     "de": "Vorsilbe verschmilzt: watu wengi, maji mengi, pesa nyingi."
    }
   },
@@ -33,7 +33,7 @@
    "synonyms": ["kuukuu"],
    "variants": ["mzee", "wazee"],
    "notes": {
-    "sw": "mtu mzee, wazee wawili · kitu ni kuukuu: gari kuukuu",
+    "sw": "mzee, wazee · nyumba kuukuu, meza kuukuu",
     "de": "-zee bei Menschen: mtu mzee · kuukuu bei Sachen: gari kuukuu."
    }
   },
@@ -41,7 +41,7 @@
   "fast": {
    "text": "haraka",
    "notes": {
-    "sw": "fanya haraka · gari la haraka, safari ya haraka",
+    "sw": "fanya haraka · jibu la haraka · safari ya haraka",
     "de": "attributiv mit -a: gari la haraka."
    }
   },
@@ -95,7 +95,7 @@
    "text": "-kali",
    "variants": ["kali", "mkali", "wakali", "kikali", "vikali", "makali", "mikali"],
    "notes": {
-    "sw": "kisu kikali · mwalimu mkali · pilipili kali",
+    "sw": "kisu kikali · mwalimu mkali · sauti kali",
     "de": "gilt auch für Menschen (streng) und Essen (scharf): mwalimu mkali, pilipili kali."
    }
   },
@@ -111,7 +111,7 @@
    "text": "-ingine",
    "variants": ["nyingine", "mwingine", "wengine", "kingine", "vingine", "mengine", "mingine"],
    "notes": {
-    "sw": "mtu mwingine, kitu kingine · chai nyingine = chai zaidi",
+    "sw": "neno jingine · meza nyingine · maji mengine = maji zaidi",
     "de": "die Vorsilbe richtet sich nach der Nomenklasse: mtu mwingine, kitu kingine · dasselbe Wort heißt noch ein anderer: chai nyingine."
    }
   },
@@ -137,7 +137,7 @@
    "text": "kujaa",
    "variants": ["imejaa", "limejaa", "umejaa"],
    "notes": {
-    "sw": "basi limejaa · chumba kimejaa watu",
+    "sw": "basi limejaa · nyumba imejaa",
     "de": "Swahili sagt es als Verb: basi limejaa = der Bus ist voll."
    }
   },
@@ -161,7 +161,7 @@
   "similar": {
    "text": "kufanana",
    "notes": {
-    "sw": "vitabu hivi vinafanana · unafanana na baba yako",
+    "sw": "maneno yanafanana · unafanana na mama yako",
     "de": "Swahili sagt es als Verb: vitabu hivi vinafanana = diese Bücher sind ähnlich."
    }
   },
@@ -184,9 +184,7 @@
   "healthy": {
    "text": "-zima",
    "variants": ["mzima", "wazima", "nzima"],
-   "notes": {
-    "sw": "Mzima ni asiye mgonjwa; mwaka mzima ni mwaka wote. Kuzima taa ni kitenzi kingine kabisa."
-   }
+   "notes": { "sw": "mzima = mwenye afya · nyumba nzima = nyumba yote" }
   },
   "firm": {
    "text": "imara",

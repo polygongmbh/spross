@@ -6,7 +6,7 @@
    "text": "bueno",
    "variants": ["buena", "buen"],
    "notes": {
-    "es": "un buen amigo ante masculino · como adverbio, bien: todo bien.",
+    "es": "un buen día · el día es bueno · una buena casa · todo bien",
     "de": "vor männlichem Substantiv verkürzt: un buen amigo · als Adverb bien: todo bien."
    }
   },
@@ -14,7 +14,7 @@
    "text": "malo",
    "variants": ["mala", "mal"],
    "notes": {
-    "es": "un mal día ante masculino · como adverbio, mal.",
+    "es": "un mal día · el día es malo · una mala hora · todo mal",
     "de": "vor männlichem Substantiv verkürzt: un mal día · als Adverb mal."
    }
   },
@@ -46,7 +46,7 @@
    "synonyms": ["despacio"],
    "variants": ["lenta"],
    "notes": {
-    "es": "lento es adjetivo · despacio, adverbio: habla despacio.",
+    "es": "habla despacio · una respuesta lenta",
     "de": "lento = Adjektiv · despacio = Adverb: habla despacio."
    }
   },
@@ -80,7 +80,7 @@
    "text": "frío",
    "variants": ["fría"],
    "notes": {
-    "es": "tengo frío (persona) · el café está frío (cosa).",
+    "es": "¿Tienes frío? · el agua está fría",
     "de": "mit tener beim Menschen: tengo frío = mir ist kalt · mit estar bei Sachen: el café está frío."
    }
   },
@@ -125,6 +125,6 @@
   },
   "firm": { "text": "firme" },
   "liquid": { "text": "líquido", "variants": ["líquida"] },
-  "a-lot-of-water": { "text": "mucha agua", "notes": { "es": "el agua, pero mucha agua." } }
+  "a-lot-of-water": { "text": "mucha agua", "notes": { "es": "el agua · mucha agua · el agua fría" } }
  }
 }

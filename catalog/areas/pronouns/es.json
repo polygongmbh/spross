@@ -7,10 +7,7 @@
    "text": "tú",
    "notes": { "es": "tú es para la familia y los amigos; a los demás se les dice usted." }
   },
-  "you-formal": {
-   "text": "usted",
-   "notes": { "es": "usted es la forma de respeto: ¿Cómo se llama usted? El verbo va como con él y ella." }
-  },
+  "you-formal": { "text": "usted", "notes": { "es": "respeto: ¿Cómo se llama usted? · usted habla, tú hablas" } },
   "he": { "text": "él", "variants": ["ella"] },
   "we": { "text": "nosotros", "variants": ["nosotras"] },
   "you-plural": { "text": "ustedes", "variants": ["vosotros", "vosotras"] },

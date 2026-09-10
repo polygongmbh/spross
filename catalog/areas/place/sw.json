@@ -14,34 +14,28 @@
   "in": {
    "text": "katika",
    "notes": {
-    "sw": "katika hutangulia jina: katika mji huu, katika kitabu",
+    "sw": "katika sentensi hii · katika lugha yako",
     "de": "im Alltag hängt man stattdessen -ni an: nyumbani, mezani · katika steht vor Namen und Demonstrativa: katika mji huu."
    }
   },
-  "on": {
-   "text": "juu ya",
-   "notes": {
-    "sw": "juu ya meza, juu ya kitanda · juu peke yake = si chini",
-    "de": "juu (oben) plus ya ergibt die Präposition: juu ya meza."
-   }
-  },
+  "on": { "text": "juu ya", "notes": { "de": "juu (oben) plus ya ergibt die Präposition: juu ya meza." } },
   "under": { "text": "chini ya" },
   "behind": { "text": "nyuma ya" },
   "between": { "text": "kati ya" },
   "near": {
    "text": "karibu",
    "notes": {
-    "sw": "karibu na nyumba, karibu na hapa · Karibu! pia = salamu",
+    "sw": "karibu na hapa · karibu na pale · Karibu! pia ni salamu",
     "de": "karibu heißt beim Empfang auch willkommen · als Präposition karibu na: karibu na nyumba."
    }
   },
   "far": { "text": "mbali" },
-  "place": { "text": "mahali", "variants": ["pahali", "mahala", "pahala"] },
+  "place": { "text": "mahali", "synonyms": ["pahali"], "variants": ["mahala", "pahala"] },
   "country": { "text": "nchi", "grammar": { "plural": "=" } },
   "in-front": {
    "text": "mbele",
    "notes": {
-    "sw": "mbele ya nyumba, mbele ya gari · nenda mbele = songa",
+    "sw": "mbele ya nyumba · nyuma ya nyumba",
     "de": "mit ya als Präposition: mbele ya nyumba = vor dem Haus."
    }
   },

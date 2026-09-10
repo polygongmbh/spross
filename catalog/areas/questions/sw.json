@@ -8,13 +8,16 @@
   "this": {
    "text": "hii",
    "notes": {
-    "sw": "nyumba hii · kiti hiki, mtu huyu: kila ngeli na kionyeshi chake",
+    "sw": "sauti hii · msaada huu",
     "de": "Klasse-9/10-Form (Standardform für unbestimmte Dinge) — bei anderen Nomenklassen ändert sich das Demonstrativ, z. B. kiti → hiki."
    }
   },
   "that": {
    "text": "hiyo",
-   "notes": { "sw": "hiyo ni ile tuliyoitaja · kitu hicho, mtu huyo", "de": "Klasse-9/10-Form, siehe hii." }
+   "notes": {
+    "sw": "sauti hii → sauti hiyo · msaada huu → msaada huo",
+    "de": "Klasse-9/10-Form, siehe hii."
+   }
   },
   "when": { "text": "lini" },
   "why": { "text": "kwa nini", "synonyms": ["mbona"] },
@@ -22,7 +25,7 @@
   "which": {
    "text": "gani",
    "notes": {
-    "sw": "chai gani? gari gani? namna gani?",
+    "sw": "neno gani? habari gani? shida gani?",
     "de": "gani steht hinter dem Nomen: chai gani? — welcher Tee?"
    }
   },
@@ -30,7 +33,7 @@
    "text": "-ngapi",
    "variants": ["ngapi", "wangapi", "vingapi", "mangapi", "mingapi"],
    "notes": {
-    "sw": "watu wangapi? vitabu vingapi? shilingi ngapi?",
+    "sw": "maneno mangapi? shida ngapi?",
     "de": "nimmt die Klassenvorsilbe: watu wangapi? vitabu vingapi?"
    }
   },
