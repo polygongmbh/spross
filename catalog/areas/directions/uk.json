@@ -7,7 +7,10 @@
   "corner": {
    "text": "ріг",
    "grammar": { "plural": "роги" },
-   "notes": { "de": "ріг ist die Straßenecke (на розі) und zugleich das Horn." }
+   "notes": {
+    "uk": "на розі вулиці · ріг — це також ріг тварини.",
+    "de": "ріг ist die Straßenecke (на розі) und zugleich das Horn."
+   }
   },
   "crossing": { "text": "перехрестя", "grammar": { "plural": "=" } },
   "to-cross": { "text": "переходити", "variants": ["перейти"] },
@@ -18,7 +21,10 @@
   "to-follow": {
    "text": "іти за",
    "variants": ["йти за", "слідувати"],
-   "notes": { "de": "іти за steht mit dem Instrumental: іти за мною." }
+   "notes": {
+    "uk": "іти за мною, за татом, за нею.",
+    "de": "іти за steht mit dem Instrumental: іти за мною."
+   }
   },
   "way": { "text": "дорога" },
   "north": { "text": "північ" },

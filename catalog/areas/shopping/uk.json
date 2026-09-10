@@ -11,7 +11,10 @@
   "offer": {
    "text": "знижка",
    "variants": ["акція"],
-   "notes": { "de": "знижка ist der Preisnachlass; акція heißt im Handel die Aktion, sonst die Aktie." }
+   "notes": {
+    "uk": "знижка = менша ціна · акція = тимчасова пропозиція.",
+    "de": "знижка ist der Preisnachlass; акція heißt im Handel die Aktion, sonst die Aktie."
+   }
   },
   "size": { "text": "розмір" },
   "to-shop": { "text": "ходити за покупками" },

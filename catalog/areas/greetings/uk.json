@@ -5,14 +5,26 @@
   "to-thank": { "text": "дякувати" },
   "name": { "text": "ім'я", "grammar": { "plural": "імена" } },
   "to-be-called": { "text": "називатися" },
-  "hello": { "text": "Привіт!", "notes": { "de": "nur informell unter Bekannten" } },
-  "good-day": { "text": "Добрий день!", "notes": { "de": "förmlich — im Amt oder beim Arzt" } },
+  "hello": {
+   "text": "Привіт!",
+   "notes": { "uk": "лише до друзів і рідних.", "de": "nur informell unter Bekannten" }
+  },
+  "good-day": {
+   "text": "Добрий день!",
+   "notes": {
+    "uk": "ввічливо — в установі, у лікаря, до незнайомих.",
+    "de": "förmlich — im Amt oder beim Arzt"
+   }
+  },
   "good-morning": { "text": "Доброго ранку!", "variants": ["Добрий ранок!"] },
   "good-evening": { "text": "Добрий вечір!", "variants": ["Доброго вечора!"] },
   "good-night": {
    "text": "На добраніч!",
    "variants": ["Добраніч!"],
-   "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Добрий вечір!“" }
+   "notes": {
+    "uk": "лише на прощання і перед сном · прийшов увечері — Добрий вечір!",
+    "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Добрий вечір!“"
+   }
   },
   "goodbye": { "text": "До побачення!" },
   "bye": { "text": "Бувай!" },

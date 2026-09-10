@@ -20,11 +20,17 @@
   "all": { "text": "all" },
   "some": {
    "text": "some",
-   "notes": { "de": "in Fragen und Verneinungen steht any statt some: Do you have any water?" }
+   "notes": {
+    "en": "some in statements, any in questions: Do you have any water?",
+    "de": "in Fragen und Verneinungen steht any statt some: Do you have any water?"
+   }
   },
   "every": {
    "text": "every",
-   "notes": { "de": "every und each heißen beide jeder; each betont den einzelnen: each of us." }
+   "notes": {
+    "en": "every child, every day — every takes a singular noun.",
+    "de": "every und each heißen beide jeder; each betont den einzelnen: each of us."
+   }
   },
   "a-little": { "text": "a little", "synonyms": ["a bit"] },
   "few": { "text": "few" },

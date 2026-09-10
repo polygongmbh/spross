@@ -12,6 +12,7 @@
    "text": "Wartenummer",
    "grammar": { "gender": "die", "plural": "-n" },
    "notes": {
+    "de": "Man zieht eine Nummer: Ziehen Sie bitte eine Wartenummer.",
     "en": "A number is DRAWN here: eine Nummer ziehen.",
     "es": "Aquí se SACA un número: eine Nummer ziehen."
    }

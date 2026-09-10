@@ -8,11 +8,7 @@
   "hour": { "text": "година" },
   "minute": { "text": "хвилина" },
   "month": { "text": "місяць" },
-  "year": {
-   "text": "рік",
-   "grammar": { "plural": "роки" },
-   "notes": { "de": "nach Zahlen: 2 роки, aber 5 років." }
-  },
+  "year": { "text": "рік", "grammar": { "plural": "роки" }, "notes": { "uk": "2 роки, 5 років." } },
   "now": { "text": "зараз" },
   "today": { "text": "сьогодні" },
   "tomorrow": { "text": "завтра" },
@@ -45,6 +41,7 @@
   "nine-am-sharp": {
    "text": "рівно о дев'ятій ранку",
    "notes": {
+    "uk": "Котра? — дев'ята · Коли? — о дев'ятій.",
     "de": "„о“ + Lokativ sagt, WANN etwas passiert; die bloße Uhrzeit steht im Nominativ (дев'ята ранку)."
    }
   },

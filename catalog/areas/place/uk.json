@@ -15,7 +15,10 @@
   "in": {
    "text": "в",
    "variants": ["у"],
-   "notes": { "de": "в und у wechseln nach dem Klang: у школі, в Одесі." }
+   "notes": {
+    "uk": "у школі, в Одесі — в і у міняються за звучанням.",
+    "de": "в und у wechseln nach dem Klang: у школі, в Одесі."
+   }
   },
   "on": { "text": "на" },
   "under": { "text": "під" },
@@ -36,7 +39,10 @@
   "at-school": { "text": "у школі" },
   "go-to-school": {
    "text": "йти до школи",
-   "notes": { "de": "wohin mit до und Genitiv: до школи · wo mit у und Lokativ: у школі." }
+   "notes": {
+    "uk": "Куди? — до школи · Де? — у школі.",
+    "de": "wohin mit до und Genitiv: до школи · wo mit у und Lokativ: у школі."
+   }
   },
   "are-you-going-home-already": { "text": "Ви вже йдете додому?", "variants": ["Ти вже йдеш додому?"] }
  }

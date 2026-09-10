@@ -18,7 +18,10 @@
   "difficult": {
    "text": "складний",
    "variants": ["важкий", "складно"],
-   "notes": { "de": "wie im Deutschen deckt важкий auch schwierig ab." }
+   "notes": {
+    "uk": "складний = непростий · важкий — і про вагу, і про труднощі.",
+    "de": "wie im Deutschen deckt важкий auch schwierig ab."
+   }
   },
   "easy": { "text": "простий", "variants": ["просто", "легкий", "легко"] },
   "problem": { "text": "проблема" },

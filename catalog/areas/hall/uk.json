@@ -35,12 +35,18 @@
    "text": "будинок",
    "synonyms": ["дім"],
    "grammar": { "plural": "будинки" },
-   "notes": { "de": "будинок = das Gebäude · дім = Heim, Zuhause." }
+   "notes": {
+    "uk": "будинок = будівля · дім = рідна домівка.",
+    "de": "будинок = das Gebäude · дім = Heim, Zuhause."
+   }
   },
   "to-live": {
    "text": "жити",
    "synonyms": ["мешкати"],
-   "notes": { "de": "жити = leben und wohnen (Alltag) · мешкати = wohnen, amtlich." }
+   "notes": {
+    "uk": "жити в Києві, жити з мамою · мешкати — у документах.",
+    "de": "жити = leben und wohnen (Alltag) · мешкати = wohnen, amtlich."
+   }
   },
   "do-you-have-the-keys": { "text": "У тебе є ключі?" },
   "ill-be-right-back": { "text": "Я скоро повернуся!" },

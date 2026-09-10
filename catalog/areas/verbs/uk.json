@@ -2,8 +2,15 @@
  "title": "Основні дієслова",
  "subtitle": "Те, що потрібне всюди.",
  "words": {
-  "to-go": { "text": "йти", "variants": ["іти"], "notes": { "de": "zu Fuß — mit Fahrzeug: їхати." } },
-  "to-come": { "text": "приходити", "notes": { "de": "zu Fuß — mit Fahrzeug: приїжджати." } },
+  "to-go": {
+   "text": "йти",
+   "variants": ["іти"],
+   "notes": { "uk": "йти пішки · їхати транспортом.", "de": "zu Fuß — mit Fahrzeug: їхати." }
+  },
+  "to-come": {
+   "text": "приходити",
+   "notes": { "uk": "приходити пішки · приїжджати транспортом.", "de": "zu Fuß — mit Fahrzeug: приїжджати." }
+  },
   "to-have": { "text": "мати" },
   "to-give": { "text": "давати" },
   "to-take": { "text": "брати" },
@@ -11,7 +18,10 @@
   "to-make": { "text": "робити" },
   "to-like": {
    "text": "любити",
-   "notes": { "de": "deckt mögen und lieben ab · „mir gefällt“ ist мені подобається." }
+   "notes": {
+    "uk": "люблю каву, люблю тебе · мені подобається — слабше.",
+    "de": "deckt mögen und lieben ab · „mir gefällt“ ist мені подобається."
+   }
   },
   "to-can": { "text": "могти" },
   "to-think": { "text": "думати" },
@@ -21,13 +31,22 @@
   "to-find": { "text": "знаходити" },
   "to-search": { "text": "шукати" },
   "to-receive": { "text": "отримувати" },
-  "to-look": { "text": "дивитися", "notes": { "de": "дивитися = hinschauen, zusehen: дивитися телевізор." } },
+  "to-look": {
+   "text": "дивитися",
+   "notes": {
+    "uk": "дивитися телевізор, дивитися у вікно.",
+    "de": "дивитися = hinschauen, zusehen: дивитися телевізор."
+   }
+  },
   "to-open": { "text": "відкривати" },
   "to-close": { "text": "закривати" },
   "to-stop": {
    "text": "припиняти",
    "synonyms": ["переставати"],
-   "notes": { "de": "припиняти steht vor dem Substantiv, переставати vor dem Infinitiv: перестань курити." }
+   "notes": {
+    "uk": "припинити розмову · перестань курити.",
+    "de": "припиняти steht vor dem Substantiv, переставати vor dem Infinitiv: перестань курити."
+   }
   },
   "to-stand": { "text": "стояти" },
   "to-send": { "text": "надсилати", "variants": ["посилати", "відправляти"] },

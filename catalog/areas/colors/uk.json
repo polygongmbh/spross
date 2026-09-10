@@ -9,7 +9,10 @@
   "blue": {
    "text": "синій",
    "variants": ["блакитний"],
-   "notes": { "de": "синій = dunkelblau, блакитний = hellblau — das Ukrainische trennt beide." }
+   "notes": {
+    "uk": "синій = темний, блакитний = світлий: небо блакитне.",
+    "de": "синій = dunkelblau, блакитний = hellblau — das Ukrainische trennt beide."
+   }
   },
   "green": { "text": "зелений" },
   "yellow": { "text": "жовтий" },

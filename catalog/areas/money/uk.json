@@ -7,14 +7,23 @@
   "expensive": { "text": "дорогий" },
   "cheap": { "text": "дешевий" },
   "to-sell": { "text": "продавати", "variants": ["продати"] },
-  "cash": { "text": "готівка", "notes": { "de": "bar zahlen heißt платити готівкою." } },
+  "cash": {
+   "text": "готівка",
+   "notes": { "uk": "платити готівкою, зняти готівку.", "de": "bar zahlen heißt платити готівкою." }
+  },
   "bank-card": {
    "text": "банківська картка",
    "variants": ["картка"],
    "grammar": { "plural": "банківські картки" }
   },
   "coin": { "text": "монета" },
-  "change-money": { "text": "решта", "notes": { "de": "решта ist das Wechselgeld und sonst der Rest." } },
+  "change-money": {
+   "text": "решта",
+   "notes": {
+    "uk": "решта з покупки · решта — це також усе інше.",
+    "de": "решта ist das Wechselgeld und sonst der Rest."
+   }
+  },
   "money": { "text": "гроші", "grammar": { "plural": "only" } },
   "to-buy": { "text": "купувати" },
   "to-pay": { "text": "платити" },

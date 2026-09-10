@@ -18,6 +18,7 @@
    "text": "lightweight",
    "variants": ["light"],
    "notes": {
+    "en": "lightweight is always about weight · light also means not dark.",
     "de": "Alltagswort ist light, das aber auch Licht heißt; lightweight meint immer das Gewicht."
    }
   },
@@ -31,10 +32,19 @@
   "available": { "text": "available" },
   "other": {
    "text": "other",
-   "notes": { "de": "another ist an + other und heißt noch ein anderer: another tea." }
+   "notes": {
+    "en": "another = an + other: another tea, another day.",
+    "de": "another ist an + other und heißt noch ein anderer: another tea."
+   }
   },
   "hot": { "text": "hot" },
-  "cold-adj": { "text": "cold", "notes": { "de": "cold heißt auch die Erkältung: I have a cold." } },
+  "cold-adj": {
+   "text": "cold",
+   "notes": {
+    "en": "cold is also the illness: I have a cold.",
+    "de": "cold heißt auch die Erkältung: I have a cold."
+   }
+  },
   "empty": { "text": "empty" },
   "full": { "text": "full" },
   "dirty": { "text": "dirty" },
@@ -46,7 +56,13 @@
   "similar": { "text": "similar" },
   "opposite": { "text": "opposite" },
   "to-compare": { "text": "to compare" },
-  "pretty": { "text": "pretty", "notes": { "de": "pretty heißt auch ziemlich: pretty good." } },
+  "pretty": {
+   "text": "pretty",
+   "notes": {
+    "en": "pretty also means quite: pretty good, pretty cold.",
+    "de": "pretty heißt auch ziemlich: pretty good."
+   }
+  },
   "beautiful": { "text": "beautiful" },
   "positive": { "text": "positive" },
   "negative": { "text": "negative" },

@@ -11,7 +11,10 @@
   "good-evening": { "text": "Good evening!" },
   "good-night": {
    "text": "Good night!",
-   "notes": { "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Good evening!“" }
+   "notes": {
+    "en": "Only when leaving or going to bed — arriving, say Good evening!",
+    "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Good evening!“"
+   }
   },
   "goodbye": { "text": "Goodbye!" },
   "bye": { "text": "Bye!" },
