@@ -18,7 +18,7 @@
    "text": "lightweight",
    "variants": ["light"],
    "notes": {
-    "en": "lightweight is always about weight · light also means not dark.",
+    "en": "lightweight = not heavy · light = not dark.",
     "de": "Alltagswort ist light, das aber auch Licht heißt; lightweight meint immer das Gewicht."
    }
   },
@@ -41,7 +41,7 @@
   "cold-adj": {
    "text": "cold",
    "notes": {
-    "en": "cold is also the illness: I have a cold.",
+    "en": "cold is the illness too: I have a cold.",
     "de": "cold heißt auch die Erkältung: I have a cold."
    }
   },
@@ -59,7 +59,7 @@
   "pretty": {
    "text": "pretty",
    "notes": {
-    "en": "pretty also means quite: pretty good, pretty cold.",
+    "en": "pretty good, pretty cold — here pretty means quite.",
     "de": "pretty heißt auch ziemlich: pretty good."
    }
   },

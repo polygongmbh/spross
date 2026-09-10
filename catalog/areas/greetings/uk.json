@@ -7,7 +7,7 @@
   "to-be-called": { "text": "називатися" },
   "hello": {
    "text": "Привіт!",
-   "notes": { "uk": "лише до друзів і рідних.", "de": "nur informell unter Bekannten" }
+   "notes": { "uk": "Привіт! — до друзів і рідних.", "de": "nur informell unter Bekannten" }
   },
   "good-day": {
    "text": "Добрий день!",
@@ -22,7 +22,7 @@
    "text": "На добраніч!",
    "variants": ["Добраніч!"],
    "notes": {
-    "uk": "лише на прощання і перед сном · прийшов увечері — Добрий вечір!",
+    "uk": "на прощання і на ніч · прийшов увечері — Добрий вечір!",
     "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Добрий вечір!“"
    }
   },

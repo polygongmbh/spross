@@ -15,14 +15,14 @@
   "if": {
    "text": "se",
    "notes": {
-    "eo": "se pri kondiĉo · kiam pri tempo · ĉu pri nerekta demando.",
+    "eo": "Se vi povas, venu! · Kiam vi venas? · Ĉu vi venas?",
     "de": "se = falls · das zeitliche „wenn“ ist kiam · das indirekte „ob“ ist ĉu."
    }
   },
   "because": { "text": "ĉar" },
   "so-that": {
    "text": "por ke",
-   "notes": { "eo": "post por ke la verbo finiĝas per -u: por ke vi komprenu." }
+   "notes": { "eo": "por ke vi komprenu · por ke li pardonu — ĉiam -u post por ke." }
   },
   "before": {
    "text": "antaŭ",

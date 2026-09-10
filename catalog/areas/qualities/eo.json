@@ -6,14 +6,14 @@
    "text": "bona",
    "variants": ["bone"],
    "notes": {
-    "eo": "-a por adjektivo, -e por adverbo: bona tago · Ĉio bone.",
+    "eo": "bona tago · Ĉio bone! · bona homo · Li parolas bone.",
     "de": "Adjektive enden auf -a, Adverbien auf -e: bona tago · Ĉio bone."
    }
   },
   "bad": {
    "text": "malbona",
    "variants": ["malbone"],
-   "notes": { "eo": "bona → malbona, granda → malgranda: mal- donas la malon." }
+   "notes": { "eo": "bona → malbona · proksima → malproksima · fermi → malfermi." }
   },
   "big": { "text": "granda" },
   "small": { "text": "malgranda" },
@@ -21,7 +21,7 @@
    "text": "multe",
    "variants": ["multa", "multaj"],
    "notes": {
-    "eo": "antaŭ substantivo venas da: multe da akvo · kiel adjektivo multa.",
+    "eo": "multe da akvo · multa akvo · multaj vortoj.",
     "de": "vor dem Substantiv mit da: multe da akvo · als Adjektiv multa."
    }
   },
@@ -30,7 +30,7 @@
    "text": "maljuna",
    "synonyms": ["malnova"],
    "notes": {
-    "eo": "maljuna viro (vivanta) · malnova aŭto (aĵo).",
+    "eo": "maljuna viro (vivanta) · malnova tablo (aĵo).",
     "de": "maljuna bei Lebewesen: maljuna viro · malnova bei Sachen: malnova aŭto."
    }
   },
@@ -67,7 +67,7 @@
    }
   },
   "other": { "text": "alia" },
-  "hot": { "text": "varmega", "notes": { "eo": "-eg- fortigas: varma → varmega." } },
+  "hot": { "text": "varmega", "notes": { "eo": "granda → grandega · bona → bonega: -eg- fortigas." } },
   "cold-adj": { "text": "malvarma", "variants": ["malvarme"] },
   "empty": { "text": "malplena" },
   "full": { "text": "plena" },

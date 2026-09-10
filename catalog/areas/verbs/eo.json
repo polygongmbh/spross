@@ -5,7 +5,7 @@
   "to-go": {
    "text": "iri",
    "notes": {
-    "eo": "iri per la piedoj · veturi per aŭto aŭ trajno.",
+    "eo": "iri per la piedoj · veturi per trajno.",
     "de": "iri ist gehen allgemein · mit einem Fahrzeug: veturi."
    }
   },
@@ -25,7 +25,7 @@
   "to-can": {
    "text": "povi",
    "notes": {
-    "eo": "povi fari ion · scipovi lingvon: Mi scipovas Esperanton.",
+    "eo": "povi: Mi povas iri · scipovi: Mi scipovas la lingvon.",
     "de": "povi = imstande sein · eine Sprache können ist scipovi."
    }
   },
@@ -60,7 +60,7 @@
   "to-stop": {
    "text": "ĉesi",
    "notes": {
-    "eo": "post ĉesi venas infinitivo: ĉesi fumi.",
+    "eo": "ĉesi paroli · ĉesi lerni · ĉesi atendi.",
     "de": "ĉesi steht vor dem Infinitiv: ĉesi fumi = aufhören zu rauchen."
    }
   },

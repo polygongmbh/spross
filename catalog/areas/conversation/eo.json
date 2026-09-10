@@ -16,7 +16,7 @@
   "to-ask": {
    "text": "demandi",
    "notes": {
-    "eo": "demandi = fari demandon · peti = peti ion de iu.",
+    "eo": "demandi: kion vi diris? · peti: bonvolu ripeti!",
     "de": "demandi = eine Frage stellen · um etwas bitten ist peti."
    }
   },
@@ -28,7 +28,7 @@
   "to-know": {
    "text": "scii",
    "notes": {
-    "eo": "scii faktojn · koni homojn kaj lokojn: Mi konas ŝin.",
+    "eo": "scii faktojn · koni homojn: Mi konas ŝin.",
     "de": "wissen = scii · kennen (Personen, Orte) = koni."
    }
   },
