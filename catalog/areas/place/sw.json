@@ -36,7 +36,7 @@
    }
   },
   "far": { "text": "mbali" },
-  "place": { "text": "mahali", "grammar": { "plural": "=" } },
+  "place": { "text": "mahali", "variants": ["pahali", "mahala", "pahala"] },
   "country": { "text": "nchi", "grammar": { "plural": "=" } },
   "in-front": {
    "text": "mbele",
