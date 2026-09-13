@@ -146,7 +146,8 @@ extension AppModel {
         do {
             try await store.saveNow(state: fresh, target: fresh.joinStamp.target)
             await store.saveWidgetSnapshot(state: fresh, nowEpochMillis: Date().epochMillis,
-                                           otherLanguagesDailyStats: otherLanguagesDailyStats)
+                                           tzId: currentTzId(),
+                                           otherLanguagesAnswerDays: otherLanguagesAnswerDays)
             // why: the wiped box is written but the tile keeps drawing the old words
             // until its timeline is rebuilt.
             WidgetCenter.shared.reloadTimelines(ofKind: "SprossWordWidget")
@@ -287,8 +288,8 @@ extension AppModel {
     /// The strip's own fortnight, taken with the rest of the standing — `activity` holds it.
     func composedActivityWindow(now: Int64, tzId: String) -> [ActivityDay] {
         guard let box else { return [] }
-        let combined = mergeDailyStats(dailyStatsByLanguage: otherLanguagesDailyStats + [box.dailyStats])
-        return streakWindow(dailyStats: combined, days: 14, nowEpochMillis: now, tzId: tzId)
+        return BoxEngine.shared.activityWindow(state: box, days: 14, nowEpochMillis: now, tzId: tzId,
+                                               otherLanguagesAnswerDays: otherLanguagesAnswerDays)
     }
 }
 

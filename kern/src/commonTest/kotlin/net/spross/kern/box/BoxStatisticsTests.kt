@@ -11,14 +11,19 @@ import net.spross.kern.model.Rating
 class BoxStatisticsTests {
     private val now = Box.day1
 
-    private fun statsState(reviewDays: List<Int>): BoxState {
-        val state = Box.state(listOf(Box.word(1)))
-        return state.copy(
-            dailyStats = reviewDays.associate {
-                "2026-07-" + it.toString().padStart(2, '0') to DayStats(reviews = 5, introduced = 0, activeCount = 1)
-            },
-        )
-    }
+    /** A box whose logs carry five answers on each named July day. */
+    private fun statsState(reviewDays: List<Int>): BoxState =
+        reviewDays.fold(Box.state(listOf(Box.word(1)))) { state, day ->
+            Box.inject(
+                state,
+                Box.sched(
+                    "d$day",
+                    dueMillis = Box.millis(2026, 7, day),
+                    lastReviewMillis = Box.millis(2026, 7, day),
+                    logCount = 5,
+                ),
+            )
+        }
 
     @Test
     fun streakSingleGapForgiven() {
@@ -140,12 +145,12 @@ class BoxStatisticsTests {
         // Today's reviews happened in a sibling target-language box, so this box alone
         // still owes the day while the combined commitment is already earned.
         val thisLanguage = statsState(listOf(1, 2))
-        val sibling = mapOf("2026-07-03" to DayStats(reviews = 5))
+        val sibling = mapOf("2026-07-03" to 5)
         val today = Box.millis(2026, 7, 3)
 
         assertEquals(StreakHealth.Bridgeable, BoxEngine.statistics(thisLanguage, today, Box.TZ).streakHealth)
 
-        val combined = BoxEngine.statistics(thisLanguage, today, Box.TZ, otherLanguagesDailyStats = listOf(sibling))
+        val combined = BoxEngine.statistics(thisLanguage, today, Box.TZ, otherLanguagesAnswerDays = sibling)
         assertEquals(3, combined.streak)
         assertEquals(StreakHealth.Earned, combined.streakHealth)
     }
@@ -155,8 +160,7 @@ class BoxStatisticsTests {
         // This language's own box only has day 4; the streak-earning activity on
         // 1, 2 and 3 happened in sibling target-language boxes.
         val thisLanguage = statsState(listOf(4))
-        val sibling1 = mapOf("2026-07-01" to DayStats(reviews = 5))
-        val sibling2 = mapOf("2026-07-02" to DayStats(reviews = 5), "2026-07-03" to DayStats(reviews = 5))
+        val siblings = mapOf("2026-07-01" to 5, "2026-07-02" to 5, "2026-07-03" to 5)
 
         val alone = BoxEngine.statistics(thisLanguage, Box.millis(2026, 7, 4), Box.TZ)
         assertEquals(1, alone.streak)
@@ -165,7 +169,7 @@ class BoxStatisticsTests {
             thisLanguage,
             Box.millis(2026, 7, 4),
             Box.TZ,
-            otherLanguagesDailyStats = listOf(sibling1, sibling2),
+            otherLanguagesAnswerDays = siblings,
         )
         assertEquals(4, combined.streak)
         assertEquals(4, combined.longestStreak)
@@ -175,30 +179,19 @@ class BoxStatisticsTests {
     fun streakMergeSumsSameDayReviewsAcrossLanguages() {
         // Day 1 alone in either language would not be enough on its own; combined
         // reviews on the same calendar day still count as one earned day.
-        val thisLanguage = statsState(emptyList()).copy(
-            dailyStats = mapOf("2026-07-01" to DayStats(reviews = 2)),
+        val thisLanguage = Box.inject(
+            statsState(emptyList()),
+            Box.sched("z1", dueMillis = Box.day1, lastReviewMillis = Box.day1, logCount = 2),
         )
-        val sibling = mapOf("2026-07-01" to DayStats(reviews = 3))
+        val sibling = mapOf("2026-07-01" to 3)
 
         val stats = BoxEngine.statistics(
             thisLanguage,
             Box.millis(2026, 7, 1),
             Box.TZ,
-            otherLanguagesDailyStats = listOf(sibling),
+            otherLanguagesAnswerDays = sibling,
         )
         assertEquals(1, stats.streak)
-    }
-
-    @Test
-    fun mergeDailyStatsSumsEveryBucketPerDay() {
-        val a = mapOf("2026-07-01" to DayStats(reviews = 2, introduced = 1, consolidated = 1, activeCount = 3))
-        val b = mapOf(
-            "2026-07-01" to DayStats(reviews = 5, introduced = 0, consolidated = 2, activeCount = 4),
-            "2026-07-02" to DayStats(reviews = 1),
-        )
-        val merged = mergeDailyStats(listOf(a, b))
-        assertEquals(DayStats(reviews = 7, introduced = 1, consolidated = 3, activeCount = 7), merged["2026-07-01"])
-        assertEquals(DayStats(reviews = 1), merged["2026-07-02"])
     }
 
     @Test

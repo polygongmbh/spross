@@ -106,12 +106,13 @@ actor BoxStore {
     func saveWidgetSnapshot(
         state: BoxState,
         nowEpochMillis: Int64,
-        otherLanguagesDailyStats: [[String: DayStats]],
+        tzId: String,
+        otherLanguagesAnswerDays: [String: KotlinInt],
     ) {
         let json = WidgetSnapshotBuilder.shared.build(
-            state: state, nowEpochMillis: nowEpochMillis,
+            state: state, nowEpochMillis: nowEpochMillis, tzId: tzId,
             exposureLimit: WidgetSnapshotBuilder.shared.DEFAULT_EXPOSURE_LIMIT,
-            otherLanguagesDailyStats: otherLanguagesDailyStats)
+            otherLanguagesAnswerDays: otherLanguagesAnswerDays)
         try? FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
         try? Data(json.utf8).write(to: directory.appendingPathComponent("widget-snapshot.json"),
                                    options: .atomic)

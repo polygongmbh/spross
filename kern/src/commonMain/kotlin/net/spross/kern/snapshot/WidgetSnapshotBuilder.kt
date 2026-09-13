@@ -7,15 +7,12 @@ import net.spross.kern.box.BoxState
 import net.spross.kern.box.Inventory
 import net.spross.kern.box.Statistics
 import net.spross.kern.box.StreakHealth
-import net.spross.kern.box.mergeDailyStats
+import net.spross.kern.box.answerDays
+import net.spross.kern.box.mergeAnswerDays
 import net.spross.kern.box.streakHealth
 import net.spross.kern.box.streakWindow
 import net.spross.kern.model.Card
-import net.spross.kern.model.DayStats
-import net.spross.kern.store.DayStatsDto
 import net.spross.kern.store.StoreJson
-import net.spross.kern.store.dayStatsDto
-import net.spross.kern.store.toDomain
 
 /**
  * Phone-side builder of the home-screen widget snapshot, and the read model
@@ -45,7 +42,7 @@ object WidgetSnapshotBuilder {
     const val MAX_TEXT_CHARS: Int = 20
 
     /**
-     * [otherLanguagesDailyStats]: `dailyStats` from every OTHER target-language box —
+     * [otherLanguagesAnswerDays]: [answerDays] from every OTHER target-language box —
      * every render-time streak walk reads whatever [WidgetSnapshotDoc.dailyStats] carries,
      * so merging cross-language activity in here is the whole fix; no widget target
      * needs a change.
@@ -53,12 +50,13 @@ object WidgetSnapshotBuilder {
     fun build(
         state: BoxState,
         nowEpochMillis: Long,
+        tzId: String,
         exposureLimit: Int = DEFAULT_EXPOSURE_LIMIT,
-        otherLanguagesDailyStats: List<Map<String, DayStats>> = emptyList(),
+        otherLanguagesAnswerDays: Map<String, Int> = emptyMap(),
     ): String =
         StoreJson.encodeSorted(
             WidgetSnapshotDoc.serializer(),
-            doc(state, nowEpochMillis, exposureLimit, otherLanguagesDailyStats),
+            doc(state, nowEpochMillis, tzId, exposureLimit, otherLanguagesAnswerDays),
         )
 
     /**
@@ -78,8 +76,9 @@ object WidgetSnapshotBuilder {
     internal fun doc(
         state: BoxState,
         nowEpochMillis: Long,
+        tzId: String,
         exposureLimit: Int,
-        otherLanguagesDailyStats: List<Map<String, DayStats>> = emptyList(),
+        otherLanguagesAnswerDays: Map<String, Int> = emptyMap(),
     ): WidgetSnapshotDoc {
         val entries = BoxEngine.exposureCards(state, nowEpochMillis, exposureLimit, ::fitsOnWidget).map { card ->
             WidgetEntryDto(
@@ -95,7 +94,8 @@ object WidgetSnapshotBuilder {
             val due = sched.due ?: return@mapNotNull null
             WidgetCardDto(cardId = sched.cardId, due = due.toEpochMilliseconds())
         }
-        val combinedDailyStats = mergeDailyStats(otherLanguagesDailyStats + state.dailyStats)
+        val combinedDailyStats =
+            mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
         // why: yyyy-MM-dd keys sort chronologically as strings — the tail is a plain sort.
         val tailKeys = combinedDailyStats.keys.sorted().takeLast(DAILY_STATS_TAIL_DAYS)
         return WidgetSnapshotDoc(
@@ -103,7 +103,7 @@ object WidgetSnapshotBuilder {
             entries = entries,
             cards = cards,
             consolidatedCount = active.count { Statistics.isConsolidated(state, it) },
-            dailyStats = tailKeys.associateWith { dayStatsDto(combinedDailyStats.getValue(it)) },
+            dailyStats = tailKeys.associateWith { WidgetDayDto(combinedDailyStats.getValue(it)) },
         )
     }
 
@@ -131,7 +131,7 @@ class WidgetSnapshotView internal constructor(private val doc: WidgetSnapshotDoc
     /** Active cards that have consolidated — resolved phone-side, it does not move with the clock. */
     val consolidatedCount: Int get() = doc.consolidatedCount
 
-    private val dailyStats: Map<String, DayStats> = doc.dailyStats.mapValues { it.value.toDomain() }
+    private val dailyStats: Map<String, Int> = doc.dailyStats.mapValues { it.value.reviews }
 
     /** Active cards due at [nowEpochMillis]. */
     fun dueCount(nowEpochMillis: Long): Int = doc.cards.count { it.due <= nowEpochMillis }
@@ -168,8 +168,15 @@ internal data class WidgetSnapshotDoc(
     /** Active cards that have consolidated; time-independent, so it is resolved here. */
     val consolidatedCount: Int,
     /** Trailing [WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS] day keys. */
-    val dailyStats: Map<String, DayStatsDto>,
+    val dailyStats: Map<String, WidgetDayDto>,
 )
+
+/**
+ * One day as a widget reads it. An object rather than a bare count because that is the
+ * shape the hand-written Swift mirror already decodes (`Widgets/Sources/WidgetSnapshot.swift`).
+ */
+@Serializable
+internal data class WidgetDayDto(val reviews: Int)
 
 /** One exposure row: TARGET-side text; the ♀ marker is baked into [sourceText]. */
 @Serializable

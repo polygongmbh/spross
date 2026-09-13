@@ -139,13 +139,12 @@ final class AppModel {
     #endif
 
     let store: BoxStore
-    /// `dailyStats` from every OTHER target-language box on disk — the box's
+    /// Answers per day from every OTHER target-language box on disk — the box's
     /// streak is one commitment across every language the learner studies, not
-    /// one per language (`Statistics.mergeDailyStats`). Reloaded whenever
-    /// `activate` switches languages; a per-answer disk read for every OTHER
-    /// language's box would be wasteful since those files only change while
-    /// THEY are the active target.
-    private(set) var otherLanguagesDailyStats: [[String: DayStats]] = []
+    /// one per language (`mergeAnswerDays`). Reloaded whenever `activate`
+    /// switches languages; a per-answer disk read for every OTHER language's box
+    /// would be wasteful since those files only change while THEY are the active target.
+    private(set) var otherLanguagesAnswerDays: [String: KotlinInt] = [:]
     /// Watch sync bridge (PhoneConnectivity.swift): snapshot down, events up.
     let watchBridge = PhoneConnectivity()
     static let sourceLanguageKey = "sourceLanguage"
@@ -312,9 +311,10 @@ final class AppModel {
             // A re-join is derived from what is already stored and reproduces
             // itself on the next launch, so writing it back buys nothing.
             if stored == nil { try await store.saveNow(state: state, target: target) }
-            await reloadOtherLanguagesDailyStats(excluding: target)
+            await reloadOtherLanguagesAnswerDays(excluding: target)
             await store.saveWidgetSnapshot(state: state, nowEpochMillis: Date().epochMillis,
-                                           otherLanguagesDailyStats: otherLanguagesDailyStats)
+                                           tzId: currentTzId(),
+                                           otherLanguagesAnswerDays: otherLanguagesAnswerDays)
             // why: a widget left without a readable snapshot by an update shows the
             // sprout until its timeline is rebuilt — launching is what the sprout
             // asks for, so the handover happens then, not up to six hours later.
@@ -420,7 +420,7 @@ final class AppModel {
         let tz = currentTzId()
         stats = box.map {
             BoxEngine.shared.statistics(state: $0, nowEpochMillis: now, tzId: tz,
-                                         otherLanguagesDailyStats: otherLanguagesDailyStats)
+                                         otherLanguagesAnswerDays: otherLanguagesAnswerDays)
         }
         growth = box.map {
             BoxEngine.shared.growth(state: $0, nowEpochMillis: now, tzId: tz)
@@ -461,23 +461,25 @@ final class AppModel {
         areaChrome = composedAreaChrome(catalog: catalog)
     }
 
-    /// Reload `otherLanguagesDailyStats` for every catalog language except
+    /// Reload `otherLanguagesAnswerDays` for every catalog language except
     /// `target`. A sibling box that is missing or fails to decode is simply
     /// skipped — its own load path surfaces the real error when the learner
     /// switches to it; the streak merge only wants what is readable.
-    private func reloadOtherLanguagesDailyStats(excluding target: String) async {
-        guard let catalog else { otherLanguagesDailyStats = []; return }
-        var gathered: [[String: DayStats]] = []
+    private func reloadOtherLanguagesAnswerDays(excluding target: String) async {
+        guard let catalog else { otherLanguagesAnswerDays = [:]; return }
+        let tz = currentTzId()
+        var gathered: [[String: KotlinInt]] = []
         for language in catalog.languages.keys where language != target {
             guard let json = try? await store.load(target: language) else { continue }
-            // why: a whole sibling document parsed for its day tallies alone —
-            // off this actor, and only the tallies come back.
+            // why: a whole sibling document parsed for its day counts alone —
+            // off this actor, and only the counts come back.
             guard let days = await Task.detached(operation: {
-                try? StoreCodec.shared.decode(json: json).dailyStats
+                (try? StoreCodec.shared.decode(json: json).scheduling)
+                    .map { answerDays(scheduling: $0, tzId: tz) }
             }).value else { continue }
             gathered.append(days)
         }
-        otherLanguagesDailyStats = gathered
+        otherLanguagesAnswerDays = mergeAnswerDays(answerDaysByLanguage: gathered)
     }
 
     /// Scene went to background → fold any mid-session reviews into dailyStats
@@ -499,7 +501,8 @@ final class AppModel {
         if immediate { pushWatchSnapshot() }
         let target = state.joinStamp.target
         let now = Date().epochMillis
-        let others = otherLanguagesDailyStats
+        let tz = currentTzId()
+        let others = otherLanguagesAnswerDays
         Task { [store] in
             if immediate {
                 try? await store.saveNow(state: state, target: target)
@@ -509,8 +512,8 @@ final class AppModel {
                 // worth is long-term exposure, so a round's worth of staleness
                 // costs nothing, and rebuilding it per answer costs a full walk
                 // of the exposure ranking and every day the box has tallied.
-                await store.saveWidgetSnapshot(state: state, nowEpochMillis: now,
-                                               otherLanguagesDailyStats: others)
+                await store.saveWidgetSnapshot(state: state, nowEpochMillis: now, tzId: tz,
+                                               otherLanguagesAnswerDays: others)
             } else {
                 await store.save(state: state, target: target)
             }

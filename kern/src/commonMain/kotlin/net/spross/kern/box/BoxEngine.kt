@@ -353,17 +353,33 @@ object BoxEngine {
         Inventory.dueCount(state, nowEpochMillis)
 
     /**
-     * [otherLanguagesDailyStats]: `dailyStats` from every OTHER target-language box
-     * the learner has (each keyed by its own day, THIS state's own [BoxState.dailyStats]
-     * added in here) — the streak counts the day, not which language it was spent on.
-     * Everything else stays scoped to this join.
+     * [otherLanguagesAnswerDays]: [answerDays] from every OTHER target-language box the
+     * learner has, merged; THIS state's own days are counted in here — the streak counts
+     * the day, not which language it was spent on. Everything else stays scoped to this join.
      */
     fun statistics(
         state: BoxState,
         nowEpochMillis: Long,
         tzId: String,
-        otherLanguagesDailyStats: List<Map<String, DayStats>> = emptyList(),
-    ): BoxStatistics = Statistics.statistics(state, nowEpochMillis, tzId, otherLanguagesDailyStats)
+        otherLanguagesAnswerDays: Map<String, Int> = emptyMap(),
+    ): BoxStatistics = Statistics.statistics(state, nowEpochMillis, tzId, otherLanguagesAnswerDays)
+
+    /**
+     * The activity strip's trailing [days], walked with the streak it stands beside, so a
+     * day worked in another language shows on the picture as well as in the count.
+     */
+    fun activityWindow(
+        state: BoxState,
+        days: Int,
+        nowEpochMillis: Long,
+        tzId: String,
+        otherLanguagesAnswerDays: Map<String, Int> = emptyMap(),
+    ): List<ActivityDay> = streakWindow(
+        mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId))),
+        days,
+        nowEpochMillis,
+        tzId,
+    )
 
     /** What the learner did today, live from the logs and the day counters. */
     fun today(state: BoxState, nowEpochMillis: Long, tzId: String): TodayReport =

@@ -9,7 +9,6 @@ import kotlinx.datetime.plus
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
-import net.spross.kern.model.DayStats
 
 /** Aggregates for progress UI. All counts are in cards. */
 data class BoxStatistics(
@@ -74,31 +73,6 @@ data class AreaStatistics(
     val mature: Boolean get() = active > 0 && consolidated == active
 }
 
-/**
- * Sum of daily activity across independent `dailyStats` maps — one per TARGET
- * language box. Growing is one commitment, not one per language the learner
- * happens to be studying, so a day earns the streak whichever language(s) it
- * was spent on; every count here (not just [DayStats.reviews]) sums the same
- * way, so a caller reading any bucket off the result sees the whole box.
- * A day present in only some maps still merges cleanly — the rest read as
- * [DayStats]'s all-zero default for that day.
- */
-fun mergeDailyStats(dailyStatsByLanguage: List<Map<String, DayStats>>): Map<String, DayStats> {
-    if (dailyStatsByLanguage.size <= 1) return dailyStatsByLanguage.firstOrNull() ?: emptyMap()
-    val days = dailyStatsByLanguage.asSequence().flatMap { it.keys }.toSet()
-    return days.associateWith { day ->
-        dailyStatsByLanguage.fold(DayStats()) { sum, byDay ->
-            val d = byDay[day] ?: return@fold sum
-            DayStats(
-                reviews = sum.reviews + d.reviews,
-                introduced = sum.introduced + d.introduced,
-                consolidated = sum.consolidated + d.consolidated,
-                activeCount = sum.activeCount + d.activeCount,
-            )
-        }
-    }
-}
-
 /** How the streak rule reads one day of the trailing window. */
 enum class StreakRole {
     /** Reviews were done; the day is part of the current run and counts toward it. */
@@ -140,12 +114,12 @@ enum class StreakHealth {
  * told three ways.
  */
 fun streakHealth(
-    dailyStats: Map<String, DayStats>,
+    answerDays: Map<String, Int>,
     nowEpochMillis: Long,
     tzId: String,
 ): StreakHealth {
     val today = localDate(nowEpochMillis, tzId)
-    val run = Statistics.streakRun(dailyStats, today)
+    val run = Statistics.streakRun(answerDays, today)
     return when {
         run.isEmpty() -> StreakHealth.None
         run[today] == true -> StreakHealth.Earned
@@ -156,7 +130,7 @@ fun streakHealth(
 
 /** One day of the activity window: what the box recorded, and how the streak rule reads it. */
 data class ActivityDay(
-    /** ISO `yyyy-MM-dd` local day key — the same key [BoxState.dailyStats] is keyed by. */
+    /** ISO `yyyy-MM-dd` local day key — the same key [answerDays] counts under. */
     val day: String,
     /** Local midnight of [day]; callers render the weekday from this, never from a calendar of their own. */
     val dayStartEpochMillis: Long,
@@ -183,7 +157,7 @@ const val ACTIVITY_WINDOW_DAYS: Int = 14
  * last two days.
  */
 fun streakWindow(
-    dailyStats: Map<String, DayStats>,
+    answerDays: Map<String, Int>,
     days: Int,
     nowEpochMillis: Long,
     tzId: String,
@@ -191,13 +165,13 @@ fun streakWindow(
     require(days > 0) { "window needs at least one day" }
     val zone = zoneOf(tzId)
     val today = localDate(nowEpochMillis, tzId)
-    val run = Statistics.streakRun(dailyStats, today)
+    val run = Statistics.streakRun(answerDays, today)
     return (days - 1 downTo 0).map { back ->
         val day = today.minus(back, DateTimeUnit.DAY)
         ActivityDay(
             day = day.toString(),
             dayStartEpochMillis = day.atStartOfDayIn(zone).toEpochMilliseconds(),
-            reviews = dailyStats[day.toString()]?.reviews ?: 0,
+            reviews = answerDays[day.toString()] ?: 0,
             role = when (run[day]) {
                 true -> StreakRole.Earned
                 false -> StreakRole.Bridged
@@ -213,13 +187,14 @@ internal object Statistics {
         state: BoxState,
         nowEpochMillis: Long,
         tzId: String,
-        otherLanguagesDailyStats: List<Map<String, DayStats>> = emptyList(),
+        otherLanguagesAnswerDays: Map<String, Int> = emptyMap(),
     ): BoxStatistics {
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
         val active = Inventory.active(state)
         // why: the streak is a box-wide commitment, not a per-target-language one —
-        // see [mergeDailyStats] — everything else here stays scoped to THIS join.
-        val combinedDailyStats = mergeDailyStats(otherLanguagesDailyStats + state.dailyStats)
+        // see [mergeAnswerDays] — everything else here stays scoped to THIS join.
+        val combinedDailyStats =
+            mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
         return BoxStatistics(
             activeCount = active.size,
             consolidatedCount = active.count { isConsolidated(state, it) },
@@ -262,8 +237,8 @@ internal object Statistics {
      * Today without reviews is not a miss at all (the day isn't over) — it neither breaks
      * the run nor pairs with an empty yesterday.
      */
-    fun streak(dailyStats: Map<String, DayStats>, nowEpochMillis: Long, tzId: String): Int =
-        streakRun(dailyStats, localDate(nowEpochMillis, tzId)).count { it.value }
+    fun streak(answerDays: Map<String, Int>, nowEpochMillis: Long, tzId: String): Int =
+        streakRun(answerDays, localDate(nowEpochMillis, tzId)).count { it.value }
 
     /**
      * The days the current run covers, newest first: date → earned (false = bridged).
@@ -273,13 +248,13 @@ internal object Statistics {
      * Bridges past the oldest earned day drop out: forgiveness spans a run, it does
      * not start one.
      */
-    fun streakRun(dailyStats: Map<String, DayStats>, today: LocalDate): Map<LocalDate, Boolean> {
+    fun streakRun(answerDays: Map<String, Int>, today: LocalDate): Map<LocalDate, Boolean> {
         val walked = mutableListOf<Pair<LocalDate, Boolean>>()
         var previousWasMiss = false
         var day = today
         var isToday = true
         while (true) {
-            val reviews = dailyStats[day.toString()]?.reviews ?: 0
+            val reviews = answerDays[day.toString()] ?: 0
             if (reviews > 0) {
                 walked += day to true
                 previousWasMiss = false
@@ -299,21 +274,21 @@ internal object Statistics {
     /**
      * The longest run the box has ever held, under the same rule [streak] walks back
      * with: a 0-review day inside a run is bridged and does not count, two in a row end
-     * it. `dailyStats` is never pruned, so this reaches back to the first day the box
+     * it. The logs are never pruned, so this reaches back to the first day the box
      * was used.
      *
      * Today can extend a run but never end one — the day is not over — which is what
      * keeps a record set today standing while it is still being added to, and keeps
      * this ≥ [streak] at all times.
      */
-    fun longestStreak(dailyStats: Map<String, DayStats>, nowEpochMillis: Long, tzId: String): Int {
+    fun longestStreak(answerDays: Map<String, Int>, nowEpochMillis: Long, tzId: String): Int {
         val today = localDate(nowEpochMillis, tzId)
-        var day = dailyStats.keys.minOrNull()?.let { LocalDate.parse(it) } ?: return 0
+        var day = answerDays.keys.minOrNull()?.let { LocalDate.parse(it) } ?: return 0
         var best = 0
         var run = 0
         var previousWasMiss = false
         while (day <= today) {
-            val reviews = dailyStats[day.toString()]?.reviews ?: 0
+            val reviews = answerDays[day.toString()] ?: 0
             if (reviews > 0) {
                 run += 1
                 if (run > best) best = run

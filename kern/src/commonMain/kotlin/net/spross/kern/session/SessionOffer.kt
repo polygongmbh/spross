@@ -5,8 +5,9 @@ import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.DayPart
 import net.spross.kern.box.Growth
+import net.spross.kern.box.answerDays
+import net.spross.kern.box.answersOn
 import net.spross.kern.box.chromePart
-import net.spross.kern.box.dayKey
 import net.spross.kern.box.streakHealth
 import net.spross.kern.model.fnv1a64
 
@@ -203,8 +204,11 @@ object SessionOffers {
             ahead = ahead,
             fresh = fresh,
             shortRound = SessionComposer.shortRoundSize(plan),
-            doneToday = state.dailyStats[dayKey(nowEpochMillis, tzId)]?.reviews ?: 0,
-            streakExposed = streakHealth(state.dailyStats, nowEpochMillis, tzId).isExposed,
+            doneToday = answersOn(state.scheduling, nowEpochMillis, tzId),
+            // why: this language alone — the day's card speaks for the box in view, where the
+            // streak count on Home is the commitment across every language.
+            streakExposed =
+                streakHealth(answerDays(state.scheduling, tzId), nowEpochMillis, tzId).isExposed,
         )
     }
 

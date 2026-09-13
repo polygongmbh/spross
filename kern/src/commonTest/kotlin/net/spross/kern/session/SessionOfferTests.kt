@@ -6,8 +6,6 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 import net.spross.kern.box.BoxState
-import net.spross.kern.box.dayKey
-import net.spross.kern.model.DayStats
 
 /** Round classification, the counts behind it, and a headline pick that survives a relaunch. */
 class SessionOfferTests {
@@ -165,12 +163,16 @@ class SessionOfferTests {
      */
     @Test
     fun theExposedRunIsReadOffThisLanguageAlone() {
-        val worked = Box.state((1..20).map { Box.word(it) }, Box.config())
-            .let { it.copy(dailyStats = mapOf(dayKey(Box.plusDays(now, -1.0), Box.TZ) to DayStats(reviews = 8))) }
+        // Answered yesterday and not yet today: the run stands and this day still owes it.
+        val worked = Box.inject(
+            Box.state((1..20).map { Box.word(it) }, Box.config()),
+            Box.sched("zz", dueMillis = now, lastReviewMillis = Box.plusDays(now, -1.0), logCount = 8),
+        )
         assertTrue(SessionOffers.offer(worked, now, Box.TZ).streakExposed)
 
-        val alsoToday = worked.copy(
-            dailyStats = worked.dailyStats + (dayKey(now, Box.TZ) to DayStats(reviews = 3)),
+        val alsoToday = Box.inject(
+            worked,
+            Box.sched("zy", dueMillis = now, lastReviewMillis = now, logCount = 3),
         )
         assertFalse(SessionOffers.offer(alsoToday, now, Box.TZ).streakExposed)
     }

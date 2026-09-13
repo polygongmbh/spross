@@ -5,7 +5,7 @@ import kotlin.math.min
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.Growth
 import net.spross.kern.box.Inventory
-import net.spross.kern.box.dayKey
+import net.spross.kern.box.answersOn
 import net.spross.kern.box.endOfTomorrow
 import net.spross.kern.model.SessionPlan
 
@@ -220,7 +220,7 @@ object SessionComposer {
 
     /** A round's worth of answers is what closes a day — one tap never did. */
     private fun workedARound(state: BoxState, nowEpochMillis: Long, tzId: String): Boolean =
-        (state.dailyStats[dayKey(nowEpochMillis, tzId)]?.reviews ?: 0) >=
+        answersOn(state.scheduling, nowEpochMillis, tzId) >=
             min(SESSION_FLOOR_CARDS, state.config.sessionCap)
 
     /**

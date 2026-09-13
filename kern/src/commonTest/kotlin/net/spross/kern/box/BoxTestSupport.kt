@@ -99,6 +99,17 @@ internal object Box {
     fun answered(state: BoxState, cardId: String, rating: Rating, nowMillis: Long): BoxState =
         BoxEngine.answer(state, cardId, rating, nowMillis, TZ)
 
+    /**
+     * A box carrying [answers] answers logged on [nowMillis] — what closes a day
+     * ([net.spross.kern.box.answersOn]). They sit on a schedule this join does not
+     * carry, so the day is worked without composition seeing another card.
+     */
+    fun workedToday(state: BoxState, answers: Int, nowMillis: Long = day1): BoxState =
+        inject(
+            state,
+            sched("answers-today", dueMillis = nowMillis, lastReviewMillis = nowMillis, logCount = answers),
+        )
+
     /** Growth candidates under composer-computed budgets (the session composer's diet). */
     fun candidates(
         state: BoxState,

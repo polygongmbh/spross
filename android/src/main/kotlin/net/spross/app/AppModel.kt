@@ -28,8 +28,8 @@ import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
 import net.spross.kern.box.CardGrowth
 import net.spross.kern.box.ShelfCounts
-import net.spross.kern.box.mergeDailyStats
-import net.spross.kern.box.streakWindow
+import net.spross.kern.box.answerDays
+import net.spross.kern.box.mergeAnswerDays
 import net.spross.kern.catalog.AudioCapability
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.CountryDrillContent
@@ -40,7 +40,6 @@ import net.spross.kern.catalog.dateDrillContent
 import net.spross.kern.catalog.pronunciation
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
-import net.spross.kern.model.DayStats
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.Rating
@@ -301,13 +300,13 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         private set
 
     /**
-     * `dailyStats` from every OTHER target-language box on disk — the box's streak
+     * Answers per day from every OTHER target-language box on disk — the box's streak
      * is one commitment across every language the learner studies, not one per
-     * language ([net.spross.kern.box.mergeDailyStats]). Reloaded whenever [activate]
+     * language ([net.spross.kern.box.mergeAnswerDays]). Reloaded whenever [activate]
      * switches languages; those files only change while THEY are the active target,
      * so a per-answer disk read for each of them would be wasted work.
      */
-    private var otherLanguagesDailyStats: List<Map<String, DayStats>> = emptyList()
+    private var otherLanguagesAnswerDays: Map<String, Int> = emptyMap()
 
     /**
      * Produce grading with the whole join in view: a form the catalog owns
@@ -668,7 +667,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         // why: only a box that did not exist yet owes the disk anything here. A re-join is
         // derived from what is already stored and reproduces itself on the next launch.
         if (stored == null) persist(joined)
-        otherLanguagesDailyStats = withContext(Dispatchers.IO) { loadOtherLanguagesDailyStats(cat, target) }
+        otherLanguagesAnswerDays = withContext(Dispatchers.IO) { loadOtherLanguagesAnswerDays(cat, target) }
         refreshStats()
         refreshListening()
         screen = landing
@@ -723,21 +722,23 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * `dailyStats` for every catalog language except [target], read straight off
-     * disk (no catalog join needed for a day tally). A sibling box that is missing
+     * Answers per day for every catalog language except [target], read straight off
+     * disk (no catalog join needed to count a log). A sibling box that is missing
      * or fails to decode is skipped — its own load path surfaces the real error
      * when the learner switches to it.
      */
-    private fun loadOtherLanguagesDailyStats(cat: Catalog, target: String): List<Map<String, DayStats>> =
-        cat.languages.keys.filter { it != target }.mapNotNull { language ->
-            boxFiles.read(language)?.let { json ->
-                try {
-                    StoreCodec.decode(json).dailyStats
-                } catch (_: StoreFormatException) {
-                    null
+    private fun loadOtherLanguagesAnswerDays(cat: Catalog, target: String): Map<String, Int> =
+        mergeAnswerDays(
+            cat.languages.keys.filter { it != target }.mapNotNull { language ->
+                boxFiles.read(language)?.let { json ->
+                    try {
+                        answerDays(StoreCodec.decode(json).scheduling, tz())
+                    } catch (_: StoreFormatException) {
+                        null
+                    }
                 }
-            }
-        }
+            },
+        )
 
     fun startSession() = begin(SessionIntent.Start)
 
@@ -925,14 +926,15 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         // why: the grader snapshots the join, and this runs wherever the join, the
         // queue or the profile's languages can have moved — the one place it goes stale.
         cachedProduceGrader = null
-        stats = BoxEngine.statistics(state, now(), tz(), otherLanguagesDailyStats)
+        stats = BoxEngine.statistics(state, now(), tz(), otherLanguagesAnswerDays)
         // why: the strip reads the same merged days the streak does — a day worked in
         // another language is still a day worked, on the picture as well as the count.
-        activityWindow = streakWindow(
-            mergeDailyStats(otherLanguagesDailyStats + state.dailyStats),
+        activityWindow = BoxEngine.activityWindow(
+            state,
             ACTIVITY_WINDOW_DAYS,
             now(),
             tz(),
+            otherLanguagesAnswerDays,
         )
         sessionAvailable = SessionOffers.sessionAvailable(state, now(), tz())
         canPracticeExtra = SessionOffers.canPracticeMore(state, now(), tz())
@@ -1013,6 +1015,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         WidgetSnapshotBuilder.build(
             state,
             nowEpochMillis,
-            otherLanguagesDailyStats = otherLanguagesDailyStats,
+            tz(),
+            otherLanguagesAnswerDays = otherLanguagesAnswerDays,
         )
 }

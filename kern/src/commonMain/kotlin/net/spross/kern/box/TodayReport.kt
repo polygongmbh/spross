@@ -155,11 +155,16 @@ internal fun todayReport(state: BoxState, nowEpochMillis: Long, tzId: String): T
 
     var reviews = 0
     var missed = 0
-    for (sched in Inventory.scheduled(state)) {
-        for (entry in sched.log) {
+    var introduced = 0
+    // why: raw schedules rather than the join — an answer really happened, and switching
+    // the known language must not un-happen a day's work.
+    for (sched in state.scheduling.values) {
+        for ((index, entry) in sched.log.withIndex()) {
             if (entry.date < start || entry.date >= end) continue
             reviews += 1
             if (entry.rating == Rating.Again) missed += 1
+            // Introduction = the card's first answer, so the first log entry IS the meeting.
+            if (index == 0) introduced += 1
         }
     }
     val stillFresh = Inventory.active(state).count {
@@ -167,7 +172,7 @@ internal fun todayReport(state: BoxState, nowEpochMillis: Long, tzId: String): T
     }
     return TodayReport(
         reviews = reviews,
-        introduced = state.newIntroduced[day] ?: 0,
+        introduced = introduced,
         consolidated = state.consolidatedCrossed[day] ?: 0,
         stillFresh = stillFresh,
         missed = missed,

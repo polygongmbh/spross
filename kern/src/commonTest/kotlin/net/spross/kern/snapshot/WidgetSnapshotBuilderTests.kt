@@ -28,13 +28,17 @@ class WidgetSnapshotBuilderTests {
     )
     private val verb = Snap.card("wv", 3, kind = CardKind.Verb, targetText = "kupika")
 
-    private fun scheduledState() = listOf(fem, gendered, verb).fold(Snap.state(listOf(fem, gendered, verb))) { s, card ->
-        Box.inject(s, Box.sched(card.id, dueMillis = Box.plusDays(Box.day1, 1.0), lastReviewMillis = Box.day1))
-    }
+    private fun scheduledState(lastReviewMillis: Long = Box.day1) =
+        listOf(fem, gendered, verb).fold(Snap.state(listOf(fem, gendered, verb))) { s, card ->
+            Box.inject(
+                s,
+                Box.sched(card.id, dueMillis = Box.plusDays(Box.day1, 1.0), lastReviewMillis = lastReviewMillis),
+            )
+        }
 
     @Test
     fun entriesRenderTargetSideWithTintAndMarker() {
-        val doc = WidgetSnapshotBuilder.doc(scheduledState(), Box.day1, exposureLimit = 10)
+        val doc = WidgetSnapshotBuilder.doc(scheduledState(), Box.day1, Box.TZ, exposureLimit = 10)
         val byCard = doc.entries.associateBy { it.cardId }
 
         val femEntry = byCard.getValue("wf")
@@ -62,7 +66,7 @@ class WidgetSnapshotBuilderTests {
             Box.inject(s, Box.sched(card.id, dueMillis = Box.plusDays(Box.day1, 1.0), lastReviewMillis = Box.day1))
         }
 
-        val ids = WidgetSnapshotBuilder.doc(state, Box.day1, exposureLimit = 10).entries.map { it.cardId }
+        val ids = WidgetSnapshotBuilder.doc(state, Box.day1, Box.TZ, exposureLimit = 10).entries.map { it.cardId }
         assertEquals(listOf("wk"), ids) // the ♀ marker pushes "ws" over the limit
     }
 
@@ -79,7 +83,7 @@ class WidgetSnapshotBuilderTests {
                 dueMillis = Box.day1, lastReviewMillis = Box.day1,
             ),
         )
-        val doc = WidgetSnapshotBuilder.doc(state, Box.day1, exposureLimit = 10)
+        val doc = WidgetSnapshotBuilder.doc(state, Box.day1, Box.TZ, exposureLimit = 10)
         val byCard = doc.cards.associateBy { it.cardId }
 
         assertEquals(due, byCard.getValue("wf").due)
@@ -95,18 +99,18 @@ class WidgetSnapshotBuilderTests {
             Box.sched("wf", suspended = true, dueMillis = Box.day1, lastReviewMillis = Box.day1),
         )
         state = Box.inject(state, Box.sched("zz", dueMillis = Box.day1, lastReviewMillis = Box.day1))
-        val doc = WidgetSnapshotBuilder.doc(state, Box.day1, exposureLimit = 10)
+        val doc = WidgetSnapshotBuilder.doc(state, Box.day1, Box.TZ, exposureLimit = 10)
         assertTrue(doc.cards.isEmpty())
     }
 
     @Test
     fun dailyStatsKeepOnlyTheTrailing70Days() {
         val start = LocalDate(2026, 1, 1)
-        val stats = (0 until 80).associate {
-            start.plus(it, DateTimeUnit.DAY).toString() to DayStats(reviews = it)
-        }
-        val state = Snap.state(emptyList()).copy(dailyStats = stats)
-        val doc = WidgetSnapshotBuilder.doc(state, Box.day1, exposureLimit = 5)
+        val stats = (0 until 80).associate { start.plus(it, DateTimeUnit.DAY).toString() to it }
+        val doc = WidgetSnapshotBuilder.doc(
+            Snap.state(emptyList()), Box.day1, Box.TZ, exposureLimit = 5,
+            otherLanguagesAnswerDays = stats,
+        )
 
         assertEquals(70, doc.dailyStats.size)
         assertFalse("2026-01-01" in doc.dailyStats)
@@ -117,12 +121,15 @@ class WidgetSnapshotBuilderTests {
 
     @Test
     fun dailyStatsMergeInOtherTargetLanguagesReviews() {
-        val state = Snap.state(emptyList()).copy(dailyStats = mapOf("2026-01-01" to DayStats(reviews = 2)))
-        val sibling = mapOf("2026-01-01" to DayStats(reviews = 3), "2026-01-02" to DayStats(reviews = 1))
+        val state = Box.inject(
+            Snap.state(emptyList()),
+            Box.sched("zz", dueMillis = Box.day1, lastReviewMillis = Box.millis(2026, 1, 1), logCount = 2),
+        )
+        val sibling = mapOf("2026-01-01" to 3, "2026-01-02" to 1)
 
         val doc = WidgetSnapshotBuilder.doc(
-            state, Box.day1, exposureLimit = 5,
-            otherLanguagesDailyStats = listOf(sibling),
+            state, Box.day1, Box.TZ, exposureLimit = 5,
+            otherLanguagesAnswerDays = sibling,
         )
 
         assertEquals(5, doc.dailyStats.getValue("2026-01-01").reviews)
@@ -131,20 +138,28 @@ class WidgetSnapshotBuilderTests {
 
     @Test
     fun schemaVersionIsPinned() {
-        assertEquals(2, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, 5).schemaVersion)
+        assertEquals(2, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).schemaVersion)
     }
 
     @Test
     fun decodedDerivationsAnswerWhatTheEngineAnswers() {
         // Yesterday earned, today still empty — the run is bridgeable, not yet earned.
-        val dailyStats = mapOf(
-            "2026-06-29" to DayStats(reviews = 4),
-            "2026-06-30" to DayStats(reviews = 6),
+        // This box's own answers sit days back, so they add no day to the run.
+        val dailyStats = mapOf("2026-06-29" to 4, "2026-06-30" to 6)
+        val state = scheduledState(lastReviewMillis = Box.plusDays(Box.day1, -5.0))
+        val view = assertNotNull(
+            WidgetSnapshotBuilder.decode(
+                WidgetSnapshotBuilder.build(
+                    state, Box.day1, Box.TZ,
+                    otherLanguagesAnswerDays = dailyStats,
+                ),
+            ),
         )
-        val state = scheduledState().copy(dailyStats = dailyStats)
-        val view = assertNotNull(WidgetSnapshotBuilder.decode(WidgetSnapshotBuilder.build(state, Box.day1)))
 
-        val doc = WidgetSnapshotBuilder.doc(state, Box.day1, WidgetSnapshotBuilder.DEFAULT_EXPOSURE_LIMIT)
+        val doc = WidgetSnapshotBuilder.doc(
+            state, Box.day1, Box.TZ, WidgetSnapshotBuilder.DEFAULT_EXPOSURE_LIMIT,
+            otherLanguagesAnswerDays = dailyStats,
+        )
         assertEquals(doc.entries.map { it.cardId }, view.entries.map { it.cardId })
         assertEquals("Kellner ♀", view.entries.first { it.cardId == "wf" }.sourceText)
         assertEquals("der", view.entries.first { it.cardId == "wg" }.articleTint)
@@ -167,7 +182,7 @@ class WidgetSnapshotBuilderTests {
     fun decodeRejectsWhatItCannotDraw() {
         assertNull(WidgetSnapshotBuilder.decode("not json at all"))
         assertNull(WidgetSnapshotBuilder.decode("{}")) // schemaVersion missing
-        val current = WidgetSnapshotBuilder.build(scheduledState(), Box.day1)
+        val current = WidgetSnapshotBuilder.build(scheduledState(), Box.day1, Box.TZ)
         assertNull(WidgetSnapshotBuilder.decode(current.replace("\"schemaVersion\":2", "\"schemaVersion\":3")))
         assertNotNull(WidgetSnapshotBuilder.decode(current))
     }
@@ -179,9 +194,9 @@ class WidgetSnapshotBuilderTests {
             scheduling = state.scheduling.entries.reversed().associate { it.key to it.value },
         )
         assertEquals(
-            WidgetSnapshotBuilder.build(state, Box.day1),
-            WidgetSnapshotBuilder.build(reversed, Box.day1),
+            WidgetSnapshotBuilder.build(state, Box.day1, Box.TZ),
+            WidgetSnapshotBuilder.build(reversed, Box.day1, Box.TZ),
         )
-        assertTrue(WidgetSnapshotBuilder.build(state, Box.day1).startsWith("{\"cards\":"))
+        assertTrue(WidgetSnapshotBuilder.build(state, Box.day1, Box.TZ).startsWith("{\"cards\":"))
     }
 }

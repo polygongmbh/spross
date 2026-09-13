@@ -162,12 +162,13 @@ class DayKeyTests {
 
     @Test
     fun streakWalksLocalDaysAcrossDstChange() {
-        val state = Box.state(listOf(Box.word(1))).copy(
-            dailyStats = listOf("2026-10-24", "2026-10-25", "2026-10-26")
-                .associateWith { DayStats(reviews = 1, introduced = 0, activeCount = 1) },
-        )
+        val state = Box.state(listOf(Box.word(1)))
+        val days = listOf("2026-10-24", "2026-10-25", "2026-10-26").associateWith { 1 }
         // Berlin falls back on 2026-10-25; the walk still visits each local date once.
         val eveningAfter = local("Europe/Berlin", 2026, 10, 26, 20, 0)
-        assertEquals(3, BoxEngine.statistics(state, eveningAfter, "Europe/Berlin").streak)
+        assertEquals(
+            3,
+            BoxEngine.statistics(state, eveningAfter, "Europe/Berlin", otherLanguagesAnswerDays = days).streak,
+        )
     }
 }

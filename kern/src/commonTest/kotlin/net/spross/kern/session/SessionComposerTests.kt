@@ -214,10 +214,10 @@ class SessionComposerTests {
         val state = quietBox(soon = 0, later = 5)
         val floor = SessionComposer.SESSION_FLOOR_CARDS
 
-        val barelyStarted = BoxEngine.endSession(state, reviewsDone = floor - 1, nowEpochMillis = now, tzId = Box.TZ)
+        val barelyStarted = Box.workedToday(state, floor - 1, now)
         assertEquals(floor, SessionComposer.composeSession(barelyStarted, now, Box.TZ).cardCount)
 
-        val worked = BoxEngine.endSession(state, reviewsDone = floor, nowEpochMillis = now, tzId = Box.TZ)
+        val worked = Box.workedToday(state, floor, now)
         assertTrue(SessionComposer.composeSession(worked, now, Box.TZ).isEmpty)
         // …and the next day opens with a round again.
         val tomorrow = Box.plusDays(now, 1.0)
@@ -235,12 +235,7 @@ class SessionComposerTests {
      */
     @Test
     fun aWordComingBackKeepsTheDayOpen() {
-        val worked = BoxEngine.endSession(
-            quietBox(soon = 3, later = 0),
-            reviewsDone = SessionComposer.SESSION_FLOOR_CARDS,
-            nowEpochMillis = now,
-            tzId = Box.TZ,
-        )
+        val worked = Box.workedToday(quietBox(soon = 3, later = 0), SessionComposer.SESSION_FLOOR_CARDS, now)
         val plan = SessionComposer.composeSession(worked, now, Box.TZ)
         assertEquals(listOf("w01", "w02", "w03"), plan.ahead)
         assertEquals(4, plan.freshCount)
@@ -256,12 +251,7 @@ class SessionComposerTests {
             state,
             Box.sched("w01", dueMillis = Box.plusSeconds(now, 20 * 3_600L), lastReviewMillis = now),
         )
-        val worked = BoxEngine.endSession(
-            state,
-            reviewsDone = SessionComposer.SESSION_FLOOR_CARDS,
-            nowEpochMillis = now,
-            tzId = Box.TZ,
-        )
+        val worked = Box.workedToday(state, SessionComposer.SESSION_FLOOR_CARDS, now)
         assertTrue(SessionComposer.composeSession(worked, now, Box.TZ).isEmpty)
     }
 
@@ -273,12 +263,7 @@ class SessionComposerTests {
     @Test
     fun wordsPackedOnAFinishedDayWaitForTheRoundTheLearnerOpens() {
         val state = BoxEngine.enqueue(quietBox(soon = 0, later = 5), listOf("w20"))
-        val worked = BoxEngine.endSession(
-            state,
-            reviewsDone = SessionComposer.SESSION_FLOOR_CARDS,
-            nowEpochMillis = now,
-            tzId = Box.TZ,
-        )
+        val worked = Box.workedToday(state, SessionComposer.SESSION_FLOOR_CARDS, now)
         assertTrue(SessionComposer.composeSession(worked, now, Box.TZ).isEmpty)
         assertEquals("w20", SessionComposer.composeRound(worked, now, Box.TZ).newCards.first())
     }
@@ -306,12 +291,7 @@ class SessionComposerTests {
             )
         }
         val packed = BoxEngine.enqueue(state, (20..26).map { id(it) })
-        val worked = BoxEngine.endSession(
-            packed,
-            reviewsDone = SessionComposer.SESSION_FLOOR_CARDS,
-            nowEpochMillis = now,
-            tzId = Box.TZ,
-        )
+        val worked = Box.workedToday(packed, SessionComposer.SESSION_FLOOR_CARDS, now)
         assertTrue(SessionComposer.composeSession(worked, now, Box.TZ).isEmpty)
 
         val round = SessionComposer.composeRound(worked, now, Box.TZ)

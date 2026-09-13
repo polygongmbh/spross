@@ -240,10 +240,12 @@ The engine also owns budgets and the growth-reserve formula, the silent answer d
 extra round, endless, exposure tiers, statistics, streak forgiveness, the `endSession` fold
 and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 - **The streak is one commitment across every target language, not one per language.**
-  `dailyStats` persists per (source, target) box, so `BoxEngine.statistics` and
-  `BoxEngine.growth`'s siblings take `otherLanguagesDailyStats` — every OTHER target
-  language's `dailyStats`, gathered by the caller — and fold them into THIS state's own
-  via `Statistics.mergeDailyStats` before walking the streak. A day earns the streak
+  A day's answers are counted off the review logs (`answerDays`, keyed `yyyy-MM-dd` in the
+  CALLER's zone), so `BoxEngine.statistics` and `BoxEngine.activityWindow` take
+  `otherLanguagesAnswerDays` — every OTHER target language's days, gathered by the caller —
+  and merge them with THIS state's own via `mergeAnswerDays` before walking the streak.
+  Suspended and unjoined schedules count too: the answer really happened.
+  A day earns the streak
   whichever language(s) it was spent on; every other bucket (`activeCount`, `dueCount`,
   the areas) stays scoped to the join in view. `WidgetSnapshotBuilder.build` takes the
   same parameter so a widget's render-time streak walk agrees (`docs/snapshots.md`).
