@@ -69,6 +69,20 @@ class TurnTest {
     }
 
     @Test
+    fun theAnswerIsOutOnEveryPauseTheLearnerIsLeftHolding() {
+        val asking = TurnFixture.produce(TurnFixture.knife)
+        assertFalse(asking.answerOut)
+        // A typo pauses ON its correction, so the word is on screen with no beat running.
+        val typo = TurnFixture.state(asking, TurnIntent.Submit("kisuu"))
+        assertTrue(typo.answerOut)
+        assertFalse(typo.answerRevealed)
+        assertTrue(TurnFixture.state(asking, TurnIntent.Reveal).answerOut)
+        assertTrue(TurnFixture.state(asking, TurnIntent.Submit("kufunga")).answerOut)
+        // A clean answer is already leaving on its beat — nothing is waiting on the learner.
+        assertFalse(TurnFixture.state(asking, TurnIntent.InputChanged("kisu")).answerOut)
+    }
+
+    @Test
     fun anotherConceptsWordRevealsAndKeepsTheWordsAlreadyRight() {
         val missed = TurnFixture.step(TurnFixture.produce(TurnFixture.open), TurnIntent.Submit("kufunga"))
         assertEquals(TurnFeedback.Revealed, missed.state.feedback)

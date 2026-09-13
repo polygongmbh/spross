@@ -133,6 +133,12 @@ extension SessionView {
     /// there would put the same word on screen twice.
     var cardRevealed: Bool { turn?.answerRevealed ?? false }
 
+    /// The word the card owes back is on screen and the turn waits on the learner —
+    /// kern's own fact (`TurnState.answerOut`). What the card's menu hangs on: a typo
+    /// holds on its correction without ever expanding the card, and that pause is
+    /// exactly when a learner has something to say about the word.
+    var answerOut: Bool { turn?.answerOut ?? false }
+
     /// What the prompted word means BESIDES this card, where the target language
     /// merges two of ours into one of its own. It takes the note's own line and
     /// never crowds it: a card with something of its own to say says that, and

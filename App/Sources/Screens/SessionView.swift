@@ -186,8 +186,9 @@ struct SessionView: View, LanguageNaming {
                     .transition(reduceMotion ? .opacity : .cardFlip)
                     // why: only once the answer is out — before it, the learner has
                     // not seen the translation they would be reporting, and a menu
-                    // over the prompt is a menu over a question.
-                    .contextMenu { if cardRevealed { cardMenu(card) } }
+                    // over the prompt is a menu over a question. A typo's hold counts:
+                    // its correction stands even though the card never expands.
+                    .contextMenu { if answerOut { cardMenu(card) } }
                 }
                 if model.coachActive,
                    let line = SessionCoach.recognizeLine(role: role, revealed: revealed) {

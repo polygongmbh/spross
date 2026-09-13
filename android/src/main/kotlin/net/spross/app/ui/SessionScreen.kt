@@ -226,7 +226,7 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     val article = shownArticle(CardDisplay.article(card.target), promptForm, card.target.text)
     val revealed = flow.answerRevealed
 
-    ReportableCard(model, card, revealed, typed = { flow.input }) {
+    ReportableCard(model, card, flow.answerOut, typed = { flow.input }) {
         VocabCard(
             emoji = card.emoji,
             cue = ui.emojiCue,
