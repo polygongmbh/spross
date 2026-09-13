@@ -12,19 +12,18 @@ import SprossKern
 /// Filing changes nothing about the schedule. Putting the word to sleep is the
 /// menu's OTHER entry, deliberately not a switch in here.
 ///
-/// Reopened on a report already on file it arrives carrying what was written, and
-/// sending replaces it — one report per card, never a second one beside the first.
+/// Reopened on a report already on file it arrives carrying what was written — the
+/// comment AND the answer it rode in with — and sending replaces it: one report per
+/// card, never a second one beside the first.
 /// Withdrawing is in HERE for the same reason: the menu that opens this form offers
 /// one entry, not a fork between editing and dropping, and a learner deciding which
 /// they want is already reading the report.
 struct ReportIssueSheet: View {
     let model: AppModel
     let card: Card
-    /// What the learner had typed when they opened this; empty on recognition.
+    /// What the learner had typed when they opened this; empty on recognition and
+    /// on a row, where nothing was being answered.
     let learnerInput: String
-    /// The comment already on file, when the sheet was opened to EDIT a report
-    /// rather than file one. Empty otherwise.
-    var filed: String = ""
 
     @Environment(\.dismiss) private var dismiss
     @State private var comment = ""
@@ -36,7 +35,7 @@ struct ReportIssueSheet: View {
                 VStack(alignment: .leading, spacing: Theme.spacing.xl) {
                     pair
                     commentField
-                    if !learnerInput.isEmpty {
+                    if !carriedInput.isEmpty {
                         typedLine
                     }
                     Text("report.explainer")
@@ -62,14 +61,27 @@ struct ReportIssueSheet: View {
         }
         .tint(Theme.colors.accent)
         .onAppear {
-            comment = filed
+            // why: read off the report itself rather than passed in — every caller
+            // opens the same form, and one that forgot to hand the comment over
+            // would silently blank what the learner wrote.
+            comment = onFileIssue?.comment ?? ""
             focused = true
         }
     }
 
-    /// Whether this form opened on a report already filed — the one state where
-    /// there is something to withdraw.
-    private var onFile: Bool { model.reportedIssue(for: card.id) != nil }
+    /// The report this form opened on, when there was one already filed — the one
+    /// state where there is something to withdraw, and where what it already carries
+    /// is what the form starts from.
+    private var onFileIssue: ReportedIssue? { model.reportedIssue(for: card.id) }
+
+    private var onFile: Bool { onFileIssue != nil }
+
+    /// The answer the report travels with: what stands in the field now, or — filing
+    /// again from a row, where nothing was being answered — what the first report
+    /// already rode in with. Editing a report never drops it.
+    private var carriedInput: String {
+        learnerInput.isEmpty ? (onFileIssue?.learnerInput ?? "") : learnerInput
+    }
 
     /// Dropping the report, last and set apart: it is the only thing in the form
     /// that cannot be taken back by editing again.
@@ -121,7 +133,7 @@ struct ReportIssueSheet: View {
     private var typedLine: some View {
         HStack(spacing: Theme.spacing.xs) {
             Text("report.typed")
-            Text(verbatim: learnerInput)
+            Text(verbatim: carriedInput)
                 .foregroundStyle(Theme.colors.textPrimary)
         }
         .font(Theme.typography.caption)
@@ -129,7 +141,7 @@ struct ReportIssueSheet: View {
     }
 
     private func file() {
-        model.reportIssue(cardID: card.id, comment: comment, learnerInput: learnerInput)
+        model.reportIssue(cardID: card.id, comment: comment, learnerInput: carriedInput)
         dismiss()
     }
 }

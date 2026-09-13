@@ -83,6 +83,14 @@ class TurnFlow(
     /** The card carries the answer — a reveal, a miss, or the word being written out. */
     val answerRevealed: Boolean get() = state.answerRevealed
 
+    /**
+     * The word the card owes back is on screen and the turn waits on the learner — kern's
+     * own fact (`TurnState.answerOut`). What the card's long press hangs on: a typo holds
+     * on its correction without ever expanding the card, and that pause is exactly when a
+     * learner has something to say about the word.
+     */
+    val answerOut: Boolean get() = state.answerOut
+
     val almost: TurnFeedback.Almost? get() = feedback as? TurnFeedback.Almost
 
     val otherWord get() = state.otherWord

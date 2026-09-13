@@ -490,8 +490,13 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   asked, and taking a word out files no complaint (`kern/README.md` §6), which is why
   the report sheet carries no suspend switch. What the learner typed rides along without
   being asked about — the answer the catalog rejected is usually the report itself, and a
-  box to tick is a box to miss. In a session, only after the reveal: a menu over a prompt
-  is a menu over a question they have not been answered yet.
+  box to tick is a box to miss. Reopened on a report already filed, the form opens on it:
+  the comment stands where it can be edited and the answer it rode in with is kept, since
+  a row it is reopened from was answering nothing.
+  In a session the press waits until the answer is OUT (`TurnState.answerOut`) — a menu
+  over a prompt is a menu over a question they have not seen the answer to. A typo's hold
+  counts: its correction is on screen, and a word whose spelling the learner just argued
+  with is exactly the word they have something to say about.
 - **Taking a word out of a round does not grade it on the way out**
   (`SessionIntent.SuspendCurrent`). The card leaves on the spot with no rating asked —
   demanding one for a word the learner just said should never be asked is the busywork the

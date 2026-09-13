@@ -116,11 +116,9 @@ struct BoxCardRow: View {
     private func sheetBody(_ which: BoxRowSheet) -> some View {
         switch which {
         case .report:
-            // No typed answer to carry: nothing was being answered here.
+            // No typed answer to carry: nothing was being answered here, so a report
+            // already on file keeps the answer it was filed with.
             ReportIssueSheet(model: model, card: card, learnerInput: "")
-        case .editReport:
-            ReportIssueSheet(model: model, card: card, learnerInput: "",
-                             filed: model.reportedIssue(for: card.id)?.comment ?? "")
         case .ownFrom:
             OwnWordFormView(model: model, seed: .card(card))
         case .editOwnWord:

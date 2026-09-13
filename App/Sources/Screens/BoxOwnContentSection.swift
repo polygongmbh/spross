@@ -281,8 +281,7 @@ struct BoxOwnContentSection: View {
         case .talking:
             BriefingSheet(model: model)
         case .reporting(let card):
-            ReportIssueSheet(model: model, card: card, learnerInput: "",
-                             filed: model.reportedIssue(for: card.id)?.comment ?? "")
+            ReportIssueSheet(model: model, card: card, learnerInput: "")
         }
     }
 }

@@ -87,10 +87,10 @@ internal fun CardMenu(
 }
 
 /**
- * The revealed card's long press, in a session: the two things a learner can say about the
- * word in front of them, and they are unrelated — one is about the CATALOG being wrong, the
- * other about this word not being worth their time. Neither implies the other, so neither
- * is a step in the other's flow.
+ * The long press a card grows once its answer is out, in a session: the two things a
+ * learner can say about the word in front of them, and they are unrelated — one is about
+ * the CATALOG being wrong, the other about this word not being worth their time. Neither
+ * implies the other, so neither is a step in the other's flow.
  *
  * [typed] is read at the moment of the press, not at the moment the dialog opens.
  */
@@ -99,7 +99,7 @@ internal fun CardMenu(
 fun ReportableCard(
     model: AppModel,
     card: Card,
-    revealed: Boolean,
+    answerOut: Boolean,
     typed: () -> String,
     content: @Composable () -> Unit,
 ) {
@@ -109,11 +109,12 @@ fun ReportableCard(
     Box(
         // why: only once the answer is out — before it, the learner has not seen the
         // translation they would be reporting, and a menu over the prompt is a menu over a
-        // question. The tap does nothing: the card's own controls carry every tap it has.
+        // question. A typo's hold counts: its correction stands even though the card never
+        // expands. The tap does nothing: the card's own controls carry every tap it has.
         modifier = Modifier.combinedClickable(
             interactionSource = remember { MutableInteractionSource() },
             indication = null,
-            enabled = revealed,
+            enabled = answerOut,
             onLongClickLabel = chrome.reportAction,
             onLongClick = { captured = typed(); open = true },
             onClick = {},

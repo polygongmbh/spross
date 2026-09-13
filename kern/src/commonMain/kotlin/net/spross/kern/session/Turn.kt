@@ -143,6 +143,18 @@ data class TurnState(
         get() = feedback == TurnFeedback.Revealed || revealed
 
     /**
+     * The word the card owes back is on screen and the turn is waiting on the learner:
+     * either the card carries it, or an [TurnFeedback.Almost] hold's correction does.
+     *
+     * What a surface offering something ABOUT the word rather than about the answer —
+     * reporting it, putting it to sleep — is gated on. Before it the learner has not seen
+     * the translation they would be judging; where a beat is already armed the card is on
+     * its way out from under whatever they opened.
+     */
+    val answerOut: Boolean
+        get() = answerRevealed || feedback is TurnFeedback.Almost
+
+    /**
      * What had to be READ before recall could start — the prompted form on recognize and
      * on a card asked by ear (the target word, heard or written), the source word on the
      * produce card that was revealed.
