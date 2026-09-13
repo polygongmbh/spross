@@ -6,6 +6,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -187,18 +188,21 @@ const val LOCK = "🔒"
  *
  * No amber segment: amber stays a badge-only color, distinguishing Fresh/Learning/Shaky
  * from Growing at the per-card level ([PhaseBadge]) without the bar needing that fine a
- * grain. A card never packed at all draws nothing.
+ * grain. A card never packed at all gets no stretch: the neutral track under them is
+ * what the untouched rest of the shelf reads as.
  *
  * The split and the denominator are the box's rulings ([AreaStatistics]); empty stretches
- * are dropped, and an area with nothing in any of them draws one neutral rule rather than
- * a full bar claiming everything is being learnt.
+ * are dropped, and an area with nothing in any of them leaves the track bare rather than
+ * drawing a full bar claiming everything is being learnt.
  */
 @Composable
 fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
     val palette = Theme.colors
     val shape = RoundedCornerShape(percent = 50)
     Row(
-        modifier = modifier.fillMaxWidth().height(6.dp),
+        // why: the track is the shelf's untouched rest — without it the stretches would
+        // end in the card's own background and the bar would read as full.
+        modifier = modifier.fillMaxWidth().height(6.dp).background(palette.separator, shape),
         horizontalArrangement = Arrangement.spacedBy(2.dp),
     ) {
         val stretches = listOf(
@@ -206,13 +210,13 @@ fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
             stats.learning to palette.success,
             stats.queued to palette.accent,
         ).filter { it.first > 0 }
-        if (stretches.isEmpty()) {
-            Box(Modifier.weight(1f).height(6.dp).background(palette.separator, shape))
-            return@Row
-        }
         stretches.forEach { (count, color) ->
-            Box(Modifier.weight(count.toFloat()).height(6.dp).background(color, shape))
+            Box(Modifier.weight(count.toFloat()).fillMaxHeight().background(color, shape))
         }
+        // The rest of the denominator holds the stretches to their true share of the
+        // shelf, so a barely-packed area does not fill its bar.
+        val rest = stats.progressTotal - stretches.sumOf { it.first }
+        if (rest > 0) Spacer(Modifier.weight(rest.toFloat()))
     }
 }
 
