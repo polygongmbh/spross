@@ -233,6 +233,12 @@ class TrainerRunTest {
         val revealed = reduce(state, TrainerIntent.Reveal, rng)
         assertTrue(revealed.state.showsAnswer)
         assertTrue(DrillEffect.Tone(ToneKind.Reveal) in revealed.effects)
+        // Nothing typed is the same ask, so the check button and Enter agree; once the
+        // answer is in, nothing is owed and a stray blank changes nothing.
+        val blank = reduce(state, TrainerIntent.Submit("   "), rng)
+        assertEquals(revealed.state, blank.state)
+        assertEquals(revealed.effects, blank.effects)
+        assertEquals(revealed.state, reduce(revealed.state, TrainerIntent.Submit(" "), rng).state)
         // The beat never arms on a reveal, so nothing may ride it.
         assertEquals(revealed.state, reduce(revealed.state, TrainerIntent.AdvanceElapsed, rng).state)
         val booked = reduce(revealed.state, TrainerIntent.ConfirmPending, rng).state

@@ -127,7 +127,6 @@ enum CountryDrillFace: DrillFace {
         switch move {
         case .typed(let text): return CountryDrillIntent.InputChanged(text: text)
         case .submitted(let text): return CountryDrillIntent.Submit(text: text)
-        case .revealed: return CountryDrillIntent.Reveal.shared
         case .confirmed: return CountryDrillIntent.ConfirmPending.shared
         case .advanced: return CountryDrillIntent.AdvanceElapsed.shared
         }

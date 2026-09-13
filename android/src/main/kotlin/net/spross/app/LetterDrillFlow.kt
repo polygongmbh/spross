@@ -61,10 +61,8 @@ class LetterDrillFlow(
     /** One attempt per tile — a second tap after the answer is in would be a retry. */
     fun choose(glyph: String) = dispatch(LetterDrillIntent.Choose(glyph))
 
-    /** An empty field reveals (and books a miss), a filled one checks. */
-    fun primary() {
-        if (AnswerNormalizer.isBlankAnswer(input)) dispatch(LetterDrillIntent.Reveal) else dispatch(LetterDrillIntent.Submit(input))
-    }
+    /** The ONE primary action: kern checks what stands in the field, and reveals when nothing does. */
+    fun primary() = dispatch(LetterDrillIntent.Submit(input))
 
     fun confirm() = dispatch(LetterDrillIntent.ConfirmPending)
 

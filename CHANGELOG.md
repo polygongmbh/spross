@@ -19,6 +19,7 @@
 - The Ukrainian dates ladder now teaches the whole date with its year, one Sprosse further than it used to reach.
 - A word held on its spelling correction after a typo can now be reported or stopped like any other, instead of offering no menu at all.
 - Reopening a report you already filed now shows what you wrote instead of an empty field, and keeps the answer it was filed with.
+- Pressing Enter on an empty answer field now shows the answer, the same as tapping the button above it, instead of doing nothing.
 
 ## 6.2.1 — 2026-09-08
 

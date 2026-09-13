@@ -263,13 +263,19 @@ class CountryDrillRunTest {
         assertEquals(0, booked.streak)
     }
 
-    /** Blank text is not an answer, and a submitted blank must not book one. */
+    /** Nothing typed is the ask to see the answer, so the check button and Enter agree. */
     @Test
-    fun aBlankSubmitIsInert() {
+    fun aBlankSubmitReveals() {
         val run = open()
-        val reduction = run.reduce(CountryDrillIntent.Submit("   "))
-        assertEquals(run, reduction.state)
-        assertTrue(reduction.effects.isEmpty())
+        val blank = run.reduce(CountryDrillIntent.Submit("   "))
+        val asked = run.reduce(CountryDrillIntent.Reveal)
+        assertEquals(asked.state, blank.state)
+        assertEquals(asked.effects, blank.effects)
+
+        // Once the answer is in, nothing is owed and a stray blank changes nothing.
+        val inert = asked.state.reduce(CountryDrillIntent.Submit("   "))
+        assertEquals(asked.state, inert.state)
+        assertTrue(inert.effects.isEmpty())
     }
 
     /** The beat only ever arms on a clean answer, so nothing else may ride it. */

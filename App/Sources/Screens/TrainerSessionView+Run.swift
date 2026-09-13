@@ -46,17 +46,10 @@ extension TrainerSessionView {
         dispatch(TrainerIntent.InputChanged(text: input))
     }
 
+    /// The ONE primary action, button and Enter alike: kern checks what stands
+    /// in the field, and reveals the answer when nothing does.
     func submit() {
         dispatch(TrainerIntent.Submit(text: input))
-    }
-
-    /// ONE primary action: an empty field reveals, a typed one checks.
-    func checkOrReveal() {
-        if input.isBlankAnswer {
-            dispatch(TrainerIntent.Reveal.shared)
-        } else {
-            submit()
-        }
     }
 
     /// The whole numbers page, one tap away mid-run. Kern is told first: a

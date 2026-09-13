@@ -136,12 +136,17 @@ object TrainerRun {
 
     // MARK: - Intents
 
+    /**
+     * The explicit check. Nothing typed means the ask to see the answer ([reveal]) — the run
+     * has ONE primary action, and its button and its Enter key may not disagree on it.
+     */
     private fun submit(
         state: TrainerRunState,
         text: String,
         normalizer: AnswerNormalizer?,
     ): TrainerReduction {
-        if (!state.owesAnswer || AnswerNormalizer.isBlankAnswer(text)) return unchanged(state)
+        if (!state.owesAnswer) return unchanged(state)
+        if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state)
         return when (val match = grade(text, state.currentTask, normalizer)) {
             Match.Exact -> TrainerReduction(
                 state.copy(feedback = TurnFeedback.Correct),

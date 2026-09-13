@@ -152,7 +152,7 @@ extension LetterDrillView {
             case .neutral:
                 // ONE primary action: an empty field reveals, a typed one checks.
                 Button {
-                    checkOrReveal()
+                    submit()
                 } label: {
                     Text(input.isBlankAnswer ? "session.reveal" : "common.check")
                         .frame(maxWidth: .infinity)

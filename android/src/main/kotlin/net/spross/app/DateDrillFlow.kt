@@ -74,8 +74,6 @@ class DateDrillFlow(
 
     override fun submit(text: String) = DateDrillIntent.Submit(text)
 
-    override fun reveal() = DateDrillIntent.Reveal
-
     override fun confirmPending() = DateDrillIntent.ConfirmPending
 
     override fun advanceElapsedIntent() = DateDrillIntent.AdvanceElapsed

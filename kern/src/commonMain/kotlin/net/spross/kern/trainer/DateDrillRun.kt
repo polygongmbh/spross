@@ -129,8 +129,13 @@ object DateDrillRun {
         return DateDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
+    /**
+     * The explicit check. Nothing typed means the ask to see the answer ([reveal]) — the run
+     * has ONE primary action, and its button and its Enter key may not disagree on it.
+     */
     private fun submit(state: DateDrillRunState, text: String): DateDrillReduction {
-        if (!state.owesAnswer || AnswerNormalizer.isBlankAnswer(text)) return unchanged(state)
+        if (!state.owesAnswer) return unchanged(state)
+        if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state)
         val verdict = TypedDrillVerdicts.submit(grade(text, state.task, state.config))
         return DateDrillReduction(
             state.copy(feedback = verdict.feedback, otherWord = verdict.otherWord),

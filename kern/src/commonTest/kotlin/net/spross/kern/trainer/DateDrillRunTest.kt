@@ -200,12 +200,19 @@ class DateDrillRunTest {
         assertEquals(0, booked.streak)
     }
 
+    /** Nothing typed is the ask to see the answer, so the check button and Enter agree. */
     @Test
-    fun aBlankSubmitIsInert() {
+    fun aBlankSubmitReveals() {
         val run = open()
-        val reduction = run.reduce(DateDrillIntent.Submit("   "))
-        assertEquals(run, reduction.state)
-        assertTrue(reduction.effects.isEmpty())
+        val blank = run.reduce(DateDrillIntent.Submit("   "))
+        val asked = run.reduce(DateDrillIntent.Reveal)
+        assertEquals(asked.state, blank.state)
+        assertEquals(asked.effects, blank.effects)
+
+        // Once the answer is in, nothing is owed and a stray blank changes nothing.
+        val inert = asked.state.reduce(DateDrillIntent.Submit("   "))
+        assertEquals(asked.state, inert.state)
+        assertTrue(inert.effects.isEmpty())
     }
 
     @Test

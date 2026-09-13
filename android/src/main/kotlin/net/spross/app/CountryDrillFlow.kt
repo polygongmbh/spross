@@ -56,8 +56,6 @@ class CountryDrillFlow(
 
     override fun submit(text: String) = CountryDrillIntent.Submit(text)
 
-    override fun reveal() = CountryDrillIntent.Reveal
-
     override fun confirmPending() = CountryDrillIntent.ConfirmPending
 
     override fun advanceElapsedIntent() = CountryDrillIntent.AdvanceElapsed

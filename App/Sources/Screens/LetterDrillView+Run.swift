@@ -50,18 +50,10 @@ extension LetterDrillView {
         dispatch(LetterDrillIntent.Choose(glyph: glyph))
     }
 
+    /// The ONE primary action, button and Enter alike: kern checks what stands
+    /// in the field, and reveals the answer when nothing does.
     func submit() {
         dispatch(LetterDrillIntent.Submit(text: input))
-    }
-
-    /// ONE primary action: an empty field reveals — the CARD carries the answer
-    /// and the question books a miss — a typed one checks.
-    func checkOrReveal() {
-        if input.isBlankAnswer {
-            dispatch(LetterDrillIntent.Reveal.shared)
-        } else {
-            submit()
-        }
     }
 
     // MARK: - Close → back to the page that opened it

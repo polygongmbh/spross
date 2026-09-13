@@ -106,10 +106,8 @@ protocol DrillFace {
 enum DrillMove {
     /// A live keystroke: an answer finished exactly right needs no check tap.
     case typed(String)
-    /// Check/Enter with text standing.
+    /// Check/Enter: kern checks the text standing, and reveals when none does.
     case submitted(String)
-    /// "Aufdecken" on an empty field.
-    case revealed
     /// The explicit tap that books whatever the feedback already said.
     case confirmed
     /// The platform's armed beat elapsed.

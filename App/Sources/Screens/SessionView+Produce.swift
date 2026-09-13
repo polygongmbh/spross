@@ -71,15 +71,10 @@ extension SessionView {
                                   caption: gradeCaption)
             case .neutral:
                 VStack(spacing: Theme.spacing.md) {
-                    // ONE primary action: empty input reveals, typed input checks.
-                    // kern's Submit is inert on blank text, so which of the two a
-                    // press is stays the platform's to decide.
+                    // ONE primary action, and kern decides which: a blank submit
+                    // reveals, a typed one checks. The label only says which.
                     Button {
-                        if input.isBlankAnswer {
-                            dispatch(TurnIntent.Reveal.shared)
-                        } else {
-                            dispatch(TurnIntent.Submit(text: input))
-                        }
+                        dispatch(TurnIntent.Submit(text: input))
                     } label: {
                         Text(input.isBlankAnswer ? "session.reveal" : "common.check")
                             .frame(maxWidth: .infinity)

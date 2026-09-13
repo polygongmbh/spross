@@ -130,7 +130,6 @@ enum DateDrillFace: DrillFace {
         switch move {
         case .typed(let text): return DateDrillIntent.InputChanged(text: text)
         case .submitted(let text): return DateDrillIntent.Submit(text: text)
-        case .revealed: return DateDrillIntent.Reveal.shared
         case .confirmed: return DateDrillIntent.ConfirmPending.shared
         case .advanced: return DateDrillIntent.AdvanceElapsed.shared
         }

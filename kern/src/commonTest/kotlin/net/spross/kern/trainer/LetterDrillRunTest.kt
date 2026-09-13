@@ -198,6 +198,12 @@ class LetterDrillRunTest {
             revealed.effects,
         )
         assertTrue(revealed.state.showsAnswer)
+        // Nothing typed is the same ask, so the check button and Enter agree; once the
+        // answer is in, nothing is owed and a stray blank changes nothing.
+        val blank = reduce(state, LetterDrillIntent.Submit("   "), rng)
+        assertEquals(revealed.state, blank.state)
+        assertEquals(revealed.effects, blank.effects)
+        assertEquals(revealed.state, reduce(revealed.state, LetterDrillIntent.Submit(" "), rng).state)
     }
 
     @Test

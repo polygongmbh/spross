@@ -130,9 +130,14 @@ object LetterDrillRun {
         )
     }
 
+    /**
+     * The explicit check. Nothing typed means the ask to see the answer ([reveal]) — the run
+     * has ONE primary action, and its button and its Enter key may not disagree on it.
+     */
     private fun submit(state: LetterDrillRunState, text: String): LetterDrillReduction {
         val task = state.task ?: return unchanged(state)
-        if (!state.owesAnswer || AnswerNormalizer.isBlankAnswer(text)) return unchanged(state)
+        if (!state.owesAnswer) return unchanged(state)
+        if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state)
         val card = state.config.cards[task.answerRef]
         return when (val verdict = verdict(text, task, card, state.config.dictationGrader)) {
             LetterVerdict.Clean -> LetterDrillReduction(

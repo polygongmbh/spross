@@ -13,7 +13,6 @@ import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.DrillEffect
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.DrillTally
-import net.spross.kern.session.AnswerNormalizer
 
 /**
  * A TYPED endless drill — the atlas and the calendar — as its screen sees it.
@@ -204,12 +203,10 @@ abstract class TypedDrillFlow<S, I>(
     override fun choose(text: String) = dispatch(submit(text))
 
     /**
-     * The ONE primary action: an empty field asks to see the answer, a typed one checks it.
-     * Kern's Submit is inert on blank text, so which of the two a press is stays ours.
+     * The ONE primary action, button and Enter alike: kern checks what stands in the field,
+     * and reveals the answer when nothing does.
      */
-    override fun primary() {
-        if (AnswerNormalizer.isBlankAnswer(input)) dispatch(reveal()) else dispatch(submit(input))
-    }
+    override fun primary() = dispatch(submit(input))
 
     /** The tap that books whatever the feedback already said — and the beat's stand-in. */
     override fun confirm() = dispatch(confirmPending())
@@ -268,8 +265,6 @@ abstract class TypedDrillFlow<S, I>(
     protected abstract fun inputChanged(text: String): I
 
     protected abstract fun submit(text: String): I
-
-    protected abstract fun reveal(): I
 
     protected abstract fun confirmPending(): I
 

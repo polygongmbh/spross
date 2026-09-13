@@ -16,7 +16,6 @@ import net.spross.kern.session.TurnFeedback
 import net.spross.kern.session.TurnIntent
 import net.spross.kern.session.TurnMachine
 import net.spross.kern.session.TurnState
-import net.spross.kern.session.AnswerNormalizer
 
 /**
  * One review turn as this platform holds it.
@@ -145,13 +144,10 @@ class TurnFlow(
     }
 
     /**
-     * The produce card's ONE primary action: an empty field asks to see the answer, a
-     * typed one checks it. Kern's Submit is inert on blank text, so which of the two a
-     * press is stays the platform's to decide.
+     * The produce card's ONE primary action, button and Enter alike: kern checks what stands
+     * in the field, and reveals the answer when nothing does.
      */
-    fun primary() {
-        if (AnswerNormalizer.isBlankAnswer(input)) reveal() else dispatch(TurnIntent.Submit(input))
-    }
+    fun primary() = dispatch(TurnIntent.Submit(input))
 
     fun reveal() = dispatch(TurnIntent.Reveal)
 
@@ -183,7 +179,7 @@ class TurnFlow(
             retryApproved -> confirm()
             // A hardware keyboard still needs a way to give up without finishing it.
             feedback == TurnFeedback.Revealed -> giveUp()
-            else -> dispatch(TurnIntent.Submit(input))
+            else -> primary()
         }
     }
 

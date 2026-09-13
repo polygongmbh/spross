@@ -399,10 +399,10 @@ class AnswerNormalizer(
             AnswerNormalizer(answerLanguage, articleLeniency = false, maxTyposPerWord = 1)
 
         /**
-         * Nothing worth grading was typed — every submit path in kern goes inert on it.
-         * A typing-first surface reads this to decide which of the two its ONE primary
-         * action is, so the button's meaning and kern's answer cannot disagree;
-         * WHICH action it then takes stays the surface's own call.
+         * Nothing worth grading was typed — a submit carrying it MEANS reveal wherever a
+         * reveal is still legal, so a button press and an Enter take the same action.
+         * A typing-first surface reads this to LABEL its ONE primary action; which action
+         * that press then IS, kern decides.
          */
         fun isBlankAnswer(raw: String): Boolean = raw.trim().isEmpty()
 

@@ -105,7 +105,7 @@ extension TrainerSessionView {
             case .neutral:
                 // ONE primary action: empty input reveals, typed input checks.
                 Button {
-                    checkOrReveal()
+                    submit()
                 } label: {
                     Text(input.isBlankAnswer ? "session.reveal" : "common.check")
                         .frame(maxWidth: .infinity)

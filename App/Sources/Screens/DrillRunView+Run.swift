@@ -47,6 +47,8 @@ extension DrillRunView {
         dispatch(.typed(input))
     }
 
+    /// The ONE primary action, button and Enter alike: kern checks what stands
+    /// in the field, and reveals the answer when nothing does.
     func submit() {
         dispatch(.submitted(input))
     }
@@ -57,16 +59,6 @@ extension DrillRunView {
     func choose(_ name: String) {
         chosen = name
         dispatch(.submitted(name))
-    }
-
-    /// ONE primary action: an empty field reveals — the CARD carries the answer
-    /// and the question books a miss — a typed one checks.
-    func checkOrReveal() {
-        if input.isBlankAnswer {
-            dispatch(.revealed)
-        } else {
-            submit()
-        }
     }
 
     /// The tap that books whatever the feedback already said.

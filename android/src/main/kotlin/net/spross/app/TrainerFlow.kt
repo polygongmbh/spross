@@ -74,19 +74,17 @@ class TrainerFlow(
     }
 
     /**
-     * The ONE primary action: an empty field asks to see the answer, a typed one checks it.
-     * Kern's Submit is inert on blank text, so which of the two a press is stays ours.
+     * The ONE primary action, button and Enter alike: kern checks what stands in the field,
+     * and reveals the answer when nothing does.
      */
-    fun primary() {
-        if (AnswerNormalizer.isBlankAnswer(input)) dispatch(TrainerIntent.Reveal) else dispatch(TrainerIntent.Submit(input))
-    }
+    fun primary() = dispatch(TrainerIntent.Submit(input))
 
     /** The tap that books whatever the feedback already said. */
     fun confirm() = dispatch(TrainerIntent.ConfirmPending)
 
     /** Enter: check while the answer is owed, otherwise book what stands. */
     fun enter() {
-        if (state.owesAnswer) dispatch(TrainerIntent.Submit(input)) else confirm()
+        if (state.owesAnswer) primary() else confirm()
     }
 
     fun advanceElapsed() {

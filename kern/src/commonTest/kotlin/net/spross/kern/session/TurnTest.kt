@@ -344,6 +344,25 @@ class TurnTest {
     }
 
     @Test
+    fun aBlankSubmitIsTheAskToSeeTheAnswer() {
+        // ONE primary action, and both its triggers arrive as Submit: with nothing typed
+        // the press IS the reveal, so the button and the Enter key cannot disagree.
+        val start = TurnFixture.produce(TurnFixture.language)
+        val blank = TurnFixture.step(start, TurnIntent.Submit("   "), TurnFixture.T0 + 3_000)
+        val asked = TurnFixture.step(start, TurnIntent.Reveal, TurnFixture.T0 + 3_000)
+        assertEquals(asked.state, blank.state)
+        assertEquals(asked.effects, blank.effects)
+
+        // The guards a reveal already keeps still win over it.
+        assertEquals(asked.state, TurnFixture.state(asked.state, TurnIntent.Submit(""), TurnFixture.T0 + 9_000))
+        assertTrue(TurnFixture.step(asked.state, TurnIntent.Submit("")).effects.isEmpty())
+        val held = TurnFixture.state(TurnFixture.produce(TurnFixture.knife), TurnIntent.Submit("kisuu"))
+        assertEquals(held, TurnFixture.state(held, TurnIntent.Submit(" ")))
+        val recognizing = TurnFixture.recognize(TurnFixture.knife)
+        assertEquals(recognizing, TurnFixture.state(recognizing, TurnIntent.Submit("")))
+    }
+
+    @Test
     fun aSubmitOffAnOpenTurnBooksNothing() {
         val green = TurnFixture.state(TurnFixture.produce(TurnFixture.knife), TurnIntent.InputChanged("kisu"))
         val doubled = TurnFixture.step(green, TurnIntent.Submit("kisu"))

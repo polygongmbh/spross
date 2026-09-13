@@ -90,7 +90,7 @@ class TurnMachine(
         if (copying != null) return writeOut.reduce(state, copying, intent)
         return when (intent) {
             is TurnIntent.InputChanged -> typed(state, intent.text)
-            is TurnIntent.Submit -> submit(state, intent.text)
+            is TurnIntent.Submit -> submit(state, intent.text, nowEpochMillis)
             TurnIntent.Reveal -> reveal(state, nowEpochMillis)
             is TurnIntent.SelfGrade -> selfGrade(state, intent.verdict)
             TurnIntent.ConfirmPending -> confirmPending(state)
@@ -165,18 +165,21 @@ class TurnMachine(
     // MARK: - Submitting
 
     /**
-     * An explicit Check/Enter, graded once. Inert unless the turn is still open and typed at
-     * all: recognition is never graded from text, a doubled Enter during the beat that follows
-     * an answer books nothing extra, and a turn already handed to the self-grade buttons is not
-     * re-graded.
+     * An explicit Check/Enter, graded once. A submit with nothing typed IS the ask to see the
+     * answer ([reveal]) — the surface has ONE primary action, and its two triggers may not
+     * disagree on what a press means. Inert unless the turn is still open: recognition is
+     * never typed, a doubled Enter during the beat that follows an answer books nothing
+     * extra, and a turn already handed to the self-grade buttons neither re-grades nor
+     * re-reveals.
      */
-    private fun submit(state: TurnState, text: String): TurnReduction {
+    private fun submit(state: TurnState, text: String, nowEpochMillis: Long): TurnReduction {
         val trimmed = text.trim()
         if (state.role == PresentationRole.Recognize || state.revealed ||
-            state.feedback != TurnFeedback.Neutral || trimmed.isEmpty()
+            state.feedback != TurnFeedback.Neutral
         ) {
             return unchanged(state)
         }
+        if (trimmed.isEmpty()) return reveal(state, nowEpochMillis)
         val graded = grade(state, trimmed)
         // why: a meaning borrowed from the concept next door is right and books as much, but
         // the word this card teaches has still not been said — so it holds on it (§3).
