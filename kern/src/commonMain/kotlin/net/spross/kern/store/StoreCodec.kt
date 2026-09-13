@@ -1,87 +1,51 @@
 package net.spross.kern.store
 
-import kotlin.time.Instant
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
-import net.spross.kern.box.BoxState
-import net.spross.kern.box.DayTally
-import net.spross.kern.box.OwnWord
-import net.spross.kern.box.OwnWords
-import net.spross.kern.box.ReportedIssue
-import net.spross.kern.model.BoxConfig
-import net.spross.kern.model.Card
-import net.spross.kern.model.CardScheduling
-import net.spross.kern.model.JoinStamp
-import net.spross.kern.model.Language
 
-/** A persisted box document could not be decoded (corruption or schema drift). */
+/** A persisted box could not be decoded (corruption or schema drift). */
 class StoreFormatException(message: String) : Exception(message)
 
-/**
- * The persisted aggregate as decoded from disk: [BoxState] minus the derived catalog
- * join. [source] is the profile's last-used source language; the app may re-join with
- * a different one (schedules are source-agnostic).
- */
-data class DecodedBox(
-    val target: Language,
-    val source: Language,
-    val config: BoxConfig,
-    val scheduling: Map<String, CardScheduling>,
-    val enqueued: List<String>,
-    val consolidatedToday: DayTally? = null,
-    val ownWords: List<OwnWord>,
-    val reportedIssues: Map<String, ReportedIssue> = emptyMap(),
-    val lastExportAt: Instant? = null,
-) {
-    /**
-     * Re-join hook: attach a fresh catalog join to obtain a live [BoxState]. The
-     * learner's own words are joined in here rather than by the caller — they are
-     * the box's own content, and an app that had to remember to merge them would
-     * one day forget.
-     */
-    fun join(cards: List<Card>, joinStamp: JoinStamp): BoxState = BoxState(
-        config = config,
-        cards = (cards + OwnWords.cards(ownWords, joinStamp.source, joinStamp.target))
-            .associateBy { it.id },
-        joinStamp = joinStamp,
-        scheduling = scheduling,
-        enqueued = enqueued,
-        consolidatedToday = consolidatedToday,
-        ownWords = ownWords,
-        reportedIssues = reportedIssues,
-        lastExportAt = lastExportAt,
-    )
-}
+/** A box off disk, and whether reading it converted a v1 document ([StoreCodec.load]). */
+data class LoadedBox(val box: StoredBox, val converted: Boolean)
 
 /**
- * The narrow public store facade (`kern/docs/snapshots.md`): one JSON document per
- * TARGET language. Encoding is deterministic — sorted keys, ISO-8601 UTC dates — so
- * identical states produce identical bytes; decoding validates schema version,
- * card-id keys, and the phase/memory/due invariant.
+ * The narrow public store facade (`kern/docs/snapshots.md`): ONE document per TARGET
+ * language, since only one is ever active and a save should touch only what moved.
+ *
+ * Encoding is deterministic — sorted keys, seconds for every timestamp — so identical boxes
+ * produce identical bytes. Decoding replays each card's log and refuses the whole file over
+ * any single card it cannot read, because a box that lands half is worse than one that does
+ * not land.
  */
 object StoreCodec {
-    const val SCHEMA_VERSION: Int = 1
+    const val SCHEMA_VERSION: Int = STORE_SCHEMA_VERSION
 
-    fun encode(state: BoxState): String =
-        StoreJson.encodeSorted(BoxDocument.serializer(), boxDocument(state))
+    fun encode(box: StoredBox): String = encodeBoxFile(box)
 
     @Throws(StoreFormatException::class)
-    fun decode(json: String): DecodedBox {
-        val document = try {
-            StoreJson.json.decodeFromString(BoxDocument.serializer(), json)
-        } catch (e: IllegalArgumentException) {
-            throw StoreFormatException("invalid box document: ${e.message}")
-        }
-        return document.toDecoded()
+    fun decode(json: String): StoredBox = decodeBoxFile(json)
+
+    /**
+     * One language's box as a launch should hold it: a v2 document as written, a v1 one
+     * converted on the spot ([LegacyStore]). The file keeps its name either way, so a
+     * conversion is a rewrite and never a move — the caller writes back what it is told
+     * was converted, and an interrupted migration simply runs again.
+     */
+    @Throws(StoreFormatException::class)
+    fun load(json: String): LoadedBox = when (versionOf(json)) {
+        STORE_SCHEMA_VERSION -> LoadedBox(decode(json), converted = false)
+        LEGACY_SCHEMA_VERSION -> LoadedBox(LegacyStore.convert(json), converted = true)
+        else -> throw StoreFormatException("unsupported schemaVersion ${versionOf(json)}")
     }
 }
 
 /** Shared JSON flavor for the store document and both snapshot documents. */
 internal object StoreJson {
-    // why: omitted nulls keep documents compact and mirror v1's Swift Codable output.
+    // why: omitted nulls keep documents compact.
     // why: a key this build no longer knows is dropped rather than failing the whole
     // document — defaulting a renamed key only covers its ABSENCE, so without this a
     // box written before the rename still carries the old key and refuses to load.

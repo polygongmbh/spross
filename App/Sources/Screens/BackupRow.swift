@@ -1,3 +1,4 @@
+import SprossKern
 import SwiftUI
 import UniformTypeIdentifiers
 
@@ -11,7 +12,7 @@ struct BackupRow: View {
 
     @State private var exportFile: BackupFile?
     @State private var importing = false
-    @State private var pending: [String: String]?
+    @State private var pending: StoredBoxes?
     @State private var failure: LocalizedStringKey?
 
     var body: some View {
@@ -29,10 +30,10 @@ struct BackupRow: View {
         }
         .confirmationDialog("settings.backup.confirm \(pendingNames)",
                             isPresented: shown($pending), titleVisibility: .visible,
-                            presenting: pending) { documents in
+                            presenting: pending) { imported in
             Button("settings.backup.replace", role: .destructive) {
                 Task {
-                    do { try await model.restore(documents) } catch { failure = "settings.backup.importFailed" }
+                    do { try await model.restore(imported) } catch { failure = "settings.backup.importFailed" }
                 }
             }
             Button("common.cancel", role: .cancel) {}
@@ -73,7 +74,7 @@ struct BackupRow: View {
     }
 
     private var pendingNames: String {
-        (pending?.keys.sorted() ?? [])
+        (pending?.boxes.keys.sorted() ?? [])
             .map { LanguageNames.native($0, catalog: model.catalog) }
             .joined(separator: ", ")
     }

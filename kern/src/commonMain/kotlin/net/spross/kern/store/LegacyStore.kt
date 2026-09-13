@@ -5,27 +5,24 @@ import net.spross.kern.box.replayed
 import net.spross.kern.fsrs.FsrsScheduler
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.CardScheduling
-import net.spross.kern.model.Language
 
 /**
- * The one-way door out of the v1 store: a `box-<target>.json` per language, read into the
- * store that replaces them. Runs once, on the first load that finds no v2 file.
+ * The one-way door out of the v1 schema: a `box-<target>.json` as the previous build wrote
+ * it, read into the box that replaces it under the very same name.
  *
  * Schedules are replayed from their logs rather than carried, so a box converts to exactly
- * what it would be if it had been written by this build all along — with its stored `due`
- * kept, which is the one thing a replay cannot work out.
+ * what it would be if this build had written it all along — with its stored `due` kept,
+ * which is the one thing a replay cannot work out.
  *
  * Delete this file, and the v1 reader beside it, once no device can still be holding a v1
- * store — every install converts on its first launch after the change.
+ * box: every install converts on its first launch after the change.
  */
 internal object LegacyStore {
 
     @Throws(StoreFormatException::class)
-    fun convert(documents: Map<Language, String>): StoredBoxes = StoredBoxes(
-        documents.mapValues { (target, json) -> converted(StoreCodec.decode(json), target) },
-    )
+    fun convert(json: String): StoredBox = converted(decodeLegacyBox(json))
 
-    private fun converted(box: DecodedBox, target: Language): StoredBox {
+    private fun converted(box: DecodedBox): StoredBox {
         val scheduler = FsrsScheduler(BoxConfig.product().fsrsParameters())
         val scheduling = box.scheduling.mapValues { (cardId, sched) ->
             val suspended = sched.suspended && !leechSuspension(sched)
@@ -51,7 +48,7 @@ internal object LegacyStore {
     /**
      * The mark of the leech rule removed on 2026-09-01: suspended with 2+ lifetime lapses is
      * exactly what it used to do by itself, so those suspensions are lifted on the way over.
-     * A learner's own hand-suspend of a twice-lapsed word is lifted with them — a best-effort
+     * A learner's own hand-suspend of a twice-lapsed word goes with them — a best-effort
      * sweep, and re-suspending afterwards is a fresh, current choice.
      *
      * The v1 count is what decides, since a replay under today's rule counts differently.

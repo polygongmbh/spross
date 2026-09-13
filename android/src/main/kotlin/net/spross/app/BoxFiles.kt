@@ -3,28 +3,28 @@ package net.spross.app
 import java.io.File
 
 /**
- * One JSON document per target language, `box-<target>.json` (kern/docs/snapshots.md).
- * Android has no App Group; the app-private files dir is the single owner.
+ * One JSON document per target language, `box-<target>.json` (kern/docs/snapshots.md):
+ * only one language is ever active, so a save touches only what moved. Android has no App
+ * Group; the app-private files dir is the single owner.
  */
 class BoxFiles(private val dir: File) {
 
     fun fileFor(target: String): File = File(dir, "box-$target.json")
 
-    fun read(target: String): String? =
-        fileFor(target).takeIf { it.isFile }?.readText()
+    fun read(target: String): String? = fileFor(target).takeIf { it.isFile }?.readText()
 
     fun write(target: String, json: String) = writeAtomically(fileFor(target), json)
 
-    /** Every target's stored document, keyed by target. */
-    fun readAll(): Map<String, String> =
-        dir.listFiles { file -> file.isFile && file.name.startsWith("box-") && file.name.endsWith(".json") }
-            .orEmpty()
-            .associate { it.name.removePrefix("box-").removeSuffix(".json") to it.readText() }
+    /** Every target the device holds a document for. */
+    fun targets(): List<String> = dir
+        .listFiles { file -> file.isFile && file.name.startsWith("box-") && file.name.endsWith(".json") }
+        .orEmpty()
+        .map { it.name.removePrefix("box-").removeSuffix(".json") }
 
     /**
-     * The home-screen widget's pre-resolved read model, one file for the whole app
-     * rather than one per target: the widget draws the box the learner is IN, and the
-     * app rewrites this whenever that box changes ([net.spross.kern.snapshot.WidgetSnapshotBuilder]).
+     * The home-screen widget's pre-resolved read model, one file for the whole app rather
+     * than one per target: the widget draws the box the learner is IN, and the app rewrites
+     * this whenever that box changes ([net.spross.kern.snapshot.WidgetSnapshotBuilder]).
      */
     fun readWidgetSnapshot(): String? = widgetSnapshot.takeIf { it.isFile }?.readText()
 

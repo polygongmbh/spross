@@ -29,6 +29,10 @@ extension KotlinInstant {
 // — encoding walks every schedule and every review ever logged, and that is not
 // work a tap should wait on (`App/Sources/Store/BoxStore.swift`).
 extension BoxState: @retroactive @unchecked Sendable {}
+// The store and one language's box in it: values kern hands over, read off the actor
+// that holds them and joined on a background task.
+extension StoredBoxes: @retroactive @unchecked Sendable {}
+extension StoredBox: @retroactive @unchecked Sendable {}
 // The catalog is parsed once and never written again; the pool report is a
 // value kern hands back. Both cross to a background sweep and back.
 extension Catalog: @retroactive @unchecked Sendable {}

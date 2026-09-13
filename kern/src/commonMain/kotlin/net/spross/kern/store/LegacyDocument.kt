@@ -21,18 +21,36 @@ import net.spross.kern.model.ReviewLogEntry
  * Every serializable type in this file stays internal — the public door is [StoreCodec];
  * a public @Serializable class would flood the ObjC header with serialization internals.
  */
+/** The v1 store's schema; this file exists only to leave it behind. */
+internal const val LEGACY_SCHEMA_VERSION: Int = 1
+
+/** A v1 box as it was written — only the parts [LegacyStore] carries over. */
+internal data class DecodedBox(
+    val scheduling: Map<String, CardScheduling>,
+    val enqueued: List<String>,
+    val ownWords: List<OwnWord>,
+    val reportedIssues: Map<String, ReportedIssue>,
+    val lastExportAt: Instant?,
+)
+
+/** Read one `box-<target>.json` as the build that wrote it meant it. */
+@Throws(StoreFormatException::class)
+internal fun decodeLegacyBox(json: String): DecodedBox {
+    val document = try {
+        StoreJson.json.decodeFromString(BoxDocument.serializer(), json)
+    } catch (e: IllegalArgumentException) {
+        throw StoreFormatException("invalid box document: ${e.message}")
+    }
+    return document.toDecoded()
+}
+
 @Serializable
 internal data class BoxDocument(
     val schemaVersion: Int,
     val target: String,
     val source: String,
-    val config: ConfigDto,
     val scheduling: Map<String, CardDto>,
     val enqueued: List<String>,
-    // why: the crossings booked on ONE day, the day itself as the key. Every other day
-    // count is read off the logs; this one cannot be, since no log entry records a
-    // stability. Defaulted: a document written before it decodes as a day with none.
-    val today: Map<String, Int> = emptyMap(),
     // why: defaulted like the counters above — a document written before the learner
     // could author words at all decodes as one who has authored none.
     val ownWords: List<OwnWordDto> = emptyList(),
@@ -72,21 +90,6 @@ internal data class OwnWordDto(
 )
 
 @Serializable
-internal data class ConfigDto(
-    val sessionCap: Int,
-    val desiredRetention: Double,
-    val maximumIntervalDays: Int,
-    // why: defaulted so a document written before this bar existed still decodes; the
-    // keys it replaced (settledStability among them) are dropped by ignoreUnknownKeys.
-    // Calibration the build re-applies on load, not user data worth migrating.
-    val growingStability: Double = 6.0,
-    // why: defaulted so a document written under the old learningStepsSeconds /
-    // relearningStepsSeconds split still decodes — both keys are unknown now and
-    // dropped, and this falls back to the build's calibration like the bar above.
-    val stepsSeconds: List<Long> = BoxConfig().stepsSeconds,
-)
-
-@Serializable
 internal data class CardDto(
     val cardId: String,
     val phase: String,
@@ -107,84 +110,20 @@ internal data class LogEntryDto(
     val rating: Int,
 )
 
-// Encoding (state → document)
-
-internal fun boxDocument(state: BoxState): BoxDocument = BoxDocument(
-    schemaVersion = StoreCodec.SCHEMA_VERSION,
-    target = state.joinStamp.target,
-    source = state.joinStamp.source,
-    config = configDto(state.config),
-    scheduling = state.scheduling.mapValues { cardDto(it.value) },
-    enqueued = state.enqueued,
-    today = state.consolidatedToday?.let { mapOf(it.day to it.count) } ?: emptyMap(),
-    ownWords = state.ownWords.map(::ownWordDto),
-    reportedIssues = state.reportedIssues.values
-        .sortedBy { it.cardId }
-        .map { ReportedIssueDto(it.cardId, it.comment, it.learnerInput, it.reportedAt) },
-    lastExportAt = state.lastExportAt,
-)
-
-private fun ownWordDto(word: OwnWord): OwnWordDto = OwnWordDto(
-    id = word.id,
-    kind = kindName(word.kind),
-    emoji = word.emoji,
-    texts = word.texts,
-    comment = word.comment,
-    addedAt = word.addedAt.takeIf { it != Instant.DISTANT_PAST },
-)
-
-private fun configDto(config: BoxConfig): ConfigDto = ConfigDto(
-    sessionCap = config.sessionCap,
-    desiredRetention = config.desiredRetention,
-    maximumIntervalDays = config.maximumIntervalDays,
-    growingStability = config.growingStability,
-    stepsSeconds = config.stepsSeconds,
-)
-
-private fun cardDto(sched: CardScheduling): CardDto = CardDto(
-    cardId = sched.cardId,
-    phase = phaseName(sched.phase),
-    stepIndex = sched.stepIndex,
-    memory = sched.memory?.let { MemoryDto(it.stability, it.difficulty) },
-    due = sched.due,
-    lapses = sched.lapses,
-    suspended = sched.suspended,
-    log = sched.log.map { LogEntryDto(it.date, it.rating.value) },
-)
-
-private fun phaseName(phase: CardPhase): String = when (phase) {
-    CardPhase.New -> "new"
-    CardPhase.Learning -> "learning"
-    CardPhase.Review -> "review"
-    CardPhase.Relearning -> "relearning"
-}
-
-private fun kindName(kind: CardKind): String = when (kind) {
-    CardKind.Noun -> "noun"
-    CardKind.Verb -> "verb"
-    CardKind.Adjective -> "adjective"
-    CardKind.Phrase -> "phrase"
-    CardKind.Idiom -> "idiom"
-}
-
 // Decoding (document → validated aggregate)
 
 private fun fail(message: String): Nothing = throw StoreFormatException(message)
 
 internal fun BoxDocument.toDecoded(): DecodedBox {
-    if (schemaVersion != StoreCodec.SCHEMA_VERSION) {
-        fail("unsupported schemaVersion $schemaVersion (expected ${StoreCodec.SCHEMA_VERSION})")
+    if (schemaVersion != LEGACY_SCHEMA_VERSION) {
+        fail("unsupported schemaVersion $schemaVersion (expected $LEGACY_SCHEMA_VERSION)")
     }
     if (target.isBlank() || source.isBlank() || target == source) {
         fail("invalid profile: source=\"$source\" target=\"$target\"")
     }
     return DecodedBox(
-        target = target,
-        source = source,
-        config = config.toDomain(),
         scheduling = scheduling.entries.associate { (key, dto) -> key to dto.toDomain(key) },
         enqueued = enqueued,
-        consolidatedToday = today.entries.firstOrNull()?.let { DayTally(it.key, it.value) },
         ownWords = ownWords.map { it.toDomain() },
         reportedIssues = reportedIssues.associate { it.cardId to it.toDomain() },
         lastExportAt = lastExportAt,
@@ -225,14 +164,6 @@ private fun OwnWordDto.toDomain(): OwnWord {
         addedAt = addedAt ?: Instant.DISTANT_PAST,
     )
 }
-
-private fun ConfigDto.toDomain(): BoxConfig = BoxConfig(
-    sessionCap = sessionCap,
-    desiredRetention = desiredRetention,
-    maximumIntervalDays = maximumIntervalDays,
-    growingStability = growingStability,
-    stepsSeconds = stepsSeconds,
-)
 
 private fun CardDto.toDomain(key: String): CardScheduling {
     if (cardId != key) {

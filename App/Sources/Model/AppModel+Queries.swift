@@ -144,7 +144,7 @@ extension AppModel {
         let fresh = BoxEngine.shared.reset(state: old)
         box = fresh
         do {
-            try await store.saveNow(state: fresh, target: fresh.joinStamp.target)
+            try await store.saveNow(state: fresh)
             await store.saveWidgetSnapshot(state: fresh, nowEpochMillis: Date().epochMillis,
                                            tzId: currentTzId(),
                                            otherLanguagesAnswerDays: otherLanguagesAnswerDays)

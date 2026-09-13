@@ -284,33 +284,29 @@ final class AppModel {
             return
         }
         do {
-            let stored = try await store.load(target: target)
-            // why: joining the catalog and decoding the document are the two
-            // heaviest things a launch does — every card in the profile built,
-            // every schedule and review parsed — and neither needs this actor.
-            let state = try await Task.detached {
+            let saved = try await store.box(target: target)
+            // why: joining the catalog and replaying the logs are the two heaviest
+            // things a launch does — every card in the profile built, every answer
+            // ever given re-applied — and neither needs this actor.
+            let state = await Task.detached {
                 let cards = catalog.join(source: source, target: target)
                 let stamp = JoinStamp(source: source, target: target,
                                       catalogFingerprint: catalog.fingerprint)
-                guard let stored else {
+                guard let saved else {
                     return BoxEngine.shared.bootstrap(cards: cards,
                                                       config: BoxConfig.companion.product(),
                                                       joinStamp: stamp)
                 }
                 // why: schedules are keyed by card id (source-agnostic), so a
                 // stored box re-joins under ANY source with progress intact.
-                // revivingLeechSuspensions/rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
-                return try StoreCodec.shared.decode(json: stored)
-                    .join(cards: cards, joinStamp: stamp)
-                    .withProductCalibration()
-                    .revivingLeechSuspensions()
-                    .rekeyingPrefixedVerbs()
+                // rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
+                return saved.join(cards: cards, joinStamp: stamp).rekeyingPrefixedVerbs()
             }.value
             box = state
             // why: only a box that did not exist yet owes the disk anything here.
             // A re-join is derived from what is already stored and reproduces
             // itself on the next launch, so writing it back buys nothing.
-            if stored == nil { try await store.saveNow(state: state, target: target) }
+            if saved == nil { try await store.saveNow(state: state) }
             await reloadOtherLanguagesAnswerDays(excluding: target)
             await store.saveWidgetSnapshot(state: state, nowEpochMillis: Date().epochMillis,
                                            tzId: currentTzId(),
@@ -466,20 +462,7 @@ final class AppModel {
     /// skipped — its own load path surfaces the real error when the learner
     /// switches to it; the streak merge only wants what is readable.
     private func reloadOtherLanguagesAnswerDays(excluding target: String) async {
-        guard let catalog else { otherLanguagesAnswerDays = [:]; return }
-        let tz = currentTzId()
-        var gathered: [[String: KotlinInt]] = []
-        for language in catalog.languages.keys where language != target {
-            guard let json = try? await store.load(target: language) else { continue }
-            // why: a whole sibling document parsed for its day counts alone —
-            // off this actor, and only the counts come back.
-            guard let days = await Task.detached(operation: {
-                (try? StoreCodec.shared.decode(json: json).scheduling)
-                    .map { answerDays(scheduling: $0, tzId: tz) }
-            }).value else { continue }
-            gathered.append(days)
-        }
-        otherLanguagesAnswerDays = mergeAnswerDays(answerDaysByLanguage: gathered)
+        otherLanguagesAnswerDays = await store.answerDays(excluding: target, tzId: currentTzId())
     }
 
     /// Scene went to background → flush whatever the debounce is still holding.
@@ -495,13 +478,12 @@ final class AppModel {
         // why: every save path also refreshes the watch snapshot, so config
         // changes and session end (immediate saves) reach the watch promptly.
         if immediate { pushWatchSnapshot() }
-        let target = state.joinStamp.target
         let now = Date().epochMillis
         let tz = currentTzId()
         let others = otherLanguagesAnswerDays
         Task { [store] in
             if immediate {
-                try? await store.saveNow(state: state, target: target)
+                try? await store.saveNow(state: state)
                 // why: the decode-only widget renders from this precomputed file
                 // (`kern/docs/snapshots.md`). Built with the immediate saves only —
                 // session end, a config change, the app leaving the screen. Its
@@ -511,7 +493,7 @@ final class AppModel {
                 await store.saveWidgetSnapshot(state: state, nowEpochMillis: now, tzId: tz,
                                                otherLanguagesAnswerDays: others)
             } else {
-                await store.save(state: state, target: target)
+                await store.save(state: state)
             }
         }
     }

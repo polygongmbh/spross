@@ -3,23 +3,39 @@
 The persisted box document, and the watch/widget snapshots the phone precomputes.
 Engine contract: `../README.md`.
 
-- One document per TARGET: `box-<target>.json` in App Group `group.net.spross.app`.
-  `BoxDocument` (schema version 1, `store/BoxDocument.kt`) documents its own fields —
-  scheduling keys are card ids;
-  `ownWords` is the document's only content (`../README.md` §6), defaulted so a box written before the
-  learner could author any decodes as one who has authored none;
-  the stored `config` is a record of the calibration a box was written under, never an input —
-  `BoxState.withProductCalibration()` re-applies the build's (`../README.md` §4) to every box that loads;
-  `BoxState.revivingLeechSuspensions()` runs alongside it, a temporary migration (delete at
-  7.0+) reviving any card the leech rule auto-suspended before the 2026-09-01 ruling that
-  removed it;
-  `BoxState.rekeyingPrefixedVerbs()` follows, temporary alike, moving progress stored under a bare
-  verb slug onto the `to-` prefixed card the 2026-09-03 ruling renamed it to;
-  kotlinx.serialization; dates as ISO-8601 UTC strings via explicit `kotlin.time.Instant`
-  serializers; facade encodes with **sorted keys** (deterministic bytes).
+- One document per TARGET: `box-<target>.json` (schema version 2, `store/StoreDocument.kt`)
+  in App Group `group.net.spross.app`. Only one language is ever active, so a save encodes and
+  writes that one alone; each file carries its own `schemaVersion` beside its fields.
+  A card is `[dueEpochSeconds, [[answerEpochSeconds, rating], …]]` and nothing else:
+  memory, phase, step and lapses are REPLAYED from that log as it decodes
+  (`box/Answer.kt`, `replayed`), so the file carries only what a replay cannot give back.
+  `due` is stored for exactly that reason — a retention or ladder change then moves future
+  answers rather than reshuffling every pending date.
+  Calibration is the BUILD's: `StoredBox.join` applies `BoxConfig.product()`, and the file
+  holds no configuration at all.
+  A word suspended before it was ever answered is an id in `suspended` and has no card entry;
+  `enqueued`, `ownWords` (the document's only content, `../README.md` §6) and `reportedIssues`
+  carry the rest, and `today` holds the day's crossings — the one count no log records, local
+  to the device, which an export leaves behind.
+  Timestamps are epoch seconds, and the engine floors every stamp it mints (`box/Time.kt`,
+  `stampOf`), so a live box equals its own reloaded self.
+  `BoxState.rekeyingPrefixedVerbs()` still runs on load, a temporary migration (delete at 7.0+)
+  moving progress stored under a bare verb slug onto the `to-` prefixed card the 2026-09-03
+  ruling renamed it to.
+  kotlinx.serialization; the facade encodes with **sorted keys** (deterministic bytes).
   All `@Serializable` types are `internal`; the public surface is a narrow facade
-  (`encode/decode` — no `migrate()` until a schema v2 exists) — keeps the ObjC header
-  small (probe showed serialization internals otherwise flood it).
+  (`encode` / `decode` / `load`) — keeps the ObjC header small (probe showed serialization
+  internals otherwise flood it).
+- **A v1 document converts in place** (`store/LegacyStore.kt`, `store/LegacyDocument.kt`):
+  `StoreCodec.load` routes on the version the file declares, replays a v1 box's logs, keeps its
+  stored `due`, and lifts the leech-era suspensions the removed 2026-09-01 rule left behind (by
+  the lapse count v1 wrote, not a replayed one). The file keeps its NAME, so a conversion is a
+  rewrite and never a move: the platform writes back whatever `load` reports as converted, and
+  an interrupted migration simply runs again. Both files go once no device can hold a v1 box.
+- **The backup** (`store/BoxBackup.kt`) is every language in ONE envelope under a single
+  `schemaVersion` — `{"schemaVersion": 2, "boxes": {<target>: …}}` — minus `today`. A restore
+  replaces every language the file carries and leaves the rest alone
+  (`StoredBoxes.restoring`); one box it cannot read refuses the whole file.
 - **Box backup** (`store/BoxBackup.kt`): the settings' export and import file,
   `{format: "spross-box-backup", version: 1, boxes: {<target>: <box document>}}`, sorted keys.
   A restore replaces each box it carries and leaves the other targets alone;

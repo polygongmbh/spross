@@ -65,9 +65,9 @@ import net.spross.kern.snapshot.WidgetSnapshotBuilder
 import net.spross.kern.store.BoxBackup
 import net.spross.kern.store.StoreCodec
 import net.spross.kern.store.StoreFormatException
+import net.spross.kern.store.StoredBox
+import net.spross.kern.store.StoredBoxes
 import net.spross.kern.store.rekeyingPrefixedVerbs
-import net.spross.kern.store.revivingLeechSuspensions
-import net.spross.kern.store.withProductCalibration
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.TrainerMode
 
@@ -307,6 +307,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * so a per-answer disk read for each of them would be wasted work.
      */
     private var otherLanguagesAnswerDays: Map<String, Int> = emptyMap()
+
+    /** What has been read or written this launch, by target ([StoredBoxes]). */
+    private var boxes: StoredBoxes = StoredBoxes.EMPTY
 
     /**
      * Produce grading with the whole join in view: a form the catalog owns
@@ -614,38 +617,14 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         val cat = catalog ?: return
         chrome = Chrome.forSource(source)
         val stamp = JoinStamp(source, target, cat.fingerprint)
-        val stored = withContext(Dispatchers.IO) { boxFiles.read(target) }
-        // why: the join builds every card the profile holds, the decode parses every
-        // schedule and every review ever logged, and the atlas walks the whole country
-        // manifest — none of it belongs on the thread that has to draw the first frame.
-        val loaded = withContext(Dispatchers.Default) {
-            val cards = cat.join(source, target)
-            val restored: Result<BoxState>? = stored?.let { json ->
-                try {
-                    // why: calibration belongs to the BUILD — a box written months ago would
-                    // otherwise keep pacing itself by the numbers that shipped with it.
-                    // revivingLeechSuspensions/rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
-                    Result.success(
-                        StoreCodec.decode(json).join(cards, stamp)
-                            .withProductCalibration()
-                            .revivingLeechSuspensions()
-                            .rekeyingPrefixedVerbs()
-                    )
-                } catch (e: StoreFormatException) {
-                    Result.failure(e)
-                }
+        val opened = withContext(Dispatchers.IO) {
+            try {
+                Result.success(openBox(target))
+            } catch (e: StoreFormatException) {
+                Result.failure(e)
             }
-            // why: the pair only changes here — the hub reads the atlas and the
-            // calendars on every composition, and a sweep per frame is one no
-            // start-up should pay.
-            Triple(
-                restored ?: Result.success(BoxEngine.bootstrap(cards, BoxConfig.product(), stamp)),
-                cat.countryDrillContent(source, target),
-                cat.dateDrillContent(source, target),
-            )
         }
-        val (state, joinedAtlas, joinedDates) = loaded
-        val unreadable = state.exceptionOrNull()
+        val unreadable = opened.exceptionOrNull()
         if (unreadable != null) {
             // why: a box that exists but cannot be read must never read as an EMPTY one —
             // bootstrapping here would hand the learner a fresh box and hide the loss, so
@@ -657,8 +636,25 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             screen = Screen.Home
             return
         }
+        val saved = opened.getOrThrow()
+        // why: the join builds every card the profile holds, replaying the logs re-applies
+        // every answer ever given, and the atlas walks the whole country manifest — none of
+        // it belongs on the thread that has to draw the first frame.
+        val loaded = withContext(Dispatchers.Default) {
+            val cards = cat.join(source, target)
+            // why: the pair only changes here — the hub reads the atlas and the
+            // calendars on every composition, and a sweep per frame is one no
+            // start-up should pay.
+            Triple(
+                // rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
+                saved?.join(cards, stamp)?.rekeyingPrefixedVerbs()
+                    ?: BoxEngine.bootstrap(cards, BoxConfig.product(), stamp),
+                cat.countryDrillContent(source, target),
+                cat.dateDrillContent(source, target),
+            )
+        }
+        val (joined, joinedAtlas, joinedDates) = loaded
         loadFailure = null
-        val joined = state.getOrThrow()
         box = joined
         atlas = joinedAtlas
         dates = joinedDates
@@ -666,8 +662,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         meaningNormalizer = AnswerNormalizer(cat.languages.getValue(source))
         // why: only a box that did not exist yet owes the disk anything here. A re-join is
         // derived from what is already stored and reproduces itself on the next launch.
-        if (stored == null) persist(joined)
-        otherLanguagesAnswerDays = withContext(Dispatchers.IO) { loadOtherLanguagesAnswerDays(cat, target) }
+        if (saved == null) persist(joined)
+        otherLanguagesAnswerDays = withContext(Dispatchers.IO) { otherLanguagesDays(target) }
         refreshStats()
         refreshListening()
         screen = landing
@@ -704,41 +700,51 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         refreshStats()
     }
 
-    /** The backup file's text, every box on disk in it ([BoxBackup]). Reads the disk. */
-    fun backupJson(): String = BoxBackup.encode(boxFiles.readAll())
+    /** The backup file's text: every language, without what belongs to this device ([BoxBackup]). */
+    fun backupJson(): String {
+        boxFiles.targets().filter { it !in boxes.boxes }.forEach { runCatching { openBox(it) } }
+        return BoxBackup.encode(boxes)
+    }
 
     /**
-     * Writes boxes a backup restored, then re-opens the pair on screen from disk, so the
-     * box drawn is the restored one and not the one it replaced.
+     * Writes the languages a backup restored, then re-opens the pair on screen from the
+     * store, so the box drawn is the restored one and not the one it replaced.
      */
-    fun restoreBoxes(documents: Map<String, String>) {
+    fun restoreBoxes(imported: StoredBoxes) {
         val stamp = box?.joinStamp ?: return
         viewModelScope.launch {
+            boxes = boxes.restoring(imported)
             withContext(Dispatchers.IO) {
-                documents.forEach { (target, json) -> boxFiles.write(target, json) }
+                imported.boxes.keys.forEach { target ->
+                    boxFiles.write(target, StoreCodec.encode(boxes.boxes.getValue(target)))
+                }
             }
             activate(stamp.source, stamp.target, Screen.Box())
         }
     }
 
     /**
-     * Answers per day for every catalog language except [target], read straight off
-     * disk (no catalog join needed to count a log). A sibling box that is missing
-     * or fails to decode is skipped — its own load path surfaces the real error
-     * when the learner switches to it.
+     * One language's stored box, or null where the device holds none. A v1 document
+     * converts as it is read and is written back under the same name — a conversion that
+     * never reaches disk would convert again on every launch.
      */
-    private fun loadOtherLanguagesAnswerDays(cat: Catalog, target: String): Map<String, Int> =
-        mergeAnswerDays(
-            cat.languages.keys.filter { it != target }.mapNotNull { language ->
-                boxFiles.read(language)?.let { json ->
-                    try {
-                        answerDays(StoreCodec.decode(json).scheduling, tz())
-                    } catch (_: StoreFormatException) {
-                        null
-                    }
-                }
-            },
-        )
+    private fun openBox(target: String): StoredBox? {
+        val json = boxFiles.read(target) ?: return null
+        val loaded = StoreCodec.load(json)
+        if (loaded.converted) boxFiles.write(target, StoreCodec.encode(loaded.box))
+        boxes = StoredBoxes(boxes.boxes + (target to loaded.box))
+        return loaded.box
+    }
+
+    /**
+     * Answers per day in every OTHER language. A sibling that cannot be read is skipped —
+     * its own load path surfaces the real error when the learner switches to it.
+     */
+    private fun otherLanguagesDays(target: String): Map<String, Int> {
+        boxFiles.targets().filter { it != target && it !in boxes.boxes }
+            .forEach { runCatching { openBox(it) } }
+        return boxes.answerDaysExcept(target, tz())
+    }
 
     fun startSession() = begin(SessionIntent.Start)
 
@@ -969,9 +975,11 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     private fun persist(state: BoxState, widget: Boolean = true, blocking: Boolean = false) {
         val target = state.joinStamp.target
+        boxes = boxes.with(state)
+        val box = boxes.boxes.getValue(target)
         val stamp = now()
         if (blocking) {
-            boxFiles.write(target, StoreCodec.encode(state))
+            boxFiles.write(target, StoreCodec.encode(box))
             if (widget) {
                 boxFiles.writeWidgetSnapshot(widgetSnapshot(state, stamp))
                 nudgeWidget()
@@ -980,10 +988,10 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         }
         // why: NonCancellable — a write racing activity teardown must still land.
         viewModelScope.launch(Dispatchers.IO + NonCancellable) {
-            // why: the encode is the expensive half — the whole document, every schedule
-            // and every review ever logged — and it belongs on this thread with the
-            // write, not on the one that has to draw the next card.
-            boxFiles.write(target, StoreCodec.encode(state))
+            // why: the encode is the expensive half — every card's log in this language —
+            // and it belongs on this thread with the write, not on the one that has to
+            // draw the next card.
+            boxFiles.write(target, StoreCodec.encode(box))
             if (widget) {
                 boxFiles.writeWidgetSnapshot(widgetSnapshot(state, stamp))
                 WordWidget.refresh(getApplication())

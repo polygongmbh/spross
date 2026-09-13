@@ -24,6 +24,7 @@ import net.spross.app.AppModel
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.store.BoxBackup
+import net.spross.kern.store.StoredBoxes
 
 /**
  * Carrying the boxes across a reinstall or to another phone: every language's progress out
@@ -37,7 +38,7 @@ fun BackupSetting(model: AppModel, catalog: Catalog) {
     val chrome = model.chrome
     val resolver = LocalContext.current.contentResolver
     val scope = rememberCoroutineScope()
-    var pending by remember { mutableStateOf<Map<String, String>?>(null) }
+    var pending by remember { mutableStateOf<StoredBoxes?>(null) }
     var failure by remember { mutableStateOf<String?>(null) }
 
     val export = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
@@ -80,15 +81,16 @@ fun BackupSetting(model: AppModel, catalog: Catalog) {
         SettingHint(chrome.settingsBackupHint)
     }
 
-    pending?.let { documents ->
-        val names = documents.keys.sorted().joinToString(", ") { LanguageChoices.name(it, catalog.languages[it]) }
+    pending?.let { imported ->
+        val names = imported.boxes.keys.sorted()
+            .joinToString(", ") { LanguageChoices.name(it, catalog.languages[it]) }
         AlertDialog(
             onDismissRequest = { pending = null },
             title = { Text(chrome.settingsBackupConfirm.format(names)) },
             confirmButton = {
                 TextButton(onClick = {
                     pending = null
-                    model.restoreBoxes(documents)
+                    model.restoreBoxes(imported)
                 }) { Text(chrome.settingsBackupReplace, color = Theme.colors.wrong) }
             },
             dismissButton = {
