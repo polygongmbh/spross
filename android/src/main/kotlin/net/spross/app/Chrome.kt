@@ -385,6 +385,8 @@ interface Chrome {
     val settingsResetConfirm: String      // %s
     val settingsBackupTitle: String
     val settingsBackupExport: String
+    val settingsBackupExportAll: String
+    val settingsBackupExportOnly: String   // %s
     val settingsBackupImport: String
     val settingsBackupHint: String
     val settingsBackupConfirm: String     // %s

@@ -74,10 +74,16 @@ actor BoxStore {
         try write(waiting.box, target: waiting.target)
     }
 
-    /// The export's text — every language, minus what belongs to this device alone.
-    func exportJSON() throws -> String {
+    /// The export's text — `only`, or every language worth carrying, minus what belongs to
+    /// this device alone.
+    func exportJSON(only: String?) throws -> String {
         try flush()
-        return BoxBackup.shared.encode(boxes: everyLanguage())
+        return BoxBackup.shared.encode(boxes: everyLanguage(), only: only)
+    }
+
+    /// The languages an export would carry — what it can offer to narrow to.
+    func carriedLanguages() -> [String] {
+        BoxBackup.shared.carried(boxes: everyLanguage())
     }
 
     /// A restore: the languages the file carries replace the ones held, the rest stay. A

@@ -5796,6 +5796,22 @@
         }
       }
     },
+    "settings.backup.exportAll" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Sprachen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All languages"
+          }
+        }
+      }
+    },
     "settings.backup.exportFailed" : {
       "localizations" : {
         "de" : {
@@ -5811,6 +5827,23 @@
           }
         }
       }
+    },
+    "settings.backup.exportOnly %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ only"
+          }
+        }
+      },
+      "comment" : "Export menu: carries only the language on screen, named in it."
     },
     "settings.backup.hint" : {
       "comment" : "Under the export and import buttons. The file carries learning progress only — the pair, the name and the audio choice stay on the device and are set again after a restore.",

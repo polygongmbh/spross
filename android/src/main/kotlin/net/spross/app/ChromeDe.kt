@@ -367,6 +367,8 @@ internal object ChromeDe : Chrome {
         "den ersten Wörtern beginnen?"
     override val settingsBackupTitle = "Sicherung"
     override val settingsBackupExport = "Exportieren"
+    override val settingsBackupExportAll = "Alle Sprachen"
+    override val settingsBackupExportOnly = "Nur %s"
     override val settingsBackupImport = "Importieren"
     override val settingsBackupHint = "Speichert Fortschritt und Verlauf aller gelernten " +
         "Sprachen in einer Datei — zum Zurückholen nach einer Neuinstallation oder auf einem " +

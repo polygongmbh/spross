@@ -4,9 +4,16 @@ import SprossKern
 /// Carrying the boxes across a reinstall or to another phone: one file with every
 /// language in it (`BoxBackup`, `kern/docs/snapshots.md`).
 extension AppModel {
-    /// The backup file's text — every language, without what belongs to this device alone.
-    func backupJSON() async throws -> String {
-        try await store.exportJSON()
+    /// The backup file's text — `only`, or every language, without what belongs to this
+    /// device alone.
+    func backupJSON(only: String? = nil) async throws -> String {
+        try await store.exportJSON(only: only)
+    }
+
+    /// The languages an export would carry: a box the learner only ever opened is not one
+    /// of them, so the export neither offers it nor lands it empty on the other phone.
+    func backupLanguages() async -> [String] {
+        await store.carriedLanguages()
     }
 
     /// The store a file carries, every card in it proven readable — or a throw, with

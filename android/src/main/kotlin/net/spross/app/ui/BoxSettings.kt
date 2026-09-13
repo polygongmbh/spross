@@ -113,7 +113,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                 HorizontalDivider(color = Theme.colors.separator)
                 ReadAloudSetting(model, box.joinStamp.target)
                 HorizontalDivider(color = Theme.colors.separator)
-                BackupSetting(model, catalog)
+                BackupSetting(model, catalog, box.joinStamp.target)
                 HorizontalDivider(color = Theme.colors.separator)
                 Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
                     TextButton(onClick = { model.restartOnboarding() }) {

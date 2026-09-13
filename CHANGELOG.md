@@ -3,7 +3,7 @@
 ## Unreleased
 
 - A card's note now reaches you whichever language you read, not only in German, and the notes on the first shelves are written from words you have already met.
-- Settings can now save every language's progress to a backup file and bring it back, after a reinstall or on another phone.
+- Settings can now save your progress to a backup file and bring it back, after a reinstall or on another phone — all your languages, or just the one you are on.
 - Your box moves to a leaner storage format the first time you open this version, carrying every word and its history over untouched.
 - The area progress bar again draws the words you have not started yet as a gray rest, so a barely-packed shelf no longer reads as full.
 - The finished screen now comes up the moment you answer the last card, instead of pausing first.

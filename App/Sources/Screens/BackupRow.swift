@@ -2,8 +2,9 @@ import SprossKern
 import SwiftUI
 import UniformTypeIdentifiers
 
-/// Carrying the boxes across a reinstall or to another phone: every language's progress
-/// out to one file, and back in (`AppModel+Backup`).
+/// Carrying the boxes across a reinstall or to another phone: the progress in every
+/// language the learner has one — or in the one on screen — out to a file, and back in
+/// (`AppModel+Backup`).
 ///
 /// A picked file is read whole before anything is asked, so the confirmation only ever
 /// stands over a restore that can land.
@@ -11,6 +12,8 @@ struct BackupRow: View {
     let model: AppModel
 
     @State private var exportFile: BackupFile?
+    /// The languages an export would carry — what the export button offers to narrow to.
+    @State private var carried: [String] = []
     @State private var importing = false
     @State private var pending: StoredBoxes?
     @State private var failure: LocalizedStringKey?
@@ -28,6 +31,7 @@ struct BackupRow: View {
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
         }
+        .task { carried = await model.backupLanguages() }
         .confirmationDialog("settings.backup.confirm \(pendingNames)",
                             isPresented: shown($pending), titleVisibility: .visible,
                             presenting: pending) { imported in
@@ -46,18 +50,48 @@ struct BackupRow: View {
     // why: each picker hangs off its own button — two file panels on one view
     // leave one of them unable to present.
     private var exportButton: some View {
-        Button {
-            Task {
-                do { exportFile = BackupFile(text: try await model.backupJSON()) }
-                catch { failure = "settings.backup.exportFailed" }
+        exportControl
+            .fileExporter(isPresented: shown($exportFile), document: exportFile,
+                          contentType: .json, defaultFilename: exportFile?.name ?? "Spross") { result in
+                if case .failure = result { failure = "settings.backup.exportFailed" }
             }
-        } label: {
-            Label("settings.backup.export", systemImage: "square.and.arrow.up")
-                .font(Theme.typography.subheadline)
+    }
+
+    /// A plain button while the file can only say one thing, a choice once the learner has
+    /// a second language in the box: the whole box travels to a new phone, one language is
+    /// what they hand to someone learning it.
+    @ViewBuilder
+    private var exportControl: some View {
+        if let current = model.targetLanguage, carried.count > 1, carried.contains(current) {
+            Menu {
+                Button("settings.backup.exportOnly \(LanguageNames.native(current, catalog: model.catalog))") {
+                    write(only: current)
+                }
+                Button("settings.backup.exportAll") { write(only: nil) }
+            } label: {
+                exportLabel
+            }
+        } else {
+            Button { write(only: nil) } label: { exportLabel }
         }
-        .fileExporter(isPresented: shown($exportFile), document: exportFile, contentType: .json,
-                      defaultFilename: "Spross-\(Date.now.formatted(.iso8601.year().month().day()))") { result in
-            if case .failure = result { failure = "settings.backup.exportFailed" }
+    }
+
+    private var exportLabel: some View {
+        Label("settings.backup.export", systemImage: "square.and.arrow.up")
+            .font(Theme.typography.subheadline)
+    }
+
+    /// The file the exporter then puts somewhere — named for what it carries, so two of
+    /// them in one folder are told apart before either is opened.
+    private func write(only: String?) {
+        Task {
+            let day = Date.now.formatted(.iso8601.year().month().day())
+            do {
+                exportFile = BackupFile(text: try await model.backupJSON(only: only),
+                                        name: "Spross-\(only.map { "\($0)-" } ?? "")\(day)")
+            } catch {
+                failure = "settings.backup.exportFailed"
+            }
         }
     }
 
@@ -97,15 +131,20 @@ struct BackupRow: View {
     }
 }
 
-/// The backup text as the exporter writes it.
+/// The backup text as the exporter writes it, under the name it offers for it.
 private struct BackupFile: FileDocument {
     static let readableContentTypes: [UTType] = [.json]
     let text: String
+    let name: String
 
-    init(text: String) { self.text = text }
+    init(text: String, name: String) {
+        self.text = text
+        self.name = name
+    }
 
     init(configuration: ReadConfiguration) throws {
         text = String(decoding: configuration.file.regularFileContents ?? Data(), as: UTF8.self)
+        name = "Spross"
     }
 
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {

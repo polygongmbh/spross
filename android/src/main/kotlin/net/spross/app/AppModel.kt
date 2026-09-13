@@ -700,11 +700,17 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         refreshStats()
     }
 
-    /** The backup file's text: every language, without what belongs to this device ([BoxBackup]). */
-    fun backupJson(): String {
-        boxFiles.targets().filter { it !in boxes.boxes }.forEach { runCatching { openBox(it) } }
-        return BoxBackup.encode(boxes)
-    }
+    /**
+     * The backup file's text: [only], or every language, without what belongs to this
+     * device ([BoxBackup]).
+     */
+    fun backupJson(only: String? = null): String = BoxBackup.encode(openEveryBox(), only)
+
+    /**
+     * The languages an export would carry: a box the learner only ever opened is not one of
+     * them, so the export neither offers it nor lands it empty on the other phone.
+     */
+    fun backupLanguages(): List<String> = BoxBackup.carried(openEveryBox())
 
     /**
      * Writes the languages a backup restored, then re-opens the pair on screen from the
@@ -721,6 +727,12 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             }
             activate(stamp.source, stamp.target, Screen.Box())
         }
+    }
+
+    /** Every box the device holds, read in where this launch has not read it yet. */
+    private fun openEveryBox(): StoredBoxes {
+        boxFiles.targets().filter { it !in boxes.boxes }.forEach { runCatching { openBox(it) } }
+        return boxes
     }
 
     /**

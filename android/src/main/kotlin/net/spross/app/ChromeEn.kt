@@ -363,6 +363,8 @@ internal object ChromeEn : Chrome {
         "with the first words?"
     override val settingsBackupTitle = "Backup"
     override val settingsBackupExport = "Export"
+    override val settingsBackupExportAll = "All languages"
+    override val settingsBackupExportOnly = "%s only"
     override val settingsBackupImport = "Import"
     override val settingsBackupHint = "Saves the progress and history of every language you " +
         "learn to a file — to bring back after reinstalling, or on another phone."
