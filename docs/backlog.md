@@ -97,7 +97,10 @@ Catalog content — its forms, its audio and the per-language questions — live
   verbatim in `TrainerSessionView+Drill.swift`, `LetterDrillView+Stages.swift` and
   `DrillRunView+Content.swift` with the live check wired per copy, so one component owning the
   branch and the `onChange(of: input)` beside it would make a fourth drill's auto-confirm
-  structural rather than remembered.
+  structural rather than remembered. Scope it off `audit-2026-09-13.md` § 1 rather than this
+  bullet: the controls are one part of a run driver duplicated end to end across the three
+  screens (`dispatch`/`apply`/`checkOrReveal`/`closeRun`, the `input = ""` transaction, the
+  autoplay trigger, `screenReaderOn`, both uitest hooks), and § 2 is its Android mirror.
 - "Move noun class, word types and the tenses further back" — filed as a suggestion
   without a surface; the three are a card's Swahili plural/class grammar, its kind badge
   and the tense phrases' seed positions, which sit in three different places. Which one
@@ -129,10 +132,10 @@ Catalog content — its forms, its audio and the per-language questions — live
 - Nothing gates a screen re-cutting a component that already exists: `card-parity.py`'s face
   and body lists are hand-kept, so a newly added file is never scanned (the 2026-09-03 drill
   choice grid was written, reviewed and merged unseen before `dade95ee` consolidated it).
-  Copied `// why:` comments are the tell — measured 2026-09-07, 90 comment texts stand
-  duplicated WITHIN one platform across 52 files — so a duplicate-comment scan would find
-  them, but it needs those 90 baselined or cleaned first. Deriving the scanned set the way
-  `LayerBoundaryTest` derives its enum list is the other half.
+  Deriving the scanned set the way `LayerBoundaryTest` derives its enum list is one half;
+  the other is a duplicate-`// why:` scan, which `audit-2026-09-13.md` finds needs no baseline
+  — three exemptions (house idiom, a comment citing a doc path, a non-Kotlin-linking target)
+  and it is near-green once that audit's six clusters land. Cleanup first, then the gate.
 - The credits screen names the target-language word every bundled recording says and offers
   no way to hear one, since the row tap opens the file's Commons page
   (`App/Sources/Screens/CreditsView.swift` `fileRow`) and `Components.kt:255` /
