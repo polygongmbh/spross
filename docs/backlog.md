@@ -181,9 +181,9 @@ Catalog content — its forms, its audio and the per-language questions — live
   mp3/wav uncompressed), so a Swahili learner carries ~116 MB they can never hear, and
   per-language delivery (on-demand resources / Play asset packs) is the fix, measured per
   platform first.
-- The paid Developer Program registration gates the `ios` job, which stops at
-  `App Store Connect API key from secret`, so no release has carried an IPA, a release
-  publishes the APK alone and iPhones are served by `scripts/deploy-devices.sh`.
+- No release has carried an IPA yet: the `ios` job needs the App Store Connect secrets
+  (`docs/distribution.md` § Secrets) present to get past `App Store Connect API key from
+  secret`, and iPhones are served by `scripts/deploy-devices.sh` until a run has published one.
 - A live spross.net gates the iPhone install link: GitHub renders the release notes'
   `itms-services://` URL as code, not a tappable link (`.github/workflows/release.yml:229`),
   and a `web/install.html` taking `?v=` would make it a button (`docs/website.md`).
