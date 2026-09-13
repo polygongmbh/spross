@@ -29,6 +29,15 @@ data class StoredBox(
     val consolidatedToday: DayTally? = null,
 ) {
     /**
+     * Something the learner did or wrote. A language they only ever opened has a file like
+     * any other, and [BoxBackup] leaves it out rather than carry an emptiness that would
+     * overwrite a real box on the phone the file lands on.
+     */
+    val hasContent: Boolean
+        get() = scheduling.isNotEmpty() || enqueued.isNotEmpty() ||
+            ownWords.isNotEmpty() || reportedIssues.isNotEmpty()
+
+    /**
      * Attach a fresh catalog join to obtain a live [BoxState]. Calibration belongs to the
      * BUILD — steps, retention and caps are decisions this version makes — so the product
      * configuration is applied here rather than carried in the file.

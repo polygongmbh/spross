@@ -6,17 +6,26 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
+import net.spross.kern.box.BoxState
 import net.spross.kern.box.DayTally
 import net.spross.kern.model.JoinStamp
+import net.spross.kern.model.Rating
 
 /**
- * The export file: every language in ONE document under a single schema version, what it
- * leaves behind, and what it refuses.
+ * The export file: the languages worth carrying in ONE document under a single schema
+ * version, what it leaves behind, and what it refuses.
  */
 class BoxBackupTests {
 
     private val state = StoreFixture.state()
     private val boxes = StoredBoxes.EMPTY.with(state)
+
+    /** A second language with something in it — one word answered once. */
+    private fun swahili(): BoxState {
+        val word = Box.word(1)
+        val opened = Box.state(listOf(word)).copy(joinStamp = JoinStamp("de", "sw", "fixture"))
+        return Box.answered(opened, word.id, Rating.Good, Box.day1)
+    }
 
     @Test
     fun anExportReadsBackAsTheBoxItCarried() {
@@ -27,8 +36,7 @@ class BoxBackupTests {
     /** One version for the file, never one per language — that is what an envelope is for. */
     @Test
     fun oneSchemaVersionCoversEveryLanguage() {
-        val sw = Box.state(listOf(Box.word(1))).copy(joinStamp = JoinStamp("de", "sw", "fixture"))
-        val json = BoxBackup.encode(boxes.with(sw))
+        val json = BoxBackup.encode(boxes.with(swahili()))
 
         assertEquals(1, Regex("\"schemaVersion\"").findAll(json).count(), json)
         assertTrue(json.startsWith("""{"boxes":{"""), json)
@@ -46,7 +54,7 @@ class BoxBackupTests {
 
     @Test
     fun aRestoreReplacesWhatItCarriesAndKeepsTheRest() {
-        val sw = Box.state(listOf(Box.word(1))).copy(joinStamp = JoinStamp("de", "sw", "fixture"))
+        val sw = swahili()
         val held = boxes.with(sw)
         val imported = BoxBackup.decode(BoxBackup.encode(StoredBoxes.EMPTY.with(state)))
 
@@ -54,6 +62,22 @@ class BoxBackupTests {
         assertEquals(setOf("uk", "sw"), restored.boxes.keys)
         assertEquals(state.scheduling, restored.boxes.getValue("uk").scheduling)
         assertEquals(sw.scheduling, restored.boxes.getValue("sw").scheduling)
+    }
+
+    /** A language only ever opened would land as an emptiness over a real box. */
+    @Test
+    fun anUntouchedBoxIsNotCarried() {
+        val held = StoredBoxes(boxes.boxes + ("sw" to StoredBox()))
+
+        assertEquals(listOf("uk"), BoxBackup.carried(held))
+        assertEquals(setOf("uk"), BoxBackup.decode(BoxBackup.encode(held)).boxes.keys)
+    }
+
+    @Test
+    fun anExportOfOneLanguageCarriesOnlyThatOne() {
+        val held = boxes.with(swahili())
+
+        assertEquals(setOf("sw"), BoxBackup.decode(BoxBackup.encode(held, only = "sw")).boxes.keys)
     }
 
     @Test

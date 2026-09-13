@@ -32,14 +32,14 @@ Engine contract: `../README.md`.
   the lapse count v1 wrote, not a replayed one). The file keeps its NAME, so a conversion is a
   rewrite and never a move: the platform writes back whatever `load` reports as converted, and
   an interrupted migration simply runs again. Both files go once no device can hold a v1 box.
-- **The backup** (`store/BoxBackup.kt`) is every language in ONE envelope under a single
-  `schemaVersion` — `{"schemaVersion": 2, "boxes": {<target>: …}}` — minus `today`. A restore
-  replaces every language the file carries and leaves the rest alone
+- **The backup** (`store/BoxBackup.kt`) — the settings' export and import file — is every
+  language in ONE envelope under a single `schemaVersion`
+  — `{"schemaVersion": 2, "boxes": {<target>: …}}`, sorted keys — minus `today`.
+  Only the languages with something in them ride along (`StoredBox.hasContent`), and the
+  export offers the one language on screen instead (`BoxBackup.encode`'s `only`): a box the
+  learner merely opened would land as an emptiness over a real box on the other phone.
+  A restore replaces every language the file carries and leaves the rest alone
   (`StoredBoxes.restoring`); one box it cannot read refuses the whole file.
-- **Box backup** (`store/BoxBackup.kt`): the settings' export and import file,
-  `{format: "spross-box-backup", version: 1, boxes: {<target>: <box document>}}`, sorted keys.
-  A restore replaces each box it carries and leaves the other targets alone;
-  one box that fails `StoreCodec.decode` or is filed under another target refuses the whole file.
   Boxes only — pair, name, audio choice and drill Sprossen are device settings and stay behind.
 - Engine boundary time: `nowEpochMillis: Long` + `tzId: String` (kotlinx-datetime 0.8 has
   no Swift-Date bridging; Instant/TimeZone are constructed inside). TimeZone = device-current
