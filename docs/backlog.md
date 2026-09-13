@@ -199,6 +199,11 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## Verification gaps
 
+- The iOS build gate cannot run from a clone that never opened Xcode: `project.yml` declares no
+  `schemes:`, so `xcodegen generate` leaves the project with none ("This project contains no
+  schemes") and every `-scheme Spross` caller — the gate in `CLAUDE.md` and `README.md`,
+  `scripts/run-sim.sh`, `release.sh`, `deploy-devices.sh` — fails until the IDE autocreates them,
+  which `scripts/bootstrap.sh` only asks for in prose; a `schemes:` block would close it.
 - A fully correct typed answer carrying a matched synonym's own article demotes Exact→Typo
   because `AnswerNormalizer.evaluate` reads the leading article back against the card's single
   `grammar.gender` instead of the accepted form it actually matched
