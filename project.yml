@@ -180,3 +180,23 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: net.spross.app.watchkitapp.Widgets
         TARGETED_DEVICE_FAMILY: "4"
+
+# why: xcodegen writes no schemes unless they are declared, and every gate, script and
+# runbook line reaches the app through `-scheme Spross` (CLAUDE.md, README.md,
+# scripts/run-sim.sh). Without this block a regenerate leaves "This project contains no
+# schemes" and a `-target` build silently resolves to the DEVICE SDK instead.
+schemes:
+  Spross:
+    build:
+      targets:
+        Spross: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
