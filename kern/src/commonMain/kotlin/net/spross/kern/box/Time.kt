@@ -44,9 +44,9 @@ internal fun localDate(nowEpochMillis: Long, tzId: String): LocalDate =
  * Day key = ISO-8601 `yyyy-MM-dd` of the local date — ISO regardless of any device
  * calendar (fixes v1's latent non-Gregorian bug). Keys compare chronologically as strings.
  *
- * Public because it is the key [BoxState.dailyStats] is written under: anything reading
- * that map by day has to agree with the engine on what a day is called, and a platform
- * that formats the key itself has to force a Gregorian calendar to get there.
+ * Public because it is the key [answerDays] counts under: anything reading those days
+ * has to agree with the engine on what a day is called, and a platform that formats the
+ * key itself has to force a Gregorian calendar to get there.
  */
 fun dayKey(nowEpochMillis: Long, tzId: String): String =
     localDate(nowEpochMillis, tzId).toString()

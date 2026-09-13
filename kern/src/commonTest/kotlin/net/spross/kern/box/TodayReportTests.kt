@@ -22,7 +22,6 @@ class TodayReportTests {
         reviews = reviews,
         introduced = introduced,
         consolidated = consolidated,
-        stillFresh = 0,
         missed = 0,
         expectedRecall = 0.8,
     )
@@ -107,25 +106,9 @@ class TodayReportTests {
         assertEquals(0, BoxEngine.today(state, evenLater, Box.TZ).consolidated)
     }
 
-    /** Today's arrivals, minus the ones that landed on arrival — not minus every crossing. */
+    /** An older word crossing today is the consolidated tile's news, not today's arrival. */
     @Test
-    fun stillFreshCountsTodaysArrivalsThatHaveNotLanded() {
-        var state = boxOf(3)
-        state = Box.answered(state, "w01", Rating.Good, now)
-        state = Box.answered(state, "w02", Rating.Good, now)
-        // Even known on sight, Easy's graduating stability (8.2956) falls well short of
-        // the matured bar — no rating crosses it on introduction any more.
-        state = Box.answered(state, "w03", Rating.Easy, now)
-
-        val today = BoxEngine.today(state, now, Box.TZ)
-        assertEquals(3, today.introduced)
-        assertEquals(0, today.consolidated)
-        assertEquals(3, today.stillFresh)
-    }
-
-    /** An older word crossing today is the consolidated tile's news, not the fresh tile's loss. */
-    @Test
-    fun anOlderWordConsolidatingDoesNotEatTodaysFreshCount() {
+    fun anOlderWordConsolidatingIsNotTodaysIntroduction() {
         var state = boxOf(2)
         state = Box.answered(state, "w01", Rating.Good, now)
 
@@ -135,8 +118,7 @@ class TodayReportTests {
 
         val today = BoxEngine.today(state, later, Box.TZ)
         assertEquals(1, today.consolidated) // w01 crossed, having arrived a month ago
-        assertEquals(1, today.introduced)
-        assertEquals(1, today.stillFresh) // w02 only — never net, never negative
+        assertEquals(1, today.introduced) // w02 only — the crossing is no arrival
     }
 
     /** A word on its way in crosses the moment its stability reaches the threshold. */

@@ -10,6 +10,7 @@ import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
 import net.spross.kern.box.StreakHealth
+import net.spross.kern.box.answerDays
 import net.spross.kern.box.dayKey
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.JoinStamp
@@ -64,7 +65,7 @@ class SessionRunTests {
         SessionRun.reduce(run, SessionIntent.Answer(rating), nowMillis, Box.TZ).state
 
     private fun dayReviews(run: SessionRunState): Int =
-        run.box.dailyStats[dayKey(now, Box.TZ)]?.reviews ?: 0
+        answerDays(run.box.scheduling, Box.TZ)[dayKey(now, Box.TZ)] ?: 0
 
     /**
      * The composed queue IS the run: 20 of 40 due cards enter, and the 20 the cap held back
@@ -203,29 +204,20 @@ class SessionRunTests {
         assertEquals(SessionStep.Completed, asked.step)
     }
 
-    /** A backgrounded run keeps its streak-bearing reviews; later folds book the delta only. */
+    /** A backgrounded run keeps its streak-bearing reviews: each one is in the box as it lands. */
     @Test
-    fun aPartialFoldBooksOnlyTheDelta() {
+    fun everyAnswerIsCountedOnTheDayAsItLands() {
         var run = started(backloggedState(), now)
         repeat(3) { run = answer(run, Rating.Good, now) }
+        assertEquals(3, dayReviews(run))
 
-        val folded = SessionRun.reduce(run, SessionIntent.FoldPartial, now, Box.TZ)
-        assertEquals(3, folded.state.folded)
-        assertEquals(3, dayReviews(folded.state))
-        assertTrue(SessionEffect.Persist(true) in folded.effects)
-        assertTrue(SessionEffect.DayBooked in folded.effects)
-
-        val again = SessionRun.reduce(folded.state, SessionIntent.FoldPartial, now, Box.TZ)
-        assertEquals(folded.state, again.state)
-        assertTrue(again.effects.isEmpty())
-
-        var run2 = folded.state
-        repeat(2) { run2 = answer(run2, Rating.Good, now) }
-        val done = SessionRun.reduce(run2, SessionIntent.Finish, now, Box.TZ)
+        repeat(2) { run = answer(run, Rating.Good, now) }
+        val done = SessionRun.reduce(run, SessionIntent.Finish, now, Box.TZ)
         assertEquals(5, done.state.answered)
-        assertEquals(5, done.state.folded)
         assertEquals(5, dayReviews(done.state))
-        // Finishing twice never books the day twice.
+        assertTrue(SessionEffect.Persist(true) in done.effects)
+        assertTrue(SessionEffect.DayBooked in done.effects)
+        // Finishing twice changes nothing.
         assertEquals(5, dayReviews(SessionRun.reduce(done.state, SessionIntent.Finish, now, Box.TZ).state))
     }
 
@@ -292,7 +284,7 @@ class SessionRunTests {
 
         // An untouched run books nothing at all.
         val quiet = SessionRun.reduce(started(backloggedState(), now), SessionIntent.Close, now, Box.TZ)
-        assertTrue(quiet.state.box.dailyStats.isEmpty())
+        assertEquals(0, dayReviews(quiet.state))
     }
 
     /** Answers persist as they land; only the fold flushes immediately. */

@@ -44,14 +44,13 @@ internal object StoreFixture {
 
     val stamp = JoinStamp("de", "uk", "store-fixture")
 
-    /** Real engine answers (learning → review, a lapse-free retry), a queue, one folded day. */
+    /** Real engine answers (learning → review, a lapse-free retry) and a queue. */
     fun state(): BoxState {
         var s = BoxEngine.bootstrap(cards, BoxConfig(), stamp)
         val fridge = "fixture-noun"
         s = Box.answered(s, fridge, Rating.Good, Box.day1)
         s = Box.answered(s, fridge, Rating.Good, Box.plusSeconds(Box.day1, 600))
         s = Box.answered(s, "fixture-verb", Rating.Again, Box.day1)
-        s = BoxEngine.enqueue(s, listOf("fixture-phrase"))
-        return BoxEngine.endSession(s, reviewsDone = 3, Box.plusSeconds(Box.day1, 3600), Box.TZ)
+        return BoxEngine.enqueue(s, listOf("fixture-phrase"))
     }
 }

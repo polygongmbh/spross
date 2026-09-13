@@ -55,8 +55,10 @@ Box-level, once the schedules are merged:
 - `ownWords` — union by `id`, the later `addedAt` winning a clash.
 - `reportedIssues` — union by `cardId`, the later `reportedAt` winning.
 - `lastExportAt` — the later of the two.
-- `newIntroduced`, `consolidatedCrossed`, `dailyStats` — **recounted from the merged logs,
-  never merged as counters**, which would double-count every answer both sides recorded.
+- the day counts — **read off the merged logs** (`answerDays`), never merged as counters,
+  which would double-count every answer both sides recorded.
+  `consolidatedToday` is the one counter the box still keeps, it holds today alone, and it
+  is local to a device: a merge keeps the local one rather than adding the two.
 - `config`, `cards`, `joinStamp` — not merged at all: the calibration is re-applied and
   the join re-derived on load.
 

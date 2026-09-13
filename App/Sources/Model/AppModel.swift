@@ -482,14 +482,10 @@ final class AppModel {
         otherLanguagesAnswerDays = mergeAnswerDays(answerDaysByLanguage: gathered)
     }
 
-    /// Scene went to background → fold any mid-session reviews into dailyStats
-    /// (an evicted app must not lose them), then flush immediately.
+    /// Scene went to background → flush whatever the debounce is still holding.
+    /// A mid-run answer is already in the box; only the disk is behind.
     func persistNow() {
-        // why: the fold's own Persist effect already flushed; a day with nothing
-        // to fold still owes the disk whatever else moved before the app left.
-        let flushed = reduce(SessionIntent.FoldPartial.shared)
-            .contains { ($0 as? SessionEffect.Persist)?.immediate == true }
-        guard !flushed, let box else { return }
+        guard let box else { return }
         persist(box, immediate: true) // carries the watch snapshot with it
     }
 

@@ -44,8 +44,6 @@ sealed class SessionIntent {
     /** The join moved under a running session — recompose against the live one. */
     data object RecomposeIfStale : SessionIntent()
 
-    /** Backgrounding: book what has been answered so far. */
-    data object FoldPartial : SessionIntent()
     data object Finish : SessionIntent()
     data object Close : SessionIntent()
 }
@@ -55,7 +53,7 @@ sealed class SessionEffect {
     /** Write the box out; [immediate] skips the store's debounce. */
     data class Persist(val immediate: Boolean) : SessionEffect()
 
-    /** The day's counters moved into `dailyStats` — statistics and every box-derived surface read stale. */
+    /** The run closed on the day — statistics and every box-derived surface read stale. */
     data object DayBooked : SessionEffect()
 }
 
@@ -83,8 +81,6 @@ data class SessionRunState(
      */
     val total: Int,
     val answered: Int,
-    /** Answers already booked into `dailyStats`; later folds add the delta only. */
-    val folded: Int,
     /** Ratings in answer order. */
     val ratings: List<Rating>,
     /**
@@ -130,7 +126,7 @@ object SessionRun {
     /** No run yet: a closed, finished shell around the box. */
     fun idle(box: BoxState): SessionRunState = SessionRunState(
         box = box, step = SessionStep.Completed, queue = emptyList(), total = 0,
-        answered = 0, folded = 0, ratings = emptyList(),
+        answered = 0, ratings = emptyList(),
         newCards = 0, graduated = 0, reviews = 0,
         endless = false, finished = true, active = false, joinStamp = null,
     )
@@ -154,8 +150,7 @@ object SessionRun {
         SessionIntent.SuspendCurrent -> suspendCurrent(state, nowEpochMillis, tzId)
         SessionIntent.ContinueEndless -> continueEndless(state, nowEpochMillis, tzId)
         SessionIntent.RecomposeIfStale -> recompose(state, nowEpochMillis, tzId)
-        SessionIntent.FoldPartial -> foldPartial(state, nowEpochMillis, tzId)
-        SessionIntent.Finish -> finish(state, nowEpochMillis, tzId)
+        SessionIntent.Finish -> finish(state)
         SessionIntent.Close -> close(state, nowEpochMillis, tzId)
     }
 
@@ -190,7 +185,7 @@ object SessionRun {
     ): SessionReduction = advance(
         state.copy(
             queue = plan.queue, total = plan.queue.size,
-            answered = 0, folded = 0, ratings = emptyList(),
+            answered = 0, ratings = emptyList(),
             newCards = 0, graduated = 0, reviews = 0,
             endless = false, finished = false, active = true, joinStamp = plan.joinStamp,
             opening = opening,
@@ -275,7 +270,7 @@ object SessionRun {
         if (state.endless) {
             refilled(state, nowEpochMillis, tzId)?.let { return SessionReduction(it, effects) }
         }
-        val done = finish(state, nowEpochMillis, tzId)
+        val done = finish(state)
         return SessionReduction(done.state.copy(step = SessionStep.Completed), effects + done.effects)
     }
 
@@ -326,31 +321,17 @@ object SessionRun {
     }
 
     /**
-     * Backgrounding mid-run: book answered-so-far into `dailyStats` so an evicted app never loses
-     * demonstrated reviews (the streak stays honest). A fold that never reaches disk is no fold,
-     * so it persists immediately.
+     * Close the run out. Every answer is already in the box and the day is counted off the
+     * logs, so nothing is booked here — only the disk is still behind, which is why this
+     * persists immediately.
      */
-    private fun foldPartial(state: SessionRunState, nowEpochMillis: Long, tzId: String): SessionReduction {
-        if (state.finished || state.answered <= state.folded) return unchanged(state)
-        return SessionReduction(
-            booked(state, nowEpochMillis, tzId),
-            listOf(SessionEffect.Persist(true), SessionEffect.DayBooked),
-        )
-    }
-
-    /** Fold the run into `dailyStats` exactly once; only the not-yet-folded delta is booked. */
-    private fun finish(state: SessionRunState, nowEpochMillis: Long, tzId: String): SessionReduction {
+    private fun finish(state: SessionRunState): SessionReduction {
         if (state.finished) return unchanged(state)
         return SessionReduction(
-            booked(state, nowEpochMillis, tzId).copy(finished = true),
+            state.copy(finished = true),
             listOf(SessionEffect.Persist(true), SessionEffect.DayBooked),
         )
     }
-
-    private fun booked(state: SessionRunState, nowEpochMillis: Long, tzId: String): SessionRunState = state.copy(
-        box = BoxEngine.endSession(state.box, state.answered - state.folded, nowEpochMillis, tzId),
-        folded = state.answered,
-    )
 
     /**
      * Close the run. The step and queue stay as they were — the platform may still be animating
@@ -358,7 +339,7 @@ object SessionRun {
      */
     private fun close(state: SessionRunState, nowEpochMillis: Long, tzId: String): SessionReduction {
         val ended = if (!state.finished && state.answered > 0) {
-            finish(state, nowEpochMillis, tzId)
+            finish(state)
         } else {
             unchanged(state)
         }

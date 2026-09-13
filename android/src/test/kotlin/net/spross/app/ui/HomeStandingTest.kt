@@ -24,7 +24,6 @@ class HomeStandingTest {
         reviews = reviews,
         introduced = introduced,
         consolidated = consolidated,
-        stillFresh = 0,
         missed = 0,
         expectedRecall = 0.9,
     )

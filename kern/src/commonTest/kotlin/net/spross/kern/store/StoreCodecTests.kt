@@ -28,8 +28,7 @@ class StoreCodecTests {
         assertEquals(state.config, decoded.config)
         assertEquals(state.scheduling, decoded.scheduling)
         assertEquals(state.enqueued, decoded.enqueued)
-        assertEquals(state.newIntroduced, decoded.newIntroduced)
-        assertEquals(state.dailyStats, decoded.dailyStats)
+        assertEquals(state.consolidatedToday, decoded.consolidatedToday)
     }
 
     @Test
@@ -51,7 +50,6 @@ class StoreCodecTests {
     fun encodeIsInsertionOrderIndependent() {
         val reversed = state.copy(
             scheduling = state.scheduling.entries.reversed().associate { it.key to it.value },
-            dailyStats = state.dailyStats.entries.reversed().associate { it.key to it.value },
         )
         assertEquals(StoreCodec.encode(state), StoreCodec.encode(reversed))
     }
@@ -80,8 +78,7 @@ class StoreCodecTests {
     ): String =
         """{"config":{"desiredRetention":0.8,""" +
             """"maximumIntervalDays":365,""" +
-            """"sessionCap":30,"stepsSeconds":[60,600]},"dailyStats":{},"enqueued":[],""" +
-            """"newIntroduced":{},""" +
+            """"sessionCap":30,"stepsSeconds":[60,600]},"enqueued":[],""" +
             (ownWords?.let { """"ownWords":[$it],""" } ?: "") +
             """"scheduling":{$scheduling},"schemaVersion":$schemaVersion,""" +
             """"source":"$source","target":"uk"}"""

@@ -2,10 +2,7 @@ package net.spross.kern.box
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 import net.spross.kern.model.CardPhase
-import net.spross.kern.model.DayStats
-import net.spross.kern.model.Rating
 
 /** Statistics: streak bridging, session end fold + prune, headline counts. */
 class BoxStatisticsTests {
@@ -82,31 +79,6 @@ class BoxStatisticsTests {
         assertEquals(3, stats.streak)
         assertEquals(3, stats.longestStreak)
         assertEquals(0, BoxEngine.statistics(statsState(emptyList()), now, Box.TZ).longestStreak)
-    }
-
-    @Test
-    fun endSessionFoldsDayStatsAndPrunesNewIntroduced() {
-        var state = Box.state((1..3).map { Box.word(it) })
-        state = Box.answered(state, "w01", Rating.Easy, now)
-        state = state.copy(
-            newIntroduced = state.newIntroduced +
-                mapOf("2026-01-01" to 4, "2026-06-30" to 2), // stale vs yesterday
-        )
-
-        state = BoxEngine.endSession(state, reviewsDone = 7, nowEpochMillis = now, tzId = Box.TZ)
-        // consolidated = 0: Easy's graduating stability (8.2956) clears the growing bar
-        // but falls well short of the fully-grown one, so nothing crossed it today.
-        assertEquals(
-            DayStats(reviews = 7, introduced = 1, consolidated = 0, activeCount = 1),
-            state.dailyStats["2026-07-01"],
-        )
-        assertNull(state.newIntroduced["2026-01-01"]) // > 60 days back, pruned
-        assertEquals(2, state.newIntroduced["2026-06-30"])
-        assertEquals(1, state.newIntroduced["2026-07-01"])
-
-        // A second session on the same day accumulates reviews only.
-        state = BoxEngine.endSession(state, reviewsDone = 3, nowEpochMillis = now, tzId = Box.TZ)
-        assertEquals(10, state.dailyStats["2026-07-01"]?.reviews)
     }
 
     @Test

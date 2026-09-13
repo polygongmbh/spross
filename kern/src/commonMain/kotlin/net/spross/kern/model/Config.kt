@@ -102,12 +102,3 @@ data class BoxConfig(
         fun product(): BoxConfig = BoxConfig()
     }
 }
-
-/** Per-day aggregates; every count is in cards (reviews = answer events). */
-data class DayStats(
-    val reviews: Int = 0,
-    val introduced: Int = 0,
-    /** Cards that crossed into CONSOLIDATED that day — the day's real gain. */
-    val consolidated: Int = 0,
-    val activeCount: Int = 0,
-)

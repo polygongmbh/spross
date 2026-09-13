@@ -91,13 +91,13 @@ class SprossActivity : ComponentActivity() {
 
     /**
      * why: onStop is the last callback an evicted app is promised — a session left mid-run
-     * books what has been answered here, or the day's streak-bearing reviews die with the
-     * process. onPause would fire for a dialog on top too, folding while the learner is
+     * writes what has been answered here, or the day's streak-bearing reviews die with the
+     * process. onPause would fire for a dialog on top too, writing while the learner is
      * still sitting there.
      */
     override fun onStop() {
         super.onStop()
-        model.foldPartialSession()
+        model.persistNow()
     }
 
     /**

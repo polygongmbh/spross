@@ -125,25 +125,15 @@ extension AppModel {
             .sorted { ($0.date, $0.cardId) < ($1.date, $1.cardId) }
         guard !fresh.isEmpty else { return }
 
-        var appliedCount: Int32 = 0
         for event in fresh {
             if let rating = Rating(value: event.rating) {
                 state = BoxEngine.shared.answer(state: state, cardId: event.cardId,
                                                 rating: rating,
                                                 nowEpochMillis: event.date.epochMillis,
                                                 tzId: currentTzId())
-                appliedCount += 1
             }
             applied.append(event.id.uuidString)
             appliedSet.insert(event.id.uuidString)
-        }
-        // why: watch reviews must reach dailyStats (streak/Fortschritt read
-        // only dailyStats); endSession accumulates, so deltas are safe.
-        if appliedCount > 0 {
-            let latest = fresh.map(\.date).max() ?? Date()
-            state = BoxEngine.shared.endSession(state: state, reviewsDone: appliedCount,
-                                                nowEpochMillis: latest.epochMillis,
-                                                tzId: currentTzId())
         }
 
         if applied.count > Self.appliedEventIDsCap {

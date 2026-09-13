@@ -7,6 +7,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
+import net.spross.kern.box.answerDays
 import net.spross.kern.box.dayKey
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
@@ -71,7 +72,7 @@ class SessionRunWiringTest {
     }
 
     private fun Model.reviewsBooked(): Int =
-        state.box.dailyStats[dayKey(now, tz)]?.reviews ?: 0
+        answerDays(state.box.scheduling, tz)[dayKey(now, tz)] ?: 0
 
     /** The screen it navigates to hangs on this: a round with no card took nobody anywhere. */
     @Test
@@ -119,34 +120,25 @@ class SessionRunWiringTest {
     }
 
     /**
-     * Drift 3, the lost fold: `SprossActivity.onStop` sends this, and the day has to be on
-     * disk before the process may go. Kern books the delta, so the finish that follows
-     * cannot count the same answers a second time.
+     * Drift 3, the lost fold: `SprossActivity.onStop` writes the box, and the day is already
+     * in it — every answer lands in the box and asks for a save as it does, so an evicted
+     * app loses nothing the learner demonstrated.
      */
     @Test
-    fun backgroundingBooksTheDayAndDemandsAnImmediateWrite() {
+    fun everyAnswerIsInTheBoxAndAsksForASave() {
         val model = freshModel()
         model.dispatch(SessionIntent.Start, now, tz)
         model.dispatch(SessionIntent.Answer(Rating.Good), now, tz)
         model.dispatch(SessionIntent.Answer(Rating.Good), now, tz)
 
-        model.dispatch(SessionIntent.FoldPartial, now, tz)
-        assertEquals(true, model.persists.last())
-        assertEquals(1, model.daysBooked)
         assertEquals(2, model.reviewsBooked())
+        assertTrue(model.persists.isNotEmpty())
 
         model.dispatch(SessionIntent.Answer(Rating.Good), now, tz) // drains → finishes
         model.dispatch(SessionIntent.Close, now, tz)
         assertEquals(3, model.reviewsBooked())
-    }
-
-    /** A fold with nothing new behind it asks for nothing — onStop fires on every leave. */
-    @Test
-    fun backgroundingOutsideARunAsksForNothing() {
-        val model = freshModel()
-        model.dispatch(SessionIntent.FoldPartial, now, tz)
-        assertTrue(model.persists.isEmpty())
-        assertEquals(0, model.daysBooked)
+        assertEquals(true, model.persists.last())
+        assertTrue(model.daysBooked > 0) // finishing and closing both tell the surfaces to re-read
     }
 
     /**

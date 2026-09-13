@@ -158,8 +158,8 @@ No config flag, no user-facing direction anywhere.
 ## 4. Denomination — everything in cards
 
 One schedule per card ⇒ one review touches one card.
-**Every user-facing count** — the due ring, "x neu", active, the widget, every `DayStats`
-field — **is in cards**; `DayStats.reviews` alone counts answer EVENTS.
+**Every user-facing count** — the due ring, "x neu", active, the widget — **is in cards**;
+the day counts alone (`answerDays`) count answer EVENTS.
 
 The numbers themselves are not one table: the tunable ones are `BoxConfig`'s fields, and the
 rest are private constants beside the rule each of them serves (`SessionComposer`,
@@ -237,8 +237,8 @@ bar are on `BoxConfig` itself. What the product decided:
   `docs/turns.md`.
 
 The engine also owns budgets and the growth-reserve formula, the silent answer drop, the
-extra round, endless, exposure tiers, statistics, streak forgiveness, the `endSession` fold
-and its 60-day prune, deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
+extra round, endless, exposure tiers, statistics, streak forgiveness,
+deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 - **The streak is one commitment across every target language, not one per language.**
   A day's answers are counted off the review logs (`answerDays`, keyed `yyyy-MM-dd` in the
   CALLER's zone), so `BoxEngine.statistics` and `BoxEngine.activityWindow` take

@@ -28,7 +28,7 @@ class BoxGrowthTests {
         for (id in plan.newCards) {
             state = Box.answered(state, id, Rating.Good, now)
         }
-        assertEquals(NEW_CARDS_PER_ROUND, state.newIntroduced["2026-07-01"])
+        assertEquals(NEW_CARDS_PER_ROUND, state.scheduling.size)
         assertEquals(NEW_CARDS_PER_ROUND, BoxEngine.statistics(state, now, Box.TZ).activeCount)
         // The next round picks up where this one stopped.
         assertEquals("w08", Box.candidates(state).newCards.first())
@@ -80,7 +80,6 @@ class BoxGrowthTests {
         val first = Box.candidates(state)
         repeat(5) { assertEquals(first, Box.candidates(state)) }
         assertTrue(state.scheduling.isEmpty())
-        assertTrue(state.newIntroduced.isEmpty())
     }
 
     @Test

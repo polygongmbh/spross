@@ -18,14 +18,6 @@ data class TodayReport(
     val introduced: Int,
     /** Words that crossed into consolidated today (see [Statistics.isConsolidated]). */
     val consolidated: Int,
-    /**
-     * Of today's first meetings, the ones still fresh — met today and not
-     * consolidated (yet). Read live from the cards themselves, so a word known
-     * on sight leaves it the moment it lands, and one that lapses back returns:
-     * [introduced] minus [consolidated] cannot say this, since [consolidated] also counts
-     * long-standing words crossing the bar today.
-     */
-    val stillFresh: Int,
     /** Answers rated Again today. */
     val missed: Int,
     /** The retention the box is scheduling for ([net.spross.kern.model.BoxConfig]). */
@@ -167,14 +159,10 @@ internal fun todayReport(state: BoxState, nowEpochMillis: Long, tzId: String): T
             if (index == 0) introduced += 1
         }
     }
-    val stillFresh = Inventory.active(state).count {
-        it.addedAt >= start && it.addedAt < end && !Statistics.isConsolidated(state, it)
-    }
     return TodayReport(
         reviews = reviews,
         introduced = introduced,
-        consolidated = state.consolidatedCrossed[day] ?: 0,
-        stillFresh = stillFresh,
+        consolidated = state.consolidatedToday?.takeIf { it.day == day }?.count ?: 0,
         missed = missed,
         expectedRecall = state.config.desiredRetention,
     )

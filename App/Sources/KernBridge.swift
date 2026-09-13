@@ -29,7 +29,6 @@ extension KotlinInstant {
 // — encoding walks every schedule and every review ever logged, and that is not
 // work a tap should wait on (`App/Sources/Store/BoxStore.swift`).
 extension BoxState: @retroactive @unchecked Sendable {}
-extension DayStats: @retroactive @unchecked Sendable {}
 // The catalog is parsed once and never written again; the pool report is a
 // value kern hands back. Both cross to a background sweep and back.
 extension Catalog: @retroactive @unchecked Sendable {}
@@ -98,10 +97,6 @@ extension AreaStatistics {
         AreaProgress(consolidated: Int(consolidated), learning: Int(learning),
                      queued: Int(queued), progressTotal: Int(progressTotal))
     }
-}
-
-extension DayStats {
-    var reviewCount: Int { Int(reviews) }
 }
 
 /// Kotlin's own `Random`, which every draw in a run is spent out of. Named for

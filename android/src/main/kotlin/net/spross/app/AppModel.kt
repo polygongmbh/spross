@@ -791,13 +791,12 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * Backgrounding mid-run (`SprossActivity.onStop`): the day's answers are booked here
-     * or lost with the process. Kern books the not-yet-folded delta only, so the finish
-     * that follows cannot count them twice.
+     * Backgrounding (`SprossActivity.onStop`): every answer is already in the box, so this
+     * only makes sure it reaches disk before the process can be taken away.
      */
-    fun foldPartialSession() {
-        sessionRun ?: return
-        dispatch(SessionIntent.FoldPartial, blocking = true)
+    fun persistNow() {
+        val state = box ?: return
+        persist(state, blocking = true)
     }
 
     fun finishSession() {

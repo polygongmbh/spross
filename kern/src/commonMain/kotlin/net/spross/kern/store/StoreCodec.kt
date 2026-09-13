@@ -7,13 +7,13 @@ import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import net.spross.kern.box.BoxState
+import net.spross.kern.box.DayTally
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
 import net.spross.kern.box.ReportedIssue
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardScheduling
-import net.spross.kern.model.DayStats
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Language
 
@@ -31,9 +31,7 @@ data class DecodedBox(
     val config: BoxConfig,
     val scheduling: Map<String, CardScheduling>,
     val enqueued: List<String>,
-    val newIntroduced: Map<String, Int>,
-    val consolidatedCrossed: Map<String, Int>,
-    val dailyStats: Map<String, DayStats>,
+    val consolidatedToday: DayTally? = null,
     val ownWords: List<OwnWord>,
     val reportedIssues: Map<String, ReportedIssue> = emptyMap(),
     val lastExportAt: Instant? = null,
@@ -51,9 +49,7 @@ data class DecodedBox(
         joinStamp = joinStamp,
         scheduling = scheduling,
         enqueued = enqueued,
-        newIntroduced = newIntroduced,
-        consolidatedCrossed = consolidatedCrossed,
-        dailyStats = dailyStats,
+        consolidatedToday = consolidatedToday,
         ownWords = ownWords,
         reportedIssues = reportedIssues,
         lastExportAt = lastExportAt,

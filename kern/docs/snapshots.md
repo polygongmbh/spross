@@ -37,8 +37,8 @@ Engine contract: `../README.md`.
   33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
   entries (target-side text, emoji, article tint), per-card `{due}` for render-time
   `dueCount(now)`, the consolidated-card count (`consolidatedCount`, resolved phone-side —
-  it does not move with the clock), dailyStats tail
-  (~70 days) for the streak walk, `schemaVersion`. Built by `WidgetSnapshotBuilder.build`,
+  it does not move with the clock), a tail of per-day answer counts
+  (~70 days, `{reviews}` a day) for the streak walk, `schemaVersion`. Built by `WidgetSnapshotBuilder.build`,
   written by the app.
   **Both sides of the wire are kern's, except the one that cannot be.**
   `WidgetSnapshotBuilder.decode` returns a public `WidgetSnapshotView` — the rows, plus

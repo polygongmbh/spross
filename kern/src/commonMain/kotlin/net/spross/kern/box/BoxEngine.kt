@@ -1,13 +1,10 @@
 package net.spross.kern.box
 
 import kotlin.time.Instant
-import kotlinx.datetime.DateTimeUnit
-import kotlinx.datetime.minus
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
-import net.spross.kern.model.DayStats
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Rating
 
@@ -259,10 +256,9 @@ object BoxEngine {
      * progress being cleared. Anything filed against it stays: a report is about the
      * CONTENT, and forgetting the answers does not make the translation right.
      *
-     * The day counters ([BoxState.newIntroduced], [BoxState.consolidatedCrossed]) are
-     * deliberately left alone. They record what the learner DID on a day, not what the
-     * box holds now — the introduction really did happen — and they carry no card ids to
-     * undo the right one by. No-op when the id has no schedule.
+     * The day loses this card's answers with it: the days are counted off the logs, so a
+     * word started over takes its history along. A streak shifting by a word is the price
+     * of the box keeping no tally of its own. No-op when the id has no schedule.
      */
     fun forget(state: BoxState, cardId: String): BoxState {
         if (state.scheduling[cardId] == null) return state
@@ -320,29 +316,6 @@ object BoxEngine {
         nowEpochMillis: Long,
         tzId: String,
     ): BoxState = Answering.answer(state, cardId, rating, nowEpochMillis, tzId)
-
-    /**
-     * Fold the session into `dailyStats` and prune `newIntroduced` to the trailing
-     * 60 days.
-     */
-    fun endSession(state: BoxState, reviewsDone: Int, nowEpochMillis: Long, tzId: String): BoxState {
-        val day = dayKey(nowEpochMillis, tzId)
-        val previous = state.dailyStats[day] ?: DayStats()
-        val folded = DayStats(
-            reviews = previous.reviews + reviewsDone,
-            introduced = state.newIntroduced[day] ?: 0,
-            consolidated = state.consolidatedCrossed[day] ?: 0,
-            activeCount = Inventory.active(state).size,
-        )
-        // why: yyyy-MM-dd keys compare chronologically as strings, so pruning is a
-        // plain string comparison.
-        val cutoff = localDate(nowEpochMillis, tzId).minus(59, DateTimeUnit.DAY).toString()
-        return state.copy(
-            dailyStats = state.dailyStats + (day to folded),
-            newIntroduced = state.newIntroduced.filterKeys { it >= cutoff },
-            consolidatedCrossed = state.consolidatedCrossed.filterKeys { it >= cutoff },
-        )
-    }
 
     /** Joined, active card ids due at `now`, oldest day first — the drain-loop feed. */
     fun dueNow(state: BoxState, nowEpochMillis: Long): List<String> =

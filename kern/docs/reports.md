@@ -9,10 +9,11 @@ already did. Engine contract: `../README.md`.
 
 - **`TodayReport`** (`BoxEngine.today`) is the day's own report: reviews, misses and
   introductions read live from the review logs, so the numbers hold mid-session — a card's
-  FIRST log entry IS the meeting. Consolidated crossings come from the counter the engine
-  books at answer time (`consolidatedCrossed`), since a log records no stability to read a
-  crossing off. The walk reads raw schedules rather than the join: switching the known
-  language must not un-happen a day's work.
+  FIRST log entry IS the meeting. Consolidated crossings come from `BoxState.consolidatedToday`,
+  the counter the engine books at answer time, since a log records no stability to read a
+  crossing off. It holds ONE day and a fresh day replaces it, so only today can be asked.
+  The walk reads raw schedules rather than the join: switching the known language must not
+  un-happen a day's work.
   `recall` is null below `MIN_ANSWERS_FOR_RECALL` — a handful of answers cannot carry a
   ratio — and `recallStrained` names the rule "today is going badly", not the remedy:
   what a surface does with it is the app's call.

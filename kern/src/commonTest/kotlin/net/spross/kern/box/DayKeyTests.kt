@@ -7,7 +7,6 @@ import kotlin.test.assertTrue
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
-import net.spross.kern.model.DayStats
 import net.spross.kern.model.Rating
 
 /** Day keys: ISO in the caller's zone — DST-safe, calendar-independent. */
@@ -67,30 +66,17 @@ class DayKeyTests {
     }
 
     @Test
-    fun introductionAndSessionFoldUseCallerZone() {
+    fun theDayAnAnswerCountsOnIsTheCallersOwn() {
         var state = Box.state(listOf(Box.word(1)))
         val lateUtc = Box.millis(2026, 7, 1, 23, 30) // already July 2 in Kiritimati
         state = BoxEngine.answer(state, "w01", Rating.Good, lateUtc, "Pacific/Kiritimati")
-        assertEquals(1, state.newIntroduced["2026-07-02"])
 
-        state = BoxEngine.endSession(state, reviewsDone = 1, nowEpochMillis = lateUtc, tzId = "Pacific/Kiritimati")
-        assertEquals(
-            // A single Good doesn't consolidate on sight (only Easy does) — not yet consolidated.
-            DayStats(reviews = 1, introduced = 1, consolidated = 0, activeCount = 1),
-            state.dailyStats["2026-07-02"],
-        )
-    }
-
-    @Test
-    fun pruneCutoffIsStringComparedAtSixtyDays() {
-        var state = Box.state(listOf(Box.word(1)))
-        state = state.copy(
-            // 2026-07-01 − 59 days = 2026-05-03: the last kept key.
-            newIntroduced = mapOf("2026-05-02" to 1, "2026-05-03" to 2),
-        )
-        state = BoxEngine.endSession(state, reviewsDone = 0, nowEpochMillis = Box.day1, tzId = Box.TZ)
-        assertNull(state.newIntroduced["2026-05-02"])
-        assertEquals(2, state.newIntroduced["2026-05-03"])
+        assertEquals(mapOf("2026-07-02" to 1), answerDays(state.scheduling, "Pacific/Kiritimati"))
+        val today = BoxEngine.today(state, lateUtc, "Pacific/Kiritimati")
+        assertEquals(1, today.reviews)
+        assertEquals(1, today.introduced)
+        // A single Good doesn't consolidate on sight (only Easy does) — nothing crossed.
+        assertEquals(0, today.consolidated)
     }
 
     @Test

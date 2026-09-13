@@ -15,7 +15,6 @@ import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.streakWindow
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
-import net.spross.kern.model.DayStats
 
 class WidgetSnapshotBuilderTests {
 

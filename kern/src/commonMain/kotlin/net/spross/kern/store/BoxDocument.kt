@@ -3,6 +3,7 @@ package net.spross.kern.store
 import kotlin.time.Instant
 import kotlinx.serialization.Serializable
 import net.spross.kern.box.BoxState
+import net.spross.kern.box.DayTally
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
 import net.spross.kern.box.ReportedIssue
@@ -10,7 +11,6 @@ import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
-import net.spross.kern.model.DayStats
 import net.spross.kern.model.MemoryState
 import net.spross.kern.model.Rating
 import net.spross.kern.model.ReviewLogEntry
@@ -29,12 +29,10 @@ internal data class BoxDocument(
     val config: ConfigDto,
     val scheduling: Map<String, CardDto>,
     val enqueued: List<String>,
-    val newIntroduced: Map<String, Int>,
-    // why: defaulted so a document written before the counter existed — or under its
-    // old `settledCrossed` name, dropped by ignoreUnknownKeys — still decodes; an
-    // absent day simply has no crossings recorded.
-    val consolidatedCrossed: Map<String, Int> = emptyMap(),
-    val dailyStats: Map<String, DayStatsDto>,
+    // why: the crossings booked on ONE day, the day itself as the key. Every other day
+    // count is read off the logs; this one cannot be, since no log entry records a
+    // stability. Defaulted: a document written before it decodes as a day with none.
+    val today: Map<String, Int> = emptyMap(),
     // why: defaulted like the counters above — a document written before the learner
     // could author words at all decodes as one who has authored none.
     val ownWords: List<OwnWordDto> = emptyList(),
@@ -111,14 +109,6 @@ internal data class LogEntryDto(
     val elapsedDays: Double,
 )
 
-@Serializable
-internal data class DayStatsDto(
-    val reviews: Int,
-    val introduced: Int,
-    val consolidated: Int = 0,
-    val activeCount: Int,
-)
-
 // Encoding (state → document)
 
 internal fun boxDocument(state: BoxState): BoxDocument = BoxDocument(
@@ -128,9 +118,7 @@ internal fun boxDocument(state: BoxState): BoxDocument = BoxDocument(
     config = configDto(state.config),
     scheduling = state.scheduling.mapValues { cardDto(it.value) },
     enqueued = state.enqueued,
-    newIntroduced = state.newIntroduced,
-    consolidatedCrossed = state.consolidatedCrossed,
-    dailyStats = state.dailyStats.mapValues { dayStatsDto(it.value) },
+    today = state.consolidatedToday?.let { mapOf(it.day to it.count) } ?: emptyMap(),
     ownWords = state.ownWords.map(::ownWordDto),
     reportedIssues = state.reportedIssues.values
         .sortedBy { it.cardId }
@@ -167,14 +155,6 @@ private fun cardDto(sched: CardScheduling): CardDto = CardDto(
     log = sched.log.map { LogEntryDto(it.date, it.rating.value, it.elapsedDays) },
 )
 
-internal fun dayStatsDto(stats: DayStats): DayStatsDto =
-    DayStatsDto(
-        reviews = stats.reviews,
-        introduced = stats.introduced,
-        consolidated = stats.consolidated,
-        activeCount = stats.activeCount,
-    )
-
 private fun phaseName(phase: CardPhase): String = when (phase) {
     CardPhase.New -> "new"
     CardPhase.Learning -> "learning"
@@ -207,9 +187,7 @@ internal fun BoxDocument.toDecoded(): DecodedBox {
         config = config.toDomain(),
         scheduling = scheduling.entries.associate { (key, dto) -> key to dto.toDomain(key) },
         enqueued = enqueued,
-        newIntroduced = newIntroduced,
-        consolidatedCrossed = consolidatedCrossed,
-        dailyStats = dailyStats.mapValues { it.value.toDomain() },
+        consolidatedToday = today.entries.firstOrNull()?.let { DayTally(it.key, it.value) },
         ownWords = ownWords.map { it.toDomain() },
         reportedIssues = reportedIssues.associate { it.cardId to it.toDomain() },
         lastExportAt = lastExportAt,
@@ -297,6 +275,3 @@ private fun CardDto.toDomain(key: String): CardScheduling {
         fail("scheduling entry $key: ${e.message}")
     }
 }
-
-internal fun DayStatsDto.toDomain(): DayStats =
-    DayStats(reviews = reviews, introduced = introduced, consolidated = consolidated, activeCount = activeCount)

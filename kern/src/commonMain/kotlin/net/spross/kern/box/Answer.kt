@@ -41,26 +41,26 @@ internal object Answering {
         val introducing = existing?.memory == null
         val base = existing ?: CardScheduling(cardId = card.id, addedAt = now)
         val sched = base.answered(rating, now, scheduler)
-        val day = dayKey(nowEpochMillis, tzId)
         return state.copy(
             scheduling = state.scheduling + (card.id to sched),
-            newIntroduced =
-                if (introducing) state.newIntroduced + (day to (state.newIntroduced[day] ?: 0) + 1)
-                else state.newIntroduced,
             // Crossing the fully-grown bar on the very answer that introduces a card is
             // rare — no graduating rating reaches it alone — but the check stays generic
             // rather than assuming introduction can never be the crossing day.
-            consolidatedCrossed = state.consolidatedCrossed.bookIf(
-                !Statistics.isConsolidated(state, base) && Statistics.isConsolidated(state, sched),
-                day,
+            consolidatedToday = state.consolidatedToday.booking(
+                crossed = !Statistics.isConsolidated(state, base) &&
+                    Statistics.isConsolidated(state, sched),
+                day = dayKey(nowEpochMillis, tzId),
             ),
             enqueued = if (introducing) state.enqueued.filter { it != card.id } else state.enqueued,
         )
     }
 
-    /** One more on [day] when [happened], else the map untouched. */
-    private fun Map<String, Int>.bookIf(happened: Boolean, day: String): Map<String, Int> =
-        if (happened) this + (day to (this[day] ?: 0) + 1) else this
+    /** One more crossing on [day]; a tally left from an older day starts over rather than adding on. */
+    private fun DayTally?.booking(crossed: Boolean, day: String): DayTally? = when {
+        !crossed -> this
+        this?.day == day -> DayTally(day, count + 1)
+        else -> DayTally(day, 1)
+    }
 }
 
 /**
