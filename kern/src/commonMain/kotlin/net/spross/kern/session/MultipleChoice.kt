@@ -101,23 +101,36 @@ object MultipleChoice {
      */
     fun distractors(answer: Option, candidates: List<Option>, limit: Int = SHORTLIST): List<String> {
         val seen = mutableSetOf(answer.text.lowercase())
-        val unique = candidates.filter { seen.add(it.text.lowercase()) }
         val shape = sentenceShape(answer.text)
-        // Shapes are decided once per candidate rather than inside the
-        // comparator: `offer` already ranks the whole pool once per entry.
-        return unique
-            .map { it to sentenceShape(it.text) }
+        // Every key is decided once per candidate rather than inside the comparator,
+        // which asks for each of them O(log n) times over: `offer` ranks the whole
+        // scheduled pool once per entry, and a snapshot holds sixty entries.
+        return candidates
+            .filter { seen.add(it.text.lowercase()) }
+            .map {
+                Ranked(
+                    text = it.text,
+                    otherKind = it.kind != answer.kind,
+                    otherShape = sentenceShape(it.text) != shape,
+                    otherArea = it.area != answer.area,
+                    distance = shapeDistance(it.text, answer.text),
+                )
+            }
             .sortedWith(
-                compareBy(
-                    { (option, _) -> option.kind != answer.kind },
-                    { (_, candidateShape) -> candidateShape != shape },
-                    { (option, _) -> option.area != answer.area },
-                    { (option, _) -> shapeDistance(option.text, answer.text) },
-                ),
+                compareBy({ it.otherKind }, { it.otherShape }, { it.otherArea }, { it.distance }),
             )
             .take(limit)
-            .map { (option, _) -> option.text }
+            .map { it.text }
     }
+
+    /** One candidate with its four ranking keys already settled. */
+    private data class Ranked(
+        val text: String,
+        val otherKind: Boolean,
+        val otherShape: Boolean,
+        val otherArea: Boolean,
+        val distance: Int,
+    )
 
     /**
      * Character-length gap plus a heavy penalty when the number of

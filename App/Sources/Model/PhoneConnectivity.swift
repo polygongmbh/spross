@@ -25,13 +25,21 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         session.activate()
     }
 
+    /// Whether a snapshot pushed right now would reach a watch at all. Asked
+    /// BEFORE one is built: building it ranks the whole box per entry, and a
+    /// learner with no watch paired would pay that for nothing.
+    var canDeliver: Bool {
+        guard WCSession.isSupported() else { return false }
+        let session = WCSession.default
+        return session.activationState == .activated && session.isPaired
+            && session.isWatchAppInstalled
+    }
+
     /// Push the latest snapshot. `updateApplicationContext` replaces any
     /// pending one, so frequent pushes cost nothing extra.
     func push(snapshotJSON: String) {
-        guard WCSession.isSupported() else { return }
+        guard canDeliver else { return }
         let session = WCSession.default
-        guard session.activationState == .activated, session.isPaired,
-              session.isWatchAppInstalled else { return }
         let data = Data(snapshotJSON.utf8)
         if data.count < Self.contextByteLimit {
             try? session.updateApplicationContext([WatchSyncKey.snapshot: data])
@@ -82,16 +90,25 @@ extension AppModel {
         watchBridge.activate()
     }
 
-    /// Build + push the current box as a watch snapshot (no-op without a box).
+    /// Build + push the current box as a watch snapshot (no-op without a box, or
+    /// with no watch to reach).
+    ///
+    /// The build is the one derived document that is neither cheap nor wanted on
+    /// screen: it ranks every scheduled card against each of the sixty entries it
+    /// ships. Off this actor, therefore — on it, the immediate save that ends a
+    /// round held the frame that raises the summary (`docs/performance.md`).
     func pushWatchSnapshot() {
-        guard let box else { return }
+        guard watchBridge.canDeliver, let box else { return }
         // why: the builder shortens a verb to its stem on the option side, and only
         // languages.json knows which prefix that is (sw "ku"/"kw", en "to ").
         let citationPrefixes = (catalog?.languages ?? [:]).mapValues { $0.optionalVerbPrefixes }
-        let json = WatchSnapshotBuilder.shared.build(state: box,
-                                                     nowEpochMillis: Date().epochMillis,
-                                                     citationPrefixes: citationPrefixes)
-        watchBridge.push(snapshotJSON: json)
+        let now = Date().epochMillis
+        Task.detached { [watchBridge] in
+            let json = WatchSnapshotBuilder.shared.build(state: box,
+                                                         nowEpochMillis: now,
+                                                         citationPrefixes: citationPrefixes)
+            watchBridge.push(snapshotJSON: json)
+        }
     }
 
     /// Apply queued watch answers ON RECEIPT, oldest first, with `now` =
@@ -135,9 +152,10 @@ extension AppModel {
         defaults.set(applied, forKey: Self.appliedEventIDsKey)
 
         box = state
+        // why: the immediate save carries the watch snapshot with it — pushing a
+        // second one here only built the same document twice.
         persist(state, immediate: true)
         refreshStats()
         WidgetCenter.shared.reloadTimelines(ofKind: "SprossWordWidget")
-        pushWatchSnapshot()
     }
 }

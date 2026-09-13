@@ -488,7 +488,7 @@ final class AppModel {
         let flushed = reduce(SessionIntent.FoldPartial.shared)
             .contains { ($0 as? SessionEffect.Persist)?.immediate == true }
         guard !flushed, let box else { return }
-        persist(box, immediate: true) // pushes the watch snapshot too (sync spec)
+        persist(box, immediate: true) // carries the watch snapshot with it
     }
 
     /// Hand the box to the store. Encoding happens there, off this actor — an
