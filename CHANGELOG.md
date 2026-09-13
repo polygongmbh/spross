@@ -11,6 +11,7 @@
 - Listening plays every word you are still shaky on before any you have grown, keeps bringing the shaky ones back as the grown ones join, and mixes in two new words every five turns.
 - The Ukrainian dates ladder now teaches the whole date with its year, one Sprosse further than it used to reach.
 - A word held on its spelling correction after a typo can now be reported or stopped like any other, instead of offering no menu at all.
+- Reopening a report you already filed now shows what you wrote instead of an empty field, and keeps the answer it was filed with.
 
 ## 6.2.1 — 2026-09-08
 

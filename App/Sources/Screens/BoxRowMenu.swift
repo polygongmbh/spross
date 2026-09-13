@@ -5,7 +5,7 @@ import SprossKern
 /// `contextMenu` builder, which is no part of the view hierarchy a sheet can be
 /// presented from — so the choice travels back out and the row presents it.
 enum BoxRowSheet: String, Identifiable {
-    case report, editReport, ownFrom, editOwnWord
+    case report, ownFrom, editOwnWord
 
     var id: String { rawValue }
 }
@@ -103,7 +103,7 @@ struct BoxRowMenu: View {
         } else if model.reportedIssue(for: card.id) == nil {
             Button("report.action", systemImage: "exclamationmark.bubble") { open(.report) }
         } else {
-            Button("report.edit", systemImage: "text.bubble") { open(.editReport) }
+            Button("report.edit", systemImage: "text.bubble") { open(.report) }
         }
     }
 }
