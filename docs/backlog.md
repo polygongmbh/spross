@@ -189,6 +189,9 @@ Catalog content — its forms, its audio and the per-language questions — live
   and a `web/install.html` taking `?v=` would make it a button (`docs/website.md`).
 - The `website` branch (16 commits in the `../app-website` worktree, `docs/website.md`) is
   parked and will be picked up when wanted.
+- The repo grants nobody anything — there is no `LICENSE` file, while `docs/sync.md` plans a
+  paid service around a free and open app; the options and what constrains them are
+  `docs/source-license.md`, and the decision is the owner's.
 
 ## Localization
 
