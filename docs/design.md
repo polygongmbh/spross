@@ -557,6 +557,7 @@ engine gates and the behavioral test inventory: kern README.
 
 ## Not yet
 
-Couple mode, accounts/sync, UI chrome past de/en (every other source falls back to en).
+Couple mode, accounts/sync (the box side of it is planned in `sync.md`),
+UI chrome past de/en (every other source falls back to en).
 Android: no forest canvas and no growth headline
 (what it does carry is `surfaces.md` § Android companion).
