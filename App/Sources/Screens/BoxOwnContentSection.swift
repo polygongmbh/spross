@@ -14,9 +14,9 @@ import SprossKern
 /// say nothing. The studiable ones list as ordinary rows, keeping their standing
 /// and their long-press menu. A SUGGESTION has no card at all — a word written in
 /// one language joins nothing — so it lists in a block of its own, beside the
-/// reports, naming the half the catalog owes. A REMARK lists there too: a note
-/// with no word under it, the one thing the learner can file that is about no
-/// card at all, and it owes nothing rather than a translation.
+/// reports, naming the half the catalog owes. A NOTE gets a third block: it names no
+/// word, so it suggests none either, and what it is about need not be in the catalog
+/// at all.
 ///
 /// The two actions take the whole lot two ways: onto the clipboard, or into a mail
 /// to whoever maintains the catalog (`FeedbackExportActions`).
@@ -77,6 +77,7 @@ struct BoxOwnContentSection: View {
         if model.hasBriefing { blocks.append(.briefing) }
         if !model.ownWordPairs.isEmpty { blocks.append(.pairs) }
         if !model.suggestions.isEmpty { blocks.append(.suggestions) }
+        if !model.remarks.isEmpty { blocks.append(.notes) }
         if !reports.isEmpty { blocks.append(.reports) }
         // why: an empty complaints box is furniture — the actions appear once there is
         // something for them to carry, exactly as they always have.
@@ -100,7 +101,7 @@ struct BoxOwnContentSection: View {
     /// What the section's card can be made of, top to bottom. Only the ones with
     /// something in them are drawn, and a separator sits between whichever remain.
     private enum Block: Hashable {
-        case briefing, pairs, suggestions, reports, actions
+        case briefing, pairs, suggestions, notes, reports, actions
     }
 
     @ViewBuilder
@@ -109,6 +110,7 @@ struct BoxOwnContentSection: View {
         case .briefing: briefingRow
         case .pairs: pairList
         case .suggestions: suggestionList
+        case .notes: noteList
         case .reports: reportList
         case .actions: FeedbackExportActions(model: model)
         }
@@ -164,9 +166,9 @@ struct BoxOwnContentSection: View {
         }
     }
 
-    /// The words still carrying one half, and the remarks carrying none. They stand apart
-    /// from the pairs above rather than among them: neither has a standing to compare, and
-    /// what they wait for is what the reports below them are waiting for.
+    /// The words still carrying one half. They stand apart from the pairs above rather
+    /// than among them: a suggestion has no standing to compare, and what it waits for is
+    /// what the reports below it are waiting for.
     private var suggestionList: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             blockTitle("box.own.suggestions")
@@ -177,18 +179,44 @@ struct BoxOwnContentSection: View {
     }
 
     private func suggestionRow(_ word: OwnWord) -> some View {
+        entryRow(word, lines: 1, said: word.comment,
+                 // why: a missing half is not a shortcoming of the word, it is the whole
+                 // point of the entry — it is what the catalog owes.
+                 tail: "box.own.word.needsTranslation") {
+            Text(verbatim: model.suggestionText(word))
+        }
+    }
+
+    /// The notes that name no word. They suggest nothing and owe nothing — what they are
+    /// about may be no word in the catalog at all — so they list apart from the words the
+    /// catalog owes an answer to, with no tail saying what is missing from them.
+    private var noteList: some View {
+        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
+            blockTitle("box.own.notes")
+            ForEach(model.remarks, id: \.id) { note in
+                entryRow(note, lines: 3, said: nil, tail: nil) {
+                    Text(verbatim: note.comment ?? "")
+                }
+            }
+        }
+    }
+
+    /// One entry with no card behind it. `said` is the note under the line where the
+    /// entry has one, `tail` what the catalog still owes on it.
+    private func entryRow<Lead: View>(
+        _ word: OwnWord, lines: Int, said: String?, tail: LocalizedStringKey?,
+        @ViewBuilder lead: () -> Lead
+    ) -> some View {
         HStack(spacing: Theme.spacing.md) {
             Text(verbatim: word.emoji ?? OwnWords.shared.EMOJI)
                 .font(.title3)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
-                Text(verbatim: model.suggestionText(word))
+                lead()
                     .font(Theme.typography.body)
                     .foregroundStyle(Theme.colors.textPrimary)
-                    .lineLimit(word.isRemark ? 3 : 1)
-                // The note under the half it is about; a remark IS the line above, so
-                // it is not repeated here.
-                if !word.isRemark, let said = word.comment, !said.isEmpty {
+                    .lineLimit(lines)
+                if let said, !said.isEmpty {
                     Text(verbatim: said)
                         .font(Theme.typography.caption)
                         .foregroundStyle(Theme.colors.textSecondary)
@@ -196,12 +224,11 @@ struct BoxOwnContentSection: View {
                 }
             }
             Spacer(minLength: Theme.spacing.sm)
-            // why: a missing half is not a shortcoming of the word, it is the whole
-            // point of the entry — it is what the catalog owes. A remark owes nothing
-            // and says so instead.
-            Text(word.isRemark ? "box.own.word.remark" : "box.own.word.needsTranslation")
-                .font(Theme.typography.caption)
-                .foregroundStyle(Theme.colors.textSecondary)
+            if let tail {
+                Text(tail)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
+            }
         }
         .padding(.horizontal, Theme.spacing.md)
         .padding(.vertical, Theme.spacing.xs + 2)
@@ -210,7 +237,7 @@ struct BoxOwnContentSection: View {
                 .fill(Theme.colors.surfaceTint)
         )
         // A menu of its own, and a short one: with no card behind it there is
-        // nothing to pack, forget or report — only the two halves to fix or drop.
+        // nothing to pack, forget or report — only the entry to fix or drop.
         .contextMenu {
             Button("box.own.word.edit", systemImage: "pencil") { sheet = .editing(word) }
             Button("box.own.word.remove", systemImage: "trash", role: .destructive) {

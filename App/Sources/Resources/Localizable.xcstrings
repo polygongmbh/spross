@@ -724,6 +724,24 @@
         }
       }
     },
+    "box.own.notes" : {
+      "comment" : "The block of bare notes — what the learner said that names no word at all, and so suggests none. Apart from the suggestions: what a note is about need not be in the catalog.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anmerkungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes"
+          }
+        }
+      }
+    },
     "box.own.reported" : {
       "comment" : "Its second block: the problems filed against CATALOG words, which no row above lists.",
       "localizations" : {
@@ -954,23 +972,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Picture (optional)"
-          }
-        }
-      }
-    },
-    "box.own.word.remark" : {
-      "comment" : "The tail on a listed remark, where a suggestion says what it is missing.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anmerkung"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Note"
           }
         }
       }

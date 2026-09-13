@@ -172,16 +172,33 @@ class FeedbackTests {
 
     /**
      * The point of the bare remark: something the learner had to say that is about no word,
-     * so there is no pair to hang it off and nothing would carry it otherwise.
+     * so there is no pair to hang it off and nothing would carry it otherwise. It suggests
+     * no word either — what it asks about may be nothing the catalog holds — so it travels
+     * under a heading of its own rather than among the words the catalog is owed.
      */
     @Test
-    fun aBareRemarkTravelsAsItsCommentAlone() {
+    fun aBareRemarkTravelsAsANoteRatherThanAsASuggestedWord() {
         val remark = ownWord("remark", emptyMap()).copy(comment = "the box scrolls back to the top")
         val state = BoxEngine.addOwnWord(box(), remark, Box.day1)
+        assertEquals(listOf(remark.id), Feedback.remarks(state).map { it.id })
+        assertTrue(Feedback.suggestions(state).isEmpty())
+        assertTrue(Feedback.wordPairs(state).isEmpty())
+
         val text = Feedback.reportText(state, null, FeedbackScope.Outbox)
+        assertTrue("Notes (1)" in text)
         assertTrue("the box scrolls back to the top" in text)
+        assertFalse("Suggested words" in text)
         // No half is missing, so none is claimed to be.
         assertFalse("?" in text)
+    }
+
+    @Test
+    fun clearingTheOutboxTakesTheNotesWithTheSuggestions() {
+        val remark = ownWord("remark", emptyMap()).copy(comment = "the box scrolls back to the top")
+        val state = BoxEngine.addOwnWord(outbox(), remark, Box.day1)
+        // The suggestion, the note and the report; the finished pair is study material.
+        assertEquals(3, Feedback.clearableCount(state))
+        assertEquals(listOf("own:mwavuli"), BoxEngine.clearFeedback(state).ownWords.map { it.id })
     }
 
     @Test

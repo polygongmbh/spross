@@ -22,6 +22,10 @@ import net.spross.kern.model.nfcNormalized
  * wrote down the half they had. It joins nothing and is never scheduled ([cards]
  * skips it), it simply waits — either for the other half, or to be read off a
  * report and answered in the catalog itself.
+ *
+ * Written with NO language at all it is a REMARK ([isRemark]): a note that names no
+ * word, and so suggests none. It rides out with the suggestions and is counted apart
+ * from them — what it asks for may be nothing the catalog holds.
  */
 data class OwnWord(
     /** Card id, always [OwnWords.ID_PREFIX]ed, so a catalog slug can never mint one. */
@@ -47,9 +51,18 @@ data class OwnWord(
      */
     val addedAt: Instant = Instant.DISTANT_PAST,
 ) {
-    /** Whether this word still waits for one of the profile's two languages. */
+    /**
+     * Whether this word still waits for one of the profile's two languages.
+     *
+     * A [isRemark] is not one: it waits for no language at all, and reading it as a
+     * half-written word is how a note about the app ends up filed as vocabulary.
+     */
     fun isSuggestion(source: Language, target: Language): Boolean =
-        texts[source] == null || texts[target] == null
+        !isRemark && (texts[source] == null || texts[target] == null)
+
+    /** Whether both of the profile's languages are written: the word joins, and is a card. */
+    fun isPair(source: Language, target: Language): Boolean =
+        texts[source] != null && texts[target] != null
 
     /** Whether this is a bare remark: a comment with no word under it in any language. */
     val isRemark: Boolean get() = texts.isEmpty()
@@ -138,7 +151,7 @@ object OwnWords {
      * "gari yangu / gari langu" would ask the grader for an answer nobody can type.
      *
      * [texts] may be empty where [comment] is not: that is a bare remark
-     * ([OwnWord.isRemark]), which joins no card and waits with the suggestions.
+     * ([OwnWord.isRemark]), which joins no card and is no suggestion either.
      */
     fun write(
         id: String,

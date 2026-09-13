@@ -258,7 +258,6 @@ internal object ChromeEn : Chrome {
     override val boxOwnWordComment = "Note (optional)"
     override val boxOwnWordExplainerRemark = "A note only: it goes to the catalog and is " +
         "never asked."
-    override val boxOwnWordRemark = "Note"
     override val boxShelfPack = "Add to box (%s)"
     override val boxShelfPacked = "All packed"
     override val boxCardShowInBox = "Show in the box"
@@ -316,6 +315,7 @@ internal object ChromeEn : Chrome {
         "nothing about the word’s schedule."
     override val boxOwnTitle = "Your own content"
     override val boxOwnSuggestions = "Suggestions"
+    override val boxOwnNotes = "Notes"
     override val boxOwnReported = "Reported"
     override val boxOwnWordAddAction = "Add a word"
     override val boxOwnWordNeedsTranslation = "Needs translation"

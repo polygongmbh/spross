@@ -442,10 +442,12 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
     the catalog brought. It is deliberately NOT a shelf: own words are packed the moment
     they are written, so an area head offering to pack them would say nothing, and a
     progress bar over a handful of words is furniture.
-    The words stand in two blocks: the ones written in both languages list as the cards
-    they are, and the SUGGESTIONS still carrying a single half list under a heading of
+    The words stand in three blocks: the ones written in both languages list as the cards
+    they are, the SUGGESTIONS still carrying a single half list under a heading of
     their own, next to the reports — what waits on the catalog reads together, and a
-    suggestion has no standing to be read beside a card's.
+    suggestion has no standing to be read beside a card's — and the NOTES get a third,
+    because a note names no word and so suggests none: what it asks about may be nothing
+    the catalog holds, and a suggestion says what it is missing where a note owes nothing.
     A reported own word appears ONCE, in the words block wearing its flag; the reported
     block lists catalog cards only, because naming the same word twice in one section
     reads as two different problems.

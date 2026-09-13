@@ -42,11 +42,9 @@ extension AppModel {
 
     /// The half a suggestion does carry, whichever language it is in. A suggestion
     /// joins nothing and is never scheduled (`OwnWords.cards`), so the box holds no
-    /// card to read it off. A bare remark carries no half at all, and its note is the
-    /// whole entry rather than a line under one.
+    /// card to read it off.
     func suggestionText(_ word: OwnWord) -> String {
-        if word.isRemark { return word.comment ?? "" }
-        return word.texts[targetLanguage ?? ""] ?? word.texts[sourceLanguage] ?? ""
+        word.texts[targetLanguage ?? ""] ?? word.texts[sourceLanguage] ?? ""
     }
 
     /// Whether there is anything to copy or send at all — what grays the actions out.
@@ -87,22 +85,26 @@ extension AppModel {
     /// Record that a copy has just been taken — what a later "only what is new"
     /// measures against. Whether this scope moves the stamp at all is kern's
     /// (`BoxEngine.markExported`).
+    ///
+    /// Stamped rather than mutated: `mutate` re-walks the whole box for the statistics,
+    /// the forest and the activity strip and re-encodes it for the watch and the widget,
+    /// and the stamp feeds none of them — it is read by this file alone. Paying for all
+    /// of that is what made the copy button hang, and what left the mail button's share
+    /// of it landing as the app came back.
     func markExported(scope: FeedbackScope) {
-        mutate {
-            $0 = BoxEngine.shared.markExported(state: $0, nowEpochMillis: Date().epochMillis,
-                                               scope: scope)
-        }
+        stamp { BoxEngine.shared.markExported(state: $0, nowEpochMillis: Date().epochMillis,
+                                              scope: scope) }
     }
 
-    /// How many entries a clear would take: the suggestions plus the filed reports.
-    /// Kern's count, not the screen's — a word written in both languages is study
-    /// material and is never in it (`Feedback.clearableCount`).
+    /// How many entries a clear would take: the suggestions, the notes and the filed
+    /// reports. Kern's count, not the screen's — a word written in both languages is
+    /// study material and is never in it (`Feedback.clearableCount`).
     var clearableCount: Int {
         guard let box else { return 0 }
         return Int(Feedback.shared.clearableCount(state: box))
     }
 
-    /// Empty the outbox: every suggestion and every report go, the word pairs stay.
+    /// Empty the outbox: every suggestion, every note and every report go, the pairs stay.
     func clearFeedback() {
         mutate { $0 = BoxEngine.shared.clearFeedback(state: $0) }
     }

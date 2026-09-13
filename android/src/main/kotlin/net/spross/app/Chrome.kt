@@ -261,8 +261,6 @@ interface Chrome {
     val boxOwnWordComment: String
     /** What the form says while the note is all there is: nothing is being learned. */
     val boxOwnWordExplainerRemark: String
-    /** The tail on a listed remark, where a suggestion says what it is missing. */
-    val boxOwnWordRemark: String
     val boxShelfPack: String          // %d
     val boxShelfPacked: String
     /** The jump from a search hit to the shelf the word lives on. */
@@ -339,6 +337,8 @@ interface Chrome {
     // ── Own content ─────────────────────────────────────────────────────────────
     val boxOwnTitle: String
     val boxOwnSuggestions: String
+    /** The block of bare notes — what the learner said that names no word at all. */
+    val boxOwnNotes: String
     val boxOwnReported: String
     val boxOwnWordAddAction: String
 
