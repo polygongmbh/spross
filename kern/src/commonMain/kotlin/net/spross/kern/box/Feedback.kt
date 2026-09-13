@@ -156,7 +156,39 @@ object Feedback {
     fun clearableCount(state: BoxState): Int =
         suggestions(state).size + remarks(state).size + state.reportedIssues.size
 
-    /** Issues filed after [since], oldest first. */
+    /**
+     * Whether this card can carry a report at all: a word the learner wrote themselves
+     * cannot.
+     *
+     * A report is what they say to whoever maintains the CATALOG, and their own word has
+     * nobody to tell — the form beside it already changes anything they would have
+     * reported. [BoxEngine.reportIssue] refuses one, and a surface deciding whether to
+     * offer the action asks here rather than spelling the id rule a second time.
+     */
+    fun isReportable(cardId: String): Boolean = !OwnWords.owns(cardId)
+
+    /**
+     * The problems standing against CATALOG cards, NEWEST first — the list a surface hands
+     * back for review, and the complement of [wordPairs] and [suggestions] in that panel.
+     *
+     * Newest first because a review list is a queue of what still wants dealing with, and
+     * the freshest problem is the one the learner can still say something about. The export
+     * keeps the opposite order for the opposite reason ([issuesSince]). Both orders are
+     * decided here: a surface that sorted for itself is how the two apps came to read the
+     * same list in opposite directions.
+     *
+     * Own words are left out ([isReportable]): a reported one already stands in the list
+     * above wearing its flag, and naming it twice in one section reads as two problems.
+     */
+    fun catalogIssues(state: BoxState): List<ReportedIssue> =
+        state.reportedIssues.values
+            .filter { isReportable(it.cardId) }
+            .sortedByDescending { it.reportedAt }
+
+    /**
+     * Issues filed after [since], OLDEST first: the export is a log, and a log is read
+     * forward. The screen's review list is [catalogIssues] and runs the other way.
+     */
     fun issuesSince(state: BoxState, since: Instant?): List<ReportedIssue> =
         state.reportedIssues.values
             .filter { since == null || it.reportedAt > since }

@@ -147,7 +147,8 @@ object BoxEngine {
      * Deliberately independent of [setSuspended]: neither verb implies the other, and
      * reporting never changes what the box schedules. Filing again replaces the earlier
      * report; a card the current profile does not join is refused, since a report
-     * nobody can resolve to a word is unreadable to whoever would fix it.
+     * nobody can resolve to a word is unreadable to whoever would fix it, and so is a
+     * word the learner wrote themselves ([Feedback.isReportable]).
      */
     fun reportIssue(
         state: BoxState,
@@ -156,7 +157,7 @@ object BoxEngine {
         learnerInput: String?,
         nowEpochMillis: Long,
     ): BoxState {
-        if (state.cards[cardId] == null) return state
+        if (state.cards[cardId] == null || !Feedback.isReportable(cardId)) return state
         val issue = ReportedIssue(
             cardId = cardId,
             comment = comment?.takeIf { it.isNotBlank() },

@@ -30,7 +30,7 @@ import net.spross.app.dismissReportedIssue
 import net.spross.app.reportIssue
 import net.spross.app.reportedIssue
 import net.spross.kern.box.BoxEngine
-import net.spross.kern.box.OwnWords
+import net.spross.kern.box.Feedback
 import net.spross.kern.model.Card
 
 /**
@@ -66,10 +66,8 @@ internal fun CardMenu(
     var reporting by remember(card.id) { mutableStateOf(false) }
     DropdownMenu(expanded = expanded, onDismissRequest = onDismiss) {
         before(onDismiss)
-        // why: a report is what the learner says to whoever maintains the CATALOG, so a
-        // word they wrote themselves grows no entry — there is nobody to tell, and the
-        // edit form beside it already changes anything they would have reported.
-        if (!OwnWords.owns(card.id)) {
+        // why: which cards may be reported is kern's call; drawing the row is this menu's.
+        if (Feedback.isReportable(card.id)) {
             if (model.reportedIssue(card.id) == null) {
                 MenuAction(chrome.reportAction) { onDismiss(); reporting = true }
             } else {

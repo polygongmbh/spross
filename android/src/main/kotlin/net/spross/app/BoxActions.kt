@@ -84,18 +84,13 @@ val AppModel.ownWordPairs: List<OwnWord>
     get() = box?.let(Feedback::wordPairs).orEmpty()
 
 /**
- * The CATALOG cards a problem stands against, oldest report first.
- *
- * Own words are left out on purpose: a reported own word is already listed above wearing
- * its flag, and listing it twice in one section reads as two different problems.
+ * The CATALOG cards a problem stands against — which ones and in which order is
+ * [Feedback.catalogIssues]; only resolving each to its card is this layer's.
  */
 val AppModel.reportedCatalogCards: List<Card>
     get() {
         val state = box ?: return emptyList()
-        return state.reportedIssues.values
-            .sortedBy { it.reportedAt }
-            .filterNot { OwnWords.owns(it.cardId) }
-            .mapNotNull { state.cards[it.cardId] }
+        return Feedback.catalogIssues(state).mapNotNull { state.cards[it.cardId] }
     }
 
 /** The half a suggestion does carry, whichever of the two languages it is in. */

@@ -29,15 +29,18 @@ extension AppModel {
         mutate { $0 = BoxEngine.shared.dismissReportedIssue(state: $0, cardId: cardID) }
     }
 
-    /// Problems filed against CATALOG cards, newest first — what the Box lists back
-    /// for review. Own words are left out on purpose: a reported one already stands
-    /// in the list above wearing its flag, and naming it twice in one section reads
-    /// as two different problems.
+    /// Whether this card can carry a report at all — what decides if the action is
+    /// offered. The rule is Kern's (`Feedback.isReportable`).
+    func isReportable(_ cardID: String) -> Bool {
+        Feedback.shared.isReportable(cardId: cardID)
+    }
+
+    /// Problems filed against CATALOG cards — what the Box lists back for review.
+    /// Which ones and in which order is Kern's (`Feedback.catalogIssues`), so the
+    /// Box list and the exported text can never disagree about either.
     var catalogReports: [ReportedIssue] {
         guard let box else { return [] }
-        return box.reportedIssues.values
-            .filter { !OwnWords.shared.owns(cardId: $0.cardId) }
-            .sorted { $0.reportedAt.toEpochMilliseconds() > $1.reportedAt.toEpochMilliseconds() }
+        return Feedback.shared.catalogIssues(state: box)
     }
 
     /// The half a suggestion does carry, whichever language it is in. A suggestion

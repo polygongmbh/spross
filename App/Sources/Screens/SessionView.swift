@@ -212,8 +212,7 @@ struct SessionView: View, LanguageNaming {
     /// step in the other's flow.
     @ViewBuilder
     private func cardMenu(_ card: Card) -> some View {
-        if model.isOwnWord(card.id) {
-            // A word the learner wrote has nobody to report it to.
+        if !model.isReportable(card.id) {
             EmptyView()
         } else if model.reportedIssue(for: card.id) == nil {
             Button("report.action", systemImage: "exclamationmark.bubble") {

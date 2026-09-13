@@ -102,11 +102,19 @@ class FeedbackTests {
     }
 
     @Test
-    fun removingAnOwnWordTakesItsReportWithIt() {
+    fun aWordTheLearnerWroteThemselvesGrowsNoReport() {
         val word = ownWord("regenschirm", mapOf("de" to "Regenschirm", "sw" to "mwavuli"))
-        var state = BoxEngine.addOwnWord(box(), word, Box.day1)
-        state = BoxEngine.reportIssue(state, word.id, "typo", null, Box.day1)
-        assertTrue(BoxEngine.removeOwnWord(state, word.id).reportedIssues.isEmpty())
+        val state = BoxEngine.addOwnWord(box(), word, Box.day1)
+        assertEquals(state, BoxEngine.reportIssue(state, word.id, "typo", null, Box.day1))
+    }
+
+    @Test
+    fun theReviewListReadsNewestFirstAndTheExportOldestFirst() {
+        var state = BoxEngine.reportIssue(box(), "w01", "first", null, Box.day1)
+        state = BoxEngine.reportIssue(state, "w02", "second", null, Box.plusDays(Box.day1, 1.0))
+
+        assertEquals(listOf("w02", "w01"), Feedback.catalogIssues(state).map { it.cardId })
+        assertEquals(listOf("w01", "w02"), Feedback.issuesSince(state, null).map { it.cardId })
     }
 
     // Suggestions — own words written in only one language
@@ -267,18 +275,6 @@ class FeedbackTests {
         // afterwards does not undo — "only what is new" still measures from there.
         val state = BoxEngine.markExported(outbox(), Box.day1, FeedbackScope.Everything)
         assertEquals(state.lastExportAt, BoxEngine.clearFeedback(state).lastExportAt)
-    }
-
-    @Test
-    fun aReportedOwnWordKeepsTheWordAndLosesTheReport() {
-        var state = BoxEngine.addOwnWord(
-            box(), ownWord("mwavuli", mapOf("de" to "Regenschirm", "sw" to "mwavuli")), Box.day1,
-        )
-        state = BoxEngine.reportIssue(state, "own:mwavuli", "typo", null, Box.day1)
-        val cleared = BoxEngine.clearFeedback(state)
-
-        assertEquals(listOf("own:mwavuli"), cleared.ownWords.map { it.id })
-        assertTrue(cleared.reportedIssues.isEmpty())
     }
 
     @Test
