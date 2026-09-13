@@ -1,6 +1,5 @@
 package net.spross.kern.box
 
-import kotlin.time.Instant
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardPhase
@@ -64,7 +63,7 @@ object BoxEngine {
         // would be the one place a suggestion's age could go wrong, and it is the
         // only date a suggestion ever gets (it earns no schedule to carry one).
         val words = state.ownWords + word.copy(
-            addedAt = Instant.fromEpochMilliseconds(nowEpochMillis),
+            addedAt = stampOf(nowEpochMillis),
         )
         val next = state.copy(ownWords = words, cards = rebuilt(state, words))
         return if (next.cards[word.id] == null) next else enqueue(next, listOf(word.id))
@@ -162,7 +161,7 @@ object BoxEngine {
             cardId = cardId,
             comment = comment?.takeIf { it.isNotBlank() },
             learnerInput = learnerInput?.takeIf { it.isNotBlank() },
-            reportedAt = Instant.fromEpochMilliseconds(nowEpochMillis),
+            reportedAt = stampOf(nowEpochMillis),
         )
         return state.copy(reportedIssues = state.reportedIssues + (cardId to issue))
     }
@@ -184,7 +183,7 @@ object BoxEngine {
      */
     fun markExported(state: BoxState, nowEpochMillis: Long, scope: FeedbackScope): BoxState =
         if (scope == FeedbackScope.Outbox) state
-        else state.copy(lastExportAt = Instant.fromEpochMilliseconds(nowEpochMillis))
+        else state.copy(lastExportAt = stampOf(nowEpochMillis))
 
     /** The card map with every own-word card re-derived; the catalog half is untouched. */
     private fun rebuilt(state: BoxState, words: List<OwnWord>): Map<String, Card> =
@@ -286,11 +285,7 @@ object BoxEngine {
         val sched = state.scheduling[cardId]
         if (sched == null) {
             if (!suspended || state.cards[cardId] == null) return state
-            val fresh = CardScheduling(
-                cardId = cardId,
-                addedAt = Instant.fromEpochMilliseconds(nowEpochMillis),
-                suspended = true,
-            )
+            val fresh = CardScheduling(cardId = cardId, suspended = true)
             return state.copy(scheduling = state.scheduling + (cardId to fresh))
         }
         if (!suspended && sched.reviewCount == 0 && sched.phase == CardPhase.New) {

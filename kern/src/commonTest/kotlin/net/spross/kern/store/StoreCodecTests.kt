@@ -57,7 +57,7 @@ class StoreCodecTests {
     @Test
     fun datesEncodeAsIsoUtcStrings() {
         val encoded = StoreCodec.encode(state)
-        assertTrue("\"addedAt\":\"2026-07-01T12:00:00Z\"" in encoded, encoded)
+        assertTrue("\"date\":\"2026-07-01T12:00:00Z\"" in encoded, encoded)
         assertTrue("\"date\":\"2026-07-01T12:10:00Z\"" in encoded, encoded)
     }
 

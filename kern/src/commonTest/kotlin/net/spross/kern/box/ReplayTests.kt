@@ -20,9 +20,7 @@ class ReplayTests {
 
     /** A live run and its replay agree on everything the log implies. */
     private fun assertReplays(sched: CardScheduling) {
-        // addedAt is the one field a log cannot always give back (a husk suspended before
-        // its first answer keeps the suspend time); it leaves the schedule two commits on.
-        assertEquals(sched.copy(addedAt = sched.log.first().date), replayOf(sched))
+        assertEquals(sched, replayOf(sched))
     }
 
     @Test
@@ -49,7 +47,7 @@ class ReplayTests {
         state = Box.answered(state, "w01", Rating.Good, Box.day1)
 
         val sched = state.scheduling.getValue("w01")
-        assertEquals(0.0, sched.log.last().elapsedDays) // clamped, never negative
+        assertTrue(sched.log.last().date < sched.log.first().date) // the log is not sorted
         assertReplays(sched)
     }
 

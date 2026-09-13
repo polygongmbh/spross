@@ -41,6 +41,14 @@ internal fun localDate(nowEpochMillis: Long, tzId: String): LocalDate =
     Instant.fromEpochMilliseconds(nowEpochMillis).toLocalDateTime(zoneOf(tzId)).date
 
 /**
+ * The clock the box writes down, floored to the whole second it fell in — every stamp the
+ * engine mints goes through here, so a box equals its own reloaded self exactly and the
+ * store never carries a precision no surface reads.
+ */
+internal fun stampOf(nowEpochMillis: Long): Instant =
+    Instant.fromEpochSeconds(nowEpochMillis / 1000)
+
+/**
  * Day key = ISO-8601 `yyyy-MM-dd` of the local date — ISO regardless of any device
  * calendar (fixes v1's latent non-Gregorian bug). Keys compare chronologically as strings.
  *

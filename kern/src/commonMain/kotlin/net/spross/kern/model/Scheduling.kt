@@ -17,11 +17,14 @@ data class MemoryState(
     val difficulty: Double,
 )
 
+/**
+ * One answer, as the box keeps it. The elapsed time FSRS wants is the gap to the previous
+ * entry, so it is derived where it is needed rather than stored beside the two facts it
+ * follows from.
+ */
 data class ReviewLogEntry(
     val date: Instant,
     val rating: Rating,
-    /** Fractional days since the previous log entry; 0 on introduction. */
-    val elapsedDays: Double,
 )
 
 /**
@@ -32,7 +35,6 @@ data class ReviewLogEntry(
  */
 data class CardScheduling(
     val cardId: String,
-    val addedAt: Instant,
     val phase: CardPhase = CardPhase.New,
     /** Step position within Learning/Relearning steps; null in New/Review. */
     val stepIndex: Int? = null,

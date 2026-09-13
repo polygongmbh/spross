@@ -89,7 +89,6 @@ internal data class ConfigDto(
 @Serializable
 internal data class CardDto(
     val cardId: String,
-    @Serializable(with = IsoInstantSerializer::class) val addedAt: Instant,
     val phase: String,
     val stepIndex: Int? = null,
     val memory: MemoryDto? = null,
@@ -106,7 +105,6 @@ internal data class MemoryDto(val stability: Double, val difficulty: Double)
 internal data class LogEntryDto(
     @Serializable(with = IsoInstantSerializer::class) val date: Instant,
     val rating: Int,
-    val elapsedDays: Double,
 )
 
 // Encoding (state → document)
@@ -145,14 +143,13 @@ private fun configDto(config: BoxConfig): ConfigDto = ConfigDto(
 
 private fun cardDto(sched: CardScheduling): CardDto = CardDto(
     cardId = sched.cardId,
-    addedAt = sched.addedAt,
     phase = phaseName(sched.phase),
     stepIndex = sched.stepIndex,
     memory = sched.memory?.let { MemoryDto(it.stability, it.difficulty) },
     due = sched.due,
     lapses = sched.lapses,
     suspended = sched.suspended,
-    log = sched.log.map { LogEntryDto(it.date, it.rating.value, it.elapsedDays) },
+    log = sched.log.map { LogEntryDto(it.date, it.rating.value) },
 )
 
 private fun phaseName(phase: CardPhase): String = when (phase) {
@@ -255,7 +252,6 @@ private fun CardDto.toDomain(key: String): CardScheduling {
     return try {
         CardScheduling(
             cardId = cardId,
-            addedAt = addedAt,
             phase = parsedPhase,
             stepIndex = stepIndex,
             memory = memory?.let { MemoryState(stability = it.stability, difficulty = it.difficulty) },
@@ -267,7 +263,6 @@ private fun CardDto.toDomain(key: String): CardScheduling {
                     date = entry.date,
                     rating = Rating.entries.firstOrNull { it.value == entry.rating }
                         ?: fail("scheduling entry $key: unknown rating ${entry.rating}"),
-                    elapsedDays = entry.elapsedDays,
                 )
             },
         )

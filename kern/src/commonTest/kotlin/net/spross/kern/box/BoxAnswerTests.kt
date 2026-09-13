@@ -7,6 +7,9 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.seconds
+import net.spross.kern.fsrs.FsrsScheduler
+import net.spross.kern.fsrs.SchedulerState
+import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Rating
 
@@ -59,7 +62,6 @@ class BoxAnswerTests {
         assertNull(sched.stepIndex)
         assertTrue(sched.due!! >= Box.instant(retry) + 1.days)
         assertEquals(2, sched.log.size)
-        assertTrue(sched.log.last().elapsedDays > 0)
     }
 
     // Hard is a pass, so it leaves the ladder like Good and Easy — the ladder only
@@ -195,9 +197,14 @@ class BoxAnswerTests {
             state,
             Box.sched("w01", dueMillis = Box.plusDays(now, -9.0), lastReviewMillis = Box.plusDays(now, -2.0)),
         )
+        val before = state.scheduling.getValue("w01")
         state = Box.answered(state, "w01", Rating.Good, now)
-        val entry = state.scheduling.getValue("w01").log.last()
-        assertTrue(kotlin.math.abs(entry.elapsedDays - 2.0) < 0.001)
+
+        // The schedule FSRS gives for the two days since the last ANSWER, not the nine
+        // since the due date it was overdue by.
+        val expected = FsrsScheduler(BoxConfig().fsrsParameters())
+            .review(SchedulerState(before.phase, before.stepIndex, before.memory), 2.0, Rating.Good)
+        assertEquals(Box.instant(now) + expected.intervalSeconds.seconds, state.scheduling.getValue("w01").due)
     }
 
     @Test

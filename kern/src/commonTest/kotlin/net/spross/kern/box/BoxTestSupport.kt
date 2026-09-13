@@ -82,14 +82,13 @@ internal object Box {
         logCount: Int = 1,
     ): CardScheduling = CardScheduling(
         cardId = cardId,
-        addedAt = instant(lastReviewMillis),
         phase = phase,
         stepIndex = if (phase == CardPhase.Learning || phase == CardPhase.Relearning) 0 else null,
         memory = MemoryState(stability = stability, difficulty = 5.0),
         due = instant(dueMillis),
         lapses = lapses,
         suspended = suspended,
-        log = List(logCount) { ReviewLogEntry(instant(lastReviewMillis), Rating.Good, 1.0) },
+        log = List(logCount) { ReviewLogEntry(instant(lastReviewMillis), Rating.Good) },
     )
 
     fun inject(state: BoxState, entry: CardScheduling): BoxState =

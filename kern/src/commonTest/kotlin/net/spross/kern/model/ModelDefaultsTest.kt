@@ -16,7 +16,7 @@ class ModelDefaultsTest {
 
     @Test
     fun newSchedulingDefaultsHoldInvariant() {
-        val s = CardScheduling(cardId = "a/b", addedAt = Instant.fromEpochMilliseconds(0))
+        val s = CardScheduling(cardId = "a/b")
         assertEquals(CardPhase.New, s.phase)
         assertNull(s.memory)
         assertNull(s.due)
@@ -28,12 +28,9 @@ class ModelDefaultsTest {
 
     @Test
     fun schedulingRejectsInvalidCardIds() {
-        val addedAt = Instant.fromEpochMilliseconds(0)
-        assertFailsWith<IllegalArgumentException> { CardScheduling(cardId = "", addedAt = addedAt) }
+        assertFailsWith<IllegalArgumentException> { CardScheduling(cardId = "") }
         // Card ids never contain '|' (v1 reserved it for scheduling keys).
-        assertFailsWith<IllegalArgumentException> {
-            CardScheduling(cardId = "a|produce", addedAt = addedAt)
-        }
+        assertFailsWith<IllegalArgumentException> { CardScheduling(cardId = "a|produce") }
     }
 
     @Test

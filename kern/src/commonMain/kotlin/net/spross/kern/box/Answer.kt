@@ -35,11 +35,11 @@ internal object Answering {
         tzId: String,
     ): BoxState {
         val card = state.cards[cardId] ?: return state
-        val now = Instant.fromEpochMilliseconds(nowEpochMillis)
+        val now = stampOf(nowEpochMillis)
         val scheduler = FsrsScheduler(state.config.fsrsParameters())
         val existing = state.scheduling[cardId]
         val introducing = existing?.memory == null
-        val base = existing ?: CardScheduling(cardId = card.id, addedAt = now)
+        val base = existing ?: CardScheduling(cardId = card.id)
         val sched = base.answered(rating, now, scheduler)
         return state.copy(
             scheduling = state.scheduling + (card.id to sched),
@@ -78,8 +78,9 @@ internal fun CardScheduling.answered(
     val introducing = memory == null
     // why: elapsed comes from the last answer, never from `due` — overdue reviews
     // must credit the real elapsed time.
-    val last = log.lastOrNull()?.date ?: addedAt
-    val elapsedDays = if (introducing) 0.0 else max(0.0, (at - last).toDouble(DurationUnit.DAYS))
+    val last = log.lastOrNull()?.date
+    val elapsedDays =
+        if (introducing || last == null) 0.0 else max(0.0, (at - last).toDouble(DurationUnit.DAYS))
     val outcome = scheduler.review(SchedulerState(phase, stepIndex, memory), elapsedDays, rating)
     return copy(
         phase = outcome.phase,
@@ -91,7 +92,7 @@ internal fun CardScheduling.answered(
         // longer drives suspension; a lapse grows the wait before its next try instead
         // (FsrsScheduler.stepOutcome).
         lapses = lapses + if (rating == Rating.Again && !introducing) 1 else 0,
-        log = log + ReviewLogEntry(date = at, rating = rating, elapsedDays = elapsedDays),
+        log = log + ReviewLogEntry(date = at, rating = rating),
     )
 }
 
@@ -108,7 +109,7 @@ internal fun replayed(
     scheduler: FsrsScheduler,
 ): CardScheduling {
     require(log.isNotEmpty()) { "replaying $cardId needs at least one answer" }
-    val base = CardScheduling(cardId = cardId, addedAt = log.first().date, suspended = suspended)
+    val base = CardScheduling(cardId = cardId, suspended = suspended)
     return log.fold(base) { sched, entry -> sched.answered(entry.rating, entry.date, scheduler) }
         .copy(due = due)
 }
