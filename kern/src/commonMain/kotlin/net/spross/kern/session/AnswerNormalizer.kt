@@ -399,6 +399,14 @@ class AnswerNormalizer(
             AnswerNormalizer(answerLanguage, articleLeniency = false, maxTyposPerWord = 1)
 
         /**
+         * Nothing worth grading was typed — every submit path in kern goes inert on it.
+         * A typing-first surface reads this to decide which of the two its ONE primary
+         * action is, so the button's meaning and kern's answer cannot disagree;
+         * WHICH action it then takes stays the surface's own call.
+         */
+        fun isBlankAnswer(raw: String): Boolean = raw.trim().isEmpty()
+
+        /**
          * No listed article is longer than this, so a longer leading word is part of
          * the answer whatever else it resembles — the cheap pre-filter in front of the
          * article test itself.

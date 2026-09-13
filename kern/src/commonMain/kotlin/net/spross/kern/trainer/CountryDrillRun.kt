@@ -3,6 +3,7 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
+import net.spross.kern.session.AnswerNormalizer
 
 /**
  * The atlas drill as pure state plus one reducer — the third sibling of [TrainerRun] and
@@ -124,7 +125,7 @@ object CountryDrillRun {
     }
 
     private fun submit(state: CountryDrillRunState, text: String): CountryDrillReduction {
-        if (!state.owesAnswer || text.trim().isEmpty()) return unchanged(state)
+        if (!state.owesAnswer || AnswerNormalizer.isBlankAnswer(text)) return unchanged(state)
         val verdict = TypedDrillVerdicts.submit(grade(text, state.task, state.config))
         return CountryDrillReduction(
             state.copy(feedback = verdict.feedback, otherWord = verdict.otherWord),

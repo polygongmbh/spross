@@ -19,6 +19,7 @@ import net.spross.app.letterSpeaker
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.LetterDrillTask
+import net.spross.kern.session.AnswerNormalizer
 
 /**
  * The stage bodies of the letter drill: the glyph tiles, the typed and dictated field, and
@@ -80,7 +81,7 @@ fun TypedStage(
                 modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) {
-                Text(if (flow.input.isBlank()) chrome.sessionReveal else chrome.commonCheck)
+                Text(if (AnswerNormalizer.isBlankAnswer(flow.input)) chrome.sessionReveal else chrome.commonCheck)
             }
         }
         AnswerLine(model, flow, task, chrome)

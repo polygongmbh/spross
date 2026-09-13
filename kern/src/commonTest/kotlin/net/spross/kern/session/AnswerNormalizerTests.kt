@@ -466,4 +466,17 @@ class AnswerNormalizerTests {
         assertEquals(null, Match.OtherWord("wort", listOf("bedeutung")).producedRating())
         assertEquals(null, Match.Wrong.producedRating())
     }
+
+    @Test
+    fun blankIsEveryKindOfWhitespace() {
+        assertEquals(true, AnswerNormalizer.isBlankAnswer(""))
+        assertEquals(true, AnswerNormalizer.isBlankAnswer("   "))
+        assertEquals(true, AnswerNormalizer.isBlankAnswer("\t"))
+        // The one a platform spelling got wrong: Swift's `.whitespaces` stops short of
+        // newlines, so a field holding one offered Check and met an inert submit.
+        assertEquals(true, AnswerNormalizer.isBlankAnswer("\n"))
+        assertEquals(true, AnswerNormalizer.isBlankAnswer(" \n "))
+        assertEquals(false, AnswerNormalizer.isBlankAnswer("a"))
+        assertEquals(false, AnswerNormalizer.isBlankAnswer(" a "))
+    }
 }

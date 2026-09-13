@@ -78,7 +78,7 @@ class TrainerFlow(
      * Kern's Submit is inert on blank text, so which of the two a press is stays ours.
      */
     fun primary() {
-        if (input.isBlank()) dispatch(TrainerIntent.Reveal) else dispatch(TrainerIntent.Submit(input))
+        if (AnswerNormalizer.isBlankAnswer(input)) dispatch(TrainerIntent.Reveal) else dispatch(TrainerIntent.Submit(input))
     }
 
     /** The tap that books whatever the feedback already said. */

@@ -1,3 +1,4 @@
+import SprossKern
 import SwiftUI
 
 // MARK: - AnswerInputView
@@ -223,7 +224,10 @@ struct AnswerInputView: View {
 extension String {
     /// Nothing but whitespace typed. The state where a typing-first surface's
     /// ONE primary action reveals the answer instead of checking it.
-    var isBlankAnswer: Bool { trimmingCharacters(in: .whitespaces).isEmpty }
+    /// Kern's own answer, not a second one: `.whitespaces` excludes newlines where
+    /// kern's trim does not, so a newline-only field used to offer Check and then
+    /// meet an inert submit.
+    var isBlankAnswer: Bool { AnswerNormalizer.companion.isBlankAnswer(raw: self) }
 }
 
 /// Asking whichever answer field is on screen for focus. The immediate request

@@ -16,6 +16,7 @@ import net.spross.kern.session.TurnFeedback
 import net.spross.kern.session.TurnIntent
 import net.spross.kern.session.TurnMachine
 import net.spross.kern.session.TurnState
+import net.spross.kern.session.AnswerNormalizer
 
 /**
  * One review turn as this platform holds it.
@@ -149,7 +150,7 @@ class TurnFlow(
      * press is stays the platform's to decide.
      */
     fun primary() {
-        if (input.isBlank()) reveal() else dispatch(TurnIntent.Submit(input))
+        if (AnswerNormalizer.isBlankAnswer(input)) reveal() else dispatch(TurnIntent.Submit(input))
     }
 
     fun reveal() = dispatch(TurnIntent.Reveal)

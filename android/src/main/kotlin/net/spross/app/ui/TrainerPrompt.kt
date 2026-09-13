@@ -23,6 +23,7 @@ import net.spross.app.Chrome
 import net.spross.app.TrainerFlow
 import net.spross.app.speakFormOnTap
 import net.spross.kern.session.TurnFeedback
+import net.spross.kern.session.AnswerNormalizer
 
 /**
  * What a slot run puts on screen: the prompt card and the controls under it.
@@ -117,7 +118,7 @@ fun TrainerControls(
                 modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
                 shape = MaterialTheme.shapes.small,
             ) {
-                Text(if (flow.input.isBlank()) chrome.sessionReveal else chrome.commonCheck)
+                Text(if (AnswerNormalizer.isBlankAnswer(flow.input)) chrome.sessionReveal else chrome.commonCheck)
             }
             // why: nothing is drawn for a clean answer — it already stands in the learner's
             // own text with the field's checkmark, and the card is on its way out.

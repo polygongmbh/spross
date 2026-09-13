@@ -63,7 +63,7 @@ class LetterDrillFlow(
 
     /** An empty field reveals (and books a miss), a filled one checks. */
     fun primary() {
-        if (input.isBlank()) dispatch(LetterDrillIntent.Reveal) else dispatch(LetterDrillIntent.Submit(input))
+        if (AnswerNormalizer.isBlankAnswer(input)) dispatch(LetterDrillIntent.Reveal) else dispatch(LetterDrillIntent.Submit(input))
     }
 
     fun confirm() = dispatch(LetterDrillIntent.ConfirmPending)

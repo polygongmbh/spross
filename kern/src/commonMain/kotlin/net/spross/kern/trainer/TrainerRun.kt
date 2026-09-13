@@ -141,7 +141,7 @@ object TrainerRun {
         text: String,
         normalizer: AnswerNormalizer?,
     ): TrainerReduction {
-        if (!state.owesAnswer || text.trim().isEmpty()) return unchanged(state)
+        if (!state.owesAnswer || AnswerNormalizer.isBlankAnswer(text)) return unchanged(state)
         return when (val match = grade(text, state.currentTask, normalizer)) {
             Match.Exact -> TrainerReduction(
                 state.copy(feedback = TurnFeedback.Correct),

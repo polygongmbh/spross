@@ -33,6 +33,7 @@ import net.spross.app.pronounceTarget
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.TurnFeedback
+import net.spross.kern.session.AnswerNormalizer
 
 /**
  * PRODUCE half of the session screen: typing-first controls over kern's turn.
@@ -116,7 +117,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
                 modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) {
-                Text(if (flow.input.isBlank()) chrome.sessionReveal else chrome.commonCheck)
+                Text(if (AnswerNormalizer.isBlankAnswer(flow.input)) chrome.sessionReveal else chrome.commonCheck)
             }
         }
         // why: nothing is drawn for a clean answer — it already stands in the learner's

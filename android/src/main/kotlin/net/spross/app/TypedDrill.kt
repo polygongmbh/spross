@@ -13,6 +13,7 @@ import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.DrillEffect
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.DrillTally
+import net.spross.kern.session.AnswerNormalizer
 
 /**
  * A TYPED endless drill — the atlas and the calendar — as its screen sees it.
@@ -207,7 +208,7 @@ abstract class TypedDrillFlow<S, I>(
      * Kern's Submit is inert on blank text, so which of the two a press is stays ours.
      */
     override fun primary() {
-        if (input.isBlank()) dispatch(reveal()) else dispatch(submit(input))
+        if (AnswerNormalizer.isBlankAnswer(input)) dispatch(reveal()) else dispatch(submit(input))
     }
 
     /** The tap that books whatever the feedback already said — and the beat's stand-in. */

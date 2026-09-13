@@ -9,6 +9,7 @@ import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 import net.spross.kern.session.alsoAccepts
+import net.spross.kern.session.AnswerNormalizer
 
 /**
  * The letter drill as pure state plus one reducer. The run's shape is [LetterDrillRunState];
@@ -131,7 +132,7 @@ object LetterDrillRun {
 
     private fun submit(state: LetterDrillRunState, text: String): LetterDrillReduction {
         val task = state.task ?: return unchanged(state)
-        if (!state.owesAnswer || text.trim().isEmpty()) return unchanged(state)
+        if (!state.owesAnswer || AnswerNormalizer.isBlankAnswer(text)) return unchanged(state)
         val card = state.config.cards[task.answerRef]
         return when (val verdict = verdict(text, task, card, state.config.dictationGrader)) {
             LetterVerdict.Clean -> LetterDrillReduction(

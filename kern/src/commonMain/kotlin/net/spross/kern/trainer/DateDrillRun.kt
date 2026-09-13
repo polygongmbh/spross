@@ -3,6 +3,7 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
+import net.spross.kern.session.AnswerNormalizer
 
 /**
  * The dates drill as pure state plus one reducer — the atlas run's shape on the dates
@@ -129,7 +130,7 @@ object DateDrillRun {
     }
 
     private fun submit(state: DateDrillRunState, text: String): DateDrillReduction {
-        if (!state.owesAnswer || text.trim().isEmpty()) return unchanged(state)
+        if (!state.owesAnswer || AnswerNormalizer.isBlankAnswer(text)) return unchanged(state)
         val verdict = TypedDrillVerdicts.submit(grade(text, state.task, state.config))
         return DateDrillReduction(
             state.copy(feedback = verdict.feedback, otherWord = verdict.otherWord),
