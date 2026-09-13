@@ -60,7 +60,7 @@ internal object ChromeEn : Chrome {
     override val onboardingFirstRoundWrite = "When you don't know a word, you can write it " +
         "out once to solidify your memory."
     override val commonCheck = "Check"
-    override val sessionReveal = "Reveal"
+    override val commonReveal = "Reveal"
     override val commonNext = "Next"
     override val sessionGrammarAlso = "also: %s"
     override val sessionMeansAlso = "also means: %s"

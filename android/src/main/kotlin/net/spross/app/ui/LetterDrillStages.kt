@@ -81,7 +81,7 @@ fun TypedStage(
                 modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) {
-                Text(if (AnswerNormalizer.isBlankAnswer(flow.input)) chrome.sessionReveal else chrome.commonCheck)
+                Text(if (AnswerNormalizer.isBlankAnswer(flow.input)) chrome.commonReveal else chrome.commonCheck)
             }
         }
         AnswerLine(model, flow, task, chrome)

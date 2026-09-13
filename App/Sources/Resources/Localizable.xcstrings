@@ -1845,6 +1845,22 @@
         }
       }
     },
+    "common.reveal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufdecken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reveal"
+          }
+        }
+      }
+    },
     "countries.ask.country" : {
       "comment" : "What a question ASKS. None of them names a language: the field's placeholder says which side is owed, and saying it here too would be the third telling.",
       "localizations" : {
@@ -5565,22 +5581,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Not at all"
-          }
-        }
-      }
-    },
-    "session.reveal" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aufdecken"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reveal"
           }
         }
       }

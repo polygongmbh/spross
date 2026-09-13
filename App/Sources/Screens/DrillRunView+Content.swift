@@ -131,7 +131,7 @@ extension DrillRunView {
             case .neutral:
                 // ONE primary action: an empty field reveals, a typed one checks.
                 Button(action: submit) {
-                    Text(input.isBlankAnswer ? "session.reveal" : "common.check")
+                    Text(input.isBlankAnswer ? "common.reveal" : "common.check")
                         .frame(maxWidth: .infinity)
                         .contentTransition(.opacity)
                 }

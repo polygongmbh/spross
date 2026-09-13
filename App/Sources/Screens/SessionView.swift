@@ -374,7 +374,7 @@ struct SessionView: View, LanguageNaming {
             Button {
                 dispatch(TurnIntent.Reveal.shared)
             } label: {
-                Text("session.reveal")
+                Text("common.reveal")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(PrimaryButtonStyle())

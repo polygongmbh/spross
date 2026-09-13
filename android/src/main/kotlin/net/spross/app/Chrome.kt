@@ -69,7 +69,7 @@ interface Chrome {
     val onboardingFirstRoundGrade: String
     val onboardingFirstRoundWrite: String
     val commonCheck: String
-    val sessionReveal: String
+    val commonReveal: String
     val commonNext: String
     val sessionGrammarAlso: String              // %s
     val sessionMeansAlso: String                // %s

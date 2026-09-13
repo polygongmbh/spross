@@ -154,7 +154,7 @@ extension LetterDrillView {
                 Button {
                     submit()
                 } label: {
-                    Text(input.isBlankAnswer ? "session.reveal" : "common.check")
+                    Text(input.isBlankAnswer ? "common.reveal" : "common.check")
                         .frame(maxWidth: .infinity)
                         .contentTransition(.opacity)
                 }

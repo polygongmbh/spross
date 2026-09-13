@@ -76,7 +76,7 @@ extension SessionView {
                     Button {
                         dispatch(TurnIntent.Submit(text: input))
                     } label: {
-                        Text(input.isBlankAnswer ? "session.reveal" : "common.check")
+                        Text(input.isBlankAnswer ? "common.reveal" : "common.check")
                             .frame(maxWidth: .infinity)
                             .contentTransition(.opacity)
                     }

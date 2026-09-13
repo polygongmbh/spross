@@ -60,7 +60,7 @@ internal object ChromeDe : Chrome {
     override val onboardingFirstRoundWrite = "Ein Wort, das du nicht wusstest, darfst du " +
         "einmal abschreiben, damit es besser hängen bleibt."
     override val commonCheck = "Prüfen"
-    override val sessionReveal = "Aufdecken"
+    override val commonReveal = "Aufdecken"
     override val commonNext = "Weiter"
     override val sessionGrammarAlso = "auch: %s"
     override val sessionMeansAlso = "bedeutet auch: %s"

@@ -294,7 +294,7 @@ private fun Controls(
                 modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) {
-                Text(if (AnswerNormalizer.isBlankAnswer(flow.input)) chrome.sessionReveal else chrome.commonCheck)
+                Text(if (AnswerNormalizer.isBlankAnswer(flow.input)) chrome.commonReveal else chrome.commonCheck)
             }
             // why: nothing is drawn for a clean answer — it already stands in the learner's
             // own text with the field's checkmark, and the card is on its way out.

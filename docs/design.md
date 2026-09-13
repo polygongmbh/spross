@@ -88,7 +88,10 @@ Strict dependency direction: App → SprossKern, never the reverse.
   namespace per widget, and never two for one screen. Where a surface holds several
   KINDS of thing the second level says which (`box.card` vs `box.shelf` vs `box.area`,
   `home.offer` vs `home.done`), and where a rule reaches every surface the namespace is
-  the channel instead (`a11y`, `common`). It names the domain's word, not the code's —
+  the channel instead (`a11y`, `common`).
+  A key is named for what it DENOTES rather than for the surface it first appeared on,
+  so it moves to `common.` as soon as a second one reads it.
+  It names the domain's word, not the code's —
   known and learning over source and target, Sprosse over rung or level, pack over enqueue — and no
   key is also the stem of a family that means something else.
 - The String Catalog is the ONE home for that copy, on both phones: Android's tables are

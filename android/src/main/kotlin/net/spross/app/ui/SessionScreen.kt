@@ -289,7 +289,7 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
             modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
             shape = MaterialTheme.shapes.small,
         ) {
-            Text(chrome.sessionReveal)
+            Text(chrome.commonReveal)
         }
         return
     }
