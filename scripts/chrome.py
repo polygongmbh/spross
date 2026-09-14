@@ -122,12 +122,7 @@ IOS_ONLY = {
 # Surfaces iOS ships that Android owes. A key leaves this set by being claimed above,
 # which is what finishing the Android side looks like — and empty is what caught up looks
 # like, which is where Android stands. The next one-sided surface is named here.
-ANDROID_TODO = {
-    # The two scrambles: iOS ships the hub chips and both screens, Android owes them.
-    'a11y.action.takeBack', 'a11y.scramble.arrangement', 'a11y.scramble.bank',
-    'scramble.sentence.hint',
-    'trainer.skill.sentenceScramble', 'trainer.skill.wordScramble',
-}
+ANDROID_TODO = set()
 
 
 def camel(key):

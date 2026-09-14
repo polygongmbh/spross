@@ -251,6 +251,16 @@ interface Chrome {
     val datesAskMonth: String
     val datesAskDate: String
 
+    // ── The two scrambles: the chips, and the tile bank one of them is arranged on ──
+    val trainerSkillWordScramble: String
+    val trainerSkillSentenceScramble: String
+    /** The empty answer row wears it — the whole instruction a tile bank needs. */
+    val scrambleSentenceHint: String
+    /** What the answer row and the bank are CALLED; the row's value is kern's `arranged`. */
+    val a11yScrambleArrangement: String
+    val a11yScrambleBank: String
+    val a11yActionTakeBack: String
+
     // ── Box browse ──────────────────────────────────────────────────────────────
     val boxTitle: String
     val boxDoor: String
