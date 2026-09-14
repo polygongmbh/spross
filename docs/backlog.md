@@ -163,6 +163,11 @@ Catalog content — its forms, its audio and the per-language questions — live
   needs `screen`'s `private set` (:202, and eight more backers) widened or an internal verb minted.
 - Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
   fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).
+- Compound/morpheme-boundary training for a compounding language (marking the component seams
+  inside a German compound, the way Leichte Sprache's mediopunkt does) is a distinct unbuilt
+  drill needing curated component-boundary data, and syllable data would not deliver it since a
+  syllable split cuts through a stem rather than landing on a seam ("Fei-er-tag" buries
+  "Feier") — considered for word scramble (`drills.md`) and left out.
 
 ## Platform reach
 

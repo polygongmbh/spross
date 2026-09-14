@@ -1,18 +1,24 @@
-# Drills — the ladders, the overviews and the letter drill
+# Drills — the ladders, the overviews and the drills beside them
 
-What the four Sprossen entries ask, how a ladder is climbed, and what the page in
+What the Sprossen entries ask, how a ladder is climbed, and what the page in
 front of each holds. The surfaces around them — listening, the wrist, the Android
 companion — are `surfaces.md`'s; the review loop these share their card and their
 answering rules with is `design.md`'s.
 
 ## The hub, and what a Sprosse is
 
-- **Trainers**: the Sprossen card offers FOUR entries — Zahlen, Buchstaben, Länder and Datum —
-  on ONE row, which all four sit on comfortably. A step of the ladder is a **Sprosse**
+- **Trainers**: the Sprossen card offers SIX entries — Zahlen, Buchstaben, Länder, Datum and
+  the two scrambles — and more than THREE visible chips break the row into TWO lines,
+  `ceil(n/2)` above and `floor(n/2)` below, so four stand 2+2, five 3+2 and six 3+3.
+  Each line keeps the equal-width chips one line carries today, and the break is drawn rather
+  than discovered: neither platform's row overflows on its own, and six chips sharing one of
+  them would be six slivers of a word apiece. A step of the ladder is a **Sprosse**
   in EVERY interface language, plural Sprossen: it is the brand word (`website.md`),
   so English chrome says "Sprosse 5" where the code and these docs still say Sprosse.
   Each is its own SKILL,
-  which is the only thing that earns a chip. Clock,
+  which is the only thing that earns a chip — and it is what buys the two scrambles theirs:
+  spelling a word back and putting words in order are two skills, neither of them a way of
+  being asked the other's question. Clock,
   sentences and number forms are not siblings of the numbers drill but ways of being
   asked, so they are variants a run selects rather than chips, and the modifiers
   (reverse, fast, mix) are how it is played. A chip apiece was the alternative and it
@@ -98,8 +104,9 @@ answering rules with is `design.md`'s.
   never open is a lie.
 - **Buchstaben overview**: the letters entry opens the same shape as the numbers one —
   the drill's stages and start first, the alphabet table under them. The Sprossen card shows
-  when any of its four entries can offer something — counting content, an alphabet file for
-  the target, a joined atlas or joined calendars — and the letters chip on the alphabet file
+  when any of its entries can offer something — counting content, an alphabet file for
+  the target, a joined atlas or joined calendars, a consolidated word long enough to scramble
+  or an unlocked phrase of three words — and the letters chip on the alphabet file
   alone: the table renders every row (glyph, name, IPA, context, hint, example with
   meaning where the reader's language knows the word) and ships even where the drill cannot — audio is the drill's precondition, not the
   table's, so where this device can sound nothing the stages are out of reach and the page
@@ -261,3 +268,50 @@ answering rules with is `design.md`'s.
   alone (checkmark/X over the tint); a miss never auto-advances. Neither mute reaches the
   drill and it carries no mute button (`read-aloud.md` owns why), so no run of it can open
   on a card with nothing to answer.
+
+## Word scramble
+
+- **Word scramble**: the prompt is a word the box already holds with its letters thrown out of
+  order, and the answer is TYPED, never tapped. Handing the same letters back as tiles would
+  leave nothing to retrieve but their order, where writing the word out IS the spelling — so
+  this drill wears the typed card every other trainer drill wears rather than a tile bank.
+  Its Sprossen are stages in the letter drill's sense, changing what the question IS rather
+  than how long the word is, and what they change is what stays FIXED in the scramble: first
+  and last letter held in place with the word's own capitalization, then the first letter
+  alone, then nothing fixed at all. Word length is NOT a rung. A second axis ramping beside
+  the first leaves a learner who slipped unable to say what got harder — the atlas' own
+  lesson — so the shorter eligible words simply come first inside a Sprosse and the longer
+  ones as it runs on.
+  Only CONSOLIDATED words are drawn: a scramble of a word nobody holds yet has no cue to work
+  from, so it is a guessing game and not a recall. Single-token only — a scrambled
+  "sich waschen" is two puzzles wearing one prompt — and at least four letters, which is where
+  the first Sprosse's two fixed ends still leave an interior to scramble.
+  It grades through the same drill grading every typed drill uses, against the word's own
+  catalog forms, so any authored synonym or variant of the target counts exactly as it does in
+  production. The reveal carries the TRANSLATION, the way the letter drill's dictation does: a
+  word spelled right is still worth glossing, and the scramble on the card never said what it
+  meant. The honest limit is that a DIFFERENT real word spellable from the same letters is
+  neither caught nor accepted — the box holds a catalog, not a dictionary, and nothing here
+  can tell an anagram that happens to be a word from one that happens to be nothing.
+  The drill books no review and keeps no schedule, exactly as the letter drill does not.
+
+## Sentence scramble
+
+- **Sentence scramble**: an unlocked phrase is handed over as its own words, shuffled — a bank
+  of chips below, an empty answer row above, a tap carrying a chip up into place and another
+  carrying it back down. Tapping is the whole gesture: a drag buys the learner nothing an
+  arrangement needs, and a drag-and-drop is a pile of assistive-technology trouble a tap
+  simply does not have.
+  It is the one drill here whose answer is an ARRANGEMENT rather than something spelled, so it
+  is graded by POSITION and not by letters — nothing is typed, so no typo budget applies and
+  there is no half-right word to forgive, only the order that is right and every order that is
+  not. That also makes it the one drill whose words are given: the retrieval the review loop
+  grades is already done, and what is left to learn is where each word goes.
+  Only phrases the box has already UNLOCKED are drawn, and only from three words up — two
+  words are not a puzzle but a coin toss between the two orders on screen.
+  It grades ONE order, the phrase as the catalog authors it, and that is the limit worth
+  stating plainly: where a language would allow a second order the drill does not know it yet,
+  because the catalog carries no second order to know. A learner who arranges a sentence their
+  own language would also accept is marked wrong, and the fix is a catalog that can say so,
+  not a grader that guesses.
+  The drill books no review and keeps no schedule, exactly as the letter drill does not.
