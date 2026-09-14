@@ -18,7 +18,7 @@
   "pan": {
    "text": "poêle",
    "grammar": { "gender": "la" },
-   "notes": { "fr": "la poêle pour cuire · le poêle chauffe la maison." }
+   "notes": { "fr": "la poêle pour cuire · le poêle (masculin) chauffe la maison." }
   },
   "knife": { "text": "couteau", "grammar": { "gender": "le", "plural": "-x" } },
   "spoon": { "text": "cuillère", "variants": ["cuiller"], "grammar": { "gender": "la" } },
