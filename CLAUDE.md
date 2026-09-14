@@ -39,7 +39,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   Green means YOUR commit's content — with other work in flight, scope the gate to what you touched.
   Name the failure a gate could catch in this diff and skip it where you cannot —
   docs and copy need no rebuild, a string's value no screenshot, a minor algorithm change no emulator.
-  Read another party's red as theirs, not as a blocker, only take time to test your changes in isolation if they have major chance of breakage.
+  Read another party's red as theirs, not as a blocker — commit and move on,
+  never stash or diagnose someone else's failure.
 - **On red, attribute before escalating**: `git status`/`diff` the failing file first — 
   if it's not one you touched, that's someone else's break.
   Don't rerun the same broad gate or reach for a bigger one hoping for a different answer;
