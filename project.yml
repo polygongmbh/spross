@@ -29,16 +29,18 @@ settings:
   # why: the two Apple accounts are separate teams and an identifier belongs to ONE
   # of them, so each config signs with the team that owns what it claims. Debug is
   # the personal team, which owns group.net.spross.app; Release is the paid team,
-  # which owns group.net.spross.box and alone can issue a distribution certificate
+  # which owns group.net.spross.shared and alone can issue a distribution certificate
   # (docs/distribution.md). The entitlements read APP_GROUP_ID rather than naming a
-  # group, so one generated file per target serves both.
+  # group, so one generated file per target serves both. Getting the pair wrong is
+  # expensive: a device build registers whatever the entitlement claims to the team
+  # that signs it, and an identifier never moves between teams afterwards.
   configs:
     Debug:
       DEVELOPMENT_TEAM: 2LDZV9286Q
       APP_GROUP_ID: group.net.spross.app
     Release:
       DEVELOPMENT_TEAM: AF77U46UQ6
-      APP_GROUP_ID: group.net.spross.box
+      APP_GROUP_ID: group.net.spross.shared
 targets:
   Spross:
     type: application

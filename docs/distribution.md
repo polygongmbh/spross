@@ -126,7 +126,7 @@ still move. What ends that, on each side:
   first, unable to reach its data directory, and invisible to Obtainium until every
   user re-adds it by hand. No store publication is needed for this to bind.
 - **iOS** — the first App Store Connect record. Moving that one alone would also break
-  the match and orphan `group.net.spross.box`, the container the widget and watch share in a
+  the match and orphan `group.net.spross.shared`, the container the widget and watch share in a
   release build (`project.yml` `APP_GROUP_ID`; debug signs the personal team's own group).
 
 ## Impressum and privacy policy — the gate before anyone outside sees a build
