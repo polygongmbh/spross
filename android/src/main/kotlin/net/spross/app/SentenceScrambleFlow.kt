@@ -21,11 +21,17 @@ import net.spross.kern.trainer.SentenceScrambleRunState
  * ladder of lengths, the grading by position — and what is left here is the armed beat.
  *
  * No review is ever booked: the box is READ for the phrases it has unlocked and never
- * written, and the run keeps no record — arrangement is not recall.
+ * written, and the run keeps no streak record — arrangement is not recall. What DOES outlive
+ * the run is the ladder it climbed, filed under [clearedKey].
  */
 class SentenceScrambleFlow(
     start: SentenceScrambleRunState,
     private val rng: Random,
+    /**
+     * Where the Sprossen this run clears are filed, and where it read the ones it opened
+     * above ([TrainerStore.sentenceScrambleKey]) — one string, so the two sides cannot drift.
+     */
+    val clearedKey: String,
     onTone: (ToneKind) -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
@@ -89,7 +95,11 @@ class SentenceScrambleFlow(
  * the same report, so a null here is a closed door rather than a screen.
  *
  * Nothing is graded against a language here: the answer is a permutation of atoms kern itself
- * dealt, so the run needs no normalizer.
+ * dealt, so the run needs no normalizer. The language being learned is read for the ladder's
+ * storage key alone — every phrase the run deals names its own.
+ *
+ * The run opens on the Sprosse the store's mask leaves lowest
+ * ([SentenceScrambleRunConfig.entryLevel]), so a ladder climbed clean is never asked for twice.
  */
 fun AppModel.newSentenceScramble(
     onTone: (ToneKind) -> Unit = {},
@@ -98,9 +108,14 @@ fun AppModel.newSentenceScramble(
     val state = box ?: return null
     val report = SentenceScrambleAvailability.report(state)
     if (!report.drillAvailable) return null
+    val key = TrainerStore.sentenceScrambleKey(state.joinStamp.target)
     return SentenceScrambleFlow(
-        start = SentenceScrambleRun.open(SentenceScrambleRunConfig(report), rng),
+        start = SentenceScrambleRun.open(
+            SentenceScrambleRunConfig(report, trainer.store.cleared(key)),
+            rng,
+        ),
         rng = rng,
+        clearedKey = key,
         onTone = onTone,
         onSilence = { pronouncer.stop() },
         screenReaderOn = { pronouncer.readsScreenAloud },

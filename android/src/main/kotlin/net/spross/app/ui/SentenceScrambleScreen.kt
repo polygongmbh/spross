@@ -59,9 +59,13 @@ fun SentenceScrambleScreen(model: AppModel) {
     val state = flow.state
     // why: from the corner or from "Fertig", the close is the same one — kern books a pending
     // arrangement exactly as the tap would. The scrambles have no page of their own to land
-    // on, so the figures go back to Home; this drill books no Sprosse and keeps no record.
+    // on, so the figures go back to Home; this drill keeps no streak record, and no high-water
+    // Sprosse beside the mask, because nothing reads one back.
     val leave = {
         val closed = flow.close()
+        // why: what the NEXT run reads — it opens on the lowest Sprosse the mask does not
+        // hold, so a Sprosse climbed clean is never asked for twice.
+        model.trainer.store.bookCleared(flow.clearedKey, closed.clearedSprossen)
         model.finishDrill(Screen.Home, closed.summary, chrome.trainerSkillSentenceScramble)
     }
     BackHandler { leave() }

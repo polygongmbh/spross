@@ -81,11 +81,14 @@ class TrainerStore(private val prefs: SharedPreferences) {
         prefs.edit().putInt(TrainerMode.ANSWERS_PREFIX + key, answers).apply()
     }
 
-    /** The Sprossen every run under [key] has answered out — kern reads the mask. */
+    /**
+     * The Sprossen every run under [key] has cleared — answered out, or climbed off
+     * unblemished, which the store files as one thing. Kern reads the mask.
+     */
     fun cleared(key: String): Set<Int> =
         TrainerMode.clearedSprossen(prefs.getInt(TrainerMode.CLEARED_PREFIX + key, 0))
 
-    /** ORs a closed run's answered-out Sprossen into the standing mask; never filtered. */
+    /** ORs a closed run's cleared Sprossen into the standing mask; never filtered. */
     fun bookCleared(key: String, sprossen: Set<Int>) {
         if (sprossen.isEmpty()) return
         val standing = prefs.getInt(TrainerMode.CLEARED_PREFIX + key, 0)
@@ -116,6 +119,17 @@ class TrainerStore(private val prefs: SharedPreferences) {
 
         /** The dates ladder's twin of [countriesKey], authored by `DatesOverview.storageKey`. */
         fun datesKey(source: Language, target: Language): String = "dates.$source-$target"
+
+        /**
+         * Where the word scramble's mask is filed: one key per learned language, and no
+         * direction to split it by — the mixed letters are only ever written back in the
+         * language they came from. Kern spells no identity for this drill either, so the
+         * string is the iOS twin's (`WordScrambleView.storageKey`).
+         */
+        fun wordScrambleKey(language: Language): String = "wordscramble.$language"
+
+        /** The sentence scramble's twin of [wordScrambleKey] (`SentenceScrambleView.storageKey`). */
+        fun sentenceScrambleKey(language: Language): String = "sentencescramble.$language"
     }
 }
 

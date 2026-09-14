@@ -341,6 +341,7 @@ class DrillWiringTest {
             // A run with no language info grades plainly — enough to drive the wiring.
             start = WordScrambleRun.open(WordScrambleRunConfig(report, normalizer = null), Random(seed)),
             rng = Random(seed),
+            clearedKey = TrainerStore.wordScrambleKey("sw"),
             onTone = { platform.tones += it },
             onReleaseFocus = { platform.focusReleases += 1 },
             onSilence = { platform.silences += 1 },
@@ -390,6 +391,7 @@ class DrillWiringTest {
         return SentenceScrambleFlow(
             start = SentenceScrambleRun.open(SentenceScrambleRunConfig(report), Random(seed)),
             rng = Random(seed),
+            clearedKey = TrainerStore.sentenceScrambleKey("sw"),
             onTone = { platform.tones += it },
             onSilence = { platform.silences += 1 },
             screenReaderOn = { platform.screenReader },

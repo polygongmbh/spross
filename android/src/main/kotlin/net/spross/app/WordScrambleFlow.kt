@@ -22,12 +22,18 @@ import net.spross.kern.trainer.WordScrambleRunState
  * armed beat.
  *
  * No review is ever booked: the box is READ for the words it has consolidated and never
- * written, and the run keeps no record — spelling a word back out of its own letters is not
- * the recall the schedule measures.
+ * written, and the run keeps no streak record — spelling a word back out of its own letters
+ * is not the recall the schedule measures. What DOES outlive the run is the ladder it
+ * climbed, filed under [clearedKey].
  */
 class WordScrambleFlow(
     start: WordScrambleRunState,
     private val rng: Random,
+    /**
+     * Where the Sprossen this run clears are filed, and where it read the ones it opened
+     * above ([TrainerStore.wordScrambleKey]) — one string, so the two sides cannot drift.
+     */
+    val clearedKey: String,
     onTone: (ToneKind) -> Unit = {},
     onReleaseFocus: () -> Unit = {},
     onSilence: () -> Unit = {},
@@ -111,6 +117,9 @@ class WordScrambleFlow(
  *
  * The normalizer is the STRICT drill one for the language being learned, which is the side
  * the spelling is owed on. A profile whose catalog names no such language grades plainly.
+ *
+ * The run opens on the Sprosse the store's mask leaves lowest ([WordScrambleRunConfig.entryLevel]),
+ * so a ladder climbed clean is never asked for twice.
  */
 fun AppModel.newWordScramble(
     onTone: (ToneKind) -> Unit = {},
@@ -121,10 +130,16 @@ fun AppModel.newWordScramble(
     val report = WordScrambleAvailability.report(state)
     if (!report.drillAvailable) return null
     val info = catalog?.languages?.get(state.joinStamp.target)
-    val config = WordScrambleRunConfig(report, info?.let { AnswerNormalizer.drill(it) })
+    val key = TrainerStore.wordScrambleKey(state.joinStamp.target)
+    val config = WordScrambleRunConfig(
+        report,
+        info?.let { AnswerNormalizer.drill(it) },
+        trainer.store.cleared(key),
+    )
     return WordScrambleFlow(
         start = WordScrambleRun.open(config, rng),
         rng = rng,
+        clearedKey = key,
         onTone = onTone,
         onReleaseFocus = onReleaseFocus,
         onSilence = { pronouncer.stop() },

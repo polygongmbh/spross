@@ -10,8 +10,10 @@ import net.spross.kern.trainer.TrainerMode
  * and what one store wrote the next one reads back — which is the whole of "a Sprosse
  * survives a relaunch" from the store's side, the file itself being the framework's.
  *
- * The key spellings are kern's ([TrainerMode.progressKey]) and tested there; these read
- * back through the same call that wrote, never through a string of their own.
+ * Most key spellings are kern's ([TrainerMode.progressKey]) and tested there; these read
+ * back through the same call that wrote, never through a string of their own. The scrambles
+ * are the exception — kern spells no identity for them, so the string itself is the contract
+ * with the iOS twin and is asserted whole.
  */
 class TrainerStoreTest {
 
@@ -68,6 +70,21 @@ class TrainerStoreTest {
         store.bookCleared("countries.de-sw", setOf(3))
         store.bookCleared("countries.de-sw", emptySet())
         assertEquals(setOf(1, 2, 3), store.cleared("countries.de-sw"))
+    }
+
+    /**
+     * One mask per learned language and no direction to split it by — neither scramble asks a
+     * different question round the other way, so no key of theirs wears [TrainerMode.REVERSED_SUFFIX].
+     */
+    @Test
+    fun eachScrambleFilesOneMaskPerLearnedLanguage() {
+        assertEquals("wordscramble.es", TrainerStore.wordScrambleKey(language))
+        assertEquals("sentencescramble.es", TrainerStore.sentenceScrambleKey(language))
+
+        val store = TrainerStore(FakePrefs())
+        store.bookCleared(TrainerStore.wordScrambleKey(language), setOf(1, 2))
+        assertEquals(setOf(1, 2), store.cleared(TrainerStore.wordScrambleKey(language)))
+        assertEquals(emptySet(), store.cleared(TrainerStore.sentenceScrambleKey(language)))
     }
 
     @Test
