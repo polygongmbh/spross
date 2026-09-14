@@ -68,6 +68,23 @@
         }
       }
     },
+    "a11y.action.takeBack" : {
+      "comment" : "what tapping a placed word does — the hint on an answer-row chip",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurücknehmen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take back"
+          }
+        }
+      }
+    },
     "a11y.count.activity14Days %lld" : {
       "comment" : "%d = days worked inside the window",
       "localizations" : {
@@ -213,6 +230,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Letter %@"
+          }
+        }
+      }
+    },
+    "a11y.scramble.arrangement" : {
+      "comment" : "the sentence-scramble answer row; its value is the sentence built so far",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Reihenfolge"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your order"
+          }
+        }
+      }
+    },
+    "a11y.scramble.bank" : {
+      "comment" : "the sentence-scramble chip bank",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wörter zur Auswahl"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Words to choose from"
           }
         }
       }
@@ -4897,6 +4948,23 @@
         }
       }
     },
+    "scramble.sentence.hint" : {
+      "comment" : "shown in the empty answer row, until the first word is placed",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe die Wörter der Reihe nach an"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap the words into order"
+          }
+        }
+      }
+    },
     "session.almost.heard" : {
       "localizations" : {
         "de" : {
@@ -6608,6 +6676,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Numbers"
+          }
+        }
+      }
+    },
+    "trainer.skill.sentenceScramble" : {
+      "comment" : "hub chip: putting a phrase's words back in order",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satzpuzzle"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sentence scramble"
+          }
+        }
+      }
+    },
+    "trainer.skill.wordScramble" : {
+      "comment" : "hub chip: writing a word back out of its mixed letters",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wortpuzzle"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Word scramble"
           }
         }
       }
