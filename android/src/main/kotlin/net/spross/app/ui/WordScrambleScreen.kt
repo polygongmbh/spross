@@ -141,7 +141,7 @@ fun WordScrambleScreen(model: AppModel) {
  * The prompt: the letters as kern mixed them, with the ones the Sprosse left standing
  * set bold. Kern says how many hold at each end ([ScrambledWord.fixedLeading] /
  * [ScrambledWord.fixedTrailing]) and this side says what that looks like — weight alone,
- * because the anchors are a recognition aid the ladder takes away rung by rung, and an
+ * because the anchors are a recognition aid the ladder takes away Sprosse by Sprosse, and an
  * aid on its way out is not worth a legend.
  */
 fun mixedWord(word: ScrambledWord): AnnotatedString {

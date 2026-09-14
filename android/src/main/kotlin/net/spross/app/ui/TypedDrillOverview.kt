@@ -59,7 +59,7 @@ class TypedDrillLadder(
  * The shape every overview uses — the run above, the reading below: the Sprossen a run
  * climbs, how it is played, the button, and then the table itself.
  *
- * The RUNGS are not earned — the drills are ungated, so no row carries a padlock — but the
+ * The SPROSSEN are not earned — the drills are ungated, so no row carries a padlock — but the
  * ladder wears its RECORD: each circle says whether some run stood on that Sprosse or
  * answered every question of it, and `Los` opens on the lowest Sprosse no run has answered
  * out ([TrainerMode.entrySprosse]). The rows the learner has been on are the control: tapping
