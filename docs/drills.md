@@ -148,6 +148,14 @@ the review loop these share their card and their answering rules with is `design
   The number is never trimmed to the rows on the page:
   a Sprosse goes on counting past the last named one (`DrillRamp.step`),
   which is what a climbed-out ladder leaves to beat.
+- **The two scrambles have no page to wear a ladder on, and resume on one anyway.**
+  A run opens on the lowest Sprosse no earlier run climbed off UNBLEMISHED —
+  every answer given while standing on it correct and unaided
+  (`../kern/docs/turns.md` § storage contract), filed per learned language.
+  So an almost, which banks nothing and costs nothing inside the run,
+  still takes the Sprosse it fell on out of the store's running,
+  and the next run asks that Sprosse again.
+  Nothing overrides where it opens: there is no row to tap and no direction to turn.
 - **An endless run offers its exit where it is wanted, not on a schedule.**
   "Fertig" appears under the button that goes on, and only on the SECOND miss in a row:
   one miss is what a drill is made of,
@@ -166,7 +174,8 @@ the review loop these share their card and their answering rules with is `design
   Three numbers do not earn a page,
   and a page they do not earn is one more ✕ between a learner and their next run —
   which the `Los` button already is.
-- **Only the numbers, atlas and calendar ladders keep a record of their own**;
+- **Only the numbers, atlas and calendar ladders keep a RECORD of their own** —
+  the longest clean streak and the most answers one run took;
   the letter drill and the two scrambles keep none,
   and no drill books a review or touches a schedule (`../kern/README.md`),
   so a run costs the box nothing and can be closed at any moment.
