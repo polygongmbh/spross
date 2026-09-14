@@ -84,7 +84,31 @@ struct SentenceScrambleView: View {
             autoAdvance?.cancel()
             Pronouncer.shared.stop()
         }
+        #if DEBUG
+        .onAppear { uitestArrange() }
+        #endif
     }
+
+    #if DEBUG
+    /// Run-through hook: `-uitest-sentencescramble-place right|wrong` arranges
+    /// the whole phrase a chip at a time, which is the only way a screenshot run
+    /// reaches either verdict — the tile bank has no thumb behind it.
+    private func uitestArrange() {
+        guard let pick = UserDefaults.standard.string(forKey: "uitest-sentencescramble-place"),
+              let task = current else { return }
+        // Where in the DEAL each authored word ended up — the order that solves it.
+        var order = task.canonical.compactMap { atom in
+            task.shuffled.firstIndex { $0.id == atom.id }
+        }
+        if pick == "wrong", order.count >= 2 { order.swapAt(order.count - 1, order.count - 2) }
+        Task { @MainActor in
+            for slot in order {
+                try? await Task.sleep(for: .milliseconds(400))
+                dispatch(SentenceScrambleIntent.PlaceAtom(index: Int32(slot)))
+            }
+        }
+    }
+    #endif
 
     // MARK: - What is on screen
 
