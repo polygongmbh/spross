@@ -23,19 +23,49 @@ class WordScrambleAvailabilityTest {
         ScrambleFixture.word("clock", "Uhr", seed = 7),
         ScrambleFixture.word("sun", "Sonne", seed = 8),
         ScrambleFixture.phrase("greeting", "guten Morgen hier", listOf("window"), seed = 9),
+        ScrambleFixture.word("shirt", "T-Shirt", seed = 10),
+        ScrambleFixture.word(
+            "bad",
+            "-baya",
+            CardKind.Adjective,
+            seed = 11,
+            variants = listOf("mbi", "mbaya", "wabaya"),
+        ),
+    )
+
+    private fun report(
+        standing: Map<String, Double> = emptyMap(),
+        suspended: Set<String> = emptySet(),
+    ) = WordScrambleAvailability.report(
+        ScrambleFixture.box(cards, standing = standing, suspended = suspended),
     )
 
     private fun ids(
         standing: Map<String, Double> = emptyMap(),
         suspended: Set<String> = emptySet(),
-    ): List<String> =
-        WordScrambleAvailability.report(ScrambleFixture.box(cards, standing = standing, suspended = suspended))
-            .words.map { it.id }
+    ): List<String> = report(standing, suspended).words.map { it.card.id }
 
     /** All three word kinds qualify, and the pool comes back in seed order. */
     @Test
     fun everyConsolidatedSingleWordOfEnoughLettersIsAsked() {
-        assertEquals(listOf("window", "cook", "fast", "rainbow", "outside", "sun"), ids())
+        assertEquals(listOf("window", "cook", "fast", "rainbow", "outside", "sun", "bad"), ids())
+    }
+
+    /**
+     * A bound stem is no citation form to write down, so the drill asks it through the concrete
+     * forms it agrees into — and only through the ones that are themselves long enough to mix.
+     */
+    @Test
+    fun aBoundStemIsAskedThroughItsAgreeingForms() {
+        val stem = report().words.single { it.card.id == "bad" }
+        assertEquals(listOf("mbaya", "wabaya"), stem.forms)
+    }
+
+    /** A spelling carrying anything but letters is nothing loose letters can be handed over as. */
+    @Test
+    fun aWordThatIsNotSpelledInLettersAloneIsNotAsked() {
+        assertFalse("shirt" in ids())
+        assertEquals(emptyList(), WordScrambleAvailability.spellings(cards.single { it.id == "shirt" }))
     }
 
     /** The DISPLAY bar, not the growing one: a word still on its way in is no cue to itself. */

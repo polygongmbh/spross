@@ -48,46 +48,63 @@ class RealCatalogScrambleTest {
 
     // MARK: - Word scramble
 
+    /** Every form a run could hand over is one word, written in letters, long enough to mix. */
     @Test
-    fun everyWordOfferedIsOneSpellingLongEnoughToAnchor() {
+    fun everyFormOfferedIsOneSpellingLongEnoughToAnchor() {
         for ((source, target) in pairs) {
             val words = WordScrambleAvailability.report(grown(cards(source, target))).words
             assertTrue(words.size >= WordScrambleAvailability.POOL_FLOOR, "$target: ${words.size} words")
-            for (card in words) {
-                val text = card.target.text
-                assertEquals(1, ScrambleTokenizer.tokens(text).size, "$target: \"$text\" is not one token")
-                assertTrue(
-                    text.length >= WordScrambleAvailability.MIN_LETTERS,
-                    "$target: \"$text\" is too short to anchor",
-                )
+            for (spelling in words) {
+                val card = spelling.card
                 assertTrue(card.kind != CardKind.Phrase && card.kind != CardKind.Idiom, "$target: ${card.id}")
+                for (form in spelling.forms) {
+                    assertEquals(1, ScrambleTokenizer.tokens(form).size, "$target: \"$form\" is not one token")
+                    assertTrue(spellableOutOfLetters(form), "$target: \"$form\" is not spelled in letters")
+                    assertTrue(
+                        form.count { it.isLetter() } >= WordScrambleAvailability.MIN_LETTERS,
+                        "$target: \"$form\" is too short to anchor",
+                    )
+                }
             }
         }
     }
 
     /**
      * The gate bites on real content: the catalog authors multi-token words (reflexive and
-     * separable verbs) and words below the letter floor, and neither reaches the pool.
+     * separable verbs), words below the letter floor, and forms no letters can spell — a
+     * Swahili bound stem ("-baya"), a hyphenated compound ("T-Shirt"). None reaches the pool
+     * as it stands; a stem is asked through the concrete forms it agrees into instead.
      */
     @Test
     fun theWordGateStillExcludesRealContent() {
         val cards = cards("en", "de")
-        val offered = WordScrambleAvailability.report(grown(cards)).words.map { it.id }.toSet()
+        val offered = WordScrambleAvailability.report(grown(cards)).words.map { it.card.id }.toSet()
         val singleWordKinds = cards.filter { it.kind != CardKind.Phrase && it.kind != CardKind.Idiom }
         val multiToken = singleWordKinds.filter { ScrambleTokenizer.tokens(it.target.text).size > 1 }
         val tooShort = singleWordKinds.filter {
-            it.target.text.length < WordScrambleAvailability.MIN_LETTERS
+            it.target.text.count { ch -> ch.isLetter() } < WordScrambleAvailability.MIN_LETTERS
         }
+        val hyphenated = singleWordKinds.filter { '-' in it.target.text }
         assertTrue(multiToken.isNotEmpty(), "de authors no multi-token word — the filter is untested")
         assertTrue(tooShort.isNotEmpty(), "de authors no short word — the filter is untested")
+        assertTrue(hyphenated.isNotEmpty(), "de authors no hyphenated word — the filter is untested")
         assertTrue(multiToken.none { it.id in offered })
         assertTrue(tooShort.none { it.id in offered })
+        assertTrue(hyphenated.none { it.id in offered })
+
+        // Swahili's bound stems: never asked as authored, always through an agreeing form.
+        val stems = cards("de", "sw").filter { it.target.text.startsWith("-") }
+        assertTrue(stems.size >= 20, "sw authors ${stems.size} bound stems — the fallback is untested")
+        val sw = WordScrambleAvailability.report(grown(cards("de", "sw")))
+        val asked = sw.words.filter { it.card.target.text.startsWith("-") }
+        assertTrue(asked.isNotEmpty(), "no bound stem reached the pool through its variants")
+        assertTrue(asked.all { spelling -> spelling.forms.none { it.startsWith("-") } })
     }
 
     /** Every question a sweep draws mixes the word's own letters, and never into the word itself. */
     @Test
     fun everyWordQuestionMixesTheSpellingItAsksFor() {
-        for ((source, target) in pairs) {
+        for ((source, target) in pairs + ("de" to "uk")) {
             val config = WordScrambleRunConfig(
                 report = WordScrambleAvailability.report(grown(cards(source, target))),
                 normalizer = null,
@@ -97,6 +114,10 @@ class RealCatalogScrambleTest {
                 repeat(40) {
                     val task = state.task ?: return@repeat
                     val display = task.scrambled.display
+                    assertTrue(
+                        spellableOutOfLetters(display),
+                        "$target: \"$display\" mixes something that is not a letter",
+                    )
                     assertEquals(
                         task.display.lowercase().toList().sorted(),
                         display.lowercase().toList().sorted(),
@@ -106,7 +127,7 @@ class RealCatalogScrambleTest {
                         display.lowercase() == task.display.lowercase() && distinctLetters(task.display) > 1,
                         "$target: \"${task.display}\" was handed back unmixed",
                     )
-                    assertEquals(task.display, task.accepted.first())
+                    assertEquals(listOf(task.display), task.accepted)
                     assertTrue(task.gloss.isNotBlank(), "$target: ${task.cardId} has nothing to reveal")
                     state = WordScrambleRun.reduce(
                         WordScrambleRun.reduce(state, WordScrambleIntent.Submit(task.display), Random(1)).state,
@@ -205,4 +226,11 @@ class RealCatalogScrambleTest {
     }
 
     private fun distinctLetters(text: String): Int = text.lowercase().toSet().size
+
+    /**
+     * Letters and nothing else — plus the apostrophe, which sw "ng'ombe" and uk "м'який" are
+     * SPELLED with. A hyphen, a digit or a stop is not something a scramble may hand over.
+     */
+    private fun spellableOutOfLetters(form: String): Boolean =
+        form.all { it.isLetter() || it == '\'' || it == '’' || it == 'ʼ' }
 }

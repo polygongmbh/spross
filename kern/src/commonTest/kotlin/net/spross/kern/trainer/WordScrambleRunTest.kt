@@ -53,7 +53,7 @@ class WordScrambleRunTest {
         assertEquals(1, task.level)
         assertEquals(1, task.scrambled.fixedLeading)
         assertEquals(1, task.scrambled.fixedTrailing)
-        assertEquals(task.display, task.accepted.first())
+        assertEquals(listOf(task.display), task.accepted, "the form drawn IS the accepted set")
         assertEquals("en-${task.cardId}", task.gloss)
     }
 
@@ -66,14 +66,16 @@ class WordScrambleRunTest {
         assertTrue(typed.effects.any { it == DrillEffect.ArmAdvance(AdvanceTier.Live) })
     }
 
-    /** Every form the catalog authored for the word counts — a synonym and a variant alike. */
+    /**
+     * The letters handed over are the question, so the form they spell is the whole answer:
+     * another word of the same card spells something else and is refused like any other word.
+     */
     @Test
-    fun theCardsOwnSynonymsAndVariantsAreAccepted() {
+    fun onlyTheFormTheLettersSpellIsAccepted() {
         val config = config()
-        val bike = task("bike", "Fahrrad", listOf("Fahrrad", "Velo", "Farrad"))
+        val bike = task("bike", "Fahrrad", listOf("Fahrrad"))
         assertEquals(Match.Exact, WordScrambleRun.grade("Fahrrad", bike, config))
-        assertEquals(Match.Exact, WordScrambleRun.grade("Velo", bike, config))
-        assertEquals(Match.Exact, WordScrambleRun.grade("Farrad", bike, config))
+        assertEquals(Match.Wrong, WordScrambleRun.grade("Velo", bike, config), "a synonym is another word")
         assertEquals(Match.Wrong, WordScrambleRun.grade("Auto", bike, config))
     }
 

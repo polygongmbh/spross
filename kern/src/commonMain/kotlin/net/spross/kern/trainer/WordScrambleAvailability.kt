@@ -3,6 +3,7 @@ package net.spross.kern.trainer
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.Inventory
+import net.spross.kern.model.APOSTROPHES
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 
@@ -20,8 +21,9 @@ import net.spross.kern.model.CardKind
 object WordScrambleAvailability {
 
     /**
-     * Below four letters the first-and-last Sprosse leaves nothing worth mixing, and the word
-     * is guessable from its ends alone.
+     * Below four LETTERS the first-and-last Sprosse leaves nothing worth mixing, and the word
+     * is guessable from its ends alone. Letters, never characters: sw "-pya" measures four
+     * only by counting a hyphen that is no letter to hand over.
      */
     const val MIN_LETTERS: Int = 4
 
@@ -34,8 +36,19 @@ object WordScrambleAvailability {
     /** The kinds that are one word to spell; a phrase is the other drill's. */
     private val wordKinds = setOf(CardKind.Noun, CardKind.Verb, CardKind.Adjective)
 
+    /**
+     * One word of the pool and every [spellable] form it may be handed over as, in authored
+     * order. A word carries more than one only where its own text cannot be spelled standing
+     * alone — see [spellings].
+     */
+    data class Spelling(val card: Card, val forms: List<String>) {
+
+        /** The gentlest form on offer; the draw reaches for the shortest words first. */
+        val shortest: Int get() = forms.minOf { it.length }
+    }
+
     /** The eligible words, in seed order. Built ONCE per run: it walks the whole join. */
-    data class Report(val words: List<Card>) {
+    data class Report(val words: List<Spelling>) {
 
         val drillAvailable: Boolean get() = words.size >= POOL_FLOOR
 
@@ -55,13 +68,54 @@ object WordScrambleAvailability {
             .map { box.cards.getValue(it.cardId) }
             .filter { it.kind in wordKinds }
             .filter { BoxEngine.isConsolidated(box, it.id) }
-            .filter { eligible(it.target.text) }
-            .sortedWith(Inventory.seedOrder),
+            .sortedWith(Inventory.seedOrder)
+            .map { Spelling(it, spellings(it)) }
+            .filter { it.forms.isNotEmpty() },
     )
 
     /** Whether the drill exists at all — the hub-chip predicate. */
     fun drillExists(box: BoxState): Boolean = report(box).drillAvailable
 
-    private fun eligible(text: String): Boolean =
-        ScrambleTokenizer.tokens(text).size == 1 && text.trim().length >= MIN_LETTERS
+    /**
+     * What [card] may be asked to spell out of loose letters: its own text where that stands as
+     * a word, else — and ONLY where that text is not [writtenInLetters] — the concrete forms
+     * its variants carry.
+     *
+     * A Swahili bound stem ("-baya") is no citation form a learner could write down: it is a
+     * dash and an agreement slot. Every form it agrees into ("mbaya", "wabaya", "vibaya") is a
+     * real spelling though, and one worth teaching, so the stem is asked through those rather
+     * than dropped, and only a word with no spellable form at all leaves the pool.
+     *
+     * The fallback reaches no further. A word of several tokens ("sich waschen") is a word
+     * order, which is not what this drill asks, and a word under the letter floor ("Oma",
+     * "nah") is short in every form it has — reaching for a variant there would hand over a
+     * DIFFERENT word ("Großmutter"; uk "він" → "вона" is not even the same person), which is
+     * not the word spelled out.
+     */
+    fun spellings(card: Card): List<String> {
+        val text = card.target.text.trim()
+        if (ScrambleTokenizer.tokens(text).size != 1) return emptyList()
+        if (spellable(text)) return listOf(text)
+        if (writtenInLetters(text)) return emptyList()
+        return card.target.variants.filter(::spellable)
+    }
+
+    /** One token [writtenInLetters], carrying at least [MIN_LETTERS] of them. */
+    private fun spellable(form: String): Boolean {
+        val word = form.trim()
+        return ScrambleTokenizer.tokens(word).size == 1 &&
+            writtenInLetters(word) &&
+            word.count { it.isLetter() } >= MIN_LETTERS
+    }
+
+    /**
+     * Nothing but letters — plus the apostrophe, which sw "ng'ombe" and uk "м'який" are SPELLED
+     * with rather than merely punctuated by.
+     *
+     * The guard is the character class rather than the hyphen alone. Whatever a letter scramble
+     * mixes has to BE a letter, or the Sprosse that anchors "the first letter" anchors a dash,
+     * and the one above it shuffles that dash into the middle of the word.
+     */
+    private fun writtenInLetters(word: String): Boolean =
+        word.all { it.isLetter() || it in APOSTROPHES }
 }

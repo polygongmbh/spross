@@ -1,7 +1,6 @@
 package net.spross.kern.trainer
 
 import kotlin.random.Random
-import net.spross.kern.model.Card
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
@@ -63,9 +62,13 @@ object WordScrambleRun {
     }
 
     /**
-     * Grade [input] the way a drill grades: word by word, one slip per word, no article
-     * forgiven. Every form the CARD authors counts — its synonyms and variants are real
-     * spellings of the same knowledge, so refusing them would fail a learner for knowing more.
+     * Grade [input] against the ONE form whose letters were handed over ([WordScrambleTask.accepted]).
+     *
+     * Deliberately unlike an ordinary produce review, where knowing any authored form is the
+     * point: the question here is not "what is this word" but "what do these letters spell", and
+     * a synonym or a variant that cannot be written from them is no answer to it. A learner shown
+     * the letters of "mpya" who types "kipya" knows the word and still has not read the letters.
+     * Typo tolerance applies on top — a slip is a slip — but a DIFFERENT form is not a slip.
      *
      * An anagram that happens to be a different real word is neither caught nor credited:
      * there is no dictionary here, and the catalog can only disprove what it teaches.
@@ -205,26 +208,31 @@ object WordScrambleRun {
     /**
      * One question at [level], drawn from the shortest words this Sprosse has not asked yet.
      * [avoiding] is the word just asked, which kern resamples once. Null ⇒ the Sprosse is spent.
+     *
+     * The FORM comes out of the same [Random] the word did, so a word carrying several spellable
+     * forms (a Swahili stem's agreeing forms) still deals reproducibly.
      */
     private fun sample(
-        words: List<Card>,
+        words: List<WordScrambleAvailability.Spelling>,
         level: Int,
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
     ): WordScrambleTask? {
-        val open = words.filter { DrillSolved.wordKey(level, it.id) !in solved }
+        val open = words.filter { DrillSolved.wordKey(level, it.card.id) !in solved }
         if (open.isEmpty()) return null
-        val window = open.sortedBy { it.target.text.length }.take(DRAW_WINDOW)
-        val pool = window.filter { it.id != avoiding }.ifEmpty { window }
-        val card = pool[rng.nextInt(pool.size)]
+        val window = open.sortedBy { it.shortest }.take(DRAW_WINDOW)
+        val pool = window.filter { it.card.id != avoiding }.ifEmpty { window }
+        val spelling = pool[rng.nextInt(pool.size)]
+        val card = spelling.card
+        val form = spelling.forms[rng.nextInt(spelling.forms.size)]
         return WordScrambleTask(
             cardId = card.id,
             language = card.target.lang,
             level = level,
-            scrambled = WordScrambleMasking.scramble(card.target.text, level, rng),
-            accepted = listOf(card.target.text) + card.target.synonyms + card.target.variants,
-            display = card.target.text,
+            scrambled = WordScrambleMasking.scramble(form, level, rng),
+            accepted = listOf(form),
+            display = form,
             gloss = card.source.text,
         )
     }
