@@ -20,9 +20,10 @@ data class SentenceScrambleTask(
     /** The atoms in the order the phrase was authored in — what an arrangement is measured by. */
     val canonical: List<ScrambleAtom>,
     /**
-     * The phrase as AUTHORED, for the reveal — full stop and all. The atoms carry no stop of
-     * their own ([ScrambleTokenizer]), so rejoining them is what the learner arranged, while
-     * this is what the catalog teaches.
+     * The phrase as AUTHORED, for the reveal — capital, full stop and all. The atoms carry
+     * neither the sentence's own stop ([ScrambleTokenizer]) nor its positional capital
+     * ([ScrambleCapitals]), so rejoining them is what the learner arranged, while this is what
+     * the catalog teaches.
      */
     val display: String,
     /** Shown on the reveal only — the drill never puts the meaning on screen before the answer. */

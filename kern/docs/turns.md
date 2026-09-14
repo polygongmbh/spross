@@ -255,3 +255,7 @@ Engine contract: `../README.md`.
   display bar (`BoxEngine.isConsolidated`), since mixed letters cue nothing a learner cannot
   already produce, while the sentence scramble wants the phrase unlocked
   (`Growth.isPhraseUnlocked`), which is the components' bar rather than the phrase's own.
+  What each hands the run is not the card either — it is what the question is made OF, and the
+  rules for cutting that are on the two types: which SPELLINGS a word may be asked through
+  (`WordScrambleAvailability.spellings`) and which CHIPS a phrase becomes, marks and leading
+  capital included (`ScrambleTokenizer`, `ScrambleCapitals`).

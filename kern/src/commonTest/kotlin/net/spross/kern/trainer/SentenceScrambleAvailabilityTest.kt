@@ -3,6 +3,7 @@ package net.spross.kern.trainer
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
@@ -27,6 +28,8 @@ class SentenceScrambleAvailabilityTest {
         ScrambleFixture.phrase("blank", "die … läuft schnell", listOf("mouse", "run"), seed = 15),
         ScrambleFixture.phrase("sleeps", "die Maus schläft dort", listOf("mouse", "run"), seed = 16),
         ScrambleFixture.phrase("careful", "Vorsicht, heiß!", listOf("mouse", "run"), seed = 17),
+        ScrambleFixture.phrase("mouse-sleeps", "Die Maus schläft gern.", listOf("mouse", "run"), seed = 18),
+        ScrambleFixture.phrase("mouse-eats", "Maus und Hund fressen.", listOf("mouse", "run"), seed = 19),
     )
 
     private fun report(
@@ -40,7 +43,10 @@ class SentenceScrambleAvailabilityTest {
     @Test
     fun everyUnlockedPhraseWithAWordOrderIsAsked() {
         val report = report()
-        assertEquals(listOf("runs", "runs-slow", "sleeps"), report.phrases.map { it.card.id })
+        assertEquals(
+            listOf("runs", "runs-slow", "sleeps", "mouse-sleeps", "mouse-eats"),
+            report.phrases.map { it.card.id },
+        )
         assertEquals(listOf("die", "Maus", "läuft"), report.phrases.first().atoms.map { it.text })
     }
 
@@ -78,6 +84,19 @@ class SentenceScrambleAvailabilityTest {
     @Test
     fun aSuspendedPhraseIsNotAsked() {
         assertFalse("runs" in report(suspended = setOf("runs")).phrases.map { it.card.id })
+    }
+
+    /**
+     * The leading chip loses a capital that is only its POSITION — but a German noun keeps the
+     * one German spells it with wherever it stands, or the drill would teach the wrong spelling.
+     */
+    @Test
+    fun theLeadingChipLosesAPositionalCapitalAndKeepsAnOwnOne() {
+        val phrases = report().phrases.associateBy { it.card.id }
+        val article = assertNotNull(phrases["mouse-sleeps"])
+        assertEquals(listOf("die", "Maus", "schläft", "gern"), article.atoms.map { it.text })
+        val noun = assertNotNull(phrases["mouse-eats"])
+        assertEquals(listOf("Maus", "und", "Hund", "fressen"), noun.atoms.map { it.text })
     }
 
     /** The ceiling is the longest phrase the box actually holds, not a number. */

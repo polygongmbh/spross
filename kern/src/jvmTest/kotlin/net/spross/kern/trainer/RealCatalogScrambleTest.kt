@@ -158,9 +158,10 @@ class RealCatalogScrambleTest {
                 )
                 assertFalse('…' in text, "$target: \"$text\" is an authored blank")
                 // The round trip is what lets the platforms render atoms instead of the phrase.
+                // Case is the leading chip's own question (theLeadingChipKeepsOnlyACapitalTheWordOwns).
                 assertEquals(
-                    rejoinable(text),
-                    ScrambleTokenizer.joined(phrase.atoms),
+                    rejoinable(text).lowercase(),
+                    ScrambleTokenizer.joined(phrase.atoms).lowercase(),
                     "$target: \"$text\" does not rejoin",
                 )
                 for (atom in phrase.atoms) {
@@ -171,6 +172,35 @@ class RealCatalogScrambleTest {
                 }
             }
         }
+    }
+
+    /**
+     * The leading chip loses its capital across the board, except where the word owns one —
+     * checked against German, the one supported language that capitalizes its nouns wherever
+     * they stand, so a noun lowercased here would be a spelling the drill taught wrong.
+     */
+    @Test
+    fun theLeadingChipKeepsOnlyACapitalTheWordOwns() {
+        val cards = cards("en", "de")
+        val nouns = cards.filter { it.kind == CardKind.Noun }.map { it.target.text }.toSet()
+        val phrases = SentenceScrambleAvailability.report(grown(cards)).phrases
+        var lowered = 0
+        for (phrase in phrases) {
+            val authored = ScrambleTokenizer.atoms(phrase.card.target.text).map { it.text }
+            val leading = phrase.atoms.indexOfFirst { !ScrambleTokenizer.isMark(it.text) }
+            val was = authored[leading]
+            val now = phrase.atoms[leading].text
+            assertEquals(authored.drop(leading + 1), phrase.atoms.drop(leading + 1).map { it.text })
+            if (was == now) continue
+            lowered++
+            assertEquals(
+                was.replaceFirstChar { it.lowercaseChar() },
+                now,
+                "de: \"$was\" was changed by more than its capital",
+            )
+            assertFalse(was in nouns, "de: \"$was\" is a noun and German capitalizes it anywhere")
+        }
+        assertTrue(lowered > phrases.size / 2, "de: only $lowered of ${phrases.size} lost a capital")
     }
 
     /**
@@ -211,7 +241,10 @@ class RealCatalogScrambleTest {
                     ScrambleGrading.isSolved(task.shuffled, task.canonical),
                     "$target: ${task.cardId} was dealt in its own order",
                 )
-                assertEquals(rejoinable(task.display), ScrambleTokenizer.joined(task.canonical))
+                assertEquals(
+                    rejoinable(task.display).lowercase(),
+                    ScrambleTokenizer.joined(task.canonical).lowercase(),
+                )
                 assertTrue(task.gloss.isNotBlank(), "$target: ${task.cardId} has nothing to reveal")
                 state = solve(state)
             }

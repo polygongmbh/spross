@@ -70,16 +70,26 @@ object SentenceScrambleAvailability {
      *
      * A phrase whose text carries `…` is left out too: that ellipsis is an authored fill-in-blank
      * pattern, so the words around it are a frame rather than a sentence in an order.
+     *
+     * The chips come out of the join rather than the phrase alone, because whether the leading
+     * capital is the word's own is a question only the rest of the language can answer
+     * ([ScrambleCapitals]).
      */
-    fun report(box: BoxState): Report = Report(
-        Inventory.joinedCards(box)
-            .filter { it.kind == CardKind.Phrase }
-            .filter { box.scheduling[it.id]?.suspended != true }
-            .filter { Growth.isPhraseUnlocked(box, it) }
-            .filter { '…' !in it.target.text }
-            .map { Phrase(it, ScrambleTokenizer.atoms(it.target.text)) }
-            .filter { it.words >= MIN_ATOMS },
-    )
+    fun report(box: BoxState): Report {
+        val cards = Inventory.joinedCards(box)
+        val inherent = ScrambleCapitals.inherent(cards)
+        return Report(
+            cards
+                .filter { it.kind == CardKind.Phrase }
+                .filter { box.scheduling[it.id]?.suspended != true }
+                .filter { Growth.isPhraseUnlocked(box, it) }
+                .filter { '…' !in it.target.text }
+                .map {
+                    Phrase(it, ScrambleCapitals.neutralized(ScrambleTokenizer.atoms(it.target.text), inherent))
+                }
+                .filter { it.words >= MIN_ATOMS },
+        )
+    }
 
     /** Whether the drill exists at all — the hub-chip predicate. */
     fun drillExists(box: BoxState): Boolean = report(box).drillAvailable
