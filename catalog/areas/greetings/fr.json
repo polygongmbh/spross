@@ -5,27 +5,12 @@
   "to-thank": { "text": "remercier" },
   "name": { "text": "nom", "grammar": { "gender": "le" } },
   "to-be-called": { "text": "s'appeler" },
-  "hello": {
-   "text": "Salut !",
-   "notes": {
-    "fr": "Salut ! ton familier · au guichet, Bonjour !",
-    "de": "nur informell unter Bekannten · im Laden und im Amt sagt man Bonjour !"
-   }
-  },
-  "good-day": {
-   "text": "Bonjour !",
-   "notes": {
-    "fr": "Bonjour ! · à partir de 18 h, Bonsoir !",
-    "de": "gilt den ganzen Tag · ab dem frühen Abend Bonsoir !"
-   }
-  },
+  "hello": { "text": "Salut !", "notes": { "fr": "Salut ! ton familier · au guichet, Bonjour !" } },
+  "good-day": { "text": "Bonjour !", "notes": { "fr": "Bonjour ! · à partir de 18 h, Bonsoir !" } },
   "good-evening": { "text": "Bonsoir !" },
   "good-night": {
    "text": "Bonne nuit !",
-   "notes": {
-    "fr": "Bonne nuit ! en partant ou au lit · sinon Bonsoir !",
-    "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Bonsoir !“"
-   }
+   "notes": { "fr": "Bonne nuit ! en partant ou au lit · sinon Bonsoir !" }
   },
   "goodbye": { "text": "Au revoir !" },
   "bye": { "text": "Ciao !" },

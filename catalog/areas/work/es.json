@@ -21,10 +21,7 @@
    "synonyms": ["colega"],
    "variants": ["compañero de trabajo"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "El compañero de trabajo · colega en España es también amigo.",
-    "de": "Der Arbeitskollege ist el compañero (de trabajo); colega heißt in Spanien umgangssprachlich auch „Kumpel“."
-   }
+   "notes": { "es": "El compañero de trabajo · colega en España es también amigo." }
   },
   "colleague-f": { "text": "compañera", "grammar": { "gender": "la" } },
   "boss": { "text": "jefe", "grammar": { "gender": "el" } },
@@ -56,19 +53,13 @@
   "to-earn": {
    "text": "ganar",
    "variants": ["cobrar"],
-   "notes": {
-    "es": "gano mil euros al mes · en preguntas suele usarse cobrar.",
-    "de": "Nach dem Verdienst fragt man mit cobrar: ¿Cuánto cobras? = Wie viel verdienst du?"
-   }
+   "notes": { "es": "gano mil euros al mes · en preguntas suele usarse cobrar." }
   },
   "to-start": { "text": "empezar", "synonyms": ["comenzar"] },
   "to-leave": {
    "text": "dejar",
    "synonyms": ["abandonar"],
-   "notes": {
-    "es": "dejar el trabajo es irse de la empresa; de un sitio se sale.",
-    "de": "dejar el trabajo = kündigen. Einen Ort verlässt man dagegen mit salir de oder irse de."
-   }
+   "notes": { "es": "dejar el trabajo es irse de la empresa; de un sitio se sale." }
   },
   "to-quit": { "text": "dejar el trabajo", "variants": ["dimitir", "renunciar al trabajo", "dejar el empleo"] },
   "to-hire": { "text": "contratar", "variants": ["emplear"] },
@@ -84,10 +75,7 @@
    "text": "horario de trabajo",
    "variants": ["jornada laboral", "horario laboral"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "El horario de trabajo es el del día; en el contrato, la jornada laboral.",
-    "de": "el horario ist der Zeitplan; die vertragliche Arbeitszeit heißt la jornada laboral."
-   }
+   "notes": { "es": "El horario de trabajo es el del día; en el contrato, la jornada laboral." }
   },
   "full-time": {
    "text": "jornada completa",
@@ -105,19 +93,13 @@
    "text": "formación profesional",
    "variants": ["FP", "formación"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "es": "La formación profesional (FP) mezcla clases y prácticas en la empresa.",
-    "de": "Die spanische Berufsausbildung ist die formación profesional (kurz FP) — schulisch organisiert, mit Praxisphasen im Betrieb."
-   }
+   "notes": { "es": "La formación profesional (FP) mezcla clases y prácticas en la empresa." }
   },
   "notice": {
    "text": "despido",
    "variants": ["carta de despido"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "El despido lo decide la empresa; irse uno mismo es la dimisión.",
-    "de": "el despido ist die Kündigung durch den Arbeitgeber; kündigt man selbst, heißt das la dimisión bzw. la baja voluntaria."
-   }
+   "notes": { "es": "El despido lo decide la empresa; irse uno mismo es la dimisión." }
   },
   "worker": { "text": "trabajador", "grammar": { "gender": "el" } },
   "employer": { "text": "empleador", "grammar": { "gender": "el" } },

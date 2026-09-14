@@ -6,10 +6,7 @@
   "hair": {
    "text": "haroj",
    "variants": ["haro", "hararo"],
-   "notes": {
-    "eo": "unu haro, multaj haroj · la tuta hararo sur la kapo.",
-    "de": "haro ist ein einzelnes Haar; die Haare auf dem Kopf sind haroj, zusammen als Schopf hararo."
-   }
+   "notes": { "eo": "unu haro, multaj haroj · la tuta hararo sur la kapo." }
   },
   "face": { "text": "vizaĝo" },
   "eye": { "text": "okulo" },
@@ -22,13 +19,7 @@
   "arm": { "text": "brako" },
   "foot": { "text": "piedo" },
   "leg": { "text": "kruro", "variants": ["gambo"] },
-  "stomach": {
-   "text": "ventro",
-   "notes": {
-    "eo": "ventro estas ekstere · la organo interne estas stomako.",
-    "de": "ventro ist der Bauch von außen; der Magen selbst heißt stomako."
-   }
-  },
+  "stomach": { "text": "ventro", "notes": { "eo": "ventro estas ekstere · la organo interne estas stomako." } },
   "back": { "text": "dorso" },
   "throat": { "text": "gorĝo" },
   "shoulder": { "text": "ŝultro" },
@@ -40,17 +31,11 @@
   "bone": { "text": "osto" },
   "finger": {
    "text": "fingro",
-   "notes": {
-    "eo": "fingro estas de la mano kaj de la piedo · piedfingro precizigas.",
-    "de": "fingro heißt Finger und Zehe; die Zehe ist piedfingro."
-   }
+   "notes": { "eo": "fingro estas de la mano kaj de la piedo · piedfingro precizigas." }
   },
   "tongue": {
    "text": "lango",
-   "notes": {
-    "eo": "lango estas en la buŝo · la parolata lingvo estas lingvo.",
-    "de": "lango ist nur die Zunge im Mund; die Sprache heißt lingvo."
-   }
+   "notes": { "eo": "lango estas en la buŝo · la parolata lingvo estas lingvo." }
   },
   "neck": { "text": "kolo" },
   "brain": { "text": "cerbo" },

@@ -22,36 +22,21 @@
   "much": {
    "text": "-ingi",
    "variants": ["nyingi", "wengi", "mengi", "vingi", "mingi", "mwingi", "kingi"],
-   "notes": {
-    "sw": "maji mengi · maneno mengi · lugha nyingi",
-    "de": "Vorsilbe verschmilzt: watu wengi, maji mengi, pesa nyingi."
-   }
+   "notes": { "sw": "maji mengi · maneno mengi · lugha nyingi" }
   },
   "new": { "text": "-pya", "variants": ["mpya", "wapya", "jipya", "kipya", "vipya", "mapya", "mipya"] },
   "old": {
    "text": "-zee",
    "synonyms": ["kuukuu"],
    "variants": ["mzee", "wazee"],
-   "notes": {
-    "sw": "mzee, wazee · nyumba kuukuu, meza kuukuu",
-    "de": "-zee bei Menschen: mtu mzee · kuukuu bei Sachen: gari kuukuu."
-   }
+   "notes": { "sw": "mzee, wazee · nyumba kuukuu, meza kuukuu" }
   },
   "slow": { "text": "polepole" },
-  "fast": {
-   "text": "haraka",
-   "notes": {
-    "sw": "fanya haraka · jibu la haraka · safari ya haraka",
-    "de": "attributiv mit -a: gari la haraka."
-   }
-  },
+  "fast": { "text": "haraka", "notes": { "sw": "fanya haraka · jibu la haraka · safari ya haraka" } },
   "long": {
    "text": "-refu",
    "variants": ["ndefu", "mrefu", "warefu", "kirefu", "virefu", "marefu", "mirefu"],
-   "notes": {
-    "sw": "mtu mrefu = mwenye kimo · njia ndefu, safari ndefu",
-    "de": "heißt bei Menschen groß gewachsen: mtu mrefu."
-   }
+   "notes": { "sw": "mtu mrefu = mwenye kimo · njia ndefu, safari ndefu" }
   },
   "short": {
    "text": "-fupi",
@@ -64,33 +49,18 @@
   "lightweight": {
    "text": "-epesi",
    "variants": ["nyepesi", "mwepesi", "wepesi", "chepesi", "vyepesi", "mepesi", "myepesi"],
-   "notes": {
-    "sw": "mzigo mwepesi, mizigo myepesi, kazi nyepesi",
-    "de": "Vorsilbe verschmilzt mit dem e: mzigo mwepesi, mizigo myepesi."
-   }
+   "notes": { "sw": "mzigo mwepesi, mizigo myepesi, kazi nyepesi" }
   },
   "difficult": {
    "text": "-gumu",
    "variants": ["ngumu", "mgumu", "wagumu", "kigumu", "vigumu", "magumu", "migumu"],
-   "notes": { "sw": "mtihani mgumu · mkate mgumu = si laini", "de": "heißt auch hart: mkate mgumu." }
+   "notes": { "sw": "mtihani mgumu · mkate mgumu = si laini" }
   },
-  "easy": {
-   "text": "rahisi",
-   "notes": { "sw": "rahisi pia = bei ndogo: nguo rahisi", "de": "heißt auch billig: nguo rahisi." }
-  },
+  "easy": { "text": "rahisi", "notes": { "sw": "rahisi pia = bei ndogo: nguo rahisi" } },
   "problem": { "text": "tatizo", "grammar": { "plural": "matatizo" }, "synonyms": ["shida"] },
-  "to-solve": {
-   "text": "kutatua",
-   "notes": {
-    "sw": "kutatua tatizo, kutatua ugomvi",
-    "de": "für Probleme und Streit: kutatua tatizo = ein Problem lösen."
-   }
-  },
+  "to-solve": { "text": "kutatua", "notes": { "sw": "kutatua tatizo, kutatua ugomvi" } },
   "challenge": { "text": "changamoto", "grammar": { "plural": "=" } },
-  "clean-adj": {
-   "text": "safi",
-   "notes": { "sw": "nguo safi, maji safi · Safi! = vizuri!", "de": "als Ausruf auch prima: Safi!" }
-  },
+  "clean-adj": { "text": "safi", "notes": { "sw": "nguo safi, maji safi · Safi! = vizuri!" } },
   "sharp": {
    "text": "-kali",
    "variants": ["kali", "mkali", "wakali", "kikali", "vikali", "makali", "mikali"],
@@ -110,10 +80,7 @@
   "other": {
    "text": "-ingine",
    "variants": ["nyingine", "mwingine", "wengine", "kingine", "vingine", "mengine", "mingine"],
-   "notes": {
-    "sw": "neno jingine · meza nyingine · maji mengine = maji zaidi",
-    "de": "die Vorsilbe richtet sich nach der Nomenklasse: mtu mwingine, kitu kingine · dasselbe Wort heißt noch ein anderer: chai nyingine."
-   }
+   "notes": { "sw": "neno jingine · meza nyingine · maji mengine = maji zaidi" }
   },
   "hot": {
    "text": "moto",
@@ -122,13 +89,7 @@
     "de": "dasselbe Wort heißt auch Feuer: Kuna moto."
    }
   },
-  "cold-adj": {
-   "text": "baridi",
-   "notes": {
-    "sw": "maji baridi, chai baridi · Kuna baridi leo",
-    "de": "dasselbe Wort heißt auch die Kälte: Kuna baridi."
-   }
-  },
+  "cold-adj": { "text": "baridi", "notes": { "sw": "maji baridi, chai baridi · Kuna baridi leo" } },
   "empty": {
    "text": "-tupu",
    "variants": ["tupu", "mtupu", "watupu", "kitupu", "vitupu", "matupu", "mitupu"]
@@ -146,18 +107,9 @@
    "text": "-kavu",
    "variants": ["kavu", "mkavu", "wakavu", "kikavu", "vikavu", "makavu", "mikavu"]
   },
-  "different": {
-   "text": "tofauti",
-   "notes": {
-    "sw": "watu tofauti · Kuna tofauti gani?",
-    "de": "dasselbe Wort heißt auch der Unterschied: Kuna tofauti gani?"
-   }
-  },
+  "different": { "text": "tofauti", "notes": { "sw": "watu tofauti · Kuna tofauti gani?" } },
   "real": { "text": "halisi" },
-  "same": {
-   "text": "sawa",
-   "notes": { "sw": "urefu sawa · Sawa! = ndiyo", "de": "heißt auch in Ordnung: Sawa!" }
-  },
+  "same": { "text": "sawa", "notes": { "sw": "urefu sawa · Sawa! = ndiyo" } },
   "similar": {
    "text": "kufanana",
    "notes": {
@@ -186,13 +138,7 @@
    "variants": ["mzima", "wazima", "nzima"],
    "notes": { "sw": "mzima = mwenye afya · nyumba nzima = nyumba yote" }
   },
-  "firm": {
-   "text": "imara",
-   "notes": {
-    "sw": "nyumba imara, msimamo imara, afya imara",
-    "de": "fest, stabil, standhaft: nyumba imara, msimamo imara."
-   }
-  },
+  "firm": { "text": "imara", "notes": { "sw": "nyumba imara, msimamo imara, afya imara" } },
   "a-lot-of-water": { "text": "maji mengi" }
  }
 }

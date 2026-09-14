@@ -25,10 +25,7 @@
   "caution": {
    "text": "tahadhari",
    "variants": ["angalia"],
-   "notes": {
-    "sw": "Tahadhari! = jihadhari · Angalia! husemwa pia",
-    "de": "Tahadhari! ist die Warnung wie „Vorsicht!“ · angalia heißt hinsehen und wird gesprochen auch so gebraucht."
-   }
+   "notes": { "sw": "Tahadhari! = jihadhari · Angalia! husemwa pia" }
   },
   "cup": { "text": "kikombe", "grammar": { "plural": "vikombe" } },
   "bowl": { "text": "bakuli", "grammar": { "plural": "mabakuli" } },
@@ -37,17 +34,11 @@
   "gas": {
    "text": "gesi",
    "grammar": { "plural": "=" },
-   "notes": {
-    "sw": "gesi ya kupikia: gesi imeisha = hakuna gesi tena",
-    "de": "das Kochgas: gesi imeisha = das Gas ist alle."
-   }
+   "notes": { "sw": "gesi ya kupikia: gesi imeisha = hakuna gesi tena" }
   },
   "tasty": {
    "text": "tamu",
-   "notes": {
-    "sw": "chai tamu = yenye sukari · chakula kitamu = chenye ladha nzuri",
-    "de": "tamu heißt auch süß: chai tamu."
-   }
+   "notes": { "sw": "chai tamu = yenye sukari · chakula kitamu = chenye ladha nzuri" }
   },
   "the-knife-is-sharp": { "text": "Kisu ni kikali!" },
   "this-is-very-tasty": { "text": "Hii ni tamu sana!" },

@@ -23,13 +23,7 @@
   "to-sign": { "text": "підписувати" },
   "to-apply-for": { "text": "подавати заяву" },
   "to-submit": { "text": "здавати" },
-  "to-hand-in": {
-   "text": "подавати",
-   "notes": {
-    "uk": "подавати документи, подавати заяву.",
-    "de": "typisch mit Objekt: „подавати документи“ = Dokumente einreichen"
-   }
-  },
+  "to-hand-in": { "text": "подавати", "notes": { "uk": "подавати документи, подавати заяву." } },
   "to-pick-up": { "text": "забирати посвідчення" },
   "to-extend": { "text": "продовжувати" },
   "to-bring": { "text": "брати з собою" },

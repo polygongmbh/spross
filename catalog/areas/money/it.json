@@ -10,16 +10,13 @@
   "cash": {
    "text": "contanti",
    "grammar": { "gender": "i", "plural": "only" },
-   "notes": { "it": "sempre al plurale: pagare in contanti.", "de": "nur im Plural: pagare in contanti." }
+   "notes": { "it": "sempre al plurale: pagare in contanti." }
   },
   "bank-card": {
    "text": "bancomat",
    "variants": ["carta", "carta di credito"],
    "grammar": { "gender": "il" },
-   "notes": {
-    "it": "il bancomat è la carta e anche la macchina dei soldi.",
-    "de": "il bancomat ist die Bankkarte (und der Geldautomat); la carta allein ist auch das Papier."
-   }
+   "notes": { "it": "il bancomat è la carta e anche la macchina dei soldi." }
   },
   "coin": { "text": "moneta", "grammar": { "gender": "la" } },
   "change-money": { "text": "resto", "grammar": { "gender": "il" } },
@@ -27,10 +24,7 @@
    "text": "soldi",
    "synonyms": ["denaro"],
    "grammar": { "gender": "i", "plural": "only" },
-   "notes": {
-    "it": "soldi è sempre plurale: ho pochi soldi · il denaro è formale.",
-    "de": "soldi steht immer im Plural; denaro ist der formellere, abstrakte Begriff."
-   }
+   "notes": { "it": "soldi è sempre plurale: ho pochi soldi · il denaro è formale." }
   },
   "to-buy": { "text": "comprare" },
   "to-pay": { "text": "pagare" },

@@ -10,7 +10,7 @@
    "text": "Buongiorno!",
    "variants": ["Buon giorno!"],
    "notes": {
-    "it": "Buongiorno! il giorno · poi Buonasera!",
+    "it": "Buongiorno! · dalle 14, Buonasera!",
     "de": "bis zum frühen Nachmittag · danach Buonasera!"
    }
   },
@@ -18,19 +18,13 @@
   "good-night": {
    "text": "Buonanotte!",
    "variants": ["Buona notte!"],
-   "notes": {
-    "it": "Buonanotte! la sera, per uscire o dormire · sennò Buonasera!",
-    "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Buonasera!“"
-   }
+   "notes": { "it": "Buonanotte! la sera, per uscire o dormire · sennò Buonasera!" }
   },
   "goodbye": { "text": "Arrivederci!" },
   "bye": {
    "text": "A presto!",
    "variants": ["Ciao!", "A dopo!"],
-   "notes": {
-    "it": "A presto! · tra amici, Ciao!",
-    "de": "unter Freunden sagt man zum Abschied auch einfach Ciao!"
-   }
+   "notes": { "it": "A presto! · tra amici, Ciao!" }
   },
   "welcome": { "text": "Benvenuto!", "variants": ["Benvenuta!", "Benvenuti!", "Benvenute!"] },
   "may-i-come-in": {

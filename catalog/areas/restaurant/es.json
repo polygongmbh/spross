@@ -21,10 +21,7 @@
   "glass": {
    "text": "vaso",
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "El vaso es recto; la copa tiene pie.",
-    "de": "el vaso ist das Trinkglas, la copa das Stielglas."
-   }
+   "notes": { "es": "El vaso es recto; la copa tiene pie." }
   },
   "cutlery": { "text": "cubiertos", "grammar": { "gender": "los", "plural": "only" } },
   "napkin": { "text": "servilleta", "grammar": { "gender": "la" } },

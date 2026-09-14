@@ -18,10 +18,7 @@
   "pan": {
    "text": "poêle",
    "grammar": { "gender": "la" },
-   "notes": {
-    "fr": "la poêle pour cuire · le poêle chauffe la maison.",
-    "de": "la poêle ist die Pfanne; le poêle (maskulin) ist der Ofen zum Heizen."
-   }
+   "notes": { "fr": "la poêle pour cuire · le poêle chauffe la maison." }
   },
   "knife": { "text": "couteau", "grammar": { "gender": "le", "plural": "-x" } },
   "spoon": { "text": "cuillère", "variants": ["cuiller"], "grammar": { "gender": "la" } },
@@ -30,10 +27,7 @@
   "to-cook": {
    "text": "cuisiner",
    "variants": ["faire la cuisine"],
-   "notes": {
-    "fr": "cuisiner un plat · faire bouillir de l'eau.",
-    "de": "cuisiner = Essen zubereiten; Wasser kochen heißt faire bouillir."
-   }
+   "notes": { "fr": "cuisiner un plat · faire bouillir de l'eau." }
   },
   "to-bake": {
    "text": "cuire au four",
@@ -49,10 +43,7 @@
   "to-fry": {
    "text": "frire",
    "variants": ["faire frire", "poêler", "faire revenir"],
-   "notes": {
-    "fr": "on dit faire frire · poêler, c'est cuire à la poêle.",
-    "de": "frire steht meist als faire frire; in der Pfanne braten heißt poêler."
-   }
+   "notes": { "fr": "on dit faire frire · poêler, c'est cuire à la poêle." }
   },
   "to-boil": { "text": "bouillir", "variants": ["faire bouillir"] },
   "to-reheat": { "text": "réchauffer", "variants": ["faire réchauffer"] },
@@ -60,10 +51,7 @@
   "to-take-out-trash": {
    "text": "sortir la poubelle",
    "variants": ["sortir les poubelles", "descendre la poubelle"],
-   "notes": {
-    "fr": "on sort la poubelle, pas les ordures.",
-    "de": "Man bringt die Tonne raus, nicht den Müll: sortir la poubelle."
-   }
+   "notes": { "fr": "on sort la poubelle, pas les ordures." }
   },
   "caution": { "text": "attention" },
   "cup": { "text": "tasse", "grammar": { "gender": "la" } },
@@ -88,18 +76,12 @@
   "the-pot-is-still-on-the-stove": {
    "text": "La casserole est encore sur la cuisinière.",
    "variants": ["La casserole est encore sur le feu.", "La casserole est toujours sur le feu."],
-   "notes": {
-    "fr": "au quotidien : sur le feu · sur la cuisinière nomme l'appareil.",
-    "de": "Im Alltag steht der Topf sur le feu; sur la cuisinière nennt das Gerät."
-   }
+   "notes": { "fr": "au quotidien : sur le feu · sur la cuisinière nomme l'appareil." }
   },
   "wash-the-dishes-in-the-sink": {
    "text": "Fais la vaisselle dans l'évier !",
    "variants": ["Lave la vaisselle dans l'évier !"],
-   "notes": {
-    "fr": "l'évier est dans la cuisine, le lavabo dans la salle de bains.",
-    "de": "l'évier ist das Spülbecken in der Küche; das Waschbecken im Bad heißt le lavabo."
-   }
+   "notes": { "fr": "l'évier est dans la cuisine, le lavabo dans la salle de bains." }
   },
   "the-fridge-is-empty": { "text": "Le réfrigérateur est vide.", "variants": ["Le frigo est vide."] },
   "can-you-set-the-table": {

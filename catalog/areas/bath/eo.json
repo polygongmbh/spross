@@ -6,18 +6,12 @@
   "laundry": {
    "text": "tolaĵo",
    "synonyms": ["lavotaĵo"],
-   "notes": {
-    "eo": "tolaĵo = tolaj vestoj kaj tukoj · lavotaĵo = tio, kion oni ankoraŭ lavos.",
-    "de": "tolaĵo ist die Wäsche als Stück und als Ladung, die man wäscht oder aufhängt; lavotaĵo meint eigens den schmutzigen Stapel, der noch gewaschen werden muss."
-   }
+   "notes": { "eo": "tolaĵo = tolaj vestoj kaj tukoj · lavotaĵo = tio, kion oni ankoraŭ lavos." }
   },
   "toilet": {
    "text": "necesejo",
    "variants": ["klozeto"],
-   "notes": {
-    "eo": "necesejo estas la ĉambro · klozeto estas la sidilo mem.",
-    "de": "necesejo ist der Raum und im Alltag auch die Schüssel; wer nur die Schüssel meint, sagt klozeto."
-   }
+   "notes": { "eo": "necesejo estas la ĉambro · klozeto estas la sidilo mem." }
   },
   "shower": { "text": "duŝo", "variants": ["duŝejo"] },
   "sink": { "text": "lavabo", "variants": ["lavujo"] },
@@ -27,10 +21,7 @@
   "towel": {
    "text": "mantuko",
    "variants": ["bantuko"],
-   "notes": {
-    "eo": "mantuko por la manoj kaj la vizaĝo · bantuko estas la granda por bano.",
-    "de": "mantuko ist das Handtuch, bantuko das große Badetuch."
-   }
+   "notes": { "eo": "mantuko por la manoj kaj la vizaĝo · bantuko estas la granda por bano." }
   },
   "soap": { "text": "sapo" },
   "shampoo": { "text": "ŝampuo" },
@@ -41,10 +32,7 @@
   "to-dry-off": {
    "text": "sekigi sin",
    "variants": ["sin sekigi", "viŝi sin"],
-   "notes": {
-    "eo": "sekigi sin per tuko · sekiĝi = fariĝi seka sen ies ago.",
-    "de": "sekigi sin = sich abtrocknen; sekiĝi allein heißt trocken werden, ohne dass jemand etwas tut."
-   }
+   "notes": { "eo": "sekigi sin per tuko · sekiĝi = fariĝi seka sen ies ago." }
   },
   "to-hang-up-laundry": { "text": "pendigi la tolaĵon", "variants": ["pendigi la tolaĵojn", "pendigi tolaĵon"] },
   "to-clean": { "text": "purigi" },

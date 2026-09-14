@@ -4,20 +4,8 @@
  "words": {
   "price": { "text": "bei", "grammar": { "plural": "=" } },
   "to-cost": { "text": "kugharimu" },
-  "expensive": {
-   "text": "ghali",
-   "notes": {
-    "sw": "ghali sana = bei kubwa · ghali mno = bei kupita kiasi",
-    "de": "zu teuer ist ghali mno — ghali sana heißt nur sehr teuer."
-   }
-  },
-  "cheap": {
-   "text": "rahisi",
-   "notes": {
-    "sw": "nguo rahisi = bei ndogo · kazi rahisi = isiyo ngumu",
-    "de": "rahisi heißt billig und zugleich einfach."
-   }
-  },
+  "expensive": { "text": "ghali", "notes": { "sw": "ghali sana = bei kubwa · ghali mno = bei kupita kiasi" } },
+  "cheap": { "text": "rahisi", "notes": { "sw": "nguo rahisi = bei ndogo · kazi rahisi = isiyo ngumu" } },
   "to-sell": { "text": "kuuza" },
   "cash": { "text": "pesa taslimu", "grammar": { "plural": "=" } },
   "bank-card": { "text": "kadi ya benki", "grammar": { "plural": "kadi za benki" } },

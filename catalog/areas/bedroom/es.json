@@ -41,10 +41,7 @@
    "text": "blando",
    "synonyms": ["suave"],
    "variants": ["blanda"],
-   "notes": {
-    "es": "blando = colchón, almohada · suave = piel, tela.",
-    "de": "blando = nachgiebig weich (Matratze, Kissen); suave = sanft, glatt (Haut, Stoff)"
-   }
+   "notes": { "es": "blando = colchón, almohada · suave = piel, tela." }
   },
   "to-rest": { "text": "descansar" },
   "sleep-well": { "text": "¡Que duermas bien!", "variants": ["¡Duerme bien!"] },
@@ -54,10 +51,7 @@
   "i-love-you": {
    "text": "Te quiero.",
    "variants": ["Te amo."],
-   "notes": {
-    "es": "Te quiero en el día a día; te amo suena a película.",
-    "de": "Alltagsform in Spanien; te amo ist deutlich pathetischer und in Spanien selten"
-   }
+   "notes": { "es": "Te quiero en el día a día; te amo suena a película." }
   },
   "i-have-to-rest": { "text": "Tengo que descansar." }
  }

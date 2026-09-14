@@ -6,10 +6,7 @@
    "text": "oficina pública",
    "synonyms": ["administración"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "es": "Cada oficina tiene su nombre: el ayuntamiento · la oficina de extranjería.",
-    "de": "Für ein konkretes Amt sagt man in Spanien meist den Namen: el ayuntamiento (Rathaus), la oficina de extranjería (Ausländerbehörde)."
-   }
+   "notes": { "es": "Cada oficina tiene su nombre: el ayuntamiento · la oficina de extranjería." }
   },
   "form": { "text": "formulario", "grammar": { "gender": "el" } },
   "application": { "text": "solicitud", "variants": ["instancia", "petición"], "grammar": { "gender": "la" } },
@@ -18,10 +15,7 @@
    "synonyms": ["DNI"],
    "variants": ["carnet de identidad", "carné"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "En España es el DNI; para extranjeros, el NIE o la TIE.",
-    "de": "In Spanien heißt der Personalausweis el DNI; Ausländer bekommen stattdessen el NIE bzw. la TIE."
-   }
+   "notes": { "es": "En España es el DNI; para extranjeros, el NIE o la TIE." }
   },
   "residence-permit": {
    "text": "permiso de residencia",
@@ -34,10 +28,7 @@
    "text": "funcionario",
    "synonyms": ["tramitador"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "El funcionario atiende en ventanilla; el tramitador lleva el expediente.",
-    "de": "Am Schalter sagt man in Spanien funcionario; tramitador ist der Sachbearbeiter im engeren Sinn, der den Vorgang bearbeitet."
-   }
+   "notes": { "es": "El funcionario atiende en ventanilla; el tramitador lleva el expediente." }
   },
   "case-worker-f": { "text": "funcionaria", "synonyms": ["tramitadora"], "grammar": { "gender": "la" } },
   "registration": {
@@ -82,10 +73,7 @@
    "text": "resolución",
    "synonyms": ["notificación"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "es": "La resolución es la decisión; la notificación, su entrega.",
-    "de": "la resolución ist die amtliche Entscheidung selbst, la notificación ihre Zustellung."
-   }
+   "notes": { "es": "La resolución es la decisión; la notificación, su entrega." }
   },
   "fee": { "text": "tasa", "variants": ["tarifa"], "grammar": { "gender": "la" } },
   "office-hours": {

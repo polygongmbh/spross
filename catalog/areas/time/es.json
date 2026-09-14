@@ -18,13 +18,7 @@
   "year": { "text": "año", "grammar": { "gender": "el" } },
   "now": { "text": "ahora" },
   "today": { "text": "hoy" },
-  "tomorrow": {
-   "text": "mañana",
-   "notes": {
-    "es": "mañana también es la parte del día: por la mañana.",
-    "de": "mañana heißt auch der Morgen: por la mañana = morgens."
-   }
-  },
+  "tomorrow": { "text": "mañana", "notes": { "es": "mañana también es la parte del día: por la mañana." } },
   "yesterday": { "text": "ayer" },
   "day-before-yesterday": { "text": "anteayer" },
   "early": { "text": "temprano" },

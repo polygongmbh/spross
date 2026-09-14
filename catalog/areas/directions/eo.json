@@ -6,10 +6,7 @@
   "to-turn": {
    "text": "turni",
    "variants": ["turniĝi", "turni sin"],
-   "notes": {
-    "eo": "turni ion · turniĝi aŭ turni sin mem · Turnu maldekstren! sufiĉas.",
-    "de": "turni ist transitiv; für sich selbst turniĝi oder turni sin · im Befehl reicht Turnu maldekstren."
-   }
+   "notes": { "eo": "turni ion · turniĝi aŭ turni sin mem · Turnu maldekstren! sufiĉas." }
   },
   "corner": { "text": "angulo" },
   "crossing": { "text": "vojkruciĝo", "variants": ["kruciĝo", "stratkruciĝo"] },

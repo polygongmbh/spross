@@ -11,14 +11,8 @@
   "mouth": { "text": "рот" },
   "tooth": { "text": "зуб" },
   "lip": { "text": "губа" },
-  "hand": {
-   "text": "рука",
-   "notes": { "uk": "рука — від плеча до пальців.", "de": "рука heißt Hand und Arm." }
-  },
-  "foot": {
-   "text": "нога",
-   "notes": { "uk": "нога — від стегна до пальців.", "de": "нога heißt Fuß und Bein." }
-  },
+  "hand": { "text": "рука", "notes": { "uk": "рука — від плеча до пальців." } },
+  "foot": { "text": "нога", "notes": { "uk": "нога — від стегна до пальців." } },
   "stomach": { "text": "живіт", "grammar": { "plural": "животи" } },
   "back": { "text": "спина" },
   "throat": { "text": "горло" },
@@ -32,10 +26,7 @@
   "finger": {
    "text": "палець",
    "grammar": { "plural": "пальці" },
-   "notes": {
-    "uk": "палець руки і палець ноги — слово те саме.",
-    "de": "палець heißt Finger und Zehe; палець ноги ist die Zehe."
-   }
+   "notes": { "uk": "палець руки і палець ноги — слово те саме." }
   },
   "tongue": { "text": "язик" },
   "neck": { "text": "шия" },

@@ -5,10 +5,7 @@
   "but": { "text": "sed" },
   "also": {
    "text": "ankaŭ",
-   "notes": {
-    "eo": "ankaŭ staras antaŭ sia vorto: ankaŭ mi venos · mi manĝas ankaŭ panon.",
-    "de": "steht direkt vor dem Wort, das es betrifft: ankaŭ mi venos = auch ich komme · mi manĝas ankaŭ panon = ich esse auch Brot."
-   }
+   "notes": { "eo": "ankaŭ staras antaŭ sia vorto: ankaŭ mi venos · mi manĝas ankaŭ panon." }
   },
   "and": { "text": "kaj" },
   "or": { "text": "aŭ" },
@@ -26,10 +23,7 @@
   },
   "before": {
    "text": "antaŭ",
-   "notes": {
-    "eo": "antaŭ la manĝo · antaŭ frazo necesas antaŭ ol: antaŭ ol vi venas.",
-    "de": "vor einem Nebensatz wird daraus antaŭ ol · bei post entsprechend post kiam."
-   }
+   "notes": { "eo": "antaŭ la manĝo · antaŭ frazo necesas antaŭ ol: antaŭ ol vi venas." }
   },
   "after": { "text": "post" },
   "until": { "text": "ĝis" },
@@ -40,26 +34,19 @@
    "text": "pro",
    "notes": {
     "eo": "pro estas la kaŭzo, por la celo: pro la pluvo · por vi.",
-    "de": "pro nennt den Grund, por den Zweck: pro la pluvo · por vi.",
     "en": "pro is the cause, por the purpose: pro la pluvo · por vi."
    }
   },
   "again": { "text": "denove", "variants": ["refoje", "ree"] },
   "still": {
    "text": "ankoraŭ",
-   "notes": {
-    "eo": "ankoraŭ = daŭre ĝis nun: Li ankoraŭ dormas · ne konfuzu kun ankaŭ.",
-    "de": "ankoraŭ heißt noch, ankaŭ heißt auch."
-   }
+   "notes": { "eo": "ankoraŭ = daŭre ĝis nun: Li ankoraŭ dormas · ne konfuzu kun ankaŭ." }
   },
   "finally": { "text": "fine", "variants": ["finfine"] },
   "then": { "text": "poste" },
   "not": {
    "text": "ne",
-   "notes": {
-    "eo": "ne staras antaŭ la neata vorto: Mi ne venas · sola Ne = nea respondo.",
-    "de": "ne steht direkt vor dem verneinten Wort: Mi ne venas · allein heißt Ne auch nein."
-   }
+   "notes": { "eo": "ne staras antaŭ la neata vorto: Mi ne venas · sola Ne = nea respondo." }
   },
   "only": { "text": "nur" },
   "together": { "text": "kune" },

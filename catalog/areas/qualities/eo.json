@@ -29,10 +29,7 @@
   "old": {
    "text": "maljuna",
    "synonyms": ["malnova"],
-   "notes": {
-    "eo": "maljuna viro (vivanta) · malnova tablo (aĵo).",
-    "de": "maljuna bei Lebewesen: maljuna viro · malnova bei Sachen: malnova aŭto."
-   }
+   "notes": { "eo": "maljuna viro (vivanta) · malnova tablo (aĵo)." }
   },
   "slow": { "text": "malrapida", "variants": ["malrapide"] },
   "fast": { "text": "rapida", "variants": ["rapide"] },
@@ -61,10 +58,7 @@
   "sharp": { "text": "akra" },
   "available": {
    "text": "havebla",
-   "notes": {
-    "eo": "havebla = oni povas havi ĝin · disponebla = preta por uzo.",
-    "de": "havebla = zu haben · disponebla = verfügbar, zur Verfügung stehend."
-   }
+   "notes": { "eo": "havebla = oni povas havi ĝin · disponebla = preta por uzo." }
   },
   "other": { "text": "alia" },
   "hot": { "text": "varmega", "notes": { "eo": "granda → grandega · bona → bonega: -eg- fortigas." } },

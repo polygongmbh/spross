@@ -32,29 +32,17 @@
   "to-tidy-up": { "text": "riordinare", "variants": ["mettere in ordine", "fare ordine"] },
   "to-listen-to-music": { "text": "ascoltare musica", "variants": ["ascoltare la musica"] },
   "to-water-plants": { "text": "annaffiare le piante", "variants": ["innaffiare le piante", "bagnare le piante"] },
-  "to-play": {
-   "text": "giocare",
-   "notes": {
-    "it": "i bambini giocano · uno strumento si suona.",
-    "de": "giocare ist spielen im Sinn von Spiel; ein Instrument spielt man mit suonare."
-   }
-  },
+  "to-play": { "text": "giocare", "notes": { "it": "i bambini giocano · uno strumento si suona." } },
   "to-talk": {
    "text": "chiacchierare",
    "variants": ["parlare", "conversare"],
-   "notes": {
-    "it": "chiacchierare è parlare del più e del meno · parlare vale sempre.",
-    "de": "chiacchierare = plaudern, sich unterhalten; sprechen allgemein ist parlare."
-   }
+   "notes": { "it": "chiacchierare è parlare del più e del meno · parlare vale sempre." }
   },
   "room": {
    "text": "stanza",
    "synonyms": ["camera"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "it": "la stanza è ogni stanza · la camera è quella da letto.",
-    "de": "la stanza ist der Raum allgemein, la camera vor allem das Schlaf- oder Hotelzimmer."
-   }
+   "notes": { "it": "la stanza è ogni stanza · la camera è quella da letto." }
   },
   "newspaper": { "text": "giornale", "synonyms": ["quotidiano"], "grammar": { "gender": "il" } },
   "light": { "text": "luce", "grammar": { "gender": "la" } },
@@ -63,37 +51,25 @@
    "text": "parete",
    "variants": ["muro"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "it": "la parete è dentro casa · il muro è grosso e sta fuori.",
-    "de": "la parete ist die Wand im Raum, il muro die massive Mauer."
-   }
+   "notes": { "it": "la parete è dentro casa · il muro è grosso e sta fuori." }
   },
   "movie": { "text": "film", "grammar": { "gender": "il", "plural": "=" } },
   "to-sit": {
    "text": "sedersi",
    "variants": ["essere seduto"],
-   "notes": {
-    "it": "mi siedo qui · adesso sono seduto.",
-    "de": "sedersi = sich hinsetzen; sitzen als Zustand heißt essere seduto."
-   }
+   "notes": { "it": "mi siedo qui · adesso sono seduto." }
   },
   "to-laugh": { "text": "ridere" },
   "quiet": {
    "text": "silenzioso",
    "variants": ["silenziosa", "piano", "sottovoce", "a bassa voce"],
-   "notes": {
-    "it": "una stanza silenziosa · si parla piano o a bassa voce.",
-    "de": "silenzioso ist ein leises Zimmer oder Gerät; leise sprechen heißt parlare piano oder a bassa voce."
-   }
+   "notes": { "it": "una stanza silenziosa · si parla piano o a bassa voce." }
   },
   "furniture": {
    "text": "mobili",
    "variants": ["mobile"],
    "grammar": { "gender": "i", "plural": "only" },
-   "notes": {
-    "it": "quasi sempre al plurale: i mobili · un mobile è uno solo.",
-    "de": "meist im Plural: i mobili; un mobile ist ein einzelnes Möbelstück."
-   }
+   "notes": { "it": "quasi sempre al plurale: i mobili · un mobile è uno solo." }
   },
   "game": { "text": "gioco", "grammar": { "gender": "il", "plural": "giochi" } },
   "come-sit-with-me": {

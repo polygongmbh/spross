@@ -24,13 +24,7 @@
   "spoon": { "text": "cucchiaio", "grammar": { "gender": "il", "plural": "cucchiai" } },
   "fork": { "text": "forchetta", "grammar": { "gender": "la" } },
   "plate": { "text": "piatto", "grammar": { "gender": "il" } },
-  "to-cook": {
-   "text": "cucinare",
-   "notes": {
-    "it": "si cucina il pranzo · l'acqua si fa bollire.",
-    "de": "cucinare = Essen zubereiten; Wasser kochen heißt bollire."
-   }
-  },
+  "to-cook": { "text": "cucinare", "notes": { "it": "si cucina il pranzo · l'acqua si fa bollire." } },
   "to-bake": {
    "text": "cuocere al forno",
    "variants": ["fare al forno", "infornare"],
@@ -59,10 +53,7 @@
    "synonyms": ["lattina"],
    "variants": ["scatoletta"],
    "grammar": { "gender": "il" },
-   "notes": {
-    "it": "il barattolo è di vetro o di latta · la lattina è della bibita.",
-    "de": "il barattolo ist die Konservendose oder das Glas, la lattina die Getränkedose."
-   }
+   "notes": { "it": "il barattolo è di vetro o di latta · la lattina è della bibita." }
   },
   "gas": { "text": "gas", "grammar": { "gender": "il", "plural": "=" } },
   "tasty": { "text": "gustoso", "synonyms": ["saporito"], "variants": ["gustosa"] },
@@ -81,10 +72,7 @@
   "can-you-set-the-table": {
    "text": "Puoi apparecchiare la tavola?",
    "variants": ["Puoi apparecchiare?"],
-   "notes": {
-    "it": "si apparecchia la tavola · il mobile si chiama il tavolo.",
-    "de": "Beim Decken heißt es la tavola; das Möbelstück selbst ist il tavolo."
-   }
+   "notes": { "it": "si apparecchia la tavola · il mobile si chiama il tavolo." }
   },
   "the-water-is-boiling-hot": { "text": "L'acqua bolle.", "variants": ["L'acqua sta bollendo."] },
   "careful-very-hot": {

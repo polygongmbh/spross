@@ -10,10 +10,7 @@
    "text": "oído",
    "variants": ["oreja"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "Me duele el oído (dentro) · la oreja es la parte de fuera.",
-    "de": "Beim Arzt immer el oído (Innenohr, Gehör): me duele el oído. Die sichtbare Ohrmuschel ist la oreja."
-   }
+   "notes": { "es": "Me duele el oído (dentro) · la oreja es la parte de fuera." }
   },
   "nose": { "text": "nariz", "grammar": { "gender": "la" } },
   "mouth": { "text": "boca", "grammar": { "gender": "la" } },
@@ -32,10 +29,7 @@
    "synonyms": ["tripa"],
    "variants": ["vientre", "panza"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "es": "Me duele la barriga o la tripa; el estómago es el órgano.",
-    "de": "Bauchweh heißt me duele la barriga oder me duele la tripa; el vientre ist gehoben, el estómago meint den Magen selbst."
-   }
+   "notes": { "es": "Me duele la barriga o la tripa; el estómago es el órgano." }
   },
   "back": { "text": "espalda", "grammar": { "gender": "la" } },
   "throat": {
@@ -56,10 +50,7 @@
   "finger": {
    "text": "dedo",
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "dedo vale para la mano y el pie: el dedo del pie.",
-    "de": "dedo deckt Finger und Zehe ab; die Zehe ist el dedo del pie."
-   }
+   "notes": { "es": "dedo vale para la mano y el pie: el dedo del pie." }
   },
   "neck": { "text": "cuello", "grammar": { "gender": "el" } },
   "brain": { "text": "cerebro", "grammar": { "gender": "el" } },

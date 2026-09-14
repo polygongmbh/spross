@@ -22,18 +22,12 @@
   "do-you-need-this": { "text": "Ĉu vi bezonas ĉi tion?" },
   "when-does-it-start": {
    "text": "Kiam ĝi komenciĝas?",
-   "notes": {
-    "eo": "komenciĝi okazas per si mem · komenci ion bezonas objekton.",
-    "de": "komenci ist transitiv — man beginnt etwas · von selbst anfangen heißt komenciĝi."
-   }
+   "notes": { "eo": "komenciĝi okazas per si mem · komenci ion bezonas objekton." }
   },
   "what-time-is-it": {
    "text": "Kioma horo estas?",
    "variants": ["Kiom estas la horo?"],
-   "notes": {
-    "eo": "kioma demandas la numeron: la tria, la kvara — ne kiom.",
-    "de": "kioma = der wievielte — gefragt ist die Nummer der Stunde, nicht die Menge."
-   }
+   "notes": { "eo": "kioma demandas la numeron: la tria, la kvara — ne kiom." }
   }
  }
 }

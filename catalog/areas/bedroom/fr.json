@@ -40,20 +40,14 @@
   "soft": {
    "text": "doux",
    "variants": ["douce"],
-   "notes": {
-    "fr": "une peau douce, une voix douce · un matelas moelleux.",
-    "de": "doux ist weich und sanft beim Anfassen; eine weiche Matratze ist un matelas moelleux."
-   }
+   "notes": { "fr": "une peau douce, une voix douce · un matelas moelleux." }
   },
   "to-rest": { "text": "se reposer" },
   "sleep-well": { "text": "Dors bien !" },
   "good-morning-my-love": {
    "text": "Bonjour, mon amour !",
    "variants": ["Bonjour, mon cœur !", "Bonjour, chéri !"],
-   "notes": {
-    "fr": "le matin aussi, on dit bonjour · bon matin se dit au Québec.",
-    "de": "Französisch grüßt auch morgens mit bonjour; bon matin ist québécois und in Frankreich unüblich."
-   }
+   "notes": { "fr": "le matin aussi, on dit bonjour · bon matin se dit au Québec." }
   },
   "im-tired": { "text": "Je suis fatigué.", "variants": ["Je suis fatiguée."] },
   "did-you-set-the-alarm": {

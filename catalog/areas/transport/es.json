@@ -18,10 +18,7 @@
    "text": "billete",
    "variants": ["boleto", "pasaje"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "En España el billete, también el de dinero; en América, boleto o pasaje.",
-    "de": "In Spanien el billete (auch der Geldschein); in Lateinamerika el boleto oder el pasaje."
-   }
+   "notes": { "es": "En España el billete, también el de dinero; en América, boleto o pasaje." }
   },
   "to-ride-bike": {
    "text": "montar en bicicleta",
@@ -30,18 +27,9 @@
   "to-take-bus": {
    "text": "coger el autobús",
    "variants": ["tomar el autobús"],
-   "notes": {
-    "es": "En España coger el autobús; en América, tomar — allí coger es vulgar.",
-    "de": "In Spanien coger; in Lateinamerika sagt man tomar, weil coger dort vulgär ist."
-   }
+   "notes": { "es": "En España coger el autobús; en América, tomar — allí coger es vulgar." }
   },
-  "to-depart": {
-   "text": "salir",
-   "notes": {
-    "es": "Trenes y autobuses salen: el tren sale a las ocho.",
-    "de": "Züge und Busse „fahren ab“ mit salir: El tren sale a las ocho."
-   }
-  },
+  "to-depart": { "text": "salir", "notes": { "es": "Trenes y autobuses salen: el tren sale a las ocho." } },
   "journey": { "text": "viaje", "grammar": { "gender": "el" } },
   "to-travel": { "text": "viajar" },
   "driver": { "text": "conductor", "variants": ["chofer", "chófer"], "grammar": { "gender": "el" } },

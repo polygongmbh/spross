@@ -6,13 +6,7 @@
   "there": { "text": "lì", "variants": ["là"] },
   "left": { "text": "a sinistra", "variants": ["sinistra"] },
   "right": { "text": "a destra", "variants": ["destra"] },
-  "up": {
-   "text": "in alto",
-   "notes": {
-    "it": "va su! è il movimento · in alto è dove si sta.",
-    "de": "su heißt hinauf und ist die Bewegung: Vieni su! · der Ort ist in alto."
-   }
-  },
+  "up": { "text": "in alto", "notes": { "it": "va su! è il movimento · in alto è dove si sta." } },
   "down": { "text": "in basso", "variants": ["giù"] },
   "inside": { "text": "dentro", "variants": ["all'interno"] },
   "outdoors": { "text": "fuori", "variants": ["all'aperto"] },
@@ -21,28 +15,19 @@
   "on": {
    "text": "sopra",
    "variants": ["su"],
-   "notes": {
-    "it": "su: il → sul · la → sulla · lo → sullo.",
-    "de": "su verschmilzt mit dem Artikel: sul tavolo."
-   }
+   "notes": { "it": "su: il → sul · la → sulla · lo → sullo." }
   },
   "under": { "text": "sotto" },
   "behind": { "text": "dietro" },
   "between": {
    "text": "tra",
    "variants": ["fra"],
-   "notes": {
-    "it": "tra e fra sono uguali, si sceglie per il suono: fra tre giorni.",
-    "de": "tra und fra sind gleichbedeutend; man wählt nach dem Klang: fra tre giorni, tra fratelli."
-   }
+   "notes": { "it": "tra e fra sono uguali, si sceglie per il suono: fra tre giorni." }
   },
   "near": {
    "text": "vicino",
    "variants": ["vicina"],
-   "notes": {
-    "it": "vicino a me, vicino a te · il vicino è una persona.",
-    "de": "il vicino ist auch der Nachbar · als Präposition vicino a: vicino alla porta."
-   }
+   "notes": { "it": "vicino a me, vicino a te · il vicino è una persona." }
   },
   "far": { "text": "lontano", "variants": ["lontana"] },
   "place": { "text": "posto", "synonyms": ["luogo"], "grammar": { "gender": "il" } },
@@ -58,10 +43,7 @@
   "at-school": { "text": "a scuola" },
   "go-to-school": {
    "text": "andare a scuola",
-   "notes": {
-    "it": "a vale per dove si sta e dove si va: sono a scuola, vado a scuola.",
-    "de": "a steht für wo und wohin: sono a scuola, vado a scuola — das Verb entscheidet."
-   }
+   "notes": { "it": "a vale per dove si sta e dove si va: sono a scuola, vado a scuola." }
   },
   "are-you-going-home-already": { "text": "Andate già a casa?", "variants": ["Vai già a casa?"] }
  }

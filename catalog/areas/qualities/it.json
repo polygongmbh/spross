@@ -39,28 +39,19 @@
   "old": {
    "text": "vecchio",
    "variants": ["vecchia"],
-   "notes": {
-    "it": "vecchio → anziano per le persone · antico per le cose.",
-    "de": "bei Personen höflicher: anziano · antik, ehemalig: antico."
-   }
+   "notes": { "it": "vecchio → anziano per le persone · antico per le cose." }
   },
   "slow": {
    "text": "lento",
    "variants": ["lenta"],
-   "notes": {
-    "it": "lento → lentamente · parla piano, parla lentamente.",
-    "de": "als Adverb lentamente oder piano: parla piano."
-   }
+   "notes": { "it": "lento → lentamente · parla piano, parla lentamente." }
   },
   "fast": { "text": "veloce", "variants": ["rapido", "rapida"] },
   "long": { "text": "lungo", "variants": ["lunga"] },
   "short": {
    "text": "corto",
    "variants": ["corta"],
-   "notes": {
-    "it": "corto è la lunghezza · breve è un'ora · basso è la persona.",
-    "de": "kurze Dauer: breve · kleine Körpergröße: basso."
-   }
+   "notes": { "it": "corto è la lunghezza · breve è un'ora · basso è la persona." }
   },
   "heavy": { "text": "pesante" },
   "lightweight": { "text": "leggero", "variants": ["leggera"] },
@@ -99,10 +90,7 @@
   "same": {
    "text": "stesso",
    "variants": ["stessa", "stessi", "stesse"],
-   "notes": {
-    "it": "lo stesso giorno, la stessa ora · io stesso = proprio io.",
-    "de": "meist mit Artikel: lo stesso giorno · io stesso heißt ich selbst."
-   }
+   "notes": { "it": "lo stesso giorno, la stessa ora · io stesso = proprio io." }
   },
   "similar": { "text": "simile", "variants": ["simili"] },
   "opposite": { "text": "opposto", "synonyms": ["contrario"], "variants": ["opposta", "contraria"] },

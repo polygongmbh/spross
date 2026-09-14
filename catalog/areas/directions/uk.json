@@ -7,10 +7,7 @@
   "corner": {
    "text": "ріг",
    "grammar": { "plural": "роги" },
-   "notes": {
-    "uk": "на розі вулиці · ріг — це також ріг тварини.",
-    "de": "ріг ist die Straßenecke (на розі) und zugleich das Horn."
-   }
+   "notes": { "uk": "на розі вулиці · ріг — це також ріг тварини." }
   },
   "crossing": { "text": "перехрестя", "grammar": { "plural": "=" } },
   "to-cross": { "text": "переходити", "variants": ["перейти"] },

@@ -24,17 +24,14 @@
   "plane": {
    "text": "ndege",
    "grammar": { "plural": "=" },
-   "notes": {
-    "sw": "ndege inaruka = ya chuma · ndege anaruka = mwenye mabawa",
-    "de": "ndege heißt auch der Vogel."
-   }
+   "notes": { "sw": "ndege inaruka = ya chuma · ndege anaruka = mwenye mabawa" }
   },
   "airport": { "text": "uwanja wa ndege", "grammar": { "plural": "viwanja vya ndege" } },
   "ship": { "text": "meli", "grammar": { "plural": "=" } },
   "motorbike": {
    "text": "pikipiki",
    "grammar": { "plural": "=" },
-   "notes": { "sw": "pikipiki ya kubeba abiria huitwa bodaboda", "de": "Das Motorradtaxi heißt bodaboda." }
+   "notes": { "sw": "pikipiki ya kubeba abiria huitwa bodaboda" }
   },
   "truck": { "text": "lori", "grammar": { "plural": "malori" } },
   "passenger": { "text": "abiria", "grammar": { "plural": "=" } },

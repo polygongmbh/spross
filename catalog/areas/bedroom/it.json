@@ -20,10 +20,7 @@
    "text": "pantaloni",
    "variants": ["pantalone"],
    "grammar": { "gender": "i", "plural": "only" },
-   "notes": {
-    "it": "sempre al plurale: i pantaloni sono neri.",
-    "de": "wie die Hose im Deutschen, aber immer im Plural: i pantaloni."
-   }
+   "notes": { "it": "sempre al plurale: i pantaloni sono neri." }
   },
   "t-shirt": { "text": "maglietta", "variants": ["t-shirt"], "grammar": { "gender": "la" } },
   "to-sleep": { "text": "dormire" },
@@ -38,10 +35,7 @@
    "text": "vestiti",
    "variants": ["abiti", "abbigliamento"],
    "grammar": { "gender": "i", "plural": "only" },
-   "notes": {
-    "it": "i vestiti sono tutta la roba · il vestito al singolare è l'abito.",
-    "de": "i vestiti ist die Kleidung insgesamt; im Singular heißt il vestito das Kleid."
-   }
+   "notes": { "it": "i vestiti sono tutta la roba · il vestito al singolare è l'abito." }
   },
   "shirt": { "text": "camicia", "grammar": { "gender": "la" } },
   "dress": { "text": "vestito", "variants": ["abito"], "grammar": { "gender": "il" } },
@@ -60,10 +54,7 @@
   "did-you-set-the-alarm": { "text": "Hai messo la sveglia?", "variants": ["Hai puntato la sveglia?"] },
   "i-love-you": {
    "text": "Ti amo.",
-   "notes": {
-    "it": "ti amo si dice al partner · alla famiglia si dice ti voglio bene.",
-    "de": "Ti amo gilt der Partnerin oder dem Partner; Familie und Freunden sagt man ti voglio bene."
-   }
+   "notes": { "it": "ti amo si dice al partner · alla famiglia si dice ti voglio bene." }
   },
   "i-have-to-rest": { "text": "Devo riposare.", "variants": ["Devo riposarmi."] }
  }

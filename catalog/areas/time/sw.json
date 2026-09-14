@@ -18,7 +18,7 @@
   "month": {
    "text": "mwezi",
    "grammar": { "plural": "miezi" },
-   "notes": { "sw": "mwezi huu, miezi mingi · mwezi pia ni ule wa angani", "de": "mwezi ist auch der Mond." }
+   "notes": { "sw": "mwezi huu, miezi mingi · mwezi pia ni ule wa angani" }
   },
   "year": { "text": "mwaka", "grammar": { "plural": "miaka" } },
   "now": { "text": "sasa" },
@@ -30,10 +30,7 @@
   "soon": {
    "text": "hivi karibuni",
    "synonyms": ["punde"],
-   "notes": {
-    "sw": "atakuja hivi karibuni · alikuja hivi karibuni = jana, juzi",
-    "de": "hivi karibuni heißt auch kürzlich — die Zeitform sagt, was gemeint ist."
-   }
+   "notes": { "sw": "atakuja hivi karibuni · alikuja hivi karibuni = jana, juzi" }
   },
   "noon": { "text": "adhuhuri", "grammar": { "plural": "=" } },
   "afternoon": {
@@ -50,49 +47,28 @@
   "first": {
    "text": "kwanza",
    "variants": ["wa kwanza", "ya kwanza", "cha kwanza"],
-   "notes": {
-    "sw": "mtu wa kwanza, siku ya kwanza · kwanza peke yake = mwanzoni",
-    "de": "als Ordnungszahl mit -a: mtu wa kwanza, siku ya kwanza · allein heißt kwanza zuerst."
-   }
+   "notes": { "sw": "mtu wa kwanza, siku ya kwanza · kwanza peke yake = mwanzoni" }
   },
   "second": {
    "text": "pili",
    "variants": ["wa pili", "ya pili", "cha pili"],
-   "notes": {
-    "sw": "mtu wa pili, siku ya pili · nyingine hutumia namba: wa tatu",
-    "de": "als Ordnungszahl mit -a: mtu wa pili, siku ya pili · kwanza und pili sind die einzigen eigenen Ordnungszahlen."
-   }
+   "notes": { "sw": "mtu wa pili, siku ya pili · nyingine hutumia namba: wa tatu" }
   },
   "next": {
    "text": "-jayo",
    "variants": ["ijayo", "ujao", "yajayo", "zijazo", "kijacho"],
-   "notes": {
-    "sw": "wiki ijayo, mwezi ujao, mwaka ujao",
-    "de": "die Vorsilbe richtet sich nach der Nomenklasse: wiki ijayo, mwezi ujao."
-   }
+   "notes": { "sw": "wiki ijayo, mwezi ujao, mwaka ujao" }
   },
   "a-while-ago": {
    "text": "kitambo",
-   "notes": {
-    "sw": "kitambo kidogo = siku chache · tangu kitambo = muda mrefu",
-    "de": "kitambo kidogo = vor Kurzem · tangu kitambo = seit Langem."
-   }
+   "notes": { "sw": "kitambo kidogo = siku chache · tangu kitambo = muda mrefu" }
   },
-  "formerly": {
-   "text": "zamani",
-   "notes": {
-    "sw": "zamani watu walitembea · hadithi za zamani",
-    "de": "auch die Vergangenheit als Nomen: hadithi za zamani."
-   }
-  },
+  "formerly": { "text": "zamani", "notes": { "sw": "zamani watu walitembea · hadithi za zamani" } },
   "later": { "text": "baadaye" },
   "last": {
    "text": "-a mwisho",
    "variants": ["wa mwisho", "ya mwisho", "za mwisho", "cha mwisho", "la mwisho", "vya mwisho"],
-   "notes": {
-    "sw": "mwisho = ukomo · siku ya mwisho, mtu wa mwisho",
-    "de": "mwisho ist das Ende; mit -a wird es zur Ordnung: siku ya mwisho, mtu wa mwisho."
-   }
+   "notes": { "sw": "mwisho = ukomo · siku ya mwisho, mtu wa mwisho" }
   },
   "day-after-tomorrow": { "text": "kesho kutwa" },
   "since": { "text": "tangu" },
@@ -105,10 +81,7 @@
   "i-have-no-time": { "text": "Sina muda." },
   "two-in-the-afternoon": {
    "text": "saa nane mchana",
-   "notes": {
-    "sw": "Saa za Kiswahili huanza asubuhi na mapema: saa nane mchana = 14:00",
-    "de": "Die Saa-Zählung liegt sechs Stunden versetzt: 14 Uhr ist die achte Stunde des Tages."
-   }
+   "notes": { "sw": "Saa za Kiswahili huanza asubuhi na mapema: saa nane mchana = 14:00" }
   },
   "nine-am-sharp": {
    "text": "saa tatu asubuhi kamili",

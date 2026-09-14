@@ -3,13 +3,7 @@
  "subtitle": "Jibu la swali „nifikaje?“.",
  "words": {
   "straight-ahead": { "text": "moja kwa moja" },
-  "to-turn": {
-   "text": "kugeuka",
-   "notes": {
-    "sw": "Geuka kulia · kugeuza gari = kulizungusha gari",
-    "de": "kugeuka ist sich wenden; ein Objekt wenden heißt kugeuza."
-   }
-  },
+  "to-turn": { "text": "kugeuka", "notes": { "sw": "Geuka kulia · kugeuza gari = kulizungusha gari" } },
   "corner": { "text": "kona", "grammar": { "plural": "=" } },
   "crossing": { "text": "njia panda", "variants": ["makutano"], "grammar": { "plural": "=" } },
   "to-cross": { "text": "kuvuka" },

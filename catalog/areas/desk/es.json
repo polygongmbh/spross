@@ -7,10 +7,7 @@
    "text": "portátil",
    "variants": ["ordenador portátil", "computadora portátil", "laptop"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "Forma corta de ordenador portátil: llevo el portátil.",
-    "de": "Kurzform von el ordenador portátil; in Spanien sagt man fast immer nur el portátil."
-   }
+   "notes": { "es": "Forma corta de ordenador portátil: llevo el portátil." }
   },
   "keyboard": { "text": "teclado", "grammar": { "gender": "el" } },
   "screen": { "text": "pantalla", "grammar": { "gender": "la" } },
@@ -20,10 +17,7 @@
    "text": "auriculares",
    "synonyms": ["cascos"],
    "grammar": { "gender": "los", "plural": "only" },
-   "notes": {
-    "es": "Siempre en plural: los auriculares, en España también los cascos.",
-    "de": "Nur im Plural: los auriculares; umgangssprachlich auch los cascos."
-   }
+   "notes": { "es": "Siempre en plural: los auriculares, en España también los cascos." }
   },
   "pen": {
    "text": "bolígrafo",
@@ -40,10 +34,7 @@
    "text": "enchufe",
    "variants": ["toma de corriente", "tomacorriente"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "El enchufe es la toma de la pared y también la clavija.",
-    "de": "enchufe ist die Steckdose und der Stecker zugleich."
-   }
+   "notes": { "es": "El enchufe es la toma de la pared y también la clavija." }
   },
   "to-work": { "text": "trabajar" },
   "to-type": { "text": "teclear", "variants": ["mecanografiar", "escribir a máquina"] },
@@ -56,10 +47,7 @@
   "to-repair": {
    "text": "reparar",
    "synonyms": ["arreglar"],
-   "notes": {
-    "es": "reparar suena a taller; en casa se dice arreglar.",
-    "de": "Im Alltag sagt man arreglar; reparar klingt nach Werkstatt."
-   }
+   "notes": { "es": "reparar suena a taller; en casa se dice arreglar." }
   },
   "phone": {
    "text": "móvil",
@@ -76,29 +64,20 @@
   "password": { "text": "contraseña", "grammar": { "gender": "la" } },
   "internet": {
    "text": "internet",
-   "notes": {
-    "es": "Casi siempre sin artículo: ¿Hay internet? · No tengo internet.",
-    "de": "Meist ohne Artikel: ¿Hay internet? · No tengo internet."
-   }
+   "notes": { "es": "Casi siempre sin artículo: ¿Hay internet? · No tengo internet." }
   },
   "charger": { "text": "cargador", "variants": ["cable de carga"], "grammar": { "gender": "el" } },
   "calendar": {
    "text": "calendario",
    "synonyms": ["agenda"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "El calendario cuelga en la pared; las citas van en la agenda.",
-    "de": "el calendario hängt an der Wand; der Terminkalender heißt la agenda."
-   }
+   "notes": { "es": "El calendario cuelga en la pared; las citas van en la agenda." }
   },
   "important": { "text": "importante" },
   "ready": {
    "text": "listo",
    "variants": ["terminado", "acabado"],
-   "notes": {
-    "es": "Con estar: ya estoy listo · ser listo es tener inteligencia.",
-    "de": "Mit estar: ya estoy listo = ich bin fertig. ser listo heißt dagegen „schlau sein“."
-   }
+   "notes": { "es": "Con estar: ya estoy listo · ser listo es tener inteligencia." }
   },
   "broken": {
    "text": "roto",

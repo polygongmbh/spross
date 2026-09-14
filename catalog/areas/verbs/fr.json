@@ -35,13 +35,7 @@
    }
   },
   "to-can": { "text": "pouvoir", "notes": { "fr": "je peux, tu peux, il peut, nous pouvons, vous pouvez." } },
-  "to-think": {
-   "text": "penser",
-   "notes": {
-    "fr": "penser à toi · je pense que c'est vrai.",
-    "de": "penser à quelque chose = an etwas denken · penser que = glauben, dass."
-   }
-  },
+  "to-think": { "text": "penser", "notes": { "fr": "penser à toi · je pense que c'est vrai." } },
   "to-imagine": { "text": "imaginer" },
   "to-wait": {
    "text": "attendre",
@@ -54,13 +48,7 @@
    "notes": { "fr": "je cherche un train, je te cherche : chercher n'a pas de à." }
   },
   "to-receive": { "text": "recevoir", "synonyms": ["obtenir"] },
-  "to-look": {
-   "text": "regarder",
-   "notes": {
-    "fr": "regarder par la fenêtre · regarder, c'est exprès.",
-    "de": "regarder = bewusst hinschauen: regarder la télé."
-   }
-  },
+  "to-look": { "text": "regarder", "notes": { "fr": "regarder par la fenêtre · regarder, c'est exprès." } },
   "to-open": { "text": "ouvrir" },
   "to-close": { "text": "fermer" },
   "to-stop": {

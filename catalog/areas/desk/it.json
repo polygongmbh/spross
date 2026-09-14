@@ -7,10 +7,7 @@
    "text": "portatile",
    "variants": ["computer portatile", "laptop"],
    "grammar": { "gender": "il" },
-   "notes": {
-    "it": "il portatile è il computer portatile: ho il portatile in borsa.",
-    "de": "Kurzform von il computer portatile; im Alltag sagt man fast immer nur il portatile."
-   }
+   "notes": { "it": "il portatile è il computer portatile: ho il portatile in borsa." }
   },
   "keyboard": { "text": "tastiera", "grammar": { "gender": "la" } },
   "screen": { "text": "schermo", "variants": ["monitor"], "grammar": { "gender": "lo" } },
@@ -20,10 +17,7 @@
    "text": "cuffie",
    "synonyms": ["auricolari"],
    "grammar": { "gender": "le", "plural": "only" },
-   "notes": {
-    "it": "solo al plurale: le cuffie · gli auricolari stanno nell'orecchio.",
-    "de": "Nur im Plural: le cuffie; gli auricolari sind die In-Ear-Hörer."
-   }
+   "notes": { "it": "solo al plurale: le cuffie · gli auricolari stanno nell'orecchio." }
   },
   "pen": {
    "text": "penna",
@@ -39,7 +33,7 @@
    "text": "presa",
    "variants": ["presa di corrente"],
    "grammar": { "gender": "la" },
-   "notes": { "it": "la spina va nella presa.", "de": "la presa ist die Steckdose, la spina der Stecker." }
+   "notes": { "it": "la spina va nella presa." }
   },
   "to-work": { "text": "lavorare" },
   "to-type": { "text": "digitare", "variants": ["battere a macchina", "scrivere a macchina"] },
@@ -52,10 +46,7 @@
   "to-repair": {
    "text": "riparare",
    "synonyms": ["aggiustare"],
-   "notes": {
-    "it": "parlando si dice aggiustare: mi aggiusti il rubinetto?",
-    "de": "Im Alltag sagt man aggiustare; riparare klingt nach Werkstatt."
-   }
+   "notes": { "it": "parlando si dice aggiustare: mi aggiusti il rubinetto?" }
   },
   "phone": {
    "text": "cellulare",
@@ -74,19 +65,13 @@
   "paper": {
    "text": "carta",
    "grammar": { "gender": "la" },
-   "notes": {
-    "it": "la carta è il materiale · il foglio è un pezzo di carta.",
-    "de": "la carta ist das Papier als Material; ein einzelnes Blatt ist il foglio."
-   }
+   "notes": { "it": "la carta è il materiale · il foglio è un pezzo di carta." }
   },
   "folder": { "text": "cartella", "variants": ["raccoglitore"], "grammar": { "gender": "la" } },
   "password": { "text": "password", "grammar": { "gender": "la", "plural": "=" } },
   "internet": {
    "text": "internet",
-   "notes": {
-    "it": "di solito senza articolo: c'è internet? · non ho internet.",
-    "de": "Meist ohne Artikel: c'è internet? · Non ho internet."
-   }
+   "notes": { "it": "di solito senza articolo: c'è internet? · non ho internet." }
   },
   "charger": {
    "text": "caricabatterie",
@@ -97,10 +82,7 @@
    "text": "calendario",
    "synonyms": ["agenda"],
    "grammar": { "gender": "il", "plural": "calendari" },
-   "notes": {
-    "it": "il calendario sta al muro · l'agenda porta gli appuntamenti.",
-    "de": "il calendario hängt an der Wand; der Terminkalender heißt l'agenda."
-   }
+   "notes": { "it": "il calendario sta al muro · l'agenda porta gli appuntamenti." }
   },
   "important": { "text": "importante" },
   "ready": {
@@ -114,10 +96,7 @@
   "broken": {
    "text": "rotto",
    "variants": ["rotta", "guasto"],
-   "notes": {
-    "it": "va con essere: il telefono è rotto · se non funziona è guasto.",
-    "de": "Mit essere: il telefono è rotto. Ein Gerät, das nur nicht mehr geht, ist guasto."
-   }
+   "notes": { "it": "va con essere: il telefono è rotto · se non funziona è guasto." }
   },
   "im-in-a-meeting": { "text": "Sono in riunione.", "variants": ["Sono in una riunione."] },
   "dont-disturb-me": { "text": "Non disturbarmi!", "variants": ["Non disturbare!"] },

@@ -26,10 +26,7 @@
   "stomach": {
    "text": "ventre",
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "j'ai mal au ventre · l'estomac est l'organe qui digère.",
-    "de": "Bauchweh heißt j'ai mal au ventre; l'estomac meint den Magen selbst."
-   }
+   "notes": { "fr": "j'ai mal au ventre · l'estomac est l'organe qui digère." }
   },
   "back": { "text": "dos", "grammar": { "gender": "le", "plural": "=" } },
   "throat": {
@@ -50,10 +47,7 @@
   "finger": {
    "text": "doigt",
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "le doigt de la main · le doigt de pied, c'est l'orteil.",
-    "de": "le doigt ist der Finger; die Zehe heißt un orteil oder un doigt de pied."
-   }
+   "notes": { "fr": "le doigt de la main · le doigt de pied, c'est l'orteil." }
   },
   "neck": { "text": "cou", "grammar": { "gender": "le" } },
   "brain": { "text": "cerveau", "grammar": { "gender": "le", "plural": "cerveaux" } },

@@ -6,19 +6,13 @@
   "human": {
    "text": "binadamu",
    "grammar": { "plural": "=" },
-   "notes": {
-    "sw": "binadamu = jamii ya watu wote · mtu = mmoja tu",
-    "de": "binadamu = Mensch als Gattungswesen · mtu = einzelne Person."
-   }
+   "notes": { "sw": "binadamu = jamii ya watu wote · mtu = mmoja tu" }
   },
   "family": { "text": "familia", "grammar": { "plural": "=" } },
   "mother": {
    "text": "mama",
    "grammar": { "plural": "=" },
-   "notes": {
-    "sw": "mama pia ni heshima kwa mwanamke mzima: Mama, karibu!",
-    "de": "mama ist auch die höfliche Anrede für eine erwachsene Frau, baba für einen Mann."
-   }
+   "notes": { "sw": "mama pia ni heshima kwa mwanamke mzima: Mama, karibu!" }
   },
   "father": { "text": "baba", "grammar": { "plural": "=" } },
   "parents": { "text": "wazazi", "grammar": { "plural": "only" } },
@@ -47,29 +41,17 @@
   "uncle": {
    "text": "mjomba",
    "grammar": { "plural": "wajomba" },
-   "notes": {
-    "sw": "mjomba = kaka wa mama · kaka wa baba ni baba mdogo au mkubwa",
-    "de": "mjomba ist der Bruder der Mutter; der Bruder des Vaters heißt baba mdogo oder baba mkubwa."
-   }
+   "notes": { "sw": "mjomba = kaka wa mama · kaka wa baba ni baba mdogo au mkubwa" }
   },
   "aunt": {
    "text": "shangazi",
    "grammar": { "plural": "=" },
-   "notes": {
-    "sw": "shangazi = dada wa baba · dada wa mama ni mama mdogo au mkubwa",
-    "de": "shangazi ist die Schwester des Vaters; die Schwester der Mutter heißt mama mdogo oder mama mkubwa."
-   }
+   "notes": { "sw": "shangazi = dada wa baba · dada wa mama ni mama mdogo au mkubwa" }
   },
   "to-be-born": { "text": "kuzaliwa" },
   "birthday": { "text": "siku ya kuzaliwa", "grammar": { "plural": "siku za kuzaliwa" } },
   "to-visit": { "text": "kutembelea" },
-  "to-marry": {
-   "text": "kuoa",
-   "notes": {
-    "sw": "mwanaume huoa · mwanamke huolewa",
-    "de": "kuoa ist die Perspektive des Mannes; die Frau heiratet aus ihrer Sicht kuolewa (Passiv)."
-   }
-  },
+  "to-marry": { "text": "kuoa", "notes": { "sw": "mwanaume huoa · mwanamke huolewa" } },
   "this-is-my-mother": { "text": "Huyu ni mama yangu." },
   "where-is-your-father": { "text": "Baba yenu yuko wapi?" },
   "i-have-two-children": { "text": "Nina watoto wawili." },
@@ -84,13 +66,7 @@
   },
   "her-boyfriend": { "text": "mpenzi wake" },
   "old-people": { "text": "watu wazee" },
-  "many-friends": {
-   "text": "marafiki wengi",
-   "notes": {
-    "sw": "rafiki ni mtu: marafiki wazuri, marafiki wote",
-    "de": "rafiki ist ein Mensch: die Übereinstimmung folgt der wa-Klasse — marafiki wazuri, marafiki wote."
-   }
-  },
+  "many-friends": { "text": "marafiki wengi", "notes": { "sw": "rafiki ni mtu: marafiki wazuri, marafiki wote" } },
   "mom-help-me": { "text": "Mama, nisaidie!" }
  }
 }

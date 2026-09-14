@@ -9,10 +9,7 @@
   "language": {
    "text": "langue",
    "grammar": { "gender": "la" },
-   "notes": {
-    "fr": "langue française et langue de la bouche : un mot, plusieurs sens.",
-    "de": "langue ist auch die Zunge im Mund."
-   }
+   "notes": { "fr": "langue française et langue de la bouche : un mot, plusieurs sens." }
   },
   "mother-tongue": { "text": "langue maternelle", "grammar": { "gender": "la" } },
   "what-does-this-word-mean": {

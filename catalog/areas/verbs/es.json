@@ -21,10 +21,7 @@
   "to-take": {
    "text": "coger",
    "variants": ["tomar", "agarrar"],
-   "notes": {
-    "es": "En España, coger el autobús · en América es vulgar: tomar, agarrar.",
-    "de": "in Spanien das Alltagswort (coger el autobús) · in Lateinamerika vulgär, dort tomar oder agarrar."
-   }
+   "notes": { "es": "En España, coger el autobús · en América es vulgar: tomar, agarrar." }
   },
   "to-see": { "text": "ver" },
   "to-make": { "text": "hacer" },
@@ -36,21 +33,9 @@
    }
   },
   "to-can": { "text": "poder", "notes": { "es": "Irregular: puedo, puedes, puede, podemos." } },
-  "to-think": {
-   "text": "pensar",
-   "notes": {
-    "es": "pensar en alguien · pensar que algo es así.",
-    "de": "pensar en algo = an etwas denken · pensar que = glauben, dass."
-   }
-  },
+  "to-think": { "text": "pensar", "notes": { "es": "pensar en alguien · pensar que algo es así." } },
   "to-imagine": { "text": "imaginar" },
-  "to-wait": {
-   "text": "esperar",
-   "notes": {
-    "es": "esperar el tren y esperar que todo vaya bien.",
-    "de": "esperar heißt auch hoffen und erwarten."
-   }
-  },
+  "to-wait": { "text": "esperar", "notes": { "es": "esperar el tren y esperar que todo vaya bien." } },
   "to-want": {
    "text": "querer",
    "notes": { "es": "Quiero ayuda · te quiero", "de": "querer heißt wollen und lieben: Te quiero." }
@@ -58,22 +43,13 @@
   "to-find": { "text": "encontrar" },
   "to-search": { "text": "buscar", "notes": { "es": "Sin preposición: busco un hotel." } },
   "to-receive": { "text": "recibir", "synonyms": ["conseguir"] },
-  "to-look": {
-   "text": "mirar",
-   "notes": {
-    "es": "mirar es dirigir los ojos: mira aquí.",
-    "de": "mirar = den Blick auf etwas richten: mira aquí."
-   }
-  },
+  "to-look": { "text": "mirar", "notes": { "es": "mirar es dirigir los ojos: mira aquí." } },
   "to-open": { "text": "abrir" },
   "to-close": { "text": "cerrar" },
   "to-stop": {
    "text": "dejar de",
    "variants": ["parar de"],
-   "notes": {
-    "es": "Con infinitivo detrás: dejar de fumar.",
-    "de": "dejar de steht vor dem Infinitiv: dejar de fumar = aufhören zu rauchen."
-   }
+   "notes": { "es": "Con infinitivo detrás: dejar de fumar." }
   },
   "to-stand": {
    "text": "estar de pie",

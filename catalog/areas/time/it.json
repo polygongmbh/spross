@@ -5,10 +5,7 @@
   "time": {
    "text": "tempo",
    "grammar": { "gender": "il" },
-   "notes": {
-    "it": "il tempo è il meteo: Che tempo fa? · tre volte, non tre tempi.",
-    "de": "tempo heißt auch Wetter: Che tempo fa? · das einzelne Mal ist una volta."
-   }
+   "notes": { "it": "il tempo è il meteo: Che tempo fa? · tre volte, non tre tempi." }
   },
   "day": { "text": "giorno", "variants": ["giornata"], "grammar": { "gender": "il" } },
   "week": { "text": "settimana", "grammar": { "gender": "la" } },
@@ -19,10 +16,7 @@
   "now": {
    "text": "adesso",
    "variants": ["ora"],
-   "notes": {
-    "it": "adesso e ora sono uguali · l'ora è anche quella dell'orologio.",
-    "de": "adesso und ora sind gleichwertig; ora ist zugleich die Stunde."
-   }
+   "notes": { "it": "adesso e ora sono uguali · l'ora è anche quella dell'orologio." }
   },
   "today": { "text": "oggi" },
   "tomorrow": { "text": "domani" },
@@ -33,10 +27,7 @@
   "soon": {
    "text": "tra poco",
    "variants": ["fra poco", "presto"],
-   "notes": {
-    "it": "tra poco = fra poco · presto vuol dire anche di buon'ora.",
-    "de": "presto heißt sowohl früh als auch bald; tra poco meint nur die nahe Zukunft."
-   }
+   "notes": { "it": "tra poco = fra poco · presto vuol dire anche di buon'ora." }
   },
   "noon": { "text": "mezzogiorno", "grammar": { "gender": "il" } },
   "afternoon": { "text": "pomeriggio", "grammar": { "gender": "il", "plural": "pomeriggi" } },

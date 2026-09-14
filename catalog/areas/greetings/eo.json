@@ -4,13 +4,7 @@
  "words": {
   "to-thank": { "text": "danki" },
   "name": { "text": "nomo" },
-  "to-be-called": {
-   "text": "nomiĝi",
-   "notes": {
-    "eo": "nomi iun → nomiĝi · -iĝ- = al si mem.",
-    "de": "nomi heißt jemanden benennen · sich selbst so nennen ist nomiĝi: Mi nomiĝas Anna."
-   }
-  },
+  "to-be-called": { "text": "nomiĝi", "notes": { "eo": "nomi iun → nomiĝi · -iĝ- = al si mem." } },
   "hello": { "text": "Saluton!" },
   "good-day": {
    "text": "Bonan tagon!",
@@ -23,10 +17,7 @@
   "good-evening": { "text": "Bonan vesperon!" },
   "good-night": {
    "text": "Bonan nokton!",
-   "notes": {
-    "eo": "nur adiaŭe kaj por la nokto · alvenante vespere: Bonan vesperon!",
-    "de": "nur zum Abschied und vor dem Schlafen — wer abends ankommt, grüßt mit „Bonan vesperon!“"
-   }
+   "notes": { "eo": "nur adiaŭe kaj por la nokto · alvenante vespere: Bonan vesperon!" }
   },
   "goodbye": { "text": "Ĝis revido!" },
   "bye": { "text": "Ĝis!" },

@@ -20,10 +20,7 @@
   "to-shop": {
    "text": "faire les courses",
    "synonyms": ["faire les magasins"],
-   "notes": {
-    "fr": "faire les courses, c'est acheter à manger · faire les magasins, se promener.",
-    "de": "faire les courses ist der Lebensmitteleinkauf, faire les magasins der Bummel durch die Läden."
-   }
+   "notes": { "fr": "faire les courses, c'est acheter à manger · faire les magasins, se promener." }
   },
   "store": { "text": "magasin", "variants": ["boutique"], "grammar": { "gender": "le" } },
   "open": { "text": "ouvert", "variants": ["ouverte"] },

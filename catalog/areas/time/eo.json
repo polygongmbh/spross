@@ -2,13 +2,7 @@
  "title": "Tempo kaj dato",
  "subtitle": "Kiam io okazas kaj kiom longe ĝi daŭras.",
  "words": {
-  "time": {
-   "text": "tempo",
-   "notes": {
-    "eo": "tempo daŭras · la unuopa fojo estas fojo: tri fojojn.",
-    "de": "das einzelne Mal ist fojo: tri fojojn heißt dreimal."
-   }
-  },
+  "time": { "text": "tempo", "notes": { "eo": "tempo daŭras · la unuopa fojo estas fojo: tri fojojn." } },
   "day": { "text": "tago" },
   "week": { "text": "semajno" },
   "hour": { "text": "horo" },

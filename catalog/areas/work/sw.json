@@ -6,10 +6,7 @@
   "job-application": {
    "text": "maombi ya kazi",
    "grammar": { "plural": "only" },
-   "notes": {
-    "sw": "maombi ya kazi ni wingi · umoja: ombi la kazi",
-    "de": "formal Plural — Singular: ombi la kazi"
-   }
+   "notes": { "sw": "maombi ya kazi ni wingi · umoja: ombi la kazi" }
   },
   "cv": { "text": "wasifu" },
   "contract": { "text": "mkataba", "grammar": { "plural": "mikataba" } },
@@ -29,10 +26,7 @@
   "profession": {
    "text": "taaluma",
    "grammar": { "plural": "=" },
-   "notes": {
-    "sw": "taaluma ni fani ya kazi · huulizwa: Unafanya kazi gani?",
-    "de": "taaluma = Beruf/Fachgebiet; nach dem Beruf fragt man aber meist mit „kazi“"
-   }
+   "notes": { "sw": "taaluma ni fani ya kazi · huulizwa: Unafanya kazi gani?" }
   },
   "interview": { "text": "mahojiano ya kazi", "grammar": { "plural": "only" } },
   "working-hours": { "text": "saa za kazi", "grammar": { "plural": "only" } },
@@ -47,10 +41,7 @@
   "customer": { "text": "mteja", "grammar": { "plural": "wateja" } },
   "to-leave": {
    "text": "kutoka",
-   "notes": {
-    "sw": "kutoka nyumbani = kuondoka pale · Unatoka wapi? = nchi yako",
-    "de": "einen Ort verlassen oder von dort kommen: kutoka nyumbani = das Haus verlassen · Unatoka wapi? = Woher kommst du?"
-   }
+   "notes": { "sw": "kutoka nyumbani = kuondoka pale · Unatoka wapi? = nchi yako" }
   },
   "tomorrow-i-have-a-job-interview": { "text": "Kesho nitajitambulisha kwenye kampuni." },
   "ill-send-the-doctors-note-right-away": { "text": "Nitakutumia cheti cha daktari mara moja." },

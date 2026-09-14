@@ -32,10 +32,7 @@
   "picture": {
    "text": "tableau",
    "grammar": { "gender": "le", "plural": "-x" },
-   "notes": {
-    "fr": "un tableau au mur · à l'école, le tableau où le maître écrit.",
-    "de": "le tableau ist das Bild an der Wand — und in der Schule die Tafel."
-   }
+   "notes": { "fr": "un tableau au mur · à l'école, le tableau où le maître écrit." }
   },
   "to-watch-tv": { "text": "regarder la télévision", "variants": ["regarder la télé"] },
   "to-read": { "text": "lire" },
@@ -51,18 +48,12 @@
   "to-talk": {
    "text": "bavarder",
    "variants": ["discuter", "parler"],
-   "notes": {
-    "fr": "bavarder avec une voisine · parler et discuter sont plus neutres.",
-    "de": "bavarder = plaudern; sprechen allgemein ist parler, ein Gespräch führen discuter."
-   }
+   "notes": { "fr": "bavarder avec une voisine · parler et discuter sont plus neutres." }
   },
   "room": {
    "text": "pièce",
    "grammar": { "gender": "la" },
-   "notes": {
-    "fr": "un appartement de trois pièces · la chambre est pour dormir.",
-    "de": "la pièce ist der Raum in der Wohnung; la chambre ist das Schlafzimmer, la salle ein Saal."
-   }
+   "notes": { "fr": "un appartement de trois pièces · la chambre est pour dormir." }
   },
   "newspaper": { "text": "journal", "grammar": { "gender": "le", "plural": "journaux" } },
   "light": { "text": "lumière", "grammar": { "gender": "la" } },
@@ -72,20 +63,14 @@
   "to-sit": {
    "text": "s'asseoir",
    "variants": ["être assis"],
-   "notes": {
-    "fr": "je m'assieds sur la chaise, puis je suis assis.",
-    "de": "s'asseoir = sich hinsetzen; sitzen als Zustand heißt être assis."
-   }
+   "notes": { "fr": "je m'assieds sur la chaise, puis je suis assis." }
   },
   "to-laugh": { "text": "rire" },
   "quiet": {
    "text": "bas",
    "synonyms": ["silencieux"],
    "variants": ["doucement", "basse"],
-   "notes": {
-    "fr": "parle plus bas · une machine silencieuse ne fait pas de bruit.",
-    "de": "leise sprechen oder stellen = parler bas, mettre moins fort; ein leises Zimmer oder Gerät ist silencieux."
-   }
+   "notes": { "fr": "parle plus bas · une machine silencieuse ne fait pas de bruit." }
   },
   "furniture": {
    "text": "meubles",

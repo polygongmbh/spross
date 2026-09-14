@@ -17,18 +17,12 @@
   "to-pass-exam": {
    "text": "sukcesi en la ekzameno",
    "variants": ["sukcesi la ekzamenon", "sukcese trapasi la ekzamenon"],
-   "notes": {
-    "eo": "sukcesi = bona rezulto · malsukcesi = malbona · trapasi = nur fari ĝin.",
-    "de": "sukcesi = bestehen, malsukcesi = durchfallen; trapasi la ekzamenon heißt nur, sie abzulegen."
-   }
+   "notes": { "eo": "sukcesi = bona rezulto · malsukcesi = malbona · trapasi = nur fari ĝin." }
   },
   "to-practice": {
    "text": "ekzerci",
    "variants": ["sin ekzerci", "ekzerciĝi"],
-   "notes": {
-    "eo": "ekzerci la vortojn · sen objekto: sin ekzerci aŭ ekzerciĝi.",
-    "de": "ekzerci ist transitiv: ekzerci la vortojn. Ohne Objekt heißt „üben“ sin ekzerci oder ekzerciĝi."
-   }
+   "notes": { "eo": "ekzerci la vortojn · sen objekto: sin ekzerci aŭ ekzerciĝi." }
   },
   "to-raise-hand": { "text": "levi la manon" },
   "pupil": { "text": "lernanto", "variants": ["lernejano"] },
@@ -37,19 +31,10 @@
   "lesson": {
    "text": "leciono",
    "synonyms": ["instruado"],
-   "notes": {
-    "eo": "leciono estas unu instruhoro · instruado estas la tuta lernado.",
-    "de": "leciono ist die einzelne Unterrichtsstunde; der Unterricht als Ganzes heißt instruado."
-   }
+   "notes": { "eo": "leciono estas unu instruhoro · instruado estas la tuta lernado." }
   },
   "page": { "text": "paĝo" },
-  "grade": {
-   "text": "noto",
-   "notes": {
-    "eo": "noto estas kaj la lerneja takso kaj skribita memorigo.",
-    "de": "noto ist die Schulnote und die Notiz zugleich; der Zusammenhang unterscheidet sie."
-   }
-  },
+  "grade": { "text": "noto", "notes": { "eo": "noto estas kaj la lerneja takso kaj skribita memorigo." } },
   "to-correct": { "text": "korekti" },
   "book": { "text": "libro" },
   "university": { "text": "universitato" },
@@ -69,10 +54,7 @@
   "to-study": {
    "text": "studi",
    "variants": ["lerni"],
-   "notes": {
-    "eo": "studi por kurso aŭ ekzameno · lerni ion novan.",
-    "de": "Für Kurs oder Prüfung lernen = studi; etwas Neues erlernen = lerni."
-   }
+   "notes": { "eo": "studi por kurso aŭ ekzameno · lerni ion novan." }
   },
   "to-teach": { "text": "instrui" },
   "do-the-homework": { "text": "Mi faras la hejmtaskojn.", "variants": ["Mi faras la hejmtaskon."] },

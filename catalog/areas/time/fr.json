@@ -5,19 +5,13 @@
   "time": {
    "text": "temps",
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "le temps passe · Quel temps fait-il ? · une fois, trois fois.",
-    "de": "le temps heißt auch Wetter: Quel temps fait-il ? · das einzelne Mal ist une fois."
-   }
+   "notes": { "fr": "le temps passe · Quel temps fait-il ? · une fois, trois fois." }
   },
   "day": {
    "text": "jour",
    "variants": ["journée"],
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "trois jours · la journée dure de l'aube à la nuit.",
-    "de": "le jour ist der Tag als Datum und Zeitpunkt, la journée der Tag als Zeitspanne: Bonne journée !"
-   }
+   "notes": { "fr": "trois jours · la journée dure de l'aube à la nuit." }
   },
   "week": { "text": "semaine", "grammar": { "gender": "la" } },
   "hour": { "text": "heure", "variants": ["l'heure"], "grammar": { "gender": "l'" } },

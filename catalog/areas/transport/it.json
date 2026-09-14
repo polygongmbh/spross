@@ -16,23 +16,14 @@
    "synonyms": ["auto"],
    "variants": ["l'auto", "un'auto", "automobile"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "it": "l'auto viene da automobile ed è femminile: le auto.",
-    "de": "l'auto ist die Kurzform von automobile und bleibt feminin: le auto."
-   }
+   "notes": { "it": "l'auto viene da automobile ed è femminile: le auto." }
   },
   "taxi": { "text": "taxi", "variants": ["tassì"], "grammar": { "gender": "il", "plural": "=" } },
   "train-station": { "text": "stazione", "variants": ["stazione ferroviaria"], "grammar": { "gender": "la" } },
   "ticket": { "text": "biglietto", "grammar": { "gender": "il" } },
   "to-ride-bike": { "text": "andare in bicicletta", "variants": ["andare in bici", "pedalare"] },
   "to-take-bus": { "text": "prendere l'autobus", "variants": ["prendere il bus"] },
-  "to-depart": {
-   "text": "partire",
-   "notes": {
-    "it": "il treno parte alle otto.",
-    "de": "Züge und Busse „fahren ab“ mit partire: Il treno parte alle otto."
-   }
-  },
+  "to-depart": { "text": "partire", "notes": { "it": "il treno parte alle otto." } },
   "journey": { "text": "viaggio", "grammar": { "gender": "il", "plural": "viaggi" } },
   "to-travel": { "text": "viaggiare" },
   "driver": {
@@ -47,10 +38,7 @@
    "text": "moto",
    "variants": ["motocicletta"],
    "grammar": { "gender": "la", "plural": "=" },
-   "notes": {
-    "it": "la moto viene da motocicletta ed è femminile: le moto.",
-    "de": "la moto ist die Kurzform von la motocicletta und behält deren Femininum."
-   }
+   "notes": { "it": "la moto viene da motocicletta ed è femminile: le moto." }
   },
   "truck": { "text": "camion", "grammar": { "gender": "il", "plural": "=" } },
   "passenger": { "text": "passeggero", "grammar": { "gender": "il" } },

@@ -6,10 +6,7 @@
   "laundry": {
    "text": "linge",
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "le linge, ce sont les vêtements à laver · la lessive, le lavage et le produit.",
-    "de": "le linge sind die Wäschestücke selbst; der Waschgang und das Waschmittel heißen la lessive."
-   }
+   "notes": { "fr": "le linge, ce sont les vêtements à laver · la lessive, le lavage et le produit." }
   },
   "toilet": {
    "text": "toilettes",
@@ -21,10 +18,7 @@
   "sink": {
    "text": "lavabo",
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "le lavabo est dans la salle de bains, l'évier dans la cuisine.",
-    "de": "le lavabo ist das Waschbecken im Bad; die Spüle in der Küche heißt l'évier."
-   }
+   "notes": { "fr": "le lavabo est dans la salle de bains, l'évier dans la cuisine." }
   },
   "mirror": { "text": "miroir", "grammar": { "gender": "le" } },
   "toothbrush": { "text": "brosse à dents", "grammar": { "gender": "la", "plural": "brosses à dents" } },
@@ -33,10 +27,7 @@
    "text": "serviette",
    "variants": ["serviette de bain"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "fr": "serviette de bain pour le corps, serviette de table à table.",
-    "de": "la serviette ist auch die Serviette bei Tisch; wo es darauf ankommt, sagt man serviette de bain."
-   }
+   "notes": { "fr": "serviette de bain pour le corps, serviette de table à table." }
   },
   "soap": { "text": "savon", "grammar": { "gender": "le" } },
   "shampoo": { "text": "shampooing", "variants": ["shampoing"], "grammar": { "gender": "le" } },

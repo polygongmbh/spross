@@ -6,10 +6,7 @@
    "text": "pasillo",
    "synonyms": ["recibidor"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "El pasillo va entre las habitaciones; la entrada es el recibidor.",
-    "de": "el pasillo ist der Gang in der Wohnung; der Eingangsbereich direkt hinter der Wohnungstür heißt el recibidor."
-   }
+   "notes": { "es": "El pasillo va entre las habitaciones; la entrada es el recibidor." }
   },
   "door": { "text": "puerta", "grammar": { "gender": "la" } },
   "key": { "text": "llave", "grammar": { "gender": "la" } },
@@ -20,10 +17,7 @@
    "text": "gorro",
    "synonyms": ["gorra"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "El gorro es de lana, sin visera; con visera es la gorra.",
-    "de": "el gorro ist die Mütze ohne Schirm (Wollmütze); die Schirmmütze mit Schild heißt la gorra."
-   }
+   "notes": { "es": "El gorro es de lana, sin visera; con visera es la gorra." }
   },
   "mailbox": { "text": "buzón", "grammar": { "gender": "el" } },
   "doorbell": { "text": "timbre", "grammar": { "gender": "el" } },
@@ -32,20 +26,14 @@
    "text": "bolsa",
    "synonyms": ["bolso"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "es": "La bolsa es de la compra; el bolso se lleva al hombro.",
-    "de": "la bolsa ist die Trage- oder Einkaufstasche, el bolso die Handtasche."
-   }
+   "notes": { "es": "La bolsa es de la compra; el bolso se lleva al hombro." }
   },
   "to-lock": { "text": "cerrar con llave", "variants": ["echar la llave"] },
   "to-ring": {
    "text": "sonar",
    "synonyms": ["tocar el timbre"],
    "variants": ["llamar al timbre"],
-   "notes": {
-    "es": "Suena el timbre · quien llama dice tocar el timbre.",
-    "de": "sonar = die Klingel klingelt; wer selbst an der Tür klingelt, sagt tocar el timbre oder llamar al timbre."
-   }
+   "notes": { "es": "Suena el timbre · quien llama dice tocar el timbre." }
   },
   "to-take-off-shoes": { "text": "quitarse los zapatos", "variants": ["sacarse los zapatos", "descalzarse"] },
   "to-set-off": { "text": "salir de casa" },
@@ -59,40 +47,25 @@
    "text": "piso",
    "synonyms": ["apartamento"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "En España se vive en un piso; el apartamento es pequeño o de vacaciones.",
-    "de": "In Spanien heißt die Wohnung el piso; el apartamento ist eher die kleine Wohnung oder die Ferienwohnung."
-   }
+   "notes": { "es": "En España se vive en un piso; el apartamento es pequeño o de vacaciones." }
   },
   "neighbor": { "text": "vecino", "variants": ["vecina"], "grammar": { "gender": "el" } },
   "guest": {
    "text": "invitado",
    "variants": ["invitada"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "El invitado viene a casa; en el hotel es el huésped.",
-    "de": "el invitado ist der eingeladene Gast; im Hotel sagt man el huésped."
-   }
+   "notes": { "es": "El invitado viene a casa; en el hotel es el huésped." }
   },
   "wallet": {
    "text": "cartera",
    "synonyms": ["monedero"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "es": "La cartera lleva billetes y tarjetas; las monedas, el monedero.",
-    "de": "la cartera ist die Brieftasche für Scheine und Karten, el monedero die kleine Münzbörse."
-   }
+   "notes": { "es": "La cartera lleva billetes y tarjetas; las monedas, el monedero." }
   },
   "glove": { "text": "guante", "grammar": { "gender": "el" } },
   "letter": { "text": "carta", "grammar": { "gender": "la" } },
   "to-knock-on-door": { "text": "llamar a la puerta", "variants": ["tocar a la puerta"] },
-  "to-enter": {
-   "text": "entrar",
-   "notes": {
-    "es": "Para invitar a entrar: ¡Pasa! · con usted, ¡Pase!",
-    "de": "Wer jemanden hereinbittet, sagt ¡Pasa! (du) beziehungsweise ¡Pase! (Sie)."
-   }
-  },
+  "to-enter": { "text": "entrar", "notes": { "es": "Para invitar a entrar: ¡Pasa! · con usted, ¡Pase!" } },
   "house": { "text": "casa", "grammar": { "gender": "la" } },
   "to-live": {
    "text": "vivir",

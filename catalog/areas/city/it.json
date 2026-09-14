@@ -8,10 +8,7 @@
   "village": {
    "text": "paese",
    "grammar": { "gender": "il" },
-   "notes": {
-    "it": "il paese è il piccolo centro e anche lo Stato: i paesi europei.",
-    "de": "il paese ist das Dorf und zugleich das Land als Staat."
-   }
+   "notes": { "it": "il paese è il piccolo centro e anche lo Stato: i paesi europei." }
   },
   "neighborhood": { "text": "quartiere", "grammar": { "gender": "il" } },
   "building": {

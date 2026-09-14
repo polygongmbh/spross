@@ -7,10 +7,7 @@
    "synonyms": ["corridoio"],
    "variants": ["l'ingresso"],
    "grammar": { "gender": "l'" },
-   "notes": {
-    "it": "l'ingresso è subito dopo la porta · il corridoio porta alle stanze.",
-    "de": "l'ingresso ist der Bereich gleich hinter der Wohnungstür; il corridoio ist der Gang, der die Zimmer verbindet."
-   }
+   "notes": { "it": "l'ingresso è subito dopo la porta · il corridoio porta alle stanze." }
   },
   "door": { "text": "porta", "grammar": { "gender": "la" } },
   "key": { "text": "chiave", "grammar": { "gender": "la" } },
@@ -21,10 +18,7 @@
    "text": "berretto",
    "synonyms": ["cappello"],
    "grammar": { "gender": "il" },
-   "notes": {
-    "it": "il berretto è morbido · il cappello ha la tesa.",
-    "de": "il berretto ist die Mütze, mit oder ohne Schirm; il cappello ist der Hut mit Krempe."
-   }
+   "notes": { "it": "il berretto è morbido · il cappello ha la tesa." }
   },
   "mailbox": {
    "text": "cassetta della posta",
@@ -36,37 +30,25 @@
    "text": "scale",
    "variants": ["scala"],
    "grammar": { "gender": "le", "plural": "only" },
-   "notes": {
-    "it": "le scale sono quelle di casa · la scala si appoggia al muro.",
-    "de": "die Treppe steht im Plural: le scale; la scala allein ist die Leiter."
-   }
+   "notes": { "it": "le scale sono quelle di casa · la scala si appoggia al muro." }
   },
   "bag": {
    "text": "borsa",
    "variants": ["borsetta"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "it": "la borsa si porta a mano · il sacchetto è della spesa, lo zaino in spalla.",
-    "de": "la borsa ist die Trage- und die Handtasche; die Einkaufstüte heißt il sacchetto, der Rucksack lo zaino."
-   }
+   "notes": { "it": "la borsa si porta a mano · il sacchetto è della spesa, lo zaino in spalla." }
   },
   "to-lock": { "text": "chiudere a chiave", "variants": ["chiudere la porta a chiave"] },
   "to-ring": {
    "text": "suonare",
    "variants": ["suonare il campanello"],
-   "notes": {
-    "it": "il campanello suona e io lo suono · al passato: ha suonato.",
-    "de": "suonare gilt für beides: il campanello suona, und man selbst suona il campanello; im Perfekt mit avere und ohne Subjekt: Ha suonato."
-   }
+   "notes": { "it": "il campanello suona e io lo suono · al passato: ha suonato." }
   },
   "to-take-off-shoes": { "text": "togliersi le scarpe", "variants": ["levarsi le scarpe"] },
   "to-set-off": { "text": "uscire di casa" },
   "to-unlock": {
    "text": "aprire con la chiave",
-   "notes": {
-    "it": "non c'è un verbo solo: apro la porta con la chiave.",
-    "de": "für aufschließen gibt es kein eigenes Verb; man sagt aprire con la chiave."
-   }
+   "notes": { "it": "non c'è un verbo solo: apro la porta con la chiave." }
   },
   "to-get-dressed": { "text": "vestirsi" },
   "to-arrive": { "text": "arrivare" },
@@ -74,10 +56,7 @@
   "to-say-goodbye": {
    "text": "dire arrivederci",
    "variants": ["salutare", "congedarsi"],
-   "notes": {
-    "it": "salutare vale arrivando e andando via · chiaro è dire arrivederci.",
-    "de": "salutare heißt begrüßen und sich verabschieden zugleich; eindeutig ist dire arrivederci."
-   }
+   "notes": { "it": "salutare vale arrivando e andando via · chiaro è dire arrivederci." }
   },
   "shoe": { "text": "scarpa", "grammar": { "gender": "la" } },
   "apartment": { "text": "appartamento", "variants": ["l'appartamento"], "grammar": { "gender": "l'" } },
@@ -85,10 +64,7 @@
    "text": "vicino di casa",
    "variants": ["vicino", "vicina", "vicina di casa"],
    "grammar": { "gender": "il" },
-   "notes": {
-    "it": "vicino vuol dire anche non lontano: si dice il vicino di casa.",
-    "de": "il vicino di casa ist der Nachbar; vicino allein heißt auch nah, darum sagt man meist di casa."
-   }
+   "notes": { "it": "vicino vuol dire anche non lontano: si dice il vicino di casa." }
   },
   "guest": {
    "text": "ospite",
@@ -103,21 +79,12 @@
    "text": "portafoglio",
    "synonyms": ["portamonete"],
    "grammar": { "gender": "il", "plural": "portafogli" },
-   "notes": {
-    "it": "nel portafoglio stanno soldi e carte · le monete nel portamonete.",
-    "de": "il portafoglio ist die Brieftasche für Scheine und Karten, il portamonete die Münzbörse."
-   }
+   "notes": { "it": "nel portafoglio stanno soldi e carte · le monete nel portamonete." }
   },
   "glove": { "text": "guanto", "grammar": { "gender": "il" } },
   "letter": { "text": "lettera", "grammar": { "gender": "la" } },
   "to-knock-on-door": { "text": "bussare alla porta" },
-  "to-enter": {
-   "text": "entrare",
-   "notes": {
-    "it": "entra! a un amico · prego, si accomodi! agli altri.",
-    "de": "Wer jemanden hereinbittet, sagt Entra! (du) oder Prego, si accomodi! (Sie)."
-   }
-  },
+  "to-enter": { "text": "entrare", "notes": { "it": "entra! a un amico · prego, si accomodi! agli altri." } },
   "house": { "text": "casa", "grammar": { "gender": "la" } },
   "to-live": {
    "text": "abitare",

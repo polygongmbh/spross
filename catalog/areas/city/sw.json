@@ -11,10 +11,7 @@
   "city": {
    "text": "mji",
    "grammar": { "plural": "miji" },
-   "notes": {
-    "sw": "mji = mahali penye watu wengi · jiji = mji mkubwa kama Dar",
-    "de": "jiji ist die Großstadt, mji die Stadt überhaupt."
-   }
+   "notes": { "sw": "mji = mahali penye watu wengi · jiji = mji mkubwa kama Dar" }
   },
   "village": { "text": "kijiji", "grammar": { "plural": "vijiji" } },
   "neighborhood": { "text": "mtaa", "grammar": { "plural": "mitaa" } },
@@ -24,10 +21,7 @@
   "hotel": {
    "text": "hoteli",
    "grammar": { "plural": "=" },
-   "notes": {
-    "sw": "hoteli ni pa kulala na pia pa kula: hoteli ya chakula",
-    "de": "hoteli bezeichnet oft auch eine einfache Gaststätte."
-   }
+   "notes": { "sw": "hoteli ni pa kulala na pia pa kula: hoteli ya chakula" }
   },
   "church": { "text": "kanisa", "grammar": { "plural": "makanisa" } },
   "mosque": { "text": "msikiti", "grammar": { "plural": "misikiti" } },

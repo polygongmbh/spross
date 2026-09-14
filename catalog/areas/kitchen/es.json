@@ -29,13 +29,7 @@
   "spoon": { "text": "cuchara", "grammar": { "gender": "la" } },
   "fork": { "text": "tenedor", "grammar": { "gender": "el" } },
   "plate": { "text": "plato", "grammar": { "gender": "el" } },
-  "to-cook": {
-   "text": "cocinar",
-   "notes": {
-    "es": "cocinar es preparar comida; el agua se hierve.",
-    "de": "cocinar = Essen zubereiten; Wasser kochen heißt hervir."
-   }
-  },
+  "to-cook": { "text": "cocinar", "notes": { "es": "cocinar es preparar comida; el agua se hierve." } },
   "to-bake": { "text": "hornear", "variants": ["cocer al horno", "hacer al horno"] },
   "to-cut": { "text": "cortar" },
   "to-wash-the-dishes": { "text": "fregar los platos", "synonyms": ["lavar los platos"] },
@@ -64,10 +58,7 @@
   "the-pot-is-still-on-the-stove": {
    "text": "La olla todavía está en el fuego.",
    "variants": ["La olla sigue en el fuego.", "La olla todavía está al fuego."],
-   "notes": {
-    "es": "en el fuego = encima de la cocina · en la cocina sería el cuarto.",
-    "de": "auf dem Herd = en el fuego; en la cocina hieße „in der Küche“."
-   }
+   "notes": { "es": "en el fuego = encima de la cocina · en la cocina sería el cuarto." }
   },
   "wash-the-dishes-in-the-sink": {
    "text": "¡Friega los platos en el fregadero!",

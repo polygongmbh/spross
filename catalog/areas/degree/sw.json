@@ -11,20 +11,8 @@
   "maybe": { "text": "labda" },
   "sometimes": { "text": "wakati mwingine" },
   "often": { "text": "mara nyingi" },
-  "very": {
-   "text": "sana",
-   "notes": {
-    "sw": "nzuri sana, asante sana, ninapenda sana",
-    "de": "sana steht hinter dem Wort: nzuri sana, asante sana."
-   }
-  },
-  "too": {
-   "text": "mno",
-   "notes": {
-    "sw": "ghali mno = ghali kupita kiasi · kubwa mno",
-    "de": "mno steht hinter dem Wort: ghali mno = zu teuer."
-   }
-  },
+  "very": { "text": "sana", "notes": { "sw": "nzuri sana, asante sana, ninapenda sana" } },
+  "too": { "text": "mno", "notes": { "sw": "ghali mno = ghali kupita kiasi · kubwa mno" } },
   "enough": {
    "text": "ya kutosha",
    "variants": ["cha kutosha", "vya kutosha", "wa kutosha", "za kutosha"],
@@ -37,35 +25,11 @@
   "gladly": { "text": "kwa furaha" },
   "completely": { "text": "kabisa" },
   "all": { "text": "-ote", "variants": ["wote", "yote", "zote", "chote", "vyote", "lote", "pote"] },
-  "some": {
-   "text": "baadhi ya",
-   "notes": {
-    "sw": "baadhi ya maneno · baadhi ya siku · siku kadhaa",
-    "de": "baadhi ya steht vor dem Nomen: baadhi ya watu · nach Zahlwortart sagt man kadhaa: siku kadhaa."
-   }
-  },
-  "every": {
-   "text": "kila",
-   "notes": {
-    "sw": "kila siku, kila mtu, kila kitu",
-    "de": "kila steht vor dem Nomen und bleibt unverändert: kila siku, kila mtu."
-   }
-  },
-  "a-little": {
-   "text": "kidogo",
-   "notes": {
-    "sw": "subiri kidogo, moto kidogo, chumvi kidogo",
-    "de": "hinter dem Verb oder Adjektiv: subiri kidogo, moto kidogo."
-   }
-  },
+  "some": { "text": "baadhi ya", "notes": { "sw": "baadhi ya maneno · baadhi ya siku · siku kadhaa" } },
+  "every": { "text": "kila", "notes": { "sw": "kila siku, kila mtu, kila kitu" } },
+  "a-little": { "text": "kidogo", "notes": { "sw": "subiri kidogo, moto kidogo, chumvi kidogo" } },
   "few": { "text": "-chache", "variants": ["wachache", "chache", "vichache", "machache", "michache"] },
-  "once": {
-   "text": "mara moja",
-   "notes": {
-    "sw": "mara mbili, mara tatu · mara moja pia = papo hapo",
-    "de": "mara zählt die Male: mara mbili = zweimal · mara moja heißt auch sofort."
-   }
-  },
+  "once": { "text": "mara moja", "notes": { "sw": "mara mbili, mara tatu · mara moja pia = papo hapo" } },
   "more-or-less": { "text": "zaidi au pungufu" },
   "i-am-always-there": { "text": "Niko pale daima." },
   "hang-it-higher": { "text": "Itundike juu zaidi." },

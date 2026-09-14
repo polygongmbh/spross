@@ -14,13 +14,7 @@
     "de": "-li-: nilikuja = ich kam · -me-: nimekuja = ich bin gekommen."
    }
   },
-  "present": {
-   "text": "wakati uliopo",
-   "notes": { "sw": "-na-: ninakuja", "de": "-na-: ninakuja = ich komme." }
-  },
-  "future": {
-   "text": "wakati ujao",
-   "notes": { "sw": "-ta-: nitakuja", "de": "-ta-: nitakuja = ich werde kommen." }
-  }
+  "present": { "text": "wakati uliopo", "notes": { "sw": "-na-: ninakuja" } },
+  "future": { "text": "wakati ujao", "notes": { "sw": "-ta-: nitakuja" } }
  }
 }

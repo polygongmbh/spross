@@ -7,11 +7,7 @@
   "expensive": { "text": "caro" },
   "cheap": { "text": "barato" },
   "to-sell": { "text": "vender" },
-  "cash": {
-   "text": "efectivo",
-   "grammar": { "gender": "el" },
-   "notes": { "es": "pagar en efectivo.", "de": "bar zahlen heißt pagar en efectivo." }
-  },
+  "cash": { "text": "efectivo", "grammar": { "gender": "el" }, "notes": { "es": "pagar en efectivo." } },
   "bank-card": {
    "text": "tarjeta",
    "variants": ["tarjeta bancaria", "tarjeta de crédito"],
@@ -22,10 +18,7 @@
    "text": "cambio",
    "variants": ["vuelto", "vuelta"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "En España el cambio; en gran parte de América, el vuelto.",
-    "de": "In Spanien el cambio, in weiten Teilen Lateinamerikas el vuelto."
-   }
+   "notes": { "es": "En España el cambio; en gran parte de América, el vuelto." }
   },
   "money": { "text": "dinero", "variants": ["plata"], "grammar": { "gender": "el" } },
   "to-buy": { "text": "comprar" },

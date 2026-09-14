@@ -21,10 +21,7 @@
   "big": {
    "text": "grande",
    "variants": ["gran"],
-   "notes": {
-    "es": "un gran hombre ante el nombre = importante · de estatura, alto.",
-    "de": "vor dem Substantiv verkürzt zu gran und heißt dann eher großartig · Körpergröße: alto."
-   }
+   "notes": { "es": "un gran hombre ante el nombre = importante · de estatura, alto." }
   },
   "small": { "text": "pequeño", "variants": ["pequeña"] },
   "much": {
@@ -36,10 +33,7 @@
   "old": {
    "text": "viejo",
    "variants": ["vieja"],
-   "notes": {
-    "es": "Con personas es más amable mayor · antiguo es de otra época.",
-    "de": "bei Personen höflicher: mayor · antik, ehemalig: antiguo."
-   }
+   "notes": { "es": "Con personas es más amable mayor · antiguo es de otra época." }
   },
   "slow": {
    "text": "lento",
@@ -55,7 +49,7 @@
   "short": {
    "text": "corto",
    "variants": ["corta"],
-   "notes": { "es": "corto es de longitud; de estatura se dice bajo.", "de": "Körpergröße: bajo." }
+   "notes": { "es": "corto es de longitud; de estatura se dice bajo." }
   },
   "heavy": { "text": "pesado", "variants": ["pesada"] },
   "lightweight": { "text": "ligero", "variants": ["ligera"] },
@@ -98,10 +92,7 @@
   "same": {
    "text": "mismo",
    "variants": ["misma", "mismos", "mismas"],
-   "notes": {
-    "es": "el mismo día · lo mismo = una cosa igual.",
-    "de": "meist mit Artikel: el mismo día · lo mismo heißt dasselbe."
-   }
+   "notes": { "es": "el mismo día · lo mismo = una cosa igual." }
   },
   "similar": { "text": "parecido", "synonyms": ["similar"], "variants": ["parecida"] },
   "opposite": { "text": "opuesto", "synonyms": ["contrario"], "variants": ["opuesta", "contraria"] },
@@ -118,10 +109,7 @@
    "text": "sano",
    "synonyms": ["saludable"],
    "variants": ["sana"],
-   "notes": {
-    "es": "estoy sano (persona) · comida saludable (comida).",
-    "de": "sano beschreibt den Menschen: estoy sano · saludable eher Essen und Lebensweise: comida saludable."
-   }
+   "notes": { "es": "estoy sano (persona) · comida saludable (comida)." }
   },
   "firm": { "text": "firme" },
   "liquid": { "text": "líquido", "variants": ["líquida"] },

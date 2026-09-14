@@ -5,25 +5,13 @@
   "to-thank": { "text": "kushukuru" },
   "name": { "text": "jina", "grammar": { "plural": "majina" } },
   "to-be-called": { "text": "kuitwa" },
-  "hello": {
-   "text": "Hujambo!",
-   "notes": { "sw": "Hujambo? — Sijambo. · Hamjambo? — Hatujambo.", "de": "Antwort: „Sijambo!“" }
-  },
-  "good-day": {
-   "text": "Habari!",
-   "notes": {
-    "sw": "Habari? — Nzuri.",
-    "de": "habari = Neuigkeit — die Allzweck-Begrüßung; Antwort: „Nzuri!“"
-   }
-  },
+  "hello": { "text": "Hujambo!", "notes": { "sw": "Hujambo? — Sijambo. · Hamjambo? — Hatujambo." } },
+  "good-day": { "text": "Habari!", "notes": { "sw": "Habari? — Nzuri." } },
   "good-morning": { "text": "Habari za asubuhi!" },
   "good-evening": { "text": "Habari za jioni!" },
   "good-night": {
    "text": "Usiku mwema!",
-   "notes": {
-    "sw": "Usiku mwema! kwa kuaga · Habari za usiku! kwa kufika",
-    "de": "Wunsch zum Abschied und vor dem Schlafen — wer spät ankommt, grüßt mit „Habari za usiku!“"
-   }
+   "notes": { "sw": "Usiku mwema! kwa kuaga · Habari za usiku! kwa kufika" }
   },
   "goodbye": { "text": "Kwaheri!" },
   "welcome": {
@@ -38,13 +26,7 @@
     "de": "Respektgruß an Ältere; die Antwort ist immer „Marahaba!“ · unter Gleichaltrigen bleibt es bei „Hujambo!“"
    }
   },
-  "may-i-come-in": {
-   "text": "Hodi!",
-   "notes": {
-    "sw": "Hodi! — Karibu! · husemwa mlangoni badala ya kugonga",
-    "de": "Ruft man an der Tür, statt zu klopfen; die Antwort ist „Karibu!“"
-   }
-  },
+  "may-i-come-in": { "text": "Hodi!", "notes": { "sw": "Hodi! — Karibu! · husemwa mlangoni badala ya kugonga" } },
   "how-are-you": { "text": "Habari yako?" },
   "all-good": { "text": "Yote ni sawa.", "variants": ["Yote sawa."] },
   "thank-you": { "text": "Asante sana!" },

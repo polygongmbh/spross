@@ -8,10 +8,7 @@
   "cold": {
    "text": "raffreddore",
    "grammar": { "gender": "il" },
-   "notes": {
-    "it": "ho il raffreddore · sono raffreddato.",
-    "de": "Erkältet sein heißt essere raffreddato: sono raffreddato."
-   }
+   "notes": { "it": "ho il raffreddore · sono raffreddato." }
   },
   "to-hurt": {
    "text": "fare male",
@@ -28,10 +25,7 @@
   "dizziness": {
    "text": "capogiro",
    "grammar": { "gender": "il" },
-   "notes": {
-    "it": "ho un capogiro · mi gira la testa · ho le vertigini.",
-    "de": "Schwindlig ist einem mit ho un capogiro, ho le vertigini oder mi gira la testa."
-   }
+   "notes": { "it": "ho un capogiro · mi gira la testa · ho le vertigini." }
   },
   "wound": { "text": "ferita", "grammar": { "gender": "la" } },
   "to-hurt-oneself": { "text": "farsi male", "variants": ["ferirsi"] },

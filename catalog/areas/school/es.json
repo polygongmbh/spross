@@ -6,10 +6,7 @@
    "text": "escuela",
    "synonyms": ["colegio"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "es": "La escuela es general: la escuela de idiomas · los niños van al colegio.",
-    "de": "el colegio ist die Schule der Kinder; la escuela ist allgemeiner: la escuela de idiomas = die Sprachschule."
-   }
+   "notes": { "es": "La escuela es general: la escuela de idiomas · los niños van al colegio." }
   },
   "classroom": {
    "text": "aula",
@@ -41,28 +38,19 @@
    "text": "deberes",
    "variants": ["tarea", "tareas"],
    "grammar": { "gender": "los", "plural": "only" },
-   "notes": {
-    "es": "Solo en plural: hacer los deberes.",
-    "de": "Nur im Plural: los deberes — hacer los deberes = Hausaufgaben machen."
-   }
+   "notes": { "es": "Solo en plural: hacer los deberes." }
   },
   "exam": { "text": "examen", "variants": ["prueba"], "grammar": { "gender": "el" } },
   "break": {
    "text": "recreo",
    "variants": ["descanso", "pausa"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "El recreo es el del colegio; en el trabajo, el descanso.",
-    "de": "el recreo ist die Schulpause; die allgemeine Pause heißt el descanso."
-   }
+   "notes": { "es": "El recreo es el del colegio; en el trabajo, el descanso." }
   },
   "to-pass-exam": {
    "text": "aprobar el examen",
    "variants": ["pasar el examen"],
-   "notes": {
-    "es": "aprobar el examen · lo contrario es suspender.",
-    "de": "aprobar = bestehen, suspender = durchfallen."
-   }
+   "notes": { "es": "aprobar el examen · lo contrario es suspender." }
   },
   "to-practice": { "text": "practicar", "variants": ["hacer ejercicios"] },
   "to-raise-hand": { "text": "levantar la mano", "variants": ["alzar la mano"] },
@@ -72,10 +60,7 @@
   "lesson": {
    "text": "clase",
    "grammar": { "gender": "la" },
-   "notes": {
-    "es": "Casi siempre en singular: hoy tengo clase.",
-    "de": "Meist im Singular: hoy tengo clase = heute habe ich Unterricht."
-   }
+   "notes": { "es": "Casi siempre en singular: hoy tengo clase." }
   },
   "page": { "text": "página", "grammar": { "gender": "la" } },
   "grade": { "text": "nota", "grammar": { "gender": "la" } },
@@ -85,30 +70,15 @@
   "class-schedule": {
    "text": "horario",
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "El horario sirve para cualquier plan; el del colegio es el horario de clases.",
-    "de": "el horario ist jeder Zeitplan; der Stundenplan der Schule heißt genauer el horario de clases."
-   }
+   "notes": { "es": "El horario sirve para cualquier plan; el del colegio es el horario de clases." }
   },
-  "to-count": {
-   "text": "contar",
-   "notes": {
-    "es": "contar también es narrar: cuéntame qué pasó.",
-    "de": "contar heißt auch erzählen: cuéntame = erzähl mir."
-   }
-  },
+  "to-count": { "text": "contar", "notes": { "es": "contar también es narrar: cuéntame qué pasó." } },
   "to-try": { "text": "intentar", "variants": ["probar"] },
   "to-learn-by-heart": { "text": "aprender de memoria", "synonyms": ["memorizar"] },
   "to-read-aloud": { "text": "leer en voz alta" },
   "dictionary": { "text": "diccionario", "grammar": { "gender": "el" } },
   "to-pronounce": { "text": "pronunciar" },
-  "to-study": {
-   "text": "estudiar",
-   "notes": {
-    "es": "estudiar para un examen · aprender algo nuevo.",
-    "de": "Für eine Prüfung oder einen Kurs lernen = estudiar; etwas Neues erlernen = aprender."
-   }
-  },
+  "to-study": { "text": "estudiar", "notes": { "es": "estudiar para un examen · aprender algo nuevo." } },
   "to-teach": { "text": "enseñar" },
   "do-the-homework": { "text": "Hago los deberes." },
   "look-at-the-class-schedule": { "text": "Mira el horario.", "variants": ["Mire el horario."] },

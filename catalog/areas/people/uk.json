@@ -4,20 +4,11 @@
  "words": {
   "person": { "text": "людина", "grammar": { "plural": "люди" } },
   "family": { "text": "сім'я", "variants": ["родина"] },
-  "mother": {
-   "text": "мама",
-   "notes": {
-    "uk": "мама — щодня · мати — офіційно, і це ще дієслово мати.",
-    "de": "Alltagswort ist мама; die förmliche Form мати ist zugleich das Verb „haben“."
-   }
-  },
+  "mother": { "text": "мама", "notes": { "uk": "мама — щодня · мати — офіційно, і це ще дієслово мати." } },
   "father": {
    "text": "тато",
    "synonyms": ["батько"],
-   "notes": {
-    "uk": "тато — вдома · батько — офіційніше, обидва звичні.",
-    "de": "тато ist familiär, батько förmlicher — beide sind alltäglich."
-   }
+   "notes": { "uk": "тато — вдома · батько — офіційніше, обидва звичні." }
   },
   "parents": { "text": "батьки", "grammar": { "plural": "only" } },
   "child": { "text": "дитина", "grammar": { "plural": "діти" } },

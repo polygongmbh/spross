@@ -25,13 +25,7 @@
    "synonyms": ["ambulensi"],
    "grammar": { "plural": "magari ya wagonjwa" }
   },
-  "to-look-after": {
-   "text": "kutunza",
-   "notes": {
-    "sw": "kutunza mtoto, kutunza pesa, kutunza afya",
-    "de": "Personen wie Dinge: kutunza mtoto, kutunza pesa."
-   }
-  },
+  "to-look-after": { "text": "kutunza", "notes": { "sw": "kutunza mtoto, kutunza pesa, kutunza afya" } },
   "take-the-pills-twice-daily": { "text": "Kunywa vidonge mara mbili kwa siku." },
   "show-me-your-insurance-card": { "text": "Nionyeshe kadi yako ya bima ya afya." },
   "the-practice-is-closed": { "text": "Kliniki imefungwa." },

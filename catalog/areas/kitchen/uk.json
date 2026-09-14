@@ -29,10 +29,7 @@
   "tin-can": {
    "text": "банка",
    "variants": ["бляшанка"],
-   "notes": {
-    "uk": "банка — і скляна, і бляшана · тільки бляшана — бляшанка.",
-    "de": "банка ist auch das Einmachglas; die Blechdose allein heißt бляшанка."
-   }
+   "notes": { "uk": "банка — і скляна, і бляшана · тільки бляшана — бляшанка." }
   },
   "gas": { "text": "газ" },
   "tasty": { "text": "смачний", "variants": ["смачна", "смачне"] },
@@ -40,10 +37,7 @@
   "this-is-very-tasty": { "text": "Це дуже смачно!", "variants": ["Це так смачно!"] },
   "are-you-cooking-rice-today": {
    "text": "Ти вариш сьогодні рис?",
-   "notes": {
-    "uk": "варити = у воді · готувати = будь-яку страву.",
-    "de": "варити = im Wasser kochen · готувати = zubereiten"
-   }
+   "notes": { "uk": "варити = у воді · готувати = будь-яку страву." }
   },
   "the-pot-is-still-on-the-stove": { "text": "Каструля ще стоїть на плиті." },
   "wash-the-dishes-in-the-sink": { "text": "Помий посуд у мийці!" },

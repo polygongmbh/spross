@@ -19,7 +19,6 @@
    "grammar": { "gender": "il" },
    "notes": {
     "it": "il gabinetto è il water (si dice vater) · si chiede Dov'è il bagno?",
-    "de": "il gabinetto ist die Toilette selbst; im Alltag sagt man meist il water, italienisch ausgesprochen vater. Nach der Toilette fragt man mit Dov'è il bagno?",
     "en": "Italian il water (from water closet, said vater) is the toilet bowl, not water; ask for one with Dov'è il bagno?"
    }
   },
@@ -66,10 +65,7 @@
    "text": "pattumiera",
    "variants": ["cestino", "secchio della spazzatura", "bidone"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "it": "la pattumiera sta in cucina · il cestino è piccolo, per la carta.",
-    "de": "la pattumiera ist der Mülleimer; der kleine Papierkorb im Bad heißt il cestino."
-   }
+   "notes": { "it": "la pattumiera sta in cucina · il cestino è piccolo, per la carta." }
   },
   "bucket": { "text": "secchio", "grammar": { "gender": "il", "plural": "secchi" } },
   "im-taking-a-quick-shower": {

@@ -16,10 +16,7 @@
   "on": {
    "text": "sobre",
    "variants": ["encima de"],
-   "notes": {
-    "es": "sobre = encima · en sirve igual",
-    "de": "im Alltag steht meist en: el libro está en la mesa · sobre betont obendrauf."
-   }
+   "notes": { "es": "sobre = encima · en sirve igual" }
   },
   "under": { "text": "debajo de", "variants": ["bajo"] },
   "behind": { "text": "detrás de" },
@@ -39,10 +36,7 @@
   "at-school": { "text": "en la escuela" },
   "go-to-school": {
    "text": "ir a la escuela",
-   "notes": {
-    "es": "a marca adónde, en marca dónde: voy a la escuela · estoy en la escuela.",
-    "de": "a zeigt die Richtung, en den Ort: voy a la escuela · estoy en la escuela."
-   }
+   "notes": { "es": "a marca adónde, en marca dónde: voy a la escuela · estoy en la escuela." }
   },
   "are-you-going-home-already": { "text": "¿Ya se van a casa?", "variants": ["¿Ya os vais a casa?", "¿Ya te vas a casa?"] }
  }

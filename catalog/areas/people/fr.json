@@ -5,19 +5,13 @@
   "person": {
    "text": "personne",
    "grammar": { "gender": "la" },
-   "notes": {
-    "fr": "une personne gentille · je ne vois personne = aucune personne.",
-    "de": "personne ist auch das Negationswort niemand: je ne vois personne."
-   }
+   "notes": { "fr": "une personne gentille · je ne vois personne = aucune personne." }
   },
   "human": {
    "text": "être humain",
    "variants": ["l'être humain"],
    "grammar": { "gender": "l'" },
-   "notes": {
-    "fr": "l'être humain face aux animaux · une personne, c'est quelqu'un.",
-    "de": "être humain = Mensch als Gattung · personne = der einzelne Mensch."
-   }
+   "notes": { "fr": "l'être humain face aux animaux · une personne, c'est quelqu'un." }
   },
   "family": { "text": "famille", "grammar": { "gender": "la" } },
   "mother": { "text": "mère", "grammar": { "gender": "la" } },
@@ -25,20 +19,14 @@
   "parents": {
    "text": "parents",
    "grammar": { "gender": "les" },
-   "notes": {
-    "fr": "mes parents, c'est mon père et ma mère · un parent est de la famille.",
-    "de": "les parents sind die Eltern; ein einzelnes un parent ist auch ein Verwandter."
-   }
+   "notes": { "fr": "mes parents, c'est mon père et ma mère · un parent est de la famille." }
   },
   "child": { "text": "enfant", "variants": ["l'enfant"], "grammar": { "gender": "l'" } },
   "son": { "text": "fils", "grammar": { "gender": "le", "plural": "=" } },
   "daughter": {
    "text": "fille",
    "grammar": { "gender": "la" },
-   "notes": {
-    "fr": "ma fille, c'est mon enfant · une petite fille joue dans la cour.",
-    "de": "fille heißt Tochter und Mädchen: ma fille = meine Tochter, une petite fille = ein kleines Mädchen."
-   }
+   "notes": { "fr": "ma fille, c'est mon enfant · une petite fille joue dans la cour." }
   },
   "brother": { "text": "frère", "grammar": { "gender": "le" } },
   "sister": { "text": "sœur", "grammar": { "gender": "la" } },
@@ -46,10 +34,7 @@
   "woman": {
    "text": "femme",
    "grammar": { "gender": "la" },
-   "notes": {
-    "fr": "ma femme, c'est mon épouse · une femme passe dans la rue.",
-    "de": "femme heißt Frau und Ehefrau: ma femme = meine Frau."
-   }
+   "notes": { "fr": "ma femme, c'est mon épouse · une femme passe dans la rue." }
   },
   "boy": { "text": "garçon", "grammar": { "gender": "le" } },
   "baby": { "text": "bébé", "grammar": { "gender": "le" } },
@@ -70,10 +55,7 @@
    "text": "épouse",
    "variants": ["l'épouse", "femme"],
    "grammar": { "gender": "l'" },
-   "notes": {
-    "fr": "au quotidien on dit ma femme · épouse est plus officiel.",
-    "de": "Im Alltag sagt man ma femme; épouse ist die förmliche Form."
-   }
+   "notes": { "fr": "au quotidien on dit ma femme · épouse est plus officiel." }
   },
   "uncle": { "text": "oncle", "variants": ["l'oncle"], "grammar": { "gender": "l'" } },
   "aunt": { "text": "tante", "grammar": { "gender": "la" } },
@@ -98,10 +80,7 @@
   "old-people": {
    "text": "personnes âgées",
    "variants": ["les gens âgés"],
-   "notes": {
-    "fr": "on dit les personnes âgées · vieux peut blesser.",
-    "de": "vieux klingt bei Menschen abwertend — im Alltag âgé."
-   }
+   "notes": { "fr": "on dit les personnes âgées · vieux peut blesser." }
   },
   "many-friends": { "text": "beaucoup d'amis" },
   "mom-help-me": { "text": "Maman, aide-moi !" }

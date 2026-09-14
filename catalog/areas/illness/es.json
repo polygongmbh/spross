@@ -30,10 +30,7 @@
   "dizziness": {
    "text": "mareo",
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "estar mareado en el coche, en el barco o de pie.",
-    "de": "estar mareado heißt schwindlig sein — und ebenso reise- oder seekrank."
-   }
+   "notes": { "es": "estar mareado en el coche, en el barco o de pie." }
   },
   "wound": { "text": "herida", "grammar": { "gender": "la" } },
   "to-hurt-oneself": { "text": "hacerse daño", "variants": ["lesionarse"] },

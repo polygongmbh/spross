@@ -13,20 +13,14 @@
    "text": "entrata",
    "variants": ["l'entrata"],
    "grammar": { "gender": "l'" },
-   "notes": {
-    "it": "dall'entrata si entra · l'ingresso è lo spazio subito dentro.",
-    "de": "entrata ist der Weg hinein; l'ingresso ist der Eingangsbereich, also eher der Flur."
-   }
+   "notes": { "it": "dall'entrata si entra · l'ingresso è lo spazio subito dentro." }
   },
   "exit": { "text": "uscita", "variants": ["l'uscita"], "grammar": { "gender": "l'" } },
   "to-follow": { "text": "seguire" },
   "way": {
    "text": "cammino",
    "grammar": { "gender": "il" },
-   "notes": {
-    "it": "il cammino è quello che si percorre · si chiede la strada.",
-    "de": "il cammino ist der Weg, den man geht; nach dem Weg fragt man mit la strada."
-   }
+   "notes": { "it": "il cammino è quello che si percorre · si chiede la strada." }
   },
   "north": { "text": "nord", "grammar": { "gender": "il" } },
   "south": { "text": "sud", "grammar": { "gender": "il" } },

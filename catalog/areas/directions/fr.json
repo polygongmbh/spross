@@ -4,10 +4,7 @@
  "words": {
   "straight-ahead": {
    "text": "tout droit",
-   "notes": {
-    "fr": "tout droit, sans tourner · à droite, du côté de la main droite.",
-    "de": "tout droit heißt geradeaus, à droite rechts — der Unterschied hängt an einem Wort."
-   }
+   "notes": { "fr": "tout droit, sans tourner · à droite, du côté de la main droite." }
   },
   "to-turn": { "text": "tourner" },
   "corner": { "text": "coin", "grammar": { "gender": "le" } },

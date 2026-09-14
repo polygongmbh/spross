@@ -4,10 +4,7 @@
  "words": {
   "to-hear": {
    "text": "sentire",
-   "notes": {
-    "it": "sentire = accorgersi di un suono · ascoltare = starci attenti.",
-    "de": "sentire = wahrnehmen · ascoltare = bewusst zuhören."
-   }
+   "notes": { "it": "sentire = accorgersi di un suono · ascoltare = starci attenti." }
   },
   "to-understand": { "text": "capire", "synonyms": ["comprendere"] },
   "to-speak": { "text": "parlare" },
@@ -15,10 +12,7 @@
   "loud": {
    "text": "forte",
    "variants": ["alto"],
-   "notes": {
-    "it": "parla più forte! · forte = robusto.",
-    "de": "Lautstärke: parla più forte · forte heißt auch stark."
-   }
+   "notes": { "it": "parla più forte! · forte = robusto." }
   },
   "to-ask": { "text": "chiedere", "variants": ["domandare"] },
   "question": { "text": "domanda", "grammar": { "gender": "la" } },

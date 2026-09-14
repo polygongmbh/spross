@@ -12,13 +12,7 @@
   "to-come": { "text": "venire" },
   "to-have": { "text": "avere" },
   "to-give": { "text": "dare" },
-  "to-take": {
-   "text": "prendere",
-   "notes": {
-    "it": "prendere l'autobus · prendere un caffè.",
-    "de": "prendere nimmt auch Verkehrsmittel und Getränke: prendere l'autobus, prendere un caffè."
-   }
-  },
+  "to-take": { "text": "prendere", "notes": { "it": "prendere l'autobus · prendere un caffè." } },
   "to-see": {
    "text": "vedere",
    "notes": { "it": "vedere è per caso, non apposta.", "de": "vedere = sehen · guardare = anschauen." }
@@ -38,20 +32,11 @@
    }
   },
   "to-can": { "text": "potere", "notes": { "it": "posso, puoi, può, possiamo." } },
-  "to-think": {
-   "text": "pensare",
-   "notes": {
-    "it": "penso a te · penso che tu sia a casa.",
-    "de": "pensare a qualcosa = an etwas denken · pensare che = glauben, dass."
-   }
-  },
+  "to-think": { "text": "pensare", "notes": { "it": "penso a te · penso che tu sia a casa." } },
   "to-imagine": { "text": "immaginare" },
   "to-wait": {
    "text": "aspettare",
-   "notes": {
-    "it": "aspetto l'autobus · aspetto un bambino · sperare è un'altra cosa.",
-    "de": "aspettare heißt auch erwarten; hoffen ist sperare."
-   }
+   "notes": { "it": "aspetto l'autobus · aspetto un bambino · sperare è un'altra cosa." }
   },
   "to-want": {
    "text": "volere",
@@ -61,27 +46,15 @@
    }
   },
   "to-find": { "text": "trovare" },
-  "to-search": {
-   "text": "cercare",
-   "notes": {
-    "it": "cerco una parola, cerco te: cercare non vuole a.",
-    "de": "cercare steht ohne Präposition: cerco un albergo."
-   }
-  },
+  "to-search": { "text": "cercare", "notes": { "it": "cerco una parola, cerco te: cercare non vuole a." } },
   "to-receive": { "text": "ricevere", "synonyms": ["ottenere"] },
-  "to-look": {
-   "text": "guardare",
-   "notes": { "it": "guardare la TV · guarda qui!", "de": "guardare = bewusst anschauen: guardare la TV." }
-  },
+  "to-look": { "text": "guardare", "notes": { "it": "guardare la TV · guarda qui!" } },
   "to-open": { "text": "aprire" },
   "to-close": { "text": "chiudere" },
   "to-stop": {
    "text": "smettere",
    "variants": ["smettere di"],
-   "notes": {
-    "it": "smettere di fumare · il treno si ferma.",
-    "de": "smettere di + Infinitiv: smettere di fumare · anhalten ist fermarsi."
-   }
+   "notes": { "it": "smettere di fumare · il treno si ferma." }
   },
   "to-stand": {
    "text": "stare in piedi",
@@ -93,10 +66,7 @@
   "to-send": {
    "text": "inviare",
    "variants": ["mandare", "spedire"],
-   "notes": {
-    "it": "inviare e mandare sono uguali · spedire è per i pacchi.",
-    "de": "inviare und mandare gelten beide · spedire ist das Verschicken per Post."
-   }
+   "notes": { "it": "inviare e mandare sono uguali · spedire è per i pacchi." }
   },
   "to-deliver": {
    "text": "recapitare",

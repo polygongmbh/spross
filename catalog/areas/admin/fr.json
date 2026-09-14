@@ -6,19 +6,13 @@
    "text": "administration",
    "variants": ["l'administration"],
    "grammar": { "gender": "l'" },
-   "notes": {
-    "fr": "la mairie pour la commune, la préfecture pour les papiers.",
-    "de": "Für ein bestimmtes Amt sagt man in Frankreich den Namen: la mairie (Rathaus), la préfecture (Aufenthalt und Ausweise)."
-   }
+   "notes": { "fr": "la mairie pour la commune, la préfecture pour les papiers." }
   },
   "form": { "text": "formulaire", "grammar": { "gender": "le" } },
   "application": {
    "text": "demande",
    "grammar": { "gender": "la" },
-   "notes": {
-    "fr": "faire une demande de titre de séjour, une demande de bourse.",
-    "de": "Der Antrag heißt la demande: faire une demande de titre de séjour."
-   }
+   "notes": { "fr": "faire une demande de titre de séjour, une demande de bourse." }
   },
   "id-card": {
    "text": "carte d'identité",
@@ -33,10 +27,7 @@
    "text": "titre de séjour",
    "synonyms": ["carte de séjour"],
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "le titre de séjour est le droit, la carte de séjour le papier.",
-    "de": "le titre de séjour ist das Aufenthaltsrecht, la carte de séjour die Karte, die man dafür bekommt."
-   }
+   "notes": { "fr": "le titre de séjour est le droit, la carte de séjour le papier." }
   },
   "signature": { "text": "signature", "grammar": { "gender": "la" } },
   "ticket-number": {
@@ -49,10 +40,7 @@
    "synonyms": ["agent"],
    "variants": ["l'employé", "l'agent"],
    "grammar": { "gender": "l'" },
-   "notes": {
-    "fr": "au guichet : l'employé ou l'agent · le gestionnaire suit le dossier.",
-    "de": "Am Schalter sitzt l'employé oder l'agent; wer den Antrag bearbeitet, ist le gestionnaire du dossier."
-   }
+   "notes": { "fr": "au guichet : l'employé ou l'agent · le gestionnaire suit le dossier." }
   },
   "case-worker-f": { "text": "employée", "variants": ["l'employée"], "grammar": { "gender": "l'" } },
   "registration": {
@@ -68,10 +56,7 @@
    "text": "documents",
    "synonyms": ["papiers"],
    "grammar": { "gender": "les" },
-   "notes": {
-    "fr": "au guichet on demande vos papiers · à l'écrit, les documents.",
-    "de": "Am Schalter heißt es meist vos papiers; les documents ist das neutrale Wort."
-   }
+   "notes": { "fr": "au guichet on demande vos papiers · à l'écrit, les documents." }
   },
   "to-fill-in": { "text": "remplir" },
   "to-sign": { "text": "signer" },
@@ -104,10 +89,7 @@
    "text": "attestation",
    "variants": ["l'attestation", "certificat"],
    "grammar": { "gender": "l'" },
-   "notes": {
-    "fr": "l'attestation vient de l'administration, le certificat du médecin.",
-    "de": "Die Bescheinigung heißt l'attestation; ein certificat stellt eine Fachperson aus, etwa le certificat médical."
-   }
+   "notes": { "fr": "l'attestation vient de l'administration, le certificat du médecin." }
   },
   "birth-certificate": {
    "text": "acte de naissance",
@@ -118,10 +100,7 @@
    "text": "décision",
    "synonyms": ["notification"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "fr": "la décision est la réponse · la notification est la lettre qui l'apporte.",
-    "de": "la décision ist die Entscheidung selbst, la notification ihre Zustellung."
-   }
+   "notes": { "fr": "la décision est la réponse · la notification est la lettre qui l'apporte." }
   },
   "fee": {
    "text": "frais",
@@ -133,10 +112,7 @@
    "text": "horaires d'accueil",
    "variants": ["heures d'accueil", "horaires d'ouverture"],
    "grammar": { "gender": "les" },
-   "notes": {
-    "fr": "les horaires d'accueil du public · une permanence est un jour précis.",
-    "de": "Ämter geben ihre horaires d'accueil du public an; ein einzelner Sprechtag heißt la permanence."
-   }
+   "notes": { "fr": "les horaires d'accueil du public · une permanence est un jour précis." }
   },
   "waiting-room": { "text": "salle d'attente", "grammar": { "gender": "la" } },
   "to-reject": { "text": "refuser", "synonyms": ["rejeter"] },
@@ -148,10 +124,7 @@
    "text": "reçu",
    "variants": ["récépissé"],
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "au guichet : un récépissé · au magasin : le ticket de caisse.",
-    "de": "Für einen eingereichten Antrag bekommt man un récépissé; der Kassenzettel im Laden ist le ticket de caisse."
-   }
+   "notes": { "fr": "au guichet : un récépissé · au magasin : le ticket de caisse." }
   },
   "where-do-i-sign": {
    "text": "Où est-ce que je signe ?",

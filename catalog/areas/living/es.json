@@ -40,10 +40,7 @@
   "to-talk": {
    "text": "charlar",
    "variants": ["hablar", "conversar"],
-   "notes": {
-    "es": "charlar es hablar sin prisa, por gusto: charlamos un rato.",
-    "de": "charlar = plaudern, sich unterhalten; sprechen allgemein ist hablar."
-   }
+   "notes": { "es": "charlar es hablar sin prisa, por gusto: charlamos un rato." }
   },
   "room": { "text": "habitación", "synonyms": ["cuarto"], "grammar": { "gender": "la" } },
   "newspaper": { "text": "periódico", "synonyms": ["diario"], "grammar": { "gender": "el" } },
@@ -54,28 +51,19 @@
   "to-sit": {
    "text": "sentarse",
    "variants": ["estar sentado"],
-   "notes": {
-    "es": "Me siento aquí (la acción) · estoy sentado (el estado).",
-    "de": "sentarse = sich hinsetzen; sitzen als Zustand heißt estar sentado."
-   }
+   "notes": { "es": "Me siento aquí (la acción) · estoy sentado (el estado)." }
   },
   "to-laugh": { "text": "reírse", "variants": ["reír"] },
   "quiet": {
    "text": "bajo",
    "synonyms": ["silencioso"],
    "variants": ["bajito", "baja"],
-   "notes": {
-    "es": "habla bajo, pon la tele más baja · un cuarto sin ruido es silencioso.",
-    "de": "leise reden oder stellen = bajo (habla bajo); ein leises Gerät oder Zimmer ist silencioso."
-   }
+   "notes": { "es": "habla bajo, pon la tele más baja · un cuarto sin ruido es silencioso." }
   },
   "furniture": {
    "text": "muebles",
    "grammar": { "gender": "los" },
-   "notes": {
-    "es": "Casi siempre en plural: los muebles · uno solo, el mueble.",
-    "de": "meist im Plural: los muebles; el mueble ist ein einzelnes Möbelstück."
-   }
+   "notes": { "es": "Casi siempre en plural: los muebles · uno solo, el mueble." }
   },
   "game": { "text": "juego", "grammar": { "gender": "el" } },
   "come-sit-with-me": { "text": "¡Ven, siéntate conmigo!", "variants": ["¡Ven, siéntate a mi lado!"] },

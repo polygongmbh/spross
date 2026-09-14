@@ -15,10 +15,7 @@
   "to-haggle": { "text": "marĉandi" },
   "market": {
    "text": "bazaro",
-   "notes": {
-    "eo": "bazaro estas la loko por aĉeti · merkato estas ekonomia termino.",
-    "de": "bazaro ist der Marktplatz zum Einkaufen · merkato ist der Markt als Wirtschaftsbegriff."
-   }
+   "notes": { "eo": "bazaro estas la loko por aĉeti · merkato estas ekonomia termino." }
   },
   "lets-meet-at-the-market": { "text": "Ni renkontiĝu ĉe la bazaro.", "variants": ["Ni renkontiĝu en la bazaro."] },
   "a-kilo-of-tomatoes": { "text": "Kilogramon da tomatoj, mi petas." },

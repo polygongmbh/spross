@@ -10,10 +10,7 @@
    "text": "idioma",
    "synonyms": ["lengua"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "el idioma alemán, el idioma español · lengua = idioma, o la boca",
-    "de": "idioma = die einzelne Sprache (el alemán, el español) · lengua bedeutet dasselbe, heißt aber auch Zunge."
-   }
+   "notes": { "es": "el idioma alemán, el idioma español · lengua = idioma, o la boca" }
   },
   "mother-tongue": { "text": "lengua materna", "grammar": { "gender": "la" } },
   "what-does-this-word-mean": { "text": "¿Qué significa esta palabra?", "variants": ["¿Qué quiere decir esta palabra?"] },

@@ -16,10 +16,7 @@
   "to-feel": {
    "text": "sentirse",
    "variants": ["encontrarse"],
-   "notes": {
-    "es": "¿Cómo se siente? · en la consulta, ¿Cómo se encuentra?",
-    "de": "Beim Arzt fragt man auch ¿Cómo se encuentra? = Wie fühlen Sie sich?"
-   }
+   "notes": { "es": "¿Cómo se siente? · en la consulta, ¿Cómo se encuentra?" }
   },
   "to-hope": { "text": "esperar" },
   "to-cry": { "text": "llorar" }

@@ -2,13 +2,7 @@
  "title": "Rester dans la conversation",
  "subtitle": "Redemander, comprendre, continuer.",
  "words": {
-  "to-hear": {
-   "text": "entendre",
-   "notes": {
-    "fr": "entendre du bruit · écouter la radio.",
-    "de": "entendre = wahrnehmen · écouter = bewusst zuhören."
-   }
-  },
+  "to-hear": { "text": "entendre", "notes": { "fr": "entendre du bruit · écouter la radio." } },
   "to-understand": { "text": "comprendre" },
   "to-speak": {
    "text": "parler",
@@ -18,14 +12,7 @@
    }
   },
   "to-repeat-word": { "text": "répéter le mot" },
-  "loud": {
-   "text": "fort",
-   "variants": ["forte"],
-   "notes": {
-    "fr": "parle fort ! · fort = puissant.",
-    "de": "Lautstärke: parle plus fort · fort heißt auch stark."
-   }
-  },
+  "loud": { "text": "fort", "variants": ["forte"], "notes": { "fr": "parle fort ! · fort = puissant." } },
   "to-ask": {
    "text": "demander",
    "notes": {

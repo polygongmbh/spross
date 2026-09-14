@@ -7,17 +7,11 @@
   "cough": { "text": "tuso" },
   "cold": {
    "text": "malvarmumo",
-   "notes": {
-    "eo": "malvarma + -um- → malvarmumo · malvarmumi estas ekhavi ĝin.",
-    "de": "aus malvarma (kalt) mit dem Suffix -um-; sich erkälten heißt malvarmumi."
-   }
+   "notes": { "eo": "malvarma + -um- → malvarmumo · malvarmumi estas ekhavi ĝin." }
   },
   "to-hurt": {
    "text": "dolori",
-   "notes": {
-    "eo": "doloras la korpoparto: Mia kapo doloras · Doloras al mi la kapo.",
-    "de": "dolori steht beim Körperteil; die Person kommt mit al: Mia kapo doloras · Doloras al mi la kapo."
-   }
+   "notes": { "eo": "doloras la korpoparto: Mia kapo doloras · Doloras al mi la kapo." }
   },
   "to-cough": { "text": "tusi" },
   "sick": { "text": "malsana" },
@@ -29,10 +23,7 @@
   "to-hurt-oneself": {
    "text": "vundi sin",
    "variants": ["sin vundi", "vundiĝi"],
-   "notes": {
-    "eo": "vundi iun aŭ ion · vundi sin estas vundi la propran korpon.",
-    "de": "vundi ist transitiv: vundi la manon; reflexiv wird daraus „sich verletzen“."
-   }
+   "notes": { "eo": "vundi iun aŭ ion · vundi sin estas vundi la propran korpon." }
   },
   "bandage": { "text": "bandaĝo" },
   "band-aid": { "text": "plastro" },

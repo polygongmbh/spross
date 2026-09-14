@@ -8,10 +8,7 @@
   "cold": {
    "text": "rhume",
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "j'ai un rhume · je suis enrhumé.",
-    "de": "Erkältet sein heißt être enrhumé: je suis enrhumé."
-   }
+   "notes": { "fr": "j'ai un rhume · je suis enrhumé." }
   },
   "to-hurt": {
    "text": "faire mal",
@@ -45,19 +42,13 @@
   "band-aid": {
    "text": "sparadrap",
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "le sparadrap est le petit pansement qui colle.",
-    "de": "le sparadrap ist das einzelne Pflaster; pansement (siehe bandage) deckt es umgangssprachlich mit ab."
-   }
+   "notes": { "fr": "le sparadrap est le petit pansement qui colle." }
   },
   "splint": { "text": "attelle", "grammar": { "gender": "la" } },
   "to-recover": {
    "text": "guérir",
    "variants": ["se remettre"],
-   "notes": {
-    "fr": "je guéris vite · le médecin me guérit.",
-    "de": "guérir steht auch ohne Objekt für gesund werden: je guéris vite."
-   }
+   "notes": { "fr": "je guéris vite · le médecin me guérit." }
   },
   "allergy": { "text": "allergie", "variants": ["l'allergie"], "grammar": { "gender": "l'" } },
   "my-throat-hurts-a-lot": { "text": "J'ai très mal à la gorge.", "variants": ["Ma gorge me fait très mal."] },

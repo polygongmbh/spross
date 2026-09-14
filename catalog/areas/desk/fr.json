@@ -5,19 +5,13 @@
   "desk": {
    "text": "bureau",
    "grammar": { "gender": "le", "plural": "-x" },
-   "notes": {
-    "fr": "le bureau est le meuble et la pièce où l'on travaille.",
-    "de": "le bureau ist der Schreibtisch und das Büro als Raum."
-   }
+   "notes": { "fr": "le bureau est le meuble et la pièce où l'on travaille." }
   },
   "laptop": {
    "text": "ordinateur portable",
    "variants": ["l'ordinateur portable", "portable", "PC portable"],
    "grammar": { "gender": "l'" },
-   "notes": {
-    "fr": "on dit surtout mon portable · mais le portable, c'est aussi le téléphone.",
-    "de": "Im Alltag sagt man meist nur le portable — das heißt aber auch „Handy“."
-   }
+   "notes": { "fr": "on dit surtout mon portable · mais le portable, c'est aussi le téléphone." }
   },
   "keyboard": { "text": "clavier", "grammar": { "gender": "le" } },
   "screen": { "text": "écran", "variants": ["l'écran"], "grammar": { "gender": "l'" } },
@@ -57,28 +51,19 @@
    "text": "téléphone",
    "variants": ["portable", "téléphone portable", "mobile"],
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "le portable, c'est le téléphone qu'on met dans la poche.",
-    "de": "Das Handy heißt le portable oder le téléphone portable; le téléphone ist jedes Telefon."
-   }
+   "notes": { "fr": "le portable, c'est le téléphone qu'on met dans la poche." }
   },
   "email": {
    "text": "e-mail",
    "variants": ["l'e-mail", "mail", "courriel", "courrier électronique"],
    "grammar": { "gender": "l'" },
-   "notes": {
-    "fr": "on dit le mail ou l'e-mail ; le courriel est la forme officielle.",
-    "de": "In Frankreich sagt man le mail oder l'e-mail; le courriel ist die amtliche Form."
-   }
+   "notes": { "fr": "on dit le mail ou l'e-mail ; le courriel est la forme officielle." }
   },
   "paper": { "text": "papier", "grammar": { "gender": "le" } },
   "folder": {
    "text": "dossier",
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "un dossier sur l'ordinateur, un dossier de papiers sur le bureau.",
-    "de": "le dossier ist der Ordner am Bildschirm ebenso wie die Akte auf dem Schreibtisch."
-   }
+   "notes": { "fr": "un dossier sur l'ordinateur, un dossier de papiers sur le bureau." }
   },
   "password": { "text": "mot de passe", "grammar": { "gender": "le", "plural": "mots de passe" } },
   "internet": {
@@ -91,10 +76,7 @@
    "synonyms": ["agenda"],
    "variants": ["l'agenda"],
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "le calendrier est au mur · les rendez-vous vont dans l'agenda.",
-    "de": "le calendrier hängt an der Wand; der Terminkalender heißt l'agenda."
-   }
+   "notes": { "fr": "le calendrier est au mur · les rendez-vous vont dans l'agenda." }
   },
   "important": { "text": "important", "variants": ["importante"] },
   "ready": {
@@ -108,10 +90,7 @@
   "broken": {
    "text": "cassé",
    "variants": ["cassée", "en panne", "abîmé"],
-   "notes": {
-    "fr": "un verre cassé · un appareil qui ne marche plus est en panne.",
-    "de": "cassé heißt zerbrochen; ein Gerät, das nicht mehr geht, ist en panne."
-   }
+   "notes": { "fr": "un verre cassé · un appareil qui ne marche plus est en panne." }
   },
   "im-in-a-meeting": { "text": "Je suis en réunion." },
   "dont-disturb-me": { "text": "Ne me dérange pas !", "variants": ["Ne pas déranger !"] },

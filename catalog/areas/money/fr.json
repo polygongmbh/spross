@@ -22,18 +22,12 @@
    "text": "pièce de monnaie",
    "variants": ["pièce"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "fr": "une pièce de deux euros · une pièce est aussi une salle.",
-    "de": "une pièce allein ist auch das Zimmer — beim Geld sagt man pièce de monnaie, sobald es missverständlich wäre."
-   }
+   "notes": { "fr": "une pièce de deux euros · une pièce est aussi une salle." }
   },
   "change-money": {
    "text": "monnaie",
    "grammar": { "gender": "la" },
-   "notes": {
-    "fr": "le vendeur rend la monnaie · l'euro, le dollar sont des devises.",
-    "de": "la monnaie ist das Wechselgeld — die Währung heißt la devise."
-   }
+   "notes": { "fr": "le vendeur rend la monnaie · l'euro, le dollar sont des devises." }
   },
   "money": { "text": "argent", "variants": ["l'argent"], "grammar": { "gender": "l'" } },
   "to-buy": { "text": "acheter" },

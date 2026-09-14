@@ -25,12 +25,6 @@
    }
   },
   "the-bill-please": { "text": "Bili, tafadhali." },
-  "id-like-some-water": {
-   "text": "Naomba maji.",
-   "notes": {
-    "sw": "Naomba maji · Naomba chai · tafadhali haihitajiki",
-    "de": "naomba (ich bitte um) ist die höfliche Bestellformel, ganz ohne tafadhali."
-   }
-  }
+  "id-like-some-water": { "text": "Naomba maji.", "notes": { "sw": "Naomba maji · Naomba chai · tafadhali haihitajiki" } }
  }
 }

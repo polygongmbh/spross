@@ -13,33 +13,21 @@
   "thunder": {
    "text": "radi",
    "grammar": { "plural": "=" },
-   "notes": {
-    "sw": "radi ni mlio wa mvua kubwa · hutumika pia kwa umeme wa angani",
-    "de": "radi ist der Donnerschlag und steht oft auch für den Blitz und das ganze Gewitter."
-   }
+   "notes": { "sw": "radi ni mlio wa mvua kubwa · hutumika pia kwa umeme wa angani" }
   },
   "lightning": {
    "text": "umeme",
-   "notes": {
-    "sw": "umeme wa angani humulika · Umeme umekatika = taa zimezimika",
-    "de": "umeme heißt im Alltag auch der Strom: Umeme umekatika. — Der Strom ist weg."
-   }
+   "notes": { "sw": "umeme wa angani humulika · Umeme umekatika = taa zimezimika" }
   },
   "humid": {
    "text": "unyevunyevu",
    "variants": ["unyevu"],
-   "notes": {
-    "sw": "Kuna unyevunyevu = hewa ina maji",
-    "de": "dasselbe Wort heißt auch die Feuchtigkeit: Kuna unyevunyevu."
-   }
+   "notes": { "sw": "Kuna unyevunyevu = hewa ina maji" }
   },
   "hows-the-weather-today": { "text": "Hali ya hewa ikoje leo?" },
   "its-raining": {
    "text": "Mvua inanyesha.",
-   "notes": {
-    "sw": "Mvua inanyesha, jua linawaka: hali ya hewa hudai mtenda",
-    "de": "wörtl. „der Regen regnet“ — Kiswahili verlangt bei Wetterverben ein explizites Subjekt."
-   }
+   "notes": { "sw": "Mvua inanyesha, jua linawaka: hali ya hewa hudai mtenda" }
   },
   "the-rain-has-stopped": {
    "text": "Mvua imeisha.",

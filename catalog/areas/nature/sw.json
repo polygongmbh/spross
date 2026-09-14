@@ -28,10 +28,7 @@
    "text": "mbao",
    "grammar": { "plural": "=" },
    "synonyms": ["kuni"],
-   "notes": {
-    "sw": "mbao za ujenzi · kuni za kupikia",
-    "de": "mbao sind Bretter und Bauholz, kuni das Brennholz."
-   }
+   "notes": { "sw": "mbao za ujenzi · kuni za kupikia" }
   },
   "stick": { "text": "fimbo", "grammar": { "plural": "=" } },
   "shadow": { "text": "kivuli", "grammar": { "plural": "vivuli" } },

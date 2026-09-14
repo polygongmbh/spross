@@ -9,10 +9,7 @@
   "language": {
    "text": "lingua",
    "grammar": { "gender": "la" },
-   "notes": {
-    "it": "la lingua che si parla · la lingua in bocca: una parola.",
-    "de": "lingua ist die Sprache und die Zunge im Mund."
-   }
+   "notes": { "it": "la lingua che si parla · la lingua in bocca: una parola." }
   },
   "mother-tongue": { "text": "lingua madre", "grammar": { "gender": "la" } },
   "what-does-this-word-mean": {

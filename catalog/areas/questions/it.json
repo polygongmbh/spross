@@ -16,10 +16,7 @@
   "who-is-there": {
    "text": "Chi è?",
    "variants": ["Chi c'è?"],
-   "notes": {
-    "it": "Chi è? · si dice proprio così: non serve dove.",
-    "de": "an der Tür fragt man ohne Ortswort: Chi è?"
-   }
+   "notes": { "it": "Chi è? · si dice proprio così: non serve dove." }
   },
   "do-you-need-this": { "text": "Ha bisogno di questo?", "variants": ["Hai bisogno di questo?"] },
   "when-does-it-start": { "text": "Quando comincia?", "variants": ["Quando inizia?"] },

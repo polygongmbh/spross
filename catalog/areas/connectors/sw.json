@@ -29,13 +29,7 @@
   "for": { "text": "kwa" },
   "because-of": { "text": "kwa sababu ya" },
   "again": { "text": "tena" },
-  "still": {
-   "text": "bado",
-   "notes": {
-    "sw": "Umemaliza? — Bado. · bado ninasoma = ninaendelea kusoma",
-    "de": "allein als Antwort heißt bado „noch nicht“: Umemaliza? — Bado."
-   }
-  },
+  "still": { "text": "bado", "notes": { "sw": "Umemaliza? — Bado. · bado ninasoma = ninaendelea kusoma" } },
   "finally": { "text": "hatimaye" },
   "then": { "text": "halafu" },
   "not": {
@@ -45,30 +39,12 @@
     "de": "si verneint Nomen und Adjektive: Hii si chai · Verben verneint eine Vorsilbe: sijui, hataki."
    }
   },
-  "only": {
-   "text": "tu",
-   "notes": {
-    "sw": "mmoja tu, leo tu, kidogo tu",
-    "de": "tu steht hinter dem Wort, das es einschränkt: mmoja tu, leo tu."
-   }
-  },
+  "only": { "text": "tu", "notes": { "sw": "mmoja tu, leo tu, kidogo tu" } },
   "together": { "text": "pamoja" },
   "therefore": { "text": "kwa hiyo" },
-  "even": {
-   "text": "hata",
-   "notes": {
-    "sw": "hata mimi = mimi pia · hata kidogo = hakuna kabisa",
-    "de": "hata kidogo = kein bisschen · hata mimi = ich auch, sogar ich."
-   }
-  },
+  "even": { "text": "hata", "notes": { "sw": "hata mimi = mimi pia · hata kidogo = hakuna kabisa" } },
   "although": { "text": "ingawa", "synonyms": ["japo"] },
-  "that-conj": {
-   "text": "kwamba",
-   "notes": {
-    "sw": "Nadhani kwamba atakuja = Nadhani atakuja",
-    "de": "nach sagen und denken oft weggelassen: Nadhani (kwamba) atakuja."
-   }
-  },
+  "that-conj": { "text": "kwamba", "notes": { "sw": "Nadhani kwamba atakuja = Nadhani atakuja" } },
   "if-you-want": { "text": "Kama unataka." },
   "finally-done": { "text": "Hatimaye nimemaliza!" }
  }

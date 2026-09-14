@@ -12,10 +12,7 @@
   "liter": { "text": "litre", "grammar": { "gender": "le" } },
   "fresh": {
    "text": "frais",
-   "notes": {
-    "fr": "du pain frais, une salade fraîche · les frais, c'est l'argent à payer.",
-    "de": "frais ist frisch und im Plural zugleich die Gebühren (les frais); feminin fraîche."
-   }
+   "notes": { "fr": "du pain frais, une salade fraîche · les frais, c'est l'argent à payer." }
   },
   "ripe": { "text": "mûr" },
   "to-haggle": { "text": "marchander" },

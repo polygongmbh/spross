@@ -6,10 +6,7 @@
   "stove": {
    "text": "fornelo",
    "variants": ["kuirfornelo"],
-   "notes": {
-    "eo": "sur la fornelo oni kuiras · en la forno oni bakas.",
-    "de": "fornelo ist der Herd zum Kochen; der Backofen heißt forno."
-   }
+   "notes": { "eo": "sur la fornelo oni kuiras · en la forno oni bakas." }
   },
   "oven": { "text": "forno", "variants": ["bakforno"] },
   "dishwasher": { "text": "vazlavilo", "variants": ["vazlavmaŝino", "telerlavilo"] },
@@ -17,22 +14,13 @@
   "pan": {
    "text": "pato",
    "variants": ["fritpato"],
-   "notes": {
-    "eo": "pato estas plata · poto estas profunda — nur unu vokalo diferencas.",
-    "de": "pato ist die Pfanne, poto der Topf — die beiden unterscheiden sich nur im Vokal."
-   }
+   "notes": { "eo": "pato estas plata · poto estas profunda — nur unu vokalo diferencas." }
   },
   "knife": { "text": "tranĉilo" },
   "spoon": { "text": "kulero" },
   "fork": { "text": "forko", "variants": ["forketo"] },
   "plate": { "text": "telero" },
-  "to-cook": {
-   "text": "kuiri",
-   "notes": {
-    "eo": "kuiri manĝon · la akvo mem bolas.",
-    "de": "kuiri heißt Essen zubereiten; Wasser kocht heißt la akvo bolas."
-   }
-  },
+  "to-cook": { "text": "kuiri", "notes": { "eo": "kuiri manĝon · la akvo mem bolas." } },
   "to-bake": { "text": "baki" },
   "to-cut": { "text": "tranĉi" },
   "to-wash-the-dishes": { "text": "lavi la vazaron", "variants": ["lavi la telerojn"] },

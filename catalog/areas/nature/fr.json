@@ -8,10 +8,7 @@
    "text": "rivière",
    "variants": ["fleuve"],
    "grammar": { "gender": "la" },
-   "notes": {
-    "fr": "la rivière coule dans un fleuve · le fleuve va à la mer.",
-    "de": "la rivière ist der Fluss allgemein; ein Fluss, der ins Meer mündet, heißt le fleuve."
-   }
+   "notes": { "fr": "la rivière coule dans un fleuve · le fleuve va à la mer." }
   },
   "to-go-for-walk": { "text": "se promener", "synonyms": ["faire une promenade"], "variants": ["se balader"] },
   "to-jog": { "text": "faire du jogging", "variants": ["aller courir"] },

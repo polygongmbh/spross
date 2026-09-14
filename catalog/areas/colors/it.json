@@ -6,22 +6,13 @@
   "white": { "text": "bianco", "variants": ["bianca"] },
   "black": { "text": "nero", "variants": ["nera"] },
   "red": { "text": "rosso", "variants": ["rossa"] },
-  "blue": {
-   "text": "blu",
-   "notes": {
-    "it": "blu è scuro · azzurro è il colore del cielo.",
-    "de": "blu ist das dunkle Blau · das helle Himmelblau heißt azzurro."
-   }
-  },
+  "blue": { "text": "blu", "notes": { "it": "blu è scuro · azzurro è il colore del cielo." } },
   "green": { "text": "verde" },
   "yellow": { "text": "giallo", "variants": ["gialla"] },
   "brown": {
    "text": "marrone",
    "variants": ["castano"],
-   "notes": {
-    "it": "marrone per le cose · castano per capelli e occhi.",
-    "de": "bei Haaren und Augen castano."
-   }
+   "notes": { "it": "marrone per le cose · castano per capelli e occhi." }
   },
   "gray": { "text": "grigio", "variants": ["grigia"] },
   "purple": { "text": "viola", "notes": { "it": "viola non cambia mai: un vestito viola, una casa viola." } },

@@ -3,13 +3,7 @@
  "subtitle": "La homoj plej proksimaj al vi.",
  "words": {
   "person": { "text": "persono" },
-  "human": {
-   "text": "homo",
-   "notes": {
-    "eo": "homo estas la specio · persono estas unu individuo.",
-    "de": "homo = Mensch als Gattung · persono = der einzelne Mensch."
-   }
-  },
+  "human": { "text": "homo", "notes": { "eo": "homo estas la specio · persono estas unu individuo." } },
   "family": { "text": "familio" },
   "mother": {
    "text": "patrino",

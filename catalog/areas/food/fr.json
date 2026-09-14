@@ -27,10 +27,7 @@
   "fish": {
    "text": "poisson",
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "le poisson se mange · le poison, avec un seul s, tue.",
-    "de": "poisson mit zwei s ist der Fisch; le poison mit einem s ist das Gift."
-   }
+   "notes": { "fr": "le poisson se mange · le poison, avec un seul s, tue." }
   },
   "chicken": { "text": "poulet", "grammar": { "gender": "le" } },
   "fruit": { "text": "fruit", "grammar": { "gender": "le" } },

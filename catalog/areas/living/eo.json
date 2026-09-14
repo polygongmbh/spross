@@ -27,10 +27,7 @@
   "to-talk": {
    "text": "babili",
    "variants": ["paroli", "konversacii"],
-   "notes": {
-    "eo": "babili estas amika interparolo · paroli estas ĉia parolado.",
-    "de": "babili = plaudern, sich unterhalten; sprechen allgemein ist paroli."
-   }
+   "notes": { "eo": "babili estas amika interparolo · paroli estas ĉia parolado." }
   },
   "room": { "text": "ĉambro" },
   "newspaper": { "text": "gazeto", "synonyms": ["ĵurnalo"] },
@@ -41,27 +38,18 @@
   "to-sit": {
    "text": "sidi",
    "variants": ["sidiĝi"],
-   "notes": {
-    "eo": "sidi estas la stato · sidiĝi estas eksidi.",
-    "de": "sidi = sitzen (Zustand); sich hinsetzen heißt sidiĝi."
-   }
+   "notes": { "eo": "sidi estas la stato · sidiĝi estas eksidi." }
   },
   "to-laugh": { "text": "ridi" },
   "quiet": {
    "text": "mallaŭta",
    "variants": ["kvieta", "mallaŭte"],
-   "notes": {
-    "eo": "mallaŭta voĉo: parolu mallaŭte · kvieta ĉambro estas sen bruo.",
-    "de": "mallaŭta ist die Lautstärke (parolu mallaŭte); ein stiller Raum ist kvieta."
-   }
+   "notes": { "eo": "mallaŭta voĉo: parolu mallaŭte · kvieta ĉambro estas sen bruo." }
   },
   "furniture": {
    "text": "mebloj",
    "variants": ["meblaro"],
-   "notes": {
-    "eo": "unu meblo · la tuta hejma aranĝo estas la mebloj.",
-    "de": "meblo ist ein einzelnes Möbelstück, die Möbel sind la mebloj."
-   }
+   "notes": { "eo": "unu meblo · la tuta hejma aranĝo estas la mebloj." }
   },
   "game": { "text": "ludo" },
   "come-sit-with-me": { "text": "Venu, sidiĝu apud mi!", "variants": ["Venu, sidiĝu ĉe mi!"] },

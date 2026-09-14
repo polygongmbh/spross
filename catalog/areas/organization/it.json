@@ -21,10 +21,7 @@
    "text": "fissare",
    "synonyms": ["concordare"],
    "variants": ["stabilire"],
-   "notes": {
-    "it": "si fissa o si prende un appuntamento.",
-    "de": "Einen Termin vereinbart man mit fissare oder prendere: fissare un appuntamento."
-   }
+   "notes": { "it": "si fissa o si prende un appuntamento." }
   },
   "to-confirm": { "text": "confermare" },
   "to-cancel": { "text": "annullare", "synonyms": ["disdire"], "variants": ["cancellare"] },

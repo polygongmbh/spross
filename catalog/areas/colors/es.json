@@ -12,10 +12,7 @@
   "brown": {
    "text": "marrón",
    "variants": ["café", "castaño"],
-   "notes": {
-    "es": "En América suele ser café; el pelo es castaño.",
-    "de": "in Lateinamerika meist café, bei Haaren castaño."
-   }
+   "notes": { "es": "En América suele ser café; el pelo es castaño." }
   },
   "gray": { "text": "gris" },
   "purple": { "text": "morado", "variants": ["morada", "violeta"] },

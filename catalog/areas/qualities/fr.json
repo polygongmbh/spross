@@ -43,10 +43,7 @@
   "short": {
    "text": "court",
    "variants": ["courte"],
-   "notes": {
-    "fr": "des mots courts, une phrase courte · une personne est petite.",
-    "de": "bei Körpergröße petit."
-   }
+   "notes": { "fr": "des mots courts, une phrase courte · une personne est petite." }
   },
   "heavy": {
    "text": "lourd",
@@ -110,10 +107,7 @@
    "text": "sain",
    "synonyms": ["en bonne santé"],
    "variants": ["saine"],
-   "notes": {
-    "fr": "une alimentation saine · une personne est en bonne santé.",
-    "de": "Über Menschen sagt man meist être en bonne santé; sain beschreibt vor allem Essen und Lebensweise: une alimentation saine."
-   }
+   "notes": { "fr": "une alimentation saine · une personne est en bonne santé." }
   },
   "firm": { "text": "solide" },
   "liquid": { "text": "liquide" },
