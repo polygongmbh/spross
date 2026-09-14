@@ -1,0 +1,108 @@
+package net.spross.app
+
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import kotlin.random.Random
+import net.spross.kern.session.ToneKind
+import net.spross.kern.trainer.SentenceScrambleAvailability
+import net.spross.kern.trainer.SentenceScrambleClose
+import net.spross.kern.trainer.SentenceScrambleIntent
+import net.spross.kern.trainer.SentenceScrambleRun
+import net.spross.kern.trainer.SentenceScrambleRunConfig
+import net.spross.kern.trainer.SentenceScrambleRunState
+
+/**
+ * One sentence-scramble run as this platform holds it — the twin of [WordScrambleFlow], over
+ * kern's own [SentenceScrambleRun].
+ *
+ * There is no field and no submit: moving the last atom into place IS the answer, the way a
+ * finished spelling is on the typed drills. Everything decidable is kern's — the deal, the
+ * ladder of lengths, the grading by position — and what is left here is the armed beat.
+ *
+ * No review is ever booked: the box is READ for the phrases it has unlocked and never
+ * written, and the run keeps no record — arrangement is not recall.
+ */
+class SentenceScrambleFlow(
+    start: SentenceScrambleRunState,
+    private val rng: Random,
+    onTone: (ToneKind) -> Unit = {},
+    onSilence: () -> Unit = {},
+    screenReaderOn: () -> Boolean = { false },
+) {
+    private val beat = DrillBeat(screenReaderOn)
+    // Nothing to release: this drill has no field, so no pause can be waiting behind a keyboard.
+    private val acts = DrillActs(beat, onTone, onReleaseFocus = {}, onSilence = onSilence)
+
+    var state by mutableStateOf(start)
+        private set
+
+    /**
+     * Kern has run out of phrases: the screen hands the run back rather than sitting on a bank
+     * it has already answered. False once the close has been made, whichever way the screen
+     * went — a run is handed back once.
+     */
+    val ranOut: Boolean get() = state.finished && !handedBack
+
+    private var handedBack = false
+
+    val armedBeat get() = beat.tier
+
+    val beatToken get() = beat.token
+
+    val awaitsConfirm get() = beat.awaitsConfirm
+
+    /** A bank slot tapped: the atom joins the end of the arrangement, and the last one grades. */
+    fun place(index: Int) = dispatch(SentenceScrambleIntent.PlaceAtom(index))
+
+    /** An answer-row slot tapped: the atom goes back, while the order is still owed. */
+    fun take(index: Int) = dispatch(SentenceScrambleIntent.ReturnAtom(index))
+
+    /** The one primary action while the order is owed — there is no Check to disagree with. */
+    fun reveal() = dispatch(SentenceScrambleIntent.Reveal)
+
+    fun confirm() = dispatch(SentenceScrambleIntent.ConfirmPending)
+
+    fun advanceElapsed() {
+        beat.spend()
+        dispatch(SentenceScrambleIntent.AdvanceElapsed)
+    }
+
+    /** Leaving: kern books a pending arrangement exactly as the tap would, then reports. */
+    fun close(): SentenceScrambleClose {
+        handedBack = true
+        val closed = SentenceScrambleRun.close(state)
+        state = closed.state
+        acts.carryOut(closed.effects)
+        return closed
+    }
+
+    private fun dispatch(intent: SentenceScrambleIntent) {
+        val reduction = SentenceScrambleRun.reduce(state, intent, rng)
+        state = reduction.state
+        acts.carryOut(reduction.effects)
+    }
+}
+
+/**
+ * A run, or null where this box has unlocked too few long-enough phrases — the chip gates on
+ * the same report, so a null here is a closed door rather than a screen.
+ *
+ * Nothing is graded against a language here: the answer is a permutation of atoms kern itself
+ * dealt, so the run needs no normalizer.
+ */
+fun AppModel.newSentenceScramble(
+    onTone: (ToneKind) -> Unit = {},
+    rng: Random = Random.Default,
+): SentenceScrambleFlow? {
+    val state = box ?: return null
+    val report = SentenceScrambleAvailability.report(state)
+    if (!report.drillAvailable) return null
+    return SentenceScrambleFlow(
+        start = SentenceScrambleRun.open(SentenceScrambleRunConfig(report), rng),
+        rng = rng,
+        onTone = onTone,
+        onSilence = { pronouncer.stop() },
+        screenReaderOn = { pronouncer.readsScreenAloud },
+    )
+}

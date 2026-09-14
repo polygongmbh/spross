@@ -27,6 +27,10 @@ import net.spross.kern.trainer.DrillVariant
 import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.LetterDrillRun
 import net.spross.kern.trainer.LetterDrillRunConfig
+import net.spross.kern.trainer.ScrambleTokenizer
+import net.spross.kern.trainer.SentenceScrambleAvailability
+import net.spross.kern.trainer.SentenceScrambleRun
+import net.spross.kern.trainer.SentenceScrambleRunConfig
 import net.spross.kern.trainer.TrainerMode
 import net.spross.kern.trainer.TrainerRun
 import net.spross.kern.trainer.WordScrambleAvailability
@@ -364,5 +368,54 @@ class DrillWiringTest {
         assertEquals(1, summary.done)
         // This drill keeps no record store, so nothing it does can beat one.
         assertTrue(!summary.newRecord)
+    }
+
+    // MARK: - The sentence scramble
+
+    private fun phrase(id: String, text: String) = SentenceScrambleAvailability.Phrase(
+        card = grownWord(id, text).copy(kind = CardKind.Phrase),
+        atoms = ScrambleTokenizer.atoms(text),
+    )
+
+    private fun sentences(platform: Platform, seed: Int = 3): SentenceScrambleFlow {
+        val report = SentenceScrambleAvailability.Report(
+            listOf(
+                phrase("greet", "habari za asubuhi"),
+                phrase("thanks", "asante sana rafiki"),
+                phrase("ask", "unaitwa nani leo"),
+            ),
+        )
+        return SentenceScrambleFlow(
+            start = SentenceScrambleRun.open(SentenceScrambleRunConfig(report), Random(seed)),
+            rng = Random(seed),
+            onTone = { platform.tones += it },
+            onSilence = { platform.silences += 1 },
+            screenReaderOn = { platform.screenReader },
+        )
+    }
+
+    /** The LAST word placed is the answer: there is no check tap to send. */
+    @Test
+    fun committingTheLastAtomGradesTheArrangement() {
+        val platform = Platform()
+        val flow = sentences(platform)
+        val task = assertNotNull(flow.state.task)
+        task.canonical.forEach { atom ->
+            flow.place(task.shuffled.indexOfFirst { it.id == atom.id })
+        }
+        assertEquals(TurnFeedback.Correct, flow.state.feedback)
+        assertEquals(listOf(ToneKind.Correct), platform.tones)
+        assertEquals(AdvanceTier.Explicit, flow.armedBeat)
+    }
+
+    /** A slip of the finger costs a tap rather than the question. */
+    @Test
+    fun anAtomGoesBackWhileTheOrderIsStillOwed() {
+        val flow = sentences(Platform())
+        flow.place(0)
+        assertEquals(1, flow.state.placed.size)
+        flow.take(0)
+        assertTrue(flow.state.placed.isEmpty())
+        assertTrue(!flow.state.isPlaced(0), "the chip is back in the bank")
     }
 }

@@ -38,6 +38,7 @@ import net.spross.app.ui.LettersOverviewScreen
 import net.spross.app.ui.ListeningScreen
 import net.spross.app.ui.NumbersOverviewScreen
 import net.spross.app.ui.OnboardingScreen
+import net.spross.app.ui.SentenceScrambleScreen
 import net.spross.app.ui.SessionScreen
 import net.spross.app.ui.SprossTheme
 import net.spross.app.ui.TrainerSessionScreen
@@ -181,6 +182,7 @@ private fun Root(model: AppModel = viewModel()) {
             is Screen.Trainer -> TrainerSessionScreen(model, screen.mode)
             Screen.LetterDrill -> LetterDrillScreen(model)
             Screen.WordScramble -> WordScrambleScreen(model)
+            Screen.SentenceScramble -> SentenceScrambleScreen(model)
             is Screen.CountryDrill -> CountryDrillScreen(model, screen.reverse, screen.fast, screen.level)
             is Screen.DateDrill -> DateDrillScreen(model, screen.reverse, screen.fast, screen.level)
             is Screen.Box -> BoxScreen(model, openAt = screen.area)

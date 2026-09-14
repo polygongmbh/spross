@@ -2,6 +2,7 @@ package net.spross.app
 
 import net.spross.kern.catalog.alphabet
 import net.spross.kern.trainer.LetterDrillAvailability
+import net.spross.kern.trainer.SentenceScrambleAvailability
 import net.spross.kern.trainer.Trainer
 import net.spross.kern.trainer.WordScrambleAvailability
 
@@ -20,12 +21,12 @@ import net.spross.kern.trainer.WordScrambleAvailability
  * file exists for the target, the atlas joins, the calendars do, or the box itself holds
  * enough to scramble. Any one entry is reason enough.
  *
- * The scramble stands LAST because it is a walk of the whole join: a profile with any of the
- * four cheap entries never pays for it.
+ * The two scrambles stand LAST because each is a walk of the whole join: a profile with any
+ * of the four cheap entries never pays for them.
  */
 val AppModel.werkstattOffered: Boolean
     get() = numbersOffered || lettersOffered || countriesOffered || datesOffered ||
-        wordScrambleOffered
+        wordScrambleOffered || sentenceScrambleOffered
 
 /** Counting, clock and forms all come out of one pack — the registry rule, not the ladder. */
 val AppModel.numbersOffered: Boolean
@@ -67,6 +68,14 @@ val AppModel.datesOffered: Boolean
  */
 val AppModel.wordScrambleOffered: Boolean
     get() = box?.let { WordScrambleAvailability.drillExists(it) } == true
+
+/**
+ * The sentence scramble rides on the box too: enough phrases unlocked, and long enough to
+ * have a word order worth putting back. Kern's own floor, read — and the same walk of the
+ * whole join its word sibling pays for, so it is asked once per box.
+ */
+val AppModel.sentenceScrambleOffered: Boolean
+    get() = box?.let { SentenceScrambleAvailability.drillExists(it) } == true
 
 /**
  * What the letter drill can ASK here, freshly swept.

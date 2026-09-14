@@ -103,6 +103,9 @@ sealed interface Screen {
      */
     data object WordScramble : Screen
 
+    /** A sentence-scramble run, opened straight from its chip like its word sibling. */
+    data object SentenceScramble : Screen
+
     /**
      * An atlas run, carrying the two things the page settled before it opened: which way
      * round the questions are asked, and whether a Sprosse falls on one clean win.
@@ -559,6 +562,10 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     /** The word scramble, straight from its chip — there is no page to open first. */
     fun startWordScramble() {
         screen = Screen.WordScramble
+    }
+
+    fun startSentenceScramble() {
+        screen = Screen.SentenceScramble
     }
 
     /**
