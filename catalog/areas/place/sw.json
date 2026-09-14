@@ -29,8 +29,8 @@
    "synonyms": ["pahali"],
    "variants": ["mahala", "pahala"],
    "notes": {
-    "sw": "pahali = mahali · Mombasa: pahali",
-    "de": "mahali ist das Standardwort; pahali ist die Küstenform aus Mombasa. Die Ortsklasse zeigt erst das Begleitwort: mahali hapa, mahali pale, mahali kule."
+    "sw": "mahali ni neno la kawaida; pwani, hasa Mombasa, watu husema pahali.",
+    "de": "mahali ist überall üblich, pahali die Küstenform aus Mombasa – beide mit denselben Demonstrativa: mahali hapa, mahali pale, mahali kule."
    }
   },
   "country": { "text": "nchi", "grammar": { "plural": "=" } },
@@ -45,8 +45,8 @@
   "at-school": {
    "text": "shuleni",
    "notes": {
-    "sw": "shule → shuleni, nyumba → nyumbani: -ni ni mahali",
-    "de": "-ni macht aus dem Nomen den Ort: shule → shuleni · dieselbe Form steht für wo und wohin."
+    "sw": "shule → shuleni, nyumba → nyumbani: -ni huonyesha mahali, ukiwa hapo au ukienda huko.",
+    "de": "shule → shuleni, nyumba → nyumbani: -ni macht aus dem Nomen den Ort – dieselbe Form gilt für wo und wohin."
    }
   },
   "go-to-school": { "text": "kwenda shuleni" },
