@@ -2,13 +2,16 @@ import SwiftUI
 import SprossKern
 
 /// Compact "Sprossen" card on the Home screen: 🔢 Numbers, 🔤 Letters,
-/// 🌍 Countries and 📅 Dates. Each opens an overview: what the language does
-/// with numbers or letters, what the world is called in it, or how it says a
-/// date, and the run started from the same page. Offerings stay registry-driven:
-/// numbers appears only when Kern's trainer supports the learned language,
-/// letters only where an alphabet file was authored, the atlas and the calendar
-/// only where the pair joins one — an empty card hides entirely. Trainers are
-/// stateless: they never touch BoxState or FSRS.
+/// 🌍 Countries, 📅 Dates, 🔀 the word scramble and 🧩 the sentence one. The
+/// first four open an overview — what the language does with numbers or
+/// letters, what the world is called in it, how it says a date — with the run
+/// started from the same page; the two scrambles have nothing to read beside
+/// them and open their run directly. Offerings stay registry-driven: numbers
+/// appears only when Kern's trainer supports the learned language, letters only
+/// where an alphabet file was authored, the atlas and the calendar only where
+/// the pair joins one, and each scramble only where the BOX holds enough to ask
+/// — an empty card hides entirely. Trainers are stateless: they never touch
+/// BoxState or FSRS.
 struct TrainerHubView: View, LanguageNaming {
     let model: AppModel
 
@@ -16,7 +19,7 @@ struct TrainerHubView: View, LanguageNaming {
     // language through it.
     @Environment(\.locale) var locale
 
-    // why: internal, not private — TrainerHubView+Letters.swift (file-size
+    // why: internal, not private — TrainerHubView+Destinations.swift (file-size
     // split) drives this state from its extension.
     @State var destination: HubDestination?
 
@@ -24,7 +27,7 @@ struct TrainerHubView: View, LanguageNaming {
     var drillLanguage: String? { model.targetLanguage }
 
     // why: internal, not private — the UI-test hook in
-    // TrainerHubView+Letters.swift gates the numbers overview on it.
+    // TrainerHubView+Destinations.swift gates the numbers overview on it.
     var slotsAvailable: Bool {
         drillLanguage.map { Trainer.shared.supports(language: $0) } ?? false
     }
@@ -57,23 +60,37 @@ struct TrainerHubView: View, LanguageNaming {
 
     var datesAvailable: Bool { datesPair != nil }
 
+    /// Whether the box holds enough consolidated single words to be worth
+    /// mixing. Kern's own floor, read — this side counts nothing.
+    var wordScrambleAvailable: Bool { WordScrambleAvailability(model: model).drillAvailable }
+
+    /// Whether the box has unlocked enough long-enough phrases to arrange.
+    var sentenceScrambleAvailable: Bool {
+        SentenceScrambleAvailability(model: model).drillAvailable
+    }
+
     var body: some View {
         Group {
-            if slotsAvailable || alphabetAvailable || atlasAvailable || datesAvailable {
+            if !chips.isEmpty {
                 card
             }
         }
         .sheet(item: $destination) { destination in
             Group {
-                if let language = destination.numbersLanguage {
+                switch destination {
+                case let .numbers(language):
                     NumbersOverview(model: model, language: language,
                                     phraseDrill: phraseDrill.map { ($0.source, $0.templates) })
-                } else if let language = destination.lettersLanguage {
+                case let .letters(language):
                     LettersOverview(model: model, language: language)
-                } else if let pair = destination.countriesPair {
-                    CountriesOverview(model: model, source: pair.source, target: pair.target)
-                } else if let pair = destination.datesPair {
-                    DatesOverview(model: model, source: pair.source, target: pair.target)
+                case let .countries(source, target):
+                    CountriesOverview(model: model, source: source, target: target)
+                case let .dates(source, target):
+                    DatesOverview(model: model, source: source, target: target)
+                case let .wordScramble(language):
+                    WordScrambleView(model: model, language: language)
+                case .sentenceScramble:
+                    SentenceScrambleView(model: model)
                 }
             }
             .environment(\.locale, model.knownLocale)
@@ -90,21 +107,11 @@ struct TrainerHubView: View, LanguageNaming {
             Text("trainer.hub.subtitle")
                 .font(Theme.typography.subheadline)
                 .foregroundStyle(Theme.colors.textSecondary)
-            // ONE row: four chips sit on it comfortably on every device, and a
-            // grid that wrapped one onto a line of its own would spend a
-            // whole row saying what fits beside its siblings.
-            HStack(spacing: Theme.spacing.md) {
-                if slotsAvailable {
-                    numbersChip
-                }
-                if alphabetAvailable {
-                    lettersChip
-                }
-                if atlasAvailable {
-                    countriesChip
-                }
-                if datesAvailable {
-                    datesChip
+            VStack(spacing: Theme.spacing.md) {
+                ForEach(Array(chipRows.enumerated()), id: \.offset) { _, row in
+                    HStack(spacing: Theme.spacing.md) {
+                        ForEach(row) { chip(for: $0) }
+                    }
                 }
             }
         }
@@ -116,10 +123,11 @@ struct TrainerHubView: View, LanguageNaming {
         )
         .cardShadow()
         #if DEBUG
-        // UI-test hook: `-uitest-trainer numbers|letters|countries|dates`
-        // opens that surface (in the learned language, like the chips).
+        // UI-test hook: `-uitest-trainer numbers|letters|countries|dates|
+        // wordscramble|sentencescramble` opens that surface (in the learned
+        // language, like the chips).
         // Attached HERE because the card only appears once the box is loaded;
-        // resolved in TrainerHubView+Letters.swift.
+        // resolved in TrainerHubView+Destinations.swift.
         .onAppear {
             guard destination == nil,
                   let raw = UserDefaults.standard.string(forKey: "uitest-trainer") else { return }
@@ -130,50 +138,74 @@ struct TrainerHubView: View, LanguageNaming {
 
     var namingCatalog: Catalog? { model.catalog }
 
-    /// The whole numbers progression behind one chip: the reference page, the
-    /// clock and the sentences, and whatever the ladder has opened so far.
-    private var numbersChip: some View {
-        Button {
-            guard let language = drillLanguage else { return }
-            destination = .numbers(language: language)
-        } label: {
+    // MARK: - The entries, and how many lines they take
+
+    /// Every entry this profile can reach, in the order the card offers them.
+    /// A VALUE per chip rather than a view apiece, because the row has to COUNT
+    /// them before it can decide how many lines it needs.
+    var chips: [HubChip] {
+        guard let language = drillLanguage else { return [] }
+        var chips: [HubChip] = []
+        if slotsAvailable {
+            // The whole numbers progression behind one chip: the reference page,
+            // the clock and the sentences, and whatever the ladder has opened.
             // layer-ok: the chip IS the numbers one — reading its own emoji, not picking a kind
-            chipLabel(emoji: trainerKindEmoji(kind: .numbers), title: Text("trainer.skill.numbers"))
+            chips.append(.init(emoji: trainerKindEmoji(kind: .numbers),
+                               title: "trainer.skill.numbers",
+                               destination: .numbers(language: language)))
         }
-        .buttonStyle(TrainerChipButtonStyle())
-        .accessibilityLabel(Text("trainer.skill.numbers")
-            + Text("a11y.suffix.practice \(languageName(drillLanguage ?? ""))"))
+        if alphabetAvailable {
+            chips.append(.init(emoji: "🔤", title: "trainer.skill.letters",
+                               destination: .letters(language: language)))
+        }
+        if let pair = atlasPair {
+            // The atlas: the countries of the two languages first, then the
+            // world outward — read on the page, drilled from it.
+            chips.append(.init(emoji: "🌍", title: "trainer.skill.countries",
+                               destination: .countries(source: pair.source, target: pair.target)))
+        }
+        if let pair = datesPair {
+            // The calendar: the weekday and month names drilled alone, and the
+            // whole spoken date assembled out of them from the same page.
+            chips.append(.init(emoji: "📅", title: "trainer.skill.dates",
+                               destination: .dates(source: pair.source, target: pair.target)))
+        }
+        if wordScrambleAvailable {
+            chips.append(.init(emoji: "🔀", title: "trainer.skill.wordScramble",
+                               destination: .wordScramble(language: language)))
+        }
+        if sentenceScrambleAvailable {
+            chips.append(.init(emoji: "🧩", title: "trainer.skill.sentenceScramble",
+                               destination: .sentenceScramble(language: language)))
+        }
+        return chips
     }
 
-    /// The atlas: the countries of the two languages first, then the world
-    /// outward — read on the page, drilled from it.
-    private var countriesChip: some View {
+    /// The chips cut into lines. Three or fewer stand on one; past that the card
+    /// breaks into TWO, `ceil(n/2)` above and `floor(n/2)` below — 4 stand 2+2,
+    /// 5 stand 3+2, 6 stand 3+3 — and each line keeps the equal-width chips one
+    /// line carries on its own. The break is DRAWN rather than discovered: an
+    /// HStack overflows rather than wrapping, and six chips sharing one row
+    /// would be six slivers of a word apiece.
+    private var chipRows: [[HubChip]] {
+        let chips = chips
+        guard chips.count > 3 else { return chips.isEmpty ? [] : [chips] }
+        let top = (chips.count + 1) / 2
+        return [Array(chips.prefix(top)), Array(chips.dropFirst(top))]
+    }
+
+    private func chip(for chip: HubChip) -> some View {
         Button {
-            guard let pair = atlasPair else { return }
-            destination = .countries(source: pair.source, target: pair.target)
+            destination = chip.destination
         } label: {
-            chipLabel(emoji: "🌍", title: Text("trainer.skill.countries"))
+            chipLabel(emoji: chip.emoji, title: Text(chip.title))
         }
         .buttonStyle(TrainerChipButtonStyle())
-        .accessibilityLabel(Text("trainer.skill.countries")
+        .accessibilityLabel(Text(chip.title)
             + Text("a11y.suffix.practice \(languageName(drillLanguage ?? ""))"))
     }
 
-    /// The calendar: the weekday and month names drilled alone, and the whole
-    /// spoken date assembled out of them from the same page.
-    private var datesChip: some View {
-        Button {
-            guard let pair = datesPair else { return }
-            destination = .dates(source: pair.source, target: pair.target)
-        } label: {
-            chipLabel(emoji: "📅", title: Text("trainer.skill.dates"))
-        }
-        .buttonStyle(TrainerChipButtonStyle())
-        .accessibilityLabel(Text("trainer.skill.dates")
-            + Text("a11y.suffix.practice \(languageName(drillLanguage ?? ""))"))
-    }
-
-    /// One chip's face — shared with the letters chip next door.
+    /// One chip's face.
     func chipLabel(emoji: String, title: Text) -> some View {
         VStack(spacing: Theme.spacing.sm) {
             Text(emoji)
@@ -196,7 +228,7 @@ struct TrainerHubView: View, LanguageNaming {
 }
 
 /// Pressed-state feedback for the hub's chips (mirrors the shared button springs).
-/// Internal: the letters chip is a TrainerHubView+Letters.swift one, and the
+/// Internal: the letters chip is a TrainerHubView+Destinations.swift one, and the
 /// letter drill's answer tiles borrow the same press.
 struct TrainerChipButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {

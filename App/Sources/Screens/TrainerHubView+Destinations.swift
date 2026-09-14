@@ -1,19 +1,33 @@
 import SwiftUI
 import SprossKern
 
-/// LETTERS half of the trainer hub: what the hub can open, whether the
-/// alphabet exists at all, and the chip that opens it. State lives on
-/// TrainerHubView; split out purely for file size.
+/// What the trainer hub can OPEN, and the one availability question a file
+/// answers: whether the learned language has an alphabet at all. The chips
+/// themselves are TrainerHubView's; this is split out purely for file size.
 ///
 /// Registry by FILE: a language has an alphabet exactly when
 /// `catalog/alphabet/<lang>.json` was authored — adding one is dropping a
 /// file, with no Kotlin and no Swift to touch.
 
-/// Everything the hub presents, as ONE item — and every one of them is an
-/// overview you READ from, each starting its own run, so one `.sheet(item:)`
+/// One entry on the hub card: its face, its name and where it goes. A value
+/// rather than a view, because the card counts its entries before it lays them
+/// out (`TrainerHubView.chipRows`).
+struct HubChip: Identifiable {
+    let emoji: String
+    let title: LocalizedStringKey
+    let destination: HubDestination
+
+    var id: String { destination.id }
+}
+
+/// Everything the hub presents, as ONE item, so a single `.sheet(item:)`
 /// carries them all. A second `fullScreenCover(isPresented:)` stacked on the
 /// same view is not reliably honored by SwiftUI (the symptom is a chip that
-/// does nothing), which is why the hub presents no run itself any more.
+/// does nothing), which is why the hub presents no run outside this sheet.
+///
+/// The four overviews are pages you READ from, each starting its own run; the
+/// two scrambles have nothing to read beside them — the box IS their material —
+/// so their entries open the run itself.
 enum HubDestination: Identifiable {
     case numbers(language: String)
     case letters(language: String)
@@ -23,6 +37,10 @@ enum HubDestination: Identifiable {
     /// The calendars are a pair too: the prompt side lends its weekday
     /// abbreviations and its digit format, the answer side spells the date out.
     case dates(source: String, target: String)
+    /// Spelling a word back out of its own letters, in the learned language.
+    case wordScramble(language: String)
+    /// Putting an unlocked phrase's words back in order, in the learned language.
+    case sentenceScramble(language: String)
 
     var id: String {
         switch self {
@@ -30,38 +48,8 @@ enum HubDestination: Identifiable {
         case let .letters(language): return "letters-\(language)"
         case let .countries(source, target): return "countries-\(source)-\(target)"
         case let .dates(source, target): return "dates-\(source)-\(target)"
-        }
-    }
-
-    /// The numbers overview's language.
-    var numbersLanguage: String? {
-        switch self {
-        case let .numbers(language): return language
-        case .letters, .countries, .dates: return nil
-        }
-    }
-
-    /// The letters overview's language.
-    var lettersLanguage: String? {
-        switch self {
-        case let .letters(language): return language
-        case .numbers, .countries, .dates: return nil
-        }
-    }
-
-    /// The atlas overview's pair.
-    var countriesPair: (source: String, target: String)? {
-        switch self {
-        case let .countries(source, target): return (source: source, target: target)
-        case .numbers, .letters, .dates: return nil
-        }
-    }
-
-    /// The dates overview's pair.
-    var datesPair: (source: String, target: String)? {
-        switch self {
-        case let .dates(source, target): return (source: source, target: target)
-        case .numbers, .letters, .countries: return nil
+        case let .wordScramble(language): return "wordscramble-\(language)"
+        case let .sentenceScramble(language): return "sentencescramble-\(language)"
         }
     }
 }
@@ -77,28 +65,13 @@ extension TrainerHubView {
         guard let language = drillLanguage else { return false }
         return model.catalog?.alphabet(lang: language) != nil
     }
-
-    // MARK: - The chip
-
-    /// A chip beside the numbers one: the alphabet to read, and the letter drill
-    /// started from the same page.
-    var lettersChip: some View {
-        Button {
-            guard let language = drillLanguage else { return }
-            destination = .letters(language: language)
-        } label: {
-            chipLabel(emoji: "🔤", title: Text("trainer.skill.letters"))
-        }
-        .buttonStyle(TrainerChipButtonStyle())
-        .accessibilityLabel(Text("trainer.skill.letters")
-            + Text("a11y.suffix.practice \(languageName(drillLanguage ?? ""))"))
-    }
 }
 
 #if DEBUG
 extension TrainerHubView {
-    /// UI-test hook: `-uitest-trainer numbers|letters|countries|dates`
-    /// resolved against what this language actually offers.
+    /// UI-test hook: `-uitest-trainer numbers|letters|countries|dates|
+    /// wordscramble|sentencescramble` resolved against what this profile
+    /// actually offers.
     ///
     /// Clock, phrases and the alphabet are no longer surfaces of their own:
     /// reach them with `-uitest-trainer numbers -uitest-variants clock
@@ -116,6 +89,12 @@ extension TrainerHubView {
         }
         if raw == "dates", let pair = datesPair {
             return .dates(source: pair.source, target: pair.target)
+        }
+        if raw == "wordscramble", wordScrambleAvailable, let language = drillLanguage {
+            return .wordScramble(language: language)
+        }
+        if raw == "sentencescramble", sentenceScrambleAvailable, let language = drillLanguage {
+            return .sentenceScramble(language: language)
         }
         return nil
     }
