@@ -47,11 +47,9 @@ the review loop these share their card and their answering rules with is `design
   family — it is that rule the Sprosse is for,
   and a note or a frame is usually the cheaper home for one.
 - **A Sprosse adds exactly ONE thing** — a question or a wider pool, never both,
-  and never a second axis ramping beside the first.
-  The old atlas Sprosse 4 opened a tier AND the flag question at once
-  and left a learner who slipped unable to say what had got harder;
-  it is the same reason the word scramble's ladder takes help away rather than lengthening
-  the word. What should still get easier or harder otherwise moves INSIDE the Sprosse —
+  and never a second axis ramping beside the first;
+  the word scramble's ladder therefore takes help away rather than lengthening the word.
+  What should still get easier or harder otherwise moves INSIDE the Sprosse —
   the scramble's shorter eligible words simply come first and the longer ones as it runs on.
 - **A drill card is a review card** — same face, same reveal,
   and the revealed reading is spoken and replayable like any other answer (`read-aloud.md`) —
@@ -147,8 +145,6 @@ the review loop these share their card and their answering rules with is `design
   The number is never trimmed to the rows on the page:
   a Sprosse goes on counting past the last named one (`DrillRamp.step`),
   which is what a climbed-out ladder leaves to beat.
-  A numbers run still starts at Sprosse 1 however far the learner has climbed —
-  persisted progress buys access, never a head start.
 - **An endless run offers its exit where it is wanted, not on a schedule.**
   "Fertig" appears under the button that goes on, and only on the SECOND miss in a row:
   one miss is what a drill is made of,

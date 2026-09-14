@@ -11,6 +11,10 @@ import net.spross.kern.catalog.DateEntry
  * exposure. Nothing above it is tapped: the Sprosse is a landing, not a step the ladder
  * carries on ([DateDrill.kinds]).
  *
+ * It stands in BOTH directions, reverse being a direction rather than a shorter ladder:
+ * turned round the prompt is the name in the language being learned and the four tiles
+ * carry the learner's own.
+ *
  * A tapped tile is submitted as the text it carries, which is the answer's own canonical
  * reading, so it grades Exact through the ordinary path and no surface below learns a
  * second way of being right.

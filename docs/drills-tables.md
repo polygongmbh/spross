@@ -63,10 +63,6 @@ and what a language actually READS is its own doc:
 - **The ladder opens on the one Sprosse that is TAPPED**:
   all nineteen names offered four at a time,
   the answer among three others of its own half, before any of them is written out.
-  That Sprosse is a landing rather than a step — every Sprosse above it leaves it behind,
-  because four tiles among written dates are a free point
-  and the Sprosse above would climb on a tap.
-  It is on the reversed ladder too, where the tiles are the learner's own names.
 - **The prompt is the source language's name on the bare Sprossen**
   and the date in the source's own digits above them —
   `Mo, 3.3.` wears the source's weekday abbreviation, authored display-only, never graded.

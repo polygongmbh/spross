@@ -223,7 +223,14 @@ data class TrainerMode(
         fun clearedMask(sprossen: Set<Int>): Int =
             sprossen.filter { it in 1 until Int.SIZE_BITS }.fold(0) { mask, n -> mask or (1 shl (n - 1)) }
 
-        /** The lowest Sprosse [cleared] does not hold, clamped to [top] — where a run opens. */
+        /**
+         * The lowest Sprosse [cleared] does not hold, clamped to [top] — where a run opens.
+         *
+         * Only a ladder that enumerates resumes like this. A slot run opens at Sprosse 1
+         * however far the learner has climbed ([TrainerRun.open]): the progress kept per
+         * variant ([progressKey], [DrillUnlocks]) buys ACCESS to an exercise, never a head
+         * start inside one.
+         */
         fun entrySprosse(cleared: Set<Int>, top: Int): Int =
             ((1..maxOf(1, top)).firstOrNull { it !in cleared }) ?: maxOf(1, top)
 

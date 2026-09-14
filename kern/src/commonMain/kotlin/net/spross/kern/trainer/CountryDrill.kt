@@ -20,7 +20,7 @@ import net.spross.kern.model.Language
  *
  * The ladder widens OUTWARD from the learner's own two languages, each Sprosse keeping
  * everything below it — and each Sprosse brings exactly ONE new thing, either a question or a
- * tier, never both at once:
+ * tier, never both at once, so that a learner who slips can say what got harder:
  *
  * | Sprosse | pool | asks |
  * |---|---|---|
