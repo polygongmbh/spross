@@ -2,32 +2,29 @@
  "title": "Viwakilishi",
  "subtitle": "Mimi, wewe na wengine wote.",
  "words": {
-  "i": { "text": "mimi", "notes": { "sw": "mimi: ni- (ni-nasikia) na -ni- (u-na-ni-sikia)." } },
-  "you": { "text": "wewe", "notes": { "sw": "wewe: u- (u-nasikia) na -ku- (ni-na-ku-sikia)." } },
+  "i": { "text": "mimi", "notes": { "sw": "ni- (ni-nasikia) na -ni- (u-na-ni-sikia)." } },
+  "you": { "text": "wewe", "notes": { "sw": "u- (u-nasikia) na -ku- (ni-na-ku-sikia)." } },
   "he": {
    "text": "yeye",
-   "notes": {
-    "sw": "yeye: a- (a-nasikia) na -m- (ni-na-m-sikia).",
-    "de": "yeye heißt er und sie; das Geschlecht steht nirgends im Satz."
-   }
+   "notes": { "sw": "a- (a-nasikia) na -m- (ni-na-m-sikia).", "de": "yeye heißt er und sie." }
   },
-  "we": { "text": "sisi", "notes": { "sw": "sisi: tu- (tu-nasikia) na -tu- (a-na-tu-sikia)." } },
-  "you-plural": { "text": "ninyi", "notes": { "sw": "ninyi: m- (m-nasikia) na -wa- (a-na-wa-sikia)." } },
-  "they": { "text": "wao", "notes": { "sw": "wao: wa- (wa-nasikia) na -wa- (ni-na-wa-sikia)." } },
+  "we": { "text": "sisi", "notes": { "sw": "tu- (tu-nasikia) na -tu- (a-na-tu-sikia)." } },
+  "you-plural": { "text": "ninyi", "notes": { "sw": "m(u)- (m-nasikia) na -wa- (a-na-wa-sikia)." } },
+  "they": { "text": "wao", "notes": { "sw": "wa- (wa-nasikia) na -wa- (ni-na-wa-sikia)." } },
   "my": {
    "text": "-angu",
    "variants": ["wangu", "yangu", "langu", "changu", "zangu", "vyangu"],
-   "notes": { "sw": "-angu: jina langu, lugha yangu, kitanda changu, mji wangu." }
+   "notes": { "sw": "jina langu, lugha yangu, kitanda changu, mji wangu." }
   },
   "your": {
    "text": "-ako",
    "variants": ["wako", "yako", "lako", "chako", "zako", "vyako"],
-   "notes": { "sw": "-ako: jina lako, nchi yako, kitanda chako, mji wako." }
+   "notes": { "sw": "jina lako, nchi yako, kitanda chako, mji wako." }
   },
   "his": {
    "text": "-ake",
    "variants": ["wake", "yake", "lake", "chake", "zake", "vyake"],
-   "notes": { "sw": "-ake: mama yake, jina lake, kitanda chake." }
+   "notes": { "sw": "mama yake, jina lake, kitanda chake." }
   }
  }
 }

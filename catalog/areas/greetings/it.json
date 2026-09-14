@@ -9,13 +9,14 @@
   "good-day": {
    "text": "Buongiorno!",
    "variants": ["Buon giorno!"],
-   "notes": {
-    "it": "Buongiorno! · dalle 14, Buonasera!",
-    "de": "bis zum frühen Nachmittag · danach Buonasera!"
-   }
+   "notes": { "it": "Buongiorno! · dalle 14, Buonasera! (= buona sera)." }
   },
   "good-evening": { "text": "Buonasera!", "variants": ["Buona sera!"] },
-  "good-night": { "text": "Buonanotte!", "variants": ["Buona notte!"] },
+  "good-night": {
+   "text": "Buonanotte!",
+   "variants": ["Buona notte!"],
+   "notes": { "it": "Solo andando via o a letto · di sera: Buonasera! (= buona sera)." }
+  },
   "goodbye": { "text": "Arrivederci!" },
   "bye": {
    "text": "A presto!",

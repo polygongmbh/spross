@@ -14,7 +14,7 @@
   },
   "good-morning": { "text": "Bonan matenon!" },
   "good-evening": { "text": "Bonan vesperon!" },
-  "good-night": { "text": "Bonan nokton!" },
+  "good-night": { "text": "Bonan nokton!", "notes": { "eo": "nur forirante · vespere: Bonan vesperon!" } },
   "goodbye": { "text": "Ĝis revido!" },
   "bye": { "text": "Ĝis!" },
   "welcome": { "text": "Bonvenon!" },

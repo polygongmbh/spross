@@ -14,10 +14,7 @@
   },
   "good-morning": { "text": "Habari za asubuhi!" },
   "good-evening": { "text": "Habari za jioni!" },
-  "good-night": {
-   "text": "Usiku mwema!",
-   "notes": { "de": "nur zum Abschied am Abend · wer abends ankommt, grüßt mit „Habari za usiku!“" }
-  },
+  "good-night": { "text": "Usiku mwema!", "notes": { "sw": "Kwaheri tu! · unayekuja jioni: Habari za jioni!" } },
   "goodbye": { "text": "Kwaheri!" },
   "welcome": {
    "text": "Karibu!",

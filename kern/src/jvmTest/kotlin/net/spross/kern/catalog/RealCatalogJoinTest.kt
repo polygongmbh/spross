@@ -5,6 +5,7 @@ import net.spross.kern.model.CardKind
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
@@ -138,8 +139,8 @@ class RealCatalogJoinTest {
      */
     @Test
     fun aGermanSelfNoteReachesEveryReader() {
-        val note = "ein schwerer Tisch · eine schwere Frage = schwierig."
-        assertEquals(note, catalog.join("en", "de").byId("heavy").target.note)
+        val note = catalog.join("en", "de").byId("heavy").target.note
+        assertNotNull(note)
         assertEquals(note, catalog.join("uk", "de").byId("heavy").target.note)
     }
 

@@ -16,7 +16,7 @@
   "good-evening": { "text": "¡Buenas tardes!" },
   "good-night": {
    "text": "¡Buenas noches!",
-   "notes": { "de": "nach Einbruch der Dunkelheit auch die Begrüßung, nicht nur der Abschied" }
+   "notes": { "es": "¡Buenas noches! también saluda, no solo despide." }
   },
   "goodbye": { "text": "¡Adiós!" },
   "bye": { "text": "¡Hasta luego!", "variants": ["¡Chao!"] },
