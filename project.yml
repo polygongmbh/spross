@@ -8,16 +8,15 @@ options:
   deploymentTarget:
     iOS: "17.0"
     watchOS: "10.0"
-# why: settings shared by ALL targets live here — per-target copies drift,
-# and a missing DEVELOPMENT_TEAM meant every regeneration wiped the team
-# set in Xcode.
+# why: settings shared by ALL targets live here — per-target copies drift, and the
+# project is GENERATED, so a setting left to the IDE is discarded by the next
+# regeneration: what signing needs belongs here or it does not survive.
 settings:
   base:
     CURRENT_PROJECT_VERSION: 1
     MARKETING_VERSION: 7.0.0
     SWIFT_VERSION: "6.0"
     CODE_SIGN_STYLE: Automatic
-    DEVELOPMENT_TEAM: 2LDZV9286Q
     # why: SprossKern ships ONE simulator slice, arm64 (scripts/build-kern.sh).
     # A scheme built without a concrete destination — the watch-widgets scheme is
     # one — falls back to the generic simulator, whose standard ARCHS adds
@@ -27,6 +26,19 @@ settings:
     # too, so gate on the `Spross` scheme (it builds the whole embed chain) or on
     # `-scheme SprossWatchWidgets -destination 'generic/platform=iOS Simulator'`.
     "EXCLUDED_ARCHS[sdk=iphonesimulator*]": x86_64
+  # why: the two Apple accounts are separate teams and an identifier belongs to ONE
+  # of them, so each config signs with the team that owns what it claims. Debug is
+  # the personal team, which owns group.net.spross.app; Release is the paid team,
+  # which owns group.net.spross.box and alone can issue a distribution certificate
+  # (docs/distribution.md). The entitlements read APP_GROUP_ID rather than naming a
+  # group, so one generated file per target serves both.
+  configs:
+    Debug:
+      DEVELOPMENT_TEAM: 2LDZV9286Q
+      APP_GROUP_ID: group.net.spross.app
+    Release:
+      DEVELOPMENT_TEAM: AF77U46UQ6
+      APP_GROUP_ID: group.net.spross.box
 targets:
   Spross:
     type: application
@@ -59,7 +71,7 @@ targets:
     entitlements:
       path: App/Spross.entitlements
       properties:
-        com.apple.security.application-groups: [group.net.spross.app]
+        com.apple.security.application-groups: ["$(APP_GROUP_ID)"]
     # why: UIBackgroundModes is one of the few keys `INFOPLIST_KEY_*` cannot
     # reach — Xcode honors a fixed list and this is not on it — so the app gets
     # a base plist that the generated keys are merged into. It carries this one
@@ -101,12 +113,13 @@ targets:
     platform: iOS
     sources:
       - Widgets/Sources
+      - Shared/Sources/AppGroup.swift
       - path: Widgets/PrivacyInfo.xcprivacy
         buildPhase: resources
     entitlements:
       path: Widgets/SprossWidgets.entitlements
       properties:
-        com.apple.security.application-groups: [group.net.spross.app]
+        com.apple.security.application-groups: ["$(APP_GROUP_ID)"]
     info:
       path: Widgets/Info.plist
       properties:
@@ -141,7 +154,7 @@ targets:
     entitlements:
       path: Watch/SprossWatch.entitlements
       properties:
-        com.apple.security.application-groups: [group.net.spross.app]
+        com.apple.security.application-groups: ["$(APP_GROUP_ID)"]
     settings:
       base:
         # why: watch-app bundle id must be "<ios-app-id>.watchkitapp" and the
@@ -165,7 +178,7 @@ targets:
     entitlements:
       path: WatchWidgets/SprossWatchWidgets.entitlements
       properties:
-        com.apple.security.application-groups: [group.net.spross.app]
+        com.apple.security.application-groups: ["$(APP_GROUP_ID)"]
     info:
       path: WatchWidgets/Info.plist
       properties:
@@ -180,6 +193,11 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: net.spross.app.watchkitapp.Widgets
         TARGETED_DEVICE_FAMILY: "4"
+      # why: the capitalized id is registered to the paid team and cannot be taken
+      # in the personal one, alone among the four — debug signs a lowercase twin.
+      configs:
+        Debug:
+          PRODUCT_BUNDLE_IDENTIFIER: net.spross.app.watchkitapp.widget
 
 # why: xcodegen writes no schemes unless they are declared, and every gate, script and
 # runbook line reaches the app through `-scheme Spross` (CLAUDE.md, README.md,

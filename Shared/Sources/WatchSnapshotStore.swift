@@ -4,7 +4,7 @@ import Foundation
 /// the watch widget extension reads (the group is valid within the watch).
 /// On iOS this type is compiled but unused.
 enum WatchSnapshotStore {
-    static let appGroup = "group.net.spross.app"
+    static let appGroup = AppGroup.identifier
 
     static func fileURL() -> URL {
         let base = FileManager.default

@@ -119,7 +119,7 @@ struct WidgetSnapshot: Codable {
 /// Reads the app-written snapshot from the shared App-Group container
 /// (`box/widget-snapshot.json`, next to the box documents).
 enum WidgetSnapshotReader {
-    static let appGroup = "group.net.spross.app"
+    static let appGroup = AppGroup.identifier
 
     static func load() -> WidgetSnapshot? {
         guard let container = FileManager.default

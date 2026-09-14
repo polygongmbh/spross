@@ -21,7 +21,7 @@ actor BoxStore {
 
     /// App-Group container so the widget can read the box; falls back to
     /// Documents when the group is unavailable (e.g. unit tests).
-    static let appGroup = "group.net.spross.app"
+    static let appGroup = AppGroup.identifier
 
     static func defaultDirectory() -> URL {
         let base = FileManager.default
