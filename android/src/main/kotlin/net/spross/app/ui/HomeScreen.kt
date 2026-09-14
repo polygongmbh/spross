@@ -1,13 +1,10 @@
 package net.spross.app.ui
 
 import android.text.format.DateFormat
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,9 +25,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -40,11 +34,6 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.TimeZone
 import net.spross.app.AppModel
-import net.spross.app.countriesOffered
-import net.spross.app.datesOffered
-import net.spross.app.lettersOffered
-import net.spross.app.numbersOffered
-import net.spross.app.werkstattOffered
 import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.chromePart
 import net.spross.kern.box.dayPart
@@ -180,97 +169,6 @@ fun HomeScreen(model: AppModel) {
         Spacer(Modifier.height(Theme.spacing.lg))
     }
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
-}
-
-/**
- * Sprossen: free practice, with no schedule and no limit.
- *
- * FOUR entries on ONE row, and each opens a PAGE rather than a run — the reading and the
- * drill it prepares you for are one surface. Each is its own SKILL, which is the only thing
- * that earns a chip; what each one gates on is `DrillAvailability`. A card with none of
- * the four is absent rather than empty.
- */
-@Composable
-private fun SprossenCard(model: AppModel) {
-    val chrome = model.chrome
-    if (!model.werkstattOffered) return
-    Column(
-        modifier = Modifier.fillMaxWidth().panel(),
-    ) {
-        Column(
-            modifier = Modifier.fillMaxWidth().padding(Theme.spacing.lg),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-        ) {
-            Text(chrome.trainerHubTitle, style = MaterialTheme.typography.titleLarge)
-            Text(
-                chrome.trainerHubSubtitle,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            // why: the chips name an exercise and nothing else — spoken, "Numbers" could
-            // be an area of the box. The suffix says it is practice, and in which language.
-            val practice =
-                chrome.a11ySuffixPractice.format(model.languageName(model.box?.joinStamp?.target.orEmpty()))
-            Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-                if (model.numbersOffered) {
-                    EntryChip("🔢", chrome.trainerSkillNumbers, practice) { model.openNumbers() }
-                }
-                if (model.lettersOffered) {
-                    EntryChip("🔤", chrome.trainerSkillLetters, practice) { model.openLetters() }
-                }
-                if (model.countriesOffered) {
-                    EntryChip("🌍", chrome.trainerSkillCountries, practice) { model.openCountries() }
-                }
-                if (model.datesOffered) {
-                    EntryChip("📅", chrome.trainerSkillDates, practice) { model.openDates() }
-                }
-            }
-        }
-    }
-}
-
-/**
- * One entry of the Sprossen card: the glyph large on top, the name at full caption size
- * under it — the iOS chip's face, stacked so three names share the row without shrinking
- * to fit beside their glyphs. The label still steps down rather than wrapping, but only
- * where a name alone outgrows a third of the screen.
- *
- * [suffix] finishes the spoken name.
- */
-@Composable
-private fun RowScope.EntryChip(
-    emoji: String,
-    title: String,
-    suffix: String,
-    onClick: () -> Unit,
-) {
-    Column(
-        modifier = Modifier
-            .weight(1f)
-            // why: the spring sits OUTSIDE the fill — a press must shrink the tile,
-            // not just the label inside it.
-            .pressSpring()
-            .clip(MaterialTheme.shapes.medium)
-            .background(Theme.colors.surfaceTint)
-            .clickable(role = Role.Button, onClick = onClick)
-            .semantics(mergeDescendants = true) { contentDescription = title + suffix }
-            .heightIn(min = Theme.reserve.tile)
-            .padding(horizontal = Theme.spacing.xs, vertical = Theme.spacing.sm),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm, Alignment.CenterVertically),
-    ) {
-        // why: the name is the label — TalkBack reading "Numbers", not "input symbol Numbers".
-        Text(emoji, fontSize = 30.sp, modifier = Modifier.clearAndSetSemantics { })
-        Text(
-            title,
-            style = MaterialTheme.typography.bodySmall,
-            maxLines = 1,
-            autoSize = TextAutoSize.StepBased(
-                minFontSize = 9.sp,
-                maxFontSize = MaterialTheme.typography.bodySmall.fontSize,
-            ),
-        )
-    }
 }
 
 /** "Freitag, 8. August" in the chrome's language — the caption over the day's name. */
