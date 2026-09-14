@@ -13,24 +13,29 @@ import net.spross.kern.session.TurnFeedback
  * order rather than vocabulary. Nothing it does books a review — arrangement is not recall, the
  * same reason the letter drill keeps no schedule.
  *
- * Its Sprossen are LENGTHS: a Sprosse asks a phrase of at least its own atom count, and the
- * ladder tops out at the longest phrase the box has actually unlocked. The ramp, the effects
- * and the summary are the ones every drill shares.
+ * Its Sprossen are LENGTHS, and they ACCUMULATE: a Sprosse adds a longer phrase to what the one
+ * below it could ask and keeps everything below ([SentenceScrambleAvailability.Report.atomsAt]),
+ * so the ladder tops out at the longest phrase the box has actually unlocked with every shorter
+ * one still in the deck. The ramp, the effects and the summary are the ones every drill shares.
  *
  * Kern never self-randomizes: the deal takes the caller's [Random], so a seeded run is
  * reproducible end to end and identical on both platforms.
  */
 object SentenceScrambleRun {
 
-    /** Two clean arrangements carry a Sprosse — a three-word phrase is not worth three rounds. */
-    const val WINS_TO_ADVANCE: Int = 2
+    /**
+     * Five clean arrangements carry a Sprosse. Two made the ladder climb faster than the learner
+     * could feel it — a clean, an almost and a clean promoted on the third answer, which read as
+     * the almost having counted.
+     */
+    const val WINS_TO_ADVANCE: Int = 5
 
     /** How many deals a shuffle gets before an already-ordered one is allowed to stand. */
     private const val DEAL_ATTEMPTS = 8
 
-    /** A fresh run at the foot of the ladder. */
+    /** A fresh run where the ladder stands ([SentenceScrambleRunConfig.entryLevel]). */
     fun open(config: SentenceScrambleRunConfig, rng: Random): SentenceScrambleRunState =
-        openAt(config, 1, rng)
+        openAt(config, config.entryLevel, rng)
 
     /** The same, forced to one Sprosse — the deterministic way to reach a length. */
     fun openAt(
@@ -46,7 +51,10 @@ object SentenceScrambleRun {
             placed = emptyList(),
             index = 0,
             level = opening.level,
+            bestLevel = opening.level,
             winsAtLevel = 0,
+            clearedSprossen = emptySet(),
+            blemished = false,
             core = DrillRunCore(),
             feedback = TurnFeedback.Neutral,
             finished = opening.task == null,
@@ -68,8 +76,11 @@ object SentenceScrambleRun {
     /**
      * Leaving the run. A pending accepted answer books exactly as the explicit tap would, so
      * closing can neither lose it nor upgrade it; a revealed arrangement nobody confirmed books
-     * nothing. [DrillRunSummary.newRecord] is always false — this drill keeps no record store,
+     * nothing. [DrillRunSummary.newRecord] is always false — this drill keeps no streak record,
      * so nothing it does can beat one.
+     *
+     * The Sprosse the run stands on when it leaves is NOT booked: a rung is earned by being
+     * climbed off unblemished ([DrillRungs]), and stopping halfway up one earns nothing.
      */
     fun close(state: SentenceScrambleRunState): SentenceScrambleClose {
         val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
@@ -82,7 +93,7 @@ object SentenceScrambleRun {
         } else {
             DrillRunSummary(ended.done, ended.bestStreak, newRecord = false)
         }
-        return SentenceScrambleClose(ended, summary, effects)
+        return SentenceScrambleClose(ended, summary, ended.bestLevel, ended.clearedSprossen, effects)
     }
 
     // MARK: - Intents
@@ -157,8 +168,17 @@ object SentenceScrambleRun {
             next.copy(
                 task = question.task,
                 level = question.level,
+                bestLevel = maxOf(next.bestLevel, question.level),
                 // A Sprosse the run was carried past keeps none of the wins banked below it.
                 winsAtLevel = if (question.level == next.level) next.winsAtLevel else 0,
+                // A Sprosse answered out is a Sprosse climbed off, and books on the same terms.
+                clearedSprossen = DrillRungs.leaving(
+                    next.clearedSprossen,
+                    next.level,
+                    question.level,
+                    next.blemished,
+                ),
+                blemished = next.blemished && question.level == next.level,
                 index = state.index + 1,
                 // why: cleared in the SAME transaction as the question — the next arrangement
                 // must never render a frame carrying the last one's atoms.
@@ -183,9 +203,18 @@ object SentenceScrambleRun {
             clean = clean,
             winsRequired = WINS_TO_ADVANCE,
         )
+        val blemished = DrillRungs.blemished(state.blemished, correct, clean)
         return state.copy(
             level = step.level,
+            bestLevel = maxOf(state.bestLevel, step.level),
             winsAtLevel = step.winsAtLevel,
+            clearedSprossen = DrillRungs.leaving(
+                state.clearedSprossen,
+                state.level,
+                step.level,
+                blemished,
+            ),
+            blemished = blemished && step.level == state.level,
             core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) }),
         )
     }
@@ -206,9 +235,15 @@ object SentenceScrambleRun {
         }
 
     /**
-     * One question at [level]: the SHORTEST phrases the Sprosse admits, so a learner who has
-     * just climbed meets the new length before the long tail of it. [avoiding] is the phrase
-     * just asked, which kern resamples once. Null ⇒ this Sprosse has nothing left.
+     * One question at [level], drawn EVENLY across every phrase the Sprosse admits — the atlas'
+     * rule on the atlas' kind of ladder. [avoiding] is the phrase just asked, which kern
+     * resamples once. Null ⇒ this Sprosse has nothing left.
+     *
+     * No tier is singled out. Narrowing to the newest length would be the rising floor again
+     * under another name, and narrowing to the shortest would make the climb invisible; a flat
+     * draw lets the new length in as one more card in the deck, and [DrillSolved] retires each
+     * phrase as it is arranged clean, so the deck thins toward whatever the learner still owes
+     * rather than toward a length the ladder picked for them.
      */
     private fun sample(
         report: SentenceScrambleAvailability.Report,
@@ -217,13 +252,10 @@ object SentenceScrambleRun {
         solved: Set<String>,
         rng: Random,
     ): SentenceScrambleTask? {
-        val floor = report.atomsAt(level)
-        val open = report.phrases.filter {
-            it.words >= floor && DrillSolved.sentenceKey(it.card.id) !in solved
-        }
-        val shortest = open.minOfOrNull { it.words } ?: return null
-        val tier = open.filter { it.words == shortest }
-        val pool = tier.filter { it.card.id != avoiding }.ifEmpty { tier }
+        val open = report.phrasesAt(level)
+            .filter { DrillSolved.sentenceKey(it.card.id) !in solved }
+        if (open.isEmpty()) return null
+        val pool = open.filter { it.card.id != avoiding }.ifEmpty { open }
         val phrase = pool[rng.nextInt(pool.size)]
         return SentenceScrambleTask(
             cardId = phrase.card.id,

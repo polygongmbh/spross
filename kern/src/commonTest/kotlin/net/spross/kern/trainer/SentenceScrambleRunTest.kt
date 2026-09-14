@@ -125,17 +125,36 @@ class SentenceScrambleRunTest {
         assertEquals(done, reduce(done, SentenceScrambleIntent.ReturnAtom(0)).state)
     }
 
-    /** Clean arrangements carry the Sprosse, and the Sprosse asks a longer phrase. */
+    /**
+     * A Sprosse ADDS a length and keeps every one below it — the "Dazu:" ladder. Climbing widens
+     * the deck rather than sliding a window up it, so the short phrases are still asked at the top.
+     */
     @Test
-    fun cleanArrangementsCarryTheSprosseAndLengthenThePhrase() {
-        var state = open()
-        assertEquals(SentenceScrambleAvailability.MIN_ATOMS, assertNotNull(state.task).words)
-        repeat(SentenceScrambleRun.WINS_TO_ADVANCE) {
+    fun eachSprosseAddsALengthAndKeepsTheOnesBelow() {
+        val report = config().report
+        assertEquals(setOf("runs", "eats", "asks"), report.phrasesAt(1).map { it.card.id }.toSet())
+        assertEquals(
+            setOf("runs", "eats", "asks", "sleeps", "waits"),
+            report.phrasesAt(2).map { it.card.id }.toSet(),
+        )
+        assertEquals(phrases.map { it.id }.toSet(), report.phrasesAt(report.maxLevel).map { it.card.id }.toSet())
+    }
+
+    /** The draw never overreaches the Sprosse it stands on, and still reaches down below it. */
+    @Test
+    fun theDrawStaysUnderItsSprosseAndStillReachesDown() {
+        val report = config().report
+        var state = open(level = 2)
+        val lengths = mutableSetOf<Int>()
+        repeat(SentenceScrambleRun.WINS_TO_ADVANCE - 1) {
+            val task = assertNotNull(state.task)
+            assertEquals(2, state.level)
+            assertTrue(task.words <= report.atomsAt(2), "Sprosse 2 dealt a ${task.words}-word phrase")
+            lengths += task.words
             state = arrange(state, correctly = true)
             state = reduce(state, SentenceScrambleIntent.ConfirmPending).state
         }
-        assertEquals(2, state.level)
-        assertEquals(SentenceScrambleAvailability.MIN_ATOMS + 1, assertNotNull(state.task).words)
+        assertTrue(SentenceScrambleAvailability.MIN_ATOMS in lengths, "the shorter phrases stay in the deck")
     }
 
     /** A phrase arranged clean is never asked again — its order does not change with the Sprosse. */
@@ -172,8 +191,46 @@ class SentenceScrambleRunTest {
         val summary = assertNotNull(closed.summary)
         assertEquals(1, summary.done)
         assertEquals(1, summary.bestStreak)
-        assertFalse(summary.newRecord, "the drill keeps no record store")
+        assertFalse(summary.newRecord, "the drill keeps no streak record")
         assertTrue(closed.state.finished)
+    }
+
+    // MARK: - What the store keeps
+
+    /** A Sprosse climbed off clean is booked, and the next run opens above it. */
+    @Test
+    fun aSprosseClimbedCleanOpensTheNextRunAboveIt() {
+        var state = open()
+        repeat(SentenceScrambleRun.WINS_TO_ADVANCE) {
+            state = arrange(state, correctly = true)
+            state = reduce(state, SentenceScrambleIntent.ConfirmPending).state
+        }
+        val closed = SentenceScrambleRun.close(state)
+        // Five clean arrangements answer the first two rungs out, and both were climbed off clean.
+        assertEquals(setOf(1, 2), closed.clearedSprossen)
+        assertEquals(3, closed.bestLevel)
+
+        val resumed = SentenceScrambleRunConfig(config().report, closed.clearedSprossen)
+        assertEquals(3, resumed.entryLevel)
+        assertEquals(3, SentenceScrambleRun.open(resumed, Random(7)).level)
+    }
+
+    /** A wrong arrangement takes the Sprosse's booking with it, however clean the rest of it runs. */
+    @Test
+    fun aMissForfeitsTheSprosseItFallsOn() {
+        var state = arrange(open(), correctly = false)
+        state = reduce(state, SentenceScrambleIntent.ConfirmPending).state
+        assertEquals(1, state.level, "the foot of the ladder has nothing below it")
+
+        repeat(phrases.size) {
+            if (state.level > 1 || state.task == null) return@repeat
+            state = arrange(state, correctly = true)
+            state = reduce(state, SentenceScrambleIntent.ConfirmPending).state
+        }
+        assertTrue(state.level > 1, "the run climbs as it always did")
+        val closed = SentenceScrambleRun.close(state)
+        assertEquals(emptySet(), closed.clearedSprossen, "but the Sprosse is not the store's")
+        assertEquals(1, SentenceScrambleRunConfig(config().report, closed.clearedSprossen).entryLevel)
     }
 
     /** The beat only ever arms on a clean answer. */

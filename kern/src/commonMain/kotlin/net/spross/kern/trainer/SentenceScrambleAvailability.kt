@@ -46,8 +46,18 @@ object SentenceScrambleAvailability {
         val maxLevel: Int
             get() = maxOf(1, (phrases.maxOfOrNull { it.words } ?: MIN_ATOMS) - MIN_ATOMS + 1)
 
-        /** How many WORDS a phrase must carry to be asked at [level]. */
+        /**
+         * The longest phrase [level] may ask, in WORDS — a ceiling, not a floor.
+         *
+         * Each Sprosse ADDS a length and keeps every one below it, the atlas' "Dazu:" model: a
+         * learner who has just reached five-word phrases is not done with four-word ones, and
+         * dropping the short phrases as the ladder rose was what made a box of three-, three-,
+         * four- and seven-word phrases answer Sprosse 2 with the seven-word one.
+         */
         fun atomsAt(level: Int): Int = maxOf(1, level) + MIN_ATOMS - 1
+
+        /** The phrases [level] admits: everything from [MIN_ATOMS] words up to [atomsAt]. */
+        fun phrasesAt(level: Int): List<Phrase> = phrases.filter { it.words <= atomsAt(level) }
     }
 
     /** One eligible phrase and the chips it was cut into. */

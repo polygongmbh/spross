@@ -34,22 +34,51 @@ data class SentenceScrambleReduction(
     val effects: List<DrillEffect>,
 )
 
-/** What a closed sentence run leaves behind — figures only; no record store, no Sprosse booked. */
+/**
+ * What a closed sentence run leaves behind: the figures, the furthest Sprosse it stood on, and
+ * the Sprossen it EARNED for the store to keep.
+ */
 data class SentenceScrambleClose(
     val state: SentenceScrambleRunState,
     /** null ⇒ nothing was answered: dismiss, report nothing. */
     val summary: DrillRunSummary?,
+    /**
+     * The Sprosse the run REACHED, not the one it ends on — the ramp drops back on a miss, and
+     * the ladder rewards standing on a Sprosse rather than finishing there.
+     */
+    val bestLevel: Int,
+    /**
+     * The Sprossen this run climbed off without a blemish ([DrillRungs]), for the store to add
+     * to the mask it holds — the next run opens on the lowest one that is still missing.
+     * Unfiltered: unlike [bestLevel] there is no standing value to beat.
+     */
+    val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
 )
 
-/** Everything one sentence run is fixed to: the phrases it may ask, resolved when it opens. */
-class SentenceScrambleRunConfig(val report: SentenceScrambleAvailability.Report)
+/**
+ * Everything one sentence run is fixed to, resolved when it opens: the phrases it may ask and
+ * how far the ladder already stands.
+ */
+class SentenceScrambleRunConfig(
+    val report: SentenceScrambleAvailability.Report,
+    /**
+     * The Sprossen earlier runs earned, as the PLATFORM's store holds them
+     * ([TrainerMode.clearedSprossen] over the mask under [TrainerMode.CLEARED_PREFIX]) — kern
+     * reads no device state, so where the ladder stands arrives as a parameter.
+     */
+    val cleared: Set<Int> = emptySet(),
+) {
+    /** Where a fresh run opens: the lowest Sprosse not yet earned ([TrainerMode.entrySprosse]). */
+    val entryLevel: Int get() = TrainerMode.entrySprosse(cleared, report.maxLevel)
+}
 
 /**
  * One sentence-scramble run, whole and immutable.
  *
  * No FSRS anywhere — arrangement is not recall: the box is READ for the phrases it has
- * unlocked and never written, so the run keeps no record and books no review.
+ * unlocked and never written, so the run books no review. What outlives it is the ladder —
+ * [bestLevel] and [clearedSprossen], which the screen that started the run files.
  */
 data class SentenceScrambleRunState(
     val config: SentenceScrambleRunConfig,
@@ -59,7 +88,16 @@ data class SentenceScrambleRunState(
     val placed: List<Int>,
     val index: Int,
     val level: Int,
+    val bestLevel: Int,
     val winsAtLevel: Int,
+    /** The Sprossen climbed off unblemished so far — what the close hands the store. */
+    val clearedSprossen: Set<Int>,
+    /**
+     * Whether the Sprosse the run stands on has already lost the store: an almost or a miss on
+     * it. It costs the run nothing else — the streak, the banked wins and the ramp are all
+     * [DrillRamp]'s, and a blemish moves none of them.
+     */
+    val blemished: Boolean,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
     val core: DrillRunCore,
     val feedback: TurnFeedback,
