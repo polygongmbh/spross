@@ -68,4 +68,13 @@ internal object DrillSolved {
 
     /** The dates ladder numbers weekdays and months alike, so its KIND carries the identity. */
     fun key(task: DateDrillTask): String = "${task.kind}:${task.id}"
+
+    /**
+     * A word scramble asks the same word differently up its ladder — the letters left standing
+     * are the Sprosse — so the LEVEL carries the identity alongside the card.
+     */
+    fun key(task: WordScrambleTask): String = wordKey(task.level, task.cardId)
+
+    /** The same key from the parts, for a draw that is choosing what to build. */
+    fun wordKey(level: Int, cardId: String): String = "word:$level:$cardId"
 }

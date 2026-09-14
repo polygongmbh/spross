@@ -1,0 +1,104 @@
+package net.spross.kern.trainer
+
+import net.spross.kern.session.AnswerNormalizer
+import net.spross.kern.session.AnswerOutcome
+import net.spross.kern.session.TurnFeedback
+
+/**
+ * What the learner does to a word-scramble run. Writing the word out IS the answer, so a
+ * keystroke is an intent of its own — the typed drills' rule, which the arrangement drill
+ * has no use for.
+ */
+sealed class WordScrambleIntent {
+
+    /** A live keystroke: a word finished exactly right needs no check tap. */
+    data class InputChanged(val text: String) : WordScrambleIntent()
+
+    /** Check/Enter with text standing. */
+    data class Submit(val text: String) : WordScrambleIntent()
+
+    /** "Aufdecken" on an empty field — the card carries the spelling and the question books a miss. */
+    data object Reveal : WordScrambleIntent()
+
+    /** The explicit tap that books whatever the feedback already said. */
+    data object ConfirmPending : WordScrambleIntent()
+
+    /** The platform's armed beat elapsed. */
+    data object AdvanceElapsed : WordScrambleIntent()
+}
+
+/** The closed result of one intent: the next state plus what it asks for. */
+data class WordScrambleReduction(
+    val state: WordScrambleRunState,
+    val effects: List<DrillEffect>,
+)
+
+/** What a closed word run leaves behind — figures only; no record store, no Sprosse booked. */
+data class WordScrambleClose(
+    val state: WordScrambleRunState,
+    /** null ⇒ nothing was answered: dismiss, report nothing. */
+    val summary: DrillRunSummary?,
+    val effects: List<DrillEffect>,
+)
+
+/**
+ * Everything one word run is fixed to, resolved when it opens and never per question: the words
+ * it may ask and the grader their spelling is judged by.
+ */
+class WordScrambleRunConfig(
+    val report: WordScrambleAvailability.Report,
+    /**
+     * The STRICT drill grader for the language the answer is owed in — the one being learned.
+     * Null (a preview with no language info) grades plainly.
+     */
+    val normalizer: AnswerNormalizer?,
+)
+
+/**
+ * One word-scramble run, whole and immutable.
+ *
+ * The learner's TEXT is not in here — the platform owns the field, the keyboard and the focus,
+ * and hands text in through [WordScrambleIntent].
+ *
+ * No FSRS anywhere: the box is READ for the words it has grown and never written, so the run
+ * keeps no record and books no review.
+ */
+data class WordScrambleRunState(
+    val config: WordScrambleRunConfig,
+    /** The question on screen; null only once nothing can be asked any more. */
+    val task: WordScrambleTask?,
+    val index: Int,
+    val level: Int,
+    val winsAtLevel: Int,
+    /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
+    val core: DrillRunCore,
+    val feedback: TurnFeedback,
+    val finished: Boolean,
+) {
+    val done: Int get() = core.done
+
+    val streak: Int get() = core.streak
+
+    val bestStreak: Int get() = core.bestStreak
+
+    val missRun: Int get() = core.missRun
+
+    val outcomes: List<AnswerOutcome> get() = core.outcomes
+
+    val solved: Set<String> get() = core.solved
+
+    val owesAnswer: Boolean get() = feedback == TurnFeedback.Neutral
+
+    /** Correct or almost: something is pending that closing must book rather than lose. */
+    val answerAccepted: Boolean
+        get() = feedback == TurnFeedback.Correct || feedback is TurnFeedback.Almost
+
+    /** The card opens: a slip and a miss each leave a spelling worth seeing whole. */
+    val showsAnswer: Boolean
+        get() = feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed
+
+    /** The way out, under the button that goes on, on the second miss in a row. */
+    val offersFinish: Boolean get() = missRun >= 1 && feedback == TurnFeedback.Revealed
+
+    val tally: DrillTally get() = DrillTally.of(outcomes)
+}
