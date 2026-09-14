@@ -5,7 +5,7 @@ import SprossKern
 /// which way round it asks, how fast it climbs, and the button that starts it.
 /// State lives on DrillOverview; split out purely for file size.
 ///
-/// The RUNGS are not earned — the drills are ungated, so no row carries a
+/// The SPROSSEN are not earned — the drills are ungated, so no row carries a
 /// padlock — but the ladder wears its RECORD: each circle says whether some
 /// run stood on that Sprosse (ocean) or answered every question of it (forest),
 /// and `Los` opens on the lowest Sprosse no run has answered out. The rows the
