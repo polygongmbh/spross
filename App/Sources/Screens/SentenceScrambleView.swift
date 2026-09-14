@@ -33,7 +33,8 @@ struct SentenceScrambleView: View {
         self.model = model
         self.onFinish = onFinish
         let config = SentenceScrambleRunConfig(
-            report: SentenceScrambleAvailability(model: model).report
+            report: SentenceScrambleAvailability(model: model).report,
+            cleared: []
         )
         #if DEBUG
         // UI-test hook: `-uitest-sentencescramble-level N` opens the run at that

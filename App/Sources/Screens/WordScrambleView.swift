@@ -42,7 +42,8 @@ struct WordScrambleView: View, LanguageNaming {
         let config = WordScrambleRunConfig(
             report: WordScrambleAvailability(model: model).report,
             normalizer: model.languageInfo(language)
-                .map { AnswerNormalizer.companion.drill(answerLanguage: $0) }
+                .map { AnswerNormalizer.companion.drill(answerLanguage: $0) },
+            cleared: []
         )
         #if DEBUG
         // UI-test hook: `-uitest-wordscramble-level N` opens the run at that
@@ -101,10 +102,11 @@ struct WordScrambleView: View, LanguageNaming {
     // MARK: - The mixed word
 
     /// The prompt: the letters as kern mixed them, with the ones the Sprosse
-    /// left standing underlined. Kern says how many hold at each end
+    /// left standing set bold. Kern says how many hold at each end
     /// (`ScrambledWord.fixedLeading`/`fixedTrailing`) and this side says what
-    /// that looks like — an underline reads as "this one is where the spelling
-    /// puts it" without a legend.
+    /// that looks like — weight alone, because the anchors are a recognition
+    /// aid the ladder takes away rung by rung, and an aid on its way out is not
+    /// worth a legend.
     func promptText(_ word: ScrambledWord) -> Text {
         let letters = Array(word.display)
         let lead = min(Int(word.fixedLeading), letters.count)
@@ -112,9 +114,9 @@ struct WordScrambleView: View, LanguageNaming {
         let head = String(letters.prefix(lead))
         let tail = trail > 0 ? String(letters.suffix(trail)) : ""
         let middle = String(letters[lead..<(letters.count - trail)])
-        return Text(verbatim: head).underline()
+        return Text(verbatim: head).bold()
             + Text(verbatim: middle)
-            + Text(verbatim: tail).underline()
+            + Text(verbatim: tail).bold()
     }
 
     /// A mixed word is not a word, and a voice reading it as one says nothing a

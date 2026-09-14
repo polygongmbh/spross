@@ -333,7 +333,9 @@ class DrillWiringTest {
     private fun scramble(platform: Platform, seed: Int = 11): WordScrambleFlow {
         val report = WordScrambleAvailability.Report(
             listOf("chumba", "kitabu", "mlango", "dirisha", "meza")
-                .mapIndexed { index, word -> grownWord("word$index", word) },
+                .mapIndexed { index, word ->
+                    WordScrambleAvailability.Spelling(grownWord("word$index", word), listOf(word))
+                },
         )
         return WordScrambleFlow(
             // A run with no language info grades plainly — enough to drive the wiring.
