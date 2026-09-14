@@ -17,19 +17,26 @@
   "it-is-now": {
    "text": "Ahora {slot}.",
    "notes": {
-    "de": "Die spanische Uhrzeit ist ein ganzes Prädikat („son las dos y media“), daher ein Prädikatrahmen ohne „a las“."
+    "de": "Die spanische Uhrzeit ist ein ganzes Prädikat („son las dos y media“), daher ein Prädikatrahmen ohne „a las“.",
+    "en": "A Spanish time is a whole predicate („son las dos y media“), so this is a predicate frame and carries no „a las“."
    }
   },
   "alarm-clock-shows": {
    "text": "El despertador dice que {slot}.",
-   "notes": { "de": "wörtl.: „Der Wecker sagt, dass …“ — die Uhrzeit bringt ihre eigene Kopula mit" }
+   "notes": {
+    "de": "wörtl.: „Der Wecker sagt, dass …“ — die Uhrzeit bringt ihre eigene Kopula mit",
+    "en": "literally „The alarm clock says that …“ — the time brings its own copula."
+   }
   },
   "repeat-please": { "text": "Repita, por favor: {slot}.", "variants": ["Repite, por favor: {slot}."] },
   "write-please": { "text": "Escribe, por favor: {slot}.", "variants": ["Escriba, por favor: {slot}."] },
   "learning-since-year": {
    "text": "Aprendo {language} desde {slot}.",
    "variants": ["Estoy aprendiendo {language} desde {slot}."],
-   "notes": { "de": "Jahreszahl als Kardinalzahl gelesen: „mil novecientos setenta y ocho“" }
+   "notes": {
+    "de": "Jahreszahl als Kardinalzahl gelesen: „mil novecientos setenta y ocho“",
+    "en": "The year is read as a plain cardinal: „mil novecientos setenta y ocho“."
+   }
   },
   "repeat-the-year": {
    "text": "Repita, por favor, la fecha: {slot}.",

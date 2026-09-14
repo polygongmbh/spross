@@ -31,14 +31,20 @@
   "it-costs-n-euros": {
    "text": "It costs {slot} euros.",
    "variants": ["That costs {slot} euros.", "It's {slot} euros."],
-   "notes": { "de": "Plural: euros — anders als „30 Euro“ im Deutschen" }
+   "notes": {
+    "de": "Plural: euros — anders als „30 Euro“ im Deutschen",
+    "en": "The unit pluralizes in a count: twenty euros, never „twenty euro“."
+   }
   },
   "repeat-please": { "text": "Please repeat: {slot}.", "variants": ["Repeat, please: {slot}."] },
   "write-please": { "text": "Please write: {slot}.", "variants": ["Write, please: {slot}."] },
   "learning-since-year": {
    "text": "I have been learning {language} since {slot}.",
    "variants": ["I've been learning {language} since {slot}.", "I have been studying {language} since {slot}."],
-   "notes": { "de": "„seit“ verlangt im Englischen have been + -ing, nie das Präsens" }
+   "notes": {
+    "de": "„seit“ verlangt im Englischen have been + -ing, nie das Präsens",
+    "en": "„since“ takes the present perfect continuous — have been learning, never the plain present."
+   }
   },
   "repeat-the-year": {
    "text": "Please repeat the date: {slot}.",
