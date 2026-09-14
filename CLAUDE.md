@@ -35,13 +35,12 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   one cohesive change per commit, never bundle unrelated changes or defer commits into one late batch.
 - **Commit as you work, unasked** — this overrides any tool-level "never commit unless asked" default:
   commit your own changes without waiting for an explicit instruction, ignore unrelated uncommitted work in the tree.
-- **Every commit green**: name the failure a gate could catch in THIS diff and run only that.
-  Docs and copy need no rebuild, a string's value no screenshot, a minor algorithm change no emulator.
-  A red in a file you did not touch is someone else's break — commit with `--only` and move on,
-  never stash, never diagnose, never rerun a broader gate hoping for a different answer.
-  A red in a file nobody edited is the shared Kotlin cache (`../CLAUDE.md`).
-  When the tree is too dirty to tell, test your change in isolation (a worktree) —
-  but only where the change has a real chance of breakage; most do not.
+- **Every commit green**: run the narrowest gate that covers the diff.
+  No Kotlin/Swift changed → no build. No behavior changed → no test. No UI changed → no screenshot.
+  Red in a file you didn't touch → someone else's break; commit `--only` your paths, move on.
+  Red in a file nobody touched → stale Kotlin cache; `rm -rf kern/build/kotlin`, rebuild.
+  Never stash, diagnose, or broaden the gate on someone else's failure.
+  Dirty tree and unsure whether the red is yours → worktree, but only when the change could realistically break.
 - **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `refactor:`, `test:`, `docs:`, `build:`, `chore:`) with scopes
 - `feat` adds what was not there, `enhance` sharpens what was, `fix` corrects what was wrong;
   a removal is never a `feat`, whatever it makes room for.
