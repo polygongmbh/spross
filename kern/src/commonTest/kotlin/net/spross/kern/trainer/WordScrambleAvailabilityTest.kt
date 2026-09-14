@@ -100,7 +100,7 @@ class WordScrambleAvailabilityTest {
     }
 
     /**
-     * The Sprosse ceiling is read off the POOL, not off the masking ladder: every rung the
+     * The Sprosse ceiling is read off the POOL, not off the masking ladder: every Sprosse the
      * report names holds words enough to be worth climbing, and the one above it does not.
      */
     @Test

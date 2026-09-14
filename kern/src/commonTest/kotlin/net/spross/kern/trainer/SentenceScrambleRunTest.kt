@@ -206,7 +206,7 @@ class SentenceScrambleRunTest {
             state = reduce(state, SentenceScrambleIntent.ConfirmPending).state
         }
         val closed = SentenceScrambleRun.close(state)
-        // Five clean arrangements answer the first two rungs out, and both were climbed off clean.
+        // Five clean arrangements answer the first two Sprossen out, and both were climbed off clean.
         assertEquals(setOf(1, 2), closed.clearedSprossen)
         assertEquals(3, closed.bestLevel)
 

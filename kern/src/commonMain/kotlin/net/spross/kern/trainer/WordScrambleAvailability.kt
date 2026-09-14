@@ -60,7 +60,7 @@ object WordScrambleAvailability {
 
         /**
          * The Sprosse ceiling, read off the POOL rather than off the masking ladder: the
-         * highest Sprosse [POOL_FLOOR] words still clear the floor of, so no rung exists that
+         * highest Sprosse [POOL_FLOOR] words still clear the floor of, so no Sprosse exists that
          * the learner's own words cannot fill.
          *
          * [WordScrambleMasking] tops out at three — first and last anchored, first alone,
@@ -76,9 +76,9 @@ object WordScrambleAvailability {
          * How many LETTERS a word must carry to be asked at [level] — one more per Sprosse,
          * from [MIN_LETTERS] at the foot.
          *
-         * One letter a rung rather than a wider band: the catalog's single words crowd into
+         * One letter a Sprosse rather than a wider band: the catalog's single words crowd into
          * four to eight letters and thin out from there, so a band of two would spend the
-         * whole ladder inside that crowd and then leave its top rung empty for anyone but a
+         * whole ladder inside that crowd and then leave its top Sprosse empty for anyone but a
          * learner who has grown the long tail.
          */
         fun lettersAt(level: Int): Int = MIN_LETTERS + maxOf(1, level) - 1

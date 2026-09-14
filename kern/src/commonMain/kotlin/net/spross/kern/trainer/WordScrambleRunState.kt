@@ -47,7 +47,7 @@ data class WordScrambleClose(
      */
     val bestLevel: Int,
     /**
-     * The Sprossen this run climbed off without a blemish ([DrillRungs]), for the store to add
+     * The Sprossen this run climbed off without a blemish ([DrillSprossen]), for the store to add
      * to the mask it holds — the next run opens on the lowest one that is still missing.
      * Unfiltered: unlike [bestLevel] there is no standing value to beat.
      */

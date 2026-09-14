@@ -196,7 +196,7 @@ Engine contract: `../README.md`.
   "nothing left to ask" already went, now the rule for all of them.
   What a key names is each drill's own question: a word scramble carries its Sprosse in the key,
   because the letters a Sprosse leaves standing make the same word a different ask,
-  while a phrase carries none — its word order does not change with the rung it was drawn at.
+  while a phrase carries none — its word order does not change with the Sprosse it was drawn at.
   The atlas and the letter drill can ENUMERATE a Sprosse and filter it;
   the slot drill draws values rather than picking them out of a list, so there
   `DrillSolved.SPENT_ATTEMPTS` repeats in a row is what "spent" can honestly mean,
@@ -275,10 +275,10 @@ Engine contract: `../README.md`.
   Their LADDERS are opposite on purpose, and the report owns both.
   A word-scramble Sprosse raises a length FLOOR one letter at a time (`Report.lettersAt`) —
   spelling a four-letter word back stops being a question once ten-letter ones are being spelled —
-  and its ceiling is read off the pool: the highest rung `POOL_FLOOR` of the learner's own words
-  still clear, so no rung exists that their box cannot fill,
-  while `WordScrambleMasking.MAX_LEVEL` only names the last rung that changes the CUE
-  (anchors at both ends, then the front, then nothing) and every rung above it goes on
+  and its ceiling is read off the pool: the highest Sprosse `POOL_FLOOR` of the learner's own words
+  still clear, so no Sprosse exists that their box cannot fill,
+  while `WordScrambleMasking.MAX_LEVEL` only names the last Sprosse that changes the CUE
+  (anchors at both ends, then the front, then nothing) and every Sprosse above it goes on
   lengthening the word with nothing anchored.
   A sentence-scramble Sprosse is a CEILING that accumulates (`Report.atomsAt`, `Report.phrasesAt`):
   it adds a longer phrase and keeps every shorter one, the atlas' "Dazu:" model,

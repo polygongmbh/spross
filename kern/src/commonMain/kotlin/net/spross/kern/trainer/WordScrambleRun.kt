@@ -99,8 +99,8 @@ object WordScrambleRun {
      * nothing. [DrillRunSummary.newRecord] is always false — this drill keeps no streak record,
      * so nothing it does can beat one.
      *
-     * The Sprosse the run stands on when it leaves is NOT booked: a rung is earned by being
-     * climbed off unblemished ([DrillRungs]), and stopping halfway up one earns nothing.
+     * The Sprosse the run stands on when it leaves is NOT booked: a Sprosse is earned by being
+     * climbed off unblemished ([DrillSprossen]), and stopping halfway up one earns nothing.
      */
     fun close(state: WordScrambleRunState): WordScrambleClose {
         val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
@@ -173,7 +173,7 @@ object WordScrambleRun {
                 // A Sprosse the run was carried past keeps none of the wins banked below it.
                 winsAtLevel = if (question.level == next.level) next.winsAtLevel else 0,
                 // A Sprosse answered out is a Sprosse climbed off, and books on the same terms.
-                clearedSprossen = DrillRungs.leaving(
+                clearedSprossen = DrillSprossen.leaving(
                     next.clearedSprossen,
                     next.level,
                     question.level,
@@ -203,12 +203,12 @@ object WordScrambleRun {
             clean = clean,
             winsRequired = WINS_TO_ADVANCE,
         )
-        val blemished = DrillRungs.blemished(state.blemished, correct, clean)
+        val blemished = DrillSprossen.blemished(state.blemished, correct, clean)
         return state.copy(
             level = step.level,
             bestLevel = maxOf(state.bestLevel, step.level),
             winsAtLevel = step.winsAtLevel,
-            clearedSprossen = DrillRungs.leaving(
+            clearedSprossen = DrillSprossen.leaving(
                 state.clearedSprossen,
                 state.level,
                 step.level,

@@ -38,7 +38,7 @@ the review loop these share their card and their answering rules with is `design
   and a hub that grows a chip per exercise has no way to say that one is not open yet —
   the ladder is the reward, and only a list that can hold a locked row can show it.
 - **A Sprosse has to ask something no other Sprosse already asks.**
-  One that composes answers the ladders teach separately is a free rung,
+  One that composes answers the ladders teach separately is a free Sprosse,
   however sensible its name:
   the calendar dropped its bare day-of-month because that reading IS the numbers drill's
   cardinal or the Forms drill's ordinal,
@@ -49,10 +49,10 @@ the review loop these share their card and their answering rules with is `design
 - **A Sprosse adds exactly ONE thing where it opens a new KIND of question** —
   a question or a wider pool, never both:
   a learner who slips on the atlas has to be able to name what got harder.
-  A rung that only turns the same demand up owes nothing of the sort,
+  A Sprosse that only turns the same demand up owes nothing of the sort,
   so the word scramble's climb takes a cue away and asks a longer word at once —
   less help and more letters are one difficulty wound tighter, not two things to tell apart.
-  Inside a rung the shorter eligible words still come first,
+  Inside a Sprosse the shorter eligible words still come first,
   and the longer ones as it runs on.
 - **A drill card is a review card** — same face, same reveal,
   and the revealed reading is spoken and replayable like any other answer (`read-aloud.md`) —

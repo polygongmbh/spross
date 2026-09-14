@@ -25,7 +25,7 @@ import kotlin.random.Random
  * [Trainer.maxLevel] is ObjC-visible, and the "Clock ≥ 3" phrase unlock has to mean
  * the same fraction of the ladder for every pair.
  */
-private val RUNGS: List<IntArray> = listOf(
+private val SPROSSEN: List<IntArray> = listOf(
     intArrayOf(0),
     intArrayOf(0, 15, 30, 45),
     intArrayOf(0, 5, 10, 15, 20, 25, 30, 45),
@@ -33,10 +33,10 @@ private val RUNGS: List<IntArray> = listOf(
     IntArray(60) { it },
 )
 
-internal val CLOCK_MAX_LEVEL: Int = RUNGS.size
+internal val CLOCK_MAX_LEVEL: Int = SPROSSEN.size
 
 /** The exact minute set Sprosse [level] offers, clamped into the ladder. */
-internal fun clockSprosse(level: Int): IntArray = RUNGS[level.coerceIn(1, CLOCK_MAX_LEVEL) - 1]
+internal fun clockSprosse(level: Int): IntArray = SPROSSEN[level.coerceIn(1, CLOCK_MAX_LEVEL) - 1]
 
 /**
  * One minute for [level] — a single draw indexed into the Sprosse's table,

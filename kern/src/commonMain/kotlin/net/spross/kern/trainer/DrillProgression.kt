@@ -116,7 +116,7 @@ object DrillRamp {
 }
 
 /**
- * Which Sprossen a run may hand back as CLEARED where a rung is EARNED rather than enumerated.
+ * Which Sprossen a run may hand back as CLEARED where a Sprosse is EARNED rather than enumerated.
  *
  * The atlas and the calendar can list a Sprosse and check it off ([DrillSolved.cleared]); a
  * scramble draws out of a pool that grows with the box, so what it books instead is the CLIMB:
@@ -127,7 +127,7 @@ object DrillRamp {
  * nothing, costs nothing and breaks no streak; it only takes the Sprosse it fell on out of the
  * running for the store, so the next run opens on that Sprosse again instead of above it.
  */
-internal object DrillRungs {
+internal object DrillSprossen {
 
     /** Whether the Sprosse the run stands on is out of the running, once this answer is in. */
     fun blemished(standing: Boolean, correct: Boolean, clean: Boolean): Boolean =
