@@ -11,22 +11,12 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## Engine & scheduling
 
-- A short round that goes stale mid-run (the profile or catalog moves under it) recomposes as a
-  full one, because `SessionIntent.RecomposeIfStale` reaches for `composeSession`, which knows
-  nothing about which round was opened
-  (`kern/src/commonMain/kotlin/net/spross/kern/session/SessionRun.kt` `recompose`).
 - The 24-hour register closes the twelve-hour cycle by NUMBER (`achtzehn Uhr` cannot answer 06:00),
   a closure nothing holds, unlike the day parts' (`dayPartReadingsCloseTheTwelveHourCycle`).
-- `EnglishClock` triplicates its own count/noun/direction derivation (`spelledMinutes:70-73`,
-  `american:85-89`, `EnglishClockRegisters.anchors:58-72`) with `past` as `<= 30` in two of
-  them and `< 30` in the third — the largest true duplication in the clock corpus.
 - `<pack>.cardinal(-n)` returns the digits rather than a reading — the negative reading lives
   in `formReading` deliberately, so nothing needs it today, but a caller that assumes
   `cardinal` covers every `Long` gets a digit string back with no error.
-- The letter drill's `exampleText` fallback is not audibility-filtered, so an inaudible
-  escape-hatch row stays promptable and shows a dead speaker on both platforms
-  (`kern/.../trainer/LetterDrillAvailability.exampleWords` KDoc, pinned in its test).
-- Same class: kern's audibility test is "the catalog names a recording path OR a voice
+- kern's audibility test is "the catalog names a recording path OR a voice
   exists", never whether the file resolves in the bundle, so on a voiceless language a row
   or dictation candidate whose authored recording is missing ships promptable with a dead
   speaker (`kern/.../trainer/LetterDrillAvailability.kt`).

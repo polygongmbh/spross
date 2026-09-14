@@ -16,6 +16,10 @@ Ready work comes first, then the items that end in a question for the owner, the
 - `catalog/areas/README.md` § How a realization is worded lacks the quote-pair convention
   (“…” in English prose, „…“ in German, as the idiom and note passes now write),
   which waits on a ruling before it is written down.
+- `comparison` has no `equal` and no `than`, the two words the shelf most obviously wants:
+  de `gleich` and sw `sawa` already realize `same`, and es/fr `que` already realizes
+  `connectors/that-conj`, so either card would author one meaning twice
+  (`CatalogCollisionLintTest`). Both wait on a re-cut of the word they collide with.
 - sw `verbs/to-send` lost the `kutuma`/`kupeleka` contrast when its German note was cut, and it
   stays lost: `kupeleka` is `verbs/to-deliver`'s own card, so naming it here would break "a note
   explains its own word and no other". The pair wants a contrast card if it wants anything.
@@ -23,19 +27,6 @@ Ready work comes first, then the items that end in a question for the owner, the
   ~340 notes leaning on a later card's word and ~55 naming a grammar term. The same three-agent
   split does it, and the residue in the early areas (10, all function words that happen to be
   cards) is the honest floor rather than a target.
-- `qualities` is 47 concepts, past the ~40 soft cap (`catalog/areas/README.md`).
-  The clean seam is core sensory (~30) vs abstract relational/comparison (~17: different,
-  difference, same, similar, opposite, real, to-compare, positive, negative, neutral,
-  aggressive, defensive, and the phrase). `scripts/catalog-move.py --create` carries the split.
-- 3 es and 2 en phrase-frame notes in `catalog/phrases/*.json` were outside the sweep and are
-  still reader-only; frames resolve `notes[source] ?: notes[target]` the same way (`Catalog.kt:215`).
-- de accepts no bare hour word ("Es ist acht.") though the German is right; with the drill's
-  stray-word rescue gone it is safe to add, but it wants its own sweep run.
-- `time` has no `midnight` though the clock reveal teaches it at 00:00 beside `noon`
-  (`docs/clock-registers.md` § English a.m./p.m.) — a clean add.
-- `qualities` is 47 concepts, past the ~40 line (`catalog/areas/README.md` § which area a
-  concept lives in); the seam is `comparison` — different, difference, same, similar,
-  opposite, real, to-compare — carried by `scripts/catalog-move.py --create`.
 - `rufen` → sw `kuita` has no card: en/es/fr/it say one word for calling and phoning (to call,
   llamar, appeler, chiamare — all already `desk/to-call`), so a second card would author one
   meaning twice (`CatalogLintTest.noConceptPairCollidesInTwoLanguages`); `desk/to-call` would
@@ -79,7 +70,7 @@ Ready work comes first, then the items that end in a question for the owner, the
   changes the `name` FIELD, never the audio (no lint pins a letter clip to its name by design,
   `CatalogAudioLintTest.kt:187`) — and es's two scope calls are the owner's: do the en-only
   vowel rows i/e/u (Q13) stay, and does a written-accent row (Q14) belong in an alphabet file?
-- `food` holds 47 concepts, `desk` 42 and `admin` 41, all past the ~40 line
+- `food` holds 47 concepts and `desk` and `admin` 41 each, all past the ~40 line
   (`catalog/areas/README.md` § which area a concept lives in), and `food`'s seam is raw
   ingredients against meals and drinks — name the new shelf and its members, or accept the
   three past the line?
@@ -135,8 +126,8 @@ Ready work comes first, then the items that end in a question for the owner, the
   the nouns carry no class the way de/fr/es nouns carry `grammar.gender`; a catalog
   `"grammar": { "class": "KI_VI" }` on `catalog/areas/*/sw.json` would let an author state it
   once for the frames, the card itself and a future concord drill.
-- A Swahili speaker's vocabulary queue: `qualities/neutral`, `aggressive`, `defensive` and
-  `organs/thyroid`, `nerve`, `vein` have no honest sw word (absent from `qualities/sw.json`,
+- A Swahili speaker's vocabulary queue: `comparison/neutral`, `aggressive`, `defensive` and
+  `organs/thyroid`, `nerve`, `vein` have no honest sw word (absent from `comparison/sw.json`,
   `organs/sw.json`; checked 2026-09-02 against kaikki, freedict, the ipa-dict wordlist and
   Tatoeba — `wastani` is the arithmetic average, `-kali` is already `sharp`, `-jeuri`/`-korofi`
   mean rude, defensive exists only as the verbs `kulinda`/`kujihami`, `tezi` is any gland, and
