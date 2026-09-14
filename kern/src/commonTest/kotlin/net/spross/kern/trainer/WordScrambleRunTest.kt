@@ -79,6 +79,24 @@ class WordScrambleRunTest {
         assertEquals(Match.Wrong, WordScrambleRun.grade("Auto", bike, config))
     }
 
+    /**
+     * The slips forgiven scale with the word: one on a short spelling, more on a long one.
+     * A learner who mistypes twice in fifteen letters has read the letters; one who mistypes
+     * twice in five has not.
+     */
+    @Test
+    fun theTyposForgivenScaleWithTheWordsLength() {
+        val config = config()
+        val short = task("cook", "kochen", listOf("kochen"))
+        assertEquals(Match.Typo("kochen"), WordScrambleRun.grade("kochem", short, config))
+        assertEquals(Match.Wrong, WordScrambleRun.grade("kochemm", short, config))
+
+        val long = task("speed", "Geschwindigkeit", listOf("Geschwindigkeit"))
+        assertEquals(Match.Typo("Geschwindigkeit"), WordScrambleRun.grade("Geschwundigkeit", long, config))
+        assertEquals(Match.Typo("Geschwindigkeit"), WordScrambleRun.grade("Geschwundigkeid", long, config))
+        assertEquals(Match.Wrong, WordScrambleRun.grade("Geschwundugkeid", long, config))
+    }
+
     /** A look-up is a miss, and a miss drops the Sprosse the run stood on. */
     @Test
     fun aRevealBooksAMissAndDropsTheSprosse() {

@@ -83,7 +83,7 @@ sealed interface Match {
  * positive budget is safe for them.
  */
 class AnswerNormalizer(
-    answerLanguage: LanguageInfo,
+    private val answerLanguage: LanguageInfo,
     private val articleLeniency: Boolean,
     private val maxTyposPerWord: Int?,
 ) {
@@ -121,6 +121,15 @@ class AnswerNormalizer(
 
     /** True when the typed input means the card's target answer. */
     fun matches(input: String, card: Card): Boolean = evaluate(input, card) != Match.Wrong
+
+    /**
+     * The same strictness with the typo budget measured against the answer's own LENGTH
+     * ([allowedTypos]) instead of capped flat per word — for a drill that asks ONE word and
+     * has no numbers to keep apart, which is what the flat cap buys. One slip is generous on
+     * four letters and stingy on fifteen, and a word scramble asks both.
+     */
+    internal fun lengthScaledTypos(): AnswerNormalizer =
+        AnswerNormalizer(answerLanguage, articleLeniency, maxTyposPerWord = null)
 
     /**
      * How many leading whole words of [input] already match [answer], word by

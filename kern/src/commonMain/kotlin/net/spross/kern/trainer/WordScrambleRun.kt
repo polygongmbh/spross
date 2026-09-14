@@ -62,7 +62,8 @@ object WordScrambleRun {
     }
 
     /**
-     * Grade [input] against the ONE form whose letters were handed over ([WordScrambleTask.accepted]).
+     * Grade [input] against the ONE form whose letters were handed over ([WordScrambleTask.accepted]),
+     * forgiving the slips that form's LENGTH forgives ([WordScrambleRunConfig.grader]).
      *
      * Deliberately unlike an ordinary produce review, where knowing any authored form is the
      * point: the question here is not "what is this word" but "what do these letters spell", and
@@ -80,7 +81,7 @@ object WordScrambleRun {
             display = task.display,
             language = task.language,
             cardId = task.cardId,
-            normalizer = config.normalizer,
+            normalizer = config.grader,
         )
 
     /**

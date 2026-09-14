@@ -93,7 +93,12 @@ Leniency is safe to the extent the catalog can disprove it — that rule is the 
   Coverage is deliberately best-effort: a colliding pair outside the index's reach
   stays the forgiven slip it always was, and no sweep pins the tail
   (which readings a clock may share at all is `../../docs/clock-registers.md`).
-  Vocab reviews (`maxTyposPerWord = null`, the default) keep one budget over the whole form.
+  Vocab reviews (`maxTyposPerWord = null`, the default) keep one budget over the whole form,
+  and so does the WORD SCRAMBLE, which reaches it through `lengthScaledTypos()`:
+  that drill asks one vocabulary word rather than a reading, so it has no numbers
+  to keep apart, and its pool runs from four letters to fifteen —
+  the span a single flat slip serves worst at both ends.
+  Article strictness is unchanged; only the budget moves.
   `matchingPrefixWordCount(input, answer)` is a UI-only sibling of `evaluate` — how many
   leading whole words already match, each within its own single-word budget — so a miss's
   retry field can keep the words already right and drop only the wrong tail; it never
