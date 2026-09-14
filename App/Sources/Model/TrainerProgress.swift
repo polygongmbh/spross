@@ -4,10 +4,10 @@ import SprossKern
 // MARK: - TrainerProgress
 //
 // The highest Sprosse a drill has ever reached, per variant and language —
-// and, for the atlas and the calendar, the Sprossen a run has answered OUT,
-// as kern's bitmask. The first is the one source the unlock ladder reads;
-// the second is where the next run opens. Nothing a learner has earned is
-// tracked a second time.
+// and, for the atlas, the calendar and the two scrambles, the Sprossen a run
+// has CLEARED, as kern's bitmask. The first is the one source the unlock
+// ladder reads; the second is where the next run opens. Nothing a learner has
+// earned is tracked a second time.
 //
 // A shell over kern's rules and nothing more: WHERE a Sprosse is filed is
 // `TrainerMode.progressKey` (+ this prefix), and WHICH Sprossen a closed run may
@@ -50,18 +50,25 @@ enum TrainerProgress {
         return true
     }
 
-    // MARK: - Answered-out Sprossen
+    // MARK: - Cleared Sprossen
 
     private static var clearedPrefix: String { TrainerMode.companion.CLEARED_PREFIX }
 
-    /// The Sprossen every run under `key` has answered out — kern reads the mask.
+    /// The Sprossen every run under `key` has cleared — answered out, or climbed
+    /// off unblemished, which the store files as one thing.
     static func cleared(for key: String) -> Set<Int> {
-        let mask = Int32(truncatingIfNeeded: UserDefaults.standard.integer(forKey: clearedPrefix + key))
-        return Set(TrainerMode.companion.clearedSprossen(mask: mask).map { Int(truncating: $0) })
+        Set(held(for: key).map { Int(truncating: $0) })
     }
 
-    /// ORs a closed run's answered-out Sprossen into the standing mask. Never
-    /// filtered: a Sprosse answered out stays answered out.
+    /// The same mask in the shape kern takes it — a run config's `cleared`, a
+    /// ladder's `entrySprosse`.
+    static func held(for key: String) -> Set<KotlinInt> {
+        let mask = Int32(truncatingIfNeeded: UserDefaults.standard.integer(forKey: clearedPrefix + key))
+        return TrainerMode.companion.clearedSprossen(mask: mask)
+    }
+
+    /// ORs a closed run's cleared Sprossen into the standing mask. Never
+    /// filtered: a Sprosse cleared stays cleared.
     static func bookCleared(_ sprossen: Set<KotlinInt>, for key: String) {
         guard !sprossen.isEmpty else { return }
         let mask = Int(TrainerMode.companion.clearedMask(sprossen: sprossen))

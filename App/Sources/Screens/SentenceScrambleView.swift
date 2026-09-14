@@ -18,6 +18,9 @@ import SprossKern
 /// `SentenceScrambleIntent`. The bank and the answer row are `ScrambleTileBank`.
 struct SentenceScrambleView: View {
     let model: AppModel
+    /// The language being learned — carried for the ladder's storage key alone;
+    /// every phrase the run deals names its own.
+    let language: String
     /// Handed the run's figures just before it closes; the page that started it
     /// shows them (see `DrillResultTile`).
     var onFinish: (DrillRunResult) -> Void = { _ in }
@@ -29,12 +32,14 @@ struct SentenceScrambleView: View {
     @State private var run: SentenceScrambleRunState
     @State private var autoAdvance: Task<Void, Never>?
 
-    init(model: AppModel, onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
+    init(model: AppModel, language: String,
+         onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
         self.model = model
+        self.language = language
         self.onFinish = onFinish
         let config = SentenceScrambleRunConfig(
             report: SentenceScrambleAvailability(model: model).report,
-            cleared: []
+            cleared: TrainerProgress.held(for: Self.storageKey(language))
         )
         #if DEBUG
         // UI-test hook: `-uitest-sentencescramble-level N` opens the run at that
@@ -52,6 +57,12 @@ struct SentenceScrambleView: View {
         _run = State(initialValue: SentenceScrambleRun.shared.open(config: config, rng: drillRandom))
         #endif
     }
+
+    /// Where the ladder is filed: one mask per learned language, and no
+    /// direction to split it by — a phrase is only ever put back in order.
+    static func storageKey(_ language: String) -> String { "sentencescramble.\(language)" }
+
+    private var storageKey: String { Self.storageKey(language) }
 
     /// The question on screen; nil only once this box can ask nothing more.
     private var current: SentenceScrambleTask? { run.task }
@@ -223,12 +234,16 @@ struct SentenceScrambleView: View {
     // MARK: - Close → back to the hub that opened it
 
     /// X during a run: kern books a pending arrangement exactly as the tap
-    /// would, then hands the figures back. An untouched run leaves nothing to
-    /// report, and no record line — this drill keeps no record store.
+    /// would, then hands the figures and the ladder it climbed back. An
+    /// untouched run leaves nothing to report, and no record line — this drill
+    /// keeps no streak record.
     private func closeRun() {
         let closed = SentenceScrambleRun.shared.close(state: run)
         run = closed.state
         for effect in closed.effects { apply(effect) }
+        // why: what the NEXT run reads — it opens on the lowest Sprosse the mask
+        // does not hold, so a Sprosse climbed clean is never asked for twice.
+        TrainerProgress.bookCleared(closed.clearedSprossen, for: storageKey)
         guard let summary = closed.summary else {
             dismiss()
             return

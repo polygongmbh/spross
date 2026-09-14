@@ -43,7 +43,7 @@ struct WordScrambleView: View, LanguageNaming {
             report: WordScrambleAvailability(model: model).report,
             normalizer: model.languageInfo(language)
                 .map { AnswerNormalizer.companion.drill(answerLanguage: $0) },
-            cleared: []
+            cleared: TrainerProgress.held(for: Self.storageKey(language))
         )
         #if DEBUG
         // UI-test hook: `-uitest-wordscramble-level N` opens the run at that
@@ -61,6 +61,13 @@ struct WordScrambleView: View, LanguageNaming {
         _run = State(initialValue: WordScrambleRun.shared.open(config: config, rng: drillRandom))
         #endif
     }
+
+    /// Where the ladder is filed: one mask per learned language, and no
+    /// direction to split it by — the mixed letters are only ever written back
+    /// in the language they came from.
+    static func storageKey(_ language: String) -> String { "wordscramble.\(language)" }
+
+    var storageKey: String { Self.storageKey(language) }
 
     /// The question on screen; nil only once this box can ask nothing more.
     var current: WordScrambleTask? { run.task }
@@ -105,7 +112,7 @@ struct WordScrambleView: View, LanguageNaming {
     /// left standing set bold. Kern says how many hold at each end
     /// (`ScrambledWord.fixedLeading`/`fixedTrailing`) and this side says what
     /// that looks like — weight alone, because the anchors are a recognition
-    /// aid the ladder takes away rung by rung, and an aid on its way out is not
+    /// aid the ladder takes away Sprosse by Sprosse, and an aid on its way out is not
     /// worth a legend.
     func promptText(_ word: ScrambledWord) -> Text {
         let letters = Array(word.display)

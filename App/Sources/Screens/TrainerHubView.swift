@@ -89,8 +89,8 @@ struct TrainerHubView: View, LanguageNaming {
                     DatesOverview(model: model, source: source, target: target)
                 case let .wordScramble(language):
                     WordScrambleView(model: model, language: language)
-                case .sentenceScramble:
-                    SentenceScrambleView(model: model)
+                case let .sentenceScramble(language):
+                    SentenceScrambleView(model: model, language: language)
                 }
             }
             .environment(\.locale, model.knownLocale)

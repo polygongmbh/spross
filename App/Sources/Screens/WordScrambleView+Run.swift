@@ -146,12 +146,16 @@ extension WordScrambleView {
     // MARK: - Close → back to the hub that opened it
 
     /// X during a run: kern books a pending answer exactly as the tap would,
-    /// then hands the figures back. An untouched run leaves nothing to report,
-    /// and no record line — this drill keeps no record store.
+    /// then hands the figures and the ladder it climbed back. An untouched run
+    /// leaves nothing to report, and no record line — this drill keeps no streak
+    /// record.
     func closeRun() {
         let closed = WordScrambleRun.shared.close(state: run)
         run = closed.state
         for effect in closed.effects { apply(effect) }
+        // why: what the NEXT run reads — it opens on the lowest Sprosse the mask
+        // does not hold, so a Sprosse climbed clean is never asked for twice.
+        TrainerProgress.bookCleared(closed.clearedSprossen, for: storageKey)
         guard let summary = closed.summary else {
             dismiss()
             return
