@@ -52,7 +52,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - `feat` adds what was not there, `enhance` sharpens what was, `fix` corrects what was wrong;
   a removal is never a `feat`, whatever it makes room for.
 - `!` marks a change to the SHAPE of stored or exchanged state,
-  never content arriving or leaving.
+  never content arriving or leaving, and never an internal rename or a capability added.
 - A user-facing change lands on iOS and Android in the same sweep, never deferred to a parity pass;
   a change to shared/parity-bearing UI (cards, layout tokens) closes with both checked side by side,
   not just implemented on both — a small copy or cosmetic tweak does not need this.

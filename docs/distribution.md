@@ -29,6 +29,13 @@ Two `feat:` commits since the last tag, or a sweep of dozens of commits, usually
 minor; a `feat` that only sharpens behavior already there reads as a patch just as easily.
 `release.sh` prints the two counts and leaves the number to you.
 
+One hard line runs through that judgment: a release is MAJOR when it closes the door behind it,
+when a box this build has written can no longer be read by the build before it.
+A change to stored shape does not earn it on its own —
+a v2 document that converts a v1 in place leaves the upgrade whole.
+What earns it is the DOWNGRADE that stops working,
+the phone that took the new build and cannot be walked back to the old one.
+
 Every gate runs BEFORE the tag exists, because the tag is the trigger and the version:
 the workflow strips the leading `v` and hands the rest to both surfaces,
 so nothing is bumped twice — and a red found after the push costs the release rather than a
@@ -74,7 +81,7 @@ never a commit log, and "user-observable" is a lower bar than the one that holds
   and it goes stale the moment the next commit lands,
   leaving the bullet either lying or waiting to be re-tallied.
   Write what widened and for whom.
-  The exception is a MAJOR release, whose bullets summarize everything since the last one:
+  The exception is a major cut for accumulated growth, whose bullets summarize everything since the last one:
   there a growth figure is the point, and a percentage carries it better than a pair of totals.
 
 ## Secrets
