@@ -35,20 +35,13 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   one cohesive change per commit, never bundle unrelated changes or defer commits into one late batch.
 - **Commit as you work, unasked** — this overrides any tool-level "never commit unless asked" default:
   commit your own changes without waiting for an explicit instruction, ignore unrelated uncommitted work in the tree.
-- **Every commit green**: tests + app build clean at each commit, not just at session end.
-  Green means YOUR commit's content — with other work in flight, scope the gate to what you touched.
-  Name the failure a gate could catch in this diff and skip it where you cannot —
-  docs and copy need no rebuild, a string's value no screenshot, a minor algorithm change no emulator.
-  Read another party's red as theirs, not as a blocker — commit and move on,
-  never stash or diagnose someone else's failure.
-- **On red, attribute before escalating**: `git status`/`diff` the failing file first — 
-  if it's not one you touched, that's someone else's break.
-  Don't rerun the same broad gate or reach for a bigger one hoping for a different answer;
-  narrow instead (targeted tests, `compileKotlinJvm` over `jvmTest` when kern main is untouched) 
-  and fall back to reading your own diff when no gate isolates it.
-  A red in a file nobody edited is the shared Kotlin cache; `../CLAUDE.md` carries that remedy.
-  For smaller changes just skip the check in that case, 
-  only use a separate worktree for verification on conflict at the end of large changes.
+- **Every commit green**: name the failure a gate could catch in THIS diff and run only that.
+  Docs and copy need no rebuild, a string's value no screenshot, a minor algorithm change no emulator.
+  A red in a file you did not touch is someone else's break — commit with `--only` and move on,
+  never stash, never diagnose, never rerun a broader gate hoping for a different answer.
+  A red in a file nobody edited is the shared Kotlin cache (`../CLAUDE.md`).
+  When the tree is too dirty to tell, test your change in isolation (a worktree) —
+  but only where the change has a real chance of breakage; most do not.
 - **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `refactor:`, `test:`, `docs:`, `build:`, `chore:`) with scopes
 - `feat` adds what was not there, `enhance` sharpens what was, `fix` corrects what was wrong;
   a removal is never a `feat`, whatever it makes room for.
