@@ -26,6 +26,7 @@ class SentenceScrambleAvailabilityTest {
         ScrambleFixture.phrase("short", "na und", listOf("mouse", "run"), seed = 14),
         ScrambleFixture.phrase("blank", "die … läuft schnell", listOf("mouse", "run"), seed = 15),
         ScrambleFixture.phrase("sleeps", "die Maus schläft dort", listOf("mouse", "run"), seed = 16),
+        ScrambleFixture.phrase("careful", "Vorsicht, heiß!", listOf("mouse", "run"), seed = 17),
     )
 
     private fun report(
@@ -58,11 +59,13 @@ class SentenceScrambleAvailabilityTest {
         assertFalse("greeting" in report().phrases.map { it.card.id })
     }
 
-    /** Below three atoms there is no order to put back. */
+    /** Below three WORDS there is no order to put back — the marks placed alongside are not one. */
     @Test
     fun aPhraseTooShortToHaveAnOrderIsNotAsked() {
         assertFalse("short" in report().phrases.map { it.card.id })
         assertEquals(SentenceScrambleAvailability.MIN_ATOMS - 1, ScrambleTokenizer.tokens("na und").size)
+        assertFalse("careful" in report().phrases.map { it.card.id })
+        assertEquals(4, ScrambleTokenizer.atoms("Vorsicht, heiß!").size, "two words and two marks")
     }
 
     /** The ellipsis is an authored blank: the words around it are a frame, not a sentence. */
@@ -81,7 +84,7 @@ class SentenceScrambleAvailabilityTest {
     @Test
     fun theLadderTopsOutOnTheLongestPhraseHeld() {
         val report = report()
-        assertEquals(5, report.phrases.maxOf { it.atoms.size })
+        assertEquals(5, report.phrases.maxOf { it.words })
         assertEquals(3, report.maxLevel)
         assertEquals(SentenceScrambleAvailability.MIN_ATOMS, report.atomsAt(1))
         assertEquals(5, report.atomsAt(3))

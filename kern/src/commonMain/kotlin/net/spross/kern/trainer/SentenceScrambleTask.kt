@@ -19,11 +19,18 @@ data class SentenceScrambleTask(
     val shuffled: List<ScrambleAtom>,
     /** The atoms in the order the phrase was authored in — what an arrangement is measured by. */
     val canonical: List<ScrambleAtom>,
-    /** The phrase as authored, for the reveal. */
+    /**
+     * The phrase as AUTHORED, for the reveal — full stop and all. The atoms carry no stop of
+     * their own ([ScrambleTokenizer]), so rejoining them is what the learner arranged, while
+     * this is what the catalog teaches.
+     */
     val display: String,
     /** Shown on the reveal only — the drill never puts the meaning on screen before the answer. */
     val gloss: String,
 ) {
-    /** How many atoms the arrangement takes — the Sprosse this question was drawn at. */
+    /** How many chips the arrangement takes — words and marks alike, since both are placed. */
     val size: Int get() = canonical.size
+
+    /** How many of them carry a word ORDER — the Sprosse this question was drawn at. */
+    val words: Int get() = canonical.count { !ScrambleTokenizer.isMark(it.text) }
 }

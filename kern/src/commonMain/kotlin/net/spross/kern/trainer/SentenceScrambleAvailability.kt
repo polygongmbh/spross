@@ -44,14 +44,22 @@ object SentenceScrambleAvailability {
          * so the top of the ladder is a phrase this box actually holds rather than a number.
          */
         val maxLevel: Int
-            get() = maxOf(1, (phrases.maxOfOrNull { it.atoms.size } ?: MIN_ATOMS) - MIN_ATOMS + 1)
+            get() = maxOf(1, (phrases.maxOfOrNull { it.words } ?: MIN_ATOMS) - MIN_ATOMS + 1)
 
-        /** How many atoms a phrase must carry to be asked at [level]. */
+        /** How many WORDS a phrase must carry to be asked at [level]. */
         fun atomsAt(level: Int): Int = maxOf(1, level) + MIN_ATOMS - 1
     }
 
-    /** One eligible phrase and the atoms it was cut into. */
-    data class Phrase(val card: Card, val atoms: List<ScrambleAtom>)
+    /** One eligible phrase and the chips it was cut into. */
+    data class Phrase(val card: Card, val atoms: List<ScrambleAtom>) {
+
+        /**
+         * How long the phrase is as an ORDER. A punctuation chip is placed like any other but
+         * carries no word order to get right, so the ladder and the floor count words alone —
+         * otherwise "Vorsicht, heiß!" would pass for a four-atom phrase.
+         */
+        val words: Int get() = atoms.count { !ScrambleTokenizer.isMark(it.text) }
+    }
 
     /**
      * The full report.
@@ -70,7 +78,7 @@ object SentenceScrambleAvailability {
             .filter { Growth.isPhraseUnlocked(box, it) }
             .filter { '…' !in it.target.text }
             .map { Phrase(it, ScrambleTokenizer.atoms(it.target.text)) }
-            .filter { it.atoms.size >= MIN_ATOMS },
+            .filter { it.words >= MIN_ATOMS },
     )
 
     /** Whether the drill exists at all — the hub-chip predicate. */

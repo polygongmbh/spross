@@ -219,10 +219,10 @@ object SentenceScrambleRun {
     ): SentenceScrambleTask? {
         val floor = report.atomsAt(level)
         val open = report.phrases.filter {
-            it.atoms.size >= floor && DrillSolved.sentenceKey(it.card.id) !in solved
+            it.words >= floor && DrillSolved.sentenceKey(it.card.id) !in solved
         }
-        val shortest = open.minOfOrNull { it.atoms.size } ?: return null
-        val tier = open.filter { it.atoms.size == shortest }
+        val shortest = open.minOfOrNull { it.words } ?: return null
+        val tier = open.filter { it.words == shortest }
         val pool = tier.filter { it.card.id != avoiding }.ifEmpty { tier }
         val phrase = pool[rng.nextInt(pool.size)]
         return SentenceScrambleTask(

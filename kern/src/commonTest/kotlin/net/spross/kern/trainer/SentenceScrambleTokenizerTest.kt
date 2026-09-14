@@ -11,13 +11,38 @@ import kotlin.test.assertTrue
  */
 class SentenceScrambleTokenizerTest {
 
-    /** Punctuation rides the word it was authored on, so nothing has to be re-glued. */
+    /** A mark stands as a chip of its own, and the join puts it back where it was cut from. */
     @Test
-    fun punctuationStaysOnItsWordAndTheJoinGivesThePhraseBack() {
+    fun aMarkStandsAsItsOwnChipAndTheJoinGivesThePhraseBack() {
         val text = "Wie geht es dir, mein Freund?"
         val atoms = ScrambleTokenizer.atoms(text)
-        assertEquals(listOf("Wie", "geht", "es", "dir,", "mein", "Freund?"), atoms.map { it.text })
+        assertEquals(listOf("Wie", "geht", "es", "dir", ",", "mein", "Freund", "?"), atoms.map { it.text })
         assertEquals(text, ScrambleTokenizer.joined(atoms))
+    }
+
+    /** Spanish leads its question, so the mark that opens one rejoins ahead of the word. */
+    @Test
+    fun anOpeningMarkRejoinsAheadOfItsWord() {
+        val text = "¿Cómo estás hoy?"
+        val atoms = ScrambleTokenizer.atoms(text)
+        assertEquals(listOf("¿", "Cómo", "estás", "hoy", "?"), atoms.map { it.text })
+        assertEquals(text, ScrambleTokenizer.joined(atoms))
+    }
+
+    /**
+     * The full stop is the one mark dropped outright: it marks where the sentence ends, which
+     * is the question. A period spelling a word keeps its place.
+     */
+    @Test
+    fun theSentencesOwnFullStopIsDropped() {
+        assertEquals(
+            listOf("die", "Maus", "läuft"),
+            ScrambleTokenizer.atoms("die Maus läuft.").map { it.text },
+        )
+        assertEquals(
+            listOf("nine", "a.m.", "sharp"),
+            ScrambleTokenizer.atoms("nine a.m. sharp").map { it.text },
+        )
     }
 
     /** Runs of whitespace collapse — the one way the round trip may differ from what was authored. */

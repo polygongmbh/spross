@@ -24,7 +24,8 @@ class SentenceScrambleRunTest {
         ScrambleFixture.phrase("sleeps", "die Maus schläft dort", listOf("mouse", "run"), seed = 11),
         ScrambleFixture.phrase("eats", "die Maus frisst", listOf("mouse", "run"), seed = 12),
         ScrambleFixture.phrase("waits", "die Maus wartet hier", listOf("mouse", "run"), seed = 13),
-        ScrambleFixture.phrase("slow", "die Maus läuft sehr langsam", listOf("mouse", "run"), seed = 14),
+        ScrambleFixture.phrase("slow", "die Maus läuft sehr langsam.", listOf("mouse", "run"), seed = 14),
+        ScrambleFixture.phrase("asks", "läuft die Maus?", listOf("mouse", "run"), seed = 15),
     )
 
     private fun config() = SentenceScrambleRunConfig(
@@ -55,9 +56,23 @@ class SentenceScrambleRunTest {
         val task = assertNotNull(open().task)
         assertEquals(task.canonical.map { it.id }.sorted(), task.shuffled.map { it.id }.sorted())
         assertFalse(ScrambleGrading.isSolved(task.shuffled, task.canonical), "dealt in its own order")
-        assertEquals(SentenceScrambleAvailability.MIN_ATOMS, task.size)
+        assertEquals(SentenceScrambleAvailability.MIN_ATOMS, task.words)
         assertEquals("en-${task.cardId}", task.gloss)
-        assertEquals(ScrambleTokenizer.joined(task.canonical), task.display)
+        assertEquals(ScrambleTokenizer.joined(task.canonical), task.display.removeSuffix("."))
+    }
+
+    /**
+     * A question mark is dealt and placed like any other chip: riding its word it would name
+     * the last one, and the sentence's own full stop is dropped for the same reason.
+     */
+    @Test
+    fun aMarkIsAChipToPlaceAndTheFullStopIsGone() {
+        val asks = config().report.phrases.single { it.card.id == "asks" }
+        assertEquals(listOf("läuft", "die", "Maus", "?"), asks.atoms.map { it.text })
+        assertEquals(SentenceScrambleAvailability.MIN_ATOMS, asks.words)
+        val slow = config().report.phrases.single { it.card.id == "slow" }
+        assertEquals(listOf("die", "Maus", "läuft", "sehr", "langsam"), slow.atoms.map { it.text })
+        assertEquals("die Maus läuft sehr langsam.", slow.card.target.text, "the reveal keeps it")
     }
 
     /** Committing the last atom IS the answer; a right arrangement books it and arms the beat. */
@@ -73,7 +88,7 @@ class SentenceScrambleRunTest {
         val done = arrange(open(), correctly = true)
         assertEquals(TurnFeedback.Correct, done.feedback)
         assertTrue(done.complete)
-        assertEquals(done.task!!.display, done.arranged)
+        assertEquals(ScrambleTokenizer.joined(done.task!!.canonical), done.arranged)
     }
 
     /** A wrong order opens the card on the authored one rather than waiting to be permuted. */
@@ -114,13 +129,13 @@ class SentenceScrambleRunTest {
     @Test
     fun cleanArrangementsCarryTheSprosseAndLengthenThePhrase() {
         var state = open()
-        assertEquals(SentenceScrambleAvailability.MIN_ATOMS, assertNotNull(state.task).size)
+        assertEquals(SentenceScrambleAvailability.MIN_ATOMS, assertNotNull(state.task).words)
         repeat(SentenceScrambleRun.WINS_TO_ADVANCE) {
             state = arrange(state, correctly = true)
             state = reduce(state, SentenceScrambleIntent.ConfirmPending).state
         }
         assertEquals(2, state.level)
-        assertEquals(SentenceScrambleAvailability.MIN_ATOMS + 1, assertNotNull(state.task).size)
+        assertEquals(SentenceScrambleAvailability.MIN_ATOMS + 1, assertNotNull(state.task).words)
     }
 
     /** A phrase arranged clean is never asked again — its order does not change with the Sprosse. */

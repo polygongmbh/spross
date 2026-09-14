@@ -153,12 +153,22 @@ class RealCatalogScrambleTest {
                 val text = phrase.card.target.text
                 assertEquals(CardKind.Phrase, phrase.card.kind, "$target: ${phrase.card.id}")
                 assertTrue(
-                    phrase.atoms.size >= SentenceScrambleAvailability.MIN_ATOMS,
+                    phrase.words >= SentenceScrambleAvailability.MIN_ATOMS,
                     "$target: \"$text\" has no order to put back",
                 )
                 assertFalse('…' in text, "$target: \"$text\" is an authored blank")
                 // The round trip is what lets the platforms render atoms instead of the phrase.
-                assertEquals(text, ScrambleTokenizer.joined(phrase.atoms), "$target: \"$text\" does not rejoin")
+                assertEquals(
+                    rejoinable(text),
+                    ScrambleTokenizer.joined(phrase.atoms),
+                    "$target: \"$text\" does not rejoin",
+                )
+                for (atom in phrase.atoms) {
+                    assertTrue(
+                        ScrambleTokenizer.isMark(atom.text) || atom.text.none { it in "?!,;:¿¡…" },
+                        "$target: \"${atom.text}\" is a word carrying the mark that ends it",
+                    )
+                }
             }
         }
     }
@@ -201,7 +211,7 @@ class RealCatalogScrambleTest {
                     ScrambleGrading.isSolved(task.shuffled, task.canonical),
                     "$target: ${task.cardId} was dealt in its own order",
                 )
-                assertEquals(task.display, ScrambleTokenizer.joined(task.canonical))
+                assertEquals(rejoinable(task.display), ScrambleTokenizer.joined(task.canonical))
                 assertTrue(task.gloss.isNotBlank(), "$target: ${task.cardId} has nothing to reveal")
                 state = solve(state)
             }
@@ -226,6 +236,15 @@ class RealCatalogScrambleTest {
     }
 
     private fun distinctLetters(text: String): Int = text.lowercase().toSet().size
+
+    /**
+     * [text] as the atoms can give it back: without the sentence's own full stop, and with a
+     * mark sitting tight against its word, which is where French sets a space instead.
+     */
+    private fun rejoinable(text: String): String = text
+        .removeSuffix(".")
+        .replace(Regex("\\s+([?!,;:…])"), "$1")
+        .replace(Regex("([¿¡])\\s+"), "$1")
 
     /**
      * Letters and nothing else — plus the apostrophe, which sw "ng'ombe" and uk "м'який" are
