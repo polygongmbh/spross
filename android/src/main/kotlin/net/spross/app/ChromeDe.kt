@@ -11,7 +11,7 @@ internal object ChromeDe : Chrome {
     override val greetMorning = listOf(
         "Lust auf %s?",
         "Ein bisschen %s zum Morgen?",
-        "%s für den Frühaufsteher?",
+        "%s für die Lerche?",
     )
     override val greetDay = listOf(
         "Kurze Runde %s?",
@@ -26,7 +26,7 @@ internal object ChromeDe : Chrome {
         "%s zu später Stunde?",
         "%s für die Nachteule?",
     )
-    override val homeGreetingMorningAddressee = "Frühaufsteher"
+    override val homeGreetingMorningAddressee = "Lerche"
     override val homeGreetingNightAddressee = "Nachteule"
     override val homeDoneExtraRound = "Noch eine Runde?"
     override val homeDoneTitle = "Für heute geschafft"
