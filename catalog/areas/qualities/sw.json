@@ -27,9 +27,9 @@
   "new": { "text": "-pya", "variants": ["mpya", "wapya", "jipya", "kipya", "vipya", "mapya", "mipya"] },
   "old": {
    "text": "-zee",
-   "synonyms": ["kuukuu"],
-   "variants": ["mzee", "wazee"],
-   "notes": { "sw": "mzee, wazee · nyumba kuukuu, meza kuukuu" }
+   "synonyms": ["-kuukuu"],
+   "variants": ["mzee", "wazee", "kuukuu", "mkuukuu", "kikuukuu", "vikuukuu", "makuukuu", "mikuukuu"],
+   "notes": { "sw": "mzee, wazee · kitu kikuukuu, vitu vikuukuu" }
   },
   "slow": { "text": "polepole" },
   "fast": { "text": "haraka", "notes": { "sw": "Fanya haraka! · jibu la haraka" } },

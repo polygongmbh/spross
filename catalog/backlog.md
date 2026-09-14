@@ -10,9 +10,6 @@ Ready work comes first, then the items that end in a question for the owner, the
   (`kiti kitupu`, `mkate mkavu`), so both are now dashed stems. Any future note asserting a
   Swahili word does not change needs examples from two classes at least — and mostly should
   not exist, since "this word does not change" is not something a learner would say differently for.
-- `-kuukuu` (old, for things) takes full class agreement (`kikuukuu`, `vikuukuu`, `mkuukuu` —
-  attested in Swahili Bible); the `qualities/old` note deliberately avoids a concord claim
-  by using only N-class nouns, but could safely show it.
 - 20 accept-only variants collide under `AnswerNormalizer.cleaned` but stay distinct search keys
   (`BoxSearch.fold` is NFC + trim + lowercase and indexes variants); rule whether variants dedupe
   against the SEARCH fold before any lint is written.
