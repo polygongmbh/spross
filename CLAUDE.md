@@ -79,23 +79,14 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Extract pure logic so it's testable without the framework
 - When one code change needs multiple test changes, assess the sensibility of the tests - do not overtest
 
-## Working with subagents & tools
+## Tools
 
-- Offload open-ended research and large implementations to subagents rather than crowding one session;
-  hand each the full spec + the relevant `docs/` pointer.
-- Fewer, larger agents: batch 2–3 work packages per agent, share context via a short digest.
-- One writer per source tree per wave. `kern/build/kotlin` is shared mutable state;
-  overlapping Gradle runs corrupt it (`Unresolved reference` in files nobody touched).
-  Fix: `rm -rf kern/build/kotlin`, rebuild — never a source edit.
-  `xcodebuild`'s pre-build phase also reads/writes the kern framework, so it is a cache writer too.
-- Quiet gates: `gradle --console=plain -q`, `xcodebuild -quiet`, pipe long logs to a file.
-- `catalog/audio/**` is excluded from `:kern:jvmTest`'s input set (`kern/build.gradle.kts`):
-  an audio edit reports UP-TO-DATE and needs `--rerun-tasks`.
 - Search with `rg`. Bare `grep` is ugrep here, and given a subdirectory it drops the repo's
   `.gitignore` and walks `kern/build/` — 11 MB where `rg` answers in 448 bytes.
 - For "where does X live" questions, read the module docs — never grow this file.
 - Large mechanical refactors go through a codemod, not hand edits — write it, run it, review the diff.
   `ast-grep -l kotlin|swift -p '<pattern>'` matches the tree rather than the line.
+- Multi-agent orchestration rules live in `docs/orchestration.md`.
 
 ## Invariants
 
@@ -114,7 +105,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - **Introduction = first answer**, never at composition — budget accounting relies on this.
 - **One FSRS schedule per card**, keyed by card id (ids never contain `|`) —
   production and recognition are presentations of it; every answer is a review, nothing UI-only.
-- Seed content changes go through verification sweeps before shipping (method: `sprachposter-learnings.md` in the parent repo's `docs/`).
+- Seed content changes go through verification sweeps before shipping.
 - The kern takes `nowEpochMillis` + `tzId` as parameters, never reads the clock (keeps it pure/testable).
 
 ## Extended docs
