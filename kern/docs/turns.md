@@ -204,9 +204,18 @@ Engine contract: `../README.md`.
   The set itself lives and dies with the run,
   because a prompt answered on Tuesday is worth asking again on Friday
   and keeping that kind of score is the growing box's job;
-  what outlives it is whether an ENUMERABLE Sprosse was answered out
-  (`clearedSprossen` on the atlas and calendar close, `DrillSolved.cleared`),
-  which is what the next run opens above — a drawn Sprosse is never cleared.
+  what outlives it is the Sprosse, as `clearedSprossen` on the close, and there are two ways to earn one.
+  The atlas and the calendar ENUMERATE a Sprosse and check it off (`DrillSolved.cleared`);
+  a drawn Sprosse is never cleared that way.
+  The two scrambles draw out of a pool that grows with the box, so what they book is the CLIMB:
+  `DrillRungs` clears a Sprosse the run left UPWARD with nothing against it —
+  every answer given while standing on it fully correct, no typo, no look-up, no miss —
+  whether it was left on the wins the ladder asks for or by being answered out.
+  That ledger sits BESIDE `DrillRamp` rather than tightening it:
+  an almost still banks nothing, costs nothing and breaks no streak,
+  it only takes the Sprosse it fell on out of the running for the store,
+  so the next run opens on that Sprosse again instead of above it.
+  Either way the next run opens on the lowest Sprosse the stored mask does not hold.
 - Feedback and cues reuse the turn machine's vocabulary
   (`TurnFeedback`, `AlmostReason`, `AnswerOutcome`, `AdvanceTier`, `ToneKind`);
   nothing new is minted where kern already names a rule.
@@ -218,24 +227,28 @@ Engine contract: `../README.md`.
 - **Storage contract**: the streak record under `trainer.record.<key>`,
   per-variant Sprosse progress under `trainer.level.<key>`,
   the most answers one run took under `trainer.answers.<key>` (`DrillRunSummary.done`, right or wrong),
-  and the atlas' and calendar's answered-out Sprossen as a bitmask under `trainer.cleared.<key>` —
+  and the cleared Sprossen as a bitmask under `trainer.cleared.<key>` —
   filed per DIRECTION, a reversed run's key ending `.rev`,
   because a row means a different question either way round
   (`TrainerMode.RECORD_PREFIX` / `PROGRESS_PREFIX` / `ANSWERS_PREFIX` / `CLEARED_PREFIX`,
   keys byte-identical across the two stores).
+  The atlas, the calendar and both scrambles all keep that mask;
+  the scrambles keep NOTHING ELSE — no streak record, so their `newRecord` is always false.
   `close` returns only bookings that beat the standing value (strictly greater);
   the platform writes blindly — except the cleared set, which it ORs into the mask it holds.
   Where a typed run OPENS is kern's too: the lowest Sprosse the mask does not hold
   (`TrainerMode.entrySprosse`), or the one the learner tapped — which may be that entry or
   anything below it, or a Sprosse some run reached, never one they have not been on
   (`TrainerMode.openable`).
+  The scrambles take the stored mask as a plain `cleared` on their run config and offer no tap at all:
+  a ladder nobody can see named is a ladder nobody needs to override.
   Pinned quirk: a non-null `phraseSource` suffixes the record language with the
   `<source>-<target>` pair even when the run asks no sentence,
   because the overview passes the source whenever the pair realizes frames.
 - **Closing books exactly as Weiter would** — a pending answer keeps its earned outcome,
   never upgraded (a hint-assisted clean answer closes almost) and never lost;
   a revealed-but-unconfirmed answer books nothing.
-  A drill with no record store of its own — the letter drill and both scrambles — closes
+  A drill with no STREAK record of its own — the letter drill and both scrambles — closes
   `newRecord` false, which drops the record line and the celebration with it.
 - **No drill books an FSRS review, and none touches a schedule.**
   Transcription is not recall, and neither is arrangement: a word typed back from a hearing, a
@@ -259,3 +272,14 @@ Engine contract: `../README.md`.
   rules for cutting that are on the two types: which SPELLINGS a word may be asked through
   (`WordScrambleAvailability.spellings`) and which CHIPS a phrase becomes, marks and leading
   capital included (`ScrambleTokenizer`, `ScrambleCapitals`).
+  Their LADDERS are opposite on purpose, and the report owns both.
+  A word-scramble Sprosse raises a length FLOOR one letter at a time (`Report.lettersAt`) —
+  spelling a four-letter word back stops being a question once ten-letter ones are being spelled —
+  and its ceiling is read off the pool: the highest rung `POOL_FLOOR` of the learner's own words
+  still clear, so no rung exists that their box cannot fill,
+  while `WordScrambleMasking.MAX_LEVEL` only names the last rung that changes the CUE
+  (anchors at both ends, then the front, then nothing) and every rung above it goes on
+  lengthening the word with nothing anchored.
+  A sentence-scramble Sprosse is a CEILING that accumulates (`Report.atomsAt`, `Report.phrasesAt`):
+  it adds a longer phrase and keeps every shorter one, the atlas' "Dazu:" model,
+  and the draw is flat across everything admitted rather than singling out a tier.
