@@ -32,11 +32,11 @@
    "notes": { "sw": "mzee, wazee · nyumba kuukuu, meza kuukuu" }
   },
   "slow": { "text": "polepole" },
-  "fast": { "text": "haraka", "notes": { "sw": "fanya haraka · jibu la haraka · safari ya haraka" } },
+  "fast": { "text": "haraka", "notes": { "sw": "Fanya haraka! · jibu la haraka" } },
   "long": {
    "text": "-refu",
    "variants": ["ndefu", "mrefu", "warefu", "kirefu", "virefu", "marefu", "mirefu"],
-   "notes": { "sw": "mtu mrefu = mwenye kimo · njia ndefu, safari ndefu" }
+   "notes": { "sw": "mtu mrefu · sentensi ndefu · kitanda kirefu" }
   },
   "short": {
    "text": "-fupi",
@@ -49,23 +49,23 @@
   "lightweight": {
    "text": "-epesi",
    "variants": ["nyepesi", "mwepesi", "wepesi", "chepesi", "vyepesi", "mepesi", "myepesi"],
-   "notes": { "sw": "mzigo mwepesi, mizigo myepesi, kazi nyepesi" }
+   "notes": { "sw": "kitanda chepesi, sentensi nyepesi" }
   },
   "difficult": {
    "text": "-gumu",
    "variants": ["ngumu", "mgumu", "wagumu", "kigumu", "vigumu", "magumu", "migumu"],
-   "notes": { "sw": "mtihani mgumu · mkate mgumu = si laini" }
+   "notes": { "sw": "swali gumu, lugha ngumu, kitanda kigumu" }
   },
-  "easy": { "text": "rahisi", "notes": { "sw": "rahisi pia = bei ndogo: nguo rahisi" } },
+  "easy": { "text": "rahisi", "notes": { "sw": "swali rahisi · rahisi pia ni bei ndogo" } },
   "problem": { "text": "tatizo", "grammar": { "plural": "matatizo" }, "synonyms": ["shida"] },
   "to-solve": { "text": "kutatua", "notes": { "sw": "kutatua tatizo, kutatua ugomvi" } },
   "challenge": { "text": "changamoto", "grammar": { "plural": "=" } },
-  "clean-adj": { "text": "safi", "notes": { "sw": "nguo safi, maji safi · Safi! = vizuri!" } },
+  "clean-adj": { "text": "safi", "notes": { "sw": "maji safi, nyumba safi · Safi! = vizuri!" } },
   "sharp": {
    "text": "-kali",
    "variants": ["kali", "mkali", "wakali", "kikali", "vikali", "makali", "mikali"],
    "notes": {
-    "sw": "kisu kikali · mwalimu mkali · sauti kali",
+    "sw": "mtu mkali · sauti kali",
     "de": "gilt auch für Menschen (streng) und Essen (scharf): mwalimu mkali, pilipili kali."
    }
   },
@@ -73,7 +73,7 @@
    "text": "kupatikana",
    "variants": ["patikana"],
    "notes": {
-    "sw": "inapatikana = ipo sokoni · haipatikani = hakuna",
+    "sw": "Maji yanapatikana · msaada haupatikani.",
     "de": "Swahili sagt es als Verb: inapatikana = es ist zu haben · haipatikani = das gibt es nicht."
    }
   },
@@ -82,14 +82,8 @@
    "variants": ["nyingine", "mwingine", "wengine", "kingine", "vingine", "mengine", "mingine"],
    "notes": { "sw": "neno jingine · meza nyingine · maji mengine = maji zaidi" }
   },
-  "hot": {
-   "text": "moto",
-   "notes": {
-    "sw": "chai moto, maji moto · hewa: kuna joto!",
-    "de": "dasselbe Wort heißt auch Feuer: Kuna moto."
-   }
-  },
-  "cold-adj": { "text": "baridi", "notes": { "sw": "maji baridi, chai baridi · Kuna baridi leo" } },
+  "hot": { "text": "moto", "notes": { "de": "dasselbe Wort heißt auch Feuer: Kuna moto." } },
+  "cold-adj": { "text": "baridi", "notes": { "sw": "maji baridi, usiku baridi · Leo ni baridi." } },
   "empty": {
    "text": "-tupu",
    "variants": ["tupu", "mtupu", "watupu", "kitupu", "vitupu", "matupu", "mitupu"]
@@ -98,7 +92,7 @@
    "text": "kujaa",
    "variants": ["imejaa", "limejaa", "umejaa"],
    "notes": {
-    "sw": "basi limejaa · nyumba imejaa",
+    "sw": "nyumba imejaa · mji umejaa",
     "de": "Swahili sagt es als Verb: basi limejaa = der Bus ist voll."
    }
   },
@@ -107,7 +101,7 @@
    "text": "-kavu",
    "variants": ["kavu", "mkavu", "wakavu", "kikavu", "vikavu", "makavu", "mikavu"]
   },
-  "different": { "text": "tofauti", "notes": { "sw": "watu tofauti · Kuna tofauti gani?" } },
+  "different": { "text": "tofauti", "notes": { "sw": "lugha tofauti, mji tofauti · tofauti kubwa" } },
   "real": { "text": "halisi" },
   "same": { "text": "sawa", "notes": { "sw": "urefu sawa · Sawa! = ndiyo" } },
   "similar": {
@@ -128,7 +122,7 @@
   "beautiful": {
    "text": "-rembo",
    "variants": ["mrembo", "warembo", "mirembo", "kirembo", "virembo", "marembo", "rembo"],
-   "notes": { "sw": "Urembo ni wa kuvutia macho: nguo marembo, msichana mrembo." }
+   "notes": { "sw": "mtu mrembo · urembo ni wa kuvutia" }
   },
   "positive": { "text": "chanya" },
   "negative": { "text": "hasi" },

@@ -6,7 +6,10 @@
   "you": { "text": "wewe", "notes": { "sw": "wewe: u- (u-nasikia) na -ku- (ni-na-ku-sikia)." } },
   "he": {
    "text": "yeye",
-   "notes": { "sw": "yeye ni mwanaume au mwanamke: a- (a-nasikia) na -m- (ni-na-m-sikia)." }
+   "notes": {
+    "sw": "yeye: a- (a-nasikia) na -m- (ni-na-m-sikia).",
+    "de": "yeye heißt er und sie; das Geschlecht steht nirgends im Satz."
+   }
   },
   "we": { "text": "sisi", "notes": { "sw": "sisi: tu- (tu-nasikia) na -tu- (a-na-tu-sikia)." } },
   "you-plural": { "text": "ninyi", "notes": { "sw": "ninyi: m- (m-nasikia) na -wa- (a-na-wa-sikia)." } },
@@ -14,17 +17,17 @@
   "my": {
    "text": "-angu",
    "variants": ["wangu", "yangu", "langu", "changu", "zangu", "vyangu"],
-   "notes": { "sw": "-angu: mama yangu, rafiki wangu, kitabu changu, viatu vyangu." }
+   "notes": { "sw": "-angu: jina langu, lugha yangu, kitanda changu, mji wangu." }
   },
   "your": {
    "text": "-ako",
    "variants": ["wako", "yako", "lako", "chako", "zako", "vyako"],
-   "notes": { "sw": "-ako: baba yako, jaketi lako, viatu vyako." }
+   "notes": { "sw": "-ako: jina lako, nchi yako, kitanda chako, mji wako." }
   },
   "his": {
    "text": "-ake",
    "variants": ["wake", "yake", "lake", "chake", "zake", "vyake"],
-   "notes": { "sw": "-ake ni wa mwanaume na mwanamke: mama yake, mpenzi wake." }
+   "notes": { "sw": "-ake: mama yake, jina lake, kitanda chake." }
   }
  }
 }

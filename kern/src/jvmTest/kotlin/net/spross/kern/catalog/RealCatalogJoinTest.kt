@@ -138,7 +138,7 @@ class RealCatalogJoinTest {
      */
     @Test
     fun aGermanSelfNoteReachesEveryReader() {
-        val note = "schwer heißt auch schwierig: eine schwere Aufgabe."
+        val note = "ein schwerer Tisch · eine schwere Frage = schwierig."
         assertEquals(note, catalog.join("en", "de").byId("heavy").target.note)
         assertEquals(note, catalog.join("uk", "de").byId("heavy").target.note)
     }

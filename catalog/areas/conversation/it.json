@@ -2,10 +2,7 @@
  "title": "Restare nella conversazione",
  "subtitle": "Richiedere, capire, andare avanti.",
  "words": {
-  "to-hear": {
-   "text": "sentire",
-   "notes": { "it": "sentire = accorgersi di un suono · ascoltare = starci attenti." }
-  },
+  "to-hear": { "text": "sentire", "notes": { "it": "sentire un rumore, sentire un odore: non è una scelta." } },
   "to-understand": { "text": "capire", "synonyms": ["comprendere"] },
   "to-speak": { "text": "parlare" },
   "to-repeat-word": { "text": "ripetere la parola" },

@@ -6,7 +6,7 @@
    "text": "buono",
    "variants": ["buona", "buon"],
    "notes": {
-    "it": "un buon amico, una buona amica · tutto bene: buono → bene.",
+    "it": "un buon giorno, una buona parola · tutto bene: buono → bene.",
     "de": "vor männlichem Substantiv verkürzt: un buon amico · als Adverb bene: tutto bene."
    }
   },
@@ -14,7 +14,7 @@
    "text": "cattivo",
    "variants": ["cattiva"],
    "notes": {
-    "it": "cattivo → male: sto male · l'aspetto è brutto, non cattivo.",
+    "it": "una cattiva parola · una brutta città: brutto non è cattivo.",
     "de": "als Adverb male: sto male · schlechtes Wetter und schlechtes Aussehen: brutto."
    }
   },
@@ -31,7 +31,7 @@
    "text": "molto",
    "variants": ["molta", "molti", "molte"],
    "notes": {
-    "it": "molto pane, molta acqua, molti amici · molto bene, molto alto.",
+    "it": "molto aiuto, molta acqua, molti posti · molto bene, molto alto.",
     "de": "richtet sich nach dem Substantiv: molto pane, molta acqua, molti amici · vor Adjektiv oder Verb unveränderlich und heißt sehr: molto bene."
    }
   },
@@ -39,7 +39,7 @@
   "old": {
    "text": "vecchio",
    "variants": ["vecchia"],
-   "notes": { "it": "vecchio → anziano per le persone · antico per le cose." }
+   "notes": { "it": "vecchio → anziano è più gentile · antico per le cose." }
   },
   "slow": {
    "text": "lento",
@@ -51,7 +51,7 @@
   "short": {
    "text": "corto",
    "variants": ["corta"],
-   "notes": { "it": "corto è la lunghezza · breve è un'ora · basso è la persona." }
+   "notes": { "it": "corto è la lunghezza · breve è un'ora · basso è chi non è alto." }
   },
   "heavy": { "text": "pesante" },
   "lightweight": { "text": "leggero", "variants": ["leggera"] },
@@ -65,7 +65,7 @@
    "text": "affilato",
    "variants": ["affilata"],
    "notes": {
-    "it": "affilato è il coltello · piccante è il peperoncino.",
+    "it": "affilato è la lama · piccante è il peperoncino.",
     "de": "nur für Klingen; scharf im Geschmack ist piccante."
    }
   },
@@ -76,7 +76,7 @@
    "text": "freddo",
    "variants": ["fredda"],
    "notes": {
-    "it": "ho freddo io · il caffè è freddo.",
+    "it": "ho freddo io · l'acqua è fredda.",
     "de": "mit avere beim Menschen: ho freddo = mir ist kalt · mit essere bei Sachen: il caffè è freddo."
    }
   },

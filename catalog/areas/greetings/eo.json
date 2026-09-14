@@ -9,16 +9,12 @@
   "good-day": {
    "text": "Bonan tagon!",
    "notes": {
-    "eo": "Bonan tagon! taŭgas la tutan tagon.",
     "de": "gilt den ganzen Tag · morgens Bonan matenon!, abends Bonan vesperon!, zur Nacht Bonan nokton!"
    }
   },
   "good-morning": { "text": "Bonan matenon!" },
   "good-evening": { "text": "Bonan vesperon!" },
-  "good-night": {
-   "text": "Bonan nokton!",
-   "notes": { "eo": "nur adiaŭe kaj por la nokto · alvenante vespere: Bonan vesperon!" }
-  },
+  "good-night": { "text": "Bonan nokton!" },
   "goodbye": { "text": "Ĝis revido!" },
   "bye": { "text": "Ĝis!" },
   "welcome": { "text": "Bonvenon!" },

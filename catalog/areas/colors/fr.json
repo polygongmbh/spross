@@ -12,7 +12,7 @@
   "brown": {
    "text": "marron",
    "variants": ["brun", "brune"],
-   "notes": { "fr": "invariable : une veste marron · brun surtout pour les cheveux et les yeux." }
+   "notes": { "fr": "des tables marron · une table brune · marron ne change pas." }
   },
   "gray": { "text": "gris", "variants": ["grise"] },
   "purple": { "text": "violet", "variants": ["violette", "mauve"] },

@@ -6,7 +6,7 @@
   "you": {
    "text": "tu",
    "variants": ["vous", "toi"],
-   "notes": { "fr": "tu : un ami · vous : un inconnu, ou plusieurs personnes." }
+   "notes": { "fr": "tu à un proche : Ça va ? · vous à un inconnu : Comment allez-vous ?" }
   },
   "he": { "text": "il", "variants": ["elle"] },
   "we": { "text": "nous" },

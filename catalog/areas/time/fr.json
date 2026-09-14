@@ -5,7 +5,7 @@
   "time": {
    "text": "temps",
    "grammar": { "gender": "le" },
-   "notes": { "fr": "le temps passe · Quel temps fait-il ? · une fois, trois fois." }
+   "notes": { "fr": "j'ai le temps · une fois, trois fois, pas trois temps." }
   },
   "day": {
    "text": "jour",

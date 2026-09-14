@@ -5,7 +5,7 @@
   "to-go": {
    "text": "aller",
    "notes": {
-    "fr": "aller à l'école à pied · aller à l'école en train.",
+    "fr": "aller à l'école · aller à Paris en train : un seul mot.",
     "de": "aller = gehen und fahren · zu Fuß betont: aller à pied."
    }
   },
@@ -23,18 +23,21 @@
   "to-make": {
    "text": "faire",
    "notes": {
-    "fr": "faire la cuisine, faire du sport, faire une phrase.",
+    "fr": "faire du sport, faire une phrase, faire du bruit.",
     "de": "faire deckt machen und tun ab: faire la cuisine, faire ses devoirs."
    }
   },
   "to-like": {
    "text": "aimer",
    "notes": {
-    "fr": "j'aime ma femme · j'aime bien ce café, c'est plus faible.",
+    "fr": "j'aime mon pays · j'aime bien ce mot, c'est moins fort.",
     "de": "aimer heißt mögen und lieben; abgeschwächt aimer bien: j'aime bien ce café."
    }
   },
-  "to-can": { "text": "pouvoir", "notes": { "fr": "je peux, tu peux, il peut, nous pouvons, vous pouvez." } },
+  "to-can": {
+   "text": "pouvoir",
+   "notes": { "fr": "je peux entrer ? · tu peux répéter ? · vous pouvez parler." }
+  },
   "to-think": { "text": "penser", "notes": { "fr": "penser à toi · je pense que c'est vrai." } },
   "to-imagine": { "text": "imaginer" },
   "to-wait": {
@@ -48,7 +51,7 @@
    "notes": { "fr": "je cherche un train, je te cherche : chercher n'a pas de à." }
   },
   "to-receive": { "text": "recevoir", "synonyms": ["obtenir"] },
-  "to-look": { "text": "regarder", "notes": { "fr": "regarder par la fenêtre · regarder, c'est exprès." } },
+  "to-look": { "text": "regarder", "notes": { "fr": "regarde à gauche, à droite · regarder, c'est exprès." } },
   "to-open": { "text": "ouvrir" },
   "to-close": { "text": "fermer" },
   "to-stop": {
@@ -77,7 +80,7 @@
   "do-you-have-water": {
    "text": "Avez-vous de l'eau ?",
    "variants": ["Vous avez de l'eau ?", "As-tu de l'eau ?", "Tu as de l'eau ?"],
-   "notes": { "fr": "quantité non comptée : du pain, de la viande, des fruits." }
+   "notes": { "fr": "de l'eau, du bruit, de l'aide : une quantité non comptée." }
   },
   "where-are-you-from": {
    "text": "D'où venez-vous ?",

@@ -11,7 +11,7 @@
   "left": {
    "text": "maldekstre",
    "variants": ["maldekstren"],
-   "notes": { "eo": "maldekstre diras kie · maldekstren diras kien: Turnu maldekstren!" }
+   "notes": { "eo": "maldekstre diras kie · maldekstren diras kien." }
   },
   "right": { "text": "dekstre", "variants": ["dekstren"] },
   "up": { "text": "supre" },
@@ -19,7 +19,7 @@
   "inside": { "text": "interne", "variants": ["ene"] },
   "outdoors": { "text": "ekstere", "variants": ["eksterdome"] },
   "at-home": { "text": "hejme" },
-  "home": { "text": "hejmen", "notes": { "eo": "hejmen estas al la hejmo, hejme estas en la hejmo." } },
+  "home": { "text": "hejmen", "notes": { "eo": "hejmen diras kien · hejme diras kie." } },
   "in": { "text": "en" },
   "on": { "text": "sur" },
   "under": { "text": "sub" },
@@ -38,10 +38,7 @@
   "between-us": { "text": "inter ni" },
   "is-it-far": { "text": "Ĉu ĝi malproksimas?", "variants": ["Ĉu estas malproksime?"] },
   "at-school": { "text": "en la lernejo" },
-  "go-to-school": {
-   "text": "iri al la lernejo",
-   "notes": { "eo": "iri al la lernejo · esti en la lernejo: al = kien, en = kie." }
-  },
+  "go-to-school": { "text": "iri al la lernejo", "notes": { "eo": "al la lernejo = kien · en la lernejo = kie." } },
   "are-you-going-home-already": { "text": "Ĉu vi jam iras hejmen?" }
  }
 }

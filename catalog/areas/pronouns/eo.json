@@ -3,10 +3,7 @@
  "subtitle": "Mi, vi kaj ĉiuj aliaj.",
  "words": {
   "i": { "text": "mi" },
-  "you": {
-   "text": "vi",
-   "notes": { "eo": "vi estas unu homo kaj vi estas pluraj — unu vorto por ambaŭ." }
-  },
+  "you": { "text": "vi", "notes": { "eo": "vi estas unu, vi estas pluraj — unu vorto por ambaŭ." } },
   "he": { "text": "li", "variants": ["ŝi"] },
   "it": { "text": "ĝi" },
   "we": { "text": "ni" },

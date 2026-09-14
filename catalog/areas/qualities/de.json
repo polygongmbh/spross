@@ -13,8 +13,8 @@
   "fast": { "text": "schnell" },
   "long": { "text": "lang" },
   "short": { "text": "kurz" },
-  "heavy": { "text": "schwer", "notes": { "de": "schwer heißt auch schwierig: eine schwere Aufgabe." } },
-  "lightweight": { "text": "leicht", "notes": { "de": "leicht heißt auch einfach: eine leichte Frage." } },
+  "heavy": { "text": "schwer", "notes": { "de": "ein schwerer Tisch · eine schwere Frage = schwierig." } },
+  "lightweight": { "text": "leicht", "notes": { "de": "ein leichter Tisch · eine leichte Frage = einfach." } },
   "difficult": { "text": "schwierig" },
   "easy": { "text": "einfach" },
   "problem": { "text": "Problem", "grammar": { "gender": "das", "plural": "Probleme" } },
@@ -33,12 +33,12 @@
   "different": { "text": "anders", "synonyms": ["verschieden"], "variants": ["unterschiedlich"] },
   "difference": { "text": "Unterschied", "grammar": { "gender": "der", "plural": "Unterschiede" } },
   "real": { "text": "echt" },
-  "same": { "text": "gleich", "notes": { "de": "gleich heißt auch „nur kurz warten“: Ich komme gleich." } },
+  "same": { "text": "gleich", "notes": { "de": "das gleiche Wort · Ich komme gleich = kurz warten." } },
   "similar": { "text": "ähnlich" },
   "opposite": { "text": "entgegengesetzt", "variants": ["gegenteilig"] },
   "to-compare": { "text": "vergleichen" },
   "pretty": { "text": "schön" },
-  "beautiful": { "text": "wunderschön", "notes": { "de": "wunder- verstärkt: wunderschön, wunderbar." } },
+  "beautiful": { "text": "wunderschön", "notes": { "de": "schön → wunderschön · schöner geht nicht." } },
   "positive": { "text": "positiv" },
   "negative": { "text": "negativ" },
   "neutral": { "text": "neutral" },
@@ -51,7 +51,7 @@
   "a-lot-of-water": {
    "text": "viel Wasser",
    "notes": {
-    "de": "viel Wasser, viel Milch · viele Freunde, viele Wörter.",
+    "de": "viel Wasser · viele Wörter, viele Fragen.",
     "en": "viel stays uninflected before a mass noun, and the plural is viele: viele Freunde.",
     "es": "viel queda sin terminación ante un nombre de materia, y en plural es viele: viele Freunde."
    }

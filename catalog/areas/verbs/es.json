@@ -21,7 +21,7 @@
   "to-take": {
    "text": "coger",
    "variants": ["tomar", "agarrar"],
-   "notes": { "es": "En España, coger el autobús · en América es vulgar: tomar, agarrar." }
+   "notes": { "es": "En España, coger · en América es vulgar: tomar, agarrar." }
   },
   "to-see": { "text": "ver" },
   "to-make": { "text": "hacer" },
@@ -32,18 +32,15 @@
     "de": "umgekehrt gebaut: Me gusta el café = Ich mag Kaffee · lieben ist amar oder querer."
    }
   },
-  "to-can": { "text": "poder", "notes": { "es": "Irregular: puedo, puedes, puede, podemos." } },
+  "to-can": { "text": "poder", "notes": { "es": "poder → puedo, puedes, puede · ¿Se puede?" } },
   "to-think": { "text": "pensar", "notes": { "es": "pensar en alguien · pensar que algo es así." } },
   "to-imagine": { "text": "imaginar" },
-  "to-wait": { "text": "esperar", "notes": { "es": "esperar el tren y esperar que todo vaya bien." } },
-  "to-want": {
-   "text": "querer",
-   "notes": { "es": "Quiero ayuda · te quiero", "de": "querer heißt wollen und lieben: Te quiero." }
-  },
+  "to-wait": { "text": "esperar", "notes": { "es": "esperar una respuesta · Espero que sí." } },
+  "to-want": { "text": "querer", "notes": { "de": "querer heißt wollen und lieben: Te quiero." } },
   "to-find": { "text": "encontrar" },
-  "to-search": { "text": "buscar", "notes": { "es": "Sin preposición: busco un hotel." } },
+  "to-search": { "text": "buscar", "notes": { "es": "Sin preposición: buscar ayuda, buscar un lugar." } },
   "to-receive": { "text": "recibir", "synonyms": ["conseguir"] },
-  "to-look": { "text": "mirar", "notes": { "es": "mirar es dirigir los ojos: mira aquí." } },
+  "to-look": { "text": "mirar", "notes": { "es": "¡Mira aquí! · Miro la ciudad." } },
   "to-open": { "text": "abrir" },
   "to-close": { "text": "cerrar" },
   "to-stop": {
@@ -53,16 +50,13 @@
   },
   "to-stand": {
    "text": "estar de pie",
-   "notes": {
-    "es": "estar de pie · levantarse = pasar a estar de pie",
-    "de": "Spanisch hat kein eigenes Verb dafür · ponerse de pie = sich hinstellen."
-   }
+   "notes": { "de": "Spanisch hat kein eigenes Verb dafür · ponerse de pie = sich hinstellen." }
   },
   "to-send": { "text": "enviar", "synonyms": ["mandar"] },
   "to-deliver": {
    "text": "repartir",
    "notes": {
-    "es": "repartir = casa por casa · entregar = dar en mano",
+    "es": "repartir casa por casa · repartir la ayuda",
     "de": "repartir = ausliefern, zustellen · entregar heißt abgeben und gehört aufs Amt."
    }
   },

@@ -2,12 +2,12 @@
  "title": "Resti en la konversacio",
  "subtitle": "Redemandi, kompreni, daŭrigi.",
  "words": {
-  "to-hear": { "text": "aŭdi", "notes": { "eo": "aŭdi okazas mem · aŭskulti estas atenti per la oreloj." } },
+  "to-hear": { "text": "aŭdi" },
   "to-understand": { "text": "kompreni" },
   "to-speak": { "text": "paroli" },
   "to-repeat-word": { "text": "ripeti la vorton" },
   "loud": { "text": "laŭta", "variants": ["laŭte"] },
-  "to-ask": { "text": "demandi", "notes": { "eo": "demandi: kion vi diris? · peti: bonvolu ripeti!" } },
+  "to-ask": { "text": "demandi" },
   "question": { "text": "demando" },
   "answer": { "text": "respondo" },
   "to-reply": { "text": "respondi" },
@@ -16,7 +16,7 @@
   "to-know": {
    "text": "scii",
    "notes": {
-    "eo": "scii faktojn · koni homojn: Mi konas ŝin.",
+    "eo": "scii faktojn · koni: Mi konas vin.",
     "de": "wissen = scii · kennen (Personen, Orte) = koni."
    }
   },

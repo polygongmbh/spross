@@ -40,10 +40,7 @@
   "hot": { "text": "hot" },
   "cold-adj": {
    "text": "cold",
-   "notes": {
-    "en": "cold is the illness too: I have a cold.",
-    "de": "cold heißt auch die Erkältung: I have a cold."
-   }
+   "notes": { "en": "I am cold · I have a cold.", "de": "cold heißt auch die Erkältung: I have a cold." }
   },
   "empty": { "text": "empty" },
   "full": { "text": "full" },
@@ -59,7 +56,7 @@
   "pretty": {
    "text": "pretty",
    "notes": {
-    "en": "pretty good, pretty cold — here pretty means quite.",
+    "en": "a pretty name · pretty good, pretty cold.",
     "de": "pretty heißt auch ziemlich: pretty good."
    }
   },

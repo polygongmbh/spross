@@ -6,11 +6,7 @@
   "to-translate": { "text": "tradurre" },
   "sentence": { "text": "frase", "grammar": { "gender": "la" } },
   "word": { "text": "parola", "grammar": { "gender": "la" } },
-  "language": {
-   "text": "lingua",
-   "grammar": { "gender": "la" },
-   "notes": { "it": "la lingua che si parla · la lingua in bocca: una parola." }
-  },
+  "language": { "text": "lingua", "grammar": { "gender": "la" } },
   "mother-tongue": { "text": "lingua madre", "grammar": { "gender": "la" } },
   "what-does-this-word-mean": {
    "text": "Che cosa significa questa parola?",

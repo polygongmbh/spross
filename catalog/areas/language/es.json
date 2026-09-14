@@ -10,7 +10,7 @@
    "text": "idioma",
    "synonyms": ["lengua"],
    "grammar": { "gender": "el" },
-   "notes": { "es": "el idioma alemán, el idioma español · lengua = idioma, o la boca" }
+   "notes": { "es": "el idioma español · ¿Qué idioma habla usted?" }
   },
   "mother-tongue": { "text": "lengua materna", "grammar": { "gender": "la" } },
   "what-does-this-word-mean": { "text": "¿Qué significa esta palabra?", "variants": ["¿Qué quiere decir esta palabra?"] },

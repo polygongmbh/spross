@@ -3,10 +3,7 @@
  "subtitle": "Yo, tú y todos los demás.",
  "words": {
   "i": { "text": "yo" },
-  "you": {
-   "text": "tú",
-   "notes": { "es": "tú es para la familia y los amigos; a los demás se les dice usted." }
-  },
+  "you": { "text": "tú", "notes": { "es": "tú en casa: ¿Cómo estás? · usted con los demás" } },
   "you-formal": { "text": "usted", "notes": { "es": "respeto: ¿Cómo se llama usted? · usted habla, tú hablas" } },
   "he": { "text": "él", "variants": ["ella"] },
   "we": { "text": "nosotros", "variants": ["nosotras"] },

@@ -3,7 +3,7 @@
  "subtitle": "Ich, du und alle anderen.",
  "words": {
   "i": { "text": "ich" },
-  "you": { "text": "du", "notes": { "de": "du sagt man zu Familie und Freunden · sonst Sie." } },
+  "you": { "text": "du", "notes": { "de": "Wie heißt du? · zu Fremden: Wie heißen Sie?" } },
   "you-formal": { "text": "Sie", "notes": { "de": "Wie heißen Sie? · Sie sprechen, nie Sie spricht." } },
   "he": {
    "text": "er",

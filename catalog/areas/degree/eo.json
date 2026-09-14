@@ -26,7 +26,7 @@
   "all": {
    "text": "ĉiuj",
    "variants": ["ĉio"],
-   "notes": { "eo": "ĉiuj estas ĉiuj homoj aŭ aĵoj · ĉio estas la tuto sen nombro." }
+   "notes": { "eo": "ĉiuj vortoj, ĉiuj lokoj · ĉio: Ĉio en ordo." }
   },
   "some": { "text": "kelkaj" },
   "every": { "text": "ĉiu" },
@@ -37,7 +37,7 @@
   "i-am-always-there": { "text": "Mi ĉiam estas tie." },
   "hang-it-higher": {
    "text": "Pendigu ĝin pli alte.",
-   "notes": { "eo": "la bildo pendas mem · -ig- igas iun fari: Pendigu ĝin pli alte." }
+   "notes": { "eo": "-ig- = fari tia: klara → klarigi · Pendigu ĝin pli alte!" }
   },
   "is-that-enough": { "text": "Ĉu tio sufiĉas?" }
  }

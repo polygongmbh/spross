@@ -3,16 +3,13 @@
  "subtitle": "Vortoj, kiuj kunligas la frazon.",
  "words": {
   "but": { "text": "sed" },
-  "also": {
-   "text": "ankaŭ",
-   "notes": { "eo": "ankaŭ staras antaŭ sia vorto: ankaŭ mi venos · mi manĝas ankaŭ panon." }
-  },
+  "also": { "text": "ankaŭ", "notes": { "eo": "antaŭ sia vorto: ankaŭ mi iras · mi iras ankaŭ hejmen." } },
   "and": { "text": "kaj" },
   "or": { "text": "aŭ" },
   "if": {
    "text": "se",
    "notes": {
-    "eo": "Se vi povas, venu! · Kiam vi venas? · Ĉu vi venas?",
+    "eo": "Se vi povas, mi venas · Kiam vi venas? · Ĉu vi venas?",
     "de": "se = falls · das zeitliche „wenn“ ist kiam · das indirekte „ob“ ist ĉu."
    }
   },
@@ -23,7 +20,7 @@
   },
   "before": {
    "text": "antaŭ",
-   "notes": { "eo": "antaŭ la manĝo · antaŭ frazo necesas antaŭ ol: antaŭ ol vi venas." }
+   "notes": { "eo": "antaŭ la lernejo · antaŭ frazo necesas ol: antaŭ ol vi venas." }
   },
   "after": { "text": "post" },
   "until": { "text": "ĝis" },
@@ -33,7 +30,7 @@
   "because-of": {
    "text": "pro",
    "notes": {
-    "eo": "pro estas la kaŭzo, por la celo: pro la pluvo · por vi.",
+    "eo": "pro estas la kaŭzo, por la celo: pro la problemo · por vi.",
     "en": "pro is the cause, por the purpose: pro la pluvo · por vi."
    }
   },
@@ -44,10 +41,7 @@
   },
   "finally": { "text": "fine", "variants": ["finfine"] },
   "then": { "text": "poste" },
-  "not": {
-   "text": "ne",
-   "notes": { "eo": "ne staras antaŭ la neata vorto: Mi ne venas · sola Ne = nea respondo." }
-  },
+  "not": { "text": "ne", "notes": { "eo": "ne iras antaŭ sia vorto: Mi ne venas · Ne! = nea respondo." } },
   "only": { "text": "nur" },
   "together": { "text": "kune" },
   "therefore": { "text": "tial" },

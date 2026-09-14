@@ -4,7 +4,10 @@
  "words": {
   "to-go": { "text": "kwenda" },
   "to-come": { "text": "kuja" },
-  "to-have": { "text": "kuwa na", "notes": { "sw": "nina, una, ana, tuna, mna, wana · hapana → huna, hamna" } },
+  "to-have": {
+   "text": "kuwa na",
+   "notes": { "sw": "ni-na, u-na, a-na, tu-na, m-na, wa-na · hapana: si-na, hu-na" }
+  },
   "to-give": { "text": "kupa", "notes": { "sw": "kunipa, kukupa, kumpa · kupa peke yake hakutoshi" } },
   "to-take": { "text": "kuchukua" },
   "to-see": { "text": "kuona" },
@@ -12,11 +15,14 @@
   "to-like": {
    "text": "kupenda",
    "notes": {
-    "sw": "Napenda chai · Nakupenda = napenda wewe sana",
+    "sw": "Napenda lugha yako · Nakupenda!",
     "de": "deckt mögen und lieben ab: Napenda chai · Nakupenda = Ich liebe dich."
    }
   },
-  "to-can": { "text": "kuweza", "notes": { "sw": "naweza, unaweza, anaweza · kukanusha: siwezi, hawezi" } },
+  "to-can": {
+   "text": "kuweza",
+   "notes": { "sw": "ni-na-weza, u-na-weza, a-na-weza · siwezi, huwezi, hawezi" }
+  },
   "to-think": { "text": "kufikiri", "notes": { "sw": "Nafikiri · kufikiria jambo = kulitafakari" } },
   "to-imagine": { "text": "kuwazia" },
   "to-wait": { "text": "kusubiri" },
@@ -26,23 +32,23 @@
    "synonyms": ["kukuta"],
    "notes": { "sw": "nimepata jibu · nimepata msaada · kukuta = kuona kwa bahati" }
   },
-  "to-search": { "text": "kutafuta", "notes": { "sw": "natafuta msaada · kutafuta pia = kwenda kupata" } },
+  "to-search": { "text": "kutafuta", "notes": { "sw": "kutafuta msaada, kutafuta jibu, kutafuta mahali" } },
   "to-receive": {
    "text": "kupokea",
    "notes": {
-    "sw": "kupokea barua, kupokea simu, kupokea mgeni",
+    "sw": "kupokea jibu, kupokea msaada",
     "de": "kupokea = entgegennehmen: kupokea barua, kupokea simu. Für „ich habe Arbeit bekommen“ sagt man nilipata kazi."
    }
   },
-  "to-look": { "text": "kuangalia", "notes": { "sw": "angalia hapa · kutazama televisheni = kukaa ukiiona" } },
+  "to-look": { "text": "kuangalia", "notes": { "sw": "Angalia hapa! · Angalia mbele, si nyuma." } },
   "to-open": { "text": "kufungua" },
-  "to-close": { "text": "kufunga", "notes": { "sw": "kufunga mlango, kufunga kamba, kufunga duka" } },
-  "to-stop": { "text": "kuacha", "notes": { "sw": "acha kelele · kuacha kazi = kuondoka kazini" } },
+  "to-close": { "text": "kufunga", "notes": { "sw": "kufunga kamba, kufunga nyumba, kufunga shule" } },
+  "to-stop": { "text": "kuacha", "notes": { "sw": "Acha kelele! · kuacha kuzungumza" } },
   "to-stand": {
    "text": "kusimama",
    "notes": { "de": "kusimama heißt stehen, aufstehen und stehen bleiben: Simama! = Halt!" }
   },
-  "to-send": { "text": "kutuma", "notes": { "sw": "kutuma ujumbe, kutuma pesa · kupokea = si kutuma" } },
+  "to-send": { "text": "kutuma", "notes": { "sw": "kutuma ujumbe · kutuma msaada" } },
   "to-deliver": { "text": "kupeleka" },
   "to-use": { "text": "kutumia" },
   "to-come-back": { "text": "kurudi" },
@@ -53,14 +59,14 @@
   "to-have-to": {
    "text": "lazima",
    "notes": {
-    "sw": "lazima niende, lazima ule, lazima tufike",
+    "sw": "lazima nije, lazima ule, lazima tufike",
     "de": "lazima + Konjunktiv: lazima niende = ich muss gehen, lazima ule = du musst essen."
    }
   },
   "to-put": {
    "text": "kuweka",
    "notes": {
-    "sw": "weka hapa · kuweka pesa benki, kuweka meza",
+    "sw": "Weka hapa! · kuweka juu ya meza, kuweka chini",
     "de": "legen, stellen, setzen: weka hapa = leg es hier hin."
    }
   },

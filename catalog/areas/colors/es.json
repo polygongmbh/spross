@@ -12,7 +12,7 @@
   "brown": {
    "text": "marrón",
    "variants": ["café", "castaño"],
-   "notes": { "es": "En América suele ser café; el pelo es castaño." }
+   "notes": { "es": "una mesa marrón · en América suele ser café." }
   },
   "gray": { "text": "gris" },
   "purple": { "text": "morado", "variants": ["morada", "violeta"] },

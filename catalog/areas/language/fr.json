@@ -6,11 +6,7 @@
   "to-translate": { "text": "traduire" },
   "sentence": { "text": "phrase", "grammar": { "gender": "la" } },
   "word": { "text": "mot", "grammar": { "gender": "le" } },
-  "language": {
-   "text": "langue",
-   "grammar": { "gender": "la" },
-   "notes": { "fr": "langue française et langue de la bouche : un mot, plusieurs sens." }
-  },
+  "language": { "text": "langue", "grammar": { "gender": "la" } },
   "mother-tongue": { "text": "langue maternelle", "grammar": { "gender": "la" } },
   "what-does-this-word-mean": {
    "text": "Que veut dire ce mot ?",

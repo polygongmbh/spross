@@ -2,7 +2,10 @@
  "title": "Rester dans la conversation",
  "subtitle": "Redemander, comprendre, continuer.",
  "words": {
-  "to-hear": { "text": "entendre", "notes": { "fr": "entendre du bruit · écouter la radio." } },
+  "to-hear": {
+   "text": "entendre",
+   "notes": { "fr": "entendre du bruit · entendre, c'est par hasard, pas exprès." }
+  },
   "to-understand": { "text": "comprendre" },
   "to-speak": {
    "text": "parler",

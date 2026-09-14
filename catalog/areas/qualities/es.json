@@ -21,19 +21,19 @@
   "big": {
    "text": "grande",
    "variants": ["gran"],
-   "notes": { "es": "un gran hombre ante el nombre = importante · de estatura, alto." }
+   "notes": { "es": "un país grande · gran delante del nombre: un gran país" }
   },
   "small": { "text": "pequeño", "variants": ["pequeña"] },
   "much": {
    "text": "mucho",
    "variants": ["mucha", "muchos", "muchas"],
-   "notes": { "es": "mucho dinero, mucha agua, muchos amigos." }
+   "notes": { "es": "mucho sitio, mucha agua, muchos países, muchas preguntas" }
   },
   "new": { "text": "nuevo", "variants": ["nueva"] },
   "old": {
    "text": "viejo",
    "variants": ["vieja"],
-   "notes": { "es": "Con personas es más amable mayor · antiguo es de otra época." }
+   "notes": { "es": "una casa vieja · antiguo es de otra época." }
   },
   "slow": {
    "text": "lento",
@@ -62,10 +62,7 @@
   "sharp": {
    "text": "afilado",
    "variants": ["afilada"],
-   "notes": {
-    "es": "afilado es el cuchillo; la comida es picante.",
-    "de": "nur für Klingen; scharf im Geschmack ist picante."
-   }
+   "notes": { "de": "nur für Klingen; scharf im Geschmack ist picante." }
   },
   "available": { "text": "disponible" },
   "other": { "text": "otro", "variants": ["otra", "otros", "otras"] },
@@ -109,7 +106,7 @@
    "text": "sano",
    "synonyms": ["saludable"],
    "variants": ["sana"],
-   "notes": { "es": "estoy sano (persona) · comida saludable (comida)." }
+   "notes": { "es": "Estoy sano · agua saludable" }
   },
   "firm": { "text": "firme" },
   "liquid": { "text": "líquido", "variants": ["líquida"] },

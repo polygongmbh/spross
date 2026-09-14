@@ -7,7 +7,7 @@
   "and": {
    "text": "na",
    "notes": {
-    "sw": "chai na maziwa · njoo na mimi = uje pamoja nami",
+    "sw": "mimi na wewe · kwenda na mimi",
     "de": "na heißt auch „mit“: chai na maziwa · njoo na mimi."
    }
   },
@@ -16,7 +16,7 @@
    "text": "kama",
    "variants": ["ikiwa"],
    "notes": {
-    "sw": "kama utakuja, niambie · kama simba = mfano wa simba",
+    "sw": "kama utakuja, niambie · kubwa kama nyumba",
     "de": "kama heißt auch „wie, als ob“ · die Frage „wann?“ ist lini."
    }
   },
@@ -29,7 +29,7 @@
   "for": { "text": "kwa" },
   "because-of": { "text": "kwa sababu ya" },
   "again": { "text": "tena" },
-  "still": { "text": "bado", "notes": { "sw": "Umemaliza? — Bado. · bado ninasoma = ninaendelea kusoma" } },
+  "still": { "text": "bado", "notes": { "sw": "Umemaliza? — Bado. · Bado ninasubiri." } },
   "finally": { "text": "hatimaye" },
   "then": { "text": "halafu" },
   "not": {

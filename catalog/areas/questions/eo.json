@@ -6,7 +6,7 @@
   "who": {
    "text": "kiu",
    "notes": {
-    "eo": "kiu homo? kiu libro? — kiu servas ambaŭ demandojn.",
+    "eo": "Kiu vi estas? · Kiu demando? — kiu servas ambaŭ demandojn.",
     "de": "kiu heißt auch „welcher“ — Esperanto trennt beides nicht: Kiu libro? — Welches Buch?"
    }
   },
@@ -20,14 +20,11 @@
   "where-are-they": { "text": "Kie ili estas?" },
   "who-is-there": { "text": "Kiu estas tie?" },
   "do-you-need-this": { "text": "Ĉu vi bezonas ĉi tion?" },
-  "when-does-it-start": {
-   "text": "Kiam ĝi komenciĝas?",
-   "notes": { "eo": "komenciĝi okazas per si mem · komenci ion bezonas objekton." }
-  },
+  "when-does-it-start": { "text": "Kiam ĝi komenciĝas?", "notes": { "eo": "Ĝi komenciĝas mem · Mi komencas ĝin." } },
   "what-time-is-it": {
    "text": "Kioma horo estas?",
    "variants": ["Kiom estas la horo?"],
-   "notes": { "eo": "kioma demandas la numeron: la tria, la kvara — ne kiom." }
+   "notes": { "eo": "Kioma horo? — la tria, la kvara · Kiom? — tri, kvar." }
   }
  }
 }

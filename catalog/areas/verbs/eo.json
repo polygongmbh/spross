@@ -5,7 +5,7 @@
   "to-go": {
    "text": "iri",
    "notes": {
-    "eo": "iri al la urbo · iri per aŭto · iri piede.",
+    "eo": "iri al la urbo · iri hejmen · iri piede.",
     "de": "iri ist gehen allgemein · mit einem Fahrzeug: veturi."
    }
   },
@@ -15,7 +15,7 @@
   "to-take": { "text": "preni" },
   "to-see": { "text": "vidi" },
   "to-make": { "text": "fari" },
-  "to-like": { "text": "ŝati", "notes": { "eo": "ŝati estas milda · ami estas forta: Mi amas vin." } },
+  "to-like": { "text": "ŝati" },
   "to-can": { "text": "povi", "notes": { "eo": "povi: Mi povas iri · scipovi: Mi scipovas la lingvon." } },
   "to-think": { "text": "pensi", "notes": { "eo": "pensi pri io · pensi ke io estas vera." } },
   "to-imagine": { "text": "imagi" },
@@ -29,7 +29,7 @@
   },
   "to-look": {
    "text": "rigardi",
-   "notes": { "eo": "rigardi estas atenta: rigardi televidon · vidi okazas mem." }
+   "notes": { "eo": "vidi okazas mem · rigardi estas atenta: Mi rigardas vin." }
   },
   "to-open": { "text": "malfermi" },
   "to-close": { "text": "fermi" },

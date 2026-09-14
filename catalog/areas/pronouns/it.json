@@ -3,7 +3,7 @@
  "subtitle": "Io, tu e tutti gli altri.",
  "words": {
   "i": { "text": "io" },
-  "you": { "text": "tu", "notes": { "it": "tu con gli amici · Lei con chi non conosci." } },
+  "you": { "text": "tu", "notes": { "it": "tu con chi conosci · Lei con chi non conosci." } },
   "you-formal": {
    "text": "Lei",
    "notes": { "it": "Lei è di rispetto · lui parla → Lei parla, lui dice → Lei dice." }

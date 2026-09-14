@@ -6,7 +6,7 @@
    "text": "bona",
    "variants": ["bone"],
    "notes": {
-    "eo": "bona tago · Ĉio bone! · bona homo · Li parolas bone.",
+    "eo": "bona tago · bona respondo · Ĉio bone · Li parolas bone.",
     "de": "Adjektive enden auf -a, Adverbien auf -e: bona tago · Ĉio bone."
    }
   },
@@ -29,7 +29,7 @@
   "old": {
    "text": "maljuna",
    "synonyms": ["malnova"],
-   "notes": { "eo": "maljuna viro (vivanta) · malnova tablo (aĵo)." }
+   "notes": { "eo": "Li estas maljuna · La tablo estas malnova." }
   },
   "slow": { "text": "malrapida", "variants": ["malrapide"] },
   "fast": { "text": "rapida", "variants": ["rapide"] },

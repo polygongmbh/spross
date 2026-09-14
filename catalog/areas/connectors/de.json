@@ -16,7 +16,7 @@
   "with": {
    "text": "mit",
    "notes": {
-    "de": "mit dem Bus, mit meiner Frau, mit dir — nie mit den, nie mit dich.",
+    "de": "mit dem Bus, mit dir, mit uns — nie mit den, nie mit dich.",
     "en": "mit always takes the dative: mit dem Bus, mit meiner Frau.",
     "es": "mit siempre rige dativo: mit dem Bus, mit meiner Frau."
    }
@@ -24,7 +24,7 @@
   "for": {
    "text": "für",
    "notes": {
-    "de": "für den Bus, für meine Frau, für dich — nie für dem, nie für dir.",
+    "de": "für den Bus, für dich, für uns — nie für dem, nie für dir.",
     "en": "für always takes the accusative: für den Antrag, für dich.",
     "es": "für siempre rige acusativo: für den Antrag, für dich."
    }
@@ -32,7 +32,7 @@
   "because-of": {
    "text": "wegen",
    "notes": {
-    "de": "wegen des Wetters — umgangssprachlich auch wegen dem Wetter.",
+    "de": "wegen des Problems — umgangssprachlich auch wegen dem Problem.",
     "en": "wegen takes the genitive: wegen des Wetters — colloquially the dative, wegen dem Wetter, is heard too.",
     "es": "wegen rige genitivo: wegen des Wetters — en el habla coloquial también dativo, wegen dem Wetter."
    }

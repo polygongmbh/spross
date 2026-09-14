@@ -27,7 +27,7 @@
   "near": {
    "text": "vicino",
    "variants": ["vicina"],
-   "notes": { "it": "vicino a me, vicino a te · il vicino è una persona." }
+   "notes": { "it": "vicino a me, vicino a te · il vicino è quello di sopra." }
   },
   "far": { "text": "lontano", "variants": ["lontana"] },
   "place": { "text": "posto", "synonyms": ["luogo"], "grammar": { "gender": "il" } },
@@ -43,7 +43,7 @@
   "at-school": { "text": "a scuola" },
   "go-to-school": {
    "text": "andare a scuola",
-   "notes": { "it": "a vale per dove si sta e dove si va: sono a scuola, vado a scuola." }
+   "notes": { "it": "a vale per dove si sta e dove si va: sono a scuola, si va a scuola." }
   },
   "are-you-going-home-already": { "text": "Andate già a casa?", "variants": ["Vai già a casa?"] }
  }

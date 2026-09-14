@@ -18,7 +18,7 @@
   "year": { "text": "año", "grammar": { "gender": "el" } },
   "now": { "text": "ahora" },
   "today": { "text": "hoy" },
-  "tomorrow": { "text": "mañana", "notes": { "es": "mañana también es la parte del día: por la mañana." } },
+  "tomorrow": { "text": "mañana", "notes": { "es": "Hasta mañana · hoy por la mañana" } },
   "yesterday": { "text": "ayer" },
   "day-before-yesterday": { "text": "anteayer" },
   "early": { "text": "temprano" },
@@ -29,7 +29,7 @@
    "variants": ["noche"],
    "grammar": { "gender": "la" },
    "notes": {
-    "es": "La tarde llega hasta que oscurece; luego, la noche.",
+    "es": "¡Buenas tardes! hasta que oscurece · luego, ¡Buenas noches!",
     "de": "kein eigenes Wort für Abend: bis zum Dunkelwerden la tarde, danach la noche — Guten Abend = buenas tardes bzw. buenas noches."
    }
   },

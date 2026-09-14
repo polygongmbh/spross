@@ -4,8 +4,8 @@
  "words": {
   "but": { "text": "pero" },
   "also": { "text": "también" },
-  "and": { "text": "y", "variants": ["e"], "notes": { "es": "y → e ante i-, hi-: madre e hija." } },
-  "or": { "text": "o", "variants": ["u"], "notes": { "es": "o → u ante o-, ho-: siete u ocho." } },
+  "and": { "text": "y", "variants": ["e"], "notes": { "es": "y → e con i-, hi-: hablar e imaginar" } },
+  "or": { "text": "o", "variants": ["u"], "notes": { "es": "o → u con o-, ho-: siete u ocho" } },
   "if": { "text": "si" },
   "because": { "text": "porque" },
   "so-that": { "text": "para que" },
@@ -14,16 +14,13 @@
   "until": { "text": "hasta" },
   "without": { "text": "sin" },
   "with": { "text": "con" },
-  "for": {
-   "text": "para",
-   "notes": { "es": "para = destino o finalidad, por = causa: para ti · por la lluvia." }
-  },
+  "for": { "text": "para", "notes": { "es": "para = destino, por = causa: para ti · por el problema" } },
   "because-of": { "text": "por" },
   "again": { "text": "otra vez", "variants": ["de nuevo"] },
   "still": { "text": "todavía", "variants": ["aún"] },
   "finally": { "text": "por fin", "variants": ["finalmente"] },
   "then": { "text": "luego" },
-  "not": { "text": "no", "notes": { "es": "no hablo español · no está aquí · ¿Vienes? No." } },
+  "not": { "text": "no", "notes": { "es": "no hablo español · no está aquí · ¿Lo sabe? No." } },
   "only": { "text": "solo", "variants": ["sólo", "solamente"] },
   "together": {
    "text": "juntos",

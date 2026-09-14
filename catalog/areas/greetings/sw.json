@@ -9,7 +9,6 @@
   "good-day": {
    "text": "Habari!",
    "notes": {
-    "sw": "Habari? — Nzuri.",
     "de": "Habari grüßt zu jeder Tageszeit; die Antwort ist immer Nzuri, auch wenn es nicht stimmt."
    }
   },
@@ -17,7 +16,7 @@
   "good-evening": { "text": "Habari za jioni!" },
   "good-night": {
    "text": "Usiku mwema!",
-   "notes": { "sw": "Usiku mwema! kwa kuaga · Habari za usiku! kwa kufika" }
+   "notes": { "de": "nur zum Abschied am Abend · wer abends ankommt, grüßt mit „Habari za usiku!“" }
   },
   "goodbye": { "text": "Kwaheri!" },
   "welcome": {
@@ -32,7 +31,7 @@
     "de": "Respektgruß an Ältere; die Antwort ist immer „Marahaba!“ · unter Gleichaltrigen bleibt es bei „Hujambo!“"
    }
   },
-  "may-i-come-in": { "text": "Hodi!", "notes": { "sw": "Hodi! — Karibu! · husemwa mlangoni badala ya kugonga" } },
+  "may-i-come-in": { "text": "Hodi!", "notes": { "sw": "Hodi! — Karibu!" } },
   "how-are-you": { "text": "Habari yako?" },
   "all-good": { "text": "Yote ni sawa.", "variants": ["Yote sawa."] },
   "thank-you": { "text": "Asante sana!" },
@@ -44,7 +43,7 @@
    "text": "Pole!",
    "variants": ["Pole sana!", "Poleni!"],
    "notes": {
-    "sw": "Pole! ni huruma · Samahani! ni kuomba radhi",
+    "sw": "Pole! — Asante.",
     "de": "Mitgefühl bei jedem Missgeschick, auch beim Stolpern oder nach der Arbeit — nie eine Entschuldigung für eigene Schuld · an mehrere: Poleni!"
    }
   },

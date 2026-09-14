@@ -52,7 +52,7 @@
   "second": {
    "text": "pili",
    "variants": ["wa pili", "ya pili", "cha pili"],
-   "notes": { "sw": "mtu wa pili, siku ya pili · nyingine hutumia namba: wa tatu" }
+   "notes": { "sw": "mtu wa pili, siku ya pili, neno la pili" }
   },
   "next": {
    "text": "-jayo",
@@ -63,7 +63,7 @@
    "text": "kitambo",
    "notes": { "sw": "kitambo kidogo = siku chache · tangu kitambo = muda mrefu" }
   },
-  "formerly": { "text": "zamani", "notes": { "sw": "zamani watu walitembea · hadithi za zamani" } },
+  "formerly": { "text": "zamani", "notes": { "sw": "zamani na sasa · hadithi za zamani" } },
   "later": { "text": "baadaye" },
   "last": {
    "text": "-a mwisho",

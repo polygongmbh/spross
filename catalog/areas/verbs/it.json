@@ -12,41 +12,41 @@
   "to-come": { "text": "venire" },
   "to-have": { "text": "avere" },
   "to-give": { "text": "dare" },
-  "to-take": { "text": "prendere", "notes": { "it": "prendere l'autobus · prendere un caffè." } },
+  "to-take": { "text": "prendere", "notes": { "it": "prendere posto · prendere la parola." } },
   "to-see": {
    "text": "vedere",
-   "notes": { "it": "vedere è per caso, non apposta.", "de": "vedere = sehen · guardare = anschauen." }
+   "notes": { "it": "vedere è per caso, non si sceglie.", "de": "vedere = sehen · guardare = anschauen." }
   },
   "to-make": {
    "text": "fare",
    "notes": {
-    "it": "fare la spesa, fare i compiti, fare una domanda.",
+    "it": "fare una domanda, fare un favore, fare presto.",
     "de": "fare deckt machen und tun ab: fare la spesa, fare i compiti."
    }
   },
   "to-like": {
    "text": "piacere",
    "notes": {
-    "it": "mi piace il caffè · mi piacciono i libri.",
+    "it": "mi piace questo posto · mi piacciono i libri.",
     "de": "umgekehrt gebaut: Mi piace il caffè = Ich mag Kaffee · lieben ist amare oder voler bene."
    }
   },
-  "to-can": { "text": "potere", "notes": { "it": "posso, puoi, può, possiamo." } },
+  "to-can": {
+   "text": "potere",
+   "notes": { "it": "posso entrare? · puoi ripeterlo? · può parlare più forte?" }
+  },
   "to-think": { "text": "pensare", "notes": { "it": "penso a te · penso che tu sia a casa." } },
   "to-imagine": { "text": "immaginare" },
-  "to-wait": {
-   "text": "aspettare",
-   "notes": { "it": "aspetto l'autobus · aspetto un bambino · sperare è un'altra cosa." }
-  },
+  "to-wait": { "text": "aspettare", "notes": { "it": "aspettare fuori · aspettare una risposta." } },
   "to-want": {
    "text": "volere",
    "notes": {
-    "it": "vorrei un caffè è più gentile di voglio un caffè.",
+    "it": "voglio una risposta · vorrei una risposta è più gentile.",
     "de": "höflicher im Konditional: vorrei = ich hätte gern."
    }
   },
   "to-find": { "text": "trovare" },
-  "to-search": { "text": "cercare", "notes": { "it": "cerco una parola, cerco te: cercare non vuole a." } },
+  "to-search": { "text": "cercare", "notes": { "it": "cercare una parola, cercare te: cercare non vuole a." } },
   "to-receive": { "text": "ricevere", "synonyms": ["ottenere"] },
   "to-look": { "text": "guardare", "notes": { "it": "guardare la TV · guarda qui!" } },
   "to-open": { "text": "aprire" },
@@ -54,7 +54,7 @@
   "to-stop": {
    "text": "smettere",
    "variants": ["smettere di"],
-   "notes": { "it": "smettere di fumare · il treno si ferma." }
+   "notes": { "it": "smettere di fumare · smettere di parlare." }
   },
   "to-stand": {
    "text": "stare in piedi",
@@ -71,7 +71,7 @@
   "to-deliver": {
    "text": "recapitare",
    "notes": {
-    "it": "si recapita a casa · un documento si consegna a mano.",
+    "it": "recapitare a casa, recapitare in città.",
     "de": "recapitare = zustellen, ausliefern · consegnare heißt abgeben und gehört aufs Amt."
    }
   },

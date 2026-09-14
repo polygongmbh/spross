@@ -5,7 +5,7 @@
   "time": {
    "text": "tempo",
    "grammar": { "gender": "il" },
-   "notes": { "it": "il tempo è il meteo: Che tempo fa? · tre volte, non tre tempi." }
+   "notes": { "it": "Che tempo fa? · Non ho tempo · tre volte, non tre tempi." }
   },
   "day": { "text": "giorno", "variants": ["giornata"], "grammar": { "gender": "il" } },
   "week": { "text": "settimana", "grammar": { "gender": "la" } },

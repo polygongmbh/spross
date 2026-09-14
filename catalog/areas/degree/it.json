@@ -7,7 +7,7 @@
   "more": { "text": "più" },
   "less": { "text": "meno" },
   "always": { "text": "sempre" },
-  "never": { "text": "mai", "notes": { "it": "mai vuole non davanti: non bevo mai caffè." } },
+  "never": { "text": "mai", "notes": { "it": "mai vuole non davanti: non parlo mai." } },
   "maybe": { "text": "forse" },
   "sometimes": { "text": "a volte", "variants": ["qualche volta", "talvolta"] },
   "often": { "text": "spesso" },

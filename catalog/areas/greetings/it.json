@@ -15,16 +15,12 @@
    }
   },
   "good-evening": { "text": "Buonasera!", "variants": ["Buona sera!"] },
-  "good-night": {
-   "text": "Buonanotte!",
-   "variants": ["Buona notte!"],
-   "notes": { "it": "Buonanotte! la sera, per uscire o dormire · sennò Buonasera!" }
-  },
+  "good-night": { "text": "Buonanotte!", "variants": ["Buona notte!"] },
   "goodbye": { "text": "Arrivederci!" },
   "bye": {
    "text": "A presto!",
    "variants": ["Ciao!", "A dopo!"],
-   "notes": { "it": "A presto! · tra amici, Ciao!" }
+   "notes": { "it": "A presto! · Ciao! · Arrivederci! è più formale." }
   },
   "welcome": { "text": "Benvenuto!", "variants": ["Benvenuta!", "Benvenuti!", "Benvenute!"] },
   "may-i-come-in": {

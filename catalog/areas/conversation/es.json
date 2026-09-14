@@ -2,7 +2,7 @@
  "title": "Seguir en la conversación",
  "subtitle": "Preguntar de nuevo, entender, seguir adelante.",
  "words": {
-  "to-hear": { "text": "oír", "notes": { "es": "oír = darse cuenta · escuchar = con atención" } },
+  "to-hear": { "text": "oír" },
   "to-understand": { "text": "entender", "synonyms": ["comprender"] },
   "to-speak": { "text": "hablar" },
   "to-repeat-word": { "text": "repetir la palabra" },
@@ -21,7 +21,7 @@
   "to-know": {
    "text": "saber",
    "notes": {
-    "es": "saber algo · conocer a alguien",
+    "es": "Sé la respuesta · Sabe hablar.",
     "de": "wissen = saber · kennen (Personen, Orte) = conocer."
    }
   },

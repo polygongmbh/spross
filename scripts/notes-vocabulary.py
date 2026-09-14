@@ -18,6 +18,10 @@ Reports only; it owns no verdict. Matching is surface-form and deliberately gene
 (a token counts as met if it shares a 4-character stem with something seeded), so it
 under-reports on the heavily inflected languages rather than crying wolf.
 
+It does over-report in two shapes, both fine to justify and leave: a note showing its own
+verb's other forms trips when a later phrase card spells one out (`vouloir`'s `voudrais`),
+and a Romance contraction trips on the article inside it (`dalle` against `alle`).
+
     scripts/notes-vocabulary.py                 # every area
     scripts/notes-vocabulary.py --until 12      # the first 12 areas, where it actually bites
     scripts/notes-vocabulary.py --lang sw --verbose
