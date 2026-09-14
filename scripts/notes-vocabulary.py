@@ -104,8 +104,13 @@ def seed_order(until=None):
     return position
 
 
-def audit(lang, position):
-    """Return [(area, slug, note, later, jargon)] for this language's own-language notes."""
+def audit(lang, position, everything):
+    """Return [(area, slug, note, later, jargon)] for this language's own-language notes.
+
+    `everything` spans the WHOLE catalog even when `position` is cut to the early areas:
+    a word from area 21 is exactly what LATER is meant to catch, so narrowing the scope of
+    the notes being checked must not narrow the vocabulary they are checked against.
+    """
     introduced, notes = defaultdict(set), []
     for path in sorted(AREAS.glob(f"*/{lang}.json")):
         area = path.parent.name
@@ -131,7 +136,6 @@ def audit(lang, position):
             found = met[mark]
         return found
 
-    everything = set().union(*introduced.values()) if introduced else set()
     jargon = METALANGUAGE.get(lang, set())
     findings = []
     for at, area, slug, note in sorted(notes):
@@ -164,6 +168,7 @@ def main():
     args = parser.parse_args()
 
     position = seed_order(args.until)
+    whole = seed_order(None)
     langs = args.lang or ["de", "en", "eo", "es", "fr", "it", "sw", "uk"]
     scope = f"first {args.until} areas" if args.until else "every area"
     print(f"own-language notes, {scope}\n")
@@ -171,7 +176,12 @@ def main():
 
     flagged_total = 0
     for lang in langs:
-        total, findings = audit(lang, position)
+        everything = set()
+        for path in sorted(AREAS.glob(f"*/{lang}.json")):
+            for slug, r in (json.loads(path.read_text()).get("words") or {}).items():
+                if isinstance(r, dict) and slug in whole:
+                    everything |= surface_forms(r)
+        total, findings = audit(lang, position, everything)
         later = sum(1 for *_, l, _m in findings if l)
         jargon = sum(1 for *_, _l, m in findings if m)
         flagged_total += len(findings)
