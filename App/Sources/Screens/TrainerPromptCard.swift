@@ -1,16 +1,54 @@
 import SwiftUI
 import SprossKern
 
-/// Simpler sibling of VocabCardView: one big tabular-digit prompt ("347",
-/// "1978", "14:35"), and the same reveal growing below it.
+/// Simpler sibling of VocabCardView: one big prompt ("347", "1978", "14:35", a
+/// word with its letters thrown out of order), and the same reveal growing below it.
 ///
 /// The card carries NO drill label and no emoji: the run's header line already
 /// names what is drilled ("🔢 1 Stelle"), the field's placeholder names the
 /// language to answer in, and a card that repeats both spends the screen's
 /// scarce axis saying what the learner just tapped their way into.
 struct TrainerPromptCard: View {
-    let task: TrainerTask
-    var sentence = false
+
+    /// How large the question is set, and how the reveal under it follows. WHAT
+    /// is asked picks it — there is room for one numeral where there is none for
+    /// a whole line (`Theme.Prompt`).
+    enum Size {
+        /// A numeral the whole card is about.
+        case digits
+        /// One word, whole or with its letters mixed.
+        case word
+        /// A prompt made of words, wrapped over lines.
+        case sentence
+
+        var font: Font {
+            switch self {
+            case .digits: return Theme.prompt.digits
+            case .word: return Theme.prompt.word
+            case .sentence: return Theme.prompt.sentence
+            }
+        }
+
+        var lines: Int { self == .sentence ? 4 : 1 }
+
+        var revealFont: Font {
+            self == .sentence ? Theme.typography.headline : Theme.typography.title
+        }
+    }
+
+    /// The question, set by whoever knows what it is made of — the learner's
+    /// form of a numeral ("12 345", where the kern parses "12345" back), or a
+    /// mixed word with the letters that still stand marked.
+    let prompt: Text
+    /// What a screen reader hears in its place, where the written form is not a
+    /// word anything can read. nil ⇒ the prompt reads as itself.
+    var promptLabel: Text?
+    var size: Size = .digits
+    /// The canonical answer, and the language it is said in.
+    let answer: String
+    let language: String
+    /// The meaning — under the answer, and never before it.
+    var gloss: String?
     /// A short fact about THIS prompt ("Neue Stelle: mia"), shown until the
     /// answer arrives ([DrillHint], the shape the calendar's card wears too).
     var hint: DrillHint?
@@ -27,24 +65,23 @@ struct TrainerPromptCard: View {
 
     var body: some View {
         VStack(spacing: Theme.spacing.md) {
-            // why: promptDisplay is the learner's form — grouped digits ("12 345")
-            // where `prompt` is the machine one the kern parses back with toLong().
-            Text(task.promptDisplay)
-                .font(sentence ? Theme.prompt.sentence : Theme.prompt.digits)
+            prompt
+                .font(size.font)
                 .monospacedDigit()
                 .foregroundStyle(Theme.colors.textPrimary)
-                .lineLimit(sentence ? 4 : 1)
+                .lineLimit(size.lines)
                 .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.center)
+                .accessibilityLabel(promptLabel ?? prompt)
             if revealed {
-                CardReveal(note: task.gloss) {
+                CardReveal(note: gloss) {
                     SpokenWord(pronounce: pronounce, isPlaying: isPlaying) {
-                        Text(task.display)
-                            .font(sentence ? Theme.typography.headline : Theme.typography.title)
+                        Text(answer)
+                            .font(size.revealFont)
                             .foregroundStyle(Theme.colors.accent)
                             .multilineTextAlignment(.center)
                             .minimumScaleFactor(0.6)
-                            .spoken(task.display, language: task.language)
+                            .spoken(answer, language: language)
                     }
                 }
                 .transition(.opacity.combined(with: .move(edge: .top)))

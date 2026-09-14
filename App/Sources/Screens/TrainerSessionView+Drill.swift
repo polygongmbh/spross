@@ -28,7 +28,11 @@ extension TrainerSessionView {
                 // ZStack so outgoing and incoming prompt overlap during the
                 // flip; .id gives each run position its own view identity.
                 ZStack {
-                    TrainerPromptCard(task: current, sentence: wordyPrompt,
+                    TrainerPromptCard(prompt: Text(current.promptDisplay),
+                                      size: wordyPrompt ? .sentence : .digits,
+                                      answer: current.display,
+                                      language: current.language,
+                                      gloss: current.gloss,
                                       hint: placeValueHint,
                                       otherWord: run.otherWord.map { ($0.word, $0.meanings.joined(separator: ", ")) },
                                       revealed: run.showsAnswer,
