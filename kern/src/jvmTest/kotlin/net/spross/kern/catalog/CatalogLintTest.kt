@@ -44,8 +44,8 @@ class CatalogLintTest {
 
     /**
      * Areas that stood past the line when it became a check, each waiting on the cut a
-     * learner would name: `food` splits at raw ingredients against meals and drinks,
-     * `qualities` at a `comparison` shelf, while `desk` and `admin` have no named seam yet.
+     * learner would name: `food` splits at raw ingredients against meals and drinks, while
+     * `desk` and `admin` have no named seam yet.
      * Held in both directions ([anAreaHoldsAFewDozenCards]), so a split clears its own
      * waiver instead of leaving one behind for the next reader to trust.
      */
