@@ -223,6 +223,9 @@ Catalog content — its forms, its audio and the per-language questions — live
   (`App/Sources/Screens/TrainerSessionView+UITest.swift`) while `SprossActivity` mirrors only `readAloud`,
   so a side-by-side check of `DrillStreakLine` and the tier beats on Android has to be played to by adb;
   `--es streak N` and its siblings in `SprossActivity.onCreate` would close it.
+- The two scramble runs cannot be screenshot on a fresh Android profile — iOS opens them staged with
+  `-uitest-wordscramble-level` / `-uitest-sentencescramble-place` while `SprossActivity` mirrors only
+  `readAloud`, so `WordScrambleRun.openAt` and `SentenceScrambleRun.openAt` go unused there.
 - No Swift test target (`project.yml` declares four app/extension targets only), so pure Swift logic is ungated —
   the widget streak walk and flame state (`Widgets/Sources/WidgetSnapshot.swift`), watch option assembly
   (`Shared/Sources/WatchPracticeQuestion.swift`), the sleep-timer minutes (`App/Sources/Model/ListeningBedtime.swift`)
