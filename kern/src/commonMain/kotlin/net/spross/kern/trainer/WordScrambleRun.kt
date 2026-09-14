@@ -9,29 +9,35 @@ import net.spross.kern.session.TurnFeedback
  * The word scramble as pure state plus one reducer. The run's shape is [WordScrambleRunState];
  * what it can ask is [WordScrambleAvailability.Report].
  *
- * It TYPES like the atlas and the slot run — writing the word out is the answer — so what the
- * Sprosse changes is the cue rather than the task: first and last letter anchored, then the
- * first alone, then nothing ([WordScrambleMasking]). Nothing it does books a review; spelling a
- * word back from its own letters is not the recall the schedule measures.
+ * It TYPES like the atlas and the slot run — writing the word out is the answer — so a Sprosse
+ * changes how much help the cue gives and how much word there is to spell: the first three take
+ * the anchors away one at a time ([WordScrambleMasking]) and every Sprosse, those included,
+ * raises the length floor the pool is drawn against
+ * ([WordScrambleAvailability.Report.lettersAt]). Nothing it does books a review; spelling a word
+ * back from its own letters is not the recall the schedule measures.
  *
  * Kern never self-randomizes: every draw and every mix takes the caller's [Random], so a seeded
  * run is reproducible end to end and identical on both platforms.
  */
 object WordScrambleRun {
 
-    /** Two clean spellings carry a Sprosse — the ladder is three rungs, not a grind. */
-    const val WINS_TO_ADVANCE: Int = 2
+    /**
+     * Five clean spellings carry a Sprosse. Two made the ladder climb faster than the learner
+     * could feel it — a clean, an almost and a clean promoted on the third answer, which read
+     * as the almost having counted.
+     */
+    const val WINS_TO_ADVANCE: Int = 5
 
     /**
-     * How wide the draw reaches into the shortest words still unasked. Shorter words are the
-     * gentler ones, and the pool empties from its short end as they are answered, so the run
-     * lengthens its words on its own without a second ramp axis to tune.
+     * How wide the draw reaches into the shortest words the Sprosse still has unasked. The
+     * Sprosse sets the floor ([WordScrambleAvailability.Report.lettersAt]); within it the
+     * gentlest words come first, and the window empties from its short end as they are answered.
      */
     private const val DRAW_WINDOW = 8
 
-    /** A fresh run at the foot of the ladder. */
+    /** A fresh run where the ladder stands ([WordScrambleRunConfig.entryLevel]). */
     fun open(config: WordScrambleRunConfig, rng: Random): WordScrambleRunState =
-        openAt(config, 1, rng)
+        openAt(config, config.entryLevel, rng)
 
     /** The same, forced to one Sprosse — the deterministic way to reach a masking stage. */
     fun openAt(config: WordScrambleRunConfig, level: Int, rng: Random): WordScrambleRunState {
@@ -42,7 +48,10 @@ object WordScrambleRun {
             task = opening.task,
             index = 0,
             level = opening.level,
+            bestLevel = opening.level,
             winsAtLevel = 0,
+            clearedSprossen = emptySet(),
+            blemished = false,
             core = DrillRunCore(),
             feedback = TurnFeedback.Neutral,
             finished = opening.task == null,
@@ -87,8 +96,11 @@ object WordScrambleRun {
     /**
      * Leaving the run. A pending accepted answer books exactly as the explicit tap would, so
      * closing can neither lose it nor upgrade it; a revealed answer nobody confirmed books
-     * nothing. [DrillRunSummary.newRecord] is always false — this drill keeps no record store,
+     * nothing. [DrillRunSummary.newRecord] is always false — this drill keeps no streak record,
      * so nothing it does can beat one.
+     *
+     * The Sprosse the run stands on when it leaves is NOT booked: a rung is earned by being
+     * climbed off unblemished ([DrillRungs]), and stopping halfway up one earns nothing.
      */
     fun close(state: WordScrambleRunState): WordScrambleClose {
         val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
@@ -101,7 +113,7 @@ object WordScrambleRun {
         } else {
             DrillRunSummary(ended.done, ended.bestStreak, newRecord = false)
         }
-        return WordScrambleClose(ended, summary, effects)
+        return WordScrambleClose(ended, summary, ended.bestLevel, ended.clearedSprossen, effects)
     }
 
     // MARK: - Intents
@@ -157,8 +169,17 @@ object WordScrambleRun {
             next.copy(
                 task = question.task,
                 level = question.level,
+                bestLevel = maxOf(next.bestLevel, question.level),
                 // A Sprosse the run was carried past keeps none of the wins banked below it.
                 winsAtLevel = if (question.level == next.level) next.winsAtLevel else 0,
+                // A Sprosse answered out is a Sprosse climbed off, and books on the same terms.
+                clearedSprossen = DrillRungs.leaving(
+                    next.clearedSprossen,
+                    next.level,
+                    question.level,
+                    next.blemished,
+                ),
+                blemished = next.blemished && question.level == next.level,
                 index = state.index + 1,
                 // why: cleared in the SAME transaction as the question — the next card must
                 // never render a frame carrying the last one's answer.
@@ -182,9 +203,18 @@ object WordScrambleRun {
             clean = clean,
             winsRequired = WINS_TO_ADVANCE,
         )
+        val blemished = DrillRungs.blemished(state.blemished, correct, clean)
         return state.copy(
             level = step.level,
+            bestLevel = maxOf(state.bestLevel, step.level),
             winsAtLevel = step.winsAtLevel,
+            clearedSprossen = DrillRungs.leaving(
+                state.clearedSprossen,
+                state.level,
+                step.level,
+                blemished,
+            ),
+            blemished = blemished && step.level == state.level,
             core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) }),
         )
     }
@@ -203,30 +233,42 @@ object WordScrambleRun {
         rng: Random,
     ): DrillLadder.Sprosse<WordScrambleTask> =
         DrillLadder.climb(from, config.report.maxLevel) { level ->
-            sample(config.report.words, level, avoiding, solved, rng)
+            sample(config.report, level, avoiding, solved, rng)
         }
 
     /**
-     * One question at [level], drawn from the shortest words this Sprosse has not asked yet.
-     * [avoiding] is the word just asked, which kern resamples once. Null ⇒ the Sprosse is spent.
+     * One question at [level], drawn from the shortest words the Sprosse admits that it has not
+     * asked yet. [avoiding] is the word just asked, which kern resamples once. Null ⇒ the
+     * Sprosse is spent.
+     *
+     * The Sprosse is a LENGTH FLOOR and it rises ([WordScrambleAvailability.Report.lettersAt]),
+     * so a short word drops out of the pool as the ladder climbs — spelling a four-letter word
+     * back stops being a question once a learner can spell a ten-letter one, and a run opened
+     * high starts on words that are worth opening high for.
      *
      * The FORM comes out of the same [Random] the word did, so a word carrying several spellable
-     * forms (a Swahili stem's agreeing forms) still deals reproducibly.
+     * forms (a Swahili stem's agreeing forms) still deals reproducibly — and only the forms that
+     * clear the floor are dealt, or a stem would answer a long Sprosse with its shortest
+     * agreement.
      */
     private fun sample(
-        words: List<WordScrambleAvailability.Spelling>,
+        report: WordScrambleAvailability.Report,
         level: Int,
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
     ): WordScrambleTask? {
-        val open = words.filter { DrillSolved.wordKey(level, it.card.id) !in solved }
+        val floor = report.lettersAt(level)
+        val open = report.words
+            .filter { DrillSolved.wordKey(level, it.card.id) !in solved }
+            .map { it to it.formsFrom(floor) }
+            .filter { (_, forms) -> forms.isNotEmpty() }
         if (open.isEmpty()) return null
-        val window = open.sortedBy { it.shortest }.take(DRAW_WINDOW)
-        val pool = window.filter { it.card.id != avoiding }.ifEmpty { window }
-        val spelling = pool[rng.nextInt(pool.size)]
+        val window = open.sortedBy { (_, forms) -> forms.minOf { it.letters } }.take(DRAW_WINDOW)
+        val drawn = window.filter { (spelling, _) -> spelling.card.id != avoiding }.ifEmpty { window }
+        val (spelling, forms) = drawn[rng.nextInt(drawn.size)]
         val card = spelling.card
-        val form = spelling.forms[rng.nextInt(spelling.forms.size)]
+        val form = forms[rng.nextInt(forms.size)]
         return WordScrambleTask(
             cardId = card.id,
             language = card.target.lang,

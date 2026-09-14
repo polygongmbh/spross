@@ -116,6 +116,32 @@ object DrillRamp {
 }
 
 /**
+ * Which Sprossen a run may hand back as CLEARED where a rung is EARNED rather than enumerated.
+ *
+ * The atlas and the calendar can list a Sprosse and check it off ([DrillSolved.cleared]); a
+ * scramble draws out of a pool that grows with the box, so what it books instead is the CLIMB:
+ * a Sprosse is cleared by being left UPWARD with nothing against it — every answer given while
+ * standing on it fully correct, no typo, no look-up, no miss.
+ *
+ * A second ledger beside [DrillRamp] rather than a tightening of it. An almost still banks
+ * nothing, costs nothing and breaks no streak; it only takes the Sprosse it fell on out of the
+ * running for the store, so the next run opens on that Sprosse again instead of above it.
+ */
+internal object DrillRungs {
+
+    /** Whether the Sprosse the run stands on is out of the running, once this answer is in. */
+    fun blemished(standing: Boolean, correct: Boolean, clean: Boolean): Boolean =
+        standing || !correct || !clean
+
+    /**
+     * [cleared] plus [from], where the run has just left it upward unblemished — by the wins
+     * its ladder asks for, or by answering it out, which are one feat from the store's side.
+     */
+    fun leaving(cleared: Set<Int>, from: Int, to: Int, blemished: Boolean): Set<Int> =
+        if (to > from && !blemished) cleared + from else cleared
+}
+
+/**
  * Where the next question comes from — the other half of a Sprosse, and the other thing every
  * drill does the same way. [DrillRamp] says which Sprosse a run stands on; this says what that
  * Sprosse has left to ask.

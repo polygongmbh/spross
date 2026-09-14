@@ -99,6 +99,37 @@ class WordScrambleAvailabilityTest {
         assertFalse("sun" in ids(suspended = setOf("sun")))
     }
 
+    /**
+     * The Sprosse ceiling is read off the POOL, not off the masking ladder: every rung the
+     * report names holds words enough to be worth climbing, and the one above it does not.
+     */
+    @Test
+    fun theLadderTopsOutWhereThePoolStopsFillingIt() {
+        val report = report()
+        for (level in 1..report.maxLevel) {
+            assertTrue(
+                report.words.count { it.reach >= report.lettersAt(level) } >=
+                    WordScrambleAvailability.POOL_FLOOR,
+                "Sprosse $level cannot be filled",
+            )
+        }
+        assertTrue(
+            report.words.count { it.reach >= report.lettersAt(report.maxLevel + 1) } <
+                WordScrambleAvailability.POOL_FLOOR,
+            "the ladder stops short of what the pool would carry",
+        )
+    }
+
+    /** The floor rises a letter a Sprosse, from the shortest word the drill asks at all. */
+    @Test
+    fun theFloorRisesALetterEachSprosse() {
+        val report = report()
+        assertEquals(WordScrambleAvailability.MIN_LETTERS, report.lettersAt(1))
+        for (level in 1 until report.maxLevel) {
+            assertEquals(report.lettersAt(level) + 1, report.lettersAt(level + 1))
+        }
+    }
+
     /** The chip predicate is the pool floor, and an empty box offers nothing. */
     @Test
     fun theChipWaitsForAPoolWorthARun() {

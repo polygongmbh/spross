@@ -44,7 +44,13 @@ object WordScrambleAvailability {
     data class Spelling(val card: Card, val forms: List<String>) {
 
         /** The gentlest form on offer; the draw reaches for the shortest words first. */
-        val shortest: Int get() = forms.minOf { it.length }
+        val shortest: Int get() = forms.minOf { it.letters }
+
+        /** The longest form on offer — how high up the ladder this word can still be asked. */
+        val reach: Int get() = forms.maxOf { it.letters }
+
+        /** Every form long enough for a Sprosse whose floor is [letters]; empty ⇒ the word is short in all of them. */
+        fun formsFrom(letters: Int): List<String> = forms.filter { it.letters >= letters }
     }
 
     /** The eligible words, in seed order. Built ONCE per run: it walks the whole join. */
@@ -52,8 +58,30 @@ object WordScrambleAvailability {
 
         val drillAvailable: Boolean get() = words.size >= POOL_FLOOR
 
-        /** The Sprosse ceiling is the masking ladder's — the pool decides nothing about it. */
-        val maxLevel: Int get() = WordScrambleMasking.MAX_LEVEL
+        /**
+         * The Sprosse ceiling, read off the POOL rather than off the masking ladder: the
+         * highest Sprosse [POOL_FLOOR] words still clear the floor of, so no rung exists that
+         * the learner's own words cannot fill.
+         *
+         * [WordScrambleMasking] tops out at three — first and last anchored, first alone,
+         * nothing — and the Sprossen above it go on lengthening the word with nothing anchored,
+         * which is where a well-grown box spends most of its climb.
+         */
+        val maxLevel: Int by lazy {
+            val nth = words.map { it.reach }.sortedDescending().getOrNull(POOL_FLOOR - 1)
+            maxOf(1, (nth ?: MIN_LETTERS) - MIN_LETTERS + 1)
+        }
+
+        /**
+         * How many LETTERS a word must carry to be asked at [level] — one more per Sprosse,
+         * from [MIN_LETTERS] at the foot.
+         *
+         * One letter a rung rather than a wider band: the catalog's single words crowd into
+         * four to eight letters and thin out from there, so a band of two would spend the
+         * whole ladder inside that crowd and then leave its top rung empty for anyone but a
+         * learner who has grown the long tail.
+         */
+        fun lettersAt(level: Int): Int = MIN_LETTERS + maxOf(1, level) - 1
     }
 
     /**
@@ -105,7 +133,7 @@ object WordScrambleAvailability {
         val word = form.trim()
         return ScrambleTokenizer.tokens(word).size == 1 &&
             writtenInLetters(word) &&
-            word.count { it.isLetter() } >= MIN_LETTERS
+            word.letters >= MIN_LETTERS
     }
 
     /**
@@ -119,3 +147,10 @@ object WordScrambleAvailability {
     private fun writtenInLetters(word: String): Boolean =
         word.all { it.isLetter() || it in APOSTROPHES }
 }
+
+/**
+ * How long a spelling is to the ladder: LETTERS, never characters. sw "ng'ombe" is six letters
+ * held together by an apostrophe, and the floor a Sprosse sets is about how much word there is
+ * to read out of the mix rather than how wide it renders.
+ */
+internal val String.letters: Int get() = count { it.isLetter() }

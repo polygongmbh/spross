@@ -33,17 +33,31 @@ data class WordScrambleReduction(
     val effects: List<DrillEffect>,
 )
 
-/** What a closed word run leaves behind — figures only; no record store, no Sprosse booked. */
+/**
+ * What a closed word run leaves behind: the figures, the furthest Sprosse it stood on, and the
+ * Sprossen it EARNED for the store to keep.
+ */
 data class WordScrambleClose(
     val state: WordScrambleRunState,
     /** null ⇒ nothing was answered: dismiss, report nothing. */
     val summary: DrillRunSummary?,
+    /**
+     * The Sprosse the run REACHED, not the one it ends on — the ramp drops back on a miss, and
+     * the ladder rewards standing on a Sprosse rather than finishing there.
+     */
+    val bestLevel: Int,
+    /**
+     * The Sprossen this run climbed off without a blemish ([DrillRungs]), for the store to add
+     * to the mask it holds — the next run opens on the lowest one that is still missing.
+     * Unfiltered: unlike [bestLevel] there is no standing value to beat.
+     */
+    val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
 )
 
 /**
  * Everything one word run is fixed to, resolved when it opens and never per question: the words
- * it may ask and the grader their spelling is judged by.
+ * it may ask, the grader their spelling is judged by, and how far the ladder already stands.
  */
 class WordScrambleRunConfig(
     val report: WordScrambleAvailability.Report,
@@ -52,7 +66,16 @@ class WordScrambleRunConfig(
      * Null (a preview with no language info) grades plainly.
      */
     val normalizer: AnswerNormalizer?,
+    /**
+     * The Sprossen earlier runs earned, as the PLATFORM's store holds them
+     * ([TrainerMode.clearedSprossen] over the mask under [TrainerMode.CLEARED_PREFIX]) — kern
+     * reads no device state, so where the ladder stands arrives as a parameter.
+     */
+    val cleared: Set<Int> = emptySet(),
 ) {
+    /** Where a fresh run opens: the lowest Sprosse not yet earned ([TrainerMode.entrySprosse]). */
+    val entryLevel: Int get() = TrainerMode.entrySprosse(cleared, report.maxLevel)
+
     /**
      * What a spelling is actually graded by: [normalizer]'s strictness with the typo budget
      * scaled to the word's length ([AnswerNormalizer.lengthScaledTypos]). The flat per-word cap
@@ -70,7 +93,8 @@ class WordScrambleRunConfig(
  * and hands text in through [WordScrambleIntent].
  *
  * No FSRS anywhere: the box is READ for the words it has grown and never written, so the run
- * keeps no record and books no review.
+ * books no review. What outlives it is the ladder — [bestLevel] and [clearedSprossen], which
+ * the screen that started the run files.
  */
 data class WordScrambleRunState(
     val config: WordScrambleRunConfig,
@@ -78,7 +102,16 @@ data class WordScrambleRunState(
     val task: WordScrambleTask?,
     val index: Int,
     val level: Int,
+    val bestLevel: Int,
     val winsAtLevel: Int,
+    /** The Sprossen climbed off unblemished so far — what the close hands the store. */
+    val clearedSprossen: Set<Int>,
+    /**
+     * Whether the Sprosse the run stands on has already lost the store: an almost or a miss on
+     * it. It costs the run nothing else — the streak, the banked wins and the ramp are all
+     * [DrillRamp]'s, and a blemish moves none of them.
+     */
+    val blemished: Boolean,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
     val core: DrillRunCore,
     val feedback: TurnFeedback,
