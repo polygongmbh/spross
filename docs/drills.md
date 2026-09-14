@@ -1,317 +1,173 @@
-# Drills — the ladders, the overviews and the drills beside them
+# Drills — the hub, the Sprosse and the run
 
-What the Sprossen entries ask, how a ladder is climbed, and what the page in
-front of each holds. The surfaces around them — listening, the wrist, the Android
-companion — are `surfaces.md`'s; the review loop these share their card and their
-answering rules with is `design.md`'s.
+What a Sprosse is, what earns a chip on the hub,
+and the shape every overview page and every run wears.
+What each drill asks stands with the drill:
+`drills-tables.md` for the three that grade against a table — numbers, atlas, calendar —
+and `drills-words.md` for the three drawn from the words the box already holds —
+letters, word scramble, sentence scramble.
+The surfaces around them — listening, the wrist, the Android companion — are `surfaces.md`'s;
+the review loop these share their card and their answering rules with is `design.md`'s.
 
 ## The hub, and what a Sprosse is
 
-- **Trainers**: the Sprossen card offers SIX entries — Zahlen, Buchstaben, Länder, Datum and
-  the two scrambles — and more than THREE visible chips break the row into TWO lines,
+- **The Sprossen card offers SIX entries** — Zahlen, Buchstaben, Länder, Datum and the two
+  scrambles — and more than THREE visible chips break the row into TWO lines,
   `ceil(n/2)` above and `floor(n/2)` below, so four stand 2+2, five 3+2 and six 3+3.
-  Each line keeps the equal-width chips one line carries today, and the break is drawn rather
-  than discovered: neither platform's row overflows on its own, and six chips sharing one of
-  them would be six slivers of a word apiece. A step of the ladder is a **Sprosse**
-  in EVERY interface language, plural Sprossen: it is the brand word (`website.md`),
+  Each line keeps the equal-width chips one line carries today,
+  and the break is drawn rather than discovered: neither platform's row overflows on its own,
+  and six chips sharing one of them would be six slivers of a word apiece.
+  A chip is up exactly while its entry can offer something —
+  counting content, an alphabet file for the target, a joined atlas or joined calendars,
+  a consolidated word long enough to scramble or an unlocked phrase of three words
+  (`../kern/docs/turns.md`) — and the hub offers only languages with authored content,
+  since everything on it is registry-driven from kern and the catalog.
+- **A step of the ladder is a Sprosse in EVERY interface language**, plural Sprossen:
+  it is the brand word (`website.md`),
   so English chrome says "Sprosse 5" where the code and these docs still say Sprosse.
-  Each is its own SKILL,
-  which is the only thing that earns a chip — and it is what buys the two scrambles theirs:
-  spelling a word back and putting words in order are two skills, neither of them a way of
-  being asked the other's question. Clock,
-  sentences and number forms are not siblings of the numbers drill but ways of being
-  asked, so they are variants a run selects rather than chips, and the modifiers
-  (reverse, fast, mix) are how it is played. A chip apiece was the alternative and it
-  was rejected twice over: chips are peers, so a row of them says the negatives and the
-  clock are alternatives to counting rather than what counting earns you, and a hub that
-  grows a chip per exercise has no way to say that one is not open yet — the ladder is
-  the reward, and only a list that can hold a locked row can show it. What each language
-  reads for those forms, with its sources, is `number-forms.md`. Which of them a learner may pick is derived
-  from one stored number per variant — the highest Sprosse ever reached — through kern's
-  unlock table; everything else is registry-driven from kern and the catalog, so the hub
-  offers only languages with authored content. A numbers run starts at Sprosse 1 however far
-  the learner has climbed: persisted progress buys access, never a head start. The atlas and
-  the calendar open where their last run left off instead (§ A run, and what it leaves behind).
-  **A Sprosse has to ask something no other Sprosse already asks.** One that composes
-  answers the ladders teach separately is a free rung, however sensible its name: the
-  calendar dropped its bare day-of-month because that reading IS the numbers drill's
-  cardinal or the Forms drill's ordinal, and dropped its centuries because a span is that
-  ordinal plus a word the box already holds. Where the composition genuinely adds a rule —
-  a concord, an agreement, another numeral family — it is that rule the Sprosse is for, and
-  a note or a frame is usually the cheaper home for one.
-  Drills grade word by word and ramp with the learner instead of sitting at one level.
-  A drill card is a review card — same face, same reveal, and the revealed reading is
-  spoken and replayable like any other answer (`read-aloud.md`) — and carries nothing but
-  the prompt: the run's header line already names what is drilled and how far the ramp has
-  come, and the field's placeholder names what is owed — the language to answer in, or
-  digits where the task was reversed — so a badge or a "Zahl · auf Spanisch" caption would
-  be the third telling of what one tap said.
-  The one thing it does carry is the FIRST-SIGHT hint, and it is always a word in the
-  language being LEARNED: the place word the first time a length appears, the word a form
-  adds the first time a mark does ("Neu: menos", "Neu: Komma"), and on the calendar the word
-  a date's pattern adds the first time that kind is asked ("Neu: tarehe", then
-  "Neu: mwaka wa"). One slot, the form winning
-  where both could fire. Naming the category in the reader's language instead ("Neu:
-  Kommazahl") taught nothing — a learner cannot say it, and the card is where saying it is
-  owed. The word is DERIVED, never authored: `formMarker` takes the reference band's
-  worked example and removes the cardinal's own words, including a cardinal welded to the
-  front of one ("dreimal" → "mal"); where nothing can be removed the whole reading stands,
-  which is the honest answer for an ordinal ("erste") or a half ("nusu").
-  `DateDrill.patternWord` is the same derivation on a calendar — the pattern with its slots
-  taken out, minus whatever the kind below it already added, so Swahili's dated line repeats
-  `tarehe` silently and owes only `mwaka wa`, and a language whose pattern is its slots alone
-  (en's `{month} {day}`, uk's up to the dated line, which owes `року`) hands over nothing
-  rather than inventing something.
-  A slot BETWEEN two of those words comes back as an ellipsis ("Neu: el … de"): two words a
-  pattern holds apart are not a phrase, and welding them would teach one nobody says.
-  A reversed task gets no hint at all: the prompt is then the reading,
-  which says it in words already.
+  Each entry is its own SKILL, which is the only thing that earns a chip —
+  and it is what buys the two scrambles theirs:
+  spelling a word back and putting words in order are two skills,
+  neither of them a way of being asked the other's question.
+  Clock, sentences and number forms are not siblings of the numbers drill but ways of being
+  asked, so they are variants a run selects rather than chips,
+  and the modifiers (reverse, fast, mix) are how it is played.
+  A chip apiece was the alternative and it was rejected twice over:
+  chips are peers, so a row of them says the negatives and the clock are alternatives to
+  counting rather than what counting earns you,
+  and a hub that grows a chip per exercise has no way to say that one is not open yet —
+  the ladder is the reward, and only a list that can hold a locked row can show it.
+- **A Sprosse has to ask something no other Sprosse already asks.**
+  One that composes answers the ladders teach separately is a free rung,
+  however sensible its name:
+  the calendar dropped its bare day-of-month because that reading IS the numbers drill's
+  cardinal or the Forms drill's ordinal,
+  and dropped its centuries because a span is that ordinal plus a word the box already holds.
+  Where the composition genuinely adds a rule — a concord, an agreement, another numeral
+  family — it is that rule the Sprosse is for,
+  and a note or a frame is usually the cheaper home for one.
+- **A Sprosse adds exactly ONE thing** — a question or a wider pool, never both,
+  and never a second axis ramping beside the first.
+  The old atlas Sprosse 4 opened a tier AND the flag question at once
+  and left a learner who slipped unable to say what had got harder;
+  it is the same reason the word scramble's ladder takes help away rather than lengthening
+  the word. What should still get easier or harder otherwise moves INSIDE the Sprosse —
+  the scramble's shorter eligible words simply come first and the longer ones as it runs on.
+- **A drill card is a review card** — same face, same reveal,
+  and the revealed reading is spoken and replayable like any other answer (`read-aloud.md`) —
+  and carries nothing but the prompt:
+  the run's header line already names what is drilled and how far the ramp has come,
+  and the field's placeholder names what is owed — the language to answer in,
+  or digits where the task was reversed —
+  so a badge or a "Zahl · auf Spanisch" caption would be the third telling of what one tap said.
+- **The one thing it does carry is the FIRST-SIGHT hint**,
+  and it is always a word in the language being LEARNED:
+  the place word the first time a length appears,
+  the word a form adds the first time a mark does ("Neu: menos", "Neu: Komma"),
+  and on the calendar the word a date's pattern adds the first time that kind is asked
+  ("Neu: tarehe", then "Neu: mwaka wa"). One slot, the form winning where both could fire.
+  Naming the category in the reader's language instead ("Neu: Kommazahl") taught nothing —
+  a learner cannot say it, and the card is where saying it is owed.
+  The word is DERIVED and never authored, on one rule for both
+  (`formMarker`, `DateDrill.patternWord`), so a language that adds no word of its own hands
+  over nothing rather than inventing something.
+  A reversed task gets no hint at all:
+  the prompt is then the reading, which says it in words already.
 
-## The four overview pages
+## The overview page
 
-- **Zahlen overview**: the numbers entry opens a page, not a run — options and start
-  first, reference under them. Reading matter and the run it prepares you for are ONE
-  surface on purpose: a look-up that lives five taps inside a running drill is a look-up
-  nobody makes, and a reference page you cannot start from is a page nobody returns to.
-  The run comes first because it is what the page is opened for: twenty screens of table
-  above the button would make starting the thing a scroll. Both overviews wear the app's
-  corners — the ✕ out on the left, the run in on the right — and the right one repeats the
-  `Los` button on purpose: it is the one still in reach from inside the reading.
-  Picking SEVERAL variants for one run is itself earned — while any offered variant is
-  still locked the list is a radio and a run asks one thing at a time; a fully open ladder
-  turns it into checkboxes, and the row of picks says so while it is closed.
-  The picks themselves are never stored — they last as long as the screen does, so a page
-  reopened offers the defaults rather than last night's run — and the stored Sprosse the rows
-  read is written by a closing RUN, never by the page.
-  Being one surface also closes the drift — the table is drawn from the packs the run
-  grades against, and a Sprosse the run just earned unlocks its row on the way back out.
-  The reference table is GENERATED by `Trainer.reference`
-  from the packs the drill grades against, so the page cannot claim one reading and mark
-  another; kern names the bands and the app words their headings. It is one component,
-  and the "?" on a numbers task raises the very same table, in every language — a look-up while the
-  answer is still owed books the task amber, and after the answer it is free.
-  Every row of it is READ by tapping the row itself,
-  the reading spoken in the language being learned (`read-aloud.md`),
-  and a band of short readings stands in TWO columns,
-  which is what puts the counting words and the tens under them on one screen.
-  Its last band is the FORMS one: a worked example per form the language reads, so the marks a Forms run asks
-  about are written down somewhere other than a failed task, and a form the language cannot
-  read has no row there either. Beside it sit two to
-  four prose notes on what trips a learner up in that language. A variant the ladder has
-  not opened keeps its row and states its price out of the same unlock table, because a
-  ladder you can see is a reason to climb and an absence is not; a variant the pair cannot
-  offer at all (no forms reading, no realized frames) has no row, since a padlock that can
-  never open is a lie.
-- **Buchstaben overview**: the letters entry opens the same shape as the numbers one —
-  the drill's stages and start first, the alphabet table under them. The Sprossen card shows
-  when any of its entries can offer something — counting content, an alphabet file for
-  the target, a joined atlas or joined calendars, a consolidated word long enough to scramble
-  or an unlocked phrase of three words — and the letters chip on the alphabet file
-  alone: the table renders every row (glyph, name, IPA, context, hint, example with
-  meaning where the reader's language knows the word) and ships even where the drill cannot — audio is the drill's precondition, not the
-  table's, so where this device can sound nothing the stages are out of reach and the page
-  is the alphabet alone. What the drill can ask is recomputed on foreground — a voice
-  installed in Settings turns the start button on without a relaunch. The stage rows carry
-  no earned ladder (the drill books no review and keeps no record): they say which stage a
-  run OPENS on, derived from the learner's consolidated words, and dictation states its
-  price until enough of them can be played back. Their mark is the shared Sprosse circle,
-  filled on the stage the run opens on and nowhere else — this ladder has no record to
-  wear — and the rows are not tapped: the run walks the ladder by itself from that stage.
-  Each row is ONE line, the stage named by what it asks, with a caption only where
-  dictation states its price.
-- **Länder overview**: the atlas entry opens the run-first shape the other two use — the
-  Sprossen and the start above, the table under them. Its Sprossen are POOLS rather than stages:
-  Sprosse 1 is the two languages the profile already has and the countries they are at home
-  in, and every Sprosse after keeps everything below it, so climbing widens the world instead
-  of replacing it. Each Sprosse brings exactly ONE new thing — either a question
-  or a tier, never both (the ladder itself is `CountryDrill`'s KDoc).
-  The row is named for that one thing and nothing else — "Dazu: …" where a question is
-  added, "Mehr Länder: …" where a tier is — so the ladder reads as the list of what each
-  Sprosse brings.
-  Bundling the two (the old Sprosse 4 opened a tier AND the flag question at once) left a
-  learner who slipped unable to say what had got harder. A tier nobody has
-  authored yet costs the learner nothing: the pool is the join intersected with the Sprosse's
-  ceiling, so an empty tier just repeats the one below.
-  A country the two languages call the SAME is not asked by name — the prompt would be the
-  answer — and that is exactly the country the flag question brings back, since a card with
-  no name written on it gives nothing away. Which names count as the same is kern's
-  (`CountryDrill`), compared over every accepted form and blind to case and accents.
-  A REVERSED run shows no flag anywhere, and has no flag question at all: the answer is
-  then owed in the learner's OWN language, so a flag beside the prompt gives it away and a
-  flag alone asks them to recognize their own and write a name they have said all their
-  life. That leaves the flag Sprosse adding nothing in that direction, where it stands on the
-  pool below exactly as an unauthored tier does — and its row says so
-  (`CountryDrill.repeatsBelow`) rather than promising a question the run never asks.
-  The RUNGS are not earned. The drill books no review and keeps no schedule, exactly
-  as the letter drill does not, so the Sprosse rows say what a Sprosse ASKS and never carry a
-  padlock or a price. The reverse
-  modifier is offered from the first run for the same reason — there is no ladder for it to
-  sit behind — and it flips which side asks: forward the learner answers in the language
-  being learned, reversed in their own. Which side that is the placeholder says, not the
-  card: its caption carries the ask — a bare "Deutschland" cannot say whether the country,
-  its people or its language is owed — and, like the letter drill's, no language.
-  FAST is the one thing here with a price, and it is a way of PLAYING rather than something
-  to be asked: a Sprosse falls on one clean win instead of the three it costs by default, and
-  it is offered only once the top Sprosse has EVER been stood on. So the stored best Sprosse is
-  no longer only read — it is what buys fast — and until it is paid the row keeps its
-  switch, dimmed behind a padlock, with the price where its line would be, out of kern's
-  own ceiling rather than a Sprosse number authored beside it.
-  The table under it is GENERATED from the joined atlas the run grades against, so the page
-  cannot show one exonym and mark another, and a country only one side names has neither a
-  row nor a task. It is the one surface here written in TWO languages at once: a country's
-  name is a pair, not a property of the language being learned.
-  Tapping a country says it — the row is the control here as in the numbers table (`read-aloud.md`) —
-  and what is said is the name in the language being learned,
-  the half of the pair a run would ask for.
-- **Datum overview**: the calendar entry, on the run-first shape again — the Sprossen and the
-  start above, the reference table of both calendars under them. Its Sprossen NEST like the
-  atlas': each adds what it introduces to everything below it — the weekday names, the
-  month names, day and month assembled, the whole dated line — so the names keep coming
-  once the dates are being assembled.
-  The day of the month has no Sprosse of its own: its reading (`date-readings.md`) is met
-  inside the assembled ones, which is where `le premier` and `tarehe mosi` ever stand,
-  while a bare numeral on a card is the numbers drill's question and not the calendar's.
-  The ladder OPENS on the one Sprosse that is TAPPED: all nineteen names offered four at a
-  time, the answer among three others of its own half, before any of them is written out.
-  Recognition before production is the box's own rule for a word nobody has produced yet
-  and the letters ladder's opening; a blank field is not where a name is met.
-  That Sprosse is a landing rather than a step — every Sprosse above it leaves it behind,
-  because four tiles among written dates are a free point and the Sprosse above would climb
-  on a tap. It is on the reversed ladder too, where the tiles are the learner's own names. Half of a Sprosse's draws lead with the kind it introduced, which is what keeps
-  three weekday wins from carrying a learner past a question they never met. A Sprosse the
-  answer language cannot read is absent, not locked: a calendar authoring no `dateWithYear`
-  gets no year Sprosse and simply tops out a Sprosse short.
-  Under the two tables sit two to four authored prose notes on what trips a learner up in
-  that calendar, the Zahlen page's own band: the table is generated from the drill's rows
-  and so can say nothing about the ASSEMBLY around them, which is the half a date is.
-  The prompt is the source language's name on the bare Sprossen and the date in the
-  source's own digits above them — `Mo, 3.3.` wears the source's weekday abbreviation,
-  authored display-only, never graded. REVERSED the numeric Sprossen have a direction of
-  their own: the card carries the reading and the run wants the date written down. That is
-  PARSING where forward is production — the easier half of the skill and the half a learner
-  actually spends — and its answer is DIGITS, so a reversed run is a comprehension check the
-  whole way up rather than a test of the learner's spelling in a language they already have.
-  A written date forgives the zero-padding and the trailing ordinal dot; a digit is never
-  forgiven, so `3.7.` for `3.6.` is another date and not a slip. NO WEEKDAY is in play either
-  side: `Sa,` is the source's own abbreviation and no number pad types it, so the answer is
-  the date alone — and a card that named a weekday the answer then threw away would be asking
-  for something it discards, so the reversed dated card reads its date without one. That
-  reading is composed, not authored: a year joins a date the same way with or without a
-  weekday in front, so the join is what `dateWithYear` adds to `date`, and what it joins to is
-  `dayMonth`. Cutting the weekday off `dateWithYear` would not do — Spanish, French and
-  Italian give up their article once a weekday stands there. It is also why the whole date is
-  the one Sprosse with no way round: with no weekday to account for it is day and month over
-  again, so a reversed ladder is exactly one Sprosse shorter. The Sprossen are not earned (no review, no
-  schedule — the letter drill's rule), reverse is offered from the first run, and FAST has
-  the atlas' price: one clean win a Sprosse, offered once the top Sprosse has ever been stood on.
-  A bare name typed for its neighbor is refused by name — *Juli* for *Juni* is the other
-  month, not a slip (`kern/docs/grading.md`) — while the same slip inside an assembled date
-  stays the typo it is: strictness is graded by how much of the answer the word was.
+- **An entry opens a page, not a run** — options and start first, reference under them.
+  Reading matter and the run it prepares you for are ONE surface on purpose:
+  a look-up that lives five taps inside a running drill is a look-up nobody makes,
+  and a reference page you cannot start from is a page nobody returns to.
+  The run comes first because it is what the page is opened for:
+  twenty screens of table above the button would make starting the thing a scroll.
+  Every page wears the app's corners — the ✕ out on the left, the run in on the right —
+  and the right one repeats the `Los` button on purpose:
+  it is the one still in reach from inside the reading.
+- **The picks are never stored** — they last as long as the screen does,
+  so a page reopened offers the defaults rather than last night's run —
+  and the stored Sprosse the rows read is written by a closing RUN, never by the page.
+- **The table is GENERATED from what the run grades against**,
+  so the page cannot claim one reading and mark another;
+  kern names its bands and the app words their headings.
+  Being one surface closes the drift the other way too:
+  a Sprosse the run just earned unlocks its row on the way back out.
+  Every row is READ by tapping the row itself,
+  spoken in the language being learned (`read-aloud.md`).
+- **Two to four authored prose notes sit under a generated table**, on what trips a learner
+  up in that language: the table is drawn from the drill's own rows,
+  so it can say nothing about what stands AROUND them —
+  the assembly a date is, or the trap a language sets in its counting.
+- **Every Sprosse row is ONE line**, named for what the Sprosse asks or adds,
+  and no row explains what its title already says.
+- **What is not open yet keeps its row and states its price**,
+  out of kern's unlock table rather than a number authored beside it:
+  a ladder you can see is a reason to climb and an absence is not.
+  Where the Sprossen are not earned at all — the atlas' and the calendar's —
+  the rows carry neither padlock nor price and say what a Sprosse ASKS.
+  What the pair cannot offer whatever the learner does — no forms reading,
+  no realized frames, a calendar with no year pattern — has no row rather than a padlock
+  that can never open.
+- **The modifiers are how a run is PLAYED, and only FAST has a price.**
+  Reverse flips which side asks — forward the learner answers in the language being learned,
+  reversed in their own — which the field's placeholder says and the card never does,
+  and where no ladder stands behind it the switch is offered from the first run.
+  FAST falls a Sprosse on one clean win instead of the several it costs by default;
+  on the atlas and the calendar it is earned by having EVER stood on the top Sprosse,
+  out of kern's own ceiling rather than a Sprosse number authored beside it,
+  so the stored best Sprosse is not only read but what buys fast,
+  and until it is paid the row keeps its switch, dimmed behind a padlock,
+  with the price where its line would be.
 
 ## A run, and what it leaves behind
 
 - **The atlas and the calendar wear their record on the Sprosse circles, and open where it
-  stands.** A circle is an outline where no run has stood on the Sprosse, filled ocean where
-  one has reached it, filled forest where one run answered EVERY question of it clean —
-  which only a Sprosse that enumerates can earn, so the assembled date Sprossen never turn
-  forest. `Los` opens the run on the lowest Sprosse no run has answered out
-  (`TrainerMode.entrySprosse`), and a row the learner has been on — the entry or below, or
-  a Sprosse some run reached — is a control that opens a run on its own Sprosse
-  (`TrainerMode.openable`); the one line under the ladder says so, and a Sprosse nobody has
-  reached yet reads dimmed and answers no tap. What a run answered out is filed per
-  DIRECTION, because a row means another question turned round
-  (`kern/docs/turns.md` § storage contract), and the ladder the reverse switch shows reads
-  its own direction's mask. The record line under it COUNTS rather than places — the
-  longest clean streak and the most answers one run took, right or wrong — since the
-  circles already say
-  where the ladder stands. Every Sprosse row is ONE line: the atlas names the question or
-  tier it adds, the calendar the kind, and no row explains what its title already says.
+  stands.** A circle is an outline where no run has stood on the Sprosse,
+  filled ocean where one has reached it,
+  filled forest where one run answered EVERY question of it clean —
+  which only a Sprosse that enumerates can earn,
+  so the assembled date Sprossen never turn forest.
+  `Los` opens the run on the lowest Sprosse no run has answered out
+  (`TrainerMode.entrySprosse`), and a row the learner has been on — the entry or below,
+  or a Sprosse some run reached — is a control that opens a run on its own Sprosse
+  (`TrainerMode.openable`); the one line under the ladder says so,
+  and a Sprosse nobody has reached yet reads dimmed and answers no tap.
+  What a run answered out is filed per DIRECTION,
+  because a row means another question turned round
+  (`../kern/docs/turns.md` § storage contract),
+  and the ladder the reverse switch shows reads its own direction's mask.
+  The record line under it COUNTS rather than places —
+  the longest clean streak and the most answers one run took, right or wrong —
+  since the circles already say where the ladder stands.
 - **The numbers page prints the Sprosse each exercise has been climbed to, as it stands,**
-  under the exercise's own name, because there four ladders are climbed separately, their
-  Sprossen draw values rather than listing them (so none can be answered out), and Zahlen
-  counts its Sprosse in digits. The number is never trimmed to the rows on the page: a
-  Sprosse goes on counting past the last named one (`DrillRamp.step`), which is what a
-  climbed-out ladder leaves to beat.
-- **An endless run offers its exit where it is wanted, not on a schedule.** "Fertig"
-  appears under the button that goes on, and only on the SECOND miss in a row: one
-  miss is what a drill is made of, two is where carrying on stops feeling like a choice.
-  A clean answer takes the offer away again. The one thing that ends a run unasked is
-  running OUT of questions: a run asks each prompt once (`kern/docs/turns.md`), so a ladder
-  answered out hands its figures over rather than coming round to a question twice.
-  Short of that the corner ✕ still works, and the offer is the same close, worded as
-  finishing rather than abandoning.
-- **A closed run has no screen of its own.** The endless drills hand their figures — answered,
-  best streak, whether the record fell — to the page that started them and leave; the page
-  wears them as one tile above the picks and scrolls up to meet it, and a record still
-  rains its confetti there. Three numbers do not earn a page, and a page they do not earn
-  is one more ✕ between a learner and their next run — which the `Los` button already is.
-
-## The letter drill
-
-- **Letter drill**: it shares the slot drill's chrome — the endless scaffold, the streak
-  line, the result tile (each platform's `DrillChrome`) — and keeps its own state machine, which
-  is the whole of what the two have in common: its Sprossen are stages that change what a
-  question IS rather than how big the number is, and its verdict ladder carries a third
-  outcome (a synonym of the dictated word) that no slot task can produce.
-  Its card is the one that keeps a caption, because a sound cannot say whether it wants a
-  letter, a missing grapheme or the whole word — but the caption names the ask alone, since
-  no drill card names a language while the placeholder below it is already saying one.
-  The drill asks everything by ear: letter
-  NAME or gap word — and a gap word is drawn from the whole catalog wherever the glyph
-  says its own sound, words the learner already holds first, so a Sprosse stops meaning one
-  memorized blank (`catalog/alphabet/README.md` owns which rows may draw). Tiles first
-  among strangers, then among look- and sound-alikes, then
-  typed, and — once enough words are consolidated — dictation of the learner's own
-  consolidated words, which never touches their schedule and leans toward the ones worth
-  spelling twice: words carrying the language's hard graphemes, and words this learner has
-  forgotten before. Correctness is never color
-  alone (checkmark/X over the tint); a miss never auto-advances. Neither mute reaches the
-  drill and it carries no mute button (`read-aloud.md` owns why), so no run of it can open
-  on a card with nothing to answer.
-
-## Word scramble
-
-- **Word scramble**: the prompt is a word the box already holds with its letters thrown out of
-  order, and the answer is TYPED, never tapped. Handing the same letters back as tiles would
-  leave nothing to retrieve but their order, where writing the word out IS the spelling — so
-  this drill wears the typed card every other trainer drill wears rather than a tile bank.
-  Its Sprossen are stages in the letter drill's sense, changing what the question IS rather
-  than how long the word is, and what they change is what stays FIXED in the scramble: first
-  and last letter held in place with the word's own capitalization, then the first letter
-  alone, then nothing fixed at all. Word length is NOT a rung. A second axis ramping beside
-  the first leaves a learner who slipped unable to say what got harder — the atlas' own
-  lesson — so the shorter eligible words simply come first inside a Sprosse and the longer
-  ones as it runs on.
-  Only CONSOLIDATED words are drawn: a scramble of a word nobody holds yet has no cue to work
-  from, so it is a guessing game and not a recall. Single-token only — a scrambled
-  "sich waschen" is two puzzles wearing one prompt — and at least four letters, which is where
-  the first Sprosse's two fixed ends still leave an interior to scramble.
-  It grades through the same drill grading every typed drill uses, against the word's own
-  catalog forms, so any authored synonym or variant of the target counts exactly as it does in
-  production. The reveal carries the TRANSLATION, the way the letter drill's dictation does: a
-  word spelled right is still worth glossing, and the scramble on the card never said what it
-  meant. The honest limit is that a DIFFERENT real word spellable from the same letters is
-  neither caught nor accepted — the box holds a catalog, not a dictionary, and nothing here
-  can tell an anagram that happens to be a word from one that happens to be nothing.
-  The drill books no review and keeps no schedule, exactly as the letter drill does not.
-
-## Sentence scramble
-
-- **Sentence scramble**: an unlocked phrase is handed over as its own words, shuffled — a bank
-  of chips below, an empty answer row above, a tap carrying a chip up into place and another
-  carrying it back down. Tapping is the whole gesture: a drag buys the learner nothing an
-  arrangement needs, and a drag-and-drop is a pile of assistive-technology trouble a tap
-  simply does not have.
-  It is the one drill here whose answer is an ARRANGEMENT rather than something spelled, so it
-  is graded by POSITION and not by letters — nothing is typed, so no typo budget applies and
-  there is no half-right word to forgive, only the order that is right and every order that is
-  not. That also makes it the one drill whose words are given: the retrieval the review loop
-  grades is already done, and what is left to learn is where each word goes.
-  Only phrases the box has already UNLOCKED are drawn, and only from three words up — two
-  words are not a puzzle but a coin toss between the two orders on screen.
-  It grades ONE order, the phrase as the catalog authors it, and that is the limit worth
-  stating plainly: where a language would allow a second order the drill does not know it yet,
-  because the catalog carries no second order to know. A learner who arranges a sentence their
-  own language would also accept is marked wrong, and the fix is a catalog that can say so,
-  not a grader that guesses.
-  The drill books no review and keeps no schedule, exactly as the letter drill does not.
+  under the exercise's own name, because there four ladders are climbed separately,
+  their Sprossen draw values rather than listing them (so none can be answered out),
+  and Zahlen counts its Sprosse in digits.
+  The number is never trimmed to the rows on the page:
+  a Sprosse goes on counting past the last named one (`DrillRamp.step`),
+  which is what a climbed-out ladder leaves to beat.
+  A numbers run still starts at Sprosse 1 however far the learner has climbed —
+  persisted progress buys access, never a head start.
+- **An endless run offers its exit where it is wanted, not on a schedule.**
+  "Fertig" appears under the button that goes on, and only on the SECOND miss in a row:
+  one miss is what a drill is made of,
+  two is where carrying on stops feeling like a choice.
+  A clean answer takes the offer away again.
+  The one thing that ends a run unasked is running OUT of questions:
+  a run asks each prompt once (`../kern/docs/turns.md`),
+  so a ladder answered out hands its figures over rather than coming round to a question twice.
+  Short of that the corner ✕ still works,
+  and the offer is the same close, worded as finishing rather than abandoning.
+- **A closed run has no screen of its own.**
+  The endless drills hand their figures — answered, best streak, whether the record fell —
+  to the page that started them and leave;
+  the page wears them as one tile above the picks and scrolls up to meet it,
+  and a record still rains its confetti there.
+  Three numbers do not earn a page,
+  and a page they do not earn is one more ✕ between a learner and their next run —
+  which the `Los` button already is.
+- **Only the numbers, atlas and calendar ladders keep a record of their own**;
+  the letter drill and the two scrambles keep none,
+  and no drill books a review or touches a schedule (`../kern/README.md`),
+  so a run costs the box nothing and can be closed at any moment.

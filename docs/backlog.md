@@ -167,7 +167,7 @@ Catalog content — its forms, its audio and the per-language questions — live
   inside a German compound, the way Leichte Sprache's mediopunkt does) is a distinct unbuilt
   drill needing curated component-boundary data, and syllable data would not deliver it since a
   syllable split cuts through a stem rather than landing on a seam ("Fei-er-tag" buries
-  "Feier") — considered for word scramble (`drills.md`) and left out.
+  "Feier") — considered for word scramble (`drills-words.md`) and left out.
 
 ## Platform reach
 
