@@ -30,6 +30,7 @@
    "notes": { "it": "tra poco = fra poco · presto vuol dire anche di buon'ora." }
   },
   "noon": { "text": "mezzogiorno", "grammar": { "gender": "il" } },
+  "midnight": { "text": "mezzanotte", "grammar": { "gender": "la" } },
   "afternoon": { "text": "pomeriggio", "grammar": { "gender": "il", "plural": "pomeriggi" } },
   "morning": { "text": "mattina", "variants": ["mattino"], "grammar": { "gender": "la" } },
   "evening": { "text": "sera", "grammar": { "gender": "la" } },

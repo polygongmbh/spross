@@ -273,6 +273,11 @@ class CatalogCollisionLintTest {
                 // con/da, na/tangu). `від учора` is understood but not what a speaker says, so
                 // since sits in time, where the label disambiguates, and both stay.
                 "uk з: connectors/with, time/since",
+                // Reviewed 2026-09-14: uk `північ` is midnight AND the north — de/en/eo/es/fr/it/sw
+                // all split the pair (Mitternacht/Norden, midnight/north, noktomezo/nordo,
+                // medianoche/norte, minuit/nord, mezzanotte/nord, usiku wa manane/kaskazini).
+                // `опівніч` is the adverb, not a second noun, so both stay.
+                "uk північ: directions/north, time/midnight",
                 // Reviewed 2026-09-05: uk `що` is what AND the conjunction that — every other
                 // language splits the pair (was/dass, what/that, kio/ke, qué/que, quoi/que,
                 // che cosa/che, nini/kwamba). No second Ukrainian word for either, so both stay.

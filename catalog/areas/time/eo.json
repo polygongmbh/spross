@@ -25,6 +25,7 @@
   "late": { "text": "malfrue", "variants": ["malfrua"] },
   "soon": { "text": "baldaŭ" },
   "noon": { "text": "tagmezo" },
+  "midnight": { "text": "noktomezo", "variants": ["meznokto"] },
   "afternoon": { "text": "posttagmezo" },
   "morning": { "text": "mateno" },
   "evening": { "text": "vespero" },

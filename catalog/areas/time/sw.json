@@ -33,6 +33,7 @@
    "notes": { "sw": "atakuja hivi karibuni · alikuja hivi karibuni = jana, juzi" }
   },
   "noon": { "text": "adhuhuri", "grammar": { "plural": "=" } },
+  "midnight": { "text": "usiku wa manane", "grammar": { "plural": "=" } },
   "afternoon": {
    "text": "mchana",
    "synonyms": ["alasiri"],

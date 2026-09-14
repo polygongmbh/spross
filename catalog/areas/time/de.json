@@ -18,6 +18,7 @@
   "late": { "text": "spät" },
   "soon": { "text": "bald" },
   "noon": { "text": "Mittag", "variants": ["mittags"], "grammar": { "gender": "der", "plural": "-e" } },
+  "midnight": { "text": "Mitternacht", "grammar": { "gender": "die" } },
   "afternoon": {
    "text": "Nachmittag",
    "variants": ["nachmittags"],

@@ -18,6 +18,7 @@
   "late": { "text": "пізно" },
   "soon": { "text": "скоро", "synonyms": ["незабаром"] },
   "noon": { "text": "полудень", "grammar": { "plural": "полудні" } },
+  "midnight": { "text": "північ" },
   "morning": { "text": "ранок", "grammar": { "plural": "ранки" } },
   "evening": { "text": "вечір", "grammar": { "plural": "вечори" } },
   "night": { "text": "ніч", "grammar": { "plural": "ночі" } },

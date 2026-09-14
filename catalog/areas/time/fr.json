@@ -35,6 +35,7 @@
   "late": { "text": "tard" },
   "soon": { "text": "bientôt" },
   "noon": { "text": "midi", "grammar": { "gender": "le" } },
+  "midnight": { "text": "minuit", "grammar": { "gender": "le" } },
   "afternoon": { "text": "après-midi", "variants": ["l'après-midi"], "grammar": { "gender": "l'" } },
   "morning": { "text": "matin", "grammar": { "gender": "le" } },
   "evening": { "text": "soir", "grammar": { "gender": "le" } },

@@ -18,6 +18,7 @@
   "late": { "text": "late" },
   "soon": { "text": "soon" },
   "noon": { "text": "noon", "variants": ["midday"] },
+  "midnight": { "text": "midnight" },
   "afternoon": { "text": "afternoon" },
   "morning": { "text": "morning" },
   "evening": { "text": "evening" },

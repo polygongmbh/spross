@@ -24,6 +24,7 @@
   "early": { "text": "temprano" },
   "soon": { "text": "pronto" },
   "noon": { "text": "mediodía", "grammar": { "gender": "el" } },
+  "midnight": { "text": "medianoche", "grammar": { "gender": "la" } },
   "evening": {
    "text": "tarde",
    "variants": ["noche"],
