@@ -174,11 +174,18 @@ Engine contract: `../README.md`.
 - A drill run is a **pure machine** shaped like the turn machine above:
   `open(mode, rng) → state`, `reduce(state, intent, rng) → state + effects`,
   `close(state, …) → summary + bookings`.
-  `TrainerRun` drives the numbers/clock/forms/phrases trainer, `LetterDrillRun` the letter drill;
+  `TrainerRun` drives the numbers/clock/forms/phrases trainer, `LetterDrillRun` the letter drill,
+  `CountryDrillRun` the atlas, `DateDrillRun` the calendar,
+  `WordScrambleRun` the spelling scramble and `SentenceScrambleRun` the word-order one;
   platforms keep field, keyboard, focus, timers and audio, and text reaches the machine only inside intents —
   never as state.
-- **One injected `Random` per run** feeds every draw — task, variant, phrase frame, direction flip —
+  Each keeps its own CONCRETE draw type: they cross to Swift, where a generic arrives opaque,
+  so there is no shared `ScrambleRun<T>` however alike two of them read.
+- **One injected `Random` per run** feeds every draw — task, variant, phrase frame, direction flip,
+  the letters a word scramble mixes and the atoms a sentence scramble deals out —
   so a seeded run is reproducible end to end and identical on both platforms.
+  A scramble that comes back reading as the answer is rolled again, boundedly:
+  "tap them left to right" is not the question either drill asks.
 - **A prompt is asked once, and a Sprosse with nothing left is climbed past** (`DrillSolved`).
   A run keeps what it has answered RIGHT and every draw skips that set;
   only a clean answer joins it, because a slip, a look-up and a reveal leave a prompt in the pool —
@@ -186,7 +193,10 @@ Engine contract: `../README.md`.
   A Sprosse answered out is climbed past rather than repeated, and the Sprosse it climbs to is booked
   like any other, since answering a Sprosse out is standing on it; the wins banked below stay behind.
   A whole ladder answered out ends the run on its summary — where the letter drill's
-  "nothing left to ask" already went, now the rule for all three.
+  "nothing left to ask" already went, now the rule for all of them.
+  What a key names is each drill's own question: a word scramble carries its Sprosse in the key,
+  because the letters a Sprosse leaves standing make the same word a different ask,
+  while a phrase carries none — its word order does not change with the rung it was drawn at.
   The atlas and the letter drill can ENUMERATE a Sprosse and filter it;
   the slot drill draws values rather than picking them out of a list, so there
   `DrillSolved.SPENT_ATTEMPTS` repeats in a row is what "spent" can honestly mean,
@@ -202,7 +212,7 @@ Engine contract: `../README.md`.
   nothing new is minted where kern already names a rule.
   `StreakTier` names the summary ladder (≥10 / ≥5 / ≥2 / else);
   which glyph a tier wears is chrome.
-  `DrillTally` names the counter for all three drills at once — clean wins over the answers
+  `DrillTally` names the counter for every drill at once — clean wins over the answers
   judged either way, with almost in neither half for `DrillRamp.step`'s reason;
   the "2/3" string is rendering.
 - **Storage contract**: the streak record under `trainer.record.<key>`,
@@ -225,7 +235,23 @@ Engine contract: `../README.md`.
 - **Closing books exactly as Weiter would** — a pending answer keeps its earned outcome,
   never upgraded (a hint-assisted clean answer closes almost) and never lost;
   a revealed-but-unconfirmed answer books nothing.
+  A drill with no record store of its own — the letter drill and both scrambles — closes
+  `newRecord` false, which drops the record line and the celebration with it.
+- **No drill books an FSRS review, and none touches a schedule.**
+  Transcription is not recall, and neither is arrangement: a word typed back from a hearing, a
+  spelling written out of its own letters and a phrase tapped back into order are all easier
+  than the retrieval the box grades, so feeding one into FSRS would inflate the stability the
+  scheduler then spaces on. The box is READ — for the words a drill may practice and the
+  figures that pace it — and never written.
 - `LetterDrillAvailability.report(catalog, box, language, hasVoice)` is the one gate for
   whether the letter drill exists, what it may prompt, and where a learner enters the ladder.
   `hasVoice` is a plain Boolean — every call is single-language and it crosses ObjC free —
   and kern caches nothing: rebuild triggers (voices arriving, foregrounding) stay platform-side.
+- `WordScrambleAvailability.report(box)` and `SentenceScrambleAvailability.report(box)` are the
+  same gate for the two scrambles, and take no capability port at all: neither drill plays or
+  hears anything, so nothing about the device can decide what it may ask.
+  Each walks the whole join and is built ONCE per run, its `drillExists` the hub-chip predicate.
+  The two read DIFFERENT bars on purpose: the word scramble wants a word already grown past the
+  display bar (`BoxEngine.isConsolidated`), since mixed letters cue nothing a learner cannot
+  already produce, while the sentence scramble wants the phrase unlocked
+  (`Growth.isPhraseUnlocked`), which is the components' bar rather than the phrase's own.

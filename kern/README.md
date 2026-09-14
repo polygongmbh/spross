@@ -212,8 +212,10 @@ bar are on `BoxConfig` itself. What the product decided:
   and the sound prompt that withdraws the meaning read it from opposite sides.
   `MATURED_STABILITY` (`Statistics.isConsolidated`, facade `BoxEngine.isConsolidated`)
   is a later, stricter DISPLAY bar — 25 days — behind the progress-UI split, the
-  Grown badge, the area-complete mark, the day tallies, and the words a brief hands
-  over as known: deliberately distinct, so the visible "Grown" mark tracks a much
+  Grown badge, the area-complete mark, the day tallies, the words a brief hands
+  over as known, and the word scramble's pool, which is the one DRILL that reads this
+  bar rather than gate (a): mixed letters cue nothing a learner cannot already produce.
+  Deliberately distinct, so the visible "Grown" mark tracks a much
   later bar than what actually unlocks support.
 - **Weight optimization stays out of scope.**
 
@@ -263,6 +265,8 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   source-independent, so a source switch can never re-lock phrases. Components with no
   TARGET realization are excluded from the gate.
   Gate: not suspended, and growing (§5) — the predicate, never a restated threshold.
+  The same predicate is the sentence scramble's pool: a phrase built from words the learner
+  does not hold yet is one they would put in order by guessing.
 - **Due order is day-bucketed, then shuffled**: reviews drain the oldest overdue DAY first
   for backlog fairness, but inside a day the order is a hash, seeded with the card's OWN due
   day so the function stays pure and the bucket still reshuffles from one day to the next.
@@ -344,8 +348,8 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   slightly harder.
 - **A drill run is a pure machine too** (`net.spross.kern.trainer`), and **one injected
   `Random` per run** feeds every draw, so a seeded run is reproducible end to end and
-  identical on both platforms. Drills book no reviews — transcription is not recall — and
-  their storage keys are byte-identical across the two stores.
+  identical on both platforms. Drills book no reviews — transcription is not recall, and
+  neither is arrangement — and their storage keys are byte-identical across the two stores.
   The ladder, the modes and the availability gates are `docs/turns.md`.
 - **Listening is a playlist over the learner's own words** (`net.spross.kern.listen`) — a
   target word, its meaning in the source language, then the target again, so a language
