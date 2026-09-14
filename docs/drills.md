@@ -46,11 +46,14 @@ the review loop these share their card and their answering rules with is `design
   Where the composition genuinely adds a rule — a concord, an agreement, another numeral
   family — it is that rule the Sprosse is for,
   and a note or a frame is usually the cheaper home for one.
-- **A Sprosse adds exactly ONE thing** — a question or a wider pool, never both,
-  and never a second axis ramping beside the first;
-  the word scramble's ladder therefore takes help away rather than lengthening the word.
-  What should still get easier or harder otherwise moves INSIDE the Sprosse —
-  the scramble's shorter eligible words simply come first and the longer ones as it runs on.
+- **A Sprosse adds exactly ONE thing where it opens a new KIND of question** —
+  a question or a wider pool, never both:
+  a learner who slips on the atlas has to be able to name what got harder.
+  A rung that only turns the same demand up owes nothing of the sort,
+  so the word scramble's climb takes a cue away and asks a longer word at once —
+  less help and more letters are one difficulty wound tighter, not two things to tell apart.
+  Inside a rung the shorter eligible words still come first,
+  and the longer ones as it runs on.
 - **A drill card is a review card** — same face, same reveal,
   and the revealed reading is spoken and replayable like any other answer (`read-aloud.md`) —
   and carries nothing but the prompt:
