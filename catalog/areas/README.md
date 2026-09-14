@@ -136,6 +136,10 @@ translations would each serve one, and it is the language the learner is there t
 Write it example-first and it stays readable that early: `мама → мамо, тато → тату` teaches the
 vocative to somebody who could not yet read the word for it, where naming the case would need a
 note per reader instead.
+The examples have to be words the card's own learner already holds — a note on an early shelf
+reaching for one seeded forty cards later is unreadable exactly where it is needed, and naming the
+grammar instead (`pluriel`, `ngeli`) reaches for a word that is never a card at all.
+`../../scripts/notes-vocabulary.py` names both.
 Key a note to a reader's language only where the shared wording will not do — a card that arrives
 before a learner could read the target's own words, and a quirk that exists only because these two
 languages met (Spanish `doler` explained as German's `gefallen`, an idiom's back-translation).
@@ -144,8 +148,12 @@ wording stays beside it rather than in its place: keyed alone it reaches that on
 leaves every other with nothing.
 
 **Keep a note only if it changes what the learner would say or do**; pure etymology ("wörtl. …")
-is cut, and load-bearing teaching (which word for "rice") is destined to become first-class
+is cut, so is a form's invariance — nobody inflects a word they were never shown inflecting —
+and load-bearing teaching (which word for "rice") is destined to become first-class
 training content, not a permanent note.
+Which prefix a word DOES take is carried by the dashed stem and its variants (`../README.md`),
+never by a note claiming it: `tupu` and `kavu` each shipped a note swearing they took none,
+true-looking because every example was N-class, where the concord is silent.
 A note explains its own word and no other: what OTHER words do belongs on none of them.
 Where the rule is what the learner has to practice, a phrase that exercises it beats every wording
 of it.
