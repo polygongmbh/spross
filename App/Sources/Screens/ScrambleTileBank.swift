@@ -6,7 +6,7 @@ import SprossKern
 ///
 /// A tap carries a chip up and another carries it back down — tapping is the
 /// whole gesture, because a drag buys an arrangement nothing and costs assistive
-/// technology a great deal (`docs/drills.md`). A spent chip stays in the bank,
+/// technology a great deal (`docs/drills-words.md`). A spent chip stays in the bank,
 /// dimmed and disabled, rather than vanishing: a bank that empties as it is used
 /// moves every chip under the thumb that is aiming at one.
 ///
