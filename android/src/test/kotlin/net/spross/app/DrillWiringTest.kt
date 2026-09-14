@@ -15,6 +15,9 @@ import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.catalog.CountryName
 import net.spross.kern.catalog.LanguageName
 import net.spross.kern.catalog.NationalityName
+import net.spross.kern.model.Card
+import net.spross.kern.model.CardKind
+import net.spross.kern.model.Realization
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -26,6 +29,9 @@ import net.spross.kern.trainer.LetterDrillRun
 import net.spross.kern.trainer.LetterDrillRunConfig
 import net.spross.kern.trainer.TrainerMode
 import net.spross.kern.trainer.TrainerRun
+import net.spross.kern.trainer.WordScrambleAvailability
+import net.spross.kern.trainer.WordScrambleRun
+import net.spross.kern.trainer.WordScrambleRunConfig
 
 /**
  * What the APP does with kern's drill runs — which intent each affordance sends, which acts
@@ -33,7 +39,7 @@ import net.spross.kern.trainer.TrainerRun
  * draw, the verdict ladder, when the way out is offered) belong to `:kern:jvmTest`; nothing
  * here re-tests them.
  *
- * The harness is the three flows with the platform stripped out: record the tones, the focus
+ * The harness is the flows with the platform stripped out: record the tones, the focus
  * releases and the silences, and read the beat off the flow instead of running one.
  */
 class DrillWiringTest {
@@ -303,5 +309,60 @@ class DrillWiringTest {
         assertEquals(1, summary.done)
         assertTrue(summary.newRecord, "a first streak beats a standing record of none")
         assertEquals(flow.state.bestLevel, closed.bestLevel)
+    }
+
+    // MARK: - The word scramble
+
+    private fun grownWord(id: String, text: String) = Card(
+        id = id,
+        kind = CardKind.Noun,
+        area = "test",
+        emoji = null,
+        seedIndex = 0,
+        components = emptyList(),
+        feminineOf = null,
+        source = Realization(lang = "de", text = "das $id"),
+        target = Realization(lang = "sw", text = text),
+        promptFeminineMarker = false,
+    )
+
+    private fun scramble(platform: Platform, seed: Int = 11): WordScrambleFlow {
+        val report = WordScrambleAvailability.Report(
+            listOf("chumba", "kitabu", "mlango", "dirisha", "meza")
+                .mapIndexed { index, word -> grownWord("word$index", word) },
+        )
+        return WordScrambleFlow(
+            // A run with no language info grades plainly — enough to drive the wiring.
+            start = WordScrambleRun.open(WordScrambleRunConfig(report, normalizer = null), Random(seed)),
+            rng = Random(seed),
+            onTone = { platform.tones += it },
+            onReleaseFocus = { platform.focusReleases += 1 },
+            onSilence = { platform.silences += 1 },
+            screenReaderOn = { platform.screenReader },
+        )
+    }
+
+    /** Writing the word out IS the answer — the typed drills' rule, on mixed letters. */
+    @Test
+    fun finishingTheSpellingArmsTheBeatWithoutACheckTap() {
+        val platform = Platform()
+        val flow = scramble(platform)
+        flow.type(assertNotNull(flow.state.task).display)
+        assertEquals(TurnFeedback.Correct, flow.state.feedback)
+        assertEquals(listOf(ToneKind.Correct), platform.tones)
+        assertEquals(AdvanceTier.Live, flow.armedBeat)
+    }
+
+    @Test
+    fun aClosedWordScrambleReportsItsFiguresAndNoRecord() {
+        assertNull(scramble(Platform()).close().summary)
+
+        val flow = scramble(Platform())
+        flow.type(assertNotNull(flow.state.task).display)
+        val summary = assertNotNull(flow.close().summary)
+        // The pending clean answer books on the way out, exactly as the tap would.
+        assertEquals(1, summary.done)
+        // This drill keeps no record store, so nothing it does can beat one.
+        assertTrue(!summary.newRecord)
     }
 }

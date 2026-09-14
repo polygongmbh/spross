@@ -29,6 +29,7 @@ import net.spross.app.datesOffered
 import net.spross.app.lettersOffered
 import net.spross.app.numbersOffered
 import net.spross.app.werkstattOffered
+import net.spross.app.wordScrambleOffered
 
 /**
  * One entry on the Sprossen card: its face, its name and what it opens.
@@ -42,10 +43,11 @@ data class HubChip(val emoji: String, val title: String, val open: () -> Unit)
  * Sprossen: free practice, with no schedule and no limit.
  *
  * The entries stand on ONE row while there are no more than three of them and break into
- * two lines past that ([chipRows]). Each opens a PAGE rather than a run — the reading and
- * the drill it prepares you for are one surface. Each is its own SKILL, which is the only
- * thing that earns a chip; what each one gates on is `DrillAvailability`. A card with no
- * entry at all is absent rather than empty (`docs/drills.md`).
+ * two lines past that ([chipRows]). The four that have reading matter open a PAGE rather
+ * than a run — the reading and the drill it prepares you for are one surface — where a
+ * scramble, whose material is the box itself, opens its run. Each is its own SKILL, which is
+ * the only thing that earns a chip; what each one gates on is `DrillAvailability`. A card
+ * with no entry at all is absent rather than empty (`docs/drills.md`).
  */
 @Composable
 fun SprossenCard(model: AppModel) {
@@ -108,6 +110,9 @@ private fun AppModel.hubChips(chrome: Chrome): List<HubChip> {
     if (lettersOffered) chips += HubChip("🔤", chrome.trainerSkillLetters) { openLetters() }
     if (countriesOffered) chips += HubChip("🌍", chrome.trainerSkillCountries) { openCountries() }
     if (datesOffered) chips += HubChip("📅", chrome.trainerSkillDates) { openDates() }
+    if (wordScrambleOffered) {
+        chips += HubChip("🔀", chrome.trainerSkillWordScramble) { startWordScramble() }
+    }
     return chips
 }
 

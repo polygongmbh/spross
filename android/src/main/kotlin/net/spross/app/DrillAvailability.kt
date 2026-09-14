@@ -3,6 +3,7 @@ package net.spross.app
 import net.spross.kern.catalog.alphabet
 import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.Trainer
+import net.spross.kern.trainer.WordScrambleAvailability
 
 /**
  * The platform half of what free practice can offer.
@@ -16,11 +17,15 @@ import net.spross.kern.trainer.Trainer
 
 /**
  * Whether the hub card belongs on Home at all: the pair has counting content, an alphabet
- * file exists for the target, the atlas joins, or the calendars do. Four entries, any of
- * which is reason enough.
+ * file exists for the target, the atlas joins, the calendars do, or the box itself holds
+ * enough to scramble. Any one entry is reason enough.
+ *
+ * The scramble stands LAST because it is a walk of the whole join: a profile with any of the
+ * four cheap entries never pays for it.
  */
 val AppModel.werkstattOffered: Boolean
-    get() = numbersOffered || lettersOffered || countriesOffered || datesOffered
+    get() = numbersOffered || lettersOffered || countriesOffered || datesOffered ||
+        wordScrambleOffered
 
 /** Counting, clock and forms all come out of one pack — the registry rule, not the ladder. */
 val AppModel.numbersOffered: Boolean
@@ -51,6 +56,17 @@ val AppModel.countriesOffered: Boolean
  */
 val AppModel.datesOffered: Boolean
     get() = dates != null
+
+/**
+ * The word scramble rides on the BOX: enough words grown far enough to be worth spelling
+ * back out of their own letters. Kern's own floor, read — nothing here counts words.
+ *
+ * Deliberately uncached: the pool grows as words consolidate, so the card asks again rather
+ * than deciding once at launch that the drill is empty. It walks the whole join, so the
+ * caller asks once per box and not once per frame.
+ */
+val AppModel.wordScrambleOffered: Boolean
+    get() = box?.let { WordScrambleAvailability.drillExists(it) } == true
 
 /**
  * What the letter drill can ASK here, freshly swept.

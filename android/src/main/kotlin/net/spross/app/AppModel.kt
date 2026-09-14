@@ -98,6 +98,12 @@ sealed interface Screen {
     data object LetterDrill : Screen
 
     /**
+     * A word-scramble run. No page in front of it: the two scrambles have nothing to be read
+     * beside them — the box IS their material — so the chip opens the run itself.
+     */
+    data object WordScramble : Screen
+
+    /**
      * An atlas run, carrying the two things the page settled before it opened: which way
      * round the questions are asked, and whether a Sprosse falls on one clean win.
      */
@@ -548,6 +554,11 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     fun startLetterDrill() {
         screen = Screen.LetterDrill
+    }
+
+    /** The word scramble, straight from its chip — there is no page to open first. */
+    fun startWordScramble() {
+        screen = Screen.WordScramble
     }
 
     /**
