@@ -40,10 +40,7 @@
   "to-stop": { "text": "kuacha", "notes": { "sw": "acha kelele · kuacha kazi = kuondoka kazini" } },
   "to-stand": {
    "text": "kusimama",
-   "notes": {
-    "sw": "Simama! = inuka, au acha kutembea · basi limesimama",
-    "de": "kusimama heißt stehen, aufstehen und stehen bleiben: Simama! = Halt!"
-   }
+   "notes": { "de": "kusimama heißt stehen, aufstehen und stehen bleiben: Simama! = Halt!" }
   },
   "to-send": { "text": "kutuma", "notes": { "sw": "kutuma ujumbe, kutuma pesa · kupokea = si kutuma" } },
   "to-deliver": { "text": "kupeleka" },

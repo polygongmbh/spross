@@ -140,6 +140,11 @@ The examples have to be words the card's own learner already holds — a note on
 reaching for one seeded forty cards later is unreadable exactly where it is needed, and naming the
 grammar instead (`pluriel`, `ngeli`) reaches for a word that is never a card at all.
 `../../scripts/notes-vocabulary.py` names both.
+So a shared note SHOWS its word in use and does not gloss it with other ones: a chain of synonyms
+explains nothing to the learner who is missing the first link, and where those other words are
+worth having they earn cards rather than a mention. Where the distinction genuinely needs a
+second context the earliest shelves cannot furnish — sw `kusimama` is standing, standing up and
+coming to a stop — the shared note goes and the reader's note carries it alone.
 Key a note to a reader's language only where the shared wording will not do — a card that arrives
 before a learner could read the target's own words, and a quirk that exists only because these two
 languages met (Spanish `doler` explained as German's `gefallen`, an idiom's back-translation).

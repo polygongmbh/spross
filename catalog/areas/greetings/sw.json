@@ -6,7 +6,13 @@
   "name": { "text": "jina", "grammar": { "plural": "majina" } },
   "to-be-called": { "text": "kuitwa" },
   "hello": { "text": "Hujambo!", "notes": { "sw": "Hujambo? — Sijambo. · Hamjambo? — Hatujambo." } },
-  "good-day": { "text": "Habari!", "notes": { "sw": "Habari? — Nzuri." } },
+  "good-day": {
+   "text": "Habari!",
+   "notes": {
+    "sw": "Habari? — Nzuri.",
+    "de": "Habari grüßt zu jeder Tageszeit; die Antwort ist immer Nzuri, auch wenn es nicht stimmt."
+   }
+  },
   "good-morning": { "text": "Habari za asubuhi!" },
   "good-evening": { "text": "Habari za jioni!" },
   "good-night": {

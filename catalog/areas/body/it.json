@@ -23,7 +23,7 @@
   "hand": {
    "text": "mano",
    "grammar": { "gender": "la", "plural": "mani" },
-   "notes": { "it": "la mano è femminile: la mano destra, le mani." }
+   "notes": { "it": "la mano è femminile nonostante la -o: la mano destra, le mani." }
   },
   "arm": {
    "text": "braccio",

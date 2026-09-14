@@ -19,11 +19,9 @@ Ready work comes first, then the items that end in a question for the owner, the
 - `catalog/areas/README.md` § How a realization is worded lacks the quote-pair convention
   (“…” in English prose, „…“ in German, as the idiom and note passes now write),
   which waits on a ruling before it is written down.
-- A handful of the 527 cut German notes carried one fact their own-language neighbour does not,
-  and the fact left with them rather than moving over: sw `verbs/to-send` contrasted `kutuma`
-  against `kupeleka` where the shared note contrasts it against `kupokea`, it `body/hand` said
-  the `-o` ending is WHY `la mano` surprises, fr `kitchen/pan` named `le poêle` masculine.
-  Each wants the own-language note widened, not the German note back.
+- sw `verbs/to-send` lost the `kutuma`/`kupeleka` contrast when its German note was cut, and it
+  stays lost: `kupeleka` is `verbs/to-deliver`'s own card, so naming it here would break "a note
+  explains its own word and no other". The pair wants a contrast card if it wants anything.
 - `scripts/notes-vocabulary.py` is clean for the first twelve areas only; areas 13+ still carry
   ~340 notes leaning on a later card's word and ~55 naming a grammar term. The same three-agent
   split does it, and the residue in the early areas (10, all function words that happen to be
