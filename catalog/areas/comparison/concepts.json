@@ -1,0 +1,14 @@
+[
+ { "slug": "different", "kind": "adjective" },
+ { "slug": "difference", "kind": "noun" },
+ { "slug": "real", "kind": "adjective" },
+ { "slug": "same", "kind": "adjective" },
+ { "slug": "similar", "kind": "adjective" },
+ { "slug": "opposite", "kind": "adjective" },
+ { "slug": "to-compare", "kind": "verb" },
+ { "slug": "positive", "kind": "adjective", "emoji": "➕" },
+ { "slug": "negative", "kind": "adjective", "emoji": "➖" },
+ { "slug": "neutral", "kind": "adjective" },
+ { "slug": "aggressive", "kind": "adjective" },
+ { "slug": "defensive", "kind": "adjective" }
+]

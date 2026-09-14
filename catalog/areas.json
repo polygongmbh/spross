@@ -38,7 +38,8 @@
    { "area": "qualities", "emoji": "📏" },
    { "area": "degree", "emoji": "📊" },
    { "area": "time", "emoji": "🕒" },
-   { "area": "colors", "emoji": "🎨" }
+   { "area": "colors", "emoji": "🎨" },
+   { "area": "comparison", "emoji": "⚖️" }
   ]
  },
  {

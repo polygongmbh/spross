@@ -101,31 +101,11 @@
    "text": "-kavu",
    "variants": ["kavu", "mkavu", "wakavu", "kikavu", "vikavu", "makavu", "mikavu"]
   },
-  "different": { "text": "tofauti", "notes": { "sw": "lugha tofauti, mji tofauti · tofauti kubwa" } },
-  "real": { "text": "halisi" },
-  "same": { "text": "sawa", "notes": { "sw": "urefu sawa · Sawa! = ndiyo" } },
-  "similar": {
-   "text": "kufanana",
-   "notes": {
-    "sw": "maneno yanafanana · unafanana na mama yako",
-    "de": "Swahili sagt es als Verb: vitabu hivi vinafanana = diese Bücher sind ähnlich."
-   }
-  },
-  "opposite": {
-   "text": "kinyume",
-   "notes": {
-    "sw": "kinyume cha hilo · kinyume cha joto ni baridi",
-    "de": "eigentlich ein Substantiv: kinyume cha hilo = das Gegenteil davon."
-   }
-  },
-  "to-compare": { "text": "kulinganisha" },
   "beautiful": {
    "text": "-rembo",
    "variants": ["mrembo", "warembo", "mirembo", "kirembo", "virembo", "marembo", "rembo"],
    "notes": { "sw": "mtu mrembo, nyumba nzuri · urembo = pambo, uzuri" }
   },
-  "positive": { "text": "chanya" },
-  "negative": { "text": "hasi" },
   "health": { "text": "afya" },
   "healthy": {
    "text": "-zima",

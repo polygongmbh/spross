@@ -1,0 +1,26 @@
+{
+ "title": "Comparación",
+ "subtitle": "Igual, distinto, a favor o en contra.",
+ "words": {
+  "different": {
+   "text": "diferente",
+   "synonyms": ["distinto"],
+   "variants": ["diferentes", "distinta", "distintos"]
+  },
+  "difference": { "text": "diferencia", "grammar": { "gender": "la" } },
+  "real": { "text": "real" },
+  "same": {
+   "text": "mismo",
+   "variants": ["misma", "mismos", "mismas"],
+   "notes": { "es": "el mismo día · lo mismo = una cosa igual." }
+  },
+  "similar": { "text": "parecido", "synonyms": ["similar"], "variants": ["parecida"] },
+  "opposite": { "text": "opuesto", "synonyms": ["contrario"], "variants": ["opuesta", "contraria"] },
+  "to-compare": { "text": "comparar" },
+  "positive": { "text": "positivo", "variants": ["positiva"] },
+  "negative": { "text": "negativo", "variants": ["negativa"] },
+  "neutral": { "text": "neutral", "variants": ["neutro"] },
+  "aggressive": { "text": "agresivo", "variants": ["agresiva"] },
+  "defensive": { "text": "defensivo", "variants": ["defensiva"] }
+ }
+}

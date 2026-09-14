@@ -184,7 +184,7 @@ class CatalogCollisionLintTest {
                 // Reviewed 2026-09-05: fr `même` is gleich (le même) AND sogar — de/en/eo/es/it/sw/uk
                 // all split the pair (gleich/sogar, same/even, sama/eĉ, igual/incluso, sawa/hata).
                 // `pareil` for same skews colloquial and `voire` for even is written French, so both stay.
-                "fr même: connectors/even, qualities/same",
+                "fr même: comparison/same, connectors/even",
                 // Reviewed 2026-09-05: fr `que` is the conjunction dass AND, as a synonym on
                 // questions/what, the object what — with uk `що` it is the one pair two languages
                 // merge, and both merges are real polysemy, not one meaning authored twice

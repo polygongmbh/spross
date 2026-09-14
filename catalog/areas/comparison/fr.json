@@ -1,0 +1,22 @@
+{
+ "title": "La comparaison",
+ "subtitle": "Pareil, différent, pour ou contre.",
+ "words": {
+  "different": { "text": "différent", "variants": ["différente", "différents"] },
+  "difference": { "text": "différence", "grammar": { "gender": "la" } },
+  "real": { "text": "réel" },
+  "same": {
+   "text": "même",
+   "variants": ["mêmes"],
+   "notes": { "fr": "la même heure · moi-même, toi-même : moi et pas un autre." }
+  },
+  "similar": { "text": "similaire", "variants": ["similaires"] },
+  "opposite": { "text": "opposé", "synonyms": ["contraire"], "variants": ["opposée"] },
+  "to-compare": { "text": "comparer" },
+  "positive": { "text": "positif", "variants": ["positive"] },
+  "negative": { "text": "négatif", "variants": ["négative"] },
+  "neutral": { "text": "neutre" },
+  "aggressive": { "text": "agressif", "variants": ["agressive"] },
+  "defensive": { "text": "défensif", "variants": ["défensive"] }
+ }
+}

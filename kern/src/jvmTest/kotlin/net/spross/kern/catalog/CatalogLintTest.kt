@@ -49,7 +49,7 @@ class CatalogLintTest {
      * Held in both directions ([anAreaHoldsAFewDozenCards]), so a split clears its own
      * waiver instead of leaving one behind for the next reader to trust.
      */
-    private val oversizedAreas = setOf("admin", "desk", "food", "qualities")
+    private val oversizedAreas = setOf("admin", "desk", "food")
 
     /** The one word each language adds to soften a request — see [alternatesDoNotAddOrDropPolitenessParticles]. */
     private val politenessParticle = mapOf(

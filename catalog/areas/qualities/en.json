@@ -46,13 +46,6 @@
   "full": { "text": "full" },
   "dirty": { "text": "dirty" },
   "dry": { "text": "dry" },
-  "different": { "text": "different" },
-  "difference": { "text": "difference" },
-  "real": { "text": "real" },
-  "same": { "text": "same" },
-  "similar": { "text": "similar" },
-  "opposite": { "text": "opposite" },
-  "to-compare": { "text": "to compare" },
   "pretty": {
    "text": "pretty",
    "notes": {
@@ -61,11 +54,6 @@
    }
   },
   "beautiful": { "text": "beautiful" },
-  "positive": { "text": "positive" },
-  "negative": { "text": "negative" },
-  "neutral": { "text": "neutral" },
-  "aggressive": { "text": "aggressive" },
-  "defensive": { "text": "defensive" },
   "health": { "text": "health" },
   "healthy": { "text": "healthy" },
   "firm": { "text": "firm", "synonyms": ["sturdy"] },

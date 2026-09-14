@@ -1,0 +1,18 @@
+{
+ "title": "Vergleich",
+ "subtitle": "Gleich, anders, dafür oder dagegen.",
+ "words": {
+  "different": { "text": "anders", "synonyms": ["verschieden"], "variants": ["unterschiedlich"] },
+  "difference": { "text": "Unterschied", "grammar": { "gender": "der", "plural": "Unterschiede" } },
+  "real": { "text": "echt" },
+  "same": { "text": "gleich", "notes": { "de": "das gleiche Wort · Ich komme gleich = kurz warten." } },
+  "similar": { "text": "ähnlich" },
+  "opposite": { "text": "entgegengesetzt", "variants": ["gegenteilig"] },
+  "to-compare": { "text": "vergleichen" },
+  "positive": { "text": "positiv" },
+  "negative": { "text": "negativ" },
+  "neutral": { "text": "neutral" },
+  "aggressive": { "text": "aggressiv" },
+  "defensive": { "text": "defensiv" }
+ }
+}

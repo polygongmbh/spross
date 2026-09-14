@@ -1,0 +1,18 @@
+{
+ "title": "Comparison",
+ "subtitle": "Same, different, for or against.",
+ "words": {
+  "different": { "text": "different" },
+  "difference": { "text": "difference" },
+  "real": { "text": "real" },
+  "same": { "text": "same" },
+  "similar": { "text": "similar" },
+  "opposite": { "text": "opposite" },
+  "to-compare": { "text": "to compare" },
+  "positive": { "text": "positive" },
+  "negative": { "text": "negative" },
+  "neutral": { "text": "neutral" },
+  "aggressive": { "text": "aggressive" },
+  "defensive": { "text": "defensive" }
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "title": "Komparo",
+ "subtitle": "Sama, alia, por aŭ kontraŭ.",
+ "words": {
+  "different": { "text": "malsama", "variants": ["malsamaj"] },
+  "difference": { "text": "diferenco" },
+  "real": { "text": "reala" },
+  "same": { "text": "sama", "variants": ["samaj"] },
+  "similar": { "text": "simila", "variants": ["similaj"] },
+  "opposite": { "text": "kontraŭa", "variants": ["kontraŭaj"] },
+  "to-compare": { "text": "kompari" },
+  "positive": { "text": "pozitiva", "variants": ["pozitive"] },
+  "negative": { "text": "negativa", "variants": ["negative"] },
+  "neutral": { "text": "neŭtrala", "variants": ["neŭtrale"] },
+  "aggressive": { "text": "agresema", "variants": ["agresiva", "agreseme"] },
+  "defensive": { "text": "defenda", "variants": ["defensiva", "defende"] }
+ }
+}
