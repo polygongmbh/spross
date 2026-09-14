@@ -39,17 +39,8 @@ class CatalogLintTest {
      */
     private val parkedAreas = setOf("reproduction")
 
-    /** A shelf a learner can hold in their head — `catalog/areas/README.md`. */
-    private val areaCardLine = 40
-
-    /**
-     * Areas that stood past the line when it became a check, each waiting on the cut a
-     * learner would name: `food` splits at raw ingredients against meals and drinks, while
-     * `desk` and `admin` have no named seam yet.
-     * Held in both directions ([anAreaHoldsAFewDozenCards]), so a split clears its own
-     * waiver instead of leaving one behind for the next reader to trust.
-     */
-    private val oversizedAreas = setOf("admin", "desk", "food")
+    /** Where an area has stopped being a shelf — see [noAreaGrowsIntoADrawer]. */
+    private val areaDrawerLine = 50
 
     /** The one word each language adds to soften a request — see [alternatesDoNotAddOrDropPolitenessParticles]. */
     private val politenessParticle = mapOf(
@@ -97,30 +88,22 @@ class CatalogLintTest {
     }
 
     /**
-     * An area is a shelf a learner can hold in their head and choose to pull forward, so it
-     * holds a few dozen cards and never a drawer's worth — the rule and its seam are
-     * `catalog/areas/README.md` § which area a concept lives in, and [oversizedAreas] is
-     * the standing exception.
+     * The ~40 an area holds is an orientation an author reads, not a bar
+     * (`catalog/areas/README.md` § which area a concept lives in); what a check can say is
+     * where a shelf has become a drawer, and it takes no waiver, because a red nobody can
+     * silence by naming the area is the only kind that outlives the session that saw it.
      *
      * A parked area meets the line on activation, which is what [parkedAreasStayActivatable]
      * reviews; nothing counts it while it waits.
      */
     @Test
-    fun anAreaHoldsAFewDozenCards() {
+    fun noAreaGrowsIntoADrawer() {
         for (area in catalog.areas) {
             val size = area.concepts.size
-            if (area.name in oversizedAreas) {
-                assertTrue(
-                    size > areaCardLine,
-                    "${area.name}: $size concepts is back inside the line — drop it from oversizedAreas",
-                )
-            } else {
-                assertTrue(
-                    size <= areaCardLine,
-                    "${area.name}: $size concepts, past the ~$areaCardLine line — " +
-                        "cut it along a seam a learner would name, or waive it in oversizedAreas",
-                )
-            }
+            assertTrue(
+                size <= areaDrawerLine,
+                "${area.name}: $size concepts is a drawer — cut it along a seam a learner would name",
+            )
         }
     }
 
