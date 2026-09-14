@@ -25,7 +25,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
@@ -139,15 +139,16 @@ fun WordScrambleScreen(model: AppModel) {
 
 /**
  * The prompt: the letters as kern mixed them, with the ones the Sprosse left standing
- * underlined. Kern says how many hold at each end ([ScrambledWord.fixedLeading] /
- * [ScrambledWord.fixedTrailing]) and this side says what that looks like — an underline
- * reads as "this one is where the spelling puts it" without a legend.
+ * set bold. Kern says how many hold at each end ([ScrambledWord.fixedLeading] /
+ * [ScrambledWord.fixedTrailing]) and this side says what that looks like — weight alone,
+ * because the anchors are a recognition aid the ladder takes away rung by rung, and an
+ * aid on its way out is not worth a legend.
  */
 fun mixedWord(word: ScrambledWord): AnnotatedString {
     val letters = word.display
     val lead = minOf(word.fixedLeading, letters.length)
     val trail = minOf(word.fixedTrailing, letters.length - lead)
-    val anchored = SpanStyle(textDecoration = TextDecoration.Underline)
+    val anchored = SpanStyle(fontWeight = FontWeight.Bold)
     return buildAnnotatedString {
         withStyle(anchored) { append(letters.take(lead)) }
         append(letters.substring(lead, letters.length - trail))
