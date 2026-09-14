@@ -13,7 +13,7 @@ data class Swatch(val light: Int, val dark: Int)
  */
 object Palette {
     // Surfaces — stone paper with a moss cast, never plain white/gray.
-    val background = Swatch(0xF2F1EA, 0x121714)
+    val background = Swatch(0xF2F1EA, 0x000000)
     val surface = Swatch(0xFBFBF6, 0x1C231E)
     val surfaceTint = Swatch(0xE5E8DE, 0x27302A)
 

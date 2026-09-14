@@ -23,7 +23,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #121714;
+    --bg: #000000;
     --surface: #1C231E;
     --surface-tint: #27302A;
     --separator: #3A443D;
