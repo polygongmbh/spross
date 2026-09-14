@@ -70,6 +70,15 @@ internal object DrillSolved {
     fun key(task: DateDrillTask): String = "${task.kind}:${task.id}"
 
     /**
+     * A phrase asks ONE question however long the ladder gets — its word order does not change
+     * with the Sprosse it was drawn at — so the card alone carries the identity.
+     */
+    fun key(task: SentenceScrambleTask): String = sentenceKey(task.cardId)
+
+    /** The same key from the parts, for a draw that is choosing what to build. */
+    fun sentenceKey(cardId: String): String = "sentence:$cardId"
+
+    /**
      * A word scramble asks the same word differently up its ladder — the letters left standing
      * are the Sprosse — so the LEVEL carries the identity alongside the card.
      */
