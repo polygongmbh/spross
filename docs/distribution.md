@@ -24,17 +24,10 @@ and only then commits, tags and pushes.
 Two things stay yours: which number, and what the entries say.
 An empty `## Unreleased` is refused rather than cut.
 
-The shape of the number is a judgment, and a loose one.
-Two `feat:` commits since the last tag, or a sweep of dozens of commits, usually reads as a
-minor; a `feat` that only sharpens behavior already there reads as a patch just as easily.
-`release.sh` prints the two counts and leaves the number to you.
-
-One hard line runs through that judgment: a release is MAJOR when it closes the door behind it,
-when a box this build has written can no longer be read by the build before it.
-A change to stored shape does not earn it on its own —
-a v2 document that converts a v1 in place leaves the upgrade whole.
-What earns it is the DOWNGRADE that stops working,
-the phone that took the new build and cannot be walked back to the old one.
+The number is a judgment call - `release.sh` provides some numbers as guidance
+- a minor usually has at least two `feat:` commits since the last tag, or a sweep of dozens of commits 
+- a `feat` that only sharpens behavior already there reads as a patch.
+- a major release introduces a non-reversible breaking storage format change
 
 Every gate runs BEFORE the tag exists, because the tag is the trigger and the version:
 the workflow strips the leading `v` and hands the rest to both surfaces,
@@ -46,13 +39,13 @@ Gradle reads it too rather than keeping a second number,
 and `scripts/release-notes.sh` fails the run when the changelog has no section
 under that heading.
 
-Android's `versionCode` is derived from the name — `4.1.2` → `40102` —
+Android's `versionCode` is derived from the name: `4.1.2` → `40102`
 so it rises on its own as long as minor and patch stay under 100.
 
 ## What earns a changelog entry
 
-`CHANGELOG.md` is what moved for the LEARNER, curated —
-never a commit log, and "user-observable" is a lower bar than the one that holds.
+`CHANGELOG.md` is what moved for the LEARNER, curated, never a commit log.
+"User-observable" is too low a bar; the rules below are stricter.
 
 - The delta has to be in what the app DOES, not in how it looks or reads.
   Cut in one pass: a picker row gaining its native name, onboarding switching to the user's
@@ -62,27 +55,21 @@ never a commit log, and "user-observable" is a lower bar than the one that holds
   A change that only alters language, wording, layout or naming is carried by its commit message.
 - Content earns an entry by the SHELF, not by the CARD.
   A new area, a pass across a language, a sweep that re-cuts a whole shelf is a change the
-  learner meets; a single concept added, split or reworded is not — however right the fix,
-  it is carried by its commit message alone.
+  learner meets; a single concept added, split or reworded is not,
+  and stays in its commit message.
 - One entry per sweep, not one per finding.
-  Three bullets from a single Swahili literalness pass were collapsed back into one:
-  the learner experienced one change — answers that map onto their prompt — not three.
   Before adding a second bullet from the same work, ask whether the learner would call it a
-  second change; if not, fold it in — one headline, the sharpest example or two, and stop.
-- A bullet is ONE plain sentence, written for someone reading release notes rather than for a maintainer.
-  No bold lead, no explanation clause after it:
-  name what the learner can now do and stop.
-  The reasoning, the before, the mechanism and the examples that convinced you
-  all belong in the commit message, which is where a reader who wants them will look.
+  second change; if not, fold it in — one headline, the sharpest example or two.
+- A bullet is ONE plain sentence, written for a release-notes reader, not a maintainer.
+  No bold lead, no explanation clause after it: name what the learner can now do.
+  Reasoning, mechanism and examples belong in the commit message.
   An explanation earns its place only where the sentence means nothing without it.
 - No raw counts, with one exception.
-  "the catalog grew from 358 to 506 concepts" was cut in favor of the qualitative claim under it:
-  a count measures the catalog rather than the learner's experience,
-  and it goes stale the moment the next commit lands,
-  leaving the bullet either lying or waiting to be re-tallied.
+  A count measures the catalog rather than the learner's experience, and goes stale on the next commit.
   Write what widened and for whom.
-  The exception is a major cut for accumulated growth, whose bullets summarize everything since the last one:
-  there a growth figure is the point, and a percentage carries it better than a pair of totals.
+  The exception is a major cut for accumulated growth,
+  whose bullets summarize everything since the last one:
+  there a growth figure is the point, as a percentage rather than a pair of totals.
 
 ## Secrets
 

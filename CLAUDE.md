@@ -51,19 +51,16 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `refactor:`, `test:`, `docs:`, `build:`, `chore:`) with scopes
 - `feat` adds what was not there, `enhance` sharpens what was, `fix` corrects what was wrong;
   a removal is never a `feat`, whatever it makes room for.
-- `!` marks a change to the SHAPE of stored or exchanged state,
-  never content arriving or leaving, and never an internal rename or a capability added.
-- A user-facing change lands on iOS and Android in the same sweep, never deferred to a parity pass;
-  a change to shared/parity-bearing UI (cards, layout tokens) closes with both checked side by side,
-  not just implemented on both — a small copy or cosmetic tweak does not need this.
+- `!` marks a backwards incompatible change to the SHAPE of stored state, never content changes
+- A user-facing change lands on iOS and Android in the same sweep; a change to shared/parity-bearing UI checks both
 - Keep `README.md` / `docs/` in step with behavior changes in the same series.
 - `CHANGELOG.md` is curated, grouped by version, written in ENGLISH; 
   what earns an entry and how it is worded: `docs/distribution.md`.
   New entries always land under the top `## Unreleased` heading.
   At bump time, rename `## Unreleased` to `## <version> — <date>` and open a fresh empty `## Unreleased` above it.
-  Its head carries every heading you need — read that, never the whole file.
+  Its head carries every heading you need, prefer to only read that.
 - Changelog and backlog entries should be just one line with one sentence for bullet points, 
-  explanations should live in commit messages and only in the file on absolute exceptions
+  explanations should live in commit messages and only in the file on absolute exceptions.
 - Other parties may change files or commit while you work, do not mind unless their edits conflict with yours.
   Commit with `git commit --only -- <paths>`: `git add` + `git commit` carries every other staged
   path, `--only` skips untracked ones (`git add` those first), and check before touching history.
@@ -87,7 +84,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 ### Tests
 - Test rules and behavior, not implementation details or tweakable constants
 - Extract pure logic so it's testable without the framework
-- When one code change needs multiple test changes, assess the sensibility of the tests - don't overtest!
+- When one code change needs multiple test changes, assess the sensibility of the tests - do not overtest
 
 ## Working with subagents & tools
 
