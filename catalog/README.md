@@ -7,6 +7,7 @@ and potential future crowdsourced per-language contribution.
 This file owns the file shapes and what each field means.
 What earns a card and how it is worded is `areas/README.md`;
 every other folder below is documented by the `README.md` standing in it.
+Reference grammars and audit logs live in `../../data/` (the parent repo's content workspace).
 
 ## The key modeling decision: everything is a concept
 
