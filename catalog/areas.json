@@ -31,12 +31,12 @@
    "uk": "Будівельні блоки"
   },
   "areas": [
-   { "area": "place", "emoji": "📍" },
    { "area": "pronouns", "emoji": "🙋" },
+   { "area": "connectors", "emoji": "🔗" },
    { "area": "verbs", "emoji": "🏃" },
+   { "area": "place", "emoji": "📍" },
    { "area": "qualities", "emoji": "📏" },
    { "area": "degree", "emoji": "📊" },
-   { "area": "connectors", "emoji": "🔗" },
    { "area": "time", "emoji": "🕒" },
    { "area": "colors", "emoji": "🎨" }
   ]

@@ -14,7 +14,7 @@
   },
   "good-morning": { "text": "Habari za asubuhi!" },
   "good-evening": { "text": "Habari za jioni!" },
-  "good-night": { "text": "Usiku mwema!", "notes": { "sw": "Kwaheri tu! · unayekuja jioni: Habari za jioni!" } },
+  "good-night": { "text": "Usiku mwema!" },
   "goodbye": { "text": "Kwaheri!" },
   "welcome": {
    "text": "Karibu!",

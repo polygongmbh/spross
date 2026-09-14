@@ -12,11 +12,7 @@
    "notes": { "it": "Buongiorno! · dalle 14, Buonasera! (= buona sera)." }
   },
   "good-evening": { "text": "Buonasera!", "variants": ["Buona sera!"] },
-  "good-night": {
-   "text": "Buonanotte!",
-   "variants": ["Buona notte!"],
-   "notes": { "it": "Solo andando via o a letto · di sera: Buonasera! (= buona sera)." }
-  },
+  "good-night": { "text": "Buonanotte!", "variants": ["Buona notte!"] },
   "goodbye": { "text": "Arrivederci!" },
   "bye": {
    "text": "A presto!",

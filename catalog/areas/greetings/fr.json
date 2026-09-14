@@ -8,10 +8,7 @@
   "hello": { "text": "Salut !", "notes": { "fr": "Salut ! ton familier · au guichet, Bonjour !" } },
   "good-day": { "text": "Bonjour !", "notes": { "fr": "Bonjour ! · dès 18 h, Bonsoir !" } },
   "good-evening": { "text": "Bonsoir !" },
-  "good-night": {
-   "text": "Bonne nuit !",
-   "notes": { "fr": "Bonne nuit ! en partant ou au lit · sinon Bonsoir !" }
-  },
+  "good-night": { "text": "Bonne nuit !" },
   "goodbye": { "text": "Au revoir !" },
   "bye": { "text": "Ciao !" },
   "welcome": { "text": "Bienvenue !" },
