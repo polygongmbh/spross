@@ -11,6 +11,6 @@ enum AppGroup {
     #if DEBUG
     static let identifier = "group.net.spross.app"
     #else
-    static let identifier = "group.net.spross.shared"
+    static let identifier = "group.net.spross.data"
     #endif
 }

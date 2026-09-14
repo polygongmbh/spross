@@ -14,7 +14,7 @@ options:
 settings:
   base:
     CURRENT_PROJECT_VERSION: 1
-    MARKETING_VERSION: 7.0.0
+    MARKETING_VERSION: 7.1.0
     SWIFT_VERSION: "6.0"
     CODE_SIGN_STYLE: Automatic
     # why: SprossKern ships ONE simulator slice, arm64 (scripts/build-kern.sh).
@@ -29,7 +29,7 @@ settings:
   # why: the two Apple accounts are separate teams and an identifier belongs to ONE
   # of them, so each config signs with the team that owns what it claims. Debug is
   # the personal team, which owns group.net.spross.app; Release is the paid team,
-  # which owns group.net.spross.shared and alone can issue a distribution certificate
+  # which owns group.net.spross.data and alone can issue a distribution certificate
   # (docs/distribution.md). The entitlements read APP_GROUP_ID rather than naming a
   # group, so one generated file per target serves both. Getting the pair wrong is
   # expensive: a device build registers whatever the entitlement claims to the team
@@ -40,7 +40,7 @@ settings:
       APP_GROUP_ID: group.net.spross.app
     Release:
       DEVELOPMENT_TEAM: AF77U46UQ6
-      APP_GROUP_ID: group.net.spross.shared
+      APP_GROUP_ID: group.net.spross.data
 targets:
   Spross:
     type: application
