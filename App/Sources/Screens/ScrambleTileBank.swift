@@ -1,6 +1,13 @@
 import SwiftUI
 import SprossKern
 
+/// How the arrangement stands. Anything but `owed` locks every chip: the
+/// question has been answered, and an order that could still be permuted
+/// afterwards would let a learner brute-force one.
+enum ScrambleVerdict {
+    case owed, correct, wrong
+}
+
 /// The two halves a sentence is arranged on: the order taken shape above, the
 /// words still to be spent below.
 ///
@@ -10,17 +17,15 @@ import SprossKern
 /// dimmed and disabled, rather than vanishing: a bank that empties as it is used
 /// moves every chip under the thumb that is aiming at one.
 ///
+/// Once the order is graded the arrangement BECOMES the card: the bank goes, and
+/// what the phrase means grows under the chips on the one surface, the way a
+/// review card carries its own reveal. A second row of the same words below a
+/// separate answer card read as two answers to one question.
+///
 /// What is parametrized is how a word is SET and what a screen reader hears of
 /// it — `DrillChoiceGrid`'s split, for the same reason: the verdict skin and the
 /// interaction are shared, the typesetting of one option is not.
-struct ScrambleTileBank: View {
-
-    /// How the arrangement stands. Anything but `owed` locks every chip: the
-    /// question has been answered, and an order that could still be permuted
-    /// afterwards would let a learner brute-force one.
-    enum Verdict {
-        case owed, correct, wrong
-    }
+struct ScrambleTileBank<Reveal: View>: View {
 
     /// The atoms in kern's own dealt order — both platforms render the same
     /// deal, so a seeded run is reproducible.
@@ -37,16 +42,21 @@ struct ScrambleTileBank: View {
     /// What a screen reader hears in place of the bare word, where the bare word
     /// is not one. nil ⇒ the word reads as itself.
     var label: ((String) -> Text)?
-    var verdict: Verdict = .owed
+    var verdict: ScrambleVerdict = .owed
     /// A bank slot tapped — an index into `bank`.
     let place: (Int) -> Void
     /// An answer-row slot tapped — an index into `placed`.
     let take: (Int) -> Void
+    /// What grows under the arrangement once it is graded — the meaning, and the
+    /// authored order above it where the arrangement missed.
+    @ViewBuilder var reveal: () -> Reveal
 
     var body: some View {
         VStack(spacing: Theme.spacing.lg) {
-            answerRow
-            bankRow
+            answerCard
+            // why: the spent bank is nothing left to act on, and the same words a
+            // second time under the answer read as a second answer.
+            if !locked { bankRow }
         }
         .animation(.easeOut(duration: 0.2), value: placed.count)
         .animation(.easeOut(duration: 0.2), value: verdict)
@@ -55,6 +65,34 @@ struct ScrambleTileBank: View {
     private var locked: Bool { verdict != .owed }
 
     // MARK: - The arrangement
+
+    /// The order taken shape, and what it grew when it was graded — one surface,
+    /// filled once there is a reveal standing on it.
+    private var answerCard: some View {
+        VStack(spacing: Theme.spacing.md) {
+            answerRow
+            if locked { reveal() }
+        }
+        .padding(Theme.spacing.md)
+        .frame(maxWidth: .infinity)
+        .background {
+            if locked {
+                RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
+                    .fill(Theme.colors.surface)
+            }
+        }
+        // why: OVER the fill, never behind it — a surface drawn on top of the
+        // stroke swallows the one tint saying how the arrangement was graded.
+        .overlay(
+            RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
+                .strokeBorder(rowBorder, style: StrokeStyle(lineWidth: locked ? 2 : 1,
+                                                            dash: locked ? [] : [5, 4]))
+                .allowsHitTesting(false)
+        )
+        // why: correctness is never color alone — the mark carries it for anyone
+        // who cannot tell the two tints apart (WCAG 1.4.1).
+        .overlay(alignment: .topTrailing) { mark }
+    }
 
     private var answerRow: some View {
         ChipFlow(spacing: Theme.spacing.sm) {
@@ -69,15 +107,9 @@ struct ScrambleTileBank: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .padding(Theme.spacing.md)
         // why: the row is reserved whether or not anything stands in it, so the
         // bank below never walks up the screen as the sentence is built.
         .frame(minHeight: Theme.reserve.tile, alignment: .center)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
-                .strokeBorder(rowBorder, style: StrokeStyle(lineWidth: locked ? 2 : 1,
-                                                            dash: locked ? [] : [5, 4]))
-        )
         .overlay {
             if placed.isEmpty {
                 Text("scramble.sentence.hint")
@@ -89,9 +121,6 @@ struct ScrambleTileBank: View {
                     .accessibilityHidden(true)
             }
         }
-        // why: correctness is never color alone — the mark carries it for anyone
-        // who cannot tell the two tints apart (WCAG 1.4.1).
-        .overlay(alignment: .topTrailing) { mark }
         // why: `contain`, not `combine` — combining would swallow the chips, and
         // a placed word that cannot be tapped back is the thing the row exists
         // to allow. The label and the sentence so far are the container's own.
@@ -114,19 +143,22 @@ struct ScrambleTileBank: View {
         case .owed:
             EmptyView()
         case .correct:
-            markImage("checkmark.circle.fill", tint: Theme.colors.success,
-                      label: "a11y.verdict.correct")
+            markImage("checkmark", tint: Theme.colors.success, label: "a11y.verdict.correct")
         case .wrong:
-            markImage("xmark.circle.fill", tint: Theme.colors.wrong, label: "a11y.verdict.wrong")
+            markImage("xmark", tint: Theme.colors.wrong, label: "a11y.verdict.wrong")
         }
     }
 
     /// The mark keeps its own VoiceOver stop rather than hiding: the tint it
     /// sits on is the only other thing saying how the arrangement was graded.
+    ///
+    /// A bare glyph, never one in a filled disc: an ✗ in a circle in a card's
+    /// top corner is the close button everywhere else in the app, and a verdict
+    /// that reads as a control invites a tap that would throw the card away.
     private func markImage(_ symbol: String, tint: Color,
                            label: LocalizedStringKey) -> some View {
         Image(systemName: symbol)
-            .font(.title3)
+            .font(.title3.weight(.bold))
             .foregroundStyle(tint)
             .padding(Theme.spacing.sm)
             .accessibilityLabel(Text(label))

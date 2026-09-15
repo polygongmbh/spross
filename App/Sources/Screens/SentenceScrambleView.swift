@@ -11,7 +11,7 @@ import SprossKern
 /// back, so a slip of the finger costs a tap rather than the question.
 ///
 /// Stateless like the letter drill: no review is ever booked, and the box is
-/// READ for the phrases it has unlocked and never written.
+/// READ for the phrases its join carries and never written.
 ///
 /// The RUN is kern's (`SentenceScrambleRun`): the deal, the ladder of lengths
 /// and the grading by position all live in `run`, and every event becomes a
@@ -73,7 +73,7 @@ struct SentenceScrambleView: View {
 
     /// How the arrangement stands, as the bank wears it. Kern's feedback, read —
     /// this drill grades by position, so there is no near miss to render.
-    private var verdict: ScrambleTileBank.Verdict {
+    private var verdict: ScrambleVerdict {
         if run.owesAnswer { return .owed }
         return run.answerAccepted ? .correct : .wrong
     }
@@ -136,12 +136,10 @@ struct SentenceScrambleView: View {
                                      arranged: run.arranged,
                                      verdict: verdict,
                                      place: { dispatch(SentenceScrambleIntent.PlaceAtom(index: Int32($0))) },
-                                     take: { dispatch(SentenceScrambleIntent.ReturnAtom(index: Int32($0))) })
+                                     take: { dispatch(SentenceScrambleIntent.ReturnAtom(index: Int32($0))) },
+                                     reveal: { revealLines(task) })
                         .id(run.index)
                         .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: 0.97)))
-                    if run.showsAnswer {
-                        answerCard(task)
-                    }
                     controls
                 }
             }
@@ -151,25 +149,28 @@ struct SentenceScrambleView: View {
         .animation(.easeOut(duration: 0.25), value: run.showsAnswer)
     }
 
-    /// The order the catalog authors, once the arrangement has failed to find
-    /// it — the shared reveal, so a drill card and a vocabulary card grow the
-    /// same thing. The meaning rides under it and never before it.
-    private func answerCard(_ task: SentenceScrambleTask) -> some View {
+    /// What the graded arrangement grows, on the answer card itself — the shared
+    /// reveal, so a drill card and a vocabulary card grow the same thing.
+    ///
+    /// The meaning always; the authored order above it only where the
+    /// arrangement missed, since the chips of a clean one already ARE that order
+    /// and setting it a second time would read as a correction.
+    @ViewBuilder
+    private func revealLines(_ task: SentenceScrambleTask) -> some View {
         CardReveal(note: task.gloss) {
-            SpokenWord(pronounce: model.pronounceAction(for: task.display, lang: task.language),
-                       isPlaying: model.isPronouncing(task.display, lang: task.language)) {
-                Text(task.display)
-                    .font(Theme.typography.headline)
-                    .foregroundStyle(Theme.colors.accent)
-                    .multilineTextAlignment(.center)
-                    .minimumScaleFactor(0.6)
-                    .spoken(task.display, language: task.language)
+            if !run.answerAccepted {
+                SpokenWord(pronounce: model.pronounceAction(for: task.display, lang: task.language),
+                           isPlaying: model.isPronouncing(task.display, lang: task.language)) {
+                    Text(task.display)
+                        .font(Theme.typography.headline)
+                        .foregroundStyle(Theme.colors.accent)
+                        .multilineTextAlignment(.center)
+                        .minimumScaleFactor(0.6)
+                        .spoken(task.display, language: task.language)
+                }
             }
         }
-        .padding(Theme.spacing.lg)
-        .frame(maxWidth: .infinity)
-        .cardSurface()
-        .transition(.opacity.combined(with: .move(edge: .top)))
+        .transition(.opacity)
     }
 
     @ViewBuilder

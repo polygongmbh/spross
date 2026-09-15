@@ -121,9 +121,13 @@ data class SentenceScrambleRunState(
     val answerAccepted: Boolean
         get() = feedback == TurnFeedback.Correct || feedback is TurnFeedback.Almost
 
-    /** The card opens on the authored order — the one thing a wrong arrangement has to show. */
-    val showsAnswer: Boolean
-        get() = feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed
+    /**
+     * The card is up, whatever the arrangement was graded.
+     * A clean one raises it too: the ORDER was the question and the MEANING never was,
+     * so an arrangement that vanished the moment it landed
+     * was the one answer the drill never glossed.
+     */
+    val showsAnswer: Boolean get() = !owesAnswer
 
     /** The way out, under the button that goes on, on the second miss in a row. */
     val offersFinish: Boolean get() = missRun >= 1 && feedback == TurnFeedback.Revealed
