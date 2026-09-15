@@ -121,7 +121,9 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Out-of-scope discoveries go to `docs/backlog.md`, catalog content to `catalog/backlog.md` (one-liners with pointers); prune on fix.
 - Whose the bundled recordings are and what their licenses oblige — the ship/legal record —
   is `docs/audio-licensing.md`; no other doc restates a license term.
-- Write plans into docs/ and delete them once shipped, even if you did not write the plan
+- Write plans into docs/ and delete them once shipped, even if you did not write the plan;
+  a plan stays UNCOMMITTED until asked — it is working state, and a file that gets deleted
+  on ship has no business in history
 - Whenever you are corrected or do extensive research, tighten or replace the line that should
   have caught it before adding a new one; a new docs/ file only when no existing doc owns the topic
 - Do not document a removal or absence of something beyond the commits message unless it is likely to be accidentally reintroduced
