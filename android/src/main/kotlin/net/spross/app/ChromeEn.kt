@@ -343,7 +343,7 @@ internal object ChromeEn : Chrome {
         "list back here."
     override val briefingCopied = "Copied"
     override val briefingShare = "Share"
-    override val briefingReturnTitle = "Back into the garden"
+    override val briefingReturnTitle = "Bring in the harvest"
     override val briefingReturnPaste = "Paste"
     override val briefingReturnEmpty = "There is no word list in the clipboard."
     override val briefingGroupNew = "New to your garden"
@@ -406,7 +406,7 @@ internal object ChromeEn : Chrome {
     override val headlineReviews = listOf(
         "Back to your words",
         "A few words are up again",
-        "Reach into the garden",
+        "Time to pick a few",
         "Time for a refresher",
     )
     override val headlineWarmUp = listOf(

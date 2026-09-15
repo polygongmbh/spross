@@ -1571,13 +1571,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zurück in den Garten"
+            "value" : "Ernte einbringen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back into the garden"
+            "value" : "Bring in the harvest"
           }
         }
       }
@@ -3133,13 +3133,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Greif in den Garten"
+            "value" : "Zeit zum Pflücken"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reach into the garden"
+            "value" : "Time to pick a few"
           }
         }
       }
