@@ -46,6 +46,6 @@
   "have-a-good-journey": { "text": "Safari njema!" },
   "how-much-is-the-fare": { "text": "Nauli ni ngapi?" },
   "the-bus-has-already-departed": { "text": "Basi limeshaondoka.", "notes": { "sw": "limeshaondoka = tayari limeondoka" } },
-  "my-parents-are-coming-by-train": { "text": "Wazazi wangu wanakuja kwa treni." }
+  "my-parents-are-coming-by-train": { "text": "Wazazi wangu wanakuja kwa treni.", "variants": ["Wazazi wangu wanakuja na treni."] }
  }
 }
