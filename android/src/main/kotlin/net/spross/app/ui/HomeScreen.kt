@@ -128,7 +128,7 @@ fun HomeScreen(model: AppModel) {
                 ),
                 contentPadding = PaddingValues(horizontal = Theme.spacing.lg, vertical = Theme.spacing.sm),
             ) {
-                Text("📦 ${chrome.boxDoor}")
+                Text("🪴 ${chrome.boxDoor}")
             }
         }
 

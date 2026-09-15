@@ -1,7 +1,7 @@
 import SwiftUI
 
-/// Single-screen app: Home is the root, the Box pushes via the 📦 toolbar
-/// icon. Onboarding sheet on first launch, full-screen session cover.
+/// Single-screen app: Home is the root, the Box pushes via the toolbar
+/// door. Onboarding sheet on first launch, full-screen session cover.
 struct RootView: View {
     @Bindable var model: AppModel
 
@@ -61,7 +61,10 @@ struct RootView: View {
                             boxArea = nil
                             boxPresented = true
                         } label: {
-                            Image(systemName: "shippingbox.fill")
+                            // A grown tree rather than a leaf: `leaf.fill`
+                            // is the learning tier's icon on the screen
+                            // this opens, and the sprout is the streak's.
+                            Image(systemName: "tree.fill")
                         }
                         .accessibilityLabel("box.door")
                     }
