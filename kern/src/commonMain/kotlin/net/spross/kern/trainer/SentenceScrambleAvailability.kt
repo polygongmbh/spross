@@ -1,7 +1,6 @@
 package net.spross.kern.trainer
 
 import net.spross.kern.box.BoxState
-import net.spross.kern.box.Growth
 import net.spross.kern.box.Inventory
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
@@ -10,10 +9,12 @@ import net.spross.kern.model.CardKind
  * What the sentence scramble can ASK of a box: the phrases whose word order is worth putting
  * back together.
  *
- * One fact, and it is the box's own — a phrase the learner has not unlocked yet
- * ([Growth.isPhraseUnlocked]) is made of words they do not hold, so arranging it would be
- * guessing rather than syntax. Nothing here is a device fact, so unlike the letter drill this
- * needs no capability port at all.
+ * The whole join, never a growth bar.
+ * Arranging is not recall — the atoms are handed over and the gloss stands beside them,
+ * so a phrase built of words the learner has not met is exposure to an ORDER
+ * rather than a question they cannot answer.
+ * Nothing here reads scheduling at all, and nothing here is a device fact,
+ * so unlike the letter drill this needs no capability port either.
  *
  * Built ONCE per run: it walks the whole join and tokenizes every phrase in it.
  */
@@ -26,18 +27,13 @@ object SentenceScrambleAvailability {
     const val MIN_ATOMS: Int = 3
 
     /**
-     * Below this many phrases the drill is the same handful every evening, and a run that ends
-     * after three questions reads as the app having nothing to give. The chip stays away.
-     */
-    const val POOL_FLOOR: Int = 3
-
-    /**
-     * The unlocked phrases, in seed order, each already cut into the atoms an arrangement
-     * moves. Cut here rather than per question: tokenizing is a sweep of the whole join.
+     * The phrases worth arranging, in seed order,
+     * each already cut into the atoms an arrangement moves.
+     * Cut here rather than per question: tokenizing is a sweep of the whole join.
      */
     data class Report(val phrases: List<Phrase>) {
 
-        val drillAvailable: Boolean get() = phrases.size >= POOL_FLOOR
+        val drillAvailable: Boolean get() = phrases.isNotEmpty()
 
         /**
          * The Sprosse ceiling: one Sprosse per atom the longest phrase carries past [MIN_ATOMS],
@@ -74,11 +70,10 @@ object SentenceScrambleAvailability {
     /**
      * The full report.
      *
-     * A suspended phrase is left out — suspending says stop asking this — while a phrase with no
-     * schedule at all stays in: the unlock gate is about the COMPONENTS, and a phrase the learner
-     * has never been shown is exactly what this drill prepares them for.
+     * Every phrase the join carries stays in, suspended and unscheduled ones among them:
+     * suspending says stop REVIEWING a card, which an arrangement is not.
      *
-     * A phrase whose text carries `…` is left out too: that ellipsis is an authored fill-in-blank
+     * A phrase whose text carries `…` is left out: that ellipsis is an authored fill-in-blank
      * pattern, so the words around it are a frame rather than a sentence in an order.
      *
      * The chips come out of the join rather than the phrase alone, because whether the leading
@@ -91,8 +86,6 @@ object SentenceScrambleAvailability {
         return Report(
             cards
                 .filter { it.kind == CardKind.Phrase }
-                .filter { box.scheduling[it.id]?.suspended != true }
-                .filter { Growth.isPhraseUnlocked(box, it) }
                 .filter { '…' !in it.target.text }
                 .map {
                     Phrase(it, ScrambleCapitals.neutralized(ScrambleTokenizer.atoms(it.target.text), inherent))

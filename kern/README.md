@@ -207,7 +207,7 @@ bar are on `BoxConfig` itself. What the product decided:
 - **TWO growth bars, not one**: `growingStability` (`Statistics.isGrowing`, facade
   `BoxEngine.isGrowing(state, cardId)`) is gate (a) — Review phase AND stability ≥ 6
   days, so a lapse un-lands a card, which is the point: it needs the support again.
-  That bar gates phrase unlock and the drill pools (§6), and picks the support a
+  That bar gates phrase unlock and the letter drill's pool (§6), and picks the support a
   word gets while it is still on its way in (§3) — the emoji that props recall up
   and the sound prompt that withdraws the meaning read it from opposite sides.
   `MATURED_STABILITY` (`Statistics.isConsolidated`, facade `BoxEngine.isConsolidated`)
@@ -265,8 +265,8 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   source-independent, so a source switch can never re-lock phrases. Components with no
   TARGET realization are excluded from the gate.
   Gate: not suspended, and growing (§5) — the predicate, never a restated threshold.
-  The same predicate is the sentence scramble's pool: a phrase built from words the learner
-  does not hold yet is one they would put in order by guessing.
+  It gates INTRODUCTION alone; the sentence scramble arranges the whole join, since handing
+  a phrase's own words back in the wrong order asks for syntax rather than for the words.
 - **Due order is day-bucketed, then shuffled**: reviews drain the oldest overdue DAY first
   for backlog fairness, but inside a day the order is a hash, seeded with the card's OWN due
   day so the function stays pure and the bucket still reshuffles from one day to the next.

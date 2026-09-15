@@ -7,9 +7,11 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
- * Which phrases the sentence scramble may ask. Every row here is a shape the gate has an
- * opinion about: a locked phrase, a component-free one, one too short to have an order, an
- * authored fill-in-blank pattern, and a suspended one.
+ * Which phrases the sentence scramble may ask.
+ * Every row here is a shape the gate has an opinion about:
+ * one too short to have an order, and an authored fill-in-blank pattern.
+ * What the box knows about a phrase — its components, its schedule, its suspension —
+ * is not one of them.
  */
 class SentenceScrambleAvailabilityTest {
 
@@ -39,30 +41,26 @@ class SentenceScrambleAvailabilityTest {
         ScrambleFixture.box(words + phrases, standing = standing, suspended = suspended),
     )
 
-    /** An unlocked phrase of at least three atoms is asked, in seed order, already cut up. */
+    /** Any phrase of at least three atoms is asked, in seed order, already cut up. */
     @Test
-    fun everyUnlockedPhraseWithAWordOrderIsAsked() {
+    fun everyPhraseWithAWordOrderIsAsked() {
         val report = report()
         assertEquals(
-            listOf("runs", "runs-slow", "sleeps", "mouse-sleeps", "mouse-eats"),
+            listOf("runs", "runs-slow", "locked", "greeting", "sleeps", "mouse-sleeps", "mouse-eats"),
             report.phrases.map { it.card.id },
         )
         assertEquals(listOf("die", "Maus", "läuft"), report.phrases.first().atoms.map { it.text })
     }
 
-    /** A phrase whose components the learner does not hold is words they cannot arrange. */
+    /**
+     * Arranging is exposure to an order, not recall of the words,
+     * so what the components stand at never decides whether a phrase may be asked.
+     */
     @Test
-    fun aLockedPhraseIsNotAsked() {
-        assertFalse("locked" in report().phrases.map { it.card.id })
-        // The gate is the components, so letting one fall back below the growing bar re-locks it.
-        val shaky = report(standing = mapOf("run" to 1.0))
-        assertEquals(emptyList(), shaky.phrases.map { it.card.id })
-    }
-
-    /** A component-free phrase never takes the unlock path, so it is never arranged either. */
-    @Test
-    fun aComponentFreePhraseIsNotAsked() {
-        assertFalse("greeting" in report().phrases.map { it.card.id })
+    fun whatTheComponentsStandAtDecidesNothing() {
+        assertTrue("locked" in report().phrases.map { it.card.id }, "components the box does not hold")
+        assertTrue("greeting" in report().phrases.map { it.card.id }, "no components at all")
+        assertEquals(report().phrases.map { it.card.id }, report(standing = mapOf("run" to 1.0)).phrases.map { it.card.id })
     }
 
     /** Below three WORDS there is no order to put back — the marks placed alongside are not one. */
@@ -80,10 +78,10 @@ class SentenceScrambleAvailabilityTest {
         assertFalse("blank" in report().phrases.map { it.card.id })
     }
 
-    /** Suspending a phrase says stop asking it. */
+    /** Suspending says stop REVIEWING a card, and an arrangement is not a review. */
     @Test
-    fun aSuspendedPhraseIsNotAsked() {
-        assertFalse("runs" in report(suspended = setOf("runs")).phrases.map { it.card.id })
+    fun aSuspendedPhraseIsStillArranged() {
+        assertTrue("runs" in report(suspended = setOf("runs")).phrases.map { it.card.id })
     }
 
     /**
@@ -109,12 +107,12 @@ class SentenceScrambleAvailabilityTest {
         assertEquals(5, report.atomsAt(3))
     }
 
-    /** The chip predicate is the pool floor, and an empty box offers nothing. */
+    /** One phrase carrying an order is a drill; a box holding none is not. */
     @Test
-    fun theChipWaitsForAPoolWorthARun() {
+    fun theChipWaitsForAPhraseWithAnOrder() {
         assertTrue(SentenceScrambleAvailability.drillExists(ScrambleFixture.box(words + phrases)))
-        val thin = words + phrases.filter { it.id == "runs" }
-        assertFalse(SentenceScrambleAvailability.drillExists(ScrambleFixture.box(thin)))
+        val orderless = words + phrases.filter { it.id == "short" || it.id == "blank" }
+        assertFalse(SentenceScrambleAvailability.drillExists(ScrambleFixture.box(orderless)))
         assertFalse(SentenceScrambleAvailability.drillExists(ScrambleFixture.box(emptyList())))
     }
 }

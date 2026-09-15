@@ -19,7 +19,7 @@ the review loop these share their card and their answering rules with is `design
   and six chips sharing one of them would be six slivers of a word apiece.
   A chip is up exactly while its entry can offer something —
   counting content, an alphabet file for the target, a joined atlas or joined calendars,
-  a consolidated word long enough to scramble or an unlocked phrase of three words
+  a consolidated word long enough to scramble or a phrase of three words
   (`../kern/docs/turns.md`) — and the hub offers only languages with authored content,
   since everything on it is registry-driven from kern and the catalog.
 - **A step of the ladder is a Sprosse in EVERY interface language**, plural Sprossen:

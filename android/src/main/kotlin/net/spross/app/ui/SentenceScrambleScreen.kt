@@ -30,7 +30,7 @@ import net.spross.app.speakFormOnTap
 import net.spross.kern.trainer.SentenceScrambleTask
 
 /**
- * The sentence scramble: an unlocked phrase handed over as its own words, shuffled, and put
+ * The sentence scramble: a phrase handed over as its own words, shuffled, and put
  * back into order by tapping. It is the one drill whose answer is an ARRANGEMENT rather than
  * something spelled — the words are given and only their order is withheld
  * (`docs/drills-words.md`).

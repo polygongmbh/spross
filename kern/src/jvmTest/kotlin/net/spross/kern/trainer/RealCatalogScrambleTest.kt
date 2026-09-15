@@ -6,8 +6,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
-import net.spross.kern.box.Box
-import net.spross.kern.box.BoxState
 import net.spross.kern.catalog.RealCatalog
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
@@ -16,11 +14,11 @@ import net.spross.kern.model.Language
 /**
  * The two scrambles against the SHIPPING catalog — rules only, never a pinned draw.
  *
- * A box where every card has grown is the widest pool either drill can ever see, so what the
- * eligibility gates let through here is exactly what they let through in the field. The
- * assertions the synthetic fixtures cannot make are the ones that need real content: that each
- * gate still EXCLUDES something (an authored `…` frame, a two-word verb, a three-letter word),
- * which is what would quietly stop being true if a rule were dropped.
+ * Every card past the display bar ([ScrambleFixture.box]) is the widest pool the word scramble
+ * can ever see, so what the eligibility gates let through here is exactly what they let through
+ * in the field. The assertions the synthetic fixtures cannot make are the ones that need real
+ * content: that each gate still EXCLUDES something (an authored `…` frame, a two-word verb, a
+ * three-letter word), which is what would quietly stop being true if a rule were dropped.
  */
 class RealCatalogScrambleTest {
 
@@ -29,30 +27,13 @@ class RealCatalogScrambleTest {
     private fun cards(source: Language, target: Language): List<Card> =
         RealCatalog.catalog.join(source, target)
 
-    /** Every card grown past the display bar: phrase unlock opens and the word pool is widest. */
-    private fun grown(cards: List<Card>): BoxState {
-        var state = Box.state(cards)
-        for (card in cards) {
-            state = Box.inject(
-                state,
-                Box.sched(
-                    card.id,
-                    stability = 60.0,
-                    dueMillis = Box.plusDays(Box.day1, 3.0),
-                    lastReviewMillis = Box.day1,
-                ),
-            )
-        }
-        return state
-    }
-
     // MARK: - Word scramble
 
     /** Every form a run could hand over is one word, written in letters, long enough to mix. */
     @Test
     fun everyFormOfferedIsOneSpellingLongEnoughToAnchor() {
         for ((source, target) in pairs) {
-            val words = WordScrambleAvailability.report(grown(cards(source, target))).words
+            val words = WordScrambleAvailability.report(ScrambleFixture.box(cards(source, target))).words
             assertTrue(words.size >= WordScrambleAvailability.POOL_FLOOR, "$target: ${words.size} words")
             for (spelling in words) {
                 val card = spelling.card
@@ -78,7 +59,7 @@ class RealCatalogScrambleTest {
     @Test
     fun theWordGateStillExcludesRealContent() {
         val cards = cards("en", "de")
-        val offered = WordScrambleAvailability.report(grown(cards)).words.map { it.card.id }.toSet()
+        val offered = WordScrambleAvailability.report(ScrambleFixture.box(cards)).words.map { it.card.id }.toSet()
         val singleWordKinds = cards.filter { it.kind != CardKind.Phrase && it.kind != CardKind.Idiom }
         val multiToken = singleWordKinds.filter { ScrambleTokenizer.tokens(it.target.text).size > 1 }
         val tooShort = singleWordKinds.filter {
@@ -95,7 +76,7 @@ class RealCatalogScrambleTest {
         // Swahili's bound stems: never asked as authored, always through an agreeing form.
         val stems = cards("de", "sw").filter { it.target.text.startsWith("-") }
         assertTrue(stems.size >= 20, "sw authors ${stems.size} bound stems — the fallback is untested")
-        val sw = WordScrambleAvailability.report(grown(cards("de", "sw")))
+        val sw = WordScrambleAvailability.report(ScrambleFixture.box(cards("de", "sw")))
         val asked = sw.words.filter { it.card.target.text.startsWith("-") }
         assertTrue(asked.isNotEmpty(), "no bound stem reached the pool through its variants")
         assertTrue(asked.all { spelling -> spelling.forms.none { it.startsWith("-") } })
@@ -106,7 +87,7 @@ class RealCatalogScrambleTest {
     fun everyWordQuestionMixesTheSpellingItAsksFor() {
         for ((source, target) in pairs + ("de" to "uk")) {
             val config = WordScrambleRunConfig(
-                report = WordScrambleAvailability.report(grown(cards(source, target))),
+                report = WordScrambleAvailability.report(ScrambleFixture.box(cards(source, target))),
                 normalizer = null,
             )
             for (level in 1..WordScrambleMasking.MAX_LEVEL) {
@@ -144,11 +125,8 @@ class RealCatalogScrambleTest {
     @Test
     fun everyPhraseOfferedHasAWordOrderToPutBack() {
         for ((source, target) in pairs) {
-            val report = SentenceScrambleAvailability.report(grown(cards(source, target)))
-            assertTrue(
-                report.phrases.size >= SentenceScrambleAvailability.POOL_FLOOR,
-                "$target: ${report.phrases.size} phrases",
-            )
+            val report = SentenceScrambleAvailability.report(ScrambleFixture.box(cards(source, target)))
+            assertTrue(report.drillAvailable, "$target: ${report.phrases.size} phrases")
             for (phrase in report.phrases) {
                 val text = phrase.card.target.text
                 assertEquals(CardKind.Phrase, phrase.card.kind, "$target: ${phrase.card.id}")
@@ -183,7 +161,7 @@ class RealCatalogScrambleTest {
     fun theLeadingChipKeepsOnlyACapitalTheWordOwns() {
         val cards = cards("en", "de")
         val nouns = cards.filter { it.kind == CardKind.Noun }.map { it.target.text }.toSet()
-        val phrases = SentenceScrambleAvailability.report(grown(cards)).phrases
+        val phrases = SentenceScrambleAvailability.report(ScrambleFixture.box(cards)).phrases
         var lowered = 0
         for (phrase in phrases) {
             val authored = ScrambleTokenizer.atoms(phrase.card.target.text).map { it.text }
@@ -210,7 +188,7 @@ class RealCatalogScrambleTest {
     @Test
     fun theSentenceGateStillExcludesRealContent() {
         val cards = cards("en", "de")
-        val offered = SentenceScrambleAvailability.report(grown(cards)).phrases.map { it.card.id }.toSet()
+        val offered = SentenceScrambleAvailability.report(ScrambleFixture.box(cards)).phrases.map { it.card.id }.toSet()
         val phrases = cards.filter { it.kind == CardKind.Phrase }
         val blanks = phrases.filter { '…' in it.target.text }
         val short = phrases.filter {
@@ -227,7 +205,7 @@ class RealCatalogScrambleTest {
     fun everyArrangementIsDealtOutOfOrder() {
         for ((source, target) in pairs) {
             val config = SentenceScrambleRunConfig(
-                SentenceScrambleAvailability.report(grown(cards(source, target))),
+                SentenceScrambleAvailability.report(ScrambleFixture.box(cards(source, target))),
             )
             var state = SentenceScrambleRun.openAt(config, 1, Random(target.hashCode()))
             repeat(60) {

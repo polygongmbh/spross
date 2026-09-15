@@ -4,12 +4,12 @@ import SprossKern
 /// What the sentence scramble can ASK on THIS profile — kern's report, whole.
 ///
 /// No capability port, for the same reason its word sibling needs none: an
-/// arrangement is tapped, never heard. Which phrases are unlocked, how they cut
-/// into atoms and how tall the ladder of lengths runs are all kern's
+/// arrangement is tapped, never heard. Which phrases carry an order, how they
+/// cut into atoms and how tall the ladder of lengths runs are all kern's
 /// (`SentenceScrambleAvailability`), out of the box alone.
 ///
-/// Deliberately NOT cached: phrases unlock as their words grow, so the hub
-/// rebuilds this rather than deciding once at launch that the drill is empty.
+/// Deliberately NOT cached: the join is the pool, so a profile switched under
+/// the hub rebuilds this rather than standing on the language it opened with.
 @MainActor
 struct SentenceScrambleAvailability {
 
@@ -22,7 +22,7 @@ struct SentenceScrambleAvailability {
 
     var drillAvailable: Bool { report.drillAvailable }
 
-    /// The longest phrase the box has unlocked, as a Sprosse count — kern's.
+    /// The longest phrase the join carries, as a Sprosse count — kern's.
     var maxLevel: Int { Int(report.maxLevel) }
 
     /// A profile with no box can ask nothing; kern's own empty report says so

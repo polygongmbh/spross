@@ -65,7 +65,7 @@ what each may draw at all is kern's (`LetterDrillAvailability`, `WordScrambleAva
 
 ## Sentence scramble
 
-- **An unlocked phrase is handed over as its own words, shuffled** — a bank of chips below,
+- **A phrase is handed over as its own words, shuffled** — a bank of chips below,
   an empty answer row above, a tap carrying a chip up into place and another carrying it
   back down. Tapping is the whole gesture:
   a drag buys the learner nothing an arrangement needs,
@@ -74,5 +74,12 @@ what each may draw at all is kern's (`LetterDrillAvailability`, `WordScrambleAva
   so nothing is typed and no typo budget applies (`ScrambleGrading`) —
   only the order that is right and every order that is not.
   That also makes it the one drill whose words are given:
-  the retrieval the review loop grades is already done,
+  there is no retrieval left to grade,
   and what is left to learn is where each word goes.
+- **It draws on the whole catalog, past no growth bar at all** —
+  the only drill that does.
+  The atoms are handed over and the translation stands beside them,
+  so a phrase built of words the learner has never met is exposure to an ORDER
+  rather than a question they cannot answer,
+  and a suspended phrase stays in: suspending stops a card being REVIEWED,
+  which an arrangement is not.

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Sentence scramble now offers every phrase of your language, not only the ones whose words you have already grown.
+
+## 7.1.1 — 2026-09-15
+
 - The box is now the garden throughout its chrome copy — title, subtitle, and every reach-in, sow, and take-back phrase, in English and German.
 - The free-practice card on Home is now the Meadow, the open ground beside your garden where nothing is scheduled and no drill ever comes due.
 - The garden button on Home now wears a plant instead of a packing box.

@@ -39,7 +39,7 @@ enum HubDestination: Identifiable {
     case dates(source: String, target: String)
     /// Spelling a word back out of its own letters, in the learned language.
     case wordScramble(language: String)
-    /// Putting an unlocked phrase's words back in order, in the learned language.
+    /// Putting a phrase's words back in order, in the learned language.
     case sentenceScramble(language: String)
 
     var id: String {
