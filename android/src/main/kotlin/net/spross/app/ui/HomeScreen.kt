@@ -158,7 +158,7 @@ fun HomeScreen(model: AppModel) {
 
         ListenCard(model)
 
-        MeadowCard(model)
+        TrainerHubCard(model)
 
         TalkCard(model) { briefingOpen = true }
 

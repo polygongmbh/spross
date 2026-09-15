@@ -29,11 +29,11 @@ import net.spross.app.datesOffered
 import net.spross.app.lettersOffered
 import net.spross.app.numbersOffered
 import net.spross.app.sentenceScrambleOffered
-import net.spross.app.meadowOffered
+import net.spross.app.trainerHubOffered
 import net.spross.app.wordScrambleOffered
 
 /**
- * One entry on the meadow card: its face, its name and what it opens.
+ * One entry on the hub card: its face, its name and what it opens.
  *
  * A VALUE per chip rather than a composable apiece, because the card has to COUNT its
  * entries before it can lay them out — an `if` inside a row gives the wrap nothing to count.
@@ -41,8 +41,8 @@ import net.spross.app.wordScrambleOffered
 data class HubChip(val emoji: String, val title: String, val open: () -> Unit)
 
 /**
- * The meadow: free practice, with no schedule and no limit — open ground beside the tended
- * garden, where no run ever books a review.
+ * The trainer hub: free practice, with no schedule and no limit — open ground beside the
+ * tended box, where no run ever books a review.
  *
  * Up to SIX entries, on one row while there are no more than three of them and on two lines
  * past that ([chipRows]). The four that have reading matter open a PAGE rather than a run —
@@ -52,7 +52,7 @@ data class HubChip(val emoji: String, val title: String, val open: () -> Unit)
  * entry at all is absent rather than empty (`docs/drills.md`).
  */
 @Composable
-fun MeadowCard(model: AppModel) {
+fun TrainerHubCard(model: AppModel) {
     val chrome = model.chrome
     // why: what the card offers is worked out once per BOX rather than once per frame — a
     // chip's press spring recomposes this card for the whole of its spring.
@@ -106,7 +106,7 @@ fun chipRows(chips: List<HubChip>): List<List<HubChip>> = when {
 
 /** Every entry this profile can reach, in the order the card offers them. */
 private fun AppModel.hubChips(chrome: Chrome): List<HubChip> {
-    if (!meadowOffered) return emptyList()
+    if (!trainerHubOffered) return emptyList()
     val chips = mutableListOf<HubChip>()
     if (numbersOffered) chips += HubChip("🔢", chrome.trainerSkillNumbers) { openNumbers() }
     if (lettersOffered) chips += HubChip("🔤", chrome.trainerSkillLetters) { openLetters() }
@@ -122,7 +122,7 @@ private fun AppModel.hubChips(chrome: Chrome): List<HubChip> {
 }
 
 /**
- * One entry of the meadow card: the glyph large on top, the name at full caption size
+ * One entry of the hub card: the glyph large on top, the name at full caption size
  * under it — the iOS chip's face, stacked so three names share the row without shrinking
  * to fit beside their glyphs. The label still steps down rather than wrapping, but only
  * where a name alone outgrows a third of the screen.

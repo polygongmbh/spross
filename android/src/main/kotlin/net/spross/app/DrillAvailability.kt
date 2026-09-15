@@ -24,7 +24,7 @@ import net.spross.kern.trainer.WordScrambleAvailability
  * The two scrambles stand LAST because each is a walk of the whole join: a profile with any
  * of the four cheap entries never pays for them.
  */
-val AppModel.meadowOffered: Boolean
+val AppModel.trainerHubOffered: Boolean
     get() = numbersOffered || lettersOffered || countriesOffered || datesOffered ||
         wordScrambleOffered || sentenceScrambleOffered
 

@@ -1,7 +1,7 @@
 # Spross — app design (v2)
 
 This doc is the build contract for the REVIEW LOOP: the card, the typing, Home, the Box.
-Four app domains have their own pages — `drills.md` (the meadow's drills and their ladders),
+Four app domains have their own pages — `drills.md` (the hub's drills and their ladders),
 `surfaces.md` (listening, the wrist, Android), `read-aloud.md` (what speaks, and when)
 and `performance.md` (what may run per frame, per answer and per activation).
 The product thesis and phase plan live in `../../docs/roadmap.md`;
@@ -307,7 +307,7 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   and reads that conversation's answer back into own words (`Briefing`, `Harvest`).
   It leads the Box tab's own-content panel — the one entry there that goes out and comes back,
   with the words it writes home under it,
-  and stands on Home under the meadow, wearing the same face as the listening card:
+  and stands on Home under the hub, wearing the same face as the listening card:
   both are ways into the words that are not the round, and this is the only one that
   leaves the app, so the panel behind a tab was a door nobody found.
   UNDER the day's card and never in it: Home still answers "what do I do right now"

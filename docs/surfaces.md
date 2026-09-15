@@ -1,6 +1,6 @@
 # Surfaces beyond the review loop
 
-Listening, the wrist and the Android companion. The meadow's drills are `drills.md`'s;
+Listening, the wrist and the Android companion. The hub's drills are `drills.md`'s;
 the review loop itself, and the auto-advance beats these share with it, are `design.md`'s.
 
 ## Listening
@@ -50,7 +50,7 @@ the review loop itself, and the auto-advance beats these share with it, are `des
 
 `android/` renders THIS contract with Compose — same engine facades, and since the turn
 and both drill runs moved into kern the same rules by construction, not by porting discipline.
-The meadow ships there whole (`drills.md`).
+The hub ships there whole (`drills.md`).
 Platform deltas only: the catalog and the chimes ship as APK assets synced from
 `catalog/` and `App/Resources/Sounds/`,
 the box is app-private and written after every answer rather than debounced,

@@ -603,7 +603,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * What the overview pages read: the climbed ladder and the two drills' best Sprossen.
      * Four preference reads, recomputed rather than cached — a Sprosse opens as a run closes.
      *
-     * Never on the way to Home: the meadow card gates on file presence alone. What the
+     * Never on the way to Home: the hub card gates on file presence alone. What the
      * LETTER drill can ask is not here: that one is a catalog walk, so it belongs to the
      * page that reads it ([refreshLetters]).
      */

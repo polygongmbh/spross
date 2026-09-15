@@ -11,7 +11,7 @@ the review loop these share their card and their answering rules with is `design
 
 ## The hub, and what a Sprosse is
 
-- **The meadow card offers SIX entries** — Zahlen, Buchstaben, Länder, Datum and the two
+- **The hub card offers SIX entries** — Zahlen, Buchstaben, Länder, Datum and the two
   scrambles — and more than THREE visible chips break the row into TWO lines,
   `ceil(n/2)` above and `floor(n/2)` below, so four stand 2+2, five 3+2 and six 3+3.
   Each line keeps the equal-width chips one line carries today,
