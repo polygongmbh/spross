@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Icon
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,6 +41,11 @@ import net.spross.kern.trainer.ScrambleAtom
  *
  * A chip is as wide as its word and no wider — "und" is not the size of "Krankenhaus", and a
  * grid that gave them one width would say the two are the same size of thing.
+ *
+ * Once the order is graded the arrangement BECOMES the card: the bank goes, and what the
+ * phrase means grows under the chips on the one surface, the way a review card carries its own
+ * reveal. A second row of the same words below a separate answer card read as two answers to
+ * one question.
  */
 @Composable
 fun ScrambleTileBank(
@@ -58,10 +63,17 @@ fun ScrambleTileBank(
     place: (Int) -> Unit,
     /** An answer-row slot tapped — an index into [placed]. */
     take: (Int) -> Unit,
+    /**
+     * What grows under the arrangement once it is graded — the meaning,
+     * and the authored order above it where the arrangement missed.
+     */
+    reveal: @Composable () -> Unit,
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
-        AnswerRow(placed, arranged, verdict, chrome, take)
-        BankRow(bank, isTaken, verdict, chrome, place)
+        AnswerCard(placed, arranged, verdict, chrome, take, reveal)
+        // why: the spent bank is nothing left to act on, and the same words a second time
+        // under the answer read as a second answer.
+        if (!verdict.locked) BankRow(bank, isTaken, verdict, chrome, place)
     }
 }
 
@@ -74,14 +86,18 @@ enum class ScrambleVerdict { Owed, Correct, Wrong }
 
 private val ScrambleVerdict.locked: Boolean get() = this != ScrambleVerdict.Owed
 
-/** The arrangement: the words carried up, in the order they were committed. */
+/**
+ * The order taken shape, and what it grew when it was graded — one surface, filled once there
+ * is a reveal standing on it.
+ */
 @Composable
-private fun AnswerRow(
+private fun AnswerCard(
     placed: List<ScrambleAtom>,
     arranged: String,
     verdict: ScrambleVerdict,
     chrome: Chrome,
     take: (Int) -> Unit,
+    reveal: @Composable () -> Unit,
 ) {
     val border = when (verdict) {
         ScrambleVerdict.Owed -> Theme.colors.borderStrong
@@ -92,9 +108,15 @@ private fun AnswerRow(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            // why: the row is reserved whether or not anything stands in it, so the bank
-            // below never walks up the screen as the sentence is built.
-            .heightIn(min = Theme.reserve.tile)
+            .then(
+                if (verdict.locked) {
+                    Modifier.clip(RoundedCornerShape(radius)).background(Theme.colors.surface)
+                } else {
+                    Modifier
+                },
+            )
+            // why: AFTER the fill, so the stroke draws over it — a surface laid on top of the
+            // stroke swallows the one tint saying how the arrangement was graded.
             .drawBehind {
                 val width = (if (verdict.locked) 2.dp else 1.dp).toPx()
                 drawRoundRect(
@@ -116,33 +138,46 @@ private fun AnswerRow(
             // row exists to allow. The label and the sentence so far are the row's own.
             .semantics {
                 contentDescription = chrome.a11yScrambleArrangement
-                stateDescription = arranged
+                // why: the border tint is the whole verdict on screen, and a border is
+                // nothing TalkBack can read — so the state carries it in words.
+                stateDescription = when (verdict) {
+                    ScrambleVerdict.Owed -> arranged
+                    ScrambleVerdict.Correct -> "$arranged, ${chrome.a11yVerdictCorrect}"
+                    ScrambleVerdict.Wrong -> "$arranged, ${chrome.a11yVerdictWrong}"
+                }
             },
         contentAlignment = Alignment.Center,
     ) {
-        if (placed.isEmpty()) {
-            Text(
-                chrome.scrambleSentenceHint,
-                style = MaterialTheme.typography.bodySmall,
-                color = Theme.colors.textSecondary,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(horizontal = Theme.spacing.lg),
-            )
-        }
-        ChipFlow {
-            placed.forEachIndexed { slot, atom ->
-                ScrambleChip(
-                    word = atom.text,
-                    dimmed = false,
-                    enabled = !verdict.locked,
-                    // TalkBack's "double tap to …": what this chip's tap would DO.
-                    action = chrome.a11yActionTakeBack,
-                ) { take(slot) }
+        Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
+            Box(
+                // why: the row is reserved whether or not anything stands in it, so the bank
+                // below never walks up the screen as the sentence is built.
+                modifier = Modifier.fillMaxWidth().heightIn(min = Theme.reserve.tile),
+                contentAlignment = Alignment.Center,
+            ) {
+                if (placed.isEmpty()) {
+                    Text(
+                        chrome.scrambleSentenceHint,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Theme.colors.textSecondary,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(horizontal = Theme.spacing.lg),
+                    )
+                }
+                ChipFlow {
+                    placed.forEachIndexed { slot, atom ->
+                        ScrambleChip(
+                            word = atom.text,
+                            dimmed = false,
+                            enabled = !verdict.locked,
+                            // TalkBack's "double tap to …": what this chip's tap would DO.
+                            action = chrome.a11yActionTakeBack,
+                        ) { take(slot) }
+                    }
+                }
             }
+            if (verdict.locked) reveal()
         }
-        // why: correctness is never color alone — the mark carries it for anyone who cannot
-        // tell the two tints apart (WCAG 1.4.1).
-        Mark(verdict, chrome, Modifier.align(Alignment.TopEnd))
     }
 }
 
@@ -213,18 +248,3 @@ private fun ScrambleChip(
     }
 }
 
-/**
- * The mark keeps its own TalkBack stop rather than hiding: the tint it sits on is the only
- * other thing saying how the arrangement was graded.
- */
-@Composable
-private fun Mark(verdict: ScrambleVerdict, chrome: Chrome, modifier: Modifier) {
-    val (icon, tint, said) = when (verdict) {
-        ScrambleVerdict.Owed -> return
-        ScrambleVerdict.Correct ->
-            Triple(SprossIcons.Check, Theme.colors.success, chrome.a11yVerdictCorrect)
-        ScrambleVerdict.Wrong ->
-            Triple(SprossIcons.Close, Theme.colors.wrong, chrome.a11yVerdictWrong)
-    }
-    Icon(icon, contentDescription = said, tint = tint, modifier = modifier.padding(Theme.spacing.sm))
-}

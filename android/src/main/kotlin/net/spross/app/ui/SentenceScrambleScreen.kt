@@ -110,8 +110,9 @@ fun SentenceScrambleScreen(model: AppModel) {
                     chrome = chrome,
                     place = flow::place,
                     take = flow::take,
-                )
-                if (state.showsAnswer) AnswerCard(model, task, chrome)
+                ) {
+                    RevealLines(model, task, state.answerAccepted, chrome)
+                }
                 Controls(flow, chrome, leave)
             }
             Spacer(Modifier.height(Theme.spacing.sm))
@@ -120,14 +121,22 @@ fun SentenceScrambleScreen(model: AppModel) {
 }
 
 /**
- * The order the catalog authors, once the arrangement has failed to find it — the shared
- * reveal, so a drill card and a vocabulary card grow the same thing. The meaning rides under
- * it and never before it.
+ * What the graded arrangement grows, on the answer card itself — the shared reveal, so a drill
+ * card and a vocabulary card grow the same thing.
+ *
+ * The meaning always; the authored order above it only where the arrangement missed, since the
+ * chips of a clean one already ARE that order and setting it a second time would read as a
+ * correction.
  */
 @Composable
-private fun AnswerCard(model: AppModel, task: SentenceScrambleTask, chrome: Chrome) {
-    CardFace {
-        CardReveal(note = task.gloss) {
+private fun RevealLines(
+    model: AppModel,
+    task: SentenceScrambleTask,
+    accepted: Boolean,
+    chrome: Chrome,
+) {
+    CardReveal(note = task.gloss) {
+        if (!accepted) {
             SpokenWord(model.speakFormOnTap(task.display, task.language), chrome) {
                 Text(
                     localizedTarget(task.display, task.language),
