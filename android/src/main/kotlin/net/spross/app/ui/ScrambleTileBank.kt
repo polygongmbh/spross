@@ -149,7 +149,10 @@ private fun AnswerCard(
         contentAlignment = Alignment.Center,
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-            Box(
+            // why: a graded card with nothing in the row is a reveal nobody arranged for — the
+            // row would hold its reserve and its "tap the words into order" over an answer
+            // there is no longer one to give.
+            if (!verdict.locked || placed.isNotEmpty()) Box(
                 // why: the row is reserved whether or not anything stands in it, so the bank
                 // below never walks up the screen as the sentence is built.
                 modifier = Modifier.fillMaxWidth().heightIn(min = Theme.reserve.tile),

@@ -70,7 +70,10 @@ struct ScrambleTileBank<Reveal: View>: View {
     /// filled once there is a reveal standing on it.
     private var answerCard: some View {
         VStack(spacing: Theme.spacing.md) {
-            answerRow
+            // why: a graded card with nothing in the row is a reveal nobody
+            // arranged for — the row would hold its reserve and its "tap the
+            // words into order" over an answer there is no longer one to give.
+            if !locked || !placed.isEmpty { answerRow }
             if locked { reveal() }
         }
         .padding(Theme.spacing.md)
