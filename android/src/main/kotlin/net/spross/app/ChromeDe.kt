@@ -350,7 +350,7 @@ internal object ChromeDe : Chrome {
     override val briefingReturnTitle = "Zurück in den Garten"
     override val briefingReturnPaste = "Einfügen"
     override val briefingReturnEmpty = "In der Zwischenablage steht keine Wortliste."
-    override val briefingGroupNew = "Neu für deinen Garten"
+    override val briefingGroupNew = "Neues für deinen Garten"
     override val briefingGroupNear = "Nah an Wörtern, die du hast"
     override val briefingGroupHeld = "Schon in deinem Garten"
     override val briefingReturnKeepOne = "%d Wort übernehmen"
