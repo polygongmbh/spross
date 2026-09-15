@@ -29,7 +29,7 @@ import net.spross.app.datesOffered
 import net.spross.app.lettersOffered
 import net.spross.app.numbersOffered
 import net.spross.app.sentenceScrambleOffered
-import net.spross.app.werkstattOffered
+import net.spross.app.meadowOffered
 import net.spross.app.wordScrambleOffered
 
 /**
@@ -106,7 +106,7 @@ fun chipRows(chips: List<HubChip>): List<List<HubChip>> = when {
 
 /** Every entry this profile can reach, in the order the card offers them. */
 private fun AppModel.hubChips(chrome: Chrome): List<HubChip> {
-    if (!werkstattOffered) return emptyList()
+    if (!meadowOffered) return emptyList()
     val chips = mutableListOf<HubChip>()
     if (numbersOffered) chips += HubChip("🔢", chrome.trainerSkillNumbers) { openNumbers() }
     if (lettersOffered) chips += HubChip("🔤", chrome.trainerSkillLetters) { openLetters() }
