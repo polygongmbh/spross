@@ -41,7 +41,17 @@ object Palette {
     val teal = Swatch(0x0D566E, 0x6FCFE8) // ocean
     val success = Swatch(0x256232, 0x8AE39B) // forest
     val amber = Swatch(0x87510A, 0xF2C078) // ochre — a near miss, or an answer shown
-    val wrong = Swatch(0x99322E, 0xF08D86) // brick — a miss
+
+    /**
+     * Brick — a miss, and the one accent cut BELOW the ink-strength band on paper.
+     * Equal ink strength is what makes every accent legible on the same page,
+     * and it is also what made this one and [success] the same BRIGHTNESS (they sat 1.01 apart):
+     * red-green is the pairing the app leans on hardest and the one 8% of men cannot read by hue,
+     * so the two accents a verdict is told apart by owe each other a luminance step
+     * — 2.02 here — on top of what they each owe the paper.
+     * Dark mode already carries one and keeps its lighter brick.
+     */
+    val wrong = Swatch(0x70211E, 0xF08D86)
 
     /**
      * The consolidated/"grown" Sprosse's own color — NOT [teal]. [teal] sits only ~15°
