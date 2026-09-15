@@ -4,7 +4,8 @@
 
 - The box is now the garden throughout its chrome copy — title, subtitle, and every reach-in, sow, and take-back phrase, in English and German.
 - The free-practice card on Home is now the Meadow, the open ground beside your garden where nothing is scheduled and no drill ever comes due.
-- The door to the garden on Home now wears a plant instead of a packing box.
+- The garden button on Home now wears a plant instead of a packing box.
+- The finished screen's summary now scrolls instead of cutting off mid-sentence at large text sizes.
 
 ## 7.1.0 — 2026-09-15
 
