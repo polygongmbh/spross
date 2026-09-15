@@ -11,7 +11,7 @@ the review loop these share their card and their answering rules with is `design
 
 ## The hub, and what a Sprosse is
 
-- **The Sprossen card offers SIX entries** — Zahlen, Buchstaben, Länder, Datum and the two
+- **The meadow card offers SIX entries** — Zahlen, Buchstaben, Länder, Datum and the two
   scrambles — and more than THREE visible chips break the row into TWO lines,
   `ceil(n/2)` above and `floor(n/2)` below, so four stand 2+2, five 3+2 and six 3+3.
   Each line keeps the equal-width chips one line carries today,
@@ -179,3 +179,5 @@ the review loop these share their card and their answering rules with is `design
   the letter drill and the two scrambles keep none,
   and no drill books a review or touches a schedule (`../kern/README.md`),
   so a run costs the box nothing and can be closed at any moment.
+  That is what names the card the Wiese / Meadow:
+  open ground beside the tended garden the box is, where nothing is sown and nothing comes due.

@@ -1,6 +1,6 @@
 # Surfaces beyond the review loop
 
-Listening, the wrist and the Android companion. The Sprossen drills are `drills.md`'s;
+Listening, the wrist and the Android companion. The meadow's drills are `drills.md`'s;
 the review loop itself, and the auto-advance beats these share with it, are `design.md`'s.
 
 ## Listening
