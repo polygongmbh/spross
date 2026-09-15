@@ -89,9 +89,6 @@ struct ScrambleTileBank<Reveal: View>: View {
                                                             dash: locked ? [] : [5, 4]))
                 .allowsHitTesting(false)
         )
-        // why: correctness is never color alone — the mark carries it for anyone
-        // who cannot tell the two tints apart (WCAG 1.4.1).
-        .overlay(alignment: .topTrailing) { mark }
     }
 
     private var answerRow: some View {
@@ -126,7 +123,17 @@ struct ScrambleTileBank<Reveal: View>: View {
         // to allow. The label and the sentence so far are the container's own.
         .accessibilityElement(children: .contain)
         .accessibilityLabel(Text("a11y.scramble.arrangement"))
-        .accessibilityValue(Text(verbatim: arranged))
+        // why: the border tint is the whole verdict on screen, and a border is
+        // nothing a screen reader can read — so the value carries it in words.
+        .accessibilityValue(spokenValue)
+    }
+
+    private var spokenValue: Text {
+        switch verdict {
+        case .owed: return Text(verbatim: arranged)
+        case .correct: return Text(verbatim: arranged) + Text(verbatim: ", ") + Text("a11y.verdict.correct")
+        case .wrong: return Text(verbatim: arranged) + Text(verbatim: ", ") + Text("a11y.verdict.wrong")
+        }
     }
 
     private var rowBorder: Color {
@@ -135,33 +142,6 @@ struct ScrambleTileBank<Reveal: View>: View {
         case .correct: return Theme.colors.success
         case .wrong: return Theme.colors.wrong
         }
-    }
-
-    @ViewBuilder
-    private var mark: some View {
-        switch verdict {
-        case .owed:
-            EmptyView()
-        case .correct:
-            markImage("checkmark", tint: Theme.colors.success, label: "a11y.verdict.correct")
-        case .wrong:
-            markImage("xmark", tint: Theme.colors.wrong, label: "a11y.verdict.wrong")
-        }
-    }
-
-    /// The mark keeps its own VoiceOver stop rather than hiding: the tint it
-    /// sits on is the only other thing saying how the arrangement was graded.
-    ///
-    /// A bare glyph, never one in a filled disc: an ✗ in a circle in a card's
-    /// top corner is the close button everywhere else in the app, and a verdict
-    /// that reads as a control invites a tap that would throw the card away.
-    private func markImage(_ symbol: String, tint: Color,
-                           label: LocalizedStringKey) -> some View {
-        Image(systemName: symbol)
-            .font(.title3.weight(.bold))
-            .foregroundStyle(tint)
-            .padding(Theme.spacing.sm)
-            .accessibilityLabel(Text(label))
     }
 
     // MARK: - The words still to be spent
