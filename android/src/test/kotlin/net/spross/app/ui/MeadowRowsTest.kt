@@ -4,10 +4,10 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 /**
- * How the Sprossen card cuts its chips into lines. The break is drawn rather than
+ * How the meadow card cuts its chips into lines. The break is drawn rather than
  * discovered, so it is the one thing about the card a test can hold (`docs/drills.md`).
  */
-class SprossenRowsTest {
+class MeadowRowsTest {
 
     private fun chips(count: Int) = List(count) { HubChip("🔢", "chip $it") {} }
 

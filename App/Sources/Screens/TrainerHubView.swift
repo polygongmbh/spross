@@ -1,7 +1,7 @@
 import SwiftUI
 import SprossKern
 
-/// Compact "Sprossen" card on the Home screen: 🔢 Numbers, 🔤 Letters,
+/// Compact "Wiese" card on the Home screen: 🔢 Numbers, 🔤 Letters,
 /// 🌍 Countries, 📅 Dates, 🔀 the word scramble and 🧩 the sentence one. The
 /// first four open an overview — what the language does with numbers or
 /// letters, what the world is called in it, how it says a date — with the run

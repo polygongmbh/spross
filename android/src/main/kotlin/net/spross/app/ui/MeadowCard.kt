@@ -33,7 +33,7 @@ import net.spross.app.werkstattOffered
 import net.spross.app.wordScrambleOffered
 
 /**
- * One entry on the Sprossen card: its face, its name and what it opens.
+ * One entry on the meadow card: its face, its name and what it opens.
  *
  * A VALUE per chip rather than a composable apiece, because the card has to COUNT its
  * entries before it can lay them out — an `if` inside a row gives the wrap nothing to count.
@@ -41,7 +41,8 @@ import net.spross.app.wordScrambleOffered
 data class HubChip(val emoji: String, val title: String, val open: () -> Unit)
 
 /**
- * Sprossen: free practice, with no schedule and no limit.
+ * The meadow: free practice, with no schedule and no limit — open ground beside the tended
+ * garden, where no run ever books a review.
  *
  * Up to SIX entries, on one row while there are no more than three of them and on two lines
  * past that ([chipRows]). The four that have reading matter open a PAGE rather than a run —
@@ -51,7 +52,7 @@ data class HubChip(val emoji: String, val title: String, val open: () -> Unit)
  * entry at all is absent rather than empty (`docs/drills.md`).
  */
 @Composable
-fun SprossenCard(model: AppModel) {
+fun MeadowCard(model: AppModel) {
     val chrome = model.chrome
     // why: what the card offers is worked out once per BOX rather than once per frame — a
     // chip's press spring recomposes this card for the whole of its spring.
@@ -121,7 +122,7 @@ private fun AppModel.hubChips(chrome: Chrome): List<HubChip> {
 }
 
 /**
- * One entry of the Sprossen card: the glyph large on top, the name at full caption size
+ * One entry of the meadow card: the glyph large on top, the name at full caption size
  * under it — the iOS chip's face, stacked so three names share the row without shrinking
  * to fit beside their glyphs. The label still steps down rather than wrapping, but only
  * where a name alone outgrows a third of the screen.
