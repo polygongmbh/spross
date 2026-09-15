@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Sentence scramble now offers every phrase of your language, not only the ones whose words you have already grown.
+- Word scramble now waits until you hold fifteen words worth mixing instead of five, so it no longer opens on the same handful every evening.
 
 ## 7.1.1 — 2026-09-15
 

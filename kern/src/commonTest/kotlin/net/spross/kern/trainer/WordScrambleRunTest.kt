@@ -22,7 +22,7 @@ class WordScrambleRunTest {
         ScrambleFixture.word("fast", "schnell", CardKind.Adjective, seed = 3),
         ScrambleFixture.word("rainbow", "Regenbogen", seed = 4),
         ScrambleFixture.word("bike", "Fahrrad", seed = 5, synonyms = listOf("Velo"), variants = listOf("Farrad")),
-    )
+    ) + ScrambleFixture.filler(count = 11, letters = 8, fromSeed = 100)
 
     private fun config() = WordScrambleRunConfig(
         report = WordScrambleAvailability.report(ScrambleFixture.box(cards)),

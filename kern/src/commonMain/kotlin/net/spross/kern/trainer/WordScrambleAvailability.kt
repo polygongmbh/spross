@@ -11,10 +11,10 @@ import net.spross.kern.model.CardKind
  * What the word scramble can ASK of a box: the words whose spelling is worth writing back out
  * of its own letters.
  *
- * The bar is the DISPLAY one ([BoxEngine.isConsolidated]), not the growing one the other drill
- * pools read, and deliberately so: a scrambled word is no cue at all for a word the learner
- * cannot already produce, so this drill is for spelling a word they have rather than meeting
- * one they have not.
+ * The bar is the DISPLAY one ([BoxEngine.isConsolidated]), not the growing one the letter drill
+ * reads, and deliberately so: a scrambled word is no cue at all for a word the learner cannot
+ * already produce, so this drill is for spelling a word they have rather than meeting one they
+ * have not. The sentence scramble reads no bar at all — an ORDER is not a word.
  *
  * Nothing here is a device fact, so unlike the letter drill this needs no capability port.
  */
@@ -28,10 +28,11 @@ object WordScrambleAvailability {
     const val MIN_LETTERS: Int = 4
 
     /**
-     * Below this many words the drill is the same handful every evening, and a run that ends
-     * after four questions reads as the app having nothing to give. The chip stays away.
+     * Below this many words the drill is the same handful every evening,
+     * and a run that ends after a few questions reads as the app having nothing to give.
+     * The chip stays away.
      */
-    const val POOL_FLOOR: Int = 5
+    const val POOL_FLOOR: Int = 15
 
     /** The kinds that are one word to spell; a phrase is the other drill's. */
     private val wordKinds = setOf(CardKind.Noun, CardKind.Verb, CardKind.Adjective)

@@ -65,6 +65,16 @@ internal object ScrambleFixture {
     )
 
     /**
+     * [count] nouns of [letters] letters, seeded from [fromSeed] so they sort behind the shapes.
+     * What a pool FLOOR needs is depth, which naming two dozen more German nouns would not add.
+     */
+    fun filler(count: Int, letters: Int, fromSeed: Int): List<Card> =
+        (0 until count).map { at ->
+            val tag = "${'a' + at / 26}${'a' + at % 26}"
+            word("filler-$at", "wort".repeat(letters).take(letters - tag.length) + tag, seed = fromSeed + at)
+        }
+
+    /**
      * A box where every card carries [stability] unless [standing] names another figure for it.
      * A card listed in [suspended] keeps its schedule and sleeps.
      */

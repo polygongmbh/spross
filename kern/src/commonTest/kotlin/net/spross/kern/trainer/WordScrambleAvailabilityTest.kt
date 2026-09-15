@@ -13,7 +13,7 @@ import net.spross.kern.model.CardKind
  */
 class WordScrambleAvailabilityTest {
 
-    private val cards = listOf(
+    private val shapes = listOf(
         ScrambleFixture.word("window", "Fenster", seed = 1),
         ScrambleFixture.word("cook", "kochen", CardKind.Verb, seed = 2),
         ScrambleFixture.word("fast", "schnell", CardKind.Adjective, seed = 3),
@@ -33,6 +33,9 @@ class WordScrambleAvailabilityTest {
         ),
     )
 
+    /** The shapes plus depth enough to open on: the pool floor is a count, and counts need one. */
+    private val cards = shapes + ScrambleFixture.filler(count = 11, letters = 6, fromSeed = 100)
+
     private fun report(
         standing: Map<String, Double> = emptyMap(),
         suspended: Set<String> = emptySet(),
@@ -45,10 +48,11 @@ class WordScrambleAvailabilityTest {
         suspended: Set<String> = emptySet(),
     ): List<String> = report(standing, suspended).words.map { it.card.id }
 
-    /** All three word kinds qualify, and the pool comes back in seed order. */
+    /** All three word kinds qualify, and the pool comes back in seed order — the padding sorts behind. */
     @Test
     fun everyConsolidatedSingleWordOfEnoughLettersIsAsked() {
-        assertEquals(listOf("window", "cook", "fast", "rainbow", "outside", "sun", "bad"), ids())
+        val shaped = listOf("window", "cook", "fast", "rainbow", "outside", "sun", "bad")
+        assertEquals(shaped, ids().take(shaped.size))
     }
 
     /**
