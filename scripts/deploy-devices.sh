@@ -23,7 +23,9 @@ set -eu
 cd "$(dirname "$0")/.."
 
 SCHEME="Spross"
-BUNDLE_ID="net.spross.app"
+# why: the bundle id is the CONFIGURATION's (project.yml APP_ID_PREFIX — --debug builds
+# install as net.spross.dev), so read it off the built bundle rather than naming it again.
+bundle_id() { /usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$IOS_APP/Info.plist"; }
 # why: $TMPDIR is purged on reboot and under disk pressure, and every purge
 # costs a full Release rebuild — the deploy keeps its own gitignored tree.
 DERIVED="$PWD/.build/deploy"
@@ -85,7 +87,7 @@ install_app() {  # name  app_path  launch(0|1)
     return
   fi
   if [ "$launch" -eq 1 ]; then
-    if xcrun devicectl device process launch --device "$id" "$BUNDLE_ID" >/dev/null 2>&1; then
+    if xcrun devicectl device process launch --device "$id" "$(bundle_id)" >/dev/null 2>&1; then
       printf '  run   %-6s launched\n' "$name"
     else
       printf '  note  %-6s installed but not launched — open it on the device\n' "$name"

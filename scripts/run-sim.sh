@@ -17,7 +17,6 @@ set -eu
 cd "$(dirname "$0")/.."
 
 DEVICE='iPhone 17'
-BUNDLE_ID=net.spross.app
 BUILD=1
 CLEAN=0
 SHOT=
@@ -57,6 +56,9 @@ APP=$(xcodebuild -project Spross.xcodeproj -scheme Spross \
         -destination "id=$UDID" -showBuildSettings 2>/dev/null \
       | awk '/ BUILT_PRODUCTS_DIR = /{ print $3; exit }')/Spross.app
 [ -d "$APP" ] || { echo "error: run-sim: no build at $APP — drop --no-build" >&2; exit 1; }
+# why: the bundle id is the CONFIGURATION's (project.yml APP_ID_PREFIX — debug installs
+# as net.spross.dev), so read it off what was just built rather than naming it again.
+BUNDLE_ID=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist")
 
 xcrun simctl bootstatus "$UDID" -b >/dev/null 2>&1 || xcrun simctl boot "$UDID"
 open -a Simulator --args -CurrentDeviceUDID "$UDID"
