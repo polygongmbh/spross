@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.1.0 — 2026-09-15
+
 - Two new entries on the Sprossen card: Word scramble writes a word you already hold back out of its mixed-up letters, and Sentence scramble taps a phrase's words back into order — neither touches when your box is due.
 
 ## 7.0.0 — 2026-09-14
