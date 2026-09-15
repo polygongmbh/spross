@@ -73,6 +73,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   content (a British spelling is a `variant`, a British word a `synonym`; `catalog/areas/README.md`).
 - When working on localization, focus on idiomatic variants in each language rather than literal translation.
   For catalog translations, a literal match is important.
+- Docs and code comments name things plainly — a button, a screen, a section —
+  never by the display copy's narrative metaphor (say "button", not "door"); metaphor is chrome content, not descriptive vocabulary.
 
 ### Tests
 - Test rules and behavior, not implementation details or tweakable constants

@@ -1,7 +1,7 @@
 import SwiftUI
 
-/// Single-screen app: Home is the root, the Box pushes via the toolbar
-/// door. Onboarding sheet on first launch, full-screen session cover.
+/// Single-screen app: Home is the root, the Box pushes via a toolbar
+/// button. Onboarding sheet on first launch, full-screen session cover.
 struct RootView: View {
     @Bindable var model: AppModel
 
@@ -55,7 +55,7 @@ struct RootView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            // why: the door opens the garden at large, so it drops
+                            // why: this button opens the garden at large, so it drops
                             // the area a tree last named — otherwise it would
                             // keep landing on that one shelf.
                             boxArea = nil
