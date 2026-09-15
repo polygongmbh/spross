@@ -266,7 +266,7 @@ internal object ChromeEn : Chrome {
         "never asked."
     override val boxShelfPack = "Sow (%s)"
     override val boxShelfPacked = "All sown"
-    override val boxCardShowInBox = "Show in the garden"
+    override val boxCardShowInBox = "Show where it grows"
     override val boxCardPack = "Sow this word"
     override val boxCardUnpack = "Take this word back"
     override val boxShelfUnpack = "Take back (%s)"

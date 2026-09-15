@@ -270,7 +270,7 @@ internal object ChromeDe : Chrome {
         "und wird nie abgefragt."
     override val boxShelfPack = "%s aussäen"
     override val boxShelfPacked = "Alles gesät"
-    override val boxCardShowInBox = "Im Garten zeigen"
+    override val boxCardShowInBox = "Zeig, wo es wächst"
     override val boxCardPack = "Dieses Wort aussäen"
     override val boxCardUnpack = "Dieses Wort zurücknehmen"
     override val boxShelfUnpack = "%s zurücknehmen"

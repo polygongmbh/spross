@@ -680,13 +680,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Im Garten zeigen"
+            "value" : "Zeig, wo es wächst"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Show in the garden"
+            "value" : "Show where it grows"
           }
         }
       }
