@@ -195,7 +195,7 @@ internal object ChromeEn : Chrome {
     override val lettersStageChoiceEasy = "The letter you heard, among four"
     override val lettersStageChoiceConfusable = "The same choice, among lookalikes"
     override val lettersStageTyped = "Write the letter yourself"
-    override val lettersStageDictation = "Whole words from your box, by ear"
+    override val lettersStageDictation = "Whole words from your garden, by ear"
     override val lettersStageDictationLocked = "Needs more consolidated words this device " +
         "can read out"
     override val lettersUnavailable = "This device cannot say a letter yet — that needs a " +
@@ -255,21 +255,21 @@ internal object ChromeEn : Chrome {
     override val a11yScrambleArrangement = "Your order"
     override val a11yScrambleBank = "Words to choose from"
     override val a11yActionTakeBack = "Take back"
-    override val boxTitle = "The box"
-    override val boxDoor = "Box"
-    override val boxSubtitle = "%1\$s of %2\$s cards in progress"
+    override val boxTitle = "The garden"
+    override val boxDoor = "Garden"
+    override val boxSubtitle = "%1\$s of %2\$s cards being tended"
     override val boxOwnShelf = "Your own words"
     override val boxOwnWordExplainer = "Your own words are yours alone. A growing catalog " +
         "never touches them."
     override val boxOwnWordComment = "Note (optional)"
     override val boxOwnWordExplainerRemark = "A note only: it goes to the catalog and is " +
         "never asked."
-    override val boxShelfPack = "Add to box (%s)"
-    override val boxShelfPacked = "All packed"
-    override val boxCardShowInBox = "Show in the box"
-    override val boxCardPack = "Pack this word"
-    override val boxCardUnpack = "Unpack this word"
-    override val boxShelfUnpack = "Take out of box (%s)"
+    override val boxShelfPack = "Sow (%s)"
+    override val boxShelfPacked = "All sown"
+    override val boxCardShowInBox = "Show in the garden"
+    override val boxCardPack = "Sow this word"
+    override val boxCardUnpack = "Take this word back"
+    override val boxShelfUnpack = "Take back (%s)"
     override val boxCardQueued = "Sown"
     override val boxCardSuspended = "Paused"
     override val boxCardWake = "Wake"
@@ -297,7 +297,7 @@ internal object ChromeEn : Chrome {
     override val boxSearchHint = "Words in either language, and the names of the areas."
     override val boxSearchAreas = "Areas"
     override val boxSearchWords = "Words"
-    override val boxSearchNothing = "Nothing for “%s” in the box."
+    override val boxSearchNothing = "Nothing for “%s” in the garden."
     override val boxSearchWriteOwn = "Write “%s” yourself"
     override val boxSearchClear = "Clear search"
     override val boxOwnWordTitle = "Your own word"
@@ -343,12 +343,12 @@ internal object ChromeEn : Chrome {
         "list back here."
     override val briefingCopied = "Copied"
     override val briefingShare = "Share"
-    override val briefingReturnTitle = "Back into the box"
+    override val briefingReturnTitle = "Back into the garden"
     override val briefingReturnPaste = "Paste"
     override val briefingReturnEmpty = "There is no word list in the clipboard."
-    override val briefingGroupNew = "New to your box"
+    override val briefingGroupNew = "New to your garden"
     override val briefingGroupNear = "Close to words you have"
-    override val briefingGroupHeld = "Already in your box"
+    override val briefingGroupHeld = "Already in your garden"
     override val briefingReturnKeepOne = "Keep %d word"
     override val briefingReturnKeep = "Keep %d words"
     override val sessionDoneTalk = "Talk about the words?"
@@ -358,7 +358,7 @@ internal object ChromeEn : Chrome {
     override val settingsNameHint = "Spross greets you by it. Left empty, the greeting goes " +
         "without one."
     override val settingsProfileHint = "Switching the language you speak keeps all your " +
-        "progress; each language you learn has its own box."
+        "progress; each language you learn has its own garden."
     override val settingsRestartTutorialButton = "Restart tutorial"
     override val settingsRestartTutorialHint = "Shows the introduction again — your " +
         "languages and progress stay."
@@ -378,8 +378,8 @@ internal object ChromeEn : Chrome {
         "backup?"
     override val settingsBackupReplace = "Replace"
     override val settingsBackupExportFailed = "The backup could not be saved."
-    override val settingsBackupImportFailed = "This file is not a Spross backup, or a box in " +
-        "it cannot be read."
+    override val settingsBackupImportFailed = "This file is not a Spross backup, or a garden " +
+        "in it cannot be read."
     override val commonCancel = "Cancel"
     override val commonReset = "Reset"
     override val commonClear = "Clear"
@@ -406,7 +406,7 @@ internal object ChromeEn : Chrome {
     override val headlineReviews = listOf(
         "Back to your words",
         "A few words are up again",
-        "Reach into the box",
+        "Reach into the garden",
         "Time for a refresher",
     )
     override val headlineWarmUp = listOf(

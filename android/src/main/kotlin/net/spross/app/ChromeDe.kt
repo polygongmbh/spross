@@ -199,7 +199,7 @@ internal object ChromeDe : Chrome {
     override val lettersStageChoiceEasy = "Der gehörte Buchstabe unter vieren"
     override val lettersStageChoiceConfusable = "Dieselbe Wahl unter ähnlichen Buchstaben"
     override val lettersStageTyped = "Den Buchstaben selbst schreiben"
-    override val lettersStageDictation = "Ganze Wörter aus der Box nach Gehör"
+    override val lettersStageDictation = "Ganze Wörter aus deinem Garten nach Gehör"
     override val lettersStageDictationLocked = "Braucht mehr gefestigte Wörter, die dieses " +
         "Gerät vorlesen kann"
     override val lettersUnavailable = "Dieses Gerät kann noch keinen Buchstaben vorsprechen " +
@@ -259,21 +259,21 @@ internal object ChromeDe : Chrome {
     override val a11yScrambleArrangement = "Deine Reihenfolge"
     override val a11yScrambleBank = "Wörter zur Auswahl"
     override val a11yActionTakeBack = "Zurücknehmen"
-    override val boxTitle = "Die Box"
-    override val boxDoor = "Box"
-    override val boxSubtitle = "%s von %s Karten in Arbeit"
+    override val boxTitle = "Der Garten"
+    override val boxDoor = "Garten"
+    override val boxSubtitle = "%s von %s Karten sprießen"
     override val boxOwnShelf = "Eigene Wörter"
     override val boxOwnWordExplainer = "Eigene Wörter gehören dir allein. Ein wachsender " +
         "Katalog rührt sie nicht an."
     override val boxOwnWordComment = "Anmerkung (optional)"
     override val boxOwnWordExplainerRemark = "Nur eine Anmerkung: sie geht an den Katalog " +
         "und wird nie abgefragt."
-    override val boxShelfPack = "Pack in die Box (%s)"
-    override val boxShelfPacked = "Alles eingepackt"
-    override val boxCardShowInBox = "In der Box zeigen"
-    override val boxCardPack = "Dieses Wort einpacken"
-    override val boxCardUnpack = "Dieses Wort auspacken"
-    override val boxShelfUnpack = "Aus der Box nehmen (%s)"
+    override val boxShelfPack = "%s aussäen"
+    override val boxShelfPacked = "Alles gesät"
+    override val boxCardShowInBox = "Im Garten zeigen"
+    override val boxCardPack = "Dieses Wort aussäen"
+    override val boxCardUnpack = "Dieses Wort zurücknehmen"
+    override val boxShelfUnpack = "%s zurücknehmen"
     override val boxCardQueued = "Gesät"
     override val boxCardSuspended = "Pausiert"
     override val boxCardWake = "Wecken"
@@ -301,7 +301,7 @@ internal object ChromeDe : Chrome {
     override val boxSearchHint = "Wörter beider Sprachen und die Namen der Bereiche."
     override val boxSearchAreas = "Bereiche"
     override val boxSearchWords = "Wörter"
-    override val boxSearchNothing = "Nichts zu „%s“ in der Box."
+    override val boxSearchNothing = "Nichts zu „%s“ im Garten."
     override val boxSearchWriteOwn = "„%s“ selbst eintragen"
     override val boxSearchClear = "Suche löschen"
     override val boxOwnWordTitle = "Eigenes Wort"
@@ -347,12 +347,12 @@ internal object ChromeDe : Chrome {
         "auflisten und füge die Liste hier wieder ein."
     override val briefingCopied = "Kopiert"
     override val briefingShare = "Teilen"
-    override val briefingReturnTitle = "Zurück in den Kasten"
+    override val briefingReturnTitle = "Zurück in den Garten"
     override val briefingReturnPaste = "Einfügen"
     override val briefingReturnEmpty = "In der Zwischenablage steht keine Wortliste."
-    override val briefingGroupNew = "Neu für deinen Kasten"
+    override val briefingGroupNew = "Neu für deinen Garten"
     override val briefingGroupNear = "Nah an Wörtern, die du hast"
-    override val briefingGroupHeld = "Schon in deinem Kasten"
+    override val briefingGroupHeld = "Schon in deinem Garten"
     override val briefingReturnKeepOne = "%d Wort übernehmen"
     override val briefingReturnKeep = "%d Wörter übernehmen"
     override val sessionDoneTalk = "Über die Wörter reden?"
@@ -362,7 +362,7 @@ internal object ChromeDe : Chrome {
     override val settingsNameHint = "Damit begrüßt dich Spross. Bleibt das Feld leer, kommt " +
         "die Begrüßung ohne Namen aus."
     override val settingsProfileHint = "Beim Wechsel der Ausgangssprache bleibt dein " +
-        "Fortschritt erhalten; jede gelernte Sprache hat ihre eigene Box."
+        "Fortschritt erhalten; jede gelernte Sprache hat ihren eigenen Garten."
     override val settingsRestartTutorialButton = "Tutorial neu starten"
     override val settingsRestartTutorialHint = "Zeigt die Einführung erneut — deine Sprachen " +
         "und dein Fortschritt bleiben erhalten."
@@ -384,7 +384,7 @@ internal object ChromeDe : Chrome {
     override val settingsBackupReplace = "Ersetzen"
     override val settingsBackupExportFailed = "Die Sicherung konnte nicht gespeichert werden."
     override val settingsBackupImportFailed = "Diese Datei ist keine Spross-Sicherung, oder " +
-        "eine Box darin lässt sich nicht lesen."
+        "ein Garten darin lässt sich nicht lesen."
     override val commonCancel = "Abbrechen"
     override val commonReset = "Zurücksetzen"
     override val commonClear = "Leeren"
@@ -411,7 +411,7 @@ internal object ChromeDe : Chrome {
     override val headlineReviews = listOf(
         "Ran an die Wörter",
         "Ein paar Wörter sind wieder dran",
-        "Greif in die Box",
+        "Greif in den Garten",
         "Zeit zum Auffrischen",
     )
     override val headlineWarmUp = listOf(

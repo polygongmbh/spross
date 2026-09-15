@@ -517,7 +517,7 @@
       }
     },
     "box.card.actions" : {
-      "comment" : "What a long press on a Box row opens, for a reader who cannot see it is a menu.",
+      "comment" : "What a long press on a garden row opens, for a reader who cannot see it is a menu.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -646,13 +646,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dieses Wort einpacken"
+            "value" : "Dieses Wort aussäen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pack this word"
+            "value" : "Sow this word"
           }
         }
       }
@@ -680,13 +680,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "In der Box zeigen"
+            "value" : "Im Garten zeigen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Show in the box"
+            "value" : "Show in the garden"
           }
         }
       }
@@ -731,13 +731,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dieses Wort auspacken"
+            "value" : "Dieses Wort zurücknehmen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unpack this word"
+            "value" : "Take this word back"
           }
         }
       }
@@ -759,18 +759,18 @@
       }
     },
     "box.door" : {
-      "comment" : "The door to the box, wherever a screen puts one — a name for an icon that has none.",
+      "comment" : "The door to the garden, wherever a screen puts one — a name for an icon that has none.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Box"
+            "value" : "Garten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Box"
+            "value" : "Garden"
           }
         }
       }
@@ -1245,13 +1245,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nichts zu „%@“ in der Box."
+            "value" : "Nichts zu „%@“ im Garten."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nothing for “%@” in the box."
+            "value" : "Nothing for “%@” in the garden."
           }
         }
       }
@@ -1311,13 +1311,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pack in die Box (%@)"
+            "value" : "%@ aussäen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Add to box (%@)"
+            "value" : "Sow (%@)"
           }
         }
       }
@@ -1327,13 +1327,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alles eingepackt"
+            "value" : "Alles gesät"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "All packed"
+            "value" : "All sown"
           }
         }
       }
@@ -1344,13 +1344,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aus der Box nehmen (%@)"
+            "value" : "%@ zurücknehmen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Take out of box (%@)"
+            "value" : "Take back (%@)"
           }
         }
       }
@@ -1361,19 +1361,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ von %@ Karten in Arbeit"
+            "value" : "%@ von %@ Karten sprießen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ of %2$@ cards in progress"
+            "value" : "%1$@ of %2$@ cards being tended"
           }
         }
       }
     },
     "box.tapToHear" : {
-      "comment" : "The box names its rows \"words\", not a table's rows, so it discloses the tap in its own words.",
+      "comment" : "The garden names its rows \"words\", not a table's rows, so it discloses the tap in its own words.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1394,13 +1394,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Box"
+            "value" : "Der Garten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The box"
+            "value" : "The garden"
           }
         }
       }
@@ -1423,18 +1423,18 @@
       }
     },
     "briefing.group.held" : {
-      "comment" : "heading over pasted words the box already teaches exactly (`HarvestKind.Held`)",
+      "comment" : "heading over pasted words the garden already teaches exactly (`HarvestKind.Held`)",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schon in deinem Kasten"
+            "value" : "Schon in deinem Garten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Already in your box"
+            "value" : "Already in your garden"
           }
         }
       }
@@ -1457,18 +1457,18 @@
       }
     },
     "briefing.group.new" : {
-      "comment" : "heading over pasted words the box has nothing like — the group that arrives ticked",
+      "comment" : "heading over pasted words the garden has nothing like — the group that arrives ticked",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neu für deinen Kasten"
+            "value" : "Neu für deinen Garten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "New to your box"
+            "value" : "New to your garden"
           }
         }
       }
@@ -1571,13 +1571,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zurück in den Kasten"
+            "value" : "Zurück in den Garten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back into the box"
+            "value" : "Back into the garden"
           }
         }
       }
@@ -3133,13 +3133,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Greif in die Box"
+            "value" : "Greif in den Garten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reach into the box"
+            "value" : "Reach into the garden"
           }
         }
       }
@@ -3840,13 +3840,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ganze Wörter aus der Box nach Gehör"
+            "value" : "Ganze Wörter aus deinem Garten nach Gehör"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whole words from your box, by ear"
+            "value" : "Whole words from your garden, by ear"
           }
         }
       }
@@ -5897,6 +5897,7 @@
       }
     },
     "settings.backup.exportOnly %@" : {
+      "comment" : "Export menu: carries only the language on screen, named in it.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5910,8 +5911,7 @@
             "value" : "%@ only"
           }
         }
-      },
-      "comment" : "Export menu: carries only the language on screen, named in it."
+      }
     },
     "settings.backup.hint" : {
       "comment" : "Under the export and import buttons. The file carries learning progress only — the pair, the name and the audio choice stay on the device and are set again after a restore.",
@@ -5951,13 +5951,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Datei ist keine Spross-Sicherung, oder eine Box darin lässt sich nicht lesen."
+            "value" : "Diese Datei ist keine Spross-Sicherung, oder ein Garten darin lässt sich nicht lesen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This file is not a Spross backup, or a box in it cannot be read."
+            "value" : "This file is not a Spross backup, or a garden in it cannot be read."
           }
         }
       }
@@ -6097,13 +6097,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten; jede gelernte Sprache hat ihre eigene Box."
+            "value" : "Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten; jede gelernte Sprache hat ihren eigenen Garten."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Switching the language you speak keeps all your progress; each language you learn has its own box."
+            "value" : "Switching the language you speak keeps all your progress; each language you learn has its own garden."
           }
         }
       }

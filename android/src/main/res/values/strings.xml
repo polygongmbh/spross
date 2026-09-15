@@ -5,5 +5,5 @@
      fallback kern's chromeLanguage makes, with German qualified beside it. -->
 <resources>
     <string name="widget_picker_title">Word of the moment</string>
-    <string name="widget_picker_description">Shows a word from your box, a new one as the day goes on.</string>
+    <string name="widget_picker_description">Shows a word from your garden, a new one as the day goes on.</string>
 </resources>

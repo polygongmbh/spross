@@ -55,7 +55,7 @@ struct RootView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            // why: the door opens the box at large, so it drops
+                            // why: the door opens the garden at large, so it drops
                             // the area a tree last named — otherwise it would
                             // keep landing on that one shelf.
                             boxArea = nil
