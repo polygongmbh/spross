@@ -68,6 +68,33 @@ struct SessionCompletionView: View {
     }
 
     var body: some View {
+        // why: Spacer()-centered content overflows a fixed frame under large
+        // Dynamic Type — GrowingTreeView's fixed hero height leaves no give,
+        // so the caption below it (restHint) got compressed and truncated
+        // instead. A GeometryReader'd min-height keeps the centering when
+        // everything fits and falls back to scrolling when it does not.
+        GeometryReader { geo in
+            ScrollView {
+                sessionContent
+                    .padding(Theme.spacing.xl)
+                    .frame(minWidth: geo.size.width, minHeight: geo.size.height)
+            }
+            .scrollBounceBehavior(.basedOnSize)
+        }
+        .background(Theme.colors.background.ignoresSafeArea())
+        .overlay(ConfettiView(run: celebration).ignoresSafeArea())
+        .contentShape(Rectangle())
+        .onTapGesture(perform: replay)
+        // why: after the overlay and the replay gesture, so the corner stays
+        // tappable — a tap there leaves instead of setting off the confetti.
+        .sessionCloseCorner(label: "common.done", action: onDone)
+        .onAppear {
+            burst = true
+            Sound.cheer()
+        }
+    }
+
+    private var sessionContent: some View {
         VStack(spacing: Theme.spacing.xl) {
             Spacer()
             // why: the tree takes the hero slot when the round grew an area —
@@ -109,19 +136,7 @@ struct SessionCompletionView: View {
             SessionExitButtons(onDone: onDone,
                                onPractice: canPracticeMore ? onPractice : nil)
         }
-        .padding(Theme.spacing.xl)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Theme.colors.background.ignoresSafeArea())
-        .overlay(ConfettiView(run: celebration).ignoresSafeArea())
-        .contentShape(Rectangle())
-        .onTapGesture(perform: replay)
-        // why: after the overlay and the replay gesture, so the corner stays
-        // tappable — a tap there leaves instead of setting off the confetti.
-        .sessionCloseCorner(label: "common.done", action: onDone)
-        .onAppear {
-            burst = true
-            Sound.cheer()
-        }
+        .frame(maxWidth: .infinity)
     }
 
     /// Snaps the burst back to rest with no animation, then re-triggers it
