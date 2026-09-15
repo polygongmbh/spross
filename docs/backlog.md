@@ -149,7 +149,7 @@ Catalog content — its forms, its audio and the per-language questions — live
   named action while Switch Control and Full Keyboard Access, which scan for focusable
   controls, reach nothing — on every surface on that modifier: the reference rows,
   `BoxCardRow.swift`, the produce narration lines.
-- `android/.../AppModel.kt` is past the ~300-line budget; extracting the Werkstatt doors
+- `android/.../AppModel.kt` is past the ~300-line budget; extracting the trainer hub's doors
   needs `screen`'s `private set` (:202, and eight more backers) widened or an internal verb minted.
 - Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
   fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).
