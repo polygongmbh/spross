@@ -157,8 +157,20 @@ struct SentenceScrambleView: View {
     /// and setting it a second time would read as a correction.
     @ViewBuilder
     private func revealLines(_ task: SentenceScrambleTask) -> some View {
-        CardReveal(note: task.gloss) {
-            if !run.answerAccepted {
+        if run.answerAccepted {
+            // The order is already right on screen, so the meaning is the only
+            // thing the card still owes — which makes it the ANSWER slot's, at
+            // the size every other card reveals one, never the note's fine print.
+            CardReveal(note: nil) {
+                Text(task.gloss)
+                    .font(Theme.typography.headline)
+                    .foregroundStyle(Theme.colors.accent)
+                    .multilineTextAlignment(.center)
+                    .minimumScaleFactor(0.6)
+            }
+            .transition(.opacity)
+        } else {
+            CardReveal(note: task.gloss) {
                 SpokenWord(pronounce: model.pronounceAction(for: task.display, lang: task.language),
                            isPlaying: model.isPronouncing(task.display, lang: task.language)) {
                     Text(task.display)
@@ -169,8 +181,8 @@ struct SentenceScrambleView: View {
                         .spoken(task.display, language: task.language)
                 }
             }
+            .transition(.opacity)
         }
-        .transition(.opacity)
     }
 
     @ViewBuilder

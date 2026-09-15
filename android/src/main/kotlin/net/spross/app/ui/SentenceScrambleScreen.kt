@@ -135,8 +135,20 @@ private fun RevealLines(
     accepted: Boolean,
     chrome: Chrome,
 ) {
-    CardReveal(note = task.gloss) {
-        if (!accepted) {
+    if (accepted) {
+        // The order is already right on screen, so the meaning is the only thing the card
+        // still owes — which makes it the ANSWER slot's, at the size every other card reveals
+        // one, never the note's fine print.
+        CardReveal(note = null) {
+            Text(
+                task.gloss,
+                style = MaterialTheme.typography.titleLarge,
+                color = Theme.colors.accent,
+                textAlign = TextAlign.Center,
+            )
+        }
+    } else {
+        CardReveal(note = task.gloss) {
             SpokenWord(model.speakFormOnTap(task.display, task.language), chrome) {
                 Text(
                     localizedTarget(task.display, task.language),
