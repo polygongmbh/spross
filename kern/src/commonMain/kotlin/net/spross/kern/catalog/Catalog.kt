@@ -273,13 +273,15 @@ class Catalog internal constructor(
             text = LanguageNames.resolve(text, named),
             synonyms = synonyms.map { LanguageNames.resolve(it, named) },
             variants = variants.map { LanguageNames.resolve(it, named) },
+            orders = orders.map { LanguageNames.resolve(it, named) },
         )
     }
 
     private fun RawRealization.carriesLanguageMarker(): Boolean =
         LanguageNames.hasLanguageMarker(text) ||
             synonyms.any { LanguageNames.hasLanguageMarker(it) } ||
-            variants.any { LanguageNames.hasLanguageMarker(it) }
+            variants.any { LanguageNames.hasLanguageMarker(it) } ||
+            orders.any { LanguageNames.hasLanguageMarker(it) }
 
     /** The frames' half of [resolved]; agreement forms name a counted noun, never a language. */
     private fun RawFrame.resolved(name: LanguageName?): RawFrame? {
@@ -299,6 +301,7 @@ class Catalog internal constructor(
             text = raw.text,
             synonyms = raw.synonyms,
             variants = raw.variants,
+            orders = raw.orders,
             grammar = raw.grammar,
             // why: a note written FOR this reader wins; otherwise the one written in the
             // language being explained, which every reader can read (`kern/docs/catalog.md`).

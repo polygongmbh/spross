@@ -24,7 +24,11 @@
   "south": { "text": "Süden", "grammar": { "gender": "der" } },
   "east": { "text": "Osten", "grammar": { "gender": "der" } },
   "west": { "text": "Westen", "grammar": { "gender": "der" } },
-  "go-straight-ahead": { "text": "Gehen Sie geradeaus.", "variants": ["Geh geradeaus."] },
+  "go-straight-ahead": {
+   "text": "Gehen Sie geradeaus.",
+   "variants": ["Geh geradeaus."],
+   "orders": ["Sie gehen geradeaus."]
+  },
   "turn-left-at-the-corner": { "text": "Biegen Sie an der Ecke links ab.", "variants": ["Bieg an der Ecke links ab."] },
   "how-do-i-get-to-the-station": { "text": "Wie komme ich zum Bahnhof?" },
   "im-lost": { "text": "Ich habe mich verlaufen." }

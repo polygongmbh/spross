@@ -114,7 +114,7 @@ fun SentenceScrambleScreen(model: AppModel) {
                     place = flow::place,
                     take = flow::take,
                 ) {
-                    RevealLines(model, task, state.answerAccepted, chrome)
+                    RevealLines(model, task, state.answerAccepted, state.alternativeMatch, chrome)
                 }
                 Controls(flow, chrome, leave)
             }
@@ -136,10 +136,11 @@ private fun RevealLines(
     model: AppModel,
     task: SentenceScrambleTask,
     accepted: Boolean,
+    alternativeMatch: Boolean,
     chrome: Chrome,
 ) {
     CardReveal(note = null) {
-        if (!accepted) {
+        if (!accepted || alternativeMatch) {
             SpokenWord(model.speakFormOnTap(task.display, task.language), chrome) {
                 Sentence(
                     localizedTarget(task.display, task.language),
@@ -148,7 +149,9 @@ private fun RevealLines(
                 )
             }
         }
-        Sentence(task.gloss, Theme.colors.textPrimary)
+        if (!alternativeMatch) {
+            Sentence(task.gloss, Theme.colors.textPrimary)
+        }
     }
 }
 

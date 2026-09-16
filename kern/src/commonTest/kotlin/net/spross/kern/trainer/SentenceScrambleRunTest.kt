@@ -259,6 +259,24 @@ class SentenceScrambleRunTest {
         assertEquals(1, SentenceScrambleRunConfig(config().report, closed.clearedSprossen).entryLevel)
     }
 
+    /** An alternative word order from `orders` is accepted but flags [alternativeMatch]. */
+    @Test
+    fun anAlternativeOrderIsAcceptedAndFlagged() {
+        val canonical = listOf(ScrambleAtom(0, "gehen"), ScrambleAtom(1, "Sie"), ScrambleAtom(2, "geradeaus"))
+        val placed = listOf(canonical[1], canonical[0], canonical[2])
+        val altAtoms = listOf(ScrambleAtom(0, "Sie"), ScrambleAtom(1, "gehen"), ScrambleAtom(2, "geradeaus"))
+        assertFalse(ScrambleGrading.matchesCanonical(placed, canonical))
+        assertTrue(ScrambleGrading.isSolved(placed, canonical, listOf(altAtoms)))
+
+        val ordered = words + listOf(
+            ScrambleFixture.phrase("formal", "Gehen Sie geradeaus.",
+                listOf("mouse"), seed = 20, orders = listOf("Sie gehen geradeaus.")),
+        )
+        val report = SentenceScrambleAvailability.report(ScrambleFixture.box(ordered))
+        val phrase = report.phrases.single { it.card.id == "formal" }
+        assertEquals(1, phrase.alternativeOrders.size)
+    }
+
     /** The beat only ever arms on a clean answer. */
     @Test
     fun theBeatRidesACleanArrangementAlone() {

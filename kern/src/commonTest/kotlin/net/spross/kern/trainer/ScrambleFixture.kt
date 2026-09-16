@@ -51,6 +51,7 @@ internal object ScrambleFixture {
         text: String,
         components: List<String>,
         seed: Int = 50,
+        orders: List<String> = emptyList(),
     ): Card = Card(
         id = id,
         kind = CardKind.Phrase,
@@ -60,7 +61,7 @@ internal object ScrambleFixture {
         components = components,
         feminineOf = null,
         source = Realization(lang = "en", text = "en-$id"),
-        target = Realization(lang = TARGET, text = text),
+        target = Realization(lang = TARGET, text = text, orders = orders),
         promptFeminineMarker = false,
     )
 

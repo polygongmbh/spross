@@ -321,18 +321,20 @@ internal object CatalogParser {
     }
 
     private fun parseRealization(path: String, slug: String, o: JsonObject): RawRealization {
-        o.rejectUnknownKeys(path, slug, setOf("text", "synonyms", "variants", "grammar", "notes"))
+        o.rejectUnknownKeys(path, slug, setOf("text", "synonyms", "variants", "orders", "grammar", "notes"))
         val text = o.requireString(path, slug, "text")
         if (text.isBlank()) parseError(path, "$slug: blank text")
         val synonyms = o.stringList(path, slug, "synonyms")
         val variants = o.stringList(path, slug, "variants")
-        for (form in listOf(text) + synonyms + variants) {
+        val orders = o.stringList(path, slug, "orders")
+        for (form in listOf(text) + synonyms + variants + orders) {
             LanguageNames.markerError(form)?.let { parseError(path, "$slug: $it") }
         }
         return RawRealization(
             text = text,
             synonyms = synonyms,
             variants = variants,
+            orders = orders,
             grammar = o.stringMap(path, slug, "grammar"),
             notes = o.stringMap(path, slug, "notes"),
         )

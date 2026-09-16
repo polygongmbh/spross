@@ -172,14 +172,16 @@ struct SentenceScrambleView: View {
     @ViewBuilder
     private func revealLines(_ task: SentenceScrambleTask) -> some View {
         CardReveal(note: nil) {
-            if !run.answerAccepted {
+            if !run.answerAccepted || run.alternativeMatch {
                 SpokenWord(pronounce: model.pronounceAction(for: task.display, lang: task.language),
                            isPlaying: model.isPronouncing(task.display, lang: task.language)) {
                     sentence(Text(task.display), tint: Theme.colors.accent)
                         .spoken(task.display, language: task.language)
                 }
             }
-            sentence(Text(task.gloss), tint: Theme.colors.textPrimary)
+            if !run.alternativeMatch {
+                sentence(Text(task.gloss), tint: Theme.colors.textPrimary)
+            }
         }
         .transition(.opacity)
     }

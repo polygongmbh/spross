@@ -223,6 +223,15 @@ Realization fields — only `text` is required:
 
   Which of the two an alternate belongs in turns on one question — what a learner already
   knows from `text` against what they do not — and `areas/README.md` decides it.
+- `orders` — alternative valid **word orders** of the same sentence (array; omit if none):
+  grammatically valid rearrangements whose atoms are a permutation of `text`'s atoms
+  (de "Gehen Sie geradeaus." → order "Sie gehen geradeaus.").
+  **Scramble-only**: the sentence scramble accepts any of these as correct;
+  other drills ignore the field entirely.
+  Because the alternative order may carry a different meaning,
+  no gloss is shown on the reveal when one matches — only the canonical `text` form.
+  Each entry must tokenize to the same word bag as `text`; an order with different words
+  is silently dropped at availability-build time.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
   labels, no `(selten)` qualifier), one fact per key: de and es `gender` + `plural`,
   sw `plural`, en `plural`, uk `plural`. Omit if empty.

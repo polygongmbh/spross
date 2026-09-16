@@ -59,6 +59,8 @@ internal data class RawRealization(
     val text: String,
     val synonyms: List<String>,
     val variants: List<String>,
+    /** Alternative valid word orders of the same sentence — scramble-only, never prompted. */
+    val orders: List<String>,
     val grammar: Map<String, String>,
     /** Keyed by the language written in: the reader's own, else this file's. */
     val notes: Map<Language, String>,

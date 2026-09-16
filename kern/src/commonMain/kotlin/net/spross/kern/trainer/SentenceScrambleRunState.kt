@@ -131,6 +131,14 @@ data class SentenceScrambleRunState(
 
     val tally: DrillTally get() = DrillTally.of(outcomes)
 
+    /** Accepted via an alternative word order rather than the canonical one — gloss not shown. */
+    val alternativeMatch: Boolean
+        get() {
+            if (!answerAccepted) return false
+            val t = task ?: return false
+            return !ScrambleGrading.matchesCanonical(placedAtoms, t.canonical)
+        }
+
     /** The arrangement so far, in order. */
     val placedAtoms: List<ScrambleAtom>
         get() = task?.let { t -> placed.mapNotNull { t.shuffled.getOrNull(it) } }.orEmpty()

@@ -51,6 +51,8 @@ data class Realization(
     val synonyms: List<String> = emptyList(),
     /** Accepted surface forms of the same knowledge — grading/display only, never prompted. */
     val variants: List<String> = emptyList(),
+    /** Alternative valid word orders of the same sentence — scramble-only, never prompted. */
+    val orders: List<String> = emptyList(),
     /** Language-specific bare facts (de `gender`/`plural`, …). */
     val grammar: Map<String, String> = emptyMap(),
     /**

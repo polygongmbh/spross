@@ -19,6 +19,8 @@ data class SentenceScrambleTask(
     val shuffled: List<ScrambleAtom>,
     /** The atoms in the order the phrase was authored in — what an arrangement is measured by. */
     val canonical: List<ScrambleAtom>,
+    /** Word-order permutations the catalog declares valid — accepted but gloss-suppressed. */
+    val alternatives: List<List<ScrambleAtom>> = emptyList(),
     /**
      * The phrase as AUTHORED, for the reveal — capital, full stop and all. The atoms carry
      * neither the sentence's own stop ([ScrambleTokenizer]) nor its positional capital

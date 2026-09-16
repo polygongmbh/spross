@@ -71,7 +71,11 @@ object SentenceScrambleAvailability {
     }
 
     /** One eligible phrase and the chips it was cut into. */
-    data class Phrase(val card: Card, val atoms: List<ScrambleAtom>) {
+    data class Phrase(
+        val card: Card,
+        val atoms: List<ScrambleAtom>,
+        val alternativeOrders: List<List<ScrambleAtom>> = emptyList(),
+    ) {
 
         /**
          * How long the phrase is as an ORDER. A punctuation chip is placed like any other but
@@ -103,12 +107,19 @@ object SentenceScrambleAvailability {
                 .filter { it.kind == CardKind.Phrase }
                 .filter { '…' !in it.target.text }
                 .filter { card -> card.target.text.trimEnd().lastOrNull()?.let(TERMINATORS::contains) == true }
-                .map {
-                    Phrase(it, ScrambleCapitals.neutralized(ScrambleTokenizer.atoms(it.target.text), inherent))
+                .map { card ->
+                    val atoms = ScrambleCapitals.neutralized(ScrambleTokenizer.atoms(card.target.text), inherent)
+                    val alts = card.target.orders
+                        .map { ScrambleCapitals.neutralized(ScrambleTokenizer.atoms(it), inherent) }
+                        .filter { sameWordBag(atoms, it) }
+                    Phrase(card, atoms, alts)
                 }
                 .filter { it.words >= MIN_ATOMS },
         )
     }
+
+    private fun sameWordBag(a: List<ScrambleAtom>, b: List<ScrambleAtom>): Boolean =
+        a.map { it.text.lowercase() }.sorted() == b.map { it.text.lowercase() }.sorted()
 
     /** Whether the drill exists at all — the hub-chip predicate. */
     fun drillExists(box: BoxState): Boolean = report(box).drillAvailable

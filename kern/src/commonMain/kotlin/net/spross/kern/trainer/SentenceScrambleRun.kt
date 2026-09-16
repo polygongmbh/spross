@@ -114,7 +114,7 @@ object SentenceScrambleRun {
         if (index !in task.shuffled.indices || state.isPlaced(index)) return unchanged(state)
         val next = state.copy(placed = state.placed + index)
         if (!next.complete) return SentenceScrambleReduction(next, emptyList())
-        return if (ScrambleGrading.isSolved(next.placedAtoms, task.canonical)) {
+        return if (ScrambleGrading.isSolved(next.placedAtoms, task.canonical, task.alternatives)) {
             SentenceScrambleReduction(
                 next.copy(feedback = TurnFeedback.Correct),
                 listOf(
@@ -275,8 +275,9 @@ object SentenceScrambleRun {
         return SentenceScrambleTask(
             cardId = phrase.card.id,
             language = phrase.card.target.lang,
-            shuffled = dealt(phrase.atoms, rng),
+            shuffled = dealt(phrase.atoms, phrase.alternativeOrders, rng),
             canonical = phrase.atoms,
+            alternatives = phrase.alternativeOrders,
             display = phrase.card.target.text,
             gloss = phrase.card.source.text,
         )
@@ -287,10 +288,14 @@ object SentenceScrambleRun {
      * question would be "tap them left to right" — but only so many times, so an arrangement
      * with too few distinct orders still gets dealt rather than looping.
      */
-    private fun dealt(atoms: List<ScrambleAtom>, rng: Random): List<ScrambleAtom> {
+    private fun dealt(
+        atoms: List<ScrambleAtom>,
+        alternatives: List<List<ScrambleAtom>>,
+        rng: Random,
+    ): List<ScrambleAtom> {
         var deal = atoms.shuffled(rng)
         var attempts = 0
-        while (ScrambleGrading.isSolved(deal, atoms) && attempts < DEAL_ATTEMPTS) {
+        while (ScrambleGrading.isSolved(deal, atoms, alternatives) && attempts < DEAL_ATTEMPTS) {
             deal = atoms.shuffled(rng)
             attempts++
         }
