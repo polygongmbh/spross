@@ -14,7 +14,6 @@
   "to-need": { "text": "to need" },
   "to-know": { "text": "to know" },
   "to-remember": { "text": "to remember" },
-  "to-forget": { "text": "to forget" },
   "goal": { "text": "goal" },
   "to-show": { "text": "to show" },
   "to-explain": { "text": "to explain" },
@@ -28,6 +27,7 @@
   "you-can-do-it": { "text": "You can definitely do it!" },
   "i-need-help": { "text": "I need help." },
   "i-dont-know": { "text": "I don't know." },
+  "i-forgot": { "text": "I forgot." },
   "what-is-this-called": { "text": "What is this called?" },
   "louder": { "text": "Louder!" }
  }

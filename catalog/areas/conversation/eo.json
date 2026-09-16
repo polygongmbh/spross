@@ -20,7 +20,6 @@
    }
   },
   "to-remember": { "text": "memori" },
-  "to-forget": { "text": "forgesi" },
   "goal": { "text": "celo" },
   "to-show": { "text": "montri" },
   "to-explain": { "text": "klarigi" },
@@ -34,6 +33,7 @@
   "you-can-do-it": { "text": "Vi certe sukcesos!" },
   "i-need-help": { "text": "Mi bezonas helpon." },
   "i-dont-know": { "text": "Mi ne scias." },
+  "i-forgot": { "text": "Mi forgesis." },
   "what-is-this-called": { "text": "Kiel oni nomas tion?", "variants": ["Kiel tio nomiĝas?"] },
   "louder": { "text": "Pli laŭte!" }
  }

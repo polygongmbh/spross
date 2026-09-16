@@ -11,7 +11,6 @@
  { "slug": "to-need", "kind": "verb" },
  { "slug": "to-know", "kind": "verb", "emoji": "🧠" },
  { "slug": "to-remember", "kind": "verb", "emoji": "📌" },
- { "slug": "to-forget", "kind": "verb", "emoji": "💨" },
  { "slug": "goal", "kind": "noun", "emoji": "🎯" },
  { "slug": "to-show", "kind": "verb", "emoji": "👉" },
  { "slug": "to-explain", "kind": "verb", "emoji": "🧩" },
@@ -25,6 +24,7 @@
  { "slug": "you-can-do-it", "kind": "phrase", "emoji": "💪", "components": [] },
  { "slug": "i-need-help", "kind": "phrase", "components": ["to-need", "help"] },
  { "slug": "i-dont-know", "kind": "phrase", "emoji": "🤷", "components": ["to-know"] },
+ { "slug": "i-forgot", "kind": "phrase", "emoji": "💨", "components": [] },
  { "slug": "what-is-this-called", "kind": "phrase", "emoji": "❓", "components": [] },
  { "slug": "louder", "kind": "phrase", "emoji": "🔊", "components": ["loud"] }
 ]

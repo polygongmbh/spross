@@ -14,7 +14,6 @@
   "to-need": { "text": "brauchen" },
   "to-know": { "text": "wissen" },
   "to-remember": { "text": "sich erinnern" },
-  "to-forget": { "text": "vergessen" },
   "goal": { "text": "Ziel", "grammar": { "gender": "das", "plural": "Ziele" } },
   "to-show": { "text": "zeigen" },
   "to-explain": { "text": "erklären" },
@@ -31,6 +30,7 @@
   "you-can-do-it": { "text": "Du schaffst das bestimmt!" },
   "i-need-help": { "text": "Ich brauche Hilfe." },
   "i-dont-know": { "text": "Ich weiß nicht." },
+  "i-forgot": { "text": "Ich habe es vergessen.", "variants": ["Das habe ich vergessen."] },
   "what-is-this-called": { "text": "Wie nennt man das?" },
   "louder": { "text": "Lauter!" }
  }

@@ -20,7 +20,6 @@
    }
   },
   "to-remember": { "text": "recordar" },
-  "to-forget": { "text": "olvidar" },
   "goal": { "text": "meta", "grammar": { "gender": "la" } },
   "to-show": { "text": "mostrar" },
   "to-explain": { "text": "explicar" },
@@ -46,6 +45,7 @@
   "you-can-do-it": { "text": "¡Seguro que lo consigues!", "variants": ["¡Tú puedes!", "¡Seguro que lo logras!"] },
   "i-need-help": { "text": "Necesito ayuda." },
   "i-dont-know": { "text": "No lo sé.", "variants": ["No sé."] },
+  "i-forgot": { "text": "Lo olvidé.", "variants": ["Se me olvidó."] },
   "what-is-this-called": { "text": "¿Cómo se llama esto?" },
   "louder": { "text": "¡Más fuerte!", "variants": ["¡Más alto!"] }
  }

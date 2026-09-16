@@ -35,7 +35,6 @@
    }
   },
   "to-remember": { "text": "se souvenir" },
-  "to-forget": { "text": "oublier" },
   "goal": { "text": "but", "grammar": { "gender": "le" } },
   "to-show": { "text": "montrer" },
   "to-explain": { "text": "expliquer" },
@@ -61,6 +60,7 @@
   },
   "i-need-help": { "text": "J'ai besoin d'aide." },
   "i-dont-know": { "text": "Je ne sais pas.", "variants": ["Je sais pas."] },
+  "i-forgot": { "text": "J'ai oublié." },
   "what-is-this-called": { "text": "Comment appelle-t-on ça ?", "variants": ["Comment ça s'appelle ?"] },
   "louder": { "text": "Plus fort !" }
  }
