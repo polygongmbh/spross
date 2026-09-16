@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
@@ -18,7 +19,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
@@ -40,7 +43,7 @@ import net.spross.kern.trainer.SentenceScrambleTask
  * finger costs a tap rather than the question.
  *
  * Stateless like the letter drill: no review is ever booked, and the box is READ for the
- * phrases it has unlocked and never written. The RUN is kern's, reached through
+ * phrases its join carries and never written. The RUN is kern's, reached through
  * [SentenceScrambleFlow]; the bank and the answer row are [ScrambleTileBank].
  */
 @Composable
@@ -135,32 +138,48 @@ private fun RevealLines(
     accepted: Boolean,
     chrome: Chrome,
 ) {
-    if (accepted) {
-        // The order is already right on screen, so the meaning is the only thing the card
-        // still owes — which makes it the ANSWER slot's, at the size every other card reveals
-        // one, never the note's fine print.
-        CardReveal(note = null) {
-            Text(
-                task.gloss,
-                style = MaterialTheme.typography.titleLarge,
-                color = Theme.colors.accent,
-                textAlign = TextAlign.Center,
-            )
-        }
-    } else {
-        CardReveal(note = task.gloss) {
+    CardReveal(note = null) {
+        if (!accepted) {
             SpokenWord(model.speakFormOnTap(task.display, task.language), chrome) {
-                Text(
+                Sentence(
                     localizedTarget(task.display, task.language),
-                    style = MaterialTheme.typography.titleLarge,
-                    color = Theme.colors.accent,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.weight(1f, fill = false),
+                    Theme.colors.accent,
+                    Modifier.weight(1f, fill = false),
                 )
             }
         }
+        Sentence(task.gloss, Theme.colors.textPrimary)
     }
 }
+
+/**
+ * A phrase on the answer card.
+ *
+ * Opens at the WORD reveal's size and shrinks only where the phrase is long enough to need it,
+ * rather than being set small in advance against the longest one the catalog might hold:
+ * this card has the room, since the bank is gone by the time it is drawn and no prompt stands
+ * above it. Autosize is insurance for the long phrase, never how a phrase is sized ([Headword]).
+ */
+@Composable
+private fun Sentence(text: AnnotatedString, color: Color, modifier: Modifier = Modifier) {
+    val style = MaterialTheme.typography.headlineSmall
+    Text(
+        text,
+        modifier = modifier,
+        style = style,
+        color = color,
+        textAlign = TextAlign.Center,
+        maxLines = 4,
+        autoSize = TextAutoSize.StepBased(
+            minFontSize = MaterialTheme.typography.titleMedium.fontSize,
+            maxFontSize = style.fontSize,
+        ),
+    )
+}
+
+@Composable
+private fun Sentence(text: String, color: Color, modifier: Modifier = Modifier) =
+    Sentence(AnnotatedString(text), color, modifier)
 
 @Composable
 private fun Controls(flow: SentenceScrambleFlow, chrome: Chrome, onFinish: () -> Unit) {

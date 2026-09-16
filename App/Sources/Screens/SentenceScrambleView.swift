@@ -155,34 +155,42 @@ struct SentenceScrambleView: View {
     /// The meaning always; the authored order above it only where the
     /// arrangement missed, since the chips of a clean one already ARE that order
     /// and setting it a second time would read as a correction.
+    /// What the graded arrangement grows, on the answer card itself — the shared
+    /// reveal, so a drill card and a vocabulary card grow the same thing.
+    ///
+    /// Two answers, never an answer and a footnote. The ORDER was the question,
+    /// so where it was missed the authored one wears the accent every card's
+    /// answer wears; the MEANING was never on screen at all while the words were
+    /// being arranged, so it reads at the same size in the page's own ink rather
+    /// than as the note's fine print.
+    ///
+    /// Both open at the WORD reveal's size and shrink only where the phrase is
+    /// long enough to need it, rather than being set small in advance against
+    /// the longest one the catalog might hold: this card has the room, since the
+    /// bank is gone by the time it is drawn and no prompt stands above it. The
+    /// floor lands about where the fixed sentence size did (`TrainerPromptCard`).
     @ViewBuilder
     private func revealLines(_ task: SentenceScrambleTask) -> some View {
-        if run.answerAccepted {
-            // The order is already right on screen, so the meaning is the only
-            // thing the card still owes — which makes it the ANSWER slot's, at
-            // the size every other card reveals one, never the note's fine print.
-            CardReveal(note: nil) {
-                Text(task.gloss)
-                    .font(Theme.typography.headline)
-                    .foregroundStyle(Theme.colors.accent)
-                    .multilineTextAlignment(.center)
-                    .minimumScaleFactor(0.6)
-            }
-            .transition(.opacity)
-        } else {
-            CardReveal(note: task.gloss) {
+        CardReveal(note: nil) {
+            if !run.answerAccepted {
                 SpokenWord(pronounce: model.pronounceAction(for: task.display, lang: task.language),
                            isPlaying: model.isPronouncing(task.display, lang: task.language)) {
-                    Text(task.display)
-                        .font(Theme.typography.headline)
-                        .foregroundStyle(Theme.colors.accent)
-                        .multilineTextAlignment(.center)
-                        .minimumScaleFactor(0.6)
+                    sentence(Text(task.display), tint: Theme.colors.accent)
                         .spoken(task.display, language: task.language)
                 }
             }
-            .transition(.opacity)
+            sentence(Text(task.gloss), tint: Theme.colors.textPrimary)
         }
+        .transition(.opacity)
+    }
+
+    private func sentence(_ text: Text, tint: Color) -> some View {
+        text
+            .font(Theme.typography.title)
+            .foregroundStyle(tint)
+            .multilineTextAlignment(.center)
+            .lineLimit(4)
+            .minimumScaleFactor(0.6)
     }
 
     @ViewBuilder
