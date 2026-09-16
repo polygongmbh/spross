@@ -75,6 +75,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   For catalog translations, a literal match is important.
 - Docs and code comments name things plainly — a button, a screen, a section —
   never by the display copy's narrative metaphor (say "button", not "door"); metaphor is chrome content, not descriptive vocabulary.
+  This binds identifiers and localization keys too — a key names its content or its function,
+  so the one holding "Garden" is `box.name`, never `box.door`.
 
 ### Tests
 - Test rules and behavior, not implementation details or tweakable constants
