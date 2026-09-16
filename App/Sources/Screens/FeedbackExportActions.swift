@@ -23,8 +23,10 @@ struct FeedbackExportActions: View {
     var body: some View {
         // The three one-word actions share a line, evenly spread rather than stacked
         // against the left edge; the merge takes the line under them, since its name is
-        // the one that cannot be said in a word.
-        VStack(spacing: Theme.spacing.md) {
+        // the one that cannot be said in a word. No spacing between the two: each line
+        // is already a thumb's height of its own, and a gap on top of that reads as a
+        // gulf rather than as two lines of one block.
+        VStack(spacing: 0) {
             outbox
             merge
         }
