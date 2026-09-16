@@ -70,6 +70,7 @@ struct BoxSettingsSection: View {
                         .font(Theme.typography.subheadline)
                         .foregroundStyle(Theme.colors.accent)
                 }
+                .buttonStyle(.plain)
             }
             creditsButton
         }
@@ -94,6 +95,7 @@ struct BoxSettingsSection: View {
                 .font(Theme.typography.subheadline)
                 .foregroundStyle(Theme.colors.accent)
         }
+        .buttonStyle(.plain)
     }
 
     private var feedbackURL: URL? {
@@ -156,6 +158,7 @@ struct BoxSettingsSection: View {
                         .fill(Theme.colors.surfaceTint)
                 )
             }
+            .menuStyle(.borderlessButton)
             .accessibilityLabel(Text(title))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -285,9 +288,11 @@ struct BoxSettingsSection: View {
             Button {
                 model.restartOnboarding()
             } label: {
-                Text("settings.restartTutorial.button")
+                Label("settings.restartTutorial.button", systemImage: "book")
                     .font(Theme.typography.subheadline)
+                    .foregroundStyle(Theme.colors.accent)
             }
+            .buttonStyle(.plain)
             Text("settings.restartTutorial.hint")
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
@@ -303,9 +308,11 @@ struct BoxSettingsSection: View {
             Button(role: .destructive) {
                 startReset()
             } label: {
-                Text("settings.reset.button \(targetName)")
+                Label("settings.reset.button \(targetName)", systemImage: "arrow.counterclockwise")
                     .font(Theme.typography.subheadline)
+                    .foregroundStyle(Theme.colors.wrong)
             }
+            .buttonStyle(.plain)
             .fileExporter(isPresented: shown($pendingResetExport), document: pendingResetExport,
                           contentType: .json, defaultFilename: pendingResetExport?.name ?? "Spross") { _ in
                 confirmingReset = true

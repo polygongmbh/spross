@@ -71,14 +71,17 @@ struct BackupRow: View {
             } label: {
                 exportLabel
             }
+            .menuStyle(.borderlessButton)
         } else {
             Button { write(only: nil) } label: { exportLabel }
+                .buttonStyle(.plain)
         }
     }
 
     private var exportLabel: some View {
         Label("settings.backup.export", systemImage: "square.and.arrow.up")
             .font(Theme.typography.subheadline)
+            .foregroundStyle(Theme.colors.accent)
     }
 
     /// The file the exporter then puts somewhere — named for what it carries, so two of
@@ -101,7 +104,9 @@ struct BackupRow: View {
         } label: {
             Label("settings.backup.import", systemImage: "square.and.arrow.down")
                 .font(Theme.typography.subheadline)
+                .foregroundStyle(Theme.colors.accent)
         }
+        .buttonStyle(.plain)
         .fileImporter(isPresented: $importing, allowedContentTypes: [.json]) { result in
             Task { await read(result) }
         }
