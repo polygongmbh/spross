@@ -379,8 +379,8 @@ internal object ChromeEn : Chrome {
         "backup?"
     override val settingsBackupReplace = "Replace"
     override val settingsBackupExportFailed = "The backup could not be saved."
-    override val settingsBackupImportFailed = "This file is not a Spross backup, or an " +
-        "orchard in it cannot be read."
+    override val settingsBackupImportFailed = "This file is not a Spross backup or cannot be " +
+        "read."
     override val commonCancel = "Cancel"
     override val commonReset = "Reset"
     override val commonClear = "Clear"

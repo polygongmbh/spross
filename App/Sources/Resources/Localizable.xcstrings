@@ -6107,13 +6107,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Datei ist keine Spross-Sicherung, oder ein Obstgarten darin lässt sich nicht lesen."
+            "value" : "Diese Datei ist keine Spross-Sicherung oder lässt sich nicht lesen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This file is not a Spross backup, or an orchard in it cannot be read."
+            "value" : "This file is not a Spross backup or cannot be read."
           }
         }
       }

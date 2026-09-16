@@ -385,8 +385,8 @@ internal object ChromeDe : Chrome {
         "Sicherung ersetzen?"
     override val settingsBackupReplace = "Ersetzen"
     override val settingsBackupExportFailed = "Die Sicherung konnte nicht gespeichert werden."
-    override val settingsBackupImportFailed = "Diese Datei ist keine Spross-Sicherung, oder " +
-        "ein Obstgarten darin lässt sich nicht lesen."
+    override val settingsBackupImportFailed = "Diese Datei ist keine Spross-Sicherung oder " +
+        "lässt sich nicht lesen."
     override val commonCancel = "Abbrechen"
     override val commonReset = "Zurücksetzen"
     override val commonClear = "Löschen"
