@@ -24,11 +24,15 @@ import net.spross.kern.session.TurnFeedback
 object SentenceScrambleRun {
 
     /**
-     * Five clean arrangements carry a Sprosse. Two made the ladder climb faster than the learner
-     * could feel it — a clean, an almost and a clean promoted on the third answer, which read as
-     * the almost having counted.
+     * Three clean arrangements carry a Sprosse.
+     *
+     * Five was the typed drills' figure, and it was carried here without the thing that earns it:
+     * a Sprosse ADDS a length and keeps every one below it ([SentenceScrambleAvailability.Report.atomsAt]),
+     * so a run five answers deep is mostly still being asked the lengths it already cleared.
+     * There is no almost to mis-credit either — this drill grades whole-position — which is what
+     * made two too quick on the drills that have one.
      */
-    const val WINS_TO_ADVANCE: Int = 5
+    const val WINS_TO_ADVANCE: Int = 3
 
     /** How many deals a shuffle gets before an already-ordered one is allowed to stand. */
     private const val DEAL_ATTEMPTS = 8
