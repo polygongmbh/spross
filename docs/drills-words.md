@@ -78,8 +78,11 @@ what each may draw at all is kern's (`LetterDrillAvailability`, `WordScrambleAva
   and what is left to learn is where each word goes.
 - **It draws on the whole catalog, past no growth bar at all** —
   the only drill that does.
-  The atoms are handed over and the translation stands beside them,
-  so a phrase built of words the learner has never met is exposure to an ORDER
-  rather than a question they cannot answer,
-  and a suspended phrase stays in: suspending stops a card being REVIEWED,
+  The words are given and only their order is withheld,
+  so a phrase asks the same question whether or not the learner holds its words,
+  and one built of words they have never met is exposure to an ORDER.
+  A suspended phrase stays in too: suspending stops a card being REVIEWED,
   which an arrangement is not.
+- **Nothing says what the phrase MEANS until it is graded** —
+  the arrangement is made on word order alone,
+  and the translation is part of what the card grows afterwards rather than a prompt above it.

@@ -10,9 +10,9 @@ import net.spross.kern.model.CardKind
  * back together.
  *
  * The whole join, never a growth bar.
- * Arranging is not recall — the atoms are handed over and the gloss stands beside them,
- * so a phrase built of words the learner has not met is exposure to an ORDER
- * rather than a question they cannot answer.
+ * Arranging is not recall: the words are GIVEN and only their order is withheld,
+ * so what a phrase asks is the same question whether or not the learner holds its words,
+ * and one built of words they have never met is exposure to an ORDER.
  * Nothing here reads scheduling at all, and nothing here is a device fact,
  * so unlike the letter drill this needs no capability port either.
  *
