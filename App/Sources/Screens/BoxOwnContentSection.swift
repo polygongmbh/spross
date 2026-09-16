@@ -180,11 +180,11 @@ struct BoxOwnContentSection: View {
         }
     }
 
-    /// A finished word the open pair cannot ask. The tail names the pair it IS written in,
-    /// which is the whole of why it stands here rather than as a card.
+    /// A finished word the open pair cannot ask. The tail is the FLAG of the language it
+    /// carries that this pair does not name, which is the whole of why it stands here
+    /// rather than as a card — and a flag says it in the space a sentence would not fit.
     private func otherPairRow(_ word: OwnWord) -> some View {
-        entryRow(word, lines: 1, said: word.comment,
-                 tail: "box.own.word.otherPair \(model.otherPairLanguages(word))") {
+        entryRow(word, lines: 1, said: word.comment, tail: model.otherPairFlags(word)) {
             Text(verbatim: model.otherPairText(word))
         }
     }
@@ -205,7 +205,7 @@ struct BoxOwnContentSection: View {
         entryRow(word, lines: 1, said: word.comment,
                  // why: a missing half is not a shortcoming of the word, it is the whole
                  // point of the entry — it is what the catalog owes.
-                 tail: "box.own.word.needsTranslation") {
+                 tail: Text("box.own.word.needsTranslation")) {
             Text(verbatim: model.suggestionText(word))
         }
     }
@@ -225,9 +225,10 @@ struct BoxOwnContentSection: View {
     }
 
     /// One entry with no card behind it. `said` is the note under the line where the
-    /// entry has one, `tail` what the catalog still owes on it.
+    /// entry has one, `tail` what the row has left to say about it — what the catalog
+    /// still owes, or the language this pair cannot read it in.
     private func entryRow<Lead: View>(
-        _ word: OwnWord, lines: Int, said: String?, tail: LocalizedStringKey?,
+        _ word: OwnWord, lines: Int, said: String?, tail: Text?,
         @ViewBuilder lead: () -> Lead
     ) -> some View {
         HStack(spacing: Theme.spacing.md) {
@@ -248,7 +249,7 @@ struct BoxOwnContentSection: View {
             }
             Spacer(minLength: Theme.spacing.sm)
             if let tail {
-                Text(tail)
+                tail
                     .font(Theme.typography.caption)
                     .foregroundStyle(Theme.colors.textSecondary)
             }

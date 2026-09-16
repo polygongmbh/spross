@@ -1,6 +1,7 @@
 package net.spross.app
 
 import net.spross.kern.box.BoxEngine
+import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.box.CatalogMatch
 import net.spross.kern.box.CatalogMatches
 import net.spross.kern.box.Feedback
@@ -106,8 +107,23 @@ fun AppModel.suggestionText(word: OwnWord): String =
 fun AppModel.otherPairText(word: OwnWord): String =
     word.languages.mapNotNull { word.texts[it] }.joinToString(" → ")
 
-/** Which pair it IS written in, which is the whole of why it has no card. */
-fun AppModel.otherPairLanguages(word: OwnWord): String = word.languages.joinToString(" → ")
+/**
+ * The flags of the languages it is written in that this pair cannot read
+ * ([OwnWord.languagesOutside]) — the whole of why it has no card, said without words.
+ */
+fun AppModel.otherPairFlags(word: OwnWord): String {
+    val stamp = box?.joinStamp ?: return ""
+    return word.languagesOutside(stamp.source, stamp.target)
+        .mapNotNull { catalog?.languages?.get(it)?.flag }
+        .joinToString("")
+}
+
+/** The same languages named, for a screen reader, which is handed no picture at all. */
+fun AppModel.otherPairLanguageNames(word: OwnWord): String {
+    val stamp = box?.joinStamp ?: return ""
+    return word.languagesOutside(stamp.source, stamp.target)
+        .joinToString(", ") { LanguageChoices.name(it, catalog?.languages?.get(it)) }
+}
 
 /**
  * Whether there is anything to copy or send at all — what withholds the actions.

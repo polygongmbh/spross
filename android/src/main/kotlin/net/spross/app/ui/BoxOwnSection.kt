@@ -30,6 +30,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -41,7 +43,8 @@ import net.spross.app.clearableCount
 import net.spross.app.hasExportedBefore
 import net.spross.app.hasFeedback
 import net.spross.app.markExported
-import net.spross.app.otherPairLanguages
+import net.spross.app.otherPairFlags
+import net.spross.app.otherPairLanguageNames
 import net.spross.app.otherPairText
 import net.spross.app.ownWordPairs
 import net.spross.app.removeOwnWord
@@ -259,7 +262,8 @@ private fun OtherPairRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDra
         lines = 1,
         line = model.otherPairText(word),
         said = word.comment,
-        tail = model.chrome.boxOwnWordOtherPair.format(model.otherPairLanguages(word)),
+        tail = model.otherPairFlags(word),
+        tailSaid = model.otherPairLanguageNames(word),
     )
 }
 
@@ -269,7 +273,9 @@ private fun OtherPairRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDra
  * writing it over and taking it back out.
  *
  * [line] defaults to the entry's comment, which is the whole of a note; [said] is the note
- * under the line where the entry has one, and [tail] what the catalog still owes on it.
+ * under the line where the entry has one, and [tail] what the row has left to say about it —
+ * what the catalog still owes, or the flag of the language this pair cannot read it in.
+ * [tailSaid] names a [tail] that is a picture, for a screen reader handed no picture at all.
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -281,6 +287,7 @@ private fun EntryRow(
     line: String = word.comment.orEmpty(),
     said: String? = null,
     tail: String? = null,
+    tailSaid: String? = null,
 ) {
     val chrome = model.chrome
     val stamp = model.box?.joinStamp ?: return
@@ -311,11 +318,14 @@ private fun EntryRow(
                 )
             }
         }
-        if (tail != null) {
+        if (!tail.isNullOrEmpty()) {
             Text(
                 tail,
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = tailSaid?.let { name ->
+                    Modifier.semantics { contentDescription = name }
+                } ?: Modifier,
             )
         }
         DropdownMenu(expanded = menuOpen, onDismissRequest = { menuOpen = false }) {

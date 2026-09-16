@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 import SprossKern
 
 // Telling whoever maintains the catalog what is wrong with it, and what is missing
@@ -56,9 +57,18 @@ extension AppModel {
         word.languages.compactMap { word.texts[$0] }.joined(separator: " → ")
     }
 
-    /// Which pair it IS written in, which is the whole of why it has no card.
-    func otherPairLanguages(_ word: OwnWord) -> String {
-        word.languages.joined(separator: " → ")
+    /// The flags of the languages it is written in that this pair cannot read
+    /// (`OwnWord.languagesOutside`) — the whole of why it has no card, said without words.
+    /// Named for a screen reader, which is handed no picture at all.
+    func otherPairFlags(_ word: OwnWord) -> Text? {
+        guard let box else { return nil }
+        let outside = word.languagesOutside(source: box.joinStamp.source,
+                                            target: box.joinStamp.target)
+        guard !outside.isEmpty else { return nil }
+        let flags = outside.compactMap { catalog?.languages[$0]?.flag }.joined()
+        let named = outside.map { LanguageNames.display($0, catalog: catalog) }
+            .formatted(.list(type: .and))
+        return Text(verbatim: flags).accessibilityLabel(Text(verbatim: named))
     }
 
     /// Whether there is anything to copy or send at all — what grays the actions out.

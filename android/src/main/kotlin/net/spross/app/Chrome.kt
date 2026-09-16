@@ -355,8 +355,6 @@ interface Chrome {
     // ── Feedback to the catalog ─────────────────────────────────────────────────
     val boxOwnWordNeedsTranslation: String
 
-    /** Tail on a finished word this profile cannot pair; `%s` is the two languages it is in. */
-    val boxOwnWordOtherPair: String
 
     // ── The catalog catching up with the learner's own words ────────────────────
     val boxOwnMatchTitle: String

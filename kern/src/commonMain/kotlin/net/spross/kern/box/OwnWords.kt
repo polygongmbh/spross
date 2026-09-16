@@ -88,6 +88,17 @@ data class OwnWord(
      * happened to hand back.
      */
     val languages: List<Language> get() = texts.keys.sorted()
+
+    /**
+     * The languages it is written in that this profile does not name — empty for a word the
+     * profile can study ([joins]).
+     *
+     * What a surface says to explain a finished word with no card: it is written, and it is
+     * written in THESE, which are not the two on screen. Read here so both apps answer it
+     * the same way and the export's fallback line and the screens' badge agree.
+     */
+    fun languagesOutside(source: Language, target: Language): List<Language> =
+        languages.filter { it != source && it != target }
 }
 
 /** The rules that turn the learner's own words into cards the box can hold. */

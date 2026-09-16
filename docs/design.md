@@ -453,9 +453,13 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
     the catalog brought. It is deliberately NOT a shelf: own words are packed the moment
     they are written, so an area head offering to pack them would say nothing, and a
     progress bar over a handful of words is furniture.
-    The words stand in three blocks: the ones written in both languages list as the cards
-    they are, the SUGGESTIONS still carrying a single half list under a heading of
-    their own, next to the reports — what waits on the catalog reads together, and a
+    The words stand in three blocks: the ones written in two languages or more list as the
+    cards they are — and one this pair cannot read both halves of lists there too, since
+    the learner finished it and a changed known language does not unfinish it
+    (`../kern/README.md` §6), wearing the FLAG of the language this pair cannot read rather
+    than a sentence about it: a flag fits where a sentence does not, and that is the whole
+    of why the row has no card. The SUGGESTIONS still carrying a single half list under a
+    heading of their own, next to the reports — what waits on the catalog reads together, and a
     suggestion has no standing to be read beside a card's — and the NOTES get a third,
     because a note names no word and so suggests none: what it asks about may be nothing
     the catalog holds, and a suggestion says what it is missing where a note owes nothing.
