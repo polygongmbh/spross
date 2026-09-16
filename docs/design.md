@@ -81,6 +81,11 @@ Strict dependency direction: App → SprossKern, never the reverse.
 - UI chrome renders in the KNOWN language when chrome exists (de/en today), otherwise en.
   Onboarding follows the source being PICKED — device language first, re-rendering on
   each tap — so the greeting is already in the user's language.
+- **English chrome title-cases the NAME of a thing** — a screen, a drill, an exercise,
+  a modifier, a section. Everything that is a sentence stays sentence case:
+  statements, questions, hints, subtitles. So "Word Scramble" and "Your First Round",
+  but "Done for today" and "Sound is off".
+  German is left alone — it has no title-case convention, its nouns capitalize regardless.
 - Chrome strings are SYMBOLIC keys (`settings.known.title`), never source text in either
   language: copy edits then never detach a translation, and a new chrome language is
   additive. How a key is written and kept honest: `scripts/strings.py`.
