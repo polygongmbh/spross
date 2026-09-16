@@ -53,13 +53,7 @@ fun BackupSetting(model: AppModel, catalog: Catalog, target: String) {
     val export = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
         if (uri == null) return@rememberLauncherForActivityResult
         scope.launch {
-            val written = withContext(Dispatchers.IO) {
-                runCatching {
-                    val json = model.backupJson(only)
-                    val stream = resolver.openOutputStream(uri, "wt") ?: error("no stream for $uri")
-                    stream.use { it.write(json.encodeToByteArray()) }
-                }
-            }
+            val written = withContext(Dispatchers.IO) { writeBackupJson(model, resolver, uri, only) }
             if (written.isFailure) failure = chrome.settingsBackupExportFailed
         }
     }
@@ -140,4 +134,20 @@ fun BackupSetting(model: AppModel, catalog: Catalog, target: String) {
             },
         )
     }
+}
+
+/**
+ * The write step behind both the manual export button here and the auto-save offered
+ * ahead of a reset in [BoxSettingsSection] — one place that opens the stream and encodes
+ * the JSON, so the two callers can't drift on how a backup file is written.
+ */
+internal suspend fun writeBackupJson(
+    model: AppModel,
+    resolver: android.content.ContentResolver,
+    uri: android.net.Uri,
+    only: String?,
+): Result<Unit> = runCatching {
+    val json = model.backupJson(only)
+    val stream = resolver.openOutputStream(uri, "wt") ?: error("no stream for $uri")
+    stream.use { it.write(json.encodeToByteArray()) }
 }

@@ -132,7 +132,7 @@ struct BackupRow: View {
 }
 
 /// The backup text as the exporter writes it, under the name it offers for it.
-private struct BackupFile: FileDocument {
+struct BackupFile: FileDocument {
     static let readableContentTypes: [UTType] = [.json]
     let text: String
     let name: String
