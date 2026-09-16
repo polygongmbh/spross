@@ -20,6 +20,34 @@ struct HubChip: Identifiable {
     var id: String { destination.id }
 }
 
+/// What each entry of kern's roster wears here. The six are enumerated in
+/// `Drill` and nowhere else; the glyph and the catalog key are this side's,
+/// which is why they hang off the roster rather than sitting inside it.
+extension Drill {
+    var emoji: String {
+        switch self {
+        // layer-ok: the chip IS the numbers one — reading its own emoji, not picking a reading
+        case .numbers: return numbersReadingEmoji(reading: .cardinal)
+        case .letters: return "🔤"
+        case .countries: return "🌍"
+        case .dates: return "📅"
+        case .wordScramble: return "🔀"
+        case .sentenceScramble: return "🧩"
+        }
+    }
+
+    var titleKey: LocalizedStringKey {
+        switch self {
+        case .numbers: return "trainer.drill.numbers"
+        case .letters: return "trainer.drill.letters"
+        case .countries: return "trainer.drill.countries"
+        case .dates: return "trainer.drill.dates"
+        case .wordScramble: return "trainer.drill.wordScramble"
+        case .sentenceScramble: return "trainer.drill.sentenceScramble"
+        }
+    }
+}
+
 /// Everything the hub presents, as ONE item, so a single `.sheet(item:)`
 /// carries them all. A second `fullScreenCover(isPresented:)` stacked on the
 /// same view is not reliably honored by SwiftUI (the symptom is a chip that
@@ -65,9 +93,44 @@ extension TrainerHubView {
         guard let language = drillLanguage else { return false }
         return model.catalog?.alphabet(lang: language) != nil
     }
+
+    /// Where a roster entry's chip goes, or nil where this profile cannot offer
+    /// it at all — the one place a `Drill` meets its condition, so a seventh
+    /// cannot reach the hub without one.
+    func destination(for drill: Drill) -> HubDestination? {
+        guard let language = drillLanguage else { return nil }
+        switch drill {
+        case .numbers:
+            return slotsAvailable ? .numbers(language: language) : nil
+        case .letters:
+            return alphabetAvailable ? .letters(language: language) : nil
+        case .countries:
+            return atlasPair.map { HubDestination.countries(source: $0.source, target: $0.target) }
+        case .dates:
+            return datesPair.map { HubDestination.dates(source: $0.source, target: $0.target) }
+        case .wordScramble:
+            return wordScrambleAvailable ? .wordScramble(language: language) : nil
+        case .sentenceScramble:
+            return sentenceScrambleAvailable ? .sentenceScramble(language: language) : nil
+        }
+    }
 }
 
 #if DEBUG
+extension Drill {
+    /// What `-uitest-trainer` calls this entry: the roster's own name, lowercased.
+    var uitestName: String {
+        switch self {
+        case .numbers: return "numbers"
+        case .letters: return "letters"
+        case .countries: return "countries"
+        case .dates: return "dates"
+        case .wordScramble: return "wordscramble"
+        case .sentenceScramble: return "sentencescramble"
+        }
+    }
+}
+
 extension TrainerHubView {
     /// UI-test hook: `-uitest-trainer numbers|letters|countries|dates|
     /// wordscramble|sentencescramble` resolved against what this profile
@@ -78,25 +141,7 @@ extension TrainerHubView {
     /// -uitest-run 1` and `-uitest-trainer letters`, which is also the only way
     /// to photograph a modifier or a mixed selection.
     func uitestDestination(_ raw: String) -> HubDestination? {
-        if raw == "numbers", slotsAvailable, let language = drillLanguage {
-            return .numbers(language: language)
-        }
-        if raw == "letters", alphabetAvailable, let language = drillLanguage {
-            return .letters(language: language)
-        }
-        if raw == "countries", let pair = atlasPair {
-            return .countries(source: pair.source, target: pair.target)
-        }
-        if raw == "dates", let pair = datesPair {
-            return .dates(source: pair.source, target: pair.target)
-        }
-        if raw == "wordscramble", wordScrambleAvailable, let language = drillLanguage {
-            return .wordScramble(language: language)
-        }
-        if raw == "sentencescramble", sentenceScrambleAvailable, let language = drillLanguage {
-            return .sentenceScramble(language: language)
-        }
-        return nil
+        Drill.allCases.first { $0.uitestName == raw }.flatMap { destination(for: $0) }
     }
 }
 #endif

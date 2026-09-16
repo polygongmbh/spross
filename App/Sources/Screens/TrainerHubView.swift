@@ -140,45 +140,17 @@ struct TrainerHubView: View, LanguageNaming {
 
     // MARK: - The entries, and how many lines they take
 
-    /// Every entry this profile can reach, in the order the card offers them.
-    /// A VALUE per chip rather than a view apiece, because the row has to COUNT
-    /// them before it can decide how many lines it needs.
+    /// Every entry this profile can reach, in the order the card offers them —
+    /// kern's `Drill` roster, cut down to what this profile can open
+    /// (`destination(for:)`). A VALUE per chip rather than a view apiece,
+    /// because the row has to COUNT them before it can decide how many lines
+    /// it needs.
     var chips: [HubChip] {
-        guard let language = drillLanguage else { return [] }
-        var chips: [HubChip] = []
-        if slotsAvailable {
-            // The whole numbers progression behind one chip: the reference page,
-            // the clock and the sentences, and whatever the ladder has opened.
-            // layer-ok: the chip IS the numbers one — reading its own emoji, not picking a reading
-            chips.append(.init(emoji: numbersReadingEmoji(reading: .cardinal),
-                               title: "trainer.drill.numbers",
-                               destination: .numbers(language: language)))
+        Drill.allCases.compactMap { drill in
+            destination(for: drill).map {
+                HubChip(emoji: drill.emoji, title: drill.titleKey, destination: $0)
+            }
         }
-        if alphabetAvailable {
-            chips.append(.init(emoji: "🔤", title: "trainer.drill.letters",
-                               destination: .letters(language: language)))
-        }
-        if let pair = atlasPair {
-            // The atlas: the countries of the two languages first, then the
-            // world outward — read on the page, drilled from it.
-            chips.append(.init(emoji: "🌍", title: "trainer.drill.countries",
-                               destination: .countries(source: pair.source, target: pair.target)))
-        }
-        if let pair = datesPair {
-            // The calendar: the weekday and month names drilled alone, and the
-            // whole spoken date assembled out of them from the same page.
-            chips.append(.init(emoji: "📅", title: "trainer.drill.dates",
-                               destination: .dates(source: pair.source, target: pair.target)))
-        }
-        if wordScrambleAvailable {
-            chips.append(.init(emoji: "🔀", title: "trainer.drill.wordScramble",
-                               destination: .wordScramble(language: language)))
-        }
-        if sentenceScrambleAvailable {
-            chips.append(.init(emoji: "🧩", title: "trainer.drill.sentenceScramble",
-                               destination: .sentenceScramble(language: language)))
-        }
-        return chips
     }
 
     /// The chips cut into lines. Three or fewer stand on one; past that the card

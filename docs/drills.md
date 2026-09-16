@@ -47,6 +47,11 @@ and a prefix every drill carried would distinguish none of them.
   a consolidated word long enough to scramble or a phrase of three words
   (`../kern/docs/turns.md`) — and the hub offers only languages with authored content,
   since everything on it is registry-driven from kern and the catalog.
+- **The roster is kern's `Drill`, and its order is the chip order.**
+  The six are enumerated there and nowhere else: what each entry gates on, the chip it earns,
+  the glyph it wears and the key that names it all key off that one list,
+  so a seventh drill is one entry plus a compiler error wherever a platform has to answer for it.
+  A glyph, a title, a route and a layout stay the platform's — the roster carries none of them.
 - **A step of the ladder is a Sprosse in EVERY interface language**, plural Sprossen:
   it is the brand word (`website.md`),
   so English chrome says "Sprosse 5" where the code and these docs still say Sprosse.

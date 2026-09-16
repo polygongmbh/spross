@@ -2,6 +2,7 @@ package net.spross.app.ui
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import net.spross.kern.trainer.Drill
 
 /**
  * How the hub card cuts its chips into lines. The break is drawn rather than
@@ -9,7 +10,8 @@ import kotlin.test.assertEquals
  */
 class TrainerHubRowsTest {
 
-    private fun chips(count: Int) = List(count) { HubChip("🔢", "chip $it") {} }
+    private fun chips(count: Int) =
+        List(count) { HubChip(Drill.entries[it], "🔢", "chip $it") {} }
 
     @Test
     fun threeChipsOrFewerStandOnOneLine() {

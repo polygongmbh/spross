@@ -24,28 +24,30 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
-import net.spross.app.countriesOffered
-import net.spross.app.datesOffered
-import net.spross.app.lettersOffered
-import net.spross.app.numbersOffered
-import net.spross.app.sentenceScrambleOffered
+import net.spross.app.offers
 import net.spross.app.trainerHubOffered
-import net.spross.app.wordScrambleOffered
+import net.spross.kern.trainer.Drill
 
 /**
- * One entry on the hub card: its face, its name and what it opens.
+ * One entry on the hub card: which drill it is, its face, its name and what it opens.
  *
  * A VALUE per chip rather than a composable apiece, because the card has to COUNT its
  * entries before it can lay them out — an `if` inside a row gives the wrap nothing to count.
  */
-data class HubChip(val emoji: String, val title: String, val open: () -> Unit)
+data class HubChip(
+    val drill: Drill,
+    val emoji: String,
+    val title: String,
+    val open: () -> Unit,
+)
 
 /**
  * The trainer hub: free practice, with no schedule and no limit — open ground beside the
  * tended box, where no run ever books a review.
  *
- * Up to SIX entries, on one row while there are no more than three of them and on two lines
- * past that ([chipRows]). The four that have reading matter open a PAGE rather than a run —
+ * Up to SIX entries — kern's [Drill] roster, in its order — on one row while there are no
+ * more than three of them and on two lines past that ([chipRows]).
+ * The four that have reading matter open a PAGE rather than a run —
  * the reading and the drill it prepares you for are one surface — where the two scrambles,
  * whose material is the box itself, open their run. Each is its own DRILL, and earns a chip
  * because it asks a distinct skill; what each one gates on is `DrillAvailability`.
@@ -107,18 +109,50 @@ fun chipRows(chips: List<HubChip>): List<List<HubChip>> = when {
 /** Every entry this profile can reach, in the order the card offers them. */
 private fun AppModel.hubChips(chrome: Chrome): List<HubChip> {
     if (!trainerHubOffered) return emptyList()
-    val chips = mutableListOf<HubChip>()
-    if (numbersOffered) chips += HubChip("🔢", chrome.trainerDrillNumbers) { openNumbers() }
-    if (lettersOffered) chips += HubChip("🔤", chrome.trainerDrillLetters) { openLetters() }
-    if (countriesOffered) chips += HubChip("🌍", chrome.trainerDrillCountries) { openCountries() }
-    if (datesOffered) chips += HubChip("📅", chrome.trainerDrillDates) { openDates() }
-    if (wordScrambleOffered) {
-        chips += HubChip("🔀", chrome.trainerDrillWordScramble) { startWordScramble() }
+    return hubChips(chrome, offered = { offers(it) }, open = { open(it) })
+}
+
+/**
+ * The roster cut down to what [offered] admits, each entry wearing its face and its name.
+ * The order is [Drill]'s own — the roster IS the chip order.
+ */
+fun hubChips(chrome: Chrome, offered: (Drill) -> Boolean, open: (Drill) -> Unit): List<HubChip> =
+    Drill.entries.filter(offered).map { drill ->
+        HubChip(drill, drill.emoji, drill.title(chrome)) { open(drill) }
     }
-    if (sentenceScrambleOffered) {
-        chips += HubChip("🧩", chrome.trainerDrillSentenceScramble) { startSentenceScramble() }
+
+/** The face each entry wears on its chip. */
+private val Drill.emoji: String
+    get() = when (this) {
+        Drill.Numbers -> "🔢"
+        Drill.Letters -> "🔤"
+        Drill.Countries -> "🌍"
+        Drill.Dates -> "📅"
+        Drill.WordScramble -> "🔀"
+        Drill.SentenceScramble -> "🧩"
     }
-    return chips
+
+/** What each entry is called, in the chrome language. */
+private fun Drill.title(chrome: Chrome): String = when (this) {
+    Drill.Numbers -> chrome.trainerDrillNumbers
+    Drill.Letters -> chrome.trainerDrillLetters
+    Drill.Countries -> chrome.trainerDrillCountries
+    Drill.Dates -> chrome.trainerDrillDates
+    Drill.WordScramble -> chrome.trainerDrillWordScramble
+    Drill.SentenceScramble -> chrome.trainerDrillSentenceScramble
+}
+
+/**
+ * Where each chip goes: the four with reading matter open their PAGE, the two scrambles —
+ * whose material is the box itself — start their run.
+ */
+private fun AppModel.open(drill: Drill): Unit = when (drill) {
+    Drill.Numbers -> openNumbers()
+    Drill.Letters -> openLetters()
+    Drill.Countries -> openCountries()
+    Drill.Dates -> openDates()
+    Drill.WordScramble -> startWordScramble()
+    Drill.SentenceScramble -> startSentenceScramble()
 }
 
 /**

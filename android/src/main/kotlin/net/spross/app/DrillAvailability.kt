@@ -1,6 +1,7 @@
 package net.spross.app
 
 import net.spross.kern.catalog.alphabet
+import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.SentenceScrambleAvailability
 import net.spross.kern.trainer.Numbers
@@ -17,16 +18,29 @@ import net.spross.kern.trainer.WordScrambleAvailability
  */
 
 /**
+ * What each entry of the roster gates on — the one place a [Drill] meets its condition, so a
+ * seventh drill cannot reach the hub without one.
+ */
+fun AppModel.offers(drill: Drill): Boolean = when (drill) {
+    Drill.Numbers -> numbersOffered
+    Drill.Letters -> lettersOffered
+    Drill.Countries -> countriesOffered
+    Drill.Dates -> datesOffered
+    Drill.WordScramble -> wordScrambleOffered
+    Drill.SentenceScramble -> sentenceScrambleOffered
+}
+
+/**
  * Whether the hub card belongs on Home at all: the pair has counting content, an alphabet
  * file exists for the target, the atlas joins, the calendars do, or the box itself holds
  * enough to scramble. Any one entry is reason enough.
  *
- * The two scrambles stand LAST because each is a walk of the whole join: a profile with any
- * of the four cheap entries never pays for them.
+ * Asked in roster order and answered by the first yes, which is why the two scrambles stand
+ * LAST there: each is a walk of the whole join, and a profile with any of the four cheap
+ * entries never pays for them.
  */
 val AppModel.trainerHubOffered: Boolean
-    get() = numbersOffered || lettersOffered || countriesOffered || datesOffered ||
-        wordScrambleOffered || sentenceScrambleOffered
+    get() = Drill.entries.any { offers(it) }
 
 /** Counting, clock and forms all come out of one pack — the registry rule, not the ladder. */
 val AppModel.numbersOffered: Boolean
