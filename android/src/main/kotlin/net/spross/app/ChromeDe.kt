@@ -366,6 +366,7 @@ internal object ChromeDe : Chrome {
     override val settingsNamePlaceholder = "Name oder Spitzname"
     override val settingsNameHint = "Für die Begrüßung."
     override val settingsProfileHint = "Jede gelernte Sprache hat ihren eigenen Fortschritt."
+    override val settingsProfileSwitching = "Wird gewechselt …"
     override val settingsRestartTutorialButton = "Tutorial neu starten"
     override val settingsRestartTutorialHint = "Zeigt die Einführung erneut; dein " +
         "Fortschritt bleibt erhalten."

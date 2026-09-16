@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
@@ -116,6 +117,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                         choices = catalog.coveredSources(),
                         catalog = catalog,
                         modifier = Modifier.weight(1f),
+                        enabled = !model.switchingLanguage,
                         // The guard the whole picker rests on: only a language the catalog
                         // DECLARES may be asked about its targets, so the rows come from
                         // `coveredSources` and never from a device locale.
@@ -127,10 +129,24 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                         choices = targets,
                         catalog = catalog,
                         modifier = Modifier.weight(1f),
+                        enabled = !model.switchingLanguage,
                         onPick = { apply(LanguageChoices.pickTarget(selection, it)) },
                     )
                 }
-                SettingHint(chrome.settingsProfileHint)
+                // why: the re-join and box walk behind a pick take a beat — said here rather
+                // than left silent, so a second tap while it settles reads as "still working"
+                // and not as the row having ignored the first one.
+                if (model.switchingLanguage) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        CircularProgressIndicator(modifier = Modifier.size(14.dp), strokeWidth = 2.dp)
+                        SettingHint(chrome.settingsProfileSwitching)
+                    }
+                } else {
+                    SettingHint(chrome.settingsProfileHint)
+                }
                 HorizontalDivider(color = Theme.colors.separator)
                 LearnerNameSetting(model)
                 HorizontalDivider(color = Theme.colors.separator)
@@ -201,6 +217,7 @@ private fun LanguageMenu(
     catalog: Catalog,
     onPick: (Language) -> Unit,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
 ) {
     var open by remember { mutableStateOf(false) }
     val label = LanguageChoices.pickerLabel(selected, catalog.languages[selected])
@@ -215,7 +232,7 @@ private fun LanguageMenu(
                     .pressSpring()
                     .clip(MaterialTheme.shapes.small)
                     .background(Theme.colors.surfaceTint)
-                    .clickable(role = Role.DropdownList) { open = true }
+                    .clickable(enabled = enabled, role = Role.DropdownList) { open = true }
                     // why: one stable label, the pick as its VALUE — the field's own text is
                     // a merged child, so without this TalkBack announces which language but
                     // never which of the two questions it answers.

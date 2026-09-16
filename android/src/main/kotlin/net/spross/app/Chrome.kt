@@ -401,6 +401,7 @@ interface Chrome {
     val settingsNamePlaceholder: String
     val settingsNameHint: String
     val settingsProfileHint: String
+    val settingsProfileSwitching: String
     val settingsRestartTutorialButton: String
     val settingsRestartTutorialHint: String
     val settingsResetButton: String       // %s

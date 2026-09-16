@@ -224,6 +224,15 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     var loadFailure by mutableStateOf<String?>(null)
         private set
+
+    /**
+     * Set for the span of [activate] — a source/target switch re-joins the catalog and
+     * re-walks the whole box, which takes a beat. The settings pickers show this as a
+     * spinner rather than blocking input, since [box] itself stays on the outgoing
+     * language until the new one is fully ready.
+     */
+    var switchingLanguage by mutableStateOf(false)
+        private set
     var stats by mutableStateOf<BoxStatistics?>(null)
         private set
 
@@ -633,58 +642,68 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     private suspend fun activate(source: String, target: String, landing: Screen) {
         val cat = catalog ?: return
-        chrome = Chrome.forSource(source)
-        val stamp = JoinStamp(source, target, cat.fingerprint)
-        val opened = withContext(Dispatchers.IO) {
-            try {
-                Result.success(openBox(target))
-            } catch (e: StoreFormatException) {
-                Result.failure(e)
+        switchingLanguage = true
+        try {
+            chrome = Chrome.forSource(source)
+            val stamp = JoinStamp(source, target, cat.fingerprint)
+            val opened = withContext(Dispatchers.IO) {
+                try {
+                    Result.success(openBox(target))
+                } catch (e: StoreFormatException) {
+                    Result.failure(e)
+                }
             }
+            val unreadable = opened.exceptionOrNull()
+            if (unreadable != null) {
+                // why: a box that exists but cannot be read must never read as an EMPTY one —
+                // bootstrapping here would hand the learner a fresh box and hide the loss, so
+                // Home says so instead and the file on disk is left exactly as it stands.
+                Log.w("Spross", "box for $target unreadable: ${unreadable.message}", unreadable)
+                loadFailure = unreadable.message ?: "StoreFormatException"
+                // why: Home is the one screen that carries the failure card, so a load that
+                // failed goes there whatever the caller asked for.
+                screen = Screen.Home
+                return
+            }
+            val saved = opened.getOrThrow()
+            // why: the join builds every card the profile holds, replaying the logs re-applies
+            // every answer ever given, and the atlas walks the whole country manifest — none of
+            // it belongs on the thread that has to draw the first frame.
+            val loaded = withContext(Dispatchers.Default) {
+                val cards = cat.join(source, target)
+                // why: the pair only changes here — the hub reads the atlas and the
+                // calendars on every composition, and a sweep per frame is one no
+                // start-up should pay.
+                Triple(
+                    // rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
+                    saved?.join(cards, stamp)?.rekeyingPrefixedVerbs()
+                        ?: BoxEngine.bootstrap(cards, BoxConfig.product(), stamp),
+                    cat.countryDrillContent(source, target),
+                    cat.dateDrillContent(source, target),
+                )
+            }
+            val (joined, joinedAtlas, joinedDates) = loaded
+            // why: resolved before `box` is published, so the Box screen's first recomposition
+            // against the new box already carries matching stats — an IO hop between the two
+            // let Compose draw the new box against the outgoing language's stats, which is
+            // what jumbled its scroll.
+            val days = withContext(Dispatchers.IO) { otherLanguagesDays(target) }
+            loadFailure = null
+            box = joined
+            atlas = joinedAtlas
+            dates = joinedDates
+            normalizer = AnswerNormalizer(cat.languages.getValue(target))
+            meaningNormalizer = AnswerNormalizer(cat.languages.getValue(source))
+            otherLanguagesAnswerDays = days
+            refreshStats()
+            refreshListening()
+            // why: only a box that did not exist yet owes the disk anything here. A re-join
+            // is derived from what is already stored and reproduces itself on the next launch.
+            if (saved == null) persist(joined)
+            screen = landing
+        } finally {
+            switchingLanguage = false
         }
-        val unreadable = opened.exceptionOrNull()
-        if (unreadable != null) {
-            // why: a box that exists but cannot be read must never read as an EMPTY one —
-            // bootstrapping here would hand the learner a fresh box and hide the loss, so
-            // Home says so instead and the file on disk is left exactly as it stands.
-            Log.w("Spross", "box for $target unreadable: ${unreadable.message}", unreadable)
-            loadFailure = unreadable.message ?: "StoreFormatException"
-            // why: Home is the one screen that carries the failure card, so a load that
-            // failed goes there whatever the caller asked for.
-            screen = Screen.Home
-            return
-        }
-        val saved = opened.getOrThrow()
-        // why: the join builds every card the profile holds, replaying the logs re-applies
-        // every answer ever given, and the atlas walks the whole country manifest — none of
-        // it belongs on the thread that has to draw the first frame.
-        val loaded = withContext(Dispatchers.Default) {
-            val cards = cat.join(source, target)
-            // why: the pair only changes here — the hub reads the atlas and the
-            // calendars on every composition, and a sweep per frame is one no
-            // start-up should pay.
-            Triple(
-                // rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
-                saved?.join(cards, stamp)?.rekeyingPrefixedVerbs()
-                    ?: BoxEngine.bootstrap(cards, BoxConfig.product(), stamp),
-                cat.countryDrillContent(source, target),
-                cat.dateDrillContent(source, target),
-            )
-        }
-        val (joined, joinedAtlas, joinedDates) = loaded
-        loadFailure = null
-        box = joined
-        atlas = joinedAtlas
-        dates = joinedDates
-        normalizer = AnswerNormalizer(cat.languages.getValue(target))
-        meaningNormalizer = AnswerNormalizer(cat.languages.getValue(source))
-        // why: only a box that did not exist yet owes the disk anything here. A re-join is
-        // derived from what is already stored and reproduces itself on the next launch.
-        if (saved == null) persist(joined)
-        otherLanguagesAnswerDays = withContext(Dispatchers.IO) { otherLanguagesDays(target) }
-        refreshStats()
-        refreshListening()
-        screen = landing
     }
 
     /**
