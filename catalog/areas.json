@@ -2,7 +2,7 @@
  {
   "group": "start",
   "titles": {
-   "en": "First steps",
+   "en": "First Steps",
    "de": "Erste Schritte",
    "eo": "Unuaj paŝoj",
    "es": "Primeros pasos",
@@ -21,7 +21,7 @@
  {
   "group": "compose",
   "titles": {
-   "en": "Building blocks",
+   "en": "Building Blocks",
    "de": "Bausteine",
    "eo": "Konstrueroj",
    "es": "Piezas básicas",
@@ -45,7 +45,7 @@
  {
   "group": "human",
   "titles": {
-   "en": "People & the body",
+   "en": "People & the Body",
    "de": "Mensch & Körper",
    "eo": "Homoj kaj korpo",
    "es": "Personas y cuerpo",
@@ -64,7 +64,7 @@
  {
   "group": "errands",
   "titles": {
-   "en": "Shopping & eating out",
+   "en": "Shopping & Eating Out",
    "de": "Einkaufen & Essen gehen",
    "eo": "Aĉetado kaj manĝado ekstere",
    "es": "Compras y comidas fuera",
@@ -83,7 +83,7 @@
  {
   "group": "around",
   "titles": {
-   "en": "Out and about",
+   "en": "Out and About",
    "de": "Draußen",
    "eo": "Survoje",
    "es": "Fuera de casa",
@@ -104,7 +104,7 @@
  {
   "group": "home",
   "titles": {
-   "en": "At home",
+   "en": "At Home",
    "de": "Zuhause",
    "eo": "Hejme",
    "es": "En casa",
@@ -126,7 +126,7 @@
  {
   "group": "healthcare",
   "titles": {
-   "en": "Illness & treatment",
+   "en": "Illness & Treatment",
    "de": "Krankheit & Behandlung",
    "eo": "Malsano kaj kuracado",
    "es": "Enfermedad y tratamiento",
@@ -144,7 +144,7 @@
  {
   "group": "official",
   "titles": {
-   "en": "Offices & work",
+   "en": "Offices & Work",
    "de": "Ämter & Beruf",
    "eo": "Oficejoj kaj laboro",
    "es": "Oficinas y trabajo",
@@ -164,7 +164,7 @@
  {
   "group": "advanced",
   "titles": {
-   "en": "Grammar & idioms",
+   "en": "Grammar & Idioms",
    "de": "Grammatik & Redewendungen",
    "eo": "Gramatiko kaj parolturnoj",
    "es": "Gramática y modismos",
