@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.1.3 — 2026-09-16
+
 - Own content now offers to merge your own words onto the catalog words it has since grown, keeping the progress you made on them.
 - A restored backup now re-opens each language in the pair it was studied in, rather than in whichever known language the phone was set to.
 - Your own words now stay whole words when you change the known language: they are still shown with both halves, still exported with them, and clearing the outbox no longer takes them.
