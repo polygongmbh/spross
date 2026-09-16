@@ -758,8 +758,8 @@
         }
       }
     },
-    "box.door" : {
-      "comment" : "The door to the garden, wherever a screen puts one — a name for an icon that has none.",
+    "box.name" : {
+      "comment" : "The box's own name, drawn beside its icon on Home and read as that icon's label.",
       "localizations" : {
         "de" : {
           "stringUnit" : {

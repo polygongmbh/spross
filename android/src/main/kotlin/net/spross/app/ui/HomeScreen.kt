@@ -119,7 +119,7 @@ fun HomeScreen(model: AppModel) {
                 onClick = { model.openBox() },
                 modifier = Modifier
                     .heightIn(min = 48.dp)
-                    .semantics { contentDescription = chrome.boxDoor }
+                    .semantics { contentDescription = chrome.boxName }
                     .pressSpring(),
                 shape = MaterialTheme.shapes.small,
                 colors = ButtonDefaults.filledTonalButtonColors(
@@ -128,7 +128,7 @@ fun HomeScreen(model: AppModel) {
                 ),
                 contentPadding = PaddingValues(horizontal = Theme.spacing.lg, vertical = Theme.spacing.sm),
             ) {
-                Text("🪴 ${chrome.boxDoor}")
+                Text("🪴 ${chrome.boxName}")
             }
         }
 

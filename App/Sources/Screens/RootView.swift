@@ -66,7 +66,7 @@ struct RootView: View {
                             // this opens, and the sprout is the streak's.
                             Image(systemName: "tree.fill")
                         }
-                        .accessibilityLabel("box.door")
+                        .accessibilityLabel("box.name")
                     }
                 }
                 .toolbarBackground(.hidden, for: .navigationBar)

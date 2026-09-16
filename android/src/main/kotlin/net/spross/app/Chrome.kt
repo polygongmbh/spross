@@ -263,7 +263,7 @@ interface Chrome {
 
     // ── Box browse ──────────────────────────────────────────────────────────────
     val boxTitle: String
-    val boxDoor: String
+    val boxName: String
     val boxSubtitle: String       // %1$d %2$d
     val boxOwnShelf: String
     val boxOwnWordExplainer: String

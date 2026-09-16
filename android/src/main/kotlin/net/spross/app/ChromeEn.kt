@@ -256,7 +256,7 @@ internal object ChromeEn : Chrome {
     override val a11yScrambleBank = "Words to choose from"
     override val a11yActionTakeBack = "Take back"
     override val boxTitle = "The garden"
-    override val boxDoor = "Garden"
+    override val boxName = "Garden"
     override val boxSubtitle = "%1\$s of %2\$s cards being tended"
     override val boxOwnShelf = "Your own words"
     override val boxOwnWordExplainer = "Your own words are yours alone. A growing catalog " +
