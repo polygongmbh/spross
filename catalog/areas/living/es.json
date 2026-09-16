@@ -34,7 +34,6 @@
   "to-read": { "text": "leer" },
   "to-relax": { "text": "relajarse" },
   "to-tidy-up": { "text": "ordenar", "synonyms": ["recoger"] },
-  "to-listen-to-music": { "text": "escuchar música" },
   "to-water-plants": { "text": "regar las plantas" },
   "to-play": { "text": "jugar" },
   "to-talk": {
@@ -45,7 +44,6 @@
   "room": { "text": "habitación", "synonyms": ["cuarto"], "grammar": { "gender": "la" } },
   "newspaper": { "text": "periódico", "synonyms": ["diario"], "grammar": { "gender": "el" } },
   "light": { "text": "luz", "grammar": { "gender": "la" } },
-  "music": { "text": "música", "grammar": { "gender": "la" } },
   "wall": { "text": "pared", "grammar": { "gender": "la" } },
   "movie": { "text": "película", "variants": ["peli"], "grammar": { "gender": "la" } },
   "to-sit": {
@@ -54,12 +52,6 @@
    "notes": { "es": "Me siento aquí (la acción) · estoy sentado (el estado)." }
   },
   "to-laugh": { "text": "reírse", "variants": ["reír"] },
-  "quiet": {
-   "text": "bajo",
-   "synonyms": ["silencioso"],
-   "variants": ["bajito", "baja"],
-   "notes": { "es": "habla bajo, pon la tele más baja · un cuarto sin ruido es silencioso." }
-  },
   "furniture": {
    "text": "muebles",
    "grammar": { "gender": "los" },

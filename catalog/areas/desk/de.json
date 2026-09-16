@@ -8,7 +8,6 @@
   "screen": { "text": "Bildschirm", "grammar": { "gender": "der", "plural": "-e" } },
   "mouse": { "text": "Maus", "grammar": { "gender": "die", "plural": "Mäuse" } },
   "cable": { "text": "Kabel", "grammar": { "gender": "das", "plural": "=" } },
-  "headphones": { "text": "Kopfhörer", "grammar": { "gender": "der", "plural": "=" } },
   "pen": { "text": "Stift", "grammar": { "gender": "der", "plural": "-e" } },
   "notebook": { "text": "Notizbuch", "grammar": { "gender": "das", "plural": "Notizbücher" } },
   "printer": { "text": "Drucker", "grammar": { "gender": "der", "plural": "=" } },

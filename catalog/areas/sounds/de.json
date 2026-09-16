@@ -1,4 +1,20 @@
 {
  "title": "Geräusche & Hören",
- "words": { "loud": { "text": "laut" }, "louder": { "text": "Lauter!" } }
+ "words": {
+  "loud": { "text": "laut" },
+  "quiet": { "text": "leise" },
+  "noise": { "text": "Lärm", "grammar": { "gender": "der" } },
+  "music": { "text": "Musik", "grammar": { "gender": "die" } },
+  "radio": { "text": "Radio", "grammar": { "gender": "das", "plural": "Radios" } },
+  "speaker": { "text": "Lautsprecher", "grammar": { "gender": "der", "plural": "=" } },
+  "headphones": { "text": "Kopfhörer", "grammar": { "gender": "der", "plural": "=" } },
+  "microphone": { "text": "Mikrofon", "grammar": { "gender": "das", "plural": "Mikrofone" } },
+  "volume": { "text": "Lautstärke", "grammar": { "gender": "die" } },
+  "to-listen-to": {
+   "text": "zuhören",
+   "notes": { "de": "Hör zu! = aufmerksam · Musik hören (nicht: Musik zuhören)." }
+  },
+  "to-listen-to-music": { "text": "Musik hören" },
+  "louder": { "text": "Lauter!" }
+ }
 }

@@ -1,4 +1,14 @@
 [
  { "slug": "loud", "kind": "adjective", "emoji": "🔊" },
+ { "slug": "quiet", "kind": "adjective", "emoji": "🤫" },
+ { "slug": "noise", "kind": "noun", "emoji": "🔉" },
+ { "slug": "music", "kind": "noun", "emoji": "🎵" },
+ { "slug": "radio", "kind": "noun", "emoji": "📻" },
+ { "slug": "speaker", "kind": "noun", "emoji": "🔈" },
+ { "slug": "headphones", "kind": "noun", "emoji": "🎧" },
+ { "slug": "microphone", "kind": "noun", "emoji": "🎤" },
+ { "slug": "volume", "kind": "noun", "emoji": "🎚️" },
+ { "slug": "to-listen-to", "kind": "verb" },
+ { "slug": "to-listen-to-music", "kind": "verb", "emoji": "🎵" },
  { "slug": "louder", "kind": "phrase", "emoji": "🔊", "components": ["loud"] }
 ]

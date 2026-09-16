@@ -17,12 +17,6 @@
   "screen": { "text": "écran", "variants": ["l'écran"], "grammar": { "gender": "l'" } },
   "mouse": { "text": "souris", "grammar": { "gender": "la", "plural": "=" } },
   "cable": { "text": "câble", "grammar": { "gender": "le" } },
-  "headphones": {
-   "text": "écouteurs",
-   "variants": ["casque", "casque audio"],
-   "grammar": { "gender": "les", "plural": "only" },
-   "notes": { "fr": "au pluriel : les écouteurs dans les oreilles · le casque sur la tête." }
-  },
   "pen": {
    "text": "stylo",
    "grammar": { "gender": "le" },

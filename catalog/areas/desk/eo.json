@@ -8,11 +8,6 @@
   "screen": { "text": "ekrano" },
   "mouse": { "text": "muso" },
   "cable": { "text": "kablo" },
-  "headphones": {
-   "text": "aŭskultiloj",
-   "variants": ["kapaŭskultiloj", "orelaŭskultiloj"],
-   "notes": { "eo": "unu aŭskultilo por unu orelo · kutime oni diras la aŭskultiloj." }
-  },
   "pen": {
    "text": "skribilo",
    "synonyms": ["globkrajono"],

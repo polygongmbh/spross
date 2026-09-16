@@ -7,6 +7,26 @@
    "variants": ["alta"],
    "notes": { "es": "habla alto = habla fuerte · alto es de mucha altura" }
   },
+  "quiet": {
+   "text": "bajo",
+   "synonyms": ["silencioso"],
+   "variants": ["bajito", "baja"],
+   "notes": { "es": "habla bajo, pon la tele más baja · un cuarto sin ruido es silencioso." }
+  },
+  "noise": { "text": "ruido", "grammar": { "gender": "el" } },
+  "music": { "text": "música", "grammar": { "gender": "la" } },
+  "radio": { "text": "radio", "grammar": { "gender": "la" } },
+  "speaker": { "text": "altavoz", "grammar": { "gender": "el", "plural": "altavoces" } },
+  "headphones": {
+   "text": "auriculares",
+   "synonyms": ["cascos"],
+   "grammar": { "gender": "los", "plural": "only" },
+   "notes": { "es": "Siempre en plural: los auriculares, en España también los cascos." }
+  },
+  "microphone": { "text": "micrófono", "grammar": { "gender": "el" } },
+  "volume": { "text": "volumen", "grammar": { "gender": "el" } },
+  "to-listen-to": { "text": "escuchar" },
+  "to-listen-to-music": { "text": "escuchar música" },
   "louder": { "text": "¡Más fuerte!", "variants": ["¡Más alto!"] }
  }
 }

@@ -1,4 +1,25 @@
 {
  "title": "Sonoj kaj aŭdo",
- "words": { "loud": { "text": "laŭta", "variants": ["laŭte"] }, "louder": { "text": "Pli laŭte!" } }
+ "words": {
+  "loud": { "text": "laŭta", "variants": ["laŭte"] },
+  "quiet": {
+   "text": "mallaŭta",
+   "variants": ["kvieta", "mallaŭte"],
+   "notes": { "eo": "mallaŭta voĉo: parolu mallaŭte · kvieta ĉambro estas sen bruo." }
+  },
+  "noise": { "text": "bruo" },
+  "music": { "text": "muziko" },
+  "radio": { "text": "radio" },
+  "speaker": { "text": "laŭtparolilo" },
+  "headphones": {
+   "text": "aŭskultiloj",
+   "variants": ["kapaŭskultiloj", "orelaŭskultiloj"],
+   "notes": { "eo": "unu aŭskultilo por unu orelo · kutime oni diras la aŭskultiloj." }
+  },
+  "microphone": { "text": "mikrofono" },
+  "volume": { "text": "laŭteco", "variants": ["volumo"] },
+  "to-listen-to": { "text": "aŭskulti" },
+  "to-listen-to-music": { "text": "aŭskulti muzikon" },
+  "louder": { "text": "Pli laŭte!" }
+ }
 }

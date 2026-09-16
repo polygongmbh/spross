@@ -13,12 +13,6 @@
   "screen": { "text": "pantalla", "grammar": { "gender": "la" } },
   "mouse": { "text": "ratón", "variants": ["mouse"], "grammar": { "gender": "el" } },
   "cable": { "text": "cable", "grammar": { "gender": "el" } },
-  "headphones": {
-   "text": "auriculares",
-   "synonyms": ["cascos"],
-   "grammar": { "gender": "los", "plural": "only" },
-   "notes": { "es": "Siempre en plural: los auriculares, en España también los cascos." }
-  },
   "pen": {
    "text": "bolígrafo",
    "variants": ["boli"],

@@ -21,7 +21,6 @@
   "to-read": { "text": "legi" },
   "to-relax": { "text": "malstreĉiĝi", "variants": ["senstreĉiĝi"] },
   "to-tidy-up": { "text": "ordigi", "variants": ["enordigi"] },
-  "to-listen-to-music": { "text": "aŭskulti muzikon" },
   "to-water-plants": { "text": "akvumi la plantojn" },
   "to-play": { "text": "ludi" },
   "to-talk": {
@@ -32,7 +31,6 @@
   "room": { "text": "ĉambro" },
   "newspaper": { "text": "gazeto", "synonyms": ["ĵurnalo"] },
   "light": { "text": "lumo" },
-  "music": { "text": "muziko" },
   "wall": { "text": "muro" },
   "movie": { "text": "filmo" },
   "to-sit": {
@@ -41,11 +39,6 @@
    "notes": { "eo": "sidi estas la stato · sidiĝi estas eksidi." }
   },
   "to-laugh": { "text": "ridi" },
-  "quiet": {
-   "text": "mallaŭta",
-   "variants": ["kvieta", "mallaŭte"],
-   "notes": { "eo": "mallaŭta voĉo: parolu mallaŭte · kvieta ĉambro estas sen bruo." }
-  },
   "furniture": {
    "text": "mebloj",
    "variants": ["meblaro"],

@@ -38,11 +38,6 @@
   "to-read": { "text": "lire" },
   "to-relax": { "text": "se détendre", "variants": ["se relaxer"] },
   "to-tidy-up": { "text": "ranger" },
-  "to-listen-to-music": {
-   "text": "écouter de la musique",
-   "variants": ["écouter la musique"],
-   "notes": { "fr": "quantité non comptée : écouter de la musique, boire de l'eau." }
-  },
   "to-water-plants": { "text": "arroser les plantes" },
   "to-play": { "text": "jouer" },
   "to-talk": {
@@ -57,7 +52,6 @@
   },
   "newspaper": { "text": "journal", "grammar": { "gender": "le", "plural": "journaux" } },
   "light": { "text": "lumière", "grammar": { "gender": "la" } },
-  "music": { "text": "musique", "grammar": { "gender": "la" } },
   "wall": { "text": "mur", "grammar": { "gender": "le" } },
   "movie": { "text": "film", "grammar": { "gender": "le" } },
   "to-sit": {
@@ -66,12 +60,6 @@
    "notes": { "fr": "je m'assieds sur la chaise, puis je suis assis." }
   },
   "to-laugh": { "text": "rire" },
-  "quiet": {
-   "text": "bas",
-   "synonyms": ["silencieux"],
-   "variants": ["doucement", "basse"],
-   "notes": { "fr": "parle plus bas · une machine silencieuse ne fait pas de bruit." }
-  },
   "furniture": {
    "text": "meubles",
    "grammar": { "gender": "les" },

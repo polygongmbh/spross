@@ -30,7 +30,6 @@
   "to-read": { "text": "leggere" },
   "to-relax": { "text": "rilassarsi" },
   "to-tidy-up": { "text": "riordinare", "variants": ["mettere in ordine", "fare ordine"] },
-  "to-listen-to-music": { "text": "ascoltare musica", "variants": ["ascoltare la musica"] },
   "to-water-plants": { "text": "annaffiare le piante", "variants": ["innaffiare le piante", "bagnare le piante"] },
   "to-play": { "text": "giocare", "notes": { "it": "i bambini giocano · uno strumento si suona." } },
   "to-talk": {
@@ -46,7 +45,6 @@
   },
   "newspaper": { "text": "giornale", "synonyms": ["quotidiano"], "grammar": { "gender": "il" } },
   "light": { "text": "luce", "grammar": { "gender": "la" } },
-  "music": { "text": "musica", "grammar": { "gender": "la" } },
   "wall": {
    "text": "parete",
    "variants": ["muro"],
@@ -60,11 +58,6 @@
    "notes": { "it": "mi siedo qui · adesso sono seduto." }
   },
   "to-laugh": { "text": "ridere" },
-  "quiet": {
-   "text": "silenzioso",
-   "variants": ["silenziosa", "piano", "sottovoce", "a bassa voce"],
-   "notes": { "it": "una stanza silenziosa · si parla piano o a bassa voce." }
-  },
   "furniture": {
    "text": "mobili",
    "variants": ["mobile"],

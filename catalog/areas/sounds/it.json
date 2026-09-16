@@ -6,6 +6,29 @@
    "variants": ["alto"],
    "notes": { "it": "parla più forte! · forte = robusto." }
   },
+  "quiet": {
+   "text": "silenzioso",
+   "variants": ["silenziosa", "piano", "sottovoce", "a bassa voce"],
+   "notes": { "it": "una stanza silenziosa · si parla piano o a bassa voce." }
+  },
+  "noise": { "text": "rumore", "grammar": { "gender": "il" } },
+  "music": { "text": "musica", "grammar": { "gender": "la" } },
+  "radio": { "text": "radio", "grammar": { "gender": "la" } },
+  "speaker": {
+   "text": "altoparlante",
+   "variants": ["l'altoparlante"],
+   "grammar": { "gender": "l'", "plural": "altoparlanti" }
+  },
+  "headphones": {
+   "text": "cuffie",
+   "synonyms": ["auricolari"],
+   "grammar": { "gender": "le", "plural": "only" },
+   "notes": { "it": "solo al plurale: le cuffie · gli auricolari stanno nell'orecchio." }
+  },
+  "microphone": { "text": "microfono", "grammar": { "gender": "il" } },
+  "volume": { "text": "volume", "grammar": { "gender": "il" } },
+  "to-listen-to": { "text": "ascoltare" },
+  "to-listen-to-music": { "text": "ascoltare musica", "variants": ["ascoltare la musica"] },
   "louder": { "text": "Più forte!", "variants": ["Più alto!"] }
  }
 }

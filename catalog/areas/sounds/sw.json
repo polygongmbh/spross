@@ -9,6 +9,19 @@
     "de": "kein Adjektiv, sondern adverbial: Sema kwa sauti kubwa."
    }
   },
+  "quiet": { "text": "kimya" },
+  "noise": { "text": "kelele" },
+  "music": { "text": "muziki" },
+  "radio": { "text": "redio" },
+  "speaker": { "text": "spika", "variants": ["kipaza sauti"] },
+  "headphones": { "text": "hedfoni", "grammar": { "plural": "=" } },
+  "microphone": { "text": "maikrofoni" },
+  "volume": { "text": "sauti" },
+  "to-listen-to": {
+   "text": "kusikiliza",
+   "notes": { "sw": "sikiliza! = kwa makini · kusikia ni kupata sauti tu." }
+  },
+  "to-listen-to-music": { "text": "kusikiliza muziki" },
   "louder": { "text": "Kwa sauti zaidi!", "variants": ["Kwa sauti kubwa zaidi!"] }
  }
 }

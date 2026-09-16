@@ -8,7 +8,6 @@
   "screen": { "text": "screen" },
   "mouse": { "text": "mouse", "grammar": { "plural": "mice" } },
   "cable": { "text": "cable" },
-  "headphones": { "text": "headphones", "grammar": { "plural": "only" } },
   "pen": { "text": "pen" },
   "notebook": { "text": "notebook" },
   "printer": { "text": "printer" },

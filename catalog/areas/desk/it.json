@@ -13,12 +13,6 @@
   "screen": { "text": "schermo", "variants": ["monitor"], "grammar": { "gender": "lo" } },
   "mouse": { "text": "mouse", "grammar": { "gender": "il", "plural": "=" } },
   "cable": { "text": "cavo", "grammar": { "gender": "il" } },
-  "headphones": {
-   "text": "cuffie",
-   "synonyms": ["auricolari"],
-   "grammar": { "gender": "le", "plural": "only" },
-   "notes": { "it": "solo al plurale: le cuffie · gli auricolari stanno nell'orecchio." }
-  },
   "pen": {
    "text": "penna",
    "grammar": { "gender": "la" },

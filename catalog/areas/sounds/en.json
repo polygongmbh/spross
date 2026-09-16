@@ -1,4 +1,17 @@
 {
  "title": "Sounds & Hearing",
- "words": { "loud": { "text": "loud" }, "louder": { "text": "Louder!" } }
+ "words": {
+  "loud": { "text": "loud" },
+  "quiet": { "text": "quiet" },
+  "noise": { "text": "noise" },
+  "music": { "text": "music" },
+  "radio": { "text": "radio" },
+  "speaker": { "text": "speaker" },
+  "headphones": { "text": "headphones", "grammar": { "plural": "only" } },
+  "microphone": { "text": "microphone" },
+  "volume": { "text": "volume" },
+  "to-listen-to": { "text": "to listen" },
+  "to-listen-to-music": { "text": "to listen to music" },
+  "louder": { "text": "Louder!" }
+ }
 }

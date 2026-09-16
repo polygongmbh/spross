@@ -8,7 +8,6 @@
   "screen": { "text": "монітор" },
   "mouse": { "text": "миша", "variants": ["мишка"] },
   "cable": { "text": "кабель" },
-  "headphones": { "text": "навушники", "grammar": { "plural": "only" } },
   "pen": { "text": "ручка" },
   "notebook": { "text": "блокнот" },
   "printer": { "text": "принтер" },
