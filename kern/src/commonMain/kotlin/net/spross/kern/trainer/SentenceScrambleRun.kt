@@ -48,7 +48,9 @@ object SentenceScrambleRun {
         rng: Random,
     ): SentenceScrambleRunState {
         val start = level.coerceIn(1, config.report.maxLevel)
-        val opening = draw(config, start, null, emptySet(), rng)
+        // A run opens on the lowest Sprosse its mask does not hold, which is a Sprosse ARRIVED
+        // at: the first question says which one, rather than leaving the learner to infer it.
+        val opening = draw(config, start, null, emptySet(), rng, arriving = true)
         return SentenceScrambleRunState(
             config = config,
             task = opening.task,
@@ -160,7 +162,14 @@ object SentenceScrambleRun {
         rng: Random,
     ): SentenceScrambleReduction {
         val next = advanced(state, correct, clean)
-        val question = draw(state.config, next.level, state.task?.cardId, next.solved, rng)
+        val question = draw(
+            state.config,
+            next.level,
+            state.task?.cardId,
+            next.solved,
+            rng,
+            arriving = next.level > state.level,
+        )
         return SentenceScrambleReduction(
             next.copy(
                 task = question.task,
@@ -226,9 +235,11 @@ object SentenceScrambleRun {
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
+        arriving: Boolean,
     ): DrillLadder.Sprosse<SentenceScrambleTask> =
         DrillLadder.climb(from, config.report.maxLevel) { level ->
-            sample(config.report, level, avoiding, solved, rng)
+            // Climbing PAST a spent Sprosse arrives at the one above it just as a promotion does.
+            sample(config.report, level, avoiding, solved, rng, arriving || level > from)
         }
 
     /**
@@ -236,11 +247,19 @@ object SentenceScrambleRun {
      * rule on the atlas' kind of ladder. [avoiding] is the phrase just asked, which kern
      * resamples once. Null ⇒ this Sprosse has nothing left.
      *
-     * No tier is singled out. Narrowing to the newest length would be the rising floor again
-     * under another name, and narrowing to the shortest would make the climb invisible; a flat
-     * draw lets the new length in as one more card in the deck, and [DrillSolved] retires each
-     * phrase as it is arranged clean, so the deck thins toward whatever the learner still owes
-     * rather than toward a length the ladder picked for them.
+     * No tier is singled out, once the run is standing on a Sprosse. Narrowing to the newest
+     * length would be the rising floor again under another name; a flat draw lets the new length
+     * in as one more card in the deck, and [DrillSolved] retires each phrase as it is arranged
+     * clean, so the deck thins toward whatever the learner still owes rather than toward a
+     * length the ladder picked for them.
+     *
+     * [arriving] is the exception, and it is the one question where narrowing says something: on
+     * reaching a Sprosse the draw leads with the LENGTH that Sprosse added
+     * ([SentenceScrambleAvailability.Report.atomsAt]), where the pool still holds one unanswered.
+     * Every other ladder in the app changes what it ASKS as it climbs — a rising letter floor, a
+     * new stage, a new kind — so a promotion is felt on the next question by construction. This
+     * one only widens a ceiling, so without this the climb a learner just earned can arrive as a
+     * three-word phrase they have seen all evening.
      */
     private fun sample(
         report: SentenceScrambleAvailability.Report,
@@ -248,11 +267,17 @@ object SentenceScrambleRun {
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
+        arriving: Boolean,
     ): SentenceScrambleTask? {
         val open = report.phrasesAt(level)
             .filter { DrillSolved.sentenceKey(it.card.id) !in solved }
         if (open.isEmpty()) return null
-        val pool = open.filter { it.card.id != avoiding }.ifEmpty { open }
+        val admitted = if (arriving) {
+            open.filter { it.words == report.atomsAt(level) }.ifEmpty { open }
+        } else {
+            open
+        }
+        val pool = admitted.filter { it.card.id != avoiding }.ifEmpty { admitted }
         val phrase = pool[rng.nextInt(pool.size)]
         return SentenceScrambleTask(
             cardId = phrase.card.id,

@@ -62,6 +62,25 @@ class SentenceScrambleRunTest {
     }
 
     /**
+     * Arriving at a Sprosse, the draw leads with the LENGTH that Sprosse added — the one moment
+     * narrowing says something. Every other ladder changes what it asks as it climbs; this one
+     * widens a ceiling, so a promotion would otherwise arrive as a phrase of the length the run
+     * has been answering all along.
+     */
+    @Test
+    fun aSprosseJustReachedAsksTheLengthItAdded() {
+        var state = open()
+        val report = state.config.report
+        assertEquals(report.atomsAt(1), assertNotNull(state.task).words, "the run opens on its own Sprosse")
+        repeat(SentenceScrambleRun.WINS_TO_ADVANCE) {
+            state = arrange(state, correctly = true)
+            state = reduce(state, SentenceScrambleIntent.ConfirmPending).state
+        }
+        assertEquals(2, state.level, "clean arrangements enough to carry the Sprosse")
+        assertEquals(report.atomsAt(2), assertNotNull(state.task).words, "the length Sprosse 2 added")
+    }
+
+    /**
      * A question mark is dealt and placed like any other chip: riding its word it would name
      * the last one, and the sentence's own full stop is dropped for the same reason.
      */
@@ -140,19 +159,26 @@ class SentenceScrambleRunTest {
         assertEquals(phrases.map { it.id }.toSet(), report.phrasesAt(report.maxLevel).map { it.card.id }.toSet())
     }
 
-    /** The draw never overreaches the Sprosse it stands on, and still reaches down below it. */
+    /**
+     * The draw never overreaches the Sprosse it stands on, and once STANDING on it — the
+     * arrival question is the Sprosse's own length — still reaches down below it.
+     */
     @Test
     fun theDrawStaysUnderItsSprosseAndStillReachesDown() {
         val report = config().report
-        var state = open(level = 2)
         val lengths = mutableSetOf<Int>()
-        repeat(SentenceScrambleRun.WINS_TO_ADVANCE - 1) {
-            val task = assertNotNull(state.task)
-            assertEquals(2, state.level)
-            assertTrue(task.words <= report.atomsAt(2), "Sprosse 2 dealt a ${task.words}-word phrase")
-            lengths += task.words
-            state = arrange(state, correctly = true)
-            state = reduce(state, SentenceScrambleIntent.ConfirmPending).state
+        // Across seeds: the flat draw is a draw, and one run of it proves nothing about a deck.
+        for (seed in 1..12) {
+            var state = open(level = 2, seed = seed)
+            assertEquals(report.atomsAt(2), assertNotNull(state.task).words, "arrives on its own length")
+            repeat(SentenceScrambleRun.WINS_TO_ADVANCE - 1) {
+                state = arrange(state, correctly = true)
+                state = reduce(state, SentenceScrambleIntent.ConfirmPending).state
+                val task = state.task ?: return@repeat
+                if (state.level != 2) return@repeat
+                assertTrue(task.words <= report.atomsAt(2), "Sprosse 2 dealt a ${task.words}-word phrase")
+                lengths += task.words
+            }
         }
         assertTrue(SentenceScrambleAvailability.MIN_ATOMS in lengths, "the shorter phrases stay in the deck")
     }
