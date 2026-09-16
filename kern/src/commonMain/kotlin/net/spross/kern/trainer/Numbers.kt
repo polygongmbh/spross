@@ -6,13 +6,17 @@ import net.spross.kern.model.Language
 /**
  * What a task asks the learner to READ. Appended, never reordered — nothing serializes the
  * ordinal, but the app switches on it.
- * [Fraction] is a slot kind a FRAME takes, not a drill of its own: a fraction reads as a
- * bare noun, so a sentence can carry one where a whole number form cannot.
+ *
+ * Four of these are read on their own. [Fraction] is the exception and is never sampled
+ * standalone ([Numbers.fraction]): it exists so a FRAME can take one, a fraction reading as a
+ * bare noun where a whole number form cannot. Which of the five a phrase slot may hold is
+ * [Numbers.supportsSlot], and the catalog authors the choice as a `"slot"` — so slot names
+ * that narrower set, never this enum.
  */
 enum class NumbersReading { Cardinal, Year, Clock, Form, Fraction }
 
 /**
- * The glyph a slot kind wears, wherever a run needs a face rather than a word — the hub's
+ * The glyph a reading wears, wherever a run needs a face rather than a word — the hub's
  * chips, a mixed run's score line. Kern's rather than each app's, for the reason
  * [net.spross.kern.model.kindEmoji] is: a map is a map, and Swift and Kotlin had each drawn
  * this exact table from scratch, one coincidence away from disagreeing.
