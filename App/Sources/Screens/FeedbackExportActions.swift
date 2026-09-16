@@ -64,7 +64,7 @@ struct FeedbackExportActions: View {
                     Button(action: checkCatalog) {
                         actionLabel("box.own.match.action", icon: "arrow.triangle.merge")
                     }
-                    .buttonStyle(SoftButtonStyle())
+                    .buttonStyle(.plain)
                 }
             }
         }
@@ -117,10 +117,9 @@ struct FeedbackExportActions: View {
                 actionLabel(title, icon: icon)
             }
             .menuStyle(.borderlessButton)
-            .buttonStyle(SoftButtonStyle())
         } else {
             Button { run(false, .everything) } label: { actionLabel(title, icon: icon) }
-                .buttonStyle(SoftButtonStyle())
+                .buttonStyle(.plain)
         }
     }
 
@@ -139,10 +138,11 @@ struct FeedbackExportActions: View {
         } label: {
             Label("common.clear", systemImage: "trash")
                 .font(Theme.typography.subheadline)
+                .foregroundStyle(Theme.colors.wrong)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
         }
-        .buttonStyle(SoftButtonStyle(color: Theme.colors.wrong))
+        .buttonStyle(.plain)
         .confirmationDialog("report.export.clear.confirm \(model.clearableCount)",
                             isPresented: $confirmingClear, titleVisibility: .visible) {
             Button("common.clear", role: .destructive) { model.clearFeedback() }
@@ -153,6 +153,7 @@ struct FeedbackExportActions: View {
     private func actionLabel(_ title: LocalizedStringKey, icon: String) -> some View {
         Label(title, systemImage: icon)
             .font(Theme.typography.subheadline)
+            .foregroundStyle(Theme.colors.accent)
             .lineLimit(1)
             .minimumScaleFactor(0.7)
     }
