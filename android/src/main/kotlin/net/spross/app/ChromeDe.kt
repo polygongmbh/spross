@@ -98,12 +98,11 @@ internal object ChromeDe : Chrome {
     override val settingsAudioOptionOff = "Kein Ton"
     override val settingsAudioOptionRecordings = "Aufnahmen"
     override val settingsAudioOptionTts = "Sprachausgabe"
-    override val settingsAudioHintOff = "Keine Wörter werden vorgelesen. Tippen auf ein Wort " +
-        "spricht es trotzdem."
-    override val settingsAudioHintRecordings = "Eingebaute Aufnahmen zuerst, der Rest aus " +
-        "der Systemstimme."
-    override val settingsAudioHintTts = "Jedes Wort in der Systemstimme — immer derselbe " +
-        "Klang, Artikel inklusive."
+    override val settingsAudioHintOff = "Stumm — tippe auf ein Wort, um es zu hören."
+    override val settingsAudioHintRecordings = "Eingebaute Aufnahmen zuerst, sonst " +
+        "Systemstimme."
+    override val settingsAudioHintTts = "Immer die autogenerierte Systemstimme, so werden " +
+        "Artikel immer mitgelesen."
     override val settingsAudioHintPerLanguage = "Pro Lernsprache wählbar."
     override val creditsTitle = "Impressum & Lizenzen"
     override val creditsRecordings = "%d Aufnahmen"
@@ -359,16 +358,14 @@ internal object ChromeDe : Chrome {
     override val settingsTitle = "Einstellungen"
     override val settingsNameTitle = "Dein Name"
     override val settingsNamePlaceholder = "Name oder Spitzname"
-    override val settingsNameHint = "Damit begrüßt dich Spross. Bleibt das Feld leer, kommt " +
-        "die Begrüßung ohne Namen aus."
-    override val settingsProfileHint = "Beim Wechsel der Ausgangssprache bleibt dein " +
-        "Fortschritt erhalten; jede gelernte Sprache hat ihren eigenen Obstgarten."
+    override val settingsNameHint = "Für die Begrüßung."
+    override val settingsProfileHint = "Jede gelernte Sprache hat ihren eigenen Fortschritt."
     override val settingsRestartTutorialButton = "Tutorial neu starten"
-    override val settingsRestartTutorialHint = "Zeigt die Einführung erneut — deine Sprachen " +
-        "und dein Fortschritt bleiben erhalten."
+    override val settingsRestartTutorialHint = "Zeigt die Einführung erneut; dein " +
+        "Fortschritt bleibt erhalten."
     override val settingsResetButton = "%s zurücksetzen …"
-    override val settingsResetHint = "Löscht Fortschritt und Verlauf — deine eigenen Wörter " +
-        "und deine anderen Sprachen bleiben."
+    override val settingsResetHint = "Löscht den Fortschritt in dieser Sprache; eigene " +
+        "Wörter und andere Sprachen bleiben."
     override val settingsResetConfirm = "Alle Lernfortschritte für %s löschen und neu mit " +
         "den ersten Wörtern beginnen?"
     override val settingsBackupTitle = "Sicherung"
@@ -376,9 +373,8 @@ internal object ChromeDe : Chrome {
     override val settingsBackupExportAll = "Alle Sprachen"
     override val settingsBackupExportOnly = "Nur %s"
     override val settingsBackupImport = "Importieren"
-    override val settingsBackupHint = "Speichert Fortschritt und Verlauf aller gelernten " +
-        "Sprachen in einer Datei — zum Zurückholen nach einer Neuinstallation oder auf einem " +
-        "anderen Handy."
+    override val settingsBackupHint = "Speichert deinen Fortschritt in einer Datei, für " +
+        "Neuinstallation oder ein neues Gerät."
     override val settingsBackupConfirm = "Den Fortschritt für %s durch den aus dieser " +
         "Sicherung ersetzen?"
     override val settingsBackupReplace = "Ersetzen"

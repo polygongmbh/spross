@@ -96,12 +96,10 @@ internal object ChromeEn : Chrome {
     override val settingsAudioOptionOff = "No audio"
     override val settingsAudioOptionRecordings = "Recordings"
     override val settingsAudioOptionTts = "Speech"
-    override val settingsAudioHintOff = "No words are read aloud. Tapping a word still " +
-        "speaks it."
-    override val settingsAudioHintRecordings = "Bundled recordings first, the system voice " +
-        "for the rest."
-    override val settingsAudioHintTts = "Every word in the system voice — always the same " +
-        "sound, article included."
+    override val settingsAudioHintOff = "Silent — tap a word to hear it."
+    override val settingsAudioHintRecordings = "Bundled recordings first, system voice " +
+        "otherwise."
+    override val settingsAudioHintTts = "Always the system voice, article included."
     override val settingsAudioHintPerLanguage = "Chosen per language you learn."
     override val creditsTitle = "Legal & Licenses"
     override val creditsRecordings = "%d recordings"
@@ -355,16 +353,13 @@ internal object ChromeEn : Chrome {
     override val settingsTitle = "Settings"
     override val settingsNameTitle = "Your Name"
     override val settingsNamePlaceholder = "Name or nickname"
-    override val settingsNameHint = "Spross greets you by it. Left empty, the greeting goes " +
-        "without one."
-    override val settingsProfileHint = "Switching the language you speak keeps all your " +
-        "progress; each language you learn has its own orchard."
+    override val settingsNameHint = "Used in the greeting."
+    override val settingsProfileHint = "Each learned language keeps its own progress."
     override val settingsRestartTutorialButton = "Restart tutorial"
-    override val settingsRestartTutorialHint = "Shows the introduction again — your " +
-        "languages and progress stay."
+    override val settingsRestartTutorialHint = "Replays the introduction; your progress stays."
     override val settingsResetButton = "Reset %s …"
-    override val settingsResetHint = "Deletes progress and history — your own words and your " +
-        "other languages stay."
+    override val settingsResetHint = "Deletes this language's progress; your words and other " +
+        "languages stay."
     override val settingsResetConfirm = "Delete all learning progress for %s and start over " +
         "with the first words?"
     override val settingsBackupTitle = "Backup"
@@ -372,8 +367,8 @@ internal object ChromeEn : Chrome {
     override val settingsBackupExportAll = "All languages"
     override val settingsBackupExportOnly = "%s only"
     override val settingsBackupImport = "Import"
-    override val settingsBackupHint = "Saves the progress and history of every language you " +
-        "learn to a file — to bring back after reinstalling, or on another phone."
+    override val settingsBackupHint = "Saves your progress to a file, for reinstalling or a " +
+        "new phone."
     override val settingsBackupConfirm = "Replace the progress for %s with the one in this " +
         "backup?"
     override val settingsBackupReplace = "Replace"

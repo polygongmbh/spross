@@ -5746,13 +5746,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keine Wörter werden vorgelesen. Tippen auf ein Wort spricht es trotzdem."
+            "value" : "Stumm — tippe auf ein Wort, um es zu hören."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No words are read aloud. Tapping a word still speaks it."
+            "value" : "Silent — tap a word to hear it."
           }
         }
       }
@@ -5778,13 +5778,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eingebaute Aufnahmen zuerst, der Rest aus der Systemstimme."
+            "value" : "Eingebaute Aufnahmen zuerst, sonst Systemstimme."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bundled recordings first, the system voice for the rest."
+            "value" : "Bundled recordings first, system voice otherwise."
           }
         }
       }
@@ -5794,13 +5794,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jedes Wort in der Systemstimme — immer derselbe Klang, Artikel inklusive."
+            "value" : "Immer die autogenerierte Systemstimme, so werden Artikel immer mitgelesen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Every word in the system voice — always the same sound, article included."
+            "value" : "Always the system voice, article included."
           }
         }
       }
@@ -5875,13 +5875,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ wird gerade von der einfachen Systemstimme gelesen. Eine deutlich klarere gibt es gratis unter Einstellungen › Bedienungshilfen › Gesprochene Inhalte › Stimmen."
+            "value" : "Eine klarere Stimme für %@ gibt es gratis: Einstellungen › Bedienungshilfen › Gesprochene Inhalte › Stimmen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ is being read by the basic system voice. A much clearer one is a free download under Settings › Accessibility › Spoken Content › Voices."
+            "value" : "A clearer voice for %@ is a free download: Settings › Accessibility › Spoken Content › Voices."
           }
         }
       }
@@ -5973,13 +5973,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Speichert Fortschritt und Verlauf aller gelernten Sprachen in einer Datei — zum Zurückholen nach einer Neuinstallation oder auf einem anderen Handy."
+            "value" : "Speichert deinen Fortschritt in einer Datei, für Neuinstallation oder ein neues Gerät."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Saves the progress and history of every language you learn to a file — to bring back after reinstalling, or on another phone."
+            "value" : "Saves your progress to a file, for reinstalling or a new phone."
           }
         }
       }
@@ -6102,13 +6102,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Damit begrüßt dich Spross. Bleibt das Feld leer, kommt die Begrüßung ohne Namen aus."
+            "value" : "Für die Begrüßung."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spross greets you by it. Left empty, the greeting goes without one."
+            "value" : "Used in the greeting."
           }
         }
       }
@@ -6151,13 +6151,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten; jede gelernte Sprache hat ihren eigenen Obstgarten."
+            "value" : "Jede gelernte Sprache hat ihren eigenen Fortschritt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Switching the language you speak keeps all your progress; each language you learn has its own orchard."
+            "value" : "Each learned language keeps its own progress."
           }
         }
       }
@@ -6201,13 +6201,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Löscht Fortschritt und Verlauf — deine eigenen Wörter und deine anderen Sprachen bleiben."
+            "value" : "Löscht den Fortschritt in dieser Sprache; eigene Wörter und andere Sprachen bleiben."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deletes progress and history — your own words and your other languages stay."
+            "value" : "Deletes this language's progress; your words and other languages stay."
           }
         }
       }
@@ -6234,13 +6234,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeigt die Einführung erneut — deine Sprachen und dein Fortschritt bleiben erhalten."
+            "value" : "Zeigt die Einführung erneut; dein Fortschritt bleibt erhalten."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shows the introduction again — your languages and progress stay."
+            "value" : "Replays the introduction; your progress stays."
           }
         }
       }
