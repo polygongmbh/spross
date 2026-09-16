@@ -6264,6 +6264,23 @@
         }
       }
     },
+    "settings.profile.switching" : {
+      "comment" : "shown under the language pickers while a target switch re-joins the box",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird gewechselt …"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Switching…"
+          }
+        }
+      }
+    },
     "settings.reset.button %@" : {
       "comment" : "%s = the language being learnt, in its own name",
       "localizations" : {

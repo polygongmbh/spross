@@ -29,6 +29,12 @@ struct BoxView: View {
     @State private var scrollTarget: String?
     /// The area a search hit named, held until its sheet is actually gone.
     @State private var revealAfterSearch: String?
+    /// The area (or own-words) row nearest the top of the visible box, tracked
+    /// by SwiftUI itself (`scrollTargetLayout`/`scrollPosition`). A target-language
+    /// switch changes every row's height under a fixed pixel offset — this keeps
+    /// the same ROW in view instead, which is the shelf the learner actually
+    /// scrolled to.
+    @State private var scrollPositionID: String?
 
     init(model: AppModel, revealArea: String? = nil) {
         self.model = model
@@ -70,7 +76,9 @@ struct BoxView: View {
                     BoxSettingsSection(model: model)
                 }
                 .padding(Theme.spacing.xl)
+                .scrollTargetLayout()
             }
+            .scrollPosition(id: $scrollPositionID)
             // why: revealing an area is two moves — open it, then bring it up to
             // the thumb; the second one needs the proxy the scroll view owns.
             // The scroll waits for the FOLD, not just a turn: the row it names is a

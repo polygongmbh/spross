@@ -34,6 +34,12 @@ final class AppModel {
     }
 
     private(set) var phase: Phase = .loading
+    /// Set for the span of `activate()` — a source/target switch re-joins the
+    /// catalog and re-walks the whole box, which takes a beat. The Box screen
+    /// shows this as a spinner on the language pickers rather than blocking
+    /// input, since `box` itself stays on the outgoing language until the new
+    /// one is fully ready (see `activate`).
+    private(set) var switchingLanguage = false
     /// The whole session run — queue, tallies, and THE BOX (`SessionRun`).
     /// Settable across the model's extensions; every write goes through a
     /// reduction or `box` below.
@@ -286,6 +292,7 @@ final class AppModel {
             phase = .ready
             return
         }
+        switchingLanguage = true
         do {
             let saved = try await store.box(target: target)
             // why: joining the catalog and replaying the logs are the two heaviest
@@ -305,12 +312,18 @@ final class AppModel {
                 // rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
                 return saved.join(cards: cards, joinStamp: stamp).rekeyingPrefixedVerbs()
             }.value
+            // why: resolved before `box` is published, so the Box screen's first
+            // render of the new language already carries matching stats/areas —
+            // an `await` between the two let SwiftUI draw the new box against the
+            // outgoing language's derived state, which is what jumbled its scroll.
+            await reloadOtherLanguagesAnswerDays(excluding: target)
             box = state
+            refreshTrainerContent()
+            refreshStats()
             // why: only a box that did not exist yet owes the disk anything here.
             // A re-join is derived from what is already stored and reproduces
             // itself on the next launch, so writing it back buys nothing.
             if saved == nil { try await store.saveNow(state: state) }
-            await reloadOtherLanguagesAnswerDays(excluding: target)
             await store.saveWidgetSnapshot(state: state, nowEpochMillis: Date().epochMillis,
                                            tzId: currentTzId(),
                                            otherLanguagesAnswerDays: otherLanguagesAnswerDays)
@@ -321,8 +334,6 @@ final class AppModel {
             UserDefaults.standard.set(source, forKey: Self.sourceLanguageKey)
             UserDefaults.standard.set(target, forKey: Self.targetLanguageKey)
             loadFailure = nil
-            refreshTrainerContent()
-            refreshStats()
             pushWatchSnapshot()
             recomposeSessionIfStale()
             phase = .ready
@@ -330,6 +341,7 @@ final class AppModel {
             loadFailure = .contentUnavailable(reason: error.localizedDescription)
             phase = .ready
         }
+        switchingLanguage = false
     }
 
     /// Switch the known language in place — every schedule survives (keys are

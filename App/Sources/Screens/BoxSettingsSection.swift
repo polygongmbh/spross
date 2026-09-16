@@ -123,9 +123,22 @@ struct BoxSettingsSection: View {
                 languageMenu(title: "settings.learning.title",
                              selection: targetBinding, choices: targetChoices)
             }
-            Text("settings.profile.hint")
-                .font(Theme.typography.caption)
-                .foregroundStyle(Theme.colors.textSecondary)
+            .disabled(model.switchingLanguage)
+            // why: the re-join and box walk behind a pick take a beat — said here
+            // rather than left silent, so a second tap while it settles reads as
+            // "still working" and not as the row having ignored the first one.
+            if model.switchingLanguage {
+                HStack(spacing: Theme.spacing.xs) {
+                    ProgressView().controlSize(.small)
+                    Text("settings.profile.switching")
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
+                }
+            } else {
+                Text("settings.profile.hint")
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
+            }
         }
     }
 
