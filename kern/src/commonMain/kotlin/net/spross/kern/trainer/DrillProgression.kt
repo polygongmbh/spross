@@ -1,5 +1,7 @@
 package net.spross.kern.trainer
 
+import kotlin.random.Random
+
 /**
  * What a RUN can offer — the learner-facing choice on the numbers overview.
  *
@@ -154,6 +156,24 @@ internal object DrillLadder {
 
     /** A drawn question and the Sprosse it is booked at; a null task is a ladder answered out. */
     data class Sprosse<T>(val task: T?, val level: Int)
+
+    /**
+     * Whether this draw leads with what the Sprosse ADDED rather than with everything it carries.
+     *
+     * The ladders whose pools NEST — lengths, kinds, tiers, minutes — keep every question the
+     * Sprossen below could ask, so a flat draw can answer a promotion with something the learner
+     * has been meeting all evening, and the Sprosse they just earned says nothing about itself.
+     *
+     * Always on [arriving] at one: a promotion, a climb past a Sprosse answered out, the question
+     * a resumed run opens on. Half the draws while standing on it, so what it added stays in play
+     * without the rest of the Sprosse losing its turn — three weekday wins must never carry a
+     * learner past a Sprosse whose own question they never met.
+     *
+     * WHAT a Sprosse added is the drill's own, and so is the fallback: every caller drops back to
+     * the whole pool where what it added is answered out, or a Sprosse would end early on content
+     * the learner has already cleared.
+     */
+    fun leadsWithAdded(arriving: Boolean, rng: Random): Boolean = arriving || rng.nextBoolean()
 
     /**
      * The first Sprosse at or above [from] with something left to ask, drawn by [sample].

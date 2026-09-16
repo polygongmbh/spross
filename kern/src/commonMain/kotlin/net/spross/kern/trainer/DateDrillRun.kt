@@ -26,7 +26,9 @@ object DateDrillRun {
     fun openAt(config: DateDrillRunConfig, level: Int, rng: Random): DateDrillRunState {
         val content = config.content
         val start = level.coerceIn(1, DateDrill.maxLevel(content, config.reverse))
-        val opening = DateDrill.draw(content, start, config.reverse, null, emptySet(), rng)
+        // A run opens on a Sprosse ARRIVED at, so its first question is one that Sprosse added.
+        val opening =
+            DateDrill.draw(content, start, config.reverse, null, emptySet(), rng, arriving = true)
         return DateDrillRunState(
             config = config,
             // why: nothing is solved yet, so a fresh calendar's first Sprosse always has a question.
@@ -178,6 +180,7 @@ object DateDrillRun {
             DrillSolved.key(state.task),
             next.solved,
             rng,
+            arriving = next.level > state.level,
         )
         return DateDrillReduction(
             next.copy(

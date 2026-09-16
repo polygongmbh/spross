@@ -247,19 +247,11 @@ object SentenceScrambleRun {
      * rule on the atlas' kind of ladder. [avoiding] is the phrase just asked, which kern
      * resamples once. Null ⇒ this Sprosse has nothing left.
      *
-     * No tier is singled out, once the run is standing on a Sprosse. Narrowing to the newest
-     * length would be the rising floor again under another name; a flat draw lets the new length
-     * in as one more card in the deck, and [DrillSolved] retires each phrase as it is arranged
-     * clean, so the deck thins toward whatever the learner still owes rather than toward a
-     * length the ladder picked for them.
-     *
-     * [arriving] is the exception, and it is the one question where narrowing says something: on
-     * reaching a Sprosse the draw leads with the LENGTH that Sprosse added
-     * ([SentenceScrambleAvailability.Report.atomsAt]), where the pool still holds one unanswered.
-     * Every other ladder in the app changes what it ASKS as it climbs — a rising letter floor, a
-     * new stage, a new kind — so a promotion is felt on the next question by construction. This
-     * one only widens a ceiling, so without this the climb a learner just earned can arrive as a
-     * three-word phrase they have seen all evening.
+     * The length that Sprosse ADDED leads the draw where [DrillLadder.leadsWithAdded] says so —
+     * always on [arriving], half the draws after — and the rest of the time nothing is singled
+     * out: narrowing for longer would be the rising floor again under another name, and
+     * [DrillSolved] retires each phrase as it is arranged clean, so the deck thins toward
+     * whatever the learner still owes rather than toward a length the ladder picked for them.
      */
     private fun sample(
         report: SentenceScrambleAvailability.Report,
@@ -272,7 +264,8 @@ object SentenceScrambleRun {
         val open = report.phrasesAt(level)
             .filter { DrillSolved.sentenceKey(it.card.id) !in solved }
         if (open.isEmpty()) return null
-        val admitted = if (arriving) {
+        val admitted = if (DrillLadder.leadsWithAdded(arriving, rng)) {
+            // What this Sprosse added: the one length the Sprosse below could not ask.
             open.filter { it.words == report.atomsAt(level) }.ifEmpty { open }
         } else {
             open

@@ -95,8 +95,9 @@ object DateDrill {
         avoid: String?,
         solved: Set<String>,
         rng: Random,
+        arriving: Boolean = false,
     ): DateDrillTask? {
-        for (kind in drawOrder(kinds(content, level, reverse), rng)) {
+        for (kind in drawOrder(kinds(content, level, reverse), rng, arriving)) {
             val task = when (kind) {
                 DateTaskKind.NameChoice ->
                     samplePool(DateDrillChoices.pool(content, reverse), avoid, solved, rng)
@@ -124,9 +125,11 @@ object DateDrill {
         avoid: String?,
         solved: Set<String>,
         rng: Random,
+        arriving: Boolean = false,
     ): DateDrillDraw {
         val climbed = DrillLadder.climb(level, maxLevel(content, reverse)) { sprosse ->
-            sample(content, sprosse, reverse, avoid, solved, rng)
+            // Climbing PAST a spent Sprosse arrives at the one above it just as a promotion does.
+            sample(content, sprosse, reverse, avoid, solved, rng, arriving || sprosse > level)
         }
         return DateDrillDraw(climbed.task, climbed.level)
     }
@@ -189,15 +192,22 @@ object DateDrill {
     )
 
     /**
-     * The order [sample] tries a Sprosse's kinds in. Half the draws lead with the kind the
-     * Sprosse INTRODUCES — three weekday wins must never carry a learner past a Sprosse whose
-     * own question they never met — and the other half are a fair mix of everything the
-     * Sprosse carries, which is what keeps the names alive once the dates are assembled.
+     * The order [sample] tries a Sprosse's kinds in: what the Sprosse ADDED first where
+     * [DrillLadder.leadsWithAdded] says so, a fair mix of everything it carries otherwise —
+     * which is what keeps the names alive once the dates are assembled.
+     *
+     * The kind it added is the last of the accumulated ladder, and the fallback is the ORDER
+     * itself: [sample] tries each kind until one yields, so a newest kind that is answered out
+     * costs the draw nothing.
      */
-    private fun drawOrder(ladder: List<DateTaskKind>, rng: Random): List<DateTaskKind> {
+    private fun drawOrder(ladder: List<DateTaskKind>, rng: Random, arriving: Boolean): List<DateTaskKind> {
         val shuffled = ladder.shuffled(rng)
         val newest = ladder.last()
-        return if (rng.nextBoolean()) listOf(newest) + shuffled.filterNot { it == newest } else shuffled
+        return if (DrillLadder.leadsWithAdded(arriving, rng)) {
+            listOf(newest) + shuffled.filterNot { it == newest }
+        } else {
+            shuffled
+        }
     }
 
     /** The kind [kind] is assembled on top of — its own pattern minus this one's is what it adds. */

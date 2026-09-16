@@ -31,7 +31,10 @@ object CountryDrillRun {
      */
     fun openAt(config: CountryDrillRunConfig, level: Int, rng: Random): CountryDrillRunState {
         val start = level.coerceIn(1, CountryDrill.MAX_LEVEL)
-        val opening = CountryDrill.draw(config.content, start, config.reverse, null, emptySet(), rng)
+        // A run opens on a Sprosse ARRIVED at — the lowest one not answered out, or the one
+        // tapped — so its first question is one that Sprosse added.
+        val opening =
+            CountryDrill.draw(config.content, start, config.reverse, null, emptySet(), rng, arriving = true)
         val content = config.content
         return CountryDrillRunState(
             config = config,
@@ -173,6 +176,7 @@ object CountryDrillRun {
             state.task.id,
             next.solved,
             rng,
+            arriving = next.level > state.level,
         )
         return CountryDrillReduction(
             next.copy(

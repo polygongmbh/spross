@@ -151,12 +151,33 @@ object CountryDrill {
         avoidId: String?,
         solved: Set<String>,
         rng: Random,
+        arriving: Boolean = false,
     ): CountryDrillTask? {
         val pool = tasks(content, level, reverse).filterNot { DrillSolved.key(it) in solved }
         if (pool.isEmpty()) return null
-        var picked = pool[rng.nextInt(pool.size)]
-        if (picked.id == avoidId) picked = pool[rng.nextInt(pool.size)]
+        val drawn = if (DrillLadder.leadsWithAdded(arriving, rng)) added(content, level, reverse, pool) else pool
+        var picked = drawn[rng.nextInt(drawn.size)]
+        if (picked.id == avoidId) picked = drawn[rng.nextInt(drawn.size)]
         return picked
+    }
+
+    /**
+     * What [level] ADDED — the questions in its pool that the Sprosse below could not ask, by
+     * the kind it introduced or the tier it opened. Falls back to [pool] where the Sprosse adds
+     * nothing ([repeatsBelow]) or where everything it added is answered out already.
+     *
+     * Read as a DIFFERENCE of the two pools rather than from the kind and tier separately: the
+     * Sprossen widen on both axes at once, and a task is new if either of them made it so.
+     */
+    private fun added(
+        content: CountryDrillContent,
+        level: Int,
+        reverse: Boolean,
+        pool: List<CountryDrillTask>,
+    ): List<CountryDrillTask> {
+        if (level <= 1 || repeatsBelow(level, reverse)) return pool
+        val below = tasks(content, level - 1, reverse).mapTo(mutableSetOf()) { DrillSolved.key(it) }
+        return pool.filterNot { DrillSolved.key(it) in below }.ifEmpty { pool }
     }
 
     /**
@@ -171,9 +192,11 @@ object CountryDrill {
         avoidId: String?,
         solved: Set<String>,
         rng: Random,
+        arriving: Boolean = false,
     ): CountryDrillDraw {
         val climbed = DrillLadder.climb(level, MAX_LEVEL) { sprosse ->
-            sample(content, sprosse, reverse, avoidId, solved, rng)
+            // Climbing PAST a spent Sprosse arrives at the one above it just as a promotion does.
+            sample(content, sprosse, reverse, avoidId, solved, rng, arriving || sprosse > level)
         }
         return CountryDrillDraw(climbed.task, climbed.level)
     }

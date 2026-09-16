@@ -136,6 +136,30 @@ class CountryDrillTests {
         assertTrue(CountryDrill.tasks(content, 3).none { it.kind == CountryTaskKind.SpokenIn })
     }
 
+    /**
+     * Arriving at a Sprosse, the draw leads with what that Sprosse ADDED — a question the one
+     * below could not ask. The atlas widens on two axes at once, so what it added is read as
+     * the difference of the two pools rather than off the kind or the tier alone.
+     */
+    @Test
+    fun aSprosseJustReachedAsksWhatItAdded() {
+        for (level in 2..CountryDrill.MAX_LEVEL) {
+            val below = CountryDrill.tasks(content, level - 1).mapTo(mutableSetOf()) { DrillSolved.key(it) }
+            // A Sprosse whose widening this atlas has no content for adds nothing in FACT
+            // however the ladder reads, and falls back to the whole pool rather than to nothing.
+            if (CountryDrill.tasks(content, level).all { DrillSolved.key(it) in below }) continue
+            for (seed in 1..8) {
+                val task = assertNotNull(
+                    CountryDrill.sample(content, level, false, null, emptySet(), Random(seed), arriving = true),
+                )
+                assertFalse(
+                    DrillSolved.key(task) in below,
+                    "Sprosse $level arrived on a question Sprosse ${level - 1} could already ask",
+                )
+            }
+        }
+    }
+
     @Test
     fun everySprosseKeepsEverythingBelowIt() {
         val pools = (1..CountryDrill.MAX_LEVEL).map { level ->

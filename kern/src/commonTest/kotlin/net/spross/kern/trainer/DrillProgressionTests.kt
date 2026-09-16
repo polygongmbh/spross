@@ -83,6 +83,23 @@ class DrillProgressionTests {
 
     // The ramp — one rule for every drill, whatever it asks.
 
+    /**
+     * WHEN a draw leads with what the Sprosse added, which is the half of the rule every
+     * nesting ladder shares; WHAT each of them added is its own, and its own test.
+     */
+    @Test
+    fun arrivingAlwaysLeadsWithWhatTheSprosseAddedAndStandingHalfTheTime() {
+        for (seed in 1..40) {
+            assertTrue(
+                DrillLadder.leadsWithAdded(arriving = true, rng = Random(seed)),
+                "arriving is never left to a coin",
+            )
+        }
+        val led = (1..200).count { DrillLadder.leadsWithAdded(arriving = false, rng = Random(it)) }
+        // Half, give or take the coin — the rest of the Sprosse keeps its turn either way.
+        assertTrue(led in 70..130, "standing on a Sprosse led with what it added $led times in 200")
+    }
+
     @Test
     fun twoCleanWinsClimbOneSprosseAndAMissStepsBack() {
         val first = DrillRamp.step(3, 0, correct = true, clean = true, winsRequired = 2)
