@@ -1,0 +1,18 @@
+{
+ "title": "Praktikado kaj celoj",
+ "words": {
+  "to-practice": {
+   "text": "ekzerci",
+   "variants": ["sin ekzerci", "ekzerciĝi"],
+   "notes": { "eo": "ekzerci la vortojn · sen objekto: sin ekzerci aŭ ekzerciĝi." }
+  },
+  "to-try": { "text": "provi", "variants": ["klopodi", "peni"] },
+  "to-study": {
+   "text": "studi",
+   "variants": ["lerni"],
+   "notes": { "eo": "studi por kurso aŭ ekzameno · lerni ion novan." }
+  },
+  "goal": { "text": "celo" },
+  "you-can-do-it": { "text": "Vi certe sukcesos!" }
+ }
+}

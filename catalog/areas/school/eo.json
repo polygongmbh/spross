@@ -19,11 +19,6 @@
    "variants": ["sukcesi la ekzamenon", "sukcese trapasi la ekzamenon"],
    "notes": { "eo": "sukcesi = bona rezulto · malsukcesi = malbona · trapasi = nur fari ĝin." }
   },
-  "to-practice": {
-   "text": "ekzerci",
-   "variants": ["sin ekzerci", "ekzerciĝi"],
-   "notes": { "eo": "ekzerci la vortojn · sen objekto: sin ekzerci aŭ ekzerciĝi." }
-  },
   "to-raise-hand": { "text": "levi la manon" },
   "pupil": { "text": "lernanto", "variants": ["lernejano"] },
   "pupil-f": { "text": "lernantino", "variants": ["lernejanino"] },
@@ -46,16 +41,10 @@
     "de": "kalkuli heißt zählen und rechnen; erzählen heißt rakonti."
    }
   },
-  "to-try": { "text": "provi", "variants": ["klopodi", "peni"] },
   "to-learn-by-heart": { "text": "parkere lerni", "variants": ["lerni parkere", "parkerigi"] },
   "to-read-aloud": { "text": "laŭte legi", "variants": ["legi laŭte", "laŭtlegi"] },
   "dictionary": { "text": "vortaro" },
   "to-pronounce": { "text": "elparoli", "synonyms": ["prononci"] },
-  "to-study": {
-   "text": "studi",
-   "variants": ["lerni"],
-   "notes": { "eo": "studi por kurso aŭ ekzameno · lerni ion novan." }
-  },
   "to-teach": { "text": "instrui" },
   "do-the-homework": { "text": "Mi faras la hejmtaskojn.", "variants": ["Mi faras la hejmtaskon."] },
   "look-at-the-class-schedule": { "text": "Rigardu la horaron." },

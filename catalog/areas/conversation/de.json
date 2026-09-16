@@ -14,11 +14,9 @@
   "to-need": { "text": "brauchen" },
   "to-know": { "text": "wissen" },
   "to-remember": { "text": "sich erinnern" },
-  "goal": { "text": "Ziel", "grammar": { "gender": "das", "plural": "Ziele" } },
   "to-show": { "text": "zeigen" },
   "to-explain": { "text": "erklären" },
   "to-say": { "text": "sagen" },
-  "loud": { "text": "laut" },
   "i-dont-understand": {
    "text": "Ich verstehe nicht.",
    "variants": ["Ich verstehe Sie nicht.", "Ich verstehe dich nicht."]
@@ -27,11 +25,9 @@
   "slower": { "text": "Langsamer!" },
   "i-cant-hear-you": { "text": "Ich kann Sie nicht hören.", "variants": ["Ich kann dich nicht hören."] },
   "do-you-speak-english": { "text": "Sprechen Sie Englisch?", "variants": ["Sprichst du Englisch?"] },
-  "you-can-do-it": { "text": "Du schaffst das bestimmt!" },
   "i-need-help": { "text": "Ich brauche Hilfe." },
   "i-dont-know": { "text": "Ich weiß nicht." },
   "i-forgot": { "text": "Ich habe es vergessen.", "variants": ["Das habe ich vergessen."] },
-  "what-is-this-called": { "text": "Wie nennt man das?" },
-  "louder": { "text": "Lauter!" }
+  "what-is-this-called": { "text": "Wie nennt man das?" }
  }
 }

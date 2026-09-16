@@ -1,0 +1,10 @@
+{
+ "title": "Practice & Goals",
+ "words": {
+  "to-practice": { "text": "to practice", "variants": ["to practise"] },
+  "to-try": { "text": "to try" },
+  "to-study": { "text": "to study" },
+  "goal": { "text": "goal" },
+  "you-can-do-it": { "text": "You can definitely do it!" }
+ }
+}

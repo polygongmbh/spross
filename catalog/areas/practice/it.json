@@ -1,0 +1,14 @@
+{
+ "title": "Esercizio e obiettivi",
+ "words": {
+  "to-practice": { "text": "esercitarsi", "variants": ["fare esercizi", "fare pratica"] },
+  "to-try": { "text": "provare", "variants": ["tentare"] },
+  "to-study": { "text": "studiare", "notes": { "it": "si studia per un esame · si impara una cosa nuova." } },
+  "goal": {
+   "text": "obiettivo",
+   "variants": ["l'obiettivo"],
+   "grammar": { "gender": "l'", "plural": "obiettivi" }
+  },
+  "you-can-do-it": { "text": "Ce la farai di sicuro!", "variants": ["Ce la puoi fare!"] }
+ }
+}

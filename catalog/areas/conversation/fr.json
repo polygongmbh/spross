@@ -35,11 +35,9 @@
    }
   },
   "to-remember": { "text": "se souvenir" },
-  "goal": { "text": "but", "grammar": { "gender": "le" } },
   "to-show": { "text": "montrer" },
   "to-explain": { "text": "expliquer" },
   "to-say": { "text": "dire" },
-  "loud": { "text": "fort", "variants": ["forte"], "notes": { "fr": "parle fort ! · fort = puissant." } },
   "i-dont-understand": {
    "text": "Je ne comprends pas.",
    "variants": ["Je ne vous comprends pas.", "Je ne te comprends pas."]
@@ -54,14 +52,9 @@
    "text": "Parlez-vous anglais ?",
    "variants": ["Vous parlez anglais ?", "Parles-tu anglais ?", "Tu parles anglais ?"]
   },
-  "you-can-do-it": {
-   "text": "Tu vas sûrement y arriver !",
-   "variants": ["Tu vas y arriver !", "Tu y arriveras !", "Tu peux le faire !"]
-  },
   "i-need-help": { "text": "J'ai besoin d'aide." },
   "i-dont-know": { "text": "Je ne sais pas.", "variants": ["Je sais pas."] },
   "i-forgot": { "text": "J'ai oublié." },
-  "what-is-this-called": { "text": "Comment appelle-t-on ça ?", "variants": ["Comment ça s'appelle ?"] },
-  "louder": { "text": "Plus fort !" }
+  "what-is-this-called": { "text": "Comment appelle-t-on ça ?", "variants": ["Comment ça s'appelle ?"] }
  }
 }

@@ -1,0 +1,10 @@
+{
+ "title": "Mazoezi na malengo",
+ "words": {
+  "to-practice": { "text": "kufanya mazoezi" },
+  "to-try": { "text": "kujaribu" },
+  "to-study": { "text": "kujifunza" },
+  "goal": { "text": "lengo", "grammar": { "plural": "malengo" } },
+  "you-can-do-it": { "text": "Hakika utaweza!" }
+ }
+}

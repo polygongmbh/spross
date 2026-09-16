@@ -1,0 +1,10 @@
+{
+ "title": "Übung & Ziele",
+ "words": {
+  "to-practice": { "text": "üben" },
+  "to-try": { "text": "versuchen" },
+  "to-study": { "text": "lernen" },
+  "goal": { "text": "Ziel", "grammar": { "gender": "das", "plural": "Ziele" } },
+  "you-can-do-it": { "text": "Du schaffst das bestimmt!" }
+ }
+}

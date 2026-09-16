@@ -1,0 +1,10 @@
+{
+ "title": "Práctica y metas",
+ "words": {
+  "to-practice": { "text": "practicar", "variants": ["hacer ejercicios"] },
+  "to-try": { "text": "intentar", "variants": ["probar"] },
+  "to-study": { "text": "estudiar", "notes": { "es": "estudiar para un examen · aprender algo nuevo." } },
+  "goal": { "text": "meta", "grammar": { "gender": "la" } },
+  "you-can-do-it": { "text": "¡Seguro que lo consigues!", "variants": ["¡Tú puedes!", "¡Seguro que lo logras!"] }
+ }
+}

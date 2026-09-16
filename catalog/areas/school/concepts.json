@@ -3,8 +3,6 @@
  { "slug": "teacher", "kind": "noun", "emoji": "🧑‍🏫" },
  { "slug": "teacher-f", "kind": "noun", "emoji": "👩‍🏫", "feminineOf": "teacher" },
  { "slug": "book", "kind": "noun", "emoji": "📖" },
- { "slug": "to-practice", "kind": "verb", "emoji": "🔁" },
- { "slug": "to-try", "kind": "verb" },
  { "slug": "pupil", "kind": "noun", "emoji": "🧑‍🎓" },
  { "slug": "pupil-f", "kind": "noun", "emoji": "👩‍🎓", "feminineOf": "pupil" },
  { "slug": "classroom", "kind": "noun", "emoji": "🎓" },
@@ -28,7 +26,6 @@
  { "slug": "to-raise-hand", "kind": "verb", "emoji": "✋" },
  { "slug": "exercise-book", "kind": "noun", "emoji": "📒" },
  { "slug": "class-schedule", "kind": "noun", "emoji": "🗓️" },
- { "slug": "to-study", "kind": "verb", "emoji": "📚" },
  { "slug": "to-teach", "kind": "verb", "emoji": "📣" },
  { "slug": "do-the-homework", "kind": "phrase", "emoji": "✍️", "components": ["homework"] },
  {

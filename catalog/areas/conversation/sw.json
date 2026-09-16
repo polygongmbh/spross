@@ -14,28 +14,17 @@
   "to-need": { "text": "kuhitaji" },
   "to-know": { "text": "kujua" },
   "to-remember": { "text": "kukumbuka" },
-  "goal": { "text": "lengo", "grammar": { "plural": "malengo" } },
   "to-show": { "text": "kuonyesha" },
   "to-explain": { "text": "kueleza" },
   "to-say": { "text": "kusema" },
-  "loud": {
-   "text": "kwa sauti kubwa",
-   "variants": ["kwa sauti ya juu"],
-   "notes": {
-    "sw": "Zungumza kwa sauti kubwa! · au: kwa sauti ya juu",
-    "de": "kein Adjektiv, sondern adverbial: Sema kwa sauti kubwa."
-   }
-  },
   "i-dont-understand": { "text": "Sielewi.", "variants": ["Sikuelewi."] },
   "can-you-repeat-that": { "text": "Unaweza kurudia?" },
   "slower": { "text": "Polepole zaidi!" },
   "i-cant-hear-you": { "text": "Sikusikii.", "variants": ["Siwezi kukusikia."] },
   "do-you-speak-english": { "text": "Unazungumza Kiingereza?" },
-  "you-can-do-it": { "text": "Hakika utaweza!" },
   "i-need-help": { "text": "Nahitaji msaada." },
   "i-dont-know": { "text": "Sijui." },
   "i-forgot": { "text": "Nimesahau." },
-  "what-is-this-called": { "text": "Hii inaitwaje?" },
-  "louder": { "text": "Kwa sauti zaidi!", "variants": ["Kwa sauti kubwa zaidi!"] }
+  "what-is-this-called": { "text": "Hii inaitwaje?" }
  }
 }

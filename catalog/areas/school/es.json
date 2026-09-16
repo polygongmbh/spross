@@ -52,7 +52,6 @@
    "variants": ["pasar el examen"],
    "notes": { "es": "aprobar el examen · lo contrario es suspender." }
   },
-  "to-practice": { "text": "practicar", "variants": ["hacer ejercicios"] },
   "to-raise-hand": { "text": "levantar la mano", "variants": ["alzar la mano"] },
   "pupil": { "text": "alumno", "variants": ["estudiante"], "grammar": { "gender": "el" } },
   "pupil-f": { "text": "alumna", "variants": ["estudiante"], "grammar": { "gender": "la" } },
@@ -73,12 +72,10 @@
    "notes": { "es": "El horario sirve para cualquier plan; el del colegio es el horario de clases." }
   },
   "to-count": { "text": "contar", "notes": { "es": "contar también es narrar: cuéntame qué pasó." } },
-  "to-try": { "text": "intentar", "variants": ["probar"] },
   "to-learn-by-heart": { "text": "aprender de memoria", "synonyms": ["memorizar"] },
   "to-read-aloud": { "text": "leer en voz alta" },
   "dictionary": { "text": "diccionario", "grammar": { "gender": "el" } },
   "to-pronounce": { "text": "pronunciar" },
-  "to-study": { "text": "estudiar", "notes": { "es": "estudiar para un examen · aprender algo nuevo." } },
   "to-teach": { "text": "enseñar" },
   "do-the-homework": { "text": "Hago los deberes." },
   "look-at-the-class-schedule": { "text": "Mira el horario.", "variants": ["Mire el horario."] },

@@ -60,7 +60,6 @@
     "en": "réussir is to pass; passer un examen only means to sit it, and to fail is rater or échouer."
    }
   },
-  "to-practice": { "text": "s'entraîner", "variants": ["s'exercer", "pratiquer"] },
   "to-raise-hand": { "text": "lever la main", "variants": ["lever le doigt"] },
   "pupil": {
    "text": "élève",
@@ -91,16 +90,10 @@
    "grammar": { "gender": "l'", "plural": "emplois du temps" }
   },
   "to-count": { "text": "compter" },
-  "to-try": { "text": "essayer", "variants": ["tenter"] },
   "to-learn-by-heart": { "text": "apprendre par cœur", "synonyms": ["mémoriser"], "variants": ["apprendre par coeur"] },
   "to-read-aloud": { "text": "lire à voix haute", "variants": ["lire à haute voix"] },
   "dictionary": { "text": "dictionnaire", "grammar": { "gender": "le" } },
   "to-pronounce": { "text": "prononcer" },
-  "to-study": {
-   "text": "étudier",
-   "variants": ["réviser"],
-   "notes": { "fr": "réviser ou étudier pour un examen · apprendre une chose nouvelle." }
-  },
   "to-teach": { "text": "enseigner" },
   "do-the-homework": { "text": "Je fais mes devoirs." },
   "look-at-the-class-schedule": { "text": "Regarde l'emploi du temps.", "variants": ["Regardez l'emploi du temps."] },

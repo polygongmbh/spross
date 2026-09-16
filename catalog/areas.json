@@ -39,7 +39,8 @@
    { "area": "degree", "emoji": "📊" },
    { "area": "time", "emoji": "🕒" },
    { "area": "colors", "emoji": "🎨" },
-   { "area": "comparison", "emoji": "⚖️" }
+   { "area": "comparison", "emoji": "⚖️" },
+   { "area": "practice", "emoji": "🏅" }
   ]
  },
  {
@@ -98,7 +99,8 @@
    { "area": "city", "emoji": "🏙️" },
    { "area": "nature", "emoji": "🌳" },
    { "area": "animals", "emoji": "🐘" },
-   { "area": "weather", "emoji": "🌦️" }
+   { "area": "weather", "emoji": "🌦️" },
+   { "area": "sounds", "emoji": "🔊" }
   ]
  },
  {

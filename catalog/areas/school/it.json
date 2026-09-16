@@ -46,7 +46,6 @@
    "variants": ["passare l'esame"],
    "notes": { "it": "chi supera l'esame passa · chi non passa è bocciato." }
   },
-  "to-practice": { "text": "esercitarsi", "variants": ["fare esercizi", "fare pratica"] },
   "to-raise-hand": { "text": "alzare la mano" },
   "pupil": {
    "text": "alunno",
@@ -83,12 +82,10 @@
    "notes": { "it": "l'orario è ogni orario · a scuola è l'orario delle lezioni." }
   },
   "to-count": { "text": "contare" },
-  "to-try": { "text": "provare", "variants": ["tentare"] },
   "to-learn-by-heart": { "text": "imparare a memoria", "synonyms": ["memorizzare"] },
   "to-read-aloud": { "text": "leggere ad alta voce" },
   "dictionary": { "text": "dizionario", "grammar": { "gender": "il", "plural": "dizionari" } },
   "to-pronounce": { "text": "pronunciare" },
-  "to-study": { "text": "studiare", "notes": { "it": "si studia per un esame · si impara una cosa nuova." } },
   "to-teach": { "text": "insegnare" },
   "do-the-homework": { "text": "Faccio i compiti." },
   "look-at-the-class-schedule": { "text": "Guarda l'orario.", "variants": ["Guardi l'orario.", "Guarda l'orario delle lezioni."] },
