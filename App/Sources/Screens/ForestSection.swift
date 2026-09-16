@@ -1,26 +1,28 @@
 import SwiftUI
 import SprossKern
 
-/// The bottom of Home: the 14-day strip, then the box as a forest — one tree
-/// per area, in catalog order with the learner's own words last.
+/// The bottom of Home: the 14-day strip, then a picture of the orchard — one
+/// tree per area, in catalog order with the learner's own words last.
 ///
-/// It is a picture of the box, not a way around it: tapping a tree opens the
-/// Box screen at that area, which is still where browsing, packing and reviving
-/// live. What the forest adds is the thing a count cannot — how the whole box
-/// is shaped, and which corners of the language have never been opened.
+/// It is a picture of the orchard, not a way around it: tapping a tree opens
+/// the Orchard screen at that area, which is still where browsing, packing
+/// and reviving live. What this picture adds is the thing a count cannot —
+/// how the whole orchard is shaped, and which corners of the language have
+/// never been opened.
 struct ForestSection: View {
     let model: AppModel
     let open: (String) -> Void
 
-    /// Measured once and reused: the forest has to know its width before it can
-    /// say how tall it is (see `ForestCanvas`).
+    /// Measured once and reused: this picture has to know its width before it
+    /// can say how tall it is (see `ForestCanvas`).
     @State private var width: CGFloat = 0
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.md) {
             widthProbe
-            // Both pieces name themselves — the strip in its own header, the forest in
-            // the caption under it — so a section title above says the word a third time.
+            // Both pieces name themselves — the strip in its own header, the tree
+            // picture in the caption under it — so a section title above says
+            // the word a third time.
             ActivityStripView(days: model.activity.map(ActivityColumn.init),
                               streakDays: model.stats?.streakDays ?? 0,
                               flame: model.stats?.flame ?? .unlit)
@@ -42,7 +44,7 @@ struct ForestSection: View {
             }
     }
 
-    /// The standing split in words, under the picture: a forest says how the box
+    /// The standing split in words, under the picture: it says how the orchard
     /// is shaped, never how many words are in it.
     private var caption: some View {
         Text.joined(

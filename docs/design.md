@@ -1,6 +1,6 @@
 # Spross — app design (v2)
 
-This doc is the build contract for the REVIEW LOOP: the card, the typing, Home, the Box.
+This doc is the build contract for the REVIEW LOOP: the card, the typing, Home, the Orchard.
 Four app domains have their own pages — `drills.md` (the hub's drills and their ladders),
 `surfaces.md` (listening, the wrist, Android), `read-aloud.md` (what speaks, and when)
 and `performance.md` (what may run per frame, per answer and per activation).
@@ -35,7 +35,7 @@ Strict dependency direction: App → SprossKern, never the reverse.
   saved after answers, at session end, and when the app goes to the background —
   an answered review is never only in memory.
 - **Calibration is re-applied from the build on every load**: learning steps, retention
-  and caps are decisions the app version makes, so a box written months ago must not go
+  and caps are decisions the app version makes, so an orchard written months ago must not go
   on answering to the numbers that shipped with it. Nothing survives it — growth pacing
   is the engine's opinion, not a figure the learner tunes (`docs/growth-evidence.md`).
 - Swift 6 strict concurrency.
@@ -54,14 +54,14 @@ Strict dependency direction: App → SprossKern, never the reverse.
   and closing the round spends them. The flag arms with the round onboarding opens —
   never ahead of one nothing can open — and lives in memory,
   so an app killed mid-round comes back to a quiet screen.
-- Onboarding is three pages, and ends INSIDE the first round: the pair, what the box is for,
-  then what a round asks of you — and the button on the last page joins the box
+- Onboarding is three pages, and ends INSIDE the first round: the pair, what the orchard is for,
+  then what a round asks of you — and the button on the last page joins the orchard
   and opens the session. Only that page commits, so the join happens once,
   behind something worth reading, and every page before it is free to go back from;
   the first round is never something the learner has to go and find on Home.
-  Box settings carry a restart-tutorial row that replays it: the pair page is skipped
-  since the pair is already made, nothing in the box is touched, and the last page ends
-  in a coached round the same way. A language change alone is the box's own pickers,
+  Orchard settings carry a restart-tutorial row that replays it: the pair page is skipped
+  since the pair is already made, nothing in the orchard is touched, and the last page ends
+  in a coached round the same way. A language change alone is the orchard's own pickers,
   which take none of the pages and open no session over the screen you were on.
 - One list is open at a time; the other stands folded on its pick and opens at a tap,
   and picking a source hands the screen to the target. Onboarding opens with the known
@@ -70,7 +70,7 @@ Strict dependency direction: App → SprossKern, never the reverse.
   can push the name field and button below the fold, and the page scrolls to reach
   them like any other.
 - The chooser is the FIRST-LAUNCH screen — it is what a device with no profile yet opens on.
-  Afterwards the pair is changed on the box's own two pickers, beside everything else the box
+  Afterwards the pair is changed on the orchard's own two pickers, beside everything else the orchard
   is configured by, so there is one place to change it and the chooser never reopens.
 - Picker rows carry the flag, the language's own name, and the English exonym
   ("🇺🇦 Українська · Ukrainian"): a flag beside an unreadable script is easy to
@@ -122,11 +122,11 @@ Strict dependency direction: App → SprossKern, never the reverse.
 - Area titles and area emoji both come from the catalog; the app carries no map of its own.
   A title is a plain name, so it can serve as the produce prompt's area cue unedited;
   the catalog's optional area subtitle is the flavor line, shown under the title
-  in the box and nowhere a cue is wanted.
+  in the orchard and nowhere a cue is wanted.
 
 ## Presentation model in the UI
 
-**Practice means typing.** Writing the word is the recall the box is scheduling, so that
+**Practice means typing.** Writing the word is the recall the orchard is scheduling, so that
 is what a card asks for. Revealing is the way out of it, for the three cases where typing
 is not the question: a word met for the first time (heard and read, its picture waiting for
 the reveal), a target form to be recognized rather than produced, and a learner who does not
@@ -173,7 +173,7 @@ never the shape of the app.
 ## Review UX rules
 
 These bind every surface that asks the learner for an answer, the drills with the review
-loop (`drills.md`): they are rules about the asking, not about the box behind it.
+loop (`drills.md`): they are rules about the asking, not about the orchard behind it.
 A new surface that asks the way an existing one asks IS that component with a parameter,
 never a second cut of it — and sameness is judged on the CONTROLS, not on what they hold:
 four tappable tiles are four tappable tiles whether a glyph or a month name sits in them.
@@ -222,7 +222,7 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
 - **A word that has cleared the growing bar is sometimes asked by ear alone**: the prompt is
   the replay glyph and nothing else, and what is typed is what the word MEANS, in your own
   language — hearing a word and writing it back down is transcription, and translating it
-  is what the box is for. The field's placeholder names that language, as it always names
+  is what the orchard is for. The field's placeholder names that language, as it always names
   the one an answer is owed in. The card is still a produce card and still books its
   review — only the side it asks from moved. It withholds the meaning, so the reveal owes
   it back, and it waits for the same growing bar the emoji reads from the other side: taking a
@@ -278,7 +278,7 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   It also carries the TREE of the area the round worked hardest, rising out of the ground as
   the screen arrives — the one place a tree may move, because it is the one place where
   something just happened, and the only part of that screen that is about this learner's own
-  box rather than about having finished. Which area is kern's answer (`SessionRunState`
+  orchard rather than about having finished. Which area is kern's answer (`SessionRunState`
   records what the run touched); ties walk catalog order, so a round split evenly names the
   same area every time it is shown.
   It is drawn far larger than in the forest but off the same growth curve, and the BOX it is
@@ -297,7 +297,7 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
 - **The tree rises whatever the round did to the counts**, and what the round CHANGED lands
   on it afterwards — new marks out of nothing, a matured word swelling where it already hung,
   one after another rather than all at once. Two motions, because they answer two questions:
-  a round that promoted nothing still moved the box, and a learner holding a hard area steady
+  a round that promoted nothing still moved the orchard, and a learner holding a hard area steady
   has earned the tree standing up. Tied to the counts alone the picture was simply frozen on
   those days. Only the round's own marks move; the rest of the crown holds still, which is
   what makes the new leaf the thing the eye goes to. Reduce Motion draws the finished tree at
@@ -306,14 +306,14 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   ever (`BoxStatistics.longestStreak`) says so on the finish screen; a drill run that beats
   its own stored best says so too, and is the only thing in a drill that earns confetti and
   the cheer — a drill can be closed a dozen times an evening, and a screen that celebrates
-  every close celebrates nothing. Drill records live outside the box: a run touches no card,
-  so it is not box state.
+  every close celebrates nothing. Drill records live outside the orchard: a run touches no card,
+  so it is not orchard state.
 
 ## App structure (single screen)
 
-- **The companion**: the box briefs a chat assistant the app does not host
+- **The companion**: the orchard briefs a chat assistant the app does not host
   and reads that conversation's answer back into own words (`Briefing`, `Harvest`).
-  It leads the Box tab's own-content panel — the one entry there that goes out and comes back,
+  It leads the Orchard tab's own-content panel — the one entry there that goes out and comes back,
   with the words it writes home under it,
   and stands on Home under the hub, wearing the same face as the listening card:
   both are ways into the words that are not the round, and this is the only one that
@@ -324,7 +324,7 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   asking rather than instructing — Fertig stays that screen's own answer.
   The sheet shows the loop in three numbered moves and never the text:
   7 KB of prompt scrolling past is a wall, not a preview,
-  and the counts that once stood in for it named the box back at the learner, who has it.
+  and the counts that once stood in for it named the orchard back at the learner, who has it.
   Guidance is what the screen is for — a learner who has never done this has to be told
   that they talk about anything, and that the words come home by being asked for.
   Copy takes it; Share hands it to any chat app on the phone,
@@ -333,10 +333,10 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   every pair the paste carried stands under new, near a word already held, or held as it is
   (`Harvest`, `HarvestKind`), and only the new group arrives ticked.
   The assistant was told to gloss what was new to the LEARNER and has never seen the catalog,
-  so half of a good answer is words the box already has —
+  so half of a good answer is words the orchard already has —
   dropping those silently decided about the learner's own words behind their back,
   and a near word shown beside the one it leans on costs a tap where a missed one costs a
-  second card teaching what the box already teaches.
+  second card teaching what the orchard already teaches.
   Rendering the brief as an IMAGE was rejected:
   what OCR drops first is diacritics and borrowed spellings,
   which is the part of a vocabulary list that carries the learning,
@@ -345,7 +345,7 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   the day's line, session card (streak flame + the round's counts, or done state),
   the listening card, trainer hub, the companion card, then the 14-day strip and the forest.
   The listening card sits under the round and above the trainers because that is its
-  standing: not what the box asks of the learner, and not a drill to climb, but the way in
+  standing: not what the orchard asks of the learner, and not a drill to climb, but the way in
   that needs no hands — up whenever this device can actually say both sides of enough words
   (`surfaces.md` § Listening).
   The line over the card carries the LANGUAGE being learned, in words that fit the hour
@@ -388,7 +388,7 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   and its mark IS the streak badge: two elements sandwiched the prose between them,
   and a card that both cheers and counts the run says one thing, not two.
   The done state carries the day's own movement under the standing totals:
-  totals say where the box stands, the day's figures say that today moved it.
+  totals say where the orchard stands, the day's figures say that today moved it.
 - **Stopping is the default at the end of a round**: the round that was planned is done,
   so "Fertig" is the primary button and going on the quiet one below it — an earned break
   needs no arguing for, and another round is still one tap away.
@@ -396,10 +396,10 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   figures to the page that started it (`drills.md`), where the way on is the button
   that was already there.
   A day that is going badly says so, and says why stopping is the better call.
-- **The forest** at the foot of Home is a picture of the box, never a way around it:
+- **The forest** at the foot of Home is a picture of the orchard, never a way around it:
   one tree per area, in catalog order, on ground its whole row shares. It answers the one
-  question a count cannot — how the box is SHAPED, and which corners of the language have
-  never been opened — and it hands anything actionable to the Box screen by opening it at
+  question a count cannot — how the orchard is SHAPED, and which corners of the language have
+  never been opened — and it hands anything actionable to the Orchard screen by opening it at
   the area a tree names.
   **The unit is the area, not the word.** Five hundred plants can only be read as texture,
   and drawing each as an object made packing an area — forty words at once, a normal
@@ -420,7 +420,7 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   growing box's picture owes the learner is a shape that changes. A row is therefore a
   skyline, measured against a ground line its trees roughly share: the ground rolls a few
   points under each of them, and a tree standing further back is drawn first so the one in
-  front overlaps it. Equal cells on one exact baseline read as a plantation, and the box is
+  front overlaps it. Equal cells on one exact baseline read as a plantation, and the orchard is
   not one — but the roll stays a fraction of the height range, because heights are still
   what the row is for.
   **An area nobody has opened draws nothing at all** — not even ground. A mark per
@@ -428,13 +428,13 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   have not done; the dimmed area emoji already says the place exists.
   A lapse drops leaves at the foot and never shrinks the tree: the engine expects about a
   fifth of reviews to miss, and a picture that shrank for a routine Tuesday would overstate
-  what a lapse costs. A suspended word is owed no space at all — waking it is the box's.
+  what a lapse costs. A suspended word is owed no space at all — waking it is the orchard's.
   The picture is never the only telling — the canvas is hidden from accessibility, each
   tree carries the tap target and the spoken split as one element, blossom differs from
   leaf in shape before color, and the standing figures are spelled out beneath.
-  Nothing in it moves: a box grows over weeks, and motion would claim a change the
+  Nothing in it moves: an orchard grows over weeks, and motion would claim a change the
   picture is not showing.
-- **Box** (the door from Home): browse the catalog by area, pack words in and take a
+- **Orchard** (the button from Home): browse the catalog by area, pack words in and take a
   shelf's queue back out before a round has met it, revive suspended ones;
   settings live here — profile, backup, reset. A tree in the forest opens it already
   unfolded at that area, exactly as a search hit does. **The area is the unit for
@@ -443,12 +443,12 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   listing (the mechanics and the row/shelf color agreement this rests on are
   kern's own contract, `kern/README.md` §6).
   - **Search** (🔍 in the bar) reaches a word without knowing its shelf. The two result
-    kinds offer what they ARE: an area unfolds itself back on the Box screen and scrolls
+    kinds offer what they ARE: an area unfolds itself back on the Orchard screen and scrolls
     into reach, a word can be heard and packed on its own — a learner who went looking for
     one word by name should not have to take the shelf around it.
-  - **Eigene Inhalte** closes the Box, below the shelves and above the settings, and it is
+  - **Eigene Inhalte** closes the Orchard, below the shelves and above the settings, and it is
     the one section always drawn: it carries the button that writes a word, and the only
-    other way in is a search that found nothing. Everything the learner put into the box
+    other way in is a search that found nothing. Everything the learner put into the orchard
     themselves is here — the words they wrote, and the problems they filed — and nothing
     the catalog brought. It is deliberately NOT a shelf: own words are packed the moment
     they are written, so an area head offering to pack them would say nothing, and a
@@ -480,24 +480,24 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
     to name what one wants to be able to SAY than a form met in the wild. One side alone is
     still taken, as a SUGGESTION — the learner has the half they came with and the catalog
     owes the other — and it is never asked, since there is nothing to ask yet. A growing
-    catalog can never collide with them and a box reset never takes them
+    catalog can never collide with them and an orchard reset never takes them
     (`../kern/README.md` §6). Rewriting one keeps its id, and with it the progress made on
     it; deleting one is the only deletion in the app, since a catalog word can be put to
     sleep but never removed.
-- **A long press on a Box row offers everything that can be done to one word; the same
-  press mid-round offers two things only.** In the Box the menu is where the word stands
+- **A long press on an Orchard row offers everything that can be done to one word; the same
+  press mid-round offers two things only.** In the Orchard the menu is where the word stands
   (pack, unpack, sleep, wake, forget its progress), then what can be MADE of it (an own
   word from it, or editing one), then what is wrong with it, and deleting last because it
   is the entry that cannot be taken back. Above those, the word explaining itself: the
   other words for the same thing ("auch: …", the family the reveal rotates through),
   the catalog's note, and how long the word keeps — the card's stability in whole days.
   The first two are the gloss a session card only hands over at the reveal, which nothing
-  in the Box turns over, and the row itself has no width for a sentence; the third is
+  in the Orchard turns over, and the row itself has no width for a sentence; the third is
   nowhere else in the app at all.
   Each line is drawn only where the word has it, and a word with none of the three keeps
   the plain menu: an untouched word reports zero days, and a zero would be a fact about
   the engine rather than about the word — the same reason the row badges nothing there.
-  A round is no place to reorganize the box, so
+  A round is no place to reorganize the orchard, so
   the session card keeps just reporting and stopping the word being asked.
   Those two are unrelated on purpose: reporting a problem changes nothing about what gets
   asked, and taking a word out files no complaint (`kern/README.md` §6), which is why
@@ -515,12 +515,12 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   demanding one for a word the learner just said should never be asked is the busywork the
   action removes — and the round's total shrinks with it, since the count on screen is a
   promise and a word taken out was never owed. The control is named for what it does,
-  "Nicht mehr abfragen", not for the 💤 the Box draws afterwards: the Box shows a STATE and
+  "Nicht mehr abfragen", not for the 💤 the Orchard draws afterwards: the Orchard shows a STATE and
   can afford the metaphor, a menu entry is a verb and cannot.
 - **The picture field takes two characters and offers a few by tap.** Written by hand it is
   a keyboard trip for something optional, so a short row of pictures sits under its label;
   the cap is two so a flag can pair with a thing while a pasted sentence cannot land there
-  (`OwnWords.QUICK_EMOJI`, `OwnWords.MAX_EMOJI`). Those pictures are the KIND glyphs the box
+  (`OwnWords.QUICK_EMOJI`, `OwnWords.MAX_EMOJI`). Those pictures are the KIND glyphs the orchard
   already draws — a learner writing a word rarely has a picture in mind but does know what
   kind of word it is, and those five are vocabulary the app has already taught them.
   The two language fields wear their flag, and a button between them swaps what is typed in
@@ -568,7 +568,7 @@ engine gates and the behavioral test inventory: kern README.
 
 ## Not yet
 
-Couple mode, accounts/sync (the box side of it is planned in `sync.md`),
+Couple mode, accounts/sync (the orchard side of it is planned in `sync.md`),
 UI chrome past de/en (every other source falls back to en).
 Android: no forest canvas and no growth headline
 (what it does carry is `surfaces.md` § Android companion).
