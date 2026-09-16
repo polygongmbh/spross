@@ -25,8 +25,9 @@ Two things stay yours: which number, and what the entries say.
 An empty `## Unreleased` is refused rather than cut.
 
 The number is a judgment call - `release.sh` provides some numbers as guidance
-- a minor usually has at least two `feat:` commits since the last tag, or a sweep of dozens of commits 
-- a `feat` that only sharpens behavior already there reads as a patch.
+- a minor changes something a learner meets without going looking for it
+- the counts are a prompt, not a rule: a feature reached from one button in a corner is a patch,
+  however many `feat:` commits it took
 - a major release introduces a non-reversible breaking storage format change
 
 Every gate runs BEFORE the tag exists, because the tag is the trigger and the version:
