@@ -53,52 +53,39 @@ object Feedback {
     /** Subject line for the mail a report opens; it goes to [net.spross.kern.Legal.CONTACT_ADDRESS]. */
     const val MAIL_SUBJECT: String = "Spross catalog feedback"
 
-    /** Stands in for the missing half of a word written in only one language. */
-    private const val UNTRANSLATED = "?"
-
     /**
-     * The whole report as text: the profile, the learner's own words, then the problems
-     * they filed — each section omitted when it is empty, and the whole thing empty only
-     * when [hasAnything] is false.
+     * The whole report as text: words the learner wrote, problems they filed against the
+     * catalog, and general feedback — each section omitted when empty.
      *
-     * ONE text for both ways out, the clipboard and the mail body. A clipboard form that
-     * carried only the words would come back empty for a learner who has filed reports and
-     * written nothing, which is a copy button that silently does nothing.
+     * ONE text for both ways out, the clipboard and the mail body. Every word carries its
+     * language codes so the report is self-contained, independent of the open profile.
      *
-     * The finished words and the one-sided ones head their own sections, exactly as the Box
-     * screen reads them: a word the learner wrote in two languages is theirs, and one listed
-     * as suggested tells its reader the catalog owes a half it does not.
-     * A word written in only one language prints its missing half as [UNTRANSLATED] rather
-     * than being left out: it is the entry most worth reading, and a word carrying a comment
-     * prints it under the pair. The notes stand in a section of their own rather than among
-     * the words: a [OwnWord.isRemark] suggests no word, and one listed as a suggested word
-     * reaches its reader as vocabulary to file rather than as the thing it says.
-     *
-     * [since] filters to what was written or filed after it — `null` takes the lot — and
-     * [scope] to how much of what survives that filter is the catalog's business.
+     * [since] filters to what was written or filed after it — `null` takes the lot,
+     * [scope] to how much of what survives that filter is the catalog's business,
+     * and [appInfo] places a version/OS line at the top when provided.
      */
-    fun reportText(state: BoxState, since: Instant?, scope: FeedbackScope): String {
+    fun reportText(
+        state: BoxState,
+        since: Instant?,
+        scope: FeedbackScope,
+        appInfo: String? = null,
+    ): String {
         val words = exportedWords(state, since, scope)
-        val notes = exportedRemarks(state, since)
+        val remarks = exportedRemarks(state, since)
         val issues = issuesSince(state, since)
         val sections = mutableListOf<String>()
-        sections += "${state.joinStamp.source} → ${state.joinStamp.target}"
-        val (pairs, half) = words.partition { it.isPair }
-        if (pairs.isNotEmpty()) {
-            sections += "Own words (${pairs.size}):\n" +
-                pairs.joinToString("\n") { "- " + wordLine(state, it) }
-        }
-        if (half.isNotEmpty()) {
-            sections += "Suggested words (${half.size}):\n" +
-                half.joinToString("\n") { "- " + wordLine(state, it) }
-        }
-        if (notes.isNotEmpty()) {
-            sections += "Notes (${notes.size}):\n" +
-                notes.joinToString("\n") { "- " + it.comment.orEmpty() }
+        appInfo?.let { sections += it }
+        if (words.isNotEmpty()) {
+            sections += "Word suggestions — check translations, consider fluency:\n" +
+                words.joinToString("\n") { "- " + wordLine(it) }
         }
         if (issues.isNotEmpty()) {
-            sections += "Reported issues (${issues.size}):\n" +
-                issues.joinToString("\n") { issueLines(state, it) }
+            sections += "Remarks on catalog words:\n" +
+                issues.joinToString("\n") { "- " + issueLine(state, it) }
+        }
+        if (remarks.isNotEmpty()) {
+            sections += "General feedback:\n" +
+                remarks.joinToString("\n") { "- " + it.comment.orEmpty() }
         }
         return sections.joinToString("\n\n")
     }
@@ -202,35 +189,20 @@ object Feedback {
     private fun wordsAndSuggestions(state: BoxState): List<OwnWord> =
         state.ownWords.filterNot { it.isRemark }
 
-    /**
-     * One word as its reader needs it: the profile's two sides where the word writes both,
-     * and otherwise every language it DOES carry, each named.
-     *
-     * The fallback is what keeps a word the open profile cannot pair from reading as a
-     * half-written one — the text is there, it is simply in a language this pair does not
-     * name, and printing [UNTRANSLATED] over it would ask the catalog for a word the
-     * learner already has.
-     */
-    private fun wordLine(state: BoxState, word: OwnWord): String {
-        val pair =
-            if (word.joins(state.joinStamp.source, state.joinStamp.target) || word.isSuggestion) {
-                val known = word.texts[state.joinStamp.source] ?: UNTRANSLATED
-                val learning = word.texts[state.joinStamp.target] ?: UNTRANSLATED
-                "$known → $learning"
-            } else {
-                word.languages.joinToString(" → ") { "$it: ${word.texts[it]}" }
-            }
-        return listOfNotNull(pair, word.comment).joinToString("\n  ")
+    /** One word with language codes on every half — profile-independent. */
+    private fun wordLine(word: OwnWord): String {
+        val text = word.languages.joinToString(" → ") { "$it: ${word.texts[it]}" }
+        return listOfNotNull(text, word.comment).joinToString("\n  ")
     }
 
-    private fun issueLines(state: BoxState, issue: ReportedIssue): String {
+    /** One issue, compact: `cardId lang/lang (typed: input): comment`. */
+    private fun issueLine(state: BoxState, issue: ReportedIssue): String {
         val card = state.cards[issue.cardId]
-        val pair = if (card == null) issue.cardId
-        else "${issue.cardId}: ${card.source.text} → ${card.target.text}"
         return buildString {
-            append("- ").append(pair)
-            issue.learnerInput?.let { append("\n  typed: ").append(it) }
-            issue.comment?.let { append("\n  comment: ").append(it) }
+            append(issue.cardId)
+            if (card != null) append(" ").append(card.source.lang).append("/").append(card.target.lang)
+            issue.learnerInput?.let { append(" (typed: ").append(it).append(")") }
+            issue.comment?.let { append(": ").append(it) }
         }
     }
 }

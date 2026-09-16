@@ -171,7 +171,7 @@ class FeedbackTests {
     fun theOutboxScopeLeavesTheFinishedPairsBehind() {
         val state = outbox()
         val outbox = Feedback.reportText(state, null, FeedbackScope.Outbox)
-        assertTrue("Sonne → ?" in outbox)
+        assertTrue("de: Sonne" in outbox)
         assertFalse("mwavuli" in outbox)
         // The reports are the other half of what waits, and go either way.
         assertTrue("w01" in outbox)
@@ -193,11 +193,9 @@ class FeedbackTests {
         assertTrue(Feedback.wordPairs(state).isEmpty())
 
         val text = Feedback.reportText(state, null, FeedbackScope.Outbox)
-        assertTrue("Notes (1)" in text)
+        assertTrue("General feedback:" in text)
         assertTrue("the box scrolls back to the top" in text)
-        assertFalse("Suggested words" in text)
-        // No half is missing, so none is claimed to be.
-        assertFalse("?" in text)
+        assertFalse("Word suggestions" in text)
     }
 
     @Test
@@ -215,7 +213,7 @@ class FeedbackTests {
             .copy(comment = "heard it as mwamvuli too")
         val state = BoxEngine.addOwnWord(box(), word, Box.day1)
         val text = Feedback.reportText(state, null, FeedbackScope.Everything)
-        assertTrue("Regenschirm → mwavuli" in text)
+        assertTrue("de: Regenschirm → sw: mwavuli" in text)
         assertTrue("heard it as mwamvuli too" in text)
     }
 
@@ -254,10 +252,31 @@ class FeedbackTests {
     }
 
     @Test
-    fun theFinishedWordsAndTheOneSidedOnesHeadTheirOwnSections() {
+    fun pairsAndSuggestionsShareOneSection() {
         val text = Feedback.reportText(outbox(), null, FeedbackScope.Everything)
-        assertTrue("Own words (1):\n- Regenschirm → mwavuli" in text)
-        assertTrue("Suggested words (1):\n- Sonne → ?" in text)
+        assertTrue("Word suggestions" in text)
+        assertTrue("de: Regenschirm → sw: mwavuli" in text)
+        assertTrue("de: Sonne" in text)
+        assertFalse("Own words" in text)
+        assertFalse("Suggested words" in text)
+    }
+
+    @Test
+    fun aSuggestionInANonCurrentLanguageExportsItsActualText() {
+        val word = ownWord("missing", mapOf("en" to "missing"))
+        val state = BoxEngine.addOwnWord(box(), word, Box.day1)
+        val text = Feedback.reportText(state, null, FeedbackScope.Outbox)
+        assertTrue("en: missing" in text)
+        assertFalse("?" in text)
+    }
+
+    @Test
+    fun appInfoAppearsAsTheFirstLine() {
+        val text = Feedback.reportText(
+            outbox(), null, FeedbackScope.Everything, appInfo = "Spross 7.1.3 · iOS 19.0",
+        )
+        assertTrue(text.startsWith("Spross 7.1.3"))
+        assertTrue("Word suggestions" in text)
     }
 
     @Test

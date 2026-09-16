@@ -89,7 +89,13 @@ extension AppModel {
     func reportText(onlyNew: Bool, scope: FeedbackScope) -> String {
         guard let box else { return "" }
         return Feedback.shared.reportText(state: box, since: onlyNew ? box.lastExportAt : nil,
-                                          scope: scope)
+                                          scope: scope, appInfo: Self.appInfo)
+    }
+
+    private static var appInfo: String {
+        let v = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?"
+        let os = ProcessInfo.processInfo.operatingSystemVersion
+        return "Spross \(v) · iOS \(os.majorVersion).\(os.minorVersion)"
     }
 
     /// A mail to the maintainer carrying the same. Nil when there is nothing to say.
