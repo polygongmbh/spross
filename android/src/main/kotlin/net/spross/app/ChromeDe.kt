@@ -328,6 +328,7 @@ internal object ChromeDe : Chrome {
     override val boxOwnReported = "Gemeldet"
     override val a11yBoxOwnWordAddAction = "Wort hinzufügen"
     override val boxOwnWordNeedsTranslation = "Übersetzung fehlt"
+    override val boxOwnWordOtherPair = "in %s geschrieben"
     override val reportExportSend = "Senden"
     override val reportExportScopeNew = "Nur Neues"
     override val reportExportScopeOutbox = "Nur Vorschläge und Meldungen"

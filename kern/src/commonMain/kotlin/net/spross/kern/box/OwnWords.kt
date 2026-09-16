@@ -79,6 +79,15 @@ data class OwnWord(
     /** Whether this profile can study it: both of its languages are written. */
     fun joins(source: Language, target: Language): Boolean =
         texts[source] != null && texts[target] != null
+
+    /**
+     * The languages this word is written in, in a stable order.
+     *
+     * What a surface listing a word the open profile cannot pair walks, so the export and
+     * the two screens name its halves in one order rather than in whatever order a map
+     * happened to hand back.
+     */
+    val languages: List<Language> get() = texts.keys.sorted()
 }
 
 /** The rules that turn the learner's own words into cards the box can hold. */

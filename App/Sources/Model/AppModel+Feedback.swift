@@ -45,9 +45,20 @@ extension AppModel {
 
     /// The half a suggestion does carry, whichever language it is in. A suggestion
     /// joins nothing and is never scheduled (`OwnWords.cards`), so the box holds no
-    /// card to read it off.
+    /// card to read it off, and the one text it has is the one to show.
     func suggestionText(_ word: OwnWord) -> String {
-        word.texts[targetLanguage ?? ""] ?? word.texts[sourceLanguage] ?? ""
+        word.languages.first.flatMap { word.texts[$0] } ?? ""
+    }
+
+    /// A pair this profile cannot study, read in the order kern names its languages —
+    /// both halves the learner wrote, neither of them the known or the learning side here.
+    func otherPairText(_ word: OwnWord) -> String {
+        word.languages.compactMap { word.texts[$0] }.joined(separator: " → ")
+    }
+
+    /// Which pair it IS written in, which is the whole of why it has no card.
+    func otherPairLanguages(_ word: OwnWord) -> String {
+        word.languages.joined(separator: " → ")
     }
 
     /// Whether there is anything to copy or send at all — what grays the actions out.

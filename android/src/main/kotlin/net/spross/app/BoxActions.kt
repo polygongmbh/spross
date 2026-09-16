@@ -93,11 +93,19 @@ val AppModel.reportedCatalogCards: List<Card>
         return Feedback.catalogIssues(state).mapNotNull { state.cards[it.cardId] }
     }
 
-/** The half a suggestion does carry, whichever of the two languages it is in. */
-fun AppModel.suggestionText(word: OwnWord): String {
-    val stamp = box?.joinStamp ?: return ""
-    return word.texts[stamp.target] ?: word.texts[stamp.source] ?: ""
-}
+/** The half a suggestion does carry, whichever language it is in. */
+fun AppModel.suggestionText(word: OwnWord): String =
+    word.languages.firstOrNull()?.let { word.texts[it] }.orEmpty()
+
+/**
+ * A pair this profile cannot study, read in the order kern names its languages — both
+ * halves the learner wrote, neither of them the known or the learning side here.
+ */
+fun AppModel.otherPairText(word: OwnWord): String =
+    word.languages.mapNotNull { word.texts[it] }.joinToString(" → ")
+
+/** Which pair it IS written in, which is the whole of why it has no card. */
+fun AppModel.otherPairLanguages(word: OwnWord): String = word.languages.joinToString(" → ")
 
 /**
  * Whether there is anything to copy or send at all — what withholds the actions.

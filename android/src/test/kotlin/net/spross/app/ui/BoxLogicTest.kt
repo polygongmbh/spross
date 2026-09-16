@@ -71,13 +71,13 @@ class BoxLogicTest {
         requireNotNull(onlyLearnt)
         assertEquals("${OwnWords.ID_PREFIX}nyumba", onlyLearnt.id)
         assertEquals(mapOf("sw" to "nyumba"), onlyLearnt.texts)
-        assertTrue(onlyLearnt.isSuggestion(source = "de", target = "sw"))
+        assertTrue(onlyLearnt.isSuggestion)
 
         val onlyKnown = OwnWordDraft(known = " Haus ").word("de", "sw", emptySet())
         requireNotNull(onlyKnown)
         assertEquals("${OwnWords.ID_PREFIX}haus", onlyKnown.id)
         assertEquals(mapOf("de" to "Haus"), onlyKnown.texts)
-        assertTrue(onlyKnown.isSuggestion(source = "de", target = "sw"))
+        assertTrue(onlyKnown.isSuggestion)
     }
 
     @Test

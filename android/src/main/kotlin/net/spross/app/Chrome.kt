@@ -354,6 +354,9 @@ interface Chrome {
 
     // ── Feedback to the catalog ─────────────────────────────────────────────────
     val boxOwnWordNeedsTranslation: String
+
+    /** Tail on a finished word this profile cannot pair; `%s` is the two languages it is in. */
+    val boxOwnWordOtherPair: String
     val reportExportSend: String
     val reportExportScopeNew: String
     val reportExportScopeOutbox: String

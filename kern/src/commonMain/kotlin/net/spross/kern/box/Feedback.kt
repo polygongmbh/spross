@@ -218,8 +218,7 @@ object Feedback {
                 val learning = word.texts[state.joinStamp.target] ?: UNTRANSLATED
                 "$known → $learning"
             } else {
-                word.texts.entries.sortedBy { it.key }
-                    .joinToString(" → ") { (lang, text) -> "$lang: $text" }
+                word.languages.joinToString(" → ") { "$it: ${word.texts[it]}" }
             }
         return listOfNotNull(pair, word.comment).joinToString("\n  ")
     }

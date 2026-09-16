@@ -153,16 +153,30 @@ struct BoxOwnContentSection: View {
 
     // MARK: - The learner's own words
 
-    /// The words written in both languages. They ARE cards and read as ones — badge,
-    /// 💤, 🚩 and the full menu — so nothing here says they were hand-written.
+    /// The words written in two languages or more. Those this profile can pair ARE cards
+    /// and read as ones — badge, 💤, 🚩 and the full menu — so nothing there says they were
+    /// hand-written. One it cannot pair has no card to read off and lists as its own two
+    /// halves instead, in the section it has always belonged to: the learner finished it,
+    /// and a changed known language does not unfinish it (`OwnWord.isPair`, kern §6).
     private var pairList: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             blockTitle("box.own.shelf")
             ForEach(model.ownWordPairs, id: \.id) { word in
                 if let card = model.card(word.id) {
                     BoxCardRow(model: model, card: card)
+                } else {
+                    otherPairRow(word)
                 }
             }
+        }
+    }
+
+    /// A finished word the open pair cannot ask. The tail names the pair it IS written in,
+    /// which is the whole of why it stands here rather than as a card.
+    private func otherPairRow(_ word: OwnWord) -> some View {
+        entryRow(word, lines: 1, said: word.comment,
+                 tail: "box.own.word.otherPair \(model.otherPairLanguages(word))") {
+            Text(verbatim: model.otherPairText(word))
         }
     }
 

@@ -323,6 +323,7 @@ internal object ChromeEn : Chrome {
     override val boxOwnReported = "Reported"
     override val a11yBoxOwnWordAddAction = "Add a word"
     override val boxOwnWordNeedsTranslation = "Needs translation"
+    override val boxOwnWordOtherPair = "written in %s"
     override val reportExportSend = "Send"
     override val reportExportScopeNew = "Only what is new"
     override val reportExportScopeOutbox = "Only suggestions and reports"

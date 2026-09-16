@@ -1196,6 +1196,23 @@
         }
       }
     },
+    "box.own.word.otherPair %@" : {
+      "comment" : "tail on an own word written in two languages this profile cannot pair (`OwnWord.joins`); %@ is those two language codes",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "in %@ geschrieben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "written in %@"
+          }
+        }
+      }
+    },
     "box.own.word.picture" : {
       "localizations" : {
         "de" : {

@@ -41,6 +41,8 @@ import net.spross.app.clearableCount
 import net.spross.app.hasExportedBefore
 import net.spross.app.hasFeedback
 import net.spross.app.markExported
+import net.spross.app.otherPairLanguages
+import net.spross.app.otherPairText
 import net.spross.app.ownWordPairs
 import net.spross.app.removeOwnWord
 import net.spross.app.reportMailBody
@@ -140,13 +142,17 @@ private fun OwnContentPanel(
             BriefingRow(model) { briefingOpen = true }
             HorizontalDivider(color = Theme.colors.separator)
         }
-        // A word written in both languages IS a card and reads as one — badge, 💤, 🚩 and
-        // menu. One written in a single language joins nothing, so it has no card row to
-        // be drawn as, and stands in a block of its own beside the reports.
+        // A word this profile can pair IS a card and reads as one — badge, 💤, 🚩 and menu.
+        // One written in two languages it cannot pair has no card row to be drawn as and
+        // lists as its own two halves, here where it has always belonged. One written in a
+        // single language joins nothing at all, and stands in a block of its own beside
+        // the reports.
         if (pairs.isNotEmpty()) {
             BlockLabel(chrome.boxOwnShelf)
             pairs.forEach { word ->
-                cards[word.id]?.let { BoxCardRow(model, it, onWriteOwn = onWriteOwn) }
+                val card = cards[word.id]
+                if (card != null) BoxCardRow(model, card, onWriteOwn = onWriteOwn)
+                else OtherPairRow(model, word, onWriteOwn)
             }
             HorizontalDivider(color = Theme.colors.separator)
         }
@@ -229,6 +235,23 @@ private fun SuggestionRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDr
         line = model.suggestionText(word),
         said = word.comment,
         tail = model.chrome.boxOwnWordNeedsTranslation,
+    )
+}
+
+/**
+ * One finished word the open pair cannot ask.
+ *
+ * The tail names the pair it IS written in, which is the whole of why it has no card: the
+ * learner finished it, and a changed known language does not unfinish it.
+ */
+@Composable
+private fun OtherPairRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDraft) -> Unit) {
+    EntryRow(
+        model, word, onWriteOwn,
+        lines = 1,
+        line = model.otherPairText(word),
+        said = word.comment,
+        tail = model.chrome.boxOwnWordOtherPair.format(model.otherPairLanguages(word)),
     )
 }
 
