@@ -12,7 +12,7 @@ import net.spross.kern.trainer.NumbersExercise
  * asserted here is that the price is read off that table rather than authored beside it,
  * and that the numbers Sprosse is worded as the length it is.
  */
-class TrainerNamingTest {
+class UnlockPriceTest {
 
     @Test
     fun theNumbersSprosseIsPricedAsDigitsAndTheOthersNameThemselves() {
