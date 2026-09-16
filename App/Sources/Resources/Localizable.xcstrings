@@ -966,13 +966,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obstgarten"
+            "value" : "Deine Plantage"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Orchard"
+            "value" : "Your Orchard"
           }
         }
       }
@@ -1599,13 +1599,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Obstgarten"
+            "value" : "Deine Plantage"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Orchard"
+            "value" : "Your Orchard"
           }
         }
       }
