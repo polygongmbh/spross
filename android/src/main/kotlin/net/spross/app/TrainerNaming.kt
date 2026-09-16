@@ -4,10 +4,10 @@ import net.spross.kern.trainer.CountryDrill
 import net.spross.kern.trainer.CountryTaskKind
 import net.spross.kern.trainer.DateTaskKind
 import net.spross.kern.trainer.DrillModifier
-import net.spross.kern.trainer.DrillVariant
 import net.spross.kern.trainer.LetterStage
 import net.spross.kern.trainer.Numbers
-import net.spross.kern.trainer.drillVariantEmoji
+import net.spross.kern.trainer.NumbersExercise
+import net.spross.kern.trainer.numbersExerciseEmoji
 
 /**
  * What kern's drill enums are CALLED to this learner.
@@ -17,15 +17,15 @@ import net.spross.kern.trainer.drillVariantEmoji
  * and the result tile alike, so a run can never be named two things on one page.
  */
 
-fun Chrome.name(variant: DrillVariant): String = when (variant) {
-    DrillVariant.Numbers -> trainerSkillNumbers
-    DrillVariant.Clock -> trainerVariantClock
-    DrillVariant.Phrases -> trainerVariantPhrases
-    DrillVariant.Forms -> trainerVariantForms
+fun Chrome.name(exercise: NumbersExercise): String = when (exercise) {
+    NumbersExercise.Counting -> trainerSkillNumbers
+    NumbersExercise.Clock -> trainerVariantClock
+    NumbersExercise.Phrases -> trainerVariantPhrases
+    NumbersExercise.Forms -> trainerVariantForms
 }
 
 /** Face and name together — how a row, a price and a mixed run's score line all read. */
-fun Chrome.badge(variant: DrillVariant): String = "${drillVariantEmoji(variant)} ${name(variant)}"
+fun Chrome.badge(exercise: NumbersExercise): String = "${numbersExerciseEmoji(exercise)} ${name(exercise)}"
 
 /**
  * A modifier has no face of its own: it changes every variant alike, so it is named and
@@ -123,13 +123,13 @@ private fun List<String>.rowFor(index: Int): String =
  * Numbers counts DIGITS and its wording already wears the drill's face, so it prints as
  * the length it is; every other variant names itself and its Sprosse.
  */
-fun Chrome.unlockPrice(required: Map<DrillVariant, Int>): String {
-    val parts = DrillVariant.entries.mapNotNull { variant ->
-        val sprosse = required[variant] ?: return@mapNotNull null
-        if (variant == DrillVariant.Numbers) {
+fun Chrome.unlockPrice(required: Map<NumbersExercise, Int>): String {
+    val parts = NumbersExercise.entries.mapNotNull { exercise ->
+        val sprosse = required[exercise] ?: return@mapNotNull null
+        if (exercise == NumbersExercise.Counting) {
             countLine(numbersSprosseOne, numbersSprosse, sprosse)
         } else {
-            "${badge(variant)} ${trainerSprosse.format(sprosse)}"
+            "${badge(exercise)} ${trainerSprosse.format(sprosse)}"
         }
     }
     if (parts.isEmpty()) return numbersUnlock
@@ -141,8 +141,8 @@ fun Chrome.unlockPrice(required: Map<DrillVariant, Int>): String {
  * calendar print under their ladder, said per exercise here because each one climbs its
  * own. Numbers counts DIGITS, exactly as its price does.
  */
-fun Chrome.bestSprosse(variant: DrillVariant, sprosse: Int): String =
-    if (variant == DrillVariant.Numbers) {
+fun Chrome.bestSprosse(exercise: NumbersExercise, sprosse: Int): String =
+    if (exercise == NumbersExercise.Counting) {
         "$numbersBest ${countLine(numbersSprosseOne, numbersSprosse, sprosse)}"
     } else {
         "$numbersBest ${trainerSprosse.format(sprosse)}"

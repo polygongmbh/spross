@@ -27,9 +27,9 @@ object NumbersRun {
      * The same, forced to given Sprossen — the deterministic way to reach a stage. A variant
      * [levels] leaves out opens at 1; every level is clamped to the variant's ladder.
      */
-    fun openAt(mode: NumbersMode, levels: Map<DrillVariant, Int>, rng: Random): NumbersRunState {
-        val start = mode.variants.associateWith { variant ->
-            (levels[variant] ?: 1).coerceIn(1, mode.maxLevel(variant))
+    fun openAt(mode: NumbersMode, levels: Map<NumbersExercise, Int>, rng: Random): NumbersRunState {
+        val start = mode.variants.associateWith { exercise ->
+            (levels[exercise] ?: 1).coerceIn(1, mode.maxLevel(exercise))
         }
         val opening = mode.draw(start, null, emptySet(), rng)
         return NumbersRunState(
@@ -122,7 +122,7 @@ object NumbersRun {
             return NumbersClose(ended, null, state.mode.recordKey, emptyMap(), effects)
         }
         val bookings = ended.bestLevels
-            .map { (variant, best) -> state.mode.progressKey(variant) to best }
+            .map { (exercise, best) -> state.mode.progressKey(exercise) to best }
             .filter { (key, best) -> best > (standingProgress[key] ?: 0) }
             .toMap()
         return NumbersClose(
@@ -270,13 +270,13 @@ object NumbersRun {
      * banked on the one below stay behind with it.
      */
     private fun climbed(state: NumbersRunState, draw: NumbersDraw): NumbersRunState {
-        val moved = draw.levels.filter { (variant, level) -> level != state.levels[variant] }
+        val moved = draw.levels.filter { (exercise, level) -> level != state.levels[exercise] }
         if (moved.isEmpty()) return state
         return state.copy(
             levels = draw.levels,
-            winsAtLevel = state.winsAtLevel + moved.map { (variant, _) -> variant to 0 },
-            bestLevels = state.bestLevels + moved.map { (variant, level) ->
-                variant to maxOf(state.bestLevels[variant] ?: 1, level)
+            winsAtLevel = state.winsAtLevel + moved.map { (exercise, _) -> exercise to 0 },
+            bestLevels = state.bestLevels + moved.map { (exercise, level) ->
+                exercise to maxOf(state.bestLevels[exercise] ?: 1, level)
             },
         )
     }
@@ -286,23 +286,23 @@ object NumbersRun {
      * variants of a mixed run stand exactly where they were.
      */
     private fun advanced(state: NumbersRunState, correct: Boolean, outcome: AnswerOutcome): NumbersRunState {
-        val variant = state.currentVariant
+        val exercise = state.currentVariant
         val clean = outcome != AnswerOutcome.Almost
         val step = DrillRamp.step(
             level = state.currentLevel,
-            winsAtLevel = state.winsAtLevel[variant] ?: 0,
+            winsAtLevel = state.winsAtLevel[exercise] ?: 0,
             correct = correct,
             clean = clean,
             winsRequired = state.mode.winsToAdvance,
         )
         return state.copy(
-            levels = state.levels + (variant to step.level),
-            winsAtLevel = state.winsAtLevel + (variant to step.winsAtLevel),
-            bestLevels = state.bestLevels + (variant to maxOf(state.bestLevels[variant] ?: 1, step.level)),
+            levels = state.levels + (exercise to step.level),
+            winsAtLevel = state.winsAtLevel + (exercise to step.winsAtLevel),
+            bestLevels = state.bestLevels + (exercise to maxOf(state.bestLevels[exercise] ?: 1, step.level)),
             seenDigitCounts = state.currentDigits
                 ?.let { state.seenDigitCounts + it }
                 ?: state.seenDigitCounts,
-            core = state.core.book(correct, clean, DrillSolved.key(variant, state.currentTask)),
+            core = state.core.book(correct, clean, DrillSolved.key(exercise, state.currentTask)),
         )
     }
 

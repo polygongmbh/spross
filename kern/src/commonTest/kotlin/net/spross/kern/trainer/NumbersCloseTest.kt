@@ -17,7 +17,7 @@ import net.spross.kern.session.TurnFeedback
  */
 class NumbersCloseTest {
 
-    private fun numbers(language: String = "de") = NumbersMode(DrillVariant.Numbers, language)
+    private fun numbers(language: String = "de") = NumbersMode(NumbersExercise.Counting, language)
 
     @Test
     fun anUntouchedRunStoresNothing() {
@@ -68,21 +68,21 @@ class NumbersCloseTest {
      */
     @Test
     fun everyAskedVariantBooksTheHighestSprosseItStoodOn() {
-        val mode = NumbersMode(listOf(DrillVariant.Numbers, DrillVariant.Clock), "sw", emptySet())
+        val mode = NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "sw", emptySet())
         val played = NumbersRun.open(mode, Random(53)).copy(
             core = DrillRunCore(done = 9, bestStreak = 4),
             // The Sprosse fell back to 3, but the ladder rewards reaching 5.
-            levels = mapOf(DrillVariant.Numbers to 3, DrillVariant.Clock to 1),
-            bestLevels = mapOf(DrillVariant.Numbers to 5),
+            levels = mapOf(NumbersExercise.Counting to 3, NumbersExercise.Clock to 1),
+            bestLevels = mapOf(NumbersExercise.Counting to 5),
         )
         assertEquals(
-            mapOf("Numbers.sw" to 5),
-            NumbersRun.close(played, 0, mapOf("Numbers.sw" to 3)).progressBookings,
+            mapOf("Counting.sw" to 5),
+            NumbersRun.close(played, 0, mapOf("Counting.sw" to 3)).progressBookings,
         )
         // A Sprosse already earned is not fresh progress.
         assertEquals(
             emptyMap<String, Int>(),
-            NumbersRun.close(played, 0, mapOf("Numbers.sw" to 5)).progressBookings,
+            NumbersRun.close(played, 0, mapOf("Counting.sw" to 5)).progressBookings,
         )
     }
 
@@ -107,11 +107,11 @@ class NumbersCloseTest {
         assertTrue(one.showsSprosse)
         assertFalse(one.severalVariants)
         val mixed = NumbersRun.open(
-            NumbersMode(listOf(DrillVariant.Numbers, DrillVariant.Clock), "de", emptySet()),
+            NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "de", emptySet()),
             Random(61),
         )
         assertTrue(mixed.severalVariants)
         // A run carrying no frame has no sentence ladder to show.
-        assertEquals(1, numbers().maxLevel(DrillVariant.Phrases))
+        assertEquals(1, numbers().maxLevel(NumbersExercise.Phrases))
     }
 }

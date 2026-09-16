@@ -13,13 +13,13 @@ import kotlin.test.assertTrue
  */
 class DrillProgressionTests {
 
-    private fun progress(vararg pairs: Pair<DrillVariant, Int>) = mapOf(*pairs)
+    private fun progress(vararg pairs: Pair<NumbersExercise, Int>) = mapOf(*pairs)
 
     /** Counting is the one thing nothing has to be earned for — every other row is bought. */
     @Test
     fun numbersIsTheOnlyThingOpenFromTheStart() {
-        assertTrue(DrillUnlocks.requirements(DrillVariant.Numbers).isEmpty())
-        assertTrue(DrillUnlocks.unlocked(DrillVariant.Numbers, emptyMap()))
+        assertTrue(DrillUnlocks.requirements(NumbersExercise.Counting).isEmpty())
+        assertTrue(DrillUnlocks.unlocked(NumbersExercise.Counting, emptyMap()))
         for (modifier in DrillModifier.entries) {
             assertFalse(DrillUnlocks.unlocked(modifier, emptyMap()), "$modifier with no progress")
         }
@@ -28,20 +28,20 @@ class DrillProgressionTests {
     /** Decoding waits for the clock to have been worked, not merely opened. */
     @Test
     fun reverseWaitsForTheClockToBeClimbed() {
-        assertEquals(mapOf(DrillVariant.Clock to 3), DrillUnlocks.requirements(DrillModifier.Reverse))
-        assertFalse(DrillUnlocks.unlocked(DrillModifier.Reverse, progress(DrillVariant.Clock to 2)))
-        assertTrue(DrillUnlocks.unlocked(DrillModifier.Reverse, progress(DrillVariant.Clock to 3)))
+        assertEquals(mapOf(NumbersExercise.Clock to 3), DrillUnlocks.requirements(DrillModifier.Reverse))
+        assertFalse(DrillUnlocks.unlocked(DrillModifier.Reverse, progress(NumbersExercise.Clock to 2)))
+        assertTrue(DrillUnlocks.unlocked(DrillModifier.Reverse, progress(NumbersExercise.Clock to 3)))
         // The numbers climb rides along: the clock does not open before four digits.
-        assertFalse(DrillUnlocks.unlocked(DrillVariant.Clock, progress(DrillVariant.Numbers to 3)))
+        assertFalse(DrillUnlocks.unlocked(NumbersExercise.Clock, progress(NumbersExercise.Counting to 3)))
     }
 
     @Test
     fun everySprosseOpensExactlyAtItsRequirement() {
         val variants = listOf(
-            Triple(DrillVariant.Clock, DrillVariant.Numbers, 4),
+            Triple(NumbersExercise.Clock, NumbersExercise.Counting, 4),
             // The phrase gate rides the clock ceiling, so growing the ladder raises it.
-            Triple(DrillVariant.Phrases, DrillVariant.Clock, Numbers.maxLevel(TrainerKind.Clock)),
-            Triple(DrillVariant.Forms, DrillVariant.Numbers, 7),
+            Triple(NumbersExercise.Phrases, NumbersExercise.Clock, Numbers.maxLevel(TrainerKind.Clock)),
+            Triple(NumbersExercise.Forms, NumbersExercise.Counting, 7),
         )
         for ((locked, on, level) in variants) {
             assertEquals(mapOf(on to level), DrillUnlocks.requirements(locked))
@@ -49,9 +49,9 @@ class DrillProgressionTests {
             assertFalse(DrillUnlocks.unlocked(locked, progress(on to level - 1)), "$locked at ${level - 1}")
             assertTrue(DrillUnlocks.unlocked(locked, progress(on to level)), "$locked at $level")
         }
-        assertEquals(mapOf(DrillVariant.Numbers to 10), DrillUnlocks.requirements(DrillModifier.Fast))
-        assertFalse(DrillUnlocks.unlocked(DrillModifier.Fast, progress(DrillVariant.Numbers to 9)))
-        assertTrue(DrillUnlocks.unlocked(DrillModifier.Fast, progress(DrillVariant.Numbers to 10)))
+        assertEquals(mapOf(NumbersExercise.Counting to 10), DrillUnlocks.requirements(DrillModifier.Fast))
+        assertFalse(DrillUnlocks.unlocked(DrillModifier.Fast, progress(NumbersExercise.Counting to 9)))
+        assertTrue(DrillUnlocks.unlocked(DrillModifier.Fast, progress(NumbersExercise.Counting to 10)))
     }
 
     /**
@@ -61,17 +61,17 @@ class DrillProgressionTests {
      */
     @Test
     fun mixRidesOnTheFormsSprosseAlone() {
-        assertEquals(mapOf(DrillVariant.Forms to 5), DrillUnlocks.requirements(DrillModifier.Mix))
-        assertFalse(DrillUnlocks.unlocked(DrillModifier.Mix, progress(DrillVariant.Forms to 4)))
-        assertTrue(DrillUnlocks.unlocked(DrillModifier.Mix, progress(DrillVariant.Forms to 5)))
-        assertFalse(DrillUnlocks.unlocked(DrillVariant.Forms, progress(DrillVariant.Numbers to 6)))
+        assertEquals(mapOf(NumbersExercise.Forms to 5), DrillUnlocks.requirements(DrillModifier.Mix))
+        assertFalse(DrillUnlocks.unlocked(DrillModifier.Mix, progress(NumbersExercise.Forms to 4)))
+        assertTrue(DrillUnlocks.unlocked(DrillModifier.Mix, progress(NumbersExercise.Forms to 5)))
+        assertFalse(DrillUnlocks.unlocked(NumbersExercise.Forms, progress(NumbersExercise.Counting to 6)))
     }
 
     /** No modifier prices Phrases — a pair's phrase ceiling is catalog-dependent. */
     @Test
     fun noModifierPricesPhraseProgress() {
         for (modifier in DrillModifier.entries) {
-            assertFalse(DrillVariant.Phrases in DrillUnlocks.requirements(modifier), "$modifier")
+            assertFalse(NumbersExercise.Phrases in DrillUnlocks.requirements(modifier), "$modifier")
         }
     }
 

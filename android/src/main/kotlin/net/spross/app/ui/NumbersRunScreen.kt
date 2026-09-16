@@ -37,7 +37,7 @@ import net.spross.app.countLine
 import net.spross.app.name
 import net.spross.app.newTrainerRun
 import net.spross.app.speakDrillAnswer
-import net.spross.kern.trainer.DrillVariant
+import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.NumbersMode
 import net.spross.kern.trainer.NumbersRunState
 
@@ -161,7 +161,7 @@ private fun sprosseText(state: NumbersRunState, chrome: Chrome): String? {
     val sprosse = state.currentLevel
     // why: the digits wording is the numbers drill's own and already wears 🔢 — putting
     // the variant's face in front would double it.
-    if (state.currentVariant == DrillVariant.Numbers) {
+    if (state.currentVariant == NumbersExercise.Counting) {
         return countLine(chrome.numbersSprosseOne, chrome.numbersSprosse, sprosse)
     }
     val level = chrome.trainerSprosse.format(sprosse)

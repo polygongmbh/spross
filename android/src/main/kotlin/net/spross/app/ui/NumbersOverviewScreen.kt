@@ -26,7 +26,7 @@ import net.spross.kern.catalog.numberNotes
 import net.spross.kern.trainer.DrillModifier
 import net.spross.kern.trainer.DrillSelection
 import net.spross.kern.trainer.DrillUnlocks
-import net.spross.kern.trainer.DrillVariant
+import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.NumbersMode
 
 /**
@@ -60,10 +60,10 @@ fun NumbersOverviewScreen(model: AppModel) {
     // Names rather than the enums, so a rotation keeps the picks: only primitives survive
     // a saved instance state.
     // layer-ok: the picker's opening preference, which `normalized` below still collapses
-    var pickedNames by rememberSaveable { mutableStateOf(listOf(DrillVariant.Numbers.name)) }
+    var pickedNames by rememberSaveable { mutableStateOf(listOf(NumbersExercise.Counting.name)) }
     var modifierNames by rememberSaveable { mutableStateOf(emptyList<String>()) }
     val picked = DrillSelection.normalized(
-        picked = pickedNames.mapNotNull { name -> DrillVariant.entries.find { it.name == name } },
+        picked = pickedNames.mapNotNull { name -> NumbersExercise.entries.find { it.name == name } },
         offered = offered,
         progress = ladder,
     )
@@ -104,10 +104,10 @@ fun NumbersOverviewScreen(model: AppModel) {
 
         OverviewHeading(chrome.trainerOverviewPractice)
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
-            for (variant in offered) {
-                VariantRow(variant, chrome, ladder, combining, variant in picked) {
+            for (exercise in offered) {
+                VariantRow(exercise, chrome, ladder, combining, exercise in picked) {
                     pickedNames = DrillSelection
-                        .toggled(picked, variant, combining)
+                        .toggled(picked, exercise, combining)
                         .map { it.name }
                 }
             }
@@ -150,20 +150,20 @@ fun NumbersOverviewScreen(model: AppModel) {
  */
 @Composable
 private fun VariantRow(
-    variant: DrillVariant,
+    exercise: NumbersExercise,
     chrome: Chrome,
-    ladder: Map<DrillVariant, Int>,
+    ladder: Map<NumbersExercise, Int>,
     combining: Boolean,
     selected: Boolean,
     onTap: () -> Unit,
 ) {
-    val open = DrillUnlocks.unlocked(variant, ladder)
+    val open = DrillUnlocks.unlocked(exercise, ladder)
     SelectionRow(
-        title = chrome.badge(variant),
+        title = chrome.badge(exercise),
         caption = when {
-            !open -> chrome.unlockPrice(DrillUnlocks.requirements(variant))
+            !open -> chrome.unlockPrice(DrillUnlocks.requirements(exercise))
             // The Sprosse it has reached, where a run has booked one — nothing until then.
-            (ladder[variant] ?: 0) > 0 -> chrome.bestSprosse(variant, ladder.getValue(variant))
+            (ladder[exercise] ?: 0) > 0 -> chrome.bestSprosse(exercise, ladder.getValue(exercise))
             else -> null
         },
         mark = when {
@@ -184,7 +184,7 @@ private fun VariantRow(
 private fun ModifierRow(
     modifier: DrillModifier,
     chrome: Chrome,
-    ladder: Map<DrillVariant, Int>,
+    ladder: Map<NumbersExercise, Int>,
     on: Boolean,
     onChange: (Boolean) -> Unit,
 ) {

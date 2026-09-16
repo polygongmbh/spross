@@ -15,7 +15,7 @@ import net.spross.kern.model.Language
  * that empties out falls back to counting, because a run with nothing to ask is not a run.
  */
 data class NumbersMode(
-    val selection: List<DrillVariant>,
+    val selection: List<NumbersExercise>,
     /** The language answers are typed in — the one being learned. */
     val language: Language,
     /** The prompt side of a sentence; null where Phrases is not on offer. */
@@ -26,16 +26,16 @@ data class NumbersMode(
 ) {
 
     /** Never empty: what the run may actually draw. */
-    val variants: List<DrillVariant> = selection
-        .filter { it != DrillVariant.Phrases || templates.isNotEmpty() }
-        .ifEmpty { listOf(DrillVariant.Numbers) }
+    val variants: List<NumbersExercise> = selection
+        .filter { it != NumbersExercise.Phrases || templates.isNotEmpty() }
+        .ifEmpty { listOf(NumbersExercise.Counting) }
 
     /** One variant, played plain. */
-    constructor(variant: DrillVariant, language: Language) :
-        this(listOf(variant), language, null, emptyList(), emptySet())
+    constructor(exercise: NumbersExercise, language: Language) :
+        this(listOf(exercise), language, null, emptyList(), emptySet())
 
     /** A selection of slot variants, played with [modifiers] — no sentence frames. */
-    constructor(selection: List<DrillVariant>, language: Language, modifiers: Set<DrillModifier>) :
+    constructor(selection: List<NumbersExercise>, language: Language, modifiers: Set<DrillModifier>) :
         this(selection, language, null, emptyList(), modifiers)
 
     /** One clean win per Sprosse instead of two. */
@@ -49,7 +49,7 @@ data class NumbersMode(
      * is climbing one. Without Numbers selected, Forms keeps its own gentler ladder.
      */
     val mixesForms: Boolean
-        get() = DrillModifier.Mix in modifiers && DrillVariant.Numbers in variants
+        get() = DrillModifier.Mix in modifiers && NumbersExercise.Counting in variants
 
     /**
      * Which way round the next task is asked. Mix flips per task — that, and the widened
@@ -63,23 +63,23 @@ data class NumbersMode(
      * Ramp ceiling of one variant: kern's per-kind ceiling, and for sentences the highest
      * ceiling among the frames the run happens to carry.
      */
-    fun maxLevel(variant: DrillVariant): Int {
-        val kind = variant.slotKind
+    fun maxLevel(exercise: NumbersExercise): Int {
+        val kind = exercise.reading
             ?: return templates.maxOfOrNull { Numbers.maxLevel(it.slotKind) } ?: 1
         return Numbers.maxLevel(kind)
     }
 
     /**
      * Identity a streak record is kept under: the whole selection AND how it was played —
-     * `Numbers+Clock.rev.fast.de`. A run that interleaves two variants is a different feat
+     * `Counting+Clock.rev.fast.de`. A run that interleaves two exercises is a different feat
      * from either alone, and a reversed or fast run a different feat again, so none of them
      * may share a standing record.
      *
      * CAUTION, live quirk carried over verbatim: [recordLanguage] takes the pair suffix
      * whenever [phraseSource] stands, EVEN when Phrases is not among [variants] — the
      * numbers overview passes the source whenever the pair realizes frames, so a
-     * Numbers-only run in a phrase-capable pair files under `Numbers.de-uk`, not
-     * `Numbers.uk`. Reproduced rather than tidied: the keys are already written.
+     * counting-only run in a phrase-capable pair files under `Counting.de-uk`, not
+     * `Counting.uk`.
      */
     val recordKey: String
         get() = (
@@ -89,7 +89,7 @@ data class NumbersMode(
             ).joinToString(".")
 
     /** Identity a Sprosse is kept under, per variant — deliberately NOT [recordKey]. */
-    fun progressKey(variant: DrillVariant): String = progressKey(variant, language)
+    fun progressKey(exercise: NumbersExercise): String = progressKey(exercise, language)
 
     /**
      * One fresh task from the selection, each variant at its own Sprosse: never a prompt
@@ -106,35 +106,35 @@ data class NumbersMode(
      * reproducible end to end instead of three-quarters of the way.
      */
     fun draw(
-        levels: Map<DrillVariant, Int>,
+        levels: Map<NumbersExercise, Int>,
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
     ): NumbersDraw {
         val first = variants[rng.nextInt(variants.size)]
-        for (variant in listOf(first) + variants.filter { it != first }) {
-            val fresh = drawVariant(variant, levels, avoiding, solved, rng)
+        for (exercise in listOf(first) + variants.filter { it != first }) {
+            val fresh = drawVariant(exercise, levels, avoiding, solved, rng)
             if (fresh != null) return fresh
         }
         return NumbersDraw(null, levels)
     }
 
     /**
-     * The first Sprosse at or above [variant]'s with a value left to ask ([DrillLadder.climb]);
+     * The first Sprosse at or above [exercise]'s with a value left to ask ([DrillLadder.climb]);
      * null once it is out, which hands the turn to the next variant of a mixed run.
      */
     private fun drawVariant(
-        variant: DrillVariant,
-        levels: Map<DrillVariant, Int>,
+        exercise: NumbersExercise,
+        levels: Map<NumbersExercise, Int>,
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
     ): NumbersDraw? {
-        val climbed = DrillLadder.climb(levels[variant] ?: 1, maxLevel(variant)) { level ->
-            drawUnsolved(variant, level, levels, avoiding, solved, rng)
+        val climbed = DrillLadder.climb(levels[exercise] ?: 1, maxLevel(exercise)) { level ->
+            drawUnsolved(exercise, level, levels, avoiding, solved, rng)
         }
         val drawn = climbed.task ?: return null
-        return NumbersDraw(drawn, levels + (variant to climbed.level))
+        return NumbersDraw(drawn, levels + (exercise to climbed.level))
     }
 
     /**
@@ -142,16 +142,16 @@ data class NumbersMode(
      * enumerates, so [DrillSolved.SPENT_ATTEMPTS] repeats in a row is what spent means here.
      */
     private fun drawUnsolved(
-        variant: DrillVariant,
+        exercise: NumbersExercise,
         level: Int,
-        levels: Map<DrillVariant, Int>,
+        levels: Map<NumbersExercise, Int>,
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
     ): DrawnTask? {
         repeat(DrillSolved.SPENT_ATTEMPTS) {
-            val drawn = drawOnce(variant, level, levels, rng)
-            if (DrillSolved.key(variant, drawn.task) !in solved && drawn.task.prompt != avoiding) {
+            val drawn = drawOnce(exercise, level, levels, rng)
+            if (DrillSolved.key(exercise, drawn.task) !in solved && drawn.task.prompt != avoiding) {
                 return drawn
             }
         }
@@ -159,25 +159,25 @@ data class NumbersMode(
     }
 
     private fun drawOnce(
-        variant: DrillVariant,
+        exercise: NumbersExercise,
         level: Int,
-        levels: Map<DrillVariant, Int>,
+        levels: Map<NumbersExercise, Int>,
         rng: Random,
     ): DrawnTask {
-        val forward = drawForward(variant, level, levels[DrillVariant.Numbers] ?: 1, rng)
+        val forward = drawForward(exercise, level, levels[NumbersExercise.Counting] ?: 1, rng)
         val reversed = drawsReversed(rng)
         // The flip happens HERE and nowhere else: kern hands back an ordinary task with the
         // reading as its prompt, so no surface below has to ask the direction.
-        return DrawnTask(variant, if (reversed) Numbers.reversed(forward) else forward, reversed)
+        return DrawnTask(exercise, if (reversed) Numbers.reversed(forward) else forward, reversed)
     }
 
     private fun drawForward(
-        variant: DrillVariant,
+        exercise: NumbersExercise,
         level: Int,
         magnitudeDigits: Int,
         rng: Random,
     ): NumbersTask {
-        val kind = variant.slotKind
+        val kind = exercise.reading
             // why: non-empty by construction — the frameless Phrases pick was dropped above.
             ?: return PhraseSlots.sample(templates[rng.nextInt(templates.size)], level, rng)
         // Mix's second half: a form takes its magnitude from the numbers Sprosse the run stands
@@ -242,55 +242,53 @@ data class NumbersMode(
             sprosse in 1..maxOf(entrySprosse(cleared, top), bestSprosse)
 
         /**
-         * Where a variant's highest-ever Sprosse is filed, so the overview can read the whole
-         * ladder without building a run. Kotlin's own spelling for the slot variants and the
-         * lowercase word for Phrases: those exact strings are already stored, and a tidier
-         * scheme would silently reset every Sprosse a learner has climbed.
+         * Where an exercise's highest-ever Sprosse is filed, so the overview can read the whole
+         * ladder without building a run.
          */
-        fun progressKey(variant: DrillVariant, language: Language): String =
-            "${variant.storageTag}.$language"
+        fun progressKey(exercise: NumbersExercise, language: Language): String =
+            "${exercise.storageTag}.$language"
 
         /** One slot kind, played plain — [TrainerKind.Years] and [TrainerKind.Fraction] fold in. */
         fun slots(kind: TrainerKind, language: Language): NumbersMode =
-            NumbersMode(kind.drillVariant, language)
+            NumbersMode(kind.exercise, language)
     }
 }
 
 /**
- * The generator behind a variant — null for Phrases, whose slot kind is named by each FRAME
- * rather than by the variant, and differs between them. Public: the chrome names a variant
+ * The generator behind an exercise — null for Phrases, whose slot kind is named by each FRAME
+ * rather than by the exercise, and differs between them. Public: the chrome names an exercise
  * by this same half, and a platform re-deriving it from the enum cases is the map drifting
  * from itself.
  */
-val DrillVariant.slotKind: TrainerKind?
+val NumbersExercise.reading: TrainerKind?
     get() = when (this) {
-        DrillVariant.Numbers -> TrainerKind.Numbers
-        DrillVariant.Clock -> TrainerKind.Clock
-        DrillVariant.Forms -> TrainerKind.Forms
-        DrillVariant.Phrases -> null
+        NumbersExercise.Counting -> TrainerKind.Numbers
+        NumbersExercise.Clock -> TrainerKind.Clock
+        NumbersExercise.Forms -> TrainerKind.Forms
+        NumbersExercise.Phrases -> null
     }
 
 /**
- * A run variant's face, borrowing the slot kind's glyph where it has one — Phrases has none,
+ * An exercise's face, borrowing the slot kind's glyph where it has one — Phrases has none,
  * so it wears its own.
  */
-fun drillVariantEmoji(variant: DrillVariant): String =
-    variant.slotKind?.let(::trainerKindEmoji) ?: "💬"
+fun numbersExerciseEmoji(exercise: NumbersExercise): String =
+    exercise.reading?.let(::trainerKindEmoji) ?: "💬"
 
 /**
- * The ladder variant a slot kind belongs to. Years maps onto Numbers because it has no Sprosse
+ * The ladder a slot kind is climbed on. Years maps onto Counting because it has no Sprosse
  * of its own; Fraction belongs to Forms — a fraction is one of the number forms.
  */
-internal val TrainerKind.drillVariant: DrillVariant
+internal val TrainerKind.exercise: NumbersExercise
     get() = when (this) {
-        TrainerKind.Numbers, TrainerKind.Years -> DrillVariant.Numbers
-        TrainerKind.Clock -> DrillVariant.Clock
-        TrainerKind.Forms, TrainerKind.Fraction -> DrillVariant.Forms
+        TrainerKind.Numbers, TrainerKind.Years -> NumbersExercise.Counting
+        TrainerKind.Clock -> NumbersExercise.Clock
+        TrainerKind.Forms, TrainerKind.Fraction -> NumbersExercise.Forms
     }
 
-/** The word a record or a Sprosse is filed under. Stored, so it may not follow the screen name. */
-internal val DrillVariant.storageTag: String
-    get() = if (this == DrillVariant.Phrases) "phrases" else name
+/** The word a record or a Sprosse is filed under: the case name, so the two never drift. */
+internal val NumbersExercise.storageTag: String
+    get() = name
 
 /** Short and fixed, for the same reason. */
 internal val DrillModifier.storageTag: String
@@ -310,7 +308,7 @@ internal val DrillModifier.storageTag: String
  * [reversed] exists for the ONE thing that has to know: a reversed task owes digits.
  */
 data class DrawnTask(
-    val variant: DrillVariant,
+    val exercise: NumbersExercise,
     val task: NumbersTask,
     val reversed: Boolean,
 )
@@ -324,7 +322,7 @@ data class DrawnTask(
  */
 data class NumbersDraw(
     val drawn: DrawnTask?,
-    val levels: Map<DrillVariant, Int>,
+    val levels: Map<NumbersExercise, Int>,
 )
 
 /**
@@ -337,12 +335,12 @@ data class NumbersDraw(
 object DrillSelection {
 
     /** Every variant this pair could ever offer, in ladder order. [phrasesRealized]: the pair has frames. */
-    fun offered(language: Language, phrasesRealized: Boolean): List<DrillVariant> =
-        DrillVariant.entries.filter { variant ->
-            when (variant) {
-                DrillVariant.Numbers, DrillVariant.Clock -> true
-                DrillVariant.Phrases -> phrasesRealized
-                DrillVariant.Forms -> Numbers.supportsForms(language)
+    fun offered(language: Language, phrasesRealized: Boolean): List<NumbersExercise> =
+        NumbersExercise.entries.filter { exercise ->
+            when (exercise) {
+                NumbersExercise.Counting, NumbersExercise.Clock -> true
+                NumbersExercise.Phrases -> phrasesRealized
+                NumbersExercise.Forms -> Numbers.supportsForms(language)
             }
         }
 
@@ -351,7 +349,7 @@ object DrillSelection {
      * still locked a run asks ONE thing at a time, and only a fully open ladder lets picks
      * combine. A learner who has just met the clock is asked to climb it, not to dilute it.
      */
-    fun combining(offered: List<DrillVariant>, progress: Map<DrillVariant, Int>): Boolean =
+    fun combining(offered: List<NumbersExercise>, progress: Map<NumbersExercise, Int>): Boolean =
         offered.all { DrillUnlocks.unlocked(it, progress) }
 
     /**
@@ -359,7 +357,7 @@ object DrillSelection {
      * that never empties — the tapped row simply becomes the only one, so the start button
      * always has something to open.
      */
-    fun toggled(picked: List<DrillVariant>, tapped: DrillVariant, combining: Boolean): List<DrillVariant> {
+    fun toggled(picked: List<NumbersExercise>, tapped: NumbersExercise, combining: Boolean): List<NumbersExercise> {
         if (!combining) return listOf(tapped)
         val next = if (tapped in picked) picked - tapped else picked + tapped
         return ordered(next)
@@ -371,10 +369,10 @@ object DrillSelection {
      * open a Sprosse, and the picks may predate it.
      */
     fun normalized(
-        picked: List<DrillVariant>,
-        offered: List<DrillVariant>,
-        progress: Map<DrillVariant, Int>,
-    ): List<DrillVariant> {
+        picked: List<NumbersExercise>,
+        offered: List<NumbersExercise>,
+        progress: Map<NumbersExercise, Int>,
+    ): List<NumbersExercise> {
         val open = picked.filter { DrillUnlocks.unlocked(it, progress) }
         if (combining(offered, progress)) return ordered(open)
         // why: a set has no first — the ladder's own order decides which of several
@@ -384,6 +382,6 @@ object DrillSelection {
         return listOfNotNull(one)
     }
 
-    private fun ordered(picked: List<DrillVariant>): List<DrillVariant> =
-        DrillVariant.entries.filter { it in picked }
+    private fun ordered(picked: List<NumbersExercise>): List<NumbersExercise> =
+        NumbersExercise.entries.filter { it in picked }
 }

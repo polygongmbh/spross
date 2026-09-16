@@ -19,7 +19,7 @@ extension NumbersMode {
     /// A selection as the overview picks it. ONE place builds a mode out of
     /// picks, so `-uitest-variants` / `-uitest-modifiers` reach every run that
     /// is ever started; kern drops a frameless Phrases itself.
-    convenience init(variants: [DrillVariant], language: String, phraseSource: String? = nil,
+    convenience init(variants: [NumbersExercise], language: String, phraseSource: String? = nil,
                      templates: [PhraseTemplate] = [], modifiers: Set<DrillModifier> = []) {
         #if DEBUG
         let asked = NumbersMode.uitestVariants ?? variants
@@ -34,7 +34,7 @@ extension NumbersMode {
 
     /// One slot variant, played plain.
     static func slots(_ kind: TrainerKind, _ language: String) -> NumbersMode {
-        NumbersMode(variants: [kind.drillVariant], language: language)
+        NumbersMode(variants: [kind.exercise], language: language)
     }
 
     static func phrases(source: String, target: String, templates: [PhraseTemplate]) -> NumbersMode {
@@ -65,8 +65,8 @@ private extension NumbersMode {
     /// overview starts with counting selected, so `-uitest-variants
     /// numbers,clock,forms,phrases` and `-uitest-modifiers rev,fast,mix` are the
     /// only way to photograph a selection or a modifier. An unknown word is ignored.
-    static var uitestVariants: [DrillVariant]? {
-        let known: [String: DrillVariant] = ["numbers": .numbers, "clock": .clock,
+    static var uitestVariants: [NumbersExercise]? {
+        let known: [String: NumbersExercise] = ["numbers": .counting, "clock": .clock,
                                              "phrases": .phrases, "forms": .forms]
         let picked = uitestWords("uitest-variants").compactMap { known[$0] }
         return picked.isEmpty ? nil : picked
@@ -90,9 +90,9 @@ extension TrainerKind {
     /// it has no Sprosse of its own: the standalone years drill was dropped as
     /// redundant, and years live on only as a phrase slot. Fraction is a phrase slot
     /// too, and belongs to Forms — a fraction is one of the number forms.
-    var drillVariant: DrillVariant {
+    var exercise: NumbersExercise {
         switch self {
-        case .numbers, .years: return .numbers
+        case .numbers, .years: return .counting
         case .clock: return .clock
         case .forms, .fraction: return .forms
         }

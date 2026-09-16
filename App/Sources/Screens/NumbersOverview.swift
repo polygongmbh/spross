@@ -26,11 +26,11 @@ struct NumbersOverview: View {
     /// source the unlock ladder reads. Held in state rather than read per row so
     /// a run that just booked a Sprosse refreshes the whole ladder in one place.
     // why: internal, not private — +Practice.swift renders the ladder from it.
-    @State var progress: [DrillVariant: Int] = [:]
+    @State var progress: [NumbersExercise: Int] = [:]
     /// Never empty in practice; `Los` is disabled while it is. A list, in
     /// kern's own order — `DrillSelection` hands it back ordered, so the same
     /// state collapses the same way on both platforms.
-    @State var picked: [DrillVariant] = [.numbers]
+    @State var picked: [NumbersExercise] = [.counting]
     @State var modifiers: Set<DrillModifier> = []
     @State private var launch: Launch?
     /// What the run that just closed came to. Shown as one tile above the picks
@@ -126,10 +126,10 @@ struct NumbersOverview: View {
     /// Reads every variant's stored Sprosse at once, because a requirement names a
     /// variant other than the row it gates (Phrases is bought with Clock).
     func reloadProgress() {
-        var levels: [DrillVariant: Int] = [:]
-        for variant in DrillVariant.allCases {
-            levels[variant] = TrainerProgress.best(
-                for: NumbersMode.companion.progressKey(variant: variant, language: language))
+        var levels: [NumbersExercise: Int] = [:]
+        for exercise in NumbersExercise.allCases {
+            levels[exercise] = TrainerProgress.best(
+                for: NumbersMode.companion.progressKey(exercise: exercise, language: language))
         }
         #if DEBUG
         levels.merge(Self.uitestProgress) { _, seeded in seeded }
@@ -203,18 +203,18 @@ extension NumbersOverview {
     /// `-uitest-progress Numbers=7,Forms=5` stands the ladder at a Sprosse a
     /// screenshot cannot climb to by thumb. In MEMORY only: a photographed
     /// unlock must never become a stored one.
-    static var uitestProgress: [DrillVariant: Int] {
-        let known: [String: DrillVariant] = ["numbers": .numbers, "clock": .clock,
+    static var uitestProgress: [NumbersExercise: Int] {
+        let known: [String: NumbersExercise] = ["numbers": .counting, "clock": .clock,
                                              "phrases": .phrases, "forms": .forms]
         let pairs = (UserDefaults.standard.string(forKey: "uitest-progress") ?? "")
             .split(separator: ",")
-            .compactMap { entry -> (DrillVariant, Int)? in
+            .compactMap { entry -> (NumbersExercise, Int)? in
                 let parts = entry.split(separator: "=")
                 guard parts.count == 2,
-                      let variant = known[parts[0].trimmingCharacters(in: .whitespaces).lowercased()],
+                      let exercise = known[parts[0].trimmingCharacters(in: .whitespaces).lowercased()],
                       let level = Int(parts[1].trimmingCharacters(in: .whitespaces))
                 else { return nil }
-                return (variant, level)
+                return (exercise, level)
             }
         return Dictionary(pairs) { _, last in last }
     }

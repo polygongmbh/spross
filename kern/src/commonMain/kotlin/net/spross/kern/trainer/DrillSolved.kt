@@ -49,7 +49,7 @@ internal object DrillSolved {
      * itself, which is the digits forward and the reading reversed — two questions about one
      * value, and the learner owes both.
      */
-    fun key(variant: DrillVariant, task: NumbersTask): String = "$variant:${task.prompt}"
+    fun key(exercise: NumbersExercise, task: NumbersTask): String = "$exercise:${task.prompt}"
 
     /**
      * The letter drill asks one letter several ways up its ladder, so the STAGE carries the

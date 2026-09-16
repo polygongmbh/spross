@@ -23,31 +23,30 @@ class NumbersModeTest {
         slotKind = kind,
     )
 
-    private fun numbers(language: String = "de") = NumbersMode(DrillVariant.Numbers, language)
+    private fun numbers(language: String = "de") = NumbersMode(NumbersExercise.Counting, language)
 
     // MARK: - What a run is filed under
 
     /**
-     * Byte-for-byte what the app already stored: Kotlin's own spelling for the slot variants,
-     * the lowercase word for Phrases, modifier tags in ladder order.
+     * The exercise names in ladder order, then the modifier tags, then the language.
      */
     @Test
     fun aRunIsFiledUnderItsWholeSelectionAndHowItWasPlayed() {
-        assertEquals("Numbers.sw", numbers("sw").recordKey)
+        assertEquals("Counting.sw", numbers("sw").recordKey)
         assertEquals("trainer.record.", NumbersMode.RECORD_PREFIX)
         assertEquals("trainer.level.", NumbersMode.PROGRESS_PREFIX)
 
         val mixed = NumbersMode(
-            listOf(DrillVariant.Numbers, DrillVariant.Clock),
+            listOf(NumbersExercise.Counting, NumbersExercise.Clock),
             "de",
             setOf(DrillModifier.Fast, DrillModifier.Reverse),
         )
-        assertEquals("Numbers+Clock.rev.fast.de", mixed.recordKey)
+        assertEquals("Counting+Clock.rev.fast.de", mixed.recordKey)
         // The set's iteration order may not reach the key.
         assertEquals(
             mixed.recordKey,
             NumbersMode(
-                listOf(DrillVariant.Numbers, DrillVariant.Clock),
+                listOf(NumbersExercise.Counting, NumbersExercise.Clock),
                 "de",
                 setOf(DrillModifier.Reverse, DrillModifier.Fast),
             ).recordKey,
@@ -89,51 +88,51 @@ class NumbersModeTest {
         assertFalse(NumbersMode.openable(0, setOf(1), 4, 9))
     }
 
-    /** A Sprosse belongs to ONE variant, which is what lets the ladder read them all at once. */
+    /** A Sprosse belongs to ONE exercise, which is what lets the ladder read them all at once. */
     @Test
-    fun aSprosseIsFiledPerVariantAndPhrasesKeepsItsLowercaseSpelling() {
-        assertEquals("Numbers.sw", NumbersMode.progressKey(DrillVariant.Numbers, "sw"))
-        assertEquals("Clock.sw", NumbersMode.progressKey(DrillVariant.Clock, "sw"))
-        assertEquals("Forms.sw", NumbersMode.progressKey(DrillVariant.Forms, "sw"))
-        assertEquals("phrases.sw", NumbersMode.progressKey(DrillVariant.Phrases, "sw"))
-        assertEquals("Numbers.sw", numbers("sw").progressKey(DrillVariant.Numbers))
+    fun aSprosseIsFiledPerExerciseUnderItsCaseName() {
+        assertEquals("Counting.sw", NumbersMode.progressKey(NumbersExercise.Counting, "sw"))
+        assertEquals("Clock.sw", NumbersMode.progressKey(NumbersExercise.Clock, "sw"))
+        assertEquals("Forms.sw", NumbersMode.progressKey(NumbersExercise.Forms, "sw"))
+        assertEquals("Phrases.sw", NumbersMode.progressKey(NumbersExercise.Phrases, "sw"))
+        assertEquals("Counting.sw", numbers("sw").progressKey(NumbersExercise.Counting))
     }
 
     /**
      * A sentence record is kept per PAIR — and, quirk carried over verbatim, so is every other
      * record of a run the overview handed a phrase source, because it hands one over whenever
-     * the pair realizes frames at all. `Numbers.de-uk`, not `Numbers.uk`.
+     * the pair realizes frames at all. `Counting.de-uk`, not `Counting.uk`.
      */
     @Test
     fun aPhraseSourceSuffixesTheRecordLanguageEvenWhereTheRunAsksNoSentence() {
         val templates = listOf(frame(TrainerKind.Clock))
-        val sentences = NumbersMode(listOf(DrillVariant.Phrases), "uk", "de", templates, emptySet())
-        assertEquals("phrases.de-uk", sentences.recordKey)
+        val sentences = NumbersMode(listOf(NumbersExercise.Phrases), "uk", "de", templates, emptySet())
+        assertEquals("Phrases.de-uk", sentences.recordKey)
 
-        val counting = NumbersMode(listOf(DrillVariant.Numbers), "uk", "de", templates, emptySet())
-        assertEquals("Numbers.de-uk", counting.recordKey)
+        val counting = NumbersMode(listOf(NumbersExercise.Counting), "uk", "de", templates, emptySet())
+        assertEquals("Counting.de-uk", counting.recordKey)
         // The Sprosse key never takes the pair — a Sprosse belongs to the language it was climbed in.
-        assertEquals("Numbers.uk", counting.progressKey(DrillVariant.Numbers))
+        assertEquals("Counting.uk", counting.progressKey(NumbersExercise.Counting))
     }
 
     // MARK: - What a run may ask
 
     @Test
     fun aFramelessSentencePickIsDroppedAndAnEmptyRunFallsBackToCounting() {
-        val frameless = NumbersMode(listOf(DrillVariant.Phrases), "de", "de", emptyList(), emptySet())
-        assertEquals(listOf(DrillVariant.Numbers), frameless.variants)
+        val frameless = NumbersMode(listOf(NumbersExercise.Phrases), "de", "de", emptyList(), emptySet())
+        assertEquals(listOf(NumbersExercise.Counting), frameless.variants)
         val mixed = NumbersMode(
-            listOf(DrillVariant.Numbers, DrillVariant.Phrases),
+            listOf(NumbersExercise.Counting, NumbersExercise.Phrases),
             "de",
             "de",
             emptyList(),
             emptySet(),
         )
-        assertEquals(listOf(DrillVariant.Numbers), mixed.variants)
+        assertEquals(listOf(NumbersExercise.Counting), mixed.variants)
         assertEquals(
-            listOf(DrillVariant.Phrases),
+            listOf(NumbersExercise.Phrases),
             NumbersMode(
-                listOf(DrillVariant.Phrases), "uk", "de", listOf(frame(TrainerKind.Clock)), emptySet(),
+                listOf(NumbersExercise.Phrases), "uk", "de", listOf(frame(TrainerKind.Clock)), emptySet(),
             ).variants,
         )
     }
@@ -142,28 +141,28 @@ class NumbersModeTest {
     @Test
     fun aVariantRampsToItsOwnCeiling() {
         val mode = NumbersMode(
-            listOf(DrillVariant.Phrases),
+            listOf(NumbersExercise.Phrases),
             "uk",
             "de",
             listOf(frame(TrainerKind.Years), frame(TrainerKind.Clock)),
             emptySet(),
         )
-        assertEquals(Numbers.maxLevel(TrainerKind.Numbers), mode.maxLevel(DrillVariant.Numbers))
-        assertEquals(Numbers.maxLevel(TrainerKind.Clock), mode.maxLevel(DrillVariant.Clock))
-        assertEquals(Numbers.maxLevel(TrainerKind.Forms), mode.maxLevel(DrillVariant.Forms))
+        assertEquals(Numbers.maxLevel(TrainerKind.Numbers), mode.maxLevel(NumbersExercise.Counting))
+        assertEquals(Numbers.maxLevel(TrainerKind.Clock), mode.maxLevel(NumbersExercise.Clock))
+        assertEquals(Numbers.maxLevel(TrainerKind.Forms), mode.maxLevel(NumbersExercise.Forms))
         // Years tops out at 3, the clock at 5 — the run takes the higher of the two frames.
-        assertEquals(Numbers.maxLevel(TrainerKind.Clock), mode.maxLevel(DrillVariant.Phrases))
+        assertEquals(Numbers.maxLevel(TrainerKind.Clock), mode.maxLevel(NumbersExercise.Phrases))
     }
 
     /** A padlock that can never open is a lie: an unrealizable variant has no row at all. */
     @Test
     fun onlyWhatThePairCanAskIsOffered() {
         assertEquals(
-            listOf(DrillVariant.Numbers, DrillVariant.Clock, DrillVariant.Forms),
+            listOf(NumbersExercise.Counting, NumbersExercise.Clock, NumbersExercise.Forms),
             DrillSelection.offered("de", phrasesRealized = false),
         )
         assertEquals(
-            listOf(DrillVariant.Numbers, DrillVariant.Clock, DrillVariant.Phrases, DrillVariant.Forms),
+            listOf(NumbersExercise.Counting, NumbersExercise.Clock, NumbersExercise.Phrases, NumbersExercise.Forms),
             DrillSelection.offered("de", phrasesRealized = true),
         )
     }
@@ -175,30 +174,30 @@ class NumbersModeTest {
     @Test
     fun picksCombineOnlyOnceEveryOfferedRowIsOpen() {
         val offered = DrillSelection.offered("de", phrasesRealized = false)
-        val fresh = emptyMap<DrillVariant, Int>()
+        val fresh = emptyMap<NumbersExercise, Int>()
         assertFalse(DrillSelection.combining(offered, fresh))
-        val climbed = mapOf(DrillVariant.Numbers to 7)
+        val climbed = mapOf(NumbersExercise.Counting to 7)
         assertTrue(DrillSelection.combining(offered, climbed))
 
         // Locked: the tap replaces the pick, and tapping the chosen row leaves it chosen.
         assertEquals(
-            listOf(DrillVariant.Clock),
-            DrillSelection.toggled(listOf(DrillVariant.Numbers), DrillVariant.Clock, combining = false),
+            listOf(NumbersExercise.Clock),
+            DrillSelection.toggled(listOf(NumbersExercise.Counting), NumbersExercise.Clock, combining = false),
         )
         assertEquals(
-            listOf(DrillVariant.Numbers),
-            DrillSelection.toggled(listOf(DrillVariant.Numbers), DrillVariant.Numbers, combining = false),
+            listOf(NumbersExercise.Counting),
+            DrillSelection.toggled(listOf(NumbersExercise.Counting), NumbersExercise.Counting, combining = false),
         )
         // Open: the tap toggles, and the ladder's order decides how the picks read back.
         assertEquals(
-            listOf(DrillVariant.Numbers, DrillVariant.Clock),
-            DrillSelection.toggled(listOf(DrillVariant.Clock), DrillVariant.Numbers, combining = true),
+            listOf(NumbersExercise.Counting, NumbersExercise.Clock),
+            DrillSelection.toggled(listOf(NumbersExercise.Clock), NumbersExercise.Counting, combining = true),
         )
         assertEquals(
-            listOf(DrillVariant.Clock),
+            listOf(NumbersExercise.Clock),
             DrillSelection.toggled(
-                listOf(DrillVariant.Numbers, DrillVariant.Clock),
-                DrillVariant.Numbers,
+                listOf(NumbersExercise.Counting, NumbersExercise.Clock),
+                NumbersExercise.Counting,
                 combining = true,
             ),
         )
@@ -207,21 +206,21 @@ class NumbersModeTest {
     @Test
     fun thePicksFollowTheLadderTheRunJustMoved() {
         val offered = DrillSelection.offered("de", phrasesRealized = false)
-        val fresh = emptyMap<DrillVariant, Int>()
+        val fresh = emptyMap<NumbersExercise, Int>()
         // A locked pick is dropped, and what survives collapses to one while the list is a radio.
         assertEquals(
-            listOf(DrillVariant.Numbers),
-            DrillSelection.normalized(listOf(DrillVariant.Numbers, DrillVariant.Clock), offered, fresh),
+            listOf(NumbersExercise.Counting),
+            DrillSelection.normalized(listOf(NumbersExercise.Counting, NumbersExercise.Clock), offered, fresh),
         )
         // Nothing picked and the ladder closed still opens on the one row that is free.
-        assertEquals(listOf(DrillVariant.Numbers), DrillSelection.normalized(emptyList(), offered, fresh))
+        assertEquals(listOf(NumbersExercise.Counting), DrillSelection.normalized(emptyList(), offered, fresh))
         // A Sprosse the run just booked lets both stand.
         assertEquals(
-            listOf(DrillVariant.Numbers, DrillVariant.Clock),
+            listOf(NumbersExercise.Counting, NumbersExercise.Clock),
             DrillSelection.normalized(
-                listOf(DrillVariant.Clock, DrillVariant.Numbers),
+                listOf(NumbersExercise.Clock, NumbersExercise.Counting),
                 offered,
-                mapOf(DrillVariant.Numbers to 7),
+                mapOf(NumbersExercise.Counting to 7),
             ),
         )
     }
@@ -229,10 +228,10 @@ class NumbersModeTest {
     @Test
     fun mixFlipsPerTaskWhileReverseHoldsOneDirection() {
         val rng = Random(21)
-        val plain = NumbersMode(DrillVariant.Numbers, "de")
-        val reverse = NumbersMode(listOf(DrillVariant.Numbers), "de", setOf(DrillModifier.Reverse))
-        val mix = NumbersMode(listOf(DrillVariant.Numbers), "de", setOf(DrillModifier.Mix))
-        val levels = mapOf(DrillVariant.Numbers to 3)
+        val plain = NumbersMode(NumbersExercise.Counting, "de")
+        val reverse = NumbersMode(listOf(NumbersExercise.Counting), "de", setOf(DrillModifier.Reverse))
+        val mix = NumbersMode(listOf(NumbersExercise.Counting), "de", setOf(DrillModifier.Mix))
+        val levels = mapOf(NumbersExercise.Counting to 3)
 
         fun NumbersMode.reversedDraw() = assertNotNull(draw(levels, null, emptySet(), rng).drawn).reversed
         assertTrue((1..20).none { plain.reversedDraw() })
@@ -245,18 +244,18 @@ class NumbersModeTest {
     @Test
     fun mixWidensFormsOnlyWhileTheRunIsClimbingNumbers() {
         val both = NumbersMode(
-            listOf(DrillVariant.Numbers, DrillVariant.Forms), "de", setOf(DrillModifier.Mix),
+            listOf(NumbersExercise.Counting, NumbersExercise.Forms), "de", setOf(DrillModifier.Mix),
         )
         assertTrue(both.mixesForms)
-        assertFalse(NumbersMode(listOf(DrillVariant.Forms), "de", setOf(DrillModifier.Mix)).mixesForms)
-        val unmixed = NumbersMode(listOf(DrillVariant.Numbers, DrillVariant.Forms), "de", emptySet())
+        assertFalse(NumbersMode(listOf(NumbersExercise.Forms), "de", setOf(DrillModifier.Mix)).mixesForms)
+        val unmixed = NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Forms), "de", emptySet())
         assertFalse(unmixed.mixesForms)
     }
 
     @Test
     fun fastHalvesTheSprosse() {
-        assertEquals(2, NumbersMode(DrillVariant.Numbers, "de").winsToAdvance)
-        val fast = NumbersMode(listOf(DrillVariant.Numbers), "de", setOf(DrillModifier.Fast))
+        assertEquals(2, NumbersMode(NumbersExercise.Counting, "de").winsToAdvance)
+        val fast = NumbersMode(listOf(NumbersExercise.Counting), "de", setOf(DrillModifier.Fast))
         assertEquals(1, fast.winsToAdvance)
     }
 }

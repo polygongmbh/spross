@@ -6,8 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import net.spross.kern.model.Language
 import net.spross.kern.trainer.DrillRunSummary
-import net.spross.kern.trainer.DrillVariant
 import net.spross.kern.trainer.LetterDrillAvailability
+import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.NumbersMode
 
 /**
@@ -40,12 +40,12 @@ class TrainerStore(private val prefs: SharedPreferences) {
      * Read whole rather than per row, because a requirement names a variant other than
      * the row it gates (Phrases is bought with Clock).
      */
-    fun ladder(language: Language): Map<DrillVariant, Int> =
-        DrillVariant.entries.associateWith { sprosse(NumbersMode.progressKey(it, language)) }
+    fun ladder(language: Language): Map<NumbersExercise, Int> =
+        NumbersExercise.entries.associateWith { sprosse(NumbersMode.progressKey(it, language)) }
 
     /** The same numbers keyed the way [net.spross.kern.trainer.NumbersRun.close] books them. */
     fun standing(language: Language): Map<String, Int> =
-        DrillVariant.entries.associate {
+        NumbersExercise.entries.associate {
             val key = NumbersMode.progressKey(it, language)
             key to sprosse(key)
         }
@@ -167,7 +167,7 @@ data class TypedDrillStanding(
 class TrainerStanding(val store: TrainerStore) {
 
     /** The highest Sprosse each variant ever reached in the language being learnt. */
-    var ladder by mutableStateOf<Map<DrillVariant, Int>>(emptyMap())
+    var ladder by mutableStateOf<Map<NumbersExercise, Int>>(emptyMap())
         private set
 
     /**

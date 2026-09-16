@@ -71,16 +71,16 @@ extension NumbersRunView {
     /// variant, since a run that asks one thing has already said what it asks.
     private var levelText: Text? {
         guard run.showsSprosse else { return nil }
-        let variant = run.currentVariant
+        let exercise = run.currentVariant
         let sprosse = Int(run.currentLevel)
-        guard variant != .numbers else {
+        guard exercise != .counting else {
             // why: `trainer.digits` is the numbers drill's own wording and already
             // wears 🔢 — putting the variant's face in front would double it.
             return Text("numbers.sprosse \(sprosse)")
         }
         let text = Text("trainer.sprosse \(sprosse.formatted())")
         guard run.severalVariants else { return text }
-        return Text(verbatim: "\(drillVariantEmoji(variant: variant)) ") + text
+        return Text(verbatim: "\(numbersExerciseEmoji(exercise: exercise)) ") + text
     }
 
     /// What the field asks for. Naming the language is right only while the

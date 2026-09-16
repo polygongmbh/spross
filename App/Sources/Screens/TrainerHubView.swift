@@ -256,12 +256,12 @@ extension TrainerKind {
 /// What a RUN variant is called, wherever one has to be named on its own — the
 /// score line of a mixed run today, the overview's rows next. Numbers, Clock and
 /// Forms deliberately borrow the slot kind's title: they are the same exercise.
-/// The matching FACE is kern's `drillVariantEmoji` — one glyph table, not two.
-extension DrillVariant {
+/// The matching FACE is kern's `numbersExerciseEmoji` — one glyph table, not two.
+extension NumbersExercise {
     var trainerTitleKey: LocalizedStringKey {
         switch self {
         case .phrases: return "trainer.variant.phrases"
-        case .numbers, .clock, .forms: return slotKind?.trainerTitleKey ?? "trainer.skill.numbers"
+        case .counting, .clock, .forms: return reading?.trainerTitleKey ?? "trainer.skill.numbers"
         }
     }
 }

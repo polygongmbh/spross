@@ -69,8 +69,8 @@ struct NumbersRunView: View, LanguageNaming {
         // UI-test hook: `-uitest-level N` opens the run's first variant at that
         // Sprosse, as the letter drill's `-uitest-letters-level` does. Kern clamps it.
         let preset = UserDefaults.standard.integer(forKey: "uitest-level")
-        if preset > 0, let variant = mode.variants.first {
-            let levels: [DrillVariant: KotlinInt] = [variant: KotlinInt(int: Int32(preset))]
+        if preset > 0, let exercise = mode.variants.first {
+            let levels: [NumbersExercise: KotlinInt] = [exercise: KotlinInt(int: Int32(preset))]
             _run = State(initialValue: NumbersRun.shared.openAt(mode: mode, levels: levels, rng: drillRandom))
         } else {
             _run = State(initialValue: NumbersRun.shared.open(mode: mode, rng: drillRandom))

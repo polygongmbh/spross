@@ -30,7 +30,7 @@ class NumbersRunTest {
     /** The strictness triple every drill grades with: no article leniency, one slip per word. */
     private val normalizer = AnswerNormalizer(de, articleLeniency = false, maxTyposPerWord = 1)
 
-    private fun numbers(language: String = "de") = NumbersMode(DrillVariant.Numbers, language)
+    private fun numbers(language: String = "de") = NumbersMode(NumbersExercise.Counting, language)
 
     private fun reduce(state: NumbersRunState, intent: NumbersIntent, rng: Random) =
         NumbersRun.reduce(state, intent, normalizer, rng)
@@ -50,26 +50,26 @@ class NumbersRunTest {
 
     @Test
     fun everyRunStartsAtSprosseOneHoweverFarTheLearnerHasClimbed() {
-        val mode = NumbersMode(listOf(DrillVariant.Numbers, DrillVariant.Clock), "de", emptySet())
+        val mode = NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "de", emptySet())
         val state = NumbersRun.open(mode, Random(11))
-        assertEquals(mapOf(DrillVariant.Numbers to 1, DrillVariant.Clock to 1), state.levels)
+        assertEquals(mapOf(NumbersExercise.Counting to 1, NumbersExercise.Clock to 1), state.levels)
         assertEquals(0, state.done)
         assertEquals(TurnFeedback.Neutral, state.feedback)
     }
 
     @Test
     fun aRunOpenedAtGivenSprossenStandsThereClampedToTheLadder() {
-        val mode = NumbersMode(listOf(DrillVariant.Numbers, DrillVariant.Clock), "de", emptySet())
-        val forced = NumbersRun.openAt(mode, mapOf(DrillVariant.Numbers to 4), Random(7))
-        assertEquals(4, forced.levels[DrillVariant.Numbers])
-        assertEquals(1, forced.levels[DrillVariant.Clock]) // left out of the map
+        val mode = NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "de", emptySet())
+        val forced = NumbersRun.openAt(mode, mapOf(NumbersExercise.Counting to 4), Random(7))
+        assertEquals(4, forced.levels[NumbersExercise.Counting])
+        assertEquals(1, forced.levels[NumbersExercise.Clock]) // left out of the map
         assertEquals(0, forced.done)
 
-        val ceiling = mode.maxLevel(DrillVariant.Numbers)
-        val beyond = NumbersRun.openAt(mode, mapOf(DrillVariant.Numbers to ceiling + 40), Random(7))
-        assertEquals(ceiling, beyond.levels[DrillVariant.Numbers])
-        val below = NumbersRun.openAt(mode, mapOf(DrillVariant.Numbers to -3), Random(7))
-        assertEquals(1, below.levels[DrillVariant.Numbers])
+        val ceiling = mode.maxLevel(NumbersExercise.Counting)
+        val beyond = NumbersRun.openAt(mode, mapOf(NumbersExercise.Counting to ceiling + 40), Random(7))
+        assertEquals(ceiling, beyond.levels[NumbersExercise.Counting])
+        val below = NumbersRun.openAt(mode, mapOf(NumbersExercise.Counting to -3), Random(7))
+        assertEquals(1, below.levels[NumbersExercise.Counting])
     }
 
     /**
@@ -78,7 +78,7 @@ class NumbersRunTest {
      */
     @Test
     fun oneSeedDrawsOneRun() {
-        val picks = listOf(DrillVariant.Numbers, DrillVariant.Clock)
+        val picks = listOf(NumbersExercise.Counting, NumbersExercise.Clock)
         val mode = NumbersMode(picks, "de", setOf(DrillModifier.Mix))
         fun play(): List<DrawnTask> {
             val rng = Random(5)
@@ -161,7 +161,7 @@ class NumbersRunTest {
         var state = NumbersRun.open(numbers(), rng)
         state = answerRight(state, rng)
         assertEquals(1, state.currentLevel)
-        assertEquals(1, state.winsAtLevel[DrillVariant.Numbers])
+        assertEquals(1, state.winsAtLevel[NumbersExercise.Counting])
         assertEquals(listOf(AnswerOutcome.Right), state.outcomes)
         assertEquals(1, state.streak)
 
@@ -193,7 +193,7 @@ class NumbersRunTest {
         val booked = reduce(submitted.state, NumbersIntent.ConfirmPending, rng).state
         assertEquals(listOf(AnswerOutcome.Almost), booked.outcomes)
         assertEquals(1, booked.currentLevel)
-        assertEquals(0, booked.winsAtLevel[DrillVariant.Numbers])
+        assertEquals(0, booked.winsAtLevel[NumbersExercise.Counting])
         assertEquals(1, booked.streak, "almost extends the streak")
         assertFalse(booked.hintUsed, "the debt is cleared with the question")
 
@@ -251,7 +251,7 @@ class NumbersRunTest {
     @Test
     fun aPromptAnsweredRightIsNeverAskedAgain() {
         val rng = Random(41)
-        var state = NumbersRun.open(NumbersMode(DrillVariant.Clock, "de"), rng)
+        var state = NumbersRun.open(NumbersMode(NumbersExercise.Clock, "de"), rng)
         val asked = mutableListOf<String>()
         repeat(20) {
             asked += state.currentTask.prompt
@@ -280,13 +280,13 @@ class NumbersRunTest {
     @Test
     fun aSprosseWithNothingLeftToAskIsClimbedPast() {
         val rng = Random(47)
-        val digits = (0L..9L).map { DrillSolved.key(DrillVariant.Numbers, Numbers.number(it, "de")) }
+        val digits = (0L..9L).map { DrillSolved.key(NumbersExercise.Counting, Numbers.number(it, "de")) }
         val spent = NumbersRun.open(numbers(), rng).copy(core = DrillRunCore(solved = digits.toSet()))
 
         val next = answerRight(spent, rng)
         assertEquals(2, next.currentLevel)
-        assertEquals(2, next.bestLevels[DrillVariant.Numbers])
-        assertEquals(0, next.winsAtLevel[DrillVariant.Numbers], "the wins stay behind with the Sprosse")
+        assertEquals(2, next.bestLevels[NumbersExercise.Counting])
+        assertEquals(0, next.winsAtLevel[NumbersExercise.Counting], "the wins stay behind with the Sprosse")
         assertEquals(2, next.currentTask.prompt.length, "the second Sprosse asks two digits")
         assertFalse(next.finished)
     }
@@ -297,8 +297,8 @@ class NumbersRunTest {
     fun eachNumberLengthIsIntroducedOnceAndNeverOnAReversedTask() {
         val rng = Random(29)
         val forward = NumbersRun.open(numbers("sw"), rng).copy(
-            current = DrawnTask(DrillVariant.Numbers, Numbers.number(347, "sw"), reversed = false),
-            levels = mapOf(DrillVariant.Numbers to 3),
+            current = DrawnTask(NumbersExercise.Counting, Numbers.number(347, "sw"), reversed = false),
+            levels = mapOf(NumbersExercise.Counting to 3),
         )
         assertEquals(3, forward.currentDigits)
         assertEquals(Numbers.placeValueHint(3, "sw"), forward.placeValueHint)
@@ -318,7 +318,7 @@ class NumbersRunTest {
         // A reversed prompt IS the reading, which already names the place.
         val back = forward.copy(
             current = DrawnTask(
-                DrillVariant.Numbers,
+                NumbersExercise.Counting,
                 Numbers.reversed(Numbers.number(347, "sw")),
                 reversed = true,
             ),

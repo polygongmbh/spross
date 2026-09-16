@@ -67,10 +67,10 @@ Engine contract: `../README.md`.
   What each language reads for each form, with its source and its exclusions,
   is `../../docs/number-forms.md`.
   A sentence slot's grouped digits are accepted alongside the plain ones.
-  **`DrillVariant` is what a RUN offers, `TrainerKind` is what fills a SLOT** — a Phrases
+  **`NumbersExercise` is what a RUN offers, `TrainerKind` is what fills a SLOT** — a Phrases
   run draws tasks whose kind is Numbers, Years or Clock — and the two must not be
-  collapsed, because progress is kept per variant. `DrillUnlocks` holds the whole ladder
-  as two tables of variant → level reached (empty = always available), reading a
+  collapsed, because progress is kept per exercise. `DrillUnlocks` holds the whole ladder
+  as two tables of exercise → level reached (empty = always available), reading a
   progress map the APP persists; kern stores nothing. `DrillRamp.step` is the Sprosse ramp
   every drill shares (clean wins up, a miss down, floor 1, almost moves nothing), with how
   long a Sprosse is left to the caller — `Numbers.winsToAdvance(fast)` reads the Fast

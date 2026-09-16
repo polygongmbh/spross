@@ -68,14 +68,14 @@ data class NumbersRunState(
      * The Sprosse each variant stands on, all starting at 1 however far the learner has climbed
      * before: persisted progress buys ACCESS, never a head start, because the climb is the drill.
      */
-    val levels: Map<DrillVariant, Int>,
-    val winsAtLevel: Map<DrillVariant, Int>,
+    val levels: Map<NumbersExercise, Int>,
+    val winsAtLevel: Map<NumbersExercise, Int>,
     /**
      * The highest Sprosse each variant STOOD ON in this run — what the close books. Tracked apart
      * from [levels] because a Sprosse steps back down on a miss, and the ladder rewards reaching
      * one, not finishing on it.
      */
-    val bestLevels: Map<DrillVariant, Int>,
+    val bestLevels: Map<NumbersExercise, Int>,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
     val core: DrillRunCore,
     /** Digit counts already introduced with a place-value hint; each length is hinted once. */
@@ -102,7 +102,7 @@ data class NumbersRunState(
     val currentTask: NumbersTask get() = current.task
 
     /** Which of the run's variants asked what is on screen — what a win and a miss apply to. */
-    val currentVariant: DrillVariant get() = current.variant
+    val currentVariant: NumbersExercise get() = current.exercise
 
     /** The reading is the prompt and the value is owed. The one thing it decides is the keyboard. */
     val currentReversed: Boolean get() = current.reversed
@@ -131,7 +131,7 @@ data class NumbersRunState(
     val showsAnswer: Boolean get() = feedback == TurnFeedback.Revealed
 
     /** The numbers page is one tap away from a numbers task, and from no other. */
-    val offersLookUp: Boolean get() = currentVariant == DrillVariant.Numbers
+    val offersLookUp: Boolean get() = currentVariant == NumbersExercise.Counting
 
     /**
      * The way out, where it is wanted: under the button that goes on, on the SECOND miss in a
@@ -147,7 +147,7 @@ data class NumbersRunState(
      * reversed prompt IS the reading, which already names the place a hint would introduce.
      */
     val currentDigits: Int?
-        get() = if (currentVariant == DrillVariant.Numbers && !currentReversed) {
+        get() = if (currentVariant == NumbersExercise.Counting && !currentReversed) {
             currentTask.prompt.length
         } else {
             null

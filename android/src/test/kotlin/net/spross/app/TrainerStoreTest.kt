@@ -2,7 +2,7 @@ package net.spross.app
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import net.spross.kern.trainer.DrillVariant
+import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.NumbersMode
 
 /**
@@ -25,7 +25,7 @@ class TrainerStoreTest {
         assertEquals(0, store.record("numbers.es"))
         assertEquals(0, store.best("numbers.es"))
         assertEquals(
-            DrillVariant.entries.associateWith { 0 },
+            NumbersExercise.entries.associateWith { 0 },
             store.ladder(language),
         )
     }
@@ -117,19 +117,19 @@ class TrainerStoreTest {
     @Test
     fun aClosedRunsBookingsAreReadBackByTheLadder() {
         val store = TrainerStore(FakePrefs())
-        val numbers = NumbersMode.progressKey(DrillVariant.Numbers, language)
+        val numbers = NumbersMode.progressKey(NumbersExercise.Counting, language)
         store.book(mapOf(numbers to 4))
-        assertEquals(4, store.ladder(language)[DrillVariant.Numbers])
+        assertEquals(4, store.ladder(language)[NumbersExercise.Counting])
         assertEquals(4, store.standing(language)[numbers])
-        assertEquals(0, store.ladder(language)[DrillVariant.Clock])
+        assertEquals(0, store.ladder(language)[NumbersExercise.Clock])
     }
 
     @Test
     fun aSecondStoreReadsWhatTheFirstBooked() {
         val file = mutableMapOf<String, Any?>()
-        val numbers = NumbersMode.progressKey(DrillVariant.Numbers, language)
+        val numbers = NumbersMode.progressKey(NumbersExercise.Counting, language)
         TrainerStore(FakePrefs(file)).book(mapOf(numbers to 6))
         val relaunched = TrainerStore(FakePrefs(file))
-        assertEquals(6, relaunched.ladder(language)[DrillVariant.Numbers])
+        assertEquals(6, relaunched.ladder(language)[NumbersExercise.Counting])
     }
 }
