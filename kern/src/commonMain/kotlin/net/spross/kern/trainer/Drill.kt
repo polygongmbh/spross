@@ -12,10 +12,10 @@ package net.spross.kern.trainer
  * (`CountryDrill`, `WordScrambleRun`; `docs/drills.md`).
  */
 enum class Drill {
-    Numbers,
     Letters,
-    Countries,
+    Numbers,
     Dates,
-    WordScramble,
+    Countries,
     SentenceScramble,
+    WordScramble,
 }
