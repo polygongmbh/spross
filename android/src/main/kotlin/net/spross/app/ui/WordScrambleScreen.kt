@@ -122,7 +122,7 @@ fun WordScrambleScreen(model: AppModel) {
             )
             val task = state.task
             if (task != null) {
-                TrainerPromptCard(
+                DrillPromptCard(
                     prompt = mixedWord(task.scrambled),
                     promptLabel = spelledOut(task.scrambled),
                     size = PromptSize.Word,

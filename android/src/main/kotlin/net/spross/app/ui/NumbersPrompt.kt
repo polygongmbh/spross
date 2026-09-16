@@ -74,7 +74,7 @@ enum class PromptSize {
  * word anything can read; null ⇒ the prompt reads as itself.
  */
 @Composable
-fun TrainerPromptCard(
+fun DrillPromptCard(
     prompt: AnnotatedString,
     promptLabel: String?,
     size: PromptSize,
@@ -142,11 +142,11 @@ fun TrainerPromptCard(
  * a reversed reading are both read as what they are.
  */
 @Composable
-fun TrainerPromptCard(model: AppModel, flow: NumbersFlow, chrome: Chrome) {
+fun DrillPromptCard(model: AppModel, flow: NumbersFlow, chrome: Chrome) {
     val state = flow.state
     val task = state.currentTask
     val wordy = task.promptDisplay.any { it.isLetter() }
-    TrainerPromptCard(
+    DrillPromptCard(
         prompt = AnnotatedString(task.promptDisplay),
         promptLabel = null,
         size = if (wordy) PromptSize.Sentence else PromptSize.Digits,

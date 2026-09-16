@@ -128,7 +128,7 @@ struct ListeningView: View {
                 .background(Circle().fill(emphasized ? Theme.colors.accent : Theme.colors.surfaceTint))
                 .accessibilityHidden(true)
         }
-        .buttonStyle(TrainerChipButtonStyle())
+        .buttonStyle(ChipButtonStyle())
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(label)
         .accessibilityAddTraits(.isButton)
@@ -153,7 +153,7 @@ struct ListeningView: View {
         .padding(.horizontal, Theme.spacing.md)
         .padding(.vertical, Theme.spacing.sm)
         .background(Capsule().fill(Theme.colors.surfaceTint))
-        // The press `TrainerChipButtonStyle` would give it, by hand — see below
+        // The press `ChipButtonStyle` would give it, by hand — see below
         // for why this chip is not a Button.
         .opacity(timerHeld ? 0.7 : 1)
         .scaleEffect(timerHeld ? 0.96 : 1)

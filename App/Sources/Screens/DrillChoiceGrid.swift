@@ -64,7 +64,7 @@ struct DrillChoiceGrid: View {
                     mark(answered: answered, isAnswer: isAnswer, isChosen: isChosen)
                 }
         }
-        .buttonStyle(TrainerChipButtonStyle())
+        .buttonStyle(ChipButtonStyle())
         .disabled(answered)
         .accessibilityLabel(label?(option) ?? Text(verbatim: option))
         .accessibilityValue(answered && isAnswer ? Text("a11y.verdict.correct") : Text(verbatim: ""))

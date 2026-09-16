@@ -13,7 +13,7 @@ import SprossKern
 ///
 /// The run spec is `Mode` (NumbersRunView+Mode.swift), the driver is
 /// NumbersRunView+Run.swift, screen content NumbersRunView+Drill.swift,
-/// and the prompt card TrainerPromptCard.swift. State stays here — members are
+/// and the prompt card DrillPromptCard.swift. State stays here — members are
 /// internal, not private, where an extension reaches them.
 struct NumbersRunView: View, LanguageNaming {
     /// The run SPEC — kern's, and never edited once the run is open.

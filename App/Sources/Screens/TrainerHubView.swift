@@ -200,7 +200,7 @@ struct TrainerHubView: View, LanguageNaming {
         } label: {
             chipLabel(emoji: chip.emoji, title: Text(chip.title))
         }
-        .buttonStyle(TrainerChipButtonStyle())
+        .buttonStyle(ChipButtonStyle())
         .accessibilityLabel(Text(chip.title)
             + Text("a11y.suffix.practice \(languageName(drillLanguage ?? ""))"))
     }
@@ -227,10 +227,10 @@ struct TrainerHubView: View, LanguageNaming {
     }
 }
 
-/// Pressed-state feedback for the hub's chips (mirrors the shared button springs).
-/// Internal: the letters chip is a TrainerHubView+Destinations.swift one, and the
-/// letter drill's answer tiles borrow the same press.
-struct TrainerChipButtonStyle: ButtonStyle {
+/// Pressed-state feedback for every chip-shaped control (mirrors the shared button springs):
+/// the hub's chips, a drill's choice tiles, a scramble's tile bank and the listening row.
+/// Internal: the letters chip is a TrainerHubView+Destinations.swift one.
+struct ChipButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .opacity(configuration.isPressed ? 0.7 : 1)

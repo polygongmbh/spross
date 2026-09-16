@@ -28,7 +28,7 @@ extension NumbersRunView {
                 // ZStack so outgoing and incoming prompt overlap during the
                 // flip; .id gives each run position its own view identity.
                 ZStack {
-                    TrainerPromptCard(prompt: Text(current.promptDisplay),
+                    DrillPromptCard(prompt: Text(current.promptDisplay),
                                       size: wordyPrompt ? .sentence : .digits,
                                       answer: current.display,
                                       language: current.language,

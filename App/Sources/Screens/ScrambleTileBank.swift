@@ -103,7 +103,7 @@ struct ScrambleTileBank<Reveal: View>: View {
                 Button { take(slot) } label: {
                     chip(placed[slot].text, dimmed: false)
                 }
-                .buttonStyle(TrainerChipButtonStyle())
+                .buttonStyle(ChipButtonStyle())
                 .disabled(locked)
                 .accessibilityLabel(label?(placed[slot].text) ?? Text(verbatim: placed[slot].text))
                 .accessibilityHint(Text("a11y.action.takeBack"))
@@ -161,7 +161,7 @@ struct ScrambleTileBank<Reveal: View>: View {
                 Button { place(slot) } label: {
                     chip(bank[slot].text, dimmed: isTaken(slot))
                 }
-                .buttonStyle(TrainerChipButtonStyle())
+                .buttonStyle(ChipButtonStyle())
                 .disabled(locked || isTaken(slot))
                 .accessibilityLabel(label?(bank[slot].text) ?? Text(verbatim: bank[slot].text))
             }

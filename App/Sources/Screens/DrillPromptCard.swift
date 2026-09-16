@@ -8,7 +8,7 @@ import SprossKern
 /// names what is drilled ("🔢 1 Stelle"), the field's placeholder names the
 /// language to answer in, and a card that repeats both spends the screen's
 /// scarce axis saying what the learner just tapped their way into.
-struct TrainerPromptCard: View {
+struct DrillPromptCard: View {
 
     /// How large the question is set, and how the reveal under it follows. WHAT
     /// is asked picks it — there is room for one numeral where there is none for

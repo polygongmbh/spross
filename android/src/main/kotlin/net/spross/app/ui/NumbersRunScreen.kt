@@ -139,7 +139,7 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
                 chrome = chrome,
                 announcesRecord = true,
             )
-            TrainerPromptCard(model, flow, chrome)
+            DrillPromptCard(model, flow, chrome)
             NumbersControls(model, flow, chrome, inputFocus, leave)
             Spacer(Modifier.height(Theme.spacing.sm))
         }

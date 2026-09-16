@@ -168,7 +168,7 @@ struct SentenceScrambleView: View {
     /// long enough to need it, rather than being set small in advance against
     /// the longest one the catalog might hold: this card has the room, since the
     /// bank is gone by the time it is drawn and no prompt stands above it. The
-    /// floor lands about where the fixed sentence size did (`TrainerPromptCard`).
+    /// floor lands about where the fixed sentence size did (`DrillPromptCard`).
     @ViewBuilder
     private func revealLines(_ task: SentenceScrambleTask) -> some View {
         CardReveal(note: nil) {

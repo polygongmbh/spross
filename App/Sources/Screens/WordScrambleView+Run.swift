@@ -22,7 +22,7 @@ extension WordScrambleView {
                     // ZStack so the outgoing and incoming word overlap during
                     // the flip; .id gives each position its identity.
                     ZStack {
-                        TrainerPromptCard(prompt: promptText(task.scrambled),
+                        DrillPromptCard(prompt: promptText(task.scrambled),
                                           promptLabel: promptLabel(task.scrambled),
                                           size: .word,
                                           answer: task.display,

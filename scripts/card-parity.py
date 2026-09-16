@@ -35,7 +35,7 @@ DROID = "android/src/main/kotlin/net/spross/app/ui/Theme.kt"
 # A card FACE is the surface a question is asked on; a card BODY is what a face composes.
 # Only a face owes the primitives — a body is already inside one.
 IOS_FACES = ["App/Sources/Design/VocabCardView.swift", "App/Sources/Design/CountryPromptCard.swift",
-             "App/Sources/Design/HearPromptCard.swift", "App/Sources/Screens/TrainerPromptCard.swift"]
+             "App/Sources/Design/HearPromptCard.swift", "App/Sources/Screens/DrillPromptCard.swift"]
 IOS_BODIES = ["App/Sources/Design/CardReveal.swift", "App/Sources/Design/SpokenWord.swift",
               "App/Sources/Screens/DrillChoiceGrid.swift",
               "App/Sources/Screens/LetterDrillView+Stages.swift",
