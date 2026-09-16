@@ -10,6 +10,7 @@ struct BoxSettingsSection: View {
     let model: AppModel
 
     @State private var confirmingReset = false
+    @State private var pendingResetExport: BackupFile?
     @State private var creditsPresented = false
     @Environment(\.locale) private var locale
 
@@ -31,11 +32,13 @@ struct BoxSettingsSection: View {
                     audioRow
                 }
                 Divider().overlay(Theme.colors.separator)
-                BackupRow(model: model)
-                Divider().overlay(Theme.colors.separator)
-                restartTutorialRow
-                Divider().overlay(Theme.colors.separator)
-                resetRow
+                VStack(alignment: .leading, spacing: Theme.spacing.md) {
+                    BackupRow(model: model)
+                    HStack(alignment: .top, spacing: Theme.spacing.lg) {
+                        restartTutorialRow
+                        resetRow
+                    }
+                }
             }
             .padding(Theme.spacing.lg)
             .background(
@@ -291,16 +294,24 @@ struct BoxSettingsSection: View {
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     /// Fresh start with the CURRENT catalog content.
+    /// Where there is matured progress worth keeping, a save-file sheet for just this language opens first.
+    /// A safety net ahead of the confirmation below, never a gate on it —
+    /// a failed or cancelled save still reaches the destructive dialog.
     private var resetRow: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             Button(role: .destructive) {
-                confirmingReset = true
+                startReset()
             } label: {
                 Text("settings.reset.button \(targetName)")
                     .font(Theme.typography.headline)
+            }
+            .fileExporter(isPresented: shown($pendingResetExport), document: pendingResetExport,
+                          contentType: .json, defaultFilename: pendingResetExport?.name ?? "Spross") { _ in
+                confirmingReset = true
             }
             .confirmationDialog(
                 "settings.reset.confirm \(targetName)",
@@ -316,6 +327,29 @@ struct BoxSettingsSection: View {
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func startReset() {
+        guard (model.stats?.consolidatedCount ?? 0) > 0, let target = model.targetLanguage else {
+            confirmingReset = true
+            return
+        }
+        Task {
+            let day = Date.now.formatted(.iso8601.year().month().day())
+            do {
+                pendingResetExport = BackupFile(text: try await model.backupJSON(only: target),
+                                                name: "Spross-\(target)-\(day)")
+            } catch {
+                confirmingReset = true
+            }
+        }
+    }
+
+    /// A presentation flag over an optional:
+    /// shown while it holds a value, emptied on dismiss.
+    private func shown<T>(_ value: Binding<T?>) -> Binding<Bool> {
+        Binding(get: { value.wrappedValue != nil }, set: { if !$0 { value.wrappedValue = nil } })
     }
 
     // MARK: Choices & bindings

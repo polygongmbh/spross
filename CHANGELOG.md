@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Resetting a language with matured progress now offers to save a backup of it first.
 - The garden is now the orchard, matching the tree the button and Home's picture already showed.
 
 ## 7.1.2 — 2026-09-16

@@ -1,5 +1,7 @@
 package net.spross.app.ui
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -28,11 +30,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -41,6 +45,10 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.time.LocalDate
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.audioSources
@@ -63,6 +71,21 @@ import net.spross.kern.model.Language
 fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
     val chrome = model.chrome
     var confirmingReset by remember { mutableStateOf(false) }
+    val resolver = LocalContext.current.contentResolver
+    val scope = rememberCoroutineScope()
+    // Offers a save-file sheet for this language first when there's matured progress worth
+    // keeping — a safety net ahead of the confirmation, never a gate on it: whether the save
+    // lands, fails, or is cancelled, the destructive confirmation still opens after.
+    val resetExport = rememberLauncherForActivityResult(
+        ActivityResultContracts.CreateDocument("application/json"),
+    ) { uri ->
+        scope.launch {
+            if (uri != null) {
+                withContext(Dispatchers.IO) { writeBackupJson(model, resolver, uri, box.joinStamp.target) }
+            }
+            confirmingReset = true
+        }
+    }
     val selection = LanguageChoices.Selection(box.joinStamp.source, box.joinStamp.target)
     val targets = remember(catalog, selection) {
         LanguageChoices.targetChoices(catalog, selection)
@@ -113,20 +136,34 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                 HorizontalDivider(color = Theme.colors.separator)
                 ReadAloudSetting(model, box.joinStamp.target)
                 HorizontalDivider(color = Theme.colors.separator)
-                BackupSetting(model, catalog, box.joinStamp.target)
-                HorizontalDivider(color = Theme.colors.separator)
-                Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
-                    TextButton(onClick = { model.restartOnboarding() }) {
-                        Text(chrome.settingsRestartTutorialButton)
+                Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
+                    BackupSetting(model, catalog, box.joinStamp.target)
+                    Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
+                        Column(
+                            modifier = Modifier.weight(1f),
+                            verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
+                        ) {
+                            TextButton(onClick = { model.restartOnboarding() }) {
+                                Text(chrome.settingsRestartTutorialButton)
+                            }
+                            SettingHint(chrome.settingsRestartTutorialHint)
+                        }
+                        Column(
+                            modifier = Modifier.weight(1f),
+                            verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
+                        ) {
+                            TextButton(onClick = {
+                                if ((model.stats?.consolidatedCount ?: 0) > 0) {
+                                    resetExport.launch("Spross-${box.joinStamp.target}-${LocalDate.now()}.json")
+                                } else {
+                                    confirmingReset = true
+                                }
+                            }) {
+                                Text(chrome.settingsResetButton.format(targetName), color = Theme.colors.wrong)
+                            }
+                            SettingHint(chrome.settingsResetHint.format(targetName))
+                        }
                     }
-                    SettingHint(chrome.settingsRestartTutorialHint)
-                }
-                HorizontalDivider(color = Theme.colors.separator)
-                Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
-                    TextButton(onClick = { confirmingReset = true }) {
-                        Text(chrome.settingsResetButton.format(targetName), color = Theme.colors.wrong)
-                    }
-                    SettingHint(chrome.settingsResetHint.format(targetName))
                 }
             }
         }
