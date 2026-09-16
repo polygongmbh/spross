@@ -16,7 +16,7 @@ The voice follows from that: copy states what is on the table,
 never that something waits for the learner
 ("Lust auf neue Wörter?", not "Neue Wörter warten auf dich";
 "Morgen sind %@ Karten dran", not "warten auf dich").
-This is a box the learner tends, not a streak app that nags,
+This is an orchard the learner tends, not a streak app that nags,
 and material personified into waiting turns an offer into an obligation —
 the learner who comes back late then meets a reproach instead of their words.
 Every prompt, empty state, call to action and forecast line gets the same read:
