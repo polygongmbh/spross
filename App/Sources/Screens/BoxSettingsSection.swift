@@ -59,16 +59,20 @@ struct BoxSettingsSection: View {
     }
 
     private var aboutFooter: some View {
-        VStack(spacing: Theme.spacing.sm) {
+        // The two links carry their own thumb's height, so the stack adds no spacing
+        // of its own — only the version line, which is read and not tapped, asks for one.
+        VStack(spacing: 0) {
             Text(versionText)
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
                 .monospacedDigit()
+                .padding(.bottom, Theme.spacing.sm)
             if let url = feedbackURL {
                 Link(destination: url) {
                     Label("settings.feedback", systemImage: "envelope")
                         .font(Theme.typography.subheadline)
                         .foregroundStyle(Theme.colors.accent)
+                        .frame(maxWidth: .infinity, minHeight: 44)
                 }
                 .buttonStyle(.plain)
             }
@@ -94,6 +98,7 @@ struct BoxSettingsSection: View {
             Label("credits.title", systemImage: "info.circle")
                 .font(Theme.typography.subheadline)
                 .foregroundStyle(Theme.colors.accent)
+                .frame(maxWidth: .infinity, minHeight: 44)
         }
         .buttonStyle(.plain)
     }
