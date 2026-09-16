@@ -408,6 +408,21 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   queue slot and anything filed against it — a typo fixed must not cost the progress made
   on the word. It keeps `addedAt` too: that records when the word was written, and editing
   is not writing it again.
+- **The catalog catching up** (`CatalogMatches`, `BoxEngine.mergeOwnWord`) — a word the
+  learner wrote because the catalog had none, beside the catalog word that has since landed.
+  A match needs one side spelled EXACTLY as the catalog spells it (synonyms, variants and the
+  articled form count), or both sides leaning; `MatchSide` says which agreed, and only `Both`
+  is offered ticked. A lone leaning side is the noise `BoxForms` exists to reject, and the
+  exact side is what makes a one-sided match readable as a correction rather than a neighbor.
+  Own-word cards are never matched against each other — a word cannot catch up with itself.
+  Merging keeps the progress: **the longer log wins, whole, and the two are never folded
+  together** (user ruling 2026-09-16) — two records of learning ONE word replayed as one
+  would read as far more exposure than the word has had and overshoot its stability; a tie
+  goes to the catalog card, since that is the id that survives. Suspended if either was, the
+  queue slot moves across, and a merged suggestion packs the catalog word in its place.
+  The fuzziness is `FormLikeness`, shared with the arrival matcher and deliberately NOT with
+  grading: they share the distance and not the budget, since "did they type this word" and
+  "are these the same word" are different questions (`docs/grading.md`).
   `clearFeedback` is the bulk deletion, and it reaches the OUTBOX rather than the words:
   every suggestion, every remark and every filed report go together, once the learner has
   handed them to whoever maintains the catalog and none has anything left to do here. A word written in

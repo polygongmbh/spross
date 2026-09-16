@@ -2,7 +2,6 @@ package net.spross.kern.box
 
 import net.spross.kern.model.articledForm
 import net.spross.kern.model.caseFolded
-import net.spross.kern.session.AnswerNormalizer
 
 /**
  * Where a pasted pair stands against the box it came home to.
@@ -37,13 +36,10 @@ data class HarvestWord(
  * Built once per paste — a walk of every card — and asked once per pasted line.
  *
  * "Something like it" wants BOTH sides of the pair to lean the same way: a spelling that
- * relates AND a gloss that does not contradict it. Either side alone is noise in a language
- * that builds long words out of short ones — sw `kupotea` ("get lost") is one letter off
- * `kupokea` ("receive") and `anga` ("sky") sits inside `kuchanganya` ("confuse"), and neither
- * is the word the box already teaches. The spelling side catches a slip or two, and a taught
- * word sitting INSIDE a longer one where the extra letters do not outweigh the shared ones —
- * agglutinating languages hand back whole phrases as single words, sw `ninapenda` around
- * `penda`, while `hapa` inside `tunamaliza hapa` is a different word standing next to it.
+ * relates ([FormLikeness]) AND a gloss that does not contradict it. Either side alone is
+ * noise in a language that builds long words out of short ones — sw `kupotea` ("get lost")
+ * is one letter off `kupokea` ("receive") and `anga` ("sky") sits inside `kuchanganya`
+ * ("confuse"), and neither is the word the box already teaches.
  * The gloss side only VETOES: two glosses whose telling words are strangers are two words,
  * and a gloss too short to have telling words says nothing either way.
  */
@@ -93,24 +89,11 @@ internal class BoxForms(state: BoxState) {
         if (target.length < MIN_STEM) return null
         for (form in known) {
             if (form.folded.length < MIN_STEM) continue
-            if (!spellingLeans(target, form.folded)) continue
+            if (!FormLikeness.leans(target, form.folded)) continue
             if (!glossesAgree(gloss, form.gloss)) continue
             return form.shown
         }
         return null
-    }
-
-    /**
-     * One word standing inside the other with the shared letters outweighing the extra ones,
-     * or a spelling a slip or two off.
-     */
-    private fun spellingLeans(one: String, other: String): Boolean {
-        val longest = maxOf(one.length, other.length)
-        val shortest = minOf(one.length, other.length)
-        if (one.contains(other) || other.contains(one)) return shortest * 2 >= longest
-        val slips = if (shortest >= TWO_SLIP_LENGTH) 2 else 1
-        if (longest - shortest > slips) return false
-        return AnswerNormalizer.damerauLevenshtein(one, other) <= slips
     }
 
     /**
@@ -128,11 +111,7 @@ internal class BoxForms(state: BoxState) {
 
     private companion object {
         /** Under this many letters a shared spelling is a coincidence rather than a stem. */
-        const val MIN_STEM = 4
-
-        /** From this length on, a word survives two slips and is still the same word. */
-        const val TWO_SLIP_LENGTH = 8
-
+        const val MIN_STEM = FormLikeness.MIN_STEM
 
         /** A gloss as its telling words: articles and pronouns are too short to count. */
         fun stems(text: String): Set<String> {

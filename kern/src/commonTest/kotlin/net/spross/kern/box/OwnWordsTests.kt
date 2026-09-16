@@ -303,4 +303,69 @@ class OwnWordsTests {
         val state = box()
         assertEquals(state, BoxEngine.setSuspended(state, "nope", true, Box.day1))
     }
+
+    // Moving one onto the catalog word that caught up with it
+
+    /** The word written by hand, answered [answers] times, beside a catalog word. */
+    private fun written(answers: Int): BoxState {
+        var state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
+        repeat(answers) { state = Box.answered(state, umbrella.id, Rating.Good, Box.plusDays(Box.day1, it + 1.0)) }
+        return state
+    }
+
+    @Test
+    fun mergingMovesTheWordsProgressOntoTheCatalogCardAndTakesTheWordOut() {
+        val merged = BoxEngine.mergeOwnWord(written(answers = 2), umbrella.id, "w01")
+        assertEquals(2, merged.scheduling.getValue("w01").reviewCount)
+        assertEquals("w01", merged.scheduling.getValue("w01").cardId)
+        assertNull(merged.scheduling[umbrella.id])
+        assertTrue(merged.ownWords.isEmpty())
+        assertNull(merged.cards[umbrella.id])
+    }
+
+    /**
+     * Two records of learning ONE word. Folding them together would read as twice the
+     * exposure the word has had and overshoot its stability, so the longer one stands whole.
+     */
+    @Test
+    fun theLongerHistoryWinsWhicheverSideItIsOn() {
+        var state = written(answers = 3)
+        state = Box.answered(state, "w01", Rating.Good, Box.day1)
+        assertEquals(3, BoxEngine.mergeOwnWord(state, umbrella.id, "w01").scheduling.getValue("w01").reviewCount)
+
+        var other = written(answers = 1)
+        repeat(4) { other = Box.answered(other, "w01", Rating.Good, Box.plusDays(Box.day1, it + 1.0)) }
+        assertEquals(4, BoxEngine.mergeOwnWord(other, umbrella.id, "w01").scheduling.getValue("w01").reviewCount)
+    }
+
+    @Test
+    fun aWordSetAsideOnEitherSideStaysSetAsideAfterTheMerge() {
+        val state = BoxEngine.setSuspended(written(answers = 2), umbrella.id, true, Box.day1)
+        assertTrue(BoxEngine.mergeOwnWord(state, umbrella.id, "w01").scheduling.getValue("w01").suspended)
+    }
+
+    /** Merging a suggestion is the catalog answering what it was written for. */
+    @Test
+    fun mergingASuggestionPacksTheCatalogWordInItsPlace() {
+        val half = OwnWord(id = "own:sonne", kind = OwnWords.DEFAULT_KIND, emoji = null,
+                           texts = mapOf("de" to "Sonne"))
+        val state = BoxEngine.addOwnWord(box(), half, Box.day1)
+        val merged = BoxEngine.mergeOwnWord(state, half.id, "w01")
+        assertEquals(listOf("w01"), merged.enqueued)
+        assertTrue(merged.ownWords.isEmpty())
+    }
+
+    @Test
+    fun aWordWaitingInTheQueueKeepsItsPlaceUnderTheCatalogId() {
+        val state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
+        assertEquals(listOf("w01"), BoxEngine.mergeOwnWord(state, umbrella.id, "w01").enqueued)
+    }
+
+    @Test
+    fun onlyAWordTheLearnerWroteMergesAndOnlyOntoACardThisProfileHolds() {
+        val state = written(answers = 1)
+        assertEquals(state, BoxEngine.mergeOwnWord(state, "w02", "w01"))
+        assertEquals(state, BoxEngine.mergeOwnWord(state, umbrella.id, "nope"))
+        assertEquals(state, BoxEngine.mergeOwnWord(state, "own:nope", "w01"))
+    }
 }

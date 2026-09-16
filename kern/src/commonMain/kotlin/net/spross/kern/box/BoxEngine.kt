@@ -114,6 +114,53 @@ object BoxEngine {
     }
 
     /**
+     * Move a word the learner wrote onto the catalog word that has caught up with it
+     * ([CatalogMatches] finds the pair), keeping the progress made on either.
+     *
+     * **The longer history wins, whole.** The two logs are never folded together: they are
+     * two records of learning ONE word, and a schedule replayed from both would read as far
+     * more exposure than the word has had and overshoot its stability by a wide margin. The
+     * longer one is the one that describes the word best, and a tie goes to the catalog card,
+     * since that is the id that survives. Suspended if either was — one tap undoes a
+     * suspension where burying one takes the word out of the rotation unasked.
+     *
+     * A suggestion carries no schedule at all, so merging one is the catalog answering what
+     * the learner wrote it for, and the catalog word is packed in its place — by [enqueue],
+     * which is what already declines to pack a card the box has answered.
+     *
+     * The own word goes with its card. Nothing merges a catalog word into another
+     * ([OwnWords.owns] guards the source), and nothing merges into a card this profile does
+     * not hold.
+     */
+    fun mergeOwnWord(state: BoxState, wordId: String, cardId: String): BoxState {
+        if (!OwnWords.owns(wordId) || state.ownWords.none { it.id == wordId }) return state
+        if (OwnWords.owns(cardId) || state.cards[cardId] == null) return state
+        val own = state.scheduling[wordId]
+        val held = state.scheduling[cardId]
+        val winner = when {
+            own == null -> held
+            held == null -> own
+            own.log.size > held.log.size -> own
+            else -> held
+        }?.copy(cardId = cardId, suspended = own?.suspended == true || held?.suspended == true)
+        val words = state.ownWords.filterNot { it.id == wordId }
+        val merged = state.copy(
+            ownWords = words,
+            cards = rebuilt(state, words),
+            scheduling = state.scheduling - wordId + listOfNotNull(winner?.let { cardId to it }),
+            // why: the learner asked for this word once and the catalog now has it, so the
+            // ask moves across rather than being spent on a word that is gone.
+            enqueued = state.enqueued.map { if (it == wordId) cardId else it }.distinct(),
+            reportedIssues = state.reportedIssues.let { filed ->
+                val moved = filed[wordId] ?: return@let filed
+                if (cardId in filed) filed - wordId
+                else filed - wordId + (cardId to moved.copy(cardId = cardId))
+            },
+        )
+        return enqueue(merged, listOf(cardId))
+    }
+
+    /**
      * Empty what waits to be sent on: every suggestion, every note, and every report filed
      * ([Feedback.clearableCount] is what that comes to). The learner has handed the lot
      * to whoever maintains the catalog, and no such entry has anything left to do here.
