@@ -1,0 +1,11 @@
+{
+ "title": "Suoni e udito",
+ "words": {
+  "loud": {
+   "text": "forte",
+   "variants": ["alto"],
+   "notes": { "it": "parla più forte! · forte = robusto." }
+  },
+  "louder": { "text": "Più forte!", "variants": ["Più alto!"] }
+ }
+}

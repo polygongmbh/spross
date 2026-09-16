@@ -1,0 +1,4 @@
+[
+ { "slug": "loud", "kind": "adjective", "emoji": "🔊" },
+ { "slug": "louder", "kind": "phrase", "emoji": "🔊", "components": ["loud"] }
+]

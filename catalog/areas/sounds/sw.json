@@ -1,0 +1,14 @@
+{
+ "title": "Sauti na kusikia",
+ "words": {
+  "loud": {
+   "text": "kwa sauti kubwa",
+   "variants": ["kwa sauti ya juu"],
+   "notes": {
+    "sw": "Zungumza kwa sauti kubwa! · au: kwa sauti ya juu",
+    "de": "kein Adjektiv, sondern adverbial: Sema kwa sauti kubwa."
+   }
+  },
+  "louder": { "text": "Kwa sauti zaidi!", "variants": ["Kwa sauti kubwa zaidi!"] }
+ }
+}

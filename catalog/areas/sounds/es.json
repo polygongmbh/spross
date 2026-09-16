@@ -1,0 +1,12 @@
+{
+ "title": "Sonidos y oído",
+ "words": {
+  "loud": {
+   "text": "alto",
+   "synonyms": ["fuerte"],
+   "variants": ["alta"],
+   "notes": { "es": "habla alto = habla fuerte · alto es de mucha altura" }
+  },
+  "louder": { "text": "¡Más fuerte!", "variants": ["¡Más alto!"] }
+ }
+}
