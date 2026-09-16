@@ -154,8 +154,14 @@ private fun AnswerCard(
             // there is no longer one to give.
             if (!verdict.locked || placed.isNotEmpty()) Box(
                 // why: the row is reserved whether or not anything stands in it, so the bank
-                // below never walks up the screen as the sentence is built.
-                modifier = Modifier.fillMaxWidth().heightIn(min = Theme.reserve.tile),
+                // below never walks up the screen as the sentence is built — and once it is
+                // graded there is no bank to hold still for, so the reserve would only pad the
+                // card's top against a reveal sitting tight at its bottom.
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .then(
+                        if (verdict.locked) Modifier else Modifier.heightIn(min = Theme.reserve.tile),
+                    ),
                 contentAlignment = Alignment.Center,
             ) {
                 if (placed.isEmpty()) {

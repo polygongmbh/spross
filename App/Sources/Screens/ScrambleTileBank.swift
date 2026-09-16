@@ -108,8 +108,11 @@ struct ScrambleTileBank<Reveal: View>: View {
         }
         .frame(maxWidth: .infinity)
         // why: the row is reserved whether or not anything stands in it, so the
-        // bank below never walks up the screen as the sentence is built.
-        .frame(minHeight: Theme.reserve.tile, alignment: .center)
+        // bank below never walks up the screen as the sentence is built — and
+        // once it is graded there is no bank to hold still for, so the reserve
+        // would only pad the card's top against a reveal sitting tight at its
+        // bottom.
+        .frame(minHeight: locked ? nil : Theme.reserve.tile, alignment: .center)
         .overlay {
             if placed.isEmpty {
                 Text("scramble.sentence.hint")
