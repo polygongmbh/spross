@@ -25,8 +25,8 @@ the review loop these share their card and their answering rules with is `design
 - **A step of the ladder is a Sprosse in EVERY interface language**, plural Sprossen:
   it is the brand word (`website.md`),
   so English chrome says "Sprosse 5" where the code and these docs still say Sprosse.
-  Each entry is its own SKILL, which is the only thing that earns a chip —
-  and it is what buys the two scrambles theirs:
+  Each entry is its own DRILL, and earns a chip because it asks a distinct skill —
+  which is what buys the two scrambles theirs:
   spelling a word back and putting words in order are two skills,
   neither of them a way of being asked the other's question.
   Clock, sentences and number forms are not siblings of the numbers drill but ways of being

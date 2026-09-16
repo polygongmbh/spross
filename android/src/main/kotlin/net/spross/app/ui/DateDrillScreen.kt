@@ -24,7 +24,7 @@ fun DateDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, level: Int
         fast = fast,
         page = TypedDrillPage(
             back = Screen.Dates,
-            skill = model.chrome.trainerSkillDates,
+            drill = model.chrome.trainerDrillDates,
             // One key per PAIR, the same one the page reads its best Sprosse back from.
             key = stamp?.let { TrainerStore.datesKey(it.source, it.target) },
             open = { onTone, onReleaseFocus ->

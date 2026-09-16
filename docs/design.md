@@ -337,7 +337,7 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   the day's line, session card (streak flame + the round's counts, or done state),
   the listening card, trainer hub, the companion card, then the 14-day strip and the forest.
   The listening card sits under the round and above the trainers because that is its
-  standing: not what the box asks of the learner, and not a skill to climb, but the way in
+  standing: not what the box asks of the learner, and not a drill to climb, but the way in
   that needs no hands — up whenever this device can actually say both sides of enough words
   (`surfaces.md` § Listening).
   The line over the card carries the LANGUAGE being learned, in words that fit the hour

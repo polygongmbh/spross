@@ -47,8 +47,8 @@ import net.spross.kern.session.AnswerNormalizer
 class TypedDrillPage(
     /** The page the run was started from, and the one its summary lands on. */
     val back: Screen,
-    /** What the result tile on that page calls the exercise. */
-    val skill: String,
+    /** What the result tile on that page calls this drill. */
+    val drill: String,
     /** The store key for THIS pair, or null before a box has landed. */
     val key: String?,
     /** Opens the run — null where the pair has nothing this drill can ask. */
@@ -112,7 +112,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
                 }
             }
         }
-        model.finishDrill(page.back, closed.summary, page.skill)
+        model.finishDrill(page.back, closed.summary, page.drill)
     }
     BackHandler { leave() }
     DrillRunEffects(

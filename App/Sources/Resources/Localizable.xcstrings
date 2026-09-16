@@ -6289,6 +6289,106 @@
         }
       }
     },
+    "trainer.drill.countries" : {
+      "comment" : "the hub entry, and what the result tile says was drilled",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Länder"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Countries"
+          }
+        }
+      }
+    },
+    "trainer.drill.dates" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dates"
+          }
+        }
+      }
+    },
+    "trainer.drill.letters" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buchstaben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letters"
+          }
+        }
+      }
+    },
+    "trainer.drill.numbers" : {
+      "comment" : "the hub entry, and the variant's own name",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahlen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numbers"
+          }
+        }
+      }
+    },
+    "trainer.drill.sentenceScramble" : {
+      "comment" : "hub chip: putting a phrase's words back in order",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satzpuzzle"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sentence scramble"
+          }
+        }
+      }
+    },
+    "trainer.drill.wordScramble" : {
+      "comment" : "hub chip: writing a word back out of its mixed letters",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wortpuzzle"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Word scramble"
+          }
+        }
+      }
+    },
     "trainer.hub.subtitle" : {
       "comment" : "what free practice is, under its name",
       "localizations" : {
@@ -6610,106 +6710,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "🔥 %@ in a row"
-          }
-        }
-      }
-    },
-    "trainer.skill.countries" : {
-      "comment" : "the hub entry, and what the result tile says was drilled",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Länder"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Countries"
-          }
-        }
-      }
-    },
-    "trainer.skill.dates" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Datum"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dates"
-          }
-        }
-      }
-    },
-    "trainer.skill.letters" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buchstaben"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Letters"
-          }
-        }
-      }
-    },
-    "trainer.skill.numbers" : {
-      "comment" : "the hub entry, and the variant's own name",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zahlen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Numbers"
-          }
-        }
-      }
-    },
-    "trainer.skill.sentenceScramble" : {
-      "comment" : "hub chip: putting a phrase's words back in order",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Satzpuzzle"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sentence scramble"
-          }
-        }
-      }
-    },
-    "trainer.skill.wordScramble" : {
-      "comment" : "hub chip: writing a word back out of its mixed letters",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wortpuzzle"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Word scramble"
           }
         }
       }

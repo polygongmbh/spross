@@ -259,7 +259,7 @@ struct SentenceScrambleView: View {
             dismiss()
             return
         }
-        onFinish(DrillRunResult(summary, title: "trainer.skill.sentenceScramble"))
+        onFinish(DrillRunResult(summary, title: "trainer.drill.sentenceScramble"))
         dismiss()
     }
 }

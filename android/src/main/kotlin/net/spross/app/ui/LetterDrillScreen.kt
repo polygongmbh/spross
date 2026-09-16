@@ -88,7 +88,7 @@ fun LetterDrillScreen(model: AppModel) {
     // figures. The letter drill books no Sprosse and keeps no record, so it stores nothing.
     val leave = {
         val closed = flow.close()
-        model.finishDrill(Screen.Letters, closed.summary, chrome.trainerSkillLetters)
+        model.finishDrill(Screen.Letters, closed.summary, chrome.trainerDrillLetters)
     }
     BackHandler { leave() }
     DrillRunEffects(

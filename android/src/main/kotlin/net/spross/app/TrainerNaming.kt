@@ -18,7 +18,7 @@ import net.spross.kern.trainer.numbersExerciseEmoji
  */
 
 fun Chrome.name(exercise: NumbersExercise): String = when (exercise) {
-    NumbersExercise.Counting -> trainerSkillNumbers
+    NumbersExercise.Counting -> trainerDrillNumbers
     NumbersExercise.Clock -> trainerVariantClock
     NumbersExercise.Phrases -> trainerVariantPhrases
     NumbersExercise.Forms -> trainerVariantForms

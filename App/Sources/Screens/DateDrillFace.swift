@@ -20,7 +20,7 @@ enum DateDrillFace: DrillFace {
 
     static var key: String { "dates" }
 
-    static var resultTitle: LocalizedStringKey { "trainer.skill.dates" }
+    static var resultTitle: LocalizedStringKey { "trainer.drill.dates" }
 
     static func title(_ language: String) -> LocalizedStringKey { "dates.title \(language)" }
 

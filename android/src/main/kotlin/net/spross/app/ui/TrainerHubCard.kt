@@ -47,9 +47,9 @@ data class HubChip(val emoji: String, val title: String, val open: () -> Unit)
  * Up to SIX entries, on one row while there are no more than three of them and on two lines
  * past that ([chipRows]). The four that have reading matter open a PAGE rather than a run —
  * the reading and the drill it prepares you for are one surface — where the two scrambles,
- * whose material is the box itself, open their run. Each is its own SKILL, which is the only
- * thing that earns a chip; what each one gates on is `DrillAvailability`. A card with no
- * entry at all is absent rather than empty (`docs/drills.md`).
+ * whose material is the box itself, open their run. Each is its own DRILL, and earns a chip
+ * because it asks a distinct skill; what each one gates on is `DrillAvailability`.
+ * A card with no entry at all is absent rather than empty (`docs/drills.md`).
  */
 @Composable
 fun TrainerHubCard(model: AppModel) {
@@ -108,15 +108,15 @@ fun chipRows(chips: List<HubChip>): List<List<HubChip>> = when {
 private fun AppModel.hubChips(chrome: Chrome): List<HubChip> {
     if (!trainerHubOffered) return emptyList()
     val chips = mutableListOf<HubChip>()
-    if (numbersOffered) chips += HubChip("🔢", chrome.trainerSkillNumbers) { openNumbers() }
-    if (lettersOffered) chips += HubChip("🔤", chrome.trainerSkillLetters) { openLetters() }
-    if (countriesOffered) chips += HubChip("🌍", chrome.trainerSkillCountries) { openCountries() }
-    if (datesOffered) chips += HubChip("📅", chrome.trainerSkillDates) { openDates() }
+    if (numbersOffered) chips += HubChip("🔢", chrome.trainerDrillNumbers) { openNumbers() }
+    if (lettersOffered) chips += HubChip("🔤", chrome.trainerDrillLetters) { openLetters() }
+    if (countriesOffered) chips += HubChip("🌍", chrome.trainerDrillCountries) { openCountries() }
+    if (datesOffered) chips += HubChip("📅", chrome.trainerDrillDates) { openDates() }
     if (wordScrambleOffered) {
-        chips += HubChip("🔀", chrome.trainerSkillWordScramble) { startWordScramble() }
+        chips += HubChip("🔀", chrome.trainerDrillWordScramble) { startWordScramble() }
     }
     if (sentenceScrambleOffered) {
-        chips += HubChip("🧩", chrome.trainerSkillSentenceScramble) { startSentenceScramble() }
+        chips += HubChip("🧩", chrome.trainerDrillSentenceScramble) { startSentenceScramble() }
     }
     return chips
 }

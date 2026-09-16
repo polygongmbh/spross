@@ -18,7 +18,7 @@ enum CountryDrillFace: DrillFace {
 
     static var key: String { "countries" }
 
-    static var resultTitle: LocalizedStringKey { "trainer.skill.countries" }
+    static var resultTitle: LocalizedStringKey { "trainer.drill.countries" }
 
     static func title(_ language: String) -> LocalizedStringKey { "countries.title \(language)" }
 

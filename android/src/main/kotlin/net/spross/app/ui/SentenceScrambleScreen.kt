@@ -69,7 +69,7 @@ fun SentenceScrambleScreen(model: AppModel) {
         // why: what the NEXT run reads — it opens on the lowest Sprosse the mask does not
         // hold, so a Sprosse climbed clean is never asked for twice.
         model.trainer.store.bookCleared(flow.clearedKey, closed.clearedSprossen)
-        model.finishDrill(Screen.Home, closed.summary, chrome.trainerSkillSentenceScramble)
+        model.finishDrill(Screen.Home, closed.summary, chrome.trainerDrillSentenceScramble)
     }
     BackHandler { leave() }
     DrillRunEffects(

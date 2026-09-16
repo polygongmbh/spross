@@ -130,7 +130,7 @@ interface Chrome {
     val trainerHubTitle: String
     val trainerHubSubtitle: String
     val a11ySuffixPractice: String
-    val trainerSkillLetters: String
+    val trainerDrillLetters: String
     val lettersAskHear: String
     val lettersAskSpell: String
     val lettersAskDictation: String
@@ -161,7 +161,7 @@ interface Chrome {
 
     // ── The three overview pages ────────────────────────────────────────────────
     val commonClose: String
-    val trainerSkillNumbers: String
+    val trainerDrillNumbers: String
     val numbersTitle: String       // %s
     val lettersTitle: String       // %s
     val trainerOverviewPractice: String
@@ -213,7 +213,7 @@ interface Chrome {
     val lettersAlphabetSpeakExample: String
 
     // ── The atlas: the Countries page and its run ───────────────────────────────
-    val trainerSkillCountries: String
+    val trainerDrillCountries: String
     val countriesTitle: String     // %s
     val countriesReference: String
     val countriesReverseHint: String // %1$s %2$s
@@ -234,7 +234,7 @@ interface Chrome {
     val countriesAskSpokenWhere: String
 
     // ── The calendar: the Dates page and its run ────────────────────────────────
-    val trainerSkillDates: String
+    val trainerDrillDates: String
     val datesTitle: String     // %s
     val datesReference: String
     val datesReverseHint: String // %1$s %2$s
@@ -252,8 +252,8 @@ interface Chrome {
     val datesAskDate: String
 
     // ── The two scrambles: the chips, and the tile bank one of them is arranged on ──
-    val trainerSkillWordScramble: String
-    val trainerSkillSentenceScramble: String
+    val trainerDrillWordScramble: String
+    val trainerDrillSentenceScramble: String
     /** The empty answer row wears it — the whole instruction a tile bank needs. */
     val scrambleSentenceHint: String
     /** What the answer row and the bank are CALLED; the row's value is kern's `arranged`. */

@@ -151,31 +151,31 @@ struct TrainerHubView: View, LanguageNaming {
             // the clock and the sentences, and whatever the ladder has opened.
             // layer-ok: the chip IS the numbers one — reading its own emoji, not picking a reading
             chips.append(.init(emoji: numbersReadingEmoji(reading: .cardinal),
-                               title: "trainer.skill.numbers",
+                               title: "trainer.drill.numbers",
                                destination: .numbers(language: language)))
         }
         if alphabetAvailable {
-            chips.append(.init(emoji: "🔤", title: "trainer.skill.letters",
+            chips.append(.init(emoji: "🔤", title: "trainer.drill.letters",
                                destination: .letters(language: language)))
         }
         if let pair = atlasPair {
             // The atlas: the countries of the two languages first, then the
             // world outward — read on the page, drilled from it.
-            chips.append(.init(emoji: "🌍", title: "trainer.skill.countries",
+            chips.append(.init(emoji: "🌍", title: "trainer.drill.countries",
                                destination: .countries(source: pair.source, target: pair.target)))
         }
         if let pair = datesPair {
             // The calendar: the weekday and month names drilled alone, and the
             // whole spoken date assembled out of them from the same page.
-            chips.append(.init(emoji: "📅", title: "trainer.skill.dates",
+            chips.append(.init(emoji: "📅", title: "trainer.drill.dates",
                                destination: .dates(source: pair.source, target: pair.target)))
         }
         if wordScrambleAvailable {
-            chips.append(.init(emoji: "🔀", title: "trainer.skill.wordScramble",
+            chips.append(.init(emoji: "🔀", title: "trainer.drill.wordScramble",
                                destination: .wordScramble(language: language)))
         }
         if sentenceScrambleAvailable {
-            chips.append(.init(emoji: "🧩", title: "trainer.skill.sentenceScramble",
+            chips.append(.init(emoji: "🧩", title: "trainer.drill.sentenceScramble",
                                destination: .sentenceScramble(language: language)))
         }
         return chips
@@ -245,7 +245,7 @@ extension NumbersReading {
     /// Catalog key for the drill title.
     var trainerTitleKey: LocalizedStringKey {
         switch self {
-        case .cardinal: return "trainer.skill.numbers"
+        case .cardinal: return "trainer.drill.numbers"
         case .year: return "trainer.variant.years"
         case .clock: return "trainer.variant.clock"
         case .form, .fraction: return "trainer.variant.forms"
@@ -261,7 +261,7 @@ extension NumbersExercise {
     var trainerTitleKey: LocalizedStringKey {
         switch self {
         case .phrases: return "trainer.variant.phrases"
-        case .counting, .clock, .forms: return reading?.trainerTitleKey ?? "trainer.skill.numbers"
+        case .counting, .clock, .forms: return reading?.trainerTitleKey ?? "trainer.drill.numbers"
         }
     }
 }

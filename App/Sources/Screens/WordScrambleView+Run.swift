@@ -161,7 +161,7 @@ extension WordScrambleView {
             return
         }
         answerFocused = false
-        onFinish(DrillRunResult(summary, title: "trainer.skill.wordScramble"))
+        onFinish(DrillRunResult(summary, title: "trainer.drill.wordScramble"))
         dismiss()
     }
 }

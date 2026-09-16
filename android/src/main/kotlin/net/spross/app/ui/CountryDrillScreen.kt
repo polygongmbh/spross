@@ -23,7 +23,7 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, level: 
         fast = fast,
         page = TypedDrillPage(
             back = Screen.Countries,
-            skill = model.chrome.trainerSkillCountries,
+            drill = model.chrome.trainerDrillCountries,
             // One key per PAIR, the same one the page reads its best Sprosse back from.
             key = stamp?.let { TrainerStore.countriesKey(it.source, it.target) },
             open = { onTone, onReleaseFocus ->

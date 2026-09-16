@@ -70,7 +70,7 @@ extension LetterDrillView {
             return
         }
         answerFocused = false
-        onFinish(DrillRunResult(summary, title: "trainer.skill.letters"))
+        onFinish(DrillRunResult(summary, title: "trainer.drill.letters"))
         dismiss()
     }
 

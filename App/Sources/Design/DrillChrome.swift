@@ -163,8 +163,8 @@ struct DrillResultTile: View {
 #Preview("Result tile · record") {
     VStack(spacing: Theme.spacing.lg) {
         DrillResultTile(result: DrillRunResult(doneCount: 17, bestStreak: 12, newRecord: true,
-                                               tier: .trophy, title: "trainer.skill.numbers"))
-        DrillResultTile(result: DrillRunResult(doneCount: 4, bestStreak: 1, title: "trainer.skill.letters"))
+                                               tier: .trophy, title: "trainer.drill.numbers"))
+        DrillResultTile(result: DrillRunResult(doneCount: 4, bestStreak: 1, title: "trainer.drill.letters"))
     }
     .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
