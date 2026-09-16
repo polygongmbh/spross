@@ -14,7 +14,7 @@ options:
 settings:
   base:
     CURRENT_PROJECT_VERSION: 1
-    MARKETING_VERSION: 7.1.3
+    MARKETING_VERSION: 7.1.4
     SWIFT_VERSION: "6.0"
     CODE_SIGN_STYLE: Automatic
     # why: SprossKern ships ONE simulator slice, arm64 (scripts/build-kern.sh).

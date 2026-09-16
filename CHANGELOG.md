@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.1.4 — 2026-09-16
+
 - Sentence scramble now accepts a phrase's other valid word orders instead of marking them wrong.
 - Two new shelves, Sounds and Practice, take words that were sitting in Conversation and School.
 - The box now keeps your place when you switch the language you are learning or reveal a word you searched for.
