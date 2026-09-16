@@ -6,7 +6,6 @@
   "to-understand": { "text": "розуміти" },
   "to-speak": { "text": "говорити" },
   "to-repeat-word": { "text": "повторювати слово" },
-  "loud": { "text": "гучний", "variants": ["голосний", "гучно", "голосно"] },
   "to-ask": { "text": "питати" },
   "question": { "text": "запитання", "grammar": { "plural": "=" } },
   "answer": { "text": "відповідь" },
@@ -20,15 +19,16 @@
   "to-show": { "text": "показувати" },
   "to-explain": { "text": "пояснювати" },
   "to-say": { "text": "казати" },
+  "loud": { "text": "гучний", "variants": ["голосний", "гучно", "голосно"] },
   "i-dont-understand": { "text": "Я не розумію.", "variants": ["Я вас не розумію.", "Я тебе не розумію."] },
   "can-you-repeat-that": { "text": "Чи можете ви це повторити?", "variants": ["Можеш це повторити?"] },
   "slower": { "text": "Повільніше!" },
   "i-cant-hear-you": { "text": "Я вас не чую.", "variants": ["Я тебе не чую."] },
-  "louder": { "text": "Голосніше!", "variants": ["Гучніше!"] },
   "do-you-speak-english": { "text": "Ви розмовляєте англійською?" },
   "you-can-do-it": { "text": "Ти точно впораєшся!" },
   "i-need-help": { "text": "Мені потрібна допомога." },
   "i-dont-know": { "text": "Я не знаю." },
-  "what-is-this-called": { "text": "Як це називається?" }
+  "what-is-this-called": { "text": "Як це називається?" },
+  "louder": { "text": "Голосніше!", "variants": ["Гучніше!"] }
  }
 }

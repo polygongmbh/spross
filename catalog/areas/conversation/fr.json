@@ -15,7 +15,6 @@
    }
   },
   "to-repeat-word": { "text": "répéter le mot" },
-  "loud": { "text": "fort", "variants": ["forte"], "notes": { "fr": "parle fort ! · fort = puissant." } },
   "to-ask": {
    "text": "demander",
    "notes": {
@@ -41,6 +40,7 @@
   "to-show": { "text": "montrer" },
   "to-explain": { "text": "expliquer" },
   "to-say": { "text": "dire" },
+  "loud": { "text": "fort", "variants": ["forte"], "notes": { "fr": "parle fort ! · fort = puissant." } },
   "i-dont-understand": {
    "text": "Je ne comprends pas.",
    "variants": ["Je ne vous comprends pas.", "Je ne te comprends pas."]
@@ -51,7 +51,6 @@
   },
   "slower": { "text": "Plus lentement !", "variants": ["Moins vite !"] },
   "i-cant-hear-you": { "text": "Je ne vous entends pas.", "variants": ["Je ne t'entends pas."] },
-  "louder": { "text": "Plus fort !" },
   "do-you-speak-english": {
    "text": "Parlez-vous anglais ?",
    "variants": ["Vous parlez anglais ?", "Parles-tu anglais ?", "Tu parles anglais ?"]
@@ -62,6 +61,7 @@
   },
   "i-need-help": { "text": "J'ai besoin d'aide." },
   "i-dont-know": { "text": "Je ne sais pas.", "variants": ["Je sais pas."] },
-  "what-is-this-called": { "text": "Comment appelle-t-on ça ?", "variants": ["Comment ça s'appelle ?"] }
+  "what-is-this-called": { "text": "Comment appelle-t-on ça ?", "variants": ["Comment ça s'appelle ?"] },
+  "louder": { "text": "Plus fort !" }
  }
 }

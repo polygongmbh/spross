@@ -6,7 +6,6 @@
   "to-understand": { "text": "kompreni" },
   "to-speak": { "text": "paroli" },
   "to-repeat-word": { "text": "ripeti la vorton" },
-  "loud": { "text": "laŭta", "variants": ["laŭte"] },
   "to-ask": { "text": "demandi" },
   "question": { "text": "demando" },
   "answer": { "text": "respondo" },
@@ -26,15 +25,16 @@
   "to-show": { "text": "montri" },
   "to-explain": { "text": "klarigi" },
   "to-say": { "text": "diri" },
+  "loud": { "text": "laŭta", "variants": ["laŭte"] },
   "i-dont-understand": { "text": "Mi ne komprenas.", "variants": ["Mi ne komprenas vin."] },
   "can-you-repeat-that": { "text": "Ĉu vi povas ripeti tion?" },
   "slower": { "text": "Pli malrapide!" },
   "i-cant-hear-you": { "text": "Mi ne povas aŭdi vin.", "variants": ["Mi ne aŭdas vin."] },
-  "louder": { "text": "Pli laŭte!" },
   "do-you-speak-english": { "text": "Ĉu vi parolas la anglan?", "variants": ["Ĉu vi parolas angle?"] },
   "you-can-do-it": { "text": "Vi certe sukcesos!" },
   "i-need-help": { "text": "Mi bezonas helpon." },
   "i-dont-know": { "text": "Mi ne scias." },
-  "what-is-this-called": { "text": "Kiel oni nomas tion?", "variants": ["Kiel tio nomiĝas?"] }
+  "what-is-this-called": { "text": "Kiel oni nomas tion?", "variants": ["Kiel tio nomiĝas?"] },
+  "louder": { "text": "Pli laŭte!" }
  }
 }

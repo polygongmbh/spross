@@ -6,12 +6,6 @@
   "to-understand": { "text": "entender", "synonyms": ["comprender"] },
   "to-speak": { "text": "hablar" },
   "to-repeat-word": { "text": "repetir la palabra" },
-  "loud": {
-   "text": "alto",
-   "synonyms": ["fuerte"],
-   "variants": ["alta"],
-   "notes": { "es": "habla alto = habla fuerte · alto es de mucha altura" }
-  },
   "to-ask": { "text": "preguntar" },
   "question": { "text": "pregunta", "grammar": { "gender": "la" } },
   "answer": { "text": "respuesta", "grammar": { "gender": "la" } },
@@ -31,6 +25,12 @@
   "to-show": { "text": "mostrar" },
   "to-explain": { "text": "explicar" },
   "to-say": { "text": "decir" },
+  "loud": {
+   "text": "alto",
+   "synonyms": ["fuerte"],
+   "variants": ["alta"],
+   "notes": { "es": "habla alto = habla fuerte · alto es de mucha altura" }
+  },
   "i-dont-understand": {
    "text": "No entiendo.",
    "synonyms": ["No comprendo."],
@@ -42,11 +42,11 @@
   },
   "slower": { "text": "¡Más despacio!", "variants": ["¡Más lento!"] },
   "i-cant-hear-you": { "text": "No le oigo.", "variants": ["No te oigo.", "No lo oigo.", "No la oigo."] },
-  "louder": { "text": "¡Más fuerte!", "variants": ["¡Más alto!"] },
   "do-you-speak-english": { "text": "¿Habla usted inglés?", "variants": ["¿Habla inglés?", "¿Hablas inglés?"] },
   "you-can-do-it": { "text": "¡Seguro que lo consigues!", "variants": ["¡Tú puedes!", "¡Seguro que lo logras!"] },
   "i-need-help": { "text": "Necesito ayuda." },
   "i-dont-know": { "text": "No lo sé.", "variants": ["No sé."] },
-  "what-is-this-called": { "text": "¿Cómo se llama esto?" }
+  "what-is-this-called": { "text": "¿Cómo se llama esto?" },
+  "louder": { "text": "¡Más fuerte!", "variants": ["¡Más alto!"] }
  }
 }
