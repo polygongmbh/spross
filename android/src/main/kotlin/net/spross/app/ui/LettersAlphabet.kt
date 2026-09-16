@@ -99,8 +99,8 @@ private fun AlphabetRow(
     val exampleText = example?.text ?: entry.exampleText
     val speakExample = exampleText?.let { model.speakOnTap(model.formPronunciation(it, language)) }
     val actions = listOfNotNull(
-        speakName?.let { CustomAccessibilityAction(chrome.lettersAlphabetSpeakName) { it(); true } },
-        speakExample?.let { CustomAccessibilityAction(chrome.lettersAlphabetSpeakExample) { it(); true } },
+        speakName?.let { CustomAccessibilityAction(chrome.a11yLettersAlphabetSpeakName) { it(); true } },
+        speakExample?.let { CustomAccessibilityAction(chrome.a11yLettersAlphabetSpeakExample) { it(); true } },
     )
     Column(
         modifier = Modifier

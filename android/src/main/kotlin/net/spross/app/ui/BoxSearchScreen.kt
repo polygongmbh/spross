@@ -123,7 +123,7 @@ fun BoxSearchScreen(
                 if (query.isNotEmpty()) {
                     TextButton(
                         onClick = { query = "" },
-                        modifier = Modifier.semantics { contentDescription = chrome.boxSearchClear },
+                        modifier = Modifier.semantics { contentDescription = chrome.a11yBoxSearchClear },
                     ) { Icon(SprossIcons.Close, contentDescription = null) }
                 }
             },

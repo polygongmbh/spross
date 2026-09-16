@@ -95,7 +95,7 @@ private fun StageRow(
             // why: one stage is one TalkBack stop — the mark and the name describe a single
             // thing, and the state says what the filled circle says.
             .semantics(mergeDescendants = true) {
-                if (entry) stateDescription = chrome.trainerSprosseEntry
+                if (entry) stateDescription = chrome.a11yTrainerSprosseEntry
             },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),

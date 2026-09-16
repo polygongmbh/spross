@@ -139,7 +139,7 @@ fun BoxCardRow(
                 if (pronounce == null) {
                     Icon(
                         SprossIcons.SpeakerOff,
-                        contentDescription = chrome.boxCardNoAudio,
+                        contentDescription = chrome.a11yBoxCardNoAudio,
                         tint = Theme.colors.textSecondary,
                         modifier = Modifier.size(SPEAKER_GLYPH),
                     )
@@ -155,7 +155,7 @@ fun BoxCardRow(
         // why: standing apart from the badge on purpose — a report says nothing about where
         // the word stands, and a reported word keeps whatever badge it had.
         if (model.reportedIssue(card.id) != null) {
-            Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.reportReported })
+            Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.a11yReportReported })
         }
         CardStanding(model, card, standing, pack, chrome)
         BoxRowMenu(
@@ -187,7 +187,7 @@ private fun CardStanding(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
         ) {
-            Text("💤", modifier = Modifier.semantics { contentDescription = chrome.boxCardSuspended })
+            Text("💤", modifier = Modifier.semantics { contentDescription = chrome.a11yBoxCardSuspended })
             TextButton(onClick = {
                 model.updateBox { BoxEngine.setSuspended(it, card.id, false, model.now()) }
             }) {

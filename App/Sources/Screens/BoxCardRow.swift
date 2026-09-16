@@ -152,7 +152,7 @@ struct BoxCardRow: View {
                         Image(systemName: "speaker.slash")
                             .font(.caption2)
                             .foregroundStyle(Theme.colors.textSecondary)
-                            .accessibilityLabel("box.card.noAudio")
+                            .accessibilityLabel("a11y.box.card.noAudio")
                     }
                 }
                 Text(card.source.text)
@@ -166,7 +166,7 @@ struct BoxCardRow: View {
             // whatever badge it had.
             if model.reportedIssue(for: card.id) != nil {
                 Text(verbatim: "🚩")
-                    .accessibilityLabel("report.reported")
+                    .accessibilityLabel("a11y.report.reported")
             }
             standing
         }
@@ -211,7 +211,7 @@ struct BoxCardRow: View {
         switch onEnum(of: model.cardRowState(card.id, packOffered: pack != nil)) {
         case .sleeping:
             Text(verbatim: "💤")
-                .accessibilityLabel("box.card.suspended")
+                .accessibilityLabel("a11y.box.card.suspended")
             Button("box.card.wake") {
                 model.setSuspended(cardID: card.id, suspended: false)
             }

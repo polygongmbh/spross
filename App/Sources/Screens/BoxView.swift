@@ -307,7 +307,7 @@ private struct BoxAreaSection: View {
             // Ochre, where unpacking is clay: the pair reads as two directions rather
             // than one control, and neither wears a growth-ladder color.
             .buttonStyle(IconButtonStyle(color: Theme.colors.amber))
-            .accessibilityLabel(Text("box.shelf.pack \(count.formatted())"))
+            .accessibilityLabel(Text("a11y.box.shelf.pack \(count.formatted())"))
         } else if queued > 2 {
             Button {
                 model.dequeueArea(area)
@@ -316,14 +316,14 @@ private struct BoxAreaSection: View {
             }
             // Clay, matching the queued pill it takes back out.
             .buttonStyle(IconButtonStyle(color: Theme.colors.accent))
-            .accessibilityLabel(Text("box.shelf.unpack \(queued.formatted())"))
+            .accessibilityLabel(Text("a11y.box.shelf.unpack \(queued.formatted())"))
         } else {
             let mature = queued == 0 && (model.areaStats(area)?.mature ?? false)
             Image(systemName: "checkmark.circle.fill")
                 .font(Theme.typography.headline)
                 .foregroundStyle(mature ? Theme.colors.grown : Theme.colors.success)
                 .frame(width: 40, height: 40)
-                .accessibilityLabel(Text("box.shelf.packed"))
+                .accessibilityLabel(Text("a11y.box.shelf.packed"))
         }
     }
 

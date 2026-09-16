@@ -77,7 +77,7 @@ extension LettersOverview {
         // why: one stage is one VoiceOver stop — the mark and the name describe a
         // single thing, and the value says what the filled circle says.
         .accessibilityElement(children: .combine)
-        .accessibilityValue(Text(entry ? "trainer.sprosse.entry" : ""))
+        .accessibilityValue(Text(entry ? "a11y.trainer.sprosse.entry" : ""))
     }
 
     private static func title(_ stage: LetterStage) -> LocalizedStringKey {

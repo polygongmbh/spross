@@ -178,9 +178,9 @@ private fun SprosseRow(
     onClick: () -> Unit,
 ) {
     val state = when {
-        entry -> chrome.trainerSprosseEntry
-        mark == SprosseMark.Cleared -> chrome.trainerSprosseCleared
-        mark == SprosseMark.Reached -> chrome.trainerSprosseReached
+        entry -> chrome.a11yTrainerSprosseEntry
+        mark == SprosseMark.Cleared -> chrome.a11yTrainerSprosseCleared
+        mark == SprosseMark.Reached -> chrome.a11yTrainerSprosseReached
         else -> null
     }
     Row(

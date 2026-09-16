@@ -203,8 +203,8 @@ enum SprosseMark {
     var a11y: LocalizedStringKey? {
         switch self {
         case .untouched: return nil
-        case .reached: return "trainer.sprosse.reached"
-        case .cleared: return "trainer.sprosse.cleared"
+        case .reached: return "a11y.trainer.sprosse.reached"
+        case .cleared: return "a11y.trainer.sprosse.cleared"
         }
     }
 }

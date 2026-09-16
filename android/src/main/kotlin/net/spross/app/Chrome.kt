@@ -140,9 +140,9 @@ interface Chrome {
     val trainerSprosse: String             // %d
     val trainerLadderTap: String
     val trainerLadderBest: String          // %1$s %2$s
-    val trainerSprosseEntry: String
-    val trainerSprosseReached: String
-    val trainerSprosseCleared: String
+    val a11yTrainerSprosseEntry: String
+    val a11yTrainerSprosseReached: String
+    val a11yTrainerSprosseCleared: String
     val trainerRunStreak: String            // %d
     // The two captions an amber hold wears; the form itself follows, composed by
     // the reader, so the words stay one string and the layout stays each phone's.
@@ -168,7 +168,7 @@ interface Chrome {
     val trainerOverviewStart: String
     val trainerReferenceTapToHear: String
     val boxTapToHear: String
-    val boxCardNoAudio: String
+    val a11yBoxCardNoAudio: String
     val numbersReference: String
     val commonNotes: String
     val datesNewWord: String                // %s
@@ -209,8 +209,8 @@ interface Chrome {
     val lettersStageDictationLocked: String
     val lettersUnavailable: String
     val lettersAlphabetTitle: String
-    val lettersAlphabetSpeakName: String
-    val lettersAlphabetSpeakExample: String
+    val a11yLettersAlphabetSpeakName: String
+    val a11yLettersAlphabetSpeakExample: String
 
     // ── The atlas: the Countries page and its run ───────────────────────────────
     val trainerDrillCountries: String
@@ -271,15 +271,15 @@ interface Chrome {
     val boxOwnWordComment: String
     /** What the form says while the note is all there is: nothing is being learned. */
     val boxOwnWordExplainerRemark: String
-    val boxShelfPack: String          // %d
-    val boxShelfPacked: String
+    val a11yBoxShelfPack: String          // %d
+    val a11yBoxShelfPacked: String
     /** The jump from a search hit to the shelf the word lives on. */
     val boxCardShowInBox: String
     val boxCardPack: String
     val boxCardUnpack: String
-    val boxShelfUnpack: String
+    val a11yBoxShelfUnpack: String
     val boxCardQueued: String
-    val boxCardSuspended: String
+    val a11yBoxCardSuspended: String
     val boxCardWake: String
     val boxCardSleep: String
     /** Whole days of the card's stability, on the long press. */
@@ -293,7 +293,7 @@ interface Chrome {
     val boxCardActions: String
     val boxCardForget: String
     val boxCardOwnFrom: String
-    val reportReported: String
+    val a11yReportReported: String
     val progressConsolidatedCount: String // %d
     val progressLearningCount: String  // %d
     val boxAreaPhrasesLockedShort: String // %d
@@ -306,12 +306,12 @@ interface Chrome {
     // that, a row reads one of four: [boxPhaseLearning] while walking the learning steps,
     // [boxPhaseRelearning] the same Sprosse after a lapse (same color/icon, its own word),
     // [boxPhaseSettled] once in Review but short of the consolidated bar, and
-    // [boxPhaseConsolidated] once a card has cleared it — the shelf's own count stays the
+    // [a11yBoxPhaseConsolidated] once a card has cleared it — the shelf's own count stays the
     // two-way consolidated/learning split it has always been (`AreaStatistics.learning`).
     val boxPhaseLearning: String
     val boxPhaseRelearning: String
     val boxPhaseSettled: String
-    val boxPhaseConsolidated: String
+    val a11yBoxPhaseConsolidated: String
 
     // ── Box search ──────────────────────────────────────────────────────────────
     val boxSearchButton: String
@@ -321,7 +321,7 @@ interface Chrome {
     val boxSearchWords: String
     val boxSearchNothing: String     // %s
     val boxSearchWriteOwn: String    // %s
-    val boxSearchClear: String
+    val a11yBoxSearchClear: String
 
     // ── Own-word form ───────────────────────────────────────────────────────────
     val boxOwnWordTitle: String
@@ -350,7 +350,7 @@ interface Chrome {
     /** The block of bare notes — what the learner said that names no word at all. */
     val boxOwnNotes: String
     val boxOwnReported: String
-    val boxOwnWordAddAction: String
+    val a11yBoxOwnWordAddAction: String
 
     // ── Feedback to the catalog ─────────────────────────────────────────────────
     val boxOwnWordNeedsTranslation: String

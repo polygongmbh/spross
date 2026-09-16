@@ -85,6 +85,139 @@
         }
       }
     },
+    "a11y.box.card.noAudio" : {
+      "comment" : "Beside a word neither a recording nor the device's voice can say — the tap that does nothing.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Ton für dieses Wort"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No audio for this word"
+          }
+        }
+      }
+    },
+    "a11y.box.card.suspended" : {
+      "comment" : "the sleeping mark's name",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pausiert"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paused"
+          }
+        }
+      }
+    },
+    "a11y.box.own.word.addAction" : {
+      "comment" : "The section's way into the form — the one that does not start from a failed search.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wort hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a word"
+          }
+        }
+      }
+    },
+    "a11y.box.phase.consolidated" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Steht"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grown"
+          }
+        }
+      }
+    },
+    "a11y.box.search.clear" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suche löschen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear search"
+          }
+        }
+      }
+    },
+    "a11y.box.shelf.pack %@" : {
+      "comment" : "%d = what packing this shelf would add",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ aussäen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sow (%@)"
+          }
+        }
+      }
+    },
+    "a11y.box.shelf.packed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles gesät"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All sown"
+          }
+        }
+      }
+    },
+    "a11y.box.shelf.unpack %@" : {
+      "comment" : "A shelf's own control, taking its whole queue back out. %d = what it would remove.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ zurücknehmen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take back (%@)"
+          }
+        }
+      }
+    },
     "a11y.count.activity14Days %lld" : {
       "comment" : "%d = days worked inside the window",
       "localizations" : {
@@ -234,6 +367,55 @@
         }
       }
     },
+    "a11y.letters.alphabet.speakExample" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beispiel anhören"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hear the example"
+          }
+        }
+      }
+    },
+    "a11y.letters.alphabet.speakName" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name anhören"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hear the name"
+          }
+        }
+      }
+    },
+    "a11y.report.reported" : {
+      "comment" : "The flag a reported word wears. Its own mark, said apart from a11y.box.card.suspended — a report says nothing about where the word stands, and a reported word keeps whatever badge it had.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemeldet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reported"
+          }
+        }
+      }
+    },
     "a11y.scramble.arrangement" : {
       "comment" : "the sentence-scramble answer row; its value is the sentence built so far",
       "localizations" : {
@@ -363,6 +545,60 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ", record %@"
+          }
+        }
+      }
+    },
+    "a11y.trainer.sprosse.cleared" : {
+      "comment" : "Screen-reader value of a Sprosse row a run has answered out",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "alle Fragen beantwortet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "every question answered"
+          }
+        }
+      }
+    },
+    "a11y.trainer.sprosse.entry" : {
+      "comment" : "Screen-reader value of the Sprosse row a run opens on",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hier geht es los"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "your run starts here"
+          }
+        }
+      }
+    },
+    "a11y.trainer.sprosse.reached" : {
+      "comment" : "Screen-reader value of a Sprosse row some run has stood on",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "erreicht"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "reached"
           }
         }
       }
@@ -606,23 +842,6 @@
         }
       }
     },
-    "box.card.noAudio" : {
-      "comment" : "Beside a word neither a recording nor the device's voice can say — the tap that does nothing.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kein Ton für dieses Wort"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No audio for this word"
-          }
-        }
-      }
-    },
     "box.card.ownFrom" : {
       "comment" : "Writing an own word from a catalog one, both sides carried over into the form.",
       "localizations" : {
@@ -704,23 +923,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stop asking this"
-          }
-        }
-      }
-    },
-    "box.card.suspended" : {
-      "comment" : "the sleeping mark's name",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pausiert"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Paused"
           }
         }
       }
@@ -873,23 +1075,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Add"
-          }
-        }
-      }
-    },
-    "box.own.word.addAction" : {
-      "comment" : "The section's way into the form — the one that does not start from a failed search.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wort hinzufügen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add a word"
           }
         }
       }
@@ -1094,22 +1279,6 @@
         }
       }
     },
-    "box.phase.consolidated" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Steht"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grown"
-          }
-        }
-      }
-    },
     "box.phase.learning" : {
       "localizations" : {
         "de" : {
@@ -1206,22 +1375,6 @@
         }
       }
     },
-    "box.search.clear" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suche löschen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clear search"
-          }
-        }
-      }
-    },
     "box.search.hint" : {
       "comment" : "what the field will look through, before anything is typed",
       "localizations" : {
@@ -1301,56 +1454,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Write “%@” yourself"
-          }
-        }
-      }
-    },
-    "box.shelf.pack %@" : {
-      "comment" : "%d = what packing this shelf would add",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ aussäen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sow (%@)"
-          }
-        }
-      }
-    },
-    "box.shelf.packed" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alles gesät"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "All sown"
-          }
-        }
-      }
-    },
-    "box.shelf.unpack %@" : {
-      "comment" : "A shelf's own control, taking its whole queue back out. %d = what it would remove.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ zurücknehmen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Take back (%@)"
           }
         }
       }
@@ -3656,38 +3759,6 @@
         }
       }
     },
-    "letters.alphabet.speakExample" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beispiel anhören"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hear the example"
-          }
-        }
-      }
-    },
-    "letters.alphabet.speakName" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Name anhören"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hear the name"
-          }
-        }
-      }
-    },
     "letters.alphabet.title" : {
       "localizations" : {
         "de" : {
@@ -4878,23 +4949,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Send"
-          }
-        }
-      }
-    },
-    "report.reported" : {
-      "comment" : "The flag a reported word wears. Its own mark, said apart from box.card.suspended — a report says nothing about where the word stands, and a reported word keeps whatever badge it had.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gemeldet"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reported"
           }
         }
       }
@@ -6791,60 +6845,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sprosse %@"
-          }
-        }
-      }
-    },
-    "trainer.sprosse.cleared" : {
-      "comment" : "Screen-reader value of a Sprosse row a run has answered out",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "alle Fragen beantwortet"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "every question answered"
-          }
-        }
-      }
-    },
-    "trainer.sprosse.entry" : {
-      "comment" : "Screen-reader value of the Sprosse row a run opens on",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "hier geht es los"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "your run starts here"
-          }
-        }
-      }
-    },
-    "trainer.sprosse.reached" : {
-      "comment" : "Screen-reader value of a Sprosse row some run has stood on",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "erreicht"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "reached"
           }
         }
       }

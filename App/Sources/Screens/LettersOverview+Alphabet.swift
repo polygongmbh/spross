@@ -101,10 +101,10 @@ extension LettersOverview {
         // are row ACTIONS rather than targets to hunt for inside the label.
         .accessibilityActions {
             if let speak = speakName(entry) {
-                Button("letters.alphabet.speakName", action: speak)
+                Button("a11y.letters.alphabet.speakName", action: speak)
             }
             if let speak = speakExample(entry) {
-                Button("letters.alphabet.speakExample", action: speak)
+                Button("a11y.letters.alphabet.speakExample", action: speak)
             }
         }
     }

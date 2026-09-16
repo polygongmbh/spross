@@ -155,7 +155,7 @@ fun PhaseBadge(standing: CardRowState.Standing, chrome: Chrome) {
         // Fresh/Shaky/Growing would be ambiguous glyphs without one.
         Pill(
             SEAL, color,
-            modifier = Modifier.semantics { contentDescription = chrome.boxPhaseConsolidated },
+            modifier = Modifier.semantics { contentDescription = chrome.a11yBoxPhaseConsolidated },
         )
     } else {
         val word = when (standing.stage) {

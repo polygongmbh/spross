@@ -169,7 +169,7 @@ internal fun PackControl(
     if (count > 0) {
         TextButton(
             onClick = onPack,
-            modifier = Modifier.semantics { contentDescription = chrome.boxShelfPack.format(count) },
+            modifier = Modifier.semantics { contentDescription = chrome.a11yBoxShelfPack.format(count) },
         ) {
             // Ochre, where unpacking is clay: the pair reads as two directions rather
             // than one control, and neither wears a growth-ladder color.
@@ -178,7 +178,7 @@ internal fun PackControl(
     } else if (queuedCount > 2) {
         TextButton(
             onClick = onUnpack,
-            modifier = Modifier.semantics { contentDescription = chrome.boxShelfUnpack.format(queuedCount) },
+            modifier = Modifier.semantics { contentDescription = chrome.a11yBoxShelfUnpack.format(queuedCount) },
         ) {
             // Clay, matching the queued pill it takes back out.
             Icon(SprossIcons.PackOut, contentDescription = null, tint = Theme.colors.accent)
@@ -191,7 +191,7 @@ internal fun PackControl(
             modifier = Modifier
                 .sizeIn(minWidth = 48.dp, minHeight = 48.dp)
                 .padding(Theme.spacing.md)
-                .semantics { contentDescription = chrome.boxShelfPacked },
+                .semantics { contentDescription = chrome.a11yBoxShelfPacked },
         )
     }
 }

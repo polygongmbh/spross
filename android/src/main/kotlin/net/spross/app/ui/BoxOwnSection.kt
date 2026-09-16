@@ -96,7 +96,7 @@ internal fun BoxOwnSection(model: AppModel, onWriteOwn: (OwnWordDraft) -> Unit) 
             )
             TextButton(
                 onClick = { onWriteOwn(OwnWordDraft()) },
-                modifier = Modifier.semantics { contentDescription = chrome.boxOwnWordAddAction },
+                modifier = Modifier.semantics { contentDescription = chrome.a11yBoxOwnWordAddAction },
             ) { Icon(SprossIcons.Plus, contentDescription = null) }
         }
         // An empty panel is furniture: with nothing written and nothing filed, the header
@@ -324,7 +324,7 @@ private fun ReportedRow(model: AppModel, card: Card) {
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
     ) {
         Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-            Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.reportReported })
+            Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.a11yReportReported })
             // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
             Text(
                 "${card.target.text} → ${card.source.text}",

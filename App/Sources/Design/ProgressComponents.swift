@@ -272,7 +272,7 @@ struct PhaseBadge: View {
         case .fresh: return "box.phase.learning"
         case .growing: return "box.phase.settled"
         case .relearning: return "box.phase.relearning"
-        case .grown: return "box.phase.consolidated"
+        case .grown: return "a11y.box.phase.consolidated"
         }
     }
 

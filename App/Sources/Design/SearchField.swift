@@ -34,7 +34,7 @@ struct SearchField: View {
                         .foregroundStyle(Theme.colors.textSecondary)
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel("box.search.clear")
+                .accessibilityLabel("a11y.box.search.clear")
             }
         }
         .padding(.horizontal, Theme.spacing.lg)

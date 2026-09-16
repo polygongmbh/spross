@@ -89,6 +89,9 @@ Strict dependency direction: App → SprossKern, never the reverse.
   KINDS of thing the second level says which (`box.card` vs `box.shelf` vs `box.area`,
   `home.offer` vs `home.done`), and where a rule reaches every surface the namespace is
   the channel instead (`a11y`, `common`).
+  A key no screen displays on either phone, read only into an accessibility sink,
+  is `a11y.` followed by the path it would otherwise carry
+  (`a11y.box.card.suspended`) — so what the screen-reader surface costs can be seen at once.
   A key is named for what it DENOTES rather than for the surface it first appeared on,
   so it moves to `common.` as soon as a second one reads it.
   It names the domain's word, not the code's —

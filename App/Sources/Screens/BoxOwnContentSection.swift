@@ -66,7 +66,7 @@ struct BoxOwnContentSection: View {
                 Image(systemName: "plus")
             }
             .buttonStyle(IconButtonStyle())
-            .accessibilityLabel("box.own.word.addAction")
+            .accessibilityLabel("a11y.box.own.word.addAction")
         }
     }
 
@@ -268,7 +268,7 @@ struct BoxOwnContentSection: View {
     private func reportRow(_ issue: ReportedIssue, card: Card) -> some View {
         HStack(alignment: .top, spacing: Theme.spacing.md) {
             Text(verbatim: "🚩")
-                .accessibilityLabel("report.reported")
+                .accessibilityLabel("a11y.report.reported")
             VStack(alignment: .leading, spacing: 2) {
                 // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
                 Text(verbatim: "\(card.target.text) → \(card.source.text)")

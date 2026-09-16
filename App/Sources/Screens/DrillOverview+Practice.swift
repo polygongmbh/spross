@@ -60,7 +60,7 @@ extension DrillOverview {
     private func sprosseRow(_ number: Int, _ title: LocalizedStringKey) -> some View {
         let mark = mark(number)
         let open = openable(number)
-        let value: LocalizedStringKey? = number == entrySprosse ? "trainer.sprosse.entry" : mark.a11y
+        let value: LocalizedStringKey? = number == entrySprosse ? "a11y.trainer.sprosse.entry" : mark.a11y
         let label = HStack(alignment: .center, spacing: Theme.spacing.md) {
             SprosseCircle(number: number, mark: mark)
             Text(title)
