@@ -77,14 +77,15 @@ struct BoxOwnContentSection: View {
         // what the catalog owes them, then the two ways to tell it so.
         var blocks: [Block] = []
         if model.hasBriefing { blocks.append(.briefing) }
-        if !model.ownWords.isEmpty { blocks.append(.matching) }
         if !model.ownWordPairs.isEmpty { blocks.append(.pairs) }
         if !model.suggestions.isEmpty { blocks.append(.suggestions) }
         if !model.remarks.isEmpty { blocks.append(.notes) }
         if !reports.isEmpty { blocks.append(.reports) }
         // why: an empty complaints box is furniture — the actions appear once there is
-        // something for them to carry, exactly as they always have.
-        if model.hasFeedback(onlyNew: false) { blocks.append(.actions) }
+        // something for them to carry, and the catalog check once there is a word to check.
+        if model.hasFeedback(onlyNew: false) || !checkableWords.isEmpty {
+            blocks.append(.actions)
+        }
 
         return VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             ForEach(Array(blocks.enumerated()), id: \.element) { index, block in
@@ -104,19 +105,19 @@ struct BoxOwnContentSection: View {
     /// What the section's card can be made of, top to bottom. Only the ones with
     /// something in them are drawn, and a separator sits between whichever remain.
     private enum Block: Hashable {
-        case briefing, matching, pairs, suggestions, notes, reports, actions
+        case briefing, pairs, suggestions, notes, reports, actions
     }
 
     @ViewBuilder
     private func blockBody(_ block: Block) -> some View {
         switch block {
         case .briefing: briefingRow
-        case .matching: matchRow
         case .pairs: pairList
         case .suggestions: suggestionList
         case .notes: noteList
         case .reports: reportList
-        case .actions: FeedbackExportActions(model: model)
+        case .actions:
+            FeedbackExportActions(model: model) { sheet = .matching }
         }
     }
 
@@ -149,33 +150,9 @@ struct BoxOwnContentSection: View {
         .buttonStyle(.plain)
     }
 
-    /// The catalog measured against the words the learner wrote (`CatalogMatchSheet`).
-    /// It sits under the companion because the two are a pair of doors: that one carries
-    /// words OUT and brings new ones back, this one looks at the ones already here and asks
-    /// whether the catalog has caught up with any of them.
-    private var matchRow: some View {
-        Button {
-            sheet = .matching
-        } label: {
-            HStack(spacing: Theme.spacing.md) {
-                Image(systemName: "arrow.triangle.merge")
-                    .foregroundStyle(Theme.colors.accent)
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("box.own.match.title")
-                        .font(Theme.typography.body)
-                        .foregroundStyle(Theme.colors.textPrimary)
-                    Text("box.own.match.row.subtitle")
-                        .font(Theme.typography.caption)
-                        .foregroundStyle(Theme.colors.textSecondary)
-                }
-                Spacer(minLength: 0)
-                Image(systemName: "chevron.right")
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.textSecondary)
-            }
-        }
-        .buttonStyle(.plain)
-    }
+    /// The words the catalog could have caught up with. A note names none, so it is not
+    /// one of them.
+    private var checkableWords: [OwnWord] { model.ownWordPairs + model.suggestions }
 
     private func blockTitle(_ key: LocalizedStringKey) -> some View {
         Text(key)

@@ -131,6 +131,7 @@ private fun OwnContentPanel(
     val chrome = model.chrome
     val context = LocalContext.current
     var briefingOpen by remember { mutableStateOf(false) }
+    var matchOpen by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier.fillMaxWidth().panel().padding(Theme.spacing.lg),
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
@@ -173,22 +174,29 @@ private fun OwnContentPanel(
             reported.forEach { card -> ReportedRow(model, card) }
             HorizontalDivider(color = Theme.colors.separator)
         }
-        if (actions) {
+        val written = pairs.isNotEmpty() || suggestions.isNotEmpty()
+        if (actions || written) {
             Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-                ScopedAction(model, chrome.commonCopy) { onlyNew, scope ->
-                    context.copyToClipboard(chrome.boxOwnTitle, model.reportText(onlyNew, scope))
-                    model.markExported(scope)
+                if (actions) {
+                    ScopedAction(model, chrome.commonCopy) { onlyNew, scope ->
+                        context.copyToClipboard(chrome.boxOwnTitle, model.reportText(onlyNew, scope))
+                        model.markExported(scope)
+                    }
+                    ScopedAction(model, chrome.reportExportSend) { onlyNew, scope ->
+                        val body = model.reportMailBody(onlyNew, scope) ?: return@ScopedAction
+                        context.openFeedbackMail(Feedback.MAIL_SUBJECT, body)
+                        model.markExported(scope)
+                    }
+                    if (model.clearableCount > 0) ClearAction(model)
                 }
-                ScopedAction(model, chrome.reportExportSend) { onlyNew, scope ->
-                    val body = model.reportMailBody(onlyNew, scope) ?: return@ScopedAction
-                    context.openFeedbackMail(Feedback.MAIL_SUBJECT, body)
-                    model.markExported(scope)
-                }
-                if (model.clearableCount > 0) ClearAction(model)
+                // The catalog measured against the words already here — one more thing to do
+                // with them, beside the two that hand them on and the one that empties them.
+                if (written) TextButton(onClick = { matchOpen = true }) { Text(chrome.boxOwnMatchAction) }
             }
         }
     }
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
+    if (matchOpen) CatalogMatchSheet(model) { matchOpen = false }
 }
 
 /** The entry into [BriefingSheet] — what it is, and what it is for, in two lines. */

@@ -474,14 +474,16 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
     written in both languages (`kern/README.md` §6) — those are cards with progress on
     them, not notes. Only the bare button asks first; behind an export there is nothing
     left to lose, the lot having just landed on the clipboard or in a draft.
-    The catalog catches up with these words, and a row under the companion is where the
-    two meet: every own word the catalog now has a word for, its own writing of it beside
-    the learner's, and one button that moves the progress across (`CatalogMatches`,
+    The catalog catches up with these words, and a fourth action is where the two meet:
+    every own word the catalog now has a word for, its own writing of it beside the
+    learner's, and one button that moves the progress across (`CatalogMatches`,
     `../kern/README.md` §6). Nothing merges unasked — the words where both halves agree
     arrive ticked, having nothing left to judge, and a match on one half only waits to be
     read, since which of the two spellings is right is the learner's call and is made by
-    looking at both. It sits UNDER the companion because the two are a pair: that one
-    carries words out and brings new ones back, this one looks at the words already here.
+    looking at both. It stands with the two ways out and the clear rather than as a door of
+    its own: it is one more thing to do with the words above it. On a LINE of its own under
+    them, with no divider between — it is the one of the four whose name cannot say what it
+    does in a word, and it has to say MERGE rather than look up.
   - **Own words** are also what a search with no answer leads to: the learner has just
     proved the catalog has no word for what they need, so the empty state offers to write
     one, with the known side prefilled from the query — a search box is far more often used

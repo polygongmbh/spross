@@ -360,7 +360,9 @@ interface Chrome {
 
     // ── The catalog catching up with the learner's own words ────────────────────
     val boxOwnMatchTitle: String
-    val boxOwnMatchRowSubtitle: String
+
+    /** The row under copy/send/clear that opens it; it MOVES a word onto its catalog card. */
+    val boxOwnMatchAction: String
     val boxOwnMatchNone: String
     val boxOwnMatchGroupWhole: String
     val boxOwnMatchGroupHalf: String

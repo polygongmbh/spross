@@ -1,6 +1,8 @@
 package net.spross.app
 
 import net.spross.kern.box.BoxEngine
+import net.spross.kern.box.CatalogMatch
+import net.spross.kern.box.CatalogMatches
 import net.spross.kern.box.Feedback
 import net.spross.kern.box.FeedbackScope
 import net.spross.kern.box.OwnWord
@@ -161,4 +163,46 @@ val AppModel.clearableCount: Int get() = box?.let(Feedback::clearableCount) ?: 0
 /** Empty the outbox: every suggestion, every note and every report go, the pairs stay. */
 fun AppModel.clearFeedback() {
     updateBox(BoxEngine::clearFeedback)
+}
+
+// The catalog catching up with a word the learner had to write themselves
+// (`CatalogMatches`, `BoxEngine.mergeOwnWord`, kern §6).
+
+/**
+ * Every own word the catalog now has a word for, the whole matches leading. A walk of every
+ * card, so it is taken once when the sheet opens and not per recomposition.
+ */
+fun AppModel.catalogMatches(): List<CatalogMatch> =
+    box?.let { CatalogMatches.of(it) }.orEmpty()
+
+/**
+ * Move the chosen words onto their catalog cards, in one write.
+ *
+ * One at a time off the state the last one returned, exactly as a harvest is taken in: each
+ * merge rewrites the box, and a batch aimed at the state this started from would merge every
+ * word onto a box that no longer holds the one before it.
+ */
+fun AppModel.merge(matches: List<CatalogMatch>) {
+    if (matches.isEmpty()) return
+    updateBox { state ->
+        matches.fold(state) { carried, match ->
+            BoxEngine.mergeOwnWord(carried, match.word.id, match.cardId)
+        }
+    }
+}
+
+/**
+ * The catalog's own writing of a matched card, target side first as every exposure surface
+ * reads (`kern/docs/reports.md`).
+ */
+fun AppModel.catalogText(match: CatalogMatch): String {
+    val card = box?.cards?.get(match.cardId) ?: return ""
+    return "${card.target.text} → ${card.source.text}"
+}
+
+/** The learner's own word as they wrote it, read the same way round. */
+fun AppModel.writtenText(match: CatalogMatch): String {
+    val stamp = box?.joinStamp ?: return ""
+    val word = match.word
+    return listOfNotNull(word.texts[stamp.target], word.texts[stamp.source]).joinToString(" → ")
 }

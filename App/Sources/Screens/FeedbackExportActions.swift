@@ -1,31 +1,55 @@
 import SwiftUI
 import SprossKern
 
-/// Sending the learner's own content back to whoever maintains the catalog: the
-/// suggestions they wrote with only one half, and the problems they filed.
+/// What can be done with the learner's own content, in one row.
 ///
-/// Two ways with the same lot — onto the clipboard, or into a mail. Both offer everything,
-/// only what is new, or only what the catalog is owed, and a full copy marks itself taken so
-/// the next "new" means what it says. Both also offer to empty the outbox on the way out,
-/// since handing it over is the whole reason those entries were kept.
+/// Three of the four send it back to whoever maintains the catalog: onto the clipboard, into
+/// a mail, and emptying the outbox once it has gone. Both ways out offer everything, only
+/// what is new, or only what the catalog is owed, and a full copy marks itself taken so the
+/// next "new" means what it says.
+///
+/// The fourth goes the other way and reads the catalog against these words
+/// (`CatalogMatchSheet`): a word written by hand because the catalog had none is one the
+/// catalog may have grown since. It stands here rather than as a row of its own because it
+/// is one more thing to do with the words above it, not a place to go.
 struct FeedbackExportActions: View {
     let model: AppModel
+    /// Raised by the section: a sheet is presented where the section owns it, not here.
+    let checkCatalog: () -> Void
 
     @Environment(\.openURL) private var openURL
     @State private var confirmingClear = false
 
     var body: some View {
+        // The merge stands on a line of its own, under the three and inside the same block:
+        // it is one more thing to do with these words, and it is the only one of the four
+        // whose name does not fit beside them.
+        VStack(alignment: .leading, spacing: Theme.spacing.md) {
+            outbox
+            if !model.ownWordPairs.isEmpty || !model.suggestions.isEmpty {
+                Button(action: checkCatalog) {
+                    actionLabel("box.own.match.action", icon: "arrow.triangle.merge")
+                }
+            }
+        }
+    }
+
+    /// The three that hand the learner's content on, or empty it once it has gone.
+    @ViewBuilder
+    private var outbox: some View {
         HStack(spacing: Theme.spacing.lg) {
-            scopedButton("common.copy", icon: "doc.on.doc") { onlyNew, scope in
-                UIPasteboard.general.string = model.reportText(onlyNew: onlyNew, scope: scope)
-                model.markExported(scope: scope)
+            if model.hasFeedback(onlyNew: false) {
+                scopedButton("common.copy", icon: "doc.on.doc") { onlyNew, scope in
+                    UIPasteboard.general.string = model.reportText(onlyNew: onlyNew, scope: scope)
+                    model.markExported(scope: scope)
+                }
+                scopedButton("report.export.send", icon: "envelope") { onlyNew, scope in
+                    guard let url = model.reportMailURL(onlyNew: onlyNew, scope: scope) else { return }
+                    openURL(url)
+                    model.markExported(scope: scope)
+                }
+                if model.clearableCount > 0 { clearButton }
             }
-            scopedButton("report.export.send", icon: "envelope") { onlyNew, scope in
-                guard let url = model.reportMailURL(onlyNew: onlyNew, scope: scope) else { return }
-                openURL(url)
-                model.markExported(scope: scope)
-            }
-            if model.clearableCount > 0 { clearButton }
         }
     }
 

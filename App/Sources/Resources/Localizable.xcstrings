@@ -977,6 +977,23 @@
         }
       }
     },
+    "box.own.match.action" : {
+      "comment" : "row under copy/send/clear that opens the merge screen; it MOVES a word onto its catalog card, it does not just look it up",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit dem Katalog zusammenführen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merge with the catalog"
+          }
+        }
+      }
+    },
     "box.own.match.group.half" : {
       "comment" : "heading over matches where one half agrees and the catalog writes the other differently",
       "localizations" : {
@@ -1045,36 +1062,19 @@
         }
       }
     },
-    "box.own.match.row.subtitle" : {
-      "comment" : "second line of the row into that screen, in the own-content section",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eigene Wörter, die der Katalog inzwischen hat"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your own words the catalog has since"
-          }
-        }
-      }
-    },
     "box.own.match.title" : {
       "comment" : "title of the screen that measures the learner's own words against the catalog (`CatalogMatches`)",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Im Katalog nachsehen"
+            "value" : "Zusammenführen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Check the catalog"
+            "value" : "Merge"
           }
         }
       }
