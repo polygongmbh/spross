@@ -34,10 +34,8 @@ struct BoxSettingsSection: View {
                 Divider().overlay(Theme.colors.separator)
                 VStack(alignment: .leading, spacing: Theme.spacing.md) {
                     BackupRow(model: model)
-                    HStack(alignment: .top, spacing: Theme.spacing.lg) {
-                        restartTutorialRow
-                        resetRow
-                    }
+                    restartTutorialRow
+                    resetRow
                 }
             }
             .padding(Theme.spacing.lg)
@@ -288,13 +286,12 @@ struct BoxSettingsSection: View {
                 model.restartOnboarding()
             } label: {
                 Text("settings.restartTutorial.button")
-                    .font(Theme.typography.headline)
+                    .font(Theme.typography.subheadline)
             }
             Text("settings.restartTutorial.hint")
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     /// Fresh start with the CURRENT catalog content.
@@ -307,7 +304,7 @@ struct BoxSettingsSection: View {
                 startReset()
             } label: {
                 Text("settings.reset.button \(targetName)")
-                    .font(Theme.typography.headline)
+                    .font(Theme.typography.subheadline)
             }
             .fileExporter(isPresented: shown($pendingResetExport), document: pendingResetExport,
                           contentType: .json, defaultFilename: pendingResetExport?.name ?? "Spross") { _ in
@@ -327,7 +324,6 @@ struct BoxSettingsSection: View {
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private func startReset() {

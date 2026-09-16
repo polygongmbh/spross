@@ -138,31 +138,23 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                 HorizontalDivider(color = Theme.colors.separator)
                 Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
                     BackupSetting(model, catalog, box.joinStamp.target)
-                    Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
-                        Column(
-                            modifier = Modifier.weight(1f),
-                            verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
-                        ) {
-                            TextButton(onClick = { model.restartOnboarding() }) {
-                                Text(chrome.settingsRestartTutorialButton)
-                            }
-                            SettingHint(chrome.settingsRestartTutorialHint)
+                    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
+                        TextButton(onClick = { model.restartOnboarding() }) {
+                            Text(chrome.settingsRestartTutorialButton)
                         }
-                        Column(
-                            modifier = Modifier.weight(1f),
-                            verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
-                        ) {
-                            TextButton(onClick = {
-                                if ((model.stats?.consolidatedCount ?: 0) > 0) {
-                                    resetExport.launch("Spross-${box.joinStamp.target}-${LocalDate.now()}.json")
-                                } else {
-                                    confirmingReset = true
-                                }
-                            }) {
-                                Text(chrome.settingsResetButton.format(targetName), color = Theme.colors.wrong)
+                        SettingHint(chrome.settingsRestartTutorialHint)
+                    }
+                    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
+                        TextButton(onClick = {
+                            if ((model.stats?.consolidatedCount ?: 0) > 0) {
+                                resetExport.launch("Spross-${box.joinStamp.target}-${LocalDate.now()}.json")
+                            } else {
+                                confirmingReset = true
                             }
-                            SettingHint(chrome.settingsResetHint.format(targetName))
+                        }) {
+                            Text(chrome.settingsResetButton.format(targetName), color = Theme.colors.wrong)
                         }
+                        SettingHint(chrome.settingsResetHint.format(targetName))
                     }
                 }
             }
