@@ -434,7 +434,7 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   leaf in shape before color, and the standing figures are spelled out beneath.
   Nothing in it moves: a box grows over weeks, and motion would claim a change the
   picture is not showing.
-- **Box** (the door from Home): browse the catalog by area, pack words in and take a
+- **Box** (the button from Home): browse the catalog by area, pack words in and take a
   shelf's queue back out before a round has met it, revive suspended ones;
   settings live here — profile, backup, reset. A tree in the forest opens it already
   unfolded at that area, exactly as a search hit does. **The area is the unit for
