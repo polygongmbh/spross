@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Sentence scramble now accepts a phrase's other valid word orders instead of marking them wrong.
+- Two new shelves, Sounds and Practice, take words that were sitting in Conversation and School.
+- The box now keeps your place when you switch the language you are learning or reveal a word you searched for.
+- An exported report now shows a suggestion written in another language instead of a pair of question marks.
+
 ## 7.1.3 — 2026-09-16
 
 - Own content now offers to merge your own words onto the catalog words it has since grown, keeping the progress you made on them.
