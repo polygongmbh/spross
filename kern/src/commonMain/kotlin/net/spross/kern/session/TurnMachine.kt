@@ -210,9 +210,13 @@ class TurnMachine(
         listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ReleaseFocus),
     )
 
-    /** A miss reveals the answer and keeps the field open — the retype is the answer. */
+    /**
+     * A miss reveals the answer and keeps the field open — the retype is the answer.
+     * The refused word is kept whole ([TurnState.rejectedAnswer]): priming the field drops
+     * it from the only place it stood, and it is what a report about this card is made of.
+     */
     private fun missed(state: TurnState, text: String, other: Match.OtherWord?): TurnReduction = TurnReduction(
-        state.copy(feedback = TurnFeedback.Revealed, otherWord = other),
+        state.copy(feedback = TurnFeedback.Revealed, otherWord = other, rejectedAnswer = text.trim()),
         listOf(TurnEffect.Tone(ToneKind.Wrong), TurnEffect.PrimeField(primed(state, text))),
     )
 

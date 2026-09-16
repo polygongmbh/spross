@@ -15,7 +15,8 @@ Engine contract: `../README.md`.
   it answers with the next state plus `TurnEffect`s —
   `Answer` (the rating leaves for the run), `ArmAdvance`/`CancelAdvance`,
   `PrimeField`, `Tone` and `ReleaseFocus`.
-  The learner's TEXT is never in the state:
+  The learner's TEXT is never in the state, bar the one answer the machine itself takes
+  out of the field (`rejectedAnswer`, below):
   the platform owns the field, the keyboard, focus, animation and playback,
   and hands text in through intents.
   Every rule about what that text is worth is here,
@@ -39,6 +40,10 @@ Engine contract: `../README.md`.
   - **A miss keeps the field open**: the retype IS the answer, primed to the whole words
     already right (`AnswerNormalizer.matchingPrefixWordCount`),
     so nothing already correct is typed twice.
+    The refused word is kept whole (`TurnState.rejectedAnswer`) because that priming drops it
+    from the only place it stood, and `answerForReport(fieldText)` is what a report about the
+    card carries: the word the catalog refused where there was one, else what stands written.
+    A synonym marked wrong IS the report, so it may not be lost to the field it was typed in.
   - **The write-out** (`CopyStep`): a missed word is typed once with the answer in view.
     Only Again asks for it, only for a word that has not settled,
     and only where writing it is more than copying it off the prompt —
