@@ -76,7 +76,10 @@ struct ScrambleTileBank<Reveal: View>: View {
             if !locked || !placed.isEmpty { answerRow }
             if locked { reveal() }
         }
-        .padding(Theme.spacing.md)
+        // why: wider than it is tall — a sentence set across the card's full width
+        // runs to both edges, where the chips above it stop short of them.
+        .padding(.horizontal, Theme.spacing.lg)
+        .padding(.vertical, Theme.spacing.md)
         .frame(maxWidth: .infinity)
         .background {
             if locked {

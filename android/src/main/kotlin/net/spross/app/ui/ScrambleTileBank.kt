@@ -133,7 +133,9 @@ private fun AnswerCard(
                     ),
                 )
             }
-            .padding(Theme.spacing.md)
+            // why: wider than it is tall — a sentence set across the card's full width runs to
+            // both edges, where the chips above it stop short of them.
+            .padding(horizontal = Theme.spacing.lg, vertical = Theme.spacing.md)
             // why: NOT merged — a placed word that cannot be tapped back is the thing the
             // row exists to allow. The label and the sentence so far are the row's own.
             .semantics {
