@@ -121,3 +121,47 @@ extension AppModel {
 private extension String {
     var trimmed: String { trimmingCharacters(in: .whitespacesAndNewlines) }
 }
+
+// The catalog catching up with a word the learner had to write themselves
+// (`CatalogMatches`, `BoxEngine.mergeOwnWord`, kern §6).
+
+extension AppModel {
+
+    /// Every own word the catalog now has a word for, the whole matches leading.
+    /// A walk of every card, so it is taken once when the sheet opens and not per render.
+    func catalogMatches() -> [CatalogMatch] {
+        guard let box else { return [] }
+        return CatalogMatches.shared.of(state: box)
+    }
+
+    /// Move the chosen words onto their catalog cards, in one write.
+    ///
+    /// One at a time off the state the last one returned, exactly as a harvest is taken in:
+    /// each merge rewrites the box, and a batch aimed at the state this started from would
+    /// merge every word onto a box that no longer holds the one before it.
+    func merge(_ matches: [CatalogMatch]) {
+        guard !matches.isEmpty else { return }
+        mutate { state in
+            for match in matches {
+                state = BoxEngine.shared.mergeOwnWord(state: state, wordId: match.word.id,
+                                                      cardId: match.cardId)
+            }
+        }
+    }
+
+    /// The catalog's own writing of a matched card, target side first as every exposure
+    /// surface reads (`kern/docs/reports.md`).
+    func catalogText(_ match: CatalogMatch) -> String {
+        guard let card = card(match.cardId) else { return "" }
+        return "\(card.target.text) → \(card.source.text)"
+    }
+
+    /// The learner's own word as they wrote it, read the same way round.
+    func writtenText(_ match: CatalogMatch) -> String {
+        let word = match.word
+        guard let box else { return "" }
+        let learning = word.texts[box.joinStamp.target]
+        let known = word.texts[box.joinStamp.source]
+        return [learning, known].compactMap { $0 }.joined(separator: " → ")
+    }
+}

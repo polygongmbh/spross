@@ -977,6 +977,108 @@
         }
       }
     },
+    "box.own.match.group.half" : {
+      "comment" : "heading over matches where one half agrees and the catalog writes the other differently",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Hälfte stimmt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One half agrees"
+          }
+        }
+      }
+    },
+    "box.own.match.group.whole" : {
+      "comment" : "heading over matches where both halves agree (`MatchSide.Both`); these arrive ticked",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beide Hälften stimmen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Both halves agree"
+          }
+        }
+      }
+    },
+    "box.own.match.merge %lld" : {
+      "comment" : "button that moves the ticked words onto their catalog cards; %lld is how many are ticked",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld zusammenführen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merge %lld"
+          }
+        }
+      }
+    },
+    "box.own.match.none" : {
+      "comment" : "shown when the catalog has caught up with none of the learner's own words",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Katalog hat noch keines deiner Wörter."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The catalog has none of your words yet."
+          }
+        }
+      }
+    },
+    "box.own.match.row.subtitle" : {
+      "comment" : "second line of the row into that screen, in the own-content section",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigene Wörter, die der Katalog inzwischen hat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your own words the catalog has since"
+          }
+        }
+      }
+    },
+    "box.own.match.title" : {
+      "comment" : "title of the screen that measures the learner's own words against the catalog (`CatalogMatches`)",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Im Katalog nachsehen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the catalog"
+          }
+        }
+      }
+    },
     "box.own.notes" : {
       "comment" : "The block of bare notes — what the learner said that names no word at all, and so suggests none. Apart from the suggestions: what a note is about need not be in the catalog.",
       "extractionState" : "manual",

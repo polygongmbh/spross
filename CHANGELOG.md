@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Own content now offers to check your own words against the catalog and merge them onto the words it has since grown, keeping the progress you made.
 - A restored backup now re-opens each language in the pair it was studied in, rather than in whichever known language the phone was set to.
 - Your own words now stay whole words when you change the known language: they are still shown with both halves, still exported with them, and clearing the outbox no longer takes them.
 - Resetting a language with matured progress now offers to save a backup of it first.

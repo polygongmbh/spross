@@ -357,6 +357,16 @@ interface Chrome {
 
     /** Tail on a finished word this profile cannot pair; `%s` is the two languages it is in. */
     val boxOwnWordOtherPair: String
+
+    // ── The catalog catching up with the learner's own words ────────────────────
+    val boxOwnMatchTitle: String
+    val boxOwnMatchRowSubtitle: String
+    val boxOwnMatchNone: String
+    val boxOwnMatchGroupWhole: String
+    val boxOwnMatchGroupHalf: String
+
+    /** Moves the ticked words onto their catalog cards; `%d` is how many are ticked. */
+    val boxOwnMatchMerge: String
     val reportExportSend: String
     val reportExportScopeNew: String
     val reportExportScopeOutbox: String

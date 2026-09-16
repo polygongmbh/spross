@@ -32,11 +32,13 @@ struct BoxOwnContentSection: View {
         case editing(OwnWord)
         case reporting(Card)
         case talking
+        case matching
 
         var id: String {
             switch self {
             case .writing: return "writing"
             case .talking: return "talking"
+            case .matching: return "matching"
             case .editing(let word): return "edit:\(word.id)"
             case .reporting(let card): return "report:\(card.id)"
             }
@@ -75,6 +77,7 @@ struct BoxOwnContentSection: View {
         // what the catalog owes them, then the two ways to tell it so.
         var blocks: [Block] = []
         if model.hasBriefing { blocks.append(.briefing) }
+        if !model.ownWords.isEmpty { blocks.append(.matching) }
         if !model.ownWordPairs.isEmpty { blocks.append(.pairs) }
         if !model.suggestions.isEmpty { blocks.append(.suggestions) }
         if !model.remarks.isEmpty { blocks.append(.notes) }
@@ -101,13 +104,14 @@ struct BoxOwnContentSection: View {
     /// What the section's card can be made of, top to bottom. Only the ones with
     /// something in them are drawn, and a separator sits between whichever remain.
     private enum Block: Hashable {
-        case briefing, pairs, suggestions, notes, reports, actions
+        case briefing, matching, pairs, suggestions, notes, reports, actions
     }
 
     @ViewBuilder
     private func blockBody(_ block: Block) -> some View {
         switch block {
         case .briefing: briefingRow
+        case .matching: matchRow
         case .pairs: pairList
         case .suggestions: suggestionList
         case .notes: noteList
@@ -133,6 +137,34 @@ struct BoxOwnContentSection: View {
                         .font(Theme.typography.body)
                         .foregroundStyle(Theme.colors.textPrimary)
                     Text("briefing.row.subtitle")
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: "chevron.right")
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
+            }
+        }
+        .buttonStyle(.plain)
+    }
+
+    /// The catalog measured against the words the learner wrote (`CatalogMatchSheet`).
+    /// It sits under the companion because the two are a pair of doors: that one carries
+    /// words OUT and brings new ones back, this one looks at the ones already here and asks
+    /// whether the catalog has caught up with any of them.
+    private var matchRow: some View {
+        Button {
+            sheet = .matching
+        } label: {
+            HStack(spacing: Theme.spacing.md) {
+                Image(systemName: "arrow.triangle.merge")
+                    .foregroundStyle(Theme.colors.accent)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("box.own.match.title")
+                        .font(Theme.typography.body)
+                        .foregroundStyle(Theme.colors.textPrimary)
+                    Text("box.own.match.row.subtitle")
                         .font(Theme.typography.caption)
                         .foregroundStyle(Theme.colors.textSecondary)
                 }
@@ -321,6 +353,8 @@ struct BoxOwnContentSection: View {
             OwnWordFormView(model: model, seed: .editing(word))
         case .talking:
             BriefingSheet(model: model)
+        case .matching:
+            CatalogMatchSheet(model: model)
         case .reporting(let card):
             ReportIssueSheet(model: model, card: card, learnerInput: "")
         }
