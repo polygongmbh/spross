@@ -175,32 +175,18 @@ struct BriefingSheet: View {
             .foregroundStyle(Theme.colors.textSecondary)
     }
 
+    /// One pasted pair, ticked or not. The shared row (`SelectionRow`), which is what the
+    /// catalog merge list also ticks with: two sheets that tick words a word at a time have
+    /// no business wearing two different marks.
     private func harvestRow(_ found: HarvestWord) -> some View {
-        let on = picked.contains(found.word.target)
-        return Button {
+        SelectionRow(
+            title: Text(verbatim: found.word.target),
+            caption: Text(verbatim: gloss(found)),
+            mark: .many,
+            selected: picked.contains(found.word.target),
+        ) {
             toggle(found.word.target)
-        } label: {
-            HStack(spacing: Theme.spacing.md) {
-                Image(systemName: on ? "checkmark.circle.fill" : "circle")
-                    .foregroundStyle(on ? Theme.colors.accent : Theme.colors.textSecondary)
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(verbatim: found.word.target)
-                        .font(Theme.typography.body)
-                        .foregroundStyle(Theme.colors.textPrimary)
-                    Text(verbatim: gloss(found))
-                        .font(Theme.typography.caption)
-                        .foregroundStyle(Theme.colors.textSecondary)
-                }
-                Spacer(minLength: 0)
-            }
-            .padding(.horizontal, Theme.spacing.md)
-            .padding(.vertical, Theme.spacing.xs + 2)
-            .background(
-                RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                    .fill(Theme.colors.surfaceTint)
-            )
         }
-        .buttonStyle(.plain)
     }
 
     /// The gloss, and after it the box's own word where this one leans on it — which is

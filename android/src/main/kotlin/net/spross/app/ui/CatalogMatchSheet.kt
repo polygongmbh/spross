@@ -31,6 +31,7 @@ import net.spross.app.merge
 import net.spross.app.writtenText
 import net.spross.kern.box.CatalogMatch
 import net.spross.kern.box.MatchSide
+import net.spross.kern.box.OwnWords
 
 /**
  * The catalog catching up with the words the learner had to write themselves.
@@ -127,6 +128,9 @@ private fun MatchGroup(
  * which is what a one-sided match has to be read for before it is ticked. Where they are
  * written alike there is nothing under it: a line repeating the one above it is a line
  * nobody reads twice.
+ *
+ * The learner's line wears the pen the own-content panel wears everywhere else, so which of
+ * the two lines is theirs needs no words to say.
  */
 @Composable
 private fun MatchRow(model: AppModel, match: CatalogMatch, kept: Boolean, onToggle: () -> Unit) {
@@ -148,7 +152,7 @@ private fun MatchRow(model: AppModel, match: CatalogMatch, kept: Boolean, onTogg
             Text(catalog, style = MaterialTheme.typography.bodyMedium)
             if (written != catalog) {
                 Text(
-                    written,
+                    "${OwnWords.EMOJI} $written",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

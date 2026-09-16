@@ -21,24 +21,20 @@ struct FeedbackExportActions: View {
     @State private var confirmingClear = false
 
     var body: some View {
-        // The merge stands on a line of its own, under the three and inside the same block:
-        // it is one more thing to do with these words, and it is the only one of the four
-        // whose name does not fit beside them.
-        VStack(alignment: .leading, spacing: Theme.spacing.md) {
+        // The three one-word actions share a line, evenly spread rather than stacked
+        // against the left edge; the merge takes the line under them, since its name is
+        // the one that cannot be said in a word.
+        VStack(spacing: Theme.spacing.md) {
             outbox
-            if !model.ownWordPairs.isEmpty || !model.suggestions.isEmpty {
-                Button(action: checkCatalog) {
-                    actionLabel("box.own.match.action", icon: "arrow.triangle.merge")
-                }
-            }
+            merge
         }
     }
 
-    /// The three that hand the learner's content on, or empty it once it has gone.
+    /// Handing the learner's content on, and emptying it once it has gone.
     @ViewBuilder
     private var outbox: some View {
-        HStack(spacing: Theme.spacing.lg) {
-            if model.hasFeedback(onlyNew: false) {
+        if model.hasFeedback(onlyNew: false) {
+            spread {
                 scopedButton("common.copy", icon: "doc.on.doc") { onlyNew, scope in
                     UIPasteboard.general.string = model.reportText(onlyNew: onlyNew, scope: scope)
                     model.markExported(scope: scope)
@@ -51,6 +47,26 @@ struct FeedbackExportActions: View {
                 if model.clearableCount > 0 { clearButton }
             }
         }
+    }
+
+    /// Moving the learner's words onto the catalog words that caught up with them. It names
+    /// what it compares because the other three say what they do in a verb and this one
+    /// cannot — and both kinds are compared, the finished words and the suggestions alike.
+    @ViewBuilder
+    private var merge: some View {
+        if !model.ownWordPairs.isEmpty || !model.suggestions.isEmpty {
+            spread {
+                Button(action: checkCatalog) {
+                    actionLabel("box.own.match.action", icon: "arrow.triangle.merge")
+                }
+            }
+        }
+    }
+
+    /// One line of actions, each taking an equal share of the panel — so a line of two
+    /// sits balanced and a line of one sits centered, rather than piling up on the left.
+    private func spread<Content: View>(@ViewBuilder _ actions: () -> Content) -> some View {
+        HStack(spacing: Theme.spacing.md) { actions() }
     }
 
     /// One action, offered over the whole lot, over what is new, over what the catalog is
@@ -104,6 +120,7 @@ struct FeedbackExportActions: View {
             Label("common.clear", systemImage: "trash")
                 .font(Theme.typography.subheadline)
         }
+        .frame(maxWidth: .infinity)
         .confirmationDialog("report.export.clear.confirm \(model.clearableCount)",
                             isPresented: $confirmingClear, titleVisibility: .visible) {
             Button("common.clear", role: .destructive) { model.clearFeedback() }
@@ -115,5 +132,7 @@ struct FeedbackExportActions: View {
         Label(title, systemImage: icon)
             .font(Theme.typography.subheadline)
             .foregroundStyle(Theme.colors.accent)
+            .frame(maxWidth: .infinity)
+            .multilineTextAlignment(.center)
     }
 }

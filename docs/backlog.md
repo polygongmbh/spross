@@ -159,11 +159,6 @@ Catalog content — its forms, its audio and the per-language questions — live
   syllable split cuts through a stem rather than landing on a seam ("Fei-er-tag" buries
   "Feier") — considered for word scramble (`drills-words.md`) and left out.
 
-- The companion's harvest list draws its own checkable row on both platforms
-  (`BriefingSheet.swift:178`, `BriefingSheet.kt:183`) where the catalog merge now uses the
-  shared one (`SelectionRow(mark: .many)`); folding it over would leave one checkable row
-  per platform rather than two.
-
 ## Platform reach
 
 - `compileSdk` sits at 36 and holds androidx back — lifecycle 2.11 refuses to resolve below

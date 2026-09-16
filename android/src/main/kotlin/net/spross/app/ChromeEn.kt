@@ -325,7 +325,7 @@ internal object ChromeEn : Chrome {
     override val boxOwnWordNeedsTranslation = "Needs translation"
     override val boxOwnWordOtherPair = "written in %s"
     override val boxOwnMatchTitle = "Merge"
-    override val boxOwnMatchAction = "Merge with the catalog"
+    override val boxOwnMatchAction = "Compare words & suggestions"
     override val boxOwnMatchNone = "The catalog has none of your words yet."
     override val boxOwnMatchGroupWhole = "Both halves agree"
     override val boxOwnMatchGroupHalf = "One half agrees"

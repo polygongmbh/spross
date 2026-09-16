@@ -94,12 +94,16 @@ struct CatalogMatchSheet: View {
     /// differently — which is what a one-sided match has to be read for before it is
     /// ticked. Where they are written alike there is nothing under it: a line repeating
     /// the one above it is a line nobody reads twice.
+    ///
+    /// The learner's line wears the pen the own-content section wears everywhere else, so
+    /// which of the two lines is theirs needs no words to say.
     private func row(_ match: CatalogMatch) -> some View {
         let catalog = model.catalogText(match)
         let written = model.writtenText(match)
         return SelectionRow(
             title: Text(verbatim: catalog),
-            caption: written == catalog ? nil : Text(verbatim: written),
+            caption: written == catalog ? nil
+                : Text(verbatim: "\(OwnWords.shared.EMOJI) \(written)"),
             mark: .many,
             selected: picked.contains(match.word.id),
         ) {

@@ -480,10 +480,16 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
     `../kern/README.md` §6). Nothing merges unasked — the words where both halves agree
     arrive ticked, having nothing left to judge, and a match on one half only waits to be
     read, since which of the two spellings is right is the learner's call and is made by
-    looking at both. It stands with the two ways out and the clear rather than as a door of
-    its own: it is one more thing to do with the words above it. On a LINE of its own under
-    them, with no divider between — it is the one of the four whose name cannot say what it
-    does in a word, and it has to say MERGE rather than look up.
+    looking at both. Each row leads with the CATALOG's writing of the word and carries the
+    learner's under it wearing the section's pen, so which of the two lines is theirs needs
+    no words to say; where the two are written alike there is no second line at all.
+    The three one-word actions share a line, evenly spread rather than piled against its
+    left edge, and the merge takes the line under them: it is the one of the four whose
+    name cannot be said in a verb, because it has to name what it compares — the words AND
+    the suggestions, both of which the catalog can have caught up with.
+    A list of words ticked a word at a time wears ONE row on a platform, the companion's
+    harvest and this one alike: two sheets doing the same thing with two different marks is
+    how a mark comes to mean nothing.
   - **Own words** are also what a search with no answer leads to: the learner has just
     proved the catalog has no word for what they need, so the empty state offers to write
     one, with the known side prefilled from the query — a search box is far more often used

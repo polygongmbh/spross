@@ -978,18 +978,18 @@
       }
     },
     "box.own.match.action" : {
-      "comment" : "row under copy/send/clear that opens the merge screen; it MOVES a word onto its catalog card, it does not just look it up",
+      "comment" : "row beside the clear that opens the merge screen; names WHAT it compares, since the other three actions name it by their verb alone",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mit dem Katalog zusammenführen"
+            "value" : "Wörter & Vorschläge abgleichen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Merge with the catalog"
+            "value" : "Compare words & suggestions"
           }
         }
       }
@@ -1960,7 +1960,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leeren"
+            "value" : "Löschen"
           }
         },
         "en" : {
@@ -5012,7 +5012,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alles, dann leeren"
+            "value" : "Alles, dann löschen"
           }
         },
         "en" : {
