@@ -125,10 +125,13 @@ private fun BoxBrowserScreen(
     }
 
     fun reveal(area: String) {
-        // why: the named group opens INSTEAD of whatever stood open — the learner said which
-        // area they meant, and every other shelf left open is list between them and it.
-        sections.firstOrNull { area in it.areas }?.let { openGroups = setOf(it.id) }
-        openAreas = openAreas + area
+        if (area != OwnWords.AREA) {
+            // why: the named area opens INSTEAD of whatever stood open — the learner said which
+            // area they meant, and every other shelf left open is only weight the fold has to
+            // lay out before the scroll can reach this one.
+            sections.firstOrNull { area in it.areas }?.let { openGroups = setOf(it.id) }
+            openAreas = setOf(area)
+        }
         scrollTo = area
     }
 

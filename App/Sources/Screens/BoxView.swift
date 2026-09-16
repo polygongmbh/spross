@@ -8,7 +8,7 @@ import SprossKern
 /// revealed.
 /// How long the group's fold is given to lay its areas out before the box is asked to
 /// scroll to one — just past the 0.2 s the fold itself animates for.
-private let FOLD_SETTLE_MS = 120
+private let FOLD_SETTLE_MS = 220
 
 /// How many times the box asks to be scrolled to the revealed area. See the loop.
 private let SCROLL_ATTEMPTS = 6
@@ -151,11 +151,12 @@ struct BoxView: View {
         if area != model.ownArea {
             let group = model.areaGroupSections.first { $0.areas.contains(area) }
             withAnimation(.easeInOut(duration: 0.2)) {
-                // why: the named group opens INSTEAD of whatever stood open, exactly as
+                // why: the named area opens INSTEAD of whatever stood open, exactly as
                 // `init` opens one instead of the default — the learner said which area
-                // they meant, and every other shelf left open is list between them and it.
+                // they meant, and every other shelf left open is only weight the fold
+                // has to lay out before the scroll can reach this one.
                 if let group { expandedGroups = [group.id] }
-                expandedAreas.insert(area)
+                expandedAreas = [area]
             }
         }
         scrollTarget = area
