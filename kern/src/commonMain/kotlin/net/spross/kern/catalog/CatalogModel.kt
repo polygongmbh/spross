@@ -2,9 +2,9 @@ package net.spross.kern.catalog
 
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.Language
+import net.spross.kern.trainer.NumbersReading
 import net.spross.kern.trainer.PhraseTemplate
 import net.spross.kern.trainer.SwahiliConcord
-import net.spross.kern.trainer.TrainerKind
 
 /** One ordered group from `areas.json`. */
 data class AreaGroup(
@@ -71,7 +71,7 @@ internal data class RawRealization(
  */
 internal data class CatalogFrame(
     val slug: String,
-    val slot: TrainerKind,
+    val slot: NumbersReading,
 )
 
 /**

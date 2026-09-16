@@ -19,23 +19,23 @@ object PhraseSlots {
      * source prompt shows the digital time ("… um 14:35 Uhr …").
      */
     fun instantiate(template: PhraseTemplate, hour: Int, minute: Int): NumbersTask {
-        require(template.slotKind == TrainerKind.Clock) { "hour/minute instantiation requires a Clock template" }
+        require(template.slotKind == NumbersReading.Clock) { "hour/minute instantiation requires a Clock template" }
         val slot = Numbers.clock(hour, minute, template.target)
         return compose(template, slot, value = null)
     }
 
     /** Number and year templates. */
     fun instantiate(template: PhraseTemplate, value: Long): NumbersTask {
-        require(template.slotKind != TrainerKind.Clock) { "clock templates take hour/minute" }
-        // Exhaustive on purpose: a new kind must fail loudly here rather than
+        require(template.slotKind != NumbersReading.Clock) { "clock templates take hour/minute" }
+        // Exhaustive on purpose: a new reading must fail loudly here rather than
         // silently become a year, which an `else` arm would have made it.
         val slot = when (template.slotKind) {
             // why: drill accepted set — sw speakers routinely drop the "na" connectors
-            TrainerKind.Numbers -> template.swahiliNounClass
+            NumbersReading.Cardinal -> template.swahiliNounClass
                 ?.let { Numbers.concordedNumber(value, it, template.target) }
                 ?: Numbers.drillNumber(value, template.target)
-            TrainerKind.Years -> Numbers.year(value, template.target)
-            TrainerKind.Clock, TrainerKind.Forms, TrainerKind.Fraction ->
+            NumbersReading.Year -> Numbers.year(value, template.target)
+            NumbersReading.Clock, NumbersReading.Form, NumbersReading.Fraction ->
                 throw IllegalArgumentException("no phrase slot generator for ${template.slotKind}")
         }
         return compose(template, slot, value)
@@ -46,7 +46,7 @@ object PhraseSlots {
      * bare noun and has no way to decline around an adjectival one ([SlotValue.Part]).
      */
     fun instantiate(template: PhraseTemplate, numerator: Long, denominator: Long): NumbersTask {
-        require(template.slotKind == TrainerKind.Fraction) { "only a fraction template takes n/d" }
+        require(template.slotKind == NumbersReading.Fraction) { "only a fraction template takes n/d" }
         val slot = Numbers.fraction(numerator, denominator, template.target)
         return compose(template, slot, value = null)
     }
@@ -93,7 +93,7 @@ object PhraseSlots {
 
     internal fun compose(template: PhraseTemplate, slot: NumbersTask, value: Long?): NumbersTask {
         val countWord = template.countForms?.let { forms ->
-            require(template.slotKind == TrainerKind.Numbers) { "countForms only compose with Numbers" }
+            require(template.slotKind == NumbersReading.Cardinal) { "countForms only compose with a Cardinal slot" }
             value?.let(forms::form)
         }
 
@@ -148,7 +148,7 @@ object PhraseSlots {
         countWord: String?,
     ): String? {
         val language = template.target
-        if (template.slotKind != TrainerKind.Clock) {
+        if (template.slotKind != NumbersReading.Clock) {
             return fillTarget(frame, reading, countWord, language)
         }
         val pack = Numbers.pack(language)
@@ -167,7 +167,7 @@ object PhraseSlots {
      * Sprosse to the word-count rule.
      */
     private fun digitForms(slot: NumbersTask): List<String> {
-        if (slot.kind != TrainerKind.Clock) return listOf(slot.prompt, slot.promptDisplay).distinct()
+        if (slot.kind != NumbersReading.Clock) return listOf(slot.prompt, slot.promptDisplay).distinct()
         return Numbers.clockDigitForms(slot.prompt)
     }
 

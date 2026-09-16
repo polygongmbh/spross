@@ -4,11 +4,12 @@ import kotlin.random.Random
 import net.spross.kern.model.Language
 
 /**
- * Appended, never reordered — nothing serializes the ordinal, but the app switches on it.
+ * What a task asks the learner to READ. Appended, never reordered — nothing serializes the
+ * ordinal, but the app switches on it.
  * [Fraction] is a slot kind a FRAME takes, not a drill of its own: a fraction reads as a
  * bare noun, so a sentence can carry one where a whole number form cannot.
  */
-enum class TrainerKind { Numbers, Years, Clock, Forms, Fraction }
+enum class NumbersReading { Cardinal, Year, Clock, Form, Fraction }
 
 /**
  * The glyph a slot kind wears, wherever a run needs a face rather than a word — the hub's
@@ -16,11 +17,11 @@ enum class TrainerKind { Numbers, Years, Clock, Forms, Fraction }
  * [net.spross.kern.model.kindEmoji] is: a map is a map, and Swift and Kotlin had each drawn
  * this exact table from scratch, one coincidence away from disagreeing.
  */
-fun trainerKindEmoji(kind: TrainerKind): String = when (kind) {
-    TrainerKind.Numbers -> "🔢"
-    TrainerKind.Years -> "📅"
-    TrainerKind.Clock -> "🕐"
-    TrainerKind.Forms, TrainerKind.Fraction -> "➗"
+fun numbersReadingEmoji(reading: NumbersReading): String = when (reading) {
+    NumbersReading.Cardinal -> "🔢"
+    NumbersReading.Year -> "📅"
+    NumbersReading.Clock -> "🕐"
+    NumbersReading.Form, NumbersReading.Fraction -> "➗"
 }
 
 /**
@@ -28,7 +29,7 @@ fun trainerKindEmoji(kind: TrainerKind): String = when (kind) {
  * [accepted] normalize-insensitively and reveals [display].
  */
 data class NumbersTask(
-    val kind: TrainerKind,
+    val kind: NumbersReading,
     val language: Language,
     /**
      * The MACHINE form of the asked value: "347", "1978", "14:35" — never grouped,
@@ -111,7 +112,7 @@ object Numbers {
     private fun numberTask(n: Long, language: Language, accepted: List<String>): NumbersTask {
         val prompt = n.toString()
         return NumbersTask(
-            TrainerKind.Numbers, language, prompt, accepted, accepted[0],
+            NumbersReading.Cardinal, language, prompt, accepted, accepted[0],
             promptDisplay = groupDigits(prompt),
         )
     }
@@ -119,7 +120,7 @@ object Numbers {
     /** de: hundred-style variants; sw/uk: plain number reading. */
     fun year(y: Long, language: Language): NumbersTask {
         val reading = pack(language).year(y)
-        return NumbersTask(TrainerKind.Years, language, y.toString(), reading.accepted, reading.display)
+        return NumbersTask(NumbersReading.Year, language, y.toString(), reading.accepted, reading.display)
     }
 
     /**
@@ -131,7 +132,7 @@ object Numbers {
         val m = ((minute % 60) + 60) % 60
         val reading = pack(language).clock(h, m)
         return NumbersTask(
-            TrainerKind.Clock, language, "${pad2(h)}:${pad2(m)}",
+            NumbersReading.Clock, language, "${pad2(h)}:${pad2(m)}",
             reading.accepted, reading.display, reading.gloss,
         )
     }
@@ -145,7 +146,7 @@ object Numbers {
         val accepted = pack(language).formReading(value)
         require(accepted.isNotEmpty()) { "no fraction reading for $numerator/$denominator in \"$language\"" }
         return NumbersTask(
-            TrainerKind.Fraction, language,
+            NumbersReading.Fraction, language,
             renderForm(value, pack(language).decimalMark, grouped = false), accepted, accepted[0],
         )
     }
@@ -155,12 +156,12 @@ object Numbers {
      * prototype: numbers favor 2–3 digits, years cluster around 1950–2050
      * with rarer historic outliers, clock uses any hour and any minute.
      */
-    fun sample(kind: TrainerKind, language: Language, rng: Random): NumbersTask {
+    fun sample(reading: NumbersReading, language: Language, rng: Random): NumbersTask {
         // Forms has no full-difficulty bias of its own: its ceiling IS its top Sprosse.
-        if (kind == TrainerKind.Forms) return sample(kind, language, maxLevel(kind), rng)
+        if (reading == NumbersReading.Form) return sample(reading, language, maxLevel(reading), rng)
         // why: the full-difficulty cardinal keeps the STRICT accepted set — the looser
         // drill spellings belong to the leveled draw, which is what the drills run on.
-        return render(drawSlot(kind, language, rng), language, drill = false)
+        return render(drawSlot(reading, language, rng), language, drill = false)
     }
 
     /** Whether the Forms drill has anything to offer in [language] — the app's chip gate. */
@@ -168,15 +169,15 @@ object Numbers {
         trainerPacks[language]?.formLimits?.forms?.isNotEmpty() == true
 
     /**
-     * Adaptive difficulty ceiling per kind. Levels are 1-based; the app ramps
+     * Adaptive difficulty ceiling per reading. Levels are 1-based; the app ramps
      * up after consecutive successes and steps down on a miss.
      */
-    fun maxLevel(kind: TrainerKind): Int = when (kind) {
-        TrainerKind.Numbers -> 10 // level == digit count (up to billions)
-        TrainerKind.Years -> 3
-        TrainerKind.Clock -> CLOCK_MAX_LEVEL
-        TrainerKind.Forms -> FORMS_MAX_LEVEL
-        TrainerKind.Fraction -> FRACTION_MAX_LEVEL
+    fun maxLevel(reading: NumbersReading): Int = when (reading) {
+        NumbersReading.Cardinal -> 10 // level == digit count (up to billions)
+        NumbersReading.Year -> 3
+        NumbersReading.Clock -> CLOCK_MAX_LEVEL
+        NumbersReading.Form -> FORMS_MAX_LEVEL
+        NumbersReading.Fraction -> FRACTION_MAX_LEVEL
     }
 
     /**
@@ -184,9 +185,9 @@ object Numbers {
      * come with every pack; a fraction needs the pack to READ one, so a frame taking that
      * slot simply never joins where it cannot be answered — the registry rule again.
      */
-    fun supportsSlot(kind: TrainerKind, language: Language): Boolean {
+    fun supportsSlot(reading: NumbersReading, language: Language): Boolean {
         val pack = trainerPacks[language] ?: return false
-        if (kind != TrainerKind.Fraction) return kind != TrainerKind.Forms
+        if (reading != NumbersReading.Fraction) return reading != NumbersReading.Form
         return NumberForm.Fraction in pack.formLimits.forms &&
             pack.formLimits.fractionDenominators.any { it >= 3 }
     }
@@ -201,10 +202,10 @@ object Numbers {
      *   (the to-the-hour countdown), 5 any minute.
      * - forms: the ten Sprossen of [SprosseForms], each keeping everything below it.
      */
-    fun sample(kind: TrainerKind, language: Language, level: Int, rng: Random): NumbersTask {
-        val l = level.coerceIn(1, maxLevel(kind))
-        if (kind == TrainerKind.Forms) return formTask(language, l, 0, rng)
-        return render(drawSlot(kind, language, l, rng), language, drill = true)
+    fun sample(reading: NumbersReading, language: Language, level: Int, rng: Random): NumbersTask {
+        val l = level.coerceIn(1, maxLevel(reading))
+        if (reading == NumbersReading.Form) return formTask(language, l, 0, rng)
+        return render(drawSlot(reading, language, l, rng), language, drill = true)
     }
 
     /**
@@ -242,11 +243,11 @@ object Numbers {
         // back to a plain cardinal rather than throwing across the ObjC boundary. The app
         // never shows it: the Forms variant is gated on supportsForms().
         if (value == null || accepted.isEmpty()) {
-            return drillNumber(drawNumber(level, rng), language).copy(kind = TrainerKind.Forms)
+            return drillNumber(drawNumber(level, rng), language).copy(kind = NumbersReading.Form)
         }
         val prompt = renderForm(value, pack.decimalMark, grouped = false)
         return NumbersTask(
-            TrainerKind.Forms, language, prompt, accepted, accepted[0],
+            NumbersReading.Form, language, prompt, accepted, accepted[0],
             promptDisplay = renderForm(value, pack.decimalMark, grouped = true),
             formKey = value.form.key,
         )
@@ -303,19 +304,19 @@ object Numbers {
         val value = slotValue(task)
         val accepted = when (task.kind) {
             // why: the forward prompt showed "12 345", so the separator must grade.
-            TrainerKind.Numbers -> listOf(value, groupDigits(value)).distinct()
-            TrainerKind.Years -> listOf(value)
-            TrainerKind.Clock -> clockDigitForms(value)
+            NumbersReading.Cardinal -> listOf(value, groupDigits(value)).distinct()
+            NumbersReading.Year -> listOf(value)
+            NumbersReading.Clock -> clockDigitForms(value)
             // why: a form is written, not just spelled — "3,7" and "3.7" are the same
             // number, "20." and "20" the same rank, so the notation must not cost the Sprosse.
-            TrainerKind.Forms -> formDigitForms(task.prompt, task.promptDisplay)
+            NumbersReading.Form -> formDigitForms(task.prompt, task.promptDisplay)
             // A fraction has one notation and no separator to get wrong.
-            TrainerKind.Fraction -> listOf(value)
+            NumbersReading.Fraction -> listOf(value)
         }
         // The reveal shows the readable rendering, which is always one of the accepted ones.
         val reveal = when (task.kind) {
-            TrainerKind.Numbers -> groupDigits(value)
-            TrainerKind.Forms -> task.promptDisplay
+            NumbersReading.Cardinal -> groupDigits(value)
+            NumbersReading.Form -> task.promptDisplay
             else -> value
         }
         return NumbersTask(

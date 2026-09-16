@@ -4,9 +4,9 @@ import kotlinx.serialization.json.JsonObject
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.Language
 import net.spross.kern.model.LanguageInfo
+import net.spross.kern.trainer.NumbersReading
 import net.spross.kern.trainer.PhraseTemplate
 import net.spross.kern.trainer.SwahiliConcord
-import net.spross.kern.trainer.TrainerKind
 
 /** Wraps a [CatalogSource], folding every read into an FNV-1a 64 fingerprint. */
 internal class FingerprintingSource(private val delegate: CatalogSource) {
@@ -226,10 +226,10 @@ internal object CatalogParser {
             if (slug.isEmpty() || '|' in slug || '/' in slug) parseError(path, "[$i]: bad slug \"$slug\"")
             if (slug in conceptSlugs) parseError(path, "$slug: frame slug also names a concept")
             val slot = when (val raw = o.requireString(path, slug, "slot")) {
-                "numbers" -> TrainerKind.Numbers
-                "years" -> TrainerKind.Years
-                "clock" -> TrainerKind.Clock
-                "fraction" -> TrainerKind.Fraction
+                "numbers" -> NumbersReading.Cardinal
+                "years" -> NumbersReading.Year
+                "clock" -> NumbersReading.Clock
+                "fraction" -> NumbersReading.Fraction
                 else -> parseError(path, "$slug: unknown slot \"$raw\"")
             }
             CatalogFrame(slug, slot)
@@ -247,7 +247,7 @@ internal object CatalogParser {
     fun parseFrameLanguageFile(
         path: String,
         text: String,
-        slots: Map<String, TrainerKind>,
+        slots: Map<String, NumbersReading>,
     ): RawDrills {
         val root = parseJson(path, text).obj(path, "root")
         root.rejectUnknownKeys(path, "root", setOf("numberNotes", "frames"))
@@ -266,7 +266,7 @@ internal object CatalogParser {
         return RawDrills(numberNotes = notes, frames = frames)
     }
 
-    private fun parseFrame(path: String, slug: String, slot: TrainerKind, o: JsonObject): RawFrame {
+    private fun parseFrame(path: String, slug: String, slot: NumbersReading, o: JsonObject): RawFrame {
         o.rejectUnknownKeys(
             path, slug,
             setOf("text", "variants", "count", "masculineNumeral", "swahiliNounClass", "notes"),
@@ -274,7 +274,7 @@ internal object CatalogParser {
         val text = o.requireString(path, slug, "text")
         val variants = o.stringList(path, slug, "variants")
         val count = o["count"]?.let { el ->
-            if (slot != TrainerKind.Numbers) parseError(path, "$slug: count on a ${slot.name.lowercase()} frame")
+            if (slot != NumbersReading.Cardinal) parseError(path, "$slug: count on a ${slot.name.lowercase()} frame")
             val co = el.obj(path, "$slug.count")
             co.rejectUnknownKeys(path, "$slug.count", setOf("one", "few", "many"))
             PhraseTemplate.CountForms(
@@ -284,7 +284,7 @@ internal object CatalogParser {
             )
         }
         val nounClass = o.optionalString(path, slug, "swahiliNounClass")?.let { raw ->
-            if (slot != TrainerKind.Numbers) {
+            if (slot != NumbersReading.Cardinal) {
                 parseError(path, "$slug: swahiliNounClass on a ${slot.name.lowercase()} frame")
             }
             SwahiliConcord.NounClass.entries.firstOrNull { it.name == raw }

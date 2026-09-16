@@ -127,7 +127,7 @@ class NumbersRunTest {
     @Test
     fun anAnswerStillGrowingIntoALongerOneDoesNotConfirmItself() {
         val task = NumbersTask(
-            kind = TrainerKind.Clock,
+            kind = NumbersReading.Clock,
             language = "es",
             prompt = "21:00",
             accepted = listOf("son las nueve de la noche", "son las nueve"),

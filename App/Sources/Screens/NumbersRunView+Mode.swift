@@ -32,9 +32,9 @@ extension NumbersMode {
                   templates: templates, modifiers: played)
     }
 
-    /// One slot variant, played plain.
-    static func slots(_ kind: TrainerKind, _ language: String) -> NumbersMode {
-        NumbersMode(variants: [kind.exercise], language: language)
+    /// One reading, played plain.
+    static func slots(_ reading: NumbersReading, _ language: String) -> NumbersMode {
+        NumbersMode(variants: [reading.exercise], language: language)
     }
 
     static func phrases(source: String, target: String, templates: [PhraseTemplate]) -> NumbersMode {
@@ -85,16 +85,16 @@ private extension NumbersMode {
 }
 #endif
 
-extension TrainerKind {
-    /// The ladder variant a slot kind belongs to. Years maps onto Numbers because
-    /// it has no Sprosse of its own: the standalone years drill was dropped as
-    /// redundant, and years live on only as a phrase slot. Fraction is a phrase slot
-    /// too, and belongs to Forms — a fraction is one of the number forms.
+extension NumbersReading {
+    /// The ladder a reading is climbed on. Year maps onto Counting because it has no
+    /// Sprosse of its own: the standalone years drill was dropped as redundant, and
+    /// years live on only as a phrase slot. Fraction is a phrase slot too, and belongs
+    /// to Forms — a fraction is one of the number forms.
     var exercise: NumbersExercise {
         switch self {
-        case .numbers, .years: return .counting
+        case .cardinal, .year: return .counting
         case .clock: return .clock
-        case .forms, .fraction: return .forms
+        case .form, .fraction: return .forms
         }
     }
 }

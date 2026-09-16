@@ -12,7 +12,7 @@ import net.spross.kern.model.Language
  *
  * Registry-by-file like the letter drill: a pair has this drill exactly when
  * [net.spross.kern.catalog.Catalog.countryDrillContent] joins something for it. No
- * [TrainerKind], no [NumbersExercise] — a different skill, not another way of playing numbers.
+ * [NumbersReading], no [NumbersExercise] — a different skill, not another way of playing numbers.
  *
  * Everything here is pure and stateless: no schedule is read, no review is booked. Sampling
  * takes an injected [Random], so both platforms derive the same run from the same seed and

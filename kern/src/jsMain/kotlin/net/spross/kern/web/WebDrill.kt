@@ -10,7 +10,7 @@ import net.spross.kern.model.Realization
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.Match
 import net.spross.kern.trainer.Numbers
-import net.spross.kern.trainer.TrainerKind
+import net.spross.kern.trainer.NumbersReading
 import net.spross.kern.trainer.NumbersTask
 
 /** One sampled task, narrowed to JS-clean types (no Long, no List). */
@@ -49,7 +49,7 @@ class NumbersDrill(private val language: String, seed: Int, articles: Array<Stri
     )
 
     fun sample(level: Int): WebTask =
-        Numbers.sample(TrainerKind.Numbers, language, level, rng).web()
+        Numbers.sample(NumbersReading.Cardinal, language, level, rng).web()
 
     fun grade(input: String, task: WebTask): WebVerdict =
         when (val match = normalizer.evaluate(input, gradingCard(task))) {

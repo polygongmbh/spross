@@ -10,7 +10,7 @@ class NumbersPropertyTests {
     @Test
     fun sampledTasksAreWellFormed() {
         val rng = Random(0xBEEF)
-        for (kind in TrainerKind.entries) {
+        for (kind in NumbersReading.entries) {
             for (language in Numbers.languages) {
                 repeat(200) {
                     val task = Numbers.sample(kind, language, rng)
@@ -50,7 +50,7 @@ class NumbersPropertyTests {
 
     @Test
     fun samplingIsDeterministicForSeededGenerator() {
-        for (kind in TrainerKind.entries) {
+        for (kind in NumbersReading.entries) {
             val a = Random(0xD00D)
             val b = Random(0xD00D)
             repeat(100) {
@@ -65,11 +65,11 @@ class NumbersPropertyTests {
     fun sampledValuesStayInPortedRanges() {
         val rng = Random(42)
         repeat(500) {
-            val n = Numbers.sample(TrainerKind.Numbers, "de", rng).prompt.toLong()
+            val n = Numbers.sample(NumbersReading.Cardinal, "de", rng).prompt.toLong()
             assertTrue(n in 10..9999)
-            val y = Numbers.sample(TrainerKind.Years, "de", rng).prompt.toLong()
+            val y = Numbers.sample(NumbersReading.Year, "de", rng).prompt.toLong()
             assertTrue(y in 1000..2200)
-            val clockTask = Numbers.sample(TrainerKind.Clock, "de", rng)
+            val clockTask = Numbers.sample(NumbersReading.Clock, "de", rng)
             assertTrue(clockTask.prompt.length == 5 && ':' in clockTask.prompt)
         }
     }

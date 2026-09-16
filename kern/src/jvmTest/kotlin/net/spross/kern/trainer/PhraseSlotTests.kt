@@ -28,7 +28,7 @@ class PhraseSlotTests {
             listOf("Ich brauche ein Viertel Kilo Mehl.", "Ich brauche 1/4 Kilo Mehl."),
             task.accepted,
         )
-        assertEquals(TrainerKind.Fraction, task.kind)
+        assertEquals(NumbersReading.Fraction, task.kind)
     }
 
     @Test
@@ -49,9 +49,9 @@ class PhraseSlotTests {
     fun aFractionSlotNeverDrawsAHalfAndStaysReduced() {
         val rng = Random(20260807)
         val pattern = Regex("""(\d+)/(\d+)""")
-        for (template in RealFrames.all.filter { it.slotKind == TrainerKind.Fraction }) {
+        for (template in RealFrames.all.filter { it.slotKind == NumbersReading.Fraction }) {
             val unitOnly = mutableSetOf<Boolean>()
-            for (level in 1..Numbers.maxLevel(TrainerKind.Fraction)) {
+            for (level in 1..Numbers.maxLevel(NumbersReading.Fraction)) {
                 repeat(80) {
                     val task = PhraseSlots.sample(template, level, rng)
                     val (n, d) = pattern.find(task.prompt)!!.destructured
@@ -93,7 +93,7 @@ class PhraseSlotTests {
             id = "test-variants", source = "de", target = "sw",
             sourceTemplate = "Sag {slot}.",
             targetTemplate = "Sema {slot}.",
-            slotKind = TrainerKind.Clock,
+            slotKind = NumbersReading.Clock,
             acceptedFrames = listOf("Tafadhali sema {slot}."),
         )
         val task = PhraseSlots.instantiate(synthetic, hour = 8, minute = 0)
@@ -135,7 +135,7 @@ class PhraseSlotTests {
             id = "test-initial", source = "de", target = "sw",
             sourceTemplate = "{slot} Uhr.",
             targetTemplate = "{slot}, sawa?",
-            slotKind = TrainerKind.Clock,
+            slotKind = NumbersReading.Clock,
         )
         val task = PhraseSlots.instantiate(synthetic, hour = 20, minute = 0)
         assertEquals("Saa mbili usiku, sawa?", task.display)
@@ -166,13 +166,13 @@ class PhraseSlotTests {
     fun everyPairAssemblesDistinctAnswersTheDisplayBelongsTo() {
         for (template in RealFrames.all) {
             val tasks = when (template.slotKind) {
-                TrainerKind.Clock ->
+                NumbersReading.Clock ->
                     listOf(0, 6, 9, 13, 14, 20, 23).flatMap { h ->
                         listOf(0, 15, 20, 30, 35, 45, 55).map { m ->
                             PhraseSlots.instantiate(template, hour = h, minute = m)
                         }
                     }
-                TrainerKind.Fraction ->
+                NumbersReading.Fraction ->
                     listOf(1L to 3L, 1L to 4L, 2L to 3L, 3L to 4L, 5L to 12L)
                         .map { (n, d) -> PhraseSlots.instantiate(template, n, d) }
                 else ->
@@ -199,11 +199,11 @@ class PhraseSlotTests {
                 // sampler — an independent path to the value the composition used.
                 val slot = Numbers.sample(template.slotKind, template.target, b)
                 val expected = when (template.slotKind) {
-                    TrainerKind.Clock -> {
+                    NumbersReading.Clock -> {
                         val parts = slot.prompt.split(":").map { it.toInt() }
                         PhraseSlots.instantiate(template, hour = parts[0], minute = parts[1])
                     }
-                    TrainerKind.Fraction -> {
+                    NumbersReading.Fraction -> {
                         val parts = slot.prompt.split("/").map { it.toLong() }
                         PhraseSlots.instantiate(template, parts[0], parts[1])
                     }
@@ -244,7 +244,7 @@ class PhraseSlotTests {
                 id = "n-th-place", source = "de", target = "en",
                 sourceTemplate = "Ich bin auf Platz {slot}.",
                 targetTemplate = "I am in {slot} place.",
-                slotKind = TrainerKind.Forms,
+                slotKind = NumbersReading.Form,
             )
         }
     }
@@ -253,7 +253,7 @@ class PhraseSlotTests {
     @Test
     fun aFormsSlotIsRejectedWhenATemplateIsCopiedIntoOne() {
         assertFailsWith<IllegalArgumentException> {
-            RealFrames.frame("sw", "we-have-n-plates").copy(slotKind = TrainerKind.Forms)
+            RealFrames.frame("sw", "we-have-n-plates").copy(slotKind = NumbersReading.Form)
         }
     }
 

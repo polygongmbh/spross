@@ -5,8 +5,8 @@ import kotlin.random.Random
 /**
  * What a RUN can offer — the learner-facing choice on the numbers overview.
  *
- * Not to be confused with [TrainerKind], which is what fills a SLOT: a Phrases run
- * draws tasks whose kind is Numbers, Years or Clock, because the kind names the
+ * Not to be confused with [NumbersReading], which is what fills a SLOT: a Phrases run
+ * draws tasks whose reading is Cardinal, Year or Clock, because the reading names the
  * generator behind the slot while the exercise names what is asked around it.
  * Progress is kept per exercise, so the two must never be collapsed.
  */

@@ -142,7 +142,7 @@ class SwahiliConcordTests {
         val chairs = PhraseTemplate(
             id = "we-have-n-chairs", source = "de", target = "sw",
             sourceTemplate = "Wir haben {slot} Stühle.", targetTemplate = "Tuna viti {slot}.",
-            slotKind = TrainerKind.Numbers, swahiliNounClass = SwahiliConcord.NounClass.KI_VI,
+            slotKind = NumbersReading.Cardinal, swahiliNounClass = SwahiliConcord.NounClass.KI_VI,
         )
         assertEquals("Tuna viti vinne.", PhraseSlots.instantiate(chairs, 4).display)
         assertEquals("Tuna viti mia moja na kimoja.", PhraseSlots.instantiate(chairs, 101).display)

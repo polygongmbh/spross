@@ -23,7 +23,7 @@ data class PhraseTemplate(
      * display/accepted substitute the numbers drill's word forms.
      */
     val targetTemplate: String,
-    val slotKind: TrainerKind,
+    val slotKind: NumbersReading,
     /**
      * Accept-only alternate renderings of [targetTemplate] (the du/Sie register split):
      * graded as correct, never displayed.
@@ -63,11 +63,11 @@ data class PhraseTemplate(
         // Forms readings are not sentence slots: a fraction or ordinal needs the frame to
         // decline around it, and no agreement device runs that way (docs/backlog.md).
         // Failing here means catalog build time, not the draw that would have thrown.
-        require(slotKind != TrainerKind.Forms) { "$id: frames cannot carry a ${TrainerKind.Forms} slot" }
+        require(slotKind != NumbersReading.Form) { "$id: frames cannot carry a ${NumbersReading.Form} slot" }
         // Noun-class concord is Swahili's and needs a numeral to carry it — a frame that
         // claims it anywhere else would silently render the plain reading instead.
-        require(swahiliNounClass == null || (slotKind == TrainerKind.Numbers && target == "sw")) {
-            "$id: swahiliNounClass needs a Swahili ${TrainerKind.Numbers} slot, not $target/$slotKind"
+        require(swahiliNounClass == null || (slotKind == NumbersReading.Cardinal && target == "sw")) {
+            "$id: swahiliNounClass needs a Swahili ${NumbersReading.Cardinal} slot, not $target/$slotKind"
         }
     }
 

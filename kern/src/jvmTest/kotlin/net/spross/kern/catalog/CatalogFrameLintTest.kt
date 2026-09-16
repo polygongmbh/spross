@@ -1,7 +1,7 @@
 package net.spross.kern.catalog
 
 import net.spross.kern.trainer.Numbers
-import net.spross.kern.trainer.TrainerKind
+import net.spross.kern.trainer.NumbersReading
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -77,7 +77,7 @@ class CatalogFrameLintTest {
                 assertEquals(expected, occurrences(text, "{count}"), "$where: \"$text\" count marker")
             }
             if (frame.count != null) {
-                assertEquals(TrainerKind.Numbers, slots[slug], "$where: count on a non-numbers frame")
+                assertEquals(NumbersReading.Cardinal, slots[slug], "$where: count on a non-numbers frame")
             }
         }
     }

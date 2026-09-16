@@ -17,7 +17,7 @@ class PhraseLevelTests {
     private fun minuteOf(sentence: String): Int =
         clockTime.find(sentence)!!.groupValues[2].toInt()
 
-    private fun templates(kind: TrainerKind): List<PhraseTemplate> =
+    private fun templates(kind: NumbersReading): List<PhraseTemplate> =
         RealFrames.all.filter { it.slotKind == kind }
 
     // Gentle start: level 1 per kind
@@ -25,7 +25,7 @@ class PhraseLevelTests {
     @Test
     fun levelOneClockOnlyYieldsFullHours() {
         val rng = Random(1)
-        for (template in templates(TrainerKind.Clock)) {
+        for (template in templates(NumbersReading.Clock)) {
             repeat(40) {
                 val task = PhraseSlots.sample(template, level = 1, rng)
                 assertEquals(0, minuteOf(task.prompt), "${template.id}: ${task.prompt}")
@@ -36,7 +36,7 @@ class PhraseLevelTests {
     @Test
     fun levelOneNumberYieldsSingleDigitValues() {
         val rng = Random(2)
-        for (template in templates(TrainerKind.Numbers)) {
+        for (template in templates(NumbersReading.Cardinal)) {
             repeat(40) {
                 val task = PhraseSlots.sample(template, level = 1, rng)
                 val digits = task.prompt.filter { it.isDigit() }
@@ -48,7 +48,7 @@ class PhraseLevelTests {
     @Test
     fun levelOneYearStaysInRecentDecades() {
         val rng = Random(3)
-        for (template in templates(TrainerKind.Years)) {
+        for (template in templates(NumbersReading.Year)) {
             repeat(40) {
                 val task = PhraseSlots.sample(template, level = 1, rng)
                 val year = task.prompt.filter { it.isDigit() }.toInt()
@@ -62,7 +62,7 @@ class PhraseLevelTests {
     @Test
     fun quarterLevelYieldsAllFourQuarters() {
         val rng = Random(4)
-        for (template in templates(TrainerKind.Clock)) {
+        for (template in templates(NumbersReading.Clock)) {
             val seen = mutableSetOf<Int>()
             repeat(120) {
                 seen += minuteOf(PhraseSlots.sample(template, level = 2, rng).prompt)
@@ -74,7 +74,7 @@ class PhraseLevelTests {
     @Test
     fun countdownLevelAddsTheLateFivesAndNothingOffGrid() {
         val rng = Random(8)
-        for (template in templates(TrainerKind.Clock)) {
+        for (template in templates(NumbersReading.Clock)) {
             val seen = mutableSetOf<Int>()
             repeat(200) {
                 seen += minuteOf(PhraseSlots.sample(template, level = 4, rng).prompt)
@@ -86,8 +86,8 @@ class PhraseLevelTests {
     @Test
     fun maxLevelReachesMinutesPastHalfPast() {
         val rng = Random(5)
-        val top = Numbers.maxLevel(TrainerKind.Clock)
-        for (template in templates(TrainerKind.Clock)) {
+        val top = Numbers.maxLevel(NumbersReading.Clock)
+        for (template in templates(NumbersReading.Clock)) {
             var sawPastHalf = false
             repeat(120) {
                 val minute = minuteOf(PhraseSlots.sample(template, level = top, rng).prompt)
@@ -110,11 +110,11 @@ class PhraseLevelTests {
                     val sampled = PhraseSlots.sample(template, level, a)
                     // Cross-check against the shared numbers-drill draw machinery.
                     val expected = when (template.slotKind) {
-                        TrainerKind.Clock -> {
+                        NumbersReading.Clock -> {
                             val hour = b.nextInt(24)
                             PhraseSlots.instantiate(template, hour, Numbers.clockMinute(level, b))
                         }
-                        TrainerKind.Fraction -> {
+                        NumbersReading.Fraction -> {
                             val slot = Numbers.sample(template.slotKind, template.target, level, b)
                             val parts = slot.prompt.split("/").map { it.toLong() }
                             PhraseSlots.instantiate(template, parts[0], parts[1])
@@ -132,9 +132,9 @@ class PhraseLevelTests {
 
     @Test
     fun levelClampsToValidBounds() {
-        val clock = templates(TrainerKind.Clock).first()
+        val clock = templates(NumbersReading.Clock).first()
         assertEquals(0, minuteOf(PhraseSlots.sample(clock, level = -3, Random(6)).prompt))
-        val number = templates(TrainerKind.Numbers).first()
+        val number = templates(NumbersReading.Cardinal).first()
         val digits = PhraseSlots.sample(number, level = 99, Random(7)).prompt.filter { it.isDigit() }
         assertEquals(10, digits.length)
     }

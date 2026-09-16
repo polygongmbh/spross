@@ -12,7 +12,7 @@ class NumbersLevelTests {
         val rng = Random(1)
         for (level in 1..10) {
             repeat(50) {
-                val task = Numbers.sample(TrainerKind.Numbers, "de", level, rng)
+                val task = Numbers.sample(NumbersReading.Cardinal, "de", level, rng)
                 assertEquals(level, task.prompt.length, "level $level: ${task.prompt}")
             }
         }
@@ -24,7 +24,7 @@ class NumbersLevelTests {
         var zeros = 0
         var total = 0
         repeat(400) {
-            val prompt = Numbers.sample(TrainerKind.Numbers, "de", 5, rng).prompt
+            val prompt = Numbers.sample(NumbersReading.Cardinal, "de", 5, rng).prompt
             for (d in prompt.drop(1)) {
                 total += 1
                 if (d == '0') zeros += 1
@@ -39,7 +39,7 @@ class NumbersLevelTests {
         val rng = Random(7)
         var sawConnector = false
         repeat(300) {
-            val task = Numbers.sample(TrainerKind.Numbers, "sw", 3, rng)
+            val task = Numbers.sample(NumbersReading.Cardinal, "sw", 3, rng)
             if (task.accepted.size == 2) {
                 sawConnector = true
                 assertEquals(task.accepted[0].replace(" na ", " "), task.accepted[1])
@@ -52,7 +52,7 @@ class NumbersLevelTests {
     private fun minutesDrawn(level: Int, seed: Int, draws: Int = 200): Set<Int> {
         val rng = Random(seed)
         return (1..draws)
-            .map { Numbers.sample(TrainerKind.Clock, "de", level, rng).prompt.takeLast(2).toInt() }
+            .map { Numbers.sample(NumbersReading.Clock, "de", level, rng).prompt.takeLast(2).toInt() }
             .toSet()
     }
 
@@ -71,7 +71,7 @@ class NumbersLevelTests {
 
     @Test
     fun clockSprossenAreNested() {
-        val seen = (1..Numbers.maxLevel(TrainerKind.Clock)).map { minutesDrawn(it, seed = 20 + it) }
+        val seen = (1..Numbers.maxLevel(NumbersReading.Clock)).map { minutesDrawn(it, seed = 20 + it) }
         for ((lower, higher) in seen.zipWithNext()) {
             assertTrue(higher.containsAll(lower), "a minute was withdrawn: $lower ⊄ $higher")
         }
@@ -79,7 +79,7 @@ class NumbersLevelTests {
 
     @Test
     fun topClockSprosseReadsTheFaceOut() {
-        val top = minutesDrawn(Numbers.maxLevel(TrainerKind.Clock), seed = 9, draws = 400)
+        val top = minutesDrawn(Numbers.maxLevel(NumbersReading.Clock), seed = 9, draws = 400)
         assertTrue(top.all { it in 0..59 })
         assertTrue(top.any { it % 5 != 0 }, "expected off-grid minutes at the ceiling")
         assertTrue(top.any { it > 30 && it % 5 != 0 }, "expected off-grid minutes past the half")
@@ -89,9 +89,9 @@ class NumbersLevelTests {
     fun yearLevelsWidenRange() {
         val rng = Random(3)
         repeat(80) {
-            val l1 = Numbers.sample(TrainerKind.Years, "de", 1, rng).prompt.toInt()
+            val l1 = Numbers.sample(NumbersReading.Year, "de", 1, rng).prompt.toInt()
             assertTrue(l1 in 1990..2029)
-            val l3 = Numbers.sample(TrainerKind.Years, "de", 3, rng).prompt.toInt()
+            val l3 = Numbers.sample(NumbersReading.Year, "de", 3, rng).prompt.toInt()
             assertTrue(l3 in 1100..2099)
         }
     }
@@ -99,9 +99,9 @@ class NumbersLevelTests {
     @Test
     fun levelClampsToValidBounds() {
         val rng = Random(4)
-        val low = Numbers.sample(TrainerKind.Numbers, "de", -3, rng)
+        val low = Numbers.sample(NumbersReading.Cardinal, "de", -3, rng)
         assertEquals(1, low.prompt.length)
-        val high = Numbers.sample(TrainerKind.Numbers, "de", 99, rng)
+        val high = Numbers.sample(NumbersReading.Cardinal, "de", 99, rng)
         assertEquals(10, high.prompt.length)
     }
 }

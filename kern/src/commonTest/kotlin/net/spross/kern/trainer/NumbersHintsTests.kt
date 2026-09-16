@@ -13,7 +13,7 @@ class NumbersHintsTests {
         // 1 digit has no place word; 2…10 all do, for every authored language.
         for (lang in Numbers.languages) {
             assertNull(Numbers.placeValueHint(1, lang))
-            for (digits in 2..Numbers.maxLevel(TrainerKind.Numbers)) {
+            for (digits in 2..Numbers.maxLevel(NumbersReading.Cardinal)) {
                 assertNotNull(Numbers.placeValueHint(digits, lang), "$lang missing place hint for $digits digits")
             }
             assertNull(Numbers.placeValueHint(11, lang))

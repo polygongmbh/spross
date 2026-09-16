@@ -25,7 +25,7 @@ struct NumbersRunView: View, LanguageNaming {
     /// without it a language the chrome does not know is spelled "ES".
     var catalog: Catalog?
     /// Only for saying the answer out loud. Optional because previews build a
-    /// run out of nothing but a kind and a language — a drill with no model is
+    /// run out of nothing but a reading and a language — a drill with no model is
     /// silent rather than broken.
     var model: AppModel?
     /// Handed what the run came to — its figures and whether it took the record
@@ -54,8 +54,8 @@ struct NumbersRunView: View, LanguageNaming {
     @Environment(\.accessibilityReduceMotion) var reduceMotion
     @Environment(\.locale) var locale
 
-    init(kind: TrainerKind, language: String) {
-        self.init(mode: .slots(kind, language))
+    init(reading: NumbersReading, language: String) {
+        self.init(mode: .slots(reading, language))
     }
 
     init(mode: NumbersMode, normalizer: AnswerNormalizer? = nil, catalog: Catalog? = nil,
@@ -124,7 +124,7 @@ struct NumbersRunView: View, LanguageNaming {
 // MARK: - Previews
 
 #Preview("Numbers · Swahili") {
-    NumbersRunView(kind: .numbers, language: "sw")
+    NumbersRunView(reading: .cardinal, language: "sw")
 }
 
 #Preview("Phrases · German → Ukrainian") {
@@ -147,6 +147,6 @@ struct NumbersRunView: View, LanguageNaming {
 }
 
 #Preview("Clock · German · dark") {
-    NumbersRunView(kind: .clock, language: "de")
+    NumbersRunView(reading: .clock, language: "de")
         .preferredColorScheme(.dark)
 }

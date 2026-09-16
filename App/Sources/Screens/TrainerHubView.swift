@@ -149,8 +149,8 @@ struct TrainerHubView: View, LanguageNaming {
         if slotsAvailable {
             // The whole numbers progression behind one chip: the reference page,
             // the clock and the sentences, and whatever the ladder has opened.
-            // layer-ok: the chip IS the numbers one — reading its own emoji, not picking a kind
-            chips.append(.init(emoji: trainerKindEmoji(kind: .numbers),
+            // layer-ok: the chip IS the numbers one — reading its own emoji, not picking a reading
+            chips.append(.init(emoji: numbersReadingEmoji(reading: .cardinal),
                                title: "trainer.skill.numbers",
                                destination: .numbers(language: language)))
         }
@@ -241,14 +241,14 @@ struct ChipButtonStyle: ButtonStyle {
 
 // MARK: - Shared display names
 
-extension TrainerKind {
+extension NumbersReading {
     /// Catalog key for the drill title.
     var trainerTitleKey: LocalizedStringKey {
         switch self {
-        case .numbers: return "trainer.skill.numbers"
-        case .years: return "trainer.variant.years"
+        case .cardinal: return "trainer.skill.numbers"
+        case .year: return "trainer.variant.years"
         case .clock: return "trainer.variant.clock"
-        case .forms, .fraction: return "trainer.variant.forms"
+        case .form, .fraction: return "trainer.variant.forms"
         }
     }
 }

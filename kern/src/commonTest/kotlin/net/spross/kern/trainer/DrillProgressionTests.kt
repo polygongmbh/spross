@@ -40,7 +40,7 @@ class DrillProgressionTests {
         val variants = listOf(
             Triple(NumbersExercise.Clock, NumbersExercise.Counting, 4),
             // The phrase gate rides the clock ceiling, so growing the ladder raises it.
-            Triple(NumbersExercise.Phrases, NumbersExercise.Clock, Numbers.maxLevel(TrainerKind.Clock)),
+            Triple(NumbersExercise.Phrases, NumbersExercise.Clock, Numbers.maxLevel(NumbersReading.Clock)),
             Triple(NumbersExercise.Forms, NumbersExercise.Counting, 7),
         )
         for ((locked, on, level) in variants) {
@@ -174,7 +174,7 @@ class DrillProgressionTests {
     fun reversingSwapsThePromptAndAsksForTheValue() {
         val rng = Random(20260807)
         for (language in Numbers.languages) {
-            for (kind in TrainerKind.entries) {
+            for (kind in NumbersReading.entries) {
                 for (level in 1..Numbers.maxLevel(kind)) {
                     repeat(5) {
                         val forward = Numbers.sample(kind, language, level, rng)

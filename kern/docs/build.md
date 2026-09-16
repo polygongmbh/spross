@@ -53,7 +53,7 @@ Engine contract: `../README.md`.
   dot and comma are inverted between German and English, so a neutral mark is the only one
   that teaches neither as the truth.
   Years and clock times are never grouped — they keep the default by setting nothing.
-  `TrainerKind.Forms` asks the other ways a number is written — negatives, decimals,
+  `NumbersReading.Form` asks the other ways a number is written — negatives, decimals,
   percentages, multiplicatives, fractions, ordinals — over a ten-Sprosse ladder where each
   Sprosse keeps everything below it, and its own `internal` model (`NumberValue`, `FormLimits`)
   never reaches the ObjC header. The Sprosse's forms are intersected with the language's, so a
@@ -67,8 +67,8 @@ Engine contract: `../README.md`.
   What each language reads for each form, with its source and its exclusions,
   is `../../docs/number-forms.md`.
   A sentence slot's grouped digits are accepted alongside the plain ones.
-  **`NumbersExercise` is what a RUN offers, `TrainerKind` is what fills a SLOT** — a Phrases
-  run draws tasks whose kind is Numbers, Years or Clock — and the two must not be
+  **`NumbersExercise` is what a RUN offers, `NumbersReading` is what fills a SLOT** — a Phrases
+  run draws tasks whose reading is Cardinal, Year or Clock — and the two must not be
   collapsed, because progress is kept per exercise. `DrillUnlocks` holds the whole ladder
   as two tables of exercise → level reached (empty = always available), reading a
   progress map the APP persists; kern stores nothing. `DrillRamp.step` is the Sprosse ramp
@@ -88,7 +88,7 @@ Engine contract: `../README.md`.
   The unleveled `sample` overload keeps the prototype's biased full-difficulty draws
   (numbers favor 2–3 digits, years cluster 1950–2050);
   only Clock's unleveled draw coincides with the leveled ceiling.
-  **`LetterDrill` is a separate facade, not a `TrainerKind` case**: its registry is
+  **`LetterDrill` is a separate facade, not a `NumbersReading` case**: its registry is
   alphabet file presence in the catalog (adding a language edits no Kotlin), its ramp is
   stateless and kern-owned (`entryLevel`/`winsToAdvance`, then the `DrillRamp.step` every
   drill shares — both D11 halves in one place so two platforms cannot drift),

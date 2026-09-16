@@ -22,7 +22,7 @@ class PhrasePairCoverageTests {
 
     private fun realized(lang: Language): Set<String> = catalog.frameRealizations[lang].orEmpty().keys
 
-    private fun slotOf(slug: String): TrainerKind = catalog.frames.first { it.slug == slug }.slot
+    private fun slotOf(slug: String): NumbersReading = catalog.frames.first { it.slug == slug }.slot
 
     /** The availability rule, relationally: shared realizations, gated on the answer's pack. */
     @Test

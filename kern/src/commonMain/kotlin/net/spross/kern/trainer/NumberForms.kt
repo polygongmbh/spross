@@ -75,7 +75,7 @@ internal const val TIMES_SUFFIX = "\u00D7"
 /**
  * The prompt side of a form.
  *
- * Unlike every other [TrainerKind], a Forms prompt is LANGUAGE-DEPENDENT: `3,7` in German
+ * Unlike every other [NumbersReading], a Form prompt is LANGUAGE-DEPENDENT: `3,7` in German
  * and `3.7` in English. The mark is not decoration — the reading names it ("Komma" vs
  * "point"), so a shared prompt would lie about the answer it grades. Everything else
  * stays neutral: `20.` is the ordinal mark in all five languages for the same reason

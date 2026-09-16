@@ -39,9 +39,9 @@ class NumbersPromptGroupingTests {
     fun sampledNumberPromptsStayParseableAndDisplayOnlyAddsSeparators() {
         val rng = Random(20260806)
         for (language in Numbers.languages) {
-            for (level in 1..Numbers.maxLevel(TrainerKind.Numbers)) {
+            for (level in 1..Numbers.maxLevel(NumbersReading.Cardinal)) {
                 repeat(20) {
-                    val task = Numbers.sample(TrainerKind.Numbers, language, level, rng)
+                    val task = Numbers.sample(NumbersReading.Cardinal, language, level, rng)
                     val where = "$language level=$level ${task.prompt}"
                     assertEquals(task.prompt, task.promptDisplay.filter { it.isDigit() }, where)
                     assertEquals(task.prompt.toLong().toString(), task.prompt, where)

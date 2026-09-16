@@ -2,8 +2,8 @@ package net.spross.kern.catalog
 
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.trainer.NumbersReading
 import net.spross.kern.trainer.SwahiliConcord
-import net.spross.kern.trainer.TrainerKind
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -347,7 +347,7 @@ class CatalogFixtureTest {
         val reverse = catalog.phraseTemplates("sw", "de").first { it.id == "bus-arrives-at" }
         assertEquals("Basi linakuja {slot}.", reverse.sourceTemplate)
         assertEquals("Der Bus kommt um {slot} Uhr.", reverse.targetTemplate)
-        assertEquals(TrainerKind.Clock, reverse.slotKind)
+        assertEquals(NumbersReading.Clock, reverse.slotKind)
     }
 
     @Test

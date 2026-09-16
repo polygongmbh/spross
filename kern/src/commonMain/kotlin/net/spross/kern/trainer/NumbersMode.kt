@@ -60,13 +60,13 @@ data class NumbersMode(
         if (DrillModifier.Mix in modifiers) rng.nextBoolean() else DrillModifier.Reverse in modifiers
 
     /**
-     * Ramp ceiling of one variant: kern's per-kind ceiling, and for sentences the highest
+     * Ramp ceiling of one exercise: kern's per-reading ceiling, and for sentences the highest
      * ceiling among the frames the run happens to carry.
      */
     fun maxLevel(exercise: NumbersExercise): Int {
-        val kind = exercise.reading
+        val reading = exercise.reading
             ?: return templates.maxOfOrNull { Numbers.maxLevel(it.slotKind) } ?: 1
-        return Numbers.maxLevel(kind)
+        return Numbers.maxLevel(reading)
     }
 
     /**
@@ -177,15 +177,15 @@ data class NumbersMode(
         magnitudeDigits: Int,
         rng: Random,
     ): NumbersTask {
-        val kind = exercise.reading
+        val reading = exercise.reading
             // why: non-empty by construction — the frameless Phrases pick was dropped above.
             ?: return PhraseSlots.sample(templates[rng.nextInt(templates.size)], level, rng)
         // Mix's second half: a form takes its magnitude from the numbers Sprosse the run stands
         // on, so a topped-out climb reads "−4 072 918", not "−7".
-        if (kind == TrainerKind.Forms && mixesForms) {
+        if (reading == NumbersReading.Form && mixesForms) {
             return Numbers.sampleForms(language, level, magnitudeDigits, rng)
         }
-        return Numbers.sample(kind, language, level, rng)
+        return Numbers.sample(reading, language, level, rng)
     }
 
     private val recordLanguage: String
@@ -248,9 +248,9 @@ data class NumbersMode(
         fun progressKey(exercise: NumbersExercise, language: Language): String =
             "${exercise.storageTag}.$language"
 
-        /** One slot kind, played plain — [TrainerKind.Years] and [TrainerKind.Fraction] fold in. */
-        fun slots(kind: TrainerKind, language: Language): NumbersMode =
-            NumbersMode(kind.exercise, language)
+        /** One reading, played plain — [NumbersReading.Year] and [NumbersReading.Fraction] fold in. */
+        fun slots(reading: NumbersReading, language: Language): NumbersMode =
+            NumbersMode(reading.exercise, language)
     }
 }
 
@@ -260,11 +260,11 @@ data class NumbersMode(
  * by this same half, and a platform re-deriving it from the enum cases is the map drifting
  * from itself.
  */
-val NumbersExercise.reading: TrainerKind?
+val NumbersExercise.reading: NumbersReading?
     get() = when (this) {
-        NumbersExercise.Counting -> TrainerKind.Numbers
-        NumbersExercise.Clock -> TrainerKind.Clock
-        NumbersExercise.Forms -> TrainerKind.Forms
+        NumbersExercise.Counting -> NumbersReading.Cardinal
+        NumbersExercise.Clock -> NumbersReading.Clock
+        NumbersExercise.Forms -> NumbersReading.Form
         NumbersExercise.Phrases -> null
     }
 
@@ -273,17 +273,17 @@ val NumbersExercise.reading: TrainerKind?
  * so it wears its own.
  */
 fun numbersExerciseEmoji(exercise: NumbersExercise): String =
-    exercise.reading?.let(::trainerKindEmoji) ?: "💬"
+    exercise.reading?.let(::numbersReadingEmoji) ?: "💬"
 
 /**
- * The ladder a slot kind is climbed on. Years maps onto Counting because it has no Sprosse
+ * The ladder a reading is climbed on. Year maps onto Counting because it has no Sprosse
  * of its own; Fraction belongs to Forms — a fraction is one of the number forms.
  */
-internal val TrainerKind.exercise: NumbersExercise
+internal val NumbersReading.exercise: NumbersExercise
     get() = when (this) {
-        TrainerKind.Numbers, TrainerKind.Years -> NumbersExercise.Counting
-        TrainerKind.Clock -> NumbersExercise.Clock
-        TrainerKind.Forms, TrainerKind.Fraction -> NumbersExercise.Forms
+        NumbersReading.Cardinal, NumbersReading.Year -> NumbersExercise.Counting
+        NumbersReading.Clock -> NumbersExercise.Clock
+        NumbersReading.Form, NumbersReading.Fraction -> NumbersExercise.Forms
     }
 
 /** The word a record or a Sprosse is filed under: the case name, so the two never drift. */

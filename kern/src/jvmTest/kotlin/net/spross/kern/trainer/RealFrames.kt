@@ -38,8 +38,8 @@ internal object RealFrames {
         minute: Int = 45,
         fraction: Pair<Long, Long> = 1L to 4L,
     ): NumbersTask = when (template.slotKind) {
-        TrainerKind.Clock -> PhraseSlots.instantiate(template, hour, minute)
-        TrainerKind.Fraction -> PhraseSlots.instantiate(template, fraction.first, fraction.second)
+        NumbersReading.Clock -> PhraseSlots.instantiate(template, hour, minute)
+        NumbersReading.Fraction -> PhraseSlots.instantiate(template, fraction.first, fraction.second)
         else -> PhraseSlots.instantiate(template, value)
     }
 }

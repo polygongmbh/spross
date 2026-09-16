@@ -28,23 +28,23 @@ internal sealed interface SlotValue {
  * years cluster around 1950–2050 with rarer historic outliers, and the clock reads the
  * whole face (its top Sprosse, which IS any minute).
  */
-internal fun drawSlot(kind: TrainerKind, language: Language, rng: Random): SlotValue = when (kind) {
-    TrainerKind.Numbers -> SlotValue.Count(drawSampleNumber(rng))
-    TrainerKind.Years -> SlotValue.Year(drawSampleYear(rng))
-    TrainerKind.Clock -> drawSlot(kind, language, CLOCK_MAX_LEVEL, rng)
-    TrainerKind.Fraction -> drawSlot(kind, language, FRACTION_MAX_LEVEL, rng)
-    TrainerKind.Forms -> noSlotGenerator(kind)
+internal fun drawSlot(reading: NumbersReading, language: Language, rng: Random): SlotValue = when (reading) {
+    NumbersReading.Cardinal -> SlotValue.Count(drawSampleNumber(rng))
+    NumbersReading.Year -> SlotValue.Year(drawSampleYear(rng))
+    NumbersReading.Clock -> drawSlot(reading, language, CLOCK_MAX_LEVEL, rng)
+    NumbersReading.Fraction -> drawSlot(reading, language, FRACTION_MAX_LEVEL, rng)
+    NumbersReading.Form -> noSlotGenerator(reading)
 }
 
 /** Leveled draw, with the level semantics [Numbers.sample] documents. */
-internal fun drawSlot(kind: TrainerKind, language: Language, level: Int, rng: Random): SlotValue {
-    val l = level.coerceIn(1, Numbers.maxLevel(kind))
-    return when (kind) {
-        TrainerKind.Numbers -> SlotValue.Count(drawNumber(l, rng))
-        TrainerKind.Years -> SlotValue.Year(drawSampleYear(l, rng))
-        TrainerKind.Clock -> SlotValue.Time(rng.nextInt(24), drawClockMinute(l, rng))
-        TrainerKind.Fraction -> drawFractionSlot(language, l, rng)
-        TrainerKind.Forms -> noSlotGenerator(kind)
+internal fun drawSlot(reading: NumbersReading, language: Language, level: Int, rng: Random): SlotValue {
+    val l = level.coerceIn(1, Numbers.maxLevel(reading))
+    return when (reading) {
+        NumbersReading.Cardinal -> SlotValue.Count(drawNumber(l, rng))
+        NumbersReading.Year -> SlotValue.Year(drawSampleYear(l, rng))
+        NumbersReading.Clock -> SlotValue.Time(rng.nextInt(24), drawClockMinute(l, rng))
+        NumbersReading.Fraction -> drawFractionSlot(language, l, rng)
+        NumbersReading.Form -> noSlotGenerator(reading)
     }
 }
 
@@ -52,8 +52,8 @@ internal fun drawSlot(kind: TrainerKind, language: Language, level: Int, rng: Ra
  * A number form is not a slot: it needs the frame to decline around it, and no agreement
  * device runs that way ([PhraseTemplate]'s init bars it at catalog-build time).
  */
-private fun noSlotGenerator(kind: TrainerKind): Nothing =
-    throw IllegalArgumentException("no slot generator for $kind")
+private fun noSlotGenerator(reading: NumbersReading): Nothing =
+    throw IllegalArgumentException("no slot generator for $reading")
 
 private fun drawSampleNumber(rng: Random): Long {
     val r = rng.nextDouble()

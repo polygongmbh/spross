@@ -14,7 +14,7 @@ import kotlin.test.assertTrue
  */
 class NumbersModeTest {
 
-    private fun frame(kind: TrainerKind) = PhraseTemplate(
+    private fun frame(kind: NumbersReading) = PhraseTemplate(
         id = "frame-$kind",
         source = "de",
         target = "uk",
@@ -105,7 +105,7 @@ class NumbersModeTest {
      */
     @Test
     fun aPhraseSourceSuffixesTheRecordLanguageEvenWhereTheRunAsksNoSentence() {
-        val templates = listOf(frame(TrainerKind.Clock))
+        val templates = listOf(frame(NumbersReading.Clock))
         val sentences = NumbersMode(listOf(NumbersExercise.Phrases), "uk", "de", templates, emptySet())
         assertEquals("Phrases.de-uk", sentences.recordKey)
 
@@ -132,7 +132,7 @@ class NumbersModeTest {
         assertEquals(
             listOf(NumbersExercise.Phrases),
             NumbersMode(
-                listOf(NumbersExercise.Phrases), "uk", "de", listOf(frame(TrainerKind.Clock)), emptySet(),
+                listOf(NumbersExercise.Phrases), "uk", "de", listOf(frame(NumbersReading.Clock)), emptySet(),
             ).variants,
         )
     }
@@ -144,14 +144,14 @@ class NumbersModeTest {
             listOf(NumbersExercise.Phrases),
             "uk",
             "de",
-            listOf(frame(TrainerKind.Years), frame(TrainerKind.Clock)),
+            listOf(frame(NumbersReading.Year), frame(NumbersReading.Clock)),
             emptySet(),
         )
-        assertEquals(Numbers.maxLevel(TrainerKind.Numbers), mode.maxLevel(NumbersExercise.Counting))
-        assertEquals(Numbers.maxLevel(TrainerKind.Clock), mode.maxLevel(NumbersExercise.Clock))
-        assertEquals(Numbers.maxLevel(TrainerKind.Forms), mode.maxLevel(NumbersExercise.Forms))
+        assertEquals(Numbers.maxLevel(NumbersReading.Cardinal), mode.maxLevel(NumbersExercise.Counting))
+        assertEquals(Numbers.maxLevel(NumbersReading.Clock), mode.maxLevel(NumbersExercise.Clock))
+        assertEquals(Numbers.maxLevel(NumbersReading.Form), mode.maxLevel(NumbersExercise.Forms))
         // Years tops out at 3, the clock at 5 — the run takes the higher of the two frames.
-        assertEquals(Numbers.maxLevel(TrainerKind.Clock), mode.maxLevel(NumbersExercise.Phrases))
+        assertEquals(Numbers.maxLevel(NumbersReading.Clock), mode.maxLevel(NumbersExercise.Phrases))
     }
 
     /** A padlock that can never open is a lie: an unrealizable variant has no row at all. */

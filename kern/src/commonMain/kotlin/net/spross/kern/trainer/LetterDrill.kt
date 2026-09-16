@@ -17,7 +17,7 @@ import net.spross.kern.session.spokenOnly
  *
  * Registry-by-file, not by enum: a language has this drill exactly when
  * `catalog/alphabet/<lang>.json` exists, so adding one is dropping a file
- * ([net.spross.kern.catalog.Catalog.alphabet]). [TrainerKind] stays untouched.
+ * ([net.spross.kern.catalog.Catalog.alphabet]). [NumbersReading] stays untouched.
  *
  * Everything here is pure and stateless — no schedule is read, no review is booked
  * (transcription is not recall). Sampling takes an injected [Random] like every other

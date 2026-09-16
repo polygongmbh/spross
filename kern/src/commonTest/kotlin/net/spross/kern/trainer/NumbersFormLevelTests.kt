@@ -37,7 +37,7 @@ class NumbersFormLevelTests {
         for (level in 1..6) {
             assertEquals(NumberForm.entries.take(level).toSet(), sprosseForms(level))
         }
-        for (level in 7..Numbers.maxLevel(TrainerKind.Forms)) {
+        for (level in 7..Numbers.maxLevel(NumbersReading.Form)) {
             assertEquals(NumberForm.entries.toSet(), sprosseForms(level), "Sprosse $level widens, adds nothing")
         }
     }
@@ -95,7 +95,7 @@ class NumbersFormLevelTests {
     fun noMixMagnitudeLeavesTheLadderExactlyAsItWas() {
         for (language in authored) {
             assertEquals(
-                Numbers.sample(TrainerKind.Forms, language, 6, Random(11)),
+                Numbers.sample(NumbersReading.Form, language, 6, Random(11)),
                 Numbers.sampleForms(language, level = 6, magnitudeDigits = 0, rng = Random(11)),
             )
         }
@@ -105,7 +105,7 @@ class NumbersFormLevelTests {
     fun everySprosseStaysInsideTheLanguagesOwnLimits() {
         for (language in authored) {
             val limits = limits(language)
-            for (level in 1..Numbers.maxLevel(TrainerKind.Forms)) {
+            for (level in 1..Numbers.maxLevel(NumbersReading.Form)) {
                 for (value in draws(language, level)) {
                     assertTrue(value.form in limits.forms, "$language level $level drew ${value.form}")
                     when (value) {
@@ -133,7 +133,7 @@ class NumbersFormLevelTests {
     @Test
     fun aDrawnDecimalNeverHasAnAllZeroFractionalPart() {
         for (language in authored) {
-            for (level in 1..Numbers.maxLevel(TrainerKind.Forms)) {
+            for (level in 1..Numbers.maxLevel(NumbersReading.Form)) {
                 for (value in draws(language, level)) {
                     if (value is NumberValue.Decimal) {
                         assertTrue(
@@ -232,11 +232,11 @@ class NumbersFormLevelTests {
     fun everySampledFormTaskIsWellFormed() {
         val rng = Random(0xF04D)
         for (language in Numbers.languages) {
-            for (level in 1..Numbers.maxLevel(TrainerKind.Forms)) {
+            for (level in 1..Numbers.maxLevel(NumbersReading.Form)) {
                 repeat(50) {
-                    val task = Numbers.sample(TrainerKind.Forms, language, level, rng)
+                    val task = Numbers.sample(NumbersReading.Form, language, level, rng)
                     val where = "$language level $level ${task.prompt}"
-                    assertEquals(TrainerKind.Forms, task.kind, where)
+                    assertEquals(NumbersReading.Form, task.kind, where)
                     assertEquals(language, task.language, where)
                     assertTrue(task.prompt.isNotEmpty(), where)
                     assertTrue(task.accepted.all { it.isNotEmpty() }, where)
@@ -250,12 +250,12 @@ class NumbersFormLevelTests {
     fun levelsClampInsteadOfThrowing() {
         for (language in authored) {
             assertEquals(
-                Numbers.sample(TrainerKind.Forms, language, 1, Random(3)),
-                Numbers.sample(TrainerKind.Forms, language, -3, Random(3)),
+                Numbers.sample(NumbersReading.Form, language, 1, Random(3)),
+                Numbers.sample(NumbersReading.Form, language, -3, Random(3)),
             )
             assertEquals(
-                Numbers.sample(TrainerKind.Forms, language, 10, Random(3)),
-                Numbers.sample(TrainerKind.Forms, language, 99, Random(3)),
+                Numbers.sample(NumbersReading.Form, language, 10, Random(3)),
+                Numbers.sample(NumbersReading.Form, language, 99, Random(3)),
             )
         }
     }
@@ -266,8 +266,8 @@ class NumbersFormLevelTests {
         val b = Random(0xC0FFEE)
         repeat(100) {
             assertEquals(
-                Numbers.sample(TrainerKind.Forms, "de", a),
-                Numbers.sample(TrainerKind.Forms, "de", b),
+                Numbers.sample(NumbersReading.Form, "de", a),
+                Numbers.sample(NumbersReading.Form, "de", b),
             )
         }
     }
@@ -275,7 +275,7 @@ class NumbersFormLevelTests {
     // Reverse
 
     private fun formTask(language: String, prompt: String, display: String = prompt): NumbersTask =
-        NumbersTask(TrainerKind.Forms, language, prompt, listOf("reading"), "reading", promptDisplay = display)
+        NumbersTask(NumbersReading.Form, language, prompt, listOf("reading"), "reading", promptDisplay = display)
 
     @Test
     fun reversedFormsTakeTheNotationTheDrillDidNotAskAbout() {

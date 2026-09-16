@@ -33,7 +33,7 @@ class PhraseSlotInstantiationTests {
             ),
             task.accepted,
         )
-        assertTrue(task.kind == TrainerKind.Clock && task.language == "sw")
+        assertTrue(task.kind == NumbersReading.Clock && task.language == "sw")
         assertEquals("Saa ± 6h", task.gloss)
     }
 
@@ -67,7 +67,7 @@ class PhraseSlotInstantiationTests {
             ),
             task.accepted,
         )
-        assertEquals(TrainerKind.Numbers, task.kind)
+        assertEquals(NumbersReading.Cardinal, task.kind)
     }
 
     // Grouped prompts inside a sentence
@@ -141,7 +141,7 @@ class PhraseSlotInstantiationTests {
         // "tangu mwaka …" — bare cardinal after tangu doesn't read as a year
         // (language-review fix).
         assertEquals("Ninajifunza Kiswahili tangu mwaka elfu mbili.", task.display)
-        assertEquals(TrainerKind.Years, task.kind)
+        assertEquals(NumbersReading.Year, task.kind)
         assertEquals("Jahreszahl als Kardinalzahl gelesen — mwaka = Jahr", task.gloss)
     }
 
@@ -156,7 +156,7 @@ class PhraseSlotInstantiationTests {
         assertTrue("Зараз друга." in task.accepted)
         assertTrue("Зараз чотирнадцята година." in task.accepted)
         assertTrue("Зараз 14:00." in task.accepted)
-        assertTrue(task.kind == TrainerKind.Clock && task.language == "uk")
+        assertTrue(task.kind == NumbersReading.Clock && task.language == "uk")
     }
 
     @Test
