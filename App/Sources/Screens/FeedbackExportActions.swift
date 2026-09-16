@@ -35,16 +35,20 @@ struct FeedbackExportActions: View {
     private var outbox: some View {
         if model.hasFeedback(onlyNew: false) {
             spread {
-                scopedButton("common.copy", icon: "doc.on.doc") { onlyNew, scope in
-                    UIPasteboard.general.string = model.reportText(onlyNew: onlyNew, scope: scope)
-                    model.markExported(scope: scope)
+                column {
+                    scopedButton("common.copy", icon: "doc.on.doc") { onlyNew, scope in
+                        UIPasteboard.general.string = model.reportText(onlyNew: onlyNew, scope: scope)
+                        model.markExported(scope: scope)
+                    }
                 }
-                scopedButton("report.export.send", icon: "envelope") { onlyNew, scope in
-                    guard let url = model.reportMailURL(onlyNew: onlyNew, scope: scope) else { return }
-                    openURL(url)
-                    model.markExported(scope: scope)
+                column {
+                    scopedButton("report.export.send", icon: "envelope") { onlyNew, scope in
+                        guard let url = model.reportMailURL(onlyNew: onlyNew, scope: scope) else { return }
+                        openURL(url)
+                        model.markExported(scope: scope)
+                    }
                 }
-                if model.clearableCount > 0 { clearButton }
+                if model.clearableCount > 0 { column { clearButton } }
             }
         }
     }
@@ -56,8 +60,11 @@ struct FeedbackExportActions: View {
     private var merge: some View {
         if !model.ownWordPairs.isEmpty || !model.suggestions.isEmpty {
             spread {
-                Button(action: checkCatalog) {
-                    actionLabel("box.own.match.action", icon: "arrow.triangle.merge")
+                column {
+                    Button(action: checkCatalog) {
+                        actionLabel("box.own.match.action", icon: "arrow.triangle.merge")
+                    }
+                    .buttonStyle(SoftButtonStyle())
                 }
             }
         }
@@ -67,6 +74,16 @@ struct FeedbackExportActions: View {
     /// sits balanced and a line of one sits centered, rather than piling up on the left.
     private func spread<Content: View>(@ViewBuilder _ actions: () -> Content) -> some View {
         HStack(spacing: Theme.spacing.md) { actions() }
+    }
+
+    /// An equal share of the row for one action. `Menu` sizes itself to its content
+    /// no matter what frame is asked of it, so an HStack of bare menus and buttons
+    /// packs to the left instead of spreading — a `Color` behind it takes the equal
+    /// share instead, and the control only centers inside that.
+    private func column<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
+        Color.clear
+            .frame(maxWidth: .infinity, minHeight: 44)
+            .overlay(content())
     }
 
     /// One action, offered over the whole lot, over what is new, over what the catalog is
@@ -99,8 +116,11 @@ struct FeedbackExportActions: View {
             } label: {
                 actionLabel(title, icon: icon)
             }
+            .menuStyle(.borderlessButton)
+            .buttonStyle(SoftButtonStyle())
         } else {
             Button { run(false, .everything) } label: { actionLabel(title, icon: icon) }
+                .buttonStyle(SoftButtonStyle())
         }
     }
 
@@ -119,8 +139,10 @@ struct FeedbackExportActions: View {
         } label: {
             Label("common.clear", systemImage: "trash")
                 .font(Theme.typography.subheadline)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
         }
-        .frame(maxWidth: .infinity)
+        .buttonStyle(SoftButtonStyle(color: Theme.colors.wrong))
         .confirmationDialog("report.export.clear.confirm \(model.clearableCount)",
                             isPresented: $confirmingClear, titleVisibility: .visible) {
             Button("common.clear", role: .destructive) { model.clearFeedback() }
@@ -131,8 +153,7 @@ struct FeedbackExportActions: View {
     private func actionLabel(_ title: LocalizedStringKey, icon: String) -> some View {
         Label(title, systemImage: icon)
             .font(Theme.typography.subheadline)
-            .foregroundStyle(Theme.colors.accent)
-            .frame(maxWidth: .infinity)
-            .multilineTextAlignment(.center)
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
     }
 }
