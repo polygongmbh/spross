@@ -30,7 +30,7 @@ the review loop these share their card and their answering rules with is `design
   spelling a word back and putting words in order are two skills,
   neither of them a way of being asked the other's question.
   Clock, sentences and number forms are not siblings of the numbers drill but ways of being
-  asked, so they are variants a run selects rather than chips,
+  asked, so they are exercises a run selects rather than chips,
   and the modifiers (reverse, fast, mix) are how it is played.
   A chip apiece was the alternative and it was rejected twice over:
   chips are peers, so a row of them says the negatives and the clock are alternatives to

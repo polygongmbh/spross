@@ -9,10 +9,10 @@ and what a language actually READS is its own doc:
 
 ## Zahlen — the numbers page
 
-- **Which variants a learner may pick is derived from one stored number per variant** —
+- **Which exercises a learner may pick is derived from one stored number per exercise** —
   the highest Sprosse ever reached — through kern's unlock table.
   Picking SEVERAL of them for one run is itself earned:
-  while any offered variant is still locked the list is a radio
+  while any offered exercise is still locked the list is a radio
   and a run asks one thing at a time;
   a fully open ladder turns it into checkboxes,
   and the row of picks says so while it is closed.

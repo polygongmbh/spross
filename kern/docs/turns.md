@@ -181,7 +181,7 @@ Engine contract: `../README.md`.
   never as state.
   Each keeps its own CONCRETE draw type: they cross to Swift, where a generic arrives opaque,
   so there is no shared `ScrambleRun<T>` however alike two of them read.
-- **One injected `Random` per run** feeds every draw — task, variant, phrase frame, direction flip,
+- **One injected `Random` per run** feeds every draw — task, exercise, phrase frame, direction flip,
   the letters a word scramble mixes and the atoms a sentence scramble deals out —
   so a seeded run is reproducible end to end and identical on both platforms.
   A scramble that comes back reading as the answer is rolled again, boundedly:
@@ -200,7 +200,7 @@ Engine contract: `../README.md`.
   The atlas and the letter drill can ENUMERATE a Sprosse and filter it;
   the slot drill draws values rather than picking them out of a list, so there
   `DrillSolved.SPENT_ATTEMPTS` repeats in a row is what "spent" can honestly mean,
-  and in a mixed run a variant that has run out hands the turn to the next one.
+  and in a mixed run an exercise that has run out hands the turn to the next one.
   The set itself lives and dies with the run,
   because a prompt answered on Tuesday is worth asking again on Friday
   and keeping that kind of score is the growing box's job;
@@ -225,7 +225,7 @@ Engine contract: `../README.md`.
   judged either way, with almost in neither half for `DrillRamp.step`'s reason;
   the "2/3" string is rendering.
 - **Storage contract**: the streak record under `trainer.record.<key>`,
-  per-variant Sprosse progress under `trainer.level.<key>`,
+  per-exercise Sprosse progress under `trainer.level.<key>`,
   the most answers one run took under `trainer.answers.<key>` (`DrillRunSummary.done`, right or wrong),
   and the cleared Sprossen as a bitmask under `trainer.cleared.<key>` —
   filed per DIRECTION, a reversed run's key ending `.rev`,
