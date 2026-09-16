@@ -9,6 +9,31 @@ letters, word scramble, sentence scramble.
 The surfaces around them — listening, the wrist, the Android companion — are `surfaces.md`'s;
 the review loop these share their card and their answering rules with is `design.md`'s.
 
+## The words
+
+The surfaces nest, and each level answers to one word — in the code, in the string keys
+and here:
+
+```
+Trainer   the section           kern/trainer/, trainer.* keys, the store  — displayed as Wiese
+ └ Hub    one card, one screen  the Home card and its chips
+    └ Drill   one of six        a chip
+       └ Overview   its page    picks, Los, reference
+          └ Run                 one sitting
+```
+
+A drill earns its chip because it asks a distinct skill,
+but nothing is CALLED a skill — the entry is a drill, and the word for it is that one.
+A **Sprosse** is one step of a **ladder**, and both belong to every drill.
+An **exercise** is a pick on the numbers overview (Counting, Clock, Phrases, Forms)
+and a **reading** is what one of its tasks asks for (Cardinal, Year, Clock, Form, Fraction);
+both are the numbers drill's alone, which is why neither wears a shared prefix.
+
+One prefix, one scope: `Trainer*` is the section, `Drill*` is any drill,
+and a prefix naming a topic — `Country*`, `WordScramble*` — is that drill's own.
+Nothing wears a prefix one scope wider than what it serves,
+and a prefix every drill carried would distinguish none of them.
+
 ## The hub, and what a Sprosse is
 
 - **The hub card offers SIX entries** — Zahlen, Buchstaben, Länder, Datum and the two
