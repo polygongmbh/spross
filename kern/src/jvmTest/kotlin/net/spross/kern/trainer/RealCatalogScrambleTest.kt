@@ -182,8 +182,9 @@ class RealCatalogScrambleTest {
     }
 
     /**
-     * The gate bites on real content: the catalog authors `…` frames and phrases of one or two
-     * words, and neither reaches the pool.
+     * The gate bites on real content: the catalog authors `…` frames, phrases of one or two
+     * words, and fragments carrying no stop ("auf dem Tisch", "zwei Uhr nachmittags"), and
+     * none of the three reaches the pool.
      */
     @Test
     fun theSentenceGateStillExcludesRealContent() {
@@ -194,10 +195,15 @@ class RealCatalogScrambleTest {
         val short = phrases.filter {
             ScrambleTokenizer.tokens(it.target.text).size < SentenceScrambleAvailability.MIN_ATOMS
         }
+        val fragments = phrases.filter {
+            it.target.text.trimEnd().lastOrNull()?.let(SentenceScrambleAvailability.TERMINATORS::contains) != true
+        }
         assertTrue(blanks.isNotEmpty(), "de authors no … frame — the filter is untested")
         assertTrue(short.isNotEmpty(), "de authors no short phrase — the filter is untested")
+        assertTrue(fragments.isNotEmpty(), "de authors no fragment — the filter is untested")
         assertTrue(blanks.none { it.id in offered })
         assertTrue(short.none { it.id in offered })
+        assertTrue(fragments.none { it.id in offered })
     }
 
     /** Every question a sweep draws deals the phrase's own atoms, and never in its own order. */

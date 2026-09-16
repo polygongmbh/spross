@@ -27,6 +27,20 @@ object SentenceScrambleAvailability {
     const val MIN_ATOMS: Int = 3
 
     /**
+     * What an authored SENTENCE ends on.
+     *
+     * A phrase carrying none is a fragment — "auf dem Tisch", "zaidi au pungufu",
+     * "in die Schule gehen", "zwei Uhr nachmittags" — and a fragment's order is IDIOM
+     * rather than grammar, so the learner who arranges it the other way round is not wrong
+     * in the way this drill marks them wrong.
+     * The catalog writes one on 95% of the phrases long enough to arrange;
+     * the rest are prepositional, infinitive and clock phrases to a one.
+     * It is the authored convention that is read here, so a sentence left without its stop
+     * drops out of the drill rather than being asked ambiguously.
+     */
+    const val TERMINATORS: String = ".?!"
+
+    /**
      * The phrases worth arranging, in seed order,
      * each already cut into the atoms an arrangement moves.
      * Cut here rather than per question: tokenizing is a sweep of the whole join.
@@ -75,6 +89,7 @@ object SentenceScrambleAvailability {
      *
      * A phrase whose text carries `…` is left out: that ellipsis is an authored fill-in-blank
      * pattern, so the words around it are a frame rather than a sentence in an order.
+     * One that ends on no [TERMINATORS] is left out too — it was written as a fragment.
      *
      * The chips come out of the join rather than the phrase alone, because whether the leading
      * capital is the word's own is a question only the rest of the language can answer
@@ -87,6 +102,7 @@ object SentenceScrambleAvailability {
             cards
                 .filter { it.kind == CardKind.Phrase }
                 .filter { '…' !in it.target.text }
+                .filter { card -> card.target.text.trimEnd().lastOrNull()?.let(TERMINATORS::contains) == true }
                 .map {
                     Phrase(it, ScrambleCapitals.neutralized(ScrambleTokenizer.atoms(it.target.text), inherent))
                 }

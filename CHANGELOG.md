@@ -7,6 +7,7 @@
 - Sentence scramble now grows its answer on the card you arranged, clearing the spent words, and an arrangement you got right shows its translation instead of moving straight on.
 - Sentence scramble drops its Aufdecken button: laying every word out reaches the answer on its own.
 - Sentence scramble climbs a Sprosse on three clean arrangements instead of five.
+- Sentence scramble now asks only whole sentences, leaving out fragments like "auf dem Tisch" whose word order is a matter of habit rather than grammar.
 
 ## 7.1.1 — 2026-09-15
 

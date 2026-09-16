@@ -9,7 +9,8 @@ import kotlin.test.assertTrue
 /**
  * Which phrases the sentence scramble may ask.
  * Every row here is a shape the gate has an opinion about:
- * one too short to have an order, and an authored fill-in-blank pattern.
+ * one too short to have an order, an authored fill-in-blank pattern, and a fragment
+ * the catalog wrote without a stop.
  * What the box knows about a phrase — its components, its schedule, its suspension —
  * is not one of them.
  */
@@ -22,16 +23,17 @@ class SentenceScrambleAvailabilityTest {
     )
 
     private val phrases = listOf(
-        ScrambleFixture.phrase("runs", "die Maus läuft", listOf("mouse", "run"), seed = 10),
-        ScrambleFixture.phrase("runs-slow", "die Maus läuft sehr langsam", listOf("mouse", "run"), seed = 11),
-        ScrambleFixture.phrase("locked", "der Hund schläft hier", listOf("nothing-held"), seed = 12),
-        ScrambleFixture.phrase("greeting", "guten Morgen alle", emptyList(), seed = 13),
-        ScrambleFixture.phrase("short", "na und", listOf("mouse", "run"), seed = 14),
-        ScrambleFixture.phrase("blank", "die … läuft schnell", listOf("mouse", "run"), seed = 15),
-        ScrambleFixture.phrase("sleeps", "die Maus schläft dort", listOf("mouse", "run"), seed = 16),
+        ScrambleFixture.phrase("runs", "die Maus läuft.", listOf("mouse", "run"), seed = 10),
+        ScrambleFixture.phrase("runs-slow", "die Maus läuft sehr langsam.", listOf("mouse", "run"), seed = 11),
+        ScrambleFixture.phrase("locked", "der Hund schläft hier.", listOf("nothing-held"), seed = 12),
+        ScrambleFixture.phrase("greeting", "guten Morgen alle!", emptyList(), seed = 13),
+        ScrambleFixture.phrase("short", "na und?", listOf("mouse", "run"), seed = 14),
+        ScrambleFixture.phrase("blank", "die … läuft schnell.", listOf("mouse", "run"), seed = 15),
+        ScrambleFixture.phrase("sleeps", "die Maus schläft dort.", listOf("mouse", "run"), seed = 16),
         ScrambleFixture.phrase("careful", "Vorsicht, heiß!", listOf("mouse", "run"), seed = 17),
         ScrambleFixture.phrase("mouse-sleeps", "Die Maus schläft gern.", listOf("mouse", "run"), seed = 18),
         ScrambleFixture.phrase("mouse-eats", "Maus und Hund fressen.", listOf("mouse", "run"), seed = 19),
+        ScrambleFixture.phrase("fragment", "auf dem Tisch", listOf("mouse", "run"), seed = 20),
     )
 
     private fun report(
@@ -78,6 +80,13 @@ class SentenceScrambleAvailabilityTest {
         assertFalse("blank" in report().phrases.map { it.card.id })
     }
 
+    /** No stop, no sentence: a fragment's order is idiom, and idiom is not what this grades. */
+    @Test
+    fun aPhraseThatEndsOnNoStopIsNotAsked() {
+        assertFalse("fragment" in report().phrases.map { it.card.id })
+        assertEquals(3, ScrambleTokenizer.tokens("auf dem Tisch").size, "long enough, but no sentence")
+    }
+
     /** Suspending says stop REVIEWING a card, and an arrangement is not a review. */
     @Test
     fun aSuspendedPhraseIsStillArranged() {
@@ -111,7 +120,7 @@ class SentenceScrambleAvailabilityTest {
     @Test
     fun theChipWaitsForAPhraseWithAnOrder() {
         assertTrue(SentenceScrambleAvailability.drillExists(ScrambleFixture.box(words + phrases)))
-        val orderless = words + phrases.filter { it.id == "short" || it.id == "blank" }
+        val orderless = words + phrases.filter { it.id in setOf("short", "blank", "fragment") }
         assertFalse(SentenceScrambleAvailability.drillExists(ScrambleFixture.box(orderless)))
         assertFalse(SentenceScrambleAvailability.drillExists(ScrambleFixture.box(emptyList())))
     }

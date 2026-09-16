@@ -83,6 +83,10 @@ what each may draw at all is kern's (`LetterDrillAvailability`, `WordScrambleAva
   and one built of words they have never met is exposure to an ORDER.
   A suspended phrase stays in too: suspending stops a card being REVIEWED,
   which an arrangement is not.
+- **Only what the catalog ends on a stop, a question mark or an exclamation mark** —
+  a phrase authored without one is a fragment ("auf dem Tisch", "plus ou moins", "zwei Uhr nachmittags"),
+  and a fragment's order is idiom rather than grammar,
+  so arranging it the other way round is not wrong the way this drill marks it wrong.
 - **Nothing says what the phrase MEANS until it is graded** —
   the arrangement is made on word order alone,
   and the translation is part of what the card grows afterwards rather than a prompt above it.
