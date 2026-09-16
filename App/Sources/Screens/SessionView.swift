@@ -12,8 +12,8 @@ import SprossKern
 /// What an answer is WORTH, which beat it earns and what a miss opens is kern's
 /// `TurnMachine`: every event becomes a `TurnIntent`, and what comes back is the
 /// whole next state plus the only side effects this screen takes.
-/// A card caught mid-turn for its report sheet: the word, and what stood in the
-/// answer field at that moment.
+/// A card caught mid-turn for its report sheet: the word, and the answer the report
+/// travels with, taken as the menu was tapped.
 private struct ReportedCard: Identifiable {
     let card: Card
     let input: String
@@ -216,15 +216,16 @@ struct SessionView: View, LanguageNaming {
             EmptyView()
         } else if model.reportedIssue(for: card.id) == nil {
             Button("report.action", systemImage: "exclamationmark.bubble") {
-                // why: the field empties as the turn advances, so what they typed is
-                // taken NOW and carried into the sheet.
-                reporting = ReportedCard(card: card, input: input)
+                // why: the field moves on — the turn primes it past a refused answer and
+                // empties it as the card advances — so the answer is taken NOW and
+                // carried into the sheet.
+                reporting = ReportedCard(card: card, input: answerForReport)
             }
         } else {
             // Reopening, not withdrawing: the form carries the drop, and a learner
             // with more to say should not have to withdraw the report to say it.
             Button("report.edit", systemImage: "text.bubble") {
-                reporting = ReportedCard(card: card, input: input)
+                reporting = ReportedCard(card: card, input: answerForReport)
             }
         }
         Button("box.card.sleep", systemImage: "moon.zzz") {
