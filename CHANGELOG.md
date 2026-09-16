@@ -2,10 +2,15 @@
 
 ## Unreleased
 
+- The garden is now the orchard, matching the tree the button and Home's picture already showed.
+
 ## 7.1.2 — 2026-09-16
 
 - Sentence scramble now offers every phrase of your language, asks only whole sentences rather than fragments, and climbs a Sprosse in three clean arrangements instead of five.
 - Word scramble now waits until you hold fifteen words worth mixing instead of five.
+
+## 7.1.1 — 2026-09-15
+
 - The box is now the garden throughout its chrome copy — title, subtitle, and every reach-in, sow, and take-back phrase, in English and German.
 - The free-practice card on Home is now the Meadow, the open ground beside your garden where nothing is scheduled and no drill ever comes due.
 - The garden button on Home now wears a plant instead of a packing box.
