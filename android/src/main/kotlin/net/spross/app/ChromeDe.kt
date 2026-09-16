@@ -199,7 +199,7 @@ internal object ChromeDe : Chrome {
     override val lettersStageChoiceEasy = "Der gehörte Buchstabe unter vieren"
     override val lettersStageChoiceConfusable = "Dieselbe Wahl unter ähnlichen Buchstaben"
     override val lettersStageTyped = "Den Buchstaben selbst schreiben"
-    override val lettersStageDictation = "Ganze Wörter aus deinem Garten nach Gehör"
+    override val lettersStageDictation = "Ganze Wörter aus deinem Obstgarten nach Gehör"
     override val lettersStageDictationLocked = "Braucht mehr gefestigte Wörter, die dieses " +
         "Gerät vorlesen kann"
     override val lettersUnavailable = "Dieses Gerät kann noch keinen Buchstaben vorsprechen " +
@@ -259,8 +259,8 @@ internal object ChromeDe : Chrome {
     override val a11yScrambleArrangement = "Deine Reihenfolge"
     override val a11yScrambleBank = "Wörter zur Auswahl"
     override val a11yActionTakeBack = "Zurücknehmen"
-    override val boxTitle = "Der Garten"
-    override val boxName = "Garten"
+    override val boxTitle = "Der Obstgarten"
+    override val boxName = "Obstgarten"
     override val boxSubtitle = "%s von %s Karten sprießen"
     override val boxOwnShelf = "Eigene Wörter"
     override val boxOwnWordExplainer = "Eigene Wörter gehören dir allein. Ein wachsender " +
@@ -301,7 +301,7 @@ internal object ChromeDe : Chrome {
     override val boxSearchHint = "Wörter beider Sprachen und die Namen der Bereiche."
     override val boxSearchAreas = "Bereiche"
     override val boxSearchWords = "Wörter"
-    override val boxSearchNothing = "Nichts zu „%s“ im Garten."
+    override val boxSearchNothing = "Nichts zu „%s“ im Obstgarten."
     override val boxSearchWriteOwn = "„%s“ selbst eintragen"
     override val a11yBoxSearchClear = "Suche löschen"
     override val boxOwnWordTitle = "Eigenes Wort"
@@ -350,9 +350,9 @@ internal object ChromeDe : Chrome {
     override val briefingReturnTitle = "Ernte einbringen"
     override val briefingReturnPaste = "Einfügen"
     override val briefingReturnEmpty = "In der Zwischenablage steht keine Wortliste."
-    override val briefingGroupNew = "Neues für deinen Garten"
+    override val briefingGroupNew = "Neues für deinen Obstgarten"
     override val briefingGroupNear = "Nah an Wörtern, die du hast"
-    override val briefingGroupHeld = "Schon in deinem Garten"
+    override val briefingGroupHeld = "Schon in deinem Obstgarten"
     override val briefingReturnKeepOne = "%d Wort übernehmen"
     override val briefingReturnKeep = "%d Wörter übernehmen"
     override val sessionDoneTalk = "Über die Wörter reden?"
@@ -362,7 +362,7 @@ internal object ChromeDe : Chrome {
     override val settingsNameHint = "Damit begrüßt dich Spross. Bleibt das Feld leer, kommt " +
         "die Begrüßung ohne Namen aus."
     override val settingsProfileHint = "Beim Wechsel der Ausgangssprache bleibt dein " +
-        "Fortschritt erhalten; jede gelernte Sprache hat ihren eigenen Garten."
+        "Fortschritt erhalten; jede gelernte Sprache hat ihren eigenen Obstgarten."
     override val settingsRestartTutorialButton = "Tutorial neu starten"
     override val settingsRestartTutorialHint = "Zeigt die Einführung erneut — deine Sprachen " +
         "und dein Fortschritt bleiben erhalten."
@@ -384,7 +384,7 @@ internal object ChromeDe : Chrome {
     override val settingsBackupReplace = "Ersetzen"
     override val settingsBackupExportFailed = "Die Sicherung konnte nicht gespeichert werden."
     override val settingsBackupImportFailed = "Diese Datei ist keine Spross-Sicherung, oder " +
-        "ein Garten darin lässt sich nicht lesen."
+        "ein Obstgarten darin lässt sich nicht lesen."
     override val commonCancel = "Abbrechen"
     override val commonReset = "Zurücksetzen"
     override val commonClear = "Leeren"
@@ -420,7 +420,7 @@ internal object ChromeDe : Chrome {
     override val headlineFreshSet = listOf(
         "Lust auf neue Wörter?",
         "Zeit zum Säen!",
-        "Ein paar Samen zum Aussäen",
+        "Ein Bäumchen zum Pflanzen",
     )
     override val headlineStreak = listOf(
         "Leg heute noch mal nach!",

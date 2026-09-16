@@ -6,8 +6,8 @@ struct RootView: View {
     @Bindable var model: AppModel
 
     @State private var boxPresented = false
-    /// The area the box should open on, set by a tree in Home's forest —
-    /// the forest names a place, the box is still the screen that shows it.
+    /// The area the box should open on, set by tapping a tree on Home —
+    /// that names a place, the box is still the screen that shows it.
     @State private var boxArea: String?
     @State private var sprouting = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -55,7 +55,7 @@ struct RootView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            // why: this button opens the garden at large, so it drops
+                            // why: this button opens the orchard at large, so it drops
                             // the area a tree last named — otherwise it would
                             // keep landing on that one shelf.
                             boxArea = nil

@@ -753,7 +753,7 @@
       }
     },
     "box.card.actions" : {
-      "comment" : "What a long press on a garden row opens, for a reader who cannot see it is a menu.",
+      "comment" : "What a long press on an orchard row opens, for a reader who cannot see it is a menu.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -966,13 +966,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Garten"
+            "value" : "Obstgarten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Garden"
+            "value" : "Orchard"
           }
         }
       }
@@ -1398,13 +1398,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nichts zu „%@“ im Garten."
+            "value" : "Nichts zu „%@“ im Obstgarten."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nothing for “%@” in the garden."
+            "value" : "Nothing for “%@” in the orchard."
           }
         }
       }
@@ -1476,7 +1476,7 @@
       }
     },
     "box.tapToHear" : {
-      "comment" : "The garden names its rows \"words\", not a table's rows, so it discloses the tap in its own words.",
+      "comment" : "The orchard names its rows \"words\", not a table's rows, so it discloses the tap in its own words.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1497,13 +1497,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Garten"
+            "value" : "Der Obstgarten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Garden"
+            "value" : "The Orchard"
           }
         }
       }
@@ -1526,18 +1526,18 @@
       }
     },
     "briefing.group.held" : {
-      "comment" : "heading over pasted words the garden already teaches exactly (`HarvestKind.Held`)",
+      "comment" : "heading over pasted words the orchard already teaches exactly (`HarvestKind.Held`)",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schon in deinem Garten"
+            "value" : "Schon in deinem Obstgarten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Already in your garden"
+            "value" : "Already in your orchard"
           }
         }
       }
@@ -1560,18 +1560,18 @@
       }
     },
     "briefing.group.new" : {
-      "comment" : "heading over pasted words the garden has nothing like — the group that arrives ticked",
+      "comment" : "heading over pasted words the orchard has nothing like — the group that arrives ticked",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neues für deinen Garten"
+            "value" : "Neues für deinen Obstgarten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "New to your garden"
+            "value" : "New to your orchard"
           }
         }
       }
@@ -3188,13 +3188,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein paar Samen zum Aussäen"
+            "value" : "Ein Bäumchen zum Pflanzen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A few seeds to sow"
+            "value" : "A sapling, ready to plant"
           }
         }
       }
@@ -3911,13 +3911,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ganze Wörter aus deinem Garten nach Gehör"
+            "value" : "Ganze Wörter aus deinem Obstgarten nach Gehör"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whole words from your garden, by ear"
+            "value" : "Whole words from your orchard, by ear"
           }
         }
       }
@@ -6005,13 +6005,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Datei ist keine Spross-Sicherung, oder ein Garten darin lässt sich nicht lesen."
+            "value" : "Diese Datei ist keine Spross-Sicherung, oder ein Obstgarten darin lässt sich nicht lesen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This file is not a Spross backup, or a garden in it cannot be read."
+            "value" : "This file is not a Spross backup, or an orchard in it cannot be read."
           }
         }
       }
@@ -6151,13 +6151,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten; jede gelernte Sprache hat ihren eigenen Garten."
+            "value" : "Beim Wechsel der Ausgangssprache bleibt dein Fortschritt erhalten; jede gelernte Sprache hat ihren eigenen Obstgarten."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Switching the language you speak keeps all your progress; each language you learn has its own garden."
+            "value" : "Switching the language you speak keeps all your progress; each language you learn has its own orchard."
           }
         }
       }
@@ -6525,7 +6525,7 @@
       }
     },
     "trainer.hub.title" : {
-      "comment" : "The free-practice card's own name — open ground beside the tended garden, where nothing is scheduled and nothing comes due.",
+      "comment" : "The free-practice card's own name — open ground beside the tended orchard, where nothing is scheduled and nothing comes due.",
       "localizations" : {
         "de" : {
           "stringUnit" : {

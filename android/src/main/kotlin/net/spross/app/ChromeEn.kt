@@ -195,7 +195,7 @@ internal object ChromeEn : Chrome {
     override val lettersStageChoiceEasy = "The letter you heard, among four"
     override val lettersStageChoiceConfusable = "The same choice, among lookalikes"
     override val lettersStageTyped = "Write the letter yourself"
-    override val lettersStageDictation = "Whole words from your garden, by ear"
+    override val lettersStageDictation = "Whole words from your orchard, by ear"
     override val lettersStageDictationLocked = "Needs more consolidated words this device " +
         "can read out"
     override val lettersUnavailable = "This device cannot say a letter yet — that needs a " +
@@ -255,8 +255,8 @@ internal object ChromeEn : Chrome {
     override val a11yScrambleArrangement = "Your order"
     override val a11yScrambleBank = "Words to choose from"
     override val a11yActionTakeBack = "Take back"
-    override val boxTitle = "The Garden"
-    override val boxName = "Garden"
+    override val boxTitle = "The Orchard"
+    override val boxName = "Orchard"
     override val boxSubtitle = "%1\$s of %2\$s cards being tended"
     override val boxOwnShelf = "Your own words"
     override val boxOwnWordExplainer = "Your own words are yours alone. A growing catalog " +
@@ -297,7 +297,7 @@ internal object ChromeEn : Chrome {
     override val boxSearchHint = "Words in either language, and the names of the areas."
     override val boxSearchAreas = "Areas"
     override val boxSearchWords = "Words"
-    override val boxSearchNothing = "Nothing for “%s” in the garden."
+    override val boxSearchNothing = "Nothing for “%s” in the orchard."
     override val boxSearchWriteOwn = "Write “%s” yourself"
     override val a11yBoxSearchClear = "Clear search"
     override val boxOwnWordTitle = "Your Own Word"
@@ -346,9 +346,9 @@ internal object ChromeEn : Chrome {
     override val briefingReturnTitle = "Bring in the Harvest"
     override val briefingReturnPaste = "Paste"
     override val briefingReturnEmpty = "There is no word list in the clipboard."
-    override val briefingGroupNew = "New to your garden"
+    override val briefingGroupNew = "New to your orchard"
     override val briefingGroupNear = "Close to words you have"
-    override val briefingGroupHeld = "Already in your garden"
+    override val briefingGroupHeld = "Already in your orchard"
     override val briefingReturnKeepOne = "Keep %d word"
     override val briefingReturnKeep = "Keep %d words"
     override val sessionDoneTalk = "Talk about the words?"
@@ -358,7 +358,7 @@ internal object ChromeEn : Chrome {
     override val settingsNameHint = "Spross greets you by it. Left empty, the greeting goes " +
         "without one."
     override val settingsProfileHint = "Switching the language you speak keeps all your " +
-        "progress; each language you learn has its own garden."
+        "progress; each language you learn has its own orchard."
     override val settingsRestartTutorialButton = "Restart tutorial"
     override val settingsRestartTutorialHint = "Shows the introduction again — your " +
         "languages and progress stay."
@@ -378,8 +378,8 @@ internal object ChromeEn : Chrome {
         "backup?"
     override val settingsBackupReplace = "Replace"
     override val settingsBackupExportFailed = "The backup could not be saved."
-    override val settingsBackupImportFailed = "This file is not a Spross backup, or a garden " +
-        "in it cannot be read."
+    override val settingsBackupImportFailed = "This file is not a Spross backup, or an " +
+        "orchard in it cannot be read."
     override val commonCancel = "Cancel"
     override val commonReset = "Reset"
     override val commonClear = "Clear"
@@ -415,7 +415,7 @@ internal object ChromeEn : Chrome {
     override val headlineFreshSet = listOf(
         "Up for some new words?",
         "Time to sow seeds!",
-        "A few seeds to sow",
+        "A sapling, ready to plant",
     )
     override val headlineStreak = listOf(
         "Don't let the streak go cold",
