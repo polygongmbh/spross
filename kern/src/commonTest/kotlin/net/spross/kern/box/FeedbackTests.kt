@@ -122,7 +122,7 @@ class FeedbackTests {
     @Test
     fun aWordWrittenInOneLanguageIsASuggestionAndIsNeverScheduled() {
         val (state, half) = added(box(), ownWord("sonne", mapOf("de" to "Sonne")), Box.day1)
-        assertTrue(half.isSuggestion(Box.stamp.source, Box.stamp.target))
+        assertTrue(half.isSuggestion)
         assertNull(state.cards[half.id])
         assertTrue(state.enqueued.isEmpty())
         assertEquals(listOf(half), state.ownWords)
@@ -217,6 +217,47 @@ class FeedbackTests {
         val text = Feedback.reportText(state, null, FeedbackScope.Everything)
         assertTrue("Regenschirm → mwavuli" in text)
         assertTrue("heard it as mwamvuli too" in text)
+    }
+
+    // A pair the open profile cannot study
+
+    /** The word as the box holds it after the learner switched the known language. */
+    private fun underAnotherKnownLanguage(): BoxState {
+        val word = ownWord("mwavuli", mapOf("de" to "Regenschirm", "sw" to "mwavuli"))
+        val held = BoxEngine.addOwnWord(box(), word, Box.day1)
+        return BoxEngine.rejoin(held, emptyList(), Box.stamp.copy(source = "en"))
+    }
+
+    @Test
+    fun aWordWrittenInTwoLanguagesStaysAPairWhateverPairIsOpen() {
+        val state = underAnotherKnownLanguage()
+        assertEquals(listOf("own:mwavuli"), Feedback.wordPairs(state).map { it.id })
+        assertTrue(Feedback.suggestions(state).isEmpty())
+        // It is shown, and it is not studied: this profile cannot pair its two halves.
+        assertNull(state.cards["own:mwavuli"])
+    }
+
+    @Test
+    fun clearingTheOutboxNeverTakesAPairThisProfileCannotStudy() {
+        val state = underAnotherKnownLanguage()
+        assertEquals(0, Feedback.clearableCount(state))
+        assertEquals(listOf("own:mwavuli"), BoxEngine.clearFeedback(state).ownWords.map { it.id })
+    }
+
+    @Test
+    fun aPairThisProfileCannotStudyExportsWithBothItsTextsNamed() {
+        val text = Feedback.reportText(underAnotherKnownLanguage(), null, FeedbackScope.Everything)
+        assertTrue("de: Regenschirm → sw: mwavuli" in text)
+        // Nothing is missing, so nothing is claimed to be — and it is not an errand.
+        assertFalse("?" in text)
+        assertFalse("Suggested words" in text)
+    }
+
+    @Test
+    fun theFinishedWordsAndTheOneSidedOnesHeadTheirOwnSections() {
+        val text = Feedback.reportText(outbox(), null, FeedbackScope.Everything)
+        assertTrue("Own words (1):\n- Regenschirm → mwavuli" in text)
+        assertTrue("Suggested words (1):\n- Sonne → ?" in text)
     }
 
     @Test

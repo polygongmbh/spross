@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Your own words now stay whole words when you change the known language: they are still shown with both halves, still exported with them, and clearing the outbox no longer takes them.
 - Resetting a language with matured progress now offers to save a backup of it first.
 - The garden is now the orchard, matching the tree the button and Home's picture already showed.
 

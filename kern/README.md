@@ -386,11 +386,18 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   neither collide with the learner's words nor quietly reclaim them.
   `removeOwnWord` is **the one deletion that reaches a single word**, and it reaches own
   words only: a catalog word is not the learner's to delete, only to suspend.
-  A word written in only ONE of the profile's languages is a **suggestion**
-  (`OwnWord.isSuggestion`): the learner noticed a gap and wrote down the half they had.
-  It joins no card and is never scheduled — there is nothing to ask them yet — and waits
+  A word written in only ONE language is a **suggestion** (`OwnWord.isSuggestion`): the
+  learner noticed a gap and wrote down the half they had. It joins no card and is never
+  scheduled — there is nothing to ask them yet — and waits
   to be read off a report. `addedAt` is stamped by `addOwnWord`, never by the caller, and
   is the only date a suggestion ever gets, since it earns no schedule to carry one.
+  **Which of the three a word is, is the WORD's answer and never the open profile's**
+  (user ruling 2026-09-16): two languages or more is a pair, whatever pair is on screen —
+  changing the known language does not take back the work, so such a word is still shown
+  as finished and is never cleared. What the profile decides is whether it can be STUDIED
+  (`OwnWord.joins`, which is what `OwnWords.cards` emits a card for): a pair it cannot see
+  both halves of is untrained, not half-written. The export names both texts with their
+  languages rather than printing a missing half over one the learner already has.
   An entry with a comment and NO language at all is a **remark** (`OwnWord.isRemark`): a
   note that names no word, and so suggests none — what it is about need not be anything
   the catalog holds. The three are disjoint and exhaustive (`isPair`, `isSuggestion`,

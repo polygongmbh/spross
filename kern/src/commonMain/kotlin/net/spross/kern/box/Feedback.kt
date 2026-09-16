@@ -65,6 +65,9 @@ object Feedback {
      * carried only the words would come back empty for a learner who has filed reports and
      * written nothing, which is a copy button that silently does nothing.
      *
+     * The finished words and the one-sided ones head their own sections, exactly as the Box
+     * screen reads them: a word the learner wrote in two languages is theirs, and one listed
+     * as suggested tells its reader the catalog owes a half it does not.
      * A word written in only one language prints its missing half as [UNTRANSLATED] rather
      * than being left out: it is the entry most worth reading, and a word carrying a comment
      * prints it under the pair. The notes stand in a section of their own rather than among
@@ -80,9 +83,14 @@ object Feedback {
         val issues = issuesSince(state, since)
         val sections = mutableListOf<String>()
         sections += "${state.joinStamp.source} → ${state.joinStamp.target}"
-        if (words.isNotEmpty()) {
-            sections += "Suggested words (${words.size}):\n" +
-                words.joinToString("\n") { "- " + wordLine(state, it) }
+        val (pairs, half) = words.partition { it.isPair }
+        if (pairs.isNotEmpty()) {
+            sections += "Own words (${pairs.size}):\n" +
+                pairs.joinToString("\n") { "- " + wordLine(state, it) }
+        }
+        if (half.isNotEmpty()) {
+            sections += "Suggested words (${half.size}):\n" +
+                half.joinToString("\n") { "- " + wordLine(state, it) }
         }
         if (notes.isNotEmpty()) {
             sections += "Notes (${notes.size}):\n" +
@@ -118,14 +126,10 @@ object Feedback {
         remarks(state).filter { since == null || it.addedAt > since }
 
     /**
-     * The words still waiting for one of the profile's two languages, oldest first.
-     *
-     * Read here rather than per platform because being a suggestion is a JOIN question —
-     * the same word is a suggestion under one pair and a card under another — and a
-     * surface that answered it itself would answer it for the pair it happens to draw.
+     * The words still waiting for a second language, oldest first — the half the learner
+     * had, and the half the catalog owes ([OwnWord.isSuggestion]).
      */
-    fun suggestions(state: BoxState): List<OwnWord> =
-        state.ownWords.filter { it.isSuggestion(state.joinStamp.source, state.joinStamp.target) }
+    fun suggestions(state: BoxState): List<OwnWord> = state.ownWords.filter { it.isSuggestion }
 
     /**
      * The bare notes, oldest first: what the learner had to say that names no word at all
@@ -138,15 +142,15 @@ object Feedback {
     fun remarks(state: BoxState): List<OwnWord> = state.ownWords.filter { it.isRemark }
 
     /**
-     * The words written in both of the profile's languages, oldest first: the ones the join
-     * has made cards of.
+     * The words written in two languages or more, oldest first.
      *
      * They are the learner's own study material rather than an errand for the catalog, which
      * is why a surface that lists both lists them apart, and why emptying the outbox leaves
-     * them where they are ([BoxEngine.clearFeedback]).
+     * them where they are ([BoxEngine.clearFeedback]). A pair the open profile cannot study
+     * ([OwnWord.joins]) is in here too: it is a finished word waiting for its pair to come
+     * back round, not a half-written one.
      */
-    fun wordPairs(state: BoxState): List<OwnWord> =
-        state.ownWords.filter { it.isPair(state.joinStamp.source, state.joinStamp.target) }
+    fun wordPairs(state: BoxState): List<OwnWord> = state.ownWords.filter { it.isPair }
 
     /**
      * How much a [BoxEngine.clearFeedback] would take: the suggestions, the notes and the
@@ -198,10 +202,26 @@ object Feedback {
     private fun wordsAndSuggestions(state: BoxState): List<OwnWord> =
         state.ownWords.filterNot { it.isRemark }
 
+    /**
+     * One word as its reader needs it: the profile's two sides where the word writes both,
+     * and otherwise every language it DOES carry, each named.
+     *
+     * The fallback is what keeps a word the open profile cannot pair from reading as a
+     * half-written one — the text is there, it is simply in a language this pair does not
+     * name, and printing [UNTRANSLATED] over it would ask the catalog for a word the
+     * learner already has.
+     */
     private fun wordLine(state: BoxState, word: OwnWord): String {
-        val known = word.texts[state.joinStamp.source] ?: UNTRANSLATED
-        val learning = word.texts[state.joinStamp.target] ?: UNTRANSLATED
-        return listOfNotNull("$known → $learning", word.comment).joinToString("\n  ")
+        val pair =
+            if (word.joins(state.joinStamp.source, state.joinStamp.target) || word.isSuggestion) {
+                val known = word.texts[state.joinStamp.source] ?: UNTRANSLATED
+                val learning = word.texts[state.joinStamp.target] ?: UNTRANSLATED
+                "$known → $learning"
+            } else {
+                word.texts.entries.sortedBy { it.key }
+                    .joinToString(" → ") { (lang, text) -> "$lang: $text" }
+            }
+        return listOfNotNull(pair, word.comment).joinToString("\n  ")
     }
 
     private fun issueLines(state: BoxState, issue: ReportedIssue): String {

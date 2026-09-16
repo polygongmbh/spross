@@ -118,8 +118,9 @@ object BoxEngine {
      * ([Feedback.clearableCount] is what that comes to). The learner has handed the lot
      * to whoever maintains the catalog, and no such entry has anything left to do here.
      *
-     * A word written in BOTH languages is untouched — it is a card with a schedule and
-     * progress on it, not a note to the maintainer. That is the whole line this verb
+     * A word written in two languages or more is untouched — it is study material with
+     * progress on it, not a note to the maintainer, and a profile that cannot pair it does
+     * not make it one ([OwnWord.isPair]). That is the whole line this verb
      * draws, and the reason it is not [reset]: reset clears what the box KNOWS and keeps
      * what the learner WROTE, while this one keeps the studiable words and clears the
      * notes. Neither reaches a catalog word.
@@ -128,9 +129,7 @@ object BoxEngine {
      * the outbox does not undo.
      */
     fun clearFeedback(state: BoxState): BoxState {
-        val kept = state.ownWords.filter {
-            it.isPair(state.joinStamp.source, state.joinStamp.target)
-        }
+        val kept = state.ownWords.filter { it.isPair }
         if (kept.size == state.ownWords.size && state.reportedIssues.isEmpty()) return state
         return state.copy(
             ownWords = kept,

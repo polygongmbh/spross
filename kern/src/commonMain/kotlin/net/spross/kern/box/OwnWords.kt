@@ -23,6 +23,11 @@ import net.spross.kern.model.nfcNormalized
  * skips it), it simply waits — either for the other half, or to be read off a
  * report and answered in the catalog itself.
  *
+ * Which of the three it is is the WORD's answer, never the open profile's: a word
+ * written in two languages a profile cannot pair is still a finished word, and is
+ * shown as one and never cleared. What the profile decides is whether it can be
+ * STUDIED ([joins]).
+ *
  * Written with NO language at all it is a REMARK ([isRemark]): a note that names no
  * word, and so suggests none. It rides out with the suggestions and is counted apart
  * from them — what it asks for may be nothing the catalog holds.
@@ -52,20 +57,28 @@ data class OwnWord(
     val addedAt: Instant = Instant.DISTANT_PAST,
 ) {
     /**
-     * Whether this word still waits for one of the profile's two languages.
+     * Whether this word still waits for a second language: the learner noticed a gap and
+     * wrote down the half they had.
      *
-     * A [isRemark] is not one: it waits for no language at all, and reading it as a
+     * Read off the WORD and never off the pair on screen. A word written in two languages
+     * is a word the learner finished, whatever profile happens to be open — changing the
+     * known language does not take back the work — so a profile that cannot see both its
+     * halves leaves it untrained ([OwnWords.cards]), never half-written.
+     *
+     * A [isRemark] is not one either: it waits for no language at all, and reading it as a
      * half-written word is how a note about the app ends up filed as vocabulary.
      */
-    fun isSuggestion(source: Language, target: Language): Boolean =
-        !isRemark && (texts[source] == null || texts[target] == null)
+    val isSuggestion: Boolean get() = texts.size == 1
 
-    /** Whether both of the profile's languages are written: the word joins, and is a card. */
-    fun isPair(source: Language, target: Language): Boolean =
-        texts[source] != null && texts[target] != null
+    /** Whether the word is written in two languages or more: study material, not an errand. */
+    val isPair: Boolean get() = texts.size >= 2
 
     /** Whether this is a bare remark: a comment with no word under it in any language. */
     val isRemark: Boolean get() = texts.isEmpty()
+
+    /** Whether this profile can study it: both of its languages are written. */
+    fun joins(source: Language, target: Language): Boolean =
+        texts[source] != null && texts[target] != null
 }
 
 /** The rules that turn the learner's own words into cards the box can hold. */
