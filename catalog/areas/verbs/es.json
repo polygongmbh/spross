@@ -69,6 +69,7 @@
   "to-have-to": { "text": "tener que", "synonyms": ["deber"] },
   "to-put": { "text": "poner" },
   "to-carry": { "text": "llevar" },
+  "to-forget": { "text": "olvidar" },
   "do-you-have-water": { "text": "¿Tiene agua?", "variants": ["¿Tiene usted agua?", "¿Tienes agua?"] },
   "where-are-you-from": {
    "text": "¿De dónde es usted?",

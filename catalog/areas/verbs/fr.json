@@ -77,6 +77,7 @@
   "to-have-to": { "text": "devoir" },
   "to-put": { "text": "mettre" },
   "to-carry": { "text": "porter" },
+  "to-forget": { "text": "oublier" },
   "do-you-have-water": {
    "text": "Avez-vous de l'eau ?",
    "variants": ["Vous avez de l'eau ?", "As-tu de l'eau ?", "Tu as de l'eau ?"],

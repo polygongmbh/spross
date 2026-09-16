@@ -9209,6 +9209,17 @@
    "sha256": "98cfbed00ddd79a7f439a005e36b3be6f4af5dcfcd02cd12512d55ccaaba2170",
    "snr": 47.1,
    "source": "Fr-hier.ogg"
+  },
+  "to-forget": {
+   "author": "Poslovitch",
+   "file": "to-forget.mp3",
+   "gain": -0.6,
+   "gainPhone": 5.0,
+   "lead": 183,
+   "matches": "oublier",
+   "sha256": "f78038d41df39d48749fdf97adcd5a6f68f65c45231b9588bbf6248630a9b48b",
+   "snr": 50.8,
+   "source": "LL-Q150 (fra)-Poslovitch-oublier.wav"
   }
  }
 }

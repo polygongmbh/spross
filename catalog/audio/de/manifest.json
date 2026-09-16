@@ -12468,6 +12468,17 @@
    "sha256": "16809cfd8ddc9a6c2cecf24bbc9144feab1eaf11a49220664cf8a66537155783",
    "snr": 60.9,
    "source": "De-gestern.ogg"
+  },
+  "to-forget": {
+   "author": "Natschoba",
+   "file": "to-forget.mp3",
+   "gain": 4.2,
+   "gainPhone": 3.7,
+   "lead": 216,
+   "matches": "vergessen",
+   "sha256": "b154b4816fd4bbda23014a31e5aa3f9fe1d330b5c492f425124293d5a0f48d1a",
+   "snr": 63.3,
+   "source": "LL-Q188 (deu)-Natschoba-vergessen.wav"
   }
  }
 }

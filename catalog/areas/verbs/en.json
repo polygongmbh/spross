@@ -34,6 +34,7 @@
   "to-have-to": { "text": "must", "synonyms": ["to have to"] },
   "to-put": { "text": "to put" },
   "to-carry": { "text": "to carry" },
+  "to-forget": { "text": "to forget" },
   "do-you-have-water": { "text": "Do you have water?" },
   "where-are-you-from": { "text": "Where are you from?" },
   "can-you-see-me": { "text": "Can you see me?" }

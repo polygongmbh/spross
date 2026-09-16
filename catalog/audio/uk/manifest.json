@@ -8529,6 +8529,17 @@
    "sha256": "d9f3baf929c96fc16b7e55c51b58d892a407c4fa2bbc5900fa9710a55eb21734",
    "snr": 37.8,
    "source": "Uk-вчора.ogg"
+  },
+  "to-forget": {
+   "author": "Галя Раптова, Nicolas Vion",
+   "file": "to-forget.mp3",
+   "gain": 1.1,
+   "gainPhone": 0.9,
+   "lead": 178,
+   "matches": "забувати",
+   "sha256": "40080975c0b2db74faf8ed6c45dc9833f413ea3259c8d19e4e480a06547cd6f5",
+   "snr": 43.2,
+   "source": "Uk-забувати.ogg"
   }
  }
 }

@@ -8367,6 +8367,17 @@
    "sha256": "64707e4a905bc89b649acdd4e9a6edc4199d15372a33c44c158a838cfccc30e0",
    "snr": 91.2,
    "source": "LL-Q652 (ita)-LangPao-ieri.wav"
+  },
+  "to-forget": {
+   "author": "Ciampix",
+   "file": "to-forget.mp3",
+   "gain": 5.7,
+   "gainPhone": 4.9,
+   "lead": 141,
+   "matches": "dimenticare",
+   "sha256": "eef956c6022c4346713505664f5c082836af52d671ea2a1493016dfd0fdb8dca",
+   "snr": 55.6,
+   "source": "LL-Q652 (ita)-Ciampix-dimenticare.wav"
   }
  }
 }

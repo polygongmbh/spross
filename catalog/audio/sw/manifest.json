@@ -7822,6 +7822,17 @@
    "sha256": "706ba4f9735f1fb115a32ce1923be3cb9af0fbe4574fac18f1cc09f11b79ccee",
    "snr": 52.2,
    "source": "Sw-ke-jana.flac"
+  },
+  "to-forget": {
+   "author": "Waithera Were",
+   "file": "to-forget.mp3",
+   "gain": -11.1,
+   "gainPhone": -18.4,
+   "lead": 44,
+   "matches": "kusahau",
+   "sha256": "92033312637f940607e9ee090da79ea2ec21adf7f2e0d4bcbb908eafd7d2ea57",
+   "snr": 46.8,
+   "source": "Sw-ke-kusahau.flac"
   }
  }
 }

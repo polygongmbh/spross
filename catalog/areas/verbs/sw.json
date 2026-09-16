@@ -71,6 +71,7 @@
    }
   },
   "to-carry": { "text": "kubeba" },
+  "to-forget": { "text": "kusahau" },
   "do-you-have-water": { "text": "Una maji?" },
   "where-are-you-from": { "text": "Unatoka wapi?" },
   "can-you-see-me": { "text": "Unaniona?" }

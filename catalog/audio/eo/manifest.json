@@ -8994,6 +8994,17 @@
    "sha256": "3959e4fd95d34270ead233b3ab744ef5b197a75295c780a4eaa2af6d6b7e18d3",
    "snr": 64.4,
    "source": "LL-Q143 (epo)-Wierzbowski-hieraŭ.wav"
+  },
+  "to-forget": {
+   "author": "Lepticed7",
+   "file": "to-forget.mp3",
+   "gain": 9.8,
+   "gainPhone": 4.9,
+   "lead": 172,
+   "matches": "forgesi",
+   "sha256": "459f38e6836f63423f8923c1e61095abe28e42e4b1c9cdca8dd4400392fd3924",
+   "snr": 50.1,
+   "source": "LL-Q143 (epo)-Lepticed7-forgesi.wav"
   }
  }
 }
