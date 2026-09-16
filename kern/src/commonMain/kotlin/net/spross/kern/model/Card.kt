@@ -5,6 +5,13 @@ package net.spross.kern.model
  * adjectives, adverbs, and interjections (`draußen`, `immer`, `Vorsicht`).
  * Engine-wise it is a plain word: introducible on its own, never phrase-gated,
  * never verb-prefix-stripped.
+ *
+ * `Phrase` vs `Idiom` is meaning, not length or word count: a `Phrase` says what its
+ * words say (`i-dont-understand` = "to-understand" negated) and MAY link those words as
+ * `components` to gate its unlock (`kern/README.md`); an `Idiom` is figurative — its meaning isn't
+ * read off its parts — so `components` is rejected on it at parse time
+ * (`CatalogParser.kt`), and it always wears [IDIOM_EMOJI] instead of a per-concept one.
+ * A `Phrase` with `components: []` is still literal, just gated by nothing (seed order).
  */
 enum class CardKind { Noun, Verb, Adjective, Phrase, Idiom }
 
