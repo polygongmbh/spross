@@ -34,13 +34,28 @@
    { "area": "pronouns", "emoji": "🙋" },
    { "area": "connectors", "emoji": "🔗" },
    { "area": "verbs", "emoji": "🏃" },
+   { "area": "colors", "emoji": "🎨" },
+   { "area": "practice", "emoji": "🏅" }
+  ]
+ },
+ {
+  "group": "context",
+  "titles": {
+   "en": "When, Where & How",
+   "de": "Wann, Wo & Wie",
+   "eo": "Kiam, Kie kaj Kiel",
+   "es": "Cuándo, Dónde y Cómo",
+   "fr": "Quand, Où et Comment",
+   "it": "Quando, Dove e Come",
+   "sw": "Lini, Wapi na Vipi",
+   "uk": "Коли, Де і Як"
+  },
+  "areas": [
    { "area": "place", "emoji": "📍" },
    { "area": "qualities", "emoji": "📏" },
    { "area": "degree", "emoji": "📊" },
    { "area": "time", "emoji": "🕒" },
-   { "area": "colors", "emoji": "🎨" },
-   { "area": "comparison", "emoji": "⚖️" },
-   { "area": "practice", "emoji": "🏅" }
+   { "area": "comparison", "emoji": "⚖️" }
   ]
  },
  {
