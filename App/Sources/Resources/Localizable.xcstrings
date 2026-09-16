@@ -899,13 +899,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeig, wo es wächst"
+            "value" : "Im Katalog anzeigen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Show where it grows"
+            "value" : "Show in the catalog"
           }
         }
       }
