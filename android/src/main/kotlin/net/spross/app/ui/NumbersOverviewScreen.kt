@@ -105,7 +105,7 @@ fun NumbersOverviewScreen(model: AppModel) {
         OverviewHeading(chrome.trainerOverviewPractice)
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
             for (exercise in offered) {
-                VariantRow(exercise, chrome, ladder, combining, exercise in picked) {
+                ExerciseRow(exercise, chrome, ladder, combining, exercise in picked) {
                     pickedNames = DrillSelection
                         .toggled(picked, exercise, combining)
                         .map { it.name }
@@ -144,12 +144,12 @@ fun NumbersOverviewScreen(model: AppModel) {
 }
 
 /**
- * One exercise the run may ask. A variant the pair cannot offer at all has no row — this is
+ * One exercise the run may ask. An exercise the pair cannot offer at all has no row — this is
  * only ever handed the offered ones — and a locked one keeps its row and states its price
  * out of kern's own unlock table.
  */
 @Composable
-private fun VariantRow(
+private fun ExerciseRow(
     exercise: NumbersExercise,
     chrome: Chrome,
     ladder: Map<NumbersExercise, Int>,

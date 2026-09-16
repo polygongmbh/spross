@@ -75,7 +75,7 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
 
     // What the result tile says was drilled: a run that asks one thing names it, and one
     // that interleaves several falls back to the hub card's own title.
-    val title = mode.variants.singleOrNull()?.let { chrome.name(it) } ?: chrome.trainerHubTitle
+    val title = mode.exercises.singleOrNull()?.let { chrome.name(it) } ?: chrome.trainerHubTitle
 
     // why: from the corner or from "Fertig", the close is the same one — kern books what
     // is pending, says what to store, and the page that started the run wears the figures.
@@ -151,20 +151,20 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
 }
 
 /**
- * The Sprosse part of the score line, for the variant that just asked: numbers count DIGITS,
- * everything else counts plain levels — and a variant with one Sprosse shows none. The face
- * leads only where the run offers more than one variant, since a run that asks one thing
+ * The Sprosse part of the score line, for the exercise that just asked: numbers count DIGITS,
+ * everything else counts plain levels — and an exercise with one Sprosse shows none. The face
+ * leads only where the run offers more than one exercise, since a run that asks one thing
  * has already said what it asks.
  */
 private fun sprosseText(state: NumbersRunState, chrome: Chrome): String? {
     if (!state.showsSprosse) return null
     val sprosse = state.currentLevel
     // why: the digits wording is the numbers drill's own and already wears 🔢 — putting
-    // the variant's face in front would double it.
-    if (state.currentVariant == NumbersExercise.Counting) {
+    // the exercise's face in front would double it.
+    if (state.currentExercise == NumbersExercise.Counting) {
         return countLine(chrome.numbersSprosseOne, chrome.numbersSprosse, sprosse)
     }
     val level = chrome.trainerSprosse.format(sprosse)
-    if (!state.severalVariants) return level
-    return "${chrome.badge(state.currentVariant)} $level"
+    if (!state.severalExercises) return level
+    return "${chrome.badge(state.currentExercise)} $level"
 }

@@ -86,9 +86,9 @@ extension NumbersRunView {
         dismiss()
     }
 
-    /// What the Sprosse store holds now for every variant this run could book —
+    /// What the Sprosse store holds now for every exercise this run could book —
     /// kern compares against it so a Sprosse already earned is not fresh progress.
     private var standingProgress: [String: KotlinInt] {
-        TrainerProgress.standing(mode.variants.map { mode.progressKey(exercise: $0) })
+        TrainerProgress.standing(mode.exercises.map { mode.progressKey(exercise: $0) })
     }
 }

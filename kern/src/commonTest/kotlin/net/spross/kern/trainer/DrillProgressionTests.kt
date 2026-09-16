@@ -37,13 +37,13 @@ class DrillProgressionTests {
 
     @Test
     fun everySprosseOpensExactlyAtItsRequirement() {
-        val variants = listOf(
+        val exercises = listOf(
             Triple(NumbersExercise.Clock, NumbersExercise.Counting, 4),
             // The phrase gate rides the clock ceiling, so growing the ladder raises it.
             Triple(NumbersExercise.Phrases, NumbersExercise.Clock, Numbers.maxLevel(NumbersReading.Clock)),
             Triple(NumbersExercise.Forms, NumbersExercise.Counting, 7),
         )
-        for ((locked, on, level) in variants) {
+        for ((locked, on, level) in exercises) {
             assertEquals(mapOf(on to level), DrillUnlocks.requirements(locked))
             assertFalse(DrillUnlocks.unlocked(locked, emptyMap()), "$locked with no progress")
             assertFalse(DrillUnlocks.unlocked(locked, progress(on to level - 1)), "$locked at ${level - 1}")

@@ -45,7 +45,7 @@ internal object DrillSolved {
     const val SPENT_ATTEMPTS: Int = 20
 
     /**
-     * A slot prompt is what stands on the card: the variant that asked plus the prompt
+     * A slot prompt is what stands on the card: the exercise that asked plus the prompt
      * itself, which is the digits forward and the reading reversed — two questions about one
      * value, and the learner owes both.
      */

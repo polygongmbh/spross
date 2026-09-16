@@ -104,7 +104,7 @@ struct DrillRunResult: Equatable {
     /// ladder is one table, and a second copy of it here is one coincidence away
     /// from praising a run the engine does not.
     var tier: StreakTier = .sprout
-    /// What was drilled — the variant's own name, since a page can host several.
+    /// What was drilled — the exercise's own name, since a page can host several.
     let title: LocalizedStringKey
 }
 

@@ -11,7 +11,7 @@ import net.spross.kern.session.AnswerNormalizer
  * [CountryDrill].
  *
  * It types like the slot run — writing the name out IS the answer — and climbs like the
- * letter run, one ladder for the whole run rather than one per variant. That, and the Sprosse
+ * letter run, one ladder for the whole run rather than one per exercise. That, and the Sprosse
  * it REACHED being what a close reports, is the whole of what it does not share with them;
  * the ramp, the effects and the summary are the same ones.
  *

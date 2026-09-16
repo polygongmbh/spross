@@ -65,21 +65,21 @@ extension NumbersRunView {
                         announcesRecord: true)
     }
 
-    /// The Sprosse part of the score line, for the variant that just asked: numbers
-    /// count DIGITS, everything else counts plain levels — and a variant with one
+    /// The Sprosse part of the score line, for the exercise that just asked: numbers
+    /// count DIGITS, everything else counts plain levels — and an exercise with one
     /// Sprosse shows none. The emoji leads only where the run offers more than one
-    /// variant, since a run that asks one thing has already said what it asks.
+    /// exercise, since a run that asks one thing has already said what it asks.
     private var levelText: Text? {
         guard run.showsSprosse else { return nil }
-        let exercise = run.currentVariant
+        let exercise = run.currentExercise
         let sprosse = Int(run.currentLevel)
         guard exercise != .counting else {
             // why: `trainer.digits` is the numbers drill's own wording and already
-            // wears 🔢 — putting the variant's face in front would double it.
+            // wears 🔢 — putting the exercise's face in front would double it.
             return Text("numbers.sprosse \(sprosse)")
         }
         let text = Text("trainer.sprosse \(sprosse.formatted())")
-        guard run.severalVariants else { return text }
+        guard run.severalExercises else { return text }
         return Text(verbatim: "\(numbersExerciseEmoji(exercise: exercise)) ") + text
     }
 

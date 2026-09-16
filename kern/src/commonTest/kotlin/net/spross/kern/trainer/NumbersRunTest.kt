@@ -73,7 +73,7 @@ class NumbersRunTest {
     }
 
     /**
-     * The variant pick, the direction flip and the value all spend ONE rng, so a seeded run is
+     * The exercise pick, the direction flip and the value all spend ONE rng, so a seeded run is
      * reproducible end to end rather than three-quarters of the way.
      */
     @Test
@@ -156,7 +156,7 @@ class NumbersRunTest {
     // MARK: - The ramp inside a run
 
     @Test
-    fun twoCleanWinsClimbTheAskingVariantAndAMissStepsItBack() {
+    fun twoCleanWinsClimbTheAskingExerciseAndAMissStepsItBack() {
         val rng = Random(7)
         var state = NumbersRun.open(numbers(), rng)
         state = answerRight(state, rng)

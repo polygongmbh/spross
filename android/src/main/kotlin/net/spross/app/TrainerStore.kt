@@ -36,8 +36,8 @@ class TrainerStore(private val prefs: SharedPreferences) {
     }
 
     /**
-     * Every variant's highest Sprosse in [language], as the unlock table wants to read it.
-     * Read whole rather than per row, because a requirement names a variant other than
+     * Every exercise's highest Sprosse in [language], as the unlock table wants to read it.
+     * Read whole rather than per row, because a requirement names an exercise other than
      * the row it gates (Phrases is bought with Clock).
      */
     fun ladder(language: Language): Map<NumbersExercise, Int> =
@@ -166,7 +166,7 @@ data class TypedDrillStanding(
  */
 class TrainerStanding(val store: TrainerStore) {
 
-    /** The highest Sprosse each variant ever reached in the language being learnt. */
+    /** The highest Sprosse each exercise ever reached in the language being learnt. */
     var ladder by mutableStateOf<Map<NumbersExercise, Int>>(emptyMap())
         private set
 

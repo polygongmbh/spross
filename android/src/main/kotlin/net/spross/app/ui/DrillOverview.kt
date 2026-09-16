@@ -108,7 +108,7 @@ fun OverviewPanel(content: @Composable ColumnScope.() -> Unit) {
 /**
  * How a row of picks answers a tap.
  *
- * [One] is a radio — while any offered variant is still locked a run asks ONE thing at a
+ * [One] is a radio — while any offered exercise is still locked a run asks ONE thing at a
  * time, and a learner who has just met the clock is asked to climb it rather than dilute
  * it. [Many] is the checkbox a fully open ladder earns. [Locked] is a padlock that states
  * its price: a ladder you can see is a reason to climb, and an absence is not.

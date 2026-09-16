@@ -22,7 +22,7 @@ struct NumbersOverview: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    /// The highest Sprosse ever reached per variant in THIS language — the one
+    /// The highest Sprosse ever reached per exercise in THIS language — the one
     /// source the unlock ladder reads. Held in state rather than read per row so
     /// a run that just booked a Sprosse refreshes the whole ladder in one place.
     // why: internal, not private — +Practice.swift renders the ladder from it.
@@ -110,7 +110,7 @@ struct NumbersOverview: View {
     /// not Phrases is picked — `Mode` drops a frameless Phrases itself, and
     /// carrying them means the run samples from the set the screen was opened with.
     func buildMode() -> NumbersRunView.Mode {
-        NumbersRunView.Mode(variants: picked,
+        NumbersRunView.Mode(exercises: picked,
                                 language: language,
                                 phraseSource: phraseDrill?.source,
                                 templates: phraseDrill?.templates ?? [],
@@ -123,8 +123,8 @@ struct NumbersOverview: View {
 
     // MARK: - The ladder
 
-    /// Reads every variant's stored Sprosse at once, because a requirement names a
-    /// variant other than the row it gates (Phrases is bought with Clock).
+    /// Reads every exercise's stored Sprosse at once, because a requirement names
+    /// an exercise other than the row it gates (Phrases is bought with Clock).
     func reloadProgress() {
         var levels: [NumbersExercise: Int] = [:]
         for exercise in NumbersExercise.allCases {

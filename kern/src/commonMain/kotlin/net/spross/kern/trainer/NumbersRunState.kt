@@ -40,8 +40,8 @@ data class NumbersClose(
     val recordKey: String,
     /**
      * Progress key ([NumbersMode.PROGRESS_PREFIX] + it) → the Sprosse to store, already filtered to
-     * the ones that strictly beat what was standing. Every variant the run ASKED, not only the
-     * one it ended on; a variant it never drew is absent, because an unasked Sprosse was never
+     * the ones that strictly beat what was standing. Every exercise the run ASKED, not only the
+     * one it ended on; an exercise it never drew is absent, because an unasked Sprosse was never
      * stood on.
      */
     val progressBookings: Map<String, Int>,
@@ -50,7 +50,7 @@ data class NumbersClose(
 
 /**
  * One slot run, whole and immutable: what is on screen, what the answers have done to it, and
- * the per-variant Sprossen it is standing on.
+ * the per-exercise Sprossen it is standing on.
  *
  * The learner's TEXT is not in here — the platform owns the field, the keyboard and the focus,
  * and hands text in through [NumbersIntent]. What is in here is every rule that decides what
@@ -65,13 +65,13 @@ data class NumbersRunState(
     /** Bumped per question — what an autoplay effect keys on, since two draws can be equal values. */
     val index: Int,
     /**
-     * The Sprosse each variant stands on, all starting at 1 however far the learner has climbed
+     * The Sprosse each exercise stands on, all starting at 1 however far the learner has climbed
      * before: persisted progress buys ACCESS, never a head start, because the climb is the drill.
      */
     val levels: Map<NumbersExercise, Int>,
     val winsAtLevel: Map<NumbersExercise, Int>,
     /**
-     * The highest Sprosse each variant STOOD ON in this run — what the close books. Tracked apart
+     * The highest Sprosse each exercise STOOD ON in this run — what the close books. Tracked apart
      * from [levels] because a Sprosse steps back down on a miss, and the ladder rewards reaching
      * one, not finishing on it.
      */
@@ -101,21 +101,21 @@ data class NumbersRunState(
 
     val currentTask: NumbersTask get() = current.task
 
-    /** Which of the run's variants asked what is on screen — what a win and a miss apply to. */
-    val currentVariant: NumbersExercise get() = current.exercise
+    /** Which of the run's exercises asked what is on screen — what a win and a miss apply to. */
+    val currentExercise: NumbersExercise get() = current.exercise
 
     /** The reading is the prompt and the value is owed. The one thing it decides is the keyboard. */
     val currentReversed: Boolean get() = current.reversed
 
-    val currentLevel: Int get() = levels[currentVariant] ?: 1
+    val currentLevel: Int get() = levels[currentExercise] ?: 1
 
-    val currentMaxLevel: Int get() = mode.maxLevel(currentVariant)
+    val currentMaxLevel: Int get() = mode.maxLevel(currentExercise)
 
-    /** A variant with one Sprosse has no Sprosse to report. */
+    /** An exercise with one Sprosse has no Sprosse to report. */
     val showsSprosse: Boolean get() = currentMaxLevel > 1
 
     /** A run that asks one thing has already said what it asks. */
-    val severalVariants: Boolean get() = mode.variants.size > 1
+    val severalExercises: Boolean get() = mode.exercises.size > 1
 
     /** The answer is still owed — what makes a look-up cost the Sprosse. */
     val owesAnswer: Boolean get() = feedback == TurnFeedback.Neutral
@@ -131,7 +131,7 @@ data class NumbersRunState(
     val showsAnswer: Boolean get() = feedback == TurnFeedback.Revealed
 
     /** The numbers page is one tap away from a numbers task, and from no other. */
-    val offersLookUp: Boolean get() = currentVariant == NumbersExercise.Counting
+    val offersLookUp: Boolean get() = currentExercise == NumbersExercise.Counting
 
     /**
      * The way out, where it is wanted: under the button that goes on, on the SECOND miss in a
@@ -147,7 +147,7 @@ data class NumbersRunState(
      * reversed prompt IS the reading, which already names the place a hint would introduce.
      */
     val currentDigits: Int?
-        get() = if (currentVariant == NumbersExercise.Counting && !currentReversed) {
+        get() = if (currentExercise == NumbersExercise.Counting && !currentReversed) {
             currentTask.prompt.length
         } else {
             null

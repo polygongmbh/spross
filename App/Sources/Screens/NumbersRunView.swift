@@ -36,7 +36,7 @@ struct NumbersRunView: View, LanguageNaming {
     @Environment(\.dismiss) var dismiss
 
     /// The whole run, kern's: what is on screen, what the answers have done to
-    /// it, and the per-variant Sprossen it stands on.
+    /// it, and the per-exercise Sprossen it stands on.
     // why: internal, not private — the +Drill/+Audio/+UITest extensions read it.
     @State var run: NumbersRunState
     /// The learner's text — the one thing the run deliberately does NOT hold:
@@ -66,10 +66,10 @@ struct NumbersRunView: View, LanguageNaming {
         self.model = model
         self.onFinish = onFinish
         #if DEBUG
-        // UI-test hook: `-uitest-level N` opens the run's first variant at that
+        // UI-test hook: `-uitest-level N` opens the run's first exercise at that
         // Sprosse, as the letter drill's `-uitest-letters-level` does. Kern clamps it.
         let preset = UserDefaults.standard.integer(forKey: "uitest-level")
-        if preset > 0, let exercise = mode.variants.first {
+        if preset > 0, let exercise = mode.exercises.first {
             let levels: [NumbersExercise: KotlinInt] = [exercise: KotlinInt(int: Int32(preset))]
             _run = State(initialValue: NumbersRun.shared.openAt(mode: mode, levels: levels, rng: drillRandom))
         } else {

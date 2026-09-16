@@ -1,7 +1,7 @@
 import SwiftUI
 import SprossKern
 
-/// The choosing half of the numbers overview: which variants a run asks, how it
+/// The choosing half of the numbers overview: which exercises a run asks, how it
 /// is played, and the button that starts it. State lives on NumbersOverview;
 /// split out purely for file size.
 extension NumbersOverview {
@@ -10,7 +10,7 @@ extension NumbersOverview {
         VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             heading("trainer.overview.practice")
             VStack(alignment: .leading, spacing: Theme.spacing.sm) {
-                ForEach(offered, id: \.self) { variantRow($0) }
+                ForEach(offered, id: \.self) { exerciseRow($0) }
                 if !combining {
                     Text("numbers.combine.locked")
                         .font(Theme.typography.caption)
@@ -43,12 +43,12 @@ extension NumbersOverview {
     // MARK: - What a run asks
 
     /// Mixing several exercises into one run is itself earned: while any offered
-    /// variant is still locked the list is a radio — one exercise at a time —
+    /// exercise is still locked the list is a radio — one exercise at a time —
     /// and it turns into checkboxes only once the ladder is fully open. A learner
     /// who has just met the clock is asked to climb it, not to dilute it.
     var combining: Bool { DrillSelection.shared.combining(offered: offered, progress: ladder) }
 
-    private func variantRow(_ exercise: NumbersExercise) -> some View {
+    private func exerciseRow(_ exercise: NumbersExercise) -> some View {
         let open = unlocked(exercise)
         return SelectionRow(
             title: Text(verbatim: "\(numbersExerciseEmoji(exercise: exercise)) ") + Text(exercise.trainerTitleKey),
@@ -115,7 +115,7 @@ extension NumbersOverview {
     /// Every Sprosse a locked row costs, straight out of kern's table — never a
     /// price authored beside it, which would go stale the day the table moves.
     /// Numbers counts DIGITS and its wording already wears the drill's face, so
-    /// it prints as the length it is and the other variants name themselves.
+    /// it prints as the length it is and the other exercises name themselves.
     private func unlockCaption(_ required: [NumbersExercise: KotlinInt]) -> Text {
         let parts: [Text] = NumbersExercise.allCases.compactMap { exercise in
             guard let level = required[exercise].map({ Int(truncating: $0) }) else { return nil }

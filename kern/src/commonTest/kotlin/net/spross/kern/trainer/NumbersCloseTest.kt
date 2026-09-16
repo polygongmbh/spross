@@ -63,11 +63,11 @@ class NumbersCloseTest {
     }
 
     /**
-     * Every variant the run ASKED books its high-water — not only the one it ended on, and never
+     * Every exercise the run ASKED books its high-water — not only the one it ended on, and never
      * one it never drew, because an unasked Sprosse was never stood on.
      */
     @Test
-    fun everyAskedVariantBooksTheHighestSprosseItStoodOn() {
+    fun everyAskedExerciseBooksTheHighestSprosseItStoodOn() {
         val mode = NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "sw", emptySet())
         val played = NumbersRun.open(mode, Random(53)).copy(
             core = DrillRunCore(done = 9, bestStreak = 4),
@@ -100,17 +100,17 @@ class NumbersCloseTest {
         assertEquals(StreakTier.Trophy, tier(10))
     }
 
-    /** A variant with one Sprosse has no Sprosse to report; the emoji leads only in a mixed run. */
+    /** An exercise with one Sprosse has no Sprosse to report; the emoji leads only in a mixed run. */
     @Test
     fun theScoreLineOnlyReportsASprosseThereIsSomethingToClimb() {
         val one = NumbersRun.open(numbers(), Random(61))
         assertTrue(one.showsSprosse)
-        assertFalse(one.severalVariants)
+        assertFalse(one.severalExercises)
         val mixed = NumbersRun.open(
             NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "de", emptySet()),
             Random(61),
         )
-        assertTrue(mixed.severalVariants)
+        assertTrue(mixed.severalExercises)
         // A run carrying no frame has no sentence ladder to show.
         assertEquals(1, numbers().maxLevel(NumbersExercise.Phrases))
     }

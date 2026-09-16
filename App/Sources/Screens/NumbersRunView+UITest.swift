@@ -12,7 +12,7 @@ import SprossKern
 /// a thumb could do goes through an intent, exactly as a finger would.
 extension NumbersRunView {
 
-    /// `-uitest-level N` starts the run's FIRST variant at that Sprosse (numbers:
+    /// `-uitest-level N` starts the run's FIRST exercise at that Sprosse (numbers:
     /// digit count), the only way to photograph a long prompt without playing up to it
     /// — applied where the run opens (`NumbersRunView.init`, via kern's `openAt`);
     /// `-uitest-streak N` presets a running streak;

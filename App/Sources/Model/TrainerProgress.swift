@@ -3,7 +3,7 @@ import SprossKern
 
 // MARK: - TrainerProgress
 //
-// The highest Sprosse a drill has ever reached, per variant and language —
+// The highest Sprosse a drill has ever reached, per exercise and language —
 // and, for the atlas, the calendar and the two scrambles, the Sprossen a run
 // has CLEARED, as kern's bitmask. The first is the one source the unlock
 // ladder reads; the second is where the next run opens. Nothing a learner has
@@ -22,7 +22,7 @@ import SprossKern
 enum TrainerProgress {
     private static var prefix: String { NumbersMode.companion.PROGRESS_PREFIX }
 
-    /// The best Sprosse booked for `key`, or 0 where the variant was never run.
+    /// The best Sprosse booked for `key`, or 0 where the exercise was never run.
     static func best(for key: String) -> Int {
         UserDefaults.standard.integer(forKey: prefix + key)
     }
@@ -77,7 +77,7 @@ enum TrainerProgress {
     }
 
     #if DEBUG
-    /// UI-test hook: drop a variant's Sprosse so a locked ladder can be driven.
+    /// UI-test hook: drop an exercise's Sprosse so a locked ladder can be driven.
     static func clear(_ key: String) {
         UserDefaults.standard.removeObject(forKey: prefix + key)
     }

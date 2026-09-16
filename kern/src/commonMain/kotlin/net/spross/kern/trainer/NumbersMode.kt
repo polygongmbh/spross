@@ -7,10 +7,10 @@ import net.spross.kern.model.Language
  * What a run asks, in which language, and how it is played — the run SPEC, never edited
  * once the run is open.
  *
- * Several variants already interleave (a draw picks one per task), which is why
+ * Several exercises already interleave (a draw picks one per task), which is why
  * [DrillModifier.Mix] is about direction and magnitude rather than about variety.
  *
- * [selection] is what the learner picked; [variants] is what survives — a Phrases pick with
+ * [selection] is what the learner picked; [exercises] is what survives — a Phrases pick with
  * no frames is dropped rather than letting a draw reach into an empty list, and a selection
  * that empties out falls back to counting, because a run with nothing to ask is not a run.
  */
@@ -26,15 +26,15 @@ data class NumbersMode(
 ) {
 
     /** Never empty: what the run may actually draw. */
-    val variants: List<NumbersExercise> = selection
+    val exercises: List<NumbersExercise> = selection
         .filter { it != NumbersExercise.Phrases || templates.isNotEmpty() }
         .ifEmpty { listOf(NumbersExercise.Counting) }
 
-    /** One variant, played plain. */
+    /** One exercise, played plain. */
     constructor(exercise: NumbersExercise, language: Language) :
         this(listOf(exercise), language, null, emptyList(), emptySet())
 
-    /** A selection of slot variants, played with [modifiers] — no sentence frames. */
+    /** A selection of exercises, played with [modifiers] — no sentence frames. */
     constructor(selection: List<NumbersExercise>, language: Language, modifiers: Set<DrillModifier>) :
         this(selection, language, null, emptyList(), modifiers)
 
@@ -49,11 +49,11 @@ data class NumbersMode(
      * is climbing one. Without Numbers selected, Forms keeps its own gentler ladder.
      */
     val mixesForms: Boolean
-        get() = DrillModifier.Mix in modifiers && NumbersExercise.Counting in variants
+        get() = DrillModifier.Mix in modifiers && NumbersExercise.Counting in exercises
 
     /**
      * Which way round the next task is asked. Mix flips per task — that, and the widened
-     * form magnitudes, is what Mix adds over simply selecting several variants;
+     * form magnitudes, is what Mix adds over simply selecting several exercises;
      * [DrillModifier.Reverse] alone holds one direction for the whole run.
      */
     fun drawsReversed(rng: Random): Boolean =
@@ -76,32 +76,32 @@ data class NumbersMode(
      * may share a standing record.
      *
      * CAUTION, live quirk carried over verbatim: [recordLanguage] takes the pair suffix
-     * whenever [phraseSource] stands, EVEN when Phrases is not among [variants] — the
+     * whenever [phraseSource] stands, EVEN when Phrases is not among [exercises] — the
      * numbers overview passes the source whenever the pair realizes frames, so a
      * counting-only run in a phrase-capable pair files under `Counting.de-uk`, not
      * `Counting.uk`.
      */
     val recordKey: String
         get() = (
-            listOf(variants.joinToString("+") { it.storageTag }) +
+            listOf(exercises.joinToString("+") { it.storageTag }) +
                 DrillModifier.entries.filter { it in modifiers }.map { it.storageTag } +
                 listOf(recordLanguage)
             ).joinToString(".")
 
-    /** Identity a Sprosse is kept under, per variant — deliberately NOT [recordKey]. */
+    /** Identity a Sprosse is kept under, per exercise — deliberately NOT [recordKey]. */
     fun progressKey(exercise: NumbersExercise): String = progressKey(exercise, language)
 
     /**
-     * One fresh task from the selection, each variant at its own Sprosse: never a prompt
+     * One fresh task from the selection, each exercise at its own Sprosse: never a prompt
      * [solved] already holds and never the one on screen ([avoiding]), so no question is
      * asked twice in a run ([DrillSolved]).
      *
      * A Sprosse whose values keep coming back solved is spent, and the draw climbs past it
-     * rather than repeating it — which is why the Sprossen come back with the task. A variant
+     * rather than repeating it — which is why the Sprossen come back with the task. An exercise
      * that has run out altogether hands the turn to the next one, so a mixed run outlives
-     * the exercise that ran dry; only when every variant is out is [NumbersDraw.drawn] null.
+     * the exercise that ran dry; only when every exercise is out is [NumbersDraw.drawn] null.
      *
-     * Every random choice a run makes goes through this one [rng] — the variant pick, the
+     * Every random choice a run makes goes through this one [rng] — the exercise pick, the
      * frame pick, Mix's per-task direction flip and the value itself — so a seeded run is
      * reproducible end to end instead of three-quarters of the way.
      */
@@ -111,9 +111,9 @@ data class NumbersMode(
         solved: Set<String>,
         rng: Random,
     ): NumbersDraw {
-        val first = variants[rng.nextInt(variants.size)]
-        for (exercise in listOf(first) + variants.filter { it != first }) {
-            val fresh = drawVariant(exercise, levels, avoiding, solved, rng)
+        val first = exercises[rng.nextInt(exercises.size)]
+        for (exercise in listOf(first) + exercises.filter { it != first }) {
+            val fresh = drawExercise(exercise, levels, avoiding, solved, rng)
             if (fresh != null) return fresh
         }
         return NumbersDraw(null, levels)
@@ -121,9 +121,9 @@ data class NumbersMode(
 
     /**
      * The first Sprosse at or above [exercise]'s with a value left to ask ([DrillLadder.climb]);
-     * null once it is out, which hands the turn to the next variant of a mixed run.
+     * null once it is out, which hands the turn to the next exercise of a mixed run.
      */
-    private fun drawVariant(
+    private fun drawExercise(
         exercise: NumbersExercise,
         levels: Map<NumbersExercise, Int>,
         avoiding: String?,
@@ -228,8 +228,8 @@ data class NumbersMode(
          *
          * Only a ladder that enumerates resumes like this. A slot run opens at Sprosse 1
          * however far the learner has climbed ([NumbersRun.open]): the progress kept per
-         * variant ([progressKey], [DrillUnlocks]) buys ACCESS to an exercise, never a head
-         * start inside one.
+         * exercise ([progressKey], [DrillUnlocks]) buys ACCESS to one, never a head
+         * start inside it.
          */
         fun entrySprosse(cleared: Set<Int>, top: Int): Int =
             ((1..maxOf(1, top)).firstOrNull { it !in cleared }) ?: maxOf(1, top)
@@ -299,10 +299,10 @@ internal val DrillModifier.storageTag: String
     }
 
 /**
- * A drawn task, the variant that offered it, and which way round it is asked.
+ * A drawn task, the exercise that offered it, and which way round it is asked.
  *
  * Both ride along rather than being derived: a phrase task's own [NumbersTask.kind] names the
- * slot generator behind the sentence and not the variant the run picked, and a reversed task
+ * slot generator behind the sentence and not the exercise the run picked, and a reversed task
  * is deliberately indistinguishable from a forward one — every surface renders
  * [NumbersTask.prompt] and grades [NumbersTask.accepted] whichever way it was built.
  * [reversed] exists for the ONE thing that has to know: a reversed task owes digits.
@@ -315,9 +315,9 @@ data class DrawnTask(
 
 /**
  * What [NumbersMode.draw] hands back: the question, and the Sprossen the run stands on now that
- * it has been drawn — a variant whose Sprosse was answered out has climbed past it.
+ * it has been drawn — an exercise whose Sprosse was answered out has climbed past it.
  *
- * [drawn] is null exactly when every variant has run out of fresh prompts at every Sprosse,
+ * [drawn] is null exactly when every exercise has run out of fresh prompts at every Sprosse,
  * which ends the run on its summary rather than asking anything a second time.
  */
 data class NumbersDraw(
@@ -334,7 +334,7 @@ data class NumbersDraw(
  */
 object DrillSelection {
 
-    /** Every variant this pair could ever offer, in ladder order. [phrasesRealized]: the pair has frames. */
+    /** Every exercise this pair could ever offer, in ladder order. [phrasesRealized]: the pair has frames. */
     fun offered(language: Language, phrasesRealized: Boolean): List<NumbersExercise> =
         NumbersExercise.entries.filter { exercise ->
             when (exercise) {
@@ -345,7 +345,7 @@ object DrillSelection {
         }
 
     /**
-     * Mixing several exercises into one run is itself earned: while any offered variant is
+     * Mixing several exercises into one run is itself earned: while any offered exercise is
      * still locked a run asks ONE thing at a time, and only a fully open ladder lets picks
      * combine. A learner who has just met the clock is asked to climb it, not to dilute it.
      */

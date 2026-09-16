@@ -12,7 +12,7 @@ import net.spross.kern.trainer.numbersExerciseEmoji
 /**
  * What kern's drill enums are CALLED to this learner.
  *
- * Kern names the rule and never the rendering, so the face and the wording of a variant,
+ * Kern names the rule and never the rendering, so the face and the wording of an exercise,
  * a modifier and a stage live out here — one table, read by the overviews, the score line
  * and the result tile alike, so a run can never be named two things on one page.
  */
@@ -28,7 +28,7 @@ fun Chrome.name(exercise: NumbersExercise): String = when (exercise) {
 fun Chrome.badge(exercise: NumbersExercise): String = "${numbersExerciseEmoji(exercise)} ${name(exercise)}"
 
 /**
- * A modifier has no face of its own: it changes every variant alike, so it is named and
+ * A modifier has no face of its own: it changes every exercise alike, so it is named and
  * explained in words.
  */
 fun Chrome.name(modifier: DrillModifier): String = when (modifier) {
@@ -121,7 +121,7 @@ private fun List<String>.rowFor(index: Int): String =
  * beside it, which would go stale the day the table moves.
  *
  * Numbers counts DIGITS and its wording already wears the drill's face, so it prints as
- * the length it is; every other variant names itself and its Sprosse.
+ * the length it is; every other exercise names itself and its Sprosse.
  */
 fun Chrome.unlockPrice(required: Map<NumbersExercise, Int>): String {
     val parts = NumbersExercise.entries.mapNotNull { exercise ->

@@ -241,7 +241,7 @@ object Numbers {
         val accepted = value?.let(pack::formReading).orEmpty()
         // why: a pack that reads no form still has to answer sample(Forms, …) — it falls
         // back to a plain cardinal rather than throwing across the ObjC boundary. The app
-        // never shows it: the Forms variant is gated on supportsForms().
+        // never shows it: the Forms exercise is gated on supportsForms().
         if (value == null || accepted.isEmpty()) {
             return drillNumber(drawNumber(level, rng), language).copy(kind = NumbersReading.Form)
         }

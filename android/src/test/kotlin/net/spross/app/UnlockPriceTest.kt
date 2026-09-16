@@ -31,12 +31,12 @@ class UnlockPriceTest {
     }
 
     /**
-     * The join, on a map built by hand: no Sprosse in kern's table costs two variants at
+     * The join, on a map built by hand: no Sprosse in kern's table costs two exercises at
      * once today, so reading one out of it would assert nothing about the separator —
      * and the day one does, this is the line that already covers it.
      */
     @Test
-    fun aPriceOfTwoVariantsNamesBothAroundOneSeparator() {
+    fun aPriceOfTwoExercisesNamesBothAroundOneSeparator() {
         val both = ChromeEn.unlockPrice(
             mapOf(NumbersExercise.Counting to 10, NumbersExercise.Forms to 5),
         )

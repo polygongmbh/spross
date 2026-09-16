@@ -120,7 +120,7 @@ class NumbersModeTest {
     @Test
     fun aFramelessSentencePickIsDroppedAndAnEmptyRunFallsBackToCounting() {
         val frameless = NumbersMode(listOf(NumbersExercise.Phrases), "de", "de", emptyList(), emptySet())
-        assertEquals(listOf(NumbersExercise.Counting), frameless.variants)
+        assertEquals(listOf(NumbersExercise.Counting), frameless.exercises)
         val mixed = NumbersMode(
             listOf(NumbersExercise.Counting, NumbersExercise.Phrases),
             "de",
@@ -128,18 +128,18 @@ class NumbersModeTest {
             emptyList(),
             emptySet(),
         )
-        assertEquals(listOf(NumbersExercise.Counting), mixed.variants)
+        assertEquals(listOf(NumbersExercise.Counting), mixed.exercises)
         assertEquals(
             listOf(NumbersExercise.Phrases),
             NumbersMode(
                 listOf(NumbersExercise.Phrases), "uk", "de", listOf(frame(NumbersReading.Clock)), emptySet(),
-            ).variants,
+            ).exercises,
         )
     }
 
-    /** Each variant ramps to kern's own ceiling; a sentence run to the highest its frames carry. */
+    /** Each exercise ramps to kern's own ceiling; a sentence run to the highest its frames carry. */
     @Test
-    fun aVariantRampsToItsOwnCeiling() {
+    fun anExerciseRampsToItsOwnCeiling() {
         val mode = NumbersMode(
             listOf(NumbersExercise.Phrases),
             "uk",
@@ -154,7 +154,7 @@ class NumbersModeTest {
         assertEquals(Numbers.maxLevel(NumbersReading.Clock), mode.maxLevel(NumbersExercise.Phrases))
     }
 
-    /** A padlock that can never open is a lie: an unrealizable variant has no row at all. */
+    /** A padlock that can never open is a lie: an unrealizable exercise has no row at all. */
     @Test
     fun onlyWhatThePairCanAskIsOffered() {
         assertEquals(

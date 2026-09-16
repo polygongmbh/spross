@@ -17,15 +17,15 @@ extension NumbersRunView {
 extension NumbersMode {
 
     /// A selection as the overview picks it. ONE place builds a mode out of
-    /// picks, so `-uitest-variants` / `-uitest-modifiers` reach every run that
+    /// picks, so `-uitest-exercises` / `-uitest-modifiers` reach every run that
     /// is ever started; kern drops a frameless Phrases itself.
-    convenience init(variants: [NumbersExercise], language: String, phraseSource: String? = nil,
+    convenience init(exercises: [NumbersExercise], language: String, phraseSource: String? = nil,
                      templates: [PhraseTemplate] = [], modifiers: Set<DrillModifier> = []) {
         #if DEBUG
-        let asked = NumbersMode.uitestVariants ?? variants
+        let asked = NumbersMode.uitestExercises ?? exercises
         let played = modifiers.union(NumbersMode.uitestModifiers)
         #else
-        let asked = variants
+        let asked = exercises
         let played = modifiers
         #endif
         self.init(selection: asked, language: language, phraseSource: phraseSource,
@@ -34,19 +34,19 @@ extension NumbersMode {
 
     /// One reading, played plain.
     static func slots(_ reading: NumbersReading, _ language: String) -> NumbersMode {
-        NumbersMode(variants: [reading.exercise], language: language)
+        NumbersMode(exercises: [reading.exercise], language: language)
     }
 
     static func phrases(source: String, target: String, templates: [PhraseTemplate]) -> NumbersMode {
-        NumbersMode(variants: [.phrases], language: target,
+        NumbersMode(exercises: [.phrases], language: target,
                     phraseSource: source, templates: templates)
     }
 
-    /// Catalog key for the run title — the variant's own where the run asks one
+    /// Catalog key for the run title — the exercise's own where the run asks one
     /// thing, and the trainer's own name where it asks several. Chrome, so it
     /// lives here: kern names the rule, never the rendering.
     var titleKey: LocalizedStringKey {
-        variants.count == 1 ? variants[0].trainerTitleKey : "trainer.hub.title"
+        exercises.count == 1 ? exercises[0].trainerTitleKey : "trainer.hub.title"
     }
 
     /// The grader this run is played with — one home, because both surfaces that
@@ -62,13 +62,13 @@ extension NumbersMode {
 #if DEBUG
 private extension NumbersMode {
     /// Run-through hooks, applied wherever a mode is built out of picks: the
-    /// overview starts with counting selected, so `-uitest-variants
+    /// overview starts with counting selected, so `-uitest-exercises
     /// numbers,clock,forms,phrases` and `-uitest-modifiers rev,fast,mix` are the
     /// only way to photograph a selection or a modifier. An unknown word is ignored.
-    static var uitestVariants: [NumbersExercise]? {
+    static var uitestExercises: [NumbersExercise]? {
         let known: [String: NumbersExercise] = ["numbers": .counting, "clock": .clock,
                                              "phrases": .phrases, "forms": .forms]
-        let picked = uitestWords("uitest-variants").compactMap { known[$0] }
+        let picked = uitestWords("uitest-exercises").compactMap { known[$0] }
         return picked.isEmpty ? nil : picked
     }
 

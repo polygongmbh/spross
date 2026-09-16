@@ -3,7 +3,7 @@ import SwiftUI
 /// One row of a list you choose from: a mark, a title, an optional caption.
 ///
 /// Onboarding picks exactly ONE language per list; the numbers overview picks
-/// N of M variants — the same row with a different mark, so the two surfaces
+/// N of M exercises — the same row with a different mark, so the two surfaces
 /// cannot drift apart on padding, tint or the selected border.
 ///
 /// A row that has not been earned keeps its place and states its price instead

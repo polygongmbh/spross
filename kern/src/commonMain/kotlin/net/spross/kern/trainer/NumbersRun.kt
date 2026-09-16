@@ -19,16 +19,16 @@ import net.spross.kern.session.TurnFeedback
  */
 object NumbersRun {
 
-    /** A fresh run: every variant at Sprosse 1, one task already drawn. */
+    /** A fresh run: every exercise at Sprosse 1, one task already drawn. */
     fun open(mode: NumbersMode, rng: Random): NumbersRunState =
-        openAt(mode, mode.variants.associateWith { 1 }, rng)
+        openAt(mode, mode.exercises.associateWith { 1 }, rng)
 
     /**
-     * The same, forced to given Sprossen — the deterministic way to reach a stage. A variant
-     * [levels] leaves out opens at 1; every level is clamped to the variant's ladder.
+     * The same, forced to given Sprossen — the deterministic way to reach a stage. An exercise
+     * [levels] leaves out opens at 1; every level is clamped to the exercise's ladder.
      */
     fun openAt(mode: NumbersMode, levels: Map<NumbersExercise, Int>, rng: Random): NumbersRunState {
-        val start = mode.variants.associateWith { exercise ->
+        val start = mode.exercises.associateWith { exercise ->
             (levels[exercise] ?: 1).coerceIn(1, mode.maxLevel(exercise))
         }
         val opening = mode.draw(start, null, emptySet(), rng)
@@ -282,11 +282,11 @@ object NumbersRun {
     }
 
     /**
-     * The booking itself: the ramp for the variant that asked, the streak, the tallies. The other
-     * variants of a mixed run stand exactly where they were.
+     * The booking itself: the ramp for the exercise that asked, the streak, the tallies. The other
+     * exercises of a mixed run stand exactly where they were.
      */
     private fun advanced(state: NumbersRunState, correct: Boolean, outcome: AnswerOutcome): NumbersRunState {
-        val exercise = state.currentVariant
+        val exercise = state.currentExercise
         val clean = outcome != AnswerOutcome.Almost
         val step = DrillRamp.step(
             level = state.currentLevel,
