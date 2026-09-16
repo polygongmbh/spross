@@ -161,6 +161,22 @@ class TurnWiringTest {
         assertTrue(platform.booked.isEmpty())
     }
 
+    /** What the card's report entry is handed: the refused answer, not the primed field. */
+    @Test
+    fun theReportTakesTheRefusedAnswerRatherThanTheFieldTheMissPrimed() {
+        val (flow, _) = turn(language)
+        flow.type("neno")
+        flow.primary()
+        assertEquals("", flow.input)
+        assertEquals("neno", flow.answerForReport)
+
+        // Nothing refused: the field is all there is to carry.
+        val (slip, _) = turn(knife)
+        slip.type("kisuu")
+        slip.primary()
+        assertEquals("kisuu", slip.answerForReport)
+    }
+
     /**
      * Enter carries three meanings, and which one it is depends on the field the platform
      * has mounted: a finished retype skips its beat, an open one gives up, anything else
