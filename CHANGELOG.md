@@ -2,8 +2,6 @@
 
 ## Unreleased
 
-- English titles now read as names rather than sentences: The Garden, Word Scramble, Read Words Aloud.
-
 ## 7.1.2 — 2026-09-16
 
 - Sentence scramble now offers every phrase of your language, asks only whole sentences rather than fragments, and climbs a Sprosse in three clean arrangements instead of five.
