@@ -64,7 +64,8 @@
   },
   "are-you-cooking-rice-today": {
    "text": "Cucini il riso oggi?",
-   "variants": ["Oggi cucini il riso?", "Cucini riso oggi?", "Fai il riso oggi?"]
+   "variants": ["Oggi cucini il riso?", "Cucini riso oggi?", "Fai il riso oggi?"],
+   "orders": ["Oggi cucini il riso?"]
   },
   "the-pot-is-still-on-the-stove": { "text": "La pentola è ancora sul fornello.", "variants": ["La pentola è ancora sul fuoco."] },
   "wash-the-dishes-in-the-sink": { "text": "Lava i piatti nel lavello!", "variants": ["Lava i piatti nel lavandino!"] },

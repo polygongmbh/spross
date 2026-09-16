@@ -14,7 +14,7 @@
   "bye": { "text": "Бувай!" },
   "welcome": { "text": "Ласкаво просимо!" },
   "may-i-come-in": { "text": "Можна увійти?" },
-  "how-are-you": { "text": "Як у вас справи?" },
+  "how-are-you": { "text": "Як у вас справи?", "orders": ["Як справи у вас?"] },
   "all-good": { "text": "Все гаразд." },
   "thank-you": { "text": "Дуже дякую!" },
   "please": { "text": "Будь ласка!" },

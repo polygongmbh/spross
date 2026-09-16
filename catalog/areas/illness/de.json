@@ -21,9 +21,9 @@
   "to-recover": { "text": "gesund werden", "variants": ["genesen"] },
   "allergy": { "text": "Allergie", "grammar": { "gender": "die", "plural": "-n" } },
   "my-throat-hurts-a-lot": { "text": "Mein Hals tut sehr weh." },
-  "ive-had-a-fever-since-yesterday": { "text": "Ich habe seit gestern Fieber." },
+  "ive-had-a-fever-since-yesterday": { "text": "Ich habe seit gestern Fieber.", "orders": ["Seit gestern habe ich Fieber."] },
   "get-well-soon": { "text": "Gute Besserung!" },
   "the-wound-hurts": { "text": "Die Wunde tut weh." },
-  "i-hurt-myself-yesterday": { "text": "Ich habe mich gestern verletzt." }
+  "i-hurt-myself-yesterday": { "text": "Ich habe mich gestern verletzt.", "orders": ["Gestern habe ich mich verletzt."] }
  }
 }

@@ -38,15 +38,24 @@
   "to-look-after": { "text": "pflegen" },
   "take-the-pills-twice-daily": {
    "text": "Nehmen Sie die Tabletten zweimal täglich ein.",
-   "variants": ["Nimm die Tabletten zweimal täglich ein."]
+   "variants": ["Nimm die Tabletten zweimal täglich ein."],
+   "orders": ["Sie nehmen die Tabletten zweimal täglich ein."]
   },
   "show-me-your-insurance-card": {
    "text": "Zeigen Sie mir Ihre Versichertenkarte.",
-   "variants": ["Zeig mir deine Versichertenkarte."]
+   "variants": ["Zeig mir deine Versichertenkarte."],
+   "orders": ["Sie zeigen mir Ihre Versichertenkarte."]
   },
   "the-practice-is-closed": { "text": "Die Praxis ist geschlossen." },
-  "i-have-to-see-a-doctor": { "text": "Ich muss zum Arzt." },
-  "call-an-ambulance": { "text": "Rufen Sie einen Krankenwagen!", "variants": ["Ruf einen Krankenwagen!"] },
-  "the-doctor-will-examine-you-shortly": { "text": "Der Arzt wird Sie gleich untersuchen." }
+  "i-have-to-see-a-doctor": { "text": "Ich muss zum Arzt.", "orders": ["Zum Arzt muss ich."] },
+  "call-an-ambulance": {
+   "text": "Rufen Sie einen Krankenwagen!",
+   "variants": ["Ruf einen Krankenwagen!"],
+   "orders": ["Sie rufen einen Krankenwagen!"]
+  },
+  "the-doctor-will-examine-you-shortly": {
+   "text": "Der Arzt wird Sie gleich untersuchen.",
+   "orders": ["Gleich wird der Arzt Sie untersuchen."]
+  }
  }
 }

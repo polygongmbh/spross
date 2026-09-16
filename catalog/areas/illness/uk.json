@@ -24,10 +24,14 @@
   "splint": { "text": "шина" },
   "to-recover": { "text": "одужувати", "variants": ["одужати"] },
   "allergy": { "text": "алергія" },
-  "my-throat-hurts-a-lot": { "text": "У мене дуже болить горло." },
-  "ive-had-a-fever-since-yesterday": { "text": "У мене з учора температура." },
+  "my-throat-hurts-a-lot": { "text": "У мене дуже болить горло.", "orders": ["У мене горло дуже болить."] },
+  "ive-had-a-fever-since-yesterday": { "text": "У мене з учора температура.", "orders": ["З учора у мене температура."] },
   "get-well-soon": { "text": "Швидкого одужання!" },
   "the-wound-hurts": { "text": "Рана болить." },
-  "i-hurt-myself-yesterday": { "text": "Я вчора поранився.", "variants": ["Я вчора поранилася."] }
+  "i-hurt-myself-yesterday": {
+   "text": "Я вчора поранився.",
+   "variants": ["Я вчора поранилася."],
+   "orders": ["Вчора я поранився."]
+  }
  }
 }

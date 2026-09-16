@@ -25,8 +25,8 @@
    "text": "Tio estas tro multekosta.",
    "variants": ["Tio estas tro kara.", "Tio tro multekostas."]
   },
-  "i-have-no-money": { "text": "Mi ne havas monon." },
-  "can-i-pay-by-card": { "text": "Ĉu mi povas pagi per karto?" },
+  "i-have-no-money": { "text": "Mi ne havas monon.", "orders": ["Monon mi ne havas."] },
+  "can-i-pay-by-card": { "text": "Ĉu mi povas pagi per karto?", "orders": ["Ĉu per karto mi povas pagi?"] },
   "ive-already-paid": { "text": "Mi jam pagis." }
  }
 }

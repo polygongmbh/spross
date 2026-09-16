@@ -53,11 +53,12 @@
   "to-put": { "text": "meti" },
   "to-carry": { "text": "porti" },
   "to-forget": { "text": "forgesi" },
-  "do-you-have-water": { "text": "Ĉu vi havas akvon?" },
-  "where-are-you-from": { "text": "De kie vi venas?" },
+  "do-you-have-water": { "text": "Ĉu vi havas akvon?", "orders": ["Ĉu akvon vi havas?"] },
+  "where-are-you-from": { "text": "De kie vi venas?", "orders": ["De kie venas vi?"] },
   "can-you-see-me": {
    "text": "Ĉu vi vidas min?",
-   "notes": { "eo": "La objekto ricevas -n: mi vidas vin, vi vidas min." }
+   "notes": { "eo": "La objekto ricevas -n: mi vidas vin, vi vidas min." },
+   "orders": ["Ĉu min vi vidas?"]
   }
  }
 }

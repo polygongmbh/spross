@@ -58,9 +58,10 @@
   "im-tired": { "text": "Mi estas laca.", "variants": ["Mi lacas."] },
   "did-you-set-the-alarm": {
    "text": "Ĉu vi agordis la vekhorloĝon?",
-   "variants": ["Ĉu vi metis la vekhorloĝon?", "Ĉu vi agordis la vekilon?"]
+   "variants": ["Ĉu vi metis la vekhorloĝon?", "Ĉu vi agordis la vekilon?"],
+   "orders": ["Ĉu la vekhorloĝon vi agordis?"]
   },
-  "i-love-you": { "text": "Mi amas vin." },
+  "i-love-you": { "text": "Mi amas vin.", "orders": ["Vin mi amas."] },
   "i-have-to-rest": { "text": "Mi devas ripozi." }
  }
 }

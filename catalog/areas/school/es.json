@@ -79,7 +79,7 @@
   "to-teach": { "text": "enseñar" },
   "do-the-homework": { "text": "Hago los deberes." },
   "look-at-the-class-schedule": { "text": "Mira el horario.", "variants": ["Mire el horario."] },
-  "the-break-is-over": { "text": "El descanso ha terminado." },
+  "the-break-is-over": { "text": "El descanso ha terminado.", "orders": ["Ha terminado el descanso."] },
   "ask-the-teacher": {
    "text": "Pregunta al profesor.",
    "variants": ["Pregunte al profesor."],
@@ -87,6 +87,6 @@
   },
   "i-have-a-good-grade": { "text": "Tengo una buena nota." },
   "we-go-to-the-classroom": { "text": "Vamos al aula." },
-  "the-exam-is-already-corrected": { "text": "El examen ya está corregido." }
+  "the-exam-is-already-corrected": { "text": "El examen ya está corregido.", "orders": ["Ya está corregido el examen."] }
  }
 }

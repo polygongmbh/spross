@@ -43,10 +43,19 @@
    "text": "kutoka",
    "notes": { "sw": "kutoka nyumbani = kuondoka pale · Unatoka wapi? = nchi yako" }
   },
-  "tomorrow-i-have-a-job-interview": { "text": "Kesho nitajitambulisha kwenye kampuni." },
-  "ill-send-the-doctors-note-right-away": { "text": "Nitakutumia cheti cha daktari mara moja." },
+  "tomorrow-i-have-a-job-interview": {
+   "text": "Kesho nitajitambulisha kwenye kampuni.",
+   "orders": ["Nitajitambulisha kwenye kampuni kesho."]
+  },
+  "ill-send-the-doctors-note-right-away": {
+   "text": "Nitakutumia cheti cha daktari mara moja.",
+   "orders": ["Mara moja nitakutumia cheti cha daktari."]
+  },
   "can-you-help-me-briefly": { "text": "Unaweza kunisaidia kidogo?" },
-  "i-want-vacation-next-week": { "text": "Ningependa kuchukua likizo wiki ijayo." },
+  "i-want-vacation-next-week": {
+   "text": "Ningependa kuchukua likizo wiki ijayo.",
+   "orders": ["Wiki ijayo ningependa kuchukua likizo."]
+  },
   "read-the-contract-carefully": { "text": "Soma mkataba vizuri!" }
  }
 }

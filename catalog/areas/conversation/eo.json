@@ -24,13 +24,25 @@
   "to-explain": { "text": "klarigi" },
   "to-say": { "text": "diri" },
   "i-dont-understand": { "text": "Mi ne komprenas.", "variants": ["Mi ne komprenas vin."] },
-  "can-you-repeat-that": { "text": "Ĉu vi povas ripeti tion?" },
+  "can-you-repeat-that": { "text": "Ĉu vi povas ripeti tion?", "orders": ["Ĉu tion vi povas ripeti?"] },
   "slower": { "text": "Pli malrapide!" },
-  "i-cant-hear-you": { "text": "Mi ne povas aŭdi vin.", "variants": ["Mi ne aŭdas vin."] },
-  "do-you-speak-english": { "text": "Ĉu vi parolas la anglan?", "variants": ["Ĉu vi parolas angle?"] },
-  "i-need-help": { "text": "Mi bezonas helpon." },
+  "i-cant-hear-you": {
+   "text": "Mi ne povas aŭdi vin.",
+   "variants": ["Mi ne aŭdas vin."],
+   "orders": ["Vin mi ne povas aŭdi."]
+  },
+  "do-you-speak-english": {
+   "text": "Ĉu vi parolas la anglan?",
+   "variants": ["Ĉu vi parolas angle?"],
+   "orders": ["Ĉu la anglan vi parolas?"]
+  },
+  "i-need-help": { "text": "Mi bezonas helpon.", "orders": ["Helpon mi bezonas."] },
   "i-dont-know": { "text": "Mi ne scias." },
   "i-forgot": { "text": "Mi forgesis." },
-  "what-is-this-called": { "text": "Kiel oni nomas tion?", "variants": ["Kiel tio nomiĝas?"] }
+  "what-is-this-called": {
+   "text": "Kiel oni nomas tion?",
+   "variants": ["Kiel tio nomiĝas?"],
+   "orders": ["Kiel tion oni nomas?"]
+  }
  }
 }

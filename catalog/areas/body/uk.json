@@ -33,12 +33,12 @@
   "brain": { "text": "мозок", "grammar": { "plural": "мізки" } },
   "muscle": { "text": "м'яз" },
   "nipple": { "text": "сосок", "grammar": { "plural": "соски" } },
-  "my-head-hurts": { "text": "У мене болить голова." },
-  "give-me-your-hand": { "text": "Дай мені руку." },
+  "my-head-hurts": { "text": "У мене болить голова.", "orders": ["У мене голова болить."] },
+  "give-me-your-hand": { "text": "Дай мені руку.", "orders": ["Дай руку мені."] },
   "open-your-mouth": { "text": "Відкрий рот." },
   "close-your-eyes": { "text": "Заплющ очі.", "variants": ["Закрий очі."] },
   "i-have-long-hair": { "text": "У мене довге волосся." },
-  "my-feet-are-cold": { "text": "У мене холодні ноги." },
-  "my-heart-is-beating-fast": { "text": "Моє серце б'ється швидко." }
+  "my-feet-are-cold": { "text": "У мене холодні ноги.", "orders": ["У мене ноги холодні."] },
+  "my-heart-is-beating-fast": { "text": "Моє серце б'ється швидко.", "orders": ["Моє серце швидко б'ється."] }
  }
 }

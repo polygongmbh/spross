@@ -35,11 +35,19 @@
   },
   "ambulance": { "text": "ambulanco", "variants": ["ambulanca aŭto"] },
   "to-look-after": { "text": "flegi" },
-  "take-the-pills-twice-daily": { "text": "Prenu la pilolojn dufoje tage.", "variants": ["Prenu la pilolojn dufoje ĉiutage."] },
-  "show-me-your-insurance-card": { "text": "Montru al mi vian asekurkarton." },
+  "take-the-pills-twice-daily": {
+   "text": "Prenu la pilolojn dufoje tage.",
+   "variants": ["Prenu la pilolojn dufoje ĉiutage."],
+   "orders": ["Dufoje tage prenu la pilolojn."]
+  },
+  "show-me-your-insurance-card": { "text": "Montru al mi vian asekurkarton.", "orders": ["Vian asekurkarton montru al mi."] },
   "the-practice-is-closed": { "text": "La konsultejo estas fermita." },
-  "i-have-to-see-a-doctor": { "text": "Mi devas iri al kuracisto.", "variants": ["Mi devas iri al la kuracisto."] },
+  "i-have-to-see-a-doctor": {
+   "text": "Mi devas iri al kuracisto.",
+   "variants": ["Mi devas iri al la kuracisto."],
+   "orders": ["Al kuracisto mi devas iri."]
+  },
   "call-an-ambulance": { "text": "Voku ambulancon!" },
-  "the-doctor-will-examine-you-shortly": { "text": "La kuracisto tuj ekzamenos vin." }
+  "the-doctor-will-examine-you-shortly": { "text": "La kuracisto tuj ekzamenos vin.", "orders": ["Tuj la kuracisto ekzamenos vin."] }
  }
 }

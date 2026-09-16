@@ -52,9 +52,13 @@
   },
   "allergy": { "text": "allergie", "variants": ["l'allergie"], "grammar": { "gender": "l'" } },
   "my-throat-hurts-a-lot": { "text": "J'ai très mal à la gorge.", "variants": ["Ma gorge me fait très mal."] },
-  "ive-had-a-fever-since-yesterday": { "text": "J'ai de la fièvre depuis hier." },
+  "ive-had-a-fever-since-yesterday": { "text": "J'ai de la fièvre depuis hier.", "orders": ["Depuis hier, j'ai de la fièvre."] },
   "get-well-soon": { "text": "Bon rétablissement !", "variants": ["Remets-toi vite !"] },
   "the-wound-hurts": { "text": "La blessure fait mal.", "variants": ["Ma blessure me fait mal."] },
-  "i-hurt-myself-yesterday": { "text": "Je me suis blessé hier.", "variants": ["Je me suis blessée hier."] }
+  "i-hurt-myself-yesterday": {
+   "text": "Je me suis blessé hier.",
+   "variants": ["Je me suis blessée hier."],
+   "orders": ["Hier, je me suis blessé."]
+  }
  }
 }

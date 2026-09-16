@@ -28,7 +28,10 @@
    }
   },
   "market": { "text": "Markt", "grammar": { "gender": "der", "plural": "Märkte" } },
-  "lets-meet-at-the-market": { "text": "Treffen wir uns am Markt." },
+  "lets-meet-at-the-market": {
+   "text": "Treffen wir uns am Markt.",
+   "orders": ["Wir treffen uns am Markt.", "Am Markt treffen wir uns."]
+  },
   "a-kilo-of-tomatoes": { "text": "Ein Kilo Tomaten, bitte." },
   "what-does-a-kilo-cost": { "text": "Was kostet ein Kilo?" },
   "can-you-come-down-a-bit": {
@@ -37,7 +40,8 @@
    "notes": {
     "en": "Idiomatic, not a literal “can you come down a bit?” — asks generally whether there's room to negotiate on the price.",
     "es": "Es idiomático, no un literal «¿puede bajar un poco?» — pregunta en general si hay margen para negociar el precio."
-   }
+   },
+   "orders": ["Da geht noch was am Preis?"]
   }
  }
 }

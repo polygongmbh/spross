@@ -18,6 +18,9 @@
   "the-rain-has-stopped": { "text": "Der Regen hat aufgehört.", "variants": ["Es regnet nicht mehr."] },
   "the-sun-is-shining": { "text": "Die Sonne scheint!" },
   "what-a-beautiful-day": { "text": "Was für ein schöner Tag!" },
-  "we-are-staying-home-because-of-the-rain": { "text": "Wegen des Regens bleiben wir zu Hause." }
+  "we-are-staying-home-because-of-the-rain": {
+   "text": "Wegen des Regens bleiben wir zu Hause.",
+   "orders": ["Wir bleiben wegen des Regens zu Hause."]
+  }
  }
 }

@@ -19,10 +19,11 @@
   "market": { "text": "marché", "grammar": { "gender": "le" } },
   "lets-meet-at-the-market": {
    "text": "On se retrouve au marché.",
-   "variants": ["Retrouvons-nous au marché.", "On se voit au marché."]
+   "variants": ["Retrouvons-nous au marché.", "On se voit au marché."],
+   "orders": ["Au marché, on se retrouve."]
   },
   "a-kilo-of-tomatoes": { "text": "Un kilo de tomates, s'il vous plaît." },
-  "what-does-a-kilo-cost": { "text": "Combien coûte le kilo ?" },
+  "what-does-a-kilo-cost": { "text": "Combien coûte le kilo ?", "orders": ["Le kilo coûte combien ?"] },
   "can-you-come-down-a-bit": { "text": "Vous pouvez baisser un peu ?" }
  }
 }

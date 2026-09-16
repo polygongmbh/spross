@@ -11,7 +11,8 @@
   "goal": { "text": "but", "grammar": { "gender": "le" } },
   "you-can-do-it": {
    "text": "Tu vas sûrement y arriver !",
-   "variants": ["Tu vas y arriver !", "Tu y arriveras !", "Tu peux le faire !"]
+   "variants": ["Tu vas y arriver !", "Tu y arriveras !", "Tu peux le faire !"],
+   "orders": ["Sûrement, tu vas y arriver !"]
   }
  }
 }

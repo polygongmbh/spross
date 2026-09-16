@@ -14,7 +14,8 @@
   "purple": { "text": "viola", "synonyms": ["purpura"] },
   "what-color-is-it": {
    "text": "Kia koloro estas tio?",
-   "variants": ["Kian koloron ĝi havas?", "Kiun koloron ĝi havas?"]
+   "variants": ["Kian koloron ĝi havas?", "Kiun koloron ĝi havas?"],
+   "orders": ["Kia koloro tio estas?"]
   },
   "a-white-car": {
    "text": "Blanka aŭto.",

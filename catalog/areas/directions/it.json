@@ -27,7 +27,11 @@
   "east": { "text": "est", "grammar": { "gender": "il" } },
   "west": { "text": "ovest", "grammar": { "gender": "il" } },
   "go-straight-ahead": { "text": "Vada dritto.", "variants": ["Vai dritto.", "Prosegua dritto."] },
-  "turn-left-at-the-corner": { "text": "Giri a sinistra all'angolo.", "variants": ["Gira a sinistra all'angolo."] },
+  "turn-left-at-the-corner": {
+   "text": "Giri a sinistra all'angolo.",
+   "variants": ["Gira a sinistra all'angolo."],
+   "orders": ["Giri all'angolo a sinistra."]
+  },
   "how-do-i-get-to-the-station": { "text": "Come arrivo alla stazione?" },
   "im-lost": { "text": "Mi sono perso.", "variants": ["Mi sono persa."] }
  }

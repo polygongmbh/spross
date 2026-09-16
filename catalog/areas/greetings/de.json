@@ -14,7 +14,11 @@
   "bye": { "text": "Tschüss!" },
   "welcome": { "text": "Willkommen!" },
   "greetings-elder": { "text": "Ich grüße Sie!" },
-  "may-i-come-in": { "text": "Darf ich hereinkommen?", "variants": ["Darf ich reinkommen?"] },
+  "may-i-come-in": {
+   "text": "Darf ich hereinkommen?",
+   "variants": ["Darf ich reinkommen?"],
+   "orders": ["Ich darf hereinkommen?"]
+  },
   "how-are-you": { "text": "Wie geht es Ihnen?", "variants": ["Wie geht es dir?"] },
   "all-good": { "text": "Alles gut." },
   "thank-you": { "text": "Vielen Dank!", "variants": ["Danke schön!"] },

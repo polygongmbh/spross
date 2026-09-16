@@ -21,9 +21,9 @@
   "to-finish": { "text": "to finish" },
   "to-take-care-of": { "text": "to take care of", "synonyms": ["to deal with"] },
   "i-would-like-to-arrange-an-appointment": { "text": "I would like to arrange an appointment." },
-  "the-deadline-is-tomorrow": { "text": "The deadline is tomorrow." },
+  "the-deadline-is-tomorrow": { "text": "The deadline is tomorrow.", "orders": ["Tomorrow is the deadline."] },
   "can-we-postpone-the-appointment": { "text": "Can we postpone the appointment?" },
-  "i-have-an-appointment-at-ten": { "text": "I have an appointment at ten." },
+  "i-have-an-appointment-at-ten": { "text": "I have an appointment at ten.", "orders": ["At ten, I have an appointment."] },
   "ill-take-care-of-it": { "text": "I'll take care of it." }
  }
 }

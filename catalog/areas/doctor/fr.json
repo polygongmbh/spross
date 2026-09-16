@@ -82,12 +82,16 @@
   "to-look-after": { "text": "soigner" },
   "take-the-pills-twice-daily": {
    "text": "Prenez les comprimés deux fois par jour.",
-   "variants": ["Prends les comprimés deux fois par jour."]
+   "variants": ["Prends les comprimés deux fois par jour."],
+   "orders": ["Deux fois par jour, prenez les comprimés."]
   },
   "show-me-your-insurance-card": { "text": "Montrez-moi votre carte Vitale.", "variants": ["Montre-moi ta carte Vitale."] },
   "the-practice-is-closed": { "text": "Le cabinet est fermé." },
   "i-have-to-see-a-doctor": { "text": "Je dois aller chez le médecin." },
   "call-an-ambulance": { "text": "Appelez une ambulance !", "variants": ["Appelle une ambulance !"] },
-  "the-doctor-will-examine-you-shortly": { "text": "Le médecin vous examinera tout de suite." }
+  "the-doctor-will-examine-you-shortly": {
+   "text": "Le médecin vous examinera tout de suite.",
+   "orders": ["Tout de suite, le médecin vous examinera."]
+  }
  }
 }

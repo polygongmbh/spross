@@ -101,6 +101,6 @@
   "ask-the-teacher": { "text": "Demande au professeur.", "variants": ["Demandez au professeur.", "Demande au prof."] },
   "i-have-a-good-grade": { "text": "J'ai une bonne note." },
   "we-go-to-the-classroom": { "text": "Nous allons dans la salle de classe.", "variants": ["On va dans la salle de classe."] },
-  "the-exam-is-already-corrected": { "text": "L'examen est déjà corrigé." }
+  "the-exam-is-already-corrected": { "text": "L'examen est déjà corrigé.", "orders": ["Déjà, l'examen est corrigé."] }
  }
 }

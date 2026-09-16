@@ -71,7 +71,8 @@
   "this-is-very-tasty": { "text": "C'est très bon !", "variants": ["C'est tellement bon !", "C'est délicieux !"] },
   "are-you-cooking-rice-today": {
    "text": "Tu cuisines du riz aujourd'hui ?",
-   "variants": ["Est-ce que tu cuisines du riz aujourd'hui ?", "Tu fais du riz aujourd'hui ?"]
+   "variants": ["Est-ce que tu cuisines du riz aujourd'hui ?", "Tu fais du riz aujourd'hui ?"],
+   "orders": ["Aujourd'hui, tu cuisines du riz ?"]
   },
   "the-pot-is-still-on-the-stove": {
    "text": "La casserole est encore sur la cuisinière.",
@@ -81,7 +82,8 @@
   "wash-the-dishes-in-the-sink": {
    "text": "Fais la vaisselle dans l'évier !",
    "variants": ["Lave la vaisselle dans l'évier !"],
-   "notes": { "fr": "l'évier est dans la cuisine, le lavabo dans la salle de bains." }
+   "notes": { "fr": "l'évier est dans la cuisine, le lavabo dans la salle de bains." },
+   "orders": ["Dans l'évier, fais la vaisselle !"]
   },
   "the-fridge-is-empty": { "text": "Le réfrigérateur est vide.", "variants": ["Le frigo est vide."] },
   "can-you-set-the-table": {

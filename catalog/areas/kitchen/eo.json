@@ -39,9 +39,20 @@
   "tasty": { "text": "bongusta" },
   "the-knife-is-sharp": { "text": "La tranĉilo estas akra!" },
   "this-is-very-tasty": { "text": "Tio estas tre bongusta!", "variants": ["Ĉi tio estas tre bongusta!"] },
-  "are-you-cooking-rice-today": { "text": "Ĉu vi hodiaŭ kuiras rizon?", "variants": ["Ĉu vi kuiras rizon hodiaŭ?"] },
-  "the-pot-is-still-on-the-stove": { "text": "La poto ankoraŭ staras sur la fornelo." },
-  "wash-the-dishes-in-the-sink": { "text": "Lavu la vazaron en la lavujo!", "variants": ["Lavu la telerojn en la lavujo!"] },
+  "are-you-cooking-rice-today": {
+   "text": "Ĉu vi hodiaŭ kuiras rizon?",
+   "variants": ["Ĉu vi kuiras rizon hodiaŭ?"],
+   "orders": ["Ĉu vi kuiras rizon hodiaŭ?"]
+  },
+  "the-pot-is-still-on-the-stove": {
+   "text": "La poto ankoraŭ staras sur la fornelo.",
+   "orders": ["Sur la fornelo ankoraŭ staras la poto."]
+  },
+  "wash-the-dishes-in-the-sink": {
+   "text": "Lavu la vazaron en la lavujo!",
+   "variants": ["Lavu la telerojn en la lavujo!"],
+   "orders": ["En la lavujo lavu la vazaron!"]
+  },
   "the-fridge-is-empty": { "text": "La fridujo estas malplena." },
   "can-you-set-the-table": {
    "text": "Ĉu vi povas kovri la tablon?",
@@ -49,7 +60,8 @@
    "notes": {
     "eo": "kovri la tablon = meti telerojn kaj manĝilojn sur ĝin.",
     "de": "den Tisch decken heißt kovri la tablon; kovri allein heißt bedecken."
-   }
+   },
+   "orders": ["Ĉu la tablon vi povas kovri?"]
   },
   "the-water-is-boiling-hot": { "text": "La akvo bolas." },
   "careful-very-hot": { "text": "Atentu, tre varmega!" }

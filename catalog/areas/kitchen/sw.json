@@ -47,7 +47,8 @@
    "notes": {
     "sw": "wali = mchele uliopikwa · mpunga ni ule wa shambani",
     "de": "Reis = mpunga (geerntet) → mchele (roh) → wali (gekocht)!"
-   }
+   },
+   "orders": ["Leo unapika wali?"]
   },
   "the-pot-is-still-on-the-stove": { "text": "Sufuria bado iko juu ya jiko." },
   "wash-the-dishes-in-the-sink": { "text": "Osha vyombo sinkini!" },

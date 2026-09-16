@@ -65,13 +65,21 @@
     "en": "loĝi is to live somewhere, to reside; being alive is vivi."
    }
   },
-  "do-you-have-the-keys": { "text": "Ĉu vi havas la ŝlosilojn?" },
-  "ill-be-right-back": { "text": "Mi tuj revenos!", "variants": ["Mi revenos tuj!"] },
-  "take-off-your-shoes": { "text": "Demetu viajn ŝuojn.", "variants": ["Demetu la ŝuojn."] },
-  "hurry-were-late": { "text": "Rapidu, ni malfruas!", "variants": ["Rapidu, ni jam malfruas!"] },
+  "do-you-have-the-keys": { "text": "Ĉu vi havas la ŝlosilojn?", "orders": ["Ĉu la ŝlosilojn vi havas?"] },
+  "ill-be-right-back": { "text": "Mi tuj revenos!", "variants": ["Mi revenos tuj!"], "orders": ["Tuj mi revenos!"] },
+  "take-off-your-shoes": {
+   "text": "Demetu viajn ŝuojn.",
+   "variants": ["Demetu la ŝuojn."],
+   "orders": ["Viajn ŝuojn demetu."]
+  },
+  "hurry-were-late": {
+   "text": "Rapidu, ni malfruas!",
+   "variants": ["Rapidu, ni jam malfruas!"],
+   "orders": ["Ni malfruas, rapidu!"]
+  },
   "see-you-later": { "text": "Ĝis poste!", "variants": ["Ĝis baldaŭ!"] },
   "welcome-home": { "text": "Bonvenon hejmen!" },
-  "dont-forget-your-jacket": { "text": "Ne forgesu vian jakon!" },
+  "dont-forget-your-jacket": { "text": "Ne forgesu vian jakon!", "orders": ["Vian jakon ne forgesu!"] },
   "put-on-the-jacket": { "text": "surmeti la jakon" }
  }
 }

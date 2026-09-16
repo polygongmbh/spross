@@ -51,7 +51,11 @@
   "this-is-my-mother": { "text": "Questa è mia madre." },
   "where-is-your-father": { "text": "Dov'è vostro padre?", "variants": ["Dov'è Suo padre?"] },
   "i-have-two-children": { "text": "Ho due figli.", "variants": ["Ho due bambini."] },
-  "how-is-your-grandmother": { "text": "Come sta tua nonna?", "variants": ["Come sta Sua nonna?"] },
+  "how-is-your-grandmother": {
+   "text": "Come sta tua nonna?",
+   "variants": ["Come sta Sua nonna?"],
+   "orders": ["Tua nonna come sta?"]
+  },
   "a-good-friend": { "text": "un buon amico" },
   "my-girlfriend": { "text": "la mia ragazza", "variants": ["la mia fidanzata"] },
   "her-boyfriend": { "text": "il suo ragazzo", "variants": ["il suo fidanzato"] },

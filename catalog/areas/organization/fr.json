@@ -43,13 +43,18 @@
   },
   "the-deadline-is-tomorrow": {
    "text": "Le délai expire demain.",
-   "variants": ["La date limite est demain.", "Le délai est demain."]
+   "variants": ["La date limite est demain.", "Le délai est demain."],
+   "orders": ["Demain, le délai expire."]
   },
   "can-we-postpone-the-appointment": {
    "text": "Pouvons-nous reporter le rendez-vous ?",
    "variants": ["Peut-on reporter le rendez-vous ?", "On peut reporter le rendez-vous ?"]
   },
-  "i-have-an-appointment-at-ten": { "text": "J'ai rendez-vous à dix heures.", "variants": ["J'ai un rendez-vous à dix heures."] },
+  "i-have-an-appointment-at-ten": {
+   "text": "J'ai rendez-vous à dix heures.",
+   "variants": ["J'ai un rendez-vous à dix heures."],
+   "orders": ["À dix heures, j'ai rendez-vous."]
+  },
   "ill-take-care-of-it": { "text": "Je m'en occupe." }
  }
 }

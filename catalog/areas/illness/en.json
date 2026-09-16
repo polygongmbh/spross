@@ -21,9 +21,9 @@
   "to-recover": { "text": "to recover", "variants": ["to get better"] },
   "allergy": { "text": "allergy", "grammar": { "plural": "allergies" } },
   "my-throat-hurts-a-lot": { "text": "My throat hurts a lot." },
-  "ive-had-a-fever-since-yesterday": { "text": "I've had a fever since yesterday." },
+  "ive-had-a-fever-since-yesterday": { "text": "I've had a fever since yesterday.", "orders": ["Since yesterday, I've had a fever."] },
   "get-well-soon": { "text": "Get well soon!" },
   "the-wound-hurts": { "text": "The wound hurts." },
-  "i-hurt-myself-yesterday": { "text": "I hurt myself yesterday." }
+  "i-hurt-myself-yesterday": { "text": "I hurt myself yesterday.", "orders": ["Yesterday, I hurt myself."] }
  }
 }

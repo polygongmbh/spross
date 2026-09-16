@@ -71,7 +71,8 @@
   "lets-hang-the-picture": { "text": "¡Vamos a colgar el cuadro!", "variants": ["¡Colguemos el cuadro!"] },
   "the-curtains-hang-over-the-window": {
    "text": "Las cortinas cuelgan delante de la ventana.",
-   "variants": ["Las cortinas están delante de la ventana."]
+   "variants": ["Las cortinas están delante de la ventana."],
+   "orders": ["Delante de la ventana cuelgan las cortinas."]
   }
  }
 }

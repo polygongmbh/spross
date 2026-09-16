@@ -21,10 +21,14 @@
   "rich": { "text": "багатий" },
   "poor": { "text": "бідний" },
   "free-of-charge": { "text": "безкоштовний" },
-  "how-much-does-this-cost": { "text": "Скільки це коштує?" },
+  "how-much-does-this-cost": { "text": "Скільки це коштує?", "orders": ["Це скільки коштує?"] },
   "that-is-too-expensive": { "text": "Це занадто дорого." },
-  "i-have-no-money": { "text": "У мене немає грошей." },
-  "can-i-pay-by-card": { "text": "Чи можу я заплатити карткою?", "variants": ["Можна карткою?"] },
+  "i-have-no-money": { "text": "У мене немає грошей.", "orders": ["Грошей у мене немає."] },
+  "can-i-pay-by-card": {
+   "text": "Чи можу я заплатити карткою?",
+   "variants": ["Можна карткою?"],
+   "orders": ["Чи можу я карткою заплатити?"]
+  },
   "ive-already-paid": { "text": "Я вже заплатив.", "variants": ["Я вже заплатила."] }
  }
 }

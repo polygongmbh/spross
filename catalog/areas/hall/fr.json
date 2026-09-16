@@ -63,11 +63,16 @@
    "notes": { "fr": "habiter à Paris, dans une maison · vivre, c'est être en vie." }
   },
   "do-you-have-the-keys": { "text": "Tu as les clés ?", "variants": ["As-tu les clés ?"] },
-  "ill-be-right-back": { "text": "Je reviens tout de suite !", "variants": ["Je reviens vite !"] },
+  "ill-be-right-back": {
+   "text": "Je reviens tout de suite !",
+   "variants": ["Je reviens vite !"],
+   "orders": ["Tout de suite, je reviens !"]
+  },
   "take-off-your-shoes": { "text": "Enlève tes chaussures.", "variants": ["Retire tes chaussures."] },
   "hurry-were-late": {
    "text": "Dépêche-toi, on est en retard !",
-   "variants": ["Dépêche-toi, nous sommes en retard !"]
+   "variants": ["Dépêche-toi, nous sommes en retard !"],
+   "orders": ["On est en retard, dépêche-toi !"]
   },
   "see-you-later": { "text": "À plus tard !", "synonyms": ["À tout à l'heure !", "À plus !", "À bientôt !"] },
   "welcome-home": { "text": "Bienvenue à la maison !" },

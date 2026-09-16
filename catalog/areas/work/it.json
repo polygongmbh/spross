@@ -127,11 +127,13 @@
   "customer": { "text": "cliente", "grammar": { "gender": "il" } },
   "tomorrow-i-have-a-job-interview": {
    "text": "Domani mi presento in azienda.",
-   "variants": ["Domani mi presento in ditta.", "Domani mi presento all'azienda."]
+   "variants": ["Domani mi presento in ditta.", "Domani mi presento all'azienda."],
+   "orders": ["Mi presento domani in azienda."]
   },
   "ill-send-the-doctors-note-right-away": {
    "text": "Le mando subito il certificato medico.",
-   "variants": ["Ti mando subito il certificato medico.", "Le invio subito il certificato medico."]
+   "variants": ["Ti mando subito il certificato medico.", "Le invio subito il certificato medico."],
+   "orders": ["Le mando il certificato medico subito."]
   },
   "can-you-help-me-briefly": {
    "text": "Può aiutarmi un momento?",
@@ -142,7 +144,8 @@
    "variants": [
     "Voglio prendere le ferie la settimana prossima.",
     "Vorrei prendere le ferie la prossima settimana."
-   ]
+   ],
+   "orders": ["La settimana prossima vorrei prendere le ferie."]
   },
   "read-the-contract-carefully": {
    "text": "Legga bene il contratto.",

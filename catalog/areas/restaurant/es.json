@@ -30,7 +30,7 @@
   "restaurant": { "text": "restaurante", "grammar": { "gender": "el" } },
   "a-table-for-two": { "text": "Una mesa para dos, por favor." },
   "id-like-to-order": { "text": "Quería pedir.", "variants": ["Quisiera pedir."] },
-  "is-this-vegetarian": { "text": "¿Esto es vegetariano?" },
+  "is-this-vegetarian": { "text": "¿Esto es vegetariano?", "orders": ["¿Es esto vegetariano?"] },
   "the-bill-please": { "text": "La cuenta, por favor." },
   "id-like-some-water": { "text": "Quisiera agua." }
  }

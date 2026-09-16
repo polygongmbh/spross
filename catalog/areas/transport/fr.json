@@ -42,14 +42,19 @@
   },
   "fare": { "text": "tarif", "variants": ["prix du billet"], "grammar": { "gender": "le" } },
   "to-get-off": { "text": "descendre", "notes": { "fr": "descendre du bus, du train · monter dans le bus." } },
-  "the-bus-is-coming-soon": { "text": "Le bus arrive bientôt.", "variants": ["Le bus arrive tout de suite."] },
+  "the-bus-is-coming-soon": {
+   "text": "Le bus arrive bientôt.",
+   "variants": ["Le bus arrive tout de suite."],
+   "orders": ["Bientôt, le bus arrive."]
+  },
   "when-does-the-train-leave": {
    "text": "Quand part le train ?",
-   "variants": ["Le train part quand ?", "À quelle heure part le train ?"]
+   "variants": ["Le train part quand ?", "À quelle heure part le train ?"],
+   "orders": ["Le train part quand ?"]
   },
   "have-a-good-journey": { "text": "Bon voyage !" },
   "how-much-is-the-fare": { "text": "Quel est le tarif ?", "variants": ["Combien coûte le billet ?"] },
-  "the-bus-has-already-departed": { "text": "Le bus est déjà parti." },
+  "the-bus-has-already-departed": { "text": "Le bus est déjà parti.", "orders": ["Déjà, le bus est parti."] },
   "my-parents-are-coming-by-train": { "text": "Mes parents viennent en train." }
  }
 }

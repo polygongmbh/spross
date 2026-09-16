@@ -47,13 +47,21 @@
   "faucet": { "text": "krano", "variants": ["akvokrano"] },
   "trash-can": { "text": "rubujo", "variants": ["rubkorbo"] },
   "bucket": { "text": "sitelo" },
-  "im-taking-a-quick-shower": { "text": "Mi iras rapide duŝi min.", "variants": ["Mi rapide duŝas min.", "Mi iras duŝi min."] },
+  "im-taking-a-quick-shower": {
+   "text": "Mi iras rapide duŝi min.",
+   "variants": ["Mi rapide duŝas min.", "Mi iras duŝi min."],
+   "orders": ["Mi rapide iras duŝi min."]
+  },
   "the-bathroom-is-occupied": { "text": "La banĉambro estas okupata!", "variants": ["La necesejo estas okupata!"] },
   "the-laundry-is-done": { "text": "La tolaĵo estas preta.", "variants": ["La tolaĵo pretas."] },
-  "wheres-my-towel": { "text": "Kie estas mia mantuko?" },
-  "can-you-hang-the-laundry": { "text": "Ĉu vi povas pendigi la tolaĵon?" },
-  "dont-forget-to-brush-teeth": { "text": "Ne forgesu brosi la dentojn!", "variants": ["Ne forgesu brosi viajn dentojn!"] },
+  "wheres-my-towel": { "text": "Kie estas mia mantuko?", "orders": ["Kie mia mantuko estas?"] },
+  "can-you-hang-the-laundry": { "text": "Ĉu vi povas pendigi la tolaĵon?", "orders": ["Ĉu la tolaĵon vi povas pendigi?"] },
+  "dont-forget-to-brush-teeth": {
+   "text": "Ne forgesu brosi la dentojn!",
+   "variants": ["Ne forgesu brosi viajn dentojn!"],
+   "orders": ["La dentojn ne forgesu brosi!"]
+  },
   "wash-your-hands": { "text": "Lavu viajn manojn.", "variants": ["Lavu la manojn.", "Lavu al vi la manojn."] },
-  "the-laundry-is-being-washed": { "text": "La tolaĵo estas lavata nun." }
+  "the-laundry-is-being-washed": { "text": "La tolaĵo estas lavata nun.", "orders": ["Nun la tolaĵo estas lavata."] }
  }
 }

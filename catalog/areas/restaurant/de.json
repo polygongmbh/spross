@@ -18,8 +18,8 @@
   "restaurant": { "text": "Restaurant", "grammar": { "gender": "das", "plural": "-s" } },
   "a-table-for-two": { "text": "Einen Tisch für zwei, bitte." },
   "id-like-to-order": { "text": "Ich möchte bestellen." },
-  "is-this-vegetarian": { "text": "Ist das vegetarisch?" },
+  "is-this-vegetarian": { "text": "Ist das vegetarisch?", "orders": ["Das ist vegetarisch?"] },
   "the-bill-please": { "text": "Die Rechnung, bitte." },
-  "id-like-some-water": { "text": "Ich hätte gern Wasser." }
+  "id-like-some-water": { "text": "Ich hätte gern Wasser.", "orders": ["Wasser hätte ich gern."] }
  }
 }

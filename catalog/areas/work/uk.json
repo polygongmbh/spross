@@ -33,10 +33,13 @@
   "worker": { "text": "робітник" },
   "employer": { "text": "роботодавець" },
   "customer": { "text": "клієнт" },
-  "tomorrow-i-have-a-job-interview": { "text": "Завтра я представлюся у фірмі." },
-  "ill-send-the-doctors-note-right-away": { "text": "Я одразу надішлю вам лікарняний." },
-  "can-you-help-me-briefly": { "text": "Можете мені на хвилинку допомогти?" },
-  "i-want-vacation-next-week": { "text": "Наступного тижня я хочу взяти відпустку." },
-  "read-the-contract-carefully": { "text": "Прочитайте договір уважно!" }
+  "tomorrow-i-have-a-job-interview": { "text": "Завтра я представлюся у фірмі.", "orders": ["Я завтра представлюся у фірмі."] },
+  "ill-send-the-doctors-note-right-away": { "text": "Я одразу надішлю вам лікарняний.", "orders": ["Я вам одразу надішлю лікарняний."] },
+  "can-you-help-me-briefly": { "text": "Можете мені на хвилинку допомогти?", "orders": ["Можете на хвилинку мені допомогти?"] },
+  "i-want-vacation-next-week": {
+   "text": "Наступного тижня я хочу взяти відпустку.",
+   "orders": ["Я хочу взяти відпустку наступного тижня."]
+  },
+  "read-the-contract-carefully": { "text": "Прочитайте договір уважно!", "orders": ["Уважно прочитайте договір!"] }
  }
 }

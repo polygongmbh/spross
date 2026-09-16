@@ -20,6 +20,6 @@
   "the-cat-is-meowing": { "text": "Кіт нявкає." },
   "the-bird-is-singing": { "text": "Птах співає." },
   "the-lion-is-roaring": { "text": "Лев реве." },
-  "the-mosquito-is-biting-me": { "text": "Комар мене кусає." }
+  "the-mosquito-is-biting-me": { "text": "Комар мене кусає.", "orders": ["Мене кусає комар.", "Мене комар кусає."] }
  }
 }

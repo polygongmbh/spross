@@ -46,27 +46,42 @@
   "tin-can": { "text": "lata", "grammar": { "gender": "la" } },
   "gas": { "text": "gas", "grammar": { "gender": "el" } },
   "tasty": { "text": "sabroso", "variants": ["sabrosa"] },
-  "the-knife-is-sharp": { "text": "¡El cuchillo está afilado!", "variants": ["¡El cuchillo corta mucho!"] },
+  "the-knife-is-sharp": {
+   "text": "¡El cuchillo está afilado!",
+   "variants": ["¡El cuchillo corta mucho!"],
+   "orders": ["¡Está afilado el cuchillo!"]
+  },
   "this-is-very-tasty": {
    "text": "¡Esto está muy rico!",
-   "variants": ["¡Está muy rico!", "¡Esto está muy bueno!", "¡Esto está buenísimo!"]
+   "variants": ["¡Está muy rico!", "¡Esto está muy bueno!", "¡Esto está buenísimo!"],
+   "orders": ["¡Está muy rico esto!"]
   },
   "are-you-cooking-rice-today": {
    "text": "¿Cocinas arroz hoy?",
-   "variants": ["¿Hoy cocinas arroz?", "¿Vas a cocinar arroz hoy?", "¿Haces arroz hoy?"]
+   "variants": ["¿Hoy cocinas arroz?", "¿Vas a cocinar arroz hoy?", "¿Haces arroz hoy?"],
+   "orders": ["¿Hoy cocinas arroz?"]
   },
   "the-pot-is-still-on-the-stove": {
    "text": "La olla todavía está en el fuego.",
    "variants": ["La olla sigue en el fuego.", "La olla todavía está al fuego."],
-   "notes": { "es": "en el fuego = encima de la cocina · en la cocina sería el cuarto." }
+   "notes": { "es": "en el fuego = encima de la cocina · en la cocina sería el cuarto." },
+   "orders": ["La olla está todavía en el fuego."]
   },
   "wash-the-dishes-in-the-sink": {
    "text": "¡Friega los platos en el fregadero!",
    "variants": ["¡Lava los platos en el fregadero!"]
   },
-  "the-fridge-is-empty": { "text": "La nevera está vacía.", "variants": ["El frigorífico está vacío."] },
+  "the-fridge-is-empty": {
+   "text": "La nevera está vacía.",
+   "variants": ["El frigorífico está vacío."],
+   "orders": ["Está vacía la nevera."]
+  },
   "can-you-set-the-table": { "text": "¿Puedes poner la mesa?" },
-  "the-water-is-boiling-hot": { "text": "El agua está hirviendo.", "variants": ["El agua hierve."] },
+  "the-water-is-boiling-hot": {
+   "text": "El agua está hirviendo.",
+   "variants": ["El agua hierve."],
+   "orders": ["Está hirviendo el agua."]
+  },
   "careful-very-hot": {
    "text": "¡Cuidado, muy caliente!",
    "variants": ["¡Cuidado, está muy caliente!", "¡Cuidado, que quema!"]

@@ -33,7 +33,7 @@
     "de": "linaniuma = linauma + -ni- „mir“: das „mein“ steckt im Verb."
    }
   },
-  "ive-had-a-fever-since-yesterday": { "text": "Nina homa tangu jana." },
+  "ive-had-a-fever-since-yesterday": { "text": "Nina homa tangu jana.", "orders": ["Tangu jana nina homa."] },
   "get-well-soon": {
    "text": "Upone haraka!",
    "variants": ["Pole! Upone haraka!"],

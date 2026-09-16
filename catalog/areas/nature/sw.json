@@ -34,6 +34,6 @@
   "shadow": { "text": "kivuli", "grammar": { "plural": "vivuli" } },
   "lets-go-to-the-beach": { "text": "Twende ufukweni!", "variants": ["Twende pwani!"] },
   "we-are-going-to-the-mountains": { "text": "Tunaenda milimani." },
-  "its-cold-in-the-mountains": { "text": "Milimani kuna baridi." }
+  "its-cold-in-the-mountains": { "text": "Milimani kuna baridi.", "orders": ["Kuna baridi milimani."] }
  }
 }

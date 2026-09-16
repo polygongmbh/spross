@@ -29,7 +29,11 @@
   "east": { "text": "est", "grammar": { "gender": "le" } },
   "west": { "text": "ouest", "grammar": { "gender": "le" } },
   "go-straight-ahead": { "text": "Allez tout droit.", "variants": ["Va tout droit."] },
-  "turn-left-at-the-corner": { "text": "Tournez à gauche au coin.", "variants": ["Tourne à gauche au coin."] },
+  "turn-left-at-the-corner": {
+   "text": "Tournez à gauche au coin.",
+   "variants": ["Tourne à gauche au coin."],
+   "orders": ["Au coin, tournez à gauche."]
+  },
   "how-do-i-get-to-the-station": { "text": "Comment aller à la gare ?", "variants": ["Comment je vais à la gare ?"] },
   "im-lost": { "text": "Je me suis perdu.", "variants": ["Je me suis perdue.", "Je suis perdu."] }
  }

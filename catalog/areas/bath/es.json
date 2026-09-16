@@ -65,8 +65,12 @@
    "text": "Me voy a duchar rápido.",
    "variants": ["Voy a ducharme rápido.", "Me doy una ducha rápida."]
   },
-  "the-bathroom-is-occupied": { "text": "¡El baño está ocupado!" },
-  "the-laundry-is-done": { "text": "La colada está lista.", "variants": ["La ropa está lista.", "Ya está la colada."] },
+  "the-bathroom-is-occupied": { "text": "¡El baño está ocupado!", "orders": ["¡Está ocupado el baño!"] },
+  "the-laundry-is-done": {
+   "text": "La colada está lista.",
+   "variants": ["La ropa está lista.", "Ya está la colada."],
+   "orders": ["Está lista la colada."]
+  },
   "wheres-my-towel": { "text": "¿Dónde está mi toalla?" },
   "can-you-hang-the-laundry": { "text": "¿Puedes tender la colada?", "variants": ["¿Puedes tender la ropa?"] },
   "dont-forget-to-brush-teeth": {
@@ -74,6 +78,9 @@
    "variants": ["¡No olvides lavarte los dientes!", "¡No te olvides de cepillarte los dientes!"]
   },
   "wash-your-hands": { "text": "Lávate las manos." },
-  "the-laundry-is-being-washed": { "text": "La colada se está lavando ahora mismo." }
+  "the-laundry-is-being-washed": {
+   "text": "La colada se está lavando ahora mismo.",
+   "orders": ["Se está lavando la colada ahora mismo."]
+  }
  }
 }

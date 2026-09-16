@@ -19,8 +19,9 @@
   "open": { "text": "malfermita" },
   "the-store-is-still-open": {
    "text": "La vendejo ankoraŭ estas malfermita.",
-   "variants": ["La vendejo estas ankoraŭ malfermita.", "La butiko ankoraŭ estas malfermita."]
+   "variants": ["La vendejo estas ankoraŭ malfermita.", "La butiko ankoraŭ estas malfermita."],
+   "orders": ["La vendejo estas ankoraŭ malfermita."]
   },
-  "do-you-have-this-in-my-size": { "text": "Ĉu vi havas tion en mia grandeco?" }
+  "do-you-have-this-in-my-size": { "text": "Ĉu vi havas tion en mia grandeco?", "orders": ["Ĉu tion vi havas en mia grandeco?"] }
  }
 }

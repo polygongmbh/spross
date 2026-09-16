@@ -38,6 +38,10 @@
    "text": "ir a la escuela",
    "notes": { "es": "a marca adónde, en marca dónde: voy a la escuela · estoy en la escuela." }
   },
-  "are-you-going-home-already": { "text": "¿Ya se van a casa?", "variants": ["¿Ya os vais a casa?", "¿Ya te vas a casa?"] }
+  "are-you-going-home-already": {
+   "text": "¿Ya se van a casa?",
+   "variants": ["¿Ya os vais a casa?", "¿Ya te vas a casa?"],
+   "orders": ["¿Se van ya a casa?"]
+  }
  }
 }

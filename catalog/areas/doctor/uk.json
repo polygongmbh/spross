@@ -31,11 +31,17 @@
   "vaccination": { "text": "щеплення", "synonyms": ["вакцинація"], "grammar": { "plural": "=" } },
   "ambulance": { "text": "швидка допомога", "variants": ["швидка"] },
   "to-look-after": { "text": "доглядати" },
-  "take-the-pills-twice-daily": { "text": "Приймайте таблетки двічі на день." },
+  "take-the-pills-twice-daily": {
+   "text": "Приймайте таблетки двічі на день.",
+   "orders": ["Двічі на день приймайте таблетки.", "Таблетки приймайте двічі на день."]
+  },
   "show-me-your-insurance-card": { "text": "Покажіть мені вашу картку медичного страхування." },
   "the-practice-is-closed": { "text": "Лікарський кабінет зачинений." },
-  "i-have-to-see-a-doctor": { "text": "Мені треба до лікаря." },
+  "i-have-to-see-a-doctor": { "text": "Мені треба до лікаря.", "orders": ["До лікаря мені треба."] },
   "call-an-ambulance": { "text": "Викличте швидку допомогу!", "variants": ["Виклич швидку!"] },
-  "the-doctor-will-examine-you-shortly": { "text": "Лікар вас зараз обстежить." }
+  "the-doctor-will-examine-you-shortly": {
+   "text": "Лікар вас зараз обстежить.",
+   "orders": ["Зараз лікар вас обстежить.", "Лікар зараз вас обстежить."]
+  }
  }
 }

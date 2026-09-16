@@ -33,14 +33,15 @@
    }
   },
   "i-would-like-to-arrange-an-appointment": { "text": "Ningependa kupanga miadi." },
-  "the-deadline-is-tomorrow": { "text": "Tarehe ya mwisho ni kesho." },
+  "the-deadline-is-tomorrow": { "text": "Tarehe ya mwisho ni kesho.", "orders": ["Kesho ni tarehe ya mwisho."] },
   "can-we-postpone-the-appointment": { "text": "Tunaweza kuahirisha miadi?" },
   "i-have-an-appointment-at-ten": {
    "text": "Nina miadi saa nne asubuhi.",
    "notes": {
     "sw": "saa nne asubuhi = 10:00 asubuhi",
     "de": "saa nne = wörtlich „vierte Stunde“! Die Swahili-Uhr startet um 6 Uhr morgens: 10 Uhr = saa 4"
-   }
+   },
+   "orders": ["Saa nne asubuhi nina miadi."]
   },
   "ill-take-care-of-it": {
    "text": "Nitashughulikia.",

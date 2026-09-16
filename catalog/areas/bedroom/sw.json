@@ -36,7 +36,8 @@
    "text": "Habari za asubuhi, mpenzi wangu!",
    "notes": {
     "de": "wörtl. „Neuigkeiten des Morgens?“ — Kiswahili hat keine „guten Morgen“-Konstruktion mit Adjektiv; Habari za asubuhi ist die feste Morgengrußformel."
-   }
+   },
+   "orders": ["Mpenzi wangu, habari za asubuhi!"]
   },
   "im-tired": { "text": "Nimechoka." },
   "did-you-set-the-alarm": { "text": "Umeweka saa ya kengele?" },

@@ -64,9 +64,13 @@
   "to-visit": { "text": "rendre visite" },
   "to-marry": { "text": "se marier" },
   "this-is-my-mother": { "text": "C'est ma mère." },
-  "where-is-your-father": { "text": "Où est votre père ?" },
+  "where-is-your-father": { "text": "Où est votre père ?", "orders": ["Votre père est où ?"] },
   "i-have-two-children": { "text": "J'ai deux enfants." },
-  "how-is-your-grandmother": { "text": "Comment va ta grand-mère ?", "variants": ["Comment va votre grand-mère ?"] },
+  "how-is-your-grandmother": {
+   "text": "Comment va ta grand-mère ?",
+   "variants": ["Comment va votre grand-mère ?"],
+   "orders": ["Ta grand-mère va comment ?"]
+  },
   "a-good-friend": { "text": "un bon ami" },
   "my-girlfriend": { "text": "ma copine", "variants": ["ma petite amie"] },
   "her-boyfriend": {

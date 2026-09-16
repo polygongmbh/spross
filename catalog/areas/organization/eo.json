@@ -41,11 +41,23 @@
   "to-take-care-of": { "text": "prizorgi" },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Mi ŝatus aranĝi rendevuon.",
-   "variants": ["Mi volus aranĝi rendevuon.", "Mi ŝatus fiksi rendevuon."]
+   "variants": ["Mi volus aranĝi rendevuon.", "Mi ŝatus fiksi rendevuon."],
+   "orders": ["Rendevuon mi ŝatus aranĝi."]
   },
-  "the-deadline-is-tomorrow": { "text": "La limdato estas morgaŭ.", "variants": ["La templimo estas morgaŭ."] },
-  "can-we-postpone-the-appointment": { "text": "Ĉu ni povas prokrasti la rendevuon?" },
-  "i-have-an-appointment-at-ten": { "text": "Mi havas rendevuon je la deka.", "variants": ["Mi havas rendevuon je la deka horo."] },
-  "ill-take-care-of-it": { "text": "Mi prizorgos tion." }
+  "the-deadline-is-tomorrow": {
+   "text": "La limdato estas morgaŭ.",
+   "variants": ["La templimo estas morgaŭ."],
+   "orders": ["Morgaŭ estas la limdato."]
+  },
+  "can-we-postpone-the-appointment": {
+   "text": "Ĉu ni povas prokrasti la rendevuon?",
+   "orders": ["Ĉu la rendevuon ni povas prokrasti?"]
+  },
+  "i-have-an-appointment-at-ten": {
+   "text": "Mi havas rendevuon je la deka.",
+   "variants": ["Mi havas rendevuon je la deka horo."],
+   "orders": ["Je la deka mi havas rendevuon."]
+  },
+  "ill-take-care-of-it": { "text": "Mi prizorgos tion.", "orders": ["Tion mi prizorgos."] }
  }
 }

@@ -34,13 +34,13 @@
   "ready": { "text": "готовий" },
   "broken": { "text": "зламаний", "variants": ["поламаний"] },
   "im-in-a-meeting": { "text": "Я на зустрічі." },
-  "dont-disturb-me": { "text": "Не заважай мені!" },
+  "dont-disturb-me": { "text": "Не заважай мені!", "orders": ["Мені не заважай!"] },
   "the-laptop-wont-charge-anymore": { "text": "Ноутбук більше не заряджається." },
   "the-internet-is-gone": { "text": "Інтернет зник." },
   "it-works": { "text": "Працює.", "variants": ["Воно працює.", "Вже працює."] },
   "coffee-break": { "text": "Перерва на каву?" },
   "i-have-a-lot-to-do": { "text": "У мене багато справ." },
-  "we-knock-off-at-5": { "text": "Сьогодні закінчуємо о 5-ій." },
-  "send-me-the-email": { "text": "Надішли мені імейл." }
+  "we-knock-off-at-5": { "text": "Сьогодні закінчуємо о 5-ій.", "orders": ["Закінчуємо сьогодні о 5-ій."] },
+  "send-me-the-email": { "text": "Надішли мені імейл.", "orders": ["Надішли імейл мені."] }
  }
 }

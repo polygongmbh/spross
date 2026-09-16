@@ -20,7 +20,8 @@
   "what-a-beautiful-day": { "text": "What a beautiful day!" },
   "we-are-staying-home-because-of-the-rain": {
    "text": "Because of the rain we're staying home.",
-   "variants": ["Because of the rain we are staying home."]
+   "variants": ["Because of the rain we are staying home."],
+   "orders": ["We're staying home because of the rain."]
   }
  }
 }

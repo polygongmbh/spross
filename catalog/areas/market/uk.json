@@ -14,7 +14,11 @@
   "ripe": { "text": "стиглий" },
   "to-haggle": { "text": "торгуватися" },
   "market": { "text": "ринок", "grammar": { "plural": "ринки" } },
-  "lets-meet-at-the-market": { "text": "Зустріньмося на ринку.", "variants": ["Зустрінемось на ринку."] },
+  "lets-meet-at-the-market": {
+   "text": "Зустріньмося на ринку.",
+   "variants": ["Зустрінемось на ринку."],
+   "orders": ["На ринку зустріньмося."]
+  },
   "a-kilo-of-tomatoes": { "text": "Кілограм помідорів, будь ласка." },
   "what-does-a-kilo-cost": { "text": "Скільки коштує кілограм?" },
   "can-you-come-down-a-bit": { "text": "Можете трохи поступитися?" }

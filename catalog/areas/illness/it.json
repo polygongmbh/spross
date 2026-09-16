@@ -34,10 +34,14 @@
   "splint": { "text": "stecca", "grammar": { "gender": "la" } },
   "to-recover": { "text": "guarire", "variants": ["rimettersi"] },
   "allergy": { "text": "allergia", "variants": ["l'allergia", "un'allergia"], "grammar": { "gender": "l'" } },
-  "my-throat-hurts-a-lot": { "text": "Mi fa molto male la gola." },
-  "ive-had-a-fever-since-yesterday": { "text": "Ho la febbre da ieri." },
+  "my-throat-hurts-a-lot": { "text": "Mi fa molto male la gola.", "orders": ["La gola mi fa molto male."] },
+  "ive-had-a-fever-since-yesterday": { "text": "Ho la febbre da ieri.", "orders": ["Da ieri ho la febbre."] },
   "get-well-soon": { "text": "Guarisci presto!", "variants": ["Guarisca presto!", "Rimettiti presto!"] },
   "the-wound-hurts": { "text": "La ferita fa male.", "variants": ["Mi fa male la ferita."] },
-  "i-hurt-myself-yesterday": { "text": "Mi sono fatto male ieri.", "variants": ["Mi sono fatta male ieri."] }
+  "i-hurt-myself-yesterday": {
+   "text": "Mi sono fatto male ieri.",
+   "variants": ["Mi sono fatta male ieri."],
+   "orders": ["Ieri mi sono fatto male."]
+  }
  }
 }

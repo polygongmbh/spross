@@ -41,7 +41,7 @@
   "luggage": { "text": "mzigo", "grammar": { "plural": "mizigo" } },
   "fare": { "text": "nauli", "grammar": { "plural": "=" } },
   "to-get-off": { "text": "kushuka" },
-  "the-bus-is-coming-soon": { "text": "Basi linakuja sasa hivi." },
+  "the-bus-is-coming-soon": { "text": "Basi linakuja sasa hivi.", "orders": ["Sasa hivi basi linakuja."] },
   "when-does-the-train-leave": { "text": "Treni inaondoka lini?" },
   "have-a-good-journey": { "text": "Safari njema!" },
   "how-much-is-the-fare": { "text": "Nauli ni ngapi?" },

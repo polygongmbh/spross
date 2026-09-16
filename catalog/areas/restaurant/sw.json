@@ -15,7 +15,7 @@
   "dessert": { "text": "kitindamlo", "grammar": { "plural": "vitindamlo" } },
   "beverage": { "text": "kinywaji", "grammar": { "plural": "vinywaji" } },
   "restaurant": { "text": "mkahawa", "grammar": { "plural": "mikahawa" } },
-  "a-table-for-two": { "text": "Meza ya watu wawili, tafadhali." },
+  "a-table-for-two": { "text": "Meza ya watu wawili, tafadhali.", "orders": ["Tafadhali, meza ya watu wawili."] },
   "id-like-to-order": { "text": "Ningependa kuagiza." },
   "is-this-vegetarian": {
    "text": "Hii ni bila nyama?",

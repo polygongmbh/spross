@@ -17,10 +17,14 @@
   "why": { "text": "kial" },
   "how": { "text": "kiel" },
   "how-many": { "text": "kiom" },
-  "where-are-they": { "text": "Kie ili estas?" },
+  "where-are-they": { "text": "Kie ili estas?", "orders": ["Kie estas ili?"] },
   "who-is-there": { "text": "Kiu estas tie?" },
-  "do-you-need-this": { "text": "Ĉu vi bezonas ĉi tion?" },
-  "when-does-it-start": { "text": "Kiam ĝi komenciĝas?", "notes": { "eo": "Ĝi komenciĝas mem · Mi komencas ĝin." } },
+  "do-you-need-this": { "text": "Ĉu vi bezonas ĉi tion?", "orders": ["Ĉu ĉi tion vi bezonas?"] },
+  "when-does-it-start": {
+   "text": "Kiam ĝi komenciĝas?",
+   "notes": { "eo": "Ĝi komenciĝas mem · Mi komencas ĝin." },
+   "orders": ["Kiam komenciĝas ĝi?"]
+  },
   "what-time-is-it": {
    "text": "Kioma horo estas?",
    "variants": ["Kiom estas la horo?"],

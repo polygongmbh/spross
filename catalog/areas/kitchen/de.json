@@ -30,11 +30,11 @@
   "tasty": { "text": "lecker" },
   "the-knife-is-sharp": { "text": "Das Messer ist scharf!" },
   "this-is-very-tasty": { "text": "Das ist sehr lecker!", "variants": ["Das schmeckt so lecker!"] },
-  "are-you-cooking-rice-today": { "text": "Kochst du heute Reis?" },
-  "the-pot-is-still-on-the-stove": { "text": "Der Topf steht noch auf dem Herd." },
+  "are-you-cooking-rice-today": { "text": "Kochst du heute Reis?", "orders": ["Du kochst heute Reis?"] },
+  "the-pot-is-still-on-the-stove": { "text": "Der Topf steht noch auf dem Herd.", "orders": ["Auf dem Herd steht noch der Topf."] },
   "wash-the-dishes-in-the-sink": { "text": "Spül das Geschirr im Spülbecken!" },
   "the-fridge-is-empty": { "text": "Der Kühlschrank ist leer." },
-  "can-you-set-the-table": { "text": "Kannst du den Tisch decken?" },
+  "can-you-set-the-table": { "text": "Kannst du den Tisch decken?", "orders": ["Du kannst den Tisch decken?"] },
   "the-water-is-boiling-hot": { "text": "Das Wasser kocht." },
   "careful-very-hot": { "text": "Vorsicht, sehr heiß!" }
  }

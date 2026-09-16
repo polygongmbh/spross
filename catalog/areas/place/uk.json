@@ -41,6 +41,10 @@
     "de": "wohin mit до und Genitiv: до школи · wo mit у und Lokativ: у школі."
    }
   },
-  "are-you-going-home-already": { "text": "Ви вже йдете додому?", "variants": ["Ти вже йдеш додому?"] }
+  "are-you-going-home-already": {
+   "text": "Ви вже йдете додому?",
+   "variants": ["Ти вже йдеш додому?"],
+   "orders": ["Ви вже додому йдете?"]
+  }
  }
 }

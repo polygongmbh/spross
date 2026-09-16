@@ -36,6 +36,6 @@
   },
   "i-have-no-money": { "text": "No tengo dinero." },
   "can-i-pay-by-card": { "text": "¿Puedo pagar con tarjeta?" },
-  "ive-already-paid": { "text": "Ya he pagado." }
+  "ive-already-paid": { "text": "Ya he pagado.", "orders": ["He pagado ya."] }
  }
 }

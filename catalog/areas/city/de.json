@@ -17,8 +17,11 @@
   "police": { "text": "Polizei", "grammar": { "gender": "die" } },
   "cinema": { "text": "Kino", "grammar": { "gender": "das", "plural": "-s" } },
   "bridge": { "text": "Brücke", "grammar": { "gender": "die", "plural": "-n" } },
-  "is-there-a-bank-here": { "text": "Gibt es hier eine Bank?" },
+  "is-there-a-bank-here": {
+   "text": "Gibt es hier eine Bank?",
+   "orders": ["Es gibt hier eine Bank?", "Hier gibt es eine Bank?"]
+  },
   "im-looking-for-a-hotel": { "text": "Ich suche ein Hotel." },
-  "i-live-in-this-neighborhood": { "text": "Ich wohne in diesem Viertel." }
+  "i-live-in-this-neighborhood": { "text": "Ich wohne in diesem Viertel.", "orders": ["In diesem Viertel wohne ich."] }
  }
 }

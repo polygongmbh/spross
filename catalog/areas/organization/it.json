@@ -37,12 +37,16 @@
    "text": "Vorrei fissare un appuntamento.",
    "variants": ["Vorrei prendere un appuntamento.", "Voglio fissare un appuntamento."]
   },
-  "the-deadline-is-tomorrow": { "text": "La scadenza è domani.", "variants": ["Il termine scade domani."] },
+  "the-deadline-is-tomorrow": {
+   "text": "La scadenza è domani.",
+   "variants": ["Il termine scade domani."],
+   "orders": ["Domani è la scadenza."]
+  },
   "can-we-postpone-the-appointment": {
    "text": "Possiamo rimandare l'appuntamento?",
    "variants": ["Possiamo spostare l'appuntamento?", "Possiamo rinviare l'appuntamento?"]
   },
-  "i-have-an-appointment-at-ten": { "text": "Ho un appuntamento alle dieci." },
-  "ill-take-care-of-it": { "text": "Me ne occupo io." }
+  "i-have-an-appointment-at-ten": { "text": "Ho un appuntamento alle dieci.", "orders": ["Alle dieci ho un appuntamento."] },
+  "ill-take-care-of-it": { "text": "Me ne occupo io.", "orders": ["Io me ne occupo."] }
  }
 }

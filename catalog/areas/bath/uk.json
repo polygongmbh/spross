@@ -32,12 +32,12 @@
   "trash-can": { "text": "смітник" },
   "bucket": { "text": "відро" },
   "im-taking-a-quick-shower": { "text": "Я швиденько в душ." },
-  "the-bathroom-is-occupied": { "text": "У ванній зайнято!" },
+  "the-bathroom-is-occupied": { "text": "У ванній зайнято!", "orders": ["Зайнято у ванній!"] },
   "the-laundry-is-done": { "text": "Прання готове." },
   "wheres-my-towel": { "text": "Де мій рушник?" },
-  "can-you-hang-the-laundry": { "text": "Можеш розвісити білизну?" },
-  "dont-forget-to-brush-teeth": { "text": "Не забудь почистити зуби!" },
+  "can-you-hang-the-laundry": { "text": "Можеш розвісити білизну?", "orders": ["Білизну можеш розвісити?"] },
+  "dont-forget-to-brush-teeth": { "text": "Не забудь почистити зуби!", "orders": ["Не забудь зуби почистити!"] },
   "wash-your-hands": { "text": "Помий руки." },
-  "the-laundry-is-being-washed": { "text": "Білизну зараз перуть." }
+  "the-laundry-is-being-washed": { "text": "Білизну зараз перуть.", "orders": ["Зараз перуть білизну.", "Зараз білизну перуть."] }
  }
 }

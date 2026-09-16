@@ -51,7 +51,8 @@
   "bucket": { "text": "seau", "grammar": { "gender": "le", "plural": "-x" } },
   "im-taking-a-quick-shower": {
    "text": "Je vais vite me doucher.",
-   "variants": ["Je vais me doucher rapidement.", "Je vais prendre une douche rapide."]
+   "variants": ["Je vais me doucher rapidement.", "Je vais prendre une douche rapide."],
+   "orders": ["Je vais me doucher vite."]
   },
   "the-bathroom-is-occupied": {
    "text": "La salle de bains est occupée !",
@@ -61,7 +62,7 @@
    "text": "Le linge est prêt.",
    "variants": ["La lessive est terminée.", "La lessive est finie."]
   },
-  "wheres-my-towel": { "text": "Où est ma serviette ?" },
+  "wheres-my-towel": { "text": "Où est ma serviette ?", "orders": ["Ma serviette est où ?"] },
   "can-you-hang-the-laundry": {
    "text": "Tu peux étendre le linge ?",
    "variants": ["Peux-tu étendre le linge ?", "Tu peux étendre la lessive ?"]

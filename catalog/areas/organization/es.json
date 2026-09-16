@@ -34,7 +34,8 @@
   },
   "the-deadline-is-tomorrow": {
    "text": "El plazo termina mañana.",
-   "variants": ["El plazo acaba mañana.", "La fecha límite es mañana."]
+   "variants": ["El plazo acaba mañana.", "La fecha límite es mañana."],
+   "orders": ["Mañana termina el plazo."]
   },
   "can-we-postpone-the-appointment": {
    "text": "¿Podemos aplazar la cita?",
@@ -42,8 +43,9 @@
   },
   "i-have-an-appointment-at-ten": {
    "text": "Tengo cita a las diez.",
-   "variants": ["Tengo una cita a las diez.", "Tengo cita a las diez en punto."]
+   "variants": ["Tengo una cita a las diez.", "Tengo cita a las diez en punto."],
+   "orders": ["A las diez tengo cita."]
   },
-  "ill-take-care-of-it": { "text": "Yo me encargo." }
+  "ill-take-care-of-it": { "text": "Yo me encargo.", "orders": ["Me encargo yo."] }
  }
 }

@@ -13,6 +13,6 @@
    "notes": { "eo": "studi por kurso aŭ ekzameno · lerni ion novan." }
   },
   "goal": { "text": "celo" },
-  "you-can-do-it": { "text": "Vi certe sukcesos!" }
+  "you-can-do-it": { "text": "Vi certe sukcesos!", "orders": ["Certe vi sukcesos!"] }
  }
 }

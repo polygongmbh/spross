@@ -101,7 +101,8 @@
   "to-look-after": { "text": "curare" },
   "take-the-pills-twice-daily": {
    "text": "Prenda le pastiglie due volte al giorno.",
-   "variants": ["Prendi le pastiglie due volte al giorno."]
+   "variants": ["Prendi le pastiglie due volte al giorno."],
+   "orders": ["Prenda due volte al giorno le pastiglie."]
   },
   "show-me-your-insurance-card": {
    "text": "Mi mostri la sua tessera sanitaria.",

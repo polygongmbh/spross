@@ -24,8 +24,8 @@
   "few": { "text": "pocos", "variants": ["pocas"] },
   "once": { "text": "una vez" },
   "more-or-less": { "text": "más o menos" },
-  "i-am-always-there": { "text": "Siempre estoy ahí." },
+  "i-am-always-there": { "text": "Siempre estoy ahí.", "orders": ["Estoy siempre ahí."] },
   "hang-it-higher": { "text": "Cuélguelo más alto.", "variants": ["Cuélgalo más alto."] },
-  "is-that-enough": { "text": "¿Eso es suficiente?" }
+  "is-that-enough": { "text": "¿Eso es suficiente?", "orders": ["¿Es eso suficiente?"] }
  }
 }

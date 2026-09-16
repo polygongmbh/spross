@@ -34,7 +34,11 @@
   },
   "slower": { "text": "¡Más despacio!", "variants": ["¡Más lento!"] },
   "i-cant-hear-you": { "text": "No le oigo.", "variants": ["No te oigo.", "No lo oigo.", "No la oigo."] },
-  "do-you-speak-english": { "text": "¿Habla usted inglés?", "variants": ["¿Habla inglés?", "¿Hablas inglés?"] },
+  "do-you-speak-english": {
+   "text": "¿Habla usted inglés?",
+   "variants": ["¿Habla inglés?", "¿Hablas inglés?"],
+   "orders": ["¿Usted habla inglés?"]
+  },
   "i-need-help": { "text": "Necesito ayuda." },
   "i-dont-know": { "text": "No lo sé.", "variants": ["No sé."] },
   "i-forgot": { "text": "Lo olvidé.", "variants": ["Se me olvidó."] },

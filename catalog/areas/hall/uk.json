@@ -45,13 +45,13 @@
     "de": "жити = leben und wohnen (Alltag) · мешкати = wohnen, amtlich."
    }
   },
-  "do-you-have-the-keys": { "text": "У тебе є ключі?" },
-  "ill-be-right-back": { "text": "Я скоро повернуся!" },
-  "hurry-were-late": { "text": "Поквапся, ми запізнюємось!" },
+  "do-you-have-the-keys": { "text": "У тебе є ключі?", "orders": ["Ключі у тебе є?"] },
+  "ill-be-right-back": { "text": "Я скоро повернуся!", "orders": ["Скоро я повернуся!"] },
+  "hurry-were-late": { "text": "Поквапся, ми запізнюємось!", "orders": ["Ми запізнюємось, поквапся!"] },
   "see-you-later": { "text": "До зустрічі!" },
   "welcome-home": { "text": "Ласкаво просимо додому!", "synonyms": ["З поверненням!"] },
-  "dont-forget-your-jacket": { "text": "Не забудь куртку!" },
+  "dont-forget-your-jacket": { "text": "Не забудь куртку!", "orders": ["Куртку не забудь!"] },
   "put-on-the-jacket": { "text": "одягати куртку" },
-  "take-off-your-shoes": { "text": "Зніми своє взуття.", "variants": ["Роззуйся."] }
+  "take-off-your-shoes": { "text": "Зніми своє взуття.", "variants": ["Роззуйся."], "orders": ["Своє взуття зніми."] }
  }
 }

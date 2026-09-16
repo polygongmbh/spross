@@ -55,6 +55,6 @@
   "whats-for-dinner": { "text": "¿Qué hay para cenar?" },
   "i-dont-eat-meat": { "text": "No como carne." },
   "i-eat-rice-with-sauce": { "text": "Como arroz con salsa." },
-  "the-food-is-ready": { "text": "¡La comida está lista!" }
+  "the-food-is-ready": { "text": "¡La comida está lista!", "orders": ["¡Está lista la comida!"] }
  }
 }

@@ -14,7 +14,7 @@
   "how-many": { "text": "скільки" },
   "where-are-they": { "text": "Де вони?" },
   "who-is-there": { "text": "Хто там?" },
-  "do-you-need-this": { "text": "Вам це потрібне?" },
+  "do-you-need-this": { "text": "Вам це потрібне?", "orders": ["Це вам потрібне?"] },
   "when-does-it-start": { "text": "Коли це починається?" },
   "what-time-is-it": { "text": "Котра година?" }
  }

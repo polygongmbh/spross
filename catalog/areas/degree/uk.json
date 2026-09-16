@@ -24,7 +24,7 @@
   "few": { "text": "мало", "synonyms": ["небагато"] },
   "once": { "text": "один раз" },
   "more-or-less": { "text": "більш-менш" },
-  "i-am-always-there": { "text": "Я завжди там." },
+  "i-am-always-there": { "text": "Я завжди там.", "orders": ["Я там завжди."] },
   "hang-it-higher": { "text": "Повісь це вище." },
   "is-that-enough": { "text": "Цього достатньо?" }
  }

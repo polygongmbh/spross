@@ -18,7 +18,7 @@
   "east": { "text": "east" },
   "west": { "text": "west" },
   "go-straight-ahead": { "text": "Go straight ahead." },
-  "turn-left-at-the-corner": { "text": "Turn left at the corner." },
+  "turn-left-at-the-corner": { "text": "Turn left at the corner.", "orders": ["At the corner, turn left."] },
   "how-do-i-get-to-the-station": { "text": "How do I get to the station?" },
   "im-lost": { "text": "I'm lost." }
  }

@@ -21,15 +21,20 @@
   "wood": { "text": "Holz", "grammar": { "gender": "das", "plural": "Hölzer" } },
   "stick": { "text": "Stock", "grammar": { "gender": "der", "plural": "Stöcke" } },
   "shadow": { "text": "Schatten", "grammar": { "gender": "der", "plural": "=" } },
-  "lets-go-to-the-beach": { "text": "Gehen wir an den Strand!", "variants": ["Lass uns an den Strand gehen!"] },
-  "we-are-going-to-the-mountains": { "text": "Wir fahren in die Berge." },
+  "lets-go-to-the-beach": {
+   "text": "Gehen wir an den Strand!",
+   "variants": ["Lass uns an den Strand gehen!"],
+   "orders": ["Wir gehen an den Strand!"]
+  },
+  "we-are-going-to-the-mountains": { "text": "Wir fahren in die Berge.", "orders": ["In die Berge fahren wir."] },
   "its-cold-in-the-mountains": {
    "text": "In den Bergen ist es kalt.",
    "notes": {
     "de": "wo? → Dativ, wohin? → Akkusativ: im Wald, in den Wald.",
     "en": "wo? (where) takes the dative, wohin? (where to) the accusative: im Wald, in den Wald.",
     "es": "wo? (dónde) rige dativo, wohin? (adónde) acusativo: im Wald, in den Wald."
-   }
+   },
+   "orders": ["Es ist in den Bergen kalt.", "Es ist kalt in den Bergen."]
   }
  }
 }

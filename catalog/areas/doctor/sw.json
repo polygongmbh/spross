@@ -26,11 +26,14 @@
    "grammar": { "plural": "magari ya wagonjwa" }
   },
   "to-look-after": { "text": "kutunza", "notes": { "sw": "kutunza mtoto, kutunza pesa, kutunza afya" } },
-  "take-the-pills-twice-daily": { "text": "Kunywa vidonge mara mbili kwa siku." },
+  "take-the-pills-twice-daily": {
+   "text": "Kunywa vidonge mara mbili kwa siku.",
+   "orders": ["Mara mbili kwa siku kunywa vidonge."]
+  },
   "show-me-your-insurance-card": { "text": "Nionyeshe kadi yako ya bima ya afya." },
   "the-practice-is-closed": { "text": "Kliniki imefungwa." },
   "i-have-to-see-a-doctor": { "text": "Lazima niende kwa daktari." },
   "call-an-ambulance": { "text": "Ita gari la wagonjwa!", "variants": ["Ita ambulensi!"] },
-  "the-doctor-will-examine-you-shortly": { "text": "Daktari atakuchunguza hivi punde." }
+  "the-doctor-will-examine-you-shortly": { "text": "Daktari atakuchunguza hivi punde.", "orders": ["Hivi punde daktari atakuchunguza."] }
  }
 }

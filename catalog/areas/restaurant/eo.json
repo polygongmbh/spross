@@ -16,10 +16,10 @@
   "dessert": { "text": "deserto" },
   "beverage": { "text": "trinkaĵo" },
   "restaurant": { "text": "restoracio" },
-  "a-table-for-two": { "text": "Tablon por du, mi petas." },
+  "a-table-for-two": { "text": "Tablon por du, mi petas.", "orders": ["Mi petas tablon por du."] },
   "id-like-to-order": { "text": "Mi ŝatus mendi." },
   "is-this-vegetarian": { "text": "Ĉu tio estas vegetara?" },
-  "the-bill-please": { "text": "La kalkulon, mi petas." },
-  "id-like-some-water": { "text": "Mi ŝatus akvon." }
+  "the-bill-please": { "text": "La kalkulon, mi petas.", "orders": ["Mi petas la kalkulon."] },
+  "id-like-some-water": { "text": "Mi ŝatus akvon.", "orders": ["Akvon mi ŝatus."] }
  }
 }

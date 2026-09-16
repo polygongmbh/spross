@@ -39,7 +39,10 @@
   "it-works": { "text": "Inafanya kazi." },
   "coffee-break": { "text": "Pumziko la kahawa?" },
   "i-have-a-lot-to-do": { "text": "Nina mengi ya kufanya." },
-  "we-knock-off-at-5": { "text": "Leo tunamaliza kazi saa kumi na moja." },
+  "we-knock-off-at-5": {
+   "text": "Leo tunamaliza kazi saa kumi na moja.",
+   "orders": ["Tunamaliza kazi saa kumi na moja leo."]
+  },
   "send-me-the-email": { "text": "Nitumie barua pepe." }
  }
 }

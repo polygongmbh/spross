@@ -37,10 +37,11 @@
   "this-is-very-tasty": { "text": "Це дуже смачно!", "variants": ["Це так смачно!"] },
   "are-you-cooking-rice-today": {
    "text": "Ти вариш сьогодні рис?",
-   "notes": { "uk": "варити = у воді · готувати = будь-яку страву." }
+   "notes": { "uk": "варити = у воді · готувати = будь-яку страву." },
+   "orders": ["Сьогодні ти вариш рис?", "Ти сьогодні вариш рис?"]
   },
-  "the-pot-is-still-on-the-stove": { "text": "Каструля ще стоїть на плиті." },
-  "wash-the-dishes-in-the-sink": { "text": "Помий посуд у мийці!" },
+  "the-pot-is-still-on-the-stove": { "text": "Каструля ще стоїть на плиті.", "orders": ["На плиті ще стоїть каструля."] },
+  "wash-the-dishes-in-the-sink": { "text": "Помий посуд у мийці!", "orders": ["Посуд помий у мийці!"] },
   "the-fridge-is-empty": { "text": "Холодильник порожній." },
   "can-you-set-the-table": { "text": "Можеш накрити на стіл?" },
   "the-water-is-boiling-hot": { "text": "Вода кипить." },

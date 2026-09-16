@@ -19,9 +19,14 @@
   "bridge": { "text": "ponto" },
   "is-there-a-bank-here": {
    "text": "Ĉu estas banko ĉi tie?",
-   "variants": ["Ĉu ĉi tie estas banko?", "Ĉu troviĝas banko ĉi tie?"]
+   "variants": ["Ĉu ĉi tie estas banko?", "Ĉu troviĝas banko ĉi tie?"],
+   "orders": ["Ĉu banko estas ĉi tie?"]
   },
-  "im-looking-for-a-hotel": { "text": "Mi serĉas hotelon." },
-  "i-live-in-this-neighborhood": { "text": "Mi loĝas en ĉi tiu kvartalo.", "variants": ["Mi loĝas en tiu ĉi kvartalo."] }
+  "im-looking-for-a-hotel": { "text": "Mi serĉas hotelon.", "orders": ["Hotelon mi serĉas."] },
+  "i-live-in-this-neighborhood": {
+   "text": "Mi loĝas en ĉi tiu kvartalo.",
+   "variants": ["Mi loĝas en tiu ĉi kvartalo."],
+   "orders": ["En ĉi tiu kvartalo mi loĝas."]
+  }
  }
 }

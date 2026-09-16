@@ -111,13 +111,17 @@
   "worker": { "text": "travailleur", "grammar": { "gender": "le" } },
   "employer": { "text": "employeur", "variants": ["l'employeur"], "grammar": { "gender": "l'" } },
   "customer": { "text": "client", "grammar": { "gender": "le" } },
-  "tomorrow-i-have-a-job-interview": { "text": "Demain, je me présente à l'entreprise." },
+  "tomorrow-i-have-a-job-interview": {
+   "text": "Demain, je me présente à l'entreprise.",
+   "orders": ["Je me présente à l'entreprise demain."]
+  },
   "ill-send-the-doctors-note-right-away": {
    "text": "Je vous envoie l'arrêt de travail tout de suite.",
    "variants": [
     "Je t'envoie l'arrêt de travail tout de suite.",
     "Je vous envoie l'arrêt maladie tout de suite."
-   ]
+   ],
+   "orders": ["Tout de suite, je vous envoie l'arrêt de travail."]
   },
   "can-you-help-me-briefly": {
    "text": "Pouvez-vous m'aider un instant ?",
@@ -132,7 +136,8 @@
    "variants": [
     "Je veux prendre des vacances la semaine prochaine.",
     "Je voudrais prendre des congés la semaine prochaine."
-   ]
+   ],
+   "orders": ["La semaine prochaine, je voudrais prendre des vacances."]
   },
   "read-the-contract-carefully": {
    "text": "Lisez bien le contrat !",

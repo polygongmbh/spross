@@ -47,7 +47,8 @@
   "customer": { "text": "kliento" },
   "tomorrow-i-have-a-job-interview": {
    "text": "Morgaŭ mi prezentos min ĉe la firmao.",
-   "variants": ["Morgaŭ mi prezentos min ĉe la entrepreno."]
+   "variants": ["Morgaŭ mi prezentos min ĉe la entrepreno."],
+   "orders": ["Mi morgaŭ prezentos min ĉe la firmao."]
   },
   "ill-send-the-doctors-note-right-away": {
    "text": "Mi tuj sendos al vi la malsanateston.",
@@ -56,19 +57,23 @@
     "Mi tuj sendos al vi la malsanatestilon.",
     "Mi sendos al vi la kuracistan atestilon tuj.",
     "Mi sendos al vi la malsanateston tuj."
-   ]
+   ],
+   "orders": ["La malsanateston mi tuj sendos al vi."]
   },
   "can-you-help-me-briefly": {
    "text": "Ĉu vi povas helpi min momenton?",
-   "variants": ["Ĉu vi povus helpi min momenton?", "Ĉu vi povas mallonge helpi min?"]
+   "variants": ["Ĉu vi povus helpi min momenton?", "Ĉu vi povas mallonge helpi min?"],
+   "orders": ["Ĉu momenton vi povas helpi min?"]
   },
   "i-want-vacation-next-week": {
    "text": "Mi ŝatus preni feriojn la venontan semajnon.",
-   "variants": ["Mi volas preni feriojn la venontan semajnon.", "Mi ŝatus preni ferion la venontan semajnon."]
+   "variants": ["Mi volas preni feriojn la venontan semajnon.", "Mi ŝatus preni ferion la venontan semajnon."],
+   "orders": ["La venontan semajnon mi ŝatus preni feriojn."]
   },
   "read-the-contract-carefully": {
    "text": "Tralegu la kontrakton!",
-   "variants": ["Legu atente la kontrakton!", "Legu la kontrakton!"]
+   "variants": ["Legu atente la kontrakton!", "Legu la kontrakton!"],
+   "orders": ["La kontrakton tralegu!"]
   }
  }
 }

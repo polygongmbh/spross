@@ -23,6 +23,6 @@
   "shadow": { "text": "ombra", "variants": ["l'ombra"], "grammar": { "gender": "l'" } },
   "lets-go-to-the-beach": { "text": "Andiamo in spiaggia!", "variants": ["Andiamo alla spiaggia!", "Andiamo al mare!"] },
   "we-are-going-to-the-mountains": { "text": "Andiamo in montagna.", "variants": ["Andiamo sulle montagne."] },
-  "its-cold-in-the-mountains": { "text": "In montagna fa freddo." }
+  "its-cold-in-the-mountains": { "text": "In montagna fa freddo.", "orders": ["Fa freddo in montagna."] }
  }
 }

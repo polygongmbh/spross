@@ -96,6 +96,6 @@
   },
   "i-have-a-good-grade": { "text": "Ho un buon voto.", "variants": ["Ho un bel voto."] },
   "we-go-to-the-classroom": { "text": "Andiamo in aula.", "variants": ["Andiamo in classe."] },
-  "the-exam-is-already-corrected": { "text": "L'esame è già stato corretto." }
+  "the-exam-is-already-corrected": { "text": "L'esame è già stato corretto.", "orders": ["L'esame è stato già corretto."] }
  }
 }

@@ -46,12 +46,20 @@
   "dictionary": { "text": "vortaro" },
   "to-pronounce": { "text": "elparoli", "synonyms": ["prononci"] },
   "to-teach": { "text": "instrui" },
-  "do-the-homework": { "text": "Mi faras la hejmtaskojn.", "variants": ["Mi faras la hejmtaskon."] },
-  "look-at-the-class-schedule": { "text": "Rigardu la horaron." },
+  "do-the-homework": {
+   "text": "Mi faras la hejmtaskojn.",
+   "variants": ["Mi faras la hejmtaskon."],
+   "orders": ["La hejmtaskojn mi faras."]
+  },
+  "look-at-the-class-schedule": { "text": "Rigardu la horaron.", "orders": ["La horaron rigardu."] },
   "the-break-is-over": { "text": "La paŭzo finiĝis.", "variants": ["La paŭzo estas finita."] },
-  "ask-the-teacher": { "text": "Demandu la instruiston.", "variants": ["Demandu al la instruisto."] },
-  "i-have-a-good-grade": { "text": "Mi havas bonan noton." },
-  "we-go-to-the-classroom": { "text": "Ni iras en la klasĉambron." },
-  "the-exam-is-already-corrected": { "text": "La ekzameno jam estas korektita." }
+  "ask-the-teacher": {
+   "text": "Demandu la instruiston.",
+   "variants": ["Demandu al la instruisto."],
+   "orders": ["La instruiston demandu."]
+  },
+  "i-have-a-good-grade": { "text": "Mi havas bonan noton.", "orders": ["Bonan noton mi havas."] },
+  "we-go-to-the-classroom": { "text": "Ni iras en la klasĉambron.", "orders": ["En la klasĉambron ni iras."] },
+  "the-exam-is-already-corrected": { "text": "La ekzameno jam estas korektita.", "orders": ["La ekzameno estas jam korektita."] }
  }
 }

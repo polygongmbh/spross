@@ -14,7 +14,11 @@
   "how-many": { "text": "wie viele" },
   "where-are-they": { "text": "Wo sind sie?" },
   "who-is-there": { "text": "Wer ist da?" },
-  "do-you-need-this": { "text": "Brauchen Sie das hier?", "variants": ["Brauchst du das hier?"] },
+  "do-you-need-this": {
+   "text": "Brauchen Sie das hier?",
+   "variants": ["Brauchst du das hier?"],
+   "orders": ["Sie brauchen das hier?"]
+  },
   "when-does-it-start": { "text": "Wann fängt es an?" },
   "what-time-is-it": { "text": "Wie spät ist es?", "variants": ["Wie viel Uhr ist es?"] }
  }

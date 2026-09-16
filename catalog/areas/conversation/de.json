@@ -21,10 +21,18 @@
    "text": "Ich verstehe nicht.",
    "variants": ["Ich verstehe Sie nicht.", "Ich verstehe dich nicht."]
   },
-  "can-you-repeat-that": { "text": "Können Sie das wiederholen?", "variants": ["Kannst du das wiederholen?"] },
+  "can-you-repeat-that": {
+   "text": "Können Sie das wiederholen?",
+   "variants": ["Kannst du das wiederholen?"],
+   "orders": ["Sie können das wiederholen?"]
+  },
   "slower": { "text": "Langsamer!" },
   "i-cant-hear-you": { "text": "Ich kann Sie nicht hören.", "variants": ["Ich kann dich nicht hören."] },
-  "do-you-speak-english": { "text": "Sprechen Sie Englisch?", "variants": ["Sprichst du Englisch?"] },
+  "do-you-speak-english": {
+   "text": "Sprechen Sie Englisch?",
+   "variants": ["Sprichst du Englisch?"],
+   "orders": ["Sie sprechen Englisch?"]
+  },
   "i-need-help": { "text": "Ich brauche Hilfe." },
   "i-dont-know": { "text": "Ich weiß nicht." },
   "i-forgot": { "text": "Ich habe es vergessen.", "variants": ["Das habe ich vergessen."] },

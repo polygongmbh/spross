@@ -20,14 +20,16 @@
   "wood": { "text": "ligno" },
   "stick": { "text": "bastono" },
   "shadow": { "text": "ombro" },
-  "lets-go-to-the-beach": { "text": "Ni iru al la plaĝo!" },
+  "lets-go-to-the-beach": { "text": "Ni iru al la plaĝo!", "orders": ["Al la plaĝo ni iru!"] },
   "we-are-going-to-the-mountains": {
    "text": "Ni veturas en la montaron.",
-   "variants": ["Ni veturas al la montoj.", "Ni iras en la montaron."]
+   "variants": ["Ni veturas al la montoj.", "Ni iras en la montaron."],
+   "orders": ["En la montaron ni veturas."]
   },
   "its-cold-in-the-mountains": {
    "text": "En la montaro estas malvarme.",
-   "notes": { "eo": "Sen -n estas la loko: en la montaro. Kun -n estas la direkto: en la montaron." }
+   "notes": { "eo": "Sen -n estas la loko: en la montaro. Kun -n estas la direkto: en la montaron." },
+   "orders": ["Malvarme estas en la montaro."]
   }
  }
 }

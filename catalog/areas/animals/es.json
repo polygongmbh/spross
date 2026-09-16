@@ -16,10 +16,26 @@
   "snake": { "text": "serpiente", "grammar": { "gender": "la" } },
   "insect": { "text": "insecto", "grammar": { "gender": "el" } },
   "look-a-bird": { "text": "¡Mira, un pájaro!" },
-  "the-dog-is-barking": { "text": "El perro ladra.", "variants": ["El perro está ladrando."] },
-  "the-cat-is-meowing": { "text": "El gato maúlla.", "variants": ["El gato está maullando."] },
-  "the-bird-is-singing": { "text": "El pájaro canta.", "variants": ["El pájaro está cantando."] },
-  "the-lion-is-roaring": { "text": "El león ruge.", "variants": ["El león está rugiendo."] },
-  "the-mosquito-is-biting-me": { "text": "El mosquito me pica.", "variants": ["El mosquito está picándome."] }
+  "the-dog-is-barking": {
+   "text": "El perro ladra.",
+   "variants": ["El perro está ladrando."],
+   "orders": ["Ladra el perro."]
+  },
+  "the-cat-is-meowing": {
+   "text": "El gato maúlla.",
+   "variants": ["El gato está maullando."],
+   "orders": ["Maúlla el gato."]
+  },
+  "the-bird-is-singing": {
+   "text": "El pájaro canta.",
+   "variants": ["El pájaro está cantando."],
+   "orders": ["Canta el pájaro."]
+  },
+  "the-lion-is-roaring": { "text": "El león ruge.", "variants": ["El león está rugiendo."], "orders": ["Ruge el león."] },
+  "the-mosquito-is-biting-me": {
+   "text": "El mosquito me pica.",
+   "variants": ["El mosquito está picándome."],
+   "orders": ["Me pica el mosquito."]
+  }
  }
 }

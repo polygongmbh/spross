@@ -16,7 +16,7 @@
   "brown": { "text": "коричневий" },
   "gray": { "text": "сірий" },
   "purple": { "text": "фіолетовий" },
-  "what-color-is-it": { "text": "Якого це кольору?" },
+  "what-color-is-it": { "text": "Якого це кольору?", "orders": ["Це якого кольору?"] },
   "a-white-car": { "text": "Біла машина." }
  }
 }

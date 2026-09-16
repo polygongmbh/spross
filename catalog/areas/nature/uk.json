@@ -20,11 +20,12 @@
   "wood": { "text": "деревина" },
   "stick": { "text": "палиця" },
   "shadow": { "text": "тінь" },
-  "lets-go-to-the-beach": { "text": "Ходімо на пляж!" },
-  "we-are-going-to-the-mountains": { "text": "Ми їдемо в гори." },
+  "lets-go-to-the-beach": { "text": "Ходімо на пляж!", "orders": ["На пляж ходімо!"] },
+  "we-are-going-to-the-mountains": { "text": "Ми їдемо в гори.", "orders": ["В гори ми їдемо."] },
   "its-cold-in-the-mountains": {
    "text": "У горах холодно.",
-   "notes": { "uk": "Де? — у горах. Куди? — в гори. Прийменник той самий, форма інша." }
+   "notes": { "uk": "Де? — у горах. Куди? — в гори. Прийменник той самий, форма інша." },
+   "orders": ["Холодно у горах."]
   }
  }
 }

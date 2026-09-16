@@ -46,8 +46,8 @@
   "i-want-to-extend-my-residence-permit": { "text": "Я хотів би продовжити посвідку на проживання." },
   "fill-out-the-form": { "text": "Заповніть бланк." },
   "i-need-an-interpreter-for-the-application": { "text": "Для заяви мені потрібен перекладач." },
-  "did-you-bring-all-the-documents": { "text": "Ви принесли всі документи?" },
-  "the-decision-comes-by-mail": { "text": "Рішення надійде поштою." },
-  "when-does-my-id-expire": { "text": "Коли закінчується моє посвідчення?" }
+  "did-you-bring-all-the-documents": { "text": "Ви принесли всі документи?", "orders": ["Всі документи ви принесли?"] },
+  "the-decision-comes-by-mail": { "text": "Рішення надійде поштою.", "orders": ["Поштою надійде рішення."] },
+  "when-does-my-id-expire": { "text": "Коли закінчується моє посвідчення?", "orders": ["Коли моє посвідчення закінчується?"] }
  }
 }

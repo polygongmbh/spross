@@ -40,9 +40,9 @@
    "text": "Tiu estas mia patrino.",
    "variants": ["Ĉi tiu estas mia patrino.", "Tiu ĉi estas mia patrino.", "Tio estas mia patrino."]
   },
-  "where-is-your-father": { "text": "Kie estas via patro?" },
-  "i-have-two-children": { "text": "Mi havas du infanojn." },
-  "how-is-your-grandmother": { "text": "Kiel fartas via avino?" },
+  "where-is-your-father": { "text": "Kie estas via patro?", "orders": ["Kie via patro estas?"] },
+  "i-have-two-children": { "text": "Mi havas du infanojn.", "orders": ["Du infanojn mi havas."] },
+  "how-is-your-grandmother": { "text": "Kiel fartas via avino?", "orders": ["Kiel via avino fartas?"] },
   "a-good-friend": { "text": "bona amiko" },
   "my-girlfriend": {
    "text": "mia koramikino",
@@ -56,7 +56,8 @@
   "many-friends": { "text": "multaj amikoj" },
   "mom-help-me": {
    "text": "Panjo, helpu min!",
-   "notes": { "eo": "La objekto ricevas -n, ankaŭ post helpi: helpu vian fraton." }
+   "notes": { "eo": "La objekto ricevas -n, ankaŭ post helpi: helpu vian fraton." },
+   "orders": ["Helpu min, panjo!"]
   }
  }
 }

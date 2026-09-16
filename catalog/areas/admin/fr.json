@@ -146,7 +146,8 @@
   },
   "when-does-my-id-expire": {
    "text": "Quand expire ma carte d'identité ?",
-   "variants": ["Quand est-ce que ma carte d'identité expire ?", "Ma carte d'identité expire quand ?"]
+   "variants": ["Quand est-ce que ma carte d'identité expire ?", "Ma carte d'identité expire quand ?"],
+   "orders": ["Ma carte d'identité expire quand ?"]
   }
  }
 }

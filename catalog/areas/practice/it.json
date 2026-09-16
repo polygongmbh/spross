@@ -9,6 +9,10 @@
    "variants": ["l'obiettivo"],
    "grammar": { "gender": "l'", "plural": "obiettivi" }
   },
-  "you-can-do-it": { "text": "Ce la farai di sicuro!", "variants": ["Ce la puoi fare!"] }
+  "you-can-do-it": {
+   "text": "Ce la farai di sicuro!",
+   "variants": ["Ce la puoi fare!"],
+   "orders": ["Di sicuro ce la farai!"]
+  }
  }
 }

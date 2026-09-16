@@ -50,7 +50,8 @@
   "to-get-off": { "text": "scendere" },
   "the-bus-is-coming-soon": {
    "text": "L'autobus arriva tra poco.",
-   "variants": ["L'autobus arriva fra poco.", "Il bus arriva tra poco."]
+   "variants": ["L'autobus arriva fra poco.", "Il bus arriva tra poco."],
+   "orders": ["Tra poco arriva l'autobus."]
   },
   "when-does-the-train-leave": { "text": "Quando parte il treno?", "variants": ["A che ora parte il treno?"] },
   "have-a-good-journey": { "text": "Buon viaggio!" },
@@ -59,6 +60,6 @@
    "variants": ["Quanto costa la corsa?", "Quanto costa il biglietto?"]
   },
   "the-bus-has-already-departed": { "text": "L'autobus è già partito." },
-  "my-parents-are-coming-by-train": { "text": "I miei genitori vengono in treno." }
+  "my-parents-are-coming-by-train": { "text": "I miei genitori vengono in treno.", "orders": ["In treno vengono i miei genitori."] }
  }
 }

@@ -42,8 +42,8 @@
   "to-put": { "text": "hinlegen", "synonyms": ["hinstellen"] },
   "to-carry": { "text": "tragen" },
   "to-forget": { "text": "vergessen" },
-  "do-you-have-water": { "text": "Haben Sie Wasser?", "variants": ["Hast du Wasser?"] },
+  "do-you-have-water": { "text": "Haben Sie Wasser?", "variants": ["Hast du Wasser?"], "orders": ["Sie haben Wasser?"] },
   "where-are-you-from": { "text": "Woher kommen Sie?", "variants": ["Woher kommst du?"] },
-  "can-you-see-me": { "text": "Siehst du mich?", "variants": ["Sehen Sie mich?"] }
+  "can-you-see-me": { "text": "Siehst du mich?", "variants": ["Sehen Sie mich?"], "orders": ["Du siehst mich?"] }
  }
 }

@@ -106,11 +106,13 @@
   "customer": { "text": "cliente", "grammar": { "gender": "el" } },
   "tomorrow-i-have-a-job-interview": {
    "text": "Mañana me presento en la empresa.",
-   "variants": ["Mañana me presento en la compañía."]
+   "variants": ["Mañana me presento en la compañía."],
+   "orders": ["Me presento en la empresa mañana."]
   },
   "ill-send-the-doctors-note-right-away": {
    "text": "Le envío la baja enseguida.",
-   "variants": ["Te envío la baja enseguida.", "Le mando la baja enseguida."]
+   "variants": ["Te envío la baja enseguida.", "Le mando la baja enseguida."],
+   "orders": ["Enseguida le envío la baja."]
   },
   "can-you-help-me-briefly": {
    "text": "¿Puede ayudarme un momento?",
@@ -122,11 +124,13 @@
     "Quiero tomar vacaciones la semana que viene.",
     "Me gustaría coger vacaciones la semana que viene.",
     "Quiero coger vacaciones la próxima semana."
-   ]
+   ],
+   "orders": ["La semana que viene quiero coger vacaciones."]
   },
   "read-the-contract-carefully": {
    "text": "Lea bien el contrato.",
-   "variants": ["Lee bien el contrato.", "Lea el contrato con atención."]
+   "variants": ["Lee bien el contrato.", "Lea el contrato con atención."],
+   "orders": ["Lea el contrato bien."]
   }
  }
 }

@@ -42,11 +42,11 @@
   "muscle": { "text": "muskolo" },
   "nipple": { "text": "cico" },
   "my-head-hurts": { "text": "Mia kapo doloras.", "variants": ["Doloras al mi la kapo."] },
-  "give-me-your-hand": { "text": "Donu al mi vian manon." },
+  "give-me-your-hand": { "text": "Donu al mi vian manon.", "orders": ["Vian manon donu al mi."] },
   "open-your-mouth": { "text": "Malfermu la buŝon.", "variants": ["Malfermu vian buŝon."] },
   "close-your-eyes": { "text": "Fermu la okulojn.", "variants": ["Fermu viajn okulojn."] },
-  "i-have-long-hair": { "text": "Mi havas longajn harojn." },
+  "i-have-long-hair": { "text": "Mi havas longajn harojn.", "orders": ["Longajn harojn mi havas."] },
   "my-feet-are-cold": { "text": "Miaj piedoj estas malvarmaj." },
-  "my-heart-is-beating-fast": { "text": "Mia koro batas rapide." }
+  "my-heart-is-beating-fast": { "text": "Mia koro batas rapide.", "orders": ["Mia koro rapide batas."] }
  }
 }

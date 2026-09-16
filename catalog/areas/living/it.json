@@ -80,7 +80,8 @@
   "lets-hang-the-picture": { "text": "Appendiamo il quadro!" },
   "the-curtains-hang-over-the-window": {
    "text": "Le tende sono appese davanti alla finestra.",
-   "variants": ["Le tende pendono davanti alla finestra.", "Le tende sono davanti alla finestra."]
+   "variants": ["Le tende pendono davanti alla finestra.", "Le tende sono davanti alla finestra."],
+   "orders": ["Davanti alla finestra sono appese le tende."]
   }
  }
 }

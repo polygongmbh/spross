@@ -33,13 +33,20 @@
   "worker": { "text": "worker" },
   "employer": { "text": "employer" },
   "customer": { "text": "customer" },
-  "tomorrow-i-have-a-job-interview": { "text": "Tomorrow I will introduce myself at the company." },
+  "tomorrow-i-have-a-job-interview": {
+   "text": "Tomorrow I will introduce myself at the company.",
+   "orders": ["I will introduce myself at the company tomorrow."]
+  },
   "ill-send-the-doctors-note-right-away": {
    "text": "I'll send you the doctor's note right away.",
-   "variants": ["I'll send you the sick note right away."]
+   "variants": ["I'll send you the sick note right away."],
+   "orders": ["Right away, I'll send you the doctor's note."]
   },
   "can-you-help-me-briefly": { "text": "Can you help me briefly?" },
-  "i-want-vacation-next-week": { "text": "I would like to take vacation next week." },
-  "read-the-contract-carefully": { "text": "Read the contract carefully!" }
+  "i-want-vacation-next-week": {
+   "text": "I would like to take vacation next week.",
+   "orders": ["Next week, I would like to take vacation."]
+  },
+  "read-the-contract-carefully": { "text": "Read the contract carefully!", "orders": ["Carefully, read the contract!"] }
  }
 }

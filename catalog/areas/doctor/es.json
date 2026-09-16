@@ -69,15 +69,16 @@
   "to-look-after": { "text": "cuidar" },
   "take-the-pills-twice-daily": {
    "text": "Tome las pastillas dos veces al día.",
-   "variants": ["Toma las pastillas dos veces al día.", "Tómese las pastillas dos veces al día."]
+   "variants": ["Toma las pastillas dos veces al día.", "Tómese las pastillas dos veces al día."],
+   "orders": ["Dos veces al día tome las pastillas."]
   },
   "show-me-your-insurance-card": {
    "text": "Enséñeme su tarjeta sanitaria.",
    "variants": ["Enséñame tu tarjeta sanitaria.", "Muéstreme su tarjeta sanitaria."]
   },
-  "the-practice-is-closed": { "text": "La consulta está cerrada." },
+  "the-practice-is-closed": { "text": "La consulta está cerrada.", "orders": ["Está cerrada la consulta."] },
   "i-have-to-see-a-doctor": { "text": "Tengo que ir al médico." },
   "call-an-ambulance": { "text": "¡Llame a una ambulancia!", "variants": ["¡Llama a una ambulancia!"] },
-  "the-doctor-will-examine-you-shortly": { "text": "El médico le examinará enseguida." }
+  "the-doctor-will-examine-you-shortly": { "text": "El médico le examinará enseguida.", "orders": ["Le examinará el médico enseguida."] }
  }
 }

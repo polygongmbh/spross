@@ -45,6 +45,10 @@
    "text": "aller à l'école",
    "notes": { "fr": "aller à l'école, être à l'école : à ne change pas." }
   },
-  "are-you-going-home-already": { "text": "Vous rentrez déjà ?", "variants": ["Tu rentres déjà ?"] }
+  "are-you-going-home-already": {
+   "text": "Vous rentrez déjà ?",
+   "variants": ["Tu rentres déjà ?"],
+   "orders": ["Déjà, vous rentrez ?"]
+  }
  }
 }

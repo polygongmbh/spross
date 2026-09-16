@@ -34,10 +34,11 @@
   "few": { "text": "malmultaj" },
   "once": { "text": "unufoje" },
   "more-or-less": { "text": "pli-malpli", "variants": ["pli aŭ malpli", "pli malpli"] },
-  "i-am-always-there": { "text": "Mi ĉiam estas tie." },
+  "i-am-always-there": { "text": "Mi ĉiam estas tie.", "orders": ["Ĉiam mi estas tie."] },
   "hang-it-higher": {
    "text": "Pendigu ĝin pli alte.",
-   "notes": { "eo": "-ig- = fari tia: klara → klarigi · Pendigu ĝin pli alte!" }
+   "notes": { "eo": "-ig- = fari tia: klara → klarigi · Pendigu ĝin pli alte!" },
+   "orders": ["Pli alte pendigu ĝin."]
   },
   "is-that-enough": { "text": "Ĉu tio sufiĉas?" }
  }

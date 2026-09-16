@@ -20,6 +20,6 @@
   "the-cat-is-meowing": { "text": "La kato miaŭas." },
   "the-bird-is-singing": { "text": "La birdo kantas." },
   "the-lion-is-roaring": { "text": "La leono blekegas.", "variants": ["La leono muĝas."] },
-  "the-mosquito-is-biting-me": { "text": "La moskito pikas min." }
+  "the-mosquito-is-biting-me": { "text": "La moskito pikas min.", "orders": ["Min pikas la moskito."] }
  }
 }

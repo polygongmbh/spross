@@ -42,7 +42,7 @@
   "under-the-bed": { "text": "unter dem Bett" },
   "in-the-city": { "text": "in der Stadt" },
   "between-us": { "text": "zwischen uns" },
-  "is-it-far": { "text": "Ist es weit?" },
+  "is-it-far": { "text": "Ist es weit?", "orders": ["Es ist weit?"] },
   "at-school": { "text": "in der Schule" },
   "go-to-school": {
    "text": "in die Schule gehen",
@@ -54,7 +54,8 @@
   },
   "are-you-going-home-already": {
    "text": "Geht ihr schon nach Hause?",
-   "variants": ["Gehen Sie schon nach Hause?", "Gehst du schon nach Hause?"]
+   "variants": ["Gehen Sie schon nach Hause?", "Gehst du schon nach Hause?"],
+   "orders": ["Ihr geht schon nach Hause?"]
   }
  }
 }

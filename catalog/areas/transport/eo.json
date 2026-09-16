@@ -39,18 +39,21 @@
   },
   "the-bus-is-coming-soon": {
    "text": "La aŭtobuso tuj venas.",
-   "variants": ["La aŭtobuso baldaŭ venas.", "La buso tuj venas."]
+   "variants": ["La aŭtobuso baldaŭ venas.", "La buso tuj venas."],
+   "orders": ["Tuj venas la aŭtobuso."]
   },
   "when-does-the-train-leave": {
    "text": "Kiam la trajno ekveturas?",
-   "variants": ["Kiam ekveturas la trajno?", "Kiam la vagonaro ekveturas?"]
+   "variants": ["Kiam ekveturas la trajno?", "Kiam la vagonaro ekveturas?"],
+   "orders": ["Kiam ekveturas la trajno?"]
   },
   "have-a-good-journey": { "text": "Bonan vojaĝon!" },
   "how-much-is-the-fare": {
    "text": "Kiom kostas la veturo?",
-   "variants": ["Kiom alta estas la veturprezo?", "Kiom kostas la bileto?"]
+   "variants": ["Kiom alta estas la veturprezo?", "Kiom kostas la bileto?"],
+   "orders": ["Kiom la veturo kostas?"]
   },
-  "the-bus-has-already-departed": { "text": "La aŭtobuso jam forveturis." },
-  "my-parents-are-coming-by-train": { "text": "Miaj gepatroj venas per trajno." }
+  "the-bus-has-already-departed": { "text": "La aŭtobuso jam forveturis.", "orders": ["Jam forveturis la aŭtobuso."] },
+  "my-parents-are-coming-by-train": { "text": "Miaj gepatroj venas per trajno.", "orders": ["Per trajno venas miaj gepatroj."] }
  }
 }

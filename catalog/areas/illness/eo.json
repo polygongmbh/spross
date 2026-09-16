@@ -30,10 +30,18 @@
   "splint": { "text": "ŝino" },
   "to-recover": { "text": "resaniĝi", "variants": ["saniĝi"] },
   "allergy": { "text": "alergio" },
-  "my-throat-hurts-a-lot": { "text": "Mia gorĝo tre doloras.", "variants": ["Tre doloras al mi la gorĝo."] },
-  "ive-had-a-fever-since-yesterday": { "text": "Mi havas febron ekde hieraŭ.", "variants": ["Mi havas febron de hieraŭ."] },
+  "my-throat-hurts-a-lot": {
+   "text": "Mia gorĝo tre doloras.",
+   "variants": ["Tre doloras al mi la gorĝo."],
+   "orders": ["Tre doloras mia gorĝo."]
+  },
+  "ive-had-a-fever-since-yesterday": {
+   "text": "Mi havas febron ekde hieraŭ.",
+   "variants": ["Mi havas febron de hieraŭ."],
+   "orders": ["Ekde hieraŭ mi havas febron."]
+  },
   "get-well-soon": { "text": "Rapidan resaniĝon!", "variants": ["Baldaŭan resaniĝon!", "Resaniĝu baldaŭ!"] },
   "the-wound-hurts": { "text": "La vundo doloras." },
-  "i-hurt-myself-yesterday": { "text": "Mi vundis min hieraŭ." }
+  "i-hurt-myself-yesterday": { "text": "Mi vundis min hieraŭ.", "orders": ["Hieraŭ mi vundis min."] }
  }
 }

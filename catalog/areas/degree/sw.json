@@ -31,7 +31,7 @@
   "few": { "text": "-chache", "variants": ["wachache", "chache", "vichache", "machache", "michache"] },
   "once": { "text": "mara moja", "notes": { "sw": "mara moja, mara nyingi · mara moja pia = papo hapo" } },
   "more-or-less": { "text": "zaidi au pungufu" },
-  "i-am-always-there": { "text": "Niko pale daima." },
+  "i-am-always-there": { "text": "Niko pale daima.", "orders": ["Daima niko pale."] },
   "hang-it-higher": { "text": "Itundike juu zaidi." },
   "is-that-enough": { "text": "Inatosha?" }
  }

@@ -102,7 +102,11 @@
    "text": "¿Ha traído toda la documentación?",
    "variants": ["¿Has traído toda la documentación?", "¿Ha traído todos los documentos?"]
   },
-  "the-decision-comes-by-mail": { "text": "La resolución llega por correo.", "variants": ["La notificación llega por correo."] },
+  "the-decision-comes-by-mail": {
+   "text": "La resolución llega por correo.",
+   "variants": ["La notificación llega por correo."],
+   "orders": ["Llega la resolución por correo."]
+  },
   "when-does-my-id-expire": {
    "text": "¿Cuándo caduca mi carné de identidad?",
    "variants": ["¿Cuándo caduca mi DNI?", "¿Cuándo caduca mi carné?", "¿Cuándo vence mi carné de identidad?"]

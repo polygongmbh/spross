@@ -31,6 +31,6 @@
    "text": "Nous allons à la montagne.",
    "variants": ["On va à la montagne.", "Nous allons en montagne."]
   },
-  "its-cold-in-the-mountains": { "text": "Il fait froid à la montagne." }
+  "its-cold-in-the-mountains": { "text": "Il fait froid à la montagne.", "orders": ["À la montagne, il fait froid."] }
  }
 }

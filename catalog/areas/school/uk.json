@@ -29,12 +29,16 @@
   "dictionary": { "text": "словник" },
   "to-pronounce": { "text": "вимовляти" },
   "to-teach": { "text": "викладати" },
-  "do-the-homework": { "text": "Я роблю домашнє завдання." },
-  "look-at-the-class-schedule": { "text": "Подивись на розклад.", "variants": ["Подивіться на розклад."] },
+  "do-the-homework": { "text": "Я роблю домашнє завдання.", "orders": ["Домашнє завдання я роблю."] },
+  "look-at-the-class-schedule": {
+   "text": "Подивись на розклад.",
+   "variants": ["Подивіться на розклад."],
+   "orders": ["На розклад подивись."]
+  },
   "the-break-is-over": { "text": "Перерва закінчилася." },
   "ask-the-teacher": { "text": "Запитай вчителя.", "variants": ["Запитайте вчителя."] },
   "i-have-a-good-grade": { "text": "У мене гарна оцінка." },
-  "we-go-to-the-classroom": { "text": "Ми йдемо до класу." },
+  "we-go-to-the-classroom": { "text": "Ми йдемо до класу.", "orders": ["До класу ми йдемо."] },
   "the-exam-is-already-corrected": { "text": "Іспит уже перевірений.", "variants": ["Іспит уже перевірено."] }
  }
 }

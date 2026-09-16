@@ -45,7 +45,7 @@
   "fill-out-the-form": { "text": "Jaza fomu." },
   "i-need-an-interpreter-for-the-application": { "text": "Nahitaji mkalimani kwa ombi." },
   "did-you-bring-all-the-documents": { "text": "Umeleta nyaraka zote?" },
-  "the-decision-comes-by-mail": { "text": "Barua ya uamuzi itakuja kwa posta." },
+  "the-decision-comes-by-mail": { "text": "Barua ya uamuzi itakuja kwa posta.", "orders": ["Kwa posta itakuja barua ya uamuzi."] },
   "when-does-my-id-expire": { "text": "Kitambulisho changu kinaisha lini?" }
  }
 }

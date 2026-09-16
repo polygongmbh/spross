@@ -21,7 +21,11 @@
   "thunder": { "text": "tuono", "grammar": { "gender": "il" } },
   "lightning": { "text": "fulmine", "variants": ["lampo"], "grammar": { "gender": "il" } },
   "humid": { "text": "umido", "variants": ["umida"] },
-  "hows-the-weather-today": { "text": "Che tempo fa oggi?", "variants": ["Com'è il tempo oggi?"] },
+  "hows-the-weather-today": {
+   "text": "Che tempo fa oggi?",
+   "variants": ["Com'è il tempo oggi?"],
+   "orders": ["Oggi che tempo fa?"]
+  },
   "its-raining": { "text": "Piove.", "variants": ["Sta piovendo."] },
   "the-rain-has-stopped": { "text": "Ha smesso di piovere.", "variants": ["Non piove più.", "La pioggia è finita."] },
   "the-sun-is-shining": {
@@ -33,6 +37,6 @@
    }
   },
   "what-a-beautiful-day": { "text": "Che bella giornata!", "variants": ["Che bel giorno!"] },
-  "we-are-staying-home-because-of-the-rain": { "text": "Per la pioggia restiamo a casa." }
+  "we-are-staying-home-because-of-the-rain": { "text": "Per la pioggia restiamo a casa.", "orders": ["Restiamo a casa per la pioggia."] }
  }
 }

@@ -20,11 +20,18 @@
   "thunder": { "text": "tonnerre", "grammar": { "gender": "le" } },
   "lightning": { "text": "éclair", "variants": ["l'éclair"], "grammar": { "gender": "l'" } },
   "humid": { "text": "humide" },
-  "hows-the-weather-today": { "text": "Quel temps fait-il aujourd'hui ?", "variants": ["Il fait quel temps aujourd'hui ?"] },
+  "hows-the-weather-today": {
+   "text": "Quel temps fait-il aujourd'hui ?",
+   "variants": ["Il fait quel temps aujourd'hui ?"],
+   "orders": ["Aujourd'hui, quel temps fait-il ?"]
+  },
   "its-raining": { "text": "Il pleut." },
   "the-rain-has-stopped": { "text": "Il ne pleut plus.", "variants": ["La pluie s'est arrêtée.", "La pluie a cessé."] },
   "the-sun-is-shining": { "text": "Le soleil brille !", "variants": ["Il y a du soleil !"] },
   "what-a-beautiful-day": { "text": "Quelle belle journée !", "variants": ["Quelle journée magnifique !"] },
-  "we-are-staying-home-because-of-the-rain": { "text": "À cause de la pluie, nous restons à la maison." }
+  "we-are-staying-home-because-of-the-rain": {
+   "text": "À cause de la pluie, nous restons à la maison.",
+   "orders": ["Nous restons à la maison à cause de la pluie."]
+  }
  }
 }

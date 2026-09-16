@@ -49,12 +49,23 @@
   "fine": { "text": "Bußgeld", "grammar": { "gender": "das", "plural": "-er" } },
   "receipt": { "text": "Quittung", "grammar": { "gender": "die", "plural": "-en" } },
   "where-do-i-sign": { "text": "Wo unterschreibe ich?", "variants": ["Wo muss ich unterschreiben?"] },
-  "i-want-to-extend-my-residence-permit": { "text": "Ich möchte den Aufenthaltstitel verlängern." },
-  "fill-out-the-form": { "text": "Füllen Sie das Formular aus.", "variants": ["Fülle das Formular aus."] },
-  "i-need-an-interpreter-for-the-application": { "text": "Ich brauche für den Antrag einen Dolmetscher." },
+  "i-want-to-extend-my-residence-permit": {
+   "text": "Ich möchte den Aufenthaltstitel verlängern.",
+   "orders": ["Den Aufenthaltstitel möchte ich verlängern."]
+  },
+  "fill-out-the-form": {
+   "text": "Füllen Sie das Formular aus.",
+   "variants": ["Fülle das Formular aus."],
+   "orders": ["Sie füllen das Formular aus."]
+  },
+  "i-need-an-interpreter-for-the-application": {
+   "text": "Ich brauche für den Antrag einen Dolmetscher.",
+   "orders": ["Für den Antrag brauche ich einen Dolmetscher."]
+  },
   "did-you-bring-all-the-documents": {
    "text": "Haben Sie alle Unterlagen mitgebracht?",
-   "variants": ["Hast du alle Unterlagen mitgebracht?"]
+   "variants": ["Hast du alle Unterlagen mitgebracht?"],
+   "orders": ["Sie haben alle Unterlagen mitgebracht?"]
   },
   "the-decision-comes-by-mail": { "text": "Der Bescheid kommt per Post." },
   "when-does-my-id-expire": { "text": "Wann läuft mein Ausweis ab?" }

@@ -69,7 +69,7 @@
   "brain": { "text": "cervello", "grammar": { "gender": "il", "plural": "cervelli" } },
   "muscle": { "text": "muscolo", "grammar": { "gender": "il", "plural": "muscoli" } },
   "nipple": { "text": "capezzolo", "grammar": { "gender": "il", "plural": "capezzoli" } },
-  "my-head-hurts": { "text": "Mi fa male la testa." },
+  "my-head-hurts": { "text": "Mi fa male la testa.", "orders": ["La testa mi fa male."] },
   "give-me-your-hand": { "text": "Dammi la mano.", "variants": ["Dammi la tua mano."] },
   "open-your-mouth": { "text": "Apri la bocca." },
   "close-your-eyes": { "text": "Chiudi gli occhi." },
@@ -77,7 +77,8 @@
   "my-feet-are-cold": { "text": "Ho i piedi freddi.", "variants": ["Ho freddo ai piedi."] },
   "my-heart-is-beating-fast": {
    "text": "Il cuore mi batte veloce.",
-   "variants": ["Il mio cuore batte veloce.", "Il cuore mi batte velocemente."]
+   "variants": ["Il mio cuore batte veloce.", "Il cuore mi batte velocemente."],
+   "orders": ["Mi batte veloce il cuore."]
   }
  }
 }

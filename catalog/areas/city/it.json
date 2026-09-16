@@ -35,7 +35,11 @@
   "police": { "text": "polizia", "grammar": { "gender": "la" } },
   "cinema": { "text": "cinema", "grammar": { "gender": "il", "plural": "=" } },
   "bridge": { "text": "ponte", "grammar": { "gender": "il" } },
-  "is-there-a-bank-here": { "text": "C'è una banca qui?", "variants": ["C'è una banca qui vicino?", "Qui c'è una banca?"] },
+  "is-there-a-bank-here": {
+   "text": "C'è una banca qui?",
+   "variants": ["C'è una banca qui vicino?", "Qui c'è una banca?"],
+   "orders": ["Qui c'è una banca?"]
+  },
   "im-looking-for-a-hotel": { "text": "Cerco un albergo.", "variants": ["Sto cercando un albergo.", "Cerco un hotel."] },
   "i-live-in-this-neighborhood": { "text": "Abito in questo quartiere.", "variants": ["Vivo in questo quartiere."] }
  }

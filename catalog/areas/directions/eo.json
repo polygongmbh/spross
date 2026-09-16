@@ -22,7 +22,7 @@
   "east": { "text": "oriento" },
   "west": { "text": "okcidento" },
   "go-straight-ahead": { "text": "Iru rekten." },
-  "turn-left-at-the-corner": { "text": "Turnu maldekstren ĉe la angulo." },
+  "turn-left-at-the-corner": { "text": "Turnu maldekstren ĉe la angulo.", "orders": ["Ĉe la angulo turnu maldekstren."] },
   "how-do-i-get-to-the-station": { "text": "Kiel mi atingas la stacidomon?" },
   "im-lost": { "text": "Mi perdiĝis." }
  }

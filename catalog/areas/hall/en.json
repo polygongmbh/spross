@@ -35,7 +35,7 @@
   "to-live": { "text": "to live" },
   "do-you-have-the-keys": { "text": "Do you have the keys?" },
   "ill-be-right-back": { "text": "I'll be right back!" },
-  "hurry-were-late": { "text": "Hurry up, we're late!" },
+  "hurry-were-late": { "text": "Hurry up, we're late!", "orders": ["We're late, hurry up!"] },
   "see-you-later": { "text": "See you later!" },
   "welcome-home": { "text": "Welcome home!" },
   "dont-forget-your-jacket": { "text": "Don't forget your jacket!" },
