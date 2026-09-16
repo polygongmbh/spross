@@ -19,9 +19,9 @@ import net.spross.kern.trainer.numbersExerciseEmoji
 
 fun Chrome.name(exercise: NumbersExercise): String = when (exercise) {
     NumbersExercise.Counting -> trainerDrillNumbers
-    NumbersExercise.Clock -> trainerVariantClock
-    NumbersExercise.Phrases -> trainerVariantPhrases
-    NumbersExercise.Forms -> trainerVariantForms
+    NumbersExercise.Clock -> trainerDrillNumbersExerciseClock
+    NumbersExercise.Phrases -> trainerDrillNumbersExercisePhrases
+    NumbersExercise.Forms -> trainerDrillNumbersExerciseForms
 }
 
 /** Face and name together — how a row, a price and a mixed run's score line all read. */

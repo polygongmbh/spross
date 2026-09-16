@@ -6339,7 +6339,7 @@
       }
     },
     "trainer.drill.numbers" : {
-      "comment" : "the hub entry, and the variant's own name",
+      "comment" : "the hub entry, and the Counting exercise's own name",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6351,6 +6351,70 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Numbers"
+          }
+        }
+      }
+    },
+    "trainer.drill.numbers.exercise.clock" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uhrzeit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time"
+          }
+        }
+      }
+    },
+    "trainer.drill.numbers.exercise.forms" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahlformen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forms"
+          }
+        }
+      }
+    },
+    "trainer.drill.numbers.exercise.phrases" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sätze"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sentences"
+          }
+        }
+      }
+    },
+    "trainer.drill.numbers.exercise.years" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jahreszahlen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Years"
           }
         }
       }
@@ -6781,70 +6845,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "reached"
-          }
-        }
-      }
-    },
-    "trainer.variant.clock" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uhrzeit"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Time"
-          }
-        }
-      }
-    },
-    "trainer.variant.forms" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zahlformen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Forms"
-          }
-        }
-      }
-    },
-    "trainer.variant.phrases" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sätze"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sentences"
-          }
-        }
-      }
-    },
-    "trainer.variant.years" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jahreszahlen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Years"
           }
         }
       }

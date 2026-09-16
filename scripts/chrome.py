@@ -113,8 +113,8 @@ IOS_ONLY = {
     # Xcode canvas scaffolding, inside `#Preview("Palette")` in Design/Theme.swift.
     'preview.skip', 'preview.tokens',
     # A Swift switch owes every case a branch, including two kern never hands out: new is
-    # the absence of a standing, and Years folds into the Numbers variant.
-    'box.phase.new', 'trainer.variant.years',
+    # the absence of a standing, and Years folds into the Counting exercise.
+    'box.phase.new', 'trainer.drill.numbers.exercise.years',
     # The same control, named by another key on Android: the session ✕ reads
     # `common.done`.
     'a11y.action.endSession',

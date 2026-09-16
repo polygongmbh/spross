@@ -172,9 +172,9 @@ internal object ChromeDe : Chrome {
         "places" to "Tausend, Million, Milliarde",
         "forms" to "Mehr als Zählen",
     )
-    override val trainerVariantClock = "Uhrzeit"
-    override val trainerVariantPhrases = "Sätze"
-    override val trainerVariantForms = "Zahlformen"
+    override val trainerDrillNumbersExerciseClock = "Uhrzeit"
+    override val trainerDrillNumbersExercisePhrases = "Sätze"
+    override val trainerDrillNumbersExerciseForms = "Zahlformen"
     override val trainerModifierReverse = "Umgekehrt"
     override val trainerModifierReverseHint = "Das Zahlwort steht da, die Ziffern sind " +
         "gefragt."

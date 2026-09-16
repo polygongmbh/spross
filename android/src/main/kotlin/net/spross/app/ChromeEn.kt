@@ -170,9 +170,9 @@ internal object ChromeEn : Chrome {
         "places" to "Thousand, million, billion",
         "forms" to "Beyond counting",
     )
-    override val trainerVariantClock = "Time"
-    override val trainerVariantPhrases = "Sentences"
-    override val trainerVariantForms = "Forms"
+    override val trainerDrillNumbersExerciseClock = "Time"
+    override val trainerDrillNumbersExercisePhrases = "Sentences"
+    override val trainerDrillNumbersExerciseForms = "Forms"
     override val trainerModifierReverse = "Reversed"
     override val trainerModifierReverseHint = "The reading is shown, the digits are owed."
     override val trainerModifierFast = "Fast"

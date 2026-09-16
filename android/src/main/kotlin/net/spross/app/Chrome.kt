@@ -177,9 +177,9 @@ interface Chrome {
      * grow: one it has no wording for still gets its rows rather than printing a key.
      */
     val numberSections: Map<String, String>
-    val trainerVariantClock: String
-    val trainerVariantPhrases: String
-    val trainerVariantForms: String
+    val trainerDrillNumbersExerciseClock: String
+    val trainerDrillNumbersExercisePhrases: String
+    val trainerDrillNumbersExerciseForms: String
     val trainerModifierReverse: String
     val trainerModifierReverseHint: String
     val trainerModifierFast: String

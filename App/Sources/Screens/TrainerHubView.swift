@@ -246,9 +246,9 @@ extension NumbersReading {
     var trainerTitleKey: LocalizedStringKey {
         switch self {
         case .cardinal: return "trainer.drill.numbers"
-        case .year: return "trainer.variant.years"
-        case .clock: return "trainer.variant.clock"
-        case .form, .fraction: return "trainer.variant.forms"
+        case .year: return "trainer.drill.numbers.exercise.years"
+        case .clock: return "trainer.drill.numbers.exercise.clock"
+        case .form, .fraction: return "trainer.drill.numbers.exercise.forms"
         }
     }
 }
@@ -260,7 +260,7 @@ extension NumbersReading {
 extension NumbersExercise {
     var trainerTitleKey: LocalizedStringKey {
         switch self {
-        case .phrases: return "trainer.variant.phrases"
+        case .phrases: return "trainer.drill.numbers.exercise.phrases"
         case .counting, .clock, .forms: return reading?.trainerTitleKey ?? "trainer.drill.numbers"
         }
     }
