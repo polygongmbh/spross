@@ -1298,23 +1298,6 @@
         }
       }
     },
-    "box.own.word.otherPair %@" : {
-      "comment" : "tail on an own word written in two languages this profile cannot pair (`OwnWord.joins`); %@ is those two language codes",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "in %@ geschrieben"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "written in %@"
-          }
-        }
-      }
-    },
     "box.own.word.picture" : {
       "localizations" : {
         "de" : {
@@ -1517,13 +1500,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nichts zu „%@“ im Obstgarten."
+            "value" : "Nichts zu „%@” im Katalog."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nothing for “%@” in the orchard."
+            "value" : "Nothing for “%@” in the catalog."
           }
         }
       }
@@ -1650,13 +1633,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schon in deinem Obstgarten"
+            "value" : "Hast du schon"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Already in your orchard"
+            "value" : "You already have"
           }
         }
       }
@@ -1684,13 +1667,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neues für deinen Obstgarten"
+            "value" : "Ganz neu"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "New to your orchard"
+            "value" : "Brand new"
           }
         }
       }
@@ -4030,13 +4013,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ganze Wörter aus deinem Obstgarten nach Gehör"
+            "value" : "Ganze Wörter aus deinem Wortschatz nach Gehör"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whole words from your orchard, by ear"
+            "value" : "Whole words from your vocabulary, by ear"
           }
         }
       }

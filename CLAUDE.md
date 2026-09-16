@@ -85,6 +85,9 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 
 ## Tools
 
+- **Never Edit `.xcstrings` directly** — the file mixes ASCII `"` (JSON structure) with Unicode
+  quotation marks (content); the Edit tool silently converts ASCII quotes to curly ones, breaking JSON.
+  Use a `python3 -c` one-liner with `str.replace` or `json` to change values, then `scripts/strings.py --fix`.
 - Search with `rg`. Bare `grep` is ugrep here, and given a subdirectory it drops the repo's
   `.gitignore` and walks `kern/build/` — 11 MB where `rg` answers in 448 bytes.
 - For "where does X live" questions, read the module docs — never grow this file.

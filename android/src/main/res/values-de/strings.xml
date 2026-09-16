@@ -2,5 +2,5 @@
 <!-- The German half of the picker strings described in values/strings.xml. -->
 <resources>
     <string name="widget_picker_title">Wort des Moments</string>
-    <string name="widget_picker_description">Zeigt eine Vokabel aus deinem Obstgarten, im Lauf des Tages immer wieder eine neue.</string>
+    <string name="widget_picker_description">Zeigt eine Vokabel aus deinem Wortschatz, im Lauf des Tages immer wieder eine neue.</string>
 </resources>
