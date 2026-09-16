@@ -210,4 +210,5 @@ and a prefix every drill carried would distinguish none of them.
   and no drill books a review or touches a schedule (`../kern/README.md`),
   so a run costs the box nothing and can be closed at any moment.
   That is what names the card the Wiese / Meadow:
-  open ground beside the tended garden the box is, where nothing is sown and nothing comes due.
+  open ground beside the tended orchard the box is,
+  where nothing is sown and nothing comes due.
