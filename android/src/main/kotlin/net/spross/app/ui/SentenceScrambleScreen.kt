@@ -185,21 +185,10 @@ private fun Sentence(text: String, color: Color, modifier: Modifier = Modifier) 
 private fun Controls(flow: SentenceScrambleFlow, chrome: Chrome, onFinish: () -> Unit) {
     val state = flow.state
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
-        when {
-            // ONE primary action while the order is owed. There is no Check: the last word
-            // placed grades itself, so this can only be the ask to be shown the order.
-            state.owesAnswer -> Button(
-                onClick = { flow.reveal() },
-                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
-                shape = MaterialTheme.shapes.small,
-            ) {
-                Text(chrome.commonReveal)
-            }
-            state.showsAnswer -> ConfirmButton(chrome) { flow.confirm() }
-            // why: the beat never arms under a screen reader, so a clean arrangement would
-            // otherwise have nothing to move on with.
-            flow.awaitsConfirm -> ConfirmButton(chrome) { flow.confirm() }
-        }
+        // NOTHING while the order is owed — this is the one drill that needs no Reveal. Every
+        // word it withholds is already on screen, so placing them all reaches the authored
+        // order by itself and books exactly what asking to be shown it would.
+        if (state.showsAnswer) ConfirmButton(chrome) { flow.confirm() }
         // The way out, where it is wanted: under the button that goes on, on the second miss
         // in a row — kern decides which moment that is.
         if (state.offersFinish) DrillStopOffer(chrome, onFinish)

@@ -18,9 +18,6 @@ sealed class SentenceScrambleIntent {
     /** Take back the atom standing at [index] of the arrangement so far. */
     data class ReturnAtom(val index: Int) : SentenceScrambleIntent()
 
-    /** "Aufdecken" — the card carries the order and the question books a miss. */
-    data object Reveal : SentenceScrambleIntent()
-
     /** The explicit tap that books whatever the feedback already said. */
     data object ConfirmPending : SentenceScrambleIntent()
 

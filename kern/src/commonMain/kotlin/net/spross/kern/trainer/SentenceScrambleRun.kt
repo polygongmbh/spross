@@ -68,7 +68,6 @@ object SentenceScrambleRun {
     ): SentenceScrambleReduction = when (intent) {
         is SentenceScrambleIntent.PlaceAtom -> place(state, intent.index)
         is SentenceScrambleIntent.ReturnAtom -> take(state, intent.index)
-        SentenceScrambleIntent.Reveal -> reveal(state)
         SentenceScrambleIntent.ConfirmPending -> confirm(state, rng)
         SentenceScrambleIntent.AdvanceElapsed -> elapsed(state, rng)
     }
@@ -132,12 +131,6 @@ object SentenceScrambleRun {
         if (index !in state.placed.indices) return unchanged(state)
         val kept = state.placed.filterIndexed { at, _ -> at != index }
         return SentenceScrambleReduction(state.copy(placed = kept), emptyList())
-    }
-
-    private fun reveal(state: SentenceScrambleRunState): SentenceScrambleReduction {
-        if (state.task == null || !state.owesAnswer) return unchanged(state)
-        val verdict = TypedDrillVerdicts.reveal()
-        return SentenceScrambleReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
     private fun confirm(

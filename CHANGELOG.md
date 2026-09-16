@@ -5,6 +5,7 @@
 - Sentence scramble now offers every phrase of your language, not only the ones whose words you have already grown.
 - Word scramble now waits until you hold fifteen words worth mixing instead of five, so it no longer opens on the same handful every evening.
 - Sentence scramble now grows its answer on the card you arranged, clearing the spent words, and an arrangement you got right shows its translation instead of moving straight on.
+- Sentence scramble drops its Aufdecken button: laying every word out reaches the answer on its own.
 
 ## 7.1.1 — 2026-09-15
 

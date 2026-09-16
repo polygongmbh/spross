@@ -64,9 +64,6 @@ class SentenceScrambleFlow(
     /** An answer-row slot tapped: the atom goes back, while the order is still owed. */
     fun take(index: Int) = dispatch(SentenceScrambleIntent.ReturnAtom(index))
 
-    /** The one primary action while the order is owed — there is no Check to disagree with. */
-    fun reveal() = dispatch(SentenceScrambleIntent.Reveal)
-
     fun confirm() = dispatch(SentenceScrambleIntent.ConfirmPending)
 
     fun advanceElapsed() {

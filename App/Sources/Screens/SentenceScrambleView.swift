@@ -193,28 +193,18 @@ struct SentenceScrambleView: View {
             .minimumScaleFactor(0.6)
     }
 
+    /// NOTHING while the order is owed — this is the one drill that needs no
+    /// Reveal. Every word it withholds is already on screen, so placing them all
+    /// reaches the authored order by itself and books exactly what asking to be
+    /// shown it would; a button beside the bank offered a second way to do what
+    /// the bank does.
     @ViewBuilder
     private var controls: some View {
-        if run.owesAnswer {
-            // ONE primary action while the order is owed. There is no Check:
-            // the last word placed grades itself, so this can only be the ask
-            // to be shown the order instead.
-            Button {
-                dispatch(SentenceScrambleIntent.Reveal.shared)
-            } label: {
-                Text("common.reveal").frame(maxWidth: .infinity)
-            }
-            .buttonStyle(PrimaryButtonStyle())
-            .keyboardShortcut(.defaultAction)
-        } else if run.showsAnswer {
+        if run.showsAnswer {
             VStack(spacing: Theme.spacing.sm) {
                 nextButton
                 if run.offersFinish { DrillStopOffer { closeRun() } }
             }
-        } else if screenReaderOn {
-            // why: the timer never arms under a screen reader, so a clean
-            // arrangement would otherwise have nothing to move on with.
-            nextButton
         }
     }
 
