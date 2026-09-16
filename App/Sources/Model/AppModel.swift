@@ -39,16 +39,19 @@ final class AppModel {
     /// reduction or `box` below.
     var run: SessionRunState?
     private(set) var stats: BoxStatistics?
-    /// Where every card stands on the growth ladder — what the forest is drawn
-    /// from. Cached beside `stats` rather than derived on read: it is one entry
-    /// per card in the join, and Home would otherwise rebuild it every redraw.
+    /// Where every card stands on the growth ladder —
+    /// what the orchard is drawn from.
+    /// Cached beside `stats` rather than derived on read:
+    /// it is one entry per card in the join,
+    /// and Home would otherwise rebuild it every redraw.
     private(set) var growth: [CardGrowth] = []
     /// Everything the Home screen asks kern for, taken in one pass — see
     /// `HomeStanding`. Cached for the same reason `growth` is, and more so:
     /// three of its answers each compose a whole round.
     private(set) var home: HomeStanding = .none
-    /// One tree per area, as the forest draws them. Derived from `growth`, so
-    /// it is rebuilt with it rather than per redraw.
+    /// One tree per area, as the orchard draws them.
+    /// Derived from `growth`,
+    /// so it is rebuilt with it rather than per redraw.
     private(set) var trees: [AreaTree] = []
     /// The fortnight the activity strip shows, refreshed with the rest.
     private(set) var activity: [ActivityDay] = []
@@ -79,11 +82,11 @@ final class AppModel {
     private(set) var targetChoices: [String] = []
     /// Every shelf's heading, resolved for the reader: emoji, title, flavor line.
     /// Each is a linear scan of the catalog's area list, and the browser asks all
-    /// three per shelf while the forest asks the emoji again per tree.
+    /// three per shelf while the orchard asks the emoji again per tree.
     private(set) var areaChrome: [String: AreaChrome] = [:]
 
     /// Each area's numbers by name. `BoxStatistics.areas` is a LIST, so finding
-    /// one area in it is a scan — and both the browser and the forest do it once
+    /// one area in it is a scan — and both the browser and the orchard do it once
     /// per area, which is the same scan squared.
     private(set) var areaStatsByName: [String: AreaStatistics] = [:]
     /// How many cards the join holds. `box.cards` is a Kotlin map, so reading
@@ -401,7 +404,7 @@ final class AppModel {
     // MARK: - Persistence & stats
 
     /// Recompute everything derived from the box: the statistics, the growth
-    /// ladder, the Home standing, the forest and the activity strip.
+    /// ladder, the Home standing, the orchard and the activity strip.
     ///
     /// The ONE place any of them go stale, and so the one place they are taken
     /// again — every path that can move the box ends here (a mutation, a

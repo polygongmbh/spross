@@ -84,7 +84,7 @@ struct TreeSkeleton {
     /// four-generation crown squeezed into a dozen points reads as a scribble,
     /// its branch COUNT saying "old" while its size says "new". Taken from the
     /// area's standing rather than the size it is drawn at, so the hero and the
-    /// forest show one tree.
+    /// orchard show one tree.
     static func generations(for tree: AreaTree) -> Int {
         // why: from the number of WORDS, not the tree's height. Height comes
         // from aggregate stability, which climbs while a word is merely getting

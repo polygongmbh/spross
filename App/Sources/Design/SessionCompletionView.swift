@@ -162,7 +162,7 @@ struct SessionCompletionView: View {
             VStack(spacing: Theme.spacing.sm) {
                 GrowingTreeView(transition: grownArea,
                                 progress: burst || reduceMotion ? 1 : 0)
-                    .frame(height: ForestLayout.heroHeight(grownArea.after))
+                    .frame(height: OrchardLayout.heroHeight(grownArea.after))
                     .animation(reduceMotion ? nil
                                 : .spring(response: 1.5, dampingFraction: 0.85).delay(0.25),
                                value: burst)

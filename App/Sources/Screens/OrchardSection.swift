@@ -11,13 +11,13 @@ import SprossKern
 /// What this picture adds is the thing a count cannot —
 /// how the whole orchard is shaped,
 /// and which corners of the language have never been opened.
-struct ForestSection: View {
+struct OrchardSection: View {
     let model: AppModel
     let open: (String) -> Void
 
     /// Measured once and reused:
     /// this picture has to know its width before it can say how tall it is
-    /// (see `ForestCanvas`).
+    /// (see `OrchardCanvas`).
     @State private var width: CGFloat = 0
 
     var body: some View {
@@ -29,7 +29,7 @@ struct ForestSection: View {
             ActivityStripView(days: model.activity.map(ActivityColumn.init),
                               streakDays: model.stats?.streakDays ?? 0,
                               flame: model.stats?.flame ?? .unlit)
-            ForestCanvas(trees: model.trees, open: open, describe: describe)
+            OrchardCanvas(trees: model.trees, open: open, describe: describe)
                 .environment(\.contentWidth, width)
             caption
         }

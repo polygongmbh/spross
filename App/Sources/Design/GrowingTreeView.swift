@@ -3,7 +3,7 @@ import SwiftUI
 // MARK: - GrowingTreeView
 //
 // One area's tree, rising out of the ground. The one place in the app where a
-// tree is allowed to move: the forest on Home holds still because a box grows
+// tree is allowed to move: the orchard on Home holds still because a box grows
 // over weeks and motion there would claim a change the picture is not showing —
 // here a round has just finished, so something did in fact just happen.
 //
@@ -37,7 +37,7 @@ struct GrowingTreeView: View, Animatable {
             // why: the frame is the FINISHED tree's, so the drawing never
             // outgrows the space it was given mid-animation; within it the tree
             // rises from the height it had before the round.
-            let mark = ForestLayout.solitary(transition.after, in: size)
+            let mark = OrchardLayout.solitary(transition.after, in: size)
             TreeShapes.draw(&context, crouched(mark),
                             arriving: TreeArrival(transition, at: progress))
         }
@@ -60,8 +60,8 @@ struct GrowingTreeView: View, Animatable {
     /// area worked from nothing rises from nothing; everything else rises from
     /// where it stood, or from the crouch, whichever is lower.
     private var risen: CGFloat {
-        let full = ForestLayout.treeHeight(transition.after)
-        let was = ForestLayout.treeHeight(transition.before)
+        let full = OrchardLayout.treeHeight(transition.after)
+        let was = OrchardLayout.treeHeight(transition.before)
         let from = full > 0 ? min(Self.crouch, was / full) : Self.crouch
         // Clamped at the top: the spring settles from above, and a tree that
         // overshot its own height would be overshooting into the screen edge.
@@ -79,7 +79,7 @@ struct TreeArrival {
     /// Keyed by canopy rank; anything not in here is settled.
     private let scales: [Int: CGFloat]
 
-    /// Nothing arriving — the forest, and any tree drawn outside a summary.
+    /// Nothing arriving — the orchard on Home, and any tree drawn outside a summary.
     static let settled = TreeArrival(scales: [:])
 
     private init(scales: [Int: CGFloat]) { self.scales = scales }
@@ -175,7 +175,7 @@ struct TreeArrival {
             after: after),
         progress: 1
     )
-    .frame(height: ForestLayout.heroHeight(after))
+    .frame(height: OrchardLayout.heroHeight(after))
     .padding(Theme.spacing.xl)
     .background(Theme.colors.background)
 }
@@ -187,7 +187,7 @@ struct TreeArrival {
                           mass: 0, tendedToday: true)
     return GrowingTreeView(transition: TreeTransition(before: packed, after: packed),
                            progress: 1)
-        .frame(height: ForestLayout.heroHeight(packed))
+        .frame(height: OrchardLayout.heroHeight(packed))
         .padding(Theme.spacing.xl)
         .background(Theme.colors.background)
 }

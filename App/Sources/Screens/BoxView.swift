@@ -15,8 +15,9 @@ private let SCROLL_ATTEMPTS = 6
 
 struct BoxView: View {
     let model: AppModel
-    /// The area to open on, when the box was reached by naming one — a tree in
-    /// Home's forest. Revealed once, on appear, exactly as a search hit is.
+    /// The area to open on, when the box was reached by naming one —
+    /// a tree in Home's orchard.
+    /// Revealed once, on appear, exactly as a search hit is.
     var revealArea: String?
 
     @State private var expandedGroups: Set<String>

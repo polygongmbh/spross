@@ -101,7 +101,7 @@ extension AppModel {
     /// (`BoxEngine.markExported`).
     ///
     /// Stamped rather than mutated: `mutate` re-walks the whole box for the statistics,
-    /// the forest and the activity strip and re-encodes it for the watch and the widget,
+    /// the orchard and the activity strip and re-encodes it for the watch and the widget,
     /// and the stamp feeds none of them — it is read by this file alone. Paying for all
     /// of that is what made the copy button hang, and what left the mail button's share
     /// of it landing as the app came back.

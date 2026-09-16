@@ -157,7 +157,7 @@ enum TreeShapes {
             // hashed. A canopy of identical stamps is the other way to look
             // machine-made, and a canopy whose variation means something is
             // better than one whose variation is noise.
-            let grain = ForestLayout.noise("\(mark.tree.id)-\(rank)", 41)
+            let grain = OrchardLayout.noise("\(mark.tree.id)-\(rank)", 41)
             let reach = rank < shown.reaches.count ? shown.reaches[rank] : 0.4
             // The round's own marks arrive; the rest of the crown is settled.
             let size = CanopyMark.size(base: base, reach: reach) * arriving.scale(rank)
@@ -193,7 +193,7 @@ enum TreeShapes {
         let size = max(3, mark.height * 0.055)
         for index in 0..<min(shown.fallen, 3) {
             let side: CGFloat = index.isMultiple(of: 2) ? -1 : 1
-            let spread = clear + CGFloat(ForestLayout.noise("\(mark.tree.id)-f\(index)", 13)) * clear * 0.5
+            let spread = clear + CGFloat(OrchardLayout.noise("\(mark.tree.id)-f\(index)", 13)) * clear * 0.5
             let at = CGPoint(x: mark.foot.x + side * spread, y: mark.baseline + 0.5)
             leaf(&context, at: at, size: size, angle: side > 0 ? 0.2 : .pi - 0.2,
                  color: Theme.colors.amber.opacity(0.85))
@@ -338,7 +338,7 @@ enum CanopyMark {
                              width: radius * 2, height: radius * 2)
             } else {
                 ink = leafBounds(at: slot.point, size: size * leafStretch,
-                                 angle: lean(slot, grain: ForestLayout.noise("\(tree.id)-\(rank)", 41)))
+                                 angle: lean(slot, grain: OrchardLayout.noise("\(tree.id)-\(rank)", 41)))
             }
             spill = max(spill, max(box.minY - ink.minY,
                                    max(box.minX - ink.minX, ink.maxX - box.maxX)))

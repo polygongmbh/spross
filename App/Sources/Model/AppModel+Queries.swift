@@ -193,7 +193,7 @@ extension AppModel {
 
     /// Every shelf's heading resolved in one pass — `areaChrome` holds it.
     /// Asked per shelf, each of the three was a linear scan of the catalog's
-    /// area list, and the forest asks for the emoji again once per tree.
+    /// area list, and the orchard asks for the emoji again once per tree.
     func composedAreaChrome(catalog: Catalog) -> [String: AreaChrome] {
         var chrome: [String: AreaChrome] = [:]
         for area in catalog.areaNames {
