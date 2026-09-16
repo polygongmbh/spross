@@ -4,7 +4,7 @@ import androidx.compose.ui.unit.dp
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import net.spross.kern.trainer.ReferenceEntry
-import net.spross.kern.trainer.Trainer
+import net.spross.kern.trainer.Numbers
 
 /**
  * Which bands of the counting table stand in two columns.
@@ -17,7 +17,7 @@ class NumberReferenceColumnsTest {
     private val PHONE = 296.dp
 
     private fun band(key: String) =
-        Trainer.reference("de").first { it.key == key }.entries
+        Numbers.reference("de").first { it.key == key }.entries
 
     @Test
     fun theBandsReadAtAGlanceStandInTwoColumns() {
@@ -27,7 +27,7 @@ class NumberReferenceColumnsTest {
 
     @Test
     fun everyOtherBandKeepsTheWholeWidth() {
-        val paired = Trainer.reference("de")
+        val paired = Numbers.reference("de")
             .filter { columnCount(it.entries, fontScale = 1f, width = PHONE) == 2 }
             .map { it.key }
 
@@ -41,7 +41,7 @@ class NumberReferenceColumnsTest {
      */
     @Test
     fun ukrainianKeepsTheWholeWidthInEveryBand() {
-        val paired = Trainer.reference("uk")
+        val paired = Numbers.reference("uk")
             .filter { columnCount(it.entries, fontScale = 1f, width = PHONE) == 2 }
             .map { it.key }
 

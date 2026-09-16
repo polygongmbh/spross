@@ -9,7 +9,7 @@ import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.Realization
 import net.spross.kern.model.nfcNormalized
 import net.spross.kern.trainer.PhraseTemplate
-import net.spross.kern.trainer.Trainer
+import net.spross.kern.trainer.Numbers
 
 /**
  * The parsed content catalog. Cards are a runtime [join] per (source, target) profile —
@@ -182,7 +182,7 @@ class Catalog internal constructor(
      * directional like a [Card]. `masculineNumeral`/`swahiliNounClass`/`notes` ride along
      * from the ANSWER realization;
      * `count` rides from BOTH, because agreement belongs to whichever language
-     * authored it and the prompt renders its own frame. Empty unless [Trainer.supports] the
+     * authored it and the prompt renders its own frame. Empty unless [Numbers.supports] the
      * target — sampling generates the answer side's number words, so a target without a pack
      * only ever supplies prompts.
      */
@@ -190,7 +190,7 @@ class Catalog internal constructor(
         require(source != target) { "source == target ($source)" }
         require(source in languages) { "unknown source language \"$source\"" }
         require(target in languages) { "unknown target language \"$target\"" }
-        if (!Trainer.supports(target)) return emptyList()
+        if (!Numbers.supports(target)) return emptyList()
         val sourceFrames = frameRealizations[source].orEmpty()
         val targetFrames = frameRealizations[target].orEmpty()
         // why: markers resolve before the template is built, so {slot}/{count} filling
@@ -203,7 +203,7 @@ class Catalog internal constructor(
             val answer = targetFrames[frame.slug]?.resolved(targetName) ?: return@mapNotNull null
             // why: a fraction slot needs the pack to READ one — a frame the target cannot
             // fill is dropped here rather than throwing on the first draw, in a live run.
-            if (!Trainer.supportsSlot(frame.slot, target)) return@mapNotNull null
+            if (!Numbers.supportsSlot(frame.slot, target)) return@mapNotNull null
             PhraseTemplate(
                 id = frame.slug,
                 source = source,

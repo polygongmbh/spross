@@ -34,8 +34,8 @@ class ClockDayPartSweepTests {
             val offenders = sortedSetOf<String>()
             for (h in 0..11) {
                 for (m in 0..59) {
-                    val here = Trainer.clock(h, m, language)
-                    val twelveOn = Trainer.clock(h + 12, m, language)
+                    val here = Numbers.clock(h, m, language)
+                    val twelveOn = Numbers.clock(h + 12, m, language)
                     for ((a, b) in listOf(here to twelveOn, twelveOn to here)) {
                         for (form in a.accepted) {
                             if (parts.none { it in form.lowercase() }) continue

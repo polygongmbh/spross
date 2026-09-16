@@ -9,9 +9,9 @@ import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.Realization
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.Match
-import net.spross.kern.trainer.Trainer
+import net.spross.kern.trainer.Numbers
 import net.spross.kern.trainer.TrainerKind
-import net.spross.kern.trainer.TrainerTask
+import net.spross.kern.trainer.NumbersTask
 
 /** One sampled task, narrowed to JS-clean types (no Long, no List). */
 @JsExport
@@ -49,7 +49,7 @@ class NumbersDrill(private val language: String, seed: Int, articles: Array<Stri
     )
 
     fun sample(level: Int): WebTask =
-        Trainer.sample(TrainerKind.Numbers, language, level, rng).web()
+        Numbers.sample(TrainerKind.Numbers, language, level, rng).web()
 
     fun grade(input: String, task: WebTask): WebVerdict =
         when (val match = normalizer.evaluate(input, gradingCard(task))) {
@@ -85,17 +85,17 @@ class NumbersDrill(private val language: String, seed: Int, articles: Array<Stri
 object WebTrainer {
     /** Canonical spelled-out reading, for the generated primer tables. */
     fun spellNumber(value: Int, language: String): String =
-        Trainer.number(value.toLong(), language).display
+        Numbers.number(value.toLong(), language).display
 
     fun placeValueHint(digits: Int, language: String): String? =
-        Trainer.placeValueHint(digits, language)
+        Numbers.placeValueHint(digits, language)
 
     /**
      * The numbers page the app shows, band by band — every reading generated from
      * the packs the drill grades against, so the primer cannot drift from it.
      */
     fun reference(language: String): Array<WebRefBand> =
-        Trainer.reference(language)
+        Numbers.reference(language)
             .map { band ->
                 WebRefBand(band.key, band.entries.map { WebRefRow(it.value, it.reading) }.toTypedArray())
             }
@@ -106,7 +106,7 @@ object WebTrainer {
      * link beside the drill offers on its own.
      */
     fun tensReference(language: String): Array<String>? =
-        Trainer.reference(language).firstOrNull { it.key == "tens" }
+        Numbers.reference(language).firstOrNull { it.key == "tens" }
             ?.entries?.map { "${it.value} ${it.reading}" }?.toTypedArray()
 }
 
@@ -116,7 +116,7 @@ class WebRefRow internal constructor(val value: String, val reading: String)
 @JsExport
 class WebRefBand internal constructor(val key: String, val entries: Array<WebRefRow>)
 
-private fun TrainerTask.web(): WebTask = WebTask(
+private fun NumbersTask.web(): WebTask = WebTask(
     prompt = prompt,
     promptDisplay = promptDisplay,
     display = display,

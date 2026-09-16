@@ -43,7 +43,7 @@ IOS_BODIES = ["App/Sources/Design/CardReveal.swift", "App/Sources/Design/SpokenW
               "App/Sources/Screens/DrillRunView+Choices.swift"]
 DROID_UI = "android/src/main/kotlin/net/spross/app/ui/"
 DROID_FACES = [DROID_UI + n for n in ("CardFace.kt", "CountryPromptCard.kt", "ProduceCard.kt",
-                                      "TrainerPrompt.kt", "LetterDrillScreen.kt")]
+                                      "NumbersPrompt.kt", "LetterDrillScreen.kt")]
 DROID_BODIES = [DROID_UI + n for n in ("CardText.kt", "LetterDrillStages.kt",
                                        "DrillChoiceGrid.kt", "TypedDrillScreen.kt")]
 

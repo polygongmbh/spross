@@ -18,8 +18,8 @@ class NumberReferenceTests {
 
     @Test
     fun everyAuthoredLanguageGetsTheSameSections() {
-        for (language in Trainer.languages) {
-            val table = Trainer.reference(language)
+        for (language in Numbers.languages) {
+            val table = Numbers.reference(language)
             assertEquals(
                 cardinalKeys,
                 table.map { it.key }.filterNot { it == "forms" || it == "irregulars" },
@@ -41,14 +41,14 @@ class NumberReferenceTests {
      */
     @Test
     fun theFormsBandFollowsTheLanguagesOwnReach() {
-        for (language in Trainer.languages) {
-            val band = Trainer.reference(language).firstOrNull { it.key == "forms" }
-            if (!Trainer.supportsForms(language)) {
+        for (language in Numbers.languages) {
+            val band = Numbers.reference(language).firstOrNull { it.key == "forms" }
+            if (!Numbers.supportsForms(language)) {
                 assertNull(band, language)
                 continue
             }
             val rows = assertNotNull(band, language).entries
-            val reads = NumberForm.entries.count { it in Trainer.pack(language).formLimits.forms }
+            val reads = NumberForm.entries.count { it in Numbers.pack(language).formLimits.forms }
             assertTrue(rows.isNotEmpty() && rows.size <= reads, "$language: ${rows.size} of $reads")
             for (row in rows) assertTrue(row.reading.isNotBlank(), "$language ${row.value}")
         }
@@ -61,30 +61,30 @@ class NumberReferenceTests {
      */
     @Test
     fun theFormsBandNamesEveryMarkOnce() {
-        val de = Trainer.reference("de").first { it.key == "forms" }.entries
+        val de = Numbers.reference("de").first { it.key == "forms" }.entries
         assertEquals(listOf("-7", "3,5", "25 %", "3×", "1/2", "1."), de.map { it.value })
         assertEquals(
             listOf("minus sieben", "drei Komma fünf", "fünfundzwanzig Prozent",
                    "dreimal", "ein halb", "erste"),
             de.map { it.reading },
         )
-        val en = Trainer.reference("en").first { it.key == "forms" }.entries
+        val en = Numbers.reference("en").first { it.key == "forms" }.entries
         assertEquals("3.5", en[1].value)
         assertEquals("three point five", en[1].reading)
         // Swahili ranks nothing without the noun it ranks, so it gets no ordinal row.
-        val sw = Trainer.reference("sw").first { it.key == "forms" }.entries
+        val sw = Numbers.reference("sw").first { it.key == "forms" }.entries
         assertTrue(sw.none { it.value.endsWith(".") }, sw.joinToString { it.value })
     }
 
     /** The table cannot drift from the generator, because it IS the generator. */
     @Test
     fun everyReadingIsWhatTheDrillWouldAsk() {
-        for (language in Trainer.languages) {
-            for (section in Trainer.reference(language).filterNot { it.key == "forms" }) {
+        for (language in Numbers.languages) {
+            for (section in Numbers.reference(language).filterNot { it.key == "forms" }) {
                 for (entry in section.entries) {
                     val value = entry.value.filter { it.isDigit() }.toLong()
                     assertEquals(
-                        Trainer.number(value, language).display,
+                        Numbers.number(value, language).display,
                         entry.reading,
                         "$language ${section.key} ${entry.value}",
                     )
@@ -95,7 +95,7 @@ class NumberReferenceTests {
 
     @Test
     fun theBandsCoverTheValuesTheLadderReaches() {
-        val values = Trainer.reference("de").associate { it.key to it.entries.map { e -> e.value } }
+        val values = Numbers.reference("de").associate { it.key to it.entries.map { e -> e.value } }
         assertEquals((0..15).map { it.toString() }, values["base"])
         assertEquals((2..9).map { "${it}0" }, values["tens"])
         assertEquals((16..30).map { it.toString() }, values["irregulars"])
@@ -119,17 +119,17 @@ class NumberReferenceTests {
      */
     @Test
     fun theIrregularBandIsOfferedOnlyWhereTheLanguageIsIrregular() {
-        val shown = Trainer.languages.filter { language ->
-            Trainer.reference(language).any { it.key == "irregulars" }
+        val shown = Numbers.languages.filter { language ->
+            Numbers.reference(language).any { it.key == "irregulars" }
         }
         assertEquals(listOf("de", "es", "fr", "it", "uk"), shown.sorted())
-        val fr = Trainer.reference("fr").first { it.key == "irregulars" }.entries
+        val fr = Numbers.reference("fr").first { it.key == "irregulars" }.entries
         assertEquals("seize", fr.first().reading)
         assertEquals("dix-sept", fr.first { it.value == "17" }.reading)
-        val es = Trainer.reference("es").first { it.key == "irregulars" }.entries
+        val es = Numbers.reference("es").first { it.key == "irregulars" }.entries
         assertEquals("dieciséis", es.first().reading)
         assertEquals("veintiséis", es.first { it.value == "26" }.reading)
-        assertEquals("sechzehn", Trainer.reference("de").first { it.key == "irregulars" }
+        assertEquals("sechzehn", Numbers.reference("de").first { it.key == "irregulars" }
             .entries.first().reading)
     }
 
@@ -140,7 +140,7 @@ class NumberReferenceTests {
      */
     @Test
     fun swahilisTensLookUpSurvivesInsideTheTable() {
-        val rows = Trainer.reference("sw").flatMap { it.entries }.associate { it.value to it.reading }
+        val rows = Numbers.reference("sw").flatMap { it.entries }.associate { it.value to it.reading }
         val expected = listOf(
             "10" to "kumi", "20" to "ishirini", "30" to "thelathini", "40" to "arobaini",
             "50" to "hamsini", "60" to "sitini", "70" to "sabini", "80" to "themanini",
@@ -154,10 +154,10 @@ class NumberReferenceTests {
     /** Values that would otherwise never be seen: 0 and the one non-round hundred. */
     @Test
     fun theTableCarriesTheWordsTheDrillHides() {
-        val de = Trainer.reference("de").flatMap { it.entries }.associate { it.value to it.reading }
+        val de = Numbers.reference("de").flatMap { it.entries }.associate { it.value to it.reading }
         assertEquals("null", de["0"])
         assertEquals("einhunderteins", de["101"])
-        val es = Trainer.reference("es").flatMap { it.entries }.associate { it.value to it.reading }
+        val es = Numbers.reference("es").flatMap { it.entries }.associate { it.value to it.reading }
         assertEquals("cien", es["100"])
         assertTrue(es["101"]!!.startsWith("ciento"), es["101"]!!)
         assertEquals("treinta y uno", es["31"])
@@ -188,7 +188,7 @@ class NumberReferenceTests {
         for ((language, words) in expected) {
             assertEquals(
                 words,
-                NumberForm.entries.map { Trainer.formHint(it.key, language) },
+                NumberForm.entries.map { Numbers.formHint(it.key, language) },
                 language,
             )
         }
@@ -197,7 +197,7 @@ class NumberReferenceTests {
     /** A key kern never emits names nothing — the app must not print a slug. */
     @Test
     fun anUnknownFormKeyNamesNothing() {
-        assertNull(Trainer.formHint("cardinal", "de"))
-        assertNull(Trainer.formHint("", "de"))
+        assertNull(Numbers.formHint("cardinal", "de"))
+        assertNull(Numbers.formHint("", "de"))
     }
 }

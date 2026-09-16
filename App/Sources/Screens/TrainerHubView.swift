@@ -29,7 +29,7 @@ struct TrainerHubView: View, LanguageNaming {
     // why: internal, not private — the UI-test hook in
     // TrainerHubView+Destinations.swift gates the numbers overview on it.
     var slotsAvailable: Bool {
-        drillLanguage.map { Trainer.shared.supports(language: $0) } ?? false
+        drillLanguage.map { Numbers.shared.supports(language: $0) } ?? false
     }
 
     /// The sentence drill this profile can run: the frames the catalog joins
@@ -282,7 +282,7 @@ extension DrillModifier {
         switch self {
         case .reverse: return "trainer.modifier.reverse.hint"
         case .fast:
-            return "trainer.modifier.fast.hint \(Int(Trainer.shared.winsToAdvance(fast: false)))"
+            return "trainer.modifier.fast.hint \(Int(Numbers.shared.winsToAdvance(fast: false)))"
         case .mix: return "trainer.modifier.mix.hint"
         }
     }

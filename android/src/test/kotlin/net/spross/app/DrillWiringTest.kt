@@ -31,8 +31,8 @@ import net.spross.kern.trainer.ScrambleTokenizer
 import net.spross.kern.trainer.SentenceScrambleAvailability
 import net.spross.kern.trainer.SentenceScrambleRun
 import net.spross.kern.trainer.SentenceScrambleRunConfig
-import net.spross.kern.trainer.TrainerMode
-import net.spross.kern.trainer.TrainerRun
+import net.spross.kern.trainer.NumbersMode
+import net.spross.kern.trainer.NumbersRun
 import net.spross.kern.trainer.WordScrambleAvailability
 import net.spross.kern.trainer.WordScrambleRun
 import net.spross.kern.trainer.WordScrambleRunConfig
@@ -58,8 +58,8 @@ class DrillWiringTest {
 
     // MARK: - The slot run
 
-    private fun slots(platform: Platform, seed: Int = 7): TrainerFlow = TrainerFlow(
-        start = TrainerRun.open(TrainerMode(DrillVariant.Numbers, "de"), Random(seed)),
+    private fun slots(platform: Platform, seed: Int = 7): NumbersFlow = NumbersFlow(
+        start = NumbersRun.open(NumbersMode(DrillVariant.Numbers, "de"), Random(seed)),
         // A run with no language info grades plainly — enough to drive the wiring.
         normalizer = null,
         rng = Random(seed),

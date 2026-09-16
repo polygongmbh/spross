@@ -103,16 +103,16 @@ class PhraseSlotInstantiationTests {
      */
     @Test
     fun reversingAPhraseAsksForTheSlotValueOnly() {
-        val plates = Trainer.reversed(PhraseSlots.instantiate(frame("sw", "we-have-n-plates"), value = 347L))
+        val plates = Numbers.reversed(PhraseSlots.instantiate(frame("sw", "we-have-n-plates"), value = 347L))
         assertEquals("Tuna sahani mia tatu na arobaini na saba.", plates.prompt)
         assertEquals(listOf("347"), plates.accepted)
 
-        val departure = Trainer.reversed(
+        val departure = Numbers.reversed(
             PhraseSlots.instantiate(frame("sw", "train-departs-at"), hour = 8, minute = 5),
         )
         assertEquals(listOf("08:05", "8:05"), departure.accepted)
 
-        val fraction = Trainer.reversed(
+        val fraction = Numbers.reversed(
             RealFrames.instantiate(RealFrames.frame("de", "i-need-n-kilo-of-flour", source = "en"), value = 0L),
         )
         assertEquals("Ich brauche ein Viertel Kilo Mehl.", fraction.prompt)
@@ -120,7 +120,7 @@ class PhraseSlotInstantiationTests {
 
         for (template in RealFrames.all) {
             val task = RealFrames.instantiate(template, value = 21L)
-            val back = Trainer.reversed(task)
+            val back = Numbers.reversed(task)
             val where = "${template.source}→${template.target} ${template.id}"
             assertEquals(task.display, back.prompt, where)
             assertTrue(back.accepted.isNotEmpty(), where)

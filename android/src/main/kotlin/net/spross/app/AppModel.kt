@@ -69,7 +69,7 @@ import net.spross.kern.store.StoredBox
 import net.spross.kern.store.StoredBoxes
 import net.spross.kern.store.rekeyingPrefixedVerbs
 import net.spross.kern.trainer.DrillRunSummary
-import net.spross.kern.trainer.TrainerMode
+import net.spross.kern.trainer.NumbersMode
 
 sealed interface Screen {
     data object Loading : Screen
@@ -93,7 +93,7 @@ sealed interface Screen {
     data object Dates : Screen
 
     /** A slot run, carrying the spec the page it was started from spelled. */
-    data class Trainer(val mode: TrainerMode) : Screen
+    data class NumbersRun(val mode: NumbersMode) : Screen
 
     data object LetterDrill : Screen
 
@@ -551,8 +551,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.Home
     }
 
-    fun startTrainerRun(mode: TrainerMode) {
-        screen = Screen.Trainer(mode)
+    fun startTrainerRun(mode: NumbersMode) {
+        screen = Screen.NumbersRun(mode)
     }
 
     fun startLetterDrill() {

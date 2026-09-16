@@ -30,7 +30,7 @@ import net.spross.app.Chrome
 import net.spross.app.speakFormOnTap
 import net.spross.kern.model.Language
 import net.spross.kern.trainer.ReferenceEntry
-import net.spross.kern.trainer.Trainer
+import net.spross.kern.trainer.Numbers
 
 /**
  * How a language counts, as a table: every band kern names, each row a written value beside
@@ -60,7 +60,7 @@ fun NumberReferenceTable(
     // why: empty for a language kern has no pack for — `reference` requires one, and the
     // absence is checked here rather than trusted of every caller.
     val sections = remember(language) {
-        if (Trainer.supports(language)) Trainer.reference(language) else emptyList()
+        if (Numbers.supports(language)) Numbers.reference(language) else emptyList()
     }
     val fontScale = LocalDensity.current.fontScale
     val heard = sections.any { section ->

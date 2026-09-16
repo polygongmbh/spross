@@ -65,8 +65,8 @@ class LetterDictationGradingTest {
         // The pair the typo-bridge guard names for uk (`kern/docs/grading.md`): it lives in
         // the number pack rather than the catalog, so it can never be DICTATED — but it is
         // the language's known one-edit collision, and the grading path is the same one.
-        val nine = Trainer.number(9, "uk").display
-        val ten = Trainer.number(10, "uk").display
+        val nine = Numbers.number(9, "uk").display
+        val ten = Numbers.number(10, "uk").display
         val cards = listOf(numberCard("nine", nine), numberCard("ten", ten))
         val spoken = grading(cards.byText(ten))
         assertIs<Match.Typo>(normalizer("uk").evaluate(nine, spoken), "$nine/$ten stopped colliding")

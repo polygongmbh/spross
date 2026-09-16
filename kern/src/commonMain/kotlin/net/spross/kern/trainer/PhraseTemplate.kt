@@ -4,7 +4,7 @@ import net.spross.kern.model.Language
 
 /**
  * Slot-template model for generated phrases: a curated sentence frame whose
- * single `{slot}` is filled with a Trainer-generated value — digits on the
+ * single `{slot}` is filled with a value [Numbers] generates — digits on the
  * source-language prompt side, target-language words on the answer side.
  */
 data class PhraseTemplate(
@@ -20,7 +20,7 @@ data class PhraseTemplate(
     val sourceTemplate: String,
     /**
      * Target sentence with `{slot}` (and `{count}` iff [countForms] is set);
-     * display/accepted substitute the Trainer's word forms.
+     * display/accepted substitute the numbers drill's word forms.
      */
     val targetTemplate: String,
     val slotKind: TrainerKind,

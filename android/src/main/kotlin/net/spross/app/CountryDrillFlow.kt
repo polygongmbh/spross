@@ -10,7 +10,7 @@ import net.spross.kern.trainer.CountryDrillRunConfig
 import net.spross.kern.trainer.CountryDrillRunState
 
 /**
- * One atlas run as this platform holds it — the third sibling of [TrainerFlow] and
+ * One atlas run as this platform holds it — the third sibling of [NumbersFlow] and
  * [LetterDrillFlow], over kern's own [CountryDrillRun].
  *
  * Everything decidable is kern's: which question a Sprosse may ask, which row is drawn, what a
@@ -99,7 +99,7 @@ class CountryDrillFlow(
 fun AppModel.newCountryDrill(
     reverse: Boolean,
     fast: Boolean,
-    /** The Sprosse the run opens on — the page's call ([net.spross.kern.trainer.TrainerMode.entrySprosse] or a tap). */
+    /** The Sprosse the run opens on — the page's call ([net.spross.kern.trainer.NumbersMode.entrySprosse] or a tap). */
     level: Int,
     onTone: (ToneKind) -> Unit = {},
     onReleaseFocus: () -> Unit = {},

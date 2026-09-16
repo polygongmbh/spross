@@ -79,7 +79,7 @@ object DrillUnlocks {
 /**
  * The Sprosse ramp INSIDE a run — the other half of the progression, and the one every
  * drill shares. How long a Sprosse is stays the caller's rule
- * ([LetterDrill.winsToAdvance] counts a held vocabulary, [Trainer.winsToAdvance]
+ * ([LetterDrill.winsToAdvance] counts a held vocabulary, [Numbers.winsToAdvance]
  * reads the Fast modifier); what a Sprosse DOES with an answer is decided here once.
  */
 object DrillRamp {

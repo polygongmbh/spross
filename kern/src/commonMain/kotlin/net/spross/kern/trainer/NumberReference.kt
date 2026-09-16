@@ -57,7 +57,7 @@ private val REFERENCE_VALUES: List<Pair<String, List<Long>>> = listOf(
 )
 
 internal fun buildReference(language: Language): List<ReferenceSection> {
-    val pack = Trainer.pack(language)
+    val pack = Numbers.pack(language)
     val bands = REFERENCE_VALUES.filterNot { (key, _) ->
         key == IRREGULARS && readsSixteenToThirtyPlainly(pack)
     }
@@ -153,7 +153,7 @@ private fun formExamples(limits: FormLimits): List<NumberValue> =
  * Returns null for a form this language does not read.
  */
 internal fun formMarker(language: Language, form: NumberForm): String? {
-    val pack = Trainer.pack(language)
+    val pack = Numbers.pack(language)
     val value = formExamples(pack.formLimits).firstOrNull { it.form == form } ?: return null
     val reading = pack.formReading(value).firstOrNull() ?: return null
     val cardinals = value.components

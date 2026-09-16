@@ -6,7 +6,7 @@ import net.spross.kern.session.TurnFeedback
 import net.spross.kern.session.AnswerNormalizer
 
 /**
- * The atlas drill as pure state plus one reducer — the third sibling of [TrainerRun] and
+ * The atlas drill as pure state plus one reducer — the third sibling of [NumbersRun] and
  * [LetterDrillRun]. The run's shape is [CountryDrillRunState]; what it can ask is
  * [CountryDrill].
  *

@@ -14,7 +14,7 @@ import net.spross.kern.trainer.LetterDrillRunConfig
 import net.spross.kern.trainer.LetterDrillRunState
 
 /**
- * One letter run as this platform holds it — the twin of [TrainerFlow], over kern's own
+ * One letter run as this platform holds it — the twin of [NumbersFlow], over kern's own
  * [LetterDrillRun].
  *
  * Everything decidable is kern's: the ladder, the draw, the ramp step, the three-way

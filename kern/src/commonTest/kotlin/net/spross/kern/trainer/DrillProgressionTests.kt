@@ -40,7 +40,7 @@ class DrillProgressionTests {
         val variants = listOf(
             Triple(DrillVariant.Clock, DrillVariant.Numbers, 4),
             // The phrase gate rides the clock ceiling, so growing the ladder raises it.
-            Triple(DrillVariant.Phrases, DrillVariant.Clock, Trainer.maxLevel(TrainerKind.Clock)),
+            Triple(DrillVariant.Phrases, DrillVariant.Clock, Numbers.maxLevel(TrainerKind.Clock)),
             Triple(DrillVariant.Forms, DrillVariant.Numbers, 7),
         )
         for ((locked, on, level) in variants) {
@@ -77,8 +77,8 @@ class DrillProgressionTests {
 
     @Test
     fun fastModeHalvesTheSprosse() {
-        assertEquals(2, Trainer.winsToAdvance(fast = false))
-        assertEquals(1, Trainer.winsToAdvance(fast = true))
+        assertEquals(2, Numbers.winsToAdvance(fast = false))
+        assertEquals(1, Numbers.winsToAdvance(fast = true))
     }
 
     // The ramp — one rule for every drill, whatever it asks.
@@ -173,12 +173,12 @@ class DrillProgressionTests {
     @Test
     fun reversingSwapsThePromptAndAsksForTheValue() {
         val rng = Random(20260807)
-        for (language in Trainer.languages) {
+        for (language in Numbers.languages) {
             for (kind in TrainerKind.entries) {
-                for (level in 1..Trainer.maxLevel(kind)) {
+                for (level in 1..Numbers.maxLevel(kind)) {
                     repeat(5) {
-                        val forward = Trainer.sample(kind, language, level, rng)
-                        val back = Trainer.reversed(forward)
+                        val forward = Numbers.sample(kind, language, level, rng)
+                        val back = Numbers.reversed(forward)
                         val where = "$language $kind level=$level ${forward.prompt}"
                         assertEquals(forward.display, back.prompt, where)
                         assertEquals(back.prompt, back.promptDisplay, where)
@@ -194,25 +194,25 @@ class DrillProgressionTests {
 
     @Test
     fun reversedNumbersTakeEitherSpellingAndRevealTheGroupedOne() {
-        val forward = Trainer.number(12345, "de")
-        val back = Trainer.reversed(forward)
+        val forward = Numbers.number(12345, "de")
+        val back = Numbers.reversed(forward)
         assertEquals(forward.display, back.prompt)
         assertEquals(listOf("12345", "12\u202F345"), back.accepted)
         assertEquals("12\u202F345", back.display)
-        assertEquals(listOf("347"), Trainer.reversed(Trainer.number(347, "de")).accepted)
+        assertEquals(listOf("347"), Numbers.reversed(Numbers.number(347, "de")).accepted)
     }
 
     @Test
     fun reversedClockTakesBothDigitalForms() {
-        val back = Trainer.reversed(Trainer.clock(8, 5, "de"))
+        val back = Numbers.reversed(Numbers.clock(8, 5, "de"))
         assertEquals(listOf("08:05", "8:05"), back.accepted)
         assertEquals("08:05", back.display)
-        assertEquals(listOf("14:35"), Trainer.reversed(Trainer.clock(14, 35, "de")).accepted)
+        assertEquals(listOf("14:35"), Numbers.reversed(Numbers.clock(14, 35, "de")).accepted)
     }
 
     @Test
     fun reversedYearsAreNeverGrouped() {
-        val back = Trainer.reversed(Trainer.year(1978, "de"))
+        val back = Numbers.reversed(Numbers.year(1978, "de"))
         assertEquals(listOf("1978"), back.accepted)
         assertEquals("1978", back.display)
     }

@@ -44,7 +44,7 @@ struct NumbersOverview: View {
     /// own close, and this is the only presenter on this view — the stacked-cover
     /// hazard the hub documents is about two of them on one view.
     private struct Launch: Identifiable {
-        let mode: TrainerSessionView.Mode
+        let mode: NumbersRunView.Mode
         let id = UUID()
     }
 
@@ -89,7 +89,7 @@ struct NumbersOverview: View {
         // why: a closing run books its best Sprossen into TrainerProgress, so the
         // ladder behind it is stale the moment the cover comes down.
         .fullScreenCover(item: $launch, onDismiss: reloadProgress) { launch in
-            TrainerSessionView(mode: launch.mode, normalizer: launch.mode.normalizer(model),
+            NumbersRunView(mode: launch.mode, normalizer: launch.mode.normalizer(model),
                                catalog: model.catalog, model: model,
                                onFinish: { result in
                                    withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
@@ -109,8 +109,8 @@ struct NumbersOverview: View {
     /// The run the current picks describe. Phrase frames ride along whether or
     /// not Phrases is picked — `Mode` drops a frameless Phrases itself, and
     /// carrying them means the run samples from the set the screen was opened with.
-    func buildMode() -> TrainerSessionView.Mode {
-        TrainerSessionView.Mode(variants: picked,
+    func buildMode() -> NumbersRunView.Mode {
+        NumbersRunView.Mode(variants: picked,
                                 language: language,
                                 phraseSource: phraseDrill?.source,
                                 templates: phraseDrill?.templates ?? [],
@@ -129,7 +129,7 @@ struct NumbersOverview: View {
         var levels: [DrillVariant: Int] = [:]
         for variant in DrillVariant.allCases {
             levels[variant] = TrainerProgress.best(
-                for: TrainerMode.companion.progressKey(variant: variant, language: language))
+                for: NumbersMode.companion.progressKey(variant: variant, language: language))
         }
         #if DEBUG
         levels.merge(Self.uitestProgress) { _, seeded in seeded }

@@ -12,7 +12,7 @@ import SprossKern
 // costs a number, where anything in the box costs learning history.
 
 enum TrainerRecords {
-    private static var prefix: String { TrainerMode.companion.RECORD_PREFIX }
+    private static var prefix: String { NumbersMode.companion.RECORD_PREFIX }
 
     static func best(for key: String) -> Int {
         UserDefaults.standard.integer(forKey: prefix + key)
@@ -30,7 +30,7 @@ enum TrainerRecords {
 
     // MARK: - Answers in one run
 
-    private static var answersPrefix: String { TrainerMode.companion.ANSWERS_PREFIX }
+    private static var answersPrefix: String { NumbersMode.companion.ANSWERS_PREFIX }
 
     /// The most answers one run under `key` ever took, or 0 where none has closed.
     static func bestAnswers(for key: String) -> Int {

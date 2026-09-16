@@ -84,7 +84,7 @@ Catalog content — its forms, its audio and the per-language questions — live
   `le` cannot take its hue there until the snapshot carries a gender (a `!` change).
 - A drill's typed-answer controls (the field, the one primary action that reveals or checks,
   the amber hold, the revealed branch with its stop offer, the screen-reader "Weiter") stand
-  verbatim in `TrainerSessionView+Drill.swift`, `LetterDrillView+Stages.swift` and
+  verbatim in `NumbersRunView+Drill.swift`, `LetterDrillView+Stages.swift` and
   `DrillRunView+Content.swift` with the live check wired per copy, so one component owning the
   branch and the `onChange(of: input)` beside it would make a fourth drill's auto-confirm
   structural rather than remembered. Scope it off `audit-2026-09-13.md` § 1 rather than this
@@ -210,7 +210,7 @@ Catalog content — its forms, its audio and the per-language questions — live
   and split cleanly: provenance/attribution rules apart from the playback
   index and the naming rules, lookup apart from parse in the fixture half.
 - Android reads no state-seeding launch extra — iOS pins a drill screenshot with `-uitest-streak/-level/-misses`
-  (`App/Sources/Screens/TrainerSessionView+UITest.swift`) while `SprossActivity` mirrors only `readAloud`,
+  (`App/Sources/Screens/NumbersRunView+UITest.swift`) while `SprossActivity` mirrors only `readAloud`,
   so a side-by-side check of `DrillStreakLine` and the tier beats on Android has to be played to by adb;
   `--es streak N` and its siblings in `SprossActivity.onCreate` would close it.
 - The two scramble runs cannot be screenshot on a fresh Android profile — iOS opens them staged with

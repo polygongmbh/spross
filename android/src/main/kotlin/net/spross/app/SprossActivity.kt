@@ -41,7 +41,7 @@ import net.spross.app.ui.OnboardingScreen
 import net.spross.app.ui.SentenceScrambleScreen
 import net.spross.app.ui.SessionScreen
 import net.spross.app.ui.SprossTheme
-import net.spross.app.ui.TrainerSessionScreen
+import net.spross.app.ui.NumbersRunScreen
 import net.spross.app.ui.WordScrambleScreen
 
 class SprossActivity : ComponentActivity() {
@@ -179,7 +179,7 @@ private fun Root(model: AppModel = viewModel()) {
             Screen.Letters -> LettersOverviewScreen(model)
             Screen.Countries -> CountriesOverviewScreen(model)
             Screen.Dates -> DatesOverviewScreen(model)
-            is Screen.Trainer -> TrainerSessionScreen(model, screen.mode)
+            is Screen.NumbersRun -> NumbersRunScreen(model, screen.mode)
             Screen.LetterDrill -> LetterDrillScreen(model)
             Screen.WordScramble -> WordScrambleScreen(model)
             Screen.SentenceScramble -> SentenceScrambleScreen(model)

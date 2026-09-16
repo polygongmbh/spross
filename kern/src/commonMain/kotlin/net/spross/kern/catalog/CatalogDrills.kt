@@ -1,7 +1,7 @@
 package net.spross.kern.catalog
 
 import net.spross.kern.model.Language
-import net.spross.kern.trainer.Trainer
+import net.spross.kern.trainer.Numbers
 
 /**
  * What the drills read out of the catalog: the atlas and the calendars joined for one
@@ -69,7 +69,7 @@ fun Catalog.dateDrillContent(source: Language, target: Language): DateDrillConte
     require(source != target) { "source == target ($source)" }
     val sourceCalendar = dateCalendars[source] ?: return null
     val targetCalendar = dateCalendars[target] ?: return null
-    if (!Trainer.supports(target)) return null
+    if (!Numbers.supports(target)) return null
     return DateDrillContent(
         source = source,
         target = target,

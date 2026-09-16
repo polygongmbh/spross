@@ -1,6 +1,6 @@
 package net.spross.kern.catalog
 
-import net.spross.kern.trainer.Trainer
+import net.spross.kern.trainer.Numbers
 import net.spross.kern.trainer.TrainerKind
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -51,7 +51,7 @@ class CatalogFrameLintTest {
         }
     }
 
-    /** The Trainer fills one value per frame: a second `{slot}` has nothing to go in it. */
+    /** The numbers drill fills one value per frame: a second `{slot}` has nothing to go in it. */
     @Test
     fun everyFrameAndVariantCarriesExactlyOneSlot() {
         forEachFrame { lang, slug, frame ->
@@ -85,7 +85,7 @@ class CatalogFrameLintTest {
     /**
      * The reference page's prose is authored per language and picked by the reader, so an
      * unknown key is prose nobody will ever see. English is required of every language the
-     * Trainer can generate: it is the fallback every other reader lands on, and without it
+     * numbers drill can generate: it is the fallback every other reader lands on, and without it
      * that language's overview shows a heading with nothing under it.
      */
     @Test
@@ -100,7 +100,7 @@ class CatalogFrameLintTest {
                 }
             }
         }
-        for (lang in catalog.languages.keys.filter { Trainer.supports(it) }) {
+        for (lang in catalog.languages.keys.filter { Numbers.supports(it) }) {
             assertTrue(
                 catalog.numberNotes(lang, Catalog.FALLBACK_SOURCE).isNotEmpty(),
                 "phrases/$lang.json: no English number notes, so every reader's overview is empty",
@@ -141,7 +141,7 @@ class CatalogFrameLintTest {
         }
         for ((source, sourceMarked) in marked) {
             for ((target, targetMarked) in marked) {
-                if (source == target || !Trainer.supports(target)) continue
+                if (source == target || !Numbers.supports(target)) continue
                 val joined = catalog.phraseTemplates(source, target).map { it.id }.toSet()
                 for (slug in sourceMarked intersect targetMarked) {
                     assertTrue(slug in joined, "$source→$target: \"$slug\" dropped — no name for $target")

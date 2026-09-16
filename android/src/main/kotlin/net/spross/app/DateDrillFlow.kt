@@ -13,7 +13,7 @@ import net.spross.kern.trainer.DateDrillRunConfig
 import net.spross.kern.trainer.DateDrillRunState
 
 /**
- * One dates run as this platform holds it — the fourth sibling of [TrainerFlow],
+ * One dates run as this platform holds it — the fourth sibling of [NumbersFlow],
  * [LetterDrillFlow] and [CountryDrillFlow], over kern's own [DateDrillRun].
  *
  * Everything decidable is kern's: which question a Sprosse may ask, which date is drawn, what
@@ -117,7 +117,7 @@ class DateDrillFlow(
 fun AppModel.newDateDrill(
     reverse: Boolean,
     fast: Boolean,
-    /** The Sprosse the run opens on — the page's call ([net.spross.kern.trainer.TrainerMode.entrySprosse] or a tap). */
+    /** The Sprosse the run opens on — the page's call ([net.spross.kern.trainer.NumbersMode.entrySprosse] or a tap). */
     level: Int,
     onTone: (ToneKind) -> Unit = {},
     onReleaseFocus: () -> Unit = {},

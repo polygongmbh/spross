@@ -6,7 +6,7 @@ package net.spross.kern.trainer
  * Declaration order is LADDER order: the order the forms unlock on the Forms drill,
  * and the order a language's own set is walked when a Sprosse offers nothing it can read.
  * All of this is `internal` on purpose — none of it belongs in the ObjC header,
- * because the app only ever sees the rendered [TrainerTask].
+ * because the app only ever sees the rendered [NumbersTask].
  */
 internal enum class NumberForm {
     Negative, Decimal, Percent, Multiplicative, Fraction, Ordinal;
@@ -81,7 +81,7 @@ internal const val TIMES_SUFFIX = "\u00D7"
  * stays neutral: `20.` is the ordinal mark in all five languages for the same reason
  * U+202F is the group separator in all five.
  *
- * [grouped] fills [TrainerTask.promptDisplay]; the integer part is what gets grouped,
+ * [grouped] fills [NumbersTask.promptDisplay]; the integer part is what gets grouped,
  * so a five-digit negative reads `-12 345` and its fraction digits stay one run.
  */
 internal fun renderForm(value: NumberValue, decimalMark: Char, grouped: Boolean): String {

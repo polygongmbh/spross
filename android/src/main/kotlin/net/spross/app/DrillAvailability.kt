@@ -3,7 +3,7 @@ package net.spross.app
 import net.spross.kern.catalog.alphabet
 import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.SentenceScrambleAvailability
-import net.spross.kern.trainer.Trainer
+import net.spross.kern.trainer.Numbers
 import net.spross.kern.trainer.WordScrambleAvailability
 
 /**
@@ -30,7 +30,7 @@ val AppModel.trainerHubOffered: Boolean
 
 /** Counting, clock and forms all come out of one pack — the registry rule, not the ladder. */
 val AppModel.numbersOffered: Boolean
-    get() = box?.joinStamp?.target?.let { Trainer.supports(it) } == true
+    get() = box?.joinStamp?.target?.let { Numbers.supports(it) } == true
 
 /**
  * The letters entry rides on the alphabet FILE existing and nothing else: the table ships

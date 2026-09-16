@@ -8,7 +8,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
-import net.spross.kern.trainer.Trainer
+import net.spross.kern.trainer.Numbers
 
 /**
  * The shipping calendars, linted whole: what only the real catalog can prove. The
@@ -102,7 +102,7 @@ class CatalogDatesLintTest {
             for (target in catalog.dateCalendars.keys) {
                 if (source == target) continue
                 val content = catalog.dateDrillContent(source, target)
-                if (Trainer.supports(target)) {
+                if (Numbers.supports(target)) {
                     assertNotNull(content, "$source→$target: no dates drill")
                 } else {
                     assertNull(content, "$source→$target: a pack-less answer side joined anyway")
@@ -129,7 +129,7 @@ class CatalogDatesLintTest {
                     assertTrue(line.isNotBlank() && line.trim() == line, "$where: untrimmed \"$line\"")
                 }
             }
-            if (!Trainer.supports(lang)) continue
+            if (!Numbers.supports(lang)) continue
             assertTrue(
                 catalog.dateNotes(lang, Catalog.FALLBACK_SOURCE).isNotEmpty(),
                 "dates/$lang.json: no English date notes, so every reader's calendar page is empty",
@@ -149,7 +149,7 @@ class CatalogDatesLintTest {
     @Test
     fun noLanguageHasATwoWordDayMonthReadingBesideADistanceOnePair() {
         for ((lang, calendar) in catalog.dateCalendars) {
-            if (!Trainer.supports(lang)) continue
+            if (!Numbers.supports(lang)) continue
             val normalizer = AnswerNormalizer.drill(catalog.languages.getValue(lang))
             val shapesPerEntry = (calendar.weekdays + calendar.months).map { name ->
                 (listOf(name.text) + name.synonyms + name.variants + listOfNotNull(name.dateForm))
@@ -167,7 +167,7 @@ class CatalogDatesLintTest {
                 }
             }
             if (confusable.isEmpty()) continue
-            val pack = Trainer.pack(lang)
+            val pack = Numbers.pack(lang)
             val fewestWords = calendar.months.minOf { month ->
                 (1..31).minOf { day ->
                     calendar.patterns.dayMonth.text

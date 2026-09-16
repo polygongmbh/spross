@@ -37,7 +37,7 @@ internal object RealFrames {
         hour: Int = 9,
         minute: Int = 45,
         fraction: Pair<Long, Long> = 1L to 4L,
-    ): TrainerTask = when (template.slotKind) {
+    ): NumbersTask = when (template.slotKind) {
         TrainerKind.Clock -> PhraseSlots.instantiate(template, hour, minute)
         TrainerKind.Fraction -> PhraseSlots.instantiate(template, fraction.first, fraction.second)
         else -> PhraseSlots.instantiate(template, value)

@@ -36,7 +36,7 @@ import net.spross.app.TypedDrillView
 import net.spross.app.speakDrillAnswer
 import net.spross.app.speakFormOnTap
 import net.spross.kern.session.ToneKind
-import net.spross.kern.trainer.TrainerMode
+import net.spross.kern.trainer.NumbersMode
 import net.spross.kern.session.TurnFeedback
 import net.spross.kern.session.AnswerNormalizer
 
@@ -101,7 +101,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
             // Neither buys a padlock (the drill is ungated); they are what the page reads
             // back — where the next run opens, and what Fast is priced against.
             store.bookSprosse(key, closed.bestLevel)
-            store.bookCleared(TrainerMode.clearedKey(key, reverse), closed.clearedSprossen)
+            store.bookCleared(NumbersMode.clearedKey(key, reverse), closed.clearedSprossen)
             closed.summary?.let {
                 store.bookAnswers(key, it.done)
                 if (it.newRecord) {

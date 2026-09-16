@@ -111,7 +111,7 @@ internal object DateDrillTasks {
     fun dayMonth(content: DateDrillContent, day: Int, monthIndex: Int): DateDrillTask {
         val pattern = content.patterns.dayMonth
         val slots = listOf(
-            "{day}" to Trainer.pack(content.target).dateDay(day),
+            "{day}" to Numbers.pack(content.target).dateDay(day),
             "{month}" to dateForms(content.months[monthIndex].target),
         )
         return DateDrillTask(
@@ -134,7 +134,7 @@ internal object DateDrillTasks {
         val pattern = content.patterns.date
         val slots = listOf(
             "{weekday}" to dateForms(weekday.target),
-            "{day}" to Trainer.pack(content.target).dateDay(day),
+            "{day}" to Numbers.pack(content.target).dateDay(day),
             "{month}" to dateForms(content.months[monthIndex].target),
         )
         return DateDrillTask(
@@ -162,7 +162,7 @@ internal object DateDrillTasks {
         // why: once the year fixes the date the weekday is a fact — computed, never drawn,
         // so the card never states a date that does not exist.
         val weekday = content.weekdays[weekdayIndex(year, monthIndex + 1, day)]
-        val pack = Trainer.pack(content.target)
+        val pack = Numbers.pack(content.target)
         val authored = requireNotNull(content.patterns.dateWithYear) {
             "no dateWithYear pattern for ${content.target}"
         }

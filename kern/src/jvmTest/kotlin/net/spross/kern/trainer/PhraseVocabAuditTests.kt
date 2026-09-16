@@ -184,7 +184,7 @@ class PhraseVocabAuditTests {
             listOf("de", "en", "eo", "es", "fr", "it", "sw", "uk").all { it in audited },
             "audited: $audited",
         )
-        for (target in audited) assertTrue(Trainer.supports(target), "$target answers without a pack")
+        for (target in audited) assertTrue(Numbers.supports(target), "$target answers without a pack")
     }
 
     // Catalog extraction

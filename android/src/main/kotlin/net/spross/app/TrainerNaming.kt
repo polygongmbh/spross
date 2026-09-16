@@ -6,7 +6,7 @@ import net.spross.kern.trainer.DateTaskKind
 import net.spross.kern.trainer.DrillModifier
 import net.spross.kern.trainer.DrillVariant
 import net.spross.kern.trainer.LetterStage
-import net.spross.kern.trainer.Trainer
+import net.spross.kern.trainer.Numbers
 import net.spross.kern.trainer.drillVariantEmoji
 
 /**
@@ -39,7 +39,7 @@ fun Chrome.name(modifier: DrillModifier): String = when (modifier) {
 
 fun Chrome.hint(modifier: DrillModifier): String = when (modifier) {
     DrillModifier.Reverse -> trainerModifierReverseHint
-    DrillModifier.Fast -> trainerModifierFastHint.format(Trainer.winsToAdvance(fast = false))
+    DrillModifier.Fast -> trainerModifierFastHint.format(Numbers.winsToAdvance(fast = false))
     DrillModifier.Mix -> trainerModifierMixHint
 }
 

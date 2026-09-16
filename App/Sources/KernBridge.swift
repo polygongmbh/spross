@@ -111,7 +111,7 @@ var drillRandom: KotlinRandom {
     let seed = UserDefaults.standard.integer(forKey: "uitest-seed")
     // why: a fresh seeded instance per access — SwiftUI may re-run a view's init,
     // so every draw is a function of (seed, intents so far), not of render count.
-    if seed > 0 { return Trainer.shared.seededRandom(seed: Int32(seed)) }
+    if seed > 0 { return Numbers.shared.seededRandom(seed: Int32(seed)) }
     #endif
     return KotlinRandom.companion
 }

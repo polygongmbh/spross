@@ -26,7 +26,7 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.TypedDrillStanding
 import net.spross.kern.model.Language
-import net.spross.kern.trainer.TrainerMode
+import net.spross.kern.trainer.NumbersMode
 
 /**
  * What tells one typed drill's page from the other: its own words, its own ladder, what its
@@ -62,8 +62,8 @@ class TypedDrillLadder(
  * The SPROSSEN are not earned — the drills are ungated, so no row carries a padlock — but the
  * ladder wears its RECORD: each circle says whether some run stood on that Sprosse or
  * answered every question of it, and `Los` opens on the lowest Sprosse no run has answered
- * out ([TrainerMode.entrySprosse]). The rows the learner has been on are the control: tapping
- * one opens a run there instead ([TrainerMode.openable]); a Sprosse nobody has reached yet is
+ * out ([NumbersMode.entrySprosse]). The rows the learner has been on are the control: tapping
+ * one opens a run there instead ([NumbersMode.openable]); a Sprosse nobody has reached yet is
  * reading matter until the ladder gets there. Fast is the single row with a price, and kern sets it.
  *
  * The ladder redraws when the reverse switch below it flips — the page shows exactly the
@@ -91,7 +91,7 @@ fun TypedDrillOverview(
     // out of reach, and a switch must never outlive the price that bought it.
     val fast = fastPicked && fastOpen
     val cleared = ladder.standing.cleared(reverse)
-    val entry = TrainerMode.entrySprosse(cleared, ceiling)
+    val entry = NumbersMode.entrySprosse(cleared, ceiling)
 
     val result = model.trainer.result
     // why: a tile inserted ABOVE the content keeps the scroll offset, so what a run came
@@ -118,7 +118,7 @@ fun TypedDrillOverview(
                     name = ladder.sprosse(sprosse, reverse),
                     mark = sprosseMark(sprosse, cleared, ladder.standing.bestSprosse),
                     entry = sprosse == entry,
-                    open = TrainerMode.openable(sprosse, cleared, ladder.standing.bestSprosse, ceiling),
+                    open = NumbersMode.openable(sprosse, cleared, ladder.standing.bestSprosse, ceiling),
                     chrome = chrome,
                     onClick = { ladder.start(reverse, fast, sprosse) },
                 )

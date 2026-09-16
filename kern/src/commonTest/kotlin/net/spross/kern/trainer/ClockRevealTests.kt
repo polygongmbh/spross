@@ -38,7 +38,7 @@ class ClockRevealTests {
 
     @Test
     fun everyAlternativeTheGlossNamesIsAcceptedAndNotTheDisplay() {
-        for (language in Trainer.languages) {
+        for (language in Numbers.languages) {
             val marker = alternativeMarkers[language]
             assertTrue(
                 marker != null || language in ruleHintGlosses,
@@ -46,7 +46,7 @@ class ClockRevealTests {
             )
             for (hour in 0..23) {
                 for (minute in 0..59) {
-                    val task = Trainer.clock(hour, minute, language)
+                    val task = Numbers.clock(hour, minute, language)
                     val where = "$language ${task.prompt}"
                     assertTrue(task.display in task.accepted, "$where: display not accepted")
                     if (marker == null) continue
@@ -69,12 +69,12 @@ class ClockRevealTests {
     @Test
     fun everyReadingSetStaysWithinItsCapAndCarriesNoDuplicates() {
         val caps = mapOf("de" to 14, "en" to 27, "es" to 42, "fr" to 28, "it" to 38, "sw" to 22, "uk" to 24, "eo" to 22)
-        for (language in Trainer.languages) {
+        for (language in Numbers.languages) {
             var widest = 0
             var widestAt = ""
             for (hour in 0..23) {
                 for (minute in 0..59) {
-                    val task = Trainer.clock(hour, minute, language)
+                    val task = Numbers.clock(hour, minute, language)
                     assertEquals(
                         task.accepted.size, task.accepted.toSet().size,
                         "$language ${task.prompt}: duplicate readings",

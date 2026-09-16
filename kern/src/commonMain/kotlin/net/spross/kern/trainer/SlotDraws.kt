@@ -36,9 +36,9 @@ internal fun drawSlot(kind: TrainerKind, language: Language, rng: Random): SlotV
     TrainerKind.Forms -> noSlotGenerator(kind)
 }
 
-/** Leveled draw, with the level semantics [Trainer.sample] documents. */
+/** Leveled draw, with the level semantics [Numbers.sample] documents. */
 internal fun drawSlot(kind: TrainerKind, language: Language, level: Int, rng: Random): SlotValue {
-    val l = level.coerceIn(1, Trainer.maxLevel(kind))
+    val l = level.coerceIn(1, Numbers.maxLevel(kind))
     return when (kind) {
         TrainerKind.Numbers -> SlotValue.Count(drawNumber(l, rng))
         TrainerKind.Years -> SlotValue.Year(drawSampleYear(l, rng))
@@ -92,7 +92,7 @@ internal const val FRACTION_MAX_LEVEL = 2
  * a third up is a noun in its own right and drops into a sentence unchanged.
  */
 private fun drawFractionSlot(language: Language, level: Int, rng: Random): SlotValue.Part {
-    val limits = Trainer.pack(language).formLimits
+    val limits = Numbers.pack(language).formLimits
     val pool = fractionPool(limits, wide = level >= 2, minDenominator = 3)
     val drawn = pool[rng.nextInt(pool.size)]
     return SlotValue.Part(drawn.numerator, drawn.denominator)

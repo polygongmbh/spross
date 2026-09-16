@@ -4,8 +4,8 @@ import kotlin.random.Random
 import net.spross.kern.model.Language
 
 /**
- * Instantiates a [PhraseTemplate] into a [TrainerTask] by composing with the
- * Trainer slot generators: the source-language prompt gets the digits, the
+ * Instantiates a [PhraseTemplate] into a [NumbersTask] by composing with the
+ * numbers drill's slot generators: the source-language prompt gets the digits, the
  * target display gets the canonical words, accepted gets one full sentence
  * per accepted FRAME × accepted slot RENDERING — every authored variant frame
  * crossed with every written-out generator variant plus the digit form(s)
@@ -18,23 +18,23 @@ object PhraseSlots {
      * Clock templates. Any minute is read out by the language clocks; the
      * source prompt shows the digital time ("… um 14:35 Uhr …").
      */
-    fun instantiate(template: PhraseTemplate, hour: Int, minute: Int): TrainerTask {
+    fun instantiate(template: PhraseTemplate, hour: Int, minute: Int): NumbersTask {
         require(template.slotKind == TrainerKind.Clock) { "hour/minute instantiation requires a Clock template" }
-        val slot = Trainer.clock(hour, minute, template.target)
+        val slot = Numbers.clock(hour, minute, template.target)
         return compose(template, slot, value = null)
     }
 
     /** Number and year templates. */
-    fun instantiate(template: PhraseTemplate, value: Long): TrainerTask {
+    fun instantiate(template: PhraseTemplate, value: Long): NumbersTask {
         require(template.slotKind != TrainerKind.Clock) { "clock templates take hour/minute" }
         // Exhaustive on purpose: a new kind must fail loudly here rather than
         // silently become a year, which an `else` arm would have made it.
         val slot = when (template.slotKind) {
             // why: drill accepted set — sw speakers routinely drop the "na" connectors
             TrainerKind.Numbers -> template.swahiliNounClass
-                ?.let { Trainer.concordedNumber(value, it, template.target) }
-                ?: Trainer.drillNumber(value, template.target)
-            TrainerKind.Years -> Trainer.year(value, template.target)
+                ?.let { Numbers.concordedNumber(value, it, template.target) }
+                ?: Numbers.drillNumber(value, template.target)
+            TrainerKind.Years -> Numbers.year(value, template.target)
             TrainerKind.Clock, TrainerKind.Forms, TrainerKind.Fraction ->
                 throw IllegalArgumentException("no phrase slot generator for ${template.slotKind}")
         }
@@ -45,28 +45,28 @@ object PhraseSlots {
      * Fraction templates. Reduced, and never a half — the frame carries the reading as a
      * bare noun and has no way to decline around an adjectival one ([SlotValue.Part]).
      */
-    fun instantiate(template: PhraseTemplate, numerator: Long, denominator: Long): TrainerTask {
+    fun instantiate(template: PhraseTemplate, numerator: Long, denominator: Long): NumbersTask {
         require(template.slotKind == TrainerKind.Fraction) { "only a fraction template takes n/d" }
-        val slot = Trainer.fraction(numerator, denominator, template.target)
+        val slot = Numbers.fraction(numerator, denominator, template.target)
         return compose(template, slot, value = null)
     }
 
     /**
-     * Full-difficulty sampling with the Trainer's ported biases
+     * Full-difficulty sampling with the numbers drill's ported biases
      * (numbers 10–9999 weighted to 2–3 digits, years around 1950–2050).
      * Clock is the whole face; fractions are everything the language reads.
      */
-    fun sample(template: PhraseTemplate, rng: Random): TrainerTask =
+    fun sample(template: PhraseTemplate, rng: Random): NumbersTask =
         instantiate(template, drawSlot(template.slotKind, template.target, rng))
 
     /**
      * Level-aware sampling for the gentle sentence-drill ramp: the slot value
      * is drawn with the SAME level semantics as the plain drills (numbers:
      * level = digit count; years: recent decades → historic range; clock:
-     * full hours → any minute — see the leveled [Trainer.sample]), then
+     * full hours → any minute — see the leveled [Numbers.sample]), then
      * instantiated, so accepted sentences stay identical to [instantiate].
      */
-    fun sample(template: PhraseTemplate, level: Int, rng: Random): TrainerTask =
+    fun sample(template: PhraseTemplate, level: Int, rng: Random): NumbersTask =
         instantiate(template, drawSlot(template.slotKind, template.target, level, rng))
 
     /**
@@ -74,7 +74,7 @@ object PhraseSlots {
      * prompt: `slot.prompt.toLong()` was only ever defined while every slot rendered as
      * digits, and it is the fraction slot that ends that.
      */
-    private fun instantiate(template: PhraseTemplate, value: SlotValue): TrainerTask = when (value) {
+    private fun instantiate(template: PhraseTemplate, value: SlotValue): NumbersTask = when (value) {
         is SlotValue.Count -> instantiate(template, value.n)
         is SlotValue.Year -> instantiate(template, value.y)
         is SlotValue.Time -> instantiate(template, value.hour, value.minute)
@@ -91,7 +91,7 @@ object PhraseSlots {
 
     // Composition
 
-    internal fun compose(template: PhraseTemplate, slot: TrainerTask, value: Long?): TrainerTask {
+    internal fun compose(template: PhraseTemplate, slot: NumbersTask, value: Long?): NumbersTask {
         val countWord = template.countForms?.let { forms ->
             require(template.slotKind == TrainerKind.Numbers) { "countForms only compose with Numbers" }
             value?.let(forms::form)
@@ -123,7 +123,7 @@ object PhraseSlots {
         }
         val gloss = listOfNotNull(template.note, slot.gloss).joinToString(" · ")
 
-        return TrainerTask(
+        return NumbersTask(
             kind = template.slotKind, language = template.target,
             prompt = prompt, accepted = accepted, display = display,
             gloss = gloss.ifEmpty { null },
@@ -151,7 +151,7 @@ object PhraseSlots {
         if (template.slotKind != TrainerKind.Clock) {
             return fillTarget(frame, reading, countWord, language)
         }
-        val pack = Trainer.pack(language)
+        val pack = Numbers.pack(language)
         val marker = PhraseTemplate.SLOT_MARKER
         val absorbed = pack.slotEcho?.let { frame.replace("$marker $it", marker) } ?: frame
         val preposition = pack.readingPrepositions.firstOrNull { reading.startsWith(it) }
@@ -166,9 +166,9 @@ object PhraseSlots {
      * so a learner who copies the separator into a sentence answer must not lose the
      * Sprosse to the word-count rule.
      */
-    private fun digitForms(slot: TrainerTask): List<String> {
+    private fun digitForms(slot: NumbersTask): List<String> {
         if (slot.kind != TrainerKind.Clock) return listOf(slot.prompt, slot.promptDisplay).distinct()
-        return Trainer.clockDigitForms(slot.prompt)
+        return Numbers.clockDigitForms(slot.prompt)
     }
 
     /**
@@ -214,7 +214,7 @@ object PhraseSlots {
         if (sentenceStart) return first.uppercase() + words.substring(1)
         // why: German's readings begin on nouns (Mitternacht, Viertel) — lowercasing one
         // mid-sentence spells it wrong, so only a sentence-cased language gives its capital up.
-        if (!Trainer.pack(language).readingsCarrySentenceCapital) return words
+        if (!Numbers.pack(language).readingsCarrySentenceCapital) return words
         return first.lowercase() + words.substring(1)
     }
 }

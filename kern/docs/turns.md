@@ -174,7 +174,7 @@ Engine contract: `../README.md`.
 - A drill run is a **pure machine** shaped like the turn machine above:
   `open(mode, rng) → state`, `reduce(state, intent, rng) → state + effects`,
   `close(state, …) → summary + bookings`.
-  `TrainerRun` drives the numbers/clock/forms/phrases trainer, `LetterDrillRun` the letter drill,
+  `NumbersRun` drives the numbers/clock/forms/phrases trainer, `LetterDrillRun` the letter drill,
   `CountryDrillRun` the atlas, `DateDrillRun` the calendar,
   `WordScrambleRun` the spelling scramble and `SentenceScrambleRun` the word-order one;
   platforms keep field, keyboard, focus, timers and audio, and text reaches the machine only inside intents —
@@ -230,16 +230,16 @@ Engine contract: `../README.md`.
   and the cleared Sprossen as a bitmask under `trainer.cleared.<key>` —
   filed per DIRECTION, a reversed run's key ending `.rev`,
   because a row means a different question either way round
-  (`TrainerMode.RECORD_PREFIX` / `PROGRESS_PREFIX` / `ANSWERS_PREFIX` / `CLEARED_PREFIX`,
+  (`NumbersMode.RECORD_PREFIX` / `PROGRESS_PREFIX` / `ANSWERS_PREFIX` / `CLEARED_PREFIX`,
   keys byte-identical across the two stores).
   The atlas, the calendar and both scrambles all keep that mask;
   the scrambles keep NOTHING ELSE — no streak record, so their `newRecord` is always false.
   `close` returns only bookings that beat the standing value (strictly greater);
   the platform writes blindly — except the cleared set, which it ORs into the mask it holds.
   Where a typed run OPENS is kern's too: the lowest Sprosse the mask does not hold
-  (`TrainerMode.entrySprosse`), or the one the learner tapped — which may be that entry or
+  (`NumbersMode.entrySprosse`), or the one the learner tapped — which may be that entry or
   anything below it, or a Sprosse some run reached, never one they have not been on
-  (`TrainerMode.openable`).
+  (`NumbersMode.openable`).
   The scrambles take the stored mask as a plain `cleared` on their run config and offer no tap at all:
   a ladder nobody can see named is a ladder nobody needs to override.
   Pinned quirk: a non-null `phraseSource` suffixes the record language with the

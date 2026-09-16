@@ -13,7 +13,7 @@ import net.spross.kern.catalog.dateDrillContent
  * `docs/date-readings.md` rules a language says, read back off the drill that grades it
  * rather than off the JSON. A reading that changes here is a claim about the language.
  *
- * The day-of-month numeral has its own spec ([TrainerDateReadingTests], on the packs); this
+ * The day-of-month numeral has its own spec ([NumbersDateReadingTests], on the packs); this
  * one is about the pattern the calendar wraps around it and the names it fills in.
  */
 class RealCatalogDateDrillTest {

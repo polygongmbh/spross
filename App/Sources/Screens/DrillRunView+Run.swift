@@ -79,7 +79,7 @@ extension DrillRunView {
         // overview reads back — where the next run opens, what Fast is priced against.
         TrainerProgress.record(closed.bestLevel, for: storageKey)
         TrainerProgress.bookCleared(closed.clearedSprossen,
-                                    for: TrainerMode.companion.clearedKey(key: storageKey, reverse: reverse))
+                                    for: NumbersMode.companion.clearedKey(key: storageKey, reverse: reverse))
         guard let summary = closed.summary else {
             dismiss()
             return

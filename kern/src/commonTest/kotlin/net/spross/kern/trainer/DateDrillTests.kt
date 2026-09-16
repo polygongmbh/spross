@@ -174,7 +174,7 @@ class DateDrillTests {
         assertEquals(3, DateDrillTasks.weekdayIndex(2024, 2, 29), "the leap day exists and is a Thursday")
         assertEquals(5, DateDrillTasks.weekdayIndex(2000, 1, 1), "the century leap rule holds")
         val task = DateDrillTasks.fullDateWithYear(german, 3, 2, 2026, weekdayFree = false)
-        val year = Trainer.pack("de").year(2026)
+        val year = Numbers.pack("de").year(2026)
         assertEquals("Dienstag, der dritte März ${year.display}", task.display)
         assertEquals("Tue, 3/3/2026", task.promptText)
         assertEquals("3.3.2026", task.id)
@@ -391,7 +391,7 @@ class DateDrillTests {
     fun aReversedDatedCardReadsItsDateWithoutTheWeekday() {
         val forward = DateDrillTasks.fullDateWithYear(german, 3, 2, 2026, weekdayFree = false)
         val back = DateDrillTasks.fullDateWithYear(german, 3, 2, 2026, weekdayFree = true)
-        val year = Trainer.pack("de").year(2026).display
+        val year = Numbers.pack("de").year(2026).display
         assertEquals("Dienstag, der dritte März $year", forward.display)
         assertEquals("der dritte März $year", back.display, "the weekday is not read at all")
         assertEquals(forward.dateDigits, back.dateDigits, "and the date itself is the same date")

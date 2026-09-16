@@ -22,7 +22,7 @@ internal object SwahiliClock {
      * is named from one side only (04 looks back at 03, 06 forward at 07, 16 back at 15,
      * 19 back at 18); an hour interior to its block carries no neighbor.
      *
-     * The canonical form must stay ONE word: `TrainerGoldenTests` recovers the
+     * The canonical form must stay ONE word: `NumbersGoldenTests` recovers the
      * period-less reading by dropping the display's last word — so `usiku wa manane`,
      * the pack's only multi-word part, may never lead either.
      */

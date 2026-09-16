@@ -130,9 +130,9 @@ the review loop these share their card and their answering rules with is `design
   which only a Sprosse that enumerates can earn,
   so the assembled date Sprossen never turn forest.
   `Los` opens the run on the lowest Sprosse no run has answered out
-  (`TrainerMode.entrySprosse`), and a row the learner has been on — the entry or below,
+  (`NumbersMode.entrySprosse`), and a row the learner has been on — the entry or below,
   or a Sprosse some run reached — is a control that opens a run on its own Sprosse
-  (`TrainerMode.openable`); the one line under the ladder says so,
+  (`NumbersMode.openable`); the one line under the ladder says so,
   and a Sprosse nobody has reached yet reads dimmed and answers no tap.
   What a run answered out is filed per DIRECTION,
   because a row means another question turned round

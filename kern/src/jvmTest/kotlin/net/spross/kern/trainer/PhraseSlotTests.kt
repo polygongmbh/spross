@@ -51,7 +51,7 @@ class PhraseSlotTests {
         val pattern = Regex("""(\d+)/(\d+)""")
         for (template in RealFrames.all.filter { it.slotKind == TrainerKind.Fraction }) {
             val unitOnly = mutableSetOf<Boolean>()
-            for (level in 1..Trainer.maxLevel(TrainerKind.Fraction)) {
+            for (level in 1..Numbers.maxLevel(TrainerKind.Fraction)) {
                 repeat(80) {
                     val task = PhraseSlots.sample(template, level, rng)
                     val (n, d) = pattern.find(task.prompt)!!.destructured
@@ -195,9 +195,9 @@ class PhraseSlotTests {
             val b = Random(0xC0FFEE)
             repeat(50) {
                 val sampled = PhraseSlots.sample(template, a)
-                // Reconstruct with the same-seeded RNG draws, through the Trainer's own
+                // Reconstruct with the same-seeded RNG draws, through the numbers drill's own
                 // sampler — an independent path to the value the composition used.
-                val slot = Trainer.sample(template.slotKind, template.target, b)
+                val slot = Numbers.sample(template.slotKind, template.target, b)
                 val expected = when (template.slotKind) {
                     TrainerKind.Clock -> {
                         val parts = slot.prompt.split(":").map { it.toInt() }

@@ -175,13 +175,13 @@ struct DrillOverview<Face: DrillFace>: View {
     /// Where `Los` opens the run — the lowest Sprosse no run has answered out,
     /// kern's rule on the stored mask, clamped to the ladder as it stands.
     var entrySprosse: Int {
-        Int(TrainerMode.companion.entrySprosse(cleared: heldCleared, top: Int32(ladderCeiling)))
+        Int(NumbersMode.companion.entrySprosse(cleared: heldCleared, top: Int32(ladderCeiling)))
     }
 
     /// Whether a tapped row may open a run there — kern's rule: the entry or
     /// below, or a Sprosse some run reached, never one the learner has not been on.
     func openable(_ sprosse: Int) -> Bool {
-        TrainerMode.companion.openable(sprosse: Int32(sprosse), cleared: heldCleared,
+        NumbersMode.companion.openable(sprosse: Int32(sprosse), cleared: heldCleared,
                                        bestSprosse: Int32(bestSprosse), top: Int32(ladderCeiling))
     }
 
@@ -199,8 +199,8 @@ struct DrillOverview<Face: DrillFace>: View {
     func reload() {
         content = Face.content(model.catalog, source: source, target: target)
         bestSprosse = TrainerProgress.best(for: storageKey)
-        clearedForward = TrainerProgress.cleared(for: TrainerMode.companion.clearedKey(key: storageKey, reverse: false))
-        clearedReversed = TrainerProgress.cleared(for: TrainerMode.companion.clearedKey(key: storageKey, reverse: true))
+        clearedForward = TrainerProgress.cleared(for: NumbersMode.companion.clearedKey(key: storageKey, reverse: false))
+        clearedReversed = TrainerProgress.cleared(for: NumbersMode.companion.clearedKey(key: storageKey, reverse: true))
         record = TrainerRecords.best(for: storageKey)
         bestAnswers = TrainerRecords.bestAnswers(for: storageKey)
         // why: the numbers page's `normalizePicks` rule — a ladder that grew

@@ -134,7 +134,7 @@ fun DrillStreakLine(
 /**
  * "Fertig", under the button that goes on. An endless run has no natural end, so the offer
  * is tied to the one moment a learner is weighing it — kern's [second miss in a
- * row][net.spross.kern.trainer.TrainerRunState.offersFinish]. The corner ✕ still works;
+ * row][net.spross.kern.trainer.NumbersRunState.offersFinish]. The corner ✕ still works;
  * this is the same close, worded as finishing rather than abandoning.
  */
 @Composable

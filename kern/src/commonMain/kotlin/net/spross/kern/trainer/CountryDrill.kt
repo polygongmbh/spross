@@ -47,7 +47,7 @@ object CountryDrill {
     /**
      * How LONG a Sprosse is. Fast spends one clean win instead of the three, and is the reward
      * for having topped the ladder the hard way ([fastUnlocked]) — the numbers drill's rule
-     * ([Trainer.winsToAdvance]), read off this ladder's own pacing.
+     * ([Numbers.winsToAdvance]), read off this ladder's own pacing.
      */
     fun winsToAdvance(fast: Boolean): Int = if (fast) 1 else WINS_TO_ADVANCE
 

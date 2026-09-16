@@ -137,7 +137,7 @@ data class DateDrillRunState(
 
     /**
      * The word this language adds to assemble the question on screen, the first time it is
-     * asked and never again — the numbers drill's first-sight hint ([Trainer.placeValueHint]),
+     * asked and never again — the numbers drill's first-sight hint ([Numbers.placeValueHint]),
      * for a pattern instead of a length, and always a word in the language being LEARNED.
      *
      * Nothing REVERSED: the card then carries the reading, which says the word already, and

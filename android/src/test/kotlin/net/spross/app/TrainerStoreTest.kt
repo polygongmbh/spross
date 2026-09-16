@@ -3,14 +3,14 @@ package net.spross.app
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import net.spross.kern.trainer.DrillVariant
-import net.spross.kern.trainer.TrainerMode
+import net.spross.kern.trainer.NumbersMode
 
 /**
  * What the drill store owes: an unrun drill stands at zero, a booking only ever climbs,
  * and what one store wrote the next one reads back — which is the whole of "a Sprosse
  * survives a relaunch" from the store's side, the file itself being the framework's.
  *
- * Most key spellings are kern's ([TrainerMode.progressKey]) and tested there; these read
+ * Most key spellings are kern's ([NumbersMode.progressKey]) and tested there; these read
  * back through the same call that wrote, never through a string of their own. The scrambles
  * are the exception — kern spells no identity for them, so the string itself is the contract
  * with the iOS twin and is asserted whole.
@@ -74,7 +74,7 @@ class TrainerStoreTest {
 
     /**
      * One mask per learned language and no direction to split it by — neither scramble asks a
-     * different question round the other way, so no key of theirs wears [TrainerMode.REVERSED_SUFFIX].
+     * different question round the other way, so no key of theirs wears [NumbersMode.REVERSED_SUFFIX].
      */
     @Test
     fun eachScrambleFilesOneMaskPerLearnedLanguage() {
@@ -104,8 +104,8 @@ class TrainerStoreTest {
         store.bookSprosse("dates.de-en", 4)
         store.bookRecord("dates.de-en", 9)
         store.bookAnswers("dates.de-en", 21)
-        store.bookCleared(TrainerMode.clearedKey("dates.de-en", reverse = false), setOf(1, 2))
-        store.bookCleared(TrainerMode.clearedKey("dates.de-en", reverse = true), setOf(1))
+        store.bookCleared(NumbersMode.clearedKey("dates.de-en", reverse = false), setOf(1, 2))
+        store.bookCleared(NumbersMode.clearedKey("dates.de-en", reverse = true), setOf(1))
         val standing = store.typedStanding("dates.de-en")
         assertEquals(4, standing.bestSprosse)
         assertEquals(9, standing.record)
@@ -117,7 +117,7 @@ class TrainerStoreTest {
     @Test
     fun aClosedRunsBookingsAreReadBackByTheLadder() {
         val store = TrainerStore(FakePrefs())
-        val numbers = TrainerMode.progressKey(DrillVariant.Numbers, language)
+        val numbers = NumbersMode.progressKey(DrillVariant.Numbers, language)
         store.book(mapOf(numbers to 4))
         assertEquals(4, store.ladder(language)[DrillVariant.Numbers])
         assertEquals(4, store.standing(language)[numbers])
@@ -127,7 +127,7 @@ class TrainerStoreTest {
     @Test
     fun aSecondStoreReadsWhatTheFirstBooked() {
         val file = mutableMapOf<String, Any?>()
-        val numbers = TrainerMode.progressKey(DrillVariant.Numbers, language)
+        val numbers = NumbersMode.progressKey(DrillVariant.Numbers, language)
         TrainerStore(FakePrefs(file)).book(mapOf(numbers to 6))
         val relaunched = TrainerStore(FakePrefs(file))
         assertEquals(6, relaunched.ladder(language)[DrillVariant.Numbers])

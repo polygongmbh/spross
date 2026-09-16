@@ -5,7 +5,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * What the per-language number-form specs assert through — `Trainer<Language>FormsTests`,
+ * What the per-language number-form specs assert through — `Numbers<Language>FormsTests`,
  * one file per language, each authored from that language's own sources.
  *
  * The readings come from the shipped pack and the expectations from the research, never the
@@ -13,7 +13,7 @@ import kotlin.test.assertTrue
  * agree with whatever the generator does.
  */
 internal fun readings(language: String, value: NumberValue): List<String> =
-    Trainer.pack(language).formReading(value)
+    Numbers.pack(language).formReading(value)
 
 /** The one reading the drill SHOWS: first in the pack's list. */
 internal fun assertCanonical(language: String, value: NumberValue, expected: String) {

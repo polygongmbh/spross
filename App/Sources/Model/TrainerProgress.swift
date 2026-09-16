@@ -10,8 +10,8 @@ import SprossKern
 // earned is tracked a second time.
 //
 // A shell over kern's rules and nothing more: WHERE a Sprosse is filed is
-// `TrainerMode.progressKey` (+ this prefix), and WHICH Sprossen a closed run may
-// book is `TrainerRun.close`, which already filters to the ones that strictly
+// `NumbersMode.progressKey` (+ this prefix), and WHICH Sprossen a closed run may
+// book is `NumbersRun.close`, which already filters to the ones that strictly
 // beat what was standing. This side only reads and writes.
 //
 // UserDefaults rather than the box document, for the same reason
@@ -20,7 +20,7 @@ import SprossKern
 // climb, where anything in the box costs learning history.
 
 enum TrainerProgress {
-    private static var prefix: String { TrainerMode.companion.PROGRESS_PREFIX }
+    private static var prefix: String { NumbersMode.companion.PROGRESS_PREFIX }
 
     /// The best Sprosse booked for `key`, or 0 where the variant was never run.
     static func best(for key: String) -> Int {
@@ -34,7 +34,7 @@ enum TrainerProgress {
                    uniquingKeysWith: { first, _ in first })
     }
 
-    /// The Sprossen a closed run earned (`TrainerClose.progressBookings`). The
+    /// The Sprossen a closed run earned (`NumbersClose.progressBookings`). The
     /// strictly-greater guard is kept as a belt: kern already filtered, and a
     /// re-closed run must never claim a Sprosse twice.
     static func book(_ bookings: [String: KotlinInt]) {
@@ -52,7 +52,7 @@ enum TrainerProgress {
 
     // MARK: - Cleared Sprossen
 
-    private static var clearedPrefix: String { TrainerMode.companion.CLEARED_PREFIX }
+    private static var clearedPrefix: String { NumbersMode.companion.CLEARED_PREFIX }
 
     /// The Sprossen every run under `key` has cleared — answered out, or climbed
     /// off unblemished, which the store files as one thing.
@@ -64,14 +64,14 @@ enum TrainerProgress {
     /// ladder's `entrySprosse`.
     static func held(for key: String) -> Set<KotlinInt> {
         let mask = Int32(truncatingIfNeeded: UserDefaults.standard.integer(forKey: clearedPrefix + key))
-        return TrainerMode.companion.clearedSprossen(mask: mask)
+        return NumbersMode.companion.clearedSprossen(mask: mask)
     }
 
     /// ORs a closed run's cleared Sprossen into the standing mask. Never
     /// filtered: a Sprosse cleared stays cleared.
     static func bookCleared(_ sprossen: Set<KotlinInt>, for key: String) {
         guard !sprossen.isEmpty else { return }
-        let mask = Int(TrainerMode.companion.clearedMask(sprossen: sprossen))
+        let mask = Int(NumbersMode.companion.clearedMask(sprossen: sprossen))
         let standing = UserDefaults.standard.integer(forKey: clearedPrefix + key)
         UserDefaults.standard.set(standing | mask, forKey: clearedPrefix + key)
     }

@@ -22,7 +22,7 @@ import kotlin.random.Random
  * moving :45 up would collapse the two into one.
  *
  * The ladder is language-independent by design.
- * [Trainer.maxLevel] is ObjC-visible, and the "Clock ≥ 3" phrase unlock has to mean
+ * [Numbers.maxLevel] is ObjC-visible, and the "Clock ≥ 3" phrase unlock has to mean
  * the same fraction of the ladder for every pair.
  */
 private val SPROSSEN: List<IntArray> = listOf(

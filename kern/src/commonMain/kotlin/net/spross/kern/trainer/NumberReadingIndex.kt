@@ -8,7 +8,7 @@ import net.spross.kern.session.AnswerNormalizer
  * ordinal 4 and the fraction 1/10 are three identities, not one number seen three ways.
  *
  * [display] is the digits the trainer already prompts that value with
- * ([TrainerTask.prompt] — "70", "11.", "1/10"), so a nudge that names the value prints
+ * ([NumbersTask.prompt] — "70", "11.", "1/10"), so a nudge that names the value prints
  * the prompt the learner would have seen, and no second notation is minted for it.
  */
 internal sealed interface NumberIdentity {
@@ -61,7 +61,7 @@ internal class NumberReadingIndex(
     fun values(shape: String): Set<NumberIdentity> = byShape[shape].orEmpty()
 
     private fun build(): Map<String, Set<NumberIdentity>> {
-        val pack = Trainer.pack(language)
+        val pack = Numbers.pack(language)
         val index = mutableMapOf<String, MutableSet<NumberIdentity>>()
         fun put(identity: NumberIdentity, readings: List<String>) {
             for (reading in readings) {

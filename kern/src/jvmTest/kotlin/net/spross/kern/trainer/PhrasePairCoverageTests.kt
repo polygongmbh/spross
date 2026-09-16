@@ -34,8 +34,8 @@ class PhrasePairCoverageTests {
                 val shared = realized(source) intersect realized(target)
                 // The answer side needs a pack AND a generator for the frame's slot —
                 // a fraction frame joins only where the pack can read one.
-                val expected = if (Trainer.supports(target)) {
-                    shared.filterTo(mutableSetOf()) { Trainer.supportsSlot(slotOf(it), target) }
+                val expected = if (Numbers.supports(target)) {
+                    shared.filterTo(mutableSetOf()) { Numbers.supportsSlot(slotOf(it), target) }
                 } else {
                     emptySet()
                 }

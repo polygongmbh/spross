@@ -27,7 +27,7 @@ import net.spross.kern.trainer.DrillModifier
 import net.spross.kern.trainer.DrillSelection
 import net.spross.kern.trainer.DrillUnlocks
 import net.spross.kern.trainer.DrillVariant
-import net.spross.kern.trainer.TrainerMode
+import net.spross.kern.trainer.NumbersMode
 
 /**
  * The Numbers entry: a numbers page for the language being learnt, and the place its drill
@@ -79,7 +79,7 @@ fun NumbersOverviewScreen(model: AppModel) {
 
     val start = {
         model.startTrainerRun(
-            TrainerMode(
+            NumbersMode(
                 selection = picked,
                 language = language,
                 // The live quirk kern documents: the source rides along whenever the pair

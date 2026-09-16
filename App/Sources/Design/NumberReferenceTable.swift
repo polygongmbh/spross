@@ -42,8 +42,8 @@ struct NumberReferenceTable: View {
     /// a Kotlin throw crossing back is a crash, so the absence is checked here
     /// rather than trusted of every caller.
     private var sections: [ReferenceSection] {
-        guard Trainer.shared.supports(language: language) else { return [] }
-        return Trainer.shared.reference(language: language)
+        guard Numbers.shared.supports(language: language) else { return [] }
+        return Numbers.shared.reference(language: language)
     }
 
     private func band(_ section: ReferenceSection) -> some View {

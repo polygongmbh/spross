@@ -68,13 +68,13 @@ class WordScrambleRunConfig(
     val normalizer: AnswerNormalizer?,
     /**
      * The Sprossen earlier runs earned, as the PLATFORM's store holds them
-     * ([TrainerMode.clearedSprossen] over the mask under [TrainerMode.CLEARED_PREFIX]) — kern
+     * ([NumbersMode.clearedSprossen] over the mask under [NumbersMode.CLEARED_PREFIX]) — kern
      * reads no device state, so where the ladder stands arrives as a parameter.
      */
     val cleared: Set<Int> = emptySet(),
 ) {
-    /** Where a fresh run opens: the lowest Sprosse not yet earned ([TrainerMode.entrySprosse]). */
-    val entryLevel: Int get() = TrainerMode.entrySprosse(cleared, report.maxLevel)
+    /** Where a fresh run opens: the lowest Sprosse not yet earned ([NumbersMode.entrySprosse]). */
+    val entryLevel: Int get() = NumbersMode.entrySprosse(cleared, report.maxLevel)
 
     /**
      * What a spelling is actually graded by: [normalizer]'s strictness with the typo budget

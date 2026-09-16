@@ -8,7 +8,7 @@ import net.spross.kern.model.Language
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.DrillVariant
 import net.spross.kern.trainer.LetterDrillAvailability
-import net.spross.kern.trainer.TrainerMode
+import net.spross.kern.trainer.NumbersMode
 
 /**
  * Where a drill's standing record and its climbed Sprossen are filed.
@@ -17,14 +17,14 @@ import net.spross.kern.trainer.TrainerMode
  * UserDefaults: a drill run touches no card and no schedule, so it is not box state —
  * losing a Sprosse costs a climb, where anything in the box costs learning history.
  *
- * Every key is KERN's ([TrainerMode.RECORD_PREFIX] / [TrainerMode.PROGRESS_PREFIX] plus the
+ * Every key is KERN's ([NumbersMode.RECORD_PREFIX] / [NumbersMode.PROGRESS_PREFIX] plus the
  * identity kern spells for the run), so the two platforms file the same feat under the same
  * name and neither can invent a scheme of its own.
  */
 class TrainerStore(private val prefs: SharedPreferences) {
 
     /** The longest streak this run selection ever reached, 0 where it was never run. */
-    fun record(key: String): Int = prefs.getInt(TrainerMode.RECORD_PREFIX + key, 0)
+    fun record(key: String): Int = prefs.getInt(NumbersMode.RECORD_PREFIX + key, 0)
 
     /**
      * Books a streak as the new record. Strictly greater, so re-closing a resumed run
@@ -32,7 +32,7 @@ class TrainerStore(private val prefs: SharedPreferences) {
      */
     fun bookRecord(key: String, streak: Int) {
         if (streak <= record(key)) return
-        prefs.edit().putInt(TrainerMode.RECORD_PREFIX + key, streak).apply()
+        prefs.edit().putInt(NumbersMode.RECORD_PREFIX + key, streak).apply()
     }
 
     /**
@@ -41,12 +41,12 @@ class TrainerStore(private val prefs: SharedPreferences) {
      * the row it gates (Phrases is bought with Clock).
      */
     fun ladder(language: Language): Map<DrillVariant, Int> =
-        DrillVariant.entries.associateWith { sprosse(TrainerMode.progressKey(it, language)) }
+        DrillVariant.entries.associateWith { sprosse(NumbersMode.progressKey(it, language)) }
 
-    /** The same numbers keyed the way [net.spross.kern.trainer.TrainerRun.close] books them. */
+    /** The same numbers keyed the way [net.spross.kern.trainer.NumbersRun.close] books them. */
     fun standing(language: Language): Map<String, Int> =
         DrillVariant.entries.associate {
-            val key = TrainerMode.progressKey(it, language)
+            val key = NumbersMode.progressKey(it, language)
             key to sprosse(key)
         }
 
@@ -54,7 +54,7 @@ class TrainerStore(private val prefs: SharedPreferences) {
     fun book(bookings: Map<String, Int>) {
         if (bookings.isEmpty()) return
         val edit = prefs.edit()
-        for ((key, level) in bookings) edit.putInt(TrainerMode.PROGRESS_PREFIX + key, level)
+        for ((key, level) in bookings) edit.putInt(NumbersMode.PROGRESS_PREFIX + key, level)
         edit.apply()
     }
 
@@ -67,18 +67,18 @@ class TrainerStore(private val prefs: SharedPreferences) {
      */
     fun bookSprosse(key: String, level: Int) {
         if (level <= sprosse(key)) return
-        prefs.edit().putInt(TrainerMode.PROGRESS_PREFIX + key, level).apply()
+        prefs.edit().putInt(NumbersMode.PROGRESS_PREFIX + key, level).apply()
     }
 
-    private fun sprosse(key: String): Int = prefs.getInt(TrainerMode.PROGRESS_PREFIX + key, 0)
+    private fun sprosse(key: String): Int = prefs.getInt(NumbersMode.PROGRESS_PREFIX + key, 0)
 
     /** The most answers one run under [key] ever took, right or wrong; 0 where none has closed. */
-    fun answers(key: String): Int = prefs.getInt(TrainerMode.ANSWERS_PREFIX + key, 0)
+    fun answers(key: String): Int = prefs.getInt(NumbersMode.ANSWERS_PREFIX + key, 0)
 
     /** Books [answers] where it beats the standing figure — strictly greater, like the streak. */
     fun bookAnswers(key: String, answers: Int) {
         if (answers <= answers(key)) return
-        prefs.edit().putInt(TrainerMode.ANSWERS_PREFIX + key, answers).apply()
+        prefs.edit().putInt(NumbersMode.ANSWERS_PREFIX + key, answers).apply()
     }
 
     /**
@@ -86,14 +86,14 @@ class TrainerStore(private val prefs: SharedPreferences) {
      * unblemished, which the store files as one thing. Kern reads the mask.
      */
     fun cleared(key: String): Set<Int> =
-        TrainerMode.clearedSprossen(prefs.getInt(TrainerMode.CLEARED_PREFIX + key, 0))
+        NumbersMode.clearedSprossen(prefs.getInt(NumbersMode.CLEARED_PREFIX + key, 0))
 
     /** ORs a closed run's cleared Sprossen into the standing mask; never filtered. */
     fun bookCleared(key: String, sprossen: Set<Int>) {
         if (sprossen.isEmpty()) return
-        val standing = prefs.getInt(TrainerMode.CLEARED_PREFIX + key, 0)
-        val mask = standing or TrainerMode.clearedMask(sprossen)
-        prefs.edit().putInt(TrainerMode.CLEARED_PREFIX + key, mask).apply()
+        val standing = prefs.getInt(NumbersMode.CLEARED_PREFIX + key, 0)
+        val mask = standing or NumbersMode.clearedMask(sprossen)
+        prefs.edit().putInt(NumbersMode.CLEARED_PREFIX + key, mask).apply()
     }
 
     /** Everything one typed drill's page reads for [key], both directions' masks included. */
@@ -102,8 +102,8 @@ class TrainerStore(private val prefs: SharedPreferences) {
         record = record(key),
         answers = answers(key),
         cleared = mapOf(
-            false to cleared(TrainerMode.clearedKey(key, false)),
-            true to cleared(TrainerMode.clearedKey(key, true)),
+            false to cleared(NumbersMode.clearedKey(key, false)),
+            true to cleared(NumbersMode.clearedKey(key, true)),
         ),
     )
 
@@ -111,7 +111,7 @@ class TrainerStore(private val prefs: SharedPreferences) {
         /**
          * Where the atlas ladder and its record are filed — one key per PAIR, because the
          * atlas is a pair's material and not a language's. Kern spells every other drill's
-         * identity ([TrainerMode.progressKey]); this one it does not, so the two platforms
+         * identity ([NumbersMode.progressKey]); this one it does not, so the two platforms
          * agree on it by both writing the string the iOS twin authored
          * (`CountriesOverview.storageKey`).
          */
