@@ -24,9 +24,15 @@ extension AppModel {
 
     /// Writes the restored languages, then re-opens the pair on screen from the store,
     /// so the box drawn is the restored one and not the one it replaced.
+    ///
+    /// The pair it opens is the one the FILE names (`StoredBox.source`): the progress was
+    /// made under that known language, and re-reading it under this device's would leave
+    /// every own word written in the old one unpaired and untrained. A file from before the
+    /// store recorded it names none, and the device's own setting stands.
     func restore(_ imported: StoredBoxes) async throws {
         try await store.restore(imported)
         guard let target = targetLanguage else { return }
-        await activate(source: sourceLanguage, target: target)
+        let restored = imported.boxes[target]?.source ?? sourceLanguage
+        await activate(source: restored, target: target)
     }
 }

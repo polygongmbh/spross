@@ -733,6 +733,11 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     /**
      * Writes the languages a backup restored, then re-opens the pair on screen from the
      * store, so the box drawn is the restored one and not the one it replaced.
+     *
+     * The pair it opens is the one the FILE names ([StoredBox.source]): the progress was
+     * made under that known language, and re-reading it under this device's would leave
+     * every own word written in the old one unpaired and untrained. A file from before the
+     * store recorded it names none, and the device's own setting stands.
      */
     fun restoreBoxes(imported: StoredBoxes) {
         val stamp = box?.joinStamp ?: return
@@ -743,7 +748,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                     boxFiles.write(target, StoreCodec.encode(boxes.boxes.getValue(target)))
                 }
             }
-            activate(stamp.source, stamp.target, Screen.Box())
+            activate(imported.boxes[stamp.target]?.source ?: stamp.source, stamp.target, Screen.Box())
         }
     }
 

@@ -20,6 +20,16 @@ import net.spross.kern.model.Language
  * logs, so everything but `due` is this build's reading of them.
  */
 data class StoredBox(
+    /**
+     * The known language the box was last studied under, or null in a document written
+     * before the store recorded it.
+     *
+     * The target names the file; this names the other half of the pair the progress was
+     * made under. Kept because the file travels: a restore that did not know it would
+     * re-open every card — and every own word ([OwnWord.joins]) — under whichever known
+     * language the receiving device happened to be set to.
+     */
+    val source: Language? = null,
     val scheduling: Map<String, CardScheduling> = emptyMap(),
     val enqueued: List<String> = emptyList(),
     val ownWords: List<OwnWord> = emptyList(),
@@ -60,6 +70,7 @@ data class StoredBox(
 
     companion object {
         fun of(state: BoxState): StoredBox = StoredBox(
+            source = state.joinStamp.source,
             scheduling = state.scheduling,
             enqueued = state.enqueued,
             ownWords = state.ownWords,

@@ -6,6 +6,10 @@ Engine contract: `../README.md`.
 - One document per TARGET: `box-<target>.json` (schema version 2, `store/StoreDocument.kt`)
   in App Group `group.net.spross.app`. Only one language is ever active, so a save encodes and
   writes that one alone; each file carries its own `schemaVersion` beside its fields.
+  `source` names the known language the box was last studied under — the target names the
+  file and this names the other half of the pair, so a document that travels re-opens the
+  pair its progress was made in rather than whichever one the receiving device is set to;
+  a file written before it carries none and the device's own setting stands.
   A card is `[dueEpochSeconds, [[answerEpochSeconds, rating], …]]` and nothing else:
   memory, phase, step and lapses are REPLAYED from that log as it decodes
   (`box/Answer.kt`, `replayed`), so the file carries only what a replay cannot give back.
@@ -40,7 +44,8 @@ Engine contract: `../README.md`.
   learner merely opened would land as an emptiness over a real box on the other phone.
   A restore replaces every language the file carries and leaves the rest alone
   (`StoredBoxes.restoring`); one box it cannot read refuses the whole file.
-  Boxes only — pair, name, audio choice and drill Sprossen are device settings and stay behind.
+  Boxes only — name, audio choice and drill Sprossen are device settings and stay behind;
+  the pair does not, since each box names the known language it was studied under.
 - Engine boundary time: `nowEpochMillis: Long` + `tzId: String` (kotlinx-datetime 0.8 has
   no Swift-Date bridging; Instant/TimeZone are constructed inside). TimeZone = device-current
   per call. Day keys are ISO regardless of device calendar

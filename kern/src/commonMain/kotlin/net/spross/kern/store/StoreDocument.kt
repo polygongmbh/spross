@@ -34,6 +34,8 @@ internal const val STORE_SCHEMA_VERSION: Int = 2
  */
 @Serializable
 internal data class StoredBoxDto(
+    /** The known language this box was last studied under; absent in a file written before it. */
+    val source: String? = null,
     /** cardId → `[due, [[date, rating], …]]`, all seconds. */
     val cards: Map<String, JsonArray> = emptyMap(),
     /** Out of rotation. A word suspended before it was ever answered is only an id here. */
@@ -96,6 +98,7 @@ internal fun encodeStore(boxes: StoredBoxes): String = StoreJson.encodeSorted(
 )
 
 private fun storedBoxDto(box: StoredBox): StoredBoxDto = StoredBoxDto(
+    source = box.source,
     // why: a schedule with no answers is a husk carrying nothing but its suspension —
     // it says all it has to say in `suspended`.
     cards = box.scheduling.values.filter { it.log.isNotEmpty() }
@@ -197,6 +200,7 @@ private fun StoredBoxDto.toStored(target: Language): StoredBox {
         }
     }
     return StoredBox(
+        source = source,
         scheduling = answered + husks,
         enqueued = enqueued,
         ownWords = ownWords.map { it.toDomain(target) },

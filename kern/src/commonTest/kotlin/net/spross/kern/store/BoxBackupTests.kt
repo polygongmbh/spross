@@ -33,6 +33,25 @@ class BoxBackupTests {
         assertEquals(state, back.boxes.getValue("uk").join(StoreFixture.cards, StoreFixture.stamp))
     }
 
+    /**
+     * The file names the pair, not half of it: the target names the box and this names the
+     * known language it was studied under, so the phone it lands on re-opens the pair the
+     * progress was made in rather than whichever one it happened to be set to.
+     */
+    @Test
+    fun anExportNamesTheKnownLanguageEachBoxWasStudiedUnder() {
+        val back = BoxBackup.decode(BoxBackup.encode(boxes.with(swahili())))
+        assertEquals("de", back.boxes.getValue("uk").source)
+        assertEquals("de", back.boxes.getValue("sw").source)
+    }
+
+    /** A file written before the store recorded it restores exactly as it always did. */
+    @Test
+    fun aFileNamingNoKnownLanguageRestoresAsItAlwaysDid() {
+        val json = BoxBackup.encode(boxes).replace(""","source":"de"""", "")
+        assertEquals(null, BoxBackup.decode(json).boxes.getValue("uk").source)
+    }
+
     /** One version for the file, never one per language — that is what an envelope is for. */
     @Test
     fun oneSchemaVersionCoversEveryLanguage() {

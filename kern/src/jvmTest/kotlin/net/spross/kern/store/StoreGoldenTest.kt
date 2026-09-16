@@ -36,11 +36,16 @@ class StoreGoldenTest {
         assertEquals(approved, StoreCodec.encode(StoreCodec.decode(approved)))
     }
 
-    /** The box a device still holds arrives as exactly the box that replaces it. */
+    /**
+     * The box a device still holds arrives as exactly the box that replaces it, short of the
+     * known language: a v1 document names none, and the converter has none to invent. The app
+     * stamps it on the next save, which is what stamping it here stands in for.
+     */
     @Test
     fun aRealV1DocumentConvertsToTheSameBox() {
         val loaded = StoreCodec.load(legacyV1)
         assertEquals(true, loaded.converted)
-        assertEquals(approved, StoreCodec.encode(loaded.box))
+        assertEquals(null, loaded.box.source)
+        assertEquals(approved, StoreCodec.encode(loaded.box.copy(source = StoreFixture.stamp.source)))
     }
 }
