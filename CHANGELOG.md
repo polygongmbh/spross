@@ -2,15 +2,8 @@
 
 ## Unreleased
 
-- Sentence scramble now offers every phrase of your language, not only the ones whose words you have already grown.
-- Word scramble now waits until you hold fifteen words worth mixing instead of five, so it no longer opens on the same handful every evening.
-- Sentence scramble now grows its answer on the card you arranged, clearing the spent words, and an arrangement you got right shows its translation instead of moving straight on.
-- Sentence scramble drops its Aufdecken button: laying every word out reaches the answer on its own.
-- Sentence scramble climbs a Sprosse on three clean arrangements instead of five.
-- Sentence scramble now asks only whole sentences, leaving out fragments like "auf dem Tisch" whose word order is a matter of habit rather than grammar.
-
-## 7.1.1 — 2026-09-15
-
+- Sentence scramble now offers every phrase of your language, asks only whole sentences rather than fragments, and climbs a Sprosse in three clean arrangements instead of five.
+- Word scramble now waits until you hold fifteen words worth mixing instead of five.
 - The box is now the garden throughout its chrome copy — title, subtitle, and every reach-in, sow, and take-back phrase, in English and German.
 - The free-practice card on Home is now the Meadow, the open ground beside your garden where nothing is scheduled and no drill ever comes due.
 - The garden button on Home now wears a plant instead of a packing box.
