@@ -196,14 +196,7 @@ private fun CardStanding(
         }
 
         CardRowState.PackOffered -> pack?.let {
-            TextButton(
-                onClick = it,
-                modifier = Modifier.semantics { contentDescription = chrome.boxCardPack },
-            ) {
-                // Ochre, where unpacking is clay: the pair reads as two directions rather
-                // than one control, and neither wears a growth-ladder color.
-                Icon(SprossIcons.PackIn, contentDescription = null, tint = Theme.colors.amber)
-            }
+            PackButton(PackDirection.In, chrome.boxCardPack, it)
         }
 
         // Direct tap, no confirmation: nothing has been studied yet, so taking a queued
@@ -211,12 +204,8 @@ private fun CardStanding(
         // Offered per word only where packOffered gates it — an area listing takes its
         // whole queue out through the shelf's own control (PackControl) instead.
         is CardRowState.Packed -> if (standing.removalOffered) {
-            TextButton(
-                onClick = { model.updateBox { BoxEngine.dequeue(it, card.id) } },
-                modifier = Modifier.semantics { contentDescription = chrome.boxCardUnpack },
-            ) {
-                // Clay, matching the queued pill it takes back out.
-                Icon(SprossIcons.PackOut, contentDescription = null, tint = Theme.colors.accent)
+            PackButton(PackDirection.Out, chrome.boxCardUnpack) {
+                model.updateBox { BoxEngine.dequeue(it, card.id) }
             }
         } else {
             // A pill, not an icon: a bare tray glyph reads as a control here too, and
@@ -244,4 +233,29 @@ fun AppModel.boxPronounceAction(target: Realization): (() -> Unit)? {
     // the voice says it with its article, exactly as the row draws it (`docs/read-aloud.md`).
     val article = shownArticle(CardDisplay.article(target), target.text, target.text)
     return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP, article) }
+}
+
+/** Which way a word is moving between the shelf and the round it is queued for. */
+enum class PackDirection { In, Out }
+
+/**
+ * The tap that moves a word in or out — one word from its own row, a whole area from its
+ * shelf.
+ *
+ * Ochre going IN, where coming back out is clay: the pair reads as two directions rather
+ * than one control. Neither wears a growth-ladder color — a queued word is not on the
+ * ladder yet, and the clay is the queued pill's own.
+ */
+@Composable
+fun PackButton(direction: PackDirection, label: String, onClick: () -> Unit) {
+    TextButton(
+        onClick = onClick,
+        modifier = Modifier.semantics { contentDescription = label },
+    ) {
+        Icon(
+            if (direction == PackDirection.In) SprossIcons.PackIn else SprossIcons.PackOut,
+            contentDescription = null,
+            tint = if (direction == PackDirection.In) Theme.colors.amber else Theme.colors.accent,
+        )
+    }
 }

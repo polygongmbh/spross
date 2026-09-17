@@ -11,7 +11,6 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -167,22 +166,9 @@ internal fun PackControl(
     onUnpack: () -> Unit,
 ) {
     if (count > 0) {
-        TextButton(
-            onClick = onPack,
-            modifier = Modifier.semantics { contentDescription = chrome.a11yBoxShelfPack.format(count) },
-        ) {
-            // Ochre, where unpacking is clay: the pair reads as two directions rather
-            // than one control, and neither wears a growth-ladder color.
-            Icon(SprossIcons.PackIn, contentDescription = null, tint = Theme.colors.amber)
-        }
+        PackButton(PackDirection.In, chrome.a11yBoxShelfPack.format(count), onPack)
     } else if (queuedCount > 2) {
-        TextButton(
-            onClick = onUnpack,
-            modifier = Modifier.semantics { contentDescription = chrome.a11yBoxShelfUnpack.format(queuedCount) },
-        ) {
-            // Clay, matching the queued pill it takes back out.
-            Icon(SprossIcons.PackOut, contentDescription = null, tint = Theme.colors.accent)
-        }
+        PackButton(PackDirection.Out, chrome.a11yBoxShelfUnpack.format(queuedCount), onUnpack)
     } else {
         Text(
             SEAL,
