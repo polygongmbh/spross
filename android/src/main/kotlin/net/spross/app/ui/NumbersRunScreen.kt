@@ -32,6 +32,7 @@ import net.spross.app.Chrome
 import net.spross.app.Screen
 import net.spross.app.NumbersFlow
 import net.spross.app.badge
+import net.spross.app.bookRecord
 import net.spross.app.countLine
 import net.spross.app.name
 import net.spross.app.newTrainerRun
@@ -76,19 +77,10 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
     // that interleaves several falls back to the hub card's own title.
     val title = mode.exercises.singleOrNull()?.let { chrome.name(it) } ?: chrome.trainerHubTitle
 
-    // why: from the corner or from "Fertig", the close is the same one — kern books what
-    // is pending, says what to store, and the page that started the run wears the figures.
     val leave = {
         val closed = flow.close(store.record(mode.recordKey), store.standing(mode.language))
         store.book(closed.progressBookings)
-        closed.summary?.let {
-            if (it.newRecord) {
-                store.bookRecord(closed.recordKey, it.bestStreak)
-                // why: the run's own reward, sounded as it closes — the result tile the
-                // learner lands on already carries the words, but not until they look.
-                model.cues.cheer()
-            }
-        }
+        closed.summary?.let { model.bookRecord(closed.recordKey, it) }
         model.finishDrill(Screen.Numbers, closed.summary, title)
     }
     BackHandler(enabled = !flow.showingReference) { leave() }

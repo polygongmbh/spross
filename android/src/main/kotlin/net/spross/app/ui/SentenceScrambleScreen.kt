@@ -60,10 +60,9 @@ fun SentenceScrambleScreen(model: AppModel) {
         return
     }
     val state = flow.state
-    // why: from the corner or from "Fertig", the close is the same one — kern books a pending
-    // arrangement exactly as the tap would. The scrambles have no page of their own to land
-    // on, so the figures go back to Home; this drill keeps no streak record, and no high-water
-    // Sprosse beside the mask, because nothing reads one back.
+    // The scrambles have no page of their own to land on, so the figures go back to Home; this
+    // drill keeps no streak record, and no high-water Sprosse beside the mask, because nothing
+    // reads one back.
     val leave = {
         val closed = flow.close()
         // why: what the NEXT run reads — it opens on the lowest Sprosse the mask does not
@@ -192,8 +191,6 @@ private fun Controls(flow: SentenceScrambleFlow, chrome: Chrome, onFinish: () ->
         // word it withholds is already on screen, so placing them all reaches the authored
         // order by itself and books exactly what asking to be shown it would.
         if (state.showsAnswer) ConfirmButton(chrome) { flow.confirm() }
-        // The way out, where it is wanted: under the button that goes on, on the second miss
-        // in a row — kern decides which moment that is.
         if (state.offersFinish) DrillStopOffer(chrome, onFinish)
     }
 }

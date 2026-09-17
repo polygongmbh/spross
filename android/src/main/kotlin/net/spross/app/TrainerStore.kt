@@ -220,3 +220,14 @@ class TrainerStanding(val store: TrainerStore) {
         result = null
     }
 }
+
+/**
+ * A new record, booked and sounded as one act — a run's own reward, sounded as it closes
+ * because the result tile the learner lands on already carries the words, but not until they
+ * look. A run that beat nothing is silent, and books nothing.
+ */
+fun AppModel.bookRecord(key: String, summary: DrillRunSummary) {
+    if (!summary.newRecord) return
+    trainer.store.bookRecord(key, summary.bestStreak)
+    cues.cheer()
+}

@@ -82,9 +82,7 @@ fun LetterDrillScreen(model: AppModel) {
         return
     }
     val state = flow.state
-    // why: from the corner or from "Fertig", the close is the same one — kern books a
-    // pending answer exactly as the tap would, and the page that started the run wears the
-    // figures. The letter drill books no Sprosse and keeps no record, so it stores nothing.
+    // The letter drill books no Sprosse and keeps no record, so it stores nothing.
     val leave = {
         val closed = flow.close()
         model.finishDrill(Screen.Letters, closed.summary, chrome.trainerDrillLetters)
@@ -146,8 +144,6 @@ private fun Run(
             LetterStage.Typed, LetterStage.Dictation ->
                 TypedStage(model, flow, task, chrome, inputFocus)
         }
-        // The way out, where it is wanted: under the button that goes on, on the second
-        // miss in a row — kern decides which moment that is.
         if (state.offersFinish) DrillStopOffer(chrome, onFinish)
         Spacer(Modifier.height(Theme.spacing.sm))
     }

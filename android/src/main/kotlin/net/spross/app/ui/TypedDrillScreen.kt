@@ -24,6 +24,7 @@ import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.app.CHIME_CLEARANCE_MS
 import net.spross.app.Chrome
+import net.spross.app.bookRecord
 import net.spross.app.Screen
 import net.spross.app.TypedDrill
 import net.spross.app.TypedDrillView
@@ -85,8 +86,6 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
     val store = model.trainer.store
     val key = page.key
 
-    // why: from the corner or from "Fertig", the close is the same one — a pending answer
-    // books exactly as the tap would, and the page that started the run wears the figures.
     val leave = {
         val closed = flow.close(standingRecord = key?.let { store.record(it) } ?: 0)
         if (key != null) {
@@ -96,12 +95,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
             store.bookCleared(NumbersMode.clearedKey(key, reverse), closed.clearedSprossen)
             closed.summary?.let {
                 store.bookAnswers(key, it.done)
-                if (it.newRecord) {
-                    store.bookRecord(key, it.bestStreak)
-                    // why: the run's own reward, sounded as it closes — the result tile the
-                    // learner lands on already carries the words, but not until they look.
-                    model.cues.cheer()
-                }
+                model.bookRecord(key, it)
             }
         }
         model.finishDrill(page.back, closed.summary, page.drill)

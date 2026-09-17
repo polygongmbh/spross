@@ -62,10 +62,9 @@ fun WordScrambleScreen(model: AppModel) {
         return
     }
     val state = flow.state
-    // why: from the corner or from "Fertig", the close is the same one — kern books a pending
-    // answer exactly as the tap would. The scrambles have no page of their own to land on, so
-    // the figures go back to Home with the learner; this drill keeps no streak record, and no
-    // high-water Sprosse beside the mask, because nothing reads one back.
+    // The scrambles have no page of their own to land on, so the figures go back to Home with
+    // the learner; this drill keeps no streak record, and no high-water Sprosse beside the
+    // mask, because nothing reads one back.
     val leave = {
         val closed = flow.close()
         // why: what the NEXT run reads — it opens on the lowest Sprosse the mask does not
