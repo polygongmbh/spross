@@ -24,7 +24,6 @@ struct DrillOverview<Face: DrillFace>: View {
     /// answers in.
     let target: String
 
-    @Environment(\.dismiss) private var dismiss
     // why: internal, not private — the practice section reads the reader's locale.
     @Environment(\.locale) var locale
 
@@ -51,97 +50,40 @@ struct DrillOverview<Face: DrillFace>: View {
     /// The two counted records the line under the ladder prints.
     @State var record = 0
     @State var bestAnswers = 0
-    @State private var launch: Launch?
+    @State private var launch: DrillLaunch<DrillStart>?
     /// What the run that just closed came to — one tile above the Sprossen, the
     /// shape every overview uses.
     @State private var lastRun: DrillRunResult?
-
-    /// The run the start button opens, wrapped so ONE `fullScreenCover(item:)`
-    /// carries it — the shape every overview uses.
-    private struct Launch: Identifiable {
-        let reverse: Bool
-        let fast: Bool
-        /// The Sprosse the run opens on — the entry, or the row that was tapped.
-        let level: Int
-        let id = UUID()
-    }
 
     /// Where the Sprosse and the record are kept — one key per PAIR, because the
     /// material is a pair's and not a language's.
     var storageKey: String { "\(Face.key).\(source)-\(target)" }
 
     var body: some View {
-        NavigationStack {
-            ScrollViewReader { scroll in
-                ScrollView {
-                    LazyVStack(alignment: .leading, spacing: Theme.spacing.xl) {
-                        if let lastRun {
-                            DrillResultTile(result: lastRun)
-                                .id(DrillAnchor.result)
-                        }
-                        practiceSection
-                        referenceSection
-                    }
-                    .padding(Theme.spacing.xl)
-                }
-                // why: the other overviews' rule — a tile inserted above the
-                // content keeps the offset, so the page comes up to meet it.
-                .onChange(of: lastRun) { _, run in
-                    guard run != nil else { return }
-                    withAnimation(.easeOut(duration: 0.25)) {
-                        scroll.scrollTo(DrillAnchor.result, anchor: .top)
-                    }
-                }
-                #if DEBUG
-                // why: after the first layout — a scrollTo issued while the
-                // LazyVStack is still building has nothing to scroll to.
-                .task {
-                    guard Self.uitestWantsModifiers else { return }
-                    try? await Task.sleep(for: .milliseconds(400))
-                    scroll.scrollTo(DrillAnchor.modifiers, anchor: .center)
-                }
-                #endif
-            }
-            #if DEBUG
-            .defaultScrollAnchor(Self.uitestAnchor)
-            #endif
-            .background(Theme.colors.background.ignoresSafeArea())
-            .navigationTitle(Text(Face.title(languageName)))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button { dismiss() } label: { Image(systemName: "xmark") }
-                        .accessibilityLabel(Text("common.close"))
-                }
-                // why: the app's corners — the way out left, the way in right,
-                // still in reach from inside the table.
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("trainer.overview.start") { start() }
-                        .disabled(content == nil)
-                }
-            }
+        DrillOverviewPage(title: Text(Face.title(languageName)),
+                          lastRun: lastRun,
+                          startable: content != nil,
+                          start: start,
+                          scrollAnchor: DrillUITest.anchor(["table": .bottom]),
+                          focus: DrillUITest.focus("modifiers", id: DrillAnchor.modifiers)) {
+            practiceSection
+            referenceSection
         }
-        .tint(Theme.colors.accent)
         .onAppear { reload() }
         // why: a closing run books the Sprosse it reached, so the line under the
         // ladder is stale the moment the cover comes down.
         .fullScreenCover(item: $launch, onDismiss: reload) { launch in
             Group {
                 if let content {
-                    DrillRunView<Face>(model: model, content: content, reverse: launch.reverse,
-                                       fast: launch.fast, level: launch.level, storageKey: storageKey,
+                    DrillRunView<Face>(model: model, content: content, reverse: launch.value.reverse,
+                                       fast: launch.value.fast, level: launch.value.level,
+                                       storageKey: storageKey,
                                        onFinish: { result in
                                            withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
                                        })
                 }
             }
             .environment(\.locale, model.knownLocale)
-        }
-        // why: the record is what the confetti is for, and it rains over the
-        // page the run came back to — a wave retires itself, so no dismissal
-        // and no state to clear.
-        .overlay {
-            if lastRun?.newRecord == true { ConfettiView().ignoresSafeArea().allowsHitTesting(false) }
         }
     }
 
@@ -163,7 +105,8 @@ struct DrillOverview<Face: DrillFace>: View {
 
     /// A tapped row: the run opens there instead.
     func start(at level: Int) {
-        launch = Launch(reverse: reverse, fast: fast && fastUnlocked, level: level)
+        launch = DrillLaunch(value: DrillStart(reverse: reverse, fast: fast && fastUnlocked,
+                                               level: level))
     }
 
     /// The Sprossen answered out in the direction the switch stands for.
@@ -216,18 +159,8 @@ struct DrillOverview<Face: DrillFace>: View {
         let asked = Self.uitestModifiers
         if asked.contains("rev") { reverse = true }
         if asked.contains("fast"), fastUnlocked { fast = true }
-        if launch == nil, !DrillUITest.launched.contains(Face.key),
-           UserDefaults.standard.bool(forKey: "uitest-run"), content != nil {
-            // why: a cover raised while the sheet under it is still animating in
-            // is dropped — the tap this stands in for always comes after that.
-            // ONCE: a run that reopens itself on every foreground never ends.
-            DrillUITest.launched.insert(Face.key)
-            Task { @MainActor in
-                try? await Task.sleep(for: .milliseconds(600))
-                start()
-            }
-        }
         #endif
+        DrillUITest.autoStart(Face.key, ready: launch == nil && content != nil, start: start)
     }
 
     // MARK: - Chrome
@@ -239,37 +172,16 @@ struct DrillOverview<Face: DrillFace>: View {
     }
 }
 
-/// A section's name on an overview, in the one weight every one of them uses.
-struct DrillHeading: View {
-    let key: LocalizedStringKey
-
-    init(_ key: LocalizedStringKey) { self.key = key }
-
-    var body: some View {
-        Text(key)
-            .font(Theme.typography.title)
-            .foregroundStyle(Theme.colors.textPrimary)
-            .accessibilityAddTraits(.isHeader)
-    }
+/// What one start describes: which way round the run asks, at what pace, and the
+/// Sprosse it opens on — the entry, or the row that was tapped.
+struct DrillStart {
+    let reverse: Bool
+    let fast: Bool
+    let level: Int
 }
 
 #if DEBUG
 extension DrillOverview {
-    /// `-uitest-section table` opens the page at the table instead of at the
-    /// top — the other overviews' hook, reused, because the reading sits below
-    /// the fold here too and no tap driver is installed.
-    static var uitestAnchor: UnitPoint {
-        UserDefaults.standard.string(forKey: "uitest-section") == "table" ? .bottom : .top
-    }
-
-    /// `-uitest-section modifiers` brings the switches into view. A fraction of
-    /// the page would not do it: the table under them can be dozens of rows
-    /// long, so where the tile falls depends on how much content the pair has.
-    /// Scrolling to the tile's own id lands on it whatever the table's length.
-    static var uitestWantsModifiers: Bool {
-        UserDefaults.standard.string(forKey: "uitest-section") == "modifiers"
-    }
-
     /// `-uitest-modifiers rev,fast` — the numbers page's hook, worded the same,
     /// because neither switch can be tapped from a launch argument otherwise.
     static var uitestModifiers: Set<String> {
@@ -285,11 +197,5 @@ extension DrillOverview {
         let best = UserDefaults.standard.integer(forKey: Face.uitestBestKey)
         if best > 0 { TrainerProgress.record(best, for: key) }
     }
-}
-
-/// One auto-start per drill per launch — see `reload`. Off the page itself
-/// because a generic type can hold no stored static.
-enum DrillUITest {
-    @MainActor static var launched: Set<String> = []
 }
 #endif

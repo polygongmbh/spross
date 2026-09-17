@@ -16,7 +16,6 @@ struct LettersOverview: View {
     /// Which alphabet — the language being learned, never the reader's.
     let language: String
 
-    @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
 
     /// What the drill can ASK on this device. Rebuilt on every foreground, never
@@ -24,64 +23,20 @@ struct LettersOverview: View {
     /// the start button on without a relaunch.
     // why: internal, not private — +Practice.swift renders the ladder from it.
     @State var availability: LetterDrillAvailability?
-    @State private var launch: Launch?
-    /// What the run that just closed came to — one tile above the stages, the
-    /// shape the numbers page uses, instead of a screen with a second ✕ on it.
+    @State private var launch: DrillLaunch<String>?
+    /// What the run that just closed came to — one tile above the stages, instead
+    /// of a screen with a second ✕ on it.
     @State private var lastRun: DrillRunResult?
 
-    /// The run the start button opens, wrapped so ONE `fullScreenCover(item:)`
-    /// carries it — the same shape the numbers overview uses.
-    private struct Launch: Identifiable {
-        let language: String
-        let id = UUID()
-    }
-
-    /// Scroll target for the tile a closed run leaves.
-    static let resultAnchor = "result"
-
     var body: some View {
-        NavigationStack {
-            ScrollViewReader { scroll in
-                ScrollView {
-                    LazyVStack(alignment: .leading, spacing: Theme.spacing.xl) {
-                        if let lastRun {
-                            DrillResultTile(result: lastRun)
-                                .id(Self.resultAnchor)
-                        }
-                        practiceSection
-                        alphabetSection
-                    }
-                    .padding(Theme.spacing.xl)
-                }
-                // why: the numbers page's rule — a tile inserted above the
-                // content keeps the offset, so the page comes up to meet it.
-                .onChange(of: lastRun) { _, run in
-                    guard run != nil else { return }
-                    withAnimation(.easeOut(duration: 0.25)) {
-                        scroll.scrollTo(Self.resultAnchor, anchor: .top)
-                    }
-                }
-            }
-            #if DEBUG
-            .defaultScrollAnchor(Self.uitestAnchor)
-            #endif
-            .background(Theme.colors.background.ignoresSafeArea())
-            .navigationTitle(Text("letters.title \(languageName)"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button { dismiss() } label: { Image(systemName: "xmark") }
-                        .accessibilityLabel(Text("common.close"))
-                }
-                // why: the same corners as the numbers page — the way out left,
-                // the way in right, reachable from inside the alphabet table.
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("trainer.overview.start") { start() }
-                        .disabled(!drillAvailable)
-                }
-            }
+        DrillOverviewPage(title: Text("letters.title \(languageName)"),
+                          lastRun: lastRun,
+                          startable: drillAvailable,
+                          start: start,
+                          scrollAnchor: DrillUITest.anchor(["alphabet": .bottom])) {
+            practiceSection
+            alphabetSection
         }
-        .tint(Theme.colors.accent)
         .onAppear { refreshAvailability() }
         // why: the drill's reach can change while the app sleeps — on becoming
         // ACTIVE, not on willEnterForeground, because the speaker drops its
@@ -90,7 +45,7 @@ struct LettersOverview: View {
             if phase == .active { refreshAvailability() }
         }
         .fullScreenCover(item: $launch) { launch in
-            LetterDrillView(model: model, language: launch.language,
+            LetterDrillView(model: model, language: launch.value,
                             onFinish: { result in
                                 withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
                             })
@@ -101,24 +56,12 @@ struct LettersOverview: View {
     // MARK: - Starting a run
 
     func start() {
-        launch = Launch(language: language)
+        launch = DrillLaunch(value: language)
     }
 
     func refreshAvailability() {
         availability = LetterDrillAvailability(model: model, language: language)
-        #if DEBUG
-        // why: a cover raised while the sheet under it is still animating in is
-        // dropped — the tap this stands in for always comes after that. ONCE:
-        // a run that reopens itself on every foreground never ends.
-        if launch == nil, !Self.uitestLaunched, UserDefaults.standard.bool(forKey: "uitest-run"),
-           drillAvailable {
-            Self.uitestLaunched = true
-            Task { @MainActor in
-                try? await Task.sleep(for: .milliseconds(600))
-                start()
-            }
-        }
-        #endif
+        DrillUITest.autoStart("letters", ready: launch == nil && drillAvailable, start: start)
     }
 
     // MARK: - Chrome
@@ -126,25 +69,4 @@ struct LettersOverview: View {
     var languageName: String {
         LanguageNames.display(language, catalog: model.catalog)
     }
-
-    func heading(_ key: LocalizedStringKey) -> some View {
-        Text(key)
-            .font(Theme.typography.title)
-            .foregroundStyle(Theme.colors.textPrimary)
-            .accessibilityAddTraits(.isHeader)
-    }
 }
-
-#if DEBUG
-extension LettersOverview {
-    /// One auto-start per launch — see `refreshAvailability`.
-    @MainActor static var uitestLaunched = false
-
-    /// `-uitest-section alphabet` opens the page at the table instead of at the
-    /// top — the numbers overview's hook, reused, because on both pages the
-    /// reading now sits below the fold and no tap driver is installed.
-    static var uitestAnchor: UnitPoint {
-        UserDefaults.standard.string(forKey: "uitest-section") == "alphabet" ? .bottom : .top
-    }
-}
-#endif

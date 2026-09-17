@@ -8,7 +8,7 @@ extension NumbersOverview {
 
     var practiceSection: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-            heading("trainer.overview.practice")
+            DrillHeading("trainer.overview.practice")
             VStack(alignment: .leading, spacing: Theme.spacing.sm) {
                 ForEach(offered, id: \.self) { exerciseRow($0) }
                 if !combining {

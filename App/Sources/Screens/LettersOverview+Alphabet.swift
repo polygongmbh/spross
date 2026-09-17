@@ -34,7 +34,7 @@ extension LettersOverview {
     var alphabetSection: some View {
         if alphabet != nil {
             VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-                heading("letters.alphabet.title")
+                DrillHeading("letters.alphabet.title")
                 VStack(alignment: .leading, spacing: Theme.spacing.md) {
                     if sections.isEmpty {
                         ForEach(entries) { entry in
