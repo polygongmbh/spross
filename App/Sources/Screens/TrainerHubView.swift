@@ -75,26 +75,46 @@ struct TrainerHubView: View, LanguageNaming {
                 card
             }
         }
-        .sheet(item: $destination) { destination in
-            Group {
-                switch destination {
-                case let .numbers(language):
-                    NumbersOverview(model: model, language: language,
-                                    phraseDrill: phraseDrill.map { ($0.source, $0.templates) })
-                case let .letters(language):
-                    LettersOverview(model: model, language: language)
-                case let .countries(source, target):
-                    CountriesOverview(model: model, source: source, target: target)
-                case let .dates(source, target):
-                    DatesOverview(model: model, source: source, target: target)
-                case let .wordScramble(language):
-                    WordScrambleView(model: model, language: language)
-                case let .sentenceScramble(language):
-                    SentenceScrambleView(model: model, language: language)
-                }
+        // The pages: a sheet, because an overview is read from and swiped away.
+        .sheet(item: presented { !$0.isRun }) { surface($0) }
+    }
+
+    /// What a destination opens, under the known language every trainer surface
+    /// is chromed in.
+    @ViewBuilder
+    private func surface(_ destination: HubDestination) -> some View {
+        Group {
+            switch destination {
+            case let .numbers(language):
+                NumbersOverview(model: model, language: language,
+                                phraseDrill: phraseDrill.map { ($0.source, $0.templates) })
+            case let .letters(language):
+                LettersOverview(model: model, language: language)
+            case let .countries(source, target):
+                CountriesOverview(model: model, source: source, target: target)
+            case let .dates(source, target):
+                DatesOverview(model: model, source: source, target: target)
+            case let .wordScramble(language):
+                WordScrambleView(model: model, language: language)
+            case let .sentenceScramble(language):
+                SentenceScrambleView(model: model, language: language)
             }
-            .environment(\.locale, model.knownLocale)
         }
+        .environment(\.locale, model.knownLocale)
+    }
+
+    /// The one `destination`, seen through ONE presentation: a binding that
+    /// holds it only while it belongs there, so the sheet and the cover cannot
+    /// both claim the same tap and a dismissal from either clears the state.
+    /// Two `@State`s would be two sources of truth for one chip.
+    private func presented(
+        _ belongs: @escaping (HubDestination) -> Bool
+    ) -> Binding<HubDestination?> {
+        Binding(get: {
+                    guard let open = destination, belongs(open) else { return nil }
+                    return open
+                },
+                set: { destination = $0 })
     }
 
     // MARK: - Card
@@ -122,6 +142,13 @@ struct TrainerHubView: View, LanguageNaming {
                 .fill(Theme.colors.surface)
         )
         .cardShadow()
+        // The runs: a cover, so the drill is a full screen whose corner ✕ is
+        // the one way out — a swipe would leave the run without booking the
+        // Sprosse it reached, which is what the ✕ does (`WordScrambleView`).
+        // why: on the CARD rather than beside the sheet above — a second
+        // presentation stacked on the same view is not reliably honored by
+        // SwiftUI, and the symptom is a chip that does nothing.
+        .fullScreenCover(item: presented { $0.isRun }) { surface($0) }
         #if DEBUG
         // UI-test hook: `-uitest-trainer numbers|letters|countries|dates|
         // wordscramble|sentencescramble` opens that surface (in the learned

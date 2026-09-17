@@ -48,10 +48,9 @@ extension Drill {
     }
 }
 
-/// Everything the hub presents, as ONE item, so a single `.sheet(item:)`
-/// carries them all. A second `fullScreenCover(isPresented:)` stacked on the
-/// same view is not reliably honored by SwiftUI (the symptom is a chip that
-/// does nothing), which is why the hub presents no run outside this sheet.
+/// Everything the hub presents, as ONE item: the four overviews reach the
+/// screen through its sheet and the two runs through its cover
+/// (`TrainerHubView.presented`), both off this one state.
 ///
 /// The four overviews are pages you READ from, each starting its own run; the
 /// two scrambles have nothing to read beside them — the box IS their material —
@@ -69,6 +68,17 @@ enum HubDestination: Identifiable {
     case wordScramble(language: String)
     /// Putting a phrase's words back in order, in the learned language.
     case sentenceScramble(language: String)
+
+    /// Whether this entry opens a RUN rather than a page to read from. A run is
+    /// a full screen with its own ✕ wherever it is started from, the overviews'
+    /// covers included (`DrillLaunch`), so the two that skip the page still get
+    /// one.
+    var isRun: Bool {
+        switch self {
+        case .wordScramble, .sentenceScramble: return true
+        case .numbers, .letters, .countries, .dates: return false
+        }
+    }
 
     var id: String {
         switch self {
