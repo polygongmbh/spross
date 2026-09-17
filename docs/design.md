@@ -187,7 +187,7 @@ and the paragraph is written to justify where the friction already pushed.
 What licenses a second component is a parameter ATTEMPTED and found not to carry,
 never a paragraph explaining in advance that it would not.
 Widening the private sibling is therefore the change and not scope creep beside it —
-`nextButton` is `internal, not private` exactly so the choice grid can stand under it —
+`DrillNextButton` was one drill's `private` button, and every drill's field and grid stand under it now —
 and what to reuse is found by grepping the BEHAVIOR, the mark it draws or the `why:` above it,
 rather than `Design/`, where as often it is not.
 A clone, where the attempt genuinely failed, inherits its sibling's gaps and never its rules,
