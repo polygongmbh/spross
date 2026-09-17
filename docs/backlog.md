@@ -76,9 +76,12 @@ Catalog content — its forms, its audio and the per-language questions — live
   circles carry only the entry mark where the atlas and calendar wear a record
   (`LettersOverview+Practice.swift`, `ui/LettersOverviewScreen.kt`) — should the tile and
   typed stages, which enumerate, file one and open above it too?
-- Android's answer-field mark returns null for `TurnFeedback.Revealed` where iOS draws `.revealed` amber,
-  against the `// why: correctness is never color alone` comment in the same two files
-  (`android/.../ui/SessionTurn.kt`, `ui/DrillField.kt`).
+- The line a card ends on is decided once per phone, not once: the precedence (the card's own
+  note wins, else what the word also means, one line only) is `CardDisplay.closingNote` on
+  Android and its twin on iOS, while `kern/model/DisplayText.kt` already owns this class of
+  reveal-line decision and already computes `alsoMeans` — the last cross-platform find of
+  `audit-2026-09-13.md` § 7, reported rather than moved so the extraction would not mint a
+  second home.
 - Widget and watch snapshots ship the raw article string (`kern/.../snapshot/SnapshotSupport.kt`
   `articleTint`, `Widgets/Sources/WordWidgetView.swift`, `Watch/Sources/WatchTheme.swift`), so fr/it
   `le` cannot take its hue there until the snapshot carries a gender (a `!` change).
