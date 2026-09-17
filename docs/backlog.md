@@ -85,15 +85,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 - Widget and watch snapshots ship the raw article string (`kern/.../snapshot/SnapshotSupport.kt`
   `articleTint`, `Widgets/Sources/WordWidgetView.swift`, `Watch/Sources/WatchTheme.swift`), so fr/it
   `le` cannot take its hue there until the snapshot carries a gender (a `!` change).
-- A drill's typed-answer controls (the field, the one primary action that reveals or checks,
-  the amber hold, the revealed branch with its stop offer, the screen-reader "Weiter") stand
-  verbatim in `NumbersRunView+Drill.swift`, `LetterDrillView+Stages.swift` and
-  `DrillRunView+Content.swift` with the live check wired per copy, so one component owning the
-  branch and the `onChange(of: input)` beside it would make a fourth drill's auto-confirm
-  structural rather than remembered. Scope it off `audit-2026-09-13.md` § 1 rather than this
-  bullet: the controls are one part of a run driver duplicated end to end across the three
-  screens (`dispatch`/`apply`/`checkOrReveal`/`closeRun`, the `input = ""` transaction, the
-  autoplay trigger, `screenReaderOn`, both uitest hooks), and § 2 is its Android mirror.
 - "Move noun class, word types and the tenses further back" — filed as a suggestion
   without a surface; the three are a card's Swahili plural/class grammar, its kind badge
   and the tense phrases' seed positions, which sit in three different places. Which one
@@ -113,10 +104,14 @@ Catalog content — its forms, its audio and the per-language questions — live
   (`App/Sources/Design/RatingButtonsView.swift:52-56`, `Localizable.xcstrings`) say what they
   cost on a first meeting, or is the neutral wording right?
 - The letter drill's typed and dictation stage has no live-check auto-advance the way vocab
-  review and the trainer drills have (`App/Sources/Design/AutoAdvance.swift`) because its
-  verdict ladder carries a third `heard` outcome, a synonym of the dictated word
-  (`kern/.../trainer/LetterDrillRun.kt`) — does a `heard` verdict arm the live auto-advance
-  beat, hold amber, or neither (the shared drill component above leaves a `typed` hook for it)?
+  review and the trainer drills have (`App/Sources/Design/AutoAdvance.swift`), so it needs a
+  Check tap where `docs/design.md` rules that "finishing the word IS the answer… in the trainer
+  drills alike". It is the one thing the shared iOS driver could not carry: `DrillRunning`'s
+  `typedMove` returns nil for this drill alone, because `LetterDrillIntent` has no
+  `InputChanged` to send. Closing it is kern's — a new intent plus a live verdict in
+  `LetterDrillRun`, whose ladder carries a third `heard` outcome (a synonym of the dictated
+  word) that the other drills have no arm for: does a `heard` verdict arm the beat, hold
+  amber, or neither?
 - No automated visual-parity check exists between iOS and Android for shared, parity-bearing
   UI (cards, layout tokens), and `scripts/card-parity.py` closes 5 of the 9 historical
   divergences (numbers and primitive names, not rendering) — is a snapshot gate
