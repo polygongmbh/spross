@@ -12,6 +12,7 @@
   "volume": { "text": "volume" },
   "to-listen-to": { "text": "to listen" },
   "to-listen-to-music": { "text": "to listen to music" },
+  "to-play-instrument": { "text": "to play an instrument" },
   "louder": { "text": "Louder!" }
  }
 }

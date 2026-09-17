@@ -29,6 +29,7 @@
   "volume": { "text": "volume", "grammar": { "gender": "il" } },
   "to-listen-to": { "text": "ascoltare" },
   "to-listen-to-music": { "text": "ascoltare musica", "variants": ["ascoltare la musica"] },
+  "to-play-instrument": { "text": "suonare uno strumento" },
   "louder": { "text": "Più forte!", "variants": ["Più alto!"] }
  }
 }

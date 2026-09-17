@@ -20,6 +20,7 @@
   "volume": { "text": "laŭteco", "variants": ["volumo"] },
   "to-listen-to": { "text": "aŭskulti" },
   "to-listen-to-music": { "text": "aŭskulti muzikon" },
+  "to-play-instrument": { "text": "ludi instrumenton" },
   "louder": { "text": "Pli laŭte!" }
  }
 }

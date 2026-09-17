@@ -12,6 +12,7 @@
   "volume": { "text": "гучність" },
   "to-listen-to": { "text": "слухати" },
   "to-listen-to-music": { "text": "слухати музику" },
+  "to-play-instrument": { "text": "грати на інструменті", "notes": { "uk": "грати на гітарі, на піаніно." } },
   "louder": { "text": "Голосніше!", "variants": ["Гучніше!"] }
  }
 }

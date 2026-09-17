@@ -31,7 +31,7 @@
   "to-relax": { "text": "rilassarsi" },
   "to-tidy-up": { "text": "riordinare", "variants": ["mettere in ordine", "fare ordine"] },
   "to-water-plants": { "text": "annaffiare le piante", "variants": ["innaffiare le piante", "bagnare le piante"] },
-  "to-play": { "text": "giocare", "notes": { "it": "i bambini giocano · uno strumento si suona." } },
+  "to-play": { "text": "giocare", "notes": { "it": "i bambini giocano a carte." } },
   "to-talk": {
    "text": "chiacchierare",
    "variants": ["parlare", "conversare"],

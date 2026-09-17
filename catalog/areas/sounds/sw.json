@@ -22,6 +22,11 @@
    "notes": { "sw": "sikiliza! = kwa makini · kusikia ni kupata sauti tu." }
   },
   "to-listen-to-music": { "text": "kusikiliza muziki" },
+  "to-play-instrument": {
+   "text": "kupiga ala ya muziki",
+   "variants": ["kupiga ala"],
+   "notes": { "sw": "kupiga gitaa, kupiga piano." }
+  },
   "louder": { "text": "Kwa sauti zaidi!", "variants": ["Kwa sauti kubwa zaidi!"] }
  }
 }

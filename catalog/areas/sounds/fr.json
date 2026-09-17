@@ -26,6 +26,7 @@
    "variants": ["écouter la musique"],
    "notes": { "fr": "quantité non comptée : écouter de la musique, boire de l'eau." }
   },
+  "to-play-instrument": { "text": "jouer d'un instrument", "notes": { "fr": "jouer du piano, de la guitare." } },
   "louder": { "text": "Plus fort !" }
  }
 }
