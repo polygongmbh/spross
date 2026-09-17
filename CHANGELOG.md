@@ -3,6 +3,7 @@
 ## Unreleased
 
 - A revealed answer's field now carries the amber edge its screen reader already announced, on Android as on iPhone.
+- A problem you report during a round now carries the answer that was marked wrong, instead of arriving empty.
 
 ## 7.1.4 — 2026-09-16
 

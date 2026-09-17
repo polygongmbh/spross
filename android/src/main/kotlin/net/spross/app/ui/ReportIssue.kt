@@ -48,9 +48,10 @@ import net.spross.kern.model.Card
  * [after] are both handed the way to close the menu, since every entry closes it before it
  * acts; a surface that has something irreversible to offer puts it in [after], last.
  *
- * [learnerInput] is what stood in the answer field when the menu opened. It is taken THEN
- * rather than read here: the field empties as the turn advances, and the answer the catalog
- * rejected IS the report in the common case.
+ * [learnerInput] is the answer the report travels with, as it stood when the menu opened. It
+ * is taken THEN rather than read here: the field moves on — a miss primes it past the refused
+ * answer and the advancing card empties it — and that refused answer IS the report in the
+ * common case.
  */
 @Composable
 internal fun CardMenu(
@@ -90,7 +91,8 @@ internal fun CardMenu(
  * the CATALOG being wrong, the other about this word not being worth their time. Neither
  * implies the other, so neither is a step in the other's flow.
  *
- * [typed] is read at the moment of the press, not at the moment the dialog opens.
+ * [typed] is read at the moment of the press, not at the moment the dialog opens
+ * ([net.spross.app.TurnFlow.answerForReport] is what the session hands it).
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

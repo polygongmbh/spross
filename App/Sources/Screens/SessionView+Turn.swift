@@ -133,6 +133,11 @@ extension SessionView {
     /// there would put the same word on screen twice.
     var cardRevealed: Bool { turn?.answerRevealed ?? false }
 
+    /// What a report opened right now carries as the learner's answer — kern's call
+    /// (`TurnState.answerForReport`): the word the catalog refused, which a miss has
+    /// already primed out of the field, else whatever stands in it.
+    var answerForReport: String { turn?.answerForReport(fieldText: input) ?? input }
+
     /// The word the card owes back is on screen and the turn waits on the learner —
     /// kern's own fact (`TurnState.answerOut`). What the card's menu hangs on: a typo
     /// holds on its correction without ever expanding the card, and that pause is

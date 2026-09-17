@@ -92,7 +92,8 @@ data class CopyStep(
  *
  * The learner's TEXT is not in here — the platform owns the field, the keyboard and the
  * focus, and hands text in through [TurnIntent]. What is in here is every rule that
- * decides what the text means and which rating it earns.
+ * decides what the text means and which rating it earns, plus the one answer the machine
+ * itself takes out of the field ([rejectedAnswer]) and would otherwise destroy.
  */
 data class TurnState(
     /** The card under review: what is graded, and what a write-out copies. */
@@ -113,6 +114,13 @@ data class TurnState(
     val pendingRating: Rating?,
     /** Set when the typed answer is a word the catalog owns elsewhere; the reveal names it. */
     val otherWord: Match.OtherWord?,
+    /**
+     * The answer that was turned down, as it was written. Kept because the miss that turned
+     * it down primes the field past it ([TurnEffect.PrimeField]), and a report filed after
+     * that would otherwise carry nothing where the rejected answer IS the report
+     * (`box.ReportedIssue.learnerInput`). Null until an answer is rejected.
+     */
+    val rejectedAnswer: String? = null,
     /**
      * What the prompted form means BESIDES this card, seed order — the other side of the
      * merge the grading rule credits. Empty unless the turn asks what a word means, and
@@ -180,6 +188,14 @@ data class TurnState(
      */
     val answerText: String
         get() = if (prompt == ProducePrompt.Sound) card.source.text else card.target.text
+
+    /**
+     * The answer a report filed from this turn carries, given the [fieldText] standing now:
+     * the word the catalog turned down where there was one, else what the learner has
+     * written. A retype reached with the answer in view says nothing about the catalog,
+     * and the word it refused says everything.
+     */
+    fun answerForReport(fieldText: String): String = rejectedAnswer ?: fieldText
 }
 
 /** What the learner does to a turn. */

@@ -47,6 +47,13 @@ class TurnFlow(
     var input by mutableStateOf("")
         private set
 
+    /**
+     * What a report filed from this turn carries as the learner's answer — kern's call
+     * ([TurnState.answerForReport]): the word the catalog refused, which a miss has already
+     * primed out of [input], else whatever stands in it.
+     */
+    val answerForReport: String get() = state.answerForReport(input)
+
     /** The write-out step's field, which opens empty however the step was reached. */
     var copyInput by mutableStateOf("")
         private set

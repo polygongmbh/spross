@@ -55,7 +55,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     // what the reveal owes.
     val written = heard && (flow.promptInText || revealed)
 
-    ReportableCard(model, card, flow.answerOut, typed = { flow.input }) {
+    ReportableCard(model, card, flow.answerOut, typed = { flow.answerForReport }) {
         VocabCard(
             emoji = card.emoji,
             cue = ui.emojiCue,

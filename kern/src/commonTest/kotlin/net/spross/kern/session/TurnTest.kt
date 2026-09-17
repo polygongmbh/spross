@@ -118,6 +118,27 @@ class TurnTest {
     }
 
     @Test
+    fun aReportCarriesTheAnswerTheCatalogRefusedRatherThanWhatIsLeftInTheField() {
+        // The miss primes the field past the refused word, so the field alone would file a
+        // report saying nothing — and a retype reached with the answer in view says even less.
+        val missed = missedLanguage()
+        assertEquals("neno", missed.rejectedAnswer)
+        assertEquals("neno", missed.answerForReport(""))
+        val retyped = TurnFixture.state(missed, TurnIntent.InputChanged("lugha"))
+        assertEquals("neno", retyped.answerForReport("lugha"))
+    }
+
+    @Test
+    fun aTurnThatRefusedNothingReportsWhatStandsWritten() {
+        // A typo holds ON its correction with the learner's own text still in the field,
+        // and a blank reveal has nothing to carry at all.
+        val slip = TurnFixture.state(TurnFixture.produce(TurnFixture.knife), TurnIntent.Submit("kisuu"))
+        assertNull(slip.rejectedAnswer)
+        assertEquals("kisuu", slip.answerForReport("kisuu"))
+        assertEquals("", TurnFixture.state(TurnFixture.produce(TurnFixture.knife), TurnIntent.Reveal).answerForReport(""))
+    }
+
+    @Test
     fun backingOutOfAFinishedRetypeTakesItsParkedRatingWithIt() {
         val retyped = TurnFixture.state(missedLanguage(), TurnIntent.InputChanged("lugha"))
         val backed = TurnFixture.step(retyped, TurnIntent.InputChanged("lugh"))
