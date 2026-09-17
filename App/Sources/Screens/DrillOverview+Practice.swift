@@ -34,12 +34,7 @@ extension DrillOverview {
                         sprosseRow(row.offset + 1, row.element)
                     }
                 }
-                .padding(Theme.spacing.lg)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(
-                    RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                        .fill(Theme.colors.surface)
-                )
+                .panelSurface()
             }
             ladderNotes
             modifierTile.id(DrillAnchor.modifiers)
@@ -128,12 +123,7 @@ extension DrillOverview {
             }
             fastRow
         }
-        .padding(Theme.spacing.lg)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                .fill(Theme.colors.surface)
-        )
+        .panelSurface()
     }
 
     /// Fast, priced out of kern's own rule: the top Sprosse, stood on once. The

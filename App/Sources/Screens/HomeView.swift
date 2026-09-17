@@ -144,12 +144,7 @@ struct HomeView: View {
                 }
                 .accessibilityLabel(Text("common.dismiss"))
             }
-            .padding(Theme.spacing.lg)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(
-                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                    .fill(Theme.colors.surface)
-            )
+            .panelSurface()
             .cardShadow()
         }
     }

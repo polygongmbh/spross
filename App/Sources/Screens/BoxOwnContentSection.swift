@@ -93,12 +93,7 @@ struct BoxOwnContentSection: View {
                 blockBody(block)
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(Theme.spacing.lg)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                .fill(Theme.colors.surface)
-        )
+        .panelSurface()
         .cardShadow()
     }
 

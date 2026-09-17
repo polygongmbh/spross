@@ -245,6 +245,19 @@ extension View {
         )
         .cardShadow()
     }
+
+    /// The one inline PANEL: a block of the page — a table's rows, a ladder, a
+    /// list of notes — set on the surface color at the tile radius, full width,
+    /// with its own inset. A card is a question, a panel is the page around it,
+    /// so a panel wears no shadow and no hairline.
+    func panelSurface(_ fill: Color = Theme.colors.surface) -> some View {
+        padding(Theme.spacing.lg)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
+                    .fill(fill)
+            )
+    }
 }
 
 /// Filled terracotta primary action. Never a default gray Button.

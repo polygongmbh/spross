@@ -137,12 +137,7 @@ struct DrillResultTile: View {
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
         }
-        .padding(Theme.spacing.lg)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                .fill(Theme.colors.surfaceTint)
-        )
+        .panelSurface(Theme.colors.surfaceTint)
         // why: one VoiceOver stop — the figures describe a single run.
         .accessibilityElement(children: .combine)
     }

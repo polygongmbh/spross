@@ -87,12 +87,7 @@ extension LettersOverview {
             example(entry)
         }
         .multilineTextAlignment(.leading)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(Theme.spacing.lg)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                .fill(Theme.colors.surface)
-        )
+        .panelSurface()
         // why: one row is one VoiceOver stop, read in the order it stands —
         // glyph, name, context, hint, example. Thirty-five separate elements
         // to swipe through is not a reference sheet.

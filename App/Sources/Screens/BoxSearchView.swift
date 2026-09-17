@@ -139,12 +139,7 @@ struct BoxSearchView: View {
                     .foregroundStyle(Theme.colors.textSecondary)
                     .padding(.top, Theme.spacing.sm)
             }
-            .padding(Theme.spacing.lg)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(
-                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                    .fill(Theme.colors.surface)
-            )
+            .panelSurface()
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)

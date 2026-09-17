@@ -45,12 +45,7 @@ extension CreditsView {
             }
             privacyLink
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(Theme.spacing.lg)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                .fill(Theme.colors.surface)
-        )
+        .panelSurface()
     }
 
     /// "Registergericht: Amtsgericht Coburg, HRB 7580" — label and fact on one

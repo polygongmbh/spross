@@ -18,12 +18,7 @@ extension LettersOverview {
             VStack(alignment: .leading, spacing: Theme.spacing.lg) {
                 ForEach(Self.stages, id: \.self) { stageRow($0) }
             }
-            .padding(Theme.spacing.lg)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(
-                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                    .fill(Theme.colors.surface)
-            )
+            .panelSurface()
             startButton
             if !drillAvailable {
                 Text("letters.unavailable")
