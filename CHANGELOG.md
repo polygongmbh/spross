@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.2.0 — 2026-09-17
+
 - A revealed answer's field now carries the amber edge its screen reader already announced, on Android as on iPhone.
 - A problem you report during a round now carries the answer that was marked wrong, instead of arriving empty.
 - Two new shelves, Holidays and Water, and Sounds gains audio devices and listening.
