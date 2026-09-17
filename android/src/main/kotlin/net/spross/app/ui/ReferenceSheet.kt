@@ -110,7 +110,7 @@ private fun SheetRow(
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
-        row.emoji?.let { Text(it, fontSize = 28.sp, modifier = Modifier.clearAndSetSemantics { }) }
+        row.emoji?.let { Text(it, fontSize = 28.sp, modifier = Modifier.clearAndSetSemantics { }) } // card-parity: a picture, not a type role
         SheetSide(
             name = row.source,
             under = row.sourceUnder,
@@ -145,7 +145,7 @@ private fun SheetSide(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(2.dp),
+        verticalArrangement = Arrangement.spacedBy(2.dp), // card-parity: the line under a name sits tighter than xs
         horizontalAlignment = alignment,
     ) {
         Text(

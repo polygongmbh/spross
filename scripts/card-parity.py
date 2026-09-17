@@ -37,6 +37,9 @@ DROID = "android/src/main/kotlin/net/spross/app/ui/Theme.kt"
 IOS_FACES = ["App/Sources/Design/VocabCardView.swift", "App/Sources/Design/CountryPromptCard.swift",
              "App/Sources/Design/HearPromptCard.swift", "App/Sources/Screens/DrillPromptCard.swift"]
 IOS_BODIES = ["App/Sources/Design/CardReveal.swift", "App/Sources/Design/SpokenWord.swift",
+              "App/Sources/Design/DrillAnswerControls.swift",
+              "App/Sources/Design/ReferenceSheet.swift",
+              "App/Sources/Screens/DrillOverviewPage.swift",
               "App/Sources/Screens/DrillChoiceGrid.swift",
               "App/Sources/Screens/LetterDrillView+Stages.swift",
               "App/Sources/Screens/DrillRunView+Content.swift",
@@ -47,7 +50,7 @@ DROID_FACES = [DROID_UI + n for n in ("CardFace.kt", "CountryPromptCard.kt", "Pr
 DROID_BODIES = [DROID_UI + n for n in ("CardText.kt", "LetterDrillStages.kt",
                                        "DrillChoiceGrid.kt", "TypedDrillScreen.kt",
                                        "AnswerField.kt", "AnswerControls.kt",
-                                       "RunScaffold.kt")]
+                                       "RunScaffold.kt", "ReferenceSheet.kt")]
 
 # The primitives a face is built from. Two is the bar: a face that reaches for none of
 # them is not a card, it is a rectangle that happens to look like one today.
