@@ -31,8 +31,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -157,18 +155,11 @@ fun ReadAloudSwitch(model: AppModel) {
 @Composable
 private fun TurnCard(model: AppModel, ui: SessionUi) {
     val card = ui.card ?: return
-    val view = LocalView.current
-    val focusManager = LocalFocusManager.current
+    val hooks = rememberTurnHooks(model)
     // why: keyed on the card AND on how many answers stand behind it — an endless refill
     // can bring the same word back, and a turn carried over would arrive already answered.
     val flow = remember(card.id, ui.segments.size) {
-        model.newTurn(
-            ui,
-            onTone = { view.cueTone(it, model.cues) },
-            // why: a pause that waits for a tap must not hold the keyboard — it covers
-            // the very button the pause is waiting for.
-            onReleaseFocus = { focusManager.clearFocus() },
-        )
+        model.newTurn(ui, onTone = hooks.tone, onReleaseFocus = hooks.releaseFocus)
     } ?: return
 
     // why: keyed on the card, so the prompt is said once as it arrives and the fire

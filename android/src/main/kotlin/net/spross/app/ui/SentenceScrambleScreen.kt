@@ -20,7 +20,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -49,10 +48,10 @@ import net.spross.kern.trainer.SentenceScrambleTask
 @Composable
 fun SentenceScrambleScreen(model: AppModel) {
     val chrome = model.chrome
-    val view = LocalView.current
+    val hooks = rememberTurnHooks(model)
     // why: unkeyed — everything a run draws from is resolved ONCE, as it opens. A foreground
     // that re-sweeps availability must not restart the run underneath it.
-    val flow = remember { model.newSentenceScramble(onTone = { view.cueTone(it, model.cues) }) }
+    val flow = remember { model.newSentenceScramble(onTone = hooks.tone) }
     if (flow == null) {
         // Nothing this box can be asked — the chip gates on the same report, so this is a
         // closed door rather than a screen.

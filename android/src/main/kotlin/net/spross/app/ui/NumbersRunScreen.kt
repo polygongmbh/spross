@@ -22,8 +22,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
@@ -55,16 +53,9 @@ import net.spross.kern.trainer.NumbersRunState
 @Composable
 fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
     val chrome = model.chrome
-    val view = LocalView.current
-    val focusManager = LocalFocusManager.current
+    val hooks = rememberTurnHooks(model)
     val flow = remember(mode) {
-        model.newTrainerRun(
-            mode,
-            onTone = { view.cueTone(it, model.cues) },
-            // why: a pause that waits for a tap must not hold the keyboard — it covers
-            // the very button the pause is waiting for.
-            onReleaseFocus = { focusManager.clearFocus() },
-        )
+        model.newTrainerRun(mode, onTone = hooks.tone, onReleaseFocus = hooks.releaseFocus)
     }
     if (flow == null) {
         LaunchedEffect(Unit) { model.finishDrill(Screen.Numbers, null, "") }

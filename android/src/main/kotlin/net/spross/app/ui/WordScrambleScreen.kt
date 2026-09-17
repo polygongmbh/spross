@@ -14,8 +14,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -43,17 +41,11 @@ import net.spross.kern.trainer.WordScrambleTask
 @Composable
 fun WordScrambleScreen(model: AppModel) {
     val chrome = model.chrome
-    val view = LocalView.current
-    val focusManager = LocalFocusManager.current
+    val hooks = rememberTurnHooks(model)
     // why: unkeyed — everything a run draws from is resolved ONCE, as it opens. A foreground
     // that re-sweeps availability must not restart the run underneath it.
     val flow = remember {
-        model.newWordScramble(
-            onTone = { view.cueTone(it, model.cues) },
-            // why: a pause that waits for a tap must not hold the keyboard — it covers the
-            // very button the pause is waiting for.
-            onReleaseFocus = { focusManager.clearFocus() },
-        )
+        model.newWordScramble(onTone = hooks.tone, onReleaseFocus = hooks.releaseFocus)
     }
     if (flow == null) {
         // Nothing this box can be asked — the chip gates on the same report, so this is a

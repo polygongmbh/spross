@@ -18,8 +18,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.LocalView
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.app.CHIME_CLEARANCE_MS
@@ -64,18 +62,10 @@ class TypedDrillPage(
 @Composable
 fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: TypedDrillPage) {
     val chrome = model.chrome
-    val view = LocalView.current
-    val focusManager = LocalFocusManager.current
+    val hooks = rememberTurnHooks(model)
     // why: unkeyed on anything the run does — a foreground that re-sweeps availability must
     // not restart the run underneath it.
-    val flow = remember(reverse, fast) {
-        page.open(
-            { view.cueTone(it, model.cues) },
-            // why: a pause that waits for a tap must not hold the keyboard — it covers the
-            // very button the pause is waiting for.
-            { focusManager.clearFocus() },
-        )
-    }
+    val flow = remember(reverse, fast) { page.open(hooks.tone, hooks.releaseFocus) }
     if (flow == null) {
         // Nothing this pair can be asked — the chip gates on the same join, so this is a
         // closed door rather than a screen.

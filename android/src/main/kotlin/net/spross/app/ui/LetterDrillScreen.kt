@@ -28,8 +28,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
@@ -65,15 +63,11 @@ import net.spross.kern.trainer.LetterStage
 @Composable
 fun LetterDrillScreen(model: AppModel) {
     val chrome = model.chrome
-    val view = LocalView.current
-    val focusManager = LocalFocusManager.current
+    val hooks = rememberTurnHooks(model)
     // why: unkeyed — everything a run draws from is resolved ONCE, as it opens. A
     // foreground that re-sweeps availability must not restart the run underneath it.
     val flow = remember {
-        model.newLetterDrill(
-            onTone = { view.cueTone(it, model.cues) },
-            onReleaseFocus = { focusManager.clearFocus() },
-        )
+        model.newLetterDrill(onTone = hooks.tone, onReleaseFocus = hooks.releaseFocus)
     }
     if (flow == null) {
         // Nothing this device can ask — the start button gates on the same predicate, so
