@@ -11,6 +11,12 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## Engine & scheduling
 
+- The four drill run states (`NumbersRunState`, `LetterDrillRunState`, `WordScrambleRunState`,
+  `SentenceScrambleRunState`) each expose the same read surface independently — `index`, `level`,
+  `finished`, `owesAnswer`, `tally`, and `streak`/`bestStreak`/`outcomes` off a shared `core` —
+  with no kern type standing over it, which is why the run shell on each phone takes those
+  figures as five loose parameters instead of one. Surfaced while unifying both shells and left
+  to kern deliberately: inventing a view type platform-side would have minted the second home.
 - The 24-hour register closes the twelve-hour cycle by NUMBER (`achtzehn Uhr` cannot answer 06:00),
   a closure nothing holds, unlike the day parts' (`dayPartReadingsCloseTheTwelveHourCycle`).
 - `<pack>.cardinal(-n)` returns the digits rather than a reading — the negative reading lives
@@ -72,6 +78,14 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## App & UX
 
+- The two run shells disagree on three things, each needing a both-sides sweep rather than a
+  patch on one: iOS draws a `position/total` counter beside the round's progress where Android
+  draws none (now stated as `RunScaffold`'s `counter: String? = null` rather than hidden); iOS
+  shows the read-aloud switch only on runs that read words aloud (`showsMuteButton`) where
+  Android shows it on every top bar, so the letter drill wears the switch AND its own blocking
+  `UnmuteRow`; and the letter-drill body is spaced `md` on iOS against `lg` on Android. Found
+  while the shells were unified, so each difference now sits in one parameter per platform
+  instead of several screens.
 - The letters ladder files no answered-out Sprossen (it has no storage key at all), so its
   circles carry only the entry mark where the atlas and calendar wear a record
   (`LettersOverview+Practice.swift`, `ui/LettersOverviewScreen.kt`) — should the tile and
