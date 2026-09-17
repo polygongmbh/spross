@@ -1,17 +1,14 @@
 package net.spross.app.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -76,8 +73,6 @@ fun TypedDrillOverview(
     reference: @Composable () -> Unit,
 ) {
     val chrome = model.chrome
-    val scroll = rememberScrollState()
-    BackHandler { model.closeOverview() }
 
     // Not stored: which way round a run asks and how fast it climbs last as long as the
     // screen does. Names rather than booleans is unnecessary here — a Boolean survives a
@@ -93,24 +88,14 @@ fun TypedDrillOverview(
     val cleared = ladder.standing.cleared(reverse)
     val entry = NumbersMode.entrySprosse(cleared, ceiling)
 
-    val result = model.trainer.result
-    // why: a tile inserted ABOVE the content keeps the scroll offset, so what a run came
-    // back with would sit off the top of a page the learner is still looking at.
-    LaunchedEffect(result) { if (result != null) scroll.animateScrollTo(0) }
-
     val start = { ladder.start(reverse, fast, entry) }
 
     OverviewScaffold(
+        model = model,
         title = ladder.title,
-        chrome = chrome,
-        scroll = scroll,
         startEnabled = true,
-        onClose = { model.closeOverview() },
         onStart = start,
     ) {
-        result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
-
-        OverviewHeading(chrome.trainerOverviewPractice)
         OverviewPanel {
             for (sprosse in 1..ceiling) {
                 SprosseRow(

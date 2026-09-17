@@ -1,15 +1,12 @@
 package net.spross.app.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -35,27 +32,14 @@ fun LettersOverviewScreen(model: AppModel) {
     val chrome = model.chrome
     val language = model.box?.joinStamp?.target ?: return
     val report = model.trainer.letters
-    val scroll = rememberScrollState()
-    BackHandler { model.closeOverview() }
-
-    val result = model.trainer.result
-    // why: the numbers page's rule — a tile inserted above the content keeps the offset,
-    // so the page comes up to meet it.
-    LaunchedEffect(result) { if (result != null) scroll.animateScrollTo(0) }
-
     val available = report?.drillAvailable == true
 
     OverviewScaffold(
+        model = model,
         title = chrome.lettersTitle.format(model.languageName(language)),
-        chrome = chrome,
-        scroll = scroll,
         startEnabled = available,
-        onClose = { model.closeOverview() },
         onStart = { model.startLetterDrill() },
     ) {
-        result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
-
-        OverviewHeading(chrome.trainerOverviewPractice)
         OverviewPanel {
             LetterStage.entries.forEachIndexed { index, stage ->
                 StageRow(stage, index + 1, report, chrome)

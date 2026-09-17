@@ -1,13 +1,10 @@
 package net.spross.app.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -43,9 +40,6 @@ fun NumbersOverviewScreen(model: AppModel) {
     val chrome = model.chrome
     val stamp = model.box?.joinStamp ?: return
     val language = stamp.target
-    val scroll = rememberScrollState()
-    BackHandler { model.closeOverview() }
-
     // Carried whether or not Phrases is picked: kern drops a frameless Phrases itself, and
     // carrying them means the run samples the set the page was opened with.
     val templates = remember(stamp) {
@@ -72,11 +66,6 @@ fun NumbersOverviewScreen(model: AppModel) {
         .filter { DrillUnlocks.unlocked(it, ladder) }
         .toSet()
 
-    val result = model.trainer.result
-    // why: a tile inserted ABOVE the content keeps the scroll offset, so what a run came
-    // back with would sit off the top of a page the learner is still looking at.
-    LaunchedEffect(result) { if (result != null) scroll.animateScrollTo(0) }
-
     val start = {
         model.startTrainerRun(
             NumbersMode(
@@ -93,16 +82,11 @@ fun NumbersOverviewScreen(model: AppModel) {
     }
 
     OverviewScaffold(
+        model = model,
         title = chrome.numbersTitle.format(model.languageName(language)),
-        chrome = chrome,
-        scroll = scroll,
         startEnabled = picked.isNotEmpty(),
-        onClose = { model.closeOverview() },
         onStart = start,
     ) {
-        result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
-
-        OverviewHeading(chrome.trainerOverviewPractice)
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
             for (exercise in offered) {
                 ExerciseRow(exercise, chrome, ladder, combining, exercise in picked) {

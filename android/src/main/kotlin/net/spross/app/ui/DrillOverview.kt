@@ -1,6 +1,6 @@
 package net.spross.app.ui
 
-import androidx.compose.foundation.ScrollState
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
@@ -27,6 +28,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,23 +37,36 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import net.spross.app.AppModel
 import net.spross.app.Chrome
 
 /**
- * The shape the Countries and Dates pages both wear: run first, reading after — the picks
- * and the button on top, the table below them, the ✕ out on the left and the run in on the
- * right. Why that order, and why the right corner repeats `Los`: `docs/drills.md`.
+ * The shape every drill's page wears — the letters, the numbers, the atlas, the calendar:
+ * run first, reading after, with the picks and the button on top, the table below them, the
+ * ✕ out on the left and the run in on the right. Why that order, and why the right corner
+ * repeats `Los`: `docs/drills.md`.
+ *
+ * The tile a closed run left and the heading over the picks belong to the shape and not to
+ * any one page, so they stand here and a page opens straight into what it offers.
  */
 @Composable
 fun OverviewScaffold(
+    model: AppModel,
     title: String,
-    chrome: Chrome,
-    scroll: ScrollState,
     startEnabled: Boolean,
-    onClose: () -> Unit,
     onStart: () -> Unit,
     content: @Composable ColumnScope.() -> Unit,
 ) {
+    val chrome = model.chrome
+    val scroll = rememberScrollState()
+    val onClose = { model.closeOverview() }
+    BackHandler { onClose() }
+
+    val result = model.trainer.result
+    // why: a tile inserted ABOVE the content keeps the scroll offset, so what a run came
+    // back with would sit off the top of a page the learner is still looking at.
+    LaunchedEffect(result) { if (result != null) scroll.animateScrollTo(0) }
+
     Column(modifier = Modifier.fillMaxSize()) {
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = Theme.spacing.sm),
@@ -74,8 +89,11 @@ fun OverviewScaffold(
                 .verticalScroll(scroll)
                 .padding(Theme.spacing.xl),
             verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
-            content = content,
-        )
+        ) {
+            result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
+            OverviewHeading(chrome.trainerOverviewPractice)
+            content()
+        }
     }
 }
 
