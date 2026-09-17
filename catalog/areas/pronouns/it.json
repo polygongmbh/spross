@@ -14,6 +14,14 @@
   "they": { "text": "loro" },
   "my": { "text": "mio", "variants": ["mia", "miei", "mie"] },
   "your": { "text": "tuo", "variants": ["tua", "tuoi", "tue"] },
-  "his": { "text": "suo", "variants": ["sua", "suoi", "sue"] }
+  "his": { "text": "suo", "variants": ["sua", "suoi", "sue"] },
+  "something": { "text": "qualcosa" },
+  "nothing": { "text": "niente", "variants": ["nulla"] },
+  "everything": { "text": "tutto" },
+  "anything": { "text": "qualsiasi cosa" },
+  "someone": { "text": "qualcuno" },
+  "everyone": { "text": "ognuno" },
+  "no-one": { "text": "nessuno" },
+  "anyone": { "text": "chiunque" }
  }
 }

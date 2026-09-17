@@ -15,6 +15,14 @@
   "they": { "text": "they" },
   "my": { "text": "my" },
   "your": { "text": "your" },
-  "his": { "text": "his", "synonyms": ["her"] }
+  "his": { "text": "his", "synonyms": ["her"] },
+  "something": { "text": "something" },
+  "nothing": { "text": "nothing" },
+  "everything": { "text": "everything" },
+  "anything": { "text": "anything" },
+  "someone": { "text": "someone", "variants": ["somebody"] },
+  "everyone": { "text": "everyone", "variants": ["everybody"] },
+  "no-one": { "text": "no one", "variants": ["nobody"] },
+  "anyone": { "text": "anyone", "variants": ["anybody"] }
  }
 }

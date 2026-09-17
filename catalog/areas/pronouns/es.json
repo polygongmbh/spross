@@ -11,6 +11,14 @@
   "they": { "text": "ellos", "variants": ["ellas"] },
   "my": { "text": "mi", "variants": ["mis"] },
   "your": { "text": "tu", "variants": ["tus"] },
-  "his": { "text": "su", "variants": ["sus"] }
+  "his": { "text": "su", "variants": ["sus"] },
+  "something": { "text": "algo" },
+  "nothing": { "text": "nada" },
+  "everything": { "text": "todo" },
+  "anything": { "text": "cualquier cosa" },
+  "someone": { "text": "alguien" },
+  "everyone": { "text": "todo el mundo" },
+  "no-one": { "text": "nadie" },
+  "anyone": { "text": "cualquiera" }
  }
 }

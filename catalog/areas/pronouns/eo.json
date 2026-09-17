@@ -14,6 +14,14 @@
    "text": "lia",
    "synonyms": ["ŝia"],
    "notes": { "eo": "li → lia, ŝi → ŝia: la posedo estas la pronomo kun -a." }
-  }
+  },
+  "something": { "text": "io" },
+  "nothing": { "text": "nenio" },
+  "everything": { "text": "ĉio" },
+  "anything": { "text": "io ajn" },
+  "someone": { "text": "iu" },
+  "everyone": { "text": "ĉiu homo" },
+  "no-one": { "text": "neniu" },
+  "anyone": { "text": "iu ajn" }
  }
 }

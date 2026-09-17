@@ -9,5 +9,13 @@
  { "slug": "they", "kind": "adjective" },
  { "slug": "my", "kind": "adjective" },
  { "slug": "your", "kind": "adjective" },
- { "slug": "his", "kind": "adjective" }
+ { "slug": "his", "kind": "adjective" },
+ { "slug": "something", "kind": "adjective" },
+ { "slug": "nothing", "kind": "adjective" },
+ { "slug": "everything", "kind": "adjective" },
+ { "slug": "anything", "kind": "adjective" },
+ { "slug": "someone", "kind": "adjective" },
+ { "slug": "everyone", "kind": "adjective" },
+ { "slug": "no-one", "kind": "adjective" },
+ { "slug": "anyone", "kind": "adjective" }
 ]

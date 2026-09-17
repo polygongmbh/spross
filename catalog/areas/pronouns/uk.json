@@ -15,6 +15,14 @@
   "they": { "text": "вони" },
   "my": { "text": "мій", "variants": ["моя", "моє", "мої"] },
   "your": { "text": "твій", "variants": ["твоя", "твоє", "твої"] },
-  "his": { "text": "його", "synonyms": ["її"] }
+  "his": { "text": "його", "synonyms": ["її"] },
+  "something": { "text": "щось" },
+  "nothing": { "text": "нічого" },
+  "everything": { "text": "все" },
+  "anything": { "text": "будь-що" },
+  "someone": { "text": "хтось" },
+  "everyone": { "text": "кожна людина" },
+  "no-one": { "text": "ніхто" },
+  "anyone": { "text": "будь-хто" }
  }
 }

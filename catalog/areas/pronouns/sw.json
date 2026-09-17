@@ -25,6 +25,14 @@
    "text": "-ake",
    "variants": ["wake", "yake", "lake", "chake", "zake", "vyake"],
    "notes": { "sw": "mama yake, jina lake, kitanda chake." }
-  }
+  },
+  "something": { "text": "kitu" },
+  "nothing": { "text": "hakuna kitu" },
+  "everything": { "text": "kila kitu" },
+  "anything": { "text": "chochote" },
+  "someone": { "text": "mtu fulani" },
+  "everyone": { "text": "kila mtu" },
+  "no-one": { "text": "hakuna mtu" },
+  "anyone": { "text": "yeyote" }
  }
 }

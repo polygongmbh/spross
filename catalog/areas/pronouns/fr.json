@@ -14,6 +14,13 @@
   "they": { "text": "ils", "variants": ["elles"] },
   "my": { "text": "mon", "variants": ["ma", "mes"] },
   "your": { "text": "ton", "variants": ["ta", "tes"] },
-  "his": { "text": "son", "variants": ["sa", "ses"] }
+  "his": { "text": "son", "variants": ["sa", "ses"] },
+  "something": { "text": "quelque chose" },
+  "nothing": { "text": "rien" },
+  "everything": { "text": "tout" },
+  "anything": { "text": "quoi que ce soit" },
+  "someone": { "text": "quelqu'un" },
+  "everyone": { "text": "tout le monde" },
+  "anyone": { "text": "qui que ce soit" }
  }
 }

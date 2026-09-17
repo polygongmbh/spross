@@ -16,6 +16,14 @@
   "they": { "text": "sie" },
   "my": { "text": "mein", "variants": ["meine"] },
   "your": { "text": "dein", "variants": ["deine"] },
-  "his": { "text": "sein", "variants": ["seine"] }
+  "his": { "text": "sein", "variants": ["seine"] },
+  "something": { "text": "etwas" },
+  "nothing": { "text": "nichts" },
+  "everything": { "text": "alles" },
+  "anything": { "text": "irgendetwas" },
+  "someone": { "text": "jemand" },
+  "everyone": { "text": "jeder Mensch" },
+  "no-one": { "text": "niemand" },
+  "anyone": { "text": "irgendjemand" }
  }
 }
