@@ -16,33 +16,25 @@ import net.spross.kern.trainer.NumbersRunState
  * One slot run as this platform holds it.
  *
  * Every rule is kern's [NumbersRun] — what an answer is worth, which Sprosse it moves, when
- * the way out is offered, what a look-up costs. What is left here is the platform's half:
- * the text standing in the field, the beat that is armed, whether the reference table is
- * raised. The screen reads this and hands taps back; it decides nothing.
+ * the way out is offered, what a look-up costs. What is left here is the platform's half,
+ * which is [DrillFlow]'s: the text standing in the field and the beat that is armed. What
+ * this drill adds to it is the reference table raised over the run.
  *
- * The same shape as [TurnFlow] and [LetterDrillFlow], and for the same reason: a run kept
- * out of the composition is a run a test can drive without a device.
+ * Kept out of the composition like [TurnFlow], and for the same reason: a run a test can
+ * drive without a device.
  */
 class NumbersFlow(
     start: NumbersRunState,
     /** Kern's grader for the drilled language; null (previews) grades plainly. */
     private val normalizer: AnswerNormalizer?,
-    private val rng: Random,
+    rng: Random,
     onTone: (ToneKind) -> Unit = {},
     onReleaseFocus: () -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
+) : DrillFlow<NumbersRunState, NumbersIntent>(
+    start, rng, onTone, onReleaseFocus, onSilence, screenReaderOn,
 ) {
-    private val beat = DrillBeat(screenReaderOn)
-    private val acts = DrillActs(beat, onTone, onReleaseFocus, onSilence)
-
-    var state by mutableStateOf(start)
-        private set
-
-    /** The learner's answer text — kern owns what it means, the field is ours. */
-    var input by mutableStateOf("")
-        private set
-
     /**
      * The reference table, raised over the run by "?". Not kern's: the look-up's COST is
      * ([NumbersIntent.LookUp] books the amber debt), the panel over the run is chrome.
@@ -50,47 +42,6 @@ class NumbersFlow(
     var showingReference by mutableStateOf(false)
 
     val mode: NumbersMode get() = state.mode
-
-    /**
-     * Kern has run out of questions: the screen hands the run back rather than sitting on a
-     * card it has already answered. False once the close has been made, whichever way the
-     * screen went — a run is handed back once.
-     */
-    val ranOut: Boolean get() = state.finished && !handedBack
-
-    private var handedBack = false
-
-    val armedBeat get() = beat.tier
-
-    val beatToken get() = beat.token
-
-    /** The beat became a tap: render the explicit "Weiter", which books the same answer. */
-    val awaitsConfirm get() = beat.awaitsConfirm
-
-    /** A live keystroke: finishing the word IS the answer, within kern's growing guard. */
-    fun type(text: String) {
-        input = text
-        dispatch(NumbersIntent.InputChanged(text))
-    }
-
-    /**
-     * The ONE primary action, button and Enter alike: kern checks what stands in the field,
-     * and reveals the answer when nothing does.
-     */
-    fun primary() = dispatch(NumbersIntent.Submit(input))
-
-    /** The tap that books whatever the feedback already said. */
-    fun confirm() = dispatch(NumbersIntent.ConfirmPending)
-
-    /** Enter: check while the answer is owed, otherwise book what stands. */
-    fun enter() {
-        if (state.owesAnswer) primary() else confirm()
-    }
-
-    fun advanceElapsed() {
-        beat.spend()
-        dispatch(NumbersIntent.AdvanceElapsed)
-    }
 
     /** The "?": a look-up while the answer is still owed costs the Sprosse — kern books it. */
     fun lookUp() {
@@ -102,23 +53,25 @@ class NumbersFlow(
      * Leaving. Kern books whatever is pending exactly as the explicit tap would and says
      * what the platform owes its stores; the caller writes them and shows the summary.
      */
-    fun close(standingRecord: Int, standingProgress: Map<String, Int>): NumbersClose {
-        handedBack = true
-        val closed = NumbersRun.close(state, standingRecord, standingProgress)
-        state = closed.state
-        input = ""
-        acts.carryOut(closed.effects)
-        return closed
-    }
+    fun close(standingRecord: Int, standingProgress: Map<String, Int>): NumbersClose =
+        NumbersRun.close(state, standingRecord, standingProgress).also { land(it.state, it.effects) }
 
-    private fun dispatch(intent: NumbersIntent) {
-        val reduction = NumbersRun.reduce(state, intent, normalizer, rng)
-        // why: the field is cleared in the SAME transaction as the question — the next
-        // prompt must never render one frame carrying the last one's answer.
-        if (reduction.state.index != state.index) input = ""
-        state = reduction.state
-        acts.carryOut(reduction.effects)
-    }
+    override fun reduce(state: NumbersRunState, intent: NumbersIntent, rng: Random) =
+        NumbersRun.reduce(state, intent, normalizer, rng).let { DrillStep(it.state, it.effects) }
+
+    override fun index(state: NumbersRunState) = state.index
+
+    override fun finished(state: NumbersRunState) = state.finished
+
+    override fun owesAnswer(state: NumbersRunState) = state.owesAnswer
+
+    override fun inputChanged(text: String) = NumbersIntent.InputChanged(text)
+
+    override fun submit(text: String) = NumbersIntent.Submit(text)
+
+    override fun confirmPending() = NumbersIntent.ConfirmPending
+
+    override fun advanceElapsedIntent() = NumbersIntent.AdvanceElapsed
 }
 
 /**

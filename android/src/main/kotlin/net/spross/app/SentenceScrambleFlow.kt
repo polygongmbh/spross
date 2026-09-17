@@ -1,8 +1,5 @@
 package net.spross.app
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import kotlin.random.Random
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.SentenceScrambleAvailability
@@ -17,8 +14,10 @@ import net.spross.kern.trainer.SentenceScrambleRunState
  * kern's own [SentenceScrambleRun].
  *
  * There is no field and no submit: moving the last atom into place IS the answer, the way a
- * finished spelling is on the typed drills. Everything decidable is kern's — the deal, the
- * ladder of lengths, the grading by position — and what is left here is the armed beat.
+ * finished spelling is on the typed drills, so this is the one [DrillFlow] that hands kern
+ * neither a keystroke nor a check and leaves both unimplemented. Everything decidable is
+ * kern's — the deal, the ladder of lengths, the grading by position — and what is left here
+ * is the armed beat.
  *
  * No review is ever booked: the box is READ for the phrases it has unlocked and never
  * written, and the run keeps no streak record — arrangement is not recall. What DOES outlive
@@ -26,7 +25,7 @@ import net.spross.kern.trainer.SentenceScrambleRunState
  */
 class SentenceScrambleFlow(
     start: SentenceScrambleRunState,
-    private val rng: Random,
+    rng: Random,
     /**
      * Where the Sprossen this run clears are filed, and where it read the ones it opened
      * above ([TrainerStore.sentenceScrambleKey]) — one string, so the two sides cannot drift.
@@ -35,56 +34,32 @@ class SentenceScrambleFlow(
     onTone: (ToneKind) -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
-) {
-    private val beat = DrillBeat(screenReaderOn)
+) : DrillFlow<SentenceScrambleRunState, SentenceScrambleIntent>(
     // Nothing to release: this drill has no field, so no pause can be waiting behind a keyboard.
-    private val acts = DrillActs(beat, onTone, onReleaseFocus = {}, onSilence = onSilence)
-
-    var state by mutableStateOf(start)
-        private set
-
-    /**
-     * Kern has run out of phrases: the screen hands the run back rather than sitting on a bank
-     * it has already answered. False once the close has been made, whichever way the screen
-     * went — a run is handed back once.
-     */
-    val ranOut: Boolean get() = state.finished && !handedBack
-
-    private var handedBack = false
-
-    val armedBeat get() = beat.tier
-
-    val beatToken get() = beat.token
-
-    val awaitsConfirm get() = beat.awaitsConfirm
-
+    start, rng, onTone, onReleaseFocus = {}, onSilence = onSilence, screenReaderOn = screenReaderOn,
+) {
     /** A bank slot tapped: the atom joins the end of the arrangement, and the last one grades. */
     fun place(index: Int) = dispatch(SentenceScrambleIntent.PlaceAtom(index))
 
     /** An answer-row slot tapped: the atom goes back, while the order is still owed. */
     fun take(index: Int) = dispatch(SentenceScrambleIntent.ReturnAtom(index))
 
-    fun confirm() = dispatch(SentenceScrambleIntent.ConfirmPending)
-
-    fun advanceElapsed() {
-        beat.spend()
-        dispatch(SentenceScrambleIntent.AdvanceElapsed)
-    }
-
     /** Leaving: kern books a pending arrangement exactly as the tap would, then reports. */
-    fun close(): SentenceScrambleClose {
-        handedBack = true
-        val closed = SentenceScrambleRun.close(state)
-        state = closed.state
-        acts.carryOut(closed.effects)
-        return closed
-    }
+    fun close(): SentenceScrambleClose =
+        SentenceScrambleRun.close(state).also { land(it.state, it.effects) }
 
-    private fun dispatch(intent: SentenceScrambleIntent) {
-        val reduction = SentenceScrambleRun.reduce(state, intent, rng)
-        state = reduction.state
-        acts.carryOut(reduction.effects)
-    }
+    override fun reduce(state: SentenceScrambleRunState, intent: SentenceScrambleIntent, rng: Random) =
+        SentenceScrambleRun.reduce(state, intent, rng).let { DrillStep(it.state, it.effects) }
+
+    override fun index(state: SentenceScrambleRunState) = state.index
+
+    override fun finished(state: SentenceScrambleRunState) = state.finished
+
+    override fun owesAnswer(state: SentenceScrambleRunState) = state.owesAnswer
+
+    override fun confirmPending() = SentenceScrambleIntent.ConfirmPending
+
+    override fun advanceElapsedIntent() = SentenceScrambleIntent.AdvanceElapsed
 }
 
 /**

@@ -1,8 +1,5 @@
 package net.spross.app
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import kotlin.random.Random
 import net.spross.kern.model.Language
 import net.spross.kern.session.AdvanceTier
@@ -146,79 +143,28 @@ data class TypedDrillClose(
  * run kern keeps it in.
  *
  * Their kern runs share no type on purpose: a country and a date are drawn, graded and
- * laddered by rules of their own. What the PLATFORM does with either is one thing — the
- * text standing in the field, the beat, the acts an effect asks for, and the handful of
- * taps kern already names — so it lives here once, and a subclass is left with what its
- * run actually differs in: [view], the intents it names, and how a question is left.
- *
- * Nothing here decides anything: every tap goes straight to kern's reducer.
+ * laddered by rules of their own. The run itself is [DrillFlow], which every drill stands
+ * on; what this adds is the face the shared screen reads — [view], [chosen], and a close
+ * that hands back the figures the atlas and the calendar both file.
  */
 abstract class TypedDrillFlow<S, I>(
     start: S,
-    private val rng: Random,
+    rng: Random,
     onTone: (ToneKind) -> Unit,
     onReleaseFocus: () -> Unit,
     onSilence: () -> Unit,
     screenReaderOn: () -> Boolean,
-) : TypedDrill {
-    private val beat = DrillBeat(screenReaderOn)
-    private val acts = DrillActs(beat, onTone, onReleaseFocus, onSilence)
-
-    var state by mutableStateOf(start)
-        private set
-
-    /** The learner's answer text — kern owns what it means, the field is ours. */
-    final override var input by mutableStateOf("")
-        private set
-
-    /**
-     * Kern has run out of questions: the screen hands the run back rather than sitting on a
-     * card it has already answered. False once the close has been made, whichever way the
-     * screen went — a run is handed back once.
-     */
-    override val ranOut: Boolean get() = finished(state) && !handedBack
-
-    private var handedBack = false
-
-    override val armedBeat get() = beat.tier
-
-    override val beatToken get() = beat.token
-
-    /** The beat became a tap: render the explicit "Weiter", which books the same answer. */
-    override val awaitsConfirm get() = beat.awaitsConfirm
+) : DrillFlow<S, I>(start, rng, onTone, onReleaseFocus, onSilence, screenReaderOn), TypedDrill {
 
     /** A run whose questions are all written was never answered off a tile. */
     override val chosen: String? get() = null
-
-    /** A live keystroke: writing the answer out IS the answer, within kern's exact-only guard. */
-    override fun type(text: String) {
-        input = text
-        dispatch(inputChanged(text))
-    }
 
     /**
      * A tapped tile: submitted as the text it carries, so kern grades it against the same
      * accepted set a written answer meets and nothing here decides what a tap is worth.
      */
-    override fun choose(text: String) = dispatch(submit(text))
-
-    /**
-     * The ONE primary action, button and Enter alike: kern checks what stands in the field,
-     * and reveals the answer when nothing does.
-     */
-    override fun primary() = dispatch(submit(input))
-
-    /** The tap that books whatever the feedback already said — and the beat's stand-in. */
-    override fun confirm() = dispatch(confirmPending())
-
-    /** Enter: check while the answer is owed, otherwise book what stands. */
-    override fun enter() {
-        if (owesAnswer(state)) primary() else confirm()
-    }
-
-    override fun advanceElapsed() {
-        beat.spend()
-        dispatch(advanceElapsedIntent())
+    override fun choose(text: String) {
+        submit(text)?.let(::dispatch)
     }
 
     /**
@@ -226,53 +172,18 @@ abstract class TypedDrillFlow<S, I>(
      * tap would, then says what the page owes its store.
      */
     override fun close(standingRecord: Int): TypedDrillClose {
-        handedBack = true
         val closed = closeRun(state, standingRecord)
-        state = closed.state
-        input = ""
-        acts.carryOut(closed.effects)
+        land(closed.state, closed.effects)
         return closed.close
     }
-
-    protected fun dispatch(intent: I) {
-        val reduction = reduce(state, intent, rng)
-        // why: cleared in the SAME transaction as the question — the next card must never
-        // render one frame carrying the last one's answer.
-        if (index(reduction.state) != index(state)) {
-            input = ""
-            onQuestionChanged()
-        }
-        state = reduction.state
-        acts.carryOut(reduction.effects)
-    }
-
-    /** What a question leaves behind besides the typed text — nothing, unless tiles are asked off. */
-    protected open fun onQuestionChanged() {}
-
-    /** One turn of kern's reducer, in this run's own types. */
-    protected abstract fun reduce(state: S, intent: I, rng: Random): DrillStep<S>
 
     /** Kern's close, in this run's own types. */
     protected abstract fun closeRun(state: S, standingRecord: Int): DrillEnd<S>
 
-    /** Bumped per question — what a cleared field keys on. */
-    protected abstract fun index(state: S): Int
+    abstract override fun inputChanged(text: String): I
 
-    protected abstract fun finished(state: S): Boolean
-
-    protected abstract fun owesAnswer(state: S): Boolean
-
-    protected abstract fun inputChanged(text: String): I
-
-    protected abstract fun submit(text: String): I
-
-    protected abstract fun confirmPending(): I
-
-    protected abstract fun advanceElapsedIntent(): I
+    abstract override fun submit(text: String): I
 }
-
-/** A reduction as the shared flow reads it: the run as it now stands, and what it asks of the world. */
-data class DrillStep<S>(val state: S, val effects: List<DrillEffect>)
 
 /** A close as the shared flow reads it: the ended run, its effects, and what the page owes its store. */
 data class DrillEnd<S>(val state: S, val effects: List<DrillEffect>, val close: TypedDrillClose)
