@@ -229,13 +229,7 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
             } else {
                 emptyList()
             },
-            // The note is the card's last line. One line only: what the word ALSO means
-            // takes it where the card had nothing of its own to say.
-            note = if (revealed) {
-                card.target.note ?: CardDisplay.meansAlsoLine(flow.state.alsoMeans, chrome)
-            } else {
-                null
-            },
+            note = CardDisplay.closingNote(card.target, flow.state.alsoMeans, chrome, revealed),
         ) {
             SpokenWord(model.pronounceAction(promptForm), chrome) {
                 Headword(

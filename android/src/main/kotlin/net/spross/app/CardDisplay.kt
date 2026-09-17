@@ -43,4 +43,21 @@ object CardDisplay {
     fun meansAlsoLine(alsoMeans: List<String>, chrome: Chrome): String? =
         alsoMeans.takeIf { it.isNotEmpty() }
             ?.let { chrome.sessionMeansAlso.format(it.joinToString(" / ")) }
+
+    /**
+     * The card's LAST line, which it grows only once it has stopped asking.
+     *
+     * One line, never two: a card with something of its own to say says that, and what the
+     * word also means takes the slot where the card had nothing — a second hint under the
+     * first is a line nobody reads (`docs/design.md`).
+     */
+    fun closingNote(
+        realization: Realization,
+        alsoMeans: List<String>,
+        chrome: Chrome,
+        revealed: Boolean,
+    ): String? {
+        if (!revealed) return null
+        return realization.note ?: meansAlsoLine(alsoMeans, chrome)
+    }
 }

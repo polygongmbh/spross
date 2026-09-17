@@ -69,4 +69,16 @@ class CardDisplayTest {
         assertEquals("die", CardDisplay.article(realization("die Küche", gender = "die")))
         assertNull(CardDisplay.article(realization("nyumba")))
     }
+
+    /** The card says its own thing where it has one, and nothing at all while it still asks. */
+    @Test
+    fun theClosingNoteIsOneLineAndOnlyAfterTheReveal() {
+        val own = realization("die Bank").copy(note = "Geldhaus")
+        assertEquals("Geldhaus", CardDisplay.closingNote(own, listOf("Sitzbank"), chrome, revealed = true))
+        assertEquals(
+            "bedeutet auch: Sitzbank",
+            CardDisplay.closingNote(realization("die Bank"), listOf("Sitzbank"), chrome, revealed = true),
+        )
+        assertNull(CardDisplay.closingNote(own, listOf("Sitzbank"), chrome, revealed = false))
+    }
 }
