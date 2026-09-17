@@ -16,9 +16,6 @@ Ready work comes first, then the items that end in a question for the owner, the
 - `catalog/areas/README.md` § How a realization is worded lacks the quote-pair convention
   (“…” in English prose, „…“ in German, as the idiom and note passes now write),
   which waits on a ruling before it is written down.
-- it `living/wall` accepts `muro` as a variant of `parete` while its own note says the two are
-  different things, and `nature/stone-wall` now teaches `muro di pietra`; rule whether `muro`
-  is a synonym, belongs to the new card, or stays.
 - sw `verbs/to-send` lost the `kutuma`/`kupeleka` contrast when its German note was cut, and it
   stays lost: `kupeleka` is `verbs/to-deliver`'s own card, so naming it here would break "a note
   explains its own word and no other". The pair wants a contrast card if it wants anything.
