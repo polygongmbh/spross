@@ -78,6 +78,19 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## App & UX
 
+- The two scramble views are iOS's unextracted seventh cluster, and Android is already past it:
+  `WordScrambleView`/`SentenceScrambleView` (and their `+Run` and `Availability` halves) share a
+  driver, the empty-box availability report, the ONE-primary-action branch and the close-figures
+  hand-off, none of which went through `DrillRunning` because the 2026-09 audit never listed
+  them — their prose had drifted, so the comment scan could not see them. Android folded its two
+  into `DrillFlow` in the same sweep, so this is the mirror of work already done once.
+- Three parity differences the reference-sheet and box-row sweep surfaced, each a both-sides
+  ruling rather than a patch: iOS's `FeminineBadge` is cut smaller than Android's, which
+  composes it from the shared `Pill`; Android's panels carry a drop shadow and a hairline
+  through `Modifier.panel()` where iOS's `panelSurface()` is a flat fill, so the two do not read
+  as one system; and iOS prefixes each authored note with "·" where Android does not.
+- `App/Sources/Design/Theme.swift` is 388 lines, past the ~300 guide, and its shared-modifiers
+  and button-styles section is the clean seam to split on.
 - The two run shells disagree on three things, each needing a both-sides sweep rather than a
   patch on one: iOS draws a `position/total` counter beside the round's progress where Android
   draws none (now stated as `RunScaffold`'s `counter: String? = null` rather than hidden); iOS
@@ -134,10 +147,15 @@ Catalog content — its forms, its audio and the per-language questions — live
 - Nothing gates a screen re-cutting a component that already exists: `card-parity.py`'s face
   and body lists are hand-kept, so a newly added file is never scanned (the 2026-09-03 drill
   choice grid was written, reviewed and merged unseen before `dade95ee` consolidated it).
-  Deriving the scanned set the way `LayerBoundaryTest` derives its enum list is one half;
-  the other is a duplicate-`// why:` scan, which `audit-2026-09-13.md` finds needs no baseline
-  — three exemptions (house idiom, a comment citing a doc path, a non-Kotlin-linking target)
-  and it is near-green once that audit's six clusters land. Cleanup first, then the gate.
+  Deriving the scanned set the way `LayerBoundaryTest` derives its enum list is one half.
+  The other half was to be a duplicate-`// why:` scan, and the 2026-09 sweep measured it into
+  the ground: it reads files that duplicate a COMMENT, so a copy whose prose drifted is
+  invisible, and four of the largest finds were invisible to it — two scramble screens, a
+  second `DrillBeat` in `TurnFlow`, a third reference sheet in `NumberReferenceTable`, and an
+  inline panel cut by hand at 15 sites in 13 files, which only `rg` over the SHAPE found.
+  Six clusters shipped and the scan still stands at 46 groups with its three exemptions
+  applied, against a predicted near-zero. Build it only as a REPORT that ranks candidates for
+  a human; as a commit gate it would fail on prose while passing the duplication that matters.
 - The credits screen names the target-language word every bundled recording says and offers
   no way to hear one, since the row tap opens the file's Commons page
   (`App/Sources/Screens/CreditsView.swift` `fileRow`) and `Components.kt:255` /
