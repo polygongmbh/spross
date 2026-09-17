@@ -19,13 +19,8 @@
     "de": "das Gebrauchte steht nach di: Ho bisogno di aiuto."
    }
   },
-  "to-know": {
-   "text": "sapere",
-   "notes": {
-    "it": "si sa una parola · si conosce Roma e Maria.",
-    "de": "wissen = sapere · Personen und Orte kennen = conoscere."
-   }
-  },
+  "to-know-something": { "text": "sapere", "notes": { "it": "si sa una parola, si sa dov'è." } },
+  "to-know-person": { "text": "conoscere qualcuno", "notes": { "it": "anche i luoghi: conoscere Roma." } },
   "to-remember": { "text": "ricordarsi" },
   "to-show": { "text": "mostrare" },
   "to-explain": { "text": "spiegare" },

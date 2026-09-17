@@ -12,13 +12,8 @@
   "to-reply": { "text": "responder", "synonyms": ["contestar"] },
   "help": { "text": "ayuda", "grammar": { "gender": "la" } },
   "to-need": { "text": "necesitar" },
-  "to-know": {
-   "text": "saber",
-   "notes": {
-    "es": "Sé la respuesta · Sabe hablar.",
-    "de": "wissen = saber · kennen (Personen, Orte) = conocer."
-   }
-  },
+  "to-know-something": { "text": "saber", "notes": { "es": "Sé la respuesta · Sabe hablar." } },
+  "to-know-person": { "text": "conocer a alguien", "notes": { "es": "también los lugares: conocer Madrid." } },
   "to-remember": { "text": "recordar" },
   "to-show": { "text": "mostrar" },
   "to-explain": { "text": "explicar" },

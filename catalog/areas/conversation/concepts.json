@@ -9,7 +9,8 @@
  { "slug": "to-reply", "kind": "verb", "emoji": "↩️" },
  { "slug": "help", "kind": "noun", "emoji": "🤲" },
  { "slug": "to-need", "kind": "verb" },
- { "slug": "to-know", "kind": "verb", "emoji": "🧠" },
+ { "slug": "to-know-something", "kind": "verb", "emoji": "🧠" },
+ { "slug": "to-know-person", "kind": "verb", "emoji": "🤝" },
  { "slug": "to-remember", "kind": "verb", "emoji": "📌" },
  { "slug": "to-show", "kind": "verb", "emoji": "👉" },
  { "slug": "to-explain", "kind": "verb", "emoji": "🧩" },
@@ -20,7 +21,7 @@
  { "slug": "i-cant-hear-you", "kind": "phrase", "emoji": "👂", "components": ["to-hear"] },
  { "slug": "do-you-speak-english", "kind": "phrase", "emoji": "🇬🇧", "components": ["to-speak"] },
  { "slug": "i-need-help", "kind": "phrase", "components": ["to-need", "help"] },
- { "slug": "i-dont-know", "kind": "phrase", "emoji": "🤷", "components": ["to-know"] },
+ { "slug": "i-dont-know", "kind": "phrase", "emoji": "🤷", "components": ["to-know-something"] },
  { "slug": "i-forgot", "kind": "phrase", "emoji": "💨", "components": [] },
  { "slug": "what-is-this-called", "kind": "phrase", "emoji": "❓", "components": [] }
 ]

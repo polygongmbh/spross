@@ -27,13 +27,8 @@
   "to-reply": { "text": "répondre", "notes": { "fr": "répondre à la question · répondre à Paul." } },
   "help": { "text": "aide", "variants": ["l'aide"], "grammar": { "gender": "l'" } },
   "to-need": { "text": "avoir besoin de" },
-  "to-know": {
-   "text": "savoir",
-   "notes": {
-    "fr": "savoir nager, savoir où c'est · connaître Paris et Paul.",
-    "de": "wissen = savoir · kennen (Personen, Orte) = connaître."
-   }
-  },
+  "to-know-something": { "text": "savoir", "notes": { "fr": "savoir nager, savoir où c'est." } },
+  "to-know-person": { "text": "connaître quelqu'un", "notes": { "fr": "aussi les lieux : connaître Paris." } },
   "to-remember": { "text": "se souvenir" },
   "to-show": { "text": "montrer" },
   "to-explain": { "text": "expliquer" },

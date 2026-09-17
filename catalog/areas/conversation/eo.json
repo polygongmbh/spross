@@ -12,13 +12,8 @@
   "to-reply": { "text": "respondi" },
   "help": { "text": "helpo" },
   "to-need": { "text": "bezoni" },
-  "to-know": {
-   "text": "scii",
-   "notes": {
-    "eo": "scii faktojn · koni: Mi konas vin.",
-    "de": "wissen = scii · kennen (Personen, Orte) = koni."
-   }
-  },
+  "to-know-something": { "text": "scii", "notes": { "eo": "scii faktojn, ne homojn." } },
+  "to-know-person": { "text": "koni iun", "notes": { "eo": "ankaŭ lokojn: koni Parizon." } },
   "to-remember": { "text": "memori" },
   "to-show": { "text": "montri" },
   "to-explain": { "text": "klarigi" },
