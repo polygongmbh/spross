@@ -966,7 +966,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obstgarten"
+            "value" : "Hain"
           }
         },
         "en" : {
@@ -1599,13 +1599,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Obstgarten"
+            "value" : "Dein Hain"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Orchard"
+            "value" : "Your Orchard"
           }
         }
       }

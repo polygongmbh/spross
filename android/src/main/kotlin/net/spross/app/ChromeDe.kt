@@ -258,8 +258,8 @@ internal object ChromeDe : Chrome {
     override val a11yScrambleArrangement = "Deine Reihenfolge"
     override val a11yScrambleBank = "Wörter zur Auswahl"
     override val a11yActionTakeBack = "Zurücknehmen"
-    override val boxTitle = "Der Obstgarten"
-    override val boxName = "Obstgarten"
+    override val boxTitle = "Dein Hain"
+    override val boxName = "Hain"
     override val boxSubtitle = "%s von %s Karten sprießen"
     override val boxOwnShelf = "Eigene Wörter"
     override val boxOwnWordExplainer = "Eigene Wörter gehören dir allein. Ein wachsender " +
