@@ -192,18 +192,6 @@ fun WriteOutStep(model: AppModel, flow: TurnFlow, step: CopyStep, targetName: St
     }
 }
 
-/** The "Weiter" that stands in for a beat under a screen reader — same rating, one tap. */
-@Composable
-fun ConfirmButton(chrome: Chrome, onClick: () -> Unit) {
-    Button(
-        onClick = onClick,
-        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
-        shape = MaterialTheme.shapes.small,
-    ) {
-        Text(chrome.commonNext)
-    }
-}
-
 /**
  * What kern's verdict cue becomes on this platform: the chime [CueSounds] holds, and — on
  * a wrong answer alone — a haptic under it.

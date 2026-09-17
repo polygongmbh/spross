@@ -31,9 +31,7 @@ import net.spross.app.audio.Pronouncer
 import net.spross.app.pronounceAction
 import net.spross.app.pronounceTarget
 import net.spross.kern.model.ProducePrompt
-import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.TurnFeedback
-import net.spross.kern.session.AnswerNormalizer
 
 /**
  * PRODUCE half of the session screen: typing-first controls over kern's turn.
@@ -111,21 +109,18 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         TurnFeedback.Neutral -> if (flow.selfGrading) {
             VerdictButtons(chrome, flow, caption = model.gradeCaption)
         } else {
-            // ONE primary action: an empty field reveals, a typed one checks.
-            Button(
-                onClick = { flow.primary() },
-                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
-                shape = MaterialTheme.shapes.small,
-            ) {
-                Text(if (AnswerNormalizer.isBlankAnswer(flow.input)) chrome.commonReveal else chrome.commonCheck)
-            }
+            PrimaryAction(flow.input, chrome, flow::primary)
         }
-        // why: nothing is drawn for a clean answer — it already stands in the learner's
-        // own text with the field's own checkmark, and the card is on its way out. Under
-        // a screen reader no beat ever armed, so the tap that replaces it is all there is.
-        TurnFeedback.Correct -> if (flow.awaitsConfirm) ConfirmButton(chrome) { flow.confirm() }
-        is TurnFeedback.Almost -> AlmostHold(model, flow, feedback, heard)
-        TurnFeedback.Revealed -> MissedAnswer(model, ui, flow)
+        else -> AnswerVerdict(
+            feedback,
+            flow.awaitsConfirm,
+            chrome,
+            flow::confirm,
+            // why: no speaker where the card was asked by ear — the correction is then a
+            // SOURCE word, and the target voice would say a German word in Swahili.
+            speakCorrection = { if (heard) null else model.pronounceAction(it) },
+            missed = { MissedAnswer(model, ui, flow) },
+        )
     }
     // why: this card's whole content is a sound, and a learner who cannot listen to it
     // would otherwise answer blind. Under the primary action, because it is the way out
@@ -205,32 +200,6 @@ private fun WrittenPrompt(model: AppModel, ui: SessionUi) {
         )
     }
     CardDisplay.pluralLine(card.target, chrome)?.let { CardLine(it) }
-}
-
-/**
- * An accepted answer that was not clean pauses on what it owes back — a slip's proper
- * spelling, or the form that actually played where the card accepts the one written.
- * The box IS the correction, so it carries the word and the speaker that says it; the card
- * itself stays closed, and nothing is on screen twice.
- *
- * No speaker where the card was asked by ear: the correction is then a SOURCE word, and
- * the target voice would say a German word in Swahili.
- */
-@Composable
-private fun AlmostHold(model: AppModel, flow: TurnFlow, hold: TurnFeedback.Almost, heard: Boolean) {
-    val chrome = model.chrome
-    val caption = when (hold.reason) {
-        AlmostReason.Typo -> chrome.sessionAlmostTypo
-        AlmostReason.Heard -> chrome.sessionAlmostHeard
-        AlmostReason.Merged -> chrome.sessionAlmostMerged
-    }
-    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
-        AlmostCorrection(
-            caption, hold.correctForm, chrome,
-            pronounce = if (heard) null else model.pronounceAction(hold.correctForm),
-        )
-        ConfirmButton(chrome) { flow.confirm() }
-    }
 }
 
 /**

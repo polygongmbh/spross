@@ -45,7 +45,8 @@ DROID_UI = "android/src/main/kotlin/net/spross/app/ui/"
 DROID_FACES = [DROID_UI + n for n in ("CardFace.kt", "CountryPromptCard.kt", "ProduceCard.kt",
                                       "NumbersPrompt.kt", "LetterDrillScreen.kt")]
 DROID_BODIES = [DROID_UI + n for n in ("CardText.kt", "LetterDrillStages.kt",
-                                       "DrillChoiceGrid.kt", "TypedDrillScreen.kt")]
+                                       "DrillChoiceGrid.kt", "TypedDrillScreen.kt",
+                                       "AnswerField.kt", "AnswerControls.kt")]
 
 # The primitives a face is built from. Two is the bar: a face that reaches for none of
 # them is not a card, it is a rectangle that happens to look like one today.

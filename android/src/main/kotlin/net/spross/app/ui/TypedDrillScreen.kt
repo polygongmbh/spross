@@ -5,15 +5,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -24,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalView
-import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.app.CHIME_CLEARANCE_MS
@@ -36,8 +31,6 @@ import net.spross.app.speakDrillAnswer
 import net.spross.app.speakFormOnTap
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.NumbersMode
-import net.spross.kern.session.TurnFeedback
-import net.spross.kern.session.AnswerNormalizer
 
 /**
  * What tells one typed drill from the other, on a screen that is otherwise the same: where
@@ -245,11 +238,13 @@ private fun Controls(
     onFinish: () -> Unit,
 ) {
     val choices = run.prompt.choices
-    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-        if (choices != null) {
-            // The warm-up Sprosse: the answer is picked, not written, so the field stays away
-            // entirely rather than standing unused under the grid. A calendar name is prose —
-            // it is set as prose, and a screen reader saying it needs no help.
+    val speakCorrection = { form: String -> model.speakFormOnTap(form, run.answerLanguage) }
+    if (choices != null) {
+        // The warm-up Sprosse: the answer is picked, not written, so the field stays away
+        // entirely rather than standing unused under the grid — the grid IS the primary
+        // action, and it waits on its own. A calendar name is prose — it is set as prose,
+        // and a screen reader saying it needs no help.
+        Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
             DrillChoiceGrid(
                 options = choices,
                 answer = run.prompt.display,
@@ -258,64 +253,31 @@ private fun Controls(
                 chrome = chrome,
                 onPick = flow::choose,
             )
-        } else {
-            AnswerField(
-                value = flow.input,
-                onValueChange = flow::type,
-                // why: naming the language is right only while the answer is words — a date
-                // owed in digits is written the same way in either of them.
-                placeholder = if (run.prompt.digits) {
-                    chrome.numbersAnswerPlaceholder
-                } else {
-                    chrome.sessionAnswerPlaceholder.format(model.languageName(run.answerLanguage))
-                },
-                feedback = run.feedback,
-                chrome = chrome,
-                focus = inputFocus,
-                onDone = { flow.enter() },
-                digits = run.prompt.digits,
-            )
+            AnswerVerdict(run.feedback, flow.awaitsConfirm, chrome, flow::confirm, speakCorrection)
+            if (run.offersFinish) DrillStopOffer(chrome, onFinish)
         }
-        when (val feedback = run.feedback) {
-            // ONE primary action: an empty field reveals, a typed one checks. A tapped
-            // question has neither — the grid IS the action, and it waits on its own.
-            TurnFeedback.Neutral -> if (choices == null) Button(
-                onClick = { flow.primary() },
-                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
-                shape = MaterialTheme.shapes.small,
-            ) {
-                Text(if (AnswerNormalizer.isBlankAnswer(flow.input)) chrome.commonReveal else chrome.commonCheck)
-            }
-            // why: nothing is drawn for a clean answer — it already stands in the learner's
-            // own text with the field's checkmark, and the card is on its way out.
-            TurnFeedback.Correct -> if (flow.awaitsConfirm) ConfirmButton(chrome) { flow.confirm() }
-            is TurnFeedback.Almost -> AlmostLine(model, flow, run, feedback.correctForm, chrome)
-            // why: no "I knew it" in a drill — the questions are generated, so self-reporting
-            // after seeing the answer proves nothing; revealed simply counts as a miss.
-            TurnFeedback.Revealed -> ConfirmButton(chrome) { flow.confirm() }
-        }
-        // The way out, where it is wanted: under the button that goes on, on the second
-        // miss in a row.
-        if (run.offersFinish) DrillStopOffer(chrome, onFinish)
+        return
     }
-}
-
-/** A slip: the box spells the answer out, and the tap that ends the pause books it amber. */
-@Composable
-private fun AlmostLine(
-    model: AppModel,
-    flow: TypedDrill,
-    run: TypedDrillView,
-    form: String,
-    chrome: Chrome,
-) {
-    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
-        AlmostCorrection(
-            chrome.sessionAlmostTypo,
-            form,
-            chrome,
-            model.speakFormOnTap(form, run.answerLanguage),
-        )
-        ConfirmButton(chrome) { flow.confirm() }
+    TypedAnswerControls(
+        input = flow.input,
+        onType = flow::type,
+        // why: naming the language is right only while the answer is words — a date owed in
+        // digits is written the same way in either of them.
+        placeholder = if (run.prompt.digits) {
+            chrome.numbersAnswerPlaceholder
+        } else {
+            chrome.sessionAnswerPlaceholder.format(model.languageName(run.answerLanguage))
+        },
+        feedback = run.feedback,
+        awaitsConfirm = flow.awaitsConfirm,
+        chrome = chrome,
+        focus = inputFocus,
+        onPrimary = flow::primary,
+        onEnter = flow::enter,
+        onConfirm = flow::confirm,
+        speakCorrection = speakCorrection,
+        digits = run.prompt.digits,
+    ) {
+        if (run.offersFinish) DrillStopOffer(chrome, onFinish)
     }
 }

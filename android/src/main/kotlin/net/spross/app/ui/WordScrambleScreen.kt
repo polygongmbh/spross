@@ -5,15 +5,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -26,15 +21,12 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.Screen
 import net.spross.app.WordScrambleFlow
 import net.spross.app.newWordScramble
 import net.spross.app.speakFormOnTap
-import net.spross.kern.session.AnswerNormalizer
-import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.ScrambledWord
 import net.spross.kern.trainer.WordScrambleTask
 
@@ -168,46 +160,19 @@ private fun Controls(
     onFinish: () -> Unit,
 ) {
     val state = flow.state
-    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-        AnswerField(
-            value = flow.input,
-            onValueChange = flow::type,
-            placeholder = chrome.sessionAnswerPlaceholder.format(model.languageName(task.language)),
-            feedback = state.feedback,
-            chrome = chrome,
-            focus = inputFocus,
-            onDone = { flow.enter() },
-        )
-        when (val feedback = state.feedback) {
-            // ONE primary action: an empty field reveals, a typed one checks.
-            TurnFeedback.Neutral -> Button(
-                onClick = { flow.primary() },
-                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
-                shape = MaterialTheme.shapes.small,
-            ) {
-                Text(if (AnswerNormalizer.isBlankAnswer(flow.input)) chrome.commonReveal else chrome.commonCheck)
-            }
-            // why: nothing is drawn for a clean spelling — it already stands in the learner's
-            // own text with the field's checkmark, and the card is on its way out.
-            TurnFeedback.Correct -> if (flow.awaitsConfirm) ConfirmButton(chrome) { flow.confirm() }
-            is TurnFeedback.Almost -> Column(
-                verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
-            ) {
-                // The amber hold: the box spells the slip out, and the tap books it amber.
-                AlmostCorrection(
-                    chrome.sessionAlmostTypo,
-                    feedback.correctForm,
-                    chrome,
-                    model.speakFormOnTap(feedback.correctForm, task.language),
-                )
-                ConfirmButton(chrome) { flow.confirm() }
-            }
-            // why: no "Wusste ich" in a drill — the words are drawn, so self-reporting after
-            // seeing the spelling proves nothing; revealed simply counts as a miss.
-            TurnFeedback.Revealed -> ConfirmButton(chrome) { flow.confirm() }
-        }
-        // The way out, where it is wanted: under the button that goes on, on the second miss
-        // in a row — kern decides which moment that is.
+    TypedAnswerControls(
+        input = flow.input,
+        onType = flow::type,
+        placeholder = chrome.sessionAnswerPlaceholder.format(model.languageName(task.language)),
+        feedback = state.feedback,
+        awaitsConfirm = flow.awaitsConfirm,
+        chrome = chrome,
+        focus = inputFocus,
+        onPrimary = flow::primary,
+        onEnter = flow::enter,
+        onConfirm = flow::confirm,
+        speakCorrection = { model.speakFormOnTap(it, task.language) },
+    ) {
         if (state.offersFinish) DrillStopOffer(chrome, onFinish)
     }
 }

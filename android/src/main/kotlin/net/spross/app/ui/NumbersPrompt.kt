@@ -1,13 +1,10 @@
 package net.spross.app.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -21,15 +18,12 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.NumbersFlow
 import net.spross.app.speakFormOnTap
 import net.spross.kern.model.Language
 import net.spross.kern.session.Match
-import net.spross.kern.session.TurnFeedback
-import net.spross.kern.session.AnswerNormalizer
 
 /**
  * What a slot run puts on screen: the prompt card and the controls under it.
@@ -181,36 +175,23 @@ fun NumbersControls(
     } else {
         chrome.sessionAnswerPlaceholder.format(model.languageName(state.mode.language))
     }
-    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-        AnswerField(
-            value = flow.input,
-            onValueChange = flow::type,
-            placeholder = placeholder,
-            feedback = state.feedback,
-            chrome = chrome,
-            focus = inputFocus,
-            onDone = { flow.enter() },
-            digits = state.currentReversed,
-        )
-        when (val feedback = state.feedback) {
-            TurnFeedback.Neutral -> Button(
-                onClick = { flow.primary() },
-                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
-                shape = MaterialTheme.shapes.small,
-            ) {
-                Text(if (AnswerNormalizer.isBlankAnswer(flow.input)) chrome.commonReveal else chrome.commonCheck)
-            }
-            // why: nothing is drawn for a clean answer — it already stands in the learner's
-            // own text with the field's checkmark, and the card is on its way out.
-            TurnFeedback.Correct -> if (flow.awaitsConfirm) ConfirmButton(chrome) { flow.confirm() }
-            is TurnFeedback.Almost -> AlmostLine(model, flow, feedback.correctForm, chrome)
-            // why: no "Wusste ich" in a drill — the tasks are generated, so self-reporting
-            // after seeing the answer proves nothing; revealed simply counts as a miss.
-            TurnFeedback.Revealed -> ConfirmButton(chrome) { flow.confirm() }
-        }
+    TypedAnswerControls(
+        input = flow.input,
+        onType = flow::type,
+        placeholder = placeholder,
+        feedback = state.feedback,
+        awaitsConfirm = flow.awaitsConfirm,
+        chrome = chrome,
+        focus = inputFocus,
+        onPrimary = flow::primary,
+        onEnter = flow::enter,
+        onConfirm = flow::confirm,
+        speakCorrection = { model.speakFormOnTap(it, state.mode.language) },
+        digits = state.currentReversed,
+    ) {
         if (state.offersFinish) DrillStopOffer(chrome, onFinish)
-        // Outside the feedback switch: a miss is exactly when a learner wants to look the
-        // word up, and the "?" raises the very table the numbers page shows.
+        // Outside the verdict: a miss is exactly when a learner wants to look the word up,
+        // and the "?" raises the very table the numbers page shows.
         if (state.offersLookUp) {
             TextButton(onClick = { flow.lookUp() }, modifier = Modifier.fillMaxWidth()) {
                 Text(
@@ -220,19 +201,5 @@ fun NumbersControls(
                 )
             }
         }
-    }
-}
-
-/** A slip: the box spells the word out, and the tap that ends the pause books it amber. */
-@Composable
-private fun AlmostLine(model: AppModel, flow: NumbersFlow, form: String, chrome: Chrome) {
-    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
-        AlmostCorrection(
-            chrome.sessionAlmostTypo,
-            form,
-            chrome,
-            model.speakFormOnTap(form, flow.state.mode.language),
-        )
-        ConfirmButton(chrome) { flow.confirm() }
     }
 }
