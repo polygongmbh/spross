@@ -14,7 +14,6 @@
   "colleague": { "text": "mfanyakazi mwenza", "grammar": { "plural": "wafanyakazi wenza" } },
   "boss": { "text": "bosi", "grammar": { "plural": "mabosi" } },
   "shift": { "text": "zamu", "grammar": { "plural": "=" } },
-  "vacation": { "text": "likizo", "grammar": { "plural": "=" } },
   "company": { "text": "kampuni", "grammar": { "plural": "=" } },
   "to-apply": { "text": "kuomba kazi" },
   "to-introduce-oneself": { "text": "kujitambulisha" },
@@ -52,10 +51,6 @@
    "orders": ["Mara moja nitakutumia cheti cha daktari."]
   },
   "can-you-help-me-briefly": { "text": "Unaweza kunisaidia kidogo?" },
-  "i-want-vacation-next-week": {
-   "text": "Ningependa kuchukua likizo wiki ijayo.",
-   "orders": ["Wiki ijayo ningependa kuchukua likizo."]
-  },
   "read-the-contract-carefully": { "text": "Soma mkataba vizuri!" }
  }
 }

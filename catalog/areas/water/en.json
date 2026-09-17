@@ -1,0 +1,23 @@
+{
+ "title": "Water",
+ "subtitle": "On and around the water.",
+ "words": {
+  "sea": { "text": "sea" },
+  "river": { "text": "river" },
+  "lake": { "text": "lake" },
+  "ship": { "text": "ship" },
+  "boat": { "text": "boat" },
+  "port": { "text": "port", "synonyms": ["harbor"] },
+  "island": { "text": "island" },
+  "coast": { "text": "coast" },
+  "wave": { "text": "wave" },
+  "to-swim": { "text": "to swim" },
+  "to-surf": { "text": "to surf" },
+  "to-sail": { "text": "to sail" },
+  "to-dive": { "text": "to dive" },
+  "to-fish": { "text": "to fish" },
+  "can-you-swim": { "text": "Can you swim?" },
+  "the-waves-are-big-today": { "text": "The waves are big today.", "orders": ["Today the waves are big."] },
+  "we-sailed-to-the-island": { "text": "We sailed to the island." }
+ }
+}

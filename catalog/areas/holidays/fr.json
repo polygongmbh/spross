@@ -1,0 +1,46 @@
+{
+ "title": "Vacances",
+ "subtitle": "C'est les vacances !",
+ "words": {
+  "beach": { "text": "plage", "grammar": { "gender": "la" } },
+  "to-sunbathe": { "text": "prendre le soleil", "variants": ["bronzer", "se faire bronzer"] },
+  "hotel": { "text": "hôtel", "variants": ["l'hôtel"], "grammar": { "gender": "l'" } },
+  "luggage": {
+   "text": "bagages",
+   "grammar": { "gender": "les", "plural": "only" },
+   "notes": { "fr": "au pluriel : les bagages · un bagage, c'est une valise." }
+  },
+  "to-travel": { "text": "voyager" },
+  "journey": { "text": "voyage", "grammar": { "gender": "le" } },
+  "vacation": {
+   "text": "vacances",
+   "synonyms": ["congés"],
+   "grammar": { "gender": "les", "plural": "only" },
+   "notes": { "fr": "les vacances d'été · au travail, je prends des congés." }
+  },
+  "overnight-stay": {
+   "text": "nuit",
+   "grammar": { "gender": "la" },
+   "notes": { "fr": "une nuit en hôtel, pas un hébergement — c'est ce qu'on réserve." }
+  },
+  "to-book-a-room": { "text": "réserver une chambre" },
+  "tourist": { "text": "touriste", "grammar": { "gender": "le" } },
+  "souvenir": { "text": "souvenir", "grammar": { "gender": "le" } },
+  "sunscreen": { "text": "crème solaire", "grammar": { "gender": "la" } },
+  "to-pack": { "text": "faire les valises", "variants": ["faire sa valise"] },
+  "campsite": { "text": "camping", "grammar": { "gender": "le" } },
+  "lets-go-to-the-beach": { "text": "Allons à la plage !", "variants": ["On va à la plage !"] },
+  "im-looking-for-a-hotel": { "text": "Je cherche un hôtel." },
+  "have-a-good-journey": { "text": "Bon voyage !" },
+  "i-want-vacation-next-week": {
+   "text": "Je voudrais prendre des vacances la semaine prochaine.",
+   "variants": [
+    "Je veux prendre des vacances la semaine prochaine.",
+    "Je voudrais prendre des congés la semaine prochaine."
+   ],
+   "orders": ["La semaine prochaine, je voudrais prendre des vacances."]
+  },
+  "how-many-nights": { "text": "Combien de nuits ?", "variants": ["Pour combien de nuits ?"] },
+  "i-packed-too-much": { "text": "J'ai trop rempli ma valise.", "variants": ["J'ai mis trop de choses dans ma valise."] }
+ }
+}

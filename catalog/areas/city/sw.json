@@ -18,11 +18,6 @@
   "building": { "text": "jengo", "grammar": { "plural": "majengo" } },
   "bank": { "text": "benki", "grammar": { "plural": "=" } },
   "post-office": { "text": "posta", "grammar": { "plural": "=" } },
-  "hotel": {
-   "text": "hoteli",
-   "grammar": { "plural": "=" },
-   "notes": { "sw": "hoteli ni pa kulala na pia pa kula: hoteli ya chakula" }
-  },
   "church": { "text": "kanisa", "grammar": { "plural": "makanisa" } },
   "mosque": { "text": "msikiti", "grammar": { "plural": "misikiti" } },
   "library": { "text": "maktaba", "grammar": { "plural": "=" } },
@@ -30,7 +25,6 @@
   "cinema": { "text": "sinema", "grammar": { "plural": "=" } },
   "bridge": { "text": "daraja", "grammar": { "plural": "madaraja" } },
   "is-there-a-bank-here": { "text": "Kuna benki hapa?", "orders": ["Hapa kuna benki?"] },
-  "im-looking-for-a-hotel": { "text": "Natafuta hoteli." },
   "i-live-in-this-neighborhood": { "text": "Ninaishi katika mtaa huu." }
  }
 }

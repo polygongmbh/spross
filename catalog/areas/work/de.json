@@ -12,7 +12,6 @@
   "boss": { "text": "Chef", "grammar": { "gender": "der", "plural": "-s" } },
   "boss-f": { "text": "Chefin", "grammar": { "gender": "die", "plural": "-nen" } },
   "shift": { "text": "Schicht", "grammar": { "gender": "die", "plural": "-en" } },
-  "vacation": { "text": "Urlaub", "grammar": { "gender": "der", "plural": "-e" } },
   "company": { "text": "Firma", "grammar": { "gender": "die", "plural": "Firmen" } },
   "to-apply": {
    "text": "sich um den Job bewerben",
@@ -58,10 +57,6 @@
    "text": "Können Sie mir kurz helfen?",
    "variants": ["Kannst du mir kurz helfen?"],
    "orders": ["Sie können mir kurz helfen?"]
-  },
-  "i-want-vacation-next-week": {
-   "text": "Ich möchte nächste Woche Urlaub nehmen.",
-   "orders": ["Nächste Woche möchte ich Urlaub nehmen."]
   },
   "read-the-contract-carefully": {
    "text": "Lesen Sie den Vertrag durch!",

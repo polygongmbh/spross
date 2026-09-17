@@ -4,21 +4,11 @@
  "words": {
   "tree": { "text": "arbre", "variants": ["l'arbre"], "grammar": { "gender": "l'" } },
   "flower": { "text": "fleur", "grammar": { "gender": "la" } },
-  "river": {
-   "text": "rivière",
-   "variants": ["fleuve"],
-   "grammar": { "gender": "la" },
-   "notes": { "fr": "la rivière coule dans un fleuve · le fleuve va à la mer." }
-  },
   "to-go-for-walk": { "text": "se promener", "synonyms": ["faire une promenade"], "variants": ["se balader"] },
   "to-jog": { "text": "faire du jogging", "variants": ["aller courir"] },
-  "to-sunbathe": { "text": "prendre le soleil", "variants": ["bronzer", "se faire bronzer"] },
   "to-plant-flowers": { "text": "planter des fleurs" },
   "to-grill-meat": { "text": "griller de la viande", "variants": ["faire griller de la viande"] },
   "mountain": { "text": "montagne", "grammar": { "gender": "la" } },
-  "sea": { "text": "mer", "grammar": { "gender": "la" } },
-  "beach": { "text": "plage", "grammar": { "gender": "la" } },
-  "lake": { "text": "lac", "grammar": { "gender": "le" } },
   "forest": { "text": "forêt", "grammar": { "gender": "la" } },
   "stone": { "text": "pierre", "grammar": { "gender": "la" } },
   "stone-wall": { "text": "mur en pierre", "grammar": { "gender": "le" } },
@@ -27,7 +17,6 @@
   "wood": { "text": "bois", "grammar": { "gender": "le" } },
   "stick": { "text": "bâton", "grammar": { "gender": "le" } },
   "shadow": { "text": "ombre", "variants": ["l'ombre"], "grammar": { "gender": "l'" } },
-  "lets-go-to-the-beach": { "text": "Allons à la plage !", "variants": ["On va à la plage !"] },
   "we-are-going-to-the-mountains": {
    "text": "Nous allons à la montagne.",
    "variants": ["On va à la montagne.", "Nous allons en montagne."]

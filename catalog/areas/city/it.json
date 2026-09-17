@@ -23,12 +23,6 @@
    "variants": ["l'ufficio postale"],
    "grammar": { "gender": "la" }
   },
-  "hotel": {
-   "text": "albergo",
-   "synonyms": ["hotel"],
-   "variants": ["l'albergo", "l'hotel"],
-   "grammar": { "gender": "l'", "plural": "alberghi" }
-  },
   "church": { "text": "chiesa", "grammar": { "gender": "la" } },
   "mosque": { "text": "moschea", "grammar": { "gender": "la" } },
   "library": { "text": "biblioteca", "grammar": { "gender": "la", "plural": "biblioteche" } },
@@ -40,7 +34,6 @@
    "variants": ["C'è una banca qui vicino?", "Qui c'è una banca?"],
    "orders": ["Qui c'è una banca?"]
   },
-  "im-looking-for-a-hotel": { "text": "Cerco un albergo.", "variants": ["Sto cercando un albergo.", "Cerco un hotel."] },
   "i-live-in-this-neighborhood": { "text": "Abito in questo quartiere.", "variants": ["Vivo in questo quartiere."] }
  }
 }

@@ -1,0 +1,31 @@
+{
+ "title": "Eau",
+ "subtitle": "Sur l'eau et au bord.",
+ "words": {
+  "sea": { "text": "mer", "grammar": { "gender": "la" } },
+  "river": {
+   "text": "rivière",
+   "variants": ["fleuve"],
+   "grammar": { "gender": "la" },
+   "notes": { "fr": "la rivière coule dans un fleuve · le fleuve va à la mer." }
+  },
+  "lake": { "text": "lac", "grammar": { "gender": "le" } },
+  "ship": { "text": "bateau", "grammar": { "gender": "le", "plural": "-x" } },
+  "boat": { "text": "barque", "synonyms": ["canot"], "grammar": { "gender": "la" } },
+  "port": { "text": "port", "grammar": { "gender": "le" } },
+  "island": { "text": "île", "variants": ["l'île"], "grammar": { "gender": "l'" } },
+  "coast": { "text": "côte", "grammar": { "gender": "la" } },
+  "wave": { "text": "vague", "grammar": { "gender": "la" } },
+  "to-swim": { "text": "nager" },
+  "to-surf": { "text": "surfer", "variants": ["faire du surf"] },
+  "to-sail": { "text": "naviguer", "variants": ["faire de la voile"] },
+  "to-dive": { "text": "plonger" },
+  "to-fish": { "text": "pêcher" },
+  "can-you-swim": { "text": "Tu sais nager ?", "variants": ["Vous savez nager ?"] },
+  "the-waves-are-big-today": {
+   "text": "Les vagues sont grandes aujourd'hui.",
+   "orders": ["Aujourd'hui, les vagues sont grandes."]
+  },
+  "we-sailed-to-the-island": { "text": "Nous avons navigué jusqu'à l'île.", "variants": ["On a navigué jusqu'à l'île."] }
+ }
+}

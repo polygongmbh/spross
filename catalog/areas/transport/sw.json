@@ -18,8 +18,6 @@
   "to-ride-bike": { "text": "kuendesha baiskeli" },
   "to-take-bus": { "text": "kupanda basi" },
   "to-depart": { "text": "kuondoka" },
-  "journey": { "text": "safari", "grammar": { "plural": "=" } },
-  "to-travel": { "text": "kusafiri" },
   "driver": { "text": "dereva", "grammar": { "plural": "madereva" } },
   "plane": {
    "text": "ndege",
@@ -27,7 +25,6 @@
    "notes": { "sw": "ndege inaruka = ya chuma · ndege anaruka = mwenye mabawa" }
   },
   "airport": { "text": "uwanja wa ndege", "grammar": { "plural": "viwanja vya ndege" } },
-  "ship": { "text": "meli", "grammar": { "plural": "=" } },
   "motorbike": {
    "text": "pikipiki",
    "grammar": { "plural": "=" },
@@ -38,12 +35,10 @@
   "wheel": { "text": "gurudumu", "grammar": { "plural": "magurudumu" } },
   "engine": { "text": "injini", "grammar": { "plural": "=" } },
   "rail": { "text": "reli", "grammar": { "plural": "=" } },
-  "luggage": { "text": "mzigo", "grammar": { "plural": "mizigo" } },
   "fare": { "text": "nauli", "grammar": { "plural": "=" } },
   "to-get-off": { "text": "kushuka" },
   "the-bus-is-coming-soon": { "text": "Basi linakuja sasa hivi.", "orders": ["Sasa hivi basi linakuja."] },
   "when-does-the-train-leave": { "text": "Treni inaondoka lini?" },
-  "have-a-good-journey": { "text": "Safari njema!" },
   "how-much-is-the-fare": { "text": "Nauli ni ngapi?" },
   "the-bus-has-already-departed": { "text": "Basi limeshaondoka.", "notes": { "sw": "limeshaondoka = tayari limeondoka" } },
   "my-parents-are-coming-by-train": { "text": "Wazazi wangu wanakuja kwa treni.", "variants": ["Wazazi wangu wanakuja na treni."] }

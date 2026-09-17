@@ -10,7 +10,6 @@
   "building": { "text": "edificio", "grammar": { "gender": "el" } },
   "bank": { "text": "banco", "grammar": { "gender": "el" } },
   "post-office": { "text": "oficina de correos", "variants": ["correos"], "grammar": { "gender": "la" } },
-  "hotel": { "text": "hotel", "grammar": { "gender": "el" } },
   "church": { "text": "iglesia", "grammar": { "gender": "la" } },
   "mosque": { "text": "mezquita", "grammar": { "gender": "la" } },
   "library": { "text": "biblioteca", "grammar": { "gender": "la" } },
@@ -18,7 +17,6 @@
   "cinema": { "text": "cine", "grammar": { "gender": "el" } },
   "bridge": { "text": "puente", "grammar": { "gender": "el" } },
   "is-there-a-bank-here": { "text": "¿Hay un banco por aquí?", "orders": ["¿Por aquí hay un banco?"] },
-  "im-looking-for-a-hotel": { "text": "Busco un hotel." },
   "i-live-in-this-neighborhood": { "text": "Vivo en este barrio." }
  }
 }

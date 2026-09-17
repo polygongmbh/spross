@@ -10,7 +10,6 @@
   "colleague": { "text": "колега" },
   "boss": { "text": "шеф", "synonyms": ["керівник"] },
   "shift": { "text": "зміна" },
-  "vacation": { "text": "відпустка" },
   "company": { "text": "фірма", "variants": ["компанія"] },
   "to-apply": { "text": "подаватися на роботу", "variants": ["подаватися", "податися на роботу"] },
   "to-introduce-oneself": { "text": "представлятися" },
@@ -36,10 +35,6 @@
   "tomorrow-i-have-a-job-interview": { "text": "Завтра я представлюся у фірмі.", "orders": ["Я завтра представлюся у фірмі."] },
   "ill-send-the-doctors-note-right-away": { "text": "Я одразу надішлю вам лікарняний.", "orders": ["Я вам одразу надішлю лікарняний."] },
   "can-you-help-me-briefly": { "text": "Можете мені на хвилинку допомогти?", "orders": ["Можете на хвилинку мені допомогти?"] },
-  "i-want-vacation-next-week": {
-   "text": "Наступного тижня я хочу взяти відпустку.",
-   "orders": ["Я хочу взяти відпустку наступного тижня."]
-  },
   "read-the-contract-carefully": { "text": "Прочитайте договір уважно!", "orders": ["Уважно прочитайте договір!"] }
  }
 }

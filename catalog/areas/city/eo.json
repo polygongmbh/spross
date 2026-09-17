@@ -10,7 +10,6 @@
   "building": { "text": "konstruaĵo" },
   "bank": { "text": "banko" },
   "post-office": { "text": "poŝtoficejo", "variants": ["poŝtejo", "poŝto"] },
-  "hotel": { "text": "hotelo" },
   "church": { "text": "preĝejo" },
   "mosque": { "text": "moskeo" },
   "library": { "text": "biblioteko" },
@@ -22,7 +21,6 @@
    "variants": ["Ĉu ĉi tie estas banko?", "Ĉu troviĝas banko ĉi tie?"],
    "orders": ["Ĉu banko estas ĉi tie?"]
   },
-  "im-looking-for-a-hotel": { "text": "Mi serĉas hotelon.", "orders": ["Hotelon mi serĉas."] },
   "i-live-in-this-neighborhood": {
    "text": "Mi loĝas en ĉi tiu kvartalo.",
    "variants": ["Mi loĝas en tiu ĉi kvartalo."],

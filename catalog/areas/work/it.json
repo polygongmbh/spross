@@ -27,12 +27,6 @@
   },
   "boss": { "text": "capo", "grammar": { "gender": "il" } },
   "shift": { "text": "turno", "grammar": { "gender": "il" } },
-  "vacation": {
-   "text": "ferie",
-   "synonyms": ["vacanze"],
-   "grammar": { "gender": "le", "plural": "only" },
-   "notes": { "it": "le ferie sono dal lavoro, sempre al plurale · le vacanze sono di tutti." }
-  },
   "company": {
    "text": "azienda",
    "synonyms": ["ditta"],
@@ -138,14 +132,6 @@
   "can-you-help-me-briefly": {
    "text": "Può aiutarmi un momento?",
    "variants": ["Puoi aiutarmi un momento?", "Mi può aiutare un momento?"]
-  },
-  "i-want-vacation-next-week": {
-   "text": "Vorrei prendere le ferie la settimana prossima.",
-   "variants": [
-    "Voglio prendere le ferie la settimana prossima.",
-    "Vorrei prendere le ferie la prossima settimana."
-   ],
-   "orders": ["La settimana prossima vorrei prendere le ferie."]
   },
   "read-the-contract-carefully": {
    "text": "Legga bene il contratto.",

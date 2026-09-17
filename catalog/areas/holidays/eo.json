@@ -1,0 +1,30 @@
+{
+ "title": "Ferioj",
+ "subtitle": "Tempo por ferioj.",
+ "words": {
+  "beach": { "text": "plaĝo" },
+  "to-sunbathe": { "text": "sunbani sin", "variants": ["sin sunbani", "sunumi sin"] },
+  "hotel": { "text": "hotelo" },
+  "luggage": { "text": "pakaĵo", "variants": ["bagaĝo", "pakaĵaro"] },
+  "to-travel": { "text": "vojaĝi" },
+  "journey": { "text": "vojaĝo" },
+  "vacation": { "text": "ferioj", "variants": ["ferio", "forpermeso", "libertempo"] },
+  "overnight-stay": { "text": "tranokto" },
+  "to-book-a-room": { "text": "rezervi ĉambron", "variants": ["mendi ĉambron"] },
+  "tourist": { "text": "turisto" },
+  "souvenir": { "text": "memoraĵo", "variants": ["suveniro"] },
+  "sunscreen": { "text": "sunkremo" },
+  "to-pack": { "text": "paki" },
+  "campsite": { "text": "tendumejo", "variants": ["kampejo"] },
+  "lets-go-to-the-beach": { "text": "Ni iru al la plaĝo!", "orders": ["Al la plaĝo ni iru!"] },
+  "im-looking-for-a-hotel": { "text": "Mi serĉas hotelon.", "orders": ["Hotelon mi serĉas."] },
+  "have-a-good-journey": { "text": "Bonan vojaĝon!" },
+  "i-want-vacation-next-week": {
+   "text": "Mi ŝatus preni feriojn la venontan semajnon.",
+   "variants": ["Mi volas preni feriojn la venontan semajnon.", "Mi ŝatus preni ferion la venontan semajnon."],
+   "orders": ["La venontan semajnon mi ŝatus preni feriojn."]
+  },
+  "how-many-nights": { "text": "Kiom da noktoj?" },
+  "i-packed-too-much": { "text": "Mi pakis tro multe.", "variants": ["Mi pakis tro multon."] }
+ }
+}

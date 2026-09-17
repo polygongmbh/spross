@@ -30,12 +30,9 @@
    "notes": { "es": "En España coger el autobús; en América, tomar — allí coger es vulgar." }
   },
   "to-depart": { "text": "salir", "notes": { "es": "Trenes y autobuses salen: el tren sale a las ocho." } },
-  "journey": { "text": "viaje", "grammar": { "gender": "el" } },
-  "to-travel": { "text": "viajar" },
   "driver": { "text": "conductor", "variants": ["chofer", "chófer"], "grammar": { "gender": "el" } },
   "plane": { "text": "avión", "grammar": { "gender": "el" } },
   "airport": { "text": "aeropuerto", "grammar": { "gender": "el" } },
-  "ship": { "text": "barco", "grammar": { "gender": "el" } },
   "motorbike": {
    "text": "moto",
    "variants": ["motocicleta"],
@@ -47,7 +44,6 @@
   "wheel": { "text": "rueda", "grammar": { "gender": "la" } },
   "engine": { "text": "motor", "grammar": { "gender": "el" } },
   "rail": { "text": "riel", "grammar": { "gender": "el", "plural": "rieles" } },
-  "luggage": { "text": "equipaje", "grammar": { "gender": "el" } },
   "fare": { "text": "tarifa", "grammar": { "gender": "la" } },
   "to-get-off": { "text": "bajarse", "variants": ["bajar"], "notes": { "es": "Reflexivo: me bajo aquí." } },
   "the-bus-is-coming-soon": {
@@ -56,7 +52,6 @@
    "orders": ["Llega el autobús enseguida."]
   },
   "when-does-the-train-leave": { "text": "¿Cuándo sale el tren?", "variants": ["¿A qué hora sale el tren?"] },
-  "have-a-good-journey": { "text": "¡Buen viaje!" },
   "how-much-is-the-fare": { "text": "¿Cuál es la tarifa?", "variants": ["¿Cuánto cuesta el pasaje?"] },
   "the-bus-has-already-departed": { "text": "El autobús ya ha salido.", "orders": ["Ya ha salido el autobús."] },
   "my-parents-are-coming-by-train": { "text": "Mis padres vienen en tren.", "orders": ["En tren vienen mis padres."] }

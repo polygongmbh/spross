@@ -15,7 +15,6 @@
    "grammar": { "gender": "la" },
    "notes": { "fr": "la poste apporte le courrier · le bureau de poste est le bâtiment." }
   },
-  "hotel": { "text": "hôtel", "variants": ["l'hôtel"], "grammar": { "gender": "l'" } },
   "church": { "text": "église", "variants": ["l'église"], "grammar": { "gender": "l'" } },
   "mosque": { "text": "mosquée", "grammar": { "gender": "la" } },
   "library": { "text": "bibliothèque", "grammar": { "gender": "la" } },
@@ -26,7 +25,6 @@
    "text": "Il y a une banque ici ?",
    "variants": ["Est-ce qu'il y a une banque ici ?", "Y a-t-il une banque ici ?", "Il y a une banque par ici ?"]
   },
-  "im-looking-for-a-hotel": { "text": "Je cherche un hôtel." },
   "i-live-in-this-neighborhood": { "text": "J'habite dans ce quartier." }
  }
 }

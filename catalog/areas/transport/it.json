@@ -24,8 +24,6 @@
   "to-ride-bike": { "text": "andare in bicicletta", "variants": ["andare in bici", "pedalare"] },
   "to-take-bus": { "text": "prendere l'autobus", "variants": ["prendere il bus"] },
   "to-depart": { "text": "partire", "notes": { "it": "il treno parte alle otto." } },
-  "journey": { "text": "viaggio", "grammar": { "gender": "il", "plural": "viaggi" } },
-  "to-travel": { "text": "viaggiare" },
   "driver": {
    "text": "autista",
    "variants": ["l'autista", "conducente"],
@@ -33,7 +31,6 @@
   },
   "plane": { "text": "aereo", "variants": ["l'aereo", "aeroplano"], "grammar": { "gender": "l'" } },
   "airport": { "text": "aeroporto", "variants": ["l'aeroporto"], "grammar": { "gender": "l'" } },
-  "ship": { "text": "nave", "grammar": { "gender": "la" } },
   "motorbike": {
    "text": "moto",
    "variants": ["motocicletta"],
@@ -45,7 +42,6 @@
   "wheel": { "text": "ruota", "grammar": { "gender": "la" } },
   "engine": { "text": "motore", "grammar": { "gender": "il" } },
   "rail": { "text": "rotaia", "grammar": { "gender": "la" } },
-  "luggage": { "text": "bagaglio", "grammar": { "gender": "il", "plural": "bagagli" } },
   "fare": { "text": "tariffa", "variants": ["prezzo del biglietto"], "grammar": { "gender": "la" } },
   "to-get-off": { "text": "scendere" },
   "the-bus-is-coming-soon": {
@@ -54,7 +50,6 @@
    "orders": ["Tra poco arriva l'autobus."]
   },
   "when-does-the-train-leave": { "text": "Quando parte il treno?", "variants": ["A che ora parte il treno?"] },
-  "have-a-good-journey": { "text": "Buon viaggio!" },
   "how-much-is-the-fare": {
    "text": "Qual è la tariffa?",
    "variants": ["Quanto costa la corsa?", "Quanto costa il biglietto?"]

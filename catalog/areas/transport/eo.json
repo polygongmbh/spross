@@ -18,19 +18,15 @@
    "variants": ["forveturi"],
    "notes": { "eo": "ek- montras la komencon: La trajno ekveturas je la oka." }
   },
-  "journey": { "text": "vojaĝo" },
-  "to-travel": { "text": "vojaĝi" },
   "driver": { "text": "ŝoforo", "synonyms": ["veturigisto"] },
   "plane": { "text": "aviadilo", "variants": ["aeroplano"] },
   "airport": { "text": "flughaveno" },
-  "ship": { "text": "ŝipo" },
   "motorbike": { "text": "motorciklo", "variants": ["motorbiciklo"] },
   "truck": { "text": "kamiono" },
   "passenger": { "text": "pasaĝero" },
   "wheel": { "text": "rado" },
   "engine": { "text": "motoro" },
   "rail": { "text": "relo" },
-  "luggage": { "text": "pakaĵo", "variants": ["bagaĝo", "pakaĵaro"] },
   "fare": { "text": "veturprezo", "variants": ["biletprezo", "veturkosto"] },
   "to-get-off": {
    "text": "eliri",
@@ -47,7 +43,6 @@
    "variants": ["Kiam ekveturas la trajno?", "Kiam la vagonaro ekveturas?"],
    "orders": ["Kiam ekveturas la trajno?"]
   },
-  "have-a-good-journey": { "text": "Bonan vojaĝon!" },
   "how-much-is-the-fare": {
    "text": "Kiom kostas la veturo?",
    "variants": ["Kiom alta estas la veturprezo?", "Kiom kostas la bileto?"],

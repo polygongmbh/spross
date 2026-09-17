@@ -10,7 +10,6 @@
   "building": { "text": "building" },
   "bank": { "text": "bank" },
   "post-office": { "text": "post office" },
-  "hotel": { "text": "hotel" },
   "church": { "text": "church", "grammar": { "plural": "churches" } },
   "mosque": { "text": "mosque" },
   "library": { "text": "library", "grammar": { "plural": "libraries" } },
@@ -18,7 +17,6 @@
   "cinema": { "text": "cinema", "synonyms": ["movie theater"], "variants": ["movie theatre"] },
   "bridge": { "text": "bridge" },
   "is-there-a-bank-here": { "text": "Is there a bank here?" },
-  "im-looking-for-a-hotel": { "text": "I'm looking for a hotel." },
   "i-live-in-this-neighborhood": { "text": "I live in this neighborhood.", "variants": ["I live in this neighbourhood."] }
  }
 }

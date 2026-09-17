@@ -4,15 +4,10 @@
  "words": {
   "tree": { "text": "arbo" },
   "flower": { "text": "floro" },
-  "river": { "text": "rivero" },
   "to-go-for-walk": { "text": "promeni", "variants": ["fari promenon"] },
-  "to-sunbathe": { "text": "sunbani sin", "variants": ["sin sunbani", "sunumi sin"] },
   "to-plant-flowers": { "text": "planti florojn" },
   "to-grill-meat": { "text": "kradrosti viandon", "variants": ["rosti viandon", "grili viandon"] },
   "mountain": { "text": "monto" },
-  "sea": { "text": "maro" },
-  "beach": { "text": "plaĝo" },
-  "lake": { "text": "lago" },
   "forest": { "text": "arbaro" },
   "stone": { "text": "ŝtono" },
   "stone-wall": { "text": "ŝtonmuro" },
@@ -21,7 +16,6 @@
   "wood": { "text": "ligno" },
   "stick": { "text": "bastono" },
   "shadow": { "text": "ombro" },
-  "lets-go-to-the-beach": { "text": "Ni iru al la plaĝo!", "orders": ["Al la plaĝo ni iru!"] },
   "we-are-going-to-the-mountains": {
    "text": "Ni veturas en la montaron.",
    "variants": ["Ni veturas al la montoj.", "Ni iras en la montaron."],

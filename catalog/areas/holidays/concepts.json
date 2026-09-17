@@ -1,0 +1,27 @@
+[
+ { "slug": "beach", "kind": "noun", "emoji": "🏖️" },
+ { "slug": "to-sunbathe", "kind": "verb", "emoji": "🌞" },
+ { "slug": "hotel", "kind": "noun", "emoji": "🏨" },
+ { "slug": "luggage", "kind": "noun", "emoji": "🧳" },
+ { "slug": "to-travel", "kind": "verb", "emoji": "🌍" },
+ { "slug": "journey", "kind": "noun", "emoji": "🗺️" },
+ { "slug": "vacation", "kind": "noun", "emoji": "🏖️" },
+ { "slug": "overnight-stay", "kind": "noun", "emoji": "🏠" },
+ { "slug": "to-book-a-room", "kind": "verb", "emoji": "📋" },
+ { "slug": "tourist", "kind": "noun", "emoji": "📸" },
+ { "slug": "souvenir", "kind": "noun", "emoji": "🎁" },
+ { "slug": "sunscreen", "kind": "noun", "emoji": "🧴" },
+ { "slug": "to-pack", "kind": "verb", "emoji": "🧳" },
+ { "slug": "campsite", "kind": "noun", "emoji": "⛺" },
+ { "slug": "lets-go-to-the-beach", "kind": "phrase", "emoji": "🏖️", "components": ["beach"] },
+ { "slug": "im-looking-for-a-hotel", "kind": "phrase", "emoji": "🏨", "components": ["hotel"] },
+ { "slug": "have-a-good-journey", "kind": "phrase", "emoji": "🗺️", "components": ["journey"] },
+ {
+  "slug": "i-want-vacation-next-week",
+  "kind": "phrase",
+  "emoji": "🏖️",
+  "components": ["vacation"]
+ },
+ { "slug": "how-many-nights", "kind": "phrase", "components": ["overnight-stay"] },
+ { "slug": "i-packed-too-much", "kind": "phrase", "emoji": "🧳", "components": ["to-pack"] }
+]

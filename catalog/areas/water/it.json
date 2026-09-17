@@ -1,0 +1,23 @@
+{
+ "title": "Acqua",
+ "subtitle": "In acqua e dintorni.",
+ "words": {
+  "sea": { "text": "mare", "grammar": { "gender": "il" } },
+  "river": { "text": "fiume", "grammar": { "gender": "il" } },
+  "lake": { "text": "lago", "grammar": { "gender": "il", "plural": "laghi" } },
+  "ship": { "text": "nave", "grammar": { "gender": "la" } },
+  "boat": { "text": "barca", "grammar": { "gender": "la", "plural": "barche" } },
+  "port": { "text": "porto", "grammar": { "gender": "il" } },
+  "island": { "text": "isola", "variants": ["l'isola"], "grammar": { "gender": "l'" } },
+  "coast": { "text": "costa", "grammar": { "gender": "la" } },
+  "wave": { "text": "onda", "variants": ["l'onda"], "grammar": { "gender": "l'" } },
+  "to-swim": { "text": "nuotare" },
+  "to-surf": { "text": "fare surf" },
+  "to-sail": { "text": "navigare", "variants": ["andare in barca a vela"] },
+  "to-dive": { "text": "tuffarsi", "variants": ["immergersi"] },
+  "to-fish": { "text": "pescare" },
+  "can-you-swim": { "text": "Sai nuotare?", "variants": ["Sa nuotare?"] },
+  "the-waves-are-big-today": { "text": "Le onde sono grandi oggi.", "orders": ["Oggi le onde sono grandi."] },
+  "we-sailed-to-the-island": { "text": "Abbiamo navigato fino all'isola." }
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "title": "Вода",
+ "subtitle": "На воді й біля води.",
+ "words": {
+  "sea": { "text": "море" },
+  "river": { "text": "річка" },
+  "lake": { "text": "озеро" },
+  "ship": { "text": "корабель", "grammar": { "plural": "кораблі" } },
+  "boat": { "text": "човен", "grammar": { "plural": "човни" } },
+  "port": { "text": "порт" },
+  "island": { "text": "острів", "grammar": { "plural": "острови" } },
+  "coast": { "text": "узбережжя" },
+  "wave": { "text": "хвиля" },
+  "to-swim": { "text": "плавати" },
+  "to-surf": { "text": "серфити", "variants": ["кататися на серфі"] },
+  "to-sail": { "text": "плисти під вітрилом", "variants": ["плисти"] },
+  "to-dive": { "text": "пірнати" },
+  "to-fish": { "text": "рибалити" },
+  "can-you-swim": { "text": "Ти вмієш плавати?", "variants": ["Ви вмієте плавати?"] },
+  "the-waves-are-big-today": { "text": "Сьогодні хвилі великі.", "orders": ["Хвилі сьогодні великі."] },
+  "we-sailed-to-the-island": { "text": "Ми припливли до острова під вітрилом.", "variants": ["Ми допливли до острова."] }
+ }
+}

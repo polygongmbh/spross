@@ -10,7 +10,6 @@
  { "slug": "profession", "kind": "noun", "emoji": "🧑‍🔧" },
  { "slug": "salary", "kind": "noun", "emoji": "💶" },
  { "slug": "to-earn", "kind": "verb", "emoji": "💰" },
- { "slug": "vacation", "kind": "noun", "emoji": "🏖️" },
  { "slug": "contract", "kind": "noun", "emoji": "📑" },
  { "slug": "to-apply", "kind": "verb", "emoji": "📨" },
  { "slug": "to-leave", "kind": "verb", "emoji": "🚪" },
@@ -45,12 +44,6 @@
   "components": []
  },
  { "slug": "can-you-help-me-briefly", "kind": "phrase", "components": ["to-help"] },
- {
-  "slug": "i-want-vacation-next-week",
-  "kind": "phrase",
-  "emoji": "🏖️",
-  "components": ["vacation"]
- },
  {
   "slug": "read-the-contract-carefully",
   "kind": "phrase",

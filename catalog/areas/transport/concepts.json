@@ -3,8 +3,6 @@
  { "slug": "car", "kind": "noun", "emoji": "🚗" },
  { "slug": "train", "kind": "noun", "emoji": "🚆" },
  { "slug": "ticket", "kind": "noun", "emoji": "🎟️" },
- { "slug": "to-travel", "kind": "verb", "emoji": "🌍" },
- { "slug": "journey", "kind": "noun", "emoji": "🗺️" },
  { "slug": "to-take-bus", "kind": "verb", "emoji": "🚌" },
  { "slug": "to-get-off", "kind": "verb" },
  { "slug": "to-depart", "kind": "verb" },
@@ -17,10 +15,8 @@
  { "slug": "airport", "kind": "noun", "emoji": "🛫" },
  { "slug": "driver", "kind": "noun" },
  { "slug": "traffic-light", "kind": "noun", "emoji": "🚦" },
- { "slug": "ship", "kind": "noun", "emoji": "🚢" },
  { "slug": "motorbike", "kind": "noun", "emoji": "🏍️" },
  { "slug": "truck", "kind": "noun", "emoji": "🚚" },
- { "slug": "luggage", "kind": "noun", "emoji": "🧳" },
  { "slug": "fare", "kind": "noun" },
  { "slug": "passenger", "kind": "noun" },
  { "slug": "wheel", "kind": "noun", "emoji": "🛞" },
@@ -33,7 +29,6 @@
   "emoji": "🚆",
   "components": ["train", "to-depart"]
  },
- { "slug": "have-a-good-journey", "kind": "phrase", "emoji": "🗺️", "components": ["journey"] },
  { "slug": "how-much-is-the-fare", "kind": "phrase", "components": ["fare"] },
  { "slug": "the-bus-has-already-departed", "kind": "phrase", "components": ["bus", "to-depart"] },
  {

@@ -112,7 +112,9 @@
    { "area": "directions", "emoji": "↗️" },
    { "area": "transport", "emoji": "🚌" },
    { "area": "city", "emoji": "🏙️" },
+   { "area": "holidays", "emoji": "🏖️" },
    { "area": "nature", "emoji": "🌳" },
+   { "area": "water", "emoji": "🌊" },
    { "area": "animals", "emoji": "🐘" },
    { "area": "weather", "emoji": "🌦️" },
    { "area": "sounds", "emoji": "🔊" }

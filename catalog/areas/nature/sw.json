@@ -4,7 +4,6 @@
  "words": {
   "tree": { "text": "mti", "grammar": { "plural": "miti" } },
   "flower": { "text": "ua", "grammar": { "plural": "maua" } },
-  "river": { "text": "mto", "grammar": { "plural": "mito" } },
   "to-go-for-walk": { "text": "kutembea" },
   "to-jog": {
    "text": "kukimbia",
@@ -13,13 +12,9 @@
     "de": "kukimbia heißt vor allem rennen, laufen."
    }
   },
-  "to-sunbathe": { "text": "kuota jua" },
   "to-plant-flowers": { "text": "kupanda maua" },
   "to-grill-meat": { "text": "kuchoma nyama" },
   "mountain": { "text": "mlima", "grammar": { "plural": "milima" } },
-  "sea": { "text": "bahari", "grammar": { "plural": "=" } },
-  "beach": { "text": "ufukwe", "synonyms": ["pwani"], "grammar": { "plural": "fukwe" } },
-  "lake": { "text": "ziwa", "grammar": { "plural": "maziwa" } },
   "forest": { "text": "msitu", "grammar": { "plural": "misitu" } },
   "stone": { "text": "jiwe", "grammar": { "plural": "mawe" } },
   "stone-wall": { "text": "ukuta wa mawe", "grammar": { "plural": "kuta za mawe" } },
@@ -33,7 +28,6 @@
   },
   "stick": { "text": "fimbo", "grammar": { "plural": "=" } },
   "shadow": { "text": "kivuli", "grammar": { "plural": "vivuli" } },
-  "lets-go-to-the-beach": { "text": "Twende ufukweni!", "variants": ["Twende pwani!"] },
   "we-are-going-to-the-mountains": { "text": "Tunaenda milimani." },
   "its-cold-in-the-mountains": { "text": "Milimani kuna baridi.", "orders": ["Kuna baridi milimani."] }
  }

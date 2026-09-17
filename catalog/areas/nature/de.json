@@ -4,16 +4,11 @@
  "words": {
   "tree": { "text": "Baum", "grammar": { "gender": "der", "plural": "Bäume" } },
   "flower": { "text": "Blume", "grammar": { "gender": "die", "plural": "-n" } },
-  "river": { "text": "Fluss", "grammar": { "gender": "der", "plural": "Flüsse" } },
   "to-go-for-walk": { "text": "spazieren gehen" },
   "to-jog": { "text": "joggen" },
-  "to-sunbathe": { "text": "sich sonnen" },
   "to-plant-flowers": { "text": "Blumen pflanzen" },
   "to-grill-meat": { "text": "Fleisch grillen" },
   "mountain": { "text": "Berg", "grammar": { "gender": "der", "plural": "-e" } },
-  "sea": { "text": "Meer", "grammar": { "gender": "das", "plural": "-e" } },
-  "beach": { "text": "Strand", "grammar": { "gender": "der", "plural": "Strände" } },
-  "lake": { "text": "See", "grammar": { "gender": "der", "plural": "-n" } },
   "forest": { "text": "Wald", "grammar": { "gender": "der", "plural": "Wälder" } },
   "stone": { "text": "Stein", "grammar": { "gender": "der", "plural": "-e" } },
   "stone-wall": { "text": "Steinmauer", "grammar": { "gender": "die", "plural": "-n" } },
@@ -22,11 +17,6 @@
   "wood": { "text": "Holz", "grammar": { "gender": "das", "plural": "Hölzer" } },
   "stick": { "text": "Stock", "grammar": { "gender": "der", "plural": "Stöcke" } },
   "shadow": { "text": "Schatten", "grammar": { "gender": "der", "plural": "=" } },
-  "lets-go-to-the-beach": {
-   "text": "Gehen wir an den Strand!",
-   "variants": ["Lass uns an den Strand gehen!"],
-   "orders": ["Wir gehen an den Strand!"]
-  },
   "we-are-going-to-the-mountains": { "text": "Wir fahren in die Berge.", "orders": ["In die Berge fahren wir."] },
   "its-cold-in-the-mountains": {
    "text": "In den Bergen ist es kalt.",

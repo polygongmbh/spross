@@ -31,12 +31,6 @@
    "grammar": { "gender": "le" },
    "notes": { "fr": "je prends mon service à six heures · à l'usine, on dit le poste." }
   },
-  "vacation": {
-   "text": "vacances",
-   "synonyms": ["congés"],
-   "grammar": { "gender": "les", "plural": "only" },
-   "notes": { "fr": "les vacances d'été · au travail, je prends des congés." }
-  },
   "company": { "text": "entreprise", "variants": ["l'entreprise", "boîte"], "grammar": { "gender": "l'" } },
   "to-apply": {
    "text": "postuler à un poste",
@@ -130,14 +124,6 @@
     "Tu peux m'aider un instant ?",
     "Vous pouvez m'aider un instant ?"
    ]
-  },
-  "i-want-vacation-next-week": {
-   "text": "Je voudrais prendre des vacances la semaine prochaine.",
-   "variants": [
-    "Je veux prendre des vacances la semaine prochaine.",
-    "Je voudrais prendre des congés la semaine prochaine."
-   ],
-   "orders": ["La semaine prochaine, je voudrais prendre des vacances."]
   },
   "read-the-contract-carefully": {
    "text": "Lisez bien le contrat !",

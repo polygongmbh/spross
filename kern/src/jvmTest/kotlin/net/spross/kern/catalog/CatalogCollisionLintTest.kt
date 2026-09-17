@@ -189,6 +189,12 @@ class CatalogCollisionLintTest {
                 // questions/what, the object what — with uk `що` it is the one pair two languages
                 // merge, and both merges are real polysemy, not one meaning authored twice
                 // (reviewed in [noConceptPairCollidesInTwoLanguages]).
+                // Reviewed 2026-09-17: fr `nuit` is the night AND an overnight stay (what you
+                // book at a hotel: "trois nuits") — de/en/eo/es/it/sw/uk all split the pair
+                // (Nacht/Übernachtung, night/overnight stay, noche/alojamiento). `hébergement`
+                // is the formal word for accommodation but `nuit` is what a traveler books, so
+                // both stay.
+                "fr nuit: holidays/overnight-stay, time/night",
                 "fr que: connectors/that-conj, questions/what",
                 // Reviewed 2026-09-05: `liquide` is the adjective flüssig AND, as `argent
                 // liquide`, the everyday word for cash — de/en/eo/es/it/uk all split the pair
@@ -255,7 +261,7 @@ class CatalogCollisionLintTest {
                 // area label tells them apart on produce, and the verb has no other everyday word.
                 "sw kulia: emotions/to-cry, place/right",
                 "sw mpaka: connectors/until, politics/border",
-                "sw mto: bedroom/pillow, nature/river",
+                "sw mto: bedroom/pillow, water/river",
                 // Reviewed 2026-08-04: sw `mwezi` is moon and month, exactly as uk `місяць`
                 // is — so the moon is authored without uk, which keeps this to one language
                 // and pinnable instead of the unfixable two-language pair.
@@ -268,6 +274,12 @@ class CatalogCollisionLintTest {
                 // tomato alike, both of them the first word a learner needs in their area.
                 // Repicking either would teach the rarer word for no gain.
                 "sw nyanya: food/tomato, people/grandmother",
+                // Reviewed 2026-09-17: sw `pwani` is the coast AND, as a synonym on
+                // holidays/beach, the beach area — de/en/eo/es/fr/it/uk all split the pair
+                // (Strand/Küste, beach/coast, playa/costa, spiaggia/costa). `ufukwe` is the
+                // primary text for beach, so the collision is synonym-only; both words are
+                // the everyday ones a Swahili speaker uses.
+                "sw pwani: holidays/beach, water/coast",
                 // Reviewed 2026-09-05: uk `з` is with AND since (з учора) — de/en/eo/es/fr/it/sw
                 // all split the pair (mit/seit, with/since, kun/ekde, con/desde, avec/depuis,
                 // con/da, na/tangu). `від учора` is understood but not what a speaker says, so

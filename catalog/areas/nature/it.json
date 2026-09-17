@@ -4,16 +4,11 @@
  "words": {
   "tree": { "text": "albero", "variants": ["l'albero"], "grammar": { "gender": "l'" } },
   "flower": { "text": "fiore", "grammar": { "gender": "il" } },
-  "river": { "text": "fiume", "grammar": { "gender": "il" } },
   "to-go-for-walk": { "text": "fare una passeggiata", "synonyms": ["passeggiare"] },
   "to-jog": { "text": "correre", "synonyms": ["fare jogging"], "variants": ["andare a correre"] },
-  "to-sunbathe": { "text": "prendere il sole", "variants": ["abbronzarsi"] },
   "to-plant-flowers": { "text": "piantare fiori" },
   "to-grill-meat": { "text": "grigliare la carne", "variants": ["arrostire la carne", "fare una grigliata"] },
   "mountain": { "text": "montagna", "grammar": { "gender": "la" } },
-  "sea": { "text": "mare", "grammar": { "gender": "il" } },
-  "beach": { "text": "spiaggia", "grammar": { "gender": "la", "plural": "spiagge" } },
-  "lake": { "text": "lago", "grammar": { "gender": "il", "plural": "laghi" } },
   "forest": { "text": "bosco", "variants": ["foresta"], "grammar": { "gender": "il", "plural": "boschi" } },
   "stone": { "text": "pietra", "variants": ["sasso"], "grammar": { "gender": "la" } },
   "stone-wall": { "text": "muro di pietra", "grammar": { "gender": "il" } },
@@ -22,7 +17,6 @@
   "wood": { "text": "legno", "grammar": { "gender": "il" } },
   "stick": { "text": "bastone", "grammar": { "gender": "il" } },
   "shadow": { "text": "ombra", "variants": ["l'ombra"], "grammar": { "gender": "l'" } },
-  "lets-go-to-the-beach": { "text": "Andiamo in spiaggia!", "variants": ["Andiamo alla spiaggia!", "Andiamo al mare!"] },
   "we-are-going-to-the-mountains": { "text": "Andiamo in montagna.", "variants": ["Andiamo sulle montagne."] },
   "its-cold-in-the-mountains": { "text": "In montagna fa freddo.", "orders": ["Fa freddo in montagna."] }
  }

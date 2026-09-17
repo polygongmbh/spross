@@ -4,16 +4,11 @@
  "words": {
   "tree": { "text": "árbol", "grammar": { "gender": "el" } },
   "flower": { "text": "flor", "grammar": { "gender": "la" } },
-  "river": { "text": "río", "grammar": { "gender": "el" } },
   "to-go-for-walk": { "text": "pasear", "synonyms": ["dar un paseo"] },
   "to-jog": { "text": "salir a correr", "synonyms": ["hacer footing"] },
-  "to-sunbathe": { "text": "tomar el sol", "variants": ["tomar sol", "asolearse"] },
   "to-plant-flowers": { "text": "plantar flores", "variants": ["sembrar flores"] },
   "to-grill-meat": { "text": "asar carne", "variants": ["asar carne a la parrilla", "hacer una barbacoa"] },
   "mountain": { "text": "montaña", "grammar": { "gender": "la" } },
-  "sea": { "text": "mar", "grammar": { "gender": "el" } },
-  "beach": { "text": "playa", "grammar": { "gender": "la" } },
-  "lake": { "text": "lago", "grammar": { "gender": "el" } },
   "forest": { "text": "bosque", "grammar": { "gender": "el" } },
   "stone": { "text": "piedra", "grammar": { "gender": "la" } },
   "stone-wall": { "text": "muro de piedra", "grammar": { "gender": "el" } },
@@ -22,7 +17,6 @@
   "wood": { "text": "madera", "grammar": { "gender": "la" } },
   "stick": { "text": "palo", "grammar": { "gender": "el" } },
   "shadow": { "text": "sombra", "grammar": { "gender": "la" } },
-  "lets-go-to-the-beach": { "text": "¡Vamos a la playa!", "variants": ["¡Vámonos a la playa!"] },
   "we-are-going-to-the-mountains": {
    "text": "Vamos a la montaña.",
    "variants": ["Nos vamos a la montaña.", "Vamos a las montañas."]

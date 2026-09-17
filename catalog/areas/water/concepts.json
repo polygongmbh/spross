@@ -1,0 +1,24 @@
+[
+ { "slug": "sea", "kind": "noun", "emoji": "🌊" },
+ { "slug": "river", "kind": "noun" },
+ { "slug": "lake", "kind": "noun" },
+ { "slug": "ship", "kind": "noun", "emoji": "🚢" },
+ { "slug": "boat", "kind": "noun", "emoji": "⛵" },
+ { "slug": "port", "kind": "noun", "emoji": "⚓" },
+ { "slug": "island", "kind": "noun", "emoji": "🏝️" },
+ { "slug": "coast", "kind": "noun" },
+ { "slug": "wave", "kind": "noun" },
+ { "slug": "to-swim", "kind": "verb", "emoji": "🏊" },
+ { "slug": "to-surf", "kind": "verb", "emoji": "🏄" },
+ { "slug": "to-sail", "kind": "verb", "emoji": "⛵" },
+ { "slug": "to-dive", "kind": "verb", "emoji": "🤿" },
+ { "slug": "to-fish", "kind": "verb", "emoji": "🎣" },
+ { "slug": "can-you-swim", "kind": "phrase", "emoji": "🏊", "components": ["to-swim"] },
+ { "slug": "the-waves-are-big-today", "kind": "phrase", "components": ["wave"] },
+ {
+  "slug": "we-sailed-to-the-island",
+  "kind": "phrase",
+  "emoji": "⛵",
+  "components": ["to-sail", "island"]
+ }
+]

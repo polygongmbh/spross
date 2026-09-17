@@ -27,11 +27,6 @@
   "boss": { "text": "jefe", "grammar": { "gender": "el" } },
   "boss-f": { "text": "jefa", "grammar": { "gender": "la" } },
   "shift": { "text": "turno", "grammar": { "gender": "el" } },
-  "vacation": {
-   "text": "vacaciones",
-   "grammar": { "gender": "las", "plural": "only" },
-   "notes": { "es": "Siempre en plural: las vacaciones." }
-  },
   "company": {
    "text": "empresa",
    "variants": ["compañía"],
@@ -117,15 +112,6 @@
   "can-you-help-me-briefly": {
    "text": "¿Puede ayudarme un momento?",
    "variants": ["¿Puedes ayudarme un momento?", "¿Me puede ayudar un momento?"]
-  },
-  "i-want-vacation-next-week": {
-   "text": "Quiero coger vacaciones la semana que viene.",
-   "variants": [
-    "Quiero tomar vacaciones la semana que viene.",
-    "Me gustaría coger vacaciones la semana que viene.",
-    "Quiero coger vacaciones la próxima semana."
-   ],
-   "orders": ["La semana que viene quiero coger vacaciones."]
   },
   "read-the-contract-carefully": {
    "text": "Lea bien el contrato.",

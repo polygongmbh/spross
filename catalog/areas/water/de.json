@@ -1,0 +1,23 @@
+{
+ "title": "Wasser",
+ "subtitle": "Schwimmen, segeln, tauchen.",
+ "words": {
+  "sea": { "text": "Meer", "grammar": { "gender": "das", "plural": "-e" } },
+  "river": { "text": "Fluss", "grammar": { "gender": "der", "plural": "Flüsse" } },
+  "lake": { "text": "See", "grammar": { "gender": "der", "plural": "-n" } },
+  "ship": { "text": "Schiff", "grammar": { "gender": "das", "plural": "-e" } },
+  "boat": { "text": "Boot", "grammar": { "gender": "das", "plural": "-e" } },
+  "port": { "text": "Hafen", "grammar": { "gender": "der", "plural": "Häfen" } },
+  "island": { "text": "Insel", "grammar": { "gender": "die", "plural": "-n" } },
+  "coast": { "text": "Küste", "grammar": { "gender": "die", "plural": "-n" } },
+  "wave": { "text": "Welle", "grammar": { "gender": "die", "plural": "-n" } },
+  "to-swim": { "text": "schwimmen" },
+  "to-surf": { "text": "surfen" },
+  "to-sail": { "text": "segeln" },
+  "to-dive": { "text": "tauchen" },
+  "to-fish": { "text": "angeln" },
+  "can-you-swim": { "text": "Kannst du schwimmen?", "variants": ["Können Sie schwimmen?"] },
+  "the-waves-are-big-today": { "text": "Die Wellen sind heute groß.", "orders": ["Heute sind die Wellen groß."] },
+  "we-sailed-to-the-island": { "text": "Wir sind zur Insel gesegelt.", "orders": ["Zur Insel sind wir gesegelt."] }
+ }
+}

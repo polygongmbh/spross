@@ -1,0 +1,43 @@
+{
+ "title": "Vacanze",
+ "subtitle": "Tempo di vacanze.",
+ "words": {
+  "beach": { "text": "spiaggia", "grammar": { "gender": "la", "plural": "spiagge" } },
+  "to-sunbathe": { "text": "prendere il sole", "variants": ["abbronzarsi"] },
+  "hotel": {
+   "text": "albergo",
+   "synonyms": ["hotel"],
+   "variants": ["l'albergo", "l'hotel"],
+   "grammar": { "gender": "l'", "plural": "alberghi" }
+  },
+  "luggage": { "text": "bagaglio", "grammar": { "gender": "il", "plural": "bagagli" } },
+  "to-travel": { "text": "viaggiare" },
+  "journey": { "text": "viaggio", "grammar": { "gender": "il", "plural": "viaggi" } },
+  "vacation": {
+   "text": "ferie",
+   "synonyms": ["vacanze"],
+   "grammar": { "gender": "le", "plural": "only" },
+   "notes": { "it": "le ferie sono dal lavoro, sempre al plurale · le vacanze sono di tutti." }
+  },
+  "overnight-stay": { "text": "pernottamento", "grammar": { "gender": "il" } },
+  "to-book-a-room": { "text": "prenotare una camera" },
+  "tourist": { "text": "turista", "grammar": { "gender": "il" } },
+  "souvenir": { "text": "souvenir", "synonyms": ["ricordo"], "grammar": { "gender": "il", "plural": "=" } },
+  "sunscreen": { "text": "crema solare", "grammar": { "gender": "la" } },
+  "to-pack": { "text": "fare le valigie", "variants": ["fare la valigia"] },
+  "campsite": { "text": "campeggio", "grammar": { "gender": "il" } },
+  "lets-go-to-the-beach": { "text": "Andiamo in spiaggia!", "variants": ["Andiamo alla spiaggia!", "Andiamo al mare!"] },
+  "im-looking-for-a-hotel": { "text": "Cerco un albergo.", "variants": ["Sto cercando un albergo.", "Cerco un hotel."] },
+  "have-a-good-journey": { "text": "Buon viaggio!" },
+  "i-want-vacation-next-week": {
+   "text": "Vorrei prendere le ferie la settimana prossima.",
+   "variants": [
+    "Voglio prendere le ferie la settimana prossima.",
+    "Vorrei prendere le ferie la prossima settimana."
+   ],
+   "orders": ["La settimana prossima vorrei prendere le ferie."]
+  },
+  "how-many-nights": { "text": "Quante notti?", "variants": ["Per quante notti?"] },
+  "i-packed-too-much": { "text": "Ho messo troppe cose in valigia." }
+ }
+}
