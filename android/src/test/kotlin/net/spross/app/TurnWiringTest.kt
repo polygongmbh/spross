@@ -110,12 +110,12 @@ class TurnWiringTest {
 
         assertEquals(TurnFeedback.Correct, flow.feedback)
         assertEquals(listOf(ToneKind.Correct), platform.tones)
-        assertEquals(AdvanceTier.Live, flow.beat)
+        assertEquals(AdvanceTier.Live, flow.armedBeat)
         assertTrue(flow.beatToken > 0)
 
         flow.advanceElapsed()
         assertEquals(listOf(Rating.Good), platform.booked)
-        assertNull(flow.beat)
+        assertNull(flow.armedBeat)
     }
 
     /** Backing out takes the beat with it, so the timer that fires late books nothing. */
@@ -125,7 +125,7 @@ class TurnWiringTest {
         flow.type("kisu")
         flow.type("kis")
 
-        assertNull(flow.beat)
+        assertNull(flow.armedBeat)
         flow.advanceElapsed()
         assertTrue(platform.booked.isEmpty())
     }
@@ -199,7 +199,7 @@ class TurnWiringTest {
         val (flow, _) = turn(knife, platform = platform)
         flow.type("kisu")
 
-        assertNull(flow.beat)
+        assertNull(flow.armedBeat)
         assertTrue(flow.awaitsConfirm)
         flow.confirm()
         assertEquals(listOf(Rating.Good), platform.booked)
@@ -215,7 +215,7 @@ class TurnWiringTest {
 
         assertEquals(TurnFeedback.Almost("Auto", AlmostReason.Typo), flow.feedback)
         assertEquals(1, platform.focusReleases)
-        assertNull(flow.beat)
+        assertNull(flow.armedBeat)
         flow.confirm()
         assertEquals(listOf(Rating.Hard), platform.booked)
     }

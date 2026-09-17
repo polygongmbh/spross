@@ -76,13 +76,7 @@ private fun TurnCard(model: AppModel, ui: SessionUi) {
     // belongs to that card alone. A produce card reaches here with nothing to say.
     LaunchedEffect(card.id) { model.autoplayPrompt() }
 
-    // The beat kern armed. Nothing is ever armed where a screen reader runs (TurnFlow
-    // renders an explicit Weiter instead), so this only waits out beats that may run.
-    LaunchedEffect(flow.beatToken) {
-        val tier = flow.beat ?: return@LaunchedEffect
-        delay(tier.delayMs)
-        flow.advanceElapsed()
-    }
+    BeatEffect(flow.beatToken, flow.armedBeat, flow::advanceElapsed)
 
     // The produce card says its word once it has stopped asking — after a beat, so the
     // verdict cue is out of the way, and once per card however the pause was reached.

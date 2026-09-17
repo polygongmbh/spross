@@ -36,12 +36,8 @@ class TurnFlow(
     /** The verdict's cue. What it feels or sounds like is the platform's. */
     private val onTone: (ToneKind) -> Unit = {},
     private val onReleaseFocus: () -> Unit = {},
-    /**
-     * Whether a screen reader is reading the screen. Where one is, a timed change is
-     * hostile — it truncates the announcement and moves the page under the user — so no
-     * beat is ever armed and [awaitsConfirm] puts an explicit button in its place.
-     */
-    private val screenReaderOn: () -> Boolean = { false },
+    /** Whether a screen reader is reading the screen ([DrillBeat]). */
+    screenReaderOn: () -> Boolean = { false },
 ) {
 
     var state by mutableStateOf(start)
@@ -55,20 +51,16 @@ class TurnFlow(
     var copyInput by mutableStateOf("")
         private set
 
-    /** The beat kern armed and nobody has spent yet; null once it fired or was canceled. */
-    var beat by mutableStateOf<AdvanceTier?>(null)
-        private set
+    private val beat = DrillBeat(screenReaderOn)
 
-    /**
-     * Bumped by every arming. What a timer effect keys on: two beats in a row can be the
-     * same tier, and a key that compares equal would never fire the second one.
-     */
-    var beatToken by mutableStateOf(0)
-        private set
+    /** The beat kern armed and nobody has spent yet; null once it fired or was canceled. */
+    val armedBeat: AdvanceTier? get() = beat.tier
+
+    /** Bumped by every arming — what a timer effect keys on. */
+    val beatToken: Int get() = beat.token
 
     /** The beat became a tap: render the explicit "Weiter", which books the same rating. */
-    var awaitsConfirm by mutableStateOf(false)
-        private set
+    val awaitsConfirm: Boolean get() = beat.awaitsConfirm
 
     val feedback: TurnFeedback get() = state.feedback
 
@@ -164,7 +156,7 @@ class TurnFlow(
 
     /** The armed beat elapsed; it is spent whether or not the turn had anything to book. */
     fun advanceElapsed() {
-        beat = null
+        beat.spend()
         dispatch(TurnIntent.AdvanceElapsed)
     }
 
@@ -196,11 +188,11 @@ class TurnFlow(
     private fun carryOut(effect: TurnEffect) {
         when (effect) {
             is TurnEffect.Answer -> {
-                cancelBeat()
+                beat.cancel()
                 onAnswer(effect.rating)
             }
-            is TurnEffect.ArmAdvance -> arm(effect.tier)
-            TurnEffect.CancelAdvance -> cancelBeat()
+            is TurnEffect.ArmAdvance -> beat.arm(effect.tier)
+            TurnEffect.CancelAdvance -> beat.cancel()
             // why: the field the turn owns here is the answer field — a miss never hides
             // it, so the retype picks up where the slip started.
             is TurnEffect.PrimeField -> input = effect.text
@@ -209,21 +201,6 @@ class TurnFlow(
         }
     }
 
-    private fun arm(tier: AdvanceTier) {
-        if (screenReaderOn()) {
-            beat = null
-            awaitsConfirm = true
-            return
-        }
-        awaitsConfirm = false
-        beat = tier
-        beatToken += 1
-    }
-
-    private fun cancelBeat() {
-        beat = null
-        awaitsConfirm = false
-    }
 }
 
 /**
