@@ -43,7 +43,7 @@
   "underwear": { "text": "biancheria intima", "grammar": { "gender": "la" } },
   "belt": { "text": "cintura", "grammar": { "gender": "la" } },
   "to-make-bed": { "text": "fare il letto" },
-  "soft": { "text": "morbido", "variants": ["morbida", "soffice"] },
+  "soft": { "text": "morbido", "variants": ["morbida"] },
   "to-rest": { "text": "riposare", "variants": ["riposarsi"] },
   "sleep-well": { "text": "Dormi bene!" },
   "good-morning-my-love": {
@@ -56,6 +56,7 @@
    "text": "Ti amo.",
    "notes": { "it": "ti amo si dice al partner · alla famiglia si dice ti voglio bene." }
   },
-  "i-have-to-rest": { "text": "Devo riposare.", "variants": ["Devo riposarmi."] }
+  "i-have-to-rest": { "text": "Devo riposare.", "variants": ["Devo riposarmi."] },
+  "soft-mattress": { "text": "materasso soffice", "grammar": { "gender": "il" } }
  }
 }

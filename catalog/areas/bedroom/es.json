@@ -41,7 +41,7 @@
    "text": "blando",
    "synonyms": ["suave"],
    "variants": ["blanda"],
-   "notes": { "es": "blando = colchón, almohada · suave = piel, tela." }
+   "notes": { "es": "blando = almohada, cojín · suave = piel, tela." }
   },
   "to-rest": { "text": "descansar" },
   "sleep-well": { "text": "¡Que duermas bien!", "variants": ["¡Duerme bien!"] },
@@ -53,6 +53,7 @@
    "variants": ["Te amo."],
    "notes": { "es": "Te quiero en el día a día; te amo suena a película." }
   },
-  "i-have-to-rest": { "text": "Tengo que descansar." }
+  "i-have-to-rest": { "text": "Tengo que descansar." },
+  "soft-mattress": { "text": "colchón blando", "grammar": { "gender": "el" } }
  }
 }

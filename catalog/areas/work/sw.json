@@ -55,6 +55,7 @@
   "we-knock-off-at-5": {
    "text": "Leo tunamaliza kazi saa kumi na moja.",
    "orders": ["Tunamaliza kazi saa kumi na moja leo."]
-  }
+  },
+  "workplace": { "text": "ofisi", "grammar": { "plural": "=" } }
  }
 }

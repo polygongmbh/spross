@@ -80,6 +80,11 @@ class CatalogCollisionLintTest {
         val reviewedPairs = mapOf(
             ("time/time" to "weather/weather") to setOf("es", "fr", "it"),
             ("connectors/that-conj" to "questions/what") to setOf("fr", "uk"),
+            // Reviewed 2026-09-17: `que` is the comparative conjunction (más grande que, plus
+            // grand que) AND the declarative conjunction (sé que, je sais que) — genuinely
+            // different grammar in both es and fr, and de/en/eo/it/sw/uk all split the pair
+            // (als/dass, than/that, ol/ke, di/che, kuliko/kwamba, ніж/що).
+            ("comparison/than" to "connectors/that-conj") to setOf("es", "fr"),
         )
         val duplicated = langsByPair
             .mapValues { (pair, langs) -> langs - reviewedPairs[pair].orEmpty() }
@@ -161,6 +166,11 @@ class CatalogCollisionLintTest {
                 // all split the pair (warten/hoffen, attendre/espérer, kusubiri/kutumaini).
                 // `aguardar` for waiting is literary, so both stay one-language.
                 "es esperar: emotions/to-hope, verbs/to-wait",
+                // Reviewed 2026-09-17: es `que` is the comparative conjunction (más grande
+                // que) AND the declarative (sé que) — de/en/eo/it/sw/uk all split the pair
+                // (als/dass, than/that, ol/ke, di/che, kuliko/kwamba, ніж/що). No second
+                // Spanish word for either, so both stay.
+                "es que: comparison/than, connectors/that-conj",
                 "es tiempo: time/time, weather/weather",
                 // Reviewed 2026-08-15: `le tableau` is the picture on the wall AND the
                 // classroom board — genuine French polysemy, one word both areas need
@@ -174,6 +184,12 @@ class CatalogCollisionLintTest {
                 // directions/entrance is `entrata` against hall/hallway `ingresso`, so this
                 // stays one-language. `le hall` is a lobby and `le vestibule` is dated, so
                 // repicking would teach the wrong register; the card carries the de note.
+                // Reviewed 2026-09-17: fr `bureau` is the desk (le meuble) AND the office
+                // (la pièce) — de/en/eo/es/it/sw/uk all split the pair (Schreibtisch/Büro,
+                // desk/office, skribotablo/oficejo, escritorio/oficina, scrivania/ufficio,
+                // meza ya kazi/ofisi, письмовий стіл/офіс). No second French word for
+                // either — `pupitre` is a school desk, `lieu de travail` is HR speak.
+                "fr bureau: desk/desk, work/workplace",
                 "fr entrée: directions/entrance, hall/hallway",
                 // Reviewed 2026-08-23: `frais` is fresh AND, in the plural, the fees —
                 // de/en/eo/es/it/sw/uk all split the pair (frisch/Gebühr, fresco/tasa,
@@ -189,13 +205,15 @@ class CatalogCollisionLintTest {
                 // questions/what, the object what — with uk `що` it is the one pair two languages
                 // merge, and both merges are real polysemy, not one meaning authored twice
                 // (reviewed in [noConceptPairCollidesInTwoLanguages]).
+                // Reviewed 2026-09-17: the comparative conjunction (plus grand que) adds a
+                // third sense — than/that-conj collision reviewed in the es entry above.
                 // Reviewed 2026-09-17: fr `nuit` is the night AND an overnight stay (what you
                 // book at a hotel: "trois nuits") — de/en/eo/es/it/sw/uk all split the pair
                 // (Nacht/Übernachtung, night/overnight stay, noche/alojamiento). `hébergement`
                 // is the formal word for accommodation but `nuit` is what a traveler books, so
                 // both stay.
                 "fr nuit: holidays/overnight-stay, time/night",
-                "fr que: connectors/that-conj, questions/what",
+                "fr que: comparison/than, connectors/that-conj, questions/what",
                 // Reviewed 2026-09-05: `liquide` is the adjective flüssig AND, as `argent
                 // liquide`, the everyday word for cash — de/en/eo/es/it/uk all split the pair
                 // (flüssig/Bargeld, liquid/cash, likva/kontanta mono). money/cash keeps it as a
@@ -284,6 +302,11 @@ class CatalogCollisionLintTest {
                 // all split the pair (mit/seit, with/since, kun/ekde, con/desde, avec/depuis,
                 // con/da, na/tangu). `від учора` is understood but not what a speaker says, so
                 // since sits in time, where the label disambiguates, and both stay.
+                // Reviewed 2026-09-17: uk `ніж` is the comparative conjunction (більший
+                // ніж) AND the knife — a homonym, not a merge: de/en/eo/es/fr/it/sw all
+                // split it (als/Messer, than/knife, ol/tranĉilo, que/cuchillo, que/couteau,
+                // di/coltello, kuliko/kisu). The area label tells them apart on produce.
+                "uk ніж: comparison/than, kitchen/knife",
                 "uk з: connectors/with, time/since",
                 // Reviewed 2026-09-14: uk `північ` is midnight AND the north — de/en/eo/es/fr/it/sw
                 // all split the pair (Mitternacht/Norden, midnight/north, noktomezo/nordo,

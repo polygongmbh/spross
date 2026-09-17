@@ -137,6 +137,7 @@
    "text": "Legga bene il contratto.",
    "variants": ["Leggi bene il contratto.", "Legga attentamente il contratto."]
   },
-  "we-knock-off-at-5": { "text": "Oggi stacchiamo alle 5.", "orders": ["Stacchiamo oggi alle 5."] }
+  "we-knock-off-at-5": { "text": "Oggi stacchiamo alle 5.", "orders": ["Stacchiamo oggi alle 5."] },
+  "workplace": { "text": "ufficio", "grammar": { "gender": "l'" }, "variants": ["l'ufficio"] }
  }
 }

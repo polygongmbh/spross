@@ -13,6 +13,8 @@
   "negative": { "text": "негативний", "variants": ["негативно"] },
   "neutral": { "text": "нейтральний", "variants": ["нейтрально"] },
   "aggressive": { "text": "агресивний", "variants": ["агресивно"] },
-  "defensive": { "text": "оборонний", "synonyms": ["захисний"] }
+  "defensive": { "text": "оборонний", "synonyms": ["захисний"] },
+  "equality": { "text": "рівність" },
+  "than": { "text": "ніж", "notes": { "uk": "більший ніж я." } }
  }
 }

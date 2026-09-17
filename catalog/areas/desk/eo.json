@@ -18,10 +18,7 @@
   },
   "notebook": { "text": "notlibro", "variants": ["notkajero", "notbloko"] },
   "printer": { "text": "presilo", "variants": ["printilo"] },
-  "socket": {
-   "text": "ŝtopilingo",
-   "notes": { "eo": "ŝtopilingo estas en la muro · ŝtopilo estas ĉe la kablo." }
-  },
+  "socket": { "text": "ŝtopilingo", "notes": { "eo": "ŝtopilingo estas en la muro." } },
   "to-work": { "text": "labori" },
   "to-type": { "text": "tajpi" },
   "to-print": { "text": "presi", "variants": ["printi"] },
@@ -82,6 +79,7 @@
    "variants": ["Sendu al mi la retmesaĝon."],
    "orders": ["La retpoŝton sendu al mi."]
   },
-  "pencil": { "text": "krajono" }
+  "pencil": { "text": "krajono" },
+  "plug": { "text": "ŝtopilo" }
  }
 }

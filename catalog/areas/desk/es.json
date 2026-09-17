@@ -28,7 +28,7 @@
    "text": "enchufe",
    "variants": ["toma de corriente", "tomacorriente"],
    "grammar": { "gender": "el" },
-   "notes": { "es": "El enchufe es la toma de la pared y también la clavija." }
+   "notes": { "es": "El enchufe es la toma de la pared." }
   },
   "to-work": { "text": "trabajar" },
   "to-type": { "text": "teclear", "variants": ["mecanografiar", "escribir a máquina"] },
@@ -99,6 +99,7 @@
    "text": "Mándame el correo.",
    "variants": ["Envíame el correo.", "Mándame el correo electrónico.", "Mándame el email."]
   },
-  "pencil": { "text": "lápiz", "grammar": { "gender": "el", "plural": "lápices" } }
+  "pencil": { "text": "lápiz", "grammar": { "gender": "el", "plural": "lápices" } },
+  "plug": { "text": "clavija", "grammar": { "gender": "la", "plural": "-s" } }
  }
 }

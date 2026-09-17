@@ -21,6 +21,8 @@
   },
   "to-compare": { "text": "kulinganisha" },
   "positive": { "text": "chanya" },
-  "negative": { "text": "hasi" }
+  "negative": { "text": "hasi" },
+  "equality": { "text": "usawa" },
+  "than": { "text": "kuliko", "notes": { "sw": "mkubwa kuliko mimi." } }
  }
 }

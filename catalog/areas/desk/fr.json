@@ -5,7 +5,7 @@
   "desk": {
    "text": "bureau",
    "grammar": { "gender": "le", "plural": "-x" },
-   "notes": { "fr": "le bureau est le meuble et la pièce où l'on travaille." }
+   "notes": { "fr": "ici le meuble." }
   },
   "laptop": {
    "text": "ordinateur portable",
@@ -97,6 +97,7 @@
   "coffee-break": { "text": "Pause café ?", "variants": ["Une pause café ?", "On prend un café ?"] },
   "i-have-a-lot-to-do": { "text": "J'ai beaucoup à faire.", "variants": ["J'ai beaucoup de choses à faire."] },
   "send-me-the-email": { "text": "Envoie-moi l'e-mail.", "variants": ["Envoie-moi le mail.", "Envoie-moi le courriel."] },
-  "pencil": { "text": "crayon", "grammar": { "gender": "le", "plural": "-s" } }
+  "pencil": { "text": "crayon", "grammar": { "gender": "le", "plural": "-s" } },
+  "plug": { "text": "fiche", "grammar": { "gender": "la", "plural": "-s" } }
  }
 }

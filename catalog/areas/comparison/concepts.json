@@ -6,6 +6,8 @@
  { "slug": "similar", "kind": "adjective" },
  { "slug": "opposite", "kind": "adjective" },
  { "slug": "to-compare", "kind": "verb" },
+ { "slug": "equality", "kind": "noun", "emoji": "⚖️" },
+ { "slug": "than", "kind": "adjective" },
  { "slug": "positive", "kind": "adjective", "emoji": "➕" },
  { "slug": "negative", "kind": "adjective", "emoji": "➖" },
  { "slug": "neutral", "kind": "adjective" },

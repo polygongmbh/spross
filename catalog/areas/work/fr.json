@@ -129,6 +129,11 @@
    "text": "Lisez bien le contrat !",
    "variants": ["Lis bien le contrat !", "Lisez attentivement le contrat !"]
   },
-  "we-knock-off-at-5": { "text": "Aujourd'hui, on débauche à 5h.", "orders": ["On débauche à 5h aujourd'hui."] }
+  "we-knock-off-at-5": { "text": "Aujourd'hui, on débauche à 5h.", "orders": ["On débauche à 5h aujourd'hui."] },
+  "workplace": {
+   "text": "bureau",
+   "grammar": { "gender": "le", "plural": "-x" },
+   "notes": { "fr": "ici la pièce." }
+  }
  }
 }

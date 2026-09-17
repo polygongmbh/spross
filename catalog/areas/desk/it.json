@@ -20,12 +20,7 @@
   },
   "notebook": { "text": "taccuino", "variants": ["blocco note"], "grammar": { "gender": "il" } },
   "printer": { "text": "stampante", "grammar": { "gender": "la" } },
-  "socket": {
-   "text": "presa",
-   "variants": ["presa di corrente"],
-   "grammar": { "gender": "la" },
-   "notes": { "it": "la spina va nella presa." }
-  },
+  "socket": { "text": "presa", "variants": ["presa di corrente"], "grammar": { "gender": "la" } },
   "to-work": { "text": "lavorare" },
   "to-type": { "text": "digitare", "variants": ["battere a macchina", "scrivere a macchina"] },
   "to-print": { "text": "stampare" },
@@ -100,6 +95,7 @@
   "coffee-break": { "text": "Pausa caffè?", "variants": ["Andiamo a prendere un caffè?"] },
   "i-have-a-lot-to-do": { "text": "Ho molto da fare." },
   "send-me-the-email": { "text": "Mandami l'e-mail.", "variants": ["Inviami l'e-mail.", "Mandami la mail."] },
-  "pencil": { "text": "matita", "grammar": { "gender": "la" } }
+  "pencil": { "text": "matita", "grammar": { "gender": "la" } },
+  "plug": { "text": "spina", "grammar": { "gender": "la" } }
  }
 }

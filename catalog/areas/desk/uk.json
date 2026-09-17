@@ -40,6 +40,7 @@
   "coffee-break": { "text": "Перерва на каву?" },
   "i-have-a-lot-to-do": { "text": "У мене багато справ." },
   "send-me-the-email": { "text": "Надішли мені імейл.", "orders": ["Надішли імейл мені."] },
-  "pencil": { "text": "олівець" }
+  "pencil": { "text": "олівець" },
+  "plug": { "text": "вилка" }
  }
 }

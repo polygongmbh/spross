@@ -21,6 +21,8 @@
   "negative": { "text": "negativo", "variants": ["negativa"] },
   "neutral": { "text": "neutral", "variants": ["neutro"] },
   "aggressive": { "text": "agresivo", "variants": ["agresiva"] },
-  "defensive": { "text": "defensivo", "variants": ["defensiva"] }
+  "defensive": { "text": "defensivo", "variants": ["defensiva"] },
+  "equality": { "text": "igualdad", "grammar": { "gender": "la" } },
+  "than": { "text": "que", "notes": { "es": "más grande que yo." } }
  }
 }

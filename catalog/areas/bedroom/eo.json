@@ -62,6 +62,7 @@
    "orders": ["Ĉu la vekhorloĝon vi agordis?"]
   },
   "i-love-you": { "text": "Mi amas vin.", "orders": ["Vin mi amas."] },
-  "i-have-to-rest": { "text": "Mi devas ripozi." }
+  "i-have-to-rest": { "text": "Mi devas ripozi." },
+  "soft-mattress": { "text": "mola matraco" }
  }
 }

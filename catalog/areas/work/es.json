@@ -121,6 +121,7 @@
   "we-knock-off-at-5": {
    "text": "Hoy salimos del trabajo a las cinco.",
    "orders": ["Salimos del trabajo a las cinco hoy."]
-  }
+  },
+  "workplace": { "text": "oficina", "grammar": { "gender": "la", "plural": "-s" } }
  }
 }

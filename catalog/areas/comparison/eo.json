@@ -13,6 +13,8 @@
   "negative": { "text": "negativa", "variants": ["negative"] },
   "neutral": { "text": "neŭtrala", "variants": ["neŭtrale"] },
   "aggressive": { "text": "agresema", "variants": ["agresiva", "agreseme"] },
-  "defensive": { "text": "defenda", "variants": ["defensiva", "defende"] }
+  "defensive": { "text": "defenda", "variants": ["defensiva", "defende"] },
+  "equality": { "text": "egaleco" },
+  "than": { "text": "ol", "notes": { "eo": "pli granda ol mi." } }
  }
 }

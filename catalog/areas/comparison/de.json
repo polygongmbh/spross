@@ -13,6 +13,8 @@
   "negative": { "text": "negativ" },
   "neutral": { "text": "neutral" },
   "aggressive": { "text": "aggressiv" },
-  "defensive": { "text": "defensiv" }
+  "defensive": { "text": "defensiv" },
+  "equality": { "text": "Gleichheit", "grammar": { "gender": "die" } },
+  "than": { "text": "als", "notes": { "de": "größer als ich." } }
  }
 }

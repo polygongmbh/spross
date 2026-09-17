@@ -36,6 +36,7 @@
   "im-tired": { "text": "I'm tired." },
   "did-you-set-the-alarm": { "text": "Did you set the alarm?" },
   "i-love-you": { "text": "I love you." },
-  "i-have-to-rest": { "text": "I have to rest." }
+  "i-have-to-rest": { "text": "I have to rest." },
+  "soft-mattress": { "text": "soft mattress" }
  }
 }

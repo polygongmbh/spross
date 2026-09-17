@@ -37,11 +37,7 @@
   "underwear": { "text": "sous-vêtements", "grammar": { "gender": "les" } },
   "belt": { "text": "ceinture", "grammar": { "gender": "la" } },
   "to-make-bed": { "text": "faire le lit" },
-  "soft": {
-   "text": "doux",
-   "variants": ["douce"],
-   "notes": { "fr": "une peau douce, une voix douce · un matelas moelleux." }
-  },
+  "soft": { "text": "doux", "variants": ["douce"], "notes": { "fr": "une peau douce, une voix douce." } },
   "to-rest": { "text": "se reposer" },
   "sleep-well": { "text": "Dors bien !" },
   "good-morning-my-love": {
@@ -55,6 +51,7 @@
    "variants": ["As-tu mis le réveil ?", "Tu as réglé le réveil ?"]
   },
   "i-love-you": { "text": "Je t'aime." },
-  "i-have-to-rest": { "text": "Je dois me reposer." }
+  "i-have-to-rest": { "text": "Je dois me reposer." },
+  "soft-mattress": { "text": "matelas moelleux", "grammar": { "gender": "le", "plural": "=" } }
  }
 }

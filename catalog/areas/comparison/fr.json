@@ -17,6 +17,8 @@
   "negative": { "text": "négatif", "variants": ["négative"] },
   "neutral": { "text": "neutre" },
   "aggressive": { "text": "agressif", "variants": ["agressive"] },
-  "defensive": { "text": "défensif", "variants": ["défensive"] }
+  "defensive": { "text": "défensif", "variants": ["défensive"] },
+  "equality": { "text": "égalité", "grammar": { "gender": "l'" }, "variants": ["l'égalité"] },
+  "than": { "text": "que", "notes": { "fr": "plus grand que moi." } }
  }
 }

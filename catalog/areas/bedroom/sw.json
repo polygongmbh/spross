@@ -42,6 +42,7 @@
   "im-tired": { "text": "Nimechoka." },
   "did-you-set-the-alarm": { "text": "Umeweka saa ya kengele?" },
   "i-love-you": { "text": "Nakupenda." },
-  "i-have-to-rest": { "text": "Lazima nipumzike.", "variants": ["Ninahitaji kupumzika."] }
+  "i-have-to-rest": { "text": "Lazima nipumzike.", "variants": ["Ninahitaji kupumzika."] },
+  "soft-mattress": { "text": "godoro laini", "grammar": { "plural": "magodoro laini" } }
  }
 }

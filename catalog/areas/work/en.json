@@ -43,6 +43,7 @@
   },
   "can-you-help-me-briefly": { "text": "Can you help me briefly?" },
   "read-the-contract-carefully": { "text": "Read the contract carefully!", "orders": ["Carefully, read the contract!"] },
-  "we-knock-off-at-5": { "text": "We knock off at 5 today.", "orders": ["Today, we knock off at 5."] }
+  "we-knock-off-at-5": { "text": "We knock off at 5 today.", "orders": ["Today, we knock off at 5."] },
+  "workplace": { "text": "office" }
  }
 }

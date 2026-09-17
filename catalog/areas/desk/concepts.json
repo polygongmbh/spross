@@ -27,6 +27,7 @@
  { "slug": "cable", "kind": "noun", "emoji": "⚡" },
  { "slug": "charger", "kind": "noun", "emoji": "🔋" },
  { "slug": "socket", "kind": "noun", "emoji": "🔌" },
+ { "slug": "plug", "kind": "noun", "emoji": "🔌" },
  { "slug": "printer", "kind": "noun", "emoji": "🖨️" },
  { "slug": "broken", "kind": "adjective" },
  { "slug": "to-repair", "kind": "verb", "emoji": "🔧" },

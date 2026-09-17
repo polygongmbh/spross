@@ -39,6 +39,7 @@
   "coffee-break": { "text": "Pumziko la kahawa?" },
   "i-have-a-lot-to-do": { "text": "Nina mengi ya kufanya." },
   "send-me-the-email": { "text": "Nitumie barua pepe." },
-  "pencil": { "text": "penseli", "grammar": { "plural": "=" } }
+  "pencil": { "text": "penseli", "grammar": { "plural": "=" } },
+  "plug": { "text": "plagi", "grammar": { "plural": "=" } }
  }
 }

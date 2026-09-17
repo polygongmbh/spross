@@ -13,6 +13,8 @@
   "negative": { "text": "negative" },
   "neutral": { "text": "neutral" },
   "aggressive": { "text": "aggressive" },
-  "defensive": { "text": "defensive" }
+  "defensive": { "text": "defensive" },
+  "equality": { "text": "equality" },
+  "than": { "text": "than" }
  }
 }

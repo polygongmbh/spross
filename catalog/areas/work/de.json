@@ -67,6 +67,7 @@
   "we-knock-off-at-5": {
    "text": "Wir machen heute um 5 Feierabend.",
    "orders": ["Heute machen wir um 5 Feierabend.", "Um 5 machen wir heute Feierabend."]
-  }
+  },
+  "workplace": { "text": "Büro", "grammar": { "gender": "das", "plural": "-s" } }
  }
 }

@@ -22,6 +22,7 @@
  { "slug": "to-cuddle", "kind": "verb", "emoji": "🤗" },
  { "slug": "belt", "kind": "noun", "emoji": "🪢" },
  { "slug": "mattress", "kind": "noun" },
+ { "slug": "soft-mattress", "kind": "noun", "emoji": "🛏️" },
  { "slug": "bedding", "kind": "noun", "emoji": "🧺" },
  { "slug": "pajamas", "kind": "noun", "emoji": "🩳" },
  { "slug": "to-yawn", "kind": "verb", "emoji": "🥱" },
