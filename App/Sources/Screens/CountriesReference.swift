@@ -18,36 +18,12 @@ struct CountriesReference: View {
     let target: String
 
     var body: some View {
-        let groups = CountryDrill.shared.reference(content: content)
-        return VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-            DrillHeading("countries.reference")
-            if groups.contains(where: canBeHeard) {
-                ReferenceTapHint()
-            }
-            ForEach(groups, id: \.tier) { group in
-                tierGroup(group)
-            }
-        }
-    }
-
-    /// Whether the device can actually say a group's countries — the page must
-    /// not offer a sound it has no voice for.
-    private func canBeHeard(_ group: CountryReferenceGroup) -> Bool {
-        group.rows.contains { speak($0.target) != nil }
-    }
-
-    private func tierGroup(_ group: CountryReferenceGroup) -> some View {
-        VStack(alignment: .leading, spacing: Theme.spacing.md) {
-            Text(Self.tierTitle(Int(group.tier)))
-                .font(Theme.typography.subheadline)
-                .foregroundStyle(Theme.colors.textSecondary)
-                .textCase(.uppercase)
-                .accessibilityAddTraits(.isHeader)
-            VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-                ForEach(group.rows, id: \.slug) { countryRow($0) }
-            }
-            .panelSurface()
-        }
+        ReferenceSheet(heading: "countries.reference",
+                       groups: CountryDrill.shared.reference(content: content).map {
+                           ReferenceGroup(title: Self.tierTitle(Int($0.tier)), rows: $0.rows)
+                       },
+                       speak: { speak($0.target) },
+                       row: countryRow)
     }
 
     /// One country, twice: the known language on the left, the learned one on
@@ -56,8 +32,6 @@ struct CountriesReference: View {
     ///
     /// A tap says the LEARNED side only: the other column is the reader's own
     /// language, and a reference sheet is read to hear what one cannot yet say.
-    /// The whole row is that target, the numbers table's rule — the hint under
-    /// the heading is where the page says so.
     private func countryRow(_ row: CountryReferenceRow) -> some View {
         HStack(alignment: .top, spacing: Theme.spacing.md) {
             Text(verbatim: row.flag)
@@ -71,10 +45,6 @@ struct CountriesReference: View {
                  languages: row.targetLanguages, tint: Theme.colors.accent,
                  alignment: .trailing, language: target)
         }
-        // why: one country is one VoiceOver stop — both names, the people and
-        // the languages are the same row of the table.
-        .accessibilityElement(children: .combine)
-        .pronounceOnTap(speak(row.target))
     }
 
     /// Hearing a country's name in the language being learned — nil where the

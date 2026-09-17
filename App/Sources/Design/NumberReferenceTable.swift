@@ -11,6 +11,8 @@ import SprossKern
 struct NumberReferenceTable: View {
     /// The language being learned — the one the table describes.
     let language: String
+    /// What the page calls the table, where the door it came through titles it.
+    var heading: LocalizedStringKey?
     /// How a row is heard. Left off where a surface has nothing to say it with;
     /// the readings are generated and no catalog lists them, so what answers is
     /// almost always the live voice — and nothing at all where the language has
@@ -20,22 +22,12 @@ struct NumberReferenceTable: View {
     @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
-        let bands = sections
-        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-            if bands.contains(where: canBeHeard) {
-                ReferenceTapHint()
-            }
-            ForEach(Array(bands.enumerated()), id: \.offset) { _, section in
-                band(section)
-            }
-        }
-    }
-
-    /// Whether the device can actually say a band's rows — `Voice` hands back
-    /// nil where it can neither play nor speak, and a page that stays silent
-    /// must not offer to sound.
-    private func canBeHeard(_ section: ReferenceSection) -> Bool {
-        section.entries.contains { speak($0) != nil }
+        ReferenceSheet(heading: heading,
+                       groups: sections.map {
+                           ReferenceGroup(title: Self.bandTitle($0.key), rows: $0.entries)
+                       },
+                       speak: speak,
+                       panel: bandPanel)
     }
 
     /// Empty for a language kern has no pack for: `reference` requires one and
@@ -44,20 +36,6 @@ struct NumberReferenceTable: View {
     private var sections: [ReferenceSection] {
         guard Numbers.shared.supports(language: language) else { return [] }
         return Numbers.shared.reference(language: language)
-    }
-
-    private func band(_ section: ReferenceSection) -> some View {
-        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
-            if let title = Self.bandTitle(section.key) {
-                Text(title)
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.textSecondary)
-                    .textCase(.uppercase)
-                    .accessibilityAddTraits(.isHeader)
-            }
-            bandPanel(section)
-                .panelSurface()
-        }
     }
 
     /// The widest row a paired column still fits on one line, in characters,
@@ -92,15 +70,15 @@ struct NumberReferenceTable: View {
     /// is there [pairedMinWidth] to work with — since the pair's own ideal width is
     /// unmeasurable through the rows' trailing spacer.
     @ViewBuilder
-    private func bandPanel(_ section: ReferenceSection) -> some View {
-        if columnCount(section.entries) == 2 {
+    private func bandPanel(_ entries: [ReferenceEntry]) -> some View {
+        if columnCount(entries) == 2 {
             ViewThatFits(in: .horizontal) {
-                columns(section.entries, count: 2)
+                columns(entries, count: 2)
                     .frame(minWidth: Self.pairedMinWidth)
-                columns(section.entries, count: 1)
+                columns(entries, count: 1)
             }
         } else {
-            columns(section.entries, count: 1)
+            columns(entries, count: 1)
         }
     }
 
@@ -110,12 +88,8 @@ struct NumberReferenceTable: View {
         let perColumn = (entries.count + count - 1) / count
         return HStack(alignment: .top, spacing: Theme.spacing.xl) {
             ForEach(0..<count, id: \.self) { column in
-                VStack(alignment: .leading, spacing: Theme.spacing.xs) {
-                    ForEach(Array(entries.dropFirst(column * perColumn).prefix(perColumn).enumerated()),
-                            id: \.offset) { _, entry in
-                        row(entry)
-                    }
-                }
+                ReferenceRows(rows: Array(entries.dropFirst(column * perColumn).prefix(perColumn)),
+                              spacing: Theme.spacing.xs, speak: speak, row: row)
             }
         }
     }
@@ -123,10 +97,6 @@ struct NumberReferenceTable: View {
     /// Value and reading on one line. `fixedSize` lets a reading that outgrows
     /// its column wrap instead of truncating — this is the page a learner reads
     /// the language off.
-    ///
-    /// The WHOLE row says it, and nothing on the row says so: a table is read by
-    /// running down the readings, and a glyph to aim at is a detour per row. The
-    /// hint above the bands discloses the gesture once, for the page.
     private func row(_ entry: ReferenceEntry) -> some View {
         HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.md) {
             value(entry)
@@ -135,10 +105,6 @@ struct NumberReferenceTable: View {
             // whole line and not just the width of the words on it.
             Spacer(minLength: 0)
         }
-        // why: one row is one VoiceOver stop — "1 000 → eintausend", not two
-        // stops that have to be paired by ear.
-        .accessibilityElement(children: .combine)
-        .pronounceOnTap(speak(entry))
     }
 
     /// Hearing one row — a tap, so it sounds even while reading aloud is off.
@@ -177,29 +143,6 @@ struct NumberReferenceTable: View {
         case "forms": return "numbers.section.forms"
         default: return nil
         }
-    }
-}
-
-/// What tells a reference page's reader that the rows sound: on a page of
-/// reading matter the content is the control, so the gesture is disclosed once
-/// for the whole page instead of by a glyph on every row. Drawn by the numbers
-/// table, the atlas and the box, and only where the device can say the language.
-///
-/// Silent to VoiceOver: every row already offers hearing it as an action, and a
-/// line that exists to be seen is noise when it is read out.
-struct ReferenceTapHint: View {
-    /// Defaults to the reference tables' own wording; the box names its rows
-    /// "words" rather than a table's, so it passes its own key.
-    var textKey: LocalizedStringKey = "trainer.reference.tapToHear"
-
-    var body: some View {
-        HStack(spacing: Theme.spacing.sm) {
-            Image(systemName: "speaker.wave.2.fill")
-            Text(textKey)
-        }
-        .font(Theme.typography.caption)
-        .foregroundStyle(Theme.colors.textSecondary)
-        .accessibilityHidden(true)
     }
 }
 

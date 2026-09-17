@@ -11,10 +11,8 @@ import SprossKern
 /// its other lexemes (de `Sonnabend`), and what it becomes inside a date where
 /// that differs (uk `березня`).
 ///
-/// The generated table can say nothing the rows do not carry, so how the
-/// language ASSEMBLES a date — and what trips a learner up doing it — is
-/// authored prose under it (`catalog/dates/<lang>.json` § dateNotes), the
-/// numbers page's own shape.
+/// What the rows cannot carry — how the language ASSEMBLES a date — is the
+/// authored prose under them (`catalog/dates/<lang>.json` § dateNotes).
 struct DatesReference: View {
     let model: AppModel
     let content: DateDrillContent
@@ -24,74 +22,21 @@ struct DatesReference: View {
     let target: String
 
     var body: some View {
-        let groups = DateDrill.shared.reference(content: content)
-        return VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-            DrillHeading("dates.reference")
-            if groups.contains(where: canBeHeard) {
-                ReferenceTapHint()
-            }
-            ForEach(groups, id: \.kind) { group in
-                kindGroup(group)
-            }
-            notesSection
+        VStack(alignment: .leading, spacing: Theme.spacing.lg) {
+            ReferenceSheet(heading: "dates.reference",
+                           groups: DateDrill.shared.reference(content: content).map {
+                               // The Sprosse rows above already name the two pools, so the
+                               // group headings reuse their words rather than authoring a
+                               // second pair — the face's table, never a second copy of the
+                               // numbering, which is what drifted the day the ladder grew a
+                               // Sprosse.
+                               ReferenceGroup(title: DateDrillFace.sprosseTitle([$0.kind]), rows: $0.rows)
+                           },
+                           speak: { speak($0.target) },
+                           row: nameRow)
+            ReferenceNotes(lines: model.catalog?.dateNotes(language: target,
+                                                           reader: model.sourceLanguage) ?? [])
         }
-    }
-
-    /// Two to four authored lines, picked for the reader — kern falls back to
-    /// English where their own language carries no wording.
-    @ViewBuilder
-    private var notesSection: some View {
-        let lines = model.catalog?.dateNotes(language: target, reader: model.sourceLanguage) ?? []
-        if !lines.isEmpty {
-            VStack(alignment: .leading, spacing: Theme.spacing.md) {
-                DrillHeading("common.notes")
-                VStack(alignment: .leading, spacing: Theme.spacing.md) {
-                    ForEach(Array(lines.enumerated()), id: \.offset) { _, line in
-                        HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.sm) {
-                            Text(verbatim: "·")
-                                .foregroundStyle(Theme.colors.textSecondary)
-                                .accessibilityHidden(true)
-                            Text(verbatim: line)
-                                .font(Theme.typography.subheadline)
-                                .foregroundStyle(Theme.colors.textPrimary)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                    }
-                }
-                .panelSurface()
-            }
-        }
-    }
-
-    /// Whether the device can actually say a group's names — the page must not
-    /// offer a sound it has no voice for.
-    private func canBeHeard(_ group: DateReferenceGroup) -> Bool {
-        group.rows.contains { speak($0.target) != nil }
-    }
-
-    private func kindGroup(_ group: DateReferenceGroup) -> some View {
-        VStack(alignment: .leading, spacing: Theme.spacing.md) {
-            // The Sprosse rows above already name the two pools, so the group
-            // headings reuse their words rather than authoring a second pair.
-            Text(Self.groupTitle(group.kind))
-                .font(Theme.typography.subheadline)
-                .foregroundStyle(Theme.colors.textSecondary)
-                .textCase(.uppercase)
-                .accessibilityAddTraits(.isHeader)
-            VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-                ForEach(Array(group.rows.enumerated()), id: \.offset) { _, row in
-                    nameRow(row)
-                }
-            }
-            .panelSurface()
-        }
-    }
-
-    /// The reference groups only ever carry the two bare-name pools, and each
-    /// wears the Sprosse's own name — the face's table, never a second copy of
-    /// the numbering, which is what drifted the day the ladder grew a Sprosse.
-    private static func groupTitle(_ kind: DateTaskKind) -> LocalizedStringKey {
-        DateDrillFace.sprosseTitle([kind])
     }
 
     /// One name, twice: the known language on the left, the learned one on the
@@ -99,8 +44,6 @@ struct DatesReference: View {
     ///
     /// A tap says the LEARNED side only: the other column is the reader's own
     /// language, and a reference sheet is read to hear what one cannot yet say.
-    /// The whole row is that target, the numbers table's rule — the hint under
-    /// the heading is where the page says so.
     private func nameRow(_ row: DateReferenceRow) -> some View {
         HStack(alignment: .top, spacing: Theme.spacing.md) {
             Text(verbatim: row.source)
@@ -123,10 +66,6 @@ struct DatesReference: View {
             .multilineTextAlignment(.trailing)
         }
         .fixedSize(horizontal: false, vertical: true)
-        // why: one name is one VoiceOver stop — both sides and the forms under
-        // them are the same row of the table.
-        .accessibilityElement(children: .combine)
-        .pronounceOnTap(speak(row.target))
     }
 
     /// What else the learned name answers to, on one caption line: the short
