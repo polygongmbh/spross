@@ -54,9 +54,12 @@ fun AnswerField(
     digits: Boolean = false,
 ) {
     val palette = Theme.colors
+    // The edge says how the answer landed: green where it was clean, amber for a near miss
+    // and for a reveal alike — on a reveal it is the whole of the mark, since nothing about
+    // an unanswered question was accepted and no checkmark may claim otherwise.
     val tint: Color? = when (feedback) {
         TurnFeedback.Correct -> palette.success
-        is TurnFeedback.Almost -> palette.amber
+        is TurnFeedback.Almost, TurnFeedback.Revealed -> palette.amber
         else -> null
     }
     val owned = remember { FocusRequester() }

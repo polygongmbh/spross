@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- A revealed answer's field now carries the amber edge its screen reader already announced, on Android as on iPhone.
+
 ## 7.1.4 — 2026-09-16
 
 - Sentence scramble now accepts a phrase's other valid word orders instead of marking them wrong.
