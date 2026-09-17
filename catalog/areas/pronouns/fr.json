@@ -20,7 +20,8 @@
   "everything": { "text": "tout" },
   "anything": { "text": "quoi que ce soit" },
   "someone": { "text": "quelqu'un" },
-  "everyone": { "text": "tout le monde" },
+  "everyone": { "text": "chaque personne" },
+  "no-one": { "text": "aucune personne" },
   "anyone": { "text": "qui que ce soit" }
  }
 }
