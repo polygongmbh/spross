@@ -153,7 +153,9 @@ struct DrillSnapshot {
     /// BCP-47 of the language the prompt is written in.
     let promptLanguage: String
 
-    /// What the question asks, in words.
+    /// What the question asks, in words. Kern's task KIND names the rule and the
+    /// face is the only place it turns into a sentence, so nothing above the face
+    /// ever sees a machine's own vocabulary.
     let ask: LocalizedStringKey
     /// The name or line asked about; nil where a picture alone is the question.
     let promptText: String?

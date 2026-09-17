@@ -5,11 +5,6 @@ import SprossKern
 /// day-of-month numeral alone — and then the whole spoken date assembled out of
 /// them.
 ///
-/// This is the whole of what makes that page and that run different from the
-/// atlas's: kern's calendar machine (`DateDrillRun`), the words the chrome says
-/// about it, and the calendar under the start button. The screens themselves
-/// are `DrillOverview` and `DrillRunView`.
-///
 /// Named in TWO languages: the prompt side lends its weekday abbreviations and
 /// its digit format, the answer side spells the date out, so the drill exists
 /// only where the catalog carries a dates file on BOTH sides
@@ -68,9 +63,8 @@ enum DateDrillFace: DrillFace {
     // itself has no fixed length: a pair without a year pattern skips index 6,
     // and the number on screen is the row's own position. A Sprosse carries
     // every kind below it, so the LAST one is what it introduced and is named for.
-    // why: spelled out rather than interpolated — a key built with an index
-    // becomes a format string and localizes nothing, and these keys would stop
-    // being greppable from the catalog.
+    // why: a key per kind, spelled out — an interpolated one is a format string
+    // and localizes nothing (`docs/design.md`, chrome keys).
     // why: internal, not private — the calendar under the ladder heads its two
     // groups with the same Sprosse names.
     static func sprosseTitle(_ kinds: [DateTaskKind]) -> LocalizedStringKey {
@@ -135,9 +129,8 @@ enum DateDrillFace: DrillFace {
         }
     }
 
-    /// What the question asks — the kind names the rule, and this is the only
-    /// place it turns into words. The three assembled kinds share one sentence:
-    /// what changes between them is on the card, not in the ask.
+    /// The three assembled kinds share one sentence: what changes between them is
+    /// on the card, not in the ask.
     private static func ask(_ kind: DateTaskKind) -> LocalizedStringKey {
         switch kind {
         case .nameChoice: return "dates.ask.name"

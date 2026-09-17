@@ -89,6 +89,10 @@ Strict dependency direction: App → SprossKern, never the reverse.
 - Chrome strings are SYMBOLIC keys (`settings.known.title`), never source text in either
   language: copy edits then never detach a translation, and a new chrome language is
   additive. How a key is written and kept honest: `scripts/strings.py`.
+  A key is a LITERAL: one built by interpolation is a format string with an argument
+  (`"dates.sprosse.\(n)"` looks up `dates.sprosse.%lld`), so it localizes nothing,
+  prints raw on screen and hides the key from a grep —
+  a key per value is spelled out, one case at a time.
   A key's first level is the SURFACE it renders on, one namespace apiece — never a
   namespace per widget, and never two for one screen. Where a surface holds several
   KINDS of thing the second level says which (`box.card` vs `box.shelf` vs `box.area`,

@@ -4,11 +4,6 @@ import SprossKern
 /// The atlas drill: name the country, the people, the language — and say which
 /// is spoken where.
 ///
-/// This is the whole of what makes that page and that run different from the
-/// dates one: kern's atlas machine (`CountryDrillRun`), the words the chrome
-/// says about it, and the atlas under the start button. The screens themselves
-/// are `DrillOverview` and `DrillRunView`.
-///
 /// A country's name is a pair rather than a property of the language being
 /// learned, and the reference table is the join the drill grades against
 /// (`CountryDrill.reference`) rather than a second table beside it.
@@ -56,9 +51,8 @@ enum CountryDrillFace: DrillFace {
         CountriesReference(model: model, content: content, source: source, target: target)
     }
 
-    // why: spelled out rather than interpolated — a key built with `\(sprosse)`
-    // becomes the format string "countries.sprosse.%lld" and localizes nothing,
-    // and these keys would stop being greppable from the catalog.
+    // why: a key per Sprosse, spelled out — an interpolated one is a format
+    // string and localizes nothing (`docs/design.md`, chrome keys).
     private static func sprosseTitle(_ sprosse: Int, reverse: Bool) -> LocalizedStringKey {
         // A Sprosse that adds nothing to the one below — kern's call, the flag row
         // of a reversed run — says so rather than promising a question never asked.
@@ -132,8 +126,6 @@ enum CountryDrillFace: DrillFace {
         }
     }
 
-    /// What the question asks — the kind names the rule, and this is the only
-    /// place it turns into words.
     private static func ask(_ kind: CountryTaskKind) -> LocalizedStringKey {
         switch kind {
         case .countryName: return "countries.ask.country"

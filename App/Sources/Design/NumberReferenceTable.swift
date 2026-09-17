@@ -127,11 +127,10 @@ struct NumberReferenceTable: View {
             .spoken(entry.reading, language: language)
     }
 
-    /// Kern's band key → its heading. Spelled out rather than interpolated: a
-    /// `LocalizedStringKey` built from a value is a FORMAT with an argument, so
-    /// "numbers.section.\(key)" looks up "numbers.section.%@" and prints the raw
-    /// key on screen. A band this build has no wording for still gets its rows —
-    /// a new band must be able to land in kern first.
+    /// Kern's band key → its heading, spelled out — an interpolated key is a format
+    /// string and localizes nothing (`docs/design.md`, chrome keys). A band this
+    /// build has no wording for still gets its rows: a new band must be able to
+    /// land in kern first.
     private static func bandTitle(_ key: String) -> LocalizedStringKey? {
         switch key {
         case "base": return "numbers.section.base"
