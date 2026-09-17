@@ -16,21 +16,6 @@ Ready work comes first, then the items that end in a question for the owner, the
 - `catalog/areas/README.md` § How a realization is worded lacks the quote-pair convention
   (“…” in English prose, „…“ in German, as the idiom and note passes now write),
   which waits on a ruling before it is written down.
-- `comparison` wants `equal` and `than`, and each has a way out now.
-  `equal` collides with `same` in de `gleich` and sw `sawa`, inside one area, which lint
-  refuses outright; `equality` sidesteps it entirely — Gleichheit / equality / egaleco /
-  igualdad / égalité / uguaglianza / usawa / рівність collide with nothing in the catalog.
-  `than` collides with `connectors/that-conj` in es/fr `que` only, which is the cross-area
-  merge `CatalogCollisionLintTest` already pins for `that-conj`/`what`; it needs a pinned
-  pair and uk `ніж` pinned against `kitchen/knife`, not a re-cut.
-- Four concepts hide in notes the way `to-know-person` did, each fixable as a plain second
-  card because English already splits it: `pencil` beside `desk/pen` (the fr/it/es/eo notes
-  all gloss crayon/matita/lápiz/krajono), `plug` beside `desk/socket` (es `enchufe` covers
-  both, eo already splits it in prose), `workplace` beside `desk/desk` (fr `bureau` is the
-  room too — the one that needs a pinned entry), and a baked-object `soft-mattress`, where
-  fr/it/es each split soft by what is being touched and hide moelleux/soffice/blando in a
-  note or a mis-filed variant. `desk` is at 40 concepts, so the two that land there want the
-  area cut first.
 - it `living/wall` accepts `muro` as a variant of `parete` while its own note says the two are
   different things, and `nature/stone-wall` now teaches `muro di pietra`; rule whether `muro`
   is a synonym, belongs to the new card, or stays.
