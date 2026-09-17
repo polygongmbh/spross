@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Word scramble's first Sprosse now holds only the opening letter in place, and never hands back a mix that reads as the word itself or as one swap off it.
+
 ## 7.2.0 — 2026-09-17
 
 - A revealed answer's field now carries the amber edge its screen reader already announced, on Android as on iPhone.

@@ -21,9 +21,10 @@ import net.spross.kern.model.CardKind
 object WordScrambleAvailability {
 
     /**
-     * Below four LETTERS the first-and-last Sprosse leaves nothing worth mixing, and the word
-     * is guessable from its ends alone. Letters, never characters: sw "-pya" measures four
-     * only by counting a hyphen that is no letter to hand over.
+     * Below four LETTERS an anchored Sprosse leaves two to move, and two letters have exactly
+     * one arrangement that is not the spelling — the same mix every time the word comes round.
+     * Letters, never characters: sw "-pya" measures four only by counting a hyphen that is no
+     * letter to hand over.
      */
     const val MIN_LETTERS: Int = 4
 
@@ -64,7 +65,7 @@ object WordScrambleAvailability {
          * highest Sprosse [POOL_FLOOR] words still clear the floor of, so no Sprosse exists that
          * the learner's own words cannot fill.
          *
-         * [WordScrambleMasking] tops out at three — first and last anchored, first alone,
+         * [WordScrambleMasking] tops out at three — the opening letter anchored, then
          * nothing — and the Sprossen above it go on lengthening the word with nothing anchored,
          * which is where a well-grown box spends most of its climb.
          */
