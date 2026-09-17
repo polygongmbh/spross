@@ -41,7 +41,7 @@
   "customer": { "text": "mteja", "grammar": { "plural": "wateja" } },
   "to-leave": {
    "text": "kutoka",
-   "notes": { "sw": "kutoka nyumbani = kuondoka pale · Unatoka wapi? = nchi yako" }
+   "notes": { "sw": "kutoka nyumbani, kutoka kazini · Unatoka wapi? = nchi yako" }
   },
   "tomorrow-i-have-a-job-interview": {
    "text": "Kesho nitajitambulisha kwenye kampuni.",

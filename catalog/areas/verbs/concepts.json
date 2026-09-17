@@ -24,6 +24,7 @@
  { "slug": "to-deliver", "kind": "verb", "emoji": "🚚" },
  { "slug": "to-use", "kind": "verb", "emoji": "🔧" },
  { "slug": "to-come-back", "kind": "verb", "emoji": "🔙" },
+ { "slug": "to-go-away", "kind": "verb", "emoji": "🚶" },
  { "slug": "to-lose", "kind": "verb", "emoji": "🕳️" },
  { "slug": "to-break", "kind": "verb", "emoji": "💥" },
  { "slug": "to-push", "kind": "verb", "emoji": "👉" },

@@ -70,6 +70,7 @@
   "to-deliver": { "text": "livrer" },
   "to-use": { "text": "utiliser" },
   "to-come-back": { "text": "revenir" },
+  "to-go-away": { "text": "s'en aller", "notes": { "fr": "je m'en vais, il s'en va." } },
   "to-lose": { "text": "perdre" },
   "to-break": { "text": "casser" },
   "to-push": { "text": "pousser" },
