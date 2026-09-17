@@ -215,44 +215,22 @@ struct BoxCardRow: View {
             Button("box.card.wake") {
                 model.setSuspended(cardID: card.id, suspended: false)
             }
-            .font(Theme.typography.caption)
-            .foregroundStyle(Theme.colors.accent)
-            .padding(.horizontal, Theme.spacing.md)
-            .padding(.vertical, Theme.spacing.xs + 1)
-            .background(Theme.colors.accent.opacity(0.14), in: Capsule())
+            .pill(Theme.colors.accent)
         case .packOffered:
             if let pack {
-                Button(action: pack) {
-                    Image(systemName: "tray.and.arrow.down.fill")
-                }
-                // Ochre, where unpacking is clay: the pair reads as two directions rather
-                // than one control, and neither wears a growth-ladder color.
-                .buttonStyle(IconButtonStyle(color: Theme.colors.amber))
-                .accessibilityLabel("box.card.pack")
+                PackButton(direction: .in, label: "box.card.pack", action: pack)
             }
         case .packed(let packed):
             if packed.removalOffered {
                 // Direct tap, no confirmation: nothing has been studied yet, so taking a
                 // queued word back out costs it nothing (mirrors "box.card.wake"'s own direct tap).
-                Button {
+                PackButton(direction: .out, label: "box.card.unpack") {
                     model.dequeue(cardID: card.id)
-                } label: {
-                    Image(systemName: "tray.and.arrow.up.fill")
                 }
-                // Clay, matching the "box.card.queued" pill it takes back out.
-                .buttonStyle(IconButtonStyle(color: Theme.colors.accent))
-                .accessibilityLabel("box.card.unpack")
             } else {
                 // A pill, not an icon: a bare tray glyph reads as a control here too,
                 // and this one has none — the shelf's own takes the whole queue out.
-                // Clay, not green: green is the growth ladder's, and a queued word
-                // is not on it yet.
-                Text("box.card.queued")
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.accent)
-                    .padding(.horizontal, Theme.spacing.md)
-                    .padding(.vertical, Theme.spacing.xs + 1)
-                    .background(Theme.colors.accent.opacity(0.14), in: Capsule())
+                Text("box.card.queued").pill(Theme.colors.accent)
             }
         case .plain:
             EmptyView()
@@ -274,5 +252,33 @@ struct BoxCardRow: View {
         case .relearning: return .relearning
         case .unscheduled, .queued, .suspended: return .new
         }
+    }
+}
+
+/// Which way a word is moving between the shelf and the round it is queued for.
+enum PackDirection {
+    case `in`
+    case out
+}
+
+/// The tap that moves a word in or out — one word from its own row, a whole shelf
+/// from its header.
+///
+/// Ochre going IN, where coming back out is clay: the pair reads as two directions
+/// rather than one control. Neither wears a growth-ladder color — a queued word is
+/// not on the ladder yet, and the clay is the queued pill's own.
+struct PackButton: View {
+    let direction: PackDirection
+    let label: LocalizedStringKey
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: direction == .in ? "tray.and.arrow.down.fill"
+                                               : "tray.and.arrow.up.fill")
+        }
+        .buttonStyle(IconButtonStyle(color: direction == .in ? Theme.colors.amber
+                                                             : Theme.colors.accent))
+        .accessibilityLabel(Text(label))
     }
 }

@@ -309,24 +309,13 @@ private struct BoxAreaSection: View {
         let count = model.enqueueableCount(area: area)
         let queued = model.dequeueableCount(area: area)
         if count > 0 {
-            Button {
+            PackButton(direction: .in, label: "a11y.box.shelf.pack \(count.formatted())") {
                 model.enqueueArea(area)
-            } label: {
-                Image(systemName: "tray.and.arrow.down.fill")
             }
-            // Ochre, where unpacking is clay: the pair reads as two directions rather
-            // than one control, and neither wears a growth-ladder color.
-            .buttonStyle(IconButtonStyle(color: Theme.colors.amber))
-            .accessibilityLabel(Text("a11y.box.shelf.pack \(count.formatted())"))
         } else if queued > 2 {
-            Button {
+            PackButton(direction: .out, label: "a11y.box.shelf.unpack \(queued.formatted())") {
                 model.dequeueArea(area)
-            } label: {
-                Image(systemName: "tray.and.arrow.up.fill")
             }
-            // Clay, matching the queued pill it takes back out.
-            .buttonStyle(IconButtonStyle(color: Theme.colors.accent))
-            .accessibilityLabel(Text("a11y.box.shelf.unpack \(queued.formatted())"))
         } else {
             let mature = queued == 0 && (model.areaStats(area)?.mature ?? false)
             Image(systemName: "checkmark.circle.fill")

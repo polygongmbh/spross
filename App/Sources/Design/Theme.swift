@@ -246,6 +246,19 @@ extension View {
         .cardShadow()
     }
 
+    /// The one tinted capsule a standing wears: a word — never a color alone —
+    /// over that color's own 14 % wash, so a badge reads the same on a card as on
+    /// a recessed row. The wash is what makes it a standing rather than a control:
+    /// a saturated fill is what a button wears, and a row of solid slabs beside
+    /// each other is unreadable.
+    func pill(_ color: Color) -> some View {
+        font(Theme.typography.caption)
+            .foregroundStyle(color)
+            .padding(.horizontal, Theme.spacing.md)
+            .padding(.vertical, Theme.spacing.xs + 1)
+            .background(color.opacity(0.14), in: Capsule())
+    }
+
     /// The one inline PANEL: a block of the page — a table's rows, a ladder, a
     /// list of notes — set on the surface color at the tile radius, full width,
     /// with its own inset. A card is a question, a panel is the page around it,

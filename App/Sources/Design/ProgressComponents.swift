@@ -305,11 +305,7 @@ struct PhaseBadge: View {
                     .fixedSize(horizontal: true, vertical: false)
             }
         }
-        .font(Theme.typography.caption)
-        .foregroundStyle(color)
-        .padding(.horizontal, Theme.spacing.md)
-        .padding(.vertical, Theme.spacing.xs + 1)
-        .background(color.opacity(0.14), in: Capsule())
+        .pill(color)
     }
 }
 
