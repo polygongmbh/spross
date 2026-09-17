@@ -59,7 +59,7 @@
   "to-leave": {
    "text": "dejar",
    "synonyms": ["abandonar"],
-   "notes": { "es": "dejar el trabajo es irse de la empresa; de un sitio se sale." }
+   "notes": { "es": "dejar el trabajo, dejar las llaves en casa." }
   },
   "to-quit": { "text": "dejar el trabajo", "variants": ["dimitir", "renunciar al trabajo", "dejar el empleo"] },
   "to-hire": { "text": "contratar", "variants": ["emplear"] },
@@ -99,7 +99,7 @@
    "text": "despido",
    "variants": ["carta de despido"],
    "grammar": { "gender": "el" },
-   "notes": { "es": "El despido lo decide la empresa; irse uno mismo es la dimisión." }
+   "notes": { "es": "El despido lo decide la empresa; la dimisión la decide uno mismo." }
   },
   "worker": { "text": "trabajador", "grammar": { "gender": "el" } },
   "employer": { "text": "empleador", "grammar": { "gender": "el" } },
