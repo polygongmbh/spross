@@ -47,9 +47,8 @@
   "light": { "text": "luce", "grammar": { "gender": "la" } },
   "wall": {
    "text": "parete",
-   "variants": ["muro"],
    "grammar": { "gender": "la" },
-   "notes": { "it": "la parete è dentro casa · il muro è grosso e sta fuori." }
+   "notes": { "it": "la parete divide le stanze." }
   },
   "movie": { "text": "film", "grammar": { "gender": "il", "plural": "=" } },
   "to-sit": {
