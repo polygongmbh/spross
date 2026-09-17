@@ -12,8 +12,8 @@
    "text": "skribilo",
    "synonyms": ["globkrajono"],
    "notes": {
-    "eo": "skribilo estas ĉia ilo por skribi: globkrajono, krajono, plumo.",
-    "de": "skribilo ist jedes Schreibgerät; der Kugelschreiber heißt globkrajono, der Bleistift krajono."
+    "eo": "skribilo estas ĉia ilo por skribi.",
+    "de": "skribilo ist jedes Schreibgerät; der Kugelschreiber heißt globkrajono."
    }
   },
   "notebook": { "text": "notlibro", "variants": ["notkajero", "notbloko"] },
@@ -81,6 +81,7 @@
    "text": "Sendu al mi la retpoŝton.",
    "variants": ["Sendu al mi la retmesaĝon."],
    "orders": ["La retpoŝton sendu al mi."]
-  }
+  },
+  "pencil": { "text": "krajono" }
  }
 }

@@ -16,10 +16,7 @@
   "pen": {
    "text": "penna",
    "grammar": { "gender": "la" },
-   "notes": {
-    "it": "la penna scrive a inchiostro · la matita si cancella.",
-    "de": "„Stift“ ist hier der Kugelschreiber: la penna. Der Bleistift heißt la matita."
-   }
+   "notes": { "it": "la penna scrive a inchiostro.", "de": "„Stift“ ist hier der Kugelschreiber: la penna." }
   },
   "notebook": { "text": "taccuino", "variants": ["blocco note"], "grammar": { "gender": "il" } },
   "printer": { "text": "stampante", "grammar": { "gender": "la" } },
@@ -102,6 +99,7 @@
   "it-works": { "text": "Funziona.", "variants": ["Ora funziona.", "Funziona di nuovo."] },
   "coffee-break": { "text": "Pausa caffè?", "variants": ["Andiamo a prendere un caffè?"] },
   "i-have-a-lot-to-do": { "text": "Ho molto da fare." },
-  "send-me-the-email": { "text": "Mandami l'e-mail.", "variants": ["Inviami l'e-mail.", "Mandami la mail."] }
+  "send-me-the-email": { "text": "Mandami l'e-mail.", "variants": ["Inviami l'e-mail.", "Mandami la mail."] },
+  "pencil": { "text": "matita", "grammar": { "gender": "la" } }
  }
 }

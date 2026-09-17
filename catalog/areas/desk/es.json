@@ -19,7 +19,7 @@
    "grammar": { "gender": "el" },
    "notes": {
     "es": "En el día a día se dice el boli: déjame un boli.",
-    "de": "„Stift“ ist hier der Kugelschreiber: el bolígrafo, ugs. el boli. Der Bleistift heißt el lápiz."
+    "de": "„Stift“ ist hier der Kugelschreiber: el bolígrafo, ugs. el boli."
    }
   },
   "notebook": { "text": "libreta", "variants": ["cuaderno"], "grammar": { "gender": "la" } },
@@ -98,6 +98,7 @@
   "send-me-the-email": {
    "text": "Mándame el correo.",
    "variants": ["Envíame el correo.", "Mándame el correo electrónico.", "Mándame el email."]
-  }
+  },
+  "pencil": { "text": "lápiz", "grammar": { "gender": "el", "plural": "lápices" } }
  }
 }

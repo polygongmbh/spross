@@ -20,10 +20,7 @@
   "pen": {
    "text": "stylo",
    "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "le stylo écrit à l'encre · le crayon s'efface avec une gomme.",
-    "de": "„Stift“ ist hier der Kugelschreiber: le stylo. Der Bleistift heißt le crayon."
-   }
+   "notes": { "fr": "le stylo écrit à l’encre.", "de": "„Stift“ ist hier der Kugelschreiber: le stylo." }
   },
   "notebook": { "text": "carnet", "variants": ["bloc-notes"], "grammar": { "gender": "le" } },
   "printer": { "text": "imprimante", "variants": ["l'imprimante"], "grammar": { "gender": "l'" } },
@@ -99,6 +96,7 @@
   "it-works": { "text": "Ça marche.", "variants": ["Ça fonctionne.", "Ça remarche."] },
   "coffee-break": { "text": "Pause café ?", "variants": ["Une pause café ?", "On prend un café ?"] },
   "i-have-a-lot-to-do": { "text": "J'ai beaucoup à faire.", "variants": ["J'ai beaucoup de choses à faire."] },
-  "send-me-the-email": { "text": "Envoie-moi l'e-mail.", "variants": ["Envoie-moi le mail.", "Envoie-moi le courriel."] }
+  "send-me-the-email": { "text": "Envoie-moi l'e-mail.", "variants": ["Envoie-moi le mail.", "Envoie-moi le courriel."] },
+  "pencil": { "text": "crayon", "grammar": { "gender": "le", "plural": "-s" } }
  }
 }
