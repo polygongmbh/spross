@@ -20,6 +20,8 @@
   "all": { "text": "alle" },
   "some": { "text": "einige", "variants": ["ein paar"] },
   "every": { "text": "jeder", "variants": ["jede", "jedes"] },
+  "most": { "text": "die meisten" },
+  "almost": { "text": "fast" },
   "a-little": { "text": "ein bisschen", "synonyms": ["ein wenig"] },
   "few": { "text": "wenige" },
   "once": { "text": "einmal" },

@@ -20,6 +20,8 @@
   "all": { "text": "всі", "variants": ["усі"] },
   "some": { "text": "деякі", "variants": ["кілька"] },
   "every": { "text": "кожен", "variants": ["кожна", "кожне"] },
+  "most": { "text": "більшість" },
+  "almost": { "text": "майже" },
   "a-little": { "text": "трохи" },
   "few": { "text": "мало", "synonyms": ["небагато"] },
   "once": { "text": "один раз" },

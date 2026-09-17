@@ -27,6 +27,19 @@
   "all": { "text": "-ote", "variants": ["wote", "yote", "zote", "chote", "vyote", "lote", "pote"] },
   "some": { "text": "baadhi ya", "notes": { "sw": "baadhi ya maneno · baadhi ya siku · siku kadhaa" } },
   "every": { "text": "kila", "notes": { "sw": "kila siku, kila mtu, kila neno" } },
+  "most": {
+   "text": "-ingi zaidi",
+   "variants": [
+    "nyingi zaidi",
+    "wengi zaidi",
+    "mengi zaidi",
+    "vingi zaidi",
+    "mingi zaidi",
+    "mwingi zaidi",
+    "kingi zaidi"
+   ]
+  },
+  "almost": { "text": "takriban" },
   "a-little": { "text": "kidogo", "notes": { "sw": "Subiri kidogo · maji kidogo, moto kidogo" } },
   "few": { "text": "-chache", "variants": ["wachache", "chache", "vichache", "machache", "michache"] },
   "once": { "text": "mara moja", "notes": { "sw": "mara moja, mara nyingi · mara moja pia = papo hapo" } },

@@ -23,13 +23,11 @@
   "partially": { "text": "parte" },
   "gladly": { "text": "volonte" },
   "completely": { "text": "tute" },
-  "all": {
-   "text": "ĉiuj",
-   "variants": ["ĉio"],
-   "notes": { "eo": "ĉiuj vortoj, ĉiuj lokoj · ĉio: Ĉio en ordo." }
-  },
+  "all": { "text": "ĉiuj", "notes": { "eo": "ĉiuj vortoj, ĉiuj lokoj." } },
   "some": { "text": "kelkaj" },
   "every": { "text": "ĉiu" },
+  "most": { "text": "plej multaj" },
+  "almost": { "text": "preskaŭ" },
   "a-little": { "text": "iom" },
   "few": { "text": "malmultaj" },
   "once": { "text": "unufoje" },
