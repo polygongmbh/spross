@@ -20,7 +20,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
@@ -112,16 +111,8 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
         model.speakDrillAnswer(state.currentTask.display, mode.language)
     }
 
-    // The field takes the keyboard back with every question — an amber hold gives it up so
-    // the button it waits for is not covered, and the next prompt is typed into, not tapped.
     val inputFocus = remember { FocusRequester() }
-    LaunchedEffect(state.index) {
-        if (model.pronouncer.readsScreenAloud) return@LaunchedEffect
-        // why: a requester answers only once its node has been placed; one frame is what
-        // that takes, and a request fired inside the same composition lands on nothing.
-        withFrameNanos { }
-        runCatching { inputFocus.requestFocus() }
-    }
+    QuestionFocus(state.index, model.pronouncer, inputFocus)
 
     Column(
         modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),

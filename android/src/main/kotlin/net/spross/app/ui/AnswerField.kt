@@ -8,6 +8,9 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -17,30 +20,37 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import net.spross.app.Chrome
+import net.spross.app.audio.Pronouncer
 import net.spross.kern.session.TurnFeedback
 
 /**
- * The field both drills type into.
+ * The one field every asking surface types into — the review loop's and all four drills'.
  *
- * The review loop's `AnswerField` claims focus as it mounts, which is exactly wrong in a
- * drill: the letter run hands its focus to the replay button under a screen reader, and
- * both runs give the keyboard back on an amber hold and want it again with the next
- * question. So the focus is the CALLER's here, and everything else — the verdict tint, the
- * checkmark, the state a screen reader hears — is the same.
+ * The verdict tint, the checkmark and the state a screen reader hears are the whole of what
+ * it renders, and they are the same wherever the answer is written: a near miss runs amber
+ * throughout — field edge, checkmark and box agree (`docs/design.md`).
  *
- * Never read-only, not even after grading: kern ignores text in the states that decide
- * nothing, and a field that locks is a field the keyboard closes under.
+ * Never read-only, not even after grading: a miss keeps typing, because the retype IS the
+ * answer. Kern ignores text in the states that decide nothing, and a field that locks is a
+ * field the keyboard closes under.
  */
 @Composable
-fun DrillAnswerField(
+fun AnswerField(
     value: String,
     onValueChange: (String) -> Unit,
     placeholder: String,
     feedback: TurnFeedback,
     chrome: Chrome,
-    focus: FocusRequester,
     onDone: () -> Unit,
-    /** A reversed task owes digits — the keyboard is the one thing the direction decides. */
+    /**
+     * Who holds the focus. The review loop leaves this null and the field claims the
+     * keyboard as it MOUNTS, which is what makes the write-out step usable the moment
+     * "Unbekannt" opens it. A drill hands its own requester instead: the letter run gives
+     * the focus to the replay button under a screen reader, and every run gives the keyboard
+     * back on an amber hold and wants it again with the next question ([QuestionFocus]).
+     */
+    focus: FocusRequester? = null,
+    /** A task that owes digits — the keyboard is the one thing the direction decides. */
     digits: Boolean = false,
 ) {
     val palette = Theme.colors
@@ -49,12 +59,15 @@ fun DrillAnswerField(
         is TurnFeedback.Almost -> palette.amber
         else -> null
     }
+    val owned = remember { FocusRequester() }
+    val requester = focus ?: owned
+    LaunchedEffect(Unit) { if (focus == null) requester.claimWhenPlaced() }
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
         modifier = Modifier
             .fillMaxWidth()
-            .focusRequester(focus)
+            .focusRequester(requester)
             .semantics {
                 when (feedback) {
                     TurnFeedback.Correct -> stateDescription = chrome.a11yVerdictCorrect
@@ -69,9 +82,9 @@ fun DrillAnswerField(
             },
         placeholder = { Text(placeholder) },
         // why: correctness is never color alone — the mark says it on screen, the state
-        // description says it to TalkBack, and the tint is the third telling.
-        // The mark rides both accepted states and its color says how cleanly: a near miss
-        // runs amber throughout — field edge, checkmark and box agree (docs/design.md).
+        // description says it to TalkBack, and the tint is the third telling of the same
+        // thing. The mark says ACCEPTED and rides both accepted states, its color saying
+        // how cleanly; a reveal gets none, because nothing about it was accepted.
         trailingIcon = when (feedback) {
             TurnFeedback.Correct -> {
                 { Icon(SprossIcons.Check, contentDescription = null, tint = palette.success) }
@@ -93,4 +106,37 @@ fun DrillAnswerField(
         keyboardActions = KeyboardActions(onDone = { onDone() }),
         singleLine = true,
     )
+}
+
+/**
+ * Who holds the keyboard as a question arrives, on every run that asks one.
+ *
+ * The field takes it back with every question — an amber hold gives it up so the button it
+ * waits for is not covered, and the next prompt is typed into rather than tapped. Both
+ * targets are the CALLER's to name, because what deserves the focus is what this question
+ * is asked with: [field] is null where the question is tapped or heard rather than written,
+ * and [screenReader] is what TalkBack is handed instead — the letter drill's replay button,
+ * since its whole question is the sound; null everywhere else, which leaves the focus where
+ * the screen reader already put it rather than dragging it off the card.
+ */
+@Composable
+fun QuestionFocus(
+    question: Any?,
+    pronouncer: Pronouncer,
+    field: FocusRequester?,
+    screenReader: FocusRequester? = null,
+) {
+    LaunchedEffect(question) {
+        val target = if (pronouncer.readsScreenAloud) screenReader else field
+        target?.claimWhenPlaced()
+    }
+}
+
+/**
+ * why: a requester answers only once its node has been placed; one frame is what that
+ * takes, and a request fired inside the same composition lands on nothing.
+ */
+suspend fun FocusRequester.claimWhenPlaced() {
+    withFrameNanos { }
+    runCatching { requestFocus() }
 }

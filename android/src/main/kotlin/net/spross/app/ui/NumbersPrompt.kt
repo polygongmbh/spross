@@ -182,7 +182,7 @@ fun NumbersControls(
         chrome.sessionAnswerPlaceholder.format(model.languageName(state.mode.language))
     }
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-        DrillAnswerField(
+        AnswerField(
             value = flow.input,
             onValueChange = flow::type,
             placeholder = placeholder,

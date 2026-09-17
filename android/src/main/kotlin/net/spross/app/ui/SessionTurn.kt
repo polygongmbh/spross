@@ -13,33 +13,22 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.stateDescription
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -54,89 +43,13 @@ import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
 /**
- * The parts of a turn both roles wear: the field the learner types into, the three
- * verdicts a reveal hands over to, and the write-it-out step a miss can open.
+ * The parts of a turn both roles wear: the three verdicts a reveal hands over to, and the
+ * write-it-out step a miss can open. The field itself is [AnswerField], shared with the
+ * drills.
  *
  * Every rule behind them is kern's `TurnMachine`, reached through [TurnFlow] — these
  * render its state and hand taps back.
  */
-
-/**
- * The typed field, whichever of the turn's three it currently is.
- *
- * It claims focus as it MOUNTS: a request made before the field is on screen lands on
- * nothing, so the field asking for itself is the only ordering that holds — and it is
- * what makes the write-out step usable the moment "Unbekannt" opens it.
- *
- * Never read-only, not even after grading: a miss keeps typing, because the retype IS the
- * answer. Kern ignores text in the states that decide nothing.
- */
-@Composable
-fun AnswerField(
-    value: String,
-    onValueChange: (String) -> Unit,
-    placeholder: String,
-    feedback: TurnFeedback,
-    chrome: Chrome,
-    onDone: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val palette = Theme.colors
-    val tint: Color? = when (feedback) {
-        TurnFeedback.Correct -> palette.success
-        is TurnFeedback.Almost -> palette.amber
-        else -> null
-    }
-    // why: correctness is never color alone — the mark says it on screen, the state
-    // description says it to TalkBack, and the tint is the third telling of the same thing.
-    // The mark rides both accepted states and its color says how cleanly: a near miss runs
-    // amber throughout — field edge, checkmark and box agree (docs/design.md).
-    val mark: (@Composable () -> Unit)? = when (feedback) {
-        TurnFeedback.Correct -> {
-            { Icon(SprossIcons.Check, contentDescription = null, tint = palette.success) }
-        }
-        is TurnFeedback.Almost -> {
-            { Icon(SprossIcons.Check, contentDescription = null, tint = palette.amber) }
-        }
-        else -> null
-    }
-    val focus = remember { FocusRequester() }
-    // why: a requester answers only once its node has been placed, and one frame is what
-    // that takes; a request fired inside the same composition lands on nothing.
-    LaunchedEffect(Unit) {
-        withFrameNanos { }
-        runCatching { focus.requestFocus() }
-    }
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier
-            .fillMaxWidth()
-            .focusRequester(focus)
-            .semantics {
-                when (feedback) {
-                    TurnFeedback.Correct -> stateDescription = chrome.a11yVerdictCorrect
-                    // why: the amber edge is the whole of what tells a near miss from a
-                    // clean answer, and a color says nothing to TalkBack (WCAG 1.4.1).
-                    is TurnFeedback.Almost -> stateDescription = chrome.a11yVerdictAlmost
-                    // why: a reveal leaves the field its amber edge and nothing else — the
-                    // one state that has to SAY it was never answered.
-                    TurnFeedback.Revealed -> stateDescription = chrome.a11yVerdictNotAnswered
-                    else -> {}
-                }
-            },
-        placeholder = { Text(placeholder) },
-        trailingIcon = mark,
-        colors = if (tint == null) {
-            OutlinedTextFieldDefaults.colors()
-        } else {
-            OutlinedTextFieldDefaults.colors(focusedBorderColor = tint, unfocusedBorderColor = tint)
-        },
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-        keyboardActions = KeyboardActions(onDone = { onDone() }),
-        singleLine = true,
-    )
-}
 
 /**
  * The self-grade row: three verdicts, never four — under the question they answer.

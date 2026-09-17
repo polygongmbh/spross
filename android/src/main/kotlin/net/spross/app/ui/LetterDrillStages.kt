@@ -66,7 +66,7 @@ fun TypedStage(
     inputFocus: FocusRequester,
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-        DrillAnswerField(
+        AnswerField(
             value = flow.input,
             onValueChange = flow::type,
             placeholder = chrome.sessionAnswerPlaceholder.format(model.languageName(task.language)),

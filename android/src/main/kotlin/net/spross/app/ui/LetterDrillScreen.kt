@@ -24,7 +24,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -120,25 +119,21 @@ private fun Run(
     onFinish: () -> Unit,
 ) {
     val state = flow.state
-    val screenReader = model.pronouncer.readsScreenAloud
     val replayFocus = remember { FocusRequester() }
     val inputFocus = remember { FocusRequester() }
 
     // why: keyed on the question, and a LaunchedEffect fires on FIRST composition too —
     // so the first question of a run speaks without a second hook.
-    LaunchedEffect(state.index) {
-        model.playLetterPrompt(task, Pronouncer.Trigger.AUTO)
-        // why: a requester answers only once its node has been placed; one frame is what
-        // that takes. The audio question then sits one action away for a screen reader,
-        // and the keyboard belongs to the field for everybody else — never both, or
-        // TalkBack would be dragged off the button it was just given.
-        withFrameNanos { }
-        if (screenReader) {
-            runCatching { replayFocus.requestFocus() }
-        } else if (state.typing) {
-            runCatching { inputFocus.requestFocus() }
-        }
-    }
+    LaunchedEffect(state.index) { model.playLetterPrompt(task, Pronouncer.Trigger.AUTO) }
+    // The one drill whose question is the SOUND, so the replay button is what a screen
+    // reader is handed — never both it and the field, or TalkBack would be dragged off the
+    // button it was just given.
+    QuestionFocus(
+        state.index,
+        model.pronouncer,
+        field = inputFocus.takeIf { state.typing },
+        screenReader = replayFocus,
+    )
 
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),

@@ -17,7 +17,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
@@ -92,18 +91,8 @@ fun WordScrambleScreen(model: AppModel) {
         pronouncer = model.pronouncer,
     )
 
-    // The field takes the keyboard back with every question — an amber hold gives it up so
-    // the button it waits for is not covered, and the next word is typed into.
     val inputFocus = remember { FocusRequester() }
-    LaunchedEffect(state.index) {
-        // why: not under a screen reader — moving the keyboard focus would drag TalkBack off
-        // the card it was just handed.
-        if (model.pronouncer.readsScreenAloud) return@LaunchedEffect
-        // why: a requester answers only once its node has been placed; one frame is what that
-        // takes, and a request fired inside the same composition lands on nothing.
-        withFrameNanos { }
-        runCatching { inputFocus.requestFocus() }
-    }
+    QuestionFocus(state.index, model.pronouncer, inputFocus)
 
     Column(
         modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
@@ -180,7 +169,7 @@ private fun Controls(
 ) {
     val state = flow.state
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-        DrillAnswerField(
+        AnswerField(
             value = flow.input,
             onValueChange = flow::type,
             placeholder = chrome.sessionAnswerPlaceholder.format(model.languageName(task.language)),

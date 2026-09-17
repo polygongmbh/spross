@@ -20,7 +20,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
@@ -150,19 +149,10 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         model.speakDrillAnswer(text, language)
     }
 
-    // The field takes the keyboard back with every question — an amber hold gives it up so
-    // the button it waits for is not covered, and the next prompt is typed into.
     val inputFocus = remember { FocusRequester() }
-    LaunchedEffect(run.index) {
-        if (model.pronouncer.readsScreenAloud) return@LaunchedEffect
-        // why: a tapped question has no field to fill — a keyboard over the tiles would
-        // cover the very answer it is waiting for.
-        if (run.prompt.choices != null) return@LaunchedEffect
-        // why: a requester answers only once its node has been placed; one frame is what
-        // that takes, and a request fired inside the same composition lands on nothing.
-        withFrameNanos { }
-        runCatching { inputFocus.requestFocus() }
-    }
+    // A tapped question has no field to fill — a keyboard over the tiles would cover the
+    // very answer it is waiting for.
+    QuestionFocus(run.index, model.pronouncer, inputFocus.takeIf { run.prompt.choices == null })
 
     Column(
         modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
@@ -269,7 +259,7 @@ private fun Controls(
                 onPick = flow::choose,
             )
         } else {
-            DrillAnswerField(
+            AnswerField(
                 value = flow.input,
                 onValueChange = flow::type,
                 // why: naming the language is right only while the answer is words — a date
