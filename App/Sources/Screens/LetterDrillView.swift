@@ -15,7 +15,8 @@ import SprossKern
 /// an audio prompt with choice tiles shares no grammar with a typed numeral —
 /// and the two meet only in `DrillEffect` and `DrillRunSummary`.
 ///
-/// The driver lives in LetterDrillView+Run.swift, stage bodies in
+/// The driver is the shared one (`DrillRunning`), wired up in
+/// LetterDrillView+Run.swift; stage bodies live in
 /// LetterDrillView+Stages.swift, the prompt card in HearPromptCard.swift. State
 /// stays here — members are internal where an extension reaches them.
 struct LetterDrillView: View, LanguageNaming {
@@ -69,14 +70,6 @@ struct LetterDrillView: View, LanguageNaming {
 
     /// True on the stages that carry an input field.
     var typing: Bool { run.typing }
-
-    /// The field's face for where kern says the answer stands.
-    var feedback: AnswerInputView.Feedback { .init(run.feedback) }
-
-    /// VoiceOver and Switch Control both make a timed screen change hostile:
-    /// it truncates the correctness announcement and moves the page under the
-    /// user. Where either runs, an explicit "Weiter" replaces the beat.
-    var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
 
     var namingCatalog: Catalog? { model.catalog }
 

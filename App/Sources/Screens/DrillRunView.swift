@@ -86,14 +86,6 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     /// one — a Sprosse with none is not a Sprosse the learner could climb off.
     var current: DrillSnapshot { Face.snapshot(run) }
 
-    /// The field's face for where kern says the answer stands.
-    var feedback: AnswerInputView.Feedback { .init(current.feedback) }
-
-    /// VoiceOver and Switch Control both make a timed screen change hostile: it
-    /// truncates the correctness announcement and moves the page under the user.
-    /// Where either runs, an explicit "Weiter" replaces the beat.
-    var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
-
     /// A tapped question has no field to fill, and a keyboard raised over the
     /// tiles would cover the very answer it is waiting for.
     private var wantsKeyboard: Bool { !screenReaderOn && current.choices == nil }

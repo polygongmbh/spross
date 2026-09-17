@@ -1,57 +1,40 @@
 import SwiftUI
 import SprossKern
 
-/// The RUN half of a typed drill: how an event reaches kern, what comes back,
-/// and what a close leaves behind — plus the run-through hooks that drive it.
-/// State lives on DrillRunView; split out purely for file size, the way the
-/// letter drill splits its off.
+/// What the shared run driver (`DrillRunning`) needs to drive a typed drill:
+/// the face's machine, and the two stores the atlas and the calendar pages read
+/// a closed run back out of. State lives on DrillRunView; split out purely for
+/// file size, the way the letter drill splits its off.
 ///
 /// Grading itself is kern's, against every form the run accepts (each spelling
 /// of each valid answer; on the dates ladder every pattern filling of an
 /// assembled date). All this side still owes is the grader — one STRICT drill
 /// normalizer for the language the answer is owed in.
-extension DrillRunView {
+extension DrillRunView: DrillRunning {
 
-    // MARK: - Driving the run
+    // MARK: - The machine under this drill
 
-    func dispatch(_ move: DrillMove) {
-        let step = Face.reduce(run, move)
-        let next = Face.snapshot(step.run)
-        let moved = next.index != current.index
-        // why: the field is ours, so kern cannot clear it — and the text has to
-        // go in the SAME transaction as the question, or the next prompt renders
-        // one frame carrying the last one's answer.
-        if moved { input = "" }
-        let animation: Animation = moved
-            ? (reduceMotion ? .easeOut(duration: 0.2) : .cardFlip)
-            : .easeOut(duration: 0.25)
-        withAnimation(animation) { run = step.run }
-        for effect in step.effects { apply(effect) }
-        // Nothing left to ask: hand the run back, never repeat a question.
-        if next.finished { closeRun() }
+    func reduce(_ run: Face.Run, _ move: DrillMove) -> DrillStep<Face.Run> {
+        Face.reduce(run, move)
     }
 
-    private func apply(_ effect: DrillEffect) {
-        DrillEffects.apply(effect, advance: &autoAdvance,
-                           onAdvance: { dispatch(.advanced) },
-                           releaseFocus: { answerFocused = false },
-                           silence: { hushAnswer() })
-    }
+    func questionIndex(_ run: Face.Run) -> Int { Face.snapshot(run).index }
 
-    // MARK: - What the learner does
+    func isFinished(_ run: Face.Run) -> Bool { Face.snapshot(run).finished }
 
-    /// "Finishing the answer IS the answer" — every keystroke is offered to
-    /// kern, which decides whether it approves, withdraws an approval, or is
-    /// ignored because a pause is standing.
-    func typed() {
-        dispatch(.typed(input))
-    }
+    func typedMove(_ text: String) -> DrillMove? { .typed(text) }
 
-    /// The ONE primary action, button and Enter alike: kern checks what stands
-    /// in the field, and reveals the answer when nothing does.
-    func submit() {
-        dispatch(.submitted(input))
-    }
+    func submitMove(_ text: String) -> DrillMove { .submitted(text) }
+
+    var advanceMove: DrillMove { .advanced }
+
+    var turnFeedback: TurnFeedback { current.feedback }
+
+    var resultTitle: LocalizedStringKey { Face.resultTitle }
+
+    func silence() { hushAnswer() }
+
+    // MARK: - What the learner does beyond the field
 
     /// A tapped tile: submitted as the text it carries, which is the answer's own
     /// canonical reading, so kern grades it against the same accepted set a
@@ -68,30 +51,21 @@ extension DrillRunView {
 
     // MARK: - Close → back to the page that opened it
 
-    /// X during a run: kern books a pending answer exactly as the tap would,
-    /// then hands the figures and the Sprosse it reached back. An untouched run
-    /// leaves nothing to report.
-    func closeRun() {
+    /// What the overview reads back off a closed run: where the next one opens,
+    /// what Fast is priced against, and the record line.
+    // why: neither Sprosse figure buys a padlock (the drill is ungated), and both
+    // are filed whether or not the run was ever answered — a run closed on a
+    // Sprosse still stood on it.
+    func closing() -> DrillClose<Face.Run> {
         let closed = Face.close(run, standingRecord: TrainerRecords.best(for: storageKey))
-        run = closed.run
-        for effect in closed.effects { apply(effect) }
-        // why: neither buys a padlock (the drill is ungated); they are what the
-        // overview reads back — where the next run opens, what Fast is priced against.
         TrainerProgress.record(closed.bestLevel, for: storageKey)
         TrainerProgress.bookCleared(closed.clearedSprossen,
                                     for: NumbersMode.companion.clearedKey(key: storageKey, reverse: reverse))
-        guard let summary = closed.summary else {
-            dismiss()
-            return
+        if let summary = closed.summary {
+            TrainerRecords.record(Int(summary.bestStreak), for: storageKey)
+            TrainerRecords.recordAnswers(Int(summary.done), for: storageKey)
         }
-        answerFocused = false
-        TrainerRecords.record(Int(summary.bestStreak), for: storageKey)
-        TrainerRecords.recordAnswers(Int(summary.done), for: storageKey)
-        // why: the cheer marks the record, not the end of a run — confetti and
-        // cheer are one thing (`docs/design.md`), and the tile rains the one.
-        if summary.newRecord { Sound.cheer() }
-        onFinish(DrillRunResult(summary, title: Face.resultTitle))
-        dismiss()
+        return DrillClose(run: closed.run, summary: closed.summary, effects: closed.effects)
     }
 
     /// The STRICT drill normalizer, built exactly as the letter drill builds
@@ -106,26 +80,15 @@ extension DrillRunView {
 }
 
 #if DEBUG
-/// Run-through hooks (UserDefaults launch arguments), in the shape every drill
-/// uses: they drive the screen so a screenshot run needs no thumb.
 extension DrillRunView {
 
+    func seedStreak(_ streak: Int) {
+        run = Face.seedStreak(run, streak)
+    }
+
+    /// Nothing of its own beyond the two hooks every drill takes.
     func uitestStart() {
-        let defaults = UserDefaults.standard
-        // `-uitest-streak N`: a run mid-streak, which a screenshot run has no
-        // thumb to reach.
-        let preset = defaults.integer(forKey: "uitest-streak")
-        if preset > 0 {
-            run = Face.seedStreak(run, preset)
-        }
-        // `-uitest-close 1`: leave the way the ✕ leaves, so the tile the run
-        // drops on the page behind it can be photographed.
-        if defaults.bool(forKey: "uitest-close") {
-            Task { @MainActor in
-                try? await Task.sleep(for: .milliseconds(400))
-                closeRun()
-            }
-        }
+        uitestDriveRun()
     }
 }
 #endif

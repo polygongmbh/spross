@@ -2,8 +2,8 @@
 import SwiftUI
 import SprossKern
 
-/// Run-through hooks of the slot drill (UserDefaults launch arguments), in the
-/// shape the letter drill already uses: they drive the screen into a state a
+/// Run-through hooks of the slot drill beyond the two every drill takes
+/// (`DrillRunning.uitestDriveRun`): they drive the screen into a state a
 /// screenshot run cannot reach with a thumb. State lives on NumbersRunView;
 /// split out purely for file size.
 ///
@@ -11,6 +11,11 @@ import SprossKern
 /// directly (`seeded`), which is the whole of the license they take: everything
 /// a thumb could do goes through an intent, exactly as a finger would.
 extension NumbersRunView {
+
+    func seedStreak(_ streak: Int) {
+        run = run.seeded(done: Int32(streak + 6), streak: Int32(streak),
+                         bestStreak: Int32(max(streak, 12)))
+    }
 
     /// `-uitest-level N` starts the run's FIRST exercise at that Sprosse (numbers:
     /// digit count), the only way to photograph a long prompt without playing up to it
@@ -26,24 +31,16 @@ extension NumbersRunView {
     /// and Sprosse on every launch; the letter, date and atlas drills read it too.
     func uitestStart() {
         let defaults = UserDefaults.standard
-        let preset = defaults.integer(forKey: "uitest-streak")
-        if preset > 0 {
-            run = run.seeded(done: Int32(preset + 6), streak: Int32(preset),
-                             bestStreak: Int32(max(preset, 12)))
+        // why: dropped BEFORE the shared driver closes the run, so the run books
+        // a record of its own and the tile it leaves shows one.
+        if defaults.bool(forKey: "uitest-close"), defaults.bool(forKey: "uitest-record") {
+            TrainerRecords.clear(mode.recordKey)
         }
+        uitestDriveRun()
         // `-uitest-misses N` presets misses ALREADY booked, so a wrong answer on
         // top of it lands on the state where the way out is offered.
         let misses = max(0, defaults.integer(forKey: "uitest-misses"))
         if misses > 0 { run = run.seeded(missRun: Int32(misses)) }
-        if defaults.bool(forKey: "uitest-close") {
-            if defaults.bool(forKey: "uitest-record") { TrainerRecords.clear(mode.recordKey) }
-            // why: through closeRun, not by seeding the page — the tile is worth
-            // photographing only if the run really books what it claims to.
-            Task { @MainActor in
-                try? await Task.sleep(for: .milliseconds(400))
-                closeRun()
-            }
-        }
         if defaults.bool(forKey: "uitest-typo") {
             run = run.seeded(feedback: TurnFeedbackAlmost(correctForm: run.currentTask.display,
                                                          reason: .typo))

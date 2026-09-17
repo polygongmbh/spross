@@ -11,8 +11,9 @@ import SprossKern
 /// becomes a `NumbersIntent`. What is held here is what no engine can hold — a
 /// field of text, a timer, a voice, and the keyboard focus.
 ///
-/// The run spec is `Mode` (NumbersRunView+Mode.swift), the driver is
-/// NumbersRunView+Run.swift, screen content NumbersRunView+Drill.swift,
+/// The run spec is `Mode` (NumbersRunView+Mode.swift), the driver is the shared
+/// one (`DrillRunning`) wired up in NumbersRunView+Run.swift, screen content
+/// NumbersRunView+Drill.swift,
 /// and the prompt card DrillPromptCard.swift. State stays here — members are
 /// internal, not private, where an extension reaches them.
 struct NumbersRunView: View, LanguageNaming {
@@ -82,12 +83,7 @@ struct NumbersRunView: View, LanguageNaming {
 
     var language: String { mode.language }
 
-    var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
-
     var namingCatalog: Catalog? { catalog }
-
-    /// The field's face for where kern says the answer stands.
-    var feedback: AnswerInputView.Feedback { .init(run.feedback) }
 
     var body: some View {
         SessionScaffold.endless(tally: run.tally,

@@ -1,48 +1,50 @@
 import SwiftUI
 import SprossKern
 
-/// The RUN half of the letter drill: how an event reaches kern, what comes
-/// back, and what a close leaves behind — plus the run-through hooks that drive
-/// it. State lives on LetterDrillView; split out purely for file size.
+/// What the shared run driver (`DrillRunning`) needs to drive the letter drill:
+/// kern's `LetterDrillRun`, its intent vocabulary, and a close that files
+/// nothing — the letter drill keeps no record store (D12). State lives on
+/// LetterDrillView; split out purely for file size.
 ///
 /// Grading itself is `LetterDrillRun.verdict`'s: a tile and a typed glyph are
 /// exact after normalization, and dictation runs the whole catalog, because only
 /// a catalog-wide grader can tell a slip of the played word from a different
 /// word entirely (`kufunga` / `kufungua`). All this side still owes is the
 /// grader itself — one strict normalizer over the learner's own cards.
-extension LetterDrillView {
+extension LetterDrillView: DrillRunning {
 
-    // MARK: - Driving the run
+    // MARK: - The machine under this drill
 
-    func dispatch(_ intent: LetterDrillIntent) {
+    func reduce(_ run: LetterDrillRunState,
+                _ intent: LetterDrillIntent) -> DrillStep<LetterDrillRunState> {
         let reduction = LetterDrillRun.shared.reduce(state: run, intent: intent, rng: drillRandom)
-        let moved = reduction.state.index != run.index
-        if moved {
-            // why: cleared in the SAME transaction as the question — the next
-            // one must never render a frame carrying the last one's answer.
-            input = ""
-            #if DEBUG
-            // The no-FSRS proof, printed where a review would have been booked.
-            uitestBox("answered")
-            #endif
-        }
-        let animation: Animation = moved
-            ? (reduceMotion ? .easeOut(duration: 0.2) : .cardFlip)
-            : .easeOut(duration: 0.25)
-        withAnimation(animation) { run = reduction.state }
-        for effect in reduction.effects { apply(effect) }
-        // Nothing left to ask: hand the run back, never sit on a blank card.
-        if reduction.state.finished { closeRun() }
+        return DrillStep(run: reduction.state, effects: reduction.effects)
     }
 
-    private func apply(_ effect: DrillEffect) {
-        DrillEffects.apply(effect, advance: &autoAdvance,
-                           onAdvance: { dispatch(LetterDrillIntent.AdvanceElapsed.shared) },
-                           releaseFocus: { answerFocused = false },
-                           silence: { Pronouncer.shared.stop() })
+    func questionIndex(_ run: LetterDrillRunState) -> Int { Int(run.index) }
+
+    func isFinished(_ run: LetterDrillRunState) -> Bool { run.finished }
+
+    func submitMove(_ text: String) -> LetterDrillIntent {
+        LetterDrillIntent.Submit(text: text)
     }
 
-    // MARK: - What the learner does
+    var advanceMove: LetterDrillIntent { LetterDrillIntent.AdvanceElapsed.shared }
+
+    var turnFeedback: TurnFeedback { run.feedback }
+
+    var resultTitle: LocalizedStringKey { "trainer.drill.letters" }
+
+    func silence() { Pronouncer.shared.stop() }
+
+    func movedOn() {
+        #if DEBUG
+        // The no-FSRS proof, printed where a review would have been booked.
+        uitestBox("answered")
+        #endif
+    }
+
+    // MARK: - What the learner does beyond the field
 
     /// One attempt per tile question — a second tap after the answer is in
     /// would be a retry, and the ramp has no verdict for that (kern's guard).
@@ -50,28 +52,13 @@ extension LetterDrillView {
         dispatch(LetterDrillIntent.Choose(glyph: glyph))
     }
 
-    /// The ONE primary action, button and Enter alike: kern checks what stands
-    /// in the field, and reveals the answer when nothing does.
-    func submit() {
-        dispatch(LetterDrillIntent.Submit(text: input))
-    }
-
     // MARK: - Close → back to the page that opened it
 
-    /// X during a run: kern books a pending answer exactly as the tap would,
-    /// then hands the figures back. An untouched run leaves nothing to report,
-    /// and no record line — the letter drill keeps no record store (D12).
-    func closeRun() {
+    /// An untouched run leaves nothing to report, and no record line either —
+    /// the letter drill keeps no record store (D12).
+    func closing() -> DrillClose<LetterDrillRunState> {
         let closed = LetterDrillRun.shared.close(state: run)
-        run = closed.state
-        for effect in closed.effects { apply(effect) }
-        guard let summary = closed.summary else {
-            dismiss()
-            return
-        }
-        answerFocused = false
-        onFinish(DrillRunResult(summary, title: "trainer.drill.letters"))
-        dismiss()
+        return DrillClose(run: closed.state, summary: closed.summary, effects: closed.effects)
     }
 
     /// The STRICT drill grader with the whole join in view: a per-word slip
@@ -86,37 +73,28 @@ extension LetterDrillView {
 }
 
 #if DEBUG
-/// Run-through hooks (UserDefaults launch arguments), in the shape the slot
-/// drill and the pronunciation probe already use: they drive the screen and
-/// PRINT the states the checklist asserts, because playback itself cannot be
-/// observed from outside the process.
+/// Run-through hooks of the letter drill beyond the two every drill takes
+/// (`DrillRunning.uitestDriveRun`): they drive the screen and PRINT the states
+/// the checklist asserts, because playback itself cannot be observed from
+/// outside the process.
 extension LetterDrillView {
 
+    func seedStreak(_ streak: Int) {
+        run = run.doCopy(config: run.config, task: run.task, index: run.index,
+                         level: run.level, winsAtLevel: run.winsAtLevel,
+                         core: run.core.doCopy(done: Int32(streak + 6),
+                                               streak: Int32(streak),
+                                               bestStreak: Int32(max(streak, 12)),
+                                               missRun: run.core.missRun,
+                                               outcomes: run.core.outcomes,
+                                               solved: run.core.solved),
+                         chosen: run.chosen, feedback: run.feedback,
+                         finished: run.finished)
+    }
+
     func uitestStart() {
+        uitestDriveRun()
         let defaults = UserDefaults.standard
-        // `-uitest-streak N`, the slot drill's figure under the slot drill's
-        // name: a run mid-streak, which a screenshot run has no thumb to reach.
-        let preset = defaults.integer(forKey: "uitest-streak")
-        if preset > 0 {
-            run = run.doCopy(config: run.config, task: run.task, index: run.index,
-                             level: run.level, winsAtLevel: run.winsAtLevel,
-                             core: run.core.doCopy(done: Int32(preset + 6),
-                                                   streak: Int32(preset),
-                                                   bestStreak: Int32(max(preset, 12)),
-                                                   missRun: run.core.missRun,
-                                                   outcomes: run.core.outcomes,
-                                                   solved: run.core.solved),
-                             chosen: run.chosen, feedback: run.feedback,
-                             finished: run.finished)
-        }
-        // `-uitest-close 1`: leave the way the ✕ leaves, so the tile the run
-        // drops on the page behind it can be photographed.
-        if defaults.bool(forKey: "uitest-close") {
-            Task { @MainActor in
-                try? await Task.sleep(for: .milliseconds(400))
-                closeRun()
-            }
-        }
         if let pick = defaults.string(forKey: "uitest-letters-choose") { uitestChoose(pick) }
         if defaults.bool(forKey: "uitest-letters-replay") { uitestReplay() }
         if defaults.bool(forKey: "uitest-letters-probe") { uitestBox("open") }

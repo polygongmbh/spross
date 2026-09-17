@@ -1,56 +1,44 @@
 import SwiftUI
 import SprossKern
 
-/// The RUN half of NumbersRunView: how an event reaches kern, what comes
-/// back, and what a close books. Nothing here decides a rule — grading, the
-/// ramp, the amber verdicts and the two store writes are `NumbersRun`'s. Every
-/// event becomes a `NumbersIntent`, kern's next state replaces the run whole,
-/// and its effects are the only things allowed to reach outside it (the pattern
-/// SessionView+Turn.swift sets for the review session).
-extension NumbersRunView {
+/// What the shared run driver (`DrillRunning`) needs to drive the slot drill:
+/// kern's `NumbersRun`, its intent vocabulary, and the two store writes a close
+/// books. Nothing here decides a rule — grading, the ramp, the amber verdicts
+/// and what a close is worth are `NumbersRun`'s; every event becomes a
+/// `NumbersIntent` and kern's next state replaces the run whole.
+extension NumbersRunView: DrillRunning {
 
-    // MARK: - Driving the run
+    // MARK: - The machine under this drill
 
-    func dispatch(_ intent: NumbersIntent) {
+    func reduce(_ run: NumbersRunState, _ intent: NumbersIntent) -> DrillStep<NumbersRunState> {
         let reduction = NumbersRun.shared.reduce(state: run, intent: intent,
                                                  normalizer: normalizer, rng: drillRandom)
-        let moved = reduction.state.index != run.index
-        // why: the field is ours, so kern cannot clear it — and the text has to
-        // go in the SAME transaction as the question, or the next prompt renders
-        // one frame carrying the last one's answer.
-        if moved { input = "" }
-        let animation: Animation = moved
-            ? (reduceMotion ? .easeOut(duration: 0.2) : .cardFlip)
-            : .easeOut(duration: 0.25)
-        withAnimation(animation) { run = reduction.state }
-        for effect in reduction.effects { apply(effect) }
-        // Nothing left to ask: hand the run back, never repeat a question.
-        if reduction.state.finished { closeRun() }
+        return DrillStep(run: reduction.state, effects: reduction.effects)
     }
 
-    private func apply(_ effect: DrillEffect) {
-        DrillEffects.apply(effect, advance: &autoAdvance,
-                           onAdvance: { dispatch(NumbersIntent.AdvanceElapsed.shared) },
-                           // why: the pending retry is canceled first, or it
-                           // re-focuses 120 ms later.
-                           releaseFocus: { focusRetry?.cancel(); answerFocused = false },
-                           silence: { hushAnswer() })
+    func questionIndex(_ run: NumbersRunState) -> Int { Int(run.index) }
+
+    func isFinished(_ run: NumbersRunState) -> Bool { run.finished }
+
+    func typedMove(_ text: String) -> NumbersIntent? { NumbersIntent.InputChanged(text: text) }
+
+    func submitMove(_ text: String) -> NumbersIntent { NumbersIntent.Submit(text: text) }
+
+    var advanceMove: NumbersIntent { NumbersIntent.AdvanceElapsed.shared }
+
+    var turnFeedback: TurnFeedback { run.feedback }
+
+    var resultTitle: LocalizedStringKey { mode.titleKey }
+
+    func silence() { hushAnswer() }
+
+    // why: the pending retry is canceled first, or it re-focuses 120 ms later.
+    func releaseFocus() {
+        focusRetry?.cancel()
+        answerFocused = false
     }
 
-    // MARK: - What the learner does
-
-    /// "Finishing the word IS the answer" — every keystroke is offered to kern,
-    /// which decides whether it approves, withdraws an approval, or is ignored
-    /// because an amber hold is standing.
-    func typed() {
-        dispatch(NumbersIntent.InputChanged(text: input))
-    }
-
-    /// The ONE primary action, button and Enter alike: kern checks what stands
-    /// in the field, and reveals the answer when nothing does.
-    func submit() {
-        dispatch(NumbersIntent.Submit(text: input))
-    }
+    // MARK: - What the learner does beyond the field
 
     /// The whole numbers page, one tap away mid-run. Kern is told first: a
     /// look-up while the answer is still owed costs the Sprosse.
@@ -61,29 +49,18 @@ extension NumbersRunView {
 
     // MARK: - Close → summary
 
-    /// X during a run: kern books whatever was pending, hands back the figures
-    /// and the two store writes, and an untouched run just closes.
+    /// The record and the Sprossen, both booked here: a run that is still going
+    /// can still climb, so a Sprosse is only final once the run closes.
     // why: internal, not private — the +UITest hook closes a run the way the ✕ does.
-    func closeRun() {
+    func closing() -> DrillClose<NumbersRunState> {
         let closed = NumbersRun.shared.close(state: run,
                                              standingRecord: Int32(TrainerRecords.best(for: mode.recordKey)),
                                              standingProgress: standingProgress)
-        run = closed.state
-        for effect in closed.effects { apply(effect) }
-        guard let summary = closed.summary else {
-            dismiss()
-            return
+        if let summary = closed.summary {
+            TrainerRecords.record(Int(summary.bestStreak), for: closed.recordKey)
+            TrainerProgress.book(closed.progressBookings)
         }
-        answerFocused = false
-        TrainerRecords.record(Int(summary.bestStreak), for: closed.recordKey)
-        // why: booked here, alongside the record, because a run that is still
-        // going can still climb — a Sprosse is only final once the run closes.
-        TrainerProgress.book(closed.progressBookings)
-        // why: the cheer marks the record, not the end of a run — closing a
-        // drill is a dozen-times-an-evening event and owes no fanfare.
-        if summary.newRecord { Sound.cheer() }
-        onFinish(DrillRunResult(summary, title: mode.titleKey))
-        dismiss()
+        return DrillClose(run: closed.state, summary: closed.summary, effects: closed.effects)
     }
 
     /// What the Sprosse store holds now for every exercise this run could book —
