@@ -12,7 +12,6 @@
   "notebook": { "text": "Notizbuch", "grammar": { "gender": "das", "plural": "Notizbücher" } },
   "printer": { "text": "Drucker", "grammar": { "gender": "der", "plural": "=" } },
   "socket": { "text": "Steckdose", "grammar": { "gender": "die", "plural": "-n" } },
-  "feierabend": { "text": "Feierabend", "grammar": { "gender": "der" } },
   "to-work": { "text": "arbeiten" },
   "to-type": { "text": "tippen" },
   "to-print": { "text": "drucken" },
@@ -40,10 +39,6 @@
   "it-works": { "text": "Es funktioniert.", "variants": ["Es geht wieder."] },
   "coffee-break": { "text": "Kaffeepause?" },
   "i-have-a-lot-to-do": { "text": "Ich habe viel zu tun." },
-  "we-knock-off-at-5": {
-   "text": "Wir machen heute um 5 Feierabend.",
-   "orders": ["Heute machen wir um 5 Feierabend.", "Um 5 machen wir heute Feierabend."]
-  },
   "send-me-the-email": { "text": "Schick mir die E-Mail." }
  }
 }

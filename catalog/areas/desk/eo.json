@@ -77,10 +77,6 @@
    "variants": ["Mi havas multe da laboro."],
    "orders": ["Multon mi havas por fari."]
   },
-  "we-knock-off-at-5": {
-   "text": "Hodiaŭ ni finas la laboron je la 5-a.",
-   "orders": ["Ni hodiaŭ finas la laboron je la 5-a."]
-  },
   "send-me-the-email": {
    "text": "Sendu al mi la retpoŝton.",
    "variants": ["Sendu al mi la retmesaĝon."],

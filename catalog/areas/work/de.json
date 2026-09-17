@@ -44,6 +44,7 @@
   "worker": { "text": "Arbeiter", "grammar": { "gender": "der", "plural": "=" } },
   "employer": { "text": "Arbeitgeber", "grammar": { "gender": "der", "plural": "=" } },
   "customer": { "text": "Kunde", "grammar": { "gender": "der", "plural": "-n" } },
+  "feierabend": { "text": "Feierabend", "grammar": { "gender": "der" } },
   "tomorrow-i-have-a-job-interview": {
    "text": "Morgen stelle ich mich bei der Firma vor.",
    "orders": ["Ich stelle mich morgen bei der Firma vor."]
@@ -62,6 +63,10 @@
    "text": "Lesen Sie den Vertrag durch!",
    "variants": ["Lies den Vertrag genau durch!"],
    "orders": ["Sie lesen den Vertrag durch!"]
+  },
+  "we-knock-off-at-5": {
+   "text": "Wir machen heute um 5 Feierabend.",
+   "orders": ["Heute machen wir um 5 Feierabend.", "Um 5 machen wir heute Feierabend."]
   }
  }
 }

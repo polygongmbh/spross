@@ -99,7 +99,6 @@
   "it-works": { "text": "Ça marche.", "variants": ["Ça fonctionne.", "Ça remarche."] },
   "coffee-break": { "text": "Pause café ?", "variants": ["Une pause café ?", "On prend un café ?"] },
   "i-have-a-lot-to-do": { "text": "J'ai beaucoup à faire.", "variants": ["J'ai beaucoup de choses à faire."] },
-  "we-knock-off-at-5": { "text": "Aujourd'hui, on débauche à 5h.", "orders": ["On débauche à 5h aujourd'hui."] },
   "send-me-the-email": { "text": "Envoie-moi l'e-mail.", "variants": ["Envoie-moi le mail.", "Envoie-moi le courriel."] }
  }
 }

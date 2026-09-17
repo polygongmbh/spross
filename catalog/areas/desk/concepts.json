@@ -29,19 +29,17 @@
  { "slug": "printer", "kind": "noun", "emoji": "🖨️" },
  { "slug": "broken", "kind": "adjective" },
  { "slug": "to-repair", "kind": "verb", "emoji": "🔧" },
- { "slug": "feierabend", "kind": "noun", "emoji": "🎉" },
+ { "slug": "it-works", "kind": "phrase", "emoji": "✅", "components": [] },
+ { "slug": "coffee-break", "kind": "phrase", "emoji": "☕", "components": ["to-take-break"] },
+ { "slug": "i-have-a-lot-to-do", "kind": "phrase", "emoji": "📋", "components": [] },
  { "slug": "im-in-a-meeting", "kind": "phrase", "emoji": "👥", "components": [] },
  { "slug": "dont-disturb-me", "kind": "phrase", "emoji": "🤫", "components": [] },
+ { "slug": "send-me-the-email", "kind": "phrase", "emoji": "📧", "components": ["email"] },
+ { "slug": "the-internet-is-gone", "kind": "phrase", "emoji": "📵", "components": ["internet"] },
  {
   "slug": "the-laptop-wont-charge-anymore",
   "kind": "phrase",
   "emoji": "🔋",
   "components": ["laptop"]
- },
- { "slug": "the-internet-is-gone", "kind": "phrase", "emoji": "📵", "components": ["internet"] },
- { "slug": "it-works", "kind": "phrase", "emoji": "✅", "components": [] },
- { "slug": "coffee-break", "kind": "phrase", "emoji": "☕", "components": ["to-take-break"] },
- { "slug": "i-have-a-lot-to-do", "kind": "phrase", "emoji": "📋", "components": [] },
- { "slug": "we-knock-off-at-5", "kind": "phrase", "emoji": "🕔", "components": ["feierabend"] },
- { "slug": "send-me-the-email", "kind": "phrase", "emoji": "📧", "components": ["email"] }
+ }
 ]

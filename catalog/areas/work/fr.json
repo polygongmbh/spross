@@ -128,6 +128,7 @@
   "read-the-contract-carefully": {
    "text": "Lisez bien le contrat !",
    "variants": ["Lis bien le contrat !", "Lisez attentivement le contrat !"]
-  }
+  },
+  "we-knock-off-at-5": { "text": "Aujourd'hui, on débauche à 5h.", "orders": ["On débauche à 5h aujourd'hui."] }
  }
 }

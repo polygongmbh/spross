@@ -68,6 +68,10 @@
    "text": "Tralegu la kontrakton!",
    "variants": ["Legu atente la kontrakton!", "Legu la kontrakton!"],
    "orders": ["La kontrakton tralegu!"]
+  },
+  "we-knock-off-at-5": {
+   "text": "Hodiaŭ ni finas la laboron je la 5-a.",
+   "orders": ["Ni hodiaŭ finas la laboron je la 5-a."]
   }
  }
 }

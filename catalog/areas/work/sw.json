@@ -51,6 +51,10 @@
    "orders": ["Mara moja nitakutumia cheti cha daktari."]
   },
   "can-you-help-me-briefly": { "text": "Unaweza kunisaidia kidogo?" },
-  "read-the-contract-carefully": { "text": "Soma mkataba vizuri!" }
+  "read-the-contract-carefully": { "text": "Soma mkataba vizuri!" },
+  "we-knock-off-at-5": {
+   "text": "Leo tunamaliza kazi saa kumi na moja.",
+   "orders": ["Tunamaliza kazi saa kumi na moja leo."]
+  }
  }
 }

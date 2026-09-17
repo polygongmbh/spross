@@ -117,6 +117,10 @@
    "text": "Lea bien el contrato.",
    "variants": ["Lee bien el contrato.", "Lea el contrato con atención."],
    "orders": ["Lea el contrato bien."]
+  },
+  "we-knock-off-at-5": {
+   "text": "Hoy salimos del trabajo a las cinco.",
+   "orders": ["Salimos del trabajo a las cinco hoy."]
   }
  }
 }
