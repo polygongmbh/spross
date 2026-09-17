@@ -29,6 +29,8 @@ extension LetterDrillView: DrillRunning {
         LetterDrillIntent.Submit(text: text)
     }
 
+    var confirmMove: LetterDrillIntent { LetterDrillIntent.ConfirmPending.shared }
+
     var advanceMove: LetterDrillIntent { LetterDrillIntent.AdvanceElapsed.shared }
 
     var turnFeedback: TurnFeedback { run.feedback }

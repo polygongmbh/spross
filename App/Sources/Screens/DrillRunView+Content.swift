@@ -108,78 +108,26 @@ extension DrillRunView {
         }
     }
 
-    @ViewBuilder
     private var typedControls: some View {
         let language = current.answerLanguage
-        VStack(spacing: Theme.spacing.md) {
-            AnswerInputView(text: $input,
-                            feedback: feedback,
-                            placeholder: fieldPlaceholder(language),
-                            focus: $answerFocused,
-                            // Tap-to-replay for the correction box — the form
-                            // the slip owed, said in the language it is owed in.
-                            correctionVoice: .init(
-                                pronounce: { model.pronounceAction(for: $0, lang: language) },
-                                isPlaying: { model.isPronouncing($0, lang: language) }),
-                            keyboard: current.digits ? .numbersAndPunctuation : .default) {
-                submit()
-            }
-            // why: writing the answer out is the answer — the review session's
-            // rule, so a name you know never asks for a confirming tap.
-            .onChange(of: input) { _, _ in typed() }
-            switch feedback {
-            case .neutral:
-                // ONE primary action: an empty field reveals, a typed one checks.
-                Button(action: submit) {
-                    Text(input.isBlankAnswer ? "common.reveal" : "common.check")
-                        .frame(maxWidth: .infinity)
-                        .contentTransition(.opacity)
-                }
-                .buttonStyle(PrimaryButtonStyle())
-                .keyboardShortcut(.defaultAction)
-                .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
-            case .almost:
-                // The amber hold: the box above spells the slip out, and this
-                // waits for the tap that books it amber.
-                nextButton(confirm).transition(.opacity)
-            case .correct:
-                // why: the timer never arms under a screen reader, so a clean
-                // hit would otherwise have nothing to move on with.
-                if screenReaderOn {
-                    nextButton(confirm)
-                }
-            case .revealed:
-                revealedControls
-            }
-        }
-        .animation(.easeOut(duration: 0.25), value: feedback)
+        return DrillAnswerControls(text: $input,
+                                   feedback: feedback,
+                                   placeholder: answerPlaceholder(language, digits: current.digits),
+                                   focus: $answerFocused,
+                                   correctionVoice: .init(
+                                       pronounce: { model.pronounceAction(for: $0, lang: language) },
+                                       isPlaying: { model.isPronouncing($0, lang: language) }),
+                                   keyboard: current.digits ? .numbersAndPunctuation : .default,
+                                   onType: { typed() },
+                                   onSubmit: { submit() },
+                                   onConfirm: { confirm() },
+                                   onStop: stopOffer)
     }
 
-    /// The way on after a miss, and — on the second in a row — the way out.
-    var revealedControls: some View {
-        VStack(spacing: Theme.spacing.sm) {
-            nextButton(confirm)
-            if current.offersFinish { DrillStopOffer { closeRun() } }
-        }
-    }
-
-    /// What the field asks for. Naming the language is right only while the
-    /// answer is words — a date owed in digits is written the same way in
-    /// either of them, and "Auf Español …" over a number pad asks for the
-    /// wrong thing.
-    private func fieldPlaceholder(_ language: String) -> String {
-        current.digits
-            ? ChromeStrings.string("numbers.answer.placeholder", locale: locale)
-            : answerPlaceholder(language)
-    }
-
-    // why: internal, not private — the choice grid puts the same button under
-    // its own answers.
-    func nextButton(_ action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Text("common.next").frame(maxWidth: .infinity)
-        }
-        .buttonStyle(PrimaryButtonStyle())
-        .keyboardShortcut(.defaultAction)
+    /// The way out, on the second miss in a row — nil while the run is not
+    /// offering one.
+    // why: internal, not private — the choice grid offers the same way out.
+    var stopOffer: (() -> Void)? {
+        current.offersFinish ? { closeRun() } : nil
     }
 }

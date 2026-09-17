@@ -51,6 +51,16 @@ extension LanguageNaming {
         String(format: ChromeStrings.string("session.answer.placeholder %@", locale: locale),
                languageName(code))
     }
+
+    /// Naming the language is right only while the answer is WORDS: a value —
+    /// a date in digits, a reading written back as a numeral — is written the
+    /// same way in either language, and "Auf Español …" over a number pad asks
+    /// for the wrong thing.
+    func answerPlaceholder(_ code: String, digits: Bool) -> String {
+        digits
+            ? ChromeStrings.string("numbers.answer.placeholder", locale: locale)
+            : answerPlaceholder(code)
+    }
 }
 
 extension Card {

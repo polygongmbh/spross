@@ -24,6 +24,8 @@ extension NumbersRunView: DrillRunning {
 
     func submitMove(_ text: String) -> NumbersIntent { NumbersIntent.Submit(text: text) }
 
+    var confirmMove: NumbersIntent { NumbersIntent.ConfirmPending.shared }
+
     var advanceMove: NumbersIntent { NumbersIntent.AdvanceElapsed.shared }
 
     var turnFeedback: TurnFeedback { run.feedback }

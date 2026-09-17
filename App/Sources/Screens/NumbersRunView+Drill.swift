@@ -83,81 +83,28 @@ extension NumbersRunView {
         return Text(verbatim: "\(numbersExerciseEmoji(exercise: exercise)) ") + text
     }
 
-    /// What the field asks for. Naming the language is right only while the
-    /// answer is words — a reversed task wants the value written out, and
-    /// "Auf Swahili …" over a number pad asks for the wrong thing.
-    private var fieldPlaceholder: String {
-        run.currentReversed
-            ? ChromeStrings.string("numbers.answer.placeholder", locale: locale)
-            : answerPlaceholder(language)
-    }
-
+    // why: no "Wusste ich" under a reveal here — drills are generated, so
+    // self-reporting after seeing the answer proves nothing; revealed simply
+    // counts as a miss and moves on.
     private var controls: some View {
         VStack(spacing: Theme.spacing.md) {
-            AnswerInputView(text: $input,
-                            feedback: feedback,
-                            placeholder: fieldPlaceholder,
-                            focus: $answerFocused,
-                            correctionVoice: .init(
-                                pronounce: { model?.pronounceAction(for: $0, lang: language) },
-                                isPlaying: { model?.isPronouncing($0, lang: language) ?? false }),
-                            keyboard: run.currentReversed ? .numbersAndPunctuation : .default) {
-                submit()
-            }
-            .onChange(of: input) { _, _ in typed() }
-            switch feedback {
-            case .neutral:
-                // ONE primary action: empty input reveals, typed input checks.
-                Button {
-                    submit()
-                } label: {
-                    Text(input.isBlankAnswer ? "common.reveal" : "common.check")
-                        .frame(maxWidth: .infinity)
-                        .contentTransition(.opacity)
-                }
-                .buttonStyle(PrimaryButtonStyle())
-                .keyboardShortcut(.defaultAction)
-                .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
-            case .almost:
-                // A typo pauses — the box above spells the word out; this only
-                // waits for the tap that books it amber.
-                nextButton
-                    .transition(.opacity)
-            case .correct:
-                // A clean answer auto-advances on kern's beat. Under a screen
-                // reader the timer never arms, so the branch offers the tap.
-                if screenReaderOn {
-                    nextButton
-                        .transition(.opacity)
-                }
-            case .revealed:
-                // why: no "Wusste ich" here — drills are generated, so
-                // self-reporting after seeing the answer proves nothing;
-                // revealed simply counts as a miss and moves on.
-                VStack(spacing: Theme.spacing.sm) {
-                    nextButton
-                    if run.offersFinish { DrillStopOffer { closeRun() } }
-                }
-            }
+            DrillAnswerControls(text: $input,
+                                feedback: feedback,
+                                placeholder: answerPlaceholder(language, digits: run.currentReversed),
+                                focus: $answerFocused,
+                                correctionVoice: .init(
+                                    pronounce: { model?.pronounceAction(for: $0, lang: language) },
+                                    isPlaying: { model?.isPronouncing($0, lang: language) ?? false }),
+                                keyboard: run.currentReversed ? .numbersAndPunctuation : .default,
+                                onType: { typed() },
+                                onSubmit: { submit() },
+                                onConfirm: { confirm() },
+                                onStop: run.offersFinish ? { closeRun() } : nil)
             if run.offersLookUp {
                 lookupButton
             }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
-    }
-
-    /// The one button that books whatever the feedback already said — kern
-    /// decides what that is, so every branch reaching for it says the same word.
-    private var nextButton: some View {
-        Button {
-            dispatch(NumbersIntent.ConfirmPending.shared)
-        } label: {
-            Text("common.next")
-                .frame(maxWidth: .infinity)
-        }
-        .buttonStyle(PrimaryButtonStyle())
-        // why: Enter advances here too (hardware keyboards).
-        .keyboardShortcut(.defaultAction)
     }
 
     /// The whole numbers page, one tap away mid-run — the overview's table, not

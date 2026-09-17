@@ -26,9 +26,9 @@ extension DrillRunView {
             case .correct:
                 // why: the timer never arms under a screen reader, so a clean
                 // hit would otherwise have nothing to move on with.
-                if screenReaderOn { nextButton(confirm) }
+                if screenReaderOn { DrillNextButton { confirm() } }
             case .revealed:
-                revealedControls
+                DrillRevealedControls(onConfirm: { confirm() }, onStop: stopOffer)
             }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)

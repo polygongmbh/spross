@@ -122,74 +122,30 @@ extension LetterDrillView {
         case .neutral:
             EmptyView()
         case .correct:
-            if screenReaderOn { nextButton }
+            if screenReaderOn { DrillNextButton { confirm() } }
         // why: tiles grade exact-only (no typo budget), so this cannot arise
         // here — it books like any other accepted answer if it ever does.
         case .almost:
-            nextButton
+            DrillNextButton { confirm() }
         case .revealed:
-            nextButton
+            DrillNextButton { confirm() }
         }
     }
 
     // MARK: - Typed and dictated
 
-    @ViewBuilder
+    /// No live approval: the ladder grades whole answers, so nothing is offered
+    /// to kern until the field is submitted.
     private func typedControls(_ task: LetterDrillTask) -> some View {
-        VStack(spacing: Theme.spacing.md) {
-            AnswerInputView(text: $input,
+        DrillAnswerControls(text: $input,
                             feedback: feedback,
                             placeholder: answerPlaceholder(task.language),
                             focus: $answerFocused,
-                            // Tap-to-replay for the correction box — the form
-                            // the slip owed, said in the drilled language.
                             correctionVoice: .init(
                                 pronounce: { speaker(task, $0) },
-                                isPlaying: { model.isPronouncing($0, lang: task.language) })) {
-                submit()
-            }
-            switch feedback {
-            case .neutral:
-                // ONE primary action: an empty field reveals, a typed one checks.
-                Button {
-                    submit()
-                } label: {
-                    Text(input.isBlankAnswer ? "common.reveal" : "common.check")
-                        .frame(maxWidth: .infinity)
-                        .contentTransition(.opacity)
-                }
-                .buttonStyle(PrimaryButtonStyle())
-                .keyboardShortcut(.defaultAction)
-                .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
-            case .almost:
-                // The two amber holds — a slip, and a form the review flow
-                // teaches but the dictation did not play. The box above spells
-                // either one out; this waits for the tap that books it amber.
-                nextButton
-                    .transition(.opacity)
-            case .correct:
-                // why: the timer never arms under a screen reader, so a clean
-                // hit would otherwise have nothing to move on with.
-                if screenReaderOn { nextButton }
-            case .revealed:
-                VStack(spacing: Theme.spacing.sm) {
-                    nextButton
-                    if run.offersFinish { DrillStopOffer { closeRun() } }
-                }
-            }
-        }
-        .animation(.easeOut(duration: 0.25), value: feedback)
-    }
-
-    /// The one button that books whatever the feedback already said — which of
-    /// the ladder's outcomes that is stays kern's.
-    private var nextButton: some View {
-        Button {
-            dispatch(LetterDrillIntent.ConfirmPending.shared)
-        } label: {
-            Text("common.next").frame(maxWidth: .infinity)
-        }
-        .buttonStyle(PrimaryButtonStyle())
-        .keyboardShortcut(.defaultAction)
+                                isPlaying: { model.isPronouncing($0, lang: task.language) }),
+                            onSubmit: { submit() },
+                            onConfirm: { confirm() },
+                            onStop: run.offersFinish ? { closeRun() } : nil)
     }
 }

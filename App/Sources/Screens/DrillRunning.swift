@@ -60,6 +60,9 @@ protocol DrillRunning: View {
     /// Check and Enter alike.
     func submitMove(_ text: String) -> Move
 
+    /// The explicit tap that books whatever the feedback already said.
+    var confirmMove: Move { get }
+
     /// The armed beat elapsed.
     var advanceMove: Move { get }
 
@@ -149,6 +152,11 @@ extension DrillRunning {
     /// in the field, and reveals the answer when nothing does.
     func submit() {
         dispatch(submitMove(input))
+    }
+
+    /// The tap that books whatever the feedback already said.
+    func confirm() {
+        dispatch(confirmMove)
     }
 
     // MARK: - Close → back to the page that opened it

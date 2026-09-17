@@ -26,6 +26,8 @@ extension DrillRunView: DrillRunning {
 
     func submitMove(_ text: String) -> DrillMove { .submitted(text) }
 
+    var confirmMove: DrillMove { .confirmed }
+
     var advanceMove: DrillMove { .advanced }
 
     var turnFeedback: TurnFeedback { current.feedback }
@@ -42,11 +44,6 @@ extension DrillRunView: DrillRunning {
     func choose(_ name: String) {
         chosen = name
         dispatch(.submitted(name))
-    }
-
-    /// The tap that books whatever the feedback already said.
-    func confirm() {
-        dispatch(.confirmed)
     }
 
     // MARK: - Close → back to the page that opened it
