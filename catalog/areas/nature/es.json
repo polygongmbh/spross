@@ -16,6 +16,7 @@
   "lake": { "text": "lago", "grammar": { "gender": "el" } },
   "forest": { "text": "bosque", "grammar": { "gender": "el" } },
   "stone": { "text": "piedra", "grammar": { "gender": "la" } },
+  "stone-wall": { "text": "muro de piedra", "grammar": { "gender": "el" } },
   "moon": { "text": "luna", "grammar": { "gender": "la" } },
   "star": { "text": "estrella", "grammar": { "gender": "la" } },
   "wood": { "text": "madera", "grammar": { "gender": "la" } },

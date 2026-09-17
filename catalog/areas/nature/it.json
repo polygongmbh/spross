@@ -16,6 +16,7 @@
   "lake": { "text": "lago", "grammar": { "gender": "il", "plural": "laghi" } },
   "forest": { "text": "bosco", "variants": ["foresta"], "grammar": { "gender": "il", "plural": "boschi" } },
   "stone": { "text": "pietra", "variants": ["sasso"], "grammar": { "gender": "la" } },
+  "stone-wall": { "text": "muro di pietra", "grammar": { "gender": "il" } },
   "moon": { "text": "luna", "grammar": { "gender": "la" } },
   "star": { "text": "stella", "grammar": { "gender": "la" } },
   "wood": { "text": "legno", "grammar": { "gender": "il" } },

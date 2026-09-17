@@ -22,6 +22,7 @@
   "lake": { "text": "ziwa", "grammar": { "plural": "maziwa" } },
   "forest": { "text": "msitu", "grammar": { "plural": "misitu" } },
   "stone": { "text": "jiwe", "grammar": { "plural": "mawe" } },
+  "stone-wall": { "text": "ukuta wa mawe", "grammar": { "plural": "kuta za mawe" } },
   "moon": { "text": "mwezi", "grammar": { "plural": "miezi" } },
   "star": { "text": "nyota", "grammar": { "plural": "=" } },
   "wood": {

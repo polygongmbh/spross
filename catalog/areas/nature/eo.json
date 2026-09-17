@@ -15,6 +15,7 @@
   "lake": { "text": "lago" },
   "forest": { "text": "arbaro" },
   "stone": { "text": "ŝtono" },
+  "stone-wall": { "text": "ŝtonmuro" },
   "moon": { "text": "luno" },
   "star": { "text": "stelo" },
   "wood": { "text": "ligno" },

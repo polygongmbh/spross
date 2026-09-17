@@ -16,6 +16,7 @@
   "lake": { "text": "lake" },
   "forest": { "text": "forest" },
   "stone": { "text": "stone" },
+  "stone-wall": { "text": "stone wall" },
   "moon": { "text": "moon" },
   "star": { "text": "star" },
   "wood": { "text": "wood" },

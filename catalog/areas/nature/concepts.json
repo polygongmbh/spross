@@ -9,6 +9,7 @@
  { "slug": "river", "kind": "noun" },
  { "slug": "lake", "kind": "noun" },
  { "slug": "stone", "kind": "noun", "emoji": "🪨" },
+ { "slug": "stone-wall", "kind": "noun", "emoji": "🧱" },
  { "slug": "moon", "kind": "noun", "emoji": "🌙" },
  { "slug": "star", "kind": "noun", "emoji": "⭐" },
  { "slug": "to-jog", "kind": "verb", "emoji": "🏃" },

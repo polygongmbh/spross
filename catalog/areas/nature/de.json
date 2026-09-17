@@ -16,6 +16,7 @@
   "lake": { "text": "See", "grammar": { "gender": "der", "plural": "-n" } },
   "forest": { "text": "Wald", "grammar": { "gender": "der", "plural": "Wälder" } },
   "stone": { "text": "Stein", "grammar": { "gender": "der", "plural": "-e" } },
+  "stone-wall": { "text": "Steinmauer", "grammar": { "gender": "die", "plural": "-n" } },
   "moon": { "text": "Mond", "grammar": { "gender": "der", "plural": "-e" } },
   "star": { "text": "Stern", "grammar": { "gender": "der", "plural": "-e" } },
   "wood": { "text": "Holz", "grammar": { "gender": "das", "plural": "Hölzer" } },

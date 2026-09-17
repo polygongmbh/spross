@@ -16,6 +16,7 @@
   "lake": { "text": "озеро" },
   "forest": { "text": "ліс" },
   "stone": { "text": "камінь", "grammar": { "plural": "камені" } },
+  "stone-wall": { "text": "кам'яний мур", "grammar": { "plural": "кам'яні мури" } },
   "star": { "text": "зірка" },
   "wood": { "text": "деревина" },
   "stick": { "text": "палиця" },
