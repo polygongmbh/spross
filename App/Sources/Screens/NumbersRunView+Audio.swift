@@ -11,22 +11,7 @@ import SprossKern
 /// calling it here; that, not the lookup, is why the drills were silent.
 extension NumbersRunView {
 
-    /// The form currently owed to the learner: the correction after a slip,
-    /// otherwise the revealed reading. nil while the answer is still theirs to
-    /// produce — nothing may speak the answer to a question still standing.
-    var spokenAnswer: String? {
-        switch onEnum(of: run.feedback) {
-        case .almost(let hold): return hold.correctForm
-        case .revealed: return run.currentTask.display
-        case .neutral, .correct: return nil
-        }
-    }
-
-    /// Fires once when the answer comes out, however it came out.
-    func autoplayAnswer() {
-        guard let model, let form = spokenAnswer else { return }
-        answerVoice.speak(form, lang: language, via: model)
-    }
+    var spokenAnswer: String? { feedback.owedForm(revealing: run.currentTask.display) }
 
     /// Every way out of a task goes through here — the next prompt, the
     /// summary, the door.

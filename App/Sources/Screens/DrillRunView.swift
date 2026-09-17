@@ -113,11 +113,8 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
             answerFocused = wantsKeyboard
             autoplayPrompt()
         }
-        // why: one fire per answer — the trigger is "is a form owed", so a slip
-        // and a miss both speak once, and the neutral state resets it.
-        .onChange(of: spokenAnswer) { _, form in
-            if form != nil { autoplayAnswer() }
-        }
+        .saysOwedAnswer(spokenAnswer, lang: current.answerLanguage,
+                        via: model, voice: answerVoice)
         .onDisappear {
             autoAdvance?.cancel()
             // D5: leaving mid-word must silence.
@@ -146,28 +143,13 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
 
     // MARK: - Saying the answer
 
-    /// The form currently owed to the learner: the correction after a slip,
-    /// otherwise the revealed answer. nil while the answer is still theirs to
-    /// produce — nothing may speak an answer to a question still standing.
-    ///
-    /// nil on a REVERSED run too, whichever way it ended: the side answered
-    /// there is the learner's own language, and every autoplay `read-aloud.md`
-    /// describes says a target-language form. The speaker beside the reveal
-    /// still says it on request — a tap outranks the rule, as it outranks both
-    /// mutes.
+    /// Nothing is read out on a REVERSED run, whichever way it ended: the side
+    /// answered there is the learner's own language, and every autoplay
+    /// `read-aloud.md` describes says a target-language form. The speaker beside
+    /// the reveal still says it on request — a tap outranks the rule, as it
+    /// outranks both mutes.
     var spokenAnswer: String? {
-        guard !reverse else { return nil }
-        switch feedback {
-        case .almost(let form, _): return form
-        case .revealed: return current.display
-        case .neutral, .correct: return nil
-        }
-    }
-
-    /// Fires once when the answer comes out, however it came out.
-    private func autoplayAnswer() {
-        guard let form = spokenAnswer else { return }
-        answerVoice.speak(form, lang: current.answerLanguage, via: model)
+        reverse ? nil : feedback.owedForm(revealing: current.display)
     }
 
     /// Every way out of a task goes through here — the next question, the door.

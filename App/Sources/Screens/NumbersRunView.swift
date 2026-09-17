@@ -97,11 +97,7 @@ struct NumbersRunView: View, LanguageNaming {
         }
         .onAppear { focusAnswerField() }
         .onChange(of: run.index) { _, _ in focusAnswerField() }
-        // why: one fire per answer — the trigger is "is a form owed", so a slip
-        // and a miss both speak once, and the neutral state resets it.
-        .onChange(of: spokenAnswer) { _, form in
-            if form != nil { autoplayAnswer() }
-        }
+        .saysOwedAnswer(spokenAnswer, lang: language, via: model, voice: answerVoice)
         .onDisappear {
             autoAdvance?.cancel()
             focusRetry?.cancel()

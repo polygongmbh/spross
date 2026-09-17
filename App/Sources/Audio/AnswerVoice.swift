@@ -1,4 +1,4 @@
-import Foundation
+import SwiftUI
 
 /// The pending "say the answer" wait, held rather than fired and forgotten:
 /// the beat outlives a fast tap, and a reveal closed within it would otherwise
@@ -29,5 +29,34 @@ final class AnswerVoice {
         pending?.cancel()
         pending = nil
         Pronouncer.shared.stop()
+    }
+}
+
+extension View {
+
+    /// Says a form the moment the learner is owed one, once per answer: the
+    /// trigger is "is a form owed", so a slip and a miss both speak and the
+    /// neutral state that follows resets it. nil says nothing — a run with no
+    /// voice, or a side that is never read out, simply hands nil over.
+    func saysOwedAnswer(_ form: String?, lang: String, via model: AppModel?,
+                        voice: AnswerVoice) -> some View {
+        onChange(of: form) { _, owed in
+            guard let owed, let model else { return }
+            voice.speak(owed, lang: lang, via: model)
+        }
+    }
+}
+
+extension AnswerInputView.Feedback {
+
+    /// The form currently owed to the learner: the correction after a slip,
+    /// otherwise the revealed answer. nil while the answer is still theirs to
+    /// produce — nothing may speak an answer to a question still standing.
+    func owedForm(revealing display: String) -> String? {
+        switch self {
+        case .almost(let form, _): return form
+        case .revealed: return display
+        case .neutral, .correct: return nil
+        }
     }
 }
