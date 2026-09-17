@@ -1,10 +1,7 @@
 package net.spross.app.ui
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,11 +12,8 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.selection.toggleable
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,13 +24,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
@@ -62,88 +52,8 @@ fun SessionScreen(model: AppModel) {
         modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
     ) {
-        SessionTopBar(model, ui)
+        RunTopBar(model, ui.segments, model::finishSession, ui.remaining, closeLabel = model.chrome.commonDone)
         if (ui.card == null) SessionSummary(model, ui) else TurnCard(model, ui)
-    }
-}
-
-/**
- * The session's constant chrome, in the order the round is worked: the way OUT leading,
- * where the thumb that started the round already is; the progress carrying the whole
- * width between the two controls; the read-aloud switch trailing. Nothing up here varies
- * with the card below it, so no card pays a point of layout for it.
- */
-@Composable
-private fun SessionTopBar(model: AppModel, ui: SessionUi) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-    ) {
-        CloseSessionButton(model)
-        SegmentsBar(ui.segments, ui.remaining, model.chrome, Modifier.weight(1f))
-        ReadAloudSwitch(model)
-    }
-}
-
-/** The way out of a running round — first in the bar, so it is never hunted for. */
-@Composable
-private fun CloseSessionButton(model: AppModel) {
-    val chrome = model.chrome
-    Box(
-        modifier = Modifier
-            .chromeDisc()
-            .semantics(mergeDescendants = true) { contentDescription = chrome.commonDone }
-            .clickable(role = Role.Button) { model.finishSession() },
-        contentAlignment = Alignment.Center,
-    ) {
-        Icon(SprossIcons.Close, contentDescription = null, tint = Theme.colors.textSecondary)
-    }
-}
-
-/**
- * The tinted disc both chrome controls sit in: one shape, one 48 dp target, so the pair
- * reads as chrome rather than as two loose glyphs jostling in a corner.
- */
-@Composable
-private fun Modifier.chromeDisc(): Modifier =
-    this.size(48.dp).clip(CircleShape).background(MaterialTheme.colorScheme.surfaceVariant)
-
-/**
- * The read-aloud switch, in constant chrome: the top bar never varies with the card
- * below it, so no card moves a point for the control (the card's own space belongs to
- * the word). It governs the SPOKEN WORDS only — the verdict cues are their own
- * matter, and the media volume is the switch for everything.
- */
-@Composable
-fun ReadAloudSwitch(model: AppModel) {
-    val chrome = model.chrome
-    val muted = model.pronouncer.muted
-    Box(
-        // why: toggleable rather than an IconButton — the control IS a switch, and a
-        // button's own Role.Button would win the semantics merge against one set
-        // around it. ONE stable label with the state as its VALUE: a label that flips
-        // leaves TalkBack announcing the action as though it were the condition.
-        modifier = Modifier
-            .chromeDisc()
-            .toggleable(
-                value = !muted,
-                role = Role.Switch,
-                onValueChange = { model.pronouncer.muted = !it },
-            )
-            // why: merged, or the glyph inside would be a node of its own and TalkBack
-            // would read the picture of a loudspeaker after the switch it belongs to.
-            .semantics(mergeDescendants = true) {
-                contentDescription = chrome.a11yActionReadAloud
-                stateDescription = if (muted) chrome.a11yStateOff else chrome.a11yStateOn
-            },
-        contentAlignment = Alignment.Center,
-    ) {
-        Icon(
-            if (muted) SprossIcons.SpeakerOff else SprossIcons.Speaker,
-            contentDescription = null,
-            tint = Theme.colors.textSecondary,
-        )
     }
 }
 

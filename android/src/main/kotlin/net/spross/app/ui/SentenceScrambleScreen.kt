@@ -1,28 +1,15 @@
 package net.spross.app.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.TextAutoSize
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.Screen
@@ -49,15 +36,9 @@ import net.spross.kern.trainer.SentenceScrambleTask
 fun SentenceScrambleScreen(model: AppModel) {
     val chrome = model.chrome
     val hooks = rememberTurnHooks(model)
-    // why: unkeyed — everything a run draws from is resolved ONCE, as it opens. A foreground
-    // that re-sweeps availability must not restart the run underneath it.
-    val flow = remember { model.newSentenceScramble(onTone = hooks.tone) }
-    if (flow == null) {
-        // Nothing this box can be asked — the chip gates on the same report, so this is a
-        // closed door rather than a screen.
-        LaunchedEffect(Unit) { model.finishDrill(Screen.Home, null, "") }
-        return
-    }
+    val flow = rememberRun(model, Screen.Home) {
+        model.newSentenceScramble(onTone = hooks.tone)
+    } ?: return
     val state = flow.state
     // The scrambles have no page of their own to land on, so the figures go back to Home; this
     // drill keeps no streak record, and no high-water Sprosse beside the mask, because nothing
@@ -69,55 +50,38 @@ fun SentenceScrambleScreen(model: AppModel) {
         model.trainer.store.bookCleared(flow.clearedKey, closed.clearedSprossen)
         model.finishDrill(Screen.Home, closed.summary, chrome.trainerDrillSentenceScramble)
     }
-    BackHandler { leave() }
-    DrillRunEffects(
-        ranOut = flow.ranOut,
-        beatToken = flow.beatToken,
-        armedBeat = flow.armedBeat,
-        onBeatElapsed = flow::advanceElapsed,
-        leave = leave,
-        pronouncer = model.pronouncer,
-    )
 
-    Column(
-        modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
-        verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
+    DrillRunScaffold(
+        model = model,
+        run = flow,
+        leave = leave,
+        outcomes = state.outcomes,
+        tally = state.tally,
+        sprosse = chrome.trainerSprosse.format(state.level),
+        streak = state.streak,
+        bestStreak = state.bestStreak,
+        spacing = Theme.spacing.lg,
     ) {
-        DrillTopBar(model, state.outcomes, state.tally, leave)
-        Column(
-            modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
+        val task = state.task ?: return@DrillRunScaffold
+        ScrambleTileBank(
+            bank = task.shuffled,
+            placed = state.placedAtoms,
+            isTaken = state::isPlaced,
+            arranged = state.arranged,
+            // Kern's feedback, read — this drill grades by position, so there is no
+            // near miss to render.
+            verdict = when {
+                state.owesAnswer -> ScrambleVerdict.Owed
+                state.answerAccepted -> ScrambleVerdict.Correct
+                else -> ScrambleVerdict.Wrong
+            },
+            chrome = chrome,
+            place = flow::place,
+            take = flow::take,
         ) {
-            DrillStreakLine(
-                sprosse = chrome.trainerSprosse.format(state.level),
-                streak = state.streak,
-                bestStreak = state.bestStreak,
-                chrome = chrome,
-            )
-            val task = state.task
-            if (task != null) {
-                ScrambleTileBank(
-                    bank = task.shuffled,
-                    placed = state.placedAtoms,
-                    isTaken = state::isPlaced,
-                    arranged = state.arranged,
-                    // Kern's feedback, read — this drill grades by position, so there is no
-                    // near miss to render.
-                    verdict = when {
-                        state.owesAnswer -> ScrambleVerdict.Owed
-                        state.answerAccepted -> ScrambleVerdict.Correct
-                        else -> ScrambleVerdict.Wrong
-                    },
-                    chrome = chrome,
-                    place = flow::place,
-                    take = flow::take,
-                ) {
-                    RevealLines(model, task, state.answerAccepted, state.alternativeMatch, chrome)
-                }
-                Controls(flow, chrome, leave)
-            }
-            Spacer(Modifier.height(Theme.spacing.sm))
+            RevealLines(model, task, state.answerAccepted, state.alternativeMatch, chrome)
         }
+        Controls(flow, chrome, leave)
     }
 }
 

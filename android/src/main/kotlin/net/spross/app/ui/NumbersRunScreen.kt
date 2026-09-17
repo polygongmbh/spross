@@ -1,28 +1,12 @@
 package net.spross.app.ui
 
-import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.app.CHIME_CLEARANCE_MS
@@ -54,13 +38,9 @@ import net.spross.kern.trainer.NumbersRunState
 fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
     val chrome = model.chrome
     val hooks = rememberTurnHooks(model)
-    val flow = remember(mode) {
+    val flow = rememberRun(model, Screen.Numbers, key = mode) {
         model.newTrainerRun(mode, onTone = hooks.tone, onReleaseFocus = hooks.releaseFocus)
-    }
-    if (flow == null) {
-        LaunchedEffect(Unit) { model.finishDrill(Screen.Numbers, null, "") }
-        return
-    }
+    } ?: return
     val state = flow.state
     val store = model.trainer.store
 
@@ -74,15 +54,6 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
         closed.summary?.let { model.bookRecord(closed.recordKey, it) }
         model.finishDrill(Screen.Numbers, closed.summary, title)
     }
-    BackHandler(enabled = !flow.showingReference) { leave() }
-    DrillRunEffects(
-        ranOut = flow.ranOut,
-        beatToken = flow.beatToken,
-        armedBeat = flow.armedBeat,
-        onBeatElapsed = flow::advanceElapsed,
-        leave = leave,
-        pronouncer = model.pronouncer,
-    )
 
     // The revealed reading is spoken like any other answer, once per question however the
     // pause was reached — after a beat, so the verdict cue is out of the way.
@@ -97,26 +68,21 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
     val inputFocus = remember { FocusRequester() }
     QuestionFocus(state.index, model.pronouncer, inputFocus)
 
-    Column(
-        modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
-        verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
+    DrillRunScaffold(
+        model = model,
+        run = flow,
+        leave = leave,
+        outcomes = state.outcomes,
+        tally = state.tally,
+        sprosse = sprosseText(state, chrome),
+        streak = state.streak,
+        bestStreak = state.bestStreak,
+        announcesRecord = true,
+        // The table raised over the run takes the back gesture first; the run is still there.
+        backLeaves = !flow.showingReference,
     ) {
-        DrillTopBar(model, state.outcomes, state.tally, leave)
-        Column(
-            modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-        ) {
-            DrillStreakLine(
-                sprosse = sprosseText(state, chrome),
-                streak = state.streak,
-                bestStreak = state.bestStreak,
-                chrome = chrome,
-                announcesRecord = true,
-            )
-            DrillPromptCard(model, flow, chrome)
-            NumbersControls(model, flow, chrome, inputFocus, leave)
-            Spacer(Modifier.height(Theme.spacing.sm))
-        }
+        DrillPromptCard(model, flow, chrome)
+        NumbersControls(model, flow, chrome, inputFocus, leave)
     }
 
     if (flow.showingReference) {

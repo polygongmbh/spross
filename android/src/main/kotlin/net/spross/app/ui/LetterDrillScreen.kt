@@ -1,22 +1,14 @@
 package net.spross.app.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -64,41 +56,30 @@ import net.spross.kern.trainer.LetterStage
 fun LetterDrillScreen(model: AppModel) {
     val chrome = model.chrome
     val hooks = rememberTurnHooks(model)
-    // why: unkeyed — everything a run draws from is resolved ONCE, as it opens. A
-    // foreground that re-sweeps availability must not restart the run underneath it.
-    val flow = remember {
+    val flow = rememberRun(model, Screen.Letters) {
         model.newLetterDrill(onTone = hooks.tone, onReleaseFocus = hooks.releaseFocus)
-    }
-    if (flow == null) {
-        // Nothing this device can ask — the start button gates on the same predicate, so
-        // this is a closed door rather than a screen.
-        LaunchedEffect(Unit) { model.finishDrill(Screen.Letters, null, "") }
-        return
-    }
+    } ?: return
     val state = flow.state
     // The letter drill books no Sprosse and keeps no record, so it stores nothing.
     val leave = {
         val closed = flow.close()
         model.finishDrill(Screen.Letters, closed.summary, chrome.trainerDrillLetters)
     }
-    BackHandler { leave() }
-    DrillRunEffects(
-        ranOut = flow.ranOut,
-        beatToken = flow.beatToken,
-        armedBeat = flow.armedBeat,
-        onBeatElapsed = flow::advanceElapsed,
-        leave = leave,
-        pronouncer = model.pronouncer,
-    )
 
-    Column(
-        modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
-        verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
+    DrillRunScaffold(
+        model = model,
+        run = flow,
+        leave = leave,
+        outcomes = state.outcomes,
+        tally = state.tally,
+        // One Sprosse, mapped to stages by kern — there is no level to name.
+        sprosse = null,
+        streak = state.streak,
+        bestStreak = state.bestStreak,
+        spacing = Theme.spacing.lg,
     ) {
-        DrillTopBar(model, state.outcomes, state.tally, leave)
-        DrillStreakLine(null, state.streak, state.bestStreak, chrome)
-        val task = state.task
-        if (task != null) Run(model, flow, task, chrome, leave)
+        val task = state.task ?: return@DrillRunScaffold
+        Run(model, flow, task, chrome, leave)
     }
 }
 
@@ -127,20 +108,14 @@ private fun Run(
         screenReader = replayFocus,
     )
 
-    Column(
-        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
-    ) {
-        HearPrompt(model, flow, task, chrome, replayFocus)
-        when (task.stage) {
-            LetterStage.ChoiceEasy, LetterStage.ChoiceConfusable ->
-                ChoiceStage(model, flow, task, chrome)
-            LetterStage.Typed, LetterStage.Dictation ->
-                TypedStage(model, flow, task, chrome, inputFocus)
-        }
-        if (state.offersFinish) DrillStopOffer(chrome, onFinish)
-        Spacer(Modifier.height(Theme.spacing.sm))
+    HearPrompt(model, flow, task, chrome, replayFocus)
+    when (task.stage) {
+        LetterStage.ChoiceEasy, LetterStage.ChoiceConfusable ->
+            ChoiceStage(model, flow, task, chrome)
+        LetterStage.Typed, LetterStage.Dictation ->
+            TypedStage(model, flow, task, chrome, inputFocus)
     }
+    if (state.offersFinish) DrillStopOffer(chrome, onFinish)
 }
 
 /**

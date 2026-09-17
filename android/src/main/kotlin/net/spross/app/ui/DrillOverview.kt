@@ -57,7 +57,7 @@ fun OverviewScaffold(
             modifier = Modifier.fillMaxWidth().padding(horizontal = Theme.spacing.sm),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            DrillCloseButton(chrome, onClose)
+            RunCloseButton(onClose, chrome.commonClose)
             Text(
                 title,
                 style = MaterialTheme.typography.titleMedium,

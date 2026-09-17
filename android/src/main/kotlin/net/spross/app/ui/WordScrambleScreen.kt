@@ -1,18 +1,7 @@
 package net.spross.app.ui
 
-import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -42,17 +31,9 @@ import net.spross.kern.trainer.WordScrambleTask
 fun WordScrambleScreen(model: AppModel) {
     val chrome = model.chrome
     val hooks = rememberTurnHooks(model)
-    // why: unkeyed — everything a run draws from is resolved ONCE, as it opens. A foreground
-    // that re-sweeps availability must not restart the run underneath it.
-    val flow = remember {
+    val flow = rememberRun(model, Screen.Home) {
         model.newWordScramble(onTone = hooks.tone, onReleaseFocus = hooks.releaseFocus)
-    }
-    if (flow == null) {
-        // Nothing this box can be asked — the chip gates on the same report, so this is a
-        // closed door rather than a screen.
-        LaunchedEffect(Unit) { model.finishDrill(Screen.Home, null, "") }
-        return
-    }
+    } ?: return
     val state = flow.state
     // The scrambles have no page of their own to land on, so the figures go back to Home with
     // the learner; this drill keeps no streak record, and no high-water Sprosse beside the
@@ -64,51 +45,33 @@ fun WordScrambleScreen(model: AppModel) {
         model.trainer.store.bookCleared(flow.clearedKey, closed.clearedSprossen)
         model.finishDrill(Screen.Home, closed.summary, chrome.trainerDrillWordScramble)
     }
-    BackHandler { leave() }
-    DrillRunEffects(
-        ranOut = flow.ranOut,
-        beatToken = flow.beatToken,
-        armedBeat = flow.armedBeat,
-        onBeatElapsed = flow::advanceElapsed,
-        leave = leave,
-        pronouncer = model.pronouncer,
-    )
 
     val inputFocus = remember { FocusRequester() }
     QuestionFocus(state.index, model.pronouncer, inputFocus)
 
-    Column(
-        modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
-        verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
+    DrillRunScaffold(
+        model = model,
+        run = flow,
+        leave = leave,
+        outcomes = state.outcomes,
+        tally = state.tally,
+        sprosse = chrome.trainerSprosse.format(state.level),
+        streak = state.streak,
+        bestStreak = state.bestStreak,
     ) {
-        DrillTopBar(model, state.outcomes, state.tally, leave)
-        Column(
-            modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-        ) {
-            DrillStreakLine(
-                sprosse = chrome.trainerSprosse.format(state.level),
-                streak = state.streak,
-                bestStreak = state.bestStreak,
-                chrome = chrome,
-            )
-            val task = state.task
-            if (task != null) {
-                DrillPromptCard(
-                    prompt = mixedWord(task.scrambled),
-                    promptLabel = spelledOut(task.scrambled),
-                    size = PromptSize.Word,
-                    answer = task.display,
-                    language = task.language,
-                    gloss = task.gloss,
-                    revealed = state.showsAnswer,
-                    pronounce = model.speakFormOnTap(task.display, task.language),
-                    chrome = chrome,
-                )
-                Controls(model, flow, task, chrome, inputFocus, leave)
-            }
-            Spacer(Modifier.height(Theme.spacing.sm))
-        }
+        val task = state.task ?: return@DrillRunScaffold
+        DrillPromptCard(
+            prompt = mixedWord(task.scrambled),
+            promptLabel = spelledOut(task.scrambled),
+            size = PromptSize.Word,
+            answer = task.display,
+            language = task.language,
+            gloss = task.gloss,
+            revealed = state.showsAnswer,
+            pronounce = model.speakFormOnTap(task.display, task.language),
+            chrome = chrome,
+        )
+        Controls(model, flow, task, chrome, inputFocus, leave)
     }
 }
 

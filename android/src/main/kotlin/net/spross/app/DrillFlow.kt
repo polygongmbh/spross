@@ -4,8 +4,31 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import kotlin.random.Random
+import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.DrillEffect
+
+/**
+ * A run as the shell around it reads one: whether kern has anything left to ask, and the
+ * beat it armed before the next question. Every drill screen stands on these four and on
+ * nothing else of the run behind it, which is why one shell serves all of them.
+ */
+interface DrillRun {
+
+    /** Kern has run out of questions: the screen hands the run back, once. */
+    val ranOut: Boolean
+
+    /** The beat waiting to elapse, or null where none is armed. */
+    val armedBeat: AdvanceTier?
+
+    /** Bumped by every arming — what a timer effect keys on. */
+    val beatToken: Int
+
+    /** The beat became a tap: render the explicit "Weiter", which books the same answer. */
+    val awaitsConfirm: Boolean
+
+    fun advanceElapsed()
+}
 
 /**
  * The driver every drill run stands on: one event put to kern, its next state back, the
@@ -30,7 +53,7 @@ abstract class DrillFlow<S, I>(
     onReleaseFocus: () -> Unit,
     onSilence: () -> Unit,
     screenReaderOn: () -> Boolean,
-) {
+) : DrillRun {
     private val beat = DrillBeat(screenReaderOn)
     private val acts = DrillActs(beat, onTone, onReleaseFocus, onSilence)
 
@@ -51,18 +74,15 @@ abstract class DrillFlow<S, I>(
      * card it has already answered. False once the close has been made, whichever way the
      * screen went — a run is handed back once.
      */
-    val ranOut: Boolean get() = finished(state) && !handedBack
+    override val ranOut: Boolean get() = finished(state) && !handedBack
 
     private var handedBack = false
 
-    /** The beat waiting to elapse, or null where none is armed. */
-    val armedBeat get() = beat.tier
+    override val armedBeat get() = beat.tier
 
-    /** Bumped by every arming — what a timer effect keys on. */
-    val beatToken get() = beat.token
+    override val beatToken get() = beat.token
 
-    /** The beat became a tap: render the explicit "Weiter", which books the same answer. */
-    val awaitsConfirm get() = beat.awaitsConfirm
+    override val awaitsConfirm get() = beat.awaitsConfirm
 
     /**
      * A live keystroke: finishing the word IS the answer, within kern's growing guard —
@@ -89,7 +109,7 @@ abstract class DrillFlow<S, I>(
         if (owesAnswer(state)) primary() else confirm()
     }
 
-    fun advanceElapsed() {
+    override fun advanceElapsed() {
         beat.spend()
         dispatch(advanceElapsedIntent())
     }

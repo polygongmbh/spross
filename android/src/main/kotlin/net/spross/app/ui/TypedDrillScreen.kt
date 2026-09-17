@@ -1,14 +1,7 @@
 package net.spross.app.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,7 +9,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
@@ -63,15 +55,9 @@ class TypedDrillPage(
 fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: TypedDrillPage) {
     val chrome = model.chrome
     val hooks = rememberTurnHooks(model)
-    // why: unkeyed on anything the run does — a foreground that re-sweeps availability must
-    // not restart the run underneath it.
-    val flow = remember(reverse, fast) { page.open(hooks.tone, hooks.releaseFocus) }
-    if (flow == null) {
-        // Nothing this pair can be asked — the chip gates on the same join, so this is a
-        // closed door rather than a screen.
-        LaunchedEffect(Unit) { model.finishDrill(page.back, null, "") }
-        return
-    }
+    val flow = rememberRun(model, page.back, key = reverse to fast) {
+        page.open(hooks.tone, hooks.releaseFocus)
+    } ?: return
     val run = flow.view(chrome)
     val store = model.trainer.store
     val key = page.key
@@ -90,15 +76,6 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         }
         model.finishDrill(page.back, closed.summary, page.drill)
     }
-    BackHandler { leave() }
-    DrillRunEffects(
-        ranOut = flow.ranOut,
-        beatToken = flow.beatToken,
-        armedBeat = flow.armedBeat,
-        onBeatElapsed = flow::advanceElapsed,
-        leave = leave,
-        pronouncer = model.pronouncer,
-    )
 
     // The revealed answer is spoken like any other, once per question however the pause was
     // reached — after a beat, so the verdict cue is out of the way.
@@ -131,36 +108,29 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
     // very answer it is waiting for.
     QuestionFocus(run.index, model.pronouncer, inputFocus.takeIf { run.prompt.choices == null })
 
-    Column(
-        modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
-        verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
+    DrillRunScaffold(
+        model = model,
+        run = flow,
+        leave = leave,
+        outcomes = run.outcomes,
+        tally = run.tally,
+        sprosse = chrome.trainerSprosse.format(run.level),
+        streak = run.streak,
+        bestStreak = run.bestStreak,
+        announcesRecord = true,
     ) {
-        DrillTopBar(model, run.outcomes, run.tally, leave)
-        Column(
-            modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-        ) {
-            DrillStreakLine(
-                sprosse = chrome.trainerSprosse.format(run.level),
-                streak = run.streak,
-                bestStreak = run.bestStreak,
-                chrome = chrome,
-                announcesRecord = true,
-            )
-            // The tap speaker rides the same rule as the autoplay above: a prompt that is
-            // a name, on the side being learned. A tap outranks the mute; this only says
-            // whether there is anything to hear.
-            Prompt(
-                model, run, chrome,
-                promptVoice = run.prompt.language?.let { language ->
-                    run.prompt.text
-                        ?.takeIf { reverse }
-                        ?.let { model.speakFormOnTap(it, language) }
-                },
-            )
-            Controls(model, flow, run, chrome, inputFocus, leave)
-            Spacer(Modifier.height(Theme.spacing.sm))
-        }
+        // The tap speaker rides the same rule as the autoplay above: a prompt that is
+        // a name, on the side being learned. A tap outranks the mute; this only says
+        // whether there is anything to hear.
+        Prompt(
+            model, run, chrome,
+            promptVoice = run.prompt.language?.let { language ->
+                run.prompt.text
+                    ?.takeIf { reverse }
+                    ?.let { model.speakFormOnTap(it, language) }
+            },
+        )
+        Controls(model, flow, run, chrome, inputFocus, leave)
     }
 }
 

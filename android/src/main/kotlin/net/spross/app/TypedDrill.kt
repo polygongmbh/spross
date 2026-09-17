@@ -2,7 +2,6 @@ package net.spross.app
 
 import kotlin.random.Random
 import net.spross.kern.model.Language
-import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
@@ -22,22 +21,10 @@ import net.spross.kern.trainer.DrillTally
  * Nothing here decides anything: [view] is the run as it stands right now, read fresh every
  * composition, and the rest is the same handful of taps kern already names.
  */
-interface TypedDrill {
+interface TypedDrill : DrillRun {
 
     /** The learner's answer text — kern owns what it means, the field is ours. */
     val input: String
-
-    /** Kern has run out of questions: the screen hands the run back, once. */
-    val ranOut: Boolean
-
-    /** The beat waiting to elapse, or null where none is armed. */
-    val armedBeat: AdvanceTier?
-
-    /** Bumped by every arming — what a timer effect keys on. */
-    val beatToken: Int
-
-    /** The beat became a tap: render the explicit "Weiter", which books the same answer. */
-    val awaitsConfirm: Boolean
 
     /**
      * The tile this question was answered off, or null while it is still owed — what the
@@ -66,8 +53,6 @@ interface TypedDrill {
 
     /** Enter: check while the answer is owed, otherwise book what stands. */
     fun enter()
-
-    fun advanceElapsed()
 
     /** Leaving, from the corner or from "Fertig" — a pending answer books as the tap would. */
     fun close(standingRecord: Int): TypedDrillClose

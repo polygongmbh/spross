@@ -1,102 +1,37 @@
 package net.spross.app.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.app.Chrome
-import net.spross.app.audio.Pronouncer
 import net.spross.app.countLine
 import net.spross.kern.catalog.LanguageChoices
-import net.spross.kern.session.AdvanceTier
-import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.trainer.DrillRunSummary
-import net.spross.kern.trainer.DrillTally
 import net.spross.kern.trainer.StreakTier
 
 /**
- * What the two endless drills put around whatever they happen to be asking: the top bar,
- * the score line, the way out offered where it is wanted, and the tile a closed run leaves
- * on the page that started it.
- *
- * Their state machines stay apart (a heard glyph and a typed numeral share no grammar);
- * this is the whole of what the two have in common, and a second copy of it is how two
- * beats drift apart.
+ * What a drill puts around whatever it happens to be asking, inside the shell every asking
+ * surface shares ([DrillRunScaffold]): the score line, the way out offered where it is
+ * wanted, and the tile a closed run leaves on the page that started it.
  */
-
-/**
- * The chrome of an ENDLESS run, which has no total to count toward.
- *
- * The bar's filled and empty stretches move together — one empty slot for the question on
- * screen — so it fills as the run grows instead of breaking past a fixed end, and the
- * counter is the run's own tally rather than position/total.
- */
-@Composable
-fun DrillTopBar(
-    model: AppModel,
-    outcomes: List<AnswerOutcome>,
-    tally: DrillTally,
-    onClose: () -> Unit,
-) {
-    val chrome = model.chrome
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-    ) {
-        DrillCloseButton(chrome, onClose)
-        SegmentsBar(outcomes, remaining = 1, chrome = chrome, modifier = Modifier.weight(1f))
-        Text(
-            "${tally.clean}/${tally.judged}",
-            style = MaterialTheme.typography.bodySmall,
-            color = Theme.colors.textSecondary,
-        )
-        ReadAloudSwitch(model)
-    }
-}
-
-/** The way out of a running drill — first in the bar, so it is never hunted for. */
-@Composable
-fun DrillCloseButton(chrome: Chrome, onClose: () -> Unit) {
-    Box(
-        modifier = Modifier
-            .size(48.dp)
-            .clip(CircleShape)
-            .background(MaterialTheme.colorScheme.surfaceVariant)
-            .semantics(mergeDescendants = true) { contentDescription = chrome.commonClose }
-            .clickable(role = Role.Button, onClick = onClose),
-        contentAlignment = Alignment.Center,
-    ) {
-        Icon(SprossIcons.Close, contentDescription = null, tint = Theme.colors.textSecondary)
-    }
-}
 
 /**
  * The score line above the card: which Sprosse the run stands on, how long the streak is, and
@@ -217,34 +152,4 @@ fun OverviewHeading(text: String) {
         style = MaterialTheme.typography.titleLarge,
         modifier = Modifier.semantics { heading() },
     )
-}
-
-/**
- * The three effects every endless drill runs the same way: the hand-back when kern runs
- * out, the silence on the way out, and the wait a kern-armed beat owes before it advances.
- *
- * The three screens keep their own flows — a heard glyph, a typed numeral and a date share
- * no grammar — but a second copy of these is how two beats come to drift apart.
- */
-@Composable
-fun DrillRunEffects(
-    ranOut: Boolean,
-    beatToken: Int,
-    armedBeat: AdvanceTier?,
-    onBeatElapsed: () -> Unit,
-    leave: () -> Unit,
-    pronouncer: Pronouncer,
-) {
-    // Nothing left to ask: hand the run back, never repeat a question.
-    LaunchedEffect(ranOut) { if (ranOut) leave() }
-    // why: D5 — leaving mid-question must silence, whichever way the screen goes.
-    DisposableEffect(Unit) { onDispose { pronouncer.stop() } }
-
-    // The beat kern arms. Nothing is ever armed where a screen reader runs — the flow
-    // renders an explicit Weiter instead — so this only waits out beats that may run.
-    LaunchedEffect(beatToken) {
-        val tier = armedBeat ?: return@LaunchedEffect
-        delay(tier.delayMs)
-        onBeatElapsed()
-    }
 }
