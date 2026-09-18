@@ -8,6 +8,7 @@ import net.spross.kern.box.Growth
 import net.spross.kern.box.answerDays
 import net.spross.kern.box.answersOn
 import net.spross.kern.box.chromePart
+import net.spross.kern.box.mergeAnswerDays
 import net.spross.kern.box.streakHealth
 import net.spross.kern.model.fnv1a64
 
@@ -77,12 +78,14 @@ data class SessionOffer(
      */
     val doneToday: Int = 0,
     /**
-     * Whether THIS language's run still owes today's work
+     * Whether the run still owes today's work
      * ([net.spross.kern.box.StreakHealth.isExposed]).
      *
-     * Read off one box on purpose, never the merged run: the daily rep is per language, so a
-     * learner who has already had their exposure in another language is still owed one here,
-     * and a card that went quiet about it would be the only place that never said so.
+     * Read off the MERGED days, the one run the flame beside this line counts
+     * ([net.spross.kern.box.mergeAnswerDays]): growing is one commitment across every
+     * language, so a day spent in another box has already paid it, and a line that warned
+     * about a streak the same card draws at full strength would be the only surface on the
+     * screen calling the day unworked.
      */
     val streakExposed: Boolean = false,
 ) {
@@ -184,8 +187,16 @@ object SessionOffers {
     /**
      * Classify today's round: first sights outnumbering everything to recall make it a fresh set,
      * recall with enough behind it leads, and anything less is a warm-up.
+     *
+     * [otherLanguagesAnswerDays] carries the other boxes' days, for [SessionOffer.streakExposed]
+     * alone — everything else here is scoped to THIS join.
      */
-    fun offer(state: BoxState, nowEpochMillis: Long, tzId: String): SessionOffer {
+    fun offer(
+        state: BoxState,
+        nowEpochMillis: Long,
+        tzId: String,
+        otherLanguagesAnswerDays: Map<String, Int> = emptyMap(),
+    ): SessionOffer {
         val plan = SessionComposer.composeSession(state, nowEpochMillis, tzId)
         val reviews = plan.reviews.size
         val ahead = plan.ahead.size
@@ -197,6 +208,8 @@ object SessionOffers {
             else -> SessionOfferKind.WarmUp
         }
         val heldBack = max(0, BoxEngine.dueCount(state, nowEpochMillis) - reviews)
+        val runDays =
+            mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
         return SessionOffer(
             kind = kind,
             reviews = reviews,
@@ -205,10 +218,9 @@ object SessionOffers {
             fresh = fresh,
             shortRound = SessionComposer.shortRoundSize(plan),
             doneToday = answersOn(state.scheduling, nowEpochMillis, tzId),
-            // why: this language alone — the day's card speaks for the box in view, where the
-            // streak count on Home is the commitment across every language.
-            streakExposed =
-                streakHealth(answerDays(state.scheduling, tzId), nowEpochMillis, tzId).isExposed,
+            // why: the merged days, so the warning and the flame it warns about are one
+            // answer — the run is the commitment across every language, not per box.
+            streakExposed = streakHealth(runDays, nowEpochMillis, tzId).isExposed,
         )
     }
 

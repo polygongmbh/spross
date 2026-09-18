@@ -6,6 +6,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 import net.spross.kern.box.BoxState
+import net.spross.kern.box.dayKey
 
 /** Round classification, the counts behind it, and a headline pick that survives a relaunch. */
 class SessionOfferTests {
@@ -158,11 +159,11 @@ class SessionOfferTests {
     }
 
     /**
-     * The run a reminder speaks for is THIS language's: a yesterday worked here and a today
-     * still empty exposes it, and no amount of exposure in another box answers for it.
+     * The run a reminder speaks for is the merged one the flame beside it counts: a day
+     * spent in ANOTHER language has paid today, and this card stops warning about it.
      */
     @Test
-    fun theExposedRunIsReadOffThisLanguageAlone() {
+    fun theExposedRunIsTheMergedOne() {
         // Answered yesterday and not yet today: the run stands and this day still owes it.
         val worked = Box.inject(
             Box.state((1..20).map { Box.word(it) }, Box.config()),
@@ -175,6 +176,14 @@ class SessionOfferTests {
             Box.sched("zy", dueMillis = now, lastReviewMillis = now, logCount = 3),
         )
         assertFalse(SessionOffers.offer(alsoToday, now, Box.TZ).streakExposed)
+
+        // Today worked in another box: the same day, and this one no longer calls it unpaid.
+        val elsewhere = mapOf(dayKey(now, Box.TZ) to 6)
+        assertFalse(SessionOffers.offer(worked, now, Box.TZ, elsewhere).streakExposed)
+
+        // A day that is not today answers for nothing.
+        val staleElsewhere = mapOf(dayKey(Box.plusDays(now, -1.0), Box.TZ) to 6)
+        assertTrue(SessionOffers.offer(worked, now, Box.TZ, staleElsewhere).streakExposed)
     }
 
     /** The pick is a fixed function of the counts — pinned so a rewrite cannot drift it. */

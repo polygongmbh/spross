@@ -436,7 +436,10 @@ final class AppModel {
         growth = box.map {
             BoxEngine.shared.growth(state: $0, nowEpochMillis: now, tzId: tz)
         } ?? []
-        home = box.map { HomeStanding.of(box: $0, nowEpochMillis: now, tzId: tz) } ?? .none
+        home = box.map {
+            HomeStanding.of(box: $0, nowEpochMillis: now, tzId: tz,
+                            otherLanguagesAnswerDays: otherLanguagesAnswerDays)
+        } ?? .none
         trees = composedAreaTrees()
         activity = composedActivityWindow(now: now, tzId: tz)
         areaGroupSections = composedAreaGroupSections()

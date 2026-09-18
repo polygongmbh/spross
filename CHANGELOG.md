@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- The day's card no longer asks you to re-light the streak on a day you already practiced in another language.
+
 ## 7.2.0 — 2026-09-17
 
 - A revealed answer's field now carries the amber edge its screen reader already announced, on Android as on iPhone.

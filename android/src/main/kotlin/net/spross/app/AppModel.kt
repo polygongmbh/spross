@@ -324,7 +324,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * switches languages; those files only change while THEY are the active target,
      * so a per-answer disk read for each of them would be wasted work.
      */
-    private var otherLanguagesAnswerDays: Map<String, Int> = emptyMap()
+    var otherLanguagesAnswerDays by mutableStateOf<Map<String, Int>>(emptyMap())
+        private set
 
     /** What has been read or written this launch, by target ([StoredBoxes]). */
     private var boxes: StoredBoxes = StoredBoxes.EMPTY

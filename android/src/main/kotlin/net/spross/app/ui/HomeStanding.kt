@@ -62,18 +62,22 @@ data class HomeStanding(
          * [canPracticeMore] is handed in rather than asked for: it composes a whole
          * round, and the model already took that answer for the same box
          * (`AppModel.canPracticeExtra`) — asking again composes it twice.
+         *
+         * [otherLanguagesAnswerDays] reaches the offer for its streak warning alone: the
+         * run is one commitment across every box, so the line and the flame beside it agree.
          */
         fun of(
             state: BoxState,
             nowEpochMillis: Long,
             tzId: String,
             canPracticeMore: Boolean,
+            otherLanguagesAnswerDays: Map<String, Int> = emptyMap(),
         ): HomeStanding {
             val horizon = endOfTomorrow(nowEpochMillis, tzId).toEpochMilliseconds()
             // why: the SIZE of the pile, so nothing composes its order — the shuffle
             // keys and the sort behind `dueNow` are thrown away for an integer.
             val due = BoxEngine.dueCount(state, horizon)
-            val offer = SessionOffers.offer(state, nowEpochMillis, tzId)
+            val offer = SessionOffers.offer(state, nowEpochMillis, tzId, otherLanguagesAnswerDays)
             return HomeStanding(
                 offer = offer,
                 headline = offer.headline(nowEpochMillis, tzId),

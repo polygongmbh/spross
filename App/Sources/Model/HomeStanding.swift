@@ -36,9 +36,13 @@ struct HomeStanding {
             hasPackedWords: false, tomorrowDue: 0)
     }
 
-    static func of(box: BoxState, nowEpochMillis: Int64, tzId: String) -> HomeStanding {
+    /// `otherLanguagesAnswerDays` reaches the offer for its streak warning alone: the run
+    /// is one commitment across every box, so the line and the flame beside it agree.
+    static func of(box: BoxState, nowEpochMillis: Int64, tzId: String,
+                   otherLanguagesAnswerDays: [String: KotlinInt]) -> HomeStanding {
         HomeStanding(
-            offer: SessionOffers.shared.offer(state: box, nowEpochMillis: nowEpochMillis, tzId: tzId),
+            offer: SessionOffers.shared.offer(state: box, nowEpochMillis: nowEpochMillis, tzId: tzId,
+                                              otherLanguagesAnswerDays: otherLanguagesAnswerDays),
             today: BoxEngine.shared.today(state: box, nowEpochMillis: nowEpochMillis, tzId: tzId),
             sessionAvailable: SessionOffers.shared.sessionAvailable(
                 state: box, nowEpochMillis: nowEpochMillis, tzId: tzId),
