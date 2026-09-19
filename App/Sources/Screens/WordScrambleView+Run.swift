@@ -1,15 +1,16 @@
 import SwiftUI
 import SprossKern
 
-/// Screen content and RUN half of the word scramble: the card, the field, how an
-/// event reaches kern and what a close leaves behind. State lives on
-/// WordScrambleView; split out purely for file size, the way the letter drill
-/// splits its own off.
+/// The screen content of the word scramble, and what the shared run driver
+/// (`DrillRunning`) needs to drive it: kern's `WordScrambleRun`, its intent
+/// vocabulary, and a close that files the ladder the run climbed. State lives
+/// on WordScrambleView; split out purely for file size, the way the letter
+/// drill splits its own off.
 ///
 /// Grading itself is `WordScrambleRun.grade`'s, against every form the card
 /// authors — its synonyms and variants are real spellings of the same knowledge.
 /// All this side owes is the STRICT drill normalizer, resolved when the run opens.
-extension WordScrambleView {
+extension WordScrambleView: DrillRunning {
 
     // MARK: - What is on screen
 
@@ -45,10 +46,11 @@ extension WordScrambleView {
         .scrollDismissesKeyboard(.never)
     }
 
-    @ViewBuilder
+    /// Writing the word out is the answer, so every keystroke is offered to
+    /// kern — the typed drills' rule, and the only thing this drill parameterizes
+    /// about the shared controls beyond the voice its correction box speaks in.
     private func typedControls(_ task: WordScrambleTask) -> some View {
-        VStack(spacing: Theme.spacing.md) {
-            AnswerInputView(text: $input,
+        DrillAnswerControls(text: $input,
                             feedback: feedback,
                             placeholder: answerPlaceholder(task.language),
                             focus: $answerFocused,
@@ -56,112 +58,71 @@ extension WordScrambleView {
                             // the slip owed, said in the drilled language.
                             correctionVoice: .init(
                                 pronounce: { model.pronounceAction(for: $0, lang: task.language) },
-                                isPlaying: { model.isPronouncing($0, lang: task.language) })) {
-                submit()
-            }
-            // why: writing the word out is the answer — the typed drills' rule,
-            // so a spelling you know never asks for a confirming tap.
-            .onChange(of: input) { _, _ in typed() }
-            switch feedback {
-            case .neutral:
-                // ONE primary action: an empty field reveals, a typed one checks.
-                Button(action: submit) {
-                    Text(input.isBlankAnswer ? "common.reveal" : "common.check")
-                        .frame(maxWidth: .infinity)
-                        .contentTransition(.opacity)
-                }
-                .buttonStyle(PrimaryButtonStyle())
-                .keyboardShortcut(.defaultAction)
-                .animation(.easeOut(duration: 0.15), value: input.isBlankAnswer)
-            case .almost:
-                // The amber hold: the box above spells the slip out, and this
-                // waits for the tap that books it amber.
-                nextButton.transition(.opacity)
-            case .correct:
-                // why: the timer never arms under a screen reader, so a clean
-                // hit would otherwise have nothing to move on with.
-                if screenReaderOn { nextButton }
-            case .revealed:
-                VStack(spacing: Theme.spacing.sm) {
-                    nextButton
-                    if run.offersFinish { DrillStopOffer { closeRun() } }
-                }
-            }
-        }
-        .animation(.easeOut(duration: 0.25), value: feedback)
+                                isPlaying: { model.isPronouncing($0, lang: task.language) }),
+                            onType: { typed() },
+                            onSubmit: { submit() },
+                            onConfirm: { confirm() },
+                            onStop: run.offersFinish ? { closeRun() } : nil)
     }
 
-    /// The one button that books whatever the feedback already said — which of
-    /// the ladder's outcomes that is stays kern's.
-    private var nextButton: some View {
-        Button {
-            dispatch(WordScrambleIntent.ConfirmPending.shared)
-        } label: {
-            Text("common.next").frame(maxWidth: .infinity)
-        }
-        .buttonStyle(PrimaryButtonStyle())
-        .keyboardShortcut(.defaultAction)
-    }
+    // MARK: - The machine under this drill
 
-    // MARK: - Driving the run
-
-    func dispatch(_ intent: WordScrambleIntent) {
+    func reduce(_ run: WordScrambleRunState,
+                _ intent: WordScrambleIntent) -> DrillStep<WordScrambleRunState> {
         let reduction = WordScrambleRun.shared.reduce(state: run, intent: intent, rng: drillRandom)
-        let moved = reduction.state.index != run.index
-        if moved {
-            // why: cleared in the SAME transaction as the question — the next
-            // one must never render a frame carrying the last one's answer.
-            input = ""
-        }
-        let animation: Animation = moved
-            ? (reduceMotion ? .easeOut(duration: 0.2) : .cardFlip)
-            : .easeOut(duration: 0.25)
-        withAnimation(animation) { run = reduction.state }
-        for effect in reduction.effects { apply(effect) }
-        // Nothing left to ask: hand the run back, never sit on a blank card.
-        if reduction.state.finished { closeRun() }
+        return DrillStep(run: reduction.state, effects: reduction.effects)
     }
 
-    private func apply(_ effect: DrillEffect) {
-        DrillEffects.apply(effect, advance: &autoAdvance,
-                           onAdvance: { dispatch(WordScrambleIntent.AdvanceElapsed.shared) },
-                           releaseFocus: { answerFocused = false },
-                           silence: { Pronouncer.shared.stop() })
+    func questionIndex(_ run: WordScrambleRunState) -> Int { Int(run.index) }
+
+    func isFinished(_ run: WordScrambleRunState) -> Bool { run.finished }
+
+    func typedMove(_ text: String) -> WordScrambleIntent? {
+        WordScrambleIntent.InputChanged(text: text)
     }
 
-    // MARK: - What the learner does
-
-    /// "Finishing the word IS the answer" — every keystroke is offered to kern,
-    /// which decides whether it approves, withdraws an approval, or ignores it.
-    func typed() {
-        dispatch(WordScrambleIntent.InputChanged(text: input))
+    func submitMove(_ text: String) -> WordScrambleIntent? {
+        WordScrambleIntent.Submit(text: text)
     }
 
-    /// The ONE primary action, button and Enter alike: kern checks what stands
-    /// in the field, and reveals the spelling when nothing does.
-    func submit() {
-        dispatch(WordScrambleIntent.Submit(text: input))
-    }
+    var confirmMove: WordScrambleIntent { WordScrambleIntent.ConfirmPending.shared }
+
+    var advanceMove: WordScrambleIntent { WordScrambleIntent.AdvanceElapsed.shared }
+
+    var turnFeedback: TurnFeedback { run.feedback }
+
+    var resultTitle: LocalizedStringKey { "trainer.drill.wordScramble" }
+
+    func silence() { Pronouncer.shared.stop() }
 
     // MARK: - Close → back to the hub that opened it
 
-    /// X during a run: kern books a pending answer exactly as the tap would,
-    /// then hands the figures and the ladder it climbed back. An untouched run
-    /// leaves nothing to report, and no record line — this drill keeps no streak
-    /// record.
-    func closeRun() {
+    /// An untouched run leaves nothing to report, and no record line either —
+    /// this drill keeps no streak record. What it DOES file is the ladder:
+    /// the next run opens on the lowest Sprosse the mask does not hold, so a
+    /// Sprosse climbed clean is never asked for twice.
+    func closing() -> DrillClose<WordScrambleRunState> {
         let closed = WordScrambleRun.shared.close(state: run)
-        run = closed.state
-        for effect in closed.effects { apply(effect) }
-        // why: what the NEXT run reads — it opens on the lowest Sprosse the mask
-        // does not hold, so a Sprosse climbed clean is never asked for twice.
         TrainerProgress.bookCleared(closed.clearedSprossen, for: storageKey)
-        guard let summary = closed.summary else {
-            dismiss()
-            return
-        }
-        answerFocused = false
-        onFinish(DrillRunResult(summary, title: "trainer.drill.wordScramble"))
-        dismiss()
+        return DrillClose(run: closed.state, summary: closed.summary, effects: closed.effects)
     }
 }
+
+#if DEBUG
+extension WordScrambleView {
+
+    func seedStreak(_ streak: Int) {
+        run = run.doCopy(config: run.config, task: run.task, index: run.index,
+                         level: run.level, bestLevel: run.bestLevel,
+                         winsAtLevel: run.winsAtLevel,
+                         clearedSprossen: run.clearedSprossen, blemished: run.blemished,
+                         core: run.core.doCopy(done: Int32(streak + 6),
+                                               streak: Int32(streak),
+                                               bestStreak: Int32(max(streak, 12)),
+                                               missRun: run.core.missRun,
+                                               outcomes: run.core.outcomes,
+                                               solved: run.core.solved),
+                         feedback: run.feedback, finished: run.finished)
+    }
+}
+#endif

@@ -12,9 +12,9 @@ import SprossKern
 ///
 /// The RUN is kern's (`WordScrambleRun`): the draw, the masking ladder and the
 /// verdict ladder all live in `run`, and every event becomes a
-/// `WordScrambleIntent`. The driver and the controls are in
-/// WordScrambleView+Run.swift; state stays here — members are internal where
-/// that extension reaches them.
+/// `WordScrambleIntent`. The driver is the shared one (`DrillRunning`), wired
+/// up in WordScrambleView+Run.swift along with the screen's content; state
+/// stays here — members are internal where that extension reaches them.
 struct WordScrambleView: View, LanguageNaming {
     let model: AppModel
     let language: String
@@ -72,13 +72,6 @@ struct WordScrambleView: View, LanguageNaming {
     /// The question on screen; nil only once this box can ask nothing more.
     var current: WordScrambleTask? { run.task }
 
-    /// The field's face for where kern says the answer stands.
-    var feedback: AnswerInputView.Feedback { .init(run.feedback) }
-
-    /// VoiceOver and Switch Control both make a timed screen change hostile, so
-    /// an explicit "Weiter" replaces the beat where either runs.
-    var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
-
     var namingCatalog: Catalog? { model.catalog }
 
     var body: some View {
@@ -104,6 +97,9 @@ struct WordScrambleView: View, LanguageNaming {
             answerFocused = !screenReaderOn
         }
         .onDisappear { autoAdvance?.cancel() }
+        #if DEBUG
+        .onAppear { uitestDriveRun() }
+        #endif
     }
 
     // MARK: - The mixed word
@@ -132,5 +128,5 @@ struct WordScrambleView: View, LanguageNaming {
         Text(verbatim: word.display.map(String.init).joined(separator: ", "))
     }
 
-    // The controls, the driver and the close are WordScrambleView+Run.swift's.
+    // The content, the conformance and the close are WordScrambleView+Run.swift's.
 }
