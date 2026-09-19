@@ -6,14 +6,14 @@ import SprossKern
 /// effects carried out, and the close that hands the figures to the page that
 /// opened the run.
 ///
-/// The drills ask the same way — a card, a field or a grid of tiles, ONE primary
+/// The drills ask the same way — a card, a field or a bank of tiles, ONE primary
 /// action, an amber hold, a ✕ — so they are this driver with the parameters
-/// below and not three cuts of it (`docs/design.md` § Review UX rules).
+/// below and not five cuts of it (`docs/design.md` § Review UX rules).
 /// What actually differs is the machine underneath: kern keeps a heard glyph, a
-/// typed numeral and an atlas apart on purpose, so each drill hands over its own
-/// run state and its own intent vocabulary, and each files a close in stores of
-/// its own. Those are the two associated types and the handful of members under
-/// them; nothing else varies.
+/// typed numeral, an atlas, a mixed-up spelling and a shuffled phrase apart on
+/// purpose, so each drill hands over its own run state and its own intent
+/// vocabulary, and each files a close in stores of its own. Those are the two
+/// associated types and the handful of members under them; nothing else varies.
 ///
 /// Nothing here decides a rule. Which branch waits, what an answer is worth and
 /// when a run is over are kern's, read off `DrillStep`, `DrillEffect` and

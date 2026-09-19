@@ -15,7 +15,9 @@ import SprossKern
 ///
 /// The RUN is kern's (`SentenceScrambleRun`): the deal, the ladder of lengths
 /// and the grading by position all live in `run`, and every event becomes a
-/// `SentenceScrambleIntent`. The bank and the answer row are `ScrambleTileBank`.
+/// `SentenceScrambleIntent`. The driver is the shared one (`DrillRunning`),
+/// wired up in SentenceScrambleView+Run.swift; the bank and the answer row are
+/// `ScrambleTileBank`.
 struct SentenceScrambleView: View {
     let model: AppModel
     /// The language being learned — carried for the ladder's storage key alone;
@@ -25,12 +27,14 @@ struct SentenceScrambleView: View {
     /// shows them (see `DrillResultTile`).
     var onFinish: (DrillRunResult) -> Void = { _ in }
 
-    @Environment(\.dismiss) private var dismiss
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dismiss) var dismiss
+    @Environment(\.accessibilityReduceMotion) var reduceMotion
 
     /// The whole run, kern's.
-    @State private var run: SentenceScrambleRunState
-    @State private var autoAdvance: Task<Void, Never>?
+    // why: internal, not private — the +Run extension reads and drives it.
+    @State var run: SentenceScrambleRunState
+    // why: internal, not private — the +Run extension arms and cancels it.
+    @State var autoAdvance: Task<Void, Never>?
 
     init(model: AppModel, language: String,
          onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
@@ -62,14 +66,10 @@ struct SentenceScrambleView: View {
     /// direction to split it by — a phrase is only ever put back in order.
     static func storageKey(_ language: String) -> String { "sentencescramble.\(language)" }
 
-    private var storageKey: String { Self.storageKey(language) }
+    var storageKey: String { Self.storageKey(language) }
 
     /// The question on screen; nil only once this box can ask nothing more.
-    private var current: SentenceScrambleTask? { run.task }
-
-    /// VoiceOver and Switch Control both make a timed screen change hostile, so
-    /// an explicit "Weiter" replaces the beat where either runs.
-    private var screenReaderOn: Bool { AutoAdvance.screenReaderOn }
+    var current: SentenceScrambleTask? { run.task }
 
     /// How the arrangement stands, as the bank wears it. Kern's feedback, read —
     /// this drill grades by position, so there is no near miss to render.
@@ -97,7 +97,10 @@ struct SentenceScrambleView: View {
             Pronouncer.shared.stop()
         }
         #if DEBUG
-        .onAppear { uitestArrange() }
+        .onAppear {
+            uitestDriveRun()
+            uitestArrange()
+        }
         #endif
     }
 
@@ -116,7 +119,7 @@ struct SentenceScrambleView: View {
         Task { @MainActor in
             for slot in order {
                 try? await Task.sleep(for: .milliseconds(400))
-                dispatch(SentenceScrambleIntent.PlaceAtom(index: Int32(slot)))
+                place(slot)
             }
         }
     }
@@ -135,8 +138,8 @@ struct SentenceScrambleView: View {
                                      isTaken: { run.isPlaced(index: Int32($0)) },
                                      arranged: run.arranged,
                                      verdict: verdict,
-                                     place: { dispatch(SentenceScrambleIntent.PlaceAtom(index: Int32($0))) },
-                                     take: { dispatch(SentenceScrambleIntent.ReturnAtom(index: Int32($0))) },
+                                     place: { place($0) },
+                                     take: { take($0) },
                                      reveal: { revealLines(task) })
                         .id(run.index)
                         .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: 0.97)))
@@ -155,8 +158,6 @@ struct SentenceScrambleView: View {
     /// The meaning always; the authored order above it only where the
     /// arrangement missed, since the chips of a clean one already ARE that order
     /// and setting it a second time would read as a correction.
-    /// What the graded arrangement grows, on the answer card itself — the shared
-    /// reveal, so a drill card and a vocabulary card grow the same thing.
     ///
     /// Two answers, never an answer and a footnote. The ORDER was the question,
     /// so where it was missed the authored one wears the accent every card's
@@ -200,68 +201,17 @@ struct SentenceScrambleView: View {
     /// reaches the authored order by itself and books exactly what asking to be
     /// shown it would; a button beside the bank offered a second way to do what
     /// the bank does.
+    ///
+    /// Once the arrangement is graded it is the shared pair every drill wears
+    /// after a card opens: the way on, and — on the second miss in a row — the
+    /// way out.
     @ViewBuilder
     private var controls: some View {
         if run.showsAnswer {
-            VStack(spacing: Theme.spacing.sm) {
-                nextButton
-                if run.offersFinish { DrillStopOffer { closeRun() } }
-            }
+            DrillRevealedControls(onConfirm: { confirm() },
+                                  onStop: run.offersFinish ? { closeRun() } : nil)
         }
     }
 
-    /// The one button that books whatever the feedback already said — which of
-    /// the ladder's outcomes that is stays kern's.
-    private var nextButton: some View {
-        Button {
-            dispatch(SentenceScrambleIntent.ConfirmPending.shared)
-        } label: {
-            Text("common.next").frame(maxWidth: .infinity)
-        }
-        .buttonStyle(PrimaryButtonStyle())
-        .keyboardShortcut(.defaultAction)
-    }
-
-    // MARK: - Driving the run
-
-    private func dispatch(_ intent: SentenceScrambleIntent) {
-        let reduction = SentenceScrambleRun.shared.reduce(state: run, intent: intent,
-                                                          rng: drillRandom)
-        let moved = reduction.state.index != run.index
-        let animation: Animation = moved
-            ? (reduceMotion ? .easeOut(duration: 0.2) : .cardFlip)
-            : .easeOut(duration: 0.2)
-        withAnimation(animation) { run = reduction.state }
-        for effect in reduction.effects { apply(effect) }
-        // Nothing left to ask: hand the run back, never sit on a blank bank.
-        if reduction.state.finished { closeRun() }
-    }
-
-    private func apply(_ effect: DrillEffect) {
-        DrillEffects.apply(effect, advance: &autoAdvance,
-                           onAdvance: { dispatch(SentenceScrambleIntent.AdvanceElapsed.shared) },
-                           releaseFocus: {},
-                           silence: { Pronouncer.shared.stop() })
-    }
-
-    // MARK: - Close → back to the hub that opened it
-
-    /// X during a run: kern books a pending arrangement exactly as the tap
-    /// would, then hands the figures and the ladder it climbed back. An
-    /// untouched run leaves nothing to report, and no record line — this drill
-    /// keeps no streak record.
-    private func closeRun() {
-        let closed = SentenceScrambleRun.shared.close(state: run)
-        run = closed.state
-        for effect in closed.effects { apply(effect) }
-        // why: what the NEXT run reads — it opens on the lowest Sprosse the mask
-        // does not hold, so a Sprosse climbed clean is never asked for twice.
-        TrainerProgress.bookCleared(closed.clearedSprossen, for: storageKey)
-        guard let summary = closed.summary else {
-            dismiss()
-            return
-        }
-        onFinish(DrillRunResult(summary, title: "trainer.drill.sentenceScramble"))
-        dismiss()
-    }
+    // The conformance, the driver and the close are SentenceScrambleView+Run.swift's.
 }
