@@ -90,6 +90,12 @@ fun CardFace(
  *
  * The hairline is deliberately faint: the fill and the shadow carry the boundary and the
  * edge only closes it (iOS `cardSurface`, separator @ 0.6).
+ *
+ * iOS keeps a flat `panelSurface()` beside `cardSurface()`, reserving the shadow/hairline
+ * for cards alone. Android tried the same split (`Modifier.card()` for cards, a flat
+ * `Modifier.panel()` for everything else) and reverted it: on this platform's weaker
+ * surface/background contrast a flat panel read as a rectangle nobody could find, and the
+ * two phones already diverge in plenty of native ways — this is one more, not a bug.
  */
 @Composable
 fun Modifier.panel(shape: Shape = MaterialTheme.shapes.medium): Modifier = this
