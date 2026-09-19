@@ -24,7 +24,7 @@ extension DrillRunView: DrillRunning {
 
     func typedMove(_ text: String) -> DrillMove? { .typed(text) }
 
-    func submitMove(_ text: String) -> DrillMove { .submitted(text) }
+    func submitMove(_ text: String) -> DrillMove? { .submitted(text) }
 
     var confirmMove: DrillMove { .confirmed }
 

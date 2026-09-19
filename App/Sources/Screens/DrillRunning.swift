@@ -57,8 +57,10 @@ protocol DrillRunning: View {
     /// nothing until it is submitted — the letters ladder grades whole answers.
     func typedMove(_ text: String) -> Move?
 
-    /// Check and Enter alike.
-    func submitMove(_ text: String) -> Move
+    /// Check and Enter alike. nil where there is no field to check — placing
+    /// the last atom IS the answer on the drill whose question is an order
+    /// rather than a spelling.
+    func submitMove(_ text: String) -> Move?
 
     /// The explicit tap that books whatever the feedback already said.
     var confirmMove: Move { get }
@@ -151,7 +153,8 @@ extension DrillRunning {
     /// The ONE primary action, button and Enter alike: kern checks what stands
     /// in the field, and reveals the answer when nothing does.
     func submit() {
-        dispatch(submitMove(input))
+        guard let move = submitMove(input) else { return }
+        dispatch(move)
     }
 
     /// The tap that books whatever the feedback already said.

@@ -25,7 +25,7 @@ extension LetterDrillView: DrillRunning {
 
     func isFinished(_ run: LetterDrillRunState) -> Bool { run.finished }
 
-    func submitMove(_ text: String) -> LetterDrillIntent {
+    func submitMove(_ text: String) -> LetterDrillIntent? {
         LetterDrillIntent.Submit(text: text)
     }
 

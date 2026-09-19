@@ -22,7 +22,7 @@ extension NumbersRunView: DrillRunning {
 
     func typedMove(_ text: String) -> NumbersIntent? { NumbersIntent.InputChanged(text: text) }
 
-    func submitMove(_ text: String) -> NumbersIntent { NumbersIntent.Submit(text: text) }
+    func submitMove(_ text: String) -> NumbersIntent? { NumbersIntent.Submit(text: text) }
 
     var confirmMove: NumbersIntent { NumbersIntent.ConfirmPending.shared }
 
