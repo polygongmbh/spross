@@ -181,7 +181,7 @@ struct TrainerHubView: View, LanguageNaming {
     func chipLabel(emoji: String, title: Text) -> some View {
         VStack(spacing: Theme.spacing.sm) {
             Text(emoji)
-                .font(.system(size: 30))
+                .font(.system(size: 30)) // card-parity: the hub chip's own glyph, not a card prompt
                 .accessibilityHidden(true)
             title
                 .font(Theme.typography.caption)

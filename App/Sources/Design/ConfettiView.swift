@@ -110,7 +110,7 @@ struct ConfettiView: View {
             let rect = CGRect(x: -width / 2, y: -height / 2, width: width, height: height)
             let shape = index % 3 == 1
                 ? Path(ellipseIn: rect)
-                : Path(roundedRect: rect, cornerRadius: 1.5)
+                : Path(roundedRect: rect, cornerRadius: 1.5) // card-parity: a paper scrap's corner, not a card radius
 
             context.drawLayer { layer in
                 layer.opacity = 0.75 + random(wave, index, 11) * 0.25

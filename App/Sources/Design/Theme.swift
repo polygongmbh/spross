@@ -283,7 +283,7 @@ struct PrimaryButtonStyle: ButtonStyle {
             .foregroundStyle(Theme.colors.onColor)
             .padding(.vertical, Theme.spacing.lg)
             .padding(.horizontal, Theme.spacing.xl)
-            .frame(minHeight: 52)
+            .frame(minHeight: 52) // card-parity: the button's own height, not a card reserve
             .background(color, in: RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous))
             .opacity(configuration.isPressed ? 0.85 : 1)
             .scaleEffect(configuration.isPressed ? 0.97 : 1)

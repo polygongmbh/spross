@@ -86,7 +86,7 @@ private struct GradeButton: View {
             }
             .foregroundStyle(outcome.color)
             .frame(maxWidth: .infinity)
-            .frame(minHeight: 60)
+            .frame(minHeight: 60) // card-parity: the rating row's own height, not a card reserve
             .background(
                 RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
                     .fill(outcome.color.opacity(0.14))

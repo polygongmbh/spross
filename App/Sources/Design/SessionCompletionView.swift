@@ -264,7 +264,7 @@ struct SessionCompletionView: View {
                     .sway(angle: Self.swayAngle(index), period: Self.swayPeriod(index))
             }
             Text(verbatim: "🎉")
-                .font(.system(size: 88))
+                .font(.system(size: 88)) // card-parity: the done screen's own glyph, not a card prompt
                 .scaleEffect(burst ? 1 : 0.4)
                 .rotationEffect(.degrees(burst ? 0 : -25))
                 .animation(.spring(response: 0.5, dampingFraction: 0.5), value: burst)

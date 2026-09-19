@@ -93,7 +93,7 @@ struct OnboardingHero: View {
             // why: verbatim — a plain Text would take the emoji for a localization key
             // and read the key back on a screen that has no entry for it.
             Text(verbatim: emoji)
-                .font(.system(size: 56))
+                .font(.system(size: 56)) // card-parity: the story page's own glyph, not a card prompt
                 .accessibilityHidden(true)
             Text(title)
                 .font(Theme.typography.title)

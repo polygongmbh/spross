@@ -32,18 +32,36 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 CANON = "App/Sources/Design/Theme.swift"
 DROID = "android/src/main/kotlin/net/spross/app/ui/Theme.kt"
 
-# A card FACE is the surface a question is asked on; a card BODY is what a face composes.
-# Only a face owes the primitives — a body is already inside one.
+# A card FACE is the surface a question is asked on; a card BODY is what a face composes,
+# and the chrome standing around one — a tile, a field, a button, a strip of bars.
+# Only a face owes the primitives — everything else is already inside one or beside it.
+# A file joins a list once its numbers are accounted for; an unlisted file is unscanned,
+# which is how the 2026-09-03 drill choice grid was written, reviewed and merged unseen.
 IOS_FACES = ["App/Sources/Design/VocabCardView.swift", "App/Sources/Design/CountryPromptCard.swift",
              "App/Sources/Design/HearPromptCard.swift", "App/Sources/Screens/DrillPromptCard.swift"]
 IOS_BODIES = ["App/Sources/Design/CardReveal.swift", "App/Sources/Design/SpokenWord.swift",
               "App/Sources/Design/DrillAnswerControls.swift",
               "App/Sources/Design/ReferenceSheet.swift",
+              "App/Sources/Design/ActivityStripView.swift",
+              "App/Sources/Design/AnswerInputView.swift",
+              "App/Sources/Design/ConfettiView.swift",
+              "App/Sources/Design/DrillChrome.swift",
+              "App/Sources/Design/OrchardCanvas.swift",
+              "App/Sources/Design/RatingButtonsView.swift",
+              "App/Sources/Design/SearchField.swift",
+              "App/Sources/Design/SessionCompletionView.swift",
+              "App/Sources/Design/Theme.swift",
               "App/Sources/Screens/DrillOverviewPage.swift",
               "App/Sources/Screens/DrillChoiceGrid.swift",
               "App/Sources/Screens/LetterDrillView+Stages.swift",
               "App/Sources/Screens/DrillRunView+Content.swift",
-              "App/Sources/Screens/DrillRunView+Choices.swift"]
+              "App/Sources/Screens/DrillRunView+Choices.swift",
+              "App/Sources/Screens/CountriesReference.swift",
+              "App/Sources/Screens/HomeView+DayCards.swift",
+              "App/Sources/Screens/OnboardingView+Story.swift",
+              "App/Sources/Screens/OwnWordFormView.swift",
+              "App/Sources/Screens/RootView.swift",
+              "App/Sources/Screens/TrainerHubView.swift"]
 DROID_UI = "android/src/main/kotlin/net/spross/app/ui/"
 DROID_FACES = [DROID_UI + n for n in ("CardFace.kt", "CountryPromptCard.kt", "ProduceCard.kt",
                                       "NumbersPrompt.kt", "LetterDrillScreen.kt")]

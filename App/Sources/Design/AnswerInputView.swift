@@ -107,7 +107,7 @@ struct AnswerInputView: View {
             statusIcon
         }
         .padding(.horizontal, Theme.spacing.lg)
-        .frame(minHeight: 56)
+        .frame(minHeight: 56) // card-parity: the field's own height, not a card reserve
         .background(
             RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
                 .fill(Theme.colors.surface)

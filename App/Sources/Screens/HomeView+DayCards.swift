@@ -66,7 +66,7 @@ extension HomeView {
             StreakFlameView(days: streak, flame: model.stats?.flame ?? .unlit)
         } else {
             Text(verbatim: "✨")
-                .font(.system(size: 56))
+                .font(.system(size: 56)) // card-parity: the card's own glyph, not a card prompt
                 .accessibilityHidden(true)
         }
     }
@@ -157,7 +157,7 @@ extension HomeView {
             StreakFlameView(days: streak, emoji: emoji)
         } else {
             Text(verbatim: emoji)
-                .font(.system(size: 56))
+                .font(.system(size: 56)) // card-parity: the card's own glyph, not a card prompt
                 .accessibilityHidden(true)
         }
     }
@@ -196,7 +196,7 @@ extension HomeView {
     func stateCard(emoji: String, title: LocalizedStringKey, message: Text) -> some View {
         VStack(spacing: Theme.spacing.lg) {
             Text(emoji)
-                .font(.system(size: 56))
+                .font(.system(size: 56)) // card-parity: the card's own glyph, not a card prompt
                 .accessibilityHidden(true)
             Text(title)
                 .font(Theme.typography.title)

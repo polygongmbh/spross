@@ -68,7 +68,7 @@ struct OrchardCanvas: View {
         VStack(spacing: 0) {
             Spacer(minLength: 0)
             Text(verbatim: mark.tree.emoji)
-                .font(.system(size: 13))
+                .font(.system(size: 13)) // card-parity: a mark under a 58pt cell, below every type role
                 .opacity(mark.tree.isBare ? 0.4 : 1)
                 .accessibilityHidden(true)
                 .frame(height: OrchardLayout.labelHeight)

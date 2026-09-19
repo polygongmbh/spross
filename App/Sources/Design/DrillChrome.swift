@@ -116,7 +116,7 @@ struct DrillResultTile: View {
     var body: some View {
         HStack(alignment: .center, spacing: Theme.spacing.lg) {
             Text(verbatim: emoji)
-                .font(.system(size: 40))
+                .font(.system(size: 40)) // card-parity: the tile's own glyph, not a card prompt
                 .sway(angle: 4, period: 3.4)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {

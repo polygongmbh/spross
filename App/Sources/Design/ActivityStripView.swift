@@ -130,7 +130,7 @@ struct ActivityStripView: View {
             bar(entry, maxReviews: maxReviews, isToday: isToday)
             runSegment(run, joinsLeft: joinsLeft, joinsRight: joinsRight)
             Text(weekdayLetter(entry.day))
-                .font(.system(size: 9, weight: .medium, design: .rounded))
+                .font(.system(size: 9, weight: .medium, design: .rounded)) // card-parity: a weekday letter under a 2pt bar, below every type role
                 .foregroundStyle(isToday ? Theme.colors.accent : Theme.colors.textSecondary)
         }
         .frame(maxWidth: .infinity)
@@ -145,7 +145,7 @@ struct ActivityStripView: View {
         let scaled = share > 0 ? share.squareRoot() : 0
         let height = entry.reviews > 0 ? max(10, Self.maxBarHeight * scaled) : 6
         let hue = isToday ? Theme.colors.accent : Theme.colors.success
-        let shape = RoundedRectangle(cornerRadius: 3, style: .continuous)
+        let shape = RoundedRectangle(cornerRadius: 3, style: .continuous) // card-parity: the bar's own corner, not a card radius
         return Group {
             if entry.reviews > 0 {
                 shape.fill(hue.opacity(0.45 + 0.55 * scaled))

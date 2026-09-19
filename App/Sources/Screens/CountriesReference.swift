@@ -35,7 +35,7 @@ struct CountriesReference: View {
     private func countryRow(_ row: CountryReferenceRow) -> some View {
         HStack(alignment: .top, spacing: Theme.spacing.md) {
             Text(verbatim: row.flag)
-                .font(.system(size: 28))
+                .font(.system(size: 28)) // card-parity: a picture, not a type role
                 .accessibilityHidden(true)
             side(name: row.source, nationality: row.sourceNationality,
                  languages: row.sourceLanguages, tint: Theme.colors.textPrimary,

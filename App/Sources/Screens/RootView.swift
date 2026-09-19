@@ -77,7 +77,7 @@ struct RootView: View {
     private var loading: some View {
         VStack(spacing: Theme.spacing.lg) {
             Text(verbatim: "🌱")
-                .font(.system(size: 56))
+                .font(.system(size: 56)) // card-parity: the splash's own glyph, not a card prompt
                 .sway(angle: 4, period: 2.2)
                 .scaleEffect(sprouting ? 1.08 : 0.92)
                 .animation(
