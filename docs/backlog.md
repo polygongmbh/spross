@@ -11,6 +11,13 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## Engine & scheduling
 
+- The two scrambles are the only drills whose STORE KEY is minted platform-side, and twice:
+  `"wordscramble.<lang>"` / `"sentencescramble.<lang>"` are spelled independently in
+  `WordScrambleView.storageKey` and `TrainerStore.wordScrambleKey`, held together only by
+  Android's KDoc naming the Swift file. kern owns this grammar for every other drill
+  (`NumbersMode.recordKey`/`progressKey`, `CLEARED_PREFIX`, `clearedKey`, `clearedSprossen`,
+  `clearedMask`), so two `Drill`-keyed functions close it — and until they do, a drift silently
+  resets a learner's ladder on one phone.
 - The four drill run states (`NumbersRunState`, `LetterDrillRunState`, `WordScrambleRunState`,
   `SentenceScrambleRunState`) each expose the same read surface independently — `index`, `level`,
   `finished`, `owesAnswer`, `tally`, and `streak`/`bestStreak`/`outcomes` off a shared `core` —
@@ -84,6 +91,14 @@ Catalog content — its forms, its audio and the per-language questions — live
   hand-off, none of which went through `DrillRunning` because the 2026-09 audit never listed
   them — their prose had drifted, so the comment scan could not see them. Android folded its two
   into `DrillFlow` in the same sweep, so this is the mirror of work already done once.
+- iOS throws away what a scramble run earns: `TrainerHubView` builds both scrambles with no
+  `onFinish`, so the default no-op eats the `DrillRunSummary` and the sheet simply dismisses,
+  where Android lands it on Home through `model.finishDrill`. The hand-off is shared in the
+  driver now; what iOS lacks is anywhere for it to land.
+- Two emoji sizes disagree on the same control across the phones — the result tile's glyph is
+  40pt against 36sp (`DrillChrome.swift` / `DrillChrome.kt`) and the completion 🎉 is 88pt
+  against 64sp (`SessionCompletionView.swift` / `SessionSummary.kt`) — while the hub chip and
+  the reference-sheet flag already agree, so this is drift rather than a deliberate split.
 - Three parity differences the reference-sheet and box-row sweep surfaced, each a both-sides
   ruling rather than a patch: iOS's `FeminineBadge` is cut smaller than Android's, which
   composes it from the shared `Pill`; Android's panels carry a drop shadow and a hairline
@@ -149,8 +164,9 @@ Catalog content — its forms, its audio and the per-language questions — live
   choice grid was written, reviewed and merged unseen before `dade95ee` consolidated it).
   Deriving the scanned set the way `LayerBoundaryTest` derives its enum list is one half, and
   measured 2026-09-19 it splits: the BODIES set derives cleanly as "every UI source file except
-  the two token tables, which necessarily state the numbers they define" — 2 exclusions against
-  ~30 hand-typed names, 17 residual findings in 14 files — while the FACES set does not, since
+  `ui/Theme.kt`" — ONE exclusion against a list that has since grown past forty hand-typed names,
+  and the iOS side needs none at all, because Compose's `RoundedCornerShape(14.dp)` matches the
+  Android rule where Swift's `let xs: CGFloat = 4` matches no iOS rule — while FACES does not, since
   "the surface a question is asked on" is no property of the filesystem, and inverting it to
   "files reaching for exactly one primitive" just returns everything that uses a panel. Copy
   `LayerBoundaryTest`'s vacuity guard with it, or a bad glob turns the gate green. Separately,
