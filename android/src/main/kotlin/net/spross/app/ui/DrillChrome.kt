@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -93,17 +92,17 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Theme.colors.surfaceTint, RoundedCornerShape(20.dp))
+            .background(Theme.colors.surfaceTint, MaterialTheme.shapes.medium)
             .padding(Theme.spacing.lg)
             // why: one TalkBack stop — the figures describe a single run.
             .semantics(mergeDescendants = true) { },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
     ) {
-        Text(tierEmoji(summary.tier), fontSize = 36.sp)
+        Text(tierEmoji(summary.tier), fontSize = 36.sp) // card-parity: the tier emoji's own size, not a prompt role
         Column(
             modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(2.dp),
+            verticalArrangement = Arrangement.spacedBy(2.dp), // card-parity: the tally lines sit tighter than xs
         ) {
             Text(
                 countLine(chrome.trainerResultTasksDoneOne, chrome.trainerResultTasksDone, summary.done),

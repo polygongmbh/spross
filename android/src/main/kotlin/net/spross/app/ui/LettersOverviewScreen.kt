@@ -94,7 +94,7 @@ private fun StageRow(
                 modifier = Modifier.clearAndSetSemantics { },
             )
         }
-        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) { // card-parity: the title/caption pair sits tighter than xs
             Text(
                 chrome.name(stage),
                 style = MaterialTheme.typography.titleMedium,

@@ -130,7 +130,7 @@ private fun BarRow(bars: List<ActivityBar>, palette: ThemeColors) {
         horizontalArrangement = Arrangement.spacedBy(GUTTER),
         verticalAlignment = Alignment.Bottom,
     ) {
-        val shape = RoundedCornerShape(3.dp)
+        val shape = RoundedCornerShape(3.dp) // card-parity: the bar's own corner, not a card radius
         bars.forEach { bar ->
             val column = Modifier.weight(1f).height(bar.heightDp.dp)
             val hue = if (bar.isToday) palette.accent else palette.success

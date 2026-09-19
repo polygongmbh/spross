@@ -203,7 +203,7 @@ fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
         // why: the track is the shelf's untouched rest — without it the stretches would
         // end in the card's own background and the bar would read as full.
         modifier = modifier.fillMaxWidth().height(6.dp).background(palette.separator, shape),
-        horizontalArrangement = Arrangement.spacedBy(2.dp),
+        horizontalArrangement = Arrangement.spacedBy(2.dp), // card-parity: the hairline parting the stretches sits tighter than xs
     ) {
         val stretches = listOf(
             stats.consolidated to palette.grown,

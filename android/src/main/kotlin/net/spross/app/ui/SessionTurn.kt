@@ -160,7 +160,7 @@ private val VERDICT_TILE = 60.dp
 @Composable
 fun WriteOutStep(model: AppModel, flow: TurnFlow, step: CopyStep, targetName: String) {
     val chrome = model.chrome
-    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         AnswerField(
             value = flow.copyInput,
             onValueChange = flow::writeCopy,

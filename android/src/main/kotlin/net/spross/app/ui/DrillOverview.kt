@@ -167,7 +167,7 @@ fun SelectionRow(
             RowMark.Many -> Checkbox(selected, onCheckedChange = null)
             RowMark.Locked -> Text(LOCK, modifier = Modifier.clearAndSetSemantics { })
         }
-        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) { // card-parity: the title/caption pair sits tighter than xs
             Text(
                 title,
                 style = MaterialTheme.typography.titleMedium,
@@ -206,7 +206,7 @@ fun ModifierSwitchRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
-        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) { // card-parity: the title/caption pair sits tighter than xs
             Text(
                 if (open) title else "$LOCK $title",
                 style = MaterialTheme.typography.titleMedium,

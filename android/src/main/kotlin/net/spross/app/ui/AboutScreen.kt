@@ -48,7 +48,7 @@ fun AboutScreen(model: AppModel) {
     val chrome = model.chrome
     BackHandler { model.closeAbout() }
 
-    Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
+    Column(modifier = Modifier.fillMaxSize().padding(Theme.spacing.xl)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
                 chrome.settingsAbout,
@@ -60,7 +60,7 @@ fun AboutScreen(model: AppModel) {
                 modifier = Modifier.semantics { contentDescription = chrome.commonClose },
             ) { Icon(SprossIcons.Close, contentDescription = null) }
         }
-        LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        LazyColumn(verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
             item { Spacer(Modifier.height(4.dp)) }
             item { LegalSection(chrome) }
             item {
@@ -114,11 +114,11 @@ private fun CreditGroup(credit: AudioCredit, chrome: Chrome) {
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable { expanded = !expanded }
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+                .padding(Theme.spacing.lg),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
         ) {
             Text(credit.author, style = MaterialTheme.typography.titleSmall)
-            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) { // card-parity: the recording-count/license pair sits between xs and sm
                 Text(
                     countLine(chrome.creditsRecordingsOne, chrome.creditsRecordings, credit.files.size),
                     style = MaterialTheme.typography.bodySmall,
@@ -191,8 +191,8 @@ private fun FontCredit(chrome: Chrome) {
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable { expanded = !expanded }
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+                .padding(Theme.spacing.lg),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
         ) {
             Text(chrome.creditsFont, style = MaterialTheme.typography.bodySmall)
             if (expanded) {

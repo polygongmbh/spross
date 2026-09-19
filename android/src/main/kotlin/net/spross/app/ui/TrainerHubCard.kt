@@ -181,7 +181,7 @@ private fun RowScope.EntryChip(chip: HubChip, suffix: String) {
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm, Alignment.CenterVertically),
     ) {
         // why: the name is the label — TalkBack reading "Numbers", not "input symbol Numbers".
-        Text(chip.emoji, fontSize = 30.sp, modifier = Modifier.clearAndSetSemantics { })
+        Text(chip.emoji, fontSize = 30.sp, modifier = Modifier.clearAndSetSemantics { }) // card-parity: the hub tile's own glyph, not a card prompt
         Text(
             chip.title,
             style = MaterialTheme.typography.bodySmall,
