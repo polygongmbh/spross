@@ -147,7 +147,15 @@ Catalog content — its forms, its audio and the per-language questions — live
 - Nothing gates a screen re-cutting a component that already exists: `card-parity.py`'s face
   and body lists are hand-kept, so a newly added file is never scanned (the 2026-09-03 drill
   choice grid was written, reviewed and merged unseen before `dade95ee` consolidated it).
-  Deriving the scanned set the way `LayerBoundaryTest` derives its enum list is one half.
+  Deriving the scanned set the way `LayerBoundaryTest` derives its enum list is one half, and
+  measured 2026-09-19 it splits: the BODIES set derives cleanly as "every UI source file except
+  the two token tables, which necessarily state the numbers they define" — 2 exclusions against
+  ~30 hand-typed names, 17 residual findings in 14 files — while the FACES set does not, since
+  "the surface a question is asked on" is no property of the filesystem, and inverting it to
+  "files reaching for exactly one primitive" just returns everything that uses a panel. Copy
+  `LayerBoundaryTest`'s vacuity guard with it, or a bad glob turns the gate green. Separately,
+  `DROID_PRIMS` counts `.panel(` as a card primitive, so a file clears the composition bar on a
+  panel plus one card thing — and `IOS_PRIMS` names no panel at all, so the two are not parallel.
   The other half was to be a duplicate-`// why:` scan, and the 2026-09 sweep measured it into
   the ground: it reads files that duplicate a COMMENT, so a copy whose prose drifted is
   invisible, and four of the largest finds were invisible to it — two scramble screens, a
