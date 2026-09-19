@@ -118,6 +118,9 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         streak = run.streak,
         bestStreak = run.bestStreak,
         announcesRecord = true,
+        // why: the run says its answers (and, reversed, its prompts) out loud, so it
+        // owes the learner a way to silence them here.
+        showsMuteButton = true,
     ) {
         // The tap speaker rides the same rule as the autoplay above: a prompt that is
         // a name, on the side being learned. A tap outranks the mute; this only says

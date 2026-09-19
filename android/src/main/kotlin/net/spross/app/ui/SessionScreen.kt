@@ -52,7 +52,13 @@ fun SessionScreen(model: AppModel) {
         modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
     ) {
-        RunTopBar(model, ui.segments, model::finishSession, ui.remaining, closeLabel = model.chrome.commonDone)
+        RunTopBar(
+            model, ui.segments, model::finishSession, ui.remaining,
+            closeLabel = model.chrome.commonDone,
+            // why: the session reads both prompt and answer aloud, so it owes the
+            // learner a way to silence them here.
+            showsMuteButton = true,
+        )
         if (ui.card == null) SessionSummary(model, ui) else TurnCard(model, ui)
     }
 }

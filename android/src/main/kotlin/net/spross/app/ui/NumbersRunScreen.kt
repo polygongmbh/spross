@@ -80,6 +80,9 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
         announcesRecord = true,
         // The table raised over the run takes the back gesture first; the run is still there.
         backLeaves = !flow.showingReference,
+        // why: the run says its answers out loud, so it owes the learner a way to
+        // silence them here, not in Settings.
+        showsMuteButton = true,
     ) {
         DrillPromptCard(model, flow, chrome)
         NumbersControls(model, flow, chrome, inputFocus, leave)

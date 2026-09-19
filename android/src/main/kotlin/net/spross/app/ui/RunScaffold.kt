@@ -61,6 +61,10 @@ import net.spross.kern.trainer.DrillTally
  * [remaining] is one on an ENDLESS run, which has no total to count toward — the filled and
  * empty stretches then move together, so the bar fills as the run grows instead of breaking
  * past a fixed end.
+ *
+ * [showsMuteButton] is opt-in: only a run that reads words aloud owes the learner a way to
+ * silence them here (iOS `SessionScaffold.showsMuteButton`) — a run that only offers a tap-to-hear
+ * speaker needs no switch, since a tap already outranks the mute.
  */
 @Composable
 fun RunTopBar(
@@ -71,6 +75,7 @@ fun RunTopBar(
     /** The figures beside the bar; null where the bar alone says where the round stands. */
     counter: String? = null,
     closeLabel: String = model.chrome.commonClose,
+    showsMuteButton: Boolean = false,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -86,7 +91,7 @@ fun RunTopBar(
                 color = Theme.colors.textSecondary,
             )
         }
-        ReadAloudSwitch(model)
+        if (showsMuteButton) ReadAloudSwitch(model)
     }
 }
 
@@ -192,7 +197,9 @@ fun <F : Any> rememberRun(model: AppModel, back: Screen, key: Any? = Unit, open:
  *
  * [sprosse] is worded by the drill that owns it and is null where a run has one Sprosse only;
  * [announcesRecord] carries a real difference rather than settling it, since the letter
- * drill has always spoken the streak alone.
+ * drill has always spoken the streak alone. [showsMuteButton] is [RunTopBar]'s own gate,
+ * passed through rather than defaulted here — which runs autoplay speech is a call each
+ * drill screen makes for itself, matching iOS's per-run `showsMuteButton`.
  */
 @Composable
 fun DrillRunScaffold(
@@ -207,6 +214,7 @@ fun DrillRunScaffold(
     announcesRecord: Boolean = false,
     /** False while something stands OVER the run — the number table, which the back gesture closes. */
     backLeaves: Boolean = true,
+    showsMuteButton: Boolean = false,
     spacing: Dp = Theme.spacing.md,
     body: @Composable ColumnScope.() -> Unit,
 ) {
@@ -216,7 +224,7 @@ fun DrillRunScaffold(
         modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
-        RunTopBar(model, outcomes, leave, counter = tally.counter())
+        RunTopBar(model, outcomes, leave, counter = tally.counter(), showsMuteButton = showsMuteButton)
         Column(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(spacing),
