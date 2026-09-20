@@ -64,6 +64,9 @@ another language has a genuinely equivalent expression — same real-world funct
 imagery — and use the ordinary coverage rule to omit a language honestly where no such expression
 is known, rather than force one. `notes` carries the literal back-translation of each side's
 imagery: that gap, made visible on reveal, is the actual teaching content.
+Write it as `Wörtlich: <back-translation>.` (or the reader's own language's word for
+"literally"), with no quote marks around the back-translation itself —
+the prefix already says it is one, so a wrapping „…“/"…" pair repeats that for free.
 
 The mirroring rule also decides **baked-in objects**: a verb carries its object in EVERY
 language or in none. Swahili often cannot go bare, because one verb covers several
