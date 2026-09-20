@@ -46,12 +46,6 @@ class CountryDrillFlow(
         )
     }
 
-    override fun index(state: CountryDrillRunState) = state.index
-
-    override fun finished(state: CountryDrillRunState) = state.finished
-
-    override fun owesAnswer(state: CountryDrillRunState) = state.owesAnswer
-
     override fun inputChanged(text: String) = CountryDrillIntent.InputChanged(text)
 
     override fun submit(text: String) = CountryDrillIntent.Submit(text)

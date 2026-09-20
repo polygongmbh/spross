@@ -7,6 +7,7 @@ import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.DrillEffect
+import net.spross.kern.trainer.DrillRunProgress
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.DrillTally
 
@@ -132,7 +133,7 @@ data class TypedDrillClose(
  * on; what this adds is the face the shared screen reads — [view], [chosen], and a close
  * that hands back the figures the atlas and the calendar both file.
  */
-abstract class TypedDrillFlow<S, I>(
+abstract class TypedDrillFlow<S : DrillRunProgress, I>(
     start: S,
     rng: Random,
     onTone: (ToneKind) -> Unit,

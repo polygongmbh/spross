@@ -32,7 +32,7 @@ class NumbersFlow(
     onReleaseFocus: () -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
-) : ProgressDrillFlow<NumbersRunState, NumbersIntent>(
+) : DrillFlow<NumbersRunState, NumbersIntent>(
     start, rng, onTone, onReleaseFocus, onSilence, screenReaderOn,
 ) {
     /**

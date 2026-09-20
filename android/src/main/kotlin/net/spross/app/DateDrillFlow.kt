@@ -64,12 +64,6 @@ class DateDrillFlow(
         )
     }
 
-    override fun index(state: DateDrillRunState) = state.index
-
-    override fun finished(state: DateDrillRunState) = state.finished
-
-    override fun owesAnswer(state: DateDrillRunState) = state.owesAnswer
-
     override fun inputChanged(text: String) = DateDrillIntent.InputChanged(text)
 
     override fun submit(text: String) = DateDrillIntent.Submit(text)

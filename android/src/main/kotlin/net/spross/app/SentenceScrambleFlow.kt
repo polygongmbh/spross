@@ -34,7 +34,7 @@ class SentenceScrambleFlow(
     onTone: (ToneKind) -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
-) : ProgressDrillFlow<SentenceScrambleRunState, SentenceScrambleIntent>(
+) : DrillFlow<SentenceScrambleRunState, SentenceScrambleIntent>(
     // Nothing to release: this drill has no field, so no pause can be waiting behind a keyboard.
     start, rng, onTone, onReleaseFocus = {}, onSilence = onSilence, screenReaderOn = screenReaderOn,
 ) {

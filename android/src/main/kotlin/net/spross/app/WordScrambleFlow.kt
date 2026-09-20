@@ -35,7 +35,7 @@ class WordScrambleFlow(
     onReleaseFocus: () -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
-) : ProgressDrillFlow<WordScrambleRunState, WordScrambleIntent>(
+) : DrillFlow<WordScrambleRunState, WordScrambleIntent>(
     start, rng, onTone, onReleaseFocus, onSilence, screenReaderOn,
 ) {
     /** Leaving: kern books a pending answer exactly as the tap would, then reports. */

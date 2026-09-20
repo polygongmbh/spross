@@ -27,7 +27,7 @@ class LetterDrillFlow(
     onReleaseFocus: () -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
-) : ProgressDrillFlow<LetterDrillRunState, LetterDrillIntent>(
+) : DrillFlow<LetterDrillRunState, LetterDrillIntent>(
     start, rng, onTone, onReleaseFocus, onSilence, screenReaderOn,
 ) {
     /** One attempt per tile — a second tap after the answer is in would be a retry. */
