@@ -31,10 +31,7 @@
     "en": "Literally: He closed his eyes on it."
    }
   },
-  "seventh-heaven": {
-   "text": "Elle est au septième ciel.",
-   "notes": { "de": "Wörtlich dasselbe Bild.", "en": "Literally the same image." }
-  },
+  "seventh-heaven": { "text": "Elle est au septième ciel." },
   "bite-the-bullet": {
    "text": "Serre les dents !",
    "notes": { "de": "Wörtlich: Beiß die Zähne zusammen!", "en": "Literally: Clench your teeth!" }

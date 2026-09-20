@@ -1,13 +1,7 @@
 {
  "title": "Idiomaĵoj",
  "words": {
-  "buy-a-pig-in-a-poke": {
-   "text": "Ne aĉetu katon en sako!",
-   "notes": {
-    "de": "Wörtlich dasselbe Bild: Kauf keine Katze im Sack!",
-    "en": "Literally: Don't buy a cat in a sack!"
-   }
-  },
+  "buy-a-pig-in-a-poke": { "text": "Ne aĉetu katon en sako!", "notes": { "en": "Literally: Don't buy a cat in a sack!" } },
   "fed-up-to-here": {
    "text": "Ĝi jam staras al mi en la gorĝo.",
    "notes": {
@@ -22,9 +16,6 @@
     "en": "Literally: He closed his eyes about it."
    }
   },
-  "seventh-heaven": {
-   "text": "Ŝi estas en la sepa ĉielo.",
-   "notes": { "de": "Wörtlich dasselbe Bild.", "en": "Literally the same image." }
-  }
+  "seventh-heaven": { "text": "Ŝi estas en la sepa ĉielo." }
  }
 }

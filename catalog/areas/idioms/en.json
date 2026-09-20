@@ -31,10 +31,7 @@
    "text": "He turned a blind eye.",
    "notes": { "de": "Wörtlich: Er wandte ein blindes Auge zu.", "es": "Literalmente: Volvió un ojo ciego." }
   },
-  "seventh-heaven": {
-   "text": "She's in seventh heaven.",
-   "notes": { "de": "Wörtlich dasselbe Bild: im siebten Himmel.", "es": "Literalmente la misma imagen." }
-  },
+  "seventh-heaven": { "text": "She's in seventh heaven." },
   "bite-the-bullet": { "text": "Just bite the bullet!", "notes": { "de": "Wörtlich: Beiß einfach in die Kugel!" } },
   "raining-cats-and-dogs": {
    "text": "It's raining cats and dogs.",

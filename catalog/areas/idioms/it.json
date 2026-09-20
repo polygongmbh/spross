@@ -33,17 +33,8 @@
     "en": "Literally: I've had it up over my hair."
    }
   },
-  "turn-a-blind-eye": {
-   "text": "Ha chiuso un occhio.",
-   "notes": {
-    "de": "Wörtlich dasselbe Bild: Er hat ein Auge geschlossen.",
-    "en": "Literally: He closed one eye."
-   }
-  },
-  "seventh-heaven": {
-   "text": "È al settimo cielo.",
-   "notes": { "de": "Wörtlich dasselbe Bild.", "en": "Literally the same image." }
-  },
+  "turn-a-blind-eye": { "text": "Ha chiuso un occhio.", "notes": { "en": "Literally: He closed one eye." } },
+  "seventh-heaven": { "text": "È al settimo cielo." },
   "bite-the-bullet": {
    "text": "Stringi i denti!",
    "notes": { "de": "Wörtlich: Beiß die Zähne zusammen!", "en": "Literally: Clench your teeth!" }

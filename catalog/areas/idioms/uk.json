@@ -8,13 +8,7 @@
     "en": "Literally: I'm holding my fists for you."
    }
   },
-  "seventh-heaven": {
-   "text": "Вона на сьомому небі.",
-   "notes": {
-    "de": "Wörtlich dasselbe Bild: im siebten Himmel.",
-    "en": "Literally the same image: in the seventh heaven."
-   }
-  },
+  "seventh-heaven": { "text": "Вона на сьомому небі." },
   "raining-cats-and-dogs": {
    "text": "Ллє як з відра.",
    "notes": {

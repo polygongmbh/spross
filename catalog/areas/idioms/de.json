@@ -37,13 +37,7 @@
    "text": "Er hat ein Auge zugedrückt.",
    "notes": { "en": "Literally: He pressed one eye shut.", "es": "Literalmente: Cerró un ojo." }
   },
-  "seventh-heaven": {
-   "text": "Sie ist im siebten Himmel.",
-   "notes": {
-    "en": "Literally the same image: in the seventh heaven.",
-    "es": "Literalmente la misma imagen: en el séptimo cielo."
-   }
-  },
+  "seventh-heaven": { "text": "Sie ist im siebten Himmel." },
   "bite-the-bullet": {
    "text": "Beiß in den sauren Apfel!",
    "notes": { "en": "Literally: Bite into the sour apple!", "es": "Literalmente: ¡Muerde la manzana agria!" }
