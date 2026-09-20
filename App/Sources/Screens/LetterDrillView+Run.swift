@@ -21,10 +21,6 @@ extension LetterDrillView: DrillRunning {
         return DrillStep(run: reduction.state, effects: reduction.effects)
     }
 
-    func questionIndex(_ run: LetterDrillRunState) -> Int { Int(run.index) }
-
-    func isFinished(_ run: LetterDrillRunState) -> Bool { run.finished }
-
     func submitMove(_ text: String) -> LetterDrillIntent? {
         LetterDrillIntent.Submit(text: text)
     }
@@ -32,8 +28,6 @@ extension LetterDrillView: DrillRunning {
     var confirmMove: LetterDrillIntent { LetterDrillIntent.ConfirmPending.shared }
 
     var advanceMove: LetterDrillIntent { LetterDrillIntent.AdvanceElapsed.shared }
-
-    var turnFeedback: TurnFeedback { run.feedback }
 
     var resultTitle: LocalizedStringKey { "trainer.drill.letters" }
 

@@ -38,10 +38,6 @@ extension SentenceScrambleView: DrillRunning {
         return DrillStep(run: reduction.state, effects: reduction.effects)
     }
 
-    func questionIndex(_ run: SentenceScrambleRunState) -> Int { Int(run.index) }
-
-    func isFinished(_ run: SentenceScrambleRunState) -> Bool { run.finished }
-
     /// Placing the last atom IS the answer, so there is nothing a check tap
     /// could put to kern that the bank has not already put there.
     func submitMove(_ text: String) -> SentenceScrambleIntent? { nil }
@@ -49,8 +45,6 @@ extension SentenceScrambleView: DrillRunning {
     var confirmMove: SentenceScrambleIntent { SentenceScrambleIntent.ConfirmPending.shared }
 
     var advanceMove: SentenceScrambleIntent { SentenceScrambleIntent.AdvanceElapsed.shared }
-
-    var turnFeedback: TurnFeedback { run.feedback }
 
     var resultTitle: LocalizedStringKey { "trainer.drill.sentenceScramble" }
 

@@ -73,10 +73,6 @@ extension WordScrambleView: DrillRunning {
         return DrillStep(run: reduction.state, effects: reduction.effects)
     }
 
-    func questionIndex(_ run: WordScrambleRunState) -> Int { Int(run.index) }
-
-    func isFinished(_ run: WordScrambleRunState) -> Bool { run.finished }
-
     func typedMove(_ text: String) -> WordScrambleIntent? {
         WordScrambleIntent.InputChanged(text: text)
     }
@@ -88,8 +84,6 @@ extension WordScrambleView: DrillRunning {
     var confirmMove: WordScrambleIntent { WordScrambleIntent.ConfirmPending.shared }
 
     var advanceMove: WordScrambleIntent { WordScrambleIntent.AdvanceElapsed.shared }
-
-    var turnFeedback: TurnFeedback { run.feedback }
 
     var resultTitle: LocalizedStringKey { "trainer.drill.wordScramble" }
 

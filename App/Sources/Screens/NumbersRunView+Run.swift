@@ -16,10 +16,6 @@ extension NumbersRunView: DrillRunning {
         return DrillStep(run: reduction.state, effects: reduction.effects)
     }
 
-    func questionIndex(_ run: NumbersRunState) -> Int { Int(run.index) }
-
-    func isFinished(_ run: NumbersRunState) -> Bool { run.finished }
-
     func typedMove(_ text: String) -> NumbersIntent? { NumbersIntent.InputChanged(text: text) }
 
     func submitMove(_ text: String) -> NumbersIntent? { NumbersIntent.Submit(text: text) }
@@ -27,8 +23,6 @@ extension NumbersRunView: DrillRunning {
     var confirmMove: NumbersIntent { NumbersIntent.ConfirmPending.shared }
 
     var advanceMove: NumbersIntent { NumbersIntent.AdvanceElapsed.shared }
-
-    var turnFeedback: TurnFeedback { run.feedback }
 
     var resultTitle: LocalizedStringKey { mode.titleKey }
 

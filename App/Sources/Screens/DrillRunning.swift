@@ -204,6 +204,17 @@ extension DrillRunning {
     func movedOn() {}
 }
 
+/// Where the run state is one of kern's own, the three figures the driver reads
+/// come off `DrillRunProgress` — the drill spells none of them out.
+extension DrillRunning where Run: DrillRunProgress {
+
+    func questionIndex(_ run: Run) -> Int { Int(run.index) }
+
+    func isFinished(_ run: Run) -> Bool { run.finished }
+
+    var turnFeedback: TurnFeedback { run.feedback }
+}
+
 #if DEBUG
 extension DrillRunning {
 
