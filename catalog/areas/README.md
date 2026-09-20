@@ -50,14 +50,14 @@ and worth pricing in recordings when it is proposed.
 Every word in one language's text should have a visible counterpart in the others' —
 that mapping is how a learner works out which word did what,
 and it is worth re-cutting the source phrase to keep
-(„Das WLAN ist weg" became „Das Internet ist weg" so `intaneti` had something to answer to;
-„zu teuer" is `ghali mno`, not `ghali sana`, which is „sehr teuer").
+("Das WLAN ist weg" became "Das Internet ist weg" so `intaneti` had something to answer to;
+"zu teuer" is `ghali mno`, not `ghali sana`, which is "sehr teuer").
 The replaced wording moves to `variants` so nobody's typed answer stops grading.
 Where a language genuinely has no equivalent —
 a greeting formula, `Feierabend`, the Swahili clock — a `notes` entry carries the gap.
 
 **Idioms are the exception.** An idiom (`kind: "idiom"`, `idioms/`) is figurative by definition,
-so faking word-correspondence would just teach the wrong idiom — „es gießt wie aus Eimern" and
+so faking word-correspondence would just teach the wrong idiom — "es gießt wie aus Eimern" and
 "it's raining cats and dogs" describe the same event with unrelated imagery.
 The curation bar replaces word-mirroring with **meaning-equivalence**: ship a pairing only where
 another language has a genuinely equivalent expression — same real-world function, not shared
