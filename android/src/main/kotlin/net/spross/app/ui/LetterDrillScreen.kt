@@ -70,12 +70,9 @@ fun LetterDrillScreen(model: AppModel) {
         model = model,
         run = flow,
         leave = leave,
-        outcomes = state.outcomes,
-        tally = state.tally,
+        progress = state,
         // One Sprosse, mapped to stages by kern — there is no level to name.
         sprosse = null,
-        streak = state.streak,
-        bestStreak = state.bestStreak,
         spacing = Theme.spacing.lg,
     ) {
         val task = state.task ?: return@DrillRunScaffold

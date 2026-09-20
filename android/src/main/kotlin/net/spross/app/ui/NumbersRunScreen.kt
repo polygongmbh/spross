@@ -72,11 +72,8 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
         model = model,
         run = flow,
         leave = leave,
-        outcomes = state.outcomes,
-        tally = state.tally,
+        progress = state,
         sprosse = sprosseText(state, chrome),
-        streak = state.streak,
-        bestStreak = state.bestStreak,
         announcesRecord = true,
         // The table raised over the run takes the back gesture first; the run is still there.
         backLeaves = !flow.showingReference,

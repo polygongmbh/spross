@@ -27,7 +27,7 @@ class LetterDrillFlow(
     onReleaseFocus: () -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
-) : DrillFlow<LetterDrillRunState, LetterDrillIntent>(
+) : ProgressDrillFlow<LetterDrillRunState, LetterDrillIntent>(
     start, rng, onTone, onReleaseFocus, onSilence, screenReaderOn,
 ) {
     /** One attempt per tile — a second tap after the answer is in would be a retry. */
@@ -39,12 +39,6 @@ class LetterDrillFlow(
 
     override fun reduce(state: LetterDrillRunState, intent: LetterDrillIntent, rng: Random) =
         LetterDrillRun.reduce(state, intent, rng).let { DrillStep(it.state, it.effects) }
-
-    override fun index(state: LetterDrillRunState) = state.index
-
-    override fun finished(state: LetterDrillRunState) = state.finished
-
-    override fun owesAnswer(state: LetterDrillRunState) = state.owesAnswer
 
     override fun submit(text: String) = LetterDrillIntent.Submit(text)
 

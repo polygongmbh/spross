@@ -55,11 +55,8 @@ fun SentenceScrambleScreen(model: AppModel) {
         model = model,
         run = flow,
         leave = leave,
-        outcomes = state.outcomes,
-        tally = state.tally,
+        progress = state,
         sprosse = chrome.trainerSprosse.format(state.level),
-        streak = state.streak,
-        bestStreak = state.bestStreak,
         spacing = Theme.spacing.lg,
     ) {
         val task = state.task ?: return@DrillRunScaffold

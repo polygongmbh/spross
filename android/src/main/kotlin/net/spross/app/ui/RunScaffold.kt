@@ -41,6 +41,7 @@ import net.spross.app.Screen
 import net.spross.app.audio.Pronouncer
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.AnswerOutcome
+import net.spross.kern.trainer.DrillRunProgress
 import net.spross.kern.trainer.DrillTally
 
 /**
@@ -235,6 +236,40 @@ fun DrillRunScaffold(
         }
     }
 }
+
+/**
+ * The same shell over a run that already says where it stands: the score line, the bar and
+ * the tally are read off kern's [DrillRunProgress] rather than handed over one figure at a
+ * time. The typed drills reach the shell through the parameters above, since a country and a
+ * date are laddered off a view of their own.
+ */
+@Composable
+fun DrillRunScaffold(
+    model: AppModel,
+    run: DrillRun,
+    leave: () -> Unit,
+    progress: DrillRunProgress,
+    sprosse: String?,
+    announcesRecord: Boolean = false,
+    backLeaves: Boolean = true,
+    showsMuteButton: Boolean = false,
+    spacing: Dp = Theme.spacing.md,
+    body: @Composable ColumnScope.() -> Unit,
+) = DrillRunScaffold(
+    model = model,
+    run = run,
+    leave = leave,
+    outcomes = progress.outcomes,
+    tally = progress.tally,
+    sprosse = sprosse,
+    streak = progress.streak,
+    bestStreak = progress.bestStreak,
+    announcesRecord = announcesRecord,
+    backLeaves = backLeaves,
+    showsMuteButton = showsMuteButton,
+    spacing = spacing,
+    body = body,
+)
 
 /**
  * The three effects every endless drill runs the same way: the hand-back when kern runs out,

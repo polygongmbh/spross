@@ -7,6 +7,7 @@ import kotlin.random.Random
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.DrillEffect
+import net.spross.kern.trainer.DrillRunProgress
 
 /**
  * A run as the shell around it reads one: whether kern has anything left to ask, and the
@@ -145,7 +146,10 @@ abstract class DrillFlow<S, I>(
     /** One turn of kern's reducer, in this run's own types. */
     protected abstract fun reduce(state: S, intent: I, rng: Random): DrillStep<S>
 
-    /** Which question the run stands on — the card's identity, and what says the run moved on. */
+    /**
+     * Which question the run stands on — the card's identity, and what says the run moved on.
+     * Read off the state itself wherever kern already says so ([ProgressDrillFlow]).
+     */
     protected abstract fun index(state: S): Int
 
     /** Nothing left to ask. */
@@ -168,6 +172,31 @@ abstract class DrillFlow<S, I>(
      * the answer on the drill whose question is an order rather than a spelling.
      */
     protected open fun submit(text: String): I? = null
+}
+
+/**
+ * The flow over a run that already says where it stands: the slot drill, the letters ladder
+ * and the two scrambles, whose kern states all answer [DrillRunProgress].
+ *
+ * Nothing is added to [DrillFlow] but the reading — where kern names the figures itself, the
+ * shell takes them off the state instead of asking each drill to spell the same three out.
+ * The typed drills ([TypedDrillFlow]) keep their own, since a country and a date are laddered
+ * by rules that share no state type.
+ */
+abstract class ProgressDrillFlow<S : DrillRunProgress, I>(
+    start: S,
+    rng: Random,
+    onTone: (ToneKind) -> Unit,
+    onReleaseFocus: () -> Unit,
+    onSilence: () -> Unit,
+    screenReaderOn: () -> Boolean,
+) : DrillFlow<S, I>(start, rng, onTone, onReleaseFocus, onSilence, screenReaderOn) {
+
+    final override fun index(state: S) = state.index
+
+    final override fun finished(state: S) = state.finished
+
+    final override fun owesAnswer(state: S) = state.owesAnswer
 }
 
 /** A reduction as the shared flow reads it: the run as it now stands, and what it asks of the world. */

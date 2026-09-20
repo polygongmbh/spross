@@ -34,7 +34,7 @@ class SentenceScrambleFlow(
     onTone: (ToneKind) -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
-) : DrillFlow<SentenceScrambleRunState, SentenceScrambleIntent>(
+) : ProgressDrillFlow<SentenceScrambleRunState, SentenceScrambleIntent>(
     // Nothing to release: this drill has no field, so no pause can be waiting behind a keyboard.
     start, rng, onTone, onReleaseFocus = {}, onSilence = onSilence, screenReaderOn = screenReaderOn,
 ) {
@@ -50,12 +50,6 @@ class SentenceScrambleFlow(
 
     override fun reduce(state: SentenceScrambleRunState, intent: SentenceScrambleIntent, rng: Random) =
         SentenceScrambleRun.reduce(state, intent, rng).let { DrillStep(it.state, it.effects) }
-
-    override fun index(state: SentenceScrambleRunState) = state.index
-
-    override fun finished(state: SentenceScrambleRunState) = state.finished
-
-    override fun owesAnswer(state: SentenceScrambleRunState) = state.owesAnswer
 
     override fun confirmPending() = SentenceScrambleIntent.ConfirmPending
 

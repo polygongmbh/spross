@@ -32,7 +32,7 @@ class NumbersFlow(
     onReleaseFocus: () -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
-) : DrillFlow<NumbersRunState, NumbersIntent>(
+) : ProgressDrillFlow<NumbersRunState, NumbersIntent>(
     start, rng, onTone, onReleaseFocus, onSilence, screenReaderOn,
 ) {
     /**
@@ -58,12 +58,6 @@ class NumbersFlow(
 
     override fun reduce(state: NumbersRunState, intent: NumbersIntent, rng: Random) =
         NumbersRun.reduce(state, intent, normalizer, rng).let { DrillStep(it.state, it.effects) }
-
-    override fun index(state: NumbersRunState) = state.index
-
-    override fun finished(state: NumbersRunState) = state.finished
-
-    override fun owesAnswer(state: NumbersRunState) = state.owesAnswer
 
     override fun inputChanged(text: String) = NumbersIntent.InputChanged(text)
 

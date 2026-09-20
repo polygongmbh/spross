@@ -35,7 +35,7 @@ class WordScrambleFlow(
     onReleaseFocus: () -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
-) : DrillFlow<WordScrambleRunState, WordScrambleIntent>(
+) : ProgressDrillFlow<WordScrambleRunState, WordScrambleIntent>(
     start, rng, onTone, onReleaseFocus, onSilence, screenReaderOn,
 ) {
     /** Leaving: kern books a pending answer exactly as the tap would, then reports. */
@@ -44,12 +44,6 @@ class WordScrambleFlow(
 
     override fun reduce(state: WordScrambleRunState, intent: WordScrambleIntent, rng: Random) =
         WordScrambleRun.reduce(state, intent, rng).let { DrillStep(it.state, it.effects) }
-
-    override fun index(state: WordScrambleRunState) = state.index
-
-    override fun finished(state: WordScrambleRunState) = state.finished
-
-    override fun owesAnswer(state: WordScrambleRunState) = state.owesAnswer
 
     override fun inputChanged(text: String) = WordScrambleIntent.InputChanged(text)
 
