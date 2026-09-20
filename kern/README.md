@@ -250,7 +250,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   A day earns the streak
   whichever language(s) it was spent on; every other bucket (`activeCount`, `dueCount`,
   the areas) stays scoped to the join in view. `WidgetSnapshotBuilder.build` takes the
-  same parameter so a widget's render-time streak walk agrees (`docs/snapshots.md`).
+  same parameter so `WidgetSnapshotDoc.streak`/`lastReviewDate` agree with it (`docs/snapshots.md`).
 - **Introduction is the card's first answer.** `enqueued` holds card ids, stored oldest-packed
   first; enqueued cards lead composition **most recently packed first** (`Growth.enqueuedEligible`
   reverses the list), respect the per-round cap, and dequeue at introduction — what a learner

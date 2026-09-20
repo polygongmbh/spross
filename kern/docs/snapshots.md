@@ -59,15 +59,21 @@ Engine contract: `../README.md`.
   entries (target-side text, emoji, article tint), per-card `{due}` for render-time
   `dueCount(now)`, the consolidated-card count (`consolidatedCount`, resolved phone-side —
   it does not move with the clock), a tail of per-day answer counts
-  (~70 days, `{reviews}` a day) for the streak walk, `schemaVersion`. Built by `WidgetSnapshotBuilder.build`,
-  written by the app.
-  **Both sides of the wire are kern's, except the one that cannot be.**
+  (~70 days, `{reviews}` a day) for the activity strip, `streak` and `lastReviewDate`
+  (the streak as of that day, resolved once by `Statistics.streak`), `schemaVersion`.
+  Built by `WidgetSnapshotBuilder.build`, written by the app.
+  **Both sides of the wire are kern's answer, nowhere re-derived.**
   `WidgetSnapshotBuilder.decode` returns a public `WidgetSnapshotView` — the rows, plus
   `dueCount`/`streak`/`streakHealth`/`activityWindow` delegating to `Statistics`, so the
-  Android Glance widget reads the schema rather than guessing at it, and rejects anything
-  but the current `schemaVersion`. The iOS extension links no Kotlin at all, so
-  `Widgets/Sources/WidgetSnapshot.swift` stays a hand-written mirror of that same
-  contract — a DELIBERATE duplicate, and the only one the widget wire is allowed.
+  Android Glance widget (which links Kotlin) reads the schema rather than guessing at it,
+  and rejects anything but the current `schemaVersion`. The iOS extension links no Kotlin
+  at all, so it cannot ask `Statistics` again once render time has moved past `build`'s own
+  `now` — but the only thing that ages between the two is how many days stand between
+  `lastReviewDate` and render time, and that is a date subtraction, not a walk:
+  `Widgets/Sources/WidgetSnapshot.swift` turns the gap into `FlameState` by three
+  thresholds (0 lit, 1 the one bridge day, 2 the bridge already spent) that mirror
+  `Statistics.streakRun`'s own bridge rule, and shows `streak` unchanged for as long
+  as the gap holds — never re-walking `dailyStats` itself.
 - **WatchSnapshot v5**: direction/pair/`german` are gone — one entry per CARD with BOTH
   sides pre-resolved: `{cardId, sourceText, targetText, emoji?, revealEmoji?, articleTint?,
   femMarker, due, stability, nextRole, promptForm, distractors[], optionForm?}` + `schemaVersion`.

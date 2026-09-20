@@ -18,11 +18,12 @@ import net.spross.kern.store.StoreJson
  * Phone-side builder of the home-screen widget snapshot, and the read model
  * ([decode]) a widget draws it with. A widget surface never runs the join (no catalog
  * in its bundle, tight memory cap), so everything it renders is pre-resolved here on
- * every persist; only `dueCount(now)` and the streak walk run at render time, fed by
- * [WidgetCardDto]/dailyStats. Who decodes it how: `kern/docs/snapshots.md`.
+ * every persist, including [WidgetSnapshotDoc.streak] and [WidgetSnapshotDoc.lastReviewDate] —
+ * only `dueCount(now)`, which genuinely moves within a day, and the gap between
+ * `lastReviewDate` and "now" run at render time. Who decodes it how: `kern/docs/snapshots.md`.
  */
 object WidgetSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 2
+    const val SCHEMA_VERSION: Int = 3
 
     /** ~10 weeks of day keys — enough history for the widget's streak walk. */
     const val DAILY_STATS_TAIL_DAYS: Int = 70
@@ -96,7 +97,8 @@ object WidgetSnapshotBuilder {
         }
         val combinedDailyStats =
             mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
-        // why: yyyy-MM-dd keys sort chronologically as strings — the tail is a plain sort.
+        // why: yyyy-MM-dd keys sort chronologically as strings — the tail is a plain sort,
+        // and so is the last-reviewed day the widget's gap check reads off of.
         val tailKeys = combinedDailyStats.keys.sorted().takeLast(DAILY_STATS_TAIL_DAYS)
         return WidgetSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
@@ -104,6 +106,8 @@ object WidgetSnapshotBuilder {
             cards = cards,
             consolidatedCount = active.count { Statistics.isConsolidated(state, it) },
             dailyStats = tailKeys.associateWith { WidgetDayDto(combinedDailyStats.getValue(it)) },
+            streak = Statistics.streak(combinedDailyStats, nowEpochMillis, tzId),
+            lastReviewDate = combinedDailyStats.entries.filter { it.value > 0 }.maxOfOrNull { it.key },
         )
     }
 
@@ -169,6 +173,21 @@ internal data class WidgetSnapshotDoc(
     val consolidatedCount: Int,
     /** Trailing [WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS] day keys. */
     val dailyStats: Map<String, WidgetDayDto>,
+    /**
+     * The streak as of [lastReviewDate] — unchanged for as long as the run stays alive,
+     * since a day only ever joins it through a fresh build. A widget extension with no
+     * Kotlin cannot ask [Statistics.streak] again later, so this is the answer as kern
+     * gave it, not a value the widget derives itself.
+     */
+    val streak: Int,
+    /**
+     * ISO `yyyy-MM-dd` of the most recent day with a review, or null if there has never
+     * been one. Whether the run is still alive at RENDER time — which [streak] alone
+     * cannot say, because time keeps moving after this document is written — is how many
+     * days stand between this date and "now": 0 lit, 1 the one bridge day, 2 the bridge
+     * already spent, further gone unlit (`Widgets/Sources/WidgetSnapshot.swift`).
+     */
+    val lastReviewDate: String?,
 )
 
 /**

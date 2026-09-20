@@ -137,7 +137,44 @@ class WidgetSnapshotBuilderTests {
 
     @Test
     fun schemaVersionIsPinned() {
-        assertEquals(2, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).schemaVersion)
+        assertEquals(3, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).schemaVersion)
+    }
+
+    @Test
+    fun streakAndLastReviewDateAgreeWithTheEngine() {
+        val dailyStats = mapOf("2026-06-29" to 4, "2026-06-30" to 6)
+        val doc = WidgetSnapshotBuilder.doc(
+            Snap.state(emptyList()), Box.day1, Box.TZ, 5,
+            otherLanguagesAnswerDays = dailyStats,
+        )
+
+        assertEquals(Statistics.streak(dailyStats, Box.day1, Box.TZ), doc.streak)
+        assertEquals("2026-06-30", doc.lastReviewDate)
+    }
+
+    @Test
+    fun lastReviewDateIsNullWithNoReviewsAtAll() {
+        val doc = WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5)
+
+        assertEquals(0, doc.streak)
+        assertNull(doc.lastReviewDate)
+    }
+
+    @Test
+    fun lastReviewDateReachesPastTheDailyStatsTail() {
+        // The one actual review sits behind 70 newer (empty) days, so the trailing
+        // window drops it from `dailyStats` — `lastReviewDate` still names it, read
+        // off the full map before that truncation.
+        val fillers = (1..WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS)
+            .associate { LocalDate(2020, 1, 1).plus(it, DateTimeUnit.DAY).toString() to 0 }
+        val doc = WidgetSnapshotBuilder.doc(
+            Snap.state(emptyList()), Box.day1, Box.TZ, 5,
+            otherLanguagesAnswerDays = fillers + mapOf("2020-01-01" to 1),
+        )
+
+        assertEquals("2020-01-01", doc.lastReviewDate)
+        assertFalse("2020-01-01" in doc.dailyStats)
+        assertEquals(0, doc.streak)
     }
 
     @Test
@@ -182,7 +219,7 @@ class WidgetSnapshotBuilderTests {
         assertNull(WidgetSnapshotBuilder.decode("not json at all"))
         assertNull(WidgetSnapshotBuilder.decode("{}")) // schemaVersion missing
         val current = WidgetSnapshotBuilder.build(scheduledState(), Box.day1, Box.TZ)
-        assertNull(WidgetSnapshotBuilder.decode(current.replace("\"schemaVersion\":2", "\"schemaVersion\":3")))
+        assertNull(WidgetSnapshotBuilder.decode(current.replace("\"schemaVersion\":3", "\"schemaVersion\":4")))
         assertNotNull(WidgetSnapshotBuilder.decode(current))
     }
 

@@ -142,8 +142,8 @@ struct WordProvider: TimelineProvider {
                        word: $0.text, meaning: $0.sourceText)
         }
         let dueCount = snapshot.dueCount(now: start)
-        let streak = snapshot.streak(now: start)
-        let flameState = snapshot.flameState(streak: streak, now: start)
+        let streak = snapshot.displayedStreak(now: start)
+        let flameState = snapshot.flameState(now: start)
         let activityDays = snapshot.recentDays(count: 14, now: start)
         return (0..<24).map { slot in
             // Rotate a window of `listSize` words; the head is the compact families'
