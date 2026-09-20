@@ -12,8 +12,8 @@ lives outside the repo in `data/reference/audio/README.md`.
 
 ## 1. What ships, and under what
 
-5792 mp3 files, ~121 MB, all of them Wikimedia Commons transcodes:
-**3520 CC BY-SA · 1322 CC BY · 945 CC0 · 5 public domain**.
+5791 mp3 files, ~121 MB, all of them Wikimedia Commons transcodes:
+**3520 CC BY-SA · 1321 CC BY · 945 CC0 · 5 public domain**.
 
 The totals above and the per-pack rows below are DERIVED, not typed:
 `scripts/audio-coverage.py --credits` emits them from the shipped manifests,
@@ -40,7 +40,7 @@ Coverage itself is the bare `audio-coverage.py`.
 | `audio/es/texts/` | 4 | Lingua Libre, via Commons | CC0 2 · CC BY 4.0 1 · CC BY-SA 4.0 1 | Rodrigo5260 1, Precision27 1 | credit; share-alike on the BY-SA |
 | `audio/es/calendar/` | 19 | Lingua Libre, via Commons | CC0 9 · CC BY-SA 4.0 7 · CC BY 4.0 3 | GlyphEnjoyer 8, Eavqwiki 3 | credit; share-alike on the BY-SA |
 | `audio/es/countries/` | 75 | Lingua Libre + Commons | CC BY-SA 4.0 44 · CC0 18 · CC BY 4.0 6 · CC BY-SA 3.0 6 · Public domain 1 | Rodelar 39, Rodrigo5260 11 | credit; share-alike on the BY-SA |
-| `audio/fr/` | 689 | Commons `Fr-*.ogg` (Shtooka Paris) + Lingua Libre | CC BY 2.0 fr 441 · CC0 191 · CC BY-SA 4.0 50 · CC BY-SA 3.0 5 · CC BY 4.0 2 | Vion Nicolas 441, Poslovitch 168 | credit; share-alike on the BY-SA |
+| `audio/fr/` | 688 | Commons `Fr-*.ogg` (Shtooka Paris) + Lingua Libre | CC BY 2.0 fr 440 · CC0 191 · CC BY-SA 4.0 50 · CC BY-SA 3.0 5 · CC BY 4.0 2 | Vion Nicolas 440, Poslovitch 168 | credit; share-alike on the BY-SA |
 | `audio/fr/letters/` | 5 | Lingua Libre, via Commons | CC BY-SA 4.0 5 | Sartus85 5 | credit + share-alike |
 | `audio/fr/texts/` | 2 | Lingua Libre, via Commons | CC BY-SA 4.0 1 · CC0 1 | Sartus85 1, Poslovitch 1 | credit; share-alike on the BY-SA |
 | `audio/fr/calendar/` | 19 | Shtooka + Lingua Libre | CC BY 2.0 fr 12 · CC0 7 | Vion Nicolas 12, Poslovitch 7 | credit all but the CC0 |

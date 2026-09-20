@@ -28,11 +28,8 @@
    }
   },
   "to-like": {
-   "text": "aimer",
-   "notes": {
-    "fr": "j'aime mon pays · j'aime bien ce mot, c'est moins fort.",
-    "de": "aimer heißt mögen und lieben; abgeschwächt aimer bien: j'aime bien ce café."
-   }
+   "text": "aimer bien",
+   "notes": { "fr": "aimer seul (sans bien) est plus fort — comme dans Je t'aime." }
   },
   "to-can": {
    "text": "pouvoir",
