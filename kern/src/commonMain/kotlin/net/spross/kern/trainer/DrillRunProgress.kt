@@ -5,9 +5,10 @@ import net.spross.kern.session.TurnFeedback
 
 /**
  * The read surface every drill run shares, whatever it happens to ask: [NumbersRunState],
- * [LetterDrillRunState], [WordScrambleRunState] and [SentenceScrambleRunState] each embed a
- * [DrillRunCore] and answer with the same [TurnFeedback] vocabulary, so what a question is
- * worth and whether the run offers a way out is one formula, not four copies of it.
+ * [LetterDrillRunState], [WordScrambleRunState], [SentenceScrambleRunState],
+ * [CountryDrillRunState] and [DateDrillRunState] each embed a [DrillRunCore] and answer with
+ * the same [TurnFeedback] vocabulary, so what a question is worth and whether the run offers
+ * a way out is one formula, not six copies of it.
  *
  * A run's own business — the draw, the ladder, what an intent does to either — stays on the
  * concrete type; this is only the handful of figures the run shell on each phone reads to

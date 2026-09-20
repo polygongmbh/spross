@@ -3,7 +3,6 @@ package net.spross.kern.trainer
 import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
-import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
 
@@ -101,31 +100,19 @@ data class DateDrillRunState(
     /** The question on screen. A fresh calendar always has one — a Sprosse with none is none. */
     val task: DateDrillTask,
     /** Bumped per question — what the card's identity and an autoplay effect key on. */
-    val index: Int,
+    override val index: Int,
     val level: Int,
     val bestLevel: Int,
     val winsAtLevel: Int,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
-    val core: DrillRunCore,
-    val feedback: TurnFeedback,
+    override val core: DrillRunCore,
+    override val feedback: TurnFeedback,
     /** What a refused answer actually NAMED (Juli is July) — only beside a Revealed miss. */
     val otherWord: Match.OtherWord? = null,
     /** Assembled kinds already introduced with their pattern word; each is shown once. */
     val seenKinds: Set<DateTaskKind> = emptySet(),
-    val finished: Boolean,
-) {
-    val done: Int get() = core.done
-
-    val streak: Int get() = core.streak
-
-    val bestStreak: Int get() = core.bestStreak
-
-    val missRun: Int get() = core.missRun
-
-    val outcomes: List<AnswerOutcome> get() = core.outcomes
-
-    val solved: Set<String> get() = core.solved
-
+    override val finished: Boolean,
+) : DrillRunProgress {
     /** The language an answer is owed in — the learned one, or the learner's own reversed. */
     val answerLanguage: Language get() = config.answerLanguage
 
@@ -149,22 +136,7 @@ data class DateDrillRunState(
             return DateDrill.patternWord(config.content, task.kind)
         }
 
-    /** Nothing decided yet — the answer is still the learner's to produce. */
-    val owesAnswer: Boolean get() = feedback == TurnFeedback.Neutral
-
-    /** Correct or almost: something is pending that closing must book rather than lose. */
-    val answerAccepted: Boolean
-        get() = feedback == TurnFeedback.Correct || feedback is TurnFeedback.Almost
-
     /** The card may open: the almost hold and the miss each put a reading worth seeing whole. */
     val showsAnswer: Boolean
         get() = feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed
-
-    /**
-     * The way out, where it is wanted: under the button that goes on, on the SECOND miss
-     * in a row — the rule the sibling drills follow.
-     */
-    val offersFinish: Boolean get() = missRun >= 1 && feedback == TurnFeedback.Revealed
-
-    val tally: DrillTally get() = DrillTally.of(outcomes)
 }
