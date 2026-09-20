@@ -6,10 +6,7 @@
    "text": "tiempo",
    "variants": ["clima"],
    "grammar": { "gender": "el" },
-   "notes": {
-    "es": "El tiempo se pregunta con hacer: ¿Qué tiempo hace?",
-    "de": "el tiempo heißt auch „Zeit“. Nach dem Wetter fragt man mit hacer: ¿Qué tiempo hace?"
-   }
+   "notes": { "de": "el tiempo heißt auch Zeit." }
   },
   "sky": { "text": "cielo", "grammar": { "gender": "el" } },
   "sun": { "text": "sol", "grammar": { "gender": "el" } },

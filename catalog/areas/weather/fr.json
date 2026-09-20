@@ -2,14 +2,7 @@
  "title": "Le temps",
  "subtitle": "Ce que le ciel nous réserve aujourd'hui.",
  "words": {
-  "weather": {
-   "text": "temps",
-   "grammar": { "gender": "le" },
-   "notes": {
-    "fr": "Quel temps fait-il ? — il fait beau, il fait froid.",
-    "de": "le temps heißt auch „Zeit“. Nach dem Wetter fragt man mit faire: Quel temps fait-il ? — il fait beau, il fait chaud."
-   }
-  },
+  "weather": { "text": "temps", "grammar": { "gender": "le" }, "notes": { "de": "le temps heißt auch Zeit." } },
   "sky": { "text": "ciel", "grammar": { "gender": "le" } },
   "sun": { "text": "soleil", "grammar": { "gender": "le" } },
   "cloud": { "text": "nuage", "grammar": { "gender": "le" } },
