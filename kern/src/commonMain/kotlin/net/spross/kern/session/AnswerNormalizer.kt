@@ -1,12 +1,12 @@
 package net.spross.kern.session
 
 import net.spross.kern.model.ACCENTED_VOWEL_BASE
-import net.spross.kern.model.APOSTROPHES
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.Rating
 import net.spross.kern.model.baseVowel
+import net.spross.kern.model.hyphensAndApostrophesStripped
 import net.spross.kern.model.nfcNormalized
 
 /** Grading verdict for a typed produce answer. */
@@ -384,9 +384,8 @@ class AnswerNormalizer(
         var lowered = nfcNormalized(raw).lowercase().replace("ß", "ss")
         for ((letter, digraph) in digraphFolds) lowered = lowered.replace(letter, digraph)
         val out = StringBuilder(lowered.length)
-        for (ch in lowered) {
+        for (ch in hyphensAndApostrophesStripped(lowered)) {
             when {
-                ch == '-' || ch in APOSTROPHES -> {}
                 ch.isLetter() || ch.isDigit() -> out.append(ch)
                 else -> out.append(' ')
             }

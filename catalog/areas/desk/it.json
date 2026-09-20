@@ -41,7 +41,7 @@
   },
   "email": {
    "text": "e-mail",
-   "variants": ["l'e-mail", "un'e-mail", "email", "mail", "posta elettronica"],
+   "variants": ["l'e-mail", "un'e-mail", "mail", "posta elettronica"],
    "grammar": { "gender": "l'", "plural": "=" },
    "notes": {
     "it": "l'e-mail è femminile e non cambia: un'e-mail, le e-mail.",

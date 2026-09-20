@@ -38,10 +38,7 @@
    "variants": ["ndefu", "mrefu", "warefu", "kirefu", "virefu", "marefu", "mirefu"],
    "notes": { "sw": "mtu mrefu · sentensi ndefu · kitanda kirefu" }
   },
-  "short": {
-   "text": "-fupi",
-   "variants": ["fupi", "mfupi", "wafupi", "kifupi", "vifupi", "mafupi", "mifupi"]
-  },
+  "short": { "text": "-fupi", "variants": ["mfupi", "wafupi", "kifupi", "vifupi", "mafupi", "mifupi"] },
   "heavy": {
    "text": "-zito",
    "variants": ["nzito", "mzito", "wazito", "kizito", "vizito", "mazito", "mizito"]
@@ -63,7 +60,7 @@
   "clean-adj": { "text": "safi", "notes": { "sw": "maji safi, nyumba safi · Safi! = vizuri!" } },
   "sharp": {
    "text": "-kali",
-   "variants": ["kali", "mkali", "wakali", "kikali", "vikali", "makali", "mikali"],
+   "variants": ["mkali", "wakali", "kikali", "vikali", "makali", "mikali"],
    "notes": {
     "sw": "mtu mkali · sauti kali",
     "de": "gilt auch für Menschen (streng) und Essen (scharf): mwalimu mkali, pilipili kali."
@@ -84,10 +81,7 @@
   },
   "hot": { "text": "moto", "notes": { "de": "dasselbe Wort heißt auch Feuer: Kuna moto." } },
   "cold-adj": { "text": "baridi", "notes": { "sw": "maji baridi, usiku baridi · Leo ni baridi." } },
-  "empty": {
-   "text": "-tupu",
-   "variants": ["tupu", "mtupu", "watupu", "kitupu", "vitupu", "matupu", "mitupu"]
-  },
+  "empty": { "text": "-tupu", "variants": ["mtupu", "watupu", "kitupu", "vitupu", "matupu", "mitupu"] },
   "full": {
    "text": "kujaa",
    "variants": ["imejaa", "limejaa", "umejaa"],
@@ -97,13 +91,10 @@
    }
   },
   "dirty": { "text": "chafu" },
-  "dry": {
-   "text": "-kavu",
-   "variants": ["kavu", "mkavu", "wakavu", "kikavu", "vikavu", "makavu", "mikavu"]
-  },
+  "dry": { "text": "-kavu", "variants": ["mkavu", "wakavu", "kikavu", "vikavu", "makavu", "mikavu"] },
   "beautiful": {
    "text": "-rembo",
-   "variants": ["mrembo", "warembo", "mirembo", "kirembo", "virembo", "marembo", "rembo"],
+   "variants": ["mrembo", "warembo", "mirembo", "kirembo", "virembo", "marembo"],
    "notes": { "sw": "mtu mrembo, nyumba nzuri · urembo = pambo, uzuri" }
   },
   "health": { "text": "afya" },

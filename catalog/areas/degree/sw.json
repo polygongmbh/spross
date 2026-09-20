@@ -41,7 +41,7 @@
   },
   "almost": { "text": "takriban" },
   "a-little": { "text": "kidogo", "notes": { "sw": "Subiri kidogo · maji kidogo, moto kidogo" } },
-  "few": { "text": "-chache", "variants": ["wachache", "chache", "vichache", "machache", "michache"] },
+  "few": { "text": "-chache", "variants": ["wachache", "vichache", "machache", "michache"] },
   "once": { "text": "mara moja", "notes": { "sw": "mara moja, mara nyingi · mara moja pia = papo hapo" } },
   "more-or-less": { "text": "zaidi au pungufu" },
   "i-am-always-there": { "text": "Niko pale daima.", "orders": ["Daima niko pale."] },

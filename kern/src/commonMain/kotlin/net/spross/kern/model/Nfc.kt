@@ -28,3 +28,15 @@ internal val APOSTROPHES: Set<Char> = setOf('\u0027', '\u2019', '\u02bc')
 internal fun apostropheFolded(text: String): String =
     if (text.none { it in APOSTROPHES }) text
     else text.map { if (it in APOSTROPHES) '\u02bc' else it }.joinToString("")
+
+/**
+ * Hyphens and every apostrophe class removed outright — not folded to one, gone —
+ * so a hyphenated or elided spelling and its plain twin become the same key.
+ *
+ * Grading strips both already (a card's own [text]/[variants] entries fold onto one
+ * accepted answer); search folds the same two characters so a variant kept only for
+ * that reason (`e-mail` beside `email`) still earns its keep, and one kept for neither
+ * reason is dead weight a lint can catch.
+ */
+internal fun hyphensAndApostrophesStripped(text: String): String =
+    text.filterNot { it == '-' || it in APOSTROPHES }

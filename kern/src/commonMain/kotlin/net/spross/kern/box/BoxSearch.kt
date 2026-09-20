@@ -3,6 +3,7 @@ package net.spross.kern.box
 import net.spross.kern.model.ACCENTED_VOWEL_BASE
 import net.spross.kern.model.Card
 import net.spross.kern.model.caseFolded
+import net.spross.kern.model.hyphensAndApostrophesStripped
 
 /** An area as the search sees it: its key and the heading the learner reads. */
 data class SearchableArea(val area: String, val title: String)
@@ -28,6 +29,9 @@ data class BoxSearchResults(
  * spelling (`u`, `ss`) reaches the accented text; a query typed with the diacritic
  * (`ü`, `ß`) reaches only that spelling, because the diacritic is part of what is being
  * learned and a search that erases it teaches the wrong thing about the language.
+ * Hyphens and apostrophes fold away on both sides, the same two characters grading
+ * already treats as invisible (`AnswerNormalizer.cleaned`) — `email` reaches `e-mail`
+ * because nothing about a hyphen is what the word teaches.
  */
 object BoxSearch {
     /**
@@ -37,7 +41,7 @@ object BoxSearch {
     const val CARD_LIMIT: Int = 60
 
     fun search(state: BoxState, areas: List<SearchableArea>, query: String): BoxSearchResults {
-        val needle = caseFolded(query)
+        val needle = hyphensAndApostrophesStripped(caseFolded(query))
         if (needle.isEmpty()) return BoxSearchResults(emptyList(), emptyList())
         return BoxSearchResults(
             areas = areas.filter { rank(it.title, needle) != null },
@@ -69,7 +73,7 @@ object BoxSearch {
 
     /** 0 = the whole text, 1 = its start, 2 = a word's start, 3 = somewhere inside. */
     private fun rank(hay: String, needle: String): Int? {
-        val folded = caseFolded(hay)
+        val folded = hyphensAndApostrophesStripped(caseFolded(hay))
         return when {
             matchesWhole(folded, needle) -> 0
             matchesPrefix(folded, 0, needle) != null -> 1

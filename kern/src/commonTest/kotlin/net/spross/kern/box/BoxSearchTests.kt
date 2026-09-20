@@ -82,6 +82,17 @@ class BoxSearchTests {
     }
 
     @Test
+    fun aHyphenOrApostropheInEitherSideFoldsAway() {
+        val box = state(
+            card("email", "E-Mail", "barua-pepe", seedIndex = 1),
+            card("water", "l'acqua", "maji", seedIndex = 2),
+        )
+        assertEquals(listOf("email"), BoxSearch.search(box, areas, "email").cards.map { it.id })
+        assertEquals(listOf("email"), BoxSearch.search(box, areas, "baruapepe").cards.map { it.id })
+        assertEquals(listOf("water"), BoxSearch.search(box, areas, "lacqua").cards.map { it.id })
+    }
+
+    @Test
     fun exactHitsLeadThenPrefixesThenTheRest() {
         val box = state(
             card("inside", "Handtuch", "taulo", seedIndex = 1),

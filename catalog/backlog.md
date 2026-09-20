@@ -10,9 +10,6 @@ Ready work comes first, then the items that end in a question for the owner, the
   (`kiti kitupu`, `mkate mkavu`), so both are now dashed stems. Any future note asserting a
   Swahili word does not change needs examples from two classes at least — and mostly should
   not exist, since "this word does not change" is not something a learner would say differently for.
-- 20 accept-only variants collide under `AnswerNormalizer.cleaned` but stay distinct search keys
-  (`BoxSearch.fold` is NFC + trim + lowercase and indexes variants); rule whether variants dedupe
-  against the SEARCH fold before any lint is written.
 - sw `verbs/to-send` lost the `kutuma`/`kupeleka` contrast when its German note was cut, and it
   stays lost: `kupeleka` is `verbs/to-deliver`'s own card, so naming it here would break "a note
   explains its own word and no other". The pair wants a contrast card if it wants anything.
