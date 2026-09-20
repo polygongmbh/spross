@@ -30,16 +30,12 @@
   "to-find": {
    "text": "kupata",
    "synonyms": ["kukuta"],
-   "notes": { "sw": "nimepata jibu · nimepata msaada · kukuta = kuona kwa bahati" }
-  },
-  "to-search": { "text": "kutafuta", "notes": { "sw": "kutafuta msaada, kutafuta jibu, kutafuta mahali" } },
-  "to-receive": {
-   "text": "kupokea",
    "notes": {
-    "sw": "kupokea jibu, kupokea msaada",
-    "de": "kupokea = entgegennehmen: kupokea barua, kupokea simu. Für „ich habe Arbeit bekommen“ sagt man nilipata kazi."
+    "sw": "nimepata jibu · nimepata msaada · nilipata kazi = ich habe Arbeit bekommen · kukuta = kuona kwa bahati"
    }
   },
+  "to-search": { "text": "kutafuta", "notes": { "sw": "kutafuta msaada, kutafuta jibu, kutafuta mahali" } },
+  "to-receive": { "text": "kupokea", "notes": { "sw": "kupokea jibu, kupokea msaada" } },
   "to-look": { "text": "kuangalia", "notes": { "sw": "Angalia hapa! · Angalia mbele, si nyuma." } },
   "to-open": { "text": "kufungua" },
   "to-close": { "text": "kufunga", "notes": { "sw": "kufunga kamba, kufunga nyumba, kufunga shule" } },
