@@ -11,19 +11,9 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## Engine & scheduling
 
-- The two scrambles are the only drills whose STORE KEY is minted platform-side, and twice:
-  `"wordscramble.<lang>"` / `"sentencescramble.<lang>"` are spelled independently in
-  `WordScrambleView.storageKey` and `TrainerStore.wordScrambleKey`, held together only by
-  Android's KDoc naming the Swift file. kern owns this grammar for every other drill
-  (`NumbersMode.recordKey`/`progressKey`, `CLEARED_PREFIX`, `clearedKey`, `clearedSprossen`,
-  `clearedMask`), so two `Drill`-keyed functions close it — and until they do, a drift silently
-  resets a learner's ladder on one phone.
 - The four drill run states (`NumbersRunState`, `LetterDrillRunState`, `WordScrambleRunState`,
-  `SentenceScrambleRunState`) each expose the same read surface independently — `index`, `level`,
-  `finished`, `owesAnswer`, `tally`, and `streak`/`bestStreak`/`outcomes` off a shared `core` —
-  with no kern type standing over it, which is why the run shell on each phone takes those
-  figures as five loose parameters instead of one. Surfaced while unifying both shells and left
-  to kern deliberately: inventing a view type platform-side would have minted the second home.
+  `SentenceScrambleRunState`) expose one identical read surface with no kern type over it,
+  which is why each phone's run shell takes five loose figures instead of one.
 - The 24-hour register closes the twelve-hour cycle by NUMBER (`achtzehn Uhr` cannot answer 06:00),
   a closure nothing holds, unlike the day parts' (`dayPartReadingsCloseTheTwelveHourCycle`).
 - `<pack>.cardinal(-n)` returns the digits rather than a reading — the negative reading lives
@@ -85,45 +75,26 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## App & UX
 
-- The two scramble views are iOS's unextracted seventh cluster, and Android is already past it:
-  `WordScrambleView`/`SentenceScrambleView` (and their `+Run` and `Availability` halves) share a
-  driver, the empty-box availability report, the ONE-primary-action branch and the close-figures
-  hand-off, none of which went through `DrillRunning` because the 2026-09 audit never listed
-  them — their prose had drifted, so the comment scan could not see them. Android folded its two
-  into `DrillFlow` in the same sweep, so this is the mirror of work already done once.
-- iOS throws away what a scramble run earns: `TrainerHubView` builds both scrambles with no
-  `onFinish`, so the default no-op eats the `DrillRunSummary` and the sheet simply dismisses,
-  where Android lands it on Home through `model.finishDrill`. The hand-off is shared in the
-  driver now; what iOS lacks is anywhere for it to land.
-- Two emoji sizes disagree on the same control across the phones — the result tile's glyph is
-  40pt against 36sp (`DrillChrome.swift` / `DrillChrome.kt`) and the completion 🎉 is 88pt
-  against 64sp (`SessionCompletionView.swift` / `SessionSummary.kt`) — while the hub chip and
-  the reference-sheet flag already agree, so this is drift rather than a deliberate split.
-- Three parity differences the reference-sheet and box-row sweep surfaced, each a both-sides
-  ruling rather than a patch: iOS's `FeminineBadge` is cut smaller than Android's, which
-  composes it from the shared `Pill`; Android's panels carry a drop shadow and a hairline
-  through `Modifier.panel()` where iOS's `panelSurface()` is a flat fill, so the two do not read
-  as one system; and iOS prefixes each authored note with "·" where Android does not.
+- iOS drops what a scramble run earns: `TrainerHubView` builds both without an `onFinish`, so
+  the no-op eats the `DrillRunSummary` where Android lands it on Home (`model.finishDrill`).
+- iOS still draws the `position/total` counter beside a round's progress, ruled 2026-09-19 to
+  show on neither phone (`SessionScaffold`; Android's `RunScaffold` takes it as `counter`).
+- Two emoji sizes drift across the phones: the result tile's glyph is 40pt against 36sp and the
+  completion 🎉 88pt against 64sp (`DrillChrome.swift`/`.kt`, `SessionCompletionView.swift`/
+  `SessionSummary.kt`).
+- iOS's `FeminineBadge` is cut smaller than Android's, which composes it from the shared `Pill`;
+  iOS now has `pill(_:)` to compose from.
+- iOS prefixes each authored note with "·" where Android does not.
+- The letter-drill body is spaced `md` on iOS against `lg` on Android.
 - `App/Sources/Design/Theme.swift` is 388 lines, past the ~300 guide, and its shared-modifiers
   and button-styles section is the clean seam to split on.
-- The two run shells disagree on three things, each needing a both-sides sweep rather than a
-  patch on one: iOS draws a `position/total` counter beside the round's progress where Android
-  draws none (now stated as `RunScaffold`'s `counter: String? = null` rather than hidden); iOS
-  shows the read-aloud switch only on runs that read words aloud (`showsMuteButton`) where
-  Android shows it on every top bar, so the letter drill wears the switch AND its own blocking
-  `UnmuteRow`; and the letter-drill body is spaced `md` on iOS against `lg` on Android. Found
-  while the shells were unified, so each difference now sits in one parameter per platform
-  instead of several screens.
 - The letters ladder files no answered-out Sprossen (it has no storage key at all), so its
   circles carry only the entry mark where the atlas and calendar wear a record
   (`LettersOverview+Practice.swift`, `ui/LettersOverviewScreen.kt`) — should the tile and
   typed stages, which enumerate, file one and open above it too?
-- The line a card ends on is decided once per phone, not once: the precedence (the card's own
-  note wins, else what the word also means, one line only) is `CardDisplay.closingNote` on
-  Android and its twin on iOS, while `kern/model/DisplayText.kt` already owns this class of
-  reveal-line decision and already computes `alsoMeans` — the last cross-platform find of
-  `audit-2026-09-13.md` § 7, reported rather than moved so the extraction would not mint a
-  second home.
+- The card's closing line is decided once per phone (`CardDisplay.closingNote` on Android, its
+  iOS twin) where `kern/model/DisplayText.kt` owns that class of decision and already computes
+  `alsoMeans`.
 - Widget and watch snapshots ship the raw article string (`kern/.../snapshot/SnapshotSupport.kt`
   `articleTint`, `Widgets/Sources/WordWidgetView.swift`, `Watch/Sources/WatchTheme.swift`), so fr/it
   `le` cannot take its hue there until the snapshot carries a gender (a `!` change).
@@ -145,41 +116,27 @@ Catalog content — its forms, its audio and the per-language questions — live
   immediately (`kern/docs/fsrs.md:26-27`) — should Knew it / Shaky / Not at all
   (`App/Sources/Design/RatingButtonsView.swift:52-56`, `Localizable.xcstrings`) say what they
   cost on a first meeting, or is the neutral wording right?
-- The letter drill's typed and dictation stage has no live-check auto-advance the way vocab
-  review and the trainer drills have (`App/Sources/Design/AutoAdvance.swift`), so it needs a
-  Check tap where `docs/design.md` rules that "finishing the word IS the answer… in the trainer
-  drills alike". It is the one thing the shared iOS driver could not carry: `DrillRunning`'s
-  `typedMove` returns nil for this drill alone, because `LetterDrillIntent` has no
-  `InputChanged` to send. Closing it is kern's — a new intent plus a live verdict in
-  `LetterDrillRun`, whose ladder carries a third `heard` outcome (a synonym of the dictated
-  word) that the other drills have no arm for: does a `heard` verdict arm the beat, hold
-  amber, or neither?
+- The letter drill needs a Check tap where `docs/design.md` rules that finishing the word IS the
+  answer, because `LetterDrillIntent` has no `InputChanged` — the one thing `DrillRunning` could
+  not carry (`typedMove` returns nil there alone). A new intent plus a live verdict in
+  `LetterDrillRun` closes it, and its ladder carries a third `heard` outcome the other drills
+  have no arm for: does `heard` arm the beat, hold amber, or neither?
 - No automated visual-parity check exists between iOS and Android for shared, parity-bearing
   UI (cards, layout tokens), and `scripts/card-parity.py` closes 5 of the 9 historical
   divergences (numbers and primitive names, not rendering) — is a snapshot gate
   (Roborazzi/Paparazzi + swift-snapshot-testing or simctl diff, versioned goldens) worth its
   cost, or does this bullet narrow to the residual non-numeric class?
-- Nothing gates a screen re-cutting a component that already exists: `card-parity.py`'s face
-  and body lists are hand-kept, so a newly added file is never scanned (the 2026-09-03 drill
-  choice grid was written, reviewed and merged unseen before `dade95ee` consolidated it).
-  Deriving the scanned set the way `LayerBoundaryTest` derives its enum list is one half, and
-  measured 2026-09-19 it splits: the BODIES set derives cleanly as "every UI source file except
-  `ui/Theme.kt`" — ONE exclusion against a list that has since grown past forty hand-typed names,
-  and the iOS side needs none at all, because Compose's `RoundedCornerShape(14.dp)` matches the
-  Android rule where Swift's `let xs: CGFloat = 4` matches no iOS rule — while FACES does not, since
-  "the surface a question is asked on" is no property of the filesystem, and inverting it to
-  "files reaching for exactly one primitive" just returns everything that uses a panel. Copy
-  `LayerBoundaryTest`'s vacuity guard with it, or a bad glob turns the gate green. Separately,
-  `DROID_PRIMS` counts `.panel(` as a card primitive, so a file clears the composition bar on a
-  panel plus one card thing — and `IOS_PRIMS` names no panel at all, so the two are not parallel.
-  The other half was to be a duplicate-`// why:` scan, and the 2026-09 sweep measured it into
-  the ground: it reads files that duplicate a COMMENT, so a copy whose prose drifted is
-  invisible, and four of the largest finds were invisible to it — two scramble screens, a
-  second `DrillBeat` in `TurnFlow`, a third reference sheet in `NumberReferenceTable`, and an
-  inline panel cut by hand at 15 sites in 13 files, which only `rg` over the SHAPE found.
-  Six clusters shipped and the scan still stands at 46 groups with its three exemptions
-  applied, against a predicted near-zero. Build it only as a REPORT that ranks candidates for
-  a human; as a commit gate it would fail on prose while passing the duplication that matters.
+- `card-parity.py`'s face and body lists are hand-kept, so a new file is never scanned (the
+  2026-09-03 choice grid merged unseen). BODIES derives — every UI file except `ui/Theme.kt`,
+  the one table whose own declarations match a rule — against a list now past forty names;
+  FACES does not, "the surface a question is asked on" being no property of the filesystem.
+  Carry `LayerBoundaryTest`'s vacuity guard over with it, or a bad glob turns the gate green.
+- `DROID_PRIMS` counts `.panel(` as a card primitive, so a file clears the composition bar on a
+  panel plus one card thing, and `IOS_PRIMS` names no panel at all.
+- A duplicate-`// why:` scan earns a ranked report, never a commit gate: it reads files that
+  duplicate a COMMENT, so a copy whose prose drifted is invisible — it missed two scramble
+  screens, a second `DrillBeat` in `TurnFlow`, a third reference sheet in `NumberReferenceTable`
+  and a panel cut by hand at 15 sites — and still stands at 46 groups after six clusters shipped.
 - The credits screen names the target-language word every bundled recording says and offers
   no way to hear one, since the row tap opens the file's Commons page
   (`App/Sources/Screens/CreditsView.swift` `fileRow`) and `Components.kt:255` /

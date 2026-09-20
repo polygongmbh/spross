@@ -62,10 +62,10 @@ struct WordScrambleView: View, LanguageNaming {
         #endif
     }
 
-    /// Where the ladder is filed: one mask per learned language, and no
-    /// direction to split it by — the mixed letters are only ever written back
-    /// in the language they came from.
-    static func storageKey(_ language: String) -> String { "wordscramble.\(language)" }
+    /// Where the ladder is filed (`WordScrambleRunState.storageKey`).
+    static func storageKey(_ language: String) -> String {
+        WordScrambleRunState.companion.storageKey(language: language)
+    }
 
     var storageKey: String { Self.storageKey(language) }
 

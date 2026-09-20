@@ -62,9 +62,10 @@ struct SentenceScrambleView: View {
         #endif
     }
 
-    /// Where the ladder is filed: one mask per learned language, and no
-    /// direction to split it by — a phrase is only ever put back in order.
-    static func storageKey(_ language: String) -> String { "sentencescramble.\(language)" }
+    /// Where the ladder is filed (`SentenceScrambleRunState.storageKey`).
+    static func storageKey(_ language: String) -> String {
+        SentenceScrambleRunState.companion.storageKey(language: language)
+    }
 
     var storageKey: String { Self.storageKey(language) }
 

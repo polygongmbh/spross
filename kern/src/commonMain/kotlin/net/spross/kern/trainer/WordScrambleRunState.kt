@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.TurnFeedback
@@ -117,6 +118,14 @@ data class WordScrambleRunState(
     val feedback: TurnFeedback,
     val finished: Boolean,
 ) {
+    companion object {
+        /**
+         * Where the ladder is filed: one mask per learned language, and no direction to split it
+         * by — the mixed letters are only ever written back in the language they came from.
+         */
+        fun storageKey(language: Language): String = "wordscramble.$language"
+    }
+
     val done: Int get() = core.done
 
     val streak: Int get() = core.streak

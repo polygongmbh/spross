@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.TurnFeedback
 
@@ -100,6 +101,14 @@ data class SentenceScrambleRunState(
     val feedback: TurnFeedback,
     val finished: Boolean,
 ) {
+    companion object {
+        /**
+         * [WordScrambleRunState.storageKey]'s twin: one mask per learned language, and no
+         * direction to split it by — a phrase is only ever put back in order.
+         */
+        fun storageKey(language: Language): String = "sentencescramble.$language"
+    }
+
     val done: Int get() = core.done
 
     val streak: Int get() = core.streak

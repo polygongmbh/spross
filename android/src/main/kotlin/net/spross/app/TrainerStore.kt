@@ -9,6 +9,8 @@ import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.NumbersMode
+import net.spross.kern.trainer.SentenceScrambleRunState
+import net.spross.kern.trainer.WordScrambleRunState
 
 /**
  * Where a drill's standing record and its climbed Sprossen are filed.
@@ -120,16 +122,11 @@ class TrainerStore(private val prefs: SharedPreferences) {
         /** The dates ladder's twin of [countriesKey], authored by `DatesOverview.storageKey`. */
         fun datesKey(source: Language, target: Language): String = "dates.$source-$target"
 
-        /**
-         * Where the word scramble's mask is filed: one key per learned language, and no
-         * direction to split it by — the mixed letters are only ever written back in the
-         * language they came from. Kern spells no identity for this drill either, so the
-         * string is the iOS twin's (`WordScrambleView.storageKey`).
-         */
-        fun wordScrambleKey(language: Language): String = "wordscramble.$language"
+        /** Where the word scramble's mask is filed ([WordScrambleRunState.storageKey]). */
+        fun wordScrambleKey(language: Language): String = WordScrambleRunState.storageKey(language)
 
-        /** The sentence scramble's twin of [wordScrambleKey] (`SentenceScrambleView.storageKey`). */
-        fun sentenceScrambleKey(language: Language): String = "sentencescramble.$language"
+        /** The sentence scramble's twin ([SentenceScrambleRunState.storageKey]). */
+        fun sentenceScrambleKey(language: Language): String = SentenceScrambleRunState.storageKey(language)
     }
 }
 
