@@ -2,7 +2,6 @@ package net.spross.kern.trainer
 
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
-import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.TurnFeedback
 
 /**
@@ -101,7 +100,7 @@ data class WordScrambleRunState(
     val config: WordScrambleRunConfig,
     /** The question on screen; null only once nothing can be asked any more. */
     val task: WordScrambleTask?,
-    val index: Int,
+    override val index: Int,
     val level: Int,
     val bestLevel: Int,
     val winsAtLevel: Int,
@@ -114,10 +113,10 @@ data class WordScrambleRunState(
      */
     val blemished: Boolean,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
-    val core: DrillRunCore,
-    val feedback: TurnFeedback,
-    val finished: Boolean,
-) {
+    override val core: DrillRunCore,
+    override val feedback: TurnFeedback,
+    override val finished: Boolean,
+) : DrillRunProgress {
     companion object {
         /**
          * Where the ladder is filed: one mask per learned language, and no direction to split it
@@ -126,30 +125,7 @@ data class WordScrambleRunState(
         fun storageKey(language: Language): String = "wordscramble.$language"
     }
 
-    val done: Int get() = core.done
-
-    val streak: Int get() = core.streak
-
-    val bestStreak: Int get() = core.bestStreak
-
-    val missRun: Int get() = core.missRun
-
-    val outcomes: List<AnswerOutcome> get() = core.outcomes
-
-    val solved: Set<String> get() = core.solved
-
-    val owesAnswer: Boolean get() = feedback == TurnFeedback.Neutral
-
-    /** Correct or almost: something is pending that closing must book rather than lose. */
-    val answerAccepted: Boolean
-        get() = feedback == TurnFeedback.Correct || feedback is TurnFeedback.Almost
-
     /** The card opens: a slip and a miss each leave a spelling worth seeing whole. */
     val showsAnswer: Boolean
         get() = feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed
-
-    /** The way out, under the button that goes on, on the second miss in a row. */
-    val offersFinish: Boolean get() = missRun >= 1 && feedback == TurnFeedback.Revealed
-
-    val tally: DrillTally get() = DrillTally.of(outcomes)
 }

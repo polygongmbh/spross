@@ -1,7 +1,6 @@
 package net.spross.kern.trainer
 
 import net.spross.kern.model.Language
-import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.TurnFeedback
 
 /**
@@ -84,7 +83,7 @@ data class SentenceScrambleRunState(
     val task: SentenceScrambleTask?,
     /** Indices into [SentenceScrambleTask.shuffled], in the order the learner committed them. */
     val placed: List<Int>,
-    val index: Int,
+    override val index: Int,
     val level: Int,
     val bestLevel: Int,
     val winsAtLevel: Int,
@@ -97,10 +96,10 @@ data class SentenceScrambleRunState(
      */
     val blemished: Boolean,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
-    val core: DrillRunCore,
-    val feedback: TurnFeedback,
-    val finished: Boolean,
-) {
+    override val core: DrillRunCore,
+    override val feedback: TurnFeedback,
+    override val finished: Boolean,
+) : DrillRunProgress {
     companion object {
         /**
          * [WordScrambleRunState.storageKey]'s twin: one mask per learned language, and no
@@ -109,24 +108,6 @@ data class SentenceScrambleRunState(
         fun storageKey(language: Language): String = "sentencescramble.$language"
     }
 
-    val done: Int get() = core.done
-
-    val streak: Int get() = core.streak
-
-    val bestStreak: Int get() = core.bestStreak
-
-    val missRun: Int get() = core.missRun
-
-    val outcomes: List<AnswerOutcome> get() = core.outcomes
-
-    val solved: Set<String> get() = core.solved
-
-    val owesAnswer: Boolean get() = feedback == TurnFeedback.Neutral
-
-    /** Correct or almost: something is pending that closing must book rather than lose. */
-    val answerAccepted: Boolean
-        get() = feedback == TurnFeedback.Correct || feedback is TurnFeedback.Almost
-
     /**
      * The card is up, whatever the arrangement was graded.
      * A clean one raises it too: the ORDER was the question and the MEANING never was,
@@ -134,11 +115,6 @@ data class SentenceScrambleRunState(
      * was the one answer the drill never glossed.
      */
     val showsAnswer: Boolean get() = !owesAnswer
-
-    /** The way out, under the button that goes on, on the second miss in a row. */
-    val offersFinish: Boolean get() = missRun >= 1 && feedback == TurnFeedback.Revealed
-
-    val tally: DrillTally get() = DrillTally.of(outcomes)
 
     /** Accepted via an alternative word order rather than the canonical one — gloss not shown. */
     val alternativeMatch: Boolean

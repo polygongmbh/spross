@@ -63,7 +63,7 @@ data class NumbersRunState(
     val mode: NumbersMode,
     val current: DrawnTask,
     /** Bumped per question — what an autoplay effect keys on, since two draws can be equal values. */
-    val index: Int,
+    override val index: Int,
     /**
      * The Sprosse each exercise stands on, all starting at 1 however far the learner has climbed
      * before: persisted progress buys ACCESS, never a head start, because the climb is the drill.
@@ -77,28 +77,16 @@ data class NumbersRunState(
      */
     val bestLevels: Map<NumbersExercise, Int>,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
-    val core: DrillRunCore,
+    override val core: DrillRunCore,
     /** Digit counts already introduced with a place-value hint; each length is hinted once. */
     val seenDigitCounts: Set<Int>,
     /** The learner looked the numbers up while owing this answer: it books almost. */
     val hintUsed: Boolean,
-    val feedback: TurnFeedback,
+    override val feedback: TurnFeedback,
     /** What a refused answer actually NAMED ("setenta" is 70) — only beside a Revealed miss. */
     val otherWord: Match.OtherWord? = null,
-    val finished: Boolean,
-) {
-    val done: Int get() = core.done
-
-    val streak: Int get() = core.streak
-
-    val bestStreak: Int get() = core.bestStreak
-
-    val missRun: Int get() = core.missRun
-
-    val outcomes: List<AnswerOutcome> get() = core.outcomes
-
-    val solved: Set<String> get() = core.solved
-
+    override val finished: Boolean,
+) : DrillRunProgress {
     val currentTask: NumbersTask get() = current.task
 
     /** Which of the run's exercises asked what is on screen — what a win and a miss apply to. */
@@ -117,13 +105,6 @@ data class NumbersRunState(
     /** A run that asks one thing has already said what it asks. */
     val severalExercises: Boolean get() = mode.exercises.size > 1
 
-    /** The answer is still owed — what makes a look-up cost the Sprosse. */
-    val owesAnswer: Boolean get() = feedback == TurnFeedback.Neutral
-
-    /** Correct or almost: something is pending that closing must book rather than lose. */
-    val answerAccepted: Boolean
-        get() = feedback == TurnFeedback.Correct || feedback is TurnFeedback.Almost
-
     /**
      * The card carries the answer. A typo leaves it closed — the correction box already spells
      * the word out, and the answer is never on screen twice.
@@ -132,15 +113,6 @@ data class NumbersRunState(
 
     /** The numbers page is one tap away from a numbers task, and from no other. */
     val offersLookUp: Boolean get() = currentExercise == NumbersExercise.Counting
-
-    /**
-     * The way out, where it is wanted: under the button that goes on, on the SECOND miss in a
-     * row. One miss is what a drill is made of; two is where carrying on stops feeling like a
-     * choice. Any correct answer takes the offer away again.
-     */
-    val offersFinish: Boolean get() = missRun >= 1 && feedback == TurnFeedback.Revealed
-
-    val tally: DrillTally get() = DrillTally.of(outcomes)
 
     /**
      * Digit count of the numeric prompt on screen, null outside a forward numbers task: a

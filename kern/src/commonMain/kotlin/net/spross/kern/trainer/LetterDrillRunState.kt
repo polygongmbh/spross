@@ -1,7 +1,6 @@
 package net.spross.kern.trainer
 
 import net.spross.kern.model.Card
-import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.TurnFeedback
 
@@ -74,37 +73,20 @@ data class LetterDrillRunState(
     val config: LetterDrillRunConfig,
     /** The question on screen; null only once nothing can be asked any more. */
     val task: LetterDrillTask?,
-    val index: Int,
+    override val index: Int,
     val level: Int,
     val winsAtLevel: Int,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
-    val core: DrillRunCore,
+    override val core: DrillRunCore,
     /** The tile the learner picked, so the grid can mark both it and the answer. */
     val chosen: String?,
-    val feedback: TurnFeedback,
-    val finished: Boolean,
-) {
-    val done: Int get() = core.done
-
-    val streak: Int get() = core.streak
-
-    val bestStreak: Int get() = core.bestStreak
-
-    val missRun: Int get() = core.missRun
-
-    val outcomes: List<AnswerOutcome> get() = core.outcomes
-
-    val solved: Set<String> get() = core.solved
-
+    override val feedback: TurnFeedback,
+    override val finished: Boolean,
+) : DrillRunProgress {
     val stage: LetterStage? get() = task?.stage
 
     /** The stages that carry an input field. */
     val typing: Boolean get() = stage == LetterStage.Typed || stage == LetterStage.Dictation
-
-    val owesAnswer: Boolean get() = feedback == TurnFeedback.Neutral
-
-    val answerAccepted: Boolean
-        get() = feedback == TurnFeedback.Correct || feedback is TurnFeedback.Almost
 
     /**
      * The card opens. Unlike the slot drill BOTH almost holds reveal too: a slip and a
@@ -113,9 +95,4 @@ data class LetterDrillRunState(
      */
     val showsAnswer: Boolean
         get() = feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed
-
-    /** The way out, under the button that goes on, on the second miss in a row. */
-    val offersFinish: Boolean get() = missRun >= 1 && feedback == TurnFeedback.Revealed
-
-    val tally: DrillTally get() = DrillTally.of(outcomes)
 }
