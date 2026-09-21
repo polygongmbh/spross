@@ -28,6 +28,7 @@ internal object ChromeEn : Chrome {
         "Late-night %s?",
         "%s for the night owl?",
     )
+    override val homeName = "Home"
     override val homeGreetingMorningAddressee = "early bird"
     override val homeGreetingNightAddressee = "night owl"
     override val homeDoneExtraRound = "One more round?"

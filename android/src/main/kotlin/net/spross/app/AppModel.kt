@@ -76,6 +76,10 @@ sealed interface Screen {
     data object Onboarding : Screen
     data object Home : Screen
     data object Session : Screen
+
+    /** The profile, the backup and the one destructive door, on a screen of their own. */
+    data object Settings : Screen
+
     data object About : Screen
 
     /**
@@ -121,6 +125,20 @@ sealed interface Screen {
      * left off ([net.spross.kern.box.BoxBrowser.defaultExpandedGroupId]).
      */
     data class Box(val area: String? = null) : Screen
+}
+
+/**
+ * The three sections the bar switches between. A tab is named for its screen, not for the
+ * word on it: what the learner reads under the box's icon is [Chrome.boxName].
+ */
+enum class Tab { Home, Box, Settings }
+
+/** The tab the bar stands on — null on the screens that hide it: a run, a drill, the story. */
+fun Screen.asTab(): Tab? = when (this) {
+    Screen.Home -> Tab.Home
+    is Screen.Box -> Tab.Box
+    Screen.Settings -> Tab.Settings
+    else -> null
 }
 
 data class SessionUi(
@@ -435,10 +453,10 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.About
     }
 
-    /** The only way in is the box's own settings ([net.spross.app.ui.AboutFooter]), so the
-     *  way out is the box. */
+    /** The only way in is the settings' own footer ([net.spross.app.ui.AboutFooter]), so the
+     *  way out is the settings. */
     fun closeAbout() {
-        screen = Screen.Box()
+        screen = Screen.Settings
     }
 
     /**
@@ -453,6 +471,21 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         // why: the browser's rows speak on tap — nothing may keep talking into Home.
         pronouncer.stop()
         screen = Screen.Home
+    }
+
+    /**
+     * A tap on the bar. Every other way into these three carries something with it — the area
+     * a tree named, the word a search found — and keeps its own entry point; this is the bare
+     * switch, so the box opens wherever the learner left off rather than on a named shelf.
+     */
+    fun selectTab(tab: Tab) {
+        // why: rows on either side speak on tap — nothing may keep talking into the next section.
+        pronouncer.stop()
+        screen = when (tab) {
+            Tab.Home -> Screen.Home
+            Tab.Box -> Screen.Box()
+            Tab.Settings -> Screen.Settings
+        }
     }
 
     /**

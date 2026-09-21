@@ -61,7 +61,7 @@ import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.model.Language
 
 /**
- * The block under the shelves: which pair is being learnt, whether words are read aloud,
+ * What the settings hold: which pair is being learnt, whether words are read aloud,
  * the backup, and the one destructive door — plus the way to who spoke the recordings.
  *
  * Neither picker hides the other's pick: choosing the language the OTHER side holds SWAPS
@@ -102,7 +102,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
     }
 
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
-        Text(chrome.settingsTitle, style = MaterialTheme.typography.headlineSmall)
+        Text(chrome.settingsTitle, style = MaterialTheme.typography.headlineLarge)
         Column(
             modifier = Modifier.fillMaxWidth().panel(),
         ) {

@@ -26,6 +26,7 @@ internal object ChromeDe : Chrome {
         "%s zu später Stunde?",
         "%s für die Nachteule?",
     )
+    override val homeName = "Start"
     override val homeGreetingMorningAddressee = "Lerche"
     override val homeGreetingNightAddressee = "Nachteule"
     override val homeDoneExtraRound = "Noch eine Runde?"

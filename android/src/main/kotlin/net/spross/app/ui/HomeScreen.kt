@@ -3,19 +3,14 @@ package net.spross.app.ui
 import android.text.format.DateFormat
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,11 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -92,44 +83,23 @@ fun HomeScreen(model: AppModel) {
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
     ) {
         Spacer(Modifier.height(Theme.spacing.sm))
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Column(Modifier.weight(1f)) {
-                Text(
-                    today,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                // A greeting is a phrase, not a headline word: it shrinks a step rather
-                // than pushing the day's card down a third line.
-                if (hello != null) Text(
-                    hello,
-                    style = MaterialTheme.typography.headlineLarge,
-                    maxLines = 2,
-                    autoSize = TextAutoSize.StepBased(
-                        minFontSize = 20.sp,
-                        maxFontSize = MaterialTheme.typography.headlineLarge.fontSize,
-                    ),
-                )
-            }
-            // The way out of Home: the box holds every word the profile has, packed
-            // or not. Named rather than a bare glyph — an unlabelled emoji does not
-            // read as a control — and tonal on the clay wash, one step under the
-            // day's own call to action inside the card.
-            FilledTonalButton(
-                onClick = { model.openBox() },
-                modifier = Modifier
-                    .heightIn(min = 48.dp)
-                    .semantics { contentDescription = chrome.boxName }
-                    .pressSpring(),
-                shape = MaterialTheme.shapes.small,
-                colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+        Column {
+            Text(
+                today,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            // A greeting is a phrase, not a headline word: it shrinks a step rather
+            // than pushing the day's card down a third line.
+            if (hello != null) Text(
+                hello,
+                style = MaterialTheme.typography.headlineLarge,
+                maxLines = 2,
+                autoSize = TextAutoSize.StepBased(
+                    minFontSize = 20.sp,
+                    maxFontSize = MaterialTheme.typography.headlineLarge.fontSize,
                 ),
-                contentPadding = PaddingValues(horizontal = Theme.spacing.lg, vertical = Theme.spacing.sm),
-            ) {
-                Text("🪴 ${chrome.boxName}")
-            }
+            )
         }
 
         val card = homeCard(

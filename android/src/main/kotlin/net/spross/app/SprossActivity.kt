@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
@@ -17,10 +18,15 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,6 +46,7 @@ import net.spross.app.ui.NumbersOverviewScreen
 import net.spross.app.ui.OnboardingScreen
 import net.spross.app.ui.SentenceScrambleScreen
 import net.spross.app.ui.SessionScreen
+import net.spross.app.ui.SettingsScreen
 import net.spross.app.ui.SprossTheme
 import net.spross.app.ui.NumbersRunScreen
 import net.spross.app.ui.WordScrambleScreen
@@ -133,7 +140,7 @@ class SprossActivity : ComponentActivity() {
  * Not a route stack: the model holds ONE screen and the app has no back stack to read a
  * direction off, so depth is what says whether the learner went in or came back out. Home is
  * the floor, everything reached from it is one down, and About is one further because the only
- * way in is through the box's own settings.
+ * way in is through the settings' own footer.
  */
 private fun Screen.depth(): Int = when (this) {
     Screen.Loading, Screen.Onboarding, Screen.Home -> 0
@@ -146,46 +153,88 @@ private const val SCREEN_MOTION_MS = 220
 
 @Composable
 private fun Root(model: AppModel = viewModel()) {
-    AnimatedContent(
-        targetState = model.screen,
-        // why: a screen that cuts is the loudest thing separating this cut from the iOS one,
-        // where every push is animated. Going deeper enters from the trailing edge and going
-        // back reverses it, so the motion says which way the learner moved.
-        transitionSpec = {
-            val forward = targetState.depth() >= initialState.depth()
-            val enterFrom = if (forward) 1 else -1
-            val spec = tween<IntOffset>(SCREEN_MOTION_MS)
-            (slideInHorizontally(spec) { it / 6 * enterFrom } + fadeIn(tween(SCREEN_MOTION_MS)))
-                .togetherWith(
-                    slideOutHorizontally(spec) { it / 6 * -enterFrom } +
-                        fadeOut(tween(SCREEN_MOTION_MS)),
-                )
-        },
-        label = "screen",
-    ) { screen ->
-        // The screen is the lambda's own parameter rather than a property read, so the Box
-        // case can hand its area on: a `mutableStateOf` property is never smart-cast — and
-        // an outgoing screen keeps drawing the state it left with instead of the new one.
-        when (screen) {
-            Screen.Loading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator()
+    val tab = model.screen.asTab()
+    // why: back off a tab goes to Home first and leaves the app from there. The screens that
+    // own a way out — a run, the story, the about page — register their own handler, which is
+    // composed after this one and stands in front of it for as long as it is up.
+    BackHandler(enabled = tab != null && tab != Tab.Home) { model.selectTab(Tab.Home) }
+    Scaffold(bottomBar = { if (tab != null) TabBar(model, tab) }) { insets ->
+        Box(Modifier.padding(insets)) {
+            AnimatedContent(
+                targetState = model.screen,
+                // why: a screen that cuts is the loudest thing separating this cut from the iOS one,
+                // where every push is animated. Going deeper enters from the trailing edge and going
+                // back reverses it, so the motion says which way the learner moved.
+                transitionSpec = {
+                    val forward = targetState.depth() >= initialState.depth()
+                    val enterFrom = if (forward) 1 else -1
+                    val spec = tween<IntOffset>(SCREEN_MOTION_MS)
+                    (slideInHorizontally(spec) { it / 6 * enterFrom } + fadeIn(tween(SCREEN_MOTION_MS)))
+                        .togetherWith(
+                            slideOutHorizontally(spec) { it / 6 * -enterFrom } +
+                                fadeOut(tween(SCREEN_MOTION_MS)),
+                        )
+                },
+                label = "screen",
+            ) { screen ->
+                // The screen is the lambda's own parameter rather than a property read, so the Box
+                // case can hand its area on: a `mutableStateOf` property is never smart-cast — and
+                // an outgoing screen keeps drawing the state it left with instead of the new one.
+                when (screen) {
+                    Screen.Loading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator()
+                    }
+                    Screen.Onboarding -> OnboardingScreen(model)
+                    Screen.Home -> HomeScreen(model)
+                    Screen.Session -> SessionScreen(model)
+                    Screen.Listening -> ListeningScreen(model)
+                    Screen.About -> AboutScreen(model)
+                    Screen.Numbers -> NumbersOverviewScreen(model)
+                    Screen.Letters -> LettersOverviewScreen(model)
+                    Screen.Countries -> CountriesOverviewScreen(model)
+                    Screen.Dates -> DatesOverviewScreen(model)
+                    is Screen.NumbersRun -> NumbersRunScreen(model, screen.mode)
+                    Screen.LetterDrill -> LetterDrillScreen(model)
+                    Screen.WordScramble -> WordScrambleScreen(model)
+                    Screen.SentenceScramble -> SentenceScrambleScreen(model)
+                    is Screen.CountryDrill -> CountryDrillScreen(model, screen.reverse, screen.fast, screen.level)
+                    is Screen.DateDrill -> DateDrillScreen(model, screen.reverse, screen.fast, screen.level)
+                    Screen.Settings -> SettingsScreen(model)
+                    is Screen.Box -> BoxScreen(model, openAt = screen.area)
+                }
             }
-            Screen.Onboarding -> OnboardingScreen(model)
-            Screen.Home -> HomeScreen(model)
-            Screen.Session -> SessionScreen(model)
-            Screen.Listening -> ListeningScreen(model)
-            Screen.About -> AboutScreen(model)
-            Screen.Numbers -> NumbersOverviewScreen(model)
-            Screen.Letters -> LettersOverviewScreen(model)
-            Screen.Countries -> CountriesOverviewScreen(model)
-            Screen.Dates -> DatesOverviewScreen(model)
-            is Screen.NumbersRun -> NumbersRunScreen(model, screen.mode)
-            Screen.LetterDrill -> LetterDrillScreen(model)
-            Screen.WordScramble -> WordScrambleScreen(model)
-            Screen.SentenceScramble -> SentenceScrambleScreen(model)
-            is Screen.CountryDrill -> CountryDrillScreen(model, screen.reverse, screen.fast, screen.level)
-            is Screen.DateDrill -> DateDrillScreen(model, screen.reverse, screen.fast, screen.level)
-            is Screen.Box -> BoxScreen(model, openAt = screen.area)
         }
+    }
+}
+
+/**
+ * The three sections, always one tap apart — and out of the way of anything the learner is
+ * being asked to answer, which is every screen [asTab] returns null for.
+ *
+ * Glyph AND word on each: the bar is the one place a section's name is worth its room, and
+ * the word is the whole reason the box does not need to be guessed from a plant.
+ */
+@Composable
+private fun TabBar(model: AppModel, current: Tab) {
+    val chrome = model.chrome
+    NavigationBar {
+        NavigationBarItem(
+            selected = current == Tab.Home,
+            onClick = { model.selectTab(Tab.Home) },
+            icon = { Text("\uD83C\uDFE0") },
+            label = { Text(chrome.homeName) },
+        )
+        NavigationBarItem(
+            selected = current == Tab.Box,
+            onClick = { model.selectTab(Tab.Box) },
+            icon = { Text("\uD83E\uDEB4") },
+            label = { Text(chrome.boxName) },
+        )
+        NavigationBarItem(
+            selected = current == Tab.Settings,
+            onClick = { model.selectTab(Tab.Settings) },
+            icon = { Text("\u2699\uFE0F") },
+            label = { Text(chrome.settingsTitle) },
+        )
     }
 }

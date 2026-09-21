@@ -44,6 +44,7 @@ interface Chrome {
     val greetDay: List<String>
     val greetEvening: List<String>
     val greetNight: List<String>
+    val homeName: String
     val homeGreetingMorningAddressee: String
     val homeGreetingNightAddressee: String
     val homeDoneExtraRound: String

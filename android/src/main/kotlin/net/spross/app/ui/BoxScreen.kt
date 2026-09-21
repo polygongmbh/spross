@@ -1,6 +1,5 @@
 package net.spross.app.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -35,7 +33,7 @@ import net.spross.kern.box.OwnWords
 import net.spross.kern.catalog.Catalog
 
 /**
- * The box browser: the shelves, the words standing on them, and the settings under them.
+ * The box browser: the shelves and the words standing on them.
  *
  * What the shelves show is kern's to answer ([BoxBrowser.sections] / [BoxBrowser.cardsInArea] /
  * [BoxBrowser.enqueueableCardIds] / [BoxBrowser.cardRowState]), and this screen renders those
@@ -47,13 +45,12 @@ import net.spross.kern.catalog.Catalog
  */
 @Composable
 fun BoxScreen(model: AppModel, openAt: String? = null) {
-    BackHandler { model.closeBox() }
     val catalog = model.catalog
     val box = model.box
     val stats = model.stats
     if (catalog == null || box == null || stats == null) {
         Column(Modifier.fillMaxSize().padding(Theme.spacing.xl)) {
-            BoxTopBar(model.chrome, onSearch = null, onClose = model::closeBox)
+            BoxTopBar(model.chrome, onSearch = null)
         }
         return
     }
@@ -65,7 +62,6 @@ private sealed interface BoxItem {
     data class Group(val section: AreaGroupSection) : BoxItem
     data class Area(val area: String) : BoxItem
     data object OwnContent : BoxItem
-    data object Settings : BoxItem
 }
 
 @Composable
@@ -120,7 +116,6 @@ private fun BoxBrowserScreen(
             // nothing over them. They stand in the section below instead, after everything
             // the catalog brought. Kern still lists the area; only the box stops drawing it.
             add(BoxItem.OwnContent)
-            add(BoxItem.Settings)
         }
     }
 
@@ -182,7 +177,7 @@ private fun BoxBrowserScreen(
         box.cards.values.any { model.boxPronounceAction(it.target) != null }
     }
     Column(Modifier.fillMaxSize().padding(horizontal = Theme.spacing.xl)) {
-        BoxTopBar(chrome, onSearch = { searching = true }, onClose = model::closeBox)
+        BoxTopBar(chrome, onSearch = { searching = true })
         Text(
             chrome.boxSubtitle.format(stats.activeCount, box.cards.size),
             style = MaterialTheme.typography.bodyMedium,
@@ -233,8 +228,6 @@ private fun BoxBrowserScreen(
                     )
 
                     BoxItem.OwnContent -> BoxOwnSection(model, onWriteOwn = { writing = it })
-
-                    BoxItem.Settings -> BoxSettingsSection(model, catalog, box)
                 }
             }
         }
@@ -245,11 +238,10 @@ private fun itemKey(item: BoxItem): String = when (item) {
     is BoxItem.Group -> "group:${item.section.id}"
     is BoxItem.Area -> "area:${item.area}"
     BoxItem.OwnContent -> "own"
-    BoxItem.Settings -> "settings"
 }
 
 @Composable
-private fun BoxTopBar(chrome: Chrome, onSearch: (() -> Unit)?, onClose: () -> Unit) {
+private fun BoxTopBar(chrome: Chrome, onSearch: (() -> Unit)?) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Text(
             chrome.boxTitle,
@@ -262,9 +254,5 @@ private fun BoxTopBar(chrome: Chrome, onSearch: (() -> Unit)?, onClose: () -> Un
                 modifier = Modifier.semantics { contentDescription = chrome.boxSearchButton },
             ) { Text("🔍") }
         }
-        TextButton(
-            onClick = onClose,
-            modifier = Modifier.semantics { contentDescription = chrome.commonClose },
-        ) { Icon(SprossIcons.Close, contentDescription = null) }
     }
 }

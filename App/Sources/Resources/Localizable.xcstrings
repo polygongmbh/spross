@@ -961,7 +961,7 @@
       }
     },
     "box.name" : {
-      "comment" : "The box's own name, drawn beside its icon on Home and read as that icon's label.",
+      "comment" : "The box's own name, drawn under its glyph in the navigation bar.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3249,6 +3249,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ for the night owl?"
+          }
+        }
+      }
+    },
+    "home.name" : {
+      "comment" : "Home's name in the navigation bar, under its glyph.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
           }
         }
       }
