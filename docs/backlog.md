@@ -11,9 +11,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## Engine & scheduling
 
-- The four drill run states (`NumbersRunState`, `LetterDrillRunState`, `WordScrambleRunState`,
-  `SentenceScrambleRunState`) expose one identical read surface with no kern type over it,
-  which is why each phone's run shell takes five loose figures instead of one.
 - The 24-hour register closes the twelve-hour cycle by NUMBER (`achtzehn Uhr` cannot answer 06:00),
   a closure nothing holds, unlike the day parts' (`dayPartReadingsCloseTheTwelveHourCycle`).
 - `<pack>.cardinal(-n)` returns the digits rather than a reading — the negative reading lives
