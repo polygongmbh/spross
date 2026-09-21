@@ -529,9 +529,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.Dates
     }
 
-    /** Back to Home from any of them — nothing may keep talking into it. */
+    /** Back to Home from any of them. */
     fun closeOverview() {
-        pronouncer.stop()
         screen = Screen.Home
     }
 
