@@ -196,6 +196,11 @@ and a prefix every drill carried would distinguish none of them.
   so a ladder answered out hands its figures over rather than coming round to a question twice.
   Short of that the corner ✕ still works,
   and the offer is the same close, worded as finishing rather than abandoning.
+- **A run is a FULL screen however it was started, and its ✕ is the one way out.**
+  The four overviews open theirs in a cover and the two scrambles the hub opens directly
+  wear the same one,
+  because leaving any other way books neither the figures the page is owed
+  nor the Sprosse the run climbed.
 - **A closed run has no screen of its own.**
   The endless drills hand their figures — answered, best streak, whether the record fell —
   to the page that started them and leave;

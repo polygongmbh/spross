@@ -283,8 +283,11 @@ Engine contract: `../README.md`.
   and its ceiling is read off the pool: the highest Sprosse `POOL_FLOOR` of the learner's own words
   still clear, so no Sprosse exists that their box cannot fill,
   while `WordScrambleMasking.MAX_LEVEL` only names the last Sprosse that changes the CUE
-  (anchors at both ends, then the front, then nothing) and every Sprosse above it goes on
+  (the opening letter anchored, then nothing) and every Sprosse above it goes on
   lengthening the word with nothing anchored.
+  The mix itself owes two things beyond the same letters:
+  it never reads as the spelling, and it is not one adjacent swap off it either —
+  a word that admits nothing better gets the swap, since the alternative is the word itself.
   A sentence-scramble Sprosse is a CEILING that accumulates (`Report.atomsAt`, `Report.phrasesAt`):
   it adds a longer phrase and keeps every shorter one, the atlas' "Dazu:" model,
   and the draw is flat across everything admitted rather than singling out a tier.

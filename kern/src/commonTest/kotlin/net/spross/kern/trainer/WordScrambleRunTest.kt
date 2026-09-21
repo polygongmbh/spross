@@ -52,7 +52,6 @@ class WordScrambleRunTest {
         val task = assertNotNull(open().task)
         assertEquals(1, task.level)
         assertEquals(1, task.scrambled.fixedLeading)
-        assertEquals(1, task.scrambled.fixedTrailing)
         assertEquals(listOf(task.display), task.accepted, "the form drawn IS the accepted set")
         assertEquals("en-${task.cardId}", task.gloss)
     }

@@ -5,6 +5,7 @@
 - Home, the orchard and the settings now sit in a bar at the foot of the screen, always one tap apart, and out of the way while you are in a round or a drill.
 - The settings now have a section of their own instead of sitting under every shelf at the bottom of the orchard.
 - The day's card no longer asks you to re-light the streak on a day you already practiced in another language.
+- Word scramble's first Sprosse now holds only the opening letter in place, and never hands back a mix that reads as the word itself or as one swap off it.
 
 ## 7.2.0 — 2026-09-17
 
