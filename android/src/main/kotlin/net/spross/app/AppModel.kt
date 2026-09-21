@@ -467,12 +467,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.Box(area)
     }
 
-    fun closeBox() {
-        // why: the browser's rows speak on tap — nothing may keep talking into Home.
-        pronouncer.stop()
-        screen = Screen.Home
-    }
-
     /**
      * A tap on the bar. Every other way into these three carries something with it — the area
      * a tree named, the word a search found — and keeps its own entry point; this is the bare
