@@ -61,16 +61,15 @@ cliclick and System Events need accessibility permission (not granted).
 fb-idb drives CoreSimulator HID directly:
 
 ```sh
-brew install facebook/fb/idb-companion
+brew install idb-companion   # the companion daemon
+pipx install fb-idb          # the idb CLI client (built once; survives across sessions)
 idb_companion --udid <UDID> --only simulator &        # prints grpc_port (e.g. 10882)
-export IDB=~/.local/share/idbenv13/bin/idb           # built once; /tmp is wiped between sessions
-[ -x $IDB ] || { python3.13 -m venv ~/.local/share/idbenv13 && ~/.local/share/idbenv13/bin/pip install fb-idb; }
 export IDB_COMPANION=localhost:<port>
-$IDB ui tap <x> <y>                                   # logical points
-$IDB ui text 'hallo'                                  # types into the focused field
-$IDB ui swipe 200 750 200 150 --duration 0.05         # flick-scroll
-$IDB ui describe-all                                  # the whole accessibility tree
-$IDB ui describe-point <x> <y>                        # one element under a point
+idb ui tap <x> <y>                                   # logical points
+idb ui text 'hallo'                                  # types into the focused field
+idb ui swipe 200 750 200 150 --duration 0.05         # flick-scroll
+idb ui describe-all                                  # the whole accessibility tree
+idb ui describe-point <x> <y>                        # one element under a point
 ```
 
 `describe-all` is the one to reach for first: it returns every element as JSON with
@@ -83,8 +82,6 @@ Accessibility grant. Read the prompt out of `describe-all`, then type the answer
 fits it: that ordering is why an unseeded drill RNG is no problem for a typed answer,
 and why the old `-uitest-input`/`-uitest-submit` pair, which had to prefill before the
 prompt was known, is gone.
-
-Gotcha: fb-idb breaks on python 3.14 (`asyncio.get_event_loop`) — use python@3.13.
 
 Box documents (per-target, progress evidence) live in the shared app group:
 `~/Library/Developer/CoreSimulator/Devices/<UDID>/data/Containers/Shared/AppGroup/*/box/box-<target>.json`
