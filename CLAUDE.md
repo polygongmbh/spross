@@ -77,6 +77,10 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   never by the display copy's narrative metaphor (say "button", not "door"); metaphor is chrome content, not descriptive vocabulary.
   This binds identifiers and localization keys too — a key names its content or its function,
   so the one holding "Garden" is `box.name`, never `box.door`.
+  The same split holds for a thing's NAME, not only its metaphor:
+  the box is `Box` in types, screens, keys and docs whatever the string table shows the learner
+  (`box.name` currently reads "Orchard") — a display name is chrome and changes in an afternoon,
+  while every identifier that followed it would have to change with it.
 
 ### Tests
 - Test rules and behavior, not implementation details or tweakable constants
