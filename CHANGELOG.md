@@ -4,6 +4,7 @@
 
 - Home, the orchard and the settings now sit in a bar at the foot of the screen, always one tap apart, and out of the way while you are in a round or a drill.
 - The settings now have a section of their own instead of sitting under every shelf at the bottom of the orchard.
+- The day's card no longer asks you to re-light the streak on a day you already practiced in another language.
 
 ## 7.2.0 — 2026-09-17
 

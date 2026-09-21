@@ -68,10 +68,10 @@ fun HomeScreen(model: AppModel) {
         dayPart(greetingNow, greetingZone, greetingTarget),
     ) { greetingTarget?.let { greeting(model, it) } }
     var briefingOpen by remember { mutableStateOf(false) }
-    val standing = remember(box, model.canPracticeExtra) {
+    val standing = remember(box, model.canPracticeExtra, model.otherLanguagesAnswerDays) {
         box?.let {
             HomeStanding.of(it, System.currentTimeMillis(), TimeZone.getDefault().id,
-                             model.canPracticeExtra)
+                             model.canPracticeExtra, model.otherLanguagesAnswerDays)
         }
     }
 

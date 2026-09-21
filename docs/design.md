@@ -385,8 +385,10 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   The half-cooled mark is drained of some of its color, not faded: a washed-out flame
   reads as disabled, while one losing its heat asks to be re-lit.
   The card is up exactly while that work is still owed, so the mark carries the warning
-  without spending a word on it — and the strip's badge and the widget's flame
-  read off the same grade, so no two surfaces say different things about one day.
+  without spending a word on it — and the strip's badge, the widget's flame and the
+  headline that asks for the run back (`SessionOffer.streakExposed`) read off the same
+  grade, over the run merged across every language, so no two surfaces say different
+  things about one day.
   The card names what the round is led by rather than calling everything "a session":
   due work, or an offer of new words when nothing is due.
   What the card promises is what the round will really hand over — the cap it will take,
