@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Home, the orchard and the settings now sit in a bar at the foot of the screen, always one tap apart, and out of the way while you are in a round or a drill.
+- The settings now have a section of their own instead of sitting under every shelf at the bottom of the orchard.
+
 ## 7.2.0 — 2026-09-17
 
 - A revealed answer's field now carries the amber edge its screen reader already announced, on Android as on iPhone.

@@ -59,7 +59,7 @@ Strict dependency direction: App → SprossKern, never the reverse.
   and opens the session. Only that page commits, so the join happens once,
   behind something worth reading, and every page before it is free to go back from;
   the first round is never something the learner has to go and find on Home.
-  Box settings carry a restart-tutorial row that replays it: the pair page is skipped
+  The settings carry a restart-tutorial row that replays it: the pair page is skipped
   since the pair is already made, nothing in the box is touched, and the last page ends
   in a coached round the same way. A language change alone is the box's own pickers,
   which take none of the pages and open no session over the screen you were on.
@@ -313,7 +313,7 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   every close celebrates nothing. Drill records live outside the box: a run touches no card,
   so it is not box state.
 
-## App structure (single screen)
+## App structure (three tabs)
 
 - **The companion**: the box briefs a chat assistant the app does not host
   and reads that conversation's answer back into own words (`Briefing`, `Harvest`).
@@ -345,7 +345,15 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   what OCR drops first is diacritics and borrowed spellings,
   which is the part of a vocabulary list that carries the learning,
   and at 7 KB there is no token saving to buy with that anyway.
-- **Home** is the only root screen:
+- **Three peer sections** stand behind a bar the learner can always reach:
+  Home, the box, the settings.
+  It is up on those three and gone for everything else — a round, a drill, the story —
+  so nothing the learner is being asked to answer shares a screen with a way out of it.
+  Each item carries a glyph AND its section's name: the bar is the one place a name
+  earns its room, and a section nobody can name is one nobody opens on purpose.
+  The three are peers because each is entered for its own reason, not on the way to another;
+  anything deeper is reached FROM one of them and covers the bar while it is up.
+- **Home** is where the bar opens and what a finished round comes back to:
   the day's line, session card (streak flame + the round's counts, or done state),
   the listening card, trainer hub, the companion card, then the 14-day strip and the forest.
   The listening card sits under the round and above the trainers because that is its
@@ -438,9 +446,9 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   leaf in shape before color, and the standing figures are spelled out beneath.
   Nothing in it moves: a box grows over weeks, and motion would claim a change the
   picture is not showing.
-- **Box** (the button from Home): browse the catalog by area, pack words in and take a
-  shelf's queue back out before a round has met it, revive suspended ones;
-  settings live here — profile, backup, reset. A tree in the forest opens it already
+- **Box** (the bar's middle section): browse the catalog by area, pack words in and take a
+  shelf's queue back out before a round has met it, revive suspended ones.
+  A tree in the forest opens it already
   unfolded at that area, exactly as a search hit does. **The area is the unit for
   packing and unpacking alike**, same as the forest's own picture — a word acted
   on by itself is only ever the one a search reached by name, never a shelf
@@ -450,7 +458,7 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
     kinds offer what they ARE: an area unfolds itself back on the Box screen and scrolls
     into reach, a word can be heard and packed on its own — a learner who went looking for
     one word by name should not have to take the shelf around it.
-  - **Eigene Inhalte** closes the Box, below the shelves and above the settings, and it is
+  - **Eigene Inhalte** closes the Box, under the shelves, and it is
     the one section always drawn: it carries the button that writes a word, and the only
     other way in is a search that found nothing. Everything the learner put into the box
     themselves is here — the words they wrote, and the problems they filed — and nothing
@@ -508,6 +516,13 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
     (`../kern/README.md` §6). Rewriting one keeps its id, and with it the progress made on
     it; deleting one is the only deletion in the app, since a catalog word can be put to
     sleep but never removed.
+- **Settings** (the bar's third section): the pair being learnt, the learner's name, whether
+  words are read aloud, the backup, the restart-tutorial row, the destructive reset, and the
+  footer that names who spoke the recordings.
+  A section rather than the foot of the box's scroll: none of it is a word, and what a
+  learner comes here to do — change the pair, get their progress onto a new phone — is not
+  something to be found by scrolling past every shelf they own.
+  **About** is reached from its footer and from nowhere else, so About goes back to it.
 - **A long press on a Box row offers everything that can be done to one word; the same
   press mid-round offers two things only.** In the Box the menu is where the word stands
   (pack, unpack, sleep, wake, forget its progress), then what can be MADE of it (an own

@@ -3,7 +3,7 @@ import SprossKern
 
 /// Browse the box: areas with their stats, per-area "Pack in die Box", card lists
 /// with phase badges, then what the learner wrote themselves
-/// (`BoxOwnContentSection`) and the settings block. The magnifier in the bar opens
+/// (`BoxOwnContentSection`). The magnifier in the bar opens
 /// the same box by typing (`BoxSearchView`), which hands an area back here to be
 /// revealed.
 /// How long the group's fold is given to lay its areas out before the box is asked to
@@ -73,7 +73,6 @@ struct BoxView: View {
                     // brought, and unlike a shelf it is always there.
                     BoxOwnContentSection(model: model)
                         .id(model.ownArea)
-                    BoxSettingsSection(model: model)
                 }
                 .padding(Theme.spacing.xl)
                 .scrollTargetLayout()
@@ -103,6 +102,12 @@ struct BoxView: View {
             // area up to the thumb, and only on the first appearance.
             .onAppear {
                 if let revealArea, scrollTarget == nil { scrollTarget = revealArea }
+            }
+            // why: the tab keeps this screen alive, so a tree tapped after the box has
+            // once stood open reaches a view whose `init` will not run again. The area
+            // it names gets the unfold a search hit gets.
+            .onChange(of: revealArea) { _, area in
+                if let area { reveal(area: area) }
             }
         }
         .background(Theme.colors.background.ignoresSafeArea())

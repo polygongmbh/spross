@@ -1,7 +1,7 @@
 import SwiftUI
 import SprossKern
 
-/// Settings block at the bottom of the Box tab: known language (source),
+/// What the settings hold: known language (source),
 /// learning language (target, one box each), learner name,
 /// read-aloud source (only where the language has a sound),
 /// backup, restart tutorial, reset.
@@ -17,7 +17,7 @@ struct BoxSettingsSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             Text("settings.title")
-                .font(Theme.typography.title)
+                .font(Theme.typography.hero)
                 .foregroundStyle(Theme.colors.textPrimary)
 
             VStack(alignment: .leading, spacing: Theme.spacing.lg) {

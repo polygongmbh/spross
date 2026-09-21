@@ -137,7 +137,7 @@ final class AppModel {
     /// and in memory only — an app killed in between is simply back without the coaching.
     var coachPending = false
     private(set) var autostartSession = false
-    /// DEBUG hook: `-uitest-screen box` pushes the Box screen after launch,
+    /// DEBUG hook: `-uitest-screen box` or `settings` opens that tab after launch,
     /// `finish` jumps a fresh session to its finish screen.
     private(set) var uitestScreen: String?
     #if DEBUG

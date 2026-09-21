@@ -1,11 +1,18 @@
 import SwiftUI
 
-/// Single-screen app: Home is the root, the Box pushes via a toolbar
-/// button. Onboarding sheet on first launch, full-screen session cover.
+/// The three sections a bar switches between, each named for its screen: what
+/// the learner reads under the box's glyph is `box.name` and can be reworded
+/// without touching this.
+enum Tab: Hashable {
+    case home, box, settings
+}
+
+/// Three peer sections behind a tab bar; a run, a drill or the story covers it
+/// whole. Onboarding sheet on first launch, full-screen session cover.
 struct RootView: View {
     @Bindable var model: AppModel
 
-    @State private var boxPresented = false
+    @State private var tab: Tab = .home
     /// The area the box should open on, set by tapping a tree on Home —
     /// that names a place, the box is still the screen that shows it.
     @State private var boxArea: String?
@@ -37,41 +44,49 @@ struct RootView: View {
         }
         .task {
             await model.start()
-            if model.uitestScreen == "box" {
-                boxPresented = true
+            switch model.uitestScreen {
+            case "box": tab = .box
+            case "settings": tab = .settings
+            default: break
             }
         }
     }
 
     private var home: some View {
-        NavigationStack {
-            HomeView(model: model, openBox: { area in
-                boxArea = area
-                boxPresented = true
-            })
-                .navigationDestination(isPresented: $boxPresented) {
-                    BoxView(model: model, revealArea: boxArea)
-                }
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            // why: this button opens the orchard at large, so it drops
-                            // the area a tree last named — otherwise it would
-                            // keep landing on that one shelf.
-                            boxArea = nil
-                            boxPresented = true
-                        } label: {
-                            // A grown tree rather than a leaf: `leaf.fill`
-                            // is the learning tier's icon on the screen
-                            // this opens, and the sprout is the streak's.
-                            Image(systemName: "tree.fill")
-                        }
-                        .accessibilityLabel("box.name")
-                    }
-                }
+        // Each item is a glyph AND its section's name: the bar is the one place a name
+        // is worth its room. A grown tree rather than a leaf for the box — `leaf.fill`
+        // is the learning tier's mark on the screen it opens, and the sprout is the
+        // streak's. The bar fills the selected glyph itself.
+        TabView(selection: $tab) {
+            NavigationStack {
+                HomeView(model: model, openBox: { area in
+                    boxArea = area
+                    tab = .box
+                })
                 .toolbarBackground(.hidden, for: .navigationBar)
+            }
+            .tabItem { Label("home.name", systemImage: "house") }
+            .tag(Tab.home)
+
+            NavigationStack {
+                BoxView(model: model, revealArea: boxArea)
+            }
+            .tabItem { Label("box.name", systemImage: "tree") }
+            .tag(Tab.box)
+
+            NavigationStack {
+                SettingsView(model: model)
+            }
+            .tabItem { Label("settings.title", systemImage: "gearshape") }
+            .tag(Tab.settings)
         }
         .tint(Theme.colors.accent)
+        // why: the area a tree named is spent on the way in. Left standing, the next
+        // visit that the bar itself opens would land on that one shelf again, and the
+        // box is meant to open where the learner left off.
+        .onChange(of: tab) { _, now in
+            if now != .box { boxArea = nil }
+        }
     }
 
     private var loading: some View {
