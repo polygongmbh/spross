@@ -473,8 +473,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * switch, so the box opens wherever the learner left off rather than on a named shelf.
      */
     fun selectTab(tab: Tab) {
-        // why: rows on either side speak on tap — nothing may keep talking into the next section.
-        pronouncer.stop()
         screen = when (tab) {
             Tab.Home -> Screen.Home
             Tab.Box -> Screen.Box()
