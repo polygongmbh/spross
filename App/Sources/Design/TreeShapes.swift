@@ -34,14 +34,20 @@ enum TreeShapes {
     static func draw(_ context: inout GraphicsContext, _ mark: TreeMark,
                      arriving: TreeArrival = .settled) {
         let shown = mark.tree
-        // why: an area nobody has opened draws NOTHING — not even ground. A mark
-        // on every untouched area turns a catalog the learner did not choose
-        // into a list of things they have not done, and its dimmed emoji already
-        // says the place exists.
-        guard !shown.isBare else { return }
         ground(&context, mark)
 
-        guard shown.canopyCount > 0 else { return seedling(&context, mark) }
+        // why: an area nobody has opened stands as a seedling on its own patch of
+        // ground, faded the way its emoji is — the plot is there and nothing has
+        // been planted in it, which is a place to go rather than a chore not done.
+        // It has no standing to be tall with, so it stands at the seedling floor.
+        if shown.isBare {
+            return seedling(&context, mark,
+                            height: max(mark.height, OrchardLayout.minHeight),
+                            color: Theme.colors.success.opacity(0.45))
+        }
+        guard shown.canopyCount > 0 else {
+            return seedling(&context, mark, height: mark.height, color: Theme.colors.success)
+        }
 
         let skeleton = mark.skeleton
         branches(&context, skeleton, mark)
@@ -78,16 +84,19 @@ enum TreeShapes {
     /// Nothing has settled here yet: a stem and two leaflets. Packing a whole
     /// area puts ONE of these on the plot — forty words packed is still one
     /// intention, and drawing it as forty objects was a spilled bag of seeds.
-    private static func seedling(_ context: inout GraphicsContext, _ mark: TreeMark) {
-        let top = CGPoint(x: mark.foot.x, y: mark.baseline - mark.height)
+    /// An untouched area gets the same seedling in a faded green: the two are
+    /// told apart by their color, never by one of them being missing.
+    private static func seedling(_ context: inout GraphicsContext, _ mark: TreeMark,
+                                 height: CGFloat, color: Color) {
+        let top = CGPoint(x: mark.foot.x, y: mark.baseline - height)
         var stem = Path()
         stem.move(to: mark.foot)
         stem.addLine(to: top)
-        context.stroke(stem, with: .color(Theme.colors.success),
-                       style: StrokeStyle(lineWidth: max(1.4, mark.height * 0.055), lineCap: .round))
-        let leafSize = max(4, mark.height * 0.34)
-        leaf(&context, at: top, size: leafSize, angle: -0.7, color: Theme.colors.success)
-        leaf(&context, at: top, size: leafSize, angle: .pi + 0.7, color: Theme.colors.success)
+        context.stroke(stem, with: .color(color),
+                       style: StrokeStyle(lineWidth: max(1.4, height * 0.055), lineCap: .round))
+        let leafSize = max(4, height * 0.34)
+        leaf(&context, at: top, size: leafSize, angle: -0.7, color: color)
+        leaf(&context, at: top, size: leafSize, angle: .pi + 0.7, color: color)
     }
 
     // MARK: The tree
