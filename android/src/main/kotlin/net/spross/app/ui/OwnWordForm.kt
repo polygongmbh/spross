@@ -17,6 +17,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.listSaver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -59,7 +61,19 @@ fun OwnWordForm(
     val chrome = model.chrome
     val catalog = model.catalog ?: return
     val stamp = model.box?.joinStamp ?: return
-    var draft by remember { mutableStateOf(initial) }
+    // why: a draft in plain `remember` is gone the moment the composition is — a rotation,
+    // or the system reclaiming the app while the learner answers a message — and they come
+    // back to an empty form. Only the typed text is saved; what the form opened ON is the
+    // caller's and arrives again with [initial].
+    val saver = remember(initial) {
+        listSaver<OwnWordDraft, String>(
+            save = { listOf(it.known, it.learning, it.emoji, it.comment) },
+            restore = {
+                initial.copy(known = it[0], learning = it[1], emoji = it[2], comment = it[3])
+            },
+        )
+    }
+    var draft by rememberSaveable(stateSaver = saver) { mutableStateOf(initial) }
     val rewriting = draft.editing != null
     BackHandler { onCancel() }
 

@@ -44,6 +44,12 @@ final class AppModel {
     /// Settable across the model's extensions; every write goes through a
     /// reduction or `box` below.
     var run: SessionRunState?
+    /// What stands written in the word form right now (`OwnWordFormView`).
+    ///
+    /// Held here rather than in the sheet: iOS is free to tear a backgrounded sheet's
+    /// views down, and a draft kept in their `@State` goes down with them — the learner
+    /// answers a message and comes back to an empty form. The model outlives any screen.
+    var ownWordDraft: OwnWordDraft?
     private(set) var stats: BoxStatistics?
     /// Where every card stands on the growth ladder —
     /// what the orchard is drawn from.

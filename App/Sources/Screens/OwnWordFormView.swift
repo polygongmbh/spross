@@ -37,46 +37,71 @@ struct OwnWordFormView: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    @State private var known: String
-    @State private var learning: String
-    @State private var emoji: String
-    @State private var comment: String
     @FocusState private var focus: Field?
 
     private enum Field { case known, learning, emoji, comment }
 
-    init(model: AppModel, seed: Seed, added: @escaping (String) -> Void = { _ in }) {
-        self.model = model
-        self.seed = seed
-        self.added = added
+    /// What is typed, and what it is typed over — the model's (`AppModel.ownWordDraft`),
+    /// so backgrounding the app cannot take it. A draft left over from another opening
+    /// is not this form's, and the seed is read instead.
+    private var draft: OwnWordDraft {
+        if let held = model.ownWordDraft, held.opening == opening { return held }
+        return seeded
+    }
+
+    private var known: String { draft.known }
+    private var learning: String { draft.learning }
+    private var emoji: String { draft.emoji }
+    private var comment: String { draft.comment }
+
+    /// Which opening of the form this is: another word, or another failed search, is
+    /// another form and starts from its own seed.
+    private var opening: String {
+        switch seed {
+        case .query(let query): return "query:\(query)"
+        case .card(let card): return "card:\(card.id)"
+        case .editing(let word): return "edit:\(word.id)"
+        }
+    }
+
+    private var seeded: OwnWordDraft {
         switch seed {
         case .query(let query):
-            _known = State(initialValue: query)
-            _learning = State(initialValue: "")
-            _emoji = State(initialValue: "")
-            _comment = State(initialValue: "")
+            return OwnWordDraft(opening: opening, known: query, learning: "",
+                                emoji: "", comment: "")
         case .card(let card):
-            _known = State(initialValue: card.source.text)
-            _learning = State(initialValue: card.target.text)
-            _emoji = State(initialValue: card.emoji ?? "")
-            _comment = State(initialValue: "")
+            return OwnWordDraft(opening: opening, known: card.source.text,
+                                learning: card.target.text, emoji: card.emoji ?? "",
+                                comment: "")
         case .editing(let word):
-            _known = State(initialValue: word.texts[model.sourceLanguage] ?? "")
-            _learning = State(initialValue: word.texts[model.targetLanguage ?? ""] ?? "")
-            _emoji = State(initialValue: word.emoji ?? "")
-            _comment = State(initialValue: word.comment ?? "")
+            return OwnWordDraft(opening: opening,
+                                known: word.texts[model.sourceLanguage] ?? "",
+                                learning: word.texts[model.targetLanguage ?? ""] ?? "",
+                                emoji: word.emoji ?? "", comment: word.comment ?? "")
         }
+    }
+
+    private func write(_ field: WritableKeyPath<OwnWordDraft, String>) -> Binding<String> {
+        Binding(
+            get: { draft[keyPath: field] },
+            set: {
+                var written = draft
+                written[keyPath: field] = $0
+                model.ownWordDraft = written
+            },
+        )
     }
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.spacing.xl) {
-                    field(label(model.sourceLanguage), text: $known, field: .known)
+                    field(label(model.sourceLanguage), text: write(\.known), field: .known)
                     swapButton
-                    field(label(model.targetLanguage ?? ""), text: $learning, field: .learning)
+                    field(label(model.targetLanguage ?? ""), text: write(\.learning),
+                          field: .learning)
                     picture
-                    field("box.own.word.comment", text: $comment, field: .comment)
+                    field("box.own.word.comment", text: write(\.comment), field: .comment)
                     Text(explainer)
                         .font(Theme.typography.caption)
                         .foregroundStyle(Theme.colors.textSecondary)
@@ -88,7 +113,7 @@ struct OwnWordFormView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("common.cancel") { dismiss() }
+                    Button("common.cancel") { close() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button(isEditing ? "box.own.word.save" : "box.own.word.add") { save() }
@@ -134,15 +159,23 @@ struct OwnWordFormView: View {
         if case .editing(let word) = seed {
             model.updateOwnWord(word, known: known, learning: learning, emoji: emoji,
                                 comment: comment)
-            dismiss()
+            close()
             return
         }
+        let pair = isPair
         guard let id = model.addOwnWord(known: known, learning: learning, emoji: emoji,
                                         comment: comment)
         else { return }
         // why: a suggestion joins no card, so there is nothing on a shelf to reveal —
         // the caller's scroll-to would land on an area that does not exist.
-        if isPair { added(id) }
+        if pair { added(id) }
+        close()
+    }
+
+    /// Leaves the form and drops the draft with it: what was written is either in the box
+    /// now or was given up on, and either way it must not stand in the next form opened.
+    private func close() {
+        model.ownWordDraft = nil
         dismiss()
     }
 
@@ -158,7 +191,10 @@ struct OwnWordFormView: View {
     /// mistake this form cannot catch itself, since either order is a real word.
     private var swapButton: some View {
         Button {
-            swap(&known, &learning)
+            var swapped = draft
+            swapped.known = draft.learning
+            swapped.learning = draft.known
+            model.ownWordDraft = swapped
         } label: {
             Label("box.own.word.swap", systemImage: "arrow.up.arrow.down")
                 .font(Theme.typography.caption)
@@ -168,12 +204,12 @@ struct OwnWordFormView: View {
     }
 
     private var picture: some View {
-        field("box.own.word.picture", text: $emoji, field: .emoji) { quickPicks }
+        field("box.own.word.picture", text: write(\.emoji), field: .emoji) { quickPicks }
             // why: the field takes anything a keyboard can send, so the cap is
             // enforced on what lands in it rather than on what may be typed.
             .onChange(of: emoji) { _, typed in
                 let capped = String(typed.prefix(Int(OwnWords.shared.MAX_EMOJI)))
-                if capped != typed { emoji = capped }
+                if capped != typed { write(\.emoji).wrappedValue = capped }
             }
     }
 
@@ -185,7 +221,7 @@ struct OwnWordFormView: View {
             HStack(spacing: Theme.spacing.sm) {
                 ForEach(OwnWords.shared.QUICK_EMOJI, id: \.self) { pick in
                     Button {
-                        emoji = pick
+                        write(\.emoji).wrappedValue = pick
                     } label: {
                         Text(verbatim: pick)
                             .font(.title3)

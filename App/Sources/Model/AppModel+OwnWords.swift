@@ -5,6 +5,20 @@ import SprossKern
 // carry, that adding one packs it — are Kern's (`OwnWords`, kern §6); this layer
 // trims the typed text, names the area in the chrome language, and persists.
 
+/// What the learner has typed into the word form, and which opening of it that was.
+///
+/// A draft outlives the sheet that shows it (`AppModel.ownWordDraft`) — which is the whole
+/// point of it — so it names the opening it belongs to: the form reopened on a different
+/// word, or on a search that found something else, starts from that word and never from
+/// what was left standing.
+struct OwnWordDraft {
+    let opening: String
+    var known: String
+    var learning: String
+    var emoji: String
+    var comment: String
+}
+
 extension AppModel {
 
     /// The one area own words live in; not a catalog folder name.
