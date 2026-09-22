@@ -167,11 +167,29 @@ object OwnWords {
                 seedIndex = SEED_BASE + position,
                 components = emptyList(),
                 feminineOf = null,
-                source = Realization(lang = source, text = known),
-                target = Realization(lang = target, text = learning),
+                source = realization(source, known),
+                target = realization(target, learning),
                 promptFeminineMarker = false,
             )
         }
+
+    /**
+     * One side of an own word as a card renders it: the first form is what the
+     * learner is asked to type, anything they joined onto it with a "/" is an
+     * accepted [Realization.variants] spelling beside it.
+     *
+     * The catalog's rule that a form nobody can type is never a `text`
+     * (`kern/docs/catalog.md`) holds here too — but an own word keeps every form
+     * the learner wrote, and splits them only where grading needs one answer.
+     */
+    private fun realization(lang: Language, text: String): Realization {
+        val forms = text.split('/').map { it.trim() }.filter { it.isNotEmpty() }
+        return Realization(
+            lang = lang,
+            text = forms.firstOrNull() ?: text.trim(),
+            variants = forms.drop(1),
+        )
+    }
 
     /**
      * A word as the learner just wrote it, with no age of its own yet —
@@ -179,9 +197,9 @@ object OwnWords {
      * does not survive the ObjC export, so Swift would otherwise have to mint an
      * [Instant] it has no business knowing about.
      *
-     * Each side is narrowed to [primaryForm]: an own word has no field for a second
-     * accepted spelling the way a catalog concept lists a `synonym`, so a pasted
-     * "gari yangu / gari langu" would ask the grader for an answer nobody can type.
+     * Each side is stored whole, exactly as it was typed: a "gari yangu / gari langu"
+     * keeps both spellings, and [cards] is where the first becomes the answer and the
+     * rest become accepted variants beside it.
      *
      * [texts] may be empty where [comment] is not: that is a bare remark
      * ([OwnWord.isRemark]), which joins no card and is no suggestion either.
@@ -196,20 +214,11 @@ object OwnWords {
         id = id,
         kind = kind,
         emoji = emoji,
-        texts = texts.mapValues { (_, text) -> primaryForm(text) },
+        texts = texts.mapValues { (_, text) -> text.trim() },
         // why: a blank comment is no comment — the field is optional, and a form that
         // stored "" would leave every word carrying an empty line to export.
         comment = comment?.trim()?.ifEmpty { null },
     )
-
-    /**
-     * [text] as an own word stores it: the first form only.
-     *
-     * Whichever side wrote it, a "/" marks a second spelling the learner meant as an
-     * alternative, not a phrase to type — untypeable text is the catalog's own rule
-     * (`kern/docs/catalog.md`), and an own word has nowhere else to put the rest.
-     */
-    private fun primaryForm(text: String): String = text.substringBefore('/').trim()
 
     /** Whether this card id belongs to a word the learner wrote. */
     fun owns(cardId: String): Boolean = cardId.startsWith(ID_PREFIX)

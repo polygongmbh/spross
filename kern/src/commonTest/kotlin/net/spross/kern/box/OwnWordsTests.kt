@@ -157,7 +157,7 @@ class OwnWordsTests {
     // Writing a word's text
 
     @Test
-    fun aSlashJoinedAlternativeKeepsOnlyTheFirstForm() {
+    fun aSlashJoinedAlternativeIsStoredWhole() {
         val word = OwnWords.write(
             id = "own:gari-yangu",
             kind = OwnWords.DEFAULT_KIND,
@@ -165,7 +165,34 @@ class OwnWordsTests {
             texts = mapOf("de" to "mein Auto", "sw" to "gari yangu / gari langu"),
             comment = null,
         )
-        assertEquals("gari yangu", word.texts.getValue("sw"))
+        assertEquals("gari yangu / gari langu", word.texts.getValue("sw"))
+    }
+
+    @Test
+    fun aSuggestionKeepsEveryFormItWasWrittenWith() {
+        val word = OwnWords.write(
+            id = "own:kuandika",
+            kind = OwnWords.DEFAULT_KIND,
+            emoji = null,
+            texts = mapOf("sw" to "kuandika / kuchora"),
+            comment = "which one is it?",
+        )
+        assertEquals("kuandika / kuchora", word.texts.getValue("sw"))
+        assertTrue(word.isSuggestion)
+    }
+
+    @Test
+    fun aSlashJoinedAlternativeIsAcceptedBesideTheFirstForm() {
+        val word = OwnWords.write(
+            id = "own:gari-yangu",
+            kind = OwnWords.DEFAULT_KIND,
+            emoji = null,
+            texts = mapOf("de" to "mein Auto", "sw" to "gari yangu / gari langu"),
+            comment = null,
+        )
+        val card = OwnWords.cards(listOf(word), source = "de", target = "sw").single()
+        assertEquals("gari yangu", card.target.text)
+        assertEquals(listOf("gari langu"), card.target.variants)
     }
 
     @Test
