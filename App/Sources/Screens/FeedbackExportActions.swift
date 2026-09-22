@@ -138,10 +138,7 @@ struct FeedbackExportActions: View {
         Button(role: .destructive) {
             confirmingClear = true
         } label: {
-            Label("common.clear", systemImage: "trash")
-                .font(Theme.typography.subheadline)
-                .foregroundStyle(Theme.colors.wrong)
-                .linkAffordance()
+            LinkLabel("common.clear", icon: "trash", color: Theme.colors.wrong, font: Theme.typography.subheadline)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
         }
@@ -154,10 +151,7 @@ struct FeedbackExportActions: View {
     }
 
     private func actionLabel(_ title: LocalizedStringKey, icon: String) -> some View {
-        Label(title, systemImage: icon)
-            .font(Theme.typography.subheadline)
-            .foregroundStyle(Theme.colors.accent)
-            .linkAffordance()
+        LinkLabel(title, icon: icon, font: Theme.typography.subheadline)
             .lineLimit(1)
             .minimumScaleFactor(0.7)
     }

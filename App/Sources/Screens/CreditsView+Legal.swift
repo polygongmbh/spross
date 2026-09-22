@@ -68,9 +68,7 @@ extension CreditsView {
     @ViewBuilder
     private var contactValue: some View {
         if let url = URL(string: "mailto:\(Legal.contactAddress)") {
-            Link(Legal.contactAddress, destination: url)
-                .foregroundStyle(Theme.colors.accent)
-                .linkAffordance()
+            Link(destination: url) { LinkLabel(verbatim: Legal.contactAddress) }
         } else {
             Text(verbatim: Legal.contactAddress)
         }
@@ -80,10 +78,7 @@ extension CreditsView {
     private var privacyLink: some View {
         if let url = URL(string: Legal.privacyUrl) {
             Link(destination: url) {
-                Label("legal.privacy", systemImage: "hand.raised")
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.accent)
-                    .linkAffordance()
+                LinkLabel("legal.privacy", icon: "hand.raised", font: Theme.typography.caption)
             }
         }
     }

@@ -79,10 +79,7 @@ struct BackupRow: View {
     }
 
     private var exportLabel: some View {
-        Label("settings.backup.export", systemImage: "square.and.arrow.up")
-            .font(Theme.typography.subheadline)
-            .foregroundStyle(Theme.colors.accent)
-            .linkAffordance()
+        LinkLabel("settings.backup.export", icon: "square.and.arrow.up", font: Theme.typography.subheadline)
     }
 
     /// The file the exporter then puts somewhere — named for what it carries, so two of
@@ -103,10 +100,7 @@ struct BackupRow: View {
         Button {
             importing = true
         } label: {
-            Label("settings.backup.import", systemImage: "square.and.arrow.down")
-                .font(Theme.typography.subheadline)
-                .foregroundStyle(Theme.colors.accent)
-                .linkAffordance()
+            LinkLabel("settings.backup.import", icon: "square.and.arrow.down", font: Theme.typography.subheadline)
         }
         .buttonStyle(.plain)
         .fileImporter(isPresented: $importing, allowedContentTypes: [.json]) { result in

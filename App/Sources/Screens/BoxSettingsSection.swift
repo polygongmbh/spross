@@ -69,10 +69,7 @@ struct BoxSettingsSection: View {
                 .padding(.bottom, Theme.spacing.sm)
             if let url = feedbackURL {
                 Link(destination: url) {
-                    Label("settings.feedback", systemImage: "envelope")
-                        .font(Theme.typography.subheadline)
-                        .foregroundStyle(Theme.colors.accent)
-                        .linkAffordance()
+                    LinkLabel("settings.feedback", icon: "envelope", font: Theme.typography.subheadline)
                         .frame(maxWidth: .infinity, minHeight: 44)
                 }
                 .buttonStyle(.plain)
@@ -96,10 +93,7 @@ struct BoxSettingsSection: View {
         Button {
             creditsPresented = true
         } label: {
-            Label("credits.title", systemImage: "info.circle")
-                .font(Theme.typography.subheadline)
-                .foregroundStyle(Theme.colors.accent)
-                .linkAffordance()
+            LinkLabel("credits.title", icon: "info.circle", font: Theme.typography.subheadline)
                 .frame(maxWidth: .infinity, minHeight: 44)
         }
         .buttonStyle(.plain)
@@ -308,10 +302,7 @@ struct BoxSettingsSection: View {
             Button {
                 model.restartOnboarding()
             } label: {
-                Label("settings.restartTutorial.button", systemImage: "book")
-                    .font(Theme.typography.subheadline)
-                    .foregroundStyle(Theme.colors.accent)
-                    .linkAffordance()
+                LinkLabel("settings.restartTutorial.button", icon: "book", font: Theme.typography.subheadline)
             }
             .buttonStyle(.plain)
             Text("settings.restartTutorial.hint")
@@ -329,10 +320,8 @@ struct BoxSettingsSection: View {
             Button(role: .destructive) {
                 startReset()
             } label: {
-                Label("settings.reset.button \(targetName)", systemImage: "arrow.counterclockwise")
-                    .font(Theme.typography.subheadline)
-                    .foregroundStyle(Theme.colors.wrong)
-                    .linkAffordance()
+                LinkLabel("settings.reset.button \(targetName)", icon: "arrow.counterclockwise",
+                          color: Theme.colors.wrong, font: Theme.typography.subheadline)
             }
             .buttonStyle(.plain)
             .fileExporter(isPresented: shown($pendingResetExport), document: pendingResetExport,

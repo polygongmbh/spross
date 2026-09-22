@@ -146,9 +146,7 @@ private struct CreditGroupRow: View {
     private var license: some View {
         if let url = credit.licenseUrl.flatMap(URL.init(string:)) {
             Link(destination: url) {
-                Text(verbatim: credit.license)
-                    .foregroundStyle(Theme.colors.accent)
-                    .linkAffordance()
+                LinkLabel(verbatim: credit.license)
             }
         } else {
             Text(verbatim: credit.license)

@@ -196,10 +196,7 @@ struct OwnWordFormView: View {
             swapped.learning = draft.known
             model.ownWordDraft = swapped
         } label: {
-            Label("box.own.word.swap", systemImage: "arrow.up.arrow.down")
-                .font(Theme.typography.caption)
-                .foregroundStyle(Theme.colors.accent)
-                .linkAffordance()
+            LinkLabel("box.own.word.swap", icon: "arrow.up.arrow.down", font: Theme.typography.caption)
         }
         .frame(maxWidth: .infinity, alignment: .center)
     }
