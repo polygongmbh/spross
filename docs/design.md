@@ -566,6 +566,9 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   kind of word it is, and those five are vocabulary the app has already taught them.
   The two language fields wear their flag, and a button between them swaps what is typed in
   each, for the learner who filled them in the wrong way round.
+  **The form opens with no field focused** and raises no keyboard:
+  which half the learner came to write is theirs to say,
+  and a keyboard over the form hides what it already holds.
 - **A language is named the same everywhere, by its own name for itself**
   (`LanguageChoices.name` — "Deutsch", "Kiswahili"). One choice, kern's, because the
   alternative already drifted: one phone read a localized exonym out of the string catalog

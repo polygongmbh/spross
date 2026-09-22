@@ -97,13 +97,6 @@ struct OwnWordFormView: View {
             }
         }
         .tint(Theme.colors.accent)
-        // why: the cursor belongs on the half that is MISSING — the learned side
-        // where the known one arrived prefilled, the first field where neither did.
-        // A form that opened on a finished pair is there to be read before it is
-        // changed, so it raises no keyboard over itself.
-        .onAppear {
-            if !written(learning) { focus = written(known) ? .learning : .known }
-        }
     }
 
     private var isEditing: Bool {

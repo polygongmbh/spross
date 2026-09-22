@@ -14,15 +14,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.text.input.ImeAction
 import net.spross.app.AppModel
 import net.spross.app.ownWordIds
@@ -63,14 +60,8 @@ fun OwnWordForm(
     val catalog = model.catalog ?: return
     val stamp = model.box?.joinStamp ?: return
     var draft by remember { mutableStateOf(initial) }
-    val learningFocus = remember { FocusRequester() }
     val rewriting = draft.editing != null
     BackHandler { onCancel() }
-
-    // why: the cursor belongs on the half that is actually missing — a form opened from a
-    // failed search already carries the known side. A rewrite asks for no focus at all: the
-    // learner came to change one of the two fields and has not said which.
-    LaunchedEffect(Unit) { if (!rewriting) learningFocus.requestFocus() }
 
     fun label(code: String): String =
         chrome.boxOwnWordInLanguage.format(flaggedLanguage(catalog.languages[code], code))
@@ -108,7 +99,6 @@ fun OwnWordForm(
             value = draft.learning,
             onValueChange = { draft = draft.copy(learning = it) },
             imeAction = ImeAction.Next,
-            modifier = Modifier.focusRequester(learningFocus),
         )
         PictureField(
             label = chrome.boxOwnWordPicture,
