@@ -365,6 +365,21 @@ class LetterDrillRunTest {
         assertEquals(3, state.done, "one question per stage: two tile stages and the typed one")
     }
 
+    /**
+     * The card opens on a clean answer too, the way the word scramble's does:
+     * the spelling was the question and the meaning never was.
+     */
+    @Test
+    fun aCleanSpellingIsGlossedToo() {
+        val rng = Random(17)
+        val state = LetterDrillRun.openAt(config(report(consolidated = 72)), 6, rng)
+        assertFalse(state.showsAnswer, "nothing to show while the turn is still open")
+        assertTrue(
+            state.copy(feedback = TurnFeedback.Correct).showsAnswer,
+            "a letter spelled right is still worth glossing",
+        )
+    }
+
     // MARK: - Closing
 
     @Test

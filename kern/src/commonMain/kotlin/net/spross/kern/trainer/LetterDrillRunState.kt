@@ -89,10 +89,10 @@ data class LetterDrillRunState(
     val typing: Boolean get() = stage == LetterStage.Typed || stage == LetterStage.Dictation
 
     /**
-     * The card opens. Unlike the slot drill BOTH almost holds reveal too: a slip and a
-     * heard-instead each leave a spelling worth seeing whole, and the box under the field says
-     * which of the two it was.
+     * The card opens, whatever the spelling was graded.
+     * A slip and a heard-instead each leave a spelling worth seeing whole, and the box under
+     * the field says which of the two it was; a clean one opens it too, because the LETTERS
+     * were the question and the meaning never was.
      */
-    val showsAnswer: Boolean
-        get() = feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed
+    val showsAnswer: Boolean get() = !owesAnswer
 }
