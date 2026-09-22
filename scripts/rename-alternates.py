@@ -38,6 +38,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FIELDS = {'variants': 'accepts', 'synonyms': 'teaches'}
 EXTENSIONS = ('.kt', '.kts', '.swift', '.py', '.md', '.json')
+SELF = os.path.join('scripts', 'rename-alternates.py')
 
 TOKEN = re.compile(r'\b(variants|synonyms)\b')
 KEY = re.compile(r'"(variants|synonyms)"(?=\s*:)')
@@ -81,9 +82,11 @@ KEEP = [
 
 
 def tracked_files():
+    """Every text file the rename reaches — this script excepted: it has to spell both
+    pairs out, and a run over itself would rewrite the rule into its own restatement."""
     listed = subprocess.run(['git', '-C', ROOT, 'ls-files'], check=True,
                             capture_output=True, text=True).stdout.splitlines()
-    return [rel for rel in listed if rel.endswith(EXTENSIONS)]
+    return [rel for rel in listed if rel.endswith(EXTENSIONS) and rel != SELF]
 
 
 def kept_spans(rel, text):
