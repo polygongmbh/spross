@@ -92,7 +92,9 @@ IPA and its install manifest, not the release.
 `scripts/release-keystore.sh <dir>` creates the Android key wherever you keep key
 files and writes the first three into `<dir>/github-secrets.txt` ready to paste.
 The App Store Connect key is generated in App Store Connect › Users and Access › Integrations
-with the **App Manager** role, downloadable exactly once;
+with the **Admin** role, downloadable exactly once —
+the export signs with a cloud-managed distribution certificate, which any lower role
+is refused with "Cloud signing permission error", and a key's role cannot be changed later;
 `base64 -i AuthKey_XXX.p8 | pbcopy` turns it into the secret.
 
 **The Android key is unrepeatable.** Android pins an app's signature: a differently-signed
