@@ -63,7 +63,7 @@ class NumbersDrill(private val language: String, seed: Int, articles: Array<Stri
         val answer = Realization(
             lang = language,
             text = task.accepted.first(),
-            synonyms = task.accepted.drop(1),
+            teaches = task.accepted.drop(1),
         )
         return Card(
             id = "drill",

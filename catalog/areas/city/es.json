@@ -9,7 +9,7 @@
   "neighborhood": { "text": "barrio", "grammar": { "gender": "el" } },
   "building": { "text": "edificio", "grammar": { "gender": "el" } },
   "bank": { "text": "banco", "grammar": { "gender": "el" } },
-  "post-office": { "text": "oficina de correos", "variants": ["correos"], "grammar": { "gender": "la" } },
+  "post-office": { "text": "oficina de correos", "accepts": ["correos"], "grammar": { "gender": "la" } },
   "church": { "text": "iglesia", "grammar": { "gender": "la" } },
   "mosque": { "text": "mezquita", "grammar": { "gender": "la" } },
   "library": { "text": "biblioteca", "grammar": { "gender": "la" } },

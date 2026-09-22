@@ -7,7 +7,7 @@
   "bus": { "text": "Bus", "grammar": { "gender": "der", "plural": "-se" } },
   "bus-stop": {
    "text": "Bushaltestelle",
-   "variants": ["Haltestelle"],
+   "accepts": ["Haltestelle"],
    "grammar": { "gender": "die", "plural": "-n" }
   },
   "train": { "text": "Zug", "grammar": { "gender": "der", "plural": "Züge" } },
@@ -22,8 +22,8 @@
   "plane": { "text": "Flugzeug", "grammar": { "gender": "das", "plural": "-e" } },
   "airport": { "text": "Flughafen", "grammar": { "gender": "der", "plural": "Flughäfen" } },
   "motorbike": { "text": "Motorrad", "grammar": { "gender": "das", "plural": "Motorräder" } },
-  "truck": { "text": "Lastwagen", "variants": ["Lkw"], "grammar": { "gender": "der", "plural": "=" } },
-  "passenger": { "text": "Passagier", "variants": ["Fahrgast"], "grammar": { "gender": "der", "plural": "-e" } },
+  "truck": { "text": "Lastwagen", "accepts": ["Lkw"], "grammar": { "gender": "der", "plural": "=" } },
+  "passenger": { "text": "Passagier", "accepts": ["Fahrgast"], "grammar": { "gender": "der", "plural": "-e" } },
   "wheel": { "text": "Rad", "grammar": { "gender": "das", "plural": "Räder" } },
   "engine": { "text": "Motor", "grammar": { "gender": "der", "plural": "Motoren" } },
   "rail": { "text": "Schiene", "grammar": { "gender": "die", "plural": "-n" } },
@@ -31,7 +31,7 @@
   "to-get-off": { "text": "aussteigen" },
   "the-bus-is-coming-soon": { "text": "Der Bus kommt gleich.", "orders": ["Gleich kommt der Bus."] },
   "when-does-the-train-leave": { "text": "Wann fährt der Zug ab?" },
-  "how-much-is-the-fare": { "text": "Wie hoch ist der Fahrpreis?", "variants": ["Was kostet die Fahrt?"] },
+  "how-much-is-the-fare": { "text": "Wie hoch ist der Fahrpreis?", "accepts": ["Was kostet die Fahrt?"] },
   "the-bus-has-already-departed": { "text": "Der Bus ist schon abgefahren." },
   "my-parents-are-coming-by-train": { "text": "Meine Eltern kommen mit dem Zug.", "orders": ["Mit dem Zug kommen meine Eltern."] },
   "tire": { "text": "Reifen", "grammar": { "gender": "der", "plural": "=" } },

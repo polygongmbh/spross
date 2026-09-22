@@ -12,11 +12,11 @@
    "notes": { "de": "Blase ist auch die am Fuß und die im Wasser." }
   },
   "nerve": { "text": "Nerv", "grammar": { "gender": "der", "plural": "-en" } },
-  "vein": { "text": "Vene", "synonyms": ["Ader"], "grammar": { "gender": "die", "plural": "-n" } },
+  "vein": { "text": "Vene", "teaches": ["Ader"], "grammar": { "gender": "die", "plural": "-n" } },
   "thyroid": { "text": "Schilddrüse", "grammar": { "gender": "die", "plural": "-n" } },
   "to-breathe": { "text": "atmen" },
   "stomach-organ": { "text": "Magen", "grammar": { "gender": "der", "plural": "Mägen" } },
-  "artery": { "text": "Arterie", "synonyms": ["Schlagader"], "grammar": { "gender": "die", "plural": "-n" } },
+  "artery": { "text": "Arterie", "teaches": ["Schlagader"], "grammar": { "gender": "die", "plural": "-n" } },
   "joint": { "text": "Gelenk", "grammar": { "gender": "das", "plural": "-e" } },
   "gland": { "text": "Drüse", "grammar": { "gender": "die", "plural": "-n" } },
   "spleen": { "text": "Milz", "grammar": { "gender": "die", "plural": "-en" } },

@@ -6,6 +6,6 @@
   "to-be-alive": { "text": "бути живим" },
   "alive": { "text": "живий" },
   "death": { "text": "смерть" },
-  "to-die": { "text": "помирати", "variants": ["померти"] }
+  "to-die": { "text": "помирати", "accepts": ["померти"] }
  }
 }

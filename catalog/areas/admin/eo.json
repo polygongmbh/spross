@@ -2,65 +2,65 @@
  "title": "En la administrejo",
  "subtitle": "Paŝon post paŝo tra la paperoj.",
  "words": {
-  "office": { "text": "publika oficejo", "synonyms": ["administrejo"], "variants": ["oficejo"] },
+  "office": { "text": "publika oficejo", "teaches": ["administrejo"], "accepts": ["oficejo"] },
   "form": { "text": "formularo" },
-  "application": { "text": "peto", "variants": ["petskribo"] },
+  "application": { "text": "peto", "accepts": ["petskribo"] },
   "id-card": {
    "text": "legitimilo",
-   "variants": ["identigilo", "identkarto", "identiga karto", "persona dokumento"]
+   "accepts": ["identigilo", "identkarto", "identiga karto", "persona dokumento"]
   },
-  "residence-permit": { "text": "loĝpermeso", "variants": ["restadpermeso"] },
+  "residence-permit": { "text": "loĝpermeso", "accepts": ["restadpermeso"] },
   "signature": { "text": "subskribo" },
-  "ticket-number": { "text": "vicnumero", "variants": ["atendonumero", "numero"] },
-  "case-worker": { "text": "oficisto", "variants": ["funkciulo", "ofica komizo"] },
+  "ticket-number": { "text": "vicnumero", "accepts": ["atendonumero", "numero"] },
+  "case-worker": { "text": "oficisto", "accepts": ["funkciulo", "ofica komizo"] },
   "case-worker-f": { "text": "oficistino" },
-  "registration": { "text": "registriĝo", "variants": ["enskribiĝo", "anonciĝo"] },
-  "documents": { "text": "dokumentoj", "variants": ["dokumentaro", "paperoj"] },
-  "to-fill-in": { "text": "plenigi", "variants": ["plenskribi"] },
+  "registration": { "text": "registriĝo", "accepts": ["enskribiĝo", "anonciĝo"] },
+  "documents": { "text": "dokumentoj", "accepts": ["dokumentaro", "paperoj"] },
+  "to-fill-in": { "text": "plenigi", "accepts": ["plenskribi"] },
   "to-sign": { "text": "subskribi" },
-  "to-apply-for": { "text": "peti", "variants": ["petskribi"] },
+  "to-apply-for": { "text": "peti", "accepts": ["petskribi"] },
   "to-submit": { "text": "transdoni" },
-  "to-hand-in": { "text": "prezenti", "variants": ["enmanigi"] },
+  "to-hand-in": { "text": "prezenti", "accepts": ["enmanigi"] },
   "to-pick-up": {
    "text": "preni la legitimilon",
-   "variants": ["preni la identigilon", "forpreni la identigilon", "preni la identkarton"]
+   "accepts": ["preni la identigilon", "forpreni la identigilon", "preni la identkarton"]
   },
-  "to-extend": { "text": "plilongigi", "variants": ["renovigi", "daŭrigi"] },
+  "to-extend": { "text": "plilongigi", "accepts": ["renovigi", "daŭrigi"] },
   "to-bring": { "text": "kunporti" },
-  "to-copy": { "text": "kopii", "variants": ["fotokopii"] },
+  "to-copy": { "text": "kopii", "accepts": ["fotokopii"] },
   "passport": { "text": "pasporto" },
   "address": { "text": "adreso" },
-  "certificate": { "text": "atestilo", "variants": ["atesto"] },
-  "birth-certificate": { "text": "naskiĝatestilo", "variants": ["atestilo pri naskiĝo"] },
-  "notification": { "text": "oficiala decido", "variants": ["decido", "sciigo"] },
-  "fee": { "text": "pago", "variants": ["kotizo", "tarifo"] },
-  "office-hours": { "text": "akceptohoroj", "variants": ["akcepthoroj", "akceptotempo"] },
-  "waiting-room": { "text": "atendejo", "variants": ["atendoĉambro"] },
-  "to-reject": { "text": "malakcepti", "synonyms": ["rifuzi"] },
-  "to-approve": { "text": "aprobi", "variants": ["permesi", "akcepti"] },
+  "certificate": { "text": "atestilo", "accepts": ["atesto"] },
+  "birth-certificate": { "text": "naskiĝatestilo", "accepts": ["atestilo pri naskiĝo"] },
+  "notification": { "text": "oficiala decido", "accepts": ["decido", "sciigo"] },
+  "fee": { "text": "pago", "accepts": ["kotizo", "tarifo"] },
+  "office-hours": { "text": "akceptohoroj", "accepts": ["akcepthoroj", "akceptotempo"] },
+  "waiting-room": { "text": "atendejo", "accepts": ["atendoĉambro"] },
+  "to-reject": { "text": "malakcepti", "teaches": ["rifuzi"] },
+  "to-approve": { "text": "aprobi", "accepts": ["permesi", "akcepti"] },
   "law": { "text": "leĝo" },
   "visa": { "text": "vizo" },
   "fine": { "text": "monpuno" },
   "receipt": { "text": "kvitanco" },
-  "where-do-i-sign": { "text": "Kie mi subskribu?", "variants": ["Kie mi devas subskribi?"] },
+  "where-do-i-sign": { "text": "Kie mi subskribu?", "accepts": ["Kie mi devas subskribi?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Mi ŝatus plilongigi la loĝpermeson.",
-   "variants": ["Mi volas plilongigi la loĝpermeson.", "Mi ŝatus renovigi la loĝpermeson."]
+   "accepts": ["Mi volas plilongigi la loĝpermeson.", "Mi ŝatus renovigi la loĝpermeson."]
   },
-  "fill-out-the-form": { "text": "Plenigu la formularon.", "variants": ["Plenskribu la formularon."] },
+  "fill-out-the-form": { "text": "Plenigu la formularon.", "accepts": ["Plenskribu la formularon."] },
   "i-need-an-interpreter-for-the-application": {
    "text": "Mi bezonas interpretiston por la peto.",
-   "variants": ["Mi bezonas interpretiston por la petskribo."],
+   "accepts": ["Mi bezonas interpretiston por la petskribo."],
    "orders": ["Por la peto mi bezonas interpretiston."]
   },
   "did-you-bring-all-the-documents": {
    "text": "Ĉu vi kunportis ĉiujn dokumentojn?",
-   "variants": ["Ĉu vi kunportis la tutan dokumentaron?"],
+   "accepts": ["Ĉu vi kunportis la tutan dokumentaron?"],
    "orders": ["Ĉu ĉiujn dokumentojn vi kunportis?"]
   },
   "the-decision-comes-by-mail": {
    "text": "La decido venas per la poŝto.",
-   "variants": [
+   "accepts": [
     "La decido venas per poŝto.",
     "La decido venos per la poŝto.",
     "La oficiala decido venas per la poŝto."
@@ -69,7 +69,7 @@
   },
   "when-does-my-id-expire": {
    "text": "Kiam eksvalidiĝas mia legitimilo?",
-   "variants": [
+   "accepts": [
     "Kiam eksvalidiĝas mia identigilo?",
     "Ĝis kiam validas mia identigilo?",
     "Kiam eksvalidiĝas mia identkarto?"

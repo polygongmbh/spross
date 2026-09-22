@@ -34,7 +34,7 @@ class RealCatalogJoinTest {
         for (target in listOf("en", "eo", "es", "fr", "it", "sw", "uk")) {
             fun RawRealization?.resolvable(reader: String): Boolean {
                 if (this == null) return false
-                val marked = (listOf(text) + synonyms + variants).any { LanguageNames.hasLanguageMarker(it) }
+                val marked = (listOf(text) + teaches + accepts).any { LanguageNames.hasLanguageMarker(it) }
                 return !marked || catalog.languageName(reader, target) != null
             }
             val expected = catalog.areas.flatMap { area ->
@@ -145,16 +145,16 @@ class RealCatalogJoinTest {
     }
 
     @Test
-    fun ukSynonymsRotateVariantsStaySilent() {
+    fun ukTeachesRotateAcceptsStaySilent() {
         val cards = catalog.join("de", "uk")
-        // Synonyms join the recognition-prompt rotation; variants are grading-only.
+        // `teaches` joins the recognition-prompt rotation; `accepts` is grading-only.
         val boss = cards.byId("boss")
         assertEquals("шеф", boss.target.text)
-        assertEquals(listOf("керівник"), boss.target.synonyms)
+        assertEquals(listOf("керівник"), boss.target.teaches)
         val contract = cards.byId("contract")
         assertEquals("договір", contract.target.text)
-        assertTrue(contract.target.synonyms.isEmpty())
-        assertEquals(listOf("контракт"), contract.target.variants)
+        assertTrue(contract.target.teaches.isEmpty())
+        assertEquals(listOf("контракт"), contract.target.accepts)
     }
 
     @Test

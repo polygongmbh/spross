@@ -6,44 +6,44 @@
   "date": { "text": "fecha", "grammar": { "gender": "la" } },
   "opening-hours": {
    "text": "horario de apertura",
-   "variants": ["horario", "horario comercial"],
+   "accepts": ["horario", "horario comercial"],
    "grammar": { "gender": "el" },
    "notes": {
     "es": "En singular: el horario de apertura · en el día a día, el horario.",
     "de": "Spanisch hat keinen Plural wie „die Öffnungszeiten“: el horario de apertura steht im Singular, im Alltag oft nur el horario."
    }
   },
-  "deadline": { "text": "plazo", "synonyms": ["fecha límite"], "grammar": { "gender": "el" } },
+  "deadline": { "text": "plazo", "teaches": ["fecha límite"], "grammar": { "gender": "el" } },
   "plan": { "text": "plan", "grammar": { "gender": "el" } },
   "to-meet": { "text": "reunirse" },
   "to-invite": { "text": "invitar" },
-  "to-arrange": { "text": "concertar", "synonyms": ["acordar"], "variants": ["pedir"] },
+  "to-arrange": { "text": "concertar", "teaches": ["acordar"], "accepts": ["pedir"] },
   "to-confirm": { "text": "confirmar" },
-  "to-cancel": { "text": "cancelar", "synonyms": ["anular"] },
-  "to-postpone": { "text": "aplazar", "synonyms": ["posponer"], "variants": ["retrasar"] },
-  "to-register": { "text": "inscribirse", "synonyms": ["apuntarse"], "variants": ["registrarse"] },
-  "to-be-late": { "text": "llegar tarde", "synonyms": ["retrasarse"] },
+  "to-cancel": { "text": "cancelar", "teaches": ["anular"] },
+  "to-postpone": { "text": "aplazar", "teaches": ["posponer"], "accepts": ["retrasar"] },
+  "to-register": { "text": "inscribirse", "teaches": ["apuntarse"], "accepts": ["registrarse"] },
+  "to-be-late": { "text": "llegar tarde", "teaches": ["retrasarse"] },
   "punctual": { "text": "puntual" },
   "urgent": { "text": "urgente" },
   "list": { "text": "lista", "grammar": { "gender": "la" } },
-  "to-finish": { "text": "terminar", "synonyms": ["acabar"] },
-  "to-take-care-of": { "text": "encargarse de", "synonyms": ["ocuparse de"] },
+  "to-finish": { "text": "terminar", "teaches": ["acabar"] },
+  "to-take-care-of": { "text": "encargarse de", "teaches": ["ocuparse de"] },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Quiero concertar una cita.",
-   "variants": ["Quisiera concertar una cita.", "Quiero pedir cita."]
+   "accepts": ["Quisiera concertar una cita.", "Quiero pedir cita."]
   },
   "the-deadline-is-tomorrow": {
    "text": "El plazo termina mañana.",
-   "variants": ["El plazo acaba mañana.", "La fecha límite es mañana."],
+   "accepts": ["El plazo acaba mañana.", "La fecha límite es mañana."],
    "orders": ["Mañana termina el plazo."]
   },
   "can-we-postpone-the-appointment": {
    "text": "¿Podemos aplazar la cita?",
-   "variants": ["¿Podemos posponer la cita?", "¿Podemos cambiar la cita?"]
+   "accepts": ["¿Podemos posponer la cita?", "¿Podemos cambiar la cita?"]
   },
   "i-have-an-appointment-at-ten": {
    "text": "Tengo cita a las diez.",
-   "variants": ["Tengo una cita a las diez.", "Tengo cita a las diez en punto."],
+   "accepts": ["Tengo una cita a las diez.", "Tengo cita a las diez en punto."],
    "orders": ["A las diez tengo cita."]
   },
   "ill-take-care-of-it": { "text": "Yo me encargo.", "orders": ["Me encargo yo."] }

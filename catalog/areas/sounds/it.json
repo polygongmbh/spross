@@ -1,14 +1,10 @@
 {
  "title": "Suoni e udito",
  "words": {
-  "loud": {
-   "text": "forte",
-   "variants": ["alto"],
-   "notes": { "it": "parla più forte! · forte = robusto." }
-  },
+  "loud": { "text": "forte", "accepts": ["alto"], "notes": { "it": "parla più forte! · forte = robusto." } },
   "quiet": {
    "text": "silenzioso",
-   "variants": ["silenziosa", "piano", "sottovoce", "a bassa voce"],
+   "accepts": ["silenziosa", "piano", "sottovoce", "a bassa voce"],
    "notes": { "it": "una stanza silenziosa · si parla piano o a bassa voce." }
   },
   "noise": { "text": "rumore", "grammar": { "gender": "il" } },
@@ -16,20 +12,20 @@
   "radio": { "text": "radio", "grammar": { "gender": "la" } },
   "speaker": {
    "text": "altoparlante",
-   "variants": ["l'altoparlante"],
+   "accepts": ["l'altoparlante"],
    "grammar": { "gender": "l'", "plural": "altoparlanti" }
   },
   "headphones": {
    "text": "cuffie",
-   "synonyms": ["auricolari"],
+   "teaches": ["auricolari"],
    "grammar": { "gender": "le", "plural": "only" },
    "notes": { "it": "solo al plurale: le cuffie · gli auricolari stanno nell'orecchio." }
   },
   "microphone": { "text": "microfono", "grammar": { "gender": "il" } },
   "volume": { "text": "volume", "grammar": { "gender": "il" } },
   "to-listen-to": { "text": "ascoltare" },
-  "to-listen-to-music": { "text": "ascoltare musica", "variants": ["ascoltare la musica"] },
+  "to-listen-to-music": { "text": "ascoltare musica", "accepts": ["ascoltare la musica"] },
   "to-play-instrument": { "text": "suonare uno strumento" },
-  "louder": { "text": "Più forte!", "variants": ["Più alto!"] }
+  "louder": { "text": "Più forte!", "accepts": ["Più alto!"] }
  }
 }

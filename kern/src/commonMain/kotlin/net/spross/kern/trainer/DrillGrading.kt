@@ -110,7 +110,7 @@ internal fun drillGradingCard(
     val side = Realization(
         lang = language,
         text = accepted.firstOrNull() ?: display,
-        synonyms = accepted.drop(1),
+        teaches = accepted.drop(1),
     )
     return Card(
         id = cardId,

@@ -210,9 +210,9 @@ def load_catalog():
                 continue
             for slug, word in read_json(CATALOG, 'areas', area, name).get('words', {}).items():
                 # why: reachability is measured against everything a card may SHOW —
-                # `text` and its rotating synonyms — plus the variants grading accepts.
+                # `text` and its rotating `teaches` — plus the `accepts` grading takes.
                 forms.setdefault(lang, {})[slug] = \
-                    [word['text']] + word.get('synonyms', []) + word.get('variants', [])
+                    [word['text']] + word.get('teaches', []) + word.get('accepts', [])
                 article = word.get('grammar', {}).get('gender')
                 if article:
                     targets.setdefault(lang, {})[slug] = (article, word['text'])

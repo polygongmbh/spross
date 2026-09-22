@@ -8,7 +8,7 @@
   "fear": { "text": "peur", "grammar": { "gender": "la" } },
   "surprise": { "text": "surprise", "grammar": { "gender": "la" } },
   "worry": { "text": "inquiétude", "grammar": { "gender": "la" } },
-  "love": { "text": "amour", "variants": ["l'amour"], "grammar": { "gender": "l'" } },
+  "love": { "text": "amour", "accepts": ["l'amour"], "grammar": { "gender": "l'" } },
   "shame": { "text": "honte", "grammar": { "gender": "la" } },
   "jealousy": { "text": "jalousie", "grammar": { "gender": "la" } },
   "smile": {

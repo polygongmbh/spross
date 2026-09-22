@@ -11,7 +11,7 @@ import net.spross.kern.model.Card
  * concept when it looks for the word somebody else owns, so a synthetic id would let the
  * learner's own concept come back as another word — «мишка» reported as a different word
  * than «миша», naming the right answer as somebody else's. `kind` keys the verb-prefix
- * leniency. `baseAccepted` goes, with the synonyms: the feminine demotion accepts the base
+ * leniency. `baseAccepted` goes, with the `teaches`: the feminine demotion accepts the base
  * word, which in a transcription is simply not what played.
  *
  * One definition for both surfaces that ask by ear — the letter drill's dictation Sprosse and
@@ -21,8 +21,8 @@ fun spokenOnly(card: Card, spokenForm: String): Card = card.copy(
     baseAccepted = emptyList(),
     target = card.target.copy(
         text = spokenForm,
-        synonyms = emptyList(),
-        variants = emptyList(),
+        teaches = emptyList(),
+        accepts = emptyList(),
     ),
 )
 
@@ -41,7 +41,7 @@ fun spokenOnly(card: Card, spokenForm: String): Card = card.copy(
  */
 fun alsoAccepts(card: Card, input: String): Boolean {
     val typed = speechKey(input)
-    return (card.target.synonyms + card.target.variants).any { speechKey(it) == typed }
+    return (card.target.teaches + card.target.accepts).any { speechKey(it) == typed }
 }
 
 /**
@@ -50,7 +50,7 @@ fun alsoAccepts(card: Card, input: String): Boolean {
  *
  * A word asked by ear asks what it MEANS, not how it is spelled — hearing «gari» and
  * writing «gari» back proves only that the ear worked. So the answer set is the source
- * side's `text ∪ synonyms ∪ variants`, which [AnswerNormalizer] already reads off
+ * side's `text ∪ teaches ∪ accepts`, which [AnswerNormalizer] already reads off
  * `target`, and the whole grading pipeline is reused rather than re-cut for one prompt.
  *
  * The id, `kind` and `feminineOf` survive, as they do in [spokenOnly] and for the same

@@ -68,7 +68,7 @@ class CatalogAudioLintTest {
         for ((lang, manifest) in catalog.audio) {
             for ((slug, recording) in manifest.words) {
                 val raw = realization(lang, slug) ?: continue // reported by the rule above
-                val forms = (listOf(raw.text) + raw.synonyms + raw.variants).map { speechKey(it) }
+                val forms = (listOf(raw.text) + raw.teaches + raw.accepts).map { speechKey(it) }
                 assertTrue(
                     speechKey(checkNotNull(recording.matches)) in forms,
                     "audio/$lang/$slug: \"${recording.matches}\" reaches none of $forms",
@@ -261,7 +261,7 @@ class CatalogAudioLintTest {
     /**
      * [everyTextEntryVoicesAnAlphabetExampleText]'s rule for the calendar: a `calendar{}`
      * entry voices a weekday or month name the language actually states, `dateForm` and
-     * the synonyms beside it included — a card may show any of those. `abbr` is NOT among
+     * the `teaches` beside it included — a card may show any of those. `abbr` is NOT among
      * them: it is a written short form the prompt wears and nothing ever says it, so a
      * recording keyed by one would ship for a string no lookup can reach.
      */
@@ -274,7 +274,7 @@ class CatalogAudioLintTest {
                 "audio/$lang ships calendar recordings but no dates file is authored",
             )
             val authored = (calendar.weekdays + calendar.months)
-                .flatMap { listOf(it.text) + it.synonyms + it.variants + listOfNotNull(it.dateForm) }
+                .flatMap { listOf(it.text) + it.teaches + it.accepts + listOfNotNull(it.dateForm) }
                 .mapTo(mutableSetOf()) { speechKey(it) }
             for (form in manifest.calendar.keys) {
                 assertTrue(speechKey(form) in authored,
@@ -285,7 +285,7 @@ class CatalogAudioLintTest {
 
     /**
      * [everyCalendarEntryVoicesAnAuthoredDateName]'s rule for the atlas: a `countries{}`
-     * entry voices a country or nationality name some row actually states. `variants` are
+     * entry voices a country or nationality name some row actually states. `accepts` are
      * allowed for the same reason the calendar's are — permissive is safe here, since a
      * form nothing displays simply never gets asked for.
      */
@@ -299,8 +299,8 @@ class CatalogAudioLintTest {
             )
             val authored = mutableSetOf<String>()
             for (row in names.values) {
-                authored += (listOf(row.text) + row.variants).map { speechKey(it) }
-                authored += (listOf(row.nationality.text) + row.nationality.variants)
+                authored += (listOf(row.text) + row.accepts).map { speechKey(it) }
+                authored += (listOf(row.nationality.text) + row.nationality.accepts)
                     .map { speechKey(it) }
             }
             for (form in manifest.countries.keys) {

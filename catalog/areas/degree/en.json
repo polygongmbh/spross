@@ -34,7 +34,7 @@
   },
   "most": { "text": "most" },
   "almost": { "text": "almost" },
-  "a-little": { "text": "a little", "synonyms": ["a bit"] },
+  "a-little": { "text": "a little", "teaches": ["a bit"] },
   "few": { "text": "few" },
   "once": { "text": "once" },
   "more-or-less": { "text": "more or less" },

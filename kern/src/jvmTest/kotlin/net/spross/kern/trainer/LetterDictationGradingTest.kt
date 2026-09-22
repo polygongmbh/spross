@@ -83,7 +83,7 @@ class LetterDictationGradingTest {
         val variant = "мишка"
         // The app's almost step reads exactly this set.
         assertTrue(
-            variant in mouse.target.synonyms + mouse.target.variants,
+            variant in mouse.target.teaches + mouse.target.accepts,
             "the catalog no longer teaches \"$variant\" as a form of \"${mouse.target.text}\"",
         )
 

@@ -4,7 +4,7 @@
  "words": {
   "i": { "text": "mi" },
   "you": { "text": "vi", "notes": { "eo": "vi estas unu, vi estas pluraj — unu vorto por ambaŭ." } },
-  "he": { "text": "li", "variants": ["ŝi"] },
+  "he": { "text": "li", "accepts": ["ŝi"] },
   "it": { "text": "ĝi" },
   "we": { "text": "ni" },
   "they": { "text": "ili" },
@@ -12,7 +12,7 @@
   "your": { "text": "via" },
   "his": {
    "text": "lia",
-   "synonyms": ["ŝia"],
+   "teaches": ["ŝia"],
    "notes": { "eo": "li → lia, ŝi → ŝia: la posedo estas la pronomo kun -a." }
   },
   "something": { "text": "io" },

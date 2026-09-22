@@ -20,7 +20,7 @@
   "page": { "text": "сторінка" },
   "grade": { "text": "оцінка" },
   "to-correct": { "text": "виправляти" },
-  "book": { "text": "книжка", "variants": ["книга"] },
+  "book": { "text": "книжка", "accepts": ["книга"] },
   "university": { "text": "університет" },
   "class-schedule": { "text": "розклад" },
   "to-count": { "text": "рахувати" },
@@ -32,13 +32,13 @@
   "do-the-homework": { "text": "Я роблю домашнє завдання.", "orders": ["Домашнє завдання я роблю."] },
   "look-at-the-class-schedule": {
    "text": "Подивись на розклад.",
-   "variants": ["Подивіться на розклад."],
+   "accepts": ["Подивіться на розклад."],
    "orders": ["На розклад подивись."]
   },
   "the-break-is-over": { "text": "Перерва закінчилася." },
-  "ask-the-teacher": { "text": "Запитай вчителя.", "variants": ["Запитайте вчителя."] },
+  "ask-the-teacher": { "text": "Запитай вчителя.", "accepts": ["Запитайте вчителя."] },
   "i-have-a-good-grade": { "text": "У мене гарна оцінка." },
   "we-go-to-the-classroom": { "text": "Ми йдемо до класу.", "orders": ["До класу ми йдемо."] },
-  "the-exam-is-already-corrected": { "text": "Іспит уже перевірений.", "variants": ["Іспит уже перевірено."] }
+  "the-exam-is-already-corrected": { "text": "Іспит уже перевірений.", "accepts": ["Іспит уже перевірено."] }
  }
 }

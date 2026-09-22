@@ -9,14 +9,14 @@
   "boat": { "text": "boato" },
   "port": { "text": "haveno" },
   "island": { "text": "insulo" },
-  "coast": { "text": "marbordo", "variants": ["bordo"] },
+  "coast": { "text": "marbordo", "accepts": ["bordo"] },
   "wave": { "text": "ondo" },
   "to-swim": { "text": "naĝi" },
   "to-surf": { "text": "surfi" },
-  "to-sail": { "text": "velveturi", "variants": ["navigi"] },
+  "to-sail": { "text": "velveturi", "accepts": ["navigi"] },
   "to-dive": { "text": "plonĝi" },
-  "to-fish": { "text": "fiŝkapti", "variants": ["fiŝi"] },
-  "can-you-swim": { "text": "Ĉu vi povas naĝi?", "variants": ["Ĉu vi scipovas naĝi?"] },
+  "to-fish": { "text": "fiŝkapti", "accepts": ["fiŝi"] },
+  "can-you-swim": { "text": "Ĉu vi povas naĝi?", "accepts": ["Ĉu vi scipovas naĝi?"] },
   "the-waves-are-big-today": { "text": "La ondoj estas grandaj hodiaŭ.", "orders": ["Hodiaŭ la ondoj estas grandaj."] },
   "we-sailed-to-the-island": { "text": "Ni velveturis al la insulo." }
  }

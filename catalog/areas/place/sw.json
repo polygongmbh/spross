@@ -26,8 +26,8 @@
   "far": { "text": "mbali" },
   "place": {
    "text": "mahali",
-   "synonyms": ["pahali"],
-   "variants": ["mahala", "pahala"],
+   "teaches": ["pahali"],
+   "accepts": ["mahala", "pahala"],
    "notes": {
     "sw": "mahali ni neno la kawaida; pwani, hasa Mombasa, watu husema pahali.",
     "de": "mahali ist überall üblich, pahali die Küstenform aus Mombasa – beide mit denselben Demonstrativa: mahali hapa, mahali pale, mahali kule."
@@ -35,11 +35,11 @@
   },
   "country": { "text": "nchi", "grammar": { "plural": "=" } },
   "in-front": { "text": "mbele", "notes": { "sw": "mbele ya nyumba · nyuma ya nyumba" } },
-  "next-to": { "text": "kando ya", "variants": ["kando"] },
+  "next-to": { "text": "kando ya", "accepts": ["kando"] },
   "to-be-there": { "text": "kuwepo", "notes": { "sw": "nipo, upo, yupo, tupo, mpo, wapo · Yupo? = yuko hapa?" } },
   "on-the-table": { "text": "juu ya meza" },
   "under-the-bed": { "text": "chini ya kitanda" },
-  "in-the-city": { "text": "katika mji", "synonyms": ["mjini"] },
+  "in-the-city": { "text": "katika mji", "teaches": ["mjini"] },
   "between-us": { "text": "kati yetu" },
   "is-it-far": { "text": "Ni mbali?" },
   "at-school": {

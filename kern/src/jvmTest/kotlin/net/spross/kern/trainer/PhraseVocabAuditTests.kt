@@ -206,7 +206,7 @@ class PhraseVocabAuditTests {
 
     /**
      * All target-language words a [source] learner of [target] can study:
-     * area titles plus text/synonyms/variants of every joined card.
+     * area titles plus text/teaches/accepts of every joined card.
      */
     private fun joinTargetWords(source: Language, target: Language): Set<String> {
         val catalog = RealCatalog.catalog
@@ -216,8 +216,8 @@ class PhraseVocabAuditTests {
         }
         for (card in catalog.join(source = source, target = target)) {
             words += tokens(card.target.text)
-            card.target.synonyms.forEach { words += tokens(it) }
-            card.target.variants.forEach { words += tokens(it) }
+            card.target.teaches.forEach { words += tokens(it) }
+            card.target.accepts.forEach { words += tokens(it) }
         }
         return words
     }

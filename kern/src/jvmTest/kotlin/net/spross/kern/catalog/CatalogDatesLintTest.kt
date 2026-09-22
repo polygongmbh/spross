@@ -54,13 +54,13 @@ class CatalogDatesLintTest {
     @Test
     fun everyFormIsTrimmedDedupedAndNeverEchoesItsText() {
         forEachName { _, where, name ->
-            val forms = listOf(name.text) + name.synonyms + name.variants +
+            val forms = listOf(name.text) + name.teaches + name.accepts +
                 listOfNotNull(name.dateForm, name.abbr)
             for (form in forms) {
                 assertTrue(form.isNotBlank() && form.trim() == form, "$where: untrimmed \"$form\"")
                 assertTrue('|' !in form && '\n' !in form, "$where: bad char in \"$form\"")
             }
-            val alternates = name.synonyms + name.variants
+            val alternates = name.teaches + name.accepts
             assertTrue(name.text !in alternates, "$where: an alternate repeats the text")
             assertEquals(alternates.toSet().size, alternates.size, "$where: duplicate alternates")
             assertTrue(name.dateForm != name.text, "$where: dateForm echoes the text")
@@ -152,7 +152,7 @@ class CatalogDatesLintTest {
             if (!Numbers.supports(lang)) continue
             val normalizer = AnswerNormalizer.drill(catalog.languages.getValue(lang))
             val shapesPerEntry = (calendar.weekdays + calendar.months).map { name ->
-                (listOf(name.text) + name.synonyms + name.variants + listOfNotNull(name.dateForm))
+                (listOf(name.text) + name.teaches + name.accepts + listOfNotNull(name.dateForm))
                     .flatMap { normalizer.comparisonForms(it, verbLeniency = false) }
             }
             val confusable = buildList {
@@ -208,7 +208,7 @@ class CatalogDatesLintTest {
         "it" to setOf("il", "l"),
         // `tarehe` — the word a Swahili date counts from, no article in sight — and the
         // year's own noun with the associative `wa` that hangs it off the date; the
-        // `wa`-less `mwaka` and the bare numeral ride behind it as accept-only variants.
+        // `wa`-less `mwaka` and the bare numeral ride behind it as accept-only forms.
         "sw" to setOf("tarehe", "mwaka", "wa"),
         // Ukrainian assembles a date out of its parts alone — the genitive does the work an
         // article or a preposition does elsewhere — so the only word is `року`, the noun the

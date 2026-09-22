@@ -40,7 +40,7 @@ internal class DateNameIndex(
                 val answer = if (reverse) entry.source else entry.target
                 val prompt = if (reverse) entry.target else entry.source
                 val owner = Owner(key(kind, entry.index.toString()), prompt.text)
-                val forms = listOf(answer.text) + answer.synonyms + answer.variants +
+                val forms = listOf(answer.text) + answer.teaches + answer.accepts +
                     listOfNotNull(answer.dateForm)
                 for (form in forms) {
                     for (shape in normalizer.comparisonForms(form, verbLeniency = false)) {

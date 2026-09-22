@@ -12,10 +12,10 @@
   "storm": { "text": "буря" },
   "thunder": { "text": "грім", "grammar": { "plural": "громи" } },
   "lightning": { "text": "блискавка" },
-  "humid": { "text": "вологий", "variants": ["волога", "вологе"] },
+  "humid": { "text": "вологий", "accepts": ["волога", "вологе"] },
   "hows-the-weather-today": { "text": "Яка сьогодні погода?", "orders": ["Яка погода сьогодні?"] },
   "its-raining": { "text": "Йде дощ." },
-  "the-rain-has-stopped": { "text": "Дощ припинився.", "variants": ["Дощ перестав.", "Дощ закінчився."] },
+  "the-rain-has-stopped": { "text": "Дощ припинився.", "accepts": ["Дощ перестав.", "Дощ закінчився."] },
   "the-sun-is-shining": { "text": "Світить сонце!" },
   "what-a-beautiful-day": { "text": "Який гарний день!" },
   "we-are-staying-home-because-of-the-rain": { "text": "Через дощ ми залишаємося вдома.", "orders": ["Ми залишаємося вдома через дощ."] }

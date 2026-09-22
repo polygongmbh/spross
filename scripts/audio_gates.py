@@ -107,7 +107,7 @@ def keep_article_forms(rows, lang, targets, forms, drops):
 
     What a card asks with is a separate question, answered at lookup: the article form is
     preferred, the bare word answers too. That is why 33 of the catalog's 90 rotatable
-    synonyms disagreeing in gender costs nothing here — a recording only ever answers the
+    `teaches` disagreeing in gender costs nothing here — a recording only ever answers the
     form it actually speaks.
     """
     kept = []

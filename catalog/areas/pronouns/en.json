@@ -4,25 +4,25 @@
  "words": {
   "i": { "text": "I" },
   "you": { "text": "you" },
-  "he": { "text": "he", "variants": ["she"] },
+  "he": { "text": "he", "accepts": ["she"] },
   "it": { "text": "it" },
   "we": { "text": "we" },
   "you-plural": {
    "text": "you all",
-   "variants": ["you"],
+   "accepts": ["you"],
    "notes": { "en": "one you for one and for many · you all spells it out." }
   },
   "they": { "text": "they" },
   "my": { "text": "my" },
   "your": { "text": "your" },
-  "his": { "text": "his", "synonyms": ["her"] },
+  "his": { "text": "his", "teaches": ["her"] },
   "something": { "text": "something" },
   "nothing": { "text": "nothing" },
   "everything": { "text": "everything" },
   "anything": { "text": "anything" },
-  "someone": { "text": "someone", "variants": ["somebody"] },
-  "everyone": { "text": "everyone", "variants": ["everybody"] },
-  "no-one": { "text": "no one", "variants": ["nobody"] },
-  "anyone": { "text": "anyone", "variants": ["anybody"] }
+  "someone": { "text": "someone", "accepts": ["somebody"] },
+  "everyone": { "text": "everyone", "accepts": ["everybody"] },
+  "no-one": { "text": "no one", "accepts": ["nobody"] },
+  "anyone": { "text": "anyone", "accepts": ["anybody"] }
  }
 }

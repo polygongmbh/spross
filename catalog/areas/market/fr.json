@@ -2,9 +2,9 @@
  "title": "Au marché",
  "subtitle": "Où le prix se discute encore.",
  "words": {
-  "stall": { "text": "étal", "variants": ["l'étal", "stand"], "grammar": { "gender": "l'" } },
-  "trader": { "text": "marchand", "grammar": { "gender": "le" }, "synonyms": ["commerçant"] },
-  "trader-f": { "text": "marchande", "grammar": { "gender": "la" }, "synonyms": ["commerçante"] },
+  "stall": { "text": "étal", "accepts": ["l'étal", "stand"], "grammar": { "gender": "l'" } },
+  "trader": { "text": "marchand", "grammar": { "gender": "le" }, "teaches": ["commerçant"] },
+  "trader-f": { "text": "marchande", "grammar": { "gender": "la" }, "teaches": ["commerçante"] },
   "scales": { "text": "balance", "grammar": { "gender": "la" } },
   "to-weigh": { "text": "peser" },
   "kilo": { "text": "kilo", "grammar": { "gender": "le" } },
@@ -19,7 +19,7 @@
   "market": { "text": "marché", "grammar": { "gender": "le" } },
   "lets-meet-at-the-market": {
    "text": "On se retrouve au marché.",
-   "variants": ["Retrouvons-nous au marché.", "On se voit au marché."],
+   "accepts": ["Retrouvons-nous au marché.", "On se voit au marché."],
    "orders": ["Au marché, on se retrouve."]
   },
   "a-kilo-of-tomatoes": { "text": "Un kilo de tomates, s'il vous plaît." },

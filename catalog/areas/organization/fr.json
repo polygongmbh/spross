@@ -2,16 +2,16 @@
  "title": "Rendez-vous et délais",
  "subtitle": "Pour ne rien laisser passer.",
  "words": {
-  "appointment": { "text": "rendez-vous", "variants": ["rdv"], "grammar": { "gender": "le", "plural": "=" } },
+  "appointment": { "text": "rendez-vous", "accepts": ["rdv"], "grammar": { "gender": "le", "plural": "=" } },
   "date": { "text": "date", "grammar": { "gender": "la" } },
   "opening-hours": {
    "text": "heures d'ouverture",
-   "variants": ["horaires d'ouverture"],
+   "accepts": ["horaires d'ouverture"],
    "grammar": { "gender": "les", "plural": "only" }
   },
   "deadline": {
    "text": "délai",
-   "synonyms": ["date limite"],
+   "teaches": ["date limite"],
    "grammar": { "gender": "le" },
    "notes": { "fr": "un délai de deux semaines · la date limite est le dernier jour." }
   },
@@ -20,22 +20,22 @@
   "to-invite": { "text": "inviter" },
   "to-arrange": {
    "text": "fixer",
-   "variants": ["convenir", "organiser"],
+   "accepts": ["convenir", "organiser"],
    "notes": { "fr": "prendre rendez-vous chez le médecin · fixer la date et l'heure." }
   },
   "to-confirm": { "text": "confirmer" },
-  "to-cancel": { "text": "annuler", "variants": ["décommander"] },
-  "to-postpone": { "text": "reporter", "synonyms": ["repousser"], "variants": ["décaler"] },
+  "to-cancel": { "text": "annuler", "accepts": ["décommander"] },
+  "to-postpone": { "text": "reporter", "teaches": ["repousser"], "accepts": ["décaler"] },
   "to-register": { "text": "s'inscrire", "notes": { "fr": "s'inscrire à un cours · se connecter à son compte." } },
-  "to-be-late": { "text": "être en retard", "variants": ["arriver en retard"] },
-  "punctual": { "text": "ponctuel", "variants": ["ponctuelle", "à l'heure"] },
-  "urgent": { "text": "urgent", "variants": ["urgente"] },
+  "to-be-late": { "text": "être en retard", "accepts": ["arriver en retard"] },
+  "punctual": { "text": "ponctuel", "accepts": ["ponctuelle", "à l'heure"] },
+  "urgent": { "text": "urgent", "accepts": ["urgente"] },
   "list": { "text": "liste", "grammar": { "gender": "la" } },
-  "to-finish": { "text": "finir", "synonyms": ["terminer"] },
+  "to-finish": { "text": "finir", "teaches": ["terminer"] },
   "to-take-care-of": { "text": "s'occuper de" },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Je voudrais prendre un rendez-vous.",
-   "variants": [
+   "accepts": [
     "Je voudrais prendre rendez-vous.",
     "J'aimerais prendre rendez-vous.",
     "Je voudrais fixer un rendez-vous."
@@ -43,16 +43,16 @@
   },
   "the-deadline-is-tomorrow": {
    "text": "Le délai expire demain.",
-   "variants": ["La date limite est demain.", "Le délai est demain."],
+   "accepts": ["La date limite est demain.", "Le délai est demain."],
    "orders": ["Demain, le délai expire."]
   },
   "can-we-postpone-the-appointment": {
    "text": "Pouvons-nous reporter le rendez-vous ?",
-   "variants": ["Peut-on reporter le rendez-vous ?", "On peut reporter le rendez-vous ?"]
+   "accepts": ["Peut-on reporter le rendez-vous ?", "On peut reporter le rendez-vous ?"]
   },
   "i-have-an-appointment-at-ten": {
    "text": "J'ai rendez-vous à dix heures.",
-   "variants": ["J'ai un rendez-vous à dix heures."],
+   "accepts": ["J'ai un rendez-vous à dix heures."],
    "orders": ["À dix heures, j'ai rendez-vous."]
   },
   "ill-take-care-of-it": { "text": "Je m'en occupe." }

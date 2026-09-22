@@ -2,8 +2,8 @@
  "title": "Grado kaj ofteco",
  "subtitle": "Kiom, kiel malproksime, kiel ofte.",
  "words": {
-  "higher": { "text": "pli alte", "variants": ["pli alta"] },
-  "lower": { "text": "pli malalte", "variants": ["pli malalta"] },
+  "higher": { "text": "pli alte", "accepts": ["pli alta"] },
+  "lower": { "text": "pli malalte", "accepts": ["pli malalta"] },
   "more": {
    "text": "pli",
    "notes": {
@@ -15,7 +15,7 @@
   "always": { "text": "ĉiam" },
   "never": { "text": "neniam", "notes": { "eo": "neniam jam neas: Mi neniam iras — ne aldonu ne." } },
   "maybe": { "text": "eble" },
-  "sometimes": { "text": "kelkfoje", "variants": ["iafoje"] },
+  "sometimes": { "text": "kelkfoje", "accepts": ["iafoje"] },
   "often": { "text": "ofte" },
   "very": { "text": "tre" },
   "too": { "text": "tro" },
@@ -31,7 +31,7 @@
   "a-little": { "text": "iom" },
   "few": { "text": "malmultaj" },
   "once": { "text": "unufoje" },
-  "more-or-less": { "text": "pli-malpli", "variants": ["pli aŭ malpli", "pli malpli"] },
+  "more-or-less": { "text": "pli-malpli", "accepts": ["pli aŭ malpli", "pli malpli"] },
   "i-am-always-there": { "text": "Mi ĉiam estas tie.", "orders": ["Ĉiam mi estas tie."] },
   "hang-it-higher": {
    "text": "Pendigu ĝin pli alte.",

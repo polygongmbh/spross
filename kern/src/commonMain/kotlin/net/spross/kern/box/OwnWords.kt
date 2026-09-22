@@ -176,7 +176,7 @@ object OwnWords {
     /**
      * One side of an own word as a card renders it: the first form is what the
      * learner is asked to type, anything they joined onto it with a "/" is an
-     * accepted [Realization.variants] spelling beside it.
+     * accepted [Realization.accepts] spelling beside it.
      *
      * The catalog's rule that a form nobody can type is never a `text`
      * (`kern/docs/catalog.md`) holds here too — but an own word keeps every form
@@ -187,7 +187,7 @@ object OwnWords {
         return Realization(
             lang = lang,
             text = forms.firstOrNull() ?: text.trim(),
-            variants = forms.drop(1),
+            accepts = forms.drop(1),
         )
     }
 
@@ -199,7 +199,7 @@ object OwnWords {
      *
      * Each side is stored whole, exactly as it was typed: a "gari yangu / gari langu"
      * keeps both spellings, and [cards] is where the first becomes the answer and the
-     * rest become accepted variants beside it.
+     * rest become its `accepts` beside it.
      *
      * [texts] may be empty where [comment] is not: that is a bare remark
      * ([OwnWord.isRemark]), which joins no card and is no suggestion either.

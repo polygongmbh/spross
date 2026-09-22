@@ -18,25 +18,25 @@
   "goodbye": { "text": "Ĝis revido!" },
   "bye": { "text": "Ĝis!" },
   "welcome": { "text": "Bonvenon!" },
-  "may-i-come-in": { "text": "Ĉu mi rajtas eniri?", "variants": ["Ĉu mi povas eniri?"] },
+  "may-i-come-in": { "text": "Ĉu mi rajtas eniri?", "accepts": ["Ĉu mi povas eniri?"] },
   "how-are-you": { "text": "Kiel vi fartas?" },
-  "all-good": { "text": "Ĉio en ordo.", "variants": ["Ĉio bonas.", "Ĉio bone."] },
-  "thank-you": { "text": "Multan dankon!", "variants": ["Dankon!", "Koran dankon!"] },
+  "all-good": { "text": "Ĉio en ordo.", "accepts": ["Ĉio bonas.", "Ĉio bone."] },
+  "thank-you": { "text": "Multan dankon!", "accepts": ["Dankon!", "Koran dankon!"] },
   "please": {
    "text": "Bonvolu!",
-   "variants": ["Mi petas!"],
+   "accepts": ["Mi petas!"],
    "notes": {
     "eo": "Bonvolu eniri! · Ĉu mi rajtas eniri? — Jes, bonvolu!",
     "de": "steht vor dem Verb: Bonvolu ripeti. · die Antwort auf „Dankon“ ist „Ne dankinde“."
    }
   },
-  "excuse-me": { "text": "Pardonu!", "variants": ["Pardonon!", "Pardonu min!"] },
+  "excuse-me": { "text": "Pardonu!", "accepts": ["Pardonon!", "Pardonu min!"] },
   "no-problem": { "text": "Neniu problemo!" },
-  "pardon": { "text": "Kion vi diris?", "variants": ["Pardonon?"] },
-  "sorry-to-hear-that": { "text": "Mi bedaŭras!", "variants": ["Mi tre bedaŭras!", "Kiel bedaŭrinde!"] },
+  "pardon": { "text": "Kion vi diris?", "accepts": ["Pardonon?"] },
+  "sorry-to-hear-that": { "text": "Mi bedaŭras!", "accepts": ["Mi tre bedaŭras!", "Kiel bedaŭrinde!"] },
   "whats-your-name": {
    "text": "Kiel vi nomiĝas?",
-   "variants": ["Kio estas via nomo?"],
+   "accepts": ["Kio estas via nomo?"],
    "notes": { "de": "vi ist die einzige Anrede — sie gilt für du und Sie gleichermaßen." }
   },
   "my-name-is": { "text": "Mi nomiĝas …" },

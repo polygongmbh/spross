@@ -8,7 +8,7 @@ import SprossKern
 /// drill splits its own off.
 ///
 /// Grading itself is `WordScrambleRun.grade`'s, against every form the card
-/// authors — its synonyms and variants are real spellings of the same knowledge.
+/// authors — its `teaches` and `accepts` are real spellings of the same knowledge.
 /// All this side owes is the STRICT drill normalizer, resolved when the run opens.
 extension WordScrambleView: DrillRunning {
 

@@ -184,7 +184,7 @@ object ListeningRun {
 
     /**
      * The turn a candidate makes. The canonical target form is what plays — listening rotates
-     * no synonyms, because a rotated form would need the reveal that a screen gives and sound
+     * no `teaches`, because a rotated form would need the reveal that a screen gives and sound
      * cannot. The article goes through [shownArticle] all the same, so the rule stays named
      * here rather than assumed: a form that is not the canonical one carries no article.
      */

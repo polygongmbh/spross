@@ -6,23 +6,23 @@
   "who": { "text": "qui" },
   "what": {
    "text": "quoi",
-   "synonyms": ["que"],
+   "teaches": ["que"],
    "notes": {
     "fr": "Tu dis quoi ? · Que dis-tu ? · De quoi tu parles ?",
     "de": "quoi steht allein oder nach einer Präposition · vor dem Verb steht que: Que fais-tu ?"
    }
   },
   "this": { "text": "ceci" },
-  "that": { "text": "cela", "variants": ["ça"] },
+  "that": { "text": "cela", "accepts": ["ça"] },
   "when": { "text": "quand" },
   "why": { "text": "pourquoi" },
   "how": { "text": "comment" },
-  "which": { "text": "quel", "variants": ["quelle", "quels", "quelles"] },
+  "which": { "text": "quel", "accepts": ["quelle", "quels", "quelles"] },
   "how-many": { "text": "combien", "notes": { "fr": "combien de mots ? combien de questions ?" } },
-  "where-are-they": { "text": "Où sont-ils ?", "variants": ["Où sont-elles ?"] },
+  "where-are-they": { "text": "Où sont-ils ?", "accepts": ["Où sont-elles ?"] },
   "who-is-there": { "text": "Qui est là ?" },
-  "do-you-need-this": { "text": "Avez-vous besoin de ceci ?", "variants": ["As-tu besoin de ceci ?"] },
-  "when-does-it-start": { "text": "Quand est-ce que ça commence ?", "variants": ["Ça commence quand ?"] },
+  "do-you-need-this": { "text": "Avez-vous besoin de ceci ?", "accepts": ["As-tu besoin de ceci ?"] },
+  "when-does-it-start": { "text": "Quand est-ce que ça commence ?", "accepts": ["Ça commence quand ?"] },
   "what-time-is-it": { "text": "Quelle heure est-il ?" }
  }
 }

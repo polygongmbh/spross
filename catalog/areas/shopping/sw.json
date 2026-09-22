@@ -2,10 +2,10 @@
  "title": "Dukani",
  "subtitle": "Ambapo bei ipo tayari kwenye lebo.",
  "words": {
-  "supermarket": { "text": "supamaketi", "grammar": { "plural": "=" }, "variants": ["duka kubwa"] },
+  "supermarket": { "text": "supamaketi", "grammar": { "plural": "=" }, "accepts": ["duka kubwa"] },
   "mall": { "text": "kituo cha manunuzi", "grammar": { "plural": "vituo vya manunuzi" } },
   "checkout": { "text": "kaunta ya malipo", "grammar": { "plural": "kaunta za malipo" } },
-  "shop-assistant": { "text": "muuzaji", "grammar": { "plural": "wauzaji" }, "variants": ["mwuzaji"] },
+  "shop-assistant": { "text": "muuzaji", "grammar": { "plural": "wauzaji" }, "accepts": ["mwuzaji"] },
   "shopping-cart": { "text": "toroli", "grammar": { "plural": "=" } },
   "offer": { "text": "ofa", "grammar": { "plural": "=" } },
   "size": { "text": "saizi", "grammar": { "plural": "=" } },

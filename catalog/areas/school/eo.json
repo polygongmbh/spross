@@ -3,29 +3,29 @@
  "subtitle": "Tute ordinara lerneja tago.",
  "words": {
   "school": { "text": "lernejo" },
-  "classroom": { "text": "klasĉambro", "variants": ["lernoĉambro"] },
+  "classroom": { "text": "klasĉambro", "accepts": ["lernoĉambro"] },
   "teacher": { "text": "instruisto" },
   "teacher-f": {
    "text": "instruistino",
    "notes": { "de": "Die weibliche Form bildet immer das Suffix -in-: instruisto → instruistino." }
   },
-  "board": { "text": "tabulo", "variants": ["nigra tabulo", "lerneja tabulo"] },
-  "exercise-book": { "text": "kajero", "variants": ["ekzercokajero"] },
-  "homework": { "text": "hejmtasko", "variants": ["hejma tasko", "hejmlaboro"] },
+  "board": { "text": "tabulo", "accepts": ["nigra tabulo", "lerneja tabulo"] },
+  "exercise-book": { "text": "kajero", "accepts": ["ekzercokajero"] },
+  "homework": { "text": "hejmtasko", "accepts": ["hejma tasko", "hejmlaboro"] },
   "exam": { "text": "ekzameno" },
-  "break": { "text": "paŭzo", "variants": ["lerneja paŭzo"] },
+  "break": { "text": "paŭzo", "accepts": ["lerneja paŭzo"] },
   "to-pass-exam": {
    "text": "sukcesi en la ekzameno",
-   "variants": ["sukcesi la ekzamenon", "sukcese trapasi la ekzamenon"],
+   "accepts": ["sukcesi la ekzamenon", "sukcese trapasi la ekzamenon"],
    "notes": { "eo": "sukcesi = bona rezulto · malsukcesi = malbona · trapasi = nur fari ĝin." }
   },
   "to-raise-hand": { "text": "levi la manon" },
-  "pupil": { "text": "lernanto", "variants": ["lernejano"] },
-  "pupil-f": { "text": "lernantino", "variants": ["lernejanino"] },
+  "pupil": { "text": "lernanto", "accepts": ["lernejano"] },
+  "pupil-f": { "text": "lernantino", "accepts": ["lernejanino"] },
   "course": { "text": "kurso" },
   "lesson": {
    "text": "leciono",
-   "synonyms": ["instruado"],
+   "teaches": ["instruado"],
    "notes": { "eo": "leciono estas unu instruhoro · instruado estas la tuta lernado." }
   },
   "page": { "text": "paĝo" },
@@ -33,7 +33,7 @@
   "to-correct": { "text": "korekti" },
   "book": { "text": "libro" },
   "university": { "text": "universitato" },
-  "class-schedule": { "text": "horaro", "variants": ["lerneja horaro"] },
+  "class-schedule": { "text": "horaro", "accepts": ["lerneja horaro"] },
   "to-count": {
    "text": "kalkuli",
    "notes": {
@@ -41,21 +41,21 @@
     "de": "kalkuli heißt zählen und rechnen; erzählen heißt rakonti."
    }
   },
-  "to-learn-by-heart": { "text": "parkere lerni", "variants": ["lerni parkere", "parkerigi"] },
-  "to-read-aloud": { "text": "laŭte legi", "variants": ["legi laŭte", "laŭtlegi"] },
+  "to-learn-by-heart": { "text": "parkere lerni", "accepts": ["lerni parkere", "parkerigi"] },
+  "to-read-aloud": { "text": "laŭte legi", "accepts": ["legi laŭte", "laŭtlegi"] },
   "dictionary": { "text": "vortaro" },
-  "to-pronounce": { "text": "elparoli", "synonyms": ["prononci"] },
+  "to-pronounce": { "text": "elparoli", "teaches": ["prononci"] },
   "to-teach": { "text": "instrui" },
   "do-the-homework": {
    "text": "Mi faras la hejmtaskojn.",
-   "variants": ["Mi faras la hejmtaskon."],
+   "accepts": ["Mi faras la hejmtaskon."],
    "orders": ["La hejmtaskojn mi faras."]
   },
   "look-at-the-class-schedule": { "text": "Rigardu la horaron.", "orders": ["La horaron rigardu."] },
-  "the-break-is-over": { "text": "La paŭzo finiĝis.", "variants": ["La paŭzo estas finita."] },
+  "the-break-is-over": { "text": "La paŭzo finiĝis.", "accepts": ["La paŭzo estas finita."] },
   "ask-the-teacher": {
    "text": "Demandu la instruiston.",
-   "variants": ["Demandu al la instruisto."],
+   "accepts": ["Demandu al la instruisto."],
    "orders": ["La instruiston demandu."]
   },
   "i-have-a-good-grade": { "text": "Mi havas bonan noton.", "orders": ["Bonan noton mi havas."] },

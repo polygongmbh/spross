@@ -1,425 +1,419 @@
 {
  "germany": {
   "text": "Germania",
-  "variants": ["la Germania"],
+  "accepts": ["la Germania"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "tedeschi", "variants": ["tedesco", "tedesca"] }
+  "nationality": { "text": "tedeschi", "accepts": ["tedesco", "tedesca"] }
  },
  "austria": {
   "text": "Austria",
-  "variants": ["l'Austria"],
+  "accepts": ["l'Austria"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "austriaci", "variants": ["austriaco", "austriaca"] }
+  "nationality": { "text": "austriaci", "accepts": ["austriaco", "austriaca"] }
  },
  "switzerland": {
   "text": "Svizzera",
-  "variants": ["la Svizzera"],
+  "accepts": ["la Svizzera"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "svizzeri", "variants": ["svizzero", "svizzera"] }
+  "nationality": { "text": "svizzeri", "accepts": ["svizzero", "svizzera"] }
  },
  "united-kingdom": {
   "text": "Regno Unito",
-  "variants": ["il Regno Unito", "Gran Bretagna", "la Gran Bretagna"],
+  "accepts": ["il Regno Unito", "Gran Bretagna", "la Gran Bretagna"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "britannici", "variants": ["britannico", "britannica", "inglesi", "inglese"] }
+  "nationality": { "text": "britannici", "accepts": ["britannico", "britannica", "inglesi", "inglese"] }
  },
  "usa": {
   "text": "Stati Uniti",
-  "variants": ["gli Stati Uniti", "Stati Uniti d'America"],
+  "accepts": ["gli Stati Uniti", "Stati Uniti d'America"],
   "grammar": { "gender": "gli", "plural": "only" },
-  "nationality": { "text": "statunitensi", "variants": ["statunitense", "americani", "americano", "americana"] }
+  "nationality": { "text": "statunitensi", "accepts": ["statunitense", "americani", "americano", "americana"] }
  },
  "spain": {
   "text": "Spagna",
-  "variants": ["la Spagna"],
+  "accepts": ["la Spagna"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "spagnoli", "variants": ["spagnolo", "spagnola"] }
+  "nationality": { "text": "spagnoli", "accepts": ["spagnolo", "spagnola"] }
  },
  "mexico": {
   "text": "Messico",
-  "variants": ["il Messico"],
+  "accepts": ["il Messico"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "messicani", "variants": ["messicano", "messicana"] }
+  "nationality": { "text": "messicani", "accepts": ["messicano", "messicana"] }
  },
  "kenya": {
   "text": "Kenya",
-  "variants": ["il Kenya"],
+  "accepts": ["il Kenya"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "keniani", "variants": ["keniano", "keniana", "kenioti", "keniota"] }
+  "nationality": { "text": "keniani", "accepts": ["keniano", "keniana", "kenioti", "keniota"] }
  },
  "tanzania": {
   "text": "Tanzania",
-  "variants": ["la Tanzania"],
+  "accepts": ["la Tanzania"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "tanzaniani", "variants": ["tanzaniano", "tanzaniana"] }
+  "nationality": { "text": "tanzaniani", "accepts": ["tanzaniano", "tanzaniana"] }
  },
  "ukraine": {
   "text": "Ucraina",
-  "variants": ["l'Ucraina"],
+  "accepts": ["l'Ucraina"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "ucraini", "variants": ["ucraino", "ucraina"] }
+  "nationality": { "text": "ucraini", "accepts": ["ucraino", "ucraina"] }
  },
  "france": {
   "text": "Francia",
-  "variants": ["la Francia"],
+  "accepts": ["la Francia"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "francesi", "variants": ["francese"] }
+  "nationality": { "text": "francesi", "accepts": ["francese"] }
  },
  "italy": {
   "text": "Italia",
-  "variants": ["l'Italia"],
+  "accepts": ["l'Italia"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "italiani", "variants": ["italiano", "italiana"] }
+  "nationality": { "text": "italiani", "accepts": ["italiano", "italiana"] }
  },
  "portugal": {
   "text": "Portogallo",
-  "variants": ["il Portogallo"],
+  "accepts": ["il Portogallo"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "portoghesi", "variants": ["portoghese"] }
+  "nationality": { "text": "portoghesi", "accepts": ["portoghese"] }
  },
  "brazil": {
   "text": "Brasile",
-  "variants": ["il Brasile"],
+  "accepts": ["il Brasile"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "brasiliani", "variants": ["brasiliano", "brasiliana"] }
+  "nationality": { "text": "brasiliani", "accepts": ["brasiliano", "brasiliana"] }
  },
  "netherlands": {
   "text": "Paesi Bassi",
-  "variants": ["i Paesi Bassi", "Olanda", "l'Olanda"],
+  "accepts": ["i Paesi Bassi", "Olanda", "l'Olanda"],
   "grammar": { "gender": "i", "plural": "only" },
-  "nationality": { "text": "olandesi", "variants": ["olandese", "neerlandesi", "neerlandese"] }
+  "nationality": { "text": "olandesi", "accepts": ["olandese", "neerlandesi", "neerlandese"] }
  },
  "belgium": {
   "text": "Belgio",
-  "variants": ["il Belgio"],
+  "accepts": ["il Belgio"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "belgi", "variants": ["belga"] }
+  "nationality": { "text": "belgi", "accepts": ["belga"] }
  },
  "poland": {
   "text": "Polonia",
-  "variants": ["la Polonia"],
+  "accepts": ["la Polonia"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "polacchi", "variants": ["polacco", "polacca"] }
+  "nationality": { "text": "polacchi", "accepts": ["polacco", "polacca"] }
  },
  "turkey": {
   "text": "Turchia",
-  "variants": ["la Turchia"],
+  "accepts": ["la Turchia"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "turchi", "variants": ["turco", "turca"] }
+  "nationality": { "text": "turchi", "accepts": ["turco", "turca"] }
  },
  "greece": {
   "text": "Grecia",
-  "variants": ["la Grecia"],
+  "accepts": ["la Grecia"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "greci", "variants": ["greco", "greca"] }
+  "nationality": { "text": "greci", "accepts": ["greco", "greca"] }
  },
  "sweden": {
   "text": "Svezia",
-  "variants": ["la Svezia"],
+  "accepts": ["la Svezia"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "svedesi", "variants": ["svedese"] }
+  "nationality": { "text": "svedesi", "accepts": ["svedese"] }
  },
  "czechia": {
   "text": "Cechia",
-  "variants": ["la Cechia", "Repubblica Ceca", "la Repubblica Ceca"],
+  "accepts": ["la Cechia", "Repubblica Ceca", "la Repubblica Ceca"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "cechi", "variants": ["ceco", "ceca"] }
+  "nationality": { "text": "cechi", "accepts": ["ceco", "ceca"] }
  },
  "russia": {
   "text": "Russia",
-  "variants": ["la Russia"],
+  "accepts": ["la Russia"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "russi", "variants": ["russo", "russa"] }
+  "nationality": { "text": "russi", "accepts": ["russo", "russa"] }
  },
  "china": {
   "text": "Cina",
-  "variants": ["la Cina"],
+  "accepts": ["la Cina"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "cinesi", "variants": ["cinese"] }
+  "nationality": { "text": "cinesi", "accepts": ["cinese"] }
  },
  "japan": {
   "text": "Giappone",
-  "variants": ["il Giappone"],
+  "accepts": ["il Giappone"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "giapponesi", "variants": ["giapponese"] }
+  "nationality": { "text": "giapponesi", "accepts": ["giapponese"] }
  },
  "india": {
   "text": "India",
-  "variants": ["l'India"],
+  "accepts": ["l'India"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "indiani", "variants": ["indiano", "indiana"] }
+  "nationality": { "text": "indiani", "accepts": ["indiano", "indiana"] }
  },
  "argentina": {
   "text": "Argentina",
-  "variants": ["l'Argentina"],
+  "accepts": ["l'Argentina"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "argentini", "variants": ["argentino", "argentina"] }
+  "nationality": { "text": "argentini", "accepts": ["argentino", "argentina"] }
  },
  "canada": {
   "text": "Canada",
-  "variants": ["il Canada", "Canadà"],
+  "accepts": ["il Canada", "Canadà"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "canadesi", "variants": ["canadese"] }
+  "nationality": { "text": "canadesi", "accepts": ["canadese"] }
  },
  "egypt": {
   "text": "Egitto",
-  "variants": ["l'Egitto"],
+  "accepts": ["l'Egitto"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "egiziani", "variants": ["egiziano", "egiziana"] }
+  "nationality": { "text": "egiziani", "accepts": ["egiziano", "egiziana"] }
  },
  "morocco": {
   "text": "Marocco",
-  "variants": ["il Marocco"],
+  "accepts": ["il Marocco"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "marocchini", "variants": ["marocchino", "marocchina"] }
+  "nationality": { "text": "marocchini", "accepts": ["marocchino", "marocchina"] }
  },
  "colombia": {
   "text": "Colombia",
-  "variants": ["la Colombia"],
+  "accepts": ["la Colombia"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "colombiani", "variants": ["colombiano", "colombiana"] }
+  "nationality": { "text": "colombiani", "accepts": ["colombiano", "colombiana"] }
  },
  "ireland": {
   "text": "Irlanda",
-  "variants": ["l'Irlanda"],
+  "accepts": ["l'Irlanda"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "irlandesi", "variants": ["irlandese"] }
+  "nationality": { "text": "irlandesi", "accepts": ["irlandese"] }
  },
  "norway": {
   "text": "Norvegia",
-  "variants": ["la Norvegia"],
+  "accepts": ["la Norvegia"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "norvegesi", "variants": ["norvegese"] }
+  "nationality": { "text": "norvegesi", "accepts": ["norvegese"] }
  },
  "denmark": {
   "text": "Danimarca",
-  "variants": ["la Danimarca"],
+  "accepts": ["la Danimarca"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "danesi", "variants": ["danese"] }
+  "nationality": { "text": "danesi", "accepts": ["danese"] }
  },
  "finland": {
   "text": "Finlandia",
-  "variants": ["la Finlandia"],
+  "accepts": ["la Finlandia"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "finlandesi", "variants": ["finlandese", "finnici", "finnico"] }
+  "nationality": { "text": "finlandesi", "accepts": ["finlandese", "finnici", "finnico"] }
  },
  "hungary": {
   "text": "Ungheria",
-  "variants": ["l'Ungheria"],
+  "accepts": ["l'Ungheria"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "ungheresi", "variants": ["ungherese", "magiari", "magiaro"] }
+  "nationality": { "text": "ungheresi", "accepts": ["ungherese", "magiari", "magiaro"] }
  },
  "romania": {
   "text": "Romania",
-  "variants": ["la Romania"],
+  "accepts": ["la Romania"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "rumeni", "variants": ["rumeno", "rumena", "romeni", "romeno", "romena"] }
+  "nationality": { "text": "rumeni", "accepts": ["rumeno", "rumena", "romeni", "romeno", "romena"] }
  },
  "bulgaria": {
   "text": "Bulgaria",
-  "variants": ["la Bulgaria"],
+  "accepts": ["la Bulgaria"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "bulgari", "variants": ["bulgaro", "bulgara"] }
+  "nationality": { "text": "bulgari", "accepts": ["bulgaro", "bulgara"] }
  },
  "croatia": {
   "text": "Croazia",
-  "variants": ["la Croazia"],
+  "accepts": ["la Croazia"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "croati", "variants": ["croato", "croata"] }
+  "nationality": { "text": "croati", "accepts": ["croato", "croata"] }
  },
  "serbia": {
   "text": "Serbia",
-  "variants": ["la Serbia"],
+  "accepts": ["la Serbia"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "serbi", "variants": ["serbo", "serba"] }
+  "nationality": { "text": "serbi", "accepts": ["serbo", "serba"] }
  },
  "slovakia": {
   "text": "Slovacchia",
-  "variants": ["la Slovacchia"],
+  "accepts": ["la Slovacchia"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "slovacchi", "variants": ["slovacco", "slovacca"] }
+  "nationality": { "text": "slovacchi", "accepts": ["slovacco", "slovacca"] }
  },
  "luxembourg": {
   "text": "Lussemburgo",
-  "variants": ["il Lussemburgo"],
+  "accepts": ["il Lussemburgo"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "lussemburghesi", "variants": ["lussemburghese"] }
+  "nationality": { "text": "lussemburghesi", "accepts": ["lussemburghese"] }
  },
  "south-korea": {
   "text": "Corea del Sud",
-  "variants": ["la Corea del Sud"],
+  "accepts": ["la Corea del Sud"],
   "grammar": { "gender": "la" },
-  "nationality": {
-   "text": "sudcoreani",
-   "variants": ["sudcoreano", "sudcoreana", "coreani", "coreano", "coreana"]
-  }
+  "nationality": { "text": "sudcoreani", "accepts": ["sudcoreano", "sudcoreana", "coreani", "coreano", "coreana"] }
  },
  "vietnam": {
   "text": "Vietnam",
-  "variants": ["il Vietnam"],
+  "accepts": ["il Vietnam"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "vietnamiti", "variants": ["vietnamita"] }
+  "nationality": { "text": "vietnamiti", "accepts": ["vietnamita"] }
  },
  "thailand": {
   "text": "Thailandia",
-  "variants": ["la Thailandia"],
+  "accepts": ["la Thailandia"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "thailandesi", "variants": ["thailandese", "tailandesi", "tailandese"] }
+  "nationality": { "text": "thailandesi", "accepts": ["thailandese", "tailandesi", "tailandese"] }
  },
  "indonesia": {
   "text": "Indonesia",
-  "variants": ["l'Indonesia"],
+  "accepts": ["l'Indonesia"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "indonesiani", "variants": ["indonesiano", "indonesiana"] }
+  "nationality": { "text": "indonesiani", "accepts": ["indonesiano", "indonesiana"] }
  },
  "israel": {
   "text": "Israele",
-  "nationality": { "text": "israeliani", "variants": ["israeliano", "israeliana"] }
+  "nationality": { "text": "israeliani", "accepts": ["israeliano", "israeliana"] }
  },
  "iran": {
   "text": "Iran",
-  "variants": ["l'Iran"],
+  "accepts": ["l'Iran"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "iraniani", "variants": ["iraniano", "iraniana"] }
+  "nationality": { "text": "iraniani", "accepts": ["iraniano", "iraniana"] }
  },
  "saudi-arabia": {
   "text": "Arabia Saudita",
-  "variants": ["l'Arabia Saudita"],
+  "accepts": ["l'Arabia Saudita"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "sauditi", "variants": ["saudita", "arabi sauditi"] }
+  "nationality": { "text": "sauditi", "accepts": ["saudita", "arabi sauditi"] }
  },
  "singapore": {
   "text": "Singapore",
   "nationality": {
    "text": "singaporiani",
-   "variants": ["singaporiano", "singaporiana", "singaporeani", "singaporeano"]
+   "accepts": ["singaporiano", "singaporiana", "singaporeani", "singaporeano"]
   }
  },
  "nigeria": {
   "text": "Nigeria",
-  "variants": ["la Nigeria"],
+  "accepts": ["la Nigeria"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "nigeriani", "variants": ["nigeriano", "nigeriana"] }
+  "nationality": { "text": "nigeriani", "accepts": ["nigeriano", "nigeriana"] }
  },
  "ethiopia": {
   "text": "Etiopia",
-  "variants": ["l'Etiopia"],
+  "accepts": ["l'Etiopia"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "etiopi", "variants": ["etiope"] }
+  "nationality": { "text": "etiopi", "accepts": ["etiope"] }
  },
  "south-africa": {
   "text": "Sudafrica",
-  "variants": ["il Sudafrica", "Sud Africa", "Repubblica Sudafricana"],
+  "accepts": ["il Sudafrica", "Sud Africa", "Repubblica Sudafricana"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "sudafricani", "variants": ["sudafricano", "sudafricana"] }
+  "nationality": { "text": "sudafricani", "accepts": ["sudafricano", "sudafricana"] }
  },
  "ghana": {
   "text": "Ghana",
-  "variants": ["il Ghana"],
+  "accepts": ["il Ghana"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "ghanesi", "variants": ["ghanese"] }
+  "nationality": { "text": "ghanesi", "accepts": ["ghanese"] }
  },
  "uganda": {
   "text": "Uganda",
-  "variants": ["l'Uganda"],
+  "accepts": ["l'Uganda"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "ugandesi", "variants": ["ugandese"] }
+  "nationality": { "text": "ugandesi", "accepts": ["ugandese"] }
  },
  "rwanda": {
   "text": "Ruanda",
-  "variants": ["il Ruanda"],
+  "accepts": ["il Ruanda"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "ruandesi", "variants": ["ruandese"] }
+  "nationality": { "text": "ruandesi", "accepts": ["ruandese"] }
  },
  "senegal": {
   "text": "Senegal",
-  "variants": ["il Senegal"],
+  "accepts": ["il Senegal"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "senegalesi", "variants": ["senegalese"] }
+  "nationality": { "text": "senegalesi", "accepts": ["senegalese"] }
  },
  "algeria": {
   "text": "Algeria",
-  "variants": ["l'Algeria"],
+  "accepts": ["l'Algeria"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "algerini", "variants": ["algerino", "algerina"] }
+  "nationality": { "text": "algerini", "accepts": ["algerino", "algerina"] }
  },
  "tunisia": {
   "text": "Tunisia",
-  "variants": ["la Tunisia"],
+  "accepts": ["la Tunisia"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "tunisini", "variants": ["tunisino", "tunisina"] }
+  "nationality": { "text": "tunisini", "accepts": ["tunisino", "tunisina"] }
  },
  "dr-congo": {
   "text": "Repubblica Democratica del Congo",
-  "variants": ["la Repubblica Democratica del Congo", "RD Congo", "Congo", "il Congo"],
+  "accepts": ["la Repubblica Democratica del Congo", "RD Congo", "Congo", "il Congo"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "congolesi", "variants": ["congolese"] }
+  "nationality": { "text": "congolesi", "accepts": ["congolese"] }
  },
  "mozambique": {
   "text": "Mozambico",
-  "variants": ["il Mozambico"],
+  "accepts": ["il Mozambico"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "mozambicani", "variants": ["mozambicano", "mozambicana"] }
+  "nationality": { "text": "mozambicani", "accepts": ["mozambicano", "mozambicana"] }
  },
  "angola": {
   "text": "Angola",
-  "variants": ["l'Angola"],
+  "accepts": ["l'Angola"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "angolani", "variants": ["angolano", "angolana"] }
+  "nationality": { "text": "angolani", "accepts": ["angolano", "angolana"] }
  },
  "chile": {
   "text": "Cile",
-  "variants": ["il Cile"],
+  "accepts": ["il Cile"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "cileni", "variants": ["cileno", "cilena"] }
+  "nationality": { "text": "cileni", "accepts": ["cileno", "cilena"] }
  },
  "peru": {
   "text": "Perù",
-  "variants": ["il Perù"],
+  "accepts": ["il Perù"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "peruviani", "variants": ["peruviano", "peruviana"] }
+  "nationality": { "text": "peruviani", "accepts": ["peruviano", "peruviana"] }
  },
- "cuba": { "text": "Cuba", "nationality": { "text": "cubani", "variants": ["cubano", "cubana"] } },
+ "cuba": { "text": "Cuba", "nationality": { "text": "cubani", "accepts": ["cubano", "cubana"] } },
  "venezuela": {
   "text": "Venezuela",
-  "variants": ["il Venezuela"],
+  "accepts": ["il Venezuela"],
   "grammar": { "gender": "il" },
-  "nationality": { "text": "venezuelani", "variants": ["venezuelano", "venezuelana"] }
+  "nationality": { "text": "venezuelani", "accepts": ["venezuelano", "venezuelana"] }
  },
  "ecuador": {
   "text": "Ecuador",
-  "variants": ["l'Ecuador"],
+  "accepts": ["l'Ecuador"],
   "grammar": { "gender": "l'" },
-  "nationality": {
-   "text": "ecuadoriani",
-   "variants": ["ecuadoriano", "ecuadoriana", "ecuadoregni", "ecuadoregno"]
-  }
+  "nationality": { "text": "ecuadoriani", "accepts": ["ecuadoriano", "ecuadoriana", "ecuadoregni", "ecuadoregno"] }
  },
  "uruguay": {
   "text": "Uruguay",
-  "variants": ["l'Uruguay"],
+  "accepts": ["l'Uruguay"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "uruguaiani", "variants": ["uruguaiano", "uruguaiana"] }
+  "nationality": { "text": "uruguaiani", "accepts": ["uruguaiano", "uruguaiana"] }
  },
  "costa-rica": {
   "text": "Costa Rica",
-  "variants": ["la Costa Rica"],
+  "accepts": ["la Costa Rica"],
   "grammar": { "gender": "la" },
   "nationality": {
    "text": "costaricani",
-   "variants": ["costaricano", "costaricana", "costaricensi", "costaricense"]
+   "accepts": ["costaricano", "costaricana", "costaricensi", "costaricense"]
   }
  },
  "australia": {
   "text": "Australia",
-  "variants": ["l'Australia"],
+  "accepts": ["l'Australia"],
   "grammar": { "gender": "l'" },
-  "nationality": { "text": "australiani", "variants": ["australiano", "australiana"] }
+  "nationality": { "text": "australiani", "accepts": ["australiano", "australiana"] }
  },
  "new-zealand": {
   "text": "Nuova Zelanda",
-  "variants": ["la Nuova Zelanda"],
+  "accepts": ["la Nuova Zelanda"],
   "grammar": { "gender": "la" },
-  "nationality": { "text": "neozelandesi", "variants": ["neozelandese"] }
+  "nationality": { "text": "neozelandesi", "accepts": ["neozelandese"] }
  }
 }

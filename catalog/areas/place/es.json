@@ -2,28 +2,28 @@
  "title": "El lugar",
  "subtitle": "La respuesta a la pregunta «¿dónde?».",
  "words": {
-  "here": { "text": "aquí", "variants": ["acá"] },
+  "here": { "text": "aquí", "accepts": ["acá"] },
   "there": { "text": "ahí" },
-  "left": { "text": "a la izquierda", "variants": ["izquierda"] },
-  "right": { "text": "a la derecha", "variants": ["derecha"] },
+  "left": { "text": "a la izquierda", "accepts": ["izquierda"] },
+  "right": { "text": "a la derecha", "accepts": ["derecha"] },
   "up": { "text": "arriba" },
   "down": { "text": "abajo" },
-  "inside": { "text": "dentro", "variants": ["adentro"] },
-  "outdoors": { "text": "fuera", "variants": ["afuera"] },
+  "inside": { "text": "dentro", "accepts": ["adentro"] },
+  "outdoors": { "text": "fuera", "accepts": ["afuera"] },
   "at-home": { "text": "en casa" },
   "home": { "text": "a casa" },
   "in": { "text": "en", "notes": { "de": "en deckt in und auf ab: en la caja, en la mesa." } },
   "on": {
    "text": "sobre",
-   "variants": ["encima de"],
+   "accepts": ["encima de"],
    "notes": { "es": "sobre = encima · en sirve igual" }
   },
-  "under": { "text": "debajo de", "variants": ["bajo"] },
+  "under": { "text": "debajo de", "accepts": ["bajo"] },
   "behind": { "text": "detrás de" },
   "between": { "text": "entre" },
   "near": { "text": "cerca" },
   "far": { "text": "lejos" },
-  "place": { "text": "lugar", "synonyms": ["sitio"], "grammar": { "gender": "el" } },
+  "place": { "text": "lugar", "teaches": ["sitio"], "grammar": { "gender": "el" } },
   "country": { "text": "país", "grammar": { "gender": "el", "plural": "países" } },
   "in-front": { "text": "delante" },
   "next-to": { "text": "al lado de" },
@@ -40,7 +40,7 @@
   },
   "are-you-going-home-already": {
    "text": "¿Ya se van a casa?",
-   "variants": ["¿Ya os vais a casa?", "¿Ya te vas a casa?"],
+   "accepts": ["¿Ya os vais a casa?", "¿Ya te vas a casa?"],
    "orders": ["¿Se van ya a casa?"]
   }
  }

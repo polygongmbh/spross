@@ -11,7 +11,7 @@
   "mailbox": { "text": "sanduku la barua", "grammar": { "plural": "masanduku ya barua" } },
   "doorbell": { "text": "kengele", "grammar": { "plural": "=" } },
   "stairs": { "text": "ngazi", "grammar": { "plural": "=" } },
-  "bag": { "text": "begi", "synonyms": ["mfuko"], "grammar": { "plural": "mabegi" } },
+  "bag": { "text": "begi", "teaches": ["mfuko"], "grammar": { "plural": "mabegi" } },
   "to-ring": { "text": "kupiga kengele" },
   "to-take-off-shoes": { "text": "kuvua viatu" },
   "to-set-off": { "text": "kuondoka nyumbani" },

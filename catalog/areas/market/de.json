@@ -4,7 +4,7 @@
  "words": {
   "stall": {
    "text": "Marktstand",
-   "variants": ["Stand"],
+   "accepts": ["Stand"],
    "grammar": { "gender": "der", "plural": "Marktstände" }
   },
   "trader": { "text": "Händler", "grammar": { "gender": "der", "plural": "=" } },
@@ -22,7 +22,7 @@
   "ripe": { "text": "reif" },
   "to-haggle": {
    "text": "feilschen",
-   "synonyms": ["handeln"],
+   "teaches": ["handeln"],
    "notes": {
     "de": "feilschen meint nur das Handeln um den Preis; handeln heißt auch tun und Handel treiben."
    }
@@ -36,7 +36,7 @@
   "what-does-a-kilo-cost": { "text": "Was kostet ein Kilo?" },
   "can-you-come-down-a-bit": {
    "text": "Geht da noch was am Preis?",
-   "variants": ["Geht der Preis noch runter?"],
+   "accepts": ["Geht der Preis noch runter?"],
    "notes": {
     "en": "Idiomatic, not a literal “can you come down a bit?” — asks generally whether there's room to negotiate on the price.",
     "es": "Es idiomático, no un literal «¿puede bajar un poco?» — pregunta en general si hay margen para negociar el precio."

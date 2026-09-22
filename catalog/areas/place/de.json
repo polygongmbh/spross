@@ -31,7 +31,7 @@
   "under": { "text": "unter" },
   "behind": { "text": "hinter" },
   "between": { "text": "zwischen" },
-  "near": { "text": "nah", "variants": ["nahe", "in der Nähe"] },
+  "near": { "text": "nah", "accepts": ["nahe", "in der Nähe"] },
   "far": { "text": "weit" },
   "place": { "text": "Ort", "grammar": { "gender": "der", "plural": "-e" } },
   "country": { "text": "Land", "grammar": { "gender": "das", "plural": "Länder" } },
@@ -54,7 +54,7 @@
   },
   "are-you-going-home-already": {
    "text": "Geht ihr schon nach Hause?",
-   "variants": ["Gehen Sie schon nach Hause?", "Gehst du schon nach Hause?"],
+   "accepts": ["Gehen Sie schon nach Hause?", "Gehst du schon nach Hause?"],
    "orders": ["Ihr geht schon nach Hause?"]
   },
   "center": { "text": "Mitte", "grammar": { "gender": "die", "plural": "-n" } }

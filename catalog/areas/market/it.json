@@ -3,7 +3,7 @@
  "subtitle": "Dove il prezzo si tratta ancora.",
  "words": {
   "stall": { "text": "bancarella", "grammar": { "gender": "la" } },
-  "trader": { "text": "venditore", "grammar": { "gender": "il" }, "synonyms": ["commerciante"] },
+  "trader": { "text": "venditore", "grammar": { "gender": "il" }, "teaches": ["commerciante"] },
   "trader-f": { "text": "venditrice", "grammar": { "gender": "la" } },
   "scales": { "text": "bilancia", "grammar": { "gender": "la" } },
   "to-weigh": { "text": "pesare" },
@@ -12,18 +12,18 @@
   "liter": { "text": "litro", "grammar": { "gender": "il" } },
   "fresh": { "text": "fresco" },
   "ripe": { "text": "maturo" },
-  "to-haggle": { "text": "contrattare", "synonyms": ["mercanteggiare"] },
+  "to-haggle": { "text": "contrattare", "teaches": ["mercanteggiare"] },
   "market": { "text": "mercato", "grammar": { "gender": "il" } },
   "lets-meet-at-the-market": {
    "text": "Ci vediamo al mercato.",
-   "variants": ["Incontriamoci al mercato."],
+   "accepts": ["Incontriamoci al mercato."],
    "orders": ["Al mercato ci vediamo."]
   },
   "a-kilo-of-tomatoes": { "text": "Un chilo di pomodori, per favore." },
   "what-does-a-kilo-cost": { "text": "Quanto costa un chilo?" },
   "can-you-come-down-a-bit": {
    "text": "Può abbassare un po' il prezzo?",
-   "variants": ["Può farmi un prezzo migliore?"],
+   "accepts": ["Può farmi un prezzo migliore?"],
    "orders": ["Può abbassare il prezzo un po'?"]
   }
  }

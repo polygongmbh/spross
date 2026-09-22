@@ -18,29 +18,29 @@
   "illness": { "text": "malsano" },
   "tired": { "text": "laca" },
   "weak": { "text": "malforta" },
-  "dizziness": { "text": "kapturno", "synonyms": ["vertiĝo"] },
+  "dizziness": { "text": "kapturno", "teaches": ["vertiĝo"] },
   "wound": { "text": "vundo" },
   "to-hurt-oneself": {
    "text": "vundi sin",
-   "variants": ["sin vundi", "vundiĝi"],
+   "accepts": ["sin vundi", "vundiĝi"],
    "notes": { "eo": "vundi iun aŭ ion · vundi sin estas vundi la propran korpon." }
   },
   "bandage": { "text": "bandaĝo" },
   "band-aid": { "text": "plastro" },
   "splint": { "text": "ŝino" },
-  "to-recover": { "text": "resaniĝi", "variants": ["saniĝi"] },
+  "to-recover": { "text": "resaniĝi", "accepts": ["saniĝi"] },
   "allergy": { "text": "alergio" },
   "my-throat-hurts-a-lot": {
    "text": "Mia gorĝo tre doloras.",
-   "variants": ["Tre doloras al mi la gorĝo."],
+   "accepts": ["Tre doloras al mi la gorĝo."],
    "orders": ["Tre doloras mia gorĝo."]
   },
   "ive-had-a-fever-since-yesterday": {
    "text": "Mi havas febron ekde hieraŭ.",
-   "variants": ["Mi havas febron de hieraŭ."],
+   "accepts": ["Mi havas febron de hieraŭ."],
    "orders": ["Ekde hieraŭ mi havas febron."]
   },
-  "get-well-soon": { "text": "Rapidan resaniĝon!", "variants": ["Baldaŭan resaniĝon!", "Resaniĝu baldaŭ!"] },
+  "get-well-soon": { "text": "Rapidan resaniĝon!", "accepts": ["Baldaŭan resaniĝon!", "Resaniĝu baldaŭ!"] },
   "the-wound-hurts": { "text": "La vundo doloras." },
   "i-hurt-myself-yesterday": { "text": "Mi vundis min hieraŭ.", "orders": ["Hieraŭ mi vundis min."] }
  }

@@ -4,7 +4,7 @@
  "words": {
   "fridge": { "text": "Kühlschrank", "grammar": { "gender": "der", "plural": "Kühlschränke" } },
   "stove": { "text": "Herd", "grammar": { "gender": "der", "plural": "Herde" } },
-  "oven": { "text": "Backofen", "synonyms": ["Ofen"], "grammar": { "gender": "der", "plural": "Backöfen" } },
+  "oven": { "text": "Backofen", "teaches": ["Ofen"], "grammar": { "gender": "der", "plural": "Backöfen" } },
   "dishwasher": { "text": "Spülmaschine", "grammar": { "gender": "die", "plural": "-n" } },
   "pot": { "text": "Topf", "grammar": { "gender": "der", "plural": "Töpfe" } },
   "pan": { "text": "Pfanne", "grammar": { "gender": "die", "plural": "-n" } },
@@ -29,7 +29,7 @@
   "gas": { "text": "Gas", "grammar": { "gender": "das", "plural": "-e" } },
   "tasty": { "text": "lecker" },
   "the-knife-is-sharp": { "text": "Das Messer ist scharf!" },
-  "this-is-very-tasty": { "text": "Das ist sehr lecker!", "variants": ["Das schmeckt so lecker!"] },
+  "this-is-very-tasty": { "text": "Das ist sehr lecker!", "accepts": ["Das schmeckt so lecker!"] },
   "are-you-cooking-rice-today": { "text": "Kochst du heute Reis?", "orders": ["Du kochst heute Reis?"] },
   "the-pot-is-still-on-the-stove": { "text": "Der Topf steht noch auf dem Herd.", "orders": ["Auf dem Herd steht noch der Topf."] },
   "wash-the-dishes-in-the-sink": { "text": "Spül das Geschirr im Spülbecken!" },

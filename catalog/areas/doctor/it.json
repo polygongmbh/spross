@@ -2,7 +2,7 @@
  "title": "Dal medico",
  "subtitle": "Dall'appuntamento alla ricetta.",
  "words": {
-  "doctor": { "text": "medico", "variants": ["dottore"], "grammar": { "gender": "il" } },
+  "doctor": { "text": "medico", "accepts": ["dottore"], "grammar": { "gender": "il" } },
   "doctor-f": {
    "text": "dottoressa",
    "grammar": { "gender": "la" },
@@ -10,14 +10,14 @@
   },
   "practice": {
    "text": "ambulatorio",
-   "synonyms": ["studio medico"],
-   "variants": ["l'ambulatorio"],
+   "teaches": ["studio medico"],
+   "accepts": ["l'ambulatorio"],
    "grammar": { "gender": "l'", "plural": "ambulatori" },
    "notes": { "it": "l'ambulatorio è del medico di base · lo studio medico è privato." }
   },
   "pill": {
    "text": "pastiglia",
-   "variants": ["compressa", "pillola"],
+   "accepts": ["compressa", "pillola"],
    "grammar": { "gender": "la" },
    "notes": {
     "it": "parlando si dice pastiglia · sulla scatola c'è compressa.",
@@ -26,7 +26,7 @@
   },
   "prescription": {
    "text": "ricetta",
-   "variants": ["ricetta medica"],
+   "accepts": ["ricetta medica"],
    "grammar": { "gender": "la" },
    "notes": { "it": "la ricetta è quella del medico ed è anche quella di cucina." }
   },
@@ -38,79 +38,75 @@
   },
   "health-insurance": {
    "text": "assicurazione sanitaria",
-   "variants": ["l'assicurazione sanitaria", "un'assicurazione sanitaria"],
+   "accepts": ["l'assicurazione sanitaria", "un'assicurazione sanitaria"],
    "grammar": { "gender": "l'" },
    "notes": {
     "it": "cura tutti il Servizio Sanitario Nazionale · l'assicurazione è privata.",
     "de": "Eine Krankenkasse wie in Deutschland gibt es nicht: versorgt wird man über den staatlichen Servizio Sanitario Nazionale; un'assicurazione sanitaria ist meist eine private Zusatzversicherung."
    }
   },
-  "hospital": { "text": "ospedale", "variants": ["l'ospedale"], "grammar": { "gender": "l'" } },
+  "hospital": { "text": "ospedale", "accepts": ["l'ospedale"], "grammar": { "gender": "l'" } },
   "emergency": {
    "text": "emergenza",
-   "variants": ["l'emergenza", "un'emergenza"],
+   "accepts": ["l'emergenza", "un'emergenza"],
    "grammar": { "gender": "l'" },
    "notes": { "it": "in ospedale si va al pronto soccorso." }
   },
   "doctors-note": {
    "text": "certificato medico",
-   "variants": ["certificato di malattia"],
+   "accepts": ["certificato di malattia"],
    "grammar": { "gender": "il" },
    "notes": { "it": "il medico manda il certificato · a te resta il numero di protocollo." }
   },
   "to-examine": { "text": "visitare", "notes": { "it": "il medico visita · la visita è quella dal medico." } },
-  "to-prescribe-medicine": { "text": "prescrivere medicine", "variants": ["prescrivere farmaci", "prescrivere le medicine"] },
-  "to-take-medicine": { "text": "prendere le medicine", "variants": ["prendere i farmaci", "prendere medicine"] },
+  "to-prescribe-medicine": { "text": "prescrivere medicine", "accepts": ["prescrivere farmaci", "prescrivere le medicine"] },
+  "to-take-medicine": { "text": "prendere le medicine", "accepts": ["prendere i farmaci", "prendere medicine"] },
   "to-call-in-sick": {
    "text": "mettersi in malattia",
-   "variants": ["andare in malattia"],
+   "accepts": ["andare in malattia"],
    "notes": { "it": "senza certificato medico non si va in malattia." }
   },
   "medicine": {
    "text": "medicina",
-   "synonyms": ["farmaco"],
+   "teaches": ["farmaco"],
    "grammar": { "gender": "la" },
    "notes": { "it": "la medicina si prende ed è anche la materia · sulla scatola: farmaco." }
   },
-  "nurse": { "text": "infermiere", "variants": ["l'infermiere"], "grammar": { "gender": "l'" } },
+  "nurse": { "text": "infermiere", "accepts": ["l'infermiere"], "grammar": { "gender": "l'" } },
   "nurse-f": {
    "text": "infermiera",
-   "variants": ["l'infermiera", "un'infermiera"],
+   "accepts": ["l'infermiera", "un'infermiera"],
    "grammar": { "gender": "l'" }
   },
   "dentist": {
    "text": "dentista",
-   "variants": ["odontoiatra"],
+   "accepts": ["odontoiatra"],
    "grammar": { "gender": "il", "plural": "dentisti" },
    "notes": { "it": "il dentista, la dentista: cambia solo l'articolo." }
   },
   "vaccination": {
    "text": "vaccino",
-   "synonyms": ["vaccinazione"],
+   "teaches": ["vaccinazione"],
    "grammar": { "gender": "il" },
    "notes": {
     "it": "si dice fare il vaccino · la vaccinazione è la parola formale.",
     "de": "il vaccino ist der Impfstoff und im Alltag die Impfung: fare il vaccino; la vaccinazione ist der formale Vorgang."
    }
   },
-  "ambulance": {
-   "text": "ambulanza",
-   "variants": ["l'ambulanza", "un'ambulanza"],
-   "grammar": { "gender": "l'" }
-  },
+  "ambulance": { "text": "ambulanza", "accepts": ["l'ambulanza", "un'ambulanza"], "grammar": { "gender": "l'" } },
   "to-look-after": { "text": "curare" },
   "take-the-pills-twice-daily": {
    "text": "Prenda le pastiglie due volte al giorno.",
-   "variants": ["Prendi le pastiglie due volte al giorno."],
+   "accepts": ["Prendi le pastiglie due volte al giorno."],
    "orders": ["Prenda due volte al giorno le pastiglie."]
   },
   "show-me-your-insurance-card": {
    "text": "Mi mostri la sua tessera sanitaria.",
-   "variants": ["Mostrami la tua tessera sanitaria."]
+   "accepts": ["Mostrami la tua tessera sanitaria."]
   },
   "the-practice-is-closed": { "text": "L'ambulatorio è chiuso." },
   "i-have-to-see-a-doctor": { "text": "Devo andare dal medico." },
-  "call-an-ambulance": { "text": "Chiami un'ambulanza!", "variants": ["Chiama un'ambulanza!"] },
+  "call-an-ambulance": { "text": "Chiami un'ambulanza!", "accepts": ["Chiama un'ambulanza!"] },
   "the-doctor-will-examine-you-shortly": { "text": "Il medico la visiterà subito." }
  }
 }

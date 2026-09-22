@@ -17,10 +17,10 @@
   { "text": "lundo", "abbr": "lun" },
   { "text": "mardo", "abbr": "mar" },
   { "text": "merkredo", "abbr": "mer" },
-  { "text": "ĵaŭdo", "abbr": "ĵaŭ", "variants": ["jxauxdo"] },
+  { "text": "ĵaŭdo", "abbr": "ĵaŭ", "accepts": ["jxauxdo"] },
   { "text": "vendredo", "abbr": "ven" },
   { "text": "sabato", "abbr": "sab" },
-  { "text": "dimanĉo", "abbr": "dim", "variants": ["dimancxo"] }
+  { "text": "dimanĉo", "abbr": "dim", "accepts": ["dimancxo"] }
  ],
  "months": [
   { "text": "januaro" },
@@ -30,7 +30,7 @@
   { "text": "majo" },
   { "text": "junio" },
   { "text": "julio" },
-  { "text": "aŭgusto", "variants": ["auxgusto"] },
+  { "text": "aŭgusto", "accepts": ["auxgusto"] },
   { "text": "septembro" },
   { "text": "oktobro" },
   { "text": "novembro" },

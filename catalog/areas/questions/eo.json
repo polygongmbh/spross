@@ -11,7 +11,7 @@
    }
   },
   "what": { "text": "kio" },
-  "this": { "text": "ĉi tio", "variants": ["tio ĉi"] },
+  "this": { "text": "ĉi tio", "accepts": ["tio ĉi"] },
   "that": { "text": "tio" },
   "when": { "text": "kiam" },
   "why": { "text": "kial" },
@@ -27,7 +27,7 @@
   },
   "what-time-is-it": {
    "text": "Kioma horo estas?",
-   "variants": ["Kiom estas la horo?"],
+   "accepts": ["Kiom estas la horo?"],
    "notes": { "eo": "Kioma horo? — la tria, la kvara · Kiom? — tri, kvar." }
   }
  }

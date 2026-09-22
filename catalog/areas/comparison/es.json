@@ -4,24 +4,24 @@
  "words": {
   "different": {
    "text": "diferente",
-   "synonyms": ["distinto"],
-   "variants": ["diferentes", "distinta", "distintos"]
+   "teaches": ["distinto"],
+   "accepts": ["diferentes", "distinta", "distintos"]
   },
   "difference": { "text": "diferencia", "grammar": { "gender": "la" } },
   "real": { "text": "real" },
   "same": {
    "text": "mismo",
-   "variants": ["misma", "mismos", "mismas"],
+   "accepts": ["misma", "mismos", "mismas"],
    "notes": { "es": "el mismo día · lo mismo = una cosa igual." }
   },
-  "similar": { "text": "parecido", "synonyms": ["similar"], "variants": ["parecida"] },
-  "opposite": { "text": "opuesto", "synonyms": ["contrario"], "variants": ["opuesta", "contraria"] },
+  "similar": { "text": "parecido", "teaches": ["similar"], "accepts": ["parecida"] },
+  "opposite": { "text": "opuesto", "teaches": ["contrario"], "accepts": ["opuesta", "contraria"] },
   "to-compare": { "text": "comparar" },
-  "positive": { "text": "positivo", "variants": ["positiva"] },
-  "negative": { "text": "negativo", "variants": ["negativa"] },
-  "neutral": { "text": "neutral", "variants": ["neutro"] },
-  "aggressive": { "text": "agresivo", "variants": ["agresiva"] },
-  "defensive": { "text": "defensivo", "variants": ["defensiva"] },
+  "positive": { "text": "positivo", "accepts": ["positiva"] },
+  "negative": { "text": "negativo", "accepts": ["negativa"] },
+  "neutral": { "text": "neutral", "accepts": ["neutro"] },
+  "aggressive": { "text": "agresivo", "accepts": ["agresiva"] },
+  "defensive": { "text": "defensivo", "accepts": ["defensiva"] },
   "equality": { "text": "igualdad", "grammar": { "gender": "la" } },
   "than": { "text": "que", "notes": { "es": "más grande que yo." } }
  }

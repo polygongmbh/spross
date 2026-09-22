@@ -8,7 +8,7 @@
   "government": { "text": "governo", "grammar": { "gender": "il", "plural": "governi" } },
   "election": {
    "text": "elezione",
-   "variants": ["l'elezione"],
+   "accepts": ["l'elezione"],
    "grammar": { "gender": "l'", "plural": "elezioni" }
   },
   "to-vote": { "text": "votare" },

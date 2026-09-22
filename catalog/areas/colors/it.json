@@ -3,18 +3,18 @@
  "subtitle": "Rosso, blu e tutto il resto.",
  "words": {
   "color": { "text": "colore", "grammar": { "gender": "il" } },
-  "white": { "text": "bianco", "variants": ["bianca"] },
-  "black": { "text": "nero", "variants": ["nera"] },
-  "red": { "text": "rosso", "variants": ["rossa"] },
+  "white": { "text": "bianco", "accepts": ["bianca"] },
+  "black": { "text": "nero", "accepts": ["nera"] },
+  "red": { "text": "rosso", "accepts": ["rossa"] },
   "blue": { "text": "blu", "notes": { "it": "blu è scuro · azzurro è chiaro." } },
   "green": { "text": "verde" },
-  "yellow": { "text": "giallo", "variants": ["gialla"] },
+  "yellow": { "text": "giallo", "accepts": ["gialla"] },
   "brown": {
    "text": "marrone",
-   "variants": ["castano"],
+   "accepts": ["castano"],
    "notes": { "it": "un tavolo marrone, una casa marrone: marrone non cambia." }
   },
-  "gray": { "text": "grigio", "variants": ["grigia"] },
+  "gray": { "text": "grigio", "accepts": ["grigia"] },
   "purple": { "text": "viola", "notes": { "it": "viola non cambia mai: un tavolo viola, una casa viola." } },
   "what-color-is-it": { "text": "Di che colore è?" },
   "a-white-car": { "text": "Una macchina bianca." }

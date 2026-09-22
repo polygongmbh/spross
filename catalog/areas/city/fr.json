@@ -11,19 +11,19 @@
   "bank": { "text": "banque", "grammar": { "gender": "la" } },
   "post-office": {
    "text": "poste",
-   "variants": ["bureau de poste"],
+   "accepts": ["bureau de poste"],
    "grammar": { "gender": "la" },
    "notes": { "fr": "la poste apporte le courrier · le bureau de poste est le bâtiment." }
   },
-  "church": { "text": "église", "variants": ["l'église"], "grammar": { "gender": "l'" } },
+  "church": { "text": "église", "accepts": ["l'église"], "grammar": { "gender": "l'" } },
   "mosque": { "text": "mosquée", "grammar": { "gender": "la" } },
   "library": { "text": "bibliothèque", "grammar": { "gender": "la" } },
   "police": { "text": "police", "grammar": { "gender": "la" } },
-  "cinema": { "text": "cinéma", "variants": ["ciné"], "grammar": { "gender": "le" } },
+  "cinema": { "text": "cinéma", "accepts": ["ciné"], "grammar": { "gender": "le" } },
   "bridge": { "text": "pont", "grammar": { "gender": "le" } },
   "is-there-a-bank-here": {
    "text": "Il y a une banque ici ?",
-   "variants": ["Est-ce qu'il y a une banque ici ?", "Y a-t-il une banque ici ?", "Il y a une banque par ici ?"]
+   "accepts": ["Est-ce qu'il y a une banque ici ?", "Y a-t-il une banque ici ?", "Il y a une banque par ici ?"]
   },
   "i-live-in-this-neighborhood": { "text": "J'habite dans ce quartier." }
  }

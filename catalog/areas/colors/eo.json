@@ -11,10 +11,10 @@
   "yellow": { "text": "flava" },
   "brown": { "text": "bruna" },
   "gray": { "text": "griza" },
-  "purple": { "text": "viola", "synonyms": ["purpura"] },
+  "purple": { "text": "viola", "teaches": ["purpura"] },
   "what-color-is-it": {
    "text": "Kia koloro estas tio?",
-   "variants": ["Kian koloron ĝi havas?", "Kiun koloron ĝi havas?"],
+   "accepts": ["Kian koloron ĝi havas?", "Kiun koloron ĝi havas?"],
    "orders": ["Kia koloro tio estas?"]
   },
   "a-white-car": {

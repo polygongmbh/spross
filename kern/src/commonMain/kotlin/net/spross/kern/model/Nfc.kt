@@ -33,7 +33,7 @@ internal fun apostropheFolded(text: String): String =
  * Hyphens and every apostrophe class removed outright — not folded to one, gone —
  * so a hyphenated or elided spelling and its plain twin become the same key.
  *
- * Grading strips both already (a card's own [text]/[variants] entries fold onto one
+ * Grading strips both already (a card's own [text]/[accepts] entries fold onto one
  * accepted answer); search folds the same two characters so a variant kept only for
  * that reason (`e-mail` beside `email`) still earns its keep, and one kept for neither
  * reason is dead weight a lint can catch.

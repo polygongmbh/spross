@@ -14,12 +14,12 @@
   },
   "that": { "text": "hiyo", "notes": { "sw": "sauti hii → sauti hiyo · msaada huu → msaada huo" } },
   "when": { "text": "lini" },
-  "why": { "text": "kwa nini", "synonyms": ["mbona"] },
+  "why": { "text": "kwa nini", "teaches": ["mbona"] },
   "how": { "text": "vipi" },
   "which": { "text": "gani", "notes": { "sw": "neno gani? habari gani? shida gani?" } },
   "how-many": {
    "text": "-ngapi",
-   "variants": ["wangapi", "vingapi", "mangapi", "mingapi"],
+   "accepts": ["wangapi", "vingapi", "mangapi", "mingapi"],
    "notes": { "sw": "maneno mangapi? shida ngapi?" }
   },
   "where-are-they": { "text": "Wako wapi?" },

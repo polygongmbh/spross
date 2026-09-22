@@ -3,16 +3,16 @@
  "subtitle": "Where the price is already on the label.",
  "words": {
   "supermarket": { "text": "supermarket" },
-  "mall": { "text": "shopping mall", "variants": ["mall", "shopping centre"] },
-  "checkout": { "text": "checkout", "variants": ["till"] },
-  "shop-assistant": { "text": "shop assistant", "synonyms": ["sales clerk"] },
-  "shopping-cart": { "text": "shopping cart", "variants": ["trolley"] },
-  "offer": { "text": "special offer", "variants": ["offer", "deal"] },
+  "mall": { "text": "shopping mall", "accepts": ["mall", "shopping centre"] },
+  "checkout": { "text": "checkout", "accepts": ["till"] },
+  "shop-assistant": { "text": "shop assistant", "teaches": ["sales clerk"] },
+  "shopping-cart": { "text": "shopping cart", "accepts": ["trolley"] },
+  "offer": { "text": "special offer", "accepts": ["offer", "deal"] },
   "size": { "text": "size" },
   "to-shop": { "text": "to go shopping" },
-  "store": { "text": "store", "synonyms": ["shop"] },
+  "store": { "text": "store", "teaches": ["shop"] },
   "open": { "text": "open" },
-  "the-store-is-still-open": { "text": "The store is still open.", "variants": ["The shop is still open."] },
+  "the-store-is-still-open": { "text": "The store is still open.", "accepts": ["The shop is still open."] },
   "do-you-have-this-in-my-size": { "text": "Do you have this in my size?" }
  }
 }

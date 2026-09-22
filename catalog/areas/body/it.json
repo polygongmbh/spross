@@ -4,11 +4,11 @@
  "words": {
   "head": { "text": "testa", "grammar": { "gender": "la" } },
   "hair": { "text": "capelli", "grammar": { "gender": "i", "plural": "only" } },
-  "face": { "text": "faccia", "synonyms": ["viso"], "grammar": { "gender": "la", "plural": "facce" } },
-  "eye": { "text": "occhio", "variants": ["l'occhio"], "grammar": { "gender": "l'", "plural": "occhi" } },
+  "face": { "text": "faccia", "teaches": ["viso"], "grammar": { "gender": "la", "plural": "facce" } },
+  "eye": { "text": "occhio", "accepts": ["l'occhio"], "grammar": { "gender": "l'", "plural": "occhi" } },
   "ear": {
    "text": "orecchio",
-   "variants": ["l'orecchio"],
+   "accepts": ["l'orecchio"],
    "grammar": { "gender": "l'", "plural": "orecchie" },
    "notes": { "it": "un orecchio → due orecchie." }
   },
@@ -34,7 +34,7 @@
   "leg": { "text": "gamba", "grammar": { "gender": "la" } },
   "stomach": {
    "text": "pancia",
-   "variants": ["ventre"],
+   "accepts": ["ventre"],
    "grammar": { "gender": "la", "plural": "pance" },
    "notes": { "it": "mi fa male la pancia · lo stomaco è dentro, il ventre è formale." }
   },
@@ -56,7 +56,7 @@
   "skin": { "text": "pelle", "grammar": { "gender": "la" } },
   "bone": {
    "text": "osso",
-   "variants": ["l'osso"],
+   "accepts": ["l'osso"],
    "grammar": { "gender": "l'", "plural": "ossa" },
    "notes": { "it": "un osso → le ossa del corpo · gli ossi sono quelli per il cane." }
   },
@@ -70,14 +70,14 @@
   "muscle": { "text": "muscolo", "grammar": { "gender": "il", "plural": "muscoli" } },
   "nipple": { "text": "capezzolo", "grammar": { "gender": "il", "plural": "capezzoli" } },
   "my-head-hurts": { "text": "Mi fa male la testa.", "orders": ["La testa mi fa male."] },
-  "give-me-your-hand": { "text": "Dammi la mano.", "variants": ["Dammi la tua mano."] },
+  "give-me-your-hand": { "text": "Dammi la mano.", "accepts": ["Dammi la tua mano."] },
   "open-your-mouth": { "text": "Apri la bocca." },
   "close-your-eyes": { "text": "Chiudi gli occhi." },
   "i-have-long-hair": { "text": "Ho i capelli lunghi." },
-  "my-feet-are-cold": { "text": "Ho i piedi freddi.", "variants": ["Ho freddo ai piedi."] },
+  "my-feet-are-cold": { "text": "Ho i piedi freddi.", "accepts": ["Ho freddo ai piedi."] },
   "my-heart-is-beating-fast": {
    "text": "Il cuore mi batte veloce.",
-   "variants": ["Il mio cuore batte veloce.", "Il cuore mi batte velocemente."],
+   "accepts": ["Il mio cuore batte veloce.", "Il cuore mi batte velocemente."],
    "orders": ["Mi batte veloce il cuore."]
   }
  }

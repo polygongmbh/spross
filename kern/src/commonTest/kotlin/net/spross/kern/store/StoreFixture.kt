@@ -22,14 +22,14 @@ internal object StoreFixture {
             id = "fixture-noun", kind = CardKind.Noun, area = "fixture-area",
             emoji = "🧊", seedIndex = 0, components = emptyList(), feminineOf = null,
             source = Realization("de", "Kühlschrank", grammar = mapOf("gender" to "der")),
-            target = Realization("uk", "холодильник", synonyms = listOf("рефрижератор")),
+            target = Realization("uk", "холодильник", teaches = listOf("рефрижератор")),
             promptFeminineMarker = false,
         ),
         Card(
             id = "fixture-verb", kind = CardKind.Verb, area = "fixture-area",
             emoji = null, seedIndex = 1, components = emptyList(), feminineOf = null,
             source = Realization("de", "kochen"),
-            target = Realization("uk", "готувати", variants = listOf("варити")),
+            target = Realization("uk", "готувати", accepts = listOf("варити")),
             promptFeminineMarker = false,
         ),
         Card(

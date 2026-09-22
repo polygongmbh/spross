@@ -3,21 +3,21 @@
  "subtitle": "Відповідь на питання «як дійти?».",
  "words": {
   "straight-ahead": { "text": "прямо" },
-  "to-turn": { "text": "повертати", "variants": ["повернути"] },
+  "to-turn": { "text": "повертати", "accepts": ["повернути"] },
   "corner": {
    "text": "ріг",
    "grammar": { "plural": "роги" },
    "notes": { "uk": "на розі вулиці · ріг — це також ріг тварини." }
   },
   "crossing": { "text": "перехрестя", "grammar": { "plural": "=" } },
-  "to-cross": { "text": "переходити", "variants": ["перейти"] },
+  "to-cross": { "text": "переходити", "accepts": ["перейти"] },
   "direction": { "text": "напрямок", "grammar": { "plural": "напрямки" } },
-  "city-map": { "text": "план міста", "variants": ["мапа", "карта"] },
+  "city-map": { "text": "план міста", "accepts": ["мапа", "карта"] },
   "entrance": { "text": "вхід", "grammar": { "plural": "входи" } },
   "exit": { "text": "вихід", "grammar": { "plural": "виходи" } },
   "to-follow": {
    "text": "іти за",
-   "variants": ["йти за", "слідувати"],
+   "accepts": ["йти за", "слідувати"],
    "notes": {
     "uk": "іти за мною, за татом, за нею.",
     "de": "іти за steht mit dem Instrumental: іти за мною."
@@ -28,13 +28,13 @@
   "south": { "text": "південь" },
   "east": { "text": "схід" },
   "west": { "text": "захід" },
-  "go-straight-ahead": { "text": "Ідіть прямо.", "variants": ["Іди прямо."] },
+  "go-straight-ahead": { "text": "Ідіть прямо.", "accepts": ["Іди прямо."] },
   "turn-left-at-the-corner": {
    "text": "Поверніть ліворуч на розі.",
-   "variants": ["Поверни ліворуч на розі."],
+   "accepts": ["Поверни ліворуч на розі."],
    "orders": ["На розі поверніть ліворуч."]
   },
-  "how-do-i-get-to-the-station": { "text": "Як дійти до вокзалу?", "variants": ["Як мені дістатися до вокзалу?"] },
-  "im-lost": { "text": "Я заблукав.", "variants": ["Я заблукала."] }
+  "how-do-i-get-to-the-station": { "text": "Як дійти до вокзалу?", "accepts": ["Як мені дістатися до вокзалу?"] },
+  "im-lost": { "text": "Я заблукав.", "accepts": ["Я заблукала."] }
  }
 }

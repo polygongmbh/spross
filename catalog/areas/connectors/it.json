@@ -2,40 +2,40 @@
  "title": "Parole di collegamento",
  "subtitle": "Quelle che uniscono una frase alla successiva.",
  "words": {
-  "but": { "text": "ma", "variants": ["però"] },
+  "but": { "text": "ma", "accepts": ["però"] },
   "also": { "text": "anche" },
   "and": {
    "text": "e",
-   "variants": ["ed"],
+   "accepts": ["ed"],
    "notes": { "it": "davanti a vocale spesso ed: ed ecco, ed è vero." }
   },
-  "or": { "text": "o", "variants": ["oppure"] },
+  "or": { "text": "o", "accepts": ["oppure"] },
   "if": { "text": "se" },
   "because": { "text": "perché" },
   "so-that": {
    "text": "affinché",
-   "variants": ["perché", "in modo che"],
+   "accepts": ["perché", "in modo che"],
    "notes": { "it": "parlando si dice perché con il congiuntivo: perché tu capisca." }
   },
-  "before": { "text": "prima di", "variants": ["prima"] },
+  "before": { "text": "prima di", "accepts": ["prima"] },
   "after": { "text": "dopo" },
-  "until": { "text": "fino a", "variants": ["finché"] },
+  "until": { "text": "fino a", "accepts": ["finché"] },
   "without": { "text": "senza" },
   "with": { "text": "con" },
   "for": { "text": "per" },
   "because-of": { "text": "a causa di" },
-  "again": { "text": "di nuovo", "variants": ["un'altra volta", "ancora"] },
+  "again": { "text": "di nuovo", "accepts": ["un'altra volta", "ancora"] },
   "still": { "text": "ancora" },
   "finally": { "text": "finalmente" },
   "then": { "text": "poi" },
   "not": { "text": "non", "notes": { "it": "non parlo italiano · non capisco: non sta davanti." } },
-  "only": { "text": "solo", "variants": ["soltanto", "solamente"] },
+  "only": { "text": "solo", "accepts": ["soltanto", "solamente"] },
   "together": { "text": "insieme" },
-  "therefore": { "text": "quindi", "synonyms": ["perciò"] },
-  "even": { "text": "persino", "synonyms": ["addirittura"] },
-  "although": { "text": "anche se", "synonyms": ["sebbene"] },
+  "therefore": { "text": "quindi", "teaches": ["perciò"] },
+  "even": { "text": "persino", "teaches": ["addirittura"] },
+  "although": { "text": "anche se", "teaches": ["sebbene"] },
   "that-conj": { "text": "che" },
-  "if-you-want": { "text": "Se vuole.", "variants": ["Se vuoi."] },
-  "finally-done": { "text": "Finalmente finito!", "variants": ["Finalmente finita!"] }
+  "if-you-want": { "text": "Se vuole.", "accepts": ["Se vuoi."] },
+  "finally-done": { "text": "Finalmente finito!", "accepts": ["Finalmente finita!"] }
  }
 }

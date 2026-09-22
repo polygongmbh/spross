@@ -15,8 +15,8 @@
   "to-smile": { "text": "rideti" },
   "to-feel": {
    "text": "senti sin",
-   "synonyms": ["farti"],
-   "variants": ["sin senti"],
+   "teaches": ["farti"],
+   "accepts": ["sin senti"],
    "notes": { "eo": "Mi sentas min malbone — senti sin kun vorto · Kiel vi fartas? sola." }
   },
   "to-cry": { "text": "plori" }

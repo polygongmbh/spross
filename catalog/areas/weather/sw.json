@@ -21,7 +21,7 @@
   },
   "humid": {
    "text": "unyevunyevu",
-   "variants": ["unyevu"],
+   "accepts": ["unyevu"],
    "notes": { "sw": "Kuna unyevunyevu = hewa ina maji" }
   },
   "hows-the-weather-today": { "text": "Hali ya hewa ikoje leo?", "orders": ["Leo hali ya hewa ikoje?"] },
@@ -31,7 +31,7 @@
   },
   "the-rain-has-stopped": {
    "text": "Mvua imeisha.",
-   "variants": ["Mvua imekwisha."],
+   "accepts": ["Mvua imekwisha."],
    "notes": { "sw": "mvua imeisha = imekoma · kuisha = kufikia mwisho" }
   },
   "the-sun-is-shining": { "text": "Jua linang'aa!" },

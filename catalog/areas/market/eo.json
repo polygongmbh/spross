@@ -7,7 +7,7 @@
   "trader-f": { "text": "komercistino" },
   "scales": { "text": "pesilo" },
   "to-weigh": { "text": "pesi" },
-  "kilo": { "text": "kilogramo", "variants": ["kilo"] },
+  "kilo": { "text": "kilogramo", "accepts": ["kilo"] },
   "gram": { "text": "gramo" },
   "liter": { "text": "litro" },
   "fresh": { "text": "freŝa" },
@@ -19,7 +19,7 @@
   },
   "lets-meet-at-the-market": {
    "text": "Ni renkontiĝu ĉe la bazaro.",
-   "variants": ["Ni renkontiĝu en la bazaro."],
+   "accepts": ["Ni renkontiĝu en la bazaro."],
    "orders": ["Ĉe la bazaro ni renkontiĝu."]
   },
   "a-kilo-of-tomatoes": { "text": "Kilogramon da tomatoj, mi petas.", "orders": ["Mi petas kilogramon da tomatoj."] },

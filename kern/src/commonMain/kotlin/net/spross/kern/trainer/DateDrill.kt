@@ -333,7 +333,7 @@ object DateDrill {
     private fun referenceRow(entry: DateEntry) = DateReferenceRow(
         source = entry.source.text,
         target = entry.target.text,
-        synonyms = entry.target.synonyms,
+        teaches = entry.target.teaches,
         abbr = entry.target.abbr,
         dateForm = entry.target.dateForm,
     )

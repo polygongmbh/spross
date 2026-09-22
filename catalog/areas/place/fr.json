@@ -3,20 +3,20 @@
  "subtitle": "La réponse à la question « où ? ».",
  "words": {
   "here": { "text": "ici" },
-  "there": { "text": "là", "variants": ["là-bas"] },
-  "left": { "text": "à gauche", "variants": ["gauche"] },
-  "right": { "text": "à droite", "variants": ["droite"] },
+  "there": { "text": "là", "accepts": ["là-bas"] },
+  "left": { "text": "à gauche", "accepts": ["gauche"] },
+  "right": { "text": "à droite", "accepts": ["droite"] },
   "up": { "text": "en haut" },
   "down": { "text": "en bas" },
   "inside": {
    "text": "dedans",
-   "variants": ["à l'intérieur"],
+   "accepts": ["à l'intérieur"],
    "notes": {
     "fr": "Il est dedans. · Il est dans le train, à l'intérieur.",
     "de": "dedans steht für sich (Il est dedans); vor einem Nomen sagt man dans oder à l'intérieur de."
    }
   },
-  "outdoors": { "text": "dehors", "variants": ["à l'extérieur"] },
+  "outdoors": { "text": "dehors", "accepts": ["à l'extérieur"] },
   "at-home": { "text": "à la maison" },
   "in": { "text": "dans" },
   "on": { "text": "sur" },
@@ -27,8 +27,8 @@
   "far": { "text": "loin" },
   "place": {
    "text": "endroit",
-   "variants": ["l'endroit"],
-   "synonyms": ["lieu"],
+   "accepts": ["l'endroit"],
+   "teaches": ["lieu"],
    "grammar": { "gender": "l'" }
   },
   "country": { "text": "pays", "grammar": { "gender": "le", "plural": "=" } },
@@ -47,7 +47,7 @@
   },
   "are-you-going-home-already": {
    "text": "Vous rentrez déjà ?",
-   "variants": ["Tu rentres déjà ?"],
+   "accepts": ["Tu rentres déjà ?"],
    "orders": ["Déjà, vous rentrez ?"]
   }
  }

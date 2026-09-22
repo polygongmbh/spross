@@ -2,24 +2,24 @@
  "title": "En la butiko",
  "subtitle": "Kie la prezo jam staras sur la etikedo.",
  "words": {
-  "supermarket": { "text": "supermarkto", "variants": ["superbazaro"] },
-  "mall": { "text": "aĉetcentro", "variants": ["komerca centro"] },
+  "supermarket": { "text": "supermarkto", "accepts": ["superbazaro"] },
+  "mall": { "text": "aĉetcentro", "accepts": ["komerca centro"] },
   "checkout": { "text": "kaso" },
   "shop-assistant": { "text": "vendisto" },
   "shop-assistant-f": { "text": "vendistino" },
-  "shopping-cart": { "text": "aĉetĉaro", "variants": ["aĉetĉareto"] },
+  "shopping-cart": { "text": "aĉetĉaro", "accepts": ["aĉetĉareto"] },
   "offer": { "text": "oferto" },
-  "size": { "text": "grando", "variants": ["grandeco"] },
+  "size": { "text": "grando", "accepts": ["grandeco"] },
   "to-shop": {
    "text": "butikumi",
-   "variants": ["fari aĉetojn"],
+   "accepts": ["fari aĉetojn"],
    "notes": { "eo": "butikumi = iri de butiko al butiko · aĉeti = preni unu aĵon." }
   },
-  "store": { "text": "vendejo", "synonyms": ["butiko"] },
+  "store": { "text": "vendejo", "teaches": ["butiko"] },
   "open": { "text": "malfermita" },
   "the-store-is-still-open": {
    "text": "La vendejo ankoraŭ estas malfermita.",
-   "variants": ["La vendejo estas ankoraŭ malfermita.", "La butiko ankoraŭ estas malfermita."],
+   "accepts": ["La vendejo estas ankoraŭ malfermita.", "La butiko ankoraŭ estas malfermita."],
    "orders": ["La vendejo estas ankoraŭ malfermita."]
   },
   "do-you-have-this-in-my-size": { "text": "Ĉu vi havas tion en mia grandeco?", "orders": ["Ĉu tion vi havas en mia grandeco?"] }

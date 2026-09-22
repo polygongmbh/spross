@@ -13,12 +13,12 @@
   "rice": { "text": "rizo" },
   "hunger": { "text": "malsato", "notes": { "eo": "Mi malsatas estas pli ofta ol Mi havas malsaton." } },
   "thirst": { "text": "soifo" },
-  "food": { "text": "manĝaĵo", "variants": ["nutraĵo"] },
+  "food": { "text": "manĝaĵo", "accepts": ["nutraĵo"] },
   "meat": { "text": "viando" },
   "fish": { "text": "fiŝo" },
   "chicken": {
    "text": "kokaĵo",
-   "variants": ["kokidaĵo"],
+   "accepts": ["kokidaĵo"],
    "notes": { "eo": "-aĵ- donas la viandon: koko vivas, kokaĵo estas sur la telero." }
   },
   "fruit": { "text": "frukto" },
@@ -47,10 +47,10 @@
   "water": { "text": "akvo" },
   "to-eat": { "text": "manĝi" },
   "to-drink": { "text": "trinki" },
-  "im-hungry": { "text": "Mi malsatas.", "variants": ["Mi estas malsata."] },
-  "whats-for-dinner": { "text": "Kio estas por vespermanĝo?", "variants": ["Kio estas por la vespermanĝo?"] },
+  "im-hungry": { "text": "Mi malsatas.", "accepts": ["Mi estas malsata."] },
+  "whats-for-dinner": { "text": "Kio estas por vespermanĝo?", "accepts": ["Kio estas por la vespermanĝo?"] },
   "i-dont-eat-meat": { "text": "Mi ne manĝas viandon.", "orders": ["Viandon mi ne manĝas."] },
   "i-eat-rice-with-sauce": { "text": "Mi manĝas rizon kun saŭco.", "orders": ["Rizon kun saŭco mi manĝas."] },
-  "the-food-is-ready": { "text": "La manĝaĵo estas preta!", "variants": ["La manĝo estas preta!"] }
+  "the-food-is-ready": { "text": "La manĝaĵo estas preta!", "accepts": ["La manĝo estas preta!"] }
  }
 }

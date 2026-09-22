@@ -4,16 +4,16 @@
  "words": {
   "bed": { "text": "lito" },
   "mattress": { "text": "matraco" },
-  "pillow": { "text": "kuseno", "variants": ["litkuseno", "kapkuseno"] },
-  "blanket": { "text": "litkovrilo", "variants": ["kovrilo", "lankovrilo"] },
-  "bedding": { "text": "littolaĵo", "variants": ["littukoj"] },
-  "wardrobe": { "text": "vestoŝranko", "variants": ["vestŝranko"] },
-  "alarm-clock": { "text": "vekhorloĝo", "variants": ["vekilo", "vekohorloĝo"] },
-  "nightstand": { "text": "noktotablo", "variants": ["littablo"] },
-  "pajamas": { "text": "piĵamo", "variants": ["piĵamoj"] },
+  "pillow": { "text": "kuseno", "accepts": ["litkuseno", "kapkuseno"] },
+  "blanket": { "text": "litkovrilo", "accepts": ["kovrilo", "lankovrilo"] },
+  "bedding": { "text": "littolaĵo", "accepts": ["littukoj"] },
+  "wardrobe": { "text": "vestoŝranko", "accepts": ["vestŝranko"] },
+  "alarm-clock": { "text": "vekhorloĝo", "accepts": ["vekilo", "vekohorloĝo"] },
+  "nightstand": { "text": "noktotablo", "accepts": ["littablo"] },
+  "pajamas": { "text": "piĵamo", "accepts": ["piĵamoj"] },
   "sock": { "text": "ŝtrumpeto" },
-  "pants": { "text": "pantalono", "variants": ["pantalonoj"] },
-  "t-shirt": { "text": "T-ĉemizo", "variants": ["teĉemizo", "ĉemizeto"] },
+  "pants": { "text": "pantalono", "accepts": ["pantalonoj"] },
+  "t-shirt": { "text": "T-ĉemizo", "accepts": ["teĉemizo", "ĉemizeto"] },
   "to-sleep": { "text": "dormi" },
   "to-wake-up": {
    "text": "vekiĝi",
@@ -22,11 +22,11 @@
     "en": "vekiĝi is waking up by yourself; veki is waking someone else."
    }
   },
-  "to-get-up": { "text": "ellitiĝi", "variants": ["leviĝi"] },
-  "to-get-undressed": { "text": "senvestiĝi", "variants": ["malvestiĝi", "senvestigi sin"] },
+  "to-get-up": { "text": "ellitiĝi", "accepts": ["leviĝi"] },
+  "to-get-undressed": { "text": "senvestiĝi", "accepts": ["malvestiĝi", "senvestigi sin"] },
   "to-cuddle": {
    "text": "karesi",
-   "variants": ["brakumi"],
+   "accepts": ["brakumi"],
    "notes": {
     "eo": "karesi = tuŝi milde per la mano · brakumi = teni en la brakoj.",
     "de": "Esperanto hat kein eigenes Wort fürs Kuscheln: karesi ist streicheln und liebkosen, brakumi umarmen."
@@ -34,24 +34,24 @@
   },
   "to-yawn": { "text": "oscedi" },
   "to-snore": { "text": "ronki" },
-  "clothes": { "text": "vestoj", "variants": ["vestaĵoj"] },
+  "clothes": { "text": "vestoj", "accepts": ["vestaĵoj"] },
   "shirt": { "text": "ĉemizo" },
   "dress": { "text": "robo" },
   "sweater": { "text": "pulovero" },
-  "underwear": { "text": "subvestoj", "variants": ["subvesto"] },
+  "underwear": { "text": "subvestoj", "accepts": ["subvesto"] },
   "belt": { "text": "zono" },
-  "to-make-bed": { "text": "ordigi la liton", "variants": ["aranĝi la liton", "fari la liton"] },
+  "to-make-bed": { "text": "ordigi la liton", "accepts": ["aranĝi la liton", "fari la liton"] },
   "soft": { "text": "mola", "notes": { "eo": "mola kiel lito aŭ haŭto · glata estas sen malglataĵoj." } },
   "to-rest": { "text": "ripozi" },
   "sleep-well": { "text": "Dormu bone!" },
   "good-morning-my-love": {
    "text": "Bonan matenon, mia amo!",
-   "variants": ["Bonan matenon, karulo!", "Bonan matenon, karulino!", "Bonan matenon, mia kara!"]
+   "accepts": ["Bonan matenon, karulo!", "Bonan matenon, karulino!", "Bonan matenon, mia kara!"]
   },
-  "im-tired": { "text": "Mi estas laca.", "variants": ["Mi lacas."] },
+  "im-tired": { "text": "Mi estas laca.", "accepts": ["Mi lacas."] },
   "did-you-set-the-alarm": {
    "text": "Ĉu vi agordis la vekhorloĝon?",
-   "variants": ["Ĉu vi metis la vekhorloĝon?", "Ĉu vi agordis la vekilon?"],
+   "accepts": ["Ĉu vi metis la vekhorloĝon?", "Ĉu vi agordis la vekilon?"],
    "orders": ["Ĉu la vekhorloĝon vi agordis?"]
   },
   "i-love-you": { "text": "Mi amas vin.", "orders": ["Vin mi amas."] },

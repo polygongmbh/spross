@@ -25,7 +25,7 @@ class CatalogArticleAudioLintTest {
      * realization actually carries, and its `word` names which one.
      *
      * The article is pinned because a recording is the only thing that can teach a gender
-     * aloud, and a wrong one teaches it wrong — 33 of the catalog's 90 rotatable synonyms
+     * aloud, and a wrong one teaches it wrong — 33 of the catalog's 90 rotatable `teaches`
      * disagree with their canonical word's gender, so this is not a hypothetical. The WORD
      * is free to be a synonym or a variant: a file saying "der Großvater" is a good
      * recording of "Großvater", and which card may hear it is the lookup's question, not
@@ -40,7 +40,7 @@ class CatalogArticleAudioLintTest {
                 val article = raw.grammar["gender"]
                 assertTrue(!article.isNullOrBlank(), "audio/$lang/$slug: no article authored to speak")
                 val word = checkNotNull(recording.word) { "audio/$lang/$slug (article): no word recorded" }
-                val forms = (listOf(raw.text) + raw.synonyms + raw.variants).map { speechKey(it) }
+                val forms = (listOf(raw.text) + raw.teaches + raw.accepts).map { speechKey(it) }
                 assertTrue(
                     speechKey(word) in forms,
                     "audio/$lang/$slug (article): \"$word\" is none of $forms",

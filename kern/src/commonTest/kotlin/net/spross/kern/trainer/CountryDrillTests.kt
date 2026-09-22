@@ -26,12 +26,12 @@ class CountryDrillTests {
         tier: Int,
         source: String,
         target: String,
-        variants: List<String> = emptyList(),
+        accepts: List<String> = emptyList(),
     ) = AtlasLanguageEntry(
         code = code,
         tier = tier,
         source = LanguageName(name = source, inForm = "in $source"),
-        target = LanguageName(name = target, inForm = "in $target", variants = variants),
+        target = LanguageName(name = target, inForm = "in $target", accepts = accepts),
     )
 
     private fun country(
@@ -40,13 +40,13 @@ class CountryDrillTests {
         languages: List<String>,
         source: String,
         target: String,
-        sourceVariants: List<String> = emptyList(),
+        sourceAccepts: List<String> = emptyList(),
     ) = AtlasCountryEntry(
         slug = slug,
         flag = "🏳",
         tier = tier,
         languages = languages,
-        source = CountryName(text = source, variants = sourceVariants,
+        source = CountryName(text = source, accepts = sourceAccepts,
                              nationality = NationalityName("$source-person")),
         target = CountryName(
             text = target,
@@ -219,7 +219,7 @@ class CountryDrillTests {
                 country("same", 1, listOf("de"), "Malta", "Malta"),
                 country("accented", 1, listOf("de"), "Peru", "Perú"),
                 country("variant-match", 1, listOf("de"), "die Schweiz", "Schweiz",
-                        sourceVariants = listOf("Schweiz")),
+                        sourceAccepts = listOf("Schweiz")),
             ),
         )
         assertEquals(

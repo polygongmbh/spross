@@ -59,11 +59,11 @@
     "en": "literally „That is … euros.“ — євро never inflects, and the numeral stays masculine (один, два)."
    }
   },
-  "repeat-please": { "text": "Повторіть, будь ласка: {slot}.", "variants": ["Повтори, будь ласка: {slot}."] },
-  "write-please": { "text": "Напиши, будь ласка: {slot}.", "variants": ["Напишіть, будь ласка: {slot}."] },
+  "repeat-please": { "text": "Повторіть, будь ласка: {slot}.", "accepts": ["Повтори, будь ласка: {slot}."] },
+  "write-please": { "text": "Напиши, будь ласка: {slot}.", "accepts": ["Напишіть, будь ласка: {slot}."] },
   "repeat-the-year": {
    "text": "Повторіть, будь ласка, дату: {slot}.",
-   "variants": [
+   "accepts": [
     "Повтори, будь ласка, дату: {slot}.",
     "Повторіть, будь ласка: {slot}.",
     "Повтори, будь ласка: {slot}."
@@ -75,7 +75,7 @@
   },
   "write-the-year": {
    "text": "Напиши, будь ласка, дату: {slot}.",
-   "variants": ["Напишіть, будь ласка, дату: {slot}.", "Напиши, будь ласка: {slot}."],
+   "accepts": ["Напишіть, будь ласка, дату: {slot}.", "Напиши, будь ласка: {slot}."],
    "notes": {
     "de": "Diktat-Rahmen: die Jahreszahl wird als reine Kardinalzahl geschrieben; „дату“ ist der Akkusativ von „дата“",
     "en": "Dictation frame: the year is written as a plain cardinal; „дату“ is the accusative of „дата“."

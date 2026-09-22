@@ -57,8 +57,8 @@ internal data class RawArea(
 /** One realization as authored, before profile selection. */
 internal data class RawRealization(
     val text: String,
-    val synonyms: List<String>,
-    val variants: List<String>,
+    val teaches: List<String>,
+    val accepts: List<String>,
     /** Alternative valid word orders of the same sentence — scramble-only, never prompted. */
     val orders: List<String>,
     val grammar: Map<String, String>,
@@ -92,7 +92,7 @@ internal data class RawFrame(
     /** Carries exactly one `{slot}`, and `{count}` iff [count] is authored. */
     val text: String,
     /** Accept-only alternate renderings of [text] (the du/Sie register split). */
-    val variants: List<String>,
+    val accepts: List<String>,
     /** Counted-noun agreement for the `{count}` marker; `numbers` frames only. */
     val count: PhraseTemplate.CountForms?,
     /** This realization counts a masculine/indeclinable noun: одна/дві are wrong. */

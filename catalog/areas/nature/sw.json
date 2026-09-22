@@ -23,7 +23,7 @@
   "wood": {
    "text": "mbao",
    "grammar": { "plural": "=" },
-   "synonyms": ["kuni"],
+   "teaches": ["kuni"],
    "notes": { "sw": "mbao za ujenzi · kuni za kupikia" }
   },
   "stick": { "text": "fimbo", "grammar": { "plural": "=" } },

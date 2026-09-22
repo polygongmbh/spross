@@ -5,7 +5,7 @@
   "washing-machine": { "text": "lavatrice", "grammar": { "gender": "la" } },
   "laundry": {
    "text": "bucato",
-   "variants": ["panni sporchi"],
+   "accepts": ["panni sporchi"],
    "grammar": { "gender": "il" },
    "notes": {
     "it": "il bucato è la roba da lavare: fare il bucato, stendere il bucato.",
@@ -14,8 +14,8 @@
   },
   "toilet": {
    "text": "gabinetto",
-   "synonyms": ["water"],
-   "variants": ["WC", "tazza"],
+   "teaches": ["water"],
+   "accepts": ["WC", "tazza"],
    "grammar": { "gender": "il" },
    "notes": {
     "it": "il gabinetto è il water (si dice vater) · si chiede Dov'è il bagno?",
@@ -23,21 +23,21 @@
    }
   },
   "shower": { "text": "doccia", "grammar": { "gender": "la", "plural": "docce" } },
-  "sink": { "text": "lavandino", "variants": ["lavabo"], "grammar": { "gender": "il" } },
+  "sink": { "text": "lavandino", "accepts": ["lavabo"], "grammar": { "gender": "il" } },
   "mirror": { "text": "specchio", "grammar": { "gender": "lo", "plural": "specchi" } },
-  "toothbrush": { "text": "spazzolino da denti", "variants": ["spazzolino"], "grammar": { "gender": "lo" } },
+  "toothbrush": { "text": "spazzolino da denti", "accepts": ["spazzolino"], "grammar": { "gender": "lo" } },
   "toothpaste": { "text": "dentifricio", "grammar": { "gender": "il", "plural": "dentifrici" } },
-  "towel": { "text": "asciugamano", "variants": ["l'asciugamano"], "grammar": { "gender": "l'" } },
+  "towel": { "text": "asciugamano", "accepts": ["l'asciugamano"], "grammar": { "gender": "l'" } },
   "soap": { "text": "sapone", "grammar": { "gender": "il" } },
   "shampoo": { "text": "shampoo", "grammar": { "gender": "lo", "plural": "=" } },
   "hairdryer": {
    "text": "asciugacapelli",
-   "synonyms": ["phon"],
-   "variants": ["l'asciugacapelli", "fon"],
+   "teaches": ["phon"],
+   "accepts": ["l'asciugacapelli", "fon"],
    "grammar": { "gender": "l'", "plural": "=" }
   },
-  "to-take-shower": { "text": "farsi la doccia", "variants": ["fare la doccia"] },
-  "to-do-laundry": { "text": "fare il bucato", "variants": ["lavare i panni"] },
+  "to-take-shower": { "text": "farsi la doccia", "accepts": ["fare la doccia"] },
+  "to-do-laundry": { "text": "fare il bucato", "accepts": ["lavare i panni"] },
   "to-brush-teeth": {
    "text": "lavarsi i denti",
    "notes": {
@@ -46,14 +46,14 @@
    }
   },
   "to-dry-off": { "text": "asciugarsi" },
-  "to-hang-up-laundry": { "text": "stendere il bucato", "variants": ["stendere i panni"] },
+  "to-hang-up-laundry": { "text": "stendere il bucato", "accepts": ["stendere i panni"] },
   "to-clean": { "text": "pulire" },
-  "to-shave": { "text": "radersi", "variants": ["farsi la barba"] },
-  "to-comb-hair": { "text": "pettinarsi i capelli", "variants": ["pettinarsi"] },
-  "to-apply-lotion": { "text": "mettersi la crema", "variants": ["darsi la crema", "spalmarsi la crema"] },
+  "to-shave": { "text": "radersi", "accepts": ["farsi la barba"] },
+  "to-comb-hair": { "text": "pettinarsi i capelli", "accepts": ["pettinarsi"] },
+  "to-apply-lotion": { "text": "mettersi la crema", "accepts": ["darsi la crema", "spalmarsi la crema"] },
   "bathtub": {
    "text": "vasca da bagno",
-   "variants": ["vasca"],
+   "accepts": ["vasca"],
    "grammar": { "gender": "la", "plural": "vasche da bagno" }
   },
   "toilet-paper": { "text": "carta igienica", "grammar": { "gender": "la" } },
@@ -63,22 +63,22 @@
   "faucet": { "text": "rubinetto", "grammar": { "gender": "il" } },
   "trash-can": {
    "text": "pattumiera",
-   "variants": ["cestino", "secchio della spazzatura", "bidone"],
+   "accepts": ["cestino", "secchio della spazzatura", "bidone"],
    "grammar": { "gender": "la" },
    "notes": { "it": "la pattumiera sta in cucina · il cestino è piccolo, per la carta." }
   },
   "bucket": { "text": "secchio", "grammar": { "gender": "il", "plural": "secchi" } },
   "im-taking-a-quick-shower": {
    "text": "Vado a farmi una doccia veloce.",
-   "variants": ["Mi faccio una doccia veloce.", "Vado a fare una doccia veloce."]
+   "accepts": ["Mi faccio una doccia veloce.", "Vado a fare una doccia veloce."]
   },
   "the-bathroom-is-occupied": { "text": "Il bagno è occupato!" },
-  "the-laundry-is-done": { "text": "Il bucato è pronto.", "variants": ["Il bucato è finito."] },
+  "the-laundry-is-done": { "text": "Il bucato è pronto.", "accepts": ["Il bucato è finito."] },
   "wheres-my-towel": { "text": "Dov'è il mio asciugamano?" },
-  "can-you-hang-the-laundry": { "text": "Puoi stendere il bucato?", "variants": ["Puoi stendere i panni?"] },
+  "can-you-hang-the-laundry": { "text": "Puoi stendere il bucato?", "accepts": ["Puoi stendere i panni?"] },
   "dont-forget-to-brush-teeth": {
    "text": "Non dimenticare di lavarti i denti!",
-   "variants": ["Non dimenticarti di lavarti i denti!"]
+   "accepts": ["Non dimenticarti di lavarti i denti!"]
   },
   "wash-your-hands": { "text": "Lavati le mani." },
   "the-laundry-is-being-washed": { "text": "Il bucato viene lavato adesso.", "orders": ["Adesso il bucato viene lavato."] }

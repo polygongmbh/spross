@@ -5,7 +5,7 @@
   "head": { "text": "kapo" },
   "hair": {
    "text": "haroj",
-   "variants": ["haro", "hararo"],
+   "accepts": ["haro", "hararo"],
    "notes": { "eo": "unu haro, multaj haroj · la tuta hararo sur la kapo." }
   },
   "face": { "text": "vizaĝo" },
@@ -18,7 +18,7 @@
   "hand": { "text": "mano" },
   "arm": { "text": "brako" },
   "foot": { "text": "piedo" },
-  "leg": { "text": "kruro", "variants": ["gambo"] },
+  "leg": { "text": "kruro", "accepts": ["gambo"] },
   "stomach": { "text": "ventro", "notes": { "eo": "ventro estas ekstere · la organo interne estas stomako." } },
   "back": { "text": "dorso" },
   "throat": { "text": "gorĝo" },
@@ -41,10 +41,10 @@
   "brain": { "text": "cerbo" },
   "muscle": { "text": "muskolo" },
   "nipple": { "text": "cico" },
-  "my-head-hurts": { "text": "Mia kapo doloras.", "variants": ["Doloras al mi la kapo."] },
+  "my-head-hurts": { "text": "Mia kapo doloras.", "accepts": ["Doloras al mi la kapo."] },
   "give-me-your-hand": { "text": "Donu al mi vian manon.", "orders": ["Vian manon donu al mi."] },
-  "open-your-mouth": { "text": "Malfermu la buŝon.", "variants": ["Malfermu vian buŝon."] },
-  "close-your-eyes": { "text": "Fermu la okulojn.", "variants": ["Fermu viajn okulojn."] },
+  "open-your-mouth": { "text": "Malfermu la buŝon.", "accepts": ["Malfermu vian buŝon."] },
+  "close-your-eyes": { "text": "Fermu la okulojn.", "accepts": ["Fermu viajn okulojn."] },
   "i-have-long-hair": { "text": "Mi havas longajn harojn.", "orders": ["Longajn harojn mi havas."] },
   "my-feet-are-cold": { "text": "Miaj piedoj estas malvarmaj." },
   "my-heart-is-beating-fast": { "text": "Mia koro batas rapide.", "orders": ["Mia koro rapide batas."] }

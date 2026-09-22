@@ -16,23 +16,23 @@
   "day-before-yesterday": { "text": "antaŭhieraŭ" },
   "early": {
    "text": "frue",
-   "variants": ["frua"],
+   "accepts": ["frua"],
    "notes": {
     "eo": "Li venas frue. · la frua mateno.",
     "de": "frue ist das Adverb (früh), frua das Adjektiv (der frühe Zug: la frua trajno)."
    }
   },
-  "late": { "text": "malfrue", "variants": ["malfrua"] },
+  "late": { "text": "malfrue", "accepts": ["malfrua"] },
   "soon": { "text": "baldaŭ" },
   "noon": { "text": "tagmezo" },
-  "midnight": { "text": "noktomezo", "variants": ["meznokto"] },
+  "midnight": { "text": "noktomezo", "accepts": ["meznokto"] },
   "afternoon": { "text": "posttagmezo" },
   "morning": { "text": "mateno" },
   "evening": { "text": "vespero" },
   "night": { "text": "nokto" },
   "first": { "text": "unua" },
   "second": { "text": "dua" },
-  "next": { "text": "sekva", "variants": ["venonta"] },
+  "next": { "text": "sekva", "accepts": ["venonta"] },
   "a-while-ago": { "text": "antaŭ iom da tempo" },
   "formerly": { "text": "iam" },
   "later": { "text": "pli poste" },
@@ -48,7 +48,7 @@
   "i-have-no-time": { "text": "Mi ne havas tempon.", "orders": ["Tempon mi ne havas."] },
   "two-in-the-afternoon": {
    "text": "la dua posttagmeze",
-   "variants": ["la dua horo posttagmeze"],
+   "accepts": ["la dua horo posttagmeze"],
    "notes": {
     "eo": "la unua horo, la dua horo — la horo ĉiam kun -a.",
     "de": "die Uhrzeit steht als Ordnungszahl: la dua = zwei Uhr, la naŭa = neun Uhr."
@@ -56,8 +56,8 @@
   },
   "nine-am-sharp": {
    "text": "precize je la naŭa matene",
-   "variants": ["ĝuste je la naŭa matene", "je la naŭa matene precize"]
+   "accepts": ["ĝuste je la naŭa matene", "je la naŭa matene precize"]
   },
-  "next-week": { "text": "la sekva semajno", "variants": ["venontan semajnon"] }
+  "next-week": { "text": "la sekva semajno", "accepts": ["venontan semajnon"] }
  }
 }

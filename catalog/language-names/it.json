@@ -2,12 +2,12 @@
  "languageNames": {
   "de": { "name": "tedesco", "in": "in tedesco", "learn": "il tedesco" },
   "en": { "name": "inglese", "in": "in inglese", "learn": "l'inglese" },
-  "es": { "name": "spagnolo", "in": "in spagnolo", "learn": "lo spagnolo", "variants": ["castigliano"] },
+  "es": { "name": "spagnolo", "in": "in spagnolo", "learn": "lo spagnolo", "accepts": ["castigliano"] },
   "sw": {
    "name": "swahili",
    "in": "in swahili",
    "learn": "lo swahili",
-   "variants": ["suahili", "kiswahili"]
+   "accepts": ["suahili", "kiswahili"]
   },
   "uk": { "name": "ucraino", "in": "in ucraino", "learn": "l'ucraino" },
   "fr": { "name": "francese", "in": "in francese", "learn": "il francese" },
@@ -18,26 +18,26 @@
    "name": "olandese",
    "in": "in olandese",
    "learn": "l'olandese",
-   "variants": ["neerlandese", "nederlandese"]
+   "accepts": ["neerlandese", "nederlandese"]
   },
   "pl": { "name": "polacco", "in": "in polacco", "learn": "il polacco" },
   "tr": { "name": "turco", "in": "in turco", "learn": "il turco" },
-  "el": { "name": "greco", "in": "in greco", "learn": "il greco", "variants": ["neogreco"] },
+  "el": { "name": "greco", "in": "in greco", "learn": "il greco", "accepts": ["neogreco"] },
   "sv": { "name": "svedese", "in": "in svedese", "learn": "lo svedese" },
   "cs": { "name": "ceco", "in": "in ceco", "learn": "il ceco" },
   "ru": { "name": "russo", "in": "in russo", "learn": "il russo" },
-  "zh": { "name": "cinese", "in": "in cinese", "learn": "il cinese", "variants": ["mandarino"] },
+  "zh": { "name": "cinese", "in": "in cinese", "learn": "il cinese", "accepts": ["mandarino"] },
   "ja": { "name": "giapponese", "in": "in giapponese", "learn": "il giapponese" },
   "hi": { "name": "hindi", "in": "in hindi", "learn": "l'hindi" },
   "ar": { "name": "arabo", "in": "in arabo", "learn": "l'arabo" },
   "ko": { "name": "coreano", "in": "in coreano", "learn": "il coreano" },
   "vi": { "name": "vietnamita", "in": "in vietnamita", "learn": "il vietnamita" },
-  "he": { "name": "ebraico", "in": "in ebraico", "learn": "l'ebraico", "variants": ["ivrit"] },
-  "fi": { "name": "finlandese", "in": "in finlandese", "learn": "il finlandese", "variants": ["finnico"] },
-  "hu": { "name": "ungherese", "in": "in ungherese", "learn": "l'ungherese", "variants": ["magiaro"] },
+  "he": { "name": "ebraico", "in": "in ebraico", "learn": "l'ebraico", "accepts": ["ivrit"] },
+  "fi": { "name": "finlandese", "in": "in finlandese", "learn": "il finlandese", "accepts": ["finnico"] },
+  "hu": { "name": "ungherese", "in": "in ungherese", "learn": "l'ungherese", "accepts": ["magiaro"] },
   "no": { "name": "norvegese", "in": "in norvegese", "learn": "il norvegese" },
   "da": { "name": "danese", "in": "in danese", "learn": "il danese" },
-  "ro": { "name": "rumeno", "in": "in rumeno", "learn": "il rumeno", "variants": ["romeno"] },
+  "ro": { "name": "rumeno", "in": "in rumeno", "learn": "il rumeno", "accepts": ["romeno"] },
   "hr": { "name": "croato", "in": "in croato", "learn": "il croato" },
   "sr": { "name": "serbo", "in": "in serbo", "learn": "il serbo" },
   "bg": { "name": "bulgaro", "in": "in bulgaro", "learn": "il bulgaro" },
@@ -46,15 +46,15 @@
    "name": "thailandese",
    "in": "in thailandese",
    "learn": "il thailandese",
-   "variants": ["tailandese", "thai"]
+   "accepts": ["tailandese", "thai"]
   },
   "id": {
    "name": "indonesiano",
    "in": "in indonesiano",
    "learn": "l'indonesiano",
-   "variants": ["bahasa indonesia"]
+   "accepts": ["bahasa indonesia"]
   },
-  "fa": { "name": "persiano", "in": "in persiano", "learn": "il persiano", "variants": ["farsi"] },
+  "fa": { "name": "persiano", "in": "in persiano", "learn": "il persiano", "accepts": ["farsi"] },
   "am": { "name": "amarico", "in": "in amarico", "learn": "l'amarico" }
  }
 }

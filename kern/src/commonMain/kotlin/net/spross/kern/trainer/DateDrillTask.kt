@@ -67,8 +67,8 @@ data class DateDrillDraw(val task: DateDrillTask?, val level: Int)
 data class DateReferenceRow(
     val source: String,
     val target: String,
-    /** The target side's other taught lexemes (de `Sonnabend`) — spelling variants stay out. */
-    val synonyms: List<String>,
+    /** The target side's other taught lexemes (de `Sonnabend`) — accept-only spellings stay out. */
+    val teaches: List<String>,
     /** The target side's short form — weekdays only; a reversed run's prompts wear the source's. */
     val abbr: String?,
     /** What the name becomes inside a date, where that differs (uk `березня`). */
@@ -103,7 +103,7 @@ internal object DateDrillTasks {
             kind = kind,
             id = entry.index.toString(),
             promptText = entry.prompt(reverse).text,
-            accepted = listOf(answer.text) + answer.synonyms + answer.variants,
+            accepted = listOf(answer.text) + answer.teaches + answer.accepts,
             display = answer.text,
         )
     }
@@ -212,7 +212,7 @@ internal object DateDrillTasks {
      * answer accepts an assembled one accepts too (de `Sonnabend, der dritte März`).
      */
     private fun dateForms(name: DateNames): List<String> =
-        name.dateForm?.let(::listOf) ?: (listOf(name.text) + name.synonyms + name.variants)
+        name.dateForm?.let(::listOf) ?: (listOf(name.text) + name.teaches + name.accepts)
 
     /** The accepted set: each pattern form crossed with every reading of every part. */
     private fun fill(pattern: DatePattern, slots: List<Pair<String, List<String>>>): List<String> {
@@ -225,7 +225,7 @@ internal object DateDrillTasks {
 
     /**
      * The reading the reveal teaches. A language that genuinely says its date two ways
-     * ([DatePattern.synonyms]) shows both across a run rather than teaching one and merely
+     * ([DatePattern.teaches]) shows both across a run rather than teaching one and merely
      * tolerating the other, and the day it asks about decides which — the drawn date is
      * already the question's identity, so the turn needs no draw of its own. Every part
      * takes its canonical reading, so the result is always one of [fill]'s.

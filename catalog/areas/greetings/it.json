@@ -5,45 +5,45 @@
   "to-thank": { "text": "ringraziare" },
   "name": { "text": "nome", "grammar": { "gender": "il" } },
   "to-be-called": { "text": "chiamarsi" },
-  "hello": { "text": "Ciao!", "variants": ["Salve!"] },
+  "hello": { "text": "Ciao!", "accepts": ["Salve!"] },
   "good-day": {
    "text": "Buongiorno!",
-   "variants": ["Buon giorno!"],
+   "accepts": ["Buon giorno!"],
    "notes": { "it": "Buongiorno! · dalle 14, Buonasera! (= buona sera)." }
   },
-  "good-evening": { "text": "Buonasera!", "variants": ["Buona sera!"] },
-  "good-night": { "text": "Buonanotte!", "variants": ["Buona notte!"] },
+  "good-evening": { "text": "Buonasera!", "accepts": ["Buona sera!"] },
+  "good-night": { "text": "Buonanotte!", "accepts": ["Buona notte!"] },
   "goodbye": { "text": "Arrivederci!" },
   "bye": {
    "text": "A presto!",
-   "variants": ["Ciao!", "A dopo!"],
+   "accepts": ["Ciao!", "A dopo!"],
    "notes": { "it": "A presto! · Ciao! · Arrivederci! è più formale." }
   },
-  "welcome": { "text": "Benvenuto!", "variants": ["Benvenuta!", "Benvenuti!", "Benvenute!"] },
+  "welcome": { "text": "Benvenuto!", "accepts": ["Benvenuta!", "Benvenuti!", "Benvenute!"] },
   "may-i-come-in": {
    "text": "Posso entrare?",
-   "variants": ["Si può entrare?", "Permesso?"],
+   "accepts": ["Si può entrare?", "Permesso?"],
    "notes": {
     "it": "Posso entrare? = Permesso?",
     "de": "an der Tür genügt „Permesso?“ · die Antwort ist „Avanti!“ oder „Prego!“"
    }
   },
-  "how-are-you": { "text": "Come sta?", "variants": ["Come stai?", "Come va?"] },
+  "how-are-you": { "text": "Come sta?", "accepts": ["Come stai?", "Come va?"] },
   "all-good": { "text": "Tutto bene." },
-  "thank-you": { "text": "Grazie mille!", "variants": ["Grazie!", "Molte grazie!"] },
+  "thank-you": { "text": "Grazie mille!", "accepts": ["Grazie!", "Molte grazie!"] },
   "please": {
    "text": "Per favore!",
-   "variants": ["Per piacere!"],
+   "accepts": ["Per piacere!"],
    "notes": {
     "it": "Per favore! non va dopo grazie.",
     "de": "nur die Bitte — als Antwort auf „grazie“ sagt man Prego."
    }
   },
-  "excuse-me": { "text": "Scusi!", "variants": ["Scusa!", "Mi scusi!"] },
+  "excuse-me": { "text": "Scusi!", "accepts": ["Scusa!", "Mi scusi!"] },
   "no-problem": { "text": "Nessun problema!" },
-  "pardon": { "text": "Come dice?", "variants": ["Come dici?", "Come?", "Prego?"] },
-  "sorry-to-hear-that": { "text": "Mi dispiace!", "variants": ["Mi dispiace molto!", "Che peccato!"] },
-  "whats-your-name": { "text": "Come si chiama?", "variants": ["Come ti chiami?"] },
+  "pardon": { "text": "Come dice?", "accepts": ["Come dici?", "Come?", "Prego?"] },
+  "sorry-to-hear-that": { "text": "Mi dispiace!", "accepts": ["Mi dispiace molto!", "Che peccato!"] },
+  "whats-your-name": { "text": "Come si chiama?", "accepts": ["Come ti chiami?"] },
   "my-name-is": { "text": "Mi chiamo …" },
   "yes": { "text": "Sì." },
   "no": { "text": "No." }

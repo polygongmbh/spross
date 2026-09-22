@@ -2,8 +2,8 @@
  "languageNames": {
   "de": { "name": "German", "in": "in German" },
   "en": { "name": "English", "in": "in English" },
-  "es": { "name": "Spanish", "in": "in Spanish", "variants": ["Castilian"] },
-  "sw": { "name": "Swahili", "in": "in Swahili", "variants": ["Kiswahili"] },
+  "es": { "name": "Spanish", "in": "in Spanish", "accepts": ["Castilian"] },
+  "sw": { "name": "Swahili", "in": "in Swahili", "accepts": ["Kiswahili"] },
   "uk": { "name": "Ukrainian", "in": "in Ukrainian" },
   "fr": { "name": "French", "in": "in French" },
   "it": { "name": "Italian", "in": "in Italian" },
@@ -16,7 +16,7 @@
   "sv": { "name": "Swedish", "in": "in Swedish" },
   "cs": { "name": "Czech", "in": "in Czech" },
   "ru": { "name": "Russian", "in": "in Russian" },
-  "zh": { "name": "Chinese", "in": "in Chinese", "variants": ["Mandarin"] },
+  "zh": { "name": "Chinese", "in": "in Chinese", "accepts": ["Mandarin"] },
   "ja": { "name": "Japanese", "in": "in Japanese" },
   "hi": { "name": "Hindi", "in": "in Hindi" },
   "ar": { "name": "Arabic", "in": "in Arabic" },
@@ -31,10 +31,10 @@
   "hr": { "name": "Croatian", "in": "in Croatian" },
   "sr": { "name": "Serbian", "in": "in Serbian" },
   "bg": { "name": "Bulgarian", "in": "in Bulgarian" },
-  "sk": { "name": "Slovak", "in": "in Slovak", "variants": ["Slovakian"] },
+  "sk": { "name": "Slovak", "in": "in Slovak", "accepts": ["Slovakian"] },
   "th": { "name": "Thai", "in": "in Thai" },
-  "id": { "name": "Indonesian", "in": "in Indonesian", "variants": ["Bahasa Indonesia"] },
-  "fa": { "name": "Persian", "in": "in Persian", "variants": ["Farsi"] },
+  "id": { "name": "Indonesian", "in": "in Indonesian", "accepts": ["Bahasa Indonesia"] },
+  "fa": { "name": "Persian", "in": "in Persian", "accepts": ["Farsi"] },
   "am": { "name": "Amharic", "in": "in Amharic" }
  }
 }

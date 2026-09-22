@@ -2,8 +2,8 @@
  "title": "В установі",
  "subtitle": "Крок за кроком через папери.",
  "words": {
-  "office": { "text": "установа", "synonyms": ["відомство"] },
-  "form": { "text": "бланк", "synonyms": ["формуляр"] },
+  "office": { "text": "установа", "teaches": ["відомство"] },
+  "form": { "text": "бланк", "teaches": ["формуляр"] },
   "application": { "text": "заява" },
   "id-card": { "text": "посвідчення особи", "grammar": { "plural": "=" } },
   "residence-permit": { "text": "посвідка на проживання", "grammar": { "plural": "посвідки на проживання" } },

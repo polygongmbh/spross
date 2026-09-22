@@ -16,7 +16,7 @@ import net.spross.kern.model.Language
 internal object CountryAtlasParser {
     private val SLUG_PATTERN = Regex("^[a-z0-9]+(-[a-z0-9]+)*$")
     private val CODE_PATTERN = Regex("^[a-z]{2,3}$")
-    private val NAME_KEYS = setOf("text", "variants", "grammar", "nationality", "notes")
+    private val NAME_KEYS = setOf("text", "accepts", "grammar", "nationality", "notes")
 
     /** The authored range; tier 1 is derived per profile and must never stand in a file. */
     private const val MIN_TIER = 2
@@ -83,23 +83,23 @@ internal object CountryAtlasParser {
             }
             val nationality = o["nationality"]?.obj(path, "$slug.nationality")
                 ?: parseError(path, "$slug: missing \"nationality\"")
-            nationality.rejectUnknownKeys(path, "$slug.nationality", setOf("text", "variants"))
+            nationality.rejectUnknownKeys(path, "$slug.nationality", setOf("text", "accepts"))
             slug to CountryName(
                 text = o.trimmedString(path, slug, "text"),
-                variants = variants(path, slug, o),
+                accepts = accepts(path, slug, o),
                 grammar = o.stringMap(path, slug, "grammar"),
                 nationality = NationalityName(
                     text = nationality.trimmedString(path, "$slug.nationality", "text"),
-                    variants = variants(path, "$slug.nationality", nationality),
+                    accepts = accepts(path, "$slug.nationality", nationality),
                 ),
                 notes = notes,
             )
         }
     }
 
-    private fun variants(path: String, where: String, o: JsonObject): List<String> =
-        o.stringList(path, where, "variants").onEach {
-            if (it.isBlank() || it.trim() != it) parseError(path, "$where: bad variant \"$it\"")
+    private fun accepts(path: String, where: String, o: JsonObject): List<String> =
+        o.stringList(path, where, "accepts").onEach {
+            if (it.isBlank() || it.trim() != it) parseError(path, "$where: bad accepts entry \"$it\"")
         }
 
     private fun tier(path: String, where: String, o: JsonObject): Int {

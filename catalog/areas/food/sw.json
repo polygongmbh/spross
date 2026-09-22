@@ -43,7 +43,7 @@
   "cabbage": { "text": "kabichi", "grammar": { "plural": "=" } },
   "porridge": { "text": "uji", "grammar": { "plural": "=" } },
   "samosa": { "text": "sambusa", "grammar": { "plural": "=" } },
-  "breakfast": { "text": "kifungua kinywa", "synonyms": ["kiamsha kinywa"] },
+  "breakfast": { "text": "kifungua kinywa", "teaches": ["kiamsha kinywa"] },
   "dinner": { "text": "chakula cha jioni" },
   "water": { "text": "maji", "grammar": { "plural": "only" } },
   "to-eat": { "text": "kula" },

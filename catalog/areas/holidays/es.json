@@ -3,7 +3,7 @@
  "subtitle": "Hora de descansar.",
  "words": {
   "beach": { "text": "playa", "grammar": { "gender": "la" } },
-  "to-sunbathe": { "text": "tomar el sol", "variants": ["tomar sol", "asolearse"] },
+  "to-sunbathe": { "text": "tomar el sol", "accepts": ["tomar sol", "asolearse"] },
   "hotel": { "text": "hotel", "grammar": { "gender": "el" } },
   "luggage": { "text": "equipaje", "grammar": { "gender": "el" } },
   "to-travel": { "text": "viajar" },
@@ -16,23 +16,23 @@
   "overnight-stay": { "text": "alojamiento", "grammar": { "gender": "el" } },
   "to-book-a-room": { "text": "reservar una habitación" },
   "tourist": { "text": "turista", "grammar": { "gender": "el" } },
-  "souvenir": { "text": "recuerdo", "synonyms": ["souvenir"], "grammar": { "gender": "el" } },
-  "sunscreen": { "text": "protector solar", "synonyms": ["crema solar"], "grammar": { "gender": "el" } },
+  "souvenir": { "text": "recuerdo", "teaches": ["souvenir"], "grammar": { "gender": "el" } },
+  "sunscreen": { "text": "protector solar", "teaches": ["crema solar"], "grammar": { "gender": "el" } },
   "to-pack": { "text": "hacer la maleta" },
   "campsite": { "text": "camping", "grammar": { "gender": "el" } },
-  "lets-go-to-the-beach": { "text": "¡Vamos a la playa!", "variants": ["¡Vámonos a la playa!"] },
+  "lets-go-to-the-beach": { "text": "¡Vamos a la playa!", "accepts": ["¡Vámonos a la playa!"] },
   "im-looking-for-a-hotel": { "text": "Busco un hotel." },
   "have-a-good-journey": { "text": "¡Buen viaje!" },
   "i-want-vacation-next-week": {
    "text": "Quiero coger vacaciones la semana que viene.",
-   "variants": [
+   "accepts": [
     "Quiero tomar vacaciones la semana que viene.",
     "Me gustaría coger vacaciones la semana que viene.",
     "Quiero coger vacaciones la próxima semana."
    ],
    "orders": ["La semana que viene quiero coger vacaciones."]
   },
-  "how-many-nights": { "text": "¿Cuántas noches?", "variants": ["¿Para cuántas noches?"] },
+  "how-many-nights": { "text": "¿Cuántas noches?", "accepts": ["¿Para cuántas noches?"] },
   "i-packed-too-much": { "text": "He metido demasiado en la maleta." }
  }
 }

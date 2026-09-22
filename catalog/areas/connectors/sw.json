@@ -14,7 +14,7 @@
   "or": { "text": "au" },
   "if": {
    "text": "kama",
-   "variants": ["ikiwa"],
+   "accepts": ["ikiwa"],
    "notes": {
     "sw": "kama utakuja, niambie · kubwa kama nyumba",
     "de": "kama heißt auch „wie, als ob“ · die Frage „wann?“ ist lini."
@@ -24,7 +24,7 @@
   "so-that": { "text": "ili" },
   "before": { "text": "kabla ya" },
   "after": { "text": "baada ya" },
-  "until": { "text": "mpaka", "synonyms": ["hadi"] },
+  "until": { "text": "mpaka", "teaches": ["hadi"] },
   "without": { "text": "bila" },
   "for": { "text": "kwa" },
   "because-of": { "text": "kwa sababu ya" },
@@ -43,7 +43,7 @@
   "together": { "text": "pamoja" },
   "therefore": { "text": "kwa hiyo" },
   "even": { "text": "hata", "notes": { "sw": "hata mimi = mimi pia · hata kidogo = hakuna kabisa" } },
-  "although": { "text": "ingawa", "synonyms": ["japo"] },
+  "although": { "text": "ingawa", "teaches": ["japo"] },
   "that-conj": { "text": "kwamba", "notes": { "sw": "Nadhani kwamba atakuja = Nadhani atakuja" } },
   "if-you-want": { "text": "Kama unataka." },
   "finally-done": { "text": "Hatimaye nimemaliza!" },

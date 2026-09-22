@@ -4,8 +4,8 @@
  "words": {
   "hallway": {
    "text": "entrée",
-   "synonyms": ["couloir"],
-   "variants": ["l'entrée"],
+   "teaches": ["couloir"],
+   "accepts": ["l'entrée"],
    "grammar": { "gender": "l'" },
    "notes": {
     "fr": "l'entrée est juste derrière la porte · le couloir mène aux pièces.",
@@ -13,13 +13,13 @@
    }
   },
   "door": { "text": "porte", "grammar": { "gender": "la" } },
-  "key": { "text": "clé", "variants": ["clef"], "grammar": { "gender": "la" } },
+  "key": { "text": "clé", "accepts": ["clef"], "grammar": { "gender": "la" } },
   "jacket": { "text": "veste", "grammar": { "gender": "la" } },
   "coat": { "text": "manteau", "grammar": { "gender": "le", "plural": "-x" } },
   "umbrella": { "text": "parapluie", "grammar": { "gender": "le" } },
   "hat": {
    "text": "bonnet",
-   "synonyms": ["casquette"],
+   "teaches": ["casquette"],
    "grammar": { "gender": "le" },
    "notes": {
     "fr": "le bonnet n'a pas de visière · la casquette en a une, le chapeau des bords.",
@@ -28,55 +28,55 @@
   },
   "mailbox": { "text": "boîte aux lettres", "grammar": { "gender": "la", "plural": "boîtes aux lettres" } },
   "doorbell": { "text": "sonnette", "grammar": { "gender": "la" } },
-  "stairs": { "text": "escalier", "variants": ["l'escalier", "escaliers"], "grammar": { "gender": "l'" } },
+  "stairs": { "text": "escalier", "accepts": ["l'escalier", "escaliers"], "grammar": { "gender": "l'" } },
   "bag": { "text": "sac", "grammar": { "gender": "le" } },
-  "to-lock": { "text": "fermer à clé", "variants": ["verrouiller"] },
+  "to-lock": { "text": "fermer à clé", "accepts": ["verrouiller"] },
   "to-ring": {
    "text": "sonner",
-   "variants": ["sonner à la porte"],
+   "accepts": ["sonner à la porte"],
    "notes": { "fr": "ça sonne à la porte · il sonne chez moi : un seul verbe." }
   },
-  "to-take-off-shoes": { "text": "enlever ses chaussures", "variants": ["retirer ses chaussures", "se déchausser"] },
-  "to-set-off": { "text": "partir de chez soi", "variants": ["partir de la maison"] },
-  "to-unlock": { "text": "déverrouiller", "variants": ["ouvrir avec la clé"] },
+  "to-take-off-shoes": { "text": "enlever ses chaussures", "accepts": ["retirer ses chaussures", "se déchausser"] },
+  "to-set-off": { "text": "partir de chez soi", "accepts": ["partir de la maison"] },
+  "to-unlock": { "text": "déverrouiller", "accepts": ["ouvrir avec la clé"] },
   "to-get-dressed": { "text": "s'habiller" },
   "to-arrive": { "text": "arriver" },
   "to-greet": { "text": "saluer" },
-  "to-say-goodbye": { "text": "dire au revoir", "variants": ["prendre congé"] },
+  "to-say-goodbye": { "text": "dire au revoir", "accepts": ["prendre congé"] },
   "shoe": { "text": "chaussure", "grammar": { "gender": "la" } },
-  "apartment": { "text": "appartement", "variants": ["l'appartement", "appart"], "grammar": { "gender": "l'" } },
-  "neighbor": { "text": "voisin", "variants": ["voisine"], "grammar": { "gender": "le" } },
-  "guest": { "text": "invité", "variants": ["l'invité", "invitée"], "grammar": { "gender": "l'" } },
+  "apartment": { "text": "appartement", "accepts": ["l'appartement", "appart"], "grammar": { "gender": "l'" } },
+  "neighbor": { "text": "voisin", "accepts": ["voisine"], "grammar": { "gender": "le" } },
+  "guest": { "text": "invité", "accepts": ["l'invité", "invitée"], "grammar": { "gender": "l'" } },
   "wallet": {
    "text": "portefeuille",
-   "synonyms": ["porte-monnaie"],
+   "teaches": ["porte-monnaie"],
    "grammar": { "gender": "le" },
    "notes": { "fr": "le portefeuille pour les billets · le porte-monnaie pour les pièces." }
   },
   "glove": { "text": "gant", "grammar": { "gender": "le" } },
   "letter": { "text": "lettre", "grammar": { "gender": "la" } },
-  "to-knock-on-door": { "text": "frapper à la porte", "variants": ["toquer à la porte"] },
+  "to-knock-on-door": { "text": "frapper à la porte", "accepts": ["toquer à la porte"] },
   "to-enter": { "text": "entrer", "notes": { "fr": "on invite : Entre ! ou Entrez !" } },
   "house": { "text": "maison", "grammar": { "gender": "la" } },
   "to-live": {
    "text": "habiter",
    "notes": { "fr": "habiter à Paris, dans une maison · vivre, c'est être en vie." }
   },
-  "do-you-have-the-keys": { "text": "Tu as les clés ?", "variants": ["As-tu les clés ?"] },
+  "do-you-have-the-keys": { "text": "Tu as les clés ?", "accepts": ["As-tu les clés ?"] },
   "ill-be-right-back": {
    "text": "Je reviens tout de suite !",
-   "variants": ["Je reviens vite !"],
+   "accepts": ["Je reviens vite !"],
    "orders": ["Tout de suite, je reviens !"]
   },
-  "take-off-your-shoes": { "text": "Enlève tes chaussures.", "variants": ["Retire tes chaussures."] },
+  "take-off-your-shoes": { "text": "Enlève tes chaussures.", "accepts": ["Retire tes chaussures."] },
   "hurry-were-late": {
    "text": "Dépêche-toi, on est en retard !",
-   "variants": ["Dépêche-toi, nous sommes en retard !"],
+   "accepts": ["Dépêche-toi, nous sommes en retard !"],
    "orders": ["On est en retard, dépêche-toi !"]
   },
-  "see-you-later": { "text": "À plus tard !", "synonyms": ["À tout à l'heure !", "À plus !", "À bientôt !"] },
+  "see-you-later": { "text": "À plus tard !", "teaches": ["À tout à l'heure !", "À plus !", "À bientôt !"] },
   "welcome-home": { "text": "Bienvenue à la maison !" },
   "dont-forget-your-jacket": { "text": "N'oublie pas ta veste !" },
-  "put-on-the-jacket": { "text": "mettre la veste", "variants": ["mettre sa veste", "enfiler la veste"] }
+  "put-on-the-jacket": { "text": "mettre la veste", "accepts": ["mettre sa veste", "enfiler la veste"] }
  }
 }

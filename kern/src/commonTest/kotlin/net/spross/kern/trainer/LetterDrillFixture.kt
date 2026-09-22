@@ -106,7 +106,7 @@ internal object LetterDrillFixture {
     fun dictationCandidates(cards: List<Card> = dictationCards()): List<LetterDrill.DictationCandidate> =
         cards.map { LetterDrill.DictationCandidate(it) }
 
-    fun card(id: String, text: String, synonyms: List<String> = emptyList()): Card = Card(
+    fun card(id: String, text: String, teaches: List<String> = emptyList()): Card = Card(
         id = id,
         kind = CardKind.Noun,
         area = "fixture",
@@ -115,7 +115,7 @@ internal object LetterDrillFixture {
         components = emptyList(),
         feminineOf = null,
         source = Realization(lang = "en", text = id),
-        target = Realization(lang = LANGUAGE, text = text, synonyms = synonyms),
+        target = Realization(lang = LANGUAGE, text = text, teaches = teaches),
         promptFeminineMarker = false,
     )
 }

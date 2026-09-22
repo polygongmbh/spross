@@ -2,17 +2,17 @@
  "title": "Le salon",
  "subtitle": "L'heure de se détendre.",
  "words": {
-  "sofa": { "text": "canapé", "variants": ["sofa"], "grammar": { "gender": "le" } },
+  "sofa": { "text": "canapé", "accepts": ["sofa"], "grammar": { "gender": "le" } },
   "dining-table": {
    "text": "table à manger",
-   "variants": ["table de salle à manger"],
+   "accepts": ["table de salle à manger"],
    "grammar": { "gender": "la", "plural": "tables à manger" }
   },
   "chair": { "text": "chaise", "grammar": { "gender": "la" } },
   "tv": {
    "text": "télévision",
-   "synonyms": ["téléviseur"],
-   "variants": ["télé"],
+   "teaches": ["téléviseur"],
+   "accepts": ["télé"],
    "grammar": { "gender": "la" },
    "notes": {
     "fr": "on dit la télé · le téléviseur est l'appareil.",
@@ -23,7 +23,7 @@
   "floor": { "text": "sol", "grammar": { "gender": "le" } },
   "song": { "text": "chanson", "grammar": { "gender": "la" } },
   "story": { "text": "étage", "grammar": { "gender": "le" } },
-  "shelf": { "text": "étagère", "variants": ["l'étagère"], "grammar": { "gender": "l'" } },
+  "shelf": { "text": "étagère", "accepts": ["l'étagère"], "grammar": { "gender": "l'" } },
   "plant": { "text": "plante", "grammar": { "gender": "la" } },
   "window": { "text": "fenêtre", "grammar": { "gender": "la" } },
   "curtain": { "text": "rideau", "grammar": { "gender": "le", "plural": "-x" } },
@@ -34,15 +34,15 @@
    "grammar": { "gender": "le", "plural": "-x" },
    "notes": { "fr": "un tableau au mur · à l'école, le tableau où le maître écrit." }
   },
-  "to-watch-tv": { "text": "regarder la télévision", "variants": ["regarder la télé"] },
+  "to-watch-tv": { "text": "regarder la télévision", "accepts": ["regarder la télé"] },
   "to-read": { "text": "lire" },
-  "to-relax": { "text": "se détendre", "variants": ["se relaxer"] },
+  "to-relax": { "text": "se détendre", "accepts": ["se relaxer"] },
   "to-tidy-up": { "text": "ranger" },
   "to-water-plants": { "text": "arroser les plantes" },
   "to-play": { "text": "jouer" },
   "to-talk": {
    "text": "bavarder",
-   "variants": ["discuter", "parler"],
+   "accepts": ["discuter", "parler"],
    "notes": { "fr": "bavarder avec une voisine · parler et discuter sont plus neutres." }
   },
   "room": {
@@ -56,7 +56,7 @@
   "movie": { "text": "film", "grammar": { "gender": "le" } },
   "to-sit": {
    "text": "s'asseoir",
-   "variants": ["être assis"],
+   "accepts": ["être assis"],
    "notes": { "fr": "je m'assieds sur la chaise, puis je suis assis." }
   },
   "to-laugh": { "text": "rire" },
@@ -68,16 +68,16 @@
   "game": { "text": "jeu", "grammar": { "gender": "le", "plural": "-x" } },
   "come-sit-with-me": {
    "text": "Viens, assieds-toi à côté de moi !",
-   "variants": ["Viens t'asseoir à côté de moi !", "Viens, assieds-toi près de moi !"]
+   "accepts": ["Viens t'asseoir à côté de moi !", "Viens, assieds-toi près de moi !"]
   },
   "shall-we-watch-a-movie": {
    "text": "On regarde un film ?",
-   "variants": ["Et si on regardait un film ?", "Tu veux regarder un film ?"]
+   "accepts": ["Et si on regardait un film ?", "Tu veux regarder un film ?"]
   },
-  "lets-hang-the-picture": { "text": "Accrochons le tableau !", "variants": ["On accroche le tableau ?"] },
+  "lets-hang-the-picture": { "text": "Accrochons le tableau !", "accepts": ["On accroche le tableau ?"] },
   "the-curtains-hang-over-the-window": {
    "text": "Les rideaux pendent devant la fenêtre.",
-   "variants": ["Les rideaux sont devant la fenêtre."]
+   "accepts": ["Les rideaux sont devant la fenêtre."]
   }
  }
 }

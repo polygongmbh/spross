@@ -21,12 +21,12 @@
   "artery": {
    "text": "arteria",
    "grammar": { "gender": "l'", "plural": "arterie" },
-   "variants": ["l'arteria"]
+   "accepts": ["l'arteria"]
   },
   "joint": {
    "text": "articolazione",
    "grammar": { "gender": "l'", "plural": "articolazioni" },
-   "variants": ["l'articolazione"]
+   "accepts": ["l'articolazione"]
   },
   "gland": { "text": "ghiandola", "grammar": { "gender": "la", "plural": "ghiandole" } },
   "spleen": { "text": "milza", "grammar": { "gender": "la", "plural": "milze" } },
@@ -34,13 +34,13 @@
   "appendix": {
    "text": "appendice",
    "grammar": { "gender": "l'", "plural": "appendici" },
-   "variants": ["l'appendice"]
+   "accepts": ["l'appendice"]
   },
-  "womb": { "text": "utero", "grammar": { "gender": "l'", "plural": "uteri" }, "variants": ["l'utero"] },
+  "womb": { "text": "utero", "grammar": { "gender": "l'", "plural": "uteri" }, "accepts": ["l'utero"] },
   "pancreas": { "text": "pancreas", "grammar": { "gender": "il", "plural": "=" } },
   "ovary": {
    "text": "ovaia",
-   "variants": ["l'ovaia", "ovario"],
+   "accepts": ["l'ovaia", "ovario"],
    "grammar": { "gender": "l'", "plural": "ovaie" }
   }
  }

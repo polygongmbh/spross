@@ -17,7 +17,7 @@ import net.spross.kern.model.Language
 internal object DateCalendarParser {
     private const val WEEKDAYS = 7
     private const val MONTHS = 12
-    private val WEEKDAY_KEYS = setOf("text", "synonyms", "variants", "abbr", "dateForm")
+    private val WEEKDAY_KEYS = setOf("text", "teaches", "accepts", "abbr", "dateForm")
     private val MONTH_KEYS = WEEKDAY_KEYS - "abbr"
 
     private val MARKER = Regex("\\{[^{}]*\\}")
@@ -72,8 +72,8 @@ internal object DateCalendarParser {
             if (dateForm == text) parseError(path, "$where: dateForm repeats the text")
             DateNames(
                 text = text,
-                synonyms = forms(path, where, o, "synonyms"),
-                variants = forms(path, where, o, "variants"),
+                teaches = forms(path, where, o, "teaches"),
+                accepts = forms(path, where, o, "accepts"),
                 // why: every dates file is a possible PROMPT side and a dated prompt names
                 // its weekday short, so a weekday without an abbr has no prompt to wear.
                 abbr = if (weekday) o.trimmedString(path, where, "abbr") else null,
@@ -109,14 +109,14 @@ internal object DateCalendarParser {
     private fun optionalPattern(path: String, o: JsonObject, key: String): DatePattern? {
         val where = "patterns.$key"
         val row = o[key]?.obj(path, where) ?: return null
-        row.rejectUnknownKeys(path, where, setOf("text", "synonyms", "variants"))
+        row.rejectUnknownKeys(path, where, setOf("text", "teaches", "accepts"))
         val markers = PATTERN_MARKERS.getValue(key)
         val text = row.trimmedString(path, where, "text")
         requireMarkers(path, where, text, markers)
         val pattern = DatePattern(
             text = text,
-            synonyms = forms(path, where, row, "synonyms"),
-            variants = forms(path, where, row, "variants"),
+            teaches = forms(path, where, row, "teaches"),
+            accepts = forms(path, where, row, "accepts"),
         )
         for (alternate in pattern.forms.drop(1)) requireMarkers(path, where, alternate, markers)
         return pattern

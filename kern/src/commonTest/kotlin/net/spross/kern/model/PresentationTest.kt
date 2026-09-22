@@ -66,7 +66,7 @@ class PresentationTest {
 
     @Test
     fun firstExposurePromptsTheCanonicalForm() {
-        val card = Box.word(1, synonyms = listOf("s1a", "s1b"))
+        val card = Box.word(1, teaches = listOf("s1a", "s1b"))
         assertEquals("t1", recognitionPromptForm(card, 0))
     }
 
@@ -78,12 +78,12 @@ class PresentationTest {
         }
     }
 
-    // A card with 2 synonyms prompts all 3 forms within 6 recognition reviews —
+    // A card with 2 `teaches` prompts all 3 forms within 6 recognition reviews —
     // every form gets prompted at zero extra scheduling cost.
     @Test
     fun rotationCoversAllFormsWithinSixRecognitionReviews() {
         for (n in 1..4) { // several ids → both hash parities and offsets
-            val card = Box.word(n, synonyms = listOf("s${n}a", "s${n}b"))
+            val card = Box.word(n, teaches = listOf("s${n}a", "s${n}b"))
             val prompted = mutableSetOf<String>()
             var recognitions = 0
             var count = 0
@@ -99,8 +99,8 @@ class PresentationTest {
     }
 
     @Test
-    fun rotationIsDeterministicAndNeverUsesVariants() {
-        val card = Box.word(3, synonyms = listOf("s3a"), variants = listOf("v3"))
+    fun rotationIsDeterministicAndNeverUsesAccepts() {
+        val card = Box.word(3, teaches = listOf("s3a"), accepts = listOf("v3"))
         val forms = (0..12).map { recognitionPromptForm(card, it) }
         assertEquals(forms, (0..12).map { recognitionPromptForm(card, it) })
         assertTrue(forms.all { it in setOf("t3", "s3a") })

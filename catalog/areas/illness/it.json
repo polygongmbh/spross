@@ -18,9 +18,9 @@
    }
   },
   "to-cough": { "text": "tossire" },
-  "sick": { "text": "malato", "variants": ["malata"] },
+  "sick": { "text": "malato", "accepts": ["malata"] },
   "illness": { "text": "malattia", "grammar": { "gender": "la" } },
-  "tired": { "text": "stanco", "variants": ["stanca"] },
+  "tired": { "text": "stanco", "accepts": ["stanca"] },
   "weak": { "text": "debole" },
   "dizziness": {
    "text": "capogiro",
@@ -28,19 +28,19 @@
    "notes": { "it": "ho un capogiro · mi gira la testa · ho le vertigini." }
   },
   "wound": { "text": "ferita", "grammar": { "gender": "la" } },
-  "to-hurt-oneself": { "text": "farsi male", "variants": ["ferirsi"] },
-  "bandage": { "text": "benda", "variants": ["fasciatura"], "grammar": { "gender": "la" } },
+  "to-hurt-oneself": { "text": "farsi male", "accepts": ["ferirsi"] },
+  "bandage": { "text": "benda", "accepts": ["fasciatura"], "grammar": { "gender": "la" } },
   "band-aid": { "text": "cerotto", "grammar": { "gender": "il" } },
   "splint": { "text": "stecca", "grammar": { "gender": "la" } },
-  "to-recover": { "text": "guarire", "variants": ["rimettersi"] },
-  "allergy": { "text": "allergia", "variants": ["l'allergia", "un'allergia"], "grammar": { "gender": "l'" } },
+  "to-recover": { "text": "guarire", "accepts": ["rimettersi"] },
+  "allergy": { "text": "allergia", "accepts": ["l'allergia", "un'allergia"], "grammar": { "gender": "l'" } },
   "my-throat-hurts-a-lot": { "text": "Mi fa molto male la gola.", "orders": ["La gola mi fa molto male."] },
   "ive-had-a-fever-since-yesterday": { "text": "Ho la febbre da ieri.", "orders": ["Da ieri ho la febbre."] },
-  "get-well-soon": { "text": "Guarisci presto!", "variants": ["Guarisca presto!", "Rimettiti presto!"] },
-  "the-wound-hurts": { "text": "La ferita fa male.", "variants": ["Mi fa male la ferita."] },
+  "get-well-soon": { "text": "Guarisci presto!", "accepts": ["Guarisca presto!", "Rimettiti presto!"] },
+  "the-wound-hurts": { "text": "La ferita fa male.", "accepts": ["Mi fa male la ferita."] },
   "i-hurt-myself-yesterday": {
    "text": "Mi sono fatto male ieri.",
-   "variants": ["Mi sono fatta male ieri."],
+   "accepts": ["Mi sono fatta male ieri."],
    "orders": ["Ieri mi sono fatto male."]
   }
  }

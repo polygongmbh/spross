@@ -16,7 +16,7 @@
   "with": { "text": "avec" },
   "for": { "text": "pour" },
   "because-of": { "text": "à cause de" },
-  "again": { "text": "de nouveau", "variants": ["à nouveau", "encore une fois", "encore"] },
+  "again": { "text": "de nouveau", "accepts": ["à nouveau", "encore une fois", "encore"] },
   "still": {
    "text": "encore",
    "notes": {
@@ -33,7 +33,7 @@
   "even": { "text": "même" },
   "although": { "text": "bien que" },
   "that-conj": { "text": "que" },
-  "if-you-want": { "text": "Si vous voulez.", "variants": ["Si tu veux."] },
-  "finally-done": { "text": "Enfin fini !", "variants": ["Enfin finie !"] }
+  "if-you-want": { "text": "Si vous voulez.", "accepts": ["Si tu veux."] },
+  "finally-done": { "text": "Enfin fini !", "accepts": ["Enfin finie !"] }
  }
 }

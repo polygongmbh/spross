@@ -158,7 +158,7 @@ class Catalog internal constructor(
                     // to demote a base-word answer — absent when the target never
                     // realizes the base, and the demotion simply has nothing to match.
                     baseAccepted = concept.feminineOf?.let { base ->
-                        targetRealization(base)?.let { listOf(it.text) + it.synonyms + it.variants }
+                        targetRealization(base)?.let { listOf(it.text) + it.teaches + it.accepts }
                     }.orEmpty(),
                     source = realize(source, promptRaw, reader = null),
                     target = realize(target, targetRaw, reader = source),
@@ -211,7 +211,7 @@ class Catalog internal constructor(
                 sourceTemplate = prompt.text,
                 targetTemplate = answer.text,
                 slotKind = frame.slot,
-                acceptedFrames = answer.variants,
+                acceptedFrames = answer.accepts,
                 note = answer.notes[source] ?: answer.notes[target], // why: as a card's note
                 countForms = answer.count,
                 sourceCountForms = prompt.count,
@@ -271,27 +271,27 @@ class Catalog internal constructor(
         val named = name ?: return null
         return copy(
             text = LanguageNames.resolve(text, named),
-            synonyms = synonyms.map { LanguageNames.resolve(it, named) },
-            variants = variants.map { LanguageNames.resolve(it, named) },
+            teaches = teaches.map { LanguageNames.resolve(it, named) },
+            accepts = accepts.map { LanguageNames.resolve(it, named) },
             orders = orders.map { LanguageNames.resolve(it, named) },
         )
     }
 
     private fun RawRealization.carriesLanguageMarker(): Boolean =
         LanguageNames.hasLanguageMarker(text) ||
-            synonyms.any { LanguageNames.hasLanguageMarker(it) } ||
-            variants.any { LanguageNames.hasLanguageMarker(it) } ||
+            teaches.any { LanguageNames.hasLanguageMarker(it) } ||
+            accepts.any { LanguageNames.hasLanguageMarker(it) } ||
             orders.any { LanguageNames.hasLanguageMarker(it) }
 
     /** The frames' half of [resolved]; agreement forms name a counted noun, never a language. */
     private fun RawFrame.resolved(name: LanguageName?): RawFrame? {
         val marked = LanguageNames.hasLanguageMarker(text) ||
-            variants.any { LanguageNames.hasLanguageMarker(it) }
+            accepts.any { LanguageNames.hasLanguageMarker(it) }
         if (!marked) return this
         val named = name ?: return null
         return copy(
             text = LanguageNames.resolve(text, named),
-            variants = variants.map { LanguageNames.resolve(it, named) },
+            accepts = accepts.map { LanguageNames.resolve(it, named) },
         )
     }
 
@@ -299,8 +299,8 @@ class Catalog internal constructor(
         Realization(
             lang = lang,
             text = raw.text,
-            synonyms = raw.synonyms,
-            variants = raw.variants,
+            teaches = raw.teaches,
+            accepts = raw.accepts,
             orders = raw.orders,
             grammar = raw.grammar,
             // why: a note written FOR this reader wins; otherwise the one written in the

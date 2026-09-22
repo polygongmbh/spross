@@ -4,13 +4,13 @@
  "words": {
   "fridge": {
    "text": "nevera",
-   "synonyms": ["frigorífico"],
-   "variants": ["frigo", "refrigerador", "heladera"],
+   "teaches": ["frigorífico"],
+   "accepts": ["frigo", "refrigerador", "heladera"],
    "grammar": { "gender": "la" }
   },
   "stove": {
    "text": "cocina",
-   "variants": ["fogón", "placa", "estufa"],
+   "accepts": ["fogón", "placa", "estufa"],
    "grammar": { "gender": "la" },
    "notes": {
     "es": "La cocina es el aparato y también el cuarto · encima: en el fuego.",
@@ -20,71 +20,71 @@
   "oven": { "text": "horno", "grammar": { "gender": "el" } },
   "dishwasher": {
    "text": "lavavajillas",
-   "variants": ["lavaplatos"],
+   "accepts": ["lavaplatos"],
    "grammar": { "gender": "el", "plural": "=" }
   },
-  "pot": { "text": "olla", "variants": ["cacerola"], "grammar": { "gender": "la" } },
+  "pot": { "text": "olla", "accepts": ["cacerola"], "grammar": { "gender": "la" } },
   "pan": { "text": "sartén", "grammar": { "gender": "la" } },
   "knife": { "text": "cuchillo", "grammar": { "gender": "el" } },
   "spoon": { "text": "cuchara", "grammar": { "gender": "la" } },
   "fork": { "text": "tenedor", "grammar": { "gender": "el" } },
   "plate": { "text": "plato", "grammar": { "gender": "el" } },
   "to-cook": { "text": "cocinar", "notes": { "es": "cocinar es preparar comida; el agua se hierve." } },
-  "to-bake": { "text": "hornear", "variants": ["cocer al horno", "hacer al horno"] },
+  "to-bake": { "text": "hornear", "accepts": ["cocer al horno", "hacer al horno"] },
   "to-cut": { "text": "cortar" },
-  "to-wash-the-dishes": { "text": "fregar los platos", "synonyms": ["lavar los platos"] },
+  "to-wash-the-dishes": { "text": "fregar los platos", "teaches": ["lavar los platos"] },
   "to-taste": { "text": "probar" },
   "to-fry": { "text": "freír" },
   "to-boil": { "text": "hervir" },
-  "to-reheat": { "text": "calentar", "synonyms": ["recalentar"] },
-  "to-stir": { "text": "remover", "variants": ["revolver"] },
+  "to-reheat": { "text": "calentar", "teaches": ["recalentar"] },
+  "to-stir": { "text": "remover", "accepts": ["revolver"] },
   "to-take-out-trash": { "text": "sacar la basura" },
-  "caution": { "text": "cuidado", "variants": ["ojo"] },
+  "caution": { "text": "cuidado", "accepts": ["ojo"] },
   "cup": { "text": "taza", "grammar": { "gender": "la" } },
-  "bowl": { "text": "cuenco", "variants": ["bol", "tazón"], "grammar": { "gender": "el" } },
-  "basket": { "text": "cesta", "variants": ["cesto", "canasta"], "grammar": { "gender": "la" } },
+  "bowl": { "text": "cuenco", "accepts": ["bol", "tazón"], "grammar": { "gender": "el" } },
+  "basket": { "text": "cesta", "accepts": ["cesto", "canasta"], "grammar": { "gender": "la" } },
   "tin-can": { "text": "lata", "grammar": { "gender": "la" } },
   "gas": { "text": "gas", "grammar": { "gender": "el" } },
-  "tasty": { "text": "sabroso", "variants": ["sabrosa"] },
+  "tasty": { "text": "sabroso", "accepts": ["sabrosa"] },
   "the-knife-is-sharp": {
    "text": "¡El cuchillo está afilado!",
-   "variants": ["¡El cuchillo corta mucho!"],
+   "accepts": ["¡El cuchillo corta mucho!"],
    "orders": ["¡Está afilado el cuchillo!"]
   },
   "this-is-very-tasty": {
    "text": "¡Esto está muy rico!",
-   "variants": ["¡Está muy rico!", "¡Esto está muy bueno!", "¡Esto está buenísimo!"],
+   "accepts": ["¡Está muy rico!", "¡Esto está muy bueno!", "¡Esto está buenísimo!"],
    "orders": ["¡Está muy rico esto!"]
   },
   "are-you-cooking-rice-today": {
    "text": "¿Cocinas arroz hoy?",
-   "variants": ["¿Hoy cocinas arroz?", "¿Vas a cocinar arroz hoy?", "¿Haces arroz hoy?"],
+   "accepts": ["¿Hoy cocinas arroz?", "¿Vas a cocinar arroz hoy?", "¿Haces arroz hoy?"],
    "orders": ["¿Hoy cocinas arroz?"]
   },
   "the-pot-is-still-on-the-stove": {
    "text": "La olla todavía está en el fuego.",
-   "variants": ["La olla sigue en el fuego.", "La olla todavía está al fuego."],
+   "accepts": ["La olla sigue en el fuego.", "La olla todavía está al fuego."],
    "notes": { "es": "en el fuego = encima de la cocina · en la cocina sería el cuarto." },
    "orders": ["La olla está todavía en el fuego."]
   },
   "wash-the-dishes-in-the-sink": {
    "text": "¡Friega los platos en el fregadero!",
-   "variants": ["¡Lava los platos en el fregadero!"]
+   "accepts": ["¡Lava los platos en el fregadero!"]
   },
   "the-fridge-is-empty": {
    "text": "La nevera está vacía.",
-   "variants": ["El frigorífico está vacío."],
+   "accepts": ["El frigorífico está vacío."],
    "orders": ["Está vacía la nevera."]
   },
   "can-you-set-the-table": { "text": "¿Puedes poner la mesa?" },
   "the-water-is-boiling-hot": {
    "text": "El agua está hirviendo.",
-   "variants": ["El agua hierve."],
+   "accepts": ["El agua hierve."],
    "orders": ["Está hirviendo el agua."]
   },
   "careful-very-hot": {
    "text": "¡Cuidado, muy caliente!",
-   "variants": ["¡Cuidado, está muy caliente!", "¡Cuidado, que quema!"]
+   "accepts": ["¡Cuidado, está muy caliente!", "¡Cuidado, que quema!"]
   }
  }
 }

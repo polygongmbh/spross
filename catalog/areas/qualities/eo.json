@@ -4,7 +4,7 @@
  "words": {
   "good": {
    "text": "bona",
-   "variants": ["bone"],
+   "accepts": ["bone"],
    "notes": {
     "eo": "bona tago · bona respondo · Ĉio bone · Li parolas bone.",
     "de": "Adjektive enden auf -a, Adverbien auf -e: bona tago · Ĉio bone."
@@ -12,14 +12,14 @@
   },
   "bad": {
    "text": "malbona",
-   "variants": ["malbone"],
+   "accepts": ["malbone"],
    "notes": { "eo": "bona → malbona · proksima → malproksima · fermi → malfermi." }
   },
   "big": { "text": "granda" },
   "small": { "text": "malgranda" },
   "much": {
    "text": "multe",
-   "variants": ["multa", "multaj"],
+   "accepts": ["multa", "multaj"],
    "notes": {
     "eo": "multe da akvo · multa akvo · multaj vortoj.",
     "de": "vor dem Substantiv mit da: multe da akvo · als Adjektiv multa."
@@ -28,11 +28,11 @@
   "new": { "text": "nova" },
   "old": {
    "text": "maljuna",
-   "synonyms": ["malnova"],
+   "teaches": ["malnova"],
    "notes": { "eo": "Li estas maljuna · La tablo estas malnova." }
   },
-  "slow": { "text": "malrapida", "variants": ["malrapide"] },
-  "fast": { "text": "rapida", "variants": ["rapide"] },
+  "slow": { "text": "malrapida", "accepts": ["malrapide"] },
+  "fast": { "text": "rapida", "accepts": ["rapide"] },
   "long": { "text": "longa" },
   "short": { "text": "mallonga" },
   "heavy": {
@@ -62,13 +62,13 @@
   },
   "other": { "text": "alia" },
   "hot": { "text": "varmega", "notes": { "eo": "granda → grandega · bona → bonega: -eg- fortigas." } },
-  "cold-adj": { "text": "malvarma", "variants": ["malvarme"] },
+  "cold-adj": { "text": "malvarma", "accepts": ["malvarme"] },
   "empty": { "text": "malplena" },
   "full": { "text": "plena" },
   "dirty": { "text": "malpura" },
   "dry": { "text": "seka" },
-  "pretty": { "text": "beleta", "variants": ["belete"] },
-  "beautiful": { "text": "bela", "variants": ["bele"] },
+  "pretty": { "text": "beleta", "accepts": ["belete"] },
+  "beautiful": { "text": "bela", "accepts": ["bele"] },
   "health": { "text": "sano" },
   "healthy": { "text": "sana" },
   "firm": { "text": "firma" },

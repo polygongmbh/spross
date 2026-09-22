@@ -24,7 +24,7 @@
   "to-say-goodbye": { "text": "to say goodbye" },
   "shoe": { "text": "shoe" },
   "apartment": { "text": "apartment" },
-  "neighbor": { "text": "neighbor", "variants": ["neighbour"] },
+  "neighbor": { "text": "neighbor", "accepts": ["neighbour"] },
   "guest": { "text": "guest" },
   "wallet": { "text": "wallet" },
   "glove": { "text": "glove" },

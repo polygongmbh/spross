@@ -3,8 +3,8 @@
  "subtitle": "Lo que empieza y lo que acaba.",
  "words": {
   "life": { "text": "vida", "grammar": { "gender": "la" } },
-  "to-be-alive": { "text": "estar vivo", "variants": ["estar viva"] },
-  "alive": { "text": "vivo", "variants": ["viva"] },
+  "to-be-alive": { "text": "estar vivo", "accepts": ["estar viva"] },
+  "alive": { "text": "vivo", "accepts": ["viva"] },
   "death": { "text": "muerte", "grammar": { "gender": "la" } },
   "to-die": { "text": "morir" }
  }

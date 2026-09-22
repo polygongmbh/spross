@@ -22,7 +22,7 @@ data class LanguageName(
     /** Object of "to learn"; null means [name] already is it. */
     val learn: String? = null,
     /** Accept-only alternates (de "Kisuaheli" beside "Suaheli"), never displayed. */
-    val variants: List<String> = emptyList(),
+    val accepts: List<String> = emptyList(),
     /** Keyed by explanation language, as a realization's notes are; no fallback. */
     val notes: Map<Language, String> = emptyMap(),
 ) {

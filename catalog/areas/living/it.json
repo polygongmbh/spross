@@ -3,12 +3,12 @@
  "subtitle": "È ora di rilassarsi.",
  "words": {
   "sofa": { "text": "divano", "grammar": { "gender": "il" } },
-  "dining-table": { "text": "tavolo da pranzo", "variants": ["tavolo"], "grammar": { "gender": "il" } },
+  "dining-table": { "text": "tavolo da pranzo", "accepts": ["tavolo"], "grammar": { "gender": "il" } },
   "chair": { "text": "sedia", "grammar": { "gender": "la" } },
   "tv": {
    "text": "televisione",
-   "synonyms": ["televisore"],
-   "variants": ["tv", "tivù"],
+   "teaches": ["televisore"],
+   "accepts": ["tv", "tivù"],
    "grammar": { "gender": "la" },
    "notes": {
     "it": "parlando si dice la tv · il televisore è l'apparecchio.",
@@ -26,24 +26,24 @@
   "carpet": { "text": "tappeto", "grammar": { "gender": "il" } },
   "lamp": { "text": "lampada", "grammar": { "gender": "la" } },
   "picture": { "text": "quadro", "grammar": { "gender": "il" } },
-  "to-watch-tv": { "text": "guardare la televisione", "variants": ["guardare la tv", "vedere la televisione"] },
+  "to-watch-tv": { "text": "guardare la televisione", "accepts": ["guardare la tv", "vedere la televisione"] },
   "to-read": { "text": "leggere" },
   "to-relax": { "text": "rilassarsi" },
-  "to-tidy-up": { "text": "riordinare", "variants": ["mettere in ordine", "fare ordine"] },
-  "to-water-plants": { "text": "annaffiare le piante", "variants": ["innaffiare le piante", "bagnare le piante"] },
+  "to-tidy-up": { "text": "riordinare", "accepts": ["mettere in ordine", "fare ordine"] },
+  "to-water-plants": { "text": "annaffiare le piante", "accepts": ["innaffiare le piante", "bagnare le piante"] },
   "to-play": { "text": "giocare", "notes": { "it": "i bambini giocano a carte." } },
   "to-talk": {
    "text": "chiacchierare",
-   "variants": ["parlare", "conversare"],
+   "accepts": ["parlare", "conversare"],
    "notes": { "it": "chiacchierare è parlare del più e del meno · parlare vale sempre." }
   },
   "room": {
    "text": "stanza",
-   "synonyms": ["camera"],
+   "teaches": ["camera"],
    "grammar": { "gender": "la" },
    "notes": { "it": "la stanza è ogni stanza · la camera è quella da letto." }
   },
-  "newspaper": { "text": "giornale", "synonyms": ["quotidiano"], "grammar": { "gender": "il" } },
+  "newspaper": { "text": "giornale", "teaches": ["quotidiano"], "grammar": { "gender": "il" } },
   "light": { "text": "luce", "grammar": { "gender": "la" } },
   "wall": {
    "text": "parete",
@@ -53,26 +53,26 @@
   "movie": { "text": "film", "grammar": { "gender": "il", "plural": "=" } },
   "to-sit": {
    "text": "sedersi",
-   "variants": ["essere seduto"],
+   "accepts": ["essere seduto"],
    "notes": { "it": "mi siedo qui · adesso sono seduto." }
   },
   "to-laugh": { "text": "ridere" },
   "furniture": {
    "text": "mobili",
-   "variants": ["mobile"],
+   "accepts": ["mobile"],
    "grammar": { "gender": "i", "plural": "only" },
    "notes": { "it": "quasi sempre al plurale: i mobili · un mobile è uno solo." }
   },
   "game": { "text": "gioco", "grammar": { "gender": "il", "plural": "giochi" } },
   "come-sit-with-me": {
    "text": "Vieni, siediti con me!",
-   "variants": ["Vieni, siediti accanto a me!", "Vieni, siediti vicino a me!"]
+   "accepts": ["Vieni, siediti accanto a me!", "Vieni, siediti vicino a me!"]
   },
-  "shall-we-watch-a-movie": { "text": "Guardiamo un film?", "variants": ["Vediamo un film?", "Vuoi guardare un film?"] },
+  "shall-we-watch-a-movie": { "text": "Guardiamo un film?", "accepts": ["Vediamo un film?", "Vuoi guardare un film?"] },
   "lets-hang-the-picture": { "text": "Appendiamo il quadro!" },
   "the-curtains-hang-over-the-window": {
    "text": "Le tende sono appese davanti alla finestra.",
-   "variants": ["Le tende pendono davanti alla finestra.", "Le tende sono davanti alla finestra."],
+   "accepts": ["Le tende pendono davanti alla finestra.", "Le tende sono davanti alla finestra."],
    "orders": ["Davanti alla finestra sono appese le tende."]
   }
  }

@@ -86,13 +86,13 @@ class CatalogLanguageNamesLintTest {
     fun everyFormIsTrimmedAndNonBlank() {
         forEachName { reader, named, name ->
             val where = "language-names/$reader.json $named"
-            val forms = listOfNotNull(name.name, name.inForm, name.speak, name.learn) + name.variants
+            val forms = listOfNotNull(name.name, name.inForm, name.speak, name.learn) + name.accepts
             for (form in forms) {
                 assertTrue(form.isNotBlank() && form.trim() == form, "$where: untrimmed \"$form\"")
                 assertTrue('|' !in form && '\n' !in form, "$where: bad char in \"$form\"")
             }
-            assertTrue(name.name !in name.variants, "$where: variant repeats the name")
-            assertEquals(name.variants.toSet().size, name.variants.size, "$where: duplicate variants")
+            assertTrue(name.name !in name.accepts, "$where: an accepts entry repeats the name")
+            assertEquals(name.accepts.toSet().size, name.accepts.size, "$where: duplicate accepts")
         }
     }
 

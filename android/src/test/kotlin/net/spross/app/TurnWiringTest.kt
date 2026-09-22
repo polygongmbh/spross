@@ -35,7 +35,7 @@ class TurnWiringTest {
     private val sw = LanguageInfo(code = "sw", name = "Kiswahili", englishName = "Swahili", flag = "🇹🇿")
     private val de = LanguageInfo(code = "de", name = "Deutsch", englishName = "German", flag = "🇩🇪")
 
-    private fun card(id: String, source: String, target: String, synonyms: List<String> = emptyList()) = Card(
+    private fun card(id: String, source: String, target: String, teaches: List<String> = emptyList()) = Card(
         id = id,
         kind = CardKind.Noun,
         area = "test",
@@ -44,13 +44,13 @@ class TurnWiringTest {
         components = emptyList(),
         feminineOf = null,
         source = Realization(lang = "de", text = source),
-        target = Realization(lang = "sw", text = target, synonyms = synonyms),
+        target = Realization(lang = "sw", text = target, teaches = teaches),
         promptFeminineMarker = false,
     )
 
     private val knife = card("knife", "Messer", "kisu")
     private val language = card("language", "Sprache", "lugha")
-    private val car = card("car", "Auto", "gari", synonyms = listOf("motokaa"))
+    private val car = card("car", "Auto", "gari", teaches = listOf("motokaa"))
 
     /** The platform half, recorded: everything [TurnFlow] hands outside the turn. */
     private class Platform {

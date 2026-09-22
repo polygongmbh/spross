@@ -23,26 +23,26 @@
   { "text": "Jumapili", "abbr": "Jpl" }
  ],
  "months": [
-  { "text": "Januari", "synonyms": ["Mwezi wa Kwanza"] },
-  { "text": "Februari", "synonyms": ["Mwezi wa Pili"] },
-  { "text": "Machi", "synonyms": ["Mwezi wa Tatu"] },
-  { "text": "Aprili", "synonyms": ["Mwezi wa Nne"] },
-  { "text": "Mei", "synonyms": ["Mwezi wa Tano"] },
-  { "text": "Juni", "synonyms": ["Mwezi wa Sita"] },
-  { "text": "Julai", "synonyms": ["Mwezi wa Saba"] },
-  { "text": "Agosti", "synonyms": ["Mwezi wa Nane"] },
-  { "text": "Septemba", "synonyms": ["Mwezi wa Tisa"] },
-  { "text": "Oktoba", "synonyms": ["Mwezi wa Kumi"] },
-  { "text": "Novemba", "synonyms": ["Mwezi wa Kumi na Moja"] },
-  { "text": "Desemba", "synonyms": ["Mwezi wa Kumi na Mbili"] }
+  { "text": "Januari", "teaches": ["Mwezi wa Kwanza"] },
+  { "text": "Februari", "teaches": ["Mwezi wa Pili"] },
+  { "text": "Machi", "teaches": ["Mwezi wa Tatu"] },
+  { "text": "Aprili", "teaches": ["Mwezi wa Nne"] },
+  { "text": "Mei", "teaches": ["Mwezi wa Tano"] },
+  { "text": "Juni", "teaches": ["Mwezi wa Sita"] },
+  { "text": "Julai", "teaches": ["Mwezi wa Saba"] },
+  { "text": "Agosti", "teaches": ["Mwezi wa Nane"] },
+  { "text": "Septemba", "teaches": ["Mwezi wa Tisa"] },
+  { "text": "Oktoba", "teaches": ["Mwezi wa Kumi"] },
+  { "text": "Novemba", "teaches": ["Mwezi wa Kumi na Moja"] },
+  { "text": "Desemba", "teaches": ["Mwezi wa Kumi na Mbili"] }
  ],
  "numeric": "{d}/{m}/{y}",
  "patterns": {
-  "dayMonth": { "text": "tarehe {day} {month}", "variants": ["{month} {day}"] },
+  "dayMonth": { "text": "tarehe {day} {month}", "accepts": ["{month} {day}"] },
   "date": { "text": "{weekday}, tarehe {day} {month}" },
   "dateWithYear": {
    "text": "{weekday}, tarehe {day} {month} mwaka wa {year}",
-   "variants": ["{weekday}, tarehe {day} {month} mwaka {year}", "{weekday}, tarehe {day} {month} {year}"]
+   "accepts": ["{weekday}, tarehe {day} {month} mwaka {year}", "{weekday}, tarehe {day} {month} {year}"]
   }
  }
 }

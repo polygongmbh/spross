@@ -4,7 +4,7 @@
  "words": {
   "life": { "text": "Leben", "grammar": { "gender": "das", "plural": "=" } },
   "to-be-alive": { "text": "leben" },
-  "alive": { "text": "lebendig", "variants": ["am Leben"] },
+  "alive": { "text": "lebendig", "accepts": ["am Leben"] },
   "death": { "text": "Tod", "grammar": { "gender": "der" } },
   "to-die": { "text": "sterben" }
  }

@@ -6,7 +6,7 @@ internal class MapCatalogSource(private val files: Map<String, String>) : Catalo
 
 /**
  * Inline fixture catalog exercising the join rules: feminine base-fallback + skip,
- * Sie/du variants, sparse coverage, "to " prefix, missing language files
+ * Sie/du `accepts`, sparse coverage, "to " prefix, missing language files
  * (beta has no sw/en), seedIndex flattening across two groups,
  * decomposed-Unicode forms (gamma/de door), area subtitles (gamma authors them,
  * alpha and beta none), the [drills] frames, the [names] tables and the language markers
@@ -34,7 +34,7 @@ internal object Fixture {
             { "frames": {
                 "bus-arrives-at": { "text": "Der Bus kommt um {slot} Uhr." },
                 "i-have-n-keys": { "text": "Ich habe {slot} Schl\u00fcssel.",
-                                   "variants": ["Ich habe {slot} Schluessel."] },
+                                   "accepts": ["Ich habe {slot} Schluessel."] },
                 "we-have-n-chairs": { "text": "Wir haben {slot} St\u00fchle." },
                 "learning-since-year": { "text": "Ich lerne seit {slot}." },
                 "im-learning-since": { "text": "Ich lerne seit {slot} {language}." } } }
@@ -78,7 +78,7 @@ internal object Fixture {
                 "de": { "name": "Deutsch", "in": "auf Deutsch" },
                 "en": { "name": "Englisch", "in": "auf Englisch" },
                 "pt": { "name": "Portugiesisch", "in": "auf Portugiesisch" },
-                "sw": { "name": "Suaheli", "in": "auf Suaheli", "variants": ["Kisuaheli"] },
+                "sw": { "name": "Suaheli", "in": "auf Suaheli", "accepts": ["Kisuaheli"] },
                 "uk": { "name": "Ukrainisch", "in": "auf Ukrainisch" } } }
         """.trimIndent(),
         "language-names/sw.json" to """
@@ -138,7 +138,7 @@ internal object Fixture {
                 "cook": { "text": "kochen" },
                 "mouse": { "text": "Maus", "grammar": { "gender": "die", "plural": "Mäuse" } },
                 "hello": { "text": "Hallo!" },
-                "the-mouse-runs": { "text": "Sehen Sie die Maus?", "variants": ["Siehst du die Maus?"] },
+                "the-mouse-runs": { "text": "Sehen Sie die Maus?", "accepts": ["Siehst du die Maus?"] },
                 "the-mouse-sprints": { "text": "Die Maus sprintet los." } } }
         """.trimIndent(),
         "areas/alpha/en.json" to """
@@ -165,7 +165,7 @@ internal object Fixture {
               "words": {
                 "waiter": { "text": "офіціант" },
                 "waiter-f": { "text": "офіціантка" },
-                "mouse": { "text": "миша", "synonyms": ["мишеня"], "variants": ["мишка"],
+                "mouse": { "text": "миша", "teaches": ["мишеня"], "accepts": ["мишка"],
                            "notes": { "sw": "Panya tu." } },
                 "the-mouse-sprints": {
                   "text": "Миша спринтує.",
@@ -199,7 +199,7 @@ internal object Fixture {
         "areas/gamma/de.json" to """
             { "title": "Gamma", "subtitle": "Alles dreht sich.",
               "words": {
-                "door": { "text": "T${du}r", "synonyms": ["die  T${du}re"],
+                "door": { "text": "T${du}r", "teaches": ["die  T${du}re"],
                           "grammar": { "gender": "die", "plural": "-en" } },
                 "im-learning": { "text": "Ich lerne {language}." },
                 "i-speak-a-little": { "text": "Ich spreche ein bisschen {language}." },

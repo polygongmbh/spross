@@ -4,7 +4,7 @@
  "words": {
   "life": { "text": "vita", "grammar": { "gender": "la" } },
   "to-be-alive": { "text": "vivere" },
-  "alive": { "text": "vivo", "variants": ["viva"] },
+  "alive": { "text": "vivo", "accepts": ["viva"] },
   "death": { "text": "morte", "grammar": { "gender": "la" } },
   "to-die": { "text": "morire" }
  }

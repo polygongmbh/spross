@@ -192,7 +192,7 @@ class OwnWordsTests {
         )
         val card = OwnWords.cards(listOf(word), source = "de", target = "sw").single()
         assertEquals("gari yangu", card.target.text)
-        assertEquals(listOf("gari langu"), card.target.variants)
+        assertEquals(listOf("gari langu"), card.target.accepts)
     }
 
     @Test

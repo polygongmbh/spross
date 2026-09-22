@@ -5,21 +5,21 @@
   "school": { "text": "scuola", "grammar": { "gender": "la" } },
   "classroom": {
    "text": "aula",
-   "variants": ["l'aula", "un'aula"],
+   "accepts": ["l'aula", "un'aula"],
    "grammar": { "gender": "l'" },
    "notes": { "it": "l'aula è la stanza, le aule · la classe sono i compagni." }
   },
   "teacher": {
    "text": "professore",
-   "synonyms": ["insegnante", "maestro"],
-   "variants": ["prof"],
+   "teaches": ["insegnante", "maestro"],
+   "accepts": ["prof"],
    "grammar": { "gender": "il" },
    "notes": { "it": "il maestro alle elementari · il professore dopo · l'insegnante sempre." }
   },
   "teacher-f": {
    "text": "professoressa",
-   "synonyms": ["maestra"],
-   "variants": ["prof"],
+   "teaches": ["maestra"],
+   "accepts": ["prof"],
    "grammar": { "gender": "la" },
    "notes": { "it": "l'insegnante vale anche per lei: non ha una forma femminile." }
   },
@@ -27,14 +27,14 @@
   "exercise-book": { "text": "quaderno", "grammar": { "gender": "il" } },
   "homework": {
    "text": "compiti",
-   "variants": ["compiti a casa"],
+   "accepts": ["compiti a casa"],
    "grammar": { "gender": "i", "plural": "only" },
    "notes": { "it": "solo al plurale: fare i compiti." }
   },
-  "exam": { "text": "esame", "variants": ["l'esame", "prova"], "grammar": { "gender": "l'" } },
+  "exam": { "text": "esame", "accepts": ["l'esame", "prova"], "grammar": { "gender": "l'" } },
   "break": {
    "text": "intervallo",
-   "variants": ["l'intervallo", "ricreazione", "pausa"],
+   "accepts": ["l'intervallo", "ricreazione", "pausa"],
    "grammar": { "gender": "l'" },
    "notes": {
     "it": "a scuola c'è l'intervallo · alle elementari la ricreazione.",
@@ -43,22 +43,22 @@
   },
   "to-pass-exam": {
    "text": "superare l'esame",
-   "variants": ["passare l'esame"],
+   "accepts": ["passare l'esame"],
    "notes": { "it": "chi supera l'esame passa · chi non passa è bocciato." }
   },
   "to-raise-hand": { "text": "alzare la mano" },
   "pupil": {
    "text": "alunno",
-   "synonyms": ["studente"],
+   "teaches": ["studente"],
    "grammar": { "gender": "l'" },
    "notes": { "it": "l'alunno va a scuola · lo studente anche all'università." },
-   "variants": ["l'alunno"]
+   "accepts": ["l'alunno"]
   },
   "pupil-f": {
    "text": "alunna",
-   "synonyms": ["studentessa"],
+   "teaches": ["studentessa"],
    "grammar": { "gender": "l'" },
-   "variants": ["l'alunna"]
+   "accepts": ["l'alunna"]
   },
   "course": { "text": "corso", "grammar": { "gender": "il" } },
   "lesson": {
@@ -72,30 +72,30 @@
   "book": { "text": "libro", "grammar": { "gender": "il" } },
   "university": {
    "text": "università",
-   "variants": ["l'università", "un'università", "uni"],
+   "accepts": ["l'università", "un'università", "uni"],
    "grammar": { "gender": "l'", "plural": "=" }
   },
   "class-schedule": {
    "text": "orario",
-   "variants": ["l'orario", "orario delle lezioni"],
+   "accepts": ["l'orario", "orario delle lezioni"],
    "grammar": { "gender": "l'", "plural": "orari" },
    "notes": { "it": "l'orario è ogni orario · a scuola è l'orario delle lezioni." }
   },
   "to-count": { "text": "contare" },
-  "to-learn-by-heart": { "text": "imparare a memoria", "synonyms": ["memorizzare"] },
+  "to-learn-by-heart": { "text": "imparare a memoria", "teaches": ["memorizzare"] },
   "to-read-aloud": { "text": "leggere ad alta voce" },
   "dictionary": { "text": "dizionario", "grammar": { "gender": "il", "plural": "dizionari" } },
   "to-pronounce": { "text": "pronunciare" },
   "to-teach": { "text": "insegnare" },
   "do-the-homework": { "text": "Faccio i compiti." },
-  "look-at-the-class-schedule": { "text": "Guarda l'orario.", "variants": ["Guardi l'orario.", "Guarda l'orario delle lezioni."] },
+  "look-at-the-class-schedule": { "text": "Guarda l'orario.", "accepts": ["Guardi l'orario.", "Guarda l'orario delle lezioni."] },
   "the-break-is-over": { "text": "La pausa è finita." },
   "ask-the-teacher": {
    "text": "Chiedi al professore.",
-   "variants": ["Chieda al professore.", "Chiedi all'insegnante."]
+   "accepts": ["Chieda al professore.", "Chiedi all'insegnante."]
   },
-  "i-have-a-good-grade": { "text": "Ho un buon voto.", "variants": ["Ho un bel voto."] },
-  "we-go-to-the-classroom": { "text": "Andiamo in aula.", "variants": ["Andiamo in classe."] },
+  "i-have-a-good-grade": { "text": "Ho un buon voto.", "accepts": ["Ho un bel voto."] },
+  "we-go-to-the-classroom": { "text": "Andiamo in aula.", "accepts": ["Andiamo in classe."] },
   "the-exam-is-already-corrected": { "text": "L'esame è già stato corretto.", "orders": ["L'esame è stato già corretto."] }
  }
 }

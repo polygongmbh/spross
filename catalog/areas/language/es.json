@@ -4,19 +4,19 @@
  "words": {
   "meaning": { "text": "significado", "grammar": { "gender": "el" } },
   "to-translate": { "text": "traducir" },
-  "sentence": { "text": "frase", "synonyms": ["oración"], "grammar": { "gender": "la" } },
+  "sentence": { "text": "frase", "teaches": ["oración"], "grammar": { "gender": "la" } },
   "word": { "text": "palabra", "grammar": { "gender": "la" } },
   "language": {
    "text": "idioma",
-   "synonyms": ["lengua"],
+   "teaches": ["lengua"],
    "grammar": { "gender": "el" },
    "notes": { "es": "el idioma español · ¿Qué idioma habla usted?" }
   },
   "mother-tongue": { "text": "lengua materna", "grammar": { "gender": "la" } },
-  "what-does-this-word-mean": { "text": "¿Qué significa esta palabra?", "variants": ["¿Qué quiere decir esta palabra?"] },
-  "how-do-you-say-this": { "text": "¿Cómo se dice esto {language-in}?", "variants": ["¿Cómo se dice eso {language-in}?"] },
-  "im-learning-your-language": { "text": "Estoy aprendiendo {language}.", "variants": ["Aprendo {language}."] },
-  "ready-to-learn": { "text": "¿Listo para aprender?", "variants": ["¿Lista para aprender?"] },
+  "what-does-this-word-mean": { "text": "¿Qué significa esta palabra?", "accepts": ["¿Qué quiere decir esta palabra?"] },
+  "how-do-you-say-this": { "text": "¿Cómo se dice esto {language-in}?", "accepts": ["¿Cómo se dice eso {language-in}?"] },
+  "im-learning-your-language": { "text": "Estoy aprendiendo {language}.", "accepts": ["Aprendo {language}."] },
+  "ready-to-learn": { "text": "¿Listo para aprender?", "accepts": ["¿Lista para aprender?"] },
   "one-more-word": { "text": "¿Una palabra más?" }
  }
 }

@@ -112,10 +112,10 @@ internal object CatalogParser {
         return entries.entries.associate { (code, el) ->
             if (code !in nameable) parseError(path, "name for undeclared language \"$code\"")
             val o = el.obj(path, code)
-            o.rejectUnknownKeys(path, code, setOf("name", "in", "speak", "learn", "variants", "notes"))
-            val variants = o.stringList(path, code, "variants")
-            for (variant in variants) {
-                if (variant.isBlank() || variant.trim() != variant) parseError(path, "$code: bad variant \"$variant\"")
+            o.rejectUnknownKeys(path, code, setOf("name", "in", "speak", "learn", "accepts", "notes"))
+            val accepts = o.stringList(path, code, "accepts")
+            for (form in accepts) {
+                if (form.isBlank() || form.trim() != form) parseError(path, "$code: bad accepts entry \"$form\"")
             }
             val notes = o.stringMap(path, code, "notes")
             for ((reader, note) in notes) {
@@ -127,7 +127,7 @@ internal object CatalogParser {
                 inForm = o.trimmedString(path, code, "in"),
                 speak = o.optionalTrimmedString(path, code, "speak"),
                 learn = o.optionalTrimmedString(path, code, "learn"),
-                variants = variants,
+                accepts = accepts,
                 notes = notes,
             )
         }
@@ -269,10 +269,10 @@ internal object CatalogParser {
     private fun parseFrame(path: String, slug: String, slot: NumbersReading, o: JsonObject): RawFrame {
         o.rejectUnknownKeys(
             path, slug,
-            setOf("text", "variants", "count", "masculineNumeral", "swahiliNounClass", "notes"),
+            setOf("text", "accepts", "count", "masculineNumeral", "swahiliNounClass", "notes"),
         )
         val text = o.requireString(path, slug, "text")
-        val variants = o.stringList(path, slug, "variants")
+        val accepts = o.stringList(path, slug, "accepts")
         val count = o["count"]?.let { el ->
             if (slot != NumbersReading.Cardinal) parseError(path, "$slug: count on a ${slot.name.lowercase()} frame")
             val co = el.obj(path, "$slug.count")
@@ -290,7 +290,7 @@ internal object CatalogParser {
             SwahiliConcord.NounClass.entries.firstOrNull { it.name == raw }
                 ?: parseError(path, "$slug: unknown swahiliNounClass \"$raw\"")
         }
-        for (frame in listOf(text) + variants) {
+        for (frame in listOf(text) + accepts) {
             if (frame.isBlank()) parseError(path, "$slug: blank frame")
             LanguageNames.markerError(frame)?.let { parseError(path, "$slug: $it") }
             if (occurrences(frame, PhraseTemplate.SLOT_MARKER) != 1) {
@@ -302,7 +302,7 @@ internal object CatalogParser {
         }
         return RawFrame(
             text = text,
-            variants = variants,
+            accepts = accepts,
             count = count,
             masculineNumeral = o.optionalBoolean(path, slug, "masculineNumeral") ?: false,
             swahiliNounClass = nounClass,
@@ -321,19 +321,19 @@ internal object CatalogParser {
     }
 
     private fun parseRealization(path: String, slug: String, o: JsonObject): RawRealization {
-        o.rejectUnknownKeys(path, slug, setOf("text", "synonyms", "variants", "orders", "grammar", "notes"))
+        o.rejectUnknownKeys(path, slug, setOf("text", "teaches", "accepts", "orders", "grammar", "notes"))
         val text = o.requireString(path, slug, "text")
         if (text.isBlank()) parseError(path, "$slug: blank text")
-        val synonyms = o.stringList(path, slug, "synonyms")
-        val variants = o.stringList(path, slug, "variants")
+        val teaches = o.stringList(path, slug, "teaches")
+        val accepts = o.stringList(path, slug, "accepts")
         val orders = o.stringList(path, slug, "orders")
-        for (form in listOf(text) + synonyms + variants + orders) {
+        for (form in listOf(text) + teaches + accepts + orders) {
             LanguageNames.markerError(form)?.let { parseError(path, "$slug: $it") }
         }
         return RawRealization(
             text = text,
-            synonyms = synonyms,
-            variants = variants,
+            teaches = teaches,
+            accepts = accepts,
             orders = orders,
             grammar = o.stringMap(path, slug, "grammar"),
             notes = o.stringMap(path, slug, "notes"),

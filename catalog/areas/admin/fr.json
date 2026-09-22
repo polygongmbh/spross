@@ -4,7 +4,7 @@
  "words": {
   "office": {
    "text": "administration",
-   "variants": ["l'administration"],
+   "accepts": ["l'administration"],
    "grammar": { "gender": "l'" },
    "notes": { "fr": "la mairie pour la commune, la préfecture pour les papiers." }
   },
@@ -16,7 +16,7 @@
   },
   "id-card": {
    "text": "carte d'identité",
-   "variants": ["carte nationale d'identité", "CNI"],
+   "accepts": ["carte nationale d'identité", "CNI"],
    "grammar": { "gender": "la" },
    "notes": {
     "fr": "la carte nationale d'identité (CNI) est celle des Français.",
@@ -25,27 +25,27 @@
   },
   "residence-permit": {
    "text": "titre de séjour",
-   "synonyms": ["carte de séjour"],
+   "teaches": ["carte de séjour"],
    "grammar": { "gender": "le" },
    "notes": { "fr": "le titre de séjour est le droit, la carte de séjour le papier." }
   },
   "signature": { "text": "signature", "grammar": { "gender": "la" } },
   "ticket-number": {
    "text": "numéro d'attente",
-   "variants": ["ticket d'attente", "numéro"],
+   "accepts": ["ticket d'attente", "numéro"],
    "grammar": { "gender": "le" }
   },
   "case-worker": {
    "text": "employé",
-   "synonyms": ["agent"],
-   "variants": ["l'employé", "l'agent"],
+   "teaches": ["agent"],
+   "accepts": ["l'employé", "l'agent"],
    "grammar": { "gender": "l'" },
    "notes": { "fr": "au guichet : l'employé ou l'agent · le gestionnaire suit le dossier." }
   },
-  "case-worker-f": { "text": "employée", "variants": ["l'employée"], "grammar": { "gender": "l'" } },
+  "case-worker-f": { "text": "employée", "accepts": ["l'employée"], "grammar": { "gender": "l'" } },
   "registration": {
    "text": "inscription",
-   "variants": ["l'inscription"],
+   "accepts": ["l'inscription"],
    "grammar": { "gender": "l'" },
    "notes": {
     "fr": "l'inscription sur les listes électorales, à la Sécu, à l'école.",
@@ -54,7 +54,7 @@
   },
   "documents": {
    "text": "documents",
-   "synonyms": ["papiers"],
+   "teaches": ["papiers"],
    "grammar": { "gender": "les" },
    "notes": { "fr": "au guichet on demande vos papiers · à l'écrit, les documents." }
   },
@@ -62,19 +62,19 @@
   "to-sign": { "text": "signer" },
   "to-apply-for": {
    "text": "faire une demande",
-   "variants": ["solliciter", "demander"],
+   "accepts": ["solliciter", "demander"],
    "notes": {
     "fr": "faire une demande de titre de séjour, de carte Vitale.",
     "de": "beantragen ist faire une demande de … ; demander allein heißt fragen."
    }
   },
   "to-submit": { "text": "déposer" },
-  "to-hand-in": { "text": "remettre", "variants": ["soumettre"] },
+  "to-hand-in": { "text": "remettre", "accepts": ["soumettre"] },
   "to-pick-up": {
    "text": "retirer la carte d'identité",
-   "variants": ["récupérer la carte d'identité", "aller chercher la carte d'identité"]
+   "accepts": ["récupérer la carte d'identité", "aller chercher la carte d'identité"]
   },
-  "to-extend": { "text": "renouveler", "variants": ["prolonger"] },
+  "to-extend": { "text": "renouveler", "accepts": ["prolonger"] },
   "to-bring": {
    "text": "apporter",
    "notes": {
@@ -82,71 +82,71 @@
     "de": "apporter für Sachen, amener für Personen."
    }
   },
-  "to-copy": { "text": "copier", "variants": ["photocopier"] },
+  "to-copy": { "text": "copier", "accepts": ["photocopier"] },
   "passport": { "text": "passeport", "grammar": { "gender": "le" } },
-  "address": { "text": "adresse", "variants": ["l'adresse"], "grammar": { "gender": "l'" } },
+  "address": { "text": "adresse", "accepts": ["l'adresse"], "grammar": { "gender": "l'" } },
   "certificate": {
    "text": "attestation",
-   "variants": ["l'attestation", "certificat"],
+   "accepts": ["l'attestation", "certificat"],
    "grammar": { "gender": "l'" },
    "notes": { "fr": "l'attestation vient de l'administration, le certificat du médecin." }
   },
   "birth-certificate": {
    "text": "acte de naissance",
-   "variants": ["l'acte de naissance", "extrait de naissance"],
+   "accepts": ["l'acte de naissance", "extrait de naissance"],
    "grammar": { "gender": "l'" }
   },
   "notification": {
    "text": "décision",
-   "synonyms": ["notification"],
+   "teaches": ["notification"],
    "grammar": { "gender": "la" },
    "notes": { "fr": "la décision est la réponse · la notification est la lettre qui l'apporte." }
   },
   "fee": {
    "text": "frais",
-   "variants": ["frais de dossier"],
+   "accepts": ["frais de dossier"],
    "grammar": { "gender": "les", "plural": "only" },
    "notes": { "fr": "toujours au pluriel : les frais de dossier, les frais de port." }
   },
   "office-hours": {
    "text": "horaires d'accueil",
-   "variants": ["heures d'accueil", "horaires d'ouverture"],
+   "accepts": ["heures d'accueil", "horaires d'ouverture"],
    "grammar": { "gender": "les" },
    "notes": { "fr": "les horaires d'accueil du public · une permanence est un jour précis." }
   },
   "waiting-room": { "text": "salle d'attente", "grammar": { "gender": "la" } },
-  "to-reject": { "text": "refuser", "synonyms": ["rejeter"] },
-  "to-approve": { "text": "approuver", "variants": ["accorder", "autoriser"] },
+  "to-reject": { "text": "refuser", "teaches": ["rejeter"] },
+  "to-approve": { "text": "approuver", "accepts": ["accorder", "autoriser"] },
   "law": { "text": "loi", "grammar": { "gender": "la" } },
   "visa": { "text": "visa", "grammar": { "gender": "le" } },
-  "fine": { "text": "amende", "variants": ["l'amende"], "grammar": { "gender": "l'" } },
+  "fine": { "text": "amende", "accepts": ["l'amende"], "grammar": { "gender": "l'" } },
   "receipt": {
    "text": "reçu",
-   "variants": ["récépissé"],
+   "accepts": ["récépissé"],
    "grammar": { "gender": "le" },
    "notes": { "fr": "au guichet : un récépissé · au magasin : le ticket de caisse." }
   },
   "where-do-i-sign": {
    "text": "Où est-ce que je signe ?",
-   "variants": ["Où dois-je signer ?", "Où est-ce que je dois signer ?", "Je signe où ?"]
+   "accepts": ["Où dois-je signer ?", "Où est-ce que je dois signer ?", "Je signe où ?"]
   },
   "i-want-to-extend-my-residence-permit": {
    "text": "Je voudrais renouveler mon titre de séjour.",
-   "variants": ["Je veux renouveler mon titre de séjour.", "Je voudrais renouveler ma carte de séjour."]
+   "accepts": ["Je veux renouveler mon titre de séjour.", "Je voudrais renouveler ma carte de séjour."]
   },
-  "fill-out-the-form": { "text": "Remplissez le formulaire.", "variants": ["Remplis le formulaire."] },
+  "fill-out-the-form": { "text": "Remplissez le formulaire.", "accepts": ["Remplis le formulaire."] },
   "i-need-an-interpreter-for-the-application": { "text": "J'ai besoin d'un interprète pour la demande." },
   "did-you-bring-all-the-documents": {
    "text": "Avez-vous apporté tous les documents ?",
-   "variants": ["As-tu apporté tous les documents ?", "Avez-vous apporté tous les papiers ?"]
+   "accepts": ["As-tu apporté tous les documents ?", "Avez-vous apporté tous les papiers ?"]
   },
   "the-decision-comes-by-mail": {
    "text": "La décision arrive par courrier.",
-   "variants": ["La notification arrive par courrier.", "La décision arrive par la poste."]
+   "accepts": ["La notification arrive par courrier.", "La décision arrive par la poste."]
   },
   "when-does-my-id-expire": {
    "text": "Quand expire ma carte d'identité ?",
-   "variants": ["Quand est-ce que ma carte d'identité expire ?", "Ma carte d'identité expire quand ?"],
+   "accepts": ["Quand est-ce que ma carte d'identité expire ?", "Ma carte d'identité expire quand ?"],
    "orders": ["Ma carte d'identité expire quand ?"]
   }
  }

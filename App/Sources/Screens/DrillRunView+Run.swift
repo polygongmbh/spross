@@ -67,7 +67,7 @@ extension DrillRunView: DrillRunning {
 
     /// The STRICT drill normalizer, built exactly as the letter drill builds
     /// its own: no article leniency (the material authors its own article, and
-    /// its variants are what admit the accusative), one slip per word. Resolved
+    /// its `accepts` are what admit the accusative), one slip per word. Resolved
     /// once, when the run opens, for the language the answer is owed IN.
     @MainActor static func normalizer(model: AppModel, content: Face.Content,
                                       reverse: Bool) -> AnswerNormalizer? {

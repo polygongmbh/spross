@@ -10,7 +10,7 @@
   },
   "toilet": {
    "text": "toilettes",
-   "variants": ["WC"],
+   "accepts": ["WC"],
    "grammar": { "gender": "les", "plural": "only" },
    "notes": { "fr": "toujours au pluriel : les toilettes · la toilette, c'est se laver." }
   },
@@ -25,47 +25,44 @@
   "toothpaste": { "text": "dentifrice", "grammar": { "gender": "le" } },
   "towel": {
    "text": "serviette",
-   "variants": ["serviette de bain"],
+   "accepts": ["serviette de bain"],
    "grammar": { "gender": "la" },
    "notes": { "fr": "serviette de bain pour le corps, serviette de table à table." }
   },
   "soap": { "text": "savon", "grammar": { "gender": "le" } },
-  "shampoo": { "text": "shampooing", "variants": ["shampoing"], "grammar": { "gender": "le" } },
+  "shampoo": { "text": "shampooing", "accepts": ["shampoing"], "grammar": { "gender": "le" } },
   "hairdryer": { "text": "sèche-cheveux", "grammar": { "gender": "le", "plural": "=" } },
-  "to-take-shower": { "text": "se doucher", "variants": ["prendre une douche"] },
-  "to-do-laundry": { "text": "laver le linge", "synonyms": ["faire la lessive"] },
+  "to-take-shower": { "text": "se doucher", "accepts": ["prendre une douche"] },
+  "to-do-laundry": { "text": "laver le linge", "teaches": ["faire la lessive"] },
   "to-brush-teeth": { "text": "se brosser les dents" },
-  "to-dry-off": { "text": "se sécher", "variants": ["s'essuyer"] },
-  "to-hang-up-laundry": { "text": "étendre le linge", "variants": ["étendre la lessive", "suspendre le linge"] },
+  "to-dry-off": { "text": "se sécher", "accepts": ["s'essuyer"] },
+  "to-hang-up-laundry": { "text": "étendre le linge", "accepts": ["étendre la lessive", "suspendre le linge"] },
   "to-clean": { "text": "nettoyer" },
   "to-shave": { "text": "se raser" },
-  "to-comb-hair": { "text": "se peigner", "variants": ["se peigner les cheveux", "se coiffer"] },
-  "to-apply-lotion": { "text": "se mettre de la crème", "variants": ["mettre de la crème", "se crémer"] },
+  "to-comb-hair": { "text": "se peigner", "accepts": ["se peigner les cheveux", "se coiffer"] },
+  "to-apply-lotion": { "text": "se mettre de la crème", "accepts": ["mettre de la crème", "se crémer"] },
   "bathtub": { "text": "baignoire", "grammar": { "gender": "la" } },
-  "toilet-paper": { "text": "papier toilette", "variants": ["papier hygiénique"], "grammar": { "gender": "le" } },
+  "toilet-paper": { "text": "papier toilette", "accepts": ["papier hygiénique"], "grammar": { "gender": "le" } },
   "razor": { "text": "rasoir", "grammar": { "gender": "le" } },
-  "sponge": { "text": "éponge", "variants": ["l'éponge"], "grammar": { "gender": "l'" } },
+  "sponge": { "text": "éponge", "accepts": ["l'éponge"], "grammar": { "gender": "l'" } },
   "cream": { "text": "crème", "grammar": { "gender": "la" } },
   "faucet": { "text": "robinet", "grammar": { "gender": "le" } },
   "trash-can": { "text": "poubelle", "grammar": { "gender": "la" } },
   "bucket": { "text": "seau", "grammar": { "gender": "le", "plural": "-x" } },
   "im-taking-a-quick-shower": {
    "text": "Je vais vite me doucher.",
-   "variants": ["Je vais me doucher rapidement.", "Je vais prendre une douche rapide."],
+   "accepts": ["Je vais me doucher rapidement.", "Je vais prendre une douche rapide."],
    "orders": ["Je vais me doucher vite."]
   },
   "the-bathroom-is-occupied": {
    "text": "La salle de bains est occupée !",
-   "variants": ["La salle de bain est occupée !", "C'est occupé !"]
+   "accepts": ["La salle de bain est occupée !", "C'est occupé !"]
   },
-  "the-laundry-is-done": {
-   "text": "Le linge est prêt.",
-   "variants": ["La lessive est terminée.", "La lessive est finie."]
-  },
+  "the-laundry-is-done": { "text": "Le linge est prêt.", "accepts": ["La lessive est terminée.", "La lessive est finie."] },
   "wheres-my-towel": { "text": "Où est ma serviette ?", "orders": ["Ma serviette est où ?"] },
   "can-you-hang-the-laundry": {
    "text": "Tu peux étendre le linge ?",
-   "variants": ["Peux-tu étendre le linge ?", "Tu peux étendre la lessive ?"]
+   "accepts": ["Peux-tu étendre le linge ?", "Tu peux étendre la lessive ?"]
   },
   "dont-forget-to-brush-teeth": { "text": "N'oublie pas de te brosser les dents !" },
   "wash-your-hands": { "text": "Lave-toi les mains." },

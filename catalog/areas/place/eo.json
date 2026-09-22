@@ -4,20 +4,20 @@
  "words": {
   "here": {
    "text": "ĉi tie",
-   "variants": ["tie ĉi"],
+   "accepts": ["tie ĉi"],
    "notes": { "eo": "ĉi proksimigas: tie → ĉi tie · ĉi tie kaj tie ĉi ambaŭ ĝustas." }
   },
   "there": { "text": "tie" },
   "left": {
    "text": "maldekstre",
-   "variants": ["maldekstren"],
+   "accepts": ["maldekstren"],
    "notes": { "eo": "maldekstre diras kie · maldekstren diras kien." }
   },
-  "right": { "text": "dekstre", "variants": ["dekstren"] },
+  "right": { "text": "dekstre", "accepts": ["dekstren"] },
   "up": { "text": "supre" },
-  "down": { "text": "sube", "variants": ["malsupre"] },
-  "inside": { "text": "interne", "variants": ["ene"] },
-  "outdoors": { "text": "ekstere", "variants": ["eksterdome"] },
+  "down": { "text": "sube", "accepts": ["malsupre"] },
+  "inside": { "text": "interne", "accepts": ["ene"] },
+  "outdoors": { "text": "ekstere", "accepts": ["eksterdome"] },
   "at-home": { "text": "hejme" },
   "home": { "text": "hejmen", "notes": { "eo": "hejmen diras kien · hejme diras kie." } },
   "in": { "text": "en" },
@@ -25,8 +25,8 @@
   "under": { "text": "sub" },
   "behind": { "text": "malantaŭ" },
   "between": { "text": "inter" },
-  "near": { "text": "proksime", "variants": ["proksima"] },
-  "far": { "text": "malproksime", "variants": ["fore", "malproksima"] },
+  "near": { "text": "proksime", "accepts": ["proksima"] },
+  "far": { "text": "malproksime", "accepts": ["fore", "malproksima"] },
   "place": { "text": "loko" },
   "country": { "text": "lando" },
   "in-front": { "text": "antaŭe" },
@@ -36,7 +36,7 @@
   "under-the-bed": { "text": "sub la lito" },
   "in-the-city": { "text": "en la urbo" },
   "between-us": { "text": "inter ni" },
-  "is-it-far": { "text": "Ĉu ĝi malproksimas?", "variants": ["Ĉu estas malproksime?"] },
+  "is-it-far": { "text": "Ĉu ĝi malproksimas?", "accepts": ["Ĉu estas malproksime?"] },
   "at-school": { "text": "en la lernejo" },
   "go-to-school": { "text": "iri al la lernejo", "notes": { "eo": "al la lernejo = kien · en la lernejo = kie." } },
   "are-you-going-home-already": { "text": "Ĉu vi jam iras hejmen?" }

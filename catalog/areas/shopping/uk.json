@@ -6,11 +6,11 @@
   "mall": { "text": "торговий центр", "grammar": { "plural": "торгові центри" } },
   "checkout": { "text": "каса" },
   "shop-assistant": { "text": "продавець", "grammar": { "plural": "продавці" } },
-  "shop-assistant-f": { "text": "продавчиня", "variants": ["продавщиця"] },
+  "shop-assistant-f": { "text": "продавчиня", "accepts": ["продавщиця"] },
   "shopping-cart": { "text": "візок", "grammar": { "plural": "візки" } },
   "offer": {
    "text": "знижка",
-   "variants": ["акція"],
+   "accepts": ["акція"],
    "notes": {
     "uk": "знижка = менша ціна · акція = тимчасова пропозиція.",
     "de": "знижка ist der Preisnachlass; акція heißt im Handel die Aktion, sonst die Aktie."
@@ -19,7 +19,7 @@
   "size": { "text": "розмір" },
   "to-shop": { "text": "ходити за покупками" },
   "store": { "text": "магазин" },
-  "open": { "text": "відчинений", "variants": ["відчинена", "відчинене"], "synonyms": ["відкритий"] },
+  "open": { "text": "відчинений", "accepts": ["відчинена", "відчинене"], "teaches": ["відкритий"] },
   "the-store-is-still-open": { "text": "Магазин ще відчинений." },
   "do-you-have-this-in-my-size": { "text": "У вас є це мого розміру?" }
  }

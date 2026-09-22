@@ -4,9 +4,9 @@
  "words": {
   "tree": { "text": "arbo" },
   "flower": { "text": "floro" },
-  "to-go-for-walk": { "text": "promeni", "variants": ["fari promenon"] },
+  "to-go-for-walk": { "text": "promeni", "accepts": ["fari promenon"] },
   "to-plant-flowers": { "text": "planti florojn" },
-  "to-grill-meat": { "text": "kradrosti viandon", "variants": ["rosti viandon", "grili viandon"] },
+  "to-grill-meat": { "text": "kradrosti viandon", "accepts": ["rosti viandon", "grili viandon"] },
   "mountain": { "text": "monto" },
   "forest": { "text": "arbaro" },
   "stone": { "text": "ŝtono" },
@@ -18,7 +18,7 @@
   "shadow": { "text": "ombro" },
   "we-are-going-to-the-mountains": {
    "text": "Ni veturas en la montaron.",
-   "variants": ["Ni veturas al la montoj.", "Ni iras en la montaron."],
+   "accepts": ["Ni veturas al la montoj.", "Ni iras en la montaron."],
    "orders": ["En la montaron ni veturas."]
   },
   "its-cold-in-the-mountains": {

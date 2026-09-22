@@ -6,8 +6,8 @@
   "peace": { "text": "paco" },
   "freedom": { "text": "libereco" },
   "government": { "text": "registaro" },
-  "election": { "text": "elekto", "variants": ["balotado"] },
-  "to-vote": { "text": "voĉdoni", "variants": ["baloti"] },
-  "border": { "text": "limo", "variants": ["landlimo"] }
+  "election": { "text": "elekto", "accepts": ["balotado"] },
+  "to-vote": { "text": "voĉdoni", "accepts": ["baloti"] },
+  "border": { "text": "limo", "accepts": ["landlimo"] }
  }
 }

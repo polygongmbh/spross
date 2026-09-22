@@ -26,12 +26,12 @@
   "west": { "text": "Westen", "grammar": { "gender": "der" } },
   "go-straight-ahead": {
    "text": "Gehen Sie geradeaus.",
-   "variants": ["Geh geradeaus."],
+   "accepts": ["Geh geradeaus."],
    "orders": ["Sie gehen geradeaus."]
   },
   "turn-left-at-the-corner": {
    "text": "Biegen Sie an der Ecke links ab.",
-   "variants": ["Bieg an der Ecke links ab."],
+   "accepts": ["Bieg an der Ecke links ab."],
    "orders": ["Sie biegen an der Ecke links ab."]
   },
   "how-do-i-get-to-the-station": { "text": "Wie komme ich zum Bahnhof?" },

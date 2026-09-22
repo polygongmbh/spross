@@ -7,8 +7,8 @@
   "adjective": { "text": "прикметник" },
   "noun-class": { "text": "іменний клас", "grammar": { "plural": "іменні класи" } },
   "affix": { "text": "афікс" },
-  "past": { "text": "минуле", "synonyms": ["минулий час"] },
-  "present": { "text": "теперішнє", "synonyms": ["теперішній час"] },
-  "future": { "text": "майбутнє", "synonyms": ["майбутній час"] }
+  "past": { "text": "минуле", "teaches": ["минулий час"] },
+  "present": { "text": "теперішнє", "teaches": ["теперішній час"] },
+  "future": { "text": "майбутнє", "teaches": ["майбутній час"] }
  }
 }

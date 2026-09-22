@@ -31,7 +31,7 @@
   { "text": "junio" },
   { "text": "julio" },
   { "text": "agosto" },
-  { "text": "septiembre", "variants": ["setiembre"] },
+  { "text": "septiembre", "accepts": ["setiembre"] },
   { "text": "octubre" },
   { "text": "noviembre" },
   { "text": "diciembre" }
@@ -42,7 +42,7 @@
   "date": { "text": "{weekday}, {day} de {month}" },
   "dateWithYear": {
    "text": "{weekday}, {day} de {month} de {year}",
-   "variants": ["{weekday}, {day} de {month} del {year}"]
+   "accepts": ["{weekday}, {day} de {month} del {year}"]
   }
  }
 }

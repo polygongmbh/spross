@@ -87,8 +87,8 @@ internal object DateDrillParsing {
         if (join.length == withYear.text.length) return null
         return DatePattern(
             text = patterns.dayMonth.text + join,
-            synonyms = patterns.dayMonth.synonyms.map { it + join },
-            variants = patterns.dayMonth.variants.map { it + join },
+            teaches = patterns.dayMonth.teaches.map { it + join },
+            accepts = patterns.dayMonth.accepts.map { it + join },
         )
     }
 

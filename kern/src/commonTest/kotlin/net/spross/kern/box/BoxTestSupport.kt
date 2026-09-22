@@ -38,14 +38,14 @@ internal object Box {
         n: Int,
         area: String = "area1",
         kind: CardKind = CardKind.Noun,
-        synonyms: List<String> = emptyList(),
-        variants: List<String> = emptyList(),
+        teaches: List<String> = emptyList(),
+        accepts: List<String> = emptyList(),
     ): Card = Card(
         id = "w" + n.toString().padStart(2, '0'),
         kind = kind, area = area, emoji = null, seedIndex = n,
         components = emptyList(), feminineOf = null,
         source = Realization(lang = "de", text = "g$n"),
-        target = Realization(lang = "sw", text = "t$n", synonyms = synonyms, variants = variants),
+        target = Realization(lang = "sw", text = "t$n", teaches = teaches, accepts = accepts),
         promptFeminineMarker = false,
     )
 

@@ -35,7 +35,7 @@ class DisplayTextTest {
 
     @Test
     fun theFamilyIsWhateverTheLearnerIsNotLookingAt() {
-        val word = realization("die Verwaltung", synonyms = listOf("das Amt", "die Behörde"))
+        val word = realization("die Verwaltung", teaches = listOf("das Amt", "die Behörde"))
         assertEquals(listOf("das Amt", "die Behörde"), alternates(word, listOf("die Verwaltung")))
     }
 
@@ -46,25 +46,25 @@ class DisplayTextTest {
      */
     @Test
     fun theFormOnScreenNeverAppearsAmongItsOwnAlternatives() {
-        val word = realization("die Verwaltung", synonyms = listOf("das Amt", "die Behörde"))
+        val word = realization("die Verwaltung", teaches = listOf("das Amt", "die Behörde"))
         assertEquals(listOf("die Verwaltung", "die Behörde"), alternates(word, listOf("das Amt")))
     }
 
     @Test
     fun aWordWithNothingLeftToOfferHasNoAlternates() {
-        val word = realization("das Amt", synonyms = listOf("die Behörde"))
+        val word = realization("das Amt", teaches = listOf("die Behörde"))
         assertEquals(emptyList<String>(), alternates(word, listOf("das Amt", "die Behörde")))
         assertEquals(emptyList<String>(), alternates(realization("nyumba"), listOf("nyumba")))
     }
 
-    /** Variants grade an answer, they never teach a form — the reveal must not list them. */
+    /** `accepts` grades an answer, it never teaches a form — the reveal must not list it. */
     @Test
     fun variantsStaySilent() {
         val word = Realization(
             lang = "de",
             text = "die Tür",
-            synonyms = listOf("die Türe"),
-            variants = listOf("die Tuer"),
+            teaches = listOf("die Türe"),
+            accepts = listOf("die Tuer"),
         )
         assertEquals(listOf("die Türe"), alternates(word, listOf("die Tür")))
     }
@@ -72,11 +72,11 @@ class DisplayTextTest {
     private fun realization(
         text: String,
         plural: String? = null,
-        synonyms: List<String> = emptyList(),
+        teaches: List<String> = emptyList(),
     ) = Realization(
         lang = "de",
         text = text,
-        synonyms = synonyms,
+        teaches = teaches,
         grammar = buildMap { plural?.let { put("plural", it) } },
     )
 }

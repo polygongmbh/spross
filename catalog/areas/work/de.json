@@ -15,12 +15,12 @@
   "company": { "text": "Firma", "grammar": { "gender": "die", "plural": "Firmen" } },
   "to-apply": {
    "text": "sich um den Job bewerben",
-   "variants": ["sich bewerben", "sich um eine Stelle bewerben"]
+   "accepts": ["sich bewerben", "sich um eine Stelle bewerben"]
   },
   "to-earn": { "text": "verdienen" },
   "to-start": { "text": "anfangen" },
   "to-leave": { "text": "verlassen" },
-  "to-quit": { "text": "den Job kündigen", "variants": ["kündigen", "die Stelle kündigen"] },
+  "to-quit": { "text": "den Job kündigen", "accepts": ["kündigen", "die Stelle kündigen"] },
   "to-hire": { "text": "einstellen" },
   "to-help": {
    "text": "helfen",
@@ -50,17 +50,17 @@
   },
   "ill-send-the-doctors-note-right-away": {
    "text": "Ich schicke Ihnen die Krankmeldung sofort.",
-   "variants": ["Ich schicke dir die Krankmeldung sofort."],
+   "accepts": ["Ich schicke dir die Krankmeldung sofort."],
    "orders": ["Die Krankmeldung schicke ich Ihnen sofort."]
   },
   "can-you-help-me-briefly": {
    "text": "Können Sie mir kurz helfen?",
-   "variants": ["Kannst du mir kurz helfen?"],
+   "accepts": ["Kannst du mir kurz helfen?"],
    "orders": ["Sie können mir kurz helfen?"]
   },
   "read-the-contract-carefully": {
    "text": "Lesen Sie den Vertrag durch!",
-   "variants": ["Lies den Vertrag genau durch!"],
+   "accepts": ["Lies den Vertrag genau durch!"],
    "orders": ["Sie lesen den Vertrag durch!"]
   },
   "we-knock-off-at-5": {

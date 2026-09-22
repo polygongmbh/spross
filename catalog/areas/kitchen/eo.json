@@ -5,43 +5,43 @@
   "fridge": { "text": "fridujo" },
   "stove": {
    "text": "fornelo",
-   "variants": ["kuirfornelo"],
+   "accepts": ["kuirfornelo"],
    "notes": { "eo": "sur la fornelo oni kuiras · en la forno oni bakas." }
   },
-  "oven": { "text": "forno", "variants": ["bakforno"] },
-  "dishwasher": { "text": "vazlavilo", "variants": ["vazlavmaŝino", "telerlavilo"] },
-  "pot": { "text": "poto", "variants": ["kuirpoto"] },
+  "oven": { "text": "forno", "accepts": ["bakforno"] },
+  "dishwasher": { "text": "vazlavilo", "accepts": ["vazlavmaŝino", "telerlavilo"] },
+  "pot": { "text": "poto", "accepts": ["kuirpoto"] },
   "pan": {
    "text": "pato",
-   "variants": ["fritpato"],
+   "accepts": ["fritpato"],
    "notes": { "eo": "pato estas plata · poto estas profunda — nur unu vokalo diferencas." }
   },
   "knife": { "text": "tranĉilo" },
   "spoon": { "text": "kulero" },
-  "fork": { "text": "forko", "variants": ["forketo"] },
+  "fork": { "text": "forko", "accepts": ["forketo"] },
   "plate": { "text": "telero" },
   "to-cook": { "text": "kuiri", "notes": { "eo": "kuiri manĝon · la akvo mem bolas." } },
   "to-bake": { "text": "baki" },
   "to-cut": { "text": "tranĉi" },
-  "to-wash-the-dishes": { "text": "lavi la vazaron", "variants": ["lavi la telerojn"] },
+  "to-wash-the-dishes": { "text": "lavi la vazaron", "accepts": ["lavi la telerojn"] },
   "to-taste": { "text": "gustumi" },
   "to-fry": { "text": "friti" },
   "to-boil": { "text": "boli" },
   "to-reheat": { "text": "revarmigi" },
   "to-stir": { "text": "kirli" },
-  "to-take-out-trash": { "text": "elporti la rubon", "variants": ["elporti la rubaĵon"] },
-  "caution": { "text": "atentu", "variants": ["gardu vin"] },
+  "to-take-out-trash": { "text": "elporti la rubon", "accepts": ["elporti la rubaĵon"] },
+  "caution": { "text": "atentu", "accepts": ["gardu vin"] },
   "cup": { "text": "taso" },
   "bowl": { "text": "bovlo" },
   "basket": { "text": "korbo" },
-  "tin-can": { "text": "ladskatolo", "variants": ["lada skatolo", "konservujo"] },
+  "tin-can": { "text": "ladskatolo", "accepts": ["lada skatolo", "konservujo"] },
   "gas": { "text": "gaso" },
   "tasty": { "text": "bongusta" },
   "the-knife-is-sharp": { "text": "La tranĉilo estas akra!" },
-  "this-is-very-tasty": { "text": "Tio estas tre bongusta!", "variants": ["Ĉi tio estas tre bongusta!"] },
+  "this-is-very-tasty": { "text": "Tio estas tre bongusta!", "accepts": ["Ĉi tio estas tre bongusta!"] },
   "are-you-cooking-rice-today": {
    "text": "Ĉu vi hodiaŭ kuiras rizon?",
-   "variants": ["Ĉu vi kuiras rizon hodiaŭ?"],
+   "accepts": ["Ĉu vi kuiras rizon hodiaŭ?"],
    "orders": ["Ĉu vi kuiras rizon hodiaŭ?"]
   },
   "the-pot-is-still-on-the-stove": {
@@ -50,13 +50,13 @@
   },
   "wash-the-dishes-in-the-sink": {
    "text": "Lavu la vazaron en la lavujo!",
-   "variants": ["Lavu la telerojn en la lavujo!"],
+   "accepts": ["Lavu la telerojn en la lavujo!"],
    "orders": ["En la lavujo lavu la vazaron!"]
   },
   "the-fridge-is-empty": { "text": "La fridujo estas malplena." },
   "can-you-set-the-table": {
    "text": "Ĉu vi povas kovri la tablon?",
-   "variants": ["Ĉu vi povas aranĝi la tablon?", "Ĉu vi povas pretigi la tablon?"],
+   "accepts": ["Ĉu vi povas aranĝi la tablon?", "Ĉu vi povas pretigi la tablon?"],
    "notes": {
     "eo": "kovri la tablon = meti telerojn kaj manĝilojn sur ĝin.",
     "de": "den Tisch decken heißt kovri la tablon; kovri allein heißt bedecken."

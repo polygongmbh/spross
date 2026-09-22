@@ -16,13 +16,13 @@
   "heavy": { "text": "heavy" },
   "lightweight": {
    "text": "lightweight",
-   "variants": ["light"],
+   "accepts": ["light"],
    "notes": {
     "en": "lightweight = not heavy · light = not dark.",
     "de": "Alltagswort ist light, das aber auch Licht heißt; lightweight meint immer das Gewicht."
    }
   },
-  "difficult": { "text": "difficult", "synonyms": ["hard"] },
+  "difficult": { "text": "difficult", "teaches": ["hard"] },
   "easy": { "text": "easy" },
   "problem": { "text": "problem" },
   "to-solve": { "text": "to solve" },
@@ -56,7 +56,7 @@
   "beautiful": { "text": "beautiful" },
   "health": { "text": "health" },
   "healthy": { "text": "healthy" },
-  "firm": { "text": "firm", "synonyms": ["sturdy"] },
+  "firm": { "text": "firm", "teaches": ["sturdy"] },
   "liquid": { "text": "liquid" },
   "a-lot-of-water": { "text": "a lot of water" }
  }

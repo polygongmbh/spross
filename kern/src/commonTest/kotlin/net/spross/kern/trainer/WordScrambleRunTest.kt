@@ -21,7 +21,7 @@ class WordScrambleRunTest {
         ScrambleFixture.word("cook", "kochen", CardKind.Verb, seed = 2),
         ScrambleFixture.word("fast", "schnell", CardKind.Adjective, seed = 3),
         ScrambleFixture.word("rainbow", "Regenbogen", seed = 4),
-        ScrambleFixture.word("bike", "Fahrrad", seed = 5, synonyms = listOf("Velo"), variants = listOf("Farrad")),
+        ScrambleFixture.word("bike", "Fahrrad", seed = 5, teaches = listOf("Velo"), accepts = listOf("Farrad")),
     ) + ScrambleFixture.filler(count = 11, letters = 8, fromSeed = 100)
 
     private fun config() = WordScrambleRunConfig(

@@ -23,7 +23,7 @@
   "clean-adj": { "text": "sauber" },
   "sharp": { "text": "scharf" },
   "available": { "text": "verfügbar" },
-  "other": { "text": "andere", "variants": ["anderer", "anderes"] },
+  "other": { "text": "andere", "accepts": ["anderer", "anderes"] },
   "hot": { "text": "heiß" },
   "cold-adj": { "text": "kalt" },
   "empty": { "text": "leer" },
@@ -34,7 +34,7 @@
   "beautiful": { "text": "wunderschön", "notes": { "de": "schön → wunderschön · schöner geht nicht." } },
   "health": { "text": "Gesundheit", "grammar": { "gender": "die" } },
   "healthy": { "text": "gesund" },
-  "firm": { "text": "fest", "synonyms": ["stabil"] },
+  "firm": { "text": "fest", "teaches": ["stabil"] },
   "liquid": { "text": "flüssig" },
   "a-lot-of-water": {
    "text": "viel Wasser",

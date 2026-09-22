@@ -4,36 +4,36 @@
  "words": {
   "weather": {
    "text": "tempo",
-   "variants": ["meteo"],
+   "accepts": ["meteo"],
    "grammar": { "gender": "il" },
    "notes": { "it": "il tempo è anche quello che passa." }
   },
   "sky": { "text": "cielo", "grammar": { "gender": "il" } },
   "sun": { "text": "sole", "grammar": { "gender": "il" } },
-  "cloud": { "text": "nuvola", "variants": ["nube"], "grammar": { "gender": "la" } },
+  "cloud": { "text": "nuvola", "accepts": ["nube"], "grammar": { "gender": "la" } },
   "rain": { "text": "pioggia", "grammar": { "gender": "la" } },
   "snow": { "text": "neve", "grammar": { "gender": "la" } },
   "wind": { "text": "vento", "grammar": { "gender": "il" } },
   "storm": { "text": "tempesta", "grammar": { "gender": "la" } },
   "thunder": { "text": "tuono", "grammar": { "gender": "il" } },
-  "lightning": { "text": "fulmine", "variants": ["lampo"], "grammar": { "gender": "il" } },
-  "humid": { "text": "umido", "variants": ["umida"] },
+  "lightning": { "text": "fulmine", "accepts": ["lampo"], "grammar": { "gender": "il" } },
+  "humid": { "text": "umido", "accepts": ["umida"] },
   "hows-the-weather-today": {
    "text": "Che tempo fa oggi?",
-   "variants": ["Com'è il tempo oggi?"],
+   "accepts": ["Com'è il tempo oggi?"],
    "orders": ["Oggi che tempo fa?"]
   },
-  "its-raining": { "text": "Piove.", "variants": ["Sta piovendo."] },
-  "the-rain-has-stopped": { "text": "Ha smesso di piovere.", "variants": ["Non piove più.", "La pioggia è finita."] },
+  "its-raining": { "text": "Piove.", "accepts": ["Sta piovendo."] },
+  "the-rain-has-stopped": { "text": "Ha smesso di piovere.", "accepts": ["Non piove più.", "La pioggia è finita."] },
   "the-sun-is-shining": {
    "text": "C'è il sole!",
-   "variants": ["Il sole splende!", "Splende il sole!"],
+   "accepts": ["Il sole splende!", "Splende il sole!"],
    "notes": {
     "it": "c'è il sole, c'è vento · fa caldo, fa freddo.",
     "de": "Wetter steht mit c'è oder fare: c'è il sole, c'è vento, fa caldo."
    }
   },
-  "what-a-beautiful-day": { "text": "Che bella giornata!", "variants": ["Che bel giorno!"] },
+  "what-a-beautiful-day": { "text": "Che bella giornata!", "accepts": ["Che bel giorno!"] },
   "we-are-staying-home-because-of-the-rain": { "text": "Per la pioggia restiamo a casa.", "orders": ["Restiamo a casa per la pioggia."] }
  }
 }

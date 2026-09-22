@@ -24,7 +24,7 @@
   "to-take-out-trash": { "text": "kutupa taka" },
   "caution": {
    "text": "tahadhari",
-   "variants": ["angalia"],
+   "accepts": ["angalia"],
    "notes": { "sw": "Tahadhari! = jihadhari · Angalia! husemwa pia" }
   },
   "cup": { "text": "kikombe", "grammar": { "plural": "vikombe" } },
@@ -55,6 +55,6 @@
   "the-fridge-is-empty": { "text": "Friji iko tupu." },
   "can-you-set-the-table": { "text": "Unaweza kuandaa meza?" },
   "the-water-is-boiling-hot": { "text": "Maji yanachemka." },
-  "careful-very-hot": { "text": "Tahadhari, moto sana!", "variants": ["Angalia, moto sana!"] }
+  "careful-very-hot": { "text": "Tahadhari, moto sana!", "accepts": ["Angalia, moto sana!"] }
  }
 }

@@ -65,8 +65,8 @@ object BoxSearch {
             .mapNotNull { rank(it, needle) }.minOrNull()
         if (primary != null) return primary
         val alternates = (
-            card.target.synonyms + card.target.variants +
-                card.source.synonyms + card.source.variants
+            card.target.teaches + card.target.accepts +
+                card.source.teaches + card.source.accepts
             ).mapNotNull { rank(it, needle) }.minOrNull()
         return alternates?.let { it + ALTERNATE_PENALTY }
     }

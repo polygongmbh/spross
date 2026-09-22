@@ -3,7 +3,7 @@
  "words": {
   "loud": {
    "text": "kwa sauti kubwa",
-   "variants": ["kwa sauti ya juu"],
+   "accepts": ["kwa sauti ya juu"],
    "notes": {
     "sw": "Zungumza kwa sauti kubwa! · au: kwa sauti ya juu",
     "de": "kein Adjektiv, sondern adverbial: Sema kwa sauti kubwa."
@@ -13,7 +13,7 @@
   "noise": { "text": "kelele" },
   "music": { "text": "muziki" },
   "radio": { "text": "redio" },
-  "speaker": { "text": "spika", "variants": ["kipaza sauti"] },
+  "speaker": { "text": "spika", "accepts": ["kipaza sauti"] },
   "headphones": { "text": "hedfoni", "grammar": { "plural": "=" } },
   "microphone": { "text": "maikrofoni" },
   "volume": { "text": "sauti" },
@@ -24,9 +24,9 @@
   "to-listen-to-music": { "text": "kusikiliza muziki" },
   "to-play-instrument": {
    "text": "kupiga ala ya muziki",
-   "variants": ["kupiga ala"],
+   "accepts": ["kupiga ala"],
    "notes": { "sw": "kupiga gitaa, kupiga piano." }
   },
-  "louder": { "text": "Kwa sauti zaidi!", "variants": ["Kwa sauti kubwa zaidi!"] }
+  "louder": { "text": "Kwa sauti zaidi!", "accepts": ["Kwa sauti kubwa zaidi!"] }
  }
 }

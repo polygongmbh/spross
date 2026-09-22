@@ -15,8 +15,8 @@
   },
   "size": { "text": "Größe", "grammar": { "gender": "die", "plural": "-n" } },
   "to-shop": { "text": "einkaufen" },
-  "store": { "text": "Laden", "variants": ["Geschäft"], "grammar": { "gender": "der", "plural": "Läden" } },
-  "open": { "text": "offen", "synonyms": ["geöffnet"] },
+  "store": { "text": "Laden", "accepts": ["Geschäft"], "grammar": { "gender": "der", "plural": "Läden" } },
+  "open": { "text": "offen", "teaches": ["geöffnet"] },
   "the-store-is-still-open": { "text": "Der Laden ist noch offen." },
   "do-you-have-this-in-my-size": { "text": "Haben Sie das in meiner Größe?", "orders": ["Sie haben das in meiner Größe?"] }
  }

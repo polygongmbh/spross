@@ -2,23 +2,23 @@
  "title": "Confronto",
  "subtitle": "Uguale, diverso, a favore o contro.",
  "words": {
-  "different": { "text": "diverso", "synonyms": ["differente"], "variants": ["diversa", "diversi", "diverse"] },
+  "different": { "text": "diverso", "teaches": ["differente"], "accepts": ["diversa", "diversi", "diverse"] },
   "difference": { "text": "differenza", "grammar": { "gender": "la" } },
   "real": { "text": "reale" },
   "same": {
    "text": "stesso",
-   "variants": ["stessa", "stessi", "stesse"],
+   "accepts": ["stessa", "stessi", "stesse"],
    "notes": { "it": "lo stesso giorno, la stessa ora · io stesso = proprio io." }
   },
-  "similar": { "text": "simile", "variants": ["simili"] },
-  "opposite": { "text": "opposto", "synonyms": ["contrario"], "variants": ["opposta", "contraria"] },
-  "to-compare": { "text": "confrontare", "synonyms": ["paragonare"] },
-  "positive": { "text": "positivo", "variants": ["positiva"] },
-  "negative": { "text": "negativo", "variants": ["negativa"] },
+  "similar": { "text": "simile", "accepts": ["simili"] },
+  "opposite": { "text": "opposto", "teaches": ["contrario"], "accepts": ["opposta", "contraria"] },
+  "to-compare": { "text": "confrontare", "teaches": ["paragonare"] },
+  "positive": { "text": "positivo", "accepts": ["positiva"] },
+  "negative": { "text": "negativo", "accepts": ["negativa"] },
   "neutral": { "text": "neutrale" },
-  "aggressive": { "text": "aggressivo", "variants": ["aggressiva"] },
-  "defensive": { "text": "difensivo", "variants": ["difensiva"] },
-  "equality": { "text": "uguaglianza", "grammar": { "gender": "l'" }, "variants": ["l'uguaglianza"] },
+  "aggressive": { "text": "aggressivo", "accepts": ["aggressiva"] },
+  "defensive": { "text": "difensivo", "accepts": ["difensiva"] },
+  "equality": { "text": "uguaglianza", "grammar": { "gender": "l'" }, "accepts": ["l'uguaglianza"] },
   "than": { "text": "di", "notes": { "it": "più grande di me." } }
  }
 }

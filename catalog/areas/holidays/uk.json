@@ -7,23 +7,23 @@
   "hotel": { "text": "готель" },
   "luggage": { "text": "багаж" },
   "to-travel": { "text": "подорожувати" },
-  "journey": { "text": "подорож", "synonyms": ["поїздка"] },
+  "journey": { "text": "подорож", "teaches": ["поїздка"] },
   "vacation": { "text": "відпустка" },
   "overnight-stay": { "text": "ночівля" },
-  "to-book-a-room": { "text": "забронювати кімнату", "variants": ["зарезервувати кімнату"] },
+  "to-book-a-room": { "text": "забронювати кімнату", "accepts": ["зарезервувати кімнату"] },
   "tourist": { "text": "турист" },
   "souvenir": { "text": "сувенір" },
   "sunscreen": { "text": "сонцезахисний крем" },
-  "to-pack": { "text": "пакувати валізу", "variants": ["збирати валізу"] },
+  "to-pack": { "text": "пакувати валізу", "accepts": ["збирати валізу"] },
   "campsite": { "text": "кемпінг" },
   "lets-go-to-the-beach": { "text": "Ходімо на пляж!", "orders": ["На пляж ходімо!"] },
   "im-looking-for-a-hotel": { "text": "Я шукаю готель." },
-  "have-a-good-journey": { "text": "Гарної подорожі!", "variants": ["Щасливої дороги!"] },
+  "have-a-good-journey": { "text": "Гарної подорожі!", "accepts": ["Щасливої дороги!"] },
   "i-want-vacation-next-week": {
    "text": "Наступного тижня я хочу взяти відпустку.",
    "orders": ["Я хочу взяти відпустку наступного тижня."]
   },
-  "how-many-nights": { "text": "Скільки ночей?", "variants": ["На скільки ночей?"] },
-  "i-packed-too-much": { "text": "Я запакував занадто багато.", "variants": ["Я запакувала занадто багато."] }
+  "how-many-nights": { "text": "Скільки ночей?", "accepts": ["На скільки ночей?"] },
+  "i-packed-too-much": { "text": "Я запакував занадто багато.", "accepts": ["Я запакувала занадто багато."] }
  }
 }

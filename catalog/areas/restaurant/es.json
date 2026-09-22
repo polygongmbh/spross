@@ -4,7 +4,7 @@
  "words": {
   "menu": {
    "text": "menú",
-   "variants": ["carta"],
+   "accepts": ["carta"],
    "grammar": { "gender": "el" },
    "notes": {
     "es": "El menú es el del día; la carta trae todos los platos.",
@@ -29,7 +29,7 @@
   "beverage": { "text": "bebida", "grammar": { "gender": "la" } },
   "restaurant": { "text": "restaurante", "grammar": { "gender": "el" } },
   "a-table-for-two": { "text": "Una mesa para dos, por favor." },
-  "id-like-to-order": { "text": "Quería pedir.", "variants": ["Quisiera pedir."] },
+  "id-like-to-order": { "text": "Quería pedir.", "accepts": ["Quisiera pedir."] },
   "is-this-vegetarian": { "text": "¿Esto es vegetariano?", "orders": ["¿Es esto vegetariano?"] },
   "the-bill-please": { "text": "La cuenta, por favor." },
   "id-like-some-water": { "text": "Quisiera agua." }

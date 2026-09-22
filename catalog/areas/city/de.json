@@ -6,7 +6,7 @@
   "park": { "text": "Park", "grammar": { "gender": "der", "plural": "-s" } },
   "city": { "text": "Stadt", "grammar": { "gender": "die", "plural": "Städte" } },
   "village": { "text": "Dorf", "grammar": { "gender": "das", "plural": "Dörfer" } },
-  "neighborhood": { "text": "Viertel", "variants": ["Stadtviertel"], "grammar": { "gender": "das", "plural": "=" } },
+  "neighborhood": { "text": "Viertel", "accepts": ["Stadtviertel"], "grammar": { "gender": "das", "plural": "=" } },
   "building": { "text": "Gebäude", "grammar": { "gender": "das", "plural": "=" } },
   "bank": { "text": "Bank", "grammar": { "gender": "die", "plural": "-en" } },
   "post-office": { "text": "Post", "grammar": { "gender": "die" } },

@@ -70,7 +70,7 @@ def related(token, word):
     of the longer keeps a prefixed form like `mzuri` against `zuri` and drops those two.
 
     Containment is the whole test, so a form that differs at the END (`amico`/`amici`) is
-    not caught either way; the agreement forms that matter are listed as variants and match
+    not caught either way; the agreement forms that matter are listed as `accepts` and match
     exactly.
     """
     if len(token) < MIN_STEM or len(word) < MIN_STEM:
@@ -82,7 +82,7 @@ def related(token, word):
 
 def surface_forms(realization):
     out = []
-    for key in ("text", "synonyms", "variants"):
+    for key in ("text", "teaches", "accepts"):
         value = realization.get(key)
         if isinstance(value, str):
             out.append(value)

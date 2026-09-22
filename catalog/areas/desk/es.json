@@ -5,99 +5,99 @@
   "desk": { "text": "escritorio", "grammar": { "gender": "el" } },
   "laptop": {
    "text": "portátil",
-   "variants": ["ordenador portátil", "computadora portátil", "laptop"],
+   "accepts": ["ordenador portátil", "computadora portátil", "laptop"],
    "grammar": { "gender": "el" },
    "notes": { "es": "Forma corta de ordenador portátil: llevo el portátil." }
   },
   "keyboard": { "text": "teclado", "grammar": { "gender": "el" } },
   "screen": { "text": "pantalla", "grammar": { "gender": "la" } },
-  "mouse": { "text": "ratón", "variants": ["mouse"], "grammar": { "gender": "el" } },
+  "mouse": { "text": "ratón", "accepts": ["mouse"], "grammar": { "gender": "el" } },
   "cable": { "text": "cable", "grammar": { "gender": "el" } },
   "pen": {
    "text": "bolígrafo",
-   "variants": ["boli"],
+   "accepts": ["boli"],
    "grammar": { "gender": "el" },
    "notes": {
     "es": "En el día a día se dice el boli: déjame un boli.",
     "de": "„Stift“ ist hier der Kugelschreiber: el bolígrafo, ugs. el boli."
    }
   },
-  "notebook": { "text": "libreta", "variants": ["cuaderno"], "grammar": { "gender": "la" } },
+  "notebook": { "text": "libreta", "accepts": ["cuaderno"], "grammar": { "gender": "la" } },
   "printer": { "text": "impresora", "grammar": { "gender": "la" } },
   "socket": {
    "text": "enchufe",
-   "variants": ["toma de corriente", "tomacorriente"],
+   "accepts": ["toma de corriente", "tomacorriente"],
    "grammar": { "gender": "el" },
    "notes": { "es": "El enchufe es la toma de la pared." }
   },
   "to-work": { "text": "trabajar" },
-  "to-type": { "text": "teclear", "variants": ["mecanografiar", "escribir a máquina"] },
+  "to-type": { "text": "teclear", "accepts": ["mecanografiar", "escribir a máquina"] },
   "to-print": { "text": "imprimir" },
-  "to-save": { "text": "guardar", "variants": ["almacenar"] },
-  "to-take-break": { "text": "hacer una pausa", "variants": ["hacer un descanso", "tomarse un descanso"] },
+  "to-save": { "text": "guardar", "accepts": ["almacenar"] },
+  "to-take-break": { "text": "hacer una pausa", "accepts": ["hacer un descanso", "tomarse un descanso"] },
   "to-write": { "text": "escribir" },
-  "to-call": { "text": "llamar", "variants": ["llamar por teléfono", "telefonear"] },
-  "to-delete": { "text": "borrar", "synonyms": ["eliminar"] },
+  "to-call": { "text": "llamar", "accepts": ["llamar por teléfono", "telefonear"] },
+  "to-delete": { "text": "borrar", "teaches": ["eliminar"] },
   "to-repair": {
    "text": "reparar",
-   "synonyms": ["arreglar"],
+   "teaches": ["arreglar"],
    "notes": { "es": "reparar suena a taller; en casa se dice arreglar." }
   },
   "phone": {
    "text": "móvil",
-   "variants": ["teléfono móvil", "celular", "teléfono celular"],
+   "accepts": ["teléfono móvil", "celular", "teléfono celular"],
    "grammar": { "gender": "el" }
   },
   "email": {
    "text": "correo electrónico",
-   "variants": ["correo", "email", "mail"],
+   "accepts": ["correo", "email", "mail"],
    "grammar": { "gender": "el" }
   },
   "paper": { "text": "papel", "grammar": { "gender": "el" } },
-  "folder": { "text": "carpeta", "variants": ["archivador"], "grammar": { "gender": "la" } },
+  "folder": { "text": "carpeta", "accepts": ["archivador"], "grammar": { "gender": "la" } },
   "password": { "text": "contraseña", "grammar": { "gender": "la" } },
   "internet": {
    "text": "internet",
    "notes": { "es": "Casi siempre sin artículo: ¿Hay internet? · No tengo internet." }
   },
-  "charger": { "text": "cargador", "variants": ["cable de carga"], "grammar": { "gender": "el" } },
+  "charger": { "text": "cargador", "accepts": ["cable de carga"], "grammar": { "gender": "el" } },
   "calendar": {
    "text": "calendario",
-   "synonyms": ["agenda"],
+   "teaches": ["agenda"],
    "grammar": { "gender": "el" },
    "notes": { "es": "El calendario cuelga en la pared; las citas van en la agenda." }
   },
   "important": { "text": "importante" },
   "ready": {
    "text": "listo",
-   "variants": ["terminado", "acabado"],
+   "accepts": ["terminado", "acabado"],
    "notes": { "es": "Con estar: ya estoy listo · ser listo es tener inteligencia." }
   },
   "broken": {
    "text": "roto",
-   "variants": ["rota", "estropeado", "averiado"],
+   "accepts": ["rota", "estropeado", "averiado"],
    "notes": {
     "es": "Con estar: el móvil está roto.",
     "de": "Mit estar: el móvil está roto. Ein Gerät, das nur nicht mehr geht, ist estropeado."
    }
   },
   "im-in-a-meeting": { "text": "Estoy en una reunión." },
-  "dont-disturb-me": { "text": "¡No me molestes!", "variants": ["¡No molestar!"] },
+  "dont-disturb-me": { "text": "¡No me molestes!", "accepts": ["¡No molestar!"] },
   "the-laptop-wont-charge-anymore": {
    "text": "El portátil ya no carga.",
-   "variants": ["El portátil ya no se carga.", "El ordenador portátil ya no carga."],
+   "accepts": ["El portátil ya no se carga.", "El ordenador portátil ya no carga."],
    "orders": ["Ya no carga el portátil."]
   },
   "the-internet-is-gone": {
    "text": "No hay internet.",
-   "variants": ["Se ha cortado internet.", "Se ha ido internet.", "No hay wifi."]
+   "accepts": ["Se ha cortado internet.", "Se ha ido internet.", "No hay wifi."]
   },
-  "it-works": { "text": "Funciona.", "variants": ["Ya funciona.", "Sí funciona."] },
-  "coffee-break": { "text": "¿Pausa para el café?", "variants": ["¿Nos tomamos un café?", "¿Un café?"] },
+  "it-works": { "text": "Funciona.", "accepts": ["Ya funciona.", "Sí funciona."] },
+  "coffee-break": { "text": "¿Pausa para el café?", "accepts": ["¿Nos tomamos un café?", "¿Un café?"] },
   "i-have-a-lot-to-do": { "text": "Tengo mucho que hacer." },
   "send-me-the-email": {
    "text": "Mándame el correo.",
-   "variants": ["Envíame el correo.", "Mándame el correo electrónico.", "Mándame el email."]
+   "accepts": ["Envíame el correo.", "Mándame el correo electrónico.", "Mándame el email."]
   },
   "pencil": { "text": "lápiz", "grammar": { "gender": "el", "plural": "lápices" } },
   "plug": { "text": "clavija", "grammar": { "gender": "la", "plural": "-s" } }

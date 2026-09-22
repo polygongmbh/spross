@@ -38,7 +38,7 @@
   "to-marry": { "text": "geedziĝi" },
   "this-is-my-mother": {
    "text": "Tiu estas mia patrino.",
-   "variants": ["Ĉi tiu estas mia patrino.", "Tiu ĉi estas mia patrino.", "Tio estas mia patrino."]
+   "accepts": ["Ĉi tiu estas mia patrino.", "Tiu ĉi estas mia patrino.", "Tio estas mia patrino."]
   },
   "where-is-your-father": { "text": "Kie estas via patro?", "orders": ["Kie via patro estas?"] },
   "i-have-two-children": { "text": "Mi havas du infanojn.", "orders": ["Du infanojn mi havas."] },
@@ -52,7 +52,7 @@
    }
   },
   "her-boyfriend": { "text": "ŝia koramiko" },
-  "old-people": { "text": "maljunaj homoj", "variants": ["maljunuloj"] },
+  "old-people": { "text": "maljunaj homoj", "accepts": ["maljunuloj"] },
   "many-friends": { "text": "multaj amikoj" },
   "mom-help-me": {
    "text": "Panjo, helpu min!",

@@ -83,12 +83,12 @@ private class CatalogForms(state: BoxState) {
     init {
         for (card in cards) {
             put(known, card.source.text, card)
-            card.source.synonyms.forEach { put(known, it, card) }
-            card.source.variants.forEach { put(known, it, card) }
+            card.source.teaches.forEach { put(known, it, card) }
+            card.source.accepts.forEach { put(known, it, card) }
             put(learning, card.target.text, card)
             put(learning, articledForm(card.target.grammar["gender"], card.target.text), card)
-            card.target.synonyms.forEach { put(learning, it, card) }
-            card.target.variants.forEach { put(learning, it, card) }
+            card.target.teaches.forEach { put(learning, it, card) }
+            card.target.accepts.forEach { put(learning, it, card) }
         }
     }
 

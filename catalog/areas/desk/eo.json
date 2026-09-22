@@ -2,81 +2,81 @@
  "title": "La skribotablo",
  "subtitle": "Tempo por koncentriĝi.",
  "words": {
-  "desk": { "text": "skribotablo", "variants": ["skribtablo"] },
-  "laptop": { "text": "tekokomputilo", "variants": ["portebla komputilo", "tekkomputilo"] },
+  "desk": { "text": "skribotablo", "accepts": ["skribtablo"] },
+  "laptop": { "text": "tekokomputilo", "accepts": ["portebla komputilo", "tekkomputilo"] },
   "keyboard": { "text": "klavaro" },
   "screen": { "text": "ekrano" },
   "mouse": { "text": "muso" },
   "cable": { "text": "kablo" },
   "pen": {
    "text": "skribilo",
-   "synonyms": ["globkrajono"],
+   "teaches": ["globkrajono"],
    "notes": {
     "eo": "skribilo estas ĉia ilo por skribi.",
     "de": "skribilo ist jedes Schreibgerät; der Kugelschreiber heißt globkrajono."
    }
   },
-  "notebook": { "text": "notlibro", "variants": ["notkajero", "notbloko"] },
-  "printer": { "text": "presilo", "variants": ["printilo"] },
+  "notebook": { "text": "notlibro", "accepts": ["notkajero", "notbloko"] },
+  "printer": { "text": "presilo", "accepts": ["printilo"] },
   "socket": { "text": "ŝtopilingo", "notes": { "eo": "ŝtopilingo estas en la muro." } },
   "to-work": { "text": "labori" },
   "to-type": { "text": "tajpi" },
-  "to-print": { "text": "presi", "variants": ["printi"] },
+  "to-print": { "text": "presi", "accepts": ["printi"] },
   "to-save": { "text": "konservi" },
-  "to-take-break": { "text": "fari paŭzon", "variants": ["paŭzi"] },
+  "to-take-break": { "text": "fari paŭzon", "accepts": ["paŭzi"] },
   "to-write": { "text": "skribi" },
   "to-call": { "text": "telefoni", "notes": { "eo": "telefoni al iu: mi telefonas al la kuracisto." } },
-  "to-delete": { "text": "forigi", "variants": ["forviŝi", "viŝi"] },
+  "to-delete": { "text": "forigi", "accepts": ["forviŝi", "viŝi"] },
   "to-repair": { "text": "ripari" },
   "phone": {
    "text": "poŝtelefono",
-   "variants": ["telefono"],
+   "accepts": ["telefono"],
    "notes": { "eo": "poŝtelefono iras en la poŝon · telefono estas ĉiu telefono." }
   },
   "email": {
    "text": "retpoŝto",
-   "synonyms": ["retmesaĝo"],
-   "variants": ["retletero", "retpoŝtaĵo"],
+   "teaches": ["retmesaĝo"],
+   "accepts": ["retletero", "retpoŝtaĵo"],
    "notes": { "eo": "retpoŝto estas la tuta sistemo · unu letero estas retmesaĝo." }
   },
   "paper": { "text": "papero" },
-  "folder": { "text": "dosierujo", "variants": ["dokumentujo"] },
+  "folder": { "text": "dosierujo", "accepts": ["dokumentujo"] },
   "password": { "text": "pasvorto" },
   "internet": { "text": "interreto" },
-  "charger": { "text": "ŝargilo", "variants": ["ŝarga kablo"] },
+  "charger": { "text": "ŝargilo", "accepts": ["ŝarga kablo"] },
   "calendar": { "text": "kalendaro" },
   "important": { "text": "grava" },
-  "ready": { "text": "preta", "variants": ["finita"] },
+  "ready": { "text": "preta", "accepts": ["finita"] },
   "broken": {
    "text": "difektita",
-   "variants": ["rompita", "difekta"],
+   "accepts": ["rompita", "difekta"],
    "notes": { "eo": "difektita ne plu funkcias · rompita estas en pecoj." }
   },
   "im-in-a-meeting": {
    "text": "Mi estas en kunsido.",
-   "variants": ["Mi estas en renkontiĝo."],
+   "accepts": ["Mi estas en renkontiĝo."],
    "orders": ["En kunsido mi estas."]
   },
-  "dont-disturb-me": { "text": "Ne ĝenu min!", "variants": ["Ne ĝeni!"] },
+  "dont-disturb-me": { "text": "Ne ĝenu min!", "accepts": ["Ne ĝeni!"] },
   "the-laptop-wont-charge-anymore": {
    "text": "La tekokomputilo ne plu ŝargiĝas.",
-   "variants": ["La portebla komputilo ne plu ŝargiĝas."],
+   "accepts": ["La portebla komputilo ne plu ŝargiĝas."],
    "orders": ["Ne plu ŝargiĝas la tekokomputilo."]
   },
   "the-internet-is-gone": {
    "text": "La interreto malaperis.",
-   "variants": ["Ne estas interreto.", "La sendrata reto malaperis."]
+   "accepts": ["Ne estas interreto.", "La sendrata reto malaperis."]
   },
-  "it-works": { "text": "Ĝi funkcias.", "variants": ["Ĝi denove funkcias.", "Funkcias."] },
-  "coffee-break": { "text": "Kafopaŭzo?", "variants": ["Ĉu kafopaŭzo?"] },
+  "it-works": { "text": "Ĝi funkcias.", "accepts": ["Ĝi denove funkcias.", "Funkcias."] },
+  "coffee-break": { "text": "Kafopaŭzo?", "accepts": ["Ĉu kafopaŭzo?"] },
   "i-have-a-lot-to-do": {
    "text": "Mi havas multon por fari.",
-   "variants": ["Mi havas multe da laboro."],
+   "accepts": ["Mi havas multe da laboro."],
    "orders": ["Multon mi havas por fari."]
   },
   "send-me-the-email": {
    "text": "Sendu al mi la retpoŝton.",
-   "variants": ["Sendu al mi la retmesaĝon."],
+   "accepts": ["Sendu al mi la retmesaĝon."],
    "orders": ["La retpoŝton sendu al mi."]
   },
   "pencil": { "text": "krajono" },

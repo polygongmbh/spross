@@ -2,10 +2,10 @@
  "title": "La cuisine",
  "subtitle": "Ici, ça sent le dîner.",
  "words": {
-  "fridge": { "text": "réfrigérateur", "variants": ["frigo", "frigidaire"], "grammar": { "gender": "le" } },
+  "fridge": { "text": "réfrigérateur", "accepts": ["frigo", "frigidaire"], "grammar": { "gender": "le" } },
   "stove": {
    "text": "cuisinière",
-   "variants": ["gazinière", "plaque de cuisson"],
+   "accepts": ["gazinière", "plaque de cuisson"],
    "grammar": { "gender": "la" },
    "notes": {
     "fr": "la cuisinière chauffe les plats · c'est aussi la femme qui cuisine.",
@@ -14,86 +14,86 @@
   },
   "oven": { "text": "four", "grammar": { "gender": "le" } },
   "dishwasher": { "text": "lave-vaisselle", "grammar": { "gender": "le", "plural": "=" } },
-  "pot": { "text": "casserole", "variants": ["marmite", "faitout"], "grammar": { "gender": "la" } },
+  "pot": { "text": "casserole", "accepts": ["marmite", "faitout"], "grammar": { "gender": "la" } },
   "pan": {
    "text": "poêle",
    "grammar": { "gender": "la" },
    "notes": { "fr": "la poêle pour cuire · le poêle (masculin) chauffe la maison." }
   },
   "knife": { "text": "couteau", "grammar": { "gender": "le", "plural": "-x" } },
-  "spoon": { "text": "cuillère", "variants": ["cuiller"], "grammar": { "gender": "la" } },
+  "spoon": { "text": "cuillère", "accepts": ["cuiller"], "grammar": { "gender": "la" } },
   "fork": { "text": "fourchette", "grammar": { "gender": "la" } },
-  "plate": { "text": "assiette", "variants": ["l'assiette"], "grammar": { "gender": "l'" } },
+  "plate": { "text": "assiette", "accepts": ["l'assiette"], "grammar": { "gender": "l'" } },
   "to-cook": {
    "text": "cuisiner",
-   "variants": ["faire la cuisine"],
+   "accepts": ["faire la cuisine"],
    "notes": { "fr": "cuisiner un plat · faire bouillir de l'eau." }
   },
   "to-bake": {
    "text": "cuire au four",
-   "variants": ["faire cuire au four"],
+   "accepts": ["faire cuire au four"],
    "notes": {
     "fr": "cuire au four un gâteau, un poulet · faire un gâteau, c'est le préparer.",
     "de": "Es gibt kein eigenes Verb für backen: cuire au four; einen Kuchen backen heißt faire un gâteau."
    }
   },
   "to-cut": { "text": "couper" },
-  "to-wash-the-dishes": { "text": "faire la vaisselle", "variants": ["laver la vaisselle"] },
+  "to-wash-the-dishes": { "text": "faire la vaisselle", "accepts": ["laver la vaisselle"] },
   "to-taste": { "text": "goûter" },
   "to-fry": {
    "text": "frire",
-   "variants": ["faire frire", "poêler", "faire revenir"],
+   "accepts": ["faire frire", "poêler", "faire revenir"],
    "notes": { "fr": "on dit faire frire · poêler, c'est cuire à la poêle." }
   },
-  "to-boil": { "text": "bouillir", "variants": ["faire bouillir"] },
-  "to-reheat": { "text": "réchauffer", "variants": ["faire réchauffer"] },
-  "to-stir": { "text": "remuer", "variants": ["mélanger", "touiller"] },
+  "to-boil": { "text": "bouillir", "accepts": ["faire bouillir"] },
+  "to-reheat": { "text": "réchauffer", "accepts": ["faire réchauffer"] },
+  "to-stir": { "text": "remuer", "accepts": ["mélanger", "touiller"] },
   "to-take-out-trash": {
    "text": "sortir la poubelle",
-   "variants": ["sortir les poubelles", "descendre la poubelle"],
+   "accepts": ["sortir les poubelles", "descendre la poubelle"],
    "notes": { "fr": "on sort la poubelle, pas les ordures." }
   },
   "caution": { "text": "attention" },
   "cup": { "text": "tasse", "grammar": { "gender": "la" } },
   "bowl": { "text": "bol", "grammar": { "gender": "le" } },
-  "basket": { "text": "panier", "variants": ["corbeille"], "grammar": { "gender": "le" } },
+  "basket": { "text": "panier", "accepts": ["corbeille"], "grammar": { "gender": "le" } },
   "tin-can": {
    "text": "boîte de conserve",
-   "variants": ["conserve"],
+   "accepts": ["conserve"],
    "grammar": { "gender": "la", "plural": "boîtes de conserve" }
   },
   "gas": { "text": "gaz", "grammar": { "gender": "le", "plural": "=" } },
-  "tasty": { "text": "délicieux", "variants": ["délicieuse"] },
+  "tasty": { "text": "délicieux", "accepts": ["délicieuse"] },
   "the-knife-is-sharp": {
    "text": "Le couteau est tranchant !",
-   "variants": ["Le couteau est bien aiguisé !", "Le couteau coupe bien !"]
+   "accepts": ["Le couteau est bien aiguisé !", "Le couteau coupe bien !"]
   },
-  "this-is-very-tasty": { "text": "C'est très bon !", "variants": ["C'est tellement bon !", "C'est délicieux !"] },
+  "this-is-very-tasty": { "text": "C'est très bon !", "accepts": ["C'est tellement bon !", "C'est délicieux !"] },
   "are-you-cooking-rice-today": {
    "text": "Tu cuisines du riz aujourd'hui ?",
-   "variants": ["Est-ce que tu cuisines du riz aujourd'hui ?", "Tu fais du riz aujourd'hui ?"],
+   "accepts": ["Est-ce que tu cuisines du riz aujourd'hui ?", "Tu fais du riz aujourd'hui ?"],
    "orders": ["Aujourd'hui, tu cuisines du riz ?"]
   },
   "the-pot-is-still-on-the-stove": {
    "text": "La casserole est encore sur la cuisinière.",
-   "variants": ["La casserole est encore sur le feu.", "La casserole est toujours sur le feu."],
+   "accepts": ["La casserole est encore sur le feu.", "La casserole est toujours sur le feu."],
    "notes": { "fr": "au quotidien : sur le feu · sur la cuisinière nomme l'appareil." }
   },
   "wash-the-dishes-in-the-sink": {
    "text": "Fais la vaisselle dans l'évier !",
-   "variants": ["Lave la vaisselle dans l'évier !"],
+   "accepts": ["Lave la vaisselle dans l'évier !"],
    "notes": { "fr": "l'évier est dans la cuisine, le lavabo dans la salle de bains." },
    "orders": ["Dans l'évier, fais la vaisselle !"]
   },
-  "the-fridge-is-empty": { "text": "Le réfrigérateur est vide.", "variants": ["Le frigo est vide."] },
+  "the-fridge-is-empty": { "text": "Le réfrigérateur est vide.", "accepts": ["Le frigo est vide."] },
   "can-you-set-the-table": {
    "text": "Tu peux mettre la table ?",
-   "variants": ["Peux-tu mettre la table ?", "Tu peux dresser la table ?"]
+   "accepts": ["Peux-tu mettre la table ?", "Tu peux dresser la table ?"]
   },
-  "the-water-is-boiling-hot": { "text": "L'eau bout.", "variants": ["L'eau est en train de bouillir."] },
+  "the-water-is-boiling-hot": { "text": "L'eau bout.", "accepts": ["L'eau est en train de bouillir."] },
   "careful-very-hot": {
    "text": "Attention, très chaud !",
-   "variants": ["Attention, c'est très chaud !", "Attention, ça brûle !"]
+   "accepts": ["Attention, c'est très chaud !", "Attention, ça brûle !"]
   }
  }
 }

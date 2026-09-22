@@ -9,12 +9,12 @@
   },
   "laptop": {
    "text": "ordinateur portable",
-   "variants": ["l'ordinateur portable", "portable", "PC portable"],
+   "accepts": ["l'ordinateur portable", "portable", "PC portable"],
    "grammar": { "gender": "l'" },
    "notes": { "fr": "on dit surtout mon portable · mais le portable, c'est aussi le téléphone." }
   },
   "keyboard": { "text": "clavier", "grammar": { "gender": "le" } },
-  "screen": { "text": "écran", "variants": ["l'écran"], "grammar": { "gender": "l'" } },
+  "screen": { "text": "écran", "accepts": ["l'écran"], "grammar": { "gender": "l'" } },
   "mouse": { "text": "souris", "grammar": { "gender": "la", "plural": "=" } },
   "cable": { "text": "câble", "grammar": { "gender": "le" } },
   "pen": {
@@ -22,31 +22,31 @@
    "grammar": { "gender": "le" },
    "notes": { "fr": "le stylo écrit à l’encre.", "de": "„Stift“ ist hier der Kugelschreiber: le stylo." }
   },
-  "notebook": { "text": "carnet", "variants": ["bloc-notes"], "grammar": { "gender": "le" } },
-  "printer": { "text": "imprimante", "variants": ["l'imprimante"], "grammar": { "gender": "l'" } },
+  "notebook": { "text": "carnet", "accepts": ["bloc-notes"], "grammar": { "gender": "le" } },
+  "printer": { "text": "imprimante", "accepts": ["l'imprimante"], "grammar": { "gender": "l'" } },
   "socket": {
    "text": "prise",
-   "variants": ["prise de courant", "prise électrique"],
+   "accepts": ["prise de courant", "prise électrique"],
    "grammar": { "gender": "la" }
   },
   "to-work": { "text": "travailler" },
-  "to-type": { "text": "taper", "variants": ["saisir", "taper à l'ordinateur"] },
+  "to-type": { "text": "taper", "accepts": ["saisir", "taper à l'ordinateur"] },
   "to-print": { "text": "imprimer" },
-  "to-save": { "text": "enregistrer", "synonyms": ["sauvegarder"] },
-  "to-take-break": { "text": "faire une pause", "variants": ["prendre une pause"] },
+  "to-save": { "text": "enregistrer", "teaches": ["sauvegarder"] },
+  "to-take-break": { "text": "faire une pause", "accepts": ["prendre une pause"] },
   "to-write": { "text": "écrire" },
-  "to-call": { "text": "appeler", "variants": ["téléphoner", "passer un coup de fil"] },
-  "to-delete": { "text": "supprimer", "synonyms": ["effacer"] },
-  "to-repair": { "text": "réparer", "variants": ["dépanner"] },
+  "to-call": { "text": "appeler", "accepts": ["téléphoner", "passer un coup de fil"] },
+  "to-delete": { "text": "supprimer", "teaches": ["effacer"] },
+  "to-repair": { "text": "réparer", "accepts": ["dépanner"] },
   "phone": {
    "text": "téléphone",
-   "variants": ["portable", "téléphone portable", "mobile"],
+   "accepts": ["portable", "téléphone portable", "mobile"],
    "grammar": { "gender": "le" },
    "notes": { "fr": "le portable, c'est le téléphone qu'on met dans la poche." }
   },
   "email": {
    "text": "e-mail",
-   "variants": ["l'e-mail", "mail", "courriel", "courrier électronique"],
+   "accepts": ["l'e-mail", "mail", "courriel", "courrier électronique"],
    "grammar": { "gender": "l'" },
    "notes": { "fr": "on dit le mail ou l'e-mail ; le courriel est la forme officielle." }
   },
@@ -61,18 +61,18 @@
    "text": "internet",
    "notes": { "fr": "souvent sans article : je n'ai pas internet, il n'y a plus d'internet." }
   },
-  "charger": { "text": "chargeur", "variants": ["câble de recharge"], "grammar": { "gender": "le" } },
+  "charger": { "text": "chargeur", "accepts": ["câble de recharge"], "grammar": { "gender": "le" } },
   "calendar": {
    "text": "calendrier",
-   "synonyms": ["agenda"],
-   "variants": ["l'agenda"],
+   "teaches": ["agenda"],
+   "accepts": ["l'agenda"],
    "grammar": { "gender": "le" },
    "notes": { "fr": "le calendrier est au mur · les rendez-vous vont dans l'agenda." }
   },
-  "important": { "text": "important", "variants": ["importante"] },
+  "important": { "text": "important", "accepts": ["importante"] },
   "ready": {
    "text": "prêt",
-   "variants": ["prête", "fini", "finie", "terminé", "terminée"],
+   "accepts": ["prête", "fini", "finie", "terminé", "terminée"],
    "notes": {
     "fr": "je suis prêt, le repas est prêt · un travail fini est terminé.",
     "de": "prêt heißt „bereit“: je suis prêt. Fertig im Sinne von beendet ist fini oder terminé."
@@ -80,23 +80,23 @@
   },
   "broken": {
    "text": "cassé",
-   "variants": ["cassée", "en panne", "abîmé"],
+   "accepts": ["cassée", "en panne", "abîmé"],
    "notes": { "fr": "un verre cassé · un appareil qui ne marche plus est en panne." }
   },
   "im-in-a-meeting": { "text": "Je suis en réunion." },
-  "dont-disturb-me": { "text": "Ne me dérange pas !", "variants": ["Ne pas déranger !"] },
+  "dont-disturb-me": { "text": "Ne me dérange pas !", "accepts": ["Ne pas déranger !"] },
   "the-laptop-wont-charge-anymore": {
    "text": "L'ordinateur portable ne charge plus.",
-   "variants": ["L'ordinateur portable ne se recharge plus.", "Le portable ne charge plus."]
+   "accepts": ["L'ordinateur portable ne se recharge plus.", "Le portable ne charge plus."]
   },
   "the-internet-is-gone": {
    "text": "Il n'y a plus d'internet.",
-   "variants": ["Il n'y a plus internet.", "Internet ne marche plus.", "Il n'y a plus de wifi."]
+   "accepts": ["Il n'y a plus internet.", "Internet ne marche plus.", "Il n'y a plus de wifi."]
   },
-  "it-works": { "text": "Ça marche.", "variants": ["Ça fonctionne.", "Ça remarche."] },
-  "coffee-break": { "text": "Pause café ?", "variants": ["Une pause café ?", "On prend un café ?"] },
-  "i-have-a-lot-to-do": { "text": "J'ai beaucoup à faire.", "variants": ["J'ai beaucoup de choses à faire."] },
-  "send-me-the-email": { "text": "Envoie-moi l'e-mail.", "variants": ["Envoie-moi le mail.", "Envoie-moi le courriel."] },
+  "it-works": { "text": "Ça marche.", "accepts": ["Ça fonctionne.", "Ça remarche."] },
+  "coffee-break": { "text": "Pause café ?", "accepts": ["Une pause café ?", "On prend un café ?"] },
+  "i-have-a-lot-to-do": { "text": "J'ai beaucoup à faire.", "accepts": ["J'ai beaucoup de choses à faire."] },
+  "send-me-the-email": { "text": "Envoie-moi l'e-mail.", "accepts": ["Envoie-moi le mail.", "Envoie-moi le courriel."] },
   "pencil": { "text": "crayon", "grammar": { "gender": "le", "plural": "-s" } },
   "plug": { "text": "fiche", "grammar": { "gender": "la", "plural": "-s" } }
  }

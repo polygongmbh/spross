@@ -31,7 +31,7 @@ class SharedTargetForms(cards: Collection<Card>) {
     private fun build(cards: Collection<Card>): Map<String, List<Card>> {
         val index = mutableMapOf<String, MutableList<Card>>()
         for (card in cards.sortedBy { it.seedIndex }) {
-            for (form in listOf(card.target.text) + card.target.synonyms + card.target.variants) {
+            for (form in listOf(card.target.text) + card.target.teaches + card.target.accepts) {
                 val shape = key(form)
                 if (shape.isEmpty()) continue
                 val holders = index.getOrPut(shape) { mutableListOf() }

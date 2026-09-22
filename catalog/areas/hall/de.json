@@ -28,13 +28,13 @@
   "guest": { "text": "Gast", "grammar": { "gender": "der", "plural": "Gäste" } },
   "wallet": {
    "text": "Geldbeutel",
-   "variants": ["Portemonnaie"],
+   "accepts": ["Portemonnaie"],
    "grammar": { "gender": "der", "plural": "=" }
   },
   "glove": { "text": "Handschuh", "grammar": { "gender": "der", "plural": "-e" } },
   "letter": { "text": "Brief", "grammar": { "gender": "der", "plural": "-e" } },
   "to-knock-on-door": { "text": "an die Tür klopfen" },
-  "to-enter": { "text": "hereinkommen", "variants": ["reinkommen"] },
+  "to-enter": { "text": "hereinkommen", "accepts": ["reinkommen"] },
   "house": { "text": "Haus", "grammar": { "gender": "das", "plural": "Häuser" } },
   "to-live": { "text": "wohnen" },
   "do-you-have-the-keys": { "text": "Hast du die Schlüssel?", "orders": ["Du hast die Schlüssel?"] },

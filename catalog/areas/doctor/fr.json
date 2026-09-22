@@ -2,7 +2,7 @@
  "title": "Chez le médecin",
  "subtitle": "Du rendez-vous à l'ordonnance.",
  "words": {
-  "doctor": { "text": "médecin", "variants": ["docteur"], "grammar": { "gender": "le" } },
+  "doctor": { "text": "médecin", "accepts": ["docteur"], "grammar": { "gender": "le" } },
   "doctor-f": {
    "text": "docteure",
    "grammar": { "gender": "la" },
@@ -10,58 +10,58 @@
   },
   "practice": {
    "text": "cabinet",
-   "variants": ["cabinet médical"],
+   "accepts": ["cabinet médical"],
    "grammar": { "gender": "le" },
    "notes": { "fr": "le cabinet est le lieu · la consultation est le rendez-vous." }
   },
   "pill": {
    "text": "comprimé",
-   "variants": ["cachet"],
+   "accepts": ["cachet"],
    "grammar": { "gender": "le" },
    "notes": { "fr": "on prend un comprimé ou un cachet · la pilule est contraceptive." }
   },
   "prescription": {
    "text": "ordonnance",
-   "variants": ["l'ordonnance"],
+   "accepts": ["l'ordonnance"],
    "grammar": { "gender": "l'" },
    "notes": { "fr": "le médecin fait une ordonnance, le pharmacien la lit." }
   },
   "pharmacy": { "text": "pharmacie", "grammar": { "gender": "la" } },
   "insurance-card": {
    "text": "carte Vitale",
-   "variants": ["carte d'assurance maladie"],
+   "accepts": ["carte d'assurance maladie"],
    "grammar": { "gender": "la" },
    "notes": { "fr": "la carte Vitale est la carte verte de la Sécu : on la donne au médecin." }
   },
   "health-insurance": {
    "text": "assurance maladie",
-   "variants": ["l'assurance maladie"],
+   "accepts": ["l'assurance maladie"],
    "grammar": { "gender": "l'" },
    "notes": { "fr": "la Sécurité sociale (la Sécu) rembourse ; la mutuelle paie le reste." }
   },
   "hospital": {
    "text": "hôpital",
-   "variants": ["l'hôpital"],
+   "accepts": ["l'hôpital"],
    "grammar": { "gender": "l'", "plural": "hôpitaux" }
   },
   "emergency": {
    "text": "urgence",
-   "variants": ["l'urgence"],
+   "accepts": ["l'urgence"],
    "grammar": { "gender": "l'" },
    "notes": { "fr": "à l'hôpital, on va aux urgences, toujours au pluriel." }
   },
   "doctors-note": {
    "text": "arrêt de travail",
-   "variants": ["l'arrêt de travail", "arrêt maladie"],
+   "accepts": ["l'arrêt de travail", "arrêt maladie"],
    "grammar": { "gender": "l'", "plural": "arrêts de travail" },
    "notes": { "fr": "le médecin donne un arrêt de travail : on est en arrêt maladie." }
   },
-  "to-examine": { "text": "examiner", "variants": ["ausculter"] },
-  "to-prescribe-medicine": { "text": "prescrire des médicaments", "variants": ["faire une ordonnance"] },
+  "to-examine": { "text": "examiner", "accepts": ["ausculter"] },
+  "to-prescribe-medicine": { "text": "prescrire des médicaments", "accepts": ["faire une ordonnance"] },
   "to-take-medicine": { "text": "prendre des médicaments" },
   "to-call-in-sick": {
    "text": "se mettre en arrêt maladie",
-   "variants": ["prendre un arrêt maladie"],
+   "accepts": ["prendre un arrêt maladie"],
    "notes": { "fr": "je me mets en arrêt maladie : le médecin fait l'arrêt de travail." }
   },
   "medicine": {
@@ -69,26 +69,26 @@
    "grammar": { "gender": "le" },
    "notes": { "fr": "on prend un médicament · la médecine est la science du médecin." }
   },
-  "nurse": { "text": "infirmier", "variants": ["l'infirmier"], "grammar": { "gender": "l'" } },
-  "nurse-f": { "text": "infirmière", "variants": ["l'infirmière"], "grammar": { "gender": "l'" } },
-  "dentist": { "text": "dentiste", "variants": ["chirurgien-dentiste"], "grammar": { "gender": "le" } },
+  "nurse": { "text": "infirmier", "accepts": ["l'infirmier"], "grammar": { "gender": "l'" } },
+  "nurse-f": { "text": "infirmière", "accepts": ["l'infirmière"], "grammar": { "gender": "l'" } },
+  "dentist": { "text": "dentiste", "accepts": ["chirurgien-dentiste"], "grammar": { "gender": "le" } },
   "vaccination": {
    "text": "vaccination",
-   "variants": ["vaccin"],
+   "accepts": ["vaccin"],
    "grammar": { "gender": "la" },
    "notes": { "fr": "la vaccination est l'acte, le vaccin le produit : se faire vacciner." }
   },
-  "ambulance": { "text": "ambulance", "variants": ["l'ambulance"], "grammar": { "gender": "l'" } },
+  "ambulance": { "text": "ambulance", "accepts": ["l'ambulance"], "grammar": { "gender": "l'" } },
   "to-look-after": { "text": "soigner" },
   "take-the-pills-twice-daily": {
    "text": "Prenez les comprimés deux fois par jour.",
-   "variants": ["Prends les comprimés deux fois par jour."],
+   "accepts": ["Prends les comprimés deux fois par jour."],
    "orders": ["Deux fois par jour, prenez les comprimés."]
   },
-  "show-me-your-insurance-card": { "text": "Montrez-moi votre carte Vitale.", "variants": ["Montre-moi ta carte Vitale."] },
+  "show-me-your-insurance-card": { "text": "Montrez-moi votre carte Vitale.", "accepts": ["Montre-moi ta carte Vitale."] },
   "the-practice-is-closed": { "text": "Le cabinet est fermé." },
   "i-have-to-see-a-doctor": { "text": "Je dois aller chez le médecin." },
-  "call-an-ambulance": { "text": "Appelez une ambulance !", "variants": ["Appelle une ambulance !"] },
+  "call-an-ambulance": { "text": "Appelez une ambulance !", "accepts": ["Appelle une ambulance !"] },
   "the-doctor-will-examine-you-shortly": {
    "text": "Le médecin vous examinera tout de suite.",
    "orders": ["Tout de suite, le médecin vous examinera."]

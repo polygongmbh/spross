@@ -4,63 +4,60 @@
  "words": {
   "good": {
    "text": "-zuri",
-   "variants": ["nzuri", "mzuri", "wazuri", "kizuri", "vizuri", "mazuri", "mizuri"],
+   "accepts": ["nzuri", "mzuri", "wazuri", "kizuri", "vizuri", "mazuri", "mizuri"],
    "notes": {
     "sw": "mji mzuri · kitanda kizuri · meza nzuri",
     "de": "Adjektive bekommen die Vorsilbe der Nomenklasse: mtu mzuri, kitu kizuri, nyumba nzuri. Bei einer Person heißt mzuri oft hübsch, nicht nur gut."
    }
   },
-  "bad": { "text": "-baya", "variants": ["mbaya", "wabaya", "kibaya", "vibaya", "mabaya", "mibaya"] },
-  "big": {
-   "text": "-kubwa",
-   "variants": ["mkubwa", "wakubwa", "kikubwa", "vikubwa", "makubwa", "mikubwa"]
-  },
+  "bad": { "text": "-baya", "accepts": ["mbaya", "wabaya", "kibaya", "vibaya", "mabaya", "mibaya"] },
+  "big": { "text": "-kubwa", "accepts": ["mkubwa", "wakubwa", "kikubwa", "vikubwa", "makubwa", "mikubwa"] },
   "small": {
    "text": "-dogo",
-   "variants": ["ndogo", "mdogo", "wadogo", "kidogo", "vidogo", "madogo", "midogo"]
+   "accepts": ["ndogo", "mdogo", "wadogo", "kidogo", "vidogo", "madogo", "midogo"]
   },
   "much": {
    "text": "-ingi",
-   "variants": ["nyingi", "wengi", "mengi", "vingi", "mingi", "mwingi", "kingi"],
+   "accepts": ["nyingi", "wengi", "mengi", "vingi", "mingi", "mwingi", "kingi"],
    "notes": { "sw": "maji mengi · maneno mengi · lugha nyingi" }
   },
-  "new": { "text": "-pya", "variants": ["mpya", "wapya", "jipya", "kipya", "vipya", "mapya", "mipya"] },
+  "new": { "text": "-pya", "accepts": ["mpya", "wapya", "jipya", "kipya", "vipya", "mapya", "mipya"] },
   "old": {
    "text": "-zee",
-   "synonyms": ["-kuukuu"],
-   "variants": ["mzee", "wazee", "kuukuu", "mkuukuu", "kikuukuu", "vikuukuu", "makuukuu", "mikuukuu"],
+   "teaches": ["-kuukuu"],
+   "accepts": ["mzee", "wazee", "kuukuu", "mkuukuu", "kikuukuu", "vikuukuu", "makuukuu", "mikuukuu"],
    "notes": { "sw": "mzee, wazee · kitu kikuukuu, vitu vikuukuu" }
   },
   "slow": { "text": "polepole" },
   "fast": { "text": "haraka", "notes": { "sw": "Fanya haraka! · jibu la haraka" } },
   "long": {
    "text": "-refu",
-   "variants": ["ndefu", "mrefu", "warefu", "kirefu", "virefu", "marefu", "mirefu"],
+   "accepts": ["ndefu", "mrefu", "warefu", "kirefu", "virefu", "marefu", "mirefu"],
    "notes": { "sw": "mtu mrefu · sentensi ndefu · kitanda kirefu" }
   },
-  "short": { "text": "-fupi", "variants": ["mfupi", "wafupi", "kifupi", "vifupi", "mafupi", "mifupi"] },
+  "short": { "text": "-fupi", "accepts": ["mfupi", "wafupi", "kifupi", "vifupi", "mafupi", "mifupi"] },
   "heavy": {
    "text": "-zito",
-   "variants": ["nzito", "mzito", "wazito", "kizito", "vizito", "mazito", "mizito"]
+   "accepts": ["nzito", "mzito", "wazito", "kizito", "vizito", "mazito", "mizito"]
   },
   "lightweight": {
    "text": "-epesi",
-   "variants": ["nyepesi", "mwepesi", "wepesi", "chepesi", "vyepesi", "mepesi", "myepesi"],
+   "accepts": ["nyepesi", "mwepesi", "wepesi", "chepesi", "vyepesi", "mepesi", "myepesi"],
    "notes": { "sw": "kitanda chepesi, sentensi nyepesi" }
   },
   "difficult": {
    "text": "-gumu",
-   "variants": ["ngumu", "mgumu", "wagumu", "kigumu", "vigumu", "magumu", "migumu"],
+   "accepts": ["ngumu", "mgumu", "wagumu", "kigumu", "vigumu", "magumu", "migumu"],
    "notes": { "sw": "swali gumu, lugha ngumu, kitanda kigumu" }
   },
   "easy": { "text": "rahisi", "notes": { "sw": "swali rahisi · rahisi pia ni bei ndogo" } },
-  "problem": { "text": "tatizo", "grammar": { "plural": "matatizo" }, "synonyms": ["shida"] },
+  "problem": { "text": "tatizo", "grammar": { "plural": "matatizo" }, "teaches": ["shida"] },
   "to-solve": { "text": "kutatua", "notes": { "sw": "kutatua tatizo, kutatua ugomvi" } },
   "challenge": { "text": "changamoto", "grammar": { "plural": "=" } },
   "clean-adj": { "text": "safi", "notes": { "sw": "maji safi, nyumba safi · Safi! = vizuri!" } },
   "sharp": {
    "text": "-kali",
-   "variants": ["mkali", "wakali", "kikali", "vikali", "makali", "mikali"],
+   "accepts": ["mkali", "wakali", "kikali", "vikali", "makali", "mikali"],
    "notes": {
     "sw": "mtu mkali · sauti kali",
     "de": "gilt auch für Menschen (streng) und Essen (scharf): mwalimu mkali, pilipili kali."
@@ -68,7 +65,7 @@
   },
   "available": {
    "text": "kupatikana",
-   "variants": ["patikana"],
+   "accepts": ["patikana"],
    "notes": {
     "sw": "Maji yanapatikana · msaada haupatikani.",
     "de": "Swahili sagt es als Verb: inapatikana = es ist zu haben · haipatikani = das gibt es nicht."
@@ -76,31 +73,31 @@
   },
   "other": {
    "text": "-ingine",
-   "variants": ["nyingine", "mwingine", "wengine", "kingine", "vingine", "mengine", "mingine"],
+   "accepts": ["nyingine", "mwingine", "wengine", "kingine", "vingine", "mengine", "mingine"],
    "notes": { "sw": "neno jingine · meza nyingine · maji mengine = maji zaidi" }
   },
   "hot": { "text": "moto", "notes": { "de": "dasselbe Wort heißt auch Feuer: Kuna moto." } },
   "cold-adj": { "text": "baridi", "notes": { "sw": "maji baridi, usiku baridi · Leo ni baridi." } },
-  "empty": { "text": "-tupu", "variants": ["mtupu", "watupu", "kitupu", "vitupu", "matupu", "mitupu"] },
+  "empty": { "text": "-tupu", "accepts": ["mtupu", "watupu", "kitupu", "vitupu", "matupu", "mitupu"] },
   "full": {
    "text": "kujaa",
-   "variants": ["imejaa", "limejaa", "umejaa"],
+   "accepts": ["imejaa", "limejaa", "umejaa"],
    "notes": {
     "sw": "nyumba imejaa · mji umejaa",
     "de": "Swahili sagt es als Verb: basi limejaa = der Bus ist voll."
    }
   },
   "dirty": { "text": "chafu" },
-  "dry": { "text": "-kavu", "variants": ["mkavu", "wakavu", "kikavu", "vikavu", "makavu", "mikavu"] },
+  "dry": { "text": "-kavu", "accepts": ["mkavu", "wakavu", "kikavu", "vikavu", "makavu", "mikavu"] },
   "beautiful": {
    "text": "-rembo",
-   "variants": ["mrembo", "warembo", "mirembo", "kirembo", "virembo", "marembo"],
+   "accepts": ["mrembo", "warembo", "mirembo", "kirembo", "virembo", "marembo"],
    "notes": { "sw": "mtu mrembo, nyumba nzuri · urembo = pambo, uzuri" }
   },
   "health": { "text": "afya" },
   "healthy": {
    "text": "-zima",
-   "variants": ["mzima", "wazima", "nzima"],
+   "accepts": ["mzima", "wazima", "nzima"],
    "notes": { "sw": "mzima = mwenye afya · nyumba nzima = nyumba yote" }
   },
   "firm": { "text": "imara", "notes": { "sw": "nyumba imara, msimamo imara, afya imara" } },

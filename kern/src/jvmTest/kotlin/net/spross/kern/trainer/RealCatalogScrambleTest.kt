@@ -78,7 +78,7 @@ class RealCatalogScrambleTest {
         assertTrue(stems.size >= 20, "sw authors ${stems.size} bound stems — the fallback is untested")
         val sw = WordScrambleAvailability.report(ScrambleFixture.box(cards("de", "sw")))
         val asked = sw.words.filter { it.card.target.text.startsWith("-") }
-        assertTrue(asked.isNotEmpty(), "no bound stem reached the pool through its variants")
+        assertTrue(asked.isNotEmpty(), "no bound stem reached the pool through its accepted forms")
         assertTrue(asked.all { spelling -> spelling.forms.none { it.startsWith("-") } })
     }
 

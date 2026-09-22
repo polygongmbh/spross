@@ -45,12 +45,12 @@ internal object DateDrillFixture {
     private val deWeekdays = names(
         "Montag" to "Mo", "Dienstag" to "Di", "Mittwoch" to "Mi", "Donnerstag" to "Do",
         "Freitag" to "Fr", "Samstag" to "Sa", "Sonntag" to "So",
-    ).map { if (it.text == "Samstag") it.copy(synonyms = listOf("Sonnabend")) else it }
+    ).map { if (it.text == "Samstag") it.copy(teaches = listOf("Sonnabend")) else it }
 
     private val deMonths = listOf(
         "Januar", "Februar", "März", "April", "Mai", "Juni",
         "Juli", "August", "September", "Oktober", "November", "Dezember",
-    ).map { if (it == "Januar") DateNames(it, synonyms = listOf("Jänner")) else DateNames(it) }
+    ).map { if (it == "Januar") DateNames(it, teaches = listOf("Jänner")) else DateNames(it) }
 
     private val ukWeekdays = names(
         "понеділок" to "пн", "вівторок" to "вт", "середа" to "ср", "четвер" to "чт",
@@ -82,14 +82,14 @@ internal object DateDrillFixture {
         months = entries(enMonths, deMonths),
         numeric = "{m}/{d}/{y}",
         patterns = DatePatterns(
-            dayMonth = DatePattern("der {day} {month}", variants = listOf("den {day} {month}")),
+            dayMonth = DatePattern("der {day} {month}", accepts = listOf("den {day} {month}")),
             date = DatePattern(
                 "{weekday}, der {day} {month}",
-                variants = listOf("{weekday}, den {day} {month}"),
+                accepts = listOf("{weekday}, den {day} {month}"),
             ),
             dateWithYear = DatePattern(
                 "{weekday}, der {day} {month} {year}",
-                variants = listOf("{weekday}, den {day} {month} {year}"),
+                accepts = listOf("{weekday}, den {day} {month} {year}"),
             ),
         ),
     )
@@ -104,12 +104,12 @@ internal object DateDrillFixture {
         patterns = DatePatterns(
             dayMonth = DatePattern(
                 "{month} {day}",
-                synonyms = listOf("the {day} of {month}"),
-                variants = listOf("{day} of {month}"),
+                teaches = listOf("the {day} of {month}"),
+                accepts = listOf("{day} of {month}"),
             ),
             date = DatePattern(
                 "{weekday}, {month} {day}",
-                synonyms = listOf("{weekday}, the {day} of {month}"),
+                teaches = listOf("{weekday}, the {day} of {month}"),
             ),
             dateWithYear = null,
         ),

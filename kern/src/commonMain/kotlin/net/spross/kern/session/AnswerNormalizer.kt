@@ -60,7 +60,7 @@ sealed interface Match {
  * ONE leading listed article of the answer language is optional → iff the card is
  * a verb, any listed citation prefix (en `"to "`, sw `ku`/`kw`) is optional →
  * Damerau-Levenshtein (OSA) typo budget. Accepted forms = target
- * `text ∪ synonyms ∪ variants`.
+ * `text ∪ teaches ∪ accepts`.
  *
  * [articleLeniency] (the one-arg constructor's default, true) is that
  * optional-article contract for vocab reviews. Drill callers grading article
@@ -165,18 +165,18 @@ class AnswerNormalizer(
     /**
      * Grade [input] against every accepted target form. Verb-prefix leniency applies
      * iff `kind == verb`; the article-mismatch demotion applies iff the target's
-     * grammar carries `gender` and the form matched is the text or a variant (a PRESENT
-     * leading article that disagrees is a typo, a missing one stays exact) — a synonym
+     * grammar carries `gender` and the form matched is the text or an `accepts` entry (a PRESENT
+     * leading article that disagrees is a typo, a missing one stays exact) — a `teaches` entry
      * is another word whose article the catalog does not carry, so its own article
      * never demotes. A leading word that reads as a mistyped article
      * and, once dropped, makes the rest match is a typo, not a failure — in vocab
      * reviews only, see [strayLeadingWordRecovery].
      */
     fun evaluate(input: String, card: Card): Match {
-        val accepted = listOf(card.target.text) + card.target.synonyms + card.target.variants
+        val accepted = listOf(card.target.text) + card.target.teaches + card.target.accepts
         val prefixes = if (card.kind == CardKind.Verb) verbPrefixes else emptyList()
         val expectedArticle = card.target.grammar["gender"]?.lowercase()
-        val genderedForms = listOf(card.target.text) + card.target.variants
+        val genderedForms = listOf(card.target.text) + card.target.accepts
         val result = evaluate(input, accepted, prefixes, expectedArticle, genderedForms)
         // Base-word answer on a feminine card grades as typo, not failure (§3):
         // anything the BASE concept would accept demotes to the feminine correction.
@@ -223,7 +223,7 @@ class AnswerNormalizer(
                     // why: the NEAREST accepted form is the correction, not the last one
                     // inside budget — sw `white` carries eight stems, and a slip at
                     // "nyeupe" was corrected to "myeupe" purely by authoring order.
-                    // A tie keeps the earlier form, so a card's own text leads its variants.
+                    // A tie keeps the earlier form, so a card's own text leads its `accepts`.
                     val distance = damerauLevenshtein(variant, candidate)
                     if (distance >= bestDistance) continue
                     bestDistance = distance
