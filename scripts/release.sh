@@ -97,7 +97,7 @@ if [ "$APP_GATE" -eq 1 ] && command -v xcodebuild >/dev/null 2>&1; then
   echo "App build ($SIM)…"
   xcodebuild -project Spross.xcodeproj -scheme Spross \
     -destination "platform=iOS Simulator,name=$SIM" \
-    -derivedDataPath .build/release-gate -quiet build
+    -derivedDataPath build/xcode -quiet build
 fi
 
 if [ "$CHECK" -eq 1 ]; then

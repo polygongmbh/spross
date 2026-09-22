@@ -47,13 +47,17 @@ if [ -z "$UDID" ]; then
   exit 1
 fi
 
+# why: shares its derived-data cache with release.sh/deploy-devices.sh
+# (build/xcode) — `./gradlew clean` then clears every build cache at once.
+DERIVED="$PWD/build/xcode"
+
 if [ "$BUILD" = 1 ]; then
   xcodebuild -project Spross.xcodeproj -scheme Spross \
-    -destination "id=$UDID" build
+    -destination "id=$UDID" -derivedDataPath "$DERIVED" build
 fi
 
 APP=$(xcodebuild -project Spross.xcodeproj -scheme Spross \
-        -destination "id=$UDID" -showBuildSettings 2>/dev/null \
+        -destination "id=$UDID" -derivedDataPath "$DERIVED" -showBuildSettings 2>/dev/null \
       | awk '/ BUILT_PRODUCTS_DIR = /{ print $3; exit }')/Spross.app
 [ -d "$APP" ] || { echo "error: run-sim: no build at $APP — drop --no-build" >&2; exit 1; }
 # why: the bundle id is the CONFIGURATION's (project.yml APP_ID_PREFIX — debug installs
