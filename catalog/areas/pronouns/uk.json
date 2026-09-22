@@ -25,7 +25,6 @@
   "no-one": { "text": "ніхто" },
   "anyone": { "text": "будь-хто" },
   "our": { "text": "наш", "accepts": ["наша", "наше", "наші"] },
-  "your-plural": { "text": "ваш", "accepts": ["ваша", "ваше", "ваші"] },
-  "children-where-are-your-shoes": { "text": "Діти, де ваші черевики?" }
+  "your-plural": { "text": "ваш", "accepts": ["ваша", "ваше", "ваші"] }
  }
 }

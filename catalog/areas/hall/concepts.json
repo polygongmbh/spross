@@ -47,5 +47,6 @@
   "kind": "phrase",
   "emoji": "🧥",
   "components": ["to-get-dressed", "jacket"]
- }
+ },
+ { "slug": "children-where-are-your-shoes", "kind": "phrase", "components": ["shoe"] }
 ]

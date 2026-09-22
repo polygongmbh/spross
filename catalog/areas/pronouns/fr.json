@@ -24,7 +24,6 @@
   "no-one": { "text": "aucune personne" },
   "anyone": { "text": "qui que ce soit" },
   "our": { "text": "notre", "accepts": ["nos"] },
-  "your-plural": { "text": "votre", "accepts": ["vos"] },
-  "children-where-are-your-shoes": { "text": "Les enfants, où sont vos chaussures ?" }
+  "your-plural": { "text": "votre", "accepts": ["vos"] }
  }
 }

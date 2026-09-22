@@ -88,6 +88,10 @@
   "see-you-later": { "text": "¡Nos vemos luego!", "accepts": ["¡Hasta luego!", "¡Hasta después!", "¡Nos vemos!"] },
   "welcome-home": { "text": "¡Bienvenido a casa!", "accepts": ["¡Bienvenida a casa!"] },
   "dont-forget-your-jacket": { "text": "¡No olvides tu chaqueta!", "accepts": ["¡No te olvides de la chaqueta!"] },
-  "put-on-the-jacket": { "text": "ponerse la chaqueta" }
+  "put-on-the-jacket": { "text": "ponerse la chaqueta" },
+  "children-where-are-your-shoes": {
+   "text": "Niños, ¿dónde están vuestros zapatos?",
+   "accepts": ["Niños, ¿dónde están sus zapatos?"]
+  }
  }
 }

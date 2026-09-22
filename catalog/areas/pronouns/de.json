@@ -26,7 +26,6 @@
   "no-one": { "text": "niemand" },
   "anyone": { "text": "irgendjemand" },
   "our": { "text": "unser", "accepts": ["unsere", "unseren", "unserem", "unseres", "unserer"] },
-  "your-plural": { "text": "euer", "accepts": ["eure", "euren", "eurem", "eures", "eurer"] },
-  "children-where-are-your-shoes": { "text": "Kinder, wo sind eure Schuhe?" }
+  "your-plural": { "text": "euer", "accepts": ["eure", "euren", "eurem", "eures", "eurer"] }
  }
 }

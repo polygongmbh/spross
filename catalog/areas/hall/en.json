@@ -40,6 +40,7 @@
   "welcome-home": { "text": "Welcome home!" },
   "dont-forget-your-jacket": { "text": "Don't forget your jacket!" },
   "put-on-the-jacket": { "text": "to put on the jacket" },
-  "take-off-your-shoes": { "text": "Take off your shoes." }
+  "take-off-your-shoes": { "text": "Take off your shoes." },
+  "children-where-are-your-shoes": { "text": "Children, where are your shoes?" }
  }
 }

@@ -104,6 +104,7 @@
    "text": "Non dimenticare la giacca!",
    "accepts": ["Non dimenticarti la giacca!", "Non dimenticare la tua giacca!"]
   },
-  "put-on-the-jacket": { "text": "mettersi la giacca" }
+  "put-on-the-jacket": { "text": "mettersi la giacca" },
+  "children-where-are-your-shoes": { "text": "Bambini, dove sono le vostre scarpe?" }
  }
 }

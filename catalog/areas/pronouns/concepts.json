@@ -19,11 +19,5 @@
  { "slug": "no-one", "kind": "adjective" },
  { "slug": "anyone", "kind": "adjective" },
  { "slug": "our", "kind": "adjective" },
- { "slug": "your-plural", "kind": "adjective" },
- {
-  "slug": "children-where-are-your-shoes",
-  "kind": "phrase",
-  "components": ["your-plural"],
-  "emoji": "👟"
- }
+ { "slug": "your-plural", "kind": "adjective" }
 ]

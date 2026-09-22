@@ -77,6 +77,7 @@
   "see-you-later": { "text": "À plus tard !", "teaches": ["À tout à l'heure !", "À plus !", "À bientôt !"] },
   "welcome-home": { "text": "Bienvenue à la maison !" },
   "dont-forget-your-jacket": { "text": "N'oublie pas ta veste !" },
-  "put-on-the-jacket": { "text": "mettre la veste", "accepts": ["mettre sa veste", "enfiler la veste"] }
+  "put-on-the-jacket": { "text": "mettre la veste", "accepts": ["mettre sa veste", "enfiler la veste"] },
+  "children-where-are-your-shoes": { "text": "Les enfants, où sont vos chaussures ?" }
  }
 }

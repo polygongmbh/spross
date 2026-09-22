@@ -52,6 +52,7 @@
   "welcome-home": { "text": "Ласкаво просимо додому!", "teaches": ["З поверненням!"] },
   "dont-forget-your-jacket": { "text": "Не забудь куртку!", "orders": ["Куртку не забудь!"] },
   "put-on-the-jacket": { "text": "одягати куртку" },
-  "take-off-your-shoes": { "text": "Зніми своє взуття.", "accepts": ["Роззуйся."], "orders": ["Своє взуття зніми."] }
+  "take-off-your-shoes": { "text": "Зніми своє взуття.", "accepts": ["Роззуйся."], "orders": ["Своє взуття зніми."] },
+  "children-where-are-your-shoes": { "text": "Діти, де ваші черевики?" }
  }
 }

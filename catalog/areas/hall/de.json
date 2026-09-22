@@ -44,6 +44,7 @@
   "welcome-home": { "text": "Willkommen zu Hause!" },
   "dont-forget-your-jacket": { "text": "Vergiss deine Jacke nicht!" },
   "put-on-the-jacket": { "text": "die Jacke anziehen" },
-  "take-off-your-shoes": { "text": "Zieh deine Schuhe aus." }
+  "take-off-your-shoes": { "text": "Zieh deine Schuhe aus." },
+  "children-where-are-your-shoes": { "text": "Kinder, wo sind eure Schuhe?" }
  }
 }

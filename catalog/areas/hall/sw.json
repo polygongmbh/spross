@@ -37,6 +37,7 @@
   "welcome-home": { "text": "Karibu nyumbani!" },
   "dont-forget-your-jacket": { "text": "Usisahau jaketi lako!" },
   "put-on-the-jacket": { "text": "kuvaa jaketi" },
-  "take-off-your-shoes": { "text": "Vua viatu vyako." }
+  "take-off-your-shoes": { "text": "Vua viatu vyako." },
+  "children-where-are-your-shoes": { "text": "Watoto, viatu vyenu viko wapi?" }
  }
 }

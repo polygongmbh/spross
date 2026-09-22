@@ -43,7 +43,6 @@
    "text": "-enu",
    "accepts": ["wenu", "yenu", "lenu", "chenu", "zenu", "vyenu"],
    "notes": { "sw": "jina lenu, lugha yenu, kitanda chenu, mji wenu." }
-  },
-  "children-where-are-your-shoes": { "text": "Watoto, viatu vyenu viko wapi?" }
+  }
  }
 }
